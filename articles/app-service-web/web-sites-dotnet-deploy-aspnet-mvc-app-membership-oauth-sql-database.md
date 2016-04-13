@@ -71,11 +71,11 @@
 
 	Web 應用程式的 URL 將會是 {name}.azurewebsites.net，因此該名稱在 azurewebsites.net 網域中必須是唯一的。組態精靈建議唯一的名稱是將數字附加至專案名稱 "ContactManager"，這也適用於本教學課程。
 
-5. 在 [資源群組] 下拉式清單中，選取現有的群組或 [建立新的資源群組] (請參閱下圖)。
+5. 在 [資源群組] 下拉式清單中，選取現有的群組或 [建立新的資源群組] \(請參閱下圖)。
 
 	您也可以依照意願選取您已有的資源群組。但如果您建立新的資源群組並僅用於此教學課程，就可在您完成時輕易刪除您為教學課程所建立的所有 Azure 資源。如需資源群組的資訊，請參閱 [Azure 資源管理員概觀](../resource-group-overview.md)。
 
-5. 在 [App Service 方案] 下拉式清單中，選取現有的方案或 [建立新的 App Service 方案] (請參閱下圖)。
+5. 在 [App Service 方案] 下拉式清單中，選取現有的方案或 [建立新的 App Service 方案] \(請參閱下圖)。
 
 	您也可以依照意願選取您已有的 App Service 計劃。如需 App Service 方案的資訊，請參閱 [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
 
