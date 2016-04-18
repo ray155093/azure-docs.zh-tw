@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="03/30/2016"
 	ms.author="larryfr"/>
 
 #在 HDInsight 上搭配使用 Apache Mahout 和以 Linux 為基礎的 Hadoop 來產生電影推薦
@@ -51,48 +51,26 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
 
 * __相似性推薦__：因為 Joe 喜歡前三部電影，Mahout 會查看具有相似偏好的其他使用者所喜歡但 Joe 還沒看過 (喜歡/評價) 的電影。在此情況下，Mahout 將會推薦_《威脅潛伏》_、_《複製人全面進攻》_和_《西斯大帝的復仇》_。
 
-##載入資料
+###了解資料
 
-[GroupLens 研究][movielens] 提供與 Mahout 相容之格式的電影評價資料，相當方便。使用下列步驟來下載資料，然後將其載入至叢集的預設儲存體：
+[GroupLens 研究][movielens] 提供與 Mahout 相容之格式的電影評價資料，相當方便。您可在位於 `/HdiSamples/HdiSamples/MahoutMovieData` 的叢集預設儲存體取得這份資料。
 
-1. 使用 SSH 來連線至 Linux 架構的 HDInsight 叢集。連接時要使用的位址為 `CLUSTERNAME-ssh.azurehdinsight.net`，而連接埠為 `22`。
+有兩份檔案：`moviedb.txt` (影片相關資訊) 和 `user-ratings.txt`。分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
 
-	如需有關使用 SSH 連線至 HDInsight 的詳細資訊，請參閱下列文件：
-
-    * **Linux、Unix 或 OS X 用戶端**：請參閱[從 Linux、OS X 或 Unix 連接至 Linux 架構的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster)
-
-    * **Windows 用戶端**：請參閱[從 Windows 連接至 Linux 架構的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)
-
-2. 下載 MovieLens 100k 封存檔，其中包含 1000 位使用者針對 1700 部電影的 100,000 個評價。
-
-        curl -O http://files.grouplens.org/datasets/movielens/ml-100k.zip
-
-3. 使用下列命令將封存檔解壓縮：
-
-        unzip ml-100k.zip
-
-    這會將內容解壓縮至新的資料夾 **ml-100 k**。
-
-4. 使用下列命令將資料複製到 HDInsight 儲存體：
-
-        cd ml-100k
-        hdfs dfs -put u.data /example/data
+user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。以下是資料範例：
 
 
-    此檔案內含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於電影的評價為何。以下是資料範例：
+    196	242	3	881250949
+    186	302	3	891717742
+    22	377	1	878887116
+    244	51	2	880606923
+    166	346	1	886397596
 
-
-		196	242	3	881250949
-		186	302	3	891717742
-		22	377	1	878887116
-		244	51	2	880606923
-		166	346	1	886397596
-
-##執行工作
+##執行分析
 
 使用下列命令來執行推薦工作：
 
-	mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /example/data/u.data -o /example/data/mahoutout --tempDir /temp/mahouttemp
+    mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/MahoutMovieData/user-ratings.txt -o /example/data/mahoutout --tempDir /temp/mahouttemp
 
 > [AZURE.NOTE] 此工作可能需要幾分鐘的時間才能完成，並可能執行多項 MapReduce 工作。
 
@@ -111,11 +89,12 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
 
 	第一欄是`userID`。 '[' 和 ']' 內含的值是 `movieId`:`recommendationScore`
 
-2. **ml-100k** 目錄內含的其他一些資料可用來讓資料更方便使用者使用。首先，使用下列命令下載資料：
+2. 您可以使用輸出和 moviedb.txt，顯示更多使用者易懂的詳細資訊。首先，我們需要使用下列命令將檔案複製到本機上︰
 
 		hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
+        hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
 
-	這會將輸出資料複製到目前目錄中名為 **recommendations.txt** 的檔案。
+	這會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案上。
 
 3. 使用下列命令來建立新的 Python 指令碼，該指令碼將會在建議輸出資料中查閱電影名稱：
 
@@ -124,15 +103,15 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
 	開啟編輯器時，請使用下列做為檔案的內容：
 
         #!/usr/bin/env python
-        
+
         import sys
-        
+
         if len(sys.argv) != 5:
                 print "Arguments: userId userDataFilename movieFilename recommendationFilename"
                 sys.exit(1)
-        
+
         userId, userDataFilename, movieFilename, recommendationFilename = sys.argv[1:]
-        
+
         print "Reading Movies Descriptions"
         movieFile = open(movieFilename)
         movieById = {}
@@ -140,7 +119,7 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
                 tokens = line.split("|")
                 movieById[tokens[0]] = tokens[1:]
         movieFile.close()
-        
+
         print "Reading Rated Movies"
         userDataFile = open(userDataFilename)
         ratedMovieIds = []
@@ -149,7 +128,7 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
                 if tokens[0] == userId:
                         ratedMovieIds.append((tokens[1],tokens[2]))
         userDataFile.close()
-        
+
         print "Reading Recommendations"
         recommendationFile = open(recommendationFilename)
         recommendations = []
@@ -160,13 +139,13 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
                         recommendations = [ movieIdAndScore.split(":") for movieIdAndScore in movieIdAndScores ]
                         break
         recommendationFile.close()
-        
+
         print "Rated Movies"
         print "------------------------"
         for movieId, rating in ratedMovieIds:
                 print "%s, rating=%s" % (movieById[movieId][0], rating)
         print "------------------------"
-        
+
         print "Recommended Movies"
         print "------------------------"
         for movieId, score in recommendations:
@@ -179,14 +158,14 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
 
 		chmod +x show_recommendations.py
 
-4. 執行 Python 指令碼。以下假設您位於包含 `u.data` 和 `u.item` 檔案的 [ml-100k] 目錄中：
+4. 執行 Python 指令碼。以下假設您已在所有檔案的下載目錄中︰
 
-		./show_recommendations.py 4 u.data u.item recommendations.txt
+		./show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
 
 	這要看看為使用者 ID 4 所產生的建議。
 
-	* **u.data** 檔案用來擷取使用者已評分的電影
-	* **u.item** 檔案用來擷取電影名稱
+	* **user-ratings.txt** 檔案用來擷取使用者已評分的影片
+	* **moviedb.txt** 檔案用來擷取影片名稱
 	* **recommendations.txt** 用來擷取這位使用者的電影建議
 
 	此命令的輸出會如下所示：
@@ -245,7 +224,7 @@ Mahout 工作不會移除處理工作時所建立的暫存資料。範例工作�
 >
 > ```hdfs dfs -rm -f -r /example/data/mahoutout```
 
-##後續步驟
+## 後續步驟
 
 您現在已了解如何使用 Mahout，請繼續探索在 HDInsight 上使用資料的其他方法：
 
@@ -267,4 +246,4 @@ Mahout 工作不會移除處理工作時所建立的暫存資料。範例工作�
 [tools]: https://github.com/Blackmist/hdinsight-tools
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

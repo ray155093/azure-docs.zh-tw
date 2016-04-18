@@ -18,9 +18,12 @@
 
 # 如何使用 CLI 管理 DNS 記錄
 
+
 > [AZURE.SELECTOR]
+- [Azure 入口網站](dns-operations-recordsets-portal.md)
 - [Azure CLI](dns-operations-recordsets-cli.md)
 - [PowerShell](dns-operations-recordsets.md)
+
 
 本指南會示範如何使用跨平台 Azure CLI 管理 DNS 區域的記錄集和記錄。
 
@@ -242,4 +245,4 @@ Azure DNS 支援[萬用字元記錄](https://en.wikipedia.org/wiki/Wildcard_DNS_
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

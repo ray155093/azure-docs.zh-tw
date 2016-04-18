@@ -36,13 +36,13 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 給定的 IoT 解決方案儲存的裝置資料取決於該解決方案的特定需求。但是解決方案至少必須儲存裝置身分識別和驗證金鑰。Azure IoT 中樞包含[身分識別登錄][lnk-devguide-identityregistry]，其可以儲存每個裝置的值，例如識別碼、驗證金鑰和狀態碼。解決方案可以使用其他 Azure 服務 (例如資料表、blob 或 Azure DocumentDB) 來儲存任何其他裝置資料。
 
-*裝置佈建*是將初始裝置資料加入至解決方案中存放區的程序。若要讓新裝置可連接到您的中樞，必須將新裝置識別碼和金鑰加入至 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]。做為佈建程序的一部分，您可能需要初始化其他解決方案存放區中的裝置特定資料。
+裝置佈建是將初始裝置資料加入至解決方案中存放區的程序。若要讓新裝置可連接到您的中樞，必須將新裝置識別碼和金鑰加入至 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]。做為佈建程序的一部分，您可能需要初始化其他解決方案存放區中的裝置特定資料。
 
-[IoT 中樞裝置管理指引][lnk-device-management]文章描述裝置佈建的一些常見策略。[IoT 中樞身分識別登錄 API][lnk-devguide-identityregistry] 可讓您將 IoT 中樞整合到您的佈建程序。
+[IoT 中樞身分識別登錄 API][lnk-devguide-identityregistry] 可讓您將 IoT 中樞整合到您的佈建程序。
 
 ## 現場閘道器
 
-在 IoT 解決方案中，*現場閘道器*位於您的裝置和 IoT 中樞之間。它通常位於接近您的裝置的位置。您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。現場閘道器會使用 IoT 中樞所支援的通訊協定來與 IoT 中樞通訊。現場閘道器可以是專用的獨立裝置，或是在現有硬體部分上執行的軟體。
+在 IoT 解決方案中，現場閘道器位於您的裝置和 IoT 中樞之間。它通常位於接近您的裝置的位置。您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。現場閘道器會使用 IoT 中樞所支援的通訊協定來與 IoT 中樞通訊。現場閘道器可以是專用的獨立裝置，或是在現有硬體部分上執行的軟體。
 
 現場閘道器與簡單的流量路由裝置 (例如網路位址轉譯 (NAT) 裝置或防火牆) 不同，因為它通常會在解決方案內管理存取和資訊流程中扮演主動的角色。例如，現場閘道器可以：
 
@@ -56,7 +56,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ### 現場閘道器的類型
 
-現場閘道器可以是 *transparent* 或 *opaque*：
+現場閘道器可以是 transparent 或 opaque：
 
 | &nbsp; | 透明的閘道器 | 不透明的閘道器|
 |--------|-------------|--------|
@@ -72,7 +72,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ## 自訂裝置驗證
 
-您可以使用 IoT 中樞[裝置身分識別登錄][lnk-devguide-identityregistry]來設定每一裝置的安全性認證和存取控制。如果 IoT 解決方案已經大幅投資自訂裝置身分識別登錄及/或驗證配置，您可以藉由建立*權杖服務*，將這個現有基礎結構與 IoT 中樞整合。如此一來，您可以在解決方案中使用其他 IoT 功能。
+您可以使用 IoT 中樞[裝置身分識別登錄][lnk-devguide-identityregistry]來設定每一裝置的安全性認證和存取控制。如果 IoT 解決方案已經大幅投資自訂裝置身分識別登錄及/或驗證配置，您可以藉由建立權杖服務，將這個現有基礎結構與 IoT 中樞整合。如此一來，您可以在解決方案中使用其他 IoT 功能。
 
 權杖服務是自訂雲端服務。建立具備 **DeviceConnect** 權限的 IoT 中樞共用存取原則，以建立「裝置範圍」權杖。這些權杖可讓裝置連接到 IoT 中樞。
 
@@ -93,11 +93,11 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ### 和自訂閘道器的比較
 
-權杖服務模式為使用 IoT 中樞實作自訂身分識別登錄/驗證配置的建議方式。這麼建議是因為 IoT 中樞會繼續處理大部份的解決方案流量。不過，在一些情況下，自訂驗證配置和通訊協定過度交織，因此需要可處理所有流量 (*自訂閘道器*) 的服務。[傳輸層安全性 (TLS) 和預先共用金鑰 (PSK)][lnk-tls-psk] 是服務範例之一。如需詳細資訊，請參閱[通訊協定閘道器][lnk-gateway]主題。
+權杖服務模式為使用 IoT 中樞實作自訂身分識別登錄/驗證配置的建議方式。這麼建議是因為 IoT 中樞會繼續處理大部份的解決方案流量。不過，在一些情況下，自訂驗證配置和通訊協定過度交織，因此需要可處理所有流量 (自訂閘道器) 的服務。[傳輸層安全性 (TLS) 和預先共用金鑰 (PSK)][lnk-tls-psk] 是服務範例之一。如需詳細資訊，請參閱[通訊協定閘道器][lnk-gateway]主題。
 
 ## 裝置活動訊號 <a id="heartbeat"></a>
 
-[IoT 中樞身分識別登錄][lnk-devguide-identityregistry]包含名為 [connectionState] 的欄位。您只應該在開發和偵錯期間使用 [connectionState] 欄位，IoT 解決方案不應該在執行階段查詢該欄位 (例如，為了檢查裝置是否已連線，以便決定是否要傳送雲端到裝置的訊息或 SMS)。如果 IoT 解決方案需要知道裝置是否已連線 (在執行階段，或比 **connectionState** 屬性所提供的更精確時)，解決方案應該實作*活動訊號模式*。
+[IoT 中樞身分識別登錄][lnk-devguide-identityregistry]包含名為 [connectionState] 的欄位。您只應該在開發和偵錯期間使用 [connectionState] 欄位，IoT 解決方案不應該在執行階段查詢該欄位 (例如，為了檢查裝置是否已連線，以便決定是否要傳送雲端到裝置的訊息或 SMS)。如果 IoT 解決方案需要知道裝置是否已連線 (在執行階段，或比 **connectionState** 屬性所提供的更精確時)，解決方案應該實作活動訊號模式。
 
 在活動訊號模式中，裝置每隔固定時間就會至少傳送一次裝置到雲端的訊息 (例如，每小時至少一次)。這表示即使裝置沒有任何要傳送的資料，它仍會傳送空的裝置到雲端的訊息 (通常具有可供識別其屬於活動訊號的屬性)。在服務端，解決方案會維護一份地圖，裡面有每個裝置所收到的最後一次活動訊號，並假設如果裝置沒有在預期時間內收到活動訊號訊息，即表示裝置有問題。
 
@@ -115,7 +115,6 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [img-tokenservice]: ./media/iot-hub-guidance/tokenservice.png
 
 [lnk-devguide-identityregistry]: iot-hub-devguide.md#identityregistry
-[lnk-device-management]: iot-hub-device-management.md
 [lnk-devguide-opmon]: iot-hub-operations-monitoring.md
 
 [lnk-device-sdks]: iot-hub-sdks-summary.md
@@ -134,4 +133,4 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [lnk-java-sas]: http://azure.github.io/azure-iot-sdks/java/service/api_reference/com/microsoft/azure/iot/service/auth/IotHubServiceSasToken.html
 [IoT 中樞配額與節流]: iot-hub-devguide.md#throttling
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

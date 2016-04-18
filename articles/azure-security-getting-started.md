@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/23/2016"
+   ms.date="04/04/2016"
    ms.author="yuridio"/>
 
 #開始使用 Microsoft Azure 安全性
@@ -138,9 +138,9 @@ Azure 在每個 Azure 叢集中提供了三個以邏輯方式隔離流量的主�
 進入和來自於 VM 的網路流量，必須通過 Hypervisor 虛擬交換器。根 OS 中的 IP 篩選器元件會隔離根 VM 與客體 VM，並且各個客體 VM 互相隔離。它會執行流量篩選，以限制租用戶的節點與公用網際網路 (根據客戶的服務組態) 之間的通訊，使其與其他租用戶隔離。
 
 IP 篩選器有助於防止客體 VM：
- 
+
 - 產生假冒流量
- 
+
 - 接收不是傳送給它們的流量
 
 - 將流量導向至受保護的基礎結構端點
@@ -209,7 +209,7 @@ Azure 系統管理員會透過對於記錄檔的存取經過驗證且受到控�
 
 Microsoft 會使用 Syslog 通訊協定從網路裝置收集記錄檔，並使用 Microsoft 稽核收集服務 (ACS) 從主機伺服器收集記錄檔。這些記錄檔會放入記錄資料庫中，並且在可疑事件發生時直接向 Microsoft 系統管理員產生警示。系統管理員可以存取並分析這些記錄檔。
 
-[Azure 診斷](https://msdn.microsoft.com/library/azure/gg433048.aspx)是一項 Azure 功能，可讓您收集來自在 Azure 中執行之應用程式的診斷資料。這項診斷資料可用來進行偵錯和疑難排解、測量效能、監視資源使用量、流量分析和容量規劃以及稽核。收集到的診斷資料可以傳輸到 Azure 儲存體帳戶，以進行保存。傳輸可以是排程或隨選的。[Microsoft Azure 安全性和稽核記錄管理](azure-security-audit-log-management.md)提供如何收集這項資訊並執行分析的詳細資訊。
+[Azure 診斷](https://msdn.microsoft.com/library/azure/gg433048.aspx)是一項 Azure 功能，可讓您收集來自在 Azure 中執行之應用程式的診斷資料。這項診斷資料可用來進行偵錯和疑難排解、測量效能、監視資源使用量、流量分析和容量規劃以及稽核。收集到的診斷資料可以傳輸到 Azure 儲存體帳戶，以進行保存。傳輸可以是排程或隨選的。
 
 ##威脅防護
 
@@ -241,4 +241,4 @@ Azure 有安全性控制可實作威脅防護功能，並協助客戶降低其�
 
 [Active Directory 部落格](http://blogs.technet.com/b/ad/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

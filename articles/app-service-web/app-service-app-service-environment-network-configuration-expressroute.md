@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="04/06/2016" 
 	ms.author="stefsch"/>
 
 # 使用 ExpressRoute 之 App Service 環境的網路組態詳細資料 
@@ -21,7 +21,7 @@
 ## 概觀 ##
 客戶可以將 [Azure ExpressRoute][ExpressRoute] 循環連接至虛擬網路基礎結構，因而將其內部部署網路延伸至 Azure。您可以在這個[虛擬網路][virtualnetwork]基礎結構的子網路中建立 App Service 環境。在 App Service 環境上執行的應用程式接著可以建立與後端資源的安全連線，而後端資源只能透過 ExpressRoute 連線來存取。
 
-**注意：**在「v2」虛擬網路中，無法建立 App Service 環境。App Service 環境目前僅支援處理傳統「v1」虛擬網路。
+**注意：**在「v2」虛擬網路中，無法建立 App Service 環境。App Service 環境目前僅支援處理使用 RFC1918 位址空間 (即私人位址) 的傳統 "v1" 虛擬網路。
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -137,4 +137,4 @@
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -174,7 +174,7 @@
 
 	.\Deploy-AzureResourceGroup.ps1 -ResourceGroupLocation "East US" `
 									-ResourceGroupName $rgName `
-									-UploadArtifacts "container-name" `
+									-UploadArtifacts `
 									-StorageAccountName "name-of-storage-acct-for-package" `
 									-StorageAccountResourceGroupName "resource-group-name-storage-acct" `
 									-TemplateFile "web-app-deploy.json" `
@@ -197,4 +197,4 @@
 
 此時，您的應用程式應已部署，且您應能夠透過 https://www.yourcustomdomain.com 加以瀏覽
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0406_2016-->

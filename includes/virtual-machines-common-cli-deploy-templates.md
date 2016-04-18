@@ -1,7 +1,4 @@
 
-本文會為您示範如何使用 Azure 資源管理員範本和 Azure CLI，執行下列部署和管理 Azure 虛擬機器的常見工作。如需您可以使用的其他範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md)。
-
-
 - [在 Azure 中快速建立虛擬機器](#quick-create-a-vm-in-azure)
 - [在 Azure 中利用範本部署虛擬機器](#deploy-a-vm-in-azure-from-a-template)
 - [從自訂映像建立虛擬機器](#create-a-custom-vm-image)
@@ -16,7 +13,7 @@
 
 ## 準備就緒
 
-在您能夠搭配 Azure 資源群組使用 Azure CLI 之前，必須備妥正確的 Azure CLI 版本以及 Azure 帳戶。如果沒有 Azure CLI，請[安裝它](xplat-cli-install.md)。
+在您能夠搭配 Azure 資源群組使用 Azure CLI 之前，必須備妥正確的 Azure CLI 版本以及 Azure 帳戶。如果沒有 Azure CLI，請[安裝它](../articles/xplat-cli-install.md)。
 
 ### 將 Azure CLI 版本更新為 0.9.0 或更新版本
 
@@ -214,7 +211,7 @@
 
 ### 步驟 1：檢查 JSON 檔案的範本參數。
 
-以下是範本的 JSON 檔案內容。(這個範本也位於 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-simple-linux-vm/azuredeploy.json) 中)。
+以下是範本的 JSON 檔案內容。(這個範本也位於 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json) 中)。
 
 範本可彈性運用，所以這位設計人員可能已經決定提供很多的參數給您，或者決定建立一個更固定的範本，而只提供幾個參數給您。為了收集資訊，請您將這個範本以參數的形式傳遞，然後開啟範本檔案 (這個主題內嵌一個範本)，接下來檢查 [參數] 值。
 
@@ -435,7 +432,7 @@
 
 下列是一個範例：
 
-    azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-simple-linux-vm/azuredeploy.json myResourceGroup firstDeployment
+    azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json myResourceGroup firstDeployment
     info:    Executing command group deployment create
     info:    Supply values for the following parameters
     newStorageAccountName: storageaccount
@@ -477,7 +474,7 @@
 
 ### 步驟 1：檢查範本的 JSON 檔案
 
-以下是本章節舉例說明時，範本的 JSON 檔案內容。
+以下是本章節舉例說明時，範本的 JSON 檔案內容。(這個範本也位於 [GitHub](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json) 中)。
 
 再說一次，參數如果沒有預設值，就必須找出您想輸入的值。當您執行 `azure group deployment create` 命令時，Azure CLI 會提示您輸入這些值。
 
@@ -1176,7 +1173,7 @@
 
 ## <a id="display-information-about-a-virtual-machine"></a>工作：顯示虛擬機器的相關資訊
 
-您可以使用 `azure vm show <groupname> <vmname> command` 來了解資源群組中特定 VM 的相關資訊。如果您的群組中有多個 VM，可能需要先使用 `azure vm list <groupname>` 來列出群組中的 VM。
+您可以使用 `azure vm show <groupname> <vmname>` 命令來了解資源群組中特定 VM 的相關資訊。如果您的群組中有多個 VM，可能需要先使用 `azure vm list <groupname>` 來列出群組中的 VM。
 
     azure vm list zoo
     info:    Executing command vm list
@@ -1271,7 +1268,7 @@
 
     azure vm disk attach <resource-group> <vm-name> [vhd-url]
 
-然後您必須先掛接磁碟，就像在 Linux 或 Windows 掛接磁碟一樣。
+然後您必須先掛接磁碟，就像在 Linux 掛接磁碟一樣。
 
 
 ## 後續步驟
@@ -1281,4 +1278,4 @@
 
 如需您可以使用的其他範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/04/2016"
+	ms.date="04/05/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集
@@ -47,7 +47,7 @@
 	
 ##建立叢集
 
-請參閱[使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-cli.md)。
+請參閱[使用 Azure CLI 建立 HDInsight 上的 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md)。
 
 ##列出和顯示叢集詳細資料
 使用下列命令，以列出並顯示叢集詳細資料：
@@ -106,4 +106,4 @@
 [image-cli-clustercreation-config]: ./media/hdinsight-administer-use-command-line/HDI.CLIClusterCreationConfig.png
 [image-cli-clusterlisting]: ./media/hdinsight-administer-use-command-line/HDI.CLIListClusters.png "列出和顯示叢集"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

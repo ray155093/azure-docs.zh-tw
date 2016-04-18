@@ -40,7 +40,7 @@
 
 ### 使用 Node Package Manager (NPM) 取得封裝
 
-1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] \(Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 
 2.  在命令視窗中輸入 **npm install azure-storage**。此命令的輸出類似下列程式碼範例。
 
@@ -82,14 +82,14 @@ Azure 模組會讀取環境變數 `AZURE_STORAGE_ACCOUNT` 及 `AZURE_STORAGE_ACC
 若要建立新的容器，請使用 **createContainerIfNotExists**。以下程式碼範例會建立一個名為 'mycontainer' 的新容器：
 
 	blobSvc.createContainerIfNotExists('mycontainer', function(error, result, response){
-      if(!error){
-        // Container exists and allows
-        // anonymous read access to blob
-        // content and metadata within this container
-      }
+	    if(!error){
+	      // Container exists and allows
+	      // anonymous read access to blob
+	      // content and metadata within this container
+	    }
 	});
 
-如果是新建立的容器，`result` 為 true。如果容器已存在，則 `result` 為 false。`response` 包含作業的相關資訊，包括容器的 [ETag](http://en.wikipedia.org/wiki/HTTP_ETag) 資訊。
+如果是新建立的容器，`result.created` 為 true。如果容器已存在，則 `result.created` 為 false。`response` 包含作業的相關資訊，包括容器的 ETag 資訊。
 
 ### 容器安全性
 
@@ -101,17 +101,17 @@ Azure 模組會讀取環境變數 `AZURE_STORAGE_ACCOUNT` 及 `AZURE_STORAGE_ACC
 
 下列程式碼範例示範將存取等級設為 **blob**：
 
-    blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
-      if(!error){
-        // Container exists and is private
-      }
+	blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
+	    if(!error){
+	      // Container exists and is private
+	    }
 	});
 
 或者，您可以使用 **setContainerAcl** 指定存取等級，以修改容器的存取等級。下列程式碼範例會將存取等級變更為 container：
 
-    blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, 'container' /* publicAccessLevel*/, function(error, result, response){
+	blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, {publicAccessLevel : 'container'} /* publicAccessLevel*/, function(error, result, response){
 	  if(!error){
-		// Container access level set to 'container'
+	    // Container access level set to 'container'
 	  }
 	});
 
@@ -121,11 +121,11 @@ Azure 模組會讀取環境變數 `AZURE_STORAGE_ACCOUNT` 及 `AZURE_STORAGE_ACC
 
 您可以將選用的篩選作業套用到使用 **BlobService** 執行的作業。篩選作業可包括記錄、自動重試等等。篩選器是使用簽章實作方法的物件：
 
-		function handle (requestOptions, next)
+	function handle (requestOptions, next)
 
 在對要求選項進行前處理之後，方法需要呼叫 "next" 並傳遞具有下列簽章的回呼：
 
-		function (returnObject, finalCallback, next)
+	function (returnObject, finalCallback, next)
 
 在此回呼中，以及處理 returnObject (來自對伺服器之要求的回應) 之後，回呼需要叫用 next (如果存在) 以繼續處理其他篩選，或是直接叫用 finalCallback 結束服務叫用。
 
@@ -136,7 +136,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 ## 將 Blob 上傳至容器
 
-Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳大型資料，而分頁 Blob 最適合讀寫操作。如需詳細資訊，請參閱[了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
+有三種類型的 Blob：區塊 Blob、分頁 Blob 和附加 Blob。Block Blob 可讓您更有效率地上傳大型資料。附加 Blob 已針對附加作業最佳化。分頁 Blob 已針對讀/寫作業最佳化。如需詳細資訊，請參閱[了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
 
 ### 區塊 Blob
 
@@ -160,6 +160,49 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 這些方法傳回的 `result` 包含作業的相關資訊，例如 Blob 的 **ETag**。
 
+### 附加 Blob
+
+若要將資料上傳至附加 Blob，請使用下列方法：
+
+* **createAppendBlobFromLocalFile** - 建立新的附加 Blob 並上傳檔案的內容
+
+* **createAppendBlobFromStream** - 建立新的附加 Blob 並上傳串流的內容
+
+* **createAppendBlobFromText** - 建立新的附加 Blob 並上傳字串的內容
+
+* **createWriteStreamToNewAppendBlob** - 建立新的附加 Blob，然後提供串流來寫入它
+
+下列程式碼範例會將 **test.txt** 檔案的內容上傳至 **myappendblob**。
+
+	blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt', function(error, result, response){
+	  if(!error){
+	    // file uploaded
+	  }
+	});
+
+若要將區塊附加到現有附加 Blob，請使用下列方法︰
+
+* **appendFromLocalFile** - 將檔案的內容附加到現有附加 Blob
+
+* **appendFromStream** - 將串流的內容附加到現有附加 Blob
+
+* **appendFromText** - 將字串的內容附加到現有附加 Blob
+
+* **appendBlockFromStream** - 將串流的內容附加到現有附加 Blob
+
+* **appendBlockFromText** - 將字串的內容附加到現有附加 Blob
+
+> [AZURE.NOTE] appendFromXXX API 會讓部分用戶端驗證立即失敗，以避免不必要的伺服器呼叫。appendBlockFromXXX 則否。
+
+下列程式碼範例會將 **test.txt** 檔案的內容上傳至 **myappendblob**。
+
+	blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', function(error, result, response){
+	  if(!error){
+	    // text appended
+	  }
+	});
+
+
 ### 分頁 Blob
 
 若要將資料上傳至分頁 Blob，請使用下列方法：
@@ -172,7 +215,7 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 * **createWriteStreamToExistingPageBlob** - 提供對現有分頁 Blob 的寫入串流
 
-* **createWriteStreamToNewPageBlob** - 建立新的 Blob，然後提供串流來寫入它
+* **createWriteStreamToNewPageBlob** - 建立新的分頁 Blob，然後提供串流來寫入它
 
 下列程式碼範例會將 **test.txt** 檔的內容上傳至 **mypageblob**。
 
@@ -182,16 +225,16 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 	  }
 	});
 
-> [AZURE.NOTE] 分頁 Blob 由 512 位元組的「分頁」組成。如果上傳的資料大小不是 512 的倍數，可能會發生錯誤。
+> [AZURE.NOTE] 分頁 Blob 由 512 位元組的「分頁」組成。如果上傳的資料大小不是 512 的倍數，則會接收到錯誤。
 
 ## 列出容器中的 Blob
 
 若要列出容器中的 Blob，請使用 **listBlobsSegmented** 方法。若要傳回具有特定首碼的 Blob，請使用 **listBlobsSegmentedWithPrefix**。
 
-    blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
-      if(!error){
-        // result.entries contains the entries
-        // If not all blobs were returned, result.continuationToken has the continuation token.
+	blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
+	  if(!error){
+	      // result.entries contains the entries
+	      // If not all blobs were returned, result.continuationToken has the continuation token.
 	  }
 	});
 
@@ -211,7 +254,7 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 下列程式碼範例示範使用 **getBlobToStream** 來下載 **myblob** Blob 的內容，並使用串流存放到 **output.txt** 檔案：
 
-    var fs = require('fs');
+	var fs = require('fs');
 	blobSvc.getBlobToStream('mycontainer', 'myblob', fs.createWriteStream('output.txt'), function(error, result, response){
 	  if(!error){
 	    // blob retrieved
@@ -224,7 +267,7 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 最後，呼叫 **deleteBlob** 以刪除 blob。下列程式碼範例會刪除名為 **myblob** 的 Blob。
 
-    blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
+	blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
 	  if(!error){
 		// Blob has been deleted
 	  }
@@ -240,12 +283,12 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 ### ETag
 
-若您需要允許多個用戶端或執行個體同時寫入 Blob，請使用 ETag。ETag 可讓您判斷容器或 Blob 自從您最初讀取或建立它之後是否已修改，這樣可讓您避免覆寫另一個用戶端或程序已認可的變更。
+若您需要允許多個用戶端或執行個體同時寫入區塊 Blob 或分頁 Blob，請使用 ETag。ETag 可讓您判斷容器或 Blob 自從您最初讀取或建立它之後是否已修改，這樣可讓您避免覆寫另一個用戶端或程序已認可的變更。
 
 使用選用的 `options.accessConditions` 參數，可以設定 ETag 條件。只有在 Blob 已存在，且 `etagToMatch` 中包含 ETag 值時，下列程式碼範例才會上傳 **test.txt** 檔案。
 
-	blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { 'if-match': etagToMatch} }, function(error, result, response){
-      if(!error){
+	blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { EtagMatch: etagToMatch} }, function(error, result, response){
+	    if(!error){
 	    // file uploaded
 	  }
 	});
@@ -319,36 +362,30 @@ Blob 可以區塊或分頁為基礎。Block 區塊可讓您更有效率地上傳
 
 ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼。下列程式碼範例定義兩個原則，其中一個用於 'user1'，另一個用於 'user2'：
 
-	var sharedAccessPolicy = [
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.BlobUtilities.SharedAccessPermissions.READ,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user1'
+	var sharedAccessPolicy = {
+	  user1: {
+	    Permissions: azure.BlobUtilities.SharedAccessPermissions.READ,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  },
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.BlobUtilities.SharedAccessPermissions.WRITE,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user2'
+	  user2: {
+	    Permissions: azure.BlobUtilities.SharedAccessPermissions.WRITE,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  }
-	];
+	};
 
 下列程式碼範例會取得 **mycontainer** 的目前 ACL，然後使用 **setBlobAcl** 來加入新的原則。此方法允許：
 
+	var extend = require('extend');
 	blobSvc.getBlobAcl('mycontainer', function(error, result, response) {
-      if(!error){
-		//push the new policy into signedIdentifiers
-		result.signedIdentifiers.push(sharedAccessPolicy);
-		blobSvc.setBlobAcl('mycontainer', result, function(error, result, response){
-	  	  if(!error){
-	    	// ACL set
-	  	  }
-		});
+	  if(!error){
+	    var newSignedIdentifiers = extend(true, result.signedIdentifiers, sharedAccessPolicy);
+	    blobSvc.setBlobAcl('mycontainer', newSignedIdentifiers, function(error, result, response){
+	      if(!error){
+	        // ACL set
+	      }
+	    });
 	  }
 	});
 
@@ -378,4 +415,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure Storage SDK for Node API 參考]: http://dl.windowsazure.com/nodestoragedocs/index.html
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

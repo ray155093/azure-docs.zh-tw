@@ -18,16 +18,16 @@
 
 # 使用篩選述詞選取要移轉的資料列 (Stretch Database)
 
-如果您將歷程資料儲存在個別的資料表上，您可以設定 Stretch Database 以移轉整個資料表。相反地，如果您的資料表同時包含歷程及目前的資料，您可以指定篩選述詞以選取要移轉的資料列。篩選述詞必須呼叫嵌入資料表值函式。本主題說明如何撰寫嵌入資料表值函式以選取要移轉的資料列。
-
-在 CTP 3.1 一直到 RC1 中，指定述詞的選項已不再於 [啟用 Stretch 資料庫精靈] 中提供。您必須使用 ALTER TABLE 陳述式以利用此選項設定 Stretch Database。如需詳細資訊，請參閱 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。
-
-如果您不指定篩選述詞，便會移轉整個資料表。
+如果您將歷程資料儲存在個別的資料表上，您可以設定 Stretch Database 以移轉整個資料表。相反地，如果您的資料表同時包含目前和歷程資料，您可以指定篩選述詞以選取要移轉的資料列。篩選述詞是嵌入資料表值函式。本主題說明如何撰寫嵌入資料表值函式以選取要移轉的資料列。
 
 >   [AZURE.NOTE] 如果您提供執行不良的篩選述詞，則資料移轉也會執行不良。Stretch Database 使用 CROSS APPLY 運算子將篩選述詞套用至資料表。
 
+如果您不指定篩選述詞，便會移轉整個資料表。
+
+在 CTP 3.1 到 RC2 中，[啟用 Stretch 資料庫精靈] 已不再提供用以指定述詞的選項。您必須使用 ALTER TABLE 陳述式以利用此選項設定 Stretch Database。如需詳細資訊，請參閱 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-table.md) 和 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。
+
 ## 嵌入資料表值函式的基本需求
-Stretch Database 篩選函式嵌入資料表值函式所需的嵌入資料表值函式看起來如下列範例所示。
+Stretch Database 篩選述詞所需的嵌入資料表值函式看起來如下列範例所示。
 
 ```tsql
 CREATE FUNCTION dbo.fn_stretchpredicate(@column1 datatype1, @column2 datatype2 [, ...n])
@@ -42,10 +42,10 @@ RETURN	SELECT 1 AS is_eligible
 需要結構描述繫結，以避免篩選述詞使用的資料欄被卸除或改變。
 
 ### 傳回值
-如果函式傳回非空白結果，則該資料列便符合移轉資格。否則，在函式沒有傳回任何資料列的情況下，便代表該資料列不符合移轉資格。
+如果函式傳回非空白結果，則該資料列便符合移轉資格。否則，在函式未傳回結果的情況下，便代表該資料列不符合移轉資格。
 
 ### 條件
-&lt;*述詞*&gt; 可以包含一個條件，或是包含以 AND 邏輯運算子結合的數個條件。
+&lt;述詞&gt; 可以包含一個條件，或是包含以 AND 邏輯運算子結合的數個條件。
 
 ```
 <predicate> ::= <condition> [ AND <condition> ] [ ...n ]
@@ -133,7 +133,117 @@ RETURN	SELECT 1 AS is_eligible
 
 您不能使用子查詢或不具決定性的函式，例如 RAND() 或 GETDATE()。
 
-## 有效函式的範例
+## 將篩選式詞新增到資料表
+透過執行 ALTER TABLE 陳述式並將現有的嵌入資料表值函式指定為 FILTER\_PREDICATE 參數的值，來將篩選述詞新增到資料表。例如：
+
+```tsql
+ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
+	FILTER_PREDICATE = dbo.fn_stretchpredicate(column1, column2),
+	MIGRATION_STATE = <desired_migration_state>
+) )
+```
+在您將函式做為述詞繫結至資料表之後，下列項目皆會成立。
+
+-   發生下一次的資料移轉時，只有其函式傳回非空白值的資料列會被移轉。
+
+-   函式所使用的資料欄皆為結構描述繫結。只要有資料表將該函式做為其篩選述詞使用，您便無法變更這些資料欄。
+
+只要有資料表將該函式做為其篩選述詞使用，您便無法卸除嵌入資料表值函式。
+
+## 依日期篩選資料列
+下列範例會移轉 [date] 資料行包含 2016 年 1 月 1 日之前值的資料列。
+
+```tsql
+-- Filter by date
+--
+CREATE FUNCTION dbo.fn_stretch_by_date(@date datetime2)
+RETURNS TABLE
+WITH SCHEMABINDING
+AS
+       RETURN SELECT 1 AS is_eligible WHERE @date < CONVERT(datetime2, '1/1/2016', 101)
+GO
+```
+
+## 依狀態資料行中的值篩選資料列
+下列範例會移轉 [status] 資料行包含其中一個指定值的資料列。
+
+```tsql
+-- Filter by status column
+--
+CREATE FUNCTION dbo.fn_stretch_by_status(@status nvarchar(128))
+RETURNS TABLE
+WITH SCHEMABINDING
+AS
+       RETURN SELECT 1 AS is_eligible WHERE @status IN (N'Completed', N'Returned', N'Cancelled')
+GO
+```
+
+## 使用滑動視窗篩選資料列
+若要使用滑動視窗來篩選資料列，請記住 filter 函式的下列需求。
+
+-   此函式必須具有決定性。因此，經過一段時間之後，您無法建立會自動重新計算滑動視窗的函式。
+
+-   此函式會使用結構描述繫結。因此，呼叫 ALTER FUNCTION 來移動滑動視窗，並無法每天僅「就地」更新函式。
+
+開始使用與下列範例類似的篩選述詞，而此篩選述詞會移轉 [systemEndTime] 資料行包含 2016 年 1 月 1 日之前值的資料列。
+
+```tsql
+CREATE FUNCTION dbo.fn_StretchBySystemEndTime20160101(@systemEndTime datetime2)
+RETURNS TABLE
+WITH SCHEMABINDING  
+AS  
+RETURN SELECT 1 AS is_eligible
+  WHERE @systemEndTime < CONVERT(datetime2, '2016-01-01T00:00:00', 101) ;
+```
+
+將篩選述詞套用至資料表。
+
+```tsql
+ALTER TABLE <table name>
+SET (
+        REMOTE_DATA_ARCHIVE = ON
+                (
+                        FILTER_PREDICATE = dbo.fn_StretchBySystemEndTime20160101 (SysEndTime)
+                                , MIGRATION_STATE = OUTBOUND
+                )
+        )
+;
+```
+
+當您想要更新滑動視窗時，請執行下列動作。
+
+1.  建立可指定新滑動視窗的新函式。下列範例會選取 2106 年 1 月 2 日之前的日期，而不是 2016 年 1 月 1 日。
+
+2.  呼叫 ALTER TABLE，以將先前的篩選述詞取代為新的篩選述詞 (如下列範例所示)。
+
+3. 選擇性呼叫 DROP FUNCTION 來卸除不再使用的舊篩選函式(在此範例中，未顯示此步驟)。
+
+```tsql
+BEGIN TRAN
+GO
+        /*(1) Create new predicate function definition */
+        CREATE FUNCTION dbo.fn_StretchBySystemEndTime20160102(@systemEndTime datetime2)
+        RETURNS TABLE
+        WITH SCHEMABINDING
+        AS
+        RETURN SELECT 1 AS is_eligible
+               WHERE @systemEndTime < CONVERT(datetime2,'2016-01-02T00:00:00', 101)
+        GO
+
+        /*(2) Set the new function as filter predicate */
+        ALTER TABLE <table name>
+        SET
+        (
+               REMOTE_DATA_ARCHIVE = ON
+               (
+                       FILTER_PREDICATE = dbo.fn_StretchBySystemEndTime20160102(SysEndTime),
+                       MIGRATION_STATE = OUTBOUND
+               )
+        )
+COMMIT ;
+```
+
+## 更多的有效篩選述詞範例
 
 -   下列範例使用 AND 邏輯運算子結合兩個基本條件。
 
@@ -200,7 +310,7 @@ RETURN	SELECT 1 AS is_eligible
     GO
     ```
 
-## 無效函式的範例
+## 無效的篩選述詞範例
 
 -   下列函式無效，因為它包含不具決定性的轉換。
 
@@ -289,32 +399,6 @@ SELECT * FROM stretch_table_name CROSS APPLY fn_stretchpredicate(column1, column
 ```
 如果函式針對資料列傳回非空白結果，便代表該資料列符合移轉資格。
 
-## 將篩選式詞新增到資料表
-透過執行 ALTER TABLE 陳述式並將現有的嵌入資料表值函式指定為 FILTER\_PREDICATE 參數的值，來將篩選述詞新增到資料表。例如：
-
-```tsql
-ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
-	FILTER_PREDICATE = dbo.fn_stretchpredicate(column1, column2),
-	MIGRATION_STATE = <desired_migration_state>
-) )
-```
-在您將函式做為述詞繫結至資料表之後，下列項目皆會成立。
-
--   發生下一次的資料移轉時，只有其函式傳回非空白值的資料列會被移轉。
-
--   函式所使用的資料欄皆為結構描述繫結。只要有資料表將該函式做為其篩選述詞使用，您便無法變更這些資料欄。
-
-## 從資料表移除篩選述詞
-若要移轉整個資料表，而非選取的資料列，請透過將現有的 FILTER\_PREDICATE 設定為 Null 來移除它。例如：
-
-```tsql
-ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
-	FILTER_PREDICATE = NULL,
-	MIGRATION_STATE = <desired_migration_state>
-) )
-```
-當您移除篩選述詞之後，資料表中的所有資料列皆符合移轉資格。
-
 ## 取代現有的篩選述詞
 您可以透過再次執行 ALTER TABLE 陳述式並為 FILTER\_PREDICATE 參數指定新的值，來取代先前指定的篩選述詞。例如：
 
@@ -400,8 +484,16 @@ RETURN	SELECT 1 AS is_eligible
 GO
 ```
 
-## 卸除篩選述詞
-只要有資料表將該函式做為其篩選述詞使用，您便無法卸除嵌入資料表值函式。
+## 從資料表移除篩選述詞
+若要移轉整個資料表，而非選取的資料列，請透過將現有的 FILTER\_PREDICATE 設定為 Null 來移除它。例如：
+
+```tsql
+ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
+	FILTER_PREDICATE = NULL,
+	MIGRATION_STATE = <desired_migration_state>
+) )
+```
+當您移除篩選述詞之後，資料表中的所有資料列皆符合移轉資格。因此，除非您先從 Azure 回復資料表的所有遠端資料，否則稍後無法指定相同資料表的篩選述詞。這項限制是要避免下列情況：提供新篩選述詞時不適合進行移轉的資料列已移轉至 Azure。
 
 ## 查看套用至資料表的篩選述詞
 若要檢查套用至資料表的篩選述詞，請開啟目錄檢視 **sys.remote\_data\_archive\_tables** 並查看 **filter\_predicate** 資料行的值。如果值為 Null，便代表整個資料表皆符合封存資格。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
@@ -410,4 +502,4 @@ GO
 
 [ALTER TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

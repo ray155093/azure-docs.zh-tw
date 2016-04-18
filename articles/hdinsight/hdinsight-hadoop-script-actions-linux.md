@@ -32,6 +32,7 @@
 | ----- |:-----:|:-----:|
 | Azure 入口網站 | ✓ | ✓ |
 | Azure PowerShell | ✓ | ✓ |
+| Azure CLI | &nbsp; | ✓ |
 | HDInsight .NET SDK | ✓ | ✓ |
 | Azure Resource Manager 範本 | ✓ | &nbsp; |
 
@@ -94,7 +95,7 @@
 
 系統會記錄指令碼執行期間寫入 STDOUT 和 STDERR 的資訊，而且可以使用 Ambari Web UI 加以檢視。
 
-> [AZURE.NOTE] 只有在成功建立叢集之後，才能使用 Ambari。如果您在叢集建立期間使用指令碼動作，但建立失敗，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)的疑難排解小節，以取得存取記錄資訊的其他方式。
+> [AZURE.NOTE] 只有在成功建立叢集之後，才能使用 Ambari。如果您在叢集建立期間使用指令碼動作，但建立失敗，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)的疑難排解一節，以取得存取記錄資訊的其他方式。
 
 大部分的公用程式和安裝套件已經將資訊寫入 STDOUT 和 STDERR，不過您可能想要新增其他記錄。若要將文字傳送到 STDOUT，請使用 `echo`。例如：
 
@@ -228,8 +229,8 @@ _解決方式_：將檔案儲存為 ASCII，或不具有 BOM 的 UTF-8。您也�
 
 * 深入了解[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-* 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)，深入了解如何建立 .NET 應用程式來管理 HDInsight
+* 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)，深入了解如何建立 .NET 應用程式來管理 HDInsight。
 
-* 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx)，以了解如何使用 REST，在 HDInsight 叢集上執行管理動作。
+* 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx)，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

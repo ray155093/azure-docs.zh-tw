@@ -21,7 +21,7 @@
 
 # 教學課程：使用串流分析和機器學習服務執行情緒分析 #
 
-本教學課程旨在協助您透過機器學習服務整合，快速設定簡單的串流分析作業。我們將利用 Cortana 分析資源庫的情緒分析機器學習服務模型，來分析串流文字資料並即時判斷情緒分數。本教學課程很適合用來了解下列各種案例，例如對串流 twitter 資料進行即時情緒分析、由支援人員分析客戶聊天記錄、論壇/部落格/影片上的評論，以及其他許多即時預測評分案例。
+本教學課程旨在協助您透過機器學習服務整合，快速設定簡單的串流分析作業。我們將使用 Cortana 智慧資源庫的情緒分析機器學習服務模型，來分析串流文字資料並即時判斷情緒分數。本教學課程很適合用來了解下列各種案例，例如對串流 twitter 資料進行即時情緒分析、由支援人員分析客戶聊天記錄、論壇/部落格/影片上的評論，以及其他許多即時預測評分案例。
   
 本教學課程提供附有文字的範例 CSV 檔 (如下圖 1 所示) 做為 Azure Blob 存放區的輸入。作業時會將情緒分析模型做為使用者定義的函式 (UDF) 套用到 Blob 存放區中的範例文字資料。最終結果則會放置在相同 Azure Blob 存放區中的另一個 CSV 檔中。下圖 2 提供此設定的圖表。如需更真實的案例，可將此 Blob 存放區的輸入換成 Azure 事件中樞輸入內的串流 twitter 資料。此外，也可針對彙總情緒建置 [Power BI](https://powerbi.microsoft.com/) 即時視覺效果。本文日後重新編寫時將會包含這類擴充功能。
 
@@ -43,7 +43,7 @@
 概括而言，我們將會執行下列步驟：
 
 1.	將 CSV 輸入檔案上傳至 Blob 儲存體
-2.	將 Cortana 分析資源庫的情緒分析模型加入到機器學習服務工作區
+2.	將 Cortana 智慧資源庫的情緒分析模型加入到機器學習服務工作區
 3.	將此模型部署為 Azure Machine Learning 工作區中的 Web 服務
 4.	建立串流分析作業，以函式形式呼叫此 Web 服務來判斷所輸入文字的情緒。
 5.	啟動串流分析作業並觀察輸出 
@@ -63,9 +63,9 @@
 
 3.	按一下 [上傳 Blob] 圖示以上傳 CSV 檔，然後選擇 [本機磁碟中的檔案]。
 
-## 新增 Cortana 分析資源庫中的情緒分析模型
+## 新增 Cortana 智慧資源庫中的情緒分析模型
 
-1.	下載 Cortana 分析資源庫中的[預測情緒分析模型](https://gallery.cortanaanalytics.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1)。  
+1.	下載 Cortana 智慧資源庫中的[預測情緒分析模型](https://gallery.cortanaintelligence.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1)。  
 2.	在 Studio 中按一下 [開啟]：  
 
     ![串流分析機器學習服務教學課程開啟機器學習服務 Studio](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-open-ml-studio.png)
@@ -140,7 +140,7 @@
 
 ## 結論
 
-本教學課程建立了串流分析作業，此作業會讀取串流文字資料，並對其套用即時情緒分析。您不必擔心麻煩的情緒分析模型建立工作，就能完成全部的工作。這是 Cortana 分析套件的其中一項優點。
+本教學課程建立了串流分析作業，此作業會讀取串流文字資料，並對其套用即時情緒分析。您不必擔心麻煩的情緒分析模型建立工作，就能完成全部的工作。這是 Cortana 智慧套件的其中一項優點。
 
 您也能觀察 Azure Machine Learning 函式的相關度量。按一下 [監視] 索引標籤。此時會出現三個函式的相關度量。
   
@@ -150,4 +150,4 @@
 
     ![串流分析機器學習服務教學課程 ml 監視檢視](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-ml-monitor-view.png)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0406_2016-->

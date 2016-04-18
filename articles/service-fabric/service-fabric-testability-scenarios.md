@@ -5,7 +5,7 @@
    documentationCenter=".net"
    authors="anmolah"
    manager="timlt"
-   editor=""/>
+   editor="vturecek"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/03/2016"
+   ms.date="03/25/2016"
    ms.author="anmola"/>
 
 # Testability 案例
 雲端基礎結構之類的大型分散式系統本身並不可靠。Azure Service Fabric 讓開發人員能夠撰寫可在不可靠的基礎結構上執行的服務。為了撰寫高品質的服務，開發人員必須能夠產生這類不可靠的基礎結構，才能測試其服務的穩定性。
 
-Service Fabric 讓開發人員可以引發錯誤動作，藉此以失敗情況測試服務。但鎖定式模擬錯誤就僅只於此了。若要進一步測試，您可以在 Service Fabric 中使用測試案例：混亂測試和容錯移轉測試。這些案例會以很長的時間在整個叢集上模擬連續的交錯錯誤，包括非失誤性和失誤性錯誤。一旦設定測試的比率和錯誤類型後，案例會以用戶端工具的形式執行，透過 C# API 或 PowerShell 在叢集和您的服務中產生錯誤。
+「錯誤分析服務」讓開發人員可以引發錯誤動作，藉此以失敗情況測試服務。但鎖定式模擬錯誤就僅只於此了。若要進一步測試，您可以在 Service Fabric 中使用測試案例：混亂測試和容錯移轉測試。這些案例會以很長的時間在整個叢集上模擬連續的交錯錯誤，包括非失誤性和失誤性錯誤。一旦設定測試的比率和錯誤類型後，即可開始透過 C# API 或 PowerShell 在叢集和您的服務中產生錯誤。
 
 ## 混亂測試
 混亂案例會在整個 Service Fabric 叢集中產生錯誤。此案例會壓縮錯誤，通常是將幾個月或幾年壓縮到幾小時。交錯錯誤和高錯誤率的組合，可以找到會在其他情形下被遺漏的極端狀況。這會使服務的程式碼品質大幅提升。
@@ -49,8 +49,6 @@ Service Fabric 讓開發人員可以引發錯誤動作，藉此以失敗情況�
 C# 範例
 
 ```csharp
-// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
-
 using System;
 using System.Fabric;
 using System.Fabric.Testability.Scenario;
@@ -159,11 +157,10 @@ Invoke-ServiceFabricChaosTestScenario -TimeToRunMinute $timeToRun -MaxClusterSta
  - **WaitTimeBetweenFaults**：每個錯誤和驗證的循環之間要等候的時間長度。
 
 ### 如何執行容錯移轉測試
-C# 範例
+
+**C#**
 
 ```csharp
-// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
-
 using System;
 using System.Fabric;
 using System.Fabric.Testability.Scenario;
@@ -236,7 +233,7 @@ class Test
 ```
 
 
-PowerShell
+**PowerShell**
 
 ```powershell
 $connection = "localhost:19000"
@@ -250,4 +247,4 @@ Connect-ServiceFabricCluster $connection
 Invoke-ServiceFabricFailoverTestScenario -TimeToRunMinute $timeToRun -MaxServiceStabilizationTimeoutSec $maxStabilizationTimeSecs -WaitTimeBetweenFaultsSec $waitTimeBetweenFaultsSec -ServiceName $serviceName -PartitionKindSingleton
 ```
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

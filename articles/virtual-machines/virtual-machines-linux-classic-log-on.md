@@ -42,7 +42,7 @@
 
 	![開啟 PuTTY](./media/virtual-machines-linux-classic-log-on/putty.png)
 
-4. 使用您在建立機器時指定的帳戶登入虛擬機器。如需如何利用使用者名稱和密碼建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](virtual-machines-linux-cli-create.md)。
+4. 使用您在建立機器時指定的帳戶登入虛擬機器。如需如何利用使用者名稱和密碼建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](virtual-machines-linux-classic-createportal.md)。
 
 	![登入虛擬機器](./media/virtual-machines-linux-classic-log-on/sshlogin.png)
 
@@ -53,4 +53,4 @@
 <!-- LINKS -->
 [如何為 Linux 虛擬機器重設密碼或 SSH]: http://go.microsoft.com/fwlink/p/?LinkId=512138
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

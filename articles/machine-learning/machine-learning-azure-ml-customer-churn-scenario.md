@@ -98,9 +98,9 @@
 
 
 *圖 7：從資料來源擷取的特徵*
-> 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Analytics 資源庫](http://gallery.azureml.net/)的實驗範例：[電信公司客戶流失](http://gallery.azureml.net/Experiment/31c19425ee874f628c847f7e2d93e383)。
+> 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的實驗範例：[電信公司客戶流失](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383)。
 > 
-> 若要深入了解如何使用 Cortana Analytics Suite 實作客戶流失分析模型，我們也推薦資深程式經理 Wee Hyong Tok 的[這段影片](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html)。
+> 若要深入了解如何使用 Cortana Intelligence Suite 實作客戶流失分析模型，我們也推薦資深程式經理 Wee Hyong Tok 的[這段影片](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html)。
 > 
 
 ###原型中使用的演算法
@@ -217,11 +217,11 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 
 [2] 維基百科文章：[Accuracy and precision (正確性與準確度)](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 
-\[3] [CRISP-DM 1.0：資料採礦逐步指南] (http://www.the-modeling-agency.com/crisp-dm.pdf)
+[3] [CRISP-DM 1.0：資料採礦逐步指南] (http://www.the-modeling-agency.com/crisp-dm.pdf)
 
-\[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
+[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
 
-\[5] Cortana Analytics 資源庫中的 [電信公司客戶流失模型範本](http://gallery.cortanaanalytics.com/Experiment/Telco-Customer-Churn-5)
+[5] [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
 ##附錄
 
 ![][10]
@@ -240,4 +240,4 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

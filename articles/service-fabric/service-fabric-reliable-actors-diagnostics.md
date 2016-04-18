@@ -3,9 +3,9 @@
    description="本文將說明 Service Fabric Reliable Actors 執行階段中的診斷與效能監視功能，包括其發出的事件與效能計數器。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="jessebenson"
+   authors="abhishekram"
    manager="timlt"
-   editor=""/>
+   editor="vturecek"/>
 
 <tags
    ms.service="service-fabric"
@@ -31,7 +31,7 @@ Reliable Actors 執行階段的 EventSource 提供者名稱為 "Microsoft-Servic
 |---|---|
 |0x1|可彙總 Fabric 動作項目執行階段作業的重要事件集。|
 |0x2|說明動作項目方法呼叫的事件集。如需詳細資訊，請參閱[動作項目簡介主題](service-fabric-reliable-actors-introduction.md#actors)。|
-|0x4|與動作項目狀態相關的事件集。如需詳細資訊，請參閱[具狀態動作項目](service-fabric-reliable-actors-introduction.md#stateful-actors)主題。|
+|0x4|與動作項目狀態相關的事件集。如需詳細資訊，請參閱[動作項目狀態管理](service-fabric-reliable-actors-state-management.md)主題。|
 |0x8|與動作項目的回合式並行相關的事件集。如需詳細資訊，請參閱[並行](service-fabric-reliable-actors-introduction.md#concurrency)主題。|
 
 ## 效能計數器
@@ -118,7 +118,7 @@ Reliable Actor 執行階段會發佈下列與並行相關的效能計數器。
 |Service Fabric 動作項目|保留動作項目鎖定的平均毫秒數|保留每個動作項目鎖定的時間 (單位為毫秒)|
 
 ### 動作項目狀態管理事件與效能計數器
-Reliable Actor 執行階段會發出下列與[動作項目狀態管理](service-fabric-reliable-actors-introduction.md#actor-state-management)相關的事件。
+Reliable Actor 執行階段會發出下列與[動作項目狀態管理](service-fabric-reliable-actors-state-management)相關的事件。
 
 |事件名稱|事件識別碼|Level|關鍵字|說明|
 |---|---|---|---|---|
@@ -164,4 +164,9 @@ Reliable Actor 執行階段會發佈下列與動作項目啟用和停用相關�
 |Service Fabric 動作項目|要求還原序列化的平均毫秒數|當服務收到動作項目要求訊息時，將它還原序列化所花費的時間 (單位為毫秒)|
 |Service Fabric 動作項目|要求序列化的平均毫秒數|在回應傳送至用戶端之前，序列化動作項目回應訊息所花費的時間 (單位為毫秒)|
 
-<!---HONumber=AcomDC_0330_2016-->
+## 後續步驟
+ - [Reliable Acto 如何使用 Service Fabric 平台](service-fabric-reliable-actors-platform.md)
+ - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+ - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+
+<!---HONumber=AcomDC_0406_2016-->

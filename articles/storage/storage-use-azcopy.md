@@ -565,7 +565,7 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 ### /BlobType:"block" | "page" | "append"
 
-指定複製作業的遞迴模式。在遞迴模式中，AzCopy 將複製所有符合指定檔案模式的 Blob 或檔案，包括子資料夾中的 Blob 或檔案。
+指定目的地 Blob 是區塊 Blob、分頁 Blob 或附加 Blob。此選項僅在上傳 Blob 時才適用。否則會產生錯誤。如果目的地是 Blob 且未指定此選項，則 AzCopy 預設會建立區塊 Blob。
 
 **適用於：**Blob
 
@@ -864,4 +864,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

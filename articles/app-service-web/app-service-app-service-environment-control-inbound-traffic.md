@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
+	ms.date="04/06/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
 
 ## 概觀 ##
-APP Service 環境會一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路中。建立 APP Service 環境時，可定義新的區域傳統 "v1" 虛擬網路和新的子網路。或者亦可在先前既存的區域傳統 "v1" 虛擬網路與子網路中，建立 APP Service 環境。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
+APP Service 環境會一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路中。建立 APP Service 環境時，可定義新的區域傳統 "v1" 虛擬網路和新的子網路。或者亦可在先前既存的區域傳統 "v1" 虛擬網路與子網路中，建立 APP Service 環境。目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
 
 **注意：**在「v2」ARM 管理的虛擬網路中，無法建立 App Service 環境。
 
@@ -56,7 +56,7 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 -  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 App Service 環境相同區域中的端點，以及位於「其他」 Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。  
 -  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：*database.windows.net*。
 -  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。 
--  *ocsp.msocsp.com* 的輸出連線。需要此連線才能支援 SSL 功能。
+-  *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。需要此連線才能支援 SSL 功能。
 -  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。如果無法解析這些端點，App Service 環境建立嘗試將會失敗，而且現有的 App Service 環境會標示為狀況不良。
 -  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。 
 -  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。  
@@ -149,4 +149,4 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0406_2016-->

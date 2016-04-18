@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="03/28/2016" 
+    ms.date="03/30/2016" 
     ms.author="elizapo" />
 
 # Azure RemoteApp 如何儲存使用者資料和設定？
@@ -159,4 +159,4 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 這可讓您略過 New-PSDrive Cmdlet 中的 -Credential 參數。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

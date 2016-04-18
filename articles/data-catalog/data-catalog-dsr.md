@@ -1,6 +1,6 @@
 <properties
    pageTitle="Azure 資料目錄支援的資料來源 | Microsoft Azure"
-   description="目前支援的資料來源的規格。"
+   description="本文列出 Azure 資料目錄中支援用於註冊的所有資料來源和資料資產類型。"
    services="data-catalog"
    documentationCenter=""
    authors="steelanddata"
@@ -13,20 +13,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/30/2016"
+   ms.date="03/31/2016"
    ms.author="maroche"/>
 
 # Azure 資料目錄支援的資料來源
 
-Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具，或手動將資訊直接輸入至資料目錄 Web 入口網站，發佈中繼資料。以下方格摘要說明目前目錄支援的所有來源，以及針對每個來源的發佈功能。也列出每個來源可以從我們的入口網站「開啟」經驗啟動的外部資料工具。接下來是第二個方格，有每個資料來源連接屬性的更詳細技術規格。
+**Azure 資料目錄**的使用者可以使用公用 API、ClickOnce 資料來源註冊工具或手動將資訊直接輸入至資料目錄 Web 入口網站，以發佈中繼資料。
+
+下表摘要說明目前的資料目錄支援的所有來源，以及每個來源的發佈功能。也列出每個來源可以從資料目錄入口網站的「開啟於」經驗啟動的外部資料工具。
+
+在這之後的第二個資料表則提供每個資料來源連接屬性的詳細技術規格，和使用資料目錄 API 時每個支援的資料資產所使用的資料來源參考 (DSR) 規格。
 
 
-## 支援的資料來源的清單
+## 支援的資料來源和資產的清單
 
 <table>
 
     <tr>
-       <td><b>資料來源物件</b></td>
+       <td><b>資料資產</b></td>
        <td><b>API</b></td>
        <td><b>手動輸入</b></td>
        <td><b>註冊工具</b></td>
@@ -260,7 +264,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 
     <tr>
-      <td>Db2 資料表</td>
+      <td>DB2 資料表</td>
       <td>✓</td>
       <td></td>
       <td></td>
@@ -269,7 +273,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 
     <tr>
-      <td>Db2 檢視</td>
+      <td>DB2 檢視</td>
       <td>✓</td>
       <td></td>
       <td></td>
@@ -398,6 +402,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
 
 
 <br> <br>
+
 ## 資料來源參考規格
 
 <table>
@@ -517,7 +522,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 
     <tr>
-      <td>Db2</td>
+      <td>DB2</td>
       <td>容器</td>
       <td>資料庫</td>
       <td>N/A</td>
@@ -531,7 +536,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 
     <tr>
-      <td>Db2</td>
+      <td>DB2</td>
       <td>資料表</td>
       <td>資料表</td>
       <td>資料庫</td>
@@ -547,7 +552,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 
     <tr>
-      <td>Db2</td>
+      <td>DB2</td>
       <td>資料表</td>
       <td>檢視</td>
       <td>資料庫</td>
@@ -1284,4 +1289,4 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
 
 </table>
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

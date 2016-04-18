@@ -48,7 +48,7 @@
 		DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:54:15,CSH,5,0.5,0.5,0,0,6
 		DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:25:03,CSH,9.5,0.5,0.5,0,0,10.5
 
-聯結 trip\_data and trip\_fare 的唯一索引鍵是由下列欄位組成：medallion、hack\_licence 和 pickup\_datetime。
+聯結 trip\\_data and trip\\_fare 的唯一索引鍵是由下列欄位組成：medallion、hack\\_licence 和 pickup\\_datetime。
 
 若要取得特定車程的所有詳細資訊，加入下列三個索引鍵便已足夠："medallion"、"hack\_license" 和 "pickup\_datetime"。
 
@@ -79,7 +79,7 @@
 
 您可以採取三個步驟，為利用 HDInsight 叢集的進階分析設定 Azure 環境：
 
-1. [建立儲存體帳戶](../storage-whatis-account.md)：這個儲存體帳戶是用來將資料儲存在 Azure Blob 儲存體中。HDInsight 叢集中使用的資料也位於此處。
+1. [建立儲存體帳戶](../storage/storage-create-storage-account.md)：這個儲存體帳戶是用來將資料儲存在 Azure Blob 儲存體中。HDInsight 叢集中使用的資料也位於此處。
 
 2. [針對進階分析程序和技術自訂 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。這個步驟會建立已在所有節點上安裝 64 位元 Anaconda Python 2.7 的 Azure HDInsight Hadoop 叢集。自訂 HDInsight 叢集時應注意兩個重要的步驟。
 
@@ -95,7 +95,7 @@
 
 若要從 [NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/)資料集的公用位置取得該資料集，您可以使用[從 Azure Blob 儲存體來回移動資料](machine-learning-data-science-move-azure-blob.md)中所述的任何一種方法，將資料複製到您的電腦。
 
-我們在這裡說明如何使用 AzCopy 來傳輸含有資料的檔案。若要下載並安裝 AzCopy，請遵循[開始使用 AzCopy 命令列公用程式](../storage-use-azcopy.md)的指示。
+我們在這裡說明如何使用 AzCopy 來傳輸含有資料的檔案。若要下載並安裝 AzCopy，請遵循[開始使用 AzCopy 命令列公用程式](../storage/storage-use-azcopy.md)的指示。
 
 1. 從命令提示字元視窗中發出下列 AzCopy 命令，以所需的目的地取代 *<path_to_data_folder>*：
 
@@ -786,7 +786,7 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 
 我們看到決定係數是 0.709，其中隱含的變異大約有 71% 是由我們的模型係數所造成。
 
-**重要事項：**若要深入了解 Azure Machine Learning，及如何存取並使用它，請參閱[什麼是機器學習服務](machine-learning-what-is-machine-learning.md)。若要在 Azure Machine Learning 上進行眾多機器學習服務實驗，[Cortana 分析資源庫](https://gallery.azureml.net/)是非常實用的資源。該資源庫涵蓋了所有實驗，並且完整介紹了 Azure 機器學習的功能範圍。
+**重要事項：**若要深入了解 Azure Machine Learning，及如何存取並使用它，請參閱[什麼是機器學習服務](machine-learning-what-is-machine-learning.md)。若要在 Azure Machine Learning 上進行眾多機器學習服務實驗，[Cortana Intelligence 資源庫](https://gallery.cortanaintelligence.com/)是非常實用的資源。該資源庫涵蓋了所有實驗，並且完整介紹了 Azure 機器學習的功能範圍。
 
 ## 授權資訊
 
@@ -794,9 +794,7 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 
 ## 參考
 
-•	[Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/) (Andrés Monroy NYC Taxi Trips Download Page)  
-•	[FOIL NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/) (FOILing NYC’s Taxi Trip Data by Chris Whong)   
-•	[NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml) (NYC Taxi and Limousine Commission Research and Statistics)
+• [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/) (Andrés Monroy NYC Taxi Trips Download Page) • [FOIL NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/) (FOILing NYC’s Taxi Trip Data by Chris Whong) • [NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml) (NYC Taxi and Limousine Commission Research and Statistics)
 
 
 [2]: ./media/machine-learning-data-science-process-hive-walkthrough/output-hive-results-3.png
@@ -810,4 +808,4 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 [project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

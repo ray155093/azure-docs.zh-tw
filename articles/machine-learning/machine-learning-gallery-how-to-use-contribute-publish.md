@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Cortana 分析資源庫 | Microsoft Azure"
-	description="共用及探索 Cortana 分析資源庫中的分析解決方案等內容。了解其他人並且自己貢獻社群。"
+	pageTitle="Cortana Intelligence 資源庫 | Microsoft Azure"
+	description="共用及探索 Cortana Intelligence 資源庫中的分析解決方案等內容。了解其他人並且自己貢獻社群。"
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
@@ -17,11 +17,11 @@
 	ms.author="chhavib;cgronlun;garye"/>
 
 
-# 共用及探索 Cortana 分析資源庫中的解決方案
+# 在 Cortana Intelligence 資源庫中共用及探索解決方案
 
-Cortana 分析資源庫是用於探索及共用解決方案的社群驅使網站，使用一組產品的 Cortana 分析套件建置而成。對於想要了解他人、開始開發自己的解決方案，或是為進階分析社群貢獻心力的使用者而言，它是最理想的目的地。
+Cortana Intelligence 資源庫是一個社群驅使網站，可用於探索及共用利用一組 Cortana Intelligence Suite 產品建置而成的解決方案。對於想要了解他人、開始開發自己的解決方案，或是為進階分析社群貢獻心力的使用者而言，它是最理想的目的地。
 
-**[帶領我到資源庫 >>](http://gallery.cortanaanalytics.com)**
+**[帶領我到資源庫 >>](http://gallery.cortanaintelligence.com)**
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
@@ -44,7 +44,7 @@ Cortana 分析資源庫是用於探索及共用解決方案的社群驅使網站
 您可以透過每個解決方案頁面的註解區段，提供註解、意見回應或發問。您甚至可以使用 LinkedIn 或 Twitter 的共用功能，與朋友或同事共用感興趣的解決方案。您也可以使用電子郵件傳送這些解決方案的連結，以邀請其他使用者檢視解決方案頁面。
 
 ## 下載實驗
-Cortana 分析資源庫可讓您只要按一個按鍵，就可以輕鬆地將預測性分析實驗複製到您的 Machine Learning Studio 工作區，並且立即針對您的目的開始使用。如果您在瀏覽時尚未登入，系統會提示您使用您的 Microsoft 帳戶登入，才能將實驗複製到您的工作區。
+Cortana Intelligence 資源庫可讓您只要按一個按鍵，就可以輕鬆地將預測性分析實驗複製到您的 Machine Learning Studio 工作區，並且立即針對您的目的開始使用。如果您在瀏覽時尚未登入，系統會提示您使用您的 Microsoft 帳戶登入，才能將實驗複製到您的工作區。
 
 ## 參與
 當您登入時，您將成為資源庫社群的成員，您可以發表自己的實驗和集合以便其他人可以從您發現的解決方案中受益。
@@ -53,7 +53,7 @@ Cortana 分析資源庫可讓您只要按一個按鍵，就可以輕鬆地將預
 
 *實驗*是 Machine Learning Studio 中的畫布，可讓您藉由將資料和各種分析模組連接在一起，以建構分析模型。您可以嘗試不同的想法、執行試用並且在最後發佈您的模型做為 Azure 中的 web 服務。如需建立簡易實驗的範例，請參閱[機器學習教學課程：在 Azure Machine Learning Studio 中建立您的第一個實驗](machine-learning-create-experiment.md)。如需建立預測性分析方案的更完整逐步解說，請參閱[逐步解說：在 Azure Machine Learning 中為信用風險評估開發預測分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)。
 
-遵循下列步驟將實驗發表至 Cortana 分析資源庫：
+遵循下列步驟將實驗發表至 Cortana Intelligence 資源庫：
 
 - 使用您的 Microsoft 帳戶登入 Machine Learning Studio
 - 建立您的實驗並且執行
@@ -61,11 +61,11 @@ Cortana 分析資源庫可讓您只要按一個按鍵，就可以輕鬆地將預
 
 ### 發表集合
 
-*集合*是來自 Cortana 分析資源庫之相關項目的清單，這些項目會群組在一起以利後續的參考、使用或共用。您的集合可以包含您所擁有的項目或已由社群發表的項目。
+集合是來自 Cortana Intelligence 資源庫之相關項目的清單，這些項目會群組在一起以利後續的參考、使用或共用。您的集合可以包含您所擁有的項目或已由社群發表的項目。
 
 例如，您可以使用集合將特定主題的項目群組在一起，或者您可以將解決複雜問題的多步驟實驗群組在一起。Microsoft 發表的初始集合包含用來解決現實世界問題的多步驟機器學習實驗範本，像是線上詐騙偵測、文字分類、零售預測和預測維護。
 
-遵循下列步驟建立集合並發表至 Cortana 分析資源庫：
+遵循下列步驟建立集合並發表至 Cortana Intelligence 資源庫：
 
 - 使用您的 Microsoft 帳戶登入資源庫
 - 按一下您在視窗頂端的映像，然後按一下您的名稱
@@ -74,7 +74,7 @@ Cortana 分析資源庫可讓您只要按一個按鍵，就可以輕鬆地將預
 - 加入映像來識別集合
 - 按一下 [建立]
 
-您的集合現在是 Cortana 分析資源庫的一部分。
+您的集合現在是 Cortana Intelligence 資源庫的一部分。
 
 您也可以藉由開啟集合、按一下 [編輯]、然後按一下 [新增項目]，以新增項目至您的集合。或者如果您在瀏覽您想要包含的資源庫時發現項目，您只需要開啟項目、按一下 [新增至集合]，並指定您想要將它加入的目標集合。
 
@@ -134,6 +134,6 @@ Cortana 分析資源庫可讓您只要按一個按鍵，就可以輕鬆地將預
 
 豐富的說明轉譯尚未廣泛供所有資源庫使用者使用。我們目前正在努力，以期透過支援 markdown 轉譯來提供此功能。
 
-**[帶領我到資源庫 >>](http://gallery.cortanaanalytics.com)**
+**[帶領我到資源庫 >>](http://gallery.cortanaintelligence.com)**
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

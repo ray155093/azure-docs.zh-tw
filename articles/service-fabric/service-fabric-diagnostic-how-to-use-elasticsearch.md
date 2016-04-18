@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/20/2016"
+   ms.date="03/31/2016"
    ms.author="karolz@microsoft.com"/>
 
 # 把 Elasticsearch 當做 Service Fabric 應用程式追蹤存放區來使用
@@ -24,11 +24,9 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 
 需要在 Service Fabric 叢集節點上即時 (當應用程式正在執行時) 擷取追蹤並傳送至 Elasticsearch 端點，Elasticsearch 中才會顯示追蹤。追蹤擷取有兩個主要選項：
 
-+ **同處理序追蹤擷取** 
-應用程式 (更準確來說是服務處理序) 負責將診斷資料送出到追蹤存放區 (Elasticsearch)。
++ **同處理序追蹤擷取** 應用程式 (更準確來說是服務處理序) 負責將診斷資料送出到追蹤存放區 (Elasticsearch)。
 
-+ **跨處理序追蹤擷取** 
-另外的代理程式擷取來自一或多個服務處理序的追蹤，並傳送至追蹤存放區。
++ **跨處理序追蹤擷取** 另外的代理程式擷取來自一或多個服務處理序的追蹤，並傳送至追蹤存放區。
 
 以下說明如何在 Azure 上設定 Elasticsearch、討論這兩種擷取選項的優缺點，並說明如何設定 Service Fabric 服務將資料傳送至 Elasticsearch。
 
@@ -37,15 +35,13 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 若要在 Azure 上設定 Elasticsearch 服務，最直接的方法是透過 [**Azure 資源管理員範本**](../resource-group-overview.md)。Azure 快速入門範本儲存機制提供完整的 [Elasticsearch 快速入門 Azure 資源管理員範本](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch)。這個範本會針對縮放單位使用不同的儲存體帳戶 (節點群組)。它也可以佈建具有不同組態和連接各種數量的資料磁碟的個別用戶端與伺服器節點。
 
 此處我們將使用 [Microsoft 模式和作法 ELK 分支](https://github.com/mspnp/semantic-logging/tree/elk/)中的另一個範本，稱為 **ES-MultiNode**。此範本比較容易使用，依預設會建立由 HTTP 基本驗證所保護的 Elasticsearch 叢集。繼續之前，請從 GitHub 將 [Microsoft 模式和做法 ELK 儲存機制](https://github.com/mspnp/semantic-logging/tree/elk/)下載到您的電腦 (透過複製儲存機制或下載 zip 檔案)。ES-MultiNode 範本位於具有相同名稱的資料夾中。
->[AZURE.NOTE] ES-MultiNode 範本和相關聯的指令碼目前支援 Elasticsearch 1.7 版。日後將加入 Elasticsearch 2.0 的支援。
 
 ### 準備電腦以執行 Elasticsearch 安裝指令碼
 若要使用 ES-MultiNode 範本，最簡單的方式是透過提供的 Azure PowerShell 指令碼，稱為 `CreateElasticSearchCluster`。若要使用這個指令碼，您需要安裝 PowerShell 模組和名為 **openssl** 的工具。需要後者，才能建立可用來從遠端管理 Elasticsearch 叢集的 SSH 金鑰。
 
 注意：`CreateElasticSearchCluster` 指令碼主要是為了從 Windows 電腦輕鬆使用 ES-MultiNode 範本。可以在非 Windows 電腦上使用此範本，但這已超出本文的範圍。
 
-1. 如果您尚未安裝它們，請安裝 [**Azure PowerShell 模組**](http://go.microsoft.com/fwlink/p/?linkid=320376)。出現提示時，請按一下 [執行]，再按一下 [安裝]。
->[AZURE.NOTE] Azure PowerShell 正在 Azure PowerShell 1.0 版中進行重大變更。CreateElasticSearchCluster 目前設計為用於 Azure PowerShell 0.9.8，不支援 Azure PowerShell 1.0 Preview。日後將提供 Azure PowerShell 1.0 相容指令碼。
+1. 如果您尚未安裝它們，請安裝 [**Azure PowerShell 模組**](http://aka.ms/webpi-azps)。出現提示時，請按一下 [執行]，再按一下 [安裝]。
 
 2. [**Git for Windows**](http://www.git-scm.com/downloads) 的散發中包含 **openssl** 工具。如果您尚未安裝，請立即安裝 [Git for Windows](http://www.git-scm.com/downloads)。(預設安裝選項是 [確定])。
 
@@ -58,7 +54,7 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 
     以您電腦上的 Git 位置取代 `<Git installation folder>`，預設值為 **"C:\\Program Files\\Git"**。請注意第一個路徑開頭的分號字元。
 
-4. 確定您已登入 Azure (透過 [**Add-AzureAccount**](https://msdn.microsoft.com/library/azure/dn790372.aspx) Cmdlet)，且已選取應該用來建立 Elasticsearch 叢集的訂用帳戶 ([**Select-AzureSubscription**](https://msdn.microsoft.com/library/azure/dn790367.aspx))。
+4. 確定您已登入 Azure (透過 [`Add-AzureRmAccount`](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet)，且已選取應該用來建立 Elastic Search 叢集的訂用帳戶。您可以使用 `Get-AzureRmContext` 和 `Get-AzureRmSubscription` Cmdlet，確認選取的是正確的訂用帳戶。
 
 5. 如果您尚未將目前目錄切換至 ES-MultiNode 資料夾，請切換。
 
@@ -67,20 +63,29 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 
 |參數名稱 |說明|
 |-----------------------  |--------------------------|
-|dnsNameForLoadBalancerIP |此名稱用來為 Elasticsearch 叢集建立公開可見的網域名稱系統 (DNS) 名稱 (將 Azure 區域網域附加至提供的名稱)。例如，如果此參數值為 "myBigCluster"，而選擇的 Azure 區域是美國西部，則為叢集產生的 DNS 名稱會是 **myBigCluster.westus.cloudapp.azure.com**。<br /><br />對於 Elasticsearch 叢集相關聯的許多構件的名稱，例如資料節點名稱，此名稱也會成為這些名稱的根。|
-|storageAccountPrefix |將為 Elasticsearch 叢集建立的儲存體帳戶的首碼。<br /><br /> 範本的目前版本使用一個共用儲存體帳戶，但在未來可能變更。|
-|adminUsername |用於管理 Elasticsearch 叢集的系統管理員帳戶的名稱 (對應的 SSH 金鑰會自動產生)。|
-|dataNodeCount |Elasticsearch 叢集中的節點數目。目前版本的指令碼不會區分資料與查詢節點。所有節點會同時扮演這兩種角色。|
-|dataDiskSize |將配置給每個資料節點的資料磁碟大小 (以 GB 為單位)。每個節點將會收到 4 個資料磁碟，專供 Elasticsearch 服務使用。|
-|region |應該放置 Elasticsearch 叢集的 Azure 區域的名稱。|
-|esClusterName |Elasticsearch 叢集的內部名稱。<br /><br />除非您打算在相同的虛擬網路上執行多個 Elasticearch 叢集，否則就需要變更這個預設值。ES-MultiNode 範本目前不支援這麼做。|
-|esUserName esPassword |將設定為可存取 Elasticsearch 叢集的使用者的認證 (受限於 HTTP 基本驗證)。|
+|dnsNameForLoadBalancerIP |此名稱用來為 ElasticSearch 叢集建立公開可見的 DNS 名稱 (將 Azure 區域網域附加至提供的名稱)。例如，如果此參數值為 "myBigCluster"，而選擇的 Azure 區域是美國西部，則為叢集產生的 DNS 名稱會是 myBigCluster.westus.cloudapp.azure.com。<br /><br />對於 ElasticSearch 叢集相關聯的許多構件的名稱，例如資料節點名稱，此名稱也會成為這些名稱的根。|
+|adminUsername |用於管理 Elastic Search 叢集的系統管理員帳戶的名稱 (對應的 SSH 金鑰會自動產生)|
+|dataNodeCount |Elastic Search 叢集中的節點數目。目前版本的指令碼不會區分資料與查詢節點。所有節點會同時扮演這兩種角色。預設為 3 個節點。|
+|dataDiskSize |將配置給每個資料節點的資料磁碟大小 (以 GB 為單位)。每個節點將會收到 4 個資料磁碟，專供 ElasticSearch 服務使用。|
+|region |應該放置 Elastic Search 叢集的 Azure 區域的名稱。|
+|esUserName |將設定為可存取 ES 叢集的使用者的使用者名稱 (受限於 HTTP 基本驗證)。密碼不是參數檔案的一部分，而且必須在叫用 `CreateElasticSearchCluster` 指令碼時提供。|
+|vmSizeDataNodes |Elastic Search 叢集節點的 Azure 虛擬機器大小。預設為 Standard\_D1。|
 
-您現在可以開始執行指令碼。發出下列命令：```powershell
+您現在可以開始執行指令碼。發出以下命令：
+
+```powershell
 CreateElasticSearchCluster -ResourceGroupName <es-group-name>
-```，其中 `<es-group-name>` 是將包含所有叢集資源的 Azure 資源群組的名稱。
+```
 
->[AZURE.NOTE] 如果您從 Test-AzureResourceGroup Cmdlet 收到 NullReferenceException，表示您忘記登入 Azure (`Add-AzureAccount`)。
+其中
+
+|指令碼參數名稱 |說明|
+|-----------------------  |--------------------------|
+|`<es-group-name>` |將包含所有 Elastic Search 叢集資源的 Azure 資源群組的名稱。|
+|`<azure-region>` |應該建立 Elastic Search 叢集的 Azure 區域的名稱。|         
+|`<es-password>` |Elastic Search 使用者的密碼|
+
+>[AZURE.NOTE] 如果您從 Test-AzureResourceGroup Cmdlet 收到 NullReferenceException，表示您忘記登入 Azure (`Add-AzureRmAccount`)。
 
 如果執行指令碼發生錯誤，而且您判斷錯誤起因於錯誤的範本參數值，請更正參數檔案，然後以不同資源群組名稱再次執行指令碼。您也可以將 `-RemoveExistingResourceGroup` 參數加入至指令碼引動過程，以重複使用相同的資源群組名稱，並讓指令碼清除舊的資源群組。
 
@@ -151,14 +156,14 @@ Microsoft.Diagnostic.Listeners 程式庫是 PartyCluster 範例 Service Fabric �
 
     ![Microsoft.Diagnostics.EventListeners 和 Microsoft.Diagnostics.EventListeners.Fabric 程式庫的專案參考][1]
 
-### Service Fabric 2015 年 11 月預覽版和 Microsoft.Diagnostics.Tracing NuGet 封裝
-使用 2015 年 11 月預覽版 Service Fabric 目標 **.NET Framework 4.5.1** 建立的應用程式。這是 Azure 在預覽版支援的最新 .NET Framework 版本。可惜，這個版本的架構缺少 Microsoft.Diagnostics.Listeners 程式庫所需的某些 EventListener API。因為 EventSource (Fabric 應用程式中形成記錄 API 基礎的元件) 和 EventListener 緊密結合，每個使用 Microsoft.Diagnostics.Listeners 程式庫的專案都必須使用替代的 EventSource 實作。此實作由 Microsoft 撰寫的 **Microsoft.Diagnostics.Tracing NuGet 封裝**所提供。此封裝完全與架構中包含的舊版 EventSource 相容，除了變更參考的命名空間，應該不需要變更任何程式碼。
+### Service Fabric 公開上市版本和 Microsoft.Diagnostics.Tracing NuGet 封裝
+以 Service Fabric 公開上市版本 (2.0.135，2016 年 3 月 31 日發行) 建置的應用程式會以 **.NET Framework 4.5.2** 為目標。這是 Azure 在 GA 版本支援的最新 .NET Framework 版本。可惜，這個版本的架構缺少 Microsoft.Diagnostics.Listeners 程式庫所需的某些 EventListener API。因為 EventSource (Fabric 應用程式中形成記錄 API 基礎的元件) 和 EventListener 緊密結合，每個使用 Microsoft.Diagnostics.Listeners 程式庫的專案都必須使用替代的 EventSource 實作。此實作由 Microsoft 撰寫的 **Microsoft.Diagnostics.Tracing NuGet 封裝**所提供。此封裝完全與架構中包含的舊版 EventSource 相容，除了變更參考的命名空間，應該不需要變更任何程式碼。
 
 若要開始使用 Microsoft.Diagnostics.Tracing 的 EventSource 類別實作，請針對需要將資料傳送至 Elasticsearch 的每個服務專案，執行下列步驟：
 
 1. 以滑鼠右鍵按一下服務專案，然後選擇 [管理 NuGet 封裝]。
 
-2. 切換到 nuget.org 封裝來源 (如果尚未選取)，搜尋 "**icrosoft.Diagnostics.Tracing**"。
+2. 切換到 nuget.org 封裝來源 (如果尚未選取)，搜尋 "**Microsoft.Diagnostics.Tracing**"。
 
 3. 安裝 `Microsoft.Diagnostics.Tracing.EventSource` 封裝 (及其相依項目)。
 
@@ -174,6 +179,8 @@ using System;
 using System.Diagnostics;
 using System.Fabric;
 using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Services.Runtime;
 
 // **** Add the following directives
 using Microsoft.Diagnostics.EventListeners;
@@ -181,38 +188,38 @@ using Microsoft.Diagnostics.EventListeners.Fabric;
 
 namespace Stateless1
 {
-    public class Program
+    internal static class Program
     {
-        public static void Main(string[] args)
+        /// <summary>
+        /// This is the entry point of the service host process.
+        /// </summary>        
+        private static void Main()
         {
             try
             {
-                using (FabricRuntime fabricRuntime = FabricRuntime.Create())
+                // **** Instantiate ElasticSearchListener
+                var configProvider = new FabricConfigurationProvider("ElasticSearchEventListener");
+                ElasticSearchListener esListener = null;
+                if (configProvider.HasConfiguration)
                 {
-
-                    // **** Instantiate ElasticSearchListener
-                    var configProvider = new FabricConfigurationProvider("ElasticSearchEventListener");
-                    ElasticSearchListener esListener = null;
-                    if (configProvider.HasConfiguration)
-                    {
-                        esListener = new ElasticSearchListener(configProvider);
-                    }
-
-                    // This is the name of the ServiceType that is registered with FabricRuntime.
-                    // This name must match the name defined in the ServiceManifest. If you change
-                    // this name, please change the name of the ServiceType in the ServiceManifest.
-                    fabricRuntime.RegisterServiceType("Stateless1Type", typeof(Stateless1));
-
-                    ServiceEventSource.Current.ServiceTypeRegistered(
-						Process.GetCurrentProcess().Id,
-						typeof(Stateless1).Name);
-
-                    Thread.Sleep(Timeout.Infinite);
-
-                    // **** Ensure that the ElasticSearchListner instance is not garbage-collected prematurely
-                    GC.KeepAlive(esListener);
-
+                    esListener = new ElasticSearchListener(configProvider);
                 }
+
+                // The ServiceManifest.XML file defines one or more service type names.
+                // Registering a service maps a service type name to a .NET type.
+                // When Service Fabric creates an instance of this service type,
+                // an instance of the class is created in this host process.
+
+                ServiceRuntime.RegisterServiceAsync("Stateless1Type", 
+                    context => new Stateless1(context)).GetAwaiter().GetResult();
+
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Stateless1).Name);
+
+                // Prevents this host process from terminating so services keep running.
+                Thread.Sleep(Timeout.Infinite);
+
+                // **** Ensure that the ElasticSearchListner instance is not garbage-collected prematurely
+                GC.KeepAlive(esListener);
             }
             catch (Exception e)
             {
@@ -248,4 +255,4 @@ Elasticsearch 連接資料應該放在服務組態檔 (**PackageRoot\\Config\\Se
 [1]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/listener-lib-references.png
 [2]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/kibana.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0406_2016-->

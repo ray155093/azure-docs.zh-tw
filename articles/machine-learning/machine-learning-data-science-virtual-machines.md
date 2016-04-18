@@ -27,7 +27,7 @@
 有數種類型的 Azure 虛擬機器可佈建並設定來做為雲端架構資料科學環境的一部分。決定要使用哪一個虛擬機器類別，取決於要使用機器學習服務進行模型化的資料類型和數量，以及該資料在雲端中的目標目的地。
 
 * 如需進行這項決策時要考量之問題的指引，請參閱[規劃您的 Azure Machine Learning 資料科學環境](machine-learning-data-science-plan-your-environment.md)。 
-* 如需在進行進階分析時可能會遇到之部分案例的目錄，請參閱 [Azure Machine Learning 中進階分析程序和技術的案例](../machine-learning-data-science-plan-sample-scenarios.md)
+* 如需在進行進階分析時可能會遇到之部分案例的目錄，請參閱 [Azure Machine Learning 中進階分析程序和技術的案例](machine-learning-data-science-plan-sample-scenarios.md)
 
 提供兩組指示：
 
@@ -41,4 +41,4 @@
 > [AZURE.NOTE] Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費**」。若要確保未使用虛擬機器時不會被計費，其在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中的狀態必須是**已停止 (已取消配置)**。如需逐步指示或如何取消配置虛擬機器的相關資訊，請參閱[關閉並取消配置未使用的虛擬機器](machine-learning-data-science-setup-virtual-machine.md#shutdown)
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

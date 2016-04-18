@@ -39,7 +39,7 @@
 
 ### 使用 Node Package Manager (NPM) 取得封裝
 
-1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] \(Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 
 2.  在命令視窗中輸入 **npm install azure-storage**。此命令的輸出類似下列範例。
 
@@ -60,7 +60,7 @@
 
 使用記事本或其他文字編輯器，將以下內容新增至您要使用儲存體之應用程式的 **server.js** 檔案頂端：
 
-    var azure = require('azure-storage');
+	var azure = require('azure-storage');
 
 ## 設定 Azure 儲存體連接
 
@@ -72,27 +72,27 @@ Azure 模組會讀取環境變數 AZURE\_STORAGE\_ACCOUNT 及 AZURE\_STORAGE\_AC
 
 下列程式碼會建立一個 **QueueService** 物件，其讓您能夠使用佇列。
 
-    var queueSvc = azure.createQueueService();
+	var queueSvc = azure.createQueueService();
 
 請使用 **createQueueIfNotExists** 方法，此方法會傳回指定的佇列 (如果佇列已經存在)，或以指定的名稱建立新佇列 (如果佇列不存在)。
 
 	queueSvc.createQueueIfNotExists('myqueue', function(error, result, response){
-      if(!error){
-        // Queue created or exists
+	  if(!error){
+	    // Queue created or exists
 	  }
 	});
 
-如果建立佇列，`result` 為 true。如果佇列已存在，則 `result` 為 false。
+如果建立佇列，`result.created` 為 true。如果佇列已存在，則 `result.created` 為 false。
 
 ### 篩選器
 
 可以將選用性的篩選操作套用到使用 **QueueService** 執行的操作。篩選作業可包含記錄、自動重試等。篩選器是使用簽章實作方法的物件：
 
-		function handle (requestOptions, next)
+	function handle (requestOptions, next)
 
 在對要求選項進行前處理之後，方法需要呼叫 "next" 並傳遞具有下列簽章的回呼：
 
-		function (returnObject, finalCallback, next)
+	function (returnObject, finalCallback, next)
 
 在此回呼中，以及處理 returnObject (來自對伺服器之要求的回應) 之後，回呼需要叫用 next (如果存在) 以繼續處理其他篩選，或是就改為叫用 finalCallback 結束服務叫用。
 
@@ -117,7 +117,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 	queueSvc.peekMessages('myqueue', function(error, result, response){
 	  if(!error){
-		// Message text is in messages[0].messagetext
+	    // Message text is in messages[0].messageText
 	  }
 	});
 
@@ -136,14 +136,14 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 若要從佇列中清除訊息，請使用 **getMessages**。這樣會使訊息從佇列中隱藏起來，而不讓其他用戶端處理它。當應用程式處理訊息之後，請呼叫 **deleteMessage** 從佇列中刪除它。下列範例會取得訊息，接著刪除訊息。
 
 	queueSvc.getMessages('myqueue', function(error, result, response){
-      if(!error){
-	    // Message text is in messages[0].messagetext
-        var message = result[0];
-        queueSvc.deleteMessage('myqueue', message.messageid, message.popreceipt, function(error, response){
+	  if(!error){
+	    // Message text is in messages[0].messageText
+	    var message = result[0];
+	    queueSvc.deleteMessage('myqueue', message.messageId, message.popReceipt, function(error, response){
 	      if(!error){
-		    //message deleted
-		  }
-		});
+	        //message deleted
+	      }
+	    });
 	  }
 	});
 
@@ -156,15 +156,15 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 您可以使用 **updateMessage** 在佇列中就地變更訊息內容。下列範例會更新訊息的文字：
 
-    queueSvc.getMessages('myqueue', function(error, result, response){
+	queueSvc.getMessages('myqueue', function(error, result, response){
 	  if(!error){
-		// Got the message
-		var message = result[0];
-		queueSvc.updateMessage('myqueue', message.messageid, message.popreceipt, 10, {messageText: 'new text'}, function(error, result, response){
-		  if(!error){
-			// Message updated successfully
-		  }
-		});
+	    // Got the message
+	    var message = result[0];
+	    queueSvc.updateMessage('myqueue', message.messageId, message.popReceipt, 10, {messageText: 'new text'}, function(error, result, response){
+	      if(!error){
+	        // Message updated successfully
+	      }
+	    });
 	  }
 	});
 
@@ -177,18 +177,18 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 下列範例使用 **getMessages** 方法，在一次呼叫中取得 15 個訊息。接著它會使用 for 迴圈處理每個訊息。另外，對此方法傳回的所有訊息，將隱藏逾時設為五分鐘。
 
-    queueSvc.getMessages('myqueue', {numOfMessages: 15, visibilityTimeout: 5 * 60}, function(error, result, response){
+	queueSvc.getMessages('myqueue', {numOfMessages: 15, visibilityTimeout: 5 * 60}, function(error, result, response){
 	  if(!error){
-		// Messages retreived
-		for(var index in result){
-		  // text is available in result[index].messageText
-		  var message = result[index];
-		  queueSvc.deleteMessage(queueName, message.messageid, message.popreceipt, function(error, response){
-			if(!error){
-			  // Message deleted
-			}
-		  });
-		}
+	    // Messages retreived
+	    for(var index in result){
+	      // text is available in result[index].messageText
+	      var message = result[index];
+	      queueSvc.deleteMessage(queueName, message.messageId, message.popReceipt, function(error, response){
+	        if(!error){
+	          // Message deleted
+	        }
+	      });
+	    }
 	  }
 	});
 
@@ -196,9 +196,9 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 **getQueueMetadata** 會傳回佇列的中繼資料，包括在佇列中等待的大約訊息數目。
 
-    queueSvc.getQueueMetadata('myqueue', function(error, result, response){
+	queueSvc.getQueueMetadata('myqueue', function(error, result, response){
 	  if(!error){
-		// Queue length is available in result.approximatemessagecount
+	    // Queue length is available in result.approximateMessageCount
 	  }
 	});
 
@@ -218,10 +218,10 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 若要刪除佇列及其內含的所有訊息，請在佇列物件上呼叫 **deleteQueue** 方法。
 
-    queueSvc.deleteQueue(queueName, function(error, response){
-		if(!error){
-			// Queue has been deleted
-		}
+	queueSvc.deleteQueue(queueName, function(error, response){
+	  if(!error){
+	    // Queue has been deleted
+	  }
 	});
 
 若要從佇列中清除所有訊息但不要刪除，請使用 **clearMessages**。
@@ -269,36 +269,30 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼。下列範例定義兩個原則，其中一個用於 'user1'，另一個用於 'user2'：
 
-	var sharedAccessPolicy = [
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.QueueUtilities.SharedAccessPermissions.PROCESS,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user1'
+	var sharedAccessPolicy = {
+	  user1: {
+	    Permissions: azure.QueueUtilities.SharedAccessPermissions.PROCESS,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  },
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.QueueUtilities.SharedAccessPermissions.ADD,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user2'
+	  user2: {
+	    Permissions: azure.QueueUtilities.SharedAccessPermissions.ADD,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  }
-	];
+	};
 
 下列範例會取得 **myqueue** 的目前 ACL，然後使用 **setQueueAcl** 來加入新的原則。此方法允許：
 
+	var extend = require('extend');
 	queueSvc.getQueueAcl('myqueue', function(error, result, response) {
-      if(!error){
-		//push the new policy into signedIdentifiers
-		result.signedIdentifiers = result.signedIdentifiers.concat(sharedAccessPolicy);
-		queueSvc.setQueueAcl('myqueue', result.signedIdentifiers, function(error, result, response){
-	  	  if(!error){
-	    	// ACL set
-	  	  }
-		});
+	  if(!error){
+	    var newSignedIdentifiers = extend(true, result.signedIdentifiers, sharedAccessPolicy);
+	    queueSvc.setQueueAcl('myqueue', newSignedIdentifiers, function(error, result, response){
+	      if(!error){
+	        // ACL set
+	      }
+	    });
 	  }
 	});
 
@@ -331,4 +325,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
   [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
   [使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

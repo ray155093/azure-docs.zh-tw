@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/10/2016" 
+	ms.date="04/06/2016" 
 	ms.author="stefsch"/>
 
 # 安全地從 App Service 環境連接到後端資源 #
 
 ## 概觀 ##
-由於 App Service 環境一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路，所以從 App Service 環境送至其他後端資源的輸出連線可以獨佔方式透過虛擬網路傳送。
+由於 App Service 環境一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路，所以從 App Service 環境送至其他後端資源的輸出連線可以獨佔方式透過虛擬網路傳送。請注意，目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
 
 **注意：**在「v2」ARM 管理的虛擬網路中，無法建立 App Service 環境。
 
@@ -116,4 +116,4 @@
 [NetworkAccessControlListExample]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/NetworkAcl01.png
 [DefaultNetworkSecurityRules]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/DefaultNetworkSecurityRules01.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

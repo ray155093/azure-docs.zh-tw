@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="03/15/2016"
+    ms.date="04/01/2016"
     ms.author="sstein"/>
 
 # 使用 PowerShell 監視、管理和估算彈性資料庫集區大小 
@@ -22,7 +22,7 @@
 - [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
 - [C#](sql-database-elastic-pool-manage-csharp.md)
-
+- [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
 了解如何使用 PowerShell Cmdlet 管理[彈性資料庫集區](sql-database-elastic-pool.md)。
 
@@ -171,11 +171,11 @@
 
 ## 後續步驟
 
-- [建立彈性工作](sql-database-elastic-jobs-overview.md) 彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
+- [建立彈性工作](sql-database-elastic-jobs-overview.md)彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 
 
 ## 彈性資料庫參考
 
 如需關於彈性資料庫和彈性資料庫集區的詳細資訊，包括 API 和錯誤詳細資料，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

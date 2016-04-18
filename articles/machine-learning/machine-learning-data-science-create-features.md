@@ -21,17 +21,17 @@
 
 特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。
 
-[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-
-此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 ##簡介
 
 本主題說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。這些範例是根據 Azure Machine Learning Studio 繪製。
 
-功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 功能工程設計和選取是 CAP「開發特徵」的一部分。 * 「特徵工程設計」：這個程序會嘗試從資料的現有原始特徵建立其他相關特徵，以及提高學習演算法的預測能力。 * 「特徵選取」：這個程序會在嘗試降低定型問題的維度中選取原始資料特徵的鍵值子集。
+功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 特性工程設計和選取屬於 CAP 的**開發功能**步驟。
+* **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
+* **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
-通常會先套用**特性工程設計**以產生其他特性，然後執行**特性選取**步驟以排除不相關、多餘或高度相關的特性。
+通常會先套用**功能工程設計**以產生其他功能，然後執行**功能選取**步驟以排除不相關、多餘或高度相關的功能。
 
 從收集的原始資料擷取特性，通常可以增強機器學習服務中使用的定型資料。學習環境中工程設計特性範例，分類手寫字元的影像的方式是是建立從原始位元分配資料建構的位元密度對應。相較於直接使用原始分配，此對應有助於更有效地找出字元的界限。
 
@@ -47,7 +47,7 @@
 
 從 Azure 機器學習著手時，最簡單的方式是透過 Studio 中提供的範例具體地領會此程序。以下呈現兩個範例：
 
-* 在已知目標值的監督實驗中的[單車租用數量預測](../machine-learning-sample-prediction-of-number-of-bike-rentals.md)迴歸範例
+* 在已知目標值的監督實驗中的[單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)迴歸範例
 * 使用[特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/)的文字採礦分類範例
 
 ### 範例 1：新增迴歸模型的暫時特性 ###
@@ -97,4 +97,4 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 請注意，不一定要執行特性工程設計和特性選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

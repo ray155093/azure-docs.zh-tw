@@ -20,6 +20,8 @@
 
 本文提供可協助您存取 Azure Insights 監視功能的命令列 (CLI) 命令範例。Azure Insights 可讓您根據設定的遙測資料值，自動調整雲端服務、虛擬機器和 Web Apps，以及傳送警示通知，或呼叫 Web URL。
 
+>[AZURE.NOTE] Azure Insights CLI 有某些最新的錯誤修正尚未完成。因此，目前的 Azure CLI 版本還無法提供某些最新功能。與此同時，您可以在 [Azure XPLAT CLI tarball](http://github.com/Azure/azure-xplat-cli/archive/dev.tar.gz) 下載開發分支所提供的最新 tarball 以使用包含修正的最新 Azure Insights CLI，然後依照 [Microsoft Azure 跨平台命令列儲存機制](https://github.com/Azure/azure-xplat-cli#installation-from-a-particular-branch-of-this-repository)中的指示使用您下載的 tarball 來安裝它。Azure Insights 會在 Azure CLI 的錯誤修正更新時立刻將其納入。當 Azure CLI 的主要分支提供變更時，我們就會更新此文件。
+
 ## 必要條件
 
 如果您尚未安裝 Azure CLI，請參閱[安裝 Azure CLI](../xplat-cli-install.md)。若您不熟悉 Azure CLI，可閱讀[搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](../xplat-cli-azure-resource-manager.md) 以深入了解。
@@ -219,4 +221,4 @@ node bin\azure insights autoscale setting list montest2 -n setting2
 node bin\azure insights autoscale setting set montest2 -n setting2 --settingSpec
 ```
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

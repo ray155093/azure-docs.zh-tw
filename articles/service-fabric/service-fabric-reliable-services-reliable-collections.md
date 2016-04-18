@@ -5,7 +5,7 @@
    documentationCenter=".net"
    authors="mcoskun"
    manager="timlt"
-   editor="masnider,jessebenson"/>
+   editor="masnider,vturecek"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="11/11/2015"
+   ms.date="03/25/2016"
    ms.author="mcoskun"/>
 
 # Azure Service Fabric 具狀態服務中可靠的集合簡介
@@ -39,7 +39,7 @@
 可靠的集合 API 是並行集合 API (位於 **System.Collections.Concurrent** 命名空間) 的一種演化：
 
 - 非同步：會傳回工作；不同於並行集合，其作業會受到複寫及保存。
-- 沒有 out 參數：使用 **ConditionalResult<T>** 傳回 bool 和值，而不是 out 參數。**ConditionalResult<T>** 類似 **Nullable<T>**，但不需要 T 做為結構。
+- 沒有 out 參數：使用 `ConditionalValue<T>` 傳回 bool 和值，而不是 out 參數。`ConditionalValue<T>` 就像 `Nullable<T>`，但 T 可以不是結構。
 - 交易：使用交易物件，讓使用者可在交易中的多個可靠的集合上群組動作。
 
 現在，**Microsoft.ServiceFabric.Data.Collections** 包含兩個集合：
@@ -99,16 +99,16 @@
 
 ## 建議
 
-- 請不要修改讀取作業所傳回的自訂類型物件 (例如 **TryPeekAsync** 或 **TryGetAsync**)。可靠的集合就像並行的集合一樣，會傳回物件參考而不是複本。
+- 請勿修改讀取作業所傳回的自訂類型物件 (例如 `TryPeekAsync` 或 `TryGetAsync`)。可靠的集合就像並行的集合一樣，會傳回物件參考而不是複本。
 - 請不要在未經修改之前，就深層複製傳回的自訂類型物件。因為結構和內建類型都是傳值，因此您不需要在其上執行深層複製。
-- 請不要針對逾時使用 **TimeSpan.MaxValue**。逾時應該用來偵測死結。
+- 請勿針對逾時使用 `TimeSpan.MaxValue`。逾時應該用來偵測死結。
 - 請不要在另一個交易的 `using` 陳述式內建立交易，因為它會造成死結。
 
 以下是要牢記在心的一些事項：
 
 - 所有可靠的集合 API 的預設逾時都是 4 秒。大部分使用者應該都不會覆寫此預設值。
-- 在所有可靠的集合 API 中，預設的取消權杖為 **CancellationToken.None**。
-- 可靠字典的索引鍵類型參數 (*TKey*) 必須正確實作 **GetHashCode()** 和 **Equals()**。索引鍵必須是不可變的。
+- 在所有可靠的集合 API 中，預設的取消權杖為 `CancellationToken.None`。
+- 可靠字典的索引鍵類型參數 (*TKey*) 必須正確實作 `GetHashCode()` 和 `Equals()`。索引鍵必須是不可變的。
 - 在集合中，快照集中的列舉都是一致的。但是，在跨多個集合的情況下，列舉並不是一致的。
 - 若要讓可靠的集合達到高度可用性，每個服務應至少有一個目標和大小為 3 的最小複本集。
 
@@ -116,7 +116,7 @@
 
 - [Reliable Services 快速入門](service-fabric-reliable-services-quick-start.md)
 - [開始使用 Service Fabric Web API 服務](service-fabric-reliable-services-communication-webapi.md)
-- [可靠的服務程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
+- [Reliable Services 程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
 - [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0406_2016-->

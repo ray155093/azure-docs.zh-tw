@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="設定 Azure 儲存體的連接字串 | Microsoft Azure"
-	description="了解如何設定 Azure 儲存體帳戶的連接字串。連接字串包含以程式設計方式驗證儲存體帳戶中資源存取所需的資訊。連接字串可能會封裝您擁有的帳戶存取金鑰，或者可能包含共用的存取簽章，用於存取帳戶的資源，而不需要存取金鑰。"
+	description="建構 Azure 儲存體帳戶的連接字串。連接字串包含從應用程式驗證儲存體帳戶中存取資源所需的資訊。"
 	services="storage"
 	documentationCenter=""
 	authors="tamram"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/17/2016"
+	ms.date="04/01/2016"
 	ms.author="tamram"/>
 
 # 設定 Azure 儲存體連接字串
@@ -96,13 +96,13 @@
 
 ### 指定具有共用存取簽章的 Blob 端點
 
-您可以建立具有明確端點的連接字串，透過共用存取簽章存取儲存體資源。在此情況下，您可以指定共用存取簽章做為連接字串的一部分，而不是帳戶名稱和金鑰認證。共用存取簽章權杖會封裝可存取的資源、該資源可供使用的時段，以及所授與權限的相關資訊。如需共用存取簽章的詳細資訊，請參閱 [使用共用存取簽章委派存取](https://msdn.microsoft.com/library/ee395415.aspx)。
+您可以建立具有明確端點的連接字串，透過共用存取簽章存取儲存體資源。在此情況下，您可以指定共用存取簽章做為連接字串的一部分，而不是帳戶名稱和金鑰認證。共用存取簽章權杖會封裝可存取的資源、該資源可供使用的時段，以及所授與權限的相關資訊。如需共用存取簽章的詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
 
 若要建立包含共用存取簽章的連接字串，請以下列格式指定字串：
 
-    BlobEndpoint=myBlobEndpoint; QueueEndpoint=myQueueEndpoint;TableEndpoint=myTableEndpoint;SharedAccessSignature=base64Signature
+    BlobEndpoint=myBlobEndpoint; QueueEndpoint=myQueueEndpoint;TableEndpoint=myTableEndpoint;SharedAccessSignature=sasToken
 
-端點可以是預設服務端點或自訂端點。`base64Signature` 會對應到共用存取簽章的簽章部分。簽章是透過有效簽署字串所計算的 HMAC，而金鑰使用的是 SHA256 演算法，然後使用 Base64 進行編碼。
+端點可以是預設服務端點或自訂端點。`sasToken` 是遵循 SAS URL 上問號 (?) 的查詢字串。
 
 ### 建立包含端點尾碼的連接字串
 
@@ -119,4 +119,9 @@
 	AccountKey=<account-key>;
 	EndpointSuffix=core.chinacloudapi.cn;
 
-<!---HONumber=AcomDC_0218_2016-->
+## 後續步驟
+
+- [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
+- [Azure 儲存體總管](storage-explorers.md)
+
+<!---HONumber=AcomDC_0406_2016-->

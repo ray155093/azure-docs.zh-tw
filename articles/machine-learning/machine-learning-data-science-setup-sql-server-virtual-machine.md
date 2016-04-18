@@ -199,11 +199,11 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 5.  在 [密碼] 方塊中，輸入新使用者的密碼。在 [確認密碼] 方塊中再次輸入密碼。
 
-6.  若要強制執行複雜性和強制性密碼原則選項，請選取 \[強制執行密碼原則] (建議)。此為選取 SQL Server 驗證時的預設選項。
+6.  若要強制執行複雜性和強制性密碼原則選項，請選取 [強制執行密碼原則] (建議)。此為選取 SQL Server 驗證時的預設選項。
 
-7.  若要強制執行逾期密碼原則選項，請選取 \[強制執行密碼逾期] (建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+7.  若要強制執行逾期密碼原則選項，請選取 [強制執行密碼逾期] (建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
-8.  若要強制使用者在首次登入後建立新密碼，請選取 \[使用者必須在下次登入時變更密碼] (如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+8.  若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼] (如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
 9.  在 [預設資料庫] 清單中，選取登入的預設資料庫。**master** 是此選項的預設值。如果您尚未建立使用者資料庫，請保留 [master] 的設定。
 
@@ -225,7 +225,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 1.  在 Azure 傳統入口網站 (或前一個步驟) 中選取 [虛擬機器]。
 
-2.  在「**虛擬機器執行個體**」頁面的 [**DNS 名稱**] 欄中，尋找並複製前方加上 **http://** 的虛擬機器 DNS 名稱。(使用者介面可能無法顯示完整名稱，不過您可以在名稱上按一下滑鼠右鍵，然後選擇複製。)
+2.  在「**虛擬機器執行個體**」頁面的 [**DNS 名稱**] 欄中，尋找並複製前方加上 ****http://** 的虛擬機器 DNS 名稱。(使用者介面可能無法顯示完整名稱，不過您可以在名稱上按一下滑鼠右鍵，然後選擇複製。)
 
 ##<a name="cde"></a>從另一台電腦連接到 Database Engine
 
@@ -279,7 +279,7 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 
 您的虛擬機器已經準備好在資料科學練習中使用。虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以用於進行資料探索和處理，以及其他可與 Azure Machine Learning 和 Cortana 分析程序 (CAP) 一起使用的工作。
 
-「[學習指南：Azure 中的進階資料處理](machine-learning-data-science-advanced-data-processing.md)」中說明了資料科學程序的後續步驟，其中可能包含將資料移至 HDInsight，並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+「[學習指南：Azure 中的進階資料處理](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)」中說明了資料科學程序的後續步驟，其中可能包含將資料移至 HDInsight，並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
 
 
 [1]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/selectsqlvmimg.png
@@ -298,4 +298,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

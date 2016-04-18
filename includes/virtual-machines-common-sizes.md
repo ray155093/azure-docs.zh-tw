@@ -42,16 +42,10 @@
 
 |SKU 系列 |ACU/核心 |
 |---|---|
-|[Standard\_A0](#standard-tier-a-series)	|50 |
-|[Standard\_A1-4](#standard-tier-a-series)	|100 |
-|[Standard\_A5-7](#standard-tier-a-series)	|100 |
-|[A8-A11](#standard-tier-a-series)	|225 *|
-|[D1-14](#standard-tier-d-series)	|160 |
-|[D1-15v2](#standard-tier-dv2-series)	|210 - 250 *|
-|[DS1-14](#standard-tier-ds-series)	|160 |
-|[DS1-14v2](#standard-tier-dsv2-series)	|210-250* |
-|[G1-5](#standard-tier-g-series)	|180 - 240 *|
-|[GS1-5](#standard-tier-gs-series)	|180 - 240 *|
+|[Standard\_A0](#standard-tier-a-series) |50 |
+|[Standard\_A1-4](#standard-tier-a-series) |100 |
+|[Standard\_A5-7](#standard-tier-a-series) |100 |
+|[A8-A11](#standard-tier-a-series) |225 *| |[D1-14](#standard-tier-d-series) |160 | |[D1-15v2](#standard-tier-dv2-series) |210 - 250 *| |[DS1-14](#standard-tier-ds-series) |160 | |[DS1-14v2](#standard-tier-dsv2-series) |210-250* | |[G1-5](#standard-tier-g-series) |180 - 240 *| |[GS1-5](#standard-tier-gs-series) |180 - 240 *|
 
 
 以 * 標示的 ACU 使用了「Intel® 渦輪」技術來增加 CPU 頻率及提升效能。提升的程度會依 VM 大小、工作負載及在相同主機上執行的其他工作負載而有所不同。
@@ -145,7 +139,7 @@
 |Standard\_DS2\_v2 |2|7|2|本機 SSD 磁碟 = 14 GB |4|86| 每秒 6,400 96 MB | 高 |
 |Standard\_DS3\_v2 |4|14|4|本機 SSD 磁碟 = 28 GB |8|172| 每秒 12,800 192 MB | 高 |
 |Standard\_DS4\_v2 |8|28|8|本機 SSD 磁碟 = 56 GB |16|344| 每秒 25,600 384 MB | 高 |
-|Standard\_DS5\_v2 |16|56|8|本機 SSD 磁碟 = 112 GB |16|688| 每秒 50,000 768 MB | 高 |
+|Standard\_DS5\_v2 |16|56|8|本機 SSD 磁碟 = 112 GB |32|688| 每秒 50,000 768 MB | 高 |
 |Standard\_DS11\_v2 |2|14|2|本機 SSD 磁碟 = 28 GB |4|72| 每秒 6,400 96 MB | 高 |
 |Standard\_DS12\_v2 |4|28|4|本機 SSD 磁碟 = 56 GB |8|144| 每秒 12,800 192 MB | 高 |
 |Standard\_DS13\_v2 |8|56|8|本機 SSD 磁碟 = 112 GB |16|288| 每秒 25,600 384 MB | 高 |
@@ -192,4 +186,4 @@
 - 了解 [Azure 訂用帳戶及服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
 - 深入了解像是高效能運算 (HPC) 之工作負載的 [A8、A9、A10 及 A11 計算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!------HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

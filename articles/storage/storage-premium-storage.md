@@ -39,16 +39,15 @@ Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例
 
 進階儲存體 Blob：進階儲存體可支援 Azure 分頁 Blob，其用於保存適用於 Azure 虛擬機器 (VM) 的永續性磁碟。進階儲存體目前不支援 Azure 區塊 Blob、Azure 附加 Blob、Azure 檔案、Azure 資料表或 Azure 佇列。
 
-Premium\_LRS 帳戶︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。使用 [Azure 入口網站](https://portal.azure.com)或下列 SDK 程式庫來建立 “Premium\_LRS” 類型的儲存體帳戶：[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 版本 2014-02-14 或更新版本、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 版本 2014-10-01 或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (ARM 部署)，以及 [Azure PowerShell](../powershell-install-configure.md) 版本 0.8.10 或更新版本。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
+**進階儲存體帳戶**︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。如果您想要使用 [Azure 入口網站](https://portal.azure.com)，則可以指定「進階」效能層和「本地備援儲存體 (LRS)」作為複寫選項來建立進階儲存體帳戶。使用[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 2014-02-14 版或更新版本將類型指定為 “Premium\_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (ARM 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
 
-進階本地備援儲存體：進階儲存體帳戶是本地備援 (LRS) 帳戶，在單一區域內會保留三份資料。如需使用進階儲存體時關於異地複寫的考量，請參閱本文的[快照與複製 Blob](#snapshots-and-copy-blob) 一節。
+**進階本地備援儲存體**：進階儲存體帳戶僅支援本地備援儲存體 (LRS) 作為複寫選項，並在單一區域內會保留三份資料。如需使用進階儲存體時關於異地複寫的考量，請參閱本文的[快照與複製 Blob](#snapshots-and-copy-blob) 一節。
 
 Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。當您建立 Azure DS、DSv2 或 GS VM 並選取 Azure 進階儲存體帳戶，您的作業系統和資料磁碟會儲存在該儲存體帳戶中。
 
 有兩種方式可使用 Premium 磁碟儲存體：
 - 首先，建立新的進階儲存體帳戶。接著，在建立新的 DS、DSv2 或 GS VM 時，選取儲存體組態設定中的進階儲存體帳戶。或者，
 - 在建立新的 DS、DSv2 或 GS VM 時，在儲存體組態設定中建立新的進階儲存體帳戶，或讓 Azure 入口網站建立預設的進階儲存體帳戶。
-
 
 如需逐步指示，請參閱本文稍後的[快速啟動](#quick-start)一節。
 
@@ -203,7 +202,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 若要了解如何使用進階儲存體設計高效能，請參閱[使用進階儲存體設計高效能](storage-premium-storage-performance.md)一文。
 
 ## 快照與複製 Blob
-您可以使用 Standard 儲存體時建立快照的方式來為 Premium 儲存體建立快照。由於 Premium 儲存體是本地備援儲存體，建議您建立快照，並將那些快照複製到異地備援的 Standard 儲存體帳戶。如需詳細資訊，請參閱 [Azure 儲存體備援選項](storage-redundancy.md)。
+您可以使用 Standard 儲存體時建立快照的方式來為 Premium 儲存體建立快照。因為進階儲存體僅支援本地備援儲存體 (LRS) 作為複寫選項，所以建議您建立快照集，然後將那些快照集複製到異地備援標準儲存體帳戶。如需詳細資訊，請參閱 [Azure 儲存體備援選項](storage-redundancy.md)。
 
 如果磁碟已連結至 VM，在備份磁碟的分頁 Blob 上不允許某些 API 作業。例如，只要磁碟連接至 VM，您就無法在該 Blob 上執行[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) 作業。您必須先使用[快照 Blob](http://msdn.microsoft.com/library/azure/ee691971.aspx) REST API 方法建立該 Blob 的快照，然後對該快照執行[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) 以複製連接的磁碟。或者，您可以中斷連結磁碟，然後在基礎 Blob 上執行任何必要的作業。
 
@@ -363,29 +362,39 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 1.	登入 [Azure 入口網站](https://portal.azure.com)。如果您還沒有訂閱，請參考[免費試用](https://azure.microsoft.com/pricing/free-trial/)優惠。
 
-2.	在 [中心] 功能表上，按一下 [新增]。
+2. 在 [中樞] 功能表上，選取 [新增] -> [資料+儲存體] -> [儲存體帳戶]。
 
-3.	在 [新增] 之下。選取 [資料 + 儲存體]。從該處按一下 [儲存體帳戶]。選擇部署模型。使用資源管理員進行新的部署。按一下 [建立]。
+3. 輸入儲存體帳戶的名稱。
 
-4.	在 [儲存體帳戶] 刀鋒視窗中，輸入儲存體帳戶名稱。選取您的部署所需的位置。請參考[依區域的 Azure 服務](https://azure.microsoft.com/regions/#services)，以確認進階儲存體可用於選取的位置。
+	> [AZURE.NOTE] 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
+	>  
+	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-5.	按一下 [類型]。在 [選擇儲存體帳戶類型] 刀鋒視窗中，選擇 [進階本地備援]。按一下 [選取]。在您按一下 [選取] 後，[類型] 就會顯示為 [Premium-LRS]。
+4. 指定所要使用的部署模型：[資源管理員] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
-6.	在 [儲存體帳戶] 刀鋒視窗上，建立新的 [資源群組]，或選取現有的資源群組 (如果您已經有資源群組)。按一下 [建立]。
+5. 將儲存體帳戶的效能層指定為 [進階]。
 
-	![定價層][Image1]
+6. **本地備援儲存體 (LRS)** 是進階儲存體唯一可用的複寫選項。如需 Azure 儲存體複寫選項的詳細資訊，請參閱下方的 [Azure 儲存體複寫](storage-redundancy.md)。
+
+7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
+
+8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
+
+9. 選取儲存體帳戶的地理位置。您可以參考[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)，來確認進階儲存體是否可用於選取的位置中。
+
+10. 按一下 [建立] 建立儲存體帳戶。
 
 #### II.透過 Azure 入口網站建立 Azure 虛擬機器
 
-您必須建立 DS、DSv2 或 GS 系列 VM，才能使用進階儲存體。請依照[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的步驟來建立新的 DS、DSv2 或 GS 虛擬機器。
+您必須建立 DS、DSv2 或 GS 系列 VM，才能使用進階儲存體。請遵循[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的步驟來建立新的 DS、DSv2 或 GS 虛擬機器。
 
 #### III.透過 Azure 入口網站連接進階儲存體資料磁碟
 
 1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2 或 GS VM。
 2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下 [連接新項目]。
-3. 輸入資料磁碟的名稱，然後在 [類型] 中選取 [進階]。選取所要的 [大小] 和 [主機快取] 設定。
+3. 輸入資料磁碟的名稱，然後將 [類型] 選取為 [進階]。選取所要的 [大小] 和 [主機快取] 設定。
 
-	![進階磁碟][Image2]
+	![進階磁碟][Image1]
 
 請參閱[如何在 Azure 入口網站中連接資料磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md)中的詳細步驟。
 
@@ -402,7 +411,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 這個 PowerShell 範例示範如何建立新的 Premium 儲存體帳戶並將使用該帳戶的資料磁碟連接至新的 Azure 虛擬機器。
 
 1. 依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中提供的步驟設定您的 PowerShell 環境。
-2. 啟動 PowerShell 主控台，連接至您的訂用帳戶，並在主控台視窗中執行下列 PowerShell Cmdlet。如此 PowerShell 陳述式所示，當您建立 Premium 儲存體帳戶時，必須將 Type 參數指定為 Premium\_LRS。
+2. 啟動 PowerShell 主控台，連接至您的訂用帳戶，並在主控台視窗中執行下列 PowerShell Cmdlet。如此 PowerShell 陳述式所示，當您建立 Premium 儲存體帳戶時，必須將 **Type** 參數指定為 **Premium\_LRS**。
 
 		New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
 
@@ -479,39 +488,39 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 ## 常見問題集
 
-1. 是否可將進階和標準資料磁碟連接到 DS、DSv2 或 GS 系列 VM？
+1. **是否可將進階和標準資料磁碟連接到 DS、DSv2 或 GS 系列 VM？**
 
 	是。您可將進階和標準資料磁碟連接到 DS、DSv2 或 GS 系列 VM。
 
-2. 是否可將進階和標準資料磁碟連接到 D、Dv2 或 G 系列 VM？
+2. **是否可將進階和標準資料磁碟連接到 D、Dv2 或 G 系列 VM？**
 
 	否。您只能將標準資料磁碟連接到不屬於 DS、DSv2 或 GS 系列的所有 VM。
 
-3. 如果我從現有的 VHD (大小 為 80 GB) 建立進階資料磁碟，需要多少費用？
+3. **如果我從現有的 VHD (大小 為 80 GB) 建立進階資料磁碟，需要多少費用？**
 
 	從 80 GB VHD 建立的進階資料磁碟會被視為下一個可用的進階磁碟大小 (P10 磁碟)。我們將根據 P10 磁碟價格收費。
 
-4. 使用進階儲存體時是否有任何交易成本？
+4. **使用進階儲存體時是否有任何交易成本？**
 
-	每個磁碟大小都有固定成本，其隨著特定數量的 IOPS 和輸送量佈建。其他成本包括輸出頻寬和快照容量 (如果適用的話)。如需詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
+	每個磁碟大小都有固定成本，其隨著特定數量的 IOPS 和輸送量佈建。其他成本包括輸出頻寬和快照容量 (如果適用的話)。如需詳細資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
 
-5. 哪裡可以儲存 DS、DSv2 或 GS 系列 VM 的開機診斷？
+5. **哪裡可以儲存 DS、DSv2 或 GS 系列 VM 的開機診斷？**
 
 	建立標準儲存體帳戶，以儲存 DS、DSv2 或 GS 系列 VM 的開機診斷。
 
-6. 我可以從磁碟快取取得多少 IOPS 和輸送量？
+6. **我可以從磁碟快取取得多少 IOPS 和輸送量？**
 
 	DS 系列的快取和本機 SSD 合併限制是每個核心 4000 IOPS，以及每個核心每秒 33 MB。GS 系列提供每個核心 5000 IOPS，以及每個核心每秒 50 MB。
 
-7. DS、DSv2 或 GS 系列 VM 中的本機 SSD 是什麼？
+7. **DS、DSv2 或 GS 系列 VM 中的本機 SSD 是什麼？**
 
 	本機 SSD 是 DS、DSv2 或 GS 系列 VM 隨附的暫時儲存體。暫時儲存體不需額外的成本。建議您不要使用此暫時儲存體或本機 SSD 來儲存應用程式資料，因為它不會保存在 Azure Blob 儲存體中。
 
-8. 是否可以將標準儲存體帳戶轉換成進階儲存體帳戶？
+8. **是否可以將標準儲存體帳戶轉換成進階儲存體帳戶？**
 
 	否。不可能將標準儲存體帳戶轉換成進階儲存體帳戶 (反之亦然)。您必須以所需的類型建立新的儲存體帳戶，並將資料複製到新的儲存體帳戶 (如果適用的話)。
 
-9. 如何將 D 系列 VM 轉換成 DS 系列 VM？
+9. **如何將 D 系列 VM 轉換成 DS 系列 VM？**
 
 	請參閱移轉指南：[移轉到 Azure 進階儲存體](storage-migration-to-premium-storage.md)，將您的工作負載從使用標準儲存體帳戶的 D 系列 VM 移到使用進階儲存體帳戶的 DS 系列 VM。
 
@@ -528,14 +537,11 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 - [移轉到 Azure 進階儲存體](storage-migration-to-premium-storage.md)
 
-
 ### 部落格文章
 
 - [Azure 進階儲存體正式推出](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
 - [宣佈 GS 系列︰將進階儲存體支援加入至公用雲端中的最大 VM](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)
 
+[Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-[Image1]: ./media/storage-premium-storage/Azure_pricing_tier.png
-[Image2]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
-
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

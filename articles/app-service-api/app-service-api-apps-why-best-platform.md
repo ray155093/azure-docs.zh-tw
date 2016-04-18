@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/23/2016" 
+	ms.date="03/31/2016" 
 	ms.author="tdykstra"/>
 
 # API Apps 概觀
@@ -22,11 +22,11 @@ API Apps 是 [Azure App Service](../app-service/app-service-value-prop-what-is.m
 
 ![Azure App Service 中的應用程式類型](./media/app-service-api-apps-why-best-platform/appservicesuite.png)
 
-[App Service](../app-service/app-service-value-prop-what-is.md) 是一個完全受管理的平台，適用於 Web、行動和整合案例。App Service 中的 API Apps 提供各種功能，讓您更輕鬆地在雲端和內部部署當中建置、裝載和使用 API。將您的 API 部署為 App Service 中的 API 應用程式，即可受益於企業級安全性、簡單的存取控制、混合式連線、自動 SDK 產生，並與 [Logic Apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) 完美整合。
+[App Service](../app-service/app-service-value-prop-what-is.md) 是一個完全受管理的平台，適用於 Web、行動和整合案例。App Service 中的 API Apps 提供各種功能，讓您更輕鬆地在雲端和內部部署當中建置、裝載和使用 API。使用 API Apps，即可受益於企業級安全性、簡單的存取控制、混合式連線、自動 SDK 產生，並與 [Logic Apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) 完美整合。
 
 ## 為何採用 API 應用程式？
 
-API Apps 提供下列功能：
+以下是 API Apps 的一些主要功能︰
 
 - **輕鬆使用** - 藉由 [Swagger API 中繼資料](#concepts)的整合支援，各種用戶端都能輕鬆使用您的 API。使用各種語言 (包括 C#、Java 和 Javascript) 為您的 API 自動產生用戶端程式碼。輕鬆設定 [CORS](#concepts) 而不需變更您的程式碼。如需詳細資訊，請參閱[適用於 API 探索及產生程式碼用的 App Service API Apps 中繼資料](app-service-api-metadata.md)與[使用 CORS 從 JavaScript 取用 API 應用程式](app-service-api-cors-consume-javascript.md)。 
 
@@ -64,4 +64,4 @@ API 管理和 API 應用程式的某些功能具有類似的功能。例如，�
 
 若要詢問有關 API Apps 的問題，請在 [API Apps 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)中發問。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -11,7 +11,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/18/2016"
+	ms.date="04/01/2016"
 	ms.author="jeffreyg"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -24,6 +24,7 @@
 - [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 - [C#](sql-database-elastic-pool-manage-csharp.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
+- [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
 
 本文說明如何使用 Azure 入口網站來監視、管理及準確估量彈性資料庫集區和集區中的資料庫。SQL Database 擁有內建的智慧功能，可分析歷史的使用狀況遙測，並在更符合成本效益時主動推薦資料庫的集區。您也可以在認可變更之前加入及移除資料庫，然後再查看對集區效能和儲存體的影響。
@@ -41,7 +42,7 @@
 
 **變更日期範圍、圖表類型 (橫條或線條) 或顯示的資源︰**
 
-- 按一下 [編輯]，挑選您需要設定，然後按一下 [儲存] 以更新圖表。
+- 按一下 [編輯]，並挑選您要的設定，然後按一下 [儲存] 以更新圖表。
 
 **變更動態磚︰**
 
@@ -58,7 +59,7 @@
 
     圖表會以動態方式顯示該度量的資源使用量，協助您選擇閾值。
 
-4. 選擇 [條件] \(大於、小於等) 和 [閾值]。
+4. 選擇 [條件] (大於、小於等) 和 [閾值]。
 5. 按一下 [確定]。
 
 ##變更每個集區的 eDTU 和資料庫 eDTU
@@ -72,7 +73,7 @@
 
     ![彈性集區資源使用量](./media/sql-database-elastic-pool-manage-portal/resize-pool.png)
 
-2. 按一下不同的 [集區 eDTU]，您可以看到欲變更之項目的預估每月成本，而圖表會更新以利用您選取的新 eDTU 上限顯示預測使用率值。
+2. 按一下不同的 [集區 eDTU]，您可以看到欲變更之項目的預估每月成本，而圖表會更新以使用您選取的新 eDTU 上限顯示預測使用率值。
 
     ![更新集區和新的每月成本](./media/sql-database-elastic-pool-manage-portal/pool-change-edtu.png)
 
@@ -108,7 +109,7 @@
 
 2. 在 [彈性資料庫] 刀鋒視窗中，從集區的資料庫清單按一下要移除的資料庫，然後按一下 [移除資料庫]。
 
-    集區使用量值現在會顯示儲存變更後的**新**值。
+    集區使用量值現在會顯示儲存變更後的新值。
 
 3. 按一下 [儲存]，然後當入口網站告訴您要求已提交時按一下 [確定]。當操作完成時，集區中的資料庫數目會出現在集區刀鋒視窗內。
 
@@ -131,4 +132,4 @@
 - [使用 C# 來建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)
 - [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

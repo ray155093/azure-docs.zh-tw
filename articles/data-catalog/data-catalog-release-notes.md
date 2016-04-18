@@ -1,5 +1,5 @@
 <properties
-   pageTitle="Azure 資料目錄版本資訊"
+   pageTitle="Azure 資料目錄版本資訊 | Microsoft Azure"
    description="Azure 資料目錄的版本資訊。"
    services="data-catalog"
    documentationCenter=""
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/30/2016"
+   ms.date="03/31/2016"
    ms.author="maroche"/>
 
 # Azure 資料目錄版本資訊
@@ -88,4 +88,4 @@
 
 若要找出 RegistrationTool.exe.config 檔案，請啟動註冊工具，然後開啟 Windows 工作管理員公用程式。在工作管理員的 [詳細資料] 索引標籤，以滑鼠右鍵按一下 RegistrationTool.exe，再從快顯功能表中選擇 [開啟檔案位置]。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->
