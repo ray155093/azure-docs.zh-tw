@@ -28,7 +28,7 @@
 
 - **開放式 REST API 的可用性** 利用開放式平台 API 達到與 CRM/CMS/IT 系統整合及自動化的目的，我們提供開放式 REST API 和 .NET SDK 來使用這些可以讓您輕鬆整合及自動化 Mobile Engagement 的 API。如需詳細資訊，請參閱[本文](mobile-engagement-api-authentication.md)。
 
-- **Power BI 連接器可供使用** 您也可以將重要分析圖表拉出到 Power BI 儀表板中。請參閱本[指南](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-mobile/)
+- **Power BI 連接器可供使用** 您也可以將重要分析圖表拉出到 Power BI 儀表板中。請參閱本[指南](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-mobile/)
 
 - **安全性和隱私權保證** Azure Mobile Engagement 是 Azure 系列產品的一部份，遵循雲端服務在安全性和隱私權上預期遵循的所有標準最佳做法。
 

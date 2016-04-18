@@ -148,7 +148,13 @@ Get-AzureRmAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/
 |此警示規則的位置|	美國東部|
 |ResourceGroup|	montest|
 |TargetResourceId|	/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig|
-|所建立警示的 MetricName|	\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱以下的 `Get-MetricDefinitions` Cmdlet，了解如何擷取確實的計量名稱| |運算子| GreaterThan| |臨界值 (此計量每秒的計數)| 1| |WindowSize (hh:mm:ss 格式)| 00:05:00| |彙總器 (計量的統計資料，在此範例中使用的是 Average 計數)| Average| |自訂電子郵件 (字串陣列)|'foo@example.com','bar@example.com'| |將電子郵件傳送給擁有者、參與者和讀取者| -SendToServiceOwners|
+|所建立警示的 MetricName|	\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱以下的 `Get-MetricDefinitions` Cmdlet，了解如何擷取確實的計量名稱|
+|運算子| GreaterThan|
+|臨界值 (此計量每秒的計數)| 1|
+|WindowSize (hh:mm:ss 格式)| 00:05:00|
+|彙總器 (計量的統計資料，在此範例中使用的是 Average 計數)| Average|
+|自訂電子郵件 (字串陣列)|'foo@example.com','bar@example.com'|
+|將電子郵件傳送給擁有者、參與者和讀取者| -SendToServiceOwners|
 
 建立電子郵件動作
 

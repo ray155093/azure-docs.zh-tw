@@ -21,7 +21,8 @@
 
 特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。
 
-[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
+此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 ##簡介
 
@@ -97,4 +98,4 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 請注意，不一定要執行特性工程設計和特性選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!----HONumber=AcomDC_0406_2016-->

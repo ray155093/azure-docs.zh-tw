@@ -1,6 +1,6 @@
 <properties
    pageTitle="關於 Power BI Embedded 的應用程式權杖流程"
-   description=""
+   description="關於 Power BI Embedded 的應用程式權杖流程"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"

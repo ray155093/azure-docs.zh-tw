@@ -1,6 +1,6 @@
 <properties
    pageTitle="Microsoft Power BI Embedded 常見案例"
-   description=""
+   description="Microsoft Power BI Embedded 常見案例"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
