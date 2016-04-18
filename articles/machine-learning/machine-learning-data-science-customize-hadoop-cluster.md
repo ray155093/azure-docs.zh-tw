@@ -88,7 +88,7 @@
 
 	 ![建立工作區][9]
 
-[學習指南：Azure 中的進階資料處理](machine-learning-data-science-advanced-data-processing.md)中說明了進階分析程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+[Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了進階分析程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
 
 如需如何從用來處理儲存於叢集中之 Hive 記錄的使用者定義函數 (UDF) 中的叢集前端節點，存取隨附於 Anaconda 之 Python 模組的相關指示，請參閱[在進階分析程序中將 Hive 查詢提交至 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-tables.md)。
 
@@ -104,4 +104,4 @@
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

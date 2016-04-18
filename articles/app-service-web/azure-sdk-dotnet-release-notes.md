@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/19/2016" 
+	ms.date="03/30/2016" 
 	ms.author="juliako"/>
 
 
@@ -22,6 +22,10 @@
 
 本主題包含 Azure SDK for .NET 版本資訊的連結。
 
+
+##Azure SDK for .NET 2.9 版本資訊
+
+[Azure SDK for .NET 2.9 版本資訊](azure-sdk-dotnet-release-notes-2_9.md)
 
 ##Azure SDK for .NET 2.8 版本資訊
 
@@ -70,4 +74,4 @@
 [MSDN 上的 Azure SDK 版本資訊](https://msdn.microsoft.com/library/azure/dn627519.aspx)
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

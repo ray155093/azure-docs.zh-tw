@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="01/12/2016" 
+    ms.date="04/05/2016" 
     ms.author="elizapo" />
 
 # 保護 Azure RemoteApp 的存取，且後續將會推出更多功能
@@ -44,7 +44,7 @@ Azure RemoteApp 的系統管理員可以使用 Azure AD Premium 所提供的功�
 ### 如何設定 Azure RemoteApp 的條件式存取
 我們要逐步解說一個範例案例，在此案例中，Azure RemoteApp 的系統管理員想要封鎖從公司網路外部存取環境的使用者。
 
->[AZURE.NOTE]我們假設您已將 Azure AD 升級為「高階層」，並且您已建立至少一個 Azure RemoteApp 集合。
+>[AZURE.NOTE] 我們假設您已將 Azure AD 升級為「高階層」，並且您已建立至少一個 Azure RemoteApp 集合。
 
 1.	在 Azure 入口網站中，按一下 [Active Directory] 索引標籤。然後，按一下您想要設定的目錄。
 
@@ -110,4 +110,4 @@ Azure RemoteApp 支援兩種集合部署類型，您可以在其中提供您自�
 ## 完整解決方案
 下圖顯示完整的解決方案，我們在其中建置了起自使用者、經過 Azure RemoteApp (ARA)，並於最後進入後端資源的安全存取通道。![保護 Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png)在階段 1 中，我們已選取使用者，並建立了控制 ARA 存取方式的存取規則。在下面的範例中，我們只允許從公司網路進行工作的使用者進行存取。不符合此規定的使用者將完全無法存取 ARA 環境。在「階段 2」中，我們公開了後端資源，但只能透過我們所控制的 VNet/VPN 組態來存取。Azure RemoteApp 已放置於相同的 VNet。最終結果是只能透過 ARA 環境存取資源。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0406_2016-->

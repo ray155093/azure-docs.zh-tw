@@ -35,7 +35,7 @@
 
 請將圖表上的路徑和演算法標籤解讀為「如果需要 *&lt;路徑標籤&gt;* 則使用 *&lt;演算法&gt;*。」 例如「如果需要 *speed* (速度) 則使用 *two class logistic regression* (二元羅吉斯迴歸)。」 有時候會適用多個分支。有時候則全部都不適用。這些建議通常是來自經驗法則，因此不必擔心是否準確。我和一些資料科學家討論過，他們都認為唯有全部試用一次，才能找出最佳的演算法。
 
-以下是 [Cortana 分析資源庫](http://gallery.azureml.net/)中的實驗範例，該實驗對相同的資料嘗試數種演算法，並比較其結果：[比較多類別分類器：字母辨識](http://gallery.azureml.net/Details/a635502fc98b402a890efe21cec65b92)。
+以下是 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的實驗範例，該實驗對相同的資料嘗試數種演算法，並比較其結果：[比較多類別分類器：字母辨識](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92)。
 
 >[AZURE.TIP] 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
 
@@ -119,12 +119,12 @@
 |[決策叢林](https://msdn.microsoft.com/library/azure/dn905963.aspx)|●|○| |6|低記憶體使用量|
 |[類神經網路](https://msdn.microsoft.com/library/azure/dn906030.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
 |[一對多](https://msdn.microsoft.com/library/azure/dn905887.aspx)|-|-|-|-|請參閱選定之雙類別的屬性|
-|**迴歸**| | | | | | 
-|[線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |●|●|4| | 
-|[貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| | 
-|[決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| | 
-|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|高記憶體使用量| 
-|[快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|分佈而非點預測| 
+|**迴歸**| | | | | |
+|[線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |●|●|4| |
+|[貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| |
+|[決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| |
+|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|高記憶體使用量|
+|[快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|分佈而非點預測|
 |[類神經網路](https://msdn.microsoft.com/library/azure/dn905924.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
 |[Poisson ](https://msdn.microsoft.com/library/azure/dn905988.aspx)| | |●|5|技術上的對數線性，用於預測計數|
 |[序數](https://msdn.microsoft.com/library/azure/dn906029.aspx)| | | |0|用於預測排名順序|
@@ -156,7 +156,7 @@
 
 ![羅吉斯迴歸與只有一項特徵的雙類別資料][4]
 
-***羅吉斯迴歸與只有一項特徵的雙類別資料****：類別界限的點就是羅吉斯曲線接近這兩個類別的地方*
+***羅吉斯迴歸與只有一項特徵的雙類別資料*** *：類別界限的點就是羅吉斯曲線接近這兩個類別的地方*
 
 ### 樹、樹系和叢林
 
@@ -209,7 +209,7 @@
 
 ![以 PCA 為基礎的異常偵測][8]
 
-***以 PCA 為基礎的異常偵測****：大部分的資料均可分成舊式的散佈；而大幅偏離該散佈的點都是可疑之處*
+***以 PCA 為基礎的異常偵測*** *：大部分的資料均可分成舊式的散佈；而大幅偏離該散佈的點都是可疑之處*
 
 ![使用 K-means 分組的資料集][9]
 
@@ -237,4 +237,4 @@ Azure 機器學習中也可存取 [Vowpal Wabbit](https://msdn.microsoft.com/lib
 [9]: ./media/machine-learning-algorithm-choice/image9.png
 [10]: ./media/machine-learning-algorithm-choice/image10.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

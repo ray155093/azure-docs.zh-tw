@@ -1,5 +1,5 @@
 <properties
-   pageTitle="在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob | Microsoft Azure"
+   pageTitle="教學課程︰在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob | Microsoft Azure"
    description="本教學課程將告訴您如何使用 Microsoft Azure 儲存體的用戶端加密並搭配 Azure 金鑰保存庫來加密和解密 blob。"
    services="storage"
    documentationCenter=""
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="01/06/2016"
+   ms.date="03/31/2016"
    ms.author="lakasa"/>
 
-# 在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 blob
+# 教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob
 
 ## 簡介
 
@@ -235,4 +235,4 @@ RSA 金鑰的私密金鑰保留在保存庫金鑰中，為了進行解密，從�
 <!--Image references-->
 [1]: ./media/storage-encrypt-decrypt-blobs-key-vault/blobmetadata.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

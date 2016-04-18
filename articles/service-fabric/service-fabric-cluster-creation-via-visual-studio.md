@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/11/2016"
+   ms.date="04/04/2016"
    ms.author="karolz@microsoft.com"/>
 
 # 使用 Visual Studio 設定 Service Fabric 叢集
@@ -39,7 +39,6 @@
 
 |參數名稱 |說明|
 |-----------------------  |--------------------------|
-|clusterLocation |即將放置 Service Fabric 叢集的 **Azure 區域**名稱。例如 "East US"。|
 |certificateThumbprint |將保護叢集安全的憑證指紋。|
 |sourceVaultResourceId |用來保護叢集的憑證儲存所在之金鑰保存庫的資源識別碼。|
 |certificateUrlValue |叢集安全性憑證的 URL。|
@@ -47,7 +46,7 @@
 Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護的安全叢集。此憑證是以最後三個範本參數識別 (`certificateThumbprint`、`sourceVaultValue` 和 `certificateUrlValue`)，而且必須存在於 [Azure 金鑰保存庫]。如需如何建立叢集安全性憑證的詳細資訊，請參閱[如何使用憑證來保護 Service Fabric 叢集](service-fabric-cluster-security.md#secure-a-service-fabric-cluster-by-using-certificates)一文。
 
 ## 選擇性︰變更叢集名稱
-每個 Service Fabric 叢集都有一個名稱。在 Azure 中建立網狀架構叢集時，叢集名稱會 (與 Azure 區域一起) 決定叢集的網域名稱系統 (DNS) 名稱。例如，如果您將叢集命名為 `myBigCluster`，並將 `clusterLocation` 參數設定為 East US，則叢集的 DNS 名稱將會是 `myBigCluster.eastus.cloudapp.azure.com`。
+每個 Service Fabric 叢集都有一個名稱。在 Azure 中建立網狀架構叢集時，叢集名稱會 (與 Azure 區域一起) 決定叢集的網域名稱系統 (DNS) 名稱。例如，如果您將叢集命名為 `myBigCluster`，並將 `clusterLocation` 參數設定為美國東部 (East US)，則叢集的 DNS 名稱將會是 `myBigCluster.eastus.cloudapp.azure.com`。
 
 預設會自動產生叢集名稱，而且「叢集」前置詞後面會附加一個隨機的尾碼，使該名稱變成唯一的。如此便可以很容易使用範本做為**連續整合** (CI) 系統的一部分。如果您想要為您的叢集使用特定的名稱，對您有意義的一個名稱，請將資源管理員範本檔案 (`ServiceFabricCluster.json`) 中 `clusterName` 變數的值設定為您所選擇的名稱。該名稱是該檔案中定義的第一個變數。
 
@@ -127,4 +126,4 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 [2]: ./media/service-fabric-cluster-creation-via-visual-studio/selecting-azure-template.png
 [3]: ./media/service-fabric-cluster-creation-via-visual-studio/deploy-to-azure.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

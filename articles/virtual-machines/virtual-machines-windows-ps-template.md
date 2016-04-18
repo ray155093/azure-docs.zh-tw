@@ -24,7 +24,7 @@
 - [PowerShell](virtual-machines-windows-create-powershell.md)
 - [PowerShell - 範本](virtual-machines-windows-ps-template.md)
 - [入口網站 - Linux](virtual-machines-linux-portal-create.md)
-- [CLI](virtual-machines-linux-cli-create.md)
+- [CLI](virtual-machines-linux-quick-create-cli.md)
 
 <br>
 
@@ -289,4 +289,4 @@
 
 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

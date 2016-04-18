@@ -374,7 +374,7 @@ enableJumpbox | 來自條件約束清單的字串 (enabled/disabled) | 識別是
 
     "outputs": {
         "masterip": {
-            "value": "[reference(concat(variables('nicName'),0)).ipConfigurations[0].privateIPAddress]",
+            "value": "[reference(concat(variables('nicName'),0)).ipConfigurations[0].properties.privateIPAddress]",
             "type": "string"
          }
     }
@@ -389,4 +389,4 @@ enableJumpbox | 來自條件約束清單的字串 (enabled/disabled) | 識別是
 - [編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)
 - [Azure 資源管理員範本函數](resource-group-template-functions.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

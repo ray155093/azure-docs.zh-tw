@@ -25,6 +25,7 @@
 本文說明如何使用 Azure PowerShell 擷取執行 Windows 的 Azure 虛擬機器 (VM)，讓您能用其建立其他的虛擬機器。此映像包含作業系統磁碟與連結到虛擬機器的資料磁碟。但並不包含建立 Windows VM 所需的虛擬網路資源，因此您必須先設定這些資源，才可建立另一個使用該映像的虛擬機器。此映像也將準備用來當做[一般化的 Windows 映像](https://technet.microsoft.com/library/hh824938.aspx)。
 
 
+
 ## 先決條件
 
 這些步驟假設您已在資源管理員部署模型中建立 Azure 虛擬機器，且已設定好作業系統，包括連接任何資料磁碟，以及進行其他自訂作業 (例如安裝應用程式)。如果您還沒完成這些工作，請參閱[如何以資源管理員和 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md)。您也可以利用 [Azure 入口網站](https://portal.azure.com)來輕鬆地建立 Windows 虛擬機器。請參閱[如何在 Azure 入口網站中建立 Windows 虛擬機器](virtual-machines-windows-hero-tutorial.md)。
@@ -34,7 +35,9 @@
 
 本節說明如何將您的 Windows 虛擬機器一般化。但如此除了會移除某些資訊之外，也會移除您的所有個人帳戶資訊。通常是在您想利用此 VM 映像來迅速部署類似的虛擬機器時，才會這麼做。
 
-1. 請登入 Windows 虛擬機器。在 [Azure 入口網站](https://portal.azure.com)中，依序前往 [瀏覽] > [虛擬機器] > [<您的 Windows 虛擬機器>] > [連線]。
+> [AZURE.WARNING] 請注意，虛擬機器通用化後即無法透過 RDP 登入，因為程序會移除所有的使用者帳戶。這是無法回復的變更。
+
+1. 請登入 Windows 虛擬機器。在 [Azure 入口網站](https://portal.azure.com)中，依序前往 [瀏覽] > [虛擬機器] > [您的 Windows 虛擬機器] > [連線]。
 
 2. 以系統管理員身分開啟 [命令提示字元] 視窗。
 
@@ -75,13 +78,13 @@
 
 		Select-AzureRmSubscription -SubscriptionId "xxxx-xxxx-xxxx-xxxx"
 
-	您可以利用 `Get-AzureRmSubscription` 命令來尋找您 Azure 帳戶擁有的訂用帳戶。
+	您可以使用 `Get-AzureRmSubscription` 命令來尋找您 Azure 帳戶擁有的訂用帳戶。
 
 3. 現在，您必須使用此命令解除配置這個虛擬機器所使用的資源。
 
 		Stop-AzureRmVM -ResourceGroupName YourResourceGroup -Name YourWindowsVM
 
-	您會看到 Azure 入口網站上 VM 的「狀態」 已經從 [已停止] 變更為 [已停止 (已解除配置)]。
+	您會看到 Azure 入口網站上 VM 的 [狀態] 已經從 [已停止] 變更為 [已停止 (已解除配置)]。
 
 	>[AZURE.TIP] 您也可使用此方法知道 PowerShell 中您虛擬機器的狀態：</br> `$vm = Get-AzureRmVM -ResourceGroupName YourResourceGroup -Name YourWindowsVM -status`</br> `$vm.Statuses`</br>[DisplayStatus] 欄位就是相對於 Azure 入口網站中顯示的 [狀態]。
 
@@ -97,7 +100,7 @@
 
 	`-Path` 變數可以省略。您可以使用該變數將 JSON 範本儲存在本機。`-DestinationContainerName` 變數就是要用以保存映像的容器名稱。已儲存映像的 URL 類似於 `https://YourStorageAccountName.blob.core.windows.net/system/Microsoft.Compute/Images/YourImagesContainer/YourTemplatePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。它將建立在與原始虛擬機器的儲存體帳戶相同的儲存體帳戶中。
 
-	>[AZURE.NOTE] 如要尋找映像的位置，請開啟本機的 JSON 檔案範本。請依序前往 [資源] > [storageProfile] > [osDisk] > [映像] > [uri] 區段，取得您映像的完整路徑。因為儲存體帳戶中的 [system] 容器是隱藏的，所以您目前在入口網站中無法輕鬆地查看這些映像。因此，雖然 `-Path` 變數可以省略，但我們強烈建議您使用該變數將範本儲存在本機，如此才可輕鬆地找到該映像的 URL。或者，也可以使用稱為「Azure 儲存體總管」的工具，我們將在下一節的步驟中加以說明。
+	>[AZURE.NOTE] 如要尋找映像的位置，請開啟本機的 JSON 檔案範本。請依序前往 [資源] > [storageProfile] > [osDisk] > [映像] > [uri] 區段，取得您映像的完整路徑。因為儲存體帳戶中的 [system] 容器是隱藏的，所以您目前在入口網站中無法輕鬆地查看這些映像。因此，雖然 `-Path` 變數可以省略，但我們強烈建議您使用該變數將範本儲存在本機，如此才可輕鬆地找到該映像的 URL。或者，也可以使用稱為**Azure 儲存體總管**的工具，我們將在下一節的步驟中加以說明。
 
 
 ### 使用 Azure 資源總管 (預覽版)
@@ -118,7 +121,7 @@
 
 	![資源總管：讀取/寫入](./media/virtual-machines-windows-capture-image/ArmExplorerReadWrite.png)
 
-3. 接下來，請找到您的 Windows 虛擬機器。您可以在工具頂端的 [搜尋] 方塊中輸入名稱，或是從左側的功能表依序瀏覽 [訂用帳戶] > [<您的 Azure 訂用帳戶>] > [resourceGroups] > [<您的資源群組>] > [提供者] > [Microsoft.Compute] > [virtualMachines] > [<您的 Windows 虛擬機器>]。當您按一下左側導覽列上的虛擬機器時，該虛擬機器的範本會出現在工具的右側。
+3. 接下來，請找到您的 Windows 虛擬機器。您可以在工具頂端的 [搜尋] 方塊中輸入名稱，或是從左側的功能表依序瀏覽 [訂用帳戶] > [您的 Azure 訂用帳戶] > [resourceGroups] > [您的資源群組] > [提供者] > [Microsoft.Compute] > [virtualMachines] > [您的 Windows 虛擬機器]。當您按一下左側導覽列上的虛擬機器時，該虛擬機器的範本會出現在工具的右側。
 
 4. 在範本頁面的右上方，應該會看到這個虛擬機器可以使用的各種作業之索引標籤。按一下 [動作 (POST/DELETE)] 索引標籤。
 
@@ -209,4 +212,4 @@
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -34,7 +34,7 @@
 
 您也需要 Azure 儲存體帳戶和金鑰才能存取它 (您可以從 Azure 傳統入口網站取得此資訊)。
 
-如果您需要在 Azure 上建立 Linux VM 的說明，請參閱[建立執行 Linux 的虛擬機器](virtual-machines-linux-cli-create.md)。
+如果您需要在 Azure 上建立 Linux VM 的說明，請參閱[建立執行 Linux 的虛擬機器](virtual-machines-linux-classic-createportal.md)。
 
 安裝命令假設的是 Ubuntu，但是您可以對任何支援的 Linux distro 採用此安裝。
 
@@ -110,4 +110,4 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 [Azure 上的 Linux 和開放原始碼運算](virtual-machines-linux-opensource-links.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

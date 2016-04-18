@@ -5,7 +5,7 @@
    documentationCenter=".net"
    authors="seanmck"
    manager="timlt"
-   editor=""/>
+   editor="vturecek"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/08/2016"
+   ms.date="03/25/2016"
    ms.author="seanmck"/>
 
 # Reliable Actors 架構中的多型
 
-Reliable Actors 架構會簡化分散式系統的程式設計。其做法是，讓您使用許多您將在物件導向設計中使用的相同技巧來建置服務。這些技巧的其中之一就是多型，此技巧允許從更一般化的父系繼承類型和介面。Reliable Actors 架構中的繼承通常會遵循 .NET 模型，但有幾個額外的條件約束。
+Reliable Actors 架構可讓您使用許多您會在物件導向設計中使用的相同技巧來建置動作項目。這些技巧的其中之一就是多型，此技巧允許從更一般化的父系繼承類型和介面。Reliable Actors 架構中的繼承通常會遵循 .NET 模型，但有幾個額外的條件約束。
 
 ## 介面
 
@@ -29,44 +29,41 @@ Reliable Actors 架構會要求您至少定義一個要由動作項目類型實�
 
 ## 類型
 
-您也可以建立衍生自平台所提供之基底「動作項目」類別的動作項目類型階層。針對可設定狀態的動作項目，您同樣可以建立狀態類型階層。如果是圖形，您可能會有一個狀態類型為 `ShapeState` 的基底 `Shape` 類型。
+您也可以建立衍生自平台所提供之基底「動作項目」類別的動作項目類型階層。如果是圖形，您可能會有一個基底 `Shape` 類型。
 
-    public abstract class Shape : Actor<ShapeState>, IShape
+```csharp
+public abstract class Shape : Actor, IShape
+{
+    public abstract Task<int> GetVerticeCount();
+    
+    public abstract Task<double> GetAreaAsync();
+}
+```
+
+`Shape` 的子類型可以覆寫該基底類型的方法。
+
+```csharp
+[ActorService(Name = "Circle")]
+[StatePersistence(StatePersistence.Persisted)]
+public class Circle : Shape, ICircle
+{
+    public override Task<int> GetVerticeCount()
     {
-        ...
+        return Task.FromResult(0);
     }
 
-`Shape` 的子類型可以使用 `ShapeType` 的子類型來儲存更明確的屬性。
-
-    [ActorService(Name = "Circle")]
-    public class Circle : Shape, ICircle
+    public override async Task<double> GetAreaAsync()
     {
-        private CircleState CircleState => this.State as CircleState;
+        CircleState state = await this.StateManager.GetStateAsync<CircleState>("circle");
 
-        public override ShapeState InitializeState()
-        {
-            return new CircleState();
-        }
-
-        [Readonly]
-        public override Task<int> GetVerticeCount()
-        {
-            return Task.FromResult(0);
-        }
-
-       [Readonly]
-       public override Task<double> GetArea()
-       {
-           return Task.FromResult(
-               Math.PI*
-               this.CircleState.Radius*
-               this.CircleState.Radius);
-       }
-
-       ...
+        return Math.PI *
+            state.Radius *
+            state.Radius;
     }
+}
+```
 
-請注意動作項目類型上的 `ActorService` 屬性。此屬性會告知 Azure Service Fabric SDK 它應該自動建立一個服務來裝載此類型的動作項目。在某些情況下，您可能會想要建立僅供與子類型共用功能而永遠不用來將具體動作項目具現化的基底類型。在這些情況下，您應該使用 `abstract` 關鍵字來指出您永遠不會根據該類型建立動作項目。
+請注意動作項目類型上的 `ActorService` 屬性。此屬性會告知 Reliable Actor 架構應該自動建立一個服務來裝載此類型的動作項目。在某些情況下，您可能會想要建立僅供與子類型共用功能而永遠不用來將具體動作項目具現化的基底類型。在這些情況下，您應該使用 `abstract` 關鍵字來指出您永遠不會根據該類型建立動作項目。
 
 
 ## 後續步驟
@@ -78,4 +75,12 @@ Reliable Actors 架構會要求您至少定義一個要由動作項目類型實�
 
 [shapes-interface-hierarchy]: ./media/service-fabric-reliable-actors-polymorphism/Shapes-Interface-Hierarchy.png
 
-<!---HONumber=AcomDC_0309_2016-->
+## 後續步驟
+ - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
+ - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
+ - [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
+ - [動作項目事件](service-fabric-reliable-actors-events.md)
+ - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
+ - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+
+<!---HONumber=AcomDC_0406_2016-->

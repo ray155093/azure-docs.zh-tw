@@ -22,12 +22,12 @@
 # 在 Azure 設定應用程式的 SSL
 
 > [AZURE.SELECTOR]
-- [Azure portal](cloud-services-configure-ssl-certificate-portal.md)
-- [Azure classic portal](cloud-services-configure-ssl-certificate.md)
+- [Azure 入口網站](cloud-services-configure-ssl-certificate-portal.md)
+- [Azure 傳統入口網站](cloud-services-configure-ssl-certificate.md)
 
 安全通訊端層 (SSL) 加密是最常用來保護在網際網路上傳送之資料的方法。此常見工作會討論如何為 Web 角色指定 HTTPS 端點，以及如何上傳 SSL 憑證來保護應用程式的安全。
 
-> [AZURE.NOTE] 此工作的程序適用於 Azure 雲端服務；若為 應用程式服務，請參閱[此處](../app-service-web/web-sites-configure-ssl-certificate.md)。
+> [AZURE.NOTE] 此工作的程序適用於 Azure 雲端服務，若為應用程式服務，請參閱[此處](../app-service-web/web-sites-configure-ssl-certificate.md)。
 
 此工作將使用生產部署；本主題最後將提供關於如何使用預備部署的資訊。
 
@@ -43,7 +43,7 @@
 
 -   憑證必須包含私密金鑰。
 -   憑證必須是為了進行金鑰交換而建立，且可匯出成個人資訊交換檔 (.pfx)。
--   憑證的主體名稱必須符合用來存取雲端服務的網域。您無法向憑證授權單位 (CA) 取得 cloudapp.net 網域的 SSL 憑證。您必須取得要在存取您的服務時使用的自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用來存取應用程式的自訂網域名稱。例如，如果您的自訂網域名稱為 **contoso.com**，則您需向 CA 要求 ****.contoso.com** 或 **www.contoso.com** 的憑證。
+-   憑證的主體名稱必須符合用來存取雲端服務的網域。您無法向憑證授權單位 (CA) 取得 cloudapp.net 網域的 SSL 憑證。您必須取得要在存取您的服務時使用的自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用來存取應用程式的自訂網域名稱。例如，如果您的自訂網域名稱為 **contoso.com**，則您需向 CA 要求 **.contoso.com** 或 **www.contoso.com** 的憑證。
 -   憑證至少必須以 2048 位元加密。
 
 基於測試目的，您可以[建立](cloud-services-certs-create.md)並使用自我簽署憑證。自我簽署憑證不是由 CA 驗證，因此可以使用 cloudapp.net 網域做為網站 URL。例如，以下工作即使用自我簽署憑證，該憑證中使用的一般名稱 (CN) 為 **sslexample.cloudapp.net**。
@@ -55,7 +55,7 @@
 
 您的應用程式必須已設定為使用憑證，而且您必須新增 HTTPS 端點。因此，您需要更新服務定義檔與服務組態檔。
 
-1.  在開發環境中，開啟服務定義檔 (CSDEF)、在 **WebRole** 區段內新增 **Certificates** 區段，並加入下列憑證相關資訊：
+1.  在開發環境中，開啟服務定義檔 (CSDEF)、在 [WebRole] 區段內新增 [Certificates] 區段，並加入下列憑證 (及中繼憑證) 相關資訊：
 
         <WebRole name="CertificateTesting" vmsize="Small">
         ...
@@ -63,6 +63,17 @@
                 <Certificate name="SampleCertificate" 
 							 storeLocation="LocalMachine" 
                     		 storeName="CA"
+                             permissionLevel="limitedOrElevated" />
+                <!-- IMPORTANT! Unless your certificate is either
+                self-signed or signed directly by the CA root, you
+                must include all the intermediate certificates
+                here. You must list them here, even if they are
+                not bound to any endpoints. Failing to list any of
+                the intermediate certificates may cause hard-to-reproduce
+                interoperability problems on some clients.-->
+                <Certificate name="CAForSampleCertificate"
+                             storeLocation="LocalMachine"
+                             storeName="CA"
                              permissionLevel="limitedOrElevated" />
             </Certificates>
         ...
@@ -111,6 +122,9 @@
             <Certificates>
                 <Certificate name="SampleCertificate" 
                     thumbprint="9427befa18ec6865a9ebdc79d4c38de50e6316ff" 
+                    thumbprintAlgorithm="sha1" />
+                <Certificate name="CAForSampleCertificate"
+                    thumbprint="79d4c38de50e6316ff9427befa18ec6865a9ebdc" 
                     thumbprintAlgorithm="sha1" />
             </Certificates>
         ...
@@ -168,4 +182,4 @@
 * 設定[自訂網域名稱](cloud-services-custom-domain-name-portal.md)。
 * [管理您的雲端服務](cloud-services-how-to-manage-portal.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -3,7 +3,7 @@
 	description="了解如何在以執行 Windows Server 的傳統部署模型建立的 Azure VM 上安裝 MongoDB。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor="tysonn"
 	tags="azure-service-management"/>
@@ -51,4 +51,4 @@
 [MongoDB]: http://www.mongodb.org/
 [AzurePortal]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

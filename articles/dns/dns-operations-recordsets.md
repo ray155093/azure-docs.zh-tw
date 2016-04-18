@@ -19,9 +19,12 @@
 # 如何使用 PowerShell 管理 DNS 記錄
 
 
+
 > [AZURE.SELECTOR]
+- [Azure 入口網站](dns-operations-recordsets-portal.md)
 - [Azure CLI](dns-operations-recordsets-cli.md)
 - [PowerShell](dns-operations-recordsets.md)
+
 
 
 本指南示範如何使用 Azure PowerShell 管理 DNS 區域的記錄集和記錄。
@@ -294,4 +297,4 @@ Set-AzureRmDnsRecordSet Cmdlet 使用 ‘etag’ 檢查，以確保不會覆寫�
 [開始建立記錄集和記錄](dns-getstarted-create-recordset.md)<BR> [管理 DNS 區域](dns-operations-dnszones.md)<BR> [使用 .NET SDK 將作業自動化](dns-sdk.md)
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

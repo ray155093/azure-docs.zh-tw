@@ -76,7 +76,7 @@
 - 如需 Azure Machine Learning Studio 支援的資料格式和 類型的清單，請參閱[支援的資料格式和資料類型](machine-learning-data-science-import-data.md#data-formats-and-data-types-supported)一節。
 - 如需 Azure Machine Learning Studio 資料限制的相關資訊，請參閱[匯入和匯出機器學習服務的資料](machine-learning-faq.md#machine-learning-studio-questions)的**我的模組適用多大的資料集？**一節
 
-如需分析程序中使用的其他 Azure 服務有何限制的相關資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](azure-subscription-service-limits.md)。
+如需分析程序中使用的其他 Azure 服務有何限制的相關資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
 
 ## 資料品質問題：探索和前置處理
 
@@ -104,7 +104,7 @@
 
 
 ## 識別您的進階分析案例
-一旦回答上一區段中的問題之後，您便已準備好決定哪個案例最符合您的情況。[Azure 機器學習服務中的進階分析案例](../machine-learning-data-science-plan-sample-scenarios.md)中概述範例案例。
+一旦回答上一區段中的問題之後，您便已準備好決定哪個案例最符合您的情況。[Azure 機器學習服務中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)中概述範例案例。
 
 
 
@@ -114,4 +114,4 @@
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

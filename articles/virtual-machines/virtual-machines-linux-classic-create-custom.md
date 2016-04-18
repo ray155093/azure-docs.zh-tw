@@ -3,7 +3,7 @@
 	description="了解如何以執行 Linux 作業系統的傳統部署模型建立自訂虛擬機器。"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor="tysonn"
 	tags="azure-service-management"/>
@@ -35,4 +35,4 @@
 
 [AZURE.INCLUDE [virtual-machines-create-LinuxVM](../../includes/virtual-machines-create-linuxvm.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

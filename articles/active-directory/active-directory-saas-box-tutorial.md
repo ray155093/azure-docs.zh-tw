@@ -32,7 +32,7 @@
 
 1.  啟用 Box 的應用程式整合
 2.  設定單一登入
-3.  設定使用者佈建
+3.  設定使用者和群組佈建
 4.  指派使用者
 
 ![案例](./media/active-directory-saas-box-tutorial/IC769537.png "案例")
@@ -115,11 +115,15 @@
 
 4. 按一下 [授與 Box 存取權]，以授權進行此作業並返回 Azure 管理入口網站。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769549.png "啟用自動使用者佈建")
 
-5. 若要完成設定，請按一下 [完成] 按鈕。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
+
+5. 在 [佈建選項] 頁面上，[要佈建的物件類型] 核取方塊可讓您選取是否在使用者物件之外，也在 Box 佈建群組物件。如需詳細資訊，請參閱以下＜指派使用者和群組＞一節。
+
+
+6. 若要完成設定，請按一下 [完成] 按鈕。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
 
 
 
-##指派使用者
+##指派測試使用者
   
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
@@ -131,7 +135,6 @@
 
 3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 確認指派。<br><br> ![是](./media/active-directory-saas-box-tutorial/IC767830.png "是")
   
-
 請等候 10 分鐘並確認帳戶已同步至 Box。
 
 在第一個驗證步驟中，您可以在 Azure 管理入口網站的 Box 應用程式整合頁面上，按一下 [儀表板] 來檢查佈建狀態。
@@ -148,9 +151,28 @@
 <br><br> ![整合狀態](./media/active-directory-saas-box-tutorial/IC769556.png "整合狀態")
 
 
+##指派使用者和群組
+
+Azure 傳統入口網站的 [Box] > [使用者和群組] 索引標籤可讓您指定應該授與哪些使用者和群組 Box 的存取權。指派使用者或群組會導致下列事項發生︰
+
+* Azure AD 允許指派的使用者 (直接指派或群組成員資格) 驗證 Box。如果使用者未經指派，則 Azure AD 不會允許他們登入 Box，並會在 Azure AD 登入頁面傳回錯誤。
+
+* Box 的應用程式圖格會加入使用者的[應用程式啟動程式](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)中。
+
+* 如已啟用自動佈建，則指派的使用者及/或群組就會加入佈建佇列進行自動佈建。
+
+    * 如果只設定要佈建使用者物件，則所有直接指派的使用者都會放在佈建佇列中，而任何指派群組成員的所有使用者也會放在佈建佇列中。 
+    
+    * 如果設定要佈建的是群組物件，則所有指派的群組物件以及這些群組成員的所有使用者都會佈建到 Box。群組和使用者成員資格都會保留寫入 Box。
+    
+您可以使用 [屬性] > [單一登入] 索引標籤來設定，在 SAML 驗證期間，要向 Box 呈現哪些使用者屬性 (或宣告)；使用 [屬性] > [佈建] 索引標籤來設定，在佈建作業期間，使用者及群組屬性如何從 Azure AD 流向 Box。如需詳細資訊，請參閱底下的資源。
+
+
 ## 其他資源
 
+* [自訂 SAML 權杖發出的宣告](active-directory-saml-claims-customization.md)
+* [佈建︰自訂屬性對應](active-directory-saas-customizing-attribute-mappings.md)
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0406_2016-->

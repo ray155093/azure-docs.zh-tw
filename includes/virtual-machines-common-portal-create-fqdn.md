@@ -1,7 +1,7 @@
 
 
 
-使用**資源管理員**部署模型在 [Azure 入口網站](https://portal.azure.com)中建立虛擬機器時，入口網站會為虛擬機器建立公用 IP 資源。您可以使用此 IP 位址從遠端存取虛擬機器。雖然入口網站預設不會建立 [Fully qualified domain name (完整網域名稱)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) 或簡稱 FQDN，不過在虛擬機器建立之後即可輕易地建立一個。這篇文章示範建立 DNS 名稱或 FQDN 的步驟。
+使用**資源管理員**部署模型在 [Azure 入口網站](https://portal.azure.com)中建立虛擬機器時，會自動建立虛擬機器的公用 IP 資源。您可以使用此 IP 位址從遠端存取虛擬機器。雖然入口網站預設不會建立 [Fully qualified domain name (完整網域名稱)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) 或 FQDN，不過在虛擬機器建立之後即可輕易地建立一個。這篇文章示範建立 DNS 名稱或 FQDN 的步驟。
 
 本文假設您已登入入口網站中的訂用帳戶，並透過**資源管理員**使用可用的映像建立虛擬機器。一旦您的虛擬機器開始執行，請依照下列步驟。
 
@@ -24,6 +24,6 @@
     ![FQDN 已建立](./media/virtual-machines-common-portal-create-fqdn/fqdnCreated.PNG)
 
 
-    您可以立即使用這個 DNS 名稱從遠端連線到虛擬機器。例如，連接到具有完整網域名稱 `testdnslabel.centralus.cloudapp.azure.com` 和使用者名稱 `adminuser` 的 Linux 虛擬機器時使用 `SSH adminuser@testdnslabel.centralus.cloudapp.azure.com`。
+    您可以立即使用這個 DNS 名稱從遠端連線到虛擬機器。例如，連接到具有完整網域名稱 `testdnslabel.centralus.cloudapp.azure.com` 和使用者名稱 `adminuser` 的 Linux 虛擬機器時使用 `ssh adminuser@testdnslabel.centralus.cloudapp.azure.com`。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

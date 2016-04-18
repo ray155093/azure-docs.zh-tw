@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/05/2016" 
+	ms.date="02/05/2016"
 	ms.author="bradsev;hangzh;weig"/>
 
 
@@ -21,12 +21,12 @@
 
 在本教學課程中，我們將引導您使用 SQL 資料倉儲 (SQL DW)，針對可公開使用的資料集 ([NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/)資料集) 建置和部署機器學習服務模型。所建構的二元分類模型可預測是否已針對某趟車程支付小費，並且也會討論預測支付的小費金額分佈的多元分類模型和迴歸模型。
 
-此程序遵循 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 工作流程。我們會示範如何設定資料科學環境、如何將資料載入到 SQL DW，以及如何使用 SQL DW 或 IPython Notebook 來探索要模型化的資料和工程功能。然後，我們會示範如何使用 Azure Machine Learning 建置和部署模型。
+此程序遵循 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 工作流程。我們會示範如何設定資料科學環境、如何將資料載入 SQL DW，以及如何使用 SQL DW 或 IPython Notebook 來探索要模型化的資料和工程功能。然後，我們會示範如何使用 Azure Machine Learning 建置和部署模型。
 
 
 ## <a name="dataset"></a>NYC 計程車車程資料集
 
-「NYC 計程車車程」資料是由約 20GB 的 CSV 壓縮檔 (未壓縮時可達 48GB) 所組成，裡面記錄了超過 1 億 7300 萬筆個別車程及針對每趟車程所支付的費用。每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及圓形徽章 (計程車的唯一識別碼) 號碼。資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
+「NYC 計程車車程」資料是由約 20GB 的 CSV 壓縮檔 (未壓縮時可達 48GB) 所組成，裡面記錄了超過 1 億 7300 萬筆個別車程及針對每趟車程所支付的費用。每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及計程車牌照 (計程車的唯一識別碼) 號碼。資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
 
 1. **trip\_data.csv** 檔案包含車程的詳細資訊，例如，乘客數、上車和下車地點、車程持續時間，以及車程長度。以下是一些範例記錄：
 
@@ -48,11 +48,11 @@
 
 聯結 trip\_data 和 trip\_fare 的「唯一索引鍵」是由下列三個欄位所組成：
 
-- medallion、 
-- hack\_license 和 
+- medallion、
+- hack\_license 和
 - pickup\_datetime。
 
-## <a name="mltasks"></a>處理三種類型的預測工作 
+## <a name="mltasks"></a>處理三種類型的預測工作
 
 我們根據 *tip\_amount* 將三個預測問題公式化來說明三種類型的模型化工作：
 
@@ -75,23 +75,23 @@
 
 **建立自己的 Azure Blob 儲存體帳戶**
 
-- 當您在佈建自己的 Azure Blob 儲存體時，請為 Azure Blob 儲存體選擇位於或最接近「美國中南部」的地理位置 (即儲存 NYC 計程車資料的位置)。該資料會使用 AzCopy 從公用 Blob 儲存體容器複製到您自己的儲存體帳戶中的容器。您的 Azure Blob 儲存體越接近美國中南部，就能越快完成這項工作 (步驟 4)。 
-- 若要建立自己的 Azure 儲存體帳戶，請遵循[關於 Azure 儲存體帳戶](storage-create-storage-account.md)中概述的步驟。請務必記下下列儲存體帳戶認證的值，因為我們會在本逐步解說稍後的地方用到它們。 
+- 當您在佈建自己的 Azure Blob 儲存體時，請為 Azure Blob 儲存體選擇位於或最接近「美國中南部」的地理位置 (即儲存 NYC 計程車資料的位置)。該資料會使用 AzCopy 從公用 Blob 儲存體容器複製到您自己的儲存體帳戶中的容器。您的 Azure Blob 儲存體越接近美國中南部，就能越快完成這項工作 (步驟 4)。
+- 若要建立自己的 Azure 儲存體帳戶，請遵循[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中概述的步驟。請務必記下下列儲存體帳戶認證的值，因為我們會在本逐步解說稍後的地方用到它們。
 
   - **儲存體帳戶名稱**
   - **儲存體帳戶金鑰**
   - **容器名稱** (您想要在 Azure Blob 儲存體中用來儲存資料的容器)
 
-**佈建 Azure SQL DW 執行個體。** 遵循[建立 SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)中的說明來佈建 SQL 資料倉儲執行個體。請務必記下下列 SQL 資料倉儲認證以用於稍後的步驟。
- 
+**佈建 Azure SQL DW 執行個體。** 遵循[建立 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)中的說明來佈建 SQL 資料倉儲執行個體。請務必記下下列 SQL 資料倉儲認證以用於稍後的步驟。
+
   - **伺服器名稱**：<server Name>.database.windows.net
-  - **SQLDW (資料庫) 名稱** 
+  - **SQLDW (資料庫) 名稱**
   - **使用者名稱**
   - **密碼**
 
-**安裝 Visual Studio 2015 和 SQL Server Data Tools。** 如需指示，請參閱[安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT (SQL Server Data Tools)](sql-data-warehouse-install-visual-studio.md)。
+**安裝 Visual Studio 2015 和 SQL Server Data Tools。** 如需指示，請參閱[安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT (SQL Server Data Tools)](../sql-data-warehouse/sql-data-warehouse-install-visual-studio.md)。
 
-**使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](sql-data-warehouse-get-started-connect.md)中的步驟 1 和 2。
+**使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-connect.md)中的步驟 1 和 2。
 
 >[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢) 以「建立主要金鑰」。
 
@@ -114,7 +114,7 @@
 	$source = "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/SQLDW/Download_Scripts_SQLDW_Walkthrough.ps1"
 	$ps1_dest = "$pwd\Download_Scripts_SQLDW_Walkthrough.ps1"
 	$wc = New-Object System.Net.WebClient
-	$wc.DownloadFile($source, $ps1_dest) 
+	$wc.DownloadFile($source, $ps1_dest)
 	.\Download_Scripts_SQLDW_Walkthrough.ps1 –DestDir 'C:\tempSQLDW'
 
 成功執行之後，目前的工作目錄會變更為 *-DestDir*。您應該會看到如下畫面：
@@ -149,13 +149,13 @@
 				if ($env_path -notlike '*' +$AzCopy_path_i+'*'){
 					Write-Host $AzCopy_path_i 'not in system path, add it...'
 					[Environment]::SetEnvironmentVariable("Path", "$AzCopy_path_i;$env_path", "Machine")
-					$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") 
+					$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
 					$env_path = $env:Path
-				}	
+				}
 
 - 使用 AzCopy 從公用 Blob 將資料複製到私人 Blob 儲存體帳戶
 
-		Write-Host "AzCopy is copying data from public blob to yo storage account. It may take a while..." -ForegroundColor "Yellow"	
+		Write-Host "AzCopy is copying data from public blob to yo storage account. It may take a while..." -ForegroundColor "Yellow"
 		$start_time = Get-Date
 		AzCopy.exe /Source:$Source /Dest:$DestURL /DestKey:$StorageAccountKey /S
 		$end_time = Get-Date
@@ -166,20 +166,20 @@
 
 
 - 從您的私人 Blob 儲存體帳戶搭配下列命令使用 Polybase 載入資料 (藉由執行 LoadDataToSQLDW.sql) 到您的 Azure SQL DW。
-	
+
 	- 建立結構描述
 
 			EXEC (''CREATE SCHEMA {schemaname};'');
 
 	- 建立資料庫範圍認證
-			
-			CREATE DATABASE SCOPED CREDENTIAL {KeyAlias} 
-			WITH IDENTITY = ''asbkey'' , 
+
+			CREATE DATABASE SCOPED CREDENTIAL {KeyAlias}
+			WITH IDENTITY = ''asbkey'' ,
 			Secret = ''{StorageAccountKey}''
 
 	- 建立 Azure 儲存體 Blob 的外部資料來源。
 
-			CREATE EXTERNAL DATA SOURCE {nyctaxi_trip_storage} 
+			CREATE EXTERNAL DATA SOURCE {nyctaxi_trip_storage}
 			WITH
 			(
     			TYPE = HADOOP,
@@ -188,7 +188,7 @@
 			)
 			;
 
-			CREATE EXTERNAL DATA SOURCE {nyctaxi_fare_storage} 
+			CREATE EXTERNAL DATA SOURCE {nyctaxi_fare_storage}
 			WITH
 			(
     			TYPE = HADOOP,
@@ -199,10 +199,10 @@
 
 	- 建立 CSV 檔案的外部檔案格式。資料是未經壓縮的，而欄位會以縱線字元分隔。
 
-			CREATE EXTERNAL FILE FORMAT {csv_file_format} 
-			WITH 
+			CREATE EXTERNAL FILE FORMAT {csv_file_format}
+			WITH
 			(   
-    			FORMAT_TYPE = DELIMITEDTEXT, 
+    			FORMAT_TYPE = DELIMITEDTEXT,
     			FORMAT_OPTIONS  
     			(
         			FIELD_TERMINATOR ='','',
@@ -210,7 +210,7 @@
     			)
 			)
 			;
-		
+
 	- 為 Azure Blob 儲存體的 NYC 計程車資料集建立外部 fare 和 trip 資料表。
 
 			CREATE EXTERNAL TABLE {external_nyctaxi_fare}
@@ -244,7 +244,7 @@
        			rate_code char(3),
        			store_and_fwd_flag char(3),
        			pickup_datetime datetime  not null,
-       			dropoff_datetime datetime, 
+       			dropoff_datetime datetime,
        			passenger_count int,
        			trip_time_in_secs bigint,
        			trip_distance float,
@@ -264,40 +264,40 @@
 	- 從 Azure Blob 儲存體將外部資料表中的資料載入 SQL 資料倉儲
 
 			CREATE TABLE {schemaname}.{nyctaxi_fare}
-			WITH 
+			WITH
 			(   
     			CLUSTERED COLUMNSTORE INDEX,
 				DISTRIBUTION = HASH(medallion)
 			)
-			AS 
-			SELECT * 
+			AS
+			SELECT *
 			FROM   {external_nyctaxi_fare}
 			;
 
 			CREATE TABLE {schemaname}.{nyctaxi_trip}
-			WITH 
+			WITH
 			(   
     			CLUSTERED COLUMNSTORE INDEX,
 				DISTRIBUTION = HASH(medallion)
 			)
-			AS 
-			SELECT * 
+			AS
+			SELECT *
 			FROM   {external_nyctaxi_trip}
 			;
 
 	- 建立範例資料的資料表 (NYCTaxi\_Sample)，並透過選取 trip 和 fare 資料表上的 SQL 查詢對範例資料表插入資料。(本逐步解說的某些步驟需要使用此範例資料表。)
 
 			CREATE TABLE {schemaname}.{nyctaxi_sample}
-			WITH 
+			WITH
 			(   
     			CLUSTERED COLUMNSTORE INDEX,
 				DISTRIBUTION = HASH(medallion)
 			)
-			AS 
+			AS
 			(
 	    		SELECT t.*, f.payment_type, f.fare_amount, f.surcharge, f.mta_tax, f.tolls_amount, f.total_amount, f.tip_amount,
 				tipped = CASE WHEN (tip_amount > 0) THEN 1 ELSE 0 END,
-				tip_class = CASE 
+				tip_class = CASE
 						WHEN (tip_amount = 0) THEN 0
                         WHEN (tip_amount > 0 AND tip_amount <= 5) THEN 1
                         WHEN (tip_amount > 5 AND tip_amount <= 10) THEN 2
@@ -321,7 +321,7 @@
 ![圖 #21][21]
 
 >[AZURE.TIP] **使用您自己的資料：**如果資料位於內部部署電腦的現實應用程式中，您仍可以使用 AzCopy 將內部部署資料上傳至私人 Azure Blob 儲存體。您只需要在 AzCopy 命令中，將 PowerShell 指令碼檔案中的 **Source** 位置 (`$Source = "http://getgoing.blob.core.windows.net/public/nyctaxidataset"`) 變更為包含您的資料的本機目錄。
-	
+
 >[AZURE.TIP] 如果資料已位於私人 Azure Blob 儲存體的現實應用程式中，您可以略過 PowerShell 指令碼中的 AzCopy 步驟，並直接將資料上傳到 Azure SQL DW。這將需要另外編輯指令碼，使它符合您的資料格式。
 
 
@@ -361,7 +361,7 @@
 
 ### 探索：依據 medallion 的車程分佈
 
-此範例查詢可找出在指定期間內完成超過 100 趟車程的圓形徽章 (計程車號碼)。資料分割資料表存取的條件是以 **pickup\_datetime** 資料分割配置為依據，因為可為查詢帶來好處。查詢完整資料集也會使用資料分割資料表及 (或) 索引掃描。
+此範例查詢可找出在指定期間內完成超過 100 趟車程的計程車牌照 (計程車號碼)。資料分割資料表存取的條件是以 **pickup\_datetime** 資料分割配置為依據，因為可為查詢帶來好處。查詢完整資料集也會使用資料分割資料表及 (或) 索引掃描。
 
 	SELECT medallion, COUNT(*)
 	FROM <schemaname>.<nyctaxi_fare>
@@ -453,7 +453,7 @@
 
 	-- User-defined function to calculate the direct distance  in mile between two geographical coordinates.
 	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
-	
+
 	RETURNS float
 	AS
 	BEGIN
@@ -474,7 +474,7 @@
 	END
 	GO
 
-	SELECT pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude, 
+	SELECT pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude,
 	dbo.fnCalculateDistance(pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude) AS DirectDistance
 	FROM <schemaname>.<nyctaxi_trip>
 	WHERE datepart("mi",pickup_datetime)=1
@@ -500,7 +500,7 @@
 
 	-- User-defined function calculate the direct distance between two geographical coordinates.
 	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
-	
+
 	RETURNS float
 	AS
 	BEGIN
@@ -519,12 +519,12 @@
   		END
   		RETURN @distance
 	END
-	GO 
+	GO
 
 以下是呼叫此函式以在 SQL 查詢中產生功能的範例：
 
 	-- Sample query to call the function to create features
-	SELECT pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude, 
+	SELECT pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude,
 	dbo.fnCalculateDistance(pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude) AS DirectDistance
 	FROM <schemaname>.<nyctaxi_trip>
 	WHERE datepart("mi",pickup_datetime)=1
@@ -534,7 +534,7 @@
 
 **輸出：**此查詢會產生包含上下車的經緯度及所對應之直接距離 (英里)的資料表 (包含 2,803,538 個資料列) 。前 3 個資料列的結果如下：
 
-|pickup\_latitude | pickup\_longitude | dropoff\_latitude |dropoff\_longitude | DirectDistance |
+||pickup\_latitude | pickup\_longitude | dropoff\_latitude |dropoff\_longitude | DirectDistance |
 |---| --------- | -------|-------| --------- | -------|
 |1 | 40\.731804 | -74.001083 | 40\.736622 | -73.988953 | .7169601222 |
 |2 | 40\.715794 | -74,010635 | 40\.725338 | -74.00399 | .7448343721 |
@@ -564,7 +564,7 @@
 當您準備好繼續進行 Azure Machine Learning，您可以：
 
 1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢，直接貼至 Azure Machine Learning 中的「[讀取器][reader]」模組，或者
-2. 保存您計畫用來在新的 SQL DW 資料表中建置模型的取樣和工程設計資料，並在 Azure Machine Learning 的[讀取器][reader]模組中使用新的資料表。先前步驟中的 PowerShell 指令碼已為您完成此作業。您可以直接在讀取器模組中讀取此資料表。 
+2. 保存您計畫用來在新的 SQL DW 資料表中建置模型的取樣和工程設計資料，並在 Azure Machine Learning 的[讀取器][reader]模組中使用新的資料表。先前步驟中的 PowerShell 指令碼已為您完成此作業。您可以直接在讀取器模組中讀取此資料表。
 
 
 ## <a name="ipnb"></a>IPython Notebook 中的資料探索和特徵工程設計
@@ -575,7 +575,7 @@
 
 如果您已經設定 AzureML 工作區，則可以直接將範例 IPython Notebook 上傳至 AzureML IPython Notebook 服務，並開始執行。以下是上傳至 AzureML IPython Notebook 服務的步驟：
 
-1. 登入 AzureML 工作區，按一下頂端的 [Studio]，然後按一下網頁左側的 [NOTEBOOKS]。 
+1. 登入 AzureML 工作區，按一下頂端的 [Studio]，然後按一下網頁左側的 [NOTEBOOKS]。
 
 	![圖 #22][22]
 
@@ -808,7 +808,7 @@
 
 	pd.read_sql(query,conn)
 
-#### 探索：依據 medallion 和 hack\_license 的車程分佈
+#### 探索：依據計程車牌照和計程車駕照的車程分佈
 
 	query = '''select medallion, hack_license,count(*) from <schemaname>.<nyctaxi_sample> group by medallion, hack_license'''
 	pd.read_sql(query,conn)
@@ -964,4 +964,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

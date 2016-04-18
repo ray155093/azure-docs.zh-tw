@@ -13,29 +13,25 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/14/2016" 
+	ms.date="04/04/2016" 
 	ms.author="ccompy"/>
 
 # 在 App Service 環境中調整應用程式 #
 
-基本上，App Service 環境是 Azure App Service 在 VNET 中的個人部署，僅可由您的訂用帳戶管理。這類環境會提供新的網路功能，因為它們位於您的 VNET 中，而且還可以調整超過 Azure App Service 環境中通常可用的數量。如果您需要更多有關何謂 App Service 環境 (ASE) 的資訊，請查看[什麼是 App Service 環境][WhatisASE]。如需有關建立 App Service 環境或在 App Service 環境中建立 Web 應用程式的詳細資訊，請參閱[如何建立 App Service 環境][HowtoCreateASE]和[如何在 App Service 環境中建立 Web 應用程式][CreateWebappinASE]
-
-提醒您，若要在 Azure App Service 中正常變更 Web、行動或 API 應用程式的調整屬性時，需在 App Service 方案 (ASP) 層級進行變更。如需調整 App Service 方案的詳細資訊，或只需 App Service 環境外部 App Service 方案的詳細資訊，請參閱[在 Azure App Service 中調整 Web 應用程式][ScaleWebapp]和 [App Service 方案深度概觀][Appserviceplans]。
-
-在 App Service 環境中調整應用程式與一般調整應用程式的方式非常類似。在 Azure App Service 中，您通常有三件事可以調整：
+在 Azure App Service 中，您通常有三件事可以調整：
 
 - 定價方案
-- 背景工作大小 (適用於專用的執行個體)
+- 背景工作角色大小 
 - 執行個體數目。
 
-在 ASE 中不需要選取或變更定價方案。就功能而言，它已經是 Premium 定價功能層級。在 App Service 環境中也沒有任何共用的背景工作。全部都是專用的背景工作。
+在 ASE 中不需要選取或變更定價方案。就功能而言，它已經是 Premium 定價功能層級。
 
 關於背景工作角色大小，ASE 系統管理員可以指派要用於每個背景工作角色集區的計算資源大小。這表示您可以有具 P4 計算資源的背景工作集區 1，以及具 P1 計算資源的背景工作集區 2 (如有需要的話)。它們並沒有大小順序。如需大小及其定價的詳細資訊，請參閱 [Azure App Service 定價][AppServicePricing]文件。以下是 App Service 環境中的 Web 應用程式和 App Service 方案的調整選項：
 
 - 背景工作集區選取
 - 執行個體數目
 
-如需變更任一項目，都可以透過針對 ASE 託管之 App Service 方案所顯示的適用 UI 完成。您無法將您的 ASP 相應增加超過 ASP 所在背景工作角色集區中可用的計算資源數量。如果您需要更多數量，則必須讓您的 ASE 系統管理員新增更多運算資源到您指定的背景工作集區。如需重新設定 ASE 的相關資訊，請閱讀以下資訊：[如何設定 App Service 環境][HowtoConfigureASE]。您也可能需利用 ASE 自動調整功能，以根據排程或計量增加容量。若要取得設定 ASE 環境本身自動調整的相關詳細資訊，請參閱[如何設定 App Service 環境的自動調整][ASEAutoscale]。
+如需變更任一項目，都可以透過針對 ASE 託管之 App Service 方案所顯示的適用 UI 完成。ASP 相應增加的數量無法超過 ASP 所在背景工作集區中可用的計算資源數量。如果背景工作集區中需要計算資源，您必須讓 ASE 系統管理員增加資源。如需重新設定 ASE 的資訊，請閱讀以下資訊：[如何設定 App Service 環境][HowtoConfigureASE]。您也可能需利用 ASE 自動調整功能，以根據排程或計量增加容量。若要取得設定 ASE 環境本身自動調整的相關詳細資訊，請參閱[如何設定 App Service 環境的自動調整][ASEAutoscale]。
 
 ![][1]
 
@@ -83,4 +79,4 @@
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 [AppScale]: http://azure.microsoft.com/documentation/articles/web-sites-scale/
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="01/07/2016" 
+    ms.date="04/05/2016" 
     ms.author="elizapo" />
 
 
@@ -24,7 +24,7 @@
 
 您可以在混合式或雲端集合中使用 Azure RemoteApp 來共用 QuickBooks 2015 Enterprise。公司檔案必須位於執行 QuickBooks 資料庫伺服器並且與 Azure RemoteApp 伺服器不同的 VM。永遠不要將公司檔案儲存在您的 Azure RemoteApp 映像檔中 - 這麼做可能導致資料遺失。只有 QuickBooks Enterprise 支援在外部共用上裝載 QuickBooks 檔案，該共用上具有可透過標準 Windows 網路存取的 QuickBooks 資料庫伺服器。
 
-> [AZURE.IMPORTANT]裝載公司檔案的 QuickBooks 資料庫伺服器必須位於與 Azure RemoteApp 集合相同的 VNET 內的不同 VM 上。
+> [AZURE.IMPORTANT] 裝載公司檔案的 QuickBooks 資料庫伺服器必須位於與 Azure RemoteApp 集合相同的 VNET 內的不同 VM 上。
 
 ## 部署 QuickBooks 的步驟
 
@@ -44,4 +44,4 @@
 
 ![QuickBooks + Azure RemoteApp 部署](./media/remoteapp-quickbooks/ra-quickbooks.png)
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0406_2016-->

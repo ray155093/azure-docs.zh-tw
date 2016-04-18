@@ -19,12 +19,6 @@
 
 # 使用 Azure PowerShell 建立和預先設定 Linux 虛擬機器
 
-> [AZURE.SELECTOR]
-- [Azure CLI](virtual-machines-linux-cli-create.md)
-- [PowerShell](virtual-machines-linux-classic-createpowershell.md)
-
-
-<br>
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
  
@@ -36,7 +30,7 @@
 
 ## 安裝 Azure PowerShell
 
-如果您尚未這樣做，請參閱[安裝並設定 Azure PowerShell](powershell-install-configure.md)。然後，開啟 Azure PowerShell 命令提示字元。
+如果您尚未這樣做，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。然後，開啟 Azure PowerShell 命令提示字元。
 
 ## 設定您的訂閱和儲存體帳戶
 
@@ -275,10 +269,10 @@
 
 [Azure 虛擬機器的概觀](http://msdn.microsoft.com/library/azure/jj156143.aspx)
 
-[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)
+[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
 
 [如何登入執行 Linux 的虛擬機器](virtual-machines-linux-classic-log-on.md)
 
 [使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](virtual-machines-windows-classic-create-powershell.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

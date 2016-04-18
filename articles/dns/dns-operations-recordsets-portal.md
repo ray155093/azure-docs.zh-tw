@@ -1,0 +1,138 @@
+<properties 
+   pageTitle="使用 Azure 入口網站管理 DNS 記錄集和記錄 | Microsoft Azure" 
+   description="在將網域裝載於 Azure DNS 時管理 DNS 記錄集和記錄。" 
+   services="dns" 
+   documentationCenter="na" 
+   authors="cherylmc" 
+   manager="carmon" 
+   editor=""
+   tags="azure-resource-manager"/>
+
+<tags
+   ms.service="dns"
+   ms.devlang="en"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="infrastructure-services" 
+   ms.date="03/29/2016"
+   ms.author="cherylmc"/>
+
+# 如何使用 Azure 入口網站建立和管理 DNS 記錄和記錄集
+
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](dns-operations-recordsets-portal.md)
+- [Azure CLI](dns-operations-recordsets-cli.md)
+- [PowerShell](dns-operations-recordsets.md)
+
+
+本指南示範如何使用 Azure 入口網站建立和管理 DNS 區域的記錄集和記錄。
+
+請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。記錄集是指一個區域中有相同名稱和相同類型的記錄集合。如需詳細資訊，請參閱[了解記錄集和記錄](../dns-getstarted-create-recordset#Understanding-record-sets-and-records)。
+
+## 建立新的記錄集和記錄
+
+若要在 Azure 入口網站中建立記錄集，請參閱[使用 Azure 入口網站建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)。
+
+
+## 檢視記錄集
+
+1. 在 Azure 入口網站中，瀏覽至您的 DNS 區域刀鋒視窗。
+
+2. 您可以搜尋記錄集，並從列出的項目中加以選取。按一下記錄集來加以選取。這會開啟記錄集屬性。
+
+	![搜尋記錄集](./media/dns-operations-recordsets-portal/searchset500.png)
+
+
+## 將新記錄加入至現有的記錄集
+
+任何記錄集最多只能加入 20 筆記錄。記錄集不能包含兩筆相同的記錄。您可以建立空的記錄集 (沒有記錄)，但不會出現在 Azure DNS 名稱伺服器上。類型為 CNAME 的記錄集最多只能包含一筆記錄。
+
+
+1. 從您的 DNS 區域的 [記錄集屬性] 刀鋒視窗中，按一下要用來新增記錄的記錄集。
+
+	![選取集](./media/dns-operations-recordsets-portal/selectset500.png)
+
+2. 在欄位中填入資料以指定記錄的設定。
+
+	![新增記錄](./media/dns-operations-recordsets-portal/addrecord500.png)
+
+2. 按一下刀鋒視窗頂端的 [儲存] 來儲存設定，然後再關閉刀鋒視窗。
+
+3. 您會在角落中看到正在儲存記錄。
+
+	![儲存記錄](./media/dns-operations-recordsets-portal/saving150.png)
+
+4. 記錄儲存好之後，[DNS] 刀鋒視窗上之記錄集的值就會反映新的記錄。
+
+
+## 更新記錄
+
+在更新現有記錄集中的記錄時，可以更新的可用欄位取決於您正在使用之記錄的類型。
+
+1. 從記錄集的 [記錄集屬性] 刀鋒視窗中搜尋記錄。
+
+2. 修改記錄。當您修改記錄時，您可以變更記錄的可用設定。在下列範例中，我們已在 [IP 位址] 欄位按一下，而該 IP 位址正在進行修改。
+
+	![修改記錄](./media/dns-operations-recordsets-portal/modifyrecord500.png)
+
+3. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。您會在右上角看到記錄已儲存好的通知。
+
+	
+	![儲存記錄](./media/dns-operations-recordsets-portal/saved150.png)
+
+
+
+3. 記錄儲存好之後，[DNS] 刀鋒視窗上之記錄集的值就會反映更新的記錄。
+
+
+
+## 從記錄集移除記錄
+
+您可以使用 Azure 入口網站來從記錄集移除記錄。請注意，移除記錄集的最後一筆記錄不會刪除記錄集。
+
+1. 從記錄集的 [記錄集屬性] 刀鋒視窗中搜尋記錄。
+
+2. 按一下您想要移除的記錄。然後按一下 [移除]。
+
+	![移除記錄](./media/dns-operations-recordsets-portal/removerecord500.png)
+
+3. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。
+
+3. 記錄移除之後，[DNS] 刀鋒視窗上之記錄集的值就會反映記錄已遭移除。
+
+
+## <a name="delete"></a>刪除記錄集
+
+1. 從記錄集的 [記錄集屬性] 刀鋒視窗中，按一下 [刪除]。 
+
+	![刪除記錄集](./media/dns-operations-recordsets-portal/deleterecordset500.png)
+
+2. 隨即會出現訊息詢問您是否要刪除 'name\_ of \_ record \_set' 記錄集。
+
+3. 確認該名稱符合您想要刪除的記錄集，然後按一下 [是]。
+
+4. 從 DNS 區域刀鋒視窗中，您可以確認已不再看到該記錄集。
+
+
+## 使用 NS 和 SOA 記錄
+
+自動建立之 NS 和 SOA 記錄的管理方式不同於其他記錄類型。
+
+### 修改 SOA 記錄
+
+您無法從區域頂點 (名稱 = '@') 中自動建立的 SOA 記錄集加入或移除記錄，但是您可以修改 SOA 記錄 ('Host' 除外) 和記錄集 TTL 內的任何參數。
+
+### 在區域頂點修改 NS 記錄
+
+您無法在區域頂點 (名稱 = '@') 自動建立的 NS 記錄集加入、移除或修改記錄。修改記錄集 TTL 是唯一允許的變更。
+
+### 刪除 SOA 或 NS 記錄集
+
+您無法在建立區域時所自動建立的區域頂點 (名稱 = ‘@’) 刪除 SOA 和 NS 記錄集。刪除區域時會自動刪除它們。
+
+## 後續步驟
+
+如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。如需自動化 DNS 的相關資訊，請參閱[使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
+
+<!---HONumber=AcomDC_0406_2016-->

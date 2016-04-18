@@ -13,27 +13,46 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="11/13/2015"
+   ms.date="03/25/2015"
    ms.author="vturecek"/>
 
 # Service Fabric Reliable Actors 類型序列化的注意事項
 
-當您定義動作項目的介面和狀態時，您應牢記一些重要的部分。類型必須可資料合約序列化。如需資料合約的詳細資訊，請參閱 [MSDN](https://msdn.microsoft.com/library/ms731923.aspx)。
 
-## 動作項目介面類型
+所有方法的引數、動作項目介面中每個方法所傳回之工作的結果類型，以及動作項目的狀態管理員中儲存的物件都必須[可資料合約序列化](https://msdn.microsoft.com/library/ms731923.aspx)。這也適用於在[動作項目事件介面](service-fabric-reliable-actors-events.md#actor-events)中定義的方法引數。(動作項目事件介面方法一律會傳回無效)。
 
-所有方法的引數，以及[動作項目介面](service-fabric-reliable-actors-introduction.md#actors)中定義的每個方法所傳回之工作的結果類型，必須可資料合約序列化。這也適用於在[動作項目事件介面](service-fabric-reliable-actors-events.md#actor-events)中定義的方法引數。(動作項目事件介面方法一律會傳回無效)。 例如，如果 `IVoiceMail` 介面將方法定義為：
+## 自訂資料類型
+
+在此範例中，下列動作項目介面會定義一個方法，以傳回名為 `VoicemailBox` 的自訂資料類型。
 
 ```csharp
+public interface IVoiceMailBoxActor : IActor
+{
+    Task<VoicemailBox> GetMailBoxAsync();
+}
+```
 
-Task<List<Voicemail>> GetMessagesAsync();
+此介面是由動作項目實作，其使用狀態管理員來儲存 `VoicemailBox` 物件︰
+
+```csharp
+[StatePersistence(StatePersistence.Persisted)]
+public class VoiceMailBoxActor : Actor, IVoicemailBoxActor
+{
+    public Task<VoicemailBox> GetMailboxAsync()
+    {
+        return this.StateManager.GetStateAsync<VoicemailBox>("Mailbox");
+    }
+}
 
 ```
 
-`List<T>` 是已資料合約序列化的標準 .NET 類型。`Voicemail` 類型也必須可資料合約序列化。
+在此範例中，`VoicemailBox` 物件會在下列情況進行序列化︰
+ - 在動作項目執行個體與呼叫端之間傳輸物件。
+ - 物件已儲存在狀態管理員，以保存到磁碟並複寫到其他節點。
+ 
+Reliable Actor 架構會使用 DataContract 序列化。因此，自訂資料物件與其成員必須使用 **DataContract** 和 **DataMember** 屬性分別註解。
 
 ```csharp
-
 [DataContract]
 public class Voicemail
 {
@@ -46,25 +65,9 @@ public class Voicemail
     [DataMember]
     public DateTime ReceivedAt { get; set; }
 }
-
 ```
 
-## 動作項目狀態類別
-
-動作項目的狀態必須可資料合約序列化。例如，動作項目類別定義可以如下所示：
-
 ```csharp
-
-public class VoiceMailActor : StatefulActor<VoicemailBox>, IVoiceMail
-{
-...
-
-```
-
-定義狀態類別，並分別以 **DataContract** 和 **DataMember** 屬性註解類別及其成員。
-
-```csharp
-
 [DataContract]
 public class VoicemailBox
 {
@@ -79,7 +82,14 @@ public class VoicemailBox
     [DataMember]
     public string Greeting { get; set; }
 }
-
 ```
 
-<!---HONumber=AcomDC_0121_2016-->
+## 後續步驟
+ - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
+ - [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
+ - [動作項目事件](service-fabric-reliable-actors-events.md)
+ - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
+ - [動作項目多型和物件導向的設計模式](service-fabric-reliable-actors-polymorphism.md)
+ - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+
+<!---HONumber=AcomDC_0406_2016-->

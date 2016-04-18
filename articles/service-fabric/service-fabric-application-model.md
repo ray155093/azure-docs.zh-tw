@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="12/30/2015"   
+   ms.date="04/05/2016"   
    ms.author="seanmck"/>
 
 # 在 Service Fabric 中模型化應用程式
@@ -44,7 +44,7 @@
 ![服務內的分割和複本][cluster-application-instances]
 
 
->[AZURE.TIP]您可以使用 Service Fabric 總管工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+>[AZURE.TIP] 您可以使用 Service Fabric 總管工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 ## 描述服務
 
@@ -93,7 +93,7 @@
 </Settings>
 ~~~
 
-> [AZURE.NOTE]服務資訊清單可以包含多個程式碼、組態和資料封裝。每個皆可獨立建立版本。
+> [AZURE.NOTE] 服務資訊清單可以包含多個程式碼、組態和資料封裝。每個皆可獨立建立版本。
 
 <!--
 For more information about other features supported by service manifests, refer to the following articles:
@@ -139,7 +139,7 @@ For more information about other features supported by service manifests, refer 
 
 **DefaultServices** 宣告服務執行個體，該執行個體會在每次應用程式針對此應用程式類型具現化時建立。預設服務只是為了方便起見，在建立之後，其行為在每個方面就像正常的服務。它們會與應用程式執行個體中的其他任何服務一起升級，也可以一起移除。
 
-> [AZURE.NOTE]應用程式資訊清單可以包含多個服務資訊清單匯入和預設服務。每個服務資訊清單匯入都可以獨立建立版本。
+> [AZURE.NOTE] 應用程式資訊清單可以包含多個服務資訊清單匯入和預設服務。每個服務資訊清單匯入都可以獨立建立版本。
 
 若要了解如何針對個別環境維護不同的應用程式和服務參數，請參閱[管理多個環境的應用程式參數](service-fabric-manage-multiple-environment-app-configuration.md)
 
@@ -254,4 +254,4 @@ PS D:\temp>
 [11]: service-fabric-manage-multiple-environment-app-configuration.md
 [12]: service-fabric-application-runas-security.md
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0406_2016-->

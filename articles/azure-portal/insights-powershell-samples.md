@@ -186,7 +186,7 @@ Get-AzureRmAlertRule -Name vmcpu_gt_1 -ResourceGroup myrg1 -DetailedOutput
 
 >[AZURE.NOTE] 此功能仍然處於預覽狀態。
 
-在此案例中，當我的訂用帳戶中的網站在資源群組 *abhingrgtest123* 中成功啟動時，您將會傳送電子郵件。
+在此案例中，當我的訂用帳戶中的網站在資源群組 abhingrgtest123 中成功啟動時，您將會傳送電子郵件。
 
 設定電子郵件規則
 
@@ -229,7 +229,6 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 `Get-AzureRmMetricDefinition` 的可用選項完整清單可在 [Get MetricDefinitions](https://msdn.microsoft.com/library/mt282458.aspx) 取得。
 
-若要檢視各種 Azure 服務的可用計量及其單位的清單，請參閱 [WEB PAGE TITLE HERE](http://link)。
 
 ## 建立和管理自動調整設定
 諸如 Web app、VM、雲端服務或 VM 調整集之類的資源只能設定一個自動調整設定。不過，每個自動調整設定都可以有多個設定檔。例如，一個用於以效能為基礎的調整設定檔，以及一個用於以排程為基礎的設定檔。每個設定檔都可以設定多個規則。如需有關自動調整的詳細資訊，請參閱[如何自動調整應用程式](../cloud-services/cloud-services-how-to-scale.md)。
@@ -320,7 +319,7 @@ Remove-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting
 
 ## 管理稽核記錄檔的記錄檔設定檔
 
-您可以建立*記錄檔設定檔*，並將資料從稽核記錄檔匯出至儲存體帳戶，而且您可以為其設定資料保留期。或者，您也可以將資料串流至事件中樞。請注意，此功能目前處於預覽狀態，而且每個訂用帳戶只能建立一個記錄檔設定檔。您可以使用下列 Cmdlet 搭配您目前的訂用帳戶來建立和管理記錄檔設定檔。您也可以選擇特定的訂用帳戶。PowerShell 預設為目前的訂用帳戶，但是您隨時可以使用 `Set-AzureRmContext` 加以變更。您可以設定稽核記錄檔，將資料路由至任何儲存體帳戶或該訂用帳戶內的事件中樞。資料會以 JSON 格式的 Blob 檔案寫入。
+您可以建立記錄檔設定檔，並將資料從稽核記錄檔匯出至儲存體帳戶，而且您可以為其設定資料保留期。或者，您也可以將資料串流至事件中樞。請注意，此功能目前處於預覽狀態，而且每個訂用帳戶只能建立一個記錄檔設定檔。您可以使用下列 Cmdlet 搭配您目前的訂用帳戶來建立和管理記錄檔設定檔。您也可以選擇特定的訂用帳戶。PowerShell 預設為目前的訂用帳戶，但是您隨時可以使用 `Set-AzureRmContext` 加以變更。您可以設定稽核記錄檔，將資料路由至任何儲存體帳戶或該訂用帳戶內的事件中樞。資料會以 JSON 格式的 Blob 檔案寫入。
 
 ### 取得記錄檔設定檔
 若要擷取現有的記錄檔設定檔，請使用 `Get-AzureRmLogProfile` Cmdlet。
@@ -385,4 +384,4 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/myrg1/
 Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Network/networkSecurityGroups/viruela1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/sakteststorage -Categories NetworkSecurityGroupEvent -Enable $true -RetentionEnabled $true -RetentionInDays 90
 ```
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

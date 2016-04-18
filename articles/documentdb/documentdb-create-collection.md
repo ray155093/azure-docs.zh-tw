@@ -12,7 +12,7 @@
 	ms.workload="data-services" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
-	ms.topic="get-started-article" 
+	ms.topic="article" 
 	ms.date="03/30/2016" 
 	ms.author="mimig"/>
 
@@ -60,7 +60,7 @@
 
 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。集合是計費實體，其[成本](documentdb-performance-levels.md)是由集合所佈建的輸送量所決定。集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。
 
-集合會由 DocumentDB 自動分割成一或多個實體伺服器。當您建立集合時，您可以指定以每秒的要求單位和資料分割索引鍵屬性佈建的輸送量。DocumentDB 將會使用此屬性的值將文件散佈到資料分割並路由要求 (例如查詢)。資料分割索引鍵值也可做為預存程序和觸發程序的交易界限。每個集合都有該集合特定的保留輸送量，且不會與相同帳戶中的其他集合共用。因此，您可以在儲存體和輸送量方面相應放大您的應用程式。
+集合會由 DocumentDB 自動分割成一或多個實體伺服器。當您建立集合時，您可以指定以每秒的要求單位和分割索引鍵屬性佈建的輸送量。DocumentDB 將會使用此屬性的值將文件散佈到分割並路由要求 (例如查詢)。分割索引鍵值也做為預存程序和觸發程序的交易界限。每個集合都有該集合特定的保留輸送量，且不會與相同帳戶中的其他集合共用。因此，您可以在儲存體和輸送量方面相應放大您的應用程式。
 
 集合與關聯式資料庫中的資料表不同。集合不會強制使用結構描述；事實上，DocumentDB 不會強制使用任何結構描述，它是無結構描述的資料庫。因此，您可以在相同集合中儲存具有各種不同結構描述之不同類型的文件。您可以選擇使用集合來儲存單一類型的物件，正如同您會對資料表所做的一樣。最佳模型僅取決於資料一起出現在查詢和交易中的方式。
 
@@ -87,4 +87,4 @@
 
 當集合中有文件之後，您就可以利用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或其中一個 [SDK](documentdb-sdk-dotnet.md)，來針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-queries)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -24,7 +24,7 @@
 - [PowerShell](virtual-machines-windows-create-powershell.md)
 - [PowerShell - 範本](virtual-machines-windows-ps-template.md)
 - [入口網站 - Linux](virtual-machines-linux-portal-create.md)
-- [CLI](virtual-machines-linux-cli-create.md)
+- [CLI](virtual-machines-linux-quick-create-cli.md)
 
 <br>
 
@@ -40,7 +40,7 @@
 
 有兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [WebPI](http://aka.ms/webpi-azps)。WebPI 每個月都會更新。PowerShell 資源庫將持續更新。
 
-如需詳細資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com/blog/azps-1-0/)。
+如需詳細資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com//blog/azps-1-0/)。
 
 ## 步驟 2：設定您的訂用帳戶
 
@@ -393,4 +393,4 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 
 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

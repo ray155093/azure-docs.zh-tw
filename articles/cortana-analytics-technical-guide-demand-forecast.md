@@ -1,6 +1,6 @@
 <properties
 	pageTitle="能源需求預測技術指南 | Microsoft Azure"
-	description="具有適用於能源需求預測之 Microsoft Cortana Analytics 的解決方案範本技術指南"
+	description="具有能源需求預測之 Microsoft Cortana Intelligence 的解決方案範本技術指南。"
 	services="cortana-analytics"
 	documentationCenter=""
 	authors="yijichen"
@@ -16,11 +16,11 @@
 	ms.date="01/24/2016"
 	ms.author="inqiu;yijichen;ilanr9"/>
 
-# 適用於能源需求預測之 Cortana Analytics 解決方案範本的技術指南
+# 能源需求預測之 Cortana Intelligence 解決方案範本的技術指南
 
-## 概觀
+## **概觀**
 
-解決方案範本的設計是要加速在 Cortana Analytics 套件之上建置 E2E 示範的程序。已部署的範本會以所需的 Cortana Analytics 元件佈建您的訂用帳戶，並建立兩者間的關聯性。它也會在資料管線上植入從資料模擬應用程式所產生的範例資料。從提供的連結下載資料模擬器並將它安裝在本機電腦上；如需使用模擬器的指示，請參閱 readme.txt 檔案。由模擬器產生的資料將會產生資料管線，並開始產生機器學習服務預測，然後您可以在 Power BI 儀表板上將其視覺化。
+解決方案範本的設計是要加速在 Cortana Intelligence 套件之上建置 E2E 示範的程序。已部署的範本會以所需的 Cortana Intelligence 元件佈建您的訂用帳戶，並建立兩者間的關聯性。它也會在資料管線上植入從資料模擬應用程式所產生的範例資料。從提供的連結下載資料模擬器並將它安裝在本機電腦上；如需使用模擬器的指示，請參閱 readme.txt 檔案。由模擬器產生的資料將會產生資料管線，並開始產生機器學習服務預測，然後您可以在 Power BI 儀表板上將其視覺化。
 
 部署程序將引導您完成數個步驟來設定解決方案的認證。務必記錄這些認證，例如您在部署期間提供的解決方案名稱、使用者名稱和密碼。
 
@@ -288,4 +288,4 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 
 -   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

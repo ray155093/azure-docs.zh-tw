@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/14/2016" 
+	ms.date="04/06/2016" 
 	ms.author="ccompy"/>
 
 # 如何建立 App Service 環境 #
@@ -31,12 +31,14 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 - ASE 資源集區定義
 
 其中每個項目都有一些重要的詳細資料。
+
 - ASE 的名稱將用於該 ASE 中建立的任何應用程式的子網域。
 - ASE 中建立的所有應用程式將位於 ASE 本身的相同訂用帳戶中
 - 如果您無法存取用來建立 ASE 的訂用帳戶，則無法使用 ASE 來建立應用程式
 - 用來裝載 ASE 的 VNET 必須是區域傳統 "v1" VNET 
 - 用來裝載 ASE 的子網路不得包含任何其他計算資源
 - 子網路中只能存在一個 ASE
+- 目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
 
 每個 ASE 部署都是 Azure 管理和維護的託管服務。雖然客戶會管理執行個體的數量和其大小，但不能存取裝載 ASE 系統角色的計算資源。
 
@@ -62,7 +64,7 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 在某些情況下使用預設值會有很好的效果，但通常您都必須進行調整。後續幾節將一一說明 ASE 的相關組態區段。
 
 ### 虛擬網路 ###
-雖然快速建立功能可自動建立新的 VNET，但這項功能還支援選取現有的 VNET 和手動建立 VNET。如果現有的 VNET 夠大，您可加以選取 (在這時候，只有傳統 "v1" 虛擬網路受支援)，以支援 App Service 環境部署。VNET 必須有 8 個或更多位址。
+雖然快速建立功能可自動建立新的 VNET，但這項功能還支援選取現有的 VNET 和手動建立 VNET。如果現有的 VNET 夠大，您可加以選取 (在這時候，只有傳統 "v1" 虛擬網路受支援)，以支援 App Service 環境部署。VNET 必須有 8 個或更多位址。目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
 
 如果您選取預先存在的 VNET，您也必須指定要使用的子網路或建立新的子網路。子網路必須有 8 個或更多位址，且不可有任何其他資源已包含於其中。如果您嘗試使用已配置 VM 的子網路，ASE 建立將會失敗。
 
@@ -163,4 +165,4 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 [AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0406_2016-->

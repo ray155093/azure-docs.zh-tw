@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/04/2016"
+	ms.date="04/05/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure PowerShell 管理 HDInsight 上的 Hadoop 叢集
@@ -66,84 +66,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。若您想要
 
 ##建立叢集
 
-HDInsight 叢集需要 Azure 儲存體帳戶上的 Azure 資源群組和 Blob 容器：
-
-- Azure 資源群組是 Azure 資源的邏輯容器。Azure 資源群組與 HDInsight 叢集不一定要在相同的位置。如需詳細資訊，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
-- HDInsight 會使用 Azure 儲存體帳戶的 Blob 容器做為預設檔案系統。必須要有 Azure 儲存體帳號和儲存容器，您才能建立 HDInsight 叢集。預設儲存體帳戶必須與 HDInsight 叢集並存於相同位置。
-
-[AZURE.INCLUDE [provisioningnote](../../includes/hdinsight-provisioning.md)]
-
-**連接到 Azure**
-
-	Login-AzureRmAccount
-	Get-AzureRmSubscription  # list your subscriptions and get your subscription ID
-	Select-AzureRmSubscription -SubscriptionId "<Your Azure Subscription ID>"
-
-如果您多個 Azure 訂用帳戶時會呼叫 **Select-AzureRMSubscription**。
-	
-**建立新的資源群組**
-
-	New-AzureRmResourceGroup -name <New Azure Resource Group Name> -Location "<Azure Location>"  # For example, "EAST US 2"
-
-**建立 Azure 儲存體帳戶**
-
-	New-AzureRmStorageAccount -ResourceGroupName <Azure Resource Group Name> -Name <Azure Storage Account Name> -Location "<Azure Location>" -Type <AccountType> # account type example: Standard_LRS for zero redundancy storage
-	
-請勿使用 **Standard\_ZRS**，因為它不支援 Azure 資料表。HDInsight 會使用 Azure 資料表來記錄。如需儲存體帳戶類型的完整清單，請參閱 [https://msdn.microsoft.com/library/azure/hh264518.aspx](https://msdn.microsoft.com/library/azure/hh264518.aspx)。
-
-[AZURE.INCLUDE [資料中心清單](../../includes/hdinsight-pricing-data-centers-clusters.md)]
-
-
-如需使用 Azure 入口網站建立 Azure 儲存體帳戶的相關資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
-
-如果您已有儲存帳號，但不知道帳號名稱和帳號金鑰，您可以使用下列命令來擷取資訊：
-
-	# List Storage accounts for the current subscription
-	Get-AzureRmStorageAccount
-	# List the keys for a Storage account
-	Get-AzureRmStorageAccountKey -ResourceGroupName <Azure Resource Group Name> -name $storageAccountName <Azure Storage Account Name>
-
-如需使用入口網站取得資訊的詳細資料，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)的「檢視、複製及重新產生儲存體存取金鑰」一節。
-
-**建立 Azure 儲存容器**
-
-Azure PowerShell 無法在 HDInsight 建立程序期間建立 Blob 容器。您可以使用下列指令碼來建立 Blob 容器：
-
-	$resourceGroupName = "<AzureResoureGroupName>"
-	$storageAccountName = "<Azure Storage Account Name>"
-	$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccount |  %{ $_.Key1 }
-	$containerName="<AzureBlobContainerName>"
-
-	# Create a storage context object
-	$destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey  
-
-	# Create a Blob storage container
-	New-AzureStorageContainer -Name $containerName -Context $destContext
-
-**建立叢集**
-
-在儲存體帳戶和 Blob 容器準備就緒後，您即可建立叢集。
-
-	$resourceGroupName = "<AzureResoureGroupName>"
-
-	$storageAccountName = "<Azure Storage Account Name>"
-	$containerName = "<AzureBlobContainerName>"
-
-	$clusterName = "<HDInsightClusterName>"
-	$location = "<AzureDataCenter>"
-	$clusterNodes = <ClusterSizeInNodes>
-
-	# Get the Storage account key
-	$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName | %{ $_.Key1 }
-
-	# Create a new HDInsight cluster
-	New-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName `
-		-ClusterName $clusterName `
-		-Location $location `
-		-DefaultStorageAccountName "$storageAccountName.blob.core.windows.net" `
-		-DefaultStorageAccountKey $storageAccountKey `
-		-DefaultStorageContainer $containerName  `
-		-ClusterSizeInNodes $clusterNodes
+請參閱[使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
 
 ##列出叢集
 使用下列命令列出目前訂用帳戶中的所有叢集：
@@ -332,4 +255,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 [image-hdi-ps-provision]: ./media/hdinsight-administer-use-powershell/HDI.PS.Provision.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

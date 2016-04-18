@@ -225,7 +225,7 @@ b.執行 `VMAccessForLinux` 擴充以重設 SSH 連線，如下列範例所示�
 
 ![強調組織邊緣裝置的圖表](./media/virtual-machines-linux-troubleshoot-ssh-connection/ssh-tshoot3.png)
 
-如果您沒有直接連線到網際網路的電腦，則您只要將新的 Azure 虛擬機器建立於專屬的資源群組或雲端服務中並加以使用即可。如需詳細資訊，請參閱[在 Azure 中建立執行 Linux 的虛擬機器](virtual-machines-linux-cli-create.md)。當您完成測試後，請刪除此資源群組或虛擬機器及雲端服務。
+如果您沒有直接連線到網際網路的電腦，則您只要將新的 Azure 虛擬機器建立於專屬的資源群組或雲端服務中並加以使用即可。如需詳細資訊，請參閱[在 Azure 中建立執行 Linux 的虛擬機器](virtual-machines-linux-quick-create-cli.md)。當您完成測試後，請刪除此資源群組或虛擬機器及雲端服務。
 
 如果您可以對直接連線到網際網路的電腦建立 SSH 連線，請檢查組織邊緣裝置之下列項目：
 
@@ -243,7 +243,7 @@ b.執行 `VMAccessForLinux` 擴充以重設 SSH 連線，如下列範例所示�
 
 ![強調雲端服務端點和 ACL 的圖表](./media/virtual-machines-linux-troubleshoot-ssh-connection/ssh-tshoot4.png)
 
-如果在相同的虛擬網路中沒有另一部 VM，則您只要建立一部新的即可。如需詳細資訊，請參閱[在 Azure 中建立執行 Linux 的虛擬機器](virtual-machines-linux-cli-create.md)。當您完成測試後，請刪除額外的 VM。
+如果在相同的虛擬網路中沒有另一部 VM，則您只要建立一部新的即可。如需詳細資訊，請參閱[在 Azure 中建立執行 Linux 的虛擬機器](virtual-machines-linux-quick-create-cli.md)。當您完成測試後，請刪除額外的 VM。
 
 如果您可以建立 SSH 連線到相同虛擬網路中的 VM，請檢查：
 
@@ -281,4 +281,4 @@ b.執行 `VMAccessForLinux` 擴充以重設 SSH 連線，如下列範例所示�
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

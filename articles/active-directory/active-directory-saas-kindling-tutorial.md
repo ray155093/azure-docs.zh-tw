@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/10/2016"
+	ms.date="04/05/2016"
 	ms.author="jeedes"/>
 
 
@@ -33,7 +33,7 @@
 若要設定 Azure AD 與 Kindling 的整合作業，需要下列項目：
 
 - Azure AD 訂用帳戶
-- 啟用 Kindling 單一登入功能的訂用帳戶
+- Kindling 訂用帳戶
 
 
 > [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -84,7 +84,7 @@
 
 本節目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入功能，並在 Kindling 應用程式中設定單一登入。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-若要為 Kindling 設定單一登入，您需要已註冊的網域。如果您沒有已註冊的網域，請透過 [support@flatterfiles.com](mailto:support@flatterfiles.com) 連絡 Kindling 支援小組。
+若要為 Kindling 設定單一登入，您需要已註冊的網域。如果您沒有已註冊的網域，請透過 [support@kindlingapp.com](mailto:support@kindlingapp.com) 連絡 Kindling 支援小組。
 
 
 
@@ -97,11 +97,15 @@
 3. 在 [**設定應用程式設定**] 對話方塊頁面上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-kindling-tutorial/tutorial_kindling_04.png) <br>
 
 
-    a.在 [**登入 URL**] 文字方塊中，輸入您的使用者用來登入 Kindling 應用程式的 URL (例如：**https://fabrikam.Kindling.com/*)。
+    a.在 [登入 URL] 文字方塊中，輸入使用者登入 Kindling 應用程式所用的 URL (例如：*https://\<公司名稱>.kindlingapp.com/*)。
 
-    b.請連絡您的 Kindling 支援小組，以取得 [簽發者] 和 [回覆 URL] 值。
+    b.請透過 [support@kindlingapp.com](mailto:support@kindlingapp.com) 連絡您的 Kindling 支援小組，以取得 [簽發者] 和 [回覆 URL] 值。
+
+    c.在 [簽發者] 文字方塊中輸入您的簽發者 URL。
+
+    d.在 [回覆 URL] 文字方塊中輸入您的回覆 URL。
  
-    c.按 [下一步]。
+    e.按 [下一步]。
  
  
 4. 在 [**設定在 Kindling 單一登入**] 頁面上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-kindling-tutorial/tutorial_kindling_05.png) <br>
@@ -216,4 +220,4 @@
 [204]: ./media/active-directory-saas-kindling-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-kindling-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

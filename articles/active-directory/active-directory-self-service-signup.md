@@ -1,6 +1,6 @@
 <properties
 	pageTitle="什麼是 Azure 的自助式註冊？| Microsoft Azure"
-	description="Azure 的自助式註冊、如何管理註冊程序及其作法的概觀。"
+	description="Azure 的自助式註冊、如何管理註冊程序及如何接管 DNS 網域名稱的概觀。"
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="01/05/2016"
-	ms.author="stevenpo"/>
+	ms.date="04/04/2016"
+	ms.author="curtand"/>
 
 
 # 什麼是 Azure 的自助式註冊？
@@ -232,4 +232,4 @@
 <!--Image references-->
 [1]: ./media/active-directory-self-service-signup/SelfServiceSignUpControls.png
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0406_2016-->

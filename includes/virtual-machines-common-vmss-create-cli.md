@@ -1,20 +1,20 @@
-Virtual Machine Scale Sets allow you to manage multiple VMs as a set. At a high level, scale sets have the following pros and cons:
+虛擬機器擴展集可讓您以一個集合來管理多部 VM。概括而言，擴展集具有下列優缺點︰
 
-Pros:
+優點：
 
-1. High availability. Each scale set puts its VMs into an Availability Set with 5 Fault Domains (FDs) and 5 Update Domains (UDs) to ensure availability (for more information on FDs and UDs, see [VM availability](../articles/virtual-machines/virtual-machines-linux-manage-availability.md)).
-2. Easy integration with Azure Load Balancer and App Gateway.
-3. Easy integration with Azure Autoscale.
-4. Simplified deployment, management, and clean up of VMs.
-5. Support common Windows and Linux flavors, as well as custom images.
+1. 高可用性。每個擴展集都會將它的 VM 放入具有 5 個容錯網域 (FD) 和 5 個更新網域 (UD) 的可用性設定組，以確保可用性 (如需 FD 和 UD 的詳細資訊，請參閱 [VM 可用性](../articles/virtual-machines/virtual-machines-linux-manage-availability.md))。
+2. 與 Azure 負載平衡器和應用程式閘道輕鬆整合。
+3. 與 Azure 自動調整輕鬆整合。
+4. 簡化 VM 的部署、管理和清除。
+5. 支援常見 Windows 和 Linux 類別以及自訂映像。
 
-Cons:
+缺點：
 
-1. Cannot attach data disks to VM instances in a scale set. Instead, must use Blob Storage, Azure Files, Azure Tables, or other storage solution.
+1. 無法將資料磁碟連接至擴展集中的 VM 執行個體。相反地，必須使用 Blob 儲存體、Azure 檔案、Azure 資料表或其他儲存體解決方案。
 
-## Quick-Create Using Azure CLI
+## 使用 Azure CLI 快速建立
 
-If you haven't already, you can get an [Azure subscription free trial](https://azure.microsoft.com/pricing/free-trial/) and the [Azure CLI](../articles/xplat-cli-install.md) [connected to your Azure account](../articles/xplat-cli-connect.md). Once you do, you can run the following commands to quick-create a VM scale set:
+如果您尚未這麼做，可以取得 [Azure 訂用帳戶免費試用](https://azure.microsoft.com/pricing/free-trial/)以及[連線至 Azure 帳戶](../articles/xplat-cli-connect.md)的 [Azure CLI](../articles/xplat-cli-install.md)。這麼做之後，即可執行下列命令，以快速建立 VM 擴展集︰
 
 ```bash
 # make sure we are in resource manager mode 
@@ -29,9 +29,9 @@ azure config mode arm
 azure vmss quick-create -n negatvmss -g negatvmssrg -l westus -u negat -p P4$$w0rd -C 5 -Q Canonical:UbuntuServer:14.04.4-LTS:latest
 ```
 
-If you want to customize the location or image-urn, please look into the commands `azure location list` and `azure vm image {list-publishers|list-offers|list-skus|list|show}`.
+如果您想要自訂位置或 image-urn，請查看 `azure location list` 和 `azure vm image {list-publishers|list-offers|list-skus|list|show}` 命令。
 
-Once this command has returned, the scale set will have been created. This scale set will have a load balancer with NAT rules mapping port 50,000+i on the load balancer to port 22 on VM i. Thus, once we figure out the FQDN of the load balancer, we will be able to SSH into our VMs:
+傳回此命令之後，即已建立擴展集。此擴展集的負載平衡器具有 NAT 規則，可將負載平衡器上的連接埠 50,000+i 對應至 VM i 上的連接埠 22。因此，找出負載平衡器的 FQDN 之後，即可 SSH 到 VM：
 
 ```bash
 # list load balancers in the resource group we created
@@ -70,10 +70,12 @@ FQDN=${split_line[3]}
 ssh -p 50000 $FQDN
 ```
 
-## Next Steps
+## 後續步驟
 
-For general information, check out the [main landing page for VM scale sets](https://azure.microsoft.com/services/virtual-machine-scale-sets/).
+如需一般資訊，請參閱 [VM 擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
 
-For documentation, check out the [main documentation page for VM scale sets](https://azure.microsoft.com/documentation/services/virtual-machines-scale-sets/).
+如需文件，請參閱 [VM 擴展集的主要文件頁面](https://azure.microsoft.com/documentation/services/virtual-machines-scale-sets/)。
 
-For example Azure resource manager templates using VM scale sets, search for "vmss" in the [Azure Quickstart Templates github repo](https://github.com/Azure/azure-quickstart-templates).
+如需使用 VM 擴展集的範例 Azure Resource Manager 範本，請在 [Azure 快速入門範本 github 儲存機制](https://github.com/Azure/azure-quickstart-templates)中搜尋 "vmss"。
+
+<!---HONumber=AcomDC_0406_2016-->

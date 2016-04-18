@@ -5,7 +5,7 @@
    documentationCenter=".net"
    authors="heeldin"
    manager="timlt"
-   editor=""/>
+   editor="vturecek"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/14/2016"
+   ms.date="03/25/2016"
    ms.author="heeldin;motanv"/>
 
 # Testability 動作
@@ -95,7 +95,7 @@ Restart-ServiceFabricNode -NodeName $nodeName -CompletionMode DoNotVerify
 
 針對 Azure 叢集執行 Testability 動作 (使用 PowerShell)，與針對本機叢集執行該動作的方式類似。唯一的差異在於：執行該動作前，您必須先連接至 Azure 叢集，而非連接至本機叢集。
 
-## 使用 C 執行 Testability 動作#
+## 執行 Testability 動作
 
 若要使用 C# 執行 Testability 動作，您必須先使用 FabricClient 連接至叢集。接著，取得執行該動作所需的參數。不同的參數可用來執行相同的動作。查看 RestartServiceFabricNode 動作時，您會發現執行該動作的一種方式就是，使用叢集中的節點資訊 (節點名稱和節點執行個體識別碼)。
 
@@ -236,4 +236,4 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
    - [模擬服務工作負載期間的失敗案例](service-fabric-testability-workload-tests.md)
    - [服務對服務間通訊的失敗案例](service-fabric-testability-scenarios-service-communication.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

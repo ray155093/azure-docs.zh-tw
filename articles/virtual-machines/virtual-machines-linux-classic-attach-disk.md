@@ -3,7 +3,7 @@
 	description="了解如何將資料磁碟連接至執行 Linux 的 Azure 虛擬機器並初始化磁碟，以便開始使用。"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor="tysonn"
 	tags="azure-service-management"/>
@@ -14,17 +14,17 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/07/2016"
-	ms.author="dkshir"/>
+	ms.date="04/04/2016"
+	ms.author="iainfou"/>
 
 # 如何將資料磁碟連接至 Linux 虛擬機器
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
-您可以附加空的磁碟和含有資料的磁碟。在這兩種情況下，磁碟實際上是位於 Azure 儲存體帳戶中的 .vhd 檔案。另外，在這兩種情況下，當您附加磁碟之後，磁碟必須完成初始化才能使用。
+您可以附加空的磁碟和含有資料的磁碟。磁碟實際上是位於 Azure 儲存體帳戶中的 .vhd 檔案。當您附加磁碟之後，磁碟必須完成初始化才能使用。
 
-> [AZURE.NOTE] 最好使用一或多個不同的磁碟來儲存虛擬機器的資料。當您建立 Azure 虛擬機器時，它會有作業系統磁碟和暫存磁碟。**請勿使用暫存磁碟來儲存資料。** 顧名思義，它只提供暫存儲存空間。它並不提供備援或備份，因為它不在 Azure 儲存體內。暫存磁碟通常是由 Azure Linux 代理程式管理，並自動掛接到 **/mnt/resource** (或 Ubuntu 映像中的**/mnt**)。換句話說，Linux 核心可能會將資料磁碟命名為 `/dev/sdc`，且您必須分割、格式化及掛接此資源。如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南][Agent]。
+> [AZURE.NOTE] 最好使用一或多個不同的磁碟來儲存虛擬機器的資料。當您建立 Azure 虛擬機器時，它會有作業系統磁碟和暫存磁碟。**請勿使用暫存磁碟來儲存持續資料。** 顧名思義，它只提供暫存儲存空間。它並不提供備援或備份，因為它不在 Azure 儲存體內。暫存磁碟通常是由 Azure Linux 代理程式管理，並自動掛接到 **/mnt/resource** (或 Ubuntu 映像中的**/mnt**)。換句話說，Linux 核心可能會將資料磁碟命名為 `/dev/sdc`，且您必須分割、格式化及掛接此資源。如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南][Agent]。
 
 [AZURE.INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-linux.md)]
 
@@ -38,7 +38,7 @@
 
 2. 接下來您需要尋找資料磁碟的裝置識別碼以進行初始化。作法有二：
 
-	a) 在 SSH 視窗中，輸入下列命令，然後輸入您為了管理虛擬機器而建立之帳戶的密碼：
+	a) 在 SSH 視窗中，輸入下列命令：
 
 			$sudo grep SCSI /var/log/messages
 
@@ -76,11 +76,9 @@
 
 	在每個資料列的 Tuple 中，最後一個數字即為 _LUN_。如需詳細資訊，請參閱 `man lsscsi`。
 
-3. 在 SSH 視窗中，輸入下列命令來建立新的裝置，然後輸入帳戶密碼：
+3. 在 SSH 視窗中，輸入下列命令以建立新的裝置：
 
 		$sudo fdisk /dev/sdc
-
-	>[AZURE.NOTE] 在此範例中，如果 /sbin 或 /usr/sbin 不在您的 `$PATH` 中，您可能需要在部份散發套件上使用 `sudo -i`。
 
 
 4. 出現提示時，輸入 **n** 建立新的磁碟分割。
@@ -107,7 +105,7 @@
 
 	![寫入磁碟變更](./media/virtual-machines-linux-classic-attach-disk/DiskWrite.png)
 
-8. 在新的磁碟分割上建立檔案系統。將磁碟分割編號 (1) 附加至裝置識別碼。例如，輸入下列命令，然後輸入帳戶密碼：
+8. 在新的磁碟分割上建立檔案系統。將磁碟分割編號 (1) 附加至裝置識別碼。例如，在 /dev/sdc1 上建立 ext4 磁碟分割︰
 
 		# sudo mkfs -t ext4 /dev/sdc1
 
@@ -116,7 +114,7 @@
 	>[AZURE.NOTE] 請注意，SUSE Linux Enterprise 11 系統只支援對 ext4 檔案系統的唯讀存取。針對這些系統，建議您將新檔案系統格式化為 ext3，而非 ext4。
 
 
-9. 建立目錄以掛接新的檔案系統。例如，輸入下列命令，然後輸入帳戶密碼：
+9. 建立目錄以掛接新的檔案系統。例如，輸入下列命令：
 
 		# sudo mkdir /datadrive
 
@@ -143,7 +141,7 @@
 
 	>[AZURE.NOTE] 不當編輯 **/etc/fstab** 檔案會導致系統無法開機。如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。在編輯之前，也建議先備份 /etc/fstab 檔案。
 
-	接下來，在文字編輯器中開啟 **/etc/fstab** 檔案。請注意，/etc/fstab 是系統檔案，因此您需要使用 `sudo` 才能編輯這個檔案，例如：
+	接下來，在文字編輯器中開啟 **/etc/fstab** 檔案：
 
 		# sudo vi /etc/fstab
 
@@ -173,10 +171,10 @@
 
 [如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md)
 
-[搭配服務管理 API 使用 Azure CLI](virtual-machines-command-line-tools.md)
+[搭配服務管理 API 使用 Azure CLI](../virtual-machines-command-line-tools.md)
 
 <!--Link references-->
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-classic-log-on.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->
