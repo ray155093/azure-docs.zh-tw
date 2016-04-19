@@ -24,7 +24,7 @@
 
 >[AZURE.NOTE] Azure AD Connect 包含先前發行為 Dirsync 和 AAD Sync 的元件和功能。這些工具已不會再個別發行，而且所有未來的增強功能都會包含在 Azure AD Connect 的更新中，因此，您一定會知道可以到哪裡取得最新的功能。
 >
->DirSync 和 Azure AD Sync 已被取代。如需詳細資訊，請參閱[升級 Windows Azure Active Directory Sync (“DirSync”) 和 Azure Active Directory Sync (“Azure AD Sync”)](https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)。
+>DirSync 和 Azure AD Sync 已被取代。如需詳細資訊，請參閱[升級 Windows Azure Active Directory Sync (“DirSync”) 和 Azure Active Directory Sync (“Azure AD Sync”)]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)。
 
 
 為每個資料表使用下列機碼。
@@ -94,4 +94,4 @@
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0413_2016--->

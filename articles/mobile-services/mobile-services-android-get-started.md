@@ -23,6 +23,7 @@
 &nbsp;
 
 [AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+
 > 如需本主題的對等 Mobile Apps 版本，請參閱[在 Azure 行動應用程式中建立 Android 應用程式](../app-service-mobile/app-service-mobile-android-get-started.md)。
 
 本教學課程顯示如何使用 Azure 行動服務，將雲端型後端服務新增到 Android 應用程式。在本教學課程中，您將建立新的行動服務和簡單的**待辦事項清單**應用程式，後者會在前者儲存應用程式資料。
@@ -77,11 +78,14 @@
 ## <a name="next-steps"> </a>後續步驟
 請注意，您已完成快速入門，並了解如何執行行動服務中的其他重要工作：
 
-* [開始使用資料] <br/>深入了解使用行動服務來儲存與查詢資料。
+* [開始使用資料]
+  <br/>深入了解使用行動服務來儲存與查詢資料。
 
-* [開始使用驗證] <br/>了解如何向身分識別提供者驗證應用程式的使用者。
+* [開始使用驗證]
+  <br/>了解如何向身分識別提供者驗證應用程式的使用者。
 
-* [開始使用推播通知] <br/>了解如何將極為基本的推播通知傳送到應用程式。
+* [開始使用推播通知]
+  <br/>了解如何將極為基本的推播通知傳送到應用程式。
 
 
 [AZURE.INCLUDE [app-service-disqus-feedback-slug](../../includes/app-service-disqus-feedback-slug.md)]

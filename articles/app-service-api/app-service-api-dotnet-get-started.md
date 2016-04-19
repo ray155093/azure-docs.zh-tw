@@ -266,7 +266,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	如果您輸入了其他人已使用的名稱，您就會在右邊看到紅色驚嘆號，而不是綠色勾號，這代表您需要輸入不同的名稱。
 
-	Azure 將使用這個名稱做為應用程式 URL 的前置詞。完整的 URL 組合是這個名稱加上 .azurewebsites.net。例如，若名稱為 `ToDoListDataAPI`，則 URL 是 `todolistdataapi.azurewebsites.net`。
+	Azure 將使用這個名稱做為應用程式 URL 的前置詞。完整的 URL 組合是這個名稱加上 *.azurewebsites.net* 。例如，若名稱為 `ToDoListDataAPI`，URL 會是 `todolistdataapi.azurewebsites.net`。
 
 6. 在 [資源群組] 下拉式清單中，按一下 [新增]，然後輸入 "ToDoListGroup" 或其他您偏好使用的名稱。
 
