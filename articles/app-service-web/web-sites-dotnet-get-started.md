@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Visual Studio 建立 Web 應用程式 | Microsoft Azure"
+	pageTitle="開始使用 ASP.NET 和 Azure App Service | Microsoft Azure"
 	description="了解如何在 Visual Studio 中建立 ASP.NET Web 專案，並將它部署到 Azure App Service 中的新 Web 應用程式。"
 	services="app-service\web"
 	documentationCenter=".net"
@@ -12,11 +12,11 @@
 	ms.workload="web"
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
-	ms.topic="hero-article"
+	ms.topic="get-started-article"
 	ms.date="03/02/2016"
 	ms.author="tdykstra"/>
 
-# 在 Azure App Service 中使用 Visual Studio 建立 ASP.NET Web 應用程式
+# 使用 Visual Studio 在 Azure App Service 中開始使用 ASP.NET Web 應用程式
 
 > [AZURE.SELECTOR]
 - [.Net](web-sites-dotnet-get-started.md)
@@ -42,7 +42,7 @@
 
 本教學課程最後的[疑難排解](#troubleshooting)一節會概述發生問題時的處理方式，而[後續步驟](#next-steps)一節則提供其他會更深入探討如何使用 Azure App Service 之教學課程的連結。
 
-> [AZURE.NOTE] 請幫助我們規劃本教學課程的範圍和方法 -- 如果您有希望涵蓋在入門教學課程中的主題，請在本教學課程結尾的 [Disqus 註解](#comments)中留下意見反應。
+## 必要條件
 
 [AZURE.INCLUDE [必要條件](../../includes/app-service-web-dotnet-get-started-prereqs.md)]
 
@@ -58,13 +58,13 @@
 
 2. 按一下 [檔案] > [新增] > [專案]。
 
-3. 在 [新增專案] 對話方塊中，依序按一下 [Visual C#] > [Web] > [ASP.NET Web 應用程式] \(如有需要，您可以選擇 [Visual Basic])。
+3. 在 [新增專案] 對話方塊中，依序按一下 [Visual C#] > [Web] > [ASP.NET Web 應用程式] (如有需要，您可以選擇 [Visual Basic])。
 
 3. 確定已選取 [.NET Framework 4.5.2] 來做為目標架構。
 
 4.  [Azure Application Insights](../application-insights/app-insights-overview.md) 會監視您 Web 應用程式的可用性、效能和使用情形。在您安裝 Visual Studio 後第一次建立 Web 專案時，預設會勾選 [在專案中新增 Application Insights] 核取方塊。如果您不想嘗試 Application Insights，但系統預設已勾選，請清除該核取方塊。
 
-4. 將應用程式命名為 MyExample。
+4. 將應用程式命名為 **MyExample**。
 
 5. 按一下 [確定]。
 
@@ -146,11 +146,11 @@
 
 	![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
 
-	您可以在 Visual Studio 的 [雲端總管] 視窗中看到 Web 應用程式。
+	您可以在 Visual Studio 的 [Cloud Explorer] 視窗中看到 Web 應用程式。
 
 	![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
 	
-	此視窗可讓您檢視和管理各種 Azure 資源。螢幕擷取畫面只顯示 Web 應用程式，但是您會在 [雲端總管] 視窗中看到更多資源類型。以滑鼠右鍵按一下 Web 應用程式等資源，以查看其管理選項。
+	此視窗可讓您檢視和管理各種 Azure 資源。螢幕擷取畫面只顯示 Web 應用程式，但是您會在 [Cloud Explorer] 視窗中看到更多資源類型。以滑鼠右鍵按一下 Web 應用程式等資源，以查看其管理選項。
 
 ## 將 Web 專案部署至 Azure Web 應用程式
 
@@ -162,7 +162,7 @@
 
 	![在 Visual Studio 功能表中選擇 [發佈]](./media/web-sites-dotnet-get-started/choosepublish.png)
 
-	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個發佈設定檔，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
+	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個*發佈設定檔*，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
 
 	發佈設定檔包含用於部署的使用者名稱和密碼。這些認證已事先為您產生，因此您不需要加以輸入或變更。密碼會加密並存放在 `Properties\PublishProfiles` 資料夾的使用者專屬隱藏檔案中。
 
@@ -198,8 +198,7 @@
 
 	![在 Azure 中執行的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13deployedsite.png)
 
-> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
-> ![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
+> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
 
 ## <a id="portal"></a>在 Azure 入口網站中監控及管理 Web 應用程式
 
@@ -277,7 +276,7 @@
 
 * 部署 Web 專案的其他方式
 
-	如需了解藉由使用 Visual Studio，或是藉由使用[原始檔控制系統](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control)來[自動化部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery)，來將 Web 專案部署到 Web 應用程式的其他方式，請參閱[如何部署 Azure Web 應用程式](web-sites-deploy.md)。
+	如需了解藉由使用 Visual Studio，或是藉由使用[原始檔控制系統](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control)來[自動化部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery)，來將 Web 專案部署到 Web 應用程式的其他方式，請參閱[在 Azure App Service 中開始使用 Web 應用程式](app-service-web-get-started.md)和[如何部署 Azure Web 應用程式](web-sites-deploy.md)。
 
 * 如何新增自訂網域名稱和 SSL
 
@@ -294,4 +293,4 @@
 
 	在 Azure 中，您可以在 App Service Web Apps 中執行 Web 應用程式 (如本教學課程所示)，或在雲端服務或虛擬機器中執行。如需詳細資訊，請參閱 [Azure Web 應用程式、雲端服務和 VM：每一項的使用時機](/manage/services/web-sites/choose-web-app-service/)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

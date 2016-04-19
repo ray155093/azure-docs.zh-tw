@@ -17,7 +17,7 @@
 
 # 透過 Visual Studio 建立與部署 Azure 資源群組
 
-使用 Visual Studio 和 [Azure SDK](https://azure.microsoft.com/downloads/)，您可以建立專案，將您的基礎結構和程式碼部署至 Azure。例如，您可以為您的應用程式定義 Web 主機、網站和資料庫，並且部署該基礎結構與程式碼。或者，您可以定義虛擬機器、虛擬網路和儲存體帳戶，並且部署該基礎結構以及在虛擬機器上執行的指令碼。**Azure 資源群組**部署專案可以在單一、可重複執行作業中部署所有所需的資源。如需部署與管理資源的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
+使用 Visual Studio 和 [Azure SDK](https://azure.microsoft.com/downloads/)，您可以建立專案，將您的基礎結構和程式碼部署至 Azure。例如，您可以為您的應用程式定義 Web 主機、網站和資料庫，並且部署該基礎結構與程式碼。或者，您可以定義虛擬機器、虛擬網路和儲存體帳戶，並且部署該基礎結構以及在虛擬機器上執行的指令碼。**Azure 資源群組**部署專案可讓您在單一、可重複執行的作業中部署所有所需的資源。如需部署與管理資源的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
 
 Azure 資源群組專案包含 Azure 資源管理員 JSON 範本，可定義部署到 Azure 的資源。若要了解資源管理員範本的元素，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。Visual Studio 可讓您編輯這些範本，並提供工具，可簡化範本的使用。
 
@@ -196,4 +196,4 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 - 若要了解透過入口網站管理資源，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
 - 若要了解範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

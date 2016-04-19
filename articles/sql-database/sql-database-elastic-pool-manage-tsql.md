@@ -13,7 +13,7 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="NA"
     ms.workload="data-management" 
-    ms.date="04/01/2016"
+    ms.date="04/11/2016"
     ms.author="sidneyh"/>
 
 # 使用 Transact-SQL 監視和管理彈性資料庫集區  
@@ -81,8 +81,13 @@
 ## 監視彈性集區中資料庫的資源使用量
 使用 [sys.dm\_resource\_stats 檢視](https://msdn.microsoft.com/library/dn800981.aspx)或 [sys.resource\_stats 檢視](https://msdn.microsoft.com/library/dn269979.aspx)來檢查彈性集區中資料庫的資源使用量統計資料。此程序類似於查詢任何單一資料庫的資源使用量。
 
+## 彈性集區的作業延遲
+
+- 每個資料庫的保證 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
+- 集區之集區儲存體限制的變更作業，則需視集區中所有資料庫使用的總空間量而定。變更作業平均每 100 GB 會在 90 分鐘以內完成。舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則集區 eDTU/儲存體限制變更作業的預期延遲時間會少於 3 小時。
+
 ## 後續步驟
 
 建立彈性資料庫集區後，可以藉由建立彈性工作來管理集區中的彈性資料庫。彈性工作有助於對集區中任意數目的資料庫執行 T-SQL 指令碼。如需詳細資訊，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

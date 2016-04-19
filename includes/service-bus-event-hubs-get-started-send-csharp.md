@@ -6,11 +6,9 @@
 
    ![][7]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [**管理方案的 NuGet 封裝...**]。 
+2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝]。 
 
-	此時會顯示 [管理 NuGet 封裝] 對話方塊。
-
-3. 搜尋 `Microsoft Azure Service Bus`，然後按一下 [**安裝**] 並接受使用條款。
+3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。確定已在 [版本] 方塊中指定專案名稱 (傳送者)。按一下 [安裝] 並接受使用條款。
 
 	![][8]
 
@@ -23,10 +21,10 @@
 	using Microsoft.ServiceBus.Messaging;
 	```
 
-5. 將下列欄位加入至 **Program** 類別，並將值替代為您在上一節中所建立的事件中樞名稱，以及將連接字串替代為 **Send** 權限：
+5. 將下列欄位加入至 **Program** 類別，並將值替代為您在上一節中所建立的事件中樞名稱，以及將連接字串替代為 **Send** 權限 (**SendRule** 連接字串)：務必移除連接字串的 `EntityPath` 尾碼：
 
 	```
-	static string eventHubName = "{event hub name}";
+	static string eventHubName = "{Event Hub name}";
 	static string connectionString = "{send connection string}";
 	```
 
@@ -72,4 +70,4 @@
 [7]: ./media/service-bus-event-hubs-getstarted/create-sender-csharp1.png
 [8]: ./media/service-bus-event-hubs-getstarted/create-sender-csharp2.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

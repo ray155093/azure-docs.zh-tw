@@ -1,6 +1,6 @@
 <properties
  pageTitle="Azure IoT 中樞概觀 | Microsoft Azure"
- description="Azure IoT 中樞服務概觀，包括物聯網架構、裝置連線性、通訊模式和服務輔助通訊模式"
+ description="Azure IoT 中樞服務概觀：什麼是 IoT 中樞、裝置連線性、物聯網通訊模式和服務輔助通訊模式"
  services="iot-hub"
  documentationCenter=""
  authors="dominicbetts"
@@ -27,7 +27,11 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
 - 可廣泛監視裝置的連線情況和裝置的身分識別管理事件。
 - 包括適用於最受歡迎的語言和平台的裝置程式庫。
 
+[IoT 中樞和事件中樞的比較][lnk-compare]一文描述這兩個服務之間的主要差異，並強調說明在 IoT 解決方案中使用 IoT 中樞的優點。
+
 ![Azure IoT 中樞做為物聯網解決方案中的雲端閘道][img-architecture]
+
+> [AZURE.NOTE] 如需 IoT 架構的深入討論，請參閱 [Microsoft Azure IoT 參考架構][lnk-refarch]。
 
 ## IoT 裝置連線能力面臨的挑戰
 
@@ -47,11 +51,11 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
 
 Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
--   **每一裝置的驗證和安全連線能力**。您可以提供每個裝置獨有的安全性金鑰讓它連線到 IoT 中樞。[IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。解決方案後端可將個別裝置加入白名單或黑名單，以達到完全控制裝置存取權。
+-   **每一裝置的驗證和安全連線能力**。您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。[IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。解決方案後端可將個別裝置加入白名單或黑名單，以達到完全控制裝置存取權。
 
 -   **裝置連線作業的監視**。您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。這可讓 IoT 解決方案輕鬆找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
 
--   **一組廣泛的裝置程式庫**。Azure IoT 裝置 SDK 可供各種語言和平台使用並受其支援：C 表示許多 Linux 散發套件、Windows 和即時作業系統。Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
+-   **一組廣泛的裝置程式庫**。[Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援：C 表示許多 Linux 散發套件、Windows 和即時作業系統。Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 
 -   **IoT 通訊協定和擴充性**。如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。您也可以透過自訂 [Azure IoT 通訊協定閘道器][protocol-gateway]開放原始碼元件，以將 IoT 中樞擴充為支援自訂通訊協定。您可以在雲端或內部部署中執行 Azure IoT 通訊協定閘道器。
 
@@ -64,8 +68,6 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 -   **可靠的雲端到裝置傳訊 (或「命令」)。** 解決方案後端可以使用 IoT 中樞傳送訊息給個別裝置 (含至少一次的傳遞保證)。每個訊息都有個別的存留時間設定，且後端可以要求傳遞和到期的回條。這可確保雲端到裝置訊息之生命週期的完整可見度。您就可以實作包含在裝置上執行之作業的商務邏輯。
 
 利用 IoT 中樞裡的 IoT 特定功能，您也可以實作其他常見的模式，像是上傳和下載檔案。這些功能包括一致的裝置身分識別管理、連線能力監視和調整。
-
-[IoT 中樞和事件中樞的比較][lnk-compare]一文描述這兩個服務之間的主要差異，並強調說明在 IoT 解決方案中使用 IoT 中樞的優點。
 
 ## 閘道
 
@@ -108,8 +110,11 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-gateway]: iot-hub-protocol-gateway.md
 [lnk-field-gateway]: iot-hub-guidance.md#field-gateways
 [lnk-devguide-identityregistry]: iot-hub-devguide.md#identityregistry
+[lnk-devguide-security]: iot-hub-devguide.md#security
 [lnk-wns]: https://msdn.microsoft.com/library/windows/apps/mt187203.aspx
 [lnk-google-messaging]: https://developers.google.com/cloud-messaging/
 [lnk-apple-push]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9
+[lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
+[lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

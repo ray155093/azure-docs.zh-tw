@@ -18,7 +18,7 @@ Blob 服務包含下列元件：
 
 -   **儲存體帳戶：**一律透過儲存體帳戶來存取 Azure 儲存體。如需關於儲存體帳戶容量的詳細資訊，請參閱＜[Azure 儲存體延展性和效能目標](storage-scalability-targets.md)＞(英文)。
 
--   **容器：**容器提供一組 Blob 的群組。所有 Blob 都必須放在容器中。一個帳戶可以包含的容器不限數量。容器可以儲存無限制的 Blob。
+-   **容器：**容器提供一組 Blob 的群組。所有 Blob 都必須放在容器中。一個帳戶可以包含的容器不限數量。容器可以儲存無限制的 Blob。請注意，容器名稱必須是小寫。
 
 -   **Blob：**任何類型和大小的檔案。Azure 儲存體提供三種類型的 Blob：區塊 Blob、分頁 Blob 及附加 Blob。
     
@@ -26,9 +26,9 @@ Blob 服務包含下列元件：
     
 	*分頁 Blob* 大小可達 1 TB，且在頻繁進行讀寫操作時更有效率。Azure 虛擬機器會使用分頁 Blob 作為作業系統和資料磁碟。
 
-	如需關於 Blob 的詳細資訊，請參閱[了解區塊 Blob、附加 Blob 及分頁 Blob](https://msdn.microsoft.com/library/azure/ee691964.aspx)。
+	如需有關命名容器和 Blob 的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](https://msdn.microsoft.com/library/azure/dd135715.aspx)。
 
 
 [Blob1]: ./media/storage-blob-concepts-include/blob1.jpg
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

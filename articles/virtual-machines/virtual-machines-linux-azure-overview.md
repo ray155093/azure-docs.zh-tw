@@ -52,7 +52,7 @@ Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 
 * Dv2 系列是 D 系列的最新版本，其配備有功能更強大的 CPU。Dv2 系列 CPU 比 D 系列 CPU 快約 35%。它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.2 GHz。Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
 * G 系列 VM 提供最大的記憶體，並且是在具有 Intel Xeon E5 V3 系列處理器的主機上執行。
 
-注意：DS 系列和 GS 系列 VM 可存取進階儲存體，這個搭載 SSD 的高效能、低延遲儲存體適合需要進行密集 I/O 工作的工作負載。僅特定地區可用進階儲存體。如需詳細資訊，請參閱**[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage-preview-portal.md)**。
+注意：DS 系列和 GS 系列 VM 可存取進階儲存體，這個搭載 SSD 的高效能、低延遲儲存體適合需要進行密集 I/O 工作的工作負載。僅特定地區可用進階儲存體。如需詳細資訊，請參閱**[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)**。
 
 每個 Azure 訂用帳戶都有預設配額限制，而此限制會在您要部署大量 VM 以供專案使用時造成影響。每一訂用帳戶目前的限制是每一區域 20 個 VM。只要提出支援票證來要求增加限制即可提高此配額限制。如需配額限制的詳細資訊，請參閱 **[Azure 訂用帳戶服務限制](../azure-subscription-service-limits.md)**
 
@@ -60,4 +60,4 @@ Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 
 
 免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶而想要試用看看，請**[安裝 Azure CLI](../xplat-cli-install.md)**。如果您已試用完畢，則請[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

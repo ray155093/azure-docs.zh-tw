@@ -58,7 +58,7 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
-### 使用 Azure 資源管理員工具設定 CORS
+#### 使用 Azure 資源管理員工具設定 CORS
 
 您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)，設定 API 應用程式的 CORS。
 
@@ -261,11 +261,9 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 		namespace ToDoListAPI.Controllers 
 		{
 		    [HttpOperationExceptionFilterAttribute]
-		    [EnableCors(origins:"*", headers:"*", methods: "*")]
+		    [EnableCors(origins:"https://todolistangular0121.azurewebsites.net", headers:"accept,content-type,origin,x-my-header", methods: "get,post")]
 		    public class ToDoListController : ApiController
  
-	> **注意**：請謹慎使用這個屬性。針對所有參數指定萬用字元會向所有來源和所有 HTTP 要求開放 API。此處所示的設定僅供示範之用。
-
 ## 疑難排解
 
 如果您在進行本教學課程時遇到問題，請確定您使用的是最新版 Azure SDK for .NET。若要這麼做，最簡單的方法是[下載 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)；如果您已安裝最新版本，Web Platform Installer 會指出不需要進行安裝。
@@ -283,4 +281,4 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 
 在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。在下一篇 API Apps 入門系列文章中，您將了解 [App Service API 應用程式的驗證](app-service-api-authentication.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

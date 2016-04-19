@@ -25,10 +25,10 @@
 本文是一系列教學課程的第一篇，文章中將會說明如何使用 Azure App Service 中有助於開發和裝載 RESTful API 的功能：
 
 * 整合的 API 中繼資料支援
-* CORS 支援
+* [跨原始資源共用 (CORS)](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) 支援
 * 驗證和授權支援
 
-您將會在 Azure App Service 中把範例應用程式部署到兩個 [API 應用程式](app-service-api-apps-why-best-platform.md)和一個 Web 應用程式。此範例應用程式是個待辦事項清單，具有 AngularJS 單一頁面應用程式 (SPA) 前端、ASP.NET Web API 中介層和 ASP.NET Web API 資料層。
+您將會在 Azure App Service 中把範例應用程式部署到兩個 [API 應用程式](app-service-api-apps-why-best-platform.md)和一個 Web 應用程式。此範例應用程式是個待辦事項清單，具有單一頁面應用程式 (SPA) 前端、ASP.NET Web API 中介層和 ASP.NET Web API 資料層。SPA 前端是以 [AngularJS](https://angularjs.org/) 架構為基礎。
 
 ![API Apps 範例應用程式圖表](./media/app-service-api-dotnet-get-started/noauthdiagram.png)
 
@@ -59,16 +59,7 @@
 
 2. 在 Visual Studio 2015 或 2013 中開啟 ToDoList 解決方案。
 
-	Visual Studio 方案是使用簡單的待辦事項項目的範例應用程式，而這些項目則是由描述和擁有者所組成。
-
-		public class ToDoItem 
-		{ 
-		    public int ID { get; set; } 
-		    public string Description { get; set; } 
-		    public string Owner { get; set; } 
-		} 
- 
-	此方案包含三個專案：
+	Visual Studio 方案是使用簡單的待辦事項項目的範例應用程式，而這些項目則是由描述和擁有者所組成。此方案包含三個專案：
 
 	![](./media/app-service-api-dotnet-get-started/projectsinse.png)
 
@@ -76,23 +67,31 @@
 
 	* **ToDoListAPI** - 中介層：呼叫資料層以對待辦事項項目執行 CRUD 作業的 ASP.NET Web API 專案。
 
-	* **ToDoListDataAPI** - 資料層：對待辦事項項目執行 CRUD 作業的 ASP.NET Web API 專案。待辦事項項目會儲存在記憶體中，這表示每當應用程式重新啟動時，所有變更都會遺失。
+	* **ToDoListDataAPI** - 資料層：對待辦事項項目執行 CRUD 作業的 ASP.NET Web API 專案。
 
-	中介層會在呼叫資料層時，於 `Owner` 欄位中提供使用者識別碼。在您下載的程式碼中，使用者識別碼一律為 "*"。當您在稍後的教學課程中新增驗證時，中介層會對資料層提供實際的使用者識別碼。
+	三層式架構是許多應用程式的典型架構，但不見得適合所有案例。這裡使用這種架構，主要是為了便於示範 API Apps 的功能，而且每一層中的程式碼也已因應此目的而做了簡化。不同於實際應用程式，中介層不會有任何重要的商務邏輯。而且資料層是使用伺服器記憶體而非資料庫來做為其持續性機制，這表示每次重新啟動應用程式時就會遺失所有變更。
 
 2. 建置解決方案以還原 NuGet 封裝。
 
-### 選擇性：在本機執行應用程式
+## 選擇性：在本機執行應用程式
 
 在本節中，您會確認您可以在本機執行用戶端，並可於 API 在本機執行時予以呼叫。
 
 **附註：**因為 Internet Explorer 和 Edge 瀏覽器允許 `http://localhost` URL 所發出或收到的跨原始來源 JavaScript 呼叫，因此這些指示也適用於這些瀏覽器。如果您使用 Chrome，請使用 `--disable-web-security` 參數啟動瀏覽器。如果您使用 Firefox，則請略過本節。
 
-1. 將三個專案全都設定為啟始專案，先起始 ToDoListDataAPI，然後依序是 ToDoListAPI 和 ToDoListAngular (在 [方案總管] 中，以滑鼠右鍵按一下方案，按一下 [屬性]，選取 [多個啟始專案]，以正確順序放置專案，然後將每個專案的 [動作] 設定為 [啟動])。  
+1. 將三個專案全都設定為啟始專案，先起始 ToDoListDataAPI，然後依序是 ToDoListAPI 和 ToDoListAngular
+
+	a.在 [方案總管] 中以滑鼠右鍵按一下方案，然後按一下 [屬性]。
+
+	b.選取 [多個啟始專案]，然後以正確順序放置專案。
+
+	c.將每個專案的 [動作] 設定為 [啟動]。
 
 2. 按 F5 啟動專案。
 
 	三個瀏覽器視窗隨即開啟。有兩個瀏覽器視窗顯示 HTTP 403 錯誤頁面 (不允許瀏覽目錄)，這是對 Web API 專案而言很正常。第三個瀏覽器視窗會顯示 AngularJS UI。
+
+	在某些瀏覽器中，您會看到對話方塊指出專案已設定為使用 SSL。如果您想要
 
 3. 在顯示 AngularJS UI 的瀏覽器視窗中，按一下 [待辦事項清單] 索引標籤。
 
@@ -104,7 +103,7 @@
 
 	您所做的變更會儲存在記憶體中，當您重新啟動應用程式時，這些變更將會遺失。
 
-3. 關閉瀏覽器視窗。
+3. 關閉瀏覽器視窗，並停止 Visual Studio 偵錯。
 
 ## 使用 Swagger 中繼資料和 UI
 
@@ -169,7 +168,7 @@ ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/
 		        "deprecated": false
 		      },
 
-1. 關閉瀏覽器。
+1. 關閉瀏覽器，並停止 Visual Studio 偵錯。
 
 3. 在 [方案總管] 的 ToDoListDataAPI 專案中，開啟 App\_Start\\SwaggerConfig.cs 檔案，然後向下捲動至下列程式碼並予以取消註解。
 
@@ -195,6 +194,8 @@ ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/
 
 6. 輸入星號來做為 `owner` 參數的值，然後按一下 [立即試用]。
 
+	當您在稍後的教學課程中新增驗證時，中介層會對資料層提供實際的使用者識別碼。現在，當應用程式在未啟用驗證的狀態下執行時，所有工作皆會以星號做為其擁有者識別碼。
+
 	![Swagger UI 試用](./media/app-service-api-dotnet-get-started/gettryitout1.png)
 
 	Swagger UI 會呼叫 ToDoList Get 方法並顯示回應碼和 JSON 結果。
@@ -207,7 +208,7 @@ ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/
 
 	![Swagger UI 試用文章](./media/app-service-api-dotnet-get-started/post.png)
 
-7. 在 `contact` 參數輸入方塊中變更 JSON，讓它看起來如同下列範例，或以您自己的描述文字替代：
+7. 在 `todo` 參數輸入方塊中變更 JSON，讓它看起來如同下列範例，或以您自己的描述文字替代：
 
 		{
 		  "ID": 2,
@@ -225,7 +226,7 @@ ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/
 
 12. 也請試用 Put、Delete 和 Get by ID方法。
 
-14. 關閉瀏覽器。
+14. 關閉瀏覽器，並停止 Visual Studio 偵錯。
 
 Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagger 中繼資料產生新增至現有的專案，只需安裝 Swashbuckle 封裝。
 
@@ -255,7 +256,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	![[App Service] 對話方塊中的應用程式類型](./media/app-service-api-dotnet-get-started/apptype.png)
 
-	<a id="apptype"></a> 應用程式類型並不會決定可供新的 API 應用程式、Web 應用程式或行動應用程式使用的功能。這些教學課程中顯示的所有 API 應用程式功能可供上述三種類型使用。唯一的差別在於 Azure 入口網站為了識別應用程式類型而顯示的圖示和文字，以及功能列在入口網站中某些頁面上的順序。您稍後將在本教學課程中看見 Azure 入口網站；這是用來管理 Azure 資源的 Web 介面。
+	應用程式類型並不會決定可供新的 API 應用程式、Web 應用程式或行動應用程式使用的功能。這些教學課程中顯示的所有 API 應用程式功能可供上述三種類型使用。唯一的差別在於 Azure 入口網站為了識別應用程式類型而顯示的圖示和文字，以及功能列在入口網站中某些頁面上的順序。您稍後將在本教學課程中看見 Azure 入口網站；這是用來管理 Azure 資源的 Web 介面。
 
 	在這些教學課程中，SPA 前端正在 Web 應用程式中執行，而每個 Web API 後端正在 API 應用程式中執行，但如果三個項目都是 Web 應用程式或者都是 API 應用程式，則所有項目的運作方式都相同。此外，單一 API 應用程式或 Web 應用程式都可以裝載 SPA 前端和中間層後端。
 
@@ -299,19 +300,19 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	![在 [建立 App Service] 對話方塊中按一下 [建立]](./media/app-service-api-dotnet-get-started/clickcreate.png)
 
-	Visual Studio 會建立 API 應用程式。
+	Visual Studio 會建立 API 應用程式，以及具有 API 應用程式所有必要設定的發佈設定檔。然後它會開啟 [發佈 Web] 精靈以供您部署專案。
 
 	**注意：**有其他方法可在 Azure App Service 中建立 API 應用程式。例如，在 Visual Studio 中，當您建立新的專案時，您可以為其建立 Azure 資源，方法就如同您剛才看到的現有專案。您也可以使用 [Azure 入口網站](https://portal.azure.com/)、[適用於 Windows PowerShell 的 Azure Cmdlet](../powershell-install-configure.md) 或[跨平台命令列介面](../xplat-cli.md)來建立 API 應用程式。
 
-	當 Visual Studio 完成 API 應用程式建立時，它會建立發佈設定檔，其中包含新 API 應用程式所需的所有設定。在下列步驟中，您可以使用新的發佈設定檔來部署專案。
+	[發佈 Web] 精靈會開啟在 [連線] 索引標籤 (如下所示)。
 
-8. 在 [發佈 Web] 精靈的 [連接] 索引標籤中，按 [下一步]。
+	在 [連線] 索引標籤上，[伺服器] 和 [網站名稱] 設定會指向您的 API 應用程式。[使用者名稱] 和 [密碼] 是 Azure 為您建立的部署認證。在部署之後，Visual Studio 會將瀏覽器開啟到 [目的地 URL] (這是 [目的地 URL] 的唯一目的)。
 
-	您可以改為繼續進行並馬上按一下 [發佈]，立即將此專案部署至新的 API 應用程式，但是在本教學課程中，您將會歷經此對話方塊的其他索引標籤，了解可在其中執行哪些操作。
+8. 按 [下一步]。
 
 	![在 [發佈 Web] 的 [連線] 索引標籤中按 [下一步]](./media/app-service-api-dotnet-get-started/connnext.png)
 
-	下一個索引標籤是 [設定] 索引標籤。您可以在此變更組建組態索引標籤，以部署用於[遠端偵錯](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)的偵錯組建。此索引標籤也會提供數個 [檔案發佈選項]：
+	下一個索引標籤是 [設定] 索引標籤 (如下所示)。您可以在此變更組建組態索引標籤，以部署用於[遠端偵錯](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)的偵錯組建。此索引標籤也會提供數個 [檔案發佈選項]：
 
 	* 在目的地移除多餘的檔案
 	* 在發行期間預先編譯
@@ -323,7 +324,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	![在 [發佈 Web] 的 [設定] 索引標籤中按 [下一步]](./media/app-service-api-dotnet-get-started/settingsnext.png)
 
-	[預覽] 索引標籤讓您有機會查看哪些檔案即將從您的專案複製到 API 應用程式。當您將專案部署至您先前已部署至的 API 應用程式時，只會複製已變更的檔案。如果您想要查看即將複製的項目清單，可以按一下 [開始預覽] 按鈕。
+	接下來是 [預覽] 索引標籤 (如下所示)，它能讓您有機會查看哪些檔案即將從您的專案複製到 API 應用程式。當您將專案部署至您先前已部署至的 API 應用程式時，只會複製已變更的檔案。如果您想要查看即將複製的項目清單，可以按一下 [開始預覽] 按鈕。
 
 15. 按一下 [發行]。
 
@@ -351,7 +352,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	![[應用程式服務] 刀鋒視窗](./media/app-service-api-dotnet-get-started/choosenewapiappinportal.png)
 
-	有兩個刀鋒視窗會開啟，其中一個包含 API 應用程式的概觀，另一個包含您可以檢視和變更的一長串設定。
+	有兩個刀鋒視窗會開啟。其中一個包含 API 應用程式的概觀，另一個包含您可以檢視和變更的一長串設定。
 
 16. 在 [設定] 刀鋒視窗中，尋找 [API] 區段並按一下 [API 定義]。
 
@@ -411,23 +412,33 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但是您要將其刪除�
 
 	下列程式碼片段示範此程式碼如何具現化用戶端物件和呼叫 Get 方法。
 
-		private ToDoListDataAPI db = new ToDoListDataAPI(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
-		
-		public ActionResult Index()
+		private static ToDoListDataAPI NewDataAPIClient()
 		{
-		    return View(db.Contacts.Get());
+		    var client = new ToDoListDataAPI(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
+		    return client;
+		}
+		
+		public async Task<IEnumerable<ToDoItem>> Get()
+		{
+		    using (var client = NewDataAPIClient())
+		    {
+		        var results = await client.ToDoList.GetByOwnerAsync(owner);
+		        return results.Select(m => new ToDoItem
+		        {
+		            Description = m.Description,
+		            ID = (int)m.ID,
+		            Owner = m.Owner
+		        });
+		    }
 		}
 
 	建構函式參數會從 `toDoListDataAPIURL` 應用程式設定取得端點 URL。在 Web.config 檔案中，該值設為 API 專案的本機 IIS Express URL，以便讓您在本機執行應用程式。如果您省略建構函式參數，預設端點會是您產生程式碼的 URL。
 
 6. 將會根據您的 API 應用程式名稱，以不同的名稱產生您的用戶端類別；在 Controllers\\ToDoListController.cs 中變更此程式碼，讓類型名稱符合您的專案中產生的內容。例如，如果您將 API 應用程式命名為 ToDoListDataAPI0121，程式碼看起來會像下面的範例：
 
-		private ToDoListDataAPI0121 db = new ToDoListDataAPI0121(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
-		
-		public ActionResult Index()
+		private static ToDoListDataAPI0121 NewDataAPIClient()
 		{
-		    return View(db.Contacts.Get());
-		}
+		    var client = new ToDoListDataAPI0121(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
 
 ### 建立 API 應用程式來裝載中間層
 
@@ -496,30 +507,6 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但是您要將其刪除�
 
 [Azure API 應用程式] 專案範本等同於選擇 [空白] ASP.NET 4.5.2 範本、按一下核取方塊以加入 Web API 支援，然後安裝 Swashbuckle 封裝。此外，範本會加入為了避免建立重複的 Swagger 作業識別碼而設計的某些 Swashbuckle 組態程式碼。
 
-## 選擇性：變更應用程式類型
-
-如[稍早](#apptype)所述，API 應用程式、Web 應用程式和行動應用程式之間的唯一差異是在入口網站中的表示方式。因為它們都有相同的功能，所以不需要變更應用程式類型。
-
-不過，如果您想要變更入口網站表示方式，方法很簡單。比方說，您可以執行下列步驟，將您剛才建立的其中一個 API 應用程式變更為 Web 應用程式。
-
-1. 開啟 [[資源總管](https://resources.azure.com/)]。
-
-2. 在左導覽窗格中，展開 [訂用帳戶]，然後展開您先前使用的訂用帳戶。
-
-4. 展開 **resourceGroups**，然後展開您先前使用的資源群組。
-
-5. 依序展開 **Microsoft.Web**、**sites**，然後選取您要變更的 API 應用程式。
-
-6. 按一下 [編輯]。
-
-8. 尋找 `kind` 屬性，然後將它從 "api" 變更為 "WebApp"。
-
-	![App Service 執行個體的種類屬性](./media/app-service-api-dotnet-get-started/resexp.png)
-
-9. 按一下 [放置]。
-
-10. 移至 Azure 入口網站，您會看到圖示已變更以反映新的應用程式類型。
-
 ## 選擇性： Azure Resource Manager 範本中的 API 定義 URL
 
 在本教學課程中，您已了解 Visual Studio 和 Azure 入口網站中的 API 定義 URL。您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的 [範Azure Resource Manager 範本](../resource-group-authoring-templates.md)，設定 API 應用程式的 API 定義 URL。
@@ -536,10 +523,12 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但是您要將其刪除�
 
 如果您位於公司網路內，並嘗試透過防火牆部署至 Azure App Service，請確定連接埠 443 和 8172 已針對 Web Deploy 開啟。如果您無法開啟這些連接埠，請參閱下面的＜後續步驟＞一節以了解其他部署選項。
 
+如果您不小心將錯誤的專案部署到 API 應用程式，稍後再將正確的專案部署到其中，您可能會看到「路由名稱必須是唯一的」錯誤。若要修正此問題，請將專案重新部署至 API 應用程式，然後在 [發佈 Web] 精靈的 [設定] 索引標籤上選取 [在目的地移除多餘的檔案]。
+
 在 Azure App Service 中執行 ASP.NET API 應用程式之後，建議您深入了解可簡化疑難排解步驟的 Visual Studio 功能。如需記錄和遠端偵錯等功能的相關資訊，請參閱[在 Visual Studio 中針對 Azure App Service 應用程式進行疑難排解](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)。
 
 ## 後續步驟
 
 在本教學課程中，您已了解如何建立 API 應用程式、對其部署程式碼、為其產生用戶端程式碼，以及從 .NET 用戶端取用應用程式。API Apps 入門系列中的下一個教學課程示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

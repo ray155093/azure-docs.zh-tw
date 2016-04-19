@@ -68,4 +68,8 @@ Azure Functions 支援各種與 Azure 和第三方服務的整合。您可以利
 
 **傳統 App Service 方案**可讓您如同 Web、行動及 API 應用程式一樣執行函式。如果您已準備對其他應用程式使用 App Service，這是絕佳的解決方案 - 您的函式可以在相同方案上執行，不會產生額外的費用。如需完整的詳細資訊，請參閱 [App Service 價格](/pricing/details/app-service/)頁面。
 
-<!---HONumber=AcomDC_0406_2016-->
+## 報告問題
+
+[AZURE.INCLUDE [報告問題](../../includes/functions-reporting-issues.md)]
+
+<!---HONumber=AcomDC_0413_2016-->

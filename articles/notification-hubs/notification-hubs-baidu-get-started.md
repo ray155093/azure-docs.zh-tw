@@ -39,7 +39,7 @@
 
 若要使用百度，您必須有百度帳戶。如果您已經有帳戶，請登入[百度入口網站]，並略過下一個步驟。否則請參閱下列指示建立百度帳戶。
 
-1. 移至[百度入口網站]，然後按一下 [登录] \(**登入**) 連結。按一下 [立即注册] 以開始帳戶註冊程序。
+1. 移至[百度入口網站]，然後按一下 [登录] (**登入**) 連結。按一下 [立即注册] 以開始帳戶註冊程序。
 
    	![][1]
 
@@ -59,23 +59,23 @@
 
 ##註冊為百度開發人員
 
-1. 登入[百度入口網站]之後，按一下 [更多>>] \(**更多**)。
+1. 登入[百度入口網站]之後，按一下 [更多>>] (**更多**)。
 
   	![][5]
 
-2. 向下捲動至 [站长与开发者服务] **(網站管理員和開發人員服務)** 區段，然後按一下 [百度开放云平台] \(**百度開放雲平台**)。
+2. 向下捲動至 [站长与开发者服务] **(網站管理員和開發人員服務)** 區段，然後按一下 [百度开放云平台] (**百度開放雲平台**)。
 
   	![][6]
 
-3. 在下一個頁面中，按一下右上角的 [开发者服务] \(**開發人員服務**)。
+3. 在下一個頁面中，按一下右上角的 [开发者服务] (**開發人員服務**)。
 
   	![][7]
 
-4. 在下一個頁面中，按一下右上角功能表中的 [注册开发者]\(**已註冊的開發人員**)。
+4. 在下一個頁面中，按一下右上角功能表中的 [注册开发者] (**已註冊的開發人員**)。
 
   	![][8]
 
-5. 輸入您的名稱、描述和可收到驗證簡訊的行動電話號碼，然後按一下 [送验证码] \(**傳送驗證碼**)。請注意，如果是國際電話號碼，您需要使用括號括住國碼。例如，如果是美國的電話號碼，就會是 **(1)1234567890**。
+5. 輸入您的名稱、描述和可收到驗證簡訊的行動電話號碼，然後按一下 [送验证码] (**傳送驗證碼**)。請注意，如果是國際電話號碼，您需要使用括號括住國碼。例如，如果是美國的電話號碼，就會是 **(1)1234567890**。
 
   	![][9]
 
@@ -83,9 +83,9 @@
 
   	![][10]
 
-7. 請在 [验证码] \(**確認碼**) 中輸入訊息內的驗證號碼。
+7. 請在 [验证码] (**確認碼**) 中輸入訊息內的驗證號碼。
 
-8. 最後，接受百度合約並按一下 [提交] \(**提交**) 之後，即可完成開發人員註冊。成功完成註冊，您會看到下列頁面：
+8. 最後，接受百度合約並按一下 [提交] (**提交**) 之後，即可完成開發人員註冊。成功完成註冊，您會看到下列頁面：
 
   	![][11]
 
@@ -93,31 +93,31 @@
 
 建立百度雲端推播專案時，您會收到應用程式識別碼、API 金鑰和秘密金鑰。
 
-1. 登入[百度入口網站]之後，按一下 [更多>>] \(**更多**)。
+1. 登入[百度入口網站]之後，按一下 [更多>>] (**更多**)。
 
   	![][5]
 
-2. 向下捲動至 [站长与开发者服务] \(**網站管理員和開發人員服務**) 區段，然後按一下 [百度开放云平台] \(**百度開放雲平台**)。
+2. 向下捲動至 [站长与开发者服务] (**網站管理員和開發人員服務**) 區段，然後按一下 [百度开放云平台] (**百度開放雲平台**)。
 
   	![][6]
 
-3. 在下一個頁面中，按一下右上角的 [开发者服务] \(**開發人員服務**)。
+3. 在下一個頁面中，按一下右上角的 [开发者服务] (**開發人員服務**)。
 
   	![][7]
 
-4. 在下一個頁面中，按一下**云服务** (**雲端服務**) 區段中的 [云推播]\(**雲端推播**)。
+4. 在下一個頁面中，按一下**云服务** (**雲端服務**) 區段中的 [云推播] (**雲端推播**)。
 
   	![][12]
 
-5. 成為已註冊開發人員之後，您會在最上方的功能表看到 [管理控制台] \(**管理主控台**)。按一下 [开发者服务管理] \(**開發人員服務管理**)。
+5. 成為已註冊開發人員之後，您會在最上方的功能表看到 [管理控制台] (**管理主控台**)。按一下 [开发者服务管理] (**開發人員服務管理**)。
 
   	![][13]
 
-6. 在下一個頁面中，按一下 [创建工程] \(**建立專案**)。
+6. 在下一個頁面中，按一下 [创建工程] (**建立專案**)。
 
   	![][14]
 
-7. 輸入應用程式名稱，然後按一下 [创建] \(**建立**)。
+7. 輸入應用程式名稱，然後按一下 [创建] (**建立**)。
 
   	![][15]
 
@@ -125,19 +125,19 @@
 
   	![][16]
 
-9. 按一下左窗格中的 [云推送] \(**雲端推播**)，設定專案的推播通知。
+9. 按一下左窗格中的 [云推送] (**雲端推播**)，設定專案的推播通知。
 
   	![][31]
 
-10. 在下一個頁面中，按一下 [推送设置] \(**推播設定**) 按鈕。
+10. 在下一個頁面中，按一下 [推送设置] (**推播設定**) 按鈕。
 
 	![][32]
 
-11. 在組態頁面中，在 [应用包名] \(**應用程式封裝**) 欄位新增要用於 Android 專案中的封裝名稱，然後按一下 [保存设置] \(**儲存**)。
+11. 在組態頁面中，在 [应用包名] (**應用程式封裝**) 欄位新增要用於 Android 專案中的封裝名稱，然後按一下 [保存设置] (**儲存**)。
 
 	![][33]
 
-您會看到 [保存成功！] \(**儲存成功！**) 的訊息。
+您會看到 [保存成功！] (**儲存成功！**) 的訊息。
 
 ##設定您的通知中樞
 
@@ -373,15 +373,15 @@
 		    @Override
 		    public void onNotificationClicked(Context context, String title,
 		            String description, String customContentString) {
-		        String notifyString = "title=\"" + title + "\" description=\""
-		                + description + "\" customContent=" + customContentString;
+		        String notifyString = "title="" + title + "" description=""
+		                + description + "" customContent=" + customContentString;
 		        Log.d(TAG, notifyString);
 		    }
 
 		    @Override
 		    public void onMessage(Context context, String message,
 		            String customContentString) {
-		        String messageString = "message=\"" + message + "\" customContentString=" + customContentString;
+		        String messageString = "message="" + message + "" customContentString=" + customContentString;
 		        Log.d(TAG, messageString);
 		    }
 		}
@@ -413,9 +413,9 @@
 
 * **Node.js**：[如何從 Node.js 使用通知中樞](notification-hubs-nodejs-how-to-use-notification-hubs.md)。
 
-* **Azure 行動服務**︰如需從整合通知中樞之 Azure 行動服務後端傳送通知的範例，請參閱＜開始在行動服務中使用推播通知＞([.NET 後端](../mobile-services/mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md) | [JavaScript 後端](../mobile-services/mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md))。
+* **Azure 行動服務**：如需如何從已與通知中樞整合的 Azure 行動服務後端傳送通知的範例，請參閱[將推播通知新增至行動服務應用程式](../mobile-services/mobile-services-javascript-backend-windows-universal-dotnet-get-started-push.md)。
 
-* **Java / PHP**︰如需使用 REST API 傳送通知的範例，請參閱＜如何從 Java/PHP 使用通知中樞＞([Java](notification-hubs-java-backend-how-to.md) | [PHP](notification-hubs-php-backend-how-to.md))。
+* **Java/PHP**︰如需使用 REST API 傳送通知的範例，請參閱＜如何從 Java/PHP 使用通知中樞＞([Java](notification-hubs-java-backend-how-to.md) | [PHP](notification-hubs-php-backend-how-to.md))。
 
 ##(選擇性) 從 .NET 主控台應用程式傳送通知。
 
@@ -442,7 +442,7 @@
 		private static async void SendNotificationAsync()
 		{
 			NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("DefaultFullSharedAccessSignatureSASConnectionString", "NotificationHubName");
-			string message = "{\"title\":\"((Notification title))\",\"description\":\"Hello from Azure\"}";
+			string message = "{"title":"((Notification title))","description":"Hello from Azure"}";
 			var result = await hub.SendBaiduNativeNotificationAsync(message);
 		}
 
@@ -503,4 +503,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [百度入口網站]: http://www.baidu.com/
 
-<!-------HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

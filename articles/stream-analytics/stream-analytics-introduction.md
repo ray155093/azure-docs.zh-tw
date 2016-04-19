@@ -40,7 +40,7 @@ Azure 串流分析 (ASA) 是完全受管理、符合成本效益的即時事件�
 
 -   **參考資料：**串流分析可讓使用者指定及使用參考資料。這可能是歷史資料，或只是變動頻率較低的非串流資料。系統可以簡化參考資料的使用，使資料被視為任何其他要與即時擷取的其他事件資料流聯結以執行轉換的傳入事件資料流。
 
--   **連接性：**串流分析會直接連接到 Azure 事件中樞進行資料流擷取，並連接到 Azure Blob 服務以取得歷史資料。結果可以從串流分析寫入到 Azure 儲存體 Blob 或資料表、Azure SQL DB、事件中樞、Azure 服務匯流排主題或佇列以及 Power BI，它可在其中視覺化、由工作流程進一步處理、透過 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/) 在批次分析中使用，或以一系列事件的方式再次處理。使用事件中樞時，您可以將多個串流分析與其他資料來源和處理引擎組合在一起，而不會失去計算的串流本質。
+-   **連接性：**串流分析會直接連接到 Azure 事件中樞和 Azure IOT 中樞進行串流擷取，並連接到 Azure Blob 服務以取得歷史資料。結果可以從串流分析寫入到 Azure 儲存體 Blob 或資料表、Azure SQL DB、事件中樞、Azure 服務匯流排主題或佇列以及 Power BI，它可在其中視覺化、由工作流程進一步處理、透過 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/) 在批次分析中使用，或以一系列事件的方式再次處理。使用事件中樞時，您可以將多個串流分析與其他資料來源和處理引擎組合在一起，而不會失去計算的串流本質。
 
 ## 取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics)
@@ -53,4 +53,4 @@ Azure 串流分析 (ASA) 是完全受管理、符合成本效益的即時事件�
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0413_2016-->

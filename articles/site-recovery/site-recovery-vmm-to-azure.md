@@ -21,7 +21,7 @@
 > [AZURE.SELECTOR]
 - [Azure 傳統入口網站](site-recovery-vmm-to-azure.md)
 - [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
-- [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md) 
+- [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md)
 
 
 Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。機器可以複寫至 Azure，或次要的內部部署資料中心。如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)。
@@ -48,9 +48,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 **必要條件** | **詳細資料**
 --- | ---
-**Azure 帳戶**| 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。 
+**Azure 帳戶**| 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。
 **Azure 儲存體** | 您需要 Azure 儲存體帳戶來儲存複寫的資料。複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。<br/><br/>您需要[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。此帳戶應與 Site Recovery 服務位於相同的區域，且與相同的訂用帳戶相關聯。請注意，複寫到進階儲存體帳戶目前不支援，不應該使用。<br/><br/>[閱讀](../storage/storage-introduction.md) Azure 儲存體。
-**Azure 網路** | 容錯移轉發生時，您需要 Azure VM 會連接的 Azure 虛擬網路。Azure 虛擬網路必須位於與 Site Recovery 保存庫相同的區域中。 
+**Azure 網路** | 容錯移轉發生時，您需要 Azure VM 會連接的 Azure 虛擬網路。Azure 虛擬網路必須位於與 Site Recovery 保存庫相同的區域中。
 
 ## 內部部署必要條件
 
@@ -113,17 +113,18 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 ## 步驟 3：安裝 Azure Site Recovery 提供者
 
 1. 在 [快速啟動] 中，按一下 [準備 VMM 伺服器] 中的 [下載要在 VMM 伺服器上安裝的 Microsoft Azure Site Recovery 提供者]，以取得最新版的提供者安裝檔案。
-2. 在來源 VMM 伺服器上執行此檔案。如果 VMM 部署在叢集中，且您是第一次安裝提供者，請將其安裝在作用中節點上，並完成安裝以在保存庫中註冊 VMM 伺服器。然後在其他節點上安裝提供者。請注意，如果您要升級提供者，您必須在所有節點上升級，因為它們都應該執行相同的提供者版本。
-3. 安裝程式會執行一些先決條件檢查，並要求停止 VMM 服務的權限，以便開始安裝提供者。當安裝完成之後，VMM 服務將會自動重新啟動。如果您安裝在 VMM 叢集上，您會收到停止叢集角色的提示。
+2. 在來源 VMM 伺服器上執行此檔案。
 
-	![必要條件](./media/site-recovery-vmm-to-azure/prereq.png)
+	>[AZURE.NOTE] 如果 VMM 部署在叢集中，且您是第一次安裝提供者，請將其安裝在作用中節點上，並完成安裝以在保存庫中註冊 VMM 伺服器。然後在其他節點上安裝提供者。請注意，如果您要升級提供者，您必須在所有節點上升級，因為它們都應該執行相同的提供者版本。
+	
+3. 安裝程式會執行一些先決條件檢查，並要求停止 VMM 服務的權限，以便開始安裝提供者。當安裝完成之後，VMM 服務將會自動重新啟動。如果您安裝在 VMM 叢集上，您會收到停止叢集角色的提示。
 
 4. 在 [Microsoft Update] 中，您可以選擇加入以取得更新。啟用這項設定時，會根據您的 Microsoft Update 原則來安裝提供者更新。
 
 	![Microsoft Update](./media/site-recovery-vmm-to-azure/updates.png)
 
 
-5.  提供者的安裝位置已設為 **<SystemDrive>\\Program Files\\Microsoft System Center 2012 R2\\Virtual Machine Manager\\bin**。按一下 [安裝]。
+5.  提供者的安裝位置已設為 **<SystemDrive>\\Program Files\\Microsoft System Center 2012 R2\\Virtual Machine Manager\\bin**。按一下 [Install]。
 
 	![InstallLocation](./media/site-recovery-vmm-to-azure/install-location.png)
 
@@ -138,17 +139,17 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 	- 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。當您進行自訂 proxy 設定時，會執行一項測試以檢查 proxy 連線。
 	- 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您必須輸入 proxy 詳細資料，包含 proxy 位址和連接埠。
 	- 下列 URL 應可從 VMM 伺服器和 Hyper-V 主機存取
-		- *.hypervrecoverymanager.windowsazure.com
-		- *.accesscontrol.windows.net
-		- *.backup.windowsazure.com
-		- *.blob.core.windows.net
-		- *.store.core.windows.net
-	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您也應該將打算使用以及美國西部之 Azure 區域的 IP 範圍設為白名單。
+		- **.hypervrecoverymanager.windowsazure.com
+- **.accesscontrol.windows.net
+- **.backup.windowsazure.com
+- **.blob.core.windows.net
+- **.store.core.windows.net
+- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您也應該將打算使用以及美國西部之 Azure 區域的 IP 範圍設為白名單。
 
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
 
 8. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
-9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。 
+9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。
 
 	![伺服器註冊](./media/site-recovery-vmm-to-azure/credentials.png)
 
@@ -217,15 +218,15 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 4. 在 [安裝設定] 頁面上，指定您要安裝代理程式的位置，並選取將在其中安裝備份中繼資料的快取位置。然後按一下 [安裝]。
 5. 安裝完成之後，按一下 [關閉] 來完成精靈。
-	
+
 	![註冊 MARS 代理程式](./media/site-recovery-vmm-to-azure/agent-register.png)
 
-### 命令列安裝 
+### 命令列安裝
 
 您也可以使用下列命令，從命令列安裝 Microsoft Azure 復原服務代理程式：
 
     marsagentinstaller.exe /q /nu
-	
+
 ## 步驟 6：設定雲端保護設定
 
 註冊 VMM 伺服器之後，您就可以設定雲端保護設定。當您安裝提供者之後，即可啟用 [將雲端資料與保存庫同步] 選項，如此一來，VMM 伺服器上的所有雲端將會出現在保存庫的 [受保護的項目]<b></b> 索引標籤中。
@@ -281,7 +282,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![啟用虛擬機器保護](./media/site-recovery-vmm-to-azure/select-vm.png)
 
-	您可以在 [作業] 索引標籤中追蹤 [啟用保護] 動作的進度，包括初始複寫。執行 [完成保護] 作業之後，虛擬機器即準備好進行容錯移轉。啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
+	您可以在 [作業] 索引標籤中追蹤 [啟用保護] 動作的進度，包括初始複寫。執行「完成保護」作業之後，虛擬機器即準備好進行容錯移轉。啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
 
 
 	![虛擬機器保護工作](./media/site-recovery-vmm-to-azure/vm-jobs.png)
@@ -320,6 +321,8 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 - 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。
 - 容錯移轉之後，您將透過遠端桌面使用公用 IP 位址連接到 Azure 中的虛擬機器。如果想要這樣做，請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。
 
+>[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。Linux 代理程式可在[這裡](https://github.com/Azure/WALinuxAgent)找到，而 Windows 代理程式可在 [這裡](http://go.microsoft.com/fwlink/?LinkID=394789) 找到
+
 ### 建立復原計畫
 
 1. 在 [復原方案] 索引標籤上，增加一個新方案。指定一個名稱、在 [來源類型] 中指定 [VMM]、在 [來源] 中指定來源 VMM 伺服器，則目標將會是 Azure。
@@ -329,7 +332,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 2. 在 [選取虛擬機器] 頁面上，選取要新增到復原方案的虛擬機器。這些虛擬機器將新增到復原計畫的預設群組—群組 1。最多 100 部虛擬機器已在單一復原計畫中經過測試。
 
 	- 如果您將虛擬機器屬性加入計畫之前，想要確認這些屬性，請按一下屬性所在之雲端的屬性頁面上的虛擬機器。您也可以在 VMM 主控台中設定虛擬機器屬性。
-	- 顯示的所有虛擬機器已啟用保護。此清單包含啟用保護並已完成初始複寫的虛擬機器，以及利用初始複寫擱置啟用保護的虛擬機器。只有已完成初始複寫的虛擬機器可做為復原計畫的一部分進行容錯移轉。 
+	- 顯示的所有虛擬機器已啟用保護。此清單包含啟用保護並已完成初始複寫的虛擬機器，以及利用初始複寫擱置啟用保護的虛擬機器。只有已完成初始複寫的虛擬機器可做為復原計畫的一部分進行容錯移轉。
 
 
 	![建立復原計畫](./media/site-recovery-vmm-to-azure/select-rp.png)
@@ -355,7 +358,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![沒有網路](./media/site-recovery-vmm-to-azure/test-no-network.png)
 
-3. 如果已啟用雲端的資料加密，當您開啟選項以啟用雲端的資料加密時，請在 [加密金鑰] 中選取在 VMM 伺服器上安裝提供者時發出的憑證。
+3. 如果已啟用雲端的資料加密，當您開啟選項以啟用雲端的資料加密時，請在 [**加密金鑰**] 中選取在 VMM 伺服器上安裝提供者時發出的憑證。
 4. 在 [工作] 索引標籤上，您可以追蹤容錯移轉進度。您應該可以在 Azure 入口網站中看到該虛擬機器測試複本。如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
 5. 當容錯移轉到達 [完成測試] 階段時，請按一下 [完成測試] 以完成測試容錯移轉。您可以向下切入到 [工作] 索引標籤，來追蹤容錯移轉進度和狀態，並執行任何所需的動作。
 6. 在容錯移轉之後，您將可以在 Azure 入口網站中看到該虛擬機器測試複本。如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。執行下列動作：
@@ -372,4 +375,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 深入了解[設定復原計劃](site-recovery-create-recovery-plans.md)和[容錯移轉](site-recovery-failover.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

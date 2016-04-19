@@ -5,8 +5,8 @@
 	keywords="連接到 sql, 將資料匯入 Excel"
 	documentationCenter=""
 	authors="joseidz"
-	manager="jeffreyg"
-	editor="jeffreyg"/>
+	manager="jhubbard"
+	editor=""/>
 
 
 <tags
@@ -83,4 +83,4 @@
 - 了解[彈性集區](sql-database-elastic-pool.md)的優點。
 - 了解如何[建立 Web 應用程式以連接到後端的 SQL Database](../app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

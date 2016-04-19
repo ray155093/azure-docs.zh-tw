@@ -4,8 +4,8 @@
 	services="sql-database, virtual-machines"
 	keywords="SQL Server 雲端, 雲端中的 SQL Server, PaaS 資料庫, 雲端 SQL Server, DBaaS"
 	documentationCenter=""
-	authors="jeffgoll"
-	manager="jeffreyg"
+	authors="carlrabeler"
+	manager="jhubbard"
 	editor="cjgronlund"/>
 
 <tags
@@ -15,7 +15,7 @@
 	ms.devlang="na"
 	ms.topic="get-started-article"
 	ms.date="03/25/2016"
-	ms.author="jeffreyg"/>
+	ms.author="carlrab"/>
 
 # 選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)
 
@@ -105,7 +105,7 @@ Azure 有兩個選項可在雲端主控 SQL Server 工作負載：
 <tr>
    <td valign="middle"><p><b>業務持續性</b></p></td>
    <td valign="middle"><ul><li type=round>除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如時間點還原時間、地理還原和地理複寫。如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。</ul></td>
-   <td valign="middle"><ul><li type=round>Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您的資料庫特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器上 SQL Sever 的高可用性和災害復原](../virtual-machines/virtual-machines-windows-classic-sql-dr.md)。</ul></td>
+   <td valign="middle"><ul><li type=round>Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您的資料庫特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器上 SQL Sever 的高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。</ul></td>
 
 </tr>
 <tr>
@@ -113,7 +113,7 @@ Azure 有兩個選項可在雲端主控 SQL Server 工作負載：
    <td valign="middle"><ul><li type=round>您的內部部署應用程式可以存取 Azure SQL Database 中的資料。</ul></td>
    <td valign="middle"><ul>
       <li type=round>有了 Azure VN 上的 SQL Server，您的應用程式可以部分在雲端中執行和部分在內部部署中執行。例如，您可以透過 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md) 將內部部署網路和 Active Directory 網域延伸到雲端。此外，您可以使用 [Azure 中的 SQL Server 資料檔案](http://msdn.microsoft.com/library/dn385720.aspx)，將內部部署資料檔案儲存在 Azure 儲存體中。如需詳細資訊，請參閱 [SQL Server 2014 混合式雲端簡介](http://msdn.microsoft.com/library/dn606154.aspx)。
-      <li type=round>支援使用 [使用 Azure Blob 儲存體進行 SQL Server 備份和還原](http://msdn.microsoft.com/library/jj919148.aspx) 或 [Azure VM 中的 AlwaysOn 複本](../virtual-machines/virtual-machines-windows-classic-sql-dr.md) 進行內部部署 SQL Server 應用程式的災害復原。
+      <li type=round>支援使用 [使用 Azure Blob 儲存體進行 SQL Server 備份和還原](http://msdn.microsoft.com/library/jj919148.aspx) 或 [Azure VM 中的 AlwaysOn 複本](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md) 進行內部部署 SQL Server 應用程式的災害復原。
       </ul></td>
 
 </tr>
@@ -175,7 +175,7 @@ Azure 有兩個選項可在雲端主控 SQL Server 工作負載：
 
 當開發人員生產力和快速產品上市時間為關鍵所在時，**SQL Database** 是雲端式設計應用程式的理想解決方案。有了程式設計 DBA 類似功能，此選項非常適合雲端架構設計人員和開發人員，因為它會降低管理基礎作業系統和資料庫的需求。例如，您可以使用 [REST API](http://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn546726.aspx) 來自動化及管理數千個資料庫的管理作業。[彈性資料庫集區](sql-database-elastic-pool.md)等功能可讓您將重點放在應用程式層，並且更快速地讓解決方案上市。
 
-如果現有或新的應用程式需要存取與控制 SQL Server 執行個體的所有功能，**Azure VM 上執行的 SQL Server** 會是理想選項。這也很適合於想要依現狀將現有的內部部署應用程式和資料庫移轉至 Azure。由於您無需變更簡報、應用程式和資料層，您會在重新架構現有解決方案時節省時間和預算。相反地，您可以將重點放在將所有解決方案移轉至 Azure，並進行 Azure 平台可能需要的某些效能最佳化作業。如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](../virtual-machines/virtual-machines-windows-classic-sql-perf.md)。
+如果現有或新的應用程式需要存取與控制 SQL Server 執行個體的所有功能，**Azure VM 上執行的 SQL Server** 會是理想選項。這也很適合於想要依現狀將現有的內部部署應用程式和資料庫移轉至 Azure。由於您無需變更簡報、應用程式和資料層，您會在重新架構現有解決方案時節省時間和預算。相反地，您可以將重點放在將所有解決方案移轉至 Azure，並進行 Azure 平台可能需要的某些效能最佳化作業。如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](../virtual-machines/virtual-machines-windows-sql-performance.md)。
 
 ## 摘要
 
@@ -204,4 +204,4 @@ Azure 有兩個選項可在雲端主控 SQL Server 工作負載：
 - 請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)
 - 請參閱[在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-portal-sql-server-provision.md)以開始使用 Azure VM 上的 SQL Server。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

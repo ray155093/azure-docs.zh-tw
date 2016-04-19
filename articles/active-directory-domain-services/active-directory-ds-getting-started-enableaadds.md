@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/31/2016"
+	ms.date="04/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 開始使用
@@ -44,9 +44,9 @@
 7. 指定 [網域服務的 DNS 網域名稱]。
    - 根據預設，將會選取目錄的預設網域名稱 (亦即以 **.onmicrosoft.com** 網域尾碼為結束)。
    - 清單包含所有已針對 Azure AD 目錄設定的網域，包括您在 [網域] 索引標籤中設定的已驗證以及未驗證的網域。
-   - 此外，您也可以輸入自訂網域名稱將它新增至此清單中。
+   - 此外，您也可以輸入自訂網域名稱將它新增至此清單中。在此範例中，我們輸入了自訂網域名稱 'contoso100.com'
 
-     > [AZURE.WARNING] 請確定您指定之網域名稱的網域前置詞 (例如 'contoso.com' 網域名稱中的 'contoso') 不超過 15 個字元。您無法建立網域前置詞超過 15 個字元的「Azure AD 網域服務」網域。
+     > [AZURE.WARNING] 請確定您指定之網域名稱的網域前置詞 (例如 'contoso100.com' 網域名稱中的 'contoso100') 不超過 15 個字元。您無法建立網域前置詞超過 15 個字元的「Azure AD 網域服務」網域。
 
 8. 下一個步驟是選取您想要在其中使用「Azure AD 網域服務」的虛擬網路。在標題為**將網域服務連接到此虛擬網路**的下拉式清單中，選取您剛建立的虛擬網路。
    - 請確定您指定的虛擬網路屬於「Azure AD 網域服務」所支援的 Azure 區域。
@@ -81,4 +81,4 @@
 ---
 [**下一個步驟 - 更新 Azure 虛擬網路的 DNS 設定。**](active-directory-ds-getting-started-dns.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

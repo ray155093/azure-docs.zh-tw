@@ -235,8 +235,8 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 了解基礎概念之後，請依照下列連結深入了解 Azure Redis 快取。
 
 -	查看 Azure Redis 快取的 ASP.NET 提供者。
-	-	[Azure Redis 工作階段狀態提供者](cache-asp.net-session-state-provider.md)
-	-	[Azure Redis 快取 ASP.NET 輸出快取提供者](cache-asp.net-output-cache-provider.md)
+	-	[Azure Redis 工作階段狀態提供者](cache-aspnet-session-state-provider.md)
+	-	[Azure Redis 快取 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)
 -	[啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具[下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)它們。
 -	請參閱 [StackExchange.Redis 快取用戶端文件][]。
 	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][] 和[以其他語言開發 Azure Redis 快取][]。
@@ -335,4 +335,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [Azure 免費試用]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

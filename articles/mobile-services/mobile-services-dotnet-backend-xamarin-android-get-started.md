@@ -45,9 +45,11 @@
 
 在本節中，您將為行動服務下載新的 Xamarin Android 應用程式和服務專案。
 
-1. 在[傳統入口網站]中，按一下 [行動服務]，然後按一下您剛建立的行動服務。
+1. 若您尚未這麼做，請安裝 Visual Studio with Xamarin。您可以在[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 找到相關指示。您也可以在 Mac OS X 電腦上使用 Xamarin Studio，請參閱[設定、安裝和驗證 Mac 使用者](https://msdn.microsoft.com/library/mt488770.aspx)。  
 
-2. 在快速入門索引標籤中，按一下 [選擇平台] 下的 [Xamarin]，並展開 [建立新的 Xamarin 應用程式]。
+2. 在[傳統入口網站]中，按一下 [行動服務]，然後按一下您剛建立的行動服務。
+
+3. 在快速入門索引標籤中，按一下 [Choose platform] 下的 [Xamarin]，並展開 [Create a new Xamarin app]。
 
    	![][6]
 
@@ -55,15 +57,11 @@
 
   	![][7]
 
-3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio Professional 2013](https://go.microsoft.com/fwLink/p/?LinkID=257546) (如果您尚未這麼做)。
-
-4. 下載並安裝 [Xamarin Studio] 或 Xamarin for Visual Studio (若您尚未這麼做)。
-
-5. 在 [Download and publish your service to the cloud] 下選取 [Android]，然後按一下 [下載]。
+4. 在 [Download and publish your service to the cloud] 下選取 [Android]，然後按一下 [下載]。
 
   	這會下載一個方案，其中包含行動服務的專案，以及與行動服務連接的範例待辦事項應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
-6. 下載您的發行設定檔、將下載的檔案儲存至本機電腦，並記下儲存位置。
+5. 下載您的發行設定檔、將下載的檔案儲存至本機電腦，並記下儲存位置。
 
 ## 測試行動服務
 
@@ -83,7 +81,7 @@
 
 	> [AZURE.NOTE] 若要能夠在 Android 模擬器中執行此專案，您必須至少定義一個 Android 虛擬裝置 (AVD)。使用 AVD Manager 來建立與管理這些裝置。
 
-3. 在應用程式中輸入有意義的文字 (例如 Complete the tutorial)，然後按一下加號 (**+**) 圖示。
+3. 在應用程式中輸入有意義的文字 (例如 _Complete the tutorial_)，然後按一下加號 (**+**) 圖示。
 
 	![][10]
 
@@ -95,17 +93,13 @@
 ## 後續步驟
 請注意，您已完成快速入門，並了解如何執行行動服務中的其他重要工作：
 
-* [開始使用離線資料同步]
-<br/>了解快速入門如何使用離線資料同步，讓應用程式更穩健及具備回應力。
+* [開始使用離線資料同步] <br/>了解快速入門如何使用離線資料同步，讓應用程式更穩健及具備回應力。
 
-* [開始使用驗證]
-<br/>了解如何向身分識別提供者驗證應用程式的使用者。
+* [開始使用驗證] <br/>了解如何向身分識別提供者驗證應用程式的使用者。
 
-* [開始使用推播通知]
-<br/>了解如何將非常基本的推播通知傳送到應用程式。
+* [開始使用推播通知] <br/>了解如何將非常基本的推播通知傳送到應用程式。
 
-* [行動服務 .NET 後端疑難排解]
-<br/> 了解如何診斷及修復行動服務 .NET 後端可能發生的問題。
+* [行動服務 .NET 後端疑難排解]<br/> 了解如何診斷及修復行動服務 .NET 後端可能發生的問題。
 
 [AZURE.INCLUDE [app-service-disqus-feedback-slug](../../includes/app-service-disqus-feedback-slug.md)]
 
@@ -136,9 +130,4 @@
 [JavaScript 後端版本]: mobile-services-android-get-started.md
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-
-[Xamarin Studio]: http://xamarin.com/download
-[Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532&clcid=0x409
-[Xamarin for Windows]: https://go.microsoft.com/fwLink/?LinkID=330242&clcid=0x409
-
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->
