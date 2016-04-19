@@ -34,7 +34,7 @@
 
 ![][0]
 
-完成本教學課程需要 XCode 和 [Xamarin Studio] for OS X，或 Windows 上 Visual Studio 的 Visual Studio 外掛程式。範例將在 iOS 5.0 和更新版本上執行。
+完成本教學課程需要 XCode 和 Xamarin Studio for OS X，或 Windows 上的 Visual Studio 以及已加入網域的 Mac。完整的安裝指示位於[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
 
 > [AZURE.IMPORTANT] 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，您可以註冊 Azure 試用版並取得高達 10 項的免費行動服務。此外，在試用期間結束後您仍可繼續使用這些服務。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
@@ -136,4 +136,4 @@
 
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

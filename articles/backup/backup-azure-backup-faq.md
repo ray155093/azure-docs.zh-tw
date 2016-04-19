@@ -14,7 +14,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="03/30/2016"
+	 ms.date="04/04/2016"
 	 ms.author="trinadhk; giridham; arunak; markgal; jimpark;"/>
 
 # Azure 備份服務常見問題集
@@ -47,7 +47,7 @@
 
 **Q3.支援的 SCDPM 伺服器版本為何？** <br/> A3.我們建議您在最新更新的 SCDPM 彙總套件上安裝[最新](http://aka.ms/azurebackup_agent)的 Azure 備份代理程式 (2015 年 7 月後為 UR6)
 
-****Q4.當設定 Azure 備份代理程式時，系統提示我要輸入**保存庫認證**。保存庫認證是否過期？ A4.是，保存庫認證將於 48 小時後過期。若檔案已過期，請登入 Azure 入口網站，並從您的備份保存庫下載保存庫認證檔。
+**Q4.當設定 Azure 備份代理程式時，系統提示我要輸入**保存庫認證**。保存庫認證是否過期？ A4.是，保存庫認證將於 48 小時後過期。若檔案已過期，請登入 Azure 入口網站，並從您的備份保存庫下載保存庫認證檔。
 
 **Q5.每個 Azure 訂用帳戶中可以建立的備份保存庫數目是否有任何限制？** <br/> A5.是。自 2015 年 7 月起，每個訂用帳戶您可以建立 25 個保存庫。若您需要更多的保存庫，請建立新的訂用帳戶。
 
@@ -112,7 +112,12 @@
 
 **Q23.可以使用 Azure 備份代理程式指定為 Azure 備份原則一部分的檔案路徑的長度為何？** <br/> A23.Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。如果您的檔案路徑超過 Windows API 允許的長度，您可以備份所需檔案的父資料夾或磁碟機。
 
-**Q24. 使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？** <br/> A24.Azure 備份代理程式依存於 NTFS。它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions)成為檔案規格的一部分。
+**Q24.使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？** <br/> A24.Azure 備份代理程式依存於 NTFS。它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions)成為檔案規格的一部分。
+
+**Q25.可以使用 Azure 備份伺服器來為實體伺服器建立裸機復原 (BMR) 備份嗎？** <br/> A25.是。
+
+**Q26.可以設定備份服務以在備份作業失敗時傳送郵件嗎？** <br/> A26.是，備份服務有多個可與 PowerShell 指令碼搭配使用的事件型警示。如需完整說明，請參閱[警示通知](backup-azure-manage-vms.md#alert-notifications)
+
 
 
 ## 備份和保留
@@ -160,6 +165,8 @@
 
 **Q12.是否有辦法調整備份服務所使用的頻寬量？**<br/> A12.是，使用備份代理程式中的 [變更屬性] 選項來調整頻寬。調整頻寬量以及您使用該頻寬的時間。如需詳細資訊，請參閱[網路節流](../backup-configure-vault.md#enable-network-throttling)。
 
+**Q13.我的網際網路頻寬有限，不適用於我需要備份的資料量。是否有方法可將資料移動到網路頻寬較大的特定位置，再將該資料推送到 Azure 中？** <br/> Q13.您可以透過標準的線上備份程序將資料備份到 Azure ，或是使用 Azure 匯入/匯出服務將資料傳輸到 Azure 中的 Blob 儲存體。沒有其他方法可將資料備份到 Azure 儲存體。如需如何搭配使用 Azure 匯入/匯出服務與 Azure 備份的相關資訊，請參閱[離線備份工作流程](backup-azure-backup-import-export)一文。
+
 
 ## 復原
 **Q1.我可以在備份至 Azure 的資料上執行幾次復原？**<br/> A1.從 Azure 備份進行復原的次數沒有任何限制。
@@ -197,4 +204,4 @@
 
   一旦在新的快取位置成功完成備份建立，您就可以移除原始的快取資料夾。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

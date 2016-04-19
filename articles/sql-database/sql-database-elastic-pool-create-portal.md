@@ -4,21 +4,21 @@
 	keywords="可調整資料庫,資料庫組態"
 	services="sql-database"
 	documentationCenter=""
-	authors="jeffgoll"
-	manager="jeffreyg"
+	authors="sidneyh"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
 	ms.date="03/24/2016"
-	ms.author="jeffreyg"
+	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 透過 Azure 入口網站建立 SQL Database 的可調整彈性資料庫集區
+# 使用 Azure 入口網站來建立彈性資料庫集區
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-elastic-pool-create-portal.md)
@@ -70,7 +70,7 @@
     | [eDTU 下限] \(每一資料庫設定)| 集區在任何時候對集區中的所有資料庫所保證的 eDTU 數下限。[eDTU 下限] 通常會設為 0 到每一資料庫的歷史 eDTU 使用量平均值之間的任意數量。這是全域設定，會套用至集區中的所有資料庫。 |
     | [eDTU 上限] \(每一資料庫設定) | 集區中任何單一資料庫可使用的最大 eDTU 數。您最多可以將此限制設為 [集區 eDTU]。每一資料庫的 [eDTU 上限] 若設得夠高，就能應付資料庫使用量突然爆增到尖峰的情形。某種程度的群組過量使用是可預期的情況，因為集區通常會假設資料庫的熱門和冷門使用模式；在這些模式中，所有資料庫不會同時處於尖峰期。**範例：**假設每個資料庫的尖峰使用量是 50 個 DTU，且群組中的 100 個資料庫只有 20% 會同時暴增到尖峰。如果每一資料庫的 eDTU 上限設為 50 個 eDTU，則以 5 倍的量過量使用集區，並將 [集區 eDTU] 設為 1,000 個是合理的作法。[eDTU 上限] 不等於資料庫的資源保證，這只是情況許可時能達到的 eDTU 上限而已。這是全域設定，會套用至集區中的所有資料庫。 |
 
-    如需各服務層限制的詳細資料，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+    如需各服務層限制的詳細資料，請參閱[彈性資料庫集區參考](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 7. 完成時按一下 [選取]，然後再按一下 [確定] 來建立集區。
 
@@ -90,7 +90,6 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 - [使用入口網站管理 SQL Database 彈性集區](sql-database-elastic-pool-manage-portal.md)
 - [使用 PowerShell 管理 SQL Database 彈性集區](sql-database-elastic-pool-manage-powershell.md)
-- [使用 C# 管理 SQL Database 彈性集區](sql-database-client-library.md)
-- [彈性資料庫參考](sql-database-elastic-pool-reference.md)
+- [使用 C# 管理 SQL Database 彈性集區](sql-database-elastic-pool-manage-csharp.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

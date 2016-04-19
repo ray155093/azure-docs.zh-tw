@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/02/2016"
+   ms.date="04/11/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員概觀
@@ -79,11 +79,13 @@
 
 當您從 Marketplace 建立方案，方案會自動包含部署範本。您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。
 
+將資源群組的目前狀態匯出至範本，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。這兩個選擇均顯示於[使用 Azure 入口網站來部署及管理 Azure 資源](./azure-portal/resource-group-portal.md)中。
+
 最後，範本會成為應用程式原始碼的一部分。您可以檢查您的原始程式碼存放庫，並隨著您的應用程式發展加以更新。您可以透過 Visual Studio 編輯範本。
 
 如需關於定義範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](./resource-group-authoring-templates.md)。
 
-如需使用範本進行部署的相關資訊，請參閱[利用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
+如需建立範本的逐步指示，請參閱[資源管理員範本逐步解說](resource-manager-template-walkthrough.md)。
 
 如需如何建構您的範本的相關指引，請參閱[設計 Azure 資源管理員範本的最佳做法](best-practices-resource-manager-design-templates.md)。
 
@@ -121,7 +123,7 @@
 
 如需 Azure CLI 的相關資訊，請參閱 [Azure CLI for Mac、Linux 和 Windows 搭配 Azure 資源管理使用](./xplat-cli-azure-resource-manager.md)。
 
-如需 REST API 的相關資訊，請參閱 [Azure 資源管理員 REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)。
+如需 REST API 的相關資訊，請參閱 [Azure 資源管理員 REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)。若要檢視已部署資源的 REST 作業，請參閱[使用 Azure 資源總管來檢視及修改資源](resource-manager-resource-explorer.md)。
 
 如需使用入口網站的相關資訊，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](azure-portal/resource-group-portal.md)。
 
@@ -138,4 +140,4 @@ Azure 資源管理員支援跨原始資源共用 (CORS)。利用 CORS，您可�
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

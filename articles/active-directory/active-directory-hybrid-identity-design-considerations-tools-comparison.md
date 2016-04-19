@@ -13,16 +13,18 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/23/2016"
+	ms.date="04/13/2016"
 	ms.author="billmath"/>
 
 # 混合式身分識別目錄整合工具比較
 
 目錄整合工具已經經過多年的成長和發展。本文件是為了整合檢視這些工具，並比較各個工具中所提供的功能。
 
+<!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
+
 >[AZURE.NOTE] Azure AD Connect 包含先前發行為 Dirsync 和 AAD Sync 的元件和功能。這些工具已不會再個別發行，而且所有未來的增強功能都會包含在 Azure AD Connect 的更新中，因此，您一定會知道可以到哪裡取得最新的功能。
 >
->目前 Dirsync 仍然受到支援，但是在未來某個時間點將會被取代。一旦被取代之後，它將只支援一段時間。在這段時間之後，Dirsync 的支援將會結束。
+>DirSync 和 Azure AD Sync 已被取代。如需詳細資訊，請參閱[升級 Windows Azure Active Directory Sync (“DirSync”) 和 Azure Active Directory Sync (“Azure AD Sync”)]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)。
 
 
 為每個資料表使用下列機碼。
@@ -82,14 +84,14 @@
 
 功能 | Azure Active Directory Connect | Azure Active Directory 同步處理服務 | Azure Active Directory 同步處理工具 (DirSync) | Forefront Identity Manager 2010 R2 (FIM)| Microsoft Identity Manager 2016 (MIM)
 :-------- |:--------:|:--------:|:--------:|:--------:|:--------:|
-針對網域及組織單位篩選 | ● | ● | ● | ● | ● 
-針對物件的屬性值篩選 | ● | ● | ● | ●| ● 
+針對網域及組織單位篩選 | ● | ● | ● | ● | ●
+針對物件的屬性值篩選 | ● | ● | ● | ●| ●
 允許同步處理一組最基本的屬性 (MinSync) | ● | ● | ||
 允許針對屬性流程套用不同的服務範本 |● | ● | ||
 允許移除從 AD 流向 Azure AD 的屬性 | ● | ● | | |
-允許屬性流程的進階自訂 | ● | ● | | ● | ● 
+允許屬性流程的進階自訂 | ● | ● | | ● | ●
 
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016--->

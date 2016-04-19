@@ -35,7 +35,7 @@
 + [XCode 6.0][Install Xcode]
 + iOS 7.0 (或更新版本) 相容的裝置
 + iOS Developer Program 成員資格
-+ [Xamarin.iOS]
++ [Xamarin Studio]
 
    > [AZURE.NOTE] 基於 iOS 推播通知的組態需求，您必須在實體 iOS 裝置 (iPhone 或 iPad) 上部署和測試範例應用程式，而不是在模擬器中。
 
@@ -324,8 +324,8 @@
 
 [Azure Mobile Services Component]: http://components.xamarin.com/view/azure-mobile-services/
 [GitHub]: http://go.microsoft.com/fwlink/p/?LinkId=331329
-[Xamarin.iOS]: http://xamarin.com/download
+[Xamarin Studio]: http://xamarin.com/download
 [WindowsAzure.Messaging]: https://github.com/infosupport/WindowsAzure.Messaging.iOS
 [Azure 入口網站]: https://portal.azure.com
 
-<!-------HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

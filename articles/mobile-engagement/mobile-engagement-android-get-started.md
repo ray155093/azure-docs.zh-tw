@@ -4,7 +4,7 @@
 	services="mobile-engagement"
 	documentationCenter="android"
 	authors="piyushjo"
-	manager=""
+	manager="erikre"
 	editor="" />
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
-	ms.author="piyushjo" />
+	ms.date="04/08/2016"
+	ms.author="piyushjo;ricksal" />
 
 # 開始使用適用於 Android 應用程式的 Azure Mobile Engagement
 
@@ -22,24 +22,25 @@
 
 本主題說明如何使用 Azure Mobile Engagement 來了解您應用程式的使用情形，以及如何傳送推播通知給 Android 應用程式的分段使用者。本教學課程將示範使用 Mobile Engagement 的簡單廣播案例。在此案例中，您先建立空白的 Android 應用程式，使用 Google 雲端通訊 (GCM) 來收集基本資料並接收推播通知。
 
-本教學課程需要下列各項：
+## 必要條件
 
-+ Android SDK (假設您將使用 Android Studio)，您可以從[這裡](http://go.microsoft.com/fwlink/?LinkId=389797)下載
-+ [Mobile Engagement Android SDK]
+完成本教學課程需要 [Android Developer Tools](https://developer.android.com/sdk/index.html)，其中包括 Android Studio 整合式開發環境，以及最新的 Android 平台。
 
-> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fmobile-engagement-android-get-started)。
+還需要 [Mobile Engagement Android SDK](https://aka.ms/vq9mfn)。
 
-##<a id="setup-azme"></a>為您的 Android 應用程式設定 Mobile Engagement
+> [AZURE.IMPORTANT] 若要完成此教學課程，您需要一個有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fmobile-engagement-android-get-started)。
+
+## 為您的 Android 應用程式設定 Mobile Engagement
 
 [AZURE.INCLUDE [在入口網站中建立 Mobile Engagement App](../../includes/mobile-engagement-create-app-in-portal.md)]
 
-##<a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## 將您的應用程式連線至 Mobile Engagement 後端
 
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。完整的整合文件位於 [Mobile Engagement Android SDK 整合](../mobile-engagement-android-sdk-overview/)中。
 
 我們將使用 Android Studio 建立一個基本應用程式來示範整合。
 
-###建立新的 Android 專案
+### 建立新的 Android 專案
 
 1. 啟動 **Android Studio**，然後在快顯視窗中選取 [開始新的 Android Studio 專案]。
 
@@ -65,7 +66,7 @@
 
 Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用程式。
 
-###在您的專案中包含 SDK 程式庫
+### 在您的專案中包含 SDK 程式庫
 
 1. 下載 [Mobile Engagement Android SDK]。
 2. 將封存檔案解壓縮至電腦中的資料夾。
@@ -81,7 +82,7 @@ Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用�
 
 	  ![][8]
 
-###使用「連線字串」將您的應用程式連線到 Mobile Engagement 後端
+### 使用「連線字串」將您的應用程式連線到 Mobile Engagement 後端
 
 1. 將下列程式碼行複製到活動建立中 (必須只在應用程式中的一個位置完成，通常是主要活動)。針對此範例 App，開啟 src -> main -> java 資料夾下方的 MainActivity，然後新增下列內容：
 
@@ -102,7 +103,7 @@ Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用�
 
 		engagementConfiguration.setConnectionString("Endpoint=my-company-name.device.mobileengagement.windows.net;SdkKey=********************;AppId=*********");
 
-###新增權限和服務宣告
+### 新增權限和服務宣告
 
 1. 將這些權限加入至您專案的 Manifest.xml 中，緊接在 `<application>` 標記之前或之後：
 
@@ -123,7 +124,7 @@ Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用�
 
 3. 在您剛貼上的程式碼中，更換標籤中的 `"<Your application name>"`。這會顯示於 [設定] 功能表，使用者可在其中看到裝置上正在執行的服務。例如，您可以在該標籤中加入「服務」這個字。
 
-###傳送畫面到 Mobile Engagement
+### 傳送畫面到 Mobile Engagement
 
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個畫面 (活動) 到 Mobile Engagement 後端。
 
@@ -137,16 +138,16 @@ Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用�
 
 如果您想保留此行，則應查看[進階 Android 整合](mobile-engagement-android-integrate-engagement.md/#basic-reporting)中的「基本報告」案例
 
-##<a id="monitor"></a>結合應用程式與即時監視功能
+## 將應用程式與即時監視連接
 
-[AZURE.INCLUDE [將 App 與即時監視連接](../../includes/mobile-engagement-connect-app-with-monitor.md)]
+[AZURE.INCLUDE [將應用程式與即時監視連接](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-##<a id="integrate-push"></a>啟用推播通知與應用程式內傳訊的功能
+## 啟用推播通知與應用程式內傳訊
 
 Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和「觸達」。此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。以下各節將設定您的應用程式來接收它們。
 
 ### 複製您專案中的 SDK 資源
-	
+
 1. 瀏覽回到您的 SDK 下載內容，並且複製 **res** 資料夾。
 
 	![][10]
@@ -161,9 +162,6 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 [AZURE.INCLUDE [從入口網站傳送通知](../../includes/mobile-engagement-android-send-push-from-portal.md)]
 
-<!-- URLs. -->
-[Mobile Engagement Android SDK]: https://aka.ms/vq9mfn
-
 <!-- Images. -->
 [1]: ./media/mobile-engagement-android-get-started/android-studio-new-project.png
 [2]: ./media/mobile-engagement-android-get-started/android-studio-project-props.png
@@ -177,4 +175,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [10]: ./media/mobile-engagement-android-get-started/copy-resources.png
 [11]: ./media/mobile-engagement-android-get-started/paste-resources.png
 
-<!-----HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

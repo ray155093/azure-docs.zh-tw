@@ -8,7 +8,9 @@
 
 ![建立 Windows 主控台應用程式](./media/storage-development-environment-include/storage-development-environment-include-1.png)
 
-您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務、Azure Web 應用程式、桌面應用程式或行動應用程式) 中使用 Azure Storage Client Library。在本指南中，為求簡化，我們將使用主控台應用程式。
+本教學課程中的所有程式碼範例均可加入至您的主控台應用程式的 `program.cs` 中的 **Main()** 方法。
+
+請注意，您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務、Azure Web 應用程式、桌面應用程式或行動應用程式) 中使用 Azure 儲存體用戶端程式庫。在本指南中，為求簡化，我們會使用主控台應用程式。
 
 ### 使用 NuGet 來安裝必要的封裝
 
@@ -57,10 +59,10 @@ Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來
 
 例如，組態設定會如下所示：
 
-	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln9fT7bvY+rxu2iWAEyzPNITGkhM88J8HUoyofpK7C8fHcZc2kIZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
+	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofpK7C8fHcZc2kIZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
 
 若要以儲存體模擬器為目標，您可以使用對應到已知帳戶名稱和金鑰的捷徑。在此情況下，您的連接字串設定會是︰
 
 	<add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

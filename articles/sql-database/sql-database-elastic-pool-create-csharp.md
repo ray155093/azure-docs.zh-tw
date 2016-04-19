@@ -278,6 +278,5 @@
 
 - [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
-- [彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

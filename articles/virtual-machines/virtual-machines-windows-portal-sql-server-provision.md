@@ -75,7 +75,7 @@ Azure 入口網站中有五個用來設定 SQL Server 虛擬機器的刀鋒視�
 >![SQL ARM 基本概念](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-basic.png) <br/>
 
 ## 2\.選擇虛擬機器大小
-在 [建立虛擬機器] 刀鋒視窗的 [大小] 底下，選擇虛擬機器大小。Azure 入口網站將會顯示建議的大小。如需有關虛擬機器大小的詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。大小是根據您選取的範本。大小可預估執行 VM 的每月成本。選取伺服器的 VM 大小。如需有關 SQL Server VM 大小的考量，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-classic-sql-perf.md)。
+在 [建立虛擬機器] 刀鋒視窗的 [大小] 底下，選擇虛擬機器大小。Azure 入口網站將會顯示建議的大小。如需有關虛擬機器大小的詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。大小是根據您選取的範本。大小可預估執行 VM 的每月成本。選取伺服器的 VM 大小。如需有關 SQL Server VM 大小的考量，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md)。
 
 ## 3\.設定虛擬機器設定
 在 [建立虛擬機器] 刀鋒視窗的 [設定] 底下，設定虛擬機器的 Azure 儲存體、網路功能及監視功能。
@@ -146,7 +146,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 <br/>![SQL ARM 修補](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-patching.png) <br/>
 
-如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-ps-sql-patch.md)。
+如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)。
 
 ### 備份
 在 [SQL 自動備份] 底下，可以為所有資料庫啟用自動資料庫備份。當您啟用 SQL 自動備份時，您可以設定下列各項：
@@ -157,7 +157,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 <br/>![SQL ARM 備份](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-autobackup.png) <br/>
 
- 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-classic-ps-sql-backup.md)。
+ 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-classic-sql-automated-backup.md)。
 
 ### 金鑰保存庫整合
 若要在 Azure 中儲存用於加密的安全性密碼，請按一下 [Azure 金鑰保存庫整合]，然後按一下 [啟用]。
@@ -201,6 +201,6 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 > [AZURE.INCLUDE [在 VM 資源管理員中連線到 SQL Server](../../includes/virtual-machines-sql-server-connection-steps-resource-manager.md)]
 
 ##<a id="Next">後續步驟
-如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-classic-sql-overview.md)。
+如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

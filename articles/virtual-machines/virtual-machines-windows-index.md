@@ -112,9 +112,9 @@
 	
 [使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-windows-cli-deploy-templates.md)
 		
-[Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-ps-sql-backup.md)
+[Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-sql-automated-backup.md)
 
-[Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-ps-sql-patch.md)
+[Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)
 
 [在虛擬機器調整集中自動調整機器](virtual-machines-windows-ps-vmss-create.md)
 
@@ -161,7 +161,7 @@
 
 [HPC Pack](virtual-machines-windows-hpcpack-cluster-options.md)
 
-[SQL Server](virtual-machines-windows-classic-sql-overview.md)
+[SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)
 
 [Azure 基礎結構服務工作負載：高可用性企業營運應用程式](virtual-machines-windows-lob.md)
 
@@ -281,9 +281,9 @@
 
 [傳統 Windows 虛擬機器的自訂指令碼擴充功能](virtual-machines-windows-classic-extensions-customscript.md)
 
-[Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-ps-sql-backup.md)
+[Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-sql-automated-backup.md)
 
-[Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-ps-sql-patch.md)
+[Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)
 
 
 
@@ -351,7 +351,7 @@
 
 [Oracle](virtual-machines-windows-classic-oracle.md)
 
-[SQL Server](virtual-machines-windows-classic-sql-overview.md)
+[SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)
 
 [SharePoint](virtual-machines-windows-sharepoint-farm.md)
 
@@ -375,4 +375,4 @@
 
 [在 Azure 中建立、重新啟動或調整 VM 大小時，對配置失敗進行疑難排解](virtual-machines-windows-allocation-failure.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

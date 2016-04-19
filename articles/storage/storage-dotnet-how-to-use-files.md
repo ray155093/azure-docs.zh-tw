@@ -12,7 +12,7 @@
       ms.tgt_pltfrm="na"
       ms.devlang="dotnet"
       ms.topic="hero-article"
-      ms.date="03/03/2016"
+	  ms.date="04/07/2016"
       ms.author="minet" />
 
 # 在 Windows 上開始使用 Azure 檔案儲存體
@@ -172,10 +172,12 @@ Azure 檔案儲存體是使用標準[伺服器訊息區塊 (SMB) 通訊協定](h
 
 ### 列出目錄中的檔案
 
-若要查看目錄中的檔案，您可以列出目錄的檔案。此命令也會列出子目錄，但在本範例中因為沒有子目錄，所以只會列出檔案。
+若要查看目錄中的檔案，您可以列出目錄的所有檔案。此命令會傳回 CustomLogs 目錄中的檔案和子目錄 (如果有的話)。
 
 	# list files in the new directory
-	Get-AzureStorageFile -Share $s -Path CustomLogs
+	Get-AzureStorageFile -Share $s -Path CustomLogs | Get-AzureStorageFile
+
+Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清單。"Get-AzureStorageFile -Share $s" 會傳回根目錄中的檔案和目錄清單。若要取得子目錄中的檔案清單，您必須將子目錄傳遞至 Get-AzureStorageFile。這就是其作用 -- 命令的第一個部分 (由管道決定) 會傳回 CustomLogs 子目錄的目錄執行個體。然後該執行個體會傳入 Get-AzureStorageFile，進而傳回 CustomLogs 中的檔案和目錄。
 
 ### 複製檔案
 
@@ -266,21 +268,14 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 ### 新增命名空間宣告
 
-在 [方案總管] 中開啟 program.cs 檔案，並在檔案的開頭處加入下列命名空間宣告。
+在 [方案總管] 中開啟 `program.cs` 檔案，並在檔案的開頭處加入下列命名空間宣告。
 
 	using Microsoft.Azure; // Namespace for Azure Configuration Manager
-	using Microsoft.WindowsAzure.Storage; // Namespaces for Storage Client Library
-	using Microsoft.WindowsAzure.Storage.Blob;
-	using Microsoft.WindowsAzure.Storage.File;
+	using Microsoft.WindowsAzure.Storage; // Namespace for Storage Client Library
+	using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage
+	using Microsoft.WindowsAzure.Storage.File; // Namespace for File storage
 
-### 以程式設計的方法擷取連接字串
-
-您可以使用 `Microsoft.WindowsAzure.CloudConfigurationManager` 類別或 `System.Configuration.ConfigurationManager ` 類別，從 app.config 檔案中擷取所儲存的認證。Microsoft Azure 設定管理員套件包含 `Microsoft.WindowsAzure.CloudConfigurationManager` 類別，並且可在 [Nuget](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager) 上使用。
-
-此處的範例說明如何使用 `CloudConfigurationManager` 類別來擷取認證，並將他們包含在 `CloudStorageAccount` 類別中。在 program.cs 的 `Main()` 方法中加入下列程式碼。
-
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-    	CloudConfigurationManager.GetSetting("StorageConnectionString")); 
+[AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### 以程式設計方式存取檔案共用
 
@@ -608,7 +603,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 
 	如果是透過 SMB 掛接檔案共用，則您對權限沒有此層級的控制。不過，您可以透過 REST API 或用戶端程式庫來建立共用存取簽章 (SAS)，以達到此目的。
 
-12. **嘗試將檔案解壓縮到檔案儲存體時，執行速度很緩慢。我該怎麼辦？**
+12. 嘗試將檔案解壓縮到檔案儲存體時，執行速度很緩慢。**我該怎麼辦？**
 
 	若要將大量檔案傳輸到檔案儲存體，我們建議您使用 AzCopy、Azure Powershell (Windows) 或 Azure CLI (Linux/Unix)，因為這些工具已針對網路傳輸最佳化。
 
@@ -647,4 +642,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

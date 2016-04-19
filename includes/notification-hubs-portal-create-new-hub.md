@@ -1,8 +1,8 @@
 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)，然後按一下畫面底部的 [+新增]。
+1. 登入 [Azure 入口網站](https://portal.azure.com)，然後按一下畫面左上方的 [+新增]。
 
-2. 依序按一下 [新增]、[Web + 行動服]、[通知中樞]、[快速建立]。
+2. 依序按一下 [新建] 和 [Web + 行動]。必要時向下捲動並按一下 [通知中樞]。
 
    	![Azure 入口網站 - 建立通知中樞](./media/notification-hubs-portal-create-new-hub/notification-hubs-azure-portal-create.png)
 
@@ -22,4 +22,4 @@
 
    	![Azure 入口網站 - 通知中樞連接字串](./media/notification-hubs-portal-create-new-hub/notification-hubs-connection-strings-portal.png)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

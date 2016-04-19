@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="03/31/2016" 
+	ms.date="04/06/2016" 
 	ms.author="billmath"/>
 
 # 開始在雲端中使用 Azure Multi-Factor Authentication
@@ -92,7 +92,7 @@ Azure Multi-Factor Authentication 中的使用者帳戶具有下列三種不同�
 :-------------: | :-------------: |:-------------: |:-------------: |
 已停用 | 未註冊 Multi-Factor Authentication 之新使用者的預設狀態。|否|使用者未使用 Multi-Factor Authentication。
 已啟用 |使用者已註冊 Multi-Factor Authentication。|無。它們會繼續運作，直到註冊程序完成為止。|使用者已啟用，但尚未完成註冊程序。系統會提示他們在下次登入時完成程序。
-已強制|使用者已註冊，並且已完成使用 Multi-Factor Authentication 的註冊程序。|是。除非建立及使用應用程式密碼，否則這些應用程式將無法運作。 | 使用者可能已完成或可能尚未完成註冊。如果他們已完成註冊程序，表示他們正在使用 Multi-Factor Authentication。否則，系統會提示使用者在下次登入時完成程序。
+已強制|使用者已註冊，並且已完成使用 Multi-Factor Authentication 的註冊程序。|是。應用程式需要應用程式密碼。 | 使用者可能已完成或可能尚未完成註冊。如果他們已完成註冊程序，表示他們正在使用 Multi-Factor Authentication。否則，系統會提示使用者在下次登入時完成程序。
 
 您可以使用下列程序為使用者啟用 MFA。
 
@@ -105,7 +105,7 @@ Azure Multi-Factor Authentication 中的使用者帳戶具有下列三種不同�
 5.  在頁面底部，按一下 [管理 Multi-Factor Auth]
 6.  找出要啟用 Multi-Factor Authentication 的使用者。您可能需要在頂端變更檢視。請確認狀態為已停用，然後在其名稱旁的方塊打勾。
 7.  在右側按一下 [啟用]。按一下 [啟用 Multi-Factor Auth]。
-8.  在您啟用您的使用者後，建議您通知他們。您可以透過電子郵件通知他們。電子郵件也應該通知他們如何使用其非瀏覽器應用程式，以避免遭到鎖定。
+8.  在您啟用您的使用者後，建議您透過電子郵件通知他們。電子郵件也應該通知他們如何使用其非瀏覽器應用程式，以避免遭到鎖定。
 
 <center>![Enable Users](./media/multi-factor-authentication-get-started-cloud/user.png)</center>
 
@@ -157,4 +157,4 @@ Azure Multi-Factor Authentication 中的使用者帳戶具有下列三種不同�
 ## 後續步驟
 現在您已在雲端中設定 Multi-Factor Authentication，接下來您可以設定及安裝您的部署。請參閱[設定 Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->
