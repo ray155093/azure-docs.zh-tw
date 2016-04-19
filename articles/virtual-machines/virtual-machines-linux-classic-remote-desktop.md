@@ -32,7 +32,7 @@ RDP (遠端桌面通訊協定) 是用於 Windows 的專屬通訊協定。我們�
 Xrdp 是開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端桌面連接 Linux 伺服器。其執行效果比 VNC (虛擬網路運算) 好多了。VNC 具有 "JPEG"品質和緩慢行為，而 RDP 既快速又清楚。
 
 
-> [AZURE.NOTE] 您必須已經有執行 Linux 的 Microsoft Azure VM。若要建立並設定 Linux VM，請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-cli-create.md)。
+> [AZURE.NOTE] 您必須已經有執行 Linux 的 Microsoft Azure VM。若要建立並設定 Linux VM，請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-classic-createportal.md)。
 
 
 ##建立遠端桌面的端點
@@ -116,4 +116,4 @@ Xrdp 是開放原始碼 RDP 伺服器，可讓您從 Windows 電腦使用遠端�
 ##下一步
 如需使用 xrdp 的詳細資訊，您可以參考[這裡](http://www.xrdp.org/) (英文)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

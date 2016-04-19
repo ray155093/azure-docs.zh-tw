@@ -13,14 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/29/2016"
+   ms.date="04/01/2016"
    ms.author="SilviaDoomra"/>
 
 # 轉換現有的資料庫以使用彈性資料庫工具
 
-如果您有現有的擴充分區化解決方案，則可以使用此處所述的技巧，善用彈性資料庫工具。在轉換之後，您可以使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)和[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)。
+如果您有現有的分區化擴充解決方案，則可以使用此處所述的技巧，善用彈性資料庫工具 (如[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)和[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md))。
 
 您可以使用 [.NET Framework 用戶端程式庫](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)或在 [Azure SQL DB - 彈性資料庫工具指令碼](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db)中找到的 PowerShell 指令碼，來實作這些技巧。以下範例會使用 PowerShell 指令碼。
+
+請注意，您必須先建立資料庫，再執行 Add-Shard 和 New-ShardMapManager Cmdlet。Cmdlet 不會為您建立資料庫。
 
 共有四個步驟：
 
@@ -32,7 +34,7 @@
 如需 ShardMapManager 的詳細資訊，請參閱[分區對應管理](sql-database-elastic-scale-shard-map-management.md)。如需彈性資料庫工具的概觀，請參閱[彈性資料庫功能概觀](sql-database-elastic-scale-introduction.md)。
 
 ## 準備分區對應管理員資料庫
-您可以使用新的或現有的資料庫做為分區對應管理員。此作業只需要執行一次。
+您可以使用新的或現有的資料庫做為分區對應管理員。
 
 ## 步驟 1︰建立分區對應管理員
 請注意，做為分區對應管理員的資料庫不應該是與分區相同的資料庫。
@@ -71,7 +73,7 @@
 
 ![清單對應][1]
 
-相反地，多租用戶資料庫模型會將數個租用戶指派給單一資料庫，而且您可以跨多個資料庫散發租用戶的群組。當預期每個租用戶的資料量很小時，這是可行的模型。在此模型中，我們可以使用*範圍對應*將租用戶的範圍指派給資料庫。
+相反地，多租用戶資料庫模型會將數個租用戶指派給單一資料庫，而且您可以跨多個資料庫散發租用戶的群組。當預期每個租用戶的資料量很小時，這是可行的模型。在此模型中，我們使用「範圍對應」將某範圍的租用戶指派給資料庫。
  
 
 ![範圍對應][2]
@@ -179,4 +181,4 @@
 [3]: ./media/sql-database-elastic-convert-to-use-elastic-tools/multipleonsingledb.png
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

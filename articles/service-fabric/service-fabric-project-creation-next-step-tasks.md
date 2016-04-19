@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/08/2016"
+   ms.date="03/27/2016"
    ms.author="seanmck"/>
 
 # 您的 Service Fabric 應用程式和後續步驟
@@ -35,29 +35,23 @@
 
 - 應用程式資訊清單，描述應用程式。您可以在 ApplicationPackageRoot 資料夾下方找到資訊清單。
 
-### Reliable Services
-當您加入一個新的 Reliable Service 時，Visual Studio 會將一個服務專案加入至您的解決方案。服務專案中包含從 `StatelessService` 或 `StatefulService` (視您選擇的類型而定) 延伸的類別。
+### 無狀態服務
+當您加入一個新的無狀態服務時，Visual Studio 會將一個服務專案 (包含來自 `StatelessService` 的類型) 加入至您的解決方案。此服務會使計數器中的區域變數遞增。
 
-### Reliable Actors
+### 具狀態服務
+當您加入一個新的具狀態服務時，Visual Studio 會將一個服務專案 (包含來自 `StatefulService` 的類型) 加入至您的解決方案。此服務會使其 `RunAsync` 方法中的計數器遞增，並將結果儲存在 `ReliableDictionary` 中。
+
+### 動作項目服務
 當您加入一個新的 Reliable Actor 時，Visual Studio 會將兩個專案加入至您的解決方案：動作項目專案和介面專案。
 
-動作項目專案定義了動作項目類型及 (針對可設定狀態的動作項目) 其狀態。介面專案提供了其他服務可用來叫用動作項目的介面。
+動作項目專案提供了一些方法，以便設定和取得動作項目的狀態中可靠地保存的計數器值。介面專案提供了其他服務可用來叫用動作項目的介面。
 
-請注意，動作項目專案並不包含任何預設啟動行為，因為動作項目必須由其他服務啟用。請考慮加入一個 Reliable Service 或 ASP.NET 專案，以建立動作項目並與其互動。
-
-### ASP.NET 5
-針對用於 Service Fabric 應用程式而提供的 ASP.NET 5 範本與針對獨立建立的 ASP.NET 5 專案提供的範本幾乎完全相同。只有下列差異：
-
-- 專案包含 **PackageRoot** 資料夾，用於儲存 ServiceManifest 檔案及資料和組態封裝。
-
-- 專案參考額外的 NuGet 封裝 (Microsoft.ServiceFabric.AspNet.Hosting)，做為 .NET 執行環境 (DNX) 和 Service Fabric 之間的橋接器。
+### 無狀態 Web API
+無狀態 Web API 專案會提供基本一項 Web 服務，您可用來對外部用戶端開放您的應用程式。如需有關如何建構專案的詳細資訊，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi)。
 
 ## 後續步驟
-### 將 Web 前端新增至應用程式
-Service Fabric 提供與 ASP.NET 5 的整合，可建置您應用程式的 Web 型進入點。如需了解如何根據 ASP.NET Web API 建立 REST 介面，請參閱[為應用程式新增 Web 前端][add-web-frontend]。
-
 ### 建立 Azure 叢集
-Service Fabric SDK 提供一個用於開發和測試的本機叢集。如要在 Azure 中建立叢集，請參閱[從 Azure 入口網站設定 Service Fabric 叢集][create-cluster-in-portal]。
+Service Fabric SDK 提供一個用於開發和測試的本機叢集。若要在 Azure 中建立叢集，請參閱[從 Azure 入口網站設定 Service Fabric 叢集][create-cluster-in-portal]。
 
 ### 嘗試使用派對叢集部署到免費的 Azure
 
@@ -67,7 +61,7 @@ Service Fabric SDK 提供一個用於開發和測試的本機叢集。如要在 
 您可以直接從 Visual Studio 將應用程式發行至 Azure 叢集。若要瞭解做法，請參閱[將應用程式發行至 Azure][publish-app-to-azure]。
 
 ### 使用 Service Fabric 總管將叢集視覺化
-「Service Fabric 總管」提供一個將叢集 (包括已部署的應用程式和實體配置) 視覺化的簡單方法。如要深入了解，請參閱[使用 Service Fabric 總管視覺化叢集][visualize-with-sfx]。
+「Service Fabric 總管」提供一個將叢集 (包括已部署的應用程式和實體配置) 視覺化的簡單方法。如要深入了解，請參閱[使用 Service Fabric Explorer 視覺化叢集][visualize-with-sfx]。
 
 ### 進行服務版本設定和升級
 Service Fabric 可讓您為應用程式中的獨立服務進行獨立的版本設定和升級。若要深入了解，請參閱[進行服務版本設定和升級][app-upgrade-tutorial]。
@@ -86,4 +80,4 @@ Service Fabric 可讓您為應用程式中的獨立服務進行獨立的版本�
 [reliable-services-webapi]: service-fabric-reliable-services-communication-webapi.md
 [app-upgrade-tutorial]: service-fabric-application-upgrade-tutorial.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

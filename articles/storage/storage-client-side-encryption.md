@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/24/2016"
+	ms.date="03/31/2016"
 	ms.author="lakasa"/>
 
 
@@ -24,6 +24,8 @@
 ## 概觀
 
 [適用於 .NET NuGet 封裝的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage) 支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。程式庫也支援與 [Azure 金鑰保存庫](https://azure.microsoft.com/services/key-vault/)整合，以進行儲存體帳戶金鑰管理。
+
+如需引導您進行使用用戶端加密和 Azure 金鑰保存庫來加密 Blob 的逐步教學課程，請參閱[在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)。
 
 如需使用 Java 加密用戶端，請參閱 [Microsoft Azure 儲存體的用戶端 Java 加密](storage-client-side-encryption-java.md)。
 
@@ -244,9 +246,9 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 
 ## 後續步驟
 
+- [教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
 - 下載[適用於 .NET NuGet 封裝的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage)
-- 從 GitHub 下載[適用於 .NET 來源程式碼的 Azure 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-net)
-- 下載 Azure 金鑰保存庫 NuGet 的[核心](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/)、[用戶端](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/) 及 [擴充](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/)封裝  
+- 下載 Azure 金鑰保存庫 NuGet 的[核心](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/)、[用戶端](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/)及[擴充功能](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/)封裝  
 - 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

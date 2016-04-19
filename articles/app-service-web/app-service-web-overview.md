@@ -25,6 +25,8 @@
 
 ![Web Marketplace](./media/app-service-web-overview/marketplace.png)
 
+[AZURE.INCLUDE [compute-table](../../includes/compute-options-table.md)]
+
 ## 不只是網站##
 
 現代企業使用比以前更複雜的方式與客戶互動。所有類型的公司都會將公司網站空間視為其業務的重要部分、其業務方案中的主要元件。為因應此重要性，企業正尋求能提供它們具有彈性、安全性與延展性的平台。此外，它們需要能連結至其現有商務系統的能力，以在全球快速部署新的程式碼和運轉執行個體。使用 Azure 應用程式服務和 Web 應用程式，組織可以快速並以符合成本效益方式來取悅其客戶。
@@ -64,4 +66,4 @@ Azure 應用程式服務 Web 應用程式是完全受管理的平台，可讓您
 
  
 
-<!----HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

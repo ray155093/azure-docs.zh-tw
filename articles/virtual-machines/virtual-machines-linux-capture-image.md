@@ -35,9 +35,7 @@
 
  	azure vm quick-create -g MyResourceGroup -n <your-virtual-machine-name> "centralus" -y Linux -Q canonical:ubuntuserver:14.04.2-LTS:latest -u <your-user-name> -p <your-password>
 
-佈建並執行 VM 之後，您可能想要連接和掛接資料磁碟。請參閱[這裡](virtual-machines-linux-cli-create.md#attach-and-mount-a-disk)的指示。
-
-若要執行其他自訂作業，您需要使用您選擇的 SSH 用戶端來連接到 VM。如需詳細資訊，請參閱[使用 SSH 連接到 Azure Linux VM](virtual-machines-linux-portal-create.md#connect-to-your-azure-linux-vm-using-strongsshstrong)。
+佈建並執行 VM 之後，您可能想要連接和掛接資料磁碟。請參閱[這裡](virtual-machines-linux-add-disk)的指示。
 
 
 ## 擷取 VM
@@ -200,4 +198,4 @@
 
 若要使用 CIL 管理 VM，請參閱[使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)中的工作。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

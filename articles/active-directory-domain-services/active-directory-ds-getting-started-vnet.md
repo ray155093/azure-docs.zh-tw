@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="01/26/2016"
+	ms.date="04/11/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 開始使用
@@ -22,7 +22,7 @@
 選取要與 Azure AD 網域服務搭配使用的虛擬網路時，請記住下列指導方針：
 
 - 確定您選取的虛擬網路位於 Azure AD 網域服務所支援的區域中。請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面，以了解可使用 Azure AD 網域服務的 Azure 區域。
-- 如果您打算使用現有的虛擬網路，請確定它是區域虛擬網路。使用舊版同質群組機制的虛擬網路不能與 Azure AD 網域服務搭配使用。您必須[將傳統的虛擬網路移轉到區域虛擬網路](../virtual-networks-migrate-to-regional-vnet.md)。
+- 如果您打算使用現有的虛擬網路，請確定它是區域虛擬網路。使用舊版同質群組機制的虛擬網路不能與 Azure AD 網域服務搭配使用。您必須[將傳統的虛擬網路移轉到區域虛擬網路](../virtual-network/virtual-networks-migrate-to-regional-vnet.md)。
 - 如果您打算使用現有的虛擬網路，請確定沒有針對虛擬網路設定的自訂 DNS 伺服器。Azure AD 網域服務不支援自訂/自備的 DNS 伺服器。
 - 如果您打算使用現有的虛擬網路，請確定現有網域的名稱並未與該虛擬網路上可用的網域名稱相同。例如，假設您有名為 'contoso.com' 的網域已可用於選取的虛擬網路。接著，您可嘗試在該虛擬網路上啟用具有相同網域名稱 (即 'contoso.com') 的 Azure AD 網域服務受管理網域。您將會在嘗試啟用 Azure AD 網域服務時發生錯誤。這是因為名稱與該虛擬網路上的網域名稱衝突。在此情況下，您必須使用不同的名稱來設定 Azure AD 網域服務受管理網域。或者，您可以解除佈建現有的網域，然後繼續啟用 Azure AD 網域服務。
 - 選取目前裝載/將裝載需要存取 Azure AD 網域服務之虛擬機器的虛擬網路。在您啟用網域服務之後，便無法將該服務移到不同的虛擬網路。
@@ -58,4 +58,4 @@
 ---
 [**下一個步驟 - 啟用 Azure AD 網域服務。**](active-directory-ds-getting-started-enableaadds.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,5 +1,5 @@
 <properties
-   pageTitle="編寫 Azure 資源管理員範本"
+   pageTitle="撰寫 Azure Resource Manager | Microsoft Azure"
    description="使用宣告式 JSON 語法建立 Azure 資源管理員範本，藉此將應用程式部署至 Azure。"
    services="azure-resource-manager"
    documentationCenter="na"
@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/17/2016"
+   ms.date="04/04/2016"
    ms.author="tomfitz"/>
 
 # 編寫 Azure 資源管理員範本
 
-Azure 應用程式通常需要將資源 (如資料庫伺服器、資料庫或網站等) 結合在一起，以達到所需的目標。您不是分開部署與管理每個資源，而是建立一個 Azure 資源管理員範本，藉此經由單一、協調的作業署與佈建應用程式有的資源。在範本中，您會定義應用程式所需的資源，並指定部署參數以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。此主題說明範本的各區段。
+在 Azure Resource Manager 範本中，您會定義要部署給解決方案的資源，以及指定參數和變數，讓您可以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。此主題說明範本的各區段。
 
 Visual Studio 提供工具來協助您建立範本。如需有關如何以您的範本使用 Visual Studio 的詳細資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
-您必須將範本大小限制為 1 MB，並將每個參數檔案限制為 64 KB。1 MB 的限制適用於已增加反覆資源定義和變數和參數值之範本的最終狀態。
+如需建立範本的指導方針，請參閱[資源管理員範本逐步解說](resource-manager-template-walkthrough.md)。
 
 ## 規劃您的範本
 
@@ -35,13 +35,9 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 5. 您想要在部署期間傳入的值，以及您想要在範本中直接定義的值
 6. 您是否需要從部署傳回值
 
-如果要找出哪些資源類型可供部署、各類型支援的區域，以及每個類型可用的 API 版本，請參閱[資源管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。本主題提供的範例和連結可協助您判斷您需要在您的範本中提供的值。
+若找出哪些資源類型可供部署、各類型支援的區域，以及每個類型可用的 API 版本，請參閱[資源管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
-如果有資源必須在另一個資源之後部署，您可以將它標示為依存於其他資源。您將在下面的[資源](#resources)一節中，了解如何執行此動作。
-
-您可以在執行期間提供參數值，以改變範本部署的結果。您將在下面的[參數](#parameters)一節中，了解如何執行該動作。
-
-您可以在[輸出](#outputs)一節中從您的部署傳回值。
+您必須將範本大小限制為 1 MB，並將每個參數檔案限制為 64 KB。1 MB 的限制適用於已增加反覆資源定義和變數和參數值之範本的最終狀態。
 
 ## 範本格式
 
@@ -69,7 +65,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 
 ## 運算式和函式
 
-範本的基本語法是 JSON，但運算式與函式能夠延伸範本中的 JSON，讓您能夠建立不是嚴格常數值的值。運算式以方括號 ([ 與 ]) 括住，並會在部署範本後評估。運算式可出現在 JSON 字串值中的任何一處，並一律傳回另一個 JSON 值。如果您必須使用開頭為括號 [ 的常數字串，您必須使用兩個括號 [[。
+範本的基本語法是 JSON，但運算式與函式能夠延伸範本中的 JSON，讓您能夠建立不是嚴格常數值的值。運算式以方括弧 [ 及 ] 括住，並會在部署範本後評估。運算式可出現在 JSON 字串值中的任何一處，並一律傳回另一個 JSON 值。如果您必須使用開頭為括號 [ 的常數字串，您必須使用兩個括號 [[。
 
 一般而言，您可以將運算式搭配函數使用，以執行可設定部署的作業。正如同在 JavaScript 中，函數呼叫的格式為 **functionName(arg1,arg2,arg3)**。您可以使用點與 [index] 運算子來參考屬性。
 
@@ -171,7 +167,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
        }
     }
 
-如需有關如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](../resource-group-template-deploy/#parameter-file)。
+如需如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](../resource-group-template-deploy/#parameter-file)。
 
 ## 變數
 
@@ -188,14 +184,6 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 
 下列範例說明如何定義由兩個參數值建構的變數：
 
-    "parameters": {
-       "username": {
-         "type": "string"
-       },
-       "password": {
-         "type": "secureString"
-       }
-     },
      "variables": {
        "connectionString": "[concat('Name=', parameters('username'), ';Password=', parameters('password'))]"
     }
@@ -256,7 +244,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 | apiVersion | 是 | 要用來建立資源的 REST API 版本。如要為特定資源類型判斷可用的版本號碼，請參閱[支援的 API 版本](../resource-manager-supported-services/#supported-api-versions)。
 | 類型 | 是 | 資源類型。這個值是資源提供者的命名空間與資源提供者所支援資源類型的組合。
 | 名稱 | 是 | 資源名稱。此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。
-| location | 否 | 所提供資源的支援地理位置。如果要判斷可用的位置，請參閱[支援的區域](../resource-manager-supported-services/#supported-regions)。
+| location | 視情況而異 | 所提供資源的支援地理位置。如果要判斷可用的位置，請參閱[支援的區域](../resource-manager-supported-services/#supported-regions)。大部分的資源類型都需要有位置，但某些類型 (例如角色指派) 不需要位置。
 | tags | 否 | 與資源相關聯的標記。
 | 註解 | 否 | 您在範本中記錄資源的註解
 | dependsOn | 否 | 正在定義的資源所相依的資源。評估資源與依相依順序部署資源之間的相依性。資源若不互相依賴，則會嘗試平行部署資源。值可以是以逗號分隔的資源名稱或資源唯一識別碼清單。
@@ -295,56 +283,61 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 
 
 
-下列範例顯示 **Microsoft.Web/serverfarms** 資源，以及含子系 **Extensions** 資源的 **Microsoft.Web/sites** 資源。請注意，網站會標示為依存於伺服器陣列，因為伺服器陣列必須存在，才能部署網站。同時請注意，**Extensions** 資源是網站的子系。
+下列範例示範 **Microsoft.Web/serverfarms** 資源，以及含子系 **Extensions** 資源的 **Microsoft.Web/sites** 資源。請注意，網站會標示為依存於伺服器陣列，因為伺服器陣列必須存在，才能部署網站。同時請注意，**Extensions** 資源是網站的子系。
 
     "resources": [
-        {
-          "apiVersion": "2014-06-01",
-          "type": "Microsoft.Web/serverfarms",
-          "name": "[parameters('hostingPlanName')]",
-          "location": "[resourceGroup().location]",
-          "properties": {
-              "name": "[parameters('hostingPlanName')]",
-              "sku": "[parameters('hostingPlanSku')]",
-              "workerSize": "0",
-              "numberOfWorkers": 1
-          }
+      {
+        "apiVersion": "2015-08-01",
+        "name": "[parameters('hostingPlanName')]",
+        "type": "Microsoft.Web/serverfarms",
+        "location": "[resourceGroup().location]",
+        "tags": {
+          "displayName": "HostingPlan"
         },
-        {
-          "apiVersion": "2014-06-01",
-          "type": "Microsoft.Web/sites",
-          "name": "[parameters('siteName')]",
-          "location": "[resourceGroup().location]",
-          "tags": {
-              "environment": "test",
-              "team": "ARM"
-          },
-          "dependsOn": [
-              "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
-          ],
-          "properties": {
-              "name": "[parameters('siteName')]",
-              "serverFarm": "[parameters('hostingPlanName')]"
-          },
-          "resources": [
-              {
-                  "apiVersion": "2014-06-01",
-                  "type": "Extensions",
-                  "name": "MSDeploy",
-                  "dependsOn": [
-                      "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
-                  ],
-                  "properties": {
-                    "packageUri": "https://auxmktplceprod.blob.core.windows.net/packages/StarterSite-modified.zip",
-                    "dbType": "None",
-                    "connectionString": "",
-                    "setParameters": {
-                      "Application Path": "[parameters('siteName')]"
-                    }
-                  }
-              }
-          ]
+        "sku": {
+          "name": "[parameters('skuName')]",
+          "capacity": "[parameters('skuCapacity')]"
+        },
+        "properties": {
+          "name": "[parameters('hostingPlanName')]",
+          "numberOfWorkers": 1
         }
+      },
+      {
+        "apiVersion": "2015-08-01",
+        "type": "Microsoft.Web/sites",
+        "name": "[parameters('siteName')]",
+        "location": "[resourceGroup().location]",
+        "tags": {
+          "environment": "test",
+          "team": "ARM"
+        },
+        "dependsOn": [
+          "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+        ],
+        "properties": {
+          "name": "[parameters('siteName')]",
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+        },
+        "resources": [
+          {
+            "apiVersion": "2015-08-01",
+            "type": "extensions",
+            "name": "MSDeploy",
+            "dependsOn": [
+              "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+            ],
+            "properties": {
+              "packageUri": "https://auxmktplceprod.blob.core.windows.net/packages/StarterSite-modified.zip",
+              "dbType": "None",
+              "connectionString": "",
+              "setParameters": {
+                "Application Path": "[parameters('siteName')]"
+              }
+            }
+          }
+        ]
+      }
     ]
 
 
@@ -386,92 +379,11 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 
 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](../resource-group-template-functions#resourceid)。
 
-## 完成範本
-下列範本會部署 Web 應用程式，並使用 .zip 檔中的程式碼來佈建。
-
-    {
-       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-       "contentVersion": "1.0.0.0",
-       "parameters": {
-         "siteName": {
-           "type": "string"
-         },
-         "hostingPlanName": {
-           "type": "string"
-         },
-         "hostingPlanSku": {
-           "type": "string",
-           "allowedValues": [
-             "Free",
-             "Shared",
-             "Basic",
-             "Standard",
-             "Premium"
-           ],
-           "defaultValue": "Free"
-         }
-       },
-       "resources": [
-         {
-           "apiVersion": "2014-06-01",
-           "type": "Microsoft.Web/serverfarms",
-           "name": "[parameters('hostingPlanName')]",
-           "location": "[resourceGroup().location]",
-           "properties": {
-             "name": "[parameters('hostingPlanName')]",
-             "sku": "[parameters('hostingPlanSku')]",
-             "workerSize": "0",
-             "numberOfWorkers": 1
-           }
-         },
-         {
-           "apiVersion": "2014-06-01",
-           "type": "Microsoft.Web/sites",
-           "name": "[parameters('siteName')]",
-           "location": "[resourceGroup().location]",
-           "tags": {
-             "environment": "test",
-             "team": "ARM"
-           },
-           "dependsOn": [
-             "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
-           ],
-           "properties": {
-             "name": "[parameters('siteName')]",
-             "serverFarm": "[parameters('hostingPlanName')]"
-           },
-           "resources": [
-             {
-               "apiVersion": "2014-06-01",
-               "type": "Extensions",
-               "name": "MSDeploy",
-               "dependsOn": [
-                 "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
-               ],
-               "properties": {
-                 "packageUri": "https://auxmktplceprod.blob.core.windows.net/packages/StarterSite-modified.zip",
-                 "dbType": "None",
-                 "connectionString": "",
-                 "setParameters": {
-                   "Application Path": "[parameters('siteName')]"
-                 }
-               }
-             }
-           ]
-         }
-       ],
-       "outputs": {
-         "siteUri": {
-           "type": "string",
-           "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', parameters('siteName'))).hostNames[0])]"
-         }
-       }
-    }
-
 ## 後續步驟
+- 若要檢視許多不同類型的解決方案的完整範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
 - 如需關於您可以在範本內使用之函式的詳細資訊，請參閱 [Azure 資源管理員範本函式](resource-group-template-functions.md)
 - 若要了解如何部署您建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 - 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)
 - 若要查看可用的結構描述，請參閱 [Azure 資源管理員結構描述](https://github.com/Azure/azure-resource-manager-schemas)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -5,7 +5,7 @@
    documentationCenter=".net"
    authors="masnider"
    manager="timlt"
-   editor="jessebenson; mani-ramaswamy"/>
+   editor="vturecek; mani-ramaswamy"/>
 
 <tags
    ms.service="Service-Fabric"
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/13/2016"
-   ms.author="masnider;jesseb"/>
+   ms.date="03/25/2016"
+   ms.author="masnider;vturecek"/>
 
 # Reliable Services 概觀
 Azure Service Fabric 可簡化撰寫和管理無狀態與具狀態的 Reliable Services。這份文件會討論：
@@ -131,7 +131,7 @@ Service Fabric 中常見的無狀態服務使用範例是做為前端，其公�
 
 - 您想要開發或使用協力廠商開發的自訂狀態提供者*。
 
-> [AZURE.NOTE]*公開上市版 SDK 將提供這些功能。
+> [AZURE.NOTE] *公開上市版 SDK 將提供這些功能。
 
 
 ## 後續步驟
@@ -139,4 +139,4 @@ Service Fabric 中常見的無狀態服務使用範例是做為前端，其公�
 + [Reliable Services 的進階用法](service-fabric-reliable-services-advanced-usage.md)
 + [Reliable Actors 程式設計模型](service-fabric-reliable-actors-introduction.md)
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0406_2016-->

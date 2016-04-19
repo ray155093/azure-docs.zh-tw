@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article" 
-	ms.date="03/01/2016"
+	ms.date="04/07/2016"
 	ms.author="klam"/>
 
 #什麼是 Logic Apps？
@@ -65,11 +65,12 @@ Logic Apps 可讓開發人員設計從觸發程序啟動，然後再執行一系
 -  **動作** - 工作流程中觸發程序後的每個步驟登稱為動作。每個動作通常會對應至 Managed 或自訂 API 應用程式上的作業。
 - BizTalk - 在更進階的整合案例中，Logic Apps 會包含來自 Biztalk 的功能。Biztalk 是 Microsoft 領先業界的整合平台。BizTalk API 應用程式可讓您輕鬆地將驗證、轉換、規則等項目納入邏輯應用程式工作流程中。進一步了解[什麼是 BizTalk API 應用程式][biztalk]。
 
-## 開始使用
+## 開始使用  
 
-若要開始使用 Logic Apps，請遵循[建立 Logic Apps ][create]教學課程。
-
-如需 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][appservice]。
+ - 若要開始使用 Logic Apps，請遵循[建立 Logic Apps ][create]教學課程。  
+ - [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694) 
+ - [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
+- 如需 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][appservice]。
 
 [biztalk]: app-service-logic-what-are-biztalk-api-apps.md
 [appservice]: ../app-service/app-service-value-prop-what-is.md
@@ -79,4 +80,4 @@ Logic Apps 可讓開發人員設計從觸發程序啟動，然後再執行一系
 [rules]: app-service-logic-use-biztalk-rules.md
 [templates]: app-service-logic-use-logic-app-templates.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

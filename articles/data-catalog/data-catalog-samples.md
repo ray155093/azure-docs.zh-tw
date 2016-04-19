@@ -1,6 +1,6 @@
 <properties
    pageTitle="資料目錄開發人員範例 | Microsoft Azure"
-   description="開始使用資料目錄 REST API 開發目錄應用程式。"
+   description="本文提供資料目錄 REST API 可用之開發人員範例的概觀。"
    services="data-catalog"
    documentationCenter=""
    authors="dvana"
@@ -32,6 +32,6 @@
 
 - [匯入/匯出工具](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-import-export/)
 
-  一個範例，示範如何使用資料目錄 REST API 以從 Azure 資料目錄擷取資產，並將其序列化成檔案。它也會示範如何取用一組已序列化為 json 的資產，並將其推送至目錄。它支援使用搜尋查詢匯出目錄的子集。
+  一個範例，示範如何使用資料目錄 REST API 以從 Azure 資料目錄擷取資產，並將其序列化成檔案。它也會示範如何取用一組已序列化為 JSON 的資產，並將其推送至目錄。它支援使用搜尋查詢匯出目錄的子集。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/02/2016"
+   ms.date="04/11/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心簡介
@@ -54,7 +54,7 @@
 
 > [AZURE.NOTE] 若要修改訂用帳戶等級或資源群組層級的安全性原則，您必須是該訂用帳戶的擁有者或參與者。
 
-在 [資訊安全中心] 刀鋒視窗中，選取 [安全性原則] 磚來取得訂用帳戶和資源群組清單。
+在 [資訊安全中心] 刀鋒視窗中，選取 [原則] 圖格來取得訂用帳戶和資源群組清單。
 
 ![[資訊安全中心] 刀鋒視窗][2]
 
@@ -100,9 +100,9 @@
 
 ### 資源健康情況
 
-[資源健康狀態] 磚會依資源類型顯示環境的整體安全性狀態，包括虛擬機器、Web 應用程式和其他資源。
+[資源全性健康狀態] 圖格會依資源類型顯示環境的整體安全性狀態，包括虛擬機器、Web 應用程式和其他資源。
 
-在 [資源健康狀態] 磚上選取資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。(在下面的範例已選取虛擬機器。)
+在 [資源安全性健康狀態] 圖格上選取資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。(下面的範例已選取虛擬機器。)
 
 ![資源健康狀態磚][6]
 
@@ -123,6 +123,14 @@
 
 ![安全性警示詳細資料][8]
 
+### 合作夥伴解決方案
+
+[合作夥伴解決方案] 圖格可讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健康狀態，一目了然。資訊安全中心會顯示來自解決方案的警示。
+
+選取 [合作夥伴解決方案] 圖格。隨即開啟一個刀鋒視窗，其中顯示所有已連接的合作夥伴解決方案清單。
+
+![合作夥伴解決方案][9]
+
 ## 開始使用
 若要開始使用資訊安全中心，您需要 Microsoft Azure 訂用帳戶。資訊安全中心已經由 Azure 訂用帳戶啟用。如果您沒有訂用帳戶，可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
@@ -133,12 +141,12 @@
 ## 後續步驟
 本文介紹了資訊安全中心、其重要功能和如何開始進行。若要深入了解，請參閱下列文章：
 
-- [在 Azure 資訊安全中心內設定安全性原則](security-center-policies.md)--了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [在 Azure 資訊安全中心內管理安全性建議](security-center-recommendations.md)--了解建議如何協助您保護您的 Azure 資源。
-- [在 Azure 資訊安全中心內進行安全性健康情況監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康情況
-- [在 Azure 資訊安全中心內管理與回應安全性警示](security-center-managing-and-responding-alerts.md)--了解如何管理與回應安全性警示。
-- [Azure 安全性中心常見問題集](security-center-faq.md)--尋找使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)--取得最新的 Azure 安全性新聞和資訊。
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
+- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-intro/security-tile.PNG
@@ -149,5 +157,6 @@
 [6]: ./media/security-center-intro/resources-health.png
 [7]: ./media/security-center-intro/security-alert.png
 [8]: ./media/security-center-intro/security-alert-detail.png
+[9]: ./media/security-center-intro/partner-solutions.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

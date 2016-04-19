@@ -27,9 +27,9 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。此服務是�
 
 -   **屬性**：屬性是名稱/值組。每個實體最多可包含 252 個屬性來儲存資料。每個實體也有 3 個系統屬性，可指定資料分割索引鍵、資料列索引鍵和時間戳記。具有相同資料分割索引鍵的實體，查詢起來更快，還能在不可部分完成的作業中插入/更新。實體的資料列索引鍵是資料分割內的唯一識別碼。
 
-
+如需有關命名資料表和屬性的詳細資訊，請參閱[了解表格服務資料模型](https://msdn.microsoft.com/library/azure/dd179338.aspx)。
   
   [Table1]: ./media/storage-table-concepts-include/table1.png
   [OData.org]: http://www.odata.org/
 
-<!----HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

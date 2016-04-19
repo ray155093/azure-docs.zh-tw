@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/17/2016"
+	ms.date="04/04/2016"
 	ms.author="larryfr"/>
 
 # 使用指令碼動作自訂 Linux 型 HDInsight 叢集
@@ -47,7 +47,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 * 在叢集節點上是以__根層級權限__執行。
 
-* 可以透過 __Azure 入口網站__、__Azure PowerShell__ 或 __HDInsight .NET SDK__ 使用。
+* 可以透過 __Azure 入口網站__、__Azure PowerShell__、__Azure CLI__ 或 __HDInsight .NET SDK__ 使用。
 
 > [AZURE.IMPORTANT] 沒有任何自動方式可復原指令碼動作所做的變更。如果您需要還原指令碼的效果，您必須了解已做了哪些變更並手動進行還原 (或提供可進行還原的指令碼動作)。
 
@@ -83,7 +83,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 >
 > 指令碼動作會以根權限執行，因此您應該先確定您了解指令碼的作用，再將它套用到您的叢集。
 
-將指令碼套用到叢集時，叢集狀態會從 [執行中] 變更為 [已接受]，然後是 [HDInsight 組態]，而成功指令碼最終會回到 [執行中]。指令碼狀態會記錄在指令碼動作歷程記錄中，您可以使用此狀態來判斷指令碼是成功或失敗。例如，`Get-AzureRmHDInsightScriptActionHistory` PowerShell Cmdlet 可用來檢視指令碼的狀態。這會傳回類似以下的資訊：
+將指令碼套用到叢集時，叢集狀態會從 [執行中] 變更為 [已接受]，然後是 [HDInsight 設定]，而成功指令碼最終會回到 [執行中]。指令碼狀態會記錄在指令碼動作歷程記錄中，您可以使用此狀態來判斷指令碼是成功或失敗。例如，`Get-AzureRmHDInsightScriptActionHistory` PowerShell Cmdlet 可用來檢視指令碼的狀態。這會傳回類似以下的資訊：
 
     ScriptExecutionId : 635918532516474303
     StartTime         : 2/23/2016 7:40:55 PM
@@ -92,7 +92,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 ## 範例指令碼動作指令碼
 
-從 Azure 入口網站、Azure PowerShell 或 HDInsight .NET SDK，可以使用指令碼動作指令碼。HDInsight 提供一些指令碼以在 HDInsight 叢集上安裝下列元件：
+從 Azure 入口網站、Azure PowerShell、Azure CLI 或 HDInsight .NET SDK，可以使用指令碼動作指令碼。HDInsight 提供一些指令碼以在 HDInsight 叢集上安裝下列元件：
 
 名稱 | 指令碼
 ----- | -----
@@ -416,7 +416,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 ## 將指令碼動作套用到執行中的叢集
 
-本節提供您可以將指令碼動作套用到執行中 HDInsight 叢集的不同方式範例 - 從 Azure 入口網站、使用 PowerShell Cmdlet，以及使用 .NET SDK。
+本節提供您可以將指令碼動作套用到執行中 HDInsight 叢集的不同方式範例 - 從 Azure 入口網站、使用 PowerShell Cmdlet、使用跨平台 Azure CLI，以及使用 .NET SDK。
 
 ### 從 Azure 入口網站將指令碼動作套用到執行中的叢集
 
@@ -437,8 +437,8 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 5. 從 [新增指令碼動作] 刀鋒視窗，輸入下列資訊。
 
     * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `R`。
-    * __指令碼 URI__︰指令碼的 URI。在此範例中，`https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh`
-    * __前端__、__背景工作__ 和 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端] 和 [背景工作]。
+    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh`
+    * __前端__、__背景工作角色__和 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端] 和 [背景工作]。
     * __參數__：如果指令碼接受參數，請在此輸入參數。
     * __已保存__︰如果您要保存指令碼，請勾選此項目，此項目也會在您相應增加叢集時套用到新的背景工作節點。
 
@@ -472,6 +472,38 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
         Uri             : https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh
         Parameters      :
         NodeTypes       : {HeadNode, WorkerNode}
+
+### 從 Azure CLI 將指令碼動作套用到執行中的叢集
+
+在繼續之前，請確認您已安裝和設定 Azure CLI。如需詳細資訊，請參閱[安裝 Azure CLI](../xplat-cli-install.md)。
+
+1. 開啟系統的殼層工作階段、終端機、命令提示字元或其他命令列，並使用下列命令切換至 Azure Resource Manager 模式。
+
+        azure config mode arm
+
+2. 使用下列命令來驗證您的 Azure 訂用帳戶。
+
+        azure login
+
+3. 使用下列命令將指令碼動作套用至執行中的叢集
+
+        azure hdinsight script-action create <clustername> -g <resourcegroupname> -n <scriptname> -u <scriptURI> -t <nodetypes>
+
+    如果省略這個命令的參數，系統會提示您使用。如果您使用 `-u` 指定的指令碼接受參數，您可以使用 `-p` 參數指定它們。
+
+    有效的節點類型是 __headnode__、__workernode__ 和 __zookeeper__。如果指令碼應該要套用到多個節點類型，請指定以 ';' 分隔類型。例如：`-n headnode;workernode`。
+
+    若要保留指令碼，請加入 `--persistOnSuccess`。您也可以使用 `azure hdinsight script-action persisted set` 在日後保存指令碼。
+    
+    工作完成之後，您就會收到與下列類似的輸出。
+    
+        info:    Executing command hdinsight script-action create
+        + Executing Script Action on HDInsight cluster
+        data:    Operation Info
+        data:    ---------------
+        data:    Operation status:
+        data:    Operation ID:  b707b10e-e633-45c0-baa9-8aed3d348c13
+        info:    hdinsight script-action create command OK
 
 ### 從 HDInsight .NET SDK 將指令碼動作套用到執行中的叢集
 
@@ -512,7 +544,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 | Set-AzureRmHDInsightPersistedScriptAction | 將臨時性指令碼動作升級為持續性指令碼動作 |
 | Remove-AzureRmHDInsightPersistedScriptAction | 將持續性指令碼動作降級為臨時性指令碼動作 |
 
-> [AZURE.IMPORTANT] 使用 `Remove-AzureRmHDInsightPersistedScriptAction` 不會復原指令碼所執行的動作，只會移除已保存旗標，讓指令碼不會對新增至叢集的新背景工作節點執行。
+> [AZURE.IMPORTANT] 使用 `Remove-AzureRmHDInsightPersistedScriptAction` 不會復原指令碼所執行的動作，只會移除已保存旗標，讓指令碼不會在新增至叢集的新背景工作節點上執行。
 
 下列範例指令碼示範如何使用 Cmdlet 來升級而後降級指令碼。
 
@@ -532,9 +564,22 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
     # execution ID.
     Remove-AzureRmHDInsightPersistedScriptAction -ClusterName mycluster -Name "Install Giraph"
 
+### 使用 Azure CLI
+
+| 使用下列... | 來 ... |
+| ----- | ----- |
+| `azure hdinsight script-action persisted list <clustername>` | 擷取保存的指令碼動作清單 |
+| `azure hdinsight script-action persisted show <clustername> <scriptname>` | 擷取特定的保存指令碼動作資訊 |
+| `azure hdinsight script-action history list <clustername>` | 擷取已套用到叢集的指令碼動作歷程記錄 |
+| `azure hdinsight script-action history show <clustername> <scriptname>` | 擷取特定的指令碼動作資訊 |
+| `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` | 將臨時性指令碼動作升級為持續性指令碼動作 |
+| `azure hdinsight script-action persisted delete <clustername> <scriptname>` | 將持續性指令碼動作降級為臨時性指令碼動作 |
+
+> [AZURE.IMPORTANT] 使用 `azure hdinsight script-action persisted delete` 不會復原指令碼所執行的動作，只會移除已保存旗標，讓指令碼不會在新增至叢集的新背景工作節點上執行。
+
 ### 使用 HDInsight .NET SDK
 
-如需使用 .NET SDK 來擷取叢集中的指令碼歷程記錄、升級或降級指令碼，請參閱 [TBD]()。
+如需使用 .NET SDK 從叢集擷取指令碼歷程記錄、升級或降級指令碼的範例，請參閱 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)。
 
 ## 疑難排解
 
@@ -565,11 +610,11 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 	![作業的螢幕擷取畫面](./media/hdinsight-hadoop-customize-cluster-linux/script_action_logs_in_storage.png)
 
 	在其下，記錄檔會個別針對前端節點、背景工作節點和 Zookeeper 節點進行組織。部分範例如下：
-	* 前端節點 - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
-	* 背景工作節點 - `<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
-	* Zookeeper 節點 - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
+	* **Headnode** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
+	* **背景工作節點** - `<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
+	* **Zookeeper 節點** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
-* 對應主機的所有 stdout 和 stderr 都會上傳至儲存體帳戶。每個指令碼動作分別有一個 **output-*.txt** 和  **errors-\*.txt** 。output-*.txt 檔案包含在主機上執行之指令碼的 URI 相關資訊。例如
+* 對應主機的所有 stdout 和 stderr 都會上傳至儲存體帳戶。每個指令碼動作分別有一個 **output-*.txt** 和 **errors-*.txt**。output-*.txt 檔案包含在主機上執行之指令碼的 URI 相關資訊。例如
 
 		'Start downloading script locally: ', u'https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh'
 
@@ -633,4 +678,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "叢集建立期間的階段"
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

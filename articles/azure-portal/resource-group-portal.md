@@ -5,7 +5,7 @@
 	documentationCenter="" 
 	authors="tfitzmac" 
 	manager="timlt" 
-	editor=""/>
+	editor="tysonn"/>
 
 <tags 
 	ms.service="azure-resource-manager" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="03/29/2016" 
+	ms.date="04/08/2016" 
 	ms.author="tomfitz"/>
 
 
@@ -27,17 +27,19 @@
 
 您也可以透過 Azure PowerShell 和 Azure CLI 來管理資源。如需有關使用這些介面的詳細資訊，請參閱[搭配使用 Azure PowerShell 和 Azure Resource Manager](../powershell-azure-resource-manager.md) 及[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure Resource Manager](../xplat-cli-azure-resource-manager.md)。如需有關如何透過 Visual Studio 部署解決方案的詳細資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
-## 建立和管理資源群組
+## 建立資源群組
 
 若要建立空的資源群組，請選取 [新增]、[管理] 和 [資源群組]。
 
 ![建立空的資源群組](./media/resource-group-portal/create-empty-group.png)
 
-您可提供其名稱和位置，再視需要選取訂用帳戶。
+提供其名稱和位置，再視需要選取訂用帳戶。
 
 ![設定群組值](./media/resource-group-portal/set-group-properties.png)
 
-建立資源群組之後，您可以資源部署至該群組。若要開始部署，只需選取 [新增] 以及您想要部署的資源類型。
+## 部署資源
+
+建立資源群組之後，您可以將資源部署至該群組。若要開始部署，只需選取 [新增] 以及您想要部署的資源類型。
 
 ![部署資源](./media/resource-group-portal/deploy-resource.png)
 
@@ -57,15 +59,81 @@
 
 ![檢視通知](./media/resource-group-portal/view-notification.png)
 
-### 將資源新增至現有的資源群組
-
-您可以在資源群組刀鋒視窗上使用 **Add** 命令，將資源新增至資源群組。
+部署您的資源之後，您可以決定必須將更多資源新增至群組。您可以在資源群組刀鋒視窗上使用 **Add** 命令，將資源新增至資源群組。
 
 ![新增資源](./media/resource-group-portal/add-resource.png)
 
-您可以從可用的清單中選取您要的資源。
+## 匯出範本
 
-### 瀏覽資源群組
+設定資源群組之後，您可以檢視此資源群組的資源管理員範本。匯出此範本有兩個優點︰
+
+1. 因為所有基礎結構都已定義於範本中，所以您可以輕鬆地自動進行解決方案的未來部署。
+
+2. 您可以查看代表您的解決方案的 JavaScript 物件標記法 (JSON)，藉此熟悉範本語法。
+
+透過入口網站，您可以產生代表資源群組目前狀態的範本，或擷取特定部署所用的範本。這兩個選項都會顯示在本主題中。
+
+您已變更資源群組，而且需要擷取其目前狀態的 JSON 表示法時，匯出資源群組的範本很有用。不過，產生的範本只包含最少的參數數目，但不包含任何變數。範本中大部分的值為硬式編碼。在部署所產生的範本之前，您可能想要將更多的值轉換成參數，以便針對不同的環境自訂部署。
+
+當您需要檢視用來部署資源的實際範本時，針對特定部署匯出範本很有用。範本會包含針對原始部署定義的所有參數和變數。不過，如果您組織中有人已變更非此範本中定義的資源群組，此範本並不會代表資源群組的目前狀態。
+
+> [AZURE.NOTE] 匯出範本功能處於預覽狀態，並非所有的資源類型目前都支援匯出範本。嘗試匯出範本時，您可能會看到一個錯誤，表示未匯出某些資源。如有需要，您可以在下載範本之後，在範本中手動定義這些資源。
+
+### 匯出資源群組的範本
+
+從資源群組刀鋒視窗，您可以匯出代表資源群組目前狀態的範本。
+
+若要檢視資源群組的範本，請選取 [匯出範本]。
+
+![匯出資源群組](./media/resource-group-portal/export-resource-group.png)
+
+資源管理員會為您產生 4 個檔案︰
+
+1. 用於定義解決方案之基礎結構的範本
+
+2. 您可以在部署期間用來傳入值的參數檔案
+
+3. 您可以為了部署範本而執行的 Azure PowerShell 指令碼檔案
+
+4. 您可以為了部署範本而執行的 Azure CLI 指令碼檔案
+
+首先，查看代表目前資源群組的範本。
+
+![顯示範本](./media/resource-group-portal/show-rg-template.png)
+
+在 [資源] 區段中，您會看到要部署之資源的定義。
+
+在參數檔案中，您可以儲存要在部署期間傳入的參數值。
+
+![顯示參數](./media/resource-group-portal/show-parameters.png)
+
+有可供透過 Azure PowerShell 部署範本的指令碼檔案。
+
+![顯示 Azure PowerShell](./media/resource-group-portal/show-powershell.png)
+
+此外，還有可供透過 Azure CLI 部署範本的指令碼檔案。
+
+![顯示 Azure CLI](./media/resource-group-portal/show-cli.png)
+
+入口網站會提供可用於此範本的三個選項。若要立即重新部署範本，請選取 [部署]。若要在本機上下載所有檔案，選取 [下載]。若要將檔案儲存至您的 Azure 帳戶，以便稍後透過入口網站使用，請選取 [儲存範本]。
+
+### 從部署下載範本
+
+在資源群組刀鋒視窗內，您可以看見此資源群組上次部署的日期和狀態。選取連結，即可顯示群組的部署歷程記錄。
+
+![上次部署](./media/resource-group-portal/last-deployment.png)
+
+選取歷程記錄中的任何部署，即可顯示有關該部署的詳細資訊。每次部署資源時，資源管理員都會保存您所用的範本。選取 [檢視範本]，即可擷取用於部署的實際範本。
+
+![匯出範本](./media/resource-group-portal/export-template.png)
+
+您會看到此部署所用的範本。其中包含您定義的所有參數和變數。
+
+![顯示範本](./media/resource-group-portal/show-template.png)
+
+如先前所述，這可能不是資源群組的完整呈現。如果您在此部署以外新增或刪除了資源，這些動作並不會反映在範本中。您可以檢視如上一節所示的範本、參數檔案和指令碼檔案。您也可以重新部署、下載或儲存如上一節所示的範本。
+
+## 管理資源群組
 
 您可以按一下 [資源群組] 來瀏覽所有資源群組。
 
@@ -105,56 +173,24 @@
 
 而且，立即加以選取，您即可看到更多有關資料的詳細資訊。
 
-### 刪除資源群組
-
-由於資源群組可讓您管理所有內含資源的生命週期，因此若刪除資源群組，將一併刪除群組內包含的所有資源。您也可以刪除資源群組內的個別資源。在刪除資源群組時應多加留意，因為可能會有其他資源連結至該群組。您可以檢視資源對應中的連結資源，並執行必要的步驟，以避免在刪除資源群組時出現非預期的結果。不會刪除連結的資源，但它們可能無法如預期般運作。
+由於資源群組可讓您管理所有內含資源的生命週期，因此若刪除資源群組，將一併刪除群組內包含的所有資源。您也可以刪除資源群組內的個別資源。在刪除資源群組時應多加留意，因為可能會有其他資源群組中的資源連結至該群組。不會刪除連結的資源，但它們可能無法如預期般運作。
 
 ![刪除群組](./media/resource-group-portal/delete-group.png)
-
-
-## 檢視過去的部署
-
-在資源群組刀鋒視窗內，您可以看見此資源群組上次部署的日期和狀態。選取連結，即可顯示群組的部署歷程記錄。
-
-![上次部署](./media/resource-group-portal/last-deployment.png)
-
-選取歷程記錄中的任何部署，即可顯示有關該部署的詳細資訊。
-
-![部署摘要](./media/resource-group-portal/deployment-summary.png)
-
-您可以看到在部署期間執行的個別作業。下圖顯示一個成功作業和一個失敗作業。
-
-![作業詳細資料](./media/resource-group-portal/operation-details.png)
-
-如需有關針對部署進行疑難排解的詳細資訊，請參閱[透過 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
-
-選取 [匯出範本]，即可擷取用於部署的範本。
-
-![匯出範本](./media/resource-group-portal/export-template.png)
-
-您會看到此部署所用的確切範本。
-
-![顯示範本](./media/resource-group-portal/show-template.png)
-
-這不是資源群組的完整呈現；如果您在此部署以外新增或刪除了資源，這些動作並不會反映在範本中。此刀鋒視窗包含範本、要搭配此範本使用的參數檔案，以及用來部署範本的 PowerShell 指令碼。選取 [儲存至檔案]，即可下載這 3 個檔案。
-
-## 檢視稽核記錄檔
-
-稽核記錄檔不只包含部署作業，還包含對您的訂用帳戶中的資源進行的所有管理作業。例如，您可以在稽核記錄檔中查看貴組織中的某個人停止應用程式的時間。若要查看稽核記錄檔，請選取 [**全部瀏覽**] 和 [**稽核記錄檔**]。
-
-![瀏覽稽核記錄檔](./media/resource-group-portal/browse-audit-logs.png)
-
-在 [作業] 區段中，您可以查看您的訂用帳戶中已執行的個別作業。
-
-![檢視稽核記錄檔](./media/resource-group-portal/view-audit-log.png)
-
-選取任何作業，您可以看到更多詳細資訊，包括哪個使用者執行此作業。
-
-如需檢視稽核記錄檔的詳細資訊，請參閱[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。
 
 ## 標記資源
 
 您可以將標籤套用至資源群組和資源，以便以邏輯方式組織您的資產。如需有關透過入口網站使用標記的資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。
+
+## 部署已儲存的範本
+
+如果已將範本儲存至您的帳戶，您可以選取 [瀏覽] 和 [範本]，稍後加以檢視。
+
+![瀏覽範本](./media/resource-group-portal/browse-templates.png)
+
+您會看到您自己的範本集合。
+
+![顯示範本集合](./media/resource-group-portal/show-template-collection.png)
+
 
 ## 部署自訂範本
 
@@ -171,6 +207,12 @@
 啟動範本部署之後，您可以建立自訂範本及設定部署的值。
 
 ![建立範本](./media/resource-group-portal/show-custom-template.png)
+
+或者，您可以從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)選取既存的範本。這些範本是由社群所貢獻。其中涵蓋許多常見案例，而其他人可能會新增類似於您嘗試部署的範本。您可以搜尋範本以找出符合您的案例的範本。
+
+![選取快速入門範本](./media/resource-group-portal/select-quickstart-template.png)
+
+選取範本之後，範本會載入編輯器中。
 
 ## 檢視訂用帳戶和成本
 
@@ -196,8 +238,7 @@
 
 ## 後續步驟
 
-- 如需資源管理員中的概念簡介，請參閱 [Azure 資源管理員概觀](../resource-group-overview.md)。
-- 如需部署資源時使用 Azure PowerShell 的簡介，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
-- 如需部署資源時使用 Azure CLI 的簡介，請參閱[使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 資源管理](../xplat-cli-azure-resource-manager.md)。
+- 若要檢視稽核記錄檔，請參閱[使用資源管理員來稽核作業](../resource-group-audit.md)。
+- 若要疑難排解部署錯誤，請參閱[透過 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

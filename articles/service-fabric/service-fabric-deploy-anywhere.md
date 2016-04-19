@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/27/2016"
+   ms.date="04/05/2016"
    ms.author="chackdan"/>
 
 # 在 Windows Server 或 Linux 上建立獨立的 Service Fabric 叢集
@@ -25,11 +25,12 @@ Service Fabric 會提供安裝套件，讓您在內部部署建立這些獨立 S
 
 ## 受支援的作業系統
 您將可以在執行下列作業系統的 VM 或電腦上建立叢集：
+
 * Windows Server 2012 R2
 * Windows Server 2016
 * Linux
 
-如需 Windows Server 的詳細資訊，請參閱[建立適用 Windows Server 的 Service Fabric 叢集](service-fabric-creation-for-windows-server)
+如需 Windows Server 的詳細資訊，請參閱[建立適用 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 
 ## 叢集的建立與設定
 Service Fabric 會提供可下載的安裝套件。下載此套件之後，您將必須變更 JSON 組態檔來指定您叢集的設定。編輯叢集設定之後，您會執行一個安裝指令碼，此指令碼可建立涵蓋您在叢集設定中所指定之電腦的叢集。也能執行指令碼以從一組電腦移除叢集。
@@ -56,4 +57,9 @@ Service Fabric 會提供可下載的安裝套件。下載此套件之後，您�
 * **診斷：**在 Azure 上，我們提供與 Azure 診斷及 Operational Insights 的整合。
 * **自動調整：**對於 Azure 上的叢集，我們會提供虛擬機器調整集產生的內建自動調整功能。在內部部署與其他雲端環境中，您將必須建置您自己的自動調整規模功能，或使用 Service Fabric 針對調整叢集規模顯示的 API 來手動調整規模。
 
-<!---HONumber=AcomDC_0330_2016-->
+## 後續步驟
+在執行 Windows Server 的 VM 或電腦上建立叢集：[建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
+
+在執行 Linux 的 VM 或電腦上建立叢集︰[Linux 上的 Service Fabric](service-fabric-linux-overview.md)
+
+<!---HONumber=AcomDC_0406_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="12/02/2015"
+   ms.date="03/30/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定 Web Proxy
@@ -151,4 +151,4 @@ Web Proxy 設定已透過 Windows PowerShell 介面設定，無法從傳統入�
 
 - 若要了解如何使用 StorSimple Manager，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0406_2016-->

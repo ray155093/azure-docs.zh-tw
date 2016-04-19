@@ -21,7 +21,7 @@
 
 ## 重要事項：此服務已被取代
 
-**此服務提供的人氣組合功能，現在已整合至我們更廣泛的[建議 API](http://gallery.azureml.net/MachineLearningAPI/3574432384684cac9cc766e57729ea4c)。我們鼓勵您使用建議項目來代替此服務。**
+**此服務提供的人氣組合功能，現在已整合至我們更廣泛的[建議 API](http://gallery.cortanaintelligence.com/MachineLearningAPI/3574432384684cac9cc766e57729ea4c)。我們鼓勵您使用建議項目來代替此服務。**
 
 ##概觀
 
@@ -39,4 +39,4 @@
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

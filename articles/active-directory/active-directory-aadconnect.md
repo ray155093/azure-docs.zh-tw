@@ -14,11 +14,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/29/2016"
+	ms.date="04/13/2016"
 	ms.author="andkjell;billmath"/>
 
 # 整合內部部署身分識別與 Azure Active Directory
 Azure AD Connect 是一種工具，用來整合您的內部部署身分識別系統 (例如 Windows Server Active Directory) 與 Azure Active Directory，並將您的使用者連線到 Office 365、Azure 和 1000 種以上的 SaaS 應用程式。本主題提供完整指南，指引您如何準備和部署必要元件，讓您的使用者使用他們今日用來存取現有的公司應用程式的同一身分識別，來存取雲端服務。
+
+<!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
+
+> [AZURE.IMPORTANT] [Azure AD Connect is the best way to connect your on-premises directory with Azure AD and Office 365. This is a great time to upgrade to Azure AD Connect from Windows Azure Active Directory Sync (DirSync) or Azure AD Sync as these tools are now deprecated and will reach end of support on April 13, 2017.]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
@@ -51,7 +55,7 @@ Azure Active Directory Connect 由三個主要部分組成。它們是同步處�
 | ----- | ----- |
 | 開始之前 - [硬體和必要條件](active-directory-aadconnect-prerequisites.md) | <li>開始安裝 Azure AD Connect 之前所應完成的步驟。</li> |
 | [快速設定](active-directory-aadconnect-get-started-express.md) | <li>如果您有單一樹系 AD 時的建議和預設選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li>
-| [自訂設定](active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
+| [自訂設定](active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用協力廠商身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
 | [從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) | <li>如果您有已在執行中的現有 DirSync 伺服器。</li>
 | [從 Azure AD Sync 或 Azure AD Connect 升級](active-directory-aadconnect-upgrade-previous-version.md)| <li>視您的偏好而定會有數種不同的方法。</li>
 
@@ -144,4 +148,4 @@ Azure AD Connect 同步處理隨附一個適用於大部分客戶和拓撲的預
 
 [AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0413_2016--->

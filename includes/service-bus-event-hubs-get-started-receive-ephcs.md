@@ -14,17 +14,15 @@
 
     ![][12]
 
-    複製存取金鑰以便稍後在此教學課程中使用。
+    複製主要存取金鑰以便稍後在此教學課程中使用。
 
 4. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。將專案命名為 **Receiver**。
 
     ![][14]
 
-5. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [**管理 NuGet 封裝**]。
+5. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝]。
 
-	[**管理 NuGet 封裝**] 對話方塊隨即出現。
-
-6. 搜尋 `Microsoft Azure Service Bus Event Hub - EventProcessorHost`，然後按一下 [**安裝**] 並接受使用條款。
+6. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus Event Hub - EventProcessorHost`。確定已在 [版本] 方塊中指定專案名稱 (接收者)。按一下 [安裝] 並接受使用條款。
 
     ![][13]
 
@@ -37,7 +35,6 @@
 	```
 	using Microsoft.ServiceBus.Messaging;
 	using System.Diagnostics;
-	using System.Threading.Tasks;
 	```
 
 	接著，將該類別的主體取代為下列程式碼：
@@ -82,7 +79,7 @@
             }
 	    }
 	}
-    ````
+    ```
 
 	**EventProcessorHost** 會呼叫這個類別來處理接收自事件中樞的事件。請注意，`SimpleEventProcessor` 類別會使用馬錶定期在 **EventProcessorHost** 內容上呼叫檢查點方法。這可確保重新啟動接收者時，遺失的處理工作不超過五分鐘。
 
@@ -90,17 +87,15 @@
 
 	```
 	using Microsoft.ServiceBus.Messaging;
-	using Microsoft.Threading;
-	using System.Threading.Tasks;
 	```
 
-	然後，如下所示修改 `Program` 類別中的 `Main` 方法，並替代事件中心名稱和連接字串，以及您在先前各節中複製的儲存體帳戶和金鑰：
+	然後，如下所示修改 `Program` 類別中的 `Main` 方法，並替代事件中樞名稱和 **ReceiveRule** 連接字串，以及您在先前各節中複製的儲存體帳戶和金鑰。務必移除連接字串的 `EntityPath` 尾碼：
 
     ```
 	static void Main(string[] args)
     {
-      string eventHubConnectionString = "{event hub connection string}";
-      string eventHubName = "{event hub name}";
+      string eventHubConnectionString = "{Event Hub connection string}";
+      string eventHubName = "{Event Hub name}";
       string storageAccountName = "{storage account name}";
       string storageAccountKey = "{storage account key}";
       string storageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", storageAccountName, storageAccountKey);
@@ -116,9 +111,9 @@
       Console.ReadLine();
       eventProcessorHost.UnregisterEventProcessorAsync().Wait();
     }
-	````
+	```
 
-> [AZURE.NOTE] 本教學課程使用單一 [EventProcessorHost][] 執行個體。若要增加輸送量，建議您執行多個 [EventProcessorHost][] 執行個體 (如[擴充事件處理][]範例所示)。在這些情況下，各種執行個體會自動彼此協調以對已接收的事件進行負載平衡。如果您想要多個接收者都處理*所有*事件，則必須使用 **ConsumerGroup** 概念。收到來自不同電腦的事件時，根據在其中執行 [EventProcessorHost][] 執行個體的電腦 (或角色) 來指定名稱可能十分有用。如需這些主題的詳細資訊，請參閱[事件中樞概觀][]和[事件中樞程式設計指南][]主題。
+> [AZURE.NOTE] 本教學課程使用單一 [EventProcessorHost][] 執行個體。若要增加輸送量，建議您執行多個 [EventProcessorHost][] 執行個體 (如[擴充事件處理][]範例所示)。在這些情況下，各種執行個體會自動彼此協調以對已接收的事件進行負載平衡。如果您想要多個接收者都處理所有事件，則必須使用 **ConsumerGroup** 概念。收到來自不同電腦的事件時，根據在其中執行 [EventProcessorHost][] 執行個體的電腦 (或角色) 來指定名稱可能十分有用。如需這些主題的詳細資訊，請參閱[事件中樞概觀][]和[事件中樞程式設計指南][]主題。
 
 <!-- Links -->
 [事件中樞概觀]: event-hubs-overview.md
@@ -135,4 +130,4 @@
 [13]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp1.png
 [14]: ./media/service-bus-event-hubs-getstarted/create-sender-csharp1.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

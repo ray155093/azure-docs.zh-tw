@@ -36,7 +36,7 @@
  
 * 建立 Azure 儲存體帳戶。如需此工作的指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。 
 * 佈建含有 HDInsight 服務的 Hadoop 叢集。如需指示，請參閱[佈建 HDInsight 叢集](../hdinsight-get-started.md#provision)。
-* 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-hive-tables.md)所提供的指示，先將資料上傳至 Hive 資料表。
+* 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)所提供的指示，先將資料上傳至 Hive 資料表。
 * 啟用叢集的遠端存取。如需指示，請參閱[存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#remoteaccess)。 
 
 
@@ -127,7 +127,7 @@
 1. [資料探索](#hive-dataexploration)
 2. [功能產生](#hive-featureengineering)
 
-> [AZURE.NOTE] Hive 查詢範例假設資料已上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-hive-tables.md)，先將資料上傳至 Hive 資料表。
+> [AZURE.NOTE] Hive 查詢範例假設資料已上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)，先將資料上傳至 Hive 資料表。
 
 ###<a name="hive-dataexploration"></a>資料探索
 以下提供數個 Hive 指令碼範例，可用來探索 Hive 資料表中的資料。
@@ -325,4 +325,4 @@ Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

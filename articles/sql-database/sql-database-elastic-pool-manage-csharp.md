@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="03/15/2016"
+    ms.date="04/01/2016"
     ms.author="sstein"/>
 
 # 使用 C&#x23; 管理和估算彈性資料庫集區大小
@@ -22,6 +22,7 @@
 - [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
 - [C#](sql-database-elastic-pool-manage-csharp.md)
+- [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
 
 了解如何使用 C&#x23; 管理[彈性資料庫集區](sql-database-elastic-pool.md)。
@@ -30,7 +31,7 @@
 
 > [AZURE.NOTE] 彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。如果您有 SQL Database V11 伺服器，您可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md)。
 
-下列範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，因此您需要安裝此程式庫。您可以在 Visual Studio 的[封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理員主控台]) 中執行下列命令，以進行安裝：
+下列範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，因此您需要安裝此程式庫。您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中執行下列命令，以進行安裝：
 
     PM> Install-Package Microsoft.Azure.Management.Sql –Pre
 
@@ -457,4 +458,4 @@
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 - [彈性資料庫集區參考](sql-database-elastic-pool-reference.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/27/2016"
+	ms.date="04/07/2016"
 	ms.author="tamram"/>
 
 
@@ -27,7 +27,18 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 您可以使用資料表儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的任何其他中繼資料類型。您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
 
+### 關於本教學課程
+
 本教學課程說明如何使用 Azure 表格儲存體撰寫一些常見案例的 .NET 程式碼，包括建立和刪除表格以及插入、更新、刪除和查詢表格資料。
+
+**預估完成時間：**45 分鐘
+
+**先決條件：**
+
+- [Microsoft Visual Studio](https://www.visualstudio.com/zh-TW/visual-studio-homepage-vs.aspx)
+- [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
+- [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
+- [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
 
 [AZURE.INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
@@ -35,36 +46,42 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 [AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-[AZURE.INCLUDE [storage-configure-connection-string-include](../../includes/storage-configure-connection-string-include.md)]
+[AZURE.INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
-## 以程式設計方式存取資料表儲存體
+### 新增命名空間宣告
 
-[AZURE.INCLUDE [storage-dotnet-obtain-assembly](../../includes/storage-dotnet-obtain-assembly.md)]
+在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
 
-### 命名空間宣告
-將下列程式碼命名空間宣告，新增至您想要在其中以程式設計方式存取 Azure 儲存體之任何 C# 檔案內的頂端。
+	using Microsoft.Azure; // Namespace for CloudConfigurationManager 
+	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
+    using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 
-    using Microsoft.WindowsAzure.Storage;
-	using Microsoft.WindowsAzure.Storage.Auth;
-    using Microsoft.WindowsAzure.Storage.Table;
+[AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
-確定已參照 `Microsoft.WindowsAzure.Storage.dll` 組件。
+### 建立表格服務用戶端
 
-[AZURE.INCLUDE [storage-dotnet-retrieve-conn-string](../../includes/storage-dotnet-retrieve-conn-string.md)]
+**CloudTableClient** 類別可讓您擷取表格儲存體中儲存的資料表。將下列程式碼新增至 **Main()** 方法：
+
+	// Create the table client.
+	CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+您現在可以開始撰寫程式碼，以讀取表格儲存體的資料並將資料寫入其中。
 
 ## 建立資料表
 
-**CloudTableClient** 物件可讓您取得資料表和實體的參照物件。下列程式碼會建立 **CloudTableClient** 物件，並使用該物件建立新資料表。本文中的所有程式碼會假設正在建置的應用程式是 Azure 雲端服務專案，並使用儲存在 Azure 應用程式服務組態中的儲存體連接字串。
+此範例說明如何建立尚不存在的資料表：
 
-    // Retrieve the storage account from the connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+	// Retrieve the storage account from the connection string.
+	CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+	    CloudConfigurationManager.GetSetting("StorageConnectionString"));
+	
+	// Create the table client.
+	CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-    // Create the table client.
-    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-    // Create the table if it doesn't exist.
+	// Retrieve a reference to the table.
     CloudTable table = tableClient.GetTableReference("people");
+		
+    // Create the table if it doesn't exist.
     table.CreateIfNotExists();
 
 ## 將實體加入至資料表
@@ -444,4 +461,4 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
   [How to: Programmatically access Table storage]: #tablestorage
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

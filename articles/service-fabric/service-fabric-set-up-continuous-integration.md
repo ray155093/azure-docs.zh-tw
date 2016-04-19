@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/27/2016"
+   ms.date="03/29/2016"
    ms.author="cawa" />
 
 # 使用 Visual Studio Team Services 為 Service Fabric 應用程式設定持續整合
@@ -41,12 +41,13 @@
 
 ### 安裝 Azure PowerShell 並登入
 
-1.	安裝 Azure PowerShell。
-2. 安裝 PowerShellGet。若要這樣做，請安裝 [Windows Management Framework 5.0](http://www.microsoft.com/download/details.aspx?id=48729)，其中包括 PowerShellGet。
+1.  安裝 PowerShellGet。
 
-    >[AZURE.NOTE] 如果您以最新的更新執行 Windows 10，您可以略過此步驟。
+    a.如果您執行具有最新更新的 Windows 10，您可以略過此步驟 (已經安裝 PowerShellGet)。
 
-3.	安裝和更新 AzureRM 模組。如果您已安裝任何舊版的 Azure PowerShell，請將它移除：
+    b.如果不是，請安裝 [Windows Management Framework 5.0](http://www.microsoft.com/download/details.aspx?id=48729)，其中包括 PowerShellGet。
+
+2.	安裝和更新 AzureRM 模組。如果您已安裝任何舊版的 Azure PowerShell，請將它移除：
 
     a.以滑鼠右鍵按一下 [開始] 按鈕，然後選取 [新增/移除程式]。
 
@@ -80,42 +81,25 @@
 
 ### 建立服務主體
 
-1.	下載 [ServiceFabricContinuousIntegrationScripts.zip](https://gallery.technet.microsoft.com/Set-up-continuous-f8b251f6) 並解壓縮到這台電腦上的資料夾。
+1. 請依照[這些指示](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)，為您的專案建立服務主體和服務端點。
 
-2.	在系統管理 PowerShell 命令提示字元中，切換至解壓縮封存中的目錄 `Powershell\Manual`。
+2. 請注意，值會列印在指令碼的輸出結尾。您需要這些值才能設定組建定義。
 
-3.	使用下列命令選擇服務主體的密碼。請記住這個密碼，因為它會當做組建變數使用。
+### 建立憑證並將它上傳到新的 Azure 金鑰保存庫
 
-    ```
-    $password = Read-Host -AsSecureString
-    ```
-4.	執行 PowerShell 指令碼 Create-ServicePrincipal.ps1 與下列參數：
+>[AZURE.NOTE] 此範例指令碼會產生自我簽署的憑證，這並非安全做法，僅有實驗時可以接受。請遵循組織的指導方針，改為取得合法的憑證。這些指示也會針對伺服器和用戶端使用單一憑證。在生產環境中，您應該使用不同的伺服器和用戶端憑證。
 
-|參數|值|
-|---|---|
-|DisplayName|任何名稱。|
-|HomePage|任何 URI。不一定要實際存在。|
-|IdentifierUri|任何唯一的 URI。不一定要實際存在。|
-|SecurePassword|$password|
+1. 下載並解壓縮 [ServiceFabricContinuousIntegrationScripts.zip](https://gallery.technet.microsoft.com/Set-up-continuous-f8b251f6) 到這台電腦上的資料夾。
 
-當指令碼完成時，它會輸出下列三個值。請記下值，因為它們會用來做為組建變數。
+2. 在系統管理 PowerShell 命令提示字元中，將目錄變更為 `<extracted zip>/Manual`。
 
- - `ServicePrincipalId`
- - `ServicePrincipalTenantId`
- - `ServicePrincipalSubscriptionId`
-
-### 建立憑證並將其上傳至 Azure 金鑰保存庫的新執行個體
-
->[AZURE.NOTE] 此範例指令碼會產生自我簽署的憑證，這並非安全做法，僅有實驗時可以接受。請遵循組織的指導方針，改為取得合法的憑證。
-
-1.	在系統管理 PowerShell 命令提示字元中，切換至您解壓縮 `Manual.zip` 時所在的目錄。
-
-2.	執行 PowerShell 指令碼 `CreateAndUpload-Certificate.ps1` 並指定下列參數：
+3. 以下列參數執行 PowerShell 指令碼 `CreateAndUpload-Certificate.ps1`：
 
 | 參數 | 值 |
 | --- | --- |
 | KeyVaultLocation | 任何值。這個參數必須符合您打算建立叢集的位置。 |
 | CertificateSecretName | 任何值。 |
+| CertificateDnsName | 必須符合您的叢集的 DNS 名稱。範例：`mycluster.westus.azure.cloudapp.net` |
 | SecureCertificatePassword | 任何值。當您在組建電腦上匯入憑證時會使用這個參數。 |
 | KeyVaultResourceGroupName | 任何值。不過，不要使用您計劃用於您的叢集的資源群組名稱。 |
 | KeyVaultName | 任何值。 |
@@ -159,7 +143,7 @@
 
 若要安裝 Azure PowerShell，請依照上一節「安裝 Azure PowerShell 並登入」中的步驟進行。略過「登入 Azure PowerShell」步驟。
 
-### 以本機服務帳戶註冊 Azure PowerShell 模組
+### 以網路服務帳戶註冊 Azure PowerShell 模組
 
 >[AZURE.NOTE] 執行這項操作之後再啟動組建代理程式。否則，它不會挑選新的環境變數。
 
@@ -190,7 +174,7 @@
 
     c.選取 [系統管理工具] > [管理電腦憑證]。
 
-3.	授與本機服務帳戶權限以使用自動化憑證：
+3.	授與網路服務帳戶權限以使用自動化憑證：
 
     a.在 [憑證 - 本機電腦] 底下，展開 [個人]，然後選取 [憑證]。
 
@@ -198,11 +182,15 @@
 
     c.以滑鼠右鍵按一下您的憑證，然後選取 [所有工作] > [管理私密金鑰]。
 
-    d.選取 [新增] 按鈕、輸入 [本機服務]，然後選取 [檢查名稱]。
+    d.選取 [新增] 按鈕、輸入 [網路服務]，然後選取 [檢查名稱]。
 
     e.選取 [確定]，然後關閉憑證管理員。
 
-![授與本機服務帳戶權限之步驟的螢幕擷取畫面](media/service-fabric-set-up-continuous-integration/windows-certificate-manager.png)
+    ![授與本機服務帳戶權限之步驟的螢幕擷取畫面](media/service-fabric-set-up-continuous-integration/windows-certificate-manager.png)
+
+4.  將憑證複製到 `Trusted People` 資料夾。
+
+    a.您的憑證已匯入 [個人/憑證]，但我們必須將它加入至 [受信任的人]。在憑證上按一下滑鼠右鍵，然後選取 [複製]。然後以滑鼠右鍵按一下 [受信任的人] 資料夾，接著選取 [貼上]。
 
 ### 註冊組建代理程式
 
@@ -216,11 +204,13 @@
 
     d.選取 [下載代理程式] 以下載 agent.zip 檔案。
 
+    >[AZURE.NOTE] 如果未開始下載，請檢查您的快顯封鎖程式。
+
     e.將 agent.zip 複製到您稍早建立的組建電腦。
 
     f.將 agent.zip 解壓縮至組建電腦上的 `C:\agent` (或具有簡短路徑的任何位置)。
 
-    >[AZURE.NOTE] 如果您打算使用 ASP.NET 5 Web 服務，建議您為此資料夾選擇可能的最短名稱，以避免在部署期間發生 **PathTooLongExceptions** 錯誤。
+    >[AZURE.NOTE] 如果您打算使用 ASP.NET 5 Web 服務，建議您為此資料夾選擇可能的最短名稱，以避免在部署期間發生 **PathTooLongExceptions** 錯誤。當 ASP.NET Core 發行時，即可緩和這個問題。
 
 2.	從系統管理命令提示字元中，執行 `C:\agent\ConfigureAgent.cmd`。指令碼會提示您下列參數：
 
@@ -231,12 +221,13 @@
 |代理程式集區|輸入代理程式集區的名稱。(如果您尚未建立代理程式集區，接受預設值。)|
 |工作資料夾|接受預設值。這是組建代理程式實際建置您的應用程式的資料夾。如果您打算使用 ASP.NET 5 Web 服務，建議您為此資料夾選擇可能的最短名稱，以避免在部署期間發生 PathTooLongExceptions 錯誤。|
 |安裝為 Windows 服務？|預設值為 N。將值變更為 **Y**。|
-|執行服務的使用者帳戶|接受預設值，`NT AUTHORITY\LocalService`。|
+|執行服務的使用者帳戶|接受預設值，`NT AUTHORITY\NetworkService`。|
+|`NT AUTHORITY\Network Service` 的密碼|網路服務帳戶沒有密碼，但會拒絕空白密碼。輸入任何非空白字串的密碼 (將會忽略您所輸入的資料)。|
 |取消設定現有的代理程式？|接受預設值，**N**。|
 
 3.  當系統提示您輸入認證時，請輸入具有您的小組專案權限的 Microsoft 帳戶的認證。
 
-4.  請確認您的組建代理程式已註冊。作法：
+4.  請確認您的組建代理程式已註冊並設定其功能。作法：
 
     a.返回網頁瀏覽器 (`https://[your-VSTS-account-name].visualstudio.com/_admin/_AgentPool`)，重新整理頁面。
 
@@ -244,7 +235,11 @@
 
     c.確認您的組建代理程式出現在清單中，並且具有綠色狀態反白顯示。若強調顯示是紅色，表示組建代理程式在連接到 Team Services 時發生問題。
 
-![顯示組建代理程式之狀態的螢幕擷取畫面](media/service-fabric-set-up-continuous-integration/vso-configured-agent.png)
+    ![顯示組建代理程式之狀態的螢幕擷取畫面](media/service-fabric-set-up-continuous-integration/vso-configured-agent.png)
+
+    d.選取組建代理程式，然後選取 [功能] 索引標籤。
+
+    e.新增名為 **azureps** 的功能和任何值。這對 VSTS 表示這部電腦上已安裝 Azure PowerShell，而需有該模組才能使用 VSTS 提供的某些組建工作。
 
 
 ## 建立組建定義
@@ -267,7 +262,7 @@
 
     c.選取綠色 **+** 符號以建立新的組建定義。
 
-    d.選取 [空白], ，然後選取 [下一步]。
+    d.選取 [空白]，然後選取 [下一步]。
 
     e.確認已選取正確的儲存機制和分支。
 
@@ -275,27 +270,39 @@
 
 2.	在 [變數] 索引標籤上，使用這些值建立下列變數。
 
-|變數|值|Secret|在佇列時間允許|
-|---|---|---|---|
-|BuildConfiguration|發行||X|
-|BuildPlatform|x64|||
-|ServicePrincipalPassword|您傳遞給 CreateServicePrincipal.ps1 的密碼。|X||
-|ServicePrincipalId|從 CreateServicePrincipal.ps1 的輸出。|||
-|ServicePrincipalTenantId|從 CreateServicePrincipal.ps1 的輸出。|||
-|ServicePrincipalSubscriptionId|從 CreateServicePrincipal.ps1 的輸出。|||
-|ServiceFabricCertificateThumbprint|從 GenerateCertificate.ps1 的輸出。|||
-|ServiceFabricKeyVaultId|從 GenerateCertificate.ps1 的輸出。|||
-|ServiceFabricCertificateSecretId|從 GenerateCertificate.ps1 的輸出。|||
-|ServiceFabricClusterName|任何您想要的名稱。|||
-|ServiceFabricClusterResourceGroupName|任何您想要的名稱。|||
-|ServiceFabricClusterLocation|任何符合您的金鑰保存庫位置的名稱。|||
-|ServiceFabricClusterAdminPassword|任何您想要的名稱。|X||
-|ServiceFabricClusterResourceGroupTemplateFilePath|`<path/to/extracted/automation/scripts/ArmTemplate-Full-3xVM-Secure.json>`|||
-|ServiceFabricPublishProfilePath|`<path/to/your/publish/profiles/MyPublishProfile.xml>` 發佈設定檔中的連接端點會被忽略。會改為使用暫存叢集的連接端點。|||
-|ServiceFabricDeploymentScriptPath|`<path/to/Deploy-FabricApplication.ps1>`|||
-|ServiceFabricApplicationProjectPath|`<path/to/your/fabric/application/project/folder>` 這應該是包含 .sfproj 檔案的資料夾。||||
+    |變數|值|Secret|在佇列時間允許|
+    |---|---|---|---|
+    |BuildConfiguration|發行||X|
+    |BuildPlatform|x64|||
+    |ServicePrincipalPassword|建立服務主體時所使用的密碼。|X||
+    |ServicePrincipalId|來自您用來建立服務主體之指令碼的輸出。|||
+    |ServicePrincipalTenantId|來自您用來建立服務主體之指令碼的輸出。|||
+    |ServicePrincipalSubscriptionId|來自您用來建立服務主體之指令碼的輸出。|||
+    |ServiceFabricCertificateThumbprint|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
+    |ServiceFabricKeyVaultId|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
+    |ServiceFabricCertificateSecretId|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
+    |ServiceFabricClusterName|必須符合您的憑證的 DNS 名稱。|||
+    |ServiceFabricClusterResourceGroupName|任何您想要的名稱。|||
+    |ServiceFabricClusterLocation|必須符合您的金鑰保存庫的位置。|||
+    |ServiceFabricClusterAdminPassword|8-123 個字元，至少包含下列其中 3 個類型的字元︰大寫、小寫、數字、特殊字元。|X||
+    |ServiceFabricClusterResourceGroupTemplateFilePath|`<path/to/extracted/automation/scripts/ArmTemplate-Full-3xVM-Secure.json>`|||
+    |ServiceFabricPublishProfilePath|`<path/to/your/publish/profiles/MyPublishProfile.xml>` 發佈設定檔中的連接端點會被忽略。會改為使用暫存叢集的連接端點。|||
+    |ServiceFabricDeploymentScriptPath|`<path/to/Deploy-FabricApplication.ps1>`|||
+    |ServiceFabricApplicationProjectPath|`<path/to/your/fabric/application/project/folder>` 這應該是包含 .sfproj 檔案的資料夾。||||
 
-3.  儲存組建定義並且給予名稱。(您想要的話可以在稍後變更此名稱。)
+3.  儲存組建定義並且給予名稱。您想要的話可以在稍後變更此名稱。
+
+### 新增「還原 NuGet 封裝」步驟
+
+1. 在 [組建] 索引標籤中，選擇 [新增組建步驟…] 命令。
+
+2. 選擇 [封裝] > [NuGet 安裝程式]
+
+3. 選擇組建步驟的名稱旁的鉛筆圖示，並且將其重新命名為 [還原 NuGet 封裝]。
+
+4. 選擇 [解決方案] 欄位旁的 [...] 按鈕，然後選擇 .sln 檔案。
+
+5. 儲存組建定義。
 
 ### 新增「組建」步驟
 
@@ -311,7 +318,7 @@
 
 6.	針對 [組態] 輸入 `$(BuildConfiguration)`。
 
-7.	選取 [還原 NuGet 封裝] 核取方塊 (如果尚未選取)。
+7.	清除 [還原 NuGet 封裝] 核取方塊 (如果尚未選取)。
 
 8.	儲存組建定義。
 
@@ -361,7 +368,7 @@
 
 4.	選取 [指令碼檔案名稱] 旁邊的 [...] 按鈕。瀏覽至您解壓縮自動化指令碼的位置，然後選取 **ProvisionAndDeploy-SecureCluster.ps1**。
 
-5.	針對 [引數]，輸入 `-ServicePrincipalPassword "$(ServicePrincipalPassword)" -ServiceFabricClusterAdminPassword "$(ServiceFabricClusterAdminPassword)"`。
+5.	針對 [引數]，輸入 `-ServicePrincipalPassword "$(ServicePrincipalPassword)" -ServiceFabricClusterAdminPassword "$(ServiceFabricClusterAdminPassword)"`
 
 6.	儲存組建定義。
 
@@ -387,7 +394,7 @@
 
 ### 試試看
 
-選取 [佇列組建] 開始組建。推送或簽入時也會觸發組建。
+選取 [佇列組建] 來啟動組建。推送或簽入時也會觸發組建。
 
 
 ## 替代解決方案
@@ -406,8 +413,8 @@
 
 若要深入了解與 Service Fabric 應用程式的連續整合，請閱讀下列文章：
 
-- [建置文件首頁](https://msdn.microsoft.com/Library/vs/alm/Build/overview)
-- [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
-- [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
+ - [建置文件首頁](https://msdn.microsoft.com/Library/vs/alm/Build/overview)
+ - [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
+ - [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

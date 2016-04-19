@@ -29,10 +29,10 @@ Azure Active Directory 裝置註冊可用於您的 Azure Active Directory。此�
 
 Azure Active Directory 裝置註冊可支援 iOS、Android 和 Windows 裝置。利用 Azure AD 裝置註冊的個別案例可能會有更明確的需求和平台支援。這些案例如下所示︰
 
-- **內部部署裝載之應用程式的條件式存取**：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。如需有關設定內部部署之條件式存取的詳細資訊，請參閱[使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access-on-premises-setup.md)。 
+- **內部部署裝載之應用程式的條件式存取**：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。如需有關設定內部部署之條件式存取的詳細資訊，請參閱[使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access-on-premises-setup.md)。
 
 - **適用於包含 Microsoft Intune 之 Office 365 應用程式的條件式存取**︰IT 管理員可以佈建條件式存取裝置原則來保護公司資源，同時允許相容裝置上的資訊工作者存取服務。如需詳細資訊，請參閱 Office 365 服務的條件式存取裝置原則。
- 
+
 ##設定 Azure Active Directory 裝置註冊
 
 您必須在 Azure 入口網站啟用 Azure AD 裝置註冊，讓行動裝置可以透過尋找知名的 DNS 記錄來探索服務。您必須設定公司 DNS，讓 Windows 10、Windows 8.1、Windows 7、Android 和 iOS 裝置可以探索和使用服務。您可以使用 Azure Active Directory 中的系統管理員入口網站，檢視並啟用/停用已註冊的裝置。
@@ -62,7 +62,7 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 您必須建立 DNS CNAME 記錄，該記錄指向與您的 Azure Active Directory 裝置註冊服務相關聯的 A 記錄。CNAME 記錄必須使用知名的前置詞 enterpriseregistration，其後面接著貴組織的使用者帳戶所使用的 UPN 尾碼。如果您的組織使用多個 UPN 尾碼，則必須在 DNS 中建立多個 CNAME 記錄。
 
 例如，如果您在貴組織使用兩個名為 @contoso.com 和 @region.contoso.com 的 UPN 尾碼，您將建立下列 DNS 記錄。
- 
+
 | 項目 | 類型 | 位址 |
 |-------------------------------------------|-------|------------------------------------|
 | enterpriseregistration.contoso.com | CNAME | enterpriseregistration.windows.net |
@@ -76,15 +76,15 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 5. 選取 [使用者] 索引標籤。然後選取使用者以檢視其裝置。
 6. 選取 [裝置] 索引標籤。
 7. 從下拉式功能表中選取 [已註冊的裝置]。
-8. 您可以在此檢視、封鎖或解除封鎖使用者已註冊的裝置。 
+8. 您可以在此檢視、封鎖或解除封鎖使用者已註冊的裝置。
 
 ## 其他主題
 
 您可以向 Azure AD 裝置註冊註冊 Windows 7 和 Windows 8.1 加入網域的裝置。下列主題提供有關在 Windows 7 和 Windows 8.1 裝置上設定裝置註冊所需之先決條件和步驟的詳細資訊。
 
-- [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](active-directory-conditional-access-automatic-device-registration.md) 
+- [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](active-directory-conditional-access-automatic-device-registration.md)
 - [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
-- [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows8_1.md)
+- [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -19,7 +19,7 @@
 # 開始使用 SQL Database 動態資料遮罩 (Azure 傳統入口網站)
 
 > [AZURE.SELECTOR]
-- [Dynamic Data Masking - Azure Portal](sql-database-dynamic-data-masking-get-started.md)
+- [動態資料遮罩 - Azure 入口網站](sql-database-dynamic-data-masking-get-started.md)
 
 ## 概觀
 
@@ -88,6 +88,10 @@ SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用�
 9. 按一下 [儲存]，以儲存新的或更新的遮罩原則。
 
 
+## 使用 Transact-SQL 陳述式為您的資料庫設定動態資料遮罩
+
+請參閱[動態資料遮罩](https://msdn.microsoft.com/library/mt130841.aspx)。
+
 ## 使用 PowerShell Cmdlet 為您的資料庫設定動態資料遮罩
 
 請參閱 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)。
@@ -96,4 +100,4 @@ SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用�
 
 請參閱 [Azure SQL Database 的作業](https://msdn.microsoft.com/library/dn505719.aspx)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

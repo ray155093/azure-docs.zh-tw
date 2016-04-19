@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/18/2016"
+   ms.date="04/02/2016"
    ms.author="mbaldwin"/>
 
 
@@ -114,10 +114,11 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 ## 影片
 
-### Build 2015
+### 建置
 
 這些概觀簡報有關於使用 Azure Active Directory 功能開發應用程式，適用於直接在工程團隊工作的講者。簡報涵蓋一些基本主題，包括 IDMaaS、驗證、身分識別同盟和單一登入。
 
+- [Microsoft 身分識別︰美國現狀和未來展望](https://azure.microsoft.com/documentation/videos/build-2016-microsoft-identity-state-of-the-union-and-future-direction/)
 - [Azure Active Directory：新式應用程式的「身分識別管理即服務」](https://azure.microsoft.com/documentation/videos/build-2015-azure-active-directory-identity-management-as-a-service-for-modern-applications/)
 - [使用 Azure Active Directory 開發新式 Web 應用程式](https://azure.microsoft.com/documentation/videos/build-2015-develop-modern-web-applications-with-azure-active-directory/)
 - [使用 Azure Active Directory 開發新式原生應用程式](https://azure.microsoft.com/documentation/videos/build-2015-develop-modern-native-applications-with-azure-active-directory/)
@@ -139,4 +140,4 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 - [Twitter 上的 Azure Active Directory](https://twitter.com/azuread)：140 個字元以內的 Azure Active Directory 公告。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -18,9 +18,11 @@ ms.service="virtual-machines-linux"
 
 # 使用 Microsoft HPC Pack 在 Azure 中建立及管理 Linux 高效能運算 (HPC) 叢集的選項
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
-
 [AZURE.INCLUDE [virtual-machines-common-hpcpack-cluster-options](../../includes/virtual-machines-common-hpcpack-cluster-options.md)]
+
+如果您想要使用 HPC Pack 執行 Windows HPC 工作負載，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立和管理 Windows HPC 叢集的選項](virtual-machines-windows-hpcpack-cluster-options.md)。
+
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## 在 Azure VM 中執行 HPC Pack 叢集
 
@@ -64,4 +66,4 @@ ms.service="virtual-machines-linux"
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

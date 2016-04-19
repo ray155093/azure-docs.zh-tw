@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/29/2016"
+	ms.date="04/05/2016"
 	ms.author="anhoh"/>
 
 # 使用資料庫移轉工具來將資料匯入 DocumentDB
@@ -32,13 +32,13 @@
 -	我如何將資料從 HBase 匯入至 DocumentDB
 -	如何將資料在 DocumentDB 集合之間進行移轉？
 
-##<a id="Prerequisites"></a>必要條件 ##
+##<a id="Prerequisites"></a>必要條件
 
 在依照本文中的指示進行之前，請確定已安裝下列項目：
 
 - [Microsoft.NET Framework 4.51](https://www.microsoft.com/download/developer-tools.aspx) 或更高版本。
 
-##<a id="Overviewl"></a>DocumentDB 資料移轉工具概觀 ##
+##<a id="Overviewl"></a>DocumentDB 資料移轉工具概觀
 
 DocumentDB 資料移轉工具是一個開放原始碼解決方案，可將資料從各種來源匯入 DocumentDB，來源包括：
 
@@ -61,7 +61,7 @@ DocumentDB 資料移轉工具是一個開放原始碼解決方案，可將資料
 - **Dtui.exe**：此工具的圖形化介面版本
 - **Dt.exe**：此工具的命令列版本
 
-##<a id="JSON"></a>匯入 JSON 檔案 ##
+##<a id="JSON"></a>匯入 JSON 檔案
 
 JSON 檔案來源匯入工具選項可讓您匯入一或多個單一文件 JSON 檔案或包含 JSON 文件陣列的每個 JSON 檔案。新增包含要匯入之 JSON 檔案的資料夾時，您可以選擇是否要以遞迴方式搜尋子資料夾中的檔案。
 
@@ -84,7 +84,7 @@ JSON 檔案來源匯入工具選項可讓您匯入一或多個單一文件 JSON 
 	#Import a single JSON file and partition the data across 4 collections
 	dt.exe /s:JsonFile /s.Files:D:\\CompanyData\\Companies.json /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:comp[1-4] /t.PartitionKey:name /t.CollectionTier:S3
 
-##<a id="MongoDB"></a>從 MongoDB 匯入 ##
+##<a id="MongoDB"></a>從 MongoDB 匯入
 
 MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並使用查詢來選擇性地篩選文件，及/或使用投影來修改文件結構。
 
@@ -106,7 +106,7 @@ MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並
 	#Import documents from a MongoDB collection which match the query and exclude the loc field
 	dt.exe /s:MongoDB /s.ConnectionString:mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database> /s.Collection:zips /s.Query:{pop:{$gt:50000}} /s.Projection:{loc:0} /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:BulkZipsTransform /t.IdField:_id/t.CollectionTier:S3
 
-##<a id="MongoDBExport"></a>匯入 MongoDB 匯出檔案 ##
+##<a id="MongoDBExport"></a>匯入 MongoDB 匯出檔案
 
 MongoDB 匯出 JSON 檔案來源匯入工具選項可讓您匯入從 mongoexport 公用程式產生的一或多個 JSON 檔案。
 
@@ -118,7 +118,7 @@ MongoDB 匯出 JSON 檔案來源匯入工具選項可讓您匯入從 mongoexport
 
 	dt.exe /s:MongoDBExport /s.Files:D:\mongoemployees.json /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:employees /t.IdField:_id /t.Dates:Epoch /t.CollectionTier:S3
 
-##<a id="SQL"></a>從 SQL Server 匯入 ##
+##<a id="SQL"></a>從 SQL Server 匯入
 
 SQL 來源匯入工具選項可讓您從個別的 SQL Server 資料庫匯入，並使用查詢來選擇性地篩選要匯入的記錄。此外，您可以藉由指定巢狀分隔符號 (稍後將有更詳細的說明) 來修改文件結構。
 
@@ -130,7 +130,7 @@ SQL 來源匯入工具選項可讓您從個別的 SQL Server 資料庫匯入，�
 
 巢狀分隔符號屬性可用來在匯入期間建立階層式關聯性 (子文件)。請考慮下列 SQL 查詢：
 
-*select CAST(BusinessEntityID AS varchar) as Id, Name, AddressType as [Address.AddressType], AddressLine1 as [Address.AddressLine1], City as [Address.Location.City], StateProvinceName as [Address.Location.StateProvinceName], PostalCode as [Address.PostalCode], CountryRegionName as [Address.CountryRegionName] from Sales.vStoreWithAddresses WHERE AddressType='Main Office'*
+select CAST(BusinessEntityID AS varchar) as Id, Name, AddressType as [Address.AddressType], AddressLine1 as [Address.AddressLine1], City as [Address.Location.City], StateProvinceName as [Address.Location.StateProvinceName], PostalCode as [Address.PostalCode], CountryRegionName as [Address.CountryRegionName] from Sales.vStoreWithAddresses WHERE AddressType='Main Office'
 
 它會傳回下列 (部分) 結果：
 
@@ -138,21 +138,8 @@ SQL 來源匯入工具選項可讓您從個別的 SQL Server 資料庫匯入，�
 
 注意別名，例如 Address.AddressType 和 Address.Location.StateProvinceName。藉由指定巢狀分隔符號 ‘.’，匯入工具會在匯入期間建立 Address 和 Address.Location 子文件。在 DocumentDB 中產生的文件範例如下：
 
-*{
-  "id": "956",
-  "Name": "Finer Sales and Service",
-  "Address": {
-    "AddressType": "Main Office",
-    "AddressLine1": "#500-75 O'Connor Street",
-    "Location": {
-      "City": "Ottawa",
-      "StateProvinceName": "Ontario"
-    },
-    "PostalCode": "K4B 1S2",
-    "CountryRegionName": "Canada"
-  }
-}*
- 
+{ "id": "956", "Name": "Finer Sales and Service", "Address": { "AddressType": "Main Office", "AddressLine1": "#500-75 O'Connor Street", "Location": { "City": "Ottawa", "StateProvinceName": "Ontario" }, "PostalCode": "K4B 1S2", "CountryRegionName": "Canada" } }
+
 以下是從 SQL Server 匯入的一些命令列範例：
 
 	#Import records from SQL which match a query
@@ -161,7 +148,7 @@ SQL 來源匯入工具選項可讓您從個別的 SQL Server 資料庫匯入，�
 	#Import records from sql which match a query and create hierarchical relationships
 	dt.exe /s:SQL /s.ConnectionString:"Data Source=<server>;Initial Catalog=AdventureWorks;User Id=advworks;Password=<password>;" /s.Query:"select CAST(BusinessEntityID AS varchar) as Id, Name, AddressType as [Address.AddressType], AddressLine1 as [Address.AddressLine1], City as [Address.Location.City], StateProvinceName as [Address.Location.StateProvinceName], PostalCode as [Address.PostalCode], CountryRegionName as [Address.CountryRegionName] from Sales.vStoreWithAddresses WHERE AddressType='Main Office'" /s.NestingSeparator:. /t:DocumentDBBulk /t.ConnectionString:" AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:StoresSub /t.IdField:Id /t.CollectionTier:S3
 
-##<a id="CSV"></a>匯入 CSV 檔案 - 將 CSV 轉換成 JSON ##
+##<a id="CSV"></a>匯入 CSV 檔案 - 將 CSV 轉換成 JSON
 
 CSV 檔案來源匯入工具選項可讓您匯入一或多個 CSV 檔案。新增包含要匯入之 CSV 檔案的資料夾時，您可以選擇是否要以遞迴方式搜尋子資料夾中的檔案。
 
@@ -171,20 +158,9 @@ CSV 檔案來源匯入工具選項可讓您匯入一或多個 CSV 檔案。新�
 
 ![CSV 範例記錄的螢幕擷取畫面 - CSV 轉換成 JSON](./media/documentdb-import-data/csvsample.png)
 
-注意別名，例如 DomainInfo.Domain_Name 和 RedirectInfo.Redirecting。藉由指定巢狀分隔符號 ‘.’，匯入工具將會在匯入期間建立 DomainInfo 和 RedirectInfo 子文件。在 DocumentDB 中產生的文件範例如下：
+注意別名，例如 DomainInfo.Domain\_Name 和 RedirectInfo.Redirecting。藉由指定巢狀分隔符號 ‘.’，匯入工具將會在匯入期間建立 DomainInfo 和 RedirectInfo 子文件。在 DocumentDB 中產生的文件範例如下：
 
-*{
-  "DomainInfo": {
-    "Domain_Name": "ACUS.GOV",
-    "Domain_Name_Address": "http://www.ACUS.GOV"
-  },
-  "Federal Agency": "Administrative Conference of the United States",
-  "RedirectInfo": {
-    "Redirecting": "0",
-    "Redirect_Destination": ""
-  },
-  "id": "9cc565c5-ebcd-1c03-ebd3-cc3e2ecd814d"
-}*
+{ "DomainInfo": { "Domain\_Name": "ACUS.GOV", "Domain\_Name\_Address": "http://www.ACUS.GOV" }, "Federal Agency": "Administrative Conference of the United States", "RedirectInfo": { "Redirecting": "0", "Redirect\_Destination": "" }, "id": "9cc565c5-ebcd-1c03-ebd3-cc3e2ecd814d" }
 
 匯入工具將嘗試推斷 CSV 檔案中不具引號之值的類型資訊 (加上引號的值永遠會被視為字串)。系統會依照下列順序識別類型：數字、日期時間、布林值。
 
@@ -199,7 +175,7 @@ CSV 檔案來源匯入工具選項可讓您匯入一或多個 CSV 檔案。新�
 
 	dt.exe /s:CsvFile /s.Files:.\Employees.csv /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:Employees /t.IdField:EntityID /t.CollectionTier:S3
 
-##<a id="AzureTableSource"></a>從 Azure 資料表儲存體匯入 ##
+##<a id="AzureTableSource"></a>從 Azure 資料表儲存體匯入
 
 Azure 資料表儲存體來源匯入工具選項可讓您從個別的 Azure 資料表儲存體資料表匯入，並選擇性地篩選要匯入的資料表實體。
 
@@ -254,7 +230,7 @@ JSON 檔案、MongoDB 匯出檔案和 CSV 檔案來源匯入工具選項可讓�
 
 	dt.exe /s:JsonFile /s.Files:"blobs://<account key>@account.blob.core.windows.net:443/importcontainer/.*" /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:doctest
 
-##<a id="DocumentDBSource"></a>從 DocumentDB 匯入 ##
+##<a id="DocumentDBSource"></a>從 DocumentDB 匯入
 
 DocumentDB 來源匯入工具選項可讓您從一或多個 DocumentDB 集合匯入資料，並選擇性地使用查詢來篩選文件。
 
@@ -264,6 +240,10 @@ DocumentDB 連接字串的格式如下：
 
 	AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;
 
+如[如何管理 DocumentDB 帳戶](documentdb-manage-account.md)中所述，可從 Azure 入口網站的 [金鑰] 刀鋒視窗中擷取 DocumentDB 帳戶的連接字串，但資料庫的名稱必須以下列格式附加至連接字串︰
+
+    Database=<DocumentDB Database>;
+
 > [AZURE.NOTE] 若要確定可以存取連接字串欄位中指定的 DocumentDB 執行個體，請使用 Verify 命令。
 
 若要從單一 DocumentDB 集合匯入，請輸入要從中匯入資料的來源集合名稱。若要從多個 DocumentDB 集合匯入，可提供規則運算式來比對一或多個集合名稱 (例如 collection01 | collection02 | collection03)。您可以選擇性地對這兩個篩選器指定或提供檔案進行查詢，並使資料適合匯入作業。
@@ -272,7 +252,7 @@ DocumentDB 連接字串的格式如下：
 
 DocumentDB 來源匯入工具選項具有下列進階選項：
 
-1. 包括內部欄位：指定匯出中是否包含 DocumentDB 文件系統屬性 (例如 _rid、_ts)。
+1. 包括內部欄位：指定匯出中是否包含 DocumentDB 文件系統屬性 (例如 \_rid, \_ts)。
 2. 失敗時的重試次數：指定與 DocumentDB 的連線發生暫時性失敗 (例如網路連線中斷) 時的重試次數。
 3. 重試間隔：指定與 DocumentDB 的連線發生暫時性失敗 (例如網路連線中斷) 時兩次重試之間要等候的時間。
 4. 連線模式：指定要與 DocumentDB 搭配使用的連線模式。可用的選項包括：DirectTcp、DirectHttps 和閘道器。直接連線模式會比較快，但閘道器模式比較支援防火牆，因為它只會使用連接埠 443。
@@ -313,7 +293,7 @@ HBase Stargate 連接字串的格式如下：
 
 ##<a id="DocumentDBBulkTarget"></a>匯入到 DocumentDB (大量匯入)
 
-為了方便，DocumentDB 大量匯入工具可讓您使用 DocumentDB 預存程序，從任何可用的來源選項匯入。此工具支援匯入到單一 DocumentDB 集合，以及跨多個 DocumentDB 集合分割資料的分區化匯入。您可以在[這裡](documentdb-partition-data.md)深入了解如何在 DocumentDB 中分割資料。此工具將建立並執行預存程序，然後從目標集合中將它刪除。
+為了方便，DocumentDB 大量匯入工具可讓您使用 DocumentDB 預存程序，從任何可用的來源選項匯入。此工具支援匯入到單一 DocumentDB 集合，以及跨多個 DocumentDB 集合分割資料的分區化匯入。如需分割資料的詳細資訊，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。此工具將建立並執行預存程序，然後從目標集合中將它刪除。
 
 ![DocumentDB 大量選項的螢幕擷取畫面](./media/documentdb-import-data/documentdbbulk.png)
 
@@ -321,15 +301,19 @@ DocumentDB 連接字串的格式如下：
 
 	AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;
 
+如[如何管理 DocumentDB 帳戶](documentdb-manage-account.md)中所述，可從 Azure 入口網站的 [金鑰] 刀鋒視窗中擷取 DocumentDB 帳戶的連接字串，但資料庫的名稱必須以下列格式附加至連接字串︰
+
+    Database=<DocumentDB Database>;
+
 > [AZURE.NOTE] 若要確定可以存取連接字串欄位中指定的 DocumentDB 執行個體，請使用 Verify 命令。
 
-若要匯入到單一集合，請輸入要匯入資料的目標集合名稱，然後按一下 [新增] 按鈕。若要匯入到多個集合，請分別輸入每個集合的名稱，或使用下列語法來指定多個集合： *collection_prefix*[開始索引 - 結束索引]。透過上述語法指定多個集合時，請記住下列事項：
+若要匯入到單一集合，請輸入要匯入資料的目標集合名稱，然後按一下 [新增] 按鈕。若要匯入到多個集合，請分別輸入每個集合的名稱，或使用下列語法來指定多個集合：collection\_prefix[開始索引 - 結束索引]。透過上述語法指定多個集合時，請記住下列事項：
 
 1. 僅支援整數範圍的名稱模式。例如，指定 collection[0-3] 將產生下列集合：collection0、collection1、collection2、collection3。
 2. 您可以使用縮寫的語法：collection[3] 將發出一組與步驟 1 中所述相同的集合。
 3. 您可以提供一個以上的替代項目。例如，collection[0-1] [0-9] 將產生 20 個開頭為零的集合名稱 (collection01、..02、..03)。
 
-指定集合名稱之後，請選擇所需的集合定價層 (S1、S2 或 S3)。為了達到最佳的匯入效能，請選擇 S3。您可以在[這裡](documentdb-performance-levels.md)深入了解 DocumentDB 效能等級。
+指定集合名稱之後，請選擇所需的集合定價層 (S1、S2 或 S3)。為了達到最佳的匯入效能，請選擇 S3。如需效能等級的詳細資訊，請參閱 [DocumentDB 中的效能等級](documentdb-performance-levels.md)。
 
 > [AZURE.NOTE] 效能層設定僅適用於建立集合。如果指定的集合已經存在，將不會修改其定價層。
 
@@ -347,7 +331,7 @@ DocumentDB 連接字串的格式如下：
 
 -	字串：保存為字串值
 -	Epoch：保存為 Epoch 數值
--	兩者：保存字串和 Epoch 數值。這個選項會建立子文件，例如："date_joined": { "Value": "2013-10-21T21:17:25.2410000Z", "Epoch": 1382390245 } 
+-	兩者：保存字串和 Epoch 數值。這個選項會建立子文件，例如："date\_joined": { "Value": "2013-10-21T21:17:25.2410000Z", "Epoch": 1382390245 }
 
 
 DocumentDB 大量匯入工具具有下列其他進階選項：
@@ -366,7 +350,7 @@ DocumentDB 大量匯入工具具有下列其他進階選項：
 
 ##<a id="DocumentDBSeqTarget"></a>匯入到 DocumentDB (循序記錄匯入)
 
-為了方便，DocumentDB 循序記錄匯入工具可讓您從任何可用的來源選項逐筆匯入記錄。如果您打算匯入至已達到預存程序配額的現有集合，您可以選擇此選項。此工具支援匯入到單一 DocumentDB 集合，以及跨多個 DocumentDB 集合分割資料的分區化匯入。您可以在[這裡](documentdb-partition-data.md)深入了解如何在 DocumentDB 中分割資料。
+為了方便，DocumentDB 循序記錄匯入工具可讓您從任何可用的來源選項逐筆匯入記錄。如果您打算匯入至已達到預存程序配額的現有集合，您可以選擇此選項。此工具支援匯入到單一 DocumentDB 集合，以及跨多個 DocumentDB 集合分割資料的分區化匯入。如需分割資料的詳細資訊，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
 
 ![DocumentDB 循序記錄匯入選項的螢幕擷取畫面](./media/documentdb-import-data/documentdbsequential.png)
 
@@ -374,15 +358,19 @@ DocumentDB 連接字串的格式如下：
 
 	AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;
 
+如[如何管理 DocumentDB 帳戶](documentdb-manage-account.md)中所述，可從 Azure 入口網站的 [金鑰] 刀鋒視窗中擷取 DocumentDB 帳戶的連接字串，但資料庫的名稱必須以下列格式附加至連接字串︰
+
+    Database=<DocumentDB Database>;
+
 > [AZURE.NOTE] 若要確定可以存取連接字串欄位中指定的 DocumentDB 執行個體，請使用 Verify 命令。
 
-若要匯入到單一集合，請輸入要匯入資料的目標集合名稱，然後按一下 [新增] 按鈕。若要匯入到多個集合，請分別輸入每個集合的名稱，或使用下列語法來指定多個集合： *collection_prefix*[開始索引 - 結束索引]。透過上述語法指定多個集合時，請記住下列事項：
+若要匯入到單一集合，請輸入要匯入資料的目標集合名稱，然後按一下 [新增] 按鈕。若要匯入到多個集合，請分別輸入每個集合的名稱，或使用下列語法來指定多個集合：collection\_prefix[開始索引 - 結束索引]。透過上述語法指定多個集合時，請記住下列事項：
 
 1. 僅支援整數範圍的名稱模式。例如，指定 collection[0-3] 將產生下列集合：collection0、collection1、collection2、collection3。
 2. 您可以使用縮寫的語法：collection[3] 將發出一組與步驟 1 中所述相同的集合。
 3. 您可以提供一個以上的替代項目。例如，collection[0-1] [0-9] 將產生 20 個開頭為零的集合名稱 (collection01、..02、..03)。
 
-指定集合名稱之後，請選擇所需的集合定價層 (S1、S2 或 S3)。為了達到最佳的匯入效能，請選擇 S3。您可以在[這裡](documentdb-performance-levels.md)深入了解 DocumentDB 效能等級。
+指定集合名稱之後，請選擇所需的集合定價層 (S1、S2 或 S3)。為了達到最佳的匯入效能，請選擇 S3。如需效能等級的詳細資訊，請參閱 [DocumentDB 中的效能等級](documentdb-performance-levels.md)。
 
 > [AZURE.NOTE] 效能層設定僅適用於建立集合。如果指定的集合已經存在，將不會修改其定價層。
 
@@ -396,7 +384,7 @@ DocumentDB 連接字串的格式如下：
 
 -	字串：保存為字串值
 -	Epoch：保存為 Epoch 數值
--	兩者：保存字串和 Epoch 數值。這個選項會建立子文件，例如："date_joined": { "Value": "2013-10-21T21:17:25.2410000Z", "Epoch": 1382390245 } 
+-	兩者：保存字串和 Epoch 數值。這個選項會建立子文件，例如："date\_joined": { "Value": "2013-10-21T21:17:25.2410000Z", "Epoch": 1382390245 }
 
 DocumentDB 循序記錄匯入工具具有下列其他進階選項：
 
@@ -411,7 +399,7 @@ DocumentDB 循序記錄匯入工具具有下列其他進階選項：
 
 > [AZURE.TIP] 匯入工具會預設 DirectTcp 連線模式。如果您遇到防火牆問題，請切換到閘道器連線模式，因為它只需要連接埠 443。
 
-##<a id="IndexingPolicy"></a>建立 DocumentDB 集合時指定索引編製原則 ##
+##<a id="IndexingPolicy"></a>建立 DocumentDB 集合時指定索引編製原則
 
 當您允許移轉工具在匯入期間建立集合時，您可以指定集合的索引編製原則。在 DocumentDB 大量匯入和 DocumentDB 循序記錄選項的進階選項區段中，瀏覽至 [索引編製原則] 區段。
 
@@ -427,7 +415,7 @@ DocumentDB 循序記錄匯入工具具有下列其他進階選項：
 
 ![DocumentDB 索引編製原則進階選項的螢幕擷取畫面](./media/documentdb-import-data/indexingpolicy2.png)
 
-> [AZURE.NOTE] 如果未指定索引編製原則，將會套用預設原則。您可以在[這裡](documentdb-indexing-policies.md)深入了解 DocumentDB 索引編製原則。
+> [AZURE.NOTE] 如果未指定索引編製原則，將會套用預設原則。如需索引編製原則的詳細資訊，請參閱 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)。
 
 
 ## 匯出至 JSON 檔案
@@ -490,7 +478,7 @@ DocumentDB JSON 匯出工具可讓您將任何可用的來源選項匯出至包�
 
 	![摘要畫面的螢幕擷取畫面](./media/documentdb-import-data/summarycommand.png)
 
-2. 在您滿意來源和目標選項之後，請按一下 [**匯入**]。隨著匯入的處理，已耗用時間、傳送的計數，以及失敗的資訊 (如果您未在 [進階組態] 中提供檔案名稱) 都將隨之更新。完成後，您可以匯出結果 (例如處理任何匯入失敗)。
+2. 在您滿意來源和目標選項之後，請按一下 [匯入]。隨著匯入的處理，已耗用時間、傳送的計數，以及失敗的資訊 (如果您未在 [進階組態] 中提供檔案名稱) 都將隨之更新。完成後，您可以匯出結果 (例如處理任何匯入失敗)。
 
 	![DocumentDB JSON 匯出選項的螢幕擷取畫面](./media/documentdb-import-data/viewresults.png)
 
@@ -500,6 +488,6 @@ DocumentDB JSON 匯出工具可讓您將任何可用的來源選項匯出至包�
 
 ## 後續步驟
 
-- 若要深入了解 DocumentDB，請按一下[這裡](http://azure.com/docdb)。
+- 若要深入了解 DocumentDB，請參閱[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

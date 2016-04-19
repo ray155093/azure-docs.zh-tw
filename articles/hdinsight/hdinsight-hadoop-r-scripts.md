@@ -14,13 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/14/2016"
+	ms.date="04/05/2016"
 	ms.author="jgao"/>
 
 # 在 HDInsight Hadoop 叢集上安裝和使用 R
 
-
-了解如何使用指令碼動作來以 R 自訂以 Windows 為基礎的 HDInsight 叢集，以及如何在 HDInsight 叢集上使用 R。如需搭配以 Linux 為基礎的叢集使用 R 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)。
+了解如何使用指令碼動作來以 R 自訂以 Windows 為基礎的 HDInsight 叢集，以及如何在 HDInsight 叢集上使用 R。HDInsight 的[進階層](https://azure.microsoft.com/pricing/details/hdinsight/)供應項目包括隨附於 HDInsight 叢集的 R Server。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。如需詳細資訊，請參閱[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。如需搭配以 Linux 為基礎的叢集使用 R 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)。
  
 您也可以使用「指令碼動作」，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 R。您可以從一個唯讀的 Azure 儲存體 Blob 取得在 HDInsight 叢集上安裝 R 的範例指令碼，網址為 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
 
@@ -49,16 +48,18 @@ R 與 Azure Blob 儲存體 (WASB) 相容，因此便可在 HDInsight 上使用 R
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-r-scripts/hdi-r-script-action.png "使用指令碼動作以自訂叢集")
 
 	<table border='1'>
-	<tr><th>屬性</th><th>值</th></tr>
-	<tr><td>名稱</td>
-		<td>指定指令碼動作的名稱，例如 [<b>安裝 R</b>]。</td></tr>
-	<tr><td>指令碼 URI</td>
-		<td>指定為了自訂叢集所叫用之指令碼的 URI，例如 <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
-	<tr><td>節點類型</td>
-		<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
-	<tr><td>參數</td>
-		<td>如果指令碼要求，請指定參數。不過，用來安裝 R 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
-</table>您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
+		<tr><th>屬性</th><th>值</th></tr>
+		<tr><td>名稱</td>
+			<td>指定指令碼動作的名稱，例如 [<b>安裝 R</b>]。</td></tr>
+		<tr><td>指令碼 URI</td>
+			<td>指定為了自訂叢集所叫用之指令碼的 URI，例如 <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
+		<tr><td>節點類型</td>
+			<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
+		<tr><td>參數</td>
+			<td>如果指令碼要求，請指定參數。不過，用來安裝 R 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
+	</table>
+
+	您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
 
 您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，在 HDInsight 上使用指令碼安裝 R。本文稍後會提供這些程序的指示。
 
@@ -113,4 +114,4 @@ R 與 Azure Blob 儲存體 (WASB) 相容，因此便可在 HDInsight 上使用 R
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install-linux.md
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

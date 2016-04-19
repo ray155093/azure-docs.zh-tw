@@ -138,7 +138,7 @@ Service Fabric 為接聽用戶端要求的服務提供選擇性的通訊設定�
  - **組態：**服務的所有組態檔和設定。
  - **資料：**與服務相關聯的靜態資料檔案。
 
-這些封裝每一個都可以獨立設定版本和升級。和雲端服務類似，組態封裝可以透過 API 以程式設計方式存取，並有提供事件來通知服務其組態封裝已變更。Settings.xml 檔案可用於索引鍵/值組的組態和程式設計存取，類似於。不過，和雲端服務不同的是，Service Fabric 組態封裝可以包含任何格式的任何組態檔，無論是 XML、JSON、YAML 或自訂的二進位格式。
+這些封裝每一個都可以獨立設定版本和升級。和雲端服務類似，組態封裝可以透過 API 以程式設計方式存取，並有提供事件來通知服務其組態封裝已變更。Settings.xml 檔案可用於索引鍵/值組的組態和程式設計存取，類似於 App.config 檔案的應用程式設定區段。不過，和雲端服務不同的是，Service Fabric 組態封裝可以包含任何格式的任何組態檔，無論是 XML、JSON、YAML 或自訂的二進位格式。
 
 
 ### 存取組態
@@ -277,4 +277,4 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png
 [4]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/worker-role-to-stateless-service.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0406_2016-->

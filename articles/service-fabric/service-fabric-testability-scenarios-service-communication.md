@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="08/25/2015"
+   ms.date="03/25/2016"
    ms.author="vturecek"/>
 
 # Service Fabric Testability 案例：服務通訊
@@ -97,4 +97,4 @@ PS > Invoke-ServiceFabricPartitionQuorumLoss -ServiceName fabric:/Myapplication/
 
 [深入了解 Testability 案例](service-fabric-testability-scenarios.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

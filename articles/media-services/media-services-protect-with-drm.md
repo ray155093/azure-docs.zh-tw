@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article" 
- 	ms.date="03/28/2016" 
+ 	ms.date="04/07/2016" 
 	ms.author="juliako"/>
 
 
@@ -24,11 +24,10 @@
 - [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
 - [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 
-Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/) 授權保護的加密 MPEG DASH、Smooth Streaming 和 HTTP Live Streaming (HLS) 資料流。AMS 也可讓您傳遞包含 Widevine DRM 授權的加密 DASH 資料流。PlayReady 和 Widevine 是依照 Common Encryption (ISO/IEC 23001-7 CENC) 規格加密。您可以使用 [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (從版本 3.5.1 開始) 或 REST API 來設定 AssetDeliveryConfiguration 以使用 Widevine。
+Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/) 保護的 MPEG-DASH、Smooth Streaming 和 HTTP-Live-Streaming (HLS) 串流。AMS 也可讓您傳遞包含 Widevine DRM 授權的加密 DASH 資料流。PlayReady 和 Widevine 是依照 Common Encryption (ISO/IEC 23001-7 CENC) 規格加密。您可以使用 [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (從版本 3.5.1 開始) 或 REST API 來設定 AssetDeliveryConfiguration 以使用 Widevine。
 
-媒體服務提供一種服務，來傳遞 Microsoft PlayReady 授權。媒體服務也提供 API，可讓您設定您要 PlayReady DRM 執行階段在使用者播放受保護內容時強制執行的權限和限制。當使用者要求受 PlayReady 保護的內容時，播放器應用程式會向 AMS 授權服務要求授權。如果播放器是授權的，則 AMS 授權服務會發出授權給播放器。PlayReady 授權包含解密金鑰，可被用戶端播放器用來解密和串流處理內容。
+媒體服務提供傳遞 PlayReady 和 Widevine DRM 授權的服務。媒體服務也提供 API，可讓您設定您要 PlayReady DRM 或 Widevine DRM 執行階段在使用者播放受保護內容時強制執行的權限和限制。當使用者要求受 DRM 保護的內容時，播放器應用程式會向 AMS 授權服務要求授權。如果播放器是授權的，則 AMS 授權服務會發出授權給播放器。PlayReady 或 Widevine 授權包含解密金鑰，可被用戶端播放器用來解密和串流處理內容。
 
-從媒體服務 .NET SDK 3.5.2 版開始，媒體服務也可讓您設定 Widevine 授權範本並取得 Widevine 授權。
 
 您也可以使用下列 AMS 合作夥伴來助您傳遞 Widevine 授權：[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)、[EZDRM](http://ezdrm.com/)、[castLabs](http://castlabs.com/company/partners/azure/)。如需詳細資訊，請參閱整合 [Axinom](media-services-axinom-integration.md) 和 [castLabs](media-services-castlabs-integration.md)。
 
@@ -630,4 +629,4 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 
 [宣布在 Azure 媒體服務中推出 Google Widevine 授權傳遞服務](https://azure.microsoft.com/blog/announcing-general-availability-of-google-widevine-license-services/)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

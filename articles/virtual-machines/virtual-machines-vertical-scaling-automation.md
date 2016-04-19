@@ -59,7 +59,7 @@
 * 以使用者的登入資訊建立 AutomationPSCredential
 * 將使用者設定為可存取您訂用帳戶中的資源
 
-必須對您的訂用帳戶授與 Azure 自動化存取權，才可在訂用帳戶中執行 Azure 自動化 Runbook。在 Active Directory 中建立另一位使用者，即可完成此作業。然後，您需要建立 AutomationPSCredential，讓使用者可以對 Azure 進行驗證，並執行 PowerShell 命令以調整虛擬機器的大小。
+必須對您的訂用帳戶授與 Azure 自動化存取權，才可在訂用帳戶中開始執行 Azure 自動化 Runbook。在 Active Directory 中建立另一位使用者，即可完成此作業。然後，您需要建立 AutomationPSCredential，讓使用者可以對 Azure 進行驗證，並執行 PowerShell 命令以調整虛擬機器的大小。
 
 如需建立使用者和 AutomationPSCredential 的逐步解說，請參閱下列文章
 
@@ -108,4 +108,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

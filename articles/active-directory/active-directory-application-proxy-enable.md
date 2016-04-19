@@ -12,8 +12,8 @@
 	ms.workload="identity"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.topic="get-started-article"
+	ms.date="04/12/2016"
 	ms.author="kgremban"/>
 
 # 啟用 Azure AD 應用程式 Proxy
@@ -96,4 +96,4 @@ Microsoft Azure Active Directory 應用程式 Proxy 可讓您在私人網路內�
 - [Azure 身分識別](fundamentals-identity.md)
 - [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

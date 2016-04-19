@@ -20,6 +20,8 @@
 
 IoT 中樞可讓裝置在連接埠 8883 使用 [MQTT v3.1.1][lnk-mqtt-org] 通訊協定來與 IoT 中樞裝置端點進行通訊。IoT 中樞要求使用 TLS/SSL 保護所有裝置通訊的安全。
 
+如需詳細資訊，請參閱《Azure IoT 中樞開發人員指南》中的 [MQTT 支援的注意事項][lnk-mqtt-devguide]。
+
 ## 連接到 IoT 中樞
 
 裝置可以使用 MQTT 通訊協定連接到 IoT 中樞，方法是使用 [Microsoft Azure IoT SDK][lnk-device-sdks] 中的程式庫或直接使用 MQTT 通訊協定。
@@ -98,5 +100,6 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 [lnk-sample-csharp]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/device/samples
 [lnk-device-explorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/readme.md
 [lnk-sas-tokens]: iot-hub-sas-tokens.md
+[lnk-mqtt-devguide]: iot-hub-devguide.md#mqtt-support
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

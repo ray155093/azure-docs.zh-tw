@@ -3,9 +3,9 @@
    description="Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="BharatNarasimman"
+   authors="vturecek"
    manager="timlt"
-   editor="vturecek"/>
+   editor="BharatNarasimman"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,41 +13,49 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="11/12/2015"
-   ms.author="bharatn@microsoft.com"/>
+   ms.date="03/25/2016"
+   ms.author="vturecek"/>
 
 # 使用 Reliable Services 的遠端服務
-對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，此架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。
+對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，Reliable Services 架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。
 
 ## 設定在服務上的遠端處理
 只要兩個簡單步驟，就能設定服務的遠端處理：
 
 1. 建立服務實作的介面。這個介面會定義方法，可在您的服務上用於遠端程序呼叫。方法也必須是傳回工作的非同步方法。此介面必須實作 `Microsoft.ServiceFabric.Services.Remoting.IService`，表示服務具有遠端處理介面。
-2. 在您的服務中使用 `FabricTransportServiceRemotingListener`。這是提供遠端功能的 `ICommunicationListener` 實作。
+2. 在您的服務中使用遠端接聽程式。這是提供遠端功能的 `ICommunicationListener` 實作。`Microsoft.ServiceFabric.Services.Remoting.Runtime` 命名空間包含一個適用於無狀態與具狀態服務的擴充方法 `CreateServiceRemotingListener`，可用於建立使用預設遠端傳輸通訊協定的遠端接聽程式。
 
-例如，這個 Hello World 服務會公開單一方法，透過遠端程序呼叫取得 "Hello World"：
+例如，下列無狀態服務服務會公開單一方法，透過遠端程序呼叫取得 "Hello World"。
 
 ```csharp
-public interface IHelloWorldStateful : IService
+using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using Microsoft.ServiceFabric.Services.Remoting;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
+using Microsoft.ServiceFabric.Services.Runtime;
+
+public interface IMyService : IService
 {
     Task<string> GetHelloWorld();
 }
 
-internal class HelloWorldStateful : StatefulService, IHelloWorldStateful
+class MyService : StatelessService, IMyService
 {
-    protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
-    {
-        return new[]{
-                new ServiceReplicaListener(
-                    (context) => new FabricTransportServiceRemotingListener(context,this))};
+    public MyService(StatelessServiceContext context)
+        : base (context)
+{
     }
 
-    public Task<string> GetHelloWorld()
+    public Task HelloWorld()
     {
-        return Task.FromResult("Hello World!");
+        return Task.FromResult("Hello!");
+    }
+
+    protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
+    {
+        return new[] { new ServiceInstanceListener(context => 
+            this.CreateServiceRemotingListener(context)) };
     }
 }
-
 ```
 > [AZURE.NOTE] 服務介面中的引數和傳回類型可以是任何簡單、複雜或自訂的類型，但必須可由 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx) 序列化。
 
@@ -74,4 +82,4 @@ string message = await helloWorldClient.GetHelloWorld();
 
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

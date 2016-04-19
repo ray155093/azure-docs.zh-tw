@@ -46,9 +46,11 @@
 
 在本節中，您將為行動服務下載新的 Xamarin iOS 應用程式和服務專案。
 
-1. 在 [Azure 傳統入口網站]中，按一下 [行動服務]，然後按一下您剛建立的行動服務。
+1. 若您尚未這麼做，請安裝 Visual Studio with Xamarin。您可以在[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 找到相關指示。您也可以在 Mac OS X 電腦上使用 Xamarin Studio，請參閱[設定、安裝和驗證 Mac 使用者](https://msdn.microsoft.com/library/mt488770.aspx)。
 
-2. 在快速入門索引標籤中，按一下 [Choose platform] 下的 [Xamarin]，並展開 [Create a new Xamarin app]。
+2. 在 [Azure 傳統入口網站]中，按一下 [行動服務]，然後按一下您剛建立的行動服務。
+
+3. 在快速入門索引標籤中，按一下 [Choose platform] 下的 [Xamarin]，並展開 [Create a new Xamarin app]。
 
    	![][6]
 
@@ -56,15 +58,11 @@
 
   	![][7]
 
-3. 在您的本機電腦或虛擬機器下載並安裝 <a href="https://go.microsoft.com/fwLink/p/?LinkID=257546" target="_blank">Visual Studio Professional 2013</a> (如果您尚未這麼做)。
+4. 在 [Download and publish your service to the cloud] 下選取 [iOS]，然後按一下 [下載]。
 
-4. 下載並安裝 [Xcode] v4.4 或更新版本和 [Xamarin Studio]。您也可以使用 Xamarin for Visual Studio。
+  	這會下載一個方案，其中包含行動服務的專案，以及與行動服務連接的範例_待辦事項_應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
-5. 在 [Download and publish your service to the cloud] 下選取 [iOS]，然後按一下 [下載]。
-
-  	這會下載一個方案，其中包含行動服務的專案，以及與行動服務連接的範例待辦事項應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
-
-6. 下載您的發行設定檔、將下載的檔案儲存至本機電腦，並記下儲存位置。
+5. 下載您的發行設定檔、將下載的檔案儲存至本機電腦，並記下儲存位置。
 
 ## 測試行動服務
 
@@ -86,7 +84,7 @@
 
 2. 按 [執行] 按鈕以建置用戶端專案，並在 iPhone 模擬器中啟動應用程式。
 
-3. 在應用程式中輸入有意義的文字 (例如 Complete the tutorial)，然後按一下加號 (**+**) 圖示。
+3. 在應用程式中輸入有意義的文字 (例如 _Complete the tutorial_)，然後按一下加號 (**+**) 圖示。
 
 	![][10]
 
@@ -134,9 +132,4 @@
 [JavaScript 後端版本]: mobile-services-ios-get-started.md
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-
-[Xamarin Studio]: http://xamarin.com/download
-[Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532&clcid=0x409
-[Xamarin for Windows]: https://go.microsoft.com/fwLink/?LinkID=330242&clcid=0x409
-
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/04/2016" 
+	ms.date="04/06/2016" 
 	ms.author="ccompy"/>
 
 
@@ -31,6 +31,7 @@ App Service 環境是由數個主要元件所組成：
 - 儲存體
 - 資料庫
 - 傳統 "v1" 虛擬網路具有至少一個子網路
+- 目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
 - 在其中執行 Azure App 環境託管服務的子網路
 
 計算資源會用於您的 4 個資源集區。每個 App Service 環境都有一組前端和 3 個背景工作集區。您不需要 3 個背景工作角色集區都使用，如果您想要，可以只使用其中一個。前端是您放置在 ASE 中的應用程式的 HTTP 端點。背景工作是您的應用程式實際執行之處。何時需要新增更多前端或更多背景工作，牽涉到您放在 ASE 中的應用程式以何種方式執行。例如，假設您在 ASE 上只有一個應用程式，而且是會有大量要求的 hello world 應用程式。在此情況下，您將需要相應增加前端來處理 HTTP 負載，但相對地並不需要相應增加背景工作。以手動方式處理這一切是相當令人怯步的，特別是在考量到每個 ASE 很可能有效能準則互異的不同應用程式執行於其中時。幸而，我們已在 App Service 環境中新增了自動調整功能，這會讓我們的工作輕鬆許多。如需 App Service 環境的調整和自動調整的詳細資訊，請使用以下連結：[如何在 App Service 環境中設定自動調整][ASEAutoscale]
@@ -94,7 +95,10 @@ App Service 環境是由數個主要元件所組成：
 
 租用戶無法直接存取資源集區、前端和背景工作。也就是說，您無法為他們 RDP、變更其佈建，或作為其系統管理員。他們會由 Azure 進行操作與維護。因此，計算資源的數量和大小是由使用者來決定。
 
-實際上有三種方式可控制您資源集區中擁有的伺服器數目 - 最上方主要 ASE 刀鋒視窗中的調整作業 - 個別資源集區的 [調整] 刀鋒視窗中的手動調整作業 (位於 [設定] 下) - 可從個別資源集區的 [調整] 刀鋒視窗設定的自動調整
+實際上有三種方式可以控制資源集區的伺服器數量
+- 從頂端的主要 ASE 刀鋒視窗進行調整作業
+- 從個別資源集區 [設定] 下的 [級別] 刀鋒視窗手動進行調整作業
+- 從個別資源集區的 [級別] 刀鋒視窗自動調整設定
 
 若要使用 ASE 刀鋒視窗上的調整作業，請直接按一下它，然後將滑桿拖曳至所需的數量並儲存即可。此 UI 也支援變更大小作業。
 
@@ -200,4 +204,4 @@ App Service 環境可設定為最多總計使用 55 個計算資源。在這 55 
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 [ExpressRoute]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-network-configuration-expressroute/
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

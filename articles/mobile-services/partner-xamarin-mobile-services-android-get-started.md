@@ -36,7 +36,7 @@
 
 ![][0]
 
-完成本教學課程需要 [Xamarin.Android]，Xamarin.Android 將安裝 Xamarin Studio 和 Visual Studio 外掛程式 (在 Windows 上) 以及最新的 Android 平台。需要 Android 4.2 SDK 或更新版本。
+完成本教學課程需要 XCode 和 Xamarin Studio for OS X，或 Windows 上的 Visual Studio 以及已加入網域的 Mac。完整的安裝指示位於[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
 
 下載的快速入門專案包含 Xamarin.Android 的 Azure 行動服務元件。雖然這個專案的目標是 Android 4.2 或以上的版本，不過行動服務 SDK 只需要 Android 2.2 或以上的版本。
 
@@ -137,9 +137,8 @@
 [開始使用離線資料同步]: mobile-services-xamarin-android-get-started-offline-data.md
 [開始使用驗證]: /develop/mobile/tutorials/get-started-with-users-xamarin-android
 [開始使用推播通知]: /develop/mobile/tutorials/get-started-with-push-xamarin-android
-[Xamarin.Android]: http://xamarin.com/download
 [Mobile Services Android SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
 [Azure]: http://azure.microsoft.com/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

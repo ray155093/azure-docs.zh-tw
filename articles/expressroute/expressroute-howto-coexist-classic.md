@@ -3,7 +3,7 @@
    description="本文會引導您針對傳統部署模型設定可以並存的 ExpressRoute 和站對站 VPN 連線。"
    documentationCenter="na"
    services="expressroute"
-   authors="cherylmc"
+   authors="charwen"
    manager="carmonm"
    editor=""
    tags="azure-service-management"/>
@@ -13,20 +13,23 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/18/2016"
-   ms.author="cherylmc"/>
+   ms.date="04/06/2016"
+   ms.author="charwen"/>
 
-# 設定 ExpressRoute 和站對站並存連線
+# 為傳統部署模型設定 ExpressRoute 和站對站並存連線
 
-能夠設定站對站 VPN 和 ExpressRoute 有諸多好處。您可以將站對站 VPN 設定為 ExressRoute 的安全容錯移轉路徑，或使用站對站 VPN 來連線至不在您網路中但透過 ExpressRoute 連接的網站。本文中將說明設定這兩個案例的步驟。**您目前只能使用傳統部署模型，針對 VNet 建立此組態**。當我們有適用於資源管理員部署模型的文件時，我們將在此提供其連結。
 
+> [AZURE.SELECTOR]
+- [PowerShell - 資源管理員](expressroute-howto-coexist-resource-manager.md)
+- [PowerShell - 傳統](expressroute-howto-coexist-classic.md)
+
+能夠設定站對站 VPN 和 ExpressRoute 有諸多好處。您可以將站對站 VPN 設定為 ExressRoute 的安全容錯移轉路徑，或使用站對站 VPN 來連接至不是透過 ExpressRoute 連接的網站。本文中將說明設定這兩個案例的步驟。本文適用於傳統部署模型。此組態無法使用於入口網站。
 
 **關於 Azure 部署模型**
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-
-在執行下列指示之前，必須事先設定 ExpressRoute 線路。在執行下列步驟之前，請確定您已遵循指南[建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)和[設定路由](expressroute-howto-routing-classic.md)。
+>[AZURE.IMPORTANT] 在執行下列指示之前，必須事先設定 ExpressRoute 線路。在執行下列步驟之前，請確定您已遵循指南[建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)和[設定路由](expressroute-howto-routing-classic.md)。
 
 ## 限制
 
@@ -60,22 +63,22 @@
 如果要設定可並存的連線，有兩組不同的程序可供選擇。您所選取的設定程序取決於您是已經有想要連線的現有虛擬網路，還是想要建立新的虛擬網路。
 
 
-- 我沒有 VNet 且需要建立一個
+- 我沒有 VNet 且需要建立一個。
 	
 	如果您還沒有虛擬網路，這個程序將引導您使用傳統部署模型來建立新的虛擬網路，並建立新的 ExpressRoute 和站對站 VPN 連線。若要設定，請依照[建立新的虛擬網路和並存的連線](#new)一節中的步驟進行。
 
-- 我已經有一個傳統部署模型 VNet
+- 我已經有一個傳統部署模型 VNet。
 
-	您可能已經有虛擬網路，而且使用現有的站對站 VPN 連線或 ExpressRoute 連線。[為已經存在的 VNet 設定並存的連線](#add)一節將引導您刪除閘道，然後建立新的 ExpressRoute 和站對站 VPN 連線。請注意，建立新的連線時，您必須以非常特定的順序來完成這些步驟。請勿使用其他文章中的指示建立閘道器和連線。
+	您可能已經有虛擬網路，而且使用現有的站對站 VPN 連線或 ExpressRoute 連線。本文的[為已經存在的 VNet 設定並存的連線](#add)一節將引導您刪除閘道，然後建立新的 ExpressRoute 和站對站 VPN 連線。請注意，建立新的連線時，您必須以非常特定的順序來完成這些步驟。請勿使用其他文章中的指示建立閘道器和連線。
 
 	在此程序中，建立可以並存的連線將會要求您刪除閘道器，然後設定新的閘道器。這表示當您刪除和重新建立閘道器與連線時，將會有跨設備連線的停機時間，但您不需要將任何 VM 或服務移轉至新的虛擬網路。您的 VM 和服務仍能透過負載平衡器對外通訊，而您能夠在這兩者設定為這樣做時進行閘道器設定。
 
 
-## <a name ="new"/>建立新的虛擬網路和並存的連線
+## <a name="new"></a>建立新的虛擬網路和並存的連線
 
 此程序會引導您建立 VNet，並建立將並存的站對站和 ExpressRoute 連線。
 
-1. 您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。 
+1. 您必須安裝最新版的 Azure PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。 
 
 2. 建立虛擬網路的結構描述。如需關於組態結構描述的詳細資訊，請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)。
 
@@ -111,7 +114,7 @@
 
 		Set-AzureVNetConfig -ConfigurationPath 'C:\NetworkConfig.xml'
 
-4. <a name ="gw"/>建立 ExpressRoute 閘道。請務必將 GatewaySKU 指定為「Standard」或「HighPerformance」，並將 GatewayType 指定為 「DynamicRouting」。
+4. <a name="gw"></a>建立 ExpressRoute 閘道。請務必將 GatewaySKU 指定為「Standard」或「HighPerformance」，並將 GatewayType 指定為 「DynamicRouting」。
 
 	使用以下範例，將該值替換為您自己的值。
 
@@ -150,7 +153,7 @@
 
 7. 建立本機的站台 VPN 閘道實體。此命令不會設定內部部署 VPN 閘道。相反地，它可讓您提供本機閘道器設定 (例如公用 IP 與內部位址空間)，使 Azure VPN 閘道能夠與其連線。
 
-	> [AZURE.IMPORTANT] 未在 Netcfg 中定義站對站 VPN 的本機站台。您必須改為使用此 Cmdlet 來指定本機站台參數。您無法使用入口網站或 Netcfg 檔來定義參數。
+	>[AZURE.IMPORTANT] 未在 Netcfg 中定義站對站 VPN 的本機站台。您必須改為使用此 Cmdlet 來指定本機站台參數。您無法使用入口網站或 Netcfg 檔來定義參數。
 
 	使用下列範例，將該值替換為您自己的值。
 
@@ -181,7 +184,7 @@
 
 	`New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>`
 
-## <a name ="add"/>為已經存在的 VNet 設定並存的連線
+## <a name="add"></a>為已經存在的 VNet 設定並存的連線
 
 如果您現有的虛擬網路已透過 ExpressRoute 或站對站 VPN 連線進行連線，則為了啟用這兩個連線以連接到現有虛擬網路，您必須先刪除現有閘道器。這表示當您進行此設定時，本機設備將會與使用該閘道器的虛擬網路中斷連線。
 
@@ -219,4 +222,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

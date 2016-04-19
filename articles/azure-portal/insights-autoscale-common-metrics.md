@@ -51,7 +51,33 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 |度量名稱|	單位|
 |---|---|
-|\\Processor(\_Total)\\% Processor Time |百分比| |\\Processor(\_Total)\\% Privileged Time |百分比| |\\Processor(\_Total)\\% User Time |百分比| |\\Processor Information(\_Total)\\Processor Frequency |計數| |\\System\\Processes| 計數| |\\Process(\_Total)\\Thread Count| 計數| |\\Process(\_Total)\\Handle Count |計數| |\\Memory\\% Committed Bytes In Use |百分比| |\\Memory\\Available Bytes| 位元組| |\\Memory\\Committed Bytes |位元組| |\\Memory\\Commit Limit| 位元組| |\\Memory\\Pool Paged Bytes| 位元組| |\\Memory\\Pool Nonpaged Bytes| 位元組| |\\PhysicalDisk(\_Total)\\% Disk Time| 百分比| |\\PhysicalDisk(\_Total)\\% Disk Read Time| 百分比| |\\PhysicalDisk(\_Total)\\% Disk Write Time| 百分比| |\\PhysicalDisk(\_Total)\\Disk Transfers/sec |每秒計數| |\\PhysicalDisk(\_Total)\\Disk Reads/sec |每秒計數| |\\PhysicalDisk(\_Total)\\Disk Writes/sec |每秒計數| |\\PhysicalDisk(\_Total)\\Disk Bytes/sec |每秒位元組| |\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec| 每秒位元組| |\\PhysicalDisk(\_Total)\\Disk Write Bytes/sec |每秒位元組| |\\PhysicalDisk(\_Total)\\Avg.Disk Queue Length| 計數| |\\PhysicalDisk(\_Total)\\Avg.Disk Read Queue Length| 計數| |\\PhysicalDisk(\_Total)\\Avg.Disk Write Queue Length |計數| |\\LogicalDisk(\_Total)\\% Free Space| 百分比| |\\LogicalDisk(\_Total)\\Free Megabytes| 計數|
+|\\Processor(\_Total)\\% Processor Time |百分比|
+|\\Processor(\_Total)\\% Privileged Time |百分比|
+|\\Processor(\_Total)\\% User Time |百分比|
+|\\Processor Information(\_Total)\\Processor Frequency |計數|
+|\\System\\Processes| 計數|
+|\\Process(\_Total)\\Thread Count| 計數|
+|\\Process(\_Total)\\Handle Count |計數|
+|\\Memory\\% Committed Bytes In Use |百分比|
+|\\Memory\\Available Bytes| 位元組|
+|\\Memory\\Committed Bytes |位元組|
+|\\Memory\\Commit Limit| 位元組|
+|\\Memory\\Pool Paged Bytes| 位元組|
+|\\Memory\\Pool Nonpaged Bytes| 位元組|
+|\\PhysicalDisk(\_Total)\\% Disk Time| 百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Read Time| 百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Write Time| 百分比|
+|\\PhysicalDisk(\_Total)\\Disk Transfers/sec |每秒計數|
+|\\PhysicalDisk(\_Total)\\Disk Reads/sec |每秒計數|
+|\\PhysicalDisk(\_Total)\\Disk Writes/sec |每秒計數|
+|\\PhysicalDisk(\_Total)\\Disk Bytes/sec |每秒位元組|
+|\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec| 每秒位元組|
+|\\PhysicalDisk(\_Total)\\Disk Write Bytes/sec |每秒位元組|
+|\\PhysicalDisk(\_Total)\\Avg.Disk Queue Length| 計數|
+|\\PhysicalDisk(\_Total)\\Avg.Disk Read Queue Length| 計數|
+|\\PhysicalDisk(\_Total)\\Avg.Disk Write Queue Length |計數|
+|\\LogicalDisk(\_Total)\\% Free Space| 百分比|
+|\\LogicalDisk(\_Total)\\Free Megabytes| 計數|
 
 
 

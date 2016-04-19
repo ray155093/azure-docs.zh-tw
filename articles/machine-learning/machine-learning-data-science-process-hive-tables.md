@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="hangzh-msft"
-	manager="paulettm" 
+	manager="paulettm"
 	editor="cgronlun"  />
 
 <tags
@@ -16,7 +16,7 @@
 	ms.date="02/08/2016"
 	ms.author="hangzh;bradsev" />
 
-#<a name="heading"></a> 在進階分析程序和技術中將 Hive 查詢提交至 HDInsight Hadoop 叢集 
+#<a name="heading"></a> 在進階分析程序和技術中將 Hive 查詢提交至 HDInsight Hadoop 叢集
 
 本文件說明在 Azure 中，將 Hive 查詢提交至 HDInsight 服務所管理的 Hadoop 叢集的各種方式。此工作是 Cortana 分析程序 (CAP) 中的一部分。我們將討論數個資料有爭議的工作：資料探索和功能產生。即會顯示泛型 Hive 查詢，示範如何探索資料，或是在 Azure HDInsight Hadoop 叢集中使用 Hive 來產生功能。這些 Hive 查詢會使用所提供的內嵌 Hive 使用者定義函式 (UDF)。
 
@@ -167,7 +167,7 @@ Hive 查詢的輸出會顯示於 Blob 儲存體中，方法是使用 Azure 儲�
 
 本節將說明使用 Hive 查詢產生功能的方式。
 
-> [AZURE.NOTE] 本節中的 Hive 查詢範例假設資料已上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-hive-tables.md)，先將資料上傳至 Hive 資料表。
+> [AZURE.NOTE] 本節中的 Hive 查詢範例假設資料已上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)，先將資料上傳至 Hive 資料表。
 
 一旦產生額外功能之後，就可以將它們當成資料行新增至現有的資料表，或是建立具有其他功能和主索引鍵的新資料表 (然後與原始資料表聯結)。
 
@@ -310,8 +310,4 @@ Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處
 		set mapred.reduce.tasks=128;
 		set mapred.tasktracker.reduce.tasks.maximum=128;
 
-
-
- 
-
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -1,11 +1,11 @@
 
- 
+
 
 Azure 提供您建立在虛擬機器上的絕佳雲端解決方案，虛擬機器是根據實際的電腦硬體而模擬出來的電腦，為了是要靈活移動軟體部署，並且比實體硬體更能大幅強化資源的運用。過去幾年來，多虧有容器的 [Docker](https://www.docker.com) 方法和 docker 生態系統，Linux 容器技術大幅擴充了可開發和管理分散式軟體的方式。由於容器中的應用程式程式碼與主機 Azure VM 獨立，也與相同 VM 上的其他容器獨立，除了 Azure VM 賦予您的靈活度之外，您還可以在應用程式層級做更多的開發，擁有更高的部署靈活度。
 
 **但這已經是眾所周知的舊聞了。** 「真正的」新聞是，Azure 甚至還提供您更多的 Docker 優點：
 
-- [建立 Docker 主機](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)有[許多](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md)[不同](virtual-machines-linux-classic-portal-use-docker.md)的[方式](virtual-machines-linux-classic-docker-quickstart.md)，讓容器能符合您的情況
+- [建立 Docker 主機](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)有[許多](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md)[不同](../articles/virtual-machines/virtual-machines-linux-classic-portal-use-docker.md)的[方式](../articles/virtual-machines/virtual-machines-linux-classic-docker-quickstart.md)，讓容器能符合您的情況
 - 有 [Azure 資源管理員](../articles/resource-group-overview.md)和[資源群組範本](../articles/resource-group-authoring-templates.md)可簡化部署和更新複雜的分散式應用程式
 - 能與大量專屬和開放原始碼組態管理工具進行整合
 
@@ -56,7 +56,7 @@ Windows 容器對於任何在 Windows 執行的應用程式提供與 Linux 容�
 開發人員能夠很快速地開始使用 Docker 容器，因為使用 Linux 容器最簡單：
 
 - 開發人員可以使用簡單、累加的命令來建立容易部署的固定映像，而且可以使用 dockerfile 自動化建置這些映像
-- 開發人員可以使用簡單、[Git](https://git-scm.com/) 式的發送和提取命令，輕鬆將這些映像共用到[公用](https://registry.hub.docker.com/)或[私用 Docker 登錄](../articles/virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md) 
+- 開發人員可以使用簡單、[Git](https://git-scm.com/) 式的發送和提取命令，輕鬆將這些映像共用到[公用](https://registry.hub.docker.com/)或[私用 Docker 登錄](../articles/virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md)
 - 開發人員可以考慮隔離應用程式元件，而不是電腦
 - 開發人員可以使用大量的工具，了解 docker 容器和不同的基本映像
 
@@ -90,7 +90,7 @@ Windows 容器對於任何在 Windows 執行的應用程式提供與 Linux 容�
 | 「預設」安全性支援 | 到比較高的程度 | 到稍微較低的程度 |
 | 磁碟上需有記憶體 | 整套作業系統及應用程式 | 僅限應用程式需求 |
 | 啟動花費時間 | 相當長的時間：作業系統啟動和應用程式載入 | 相當短的時間：因為核心已在執行中，只需要啟動應用程式 |
-| 可攜性 | 經過適當準備則可攜 | 在映像格式內可攜；通常較小 | 
+| 可攜性 | 經過適當準備則可攜 | 在映像格式內可攜；通常較小 |
 | 映像自動化 | 根據 OS 和應用程式有很大的差異 | [Docker 登錄](https://registry.hub.docker.com/)；其他
 
 ## 建立和管理 VM 群組和容器群組
@@ -122,7 +122,7 @@ Docker 有自己的 VM 建立工具 ([docker-machine](../articles/virtual-machin
 
 [Deis](http://deis.io/overview/) 是一個開放原始碼的「平台即服務」(PaaS)，可以輕鬆部署和管理您自己伺服器上的應用程式。Deis 建立在 Docker 和 CoreOS 上，提供輕量級 PaaS 以及以 Heroku 為靈感來源的工作流程。您可以輕鬆[建立 3 個節點的 Azure VM 群組，並且在 Azure 上安裝 Deis](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md)，然後[安裝 Hello World Go 應用程式](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md#deploy-and-scale-a-hello-world-application)。
 
-[CoreOS](./articles/virtual-machines/virtual-machines-linux-classic-coreos-howto.md) 是一個 Linux 散發套件，有最佳化的使用量、Docker 支援以及稱為 [rkt](https://github.com/coreos/rkt) 的自有容器系統，也有一個稱為 [fleet](../articles/virtual-machines/virtual-machines-linux-classic-coreos-fleet-get-started.md) 的容器群組管理工具。
+[CoreOS](../articles/virtual-machines/virtual-machines-linux-classic-coreos-howto.md) 是一個 Linux 散發套件，有最佳化的使用量、Docker 支援以及稱為 [rkt](https://github.com/coreos/rkt) 的自有容器系統，也有一個稱為 [fleet](../articles/virtual-machines/virtual-machines-linux-classic-coreos-fleet-get-started.md) 的容器群組管理工具。
 
 Ubuntu 是另一個非常受歡迎的 Linux 散發套件，能完整支援 Docker，也支援 [Linux (LXC 式) 叢集](https://help.ubuntu.com/lts/serverguide/lxc.html)。
 
@@ -170,7 +170,7 @@ Microsoft Azure 上的 Docker：
 - [在 Azure 上開始使用 Docker 和 Compose](../articles/virtual-machines/virtual-machines-linux-docker-compose-quickstart.md)
 - [使用 Azure 資源群組範本在 Azure 上快速建立 Docker 主機](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)
 - 對內含應用程式的內建 [`compose` 支援](https://github.com/Azure/azure-docker-extension#11-public-configuration-keys)
-- [在 Azure 上實作 Docker 私用登錄](virtual-machines-linux-docker-registry-in-blob-storage.md)
+- [在 Azure 上實作 Docker 私用登錄](../articles/virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md)
 
 Linux 散發套件和 Azure 範例：
 
@@ -182,27 +182,27 @@ Linux 散發套件和 Azure 範例：
 
 -	Deis
 	- [建立一個 3 個節點的 Azure VM 群組、安裝 Deis，然後啟動 Hello World Go 應用程式](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md)
-	
+
 -	Kubernetes
 	- [使用 CoreOS 和 Weave 自動部署 Kubernetes 叢集的完整指南](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/coreos/azure/README.md#kubernetes-on-azure-with-coreos-and-weave)
 	- [Kubernetes Visualizer](https://azure.microsoft.com/blog/2014/08/28/hackathon-with-kubernetes-on-azure/)
-	
+
 -	[Mesos](http://mesos.apache.org/)
 	-	[Mesosphere 的資料中心作業系統 (DCOS)。](http://beta-docs.mesosphere.com/install/azurecluster/)
-	
+
 -	[Jenkins](https://jenkins-ci.org/) 和 [Hudson](http://hudson-ci.org/)
 	- [部落格：適用於 Azure 的 Jenkins 從屬外掛程式](http://msopentech.com/blog/2014/09/23/announcing-jenkins-slave-plugin-azure/)
 	- [GitHub 儲存機制︰適用於 Azure 的 Jenkins 儲存體外掛程式](https://github.com/jenkinsci/windows-azure-storage-plugin)
 	- [協力廠商︰適用於 Azure 的 Hudson 從屬外掛程式](http://wiki.hudson-ci.org/display/HUDSON/Azure+Slave+Plugin)
 	- [協力廠商︰適用於 Azure 的 Hudson 儲存體外掛程式](https://github.com/hudson3-plugins/windows-azure-storage-plugin)
-	
+
 -	[Chef](https://docs.chef.io/index.html)
 	- [Chef 和虛擬機器](../articles/virtual-machines/virtual-machines-windows-install-chef-client.md)
 	- [影片：Chef 是什麼，以及如何運作？](https://msopentech.com/blog/2014/03/31/using-chef-to-manage-azure-resources/)
 
 -	[Azure 自動化](https://azure.microsoft.com/services/automation/)
 	- [影片：如何在 Linux VM 上使用 Azure 自動化](http://channel9.msdn.com/Shows/Azure-Friday/Azure-Automation-104-managing-Linux-and-creating-Modules-with-Joe-Levy)
-	
+
 -	Powershell DSC for Linux
     - [部落格：如何使用 Powershell DSC for Linux](http://blogs.technet.com/b/privatecloud/archive/2014/05/19/powershell-dsc-for-linux-step-by-step.aspx)
     - [GitHub：Docker 用戶端 DSC](https://github.com/anweiss/DockerClientDSC)
@@ -216,4 +216,4 @@ Linux 散發套件和 Azure 範例：
 [微服務]: http://martinfowler.com/articles/microservices.html
 <!--Image references-->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->
