@@ -3,8 +3,8 @@
    description="說明如何使用 StorSimple Manager 的 [備份類別目錄] 頁面，從備份組還原 StorSimple 磁碟區。"
    services="storsimple"
    documentationCenter="NA"
-   authors="SharS"
-   manager="carolz"
+   authors="alkohli"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,8 +12,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/14/2015"
-   ms.author="v-sharos" />
+   ms.date="03/23/2016"
+   ms.author="alkohli" />
 
 # 從備份組還原 StorSimple 磁碟區
 
@@ -25,7 +25,7 @@
 
  ![備份類別目錄頁面](./media/storsimple-restore-from-backup-set/HCS_BackupCatalog.png)
 
-本教學課程說明如何使用 [備份類別目錄] 頁面，從備份組還原您的裝置。
+本教學課程說明如何使用 [備份資料目錄] 頁面，從備份組還原您裝置上的磁碟區。
 
 ## 如何使用備份類別目錄 
 
@@ -45,10 +45,11 @@
 
 ## 如何從備份還原您的 StorSimple 磁碟區
 
-您可以使用 [備份類別目錄] 頁面，從特定的備份還原 StorSimple 磁碟區。不過，請記住，還原磁碟區會將磁碟區的狀態還原為其在取得備份時的狀態。在備份作業之後新增的所有資料都將遺失。
+您可以使用 [備份類別目錄] 頁面，從特定的備份還原 StorSimple 磁碟區。
 
 > [AZURE.WARNING] 從備份還原將從備份取代現有的磁碟區。這可能會造成在取得備份之後寫入的所有資料遺失。
 
+在磁碟區上起始還原之前，請確定磁碟區已離線。您必須先讓主機上的磁碟區離線，再讓裝置離線。請遵循[使磁碟區離線](storsimple-manage-volumes.md#take-a-volume-offline)中的步驟進行。執行下列步驟，以從備份組還原磁碟區。
 
 ### 從備份組還原
 
@@ -64,13 +65,11 @@
  
     與選取的磁碟區或備份原則相關聯的備份應該會出現在備份組清單中。
 
-3. 展開備份組以檢視相關聯的磁碟區。您必須先在主機和裝置上將這些磁碟區離線，才能還原它們。存取 [磁碟區容器] 頁面上的磁碟區，然後依照 [讓磁碟區離線](storsimple-manage-volumes.md#take-a-volume-offline) 中的指示來讓它們離線。
+3. 展開備份組以檢視相關聯的磁碟區。您必須先在主機和裝置上將這些磁碟區離線，才能還原它們。請遵循[使磁碟區離線](storsimple-manage-volumes.md#take-a-volume-offline)中的步驟進行。
 
     >  [AZURE.IMPORTANT] 確定您已先讓主機上的磁碟區離線，然後再讓裝置上的磁碟區離線。如果您並未讓主機上的磁碟區離線，可能會導致資料損毀。
 
-4. 瀏覽回到 [備份類別目錄] 索引標籤，並選取備份組。
-
-5. 按一下頁面底部的 [還原]。
+4. 選取備份組。按一下頁面底部的 [還原]。
 
 6. 系統將提示您進行確認。
 
@@ -90,4 +89,4 @@
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

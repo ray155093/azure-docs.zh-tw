@@ -90,7 +90,9 @@
 
 在本節中，您將建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。[處理裝置到雲端的訊息][lnk-processd2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
-1. 在*建立裝置識別*一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **read-d2c-messages** 的新 Maven 專案。請注意，這是一個非常長的命令：
+> [AZURE.NOTE] 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQPS 通訊協定。
+
+1. 在建立裝置識別一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **read-d2c-messages** 的新 Maven 專案。請注意，這是一個非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -181,7 +183,7 @@
     public static void main( String[] args ) throws IOException
     ```
 
-12. 在 **App** 類別中對 **main** 方法新增下列程式碼。此程式碼會建立 **EventHubClient** 執行個體以連線到 IoT 中樞上的事件中樞相容端點。然後，它會建立兩個執行緒以從兩個資料分割進行讀取。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自 **事件中樞相容端點**，其形式為 **xxxxnamespace** (也就是，從入口網站的事件中樞相容端點值移除 ****sb://** 前置詞和 **.servicebus.windows.net** 尾碼)。
+12. 在 **App** 類別中對 **main** 方法新增下列程式碼。此程式碼會建立 **EventHubClient** 執行個體以連線到 IoT 中樞上的事件中樞相容端點。然後，它會建立兩個執行緒以從兩個資料分割進行讀取。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自 **事件中樞相容端點**，其形式為 **xxxxnamespace** (也就是，從入口網站的事件中樞相容端點值移除 **sb://** 前置詞和 **.servicebus.windows.net** 尾碼)。
 
     ```
     String policyName = "iothubowner";
@@ -223,9 +225,9 @@
 
 <!-- Links -->
 
-[lnk-eventhubs-tutorial]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
-[lnk-devguide-identity]: iot-hub-devguide.md#identityregistry
-[lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
-[lnk-processd2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
+[lnk-eventhubs-tutorial]: ../articles/event-hubs/event-hubs-csharp-ephcs-getstarted.md
+[lnk-devguide-identity]: ../articles/iot-hub/iot-hub-devguide.md#identityregistry
+[lnk-event-hubs-overview]: ../articles/event-hubs/event-hubs-overview.md
+[lnk-processd2c-tutorial]: ../articles/iot-hub/iot-hub-csharp-csharp-process-d2c.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

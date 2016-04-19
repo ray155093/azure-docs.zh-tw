@@ -4,7 +4,7 @@
 	services="api-management"
 	documentationCenter=""
 	authors="steved0x"
-	manager="erikre"
+	manager="douge"
 	editor=""/>
 
 <tags
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="01/27/2016"
+	ms.date="04/13/2016"
 	ms.author="sdanie"/>
 
 # 使用 Azure API 管理以頻率限制保護 API
 
 本指南說明藉由使用 Azure API 管理設定頻率限制和配額原則，來為後端 API 增加保護是多麼簡單容易的工作。
 
-在本教學課程中，您會建立「免費試用」的 API 產品，讓開發人員可使用[依訂用帳戶限制呼叫頻率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[依訂用帳戶設定配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)原則，每分鐘最多呼叫您的 API 10 次，每週最多呼叫 200 次。您接著會發佈此 API，並測試頻率限制原則。
+在本教學課程中，您會建立「免費試用」的 API 產品，讓開發人員可使用[限制每個訂用帳戶的呼叫頻率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[設定每個訂用帳戶的使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)原則，每分鐘最多呼叫您的 API 10 次，每週最多呼叫 200 次。您接著會發佈此 API，並測試頻率限制原則。
 
 如需使用[rate-limit-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) 和 [quota-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) 原則，請參閱[以 Azure API 管理進行進階要求節流](api-management-sample-flexible-throttling.md)。
 
@@ -34,9 +34,9 @@
 
 ![發佈者入口網站][api-management-management-console]
 
->如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][]教學課程中的[建立 API 管理服務執行個體][]。
+>如果您尚未建立 API 管理服務執行個體，請參閱[在 Azure API 管理中管理您的第一個 API][] 教學課程中的[建立 API 管理服務執行個體][]。
 
-從左側的 [**API 管理**] 功能表按一下 [**產品**]，以顯示 [**產品**] 頁面。
+從左側的 [API 管理] 功能表按一下 [產品]，以顯示 [產品] 頁面。
 
 ![Add product][api-management-add-product]
 
@@ -44,7 +44,7 @@
 
 ![Add new product][api-management-new-product-window]
 
-在 [標題] 文字方塊中輸入「免費試用」。
+在 [標題] 文字方塊中輸入**免費試用**。
 
 在 [描述] 文字方塊中輸入下列文字：
 **存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
@@ -55,7 +55,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 若要允許開發人員帳戶多次訂閱新產品，請選取 [允許多項同時訂閱] 核取方塊。本教學課程不會使用多項同時訂閱，所以維持未核取即可。
 
-輸入所有值之後，按一下 [**儲存**] 來建立產品。
+輸入所有值之後，按一下 [儲存] 來建立產品。
 
 ![Product added][api-management-product-added]
 
@@ -71,13 +71,13 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 在教學課程的這個步驟中，我們會將 Echo API 加入至新的「免費試用」產品。
 
->每個 API 管理服務執行個體隨附預先設定的範例 Echo API，可供您試驗與了解 API 管理。如需詳細資訊，請參閱[開始使用 Azure API 管理][]。
+>每個 API 管理服務執行個體隨附預先設定的範例 Echo API，可供您試驗與了解 API 管理。如需詳細資訊，請參閱[在 Azure API 管理中管理您的第一個 API][]。
 
 從左側的 [API 管理] 功能表按一下 [產品]，然後按一下 [免費試用] 來設定產品。
 
 ![Configure product][api-management-configure-product]
 
-按一下 [**加入 API 至產品**]。
+按一下 [加入 API 至產品]。
 
 ![Add API to product][api-management-add-api]
 
@@ -95,15 +95,15 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Add policy][api-management-add-policy]
 
-若要插入原則，請將游標放在原則範本的 [**輸入**] 或 [**輸出**] 區段上。費率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
+若要插入原則，請將游標放在原則範本的 [輸入] 或 [輸出] 區段上。費率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
 
 ![Policy editor][api-management-policy-editor-inbound]
 
-我們要在本教學課程中加入的兩個原則為[限制呼叫費率][]和[設定使用量配額][]原則。
+我們要在本教學課程中加入的兩個原則為[限制每個訂用帳戶的呼叫頻率](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate)和[設定每個訂用帳戶的使用量配額](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota)原則。
 
 ![Policy statements][api-management-limit-policies]
 
-游標放置在 **inbound** 原則元素中之後，按一下 [限制呼叫頻率] 旁的箭頭來插入其原則範本。
+游標放置在 **inbound** 原則元素中之後，按一下 [限制每個訂用帳戶的呼叫頻率] 旁的箭頭來插入其原則範本。
 
 	<rate-limit calls="number" renewal-period="seconds">
 	<api name="name" calls="number">
@@ -111,7 +111,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 	</api>
 	</rate-limit>
 
-[限制呼叫頻率] 可用在產品層級，也可以用在 API 和個別作業名稱層級。本教學課程中只會使用產品層級原則，因此請將 **rate-limit** 元素中的 **api** 和 **operation** 元素刪除，只保留外部 **rate-limit** 元素，如以下範例所示。
+[限制每個訂用帳戶的呼叫頻率] 可用在產品層級，也可以用在 API 和個別作業名稱層級。本教學課程中只會使用產品層級原則，因此請將 **rate-limit** 元素中的 **api** 和 **operation** 元素刪除，只保留外部 **rate-limit** 元素，如以下範例所示。
 
 	<rate-limit calls="number" renewal-period="seconds">
 	</rate-limit>
@@ -121,7 +121,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 	<rate-limit calls="10" renewal-period="60">
 	</rate-limit>
 
-若要設定 \[設定使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 \[設定使用量配額] 左側的箭頭。
+若要設定 [設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 [設定每個訂用帳戶的使用量配額] 左側的箭頭。
 
 	<quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 	<api name="name" calls="number" bandwidth="kilobytes">
@@ -188,7 +188,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Configure developer][api-management-configure-developer]
 
-按一下 [**加入訂閱**]。
+按一下 [加入訂閱]。
 
 ![Add subscription][api-management-add-subscription-menu]
 
@@ -200,7 +200,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Add subscription][api-management-add-subscription-multiple]
 
-按一下 [**訂閱**] 後，產品會出現在使用者的 [**訂閱**] 清單中。
+按一下 [訂閱] 後，產品會出現在使用者的 [訂閱] 清單中。
 
 ![Subscription added][api-management-subscription-added]
 
@@ -222,9 +222,9 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Subscription key][api-management-select-key]
 
->[AZURE.NOTE] 如果您有多個訂用帳戶，請務必選取「免費試用」的金鑰，否則在先前步驟中設定的原則將不會生效。
+>[AZURE.NOTE] 如果您有多個訂用帳戶，請務必選取**免費試用**的金鑰，否則在先前步驟中設定的原則將不會生效。
 
-按一下 [傳送]，然後檢視回應。記下 [**200 OK**] 的 [**回應狀態**]。
+按一下 [傳送]，然後檢視回應。記下 [200 OK] 的 [回應狀態]。
 
 ![Operation results][api-management-http-get-results]
 
@@ -276,12 +276,11 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 [Monitoring and analytics]: ../api-management-monitoring.md
 [Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
-[Get started with Azure API Management]: api-management-get-started.md
+[在 Azure API 管理中管理您的第一個 API]: api-management-get-started.md
 [如何在 Azure API 管理中建立和使用群組]: api-management-howto-create-groups.md
 [View subscribers to a product]: api-management-howto-add-products.md#view-subscribers
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[開始使用 Azure API 管理]: api-management-get-started.md
-[開始使用 Azure API 管理]: api-management-get-started.md#create-service-instance
+[Get started with Azure API Management]: api-management-get-started.md
+[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
 
 [Create a product]: #create-product
@@ -292,7 +291,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 [Call an operation and test the rate limit]: #test-rate-limit
 [開始使用進階 API 組態]: api-management-get-started-advanced.md
 
-[限制呼叫費率]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
-[設定使用量配額]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
+[Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
+[Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
 
-<!----HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

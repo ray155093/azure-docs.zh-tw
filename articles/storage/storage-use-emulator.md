@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/21/2016" 
+	ms.date="03/28/2016" 
 	ms.author="tamram"/>
 
 # 使用 Azure 儲存體模擬器進行開發和測試
@@ -21,7 +21,7 @@
 
 Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料表服務的本機環境，以供進行開發。您可以使用儲存體模擬器，針對儲存體服務在本機測試您的應用程式，而不需建立 Azure 訂用帳戶，也不會產生任何費用。如果您滿意應用程式在模擬器中的運作方式，就可以切換成使用雲端的 Azure 儲存體帳戶。
 
-> [AZURE.NOTE] 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/) 提供。您也可以將儲存體模擬器安裝為獨立的封裝。若要設定儲存體模擬器，您必須在電腦上具有系統管理權限。
+> [AZURE.NOTE] 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/) 提供。您也可以使用[獨立安裝程式](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)來安裝儲存體模擬器。若要設定儲存體模擬器，您必須在電腦上具有系統管理權限。
 >  
 > 請注意，在某個儲存體模擬器版本中建立的資料不保證可在使用不同版本時加以存取。如果您需要長期保存資料，建議您將資料儲存於 Azure 儲存體帳戶中 (而不是儲存體模擬器中)。
 
@@ -41,7 +41,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 [AZURE.INCLUDE [storage-emulator-connection-string-include](../../includes/storage-emulator-connection-string-include.md)]
 
-如需有關連接字串的詳細資訊，請參閱[設定 Azure 儲存體連接字串](storage-configure-connection-string.md)。
+如需連接字串的詳細資訊，請參閱[設定 Azure 儲存體連接字串](storage-configure-connection-string.md)。
 
 ### 使用共用存取簽章進行驗證 
 
@@ -133,7 +133,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
     http://127.0.0.1:10000/myaccount-secondary/mycontainer/myblob.txt 
 
-> [AZURE.NOTE] 如需以程式設計方式使用儲存體模擬器來存取次要位置，請使用 Storage Client Library for.NET 3.2 版或更新版本。如需詳細資訊，請參閱 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。
+> [AZURE.NOTE] 如需以程式設計方式使用儲存體模擬器來存取次要位置，請使用 Storage Client Library for.NET 3.2 版或更新版本。如需詳細資訊，請參閱 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx) (適用於 .NET 的 Microsoft Azure 儲存體用戶端程式庫)。
 
 ## 儲存體模擬器命令列工具參考
 
@@ -169,7 +169,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 - 從 3.1 版開始，儲存體模擬器帳戶就支援讀取存取地理備援複寫 (RA-GRS)。在模擬器中，所有帳戶均已啟用 RA-GRS，而且主要和次要複本之間絕對不會有延遲。次要帳戶支援 Get Blob Service Stats、Get Queue Service Stats 和 Get Table Service Stats 作業，且這些作業一律會根據基礎 SQL 資料庫傳回 `LastSyncTime` 回應元素的值當成目前的時間。
 
-	如需以程式設計方式使用儲存體模擬器來存取次要位置，請使用 Storage Client Library for.NET 3.2 版或更新版本。如需詳細資訊，請參閱 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。
+	如需以程式設計方式使用儲存體模擬器來存取次要位置，請使用 Storage Client Library for.NET 3.2 版或更新版本。如需詳細資訊，請參閱 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx) (適用於 .NET 的 Microsoft Azure 儲存體用戶端程式庫)。
 
 - 儲存體模擬器目前不支援檔案服務和 SMB 通訊協定服務端點。
 
@@ -232,4 +232,4 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 - 現在完全支援 2013-08-15 版的 Azure 儲存體服務。(先前只有儲存體模擬器 2.2.1 版預覽才支援此版本)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

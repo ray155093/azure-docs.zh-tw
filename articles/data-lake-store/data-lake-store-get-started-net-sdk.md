@@ -13,17 +13,19 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/07/2016"
+   ms.date="04/07/2016"
    ms.author="nitinme"/>
 
 # 使用 .NET SDK 開始使用 Azure 資料湖存放區
 
 > [AZURE.SELECTOR]
-- [使用入口網站](data-lake-store-get-started-portal.md)
-- [使用 PowerShell](data-lake-store-get-started-powershell.md)
-- [使用 .NET SDK](data-lake-store-get-started-net-sdk.md)
-- [使用 Azure CLI](data-lake-store-get-started-cli.md)
-- [使用 Node.js](data-lake-store-manage-use-nodejs.md)
+- [入口網站](data-lake-store-get-started-portal.md)
+- [PowerShell](data-lake-store-get-started-powershell.md)
+- [.NET SDK](data-lake-store-get-started-net-sdk.md)
+- [Java SDK](data-lake-store-get-started-java-sdk.md)
+- [REST API](data-lake-store-get-started-rest-api.md)
+- [Azure CLI](data-lake-store-get-started-cli.md)
+- [Node.js](data-lake-store-manage-use-nodejs.md)
 
 了解如何使用 Azure 資料湖存放區 .NET SDK 以建立 Azure 資料湖帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關資料湖的詳細資訊，請參閱 [Azure 資料湖存放區](data-lake-store-overview.md)。
 
@@ -32,7 +34,7 @@
 * Visual Studio 2013 或 2015。以下指示使用 Visual Studio 2015。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**和**回覆 URI**。如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱《[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)》。建立應用程式後，也可從入口網站取得回覆 URI。
+* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**和**回覆 URI**。如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。建立應用程式後，也可從入口網站取得回覆 URI。
 
 ## 如何使用 Azure Active Directory 驗證？
 
@@ -44,7 +46,7 @@
 
 下列程式碼片段雖是提供這兩種方法，但本文是使用 `AuthenticateUser` 方法。這個方法會要求您提供 AAD 應用程式用戶端識別碼和回覆 URI。必要條件中的連結提供如何加以取得的指示。
 
->[AZURE.NOTE] 如果您想要修改的程式碼片段，並使用 `AuthenticateApplication` 方法，您除了提供用戶端識別碼和用戶端回覆 URI，也必須提供用戶端驗證金鑰，作為方法輸入。《[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)》一文也會說明如何產生及擷取用戶端驗證金鑰。
+>[AZURE.NOTE] 如果您想要修改的程式碼片段，並使用 `AuthenticateApplication` 方法，您除了提供用戶端識別碼和用戶端回覆 URI，也必須提供用戶端驗證金鑰，作為方法輸入。[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)一文也會說明如何產生及擷取用戶端驗證金鑰。
 
 
 
@@ -54,7 +56,7 @@
 
 2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 
-3. 在 [**新增專案**] 中，輸入或選取下列值：
+3. 在 [新增專案] 中，輸入或選取下列值：
 
 	| 屬性 | 值 |
 	|----------|-----------------------------|
@@ -66,7 +68,7 @@
 
 5. 將 Nuget 封裝新增至您的專案。
 
-	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [**管理 NuGet 封裝**]。
+	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [管理 NuGet 封裝]。
 	2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
 	3. 搜尋並安裝下列資料湖存放區封裝：
 
@@ -80,9 +82,9 @@
 		![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/adl.install.azure.auth.png "建立新的 Azure 資料湖帳戶")
 
 
-	5. 關閉 [**Nuget 封裝管理員**]。
+	5. 關閉 [Nuget 封裝管理員]。
 
-7. 開啟 [**Program.cs**]，並以下列程式碼取代現有的程式碼區塊。此外，請提供程式碼片段中呼叫的參數值，例如 **\_adlsAccountName**、**\_resourceGroupName**，並取代 **APPLICATION-CLIENT-ID**、**APPLICATION-REPLY-URI** 和 **SUBSCRIPTION-ID** 等預留位置。
+7. 開啟 [Program.cs]，並以下列程式碼取代現有的程式碼區塊。此外，請提供程式碼片段中呼叫的參數值，例如 **\_adlsAccountName**、**\_resourceGroupName**，並取代 **APPLICATION-CLIENT-ID**、**APPLICATION-REPLY-URI** 和 **SUBSCRIPTION-ID** 等預留位置。
 
 	這個程式碼會進行以下程序：建立資料湖存放區帳戶、在存放區中建立資料夾，最後會刪除帳戶。如果您正在尋找一些可上傳的範例資料，您可以從 [Azure 資料湖 Git 儲存機制](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)取得 **Ambulance Data** 資料夾。
 
@@ -186,7 +188,7 @@
                 // Authenticate the user with AAD through an interactive popup.
                 // You need to have an application registered with AAD in order to authenticate.
                 //   For more information and instructions on how to register your application with AAD, see:
-                //   https://azure.microsoft.com/zh-TW/documentation/articles/resource-group-create-service-principal-portal/
+                //   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
                 public static TokenCredentials AuthenticateUser(string tenantId, string resource, string appClientId, Uri appRedirectUri, string userId = "")
                 {
                     var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -200,7 +202,7 @@
                 // Authenticate the application with AAD through the application's secret key.
                 // You need to have an application registered with AAD in order to authenticate.
                 //   For more information and instructions on how to register your application with AAD, see:
-                //   https://azure.microsoft.com/zh-TW/documentation/articles/resource-group-create-service-principal-portal/
+                //   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
                 public static TokenCredentials AuthenticateApplication(string tenantId, string resource, string appClientId, Uri appRedirectUri, SecureString clientSecret)
                 {
                     var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -307,12 +309,6 @@
 
 8. 建置並執行應用程式。請依照提示來執行並完成應用程式。
 
-## 建立資料湖存放區帳戶的其他方式
-
-- [使用入口網站開始使用資料湖存放區](data-lake-store-get-started-portal.md)
-- [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
-- [使用 Azure CLI 開始使用資料湖存放區](data-lake-store-get-started-cli.md)
-
 
 ## 後續步驟
 
@@ -320,4 +316,4 @@
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016" 
+	ms.date="02/08/2016"
 	ms.author="mohabib;fashah;bradsev"/>
 
 
@@ -74,13 +74,15 @@
 
 設定您的 Azure 資料科學環境：
 
-1. [建立儲存體帳戶](../storage-create-storage-account.md)
+1. [建立儲存體帳戶](../storage/storage-create-storage-account.md)
 
 2. [建立 Azure ML 工作區](machine-learning-create-workspace.md)
 
 3. [佈建資料科學虛擬機器](machine-learning-data-science-setup-sql-server-virtual-machine.md)，這將做為 SQL Server 和 IPython Notebook 伺服器使用。
 
-	> [AZURE.NOTE] 指令碼範例和 IPython Notebook 將在安裝過程中下載到您的資料科學虛擬機器上。VM 的後續安裝指令碼完成時，範例會出現在您的 VM 文件庫中：- 指令碼範例：`C:\Users<user_name>\Documents\Data Science Scripts`- IPython Notebook 範例：`C:\Users<user_name>\Documents\IPython Notebooks\DataScienceSamples` 其中 `<user_name>` 是 VM 的 Windows 登入名稱。我們會將範例資料夾稱為「**指令碼範例**」和「**IPython Notebook 範例**」。
+	> [AZURE.NOTE] 指令碼範例和 IPython Notebook 將在安裝過程中下載到您的資料科學虛擬機器上。當 VM 後續安裝指令碼完成之後，範例將位於您的 VM 文件庫上。
+	> - 指令碼範例：`C:\Users<user_name>\Documents\Data Science Scripts`  
+	> - IPython Notebook 範例：`C:\Users<user_name>\Documents\IPython Notebooks\DataScienceSamples`，其中 `<user_name>` 是 VM 的 Windows 登入名稱。我們會將範例資料夾稱為「**指令碼範例**」和「**IPython Notebook 範例**」。
 
 
 根據資料集大小、資料來源位置，以及選取的 Azure 目標環境，此案例的類似案例為[案例 #5：本機檔案中的大型資料集、Azure VM 中的目標 SQL Server](../machine-learning-data-science-plan-sample-scenarios.md#largelocaltodb)。
@@ -714,4 +716,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

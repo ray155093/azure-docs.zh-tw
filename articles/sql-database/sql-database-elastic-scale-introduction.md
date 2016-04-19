@@ -3,7 +3,7 @@
     description="軟體即服務 (SaaS) 開發人員可以輕鬆地使用這些工具在雲端中建立彈性的可擴充資料庫"
     services="sql-database"
     documentationCenter=""
-    manager="jeffreyg"
+    manager="jhubbard"
     authors="ddove"
     editor=""/>
 
@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/24/2016"
+    ms.date="04/04/2016"
     ms.author="ddove;sidneyh"/>
 
 # 彈性資料庫功能概觀
@@ -24,6 +24,7 @@
 * [彈性資料庫集區](sql-database-elastic-pool-guidance.md) (預覽)：集區是可讓您隨時新增或移除資料庫的資料庫集合。集區中的資料庫共用固定數量的資源 (稱為資料庫交易單位，簡稱 DTU)。您對資源支付固定費用，在管理效能時很容易計算成本。
 * [彈性資料庫工作](sql-database-elastic-jobs-overview.md) (預覽)：使用工作來管理大量的 Azure SQL 資料庫。輕鬆執行系統管理作業，例如結構描述變更、認證管理、參考資料更新、效能資料收集，或使用工作的租用戶 (客戶) 遙測收集。
 * [彈性資料庫查詢](sql-database-elastic-query-overview.md) (預覽)：可讓您跨多個 Azure SQL 資料庫執行 Transact-SQL 查詢。這可讓您連接至報告工具，例如 Excel、PowerBI、Tableau 等等。
+* [彈性交易](sql-database-elastic-transactions-overview.md)︰這項功能可讓您在 Azure SQL Database 中跨多個資料庫執行交易。彈性資料庫交易適用於使用 ADO .NET 的 .NET 應用程式，而且與以往熟悉使用 [System.Transaction](https://msdn.microsoft.com/library/system.transactions.aspx) 類別的程式設計經驗整合。
 
 下圖顯示的架構包含與資料庫集合有關的**彈性資料庫功能**。
 
@@ -108,4 +109,4 @@
 [3]: ./media/sql-database-elastic-scale-introduction/overview.png
 [4]: ./media/sql-database-elastic-scale-introduction/single_v_multi_tenant.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

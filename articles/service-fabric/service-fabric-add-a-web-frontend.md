@@ -13,11 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/19/2016"
+   ms.date="04/05/2016"
    ms.author="seanmck"/>
 
 
 # 建置應用程式的 Web 服務前端
+
+>[AZURE.WARNING] 由於 ASP.NET Core RC2 持續變更，以致本文暫時不正確，因為已從 SDK 移除參考的專案範本。ASP.NET Core RC2 發行時，本文將隨之更新。在過渡時期，您可以使用[開始使用︰ Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md)中所述的無狀態 Web API 範本。
 
 根據預設，Azure Service Fabric 服務不提供 Web 的公用介面。若要對 HTTP 用戶端公開應用程式的功能，您必須建立 Web 專案來做為進入點，然後從該處與個別服務進行通訊。
 
@@ -193,7 +195,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
     服務名稱是 fabric:/&lt;application\_name&gt;/&lt;service\_name&gt; 形式的 URI。
 
-    利用這兩項資訊，Service Fabric 即可唯一識別要求應傳送至的電腦。`ServiceProxy` 類別也會順暢地處理裝載具狀態服務資料分割的電腦發生失敗的情況，而另一部電腦則必須進行升級才能取而代之。此概念讓撰寫用戶端程式碼來處理其他服務變得簡單許多。
+    利用這兩項資訊，Service Fabric 即可唯一識別要求應傳送至的電腦。`ServiceProxy` 類別也會順暢地處理裝載具狀態服務分割區的電腦發生失敗的情況，而另一部電腦則必須進行升級才能取而代之。此概念讓撰寫用戶端程式碼來處理其他服務變得簡單許多。
 
     一旦擁有 Proxy，我們只需叫用 `GetCountAsync` 方法並傳回其結果。
 
@@ -237,4 +239,4 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 [vs-services-nuget-package]: ./media/service-fabric-add-a-web-frontend/vs-services-nuget-package.png
 [browser-aspnet-counter-value]: ./media/service-fabric-add-a-web-frontend/browser-aspnet-counter-value.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

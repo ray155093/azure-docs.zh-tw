@@ -4,7 +4,7 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/04/2016"
+   ms.date="04/05/2016"
    ms.author="tomfitz"/>
 
 # 資源連結範本結構描述
@@ -42,20 +42,18 @@
 
 下表描述您在結構描述中必須設定的值。
 
-| 名稱 | 類型 | 必要 | 允許的值 | 說明 |
-| ---- | ---- | -------- | ---------------- | ----------- |
-| 類型 | 列舉 | 是 | **{namespace}/{type}/providers/links** | 要建立的資源類型。{namespace} 和 {type} 值指的是來源資源的提供者命名空間和資源類型。 |
-| apiVersion | 列舉 | 是 | **2015-01-01** | 要用來建立資源的應用程式開發介面 (API) 版本。 |  
-| 名稱 | 字串 | 是 | **{resouce}/Microsoft.Resources/{linkname}**<br /><br />最多 64 個位元<br />不能包含 <、>、%、&、? 或控制字元。 | 同時指定來源資源名稱和連結名稱的值。 |
-| dependsOn | array | 否 | 以逗號分隔的資源名稱或資源唯一識別碼清單。 | 此連結所依存的資源集合。若您所連結的資源被部署到相同的範本，請在此元素中包含那些資源的名稱，以確保它們會被優先部署。 | 
-| 屬性 | 物件 | 是 | (如下所示) | 能識別要連結的資源，以及該連結之相關資訊的物件。 |  
+| 名稱 | 值 |
+| ---- | ---- |
+| 類型 | 列舉<br />必要<br />**{命名空間}/{類型}/providers/links**<br /><br />要建立的資源類型。{namespace} 和 {type} 值指的是來源資源的提供者命名空間和資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-01-01**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 |  
+| 名稱 | 字串<br />必要<br />**{資源}/Microsoft.Resources/{連結名稱}**<br /> 最多 64 個字元，而且不能包含 <、>、%、&、? 或任何控制字元。<br /><br />同時指定來源資源名稱和連結名稱的值。| | dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此連結所相依的資源集合。如果您所連結的資源部署到相同的範本，請在此元素中包含那些資源的名稱，確保優先部署它們。| | 屬性 | 物件<br />必要<br />[物件](#properties)<br /><br />能識別要連結的資源，以及該連結之相關資訊的物件。| 
 
+<a id="properties" />
 ### 屬性物件
 
-| 名稱 | 類型 | 必要 | 允許的值 | 說明 |
-| ------- | ---- | ---------------- | -------- | ----------- |
-| targetId | 字串 | 是 | | 要連結之目標資源的識別碼。 |
-| 版本 | 字串 | 否 | 512 個字元 | 鎖定的描述。 |
+| 名稱 | 值 |
+| ------- | ---- |
+| targetId | 字串<br />必要<br />**{資源識別碼}**<br /><br />要連結之目標資源的識別碼。| | 附註 | 字串<br />選用<br />最多 512 個字元<br /><br />鎖定的描述。|
 
 
 ## 如何使用連結資源
@@ -68,7 +66,7 @@
 
 使用下列 Azure PowerShell 命令來查看訂用帳戶中的所有連結。您可以提供其他參數來限制結果。
 
-    Get-AzureRmResource -ResourceType Microsoft.Resources/links -isCollection -OutputObjectFormat New
+    Get-AzureRmResource -ResourceType Microsoft.Resources/links -isCollection -ResourceGroupName <YourResourceGroupName>
 
 ## 範例
 
@@ -128,16 +126,16 @@
 
 下列快速入門範本會利用連結部署資源。
 
-- [利用邏輯應用程式警示加入佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
-- [利用邏輯應用程式警示放入 Slack](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
-- [以現有閘道佈建 API 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-api-app-gateway-existing)
-- [以新的閘道佈建 API 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-api-app-gateway-new)
-- [使用範本建立邏輯應用程式與 API 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-api-app-create)
-- [會在引發警示時傳送文字訊息的邏輯應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
+- [利用邏輯應用程式警示加入佇列](https://azure.microsoft.com/documentation/templates/201-alert-to-queue-with-logic-app)
+- [利用邏輯應用程式警示放入 Slack](https://azure.microsoft.com/documentation/templates/201-alert-to-slack-with-logic-app)
+- [以現有閘道佈建 API 應用程式](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-existing)
+- [以新的閘道佈建 API 應用程式](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-new)
+- [使用範本建立邏輯應用程式與 API 應用程式](https://azure.microsoft.com/documentation/templates/201-logic-app-api-app-create)
+- [會在引發警示時傳送文字訊息的邏輯應用程式](https://azure.microsoft.com/documentation/templates/201-alert-to-text-message-with-logic-app)
 
 
 ## 後續步驟
 
 - 如需範本結構的相關資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0406_2016-->

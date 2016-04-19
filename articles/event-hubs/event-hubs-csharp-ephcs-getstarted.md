@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="03/08/2016"
+	ms.date="04/12/2016"
 	ms.author="sethm"/>
 
 # 開始使用事件中心
@@ -22,29 +22,29 @@
 
 ## 簡介
 
-「事件中樞」是一種服務，可處理來自連接裝置和應用程式的大量事件資料。收集資料至「事件中樞」之後，可以使用存放裝置叢集來儲存資料，或使用即時分析提供者進行轉換。此大規模事件收集和處理功能是新型應用程式架構 (包括物聯網 (IoT)) 的重要元件。
+「事件中樞」是一種服務，可處理來自連接裝置和應用程式的大量事件資料 (遙測)。收集資料至「事件中樞」之後，可以使用存放裝置叢集來儲存資料，或使用即時分析提供者進行轉換。此大規模事件收集和處理功能是新型應用程式架構 (包括物聯網 (IoT)) 的重要元件。
 
-本教學課程示範如何使用 Azure 傳統入口網站來建立事件中樞。另外也會示範如何使用以 C# 撰寫的主控台應用程式將訊息收集到「事件中樞」，以及如何使用 C# [事件處理器主機]程式庫平行擷取訊息。
+本教學課程示範如何使用 Azure 傳統入口網站來建立事件中樞。另外也會示範如何使用以 C# 撰寫的主控台應用程式將訊息收集到「事件中樞」，以及如何使用 C# [事件處理器主機][]程式庫平行擷取訊息。
 
 若要完成本教學課程，您需要下列項目：
 
-+ Microsoft Visual Studio 2013，或 Microsoft Visual Studio Express 2013 for Windows。
++ Microsoft Visual Studio 2013 或更新版本，或 Microsoft Visual Studio Express for Windows。本文中的範例使用 Visual Studio 2015。
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F target="\_blank")。
++ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F target="\_blank")。
 
 ## 建立事件中心
 
 1. 登入 [Azure 傳統入口網站][]，並按一下畫面底部的 [新增]。
 
-2. 按一下 [**應用程式服務**]、[**服務匯流排**]、[**事件中樞**]、[**快速建立**]。
+2. 按一下 [應用程式服務]、[服務匯流排]、[事件中樞]、[快速建立]。
 
 	![][1]
 
-3. 為您的事件中樞輸入名稱、選取所需的區域，然後按一下 [**建立新的事件中樞**]。
+3. 為您的事件中樞輸入名稱、選取所需的區域，然後按一下 [建立新的事件中樞]。
 
 	![][2]
 
-4. 按一下您剛才建立的命名空間 (通常是 ***event hub name*-ns**)。
+4. 如果您未明確選取指定區域中現有的命名空間，入口網站會為您建立命名空間 (通常是**事件中樞名稱-ns**)。按一下該命名空間 (在此範例中為 **eventhub-ns**)。
 
 	![][3]
 
@@ -56,7 +56,7 @@
 
 	![][5]
 
-7. 按一下頁面頂端的 [儀表板] 索引標籤，然後按一下 [連線資訊]。記下兩個連接字串，或複製到別處，以供本教學課程後續使用。
+7. 按一下頁面頂端的 [儀表板] 索引標籤，然後按一下 [連接資訊]。將兩個連接字串複製到暫存位置，因為您將在本教學課程稍後用到。
 
 	![][6]
 
@@ -71,13 +71,33 @@
 
 現在您已經準備好執行應用程式。
 
-1.	從 Visual Studio 內部執行 **Receiver** 專案，然後等它啟動所有資料分割的接收器。
+1. 從 Visual Studio 內開啟您稍早建立的 **Receiver** 專案。
+
+2. 在 **Receiver** 方案上按一下滑鼠右鍵，按一下 [新增]，然後按一下 [現有專案]。
+ 
+3. 找到現有的 Sender.csproj 檔案，然後按兩下該檔案以將它新增到方案。
+ 
+4. 再次於 **Receiver** 方案上按一下滑鼠右鍵，然後按一下 [屬性]。**Receiver** 屬性頁面隨即出現。
+
+5. 按一下 [啟始專案]，然後按一下 [多個啟始專案] 按鈕。將 **Receiver** 和 **Sender** 專案的 [動作] 方塊設定為 [啟動]。
+
+	![][19]
+
+6. 按一下 [專案相依性]。在 [專案] 方塊中，按一下 [寄件者]。在 [取決於] 方塊中，確定已核取 **Receiver**。
+
+	![][20]
+
+7. 按一下 [確定] 以關閉 [屬性] 對話方塊。
+
+1.	按 F5 以從 Visual Studio 內部執行 **Receiver** 專案，然後等它啟動所有資料分割的接收器。
 
 	![][21]
 
-2.	執行 **Sender** 專案，按主控台視窗中的 **Enter** 鍵，並查看出現在接收器視窗中的事件。
+2.	**Sender** 專案將會自動執行。按下主控台視窗中的 **Enter** 鍵，並查看出現在接收器視窗中的事件。
 
 	![][22]
+
+在 **Sender** 視窗中按 **Ctrl + C** 以結束 Sender 應用程式，然後在 Receiver 視窗中按 **Enter** 以關閉該應用程式。
 
 ## 後續步驟
 
@@ -96,6 +116,8 @@
 [5]: ./media/event-hubs-csharp-ephcs-getstarted/create-event-hub5.png
 [6]: ./media/event-hubs-csharp-ephcs-getstarted/create-event-hub6.png
 
+[19]: ./media/event-hubs-csharp-ephcs-getstarted/create-eh-proj1.png
+[20]: ./media/event-hubs-csharp-ephcs-getstarted/create-eh-proj2.png
 [21]: ./media/event-hubs-csharp-ephcs-getstarted/run-csharp-ephcs1.png
 [22]: ./media/event-hubs-csharp-ephcs-getstarted/run-csharp-ephcs2.png
 
@@ -108,4 +130,4 @@
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

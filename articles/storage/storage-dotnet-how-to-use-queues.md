@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/28/2016"
+	ms.date="04/07/2016"
 	ms.author="gusapost"/>
 
 # 以 .NET 開始使用 Azure 佇列儲存體
@@ -24,7 +24,19 @@
 
 Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充性的應用程式時，會經常分離應用程式元件，以便進行個別擴充。佇列儲存體針對應用程式元件間的非同步通訊，提供可靠的訊息服務解決方案，無論應用程式元件是在雲端、桌面、內部部署伺服器或行動裝置上執行。佇列儲存體也支援管理非同步工作並建置處理工作流程。
 
+### 關於本教學課程
+
 本教學課程說明如何使用 Azure 佇列儲存體撰寫一些常見案例的 .NET 程式碼。本文說明的案例包括建立和刪除佇列，以及新增、讀取和刪除佇列訊息。
+
+**預估完成時間：**45 分鐘
+
+**先決條件：**
+
+- [Microsoft Visual Studio](https://www.visualstudio.com/zh-TW/visual-studio-homepage-vs.aspx)
+- [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
+- [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
+- [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
+
 
 [AZURE.INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
@@ -32,37 +44,38 @@ Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充�
 
 [AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-[AZURE.INCLUDE [storage-configure-connection-string-include](../../includes/storage-configure-connection-string-include.md)]
+[AZURE.INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
-## 以程式設計方式存取佇列儲存體
+### 新增命名空間宣告
 
-[AZURE.INCLUDE [storage-dotnet-obtain-assembly](../../includes/storage-dotnet-obtain-assembly.md)]
+在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
 
-### 命名空間宣告
-將下列程式碼命名空間宣告，新增至您想要在其中以程式設計方式存取 Azure 儲存體之任何 C# 檔案內的頂端：
+	using Microsoft.Azure; // Namespace for CloudConfigurationManager 
+	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
+    using Microsoft.WindowsAzure.Storage.Queue; // Namespace for Queue storage types
 
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Auth;
-    using Microsoft.WindowsAzure.Storage.Queue;
+[AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
-確定已參照 `Microsoft.WindowsAzure.Storage.dll` 組件。
+### 建立佇列服務用戶端
 
-[AZURE.INCLUDE [storage-dotnet-retrieve-conn-string](../../includes/storage-dotnet-retrieve-conn-string.md)]
+**CloudQueueClient** 類別可讓您擷取佇列儲存體中儲存的佇列。將下列程式碼新增至 **Main()** 方法：
+
+    CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+
+您現在可以開始撰寫程式碼，以讀取佇列儲存體的資料並將資料寫入其中。
 
 ## 建立佇列
 
-**CloudQueueClient** 物件可讓您取得佇列的參照物件。下列程式碼將建立 **CloudQueueClient** 物件。本指南的所有程式碼都使用 Azure 應用程式服務設定中所儲存的儲存體連接字串。還有其他方式可以建立 **CloudStorageAccount** 物件。請參閱 [CloudStorageAccount](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.cloudstorageaccount_methods.aspx) 文件以取得詳細資料。
+此範例說明如何建立尚不存在的佇列：
 
-    // Retrieve storage account from connection string
+    // Retrieve storage account from connection string.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Create the queue client
+    // Create the queue client.
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-使用 **queueClient** 物件來取得想要使用佇列的參照。如果佇列不存在，您可以建立佇列。
-
-    // Retrieve a reference to a queue
+    // Retrieve a reference to a container.
     CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
     // Create the queue if it doesn't already exist
@@ -260,4 +273,4 @@ Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充�
   [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -65,7 +65,7 @@
 
 將下列程式碼加在應用程式中的 **server.js** 檔案之上：
 
-    var azure = require('azure-storage');
+	var azure = require('azure-storage');
 
 ## 設定 Azure 儲存體連接
 
@@ -77,27 +77,27 @@ Azure 模組會讀取環境變數 AZURE\_STORAGE\_ACCOUNT 及 AZURE\_STORAGE\_AC
 
 下列程式碼會建立 **TableService** 物件，並使用該物件建立新資料表。將下列內容新增至接近 **server.js** 的頂端。
 
-    var tableSvc = azure.createTableService();
+	var tableSvc = azure.createTableService();
 
 呼叫 **createTableIfNotExists** 會以指定的名稱建立新的資料表 (若尚未建立)。如果名為 'mytable' 的資料表尚不存在，下列範例便會建立這個新資料表：
 
-    tableSvc.createTableIfNotExists('mytable', function(error, result, response){
-		if(!error){
-			// Table exists or created
-		}
+	tableSvc.createTableIfNotExists('mytable', function(error, result, response){
+	  if(!error){
+	    // Table exists or created
+	  }
 	});
 
-如果建立新資料表，`result` 將是 `true`，如果資料表已存在，則為 `false`。`response` 會包含要求的相關資訊。
+如果建立新資料表，`result.created` 將是 `true`，如果資料表已存在，則為 `false`。`response` 會包含要求的相關資訊。
 
 ### 篩選器
 
 可以將選用性的篩選操作套用到使用 **TableService** 執行的操作。篩選作業可以包含記錄、自動重試等。篩選器是使用簽章實作方法的物件：
 
-		function handle (requestOptions, next)
+	function handle (requestOptions, next)
 
 在對要求選項進行前處理之後，方法需要呼叫 "next" 並傳遞具有下列簽章的回呼：
 
-		function (returnObject, finalCallback, next)
+	function (returnObject, finalCallback, next)
 
 在此回呼中，以及處理 returnObject (來自對伺服器之要求的回應) 之後，回呼需要叫用 next (如果存在) 以繼續處理其他篩選，或是就改為叫用 finalCallback 結束服務叫用。
 
@@ -130,19 +130,19 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 您也可以使用 **entityGenerator** 來建立實體。下列範例使用 **entityGenerator** 建立相同的工作實體。
 
 	var entGen = azure.TableUtilities.entityGenerator;
-    var task = {
+	var task = {
 	  PartitionKey: entGen.String('hometasks'),
-      RowKey: entGen.String('1'),
-      description: entGen.String('take out the trash'),
-      dueDate: entGen.DateTime(new Date(Date.UTC(2015, 6, 20))),
-    };
+	  RowKey: entGen.String('1'),
+	  description: entGen.String('take out the trash'),
+	  dueDate: entGen.DateTime(new Date(Date.UTC(2015, 6, 20))),
+	};
 
 若要將實體新增至資料表，請將實體物件傳給 **insertEntity** 方法。
 
 	tableSvc.insertEntity('mytable',task, function (error, result, response) {
-		if(!error){
-			// Entity inserted
-		}
+	  if(!error){
+	    // Entity inserted
+	  }
 	});
 
 若作業成功，`result` 會包含已插入記錄的 [ETag](http://en.wikipedia.org/wiki/HTTP_ETag)，`response` 則會包含作業的相關資訊。
@@ -159,7 +159,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 有多種方法可以用來更新現有的實體：
 
-* **updateEntity** - 藉由取代來更新現有實體
+* **replaceEntity** - 藉由取代來更新現有實體
 
 * **mergeEntity** - 藉由將新的屬性值合併到現有實體來更新現有實體
 
@@ -167,13 +167,13 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 * **insertOrMergeEntity** - 藉由將新的屬性值合併到現有實體來更新現有實體。如果實體不存在，將會插入新的實體。
 
-下列範例示範使用 **updateEntity** 來更新實體：
+下列範例示範使用 **replaceEntity** 來更新實體：
 
-	tableSvc.updateEntity('mytable', updatedTask, function(error, result, response){
-      if(!error) {
-        // Entity updated
-      }
-    });
+	tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response){
+	  if(!error) {
+	    // Entity updated
+	  }
+	});
 
 > [AZURE.NOTE] 依預設，更新實體並不會檢查正在更新的資料先前是否被另一個程序修改過。若要支援並行更新：
 >
@@ -182,10 +182,10 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 > 2. 對實體執行更新操作時，請將先前擷取的 ETag 資訊新增至新的實體。例如：
 >
 >     `entity2['.metadata'].etag = currentEtag;`
->    
+>
 > 3. 執行更新操作。如果擷取 ETag 值之後，實體 (例如您應用程式的其他執行個體) 進行了修改，系統會傳回 `error`，表示不符合要求中指定的更新條件。
 
-使用 **updateEntity** 及 **mergeEntity** 時，如果正在更新的實體不存在，則更新操作會失敗。因此，如果您要儲存一個實體，而不管它是否已存在，您應該改用 **insertOrReplaceEntity** 或 **insertOrMergeEntity**。
+使用 **replaceEntity** 和 **mergeEntity** 時，如果正在更新的實體不存在，則更新作業會失敗。因此，如果您要儲存一個實體，而不管它是否已存在，您應該改用 **insertOrReplaceEntity** 或 **insertOrMergeEntity**。
 
 更新作業成功的 `result` 將包含已更新實體的 **Etag**。
 
@@ -195,7 +195,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
  下列範例示範在批次中提交兩個實體：
 
-    var task1 = {
+	var task1 = {
 	  PartitionKey: {'_':'hometasks'},
 	  RowKey: {'_': '1'},
 	  description: {'_':'Take out the trash'},
@@ -239,11 +239,11 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 若要根據 **PartitionKey** 和 **RowKey** 傳回特定的實體，請使用 **retrieveEntity** 方法。
 
-    tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, response){
+	tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, response){
 	  if(!error){
 	    // result contains the entity
 	  }
-    });
+	});
 
 此作業完成時，`result` 將包含實體。
 
@@ -276,7 +276,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 	  }
 	});
 
-如果作業成功，`result.entries` 將包含符合查詢的實體陣列。若查詢無法傳回所有實體，則 `result.continuationToken` 將為非 *Null* ，並且可作為 **queryEntities** 的第三個參數來擷取更多結果。在初始查詢中，第三個參數請使用 *null* 。
+如果作業成功，`result.entries` 將包含符合查詢的實體陣列。若查詢無法傳回所有實體，則 `result.continuationToken` 將為非 *Null*，並且可作為 **queryEntities** 的第三個參數來擷取更多結果。在初始查詢中，第三個參數請使用 *null*。
 
 ### 查詢實體屬性的子集
 
@@ -296,9 +296,9 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 	  RowKey: {'_': '1'}
 	};
 
-    tableSvc.deleteEntity('mytable', task, function(error, response){
+	tableSvc.deleteEntity('mytable', task, function(error, response){
 	  if(!error) {
-		// Entity deleted
+	    // Entity deleted
 	  }
 	});
 
@@ -308,7 +308,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 下列程式碼會從儲存體帳戶刪除資料表。
 
-    tableSvc.deleteTable('mytable', function(error, response){
+	tableSvc.deleteTable('mytable', function(error, response){
 		if(!error){
 			// Table deleted
 		}
@@ -379,7 +379,7 @@ GitHub 上的 Azure 儲存體 Node.js 儲存機制中也有接續範例。尋找
 
 	sharedTableService.queryEntities(query, null, function(error, result, response) {
 	  if(!error) {
-		// result contains the entities
+	    // result contains the entities
 	  }
 	});
 
@@ -391,36 +391,30 @@ GitHub 上的 Azure 儲存體 Node.js 儲存機制中也有接續範例。尋找
 
 ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼。下列範例定義兩個原則，其中一個用於 'user1'，另一個用於 'user2'：
 
-	var sharedAccessPolicy = [
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.TableUtilities.SharedAccessPermissions.QUERY,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user1'
+	var sharedAccessPolicy = {
+	  user1: {
+	    Permissions: azure.TableUtilities.SharedAccessPermissions.QUERY,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  },
-	  {
-	    AccessPolicy: {
-	      Permissions: azure.TableUtilities.SharedAccessPermissions.ADD,
-	      Start: startDate,
-	      Expiry: expiryDate
-	    },
-	    Id: 'user2'
+	  user2: {
+	    Permissions: azure.TableUtilities.SharedAccessPermissions.ADD,
+	    Start: startDate,
+	    Expiry: expiryDate
 	  }
-	];
+	};
 
 下列範例會取得 **hometasks** 資料表的目前 ACL，然後使用 **setTableAcl** 來加入新的原則。此方法允許：
 
+	var extend = require('extend');
 	tableSvc.getTableAcl('hometasks', function(error, result, response) {
-      if(!error){
-		//push the new policy into signedIdentifiers
-		result.signedIdentifiers.push(sharedAccessPolicy);
-		tableSvc.setTableAcl('hometasks', result, function(error, result, response){
-	  	  if(!error){
-	    	// ACL set
-	  	  }
-		});
+    if(!error){
+	    var newSignedIdentifiers = extend(true, result.signedIdentifiers, sharedAccessPolicy);
+	    tableSvc.setTableAcl('hometasks', newSignedIdentifiers, function(error, result, response){
+	      if(!error){
+	        // ACL set
+	      }
+	    });
 	  }
 	});
 
@@ -448,4 +442,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
   [使用 Azure 表格服務的 Node.js Web 應用程式]: ../storage-nodejs-use-table-storage-web-site.md
   [Create and deploy a Node.js application to an Azure website]: ../web-sites-nodejs-develop-deploy-mac.md
 
-<!----HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="python"
     ms.topic="hero-article"
-    ms.date="01/05/2016"
+    ms.date="04/08/2016"
     ms.author="ryancraw"/>
 
 # 使用 DocumentDB 進行 Python Flask Web 應用程式開發
@@ -49,7 +49,7 @@
 - [azure.com](https://azure.microsoft.com/downloads/) 提供 Azure Python SDK for Visual Studio 2.4 版或更高版本。我們使用 Microsoft Azure SDK for Python 2.7。
 - 來自 [python.org][2] 的 Python 2.7。我們使用 Python 2.7.11。 
 
-> [AZURE.IMPORTANT]如果您是第一次安裝 Python 2.7，請確定在自訂 Python 2.7.11 畫面中，選取 [將 python.exe 加入路徑]。
+> [AZURE.IMPORTANT] 如果您是第一次安裝 Python 2.7，請確定在自訂 Python 2.7.11 畫面中，選取 [將 python.exe 加入路徑]。
 > 
 >    ![自訂 Python 2.7.11 的螢幕擷取畫面，您需要選取 [將 python.exe 加入路徑]](./media/documentdb-python-application/image2.png)
 
@@ -66,9 +66,9 @@
 
 ## 步驟 2：建立新的 Python Flask Web 應用程式
 
-1. 在 Visual Studio 的 [**檔案**] 功能表中，指向 [**新增**]，然後按一下 [**專案**]。
+1. 在 Visual Studio 的 [檔案] 功能表中，指向 [新增]，然後按一下 [專案]。
 
-    [**新增專案** ] 對話方塊隨即出現。
+    [新增專案] 對話方塊隨即出現。
 
 2. 在左窗格中，依序展開 [範本]、[Python]，再按一下 [Web]。
 
@@ -86,7 +86,7 @@
 
 	![資料庫教學課程 - Python Tools for Visual Studio 視窗的螢幕擷取畫面](./media/documentdb-python-application/image10_A.png)
 
-    當成功安裝環境之後，輸出視窗會顯示 `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.3 itsdangerous-0.24 'requirements.txt' was installed successfully.`。
+    當成功安裝環境之後，輸出視窗會顯示 `Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.5 itsdangerous-0.24 'requirements.txt' was installed successfully.`。
 
 ## 步驟 3：修改 Python Flask Web 應用程式
 
@@ -94,7 +94,7 @@
 
 專案設定好之後，您需要加入專案所需的特定 Flask 封裝，包括 pydocumentdb (DocumentDB 的 Python 封裝)。
 
-1. 在「方案總管」中開啟名為 **requirements.txt** 的檔案，並以下列內容取代，接著儲存檔案：
+1. 在「方案總管」中開啟名為 **requirements.txt** 的檔案，並將其內容取代為下列內容：
 
     	flask==0.9
     	flask-mail==0.7.6
@@ -108,26 +108,27 @@
     	flup
     	pydocumentdb>=1.0.0
 
-2. 在「方案總管」中以滑鼠右鍵按一下 [env]，然後按一下 [從 requirements.txt 安裝]。
+2. 儲存 **requirements.txt** 檔案。
+3. 在「方案總管」中以滑鼠右鍵按一下 [env]，然後按一下 [從 requirements.txt 安裝]。
 
 	![螢幕擷取畫面，顯示從清單中反白顯示的 requirements.txt 安裝時選取的 env (Python 2.7)。](./media/documentdb-python-application/image11.png)
 
     成功安裝之後，輸出視窗會顯示下列資訊：
 
-        Successfully installed Babel-2.1.1 Tempita-0.5.2 WTForms-2.1 Whoosh-2.7.0 blinker-1.4 decorator-4.0.6 flask-0.9 flask-babel-0.8 flask-mail-0.7.6 flask-sqlalchemy-0.16 flask-whooshalchemy-0.55a0 flask-wtf-0.8.4 flup-1.0.2 pydocumentdb-1.4.2 pytz-2013b0 speaklater-1.3 sqlalchemy-0.7.9 sqlalchemy-migrate-0.7.2
+        Successfully installed Babel-2.3.2 Tempita-0.5.2 WTForms-2.1 Whoosh-2.7.4 blinker-1.4 decorator-4.0.9 flask-0.9 flask-babel-0.8 flask-mail-0.7.6 flask-sqlalchemy-0.16 flask-whooshalchemy-0.55a0 flask-wtf-0.8.4 flup-1.0.2 pydocumentdb-1.6.1 pytz-2013b0 speaklater-1.3 sqlalchemy-0.7.9 sqlalchemy-migrate-0.7.2
 
-    > [AZURE.NOTE]在罕見情況下，輸出視窗中可能會出現失敗。如果發生此情形，請檢查錯誤是否與清除有關。有時是清理失敗，但安裝卻成功 (在輸出視窗中向上捲動來驗證這一點)。您可以[驗證虛擬環境](#verify-the-virtual-environment)來檢查安裝。 如果安裝失敗，但驗證成功，則可以繼續。
+    > [AZURE.NOTE] 在罕見情況下，輸出視窗中可能會出現失敗。如果發生此情形，請檢查錯誤是否與清除有關。有時是清理失敗，但安裝卻成功 (在輸出視窗中向上捲動來驗證這一點)。您可以[驗證虛擬環境](#verify-the-virtual-environment)來檢查安裝。 如果安裝失敗，但驗證成功，則可以繼續。
 
 ### 驗證虛擬環境
 
 讓我們來確定一切都安裝正確。
 
-1. 按下 CTRL+SHIFT+B 建置解決方案。
-2. 建置成功後，按下 F5 啟動網站。這會啟動 Flask 開發伺服器和您的網頁瀏覽器。應該會出現下列網頁。
+1. 按下 **Ctrl**+**Shift**+**B** 建置解決方案。
+2. 建置成功後，按下 **F5** 啟動網站。這會啟動 Flask 開發伺服器和您的網頁瀏覽器。應該會出現下列網頁。
 
 	![在瀏覽器中會顯示空白的 Python Flask Web 開發專案](./media/documentdb-python-application/image12.png)
 
-3. 按下Shift+F5 停止對網站進行偵錯。
+3. 在 Visual Studio 中按 **Shift**+**F5** 停止對網站進行偵錯。
 
 ### 建立資料庫、集合和文件定義
 
@@ -199,7 +200,7 @@ def create():
         message='You just created a new database, collection, and document.  Your old votes have been deleted')
 ```
 
-> [AZURE.TIP]**CreateCollection** 方法會採用選擇性的 **RequestOptions** 做為第三個參數。這可以用來指定集合的優惠類型。如果未提供 offerType 值，則將會使用預設的優惠類型來建立集合。如需 DocumentDB 優惠類型的詳細資訊，請參閱 [DocumentDB 中的效能層級](documentdb-performance-levels.md)。
+> [AZURE.TIP] **CreateCollection** 方法會採用選擇性的 **RequestOptions** 做為第三個參數。這可以用來指定集合的優惠類型。如果未提供 offerType 值，則將會使用預設的優惠類型來建立集合。如需 DocumentDB 優惠類型的詳細資訊，請參閱 [DocumentDB 中的效能層級](documentdb-performance-levels.md)。
 
 
 ### 讀取資料庫、集合、文件並送出表單
@@ -259,7 +260,7 @@ def vote():
 1. 在「方案總管」中，以滑鼠右鍵按一下 [教學課程] 資料夾中的 [範本] 資料夾，，然後按一下 [加入]，再按一下 [新增項目]。 
 2. 選取 [HTML 頁面]，在名稱方塊中輸入 **create.html**。 
 3. 重複步驟 1 和 2 來建立其他兩個 HTML 檔案，分別是 results.html 和 vote.html。
-4. 將下列程式碼新增至 <body> 元素中的 **create.html**。此程式碼可顯示訊息，指出我們已建立新的資料庫、集合和文件。
+4. 將下列程式碼新增至 `<body>` 元素中的 **create.html**。此程式碼可顯示訊息，指出我們已建立新的資料庫、集合和文件。
 
 	```html
 	{% extends "layout.html" %}
@@ -270,7 +271,7 @@ def vote():
 	{% endblock %}
 	```
 
-5. 將下列程式碼新增至 <body> 元素中的 **results.html**。此程式碼會顯示投票結果。
+5. 將下列程式碼新增至 `<body`> 元素中的 **results.html**。此程式碼會顯示投票結果。
 
 	```html
 	{% extends "layout.html" %}
@@ -283,8 +284,7 @@ def vote():
 		<div class="col-sm-5">{{choice}}</div>
 	        <div class="col-sm-5">
 	        	<div class="progress">
-                	<div class="progress-bar" role="progressbar" aria-valuenow="{{vote_object.choices[choice]}}" aria-valuemin="0"
-                     aria-valuemax="{{vote_object.total_votes}}" style="width: {{(vote_object.choices[choice]/vote_object.total_votes)*100}}%;">
+	        		<div class="progress-bar" role="progressbar" aria-valuenow="{{vote_object.choices[choice]}}" aria-valuemin="0" aria-valuemax="{{vote_object.total_votes}}" style="width: {{(vote_object.choices[choice]/vote_object.total_votes)*100}}%;">
 	                    		{{vote_object.choices[choice]}}
 				</div>
 			</div>
@@ -297,7 +297,7 @@ def vote():
 	{% endblock %}
 	```
 
-6. 將下列程式碼新增至 <body> 元素中的 **vote.html**。此程式碼會顯示並接受投票。註冊投票時，控制權會傳遞給 views.py，我們將在其中辨識投票以及相應地附加文件。
+6. 將下列程式碼新增至 `<body`> 元素中的 **vote.html**。此程式碼會顯示並接受投票。註冊投票時，控制權會傳遞給 views.py，我們將在其中辨識投票以及相應地附加文件。
 
 	```html
 	{% extends "layout.html" %}
@@ -341,7 +341,7 @@ def vote():
 	DOCUMENTDB_DOCUMENT = 'voting document'
 	```
 
-3. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [瀏覽]、[DocumentDB 帳戶]，按兩下要使用的帳戶名稱，再按一下 [金鑰] 瀏覽到 [金鑰] 刀鋒視窗。在 [金鑰] 刀鋒視窗中複製 **URI** 值並貼到 **config.py** 檔案中，做為 **DOCUMENTDB\_HOST** 屬性的值。
+3. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [瀏覽]、[DocumentDB 帳戶]，按兩下要使用的帳戶名稱，再按一下 [基本功能] 區域中的 [金鑰] 按鈕瀏覽到 [金鑰] 刀鋒視窗。在 [金鑰] 刀鋒視窗中複製 **URI** 值並貼到 **config.py** 檔案中，做為 **DOCUMENTDB\_HOST** 屬性的值。
 4. 回到 Azure 入口網站，在 [金鑰] 刀鋒視窗中複製**主要金鑰**或**次要金鑰**值，貼到 **config.py** 檔案中，做為 **DOCUMENTDB\_KEY** 屬性的值。
 5. 在 **\_\_init\_\_.py** 檔案中，加入以下這一行。 
 
@@ -363,8 +363,8 @@ def vote():
 
 ## 步驟 4：在本機執行您的 Web 應用程式
 
-1. 按下 CTRL+SHIFT+B 建置解決方案。
-2. 建置成功後，按下 F5 啟動網站。您應該會在畫面上看到下列內容。
+1. 按下 **Ctrl**+**Shift**+**B** 建置解決方案。
+2. 建置成功後，按下 **F5** 啟動網站。您應該會在畫面上看到下列內容。
 
 	![網頁瀏覽器中顯示的 Python + DocumentDB 投票應用程式螢幕擷取畫面](./media/documentdb-python-application/image16.png)
 
@@ -390,15 +390,15 @@ def vote():
 
  	![[方案總管] 中選取之教學課程 (具有反白顯示的 [發佈] 選項) 的螢幕擷取畫面](./media/documentdb-python-application/image20.png)
 
-2. 在 [發佈 Web] 視窗中，選取 [Microsoft Azure 網站]。
+2. 在 [發佈 Web] 視窗中，選取 [Microsoft Azure Web Apps]，然後按 [下一步]。
 
-	![[發佈 Web] 視窗的螢幕擷取畫面](./media/documentdb-python-application/image21.png)
+	![醒目提示 Microsoft Azure Web Apps 之 [發佈 Web] 視窗的螢幕擷取畫面](./media/documentdb-python-application/image21.png)
 
-3. 在 [選取現有網站] 視窗中，按一下 [新增]。
+3. 在 [Microsoft Azure Web Apps 視窗] 視窗中，按一下 [新增]。
 
-	![[選取現有網站] 視窗的螢幕擷取畫面](./media/documentdb-python-application/select-existing-website.png)
+	![[Microsoft Azure Web Apps 視窗] 視窗的螢幕擷取畫面](./media/documentdb-python-application/select-existing-website.png)
 
-4. 在 [在 Microsoft Azure 上建立網站] 視窗中，輸入 [網站名稱]，選取 [區域]，再按一下 [建立]。
+4. 在 [在 Microsoft Azure 上建立網站] 視窗中，輸入 [Web 應用程式名稱]、[App Service 方案]、[資源群組] 和 [區域]，然後按一下 [建立]。
 
 	![[在 Microsoft Azure 上建立網站] 視窗的螢幕擷取畫面](./media/documentdb-python-application/create-site-on-microsoft-azure.png)
 
@@ -434,4 +434,4 @@ def vote():
   [Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
   [Azure portal]: http://portal.azure.com
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0413_2016-->

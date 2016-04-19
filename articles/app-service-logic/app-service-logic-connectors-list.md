@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/11/2016"
+	ms.date="04/11/2016"
 	ms.author="mandia"/>
 
 
 # 要於 Logic Apps 中使用的連接器和 API Apps 清單
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。若為 2015-08-01-preview 結構描述版本，請按一下 [API 清單](../connectors/apis-list.md)。
+>[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。對於 2015-08-01-preview 結構描述版本，請按一下[新連接器清單](../connectors/apis-list.md)。
 
 深入了解所有由 Microsoft 建立可用於邏輯應用程式中的連接器和 API 應用程式。
 
@@ -33,23 +33,13 @@
 --- | ---
 [Azure HDInsight](app-service-logic-connector-hdinsight.md) | 使用這個連接器可在 Azure 上建立 Hadoop 叢集、送出不同的 Hadoop 工作等等。
 [Azure 服務匯流排](app-service-logic-connector-azureservicebus.md) | 可以從「服務匯流排佇列和主題」傳送訊息，並接收來自「服務匯流排佇列和訂用帳戶」的訊息。
-[Azure 儲存體 Blob](app-service-logic-connector-azurestorageblob.md) | 連接到 Blob 儲存體，可以取得、刪除、列出等等。 
 [Bing 翻譯](https://azure.microsoft.com/marketplace/partners/microsoft_com/bingtranslator) | 使用 Bing，將文字翻譯成其他語言。
-[Box](app-service-logic-connector-box.md) | 連接到 Box，可以上傳、取得、刪除、列出等檔案工作。
 [Chatter](app-service-logic-connector-chatter.md) | 連接到 Chatter，而且可以張貼訊息、搜尋，甚至擷取新的訊息。
-[Dropbox](app-service-logic-connector-dropbox.md) | 連接到 Dropbox，可以取得、刪除、列出等檔案工作。
-[Facebook](app-service-logic-connector-facebook.md) | 連接到 Facebook，可以發佈訊息、圖片等等。您也可以取得訊息和留言，取得各種讚 (包括書籍和電影) 的使用者資訊。
 [HTTP](app-service-logic-connector-http.md) | HTTP 接聽程式會開啟當做 HTTP 伺服器的端點，並接聽內送的 HTTP 或 HTTPS 要求。HTTP 動作不需要 API Apps，Logic Apps 內原本就支援。
 [Microsoft Office 365](app-service-logic-connector-office365.md) | Office 365 連接器可以使用 Office 365 帳戶來傳送和接收電子郵件、管理您的行事曆及管理您的連絡人。
-[Microsoft OneDrive](app-service-logic-connector-onedrive.md) | 連接到您個人的 Microsoft OneDrive 上傳、刪除、列出檔案等等。
-[Microsoft SharePoint](app-service-logic-connector-sharepoint.md) | 連接至內部部署 Microsoft SharePoint Server 或 SharePoint Online 來管理文件和清單項目。支援不同的驗證方法，例如預設認證、OAuth 2.0、Windows 驗證和表單架構驗證。
-[Microsoft Yammer](app-service-logic-connector-yammer.md) | 連接到 Yammer 張貼訊息並取得新的訊息。
 [QuickBooks](app-service-logic-connector-quickbooks.md) | 您可以完成不同的工作，包括建立、更新和查詢來自 Intuit QuickBooks (如客戶、項目、發票等等) 的不同實體。
 [Slack](app-service-logic-connector-slack.md) | 連接至 Slack，並將訊息張貼至 Slack 通道。
-[Salesforce](app-service-logic-connector-salesforce.md) | 連接到您的 Salesforce 帳戶，並且管理客戶、潛在客戶、機會等等。
 [SugarCRM](app-service-logic-connector-sugarcrm.md) | 連接到 SugarCRM Online，並且建立、更新、讀取不同類型的模組，包括帳戶、連絡人等等。
-[Twilio](app-service-logic-connector-twilio.md) | 連接到 Twilio，可以傳送及取得訊息、取得可用的號碼，管理撥入的電話號碼等等。
-[Twitter](app-service-logic-connector-twitter.md) | 連接到 Twitter，取得時間軸、張貼推文等等。
 [等候](app-service-logic-connector-wait.md) | 您可以使用這個連接器來延遲執行應用程式。您可以將應用程式延遲一段特定期間，或延遲到特定時刻發生為止。
 
 
@@ -77,8 +67,6 @@ MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器�
 [Oracle 資料庫](app-service-logic-connector-oracle.md) | 連接到內部部署 Oracle 資料庫，可以建立、更新、取得和刪除資料庫資料表上的項目。
 [POP3](app-service-logic-connector-pop3.md) (郵局通訊協定)| 連接到 POP3 伺服器擷取帶有附件的電子郵件。
 [SAP](app-service-logic-connector-sap.md) | 連接到內部部署 SAP 伺服器，並且叫用 RFC、BAPI 和 tRFC，以及傳送 IDOC。
-[SFTP](app-service-logic-connector-sftp.md) (SSH 檔案傳輸通訊協定)| 連接到 SFTP，可以上傳、取得、刪除檔案等等。
-[SMTP](app-service-logic-connector-smtp.md) (簡易郵件傳送通訊協定) | 連接至 SMTP 伺服器，還可以傳送帶有附件的電子郵件。
 
 ## 連接器做為觸發程序
 有數個連接器提供 Logic Apps 的觸發程序。這些觸發程序分成兩種類型：
@@ -95,4 +83,4 @@ MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器�
 ## 連接器和 API Apps 的詳細資訊
 [什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md) [在 Azure App Service 中使用混合式連接管理員](app-service-logic-hybrid-connection-manager.md) [管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,11 +1,11 @@
 <properties
    pageTitle="可靠的服務架構 | Microsoft Azure"
-   description="具狀態與無狀態之可靠的服務架構概觀。"
+   description="具狀態與無狀態之 Reliable Services 架構概觀"
    services="service-fabric"
    documentationCenter=".net"
    authors="AlanWarwick"
    manager="timlt"
-   editor=""/>
+   editor="vturecek"/>
 
 <tags
    ms.service="Service-Fabric"
@@ -16,20 +16,20 @@
    ms.date="03/30/2016"
    ms.author="alanwar"/>
 
-# 具狀態與無狀態之可靠的服務架構
+# 具狀態與無狀態 Reliable Services 的架構
 
-Azure Service Fabric 可靠服務可能是具狀態或無狀態。每一種服務都在特定架構內執行。本文將會說明這些架構。請參閱[可靠服務概觀](service-fabric-reliable-services-introduction.md)，以取得具狀態與無狀態服務之間差異的詳細資訊。
+Azure Service Fabric 可靠服務可能是具狀態或無狀態。每一種服務都在特定架構內執行。本文將會說明這些架構。請參閱[Reliable Services 概觀](service-fabric-reliable-services-introduction.md)，以取得具狀態與無狀態服務之間差異的詳細資訊。
 
-## 具狀態之可靠的服務
+## 具狀態可靠的服務
 
 ### 具狀態服務的架構
 ![具狀態服務的架構圖](./media/service-fabric-reliable-services-platform-architecture/reliable-stateful-service-architecture.png)
 
-### 具狀態之可靠的服務
+### 具狀態可靠的服務
 
 具狀態可靠的服務可以從 StatefulService 或 StatefulServiceBase 類別衍生。這兩個基底類別都由 Service Fabric 所提供。這兩個基底類別可為具狀態服務提供各種支援和抽象層級以便與 Service Fabric 互動，以及做為 Service Fabric 叢集內的服務參與。
 
-StatefulService 衍生自 StatefulServiceBase。StatefulServiceBase 提供服務更多的彈性，但需要對 Service Fabric 內部運作有更多了解。請參閱[可靠的服務概觀](service-fabric-reliable-services-introduction.md)和[可靠的服務進階用法](service-fabric-reliable-services-advanced-usage.md)，以取得使用 StatefulService 和 StatefulServiceBase 類別撰寫服務細節的詳細資訊。
+StatefulService 衍生自 StatefulServiceBase。StatefulServiceBase 提供服務更多的彈性，但需要對 Service Fabric 內部運作有更多了解。請參閱[Reliable Services 概觀](service-fabric-reliable-services-introduction.md)和[Reliable Services 進階用法](service-fabric-reliable-services-advanced-usage.md)，以取得使用 StatefulService 和 StatefulServiceBase 類別撰寫服務細節的詳細資訊。
 
 這兩個基底類別會管理服務實作的存留期和角色。如果服務實作在服務實作生命週期中的那些點有工作要執行，或是想要建立通訊接聽程式物件，服務實作可能會覆寫任一基底類別的虛擬方法。請注意雖然服務實作可能會實作自己的通訊接聽程式物件並公開 ICommunicationListener，在上圖中，通訊接聽程式由 Service Fabric 實作，因為服務實作使用 Service Fabric 所實作的通訊接聽程式。
 
@@ -67,14 +67,14 @@ StatefulService 衍生自 StatefulServiceBase。StatefulServiceBase 提供服務
 
 除了對記錄檔的最小使用者模式介面，記錄檔會撰寫為核心模式驅動程式。藉由以核心模式驅動程式方式執行，記錄檔可以提供最高的效能給使用它的所有服務。
 
-如需設定記錄的詳細資訊，請參閱[設定具狀態可靠的服務](service-fabric-reliable-services-configuration.md)。
+如需設定記錄的詳細資訊，請參閱[設定具狀態的 Reliable Services](service-fabric-reliable-services-configuration.md)。
 
-## 無狀態之可靠的服務
+## 無狀態的可靠的服務
 
 ### 無狀態服務的架構
 ![無狀態服務的架構圖](./media/service-fabric-reliable-services-platform-architecture/reliable-stateless-service-architecture.png)
 
-### 無狀態之可靠的服務
+### 無狀態的可靠的服務
 
 無狀態服務實作衍生自 StatelessService 類別或 StatelessServiceBase 類別。StatelessServiceBase 類別比 StatelessService 允許更多彈性。這兩個基底類別會管理服務的存留期和角色。
 
@@ -97,4 +97,4 @@ StatefulService 衍生自 StatefulServiceBase。StatefulServiceBase 提供服務
 
 [可靠的服務組態](service-fabric-reliable-services-configuration.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

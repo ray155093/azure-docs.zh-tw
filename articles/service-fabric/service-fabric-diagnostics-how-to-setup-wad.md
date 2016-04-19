@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="03/30/2016"
    ms.author="toddabel"/>
 
 
 # 如何利用 Azure 診斷收集記錄檔
 
-當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。將記錄檔集中在中央位置，可輕鬆分析和疑難排解您的叢集或該叢集中執行之應用程式與服務的問題。上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷延伸模組。這些記錄檔實際上無法直接在儲存體中使用，但外部處理序可以用來讀取儲存體中的事件，並將它們放置到 [Operational Insights](https://azure.microsoft.com/services/operational-insights/) 等產品、彈性搜尋或其他解決方案中。
+當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。將記錄檔集中在中央位置，可輕鬆分析和疑難排解您的叢集或該叢集中執行之應用程式與服務的問題。上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷延伸模組。這些記錄檔實際上無法直接在儲存體中使用，但外部處理序可以用來讀取儲存體中的事件，並將它們放在 [Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或或其他記錄檔剖析解決方案中。
 
 ## 必要條件
 這些工具將用來執行這份文件中的某些作業：
@@ -45,7 +45,7 @@
 
 ![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad-operational-insights/portal-cluster-creation-diagnostics-setting.png)
 
-Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於目前資源群組中的儲存體帳戶。應用程式診斷會將應用程式層級事件，包括[動作項目](service-fabric-reliable-actors-diagnostics.md)事件、[Reliable Service](service-fabric-reliable-services-diagnostics.md) 事件和某些系統層級 Service Fabric 事件設定為儲存至 Azure 儲存體。[Operational Insights](https://azure.microsoft.com/services/operational-insights/) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。使用入口網站建立叢集時，建議在部署完成後才匯出範本。範本可以由下列項目從入口網站匯出
+Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於目前資源群組中的儲存體帳戶。應用程式診斷會將應用程式層級事件，包括[動作項目](service-fabric-reliable-actors-diagnostics.md)事件、[Reliable Service](service-fabric-reliable-services-diagnostics.md) 事件和某些系統層級 Service Fabric 事件設定為儲存至 Azure 儲存體。[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。使用入口網站建立叢集時，建議在部署完成後才匯出範本。範本可以由下列項目從入口網站匯出
 1. 開啟您的資源群組
 2. 選取設定以顯示設定面板
 3. 選取 [部署] 以顯示部署歷程記錄面板
@@ -178,4 +178,4 @@ New-AzureResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $de
 ## 後續步驟
 查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件，以更詳細了解進行問題移難排解時應該調查哪些事件。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0406_2016-->

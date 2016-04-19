@@ -20,7 +20,7 @@
 
 ## 概觀
 
-本指南提供 C# 程式碼範例，示範如何在建立或更新 Azure Blob 時觸發程序。此程式碼範例會使用 [WebJobs SDK](websites-dotnet-webjobs-sdk.md) 1.x 版。
+本指南提供 C# 程式碼範例，示範如何在接收到 Azure 服務匯流排訊息時觸發程序。此程式碼範例會使用 [WebJobs SDK](websites-dotnet-webjobs-sdk.md) 1.x 版。
 
 本指南假設您知道[如何使用指向您儲存體帳戶的連接字串，在 Visual Studio 中建立 WebJob 專案](websites-dotnet-webjobs-sdk-get-started.md)。
 
@@ -61,7 +61,7 @@ public class Program
 
 若要撰寫 WebJobs SDK 在收到佇列訊息時所呼叫的函數，請使用 `ServiceBusTrigger` 屬性。屬性建構函式會接受一個參數，以指定要輪詢的佇列名稱。
 
-### ServicebusTrigger 的運作方式
+### ServiceBusTrigger 的運作方式
 
 SDK 會在 `PeekLock` 模式中收到訊息，並在函數成功完成時，於訊息中呼叫 `Complete`，或是在函數失敗時呼叫 `Abandon`。如果函數執行時間較 `PeekLock` 逾時還長，即會自動更新鎖定。
 
@@ -186,4 +186,4 @@ SDK 會針對 POCO ([純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_C
 本指南提供了程式碼範例，示範如何處理使用 Azure Service Bus 的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0406_2016-->

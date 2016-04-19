@@ -1,5 +1,5 @@
 <properties
-   pageTitle="透過 Azure 資源管理員使用連結的範本"
+   pageTitle="使用 Azure Resource Manager 的已連結範本 | Microsoft Azure"
    description="描述如何在「Azure 資源管理員」範本中使用連結的範本，以建立模組化範本方案。示範如何傳遞參數值、指定參數檔案，以及動態建立 URL。"
    services="azure-resource-manager"
    documentationCenter="na"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="12/07/2015"
+   ms.date="04/04/2016"
    ms.author="tomfitz"/>
 
 # 透過 Azure 資源管理員使用連結的範本
@@ -113,7 +113,7 @@
 如果您需要從連結的範本將值傳遞給主要範本，您可以在連結範本的 **outputs** 區段中建立一個值。如需範例，請參閱[在 Azure 資源管理員範本中共用狀態](best-practices-resource-manager-state.md)。
 
 ## 後續步驟
-- [撰寫範本](./resource-group-authoring-templates.md)
-- [部署範本](resource-group-template-deploy.md)
+- 若要深入了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)。
+- 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0406_2016-->

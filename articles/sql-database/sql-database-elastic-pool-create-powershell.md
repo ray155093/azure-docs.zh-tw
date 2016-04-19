@@ -86,9 +86,4 @@
 - [管理集區](sql-database-elastic-pool-manage-powershell.md)
 - [建立彈性工作](sql-database-elastic-jobs-overview.md) 彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 
-
-## 彈性資料庫參考
-
-如需關於彈性資料庫和彈性資料庫集區的詳細資訊，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
-
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

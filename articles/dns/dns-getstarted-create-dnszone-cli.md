@@ -40,7 +40,7 @@
 
 
 >[AZURE.IMPORTANT] 此 DNS 命令需要 Azure CLI 0.9.8 版本或更新版本。請輸入 `azure -v`，以檢查哪一個 Azure CLI 版本目前安裝在您的電腦。
- 
+
 ### 步驟 2
 
 Azure DNS 使用 Azure 資源管理員。務必切換 CLI 以使用 ARM 命令和 DNS。
@@ -68,7 +68,7 @@ Azure DNS 使用 Azure 資源管理員。務必切換 CLI 以使用 ARM 命令�
 
     Azure group create -n myresourcegroup --location "West US"
 
-Azure 資源管理員需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。然而，因為所有 DNS 資源是全球性，而非區域性，資源群組位置的選擇不會對 Azure DNS 造成影響。
+Azure Resource Manager 需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。然而，因為所有 DNS 資源是全球性，而非區域性，資源群組位置的選擇不會對 Azure DNS 造成影響。
 
 ### 步驟 6
 
@@ -78,7 +78,7 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 ## 標記
 
-標記與 Etag 不同。標記是名稱-值組的清單，由 Azure 資源管理員在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](resource-group-using-tags.md)。Azure DNS CLI 在區域與記錄集上支援使用選項 ‘-Tag’ 參數來指定標記。下列範例示範如何使用兩個標記 ‘project = demo’ 和 ‘env = test’ 建立 DNS 區域：
+標記與 Etag 不同。標記是名稱-值組的清單，由 Azure 資源管理員在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。Azure DNS CLI 在區域與記錄集上支援使用選項 ‘-Tag’ 參數來指定標記。下列範例示範如何使用兩個標記 ‘project = demo’ 和 ‘env = test’ 建立 DNS 區域：
 
 	Azure network dns zone create -n contoso.com -g myresourcegroup -t "project=demo";"env=test"
 
@@ -103,7 +103,7 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 
 在下列範例中，使用資源群組 "myresourcegroup"、記錄集名稱 "@" (適用於根記錄) 和類型 "SOA" 執行命令會產生下列輸出：
- 
+
 
 	azure network dns record-set show myresourcegroup "contoso.com" "@" SOA
 	info:    Executing command network dns-record-set show
@@ -171,4 +171,4 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 在建立 DNS 區域之後，您必須建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域的名稱。<BR> 您也可以了解[如何管理 DNS 區域](dns-operations-dnszones-cli.md)及其 DNS 區域作業。<BR> 了解[如何管理 DNS 記錄](dns-operations-recordsets-cli.md)和[使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)<BR> [Azure DNS REST API 參考](https://msdn.microsoft.com/library/azure/mt163862.aspx)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

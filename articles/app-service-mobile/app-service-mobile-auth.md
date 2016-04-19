@@ -91,8 +91,6 @@ App Service 驗證 / 授權會公開**未驗證要求時要採取的動作**的�
 
 如果您想要使用此處提供之身分識別系統以外的身分識別系統，也可以利用[預覽 .NET 伺服器 SDK 中的自訂驗證支援](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth)。
 
-您也可以在 [App Service 驗證概觀](app-service-authentication-overview.md)中找到一些有關上述流程的更詳盡資訊。本主題也包含 App Service 閘道器的相關資訊，儘管 Mobile Apps 中已不再使用此功能，但概念性內容仍然適用。
-
 [將驗證新增至您的 iOS 應用程式]: app-service-mobile-ios-get-started-users.md
 [將驗證新增至 Xamarin.iOS 應用程式]: app-service-mobile-xamarin-ios-get-started-users.md
 [將驗證新增至 Xamarin.Android 應用程式]: app-service-mobile-xamarin-android-get-started-users.md
@@ -104,4 +102,4 @@ App Service 驗證 / 授權會公開**未驗證要求時要採取的動作**的�
 [如何設定 App 以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
 [如何設定 App 以使用 Twitter 登入]: app-service-mobile-how-to-configure-twitter-authentication.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

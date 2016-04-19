@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="Cortana 分析程序實務 - 在 1 TB Criteo 資料集上使用 HDInsight Hadoop 叢集 | Microsoft Azure" 
-	description="對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用進階分析程序和技術 (ADAPT) 使用" 
-	services="machine-learning,hdinsight" 
-	documentationCenter="" 
-	authors="bradsev" 
-	manager="paulettm" 
+<properties
+	pageTitle="Cortana 分析程序實務 - 在 1 TB Criteo 資料集上使用 HDInsight Hadoop 叢集 | Microsoft Azure"
+	description="對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用進階分析程序和技術 (ADAPT) 使用"
+	services="machine-learning,hdinsight"
+	documentationCenter=""
+	authors="bradsev"
+	manager="paulettm"
 	editor="cgronlun" />
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/08/2016" 
+<tags
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/08/2016"
 	ms.author="ginathan;bradsev" />
 
 # Cortana 分析程序實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集
@@ -29,15 +29,15 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 在此資料集中的每一筆記錄包含 40 個資料行：
 
-- 第一個資料行是標籤資料行，指出使用者是否按一下加入 (值 1) 或未按一下 (值 0) 
-- 接下來 13 個資料行是數字，以及 
-- 最後 26 個資料行是類別資料行 
+- 第一個資料行是標籤資料行，指出使用者是否按一下加入 (值 1) 或未按一下 (值 0)
+- 接下來 13 個資料行是數字，以及
+- 最後 26 個資料行是類別資料行
 
 資料行為匿名，並使用一系列的列舉名稱："Col1" (針對標籤資料行) 至 "Col40" (針對最後一個分類資料行)。
 
 以下是來自這個資料集的兩個觀察 (資料列) 的前 20 個資料行的摘錄：
 
-	Col1	Col2	Col3	Col4	Col5	Col6	Col7	Col8	Col9	Col10	Col11	Col12	Col13	Col14	Col15			Col16			Col17			Col18			Col19		Col20	
+	Col1	Col2	Col3	Col4	Col5	Col6	Col7	Col8	Col9	Col10	Col11	Col12	Col13	Col14	Col15			Col16			Col17			Col18			Col19		Col20
 
 	0       40      42      2       54      3       0       0       2       16      0       1       4448    4       1acfe1ee        1b2ff61f        2e8b2631        6faef306        c6fc10d3    6fcd6dcb           
 	0               24              27      5               0       2       1               3       10064           9a8cb066        7a06385f        417e6103        2170fc56        acf676aa    6fcd6dcb                      
@@ -62,7 +62,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 設定 Azure 資料科學環境，用於使用 HDInsight 叢集以三個步驟建置預測性的分析解決方案：
 
-1. [建立儲存體帳戶](storage-whatis-account.md)：此儲存體帳戶用來將資料儲存在 Azure Blob 儲存體中。HDInsight 叢集中使用的資料會儲存在這裡。
+1. [建立儲存體帳戶](../storage/storage-create-storage-account.md)：此儲存體帳戶用來將資料儲存在 Azure Blob 儲存體中。HDInsight 叢集中使用的資料會儲存在這裡。
 
 2. [自訂適用於資料科學的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)：這個步驟將會建立已在所有節點上安裝 64 位元 Anaconda Python 2.7 的 Azure HDInsight Hadoop 叢集。自訂 HDInsight 叢集時有兩個需完成的重要步驟 (如本主題所述)。
 
@@ -80,10 +80,10 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 按一下 [**繼續下載**] 來閱讀資料集的相關資訊和它的可用性。
 
-資料位於公用 [Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)位置：wasb://criteo@azuremlsampleexperiments.blob.core.windows.net/raw/。"wasb" 指的是 Azure Blob 儲存體位置。
+資料位於公用 [Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)位置：wasb://criteo@azuremlsampleexperiments.blob.core.windows.net/raw/。"wasb" 指的是 Azure Blob 儲存體位置。
 
 1. 這個公用 Blob 儲存體中的資料是由所解壓縮資料的三個子資料夾所組成。
-		
+
 	1. 子資料夾 *raw/count/* 包含前 21 天的資料 - 從 day\_00 到 day\_20
 	2. 子資料夾 *raw/train/* 由單一天 day\_21 的資料組成
 	3. 子資料夾 *raw/test/* 由兩天 day\_22 和 day\_23 的資料組成
@@ -120,9 +120,9 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 下列程式碼會建立資料庫 "criteo"，然後產生 4 個資料表：
 
 
-* 建置於 day\_00 到 day\_20 *用於產生計數的資料表*、 
-* 建置於 day\_21 *用來做為訓練資料集的資料表*，以及 
-* 分別建置於 day\_22 和 day\_23 的兩個*用來做為測試資料集的資料表*。 
+* 建置於 day\_00 到 day\_20 *用於產生計數的資料表*、
+* 建置於 day\_21 *用來做為訓練資料集的資料表*，以及
+* 分別建置於 day\_22 和 day\_23 的兩個*用來做為測試資料集的資料表*。
 
 因為其中一天是假日，而且我們想要判斷模型是否可以偵測到假日與非假日之間點選率的差異，我們將我們的測試資料集分割成兩個不同資料表。
 
@@ -225,7 +225,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 		SELECT COUNT(*) FROM criteo.criteo_test_day_22;
 
 這會產生：
-	
+
 		189747893
 		Time taken: 267.968 seconds, Fetched: 1 row(s)
 
@@ -240,7 +240,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 		SELECT COUNT(*) FROM criteo.criteo_test_day_23;
 
 這會提供：
-	
+
 		178274637
 		Time taken: 253.089 seconds, Fetched: 1 row(s)
 
@@ -257,12 +257,12 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 		Time taken: 459.435 seconds, Fetched: 2 row(s)
 
 請注意，正數標籤的百分比為大約 3.3% (與原始資料集一致)。
-		
+
 ### 訓練資料集中一些數值變數的長條圖分佈
 
 我們可以使用 Hive 的原生 "histogram\_numeric" 函式，來了解數值變數分佈的外觀。[sample&#95;hive&#95;criteo&#95;histogram&#95;numeric.hql](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_criteo_histogram_numeric.hql) 的內容如下所示：
 
-		SELECT CAST(hist.x as int) as bin_center, CAST(hist.y as bigint) as bin_height FROM 
+		SELECT CAST(hist.x as int) as bin_center, CAST(hist.y as bigint) as bin_height FROM
 			(SELECT
             histogram_numeric(col2, 20) as col2_hist
             FROM
@@ -324,7 +324,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 我們在這個子節的最後來看一下一些其他類別資料行的唯一值數目。[sample&#95;hive&#95;criteo&#95;unique&#95;values&#95;multiple&#95;categoricals.hql](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_criteo_unique_values_multiple_categoricals.hql) 的內容為：
 
-		SELECT COUNT(DISTINCT(Col16)), COUNT(DISTINCT(Col17)), 
+		SELECT COUNT(DISTINCT(Col16)), COUNT(DISTINCT(Col17)),
 		COUNT(DISTINCT(Col18), COUNT(DISTINCT(Col19), COUNT(DISTINCT(Col20))
 		FROM criteo.criteo_train;
 
@@ -458,7 +458,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 6. **輸出資料的位置**：選擇 "Azure"
 7. **Azure 儲存體帳戶名稱**：和叢集相關聯的儲存體帳戶
 8. **Azure 儲存體帳戶金鑰**：和叢集相關聯的儲存體帳戶金鑰。
-9. **Azure 容器名稱**：如果叢集名稱是 "abc"，則通常就是 "abc"。 
+9. **Azure 容器名稱**：如果叢集名稱是 "abc"，則通常就是 "abc"。
 
 
 一旦**讀取器**完成取得的資料 (您將在模組上看到綠色勾號)，將此資料儲存為資料集 (以您選擇的名稱)。看起來像這樣：
@@ -472,7 +472,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 ![](./media/machine-learning-data-science-process-hive-criteo-walkthrough/cl5tpGw.png)
 
 ***重要注意事項：*****為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
- 
+
 ### <a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
 
 我們的 Azure ML 實驗看起來如下所示：
@@ -600,7 +600,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 接下來，我們需要建立 web 服務的輸入和輸出連接埠：
 
-* 輸入連接埠會採用的資料形式和我們需要預測的資料相同 
+* 輸入連接埠會採用的資料形式和我們需要預測的資料相同
 * 輸出連接埠會傳回評分標籤和相關聯的機率。
 
 #### 為輸入連接埠選取幾個資料列的資料
@@ -643,7 +643,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 我們在左邊看到兩個 Web 服務的連結：
 
-* **要求/回應**服務 (或 RRS) 適用於單一預測，我們會在這場研討會中使用。 
+* **要求/回應**服務 (或 RRS) 適用於單一預測，我們會在這場研討會中使用。
 * **批次執行**服務 (BES) 用於批次預測，而且要求要用來進行預測的輸入資料位於 Azure Blob 儲存體。
 
 按一下連結**要求/回應**會帶我們前往提供我們以 C#、python 和 R 預先定義程式碼的頁面。此程式碼可以方便地用於對 Web 服務進行呼叫。請注意，需要使用此頁面上的 API 金鑰來進行驗證。
@@ -663,4 +663,4 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 這包含我們的端對端逐步解說，示範如何使用 Azure Machine Learning 處理大型資料集。我們開始使用 1 TB 的資料、建構預測模型，並將其部署為雲端中的 Web 服務。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

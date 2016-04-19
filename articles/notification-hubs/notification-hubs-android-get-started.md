@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="hero-article"
-	ms.date="03/15/2016"
+	ms.date="04/11/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Android
@@ -26,14 +26,9 @@
 
 本教學課程說明如何使用 Azure 通知中樞傳送推播通知到 Android 應用程式。您將建立可使用 Google Cloud Messaging (GCM) 接收推播通知的空白 Android app。
 
-請務必依照[標記教學課程](./notification-hubs-routing-tag-expressions.md)的步驟進行，以了解如何使用通知中樞傳送目標式推播通知。
-
-
-## 開始之前
-
 [AZURE.INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-您可以在[此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted)的 GitHub 上找到本教學課程的完整程式碼。
+您可以從[此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted)的 GitHub 下載本教學課程的完整程式碼。
 
 
 ##必要條件
@@ -53,7 +48,7 @@
 [AZURE.INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 
-&emsp;&emsp;7.在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。輸入 API 金鑰並儲存。
+&emsp;&emsp;6.在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。輸入 API 金鑰並按一下 [儲存]。
 
 &emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
@@ -77,9 +72,9 @@
 
 [AZURE.INCLUDE [新增 Play 服務](../../includes/notification-hubs-android-studio-add-google-play-services.md)]
 
-###新增程式碼
+###新增 Azure 通知中樞程式庫
 
-1. 從 [Bintray 上之 Notification-Hubs-Android-SDK](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4) 的 [檔案] 索引標籤下載 `notification-hubs-0.4.jar` 檔案。在 Android Studio 的 [專案檢視] 視窗中，將檔案直接拖曳到 **libs** 資料夾。然後在檔案上按一下滑鼠右鍵並按一下 [加入做為程式庫]。
+1. 從 [Bintray 上之 Notification-Hubs-Android-SDK](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4) 的 [檔案] 索引標籤下載 `notification-hubs-0.4.jar` 檔案。將此檔案拖曳至專案目錄的 **libs** 資料夾。
 
 2. 在應用程式的 `Build.Gradle` 檔案中，在 dependencies 區段中加入以下這行。
 
@@ -93,9 +88,46 @@
 		    }
 		}
 
-3. 設定應用程式以從 GCM 取得註冊 ID，然後使用此值在通知中樞註冊此 app 執行個體。
+### 更新 AndroidManifest.xml。
 
-	在 `AndroidManifest.xml` 檔案中，在 `</application>` 標記下面新增下列權限。請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱 (在此例中為 `com.example.testnotificationhubs`) 取代 `<your package>`。
+
+1. 若要支援 GCM，我們必須在程式碼中實作執行個體識別碼接聽程式服務，以便使用 [Google 的執行個體識別碼 API](https://developers.google.com/instance-id/) 來[取得註冊權杖](https://developers.google.com/cloud-messaging/android/client#sample-register)。在本教學課程中，我們將此類別命名為 `MyInstanceIDService`。 
+ 
+	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。以您的實際封裝名稱取代 `<your package>`。
+
+		<service android:name="<your package>.MyInstanceIDService" android:exported="false">
+		    <intent-filter>
+		        <action android:name="com.google.android.gms.iid.InstanceID"/>
+		    </intent-filter>
+		</service>
+
+
+2. 一旦從執行個體識別碼 API 收到 GCM 註冊權杖，我們會將它用來[向 Azure 通知中樞註冊](notification-hubs-registration-management.md)。我們將使用名為 `RegistrationIntentService` 的 `IntentService` 在背景支援此註冊。此服務也會負責[重新整理我們的 GCM 註冊權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
+ 
+	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。
+
+        <service
+            android:name="com.example.microsoft.getstarted.RegistrationIntentService"
+            android:exported="false">
+        </service>
+
+
+
+3. 我們也會定義要接收通知的接收者。將下列接收者定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。
+
+		<receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
+		    android:permission="com.google.android.c2dm.permission.SEND">
+		    <intent-filter>
+		        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		        <category android:name="<your package name>" />
+		    </intent-filter>
+		</receiver>
+
+
+
+4. 在 `</application>` 標記下面新增下列必要的 GCM 相關權限。請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱取代 `<your package>`。
+
+	如需這些權限的詳細資訊，請參閱[設定適用於 Android 的 GCM 用戶端應用程式](https://developers.google.com/cloud-messaging/android/client#manifest)。
 
 		<uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -105,89 +137,209 @@
 		<permission android:name="<your package>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 		<uses-permission android:name="<your package>.permission.C2D_MESSAGE"/>
 
-3. 在 **MainActivity** 類別中，在類別宣告上面新增下列 `import` 陳述式。
 
-		import android.app.AlertDialog;
-		import android.content.DialogInterface;
-		import android.os.AsyncTask;
+### 加入程式碼
+
+
+1. 在 [專案檢視] 中，展開 [應用程式] > [src] > [主要] > [java]。以滑鼠右鍵按一下 **java** 底下您的封裝資料夾，按一下 [**New**]，然後按一下 [**Java Class**]。新增名為 `NotificationSettings` 的新類別。 
+
+	![Android Studio - 新增 Java 類別][6]
+
+	請務必在 `NotificationSettings` 類別的下列程式碼中更新這三個預留位置：
+	* **SenderId**：您稍早在 [Google Cloud Console](http://cloud.google.com/console) 中取得的專案編號。
+	* **HubListenConnectionString**：您的中樞的 **DefaultListenAccessSignature** 連接字串。在 [Azure 入口網站]中按一下您的中樞的 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
+	* **HubName**︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
+
+	`NotificationSettings` 程式碼：
+
+		public class NotificationSettings {
+		    public static String SenderId = "<Your SenderId>";
+		    public static String HubName = "<Your HubName>";
+		    public static String HubListenConnectionString = "<Your default listen connection string>";
+		}
+
+2. 使用上述步驟，加入另一個名為 `MyInstanceIDService` 的新類別。這會是我們的執行個體識別碼接聽程式服務實作。
+
+	此類別的程式碼會呼叫 `IntentService` 以在背景[重新整理 GCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
+
+		import android.content.Intent;
+		import android.util.Log;
+		import com.google.android.gms.iid.InstanceIDListenerService;
+		
+		
+		public class MyInstanceIDService extends InstanceIDListenerService {
+		
+		    private static final String TAG = "MyInstanceIDService";
+		
+		    @Override
+		    public void onTokenRefresh() {
+		
+		        Log.i(TAG, "Refreshing GCM Registration Token");
+		
+		        Intent intent = new Intent(this, RegistrationIntentService.class);
+		        startService(intent);
+		    }
+		};
+
+
+3. 將另一個新類別新增至名為 `RegistrationIntentService` 的專案。這會是我們的 `IntentService` 實作，以便處理[重新整理 GCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)和[向通知中樞註冊](notification-hubs-registration-management.md)。
+
+	針對此類別使用下列程式碼。
+
+		import android.app.IntentService;
+		import android.content.Intent;
+		import android.content.SharedPreferences;
+		import android.preference.PreferenceManager;
+		import android.util.Log;
+		
+		import com.google.android.gms.gcm.GoogleCloudMessaging;
+		import com.google.android.gms.iid.InstanceID;
+		import com.microsoft.windowsazure.messaging.NotificationHub;
+		
+		public class RegistrationIntentService extends IntentService {
+		
+		    private static final String TAG = "RegIntentService";
+		
+		    private NotificationHub hub;
+		
+		    public RegistrationIntentService() {
+		        super(TAG);
+		    }
+		
+		    @Override
+		    protected void onHandleIntent(Intent intent) {		
+		        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		        String resultString = null;
+		        String regID = null;
+		
+		        try {
+		            InstanceID instanceID = InstanceID.getInstance(this);
+		            String token = instanceID.getToken(NotificationSettings.SenderId,
+		                    GoogleCloudMessaging.INSTANCE_ID_SCOPE);		
+		            Log.i(TAG, "Got GCM Registration Token: " + token);
+		
+		            // Storing the registration id that indicates whether the generated token has been
+		            // sent to your server. If it is not stored, send the token to your server,
+		            // otherwise your server should have already received the token.
+		            if ((regID=sharedPreferences.getString("registrationID", null)) == null) {		
+		                NotificationHub hub = new NotificationHub(NotificationSettings.HubName,
+		                        NotificationSettings.HubListenConnectionString, this);
+		                Log.i(TAG, "Attempting to register with NH using token : " + token);
+		                regID = hub.register(token).getRegistrationId();
+		                resultString = "Registered Successfully - RegId : " + regID;
+		                Log.i(TAG, resultString);		
+		                sharedPreferences.edit().putString("registrationID", regID ).apply();
+		            } else {
+		                resultString = "Previously Registered Successfully - RegId : " + regID;
+		            }
+		        } catch (Exception e) {
+		            Log.e(TAG, resultString="Failed to complete token refresh", e);
+		            // If an exception happens while fetching the new token or updating our registration data
+		            // on a third-party server, this ensures that we'll attempt the update at a later time.
+		        }
+		
+		        // Notify UI that registration has completed.
+		        MainActivity.mainActivity.ToastNotify(resultString);
+		    }
+		}
+
+
+		
+4. 在 `MainActivity` 類別中，在類別宣告上面新增下列 `import` 陳述式。
+
+		import com.google.android.gms.common.ConnectionResult;
+		import com.google.android.gms.common.GoogleApiAvailability;
 		import com.google.android.gms.gcm.*;
-		import com.microsoft.windowsazure.messaging.*;
 		import com.microsoft.windowsazure.notifications.NotificationsManager;
+		import android.util.Log;
+		import android.widget.TextView;
 		import android.widget.Toast;
 
+5. 在類別頂端新增下列 Private 成員。我們將使用這些來[檢查 Google 所建議的 Google Play 服務可用性](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk)。
 
-
-4. 在類別頂端新增下列 Private 成員。我們可以使用它們來設定您的應用程式與雲端服務之間的推播通知通道。
-
-		private String SENDER_ID = "<your project number>";
+	    public static MainActivity mainActivity;
 		private GoogleCloudMessaging gcm;
-		private NotificationHub hub;
-    	private String HubName = "<Enter Your Hub Name>";
-		private String HubListenConnectionString = "<Your default listen connection string>";
+	    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	    private static Boolean isVisible = false;
 
+6. 在 `MainActivity` 類別中，將下列方法新增至 Google Play 服務的可用性。
 
-	請務必更新三個預留位置︰
-	* SENDER_ID：將 `SENDER_ID` 設定為稍早在 [Google Cloud Console](http://cloud.google.com/console) 中取得的專案編號。
-	* HubListenConnectionString：將 `HubListenConnectionString` 設定為您的中樞的 **DefaultListenAccessSignature** 連接字串。在 [Azure 入口網站]中按一下您的中樞的 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
-	* HubName︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
-
-
-5. 在 `MainActivity` 類別的 `OnCreate` 方法中，加入下列程式碼以便在活動建立時向通知中樞註冊。
-
-        MyHandler.mainActivity = this;
-        NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
-        gcm = GoogleCloudMessaging.getInstance(this);
-        hub = new NotificationHub(HubName, HubListenConnectionString, this);
-        registerWithNotificationHubs();
-
-6. 在 `MainActivity.java` 中，將下列程式碼新增至 `registerWithNotificationHubs()` 方法。向 Google Cloud Messaging 和通知中樞註冊之後，此方法即回報成功。
-
-    	@SuppressWarnings("unchecked")
-    	private void registerWithNotificationHubs() {
-        	new AsyncTask() {
-            	@Override
-            	protected Object doInBackground(Object... params) {
-                	try {
-                    	String regid = gcm.register(SENDER_ID);
-                    ToastNotify("Registered Successfully - RegId : " +
-						hub.register(regid).getRegistrationId());
-                	} catch (Exception e) {
-                    	ToastNotify("Registration Exception Message - " + e.getMessage());
-                    	return e;
-                	}
-                	return null;
-            	}
-        	}.execute(null, null, null);
-    	}
+	    /**
+	     * Check the device to make sure it has the Google Play Services APK. If
+	     * it doesn't, display a dialog that allows users to download the APK from
+	     * the Google Play Store or enable it in the device's system settings.
+	     */
+	    private boolean checkPlayServices() {
+	        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+	        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+	        if (resultCode != ConnectionResult.SUCCESS) {
+	            if (apiAvailability.isUserResolvableError(resultCode)) {
+	                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+	                        .show();
+	            } else {
+	                Log.i(TAG, "This device is not supported by Google Play Services.");
+	                ToastNotify("This device is not supported by Google Play Services.");
+	                finish();
+	            }
+	            return false;
+	        }
+	        return true;
+	    }
 
 
-7. 將 `ToastNotify` 方法新增至活動，以在應用程式執行且可見時顯示通知。同時覆寫 `onStart`、`onPause`、`onResume` 和 `onStop`，判斷是否可看見活動以顯示快顯通知。
+7. 在 `MainActivity` 類別中加入下列程式碼，以在呼叫 `IntentService` 之前檢查 Google Play 服務，進而取得 GCM 註冊權杖並向通知中樞註冊。
+
+	    public void registerWithNotificationHubs()
+	    {
+	        Log.i(TAG, " Registering with Notification Hubs");
+	
+	        if (checkPlayServices()) {
+	            // Start IntentService to register this application with GCM.
+	            Intent intent = new Intent(this, RegistrationIntentService.class);
+	            startService(intent);
+	        }
+	    }
+
+
+8. 在 `MainActivity` 類別的 `OnCreate` 方法中，加入下列程式碼以便在活動建立時開始註冊程序。
+
+	    @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_main);
+	
+	        mainActivity = this;
+	        NotificationsManager.handleNotifications(this, NotificationSettings.SenderId, MyHandler.class);
+	        registerWithNotificationHubs();
+	    }
+
+
+9. 將上述其他方法新增至 `MainActivity`，以驗證應用程式狀態及報告您的應用程式狀態。
 
 	    @Override
 	    protected void onStart() {
 	        super.onStart();
 	        isVisible = true;
 	    }
-
+	
 	    @Override
 	    protected void onPause() {
 	        super.onPause();
 	        isVisible = false;
 	    }
-
+	
 	    @Override
 	    protected void onResume() {
 	        super.onResume();
 	        isVisible = true;
 	    }
-
+	
 	    @Override
 	    protected void onStop() {
 	        super.onStop();
 	        isVisible = false;
 	    }
-
+	
 	    public void ToastNotify(final String notificationMessage)
 	    {
 	        if (isVisible == true)
@@ -195,31 +347,20 @@
 	                @Override
 	                public void run() {
 	                    Toast.makeText(MainActivity.this, notificationMessage, Toast.LENGTH_LONG).show();
+	                    TextView helloText = (TextView) findViewById(R.id.text_hello);
+	                    helloText.setText(notificationMessage);
 	                }
 	            });
 	    }
+	}
 
-8. 由於 Android 預設不會處理通知顯示，因此您必須撰寫自己的接收器。在 `AndroidManifest.xml` 中，在 `<application>` 元素內新增下列元素。
+10. `ToastNotify` 方法會使用 "Hello World" `TextView` 控制項持續在應用程式中報告狀態和通知。在 activity\_main.xml 配置中，為該控制項加入下列識別碼。
 
-	> [AZURE.NOTE] 以您的封裝名稱取代預留位置。
+        android:id="@+id/text_hello"
 
-        <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="<your package name>" />
-            </intent-filter>
-        </receiver>
+11. 接下來，我們將為在 AndroidManifest.xml 中定義的接收者加入一個子類別。將另一個新類別新增至名為 `MyHandler` 的專案。
 
-
-9. 在 [專案檢視] 中，展開 [應用程式] > [src] > [主要] > [java]。以滑鼠右鍵按一下 **java** 底下您的封裝資料夾，按一下 [**New**]，然後按一下 [**Java Class**]。
-
-	![Android Studio - 新增 Java 類別][6]
-
-10. 在新類別的 [名稱] 欄位中輸入 **MyHandler**，然後按一下 [確定]。
-
-
-11. 在 `MyHandler.java` 頂端新增下列 import 陳述式：
+12. 在 `MyHandler.java` 頂端新增下列 import 陳述式：
 
 		import android.app.NotificationManager;
 		import android.app.PendingIntent;
@@ -230,12 +371,12 @@
 		import com.microsoft.windowsazure.notifications.NotificationsHandler;
 
 
-12. 更新類別宣告，讓 `MyHandler` 成為 `com.microsoft.windowsazure.notifications.NotificationsHandler` 的子類別，如下所示。
+13. 更新類別宣告，讓 `MyHandler` 成為 `com.microsoft.windowsazure.notifications.NotificationsHandler` 的子類別，如下所示。
 
 		public class MyHandler extends NotificationsHandler {
 
 
-13. 在 `MyHandler` 類別中新增下列程式碼：
+14. 在 `MyHandler` 類別中新增下列程式碼：
 
 	此程式碼會覆寫 `OnReceive` 方法，所以處理常式會蹦現「快顯通知」以顯示收到的通知。處理常式也會使用 `sendNotification()` 方法，將推播通知傳送給 Android 通知管理員。
 
@@ -274,7 +415,7 @@
 			mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 		}
 
-14. 在 Android Studio 的功能表列上，按一下 [建置] > [重新建置專案]，確保您的程式碼中未沒有任何錯誤。
+15. 在 Android Studio 的功能表列上，按一下 [建置] > [重新建置專案]，確保您的程式碼中未沒有任何錯誤。
 
 ##傳送推播通知
 
@@ -482,7 +623,7 @@
 
 ####在模擬器中測試推播通知
 
-如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。如果您的映像不支援原生 Google API，您最後會發生 SERVICE\_NOT\_AVAILABLE 例外狀況。
+如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。如果您的映像不支援原生 Google API，您最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
 
 除此之外，請確定已將您的 Google 帳戶加入至執行中模擬器的 [設定] > [帳戶] 之下。否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
 
@@ -543,4 +684,4 @@
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

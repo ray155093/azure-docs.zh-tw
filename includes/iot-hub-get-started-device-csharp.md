@@ -2,7 +2,7 @@
 
 在本節中，您會撰寫 Windows 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 在 Visual Studio 中，使用**主控台應用程式**專案範本將新的 Visual C# Windows 傳統桌面專案加入至目前的方案。將專案命名為 **SimulatedDevice**。
+1. 在 Visual Studio 中，使用**主控台應用程式**專案範本將新的 Visual C# Windows 傳統桌面專案加入至目前的方案。確定 .NET Framework 為 4.5.1 或更新版本。將專案命名為 **SimulatedDevice**。
 
    	![][30]
 
@@ -10,13 +10,13 @@
 
 3. 在 [NuGet 封裝管理員] 視窗中選取 [瀏覽]、搜尋 **Microsoft.Azure.Devices.Client**、按一下 [安裝] 以安裝 [Microsoft.Azure.Devices.Client] 封裝，並接受使用規定。
 
-	這會下載及安裝參考，並將其加入 [Azure IoT - 裝置 SDK NuGet 封裝][lnk-device-nuget]。
+	這會下載及安裝 [Azure IoT - 裝置 SDK NuGet 封裝][lnk-device-nuget]與其相依項目，並加入其參考。
 
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
 
 		using Microsoft.Azure.Devices.Client;
         using Newtonsoft.Json;
-        using System.Threading;
+
 
 5. 在 [程式] 類別加入下列欄位，以＜建立 IoT 中樞＞小節中擷取的 IoT 中樞主機名稱和＜建立裝置身分識別＞小節中擷取的裝置金鑰取代預留位置值：
 
@@ -46,7 +46,7 @@
                 await deviceClient.SendEventAsync(message);
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
 
-                Thread.Sleep(1000);
+                Task.Delay(1000).Wait();
             }
         }
 
@@ -60,7 +60,9 @@
         SendDeviceToCloudMessagesAsync();
         Console.ReadLine();
 
-  根據預設，**Create** 方法會建立一個使用 AMQP 通訊協定的 **DeviceClient** 來和 IoT 中樞通訊。若要使用 HTTPS 通訊協定，請使用可讓您指定通訊協定的 **Create** 方法的覆寫。若您選擇使用 HTTPS 通訊協定，您也應該將 **Microsoft.AspNet.WebApi.Client** NuGet 封裝新增至您的專案，以包含 **System.Net.Http.Formatting** 命名空間。
+  根據預設，**Create** 方法會建立一個使用 AMQP 通訊協定的 **DeviceClient** 執行個體來與 IoT 中樞通訊。若要使用 HTTPS 通訊協定，請使用可讓您指定通訊協定的 **Create** 方法的覆寫。若您選擇使用 HTTPS 通訊協定，您也應該將 **Microsoft.AspNet.WebApi.Client** NuGet 封裝新增至您的專案，以包含 **System.Net.Http.Formatting** 命名空間。
+
+本教學課程會逐步引導您完成建立 IoT 中樞裝置用戶端的步驟。或者，您可以使用 [Connected Service for Azure IoT Hub][lnk-connected-service] Visual Studio 擴充功能，將必要的程式碼新增至裝置用戶端應用程式。
 
 
 > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
@@ -69,8 +71,9 @@
 
 [lnk-device-nuget]: https://www.nuget.org/packages/Microsoft.Azure.Devices.Client/
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[lnk-connected-service]: https://visualstudiogallery.msdn.microsoft.com/e254a3a5-d72e-488e-9bd3-8fee8e0cd1d6
 
 <!-- Images -->
 [30]: ./media/iot-hub-getstarted-device-csharp/create-identity-csharp1.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

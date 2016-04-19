@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="03/30/2016"
 	ms.author="femila"/>
 
 # SaaS 應用程式的 Azure 條件式存取預覽
@@ -49,6 +49,7 @@ SaaS 應用程式的 Azure 條件式存取已可公開預覽。預覽版本可�
 ##了解存取規則
 
 本節提供 Azure 條件式應用程式存取預覽中支援的存取規則的詳細描述。
+
 ### 指定套用存取規則的使用者
 
 根據預設，規則會套用至所有可存取應用程式的使用者。不過，您也可以將原則限於指定之安全性群組的成員使用者。[加入群組] 按鈕用來從群組選取對話方塊中，選取將套用存取規則的一或多個群組。此對話方塊也可用來移除選取的群組。當選擇將規則套用至「群組」時，只會對屬於其中一個指定安全性群組的使用者強制執行存取規則。
@@ -78,7 +79,7 @@ SaaS 應用程式的 Azure 條件式存取已可公開預覽。預覽版本可�
 
 對於同盟的租用戶，Multi-Factor Authentication (MFA) 可能由 Azure Active Directory 或內部部署 AD FS 伺服器執行。
 
-根據預設，MFA 會發生在 Azure Active Directory 所裝載的頁面上。若要設定內部部署 MFA，必須使用 Windows PowerShell 的 Azure AD 模組，在 Azure Active Directory 中將 –SupportsMFA 屬性設定為 true。
+根據預設，MFA 會發生在 Azure Active Directory 所裝載的頁面上。若要設定內部部署 MFA，必須使用 Windows PowerShell 的 Azure AD 模組，在 Azure Active Directory 中將 –SupportsMFA 屬性設定為 **true**。
 
 下列範例示範如何在 consoso.com 租用戶上使用 [Set-MsolDomainFederationSettings Cmdlet](https://msdn.microsoft.com/library/azure/dn194088.aspx) 來啟用內部部署 MFA︰
 
@@ -88,6 +89,7 @@ SaaS 應用程式的 Azure 條件式存取已可公開預覽。預覽版本可�
 
 ##相關文章
 
+- [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0406_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/12/2016"
+	ms.date="04/04/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：針對具有 Amazon 帳戶的取用者提供註冊和登入
@@ -52,4 +52,4 @@
 6. 按一下 [設定此身分識別提供者]，然後輸入您先前建立之 Amazon 應用程式的用戶端識別碼與用戶端密碼。
 7. 依序按一下 [確定] 和 [建立]，以儲存您的 Amazon 組態。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0406_2016-->

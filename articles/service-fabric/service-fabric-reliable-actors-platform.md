@@ -1,11 +1,11 @@
 <properties
    pageTitle="Service Fabric 上的 Reliable Actor | Microsoft Azure"
-   description="描述 Reliable Actors 如何使用 Service Fabric 平台的功能，且涵蓋動作項目開發人員觀點的概念。"
+   description="說明 Reliable Actors 如何在 Reliable Services 上分層，以及如何使用 Service Fabric 平台的功能。"
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
    manager="timlt"
-   editor="vturecek"/>
+   editor="amanbha"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,233 +13,239 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/15/2016"
+   ms.date="03/25/2016"
    ms.author="vturecek"/>
 
 # Reliable Acto 如何使用 Service Fabric 平台
 
-動作項目會使用 Azure Service Fabric 應用程式模型來管理應用程式的生命週期。每個動作項目類型皆對應至一個 Service Fabric [服務類型](service-fabric-application-model.md#describe-a-service)。動作項目程式碼是 [封裝](service-fabric-application-model.md#package-an-application)為Service Fabric 應用程式和 [部署](service-fabric-deploy-remove-applications.md#deploy-an-application)至叢集。
+本文說明 Reliable Actors 在 Service Fabric 平台上的運作方式。Reliable Actors 會在名為「動作項目服務」的具狀態可靠服務實作上裝載的架構中執行。動作項目服務包含管理生命週期和您的動作項目用於發送之訊息所需的所有元件︰
 
-## 動作項目的應用程式模型概念範例
+ - 動作項目執行階段會管理生命週期、記憶體回收，並強制執行單一執行緒存取。
+ - 動作項目服務遠端處理接聽程式會接受對動作項目進行的遠端存取呼叫，並將它們傳送到發送器，以路由傳送到適當的動作項目執行個體。
+ - 動作項目狀態供應器會包裝狀態供應器 (例如「可靠的集合」狀態供應器)，並提供配接器來進行動作項目狀態管理。
 
-讓我們看看[透過 Visual Studio 建立](service-fabric-reliable-actors-get-started.md)的動作項目專案範例，來說明上述概念。
+這些元件一起構成 Reliable Actor 架構。
 
-在 Visual Studio 中建立解決方案後，應用程式資訊清單、服務資訊清單和 Settings.xml 組態檔將包含在動作項目服務專案。如以下螢幕擷取畫面所示。
+## 將服務分層
 
-![透過 Visual Studio 建立專案][1]
+由於動作項目服務本身是一個 Reliable Service，因此 Reliable Services 的所有[應用程式模型](service-fabric-application-model.md)、生命週期、[封裝](service-fabric-application-model.md#package-an-application)、[部署]((service-fabric-deploy-remove-applications.md#deploy-an-application)、升級及調整概念都會以相同方式套用到動作項目服務。
 
-您可以藉由查看包含在動作項目服務專案中的應用程式資訊清單，找到動作項目所封裝的應用程式類型及其版本。下列程式碼片段便是來自應用程式資訊清單的範例。
+![將動作項目服務分層][1]
 
-~~~
-<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                     ApplicationTypeName="VoiceMailBoxApplication"
-                     ApplicationTypeVersion="1.0.0.0"
-                     xmlns="http://schemas.microsoft.com/2011/01/fabric">
-~~~
+上圖顯示 Service Fabric 應用程式架構和使用者程式碼之間的關聯性。藍色項目代表 Reliable Services 應用程式架構、橘色代表 Reliable Actor 架構，而綠色代表使用者程式碼。
 
-您可以藉由查看包含在動作項目服務專案中的服務資訊清單，找到動作項目類型所對應的服務類型。下列程式碼片段便是來自服務資訊清單的範例。
 
-~~~
-<StatefulServiceType ServiceTypeName="VoiceMailBoxActorServiceType" HasPersistedState="true">
-~~~
+在 Reliable Services 中，您的服務會繼承 `StatefulService` 類別，而其本身衍生自 `StatefulServiceBase` (或者，如果是無狀態服務，則為 `StatelessService`)。在 Reliable Actors 中，您會使用動作項目服務，其是 `StatefulServiceBase` 類別的不同實作，此類別會實作您動作項目執行所在的動作項目模式。由於動作項目服務本身只是 `StatefulServiceBase` 的實作，因此，您可以自行撰寫衍生自 `ActorService` 的服務，並以您在繼承 `StatefulService` 時所使用的相同方式來實作服務層級功能，例如︰
 
-透過 Visual Studio 建立應用程式封裝時，[組建輸出] 視窗中的記錄檔會指出應用程式封裝的位置。例如：
+ - 服務備份和還原。
+ - 適用於所有動作項目的共用功能，例如斷路器。
+ - 遠端處理程序會在動作項目服務本身，以及每個個別動作項目上進行呼叫。 
 
-    -------- Package started: Project: VoiceMailBoxApplication, Configuration: Debug x64 ------
-    VoiceMailBoxApplication -> C:\samples\Samples\Actors\VS2015\VoiceMailBox\VoiceMailBoxApplication\pkg\Debug
+### 使用動作項目服務
 
-以下是上述位置的部分清單 (為了簡潔故省略完整清單)。
+動作項目執行個體具有其執行所在之動作項目服務的存取權。透過動作項目服務，動作項目執行個體可以程式設計方式取得服務內容，其中包含分割區識別碼、服務名稱、應用程式名稱及其他 Service Fabric 平台特定的資訊：
 
-    C:\samples\Samples\Actors\VS2015\VoiceMailBox\VoiceMailBoxApplication\pkg\Debug>tree /f
-    Folder PATH listing
-    Volume serial number is 303F-6F91
-    C:.
-    │   ApplicationManifest.xml
-    │
-    ├───VoiceMailBoxActorServicePkg
-    │   │   ServiceManifest.xml
-    │   │
-    │   ├───Code
-    │   │   │   Microsoft.ServiceFabric.Actors.dll
-    │   │   │       :
-    │   │   │   Microsoft.ServiceFabric.Services.dll
-    │   │   │   ServiceFabricServiceModel.dll
-    │   │   │   System.Fabric.Common.Internal.dll
-    │   │   │   System.Fabric.Common.Internal.Strings.dll
-    │   │   │   VoiceMailBox.exe
-    │   │   │   VoiceMailBox.exe.config
-    │   │   │   VoiceMailBox.Interfaces.dll
-    │   │   │
-    │   │   └───zh-TW
-    │   │           System.Fabric.Common.Internal.Strings.resources.dll
-    │   │
-    │   └───Config
-    │           Settings.xml
-    │
-    └───VoicemailBoxWebServicePkg
-        │   ServiceManifest.xml
-        │
-        └───Code
-            │   Microsoft.Owin.dll
-            │       :
-            │   Microsoft.ServiceFabric.Services.dll
-            │       :
-            │   System.Fabric.Common.Internal.dll
-            │   System.Fabric.Common.Internal.Strings.dll
-            │       :
-            │   VoiceMailBox.Interfaces.dll
-            │   VoicemailBoxWebService.exe
-            │   VoicemailBoxWebService.exe.config
-            │
-            └───zh-TW
-                    System.Fabric.Common.Internal.Strings.resources.dll
+```csharp
+Task MyActorMethod()
+{
+    Guid partitionId = this.ActorService.Context.PartitionId;
+    string serviceTypeName = this.ActorService.Context.ServiceTypeName;
+    Uri serviceInstanceName = this.ActorService.Context.ServiceName;
+    string applicationInstanceName = this.ActorService.Context.CodePackageActivationContext.ApplicationName;
+}
+```
 
-上述清單中顯示實作 VoicemailBox 動作項目的組件，其包含在應用程式封裝之服務封裝內的程式碼封裝中。
+就像所有 Reliable Services，動作項目服務必須在 Service Fabric 執行階段，利用某個服務類型來註冊。為了讓動作項目服務執行您的動作項目執行個體，您也必須向動作項目服務註冊動作項目類型。`ActorRuntime` 註冊方法會替動作項目執行這項工作。在最簡單的情況下，您只需註冊動作項目類型，並隱含地使用具備預設設定的動作項目服務︰
 
-應用程式的後續管理 (也就是升級和最終刪除)，也是透過 Service Fabric 應用程式管理機制執行。如需詳細資訊，請參閱主題[應用程式模型](service-fabric-application-model.md)、[應用程式部署和移除](service-fabric-deploy-remove-applications.md)，及[應用程式升級](service-fabric-application-upgrade.md)。
+```csharp
+static class Program
+{
+    private static void Main()
+    {
+        ActorRuntime.RegisterActorAsync<MyActor>().GetAwaiter().GetResult();
 
-## 動作項目服務的可調整性
-叢集系統管理員可以在叢集中為每個服務類型建立一個或多個動作項目服務。每個動作項目服務可以有一個或多個資料分割 (類似任何其他 Service Fabric 服務)。為多個服務建立服務類型的能力 (這會對應到動作項目類型) 和為服務建立多個資料分割的能力，可讓動作項目應用程式進行調整。請參閱[延展性](service-fabric-concepts-scalability.md)一文以取得詳細資訊。
+        Thread.Sleep(Timeout.Infinite);
+    }
+}
+```  
 
-> [AZURE.NOTE] 無狀態動作項目服務都需要有 1 的 [執行個體](service-fabric-availability-services.md#availability-of-service-fabric-stateless-services)計數。不支援資料分割中的一個無狀態動作項目服務有多個執行個體。因此，無狀態動作項目服務無法選擇增加執行個體計數來達成延展性。他們必須使用[延展性文章](service-fabric-concepts-scalability.md)所述的延展性選項。
+或者，您可以使用註冊方法提供的 Lambda，來建構自己的動作項目服務。這可讓您設定動作項目服務，以及明確地建構您的動作項目執行個體，您可以透過其建構函式，將相依性插入動作項目︰
+
+```csharp
+static class Program
+{
+    private static void Main()
+    {
+        ActorRuntime.RegisterActorAsync<MyActor>(
+            (context, actorType) => new ActorService(context, actorType, () => new MyActor()))
+            .GetAwaiter().GetResult();
+
+        Thread.Sleep(Timeout.Infinite);
+    }
+}
+```
+
+### 動作項目服務方法
+
+動作項目服務會實作 `IActorService`，然後實作 `IService`。這是 Reliable Services 遠端處理功能所使用的介面，能夠在服務方法上進行遠端程序呼叫。它包含的服務層級方法可使用服務遠端處理功能從遠端呼叫。
+
+
+#### 列舉動作項目
+
+動作項目服務允許用戶端列舉服務所裝載之動作項目的相關中繼資料。因為動作項目服務是已資料分割的具狀態服務，所以會針對每個分割區執行列舉。由於每個分割區可能包含大量動作項目，因此，列舉會以一組分頁式結果形式傳回。頁面會以迴圈方式讀取，直到讀取所有頁面為止。下列範例示範如何在動作項目服務的其中一個分割區中，建立所有作用中動作項目的清單︰
+
+```csharp
+IActorService actorServiceProxy = ActorServiceProxy.Create(
+    new Uri("fabric:/MyApp/MyService"), partitionKey);
+
+ContinuationToken continuationToken = null;
+List<ActorInformation> activeActors = new List<ActorInformation>();
+
+do
+{
+    PagedResult<ActorInformation> page = await actorServiceProxy.GetActorsAsync(continuationToken, cancellationToken);
+                
+    activeActors.AddRange(page.Items.Where(x => x.IsActive));
+
+    continuationToken = page.ContinuationToken;
+}
+while (continuationToken != null);
+```
+
+#### 刪除動作項目
+
+動作項目服務也會提供用來刪除動作項目的函式︰
+
+```csharp
+ActorId actorToDelete = new ActorId(id);
+
+IActorService myActorServiceProxy = ActorServiceProxy.Create(
+    new Uri("fabric:/MyApp/MyService"), actorToDelete);
+            
+await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
+```
+
+如需刪除動作項目及其狀態的詳細資訊，請參閱[動作項目生命週期文件](service-fabric-reliable-actors-lifecycle.md)。
+
+### 自訂動作項目服務
+
+使用動作項目註冊 Lambda 時，您也可以註冊自己的自訂動作項目服務 (衍生自 `ActorService`)，您可以在此實作自己的服務層級功能。這可藉由撰寫繼承 `ActorService` 的服務類別來完成。自訂動作項目服務會繼承來自 `ActorService` 的所有動作項目執行階段功能，並可用來實作您自己的服務方法。
+
+```csharp
+class MyActorService : ActorService
+{
+    public MyActorService(StatefulServiceContext context, ActorTypeInformation typeInfo, Func<ActorBase> newActor)
+        : base(context, typeInfo, newActor)
+    { }
+}
+```
+
+```csharp
+static class Program
+{
+    private static void Main()
+    {
+        ActorRuntime.RegisterActorAsync<MyActor>(
+            (context, actorType) => new MyActorService(context, actorType, () => new MyActor()))
+            .GetAwaiter().GetResult();
+
+        Thread.Sleep(Timeout.Infinite);
+    }
+}
+```
+
+
+#### 實作動作項目備份與還原
+
+ 在下列範例中，自訂動作項目服務會利用已經存在於 `ActorService` 中的遠端處理接聽程式，藉以公開用來備份動作項目資料的方法：
+
+```csharp
+public interface IMyActorService : IService
+{
+    Task BackupActorsAsync();
+}
+
+class MyActorService : ActorService, IMyActorService
+{
+    public MyActorService(StatefulServiceContext context, ActorTypeInformation typeInfo, Func<ActorBase> newActor)
+        : base(context, typeInfo, newActor)
+    { }
+
+    public Task BackupActorsAsync()
+    {
+        return this.BackupAsync(new BackupDescription(...));
+    }
+}
+```
+
+在此範例中，`IMyActorService` 是遠端處理合約，其會實作 `IService`，然後透過 `MyActorService` 來實作。藉由新增這個遠端處理協定，透過使用 `ActorServiceProxy` 建立遠端 Proxy，`IMyActorService` 上的方法現在也可供用戶端使用：
+
+```csharp
+IMyActorService myActorServiceProxy = ActorServiceProxy.Create<IMyActorService>(
+    new Uri("fabric:/MyApp/MyService"), ActorId.CreateRandom());
+
+await myActorServiceProxy.BackupActorsAsync();
+```
+
+
+## 應用程式模型
+
+動作項目服務是 Reliable Services，因此應用程式模型是一樣的。不過，動作項目架構建置工具可為您產生大部分的應用程式模型檔案。
+
+### 服務資訊清單
+ 
+動作項目服務的 ServiceManifest.xml 內容是由動作項目架構建置工具自動產生。其中包括：
+
+ - 動作項目服務類型。類型名稱是根據您的動作項目專案名稱來產生。根據動作項目上的持續性屬性，也會據以設定 HasPersistedState 旗標。
+ - 程式碼封裝。
+ - 組態封裝。
+ - 資源和端點
+
+### 應用程式資訊清單
+
+動作項目架構建置工具會自動建立適用於您動作項目服務的預設服務定義。預設服務屬性是由建置工具所填入︰
+
+ - 複本集數量取決於動作項目上的持續性屬性。每當動作項目上的持續性屬性變更時，預設服務定義中的複本集數量將會據以重設。
+ - 分割區配置和範圍會利用完整的 Int64 索引鍵範圍設定為「平均的 Int64 」。
 
 ## 動作項目的 Service Fabric 資料分割概念
-動作項目的識別碼會對應至動作項目服務的資料分割。動作項目建立於動作項目識別碼所對應的資料分割中。建立動作項目時，動作項目執行階段會寫入 [EventSource 事件](service-fabric-reliable-actors-diagnostics.md#eventsource-events)，指出動作項目會建立在哪個資料分割。以下是此事件的範例，將指出有識別碼 `-5349766044453424161` 的動作項目建立於服務 `fabric:/VoicemailBoxAdvancedApplication/VoicemailBoxActorService` 與應用程式 `fabric:/VoicemailBoxAdvancedApplication` 的資料分割 `b6afef61-be9a-4492-8358-8f473e5d2487`。
 
-    {
-      "Timestamp": "2015-04-26T10:12:20.2485941-07:00",
-      "ProviderName": "Microsoft-ServiceFabric-Actors",
-      "Id": 5,
-      "Message": "Actor activated. Actor type: Microsoft.Azure.Service.Fabric.Samples.VoicemailBox.VoiceMailBoxActor, actor ID: -5349766044453424161, stateful: True, replica/instance ID: 130,745,418,574,851,853, partition ID: 0583c745-1bed-43b2-9545-29d7e3448156.",
-      "EventName": "ActorActivated",
-      "Payload": {
-        "actorType": "Microsoft.Azure.Service.Fabric.Samples.VoicemailBox.VoiceMailBoxActor",
-        "actorId": "-5349766044453424161",
-        "isStateful": "True",
-        "replicaOrInstanceId": "130906628008120392",
-        "partitionId": "b6afef61-be9a-4492-8358-8f473e5d2487",
-        "serviceName": "fabric:/VoicemailBoxAdvancedApplication/VoicemailBoxActorService",
-        "applicationName": "fabric:/VoicemailBoxAdvancedApplication",
-      }
-    }
+動作項目服務是已資料分割的具狀態服務。動作項目服務的每個分割區都包含一組動作項目。服務分割區會自動散佈於 Service Fabric 中的多個節點上。因此，結果就是散佈動作項目執行個體。
 
-另一個有識別碼 `-4952641569324299627` 的動作項目則建立於相同服務但不同的資料分割 (`5405d449-2da6-4d9a-ad75-0ec7d65d1a2a`) 內，如下列事件指出。
+![動作項目的資料分割和散佈][5]
 
-    {
-      "Timestamp": "2015-04-26T15:06:56.93882-07:00",
-      "ProviderName": "Microsoft-ServiceFabric-Actors",
-      "Id": 5,
-      "Message": "Actor activated. Actor type: Microsoft.Azure.Service.Fabric.Samples.VoicemailBox.VoiceMailBoxActor, actor ID: -4952641569324299627, stateful: True, replica/instance ID: 130,745,418,574,851,853, partition ID: c146fe53-16d7-4d96-bac6-ef54613808ff.",
-      "EventName": "ActorActivated",
-      "Payload": {
-        "actorType": "Microsoft.Azure.Service.Fabric.Samples.VoicemailBox.VoiceMailBoxActor",
-        "actorId": "-4952641569324299627",
-        "isStateful": "True",
-        "replicaOrInstanceId": "130745418574851853",
-        "partitionId": "5405d449-2da6-4d9a-ad75-0ec7d65d1a2a",
-        "serviceName": "fabric:/VoicemailBoxAdvancedApplication/VoicemailBoxActorService",
-        "applicationName": "fabric:/VoicemailBoxAdvancedApplication",
-      }
-    }
+您可以使用不同的分割區配置和分割區索引鍵範圍來建立 Reliable Services。動作項目服務會搭配完整的 Int64 索引鍵範圍使用 Int64 資料分割配置，來將動作項目對應到分割區。
 
-> [AZURE.NOTE] 為求簡潔而省略上述事件的一些欄位
+### 動作項目識別碼
 
-資料分割識別碼可用來取得資料分割的其他資訊。例如，[Service Fabric 總管](service-fabric-visualizing-your-cluster.md)工具可用來檢視其所屬的資料分割、服務和應用程式的相關資訊。以下螢幕擷取畫面顯示資料分割的相關資訊 `5405d449-2da6-4d9a-ad75-0ec7d65d1a2a`，其中包含有識別碼 `-4952641569324299627` 的動作項目，如上述範例中所示。
-
-![Service Fabric 總管中資料分割的相關資訊][3]
-
-動作項目可以由程式設計方式取得資料分割識別碼、服務名稱、應用程式名稱和其他 Service Fabric 的平台特定資訊，透過 `Host.ActivationContext` 和 `Host.StatelessServiceInitialization` 或 `Host.StatefulServiceInitializationParameters` 動作項目類型衍生自基底類別的成員。下列程式碼片段將顯示一個範例。
+服務中建立的每個動作項目都具有與它相關聯的唯一識別碼，由 `ActorId` 類別來表示。`ActorId` 是不透明的識別碼值，可藉由產生隨機識別碼，在服務分割區上平均散佈動作項目。
 
 ```csharp
-public void ActorMessage(StatefulActorBase actor, string message, params object[] args)
-{
-    if (this.IsEnabled())
-    {
-        string finalMessage = string.Format(message, args);
-        ActorMessage(
-            actor.GetType().ToString(),
-            actor.Id.ToString(),
-            actor.ActorService.ServiceInitializationParameters.CodePackageActivationContext.ApplicationTypeName,
-            actor.ActorService.ServiceInitializationParameters.CodePackageActivationContext.ApplicationName,
-            actor.ActorService.ServiceInitializationParameters.ServiceTypeName,
-            actor.ActorService.ServiceInitializationParameters.ServiceName.ToString(),
-            actor.ActorService.ServiceInitializationParameters.PartitionId,
-            actor.ActorService.ServiceInitializationParameters.ReplicaId,
-            FabricRuntime.GetNodeContext().NodeName,
-            finalMessage);
-    }
-}
+ActorProxy.Create<IMyActor>(ActorId.CreateRandom());
 ```
 
-### 無狀態動作項目的 Service Fabric 資料分割概念
-無狀態動作項目是由 Service Fabric 無狀態服務的資料分割所建立。動作項目識別碼可以判斷動作項目會建立在哪個資料分割底下。無狀態動作項目服務的[執行個體](service-fabric-availability-services.md#availability-of-service-fabric-stateless-services)計數必須是 1。不支援將執行個體計數變更為其他任何值。因此，動作項目會在資料分割內部的單一服務執行個體中建立。
-
-> [AZURE.TIP] 網狀架構動作項目執行階段會發出一些[無狀態動作項目執行個體的相關事件](service-fabric-reliable-actors-diagnostics.md#events-related-to-stateless-actor-instances)。這些項目對於診斷與效能監視很有幫助。
-
-無狀態動作項目建立時，動作項目執行階段會寫入一個 [EventSource 事件](service-fabric-reliable-actors-diagnostics.md#eventsource-events)，並指出動作項目建立於哪些資料分割和執行個體。以下是此事件的範例。它指出有識別碼 `abc` 的動作項目建立於服務 `fabric:/HelloWorldApplication/HelloWorldActorService` 與應用程式 `fabric:/HelloWorldApplication` 的資料分割 `8c828833-ccf1-4e21-b99d-03b14d4face3` 的執行個體 `130745709600495974` 中
-
-    {
-      "Timestamp": "2015-04-26T18:17:46.1453113-07:00",
-      "ProviderName": "Microsoft-ServiceFabric-Actors",
-      "Id": 5,
-      "Message": "Actor activated. Actor type: HelloWorld.HelloWorld, actor ID: abc, stateful: False, replica/instance ID: 130,745,709,600,495,974, partition ID: 8c828833-ccf1-4e21-b99d-03b14d4face3.",
-      "EventName": "ActorActivated",
-      "Payload": {
-        "actorType": "HelloWorld.HelloWorld",
-        "actorId": "abc",
-        "isStateful": "False",
-        "replicaOrInstanceId": "130745709600495974",
-        "partitionId": "8c828833-ccf1-4e21-b99d-03b14d4face3",
-        "serviceName": "fabric:/HelloWorldApplication/HelloWorldActorService",
-        "applicationName": "fabric:/HelloWorldApplication",
-      }
-    }
-
-> [AZURE.NOTE] 為求簡潔而省略上述事件的一些欄位。
-
-### 可設定狀態的動作項目的 Service Fabric 資料分割概念
-可設定狀態的動作項目是由 Service Fabric 具狀態服務的資料分割所建立。動作項目識別碼可以判斷動作項目會建立在哪個資料分割底下。服務的每個資料分割可以有一個或多個 [複本](service-fabric-availability-services.md#availability-of-service-fabric-stateful-services)，放置在叢集中不同節點上。擁有多個複本可為動作項目狀態提供可靠性。Azure 資源管理員會根據可用的錯誤最佳化放置的位置，並升級叢集中的網域。相同資料分割的兩個複本永遠不會放在相同節點上。動作項目一律會建立在它們的動作項目識別碼對應的資料分割主要複本中。
-
-> [AZURE.TIP] 網狀架構動作項目執行階段會發出一些[可設定狀態的動作項目執行個體的相關事件](service-fabric-reliable-actors-diagnostics.md#events-related-to-stateful-actor-replicas)。這些項目對於診斷與效能監視很有幫助。
-
-請回想在[稍早所呈現的 VoiceMailBoxActor 範例中](#service-fabric-partition-concepts-for-actors)，有識別碼 `-4952641569324299627` 的動作項目是在資料分割 `5405d449-2da6-4d9a-ad75-0ec7d65d1a2a` 內所建立。該範例的 EventSource 事件也指出動作項目建立在該資料分割的複本 `130745418574851853`。這是建立動作項目的時候，該資料分割的主要複本。下列 Service Fabric Explore 螢幕擷取畫面進一步確認這一點。
-
-![Service Fabric 總管中的主要複本][4]
-
-## 動作項目狀態提供者選項
-動作項目執行階段中包含一些預設的動作項目狀態提供者。若要為動作項目服務選擇適當的狀態提供者，就必須了解狀態提供者如何使用基礎服務網狀架構平台功能，讓動作項目狀態高度可用。
-
-根據預設，可設定狀態的動作項目會從索引鍵值存放區使用動作項目狀態提供者。此狀態提供者建置在由 Service Fabric 平台提供的分散式索引鍵值存放區之基礎上。狀態會永久地儲存在裝載主要[複本](service-fabric-availability-services.md#availability-of-service-fabric-stateful-services)之節點的本機磁碟上。狀態也會複寫並永久儲存在裝載次要複本之節點的本機磁碟上。只有複本仲裁將其狀態認可至本機磁碟時，狀態才完成儲存。索引鍵值存放區具有進階功能，可以偵測到不一致，例如錯誤的進度並自動加以更正。
-
-動作項目執行階段也包含 `VolatileActorStateProvider`。此狀態提供者會將狀態複寫到複本 (狀態的複本)，但狀態會保留在每個複本上的記憶體中。如果一個複本中斷和恢復運作，其狀態會從另一個複本重建。但是，如果所有的複本同時當機，狀態資料將會遺失。因此，此狀態提供者是適用於應用程式資料可以安然度過幾個複本的失敗，並且可以安然度過計劃的容錯移轉，例如升級。如果所有複本都遺失，則資料需要透過非 Service Fabric 的外部機制來重建。您可以透過加入 `VolatileActorStateProvider` 屬性到動作項目類別或組件層級屬性，將可設定狀態的動作項目設為使用揮發性的動作項目狀態提供者。
-
-下列程式碼片段會示範如何變更組件中沒有明確狀態提供者屬性的所有動作項目，以使用 `VolatileActorStateProvider`。
+每個 `ActorId` 都會雜湊至 Int64，這就是為什麼動作項目服務必須搭配完整的 Int64 索引鍵範圍使用 Int64 資料分割配置的原因。不過，自訂識別碼值可用於 `ActorID`，包括 GUID、字串和 Int64。
 
 ```csharp
-[assembly:Microsoft.ServiceFabric.Actors.VolatileActorStateProvider]
+ActorProxy.Create<IMyActor>(new ActorId(Guid.NewGuid()));
+ActorProxy.Create<IMyActor>(new ActorId("myActorId"));
+ActorProxy.Create<IMyActor>(new ActorId(1234));
 ```
 
-下列程式碼片段示範如何將特定動作項目類型的狀態提供者，在此例中為 `VoicemailBox`，變更為 `VolatileActorStateProvider`。
+使用 GUID 和字串時，已將值雜湊為 Int64。不過，在將 Int64 明確提供給 `ActorId` 之前，Int64 將會直接對應到分割區，而不需進一步雜湊。這可用來控制要將分割區動作項目放置於何處。
 
-```csharp
-[VolatileActorStateProvider]
-public class VoicemailBoxActor : StatefulActor<VoicemailBox>, IVoicemailBoxActor
-{
-    public Task<List<Voicemail>> GetMessagesAsync()
-    {
-        return Task.FromResult(State.MessageList);
-    }
-    ...
-}
-```
+## 後續步驟
+ - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
+ - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
+ - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+ - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-請注意，變更狀態提供者需要重新建立動作項目服務。狀態提供者不能作為應用程式升級的一部分進行變更。
-
+ 
 <!--Image references-->
-[1]: ./media/service-fabric-reliable-actors-platform/manifests-in-vs-solution.png
+[1]: ./media/service-fabric-reliable-actors-platform/actor-service.png
 [2]: ./media/service-fabric-reliable-actors-platform/app-deployment-scripts.png
 [3]: ./media/service-fabric-reliable-actors-platform/actor-partition-info.png
 [4]: ./media/service-fabric-reliable-actors-platform/actor-replica-role.png
+[5]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

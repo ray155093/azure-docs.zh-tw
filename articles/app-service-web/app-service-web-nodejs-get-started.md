@@ -3,7 +3,7 @@
 	description="了解如何將 Node.js 應用程式部署到 Azure App Service 中的 Web 應用程式。"
 	services="app-service\web"
 	documentationCenter="nodejs"
-	authors="rmcmurray"
+	authors="cephalin"
 	manager="wpickett"
 	editor=""/>
 
@@ -27,8 +27,6 @@
 - [Python](web-sites-python-ptvs-django-mysql.md)
 
 本教學課程顯示如何建立簡單的 [Node.js](http://nodejs.org) 應用程式，並透過 cmd.exe 或 bash 之類的命令列將其部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中的 [Web 應用程式](app-service-web-overview.md)。本教學課程中的指示可運用在任何足以執行 Node.js 應用程式的作業系統上。
-
-[Azure App Service Web Apps](/services/app-service/web/)
 
 <a name="prereq"/>
 ## 必要條件
@@ -211,4 +209,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 - [Node.js 開發人員中心](/develop/nodejs/)
 - [在 Azure App Service 中開始使用 Web 應用程式](app-service-web-get-started.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

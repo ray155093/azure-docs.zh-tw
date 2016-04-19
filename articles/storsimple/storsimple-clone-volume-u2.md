@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/14/2015"
+   ms.date="03/31/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務來複製磁碟區 (Update 2)
@@ -117,4 +117,4 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0406_2016-->

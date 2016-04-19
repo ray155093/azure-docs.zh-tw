@@ -25,7 +25,7 @@
 
 ![][2]
 
-問題在於，如何在符合特定條件時獲得重要資訊，而不是抽出時間查看靜態報告。如果您使用 [Azure 事件中樞][]或 [Azure IoT 中樞][]，從裝置或企業應用程式 (例如 [Dynamics AX][]) 接收資料，您可以透過數個選項來處理這些資料。您可以在網站上檢視資料、您可以分析資料、您可以儲存資料，且您可以使用資料觸發命令，以執行某些動作。若要這麼做，您可以使用功能強大的工具，例如 [Azure 網站][]、[SQL Azure][]、[HDInsight][]、[Cortana 分析套件][]、[IoT 套件][]、[邏輯應用程式][]或 [Azure 通知中樞][]。但有時您只是想以最低的額外負荷將該資料傳送給其他人。為了說明如何以些許程式碼進行此作業，我們提供了新的範例 [AppToNotifyUsers][]。包含的選項為電子郵件 (SMTP)、SMS 和電話。
+問題在於，如何在符合特定條件時獲得重要資訊，而不是抽出時間查看靜態報告。如果您使用 [Azure 事件中樞][]或 [Azure IoT 中樞][]，從裝置或企業應用程式 (例如 [Dynamics AX][]) 接收資料，您可以透過數個選項來處理這些資料。您可以在網站上檢視資料、您可以分析資料、您可以儲存資料，且您可以使用資料觸發命令，以執行某些動作。若要這麼做，您可以使用功能強大的工具，例如 [Azure 網站][]、[SQL Azure][]、[HDInsight][]、[Cortana Intelligence Suite][]、[IoT 套件][]、[Logic Apps][] 或 [Azure 通知中樞][]。但有時您只是想以最低的額外負荷將該資料傳送給其他人。為了說明如何以些許程式碼進行此作業，我們提供了新的範例 [AppToNotifyUsers][]。包含的選項為電子郵件 (SMTP)、SMS 和電話。
 
 ## 應用程式結構
 
@@ -74,13 +74,13 @@
 [Azure 網站]: https://azure.microsoft.com/services/app-service/web/
 [SQL Azure]: https://azure.microsoft.com/services/sql-database/
 [HDInsight]: https://azure.microsoft.com/services/hdinsight/
-[Cortana 分析套件]: http://www.microsoft.com/server-cloud/cortana-analytics-suite/Overview.aspx?WT.srch=1&WT.mc_ID=SEM_lLFwOJm3&bknode=BlueKai
+[Cortana Intelligence Suite]: http://www.microsoft.com/server-cloud/cortana-analytics-suite/Overview.aspx?WT.srch=1&WT.mc_ID=SEM_lLFwOJm3&bknode=BlueKai
 [IoT 套件]: https://azure.microsoft.com/solutions/iot-suite/
-[邏輯應用程式]: https://azure.microsoft.com/services/app-service/logic/
+[Logic Apps]: https://azure.microsoft.com/services/app-service/logic/
 [Azure 通知中樞]: https://azure.microsoft.com/services/notification-hubs/
 [Azure Stream Analytics]: https://azure.microsoft.com/services/stream-analytics/
  
 [1]: ./media/event-hubs-sensors-notify-users/event-hubs-sensor-alert.png
 [2]: ./media/event-hubs-sensors-notify-users/event-hubs-erp-alert.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0406_2016-->

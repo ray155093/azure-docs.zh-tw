@@ -373,15 +373,15 @@
 		    @Override
 		    public void onNotificationClicked(Context context, String title,
 		            String description, String customContentString) {
-		        String notifyString = "title=\"" + title + "\" description=\""
-		                + description + "\" customContent=" + customContentString;
+		        String notifyString = "title="" + title + "" description=""
+		                + description + "" customContent=" + customContentString;
 		        Log.d(TAG, notifyString);
 		    }
 
 		    @Override
 		    public void onMessage(Context context, String message,
 		            String customContentString) {
-		        String messageString = "message=\"" + message + "\" customContentString=" + customContentString;
+		        String messageString = "message="" + message + "" customContentString=" + customContentString;
 		        Log.d(TAG, messageString);
 		    }
 		}
@@ -413,9 +413,9 @@
 
 * **Node.js**：[如何從 Node.js 使用通知中樞](notification-hubs-nodejs-how-to-use-notification-hubs.md)。
 
-* **Azure 行動服務**︰如需從整合通知中樞之 Azure 行動服務後端傳送通知的範例，請參閱＜開始在行動服務中使用推播通知＞([.NET 後端](../mobile-services/mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md) | [JavaScript 後端](../mobile-services/mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md))。
+* **Azure 行動服務**：如需如何從已與通知中樞整合的 Azure 行動服務後端傳送通知的範例，請參閱[將推播通知新增至行動服務應用程式](../mobile-services/mobile-services-javascript-backend-windows-universal-dotnet-get-started-push.md)。
 
-* **Java / PHP**︰如需使用 REST API 傳送通知的範例，請參閱＜如何從 Java/PHP 使用通知中樞＞([Java](notification-hubs-java-backend-how-to.md) | [PHP](notification-hubs-php-backend-how-to.md))。
+* **Java/PHP**︰如需使用 REST API 傳送通知的範例，請參閱＜如何從 Java/PHP 使用通知中樞＞([Java](notification-hubs-java-backend-how-to.md) | [PHP](notification-hubs-php-backend-how-to.md))。
 
 ##(選擇性) 從 .NET 主控台應用程式傳送通知。
 
@@ -442,7 +442,7 @@
 		private static async void SendNotificationAsync()
 		{
 			NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("DefaultFullSharedAccessSignatureSASConnectionString", "NotificationHubName");
-			string message = "{\"title\":\"((Notification title))\",\"description\":\"Hello from Azure\"}";
+			string message = "{"title":"((Notification title))","description":"Hello from Azure"}";
 			var result = await hub.SendBaiduNativeNotificationAsync(message);
 		}
 
@@ -503,4 +503,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [百度入口網站]: http://www.baidu.com/
 
-<!-------HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

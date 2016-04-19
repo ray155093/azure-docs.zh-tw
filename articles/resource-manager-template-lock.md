@@ -4,7 +4,7 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/21/2016"
+   ms.date="04/05/2016"
    ms.author="tomfitz"/>
 
 # 資源鎖定範本結構描述
@@ -42,20 +42,21 @@
 
 下表描述您在結構描述中必須設定的值。
 
-| 名稱 | 類型 | 必要 | 允許的值 | 說明 |
-| ---- | ---- | -------- | ---------------- | ----------- |
-| 類型 | 列舉 | 是 | 資源：<br />**{namespace}/{type}/providers/locks**<br /><br />資源群組：<br />**Microsoft.Authorization/locks** | 要建立的資源類型。 |
-| apiVersion | 列舉 | 是 | **2015-01-01** | 要用來建立資源的應用程式開發介面 (API) 版本。 |  
-| 名稱 | 字串 | 是 | 資源：<br />**{resouce}/Microsoft.Authorization/{lockname}**<br /><br />資源群組：<br />**{lockname}****<br /><br />最多 64 個位元<br />不能包含 <、>、%、&、? 或控制字元。 | 用於指定要鎖定資源與鎖定名稱的值。 |
-| dependsOn | 陣列 | No | 以逗號分隔的資源名稱清單或資源唯一的識別碼。 | 此鎖定所依賴的資源集合。如果您正在鎖定的資源是部署在同一個範本中，請在此元素中包含資源名稱，確保會先部署該資源。|
-| 屬性 | 物件 | 是 | (如下所示) | 識別鎖定類型的物件，以及鎖定的相關註解。| 
+| 名稱 | 值 |
+| ---- | ---- | 
+| 類型 | 列舉<br />必要<br />**{命名空間}/{類型}/providers/locks** (適用於資源) 或<br />**Microsoft.Authorization/locks** (適用於資源群組)<br /><br />要建立的資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-01-01**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 |  
+| 名稱 | 字串<br />必要<br />**{resource}/Microsoft.Authorization/{鎖定名稱}** (適用於資源) 或<br />**{鎖定名稱}** (適用於資源群組)<br />最多 64 個字元，而且不能包含 <、>、%、&、? 或任何控制字元。<br /><br />同時指定要鎖定資源與鎖定名稱的值。 |
+| dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此鎖定所相依的資源集合。如果您正在鎖定的資源是部署在同一個範本中，請在此元素中包含資源名稱，確保會先部署該資源。 | 
+| 屬性 | 物件<br />必要<br />[屬性物件](#properties)<br /><br />識別鎖定類型和鎖定附註的物件。 |  
 
+<a id="properties" />
 ### 屬性物件
 
-| 名稱 | 類型 | 必要 | 允許的值 | 說明 |
-| ------- | ---- | ---------------- | -------- | ----------- |
-| 層級 | 列舉 | 是 | **CannotDelete** | 要套用至範圍的鎖定類型。CanNotDelete 可允許修改，但會防止刪除。 |
-| 版本 | 字串 | 否 | 512 個字元 | 鎖定的描述。 |
+| 名稱 | 值 |
+| ------- | ---- |
+| 層級 | 列舉<br />必要<br />**CannotDelete**<br /><br />要套用至範圍的鎖定類型。CanNotDelete 可允許修改，但會防止刪除。 |
+| 版本 | 字串<br />選用<br />最多 512 個字元<br /><br />鎖定的描述。 |
 
 
 ## 如何使用鎖定資源
@@ -135,4 +136,4 @@
 - 如需範本結構的相關資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 - 如需鎖定的詳細資訊，請參閱[使用 Azure 資源管理員鎖定資源](resource-group-lock-resources.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0406_2016-->

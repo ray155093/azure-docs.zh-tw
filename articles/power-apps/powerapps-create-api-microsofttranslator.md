@@ -69,8 +69,8 @@
 
 	1. 輸入 [用戶端識別碼] 的值。  
 	2. 輸入您應用程式的**名稱**。  
-	3. 在 [重新導向 URL] 中輸入虛擬值。例如，輸入 *https://contosoredirecturl*。
-4. 輸入「說明」。  
+	3. 在 [重新導向 URL] 中輸入虛擬值。例如，輸入 *https://contosoredirecturl* 。
+	4. 輸入「說明」。  
 	5. 選取 [**建立**]。  
 
 	![註冊您的應用程式][6]
@@ -97,4 +97,4 @@
 [7]: ./media/powerapps-create-api-microsofttranslator/browseall.png
 [8]: ./media/powerapps-create-api-microsofttranslator/allresources.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!-----HONumber=AcomDC_0330_2016-->

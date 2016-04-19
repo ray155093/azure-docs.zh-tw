@@ -122,9 +122,9 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 
 ## 您的 Azure VM 已準備好可供使用：下一步是什麼？
 
-您的虛擬機器已經準備好在資料科學練習中使用。虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以用於進行資料探索和處理，以及其他可與 Azure Machine Learning 和 Cortana 分析程序 (CAP) 一起使用的工作。
+您的虛擬機器已經準備好在資料科學練習中使用。虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以用於進行資料探索和處理，以及其他可與 Azure Machine Learning 和 Cortana Analytics 程序一起使用的工作。
 
-[學習指南：Azure 中的進階資料處理](machine-learning-data-science-advanced-data-processing.md)中說明了進階分析程序和技術程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+[學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了 Cortana Analytics 程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
 
 
 [15]: ./media/machine-learning-data-science-setup-virtual-machine/vmshutdown.png
@@ -143,4 +143,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [29]: ./media/machine-learning-data-science-setup-virtual-machine/create-virtual-machine-6.png
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0406_2016-->

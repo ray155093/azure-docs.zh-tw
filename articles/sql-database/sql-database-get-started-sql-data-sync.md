@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/19/2016"
+	ms.date="04/04/2016"
 	ms.author="jhubbard"/>
 
 
@@ -52,11 +52,11 @@
 
 - **Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)**
 
- 您可以從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)。
+ 從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)。
 
 - **Microsoft SQL Server 2008 R2 SP1 共用管理物件 (x86)**
 
- 您可以從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 共用管理物件 (x86)。
+ 從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 共用管理物件 (x86)。
 
 
 
@@ -114,10 +114,10 @@
 
 1. 從下拉式清單中選取要作為同步群組中心的 SQL Database 執行個體。
 2. 輸入此 SQL Database 執行個體的認證 - [HUB USERNAME] 和 [HUB PASSWORD]。
-3. 等待 SQL 資料同步確認使用者名稱和密碼。確認認證後，密碼的右邊會出現綠色核取記號。
+3. 等待 SQL 資料同步確認使用者名稱和密碼。確認認證後，您會看到密碼的右邊出現綠色核取記號。
 4. 從下拉式清單中選取 [衝突解決] 原則。
 
- **Hub Wins** - 任何寫入中心資料庫的變更都會寫入參考資料庫，並覆寫相同參考資料庫記錄的變更。在功能上，這表示寫入中心的第一項變更會傳播至其他資料庫。
+ **中樞獲勝** - 任何寫入中心資料庫的變更都會寫入參考資料庫，並覆寫相同參考資料庫記錄的變更。在功能上，這表示寫入中心的第一項變更會傳播至其他資料庫。
 
 
  **Client Wins** - 寫入中心的變更會被參考資料庫中的變更所覆寫。在功能上，這表示寫入中心的最後一項變更會是保留並傳播至其他資料庫的變更。
@@ -174,7 +174,7 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。如果�
 
 ## 步驟 6：設定同步群組
 
-按一下 [資料同步] 登陸頁面底部的 [同步]，一律可以同步處理同步群組。如果您要同步群組依照排程進行同步處理，請設定該同步群組。
+按一下 [資料同步] 登陸頁面底部的 [同步]，一律可以同步處理同步群組。若要依排程進行同步處理，請設定該同步群組。
 
 1.	返回[傳統入口網站](http://manage.windowsazure.com)。
 2.	按一下 [SQL DATABASE]。
@@ -202,4 +202,4 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。如果�
 
  
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0406_2016-->

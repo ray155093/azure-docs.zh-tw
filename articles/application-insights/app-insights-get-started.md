@@ -17,13 +17,15 @@
 
 # 開始使用 Visual Studio Application Insights
 
-*Application Insights 目前僅供預覽。*
+Application Insights 目前僅供預覽。
 
 偵測問題、解決問題並持續改善您的應用程式。快速診斷即時應用程式中的任何問題。了解您的使用者與其有無任何關係？
 
 組態作業非常簡單，幾分鐘之內就能看到結果。
 
 我們目前支援 iOS、Android 和 Windows 應用程式；J2EE 和 ASP.NET Web 應用程式以及 WCF 服務。Web 應用程式可以在 Azure 或您的內部部署伺服器上執行。我們的 JavaScript SDK 可在任何網頁上執行。
+
+[看一下簡介動畫](https://www.youtube.com/watch?v=fX2NtGrh-Y0)。
 
 ## 開始使用
 
@@ -48,7 +50,7 @@ Application Insights 的運作方式是將 SDK 加入至您的應用程式，並
 
 * 問題：
  * [疑難排解][qna]
- * [MSDN 論壇](https://social.msdn.microsoft.com/Forums/vstudio/en-US/home?forum=ApplicationInsights)
+ * [MSDN 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
  * [StackOverflow](http://stackoverflow.com/questions/tagged/ms-application-insights)
 * 錯誤：
  * [連線](https://connect.microsoft.com/VisualStudio/Feedback/LoadSubmitFeedbackForm?FormID=6076)
@@ -74,4 +76,4 @@ Application Insights 的運作方式是將 SDK 加入至您的應用程式，並
 
 [qna]: app-insights-troubleshoot-faq.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->
