@@ -108,4 +108,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!----HONumber=AcomDC_0406_2016-->
