@@ -61,4 +61,4 @@ Windows 8.1 電腦上的 Windows 事件記錄檔會顯示與裝置註冊相關�
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-conditional-access-automatic-device-registration.md)
 - [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!----HONumber=AcomDC_0406_2016-->
