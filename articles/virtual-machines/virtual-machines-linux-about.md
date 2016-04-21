@@ -42,4 +42,4 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 [虛擬機器]: #tellmevm
 [雲端服務]: cloud-services-choose-me.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!-----HONumber=AcomDC_0406_2016-->
