@@ -127,4 +127,4 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 - [存取內部部署資源](web-sites-hybrid-connection-get-started.md)
 - [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md) 
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0323_2016--->
