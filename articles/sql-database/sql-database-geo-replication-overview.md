@@ -3,8 +3,8 @@
 	description="本主題說明 SQL Database 的主動式異地複寫與其用途。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
+	authors="stevestein"
+	manager="jhubbard"
 	editor="monicar" />
 
 
@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
 	ms.date="03/07/2016"
-	ms.author="jroth" />
+	ms.author="sstein" />
 
 # Azure SQL Database 的主動式異地複寫
 
@@ -66,4 +66,4 @@
 ## 後續步驟
 如需 SQL Database 業務連續性功能的詳細資訊，請參閱[業務連續性概觀](sql-database-business-continuity.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

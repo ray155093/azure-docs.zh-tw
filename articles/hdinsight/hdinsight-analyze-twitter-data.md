@@ -112,7 +112,7 @@ Twitter 會使用 OAuth 提供對其 API 的授權存取。OAuth 是一項驗證
 
 		#region - Connect to Azure subscription
 		Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
-		Add-AzureAccount
+		Login-AzureRmAccount
 		#endregion
 
 		#region - Create a block blob object for writing tweets into Blob storage
@@ -488,7 +488,7 @@ $hqlScriptFile|HiveQL 指令碼檔案的位置和檔案名稱。您無須變更�
 	
 	Write-Host "Display the standard error log ... " -ForegroundColor Green
 	$jobID = ($response | Select-String job_ | Select-Object -First 1) -replace ‘\s*$’ -replace ‘.*\s’
-	Get-AzureRmHDInsightJobOutput -ClusterName $clusterName -JobId $jobID -StandardError
+	Get-AzureRmHDInsightJobOutput -ClusterName $clusterName -JobId $jobID -DefaultContainer $defaultBlobContainerName -DefaultStorageAccountName $defaultStorageAccountName -DefaultStorageAccountKey $defaultStorageAccountKey -HttpCredential $httpCredential
 	#endregion
 
 ### 查看結果
@@ -565,4 +565,4 @@ $hqlScriptFile|HiveQL 指令碼檔案的位置和檔案名稱。您無須變更�
 [hdinsight-hive-odbc]: hdinsight-connect-excel-hive-ODBC-driver.md
 [hdinsight-hbase-twitter-sentiment]: hdinsight-hbase-analyze-twitter-sentiment.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

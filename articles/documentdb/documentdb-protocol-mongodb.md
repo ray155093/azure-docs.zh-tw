@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="MongoDB 的 DocumentDB 通訊協定支援 | Microsoft Azure" 
 	description="了解現已可供預覽的 MongoDB 的 DocumentDB 通訊協定支援。" 
-	keywords="mongodb 通訊協定, mongodb"
+	keywords="mongodb 通訊協定, mongodb, mongo 資料庫"
 	services="documentdb" 
 	authors="stephbaron" 
 	manager="jhubbard" 
@@ -13,7 +13,7 @@
 	ms.workload="data-services" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
-	ms.topic="get-started-article" 
+	ms.topic="article" 
 	ms.date="03/31/2016" 
 	ms.author="stbaro"/>
 
@@ -36,11 +36,11 @@ Microsoft Azure DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之�
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 依序按一下 [新增]、[資料 + 儲存體]、[檢視全部]、[更多] 和 [DocumentDB - MongoDB 的通訊協定支援]。
 
-	![醒目顯示 [DocumentDB - MongoDB 的通訊協定支援] 之 [Marketplace] 和 [資料 + 儲存體] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-protocol-mongodb/marketplacegallery1.png)
+	![[Marketplace] 和 [資料 + 儲存體] 刀鋒視窗的螢幕擷取畫面 (醒目顯示 [DocumentDB - MongoDB (Mongo 資料庫) 的通訊協定支援])](./media/documentdb-protocol-mongodb/marketplacegallery1.png)
 
 3. 或者，在 [資料 + 儲存體] 類別中搜尋「DocumentDB 通訊協定」。
 
-	![醒目顯示 [DocumentDB - MongoDB 的通訊協定支援] 之 [Marketplace] 和 [資料 + 儲存體] 搜尋刀鋒視窗的螢幕擷取畫面](./media/documentdb-protocol-mongodb/marketplacegallery2.png)
+	![[Marketplace] 和 [資料 + 儲存體] 搜尋刀鋒視窗的螢幕擷取畫面 (醒目顯示 [DocumentDB - MongoDB (Mongo 資料庫) 的通訊協定支援])](./media/documentdb-protocol-mongodb/marketplacegallery2.png)
 
 4. 按一下 [建立] 以啟動預覽註冊程序。
 
@@ -56,4 +56,4 @@ Microsoft Azure DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之�
 
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

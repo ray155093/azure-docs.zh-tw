@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/19/2016"
+	ms.date="04/06/2016"
 	ms.author="robinsh"/>
 
 # 在 Azure 入口網站中監視儲存體帳戶
@@ -25,6 +25,8 @@
 > [AZURE.NOTE] 在 [Azure 入口網站](https://portal.azure.com)中查看監視資料會有額外的成本。如需詳細資訊，請參閱<a href="http://msdn.microsoft.com/library/azure/hh360997.aspx">儲存體分析及計費</a>。<br />
 
 > Azure 檔案儲存體目前支援儲存體分析度量，但還不支援記錄。您可以透過 [Azure 入口網站](https://portal.azure.com)啟用 Azure 檔案儲存體度量。
+
+> 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
 
 > 如需使用儲存體分析和其他工具來識別、診斷及疑難排解 Azure 儲存體相關問題的深入指南，請參閱[監視、診斷及疑難排解 Microsoft Azure 儲存體](storage-monitoring-diagnosing-troubleshooting.md)。
 
@@ -120,7 +122,7 @@
 	![ExpandCollapse](./media/storage-monitor-storage-account/Storage_AddMetrics_ExpandCollapse.png)
 
 
-6. 選取所有服務的度量後，按一下 [確定] \(核取記號) 更新監視組態。選取的度量隨即新增到度量表。
+6. 選取所有服務的度量後，按一下 [確定] (核取記號) 更新監視組態。選取的度量隨即新增到度量表。
 
 7. 若要從資料表刪除度量，請按一下度量加以選取，然後按一下 [刪除度量]。
 
@@ -157,4 +159,4 @@
 
 診斷記錄檔儲存在儲存體帳戶中的 $logs Blob 容器。如需存取 $logs 容器的詳細資訊，請參閱[關於儲存體分析記錄](http://msdn.microsoft.com/library/azure/hh343262.aspx)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

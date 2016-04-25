@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="將應用程式部署至 Azure App Service" 
-	description="了解如何將應用程式部署到 App Service 的工作" 
+<properties
+	pageTitle="將應用程式部署至 Azure App Service"
+	description="了解如何將應用程式部署到 App Service 的工作"
 	keywords="app service, azure app service, 部署中, 部署"
-	services="app-service" 
-	documentationCenter="" 
-	authors="dariagrigoriu" 
-	manager="wpickett" 
+	services="app-service"
+	documentationCenter=""
+	authors="dariagrigoriu"
+	manager="wpickett"
 	editor=""/>
 
-<tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/09/2016" 
+<tags
+	ms.service="app-service"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/09/2016"
 	ms.author="dariagrigoriu"/>
 
 # Azure App Service 部署概觀
@@ -23,4 +23,4 @@ Azure App Service 提供豐富且整合的功能集，可支援建立功能強�
 
 [AZURE.INCLUDE [app-service-blueprint-deployment](../../includes/app-service-blueprint-deployment.md)]
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

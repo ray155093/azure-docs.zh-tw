@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="04/12/2016"
    ms.author="alkohli"/>
 
 
@@ -59,7 +59,7 @@
 
 在您開始前，請確定：
 
--   您已經檢閱部署 StorSimple 虛擬裝置的網路需求，且已經根據需求設定資料中心的網路。如需詳細資訊，請參閱 Microsoft Azure StorSimple Virtual Array 的系統需求指南。
+-   您已經檢閱部署 StorSimple 虛擬裝置的網路需求，且已經根據需求設定資料中心的網路。如需詳細資訊，請參閱 [StorSimple Virtual Array 系統需求](storsimple-ova-system-requirements.md)。
 
 ## 佈建的逐步指示 
 
@@ -91,7 +91,9 @@
 
 請執行下列步驟，以便在您的 Hypervisor 中佈建虛擬裝置。
 
-1.  複製您系統中的虛擬裝置映像。這就是您之前透過 Azure 傳統入口網站下載的映像。請記下您複製映像的位置，因為稍後將會在程序中使用該資訊。
+1.  複製您系統中的虛擬裝置映像。這就是您之前透過 Azure 傳統入口網站下載的映像。 
+	1.  請確定這是您已下載的最新映像檔。如果您稍早下載過映像，請再下載一次，確定您擁有最新映像。最新映像具有兩個檔案 (而不是一個)。
+	2.  請記下您複製映像的位置，因為稍後將會在程序中使用該資訊。
 
 2.  使用 vSphere 用戶端登入 ESXi 伺服器。您必須有系統管理員權限，才能建立虛擬機器。
 
@@ -101,7 +103,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image2.png)
 
-1.  首先您要將 VMDK 上傳至 ESXi 伺服器。瀏覽至右窗格中的 [設定] 索引標籤。選取 [硬體] 下方的 [儲存體]。
+1.  首先您要將 VMDK 上傳至 ESXi 伺服器。瀏覽至右窗格中的 [組態] 索引標籤。選取 [硬體] 下方的 [儲存體]。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image3.png)
 
@@ -129,17 +131,18 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image11.png)
 
-1.  您現在應該瀏覽並指向您之前下載的 VMDK。
+1.  您現在應該瀏覽並指向您之前下載的 VMDK 檔案。將會有兩個檔案。選取要上傳的檔案。
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image12.png)
+	![](./media/storsimple-ova-deploy2-provision-vmware/image12m.png)
 
-1.  按一下 [開啟]。此時將 VMDK 檔案上傳至指定資料存放區的作業將會開始。
+1.  按一下 [開啟]。此時將 VMDK 檔案上傳至指定資料存放區的作業將會開始。檔案可能需要幾分鐘的時間才能上傳完畢。
 
-	![](./media/storsimple-ova-deploy2-provision-vmware/image13.png)
 
-1.  檔案可能需要幾分鐘的時間才能上傳完畢。上傳完畢之後，檔案就會出現在資料存放區裡您所建立的資料夾中。
+1.  上傳完成之後，檔案就會出現在資料存放區裡您所建立的資料夾中。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image14.png)
+
+	您現在需要將第二個 VMDK 檔案上傳至相同的資料存放區。
 
 1.  返回 vSphere 用戶端視窗。在選取 ESXi 伺服器之後按一下滑鼠右鍵，然後選取 [新增虛擬機器]。
 
@@ -155,11 +158,11 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image18.png)
 
-1.  在 [虛擬機器版本] 頁面上，選取 [虛擬機器版本: 8]。請注意，這是此版本唯一支援的選項。
+1.  在 [虛擬機器版本] 頁面上，選取 [虛擬機器版本: 8]。請注意，支援第 8 版到第 11 版。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image19.png)
 
-1.  在 [客體作業系統] 頁面上，將 [客體作業系統] 選取為 [Windows]。而對於 [版本]，請從下拉式清單中選取 [Microsoft Windows Server 2012 (64 位元)]。
+1.  在 [客體作業系統] 頁面上，將 [客體作業系統] 選取為 [Windows] 。而對於 [版本]，請從下拉式清單中選取 [Microsoft Windows Server 2012 (64 位元)]。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image20.png)
 
@@ -183,7 +186,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image25.png)
 
-1.  在 [選取現有的磁碟] 頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。這會開啟 [瀏覽資料存放區] 對話方塊。瀏覽至您之前上傳 VMDK 的位置。選取檔案，然後按一下 [確定]。按 [下一步]。
+1.  在 [選取現有的磁碟]頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。這會開啟 [瀏覽資料存放區] 對話方塊。瀏覽至您之前上傳 VMDK 的位置。因為已合併一開始上傳的兩個檔案，所以您現在於資料存放區中只會看到一個檔案。選取檔案，然後按一下 [確定]。按 [下一步]。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image26.png)
 
@@ -199,7 +202,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image29.png)
 
-1.  此時畫面會出現 [新增硬體] 視窗。在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下方，選取 [硬碟] 並按一下 [下一步]。
+1.  此時畫面會出現 [新增硬體] 視窗。在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下面，選取 [硬碟]並按 [下一步]。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image30.png)
 
@@ -239,7 +242,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image37.png)
 
-1.  安裝工作將需要幾分鐘的時間才能完成。當裝置開始運作時，瀏覽至 [主控台] 索引標籤。傳送 Ctrl+Alt+Delete 來登入裝置。或者，您可以讓游標指向主控台視窗，然後按下 Ctrl+Alt+Insert。預設的使用者為 *StorSimpleAdmin*，而預設密碼為 *Password1*。
+1.  安裝工作將需要幾分鐘的時間才能完成。當裝置開始運作時，瀏覽至 [主控台] 索引標籤。傳送 Ctrl+Alt+Delete 來登入裝置。或者，您可以讓游標指向主控台視窗，然後按下 Ctrl+Alt+Insert。預設的使用者為「StorSimpleAdmin」，而預設密碼為「Password1」。
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image38.png)
 
@@ -265,7 +268,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-vmware/image43m.png)
 
-1.  使用 `Set-HcsIpAddress` Cmdlet 設定網路。範例如下所示：
+1.  使用 `Set-HcsIpAddress` Cmdlet 來設定網路。範例如下所示：
 
 
     `Set-HcsIpAddress –Name Ethernet –IpAddress 10.161.22.90 –Netmask 255.255.255.0 –Gateway 10.161.22.1`
@@ -293,9 +296,9 @@
 
 如果您在使用本機 Web UI 進行初始設定作業時碰到其他任何錯誤，請參閱[使用本機 Web UI 管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md) 中的下列工作流程。
 
--   執行診斷測試來[排解使用 Web UI 安裝時所發生的錯誤](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors)。
+-   執行診斷測試來[疑難排解 Web UI 安裝程式錯誤](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors)。
 
--   [產生記錄封裝及檢視記錄檔](storsimple-ova-web-ui-admin.md#generate-a-log-package)。
+-   [產生記錄檔封裝及檢視記錄檔](storsimple-ova-web-ui-admin.md#generate-a-log-package)。
 
 ## 後續步驟
 
@@ -303,4 +306,4 @@
 
 -   [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-ova-deploy3-iscsi-setup.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

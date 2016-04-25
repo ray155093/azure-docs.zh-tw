@@ -1,10 +1,10 @@
-<properties 
-	pageTitle="在 Azure VM (傳統部署) 上設定 SQL Server 的 Azure 金鑰保存庫整合"
-	description="了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。本主題說明如何搭配傳統部署模型中建立之SQL Server 虛擬機器使用 Azure 金鑰保存庫整合。" 
-	services="virtual-machines-windows" 
-	documentationCenter="" 
-	authors="rothja" 
-	manager="jeffreyg"
+<properties
+	pageTitle="在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)"
+	description="了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。本主題說明如何搭配傳統部署模型中建立之SQL Server 虛擬機器使用 Azure 金鑰保存庫整合。"
+	services="virtual-machines-windows"
+	documentationCenter=""
+	authors="rothja"
+	manager="jhubbard"
 	editor=""
 	tags="azure-service-management"/>
 
@@ -13,11 +13,11 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services" 
-	ms.date="12/17/2015"
+	ms.workload="infrastructure-services"
+	ms.date="04/08/2016"
 	ms.author="jroth"/>
 
-# 在 Azure VM (傳統部署) 上設定 SQL Server 的 Azure 金鑰保存庫整合
+# 在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
 
 > [AZURE.SELECTOR]
 - [資源管理員](virtual-machines-windows-ps-sql-keyvault.md)
@@ -53,7 +53,7 @@
 **New-AzureVMSqlServerKeyVaultCredentialConfig** Cmdlet 會建立 Azure 金鑰保存庫整合功能的組態物件。**Set-AzureVMSqlServerExtension** 會以 **KeyVaultCredentialSettings** 參數設定此整合。下列步驟說明如何使用這些命令。
 
 1. 在 Azure PowerShell 中，首先以您的特定值設定輸入參數，如本本主題前面幾節所述。下列指令碼是範例。
-	
+
 		$akvURL = "https://contosokeyvault.vault.azure.net/"
 		$spName = "fde2b411-33d5-4e11-af04eb07b669ccf2"
 		$spSecret = "9VTJSQwzlFepD8XODnzy8n2V01Jd8dAjwm/azF1XDKM="
@@ -61,7 +61,7 @@
 		$vmName = "myvmname"
 		$serviceName = "mycloudservicename"
 2.	然後使用下列指令碼來設定和啟用 AKV 整合。
-	
+
 		$secureakv =  $spSecret | ConvertTo-SecureString -AsPlainText -Force
 		$akvs = New-AzureVMSqlServerKeyVaultCredentialConfig -Enable -CredentialName $credname -AzureKeyVaultUrl $akvURL -ServicePrincipalName $spName -ServicePrincipalSecret $secureakv
 		Get-AzureVM -ServiceName $serviceName -Name $vmName | Set-AzureVMSqlServerExtension -KeyVaultCredentialSettings $akvs | Update-AzureVM
@@ -70,4 +70,4 @@ SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

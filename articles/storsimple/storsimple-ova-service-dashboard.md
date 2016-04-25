@@ -3,7 +3,7 @@
    description="描述 StorSimple Manager 服務儀表板，以及如何使用它來監視 StorSimple Virtual Array 解決方案的健全狀況。"
    services="storsimple"
    documentationCenter=""
-   authors="SharS"
+   authors="alkohli"
    manager="carmonm"
    editor="" />
 <tags 
@@ -12,10 +12,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/18/2016"
-   ms.author="v-sharos" />
+   ms.date="04/07/2016"
+   ms.author="alkohli" />
 
-# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務儀表板 (預覽)
+# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務儀表板
 
 ## 概觀
 
@@ -44,7 +44,7 @@ StorSimple Manager 服務儀表板會顯示下列資訊：
 
 服務註冊金鑰用於向 StorSimple Manager 服務註冊 StorSimple 虛擬裝置，之後裝置就會出現在Azure 傳統入口網站中，讓您採取進一步的管理動作。金鑰是在第一個虛擬裝置上建立，然後與其餘虛擬裝置共用。
 
-按一下 [**註冊金鑰**] \(在頁面底部) 會開啟 [**服務註冊金鑰**] 對話方塊，您可以在此處將目前的服務註冊金鑰複製到剪貼簿，或重新產生服務註冊金鑰。
+按一下 [**註冊金鑰**] (在頁面底部) 會開啟 [**服務註冊金鑰**] 對話方塊，您可以在此處將目前的服務註冊金鑰複製到剪貼簿，或重新產生服務註冊金鑰。
 
 ![註冊金鑰](./media/storsimple-ova-service-dashboard/service-dashboard3.png)
 
@@ -62,4 +62,4 @@ StorSimple Manager 服務儀表板會顯示下列資訊：
 
 了解如何[使用本機 Web UI 來管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-<!-----HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

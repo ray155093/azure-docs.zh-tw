@@ -5,7 +5,7 @@
    services="sql-database"
    documentationCenter=""
    authors="carlrabeler"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -40,7 +40,9 @@
 
 4. 在匯出精靈中，將匯出設定為將 BACPAC 檔案儲存到本機磁碟位置或 Azure Blob。匯出的 BACPAC 一律會包含完整的資料庫結構描述，以及預設之所有資料表的資料。如果您想要排除部分或所有資料表的資料，請使用 [進階] 索引標籤。比方說，您可能會選擇只匯出參考資料表的資料，而不是所有資料表的資料。
 
-	![匯出設定](./media/sql-database-cloud-migrate/MigrateUsingBACPAC02.png)
+***重要：*** 將 BACPAC 匯出至 Azure blob 儲存體時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
+
+	![Export settings](./media/sql-database-cloud-migrate/MigrateUsingBACPAC02.png)
 
 ## 下一步：從 BACPAC 檔案匯入 SQL Database
 
@@ -49,4 +51,4 @@
 - [Azure 入口網站](sql-database-import.md)
 - [PowerShell](sql-database-import-powershell.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -167,6 +167,12 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。�
 
 請參閱[相依性遙測](app-insights-asp-net-dependencies.md)和[例外狀況遙測](app-insights-asp-net-exceptions.md)。
 
+## 沒有效能資料
+
+效能資料 (CPU、IO 速率等等) 適用於 [Java Web 服務](app-insights-java-collectd.md)、[Windows 桌面應用程式](app-insights-windows-desktop.md)、[IIS Web 應用程式和服務 (若您安裝狀態監視器)](app-insights-monitor-performance-live-website-now.md) 和 [Azure 雲端服務](app-insights-azure.md)。您將在 [設定]、[伺服器] 之下看到該資料。
+
+它不適用於 Azure 網站。
+
 ## 我發佈應用程式到我的伺服器之後卻沒有 (伺服器) 資料
 
 + 請確認您實際上已複製所有 Microsoft.ApplicationInsights DLL 到伺服器，並且連帶 Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll ApplicationInsights Dll 一併複製。
@@ -193,10 +199,10 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。�
 
 ## 在 Azure 雲端服務中執行時發生的「找不到方法」例外狀況
 
-您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。請先[在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md)，再執行您的應用程式。
+您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。請先[在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md)，再執行您的 App。
 
 ## 仍然無法運作...
 
 * [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

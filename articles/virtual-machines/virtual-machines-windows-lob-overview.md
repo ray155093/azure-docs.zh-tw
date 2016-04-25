@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="12/17/2015" 
+	ms.date="04/01/2016" 
 	ms.author="josephd"/>
 
 # 在 Azure 中部署高可用性的企業營運應用程式
@@ -91,6 +91,6 @@
 
 ## 後續步驟
 
-若要開始設定這個工作負載，請前往[第 1 階段：設定 Azure](virtual-machines-windows-ps-lob-ph1.md)。
+- 依照[第 1 階段](virtual-machines-windows-ps-lob-ph1.md)指示開始設定此工作負載。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

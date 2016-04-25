@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="03/03/2016"
+	ms.date="04/07/2016"
 	ms.author="billmath"/>
 
 # 什麼是 Azure Multi-Factor Authentication？
@@ -108,7 +108,7 @@ Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最�
 以撥打電話做為第二個因素|* | * | *
 以 SMS 做為第二個因素|* | * | *
 用戶端應用程式密碼不支援 MFA|* | * | *
-系統管理員控制驗證方法| (公開預覽)|(公開預覽) | *
+系統管理員控制驗證方法| *|* | *
 PIN 模式| | | *
 詐騙警示| | | *
 MFA 報告| | | *
@@ -193,7 +193,7 @@ Azure AD 和使用 DirSync、Azure AD Sync、Azure AD Connect 的內部部署 AD
 以雙向 SMS 做為第二個因素 | | ●
 以硬體權杖做為第二個因素 | | ●
 用戶端應用程式密碼不支援 MFA | ● |  
-系統管理員控制驗證方法 | (公開預覽) | ●
+系統管理員控制驗證方法 | ● | ●
 PIN 模式 | | ●
 詐騙警示 | ● | ●
 MFA 報告 | ● | ●
@@ -209,4 +209,4 @@ MFA 報告 | ● | ●
 
 <center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

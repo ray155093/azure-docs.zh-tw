@@ -1,18 +1,18 @@
-<properties 
-	pageTitle="在 Azure RemoteApp 中使用 SQL Server Management Studio 連接到 SQL Database | Microsoft Azure" 
+<properties
+	pageTitle="在 Azure RemoteApp 中使用 SQL Server Management Studio 連接到 SQL Database | Microsoft Azure"
 	description="使用本教學課程來了解如何在連線到 SQL Database 時，在 Azure RemoteApp 中使用 SQL Server Management Studio 以維護安全性和效能"
-	services="sql-database" 
+	services="sql-database"
 	documentationCenter=""
-	authors="adhurwit" 
+	authors="adhurwit"
 	manager=""/>
 
-<tags 
-	ms.service="sql-database" 
-	ms.workload="data" 
+<tags
+	ms.service="sql-database"
+	ms.workload="data"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article" 
-	ms.date="01/20/2016" 
+	ms.topic="article"
+	ms.date="04/12/2016"
 	ms.author="adhurwit"/>
 
 # 在 Azure RemoteApp 中使用 SQL Server Management Studio 來連接到 SQL Database
@@ -24,7 +24,7 @@
 
 ## Azure RemoteApp 中的 SSMS
 
-Azure RemoteApp 是在 Azure 中的一項 RDS 服務，可提供應用程式。您可以在此處深入了解：[什麼是 RemoteApp？](../remoteapp-whatis.md)
+Azure RemoteApp 是在 Azure 中的一項 RDS 服務，可提供應用程式。您可以在此處深入了解：[什麼是 RemoteApp？](../remoteapp/remoteapp-whatis.md)
 
 在 Azure RemoteApp 中執行的 SSMS 可提供您與在本機執行 SSMS 相同的體驗。
 
@@ -37,7 +37,7 @@ Azure RemoteApp 是在 Azure 中的一項 RDS 服務，可提供應用程式。�
 在 Azure RemoteApp 中使用 SSMS 有許多好處，包括：
 
 - Azure SQL Server 上的連接埠 1433 不需要對外 (Azure 之外) 公開 。
-- 不需要在 Azure SQL Server 防火牆中不斷新增和移除 IP 位址。 
+- 不需要在 Azure SQL Server 防火牆中不斷新增和移除 IP 位址。
 - 所有 Azure RemoteApp 連線都會使用加密的遠端桌面通訊協定，透過 HTTPS 在連接埠 443 上進行
 - 這是多使用者功能，且可以調整。
 - 在與 SQL Database 相同的區域中擁有 SSMS 可增進效能。
@@ -158,4 +158,4 @@ Sysprep 完成時，它會關閉 VM。
 [5]: ./media/sql-database-ssms-remoteapp/publish.png
 [6]: ./media/sql-database-ssms-remoteapp/user.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

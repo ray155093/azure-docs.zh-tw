@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/28/2016"
+   ms.date="04/07/2016"
    ms.author="larryfr"/>
 
 # 搭配使用 Pig 與 HDInsight 上的 Hadoop
@@ -115,6 +115,8 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 
 * [將資料上傳到 HDInsight][hdinsight-upload-data]
 * [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
+* [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
 * [搭配 HDInsight 使用 MapReduce 工作][hdinsight-use-mapreduce]
 
 [check]: ./media/hdinsight-use-pig/hdi.checkmark.png
@@ -137,7 +139,7 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md#mapreduce-sdk
 
-[Powershell-install-configure]: ../install-configure-powershell.md
+[Powershell-install-configure]: ../powershell-install-configure.md
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
 
@@ -146,4 +148,4 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 [image-hdi-pig-powershell]: ./media/hdinsight-use-pig/hdi.pig.powershell.png
 [image-hdi-pig-architecture]: ./media/hdinsight-use-pig/HDI.Pig.Architecture.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

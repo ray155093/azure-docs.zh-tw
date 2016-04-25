@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="Application Insights 中的「接近即時主動診斷」" 
-	description="NRT 主動診斷會自動在伺服器回應時間出現異常行為時通知您。不需要設定。" 
+	description="警示您應用程式中不尋常的失敗模式，並提供診斷分析。不需要設定。" 
 	services="application-insights" 
     documentationCenter=""
 	authors="yorac" 
@@ -138,4 +138,4 @@ NRT 主動診斷與其他相似但不同的 Application Insights 功能互補。
 
 *我們也很想要知道您的想法。請傳送意見反應至：*[ainrtpd@microsoft.com](mailto:ainrtpd@microsoft.com)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

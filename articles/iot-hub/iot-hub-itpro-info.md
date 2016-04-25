@@ -31,7 +31,7 @@
 | 透過 WebSockets 的 AMQP | 443 |
 | MQTT | 8883 |
 
-當您在 Azure 區域中建立 IoT 中心後，中心將在該中心的存留期間，保留相同的 IP 位址。不過，在嚴重損壞修復案例中，如果 Microsoft 將 IoT 中心移至不同的縮放單位，則它會獲派新的 IP 位址。
+當您在 Azure 區域中建立 IoT 中心後，中心將在該中心的存留期間，保留相同的 IP 位址。不過，為了維護服務品質，如果 Microsoft 將 IoT 中樞移至不同的縮放單位，則它會獲派新的 IP 位址。
 
 ## IoT 中心和安全性
 
@@ -51,4 +51,4 @@ IoT 中心內對其他管理端點的存取權，也是透過一組權限來控�
 [lnk-devguide]: iot-hub-devguide.md#security
 [lnk-manage-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

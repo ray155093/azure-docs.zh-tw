@@ -22,7 +22,7 @@
 
 - 邏輯應用程式 
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下 [Box 連接器](../app-service-logic/app-service-logic-connector-box.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 Box 來：
 
@@ -30,7 +30,7 @@
 - 在檔案建立或更新時使用觸發程序。
 - 使用會複製檔案、刪除檔案等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Box 中的某個檔案變更時，您可以取得該檔案，並利用 Office 365 來傳送已附加該檔案的電子郵件。
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 Box 包含下列觸發程序及動作。
@@ -47,7 +47,7 @@ Box 包含下列觸發程序及動作。
 1. 登入您的 Box 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Box。 
 
-當您建立連線之後，請輸入 Box 的屬性。本主題的＜REST API 參考＞一節說明這些屬性。
+當您建立連線之後，請輸入 Box 的屬性。本主題的＜REST API 參考＞一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Box 連線。
 
@@ -262,4 +262,4 @@ Box 包含下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

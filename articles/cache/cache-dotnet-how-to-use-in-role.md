@@ -4,7 +4,7 @@
 	services="cache" 
 	documentationCenter=".net" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/06/2016" 
 	ms.author="sdanie"/>
 
 
@@ -25,7 +25,7 @@
 
 本指南顯示如何開始使用「Azure 快取的角色中快取」。這些範例均以 C# 程式碼撰寫，並使用 .NET API。涵蓋的案例包括**設定快取叢集**、**設定快取用戶端**、**新增和移除快取中的物件、將 ASP.NET 工作階段狀態儲存在快取中**，以及**使用快取啟用 ASP.NET 頁面輸出快取**。如需使用角色中快取的詳細資訊，請參閱[後續步驟][]一節。
 
->[AZURE.IMPORTANT]我們現在宣布將在 2016 年 11 月 30 日淘汰「Azure 受管理的快取服務」和 Azure In-Role Cache。我們建議您移轉到 Azure Redis Cache 以為這次淘汰做準備。如需日期和移轉指南的詳細資訊，請參閱[我適合使用哪個 Azure 快取服務？](../redis-cache/cache-faq.md#which-azure-cache-offering-is-right-for-me)
+>[AZURE.IMPORTANT]根據去年的[公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 服務都將在 2016 年 11 月 30 日淘汰。我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。如需有關移轉的資訊，請參閱[從受管理的快取服務移轉至 Azure Redis 快取](../redis-cache/cache-migrate-to-redis.md)。
 
 <a name="what-is"></a>
 ## 何謂角色中快取？
@@ -38,7 +38,7 @@
 
 In-Role Cache 會使用託管 Azure 雲端服務 (又稱託管服務) 中的角色執行個體之虛擬機器的部分記憶體執行快取。您會有更為彈性的部署選項可作選擇，快取的大小不僅可以非常大，而且沒有快取特有的配額限制。
 
->[AZURE.IMPORTANT] 從 Azure SDK 2.6 版開始，In-Role Cache 使用 Microsoft Azure 儲存體 SDK 4.3 版。在 Azure SDK 舊版中，In-Role Cache 使用 Azure 儲存體 SDK 1.7。Azure 儲存體版本 2011-08-18 即將於 2016 年 8 月 1 日解除委任，使用採用 Azure SDK 2.6 之前版本之 In-Role Cache 的應用程式請儘早移轉至 Azure SDK 2.6。如需詳細資訊，請參閱[Azure SDK 2.6 版本資訊：In-Role Cache](../azure-sdk-dotnet-release-notes-2_6.md#in-role-cache-updates) (英文) 和 [MMicrosoft Azure 儲存體服務版本移除更新：延期至 2016](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/10/19/microsoft-azure-storage-service-version-removal-update-extension-to-2016.aspx) (英文)。
+>[AZURE.IMPORTANT] 從 Azure SDK 2.6 版開始，In-Role Cache 使用 Microsoft Azure 儲存體 SDK 4.3 版。在 Azure SDK 舊版中，In-Role Cache 使用 Azure 儲存體 SDK 1.7。Azure 儲存體版本 2011-08-18 即將於 2016 年 8 月 1 日解除委任，使用採用 Azure SDK 2.6 之前版本之 In-Role Cache 的應用程式請儘早移轉至 Azure SDK 2.6。如需詳細資訊，請參閱[Azure SDK 2.6 版本資訊：In-Role Cache](../azure-sdk-dotnet-release-notes-2-6.md#in-role-cache-updates) (英文) 和 [MMicrosoft Azure 儲存體服務版本移除更新：延期至 2016](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/10/19/microsoft-azure-storage-service-version-removal-update-extension-to-2016.aspx) (英文)。
 
 角色執行個體快取有下列優點：
 
@@ -411,4 +411,4 @@ NuGet 套件也會新增下列組件的參考：
 [Which Azure Cache offering is right for me?]: cache-faq.md#which-azure-cache-offering-is-right-for-me
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

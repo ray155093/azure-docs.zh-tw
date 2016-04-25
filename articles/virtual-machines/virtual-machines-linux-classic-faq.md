@@ -1,6 +1,6 @@
 <properties
 	pageTitle="VM 常見問題集 | Microsoft Azure"
-	description="針對以傳統部署模型建立的 Azure 虛擬機器，提供一些相關常見問題的解答。"
+	description="針對以傳統部署模型建立的 Azure 虛擬機器，回答一些相關常見問題。"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="cynthn"
@@ -23,4 +23,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-classic-faq](../../includes/virtual-machines-common-classic-faq.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

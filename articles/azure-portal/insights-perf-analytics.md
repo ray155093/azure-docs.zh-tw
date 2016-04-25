@@ -1,18 +1,18 @@
-<properties 
-	pageTitle="監視 Azure Web 應用程式效能" 
-	description="圖表載入和回應時間、相依性資訊以及設定效能警示。" 
+<properties
+	pageTitle="監視 Azure Web 應用程式效能"
+	description="圖表載入和回應時間、相依性資訊以及設定效能警示。"
 	services="azure-portal"
     documentationCenter="na"
-	authors="alancameronwills" 
+	authors="alancameronwills"
 	manager="douge"/>
 
-<tags 
-	ms.service="azure-portal" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/23/2015" 
+<tags
+	ms.service="azure-portal"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/23/2015"
 	ms.author="awills"/>
 
 # 監視 Azure Web 應用程式效能
@@ -49,7 +49,7 @@ Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至
 
 您可以在開發電腦中執行應用程式來測試遙測，或是直接繼續執行並將重新發佈遙測。
 
-SDK 會提供 API 供您[撰寫自訂遙測](../app-insights-api-custom-events-metrics.md)以追蹤使用情況。
+SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insights-api-custom-events-metrics.md)以追蹤使用情況。
 
 ## 探索資料
 
@@ -69,7 +69,7 @@ SDK 會提供 API 供您[撰寫自訂遙測](../app-insights-api-custom-events-m
 
 ![在方格中，按一下相依性，查看相關的要求。](./media/insights-perf-analytics/08-requests.png)
 
-- 以下範例說明在 SQL 相依性中花費的時間，該相依性中包括 SQL 的呼叫數和相關的統計資料 (例如平均持續時間和標準差)。 
+- 以下範例說明在 SQL 相依性中花費的時間，該相依性中包括 SQL 的呼叫數和相關的統計資料 (例如平均持續時間和標準差)。
 
 ![](./media/insights-perf-analytics/01-example.png)
 
@@ -80,8 +80,7 @@ SDK 會提供 API 供您[撰寫自訂遙測](../app-insights-api-custom-events-m
 * [監視服務健康狀態計量](insights-how-to-customize-monitoring.md)可確保您的服務可用且回應正常。
 * [啟用監視和診斷](insights-how-to-use-diagnostics.md)來在您服務中收集詳細的高頻率計量。
 * 每當發生操作事件或計量超過臨界值時，[接收警示通知](insights-receive-alert-notifications.md)。
-* 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
-* 使用 Application Insights [監視任何網頁的可用性和回應性](../app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
- 
+* 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../application-insights/app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
+* 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

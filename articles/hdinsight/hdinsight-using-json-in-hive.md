@@ -66,19 +66,19 @@
 
 	DROP TABLE IF EXISTS StudentsRaw;
 	CREATE EXTERNAL TABLE StudentsRaw (textcol string) STORED AS TEXTFILE LOCATION "wasb://processjson@hditutorialdata.blob.core.windows.net/";
-	
+
 	DROP TABLE IF EXISTS StudentsOneLine;
 	CREATE EXTERNAL TABLE StudentsOneLine
 	(
 	  json_body string
 	)
 	STORED AS TEXTFILE LOCATION '/json/students';
-	
+
 	INSERT OVERWRITE TABLE StudentsOneLine
-	SELECT CONCAT_WS(' ',COLLECT_LIST(textcol)) AS singlelineJSON 
+	SELECT CONCAT_WS(' ',COLLECT_LIST(textcol)) AS singlelineJSON
 	      FROM (SELECT INPUT__FILE__NAME,BLOCK__OFFSET__INSIDE__FILE, textcol FROM StudentsRaw DISTRIBUTE BY INPUT__FILE__NAME SORT BY BLOCK__OFFSET__INSIDE__FILE) x
 	      GROUP BY INPUT__FILE__NAME;
-	
+
 	SELECT * FROM StudentsOneLine
 
 原始 JSON 檔案位於 ****wasb://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw* Hive 資料表指向原始未簡維的 JSON 文件。
@@ -100,16 +100,16 @@ Hive 提供三種不同的機制，可在 JSON 文件上執行查詢：
 - 使用 GET\_JSON\_OBJECT UDF (使用者定義函數)
 - 使用 JSON\_TUPLE UDF
 - 使用自訂 SerDe
-- 使用 Python 或其他語言撰寫您自己的 UDF。請參閱[這篇文章][hdinsight-python]，了解如何使用 Hive 執行您自己的 Python 程式碼。 
+- 使用 Python 或其他語言撰寫您自己的 UDF。請參閱[這篇文章][hdinsight-python]，了解如何使用 Hive 執行您自己的 Python 程式碼。
 
 ### 使用 GET\_JSON\_OBJECT UDF
 Hive 提供內建的 UDF，稱為 [get json objec](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object)，可在執行階段期間執行 JSON 查詢。此方法採用兩個引數 – 資料表名稱和方法名稱，後者具有簡維 JSON 文件和必須剖析的 JSON 欄位。讓我們看看此 UDF 如何運作的範例。
 
 取得每個學生的姓氏與名字
 
-	SELECT 
-	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.FirstName'), 
-	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.LastName') 
+	SELECT
+	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.FirstName'),
+	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.LastName')
 	FROM StudentsOneLine;
 
 以下是在主控台視窗中執行此查詢時的輸出。
@@ -128,7 +128,7 @@ get-json\_object UDF 有幾項限制。
 
 Hive 所提供的另一個 UDF 稱為 [json\_tuple](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-json_tuple)，其效能比 [get\_ json \_object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) 更高。這個方法會採用一組索引鍵和 JSON 字串，並使用一個函式傳回值的 tuple。下列查詢會從 JSON 文件傳回學生識別碼以及年級：
 
-    SELECT q1.StudentId, q1.Grade 
+    SELECT q1.StudentId, q1.Grade
       FROM StudentsOneLine jt
       LATERAL VIEW JSON_TUPLE(jt.json_body, 'StudentId', 'Grade') q1
         AS StudentId, Grade;
@@ -148,7 +148,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
 1. 安裝 [Java SE 開發套件 7u55 JDK 1.7.0\_55](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u55-oth-JPR)。如果您要使用 HDInsight 的 Windows 部署，請選擇 Windows x64 版本的 JDK。
 
-	>[AZURE.WARNING]JDK 1.8 不適用於此 SerDe。
+	>[AZURE.WARNING] JDK 1.8 不適用於此 SerDe。
 
 	安裝完成之後，請加入新的使用者環境變數：
 
@@ -171,7 +171,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 4：移至您已將此封裝下載至其中的資料夾，並輸入 “mvn package”。這樣應該會建立您稍後會複製到叢集的必要 jar 檔案。
 
 5：移至根資料夾 (您已將封裝下載至其中) 下的目標資料夾。上傳 json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar 檔案到叢集的前端節點。我通常會將它放在 hive 二進位資料夾底下：C:\\apps\\dist\\hive-0.13.0.2.1.11.0-2316\\bin 或類似位置。
- 
+
 6：在 hive 提示字元中，輸入 “add jar /path/to/json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar”。因為在我的案例中，jar 位於 C:\\apps\\dist\\hive-0.13.x\\bin 資料夾中，所以我可以直接以此名稱新增 jar，如下所示：
 
     add jar json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar;
@@ -184,7 +184,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
     DROP TABLE json_table;
     CREATE EXTERNAL TABLE json_table (
-      StudentId string, 
+      StudentId string,
       Grade int,
       StudentDetails array<struct<
           FirstName:string,
@@ -216,7 +216,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
     SELECT SUM(scores)
     FROM json_table jt
       lateral view explode(jt.StudentClassCollection.Score) collection as scores;
-       
+
 上述查詢會使用[橫向檢視切割](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) UDF 展開分數的陣列，讓它們可以加總。
 
 以下是 Hive 主控台的輸出。
@@ -224,7 +224,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 ![SerDe 查詢 2][image-hdi-hivejson-serde_query2]
 
 若要尋找特定學生分數超過 80 分的科目，請使用 SELECT jt.StudentClassCollection.ClassId FROM json\_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score where score > 80;
-      
+
 上述查詢傳回的 Hive 陣列與傳回字串的 get\_json\_object 不同。
 
 ![SerDe 查詢 3][image-hdi-hivejson-serde_query3]
@@ -244,7 +244,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 - [搭配 HDInsight 中的 Hadoop 使用 Hive 和 HiveQL 來分析範例 Apache Log4j 檔案](hdinsight-use-hive.md)
 - [在 HDInsight 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)
 - [在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)
-- [使用 DocumentDB 和 HDInsight 執行 Hadoop 工作](documentdb-run-hadoop-with-hdinsight.md)
+- [使用 DocumentDB 和 HDInsight 執行 Hadoop 工作](../documentdb/documentdb-run-hadoop-with-hdinsight.md)
 
 [hdinsight-python]: hdinsight-python.md
 
@@ -259,6 +259,5 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 [image-hdi-hivejson-serde_query2]: ./media/hdinsight-using-json-in-hive/serde_query2.png
 [image-hdi-hivejson-serde_query3]: ./media/hdinsight-using-json-in-hive/serde_query3.png
 [image-hdi-hivejson-serde_result]: ./media/hdinsight-using-json-in-hive/serde_result.png
- 
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

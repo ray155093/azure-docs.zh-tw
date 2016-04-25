@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何在 Azure API 管理中管理使用者帳戶" 
+	pageTitle="如何在 Azure API 管理中管理使用者帳戶 | Microsoft Azure" 
 	description="了解如何在 Azure API 管理中建立或邀請使用者" 
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/12/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中管理使用者帳戶
 
-在 API 管理中，開發人員是指您使用 API 管理所公開之 API 的使用者。本指南示範如何建立並邀請開發人員使用您以 API 管理執行個體提供給他們的 API 和產品。
+在 API 管理中，開發人員是指您使用 API 管理所公開之 API 的使用者。本指南示範如何建立並邀請開發人員使用您以 API 管理執行個體提供給他們的 API 和產品。如需以程式設計方式管理使用者帳戶的相關資訊，請參閱 [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx) 參考中的[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件。
 
 ## <a name="create-developer"> </a>建立新的開發人員
 
@@ -60,9 +60,25 @@
 
 ## <a name="block-developer"> </a> 停用或重新啟用開發人員帳戶
 
-依預設，新建立或邀請的開發人員帳戶為「作用中」。若要停用開發人員帳戶，請按一下 [封鎖]。若要重新啟用已封鎖的開發人員帳戶，請按一下 [啟用]。已封鎖的開發人員帳戶無法存取開發人員入口網站或呼叫任何 API。
+依預設，新建立或邀請的開發人員帳戶為「作用中」。若要停用開發人員帳戶，請按一下 [封鎖]。若要重新啟用已封鎖的開發人員帳戶，請按一下 [啟用]。已封鎖的開發人員帳戶無法存取開發人員入口網站或呼叫任何 API。若要刪除使用者帳戶，請按一下 [刪除]。
 
 ![Block developer][api-management-new-developer]
+
+## 重設使用者密碼
+
+若要重設使用者帳戶的密碼，請按一下帳戶的名稱。
+
+![重設密碼][api-management-view-developer]
+
+按一下 [重設密碼] 連結可傳送連結給使用者，以便重設其密碼。
+
+![重設密碼][api-management-reset-password]
+
+若要以程式設計方式使用使用者帳戶，請參閱 [API 管理 REST](https://msdn.microsoft.com/library/azure/dn776326.aspx) 參考中的[使用者實體](https://msdn.microsoft.com/library/azure/dn776330.aspx)文件。若要將使用者帳戶密碼重設為特定值，您可以使用[更新使用者](https://msdn.microsoft.com/library/azure/dn776330.aspx#UpdateUser)作業並指定所要的密碼。
+
+## 擱置驗證
+
+![擱置驗證][api-management-pending-verification]
 
 ## <a name="next-steps"> </a>後續步驟
 
@@ -76,7 +92,10 @@
 [api-management-new-developer]: ./media/api-management-howto-create-or-invite-developers/api-management-new-developer.png
 [api-management-invite-developer-window]: ./media/api-management-howto-create-or-invite-developers/api-management-invite-developer-window.png
 [api-management-invite-developer-confirmation]: ./media/api-management-howto-create-or-invite-developers/api-management-invite-developer-confirmation.png
-[api-management-]: ./media/api-management-howto-create-or-invite-developers/api-management-.png
+[api-management-pending-verification]: ./media/api-management-howto-create-or-invite-developers/api-management-pending-verification.png
+[api-management-view-developer]: ./media/api-management-howto-create-or-invite-developers/api-management-view-developer.png
+[api-management-reset-password]: ./media/api-management-howto-create-or-invite-developers/api-management-reset-password.png
+: ./media/api-management-howto-create-or-invite-developers/.png
 
 
 
@@ -91,4 +110,4 @@
 [開始使用 Azure API 管理]: api-management-get-started.md#create-service-instance
 [設定電子郵件範本]: api-management-howto-configure-notifications.md#email-templates
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

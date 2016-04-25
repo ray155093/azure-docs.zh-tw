@@ -48,7 +48,7 @@
 
     ![][7]
 
-5. 您可以在匯入這個專案的 mbed 編譯器視窗中看到匯入的各種程式庫。有些是由 Azure IoT 小組提供和維護 ([azureiot\_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub\_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub\_amqp\_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[proton-c-mbed](https://developer.mbed.org/users/AzureIoTClient/code/proton-c-mbed/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
+5. 您可以在匯入這個專案的 mbed 編譯器視窗中看到匯入的各種程式庫。有些是由 Azure IoT 小組提供和維護 ([azureiot\_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub\_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub\_amqp\_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[azure\_uamqp](https://developer.mbed.org/users/AzureIoTClient/code/azure_uamqp/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
 
     ![][8]
 
@@ -61,7 +61,7 @@
     static const char* hubSuffix = "[IoTHub Suffix, i.e. azure-devices.net]";
     ```
 
-7. 以您的裝置資料取代 [Device Id] 和 [Device Key]。使用 IoT 中樞主機名稱來取代 [IoTHub Name] 和 [IoTHub Suffix, i.e. azure-devices.net] 預留位置。例如，若您的 IoT 中樞主機名稱是 Contoso.azure-devices.net，contoso 就是 **hubName**，而它之後的所有項目就是 **hubSuffix**：
+7. 將 [Device Id] 和 [Device Key] 以您的裝置資料取代，來使範例程式能夠連線到您的 IoT 中樞。使用 IoT 中樞主機名稱來取代 [IoTHub Name] 和 [IoTHub Suffix, i.e. azure-devices.net] 預留位置。例如，若您的 IoT 中樞主機名稱是 Contoso.azure-devices.net，contoso 就是 **hubName**，而它之後的所有項目就是 **hubSuffix**：
 
     ```
     static const char* deviceId = "mydevice";
@@ -72,6 +72,123 @@
 
     ![][9]
 
+### 程式碼逐步解說
+
+如果您對程式運作的方式感到興趣，本節將會描述範例程式碼幾個關鍵的部分。如果您只想要執行程式碼，請直接跳到[建置並執行程式](#buildandrun)。
+
+#### 定義模型
+
+此範例使用[序列化程式][lnk-serializer]程式庫來定義指定裝置可傳送到或接收來自 IoT 中樞之訊息的模型。在此範例中，[Contoso] 命名空間會定義一個「控溫器」模型，此模型能指定 **Temperature**、**ExternalTemperature** 及 **Humidity** 等遙測資料，以及裝置識別碼、裝置屬性及裝置會做出回應的命令等中繼資料：
+
+```
+BEGIN_NAMESPACE(Contoso);
+
+DECLARE_STRUCT(SystemProperties,
+    ascii_char_ptr, DeviceID,
+    _Bool, Enabled
+);
+
+DECLARE_STRUCT(DeviceProperties,
+ascii_char_ptr, DeviceID,
+_Bool, HubEnabledState
+);
+
+DECLARE_MODEL(Thermostat,
+
+    /* Event data (temperature, external temperature and humidity) */
+    WITH_DATA(int, Temperature),
+    WITH_DATA(int, ExternalTemperature),
+    WITH_DATA(int, Humidity),
+    WITH_DATA(ascii_char_ptr, DeviceId),
+
+    /* Device Info - This is command metadata + some extra fields */
+    WITH_DATA(ascii_char_ptr, ObjectType),
+    WITH_DATA(_Bool, IsSimulatedDevice),
+    WITH_DATA(ascii_char_ptr, Version),
+    WITH_DATA(DeviceProperties, DeviceProperties),
+    WITH_DATA(ascii_char_ptr_no_quotes, Commands),
+
+    /* Commands implemented by the device */
+    WITH_ACTION(SetTemperature, int, temperature),
+    WITH_ACTION(SetHumidity, int, humidity)
+);
+
+END_NAMESPACE(Contoso);
+```
+
+與模型定義相關的，是裝置會做出回應之 **SetTemperature** 和 **SetHumidity** 命令的定義：
+
+```
+EXECUTE_COMMAND_RESULT SetTemperature(Thermostat* thermostat, int temperature)
+{
+    (void)printf("Received temperature %d\r\n", temperature);
+    thermostat->Temperature = temperature;
+    return EXECUTE_COMMAND_SUCCESS;
+}
+
+EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
+{
+    (void)printf("Received humidity %d\r\n", humidity);
+    thermostat->Humidity = humidity;
+    return EXECUTE_COMMAND_SUCCESS;
+}
+```
+
+#### 將模型連接到程式庫
+
+函式 **sendMessage** 和 **IoTHubMessage** 是從裝置傳送遙測，並將來自 IoT 中樞的訊息連接到命令處理常式的重複使用程式碼。
+
+#### remote\_monitoring\_run 函式
+
+程式的 **main** 函式會在應用程式開始將裝置的行為做為 IoT 中樞裝置用戶端執行時，叫用 **remote\_monitoring\_run** 函式。此 **remote\_monitoring\_run** 函式大部分是以巢狀配對的函式所組成：
+
+- **platform\_init** 和 **platform\_deinit** 能執行平台特定的初始化和關機作業。
+- **serializer\_init** 和 **serializer\_deinit** 能初始化並取消初始化序列化程式程式庫。
+- **IoTHubClient\_Create** 和 **IoTHubClient\_Destroy** 能使用連線到您 IoT 中樞的裝置認證建立用戶端控制代碼 (**iotHubClientHandle**)。
+
+程式在 **remote\_monitoring\_run** 函式的主要區段中，會使用 **iotHubClientHandle** 控制代碼執行下列作業：
+
+- 建立 Contoso 控溫器模型的執行個體，並針對這兩個命令設定訊息回呼。
+- 使用序列化程式程式庫將有關裝置本身的資訊 (包括其支援的命令) 傳送給您的 IoT 中樞。當中樞接收到此訊息時，它會將儀表板中的裝置狀態從 [待決] 變更為 [執行中]。
+- 啟動一個 **while** 迴圈，並於每秒將溫度、外部溫度及濕度的值傳送到 IoT 中樞。
+
+做為參考，以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息︰
+
+```
+{
+  "ObjectType":"DeviceInfo",
+  "Version":"1.0",
+  "IsSimulatedDevice":false,
+  "DeviceProperties":
+  {
+    "DeviceID":"mydevice01", "HubEnabledState":true
+  }, 
+  "Commands":
+  [
+    {"Name":"SetHumidity", "Parameters":[{"Name":"humidity","Type":"double"}]},
+    { "Name":"SetTemperature", "Parameters":[{"Name":"temperature","Type":"double"}]}
+  ]
+}
+```
+
+做為參考，以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息︰
+
+```
+{"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
+```
+
+做為參考，以下是從 IoT 中樞收到的範例 **Command**︰
+
+```
+{
+  "Name":"SetHumidity",
+  "MessageId":"2f3d3c75-3b77-4832-80ed-a5bb3e233391",
+  "CreatedTime":"2016-03-11T15:09:44.2231295Z",
+  "Parameters":{"humidity":23}
+}
+```
+
+<a id="buildandrun"/>
 ### 建置並執行程式
 
 1. 按一下 [編譯] 來建置程式。您可以安全地略過任何警告，但如果建置產生錯誤，請修正錯誤後再繼續。
@@ -101,5 +218,6 @@
 [lnk-mbed-home]: https://developer.mbed.org/platforms/FRDM-K64F/
 [lnk-mbed-getstarted]: https://developer.mbed.org/platforms/FRDM-K64F/#getting-started-with-mbed
 [lnk-mbed-pcconnect]: https://developer.mbed.org/platforms/FRDM-K64F/#pc-configuration
+[lnk-serializer]: https://azure.microsoft.com/documentation/articles/iot-hub-device-sdk-c-intro/#serializer
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

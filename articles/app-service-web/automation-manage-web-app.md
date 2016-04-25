@@ -40,7 +40,6 @@ Web 應用程式可透過 [Azure PowerShell 工具](https://msdn.microsoft.com/l
 
 了解 Azure 自動化的基本概念以及如何用它來管理 Azure Web 應用程式之後，請參考下列連結，以深入了解 Azure 自動化。
 
-* 請參閱 Azure 自動化[入門指南](../automation-intro.md)
- 
+* 請參閱 Azure 自動化[入門指南](../automation/automation-intro.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,6 +1,6 @@
 <properties
    pageTitle="在 Visual Studio 中建立和管理 Windows VM | Microsoft Azure"
-   description="在 Visual Studio 中建立和管理執行 Windows 的 Azure VM"
+   description="了解如何使用 Visual Studio 建立和管理執行 Windows 的 Azure VM"
    services="visual-studio-online,virtual-machines-windows"
    documentationCenter="na"
    authors="TomArcher"
@@ -21,4 +21,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../includes/virtual-machines-common-classic-manage-visual-studio.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

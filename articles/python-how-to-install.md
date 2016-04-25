@@ -195,7 +195,7 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。如�
 [Microsoft Azure SDK for Python 3.4]: http://go.microsoft.com/fwlink/?LinkID=516990
 [Setting up a Linux VM via the Azure portal]: create-and-configure-opensuse-vm-in-portal.md
 [How to use the Azure Command-Line Interface]: crossplat-cmd-tools.md
-[建立執行 Linux 的虛擬機器]: virtual-machines-linux-cli-create.md
+[建立執行 Linux 的虛擬機器]: virtual-machines-linux-quick-create-cli.md
 [使用 Django 建立網站]: web-sites-python-create-deploy-django-app.md
 [使用 Bottle 建立網站]: web-sites-python-create-deploy-bottle-app.md
 [使用 Flask 建立網站]: web-sites-python-create-deploy-flask-app.md
@@ -204,4 +204,4 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。如�
 [佇列儲存體]: storage-python-how-to-use-queue-storage.md
 [Blob 儲存體]: storage-python-how-to-use-blob-storage.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

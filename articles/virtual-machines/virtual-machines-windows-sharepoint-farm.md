@@ -13,8 +13,8 @@
 	ms.workload="infrastructure-services"
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="02/03/2016"
+	ms.topic="article"
+	ms.date="04/01/2016"
 	ms.author="josephd"/>
 
 # 建立 SharePoint 伺服器陣列
@@ -36,7 +36,7 @@
 1. 按一下 [[這裡](https://azure.microsoft.com/marketplace/partners/sharepoint2013/sharepoint2013farmsharepoint2013-nonha/)]。
 2. 按一下 [**部署**]。
 3. 在 [**SharePoint 2013 非 HA 伺服器陣列**] 窗格中，按一下 [**建立**]。
-4. 在 [建立 SharePoint 2013 非 HA 伺服器陣列] 窗格中，指定 7 個步驟的相關設定，然後按一下 [建立]。
+4. 在 [建立 SharePoint 2013 非 HA 伺服器陣列] 窗格中，指定七個步驟的設定，然後按一下 [建立]。
 
 高可用性 SharePoint 伺服器陣列由下列組態中的九個虛擬機器組成。
 
@@ -49,7 +49,9 @@
 1. 按一下 [[這裡](https://azure.microsoft.com/marketplace/partners/sharepoint2013/sharepoint2013farmsharepoint2013-ha/)]。
 2. 按一下 [**部署**]。
 3. 在 [**SharePoint 2013 HA 伺服器陣列**] 窗格中，按一下 [**建立**]。
-4. 指定 [**建立 SharePoint 2013 HA 伺服器陣列**] 窗格之 7 個步驟的相關設定，然後按一下 [**建立**]。
+4. 在 [建立 SharePoint 2013 HA 伺服器陣列] 窗格中，指定七個步驟的設定，然後按一下 [建立]。
+
+> [AZURE.NOTE] 您無法使用 Azure 免費試用版建立 **SharePoint 2013 非 HA 伺服器陣列**或 **SharePoint 2013 HA 伺服器陣列**。
 
 ## 管理 SharePoint 伺服器陣列
 
@@ -59,8 +61,9 @@
 
 > [AZURE.NOTE] Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬網路中，同時建立這兩種伺服器陣列。沒有任何站對站 VPN 或 ExpressRoute 連線會連回您的組織網路。
 
-## 下一步
+## 後續步驟
 
-- 探索 Azure 基礎結構服務中其他的 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 設定。
+- 將 [SharePoint 2013 內部網路伺服器陣列](virtual-machines-windows-sp-intranet-overview.md)部署為 Azure 基礎結構服務中的生產工作負載。
+- 探索 Azure 基礎結構服務中其他的 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 組態。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

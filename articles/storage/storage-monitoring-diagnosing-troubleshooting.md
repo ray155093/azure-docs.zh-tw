@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/12/2016"
+	ms.date="04/06/2016"
 	ms.author="jahogg"/>
 
 # 監視、診斷與疑難排解 Microsoft Azure 儲存體
@@ -25,6 +25,8 @@
 與傳統環境相比，託管於雲端環境的分散式應用程式一旦發生問題，無論要為其進行診斷或疑難排解，都更加複雜。應用程式可以部署在 PaaS 或 IaaS 基礎架構、內部部署環境、行動裝置或是這幾種環境的組合上。一般來說，您的應用程式網路流量可能會跨越公共與私有網路，而您的應用程式有可能使用多項儲存技術，例如 Microsoft Azure 儲存體資料表、Blob、佇列或是檔案，乃至於關聯式資料庫與文件資料庫之類的其他資料存放區。
 
 若要成功管理這類應用程式，您除了需要主動監視它們之外，還需要了解如何為其各層面與相依技術進行診斷與疑難排解。身為 Azure 儲存體服務的使用者，您應持續監視應用程式所使用的儲存體服務，以預防發生非預期的行為改變 (例如，回應速度明顯比平時慢)，並使用記錄功能來收集更多的詳細資料，同時深入分析問題的成因。從監視與記錄手段中取得的診斷資訊，將在應用程式遭遇問題時，協助您判斷根本原因。接著才能為問題進行疑難排解，並決定該採取哪些合宜的步驟來加以矯正。Azure 儲存體是 Azure 的核心服務之一，更在客戶部署至 Azure 基礎結構的主要解決方案之中扮演著重要的環節。Azure 儲存體會在您的雲端架構應用程式裡加入各項功能，從而簡化儲存體問題的監視、診斷與疑難排解程序。
+
+> [AZURE.NOTE] 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
 
 如需在 Azure 儲存體應用程式進行端對端疑難排解的實際操作指南，請參閱[使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](../storage-e2e-troubleshooting/)。
 
@@ -240,9 +242,9 @@ Storage Client Library for .NET 能讓您針對應用程式所執行的儲存體
 
 儲存體用戶端程式庫會自動為每一項要求產生唯一的用戶端要求 ID。
 
-- 在儲存體用戶端程式庫所建立的用戶端記錄上，用戶端要求 ID 會顯示在與該要求相關之每個記錄項目的 [用戶端要求 ID\] 欄位。
+- 在儲存體用戶端程式庫所建立的用戶端記錄上，用戶端要求 ID 會顯示在與該要求相關之每個記錄項目的 [用戶端要求 ID] 欄位。
 - 以 Fiddler 所擷取的網路追蹤為例，用戶端要求 ID 會顯示在要求訊息中，並呈現為 **x-ms-client-request-id** HTTP 標頭值。
-- 在伺服器端的儲存體記錄中，用戶端要求 ID 會顯示在 [用戶端要求 ID\] 資料欄。
+- 在伺服器端的儲存體記錄中，用戶端要求 ID 會顯示在 [用戶端要求 ID] 資料欄。
 
 > [AZURE.NOTE] 多個要求可以共用同一個用戶端要求 ID，這是因為用戶端可以指派此值 (雖然儲存體用戶端程式庫會自動指派新的值)。如果重試來自用戶端，則所有嘗試都共用相同的用戶端要求 ID。如果批次是從用戶端傳送，則該批次具有單一用戶端要求 ID。
 
@@ -668,7 +670,10 @@ Timestamp|作業|結果|容器名稱|用戶端要求 ID
 
 **PercentSuccess** 度量會依據其 HTTP 狀態碼，擷取成功完成的作業百分比。帶有 2XX 狀態碼的作業會記錄為成功，而帶有 3XX、4XX 與 5XX 範圍之狀態碼的作業將記錄為不成功，並會降低 **PercentSucess** 度量值。在伺服器端的儲存體記錄檔中，這些作業會加上 **ClientOtherErrors** 的交易狀態記錄下來。
 
-請務必注意，這些作業已經成功完成，因此不會影響到例如可用性的其他度量。以下範例顯示成功執行，但出現不成功 HTTP 狀態碼的作業：- **ResourceNotFound** (找不到 404)，例如來自 GET 對不存在的 Blob 的要求。- **ResouceAlreadyExists** (衝突 409)，例如來自資源已存在的 **CreateIfNotExist** 作業。- **ConditionNotMet** (未修改 304)，例如來自條件式作業，比如說，只有在上次作業之後更新影像，用戶端才會傳送 **ETag** 值和 HTTP **If-None-Match** 標頭以要求該影像。
+請務必注意，這些作業已經成功完成，因此不會影響到例如可用性的其他度量。以下作業範例顯示作業已成功執行，但卻出現不成功的 HTTP 狀態碼：
+- **ResourceNotFound** (找不到 404)，例如來自 GET 對不存在的 Blob 的要求。
+- **ResouceAlreadyExists** (衝突 409)，例如來自 **CreateIfNotExist** 的作業，而且其資源已經存在。
+- **ConditionNotMet** (未修改 304)，例如來自條件式作業，像是用戶端傳送 **ETag** 值與 HTTP **If-None-Match** 標頭以要求顯示影像 (前提是該影像自從上次作業後已經更新)。
 
 您可以在<a href="http://msdn.microsoft.com/library/azure/dd179357.aspx" target="_blank">常見的 REST API 錯誤碼</a>頁面找到儲存體服務傳回的常見 REST API 錯誤碼清單。
 
@@ -915,4 +920,4 @@ Microsoft Message Analyzer 內建的 **Web Proxy** 追蹤功能是依據 Fiddler
 [9]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-1.png
 [10]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-2.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

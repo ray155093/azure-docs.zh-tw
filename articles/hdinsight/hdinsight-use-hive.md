@@ -162,6 +162,8 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 - [將資料上傳至 HDInsight][hdinsight-upload-data]
 - [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
+- [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
+- [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
 - [搭配 HDInsight 使用 MapReduce 工作][hdinsight-use-mapreduce]
 
 [check]: ./media/hdinsight-use-hive/hdi.checkmark.png
@@ -194,7 +196,7 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-get-started]: hdinsight-get-started.md
 
-[Powershell-install-configure]: ../install-configure-powershell.md
+[Powershell-install-configure]: ../powershell-install-configure.md
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
 [image-hdi-hive-powershell]: ./media/hdinsight-use-hive/HDI.HIVE.PowerShell.png
@@ -204,4 +206,4 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 [cindygross-hive-tables]: http://blogs.msdn.com/b/cindygross/archive/2013/02/06/hdinsight-hive-internal-and-external-tables-intro.aspx
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,0 +1,534 @@
+<properties
+	pageTitle="使用 Azure 媒體分析偵測臉部和情緒"
+	description="本主題示範如何使用 Azure 媒體分析偵測臉部和情緒。"
+	services="media-services"
+	documentationCenter=""
+	authors="juliako"
+	manager="erikre"
+	editor=""/>
+
+<tags
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="04/08/2016"   
+	ms.author="milanga;juliako;"/>
+
+#使用 Azure 媒體分析偵測臉部和情緒
+
+##概觀
+
+**Azure 媒體臉部偵測器**媒體處理器 (MP) 能讓您透過臉部表情針對對象的參與情形做出計算、追蹤移動，甚至進行量測。此服務包含兩個功能：
+
+- **臉部偵測**
+
+	臉部偵測能夠找出並追蹤影片中的臉部。可以同時追蹤多個臉部，隨著對象移動持續進行追蹤，並將時間和位置的中繼資料以 JSON 檔案的格式回傳。追蹤期間，服務會在人員於螢幕上四處移動時，嘗試為他們的臉部賦予相同的識別碼，就算他們被擋住或暫時離開畫面也一樣。
+
+	>[AZURE.NOTE]此服務並不會執行臉部辨識。臉部離開畫面或被擋住太久的人員，將會在回來時被賦予新的識別碼。
+
+- **情緒偵測**
+	
+	「情緒偵測」是臉部偵測媒體處理器的選擇性元件，它會根據已偵測的臉部，傳回多個情緒屬性的分析，包括快樂、悲傷、恐懼、憤怒等等。此資料能針對每個臉部個別傳回，或是以群組值的方式傳回，並可以根據可自訂的窗口和間隔進行彙總。
+
+**Azure 媒體臉部偵測器** MP 目前為預覽功能。
+
+本主題提供有關 **Azure 媒體臉部偵測器**的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
+
+##臉部偵測器輸入檔案
+
+影片檔案。目前支援下列格式：MP4、MOV 及 WMV。
+
+##臉部偵測器輸出檔案
+
+臉部偵測器和追蹤 API 能提供高精確度的臉部位置偵測和追蹤功能，並能在單一影片中偵測到最多 64 個人類臉部。正面的臉部能提供最佳結果，而側面的臉部和較小的臉部 (小於或等於 24x24 像素) 可能就無法取得相同的精確度。
+
+已偵測並追蹤的臉部將會搭配能以像素為單位表示臉部在影像中位置的座標 (左側、上方、寬度和高度)，以及表示對該人員進行追蹤的臉部識別碼。臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
+
+###<a id="output_elements"></a>輸出 JSON 檔案的元素
+
+針對臉部偵測和追蹤作業，輸出結果會以 JSON 格式包含指定檔案內臉部的中繼資料。
+
+臉部偵測和追蹤 JSON 包括下列屬性：
+
+元素|說明
+---|---
+版本|這是指影片 API 的版本。
+時幅|影片每秒的「刻度」數目。
+Offset|這是時間戳記的時間位移。在版本 1.0 的影片 API 中，這永遠會是 0。在我們於未來將支援的案例中，此值可能會變更。
+畫面播放速率|影片的每秒畫面格數。
+片段|中繼資料會被分成稱為「片段」的不同區段。每個片段皆包含開始、持續時間、間隔數字及事件。
+啟動|第一個事件的開始時間 (以「刻度」為單位)。
+持續時間|片段的長度 (以「刻度」為單位)。
+間隔|片段內每個事件項目的間隔 (以「刻度」為單位)。
+事件|每個事件皆包含在該持續時間內所偵測到並進行追蹤的臉部。它是個包含事件之陣列的陣列。外部陣列代表一個單位的時間間隔。內部陣列包含在那個時間點所發生的 0 或多個事件。空白的括號代表沒有偵測到臉部。
+ID| 正在被追蹤之臉部的識別碼。如果該臉部變成無法被偵測，這個號碼可能會在無意中變更。特定的人員在整個影片中應該要擁有相同的識別碼，但由於偵測演算法的限制 (例如受到阻擋等情況)，使我們並無法保證這個情況。
+X，Y|標準化縮放 (0.0 到 1.0) 中臉部週框方塊左上角的 X 和 Y 座標。<br/>-X 和 Y 座標總是相對於橫向方向，因此如果您的影片是直向影片 (或在 iOS 的情況下為上下顛倒)，便需要相對應地轉換座標。
+寬度，高度|標準化縮放 (0.0 到 1.0) 中臉部週框方塊的寬度和高度。
+facesDetected|這是位於 JSON 結果的末端，並能摘要說明演算法在影片期間所偵測到的臉部數目。由於識別碼可能會在臉部變成無法被偵測時 (例如臉部離開螢幕、轉向別處) 於無意中變更，此數字並不會總是和影片中的實際臉部數目相同。
+
+臉部偵測器使用分散 (中繼資料可以分解為以時間為基礎的區塊，讓您可以只下載需要的部分) 及分割 (可以在事件過於龐大的情況下對事件進行分解) 的技術。某些簡單的計算可以協助您轉換資料。例如，如果事件是從 6300 (刻度) 開始，並擁有 2997 (刻度/每秒) 的時幅，以及 29.97 (畫面/每秒) 的畫面播放速率，則：
+
+- 開始/時幅 = 2.1 秒
+- 秒數 x (畫面播放速率/時幅) = 63 個畫面
+
+下列為針對臉部偵測和追蹤，將 JSON 擷取為每一畫面之格式的簡單範例：
+	
+	var faceDetectionResultJsonString = operationResult.ProcessingResult;
+	var faceDetecionTracking = 
+	     JsonConvert.DeserializeObject<FaceDetectionResult>(faceDetectionResultJsonString, settings);
+
+
+##臉部偵測輸入和輸出範例
+
+###輸入影片
+
+[輸入影片](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
+
+###工作設定 (預設)
+
+以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。下列設定預設值僅適用於臉部偵測。
+
+	{"version":"1.0"}
+
+###JSON 輸出
+
+下列為 JSON 輸出受到截斷的範例。
+
+	{
+	"version": 1,
+	"timescale": 30000,
+	"offset": 0,
+	"framerate": 29.97,
+	"width": 1280,
+	"height": 720,
+	"fragments": [
+	    {
+	    "start": 0,
+	    "duration": 60060
+	    },
+	    {
+	    "start": 60060,
+	    "duration": 60060,
+	    "interval": 1001,
+	    "events": [
+	        [
+	        {
+	            "id": 0,
+	            "x": 0.519531,
+	            "y": 0.180556,
+	            "width": 0.0867188,
+	            "height": 0.154167
+	        }
+	        ],
+	        [
+	        {
+	            "id": 0,
+	            "x": 0.517969,
+	            "y": 0.181944,
+	            "width": 0.0867188,
+	            "height": 0.154167
+	        }
+	        ],
+	        [
+	        {
+	            "id": 0,
+	            "x": 0.517187,
+	            "y": 0.183333,
+	            "width": 0.0851562,
+	            "height": 0.151389
+	        }
+	        ],
+
+		. . . 
+
+##情緒偵測輸入和輸出範例
+
+
+###輸入影片
+
+[輸入影片](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
+
+###工作設定 (預設)
+
+以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。下列設定預設值指定以情緒偵測為基礎建立 JSON。
+ 	
+	{
+	  "version": "1.0",
+	  "options": {
+	    "aggregateEmotionWindowMs": "987",
+	    "mode": "aggregateEmotion",
+	    "aggregateEmotionIntervalMs": "342"
+	  }
+	}
+
+
+屬性名稱|說明
+---|---
+模式|臉部：僅臉部偵測 <br/>AggregateEmotion：傳回該畫面中所有臉部的平均情緒值。
+AggregateEmotionWindowMs|在已選取 AggregateEmotion 模式時使用。指定要用來產生每個彙總結果之影片的長度，以毫秒為單位。
+AggregateEmotionIntervalMs|在已選取 AggregateEmotion 模式時使用。指定產生彙總結果的頻率。
+
+彙總預設值。下列為彙總窗口和間隔設定的建議值。窗口應該要比間隔更長。
+
+ |預設|最大|最小
+---|---|---|---
+窗口長度|2|3|1
+間隔|0\.5|1|0\.25
+
+###JSON 輸出
+
+彙總情緒的 JSON 輸出 (已截斷)：
+ 
+	
+	{
+	 "version": 1,
+	 "timescale": 30000,
+	 "offset": 0,
+	 "framerate": 29.97,
+	 "width": 1280,
+	 "height": 720,
+	 "fragments": [
+	   {
+	     "start": 0,
+	     "duration": 60060,
+	     "interval": 15015,
+	     "events": [
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           },
+	           "windowMeanScores": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           }
+	         }
+	       ],
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           },
+	           "windowMeanScores": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           }
+	         }
+	       ],
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           },
+	           "windowMeanScores": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           }
+	         }
+	       ],
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           },
+	           "windowMeanScores": {
+	             "neutral": 0,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           }
+	         }
+	       ]
+	     ]
+	   },
+	   {
+	     "start": 60060,
+	     "duration": 60060,
+	     "interval": 15015,
+	     "events": [
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 1,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+	             "contempt": 0
+	           },
+	           "windowMeanScores": {
+	             "neutral": 0.688541,
+	             "happiness": 0.0586323,
+	             "surprise": 0.227184,
+	             "sadness": 0.00945675,
+	             "anger": 0.00592107,
+	             "disgust": 0.00154993,
+	             "fear": 0.00450447,
+	             "contempt": 0.0042109
+	           }
+	         }
+	       ],
+	       [
+	         {
+	           "windowFaceDistribution": {
+	             "neutral": 1,
+	             "happiness": 0,
+	             "surprise": 0,
+	             "sadness": 0,
+	             "anger": 0,
+	             "disgust": 0,
+	             "fear": 0,
+
+
+##限制
+
+- 支援的輸入影片格式包括 MP4、MOV 及 WMV。
+- 可偵測的臉部大小範圍是 24x24 到 2048x2048 像素。位於此範圍之外的臉部將無法被偵測。
+- 針對每個影片，傳回臉部的最大數目為 64。
+- 某些臉部可能因技術挑戰而無法偵測，例如非常大的臉部角度 (頭部姿勢)，以及大型的阻擋物。正面和接近正面的臉部能提供最佳結果。
+
+
+## 範例程式碼
+
+下列程式將示範如何：
+
+1. 建立資產並將媒體檔案上傳到資產。
+1. 根據包含下列 JSON 預設值的設定檔案，建立執行臉部偵測工作的工作。 
+					
+		{
+		    "version": "1.0"
+		}
+
+1. 下載輸出 JSON 檔案。
+		 
+        using System;
+		using System.Configuration;
+		using System.IO;
+		using System.Linq;
+		using Microsoft.WindowsAzure.MediaServices.Client;
+		using System.Threading;
+		using System.Threading.Tasks;
+		
+		namespace FaceDetection
+		{
+		    class Program
+		    {
+		        // Read values from the App.config file.
+		        private static readonly string _mediaServicesAccountName =
+		            ConfigurationManager.AppSettings["MediaServicesAccountName"];
+		        private static readonly string _mediaServicesAccountKey =
+		            ConfigurationManager.AppSettings["MediaServicesAccountKey"];
+		
+		        // Field for service context.
+		        private static CloudMediaContext _context = null;
+		        private static MediaServicesCredentials _cachedCredentials = null;
+		
+		        static void Main(string[] args)
+		        {
+		
+		            // Create and cache the Media Services credentials in a static class variable.
+		            _cachedCredentials = new MediaServicesCredentials(
+		                            _mediaServicesAccountName,
+		                            _mediaServicesAccountKey);
+		            // Used the cached credentials to create CloudMediaContext.
+		            _context = new CloudMediaContext(_cachedCredentials);
+		
+		            // Run the FaceDetection job.
+		            var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
+		                                        @"C:\supportFiles\FaceDetection\config.json");
+		
+		            // Download the job output asset.
+		            DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
+		        }
+		
+		        static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
+		        {
+		            // Create an asset and upload the input media file to storage.
+		            IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
+		                "My Face Detection Input Asset",
+		                AssetCreationOptions.None);
+		
+		            // Declare a new job.
+		            IJob job = _context.Jobs.Create("My Face Detection Job");
+		
+		            // Get a reference to Azure Media Face Detector.
+		            string MediaProcessorName = "Azure Media Face Detector";
+		
+		            var processor = GetLatestMediaProcessorByName(MediaProcessorName);
+		
+		            // Read configuration from the specified file.
+		            string configuration = File.ReadAllText(configurationFile);
+		
+		            // Create a task with the encoding details, using a string preset.
+		            ITask task = job.Tasks.AddNew("My Face Detection Task",
+		                processor,
+		                configuration,
+		                TaskOptions.None);
+		
+		            // Specify the input asset.
+		            task.InputAssets.Add(asset);
+		
+		            // Add an output asset to contain the results of the job.
+		            task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
+		
+		            // Use the following event handler to check job progress.  
+		            job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
+		
+		            // Launch the job.
+		            job.Submit();
+		
+		            // Check job execution and wait for job to finish.
+		            Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
+		
+		            progressJobTask.Wait();
+		
+		            // If job state is Error, the event handling
+		            // method for job progress should log errors.  Here we check
+		            // for error state and exit if needed.
+		            if (job.State == JobState.Error)
+		            {
+		                ErrorDetail error = job.Tasks.First().ErrorDetails.First();
+		                Console.WriteLine(string.Format("Error: {0}. {1}",
+		                                                error.Code,
+		                                                error.Message));
+		                return null;
+		            }
+		
+		            return job.OutputMediaAssets[0];
+		        }
+		
+		        static IAsset CreateAssetAndUploadSingleFile(string filePath, string assetName, AssetCreationOptions options)
+		        {
+		            IAsset asset = _context.Assets.Create(assetName, options);
+		
+		            var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
+		            assetFile.Upload(filePath);
+		
+		            return asset;
+		        }
+		
+		        static void DownloadAsset(IAsset asset, string outputDirectory)
+		        {
+		            foreach (IAssetFile file in asset.AssetFiles)
+		            {
+		                file.Download(Path.Combine(outputDirectory, file.Name));
+		            }
+		        }
+		
+		        static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
+		        {
+		            var processor = _context.MediaProcessors
+		                .Where(p => p.Name == mediaProcessorName)
+		                .ToList()
+		                .OrderBy(p => new Version(p.Version))
+		                .LastOrDefault();
+		
+		            if (processor == null)
+		                throw new ArgumentException(string.Format("Unknown media processor",
+		                                                           mediaProcessorName));
+		
+		            return processor;
+		        }
+		
+		        static private void StateChanged(object sender, JobStateChangedEventArgs e)
+		        {
+		            Console.WriteLine("Job state changed event:");
+		            Console.WriteLine("  Previous state: " + e.PreviousState);
+		            Console.WriteLine("  Current state: " + e.CurrentState);
+		
+		            switch (e.CurrentState)
+		            {
+		                case JobState.Finished:
+		                    Console.WriteLine();
+		                    Console.WriteLine("Job is finished.");
+		                    Console.WriteLine();
+		                    break;
+		                case JobState.Canceling:
+		                case JobState.Queued:
+		                case JobState.Scheduled:
+		                case JobState.Processing:
+		                    Console.WriteLine("Please wait...\n");
+		                    break;
+		                case JobState.Canceled:
+		                case JobState.Error:
+		                    // Cast sender as a job.
+		                    IJob job = (IJob)sender;
+		                    // Display or log error details as needed.
+		                    // LogJobStop(job.Id);
+		                    break;
+		                default:
+		                    break;
+		            }
+		        }
+		
+		    }
+        }
+
+
+##媒體服務學習路徑
+
+[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+
+##提供意見反應
+
+[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+##相關連結
+
+[Azure Media Services Analytics Overview (Azure 媒體服務分析概觀)](media-services-analytics-overview.md)
+
+<!---HONumber=AcomDC_0413_2016-->

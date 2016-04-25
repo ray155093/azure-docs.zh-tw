@@ -66,18 +66,7 @@ Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最�
 以撥打電話做為第二個因素|* | * | *
 以 SMS 做為第二個因素|* | * | *
 用戶端應用程式密碼不支援 MFA|* | * | *
-系統管理員控制驗證方法| | | *
-PIN 模式| | | *
-詐騙警示| | | *
-MFA 報告| | | *
-一次性略過| | | *
-通話的自訂問候語| | | *
-自訂通話來電者 ID| | | *
-事件確認| | | *
-信任的 IP| | | *
-暫停對已記住的裝置進行 MFA (公開預覽)| | | *
-MFA SDK| | | *
-對使用 MFA Server 的內部部署應用程式進行 MFA| | | *
+系統管理員控制驗證方法| **| *| * PIN 模式| | | * 詐騙警示| | | * MFA 報告| | | * 一次性略過| | | * 通話的自訂問候語| | | * 自訂通話來電者 ID| | | * 事件確認| | | * 受信任的 IP| | | * 暫停對已記住的裝置進行 MFA (公開預覽)| | | * MFA SDK| | | * 對使用 MFA Server 的內部部署應用程式進行 MFA| | | *
 
 
 ##如何取得 Azure Multi-Factor Authentication
@@ -102,4 +91,4 @@ MFA SDK| | | *
 
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

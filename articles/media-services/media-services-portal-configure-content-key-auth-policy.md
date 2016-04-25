@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/03/2016"  
+ 	ms.date="04/07/2016"  
 	ms.author="juliako"/>
 
 
@@ -24,14 +24,16 @@
 
 ##概觀
 
-Microsoft Azure 媒體服務可讓您提供您使用進階加密標準 (AES) (使用 128 位元加密金鑰) 和 PlayReady DRM 加密的內容。媒體服務也提供**金鑰\\授權傳遞服務**，用戶端可以從該處取得金鑰或授權，以便播放加密的內容。
+Microsoft Azure 媒體服務可讓您傳遞受到進階加密標準 (AES) (使用 128 位元加密金鑰) 或 [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/) 保護的 MPEG DASH、Smooth Streaming 和 HTTP Live Streaming (HLS) 串流。AMS 也可讓您傳遞使用 Widevine DRM 加密的 DASH 串流。PlayReady 和 Widevine 是依照 Common Encryption (ISO/IEC 23001-7 CENC) 規格加密。
+
+媒體服務也提供**金鑰/授權傳遞服務**，用戶端可以從該處取得 AES 金鑰或 PlayReady/Widevine 授權，以便播放加密的內容。
 
 本主題示範如何使用 **Azure 傳統入口網站**設定內容金鑰授權原則。金鑰稍後可以用來動態加密您的內容。請注意，目前您可以加密下列串流格式：HLS、MPEG DASH 和 Smooth Streaming。無法加密 HDS 串流格式，或漸進式下載。
  
-當播放程式要求設定為動態加密的串流時，媒體服務會使用設定的金鑰，以 AES 或 PlayReady 加密來動態加密您的內容。為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
+當播放程式要求設定為動態加密的串流時，媒體服務會使用設定的金鑰，以 AES 或 DRM 加密來動態加密您的內容。為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
 
 
-如果您計畫有多個內容金鑰，或想要指定**金鑰\\授權傳遞服務** URL，而非媒體服務金鑰傳遞服務，請使用媒體服務 .NET SDK 或 REST API。
+如果您預計有多個內容金鑰，或想要指定**金鑰/授權傳遞服務** URL，而非媒體服務金鑰傳遞服務，請使用媒體服務 .NET SDK 或 REST API。
 
 [使用媒體服務 .NET SDK 設定內容金鑰授權原則](media-services-dotnet-configure-content-key-auth-policy.md)
 
@@ -103,4 +105,4 @@ Microsoft Azure 媒體服務可讓您提供您使用進階加密標準 (AES) (�
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

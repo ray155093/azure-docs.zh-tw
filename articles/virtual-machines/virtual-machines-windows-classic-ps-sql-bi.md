@@ -388,9 +388,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 	|連接埠|類型|說明|
 |---|---|---|
-|**80**|TCP|報表伺服器遠端存取 (*).|
-|**1433**|TCP|SQL Server Management Studio (*).|
-|**1434**|UDP|SQL Server Browser。在 VM 加入網域時所需。|
+|**80**|TCP|報表伺服器遠端存取 (*).| |**1433**|TCP|SQL Server Management Studio (*).| |**1434**|UDP|SQL Server Browser。在 VM 加入網域時所需。|
 |**2382**|TCP|SQL Server Browser。|
 |**2383**|TCP|SQL Server Analysis Services 預設執行個體和叢集具名執行個體。|
 |**使用者定義**|TCP|為您選擇的連接埠編號建立靜態 Analysis Services 具名執行個體連接埠，然後在防火牆中解除封鎖連接埠號碼。|
@@ -409,7 +407,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - 檢閱 Azure 虛擬機器環境中使用的 Microsoft 伺服器軟體的支援原則。下列主題摘要說明 BitLocker、容錯移轉叢集和網路負載平衡等功能的支援。[Azure 虛擬機器的 Microsoft 伺服器軟體支援](http://support.microsoft.com/kb/2721672)。
 
-- [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-classic-sql-overview.md)
+- [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)
 
 - [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)
 
@@ -417,7 +415,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - [如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)
 
-- [將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-classic-migrate-sql.md)
+- [將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)
 
 - [判斷 Analysis Services 執行個體的伺服器模式](https://msdn.microsoft.com/library/gg471594.aspx)
 
@@ -433,4 +431,4 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

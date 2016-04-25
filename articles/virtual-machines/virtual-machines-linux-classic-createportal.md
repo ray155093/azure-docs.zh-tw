@@ -17,13 +17,21 @@
 	ms.date="03/15/2016"
 	ms.author="cynthn"/>
 
+
 # 建立執行 Linux 的自訂虛擬機器
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
+
+
 [AZURE.INCLUDE [virtual-machines-common-classic-createportal](../../includes/virtual-machines-common-classic-createportal.md)]
 
 
-[AZURE.INCLUDE [virtual-machines-create-WindowsVM](../../includes/virtual-machines-create-windowsvm.md)]
 
-<!---HONumber=AcomDC_0406_2016-->
+[AZURE.INCLUDE [virtual-machines-create-linuxvm](../../includes/virtual-machines-create-linuxvm.md)]
+
+## 後續步驟
+
+您也可以使用傳統入口網站[建立執行 Windows 的自訂虛擬機器](virtual-machines-windows-classic-createportal.md)。
+
+<!---HONumber=AcomDC_0413_2016-->

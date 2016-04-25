@@ -3,9 +3,9 @@
 	description="本教學課程將逐步引導您完成建立 Azure 中 AlwaysOn 可用性群組接聽程式的步驟，並且可使用相關聯雲端服務的公用虛擬 IP 位址從外部存取。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
-	editor="monicar"
+	authors="MikeRayMSFT"
+	manager="jhubbard"
+	editor=""
 	tags="azure-service-management" />
 <tags
 	ms.service="virtual-machines-windows"
@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="02/03/2016"
-	ms.author="jroth" />
+	ms.date="04/05/2016"
+	ms.author="mikeray" />
 
 # 設定 Azure 中 AlwaysOn 可用性群組的外部接聽程式
 
@@ -27,7 +27,7 @@
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
-您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-availability.md)，但尚未設定接聽程式。
+您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
 
 ## 外部接聽程式的指導方針和限制
 
@@ -37,7 +37,7 @@
 
 - 用戶端應用程式必須與包含可用性群組 VM 的雲端服務位於不同雲端服務上。Azure 在相同的雲端服務中不支援伺服器直接回傳搭配用戶端和伺服器使用。
 
-- 根據預設，本文中的步驟示範了如何設定一個接聽程式使用雲端服務的虛擬 IP (VIP) 位址；不過，您可以為雲端服務保留並建立多個 VIP 位址。這可讓您利用本文的步驟建立多個個別與不同 VIP 相關聯的接聽程式。如需有關如何建立多個 VIP 位址的資訊，請參閱[每一雲端服務可有多個 VIP](load-balancer-multivip.md)。
+- 根據預設，本文中的步驟示範了如何設定一個接聽程式使用雲端服務的虛擬 IP (VIP) 位址；不過，您可以為雲端服務保留並建立多個 VIP 位址。這可讓您利用本文的步驟建立多個個別與不同 VIP 相關聯的接聽程式。如需有關如何建立多個 VIP 位址的資訊，請參閱[每一雲端服務可有多個 VIP](../load-balancer/load-balancer-multivip.md)。
 
 - 如果您要建立混合式環境的接聽程式，內部部署網路必須能夠連線到公用網際網路，以及使用 Azure 虛擬網路的站對站 VPN。位於 Azure 子網路時，僅能透過相應雲端服務的公用 IP 位址才能連線至可用性群組接聽程式。
 
@@ -130,4 +130,4 @@
 
 [AZURE.INCLUDE [Listener-Next-Steps](../../includes/virtual-machines-ag-listener-next-steps.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/24/2016" 
+	ms.date="04/11/2016" 
 	ms.author="billmath"/>
 
 # 管理雲端中 Azure Multi-Factor Authentication 的使用者設定
@@ -22,7 +22,7 @@
 
 - [要求選定使用者再次提供連絡方法](#require-selected-users-to-provide-contact-methods-again)
 - [刪除使用者現有的應用程式密碼](#delete-users-existing-app-passwords)
-- [還原使用者所有暫停之裝置的 MFA (公開預覽) ](#restore-mfa-on-all-suspended-devices-for-a-user)
+- [還原使用者所有暫停之裝置的 MFA](#restore-mfa-on-all-suspended-devices-for-a-user)
 
 
 
@@ -86,4 +86,4 @@
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

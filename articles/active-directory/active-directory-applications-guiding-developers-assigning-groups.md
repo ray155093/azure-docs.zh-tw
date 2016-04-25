@@ -17,7 +17,7 @@
 	ms.author="inhenk"/>
 
 # Azure AD 和應用程式：將群組指派給應用程式
-在將使用者和群組指派給應用程式之前，您必須先要求使用者指派。若要了解如何要求使用者指派，請參閱[要求使用者指派](active-directory-applications-guiding-developers-requiring-user-assignment.md)文章。
+在將使用者和群組指派給應用程式之前，您必須先要求使用者指派。若要了解如何要求使用者指派，請參閱 [Azure AD 和應用程式：要求使用者指派](active-directory-applications-guiding-developers-requiring-user-assignment.md)一文。
 
 本文假設您已經在針對此應用程式使用的作用中目錄內建立了群組。
 
@@ -36,4 +36,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0413_2016-->

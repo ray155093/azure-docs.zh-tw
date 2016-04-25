@@ -5,7 +5,7 @@
 	documentationCenter=""
 	authors="tfitzmac"
 	manager="timlt"
-	editor=""/>
+	editor="tysonn"/>
 
 <tags
 	ms.service="azure-resource-manager"
@@ -64,19 +64,21 @@
 
 1. 若要擷取記錄檔項目，請執行 **Get-AzureRmLog** 命令。您可提供額外的參數來篩選項目清單。如果未指定開始和結束時間，則會傳回最後一個小時的項目。例如，若要在過去一小時執行期間擷取資源群組的作業：
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup
+        Get-AzureRmLog -ResourceGroup ExampleGroup
 
     下列範例示範如何使用稽核記錄檔來研究指定期間所採取的作業。以日期格式指定開始和結束日期。
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00
+        Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00
 
     或者，您可以使用日期函數來指定日期範圍，例如過去 14 天。
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14)
+        Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14)
 
-2. 視您指定的開始時間而定，先前的命令可以傳回該資源群組的一長串作業。您可以提供搜尋準則，以篩選您所尋找的結果。例如，假如您想研究 Web 應用程式停止執行的方式，您可以執行下列命令，並藉此了解停止動作原來是由 someone@contoso.com 執行的。
+2. 視您指定的開始時間而定，先前的命令可以傳回該資源群組的一長串作業。您可以提供搜尋準則，以篩選您所尋找的結果。例如，假如您想研究 Web 應用程式停止執行的方式，您可以執行下列命令，
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) | Where-Object OperationName -eq Microsoft.Web/sites/stop/action
+        Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) | Where-Object OperationName -eq Microsoft.Web/sites/stop/action
+        
+    並藉此了解停止動作是由 someone@contoso.com 所執行。
         
         Authorization     :
         Scope     : /subscriptions/xxxxx/resourcegroups/ExampleGroup/providers/Microsoft.Web/sites/ExampleSite
@@ -96,7 +98,7 @@
 
 3. 您可以查閱由特定使用者採取的動作，即使是針對已不存在的資源群組。
 
-        PS C:\> Get-AzureRmLog -ResourceGroup deletedgroup -StartTime (Get-Date).AddDays(-14) -Caller someone@contoso.com
+        Get-AzureRmLog -ResourceGroup deletedgroup -StartTime (Get-Date).AddDays(-14) -Caller someone@contoso.com
 
 ## 檢視稽核記錄檔的 Azure CLI
 
@@ -123,4 +125,4 @@
 - 若要了解針對部署進行疑難排解的命令，請參閱[在 Azure 中針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 - 若要了解如何防止刪除所有使用者的資源，請參閱[使用 Azure Resource Manager 鎖定資源](resource-group-lock-resources.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

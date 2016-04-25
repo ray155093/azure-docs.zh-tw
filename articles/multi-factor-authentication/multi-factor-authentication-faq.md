@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/16/2016" 
+	ms.date="04/07/2016" 
 	ms.author="billmath"/>
 
 # Azure Multi-Factor Authentication 常見問題集
@@ -161,6 +161,11 @@ Azure Multi-Factor Authentication 服務會透過簡訊彙總工具傳送簡訊�
 
 不過，如果您要使用 Windows Server 2012 R2，則需要 RD 閘道器。
 
+**問︰為何我會在設定來電者識別碼之後收到來自匿名來電者的 MFA 通話？**
+
+有時候，透過公用電話網路進行 MFA 通話時，MFA 通話會透過不支援來電者識別碼的電信業者路由傳送。因此，即使 MFA 系統一律會傳送來電者識別碼，也不保證一定提供。
+
+
 ## 錯誤數
 
 **問：當我使用行動應用程式通知進行驗證時，如果看見「驗證要求不適用於已啟用的帳戶」錯誤，該怎麼辦？**
@@ -180,4 +185,4 @@ Azure Multi-Factor Authentication 服務會透過簡訊彙總工具傳送簡訊�
 
 此種情況的因應措施是使用不同的使用者帳戶進行系統管理相關作業和非系統管理作業。您稍後可以連結系統管理帳戶與非系統管理帳戶之間的信箱，以便使用非系統管理帳戶登入 Outlook。如需詳細資訊，請參閱[讓系統管理員能夠開啟及檢視使用者信箱的內容](http://help.outlook.com/141/gg709759(d=loband).aspx?sl=1)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

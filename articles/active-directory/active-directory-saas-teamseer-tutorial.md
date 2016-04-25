@@ -2,16 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 TeamSeer 整合 | Microsoft Azure" 
     description="了解如何使用 TeamSeer 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
-    documentationCenter="na" manager="stevenpo"/>
+    authors="jeevansd"  
+    documentationCenter="na" 
+    manager="stevenpo"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="04/06/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 TeamSeer 整合
   
@@ -106,7 +107,7 @@
     1.  在 Azure 入口網站中的 [在 TeamSeer 設定單一登入] 對話頁面上，複製**單一登入服務 URL** 值，然後將它貼至 [ URL] 文字方塊中。
     2.  從您下載的憑證建立 **base-64 編碼**檔案。  
 
-        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     3.  在記事本中開啟 base-64 編碼的憑證，將其內容複製到剪貼簿，然後貼到 [IdP 公開憑證] 文字方塊中。
 
@@ -146,7 +147,7 @@
 
 4.  請依照螢幕上的指示來加入新的使用者，然後按一下 [完成]。
 
->[AZURE.NOTE]您可以使用任何其他的 TeamSeer 使用者帳戶建立工具或 TeamSeer 提供的 API 來佈建 Azure AD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 TeamSeer 使用者帳戶建立工具或 TeamSeer 提供的 API 來佈建 Azure AD 使用者帳戶。
 
 ##指派使用者
   
@@ -166,4 +167,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0413_2016-->

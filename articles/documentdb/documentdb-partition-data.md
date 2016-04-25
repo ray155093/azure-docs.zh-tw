@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/05/2016" 
+	ms.date="04/10/2016" 
 	ms.author="arramac"/>
 
 # Azure DocumentDB 的資料分割與調整規模
@@ -210,7 +210,7 @@ Azure DocumentDB 已新增使用 [REST API 版本 2015-12-16](https://msdn.micro
     // Read document. Needs the partition key and the ID to be specified
     Document result = await client.ReadDocumentAsync(
       UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
-      new RequestOptions { PartitionKey = new object[] { "XMS-0001" }});
+      new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 
     DeviceReading reading = (DeviceReading)(dynamic)result;
 
@@ -225,7 +225,7 @@ Azure DocumentDB 已新增使用 [REST API 版本 2015-12-16](https://msdn.micro
     // Delete document. Needs partition key
     await client.DeleteDocumentAsync(
       UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
-      new RequestOptions { PartitionKey = new object[] { "XMS-0001" } });
+      new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 
 
 
@@ -261,8 +261,6 @@ Azure DocumentDB 已新增使用 [REST API 版本 2015-12-16](https://msdn.micro
 ### 從單一資料分割集合移轉至資料分割的集合
 當使用單一資料分割集合的應用程式需要較高的輸送量 (> 10,000 RU/秒) 或較大的資料儲存體 (> 10 GB) 時，您可以使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)將單一資料分割集合中的資料移轉至資料分割的集合。
 
-此外，資料分割索引鍵只能在建立集合時指定，因此您必須使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)匯出再重新匯入資料以建立資料分割的集合。
-
 從單一資料分割集合移轉到資料分割的集合
 
 1. 將資料從單一資料分割集合匯出至 JSON。如需詳細資訊，請參閱[匯出至 JSON 檔案](documentdb-import-data.md#export-to-json-file)。
@@ -278,10 +276,10 @@ Azure DocumentDB 已新增使用 [REST API 版本 2015-12-16](https://msdn.micro
 選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。本節描述選取集合資料分割索引鍵時的一些取捨。
 
 ### 資料分割索引鍵作為交易界限
-您選擇的資料分割索引鍵應兼顧交易使用和將實體分散到多個資料分割 (以確保可調整的解決方案) 的需求。以一個極端的情況來說，您可以在單一資料分割儲存所有實體，但如此可能會限制解決方案的延展性。以另一個極端而言，您可以為每個資料分割索引鍵儲存一個文件以達到高延展性，但如此會透過預存程序和觸發程序，讓您無法使用跨文件交易。理想的資料分割索引鍵可讓您使用有效率的查詢，而且具有足夠的資料分割，可確保您的解決方案能加以延展。
+您選擇的分割區索引鍵應兼顧交易使用和將實體分散到多個分割區索引鍵 (以確保可調整的解決方案) 的需求。以一個極端的情況來說，您可以針對所有文件設定相同的分割區索引鍵，但如此可能會限制解決方案的延展性。以另一個極端而言，您可以為每份文件指派唯一的分割區索引鍵以達到高調整性，但如此會透過預存程序和觸發程序，讓您無法使用跨文件交易。理想的分割區索引鍵可讓您使用有效率的查詢，而且具有足夠的基數，可確保您的解決方案能加以調整。
 
 ### 避免儲存體和效能瓶頸 
-也請務必挑選允許將寫入分散到數個相異值的屬性。相同資料分割索引鍵的要求，不能超過單一資料分割的輸送量，因此將進行節流。因此，請務必挑選不會在應用程式內導致**作用點**的資料分割索引鍵。在儲存體中，具有相同資料分割索引鍵之文件的總儲存體大小，也不能超過 10 GB。
+也請務必挑選允許將寫入分散到數個相異值的屬性。相同資料分割索引鍵的要求，不能超過單一資料分割的輸送量，因此將進行節流。因此，請務必挑選不會在應用程式內導致**作用點**的分割區索引鍵。在儲存體中，具有相同資料分割索引鍵之文件的總儲存體大小，也不能超過 10 GB。
 
 ### 良好資料分割索引鍵的範例
 以下是如何挑選應用程式之資料分割索引鍵的一些範例︰
@@ -321,4 +319,4 @@ DocumentDB 最常見的其中一個使用案例是用在記錄與遙測。您可
 
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

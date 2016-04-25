@@ -10,17 +10,17 @@ articles/sql-database/sql-database-get-started-tutorial.md
 ## Connecting to the Azure Portal with a subscription
 
 -->
-## Connecting to the Azure Portal with a subscription
+## 使用訂用帳戶連接到 Azure 入口網站
 
-If you have an existing subscription to Microsoft Azure, follow the steps below to connect to the Azure portal. If you do not have an existing Microsoft Azure account, follow one of the links below to obtain an account and then follow the steps below to connect to the Azure portal.
+如果您有現有的 Microsoft Azure 訂用帳戶，請遵循下列步驟來連接到 Azure 入口網站。如果您沒有現有的 Microsoft Azure 帳戶，請遵循下列其中一個連結，取得帳戶，然後遵循下列步驟來連接到 Azure 入口網站。
 
-1. Open your browser of choice and connect to the [Azure portal](https://portal.azure.com/) at http://portal.azure.com/.
+1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)，網址為 http://portal.azure.com/。
 
-1. Log in to the [Azure portal](https://portal.azure.com/) at http://portal.azure.com/.
+1. 登入位於 http://portal.azure.com/ 的 [Azure 入口網站](https://portal.azure.com/)。
 
-2. When the sign in page appear, provide the credentials for your subscription
+2. 登入頁面出現時，請提供您訂用帳戶的認證
 
-   ![login][1]
+   ![登入][1]
 
 <!-- Image references. -->
 
@@ -32,3 +32,5 @@ If you have an existing subscription to Microsoft Azure, follow the steps below 
 <!--
 
 -->
+
+<!---HONumber=AcomDC_0413_2016-->

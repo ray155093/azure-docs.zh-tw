@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="SQL Database V12 的新功能 | Microsoft Azure" 
-	description="說明在雲端使用 Azure SQL Database 的業務系統為何可在立即升級至 V12 版本之後受益。" 
-	services="sql-database" 
-	documentationCenter="" 
-	authors="MightyPen" 
-	manager="jhubbard" 
+<properties
+	pageTitle="SQL Database V12 的新功能 | Microsoft Azure"
+	description="說明在雲端使用 Azure SQL Database 的業務系統為何可在立即升級至 V12 版本之後受益。"
+	services="sql-database"
+	documentationCenter=""
+	authors="MightyPen"
+	manager="jhubbard"
 	editor=""/>
 
 
-<tags 
-	ms.service="sql-database" 
-	ms.workload="data-management" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="03/21/2016" 
+<tags
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="03/21/2016"
 	ms.author="genemi"/>
 
 
@@ -39,8 +39,9 @@ SQL Database 的資源限制的最新資訊記載於：<br/>[Azure SQL Database 
 
 SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的相容性，以及在發行新版本的 SQL Server 時保有相容性。在其他區域中，V12 在可程式性的重要區域中已達成 SQL Server 同位檢查例如：
 
+- [內建的 JSON 支援](https://msdn.microsoft.com/library/dn921897.aspx)
 
-- [Window 函數](http://msdn.microsoft.com/library/ms189798.aspx) (包含 [OVER](http://msdn.microsoft.com/library/ms189461.aspx)) 
+- [Window 函數](http://msdn.microsoft.com/library/ms189798.aspx) (包含 [OVER](http://msdn.microsoft.com/library/ms189461.aspx))
 
 - [XML 索引](http://msdn.microsoft.com/library/bb934097.aspx)和[選擇性 XML 索引](http://msdn.microsoft.com/library/jj670104.aspx)
 
@@ -166,4 +167,4 @@ V12 資料庫只能裝載在 V12 邏輯伺服器上。而 V12 只可以裝載 V1
 
 [Microsoft Azure 預覽專用的使用補充條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

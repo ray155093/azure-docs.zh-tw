@@ -32,9 +32,9 @@
 
 ##版本資訊
 
-###3\.2.1 (12/11/2015)
+###3\.2.2 (04/07/2016)
 
--   修正當新應用程式執行個體由具有深度連結的通知觸發時造成的延遲。 
+-   修正 HTTP 要求取消有時會導致損毀的錯誤。 
 
 如需較早版本，請參閱[完整版本資訊](mobile-engagement-ios-release-notes.md)
 
@@ -59,4 +59,4 @@
 	-(void)didFailToRetrieveLaunchMessage;
 	-(void)didReceiveLaunchMessage:(AEPushMessage*)launchMessage;
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

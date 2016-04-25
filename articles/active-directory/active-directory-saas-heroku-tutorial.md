@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/05/2016"
+	ms.date="04/07/2016"
 	ms.author="jeedes"/>
 
 
@@ -66,7 +66,8 @@ Heroku 與 Azure AD 整合提供下列優點：
 4. 按一下頁面底部的 [加入]。<br><br> ![應用程式][3]<br>
 5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。<br><br> ![應用程式][4]<br>
 6. 在搜尋方塊中輸入 **Heroku**。<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_01.png)<br>
-7. 在結果窗格中，選取 [Heroku]，然後按一下 [完成] 加入應用程式。<br><br>
+7. 在結果窗格中，選取 [Heroku]，然後按一下 [完成] 加入應用程式。<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_02.png)<br>
+
 
 ##  設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Heroku 設定及測試 Azure AD 單一登入。
@@ -94,10 +95,14 @@ Heroku 與 Azure AD 整合提供下列優點：
 
 3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_04.png) <br>
 
+    > [AZURE.NOTE] 如果您不知道登入 URL 和識別碼 URL 的正確值，請參閱[若要在 Heroku 中啟用 SSO，執行下列步驟](#x123)以取得如何取得這些步驟的指示。
+
 
     a.在 [登入 URL] 文字方塊中，輸入使用者用來登入 Heroku 應用程式的 URL，格式為：**“https://sso.heroku.com/saml/<公司名稱>/init”**。
 
-    b.按 [下一步]。
+    b.在 [識別碼] 文字方塊中輸入下列格式的 URL："**https://sso.heroku.com/saml/\<公司名稱>**"。
+
+    c.按 [下一步]。
 
 
 4. 在 [設定在 Heroku 單一登入] 頁面上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_05.png)<br>
@@ -113,13 +118,14 @@ Heroku 與 Azure AD 整合提供下列優點：
 
     b.按一下 [設定] 索引標籤。
 
-    c.按一下 [單一登入] 頁面的 [Upload Metadata] \(上傳中繼資料)。
+    c.按一下 [單一登入] 頁面的 [Upload Metadata] (上傳中繼資料)。
  
     d.上傳您從 Azure 傳統入口網站下載的中繼資料檔案。
 
     e.安裝成功後，系統管理員會看到確認對話方塊，以及供使用者使用的 SSO 登入 URL。
 
-    f.複製您的 **Heroku 登入 URL**，然後在 Azure AD 傳統入口網站回到 [設定應用程式設定] 頁面，再將這個值貼入 [登入 URL] 文字方塊。
+    f.<a name="x123"></a>複製您的 **Heroku 登入 URL**和 **Heroku 實體識別碼**，然後在 Azure AD 傳統入口網站回到 [設定應用程式設定] 頁面，再將這個值貼入相關的文字方塊。
+
   
     <br>![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_52.png) <br><br>
 
@@ -232,4 +238,4 @@ Heroku 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-heroku-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-heroku-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

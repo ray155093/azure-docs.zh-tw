@@ -64,7 +64,7 @@
 | 19 | [在 Mac OS X (Yosemite) 上使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple-mac-osx.md) | 提供您可在 Mac OS X (Yosemite) 上執行以連接到 Azure SQL Database 的 Ruby 程式碼範例。 |
 | 20 | [在 Ubuntu Linux 上使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple-linux.md) | 提供 Ruby 您可在 Ubuntu Linux 上執行做為用戶端的程式碼範例，已連接至 Azure SQL Database。 |
 | 21 | [在 Windows 上使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple-windows.md) | 提供您可在 Windows 上執行以連接到 Azure SQL Database 的 Ruby 程式碼範例。 |
-| 22 | [使用 C# 建立和管理 SQL Database](sql-database-client-library.md) | 本文將說明如何使用 Azure SQL Database Library for .NET 以 C# 建立和管理 Azure SQL Database。 |
+| 22 | [使用 C# 建立和管理 SQL Database](sql-database-get-started-csharp.md) | 本文將說明如何使用 Azure SQL Database Library for .NET 以 C# 建立和管理 Azure SQL Database。 |
 | 23 | [針對 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md) | 從 ADO.NET 至 Azure SQL Database V12 的用戶端連線有時會略過 Proxy 並直接與資料庫互動。1433 以外的連接埠變得重要。 |
 | 24 | [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) | 了解 SQL Database 用戶端應用程式的 SQL 錯誤碼，例如常見的資料庫連線錯誤、資料庫副本問題，以及一般錯誤。 |
 | 25 | [疑難排解「目前無法使用伺服器上的資料庫。請稍後重試連接。」和其他連線錯誤](sql-database-troubleshoot-connection.md) | 找出並解決 Azure SQL Database 連接錯誤的步驟。 |
@@ -354,4 +354,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

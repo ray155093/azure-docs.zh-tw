@@ -19,7 +19,7 @@
 
 若要利用 Azure 的主機服務和延展性，您可以將 Web 應用程式移轉並發佈至 Azure 雲端服務。只要對現有應用程式做少許變更，即可在 Azure 中執行 Web 應用程式。
 
->[AZURE.NOTE] 本主題是關於部署到雲端服務，而不是網站。如需部署至網站的相關資訊，請參閱[在 Azure App Service 中部署 Web 應用程式](/app-service-web/web-sites-deploy.md)。
+>[AZURE.NOTE] 本主題是關於部署到雲端服務，而不是網站。如需部署至網站的相關資訊，請參閱[在 Azure App Service 中部署 Web 應用程式](./app-service-web/web-sites-deploy.md)。
 
 如需 Visual C# 和 Visual Basic 所支援的特定範本清單，請參閱本主題後面的＜支援的專案範本＞一節。
 
@@ -208,4 +208,4 @@
 ## 後續步驟
 如需有關發佈的詳細資訊，請參閱 [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。另請參閱[設定具名的驗證認證](vs-azure-tools-setting-up-named-authentication-credentials.md)。
 
-<!-----HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

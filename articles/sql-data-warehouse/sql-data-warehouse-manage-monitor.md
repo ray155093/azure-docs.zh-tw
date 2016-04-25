@@ -3,7 +3,7 @@
    description="了解如何使用 DMV 監視工作負載。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sonyama"
+   authors="sonyam"
    manager="barbkess"
    editor=""/>
 
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/29/2016"
+   ms.date="04/12/2016"
    ms.author="sonyama;barbkess;sahajs"/>
 
 # 使用 DMV 監視工作負載
@@ -132,6 +132,17 @@ WHERE request_id = 'QID33209' AND step_index = 2;
 - 檢查 *total\_elapsed\_time* 資料行，查看是否有特定散發，在資料移動上比其他散發用了更多時間。
 - 如果是長時間執行的散發，請檢查 *rows\_processed* 資料行，查看從該散發移動的資料列數是否遠多過其他散發。若是如此，這可能表示基礎資料的扭曲。
 
+如果查詢仍在執行中，則 [DBCC PDW\_SHOWEXECUTIONPLAN][] 可以用來為特定散發擷取目前執行中 DMS 步驟的 SQL Server 執行計畫。
+
+```sql
+-- Find the SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
+-- Replace distribution_id and spid with values from previous query.
+
+DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
+
+```
+
+
 ## 調查資料扭曲
 
 使用 [DBCC PDW\_SHOWSPACEUSED][] 查閱資料表所使用的空間。
@@ -143,7 +154,7 @@ DBCC PDW_SHOWSPACEUSED("dbo.FactInternetSales");
 
 此查詢的結果會顯示儲存在您資料庫中，每組 60 個散發內的資料表資料列數目。為了達到最佳效能，分散式資料表中的資料列應該平均分配在所有散發中。
 
-若要深入了解，請參閱[資料表設計][]。
+若要深入了解，請參閱[管理散發資料表的資料扭曲][]或[資料表設計][]。
 
 ## 後續步驟
 如需 Transact-SQL 和動態管理檢視 (DMV) 的詳細資訊，請參閱[參考概觀][]。如需其他管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。
@@ -154,6 +165,9 @@ DBCC PDW_SHOWSPACEUSED("dbo.FactInternetSales");
 [管理概觀]: sql-data-warehouse-overview-manage.md
 [資料表設計]: sql-data-warehouse-develop-table-design.md
 [參考概觀]: sql-data-warehouse-overview-reference.md
+[管理散發資料表的資料扭曲]: sql-data-warehouse-manage-distributed-data-skew.md
+
+<!--MSDN references-->
 [sys.dm\_pdw\_dms\_workers]: http://msdn.microsoft.com/library/mt203878.aspx
 [sys.dm\_pdw\_exec\_requests]: http://msdn.microsoft.com/library/mt203887.aspx
 [Sys.dm\_pdw\_exec\_sessions]: http://msdn.microsoft.com/library/mt203883.aspx
@@ -162,6 +176,4 @@ DBCC PDW_SHOWSPACEUSED("dbo.FactInternetSales");
 [DBCC PDW\_SHOWEXECUTIONPLAN]: http://msdn.microsoft.com/library/mt204017.aspx
 [DBCC PDW\_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
 
-<!--MSDN references-->
-
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -14,13 +14,12 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="12/17/2015" 
+	ms.date="04/01/2016" 
 	ms.author="josephd"/>
 
 # Azure 基礎結構服務工作負載：高可用性企業營運應用程式
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 
 在 Microsoft Azure 中設定第一個或下一個以網路為基礎的內部網路專用企業營運應用程式，這樣您就可以利用簡化組態的優點，還能夠快速擴大應用程式，使其增加新的容量。
  
@@ -36,11 +35,11 @@
 
 ## 建立裝載在 Azure 中的開發/測試企業營運應用程式。
 
-跨單位虛擬網路會透過站台對站台 VPN 或 ExpressRoute 連接到內部部署網路。如果您想要建立模擬最後組態和實驗的開發/測試環境，以便透過 VPN 連線存取應用程式並執行遠端系統管理，請參閱[在混合式雲端中設定以 Web 為基礎的 LOB 應用程式以進行測試](../virtual-network/virtual-networks-setup-lobapp-hybrid-cloud-testing.md)。
+跨單位虛擬網路會透過站台對站台 VPN 或 ExpressRoute 連接到內部部署網路。如果您想要建立模擬最後組態和實驗的開發/測試環境，以便透過 VPN 連線存取應用程式並執行遠端系統管理，請參閱[在混合式雲端中設定以 Web 為基礎的 LOB 應用程式以進行測試](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)。
 
 ![](./media/virtual-machines-windows-lob/CreateLOBAppHybridCloud_3.png)
  
-您可以使用您的 [MSDN 訂用帳戶](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)或 [Azure 試用版訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)免費建立這個開發/測試環境。
+您可以使用您的 [MSDN 訂用帳戶](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)或 Azure 訂用帳戶免費建立這個開發/測試環境。
 
 下一步是在 Azure 中建立高可用性的企業營運應用程式。
 
@@ -86,4 +85,4 @@
 
 - 在設定組態前先取得生產工作負載[概觀](virtual-machines-windows-lob-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

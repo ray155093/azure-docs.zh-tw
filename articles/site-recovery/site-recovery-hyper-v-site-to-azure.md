@@ -63,12 +63,12 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 - 建議您一律執行最新版本的提供者和代理程式。這些程式可以在 Site Recovery 入口網站中取得。
 - 保存庫中的所有 Hyper-V 伺服器應該有相同版本的提供者和代理程式。
 - 伺服器上執行的提供者會透過網際網路連接到 Site Recovery。您不需要使用 Poxy 就能選擇執行這個動作，方法是使用目前設定於 Hyper-V 伺服器上的 Poxy 設定，或使用您在提供者安裝期間所設定的自訂 Poxy 設定。您必須確定您想要使用的 Proxy 伺服器可以存取這些 URL 以連接到 Azure：
-	- *.hypervrecoverymanager.windowsazure.com
-	- *.accesscontrol.windows.net
-	- *.backup.windowsazure.com
-	- *.blob.core.windows.net
-	- *.store.core.windows.net
- 
+	- **.hypervrecoverymanager.windowsazure.com
+- **.accesscontrol.windows.net
+- **.backup.windowsazure.com
+- **.blob.core.windows.net
+- **.store.core.windows.net
+	
 - 此外，允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
 
 
@@ -274,6 +274,8 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 執行測試容錯移轉，如下所示：
 
+>[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。Linux 代理程式可在[這裡](https://github.com/Azure/WALinuxAgent)找到，而 Windows 代理程式可在 [這裡](http://go.microsoft.com/fwlink/?LinkID=394789) 找到
+
 1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
 2. 在 [確認測試容錯移轉] 頁面上，選取 [無] 或特定的 Azure 網路。請注意，如果選取 [無]，測試容錯移轉將會檢查虛擬機器是否會正確複寫到 Azure，但並不會檢查您的複寫網路組態。
 
@@ -302,4 +304,4 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)容錯移轉。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

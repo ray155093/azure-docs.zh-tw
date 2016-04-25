@@ -1,10 +1,10 @@
-<properties 
-	pageTitle="計算 Azure 所提供的裝載選項" 
-	description="了解 Azure 計算裝載選項以及其運作方式：虛擬機器、網站、雲端服務等。" 
-	headerExpose="" 
-	footerExpose="" 
-	services="cloud-services,virtual-machines"
-	authors="Thraka" 
+<properties
+	pageTitle="計算 Azure 所提供的裝載選項"
+	description="了解 Azure 計算裝載選項以及其運作方式：虛擬機器、網站、雲端服務等。"
+	headerExpose=""
+	footerExpose=""
+	services="cloud-services"
+	authors="Thraka"
 	documentationCenter=""
 	manager="timlt"/>
 
@@ -14,71 +14,50 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="09/08/2015" 
-	ms.author="adegeo;cephalin;kathydav"/>
+	ms.date="03/28/2016" 
+	ms.author="adegeo"/>
 
 
+# 我該選擇雲端服務還是其他服務？
 
+Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同的裝載模型。每個模型都提供不同的服務集，因此請根據您要執行的工作選擇服務集。
 
-# 計算 Azure 所提供的裝載選項
+[AZURE.INCLUDE [compute-table](../../includes/compute-options-table.md)]
 
-Azure 對於執行的應用程式提供不同的裝載模型。每個模型都有不同的服務集，因此請根據您要執行的工作選擇服務集。本文分別提供數種選項，並說明每種技術和提供使用時機的範例。
+<a name="tellmecs"></a>
+## 我想了解雲端服務
 
-| 計算選項 | 對象 |
-| ------------------ | --------   |
-| [App Service] | 適用於所有裝置的可調整 Web Apps、Mobile Apps、API Apps 及 Logic Apps |
-| [雲端服務] | 可用性和延展性極佳，且能透過 OS 更充分進行控制的多層式架構 (N-Tier) 雲端應用程式 |
-| [虛擬機器] | 具備完整的 OS 控制能力的自訂 Windows 和 Linux VM |
+雲端服務是平台即服務 (PaaS) 的一個範例。這項技術如同 [App Service](../app-service-web/app-service-web-overview.md)，是專為支援可調整、穩定且操作成本低的應用程式而設計。雲端服務也如同 App Service 在 VM 上託管，不過，雲端服務更易於透過 VM 控制。您可以在雲端服務 VM 上安裝您自己的軟體，並且可從遠端加以操控。
 
-[AZURE.INCLUDE [內容](../../includes/app-service-choose-me-content.md)]
+![cs\_diagram](./media/cloud-services-choose-me/diagram.png)
 
-[AZURE.INCLUDE [內容](../../includes/cloud-services-choose-me-content.md)]
+更充分的控制也意味著較低的易用性；除非您需要額外控制選項，否則與雲端服務相較之下，在應用程式服務的 Web 應用程式中通常可更快、更輕易地讓 Web 應用程式上線運作。
 
-[AZURE.INCLUDE [內容](../../includes/virtual-machines-choose-me-content.md)]
+此技術提供兩個僅有些許差異的 VM 選項：*Web 角色*的執行個體執行含有 IIS 的 Windows Server 變體，而*背景工作角色*的執行個體則執行不含 IIS 的相同 Windows Server 變體。雲端服務應用程式需要這兩個選項的一些組合。
 
-## 其他選項
+雲端服務提供這兩個僅有些許差異的 VM 裝載選項的任意搭配組合：
 
-Azure 也針對更特殊的用途提供其他計算裝載模型，如下所示：
+* **Web 角色**執行 Windows Server，且您的 Web 應用程式會自動部署至 IIS。
+  
+* **背景工作角色**執行不含 IIS 的 Windows Server。
 
-* [行動服務](/services/mobile-services/)  
-  適用於行動裝置上執行之應用程式的雲端後端最佳化模型。
-* [批次](/services/batch/)  
-  適用於處理大量的類似工作的最佳化模型，特別適用於將本身調撥在多台電腦以平行工作執行的工作負載。
-* [HDInsight (Hadoop)](/services/hdinsight/)  
-  適用於在 Hadoop 叢集上執行 [MapReduce](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options/#hadoop) 工作的最佳化模型。 
+例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。(此通訊會使用[服務匯流排](../service-bus/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
 
-## 該用哪個模型？ 思考和選擇
+如上圖所示，單一應用程式中的所有 VM 都會在同一個雲端服務中執行。因此，使用者可以透過單一公用 IP 位址存取應用程式，並且可在應用程式的 VM 之間自動進行要求的負載平衡。該平台會在雲端服務應用程式中[調整和部署](cloud-services-how-to-scale.md) 所有VM，藉此避免發生單一硬體失敗點。
 
-這三個一般用途 Azure 計算裝載模型可讓您在雲端中建立可擴充而可靠的應用程式。基於這個重要的相似性，您應該使用哪一個？
+即使應用程式在虛擬機器中執行，也必須了解雲端服務提供 PaaS，而非 IaaS。換句話說，透過 IaaS (例如 Azure 虛擬機器)，您可以先建立並設定執行應用程式的環境，然後將應用程式部署到此環境。您負責管理大部分的環境，處理在各個 VM 中部署作業系統新修補版本等作業。相反地，在 PaaS 中，環境似乎已經存在。您只需要部署您的應用程式。平台的管理會為您處理，包括部署作業系統的新版本。
 
-App Service 是大部分 Web 應用程式的最佳選擇。部署和管理都已整合到平台，網站可以迅速調整規模以因應過高的流量負載，而內建的負載平衡和流量管理員提供高可用性。您可以使用[線上移轉工具](https://www.migratetoazure.net/)輕鬆地將現有網站移至 Azure App Service、使用 Web 應用程式庫中的開放原始碼應用程式，或使用您選擇的架構和工具建立新網站。[WebJobs](http://go.microsoft.com/fwlink/?linkid=390226) 功能可讓您輕鬆地為應用程式加入背景工作處理，甚至還能執行根本不是 Web 應用程式的計算工作負載。
+## 調整和管理
+藉由雲端服務，您不需要建立虛擬機器。您只需要提供組態檔，讓 Azure 知道您需要多少個執行個體，例如 **3 個 Web 角色**執行個體和 **2 個背景工作角色**執行個體，平台就會為您建立。您仍然可以選擇這些支援 VM 的[大小](cloud-services-sizes-specs.md)，但您不需自行建立這些 VM。如果應用程式需要處理較大的負載，您可以要求更多的 VM，Azure 將建立這些執行個體。如果負載減少，您可以關閉這些執行個體並停止付費。
 
-如果您需要加強控制 Web 伺服器環境，例如想要從遠端登入伺服器或設定伺服器啟動工作，Azure 雲端服務通常是最佳選項。
+雲端服務應用程式一般透過兩個步驟的程序提供給使用者使用。開發人員會先將[應用程式上傳](cloud-services-how-to-create-deploy.md)到平台的預備區域。開發人員準備啟動應用程式時，會透過 Azure 管理入口網站要求將應用程式投入生產。此[預備與生產之間的切換](cloud-services-nodejs-stage-application.md)程序完全不會造成停機，因此執行中的應用程式得以在不干擾使用者的情況下升級至新版。
 
-如果現有應用程式需要進行大幅修改才能在 Azure 網站或 Azure 雲端服務中執行，您可以選擇 Azure 虛擬機器來簡化移轉至雲端的工作。不過，相較於 Azure 網站和雲端服務，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
+## 監視
+雲端服務也提供監視。和 Azure 虛擬機器一樣，它將偵測故障的實體伺服器，並且在新機器上重新啟動原先在該伺服器上執行的 VM。不過，雲端服務也會偵測故障的 VM 和應用程式，而不只是硬體故障。和虛擬機器不同的是，它在各個 Web 角色和背景工作角色中都有代理程式，因此能夠在故障時啟動新的 VM 和應用程式執行個體。
 
-有時候，任何單一選項都不是正確的選項。在這種情況下，可以併用多個選項。例如，假設您要建置發揮雲端服務 Web 角色管理效益的應用程式，但是由於相容性或效能考量，您也需使用在虛擬機器中託管的標準 SQL Server。
-
-<!-- In this case, the best option is to combine compute hosting options, as the figure below shows.--
-
-<a name="fig4"></a>
-![07_CombineTechnologies][07_CombineTechnologies] 
- 
-**Figure: A single application can use multiple hosting options.**
-
-As the figure illustrates, the Cloud Services VMs run in a separate cloud service from the Virtual Machines VMs. Still, the two can communicate quite efficiently, so building an app this way is sometimes the best choice.
-[07_CombineTechnologies]: ./media/fundamentals-application-models/ExecModels_07_CombineTechnologies.png
-!-->
-
-[App Service]: #tellmeas
-[虛擬機器]: #tellmevm
-[雲端服務]: #tellmecs
+雲端服務的 PaaS 性質也有其他意涵。其中一個最重要的意涵是，採用這項技術建立的應用程式應該在任何 Web 角色或背景工作角色執行個體故障時都能正常運作。為了實現這一點，雲端服務應用程式不應該在本身 VM 的檔案系統中保持狀態。和使用 Azure 虛擬機器建立的 VM 不一樣的是，對於雲端服務 VM 進行的寫入並不一致；不會出現類似虛擬機器資料磁碟的元件。雲端服務應用程式反而應該將所有狀態明確寫入 SQL 資料庫、Blob、表格或其他一些外部儲存體。以這種方式建立應用程式使得調整更簡單，而且更能夠因應故障，這是雲端服務的兩個重要目標。
 
 ## 後續步驟
+[在 .NET 中建立雲端服務應用程式](cloud-services-dotnet-get-started.md) [在 Node.js 中建立雲端服務應用程式](cloud-services-nodejs-develop-deploy-app.md) [在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md) [在 Python 中建立雲端服務應用程式](../cloud-services-python-ptvs.md)
 
-* [比較](../choose-web-site-cloud-service-vm/) App Service、雲端服務和虛擬機器之間的差異
-* 深入了解 [App Service](../app-service-web-overview.md)
-* 深入了解[雲端服務](services/cloud-services/)
-* 深入了解[虛擬機器](https://msdn.microsoft.com/library/azure/jj156143.aspx) 
-
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -3,8 +3,8 @@
 	description="本主題說明管理 SQL Database 之標準或主動式異地覆寫案例的安全性考量。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
+	authors="carlrabeler"
+	manager="jhubbard"
 	editor="monicar" />
 
 
@@ -14,8 +14,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="10/22/2015"
-	ms.author="jroth" />
+	ms.date="02/01/2016"
+	ms.author="carlrab" />
 
 # 標準或主動式異地複寫的安全性組態
 
@@ -27,7 +27,7 @@
 
 關於自主使用者，如果您有多個資料庫使用相同的登入，您必須為每個資料庫 (例如密碼變更) 個別管理該使用者，而不是在伺服器層級管理登入。
 
->[AZURE.NOTE]如果您想要獨立變更主要和次要資料庫的讀取權限，您必須使用傳統的登入和使用者。自主使用者無法脫離主要資料庫在次要資料庫上管理。
+>[AZURE.NOTE] 如果您想要獨立變更主要和次要資料庫的讀取權限，您必須使用傳統的登入和使用者。自主使用者無法脫離主要資料庫在次要資料庫上管理。
 
 ## 使用傳統的登入和使用者
 如果您使用傳統的登入和使用者 (而非自主使用者)，您必須採取額外步驟以確保相同的登入存在於次要資料庫伺服器上。下列各節概述涉及的步驟和其他考量。
@@ -67,7 +67,7 @@
 	FROM [sys].[database_principals]
 	WHERE [type_desc] = 'SQL_USER'
 
->[AZURE.NOTE]**INFORMATION\_SCHEMA** 和 **sys** 使用者擁有 *NULL* SID，而**客體** SID 是 **0x00**。如果資料庫建立者是伺服器系統管理員，而不是 **DbManager** 的成員，**dbo** SID 可能會以 *0x01060000000001648000000000048454* 開頭。
+>[AZURE.NOTE] **INFORMATION\_SCHEMA** 和 **sys** 使用者擁有 *NULL* SID，而**客體** SID 是 **0x00**。如果資料庫建立者是伺服器系統管理員，而不是 **DbManager** 的成員，**dbo** SID 可能會以 *0x01060000000001648000000000048454* 開頭。
 
 #### 3\.在目標伺服器上產生登入：
 最後一個步驟是移至目標伺服器或伺服器，並以適當的 SID 產生登入。基本語法如下所示。
@@ -76,7 +76,7 @@
 	WITH PASSWORD = <login password>,
 	SID = <desired login SID>
 
->[AZURE.NOTE]如果您想要授與使用者次要資料庫的存取權，而不是主要資料庫的，您可以藉由使用下列語法在主要伺服器上改變使用者登入，即可完成。
+>[AZURE.NOTE] 如果您想要授與使用者次要資料庫的存取權，而不是主要資料庫的，您可以藉由使用下列語法在主要伺服器上改變使用者登入，即可完成。
 >
 >ALTER LOGIN <login name> DISABLE
 >
@@ -98,4 +98,4 @@
 ## 後續步驟
 如需異地複寫和其他 SQL Database 業務連續性功能的詳細資訊，請參閱[業務連續性概觀](sql-database-business-continuity.md)。
 
-<!---HONumber=Oct15_HO4-->
+<!---HONumber=AcomDC_0413_2016-->

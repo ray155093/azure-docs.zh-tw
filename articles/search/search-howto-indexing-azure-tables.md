@@ -1,0 +1,103 @@
+<properties
+pageTitle="使用 Azure 搜尋服務對 Azure 表格儲存體編制索引"
+description="了解如何使用 Azure 搜尋服務對 Azure 資料表中儲存的資料編制索引"
+services="search"
+documentationCenter=""
+authors="chaosrealm"
+manager="pablocas"
+editor="" />
+
+<tags
+ms.service="search"
+ms.devlang="rest-api"
+ms.workload="search" ms.topic="article"  
+ms.tgt_pltfrm="na"
+ms.date="04/12/2016"
+ms.author="eugenesh" />
+
+# 使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
+
+本文章說明如何使用 Azure 搜尋服務來對儲存於 Azure 表格儲存體中的資料編制索引。新的 Azure 搜尋服務資料表索引子可以讓此程序快速且順暢。
+
+> [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+
+## 設定資料表編制索引
+
+若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。在未來，對資料表編製索引的支援將會新增至 Azure 搜尋服務 .NET SDK 和 Azure 入口網站。
+
+資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更 (新增、修改或刪除的資料列)。
+
+索引子會從資料來源讀取資料，然後將資料載入到目標搜尋索引。
+
+設定資料表索引子：
+
+1. 建立類型 `azuretable` 的資料來源，它會參考 Azure 儲存體帳戶中的資料表 (和選擇性參考「查詢」)
+	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
+	- 使用 `container.name` 參數指定資料表名稱
+	- (選擇性) 使用 `container.query` 參數指定查詢。可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
+2. 藉由將您的資料來源連接至現有的目標索引來建立索引子 (如果沒有的話，請建立索引)
+
+下列範例提供相關說明：
+
+	POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+	    "name" : "table-datasource",
+	    "type" : "azuretable",
+	    "credentials" : { "connectionString" : "<my storage connection string>" },
+	    "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
+	}   
+
+接下來，建立索引子，它參考資料來源和目標索引。例如：
+
+	POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+	  "name" : "table-indexer",
+	  "dataSourceName" : "table-datasource",
+	  "targetIndexName" : "my-target-index",
+	  "schedule" : { "interval" : "PT2H" }
+	}
+
+就是這麼簡單 - 快樂地編制索引吧！
+
+## 處理文件索引鍵
+
+在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。每個搜尋索引必須確實具有一個 `Edm.String` 類型的索引鍵欄位。要新增至索引的每個文件都需要有索引鍵欄位 (實際上它是唯一必要的欄位)。
+
+由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，那麼 `Key` 欄位的值是 `PK1RK1`。
+
+> AZURE.NOTE `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以藉由在索引子屬性中啟用 `base64EncodeKeys` 選項，處理無效的字元 - 如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。(例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
+
+## 處理不同的欄位名稱
+
+通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用 [欄位對應] 將屬性名稱從資料表對應至您的搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
+
+## 增量編製索引和刪除偵測
+ 
+當您將資料表索引子設為依排程執行時，它會根據資料列的 `Timestamp` 值來決定是否只對新的或已更新過的資料列重新編製索引。您不需要指定變更偵測原則 – 會自動為您啟用增量編制索引。
+
+若要指示必須從索引中移除特定文件，您可以使用虛刪除策略 – 新增屬性以表示它已遭到刪除，而非刪除資料列，並在資料來源上設定虛刪除偵測原則。例如，如果資料列有值為 `"true"` 的屬性 `IsDeleted`，則以下顯示的原則會認為資料列已刪除：
+
+	PUT https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+	
+	{
+	    "name" : "my-table-datasource",
+	    "type" : "azuretable",
+	    "credentials" : { "connectionString" : "<your storage connection string>" },
+	    "container" : { "name" : "table name", "query" : "query" },
+	    "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
+	}   
+
+
+## 協助我們改進 Azure 搜尋服務
+
+如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
+
+<!---HONumber=AcomDC_0413_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/21/2016" 
+	ms.date="04/08/2016" 
 	ms.author="nitinme"/>
 
 
@@ -58,7 +58,7 @@
 
 	![提供 Notebook 的名稱](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 
-4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark、SQL 和 Hive 內容。首先，您可以匯入此案例所需的類型。若要這樣做，請將游標放在儲存格中，然後按 **SHIFT + ENTER** 鍵。
+4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。若要這樣做，請將游標放在儲存格中，然後按 **SHIFT + ENTER** 鍵。
 
 		from pyspark.sql import *
 		
@@ -84,27 +84,27 @@
 		dfw = DataFrameWriter(hvacTable)
 		dfw.saveAsTable('hvac')
 
-5. 確認資料表已成功建立。您可以使用 `%%hive` magic 直接執行 Hive 查詢。如需有關 `%%hive` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+5. 確認資料表已成功建立。您可以使用 `%%sql` magic 直接執行 Hive 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 
-		%%hive
+		%%sql
 		SHOW TABLES
 
 	您應該會看到如下的輸出：
 
-		+---------------+-----------+
-		|      tableName|isTemporary|
-		+---------------+-----------+
-		|  hvactemptable|       true|
-		|hivesampletable|      false|
-		|           hvac|      false|
-		+---------------+-----------+
+		+-----------+---------------+
+		|isTemporary|tableName		| 
+		+-----------+---------------+
+		|       true|hvactemptable  |
+		|      false|hivesampletable|
+		|      false|hvac			|
+		+-----------+---------------+
 
 
 	只有 **isTemporary** 資料行為 false 的資料表，為將會儲存在中繼存放區，且可以從 BI 工具存取的 Hive 資料表。在此教學課程中，我們會連線到剛剛建立的 **hvac** 資料表。
 
 6. 請確認資料表包含預期的資料。將下列程式碼片段貼到 Notebook 的空白儲存格中，然後按下 **SHIFT + ENTER**。
 
-		%%hive
+		%%sql
 		SELECT * FROM hvac LIMIT 10
 	
 7. 現在，您可以關閉 Notebook 來釋放資源。方法是從 Notebook 的 [檔案] 功能表上，按一下 [關閉並停止]。這樣就能夠結束並關閉 Notebook。
@@ -231,4 +231,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

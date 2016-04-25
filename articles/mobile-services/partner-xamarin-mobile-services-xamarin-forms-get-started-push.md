@@ -35,7 +35,7 @@
 
 + iOS 8 裝置 (您無法在 iOS 模擬器中測試推播通知)
 + iOS Developer Program 成員資格
-+ [Xamarin.iOS Studio]
++ [Xamarin Studio]
 + [Azure 行動服務元件]
 + 有效的 Google 帳戶
 + [Google Cloud Messaging 用戶端元件]。您在教學課程中會新增此元件。
@@ -838,7 +838,7 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [127]: ./media/partner-xamarin-mobile-services-xamarin-forms-get-started-push/notification-area-received.png
 
 
-[Xamarin.iOS Studio]: http://xamarin.com/platform
+[Xamarin Studio]: http://xamarin.com/download
 [Install Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
 [iOS Provisioning Portal]: http://go.microsoft.com/fwlink/p/?LinkId=272456
 [Mobile Services iOS SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
@@ -852,10 +852,9 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 [Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 [completed example project]: http://go.microsoft.com/fwlink/p/?LinkId=331303
-[Xamarin.iOS]: http://xamarin.com/download
 [Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
 [Google 雲端通訊用戶端元件]: http://components.xamarin.com/view/GCMClient/
 [Xamarin.Forms Azure 推播通知入門範例]: https://github.com/Azure/mobile-services-samples/tree/master/TodoListXamarinForms
 [完整的 Xamarin.Forms Azure 推播通知範例]: https://github.com/Azure/mobile-services-samples/tree/master/GettingStartedWithPushXamarinForms
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

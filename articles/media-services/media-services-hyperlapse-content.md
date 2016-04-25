@@ -21,10 +21,7 @@
 
 Azure Media Hyperlapse 是可以使用第一人稱視角或運動攝影機內容建立流暢縮時攝影影片的「媒體處理器 (MP)」。Azure 媒體服務的雲端型 Microsoft Hyperlapse 與 [Microsoft Research 的桌面 Hyperlapse Pro 和手機型 Hyperlapse Mobile](http://aka.ms/hyperlapse) 相似，它運用大規模的 Azure 媒體服務媒體處理平台來水平調整，並平行化大量的 Hyperlapse 處理。
 
->[AZURE.IMPORTANT] Azure 媒體服務的 Microsoft Hyperlapse 目前為免費公開預覽。工作限制在輸入資產的前 10,000 個畫面。
-
-
-> Microsoft Hyperlapse 是專門使用移動中攝影機拍攝第一人稱視角內容而設計。雖然攝影機位置固定的內容也可以運作，但 Azure 媒體 Hyperlapse 媒體處理器無法保證其他類型內容的效能及品質。若要深入了解 Azure 媒體服務的 Microsoft Hyperlapse 並觀賞一些範例影片，請查看公開預覽的[簡介部落格文章](http://aka.ms/azurehyperlapseblog)。
+>[AZURE.IMPORTANT]Microsoft Hyperlapse 是專門使用移動中攝影機拍攝第一人稱視角內容而設計。雖然攝影機位置固定的內容也可以運作，但 Azure 媒體 Hyperlapse 媒體處理器無法保證其他類型內容的效能及品質。若要深入了解 Azure 媒體服務的 Microsoft Hyperlapse 並觀賞一些範例影片，請查看公開預覽的[簡介部落格文章](http://aka.ms/azurehyperlapseblog)。
 
 Azure 媒體 Hyperlapse 工作接受輸入 MP4、MOV 或 WMV 資產檔案連同組態檔，以指定影片中要縮時的畫面及其速度 (例如前 10,000 個畫面速度為 2x)。輸出是輸入影片經過穩定和縮時轉譯的成果。
 
@@ -212,13 +209,8 @@ NumFrames|要處理的畫面數目。
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 
+##相關連結
 
+[Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-
-<!-- Anchors. -->
-
-<!-- Images. -->
-
-<!-- URLs. -->
-
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

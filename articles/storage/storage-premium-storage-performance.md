@@ -276,7 +276,7 @@ Azure 進階儲存體目前提供三種磁碟大小。對於 IOPS、頻寬和儲
 比方說，如果應用程式所產生的 IO 要求大於磁碟等量大小，儲存體系統會跨越等量單位界限，將此要求寫入多個磁碟上。在需要存取該資料時，必須跨越一個以上的等量單位來搜尋，才能完成要求。這種行為的累積效果可能會導致效能大幅降低。相反地，如果 IO 要求大小比等量大小更小，而且是隨機性質，IO 要求可能聚集在相同的磁碟上而造成瓶頸，最終導致 IO 效能降低。
 
 
-請根據應用程式執行的工作負載類型，選擇適當的等量大小。對於隨機小型 IO 要求，請使用較小的等量大小。對於大型循序 IO 要求，請使用較大的等量大小。針對您要在進階儲存體上執行的應用程式，請參考等量大小建議。對於 SQL Server 而言，請將 OLTP 工作負載的等量大小設定為 64KB，而資料倉儲工作負載則設定為 256KB。若要深入了解，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/virtual-machines-windows-classic-sql-perf.md#disks-and-performance-considerations)。
+請根據應用程式執行的工作負載類型，選擇適當的等量大小。對於隨機小型 IO 要求，請使用較小的等量大小。對於大型循序 IO 要求，請使用較大的等量大小。針對您要在進階儲存體上執行的應用程式，請參考等量大小建議。對於 SQL Server 而言，請將 OLTP 工作負載的等量大小設定為 64KB，而資料倉儲工作負載則設定為 256KB。若要深入了解，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/virtual-machines-windows-sql-performance.md#disks-and-performance-considerations)。
 
 
 >**附註：**在 DS 系列 VM 上，最多可以串接 32 個進階儲存體磁碟，而在 GS 系列 VM 上，最多可以串接 64 個進階儲存體磁碟。
@@ -537,7 +537,7 @@ rate_iops=12500
 
 若為 SQL Server 使用者，請參閱「SQL Server 的效能最佳作法」文章：
 
-- [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/virtual-machines-windows-classic-sql-perf.md)
+- [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/virtual-machines-windows-sql-performance.md)
 - [Azure 進階儲存體為 Azure VM 中的 SQL Server 提供最高效能](http://blogs.technet.com/b/dataplatforminsider/archive/2015/04/23/azure-premium-storage-provides-highest-performance-for-sql-server-in-azure-vm.aspx) 
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

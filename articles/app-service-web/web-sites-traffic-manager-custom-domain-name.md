@@ -1,12 +1,12 @@
 <properties pageTitle="在使用流量管理員的 Azure App Service 中設定 Web 應用程式的自訂網域名稱"wpickett"在包含負載平衡的流量管理員的 Azure App Service 中使用 Web 應用程式的自訂網域名稱。" description="在包含負載平衡的流量管理員的 Azure App Service 中使用 Web 應用程式的自訂網域名稱。" services="app-service\\web" documentationCenter="" authors="rmcmurray" manager="wpickett" editor=""/>
 
-<tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/04/2016" 
+<tags
+	ms.service="app-service-web"
+	ms.workload="web"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="04/08/2016"
 	ms.author="robmcm"/>
 
 #在使用流量管理員的 Azure App Service 中設定 Web 應用程式的自訂網域名稱
@@ -59,4 +59,4 @@
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

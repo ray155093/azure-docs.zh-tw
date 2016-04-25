@@ -22,22 +22,13 @@
 
 ##概觀
 
-本教學課程以 [Xamarin.iOS 快速入門](app-service-mobile-xamarin-ios-get-started.md)教學課程為基礎，您必須先完成該教學課程。您將會新增推播通知至 Xamarin.iOS 快速入門專案，以便在每次插入一筆記錄時傳送推播通知。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+本教學課程以[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程為基礎，您必須先完成該教學課程。您將會新增推播通知至 Xamarin.iOS 快速入門專案，以便在每次插入一筆記錄時傳送推播通知。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##必要條件
 
-若要完成此教學課程，您需要下列項目：
-
-* 使用中的 Azure 帳戶。如果您還沒有帳戶，請註冊 Azure 試用版，還可獲得最多 10 個免費的行動應用程式後端。試用結束之後您仍可以繼續使用它們。查看 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-
-* 已安裝 [Xamarin Studio] 和 [Xcode] v4.4 以上版本的 Mac。如果想要，您可以在 Windows 電腦上使用 Visual Studio 執行 Xamarin.iOS 應用程式，但這樣會比較複雜，因為您必須連線到已加入網路並正在執行 Xamarin.iOS 組建主機 的 Mac。如果您想這麼做，請參閱[在 Windows 上安裝 Xamarin.iOS]。
+* 完成[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程。
 
 * 實體的 iOS 裝置。iOS 模擬器不支援推播通知。
-
-* 需要 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)，以向 Apple Push Notification Service (APNS) 註冊。
-
-* 完成 [Xamarin.iOS 快速入門教學課程](app-service-mobile-xamarin-ios-get-started.md)。
-
 
 ##在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
 
@@ -164,9 +155,5 @@
 <!-- Images. -->
 
 <!-- URLs. -->
-[Xamarin Studio]: http://xamarin.com/platform
-[Install Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
-[Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
-[在 Windows 上安裝 Xamarin.iOS]: http://developer.xamarin.com/guides/ios/getting_started/installation/windows/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

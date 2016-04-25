@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="從 Application Insights 使用串流分析匯出至 Power BI" 
-	description="示範如何使用串流分析處理匯出的資料。" 
+	pageTitle="從 Application Insights 匯出至 Power BI" 
+	description="文章" 
 	services="application-insights" 
     documentationCenter=""
 	authors="noamben" 
@@ -12,46 +12,50 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="11/25/2015" 
+	ms.date="04/05/2016" 
 	ms.author="awills"/>
- 
-# 從 Application Insights 使用串流分析將資料傳送至 Power BI
 
-本文將說明如何使用[串流分析](https://azure.microsoft.com/services/stream-analytics/)來處理從 [Visual Studio Application Insights](app-insights-overview.md) [匯出](app-insights-export-telemetry.md)的資料。作為範例目標，我們將資料傳送到 [Microsoft Power BI](https://powerbi.microsoft.com/)。
+# 從 Application Insights 提供 Power BI
 
+[Power BI](http://www.powerbi.com/) 是一套商務分析工具，用來分析資料及分享見解。每個裝置上都提供豐富的儀表板。您可以結合許多來源的資料，包含來自 [Visual Studio Application Insights](app-insights-overview.md) 的資料。
 
-> [AZURE.NOTE] 從 Application Insights 將資料送入 Power BI 最簡單的方式是[使用配接器](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-application-insights/) (可在 [服務] 下的 Power BI 資源庫中找到)。本文中所描述的內容目前較多樣化，但也可示範如何利用 Application Insights 進行串流分析。
+若要開始，請參閱[在 Power BI 中顯示 Application Insights 資料](https://powerbi.microsoft.com/documentation/powerbi-content-pack-application-insights/)。
 
-[Microsoft Power BI](https://powerbi.microsoft.com/) 以豐富多元的視覺方式呈現您的資料，且能整合多個來源的資訊。
+您會取得一個初始儀表板，您可以加以自訂，以及將 Application Insights 圖表與其他來源的圖表結合。還有一個視覺效果資源庫，您可以從中取得更多圖表，且每個圖表都有您可以設定的參數。
 
-
-![Application Insights 使用量資料的 Power BI 檢視範例](./media/app-insights-export-power-bi/010.png)
-
-[串流分析](https://azure.microsoft.com/services/stream-analytics/)是一項 Azure 服務可以做為配接器，會持續處理從 Application Insights 匯出的資料。
-
-![Application Insights 使用量資料的 Power BI 檢視範例](./media/app-insights-export-power-bi/020.png)
+![](./media/app-insights-export-power-bi/010.png)
 
 
+初始匯入之後，儀表板和報告會持續每日更新。您可以控制資料集上的重新整理排程。
 
 
-## 影片
+**取樣** 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。如果您已經在 SDK 中或在擷取上手動設定取樣，也是如此。[深入了解取樣。](app-insights-sampling.md)
 
-Noam Ben Zeev 會示範我們在本文中的描述。
+## 查看 Application Insights 資料的替代方式
 
-> [AZURE.VIDEO export-to-power-bi-from-application-insights]
+* 如果您不需要顯示非 Azure 的資料，[包含 Application Insights 圖表的 Azure 儀表板](app-insights-dashboards.md)可能更為適用。例如，如果您想要設定監視不同系統元件之 Application Insights 圖表的儀表板 (也許和某些 Azure 服務監視一起)，Azure 儀表板就會是理想的選擇。根據預設，它會更頻繁地更新。 
+* [連續匯出](app-insights-export-telemetry.md)會將您的傳入資料複製到 Azure 儲存體，您可以在其中以您想要的方式移動並處理資料。
+* [分析](app-insights-analytics.md)可讓您在 Application Insights 保留的未經處理資料上執行複雜的查詢。
 
 
-**取樣** 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。[深入了解取樣。](app-insights-sampling.md)
+## 使用串流分析建立您自己的 Power BI 配接器
 
-## 使用 Application Insights 監視您的應用程式
+Application Insights 的 Power BI 內容套件會顯示一組有用的應用程式遙測子集，這對您的需求來說可能已足夠。但是，如果您想要取得範圍超過它所提供的更多遙測，或如果您想要計算來自原始遙測的部分資料，您可以使用 Azure 串流分析服務建立您自己的配接器。
 
-如果您還沒嘗試過，現在就是開始的好時機。Application Insights 可以監視許多平台上的任何裝置或 Web App，包含 Windows、iOS、Android、J2EE 等。[開始使用](app-insights-overview.md)
+在此配置中，我們將從 Application Insights 匯出資料至 Azure 儲存體。[串流分析](https://azure.microsoft.com/services/stream-analytics/)將從中提取資料、重新命名和處理某些欄位，並將它傳送到 Power BI。「串流分析」是一種服務，可以篩選、彙總和執行持續性資料流運算。
 
-## 在 Azure 中建立儲存體
+![透過 SA 匯出至 PBI 的區塊圖](./media/app-insights-export-power-bi/020.png)
+
+
+>[AZURE.TIP] **您不需要遵循這篇文章其餘部分的程序** (使用「串流分析」) 即可查看 Power BI 中的 Application Insights 資料。還有更簡單的方法！ (改為[使用可用的配接器](https://powerbi.microsoft.com/documentation/powerbi-content-pack-application-insights/)。只有在該配接器未提供您想要的所有資料，或是您想要定義您自己的資料彙總或函式時，才遵循這篇文章的其餘部分。
+
+### 在 Azure 中建立儲存體
 
 連續匯出一律會將資料輸出至 Azure 儲存體帳戶，因此您必須先建立儲存體。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)的訂用帳戶中建立「傳統」儲存體帳戶。
+1. 您試用過 [Application Insights 的 Power BI PowerPack](https://powerbi.microsoft.com/documentation/powerbi-content-pack-application-insights/) 嗎？ 如果它已經可以滿足您的需求，您就不需要這篇文章中其餘部分的任何項目。
+
+2.  在 [Azure 入口網站](https://portal.azure.com)的訂用帳戶中建立「傳統」儲存體帳戶。
 
     ![在 Azure 入口網站中，依序選擇 [新增]、[資料]、[儲存體]](./media/app-insights-export-power-bi/030.png)
 
@@ -65,7 +69,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
     ![在儲存體中，依序開啟 [設定]、[金鑰]，然後複製主要存取金鑰](./media/app-insights-export-power-bi/045.png)
 
-## 啟動對 Azure 儲存體的連續匯出
+### 啟動對 Azure 儲存體的連續匯出
 
 [連續匯出](app-insights-export-telemetry.md)會將資料從 Application Insights 移入 Azure 儲存體。
 
@@ -98,7 +102,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 事件會以 JSON 格式寫入至 Blob 檔案。每個檔案可能會包含一或多個事件。因此我們想要讀取事件資料，並篩選出需要的欄位。該處有用這些資料所能做到的所有事情種類，但我們現在計劃要使用串流分析將資料傳送至 Power BI。
 
-## 建立 Azure 串流分析執行個體
+### 建立 Azure 串流分析執行個體
 
 在[傳統 Azure 入口網站](https://manage.windowsazure.com/)中，選取 Azure 串流分析服務，然後建立新的串流分析工作：
 
@@ -129,7 +133,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 ![](./media/app-insights-export-power-bi/140.png)
 
 
-請務必將 [日期格式] 設為 \[YYYY-MM-DD] (含連接號)。
+請務必將 [日期格式] 設為 [YYYY-MM-DD] (含連接號)。
 
 路徑前置詞模式會指定串流分析在存放區中尋找輸入檔案的位置。您需要將它設定為與連續匯出儲存資料的方式相對應。請設定如下：
 
@@ -154,7 +158,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 > [AZURE.TIP] 您可以使用範例命令來下載一些資料。將其保留下來做為偵錯查詢的測試範例。
 
-## 設定輸出
+### 設定輸出
 
 現在選取您的工作並設定輸出。
 
@@ -164,7 +168,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 ![創建三個名稱](./media/app-insights-export-power-bi/170.png)
 
-## 設定查詢
+### 設定查詢
 
 查詢會控管從輸入到輸出的轉譯。
 
@@ -237,7 +241,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 * 此查詢包括維度屬性值，而不需根據陣列索引中固定索引的特定維度。
 
-## 執行工作
+### 執行工作
 
 您可以選取一個啟動工作的過去日期。
 
@@ -245,7 +249,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 請等候直到作業執行。
 
-## 在 Power BI 中查看結果
+### 在 Power BI 中查看結果
 
 以您的工作或學校帳戶開啟 Power BI，並選取您定義為串流分析工作輸出的資料集與資料表。
 
@@ -256,7 +260,7 @@ Noam Ben Zeev 會示範我們在本文中的描述。
 
 ![在 Power BI 中，選取您的資料集和欄位。](./media/app-insights-export-power-bi/210.png)
 
-## 影片
+### 影片
 
 Noam Ben Zeev 會示範如何匯出至 Power BI。
 
@@ -268,5 +272,6 @@ Noam Ben Zeev 會示範如何匯出至 Power BI。
 * [屬性類型和值的詳細資料模型參考。](app-insights-export-data-model.md)
 * [Application Insights](app-insights-overview.md)
 * [更多範例和逐步解說](app-insights-code-samples.md)
+ 
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

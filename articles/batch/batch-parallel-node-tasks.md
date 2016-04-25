@@ -6,7 +6,7 @@
 	authors="mmacy"
 	manager="timlt"
 	editor="" />
-	
+
 <tags
 	ms.service="batch"
 	ms.devlang="multiple"
@@ -15,7 +15,7 @@
 	ms.workload="big-compute"
 	ms.date="01/22/2016"
 	ms.author="marsma" />
-	
+
 # 使用並行節點工作最大化 Azure Batch 運算資源使用量
 
 在本文中，您將了解如何在您的 Azure Batch 集區中每個計算節點上，同時執行一個以上的工作。在集區的計算節點上啟用並行工作執行，即可在集區中較少數量的節點上最大化資源使用量。對於某些工作負載，這可以節省您的時間和金錢。
@@ -38,9 +38,9 @@
 
 ## 啟用平行工作執行
 
-針對集區層級的平行工作執行，您會在 Batch 解決方案中設定計算節點。使用 Batch .NET 程式庫時，您會在建立集區時設定 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性。如果您使用 Batch REST API，您會在集區建立期間於要求主體中設定 [maxTasksPerNode][maxtasks_rest] 元素。
+針對集區層級的平行工作執行，您會在 Batch 解決方案中設定計算節點。使用 Batch .NET 程式庫時，您會在建立集區時設定 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性。如果您使用 Batch REST API，您會在集區建立期間於要求主體中設定 [maxTasksPerNode][rest_addpool] 元素。
 
-Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大] \(四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
+Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大] (四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
 > [AZURE.TIP] 為您的集區建構[自動調整公式][enable_autoscaling]時，請務必考慮 `maxTasksPerNode` 值。例如，評估 `$RunningTasks` 的公式可能大幅受到每個節點的工作增加的影響。如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](batch-automatic-scaling.md)。
 
@@ -56,27 +56,37 @@ Azure Batch 允許您將每個節點的最大工作數目設定為多達節點�
 
 這個 [Batch .NET][api_net] API 程式碼片段示範建立集區的要求，該集區包含四個大型節點，而每個節點最多有四項工作。它會指定工作排程原則，該原則會先以工作填滿每個節點，再將工作指派給集區中的其他節點。如需有關使用 Batch .NET API 新增集區的詳細資訊，請參閱 [BatchClient.PoolOperations.CreatePool][poolcreate_net]。
 
-        CloudPool pool = batchClient.PoolOperations.CreatePool(poolId: "mypool",
-        													osFamily: "2",
-        													virtualMachineSize: "large",
-        													targetDedicated: 4);
-        pool.MaxTasksPerComputeNode = 4;
-        pool.TaskSchedulingPolicy = new TaskSchedulingPolicy(ComputeNodeFillType.Pack);
-        pool.Commit();
+```
+CloudPool pool =
+    batchClient.PoolOperations.CreatePool(
+        poolId: "mypool",
+		targetDedicated: 4
+		virtualMachineSize: "large",
+		cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));
+
+pool.MaxTasksPerComputeNode = 4;
+pool.TaskSchedulingPolicy = new TaskSchedulingPolicy(ComputeNodeFillType.Pack);
+pool.Commit();
+```
 
 ## Batch REST 範例
 
-這個 [Batch REST][api_rest] API 程式碼片段示範建立集區的要求，該集區包含兩個大型節點，而每個節點最多有四項工作。如需有關如何使用 REST API 新增集區的詳細資訊，請參閱[將集區新增至帳戶][maxtasks_rest]。
+這個 [Batch REST][api_rest] API 程式碼片段示範建立集區的要求，該集區包含兩個大型節點，而每個節點最多有四項工作。如需有關如何使用 REST API 新增集區的詳細資訊，請參閱[將集區新增至帳戶][rest_addpool]。
 
-        {
-          "id": "mypool",
-          "vmSize": "Large",
-          "osFamily": "2",
-          "targetOSVersion": "*",
-          "targetDedicated": 2,
-          "enableInterNodeCommunication": false,
-          "maxTasksPerNode": 4
-        }
+```
+{
+  "odata.metadata":"https://myaccount.myregion.batch.azure.com/$metadata#pools/@Element",
+  "id":"mypool",
+  "vmSize":"large",
+  "cloudServiceConfiguration": {
+    "osFamily":"4",
+    "targetOSVersion":"*",
+  }
+  "targetDedicated":2,
+  "maxTasksPerNode":4,
+  "enableInterNodeCommunication":true,
+}
+```
 
 > [AZURE.NOTE] 您只能在建立集區時設定 `maxTasksPerNode` 元素和 [MaxTasksPerComputeNode][maxtasks_net] 屬性。建立集區後無法加以修改。
 
@@ -124,11 +134,11 @@ Duration: 00:08:48.2423500
 [fill_type]: https://msdn.microsoft.com/library/microsoft.azure.batch.common.computenodefilltype.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [maxtasks_net]: http://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.maxtaskspercomputenode.aspx
-[maxtasks_rest]: https://msdn.microsoft.com/library/azure/dn820174.aspx
+[rest_addpool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
 [parallel_tasks_sample]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/ParallelTasks
 [poolcreate_net]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.createpool.aspx
 [task_schedule]: https://msdn.microsoft.com/library/microsoft.azure.batch.cloudpool.taskschedulingpolicy.aspx
 
 [1]: ./media/batch-parallel-node-tasks\heat_map.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

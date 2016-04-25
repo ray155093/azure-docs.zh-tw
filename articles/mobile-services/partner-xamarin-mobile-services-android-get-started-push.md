@@ -33,7 +33,7 @@
 + 有效的 Google 帳戶。
 + [Google Cloud Messaging 用戶端元件]。您在教學課程中會新增此元件。
 
-您在完成[開始使用行動服務]時，應該就已經在專案中安裝 [Xamarin.Android] 和 [Azure 行動服務]元件。
+您在完成[開始使用行動服務]時，應該已在專案中安裝 Xamarin 和 [Azure 行動服務元件]。
 
 ##<a id="register"></a>啟用 Google Cloud Messaging
 
@@ -84,7 +84,6 @@
 [開始使用行動服務]: mobile-services-ios-get-started.md
 
 [Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
-[Xamarin.Android]: http://xamarin.com/download/
-[Azure 行動服務]: http://components.xamarin.com/view/azure-mobile-services/
+[Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

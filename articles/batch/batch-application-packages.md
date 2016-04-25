@@ -114,7 +114,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 **中繼資料**
 
-您可以直接在 [應用程式識別碼] 和 [版本] 文字方塊中輸入值，手動提供應用程式中繼資料，也可以上傳包含這些中繼資料的 JSON 檔案。若要手動指定應用程式識別碼和版本，只要將 [中繼資料] 下拉式清單選取器保持為 [輸入中繼資料] \(預設值)，然後手動在 [應用程式識別碼] 和 [版本] 文字方塊中輸入值即可。
+您可以直接在 [應用程式識別碼] 和 [版本] 文字方塊中輸入值，手動提供應用程式中繼資料，也可以上傳包含這些中繼資料的 JSON 檔案。若要手動指定應用程式識別碼和版本，只要將 [中繼資料] 下拉式清單選取器保持為 [輸入中繼資料] (預設值)，然後手動在 [應用程式識別碼] 和 [版本] 文字方塊中輸入值即可。
 
 若要指定包含識別碼和封裝版本的 JSON 格式中繼資料檔案，請從 [中繼資料] 下拉式清單選取 [上傳中繼資料檔案]︰
 
@@ -198,10 +198,11 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 ```csharp
 // Create the unbound CloudPool
 CloudPool myCloudPool =
-    batchClient.PoolOperations.CreatePool(poolId: "myPool",
-                                          osFamily: "4",
-                                          virtualMachineSize: "small",
-                                          targetDedicated: "1");
+    batchClient.PoolOperations.CreatePool(
+        poolId: "myPool",
+        targetDedicated: "1",
+        virtualMachineSize: "small",
+        cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));
 
 // Specify the application and version to install on the compute nodes
 myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
@@ -238,7 +239,7 @@ string commandLine = @"cmd /c %AZ_BATCH_APP_PACKAGE_BLENDER%\blender.exe -my -co
 CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
-> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch功能概觀](batch-api-basics.md)的「工作的環境設定」。
+> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的「工作的環境設定」。
 
 ## 更新集區的應用程式封裝
 
@@ -316,4 +317,4 @@ foreach (ApplicationSummary app in applications)
 [12]: ./media/batch-application-packages/app_pkg_12.png "Azure 入口網站中的刪除封裝確認對話方塊"
 [13]: ./media/batch-application-packages/app_pkg_13.png "中繼資料檔案選取項目詳細資料"
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

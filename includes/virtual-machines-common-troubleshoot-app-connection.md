@@ -3,7 +3,7 @@
 
 如果您無法存取在 Azure 虛擬機器上執行的應用程式，本文將說明以井然有序的方式，釐清問題的來源並更正。
 
-> [AZURE.NOTE]  如需連接到 Azure 虛擬機器的說明，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)或[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md)。
+> [AZURE.NOTE]  如需連接到 Azure 虛擬機器的說明，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](../articles/virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md)或[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)。
 
 如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下**取得支援**。
 
@@ -65,10 +65,10 @@
 
 如果您無法存取應用程式，請檢查下列項目：
 
-- 若為使用傳統部署模型建立的 VM，其 VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。如需詳細資訊，請參閱[如何設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md)。
-- 若為使用傳統部署模型建立的 VM，其端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。如需詳細資訊，請參閱[如何設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md)。
+- 若為使用傳統部署模型建立的 VM，其 VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)。
+- 若為使用傳統部署模型建立的 VM，其端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)。
 - 若為使用資源管理員部署模型建立的 VM，其 VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
-- 網路安全性群組允許輸入要求與輸出回應的流量。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)。
+- 網路安全性群組允許輸入要求與輸出回應的流量。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../articles/virtual-network/virtual-networks-nsg.md)。
 
 如果虛擬機器或端點是負載平衡集的成員：
 
@@ -98,8 +98,8 @@
 
 ## 其他資源
 
-[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)
+[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](../articles/virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md)
 
-[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md)
+[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

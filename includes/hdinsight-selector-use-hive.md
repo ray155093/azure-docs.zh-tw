@@ -1,12 +1,13 @@
 > [AZURE.SELECTOR]
-- [Overview](../articles/hdinsight/hdinsight-use-hive.md)
-- [Hive View](../articles/hdinsight/hdinsight-hadoop-use-hive-ambari-view.md)
-- [Beeline](../articles/hdinsight/hdinsight-hadoop-use-hive-beeline.md)
-- [Query Console](../articles/hdinsight/hdinsight-hadoop-use-hive-query-console.md)
-- [Visual Studio](../articles/hdinsight/hdinsight-hadoop-use-hive-visual-studio.md)
-- [PowerShell](../articles/hdinsight/hdinsight-hadoop-use-hive-powershell.md)
+- [概觀](../articles/hdinsight/hdinsight-use-hive.md)
+- [Hive 檢視](../articles/hdinsight/hdinsight-hadoop-use-hive-ambari-view.md)
 - [SSH](../articles/hdinsight/hdinsight-hadoop-use-hive-ssh.md)
-- [Remote Desktop](../articles/hdinsight/hdinsight-hadoop-use-hive-remote-desktop.md)
+- [Beeline](../articles/hdinsight/hdinsight-hadoop-use-hive-beeline.md)
 - [Curl](../articles/hdinsight/hdinsight-hadoop-use-hive-curl.md)
+- [PowerShell](../articles/hdinsight/hdinsight-hadoop-use-hive-powershell.md)
+- [.NET](../articles/hdinsight/hdinsight-hadoop-use-hive-dotnet-sdk.md)
+- [Visual Studio](../articles/hdinsight/hdinsight-hadoop-use-hive-visual-studio.md)
+- [遠端桌面](../articles/hdinsight/hdinsight-hadoop-use-hive-remote-desktop.md)
+- [查詢主控台](../articles/hdinsight/hdinsight-hadoop-use-hive-query-console.md)
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0413_2016-->

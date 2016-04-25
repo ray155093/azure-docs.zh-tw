@@ -23,105 +23,16 @@
 
 了解如何使用 Sqoop，在 HDInsight 叢集與 Azure SQL Database 或 SQL Server Database 之間進行匯入和匯出。
 
-> [AZURE.NOTE] 本文中的步驟使用 SSH 來連線至 Linux 架構的 HDInsight 叢集。如[在 HDInsight 中搭配 Hadoop 使用 Sqoop (PowerShell)](hdinsight-use-sqoop.md) 所述，Windows 用戶端也可以使用 Azure PowerShell 在 Linux 架構的叢集上使用 Sqoop。
-
-##什麼是 Sqoop？
-
-雖然在處理非結構化資料和半結構化資料時 (例如記錄和檔案)，很自然地會選擇 Hadoop，但有時也需要處理儲存在關聯式資料庫中的結構化資料。
-
-[Sqoop][sqoop-user-guide-1.4.4] 是一種可在 Hadoop 叢集和關聯式資料庫之間傳送資料的工具。此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。在本教學課程中，您將使用 SQL Server Database 做為關聯式資料庫。
-
-如需 HDInsight 叢集支援的 Sqoop 版本，請參閱 [HDInsight 所提供叢集版本的新功能][hdinsight-versions]。
-
+> [AZURE.NOTE] 本文中的步驟使用 SSH 來連線至 Linux 架構的 HDInsight 叢集。Windows 用戶端也可以使用 Azure PowerShell 和 HDInsight .NET SDK 在以 Linux 為基礎的叢集上使用 Sqoop。使用索引標籤選取器，以開啟這些文章。
 
 ##必要條件
 
 開始進行本教學課程之前，您必須具備下列條件：
 
+
+- **HDInsight 中的 Hadoop 叢集**。請參閱[建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
 - **工作站**：具有 SSH 用戶端的電腦。
-
 - **Azure CLI**：如需詳細資訊，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)
-
-##了解案例
-
-HDInsight 叢集附有一些範例資料。您將使用名為 **hivesampletable** 的 Hive 資料表，該資料表會參考位於 ****wasb:///hive/warehouse/hivesampletable** 的資料檔案。此資料表包含某些行動裝置資料。此 Hive 資料表的結構描述為：
-
-| 欄位 | 資料類型 |
-| ----- | --------- |
-| clientid | 字串 |
-| querytime | 字串 |
-| market | 字串 |
-| deviceplatform | 字串 |
-| devicemake | 字串 |
-| devicemodel | 字串 |
-| state | 字串 |
-| country | 字串 |
-| querydwelltime | double |
-| sessionid | bigint |
-| sessionpagevieworder | bigint |
-
-您會先將 **hivesampletable** 匯出到 Azure SQL Database 或名為 **mobiledata** 的資料表中的 SQL Server，然後在 **wasb:///tutorials/usesqoop/importeddata** 將此資料表匯入回到 HDInsight。
-
-
-## 建立叢集與 SQL Database
-
-1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。         
-
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
-    
-    ARM 範本位於公用 Blob 容器 **https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json* 中。
-    
-    ARM 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 封裝也位於公用 Blob 容器 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 中。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
-    
-        "storageKeyType": "Primary",
-        "storageKey": "<TheAzureStorageAccountKey>",
-    
-2. 從 [參數] 刀鋒視窗，輸入下列項目：
-
-    - **ClusterName**：輸入您將建立的 Hadoop 叢集名稱。
-    - **叢集登入名稱和密碼**：預設登入名稱是 admin。
-    - **SSH 使用者名稱和密碼**。
-    - **SQL Database 伺服器登入名稱和密碼**。
-
-    變數區段中的下列值為硬式編碼︰
-    
-    |預設儲存體帳戶名稱|<CluterName>store|
-    |----------------------------|-----------------|
-    |Azure SQL Database 伺服器名稱|<ClusterName>dbserver|
-    |Azure SQL Database 名稱|<ClusterName>db|
-    
-    請記下這些值。稍後在教學課程中需要這些資訊。
-    
-3\. 按一下 [確定] 儲存參數。
-
-4\. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
-
-5\. 按一下 [法律條款]，然後按一下 [建立]。
-
-6\. 按一下 [建立]。您將會看到新的圖格，標題為「提交範本部署的部署」。大約需要 20 分鐘的時間來建立叢集和 SQL Database。
-
-如果您選擇使用現有的 Azure SQL Database 或 Microsoft SQL Server
-
-- **Azure SQL Database**：您必須設定 Azure SQL Database 伺服器的防火牆規則，以允許從您的工作站存取。如需關於建立 Azure SQL Database 和設定防火牆的指示，請參閱[開始使用 Azure SQL Database][sqldatabase-get-started]。 
-
-    > [AZURE.NOTE] 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。如需關於建立 Azure SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
-
-- **SQL Server**：如果您的 HDInsight 叢集與 SQL Server 位於同一個 Azure 虛擬網路上，您可以使用本文中的步驟在 SQL Server Database 上匯入和匯出資料。
-
-    > [AZURE.NOTE] HDInsight 僅支援以位置為基礎的虛擬網路，目前無法使用以同質群組為基礎的虛擬網路。
-
-    * 若要建立及設定虛擬網路，請參閱[虛擬網路組態工作](../services/virtual-machines/)。
-
-        * 在您的資料中心裡使用 SQL Server 時，必須將虛擬網路設定為*站對站*或*點對站*。
-
-            > [AZURE.NOTE] 使用**點對站**虛擬網路時，SQL Server 必須執行 VPN 用戶端組態應用程式；您可從 Azure 虛擬網路組態的 [儀表板] 存取此應用程式。
-
-        * 在 Azure 虛擬機器中使用 SQL Server 時，只要主控 SQL Server 的虛擬機器與 HDInsight 在同一個虛擬網路中，即可使用任何虛擬網路組態。
-
-    * 若要在虛擬網路上建立 HDInsight 叢集，請參閱[使用自訂選項在 HDInsight 上建立 Hadoop 叢集](hdinsight-provision-clusters.md)。
-
-    > [AZURE.NOTE] SQL Server 也必須允許驗證。您必須使用 SQL Server 登入來完成本文中的步驟。
-	
 
 ##Sqoop export
 
@@ -231,4 +142,4 @@ HDInsight 叢集附有一些範例資料。您將使用名為 **hivesampletable*
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

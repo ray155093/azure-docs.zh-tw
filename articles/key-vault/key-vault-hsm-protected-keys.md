@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/01/2016"
+	ms.date="04/07/2016"
 	ms.author="cabailey"/>
 #如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰
 
@@ -99,17 +99,65 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。這些增強內容可
 
 ###步驟 1.3：下載 Azure 金鑰保存庫的 BYOK 工具組
 
-移至 Microsoft 下載中心並為您的地理區域或 Azure 執行個體[下載 Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345)：
+移至 Microsoft 下載中心並為您的地理區域或 Azure 執行個體[下載 Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345)。使用下列資訊來識別要下載封裝雜湊與其對應的 SHA-256 封裝雜湊︰
 
-|地理區域或 Azure 執行個體|封裝名稱|SHA-256 封裝雜湊|
-|---|---|---|
-|北美洲|KeyVault-BYOK-Tools-UnitedStates.zip|D9FDA9F5A34E1388CD6C9138E5B75B7051FB7D6B11F087AFE0553DC85CCF0E36|
-|歐洲|KeyVault-BYOK-Tools-Europe.zip|881DCA798305B8408C06BAE7B3EFBC1E9EA6113A8D6EC443464F3744896F32C3|
-|亞洲|KeyVault-BYOK-Tools-AsiaPacific.zip|0C76967B3AC76687E4EA47EB96174EE6B25AB24E3114E28A90D9B93A2E6ABF6E|
-|拉丁美洲|KeyVault-BYOK-Tools-LatinAmerica.zip|B38015990D4D1E522B8367FF78E78E0234BF9592663470426088C44C3CAAAF48|
-|日本|KeyVault-BYOK-Tools-Japan.zip|DB512CD9472FDE2FD610522847DF05E4D7CD49A296EE4A2DD74D43626624A113|
-|澳大利亞|KeyVault-BYOK-Tools-Australia.zip|8EBC69E58E809A67C036B50BB4F1130411AD87A7464E0D61A9E993C797915967|
-|[Azure Government](../../../../features/gov/)|KeyVault-BYOK-Tools-USGovCloud.zip|4DE9B33990099E4197ED67D786316F628E5218FC1EB0C24DCAD8A1851FD345B8|
+---
+
+**北美洲：**
+
+KeyVault-BYOK-Tools-UnitedStates.zip
+
+D9FDA9F5A34E1388CD6C9138E5B75B7051FB7D6B11F087AFE0553DC85CCF0E36
+
+---
+
+**歐洲︰**
+
+KeyVault-BYOK-Tools-Europe.zip
+
+81DCA798305B8408C06BAE7B3EFBC1E9EA6113A8D6EC443464F3744896F32C3
+
+---
+
+**亞洲︰**
+
+KeyVault-BYOK-Tools-AsiaPacific.zip
+
+0C76967B3AC76687E4EA47EB96174EE6B25AB24E3114E28A90D9B93A2E6ABF6E
+
+---
+
+**拉丁美洲︰**
+
+KeyVault-BYOK-Tools-LatinAmerica.zip
+	
+B38015990D4D1E522B8367FF78E78E0234BF9592663470426088C44C3CAAAF48
+
+---
+
+**日本︰**
+
+KeyVault-BYOK-Tools-Japan.zip
+
+DB512CD9472FDE2FD610522847DF05E4D7CD49A296EE4A2DD74D43626624A113
+
+---
+
+**澳大利亞：**
+
+KeyVault-BYOK-Tools-Australia.zip
+
+8EBC69E58E809A67C036B50BB4F1130411AD87A7464E0D61A9E993C797915967
+
+---
+
+[**Azure Government：**](../../../../features/gov/)
+
+KeyVault-BYOK-Tools-USGovCloud.zip
+
+4DE9B33990099E4197ED67D786316F628E5218FC1EB0C24DCAD8A1851FD345B8
+
+---
 
 若要驗證您已下載之 BYOK 工具組的完整性，請從您的 Azure PowerShell 工作階段，使用 [Get-FileHash](https://technet.microsoft.com/library/dn520872.aspx) Cmdlet。
 
@@ -332,4 +380,4 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。這些增強內容可
 
 您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。如需詳細資訊，請參閱[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)教學課程中的**如果您想要使用硬體安全模組 (HSM)** 一節。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

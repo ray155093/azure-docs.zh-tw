@@ -35,7 +35,7 @@ IoT 中樞會監視四個類別的事件：
 
     ![][1]
 
-3. 選取您要監視的監視類別，然後按一下 [儲存]。您可以從 [監視設定] 中所列出的事件中樞相容端點讀取事件。
+3. 選取您要監視的監視類別，然後按一下 [儲存]。您可以從 [監視設定] 中所列出的事件中樞相容端點讀取事件。IoT 中樞端點稱為 `messages/operationsmonitoringevents`。
 
     ![][2]
 
@@ -139,4 +139,4 @@ IoT 中樞會監視四個類別的事件：
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -4,7 +4,7 @@
    services="sql-database" 
    documentationCenter="" 
    authors="elfisher" 
-   manager="jeffreyg" 
+   manager="jhubbard" 
    editor="monicar"/>
 
 <tags
@@ -137,11 +137,11 @@ Azure SQL Database 提供下列功能，以從中斷復原：
   + 復原的資料庫使用的名稱與來源資料庫不同
   + 復原的資料庫和來源伺服器位於不同的伺服器
 
-如需資料庫警示規則的詳細資訊，請參閱[接收警示通知](insights-receive-alert-notifications.md)和[追蹤服務健全狀況](insights-service-health.md)。
+如需資料庫警示規則的詳細資訊，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](../azure-portal/insights-service-health.md)。
 
 
 ### 啟用稽核
 
 如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。用戶端應用程式必須在 *.database.secure.windows.net 的模式中使用安全連接字串，才能有良好的稽核指標。如需詳細資訊，請參閱[開始使用 SQL 資料庫稽核](sql-database-auditing-get-started.md)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

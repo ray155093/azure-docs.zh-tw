@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/13/2016"
+	ms.date="04/04/2016"
 	ms.author="byvinyal"/>
 
 #<a name="howtomonitor"></a>監視 Azure App Service 中的 Web 應用程式
@@ -54,7 +54,7 @@
 
 Web 應用程式可以從 [Azure 傳統入口網站](https://manage.windowsazure.com) Web 應用程式的 [調整規模] 管理頁面，設為在**共用**或**標準**模式中執行。在 [共用] 模式中，每個 Azure 訂用帳戶都能存取針對每個區域執行最多 100 個 Web 應用程式的目的而提供的資源集區。基於此目的而提供給每個 Web 應用程式訂用帳戶使用的資源集區，將由相同地理位置中設定為在 [共用] 模式中執行的其他 Web 應用程式所共用。由於這些資源需與其他 Web 應用程式共用，因此所有訂用帳戶在使用這些資源時均會受到限制。套用在訂用帳戶上的資源使用限制，會以列於各個 Web 應用程式 [儀表板] 管理頁面之 [使用量概觀] 區段下的使用量配額來表示。
 
->[AZURE.NOTE] 若將網站設定為以 [標準] 模式執行，則該網站會被配置相當於下文表格中 [小型] \(預設值)、[中型] 或 [大型] 虛擬機器大小的專用資源：[Azure 的虛擬機器和雲端服務大小][vmsizes]。對於在 [標準] 模式下運作的 Web 應用程式，其訂用帳戶可使用的資源並沒有限制。然而，每個區域容許建立的 [標準] 模式 Web 應用程式數目只有 500 個。
+>[AZURE.NOTE] 若將網站設定為以 [標準] 模式執行，則該網站會被配置相當於下文表格中 [小型] (預設值)、[中型] 或 [大型] 虛擬機器大小的專用資源：[Azure 的虛擬機器和雲端服務大小][vmsizes]。對於在 [標準] 模式下運作的 Web 應用程式，其訂用帳戶可使用的資源並沒有限制。然而，每個區域容許建立的 [標準] 模式 Web 應用程式數目只有 500 個。
 
 ### 作法：檢視設定為共用模式的 Web 應用程式的使用量配額 ###
 若要判斷 Web 應用程式影響資源使用量配額的程度，請遵循以下步驟：
@@ -201,7 +201,7 @@ Web 應用程式可以從 [Azure 傳統入口網站](https://manage.windowsazure
 
 如此可將記錄資訊顯示在執行命令的命令提示字元、PowerShell、Bash 或終端機工作階段中。
 
-> [AZURE.NOTE] 如果您尚未安裝 **azure** 命令，請參閱[如何使用 Azure CLI](../virtual-machines/virtual-machines-command-line-tools.md)，以取得安裝和組態資訊。
+> [AZURE.NOTE] 如果您尚未安裝 **azure** 命令，請參閱[安裝 Azure CLI](../xplat-cli-install.md)，以取得安裝和組態資訊。
 
 ### 讀取記錄檔 ###
 
@@ -286,6 +286,5 @@ Web 應用程式可以從 [Azure 傳統入口網站](https://manage.windowsazure
 
 [fzilla]: http://go.microsoft.com/fwlink/?LinkId=247914
 [vmsizes]: http://go.microsoft.com/fwlink/?LinkID=309169
- 
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/17/2016" 
+	ms.date="04/08/2016" 
 	ms.author="nitinme"/>
 
 # Azure HDInsight 中的 Apache Spark (Linux) 的已知問題
@@ -54,7 +54,28 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 請從 Ambari 手動啟動歷程記錄伺服器。
 
-##載入大型 Notebook 時發生錯誤
+## Spark 記錄檔目錄中的權限問題 
+
+**徵兆：**
+ 
+在 hdiuser 透過 spark-submit 提交作業時，將會發生錯誤 java.io.FileNotFoundException：/var/log/spark/sparkdriver\_hdiuser.log (沒有使用權限)，且不會寫入驅動程式記錄檔。
+
+**緩和：**
+ 
+1. 將 hdiuser 新增至 Hadoop 群組。 
+2. 在叢集建立之後，提供 /var/log/spark 的 777 權限。 
+3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。  
+4. 以 sudo 的身分執行 spark-submit。  
+
+## Jupyter Notebook 的相關問題
+
+以下是 Jupyter Notebook 的已知問題。
+
+### Notebook 在檔名中有非 ASCII 字元
+
+可以用在 Spark HDInsight 叢集中的 Jupyter Notebook，檔名中不該有非 ASCII 字元。如果您嘗試透過有非 ASCII 檔名的 Jupyter UI 上傳檔案，它會以無訊息方式失敗 (亦即 Jupyter 不會讓您上傳檔案，但也不會擲回可見的錯誤)。
+
+### 載入大型 Notebook 時發生錯誤
 
 **徵兆：**
 
@@ -66,12 +87,10 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 若要防止日後再發生此錯誤，您必須遵循一些最佳作法：
 
-* 務必讓 Notebook 保持小型規模。會傳回到 Jupyter 的任何 Spark 作業輸出皆會保存在 Notebook 中。一般來說，Jupyter 的最佳作法是避免在大型 RDD 或資料框架上執行 `.collect()`。相反地，如果您想要查看 RDD 的內容，請考慮執行 `.take()` 或 `.sample()`，這可讓輸出不會變得太大。
+* 務必讓 Notebook 保持小型規模。會傳回到 Jupyter 的任何 Spark 作業輸出皆會保存在 Notebook 中。一般來說，Jupyter 的最佳做法是避免在大型 RDD 或資料框架上執行 `.collect()`。相反地，如果您想要查看 RDD 的內容，請考慮執行 `.take()` 或 `.sample()`，這可讓輸出不會變得太大。
 * 此外，當您儲存 Notebook 時，請清除所有輸出儲存格以減少大小。
 
-
-
-##Notebook 的初始啟動比預期耗時 
+### Notebook 的初始啟動比預期耗時 
 
 **徵兆：**
 
@@ -81,7 +100,7 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
  
 這會在執行第一個程式碼儲存格時發生。它會在背景中起始設定工作階段組態，以及設定 SQL、Spark 和 Hive 內容。設定這些內容後，第一個陳述式才會執行，因此會有陳述式會花很長時間完成的印象。
 
-##Jupyter Notebook 建立工作階段逾時
+### Jupyter Notebook 建立工作階段逾時
 
 **徵兆：**
 
@@ -96,22 +115,13 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 2. 重新啟動您先前嘗試啟動的 Notebook。此時您應有足夠的資源可建立工作階段。
 
-## Spark 記錄檔目錄中的權限問題 
+### 還原至檢查點可能會失敗
 
-**徵兆：**
- 
-在 hdiuser 透過 spark-submit 提交作業時，將會發生錯誤 java.io.FileNotFoundException：/var/log/spark/sparkdriver\_hdiuser.log (沒有使用權限)，且不會寫入驅動程式記錄檔。
-
-**緩和：**
- 
-1. 將 hdiuser 新增至 Hadoop 群組。 
-2. 在叢集建立之後，提供 /var/log/spark 的 777 權限。 
-3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。  
-4. 以 sudo 的身分執行 spark-submit。 
+如果需要還原至較早版本的 Notebook，您可以在 Jupyter Notebook 中建立檢查點。不過，如果 Notebook 的目前狀態具有含自動視覺效果的 SQL 查詢，還原至先前儲存的檢查點可能會造成錯誤。
 
 ##另請參閱
 
 - [概觀：Azure HDInsight 上的 Apache Spark (Linux)](hdinsight-apache-spark-overview.md)
 - [開始使用：在 Azure HDInsight (Linux) 上佈建 Apache Spark 並使用 Spark SQL 執行互動式查詢](hdinsight-apache-spark-jupyter-spark-sql.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

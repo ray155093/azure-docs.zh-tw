@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/18/2016"   
+	ms.date="04/08/2016"   
 	ms.author="adsolank;juliako;johndeu"/>
 
 
@@ -69,7 +69,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 	    IJob job = _context.Jobs.Create("My Indexing Job");
 
 	    // Get a reference to the Azure Media Indexer.
-	    string MediaProcessorName = "Azure Media Indexer",
+	    string MediaProcessorName = "Azure Media Indexer";
 	    IMediaProcessor processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
 	    // Read configuration from file if specified.
@@ -290,15 +290,12 @@ __功能__ <br /><br /> 在 1.2 版中新增。目前唯一支援的功能是語
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 
-
 ## 相關連結
+
+[Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [搭配 Azure Media Indexer 和 SQL Server 使用 AIB 檔案](https://azure.microsoft.com/blog/2014/11/03/using-aib-files-with-azure-media-indexer-and-sql-server/)
 
-<!-- Anchors. -->
+[使用 Azure Media Indexer 2 Preview 編製媒體檔案索引](media-services-process-content-with-indexer2.md)
 
-<!-- Images. -->
-
-<!-- URLs. -->
-
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

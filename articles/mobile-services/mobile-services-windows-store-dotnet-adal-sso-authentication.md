@@ -27,7 +27,7 @@
 
 ##概觀
 
-在本教學課程中，您使用 Active Directory Authentication Library 將驗證新增至快速入門專案，以支援使用 Azure Active Directory 的[用戶端主導登入作業](http://msdn.microsoft.com/library/azure/jj710106.aspx)。若要支援使用 Azure Active Directory 的[服務主導登入作業](http://msdn.microsoft.com/library/azure/dn283952.aspx)，請從[將驗證新增至您的行動服務應用程式](../mobile-services-dotnet-backend-windows-store-dotnet-get-started-users.md)教學課程開始。
+在本教學課程中，您使用 Active Directory Authentication Library 將驗證新增至快速入門專案，以支援使用 Azure Active Directory 的[用戶端主導登入作業](http://msdn.microsoft.com/library/azure/jj710106.aspx)。若要支援使用 Azure Active Directory 的[服務主導登入作業](http://msdn.microsoft.com/library/azure/dn283952.aspx)，請從[將驗證新增至您的行動服務應用程式](mobile-services-dotnet-backend-windows-universal-dotnet-get-started-users.md)教學課程開始。
 
 要能夠驗證使用者，您必須向 Azure Active Directory (AAD) 註冊您的應用程式。此作業有兩個階段。第一，您必須註冊行動服務，並公開其權限。第二，您必須註冊 Windows 市集應用程式，並為其授與對這些權限的存取權
 
@@ -214,4 +214,4 @@
 [開始使用行動服務]: mobile-services-dotnet-backend-windows-store-dotnet-get-started.md
 [Windows 開發人員中心儀表板]: http://go.microsoft.com/fwlink/p/?LinkID=266734
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

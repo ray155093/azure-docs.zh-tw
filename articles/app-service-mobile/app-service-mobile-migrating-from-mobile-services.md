@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="04/11/2016"
 	ms.author="adrianhall"/>
 
 # <a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
@@ -274,14 +274,14 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 您的通知中樞將透過 [Azure 入口網站]受到管理。請記下通知中樞名稱 (您可以使用 [應用程式設定] 找到此項目)：
 
   1. 登入 [Azure 入口網站]。
-  2. 選取 [瀏覽>]，然後選取 \[通知中樞]
+  2. 選取 [瀏覽>]，然後選取 [通知中樞]
   3. 按一下與行動服務相關聯的通知中樞名稱。
 
 > [AZURE.NOTE] 您的通知中樞如果是「混合」類型，則不會顯示。「混合」類型的通知中樞會同時使用「通知中樞」和舊版的「服務匯流排」功能。您將必須[轉換混合式命名空間]。轉換完成後，您的通知中樞會出現在 [Azure 入口網站]中。
 
 如需詳細資訊，請檢閱[通知中樞]文件。
 
-> [AZURE.TIP] "[Azure 入口網站]"中的通知中樞管理功能仍處於預覽階段。[Azure 傳統入口網站]仍可用來管理您所有的通知中樞。
+> [AZURE.TIP] [Azure 入口網站]中的通知中樞管理功能仍處於預覽階段。[Azure 傳統入口網站]仍可用來管理您所有的通知中樞。
 
 ### <a name="app-settings"></a>其他應用程式設定
 
@@ -344,6 +344,14 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 
 記錄檔在產生時會串流至提供的視窗中。您也可以下載的記錄檔，以便後續使用您的部署認證加以分析。如需詳細資訊，請參閱[記錄]文件。
 
+## <a name="known-issues"></a>已知問題
+
+### 刪除移轉的行動應用程式複製會導致網站服務中斷
+
+如果您使用 Azure PowerShell 複製移轉的行動服務，然後又刪除此複製，則會移除您的生產環境服務 DNS 項目。最後的結果是不能再從網際網路存取您的網站。
+
+解決方案：我們正在處理這個問題。如果您想要複製網站，請透過入口網站執行作業。
+
 ## <a name="next-steps"></a>後續步驟
 
 除了您的應用程式會移轉至 App Service 以外，還有更多功能可供您使用：
@@ -366,17 +374,17 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [2]: ./media/app-service-mobile-migrating-from-mobile-services/triggering-job-with-postman.png
 
 <!-- Links -->
-[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
+[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
 [Application Insights]: ../application-insights/app-insights-overview.md
 [自動調整]: ../app-service-web/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [Azure App Service 部署文件]: ../app-service-web/web-sites-deploy.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [Azure 入口網站]: https://portal.azure.com
-[Azure 區域]: https://azure.microsoft.com/regions/
+[Azure 區域]: https://azure.microsoft.com/zh-TW/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
 [連續部署]: ../app-service-web/web-sites-publish-source-control.md
-[轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
+[轉換混合式命名空間]: https://azure.microsoft.com/zh-TW/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service-web/web-sites-custom-domain-name.md
 [Fiddler]: http://www.telerik.com/fiddler
@@ -393,4 +401,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [VNet]: ../app-service-web/web-sites-integrate-with-vnet.md
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="追蹤服務健全狀況" 
-	description="在 Azure 發生效能降低或服務中斷時獲知消息。" 
-	authors="stepsic-microsoft-com" 
-	manager="kamrani" 
-	editor="" 
-	services="azure-portal" 
+<properties
+	pageTitle="追蹤服務健全狀況"
+	description="在 Azure 發生效能降低或服務中斷時獲知消息。"
+	authors="stepsic-microsoft-com"
+	manager="kamrani"
+	editor=""
+	services="azure-portal"
 	documentationCenter="na"/>
 
-<tags 
-	ms.service="azure-portal" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2015" 
+<tags
+	ms.service="azure-portal"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2015"
 	ms.author="stepsic"/>
 
 # 追蹤服務健全狀況
@@ -45,12 +45,11 @@
 7. 您即可查看所有對您的訂用帳戶造成影響的服務健全狀況事件：![Resource groups](./media/insights-service-health/Insights_HealthEvent.png)
 
 8. 您可以從這裡移至 [詳細資料] 刀鋒視窗，以查看事件的細節。
-   
+
 ## 後續步驟
 
 * 每當事件發生時[接收警示通知](insights-receive-alert-notifications.md)。
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
-* 使用 Application Insights [監視任何網頁的可用性和回應性](../app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
- 
+* 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

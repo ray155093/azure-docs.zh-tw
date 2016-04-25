@@ -1,6 +1,6 @@
 <properties
    pageTitle="開始使用範例"
-   description="開始使用範例"
+   description=""
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -21,7 +21,7 @@
 **Microsoft Power BI Embedded 預覽** 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化。下列資源可協助您開始將 Power BI 報表整合到您的應用程式中。
 
  -	[範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
- -	[Power BI Embedded API 參考](https://msdn.microsoft.com/library/mt711493.aspx)
+ -	[Power BI Embedded API 參考](https://msdn.microsoft.com/library/mt712303.aspx)
  -	[Power BI Embedded .NET SDK (透過 NuGet 提供)](http://go.microsoft.com/fwlink/?LinkId=746472)
 
 在本文中，會向您介紹 **Power BI Embedded** 開始使用範例。讓我們開始設定範例應用程式，您就可以執行範例 Web 應用程式。
@@ -52,7 +52,7 @@
 
     ![](media\powerbi-embedded-get-started-sample\workspace-id.png)
 
-8. 若要將 PBIX 檔案匯入您的**工作區**，請選擇選項 **6.將 PBIX Desktop 檔案匯入現有的工作區**。如果您現在沒有 PBIX 檔案，可以下載[Analyzing Sales Data PBIX 範例](http://download.microsoft.com/download/1/4/E/14EDED28-6C58-4055-A65C-23B4DA81C4DE/Analyzing_Sales_Data.pbix)。
+8. 若要將 PBIX 檔案匯入您的**工作區**，請選擇選項 **6.將 PBIX Desktop 檔案匯入現有的工作區**。如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 
 9. 如果出現提示，請輸入易記名稱做為您**資料集**的名稱。
 
@@ -86,7 +86,7 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
     ```
 3. 執行 **EmbedSample** Web 應用程式。
 
-在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [多個報表] 功能表。若要檢視您匯入的報表，請展開 [多個報表]，然後按一下報表。如果您匯入了 [Analyzing Sales Data PBIX 範例](http://download.microsoft.com/download/1/4/E/14EDED28-6C58-4055-A65C-23B4DA81C4DE/Analyzing_Sales_Data.pbix)，範例 Web 應用程式看起來就會像這樣︰
+在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [多個報表] 功能表。若要檢視您匯入的報表，請展開 [多個報表]，然後按一下報表。如果您匯入了[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，範例 Web 應用程式看起來就會像這樣︰
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-sample-left-nav.png)
 
@@ -221,6 +221,20 @@ Task<ActionResult> Report(string reportId)
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-iframe-code.png)
 
+
+### 篩選內嵌在應用程式中的報表
+
+您可以使用 URL 語法，篩選內嵌的報表。若要這樣做，請將查詢字串參數加入含指定篩選的 iFrame src URL。以下是篩選的查詢語法︰
+
+```
+https://app.powerbi.com/reportEmbed
+?reportId=d2a0ea38-0694-4c70-9673-ee9655d54a4a&
+$filter={tableName/fieldName} eq '{fieldValue}'
+```
+
+> [AZURE.NOTE] {表格名稱/欄位名稱} 不能包含空格或特殊字元。{欄位值} 接受單一類別目錄值。
+
+
 ## 另請參閱
 
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
@@ -228,4 +242,4 @@ Task<ActionResult> Report(string reportId)
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 - [關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

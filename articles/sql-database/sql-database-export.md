@@ -1,45 +1,49 @@
 <properties
-	pageTitle="建立和匯出 Azure SQL Database 的 BACPAC"
-	description="建立和匯出 Azure SQL Database 的 BACPAC"
+	pageTitle="使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
+	description="使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
 	services="sql-database"
 	documentationCenter=""
 	authors="stevestein"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="02/23/2016"
+	ms.date="04/06/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 建立和匯出 Azure SQL Database 的 BACPAC
-
-**單一資料庫**
+# 使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案
 
 > [AZURE.SELECTOR]
-- [Azure portal](sql-database-export.md)
+- [Azure 入口網站](sql-database-export.md)
 - [PowerShell](sql-database-export-powershell.md)
 
-本文提供使用 [Azure 入口網站](https://portal.azure.com)匯出您 Azure SQL Database 的 BACPAC 的說明。
+本文提供的指示，說明如何使用 [Azure 入口網站](https://portal.azure.com)，將 Azure Blob 儲存體中儲存的 Azure SQL Database 封存到 BACPAC 檔案。
 
-[BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 是一種包含資料庫結構描述和資料的 .bacpac 檔案。BACPAC 的主要使用案例是將資料庫從一部伺服器移到另一部，以[將本機資料庫移轉至雲端](sql-database-cloud-migrate.md)，以及用於以開放式格式保存現有的資料庫。
+當您需要建立 Azure SQL Database 的封存檔時，可以將資料庫結構描述和資料匯出到 BACPAC 檔案。BACPAC 檔案就是副檔名為 BACPAC 的 ZIP 檔案。BACPAC 檔案可以稍後儲存在 Azure Blob 儲存體，或在內部部署位置的本機儲存體中，之後再匯入至 Azure SQL Database 或 SQL Server 內部部署安裝。
+
+***注意事項***
+
+- 為了讓封存檔處於交易一致狀態，您必須確定在匯出期間未發生任何寫入活動，或是從 Azure SQL Database 的[交易一致性複本](sql-database-copy.md)匯出
+- 封存到 Azure Blob 儲存體的 BACPAC 檔案大小上限為 200 GB。請使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令提示字元公用程式，將較大的 BACPAC 檔案封存到本機儲存體。此公用程式隨附於 Visual Studio 和 SQL Server。您也可以[下載](https://msdn.microsoft.com/library/mt204009.aspx)最新版的 SQL Server Data Tools 以取得此公用程式。
+- 不支援使用 BACPAC 檔案封存 Azure 進階儲存體。
+- 如果匯出作業超過 20 個小時，它可能會被取消。若要增加匯出期間的效能，您可以︰
+ - 暫時提高您的服務等級 
+ - 在匯出期間停止所有讀取及寫入活動
+ - 在所有大型資料表上使用叢集索引。若沒有叢集索引，如果要花超過 6-12 小時，匯出可能會失敗。這是因為匯出服務需要完成資料表掃描，以便嘗試匯出整份資料表
 
 > [AZURE.NOTE] BACPAC 並非用於備份和還原作業。Azure SQL Database 會自動為每個使用者資料庫建立備份。如需詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
 
-
-BACPAC 會匯出至 Azure 儲存體 Blob 容器，以供您在作業順利完成之後下載。
-
 若要完成本文，您需要下列項目：
 
-- Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [**免費帳戶**]，然後再回來完成這篇文章。
-- Azure SQL Database。如果沒有 SQL Database，請遵循本文中的以下步驟：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
-- 用來儲存 BACPAC 的 [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)與 Blob 容器。
-
+- Azure 訂用帳戶。
+- Azure SQL Database。 
+- 用來在標準儲存體中儲存 BACPAC 的 [Azure 標準儲存體帳戶](../storage/storage-create-storage-account.md)與 Blob 容器。
 
 ## 匯出您的資料庫
 
@@ -48,44 +52,42 @@ BACPAC 會匯出至 Azure 儲存體 Blob 容器，以供您在作業順利完成
 > [AZURE.IMPORTANT] 若要保證在交易上一致的 BACPAC 檔案，您應該先[建立您的資料庫複本](sql-database-copy.md)，然後匯出資料庫複本。
 
 1.	移至 [Azure 入口網站](https://portal.azure.com)。
-2.	按一下 [全部瀏覽]。
-3.	按一下 [**SQL Database**]。
-2.	按一下您想要匯出為 BACPAC 的資料庫。
-3.	在 [SQL Database] 刀鋒視窗中，按一下 [**匯出**] 以開啟 [**匯出資料庫**] 刀鋒視窗：
+2.	按一下 [SQL Database]。
+3.	按一下要封存的資料庫。
+4.	在 [SQL Database] 刀鋒視窗中，按一下 [匯出] 以開啟 [匯出資料庫] 刀鋒視窗：
 
     ![匯出按鈕][1]
 
-1.  按一下 [**儲存體**]，並選取您的儲存體帳戶以及要儲存 BACPAC 的 Blob 容器：
+5.  按一下 [**儲存體**]，並選取您的儲存體帳戶以及要儲存 BACPAC 的 Blob 容器：
 
     ![匯出資料庫][2]
 
-1.  針對包含欲匯出資料庫的 Azure SQL Server，輸入 **Server 系統管理員登入**和**密碼**。
-1.  按一下 [**建立**] 匯出資料庫。
+6. 選取驗證類型。
+7.  針對包含欲匯出之資料庫的 Azure SQL Server，輸入適當的驗證認證。
+8.  按一下 [確定] 封存資料庫。按一下 [確定] 時，會建立匯出資料庫要求並將它提交至服務。匯出所需的時間長度取決於您資料庫的大小和複雜性，以及您的服務等級。您將會收到通知。
 
-按一下 [**建立**] 時，會建立匯出資料庫要求並將它提交至服務。視資料庫大小而定，匯出作業可能需要一些時間才能完成。
+    ![匯出通知][3]
 
 ## 監視匯出作業的進度
 
-2.	按一下 [**全部瀏覽**]。
-3.	按一下 [SQL Server]。
-2.	按一下包含您剛才匯出的原始 (來源) 資料庫的伺服器。
-3.	在 SQL Server 刀鋒視窗中，按一下 [**匯入/匯出記錄**]：
+1.	按一下 [SQL Server]。
+2.	按一下包含您剛才封存之原始 (來源) 資料庫的伺服器。
+3.  向下捲動到 [作業]。
+4.	在 SQL Server 刀鋒視窗中，按一下 [匯入/匯出記錄]：
 
-    ![匯入匯出記錄][3] ![匯入匯出記錄][4]
+    ![匯入匯出記錄][4]
 
 ## 確認 BACPAC 位於儲存體容器中
 
-2.	按一下 [**全部瀏覽**]。
-3.	按一下 [**儲存體帳戶 (傳統)**]。
-2.	按一下您用來儲存 BACPAC 的儲存體帳戶。
+1.	按一下 [儲存體帳戶]。
+2.	按一下您用來儲存 BACPAC 封存檔的儲存體帳戶。
 3.	按一下 [**容器**]，並選取存放匯出資料庫的容器，以取得詳細資料 (您也可以從這裡下載並儲存 BACPAC)。
 
     ![.bacpac 檔案詳細資料][5]
 
-
 ## 後續步驟
 
-- [匯入 Azure SQL Database](sql-database-import.md)
+- [匯入 Azure SQL Database][5]
 
 
 
@@ -99,8 +101,8 @@ BACPAC 會匯出至 Azure 儲存體 Blob 容器，以供您在作業順利完成
 <!--Image references-->
 [1]: ./media/sql-database-export/export.png
 [2]: ./media/sql-database-export/export-blade.png
-[3]: ./media/sql-database-export/export-history.png
-[4]: ./media/sql-database-export/export-status.png
-[5]: ./media/sql-database-export/bacpac-details.png
+[3]: ./media/sql-database-export/export-notification.png
+[4]: ./media/sql-database-export/export-history.png
+[5]: ./media/sql-database-export/bacpac-archive.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

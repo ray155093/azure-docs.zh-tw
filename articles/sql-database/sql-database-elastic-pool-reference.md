@@ -5,13 +5,13 @@
 	services="sql-database"
 	documentationCenter=""
 	authors="sidneyh"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/24/2016"
+	ms.date="04/07/2016"
 	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -64,10 +64,6 @@
 | databaseDtuMin | 集區中單一資料庫能夠保證的最小 eDTU 數。資料庫最小 eDTU 可設定為 0。最小 eDTU 會套用至集區中的所有資料庫。請注意，集區中的資料庫數目和資料庫最小 eDTU 的乘積不能超過集區本身的 eDTU。 |
 | Dtu | 集區中所有資料庫共用的 eDTU 數。 |
 | edition | 集區的服務層。集區中的每個資料庫均有此版本。 |
-| elasticPoolId | 集區執行個體的 GUID。 |
-| elasticPoolName | 集區的名稱。此名稱是其父伺服器的唯一相對名稱。 |
-| location | 建立集區的資料中心位置。 |
-| state | 如果訂閱的帳單付款有拖欠，則狀態為「已停用」，反之為「就緒」。 |
 | storageMB | 集區的儲存體限制 (MB)。集區中所有資料庫使用的儲存體總數不能超過這個集區限制。 |
 
 
@@ -103,7 +99,8 @@
 | [Get-AzureRMSqlElasticPool](https://msdn.microsoft.com/library/azure/mt603517.aspx) | [取得彈性資料庫集區及其屬性值](https://msdn.microsoft.com/library/mt163646.aspx) |
 | [Get-AzureRmSqlElasticPoolActivity](https://msdn.microsoft.com/library/azure/mt603812.aspx) | [取得彈性資料庫集區作業的狀態](https://msdn.microsoft.com/library/mt163669.aspx) |
 | [Get-AzureRmSqlElasticPoolDatabase](https://msdn.microsoft.com/library/azure/mt619484.aspx) | [取得彈性資料庫集區中的資料庫](https://msdn.microsoft.com/library/mt163646.aspx) |
-| [Get-AzureRmSqlElasticPoolDatabaseActivity]() | [取得將資料庫移入和移出集區的狀態](https://msdn.microsoft.com/library/mt163669.aspx) |
+| [Get AzureRmSqlDatabaseActivity]() | [取得將資料庫移入和移出集區的狀態](https://msdn.microsoft.com/library/mt603687.aspx) |
+
 
 ## Transact-SQL
 
@@ -143,4 +140,4 @@
 | 40860 | EX\_USER | 彈性集區 '%ls' 和服務目標 '%ls' 的組合無效。 | 彈性集區名稱、服務層級目標名稱 | 如果服務目標指定為 'ElasticPool'，才能同時指定彈性集區和服務目標。 | 請指定正確的彈性集區和服務目標組合。 |
 | 40861 | EX\_USER | 資料庫版本 '%.*ls' 不能不同於彈性集區服務層版本 '%.*ls'。| 資料庫版本、彈性集區服務層 | 資料庫版本不同於彈性集區服務層。| 請不要指定不同於彈性集區服務層的資料庫版本。請注意，不需要指定資料庫版本。| | 40862 | EX\_USER | 如果已指定彈性集區服務目標，則必須指定彈性集區名稱。| 無 | 彈性集區服務目標未唯一識別彈性集區。| 如果使用彈性集區服務目標，請指定彈性集區名稱。| | 40864 | EX\_USER | 彈性集區的 DTU 對於服務層 '%.*ls' 必須至少是 (%d) DTU。| 彈性集區的 DTU；彈性集區服務層。| 嘗試設定低於最小限制的彈性集區的 DTU。| 請以至少最小限制重試設定彈性集區的 DTU。| | 40865 | EX\_USER | 彈性集區的 DTU 對於服務層 '%.*ls' 不能超過 (%d) DTU。| 彈性集區的 DTU；彈性集區服務層。| 嘗試設定高於最大限制的彈性集區的 DTU。| 請重設彈性集區的 DTU 不大於最大限制。| | 40867 | EX\_USER | 每個資料庫最大 DTU 對於服務層 '%.*ls' 必須至少是 (%d)。| 每個資料庫最大 DTU；彈性集區服務層 | 嘗試設定低於支援限制的每個資料庫最大 DTU。| 請考慮使用支援想要的設定的彈性集區服務層。| | 40868 | EX\_USER | 每個資料庫最大 DTU 對於服務層 '%.*ls' 不能超過 (%d)。| 每個資料庫最大 DTU；彈性集區服務層。| 嘗試設定高於支援限制的每個資料庫最大 DTU。| 請考慮使用支援想要的設定的彈性集區服務層。| | 40870 | EX\_USER | 每個資料庫最小 DTU 對於服務層 '%.*ls' 不能超過 (%d)。| 每個資料庫最小 DTU；彈性集區服務層。| 嘗試設定高於支援限制的每個資料庫最小 DTU。| 請考慮使用支援想要的設定的彈性集區服務層。| | 40873 | EX\_USER | 資料庫數目 (%d) 和每個資料庫最小 DTU (%d) 不能超過彈性集區 (%d) 的 DTU。| 彈性集區中的資料庫數；每個資料庫最小 DTU；彈性集區的 DTU。| 嘗試在彈性集區中指定超過彈性集區 DTU 的資料庫最小 DTU。| 請考慮增加彈性集區的 DTU，或減少每個資料庫最小 DTU，或減少彈性集區中的資料庫數目。| | 40877 | EX\_USER | 無法刪除彈性集區，除非它未包含任何資料庫。| 無 | 彈性集區包含一或多個資料庫，因此無法刪除。| 請從彈性集區中移除資料庫以便刪除彈性集區。| | 40881 | EX\_USER | 彈性集區 '%.*ls' 已達到其資料庫計數限制。對於具有 (%d) DTU 的彈性集區，彈性集區的資料庫計數限制不能超過 (%d)。| 彈性集區的名稱；彈性集區的資料庫計數限制；資源集區的 eDTU。| 當到達彈性集區的資料庫計數限制時，嘗試建立或新增資料庫到彈性集區。| 可行的話，請考慮增加彈性集區的 DTU，以增加其資料庫限制，或從彈性集區中移除資料庫。| | 40889 | EX\_USER | 彈性集區 '%.*ls' 的 DTU 或儲存空間限制不能減少，因為這樣無法為其資料庫提供足夠的儲存空間。| 彈性集區的名稱。| 嘗試減少低於其儲存空間使用量的彈性集區儲存空間限制。| 請考慮減少彈性集區中個別資料庫的儲存空間使用量，或從集區中移除資料庫，以減少其 DTU 或儲存空間限制。| | 40891 | EX\_USER | 每個資料庫最小 DTU (%d) 不能超過每個資料庫最大 DTU (%d)。| 每個資料庫最小 DTU；每個資料庫最大 DTU。| 嘗試設定高於每個資料庫最大 DTU 的每個資料庫最小 DTU。| 請確定每個資料庫最小 DTU 不會超過每個資料庫最大 DTU。| | TBD | EX\_USER | 彈性集區中個別資料庫的儲存空間大小不能超過 '%.*ls' 服務層彈性集區允許的最大大小。| 彈性集區服務層 | 資料庫的最大大小超過彈性集區服務層允許的最大大小。| 請設定彈性集區服務層允許之最大大小限制內的資料庫最大大小。|
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

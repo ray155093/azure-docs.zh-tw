@@ -30,7 +30,7 @@
 
 &nbsp;
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。若為 2014-12-01-preview 結構描述版本，請按一下 [Dropbox 連接器](../app-service-logic/app-service-logic-connector-dropbox.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 
 您可以利用 Dropbox 來：
@@ -60,7 +60,7 @@ Dropbox 包含下列觸發程序及動作。
 1. 登入您的 Dropbox 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Dropbox。 
 
-當您建立連線之後，請輸入 Dropbox 的屬性，例如資料夾路徑或檔案名稱。本主題的 REST API 參考會說明這些屬性。
+當您建立連線之後，請輸入 Dropbox 的屬性，例如資料夾路徑或檔案名稱。本主題的＜REST API 參考＞一節說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Dropbox 連線。
 
@@ -128,7 +128,7 @@ Dropbox 包含下列觸發程序及動作。
 
 
 ### 將封存檔案解壓縮到資料夾    
-將封存檔案 (例如 .zip) 解壓縮到 Dropbox 中的資料夾。```POST: /datasets/default/extractFolderV2```
+將封存檔案 (例如 .zip) 解壓縮到 Dropbox 中的資料夾。**```POST: /datasets/default/extractFolderV2```**
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -286,4 +286,4 @@ Dropbox 包含下列觸發程序及動作。
 [10]: ./media/connectors-create-api-dropbox/dropbox-create-app-page1.png
 [11]: ./media/connectors-create-api-dropbox/dropbox-create-app-page2.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

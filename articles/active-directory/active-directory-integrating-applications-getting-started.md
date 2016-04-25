@@ -62,15 +62,13 @@
 每個應用程式可能有不同的驗證需求。利用 Azure AD，可將簽署憑證用於使用 SAML 2.0、WS-同盟或 OpenID Connect 通訊協定，以及密碼單一登入的應用程式。如需要與 Azure AD 搭配使用的應用程式驗證類型的詳細資訊，請參閱[在 Azure Active Directory 中管理同盟單一登入的憑證](active-directory-sso-certs.md)和[密碼式單一登入](active-directory-appssoaccess-whatis.md)。
 
 ### 使用 Azure AD 應用程式 Proxy 啟用 SSO
-透過 Microsoft Azure AD 應用程式 Proxy，您可以從任何地方及任何裝置上安全地為位於您的私人網路上的應用程式提供存取。在您的環境中安裝應用程式 Proxy 連接器之後，可以輕鬆地使用 Azure AD 來加以設定。請參閱[使用 Azure AD 應用程式 Proxy 啟用 SSO](active-directory-appssoaccess-enable-hybrid-access.md)和[使用 Azure AD 應用程式 Proxy 發行新應用程式](active-directory-application-proxy-configure.md)。
+透過 Microsoft Azure AD 應用程式 Proxy，您可以從任何地方及任何裝置上安全地為位於您的私人網路上的應用程式提供存取。在您的環境中安裝應用程式 Proxy 連接器之後，可以輕鬆地使用 Azure AD 來加以設定。
 
 ### 整合應用程式與 Azure AD
 以下文章將討論整合應用程式與 Azure AD 的各種不同方式，並提供一些指引。
 
 - [決定要使用的 Active Directory](active-directory-administer.md)
-- [與現有應用程式整合](active-directory-sso-integrate-existing-apps.md)
-- [使用 Azure AD 應用程式 Proxy 發行新應用程式](active-directory-application-proxy-configure.md)
-- [使用 Azure 應用程式資源庫中的應用程式](active-directory-appssoaccess-whatis.md/#get-started-with-the-azure-ad-application-gallery.md)
+- [使用 Azure 應用程式資源庫中的應用程式](active-directory-appssoaccess-whatis.md)
 - [整合 SaaS 應用程式教學課程清單](active-directory-saas-tutorial-list.md)
 
 ## 管理應用程式的存取
@@ -91,4 +89,4 @@
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

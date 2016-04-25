@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/23/2016" 
+	ms.date="04/06/2016" 
 	ms.author="robinsh"/>
 
 # 使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解 
@@ -36,9 +36,11 @@
 
 	- **儲存體記錄**可將對 Azure 儲存體服務的每項要求記錄至伺服器端記錄檔。記錄檔可追蹤每項要求的詳細資料，包括執行的作業、作業的狀態及延遲資訊。如需 Storage Analytics 寫入記錄檔的要求和回應資料詳細資訊，請參閱 [Storage Analytics 記錄檔格式](http://msdn.microsoft.com/library/azure/hh343259.aspx)。
 
-- **Azure 傳統入口網站**。您可以在 [Azure 傳統入口網站](https://manage.windowsazure.com)中設定儲存體帳戶的度量和記錄。您也可以檢視圖表和圖形 (其中顯示應用程式在一段時間內的執行狀況)，並設定警示，通知應用程式是否對指定的度量以超乎預期的方式執行。
+> [AZURE.NOTE] 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
+
+- **Azure 傳統入口網站**。您可以在 [Azure 傳統入口網站](https://manage.windowsazure.com)中設定儲存體帳戶的度量和記錄。您也可以檢視圖表和圖形 (其中顯示應用程式在一段時間內的執行狀況)，並設定警示，通知應用程式是否對指定的度量以超乎預期的方式執行。 
 	
-	如需在 Azure 傳統入口網站中進行設定和監控的相關資訊，請參閱[在 Azure 入口網站監控儲存體帳戶](storage-monitor-storage-account.md)。
+	如需在 Azure 傳統入口網站中進行設定和監視的相關資訊，請參閱[在 Azure 入口網站中監視儲存體帳戶](storage-monitor-storage-account.md)。
 
 - **AzCopy**：Azure 儲存體的伺服器記錄檔會儲存為 Blob，因此您可以使用 AzCopy，將記錄檔 Blob 複製到本機目錄，以便使用 Microsoft Message Analyzer 分析。如需 AzCopy 的詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
@@ -58,7 +60,7 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 下列範例顯示 Azure Blob 儲存體要求的某些 400 範圍錯誤的取樣，以及其可能原因。任何這些錯誤，以及 300 範圍和 500 範圍中的錯誤，都可能導致低百分比成功率。
 
-請注意，下面所列並不完整。如需一般 Azure 儲存體錯誤和每項儲存體服務特定錯誤的詳細資料，請參閱[狀態和錯誤碼](http://msdn.microsoft.com/library/azure/dd179382.aspx)。
+請注意，下面所列並不完整。如需一般 Azure 儲存體錯誤和每項儲存體服務特定錯誤的詳細資訊，請參閱[狀態和錯誤碼](http://msdn.microsoft.com/library/azure/dd179382.aspx)。
 
 **狀態碼 404 (找不到) 範例**
 
@@ -92,7 +94,7 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 **透過 Azure 傳統入口網站**
 
-若要使用入口網站設定儲存體帳戶的記錄和度量，請依照[在 Azure 入口網站監控儲存體帳戶](storage-monitor-storage-account.md)上的指示執行。
+若要使用入口網站設定儲存體帳戶的記錄和度量，請遵循[在 Azure 入口網站中監視儲存體帳戶](storage-monitor-storage-account.md)上的指示執行。
 
 > [AZURE.NOTE] 不可能使用 Azure 傳統入口網站設定分鐘度量。不過，我們建議您不要為了本教學課程的目的，以及為了調查您的應用程式的效能問題，而設定這類度量。您可以使用 PowerShell (如下所示)，或以程式設計方式，或透過 Azure 傳統入口網站設定分鐘度量。
 >
@@ -347,18 +349,7 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 | 佇列上未預期的訊息傳遞延遲 | AzureStorageClientDotNetV4.Description 包含「正在重試失敗的作業」。 | 用戶端 |
 | PercentThrottlingError 的 HTTP 增加 | HTTP.Response.StatusCode == 500 || HTTP.Response.StatusCode == 503 | 網路 |
 | PercentTimeoutError 增加 | HTTP.Response.StatusCode == 500 | 網路 |
-| PercentTimeoutError 增加 (全部) |    **StatusCode == 500 | All |
-| Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client |
-| HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network |
-| HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network |
-| 404 (all) | *StatusCode == 404 | All |
-| Shared Access Signature (SAS) authorization issue | AzureStorageLog.RequestStatus == "SASAuthorizationError" | Network |
-| HTTP 409 (Conflict) messages | HTTP.Response.StatusCode == 409 | Network |
-| 409 (all) | *StatusCode == 409 | All |
-| Low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors | AzureStorageLog.RequestStatus == "ClientOtherError" | Server |
-| Nagle Warning | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) and (AzureStorageLog.RequestPacketSize <1460) and (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | Server |
-| Range of time in Server and Network logs | #Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39 | Server, Network |
-| Range of time in Server logs | AzureStorageLog.Timestamp >= 2014-10-20T16:36:38 and AzureStorageLog.Timestamp <= 2014-10-20T16:36:39 | Server |
+| PercentTimeoutError 增加 (全部) |    **StatusCode == 500 | All | | Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client | | HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network | | HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network | | 404 (all) | *StatusCode == 404 | All | | Shared Access Signature (SAS) authorization issue | AzureStorageLog.RequestStatus == "SASAuthorizationError" | Network | | HTTP 409 (Conflict) messages | HTTP.Response.StatusCode == 409 | Network | | 409 (all) | *StatusCode == 409 | All | | Low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors | AzureStorageLog.RequestStatus == "ClientOtherError" | Server | | Nagle Warning | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) and (AzureStorageLog.RequestPacketSize <1460) and (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | Server | | Range of time in Server and Network logs | #Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39 | Server, Network | | Range of time in Server logs | AzureStorageLog.Timestamp >= 2014-10-20T16:36:38 and AzureStorageLog.Timestamp <= 2014-10-20T16:36:39 | Server |
 
 
 ## 後續步驟
@@ -373,4 +364,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
  
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->
