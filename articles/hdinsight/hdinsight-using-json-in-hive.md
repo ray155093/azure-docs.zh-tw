@@ -81,7 +81,7 @@
 
 	SELECT * FROM StudentsOneLine
 
-原始 JSON 檔案位於 ****wasb://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw* Hive 資料表指向原始未簡維的 JSON 文件。
+原始 JSON 檔案位於 **wasb://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw* Hive 資料表指向原始未簡維的 JSON 文件。
 
 *StudentsOneLine* Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 */json/students/* 路徑下。
 

@@ -1,6 +1,6 @@
 <properties
    pageTitle="開始使用範例"
-   description=""
+   description="開始使用範例"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"

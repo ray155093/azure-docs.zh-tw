@@ -38,4 +38,9 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 
 由於這些教學課程可協助您快速建立虛擬機器，因此它只會顯示一種這麼做的方式，而不會說明您可用來建立虛擬機器的各種工具。如需這些工具的摘要以及指示的連結，請參閱[建立 Linux 虛擬機器的不同方式](virtual-machines-linux-creation-choices.md)。
 
+<!--links-->
+[應用程式服務]: app-service-choose-me.md
+[虛擬機器]: #tellmevm
+[雲端服務]: cloud-services-choose-me.md
+
 <!---HONumber=AcomDC_0413_2016-->

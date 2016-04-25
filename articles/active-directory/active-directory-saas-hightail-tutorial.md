@@ -165,7 +165,7 @@ Hightail 應用程式需要特定格式的 SAML 判斷提示。請設定此應�
 
 	![設定單一登入](./media/active-directory-saas-hightail-tutorial/tutorial_hightail_06.png)
 
-	a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Hightail 應用程式時所使用的 URL：****https://www.hightail.com/loginSSO**。這是所有想要使用 SSO 的客戶適用的一般登入頁面。
+	a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Hightail 應用程式時所使用的 URL：**https://www.hightail.com/loginSSO**。這是所有想要使用 SSO 的客戶適用的一般登入頁面。
 
 	b.按 [**下一步**]
 

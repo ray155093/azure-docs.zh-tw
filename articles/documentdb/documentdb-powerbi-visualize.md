@@ -191,7 +191,7 @@
 4. 然後，您就可以在 PowerBI.com 中共用您的報告。
 
 ## 後續步驟
-- 若要深入了解 Power BI，請按一下 [這裡][](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
+- 若要深入了解 Power BI，請按一下 [這裡](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
 - 若要深入了解 DocumentDB，請按一下[這裡](https://azure.microsoft.com/documentation/services/documentdb/)。
 
 <!---HONumber=AcomDC_0413_2016-->

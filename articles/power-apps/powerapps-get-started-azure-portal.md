@@ -100,7 +100,7 @@ IT 管理員可以管理由公司內的商務使用者所建立的應用程式�
 
 如果沒有註冊 PowerApps Enterprise，當您移至 [Azure 入口網站](https://portal.azure.com/)並瀏覽 PowerApps 時，您將看不到存取權刀鋒視窗。若要註冊您的公司，**訂用帳戶管理員**可以移至 [PowerApps](http://go.microsoft.com/fwlink/p/?LinkId=716848) 連絡我們，以深入了解價格和註冊程序。
 
-![][4]
+![][4]  
 
 一旦您完成註冊程序，且準備使用 PowerApps Enterprise，您就可以：
 
@@ -111,7 +111,7 @@ IT 管理員可以管理由公司內的商務使用者所建立的應用程式�
 
 在下列範例中，Contoso 公司已註冊 PowerApps。在這個新的 [PowerApps] 刀鋒視窗中，您可以看到使用此 App Service 環境建立的各種應用程式的摘要。在 [管理 API] 中，您可以看到 Microsoft 建立的 API (Microsoft 管理) 和 Contoso 建立的 API (IT 管理) 的摘要：
 
-![範例公司 PowerApps 刀鋒視窗][3]
+![範例公司 PowerApps 刀鋒視窗][3]  
 
 
 ## 步驟 4：建立 App Service 環境
@@ -137,15 +137,20 @@ App Service 環境是隔離和專用的環境，可安全地執行您的所有�
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
 
-2. 選取工作列中的 [瀏覽]：![瀏覽 PowerApps][1]
+2. 選取工作列中的 [瀏覽]：  
+![瀏覽 PowerApps][1]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![搜尋 PowerApps][2]
+3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：  
+![搜尋 PowerApps][2]  
 
-4. 在 [PowerApps] 刀鋒視窗中，選取 [建立 App Service 環境以開始使用]，或在 [設定] 下選取選取 [App Service 環境]：![][5]
+4. 在 [PowerApps] 刀鋒視窗中，選取 [建立 App Service 環境以開始使用]，或在 [設定] 下選取選取 [App Service 環境]：  
+![][5]
 
 	> [AZURE.NOTE] 如果您按一下 [建立 App Service 環境以開始使用]，您會看到一個額外的刀鋒視窗顯示 App Service 環境的相關詳細資料。直接按一下該刀鋒視窗上的 [建立] 連結，以開啟 [建立] 刀鋒視窗。
 
-5. 接下來，輸入名稱，選取您想要使用的訂用帳戶，選取或建立新的資源群組，然後選取虛擬網路。**注意事項**，選擇虛擬網路之後就無法變更：![][6] 如需有關虛擬網路和 App Service 環境如何一起運作的相關資訊，請參閱[如何建立 App Service 環境](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)。
+5. 接下來，輸入名稱，選取您想要使用的訂用帳戶，選取或建立新的資源群組，然後選取虛擬網路。**注意事項**，選擇虛擬網路之後就無法變更：  
+![][6]  
+如需有關虛擬網路和 App Service 環境如何一起運作的相關資訊，請參閱[如何建立 App Service 環境](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)。
 
 6. 選取 [加入] 以完成建立 App Service 環境。
 
@@ -158,8 +163,11 @@ App Service 環境是隔離和專用的環境，可安全地執行您的所有�
 若要存取 App Service 環境、建立 API、連接和其他資源，加入的使用者必須具有「擁有者」角色。
 
 1. 選取您剛才建立的 App Service 環境。
-2. 在 [基本功能] 中，選取 [資源群組] 屬性。這樣會開啟包含 App Service 環境的資源群組：![][7]
-3. 選取 RBAC 圖示來管理權限：![][8]新增使用者和指派角色就像在 Azure 內使用[角色型存取控制](https://azure.microsoft.com/documentation/articles/role-based-access-control-configure/)一樣。
+2. 在 [基本功能] 中，選取 [資源群組] 屬性。這樣會開啟包含 App Service 環境的資源群組：
+![][7]
+3. 選取 RBAC 圖示來管理權限：
+![][8]  
+	新增使用者和指派角色就像在 Azure 內使用[角色型存取控制]( https://azure.microsoft.com/documentation/articles/role-based-access-control-configure/)一樣。
 
 > [AZURE.NOTE] 目前，您無法提供 App Service 環境的 RBAC 權限。您可以在父資源群組層級提供 RBAC 權限。
 

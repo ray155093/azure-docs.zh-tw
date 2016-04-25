@@ -104,12 +104,12 @@
 	- **-n (或 --name)**。新規則的名稱。在本文案例中為 *rdp-rule*。
 	- **-c (或 --action)**。規則 (拒絕或允許) 的存取層級。
 	- **-p (或 --protocol)**。規則的通訊協定 (TCP、UDP 或 *)。
-- **-r (或 --type)**。連線 (輸入或輸出) 的方向。
+	- **-r (或 --type)**。連線 (輸入或輸出) 的方向。
 	- **-y (或 --priority)**。規則的優先順序。
 	- **-f (或 --source-address-prefix)**。CIDR 中的來源位址首碼或使用預設標記。
 	- **-o (或 --source-port-range)**。來源連接埠，或連接埠範圍。
 	- **-e (或 --destination-address-prefix)**。CIDR 中的目的地位址首碼或使用預設標記。
-	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。
+	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。	
 
 5. 執行 **`azure network nsg rule create`** 命令來建立允許從網際網路存取連接埠 80 (HTTP) 的規則。
 
@@ -134,7 +134,7 @@
 
 6. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與前端子網路。
 
-		azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd
+		azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd 
 
 	預期的輸出：
 
@@ -228,7 +228,7 @@
 
 6. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與後端子網路。
 
-		azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd
+		azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd 
 
 	預期的輸出：
 

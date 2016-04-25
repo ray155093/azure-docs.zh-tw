@@ -118,7 +118,7 @@ Heroku 與 Azure AD 整合提供下列優點：
 
     b.按一下 [設定] 索引標籤。
 
-    c.按一下 [單一登入] 頁面的 [Upload Metadata] (上傳中繼資料)。
+    c.按一下 [單一登入] 頁面的 [Upload Metadata] \(上傳中繼資料)。
  
     d.上傳您從 Azure 傳統入口網站下載的中繼資料檔案。
 

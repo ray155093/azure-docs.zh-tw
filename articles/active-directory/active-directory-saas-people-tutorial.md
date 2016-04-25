@@ -121,7 +121,7 @@ People 與 Azure AD 整合提供下列優點：
 
 	c.在 [識別碼] 文字方塊中輸入租用戶 URL。
 
-    d.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL："****https://itgs.peoplehr.net/Pages/Saml/ConsumeAzureAD.aspx**"。
+    d.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL："**https://itgs.peoplehr.net/Pages/Saml/ConsumeAzureAD.aspx**"。
 
 	e.按 [**下一步**]
 

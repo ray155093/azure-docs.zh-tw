@@ -59,7 +59,7 @@
 2. 第二個 AAD 應用程式用於保護自訂 API 註冊，和取得由第一個應用程式保護之 web API 的委派存取權限。這個應用程式命名為 **webAPI-customAPI**。
 3. 針對 **webAPI**，請使用下列設定：  
 
-  1. 登入 url：******https://login.windows.net***
+  1. 登入 url：***https://login.windows.net***
   2. 應用程式識別碼 Uri：***https://\<your-root-url>*** (通常為您部署在 Azure 上的網站 URL)
   3. 回覆 url：***https://\<your-root-url>/.auth/login/aad/callback***  
   
@@ -67,9 +67,9 @@
 
 4. 針對 **webAPI-customAPI**，請使用下列設定：
   
-  1. 登入 url：****https://login.windows.net**
+  1. 登入 url：**https://login.windows.net**
   2. 應用程式識別碼 Uri：**可以是任何唯一的 URL**
-  3. 回覆 url：******https://msmanaged-na.consent.azure-apim.net/redirect***
+  3. 回覆 url：***https://msmanaged-na.consent.azure-apim.net/redirect***
   4. 新增權限至具有委派存取權限的 webAPI。
   5. 稍後您也需要此應用程式的用戶端識別碼，因此請記下它。
   6. 產生金鑰並儲存在安全的位置。稍後我們需要此金鑰。
@@ -112,7 +112,7 @@
 
   1. 用戶端識別碼：**步驟 2** (本主題中) 4.5 的 **webAPI-CustomAPI 用戶端識別碼**
   2. 密碼：**步驟 2** (本主題中) 4.6 的 ***webAPI-CustomAPI 金鑰***
-  3. 登入 url：******https://login.windows.net***
+  3. 登入 url：***https://login.windows.net***
   4. ResourceUri：**步驟 2** (本主題中) 3.4 的***webAPI 用戶端識別碼***
 
 5. 選取 [建立]，並嘗試在自訂 API 上建立連接。如果所有項目皆已正確設定，您應該能夠登入成功。

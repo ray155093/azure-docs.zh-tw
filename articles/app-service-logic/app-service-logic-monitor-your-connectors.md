@@ -121,7 +121,10 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 
 ## 閱讀更多資訊
 
-[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> [App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> [Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
+[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> 
+[App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> 
+[Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>
+[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
 
 
 <!--Image references-->
