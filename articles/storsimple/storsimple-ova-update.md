@@ -12,10 +12,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/13/2016"
+   ms.date="04/07/2016"
    ms.author="alkohli" />
 
-# 將更新和 Hotfix 套用至 StorSimple Virtual Array (預覽版)
+# 將更新和 Hotfix 套用至 StorSimple Virtual Array
 
 ## 概觀
 
@@ -39,4 +39,4 @@
 
 深入了解 [administering your StorSimple Virtual Array (管理 StorSimple Virtual Array)](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

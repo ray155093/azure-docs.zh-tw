@@ -1,26 +1,26 @@
-<properties 
-	pageTitle="從通用 Windows 應用程式將影像上傳至 Azure Blob 儲存體 | Microsoft Azure" 
-	description="了解如何使用 JavaScript 後端行動服務將影像上傳至 Azure Blob 儲存體，並從通用 Windows 應用程式存取影像。" 
-	services="mobile-services,storage" 
-	documentationCenter="windows" 
-	authors="ggailey777" 
-	manager="dwrede" 
+<properties
+	pageTitle="從通用 Windows 應用程式將影像上傳至 Azure Blob 儲存體 | Microsoft Azure"
+	description="了解如何使用 JavaScript 後端行動服務將影像上傳至 Azure Blob 儲存體，並從通用 Windows 應用程式存取影像。"
+	services="mobile-services,storage"
+	documentationCenter="windows"
+	authors="ggailey777"
+	manager="dwrede"
 	editor=""/>
 
-<tags 
-	ms.service="mobile-services" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile-windows-store" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="11/16/2015" 
+<tags
+	ms.service="mobile-services"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-windows-store"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="11/16/2015"
 	ms.author="glenga"/>
 
 # 使用行動服務將影像上傳到 Azure Blob 儲存體
 
 [AZURE.INCLUDE [mobile-services-selector-upload-data-blob-storage](../../includes/mobile-services-selector-upload-data-blob-storage.md)]
 
-##概觀 
+##概觀
 
 本主題說明如何使用 Azure 行動服務，讓您的應用程式能在 Azure 儲存體中上傳和存放使用者產生的影像。行動服務會使用 SQL Database 儲存資料。不過在 Azure Blob 儲存體服務中，二進位大型物件 (BLOB) 資料的儲存比較有效。
 
@@ -33,7 +33,7 @@
 本教學課程需要下列各項：
 
 + Microsoft Visual Studio 2013 Update 3 或更新版本
-+ [Azure 儲存體帳戶](../storage-create-storage-account.md)
++ [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)
 + 連接到電腦的相機或其他影像擷取裝置。
 
 本教學課程是以行動服務快速入門為基礎。在開始本教學課程之前，您必須首先完成[開始使用行動服務]。
@@ -55,12 +55,12 @@
 + [行動服務伺服器指令碼參考]
 
     參考使用伺服器指令碼來執行伺服器端工作以及與其他 Azure 元件和外部資源整合的主題。
- 
+
 + [行動服務 .NET 作法概念性參考]
 
     深入了解如何搭配使用行動服務與 .NET
-  
- 
+
+
 <!-- Anchors. -->
 [Install the Storage Client library]: #install-storage-client
 [Update the client app to capture images]: #add-select-images
@@ -83,6 +83,5 @@
 [Azure Storage Client library for Store apps]: http://go.microsoft.com/fwlink/p/?LinkId=276866
 [行動服務 .NET 作法概念性參考]: mobile-services-windows-dotnet-how-to-use-client-library.md
 [App settings]: http://msdn.microsoft.com/library/windowsazure/b6bb7d2d-35ae-47eb-a03f-6ee393e170f7
- 
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0413_2016-->

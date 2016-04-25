@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -116,7 +116,7 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | ------- | ------- | -------- | ------ | ------ |
 | BizTalk 服務 | 是 | | [2014-04-01](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2014-04-01/Microsoft.BizTalkServices.json) | [Microsoft.BizTalkServices](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.BizTalkServices%22&type=Code) |
 | 服務匯流排 | 是 | | | [Microsoft.ServiceBus](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ServiceBus%22&type=Code) |
-| 備份 | 否 | - | - | 
+| 備份 | 否 | - | - |
 | 網站復原 | 否 | - | - |
 
 ## 身分識別與存取管理 
@@ -164,7 +164,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 
 下列範例示範如何取得所有可用的資源提供者。
 
-    PS C:\> Get-AzureRmResourceProvider -ListAvailable
+    Get-AzureRmResourceProvider -ListAvailable
     
 輸出將類似於：
 
@@ -176,7 +176,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 
 下一個範例示範如何取得特定資源提供者的資源類型。
 
-    PS C:\> (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes
+    (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes
     
 輸出將類似於：
 
@@ -188,7 +188,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
     
 若要註冊資源提供者，請提供命名空間：
 
-    PS C:\> Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ApiManagement
+    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ApiManagement
 
 ### Azure CLI
 
@@ -229,7 +229,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 
 下列範例示範如何取得支援網站的區域。
 
-    PS C:\> ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
+    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
     
 輸出將類似於：
 
@@ -305,4 +305,4 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 - 若要了解如何建立資源管理員範本，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 - 若要了解如何部署資源，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

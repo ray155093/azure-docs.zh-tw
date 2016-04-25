@@ -17,8 +17,8 @@ Azure AD 可讓您整合 App 和佈建的帳戶。這可透過下列兩種方法
 
 - 如果 App 不在持程式庫中，您仍然可以將 Azure AD 中大部分的 App 設定為自訂 App。這需要設定更技術性的專業知識。您可以加入支援 SAML 2.0 的任何應用程式做為同盟應用程式，或者加入具有 HTML 登入頁面的任何應用程式做為密碼 SSO 應用程式。
 
-如果使用者已針對未受到 IT 管理的 SaaS App 建立自己的帳戶，則 [Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md) 工具可提供解決方案。此工具會監視網路流量，來識別整個組織中正在使用哪些 App，以及使用每個 App 的人數。IT 可以使用此資訊來了解使用者偏好使用哪些 App，並決定要整合到 Azure AD 以使用 SSO 的 App。
+如果使用者已針對未受到 IT 管理的 SaaS App 建立自己的帳戶，則 [Cloud App Discovery](../articles/active-directory/active-directory-cloudappdiscovery-whatis.md) 工具可提供解決方案。此工具會監視網路流量，來識別整個組織中正在使用哪些 App，以及使用每個 App 的人數。IT 可以使用此資訊來了解使用者偏好使用哪些 App，並決定要整合到 Azure AD 以使用 SSO 的 App。
 
 當您將 App 整合到 Azure AD 時，可以將使用者已建立的應用程式身分識別對應至其各自的 Azure AD 身分識別。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

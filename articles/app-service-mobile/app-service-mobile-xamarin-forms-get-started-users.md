@@ -22,10 +22,9 @@
 
 ##概觀
 
-本主題說明如何從用戶端應用程式驗證 App Service 行動應用程式的使用者。在本教學課程中，您將使用 App Service 支援的識別提供者，將驗證加入 Xamarin.Forms 快速入門專案中。由行動應用程式成功驗證並授權之後，就會顯示使用者 ID 值，而您也將可以存取受限制的資料表資料。
+本主題說明如何從用戶端應用程式驗證 App Service 行動應用程式的使用者。在本教學課程中，您將使用 App Service 支援的識別提供者，將驗證加入 Xamarin.Forms 快速入門專案中。由行動應用程式成功驗證並授權之後，就會顯示使用者識別碼值，而您也將可以存取受限制的資料庫資料。
 
-您必須先完成 [Xamarin.Forms 快速入門教學課程](app-service-mobile-xamarin-forms-get-started.md)。如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
-
+您必須先完成[建立 Xamarin.Android 應用程式](app-service-mobile-xamarin-forms-get-started.md)教學課程。如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##註冊應用程式進行驗證，並設定應用程式服務
 
@@ -418,10 +417,6 @@ Mobile Apps 使用平台特定 `MobileServiceClient.LoginAsync` 方法，以顯�
 <!-- Images. -->
 
 <!-- URLs. -->
-[Xamarin Studio]: http://xamarin.com/platform
-[Install Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
-[Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
-[Installing Xamarin.iOS on Windows]: http://developer.xamarin.com/guides/ios/getting_started/installation/windows/
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

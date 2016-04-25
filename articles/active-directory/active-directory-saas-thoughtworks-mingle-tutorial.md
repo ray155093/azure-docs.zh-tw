@@ -2,16 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 Thoughtworks Mingle 整合 | Microsoft Azure" 
     description="了解如何使用 Thoughtworks Mingle 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
-    documentationCenter="na" manager="stevenpo"/>
+    authors="jeevansd"  
+    documentationCenter="na" 
+     manager="stevenpo"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="04/06/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Thoughtworks Mingle 整合
   
@@ -128,7 +129,7 @@
     2.  選取 [完整使用者] 做為 [使用者類型]。
     3.  按一下 [建立這個設定檔]。
 
->[AZURE.NOTE]您可以使用任何其他的 Thoughtworks Mingle 使用者帳戶建立工具或 Thoughtworks Mingle 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 Thoughtworks Mingle 使用者帳戶建立工具或 Thoughtworks Mingle 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
   
@@ -148,4 +149,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0413_2016-->

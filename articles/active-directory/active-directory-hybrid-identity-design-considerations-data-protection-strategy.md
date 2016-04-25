@@ -12,7 +12,7 @@
 	ms.devlang="na"
 	ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.workload="identity" 
+    ms.workload="identity"
 	ms.date="03/18/2016"
 	ms.author="yuridio"/>
 
@@ -21,7 +21,7 @@
 
 在這項工作中，您將為混合式身分識別解決方案定義資料保護策略，以符合您已定義的商務需求：
 
-- [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md) 
+- [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)
 - [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)
 - [判斷存取控制需求](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
 - [判斷事件因應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)
@@ -104,11 +104,11 @@ Azure Active Directory 可為數千個 SaaS 應用程式和內部部署 Web 應�
 
 圖 X 中顯示的每個互動，分別代表 Azure AD 可以涵蓋的一個存取控制案例。每個案例的說明如下：
 
-1. 內部部署裝載之應用程式的條件式存取：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。如需有關設定內部部署之條件式存取的詳細資訊，請參閱[使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access-on-premises-setup.md)。 
+1. 內部部署裝載之應用程式的條件式存取：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。如需有關設定內部部署之條件式存取的詳細資訊，請參閱[使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access-on-premises-setup.md)。
 2. Azure 管理入口網站的存取控制：Azure 也能夠使用 RBAC (角色型存取控制) 來控制對管理入口網站的存取。此方法可讓公司限制個人存取 Azure 管理入口網站之後可執行的作業數量。使用 RBAC 來控制存取入口網站時，IT 系統管理員可以利用下列存取管理方法來委派存取：
 
  - 群組型角色指派：您可以指派存取權給可從本機 Active Directory 同步處理的 Azure AD 群組。這可讓您運用組織目前在群組管理工具和程序方面所做的投資。您也可以使用 Azure AD Premium 的委派群組管理功能。
- - 運用 Azure 中內建的角色：您可以使用三個角色 — 擁有者、參與者和讀者，以確保使用者和群組只擁有他們執行工作所需的權限。 
+ - 運用 Azure 中內建的角色：您可以使用三個角色 — 擁有者、參與者和讀者，以確保使用者和群組只擁有他們執行工作所需的權限。
  - 細微控制資源的存取：您可以針對特定的訂用帳戶、資源群組或個別 Azure 資源 (例如網站或資料庫)，將角色指派給使用者和群組。如此一來，您可以確保使用者能夠存取他們需要的資源，但不能存取他們不需要管理的資源。
 
  >[AZURE.NOTE]
@@ -123,8 +123,8 @@ Azure Active Directory 可為數千個 SaaS 應用程式和內部部署 Web 應�
 ## 定義事件回應選項
 Azure AD 可藉由監視使用者活動，協助 IT 人員識別環境中潛在的安全性風險；IT 人員可利用 Azure AD 存取和使用量報告深入了解組織目錄的完整性與安全性。利用此資訊，IT 管理員更能夠判斷可能發生安全性風險的位置，以便適當地規劃來減輕這些風險。[Azure AD Premium 訂用帳戶](active-directory-get-started-premium.md)有一組安全性報告可讓 IT 人員取得這項資訊。[Azure AD 報告](active-directory-view-access-usage-reports.md)歸類如下：
 
-- **異常報告**：包含我們發現異常的登入事件。我們的目標在於使您注意這類活動，並讓您能夠判斷事件是否可疑。 
-- **整合式應用程式報告**：可供深入了解雲端應用程式在組織中的使用方式。Azure Active Directory 提供與數千個雲端應用程式的整合。 
+- **異常報告**：包含我們發現異常的登入事件。我們的目標在於使您注意這類活動，並讓您能夠判斷事件是否可疑。
+- **整合式應用程式報告**：可供深入了解雲端應用程式在組織中的使用方式。Azure Active Directory 提供與數千個雲端應用程式的整合。
 - **錯誤報告**：指出將帳戶佈建至外部應用程式時可能發生的錯誤。
 - **使用者特定報告**：顯示特定使用者的裝置/登入活動資料。
 - **活動記錄檔**：包含過去 24 小時、過去 7 天或過去 30 天內所有稽核事件的記錄，以及群組活動變更、密碼重設和登錄活動。
@@ -150,10 +150,10 @@ Azure AD 中還有其他可在事件回應調查期間使用的重要內建報�
 由於事件回應的選項採用多層式方法，因此在執行這項工作時無法比較這些選項。請確實針對每個要求您在公司的事件回應程序中使用 Azure AD 報告功能的案例，使用所有適用的選項。
 
 ## 後續步驟
-[判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybridId-management-tasks.md)
+[判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)
 
 
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

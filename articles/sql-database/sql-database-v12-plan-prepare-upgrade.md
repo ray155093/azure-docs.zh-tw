@@ -10,7 +10,7 @@
 
 <tags
 	ms.service="sql-database"
-	ms.workload="data-management" 
+	ms.workload="data-management"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
@@ -60,7 +60,7 @@
 如需「基本」、「標準」和「高階」服務層的詳細資訊，請參閱：
 
 - [SQL Database 服務層](sql-database-service-tiers.md)
-- [將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-new-service-tiers.md)
+- [將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-server-portal.md)
 
 
 
@@ -225,7 +225,7 @@ V12 不支援 Web 和商務服務定價層級。
 
 PowerShell Cmdlet 可用來啟動、停止或監視從 V11 或任何其他 V12 以前版本升級至 Azure SQL Database V12。
 
-- [使用 PowerShell 升級至 SQL Database V12](sql-database-upgrade-server.md)
+- [使用 PowerShell 升級至 SQL Database V12](sql-database-upgrade-server-powershell.md)
 
 如需這些 PowerShell Cmdlet 的參考文件，請參閱：
 
@@ -252,6 +252,5 @@ Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方�
 
 <!--Anchors-->
 [Subheading 1]: #subheading-1
- 
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

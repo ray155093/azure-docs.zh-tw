@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
+	ms.date="04/07/2016" 
 	ms.author="billmath"/>
 
 # 設定 Azure Multi-Factor Authentication
@@ -36,7 +36,7 @@
 [信任的 IP](#trusted-ips)|信任的 IP 是 Multi-Factor Authentication 的功能，它賦予受管理或同盟租用戶管理員，讓從公司近端內部網路登入之使用者略過 Multi-Factor Authentication 的能力。|配置及設定要免除 Multi-Factor Authentication 的 IP 位址	
 [應用程式密碼](#app-passwords)|應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。|應用程式密碼的相關資訊。
 [針對已記住的裝置和瀏覽器，記住其 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-users-trust)|可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。|啟用此功能及設定的天數的相關資訊。
-[可選取的驗證方法 (公用預覽)](#selectable-verification-methods-public-preview)|可讓您選擇可供使用者使用的驗證方法。|啟用或停用驗證方法 (例如通話或簡訊) 的相關資訊。
+[可選取的驗證方法](#selectable-verification-methods)|可讓您選擇可供使用者使用的驗證方法。|啟用或停用驗證方法 (例如通話或簡訊) 的相關資訊。
 
 
 
@@ -355,7 +355,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 10. 按一下 [關閉]。
 
 
-## 可選取的驗證方法 (公用預覽)
+## 可選取的驗證方法
 現在可以選擇當使用者使用 Multi-Factor Authentication 時，可供使用者使用的驗證方法。先前只有內部部署伺服器版本才有這項功能。下表扼要概述可以為使用者啟用或停用的各種驗證方法。
 
 方法|說明
@@ -376,4 +376,4 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

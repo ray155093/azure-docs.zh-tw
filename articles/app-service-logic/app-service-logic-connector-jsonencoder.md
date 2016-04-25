@@ -57,7 +57,7 @@ BizTalk JSON 編碼器解碼器連接器協助您的應用程式在 JSON 和 XML
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
-您也可以檢閱連接器的效能統計資料及控制安全性。請參閱[管理和監視 API 應用程式和連接器](../app-service-api/app-service-api-manage-in-portal.md)。
+ 
 
 <!--References -->
 [1]: app-service-logic-connector-tpm
@@ -70,4 +70,4 @@ BizTalk JSON 編碼器解碼器連接器協助您的應用程式在 JSON 和 XML
 <!--Links -->
 [建立邏輯應用程式]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

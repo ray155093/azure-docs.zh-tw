@@ -2,11 +2,10 @@
 	pageTitle="在執行 Linux 的虛擬機器上設定軟體 RAID | Microsoft Azure" 
 	description="了解如何使用 mdadm，在 Azure 的 Linux 上設定 RAID。" 
 	services="virtual-machines-linux" 
-	documentationCenter="" 
-	authors="szarkos" 
-	writer="szark" 
+	documentationCenter="na" 
+	authors="rickstercdn"  
 	manager="timlt" 
-	editor=""
+	editor="tysonn"
 	tag="azure-service-management,azure-resource-manager" />
 
 <tags 
@@ -16,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="03/25/2016" 
-	ms.author="szark"/>
+	ms.author="rclaus"/>
 
 
 
@@ -25,9 +24,7 @@
 
 
 ## 連接資料磁碟
-設定 RAID 裝置通常需要兩個以上的空白資料磁碟。本文將不會詳細說明如何將資料磁碟連接至 Linux 虛擬機器。請參閱 Microsoft Azure 文章[連接磁碟](virtual-machines-windows-classic-attach-disk.md#attachempty)，取得如何在 Azure 上將空白資料磁碟連接至 Linux 虛擬機器的詳細指示。
-
->[AZURE.NOTE] ExtraSmall VM 大小不支援將多個資料磁碟連接到虛擬機器。如需支援的 VM 大小與資料磁碟數目的詳細資訊，請參閱 [Microsoft Azure 的虛擬機器和雲端服務大小](https://msdn.microsoft.com/library/azure/dn197896.aspx)。
+設定 RAID 裝置通常需要兩個以上的空白資料磁碟。建立 RAID 裝置的主要原因是要提升磁碟 IO 效能。根據 IO 需求，您可以選擇連接儲存在標準儲存體且一個磁碟最多具有 500 IO/ps 的磁碟，或進階儲存體且一個磁碟最多具有 5000 IO/ps 的磁碟。本文將不會詳細說明如何佈建資料磁碟以及將其連接至 Linux 虛擬機器。請參閱 Microsoft Azure 文章[連接磁碟](virtual-machines-linux-add-disk.md)，取得如何在 Azure 上將空白資料磁碟連接至 Linux 虛擬機器的詳細指示。
 
 
 ## 安裝 mdadm 公用程式
@@ -49,7 +46,7 @@
 ## 建立磁碟分割
 在本範例中，我們將在 /dev/sdc 上建立單一磁碟分割。新磁碟分割的名稱會是 /dev/sdc1。
 
-- 啟動 fdisk 開始建立磁碟分割
+1. 啟動 fdisk 開始建立磁碟分割
 
 		# sudo fdisk /dev/sdc
 		Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
@@ -61,38 +58,37 @@
 				 switch off the mode (command 'c') and change display units to
 				 sectors (command 'u').
 
-- 出現提示時請按 'n'，以建立**新的**磁碟分割：
+2. 出現提示時請按 'n'，以建立**新的**磁碟分割：
 
 		Command (m for help): n
 
-- 接著，請按 'p' 以建立**主要**磁碟分割：
+3. 接著，請按 'p' 以建立**主要**磁碟分割：
 
 		Command action
 			e   extended
 			p   primary partition (1-4)
-		p
 
-- 按 '1' 以選取磁碟分割編號 1：
+4. 按 '1' 以選取磁碟分割編號 1：
 
 		Partition number (1-4): 1
 
-- 選取新磁碟分割的起始點，或按 `<enter>` 接受預設值，將磁碟分割置於磁碟機上可用空間的開始位置：
+5. 選取新磁碟分割的起始點，或按 `<enter>` 接受預設值，將磁碟分割置於磁碟機上可用空間的開始位置：
 
 		First cylinder (1-1305, default 1):
 		Using default value 1
 
-- 選取磁碟分割的大小，例如，輸入 '+10G' 以建立 10 GB 的磁碟分割。或者，按 `<enter>` 建立跨越整個磁碟機的單一磁碟分割：
+6. 選取磁碟分割的大小，例如，輸入 '+10G' 以建立 10 GB 的磁碟分割。或者，按 `<enter>` 建立跨越整個磁碟機的單一磁碟分割：
 
 		Last cylinder, +cylinders or +size{K,M,G} (1-1305, default 1305): 
 		Using default value 1305
 
-- 接著，將磁碟分割的 ID 和類型 (**t**) 從預設的 ID '83' (Linux) 變更為 ID 'fd' (Linux raid auto)：
+7. 接著，將磁碟分割的 ID 和類型 (**t**) 從預設的 ID '83' (Linux) 變更為 ID 'fd' (Linux raid auto)：
 
 		Command (m for help): t
 		Selected partition 1
 		Hex code (type L to list codes): fd
 
-- 最後，將磁碟分割資料表寫入磁碟機並結束 fdisk：
+8. 最後，將磁碟分割資料表寫入磁碟機並結束 fdisk：
 
 		Command (m for help): w
 		The partition table has been altered!
@@ -100,13 +96,10 @@
 
 ## 建立 RAID 陣列
 
-1. 下列範例將「分割」(RAID level 0) 位於三個不同資料磁碟 (sdc1、sdd1、sde1) 的三個磁碟分割：
+1. 下列範例將「分割」(RAID 層級 0) 位於三個不同資料磁碟 (sdc1、sdd1、sde1) 的三個磁碟分割。執行此命令之後，將會建立一個名為 **/dev/md127** 的新 RAID 裝置。同時請注意，如果這些資料磁碟先前是另一個無用 RAID 陣列的一部分，則您可能需要在 `mdadm` 命令中加上 `--force` 參數：
 
 		# sudo mdadm --create /dev/md127 --level 0 --raid-devices 3 \
 		  /dev/sdc1 /dev/sdd1 /dev/sde1
-
-在本範例中，執行此命令後，便會建立一個名為 **/dev/md127** 的新 RAID 裝置。同時請注意，如果這些資料磁碟先前是另一個無用 RAID 陣列的一部分，則您可能需要在 `mdadm` 命令中加上 `--force` 參數。
-
 
 2. 在新的 RAID 裝置上建立檔案系統
 
@@ -118,7 +111,7 @@
 
 		# sudo mkfs -t ext3 /dev/md127
 
-3. **SLES 11 和 openSUSE** - 啟用 boot.md 並建立 mdadm.conf
+	**SLES 11 和 openSUSE** - 啟用 boot.md 並建立 mdadm.conf
 
 		# sudo -i chkconfig --add boot.md
 		# sudo echo 'DEVICE /dev/sd*[0-9]' >> /etc/mdadm.conf
@@ -178,6 +171,4 @@
 
 	請參閱散發套件的文件，以取得如何正確編輯核心參數的相關資訊。例如，在許多散發套件 (CentOS、Oracle Linux、SLES 11) 中，可手動將這些參數加入至 "`/boot/grub/menu.lst`" 檔案。在 Ubuntu 上，可將此參數加入至 "/etc/default/grub" 上的 `GRUB_CMDLINE_LINUX_DEFAULT` 變數。
 
- 
-
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

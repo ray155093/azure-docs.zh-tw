@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/21/2016" 
+	ms.date="04/01/2016" 
 	ms.author="josephd"/>
 
 # 企業營運應用程式工作負載第 2 階段：設定網域控制站
@@ -111,7 +111,7 @@
 	$vm=Set-AzureRMVMOSDisk -VM $vm -Name "OSDisk" -VhdUri $osDiskUri -CreateOption fromImage
 	New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
 
-> [AZURE.NOTE] 因為這些虛擬機器用於內部網路應用程式，所以未獲指派公用 IP 位址或 DNS 網域名稱標籤，也不會公開到網際網路。不過，這也表示您無法從 Azure 入口網站連線到它們。當您檢視虛擬機器的屬性時，[連線] 按鈕將無法使用。使用「遠端桌面連線」配件或其他遠端桌面工具，來使用虛擬機器的私人 IP 位址或內部網路 DNS 名稱連接該虛擬機器。
+> [AZURE.NOTE] 因為這些虛擬機器用於內部網路應用程式，所以未獲指派公用 IP 位址或 DNS 網域名稱標籤，也不會公開到網際網路。不過，這也表示您無法從 Azure 入口網站連線到它們。當您檢視虛擬機器的屬性時，[連線] 按鈕將無法使用。
 
 ## 設定第一個網域控制站
 
@@ -197,4 +197,4 @@
 
 - 依照[第 3 階段](virtual-machines-windows-ps-lob-ph3.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

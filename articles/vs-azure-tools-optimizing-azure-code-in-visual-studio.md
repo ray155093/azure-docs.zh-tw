@@ -530,6 +530,6 @@ public class BlogsController : Controller
 
 ## 後續步驟
 
-若要深入了解如何最佳化和疑難排解 Azure 應用程式，請參閱[使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式](/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)。
+若要深入了解如何最佳化和疑難排解 Azure 應用程式，請參閱[使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式](./app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

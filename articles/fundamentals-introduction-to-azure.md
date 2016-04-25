@@ -1,18 +1,18 @@
-<properties 
-	pageTitle="簡介 Azure |Microsoft Azure" 
-	description="Microsoft Azure 的新手？ 取得此服務的基本概觀，其提供有關這些服務是如何實用的範例。" 
-	services=" " 
-	documentationCenter=".net" 
-	authors="Rboucher" 
+<properties
+	pageTitle="簡介 Azure |Microsoft Azure"
+	description="Microsoft Azure 的新手？ 取得此服務的基本概觀，其提供有關這些服務是如何實用的範例。"
+	services=" "
+	documentationCenter=".net"
+	authors="Rboucher"
 	manager="jwhit"
 	editor=""/>
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="multiple" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
+<tags
+	ms.service="multiple"
+	ms.workload="multiple"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
 	ms.date="06/30/2015"  
 	ms.author="robb"/>
 
@@ -27,7 +27,7 @@ Azure 總是不斷增加，因此很容易便會超載。本文章先前已列�
 **提供意見反應**
 
 您的意見反應非常寶貴。本文應可提供 Azure 的實際概觀。若是沒有達到此目的，請在頁面底部的註解中告訴我們。提供我們您期待看到的服務以及如何改善本文的相關詳細資料。
-   
+
 
 ## Azure 元件
 
@@ -60,17 +60,17 @@ Azure 有個稱為[管理入口網站](http://manage.windowsazure.com)的 Web �
 若要建立 VM，請指定要使用的 VHD 及 VM 的大小。然後針對 VM 執行的時間付費即可。即使持續提供 VHD 會有基本儲存體費用，您僅需針對執行期間按分鐘數付費。Azure 提供了許多原廠 VHD (稱為「映像」)，其中包含可以開始使用的可開機作業系統。這些包括 Microsoft 和合作夥伴選項，例如 Windows Server 和 Linux、SQL Server、Oracle 等。您可以隨意建立 VHD 和映像，然後自行將他們上傳。您甚至可以上傳僅包含資料的 VHD，然後從執行中的 VM 存取這些資料。
 
 無論 VHD 來自何處，您都可以持續儲存在 VM 執行時所做的變更。您下次從該 VHD 建立 VM 時，就會從先前停止的地方繼續進行。支援虛擬機器的 VHD 均儲存在 Azure 儲存體 Blob 中 (我們將於稍後討論)。這代表您取得備援，可確保您的 VM 不會因為硬體和磁碟故障而就此消失。此外，也可以複製 Azure 之外已變更的 VHD，然後在本機加以執行。
- 
+
 您的應用程式可在一或多個虛擬機器內執行，這取決於您先前如何建立此應用程式或決定要現在重頭開始建立應用程式。
 
 這個相當常見的雲端運算方式可用於處理各種問題。
 
 **虛擬機器案例**
 
-1.	**開發/測試** - 您可以將它們用於建立經濟實惠的開發和測試平台，並且在使用完畢時予以關閉。您也可以建立和執行採用您喜愛語言和程式庫的應用程式。這些應用程式可以使用 Azure 提供的任何資料管理選項，而您也可以選擇使用 SQL Server 或在一或多部虛擬機器中執行的其他 DBMS。 
+1.	**開發/測試** - 您可以將它們用於建立經濟實惠的開發和測試平台，並且在使用完畢時予以關閉。您也可以建立和執行採用您喜愛語言和程式庫的應用程式。這些應用程式可以使用 Azure 提供的任何資料管理選項，而您也可以選擇使用 SQL Server 或在一或多部虛擬機器中執行的其他 DBMS。
 2.	**將應用程式移到 Azure (提升與轉移)** - 「提升與轉移」意指移動應用程式就像是使用堆高機來移動大型物件一樣。將 VHD 從本機資料中心提升，然後轉移至 Azure 並在 Azure 中執行。您通常必須執行某些作業，才能將其他系統上的相依性移除。如果有太多的相依性，您可以改用選項 3。  
 3.	**擴充您的資料中心** - 使用 Azure VM 作為內部部屬資料中心的擴充功能，用來執行 SharePoint 或其他應用程式。若要支援此功能，可以在 Azure VM 中執行 Active Directory，進而在雲端建立 Windows 網域。您可以使用 Azure 虛擬網路 (稍後會提到) 將本機網路和 Azure 中的網路連結在一起。
- 
+
 
 
 ### Web 應用程式
@@ -106,7 +106,7 @@ Azure Web Apps 允許建立此種 Web 應用程式，但有一些限制。例如
 當您需要比 Azure Web Apps 所提供還要高的平台控制能力，但無需控制底層作業系統時，「雲端服務」是支援大型向外延展的理想選擇。
 
 #### 選擇計算模型
-[Azure Web Apps、雲端服務和虛擬機器的比較](choose-web-site-cloud-service-vm.md)頁面提供有關如何選擇運算模型的詳細資訊。
+[Azure Web Apps、雲端服務和虛擬機器的比較](./app-service-web/choose-web-site-cloud-service-vm.md)頁面提供有關如何選擇運算模型的詳細資訊。
 
 
 
@@ -140,7 +140,7 @@ SQL Database 不僅是雲端的 DBMS，也是一項 PaaS 服務。您仍可控�
 
 ### 資料表
 ![Azure 儲存體資料表](./media/fundamentals-introduction-to-azure/StorageTablesIntroNew.png)
-  
+
 *圖：Azure 資料表提供儲存資料的一般 NoSQL 方式。*
 
 因為此功能屬於稱為「Azure 儲存體」大型功能的一部分，它有時候又會被叫做不同的名稱。如果您看到「資料表」、「Azure 資料表」或「儲存體資料表」，他們都代表相同的東西。
@@ -165,7 +165,7 @@ Blob 儲存體可用於許多其他 Azure 功能 (包括虛擬機器)，所以�
 
 ### 匯入 / 匯出
 ![Azure Import Export Service](./media/fundamentals-introduction-to-azure/ImportExportIntroNew.png)
- 
+
 *圖：Azure 匯入 / 匯出提供了將實體硬碟送至 Azure，或從 Azure 送出實體硬碟的能力，以進行更快又更便宜的大量資料匯入或匯出。*
 
 有時候您會想要將許多資料移入 Azure。這可能會花費很長的時間 (或許要幾天的時間)，並使用許多頻寬。在這些情況下，您可以使用 Azure 匯入/匯出，將使用 Bitlocker 加密的 3.5 吋 SATA 硬碟直接送至 Azure 資料中心，Microsoft 會在資料中心內替您將資料傳輸到 Blob 儲存體。上傳完成之後，Microsoft 會將磁碟機送回給您。您也可以要求將大筆資料從 Blob 儲存體匯入硬碟，然後透過郵件寄還給您。
@@ -173,7 +173,7 @@ Blob 儲存體可用於許多其他 Azure 功能 (包括虛擬機器)，所以�
 **匯入/匯出的案例**
 
 - **巨量資料移轉** - 每當您有大量資料 (TB) 想要上傳至 Azure 時，匯入/匯出服務通常會比透過網際網路傳輸還要快，而且有可能還會比較便宜。在資料上傳至 Blob 後，您可以將資料處理成其他格式，例如資料表儲存體或 SQL Database。
- 
+
 - **封存資料復原** - 您可以使用匯入/匯出，要求 Microsoft 將儲存於 Azure Blob 儲存體中的大量資料傳輸至您送出的儲存裝置，並要求將該裝置遞送到您想要的位置。由於這需要一些時間，所以並不適合災難復原。它比較適合您不需要快速存取的封存資料。
 
 
@@ -206,12 +206,12 @@ Azure 目前已在全球許多資料中心內運作。當您執行應用程式�
 
 
 將公用雲端視為您自有資料中心的延伸模組，即可充分發揮其效用。
- 
+
 因為您可依照需求建立 VM，然後在不再需要這些 VM 時移除 (並停止付費)，而僅只在有需要時擁有運算能力。由於 Azure 虛擬機器可讓您建立執行 SharePoint、Active Directory 和其他熟悉內部部署軟體的 VM，所以此方法可搭配您已有的應用程式使用。
 
 為了使這個方法真的發揮作用，使用者應該將這些應用程式看待成在您擁有的資料中心內執行。這正是 Azure 虛擬網路所容許的。系統管理員可以使用 VPN 閘道器裝置，在您的本機網路與已部署到 Azure 虛擬網路的 VM 之間設定虛擬私人網路 (VPN)。因為您將自己的 IP v4 位址指派給雲端 VM，所以雲端 VM 會出現在您擁有的網路上。貴組織的使用者可以存取這些 VM 內含的應用程式，就好像應用程式在本機執行一樣。
 
-如需規劃與建立適合您的虛擬網路詳細資訊，請參閱[虛擬網路](../virtual-network/virtual-networks-overview.md)。
+如需規劃與建立適合您的虛擬網路詳細資訊，請參閱[虛擬網路](./virtual-network/virtual-networks-overview.md)。
 
 ### ExpressRoute
 
@@ -223,14 +223,14 @@ Azure 目前已在全球許多資料中心內運作。當您執行應用程式�
 
 設定 ExpressRoute 連線需要更多的時間和規劃，因此您可能會想要從站台對站台 VPN 開始，然後移轉至 ExpressRoute 連線。
 
-如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](./expressroute/expressroute-introduction.md)。
 
 ### 流量管理員
 
 ![TrafficManager](./media/fundamentals-introduction-to-azure/TrafficManagerIntroNew.png)
 
 *圖：Azure 流量管理員可讓您根據智慧型規則，將全域流量路由到您的服務。*
- 
+
 如果 Azure 應用程式正在多個資料中心內執行，您可使用 Azure 流量管理員，以智慧方式將使用者的要求路由傳送到應用程式的各執行個體。您也可以將流量路由到不是在 Azure 中執行的服務，只要可以從網際網路存取這些服務即可。
 
 使用者僅限於世界某個地區的 Azure 應用程式可能只會在一個 Azure 資料中心內執行。然而，使用者遍佈全球的應用程式比較有可能在多個資料中心內執行，甚至可能在所有資料中心內執行。在第二種情況下，您會面臨一個問題：如何以智慧方式將使用者導向至應用程式執行個體？ 通常，您可能會希望每個使用者存取離他最近的資料中心，因為回應時間可能最快。但如果該應用程式的執行個體已超載或無法使用，該怎麼辦？ 在此情況下，建議將使用者的要求自動導向至其他資料中心。這正是 Azure 流量管理員的功用。
@@ -287,7 +287,7 @@ Visual Studio Team Services 亦可支援具備如連續整合組建、工作流�
 您正在開發應用程式。它可能是 web 應用程式、裝置應用程式或具備 web 後端的裝置應用程式。
 
 * 發佈您的應用程式之後，或在其進行負載測試時微調其效能。Application Insights 會從所有已安裝的執行個體彙總遙測，並為您呈現回應時間的圖表、要求和例外狀況計數、相依性回應時間和其他效能指標。這些內容可協助您微調應用程式的效能。您可以在必要時插入程式碼以報告多個特定資料。
-* 偵測及診斷即時應用程式中的問題。如果效能指標超越可接受的臨界值，您可以透過電子郵件取得警示。您可以調查特定使用者工作階段，例如查看造成例外狀況的要求。 
+* 偵測及診斷即時應用程式中的問題。如果效能指標超越可接受的臨界值，您可以透過電子郵件取得警示。您可以調查特定使用者工作階段，例如查看造成例外狀況的要求。
 * 追蹤使用量以評估每個功能的成功。當您設計新的使用者劇本時，請規畫測量其使用量，以及使用者是否達成其預期的目標。Application Insights 會提供您網頁檢視等基本使用量資料，而且您可以插入程式碼以追蹤使用者體驗的詳細資料。
 
 ### 自動化
@@ -311,17 +311,17 @@ Azure API 管理可讓組織以安全的方式及按比例，輕易地將 API �
 假設您的公司有一組裝置，全都必須回呼至中央服務以取得資料 -- 例如，外出時每台卡車都備有裝置的貨運公司。此公司當然會想要設定可追蹤自家卡車的系統，以便能夠可靠地預測與更新遞送時間。它可以因此得知卡車數量並適當地加以規劃。每台卡車將需要一台可回呼至中央位置的裝置，並隨附其定位和速度等其他資料。
 
 貨運公司的客戶也可以享受此定位資料所帶來的好處。客戶可以使用此資料來得知產品必須走多遠的距離、在哪裡遇到塞車，沿著特定路線需支付多少過路費 (如果支付的運費包含過路費)。如果貨運公司已彙總此資料，則許多客戶可能會花錢取得該資料。之後，貨運公司必須提供一個方法來將資料提供給客戶。在提供存取權給客戶之後，他們無法控制查詢資料的頻率。他們必須提供誰可存取哪些資料的規則。所有的這些規則都必須內建於內部 API 中。這正是為什麼您需要 API 管理的協助。
- 
+
 
 ## 身分識別與存取
- 
+
 大多數應用程式都會使用身分識別。得知使用者的身分，應用程式便可判斷要如何與該使用者互動。Azure 提供可協助追蹤身分識別，以及將它與使用中的身分識別存放區進行整合的服務。
 
 
 ### Active Directory
 
 如同大多數的目錄服務，Azure Active Directory 可儲存使用者及其所屬組織的相關資訊。該服務可讓使用者登入，然後再將權杖提供給使用者，以向應用程式出示進而證明其身分。此外，還能夠同步處理使用者資訊與在本機網路中內部部署上執行的 Windows Server Active Directory。雖然 Azure Active Directory 與 Windows Server Active Directory 所使用的機制和資料格式不同，但其執行的功能極為類似。
- 
+
 請務必了解 Azure Active Directory 的設計主要提供雲端應用程式使用。例如，在 Azure 或其他雲端平台上執行的應用程式均可使用。此外，Microsoft 擁有的雲端應用程式 (如 Office 365 應用程式) 也可使用。然而，如果您想利用 Azure 虛擬機器和 Azure 虛擬網路將自己的資料中心延伸至雲端，Azure Active Directory 並不是適當的選擇。相反地，您會想要在虛擬機器中執行 Windows Server Active Directory。
 
 為了讓應用程式能存取其內含的資訊，Azure Active Directory 提供一個名為 Azure Active Directory Graph 且符合 REST 原則的 API。此 API 可讓在任何平台上執行的應用程式存取目錄物件與其間的關係。例如，經過授權的應用程式可使用此 API 了解使用者、其所屬的群組及其他資訊。應用程式也可以查看使用者之間的關係 (其社交圖譜)，以便運用更有智慧的方式處理人與人之間的聯繫。
@@ -334,7 +334,7 @@ Azure Active Directory 存取控制是這項服務的另一個功能，可讓應
 ![Azure Multi-Factor Authentication](./media/fundamentals-introduction-to-azure/MFAIntroNew.png)
 
 *圖：Multi-Factor Authentication 為應用程式提供多種身分識別格式的驗證功能*
- 
+
 安全性總是很重要。多因素驗證 (MFA) 可協助確保只有使用者本身可存取他們的帳戶。MFA (又稱為雙因素驗證或 "2FA") 要求使用者提供使用者登入和交易的三種身分識別驗證方法中的其中兩種。
 
 - 您知道的某些資訊 (通常是密碼)
@@ -362,7 +362,7 @@ Azure Active Directory 存取控制是這項服務的另一個功能，可讓應
 ### Mobile Apps
 
 ![Mobile Apps](./media/fundamentals-introduction-to-azure/MobileServicesIntroNew.png)
-  
+
 *圖：Mobile Apps 為應用程式提供與行動裝置通訊時經常需要用到的功能。*
 
 Azure Mobile Apps 提供許多有用的功能，可讓您減少花費在建置行動裝置應用程式後端的時間。它可讓您對 SQL Database 中儲存的資料進行簡單的佈建和管理。利用伺服器端程式碼，即可輕鬆地使用其他資料儲存選項，如 Blob 儲存體或 MongoDB。Mobile Apps 提供通知支援，但在某些情況下，您可以改為使用「通知中樞」(如後續所述)。服務包括一個 REST API，您的行動應用程式可呼叫此 API 以完成工作。Mobile Apps 還提供透過 Microsoft 和 Active Directory 以及其他知名身分識別提供者 (如 Facebook、Twitter 和 Google) 來驗證使用者的能力。
@@ -389,7 +389,7 @@ Android、iOS、HTML/JavaScript、Windows Phone 和 Windows 市集的原生用�
 **通知中樞案例**如果您在撰寫一個玩家輪流進行的行動遊戲，您可能需要通知 2 號玩家 1 號玩家已結束她的回合。如果這是您必須做的一切動作，則使用 Mobile Apps 就可以了。但是如果您有 100,000 位使用者在玩這個遊戲，而且您想要傳送有時間急迫性的免費優惠給每位玩家，則通知中樞會是最佳選擇。
 
 您可以在低延遲的情況下，將即時新聞、體育賽事及產品公告通知傳送給數百萬位使用者。企業可通知其員工關於有時間急迫性的新訊息 (例如潛在客戶)，因此員工不用時常查看電子郵件或其他應用程式，便可隨時掌握最新訊息。您也可以傳送多因素驗證所需的一次性密碼。
-   
+
 
 
 
@@ -397,7 +397,7 @@ Android、iOS、HTML/JavaScript、Windows Phone 和 Windows 市集的原生用�
 每家企業都必須備份與還原資料。無論是在雲端或在內部部署中，您都可以使用 Azure 來備份與還原您的應用程式。視備份類型而定，Azure 提供不同的協助選項。
 
 ### 站台復原
- 
+
 Azure Site Recovery (先前稱為 Hyper-V 復原管理員) 可透過在各個網站中協調複寫與復原，協助您保護重要的應用程式。Site Recovery 能夠針對您自己的次要網站、主機服務提供者的網站或 Azure，保護以 Hyper-V、VMWare 或 SAN 為基礎的應用程式，免除建置及管理您的自有次要位置所需的費用和複雜程序。Azure 會加密資料和訊息，您也可以選擇為靜態資料啟用加密。
 
 它會持續監控您的服務健全狀況，並在主要資料中心發生站台服務中斷時，協助自動化循序復原服務。以組織的方式啟動虛擬機器，可協助快速還原服務，即使是複雜的多層次工作負載也不例外。
@@ -469,13 +469,13 @@ Azure 備份會將資料從執行 Windows Server 的內部部署伺服器備份�
 **服務匯流排主題和訂用帳戶案例**
 
 任何時候您在設定時出現的許多訊息全都很重要，但各個下游系統僅需要接聽這些通訊的不同子集，則服務匯流排主題和訂閱是個不錯的選項。
-  
+
 
 ### BizTalk 服務
 ![BizTalk 服務](./media/fundamentals-introduction-to-azure/BizTalkServicesIntroNew.png) *圖：BizTalk 服務提供在雲端轉換 XML 訊息格式的能力。*
 
 有時候，您會需要連接使用不同訊息格式進行通訊的系統。即使在可以使用常用標準的情況下，企業有不同的資料庫結構描述和 XML 訊息格式是很普遍的作法。與其撰寫大量自訂程式碼，您可以使用內部部署的 BizTalk 伺服器整合各種系統。Azure BizTalk 服務提供相同類型的服務，但會在雲端中。您只需就所使用的服務付費，而無需擔心必須像內部部署一樣擴充。
- 
+
 
 **BizTalk 服務案例**
 
@@ -497,7 +497,7 @@ Azure 為不需要持續執行的服務提供協助。
 
 - 週期性應用程式動作：例如，服務可以定期從 Twitter 取得資料，並將資料收集到一般的摘要。
 - 每日維護：記錄處理或剪除、執行備份及其他間歇性排程工作。
-- 在夜間執行的工作。 
+- 在夜間執行的工作。
 - Web 應用程式工作，如每日剪除記錄、執行備份及其他維護工作。例如，系統管理員可以選擇接下來的 9 個月，每天早上 1 點備份資料庫。
 
 排程器 API 可讓您以程式設計方式建立、更新、刪除、檢視及管理工作集合和排程工作。
@@ -550,7 +550,7 @@ CDN 在全球各地有許多網站，每個網站都能儲存 Azure 二進位大
 當今主要用於分析巨量資料的技術是 Hadoop。在 Apache 開放原始碼專案中，此技術使用 Hadoop Distributed File System (HDFS) 儲存資料，然後讓開發人員建立 MapReduce 工作來分析該資料。HDFS 可將資料分散於多部伺服器，然後在每部伺服器上執行 MapReduce 工作的區塊，讓巨量資料得以平行處理。
 
 HDInsight 是 Azure 以 Apache Hadoop 為基礎的服務名稱。HDInsight 可讓 HDFS 在叢集上儲存資料，並將資料分散於多部 VM。此外，也會將 MapReduce 工作邏輯散佈於這些 VM。就如同在內部部署 Hadoop，資料會在本機 (其處理的邏輯和資料都在相同的 VM 中) 以平行方式處理，以達到更好的效能。此外，HDInsight 也可以在採用 Blob 的 Azure Storage Vault (ASV) 中儲存資料。使用 ASV 可讓您節省成本，這是因為您可以刪除不使用的 HDInsight 叢集，但仍將資料留在雲端。
- 
+
 HDinsight 也支援 Hadoop 生態系統的其他元件，包括 Hive 和 Pig。Microsoft 還建立了各式元件，以便輕鬆處理 HDInsight 利用傳統 BI 工具 (如搭配 Excel 使用的 HiveODBC 介面卡和資料總管) 所產生的資料。
 
 ### 高效能計算 (大量計算)
@@ -585,14 +585,9 @@ Azure 媒體服務可處理此問題。其提供一組雲端元件，讓人們�
 
 如需媒體服務運作方式的更清楚檢視，請下載 [Azure 媒體服務海報][Azure Media Services Poster]。
 
-
-
-
-
-
 ## 商業
 
-「軟體即服務」的興起改變了我們建立應用程式的方式。同時也改變我們銷售應用程式的方式。因為 SaaS 應用程式存在於雲端，所以其潛在客戶會在線上尋找解決方案。這種改變可適用於資料和應用程式。人們為何不能在雲端尋找可購得的資料集？ Microsoft 透過 [Azure Marketplace](http://datamarket.azure.com/) 和 [Azure Store](../articles/overview.md) 解決這兩個考量。
+「軟體即服務」的興起改變了我們建立應用程式的方式。同時也改變我們銷售應用程式的方式。因為 SaaS 應用程式存在於雲端，所以其潛在客戶會在線上尋找解決方案。這種改變可適用於資料和應用程式。人們為何不能在雲端尋找可購得的資料集？ Microsoft 透過 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 解決這兩個考量。
 
 ![Azure 商業](./media/fundamentals-introduction-to-azure/CommerceIntroNew.png) **圖：您可利用 Azure Marketplace 和 Azure Store 尋找和購買 Azure 應用程式和商業資料集，並將他們當作 Azure 應用程式的一部分使用。**
 
@@ -611,4 +606,4 @@ SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提�
 
 [Azure Media Services Poster]: http://azure.microsoft.com/documentation/infographics/media-services/
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

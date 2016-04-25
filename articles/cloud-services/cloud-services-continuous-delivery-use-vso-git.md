@@ -1,5 +1,5 @@
 <properties
-	pageTitle="在 Azure 中使用 Git 和 Visual Studio Team Services 來連續傳遞 | Microsoft Azure" 
+	pageTitle="在 Azure 中使用 Git 和 Visual Studio Team Services 來連續傳遞 | Microsoft Azure"
 	description="了解如何設定 Visual Studio Team Services 的 Team 專案，以使用 Git 自動建置和部署至 Azure App Service 或雲端服務中的 Web 應用程式功能。"
 	services="cloud-services"
 	documentationCenter=".net"
@@ -20,7 +20,7 @@
 
 您可以使用 Visual Studio Team Services 的 Team 專案託管原始程式碼的 Git 儲存機制，並在每次將認可推送至儲存機制時，自動建置該機制並部署至 Azure Web 應用程式或雲端服務。
 
-您需要安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用][](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
+您需要安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
 
 
 > [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
@@ -43,7 +43,7 @@
 
 	![][4]
 
-2. 您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。請確認專案以 .NET Framework 4 或更新版本為目標。如果是建立雲端服務專案，請加入 ASP.NET MVC Web 角色與背景工作角色。如果要建立 Web 應用程式，請選擇 **ASP.NET Web 應用程式**專案範本，然後選擇 [MVC]。如需詳細資訊，請參閱[在 Azure App Service 中建立 ASP.NET Web 應用程式](/app-service-web/web-sites-dotnet-get-started.md)。
+2. 您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。請確認專案以 .NET Framework 4 或更新版本為目標。如果是建立雲端服務專案，請加入 ASP.NET MVC Web 角色與背景工作角色。如果要建立 Web 應用程式，請選擇 **ASP.NET Web 應用程式**專案範本，然後選擇 [MVC]。如需詳細資訊，請參閱[在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。
 
 3. 開啟方案的捷徑功能表，選擇 [認可]。
 
@@ -224,7 +224,7 @@
 
 ## 後續步驟
 
-如需深入了解有關使用 Git 搭配 Visual Studio Team Services 的祕訣，請參閱[使用 Visual Studio 在 Git 中開發和共用程式碼](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx)；關於使用未受 Visual Studio Team Services 管理的 Git 儲存機制來發行至 Azure 的詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](/app-service-web/web-sites-publish-source-control.md)。如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
+如需深入了解有關使用 Git 搭配 Visual Studio Team Services 的祕訣，請參閱[使用 Visual Studio 在 Git 中開發和共用程式碼](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx)；關於使用未受 Visual Studio Team Services 管理的 Git 儲存機制來發行至 Azure 的詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](../app-service-web/web-sites-publish-source-control.md)。如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso-git/CreateTeamProjectInGit.PNG
@@ -272,4 +272,4 @@
 [47]: ./media/cloud-services-continuous-delivery-use-vso-git/SourceSettingsPage.PNG
 [48]: ./media/cloud-services-continuous-delivery-use-vso-git/IncludeWorkingBranch.PNG
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

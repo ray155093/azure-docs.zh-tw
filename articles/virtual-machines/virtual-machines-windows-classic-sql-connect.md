@@ -104,8 +104,8 @@
 
 如果您計畫針對高可用性和嚴重損壞修復使用 AlwaysOn 可用性群組，您應該考慮實作接聽程式。資料庫用戶端會連接至接聽程式，而非直接連接其中一個 SQL Server 執行個體。接聽程式路由傳送用戶端至可用性群組中的主要複本。如需詳細資訊，請參閱[設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
-請務必檢閱在 Azure 虛擬機器上執行之 SQL Server 的所有安全性最佳做法。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-classic-sql-security.md)。
+請務必檢閱在 Azure 虛擬機器上執行之 SQL Server 的所有安全性最佳做法。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-sql-security.md)。
 
-如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-classic-sql-overview.md)。
+如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!----HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

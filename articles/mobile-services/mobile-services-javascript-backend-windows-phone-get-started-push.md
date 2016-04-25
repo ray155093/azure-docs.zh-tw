@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="將推播通知加入行動服務應用程式 (Windows Phone) | Microsoft Azure" 
-	description="了解如何使用 Azure 行動服務及通知中心傳送推播通知至通用 Windows Phone App。" 
-	services="mobile-services,notification-hubs" 
-	documentationCenter="windows" 
-	authors="ggailey777" 
-	manager="dwrede" 
+<properties
+	pageTitle="將推播通知加入行動服務應用程式 (Windows Phone) | Microsoft Azure"
+	description="了解如何使用 Azure 行動服務及通知中心傳送推播通知至通用 Windows Phone App。"
+	services="mobile-services,notification-hubs"
+	documentationCenter="windows"
+	authors="ggailey777"
+	manager="dwrede"
 	editor=""/>
 
-<tags 
-	ms.service="mobile-services" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile-windows-phone" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="12/07/2015" 
+<tags
+	ms.service="mobile-services"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-windows-phone"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="12/07/2015"
 	ms.author="glenga"/>
 
 
@@ -27,7 +27,7 @@
 
 本教學課程以 TodoList 範例應用程式為基礎。在開始本教學課程之前，您必須先完成[將行動服務新增至現有的應用程式]主題，將專案連接到行動服務。若未連接行動服務，[新增推播通知] 精靈可為您建立此連線。
 
->[AZURE.NOTE]若要傳送推播通知到 Windows Phone 8.1 市集應用程式，請遵循此教學課程的 [Windows 市集應用程式](../mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md)版本進行。
+>[AZURE.NOTE] 若要傳送推播通知到 Windows Phone 8.1 市集應用程式，請遵循此教學課程的 [Windows 市集應用程式](mobile-services-javascript-backend-windows-universal-dotnet-get-started-push.md)版本進行。
 
 ##<a id="update-app"></a>更新應用程式以註冊通知
 
@@ -38,7 +38,7 @@
         using Microsoft.Phone.Notification;
 
 3. 新增下列程式碼至 App.xaml.cs：
-	
+
         public static HttpNotificationChannel CurrentChannel { get; private set; }
 
         private void AcquirePushChannel()
@@ -73,7 +73,7 @@
 	這會確使在每次載入頁面時都會要求註冊。在您的應用程式中，您可能只想定期進行此註冊，以確保註冊是最新的。
 
 5. 按 **F5** 鍵以執行應用程式。包含註冊金鑰的快顯對話方塊隨即顯示。
-  
+
 6.	在 [方案總管] 中展開 [屬性]，開啟 WMAppManifest.xml 檔案，按一下 [功能] 索引標籤，確定已核取 **ID\_\_\_CAP\_\_\_PUSH\_NOTIFICATION** 功能。
 
    	![在 VS 中啟用通知](./media/mobile-services-javascript-backend-windows-phone-get-started-push/mobile-app-enable-push-wp8.png)
@@ -84,7 +84,7 @@
 
 最後，您必須在 TodoItem 資料表上更新對插入作業註冊的指令碼，以傳送通知。
 
-1. 按一下 [TodoItem]，按一下 [指令碼]，然後選取 [插入]。 
+1. 按一下 [TodoItem]，按一下 [指令碼]，然後選取 [插入]。
 
 2. 使用下列程式碼來取代 insert 函數，然後按一下 **[儲存]**：
 
@@ -92,9 +92,9 @@
 		// Define a payload for the Windows Phone toast notification.
 		var payload = '<?xml version="1.0" encoding="utf-8"?>' +
 		    '<wp:Notification xmlns:wp="WPNotification"><wp:Toast>' +
-		    '<wp:Text1>New Item</wp:Text1><wp:Text2>' + item.text + 
+		    '<wp:Text1>New Item</wp:Text1><wp:Text2>' + item.text +
 		    '</wp:Text2></wp:Toast></wp:Notification>';
-		
+
 		request.execute({
 		    success: function() {
 		        // If the insert succeeds, send a notification.
@@ -124,7 +124,7 @@
 
 1. 在 Visual Studio 中，按 F5 鍵以執行此應用程式。
 
-    >[AZURE.NOTE]在 Windows Phone 模擬器上測試時，可能會發生 401 未授權的 RegistrationAuthorizationException。因為 Windows Phone 模擬器將其時鐘與主機電腦同步的方式，可能會在 `RegisterNativeAsync()` 呼叫期間發生這種情形。這樣可能會產生將被拒絕的安全性權杖。若要解決這個問題，只要在測試之前，手動設定模擬器中的時鐘即可。
+    >[AZURE.NOTE] 在 Windows Phone 模擬器上測試時，可能會發生 401 未授權的 RegistrationAuthorizationException。因為 Windows Phone 模擬器將其時鐘與主機電腦同步的方式，可能會在 `RegisterNativeAsync()` 呼叫期間發生這種情形。這樣可能會產生將被拒絕的安全性權杖。若要解決這個問題，只要在測試之前，手動設定模擬器中的時鐘即可。
 
 5. 在應用程式的文字方塊中，輸入文字 "hello push"，按一下 [儲存]，然後立即按一下啟動按鈕或返回按鈕，以離開應用程式。
 
@@ -140,14 +140,14 @@
 
 本教學課程示範如何啟用 Windows 市集應用程式以便使用行動服務與通知中心來傳送推播通知的基礎。接著，請考慮完成下列其中一個教學課程：
 
-+ [將廣播通知傳送給訂閱者](../notification-hubs-windows-phone-send-breaking-news.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
++ [將廣播通知傳送給訂閱者](../notification-hubs/notification-hubs-windows-phone-send-breaking-news.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
 
-+ [將跨平台通知傳送給訂閱者](../notification-hubs-aspnet-cross-platform-notify-users.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
++ [將跨平台通知傳送給訂閱者](../notification-hubs/notification-hubs-aspnet-cross-platform-notify-users.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
 
 
 在下列主題中深入了解行動服務和通知中心：
 
-* [Azure 通知中樞 - 診斷指導方針](../notification-hubs-diagnosing.md) <br/>了解如何疑難排解推播通知問題。
+* [Azure 通知中樞 - 診斷指導方針](../notification-hubs/notification-hubs-diagnosing.md) <br/>了解如何疑難排解推播通知問題。
 
 * [開始使用驗證] <br/>了解如何使用行動服務驗證使用不同帳戶類型的應用程式使用者。
 
@@ -174,8 +174,6 @@
 [行動服務伺服器指令碼參考]: http://go.microsoft.com/fwlink/?LinkId=262293
 [行動服務 .NET 作法概念參考資料]: mobile-services-windows-dotnet-how-to-use-client-library.md
 
-[什麼是通知中心？]: ../notification-hubs-overview.md
+[什麼是通知中心？]: ../notification-hubs/notification-hubs-overview.md
 
- 
-
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0413_2016-->

@@ -271,7 +271,7 @@ dependencies {
     ```
 
 11. **Broker**：
-Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，Adal 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
+Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，ADAL 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
 
     ```java
      AuthenticationSettings.Instance.setSkipBroker(true);
@@ -288,12 +288,12 @@ Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果�
 
  您的應用程式資訊清單應該有使用 AccountManager 帳戶的權限：http://developer.android.com/reference/android/accounts/AccountManager.html
 
- * GET_ACCOUNTS
- * USE_CREDENTIALS
- * MANAGE_ACCOUNTS
+ * GET\_ACCOUNTS
+ * USE\_CREDENTIALS
+ * MANAGE\_ACCOUNTS
 
 
-經過這個逐步解說，您應該已擁有成功與 Azure Active Directory 整合所需的項目。如需此工作的更多範例，請瀏覽 GitHub 上的AzureADSamples / 儲存機制。
+經過這個逐步解說，您應該已擁有成功與 Azure Active Directory 整合所需的項目。如需此工作的更多範例，請瀏覽 GitHub 上的 AzureADSamples/ 儲存機制。
 
 ## 重要資訊
 
@@ -365,7 +365,7 @@ ADAL 提供選項來指定提示行為。如果重新整理權杖無效，而且
      }
  }
  ```
- 訊息可以寫入自訂記錄檔，如下所示。不幸的是，從裝置取得記錄檔沒有標準方法。有一些服務可協助您處理這部份。您可以也自創方法，例如將檔案傳送到伺服器。
+訊息可以寫入自訂記錄檔，如下所示。不幸的是，從裝置取得記錄檔沒有標準方法。有一些服務可協助您處理這部份。您可以也自創方法，例如將檔案傳送到伺服器。
 
 ```Java
 private syncronized void writeToLogFile(Context ctx, String msg) {
@@ -395,8 +395,8 @@ Logger.getInstance().setLogLevel(Logger.LogLevel.Verbose);
 
  ```
   adb logcat > "C:\logmsg\logfile.txt"
-```
-  adb 命令的其他範例：https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat
+ ```
+ adb 命令的其他範例：https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat
 
 #### 網路追蹤
 
@@ -457,4 +457,4 @@ Adal 1.1.0 版支援 NTLM 對話方塊，此對話方塊是透過 WebViewClient 
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

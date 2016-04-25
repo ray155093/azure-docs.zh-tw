@@ -69,7 +69,7 @@ GO
     USE <database>
     GO
 
-    CREATE MASTER KEY ENCRYPTION BY PASSWORD='<password>'
+    CREATE MASTER KEY ENCRYPTION BY PASSWORD ='<password>'
     ```
 
 4.  當您為資料庫設定 Stretch Database 時，您必須為 Stretch Database 提供認證，以供內部部署 SQL Server 與遠端 Azure 伺服器之間進行通訊使用。您有兩個選擇。
@@ -102,13 +102,13 @@ GO
 
     1.  針對 SERVER 引數，請提供現有 Azure 伺服器的名稱，包括名稱的 `.database.windows.net` 部分 - 例如：`MyStretchDatabaseServer.database.windows.net`。
 
-    2.  提供現有系統管理員認證並搭配 CREDEMTIAL 引數，或是指定 FEDERATED\_SERVICE\_ACCOUNT \\= ON。下列範例提供現有的認證。
+    2.  提供現有系統管理員認證並搭配 CREDEMTIAL 引數，或是指定 FEDERATED\_SERVICE\_ACCOUNT = ON。下列範例提供現有的認證。
 
     ```tsql
     ALTER DATABASE <database name>
         SET REMOTE_DATA_ARCHIVE = ON
             (
-                SERVER = <server_name> ,
+                SERVER = '<server_name>',
                 CREDENTIAL = <db_scoped_credential_name>
             ) ;
     GO;
@@ -133,4 +133,4 @@ GO
 
 [ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

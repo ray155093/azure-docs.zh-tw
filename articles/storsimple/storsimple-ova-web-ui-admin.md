@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/01/2016"
+   ms.date="04/07/2016"
    ms.author="alkohli" />
 
 # 使用 Web UI 來管理 StorSimple Virtual Array
@@ -39,12 +39,12 @@
 #### 取得服務資料加密金鑰
 
 1. 連線到本機 Web UI。移至 [組態] > [雲端設定]。
-
-    ![取得服務資料加密金鑰 1](./media/storsimple-ova-web-ui-admin/image27.png)
+  
 
 2. 按一下頁面底部的 [取得服務資料加密金鑰]。金鑰將會顯示。複製並儲存此金鑰。
-
-    ![取得服務資料加密金鑰 2](./media/storsimple-ova-web-ui-admin/image28.png)
+  	
+	![取得服務資料加密金鑰 1](./media/storsimple-ova-web-ui-admin/image27.png)
+   
 
 
 ## 疑難排解 Web UI 安裝程式錯誤
@@ -131,4 +131,4 @@
 
 了解如何[使用 StorSimple Manager 服務管理裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

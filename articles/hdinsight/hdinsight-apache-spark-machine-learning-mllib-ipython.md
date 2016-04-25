@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/17/2016" 
+	ms.date="04/08/2016" 
 	ms.author="nitinme"/>
 
 
@@ -49,7 +49,7 @@
 
 ## 我們想要在本文中完成什麼？
 
-您將使用 Spark 對透過[芝加哥市資料入口網站](https://data.cityofchicago.org/)取得的食品檢查資料 (**Food\_Inspections1.csv**) 執行某項預測分析。此資料集包含在芝加哥進行食品檢查的相關資訊，其中包括每個受檢食品業者、發現的違規情事 (如果有的話) 和檢查結果的相關資訊。
+您將使用 Spark 對透過[芝加哥市資料入口網站](https://data.cityofchicago.org/)取得的食品檢查資料 (**Food\_Inspections1.csv**) 執行某項預測分析。此資料集包含在芝加哥進行食品檢查的相關資訊，其中包括每個受檢食品業者、發現的違規情事 (如果有的話) 和檢查結果的相關資訊。與叢集相關聯的儲存體帳戶已有 CSV 資料檔，此叢集位於 **/HdiSamples/HdiSamples/FoodInspectionData/Food\_Inspections1.csv**。
 
 在下列步驟中，您會開發一個模型來觀察能否通過食品檢查的標準為何。
 
@@ -63,7 +63,7 @@
 	>
 	> `https://CLUSTERNAME.azurehdinsight.net/jupyter`
 
-2. 建立新的 Notebook。按一下 [新增]，然後按一下 [PySpark]。
+2. 建立新的 Notebook。按一下 [新建]，然後按一下 [PySpark]。
 
 	![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-machine-learning-mllib-ipython/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
@@ -71,7 +71,7 @@
 
 	![提供 Notebook 的名稱](./media/hdinsight-apache-spark-machine-learning-mllib-ipython/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 
-3. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark、SQL 和 Hive 內容。您可以從匯入這個案例所需的類型，開始建置您的機器學習服務應用程式。若要這樣做，請將游標放在儲存格中，然後按 **SHIFT + ENTER** 鍵。
+3. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。您可以從匯入這個案例所需的類型，開始建置您的機器學習服務應用程式。若要這樣做，請將游標放在儲存格中，然後按 **SHIFT + ENTER** 鍵。
 
 
 		from pyspark.ml import Pipeline
@@ -83,7 +83,7 @@
 
 ## 建構輸入資料框架
 
-我們已有可用來對結構化資料執行轉換的 SQLContext。第一項工作是將範例資料 ((**Food\_Inspections1.csv**)) 載入 Spark SQL *資料框架*中。下列程式碼片段假設資料已上傳至與 Spark 叢集相關聯的預設儲存體容器。
+我們可以使用 `sqlContext` 對結構化資料執行轉換。第一項工作是將範例資料 ((**Food\_Inspections1.csv**)) 載入 Spark SQL *資料框架*中。
 
 1. 由於原始資料採用 CSV 格式，因此我們必須使用 Spark 內容，將檔案的每一行以非結構化文字的形式提取至記憶體中，然後您再使用 Python 的 CSV 程式庫個別剖析每一行。 
 
@@ -143,7 +143,7 @@
 		df = sqlContext.createDataFrame(inspections.map(lambda l: (int(l[0]), l[1], l[12], l[13])) , schema)
 		df.registerTempTable('CountResults')
 
-4. 現在我們已有*資料框架* `df`，可讓我們據以執行分析。我們也有暫存資料表呼叫 **CountResults**。我們在資料框架中加入了 4 個相關資料行：**識別碼**、**名稱**、**結果**和**違規情事**。
+4. 現在我們已有*資料框架* `df`，可讓我們據以執行分析。我們也有名為 **CountResults** 的暫存資料表。我們在資料框架中加入了 4 個相關資料行：**識別碼**、**名稱**、**結果**和**違規情事**。
 	
 	現在要取得資料的小型樣本：
 
@@ -194,13 +194,13 @@
 		%%sql -o countResultsdf
 		SELECT results, COUNT(results) AS cnt FROM CountResults GROUP BY results
 
-	`%%sql` magic 後面緊接著 `-o countResultsdf` 可確保查詢的輸出會保存在 Jupyter 伺服器的本機上 (通常是叢集的前端節點)。輸出會使用指定的名稱 **averagetime**，當做 [Pandas](http://pandas.pydata.org/) 資料框架保存。
+	`%%sql` magic 後面緊接著 `-o countResultsdf` 可確保查詢的輸出會保存在 Jupyter 伺服器的本機上 (通常是叢集的前端節點)。輸出會使用指定的名稱 **countResultsdf**，當做 [Pandas](http://pandas.pydata.org/) 資料框架保存。
 	
 	您應該會看到如下的輸出：
 	
 	![SQL 查詢輸出](./media/hdinsight-apache-spark-machine-learning-mllib-ipython/query.output.png "SQL 查詢輸出")
 
-	如需 `%%sql` magic 及可搭配 PySpark 核心使用的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+	如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 
 3. 您也可以使用 Matplotlib (用於建構資料視覺效果的程式庫) 建立繪圖。因為必須從保存在本機上的 **countResultsdf** 資料框架建立繪圖，所以程式碼片段的開頭必須為 `%%local` magic。這可確保程式碼是在 Jupyter 伺服器的本機上執行。
 
@@ -339,39 +339,32 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 ## 建立預測的視覺表示法
 
-我們可以建構最終的視覺效果，以利研判此測試的結果。
+我們現在可以建構最終的視覺效果，以利研判此測試的結果。
 
-1. 我們可以從擷取稍早建立的 **Predictions** 暫存資料表中不同的預測和結果開始。
+1. 我們可以從擷取稍早建立的 **Predictions** 暫存資料表中不同的預測和結果開始。下列查詢會將輸出分隔為 *true\_positive*、*false\_positive*、*true\_negative* 和 *false\_negative*。在下面的查詢中，我們會使用 `-q` 關閉視覺效果，並 (使用 `-o`) 將輸出儲存為可以和 `%%local` magic 搭配使用的資料框架。 
 
-		%%sql -o predictionstable
-		SELECT prediction, results FROM Predictions
+		%%sql -q -o true_positive
+		SELECT count(*) AS cnt FROM Predictions WHERE prediction = 0 AND results = 'Fail'
 
-2. 在上述程式碼片段中，**predictionstable** 是在 Jupyter 伺服器上，保存 SQL 查詢輸出的本機資料框架。您現在可以使用 `%%local` magic，對本機保存的資料框架執行後續的程式碼片段。
+		%%sql -q -o false_positive
+		SELECT count(*) AS cnt FROM Predictions WHERE prediction = 0 AND (results = 'Pass' OR results = 'Pass w/ Conditions')
 
-		%%local
-		failSuccess = predictionstable[(predictionstable.prediction == 0) & (predictionstable.results == 'Fail')]['prediction'].count()
-		failFailure = predictionstable[(predictionstable.prediction == 0) & (predictionstable.results <> 'Fail')]['prediction'].count()
-		passSuccess = predictionstable[(predictionstable.prediction == 1) & (predictionstable.results <> 'Fail')]['prediction'].count()
-		passFailure = predictionstable[(predictionstable.prediction == 1) & (predictionstable.results == 'Fail')]['prediction'].count()
-		failSuccess,failFailure,passSuccess,passFailure
+		%%sql -q -o true_negative
+		SELECT count(*) AS cnt FROM Predictions WHERE prediction = 1 AND results = 'Fail'
 
-	輸出顯示如下：
-	
-		# -----------------
-		# THIS IS AN OUTPUT
-		# -----------------
-	
-		(276, 46, 1917, 261)
+		%%sql -q -o false_negative
+		SELECT count(*) AS cnt FROM Predictions WHERE prediction = 1 AND (results = 'Pass' OR results = 'Pass w/ Conditions') 
 
-3. 最後，使用下列程式碼片段產生繪圖。
+2. 最後，使用 **Matplotlib** 用下列程式碼片段產生繪圖。
 
 		%%local
 		%matplotlib inline
 		import matplotlib.pyplot as plt
 		
 		labels = ['True positive', 'False positive', 'True negative', 'False negative']
-		sizes = [failSuccess, failFailure, passSuccess, passFailure]
-		plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+		sizes = [true_positive['cnt'], false_positive['cnt'], false_negative['cnt'], true_negative['cnt']]
+		colors = ['turquoise', 'seagreen', 'mediumslateblue', 'palegreen', 'coral']
+		plt.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors)
 		plt.axis('equal')
 	
 	您應該會看見下列輸出。
@@ -419,4 +412,4 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

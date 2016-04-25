@@ -61,7 +61,7 @@
     using Newtonsoft.Json;
     ```
     
-7. 在 Program.cs 中，以下列靜態變數取代預留位置值。您先前已在本教學課程中，記下 **ApplicationId**、**SubscriptionId**、**TenantId** 和 **Password**。**資源群組名稱**是您建立 IoT 中樞時將會使用的資源群組名稱，其可為既存的資源群組或新資源群組。**IoT 中樞名稱**是您將建立的「IoT 中樞」名稱，例如 **MyIoTHub**。**部署名稱**是部署的名稱，例如 **Deployment\_01**。
+7. 在 Program.cs 中，以下列靜態變數取代預留位置值。您先前已在本教學課程中，記下 **ApplicationId**、**SubscriptionId**、**TenantId** 和 **Password**。**資源群組名稱**是您建立 IoT 中樞時將會使用的資源群組名稱，其可為既存的資源群組或新資源群組。**IoT 中樞名稱**是您將建立的 IoT 中樞名稱，例如 **MyIoTHub** (請注意，此名稱必須是全域唯一的)。**部署名稱**是部署的名稱，例如 **Deployment\_01**。
 
     ```
     static string applicationId = "{Your ApplicationId}";
@@ -174,7 +174,7 @@
 現在您已經使用 REST API 部署 IoT 中樞，您可以進一步探索：
 
 - 探索[IoT 中樞資源提供者 REST API][lnk-rest-api] 的功能。
-- 如需 Azure 資源管理員功能的詳細資訊，請參閱 [Azure 資源管理員概觀][lnk-azure-rm-overview]。
+- 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
@@ -183,4 +183,4 @@
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../resource-group-overview.md
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

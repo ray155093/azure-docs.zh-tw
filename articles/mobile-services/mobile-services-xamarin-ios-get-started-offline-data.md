@@ -46,9 +46,10 @@
 
 本教學課程需要下列各項：
 
-* 附有 [Xamarin 延伸]**或** [Xamarin Studio] 的 Visual Studio (在 OS X 上)
-* XCode 4.5 和 iOS 6.0 (或更新版本)
-* 完成[開始使用行動服務]教學課程
+* Visual Studio 和 Xamarin。如需相關指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。 
+* 已安裝 Xcode v7.0 或更新版本，以及 Xamarin Studio Community 的 Mac。請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 以及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
+* 完成[開始使用行動服務]教學課程。
+
 
 ## <a name="review-offline"></a>檢閱行動服務同步處理程式碼
 
@@ -180,9 +181,6 @@ Azure 行動服務離線同步處理可讓使用者在無法存取網路時，�
 [開始使用行動服務]: mobile-services-ios-get-started.md
 [如何使用適用於 Azure 行動服務的 Xamarin 元件用戶端]: partner-xamarin-mobile-services-how-to-use-client-library.md
 [虛刪除]: mobile-services-using-soft-delete.md
-
-[Xamarin Studio]: http://xamarin.com/download
-[Xamarin 延伸]: http://xamarin.com/visual-studio
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

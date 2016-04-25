@@ -1,8 +1,8 @@
 <properties 
-    pageTitle="教學課程：Azure Directory 與 TOPdesk - Public 整合 | Microsoft Azure" 
+    pageTitle="教學課程：Azure Active Directory 與 TOPdesk - Public 整合 | Microsoft Azure" 
     description="了解如何使用 TOPdesk - Public 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
     manager="stevenpo"/>
 <tags 
@@ -11,12 +11,12 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="04/06/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Directory 與 TOPdesk - Public 整合
 
-本教學課程的目的是要示範 Azure 與 TOPdesk - Public 的整合。  
+本教學課程的目的是要示範 Azure 與 TOPdesk - Public 的整合。
 本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
@@ -67,7 +67,7 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Public。  
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Public。
 設定 TOPdesk - Public 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
 
 ###若要設定單一登入，請執行下列步驟：
@@ -92,10 +92,11 @@
 
     1.  按 [下載] 來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
     2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。
-        ![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
+    
+    ![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
     3.  複製 **AssertionConsumerService** 值。  
 
-        >[AZURE.NOTE]在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
+        >[AZURE.NOTE] 在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
 
 6.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **Azure Active Directory** 入口網站。
 
@@ -181,7 +182,7 @@ TOPdesk - Public 需以手動的方式佈建。
     3.  選取該帳戶的**網站**。
     4.  按一下 [儲存]。
 
->[AZURE.NOTE]您可以使用任何其他的 TOPdesk - Public 使用者帳戶建立工具或 TOPdesk - Public 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 TOPdesk - Public 使用者帳戶建立工具或 TOPdesk - Public 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
   
@@ -201,4 +202,4 @@ TOPdesk - Public 需以手動的方式佈建。
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0413_2016-->

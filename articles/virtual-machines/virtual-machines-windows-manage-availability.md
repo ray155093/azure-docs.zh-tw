@@ -17,7 +17,7 @@
 	ms.date="07/23/2015"
 	ms.author="kenazk"/>
 
-# 管理 Windows 虛擬機器的可用性
+# 管理虛擬機器的可用性
 
 了解如何設定及管理多部虛擬機器，以確保 Azure 中 Windows 應用程式的高可用性。您也可以[管理 Linux 虛擬機器的可用性](virtual-machines-linux-manage-availability.md)。
 
@@ -25,4 +25,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-manage-availability](../../includes/virtual-machines-common-manage-availability.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

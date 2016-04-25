@@ -3,9 +3,9 @@
 	description="本教學課程使用以傳統部署模型建立的資源，並使用內部負載平衡器 (ILB) 在 Azure 中建立 AlwaysOn 可用性群組接聽程式。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
-	editor="monicar"
+	authors="MikeRayMSFT"
+	manager="jhubbard"
+	editor=""
 	tags="azure-service-management"/>
 <tags
 	ms.service="virtual-machines-windows"
@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="02/03/2016"
-	ms.author="jroth" />
+	ms.date="04/05/2016"
+	ms.author="mikeray" />
 
 # 設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式
 
@@ -29,7 +29,7 @@
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
-您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-availability.md)，但尚未設定接聽程式。
+您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
 
 ## 內部接聽程式指導方針和限制
 請注意下列關於 Azure 中可用性群組接聽程式使用 ILB 的指導方針：
@@ -138,4 +138,4 @@
 
 [AZURE.INCLUDE [Listener-Next-Steps](../../includes/virtual-machines-ag-listener-next-steps.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

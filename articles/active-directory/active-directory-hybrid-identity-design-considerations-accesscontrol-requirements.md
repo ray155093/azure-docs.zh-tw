@@ -13,7 +13,7 @@
 	ms.devlang="na"
 	ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.workload="identity" 
+    ms.workload="identity"
 	ms.date="12/07/2015"
 	ms.author="yuridio"/>
 
@@ -25,9 +25,10 @@
 - Authorization
 - 稽核
 
-後續小節將更詳細說明驗證與授權，系統管理和稽核則是混合式身分識別週期的一部分。如需這些功能的詳細資訊，請參閱[判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybridId-management-tasks.md)。
+後續小節將更詳細說明驗證與授權，系統管理和稽核則是混合式身分識別週期的一部分。如需這些功能的詳細資訊，請參閱[判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)。
 
->[AZURE.NOTE]如需每一個要件的詳細資訊，請參閱[身分識別的四個要件 - 混合式 IT 使用期間的身分識別管理](http://social.technet.microsoft.com/wiki/contents/articles/15530.the-four-pillars-of-identity-identity-management-in-the-age-of-hybrid-it.aspx)。
+>[AZURE.NOTE]
+如需每一個要件的詳細資訊，請參閱[身分識別的四個要件 - 混合式 IT 使用期間的身分識別管理](http://social.technet.microsoft.com/wiki/contents/articles/15530.the-four-pillars-of-identity-identity-management-in-the-age-of-hybrid-it.aspx)。
 
 ## 驗證和授權
 有各種適用於驗證和授權的不同案例，這些案例將具備特殊需求，必須透過公司即將採用的混合式身分識別解決方案來滿足。涉及企業對企業 (B2B) 通訊的案例會對 IT 系統管理員造成額外的挑戰，因為他們需要確定組織所使用的驗證和授權方法可以和他們的商務合作夥伴進行通訊。在設計驗證和授權需求的過程中，請確定會回答下列問題：
@@ -37,7 +38,9 @@
  - 如果有，您已經知道將使用哪些通訊協定 (SAML、OAuth、Kerberos、權杖或憑證) 來連接這兩個企業嗎？
 - 您即將採用的混合式身分識別解決方案支援這些通訊協定嗎？
 
-另一個要考量的重點是使用者和合作夥伴將使用的驗證儲存機制將位於何處以及要使用哪個系統管理模型。請考慮下列兩個核心選項：-集中式：在此模型中，使用者的認證、原則和系統管理可集中於內部部署或雲端中。-混合式： 在此模型中，使用者的認證、原則和管理將集中於內部部署，且雲端中會有複本。
+另一個要考量的重點是使用者和合作夥伴將使用的驗證儲存機制將位於何處以及要使用哪個系統管理模型。請考量下列兩個核心選項：
+- 集中式︰在這個模型中，使用者的認證、原則和管理可以集中於內部部署或雲端中。
+- 混合式︰在這個模型中，使用者的認證、原則和管理會集中於內部部署和雲端複寫中。
 
 組織將採用哪一個模型，將根據其商務需求而不同，您需要回答下列問題來識別身分識別管理系統所在的位置以及要使用的系統管理模式：
 
@@ -53,14 +56,15 @@
 - 貴公司擁有多位已提高權限來管理您身分識別系統的使用者嗎？
  - 如果是，每位使用者都需要同一個存取層級嗎？
 - 貴公司需要將存取權委派給使用者來管理特定資源嗎？
- - 如果是，這種情況發生的頻率為何？ 
+ - 如果是，這種情況發生的頻率為何？
 - 貴公司需要整合內部部署與雲端資源之間的存取控制功能嗎？
 - 貴公司需要根據相同情況來限制資源的存取嗎？
 - 貴公司是否有任何應用程式需要某些資源的自訂控制存取權？
  - 如果是，這些 app 位於何處 (內部部署或雲端中)？
  - 如果是，這些目標資源位於何處 (內部部署或雲端中)？
- 
->[AZURE.NOTE]請確定會記下每個答案，並了解答案背後的原理。[定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)將介紹可用選項，以及每個選項的優點/缺點。回答這些問題，您就能選取最適合您業務需求的選項。
+
+>[AZURE.NOTE]
+請確定會記下每個答案，並了解答案背後的原理。[定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)將介紹可用選項，以及每個選項的優點/缺點。回答這些問題，您就能選取最適合您業務需求的選項。
 
 ## 後續步驟
 
@@ -69,4 +73,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0413_2016-->

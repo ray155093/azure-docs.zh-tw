@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/01/2016" 
+	ms.date="04/01/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中探索度量
@@ -97,13 +97,14 @@
 ![取消選取所有度量以查看預設值](./media/app-insights-metrics-explorer/06-total.png)
 
 
+
 ## 編輯圖表和格線
 
 若要對刀鋒視窗加入新圖表：
 
 ![在 [計量瀏覽器] 中，選擇 [加入圖表]](./media/app-insights-metrics-explorer/04-add.png)
 
-選取現有或新圖表來編輯其顯示的內容：
+選取現有或新圖表上的 [編輯] 來編輯其顯示的內容：
 
 ![選取一或多個度量](./media/app-insights-metrics-explorer/08-select.png)
 
@@ -135,21 +136,25 @@
 
 請注意每個屬性值旁的事件計數。選取一個屬性的值時，會調整計數與其他屬性值。
 
+篩選會套用至刀鋒視窗上的所有圖表。如果您要將不同的篩選套用到不同的圖表，請建立並儲存不同的計量刀鋒視窗。如果想要，您可以將不同刀鋒視窗中的圖表釘選到儀表板，以便並排查看兩者。
+
+
+### 移除 Bot 和 Web 測試流量
+
+使用篩選器**真實或綜合流量**並勾選**真實**。
+
+您也可以依**綜合流量的來源**篩選。
+
 ### 將屬性加入篩選器清單
 
 您要根據自己選擇的類別篩選遙測嗎？ 例如，您可能將使用者劃分成不同的類別，且您想要依照這些類別來分割資料。
 
 [建立您自己的屬性](app-insights-api-custom-events-metrics.md#properties)。在[遙測初始設定式](app-insights-api-custom-events-metrics.md#telemetry-initializers)中設定，以使其顯示在所有遙測中 - 包括不同 SDK 模組所傳送的標準遙測。
 
-## 移除 Bot 和 Web 測試流量
-
-使用篩選器**真實或綜合流量**並勾選**真實**。
-
-您也可以依**綜合流量的來源**篩選。
 
 ## 編輯圖表類型
 
-特別是，請注意您可以在格線與圖形之間切換：
+請注意您可以在格線與圖形之間切換：
 
 ![選取格線或圖表，然後選擇圖表類型](./media/app-insights-metrics-explorer/16-chart-grid.png)
 
@@ -200,6 +205,23 @@
 
 如果您希望更完整地檢視您的資料，您可以[匯出至 Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)。
 
+## Analytics
+
+[Analytics](app-insights-analytics.md) 是使用強大的查詢語言來分析遙測的更靈活方式。如果您想要合併或計算計量的結果，或執行您的應用程式近期效能的深入探索，請使用它。另一方面，如果您想要自動重新整理儀表板上的圖表以及警示，請使用計量瀏覽器。
+
+## 疑難排解
+
+我看不到我的圖表上的任何資料。
+
+* 篩選會套用至刀鋒視窗上的所有圖表。請確定，當您將焦點放在某個圖表時，您未在其他圖表上設定會排除所有資料的篩選。 
+
+    如果您想要在不同的圖表上設定不同的篩選，請在不同的刀鋒視窗中建立圖表，將它們儲存為個別的最愛圖表。如果想要，您可以將這些圖表釘選到儀表板，以便並排查看兩者。
+
+* 如果您依據計量上未定義的屬性將圖表分組，則圖表上不會有任何資料。請嘗試清除 [分組依據]，或選擇不同的群組屬性。
+* 效能資料 (CPU、IO 速率等等) 適用於 Java Web 服務、Windows 桌面應用程式、[IIS Web 應用程式和服務 (若您安裝狀態監視器)](app-insights-monitor-performance-live-website-now.md) 和 [Azure 雲端服務](app-insights-azure.md)。它不適用於 Azure 網站。
+
+
+
 ## 後續步驟
 
 * [使用 Application Insights 監視使用情況](app-insights-overview-usage.md)
@@ -214,4 +236,4 @@
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

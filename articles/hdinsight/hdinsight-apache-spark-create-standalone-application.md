@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="建立在 HDInsight Spark 叢集上執行的獨立 Scala 應用程式 | Microsoft Azure" 
-	description="了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。" 
-	services="hdinsight" 
-	documentationCenter="" 
-	authors="nitinme" 
-	manager="paulettm" 
+<properties
+	pageTitle="建立在 HDInsight Spark 叢集上執行的獨立 Scala 應用程式 | Microsoft Azure"
+	description="了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
+	services="hdinsight"
+	documentationCenter=""
+	authors="nitinme"
+	manager="paulettm"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
-<tags 
-	ms.service="hdinsight" 
-	ms.workload="big-data" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/05/2016" 
+<tags
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/05/2016"
 	ms.author="nitinme"/>
 
 
@@ -34,7 +34,7 @@
 * Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development Kit。您可以從[這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
-* Java IDE。本文使用 IntelliJ IDEA 15.0.1。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。 
+* Java IDE。本文使用 IntelliJ IDEA 15.0.1。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
 
 ## 安裝 IntelliJ IDEA 的 Scala 外掛程式
@@ -81,7 +81,7 @@
 	1. 從 [檔案] 功能表中，按一下 [設定]。
 	2. 在 [設定] 對話方塊中，導覽至 [建置、執行、部署] > [建置工具] > [Maven] > [匯入]。
 	3. 選取 [自動匯入 Maven 專案] 的選項。
-	4. 按一下 [套用]，然後按一下 [確定]。 
+	4. 按一下 [套用]，然後按一下 [確定]。
 
 
 8. 更新 Scala 原始程式檔，以納入您的應用程式程式碼。開啟現有的範例程式碼，並將其取代為下列程式碼，然後儲存變更。此程式碼會從 HVAC.csv (所有 HDInsight Spark 叢集上均有提供) 讀取資料、擷取在第六個資料行中只有個位數的資料列，並將輸出寫入到叢集預設儲存體容器下的 **/HVACOut**。
@@ -90,7 +90,7 @@
 
 		import org.apache.spark.SparkConf
 		import org.apache.spark.SparkContext
-		
+
 		/**
 		  * Test IO to wasb
 		  */
@@ -98,12 +98,12 @@
 		  def main (arg: Array[String]): Unit = {
 		    val conf = new SparkConf().setAppName("WASBIOTest")
 		    val sc = new SparkContext(conf)
-		
+
 		    val rdd = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-		
+
 		    //find the rows which have only one digit in the 7th column in the CSV
 		    val rdd1 = rdd.filter(s => s.split(",")(6).length() == 1)
-		
+
 		    rdd1.saveAsTextFile("wasb:///HVACout")
 		  }
 		}
@@ -158,7 +158,7 @@
 
 若要在叢集上執行應用程式，您必須執行下列動作：
 
-* **將應用程式 jar 複製到與叢集相關聯的 Azure 儲存體 Blob**。您可以使用命令列公用程式 [**AzCopy**](storage/storage-use-azcopy.md) 來執行此動作。另外也有很多用戶端可用來上傳資料。您可以在[在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
+* **將應用程式 jar 複製到與叢集相關聯的 Azure 儲存體 Blob**。您可以使用命令列公用程式 [**AzCopy**](../storage/storage-use-azcopy.md) 來執行此動作。另外也有很多用戶端可用來上傳資料。您可以在[在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
 
 * **使用 Livy 從遠端提交應用程式作業至** Spark 叢集。HDInsight 上的 Spark 叢集包含會公開 REST 端點以從遠端提交 Spark 作業的 Livy。如需詳細資訊，請參閱[搭配 HDInsight 上的 Spark 叢集利用 Livy 遠端提交 Spark 作業](hdinsight-apache-spark-livy-rest-interface.md)。
 
@@ -196,4 +196,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

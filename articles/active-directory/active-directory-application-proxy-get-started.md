@@ -12,8 +12,8 @@
 	ms.workload="identity"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="02/10/2016"
+	ms.topic="article"
+	ms.date="04/12/2016"
 	ms.author="kgremban"/>
 
 # 如何為內部部署應用程式提供安全的遠端存取
@@ -63,4 +63,4 @@ Azure AD 應用程式 Proxy 針對使用整合式 Windows 驗證 (IWA)，或宣�
 - [以組織方式註冊 Azure](sign-up-organization.md)
 - [Azure 身分識別](fundamentals-identity.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

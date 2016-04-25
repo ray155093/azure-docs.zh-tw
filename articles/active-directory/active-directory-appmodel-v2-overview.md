@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="04/02/2016"
 	ms.author="dastrock"/>
 
 # 以單一 App 登入 Microsoft 帳戶和 Azure AD 使用者
@@ -39,6 +39,7 @@
 ## 參考
 下列連結有助於深入探索平台：
 
+- Build 2016：[Getting Started with Microsoft Identities: Enterprise Grade Sign In For Your Apps](https://azure.microsoft.com/documentation/videos/build-2016-getting-started-with-microsoft-identities-enterprise-grade-sign-in-for-your-apps/) (開始使用 Microsoft 身分識別︰應用程式的企業級登入)
 - 取得使用 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 或 [adal](http://stackoverflow.com/questions/tagged/adal) 標記之堆疊溢位的相關說明。
 - [v2.0 通訊協定參考](active-directory-v2-protocols.md)
 - [v2.0 權杖參考](active-directory-v2-tokens.md)
@@ -56,10 +57,4 @@
   - [Android OAuth2 用戶端](https://github.com/wuman/android-oauth-client)
   - [Android OpenID Connect 用戶端](https://github.com/kalemontes/OIDCAndroidLib)
 
-<!-- TODO: These articles
-- [ADAL Library Reference]()
-- [v2 Endpoint FAQs](active-directory-v2-faq.md)
-- Give us your thoughts on the preview using [User Voice](http://feedback.azure.com/forums/169401-azure-active-directory) - we want to hear them!  Use the phrase "AppModelv2:" in the title of your post so we can find it.
--->
-
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

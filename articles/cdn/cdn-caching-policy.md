@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="媒體服務延伸模組中的 CDN 快取原則" 
-	description="本主題提供媒體服務延伸模組中的 CDM 快取原則的概觀。" 
-	services="cdn" 
-	documentationCenter=".NET" 
-	authors="juliako" 
-	manager="dwrede" 
+<properties
+	pageTitle="媒體服務延伸模組中的 CDN 快取原則"
+	description="本主題提供媒體服務延伸模組中的 CDM 快取原則的概觀。"
+	services="cdn"
+	documentationCenter=".NET"
+	authors="juliako"
+	manager="dwrede"
 	editor=""/>
 
-<tags 
-	ms.service="cdn" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/01/2016" 
+<tags
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/01/2016"
 	ms.author="juliako"/>
 
 #媒體服務延伸模組中的 CDN 快取原則
@@ -32,7 +32,7 @@ Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microso
 
 您可以使用 Azure 管理入口網站或 Azure 媒體服務 API，設定快取標頭的值。
 
-1. 若要透過管理入口網站設定快取標頭，請參閱＜[如何管理資料流端點](../media-services-manage-origins.md)＞ (How to Manage Streaming Endpoints) 一節中的「設定資料流端點」中的。
+1. 若要透過管理入口網站設定快取標頭，請參閱＜[如何管理資料流端點](../media-services/media-services-manage-origins.md)＞ (How to Manage Streaming Endpoints) 一節中的「設定資料流端點」中的。
 2. Azure 媒體服務 REST API，[StreamingEndpoint](https://msdn.microsoft.com/library/azure/dn783468.aspx#StreamingEndpointCacheControl)。
 3. Azure 媒體服務 .NET SDK，[StreamingEndpointCacheControl 屬性](http://go.microsoft.com/fwlink/?LinkId=615302)。
 
@@ -41,6 +41,5 @@ Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microso
 1. Azure 媒體服務的已設定快取值會覆寫預設值。
 2. 如果沒有任何手動組態，系統會套用預設值。
 3. 根據預設，2 秒快取標頭會套用至即時資料流資訊清單 (播放清單)，無論 Azure 媒體或 Azure 儲存體組態為何，且此值無法被覆寫。
- 
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

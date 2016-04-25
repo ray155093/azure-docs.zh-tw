@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/29/2016"
+   ms.date="04/11/2016"
    ms.author="larryfr"/>
 
 #使用 HDInsight 上的 Apache Storm 和 Maven 開發基本字數統計應用程式的 Java 型拓撲
@@ -107,6 +107,7 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 	<plugin>
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>exec-maven-plugin</artifactId>
+      <version>1.4.0</version>
       <executions>
         <execution>
         <goals>
@@ -130,6 +131,7 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 	<plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.3</version>
       <configuration>
         <source>1.7</source>
         <target>1.7</target>
@@ -469,4 +471,4 @@ Trident 是 Storm 提供的高層級抽象。它支援具狀態的處理。Tride
 
 您可透過瀏覽 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)找到更多範例 Storm 拓撲。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

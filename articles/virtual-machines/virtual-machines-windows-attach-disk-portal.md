@@ -22,7 +22,7 @@
 本文示範如何透過 Azure 入口網站將新的及現有的磁碟連結到 Linux 虛擬機器。您也可以[在 Azure 入口網站中將資料磁碟連結到 Linux VM](virtual-machines-linux-attach-disk-portal.md)。這麼做之前，請先檢閱下列提示：
 
 - 虛擬機器的大小會控制您可以連接的資料磁碟數目。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md)。
-- 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。您可以使用進階或標準儲存體帳戶的磁碟搭配這些虛擬機器。僅特定地區可用進階儲存體。如需詳細資訊，請參閱[高階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage-preview-portal.md)。
+- 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。您可以使用進階或標準儲存體帳戶的磁碟搭配這些虛擬機器。僅特定地區可用進階儲存體。如需詳細資訊，請參閱[高階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
 - 連接至虛擬機器的磁碟實際上是 Azure 儲存體帳戶中的 .vhd 檔案。如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](virtual-machines-windows-about-disks-vhds.md)。
 - 對於新的磁碟，當您連接的時候 Azure 會建立該磁碟，所以您不需要建立它。
 - 對於現有的磁碟，該 .vhd 檔案必須可在 Azure 儲存體帳戶中取得。您可以使用現有的 .vhd 檔案 (若尚未連接至其他虛擬機器)，或上傳您自己的 .vhd 檔案至儲存體帳戶。
@@ -55,4 +55,4 @@
 
 如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

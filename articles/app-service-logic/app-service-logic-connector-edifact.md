@@ -41,24 +41,33 @@ Edifact 連接器可以當作觸發程序或動作使用。
 
 ### 觸發程序
 - 啟動 Azure Logic Apps 流程設計工具
-- 從右窗格中按一下 [Edifact 連接器]︰  
+- 從右窗格中按一下 [Edifact 連接器]︰
+
 ![觸發程序設定][3]
-- 按一下 ->：  
-![觸發程序選項][4]
-- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：  
+- 按一下 ->：![觸發程序選項][4]
+- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：
+
 ![發行批次輸入][5]
-- 這個觸發程序沒有輸入。按一下 ->：  
+
+- 這個觸發程序沒有輸入。按一下 ->：
+
 ![已設定發行批次][6]
 - 做為輸出的一部分，連接器會傳回 Edifact 承載、協議識別碼，以及訊息是否為批次處理等資訊。
 
 ### 動作
-- 從右窗格中按一下 [Edifact 連接器]︰  
+- 從右窗格中按一下 [Edifact 連接器]︰
+
 ![動作設定][7]
-- 按一下 ->：  
+- 按一下 ->：
+
 ![動作清單][8]
-- Edifact 連接器支援許多動作。選取 [編碼]：  
+
+- Edifact 連接器支援許多動作。選取 [編碼]：
+
 ![編碼輸入][9]
-- 提供動作的輸入，並進行設定：  
+
+- 提供動作的輸入，並進行設定：
+
 ![已設定編碼][10]
 
 	參數|類型|參數說明
@@ -84,7 +93,7 @@ Edifact 連接器可以當作觸發程序或動作使用。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
-您也可以檢閱連接器的效能統計資料及控制安全性。請參閱[管理和監視 API 應用程式和連接器](../app-service-api/app-service-api-manage-in-portal.md)。
+ 
 
 
 <!--References -->
@@ -99,4 +108,4 @@ Edifact 連接器可以當作觸發程序或動作使用。
 [9]: ./media/app-service-logic-connector-edifact/EncodeInput.PNG
 [10]: ./media/app-service-logic-connector-edifact/EncodeConfigured.PNG
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

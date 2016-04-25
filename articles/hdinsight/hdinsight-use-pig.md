@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/28/2016"
+   ms.date="04/07/2016"
    ms.author="larryfr"/>
 
 # 搭配使用 Pig 與 HDInsight 上的 Hadoop
@@ -65,7 +65,7 @@ Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外�
 
 由於 WASB 是 HDInsight 的預設儲存體，因此您也可以從 Pig Latin 使用 **/example/data/sample.log** 存取此檔案。
 
-> [AZURE.NOTE] 語法 ****wasb:///** 是用來存取您 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如：****wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
+> [AZURE.NOTE] 語法 **wasb:///** 是用來存取您 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如：**wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 
 ##<a id="job"></a>關於範例工作
@@ -115,6 +115,8 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 
 * [將資料上傳到 HDInsight][hdinsight-upload-data]
 * [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
+* [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
 * [搭配 HDInsight 使用 MapReduce 工作][hdinsight-use-mapreduce]
 
 [check]: ./media/hdinsight-use-pig/hdi.checkmark.png
@@ -137,7 +139,7 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md#mapreduce-sdk
 
-[Powershell-install-configure]: ../install-configure-powershell.md
+[Powershell-install-configure]: ../powershell-install-configure.md
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
 
@@ -146,4 +148,4 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 [image-hdi-pig-powershell]: ./media/hdinsight-use-pig/hdi.pig.powershell.png
 [image-hdi-pig-architecture]: ./media/hdinsight-use-pig/HDI.Pig.Architecture.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -21,7 +21,7 @@ ms.author="deonhe"/>
 
 連線到 Yammer 來存取您企業網路中的交談。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下 [Yammer](../app-service-logic/app-service-logic-connector-yammer.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 Yammer 來：
 
@@ -41,17 +41,17 @@ Yammer 包含下列觸發程序及動作。
 所有 API 都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Yammer 的連線
-如要使用 Yammer API，您必須先建立「連線」，再提供下列屬性的詳細資料：
+如要使用 Yammer API，您必須先建立**連接**，再提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
 |權杖|是|提供 Yammer 的認證|
 
-請依照下列步驟登入 Yammer，並在邏輯應用程式中完成 Yammer **連接**的組態：
+請遵循下列步驟登入 Yammer，並在邏輯應用程式中完成 Yammer **連接**的組態：
 
 1. 選取 [週期]
 2. 選取 [頻率] 並輸入 [間隔]
-3. 選取 [加入動作]![設定 Yammer][1]
+3. 選取 [加入動作] ![設定 Yammer][1]
 4. 在搜尋方塊中輸入 yammer，等候搜尋傳回名稱中有 Yammer 的所有項目
 5. 選取 [Yammer - 取得所有訊息]
 6. 選取 [登入 Yammer]：![設定 Yammer][2]
@@ -206,4 +206,4 @@ Yammer 包含下列觸發程序及動作。
 [4]: ./media/connectors-create-api-yammer/connectionconfig4.png
 [5]: ./media/connectors-create-api-yammer/connectionconfig5.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

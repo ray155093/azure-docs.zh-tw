@@ -19,7 +19,7 @@
 
 # Azure 中 Linux 虛擬機器預定進行的維修
 
-了解什麼是 Azure 預定進行的維修，以及其對 Linux 虛擬機器可用性的影響為何。您也可以閱讀 [Windows 虛擬機器預定進行的維修](virtual-machines-windows-planned-maintenance.md)。
+了解什麼是 Azure 預定進行的維修，以及其對 Linux 虛擬機器可用性的影響為何。本文也適用於 [Windows 虛擬機器](virtual-machines-windows-planned-maintenance.md)。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
@@ -33,4 +33,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-planned-maintenance](../../includes/virtual-machines-common-planned-maintenance.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

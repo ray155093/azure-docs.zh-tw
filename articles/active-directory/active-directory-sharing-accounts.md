@@ -65,7 +65,7 @@ Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、�
 - 使用[以群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md)，並選取輸入共用認證的選項
 - 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)的選項。
 
-使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](multi-factor-authentication-get-started.md))，並可使用 [Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理來委派管理誰有權存取應用程式。
+使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](../multi-factor-authentication/multi-factor-authentication-get-started.md))，並可使用 [Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理來委派管理誰有權存取應用程式。
 
 ## 相關文章
 
@@ -73,4 +73,4 @@ Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、�
 - [使用條件式存取來保護應用程式](active-directory-conditional-access.md)
 - [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

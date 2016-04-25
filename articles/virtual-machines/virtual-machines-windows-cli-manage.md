@@ -1,6 +1,6 @@
 <properties
 	pageTitle="適用於 VM 工作的對等 Azure CLI 命令 |Microsoft Azure"
-	description="對等的 Azure CLI 命令，在 Azure 資源管理員和 Azure 服務管理模式中建立和管理 Azure VM"
+	description="對等的 Azure CLI 命令，在 Resource Manager 和服務管理模式中建立和管理 Azure VM"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="dlepow"
@@ -24,4 +24,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-manage](../../includes/virtual-machines-common-cli-manage.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

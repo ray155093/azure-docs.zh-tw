@@ -23,7 +23,9 @@
 
 如果您要建置可讓您存取受保護資源的應用程式，您必須知道如何保護這些資源以防止遭受不當存取。只需幾行的程式碼，Azure AD 便可讓使用 OAuth Bearer 2.0 存取權杖來保護 Web API 變得既簡單又直接。
 
-在 Asp.NET Web 應用程式中，您可以使用 Microsoft 的社群導向 OWIN 中介軟體 (隨附於 .NET Framework 4.5) 實作來完成這個作業。在這裡，我們將使用 OWIN 來建置待辦事項清單 Web API：指定哪一個 API 會受到保護。驗證 Web API 呼叫是否包含有效的存取權杖。
+在 Asp.NET Web 應用程式中，您可以使用 Microsoft 的社群導向 OWIN 中介軟體 (隨附於 .NET Framework 4.5) 實作來完成這個作業。這裡會使用 OWIN 建置「待辦事項清單」Web API：
+-	指定要保護哪一個 API。
+-	驗證 Web API 呼叫是否包含有效的存取權杖。
 
 若要執行此作業，您需要執行下列動作：
 
@@ -134,10 +136,8 @@ public IEnumerable<TodoItem> Get()
 
 最後，清除、建置並執行每個專案！ 如果您還沒有這麼做，現在正是使用 *.onmicrosoft.com 網域在租用戶中建立新使用者的好時機。使用該名使用者登入待辦事項清單用戶端，並在使用者的待辦清單中加入一些工作。
 
-[這裡](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)提供完成的範例供您參考 (不含您的設定值)。您現在可以繼續您想要嘗試的更多其他身分識別案例：
-
-[使用 Azure AD 建置 .NET 原生用戶端 >>](../active-directory-devquickstarts-native-dotnet.md)
+[這裡](https://github.com/AzureADQuickStarts/WebAPI-Bearer-DotNet/archive/complete.zip)提供完成的範例供您參考 (不含您的設定值)。您現在可以繼續更多的其他身分識別案例。
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,5 +1,5 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Azure"
+	pageTitle="教學課程：Azure Active Directory 與 HackerOne 整合 | Microsoft Azure"
 	description="了解如何設定 Azure Active Directory 與 HackerOne 之間的單一登入。"
 	services="active-directory"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="04/06/2016"
 	ms.author="jeedes"/>
 
 
@@ -33,7 +33,7 @@ HackerOne 與 Azure AD 整合提供下列優點：
 
 若要設定 Azure AD 與 HackerOne 整合，您需要下列項目：
 
-- Azure AD 訂用帳戶
+- Azure 訂用帳戶
 - 啟用 HackerOne 單一登入的訂用帳戶
 
 
@@ -86,6 +86,8 @@ HackerOne 與 Azure AD 整合提供下列優點：
 
 接下來，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 HackerOne 中設定單一登入。
 
+在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+
 **若要使用 HackerOne 設定 Azure AD 單一登入，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [HackerOne] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。<br><br> ![設定單一登入][6] <br>
@@ -95,11 +97,13 @@ HackerOne 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按一下 [下一步]：<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_04.png) <br>
 
 
-    a.在 [登入 URL] 文字方塊中，輸入使用者用登入 HackerOne 應用程式的 URL，輸入格式為：**“https://hackerone.com/companyname/authentication”**。參考一般名稱時，**companyname** 需要由實際名稱取代。<br>
+    a.在 [登入 URL] 文字方塊中，輸入使用者用登入 HackerOne 應用程式的 URL，輸入格式為：**“https://hackerone.com/<公司名稱>/authentication”**。
 
-	b.在 [識別碼] 文字方塊中輸入租用戶 URL。請透過 support@hackerone.com 連絡 HackerOne 支援小組以取得租用戶 URL。
+    b.如果您不知道租用戶 URL，請透過 [support@hackerone.com](mailto:support@hackerone.com) 連絡 HackerOne 支援小組取得它。
 
-	c.按 [**下一步**]
+	c.在 [識別碼] 文字方塊中輸入租用戶 URL。
+
+	d.按 [下一步]。
 
 
 4. 在 [設定在 HackerOne 單一登入] 頁面上，執行下列步驟，然後按一下 [下一步]：<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_05.png) <br>
@@ -109,15 +113,33 @@ HackerOne 與 Azure AD 整合提供下列優點：
     b.按 [下一步]。
 
 
-5. 若要為您的應用程式設定 SSO，您需要使用管理使用者身分登入 HackerOne 租用戶。
+1. 以系統管理員身分登入 HackerOne 租用戶。
+
+1. 在頂端的功能表中，按一下 [設定]。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_001.png) <br>
+
+1. 瀏覽至 [驗證] 並按一下 [Add SAML settings] (加入 SAML 設定) 。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_003.png) <br>
+
+
+1. 在 [SAML Settings] (SAML設定) 頁面上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_004.png) <br><br>
+
+    a.在 [電子郵件網域] 文字方塊中輸入註冊的網域。
+
+	b.在 Azure 傳統入口網站上，複製**單一登入服務 URL**，然後貼到 [單一登入 URL] 文字方塊中。
+
+    c.從您下載的憑證建立「Base-64 編碼」檔案。
+
+       >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 	
-	a.移至儀表板，然後按一下頁面右上角的 [設定]。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_001.png) <br>
+    d.在記事本中開啟您 Base-64 編碼的憑證，將其內容複製到剪貼簿，然後貼到 [X509 憑證] 文字方塊。
 
-	b.然後瀏覽至 [驗證] 並按一下 [Add SAML settings] (加入 SAML 設定) 按鈕。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_003.png) <br>
+    e.按一下 [儲存]。
 
-	c.填寫 **SAML 設定**表單。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_004.png) <br><br> c1。在 [電子郵件網域] 文字方塊中輸入註冊的網域。若要在 HackerOne 註冊網域，請連絡 support@hackerone.com.<br><br> c2。從 Azure AD 將單一登入服務 URL 複製到 HackerOne 的 [單一登入 URL]。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_006.png) <br> c3。將下載的憑證轉換成 base64 檔案，用 [記事本] 開啟，複製並貼入 HackerOne 的 [X509 憑證] 文字方塊中。<br>
 
-	d.按一下 [儲存] 按鈕。<br><br> e。按一下 [執行測試] 按鈕，確定測試能夠運作。如果可以運作，請透過 support@hackerone.com 向 HackerOne 支援小組要求檢閱 SAML 設定，他們會核准設定。<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_005.png) <br><br>
+1. 在 [驗證設定] 對話方塊上，執行下列步驟：<br><br>![設定單一登入](./media/active-directory-saas-hackerone-tutorial/tutorial_hackerone_005.png) <br><br>
+
+    a.按一下 [執行測試]。
+
+    b.如果 [狀態] 欄位的值等於**上次測試狀態︰已建立**，請透過 [support@hackerone.com](mailto:support@hackerone.com) 連絡您的 HackerOne 支援小組，要求檢閱您的設定。
 
 
 6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。<br><br>![Azure AD 單一登入][10]<br>
@@ -227,4 +249,4 @@ HackerOne 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-hackerone-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hackerone-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

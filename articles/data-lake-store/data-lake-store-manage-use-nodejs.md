@@ -3,7 +3,7 @@
    description="了解如何管理資料湖存放區帳戶以及檔案系統。" 
    services="data-lake-store" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="nitinme" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,18 +13,19 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="12/11/2015"
-   ms.author="jgao"/>
+   ms.date="04/07/2016"
+   ms.author="nitinme"/>
 
 # 使用 Node.js 的 Azure SDK 管理 Azure 資料湖存放區
 
 > [AZURE.SELECTOR]
-- [Using Portal](data-lake-store-get-started-portal.md)
-- [Using PowerShell](data-lake-store-get-started-powershell.md)
-- [Using .NET SDK](data-lake-store-get-started-net-sdk.md)
-- [Using Azure CLI](data-lake-store-get-started-cli.md)
-- [Using Node.js](data-lake-store-manage-use-nodejs.md)
-
+- [入口網站](data-lake-store-get-started-portal.md)
+- [PowerShell](data-lake-store-get-started-powershell.md)
+- [.NET SDK](data-lake-store-get-started-net-sdk.md)
+- [Java SDK](data-lake-store-get-started-java-sdk.md)
+- [REST API](data-lake-store-get-started-rest-api.md)
+- [Azure CLI](data-lake-store-get-started-cli.md)
+- [Node.js](data-lake-store-manage-use-nodejs.md)
 
 Node.js 的 Azure ADK 可用於管理 Azure 資料湖存放區帳戶，以及檔案系統：
 
@@ -37,7 +38,7 @@ Node.js 的 Azure ADK 可用於管理 Azure 資料湖存放區帳戶，以及檔
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - **Azure 資料湖存放區帳戶**。請參閱[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)，以建立帳戶。
-- **具備存取資料湖分析帳戶權限的服務主體**。請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)。
+- **具備存取資料湖分析帳戶權限的服務主體**。請參閱[使用 Azure 資源管理員驗證服務主體](../resource-group-authenticate-service-principal.md)。
 
 ## 安裝 SDK
 
@@ -110,6 +111,6 @@ Node.js 的 Azure ADK 可用於管理 Azure 資料湖存放區帳戶，以及檔
 ##另請參閱 
 
 - [Azure SDK for Node.js](http://azure.github.io/azure-sdk-for-node/)
-- [使用 Node.js 管理 Azure 資料湖分析](data-lake-analytics-use-nodejs.md)
+- [使用 Node.js 管理 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-manage-use-nodejs.md)
 
-<!---HONumber=AcomDC_1217_2015-->
+<!---HONumber=AcomDC_0413_2016-->

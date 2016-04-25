@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/28/2016"
+	ms.date="04/11/2016"
 	ms.author="wesmc"/>
 
 # 註冊管理
@@ -77,9 +77,9 @@
 
  
 
-請務必注意，註冊與安裝以及它們所包含的 PNS 控制代碼有到期時間。您可以在「通知中樞」上設定最長 90 天的存留時間。這個限制代表它們必須定期重新整理，也代表它們不應該是重要資訊的唯一存放區。這個自動到期機制同時也簡化了將您行動應用程式解除安裝時的清除作業。
+請務必注意，註冊與安裝預設不會到期。
 
-註冊與安裝必須包含每個裝置/通道的最新 PNS 控制代碼。由於 PNS 控制代碼只能在裝置上的用戶端 app 中取得，因此有一種模式是直接在該裝置上使用用戶端 app 進行註冊。另一方面，與標記相關的安全性考量和商務邏輯可能會需要您在 app 後端管理裝置註冊。
+註冊與安裝必須包含每個裝置/通道的有效 PNS 控制代碼。由於 PNS 控制代碼只能在裝置上的用戶端 app 中取得，因此有一種模式是直接在該裝置上使用用戶端 app 進行註冊。另一方面，與標記相關的安全性考量和商務邏輯可能會需要您在 app 後端管理裝置註冊。
 
 #### 範本
 
@@ -241,7 +241,6 @@ SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式�
 	}
 	catch (Microsoft.WindowsAzure.Messaging.RegistrationGoneException e)
 	{
-		// regId likely expired, delete from local storage and try again
 		settings.Remove("__NHRegistrationId");
 	}
 
@@ -330,4 +329,4 @@ SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式�
 
 後端必須處理註冊更新之間的並行存取。「服務匯流排」可提供開放式並行存取控制來管理註冊。在 HTTP 層級，這是藉由在註冊管理作業上使用 ETag 來進行實作。Microsoft SDK 會在背景使用這項功能，如果因並行存取而導致更新被拒，將會擲回例外狀況。App 後端會負責處理這些例外狀況，並視需要重試更新。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

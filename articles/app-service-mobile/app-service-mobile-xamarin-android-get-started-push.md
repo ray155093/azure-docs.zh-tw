@@ -22,7 +22,7 @@
 
 ##概觀
 
-在本教學課程中，您會將推播通知新增至 [Xamarin.Android 快速入門]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [Xamarin.Android 快速入門]教學課程為基礎，您必須先完成該教學課程。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+在本教學課程中，您會將推播通知新增至[建立 Xamarin.Android 應用程式]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [建立 Xamarin.Android 應用程式]教學課程為基礎，您必須先完成該教學課程。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##必要條件
 
@@ -31,9 +31,6 @@
 + 有效的 Google 帳戶。您可以在 [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302) 註冊 Google 帳戶。
 
 + [Google Cloud Messaging 用戶端元件](http://components.xamarin.com/view/GCMClient/)。您在教學課程中會新增此元件。
-
-+ 完成 [Xamarin.Android 快速入門]教學課程。
-
 
 ##<a name="create-hub"></a>建立通知中樞
 
@@ -77,10 +74,9 @@
 
 
 <!-- URLs. -->
-[Xamarin.Android 快速入門]: app-service-mobile-xamarin-android-get-started.md
-
+[Xamarin.Android quickstart]: app-service-mobile-xamarin-android-get-started.md
+[建立 Xamarin.Android 應用程式]: app-service-mobile-xamarin-android-get-started.md
 [Google Cloud Messaging Client Component]: http://components.xamarin.com/view/GCMClient/
-[Xamarin.Android]: http://xamarin.com/download/
 [Azure Mobile Services Component]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

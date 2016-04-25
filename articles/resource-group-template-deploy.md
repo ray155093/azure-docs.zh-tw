@@ -4,8 +4,8 @@
    description="使用 Azure 資源管理員將資源部署至 Azure。範本是 JSON 檔案，並可從入口網站、PowerShell、適用於 Mac、Linux 和 Windows 的 Azure 命令列介面，或 REST 來使用。"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/21/2016"
+   ms.date="04/11/2016"
    ms.author="tomfitz"/>
 
 # 使用 Azure Resource Manager 範本部署資源
@@ -42,20 +42,22 @@
 
 1. 登入您的 Azure 帳戶。提供您的認證之後，命令會傳回您的帳戶的相關資訊。
 
-        PS C:\> Login-AzureRmAccount
+        Add-AzureRmAccount
+
+     系統會傳回您帳戶的摘要。
 
         Environment : AzureCloud
         Account    : someone@example.com
         ...
 
 
-2. 如果您有多個訂用帳戶，請使用 **Select-AzureRmSubscription** 命令提供您想要用於部署的訂用帳戶識別碼。
+2. 如果您有多個訂用帳戶，請使用 **Set-AzureRmContext** 命令提供您想要用於部署的訂用帳戶識別碼。
 
-        PS C:\> Select-AzureRmSubscription -SubscriptionID <YourSubscriptionId>
+        Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 
 3. 如果您沒有現有的資源群組，請使用 **New-AzureRmResourceGroup** 命令建立新的資源群組。提供您的解決方案所需的資源群組名稱和位置。
 
-        PS C:\> New-AzureRmResourceGroup -Name ExampleResourceGroup -Location "West US"
+        New-AzureRmResourceGroup -Name ExampleResourceGroup -Location "West US"
    
      隨即傳回新資源群組的摘要。
    
@@ -71,26 +73,26 @@
 
 4. 先驗證部署再執行 **Test-AzureRmResourceGroupDeployment** Cmdlet 來執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
 
-        PS C:\> Test-AzureRmResourceGroupDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -myParameterName "parameterValue"
+        Test-AzureRmResourceGroupDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -myParameterName "parameterValue"
 
 5. 若要建立資源群組的新部署，請執行 **New-AzureRmResourceGroupDeployment** 命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您的案例所需的任何其他參數。如未指定 **Mode** 參數，即會使用預設值 **Incremental**。
    
-     您有下列選項可以用來提供參數值：
+     您有下列三個選項可以用來提供參數值：
    
-     - 使用內嵌參數。
+     1. 使用內嵌參數。
 
-            PS C:\> New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -myParameterName "parameterValue"
+            New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -myParameterName "parameterValue"
 
-     - 使用參數物件。
+     2. 使用參數物件。
 
-            PS C:\> $parameters = @{"<ParameterName>"="<Parameter Value>"}
-            PS C:\> New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -TemplateParameterObject $parameters
+            $parameters = @{"<ParameterName>"="<Parameter Value>"}
+            New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -TemplateParameterObject $parameters
 
-     - 使用參數檔案。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。
+     3. 使用參數檔案。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。
 
-            PS C:\> New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -TemplateParameterFile <PathOrLinkToParameterFile>
+            New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> -TemplateParameterFile <PathOrLinkToParameterFile>
 
-     部署資源群組之後，您會看到部署的摘要。
+     透過上述 3 個方法之一部署好資源之後，即可看到部署的摘要。
 
         DeploymentName    : ExampleDeployment
         ResourceGroupName : ExampleResourceGroup
@@ -99,20 +101,25 @@
         Mode              : Incremental
         ...
 
-     若要執行完整部署，將 **Mode** 設為 **Complete**。請注意，系統會要求您確認，您的確想要使用可能會刪除資源的 Complete 模式。
+     若要執行完整部署，將 **Mode** 設為 **Complete**。
 
-        PS C:\> New-AzureRmResourceGroupDeployment -Name ExampleDeployment -Mode Complete -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> 
+        New-AzureRmResourceGroupDeployment -Name ExampleDeployment -Mode Complete -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate> 
+        
+     系統會要求您確認是否要使用可能會刪除資源的 [完整] 模式。
+        
         Confirm
         Are you sure you want to use the complete deployment mode? Resources in the resource group 'ExampleResourceGroup' which are not
         included in the template will be deleted.
         [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
-     如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本包含名為 **ResourceGroupName** 的參數，而且與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，將會提示您在後置詞為 **FromTemplate** 的參數中提供一個值 (例如 **ResourceGroupNameFromTemplate**)。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+     如果範本中某個參數名稱與範本部署命令中的某個參數相同 (例如在範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，系統會提示您為後置詞為 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
-6. 取得部署失敗的相關資訊。
+6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **DeploymentDebugLogLevel** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
 
-        PS C:\> Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleResourceGroup -Name ExampleDeployment
+        New-AzureRmResourceGroupDeployment -Name ExampleDeployment -DeploymentDebugLogLevel All -ResourceGroupName ExampleResourceGroup -TemplateFile <PathOrLinkToTemplate>
         
+     如需使用此偵錯內容針對部署進行疑難排解的詳細資訊，請參閱[透過 Azure PowerShell 針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-powershell.md)。
+       
         
 ### 影片
 
@@ -164,21 +171,21 @@
 
 5. 若要建立資源群組的新部署，請執行下列命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您的案例所需的任何其他參數。
    
-     您有下列選項可以用來提供參數值：
+     您有下列三個選項可以用來提供參數值：
 
-     - 使用內嵌參數和本機範本。每個參數皆為此格式：`"ParameterName": { "value": "ParameterValue" }`。以下範例顯示含逸出字元的參數。
+     1. 使用內嵌參數和本機範本。每個參數皆為此格式：`"ParameterName": { "value": "ParameterValue" }`。以下範例顯示含逸出字元的參數。
 
             azure group deployment create -f <PathToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup -n ExampleDeployment
 
-     - 使用內嵌參數和範本的連結。
+     2. 使用內嵌參數和範本的連結。
 
             azure group deployment create --template-uri <LinkToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup -n ExampleDeployment
 
-     - 使用參數檔案。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。
+     3. 使用參數檔案。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。
     
             azure group deployment create -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-     部署資源群組之後，您會看到部署的摘要。
+     透過上述 3 個方法之一部署好資源之後，即可看到部署的摘要。
   
         info:    Executing command group deployment create
         + Initializing template configurations and parameters
@@ -190,13 +197,9 @@
 
         azure group deployment create --mode Complete -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
-6. 取得最新部署的相關資訊。
+6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **debug-setting** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
 
-        azure group log show -l ExampleResourceGroup
-
-7. 取得部署失敗的詳細資訊。
-      
-        azure group log show -l -v ExampleResourceGroup
+        azure group deployment create --debug-setting All -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
 
 ## 使用 REST API 部署
 1. 設定[一般參數和標頭](https://msdn.microsoft.com/library/azure/8d088ecc-26eb-42e9-8acc-fe929ed33563#bk_common) (包括驗證權杖)。
@@ -231,6 +234,13 @@
             }
           }
    
+      如果您想要記錄回應內容及/或要求內容，可在要求中包括 **debugSetting**。
+
+        "debugSetting": {
+          "detailLevel": "requestContent, responseContent"
+        }
+
+
 4. 取得範本部署的狀態。如需詳細資訊，請參閱 [取得範本部署的相關資訊](https://msdn.microsoft.com/library/azure/dn790565.aspx)。
 
           GET https://management.azure.com/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>/providers/Microsoft.Resources/deployments/<YourDeploymentName>?api-version=2015-01-01
@@ -281,7 +291,7 @@
 
 參數檔的大小不得超過 64 KB。
 
-如需如何定義範本中參數的資訊，請參閱[編寫範本](../resource-group-authoring-templates/#parameters)。如需用來傳遞安全值的金鑰保存庫參考的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+如需如何定義範本中參數的資訊，請參閱[製作範本](../resource-group-authoring-templates/#parameters)。如需用來傳遞安全值之 KeyVault 參考的詳細資訊，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
 ## 後續步驟
 - 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫和範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)
@@ -292,4 +302,4 @@
 
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

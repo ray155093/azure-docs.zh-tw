@@ -47,4 +47,4 @@
 
 針對 Datetime 和 Datetimeoffset，您可以選擇性地指定 “culture” 和 “format” 字串以幫助剖析您的自訂 Datetime 字串。請參閱下方的類型轉換範例。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

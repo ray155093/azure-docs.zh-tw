@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="04/07/2016"
 	ms.author="anhoh"/>
 
 # 要求增加 DocumentDB 帳戶限制
@@ -25,9 +25,9 @@
 -	哪種 DocumentDB 帳戶配額可以透過聯絡 Azure 支援人員來進行調整？
 -	如何要求 DocumentDB 帳戶配額調整？
 
-##<a id="AdjustableQuotas"></a> 可調整的 DocumentDB 帳戶配額
+##<a id="Quotas"></a> DocumentDB 帳戶配額
 
-下表說明可以透過聯絡 Azure 支援人員來進行調整的 DocumentDB 配額：
+下表描述 DocumentDB 配額。具有星號 (*) 的配額可以透過聯絡 Azure 支援人員來進行調整：
 
 [AZURE.INCLUDE [azure-documentdb-limits](../../includes/azure-documentdb-limits.md)]
 
@@ -63,4 +63,4 @@
 ##<a name="NextSteps"></a> 後續步驟
 - 若要深入了解 DocumentDB，請按一下[這裡](http://azure.com/docdb)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -45,7 +45,7 @@ Windows 7 的裝置註冊是[可下載的 MSI 套件](https://connect.microsoft.
 您可以選擇取消註冊您加入網域的 Windows 7 裝置，方式如下：使用軟體發佈系統 (例如 System Center Configuration Manager)，從已加入網域的 Windows 7 裝置中解除安裝「加入工作場所」軟體套件。
 
 然後在 Windows 7 電腦上開啟命令提示字元，執行下列命令來取消註冊裝置：
-    
+
     %ProgramFiles%\Microsoft Workplace Join\AutoWorkplace.exe /leave
 
 >[AZURE.NOTE]
@@ -57,9 +57,7 @@ Windows 7 電腦上的 Windows 事件記錄檔會顯示與「加入工作場所�
 
 - [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](active-directory-conditional-access-automatic-device-registration.md)
-- [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows8_1.md)
+- [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
- 
-
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

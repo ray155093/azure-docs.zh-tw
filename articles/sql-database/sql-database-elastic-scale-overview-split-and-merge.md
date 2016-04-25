@@ -3,7 +3,7 @@
     description="說明如何使用彈性資料庫 API 透過自我託管服務操作分區和移動資料。" 
     services="sql-database" 
     documentationCenter="" 
-    manager="jeffreyg" 
+    manager="jhubbard" 
     authors="ddove"/>
 
 <tags 
@@ -27,7 +27,13 @@
 
 1\.1.0 版本的分割合併工具可讓您自動清除已完成要求的中繼資料。組態選項可控制此中繼資料在移除之前要保留多久時間。
 
-1\.0.0 版本的分割合併工具提供下列增強功能：*.Net API 會包含在具有分割合併的介面 – 現在可選用 Web 角色。*分區化索引鍵現可支援日期和時間類型。*現在也支援清單分區對應。*要求中的範圍界限值能更容易與儲存在分區對應的範圍進行比對。*現在可支援多個背景工作角色以改善可用性。*儲存為分割合併作業一部分的認證現在可以在靜止時加密。
+分割合併工具的 1.0.0 版提供下列改進：
+* 包含 .Net API 來銜接分割合併 – Web 角色現在是選擇性 
+* 分區化索引鍵現在支援日期和時間類型 
+* 現在也支援清單分區對應。 
+* 要求中的範圍界限可以更輕鬆地符合儲存在分區對應中的範圍。
+* 為改善可用性，現在也支援多個背景工作角色執行個體。 
+* 與分割合併作業一起儲存的認證現為靜態加密。
 
 ## 如何升級
 
@@ -169,7 +175,7 @@
 
 ### Azure 診斷
 
-分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。您可以如這裡所述控制診斷組態：[在 Azure 雲端服務和虛擬機器中啟用診斷](../service-fabric/cloud-services-dotnet-diagnostics.md)。下載封裝包含兩個診斷組態 – 一個用於 Web 角色，另一個用於背景工作角色。這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。
+分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。您可以如這裡所述控制診斷組態：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。下載封裝包含兩個診斷組態 – 一個用於 Web 角色，另一個用於背景工作角色。這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。
 
 ## 部署診斷 
 
@@ -195,7 +201,7 @@
     
     Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -DiagnosticsConfigurationPath $config_path -ServiceName $service_name -Slot Production -Role "SplitMergeWorker" 
 
-您可以在這裡找到有關如何設定和部署診斷設定的詳細資訊：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services-dotnet-diagnostics.md)。
+您可以在這裡找到有關如何設定和部署診斷設定的詳細資訊：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。
 
 ## 擷取診斷 
 
@@ -239,4 +245,4 @@
 [3]: ./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics-config.png
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

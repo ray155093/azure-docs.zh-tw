@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/03/2016" 
+	ms.date="03/28/2016" 
 	ms.author="josephd"/>
 
 # 設定用於測試的模擬混合式雲端環境 (傳統部署模式)
@@ -79,7 +79,7 @@
 	- 在 TestSubnet 的 [CIDR (位址計數)] 欄中，按一下 [/24 (256)]。
 7.	按一下 [完成] 圖示。等候虛擬網路建立後再繼續。
 
-接下來，按照[如何安裝和設定 Azure PowerShell](../install-configure-powershell.md) 中的操作方法，在本機電腦安裝 Azure PowerShell。
+接下來，按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的操作方法，在本機電腦安裝 Azure PowerShell。
 
 接著，建立 TestVNET 虛擬網路的新雲端服務。您必須選擇唯一的名稱。例如，您可以將它命名為 **TestVNET-***UniqueSequence*，其中的 *UniqueSequence* 是貴公司的縮寫。例如，如果貴公司名稱為 Tailspin Toys，您可以將雲端服務命名為 **TestVNET-Tailspin**。
 
@@ -225,7 +225,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 ## <a id="costs"></a>將此環境的持續成本降至最低
 
-若要將在此環境中執行虛擬機器的成本降至最低，請盡速執行所需的測試和示範，然後在不使用時予以刪除或關閉虛擬機器。例如，您可以使用 Azure 自動化和 Runbook 在每個營業日結束時自動關閉 TestLab 和 Test\_VNET 虛擬網路中的虛擬機器。如需詳細資訊，請參閱[開始使用 Azure 自動化](../automation-create-runbook-from-samples.md)。您再次啟動公司網路子網路上的虛擬機器時，請先啟動 DC1。
+若要將在此環境中執行虛擬機器的成本降至最低，請盡速執行所需的測試和示範，然後在不使用時予以刪除或關閉虛擬機器。例如，您可以使用 Azure 自動化和 Runbook 在每個營業日結束時自動關閉 TestLab 和 Test\_VNET 虛擬網路中的虛擬機器。您再次啟動公司網路子網路上的虛擬機器時，請先啟動 DC1。
 
 Azure VPN 閘道會實作為一組會產生持續成本的兩個 Azure 虛擬機器。如需詳細資訊，請參閱[定價 - 虛擬網路](https://azure.microsoft.com/pricing/details/virtual-network/)。若要將這兩個 VPN 閘道 (一個用於 TestLab，另一個用於 TestVNET) 的成本降至最低，請使用這些步驟建立測試環境，並盡速執行所需的測試和示範或刪除閘道。
  
@@ -261,4 +261,4 @@ Azure VPN 閘道會實作為一組會產生持續成本的兩個 Azure 虛擬機
 
 接著，在 Azure 管理入口網站的 [網路] 頁面上，按一下 [TestLab] 虛擬網路，然後按一下工作列中的 [連接]。等候 TestLab 虛擬網路顯示 TestVNET 區域網路的連線狀態。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

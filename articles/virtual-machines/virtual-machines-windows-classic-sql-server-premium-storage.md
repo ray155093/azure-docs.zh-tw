@@ -37,7 +37,7 @@
 - 可能的移轉方法。
 - 完整的端對端範例，示範適用於移轉現有 AlwaysOn 實作的 Azure、Windows 及 SQL Server 步驟。
 
-如需更多關於 Azure 虛擬機器中 SQL Server 的背景資訊，請參閱 [Azure 虛擬機器中的 SQL Server](virtual-machines-windows-classic-sql-overview.md)。
+如需更多關於 Azure 虛擬機器中 SQL Server 的背景資訊，請參閱 [Azure 虛擬機器中的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
 **作者：**Daniel Sol **技術審稿人員：**Luis Carlos Vargas Herring、Sanjay Mishra、Pravin Mital、Juergen Thomas、Gonzalo Ruiz。
 
@@ -96,7 +96,7 @@
 
 ### VHD 快取設定
 
-在建立屬於高階儲存體帳戶一部分的磁碟間的主要差異在於磁碟快取設定。針對 SQL Server 資料磁碟區磁碟，建議使用 [讀取快取]****。針對交易記錄磁碟區，應該將磁碟快取設定設為 [無]****。這與適用於標準儲存體帳戶的建議不同。
+在建立屬於高階儲存體帳戶一部分的磁碟間的主要差異在於磁碟快取設定。針對 SQL Server 資料磁碟區磁碟，建議使用 [讀取快取]。針對交易記錄磁碟區，應該將磁碟快取設定設為 [無]。這與適用於標準儲存體帳戶的建議不同。
 
 一旦連結 VHD 之後，就無法更改快取設定。您需要中斷連結 VHD，然後使用更新的快取設定重新連結。
 
@@ -402,8 +402,6 @@
 1. 複製完整備份，然後使用 **NORECOVERY** 進行還原。
 1. 複製「超出使用者 DB 範圍」的相依物件，例如登入等項目。
 1. 建立新的內部負載平衡器 (ILB) 或使用外部負載平衡器 (ELB)，然後在這兩個新節點上設定負載平衡的端點。
-
-
 > [AZURE.NOTE] 請先檢查所有節點的端點組態是否正確再繼續進行
 
 1. 停止使用者/應用程式存取 SQL Server (如果正在使用儲存集區)。
@@ -1122,7 +1120,7 @@
 ## 其他資源
 - [Azure 高階儲存體](../storage/storage-premium-storage.md)
 - [虛擬機器](https://azure.microsoft.com/services/virtual-machines/)
-- [Azure 虛擬機器中的 SQL Server](virtual-machines-windows-classic-sql-overview.md)
+- [Azure 虛擬機器中的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)
 
 <!-- IMAGES -->
 [1]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/1_VNET_Portal.png
@@ -1151,4 +1149,4 @@
 [24]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_14.png
 [25]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_15.png
 
-<!-----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

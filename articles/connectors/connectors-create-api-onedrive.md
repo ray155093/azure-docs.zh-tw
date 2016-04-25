@@ -30,7 +30,7 @@ ms.author="mandia"/>
 
 &nbsp;
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。若為 2014-12-01-preview 結構描述版本，請按一下 [OneDrive API](../app-service-logic/app-service-logic-connector-onedrive.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 OneDrive 來：
 
@@ -59,7 +59,7 @@ OneDrive API 包含下列觸發程序及動作。
 1. 登入您的 OneDrive 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 OneDrive。 
 
-當您建立連線之後，請輸入 OneDrive 的屬性，例如資料夾路徑或檔案名稱。本主題的 REST API 參考會說明這些屬性。
+當您建立連線之後，請輸入 OneDrive 的屬性，例如資料夾路徑或檔案名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的連線。
 
@@ -312,4 +312,4 @@ OneDrive API 包含下列觸發程序及動作。
 [6]: ./media/connectors-create-api-onedrive/onedrive-new-app.png
 [7]: ./media/connectors-create-api-onedrive/onedrive-app-api-settings.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

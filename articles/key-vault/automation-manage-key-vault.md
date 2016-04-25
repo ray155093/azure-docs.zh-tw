@@ -42,7 +42,7 @@ Azure 金鑰保存庫 Cmdlet 可讓您執行以下這些工作和其他工作：
 
 了解 Azure 自動化的基本概念以及如何用它來管理 Azure 金鑰保存庫之後，請參考下列連結，以深入了解 Azure 自動化。
 
-* 請參閱 Azure 自動化[快速入門教學課程](../automation-create-runbook-from-samples.md)。
+* 請參閱 Azure 自動化[快速入門教學課程](../automation/automation-first-runbook-graphical.md)。
 * 請參閱 [Azure 金鑰保存庫 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/Azure-Key-Vault-Powershell-1349b091)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

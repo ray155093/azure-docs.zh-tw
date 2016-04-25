@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/01/2016"
+   ms.date="04/07/2016"
    ms.author="alkohli"/>
 
 # 部署 StorSimple Virtual Array - 設定為檔案伺服器
@@ -128,7 +128,7 @@
 
     1.  輸入您在 [Step 2: Get the service registration key (步驟 2：取得 StorSimple Virtual Array 的服務註冊金鑰)](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key) 中取得的「服務註冊金鑰」。
 
-    2.  如果這不是您向此服務註冊的第一個裝置，您必須提供「服務資料加密金鑰」。您必須將此金鑰與服務註冊金鑰搭配使用，才能向 StorSimple Manager 服務註冊額外的裝置。如需詳細資訊，請參閱使用本機 Web UI 取得 [service data encryption key (服務資料加密金鑰)](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
+    2.  如果這是您向此服務註冊的第一部裝置，請略過此步驟，並移至下一個步驟。如果這不是您向此服務註冊的第一個裝置，您必須提供「服務資料加密金鑰」。您必須將此金鑰與服務註冊金鑰搭配使用，才能向 StorSimple Manager 服務註冊額外的裝置。如需詳細資訊，請參閱使用本機 Web UI 取得 [service data encryption key (服務資料加密金鑰)](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
 
     3.  按一下 [註冊]。這將讓裝置重新啟動。您可能需要等待 2 至 3 分鐘，裝置才會註冊成功。裝置重新啟動之後，您將會看到登入頁面。
 
@@ -232,4 +232,4 @@
 
 了解如何使用本機 Web UI 來[管理您的 StorSimple 虛擬陣列](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

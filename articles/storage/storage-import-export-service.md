@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="04/06/2016"
 	ms.author="renash"/>
 
 
@@ -58,7 +58,7 @@
 4.	**Blob 儲存體目標：**從區塊 Blob 和頁面 Blob 可以上傳或下載資料。
 5.	**工作數目：**一個客戶對於每一儲存體帳戶可以有多達 20 項作用中工作。
 6.	**工作的大小上限：**工作的大小是由使用的硬碟容量以及儲存體帳戶可儲存的資料數量上限所決定。每項工作可包含的硬碟不超過 10 個。
-7.  **支援的作業系統：**客戶可以使用下列其中一個 64 位元作業系統，在出貨至 Azure 之前使用 Azure 匯入/匯出工具準備硬碟 - Windows 7、Windows 8、Windows 8.1、Windows 10*、Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2。  
+7.  **支援的作業系統：**客戶可以使用下列其中一個 64 位元作業系統，在運送至 Azure 之前使用 Azure 匯入/匯出工具來準備硬碟 - Windows 7 Enterprise、Windows 7 Ultimate、Windows 8 Pro、Windows 8 Enterprise、Windows 8.1 Pro、Windows 8.1 Enterprise、Windows 10*、Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2。所有這些作業系統都支援 BitLocker 磁碟機加密。  
 
   > [AZURE.IMPORTANT]
   >  
@@ -288,4 +288,4 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 [export-job-03]: ./media/storage-import-export-service/export-job-03.png
 [export-job-bitlocker-keys]: ./media/storage-import-export-service/export-job-bitlocker-keys.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="使用 Livy 從遠端提交 Spark 作業 | Microsoft Azure" 
-	description="了解如何使用 Livy 和 HDInsight 叢集從遠端提交 Spark 作業。" 
-	services="hdinsight" 
-	documentationCenter="" 
-	authors="nitinme" 
-	manager="paulettm" 
+<properties
+	pageTitle="使用 Livy 從遠端提交 Spark 作業 | Microsoft Azure"
+	description="了解如何使用 Livy 和 HDInsight 叢集從遠端提交 Spark 作業。"
+	services="hdinsight"
+	documentationCenter=""
+	authors="nitinme"
+	manager="paulettm"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
-<tags 
-	ms.service="hdinsight" 
-	ms.workload="big-data" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/05/2016" 
+<tags
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/05/2016"
 	ms.author="nitinme"/>
 
 
@@ -33,7 +33,7 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 
 ## 將批次作業提交至叢集
 
-在提交批次作業之前，您必須將應用程式 jar 上傳至與叢集相關聯的叢集儲存體。您可以使用命令列公用程式 [**AzCopy**](storage/storage-use-azcopy.md) 來執行此動作。此外也有很多用戶端可用來上傳資料。您可以在[在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
+在提交批次作業之前，您必須將應用程式 jar 上傳至與叢集相關聯的叢集儲存體。您可以使用命令列公用程式 [**AzCopy**](../storage/storage-use-azcopy.md) 來執行此動作。此外也有很多用戶端可用來上傳資料。您可以在[在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
 
 	curl -k --user "<hdinsight user>:<user password>" -v -H <content-type> -X POST -d '{ "file":"<path to application jar>", "className":"<classname in jar>" }' 'https://<spark_cluster_name>.azurehdinsight.net/livy/batches'
 
@@ -44,7 +44,7 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 		curl -k --user "admin:mypassword1!" -v -H 'Content-Type: application/json' -X POST -d '{ "file":"wasb://mycontainer@mystorageaccount.blob.core.windows.net/data/SparkSimpleTest.jar", "className":"com.microsoft.spark.test.SimpleFile" }' "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
 * 如果您想要在輸入檔案 (在此範例中為 input.txt) 中傳遞 jar 檔案名稱和類別名稱
-		
+
 		curl -k  --user "admin:mypassword1!" -v -H "Content-Type: application/json" -X POST --data @C:\Temp\input.txt "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
 ## 取得在叢集上執行之批次的相關資訊
@@ -189,4 +189,4 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

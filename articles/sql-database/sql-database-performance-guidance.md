@@ -3,9 +3,9 @@
 	description="本主題提供指引以幫助您判斷哪一個服務層適合您的應用程式，並提供微調應用程式以充分利用 Azure SQL Database 的建議。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
-	editor="monicar" />
+	authors="carlrabeler"
+	manager="jhubbard"
+	editor="" />
 
 
 <tags
@@ -14,8 +14,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="11/03/2015"
-	ms.author="jroth" />
+	ms.date="04/11/2016"
+	ms.author="carlrab" />
 
 # 單一資料庫的 Azure SQL Database 效能指引
 
@@ -23,7 +23,7 @@
 
 Microsoft Azure SQL Database 有三個[服務層](sql-database-service-tiers.md)，基本、標準和高階。這些服務層全都會嚴密區隔提供給您的 Azure SQL Database 的資源，並保證可預測的效能。為您的資料庫保證的輸送量會從基本層、標準層、高階層一路提高。
 
->[AZURE.NOTE] 2015 年 9 月將會淘汰商務和 Web 服務層。如需詳細資訊，請參閱 [Web 和 Business Edition 終止常見問題集](https://msdn.microsoft.com/library/azure/dn741330.aspx)。如需將現有的 Web 及商務資料庫升級至新服務層的詳細資訊，請參閱[將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-new-service-tiers.md)。
+>[AZURE.NOTE] 2015 年 9 月將會淘汰商務和 Web 服務層。如需詳細資訊，請參閱 [Web 和 Business Edition 終止常見問題集](https://msdn.microsoft.com/library/azure/dn741330.aspx)。如需將現有的 Web 及商務資料庫升級至新服務層的詳細資訊，請參閱[將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-server-portal.md)。
 
 本文提供指引以幫助您判斷哪一個服務層適合您的應用程式，並提供微調應用程式以充分利用 Azure SQL Database 的建議。
 
@@ -173,7 +173,7 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 ### 使用 sys.dm\_db\_resource\_stats
 每一個 SQL Database 都有 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 檢視，其可提供相對於服務層的最新資源使用量資料。每隔 15 秒鐘就會記錄一次 CPU、資料 IO、記錄檔寫入和記憶體的平均百分比，並且會維持一個小時。
 
-因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats ** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
+因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
 
 	SELECT  
 	    AVG(avg_cpu_percent) AS 'Average CPU Utilization In Percent', 
@@ -324,7 +324,7 @@ OLTP 資料庫效能中常見的問題與實體資料庫設計相關。資料庫
 
 Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常見遺漏索引狀況的功能。Azure SQL Database 內建的動態管理檢視 (DMV) 會查看查詢編譯，其中的索引會大幅減少執行查詢的估計成本。執行查詢期間，它會追蹤每個查詢計劃的執行頻率，以及執行查詢計劃和其中存在該索引之假設查詢計劃之間的落差。這樣可讓資料庫管理員快速推測哪些實體資料庫設計變更可能會改善指定資料庫和其實際工作負載的整體工作負載成本。
 
->[AZURE.NOTE] 在使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與索引顧問](query-performance-insight-and-index-advisor.md)一節。
+>[AZURE.NOTE] 在使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與索引顧問](#query-performance-insight-and-index-advisor)一節。
 
 下列查詢可用來評估潛在的遺漏索引。
 
@@ -491,4 +491,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -18,7 +18,7 @@
 
 # 在 Azure App Service 中使用 WebJobs
 
-本主題連結至有關如何使用 Azure WebJobs 和 Azure WebJobs SDK 的文件資源。Azure WebJob 可讓您輕鬆地在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上以背景處理序的方式執行指令碼或程式。您可以上傳並執行可執行檔，例如 cmd、bat、exe (.NET)、ps1、sh、php、py、js 和 jar。這些程式會依照排程 (cron) 或持續當作 WebJobs 執行。
+本文連結至有關如何使用 Azure WebJobs 和 Azure WebJobs SDK 的文件資源。Azure WebJob 可讓您輕鬆地在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上以背景處理序的方式執行指令碼或程式。您可以上傳並執行可執行檔，例如 cmd、bat、exe (.NET)、ps1、sh、php、py、js 和 jar。這些程式會依照排程 (cron) 或持續當作 WebJobs 執行。
 
 WebJobs SDK 可讓您更輕鬆地使用 Azure 儲存體。WebJobs SDK 具有繫結和觸發系統，適用於 Microsoft Azure 儲存體 Blob、佇列和資料表以及服務匯流排佇列。
 
@@ -28,4 +28,4 @@ Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能
 
 [AZURE.INCLUDE [app-service-blueprint-webjobs](../../includes/app-service-blueprint-webjobs.md)]
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0413_2016-->

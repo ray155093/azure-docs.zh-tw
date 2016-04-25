@@ -4,15 +4,15 @@
 	keywords=""
 	services="sql-database"
 	documentationCenter=""
-	authors="jeffgoll"
-	manager="jeffreyg"
+	authors="sidneyh"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
 	ms.date="04/01/2016"
-	ms.author="jeffreyg"
+	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
@@ -125,11 +125,10 @@
 
 ## 其他資源
 
-- [彈性資料庫參考](sql-database-elastic-pool-reference.md)
 - [SQL Database 彈性集區](sql-database-elastic-pool.md)
 - [使用入口網站來建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)
 - [使用 PowerShell 建立彈性資料庫集區](sql-database-elastic-pool-create-powershell.md)
 - [使用 C# 來建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)
 - [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

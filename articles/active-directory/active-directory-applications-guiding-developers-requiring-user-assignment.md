@@ -28,9 +28,9 @@
 7. 將 [**需要使用者指派才能存取應用程式**] 切換成 [是]。
 8. 按一下畫面底部的 [**儲存**] 按鈕。
 
-現在您需要將使用者及/或群組指派給應用程式。請參閱[將使用者指派至應用程式](active-directory-guiding-developers-assigning-users.md)和[將群組指派給應用程式](active-directory-guiding-developers-assigning-groups.md)。
+現在您需要將使用者及/或群組指派給應用程式。請參閱[將使用者指派至應用程式](active-directory-applications-guiding-developers-assigning-users.md)和[將群組指派給應用程式](active-directory-applications-guiding-developers-assigning-groups.md)。
 
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

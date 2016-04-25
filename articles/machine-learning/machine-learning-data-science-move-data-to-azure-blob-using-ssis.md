@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料 | Microsoft Azure" 
-	description="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料。" 
-	services="machine-learning,storage" 
-	documentationCenter="" 
-	authors="bradsev" 
-	manager="paulettm" 
+<properties
+	pageTitle="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料 | Microsoft Azure"
+	description="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料。"
+	services="machine-learning,storage"
+	documentationCenter=""
+	authors="bradsev"
+	manager="paulettm"
 	editor="cgronlun" />
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/08/2016" 
+<tags
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/08/2016"
 	ms.author="bradsev" />
 
 # 使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料
@@ -32,14 +32,14 @@
 
 有關使用 SSIS 完成混合式資料整合案例中常見業務需求的典型案例討論，請參閱[使用 Azure 適用的 SQL Server 整合服務功能套件事半功倍](http://blogs.msdn.com/b/ssis/archive/2015/06/25/doing-more-with-sql-server-integration-services-feature-pack-for-azure.aspx)部落格。
 
-> [AZURE.NOTE] 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
+> [AZURE.NOTE] 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage/storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
 
 ## 先決條件
 
 若要執行本文所述的工作，您必須有設好的 Azure 訂用帳戶與 Azure 儲存體帳戶。您必須知道您的 Azure 儲存體帳戶名稱與帳戶金鑰，才能上傳或下載資料。
 
 - 若要設定 **Azure 訂用帳戶**，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
-- 如需建立**儲存體帳戶**的指示，以及取得帳戶和金鑰的資訊，請參閱[關於 Azure 儲存體帳戶](../storage-create-storage-account.md)。
+- 如需建立**儲存體帳戶**以及取得帳戶和金鑰資訊的指示，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
 
 若要使用 **SSIS 連接器**，您必須下載:
@@ -77,7 +77,7 @@
 
 
 > [AZURE.NOTE] **AzureStorageConnection** 認證必須更正且 **BlobContainer** 必須存在，才能嘗試傳輸。
- 
+
 ## 從 Azure Blob 儲存體下載資料
 
 若要透過 SSIS 將資料從 Azure Blob 儲存體下載到內部部署儲存體，請使用 [Azure Blob 上傳工作](https://msdn.microsoft.com/library/mt146779.aspx)的執行個體。
@@ -88,4 +88,4 @@
 - 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Hive 指令碼，請使用 [Azure HDInsight Hive 工作](https://msdn.microsoft.com/library/mt146771.aspx)。
 - 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Pig 指令碼，請使用 [Azure HDInsight Pig Task (Azure HDInsight Pig 工作)](https://msdn.microsoft.com/library/mt146781.aspx)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

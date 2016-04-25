@@ -36,7 +36,7 @@
 
 本教學課程會以行動服務快速入門為基礎。您還必須先完成教學課程[開始使用行動服務]。
 
-完成本教學課程需使用 [Xamarin.iOS]、XCode 6.0 及 iOS 7.0 或更新版本。
+完成本教學課程需使用 [Xamarin Studio]、XCode 6.0 及 iOS 7.0 或更新版本。
 
 ##<a name="register"></a>註冊應用程式進行驗證，並設定行動服務
 
@@ -153,6 +153,6 @@
 [Get started with push notifications]: /develop/mobile/tutorials/-get-started-with-push-xamarin-ios
 [使用指令碼授權使用者]: /develop/mobile/tutorials/authorize-users-in-scripts-xamarin-ios
 [完成的範例專案]: http://go.microsoft.com/fwlink/p/?LinkId=331328
-[Xamarin.iOS]: http://xamarin.com/download
+[Xamarin Studio]: http://xamarin.com/download
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

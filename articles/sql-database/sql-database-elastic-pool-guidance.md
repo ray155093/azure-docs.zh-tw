@@ -1,37 +1,34 @@
 <properties
-	pageTitle="Azure SQL Database 彈性資料庫集區的價格和效能考量"
+	pageTitle="何時使用彈性資料庫集區？"
 	description="彈性資料庫集區是一組彈性資料庫共用的可用資源集合。本文件提供指引，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。"
 	services="sql-database"
 	documentationCenter=""
 	authors="stevestein"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/16/2016"
+	ms.date="04/07/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 彈性資料庫集區的價格和效能考量
-
-根據資料庫使用模式和彈性資料庫集區與單一資料庫之間的價格差異，評估對一組資料庫使用彈性資料庫集區是否具成本效益。也提供其他指引，以協助判斷一組現有的 SQL 資料庫所需的目前集區大小。
+# 何時使用彈性資料庫集區？
+根據資料庫使用模式和彈性資料庫集區與單一資料庫之間的定價差異，評估使用彈性資料庫集區是否具成本效益。也提供其他指引，以協助判斷一組現有的 SQL 資料庫所需的目前集區大小。
 
 - 如需集區的概觀，請參閱 [SQL Database 彈性資料庫集區](sql-database-elastic-pool.md)。
-- 如需彈性資料庫集區的詳細資訊，請參閱 [SQL Database 彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
-
 
 > [AZURE.NOTE] 彈性資料庫集區處於預覽狀態，且僅能搭配 SQL Database V12 伺服器使用。
 
 ## 彈性資料庫集區
 
-SaaS 開發人員會在由多個資料庫組成的大規模資料層上建置應用程式。常見的應用程式模式是為每個客戶佈建單一資料庫。但是不同的客戶有不同且無法預測的使用模式，而且很難預測每個資料庫使用者的資源需求。所以，開發人員可能以可觀的費用過度佈建資源，以確保所有資料庫能有最佳輸送量和回應時間。或者，開發人員可能用較少的費用，並且讓客戶承擔效能不佳體驗的風險。
+SaaS 開發人員會在由多個資料庫組成的大規模資料層上建置應用程式。常見的應用程式模式是為每個客戶佈建單一資料庫。但是不同的客戶經常會有不同且無法預測的使用模式，而且很難預測每個個別資料庫使用者的資源需求。所以，開發人員可能以可觀的費用過度佈建資源，以確保所有資料庫能有最佳輸送量和回應時間。或者，開發人員可能用較少的費用，並且讓客戶承擔效能不佳體驗的風險。
 
-Azure SQL Database 中的集區可讓開發人員將一組資料庫的價格效能最佳化在規定的預算內，同時為每個資料庫提供效能彈性。此集區可讓 ISV 為由多個資料庫共用的彈性集區購買彈性資料庫交易單位 (eDTU)，以容納個別資料庫無法預期的使用量期間。集區的 eDTU 需求取決於其資料庫的彙總使用量。集區可用的 eDTU 數量是由開發人員預算控制。集區可讓開發人員輕鬆為其集區推斷預算對效能的影響，反之亦然。開發人員只要將資料庫加入至集區、設定資料庫的 eDTU 保證上限，然後根據其預算設定集區的 eDTU。開發人員可以使用集區順暢地擴大其服務，以漸增的規模從精簡的新創公司到成熟的企業。
+Azure SQL Database 中的彈性集區可讓 SaaS 開發人員將一組資料庫的價格效能最佳化在規定的預算內，同時為每個資料庫提供效能彈性。此集區可讓開發人員為由多個資料庫共用的彈性集區購買彈性資料庫交易單位 (eDTU)，以容納個別資料庫無法預期的使用量期間。集區的 eDTU 需求取決於其資料庫的彙總使用量。集區可用的 eDTU 數量是由開發人員預算控制。集區可讓開發人員輕鬆為其集區推斷預算對效能的影響，反之亦然。開發人員只要將資料庫加入集區、設定資料庫的最少和最多 eDTU，然後根據其預算設定集區的 eDTU。開發人員可以使用集區順暢地擴大其服務，以漸增的規模從精簡的新創公司到成熟的企業。
 ## 何時考慮使用集區
 
 集區很適合具備特定使用模式的大量資料庫。針對指定的資料庫，此模式的特徵是低平均使用量與相對不頻繁的使用量高峰。
@@ -71,15 +68,15 @@ Azure SQL Database 中的集區可讓開發人員將一組資料庫的價格效�
 
 ### 資料庫的最小數目
 
-如果單一資料庫之效能層級的 DTU 總和大於集區所需 eDTU 的 1.5 倍，則彈性集區會更符合成本效益。如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool-reference.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+如果單一資料庫之效能層級的 DTU 總和大於集區所需 eDTU 的 1.5 倍，則彈性集區會更符合成本效益。如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
 
-範例<br>100 個 DTU 集區需要至少 2 個 S3 資料庫或至少 15 個 S0 資料庫，才能較使用單一資料庫的效能層級更具成本效益。
+**範例**<br>100 個 eDTU 集區需要至少 2 個 S3 資料庫或至少 15 個 S0 資料庫，才能較使用單一資料庫的效能層級更具成本效益。
 
 ### 並行尖峰資料庫的最大數目
 
 藉由共用 eDTU，並非集區中的所有資料庫都能同時使用 eDTU 達到使用單一資料庫的效能層級時的最大限制。同時尖峰的資料庫愈少，可以設定的集區 eDTU 愈低，集區就能更符合成本效益。一般而言，集區中應該不能有超過 2/3 (或 67%) 的資料庫同時達到其 eDTU 限制的尖峰。
 
-***範例***<br>為了降低 200 個 eDTU 集區中 3 個 S3 資料庫的成本，最多可以有 2 個資料庫同時到達其使用量尖峰。否則，如果 4 個 S3 資料庫中超過 2 個同時尖峰，則必須將集區調整為超過 200 個 eDTU。而且，如果將集區調整大小為超過 200 個 eDTU，則需要加入更多的 S3 資料庫至集區，以使成本保持低於單一資料庫的效能層級。
+**範例**<br>為了降低 200 個 eDTU 集區中 3 個 S3 資料庫的成本，最多可以有 2 個資料庫同時到達其使用量尖峰。否則，如果 4 個 S3 資料庫中超過 2 個同時尖峰，則必須將集區調整為超過 200 個 eDTU。而且，如果將集區調整大小為超過 200 個 eDTU，則需要加入更多的 S3 資料庫至集區，以使成本保持低於單一資料庫的效能層級。
 
 請注意，此範例不考慮集區中其他資料庫的使用量。如果所有資料庫在任何指定的時間點都有一些使用量，則可同時到達尖峰的資料庫會少於 2/3 (或 67%)。
 
@@ -87,7 +84,7 @@ Azure SQL Database 中的集區可讓開發人員將一組資料庫的價格效�
 
 資料庫的尖峰和平均使用量之間的差異為，長時間的低使用量和短時間的高使用量。這個使用量模式非常適合在資料庫之間共用資源。若資料庫的尖峰使用量為平均使用量的 1.5 倍大，就應該將該資料庫視為集區。
 
-範例<br>尖峰為 100 個 DTU 且平均使用 67 個 DTU 或更少的 S3 資料庫是在集區中共用 DTU 的良好候選項目。或者，尖峰為 20 個 DTU 且平均使用 13 個 DTU 或更少的 S1 資料庫是集區的良好候選項目。
+**範例**<br>尖峰為 100 個 DTU 且平均使用 67 個 DTU 或更少的 S3 資料庫是在集區中共用 eDTU 的良好候選項目。或者，尖峰為 20 個 DTU 且平均使用 13 個 DTU 或更少的 S1 資料庫是集區的良好候選項目。
 
 ## 調整彈性集區大小
 
@@ -96,7 +93,7 @@ Azure SQL Database 中的集區可讓開發人員將一組資料庫的價格效�
 * 集區中所有資料庫使用的最大 DTU。
 * 集區中所有資料庫使用的最大儲存體位元組。
 
-如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool-reference.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+如需可用的大小，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
 
 SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的資源使用量，並在 Azure 入口網站中建議適當的集區組態。除了這些建議，內建體驗會估計伺服器上一些自訂資料庫的 eDTU 使用量。這可讓您以互動方式將資料庫新增至集區並加以移除，藉此進行「假設」分析，以在認可變更前取得資源使用量分析和大小建議。如需相關作法，請參閱[監視、管理和估算彈性集區大小](sql-database-elastic-pool-manage-portal.md)。
 
@@ -117,10 +114,11 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 
     MAX(<*資料庫的總數目* X *每一資料庫的平均 DTU 使用量*>、<br><*同時尖峰資料庫的數目* X *每一資料庫的尖峰 DTU 使用量*>)
 
-2.	加總集區中所有資料庫所需的位元組數目，以估計集區所需的儲存空間。然後判斷可提供此儲存體數量的 eDTU 集區大小。如需以 eDTU 集區大小為基礎的集區儲存體限制，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool-reference.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+2.	加總集區中所有資料庫所需的位元組數目，以估計集區所需的儲存空間。然後判斷可提供此儲存體數量的 eDTU 集區大小。如需以 eDTU 集區大小為基礎的集區儲存體限制，請參閱[彈性資料庫集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)。
 3.	採用步驟 1 和步驟 2 中較大的 eDTU 估計值。
 4.	請參閱 [SQL Database 價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)並尋找大於步驟 3 估計值的最小 eDTU 集區大小。
 5.	將步驟 5 的集區價格與單一資料庫適當效能層級的價格相比較。
+
 
 ## 摘要
 
@@ -130,8 +128,7 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 
 - [建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)
 - [監視、管理和估算彈性資料庫集區大小](sql-database-elastic-pool-manage-portal.md)
-- [彈性資料庫集區參考](sql-database-elastic-pool-reference.md)
 - [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
 - [用來識別彈性資料庫集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

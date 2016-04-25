@@ -79,7 +79,7 @@
 4.	在入口網站中，選取 [設定]，然後選取 [管理員]。選取 [新增]，然後將新使用者新增為共同管理員。這麼做可讓組織帳戶管理您的 Azure 訂閱。
 5.	最後，登出 Azure 入口網站，然後使用新的組織帳戶重新登入。如果這是您第一次使用此帳戶登入，系統會提示您變更密碼。
 
-如需關於搭配 Microsoft Azure 使用組織帳戶的詳細資訊，請參閱[以組織身分註冊 Microsoft Azure](sign-up-organization.md)。
+如需關於搭配 Microsoft Azure 使用組織帳戶的詳細資訊，請參閱[以組織身分註冊 Microsoft Azure](../active-directory/sign-up-organization.md)。
 
 如果您有多個訂用帳戶，並想要指定其中一個訂用帳戶供 Azure 金鑰保存庫使用，請輸入下列內容以查看您帳戶的訂用帳戶：
 
@@ -134,13 +134,13 @@
 
     azure keyvault key import --vaultName 'ContosoKeyVault' --key-name 'ContosoFirstKey' --pem-file './softkey.pem' --password 'PaSSWORD' --destination software
 
-您現在可以參照您所建立或上傳至 Azure 金鑰保存庫的金鑰 (藉由使用其 URI)。使用 ****https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** 可一律取得最新的版本，使用 ****https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** 可取得此特定版本。
+您現在可以參照您所建立或上傳至 Azure 金鑰保存庫的金鑰 (藉由使用其 URI)。使用 **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** 可一律取得最新的版本，使用 **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** 可取得此特定版本。
 
 若要將名為 SQLPassword 且其 Azure 金鑰保存庫的值為 Pa$$w0rd 的密碼新增至保存庫，請輸入下列內容：
 
     azure keyvault secret set --vault-name 'ContosoKeyVault' --secret-name 'SQLPassword' --value 'Pa$$w0rd'
 
-透過使用其 URI，您現在可以參照您新增至 Azure 金鑰保存庫的密碼。使用 ****https://ContosoVault.vault.azure.net/secrets/SQLPassword** 可一律取得最新的版本，使用 ****https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** 可取得此特定版本。
+透過使用其 URI，您現在可以參照您新增至 Azure 金鑰保存庫的密碼。使用 **https://ContosoVault.vault.azure.net/secrets/SQLPassword** 可一律取得最新的版本，使用 **https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** 可取得此特定版本。
 
 讓我們來檢視剛剛建立的金鑰或密碼：
 
@@ -256,4 +256,4 @@
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/17/2015"
+	ms.date="04/01/2016"
 	ms.author="josephd"/>
 
 # Azure 基礎結構服務工作負載：內部網路 SharePoint 伺服器陣列
@@ -35,8 +35,6 @@
 
 下一步是設定裝載在 Azure 中的開發/測試內部網路 SharePoint 伺服器陣列。
 
-> [AZURE.NOTE] Microsoft 已發行 SharePoint Server 2016 IT 預覽版。若要輕鬆安裝和測試此預覽版，您可以搭配 SharePoint Server 2016 IT 預覽版和其預先安裝的必要元件來使用 Azure 虛擬機器資源庫映像。如需詳細資訊，請參閱[在 Azure 中測試 SharePoint Server 2016 IT 預覽版](https://azure.microsoft.com/blog/test-sharepoint-server-2016-it-preview-4/) (英文)。
-
 ## 建立裝載在 Azure 中的開發/測試內部網路 SharePoint 伺服器陣列。
 
 您有兩個選擇可以針對裝載在 Azure 中的 SharePoint 伺服器陣列建立開發/測試環境：
@@ -44,7 +42,7 @@
 - 純雲端虛擬網路
 - 跨單位虛擬網路
 
-您可以使用您的 [MSDN 訂用帳戶](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)或 [Visual Studio 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)免費建立這些開發/測試環境。
+您可以使用您的 [Visual Studio 訂用帳戶](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)或 Azure 訂用帳戶建立這些開發/測試環境。
 
 ### 純雲端虛擬網路
 
@@ -54,7 +52,7 @@
 
 ### 跨單位虛擬網路
 
-跨單位虛擬網路會透過站台對站台 VPN 或 ExpressRoute 連接到內部部署網路。如果您想要建立模擬最後組態和實驗的開發/測試環境，以便透過 VPN 連接存取 SharePoint 伺服器並執行遠端系統管理，請參閱＜[在混合式雲端中設定 SharePoint 內部網路伺服器陣列以進行測試](../virtual-network/virtual-networks-setup-sharepoint-hybrid-cloud-testing.md)＞。
+跨單位虛擬網路會透過站台對站台 VPN 或 ExpressRoute 連接到內部部署網路。如果您想要建立模擬最後組態和實驗的開發/測試環境，以便透過 VPN 連接存取 SharePoint 伺服器並執行遠端系統管理，請參閱＜[在混合式雲端中設定 SharePoint 內部網路伺服器陣列以進行測試](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)＞。
 
 ![](./media/virtual-machines-windows-sp-intranet/CreateSPFarmHybridCloud.png)
 
@@ -102,4 +100,4 @@
 
 - 在設定組態前先取得生產工作負載[概觀](virtual-machines-windows-sp-intranet-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

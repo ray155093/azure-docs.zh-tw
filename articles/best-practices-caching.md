@@ -290,11 +290,11 @@ Azure 管理入口網站包含便利的圖形化顯示，可讓您監視快取�
 - 它針對多個讀取者和單一寫入者的相同工作階段狀態資料支援受控制的並行存取權，以及
 - 它可以使用壓縮來節省記憶體，並改善網路效能。
 
-如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](redis-cache/cache-asp.net-session-state-provider.md)頁面。
+如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](redis-cache/cache-aspnet-session-state-provider.md)頁面。
 
 > [AZURE.NOTE] 請勿針對在 Azure 環境以外執行的 ASP.NET 應用程式使用 Azure Redis 快取的工作階段狀態提供者。從 Azure 外部存取快取的延遲會消除快取資料的效能優勢。
 
-同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存透過 ASP.NET Web 應用程式所產生的 HTTP 回應。使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間；產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取提供者](redis-cache/cache-asp.net-output-cache-provider.md)頁面。
+同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存透過 ASP.NET Web 應用程式所產生的 HTTP 回應。使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間；產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取提供者](redis-cache/cache-aspnet-output-cache-provider.md)頁面。
 
 ### Azure Redis 快取
 
@@ -325,11 +325,11 @@ Azure 入口網站包含便利的圖形化顯示，可讓您監視快取的效�
 - 針對多個讀取者和單一寫入者的相同工作階段狀態資料，支援受控制的並行存取權。
 - 使用壓縮來節省記憶體，並改善網路效能。
 
-如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](redis-cache/cache-asp.net-session-state-provider.md)頁面。
+如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](redis-cache/cache-aspnet-session-state-provider.md)頁面。
 
 > [AZURE.NOTE] 請勿針對在 Azure 環境以外執行的 ASP.NET 應用程式使用 Azure Redis 快取的工作階段狀態供應器。從 Azure 外部存取快取的延遲會消除快取資料的效能優勢。
 
-同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存 ASP.NET Web 應用程式所產生的 HTTP 回應。使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間。產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取提供者](redis-cache/cache-asp.net-output-cache-provider.md)頁面。
+同樣地，Azure Redis 快取的輸出快取提供者可讓您儲存 ASP.NET Web 應用程式所產生的 HTTP 回應。使用輸出快取提供者搭配 Azure Redis 快取，可針對呈現複雜 HTML 輸出的應用程式改善回應時間。產生類似回應的應用程式執行個體可以使用快取中的共用輸出片段，而不會重新產生此 HTML 輸出。如需詳細資訊，請造訪 Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取供應器](redis-cache/cache-aspnet-output-cache-provider.md)頁面。
 
 ## 建置自訂的 Redis 快取
 
@@ -927,11 +927,11 @@ subscriber.PublishAsync("messages:blogPosts", blogPost.Title);
 - Redis 網站上的 [Redis Security (Redis 安全性)](http://redis.io/topics/security) 頁面
 - Azure 部落格上的 [Lap around Azure Redis Cache (瀏覽 Azure Redis 快取)](https://azure.microsoft.com/blog/2014/06/04/lap-around-azure-redis-cache-preview/) 頁面
 - Microsoft 網站上的[在 Azure 中的 CentOS Linux VM 上執行 Redis ](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx) 頁面
-- Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](redis-cache/cache-asp.net-session-state-provider.md)頁面
-- Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取提供者](redis-cache/cache-asp.net-output-cache-provider.md)頁面
+- Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](redis-cache/cache-aspnet-session-state-provider.md)頁面
+- Microsoft 網站上的 [Azure Redis 快取的 ASP.NET 輸出快取供應器](redis-cache/cache-aspnet-output-cache-provider.md)頁面
 - Redis 網站上的 [An Introduction to Redis data types and abstractions (Redis 資料類型與抽象概念簡介)](http://redis.io/topics/data-types-intro) 頁面
 - StackExchange.Redis 網站上的 [Basic usage (基本使用方式)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md) 頁面
 - StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Transactions.md) 頁面
 - Microsoft 網站上的[資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

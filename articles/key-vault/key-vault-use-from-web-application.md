@@ -1,12 +1,12 @@
 <properties pageTitle="從 Web 應用程式使用 Azure 金鑰保存庫 | Microsoft Azure" description="使用此教學課程來幫助您了解如何從 Web 應用程式使用 Azure 金鑰保存庫。" services="key-vault" documentationCenter="" authors="adamhurwitz" manager="" tags="azure-resource-manager"//>
 
-<tags 
-	ms.service="key-vault" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="01/29/2016" 
+<tags
+	ms.service="key-vault"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="01/29/2016"
 	ms.author="adhurwit"/>
 
 # 從 Web 應用程式使用 Azure 金鑰保存庫 #
@@ -19,19 +19,19 @@
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱[什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
-## 必要條件 
+## 必要條件
 
 若要完成本教學課程，您必須具備下列項目：
 
 - Azure 金鑰保存庫中密碼的 URI
 - 已在 Azure Active Directory 註冊，且有權存取您金鑰保存庫之 Web 應用程式的用戶端識別碼和用戶端密碼
-- Web 應用程式。我們將會說明 ASP.NET MVC 應用程式在 Azure 中做為 Web 應用程式部署的步驟。 
+- Web 應用程式。我們將會說明 ASP.NET MVC 應用程式在 Azure 中做為 Web 應用程式部署的步驟。
 
 > [AZURE.NOTE]  在本教學課程中，完成在[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)中所列步驟是很重要的，這樣您才會有 Web 應用程式的密碼 URI 和用戶端識別碼和用戶端密碼。
 
 已在 Azure Active Directory 註冊、且已獲權存取金鑰保存庫的 Web 應用程式將會被用來存取金鑰保存庫。如果情況不是這樣，請回到開始使用教學課程中的註冊應用程式，並重複列出的步驟。
 
-本教學課程是針對 Web 開發人員所設計，這些開發人員必須了解在 Azure 上建立 Web 應用程式的基本概念。如需有關 Azure Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](../app-service-web-overview.md)。
+本教學課程是針對 Web 開發人員所設計，這些開發人員必須了解在 Azure 上建立 Web 應用程式的基本概念。如需有關 Azure Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](../app-service-web/app-service-web-overview.md)。
 
 
 
@@ -47,7 +47,7 @@
 	// this is currently the latest stable version of ADAL
 	Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.16.204221202
 
-	Install-Package Microsoft.Azure.KeyVault 
+	Install-Package Microsoft.Azure.KeyVault
 
 
 ## <a id="webconfig"></a>修改 Web.Config ##
@@ -72,7 +72,7 @@
 	//add these using statements
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
 	using System.Web.Configuration;
-	
+
 	//this is an optional property to hold the secret after it is retrieved
 	public static string EncryptSecret { get; set; }
 
@@ -83,10 +83,10 @@
 	    ClientCredential clientCred = new ClientCredential(WebConfigurationManager.AppSettings["ClientId"],
                     WebConfigurationManager.AppSettings["ClientSecret"]);
 	    AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCred);
-	    
+
 	    if (result == null)
 	    	throw new InvalidOperationException("Failed to obtain the JWT token");
-	    
+
 	    return result.AccessToken;
     }
 
@@ -101,12 +101,12 @@
 	using Microsoft.Azure.KeyVault;
 	using System.Web.Configuration;
 
-	// I put my GetToken method in a Utils class. Change for wherever you placed your method. 
+	// I put my GetToken method in a Utils class. Change for wherever you placed your method.
     var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetToken));
 
 	var sec = kv.GetSecretAsync(WebConfigurationManager.AppSettings["SecretUri"]).Result.Value;
-	
-	//I put a variable in a Utils class to hold the secret for general  application use. 
+
+	//I put a variable in a Utils class to hold the secret for general  application use.
     Utils.EncryptSecret = sec;
 
 
@@ -117,7 +117,7 @@
 ![Azure 入口網站中顯示的應用程式設定][1]
 
 
-## 使用憑證 (而非用戶端密碼) 進行驗證。 
+## 使用憑證 (而非用戶端密碼) 進行驗證。
 若要驗證 Azure AD 應用程式，另一種方式是使用用戶端識別碼和憑證 (而非用戶端識別碼和用戶端密碼)。以下是在 Azure Web 應用程式中使用憑證的步驟：
 
 1. 取得或建立憑證
@@ -139,22 +139,22 @@
 **將憑證與 Azure AD 應用程式產生關聯** 有了憑證之後，您需要將其與 Azure AD 應用程式產生關聯。但是，Azure 管理入口網站目前不支援這項作業。您必須改用 Powershell。以下是您需要執行的命令：
 
 	$x509 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-	
+
 	PS C:\> $x509.Import("C:\data\KVWebApp.cer")
-	
+
 	PS C:\> $credValue = [System.Convert]::ToBase64String($x509.GetRawCertData())
-	
+
 	PS C:\> $now = [System.DateTime]::Now
-	
+
 	# this is where the end date from the cert above is used
-	PS C:\> $yearfromnow = [System.DateTime]::Parse("2016-07-31") 
-	
+	PS C:\> $yearfromnow = [System.DateTime]::Parse("2016-07-31")
+
 	PS C:\> $adapp = New-AzureADApplication -DisplayName "KVWebApp" -HomePage "http://kvwebapp" -IdentifierUris "http://kvwebapp" -KeyValue $credValue -KeyType "AsymmetricX509Cert" -KeyUsage "Verify" -StartDate $now -EndDate $yearfromnow
-	
+
 	PS C:\> $sp = New-AzureADServicePrincipal -ApplicationId $adapp.ApplicationId
-	
+
 	PS C:\> Set-AzureKeyVaultAccessPolicy -VaultName 'contosokv' -ServicePrincipalName $sp.ServicePrincipalName -PermissionsToKeys all -ResourceGroupName 'contosorg'
-	
+
 	# get the thumbprint to use in your app settings
 	PS C:\>$x509.Thumbprint
 
@@ -176,7 +176,7 @@
             try
             {
                 store.Open(OpenFlags.ReadOnly);
-                X509Certificate2Collection col = store.Certificates.Find(X509FindType.FindByThumbprint, 
+                X509Certificate2Collection col = store.Certificates.Find(X509FindType.FindByThumbprint,
                     findValue, false); // Don't validate certs, since the test root isn't installed.
                 if (col == null || col.Count == 0)
                     return null;
@@ -241,6 +241,5 @@
 <!--Image references-->
 [1]: ./media/key-vault-use-from-web-application/PortalAppSettings.png
 [2]: ./media/key-vault-use-from-web-application/PortalAddCertificate.png
- 
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

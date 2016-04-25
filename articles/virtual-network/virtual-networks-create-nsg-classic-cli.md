@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何在傳統模式中使用 Azure CLI 建立 NSG | Microsoft Azure"
    description="了解如何傳統模式中使用 Azure CLI 建立及部署 NSG"
    services="virtual-network"
@@ -8,7 +8,7 @@
    editor="tysonn"
    tags="azure-service-management"
 />
-<tags 
+<tags
    ms.service="virtual-network"
    ms.devlang="na"
    ms.topic="article"
@@ -32,7 +32,7 @@
 ## 如何建立前端子網路的 NSG
 若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure CLI，請參閱[安裝和設定 Azure CLI](xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 
 2. 執行 **`azure config mode`** 命令，以切換為傳統模式，如下所示。
 
@@ -239,4 +239,4 @@
 		info:    Creating a network security group "NSG-BackEndX"
 		info:    network nsg subnet add command OK
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

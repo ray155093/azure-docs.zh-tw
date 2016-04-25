@@ -33,7 +33,7 @@
 
 + iOS 8 裝置 (您無法在 iOS 模擬器中測試推播通知)
 + iOS Developer Program 成員資格
-+ [Xamarin.iOS Studio]
++ [Xamarin Studio]
 + [Azure 行動服務元件]
 
 >[AZURE.IMPORTANT] 基於 APNS 需求，您必須在 iOS 功能裝置 (iPhone 或 iPad) 而非在模擬器上部署和測試推播通知。
@@ -387,7 +387,6 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [121]: ./media/partner-xamarin-mobile-services-ios-get-started-push/mobile-services-ios-push-21.png
 [122]: ./media/partner-xamarin-mobile-services-ios-get-started-push/mobile-services-ios-push-22.png
 
-[Xamarin.iOS Studio]: http://xamarin.com/platform
 [Install Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
 [iOS Provisioning Portal]: http://go.microsoft.com/fwlink/p/?LinkId=272456
 [Mobile Services iOS SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
@@ -401,6 +400,6 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [apns 物件]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 [Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 [completed example project]: http://go.microsoft.com/fwlink/p/?LinkId=331303
-[Xamarin.iOS]: http://xamarin.com/download
+[Xamarin Studio]: http://xamarin.com/download
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

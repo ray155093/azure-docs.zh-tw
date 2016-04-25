@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="如何建立 Azure RemoteApp 的混合式收藏 | Microsoft Azure" 
-	description="了解如何建立連接內部網路的 RemoteApp 部署。" 
-	services="remoteapp" 
-	documentationCenter="" 
-	authors="lizap" 
-	manager="mbaldwin" 
+<properties
+	pageTitle="如何建立 Azure RemoteApp 的混合式收藏 | Microsoft Azure"
+	description="了解如何建立連接內部網路的 RemoteApp 部署。"
+	services="remoteapp"
+	documentationCenter=""
+	authors="lizap"
+	manager="mbaldwin"
 	editor=""/>
 
-<tags 
-	ms.service="remoteapp" 
-	ms.workload="compute" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/05/2016" 
+<tags
+	ms.service="remoteapp"
+	ms.workload="compute"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/05/2016"
 	ms.author="elizapo"/>
 
 # 如何建立 Azure RemoteApp 的混合式收藏
@@ -40,12 +40,12 @@ Azure RemoteApp 收藏分成兩種：
 
 在建立收藏之前，您必須執行下列作業：
 
-- [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。 
+- [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
 - 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。限制此帳戶的權限，使其只能將機器加入網域中。
 - 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
 - 安裝 [Azure PowerShell](../powershell-install-configure.md) 模組。
 - 收集您想授與存取權之使用者的相關資訊。您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com)。請確定 UPN 符合 Azure AD 和 Active Directory。
-- 選擇範本映像。Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md)。 
+- 選擇範本映像。Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md)。
 - 想要使用 Office 365 ProPlus 的映像嗎？ 請在[這裡](remoteapp-officesubscription.md)查看資訊。
 - [設定 RemoteApp 的 Azure Active Directory](remoteapp-ad.md)。
 
@@ -58,9 +58,9 @@ Azure RemoteApp 收藏分成兩種：
 
 ### 建立 Azure VNET 並將它加入您的 Active Directory 部署
 
-首先，建立[虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。您可以在 Azure 管理入口網站的 [網路] 索引標籤上進行。您必須將虛擬網路連線到同步到您 Azure Active Directory 租用戶的 Active Directory 部署。
+首先，建立[虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。您可以在 Azure 入口網站的 [網路] 索引標籤上進行。您必須將虛擬網路連線到同步到您 Azure Active Directory 租用戶的 Active Directory 部署。
 
-如需詳細資訊，請參閱[關於管理入口網站中的虛擬網路設定](../virtual-network/virtual-networks-settings.md)。
+如需詳細資訊，請參閱[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
 
 ### 確定您的虛擬網路已經為 Azure RemoteApp 準備就緒
 請在建立集合之前，先確定您的虛擬網路已準備就緒。您可以執行下列動作來驗證：
@@ -91,9 +91,9 @@ Azure RemoteApp 收藏分成兩種：
 
 ## 步驟 3：將您的集合連結到本機網域 ##
 
- 
+
 1. 在 [快速入門] 頁面上，按一下 [加入本機網域]。
-2. 將 Azure RemoteApp 服務帳戶新增至您的本機 Active Directory 網域。您將需要網域名稱、組織單位、服務帳戶的使用者名稱和密碼。 
+2. 將 Azure RemoteApp 服務帳戶新增至您的本機 Active Directory 網域。您將需要網域名稱、組織單位、服務帳戶的使用者名稱和密碼。
 
 	這是您按照[設定 Azure RemoteApp 的 Active Directory](remoteapp-ad.md) 中的步驟所收集到的資訊。
 
@@ -121,14 +121,14 @@ RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具�
 Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式。此程式位於您為收藏上傳的範本映像中。當使用者存取應用程式時，應用程式看似會在其本機環境中執行，但實際上是在 Azure 中執行。
 
 您必須先發佈應用程式，您的使用者才能存取應用程式 – 發佈應用程式可讓您的使用者透過遠端桌面用戶端存取應用程式。
- 
+
 您可以將多個應用程式發佈到自己的集合。請在發佈頁面中按一下 [發佈] 來新增應用程式。您可以從範本映像的 [開始] 功能表發佈，或藉由為 App 指定範本映像的路徑來發佈。如果您選擇從 [開始] 功能表新增，請選擇要加入的程式。如果您選擇提供應用程式的路徑，請提供應用程式的名稱，以及應用程式在範本映像上的安裝路徑。
 
 ## 步驟 7：設定使用者存取 ##
 
 您已經建立集合，現在您必須新增可使用您遠端資源的使用者。您要給予存取權的使用者，必須存在於與您用來建立此 Azure RemoteApp 集合的訂用帳戶相關聯的 Active Directory 租用戶中。
 
-1.	在 [快速入門] 頁面上，按一下 [Configure user access]。 
+1.	在 [快速入門] 頁面上，按一下 [Configure user access]。
 2.	輸入工作帳戶 (來自於 Active Directory)，或是您要為其授與存取權的 Microsoft 帳戶。
 
 	**注意：**
@@ -145,8 +145,8 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 您已經成功建立並部署了自己的 Azure RemoteApp 混合式集合。下一個步驟是要讓使用者下載並安裝遠端桌面用戶端。您可以在 Azure RemoteApp 的 [快速啟動] 頁面上找到用戶端的 URL。接著，請讓使用者登入用戶端，並存取您所發佈的應用程式。
 
 
- 
-### 幫我們來協助您 
+
+### 幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

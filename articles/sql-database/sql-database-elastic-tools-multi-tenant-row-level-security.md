@@ -2,8 +2,9 @@
 	pageTitle="使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式" 
 	description="了解如何搭配資料列層級安全性使用彈性資料庫工具建置應用程式，且讓此應用程式在 Azure SQL Database 上具有可支援多租用戶分區的高度可擴充資料層。" 
 	metaKeywords="azure sql database elastic tools multi tenant row level security rls" 
-	services="sql-database" documentationCenter=""  
-	manager="jeffreyg" 
+	services="sql-database" 
+    documentationCenter=""  
+	manager="jhubbard" 
 	authors="tmullaney"/>
 
 <tags 
@@ -21,7 +22,7 @@
 
 * 彈性資料庫工具可讓開發人員藉由使用 .NET 程式庫和 Azure 服務範本的一套業界標準分區化作法，向外延展應用程式的資料層。使用「彈性資料庫用戶端程式庫」管理分區，有助於自動化及簡化許多通常與分區化相關的基礎結構工作。 
 
-* **資料列層級安全性**可讓開發人員使用安全性原則來篩選掉一些資料列 (這些資料列不屬於執行查詢的租用戶)，藉此在同一個資料庫中儲存多個租用戶的資料。在資料庫內 (而不是在應用程式內) 集中存取邏輯與 RLS，可簡化維護流程並降低發生錯誤的風險 (因為應用程式的程式碼基底會成長)。RLS 需要最新的 [Azure SQL Database 更新 (第 12 版)](../sql-database-v12-whats-new.md)。
+* **資料列層級安全性**可讓開發人員使用安全性原則來篩選掉一些資料列 (這些資料列不屬於執行查詢的租用戶)，藉此在同一個資料庫中儲存多個租用戶的資料。在資料庫內 (而不是在應用程式內) 集中存取邏輯與 RLS，可簡化維護流程並降低發生錯誤的風險 (因為應用程式的程式碼基底會成長)。RLS 需要最新的 [Azure SQL Database 更新 (第 12 版)](sql-database-v12-whats-new.md)。
 
 搭配使用這些功能時，由於在同一個分區資料庫中儲存多租用戶的資料可節省成本並提高效率，進而使應用程式受益。在此同時，應用程式仍會為「高階」租用戶彈性地提供隔離的單一租用戶分區，因為這些租用戶需要更嚴格的效能保證，畢竟多租用戶分區並不保證能在租用戶間平均分配資源。
 
@@ -309,4 +310,6 @@ GO
 [1]: ./media/sql-database-elastic-tools-multi-tenant-row-level-security/blogging-app.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0204_2016-->
+ 
+
+<!---HONumber=AcomDC_0413_2016-->

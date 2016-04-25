@@ -4,7 +4,7 @@
 	services="cache" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/06/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Azure 受管理快取服務
 
 本指南示範如何開始使用 **Azure 受管理的快取服務**。這些範例均以 C# 程式碼撰寫，並使用 .NET API。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**、**新增和移除快取中的物件、將 ASP.NET 工作階段狀態儲存在快取中**，以及**使用快取啟用 ASP.NET 頁面輸出快取**。如需使用 Azure 快取的詳細資訊，請參閱[後續步驟][]一節。
 
->[AZURE.IMPORTANT]我們現在宣布將在 2016 年 11 月 30 日淘汰「Azure 受管理的快取服務」和 Azure In-Role Cache。我們建議您移轉到 Azure Redis Cache 以為這次淘汰做準備。如需日期和移轉指南的詳細資訊，請參閱[我適合使用哪個 Azure 快取服務？](../redis-cache/cache-faq.md#which-azure-cache-offering-is-right-for-me)
+>[AZURE.IMPORTANT]根據去年的[公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 服務都將在 2016 年 11 月 30 日淘汰。我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。如需有關移轉的資訊，請參閱[從受管理的快取服務移轉至 Azure Redis 快取](../redis-cache/cache-migrate-to-redis.md)。
 
 <a name="what-is"></a>
 ## 何謂 Azure 受管理快取服務？
@@ -368,7 +368,7 @@ Azure 快取的工作階段狀態提供者為 ASP.NET 應用程式的程序外�
       </sessionState>
     </system.web>-->
 
->在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] (英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+>在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝](英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 
 若要對 Azure 快取啟用工作階段狀態提供者，請將指定的區段取消註解。預設快取是在提供的片段中指定。若要使用不同快取，請在 **cacheName** 屬性中指定所需的快取。
 
@@ -392,7 +392,7 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
       </outputCache>
     </caching>-->
 
->在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] (英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+>在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][](英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 
 若要對 Azure 快取啟用輸出快取提供者，請將指定的區段取消註解。預設快取是在提供的片段中指定。若要使用不同快取，請在 **cacheName** 屬性中指定所需的快取。
 
@@ -485,4 +485,4 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
 [Which Azure Cache offering is right for me?]: cache-faq.md#which-azure-cache-offering-is-right-for-me
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

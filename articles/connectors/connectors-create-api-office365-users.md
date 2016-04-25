@@ -30,7 +30,7 @@ ms.author="deonhe"/>
 
 &nbsp;
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。如需 2014-12-01-preview 結構描述版本，請按一下 [Office 365 API](../app-service-logic/app-service-logic-connector-office365.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 
 您可以利用 Office 365 使用者來：
@@ -39,9 +39,9 @@ ms.author="deonhe"/>
 - 使用可取得直屬員工、取得管理員的使用者設定檔等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，取得某人的直屬員工，然後利用此資訊更新 SQL Azure 資料庫。 
 - 新增 Office 365 使用者 API 至 PowerApps Enterprise。接著，您的使用者便能夠在自己的應用程式中使用這個 API。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增 API 的資訊，請移至[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
@@ -61,7 +61,7 @@ Office 365 使用者 API 提供下列動作。無觸發程序。
 1. 登入您的 Office 365 使用者帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 Office 365 帳戶。 
 
-連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的＜REST API 參考＞一節會說明這些屬性。
+連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Office 365 使用者連線。
 
@@ -204,4 +204,4 @@ Office 365 使用者 API 提供下列動作。無觸發程序。
 [10]: ./media/connectors-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/connectors-create-api-office365-users/contoso-aad-app-configure.PNG
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

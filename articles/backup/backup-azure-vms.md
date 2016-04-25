@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/22/2016"
+	ms.date="04/08/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
@@ -34,22 +34,39 @@
 ## 步驟 1 - 探索 Azure 虛擬機器
 若要在註冊前確保能夠識別任何已加入至訂用帳戶的新虛擬機器 (VM)，請執行探索程序。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。
 
-1. 在 Azure 入口網站中，瀏覽至 [復原服務] 下的備份保存庫，然後按一下 [註冊的項目]。
+1. 登入[傳統入口網站](http://manage.windowsazure.com/)。
 
-2. 從下拉式選單中選取 [Azure 虛擬機器]。
+2. 在 Azure 傳統服務清單中，按一下 [復原服務] 以開啟備份和 Site Recovery 保存庫清單。![開啟保存庫清單](./media/backup-azure-vms/choose-vault-list.png)
+
+3. 在備份保存庫清單中，選取要備份 VM 的保存庫。
+
+    如果這是新的保存庫，則入口網站會開啟至 [快速啟動] 頁面。
+
+    ![開啟已註冊的項目功能表](./media/backup-azure-vms/vault-quick-start.png)
+
+    如果先前已設定此保存庫，則入口網站會開啟至最近使用的功能表。
+
+4. 在保存庫功能表 (位於頁面頂端) 中，按一下 [已註冊的項目]。
+
+    ![開啟已註冊的項目功能表](./media/backup-azure-vms/vault-menu.png)
+
+5. 在 [類型] 功能表中選取 [Azure 虛擬機器]。
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-3. 按一下頁面底部的 [**探索**]。
-    ![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
+6. 按一下頁面底部的 [**探索**]。
+
+	![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
     ![探索 VM](./media/backup-azure-vms/discovering-vms.png)
 
-    程序完成時，通知隨即變更。
+    程序完成時，通知隨即變更。如果探索程序找不到虛擬機器，請先確定 VM 存在。如果 VM 存在，請確定 VM 位於與備份保存庫相同的區域。如果 VM 存在且位於相同區域中，請確定 VM 尚未註冊到備份保存庫。如果 VM 已指派給備份保存庫，便無法指派給其他備份保存庫。
 
     ![探索完成](./media/backup-azure-vms/discovery-complete.png)
+
+    一旦找到新的項目，請移至步驟 2 並註冊您的 VM。
 
 ##  步驟 2 - 註冊 Azure 虛擬機器
 您必須註冊 Azure 虛擬機器，使其與 Azure 備份服務相關聯。這通常是一次性活動。
@@ -61,7 +78,8 @@
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
 3. 按一下頁面底部的 [註冊]。
-    ![註冊按鈕](./media/backup-azure-vms/register-button-only.png)
+
+	![註冊按鈕](./media/backup-azure-vms/register-button-only.png)
 
 4. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。如果有兩個以上同名的虛擬機器，請使用雲端服務加以區別。
 
@@ -164,4 +182,4 @@
 - [管理和監視虛擬機器](backup-azure-manage-vms.md)
 - [還原虛擬機器](backup-azure-restore-vms.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

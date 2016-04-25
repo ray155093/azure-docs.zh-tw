@@ -1,6 +1,6 @@
 <properties
-	pageTitle="以 PowerShell 建立 SQL Server 虛擬機器 | Microsoft Azure"
-	description="提供使用 SQL Server 虛擬機器資源庫映像建立 Azure VM 的步驟和 PowerShell 指令碼。"
+	pageTitle="以 Azure PowerShell 建立 SQL Server 虛擬機器 (傳統) | Microsoft Azure"
+	description="提供使用 SQL Server 虛擬機器資源庫映像建立 Azure VM 的步驟和 PowerShell 指令碼。本主題使用傳統部署模式。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="rothja"
@@ -13,10 +13,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="01/22/2016"
+	ms.date="04/08/2016"
 	ms.author="jroth" />
 
-# 在 Azure 中建立 SQL Server 虛擬機器 (PowerShell)
+# 在 Azure PowerShell 中建立 SQL Server 虛擬機器 (傳統)
 
 ## 概觀
 
@@ -24,14 +24,17 @@
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
-
 ## 安裝並設定 PowerShell
 
 1. 如果您沒有 Azure 帳戶，請造訪 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-2. [安裝最新版的 Azure PowerShell Cmdlet](../powershell-install-configure.md/#how-to-install-azure-powershell)。
+2. [安裝最新版的 Azure PowerShell Cmdlet](../powershell-install-configure.md)。
 
-3. [將 PowerShell 與您的 Azure 訂用帳戶連線](../powershell-install-configure.md/#how-to-connect-to-your-subscription)。
+3. 在安裝之後，啟動 Windows PowerShell。
+
+4. 然後，使用 Add-AzureAccount 命令，將 PowerShell 與您的 Azure 訂用帳戶連線。
+
+		Add-AzureAccount
 
 ## 決定您的目標 Azure 區域
 
@@ -163,10 +166,10 @@
 
 您可以在[虛擬機器文件](virtual-machines-windows-classic-create-powershell.md)中找到其他使用 PowerShell 佈建虛擬機器的指示。如需與 SQL Server 和進階儲存體相關的其他指令碼，請參閱[在虛擬機器上搭配使用 Azure 進階儲存體和 SQL Server](virtual-machines-windows-classic-sql-server-premium-storage.md)。
 
-在許多情況下下，下一個步驟是將資料庫移轉到這個新的 SQL Server VM。如需資料庫移轉的指引，請參閱[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-classic-migrate-sql.md)。
+在許多情況下下，下一個步驟是將資料庫移轉到這個新的 SQL Server VM。如需資料庫移轉的指引，請參閱[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
-如果還想了解如何使用 Azure 入口網站建立 SQL 虛擬機器，請參閱[在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。請注意，本教學課程將逐步說明從入口網站利用建議的資源管理員模型建立 VM，而不是利用本 PowerShell 主題中所使用的傳統模型建立 VM。
+如果還想了解如何使用 Azure 入口網站建立 SQL 虛擬機器，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。請注意，本教學課程將逐步說明從入口網站利用建議的資源管理員模型建立 VM，而不是利用本 PowerShell 主題中所使用的傳統模型建立 VM。
 
-除了上述資源，我們也建議您檢閱[在 Azure 虛擬機器中執行 SQL Server 的其他相關主題](virtual-machines-windows-classic-sql-overview.md)。
+除了上述資源，我們也建議您檢閱[在 Azure 虛擬機器中執行 SQL Server 的其他相關主題](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

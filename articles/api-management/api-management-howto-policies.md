@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="Azure API 管理中的原則" 
+	pageTitle="Azure API 管理中的原則 | Microsoft Azure" 
 	description="了解如何在 API 管理中建立、編輯和設定原則。" 
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/12/2016" 
 	ms.author="sdanie"/>
 
 
@@ -51,6 +51,8 @@
 原則定義是一份簡單的 XML 文件，描述一連串輸入和輸出陳述式。可直接在定義視窗中編輯 XML。右邊提供陳述式的清單，而且會啟用並醒目提示適用於目前範圍的陳述式，如以上螢幕擷取畫面中的 **Limit Call Rate** 陳述式所示。
 
 按一下已啟用的陳述式會在定義檢視中的游標位置上加入適當的 XML。
+
+>[AZURE.NOTE] 如果未啟用您想要新增的原則，請確定您是在該原則的正確範圍內。每個原則陳述式都是針對在特定範圍和原則區段中使用所設計。若要檢閱原則的原則區段和範圍，請檢查[原則參考][]中該原則的**使用方式**一節。
 
 [原則參考文件][]中提供原則陳述式及其設定的完整清單。
 
@@ -130,6 +132,7 @@
 
 > [AZURE.VIDEO policy-expressions-in-azure-api-management]
 
+[原則參考]: api-management-policy-reference.md
 [原則參考文件]: api-management-policy-reference.md
 [產品]: api-management-howto-add-products.md
 [API]: api-management-howto-add-products.md#add-apis
@@ -148,4 +151,4 @@
 [policies-restrict]: ./media/api-management-howto-policies/api-management-policies-restrict.png
 [policies-save]: ./media/api-management-howto-policies/api-management-policies-save.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

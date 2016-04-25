@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="02/29/2016"
+	ms.date="04/12/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure 命令列介面管理角色型存取控制
@@ -23,9 +23,14 @@
 - [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 - [REST API](role-based-access-control-manage-access-rest.md)
 
-## 列出角色型存取控制 (RBAC) 角色
+Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 (RBAC) 功能，可讓您精確管理訂用帳戶與資源的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
->[AZURE.IMPORTANT] 您需要[安裝 Azure CLI](../xplat-cli-install.md)，才能使用本文中的 Cmdlet。
+您必須具備以下項目，才能使用 Azure CLI 來管理 RBAC：
+
+- Azure CLI 0.8.8 版或更新版本。若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)。
+- Azure CLI 中的 Azure Resource Manager。如需詳細資訊，請瀏覽[搭配使用 Azure CLI 和 Resource Manager](../xplat-cli-azure-resource-manager.md)。
+
+## 列出角色
 
 ###	列出所有可用的角色
 若要列出所有可用的角色，請使用：
@@ -47,17 +52,17 @@
 
 ##	列出存取權
 ###	列出資源群組上有效的角色指派
-若要列出資源群組上有效的角色指派，請使用：
+若要列出資源群組中存在的角色指派，請使用︰
 
     azure role assignment list --resource-group <resource group name>
 
-下列範例顯示 *pharma-sales-projecforcast* 群組上有效的角色指派。
+下列範例顯示 *pharma-sales-projecforcast* 群組中的角色指派。
 
 ![RBAC Azure 命令列 - 依群組顯示的 azure 角色指派清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
 ###	列出使用者的角色指派，包括指派給使用者群組的角色
 
-下列範例顯示使用者 **sameert@aaddemo.com* 上有效的角色指派。
+下列範例顯示授與使用者 **sameert@aaddemo.com* 的角色指派。這包括直接指派給使用者的角色，以及繼承自群組的角色。
 
 ![RBAC Azure 命令列 - 依使用者顯示的 azure 角色指派清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-2.png)
 
@@ -157,4 +162,4 @@
 ## RBAC 主題
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

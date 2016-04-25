@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="03/07/2016"
+   ms.date="04/13/2016"
    ms.author="hascipio; v-divte"/>
 
 # 建立 Azure Marketplace 的虛擬機器映像的指南
@@ -45,96 +45,13 @@ SKU 是 VM 映像的商務名稱。VM 映像包含一個作業系統磁碟以及
 
 1. **加入 SKU。** SKU 必須具備用於 URL 中的識別碼。此識別碼必須是發行設定檔中的唯一識別碼，但是若與其他發行者發生識別碼衝突，並不會有任何風險。
 
-> [AZURE.NOTE] 供應項目和 SKU 識別項會顯示在 Marketplace 中的供應項目 URL。
+    > [AZURE.NOTE] 供應項目和 SKU 識別項會顯示在 Marketplace 中的供應項目 URL。
 
 2. **為 SKU 加入摘要描述。** 客戶可以看見摘要說明，所以您應讓說明可容易閱讀。此資訊在「進入預備環境」階段之前都不需要鎖定。在那之前，您都可以任意編輯。
 3. 如果您正在使用以 Windows 為基礎的 SKU，請遵循建議的連結，要求使用核准的 Windows Server 版本。
 
 ## 2\.建立與 Azure 相容的 VHD (以 Linux 為基礎)
-本節的焦點在於為 Azure Marketplace 建立以 Linux 為基礎的 VM 映像所採行的最佳作法。若需逐步解說，請參考下列文件：[建立與上傳包含 Linux 作業系統的虛擬硬碟][link-azure-vm-1]
-
-> [AZURE.TIP] 已針對 Microsoft Azure 映像庫中可用的 Linux 映像執行下列許多步驟 (例如，代理程式安裝、核心開機參數)。因此，以這些映像其中之一做為基底開始，可以代表節省時間，與設定非 Azure 感知的 Linux 映像做對比。
-
-### 2\.1 選擇正確的 VHD 大小
-已發行的 SKU (VM 映像) 應設計為可與所有支援 SKU 磁碟數目的 VM 大小搭配運作。您可以針對建議的大小提供指導，但是這些大小僅為建議使用，而非強迫使用。
-
-1. Linux 作業系統 VHD：VM 映像中的 Linux 作業系統 VHD 應建立為 30 GB - 50 GB 的固定格式 VHD。其大小不得少於 30 GB。如果實體大小小於 VHD 大小，此 VHD 應為疏鬆 VHD。大於 50 GB 的 Linux VHD 應以個別案例的基礎進行考量。如果您有不同格式的 VHD，您可以使用 [Convert-VHD PowerShell Cmdlet 變更格式][link-technet-1]。
-2. 資料磁碟 VHD：資料磁碟的大小可高達 1 TB。資料磁碟 VHD 應建立為固定格式 VHD。也可以是疏鬆 VHD。決定磁碟大小時，請記得客戶無法在映像中調整 VHD 大小。
-
-### 2\.2 確認已安裝最新的 Azure Linux 代理程式
-準備作業系統 VHD 時，請確認已安裝最新的 [Azure Linux 代理程式][link-azure-vm-2]。使用 RPM 或 Deb 封裝。封裝通常名為 walinuxagent 或 WALinuxAgent，但是請檢查您的散發以確定。此代理程式可提供在 Azure 中進行 Linux IaaS 部署的重要功能，例如 VM 佈建和網路能力。
-
-雖然代理程式可以不同方式進行設定，建議您使用一般代理程式設定以最大化相容性。您可以手動安裝代理程式，但如果可用，強烈建議您使用您的散發的預先設定封裝。
-
-如果您確實是選擇從 [GitHub 存放庫][link-github-waagent]手動安裝代理程式，請先將 'waagent' 檔案複製到 /usr/sbin 並在根目錄執行下列命令。
-
-    # chmod 755 /usr/sbin/waagent
-    # /usr/sbin/waagent -install
-
-代理程式組態檔會放在 /etc/waagent.conf。
-
-### 2\.3 驗證是否已包含必要的程式庫
-除了 Azure Linux 代理程式之外，也要包含下列程式庫：
-
-1. 您的核心中必須啟用 [Linux Integration Services][link-intsvc] 3.0 版或更新版本。請參閱 [Linux Kernel 需求](./virtual-machines-linux-create-upload-vhd-generic/#linux-kernel-requirements)。
-2. Azure I/O 穩定性的[核心修補程式](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/scsi/storvsc_drv.c?id=5c1b10ab7f93d24f29b5630286e323d1c5802d5c) (最新的核心可能不需要，但必須經過驗證)
-3. [Python][link-python] 2.6 或更新版本
-4. Python] pyasn1 封裝 (如果尚未安裝)
-5. [OpenSSL][link-openssl] (建議使用 v1.0 或更高版本)
-
-### 2\.4 設定磁碟分割
-不建議使用邏輯磁碟區管理員。為作業系統磁碟建立單一根分割。不可在作業系統或資料磁碟上使用交換分割。建議移除交換分割，即使它沒有裝載於 /etc/fstab 中也要移除。必要時，Linux 代理程式可在本機資源磁碟 (/dev/sdb) 上建立交換分割。
-
-### 2\.5 加入必要的核心開機指令列參數
-下列參數也必須加入核心開機指令列中。
-
-        console=ttyS0 earlyprintk=ttyS0 rootdelay=300
-
-這樣可以確保 Azure 支援會在必要時提供序列主控台輸出給客戶。它也可以提供適當的逾時給從雲端儲存體裝載的作業系統磁碟。即使您的 SKU 封鎖客戶直接 SSH 進入虛擬機器，還是必須啟用序列主控台輸出。
-
-### 2\.6 預設包含 SSH 伺服器
-強烈建議為客戶啟用 SSH。如果已啟用 SSH 伺服器，請利用下列選項將保持運作的 SSH 加入 sshd 設定：**ClientAliveInterval 180**。雖然建議使用 180，但可接受的範圍為 30 到 235。並非所有應用程式都想讓客戶擁有虛擬機器的直接 SSH 存取權。如果 SSH 遭到明確的封鎖，就不需要設定 **ClientAliveInterval** 選項。
-
-### 2\.7 符合網路需求
-以下是與 Azure 相容之 Linux VM 映像的網路需求：
-
-- 在許多情況下，最好停用 NetworkManager。其中一個例外是使用以 CentOS 7.x (及衍生項目) 為基礎的系統時，其中應該保留啟用 NetworkManager。
-- 網路組態應可透過 **ifup** 和 **ifdown** 指令碼控制。Linux 代理程式可能會使用這些命令，在佈建期間重新啟動網路。
-- 不得出現自訂網路設定。應該刪除 Resolv.conf 檔案做為最後一個步驟。這通常是做為取消佈建的一部分來完成 (請參閱 [Azure Linux 代理程式使用者指南](./virtual-machines-linux-agent-user-guide/))。您也可以利用下列命令手動執行這個步驟。
-
-        rm /etc/resolv.conf
-
-- 網路裝置必須在啟動時啟動並使用 DHCP。
-- Azure 上不支援 IPv6。如果啟用這個屬性，就無法運作。
-
-### 2\.8 確認已備妥安全性最佳作法
-遵循與安全性相關的最佳作法對於 Azure Marketplace 中的 SKU 非常重要。其中包括：
-
-- 為您的散發內容安裝所有的安全性補充程式。
-- 遵循散發安全性指南。
-- 避免跨佈建執行個體建立預設帳戶，這些帳戶會維持不變。
-- 清除非正式記錄項目。
-- 包含 iptables (防火牆) 軟體，但不啟用任何規則。如此便能夠為客戶提供順暢的預設體驗。想要使用 VM 防火牆進行其他設定的客戶可設定 iptables 規則以滿足他們的特定需求。
-
-### 2\.9 一般化映像
-Azure Marketplace 中的所有映像通常都必須能夠重複使用，因此必須移除其中的某些設定內容。如果要在 Linux 中完成此動作，必須取消作業系統 VHD 的佈建。
-
-Linux 的取消佈建命令如下。
-
-        # waagent -deprovision
-
-此命令會自動：
-
-- 移除 /etc/resolv.conf 中的名稱伺服器設定。
-- 移除快取的 DHCP 用戶端租用。
-- 將主機名稱重設為 localhost.localdomain。
-
-建議將組態檔 (/etc/waagent.conf) 進行設定，以確認完成下列動作：
-
-- 將組態檔中的 Provisioning.RegenerateSshHostKeyPair 設為 "y" 以移除所有的 SSH 主機金鑰。
-- 將組態檔中的 Provisioning.DeleteRootPassword 設為 "y" 以從 /etc/shadow 移除根密碼。如需組態檔內容的相關文件，請參閱代理程式 Github 儲存機制頁面上讀我檔案的 [組態] 區段 ([https://github.com/Azure/WALinuxAgent](https://github.com/Azure/WALinuxAgent) 並且向下捲動)。  
-
-此時您已完成 Linux VM 的一般化。從 Azure 入口網站、命令列或從 VM 中關閉 VM。關閉 VM 後，繼續進行步驟 3.4。
+本節的焦點在於為 Azure Marketplace 建立以 Linux 為基礎的 VM 映像所採行的最佳作法。若需逐步解說，請參考下列文件：[建立與上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md)
 
 ## 3\.建立與 Azure 相容的 VHD (以 Windows 為基礎)
 本節的焦點在於為 Azure Marketplace 建立以 Windows Server 為基礎的 SKU 所採行的步驟。
@@ -252,7 +169,7 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
 
         sysprep.exe /generalize /oobe /shutdown
 
-  下列 MSDN 文章的「步驟」提供如何 sysprep 作業系統的指導：[建立 Windows Server VHD 並將其上傳至 Azure](./virtual-machines-create-upload-vhd-windows-server/)。
+  下列 MSDN 文章的「步驟」提供如何 sysprep 作業系統的指導：[建立 Windows Server VHD 並將其上傳至 Azure](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md)。
 
 ## 4\.從您的 VHD 部署 VM
 在您將 VHD (一般化作業系統 VHD 和零或更多個資料磁碟 VHD) 上傳至 Azure 儲存體帳戶之後，您就可以將它們註冊為使用者 VM 映像。您可以接著測試該映像。請注意，因為您的作業系統 VHD 已一般化，所以您無法藉由提供 VHD URL 來直接部署 VM。
@@ -644,11 +561,10 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
 [link-datactr-2012]: http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012datacenter/
 [link-datactr-2008-r2]: http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2008r2sp1/
 [link-acct-creation]: marketplace-publishing-accounts-creation-registration.md
-[link-azure-vm-1]: ./virtual-machines-linux-create-upload-vhd/
 [link-technet-1]: https://technet.microsoft.com/library/hh848454.aspx
 [link-azure-vm-2]: ./virtual-machines-linux-agent-user-guide/
 [link-openssl]: https://www.openssl.org/
 [link-intsvc]: http://www.microsoft.com/download/details.aspx?id=41554
 [link-python]: https://www.python.org/
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

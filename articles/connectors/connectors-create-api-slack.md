@@ -21,7 +21,7 @@ ms.author="deonhe"/>
 
 Slack 是團隊通訊工具，能把您團隊的通訊都集中在一個地方，讓您不但在何處都可使用，還能搜尋各項記錄。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下 [Slack](../app-service-logic/app-service-logic-connector-Slack.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以使用 Slack 連接器來：
 
@@ -42,17 +42,17 @@ Slack 連接器可當做動作來使用；它沒有觸發程序。所有連接�
 |--- | ---|
 |PostMessage|將訊息張貼到指定通道。|
 ## 建立至 Slack 的連線
-如要使用 Slack API，您必須先建立「連線」，再提供下列屬性的詳細資料：
+如要使用 Slack API，您必須先建立**連接**，再提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
 |權杖|是|提供 Slack 的認證|
 
-請依照下列步驟登入 Slack，並在邏輯應用程式中完成 Slack **連線**設定：
+請遵循下列步驟登入 Slack，並在邏輯應用程式中完成 Slack **連接**設定：
 
 1. 選取 [週期]
 2. 選取 [頻率] 並輸入 [間隔]
-3. 選取 [加入動作]![設定 Slack][1]  
+3. 選取 [加入動作] ![設定 Slack][1]  
 4. 在搜尋方塊中輸入 Slack，並等候搜尋傳回所有名稱中有 Slack 的項目
 5. 選取 [Slack - 張貼訊息]
 6. 選取 [登入 Slack]：![設定 Slack][2]
@@ -79,7 +79,7 @@ Slack 連接器可當做動作來使用；它沒有觸發程序。所有連接�
 |文字|字串|yes|query|無|要傳送之訊息的文字。如需格式的選項，請參閱 https://api.slack.com/docs/formatting.|
 |username|字串|no|query|無|Bot 的名稱|
 |as\_user|布林值|no|query|無|傳遞 True 來以已驗證使用者的身分 (而不是 Bot) 張貼訊息|
-|parse|字串|no|query|無|變更訊息的處理方式。如需詳細資料，請參閱 https://api.slack.com/docs/formatting.|
+|parse|字串|no|query|無|變更訊息的處理方式。如需詳細資訊，請參閱 https://api.slack.com/docs/formatting.|
 |link\_names|integer|no|query|無|尋找並連結通道名稱及使用者名稱。|
 |unfurl\_links|布林值|no|query|無|傳遞 True 來啟用主要為文字式內容的展開功能。|
 |unfurl\_media|布林值|no|query|無|傳遞 False 來停用媒體內容的展開功能。|
@@ -481,4 +481,4 @@ MessageItem 的必要屬性：
 [5]: ./media/connectors-create-api-slack/connectionconfig5.png
 [6]: ./media/connectors-create-api-slack/connectionconfig6.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

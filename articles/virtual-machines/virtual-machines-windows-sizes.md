@@ -17,10 +17,10 @@ ms.service="virtual-machines-windows"
  ms.date="04/04/2016"
  ms.author="cynthn"/>
 
-# Azure 中 Windows 虛擬機器的大小
+# Azure 中的虛擬機器大小
 
-本文說明可用於執行應用程式與工作負載之 Windows 虛擬機器的可用大小及選項。同時也提供當您規劃使用這些資源時所需注意的部署考量。如需各式大小的定價，請參閱[虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/)。如果想要 Linux VM 的相關資訊，請參閱 [Azure 中 Linux 虛擬機器的大小](virtual-machines-linux-sizes.md)
+本文說明可用於執行 Windows 應用程式與工作負載之 Azure 虛擬機器的可用大小及選項。同時也提供當您規劃使用這些資源時所需注意的部署考量。如需各式大小的定價，請參閱[虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)。本文也適用於 [Linux 虛擬機器](virtual-machines-linux-sizes.md)。
 
 [AZURE.INCLUDE [virtual-machines-common-sizes](../../includes/virtual-machines-common-sizes.md)]
 
-<!-----HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

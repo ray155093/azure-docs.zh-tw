@@ -70,11 +70,11 @@ Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQ
 
 因為 Azure Blob 儲存體是 HDInsight 的預設儲存體，所以您也可以從 HiveQL 中的 **/example/data/sample.log** 存取檔案。
 
-> [AZURE.NOTE] 語法 ****wasb:///** 是用來存取您 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如 ****wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
+> [AZURE.NOTE] 語法 **wasb:///** 是用來存取您 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 ##<a id="job"></a>範例工作：將資料行投影至帶分隔符號的資料上
 
-下列 HiveQL 陳述式會將資料行投影在 ****wasb:///example/data** 目錄中所儲存且帶分隔符號的資料上：
+下列 HiveQL 陳述式會將資料行投影在 **wasb:///example/data** 目錄中所儲存且帶分隔符號的資料上：
 
 	DROP TABLE log4jLogs;
     CREATE EXTERNAL TABLE log4jLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -162,6 +162,8 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 - [將資料上傳至 HDInsight][hdinsight-upload-data]
 - [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
+- [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
+- [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
 - [搭配 HDInsight 使用 MapReduce 工作][hdinsight-use-mapreduce]
 
 [check]: ./media/hdinsight-use-hive/hdi.checkmark.png
@@ -194,7 +196,7 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-get-started]: hdinsight-get-started.md
 
-[Powershell-install-configure]: ../install-configure-powershell.md
+[Powershell-install-configure]: ../powershell-install-configure.md
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
 [image-hdi-hive-powershell]: ./media/hdinsight-use-hive/HDI.HIVE.PowerShell.png
@@ -204,4 +206,4 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 [cindygross-hive-tables]: http://blogs.msdn.com/b/cindygross/archive/2013/02/06/hdinsight-hive-internal-and-external-tables-intro.aspx
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Machine Learning 中的特徵設計和選取 | Microsoft Azure" 
+	pageTitle="Azure Machine Learning 中的特徵設計和選取 | Microsoft Azure"
 	description="說明機器學習的資料增強程序中特性選取和特性工程設計的目的，並提供其角色的範例。"
 	services="machine-learning"
 	documentationCenter=""
@@ -51,7 +51,7 @@
 
 從 Azure 機器學習著手時，最簡單的方式是透過 Studio 中提供的範例具體地領會此程序。以下呈現兩個範例：
 
-* 在已知目標值的監督實驗中的[單車租用數量預測](../machine-learning-sample-prediction-of-number-of-bike-rentals.md)迴歸範例
+* 在已知目標值的監督實驗中的[單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)迴歸範例
 * 使用[特性雜湊][feature-hashing]的文字採礦分類範例
 
 ### 範例 1：新增迴歸模型的暫時特性 ###
@@ -133,6 +133,5 @@ Azure Machine Learning Studio 中有針對特性選取而提供的模組。如�
 [feature-hashing]: https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [fisher-linear-discriminant-analysis]: https://msdn.microsoft.com/library/azure/dcaab0b2-59ca-4bec-bb66-79fd23540080/
- 
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

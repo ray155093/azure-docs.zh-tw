@@ -3,8 +3,8 @@
    description="此頁面描述 Azure SQL Database 的部分一般限制，以及互通性與支援的範圍。"
    services="sql-database"
    documentationCenter="na"
-   authors="rothja"
-   manager="jeffreyg"
+   authors="carlrabeler"
+   manager="jhubbard"
    editor="monicar" />
 <tags
    ms.service="sql-database"
@@ -12,8 +12,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="01/15/2016"
-   ms.author="jroth" />
+   ms.date="04/11/2016"
+   ms.author="carlrab" />
 
 # Azure SQL Database 一般限制與方針
 
@@ -59,8 +59,8 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GE
 
 - 如需與安全性相關的方針，請參閱＜[Azure SQL Database 安全性方針與限制](sql-database-security-guidelines.md)＞。
 
-- 另一個相關範圍與相容性有關，就是 Azure SQL Database 有內部部署版的 SQL Server，例如 SQL Server 2014。Azure SQL Database 的最新 V12 版已在此方面進行許多改善。如需詳細資訊，請參閱＜[SQL Database V12 的新功能](sql-database-v12-whats-new.md)＞。
+- 另一個相關範圍與相容性有關，就是 Azure SQL Database 有內部部署版的 SQL Server，例如 SQL Server 2014 和 SQL Server 2016。Azure SQL Database 的最新 V12 版已在此方面進行許多改善。如需詳細資訊，請參閱＜[SQL Database V12 的新功能](sql-database-v12-whats-new.md)＞。
 
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜[SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

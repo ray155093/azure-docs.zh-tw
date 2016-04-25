@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="01/07/2016"
+   ms.date="04/08/2016"
    ms.author="hascipio"/>
 
 # 使用行銷內容完成供應項目建立程序
@@ -25,6 +25,8 @@
   1. 移至發佈入口網站 [https://publish.windowsazure.com](https://publish.windowsazure.com)。
   2. 在左側功能表上，按一下 [行銷] 索引標籤。
   3. 在主面板中，按一下 [英文 (美國)] 按鈕。
+
+  > [AZURE.IMPORTANT] 所有欄位都必須填入內容 (包含影像)，才能推送至預備環境。
 
 ### 詳細資料
 1. 輸入供應項目摘要、長摘要和供應項目的描述。
@@ -52,8 +54,7 @@
 ### 法律
 在 [法律聲明] 索引標籤上，提供您的使用原則/條款連結。在大型 [使用條款] 方塊中輸入或貼上條款。
 
-> [AZURE.IMPORTANT] 所有欄位都必須填入內容 (包含影像)，才能推送至預備環境。
-
+> [AZURE.NOTE] 對於虛擬機器，一旦 SKU 已預備上線或上線，您就無法變更下列項目︰**優惠識別項**、**發行者識別碼**和 **SKU 識別碼**。
 
 ## 步驟 2：設定價格
 ### 定價模式
@@ -83,10 +84,12 @@
 3.	如果您的 SKU 是 BYOL，請選取外部授權 (BYOL) SKU 可用性的核取方塊。
 4.	如果您的 SKU 為每小時，請輸入軟體的價格。沒有價格的 SKU 無法購買或使用。
 
-  >[AZURE.NOTE] 如果您同時有 BYOL 和每小時 SKU，請確定已涵蓋這兩個必要條件：BYOL 核取方塊和每小時的價格值。
+  > [AZURE.NOTE] 如果您同時有 BYOL 和每小時 SKU，請確定已涵蓋這兩個必要條件：BYOL 核取方塊和每小時的價格值。
 
 5.	定價精靈隨即開啟。請繼續進行此程序以完成您的定價，如果您選擇允許在您指定市場之外購買，請為其他國家定價。
 6.	有些國家採用 ISV 匯款。若要在 ISV 匯款國家銷售，您必須能夠在您的 SKU 上索取與收集稅金，而且您應該計算與支付稅金給該國政府。Microsoft 不負責提供法務或稅務指導。如需銷售目標國家/地區的相關資訊，請參閱本文件簡介中的＜優惠的銷售目標國家/地區＞一節。
+
+  > [AZURE.NOTE] 對於虛擬機器，一旦 SKU 上線，您就無法改變下列項目，因為這會影響現有客戶的計費︰**價格變更**、**計費模式變更**和**計費區域移除**。
 
 ### 2\.2.設定開發人員服務價格
 方案可以是基本 + 耗用量的任意組合，其中基本是每月價格，而超額部分是每次使用付費價格(詳細資訊請見下文)。
@@ -144,9 +147,9 @@
 ## 後續步驟
 既然已載入您的 Marketplace 內容，讓我們繼續在預備環境中測試您的優惠。不過，您必須從下列清單選取適當的優惠類型，因為步驟會隨著優惠類型而有所不同。
 
-|虛擬機器映像 |開發人員服務 | 資料服務 | 解決方案範本 |
+||虛擬機器映像 |開發人員服務 | 資料服務 | 解決方案範本 |
 |----|----|----|----|----|
-| **步驟 3：推送優惠至預備環境** | [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md) | 在預備環境中測試您的開發人員服務優惠 | [在預備環境中測試您的資料服務優惠](marketplace-publishing-data-service-test-in-staging.md) | [在預備環境中測試您的解決方案範本](marketplace-publishing-solution-template-test-in-staging.md) |
+| **步驟 3.推送優惠至預備環境** | [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md) | 私人預覽 | [在預備環境中測試您的資料服務優惠](marketplace-publishing-data-service-test-in-staging.md) | [在預備環境中測試您的解決方案範本](marketplace-publishing-solution-template-test-in-staging.md) |
 
 ## 另請參閱
 - [使用者入門：如何將優惠發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
@@ -160,4 +163,4 @@
 [link-pubportal]: https://publish.windowsazure.com
 [link-push-to-production]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -23,7 +23,7 @@
 
 本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
 
-若要開始，首先[安裝 Azure CLI](xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](xplat-cli-connect.md)。
+若要開始，首先[安裝 Azure CLI](../xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
 如需在資源管理員模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。您也可以在文件中找到建立和管理特定的 Azure 服務的 CLI 範例。
 
@@ -208,11 +208,11 @@
 **用來在資源群組中建立叢集的命令**
 
 	hdinsight cluster create [options] <clusterName>
-	 
+
 範例：在 Linux 叢集上建立 Storm
 
 	azure hdinsight cluster create -g myarmgroup -l westus -y Linux --clusterType Storm --version 3.2 --defaultStorageAccountName mystorageaccount --defaultStorageAccountKey <defaultStorageAccountKey> --defaultStorageContainer mycontainer --userName admin --password <clusterPassword> --sshUserName sshuser --sshPassword <sshPassword> --workerNodeCount 1 myNewCluster01
-	
+
 	info:    Executing command hdinsight cluster create
 	+ Submitting the request to create cluster...
 	info:    hdinsight cluster create command OK
@@ -220,11 +220,11 @@
 範例：使用指令碼動作建立叢集
 
 	azure hdinsight cluster create -g myarmgroup -l westus -y Linux --clusterType Hadoop --version 3.2 --defaultStorageAccountName mystorageaccount --defaultStorageAccountKey <defaultStorageAccountKey> --defaultStorageContainer mycontainer --userName admin --password <clusterPassword> --sshUserName sshuser --sshPassword <sshPassword> --workerNodeCount 1 –configurationPath "C:\myFiles\configFile.config" myNewCluster01
-	
+
 	info:    Executing command hdinsight cluster create
 	+ Submitting the request to create cluster...
 	info:    hdinsight cluster create command OK
-	
+
 參數選項：
 
 	-h, --help                                                 output usage information
@@ -255,7 +255,7 @@
 	--rdpPassword <rdpPassword>                                RDP password (only for Windows clusters)
 	--rdpAccessExpiry <rdpAccessExpiry>                        RDP access expiry.
 	For example 12/12/2015 (only for Windows clusters)
-	--virtualNetworkId <virtualNetworkId>                      (Optional) Virtual network ID for the cluster. 
+	--virtualNetworkId <virtualNetworkId>                      (Optional) Virtual network ID for the cluster.
 	Value is a GUID for Windows cluster and ARM resource ID for Linux cluster)
 	--subnetName <subnetName>                                  (Optional) Subnet for the cluster
 	--additionalStorageAccounts <additionalStorageAccounts>    (Optional) Additional storage accounts.
@@ -1872,4 +1872,4 @@
 	vm image list-skus [options] <location> <publisher> <offer>
 	vm image list [options] <location> <publisher> [offer] [sku]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

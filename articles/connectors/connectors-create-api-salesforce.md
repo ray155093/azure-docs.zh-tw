@@ -29,7 +29,7 @@ ms.author="deonhe"/>
 
 &nbsp;
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。若為 2014-12-01-preview 結構描述版本，請按一下 [Salesforce 連接器](../app-service-logic/app-service-logic-connector-salesforce.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 Salesforce 來：
 
@@ -47,7 +47,7 @@ Salesforce API 包含下列觸發程序及動作。
 
 | 觸發程序 | 動作|
 | --- | --- |
-|<ul><li>當物件建立時</li><li>當物件遭到修改時</li></ul> | <ul><li>建立物件</li><li>取得物件</li><li>當物件建立時</li><li>當物件遭到修改時</li><li>刪除物件</li><li>取得物件</li><li>取得物件類型 (SObjects)</li><li>更新物件</li></ul>
+|<ul><li>當建立物件時</li><li>當物件遭到修改時</li></ul> | <ul><li>建立物件</li><li>取得物件</li><li>當建立物件時</li><li>當物件遭到修改時</li><li>刪除物件</li><li>取得物件</li><li>取得物件類型 (SObjects)</li><li>更新物件</li></ul>
 
 所有 API 都支援 JSON 和 XML 格式的資料。
 
@@ -58,7 +58,7 @@ Salesforce API 包含下列觸發程序及動作。
 1. 登入您的 Salesforce 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 Salesforce 帳戶。 
 
-當您建立連線之後，請輸入 Salesforce 的屬性，例如資料表名稱。本主題的 REST API 參考會說明這些屬性。
+當您建立連線之後，請輸入 Salesforce 的屬性，例如資料表名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的連線。
 
@@ -266,4 +266,4 @@ Salesforce API 包含下列觸發程序及動作。
 [7]: ./media/connectors-create-api-salesforce/salesforce-create-app.png
 [8]: ./media/connectors-create-api-salesforce/salesforce-new-app.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

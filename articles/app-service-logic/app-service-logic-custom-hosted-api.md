@@ -1,21 +1,21 @@
-<properties 
-	pageTitle="在 Logic Apps 中呼叫自訂 API" 
-	description="將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用" 
-	authors="stepsic-microsoft-com" 
-	manager="dwrede" 
-	editor="" 
-	services="app-service\logic" 
+<properties
+	pageTitle="在 Logic Apps 中呼叫自訂 API"
+	description="將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用"
+	authors="stepsic-microsoft-com"
+	manager="dwrede"
+	editor=""
+	services="app-service\logic"
 	documentationCenter=""/>
 
 <tags
 	ms.service="app-service-logic"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
-	ms.devlang="na"	
+	ms.devlang="na"
 	ms.topic="article"
 	ms.date="02/23/2016"
 	ms.author="stepsic"/>
-	
+
 # 將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用
 
 雖然 Logic Apps 有一系列 40 餘個各式各樣的連接器，但您可能會想要呼叫自訂的 API 以執行自己的程式碼。是裝載您自己的自訂 Web API，最簡單且最具擴充性的方法之一是使用 App Service。本文說明如何呼叫裝載在 App Service API 應用程式、Web 應用程式或行動應用程式中的任何 Web API。
@@ -37,7 +37,7 @@
 1. 無需變更程式碼 - Azure Active Directory 可用來保護您的 API，而不需要任何程式碼變更或重新部署。
 1. 在 API 的程式碼中強制執行基本驗證、AAD 驗證或憑證驗證。
 
-## 保護您 API 的呼叫而不變更程式碼 
+## 保護您 API 的呼叫而不變更程式碼
 
 在本節中，您將建立兩個 Azure Active Directory 應用程式 – 一個用於邏輯應用程式，一個用於 Web 應用程式。您將會使用與邏輯應用程式的 AAD 應用程式相關聯的服務主體 (用戶端識別碼和密碼)，驗證對您 Web 應用程式的呼叫。最後，您將會在邏輯應用程式定義中納入應用程式識別碼。
 
@@ -71,12 +71,12 @@
 #### 在 Azure 入口網站中啟用授權
 
 1. 瀏覽至 Web 應用程式，然後在命令列中按一下 [設定]。
-2. 按一下 [授權/驗證]。 
+2. 按一下 [授權/驗證]。
 3. 加以 [開啟]。
 
 此時，系統會自動為您建立應用程式。在第 3 部分需要此應用程式的用戶端識別碼，因此您需要：
 
-1. 移至 [Azure 傳統入口網站中的 Active Directory](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory)，然後選取您的目錄。 
+1. 移至 [Azure 傳統入口網站中的 Active Directory](https://manage.windowsazure.com/#Workspaces/ActiveDirectoryExtension/directory)，然後選取您的目錄。
 2. 在搜尋方塊中搜尋應用程式
 3. 在清單中加以點按
 4. 按一下 [設定] 索引標籤
@@ -110,7 +110,9 @@
 ]
 ```
 
-若要自動執行部署以同時部署使用 AAD 的空白 Web 應用程式和邏輯應用程式，請按一下下列按鈕：[![部署至 Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-logic-app-custom-api%2Fazuredeploy.json)
+若要自動執行部署以同時部署使用 AAD 的空白 Web 應用程式和邏輯應用程式，請按一下下列按鈕：
+
+[![部署至 Azure](./media/app-service-logic-custom-hosted-api/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-logic-app-custom-api%2Fazuredeploy.json)
 
 如需完整範本，請參閱 [以邏輯應用程式呼叫裝載於 App Service 上且受到 AAD 保護的自訂 API](https://github.com/Azure/azure-quickstart-templates/blob/master/201-logic-app-custom-api/azuredeploy.json)。
 
@@ -125,7 +127,7 @@
 | tenant | 用來識別 AD 租用戶的租用戶識別碼。 |
 | audience | 必要。您要連接到的資源。 |
 | clientID | Azure AD 應用程式的用戶端識別碼。 |
-| secret | 必要。要求權杖之用戶端的密碼。 | 
+| secret | 必要。要求權杖之用戶端的密碼。 |
 
 上述範本已設定此項目，但如果您要直接撰寫邏輯應用程式，您必須包含完整的授權區段。
 
@@ -154,7 +156,7 @@
 | 類型 | 必要。驗證類型。若為基本驗證，值必須是 Basic。 |
 | username | 必要。要驗證的使用者名稱。 |
 | password | 必要。要驗證的密碼。 |
- 
+
 ### 在程式碼中處理 AAD 驗證
 
 根據預設，您在入口網站中啟用的 Azure Active Directory 驗證並不會執行精細的授權。例如，它不會鎖定您的 API 給特定使用者或應用程式使用，但只是鎖定給特定租用戶。
@@ -165,4 +167,4 @@
 
 您仍然必須遵循前述步驟建立邏輯應用程式的應用程式身分識別碼，並用它來呼叫 API。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

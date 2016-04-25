@@ -32,9 +32,6 @@
 
 您必須是執行 Azure PowerShell 1.0 或更高版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-
-
-
 ## 在集區中建立新的彈性資料庫
 
 若要直接在集區內建立新的資料庫，請使用 [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339.aspx) Cmdlet，並設定 **ElasticPoolName** 參數。
@@ -132,6 +129,12 @@
     foreach($e in $table) { Export-csv -Path c:\temp\metrics.csv -input $e -Append -NoTypeInformation}
 
 
+## 彈性集區的作業延遲
+
+- 每個資料庫的保證 eDTU 數 (DatabaseDtuMin) 或每個資料庫的最多 eDTU (DatabaseDtuMax) 變更作業通常在 5 分鐘內即可完成。
+- 集區之 eDTU/儲存體限制 (Dtu) 的變更作業，需視集區中所有資料庫使用的總空間量而定。變更作業平均每 100 GB 會在 90 分鐘以內完成。舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則集區 eDTU/儲存體限制變更作業的預期延遲時間會少於 3 小時。
+
+
 ## 監視和管理集區 PowerShell 範例
 
 
@@ -173,9 +176,4 @@
 
 - [建立彈性工作](sql-database-elastic-jobs-overview.md)彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 
-
-## 彈性資料庫參考
-
-如需關於彈性資料庫和彈性資料庫集區的詳細資訊，包括 API 和錯誤詳細資料，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
-
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->
