@@ -3,9 +3,9 @@
 	description="本教學課程使用隨傳統部署模型建立的資源，並說明如何在 SQL Server Management Studio (SSMS) 中使用 [加入複本精靈]，以在 Azure 中加入 AlwaysOn 可用性群組複本。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
-	editor="monicar"
+	authors="MikeRayMSFT"
+	manager="jhubbard"
+	editor=""
 	tags="azure-service-management"/>
 
 <tags
@@ -14,8 +14,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="02/03/2016"
-	ms.author="jroth" />
+	ms.date="04/05/2016"
+	ms.author="mikeray" />
 
 # 將內部部署 AlwaysOn 可用性群組延伸至 Azure
 
@@ -101,6 +101,6 @@ AlwaysOn 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 除了使用 [加入 Azure 複本精靈] 將您的 AlwaysOn 可用性群組延伸至 Azure 之外，您也可以將部分 SQL Server 工作負載完全移動至 Azure。若要開始進行，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
-如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-classic-sql-overview.md)。
+如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

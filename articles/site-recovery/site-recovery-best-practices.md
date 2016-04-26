@@ -35,7 +35,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 ---|---|---|---
 **VMM** | 在 System Center 2012 R2 上執行的一或多部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。 | 不適用 | 至少有一個 VMM 伺服器執行於 System Center 2012 R2 上。我們建議每個網站中有一部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。雲端應該設定 Hyper-V 容量設定檔。 
 **Hyper-V** | 內部部署資料中心中，有一或多部 Hyper-V 主機伺服器至少執行 Windows Server 2012 R2。Hyper-V 伺服器必須位於 VMM 雲端中的主機群組。 | 來源和目標網站中有一或多部 Hyper-V 伺服器至少執行 Windows Server 2012 R2。 | 來源和目標網站中有一或多部 Hyper-V 伺服器至少執行包含最新更新的 Windows Server 2012。Hyper-V 伺服器必須位於 VMM 雲端中的主機群組。
-**虛擬機器** | 來源 Hyper-V 伺服器上至少需有一部 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。 | 來源 Hyper-V 伺服器上至少有一個 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。 | 來源 VMM 雲端中至少有一部 VM。
+**虛擬機器** | 來源 Hyper-V 伺服器上至少需有一部 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。 | 來源 Hyper-V 伺服器上至少有一個 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。 | 來源 VMM 雲端中至少有一部 VM。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。
 **Azure 帳戶** | 您需要有 [Azure](https://azure.microsoft.com/) 帳戶和訂用帳戶。 | 不適用 | 您需要有 [Azure](https://azure.microsoft.com/) 帳戶和訂用帳戶。
 **Azure 儲存體** | 您需要 [Azure 儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)來儲存複寫的資料。複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。 | 不適用 | 您需要 [Azure 儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)來儲存複寫的資料。複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。
 **提供者/代理程式** | 在部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery 提供者以及在 Hyper-V 主機伺服器上安裝 Azure 復原服務代理程式。提供者會與 Azure Site Recovery 通訊。代理程式會處理資料來源與目標 Hyper-V 伺服器之間的複寫。不會在 VM 上安裝任何元件。 | 在部署期間，您會在 Hyper-V 主機伺服器或叢集上，安裝 Azure Site Recovery 提供者和 Azure 復原服務代理程式。不會在 VM 上安裝任何元件。 | 在部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery 提供者來與 Azure Site Recovery 通訊。複寫透過 LAN/VPN 在 Hyper-V 來源與目標伺服器之間發生。
@@ -78,7 +78,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 ---|---|---
 Hyper-V 主機 | 應該執行 Windows Server 2012 R2 | 如果不支援作業系統，則先決條件檢查會失敗
 VMware hypervisor | 支援的作業系統 | [檢查需求](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment)
-客體作業系統 | 從 Hyper-V 複寫到 Azure：Site Recovery 支援 [Azure 支援](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx)的所有作業系統。<br/><br/>對於 VMware 和實體伺服器複寫：請檢查 Windows 和 Linux [必要條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment) | 如果不支援，則先決條件檢查會失敗。
+客體作業系統 | 從 Hyper-V 複寫到 Azure：Site Recovery 支援 [Azure 支援](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx)的所有作業系統。<br/><br/>對於 VMware 和實體伺服器複寫：請檢查 Windows 和 Linux [先決條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment) | 如果不支援，則先決條件檢查會失敗。
 客體作業系統架構 | 64 位元 | 如果不支援，則先決條件檢查會失敗
 作業系統磁碟大小 | 最多 1023 GB | 如果不支援，則先決條件檢查會失敗
 作業系統磁碟計數 | 1 | 如果不支援，則先決條件檢查會失敗。
@@ -127,4 +127,4 @@ FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 - [利用 SAN 將 Hyper-V VM 複寫至次要網站](site-recovery-vmm-san.md)
 - [利用單一 VMM 伺服器複寫 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

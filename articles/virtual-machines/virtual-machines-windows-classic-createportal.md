@@ -26,4 +26,8 @@
 
 [AZURE.INCLUDE [virtual-machines-create-WindowsVM](../../includes/virtual-machines-create-windowsvm.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+## 後續步驟
+
+您也可以使用傳統入口網站[建立執行 Linux 的自訂虛擬機器](virtual-machines-linux-classic-createportal.md)。
+
+<!---HONumber=AcomDC_0413_2016-->

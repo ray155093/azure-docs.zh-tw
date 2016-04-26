@@ -46,9 +46,9 @@
 
 本教學課程需要下列各項：
 
-* 附有 [Xamarin 延伸]**或** [Xamarin Studio] 的 Visual Studio
-* 完成[開始使用行動服務]教學課程
-
+* Windows 的 Visual Studio 與 Xamarin 或 Mac OS X 的 Xamarin Studio。完整的安裝指示位於[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+* 完成[開始使用行動服務]教學課程。
+ 
 ## <a name="review-offline"></a>檢閱行動服務同步處理程式碼
 
 Azure 行動服務離線同步處理可讓使用者在無法存取網路時，仍可與本機資料庫互動。若要在您的應用程式中使用這些功能，您必須將 `MobileServiceClient.SyncContext` 初始化至本機存放區。接著，請透過 `IMobileServiceSyncTable` 介面參考您的資料表。本節將逐步解說 `ToDoActivity.cs` 中的離線同步處理相關程式碼。
@@ -171,9 +171,6 @@ Azure 行動服務離線同步處理可讓使用者在無法存取網路時，�
 
 [Mobile Services SDK Nuget]: http://www.nuget.org/packages/WindowsAzure.MobileServices/1.3.0
 [SQLite store nuget]: http://www.nuget.org/packages/WindowsAzure.MobileServices.SQLiteStore/1.0.0
-[Xamarin Studio]: http://xamarin.com/download
-[Xamarin 延伸]: http://xamarin.com/visual-studio
-[NuGet Addin for Xamarin]: https://github.com/mrward/monodevelop-nuget-addin
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

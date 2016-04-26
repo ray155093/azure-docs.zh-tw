@@ -48,7 +48,7 @@
 
 2. 在 [中樞] 功能表上，依序按一下 [新增] > [計算] > [Windows Server 2012 R2 資料中心]。
 
-	![顯示在 Preview 入口網站中可用 Azure VM 映像的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/marketplace_new.png)
+	![顯示在入口網站中可用 Azure VM 映像的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/marketplace_new.png)
 
 	>[AZURE.TIP] 若要尋找其他映像，請按一下 [Marketplace]，然後搜尋或篩選可用的項目。
 
@@ -117,4 +117,4 @@
 * 使用 [Azure Resource Manager](https://azure.microsoft.com/documentation/templates/)，自動部署和管理虛擬機器和工作負載。
 * 您也可以使用 Azure CLI 快速[建立 Linux 虛擬機器](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -42,6 +42,6 @@
 
 ## 後續步驟
 
-* 如需 CLI 命令的其他範例，請參閱[搭配 Azure 服務管理使用 Azure 命令列介面](../articles/virtual-machines-command-line-tools.md)和[搭配 Azure 資源管理員使用 Azure CLI](../articles/azure-cli-arm-commands.md)。
+* 如需 CLI 命令的其他範例，請參閱[搭配 Azure 服務管理使用 Azure 命令列介面](../articles/virtual-machines-command-line-tools.md)和[搭配 Azure 資源管理員使用 Azure CLI](../articles/virtual-machines/azure-cli-arm-commands.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

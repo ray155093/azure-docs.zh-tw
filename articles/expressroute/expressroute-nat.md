@@ -4,7 +4,7 @@
    documentationCenter="na"
    services="expressroute"
    authors="cherylmc"
-   manager="carolz"
+   manager="carmonm"
    editor=""/>
 <tags
    ms.service="expressroute"
@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/16/2016"
+   ms.date="04/18/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute NAT 需求
@@ -33,7 +33,7 @@ Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的�
  
 透過此對等公告的 NAT IP 首碼長度沒有限制。您必須監視 NAT 集區，確保您未耗盡 NAT 工作階段。
 
->[AZURE.IMPORTANT]向 Microsoft 公告的 NAT IP 集區不得向網際網路公告。這樣會中斷其他 Microsoft 服務的連線。
+>[AZURE.IMPORTANT] 向 Microsoft 公告的 NAT IP 集區不得向網際網路公告。這樣會中斷其他 Microsoft 服務的連線。
 
 ## Microsoft 對等的 NAT 需求
 
@@ -48,7 +48,7 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 
 - 用於 Azure 公用對等設定和其他 ExpressRoute 線路的 IP 位址，不得透過 BGP 工作階段向 Microsoft 公告。透過此對等公告的 NAT IP 首碼長度沒有限制。
 
-	>[AZURE.IMPORTANT]向 Microsoft 公告的 NAT IP 集區不得向網際網路公告。這樣會中斷其他 Microsoft 服務的連線。
+	>[AZURE.IMPORTANT] 向 Microsoft 公告的 NAT IP 集區不得向網際網路公告。這樣會中斷其他 Microsoft 服務的連線。
 
 #### 從 Microsoft 出發到您的網路的流量
 
@@ -66,4 +66,4 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0420_2016-->

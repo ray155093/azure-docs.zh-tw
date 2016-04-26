@@ -46,7 +46,7 @@
 
 	c.此時請勿加入任何端點。
 
-9.	選擇或建立資源群組。如需詳細資訊，請參閱[使用 Azure 入口網站管理 Azure 資源](../resource-group-portal.md)。
+9.	選擇或建立資源群組。如需詳細資訊，請參閱[使用 Azure 入口網站管理 Azure 資源](../azure-portal/resource-group-portal.md)。
 
 10. 選擇 [訂用帳戶]。
 
@@ -71,4 +71,4 @@
 
 [Oracle Database 2 Day DBA 12c Release 1](http://docs.oracle.com/cd/E16655_01/server.121/e17643/toc.htm)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="在資源管理員中使用 Azure CLI 部署多個 NIC VM | Microsoft Azure"
    description="了解如何在資源管理員中使用 Azure CLI 部署多個 NIC VM"
    services="virtual-network"
@@ -27,7 +27,7 @@
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-因為在這個時間點，您不能讓配備單一 NIC 的 VM 與配備多個 NIC 的 VM 位在同一個資源群組中，您要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
+目前，在相同的資源群組中，您不能有具有單一 NIC 的 VM 和具有多個 NIC 的 VM。因此，您需要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
 
 ## 必要條件
 
@@ -47,7 +47,7 @@
 
 - **資料磁碟的儲存體帳戶**。為取得更佳的效能，資料庫伺服器上的資料磁碟會使用需要進階儲存體帳戶的固態硬碟 (SSD) 技術。請確定 Azure 的部署位置，以支援進階儲存體。
 - **NIC**。每部 VM 都會有兩個 NIC，一個用於資料庫存取，另一個用於管理。
-- **可用性設定組**。所有的資料庫伺服器都會加入單一的可用性設定組，確保在維護期間至少有一部 VM 啟動並執行。 
+- **可用性設定組**。所有的資料庫伺服器都會加入單一的可用性設定組，確保在維護期間至少有一部 VM 啟動並執行。
 
 ### 步驟 1：啟動指令碼
 
@@ -60,7 +60,7 @@
 		vnetName="WTestVNet"
 		backendSubnetName="BackEnd"
 		remoteAccessNSGName="NSG-RemoteAccess"
-		
+
 2. 根據要用於後端部署的值來變更下列變數的值。
 
 		backendRGName="IaaSStory-Backend"
@@ -107,7 +107,7 @@
 		azure storage account create $prmStorageAccountName \
 		    --resource-group $backendRGName \
 		    --location $location \
-			--type PLRS 
+			--type PLRS
 
 3. 為 VM 建立可用性設定組。
 
@@ -171,7 +171,7 @@
 		        --vhd-name $dataDiskName$suffixNumber-1.vhd \
 		        --size-in-gb $diskSize \
 		        --lun 0
-		
+
 		    azure vm disk attach-new --resource-group $backendRGName \
 		        --vm-name $vmNamePrefix$suffixNumber \        
 		        --storage-account-name $prmStorageAccountName \
@@ -330,4 +330,4 @@
 		info:    Updating VM "DB2"
 		info:    vm disk attach-new command OK
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

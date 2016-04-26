@@ -91,7 +91,7 @@ Microsoft 資料科學虛擬機器可快速啟動分析專案。它能讓您處�
 
 一旦建立並佈建您的 VM，您已準備好開始使用在上面安裝及設定的工具。我們為許多工具提供了開始功能表磚和桌面圖示。
 
-## 如何在 Jupyter Notebook 伺服器上建立強式密碼 
+##如何在 Jupyter Notebook 伺服器上建立強式密碼 
 
 在資料科學虛擬機器上的命令提示字元中輸入下列命令，來建立您在該虛擬機器上安裝之 Jupyter Notebook 伺服器的專屬強式密碼。
 
@@ -149,4 +149,4 @@ VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱�
 * 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)，以取得使用 Cortana Intelligence Suite 的機器學習服務和資料分析範例。我們也已經在虛擬機器的開始功能表與桌面上提供圖示以方便存取 
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

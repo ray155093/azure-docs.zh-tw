@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="什麼是網路存取控制清單 (ACL)？"
    description="了解 ACL"
    services="virtual-network"
@@ -6,7 +6,7 @@
    authors="telmosampaio"
    manager="carmonm"
    editor="tysonn" />
-<tags 
+<tags
    ms.service="virtual-network"
    ms.devlang="na"
    ms.topic="article"
@@ -21,7 +21,7 @@
 
 > [AZURE.IMPORTANT] 建議在網路安全性群組 (NSG) 可用時，用其取代 ACL 的使用。若要深入了解 NSG，請參閱＜[什麼是網路安全性群組？](virtual-networks-nsg.md)＞。
 
-您可以使用 PowerShell 或管理入口網站設定 ACL。若要使用 PowerShell 設定網路 ACL，請參閱＜[使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。若要使用管理入口網站來設定網路 ACL，請參閱＜[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-set-up-endpoints.md)＞。
+您可以使用 PowerShell 或管理入口網站設定 ACL。若要使用 PowerShell 設定網路 ACL，請參閱＜[使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。若要使用管理入口網站來設定網路 ACL，請參閱＜[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)＞。
 
 您可以使用網路 ACL 執行下列作業：
 
@@ -99,4 +99,4 @@ ACL 是包含規則清單的物件。當您建立 ACL 並將它套用到虛擬�
 
 [如何使用 PowerShell 管理存取控制清單 (ACL) 端點](virtual-networks-acl-powershell.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

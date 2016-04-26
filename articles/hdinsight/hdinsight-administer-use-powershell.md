@@ -49,14 +49,8 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 		Install-Module AzureRM
 		Install-AzureRM
 		
-		# Install the Azure Service Management module from PowerShell Gallery
-		Install-Module Azure
-		
 		# Import AzureRM modules for the given version manifest in the AzureRM module
 		Import-AzureRM
-		
-		# Import Azure Service Management module
-		Import-Module Azure
 
 	如需詳細資訊，請參閱 [PowerShell 資源庫](https://www.powershellgallery.com/)。
 
@@ -255,4 +249,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 [image-hdi-ps-provision]: ./media/hdinsight-administer-use-powershell/HDI.PS.Provision.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

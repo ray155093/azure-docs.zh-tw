@@ -40,6 +40,6 @@ Azure RemoteApp 可透過 [Azure PowerShell](https://msdn.microsoft.com/library/
 
 了解 Azure 自動化的基本概念以及如何用它來管理 Azure RemoteApp 之後，請參考下列連結，以深入了解 Azure 自動化。
 
-* 請參閱 Azure 自動化[入門指南](../automation-create-runbook-from-samples.md)
+* 請參閱 Azure 自動化[入門指南](../automation/automation-first-runbook-graphical.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

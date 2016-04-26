@@ -1,6 +1,6 @@
 <properties
-	pageTitle="建立 Windows VM | Microsoft Azure"
-	description="使用 Azure PowerShell 和資源管理員範本，輕鬆建立新的 Windows 虛擬機器。"
+	pageTitle="使用 Azure Powershell 建立 Azure VM | Microsoft Azure"
+	description="使用 Azure PowerShell 和 Azure Resource Manager，輕鬆建立執行 Windows Server 的新 VM。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="davidmu1"
@@ -10,121 +10,137 @@
 
 <tags
 	ms.service="virtual-machines-windows"
-	ms.workload="infrastructure-services"
+	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="01/05/2016"
+	ms.date="04/12/2016"
 	ms.author="davidmu"/>
 
-# 以資源管理員和 PowerShell 建立 Windows VM
+# 使用資源管理員和 PowerShell 建立 Windows VM
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+本文將說明如何使用 Resource Manager 和 PowerShell 快速建立執行 Windows Server 的 Azure 虛擬機器及其相關聯的資源。
 
-這個主題描述如何使用 Azure 資源管理員和 PowerShell 快速建立 Microsoft Azure 虛擬機器。
+執行本文中的步驟應該大約 30 分鐘的時間。
 
-## 建立 Windows 虛擬機器
+## 步驟 1：安裝 Azure PowerShell
 
-如果您已安裝 Azure PowerShell，其必須是 Azure PowerShell 1.0.0 或更新的版本。您可以在 Azure PowerShell 命令提示字元下使用這個命令來檢查已安裝的 Azure PowerShell 版本。
+有關如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+        
+## 步驟 2：建立資源群組
 
-	Get-Module azure | format-table version
+所有資源都必須部署在資源群組中。如需詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)
 
-[AZURE.INCLUDE [powershell-preview](../../includes/powershell-preview-inline-include.md)]
+1. 取得可以建立資源的可用位置清單。
 
-首先，您必須使用此命令登入 Azure。
+	    Get-AzureLocation | sort Name | Select Name
 
-	Login-AzureRmAccount
+2. 使用清單中的位置 (例如**美國中部**) 取代 **$locName** 的值。建立變數。
 
-在 [Microsoft Azure 登入] 對話方塊中，指定 Azure 帳戶的電子郵件地址和密碼。
+        $locName = "location name"
+        
+3. 使用新資源群組的名稱取代 **$rgName** 的值。建立變數和資源群組。
 
-接下來，如果您有多個 Azure 訂用帳戶，請設定 Azure 訂用帳戶。如果想查看目前的訂閱帳戶清單，請執行這個命令。
+        $rgName = "resource group name"
+        New-AzureRmResourceGroup -Name $rgName -Location $locName
+    
+## 步驟 3：建立儲存體帳戶
 
-	Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
+儲存與您建立的虛擬機器相關聯的虛擬硬碟時，需要儲存體帳戶。
 
-現在，將引號中的所有內容 (包括 < and > 字元) 換成正確的訂閱名稱，然後執行以下命令。
+1. 使用儲存體帳戶名稱取代 **$stName** 的值 (僅限小寫字母和數字)。測試名稱的唯一性。
 
-	$subscrName="<subscription name>"
-	Select-AzureRmSubscription -SubscriptionName $subscrName –Current
+        $stName = "storage account name"
+        Test-AzureName -Storage $stName
 
-接下來，請建立儲存體帳戶您選取的名稱不可以和其他名稱重複而且只能使用小寫字母和數字。您可以使用這個命令測試儲存體帳戶名稱是否不重複。
+    如果這個命令傳回 **False**，表示您設定的名稱不重複。
+    
+2. 現在，請執行以下命令來建立儲存體帳戶。
+    
+        $storageAcc = New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -Type "Standard_LRS" -Location $locName
+        
+## 步驟 4：建立虛擬網路
 
-	Test-AzureName -Storage <Proposed storage account name>
+所有虛擬機器必須與虛擬網路相關聯。
 
-如果這個命令傳回「False」，表示您設定的名稱不重複。
+1. 使用子網路名稱取代 **$subnetName** 的值。建立變數和子網路。
+    	
+        $subnetName = "subnet name"
+        $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
+        
+2. 使用虛擬網路名稱取代 **$vnetName** 的值。建立變數和具有子網路的虛擬網路。
 
-您必須指定 Azure 資料中心的位置。要取得 Azure 資料中心清單，請執行這個命令。
+        $vnetName = "virtual network name"
+        $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
+        
+## 步驟 5︰建立公用 IP 位址和網路介面
 
-	Get-AzureLocation | sort Name | Select Name
+若要與虛擬網路中的虛擬機器通訊，您需要公用 IP 位址和網路介面。
 
-現在，將以下的 PowerShell 命令區塊複製到文字編輯器中。填寫您選擇的儲存體帳戶和位置，取代引號中內容，包括 < and > 在內。
+1. 使用公用 IP 位址的名稱取代 **$ipName** 的值。建立變數和公用 IP 位址。
 
-	$stName = "<chosen storage account name>"
-	$locName = "<chosen Azure location name>"
-	$rgName = "TestRG"
-	New-AzureRmResourceGroup -Name $rgName -Location $locName
-	$storageAcc = New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -Type "Standard_GRS" -Location $locName
-	$singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name singleSubnet -AddressPrefix 10.0.0.0/24
-	$vnet = New-AzureRmVirtualNetwork -Name TestNet -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
-	$pip = New-AzureRmPublicIpAddress -Name TestPIP -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
-	$nic = New-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
-	$cred = Get-Credential -Message "Type the name and password of the local administrator account."
-	$vm = New-AzureRmVMConfig -VMName WindowsVM -VMSize "Standard_A1"
-	$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName MyWindowsVM -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
-	$vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2012-R2-Datacenter -Version "latest"
-	$vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
-	$osDiskUri = $storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/WindowsVMosDisk.vhd"
-	$vm = Set-AzureRmVMOSDisk -VM $vm -Name "windowsvmosdisk" -VhdUri $osDiskUri -CreateOption fromImage
-	New-AzureRmVM -ResourceGroupName $rgName -Location $locName -VM $vm
+        $ipName = "public IP address name"
+        $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
+        
+2. 使用網路介面名稱取代 **$nicName** 的值。建立變數和網路介面。
 
-最後，將上述命令複製到剪貼簿，然後按滑鼠右鍵，開啟 Azure PowerShell 命令提示字元。這樣發出的命令集就像是一連串的 PowerShell 命令，系統會提示您輸入本機系統管理員帳戶的名稱和密碼，然後建立 Azure 虛擬機器。
+        $nicName = "network interface name"
+        $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
+        
+## 步驟 6：建立虛擬機器
 
-以下是該檔案的範例：
+您已備妥所有項目，現在可以開始建立虛擬機器。
 
-	PS C:\> $stName="contosost"
-	PS C:\> $locName="West US"
-	PS C:\> $rgName="TestRG"
-	PS C:\> New-AzureRmResourceGroup -Name $rgName -Location $locName
-	VERBOSE: 12:45:15 PM - Created resource group 'TestRG' in location 'westus'
+1. 執行以下命令來設定虛擬機器的系統管理員帳戶名稱和密碼。
 
+        $cred = Get-Credential -Message "Type the name and password of the local administrator account."
+        
+2. 使用虛擬機器名稱取代 **$vmName** 的值。建立變數和虛擬機器組態。
 
-	ResourceGroupName : TestRG
-	Location          : westus
-	ProvisioningState : Succeeded
-	Tags              :
-	Permissions       :
-	                    Actions  NotActions
-	                    =======  ==========
-	                    *
+        $vmName = "virtual machine name"
+        $vm = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A1"
+        
+    如需虛擬機器的可用大小清單，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md)。
+    
+3. 使用虛擬機器的電腦名稱取代 **$compName** 的值。建立變數並將作業系統資訊新增至組態。
 
-	ResourceId        : /subscriptions/fd92919d-eeca-4f5b-840a-e45c6770d92e/resourceGroups/TestRG
+        $compName = "computer name"
+        $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $compName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
+        
+4. 定義要用來佈建虛擬機器的映像。
 
+        $vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2012-R2-Datacenter -Version "latest"
+        
+    如需有關選取要使用之映像的詳細資訊，請參閱[使用 PowerShell 或 CLI 在 Azure 中瀏覽和選取 Windows 虛擬機器映像](virtual-machines-windows-cli-ps-findimage.md)。
+        
+5. 將您所建立的網路介面新增至組態。
 
-	PS C:\> $storageAcc=New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -Type "Standard_GRS" -Location $locName
-	PS C:\> $singleSubnet=New-AzureRmVirtualNetworkSubnetConfig -Name singleSubnet -AddressPrefix 10.0.0.0/24
-	PS C:\> $vnet=New-AzureRmVirtualNetwork -Name TestNet3 -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
-	PS C:\> $pip = New-AzureRmPublicIpAddress -Name TestNIC -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
-	PS C:\> $nic = New-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
-	PS C:\> $cred = Get-Credential -Message "Type the name and password of the local administrator account."
-	PS C:\> $vm = New-AzureRmVMConfig -VMName WindowsVM -VMSize "Standard_A1"
-	PS C:\> $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName MyWindowsVM -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
-	PS C:\> $vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2012-R2-Datacenter -Version "latest"
-	PS C:\> $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
-	PS C:\> $osDiskUri = $storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/MyWindowsVMosDisk.vhd"
-	PS C:\> $vm = Set-AzureRmVMOSDisk -VM $vm -Name "windowsvmosdisk" -VhdUri $osDiskUri -CreateOption fromImage
-	PS C:\> New-AzureRmVM -ResourceGroupName $rgName -Location $locName -VM $vm
+        $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
+        
+6. 使用虛擬硬碟儲存體中的路徑和檔案名稱取代 **$blobPath** 的值。vhd 檔案通常會儲存在容器中，例如 "vhds/WindowsVMosDisk.vhd"。建立變數。
 
+        $blobPath = "vhd path and file name"
+        $osDiskUri = $storageAcc.PrimaryEndpoints.Blob.ToString() + $blobPath
+        
+7. 使用作業系統磁碟的名稱取代 **$diskName** 的值。建立變數並將磁碟資訊新增至組態。
 
-	EndTime             : 4/28/2015 1:00:05 PM -07:00
-	Error               :
-	Output              :
-	StartTime           : 4/28/2015 12:52:52 PM -07:00
-	Status              : Succeeded
-	TrackingOperationId : 45035a90-ea12-4e1e-87e7-2a5e9ed12c93
-	RequestId           : 98c7b4fb-b26e-4a58-b17a-b0983d896aae
-	StatusCode          : OK
+        $diskName = "windowsvmosdisk"
+        $vm = Set-AzureRmVMOSDisk -VM $vm -Name $diskName -VhdUri $osDiskUri -CreateOption fromImage
+        
+8. 最後，建立虛擬機器。
 
+        New-AzureRmVM -ResourceGroupName $rgName -Location $locName -VM $vm
+
+    您應該會在 Azure 入口網站中看見資源群組與其所有資源，而在 PowerShell 視窗中看見成功狀態︰
+
+        RequestId  IsSuccessStatusCode  StatusCode  ReasonPhrase
+        ---------  -------------------  ----------  ------------
+                                  True          OK  OK
+                                  
 ## 後續步驟
 
-請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
+- 如果部署有問題，下一個步驟是查看[透過 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
+- 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
+- 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

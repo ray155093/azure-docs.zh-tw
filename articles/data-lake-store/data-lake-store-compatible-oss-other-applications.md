@@ -1,24 +1,24 @@
-<properties 
-   pageTitle="與資料湖存放區相容的巨量資料應用程式 |Azure" 
-   description="適用於 Azure 資料湖存放區的開放原始碼應用程式清單" 
-   services="data-lake-store" 
-   documentationCenter="" 
-   authors="nitinme" 
-   manager="paulettm" 
+<properties
+   pageTitle="與資料湖存放區相容的巨量資料應用程式 |Azure"
+   description="適用於 Azure 資料湖存放區的開放原始碼應用程式清單"
+   services="data-lake-store"
+   documentationCenter=""
+   authors="nitinme"
+   manager="paulettm"
    editor="cgronlun"/>
- 
+
 <tags
    ms.service="data-lake-store"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="big-data" 
+   ms.workload="big-data"
    ms.date="02/03/2016"
    ms.author="nitinme"/>
 
 # 適用於 Azure 資料湖存放區的開放原始碼巨量資料應用程式
 
-本文列出適用於 Azure 資料湖存放區的開放原始碼巨量資料應用程式。針對下表中的應用程式，僅支援所列出之配送映像的可用版本。如需 HDInsight 之可用應用程式版本的相關資訊，請參閱 [HDInsight 元件版本設定](/hdinsight/hdinsight-component-versioning.md)。
+本文列出適用於 Azure 資料湖存放區的開放原始碼巨量資料應用程式。針對下表中的應用程式，僅支援所列出之配送映像的可用版本。如需 HDInsight 之可用應用程式版本的相關資訊，請參閱 [HDInsight 元件版本設定](../hdinsight/hdinsight-component-versioning.md)。
 
 
 | 開放原始碼軟體 | 配送映像 |
@@ -39,6 +39,5 @@
 ## 另請參閱
 
 - [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
- 
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

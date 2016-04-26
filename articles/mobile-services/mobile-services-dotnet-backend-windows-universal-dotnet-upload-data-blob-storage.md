@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="從通用 Windows 應用程式將影像上傳至 Azure Blob 儲存體 | Microsoft Azure" 
-	description="了解如何使用 .NET 後端行動服務將影像上傳至 Azure Blob 儲存體，並從通用 Windows 應用程式存取影像。" 
-	documentationCenter="windows" 
-	authors="ggailey777" 
-	services="mobile-services,storage" 
-	manager="dwrede" 
+<properties
+	pageTitle="從通用 Windows 應用程式將影像上傳至 Azure Blob 儲存體 | Microsoft Azure"
+	description="了解如何使用 .NET 後端行動服務將影像上傳至 Azure Blob 儲存體，並從通用 Windows 應用程式存取影像。"
+	documentationCenter="windows"
+	authors="ggailey777"
+	services="mobile-services,storage"
+	manager="dwrede"
 	editor=""/>
 
 
-<tags 
-	ms.service="mobile-services" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile-windows-store" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="12/01/2015" 
+<tags
+	ms.service="mobile-services"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-windows-store"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="12/01/2015"
 	ms.author="glenga"/>
 
 # 使用行動服務將影像上傳到 Azure 儲存體
@@ -38,7 +38,7 @@
 本教學課程需要下列各項：
 
 + Microsoft Visual Studio 2013 Update 3 或更新版本。
-+ [Azure 儲存體帳戶](../storage-create-storage-account.md)
++ [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)
 + 連接到電腦的相機或其他影像擷取裝置。
 
 本教學課程是以行動服務快速入門為基礎。在開始本教學課程之前，您必須首先完成[開始使用行動服務]。
@@ -51,14 +51,14 @@
 
 您現在已藉由整合行動服務與 Blob 服務，而能夠安全地上傳影像，請參閱其他後端服務和整合主題：
 
-+ [在行動服務中排程後端工作](../mobile-services-dotnet-backend-schedule-recurring-tasks.md)
++ [在行動服務中排程後端工作](mobile-services-dotnet-backend-schedule-recurring-tasks.md)
 
      了解如何使用行動服務工作排程器功能，定義可依您定義的排程執行的伺服器指令碼。
 
-+ [行動服務 .NET 作法概念性參考](../mobile-services-windows-dotnet-how-to-use-client-library.md)
++ [行動服務 .NET 作法概念性參考](mobile-services-dotnet-how-to-use-client-library.md)
 
      深入了解如何搭配使用行動服務與 .NET
- 
+
 <!-- Anchors. -->
 [Install the Storage Client library]: #install-storage-client
 [Update the client app to capture images]: #add-select-images
@@ -71,8 +71,8 @@
 <!-- Images. -->
 
 <!-- URLs. -->
-[開始使用行動服務]: ../mobile-services-windows-store-dotnet-get-started.md
-[How To Create a Storage Account]: ../storage-create-storage-account.md
+[開始使用行動服務]: mobile-services-windows-store-dotnet-get-started.md
+[How To Create a Storage Account]: ../storage/storage-create-storage-account.md
 [Azure Storage Client library for Store apps]: http://go.microsoft.com/fwlink/p/?LinkId=276866
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0413_2016-->

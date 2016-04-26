@@ -4,7 +4,7 @@
     services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
-    manager="jeffreyg" 
+    manager="jhubbard" 
     editor=""/>
 
 <tags
@@ -21,7 +21,7 @@
 **單一資料庫**
 
 > [AZURE.SELECTOR]
-- [Azure Portal](sql-database-import.md)
+- [Azure 入口網站](sql-database-import.md)
 - [PowerShell](sql-database-import-powershell.md)
 - [SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
 - [SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
@@ -38,7 +38,7 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。如需�
 若要匯入 SQL Database，您需要下列項目：
 
 - Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來完成這篇文章。
-- 您要匯入之資料庫的 .bacpac 檔案 (BACPAC)。BACPAC 必須位於 [Azure 儲存體帳戶 (傳統)](storage-create-storage-account.md) Blob 容器內。
+- 您要匯入之資料庫的 .bacpac 檔案 (BACPAC)。BACPAC 必須位於 [Azure 儲存體帳戶 (傳統)](../storage/storage-create-storage-account.md) Blob 容器內。
 
 
 > [AZURE.IMPORTANT] 本文包含適用於 Azure PowerShell 版本的命令，適用版本最新至*但不包括*版本 1.0 和更新版本。您可以使用 **Get-Module azure | format-table version** 命令來檢查 Azure PowerShell 的版本。
@@ -153,4 +153,4 @@ Blob 名稱是您想要用來建立資料庫之現有的 .bacpac 檔案名稱。
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

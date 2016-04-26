@@ -4,7 +4,7 @@
 	keywords="應用程式開發, 資料庫教學課程, python flask, python Web 應用程式, python Web 開發, documentdb, azure, Microsoft azure"
     services="documentdb"
     documentationCenter="python"
-    authors="ryancrawcour"
+    authors="aliuy"
     manager="jhubbard"
     editor="cgronlun"/>
 
@@ -14,8 +14,8 @@
     ms.tgt_pltfrm="na"
     ms.devlang="python"
     ms.topic="hero-article"
-    ms.date="04/08/2016"
-    ms.author="ryancraw"/>
+    ms.date="04/18/2016"
+    ms.author="andrl"/>
 
 # 使用 DocumentDB 進行 Python Flask Web 應用程式開發
 
@@ -434,4 +434,4 @@ def vote():
   [Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
   [Azure portal]: http://portal.azure.com
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

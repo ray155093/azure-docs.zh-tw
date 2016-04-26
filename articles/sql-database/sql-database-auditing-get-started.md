@@ -3,8 +3,8 @@
 	description="開始使用 SQL Database 稽核"
 	services="sql-database"
 	documentationCenter=""
-	authors="jeffgoll"
-	manager="jeffreyg"
+	authors="ronitr"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/03/2016"
-	ms.author="jeffreyg; ronitr"/>
+	ms.date="04/11/2016"
+	ms.author="carlrabeler; ronitr"/>
  
 # 開始使用 SQL Database 稽核
 Azure SQL Database 稽核會追蹤資料庫事件，並將稽核事件寫入 Azure 儲存體帳戶中的稽核記錄。基本、標準和進階服務層皆提供稽核功能。
@@ -178,4 +178,4 @@ SQL Database 稽核可讓您：
 
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

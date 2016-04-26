@@ -22,7 +22,7 @@
 
 ## 簡介
 
-您可以使用 Azure 資源管理員 (ARM)，以程式設計方式建立和管理 Azure IoT 中樞。本教學課程示範如何使用資源管理員範本從 C# 程式建立 IoT 中樞。
+您可以使用 Azure Resource Manager (ARM)，以程式設計方式建立和管理 Azure IoT 中樞。本教學課程示範如何使用資源管理員範本從 C# 程式建立 IoT 中樞。
 
 > [AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../resource-manager-deployment-model.md)。本文涵蓋內容包括如何使用資源管理員部署模型。
 
@@ -115,7 +115,7 @@
 
 3. 在 [方案總管] 中，以滑鼠右鍵按一下專案，按一下 [加入]，然後按一下 [新增項目]。將名為 **parameters.json** 的新 JSON 檔案加入至專案。
 
-4. 使用下列參數資訊取代 **parameters.json** 的內容，將新的 IoT 中樞的名稱設為 **mynewiothub**：
+4. 使用下列參數資訊取代 **parameters.json** 的內容，將新的 IoT 中樞的名稱設為 **mynewiothub** (請注意，此名稱必須是全域唯一的)：
 
     ```
     {
@@ -145,7 +145,7 @@
     }
     ```
 
-5. 將下列程式碼新增至 **CreateIoTHub** 方法，以提交範本和參數檔案給 Azure 資源管理員：
+5. 將下列程式碼新增至 **CreateIoTHub** 方法，以提交範本和參數檔案給 Azure Resource Manager：
 
     ```
     var createResponse = client.Deployments.CreateOrUpdate(
@@ -205,7 +205,7 @@
 現在您已經使用 ARM 範本和 C# 程式部署 IoT 中樞，可以進一步探索：
 
 - 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
-- 如需 Azure 資源管理員功能的詳細資訊，請參閱 [Azure 資源管理員概觀][lnk-azure-rm-overview]。
+- 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
@@ -215,4 +215,4 @@
 [lnk-azure-rm-overview]: ../resource-group-overview.md
 [lnk-storage-account]: ../storage/storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0413_2016-->

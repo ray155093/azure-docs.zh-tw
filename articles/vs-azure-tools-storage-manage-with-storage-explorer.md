@@ -158,7 +158,7 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 	![][20]
 
 ## 後續步驟
-深入了解 Azure 儲存體服務中的功能，方法是閱讀 [Microsoft Azure 儲存體簡介](/storage/storage-introduction.md)中的文章。
+深入了解 Azure 儲存體服務中的功能，方法是閱讀 [Microsoft Azure 儲存體簡介](./storage/storage-introduction.md)中的文章。
 
 [0]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/AddAccount1c.png
 [1]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/AddAccount2c.png
@@ -182,4 +182,4 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 [19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS3c.png
 [20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS4c.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

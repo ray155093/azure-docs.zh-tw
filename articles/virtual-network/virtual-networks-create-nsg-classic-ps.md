@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何使用 PowerShell 以傳統模式建立 NSG | Microsoft Azure"
    description="了解如何使用 PowerShell 以傳統模式建立和部署 NSG"
    services="virtual-network"
@@ -8,7 +8,7 @@
    editor="tysonn"
    tags="azure-service-management"
 />
-<tags 
+<tags
    ms.service="virtual-network"
    ms.devlang="na"
    ms.topic="article"
@@ -32,7 +32,7 @@
 ## 如何建立前端子網路的 NSG
 若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
 
 3. 建立名為 **NSG-FrontEnd** 的網路安全性群組。
 
@@ -52,17 +52,17 @@
 		| Set-AzureNetworkSecurityRule -Name rdp-rule `
 		    -Action Allow -Protocol TCP -Type Inbound -Priority 100 `
 		    -SourceAddressPrefix Internet  -SourcePortRange '*' `
-		    -DestinationAddressPrefix '*' -DestinationPortRange '3389' 
+		    -DestinationAddressPrefix '*' -DestinationPortRange '3389'
 
 	預期的輸出：
 
 		Name     : NSG-FrontEnd
 		Location : Central US
 		Label    : Front end subnet NSG
-		Rules    : 
-		           
+		Rules    :
+
 		              Type: Inbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -71,10 +71,10 @@
 		           ALLOW AZURE LOAD     65001     Allow    AZURE_LOADBALAN *             *                *              *       
 		           BALANCER INBOUND                        CER                                                                   
 		           DENY ALL INBOUND     65500     Deny     *               *             *                *              *       
-		           
-		           
+
+
 		              Type: Outbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -89,18 +89,18 @@
 		| Set-AzureNetworkSecurityRule -Name web-rule `
 		    -Action Allow -Protocol TCP -Type Inbound -Priority 200 `
 		    -SourceAddressPrefix Internet  -SourcePortRange '*' `
-		    -DestinationAddressPrefix '*' -DestinationPortRange '80' 
+		    -DestinationAddressPrefix '*' -DestinationPortRange '80'
 
 	預期的輸出：
-		
+
 
 		Name     : NSG-FrontEnd
 		Location : Central US
 		Label    : Front end subnet NSG
-		Rules    : 
-		           
+		Rules    :
+
 		              Type: Inbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -110,10 +110,10 @@
 		           ALLOW AZURE LOAD     65001     Allow    AZURE_LOADBALAN *             *                *              *       
 		           BALANCER INBOUND                        CER                                                                   
 		           DENY ALL INBOUND     65500     Deny     *               *             *                *              *       
-		           
-		           
+
+
 		              Type: Outbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -141,17 +141,17 @@
 		| Set-AzureNetworkSecurityRule -Name rdp-rule `
 		    -Action Allow -Protocol TCP -Type Inbound -Priority 100 `
 		    -SourceAddressPrefix 192.168.1.0/24  -SourcePortRange '*' `
-		    -DestinationAddressPrefix '*' -DestinationPortRange '1433' 
+		    -DestinationAddressPrefix '*' -DestinationPortRange '1433'
 
 	預期的輸出：
 
 		Name     : NSG-BackEnd
 		Location : Central US
 		Label    : Back end subnet NSG
-		Rules    : 
-		           
+		Rules    :
+
 		              Type: Inbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -160,10 +160,10 @@
 		           ALLOW AZURE LOAD     65001     Allow    AZURE_LOADBALAN *             *                *              *       
 		           BALANCER INBOUND                        CER                                                                   
 		           DENY ALL INBOUND     65500     Deny     *               *             *                *              *       
-		           
-		           
+
+
 		              Type: Outbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -178,17 +178,17 @@
 		| Set-AzureNetworkSecurityRule -Name block-internet `
 		    -Action Deny -Protocol '*' -Type Outbound -Priority 200 `
 		    -SourceAddressPrefix '*'  -SourcePortRange '*' `
-		    -DestinationAddressPrefix Internet -DestinationPortRange '*' 
+		    -DestinationAddressPrefix Internet -DestinationPortRange '*'
 
 	預期的輸出：
 
 		Name     : NSG-BackEnd
 		Location : Central US
 		Label    : Back end subnet NSG
-		Rules    : 
-		           
+		Rules    :
+
 		              Type: Inbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -197,10 +197,10 @@
 		           ALLOW AZURE LOAD     65001     Allow    AZURE_LOADBALAN *             *                *              *       
 		           BALANCER INBOUND                        CER                                                                   
 		           DENY ALL INBOUND     65500     Deny     *               *             *                *              *       
-		           
-		           
+
+
 		              Type: Outbound
-		           
+
 		           Name                 Priority  Action   Source Address  Source Port   Destination      Destination    Protocol
 		                                                   Prefix          Range         Address Prefix   Port Range             
 		           ----                 --------  ------   --------------- ------------- ---------------- -------------- --------
@@ -210,4 +210,4 @@
 		           OUTBOUND                                                                                                      
 		           DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *   
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

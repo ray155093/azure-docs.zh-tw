@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何使用 PowerShell 管理端點的存取控制清單 (ACL)"
    description="了解如何使用 PowerShell 管理 ACL"
    services="virtual-network"
@@ -6,7 +6,7 @@
    authors="telmosampaio"
    manager="carmonm"
    editor="tysonn" />
-<tags 
+<tags
    ms.service="virtual-network"
    ms.devlang="na"
    ms.topic="article"
@@ -17,7 +17,7 @@
 
 # 如何使用 PowerShell 管理端點的存取控制清單 (ACL)
 
-您可以使用 Azure PowerShell 或在管理入口網站中建立和管理端點的網路存取控制清單 (ACL)。在本主題中，您會了解一些可使用 PowerShell 完成 ACL 一般工作的程序。如需 Azure PowerShell Cmdlet 的清單，請參閱＜[Azure 管理 Cmdlet](http://go.microsoft.com/fwlink/?LinkId=317721)＞。如需有關 ACL 的詳細資訊，請參閱＜[什麼是網路存取控制清單 (ACL)？](virtual-networks-acl.md)＞。若您要使用管理入口網站來管理 ACL，請參閱＜[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-set-up-endpoints.md)＞。
+您可以使用 Azure PowerShell 或在管理入口網站中建立和管理端點的網路存取控制清單 (ACL)。在本主題中，您會了解一些可使用 PowerShell 完成 ACL 一般工作的程序。如需 Azure PowerShell Cmdlet 的清單，請參閱＜[Azure 管理 Cmdlet](http://go.microsoft.com/fwlink/?LinkId=317721)＞。如需有關 ACL 的詳細資訊，請參閱＜[什麼是網路存取控制清單 (ACL)？](virtual-networks-acl.md)＞。若您要使用管理入口網站來管理 ACL，請參閱＜[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)＞。
 
 ## 使用 Azure PowerShell 來管理網路 ACL
 
@@ -71,7 +71,7 @@
 
 下方範例示範移除網路 ACL 規則的方式。若要移除包含遠端子網路允許規則的網路 ACL 規則，請開啟 Azure PowerShell ISE。複製並貼上下方的指令碼，接著使用您自己的值設定指令碼後執行。
 
-1. 第一個步驟是取得虛擬機器端點的網路 ACL 物件，然後移除 ACL 規則。在此案例中，我們依據規則 ID 進行移除。這只會從 ACL 移除規則 ID 0，並不會從虛擬機器端點移除 ACL 物件。 
+1. 第一個步驟是取得虛擬機器端點的網路 ACL 物件，然後移除 ACL 規則。在此案例中，我們依據規則 ID 進行移除。這只會從 ACL 移除規則 ID 0，並不會從虛擬機器端點移除 ACL 物件。
 
 		Get-AzureVM –ServiceName $serviceName –Name $vmName `
 		| Get-AzureAclConfig –EndpointName "web" `
@@ -95,4 +95,4 @@
 
 [什麼是網路存取控制清單 (ACL)？](virtual-networks-acl.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

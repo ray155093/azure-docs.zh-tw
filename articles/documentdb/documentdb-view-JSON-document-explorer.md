@@ -31,7 +31,7 @@
 
  	>[AZURE.NOTE] [查詢總管] 也會出現在資料庫和集合刀鋒視窗。
 
-    在 [Document Explorer] 刀鋒視窗中，會根據您在其中啟動 [查詢總管] 的內容預先填入 [資料庫] 和 [集合] 下拉式清單。
+    在 [文件總管] 刀鋒視窗中，會根據您在其中啟動 [文件總管] 的內容預先填入 [資料庫] 和 [集合] 下拉式清單。
 
 	![[Document Explorer] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerinitial.png)
 
@@ -158,4 +158,4 @@ Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文�
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

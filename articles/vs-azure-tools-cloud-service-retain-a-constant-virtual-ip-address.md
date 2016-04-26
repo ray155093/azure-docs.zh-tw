@@ -17,7 +17,7 @@
 
 # 如何保持雲端服務的固定虛擬 IP 位址
 
-當您更新裝載於 Azure 中的雲端服務時，您可能需要確保服務的虛擬 IP 位址 (VIP) 不會變更。許多網域管理服務都使用網域名稱系統 (DNS) 註冊網域名稱。DNS 只有在 VIP 保持不變時才能運作。您可以使用 Azure 工具中的 [發佈精靈] 確保雲端服務的 VIP 不會在您更新它時變更。如需有關如何使用雲端服務的 DNS 網域管理的詳細資訊，請參閱[設定 Azure 雲端服務的自訂網域名稱](/cloud-services/cloud-services-custom-domain-name.md)。
+當您更新裝載於 Azure 中的雲端服務時，您可能需要確保服務的虛擬 IP 位址 (VIP) 不會變更。許多網域管理服務都使用網域名稱系統 (DNS) 註冊網域名稱。DNS 只有在 VIP 保持不變時才能運作。您可以使用 Azure 工具中的 [發佈精靈] 確保雲端服務的 VIP 不會在您更新它時變更。如需有關如何使用雲端服務的 DNS 網域管理的詳細資訊，請參閱[設定 Azure 雲端服務的自訂網域名稱](./cloud-services/cloud-services-custom-domain-name.md)。
 
 ## 發佈雲端服務而不變更其 VIP
 
@@ -25,7 +25,7 @@
 
 ### 更新雲端服務而不變更其 VIP
 
-1. 在您已至少部署您的雲端服務一次之後，開啟 Azure 專案節點的捷徑功能表，並按一下 [發佈]。[發佈 Azure 應用程式] 精靈隨即出現。
+1. 在您至少部署您的雲端服務一次之後，開啟 Azure 專案節點的捷徑功能表，並按一下 [發佈]。[發佈 Azure 應用程式] 精靈隨即出現。
 
 1. 在訂用帳戶清單中，選擇您要部署的目標訂用帳戶，然後選擇 [下一步] 按鈕。精靈的 [設定] 頁面隨即出現。
 
@@ -45,4 +45,4 @@
 
 若要了解如何從 Visual Studio 發佈至 Azure，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

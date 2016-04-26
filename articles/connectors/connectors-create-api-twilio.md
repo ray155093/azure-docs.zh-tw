@@ -21,7 +21,7 @@ ms.author="mandia"/>
 
 連線到 Twilio 來傳送及接收全域 SMS、多媒體及 IP 訊息。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下 [Twilio](../app-service-logic/app-service-logic-connector-twilio.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 Twilio 來：
 
@@ -49,7 +49,7 @@ Twilio API 包含下列動作，但不包含觸發程序。
 
 請參閱 [Twilio](https://www.twilio.com/docs/api/ip-messaging/guides/identity) 來建立存取權杖。
 
-當您建立連線之後，請輸入 Twilio 的屬性。本主題的＜REST API 參考＞一節會說明這些屬性。
+當您建立連線之後，請輸入 Twilio 的屬性。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Twilio 連線。
 
@@ -247,4 +247,4 @@ Twilio API 包含下列動作，但不包含觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

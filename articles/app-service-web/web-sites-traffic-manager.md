@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="使用 Azure 流量管理員來控制 Azure Web 應用程式的流量" 
-	description="本文提供與 Azure Web 應用程式相關之 Azure 流量管理員的摘要資訊。";" 
-	services="app-service\web" 
-	documentationCenter="" 
-	authors="cephalin" 
-	writer="cephalin" 
-	manager="wpickett" 
+<properties
+	pageTitle="使用 Azure 流量管理員來控制 Azure Web 應用程式的流量"
+	description="本文提供與 Azure Web 應用程式相關之 Azure 流量管理員的摘要資訊。";"
+	services="app-service\web"
+	documentationCenter=""
+	authors="cephalin"
+	writer="cephalin"
+	manager="wpickett"
 	editor="mollybos"/>
 
-<tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/25/2016" 
+<tags
+	ms.service="app-service-web"
+	ms.workload="web"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/25/2016"
 	ms.author="cephalin"/>
 
 # 使用 Azure 流量管理員來控制 Azure Web 應用程式的流量
@@ -27,15 +27,13 @@
 ## 負載平衡方法
 Azure 流量管理員使用三種不同的負載平衡方法。下列清單說明 Azure Web 應用程式專屬的這些方法。
 
-* **容錯移轉**：如果您在不同地區有 Web 應用程式複本，就可以使用此方法，將某一個 Web 應用程式設定為服務所有 Web 用戶端流量，並在不同地區設定其他 Web 應用程式，以便在第一個 Web 應用程式無法使用時服務該流量。 
-	
+* **容錯移轉**：如果您在不同地區有 Web 應用程式複本，就可以使用此方法，將某一個 Web 應用程式設定為服務所有 Web 用戶端流量，並在不同地區設定其他 Web 應用程式，以便在第一個 Web 應用程式無法使用時服務該流量。
+
 * **循環配置資源**：如果您在不同地區有 Web 應用程式複本，就可以使用此方法，將流量平均分散於不同地區的 Web 應用程式。
-	
+
 * **效能**：效能方法可根據前往用戶端的最短來回時間來分散流量。效能方法可用於相同地區內或不同地區中的 Web 應用程式。
 
-如需 Azure 流量管理員中負載平衡的詳細資訊，請參閱[關於 Traffic Manager 負載平衡方法](../traffic-manager/traffic-manager-load-balancing-methods.md)。
-
-##Web 應用程式和流量管理員設定檔 
+##Web 應用程式和流量管理員設定檔
 若要設定以控制 Web 應用程式流量，可在使用上述三種負載平衡方法的其中一種之 Azure 流量管理員中建立設定檔，然後新增要控制其設定檔流量的端點 (在此案例中為 Web 應用程式)。系統會定期與設定檔溝通您的 Web 應用程式狀態 (執行中、已停止或已刪除)，讓 Azure 流量管理員可相應地導向流量。
 
 搭配使用 Azure 流量管理員與 Azure 時，請牢記下列重點：
@@ -58,9 +56,6 @@ Azure 流量管理員使用三種不同的負載平衡方法。下列清單說�
 
 如需 Azure 流量管理員的概念和技術概觀，請參閱 [Traffic Manager 概觀](../traffic-manager/traffic-manager-overview.md)。
 
-如需 Azure 流量管理員中負載平衡的詳細資訊，請參閱[關於 Traffic Manager 負載平衡方法](../traffic-manager/traffic-manager-load-balancing-methods.md)。
-
 如需將流量管理員與 Web Apps 搭配使用的詳細資訊，請參閱[將 Azure 流量管理員與 Azure 網站搭配使用](http://blogs.msdn.com/b/waws/archive/2014/03/18/using-windows-azure-traffic-manager-with-waws.aspx)和 [Azure 流量管理員現在可以與 Azure 網站整合](https://azure.microsoft.com/blog/2014/03/27/azure-traffic-manager-can-now-integrate-with-azure-web-sites/)部落格文章。
- 
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

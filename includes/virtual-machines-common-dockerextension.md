@@ -52,9 +52,9 @@ Docker VM 擴充程式是個元件，它會安裝在您所建立的 VM 執行個
 + [如何搭配使用 Docker VM 擴充程式與 Azure 傳統入口網站]
 
 ## Linux 及 Windows 的虛擬機器擴充程式
-[Azure 的 Docker VM 擴充程式](https://github.com/Azure/azure-docker-extension/blob/master/README.md)只是眾多提供特殊行為的 VM 延伸模組之一，還有許多正在開發中。例如，許多 [Linux VM 代理程式延伸模組](virtual-machines-linux-agent-user-guide.md)功能可讓您修改和管理虛擬機器，包括安全性功能、核心和網路功能等。例如，VMAccess 延伸模組可讓您重設管理員密碼或 SSH 金鑰。
+[Azure 的 Docker VM 擴充程式](https://github.com/Azure/azure-docker-extension/blob/master/README.md)只是眾多提供特殊行為的 VM 延伸模組之一，還有許多正在開發中。例如，許多 [Linux VM 代理程式延伸模組](../articles/virtual-machines/virtual-machines-linux-agent-user-guide.md)功能可讓您修改和管理虛擬機器，包括安全性功能、核心和網路功能等。例如，VMAccess 延伸模組可讓您重設管理員密碼或 SSH 金鑰。
 
-如需完整清單，請參閱 [Azure VM 擴充程式](virtual-machines-windows-extensions-features.md)。
+如需完整清單，請參閱 [Azure VM 擴充程式](../articles/virtual-machines/virtual-machines-windows-extensions-features.md)。
 
 <!--Anchors-->
 [如何透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組]: http://azure.microsoft.com/documentation/articles/virtual-machines-docker-with-xplat-cli/
@@ -64,4 +64,4 @@ Docker VM 擴充程式是個元件，它會安裝在您所建立的 VM 執行個
 [如何搭配使用 Docker VM 延伸模組與 Azure]: #How-to-use-the-Docker-VM-Extension-with-Azure
 [Linux 及 Windows 的虛擬機器延伸模組]: #Virtual-Machine-Extensions-For-Linux-and-Windows
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,10 +1,10 @@
-<properties 
-   pageTitle="將 Azure 自動化 Runbook 加入至復原計劃 | Microsoft Azure" 
-   description="本文說明 Azure Site Recovery 現在讓您使用 Azure 自動化擴充復原計畫，以便在復原至 Azure 期間，完成複雜的工作" 
-   services="site-recovery" 
-   documentationCenter="" 
-   authors="ruturaj" 
-   manager="mkjain" 
+<properties
+   pageTitle="將 Azure 自動化 Runbook 加入至復原計劃 | Microsoft Azure"
+   description="本文說明 Azure Site Recovery 現在讓您使用 Azure 自動化擴充復原計畫，以便在復原至 Azure 期間，完成複雜的工作"
+   services="site-recovery"
+   documentationCenter=""
+   authors="ruturaj"
+   manager="mkjain"
    editor=""/>
 
 <tags
@@ -12,7 +12,7 @@
    ms.devlang="powershell"
    ms.tgt_pltfrm="na"
    ms.topic="article"
-   ms.workload="required" 
+   ms.workload="required"
    ms.date="12/14/2015"
    ms.author="ruturajd@microsoft.com"/>
 
@@ -103,7 +103,7 @@ Azure 自動化使用 Azure PowerShell 連線到訂用帳戶，並在該處的�
 
 ![](media/site-recovery-runbook-automation/11.png)
 
-[這裡](../install-configure-powershell.md)提供有關如何透過 PowerShell 連線到您的訂用帳戶的詳細資訊。
+[這裡](../powershell-install-configure.md)提供有關如何透過 PowerShell 連線到您的訂用帳戶的詳細資訊。
 
 接下來，您將可以在 Azure 自動化中建立能夠在容錯移轉之後，為前端虛擬機器加入端點的 Runbook。
 
@@ -137,11 +137,11 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
 **變數名稱** | **說明**
 ---|---
 RecoveryPlanName | 正在執行的計劃名稱。協助您根據名稱使用相同的指令碼採取動作
-FailoverType | 指定容錯移轉是測試、已計劃，還是未計劃。 
+FailoverType | 指定容錯移轉是測試、已計劃，還是未計劃。
 FailoverDirection | 指定復原是主要還是次要
 GroupID | 識別計劃執行時復原計劃內的群組編號
 VmMap | 群組中所有虛擬機器的陣列
-VMMap 索引鍵 | 每個 VM 的唯一索引鍵 (GUID)。與虛擬機器的適用 VMM ID 相同。 
+VMMap 索引鍵 | 每個 VM 的唯一索引鍵 (GUID)。與虛擬機器的適用 VMM ID 相同。
 RoleName | 正在復原的 Azure VM 的名稱
 CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 
@@ -161,7 +161,7 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 2.  瀏覽至 Runbook 的 [撰寫] 檢視，然後進入草稿模式。
 
 3.  首先，指定要當做復原計畫內容使用的變數
-  
+
 	```
 		param (
 			[Object]$RecoveryPlanContext
@@ -173,7 +173,7 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 
 	```
 		$Cred = Get-AutomationPSCredential -Name 'AzureCredential'
-	
+
 		# Connect to Azure
 		$AzureAccount = Add-AzureAccount -Credential $Cred
 		$AzureSubscriptionName = Get-AutomationVariable –Name ‘AzureSubscriptionName’
@@ -229,7 +229,7 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 	)
 
 	$Cred = Get-AutomationPSCredential -Name 'AzureCredential'
-	
+
 	# Connect to Azure
 	$AzureAccount = Add-AzureAccount -Credential $Cred
 	$AzureSubscriptionName = Get-AutomationVariable –Name ‘AzureSubscriptionName’
@@ -241,7 +241,7 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 	$AEPublicPort = 80
 	$AEName = "Port 80 for HTTP"
 	$VMGUID = "7a1069c6-c1d6-49c5-8c5d-33bfce8dd183"
-	
+
 	#Read the VM GUID from the context
 	$VM = $RecoveryPlanContext.VmMap.$VMGUID
 
@@ -308,6 +308,4 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 
 [Azure 自動化範例指令碼](http://gallery.technet.microsoft.com/scriptcenter/site/search?f[0].Type=User&f[0].Value=SC%20Automation%20Product%20Team&f[0].Text=SC%20Automation%20Product%20Team "Azure 自動化範例指令碼")
 
- 
-
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

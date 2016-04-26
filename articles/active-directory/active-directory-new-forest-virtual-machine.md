@@ -14,7 +14,7 @@
 	ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-	ms.date="01/25/2016" 
+	ms.date="04/07/2016" 
 	ms.author="markusvi"/>
 
 
@@ -25,7 +25,7 @@
 您也可能對以下相關主題有興趣：
 
 - 如需顯示相關步驟的影片，請參閱[如何在 Azure 虛擬網路上安裝新的 Active Directory 樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
-- 您可以選擇性地[設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)，然後安裝新樹系，或將內部部署樹系延伸至 Azure 虛擬網路。如需相關步驟，請參閱[在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-networks-install-replica-active-directory-domain-controller.md)。
+- 您可以選擇性地[設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)，然後安裝新樹系，或將內部部署樹系延伸至 Azure 虛擬網路。如需相關步驟，請參閱[在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)。
 -  如需在 Azure 虛擬網路上安裝 Active Directory 網域服務 (AD DS) 的概念指引，請參閱[在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)。
 
 ## 案例圖表
@@ -119,9 +119,9 @@
 
 -  [如何在 Azure 虛擬網路上安裝新的 Active Directory 樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
 -  [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
--  [設定純雲端虛擬網路](../virtual-network/virtual-networks-create-vnet.md)
+
 -  [設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)
--  [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-networks-install-replica-active-directory-domain-controller.md)
+-  [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)
 -  [Microsoft Azure IT Pro IaaS：(01) 虛擬機器基本概念](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 -  [Microsoft Azure IT Pro IaaS：(05) 建立虛擬網路和跨單位連線](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
 -  [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
@@ -138,4 +138,4 @@
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

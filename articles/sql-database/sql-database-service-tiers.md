@@ -14,7 +14,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="03/25/2016"
+	ms.date="04/19/2016"
 	ms.author="carlrab"/>
 
 # SQL Database 選項和效能：了解每個服務層中可用的項目
@@ -64,4 +64,4 @@
 - 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
 - 如果您認識了 SQL Database 各個層，可以[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

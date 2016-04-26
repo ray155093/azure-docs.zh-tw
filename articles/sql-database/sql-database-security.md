@@ -4,8 +4,8 @@
    services="sql-database"
    documentationCenter=""
    authors="tmullaney"
-   manager="jeffreyg"
-   editor="jeffreyg"/>
+   manager="jhubbard"
+   editor=""/>
 
 <tags
    ms.service="sql-database"
@@ -77,7 +77,7 @@ ALTER ROLE db_datawriter ADD MEMBER ApplicationUser; -- allows ApplicationUser t
 * [資料遮罩](sql-database-dynamic-data-masking-get-started.md)可用來限制公開機密資料。
 * [預存程序](https://msdn.microsoft.com/library/ms190782)可用來限制對資料庫可採取的動作。
 
-要從 Azure 傳統入口網站或使用 Azure 資源管理員 API 管理資料庫和邏輯伺服器，是由入口網站使用者帳戶的角色指派所控制。如需有關此主題的詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制](../role-based-access-control-configure.md)。
+要從 Azure 傳統入口網站或使用 Azure 資源管理員 API 管理資料庫和邏輯伺服器，是由入口網站使用者帳戶的角色指派所控制。如需有關此主題的詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制](../active-directory./role-based-access-control-configure.md)。
 
 
 ## 加密
@@ -106,4 +106,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 
 除了上述可協助您的應用程式符合各種安全法規需求的特色和功能之外，Azure SQL Database 也定期參與稽核，並且經過認證符合許多法規標準。如需詳細資訊，請參閱 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)，您可以在當中找到 [SQL Database 法規認證](https://azure.microsoft.com/support/trust-center/services/)的最新清單。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

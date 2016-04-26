@@ -30,15 +30,9 @@
 
 ##必要條件
 
-若要完成此教學課程，您需要下列項目：
-
-* 使用中的 Azure 帳戶。如果您還沒有帳戶，註冊 Azure 試用版並取得最多 10 個免費的行動應用程式。試用結束之後您仍可以繼續使用它們。查看 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-
-* 已安裝 [Xamarin Studio] 和 [Xcode] v4.4 或更新版本的 Mac。如果想要，您可以在 Windows 電腦上使用 Visual Studio 執行 Xamarin.Forms 應用程式，但這樣會比較複雜，因為您必須連線到已加入網路並正在執行 Xamarin.iOS 組建主機的 Mac。如果您想這麼做，請參閱[在 Windows 上安裝 Xamarin.iOS]。
+* 完成[建立 Xamarin.Forms 應用程式](app-service-mobile-xamarin-forms-get-started.md)教學課程，它會列出其他必要條件。本文使用該教學課程中的已完成應用程式。
 
 * 實體的 iOS 裝置。iOS 模擬器不支援推播通知。
-
-* 完成 [Xamarin.Forms 快速入門教學課程](app-service-mobile-xamarin-forms-get-started.md)。
 
 ##建立行動應用程式的通知中樞
 
@@ -529,10 +523,8 @@
 <!-- Images. -->
 
 <!-- URLs. -->
-[Xamarin Studio]: http://xamarin.com/platform
 [Install Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
 [Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
-[在 Windows 上安裝 Xamarin.iOS]: http://developer.xamarin.com/guides/ios/getting_started/installation/windows/
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -4,7 +4,7 @@
    services="app-service\logic" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
-   manager="dwrede" 
+   manager="erikre" 
    editor=""/>
 
 <tags
@@ -13,14 +13,14 @@
 	ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="02/18/2016"
+   ms.date="04/20/2016"
    ms.author="rajram"/>
 
 # 建立交易夥伴協議   
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
-交易夥伴是指涉及 B2B (企業對企業) 通訊的實體。當兩個夥伴建立關係時，這稱為*協議*。定義的協議會以這兩個夥伴想要達成的通訊為基礎，且是特定的通訊協定或傳輸。Azure App Service 支援的各種 B2B 通訊協定和傳輸包括：
+交易夥伴是指涉及 B2B (企業對企業) 通訊的實體。當兩個夥伴建立關係時，這稱為協議。定義的協議會以這兩個夥伴想要達成的通訊為基礎，且是特定的通訊協定或傳輸。Azure App Service 支援的各種 B2B 通訊協定和傳輸包括：
 
 - AS2 (Applicability Statement 2)
 - EDIFACT (聯合國/行政、商業、傳輸的電子資料交換 (UN/EDIFACT))
@@ -65,9 +65,9 @@
 
 1. 建立 **BizTalk 交易夥伴管理**連接器的執行個體。這需要一個空白的 SQL Database 才能運作。開始之前，請確定具有並可供使用的空白資料庫。
 2. 視協議的需要上傳結構描述和憑證。您可透過瀏覽已建立的 TPM 執行個體，並逐步執行 [結構描述] 和/或 [憑證] 部分，來完成上述動作
-3. 瀏覽至已建立的 TPM 執行個體，並逐步執行 [**夥伴**] 部分
+3. 瀏覽至已建立的 TPM 執行個體，並逐步執行 [夥伴] 部分
 4. 視需要建立夥伴。並適當地編輯設定檔，以及新增必要的身分識別
-5. 現在使用 [**協議**] 部分來建立協議。當您建立協議時，必須選取將會使用的通訊協定。其餘的設定選項取決於您選取的通訊協定。
+5. 現在使用 [協議] 部分來建立協議。當您建立協議時，必須選取將會使用的通訊協定。其餘的設定選項取決於您選取的通訊協定。
 
 ![][2]
 
@@ -79,4 +79,4 @@
 [3]: ./media/app-service-logic-create-a-trading-partner-agreement/X12AgreementCreation.png
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

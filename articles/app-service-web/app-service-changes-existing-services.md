@@ -1,12 +1,11 @@
 <properties
 	pageTitle="Azure App Service 和它對現有 Azure 服務的影響"
 	description="說明新的 Azure App Service 和其功能如何影響 Azure 中的現有服務。"
-	authors="yochayk"
-	writer="yochayk"
-	editor="yochayk"
-	manager="nirma"
 	services="app-service"
-	documentationCenter=""/>
+    documentationCenter=""
+	authors="yochay"
+	manager="nirma"
+	editor=""/>
 
 <tags
 	ms.service="app-service"
@@ -92,4 +91,4 @@ App Service 會將下列現有 Azure 服務 - [網站](https://azure.microsoft.c
 
 若要深入了解，請瀏覽 [App Service 文件](https://azure.microsoft.com/documentation/services/app-service/)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

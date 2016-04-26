@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="04/01/2016"
+    ms.date="04/11/2016"
     ms.author="sstein"/>
 
 # 使用 C&#x23; 管理和估算彈性資料庫集區大小
@@ -34,7 +34,6 @@
 下列範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，因此您需要安裝此程式庫。您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中執行下列命令，以進行安裝：
 
     PM> Install-Package Microsoft.Azure.Management.Sql –Pre
-
 
 
 ## 更新集區
@@ -124,7 +123,10 @@
         Console.WriteLine("  Database {0}", db.Name);
     }
 
+## 彈性集區的作業延遲
 
+- 每個資料庫的保證 eDTU 數 (databaseDtuMin) 或每個資料庫的最大 eDTU 數 (databaseDtuMax) 變更作業通常在 5 分鐘內即可完成。
+- 集區之 eDTU/儲存體限制 (storageMB) 的變更作業，則需視集區中所有資料庫使用的總空間量而定。變更作業平均每 100 GB 會在 90 分鐘以內完成。舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則集區 eDTU/儲存體限制變更作業的預期延遲時間會少於 3 小時。
 
 
 ## 管理集區 C&#x23; 範例
@@ -458,4 +460,4 @@
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 - [彈性資料庫集區參考](sql-database-elastic-pool-reference.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

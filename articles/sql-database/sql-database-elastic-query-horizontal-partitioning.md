@@ -3,7 +3,7 @@
     description="如何設定水平資料分割的彈性查詢"    
     services="sql-database"
     documentationCenter=""  
-    manager="jeffreyg"
+    manager="jhubbard"
     authors="torsteng"/>
 
 <tags
@@ -192,31 +192,20 @@ DISTRIBUTION 子句會指定用於此資料表的資料散發：
 	where w_id > 100 and w_id < 200 
 	group by w_id, o_c_id 
  
-### 2\.2 預存程序 SP\_ EXECUTE\_FANOUT 
+### 2\.2 遠端 T-SQL 執行的預存程序
 
-彈性查詢也會介紹可供直接存取分區的預存程序。此預存程序稱為 sp\_execute\_fanout 並採用下列參數：
+彈性查詢也會介紹可供直接存取分區的預存程序。預存程序稱為 sp\_execute\_remote，而且可用來在遠端資料庫上執行遠端預存程序或 T-SQL 程式碼。它需要以下參數：
+* 資料來源名稱 (nvarchar)：RDBMS 類型的外部資料來源名稱。 
+* 查詢 (nvarchar)：對每個分區執行的 T-SQL 查詢。 
+* 參數宣告 (nvarchar) - 選用：含有查詢參數 (如 sp\_executesql) 中所用參數的資料類型定義的字串。 
+* 參數值清單 - 選用：以逗號分隔的參數值清單 (如 sp\_executesql)。
 
-* 伺服器名稱 (nvarchar)：裝載分區對應的邏輯伺服器的完整名稱。 
-* 分區對應資料庫名稱 (nvarchar)：分區對應資料庫的名稱。 
-* 使用者名稱 (nvarchar)：用來登入分區對應資料庫的使用者名稱。 
-* 密碼 (nvarchar)：使用者密碼。 
-* 分區對應名稱 (nvarchar)：用於查詢之分區對應的名稱。該名稱位於 \_ShardManagement.ShardMapsGlobal 資料表中，而它是在利用[開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)一文中的範例應用程式來建立資料庫時，所使用的預設名稱。應用程式中的預設名稱是 「CustomerIDShardMap」。
-*  查詢：對每個分區執行的查詢。 
-*  參數宣告 (nvarchar) - 選用：含有查詢參數 (如 sp\_executesql) 中所用參數的資料類型定義的字串。 
-*  參數值清單 - 選用：以逗號分隔的參數值清單 (如 sp\_executesql)  
-
-sp\_execute\_fanout 會使用叫用參數中提供的分區對應資訊，在所有向分區對應註冊的分區上執行指定的 T-SQL 陳述式。任何結果都透過 UNION ALL 語意進行合併。結果也包含額外的「虛擬」資料行，內有分區名稱。
-
-請注意，相同的認證用來連接到分區對應資料庫和分區。
+sp\_execute\_remote 使用引動過程參數中提供的外部資料來源，在遠端資料庫上執行指定的 T-SQL 陳述式。它會使用外部資料來源的認證連接 shardmap 管理員資料庫和遠端資料庫。
 
 範例：
 
-	sp_execute_fanout 
-		N'myserver.database.windows.net', 
-		N'ShardMapDb', 
-		N'myuser', 
-		N'MyPwd', 
-		N'ShardMap', 
+	EXEC sp_execute_remote
+		N'MyExtSrc',
 		N'select count(w_id) as foo from warehouse' 
 
 ## 工具的連線能力  
@@ -241,4 +230,4 @@ sp\_execute\_fanout 會使用叫用參數中提供的分區對應資訊，在所
 [1]: ./media/sql-database-elastic-query-horizontal-partitioning/horizontalpartitioning.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0413_2016-->

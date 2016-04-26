@@ -5,7 +5,7 @@
     keywords="c# 資料庫,sql 開發"
     documentationCenter=""
     authors="stevestein"
-    manager="jeffreyg"
+    manager="jhubbard"
     editor=""/>
 
 <tags
@@ -286,7 +286,7 @@
 
 ## 將現有資料庫移入彈性資料庫集區
 
-*建立集區之後，您也可以使用 Transact-SQL 將現有的資料庫移入和移出集區。*如需詳細資訊，請參閱[彈性資料庫集區參考 - Transact-SQL](sql-database-elastic-pool-reference.md#Transact-SQL)。
+建立集區之後，您也可以使用 Transact-SQL 將現有的資料庫移入和移出集區。如需詳細資訊，請參閱[使用 Transact-SQL 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-tsql.md)。*
 
 下列範例會將現有的 Azure SQL 資料庫移到集區中：
 
@@ -577,4 +577,4 @@
 [8]: ./media/sql-database-elastic-pool-csharp/add-application2.png
 [9]: ./media/sql-database-elastic-pool-csharp/clientid.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

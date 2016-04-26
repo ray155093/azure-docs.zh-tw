@@ -1,6 +1,6 @@
 <properties
 	pageTitle="基本設定測試環境與 Azure 資源管理員"
-	description="了解如何建立簡單的開發/測試環境以使用資源管理員模擬 Microsoft Azure 中簡化的內部網路。"
+	description="了解如何建立簡單的開發/測試環境來模擬 Microsoft Azure 中簡化的內部網路。"
 	documentationCenter=""
 	services="virtual-machines-windows"
 	authors="JoeDavies-MSFT"
@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="04/01/2016"
 	ms.author="josephd"/>
 
-# 基本設定測試環境與 Azure 資源管理員
+# 基本設定測試環境
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-machines-windows-classic-test-config-env.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
 
 本文將逐步解說如何利用在資源管理員中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
 
@@ -30,7 +30,7 @@
 
 「基本設定」測試環境是由名為 TestLab 的純雲端虛擬網路中的公司子網路構成的，可以模擬簡化的私人內部網路。
 
-![](./media/virtual-machines-windows-test-config-env/BC_TLG04.png)
+![](./media/virtual-machines-windows-test-config-env/virtual-machines-windows-test-config-env-ph4.png)
 
 它包含：
 
@@ -50,7 +50,7 @@
 3.	設定 APP1。
 4.	設定 CLIENT1。
 
-如果您還沒有 Azure 帳戶，請到[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 申請免費試用。如果您有 MSDN 訂用帳戶，請參閱 [MSDN 訂戶的 Azure 權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
+如果您還沒有 Azure 帳戶，請到[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 申請免費試用。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
 > [AZURE.NOTE] Azure 中的虛擬機器執行時，需要支付相關費用。這項成本是按照您的免費試用版、MSDN 訂用帳戶或付費訂用帳戶進行計算。如需詳細了解 Azure 虛擬機器的執行成本，請參閱[虛擬機器價格詳細資料](https://azure.microsoft.com/pricing/details/virtual-machines/)和 [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)。為了降低成本，請參閱[將 Azure 的測試環境虛擬機器費用降至最低](#costs)。
 
@@ -94,16 +94,22 @@
 	$saName="<storage account name>"
 	New-AzureRMStorageAccount -Name $saName -ResourceGroupName $rgName –Type Standard_LRS -Location $locName
 
-接下來，您可以建立 TestLab Azure 虛擬網路，用它來架設公司子網路基本設定。
+接下來，您可以建立 TestLab Azure 虛擬網路，用它來架設公司子網路基本組態，並且使用網路安全性群組進行保護。
 
 	$rgName="<name of your new resource group>"
 	$locName="<Azure location name, such as West US>"
+	$locShortName="<the location of your new resource group in lowercase with spaces removed, example: westus>"
 	$corpnetSubnet=New-AzureRMVirtualNetworkSubnetConfig -Name Corpnet -AddressPrefix 10.0.0.0/24
 	New-AzureRMVirtualNetwork -Name TestLab -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/8 -Subnet $corpnetSubnet –DNSServer 10.0.0.4
+	$rule1=New-AzureRMNetworkSecurityRuleConfig -Name "RDPTraffic" -Description "Allow RDP to all VMs on the subnet" -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix Internet -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389
+	New-AzureRMNetworkSecurityGroup -Name Corpnet -ResourceGroupName $rgName -Location $locShortName -SecurityRules $rule1
+	$vnet=Get-AzureRMVirtualNetwork -ResourceGroupName $rgName -Name TestLab
+	$nsg=Get-AzureRMNetworkSecurityGroup -Name Corpnet -ResourceGroupName $rgName
+	Set-AzureRMVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name Corpnet -AddressPrefix "10.0.0.0/24" -NetworkSecurityGroup $nsg
 
 這是您目前的組態。
 
-![](./media/virtual-machines-windows-test-config-env/BC_TLG01.png)
+![](./media/virtual-machines-windows-test-config-env/virtual-machines-windows-test-config-env-ph1.png)
 
 ## 階段 2：設定 DC1。
 
@@ -132,7 +138,7 @@ DC1 是 corp.contoso.com Active Directory 網域服務 (AD DS) 網域的網域�
 接著，連接到 DC1 虛擬機器。
 
 1.	在 Azure 入口網站中，按一下 [**虛擬機器**]，然後按一下 [**DC1**] 虛擬機器。  
-2.	在 [**DC1**] 窗格中按一下 [**連接**]。
+2.	在 [DC1] 窗格中按一下 [連接]。
 3.	出現提示時，開啟下載的 DC1.rdp 檔案。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用下列：
@@ -189,7 +195,7 @@ DC1 重新啟動之後，重新連接到 DC1 的虛擬機器。
 
 這是您目前的組態。
 
-![](./media/virtual-machines-windows-test-config-env/BC_TLG02.png)
+![](./media/virtual-machines-windows-test-config-env/virtual-machines-windows-test-config-env-ph2.png)
 
 ## 階段 3：設定 APP1
 
@@ -238,7 +244,7 @@ APP1 提供網頁和檔案共用服務。
 
 這是您目前的組態。
 
-![](./media/virtual-machines-windows-test-config-env/BC_TLG03.png)
+![](./media/virtual-machines-windows-test-config-env/virtual-machines-windows-test-config-env-ph3.png)
 
 ## 階段 4：設定 CLIENT1
 
@@ -283,7 +289,7 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 2.	在 [CLIENT1 的屬性] 中，按一下 [IE 增強式安全性設定] 旁的 [開啟]。
 3.	在 [Internet Explorer 增強式安全性設定] 中，按一下 [系統管理員] 和 [使用者] 的 [關閉]，然後按一下 [確定]。
 4.	從 [開始] 畫面中，按一下 [Internet Explorer]，然後按一下 [確定]。
-5.	在網址列中，鍵入 ****http://app1.corp.contoso.com/**，然後按 ENTER。您應該會看到 APP1 的預設網際網路資訊服務網頁。
+5.	在網址列中，鍵入 **http://app1.corp.contoso.com/**，然後按 ENTER。您應該會看到 APP1 的預設網際網路資訊服務網頁。
 6.	按一下桌面工作列中的 [檔案總管] 圖示。
 7.	在網址列中，輸入 **\\\app1\\Files**，然後按下 ENTER。
 8.	您應該會看到一個資料夾視窗，裡面有檔案共用資料夾的內容。
@@ -292,13 +298,13 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 
 這是最終的設定。
 
-![](./media/virtual-machines-windows-test-config-env/BC_TLG04.png)
+![](./media/virtual-machines-windows-test-config-env/virtual-machines-windows-test-config-env-ph4.png)
 
 您在 Azure 中的基本設定現在可用於應用程式開發與測試或其他測試環境。
 
 ## 後續步驟
 
-- [新增新的虛擬機器](virtual-machines-windows-create-powershell.md)到公司網路子網路，例如執行 Microsoft SQL Server 的虛擬機器。
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)加入新的虛擬機器，或建置[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。
 
 
 ## <a id="costs"></a>將 Azure 的測試環境虛擬機器費用降至最低
@@ -328,4 +334,4 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "APP1"
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "CLIENT1"
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

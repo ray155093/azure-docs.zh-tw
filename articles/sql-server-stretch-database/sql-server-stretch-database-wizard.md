@@ -44,9 +44,29 @@
 |**名稱**|指定資料表中的資料欄名稱。|
 |(沒有標題)|如果此資料欄中出現符號，通常代表因為封鎖問題，而無法為選取的資料表啟用延伸功能。這可能是因為該資料表使用未支援的資料類型。以滑鼠暫留在符號上，以在工作提示中顯示更多資訊。如需詳細資訊，請檢閱 [Surface area limitations and blocking issues for Stretch Database (Stretch Database 的介面區域限制和封鎖問題)](sql-server-stretch-database-limitations.md)。|
 |**已延伸**|指出資料表是否已啟用。|
+|**移轉**|在 RC3 中，您可以移轉整個資料表 (**整個資料表**)，也可以在精靈中指定以日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選述詞。如需篩選述詞的詳細資訊，請參閱[使用篩選述詞選取要移轉的資料列 (Stretch Database)](sql-server-stretch-database-predicate-function.md)。如需有關如何套用述詞的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
 |**列**|指定資料表中的資料列數目。|
 |**大小 (KB)**|指定資料表的大小 (以 KB 為單位)。|
-|**移轉**|在 CTP 3.1 到 RC2 中，您必須使用精靈，才能移轉整個資料表。如果您想要指定述詞以從同時包含歷程與目前資料的資料表中選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定述詞。如需詳細資訊，請參閱 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
+
+## <a name="Filter"></a>選擇性提供以日期為基礎的篩選述詞
+
+如果您想要提供以日期為基礎的篩選述詞來選取要移轉的資料列，請在 [選取資料表] 頁面上執行下列作業。
+
+1.  在 [選取您要延展的資料表] 清單中，按一下資料表的資料列中的 [整個資料表]。[選取要延展的資料列] 對話方塊隨即開啟。
+
+    ![定義以日期為基礎的篩選述詞][StretchWizardImage2a]
+
+2.  在 [選取要延展的資料列] 對話方塊中，選取 [選擇資料列]。
+
+3.  在 [名稱] 欄位中，提供篩選述詞的名稱。
+
+4.  針對 **Where** 子句，從資料表中挑選日期資料行、挑選一個運算子，以及提供日期值。
+
+5. 按一下 [檢查] 來測試述詞。如果述詞傳回資料表的結果 (也就是有要移轉的資料列滿足條件)，則測試會報告 [成功]。
+
+6.  按一下 [完成] 回到 [選取資料表] 頁面。
+
+    ![在定義篩選述詞後選取 [資料表] 頁面][StretchWizardImage2b]
 
 ## <a name="Configure"></a>設定 Azure 部署
 
@@ -58,7 +78,7 @@
 
 3.  選取 Azure 區域。如果您建立新伺服器，該伺服器將會建立於此區域。
 
-    若要將延遲降到最低，請選擇您的 SQL Server 所位於之區域做為 Azure 區域。如需區域的詳細資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
+    若要將延遲降到最低，請選擇您的 SQL Server 所位於之區域做為 Azure 區域。如需區域的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
 
 4.  指定您是否要使用現有伺服器，還是建立新的 Azure 伺服器。
 
@@ -111,12 +131,12 @@
 (選擇性) 選取 [監視] 以啟動 Stretch Database 監視器對資料移轉的監視。如需詳細資訊，請參閱[資料移轉的監視及疑難排解 (Stretch Database)](sql-server-stretch-database-monitor.md)。
 
 ## <a name="KnownIssues"></a>針對精靈進行疑難排解
-**Stretch Database 精靈失敗。** 如果 Stretch Database 尚未在伺服器層級啟用，且您在沒有能啟用它之系統管理員權限的情況下執行精靈，則精靈將會失敗。請要求系統管理員在本機伺服器執行個體上啟用 Stretch Database，然後再次執行精靈。如需詳細資訊，請參閱 [Prerequisite: Permission to enable Stretch Database on the server (必要條件：在伺服器上啟用 Stretch Database 的權限)](sql-server-stretch-database-enable-database.md#EnableTSQLServer)。
+**Stretch Database 精靈失敗。** 如果 Stretch Database 尚未在伺服器層級啟用，且您在沒有能啟用它之系統管理員權限的情況下執行精靈，則精靈將會失敗。請要求系統管理員在本機伺服器執行個體上啟用 Stretch Database，然後再次執行精靈。如需詳細資訊，請參閱[必要條件：在伺服器上啟用 Stretch Database 的權限)](sql-server-stretch-database-enable-database.md#EnableTSQLServer)。
 
 ## 後續步驟
 為其他資料表啟用 Stretch Database。監視資料移轉並管理已啟用 Stretch 的資料庫和資料表。
 
--   [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-table.md) 以啟用其他資料表。
+-   [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 以啟用其他資料表。
 
 -   [監視 Stretch Database](sql-server-stretch-database-monitor.md) 以查看資料移轉狀態。
 
@@ -134,6 +154,8 @@
 
 [StretchWizardImage1]: ./media/sql-server-stretch-database-wizard/stretchwiz1.png
 [StretchWizardImage2]: ./media/sql-server-stretch-database-wizard/stretchwiz2.png
+[StretchWizardImage2a]: ./media/sql-server-stretch-database-wizard/stretchwiz2a.png
+[StretchWizardImage2b]: ./media/sql-server-stretch-database-wizard/stretchwiz2b.png
 [StretchWizardImage3]: ./media/sql-server-stretch-database-wizard/stretchwiz3.png
 [StretchWizardImage4]: ./media/sql-server-stretch-database-wizard/stretchwiz4.png
 [StretchWizardImage5]: ./media/sql-server-stretch-database-wizard/stretchwiz5.png
@@ -141,4 +163,4 @@
 [StretchWizardImage7]: ./media/sql-server-stretch-database-wizard/stretchwiz7.png
 [StretchWizardImage8]: ./media/sql-server-stretch-database-wizard/stretchwiz8.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

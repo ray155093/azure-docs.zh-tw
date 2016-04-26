@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排架構 | Microsoft Azure"
-   description="描述 Azure 服務匯流排的訊息處理架構。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="服務匯流排架構 | Microsoft Azure"
+    description="描述 Azure 服務匯流排的訊息處理架構。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="tysonn" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="04/19/2016"
+    ms.author="sethm" />
 
 # 服務匯流排架構
 
@@ -29,13 +29,9 @@
 
 - **一組訊息代理程式節點。** 訊息代理程式節點會處理關於訊息實體的要求。
 
-- **一組通知節點。** 通知節點會傳送推播通知給所有已註冊的裝置。
-
 - **一個閘道器存放區。** 閘道器存放區會保存此縮放單位中定義的每個實體的資料。閘道器存放區是在 SQL Azure 資料庫上實作。
 
-- **許多訊息存放區。** 訊息存放區會保存此縮放單位中定義的所有佇列、主題和訂用帳戶的訊息。它也包含所有訂用帳戶資料。除非啟用了[分割訊息實體](service-bus-partitioning.md)，佇列或主題才會對應至一個訊息存放區。訂用帳戶是儲存在與父項主題相同的訊息存放區。除了服務匯流排[進階傳訊](service-bus-premium-messaging.md)以外，訊息存放區會在 SQL Azure 資料庫之上實作。
-
-- **多個登錄存放區。** 登錄存放區包含此縮放單位中定義的所有通知中樞的裝置註冊。登錄存放區是在 SQL Azure 資料庫上實作。
+- **多個訊息存放區。** 訊息存放區會保存此縮放單位中定義的所有佇列、主題和訂用帳戶的訊息。它也包含所有訂用帳戶資料。除非啟用了[分割訊息實體](service-bus-partitioning.md)，佇列或主題才會對應至一個訊息存放區。訂用帳戶是儲存在與父項主題相同的訊息存放區。除了服務匯流排[進階傳訊](service-bus-premium-messaging.md)以外，訊息存放區會在 SQL Azure 資料庫之上實作。
 
 ## 容器
 
@@ -55,12 +51,6 @@
 
 ![處理內送轉送要求](./media/service-bus-architecture/IC690645.png)
 
-## 處理內送通知中心要求
-
-當用戶端傳送要求至服務匯流排時，Azure 負載平衡器會將其路由到任何一個閘道器節點。如果要求為現有的通知中心的裝置註冊，閘道器節點會將登錄寫入登錄存放區，並傳送回覆給呼叫端裝置。如果要求為通知訊息時，閘道器節點會將訊息放入通知佇列。其中一個通知節點會從通知佇列將訊息取消佇列，並將訊息傳送到登錄存放區中註冊的所有裝置。如果訊息要由許多裝置接收，多個通知節點會參與將訊息傳送至裝置。
-
-![處理內送通知中心要求](./media/service-bus-architecture/IC690646.png)
-
 ## 後續步驟
 
 既然您已閱讀服務匯流排運作方式的概觀，若要開始，請瀏覽下列連結：
@@ -69,4 +59,4 @@
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 - [使用服務匯流排佇列的佇列訊息解決方案](service-bus-dotnet-multi-tier-app-using-service-bus-queues.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

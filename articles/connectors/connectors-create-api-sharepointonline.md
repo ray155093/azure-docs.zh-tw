@@ -21,7 +21,7 @@ ms.author="deonhe"/>
 
 SharePoint 連線提供者提供 API 來讓您使用 Sharepoint 上的清單。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下 [SharePoint](../app-service-logic/app-service-logic-connector-SharePoint.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用SharePoint 來：
 
@@ -66,7 +66,7 @@ SharePoint API 提供下列動作及/或觸發程序：
 
 
 ## 建立至 SharePoint 的連線
-如要使用 SharePoint API，您必須先建立「連線」，再提供下列屬性的詳細資料：
+如要使用 SharePoint API，您必須先建立**連接**，再提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
@@ -74,7 +74,7 @@ SharePoint API 提供下列動作及/或觸發程序：
 
 若要連接到 **SharePoint Online**，您需要向 SharePoint online 提供您的身分識別 (使用者名稱和密碼、智慧卡認證等)。通過驗證之後，您就可以在邏輯應用程式中使用 SharePoint Online API。
 
-在邏輯應用程式的設計工具中，請依照下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線。
+在邏輯應用程式的設計工具中，請遵循下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線。
 
 1. 在搜尋方塊中輸入 SharePoint，並等候搜尋傳回所有名稱中有 SharePoint 的項目：![設定 SharePoint][1]  
 2. 選取 [SharePoint Online - 當檔案建立時]   
@@ -82,7 +82,7 @@ SharePoint API 提供下列動作及/或觸發程序：
 4. 提供您的 SharePoint 認證來登入，並以 SharePoint ![設定 SharePoint][3] 進行驗證     
 5. 驗證完成後，只要設定 SharePoint 的 [當檔案建立時] 對話方塊，系統會將您重新導向至邏輯應用程式並完成作業。![設定 SharePoint][4]  
 6. 接著，您可以新增所需的其他觸發和動作來完成邏輯應用程式。   
-7. 選取上方功能表列的 [儲存]，即可儲存您的工作。  
+7. 選取上方功能表列的 [儲存] 來儲存您的工作。  
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式、PowerApps 或這兩者中使用這個連接。
 
@@ -553,7 +553,7 @@ BlobMetadata 的必要屬性：
 
 
 
- **Object**：
+ **物件：**
 
 Object 的必要屬性：
 
@@ -642,7 +642,7 @@ Table 的必要屬性：
 
 
 
- **Item**：
+ **項目：**
 
 Item 的必要屬性：
 
@@ -701,4 +701,4 @@ TablesList 的必要屬性：
 [4]: ./media/connectors-create-api-sharepointonline/connectionconfig4.png
 [5]: ./media/connectors-create-api-sharepointonline/connectionconfig5.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

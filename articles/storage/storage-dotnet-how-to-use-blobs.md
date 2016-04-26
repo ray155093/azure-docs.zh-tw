@@ -55,11 +55,13 @@ Azure Blob 儲存體是用來在雲端中儲存檔案資料的服務。Blob 儲�
 	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
     using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 
+### 解析連接字串
+
 [AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### 建立 Blob 服務用戶端
 
-**CloudBlobClient** 類別可讓您擷取 Blob 儲存體中儲存的容器和 Blob。將下列程式碼新增至 **Main()** 方法：
+**CloudBlobClient** 類別可讓您擷取 Blob 儲存體中儲存的容器和 Blob。以下是建立服務用戶端的其中一種方式：
 
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
@@ -87,8 +89,8 @@ Azure Blob 儲存體是用來在雲端中儲存檔案資料的服務。Blob 儲�
 根據預設，新容器屬私人性質，這表示您必須指定儲存體存取金鑰才能從此容器下載 Blob。若要讓所有人都能使用容器中的檔案，您可以使用下列程式碼將容器設定為公用容器：
 
     container.SetPermissions(
-        new BlobContainerPermissions { PublicAccess = 
- 	    BlobContainerPublicAccessType.Blob });
+        new BlobContainerPermissions { PublicAccess =
+	 BlobContainerPublicAccessType.Blob });
 
 網際網路上的任何人都可以看到公用容器中的 Blob，但要有適當的帳戶存取金鑰或共用存取簽章，才能修改或刪除這些 Blob。
 
@@ -364,7 +366,6 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
 - [開始使用適用於 .NET 的檔案儲存體](storage-dotnet-how-to-use-files.md)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy)
 - [如何透過 WebJobs SDK 使用 Azure Blob 儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
-- [從 .NET (C#) 使用 SQL Database](../sql-database/sql-database-dotnet-how-to-use.md)
 
   [Blob5]: ./media/storage-dotnet-how-to-use-blobs/blob5.png
   [Blob6]: ./media/storage-dotnet-how-to-use-blobs/blob6.png
@@ -377,4 +378,4 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
   [.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
   [REST API reference]: http://msdn.microsoft.com/library/azure/dd179355
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

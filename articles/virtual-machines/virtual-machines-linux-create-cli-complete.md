@@ -96,7 +96,7 @@ chrisL@fedora$ azure vm show testrg testvm
 
 ### 簡介
 
-本文利用 VNetwork 子網路內的 Linux VM 建置類似雲端服務部署的部署。它以命令方式引導整個基本部署，依序引導逐一命令，直到您具備有效的安全 Linux VM，可透過網際網路從任何地方連線。
+本文使用 VNetwork 子網路內的一個 Linux VM 來建置部署。它以命令方式引導整個基本部署，依序引導逐一命令，直到您具備有效的安全 Linux VM，可透過網際網路從任何地方連線。
 
 在過程中，您將了解資源管理員部署模型提供給您的相依性階層，以及它提供多少功能。您看到系統的建置方法時，可以使用更直接的 Azure CLI 命令，以更快的速度重建系統 (請參閱[本文](virtual-machines-linux-quick-create-cli.md)以使用 `azure vm quick-create` 命令處理大致相同的部署)，或者您可以繼續專精如何設計及自動化整個網路與應用程式部署，並使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)進行更新。一旦您看到部署的組件如何彼此搭配運作，就可以更輕鬆地建立範本來將它們自動化。
 
@@ -123,7 +123,7 @@ info:    group create command OK
 
 ### 建立儲存體帳戶
 
-在其他案例中，你將需要儲存體帳戶，用於您的 VM 磁碟和任何您想要新增的其他額外資料磁碟。簡單地說，您一定要在建立資源群組之後立即建立儲存體帳戶。
+在其他案例中，您將需要儲存體帳戶，用於您的 VM 磁碟和任何您想要新增的額外資料磁碟。簡單地說，您一定要在建立資源群組之後立即建立儲存體帳戶。
 
 我們在此使用 `azure storage account create` 命令，傳遞帳戶的位置、將控制它的資源群組，以及您想要的儲存體支援類型。
 
@@ -586,7 +586,7 @@ info:    This NIC IP configuration has a public ip already configured "/subscrip
 info:    vm create command OK
 ```
 
-您可以立即使用預設 ssh 金鑰連接至 VM。
+您可以立即使用預設 SSH 金鑰連線到 VM。
 
 ```
 chrisL@fedora$ ssh ops@testsubdomain.westeurope.cloudapp.azure.com           
@@ -690,4 +690,4 @@ info:    vm show command OK
 
 現在您已準備好開始處理多個網路元件和 VM。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -4,7 +4,7 @@
 	services="app-service\api"
 	documentationCenter="java"
 	authors="bradygaster"
-	manager="mohisri" 
+	manager="mohisri"
 	editor="tdykstra"/>
 
 <tags
@@ -295,4 +295,4 @@
 
 如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [ 開發人員中心](/develop/java/)。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

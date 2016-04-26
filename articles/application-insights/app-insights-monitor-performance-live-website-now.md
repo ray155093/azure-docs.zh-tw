@@ -159,7 +159,6 @@ Visual Studio Application Insights 的狀態監視器可讓您診斷 ASP.NET 應
  -	`login.live.com:443`
 + 安裝：
  +	`packages.nuget.org:443`
- +	`appinsightsstatusmonitor.blob.core.windows.net:80`
 
 這份清單可能會隨時變更。
 
@@ -302,4 +301,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,5 +1,5 @@
 <properties 
-    pageTitle="教學課程：Azure AD 與 BlueJeans 整合 | Microsoft Azure" 
+    pageTitle="教學課程：Azure Active Directory 與 BlueJeans 整合 | Microsoft Azure" 
     description="了解如何使用 BlueJeans 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="04/06/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure AD 與 BlueJeans 整合
@@ -129,7 +129,7 @@
 
     ![Admin](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "Admin")
 
-    >[AZURE.IMPORTANT]只有在未核取 [安全性] 索引標籤中的 [啟用自動佈建] 時，才能使用 [加入使用者] 索引標籤。
+    >[AZURE.IMPORTANT] 只有在未核取 [安全性] 索引標籤中的 [啟用自動佈建] 時，才能使用 [加入使用者] 索引標籤。
 
 3.  在 [加入使用者] 區段中，執行下列步驟：
 
@@ -138,7 +138,7 @@
     1.  在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [BlueJeans 使用者名稱]、[電子郵件地址]、[BlueJeans 會議識別碼]、[仲裁者密碼]、[全名]、[公司]。
     2.  按一下 [加入使用者]。
 
->[AZURE.NOTE]您可以使用任何其他的 BlueJeans 使用者帳戶建立工具或 BlueJeans 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 BlueJeans 使用者帳戶建立工具或 BlueJeans 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
 
@@ -158,4 +158,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!----HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0413_2016-->

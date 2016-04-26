@@ -176,11 +176,6 @@
 
 從這份清單中複製所選擇的 SKU 名稱，而且您擁有 **Set-AzureVMSourceImage** PowerShell Cmdlet 或資源群組範本檔案的所有資訊，而資源群組範本檔案需要您指定映像的發行者、提供項目和 SKU。
 
-### 影片逐步解說
-
-這段影片示範使用 PowerShell 的上述步驟。
-
-[AZURE.VIDEO virtual-machines-linux-cli-ps-findimage-posh]
 
 
 <!--Image references-->
@@ -194,4 +189,4 @@
 [yah]: http://search.yahoo.com/
 [msn]: http://search.msn.com/
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -23,7 +23,7 @@
 
 本主題假設您熟悉 Azure 資源管理員中的角色型存取控制 (RBAC)。如需詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-本主題是較大份白皮書的一部分。若要閱讀完整的文件，請下載[世界級 ARM 範本注意事項和證明可行的作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/WorldClass ARM Templates - Considerations and Proven Practices.pdf)。
+本主題是較大份白皮書的一部分。若要閱讀完整的文件，請下載「世界級 ARM 範本注意事項和證明可行的作法」(http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/WorldClass ARM Templates - Considerations and Proven Practices.pdf)。
 
 ## 密碼和憑證
 
@@ -32,8 +32,8 @@ Azure 虛擬機器、Azure 資源管理員和 Azure 金鑰保存庫經過完全�
 - 範本僅包含密碼的 URI 參考，也就是說，實際的密碼不在程式碼、組態或原始程式碼儲存機制中。這可防止內部或外部儲存機制的金鑰網路釣魚攻擊，例如 GitHub 中的 harvest-bots。
 - 金鑰保存庫中儲存的密碼受到受信任的操作員的完整 RBAC 控制。如果受信任的操作員離開公司或轉移到公司內部的新群組，他們就不能再存取他們在保存庫中建立的金鑰。
 - 所有資產的完整區隔化：
-      - 部署金鑰的範本 
-      - 使用金鑰的參考部署 VM 的範本 
+      - 部署金鑰的範本
+      - 使用金鑰的參考部署 VM 的範本
       - 保存庫中的實際金鑰資料。每個範本 (和動作) 都可以從屬於不同 RBAC 角色，以完整區分職責。
 - 若要在部署階段將密碼載入到 VM 中，可以透過 Microsoft 資料中心範圍內 Azure 網狀架構和金鑰保存庫之間的直接通道進行。一旦金鑰位於金鑰保存庫之後，他們就永遠不會在資料中心外部不受信任的通道「見光」。  
 - 金鑰保存庫永遠是地區性的，因此，密碼與 VM 永遠具有區域性 (以及主權)。沒有全域金鑰保存庫。
@@ -172,11 +172,11 @@ Active Directory 目錄中會以服務主體來代表服務身分。服務主體
 
 許多案例將會要求指定如何控制傳輸至您虛擬網路中一個或多個 VM 執行個體的流量。您可以使用網路安全性群組 (NSG)，在部署 ARM 範本時進行。
 
-網路安全性群組是與您的訂用帳戶相關聯的最上層物件。NSG 包含存取控制規則，可允許或拒絕傳輸至 VM 執行個體的流量。NSG 的規則可以隨時變更，而變更時會套用至所有相關聯的執行個體。若要使用 NSG，您必須擁有與區域 (位置) 相關聯的虛擬網路。NSG 不相容於與同質群組相關聯的虛擬網路。如果您沒有區域虛擬網路，且您想要控制傳輸至端點的流量，請參閱[關於網路存取控制清單 (ACL)](../virtual-network/virtual-networks-acl.md)。
+網路安全性群組是與您的訂用帳戶相關聯的最上層物件。NSG 包含存取控制規則，可允許或拒絕傳輸至 VM 執行個體的流量。NSG 的規則可以隨時變更，而變更時會套用至所有相關聯的執行個體。若要使用 NSG，您必須擁有與區域 (位置) 相關聯的虛擬網路。NSG 不相容於與同質群組相關聯的虛擬網路。如果您沒有區域虛擬網路，且您想要控制傳輸至端點的流量，請參閱[關於網路存取控制清單 (ACL)](./virtual-network/virtual-networks-acl.md)。
 
 您可以讓 NSG 與 VM 產生關聯，或與虛擬網路內的子網路產生關聯。與 VM 建立關聯時，NSG 會套用至由 VM 執行個體傳送和接收的所有流量。套用至虛擬網路中的子網路時，NSG 會套用至子網路中所有 VM 執行個體傳送和接收的所有流量。VM 或子網路可以僅與 1 個 NSG 產生關聯，但每個 NSG 可以包含最多 200 個規則。每個訂用帳戶您可以擁有 100 個 NSG。
 
->[AZURE.NOTE]  端點式 ACL 和網路安全性群組，不支援用於相同的 VM 執行個體。如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。如需有關執行這項作業的資訊，請參閱＜[使用 PowerShell 管理端點的存取控制清單 (ACL)](../virtual-network/virtual-networks-acl-powershell.md)＞。
+>[AZURE.NOTE]  端點式 ACL 和網路安全性群組，不支援用於相同的 VM 執行個體。如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。如需有關執行這項作業的資訊，請參閱＜[使用 PowerShell 管理端點的存取控制清單 (ACL)](./virtual-network/virtual-networks-acl-powershell.md)＞。
 
 ### 網路安全性群組的運作方式
 
@@ -292,7 +292,7 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
   - 網際網路。代表 Azure 基礎結構所提供的預設網際網路閘道
   - 虛擬應用裝置。代表您新增至 Azure 虛擬網路的虛擬應用裝置。
   - NULL。代表黑洞。轉送至黑洞的封包將完全不會被轉送。
--	Nexthop 值。下一個躍點值包含應該要將封包轉送到哪個 IP 位址。只有在下一個躍點類型為*虛擬應用裝置*所在的路由中，才允許下一個躍點值。下一個躍點必須位於子網路 (根據網路識別碼的虛擬應用裝置本機介面)，而不是遠端子網路。 
+-	Nexthop 值。下一個躍點值包含應該要將封包轉送到哪個 IP 位址。只有在下一個躍點類型為*虛擬應用裝置*所在的路由中，才允許下一個躍點值。下一個躍點必須位於子網路 (根據網路識別碼的虛擬應用裝置本機介面)，而不是遠端子網路。
 
 ![路由](./media/best-practices-resource-manager-security/routing.png)
 
@@ -306,7 +306,7 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
 
 ### BGP 路由
 
-在撰寫本文時，Azure 資源管理員的[網路資源提供者](virtual-network/resource-groups-networking.md)尚未支援 [ExpressRoute](expressroute/expressroute-introduction.md)。在 NRP 上支援 ExpressRoute 之後，如果您在內部部署網路與 Azure 之間有 ExpressRoute 連線，可以啟用 BGP，將路由從內部部署網路傳播至 Azure。這些 BGP 路由的使用方式與預設路由相同，也與每個 Azure 子網路中的使用者定義路由相同。如需詳細資訊，請參閱 [ExpressRoute 簡介](expressroute/expressroute-introduction.md)。
+在撰寫本文時，Azure 資源管理員的[網路資源提供者](virtual-network/resource-groups-networking.md)尚未支援 [ExpressRoute](./expressroute/expressroute-introduction.md)。在 NRP 上支援 ExpressRoute 之後，如果您在內部部署網路與 Azure 之間有 ExpressRoute 連線，可以啟用 BGP，將路由從內部部署網路傳播至 Azure。這些 BGP 路由的使用方式與預設路由相同，也與每個 Azure 子網路中的使用者定義路由相同。如需詳細資訊，請參閱 [ExpressRoute 簡介](./expressroute/expressroute-introduction.md)。
 
 >[AZURE.NOTE] 在 NRP 上支援 ExpressRoute 時，您將可以設定 Azure 環境透過內部部署網路使用強制通道，方法是，為使用 VPN 閘道做為下一個躍點的子網路 0.0.0.0/0 建立使用者定義的路由。不過，這只有在您使用的是 VPN 閘道，而不是 ExpressRoute 時，才有作用。若是 Expressroute，強制通道是透過 BGP 設定。
 
@@ -336,7 +336,7 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
 ## 後續步驟
 - 若要了解如何利用正確的存取權來設定安全性主體，以使用您組織中的資源，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)
 - 如果您需要鎖定資源的存取權，可以使用管理鎖定。請參閱[使用 Azure 資源管理員來鎖定資源](resource-group-lock-resources.md)
-- 若要設定路由及 IP 轉送，請參閱[如何在 Azure 中建立路由與啟用 IP 轉送](virtual-network/virtual-networks-udr-how-to.md) 
-- 如需角色型存取控制的概觀，請參閱 Microsoft Azure 入口網站中的[角色型存取控制](role-based-access-control-configure.md)。
+- 若要設定路由和 IP 轉送，請參閱[在 Resource Manager 中使用範本建立使用者定義的路由 (UDR)](./virtual-network/virtual-network-create-udr-arm-template.md)。
+- 如需角色型存取控制的概觀，請參閱 Microsoft Azure 入口網站中的[角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="在資源管理員中使用範本部署多個 NIC VM | Microsoft Azure"
    description="了解如何在資源管理員中使用範本部署多個 NIC VM"
    services="virtual-network"
@@ -63,7 +63,7 @@
 
 		"dbVMSetting": "[variables('dbVMSettings')[parameters('osType')]]"
 
-5. 假設您決定要在後端部署執行 SQL 的 Windows VM。那麼，**osType** 的值將會是 *Windows*，且 **dbVMSetting** 變數會包含下面列出的元素，其代表 **dbVMSettings** 變數中的第一個值。
+5. 假設您決定要在後端部署執行 SQL 的 Windows VM。那麼，**osType** 的值將會是 *Windows* ，且 **dbVMSetting** 變數會包含下面列出的元素，其代表 **dbVMSettings** 變數中的第一個值。
 
 	      "Windows": {
 	        "vmSize": "Standard_DS3",
@@ -82,7 +82,7 @@
 	        "dbPort": 1433
 	      },
 
-6. 請注意 **vmSize** 包含值 *Standard\_DS3*。只有特定的 VM 大小允許使用多個 NIC。您可以瀏覽[多個 NIC 概觀](virtual-networks-multiple-nics.md)，確認哪種 VM 大小可以啟用多個 NIC。
+6. 請注意 **vmSize** 包含值 *Standard\_DS3* 。只有特定的 VM 大小允許使用多個 NIC。您可以瀏覽[多個 NIC 概觀](virtual-networks-multiple-nics.md)，確認哪種 VM 大小可以啟用多個 NIC。
 7. 向下捲動至 **resources** 並注意第一個元素。它描述儲存體帳戶。此儲存體帳戶將用來維護每個資料庫 VM 所使用的資料磁碟。在此案例中，每部資料庫 VM 都有儲存在一般儲存體的作業系統磁碟，以及儲存在 SSD (進階) 儲存體的兩個資料磁碟。
 
 	    {
@@ -193,7 +193,7 @@
 		    "count": "[parameters('dbCount')]"
 		  },
 
-12. 在 VM 資源中向下捲動至 **networkProfile** 元素，如下所示。請注意，每部 VM 都有兩個參照的 NIC。當您為一部 VM 建立多個 NIC 時，您必須將其中一個 NIC 的 **primary** 屬性設為 *true*，其餘的設為 *false*。
+12. 在 VM 資源中向下捲動至 **networkProfile** 元素，如下所示。請注意，每部 VM 都有兩個參照的 NIC。當您為一部 VM 建立多個 NIC 時，您必須將其中一個 NIC 的 **primary** 屬性設為 *true* ，其餘的設為 *false* 。
 
         "networkProfile": {
           "networkInterfaces": [
@@ -260,7 +260,7 @@
 
 若要使用 Azure CLI 部署範本，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure CLI，請參閱[安裝和設定 Azure CLI](xplat-cli.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 2. 執行 **`azure config mode`** 命令，以切換為資源管理員模式，如下所示。
 
 		azure config mode arm
@@ -269,7 +269,7 @@
 
 		info:    New mode is arm
 
-3. 開啟[參數檔案](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/azuredeploy.parameters.json)，選取其內容，然後將該內容儲存至您電腦中的一個檔案。在此範例中，我們將參數檔案儲存為 *parameters.json*。
+3. 開啟[參數檔案](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/azuredeploy.parameters.json)，選取其內容，然後將該內容儲存至您電腦中的一個檔案。在此範例中，我們將參數檔案儲存為 *parameters.json* 。
 
 4. 執行 **`azure group deployment create`** Cmdlet，以使用先前下載並修改的範本和參數檔案，部署新的 VNet。輸出後顯示的清單可說明所使用的參數。
 
@@ -292,4 +292,4 @@
 		data:
 		info:    group create command OK
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

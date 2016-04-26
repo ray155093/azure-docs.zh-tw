@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="監視服務計量" 
-	description="了解如何在 Azure 自訂監視圖表。" 
-	authors="stepsic-microsoft-com" 
-	manager="ronmart" 
-	editor="" 
+<properties
+	pageTitle="監視服務計量"
+	description="了解如何在 Azure 自訂監視圖表。"
+	authors="stepsic-microsoft-com"
+	manager="ronmart"
+	editor=""
 	services="azure-portal"
 documentationCenter=""/>
 
-<tags 
-	ms.service="azure-portal" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2015" 
+<tags
+	ms.service="azure-portal"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2015"
 	ms.author="stepsic"/>
 
 # 監視服務計量
@@ -22,7 +22,7 @@ documentationCenter=""/>
 
 在某些服務中，您可能需要開啟診斷，才能查看任何計量。在其他服務中 (例如虛擬機器)，您將會取得基本的計量集合，但需要啟用完整的高頻率計量集合。若要深入了解，請參閱[啟用監視和診斷](insights-how-to-use-diagnostics.md)。
 
-## 使用監視圖表 
+## 使用監視圖表
 
 您可以製作任何選擇時間期間上的計量圖表。
 
@@ -51,7 +51,7 @@ documentationCenter=""/>
 
 1. 在刀鋒視窗頂端的 [**...**] 功能表中，按一下 [**新增磚**]：![新增功能表](./media/insights-how-to-customize-monitoring/Insights_AddMenu.png)
 2. 然後，您可以從右側螢幕上的 [**資源庫**] 選取圖表：![資源庫](./media/insights-how-to-customize-monitoring/Insights_Gallery.png)
-3. 如果您沒有看到所需的計量，您可以隨時新增其中一個預設計量，並**編輯**圖表以顯示所需的計量。 
+3. 如果您沒有看到所需的計量，您可以隨時新增其中一個預設計量，並**編輯**圖表以顯示所需的計量。
 
 ## 監視使用量配額
 
@@ -69,8 +69,7 @@ documentationCenter=""/>
 * [啟用監視和診斷](insights-how-to-use-diagnostics.md)來在您服務中收集詳細的高頻率計量。
 * [自動調整執行個體計數](insights-how-to-scale.md)以確保您的服務可用且可迅速回應。
 * 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](insights-perf-analytics.md)。
-* 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
-* 使用 Application Insights [監視任何網頁的可用性和回應性](../app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
- 
+* 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../application-insights/app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
+* 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

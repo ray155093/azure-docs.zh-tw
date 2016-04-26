@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/03/2016"
+   ms.date="04/15/2016"
    ms.author="derrickv"/>
 
 # 開始使用 Azure 資料目錄
@@ -27,6 +27,8 @@
 - **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[](https://azure.microsoft.com/pricing/free-trial/)免費試用以取得詳細資訊。
 - **Azure Active Directory** - Azure 資料目錄使用 [Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 來管理身分識別和存取權。
 - **資料來源** - Azure 資料目錄可探索資料來源。本教學課程使用 Adventure Works 範例資料庫，但如果喜歡使用您熟悉且與您角色相關的資料，您可以使用任何支援的資料來源。如需支援的資料來源清單，請參閱[支援的資料來源](data-catalog-dsr.md)。
+
+> [AZURE.NOTE] 如需 Azure 訂用帳戶和 Azure Active Directory 的詳細資訊，請參閱 [Azure 資料目錄必要條件](data-catalog-prerequisites.md)。
 
 讓我們開始安裝 Adventure Works 範例資料庫。
 
@@ -258,4 +260,4 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 在本教學課程中，您已瀏覽 **Azure 資料目錄**的基本功能，包括註冊、註解、探索和管理企業資料來源。既然您已經完成本教學課程，現在可以開始使用。您可以立即開始註冊您和小組所依賴的資料來源，並邀請同事使用目錄。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

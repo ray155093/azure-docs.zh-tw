@@ -2,7 +2,8 @@
     pageTitle="Elastic Scale 安全性設定 | Microsoft Azure" 
     description="設定加密的 x409 憑證" 
     metaKeywords="Elastic Database certificates security" 
-    services="sql-database" documentationCenter="" 
+    services="sql-database" 
+    documentationCenter="" 
     manager="jhubbard" 
     authors="torsteng"/>
 
@@ -206,7 +207,9 @@
 
         pvk2pfx -pvk MySSL.pvk -spc MySSL.cer
 
-輸入密碼，然後使用這些選項匯出憑證：* [是，匯出私密金鑰] * [匯出所有延伸內容]
+輸入密碼，然後使用這些選項來匯出憑證：
+* 是，匯出私密金鑰
+* 匯出所有延伸內容
 
 ## 從憑證存放區匯出 SSL 憑證
 
@@ -347,7 +350,14 @@
     * 核取 [包含所有延伸內容]
 
 ## 複製用戶端憑證指紋
-用戶端憑證已發給的每個人必須依照下列步驟，以取得將加入至服務組態檔的憑證指紋：* 執行 certmgr.exe * 選取 [個人] 索引標籤 * 按兩下要用於驗證的用戶端憑證 * 在開啟的 [憑證] 對話方塊中，選取 [詳細資料] 索引標籤 * 確定 [顯示] 中顯示 [全部] * 在清單中選取名為 [憑證指紋] 的欄位 * 複製憑證指紋的值 ** 刪除第一個數字前面不可見的 Unicode 字元 ** 刪除所有空格
+用戶端憑證已發給的每個人必須依照下列步驟，以取得將加入至服務組態檔的憑證指紋：
+* 執行 certmgr.exe
+* 選取 [個人] 索引標籤
+* 按兩下要用於驗證的用戶端憑證
+* 在開啟的 [憑證] 對話方塊中，選取 [詳細資料] 索引標籤
+* 請確定 [顯示] 是顯示 [全部]
+* 在清單中選取名為 [憑證指紋] 的欄位
+* 複製憑證指紋值 **刪除第一個數字前面不可見的 Unicode 字元** 刪除所有的空格
 
 ## 在服務組態檔中設定允許的用戶端
 
@@ -371,7 +381,10 @@
 
     MyID.pvk and MyID.cer with the filename for the encryption certificate
 
-輸入密碼，然後使用這些選項匯出憑證：* [是，匯出私密金鑰] * [匯出所有延伸內容] * 將憑證上傳至雲端服務時，您將需要密碼。
+輸入密碼，然後使用這些選項來匯出憑證：
+*    是，匯出私密金鑰
+*    匯出所有延伸內容
+*    將憑證上傳至雲端服務時，您將需要密碼。
 
 ## 從憑證存放區匯出加密憑證
 
@@ -474,4 +487,4 @@
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

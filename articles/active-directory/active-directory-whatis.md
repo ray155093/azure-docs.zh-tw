@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="01/14/2016"
+    ms.date="04/07/2016"
     ms.author="markusvi"/>
 
 
@@ -84,13 +84,13 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 - [使用 Azure AD Connect 啟用目錄的混合式管理](active-directory-aadconnect.md)
 
-- [為連線過的項目提供額外的安全性](multi-factor-authentication.md)
+- [為連線過的項目提供額外的安全性](../multi-factor-authentication/multi-factor-authentication.md)
 
 - [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)
 
 - [開始使用 Azure AD 報告](active-directory-reporting-getting-started.md)
 
-- [從任何地方管理您的密碼](articles/active-directory-passwords.md)
+- [從任何地方管理您的密碼](active-directory-passwords.md)
 
 - [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
@@ -104,4 +104,4 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 - [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0413_2016-->

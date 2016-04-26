@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/14/2016"
+	ms.date="04/06/2016"
 	ms.author="robinsh"/>
 
 # 使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解
@@ -36,9 +36,11 @@
 
 	- **儲存體記錄**可將對 Azure 儲存體服務的每項要求記錄至伺服器端記錄檔。記錄檔可追蹤每項要求的詳細資料，包括執行的作業、作業的狀態及延遲資訊。如需 Storage Analytics 寫入記錄檔的要求和回應資料詳細資訊，請參閱 [Storage Analytics 記錄檔格式](http://msdn.microsoft.com/library/azure/hh343259.aspx)。
 
+> [AZURE.NOTE] 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
+
 - **Azure 入口網站**。您可以在 [Azure 入口網站](https://portal.azure.com)中設定儲存體帳戶的度量和記錄。您也可以檢視圖表和圖形 (其中顯示應用程式在一段時間內的執行狀況)，並設定警示，通知應用程式是否對指定的度量以超乎預期的方式執行。
 
-	如需在 Azure 入口網站中進行設定和監控的相關資訊，請參閱[在 Azure 入口網站監控儲存體帳戶](storage-monitor-storage-account.md)。
+	如需在 Azure 入口網站中進行設定和監視的相關資訊，請參閱[在 Azure 入口網站中監視儲存體帳戶](storage-monitor-storage-account.md)。
 
 - **AzCopy**：Azure 儲存體的伺服器記錄檔會儲存為 Blob，因此您可以使用 AzCopy，將記錄檔 Blob 複製到本機目錄，以便使用 Microsoft Message Analyzer 分析。如需 AzCopy 的詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
@@ -92,7 +94,7 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 **透過 Azure 入口網站**
 
-若要使用 [Azure 入口網站](https://portal.azure.com)設定儲存體帳戶的記錄和度量，請依照[在 Azure 入口網站監控儲存體帳戶](storage-monitor-storage-account.md)上的指示執行。
+若要使用 [Azure 入口網站](https://portal.azure.com)設定儲存體帳戶的記錄和度量，請遵循[在 Azure 入口網站監視儲存體帳戶](storage-monitor-storage-account.md)上的指示執行。
 
 > [AZURE.NOTE] 無法使用 Azure 入口網站設定分鐘度量。不過，我們建議您不要為了本教學課程的目的，以及為了調查您的應用程式的效能問題，而設定這類度量。您可以使用 PowerShell (如下所示)，或以程式設計方式使用儲存體用戶端程式庫，來設定分鐘度量。
 >
@@ -337,9 +339,9 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 | 若要調查... | 使用篩選運算式… | 運算式套用到記錄檔 (用戶端、伺服器、網路、全部) |
 |------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | 佇列上未預期的訊息傳遞延遲 | AzureStorageClientDotNetV4.Description 包含「正在重試失敗的作業」。 | 用戶端 |
-| PercentThrottlingError 的 HTTP 增加 | HTTP.Response.StatusCode == 500 &#124;&#124; HTTP.Response.StatusCode == 503 | 網路 |
+| PercentThrottlingError 的 HTTP 增加 | HTTP.Response.StatusCode == 500 || HTTP.Response.StatusCode == 503 | 網路 |
 | PercentTimeoutError 增加 | HTTP.Response.StatusCode == 500 | 網路 |
-| PercentTimeoutError 增加 (全部) |    *StatusCode == 500 | All |
+| PercentTimeoutError 增加 (全部) |    **StatusCode == 500 | All |
 | Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client |
 | HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network |
 | HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network |
@@ -363,4 +365,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

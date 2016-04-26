@@ -3,9 +3,9 @@
 	description="比較管理 Azure SQL Database 的工具和選項"
 	services="sql-database"
 	documentationCenter=""
-	authors="jeffgoll"
-	manager="jeffreyg"
-	editor="jeffreyg"/>
+	authors="stevestein"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
 	ms.service="sql-database"
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/22/2016"
-	ms.author="jeffreyg"/>
+	ms.date="04/04/2016"
+	ms.author="sstein"/>
 
 # 概觀：SQL Database 的管理工具
 
@@ -36,4 +36,12 @@ Visual Studio 中的 SQL Server Management Studio (SSMS) 和 SQL Server Data Too
 
 如需使用命令列工具管理 Azure SQL Database 的詳細資訊，請參閱[使用 PowerShell 管理 SQL Database](sql-database-command-line-tools.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+## 彈性資料庫工具
+使用彈性資料庫工具執行動作，例如
+
+* 使用[彈性工作](sql-database-elastic-jobs-overview.md)，針對一組資料庫執行 T-SQL 指令碼
+* 使用[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)將多租用戶模型資料庫移至單一租用戶模型
+* 使用 [Elastic Scale 用戶端程式庫](sql-database-elastic-database-client-library.md)，管理單一租用戶模型或多租用戶模型中的資料庫。
+ 
+
+<!---HONumber=AcomDC_0413_2016-->

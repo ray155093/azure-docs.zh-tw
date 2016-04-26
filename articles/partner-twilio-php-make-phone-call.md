@@ -1,22 +1,22 @@
-<properties 
-	pageTitle="如何從 Twilio 撥打電話 (PHP) | Microsoft Azure" 
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。範例適用於 PHP 應用程式。" 
-	documentationCenter="php" 
-	services="" 
-	authors="devinrader" 
-	manager="twilio" 
+<properties
+	pageTitle="如何從 Twilio 撥打電話 (PHP) | Microsoft Azure"
+	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。範例適用於 PHP 應用程式。"
+	documentationCenter="php"
+	services=""
+	authors="devinrader"
+	manager="twilio"
 	editor="mollybos"/>
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="PHP" 
-	ms.topic="article" 
-	ms.date="11/25/2014" 
+<tags
+	ms.service="multiple"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="PHP"
+	ms.topic="article"
+	ms.date="11/25/2014"
 	ms.author="microsofthelp@twilio.com"/>
 
-# 如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話 
+# 如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話
 
 下列範例將說明如何從 Azure 代管的 PHP 網頁上使用 Twilio 撥打電話。產生的應用程式會提示使用者提供電話值，如下列螢幕擷取畫面所示。
 
@@ -25,7 +25,7 @@
 您必須執行下列動作才能使用本主題中的程式碼：
 
 1. 取得 Twilio 帳戶和驗證權杖。若要開始使用 Twilio，請在 [http://www.twilio.com/pricing][twilio_pricing] 上評估價格。您可以在 [https://www.twilio.com/try-twilio][try_twilio] 上註冊試用帳戶。如需 Twilio 所提供之 API 的相關資訊，請參閱 [http://www.twilio.com/api][twilio_api]。
-2. 取得適用於 PHP 的 Twilio 程式庫。您可以從 GitHub 下載此程式庫 ([https://github.com/twilio/twilio-php][twilio_php_github])，或以 PEAR 封裝的形式安裝。如需詳細資訊，請參閱 [https://github.com/twilio/twilio-php/blob/master/README.md][twilio_github_readme]。
+2. 取得[適用於 PHP 的 Twilio 程式庫](https://github.com/twilio/twilio-php)，或以 PEAR 封裝的形式進行安裝。如需詳細資訊，請參閱[讀我檔案](https://github.com/twilio/twilio-php/blob/master/README.md)。
 3. 安裝 Azure SDK for PHP。如需 SDK 的概觀及其安裝指示，請參閱[設定 Azure SDK for PHP][setup_php_sdk]。
 
 ## 建立用以撥打電話的 Web 表單
@@ -83,7 +83,7 @@
 	$client = new Services_Twilio($sid, $token, "2010-04-01");
 
 	$call = $client->account->calls->create(
-		$from_number, 
+		$from_number,
 		$to_number,
   		'http://twimlets.com/message?Message='.urlencode($message)
 	);
@@ -103,7 +103,6 @@
 
 * [建立 PHP-MySQL Azure 網站並使用 Git 部署][website-git]
 * [建立 PHP-MySQL Azure 網站並使用 FTP 部署][website-ftp]
-* [使用 WebMatrix 建立並部署 PHP-MySQL Azure 網站][website-webmatrix]
 
 ## 後續步驟
 此程式可說明在 Azure 上的 PHP 中使用 Twilio 的基本功能。在部署至生產環境中的 Azure 之前，您可以新增更多錯誤處理或其他功能。例如：
@@ -121,8 +120,6 @@
 [try_twilio]: http://www.twilio.com/try-twilio
 [twilio_api]: http://www.twilio.com/api
 [verify_phone]: https://www.twilio.com/user/account/phone-numbers/verified#
-[twilio_php]: https://github.com/twilio/twilio-php
-[twilio_github_readme]: https://github.com/twilio/twilio-php/blob/master/README.md
 [setup_php_sdk]: http://azurephp.interoperabilitybridges.com/articles/setup-the-windows-azure-sdk-for-php
 [twimlet_message_url]: http://twimlets.com/message
 [twiml]: http://www.twilio.com/docs/api/twiml
@@ -138,9 +135,8 @@
 [ssl_validation]: http://readthedocs.org/docs/twilio-php/en/latest/usage/rest.html
 [twilio_php]: ./media/partner-twilio-php-make-phone-call/WA_TwilioPHPCallForm.jpg
 [twilio_php_response]: ./media/partner-twilio-php-make-phone-call/WA_TwilioPHPMakeCall.jpg
-[website-git]: https://www.windowsazure.com/develop/php/tutorials/website-w-mysql-and-git/
-[website-ftp]: https://www.windowsazure.com/develop/php/tutorials/website-w-mysql-and-ftp/
-[website-webmatrix]: https://www.windowsazure.com/develop/php/tutorials/website-w-mysql-and-webmatrix/
+[website-git]: ./web-sites/web-sites-php-mysql-deploy-use-git.md
+[website-ftp]: ./web-sites/web-sites-php-mysql-deploy-use-ftp.md
 [twilio_php_github]: https://github.com/twilio/twilio-php
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -28,12 +28,6 @@
 
 若要深入了解離線同步處理功能，請參閱 [Azure Mobile Apps 中的離線資料同步處理]主題。
 
-## 需求
-
-* Visual Studio 2013
-* Visual Studio [Xamarin 延伸]**或** [Xamarin Studio]
-* 完成[建立 Xamarin Android 應用程式]教學課程。本教學課程使用該教學課程中涵蓋的已完成應用程式。
-
 ## 檢閱用戶端同步處理程式碼
 
 您完成[建立 Xamarin Android 應用程式]教學課程時所下載的 Xamarin 用戶端專案，已經包含了使用本機 SQLite 資料庫支援離線同步處理的程式碼。以下是已經包含在教學課程程式碼中之內容的簡要概觀。如需此功能的概念性概觀，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
@@ -73,7 +67,9 @@
     在提供的程式碼中，遠端 `TodoItem` 資料表中的所有記錄都會進行查詢，但是也可能透過將查詢識別碼與查詢傳遞至 `PushAsync` 來篩選記錄。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]中的*增量同步處理*一節。
 
 	<!-- Need updated conflict handling info : `InitializeAsync` uses the default conflict handler, which fails whenever there is a conflict. To provide a custom conflict handler, see the tutorial [Handling conflicts with offline support for Mobile Services].
-	-->	
+	-->
+
+
 		// ToDoActivity.cs
         private async Task SyncAsync()
         {
@@ -171,8 +167,8 @@
 [How to use the Xamarin Component client for Azure Mobile Services]: ../partner-xamarin-mobile-services-how-to-use-client-library.md
 
 [Xamarin Studio]: http://xamarin.com/download
-[Xamarin 延伸]: http://xamarin.com/visual-studio
+[Xamarin extension]: http://xamarin.com/visual-studio
 
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

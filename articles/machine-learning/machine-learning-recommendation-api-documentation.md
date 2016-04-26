@@ -96,9 +96,9 @@ Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.da
 
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
-|	modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>長度上限：20 | 
-| apiVersion | 1.0 | 
-||| 
+|	modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>長度上限：20 |
+| apiVersion | 1.0 |
+|||
 | 要求主體 | 無 |
 
 
@@ -892,15 +892,15 @@ OData XML
 |||
 | 要求本文 | 
 <ins>在提供商務規則的項目識別碼時，請務必使用項目的外部識別碼 (您用於目錄檔案的相同識別碼)</ins><br>
-<ins>若要新增 BlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins> 
-<ins>若要新增 FeatureBlockList 規則：</ins><br> 
-<br> 
+<ins>若要新增 BlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
+<ins>若要新增 FeatureBlockList 規則：</ins><br>
+<br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins>
-若要新增 Upsale 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"]}</Value></ApiFilter>`<br><br> 
-<ins>若要新增 WhiteList 規則：</ins><br> 
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins> 
+若要新增 Upsale 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"]}</Value></ApiFilter>`<br><br>
+<ins>若要新增 WhiteList 規則：</ins><br>
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins>
 <ins>若要新增 FeatureWhiteList 規則：</ins><br>
-<br> 
+<br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins>
 若要新增 PerSeedBlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
 
@@ -992,10 +992,10 @@ HTTP 狀態碼：200
 
 | 名稱 | 強制 | 類型 | 說明 |
 |:---|:---|:---|:---|
-| 項目識別碼 |是 | [A-z]、[a-z]、[0-9]、[\_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度： 50 | 項目的唯一識別碼。 | 
+| 項目識別碼 |是 | [A-z]、[a-z]、[0-9]、[\_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度： 50 | 項目的唯一識別碼。 |
 | 項目名稱 | 是 | 任何英數字元<br> 最大長度：255 | 項目名稱。 |
 | 項目類別 | 是 | 任何英數字元 <br> 最大長度：255 | 此項目所屬類別 (例如烹飪書籍、劇本…) 可以是空的。 |
-| 描述 | 否，除非顯示功能 (但也可能是空的) | 任何英數字元 <br> 最大長度：4000 | 此項目的說明 | 
+| 描述 | 否，除非顯示功能 (但也可能是空的) | 任何英數字元 <br> 最大長度：4000 | 此項目的說明 |
 | 功能清單 | 否 | 任何英數字元 <br> 最大長度：4000；最大功能數目：20 | 以逗號分隔的功能名稱清單 = 功能值，可用來增強模型建議；請參閱[進階主題](#2-advanced-topics)一節。 |
 
 
@@ -1007,9 +1007,9 @@ HTTP 狀態碼：200
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 |
-| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 | 
-| apiVersion | 1.0 | 
-||| 
+| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
+| apiVersion | 1.0 |
+|||
 | 要求本文 | 範例 (包含功能)：<br/>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book,the book description,author=Richard Wright,publisher=Harper Flamingo Canada,year=2001<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book,,author=Nick Bantock,publisher=Harpercollins,year=1997<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book,,author=Timothy Findley, publisher=HarperFlamingo Canada, year=2001<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book,the book description,author=Magnus Mills, publisher=Arcade Publishing, year=1998</pre> |
 
 
@@ -1045,7 +1045,7 @@ OData XML
 	</feed>
 
 ###8\.2.取得目錄
-擷取所有目錄項目。
+擷取所有目錄項目。目錄會一次擷取一個頁面。如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
 
 | HTTP 方法 | URI |
 |:--------|:--------|
@@ -1213,10 +1213,7 @@ OData XML
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 |
-| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br>最大長度：50 | 
-| apiVersion | 1.0 | 
-||| 
-| 要求主體 | 使用方式資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：255 </td><td>使用者的唯一識別碼。</td></tr><tr><td>項目識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[&#95;] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50</td><td>項目的唯一識別碼。</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間。</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限：200MB<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br>最大長度：50 | | apiVersion | 1.0 | ||| | 要求主體 | 使用方式資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：255 </td><td>使用者的唯一識別碼。</td></tr><tr><td>項目識別碼</td><td>是</td><td>[A-z]、[a-z]、[0-9]、[&#95;] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50</td><td>項目的唯一識別碼。</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間。</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限：200MB<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **回應**：
 
@@ -1367,7 +1364,7 @@ OData XML
 **回應**：HTTP 狀態碼：200
 
 ###9\.2.列出模型使用方式檔案
-擷取所有模型使用方式檔案的中繼資料。
+擷取所有模型使用方式檔案的中繼資料。使用方式檔案會一次擷取一個頁面。每個頁面包含 100 個項目。如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
 
 | HTTP 方法 | URI |
 |:--------|:--------|
@@ -3100,10 +3097,10 @@ HTTP 狀態碼：200
 
 
 ##15\.法律
-這份文件係依「現狀」提供。本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更， 恕不另行通知。<br><br> 
-此處描述的一些範例僅供說明之用，純屬虛構。並未影射或關聯任何真實人事物。<br><br> 
-本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。您可以複製並使用這份文件，供內部參考之用。<br><br> 
+這份文件係依「現狀」提供。本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更， 恕不另行通知。<br><br>
+此處描述的一些範例僅供說明之用，純屬虛構。並未影射或關聯任何真實人事物。<br><br>
+本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。您可以複製並使用這份文件，供內部參考之用。<br><br>
 © 2015 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

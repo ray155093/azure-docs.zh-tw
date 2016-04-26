@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
+   ms.date="04/07/2016"
    ms.author="sahajs;barbkess;sonyama"/>
 
 
@@ -51,7 +51,7 @@
 
 ### 資料庫還原
 
-資料庫還原的設計是為了將您的資料庫還原到較早的時間點。Azure SQL 資料倉儲服務至少每 8 小時會以自動儲存體快照集來保護所有資料庫，並保留 7 天，為您提供一組獨立的還原點。這些備份儲存在 RA-GRS Azure 儲存體，因此，依預設為異地備援。自動備份和還原功能不需額外費用，並提供零成本和免管理的方式，避免資料庫遭到意外損毀或刪除。若要深入了解資料庫還原，請參閱[從使用者錯誤中復原][]。
+資料庫還原的設計是為了將您的資料庫還原到較早的時間點。Azure SQL 資料倉儲服務至少每 8 小時會以自動儲存體快照集來保護所有資料庫，並保留 7 天，為您提供一組獨立的還原點。這些備份儲存在 RA-GRS Azure 儲存體，因此，依預設為異地備援。自動備份和還原功能不需額外費用，並提供零成本和免管理的方式，避免資料庫遭到意外損毀或刪除。若要深入了解資料庫還原，請參閱[從快照還原][]。
 
 ### 異地還原
 
@@ -68,7 +68,7 @@
 [Finalize a recovered database]: ../sql-database/sql-database-recovered-finalize.md
 [Azure 儲存體備援選項]: ../storage/storage-redundancy.md#read-access-geo-redundant-storage
 [SQL Database 業務持續性概觀]: ../sql-database/sql-database-business-continuity.md
-[從使用者錯誤中復原]: sql-data-warehouse-business-continuity-recover-from-user-error.md
+[從快照還原]: sql-data-warehouse-backup-and-restore-from-snapshot.md
 
 <!--MSDN references-->
 [Create database restore request]: http://msdn.microsoft.com/library/azure/dn509571.aspx
@@ -78,4 +78,4 @@
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

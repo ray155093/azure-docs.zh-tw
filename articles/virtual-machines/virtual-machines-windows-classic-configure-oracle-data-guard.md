@@ -16,21 +16,21 @@
 
 #設定適用於 Azure 的 Oracle Data Guard
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 資源管理員模型。
 
 
 本教學課程示範如何在 Azure 虛擬機器環境中設定和實作 Oracle Data Guard，以取得高可用性並進行嚴重損壞修復 。本教學課程著重於非 RAC Oracle 資料庫的單向複寫。
 
 Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。它是簡單、高效能且直接的解決方案，適用於整個 Oracle 資料庫的嚴重損壞修復、資料保護和高可用性。
 
-本教學課程假設您已經具備 Oracle 資料庫高可用性和嚴重損壞修復概念的理論和實務知識。如需相關資訊，請參閱 [Oracle 網站](http://www.oracle.com/technetwork/database/features/availability/index.html)和 [Oracle Data Guard 概念與管理指南](http://docs.oracle.com/cd/E11882_01/server.112/e17022/create_ps.htm)。
+本教學課程假設您已經具備 Oracle 資料庫高可用性和嚴重損壞修復概念的理論和實務知識。如需相關資訊，請參閱 [Oracle 網站](http://www.oracle.com/technetwork/database/features/availability/index.html)和 [Oracle Data Guard 概念與管理指南](https://docs.oracle.com/cd/E11882_01/server.112/e41134/toc.htm)。
 
 此外，本教學課程假設您已經實作下列必要條件：
 
 - 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和嚴重損壞修復考量＞一節。請注意，Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
 
 
-- 您已經使用 Windows Server 上提供 Oracle Enterprise Edition 映像的相同平台，在 Azure 中建立兩部虛擬機器 (VM)。如需相關資訊，請參閱[在 Azure 中建立 Oracle Database 12c 虛擬機器](virtual-machines-windows-create-oracle-weblogic-server-12c.md)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的[虛擬網路](azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。請注意，Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](http://msdn.microsoft.com/library/dn197896.aspx)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
+- 您已經使用 Windows Server 上提供 Oracle Enterprise Edition 映像的相同平台，在 Azure 中建立兩部虛擬機器 (VM)。如需相關資訊，請參閱[在 Azure 中建立 Oracle Database 12c 虛擬機器](virtual-machines-windows-create-oracle-weblogic-server-12c.md)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的[虛擬網路](azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。請注意，Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
 
 
 
@@ -137,7 +137,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 為了能夠傳送主要伺服器的封存記錄並套用到待命伺服器，主要和待命伺服器上的 sys 密碼必須完全相同。這就是為什麼您要在主要資料庫上建立密碼檔案，並將它複製到待命伺服器的原因。
 
->[AZURE.IMPORTANT] 使用 Oracle Database 12c 時，會有一個新的使用者 **SYSDG**，可用來管理 Oracle Data Guard。如需詳細資訊，請參閱 [Oracle Database 12c 版本中的變更](http://docs.oracle.com/cd/E16655_01/server.121/e10638/release_changes.htm)。
+>[AZURE.IMPORTANT] 使用 Oracle Database 12c 時，會有一個新的使用者 **SYSDG**，可用來管理 Oracle Data Guard。如需詳細資訊，請參閱 [Oracle Database 12c 版本中的變更](http://docs.oracle.com/database/121/UNXAR/release_changes.htm#UNXAR404)。
 
 此外，請確定已經在 Machine1 中定義 ORACLE\_HOME 環境。如果沒有，可使用 [環境變數] 對話方塊，將其定義為環境變數。若要存取此對話方塊，可在 [控制台] 中按兩下 [系統] 圖示，來啟動 [系統] 公用程式；然後按一下 [進階] 索引標籤並選擇 [環境變數]。按一下 [系統變數] 底下的 [新增] 按鈕來設定環境變數。設定環境變數之後，關閉現有的 Windows 命令提示字元，然後開啟新的命令提示字元。
 
@@ -629,6 +629,6 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 我們建議您啟用在主要資料庫與待命資料庫上啟用快閃回復資料庫的功能。發生容錯移轉時，主要資料庫可以快閃回復到容錯移轉之前的時間，並快速轉換為待命資料庫。
 
 ##其他資源
-[適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
+[適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-windows-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!----HONumber=AcomDC_0413_2016-->

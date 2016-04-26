@@ -43,7 +43,7 @@
 	2. 維持 [可用性集合] 為 [未設定]。
 	3. 此時請勿新增任何 [端點]。
 
-9.	選擇或建立[資源群組](../resource-group-portal.md)
+9.	選擇或建立[資源群組](../azure-portal/resource-group-portal.md)
 
 10. 選擇 [訂用帳戶]。
 
@@ -187,4 +187,4 @@
 
 -	[適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

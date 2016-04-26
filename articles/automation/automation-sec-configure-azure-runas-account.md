@@ -62,11 +62,16 @@
 
 1. 您已下載並安裝[適用於 Windows PowerShell 的 Azure Active Directory 模組 (64 位元版本)](http://go.microsoft.com/fwlink/p/?linkid=236297)。
 2. 您已建立自動化帳戶。此帳戶會被參照做為以下指令碼所含參數 (–AutomationAccountName 和 -ApplicationDisplayName) 的值。
+3. 您已安裝 [Azure 自動化撰寫工具組](https://www.powershellgallery.com/packages/AzureAutomationAuthoringToolkit/0.2.3.2)
+
+```
+Install-Module AzureAutomationAuthoringToolkit -Scope CurrentUser
+```
 
 PowerShell 指令碼會設定下列項目︰
 
 * Azure AD 應用程式，其可使用自我簽署憑證 (此應用程式在 Azure AD 中的服務主體帳戶) 進行驗證，並在目前的訂用帳戶中為此帳戶指派參與者角色 (您可以將此角色變更為擁有者或任何其他角色)。如需進一步資訊，請檢閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)文章。  
-* 指定的自動化帳戶中名為 **AzureRunAsCertificate** 的自動化憑證資產，其保有服務主體中使用的憑證。
+* 名為 **AzureRunAsCertificate** 的指定自動化帳戶中的自動化憑證資產，其會保存服務主體中使用的憑證。
 * 指定的自動化帳戶中名為 **AzureRunAsConnection** 的自動化連線資產，其保有 applicationId、tenantId、subscriptionId 和憑證指紋。  
 
 
@@ -82,20 +87,20 @@ PowerShell 指令碼會設定下列項目︰
 
     [Parameter(Mandatory=$true)]
     [String] $AutomationAccountName,
-   
+
     [Parameter(Mandatory=$true)]
     [String] $ApplicationDisplayName,
-   
+
     [Parameter(Mandatory=$true)]
     [String] $CertPlainPassword,
-   
+
     [Parameter(Mandatory=$false)]
     [int] $NoOfMonthsUntilExpired = 12
     )
-   
+
     Login-AzureRmAccount
     Import-Module AzureRM.Resources
-		
+
     $CurrentDate = Get-Date
     $EndDate = $CurrentDate.AddMonths($NoOfMonthsUntilExpired)
     $KeyId = (New-Guid).Guid
@@ -151,20 +156,20 @@ PowerShell 指令碼會設定下列項目︰
     ```
 <br>
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。
-3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName 和 -CertPlainPassword 參數的值。<br> 
+3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName 和 -CertPlainPassword 參數的值。<br>
 
     ```
-    .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> 
-     -AutomationAccountName <NameofAutomationAccount> 
-     -ApplicationDisplayName <DisplayNameofAutomationAccount> 
+    .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> `
+     -AutomationAccountName <NameofAutomationAccount> `
+     -ApplicationDisplayName <DisplayNameofAutomationAccount> `
      -CertPlainPassword "<StrongPassword>"
     ```   
 <br>
 
-    >[AZURE.NOTE] 執行指令碼之後，您會收到向 Azure 進行驗證的提示。您必須使用屬於訂用帳戶中服務管理員的帳戶進行登入。<br> 
+    >[AZURE.NOTE] 執行指令碼之後，您會收到向 Azure 進行驗證的提示。您必須使用屬於訂用帳戶中服務管理員的帳戶進行登入。<br>
 4. 指令碼順利完成後請繼續進行下一節，以測試並確認新的認證組態。
 
-### 確認驗證 
+### 確認驗證
 接下來我們將執行一項小測試，以確認您可以使用新的服務主體成功進行驗證。如果您無法順利驗證，請返回步驟 1 再次確認先前的每個步驟是否正確。
 
 1. 在 Azure 入口網站中，開啟先前建立的自動化帳戶。  
@@ -172,10 +177,10 @@ PowerShell 指令碼會設定下列項目︰
 3. 按一下 [加入 Runbook] 按鈕建立新的 Runbook，然後在 [加入 Runbook] 刀鋒視窗中選取 [建立新的 Runbook]。
 4. 將 Runbook 命名為 Test-SecPrin-Runbook，然後選取 [PowerShell] 做為 [Runbook 類型]。按一下 [建立] 來建立 Runbook。
 5. 在 [編輯 PowerShell Runbook] 刀鋒視窗中，將下列程式碼貼到畫布上︰<br>
-  
+
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
-     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID 
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection `
+     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
    ```  
 <br>
@@ -184,7 +189,7 @@ PowerShell 指令碼會設定下列項目︰
 8. 按一下 [開始] 以開始測試。
 9. 隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並在窗格中顯示其狀態。  
 10. 作業狀態一開始會顯示為 [已排入佇列]，表示其正在等候雲端中的 Runbook 背景工作變為可用狀態。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
-11. Runbook 工作完成時，會顯示其輸出。在本例中，我們應該會看到狀態為 [完成]。<br> ![安全性主體 Runbook 測試](media/automation-sec-configure-azure-runas-account/runbook-test-results.png)<br> 
+11. Runbook 工作完成時，會顯示其輸出。在本例中，我們應該會看到狀態為 [完成]。<br> ![安全性主體 Runbook 測試](media/automation-sec-configure-azure-runas-account/runbook-test-results.png)<br>
 12. 關閉 [測試] 刀鋒視窗返回畫布。
 13. 關閉 [編輯 PowerShell Runbook] 刀鋒視窗。
 14. 關閉 [Test-SecPrin-Runbook] 刀鋒視窗。
@@ -195,4 +200,4 @@ PowerShell 指令碼會設定下列項目︰
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

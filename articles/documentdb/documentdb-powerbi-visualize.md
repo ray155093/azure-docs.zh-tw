@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="DocumentDB 連接器的 Power BI 教學課程 | Microsoft Azure" 
-	description="使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。" 
+<properties
+	pageTitle="DocumentDB 連接器的 Power BI 教學課程 | Microsoft Azure"
+	description="使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。"
 	keywords="power bi 教學課程，視覺化資料，power bi 連接器"
-	services="documentdb" 
-	authors="h0n" 
-	manager="jhubbard" 
-	editor="mimig" 
+	services="documentdb"
+	authors="h0n"
+	manager="jhubbard"
+	editor="mimig"
 	documentationCenter=""/>
 
-<tags 
-	ms.service="documentdb" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/26/2016" 
+<tags
+	ms.service="documentdb"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/26/2016"
 	ms.author="hawong"/>
 
 # DocumentDB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
@@ -24,19 +24,19 @@
 
 完成本教學課程後，您將能夠回答下列問題：
 
--	如何使用 Power BI Desktop 以 DocumentDB 中的資料建置報告？ 
+-	如何使用 Power BI Desktop 以 DocumentDB 中的資料建置報告？
 -	如何在 Power BI Desktop 中連接到 DocumentDB 帳戶？
 -	如何在 Power BI Desktop 中從集合擷取資料？
 -	如何在 Power BI Desktop 中轉換巢狀 JSON 資料？
--	如何在 PowerBI.com 中發佈及共用我的報告？ 
+-	如何在 PowerBI.com 中發佈及共用我的報告？
 
 ## 必要條件
 
 在依照本 Power BI 教學課程中的指示進行之前，請先確定您已備妥下列項目：
 
 - [最新版的 Power BI Desktop](https://powerbi.microsoft.com/desktop)
-- 我們的示範帳戶或您 Azure DocumentDB 帳戶中之資料的存取權。 
-	- 示範帳戶會填入此教學課程中所顯示的火山資料。此示範帳戶未受限於任何 SLA，而是僅供示範之用。我們保留對此示範帳戶隨時進行修改的權利，包括 (但不限於) 終止帳戶、變更金鑰、限制存取權、變更和刪除資料，不事先通知或告知原因。 
+- 我們的示範帳戶或您 Azure DocumentDB 帳戶中之資料的存取權。
+	- 示範帳戶會填入此教學課程中所顯示的火山資料。此示範帳戶未受限於任何 SLA，而是僅供示範之用。我們保留對此示範帳戶隨時進行修改的權利，包括 (但不限於) 終止帳戶、變更金鑰、限制存取權、變更和刪除資料，不事先通知或告知原因。
 		- URL：https://analytics.documents.azure.com
 		- 唯讀金鑰：MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==
 	- 或者，若要建立您自己的帳戶，請參閱[使用 Azure 入口網站建立 DocumentDB 資料庫帳戶](https://azure.microsoft.com/documentation/articles/documentdb-create-account/)。然後，若要取得類似於本教學課程所使用的範例火山資料 (但不包含 GeoJSON 區塊)，請參閱 [NOAA 網站](https://www.ngdc.noaa.gov/nndc/struts/form?t=102557&s=5&d=5)，然後使用 [DocumentDB 資料移轉工具](https://azure.microsoft.com/documentation/articles/documentdb-import-data/)匯入資料。
@@ -62,7 +62,7 @@
   		"Type": "Stratovolcano",
   		"Status": "Dendrochronology",
   		"Last Known Eruption": "Last known eruption from 1800-1899, inclusive"
-	}	
+	}
 
 您想要從 DocumentDB 帳戶擷取火山資料，並在如下的互動式 Power BI 報告中視覺化資料。
 
@@ -72,7 +72,7 @@
 
 
 1. 在您的工作站上執行 Power BI Desktop。
-2. Power BI Desktop 啟動時，會顯示 *歡迎使用* 畫面。
+2. Power BI Desktop 啟動時，會顯示 [歡迎使用] 畫面。
 
 	![Power BI Desktop 歡迎使用畫面 - Power BI 連接器](./media/documentdb-powerbi-visualize/power_bi_connector_welcome.png)
 
@@ -94,7 +94,7 @@
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
 
 7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。輸入帳戶金鑰，然後按一下 [連接]。
-	
+
 	*注意。建議您在建置報告時使用唯讀金鑰。這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。唯讀金鑰可從 Azure 入口網站的 [唯讀金鑰] 刀鋒視窗取得，或使用上面提供的示範帳戶資訊取得。*
 
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 帳戶金鑰](./media/documentdb-powerbi-visualize/power_bi_connector_pbidocumentdbkey.png)
@@ -114,7 +114,7 @@
 1. 在 Power BI 查詢編輯器中，您應該會在中央窗格內看到 [文件] 資料行。![Power BI Desktop 查詢編輯器](./media/documentdb-powerbi-visualize/power_bi_connector_pbiqueryeditor.png)
 
 2. 按一下位於 [文件] 資料行標頭右側的展開器。此時會出現含有欄位清單的內容功能表。選取您的報告所需的欄位，例如火山名稱、國家、區域、位置、高度、類型、狀態和已知的上次爆發時間，然後按一下 [確定]。
-    
+
 	![DocumentDB Power BI 連接器的 Power BI 教學課程 - 展開文件](./media/documentdb-powerbi-visualize/power_bi_connector_pbiqueryeditorexpander.png)
 
 3. 中央窗格會顯示所選欄位的結果預覽。
@@ -128,15 +128,14 @@
 
 6. 中央窗格現在會顯示 [清單] 類型的座標資料行。如本教學課程一開始所說明，本教學課程中的 GeoJSON 資料屬於 Point 類型，具有座標陣列中所記錄的緯度和經度值。
 
-	*注意：coordinates[0] 項目代表經度，coordinates[1] 則代表緯度。* 
-	![DocumentDB Power BI 連接器的 Power BI 教學課程 - 座標清單](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflattenlist.png)
+	*注意：coordinates[0] 項目代表經度，coordinates[1] 則代表緯度。* ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 座標清單](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflattenlist.png)
 
 7. 為了將座標陣列簡維化，我們將建立名為 LatLong 的 [自訂資料行]。選取 [新增資料行] 功能區，然後按一下 [新增自訂資料行]。此時應會出現 [新增自訂資料行] 視窗。
 
 8. 提供新資料行的名稱，例如 LatLong。
 
 9. 接下來，指定新資料行的自訂公式。在我們的範例中，我們將依照下列方式使用以下公式，串連以逗號分隔的緯度和經度值：Text.From([coordinates]{1})&","&Text.From([coordinates]{0})。按一下 [確定]。
-	
+
     *注意。如需資料分析運算式 (DAX) (包括 DAX 函數) 的詳細資訊，請瀏覽 [Power BI Desktop 中的 DAX 基礎](https://support.powerbi.com/knowledgebase/articles/554619-dax-basics-in-power-bi-desktop)。*
 
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 新增自訂資料行](./media/documentdb-powerbi-visualize/power_bi_connector_pbicustomlatlong.png)
@@ -150,14 +149,14 @@
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 變更資料行類型](./media/documentdb-powerbi-visualize/power_bi_connector_pbichangetype.png)
 
 12. 按一下 [關閉並套用] 以儲存資料模型。
-    
+
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 關閉並套用](./media/documentdb-powerbi-visualize/power_bi_connector_pbicloseapply.png)
 
 ## 建置報告
 [Power BI Desktop 報告] 檢視可做為您開始建立報告以視覺化資料的起始點。您可以將欄位拖放到 [報告] 畫布上，以建立報告。
 
 ![Power BI Desktop 報告檢視 - Power BI 連接器](./media/documentdb-powerbi-visualize/power_bi_connector_pbireportview2.png)
- 
+
 在 [報告] 檢視中，您應該會看到：
 
  1. [欄位] 窗格，您會在這裡看到資料模型清單，以及您可以用於報告的欄位。
@@ -192,7 +191,7 @@
 4. 然後，您就可以在 PowerBI.com 中共用您的報告。
 
 ## 後續步驟
-- 若要深入了解 Power BI，請按一下 [這裡](https://support.powerbi.com/knowledgebase)。
+- 若要深入了解 Power BI，請按一下 [這裡](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
 - 若要深入了解 DocumentDB，請按一下[這裡](https://azure.microsoft.com/documentation/services/documentdb/)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

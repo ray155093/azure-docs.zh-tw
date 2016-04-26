@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="03/31/2016" 
 	ms.author="awills"/>
  
 # 什麼是 Application Insights？
@@ -22,6 +22,8 @@ Application Insights 是一項可延伸分析服務，會監視您的即時應�
 ![製作使用者活動統計資料的圖表，或深入特定事件。](./media/app-insights-overview/00-sample.png)
 
 它可在各種不同的平台上搭配 Web 和獨立式應用程式使用：裝載在內部部署或雲端的 .NET 或 J2EE。
+
+[看一下簡介動畫](https://www.youtube.com/watch?v=fX2NtGrh-Y0)。
 
 Application Insights 是以開發團隊為目標。使用它，您可以：
 
@@ -119,7 +121,7 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 * 錯誤：
  * [連線](https://connect.microsoft.com/VisualStudio/Feedback/LoadSubmitFeedbackForm?FormID=6076)
 * 建議：
- * [使用者心聲 (英文)](http://visualstudio.uservoice.com/forums/121579-visual-studio/category/77108-application-insights)
+ * [UserVoice](https://visualstudio.uservoice.com/forums/357324)
 
 
 ## 影片
@@ -130,6 +132,8 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 > [AZURE.VIDEO usage-monitoring-application-insights]
 
 > [AZURE.VIDEO performance-monitoring-application-insights]
+
+> [簡介動畫](https://www.youtube.com/watch?v=fX2NtGrh-Y0)
 
 
 <!--Link references-->
@@ -151,4 +155,4 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

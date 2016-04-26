@@ -37,7 +37,7 @@
 
 ![][0]
 
-> [AZURE.NOTE]Azure 也會提供儲存體佇列功能。如需 Azure 儲存體佇列和服務匯流排佇列的詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比][sbqueuecomparison]。
+> [AZURE.NOTE] Azure 也會提供儲存體佇列功能。如需 Azure 儲存體佇列和服務匯流排佇列的詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比][sbqueuecomparison]。
 
 ## 案例概觀：內部角色通訊
 
@@ -103,7 +103,7 @@
 
 5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。另外，請確定您在命名空間的 [**類型**] 欄位中選取 [**傳訊**]，並在 [**傳訊層**] 欄位中選取 [**標準**]。
 
-    > [AZURE.IMPORTANT]請挑選您想選擇用來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
+    > [AZURE.IMPORTANT] 請挑選您想選擇用來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
 
 6.  按一下 [確定] 核取記號。此時系統會建立並啟用服務命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
 
@@ -129,7 +129,7 @@
 
 ### 建立專案
 
-1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 Microsoft Visual Studio 2013 (或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
+1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] \(或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
 
     在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 
@@ -153,7 +153,7 @@
 
 6.  在 [方案總管] 中，於 [參考] 上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝] 或 [加入程式庫套件參考]。
 
-7.  選取對話方塊左邊的 [線上]。搜尋「**服務匯流排**」並選取 [Microsoft Azure 服務匯流排] 項目。然後完成安裝並關閉此對話方塊。
+7.  選取對話方塊左邊的 [線上]。搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。然後完成安裝並關閉此對話方塊。
 
     ![][13]
 
@@ -235,7 +235,7 @@
 
 4.  從 [建置] 功能表中，按一下 [建置方案] 來測試您的工作到目前為止是否正確無誤。
 
-5.  現在，您將為先前建立的 **Submit()** 方法建立檢視。在 **Submit()** 方法內按一下滑鼠右鍵，然後選擇 [加入檢視]。
+5.  現在，為先前建立的 **Submit()** 方法建立檢視。在 **Submit()** 方法內按一下滑鼠右鍵，然後選擇 [加入檢視]。
 
     ![][14]
 
@@ -245,7 +245,7 @@
 
 7.  按一下 [新增]。
 
-8.  現在，變更您的應用程式的顯示名稱。在 [方案總管] 中，按兩下 **Views\\Shared\\\_Layout.cshtml** 檔案以在 Visual Studio 編輯器中加以開啟。
+8.  現在，變更您的應用程式的顯示名稱。在 [方案總管] 中，按兩下 **Views\\Shared\\_Layout.cshtml** 檔案以在 Visual Studio 編輯器中加以開啟。
 
 9.  將所有出現的 **My ASP.NET Application** 取代為 **LITWARE'S Products**。
 
@@ -263,7 +263,7 @@
 
 ### 撰寫增程式碼以提交項目給服務匯流排佇列
 
-現在，您將新增程式碼以提交項目給佇列。首先，您將建立一個類別，並使其包含服務匯流排佇列連接資訊。Then, you will initialize your connection from Global.aspx.cs.最後，您將更新稍早在 HomeController.cs 建立的提交程式碼，以將項目實際提交給服務匯流排佇列。
+現在，將新增程式碼以提交項目給佇列。首先，您會建立一個類別，並使其包含服務匯流排佇列連接資訊。接著，從 Global.aspx.cs 初始化您的連線。最後，更新稍早在 HomeController.cs 建立的提交程式碼，以將項目實際提交給服務匯流排佇列。
 
 1.  在 [方案總管] 中，於 [FrontendWebRole] 上按一下滑鼠右鍵 (在專案而非角色上按一下滑鼠右鍵)。按一下 [加入]，然後按一下 [類別]。
 
@@ -479,7 +479,7 @@
 
 * [使用儲存體資料表、佇列與 Blob 的 .NET 多層式應用程式][mutitierstorage]  
 
-您可能想要在 Azure 網站而非 Azure 雲端服務中實作多層應用程式的前端。若要深入了解網站與雲端服務之間的差異，請參閱 [Azure 執行模型][executionmodels] (英文)。
+您可能想要在 Azure 網站而非 Azure 雲端服務中實作多層應用程式的前端。
 
 若要以標準 Web 專案而非雲端服務 Web 角色的形式實作您在本教學課程中建立的應用程式，請在遵循本教學課程中的步驟時注意下列差異：
 
@@ -542,6 +542,6 @@
   [sbwacom]: /documentation/services/service-bus/
   [sbwacomqhowto]: service-bus-dotnet-how-to-use-queues.md
   [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
-  [executionmodels]: ../cloud-services/fundamentals-application-models.md
+  
 
-<!----HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0420_2016-->

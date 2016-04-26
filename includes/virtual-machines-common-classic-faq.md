@@ -32,12 +32,12 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中�
 在許多方面來說，它們與「第一代」Hyper-V VM 類似，但並非完全相同。這兩種類型都提供虛擬的硬體，以及可相容 VHD 格式虛擬硬碟。這表示您可以在 Hyper-V 和 Azure 之間移動它們。有時讓 Hyper-V 使用者感到驚訝的三個主要差異為：
 
 - Azure 不會提供虛擬機器的主控台存取權。VM 要完成開機之後才可供存取。
-- 多數[大小](virtual-machines-linux-sizes.md)的 Azure VM 僅有 1 個虛擬網路介面卡，這表示它們也可能會有 1 個外部 IP 位址。(A8 和 A9 大小會使用第二個網路介面卡，讓應用程式在有限案例中的執行個體之間進行通訊。)
+- 多數[大小](../articles/virtual-machines/virtual-machines-linux-sizes.md)的 Azure VM 僅有 1 個虛擬網路介面卡，這表示它們也可能會有 1 個外部 IP 位址。(A8 和 A9 大小會使用第二個網路介面卡，讓應用程式在有限案例中的執行個體之間進行通訊。)
 - Azure VM 不支援第 2 代 Hyper-V VM 功能。如需這些功能的詳細資料，請參閱 [Hyper-V 的虛擬機器規格](http://technet.microsoft.com/library/dn592184.aspx)以及[第 2 代虛擬機器概觀](https://technet.microsoft.com/library/dn282285.aspx)。
 
 ## 這些虛擬機器可以使用我現有的內部部署網路基礎結構嗎？
 
-對於傳統部署模型中建立的虛擬機器，您可以使用 Azure 虛擬網路來擴充現有的基礎結構。這個方法像是在設立一個分公司。您可以在 Azure 中佈建及管理虛擬私人網路 (VPN)，並使用內部部署 IT 基礎結構安全地連接這些網路。如需詳細資訊，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
+對於傳統部署模型中建立的虛擬機器，您可以使用 Azure 虛擬網路來擴充現有的基礎結構。這個方法像是在設立一個分公司。您可以在 Azure 中佈建及管理虛擬私人網路 (VPN)，並使用內部部署 IT 基礎結構安全地連接這些網路。如需詳細資訊，請參閱[虛擬網路概觀](../articles/virtual-network/virtual-networks-overview.md)。
 
 當建立虛擬機器時，將需要指定您想要虛擬機器隸屬的網路。您不能將現有的虛擬機器加入虛擬網路中。然而，您可以透過從現有的虛擬機器中斷虛擬硬碟 (VHD) 連結，然後使用該虛擬硬碟建立含有您想要之網路組態的新虛擬機器以解決這個問題。
 
@@ -72,7 +72,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中�
 升級這個詞彙通常是指移動至較新版的作業系統，但仍在相同硬體上。對於 Azure VM，Linux 和 Windows 移動至較新版的處理程序有所不同：
 
 - 針對 Linux VM，使用套件管理工具和適合散發的程序。
-- 針對 Windows 虛擬機器，請使用 Windows Server 移轉工具來移轉伺服器。請勿嘗試升級位於 Azure 的客體 OS。不支援此動作是因為有失去虛擬機器存取權的風險。如果在升級期間發生問題，您可能會無法啟動遠端桌面工作階段，而且將無法疑難排解問題。 
+- 針對 Windows 虛擬機器，請使用 Windows Server 移轉工具來移轉伺服器。請勿嘗試升級位於 Azure 的客體 OS。不支援此動作是因為有失去虛擬機器存取權的風險。如果在升級期間發生問題，您可能會無法啟動遠端桌面工作階段，而且將無法疑難排解問題。
 
 如需移轉 Windows Server 的工具和程序的一般詳細資料，請參閱[移轉角色與功能至 Windows Server](http://go.microsoft.com/fwlink/p/?LinkId=396940)。
 
@@ -128,14 +128,14 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 
 當因為計畫性維護而發生重新啟動時，您也可以使用 Azure 傳統入口網站或 Azure PowerShell 來檢視重新啟動記錄。如需詳細資訊，請參閱[檢視 VM 重新啟動記錄檔](https://azure.microsoft.com/blog/2015/04/01/viewing-vm-reboot-logs/)。
 
-若要提供備援，請在相同的可用性集合中放入兩個以上同樣設定的 VM。這有助於確保在計劃性或非計劃性的維護期間，至少有一個 VM 仍可使用。Azure 保證此組態的 VM 可用性特定層級。如需詳細資訊，請參閱[管理虛擬機器的可用性](virtual-machines-windows-manage-availability.md)。
+若要提供備援，請在相同的可用性集合中放入兩個以上同樣設定的 VM。這有助於確保在計劃性或非計劃性的維護期間，至少有一個 VM 仍可使用。Azure 保證此組態的 VM 可用性特定層級。如需詳細資訊，請參閱[管理虛擬機器的可用性](../articles/virtual-machines/virtual-machines-windows-manage-availability.md)。
 
 ## 其他資源
 
-[關於 Azure 虛擬機器](virtual-machines-linux-about.md)
+[關於 Azure 虛擬機器](../articles/virtual-machines/virtual-machines-linux-about.md)
 
-[建立 Linux 虛擬機器的不同方式](virtual-machines-linux-creation-choices.md)
+[建立 Linux 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-linux-creation-choices.md)
 
-[建立 Windows 虛擬機器的不同方式](virtual-machines-windows-creation-choices.md)
+[建立 Windows 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-windows-creation-choices.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -79,6 +79,5 @@ OAuth 2.0 和 OpenID Connect 的 v2.0 實作會廣泛運用持有人權杖，包
 - 透過 OAuth 2.0 代理者流程在 Web API 中取得權杖 (敬請期待)
 
 <!-- - Get tokens using a username & password with the OAuth 2.0 Resource Owner Password Credentials Flow (coming soon) --> 
-<!-- [Call the Azure AD Graph API using the OAuth 2.0 Client Credentials Flow](active-directory-reference-graph.md) -->
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

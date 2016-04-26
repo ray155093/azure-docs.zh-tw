@@ -17,11 +17,11 @@
 > [AZURE.NOTE] 本教學課程使用單一分割服務匯流排佇列來處理所有擷取自 IoT 中樞的互動式訊息。請參閱[服務匯流排文件]，以取得如何使用服務匯流排佇列來滿足您解決方案之擴展性需求的詳細資訊。
 
 ### 佈建 Azure 儲存體帳戶和服務匯流排佇列
-為使用 [EventProcessorHost] 類別，您必須擁有 Azure 儲存體帳戶才能讓 **EventProcessorHost** 記錄檢查點資訊。您可以使用現有的儲存體帳戶，或是依照[關於 Azure 儲存體]中的指示建立新的帳戶。請記下儲存體帳戶連接字串。
+為使用 [EventProcessorHost] 類別，您必須擁有 Azure 儲存體帳戶才能讓 **EventProcessorHost** 記錄檢查點資訊。您可以使用現有的儲存體帳戶，或是遵循[關於 Azure 儲存體]中的指示建立新的帳戶。請記下儲存體帳戶連接字串。
 
 > [AZURE.NOTE] 當您複製並貼上儲存體帳戶連接字串時，請確定連接字串中沒有任何空格。
 
-您也需要服務匯流排佇列以可靠地處理互動式訊息。您可以程式設計方式使用 1 小時重複資料刪除視窗建立佇列，如同[如何使用服務匯流排佇列][Service Bus Queue]中所述，或遵循下列步驟使用 [Azure 傳統入口網站]：
+您也需要服務匯流排佇列以可靠地處理互動式訊息。您可以使用 1 小時重複資料刪除視窗，以程式設計方式建立佇列，如同[如何使用服務匯流排佇列][Service Bus Queue]中所述，或遵循下列步驟使用 [Azure 傳統入口網站]：
 
 1. 按一下左下角的 [新增]，然後依序按一下 [應用程式服務]、[服務匯流排]、[佇列]、[自訂建立]，接著輸入名稱 **d2ctutorial**、選取區域、使用現有命名空間或建立新的命名空間，然後在下一頁選取 [啟用重複偵測]，並將 [重複的偵測記錄期間] 設為一小時。然後按一下核取記號以儲存您的佇列組態。
 
@@ -37,7 +37,7 @@
 
 ### 建立事件處理器
 
-1. 在目前的 Visual Studio 方案中，依序按一下 [檔案]、[加入]、[新增專案]，以使用 [主控台應用程式] 專案範本建立新的 Visual C# Windows 專案。將專案命名為 **ProcessDeviceToCloudMessages**。
+1. 在目前的 Visual Studio 方案中，依序按一下 [檔案]、[加入]、[新增專案]，以使用 [主控台應用程式] 專案範本建立新的 Visual C# Windows 專案。確定 .NET Framework 為 4.5.1 或更新版本。將專案命名為 **ProcessDeviceToCloudMessages**。
 
     ![][10]
 
@@ -285,21 +285,21 @@
     ```
 
 <!-- Links -->
-[關於 Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
+[關於 Azure 儲存體]: ../articles/storage/storage-create-storage-account.md#create-a-storage-account
 [Azure IoT - Service SDK NuGet package]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
-[開始使用事件中樞]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
-[IoT Hub Developer Guide - Identity Registry]: iot-hub-devguide.md#identityregistry
-[Azure 儲存體延展性指導方針]: ../storage/storage-scalability-targets.md
+[開始使用事件中樞]: ../articles/event-hubs/event-hubs-csharp-ephcs-getstarted.md
+[IoT Hub Developer Guide - Identity Registry]: ../articles/iot-hub/iot-hub-devguide.md#identityregistry
+[Azure 儲存體延展性指導方針]: ../articles/storage/storage-scalability-targets.md
 [Azure Block Blobs]: https://msdn.microsoft.com/library/azure/ee691964.aspx
-[事件中樞]: ../event-hubs/event-hubs-overview.md
+[事件中樞]: ../articles/event-hubs/event-hubs-overview.md
 [Scaled out event processing]: https://code.msdn.microsoft.com/windowsazure/Service-Bus-Event-Hub-45f43fc3
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
-[事件中樞程式設計指南]: ../event-hubs/event-hubs-programming-guide.md
+[事件中樞程式設計指南]: ../articles/event-hubs/event-hubs-programming-guide.md
 [Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure Portal]: https://manage.windowsazure.com/
-[Service Bus Queue]: ../service-bus/service-bus-dotnet-how-to-use-queues.md
-[使用服務匯流排建置多層式應用程式]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
+[Service Bus Queue]: ../articles/service-bus/service-bus-dotnet-how-to-use-queues.md
+[使用服務匯流排建置多層式應用程式]: ../articles/service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
+[開始使用 IoT 中樞]: ../articles/iot-hub/iot-hub-csharp-csharp-getstarted.md
 [服務匯流排文件]: https://azure.microsoft.com/documentation/services/service-bus/
 
 <!-- Images -->
@@ -314,4 +314,4 @@
 [31]: ./media/iot-hub-process-d2c-cloud-csharp/createqueue3.png
 [32]: ./media/iot-hub-process-d2c-cloud-csharp/createqueue4.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

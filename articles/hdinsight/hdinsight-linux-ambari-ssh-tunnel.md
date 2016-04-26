@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="03/18/2016"
+ms.date="04/12/2016"
 ms.author="larryfr"/>
 
 #使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI
@@ -161,9 +161,9 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 建立叢集後，請使用下列步驟來確認您可以從 Ambari Web 存取服務 Web UI：
 
-1. 在瀏覽器中前往 https://CLUSTERNAME.azurehdinsight.net，其中 CLUSTERNAME 是您 HDInsight 叢集的名稱。
-
-	出現提示時，請輸入您叢集的管理員使用者名稱 (admin) 和密碼。Ambari Web UI 可能會出現第二次的提示。若是如此，請重新輸入資訊。
+1. 在瀏覽器中，前往 http://headnodehost:8080。`headnodehost` 位址會透過通道傳送到叢集，並解析為執行 Ambari 的前端節點。出現提示時，請輸入您叢集的管理員使用者名稱 (admin) 和密碼。Ambari Web UI 可能會出現第二次的提示。若是如此，請重新輸入資訊。
+    
+    > [AZURE.NOTE] 當您使用 http://headnodehost:8080 位址連接到叢集時，會透過 HTTP 與通道直接連接到執行 Ambari 的前端節點，並使用 SSH 通道來保障通訊的安全；若是透過網際網路而不使用通道連接時，就會使用 HTTPS 來保障通訊的安全。若要透過 HTTPS 與網際網路來連接，請使用 https://CLUSTERNAME.azurehdinsight.net，其中 __CLUSTERNAME__ 是叢集的名稱。
 
 2. 在 Ambari Web UI 中，選取頁面左邊清單中的 YARN。
 
@@ -174,15 +174,14 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 	![展開 [快速連結] 功能表的影像](./media/hdinsight-linux-ambari-ssh-tunnel/yarnquicklinks.png)
 
 	> [AZURE.NOTE] 如果您的網際網路連線速度較慢，或前端節點非常忙碌，則當您選取 [快速連結] 時，可能會看見等候指標而非功能表。若是如此，請等待一兩分鐘，讓系統從伺服器接收資料，然後再次嘗試列出清單。
-
-
-	> [AZURE.TIP] 如果您的螢幕解析度較低，或瀏覽器視窗沒有最大化，則 [快速連結] 功能表中的某些項目可能會在畫面右邊遭到截斷。若是如此，請使用滑鼠展開功能表，然後使用向右鍵來將畫面捲動到右邊，以便看到功能表的其餘部分。
+    >
+	> 如果您的螢幕解析度較低，或瀏覽器視窗沒有最大化，則 [快速連結] 功能表中的某些項目可能會在畫面右邊遭到截斷。若是如此，請使用滑鼠展開功能表，然後使用向右鍵來將畫面捲動到右邊，以便看到功能表的其餘部分。
 
 4. 您應該會看到類似如下的頁面：
 
 	![YARN ResourceManager UI 的影像](./media/hdinsight-linux-ambari-ssh-tunnel/yarnresourcemanager.png)
 
-	> [AZURE.TIP] 請注意此頁的 URL，它應該類似於 __http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/cluster__。這使用了節點的內部完整網域名稱 (FQDN)，而且必須使用 SSH 通道才能存取。
+	> [AZURE.NOTE] 請注意此頁的 URL，它應該類似於 __http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/cluster__。這使用了節點的內部完整網域名稱 (FQDN)，而且必須使用 SSH 通道才能存取。
 
 ##後續步驟
 
@@ -196,4 +195,4 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,10 +1,10 @@
-<properties 
-   pageTitle="Azure Mobile Engagement 使用者介面 - 監視" 
-   description="了解如何使用 Azure Mobile Engagement 監視應用程式的即時資料" 
-   services="mobile-engagement" 
-   documentationCenter="" 
-   authors="piyushjo" 
-   manager="dwrede" 
+<properties
+   pageTitle="Azure Mobile Engagement 使用者介面 - 監視"
+   description="了解如何使用 Azure Mobile Engagement 監視應用程式的即時資料"
+   services="mobile-engagement"
+   documentationCenter=""
+   authors="piyushjo"
+   manager="dwrede"
    editor=""/>
 
 <tags
@@ -12,23 +12,23 @@
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
-   ms.workload="mobile" 
+   ms.workload="mobile"
    ms.date="11/29/2015"
    ms.author="piyushjo"/>
 
 # 如何監視應用程式的即時資料
 
-本文說明 **Mobile Engagement** 入口網站的 [監視] 索引標籤。使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。如需詳細資訊，請參閱[建立 Azure Mobile Engagement 帳戶](mobile-engagement-create-account.md)。
+本文說明 **Mobile Engagement** 入口網站的 [監視] 索引標籤。使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。
 
 
 UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [分析](mobile-engagement-user-interface-analytics.md)區段中過去可用的大多數相同功能達到臨界值時發出警示。請參閱[概念](http://go.microsoft.com/fwlink/?LinkId=525555)主題中的**詞彙**﹐了解「分析和監視」中術語和縮寫的定義，如下所示：「作用中使用者」、「新增使用者」、「保留使用者」、「工作階段」、「使用者路徑圖表」、「使用者地圖」、「追蹤 URL」、「趨勢」、「活動」、「事件」、「工作」、「錯誤」、「額外資訊」、「損毀」和「應用程式資訊」)。
 
->[AZURE.NOTE]許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。按下此按鈕，以獲得關於區段的詳細內容資訊。
+>[AZURE.NOTE] 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。按下此按鈕，以獲得關於區段的詳細內容資訊。
 
 ## 監視 - 工作階段、工作、事件、錯誤和損毀
 
 您可以看到工作階段中和特定螢幕上目前有多少位使用者，或是目前有多少位使用者執行特定動作。您可以檢視除以「工作階段」、「工作」、「事件」、「錯誤」和「損毀」的使用者活動。您可以查看目前的資訊，並顯示最後一個小時、一天或一週的資訊。您可以查看每種類別中的所有資訊，或依特定「工作階段」、「工作」、「事件」、「錯誤」和「損毀」中進行排序。即時監視適用於在事件 (例如推播行銷活動) 期間用來查看傳送推播通知後是否有立即作用的報升。
- 
+
 ![Monitor1][14]
 
 ## 監視 - 事件 - 詳細資料疑難排解
@@ -49,7 +49,7 @@ UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [�
 
 ## 監視 - 警示
 您也可以指定透過電子郵件或立即訊息自動傳送給您之警示的條件 (支援任何 XMPP 相容服務，例如 Google 的 GTalk 或 Apple 的 iChat)。 警示是根據一個預先定義的偵測臨界值，而此臨界值大於 (>) 或小於 (<) 每秒、分鐘或小時特定數目的工作階段、工作、事件、錯誤或損毀。警示可以監視某指定類型的所有活動，或只監視特定工作、事件或錯誤活動。您也可以指定最小偵測率，這是分隔相同警示之兩個通知的最小時間量，藉此確定觸發警示時，每 X 分鐘不會收到 1 個以上的通知。
- 
+
 ![Monitor4][17]
 
 
@@ -152,6 +152,5 @@ UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [�
 [Link 31]: ../mobile-engagement-how-tos-schedule-campaign.md
 [Link 32]: ../mobile-engagement-how-tos-text-view.md
 [Link 33]: ../mobile-engagement-how-tos-web-view.md
- 
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0413_2016-->

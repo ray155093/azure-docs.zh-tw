@@ -1,7 +1,7 @@
-If you haven't already, you can get an [Azure subscription free trial](https://azure.microsoft.com/pricing/free-trial/) and the [Azure CLI](../articles/xplat-cli-install.md) [connected to your Azure account](../articles/xplat-cli-connect.md). Once you do, you can run the following commands to quick-create a scale set:
+如果您尚未這麼做，可以取得 [Azure 訂用帳戶免費試用](https://azure.microsoft.com/pricing/free-trial/)以及[連線至 Azure 帳戶](../articles/xplat-cli-connect.md)的 [Azure CLI](../articles/xplat-cli-install.md)。這麼做之後，即可執行下列命令，以快速建立擴展集︰
 
 ```bash
-# make sure we are in Resource Manager mode (https://azure.microsoft.com/en-us/documentation/articles/resource-manager-deployment-model/)
+# make sure we are in Resource Manager mode (https://azure.microsoft.com/documentation/articles/resource-manager-deployment-model/)
 azure config mode arm
 
 # quick-create a scale set
@@ -13,9 +13,9 @@ azure config mode arm
 azure vmss quick-create -n negatvmss -g negatvmssrg -l westus -u negat -p P4ssw0rd -C 5 -Q Canonical:UbuntuServer:14.04.4-LTS:latest
 ```
 
-If you want to customize the location or image-urn, please look into the commands `azure location list` and `azure vm image {list-publishers|list-offers|list-skus|list|show}`.
+如果您想要自訂位置或 image-urn，請查看 `azure location list` 和 `azure vm image {list-publishers|list-offers|list-skus|list|show}` 命令。
 
-Once this command has returned, the scale set will have been created. This scale set will have a load balancer with NAT rules mapping port 50,000+i on the load balancer to port 22 on VM i. Thus, once we figure out the FQDN of the load balancer, we will be able to connect via ssh to our VMs:
+傳回此命令之後，即已建立擴展集。此擴展集的負載平衡器具有 NAT 規則，可將負載平衡器上的連接埠 50,000+i 對應至 VM i 上的連接埠 22。因此，找出負載平衡器的 FQDN 之後，即可透過 SSH 連接到 VM：
 
 ```bash
 # (if you decide to run this as a script, please invoke using bash)
@@ -55,3 +55,5 @@ FQDN=${split_line[3]}
 # example to connct via ssh into VM "0":
 ssh -p 50000 negat@$FQDN
 ```
+
+<!---HONumber=AcomDC_0413_2016-->

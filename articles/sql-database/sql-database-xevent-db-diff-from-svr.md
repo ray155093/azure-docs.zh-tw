@@ -1,21 +1,21 @@
-<properties 
-	pageTitle="SQL Database 中的擴充事件 | Microsoft Azure" 
-	description="描述 Azure SQL Database 中的擴充事件 (XEvents)，以及事件工作階段與 Microsoft SQL Server 中的事件工作階段有如何的些微不同。" 
-	services="sql-database" 
-	documentationCenter="" 
-	authors="MightyPen" 
-	manager="jhubbard" 
-	editor="" 
+<properties
+	pageTitle="SQL Database 中的擴充事件 | Microsoft Azure"
+	description="描述 Azure SQL Database 中的擴充事件 (XEvents)，以及事件工作階段與 Microsoft SQL Server 中的事件工作階段有如何的些微不同。"
+	services="sql-database"
+	documentationCenter=""
+	authors="MightyPen"
+	manager="jhubbard"
+	editor=""
 	tags=""/>
 
 
-<tags 
-	ms.service="sql-database" 
-	ms.workload="data-management" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/05/2016" 
+<tags
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/05/2016"
 	ms.author="genemi"/>
 
 
@@ -27,14 +27,14 @@
 
 - SQL Database V12 在 2015 年行事曆下半年度獲得擴充事件功能。
 - SQL Server 自 2008 開始即具有擴充事件。
-- SQL Database 上的擴充事件功能集是強大的 SQL Server 功能子集。 
+- SQL Database 上的擴充事件功能集是強大的 SQL Server 功能子集。
 
 
 *XEvents* 是非正式暱稱，有時在部落格或其他非正式位置用於「擴充事件」。
 
 
 > [AZURE.NOTE] 從 2015 年 10 月起，擴充事件工作階段功能會在 Azure SQL Database 的預覽層級中啟動。尚未設定公開上市 (GA) 日期。
-> 
+>
 > Azure [服務更新](https://azure.microsoft.com/updates/?service=sql-database)頁面在進行 GA 宣告時會有文章發佈。
 
 
@@ -58,7 +58,7 @@
 
 
 - PowerShell
- - [搭配 Azure 儲存體使用 Azure PowerShell](storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
+ - [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
 
 
 ## 程式碼範例
@@ -244,12 +244,12 @@ SELECT
 ## 相關連結
 
 
-- [搭配 Azure 儲存體使用 Azure PowerShell](storage-powershell-guide-full.md)
+- [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md)
 - [Azure 儲存體 Cmdlet](http://msdn.microsoft.com/library/dn806401.aspx)
 
 
-- [搭配 Azure 儲存體使用 Azure PowerShell](storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
-- [如何使用 .NET 的 Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
+- [搭配 Azure 儲存體使用 Azure PowerShell](../storage/storage-powershell-guide-full.md) - 提供 PowerShell 和 Azure 儲存體服務的完整資訊。
+- [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
 
 
 - [CREATE CREDENTIAL (Transact-SQL)](http://msdn.microsoft.com/library/ms189522.aspx)
@@ -269,4 +269,4 @@ SELECT
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

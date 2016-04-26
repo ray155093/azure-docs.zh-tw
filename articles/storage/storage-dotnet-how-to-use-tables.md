@@ -56,11 +56,13 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
     using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 
+### 解析連接字串
+
 [AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### 建立表格服務用戶端
 
-**CloudTableClient** 類別可讓您擷取表格儲存體中儲存的資料表。將下列程式碼新增至 **Main()** 方法：
+**CloudTableClient** 類別可讓您擷取表格儲存體中儲存的資料表。以下是建立服務用戶端的其中一種方式：
 
 	// Create the table client.
 	CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
@@ -461,4 +463,4 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
   [How to: Programmatically access Table storage]: #tablestorage
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

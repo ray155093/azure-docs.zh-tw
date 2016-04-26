@@ -55,8 +55,7 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 
 對於本教學課程，我們會在 Visual Studio 中建立我們的 Xamarin 應用程式。請遵循下列步驟來建立應用程式：
 
-1. 下載並安裝 [Visual Studio](https://www.visualstudio.com/)。
-2. 下載並安裝 [Xamarin](http://xamarin.com/platform)。
+1. 執行 [Visual Studio 2015 安裝程式](https://www.visualstudio.com/)，選取 [自訂] 安裝並核取 [跨平台行動開發] > [C#/.NET (Xamarin)] 下的方塊。如果已安裝 Visual Studio，請直接下載並安裝 [Xamarin](http://xamarin.com/platform)。如需 Visual Studio 和 Xamarin 的完整指示，請參閱 MSDN 上的[設定和安裝](https://msdn.microsoft.com/library/mt613162.aspx)。
 3. 開啟 Visual Studio，然後選取 [**檔案 > 新增 > 專案 > Android > 空白應用程式 (Android)**]。
 4. 以滑鼠右鍵按一下 [方案總管] 窗格中的專案，然後選取 [**管理 NuGet 封裝**]。然後搜尋 [**Azure 儲存體**] 並安裝 [**Azure 儲存體 4.4.0-preview**]。
 
@@ -180,4 +179,4 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 - [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0413_2016-->

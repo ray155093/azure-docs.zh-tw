@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="在資源管理員中使用範本部署使用靜態公用 IP 的 VM | Microsoft Azure"
    description="了解如何在資源管理員中使用範本部署使用靜態公用 IP 的 VM"
    services="virtual-network"
@@ -101,7 +101,7 @@
 
 若要使用 PowerShell 部署您下載的範本，請依照下列步驟執行。
 
-1. 如果您從未使用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)，並遵循步驟 1 到 3 中的指示。
+1. 如果您從未使用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並遵循步驟 1 到 3 中的指示。
 
 2. 如有必要，在 PowerShell 主控台中執行 **New-AzureRmResourceGroup** Cmdlet 以建立新的資源群組。如果您已經建立資源群組，請移至步驟 3。
 
@@ -112,7 +112,7 @@
 		ResourceGroupName : StaticPublicIP
 		Location          : westus
 		ProvisioningState : Succeeded
-		Tags              : 
+		Tags              :
 		ResourceId        : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/StaticPublicIP
 
 3. 在 PowerShell 主控台中，執行 **New-AzureRmResourceGroupDeployment** Cmdlet 來部署範本。
@@ -128,31 +128,31 @@
 		ProvisioningState : Succeeded
 		Timestamp         : 1/8/2016 7:04:44 PM
 		Mode              : Incremental
-		TemplateLink      : 
+		TemplateLink      :
 		                    Uri            : https://raw.githubusercontent.com/Azure/azure-quickstart-templates/mas
 		                    ter/IaaS-Story/03-Static-public-IP/azuredeploy.json
 		                    ContentVersion : 1.0.0.0
-		                    
-		Parameters        : 
+
+		Parameters        :
 		                    Name                      Type                       Value     
 		                    ========================  =========================  ==========
-		                    vnetName                  String                     WTestVNet 
+		                    vnetName                  String                     WTestVNet
 		                    vnetPrefix                String                     192.168.0.0/16
 		                    frontEndSubnetName        String                     FrontEnd  
 		                    frontEndSubnetPrefix      String                     192.168.1.0/24
 		                    storageAccountNamePrefix  String                     iaasestd  
 		                    stdStorageType            String                     Standard_LRS
 		                    osType                    String                     Windows   
-		                    adminUsername             String                     adminUser 
+		                    adminUsername             String                     adminUser
 		                    adminPassword             SecureString                         
-		                    
-		Outputs           : 
+
+		Outputs           :
 
 ## 使用 Azure CLI 部署範本
 
 若要使用 Azure CLI 部署範本，請依照下列步驟執行。
 
-1. 如果您從未使用過 Azure CLI，請參閱[安裝和設定 Azure CLI](xplat-cli.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行 **azure config mode** 命令，以切換為資源管理員模式，如下所示。
 
 		azure config mode arm
@@ -184,4 +184,4 @@
 		data:
 		info:    group create command OK
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

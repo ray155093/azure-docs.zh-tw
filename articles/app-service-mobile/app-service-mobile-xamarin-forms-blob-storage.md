@@ -30,15 +30,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ## 必要條件
 
-若要完成此教學課程，您需要下列項目：
-
-* 使用中的 Azure 帳戶。如果您沒有帳戶，可以註冊 Azure 試用版並取得最多 10 個免費的行動應用程式，即使在試用期結束之後仍可繼續使用這些應用程式。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-
-* [Visual Studio Community 2013] 或更新版本。
-
-* 已安裝 [Xcode](https://go.microsoft.com/fwLink/?LinkID=266532) v7.0 或更新版本，以及 [Xamarin Studio](http://xamarin.com/download) 的 Mac。
-
-* 完成[建立 Xamarin.Forms 應用程式]教學課程。本文使用該教學課程中的已完成應用程式。
+* 完成[建立 Xamarin.Forms 應用程式]教學課程，它會列出其他必要條件。本文使用該教學課程中的已完成應用程式。
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)。您可以於該處，在 App Service 中立即建立短期的入門行動 app - 不需信用卡，不需任何承諾。
 
@@ -46,9 +38,9 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 1. 遵循[建立 Azure 儲存體帳戶]教學課程，建立儲存體帳戶。 
 
-2. 在 Azure 入口網站中，瀏覽至新建立的儲存體帳戶，並按一下 [金鑰] 圖示。複製 [主要連接字串]。
+2. 在 Azure 入口網站中，瀏覽至新建立的儲存體帳戶，並按一下**金鑰**圖示。複製**主要連接字串**。
 
-3. 瀏覽至行動應用程式後端。在 [所有設定] -> [應用程式設定] -> [連接字串] 底下，建立名為 `MS_AzureStorageAccountConnectionString` 的新金鑰，並使用從儲存體帳戶複製的值。使用 [自訂] 做為金鑰類型。
+3. 瀏覽至行動應用程式後端。在 [所有設定] -> [應用程式設定] -> [連接字串] 底下，建立名為 `MS_AzureStorageAccountConnectionString` 的新金鑰，並使用從儲存體帳戶複製的值。使用 [自訂] 作為金鑰類型。
 
 ## 將儲存體控制器新增至您的伺服器專案
 
@@ -121,7 +113,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ###用戶端和伺服器通訊
 
-請注意，`TodoItemStorageController`「沒有」用於上傳或下載 blob 的路由。這是因為行動用戶端在一開始取得 SAS 權杖 (共用存取簽章) 以安全地存取特定 blob 或容器之後，就會「直接」與 Blob 儲存體互動來執行這些作業。這是很重要的架構設計，否則對於儲存體的存取會受到行動後端的延展性和可用性限制。相反地，透過直接連線到 Azure 儲存體，行動用戶端可以利用其功能，例如自動分割和地理散發。
+請注意，`TodoItemStorageController` *沒有*用於上傳或下載 blob 的路由。這是因為行動用戶端在一開始取得 SAS 權杖 (共用存取簽章) 以安全地存取特定 blob 或容器之後，就會*直接*與 Blob 儲存體互動來執行這些作業。這是很重要的架構設計，否則對於儲存體的存取會受到行動後端的延展性和可用性限制。相反地，透過直接連線到 Azure 儲存體，行動用戶端可以利用其功能，例如自動分割和地理散發。
 
 共用存取簽章可提供您儲存體帳戶中資源的委派存取。這表示您可以在無需分享您帳戶存取金鑰的情況下，將您儲存體帳戶中的物件有限權限授與用戶端，該用戶端便可在指定的時間期間內及使用指定的權限集來進行存取。若要深入了解，請參閱[了解共用存取簽章]。
 
@@ -137,7 +129,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ###新增 NuGet 封裝
 
-在方案上按一下滑鼠右鍵，然後選取 [管理方案的 NuGet 套件]。將下列 NuGet 套件新增至方案中的「所有」專案。請務必選取 [包括發行前版本]。
+在方案上按一下滑鼠右鍵，然後選取 [管理方案的 NuGet 封裝]。將下列 NuGet 封裝加入方案中的**所有**專案。請務必選取 [包括發行前版本]。
 
   - [Microsoft.Azure.Mobile.Client.Files]
 
@@ -381,7 +373,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
         public static object UIContext { get; set; }
 
-4. 在可攜式程式庫專案上按一下滑鼠右鍵，然後選取 [新增] -> [新項目] -> [跨平台] -> [Form Xaml 頁面]。將檢視命名為 `TodoItemDetailsView`。
+4. 在可攜式程式庫專案上按一下滑鼠右鍵，然後選取 [新增] -> [新項目] -> [跨平台] -> [Forms Xaml 頁面]。將檢視命名為 `TodoItemDetailsView`。
 
 5. 開啟 **TodoItemDetailsView.xaml**，以下列內容取代 ContentPage 的本文：
 
@@ -482,7 +474,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
 此程式碼會使用 Xamarin.Forms [DependencyService](https://developer.xamarin.com/guides/xamarin-forms/dependency-service/)，在執行階段載入正確的平台特定類別。
 
-1. 將元件 **Xamarin.Mobile** 新增至 Android 專案。
+1. 將元件 **Xamarin.Mobile** 加入 Android 專案中。
 
 2. 使用下列實作來新增新類別 `DroidPlatform`。使用您的專案的主要命名空間取代 "YourNamespace"。
 
@@ -552,7 +544,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
 將平台特定程式碼新增至 iOS 專案。
 
-1. 將元件 **Xamarin.Mobile** 新增至 iOS 專案。
+1. 將元件 **Xamarin.Mobile** 加入 iOS 專案中。
 
 2. 使用下列實作來新增新類別 `TouchPlatform`。使用您的專案的主要命名空間取代 "YourNamespace"。
 
@@ -682,7 +674,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
 這篇文章說明如何使用 Azure 行動用戶端和伺服器 SDK 中的新檔案支援以使用 Azure 儲存體。
 
-- 建立儲存體帳戶並將連接字串新增至您的行動應用程式後端。只有後端擁有 Azure 儲存體金鑰：行動用戶端會在需要存取 Azure 儲存體時隨時要求 SAS 權杖 (共用存取簽章)。若要深入了解「Azure 儲存體」中的 SAS 權杖，請參閱[了解共用存取簽章]。
+- 建立儲存體帳戶並將連接字串新增至您的行動應用程式後端。只有後端擁有 Azure 儲存體金鑰：行動用戶端會在需要存取 Azure 儲存體時隨時要求 SAS 權杖 (共用存取簽章)。若要深入了解 Azure 儲存體中的 SAS 權杖，請參閱[了解共用存取簽章]。
 
 - 建立將 `StorageController` 分類為子類別的控制站，以處理 SAS 權杖要求，並取得與記錄關聯的檔案。根據預設，會使用記錄識別碼做為容器名稱的一部分，讓檔案與記錄建立關聯；您可以藉由指定 `IContainerNameResolver` 的實作來自訂此行為。也可以自訂 SAS 權杖原則。
 
@@ -690,13 +682,13 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
         client.InitializeFileSync(new MyFileSyncHandler(), store);
 
-      + 當 Azure 行動用戶端 SDK 需要檔案資料時 (例如，做為上傳程序的一部分)，會呼叫 `IFileSyncHandler.GetDataSource`。這可讓您能夠管理如何 (以及是否) 在本機裝置上儲存檔案，並且在需要時傳回該資訊。
+      + 當 Azure 行動用戶端 SDK 需要檔案資料時 (例如，作為上傳程序的一部分)，會呼叫 `IFileSyncHandler.GetDataSource`。這可讓您能夠管理如何 (以及是否) 在本機裝置上儲存檔案，並且在需要時傳回該資訊。
 
       + 進行檔案同步處理流程時會一併叫用 `IFileSyncHandler.ProcessFileSynchronizationAction`。提供檔案參考和 FileSynchronizationAction 列舉值，讓您可以決定應用程式應如何處理該事件 (例如，在檔案建立或更新時自動下載、在檔案於伺服器上刪除時從本機裝置上刪除檔案)。
 
 - `MobileServiceFile` 可以在線上或離線模式下使用，方法是分別透過使用 `IMobileServiceTable` 或 `IMobileServiceSyncTable`。在離線案例中，會在應用程式呼叫 `PushFileChangesAsync` 時進行上傳。這會導致對離線作業佇列進行處理；針對每個檔案作業，Azure 行動用戶端 SDK 會在 `IFileSyncHandler` 執行個體上叫用 `GetDataSource` 方法，以擷取要上傳的檔案內容。
 
-- 為了擷取項目的檔案，請在 `IMobileServiceTable<T>` 或 IMobileServiceSyncTable<T> 執行個體上呼叫 `GetFilesAsync` 方法。這個方法會傳回與提供的資料項目相關聯的檔案的清單。(請注意：這是「本機」作業，而且會根據物件上次同步處理時的狀態，傳回檔案。若要從伺服器取得更新的檔案清單，您應該先起始同步處理作業。)
+- 為了擷取項目的檔案，請在 `IMobileServiceTable<T>` 或 IMobileServiceSyncTable<T> 執行個體上呼叫 `GetFilesAsync` 方法。這個方法會傳回與提供的資料項目相關聯的檔案的清單。(請注意：這是*本機*作業，而且會根據物件上次同步處理時的狀態，傳回檔案。若要從伺服器取得更新的檔案清單，您應該先起始同步處理作業。)
 
         IEnumerable<MobileServiceFile> files = await myTable.GetFilesAsync(myItem);
 
@@ -717,7 +709,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 <!-- URLs. -->
 
 [Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
-[建立 Xamarin.Forms 應用程式]: ../app-service-mobile-xamarin-forms-get-started.md
+[建立 Xamarin.Forms 應用程式]: app-service-mobile-xamarin-forms-get-started.md
 [Xamarin.Forms DependencyService]: https://developer.xamarin.com/guides/xamarin-forms/dependency-service/
 [Microsoft.Azure.Mobile.Client.Files]: https://www.nuget.org/packages/Microsoft.Azure.Mobile.Client.Files/
 [Microsoft.Azure.Mobile.Client.SQLiteStore]: https://www.nuget.org/packages/Microsoft.Azure.Mobile.Client.SQLiteStore/
@@ -725,4 +717,4 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 [了解共用存取簽章]: ../storage/storage-dotnet-shared-access-signature-part-1.md
 [建立 Azure 儲存體帳戶]: ../storage/storage-create-storage-account.md#create-a-storage-account
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

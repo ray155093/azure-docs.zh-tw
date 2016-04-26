@@ -72,4 +72,4 @@ Azure Functions 支援各種與 Azure 和第三方服務的整合。您可以利
 
 [AZURE.INCLUDE [報告問題](../../includes/functions-reporting-issues.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

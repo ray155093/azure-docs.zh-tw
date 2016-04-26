@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/11/2015"
+	ms.date="04/01/2016"
 	ms.author="josephd"/>
 
 # SharePoint 內部網路伺服器陣列工作負載第 4 階段：設定 SharePoint Server。
@@ -205,4 +205,4 @@ SharePoint 建立伺服器陣列後，會在主要 SQL Server 虛擬機器中設
 
 - 依照[第 5 階段](virtual-machines-windows-ps-sp-intranet-ph5.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

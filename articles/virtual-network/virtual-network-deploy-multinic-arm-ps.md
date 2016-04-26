@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="在資源管理員中使用 PowerShell 部署多個 NIC VM | Microsoft Azure"
    description="了解如何在資源管理員中使用 PowerShell 部署多個 NIC VM"
    services="virtual-network"
@@ -27,7 +27,7 @@
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-因為在這個時間點，您不能讓配備單一 NIC 的 VM 與配備多個 NIC 的 VM 位在同一個資源群組中，您要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
+目前，在相同的資源群組中，您不能有具有單一 NIC 的 VM 和具有多個 NIC 的 VM。因此，您需要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
 
 ## 必要條件
 
@@ -118,7 +118,7 @@
 		for ($suffixNumber = 1; $suffixNumber -le $numberOfVMs; $suffixNumber++){
 
 2. 建立用於資料庫存取的 NIC。
-		
+
 		    $nic1Name = $nicNamePrefix + $suffixNumber + "-DA"
 		    $ipAddress1 = $ipAddressPrefix + ($suffixNumber + 3)
 		    $nic1 = New-AzureRmNetworkInterface -Name $nic1Name -ResourceGroupName $backendRGName `
@@ -143,14 +143,14 @@
 		    $data1VhdUri = $prmStorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $dataDisk1Name + ".vhd"
 		    Add-AzureRmVMDataDisk -VM $vmConfig -Name $dataDisk1Name -DiskSizeInGB $diskSize `
 				-VhdUri $data1VhdUri -CreateOption empty -Lun 0
-		
+
 		    $dataDisk2Name = $vmName + "-" + $dataDiskSuffix + "-2"    
 		    $data2VhdUri = $prmStorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $dataDisk2Name + ".vhd"
 		    Add-AzureRmVMDataDisk -VM $vmConfig -Name $dataDisk2Name -DiskSizeInGB $diskSize `
 				-VhdUri $data2VhdUri -CreateOption empty -Lun 1
 
 6. 設定作業系統，以及要用於 VM 的映像。
-		    
+
 		    $vmConfig = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
 		    $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -PublisherName $publisher -Offer $offer -Skus $sku -Version $version
 
@@ -176,43 +176,43 @@
 		ResourceGroupName : IaaSStory-Backend
 		Location          : westus
 		ProvisioningState : Succeeded
-		Tags              : 
-		Permissions       : 
+		Tags              :
+		Permissions       :
 		                    Actions  NotActions
 		                    =======  ==========
 		                    *                  
-		                    
+
 		ResourceId        : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/IaaSStory-Backend
 
 2. 幾分鐘後，填寫認證提示並按一下 [**確定**]。以下的輸出代表單一 VM。請注意，整個程序花費 8 分鐘完成。
 
-		ResourceGroupName            : 
-		Id                           : 
+		ResourceGroupName            :
+		Id                           :
 		Name                         : DB2
-		Type                         : 
-		Location                     : 
-		Tags                         : 
+		Type                         :
+		Location                     :
+		Tags                         :
 		TagsText                     : null
 		AvailabilitySetReference     : Microsoft.Azure.Management.Compute.Models.AvailabilitySetReference
 		AvailabilitySetReferenceText : {
 		                                 "ReferenceUri": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/IaaSStory-Backend/providers/
 		                               Microsoft.Compute/availabilitySets/ASDB"
 		                               }
-		Extensions                   : 
+		Extensions                   :
 		ExtensionsText               : null
 		HardwareProfile              : Microsoft.Azure.Management.Compute.Models.HardwareProfile
 		HardwareProfileText          : {
 		                                 "VirtualMachineSize": "Standard_DS3"
 		                               }
-		InstanceView                 : 
+		InstanceView                 :
 		InstanceViewText             : null
-		NetworkProfile               : 
+		NetworkProfile               :
 		NetworkProfileText           : null
-		OSProfile                    : 
+		OSProfile                    :
 		OSProfileText                : null
-		Plan                         : 
+		Plan                         :
 		PlanText                     : null
-		ProvisioningState            : 
+		ProvisioningState            :
 		StorageProfile               : Microsoft.Azure.Management.Compute.Models.StorageProfile
 		StorageProfileText           : {
 		                                 "DataDisks": [
@@ -232,38 +232,38 @@
 		                                 "OSDisk": null
 		                               }
 		DataDiskNames                : {DB2-datadisk-1}
-		NetworkInterfaceIDs          : 
-		RequestId                    : 
+		NetworkInterfaceIDs          :
+		RequestId                    :
 		StatusCode                   : 0
-		
-		
-		ResourceGroupName            : 
-		Id                           : 
+
+
+		ResourceGroupName            :
+		Id                           :
 		Name                         : DB2
-		Type                         : 
-		Location                     : 
-		Tags                         : 
+		Type                         :
+		Location                     :
+		Tags                         :
 		TagsText                     : null
 		AvailabilitySetReference     : Microsoft.Azure.Management.Compute.Models.AvailabilitySetReference
 		AvailabilitySetReferenceText : {
 		                                 "ReferenceUri": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/IaaSStory-Backend/providers/
 		                               Microsoft.Compute/availabilitySets/ASDB"
 		                               }
-		Extensions                   : 
+		Extensions                   :
 		ExtensionsText               : null
 		HardwareProfile              : Microsoft.Azure.Management.Compute.Models.HardwareProfile
 		HardwareProfileText          : {
 		                                 "VirtualMachineSize": "Standard_DS3"
 		                               }
-		InstanceView                 : 
+		InstanceView                 :
 		InstanceViewText             : null
-		NetworkProfile               : 
+		NetworkProfile               :
 		NetworkProfileText           : null
-		OSProfile                    : 
+		OSProfile                    :
 		OSProfileText                : null
-		Plan                         : 
+		Plan                         :
 		PlanText                     : null
-		ProvisioningState            : 
+		ProvisioningState            :
 		StorageProfile               : Microsoft.Azure.Management.Compute.Models.StorageProfile
 		StorageProfileText           : {
 		                                 "DataDisks": [
@@ -294,18 +294,18 @@
 		                                 "OSDisk": null
 		                               }
 		DataDiskNames                : {DB2-datadisk-1, DB2-datadisk-2}
-		NetworkInterfaceIDs          : 
-		RequestId                    : 
+		NetworkInterfaceIDs          :
+		RequestId                    :
 		StatusCode                   : 0
-		
-		
+
+
 		EndTime             : 10/30/2015 9:30:03 AM -08:00
-		Error               : 
-		Output              : 
+		Error               :
+		Output              :
 		StartTime           : 10/30/2015 9:22:54 AM -08:00
 		Status              : Succeeded
 		TrackingOperationId : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 		RequestId           : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 		StatusCode          : OK
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

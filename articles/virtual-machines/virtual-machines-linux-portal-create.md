@@ -25,8 +25,6 @@
 建立執行 Linux 的 Azure 虛擬機器 (VM) 很簡單。本教學課程示範如何使用 Azure 入口網站來快速建立虛擬機器，以及如何使用`~/.ssh/id_rsa.pub`公開金鑰檔確保連接到 VM 之 **SSH** 的安全性。您也可以使用[自己的映像作為範本來建立 Linux VM](virtual-machines-linux-classic-create-upload-vhd.md)。
 
 
-[AZURE.NOTE] 本教學課程會建立受 Azure 資源群組 API 管理的 Azure 虛擬機器。如需詳細資訊，請參閱《[Azure 資源群組概觀](../resource-group-overview.md)》。
-
 [AZURE.INCLUDE [free-trial-note](../../includes/free-trial-note.md)]
 
 ## 選取映像
@@ -128,4 +126,4 @@
 
 - [Azure 上 Linux 的 Docker 虛擬機器擴充程式](virtual-machines-linux-dockerextension.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

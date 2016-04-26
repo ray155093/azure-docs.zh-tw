@@ -111,7 +111,7 @@
 
 -  [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 -  [如何使用 Azure PowerShell 將現有的內部部署 Hyper-V 網域控制站上傳到 Azure](http://support.microsoft.com/kb/2904015)
--  [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](../active-directory-new-forest-virtual-machine.md)
+-  [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](../active-directory/active-directory-new-forest-virtual-machine.md)
 -  [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)
 -  [Microsoft Azure IT Pro IaaS：(01) 虛擬機器基本概念](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 -  [Microsoft Azure IT Pro IaaS：(05) 建立虛擬網路和跨單位連線](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
@@ -121,4 +121,4 @@
 <!--Image references-->
 [1]: ./media/virtual-networks-install-replica-active-directory-domain-controller/ReplicaDCsOnAzureVNet.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

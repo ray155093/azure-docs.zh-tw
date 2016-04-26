@@ -1,7 +1,5 @@
 
 
-就像任何其他電腦，Azure 中的虛擬機器會使用磁碟做為儲存作業系統、應用程式和資料的位置。所有 Azure 都至少有二個磁碟 – 作業系統磁碟和暫存磁碟。作業系統磁碟是由映像建立，且作業系統磁碟與該映像，實際上都是儲存在 Azure 儲存體帳戶的虛擬硬碟 (VHD)。虛擬機器也可以有一或多個資料磁碟，而這些磁碟也會儲存成 VHD。
-
 ## 作業系統磁碟
 
 每個虛擬機器都有一個連接的作業系統磁碟。它註冊為 SATA 磁碟機，並標示為 C 磁碟機。此磁碟的最大容量為 1023 GB。Azure 建立作業系統磁碟時，會建立三個該磁碟機的複本以達到高持久性。此外，如果您設定虛擬機器進行異地複寫，您的 VHD 也會複寫到位於 400 英哩之外的其他站台。
@@ -12,7 +10,7 @@
 
 >[AZURE.WARNING] 請勿在暫存磁碟上儲存資料。它提供應用程式和處理程序暫時的儲存空間，且其用意僅為儲存分頁檔等資料。若要為 Windows 虛擬機器重新對應此磁碟，請參閱[變更 Windows 暫存磁碟的磁碟機代號](../articles/virtual-machines/virtual-machines-windows-classic-change-drive-letter.md)。
 
-如需 Azure 如何使用暫存磁碟的詳細資訊，請參閱[Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+如需 Azure 如何使用暫存磁碟的詳細資訊，請參閱[Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)。
 
 ## 資料磁碟
 
@@ -38,4 +36,4 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 
 >[AZURE.WARNING] 如果您刪除儲存體中的來源 .vhd 檔案從或刪除您的儲存體帳戶，Microsoft 便無法為您復原該資料。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -102,8 +102,8 @@
 ---|---|---
 Blob URI|https://myaccount.blob.core.windows.net/sascontainer/sasblob.txt |Blob 的位址。請注意，我們強烈建議您使用 HTTPS。
 儲存體服務版本|sv=2015-04-05|若是儲存體服務版本 2012-02-12 和更新版本，此參數表示要使用的版本。
-開始時間|st=2015-04-29T22%3A18%3A26Z|以 ISO 8601 格式指定。如果您想要 SAS 立即生效，請略過開始時間。
-過期時間|se=2015-04-30T02%3A23%3A26Z|以 ISO 8601 格式指定。
+開始時間|st=2015-04-29T22%3A18%3A26Z|以 UTC 時間指定。如果您想要 SAS 立即生效，請略過開始時間。
+過期時間|se=2015-04-30T02%3A23%3A26Z|以 UTC 時間指定。
 資源|sr=b|此資源是 Blob。
 權限|sp=rw|SAS 所授與的權限包括讀取 (r) 和寫入 (w)。
 IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
@@ -314,8 +314,8 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
 - [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 - [管理對容器與 Blob 的匿名讀取權限。](storage-manage-access-to-resources.md)
 - [使用共用存取簽章來委派存取權](http://msdn.microsoft.com/library/azure/ee395415.aspx)
-- [資料表和佇列 SAS 簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx)
+- [資料表與佇列 SAS 簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx)
 [sas-storage-fe-proxy-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-fe-proxy-service.png
 [sas-storage-provider-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-provider-service.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

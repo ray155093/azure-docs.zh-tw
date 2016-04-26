@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="02/29/2016"
+	ms.date="04/12/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure PowerShell 管理角色型存取控制
@@ -24,9 +24,15 @@
 - [REST API](role-based-access-control-manage-access-rest.md)
 
 
-## 列出角色型存取控制 (RBAC) 角色
+在 Azure 入口網站和 Azure 資源管理 API 中的角色型存取控制 (RBAC) 可讓您精確地管理訂用帳戶的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
->[AZURE.IMPORTANT] 您需要[安裝 Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx)，才能使用本文中的 Cmdlet。
+在使用 PowerShell 來管理 RBAC 之前，您必須具備下列項目：
+
+- Azure PowerShell 0.8.8 或更新版本。若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+
+- Azure Resource Manager Cmdlet。在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx)。
+
+## 列出角色
 
 ### 列出所有可用的角色
 若要列出可以指派的 RBAC 角色，以及若要檢查它們獲得存取權的作業，請使用：
@@ -42,23 +48,22 @@
 
 ![RBAC PowerShell - 特定角色的 Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition2.png)
 
-## 列出存取權
-### 列出所選取之訂用帳戶中的所有角色指派
-若要列出在指定的訂用帳戶、資源或資源群組有效的 RBAC 存取權指派，請使用：
+## 查看誰具有存取權
+若要列出 RBAC 存取權指派，請使用：
 
     Get-AzureRmRoleAssignment
 
-###	列出資源群組上有效的角色指派
-若要列出資源群組的存取權指派，請使用：
+###	列出特定範圍的角色指派
+您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看資源群組的所有使用中指派，請使用︰
 
     Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>
 
 ![RBAC PowerShell - 資源群組的 Get-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
-### 列出使用者的角色指派，包括指派給使用者群組的角色
-若要列出指定使用者和使用者為其成員之群組的存取權指派，請使用：
+### 列出指派給使用者的角色
+若要列出指派給指定使用者的所有角色，包括指派給其所屬群組的角色，請使用︰
 
-    Get-AzureRmRoleAssignment -ExpandPrincipalGroups
+    Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups
 
 ![RBAC PowerShell - 使用者的 Get-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment2.png)
 
@@ -69,29 +74,22 @@
 
 ## 授與存取權
 ### 搜尋物件識別碼
-若要使用下列命令順序，您必須先找到物件識別碼。假設您已經知道您正在使用的訂用帳戶識別碼，否則，請參閱 MSDN 上的[Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx)。
+若要指派角色，您必須識別物件 (使用者、群組或應用程式) 和範圍。
 
-#### 尋找 Azure AD 群組的物件識別碼
+如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 [訂用帳戶] 刀鋒視窗中找到。或者，您也可以在 MSDN 中了解如何使用 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx) 加以查詢。
+
 若要取得 Azure AD 群組的物件識別碼，請使用：
 
     Get-AzureRmADGroup -SearchString <group name in quotes>
 
-#### 尋找 Azure AD 服務主體的物件識別碼
-若要取得 Azure AD 服務主體的物件識別碼，請使用：
+若要取得 Azure AD 服務主體或應用程式的物件 ID，請使用：
 
     Get-AzureRmADServicePrincipal -SearchString <service name in quotes>
-
-### 將角色指派給訂用帳戶範圍中的群組
-若要將存取權授與訂用帳戶範圍中的群組，請使用：
-
-    New-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name in quotes> -Scope <scope such as subscription/subscription id>
-
-![RBAC PowerShell - New-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment1.png)
 
 ### 將角色指派給訂用帳戶範圍中的應用程式
 若要將存取權授與訂用帳戶範圍中的應用程式，請使用：
 
-    New-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name in quotes> -Scope <scope such as subscription/subscription id>
+    New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name in quotes> -Scope <subscription id>
 
 ![RBAC PowerShell - New-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment2.png)
 
@@ -112,7 +110,7 @@
 ## 移除存取
 若要移除使用者、群組和應用程式的存取權，請使用：
 
-    Remove-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name> -Scope <scope such as subscription/subscription id>
+    Remove-AzureRmRoleAssignment -ObjectId <object id> -RoleDefinitionName <role name> -Scope <scope such as subscription id>
 
 ![RBAC PowerShell - Remove-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
@@ -153,7 +151,7 @@
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition2.png)
 
-## RBAC 主題
-[AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
+## 另請參閱
+- [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)[AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0413_2016-->

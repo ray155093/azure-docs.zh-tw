@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/15/2016" 
+	ms.date="04/06/2016" 
 	ms.author="awills"/>
 
 # Windows 傳統型應用程式、服務和背景工作角色上的 Application Insights
@@ -31,15 +31,15 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
 ## <a name="add"></a> 建立 Application Insights 資源
 
 
-1.  在 [Azure 入口網站][portal] 中，建立新的 Application Insights 資源。針對應用程式類型，選擇 Windows 市集應用程式。 
+1.  在 [Azure 入口網站][portal] 中，建立新的 Application Insights 資源。針對應用程式類型，選擇 ASP.NET 應用程式。 
 
     ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-desktop/01-new.png)
 
-    (您選擇的應用程式類型將設定 [概觀] 分頁的內容，以及[計量瀏覽器][metrics]中可用的屬性。)
+    (如果您想要，您可以選擇不同的應用程式類型 - 將設定 [概觀] 刀鋒視窗的內容以及[計量瀏覽器][metrics]中可用的屬性。)
 
-2.  取得檢測金鑰的副本。在您剛才建立的新資源之 [Essentials] 下拉式清單中尋找金鑰。
+2.  取得檢測金鑰的副本。在您剛才建立的新資源之 [Essentials] 下拉式清單中尋找金鑰。關閉應用程式對應，或向左捲動至資源的概觀刀鋒視窗。
 
-    ![按一下 [Essentials]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-desktop/02-props.png)
+    ![按一下 [Essentials]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-desktop/10.png)
 
 ## <a name="sdk"></a>在應用程式中安裝 SDK
 
@@ -89,7 +89,7 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
             tc.InstrumentationKey = "key copied from portal";
 
             // Set session data:
-            tc.Context.User.Id = Environment.GetUserName();
+            tc.Context.User.Id = Environment.UserName;
             tc.Context.Session.Id = Guid.NewGuid().ToString();
             tc.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
 
@@ -118,24 +118,25 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
 * 在切換表單、頁面或索引標籤上的 `TrackPageView(pageName)`
 * 其他使用者動作的 `TrackEvent(eventName)`
 * 背景工作中的 `TrackMetric(name, value)`，可傳送未附加到特定事件之度量的一般報告。
-* [診斷記錄][diagnostic] 的 `TrackTrace(logEvent)`
+* [診斷記錄][][diagnostic] 的 `TrackTrace(logEvent)`
 * catch 子句中的 `TrackException(exception)`
 * `Flush()` 確定所有遙測在關閉應用程式之前都已傳送。只有當您只使用核心 API (Microsoft.ApplicationInsights) 時才可以使用此選項。Web SDK 會自動實作這個行為。(如果您的應用程式會在不一定有網際網路的內容中執行，請參閱[持續性通道](#persistence-channel)。)
 
 
-#### 內容初始設定式
+#### 遙測初始設定式
 
-若要查看使用者和工作階段的計數，您可以對每個 `TelemetryClient` 執行個體設定值。或者，您可以使用內容初始設定式來對所有用戶端執行這個加入動作：
+若要查看使用者和工作階段的計數，您可以對每個 `TelemetryClient` 執行個體設定值。或者，您可以使用遙測初始設定式來對所有用戶端執行這個加入動作：
 
 ```C#
 
-    class UserSessionInitializer: IContextInitializer
+    class UserSessionInitializer : ITelemetryInitializer
     {
-        public void Initialize(TelemetryContext context)
+        public void Initialize(ITelemetry telemetry)
         {
-            context.User.Id = Environment.UserName;
-            context.Session.Id = Guid.NewGuid().ToString();
+            telemetry.Context.User.Id = Environment.UserName;
+            telemetry.Context.Session.Id = Guid.NewGuid().ToString();
         }
+        
     }
 
     static class Program
@@ -143,7 +144,7 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
         ...
         static void Main()
         {
-            TelemetryConfiguration.Active.ContextInitializers.Add(
+            TelemetryConfiguration.Active.TelemetryInitializers.Add(
                 new UserSessionInitializer());
             ...
 
@@ -159,7 +160,7 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
 
 ![](./media/app-insights-windows-desktop/appinsights-09eventcount.png)
 
-
+事件也會出現在診斷和輸出視窗中。
 
 ## <a name="monitor"></a>查看監視資料
 
@@ -167,9 +168,7 @@ Application Insights 可讓您監視所部署應用程式的使用量和效能�
 
 前幾個事件將出現在[診斷搜尋](app-insights-diagnostic-search.md)中。
 
-如果您預期有更多資料，請在幾秒之後按一下 [重新整理]。
-
-如果您使用 TrackMetric 或 TrackEvent 的測量參數，請開啟 [計量瀏覽器][metrics]，並開啟 [篩選器] 刀鋒視窗。您應該會看到您的度量，但是它們有時可能需要一些時間才能通過管線，所以您可能必須關閉篩選器刀鋒視窗、稍待片刻，然後重新整理。
+如果您使用 TrackMetric 或 TrackEvent 的測量參數，請開啟 [計量瀏覽器][][metrics]，並開啟 [篩選器] 刀鋒視窗。您應該會看到您的度量，但是它們有時可能需要一些時間才能通過管線，所以您可能必須關閉篩選器刀鋒視窗、稍待片刻，然後重新整理。
 
 
 
@@ -299,4 +298,4 @@ namespace ConsoleApplication1
 [CoreNuGet]: https://www.nuget.org/packages/Microsoft.ApplicationInsights
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

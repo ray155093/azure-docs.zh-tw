@@ -52,7 +52,6 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 - Windows Server 2012 R2 或 Windows Server 2012 (您必須為此系統安裝 KB2858668)。
 - .NET Framework 4.5.1 或更高版本，完整安裝
 - Windows PowerShell 3.0
-- Visual C++ 2012 (VC++ 11.0) 可轉散發套件
 - 部署和設定叢集的叢集系統管理員必須擁有每部電腦的系統管理員權限。
 
 ### 步驟 3︰決定初始叢集大小
@@ -100,7 +99,7 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 此指令碼可以在以系統管理員身分存取叢集組態檔中列為節點的所有電腦的任何電腦上執行。執行此指令碼所在的電腦不一定是叢集的一部分。
 
 ```
-C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590> .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590\ClusterConfig.JSON -MicrosoftServiceFabricCabFilePath C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590\MicrosoftAzureServiceFabric.cab
+.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590\ClusterConfig.JSON -MicrosoftServiceFabricCabFilePath C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590\MicrosoftAzureServiceFabric.cab
 ```
 
 ## 後續步驟
@@ -115,4 +114,4 @@ C:\Microsoft.Azure.ServiceFabric.WindowsServer.5.0.135.9590> .\CreateServiceFabr
 深入了解 Azure 叢集和獨立叢集︰
 - [獨立叢集建立功能以及與 Azure 受管理叢集比較的概觀](service-fabric-deploy-anywhere.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

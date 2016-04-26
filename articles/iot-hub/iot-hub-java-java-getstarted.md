@@ -54,7 +54,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 最後，按一下 [IoT 中樞] 刀鋒視窗上的 [設定]，然後按一下 [設定] 刀鋒視窗上的 [傳訊]。記下 [傳訊] 刀鋒視窗上的**事件中樞相容名稱**和**事件中樞相容端點**。在建立 **read-d2c-messages** 應用程式時需要用到這些值。
 
-    ![][6]
+![][6]
 
 您現在已經建立 IoT 中樞，並擁有完成本教學課程其餘部分所需的 IoT 中樞主機名稱、IoT 中樞連接字串、事件中樞相容名稱和事件中樞相容端點。
 
@@ -111,4 +111,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

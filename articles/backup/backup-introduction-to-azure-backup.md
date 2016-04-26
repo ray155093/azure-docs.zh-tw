@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/06/2016"
+	ms.date="04/13/2016"
 	ms.author="jimpark; trinadhk"/>
 
 # 何謂 Azure 備份？
@@ -82,6 +82,30 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | Azure IaaS VM 備份 | 公開預覽中 | 公開預覽中 - Resource Manager 部署模型中的 Linux VM <br>(檔案系統層級的一致性)<br><br>是 (若為傳統部署模型中的 Linux VM) |
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
+
+
+## 備份和還原進階儲存體 VM
+
+Azure 備份服務現在可保護進階儲存體 VM。
+
+### 備份進階儲存體 VM
+
+在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。
+
+>[AZURE.NOTE] 請勿修改或編輯預備位置。
+
+備份作業完成後，就會刪除預備位置。用於預備位置之儲存體的價格在所有[進階儲存體價格](../storage/storage-premium-storage.md#pricing-and-billing)中皆一致。
+
+### 還原進階儲存體 VM
+
+將進階儲存體 VM 的復原點還原到進階儲存體是常見的還原程序。不過，將進階儲存體 VM 的復原點還原至標準儲存體比較符合成本效益。如果您需要 VM 檔案的子集，則可以使用此還原類型。
+
+將進階儲存體 VM 的復原點還原到進階儲存體的步驟如下︰
+
+1. [將 VM 復原點還原至標準儲存體。](backup-azure-restore-vms.md)
+2. [將磁碟複製到進階儲存體。](../storage/storage-use-azcopy.md)
+3. [建立 Azure IaaS VM。](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+
 
 ## 功能
 以下五個資料表概述備份功能如何處理每個元件。
@@ -211,4 +235,4 @@ Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

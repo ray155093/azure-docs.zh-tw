@@ -4,7 +4,7 @@
 	keywords="asp.net mvc 教學課程, web 應用程式開發, mvc web 應用程式, asp net mvc 教學課程逐步解說"
 	services="documentdb" 
 	documentationCenter=".net" 
-	authors="ryancrawcour" 
+	authors="aliuy" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -15,8 +15,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="03/30/2016" 
-	ms.author="ryancraw"/>
+	ms.date="04/18/2016" 
+	ms.author="andrl"/>
 
 #<a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
 
@@ -333,7 +333,7 @@
 			}
 		}
 
-		> [AZURE.TIP] 建立新的 DocumentCollection 時，您可以提供 OfferType 的選擇性 RequestOptions 參數，此參數可讓您指定新集合的效能層級。如果無法傳遞此參數，系統將會使用預設的優惠類型。如需 DocumentDB 優惠類型的詳細資訊，請參閱 [DocumentDB 效能層級](documentdb-performance-levels.md)
+	> [AZURE.TIP] 建立新的 DocumentCollection 時，您可以提供 OfferType 的選擇性 RequestOptions 參數，此參數可讓您指定新集合的效能層級。如果無法傳遞此參數，系統將會使用預設的優惠類型。如需 DocumentDB 優惠類型的詳細資訊，請參閱 [DocumentDB 效能層級](documentdb-performance-levels.md)
 
 3. 我們打算從組態中讀取部分值，因此請開啟應用程式的 **Web.config** 檔案，並在 [`<AppSettings>`] 區段下新增下列幾行。
 	
@@ -587,4 +587,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

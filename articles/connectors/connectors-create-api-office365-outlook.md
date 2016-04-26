@@ -30,7 +30,7 @@ ms.author="mandia"/>
 
 &nbsp;
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。如需 2014-12-01-preview 結構描述版本，請按一下 [Office 365 API](../app-service-logic/app-service-logic-connector-office365.md)。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 使用 Office 365 Outlook，您可以：
 
@@ -61,7 +61,7 @@ Office 365 Outlook API 提供下列觸發程序和動作。
 1. 登入您的 Office 365 Outlook 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 Office 365 帳戶。 
 
-連線建立之後，您需要輸入 Office 365 Outlook 屬性，像是收件匣資料夾路徑或電子郵件訊息。本主題的＜REST API 參考＞一節說明這些屬性。
+連線建立之後，您需要輸入 Office 365 Outlook 屬性，像是收件匣資料夾路徑或電子郵件訊息。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Office 365 Outlook 連線。
 
@@ -768,4 +768,4 @@ Office 365 Outlook API 提供下列觸發程序和動作。
 [12]: ./media/connectors-create-api-office365-outlook/contoso-aad-app-delegate-office365-outlook.png
 [13]: ./media/connectors-create-api-office365-outlook/contoso-aad-app-delegate-office365-outlook-permissions.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

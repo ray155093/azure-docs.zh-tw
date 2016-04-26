@@ -24,17 +24,9 @@
 
 此教學課程介紹適用於 Xamarin.iOS 之 Azure 行動應用程式的離線同步處理功能。離線同步處理可讓使用者與行動應用程式進行互動--檢視、新增或修改資料--即使沒有網路連線進也可行。變更會儲存在本機資料庫中︰裝置上線後，這些變更就會與遠端服務進行同步處理。
 
-在本教學課程中，您將會更新[建立 Xamarin iOS 應用程式]教學課程中的 Xamarin.iOS 應用程式專案，來支援 Azure Mobile Apps 的離線功能。如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+在本教學課程中，您將會更新[建立 Xamarin.iOS 應用程式]中的 Xamarin.iOS 應用程式專案，來支援 Azure Mobile Apps 的離線功能。如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 若要深入了解離線同步處理功能，請參閱 [Azure Mobile Apps 中的離線資料同步處理]主題。
-
-## 需求
-
-本教學課程需要下列各項：
-
-* Visual Studio 2013
-* Visual Studio [Xamarin 延伸] **或** [Xamarin Studio] (在 OS X 上)
-* 完成[建立 Xamarin iOS 應用程式]教學課程。本教學課程使用該教學課程中涵蓋的已完成應用程式。
 
 ## 檢閱用戶端同步處理程式碼
 
@@ -142,7 +134,7 @@
 
 * [Azure 行動應用程式中的離線資料同步處理]
 
-* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 
 <!-- ##Summary
 
@@ -158,15 +150,11 @@
 <!-- Images -->
 
 <!-- URLs. -->
-[建立 Xamarin iOS 應用程式]: ../app-service-mobile-xamarin-ios-get-started.md
-[Azure Mobile Apps 中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
-[Azure 行動應用程式中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
-
-[How to use the Xamarin Component client for Azure Mobile Services]: ../partner-xamarin-mobile-services-how-to-use-client-library.md
-
-[Xamarin Studio]: http://xamarin.com/download
-[Xamarin 延伸]: http://xamarin.com/visual-studio
-
+[建立 Xamarin iOS 應用程式]: app-service-mobile-xamarin-ios-get-started.md
+[建立 Xamarin.iOS 應用程式]: app-service-mobile-xamarin-ios-get-started.md
+[Azure Mobile Apps 中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
+[Azure 行動應用程式中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
+[How to use the Xamarin Component client for Azure Mobile Services]: partner-xamarin-mobile-services-how-to-use-client-library.md
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 
-<!----HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0413_2016-->

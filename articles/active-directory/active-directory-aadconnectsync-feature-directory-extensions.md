@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="02/16/2016"
+   ms.date="04/12/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect 同步處理：目錄擴充
@@ -24,8 +24,8 @@
 您可以在安裝精靈的自訂設定路徑中，設定您想要同步處理的其他屬性。![結構描述擴充精靈](./media/active-directory-aadconnectsync-feature-directory-extensions/extension2.png) 安裝將會顯示下列屬性，這些是有效的候選項目：
 
 - 使用者和群組物件類型
-- 單一值屬性
-- 字串、整數、二進位檔
+- 單一值屬性︰字串、布林值、整數、二進位檔
+- 多值屬性︰字串、二進位檔
 
 一個物件最多可有 100 個目錄擴充屬性。長度上限是 250 個字元。如果屬性值較長，則會被同步處理引擎截斷。
 
@@ -40,4 +40,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0413_2016-->

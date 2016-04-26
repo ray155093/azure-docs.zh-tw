@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="手動或自動調整執行個體計數" 
-	description="了解如何調整您的 Azure 服務。" 
-	authors="stepsic-microsoft-com" 
-	manager="ronmart" 
-	editor="" 
-	services="azure-portal" 
+<properties
+	pageTitle="手動或自動調整執行個體計數"
+	description="了解如何調整您的 Azure 服務。"
+	authors="stepsic-microsoft-com"
+	manager="ronmart"
+	editor=""
+	services="azure-portal"
 	documentationCenter="na"/>
 
-<tags 
-	ms.service="azure-portal" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2015" 
+<tags
+	ms.service="azure-portal"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2015"
 	ms.author="stepsic"/>
 
 # 手動或自動調整執行個體計數
@@ -31,11 +31,11 @@
 2. [**作業**] 中的 [**級別**] 磚會告訴您調整的狀態：當您手動調整時，會顯示 [**關閉**]，當您依一或多個效能計量調整時會顯示 [**開啟**]。![[調整] 磚](./media/insights-how-to-scale/Insights_UsageLens.png)
 
 3. 按一下磚，即會將您帶到 [**級別**] 刀鋒視窗。在 [級別] 刀鋒視窗的頂端，您可以檢視服務的自動調整動作歷程記錄。![Scale blade](./media/insights-how-to-scale/Insights_ScaleBladeDayZero.png)
-    
->[AZURE.NOTE]這個圖表僅會顯示自動調整所執行的動作。如果您手動調整執行個體計數，則此變更將不會反映在該圖表中。
+
+>[AZURE.NOTE] 這個圖表僅會顯示自動調整所執行的動作。如果您手動調整執行個體計數，則此變更將不會反映在該圖表中。
 
 4. 您可以使用滑桿手動調整 [**執行個體**] 數目。
-5. 按一下 [**儲存**] 命令，您的執行個體便會立即被調整到該數目。 
+5. 按一下 [**儲存**] 命令，您的執行個體便會立即被調整到該數目。
 
 ## 根據預先設定的計量進行調整
 
@@ -44,7 +44,7 @@
 1. 當您選取計量時，您會看到一個滑桿，和/或可輸入您要調整的執行個體數目範圍文字方塊：
 
     ![Scale blade with CPU Percentage](./media/insights-how-to-scale/Insights_ScaleBladeCPU.png)
-    
+
     無論負載為何，自動調整絕對不會將您的服務調整低於或高於您的設定界限。
 
 2. 其次，您可以選擇計量的目標範圍。例如，如果您選擇 [**CPU 百分比**]，您可以為服務中的所有執行個體設定平均 CPU 的目標。當平均 CPU 超過您所定義的最大值時，便會發生相應放大，同樣地，每當平均 CPU 低於最小值時，便會發生相應縮小。
@@ -65,9 +65,9 @@
 
 4. 現在，您必須選取所需的調整依據計量。選擇計量時會有幾個考量事項：
     * 計量的來源*資源*。一般而言，這會與您要調整的資源相同。不過，如果您想要根據儲存體佇列的深度進行調整，則資源就會是您的調整依據佇列。
-    * 本身的*計量名稱*。 
+    * 本身的*計量名稱*。
     * 計量的*時間彙總*。這是資料在*持續時間*內組合的方式。
-    
+
 5. 選擇您的計量之後，您會選擇計量的臨界值，以及運算子。例如，假設 [**大於**] 設為 [**80%**]。
 
 6. 然後選擇您要採取的動作。共有幾種不同的動作類型：
@@ -76,7 +76,7 @@
     * 增加或減少至 - 這會將執行個體計數設定為您所定義的 [**值**]。
 
 7. 最後，您可以選擇等待期間 - 在前次調整動作之後，此規則要再次執行調整前所應等待的時間。
-    
+
 8. 設定規則之後，請按 [**確定**]。
 
 9. 在設定您所有想要的規則之後，請務必要按 [**儲存**] 命令。
@@ -117,7 +117,7 @@
 
 8. 和預設設定檔一樣，選擇要設定檔套用的 [**天**]，以及當天的 [**開始時間**]。
 
->[AZURE.NOTE]自動調整會為您所選取的任何 [**時區**] 使用日光節約規則。不過，在日光節約時間期間，UTC 時差會顯示基本的時區時差，而不是日光節約的 UTC 時差。
+>[AZURE.NOTE] 自動調整會為您所選取的任何 [**時區**] 使用日光節約規則。不過，在日光節約時間期間，UTC 時差會顯示基本的時區時差，而不是日光節約的 UTC 時差。
 
 9. 按一下 [確定]。
 
@@ -134,7 +134,6 @@
 * 每當發生操作事件或計量超過臨界值時，[接收警示通知](insights-receive-alert-notifications.md)。
 * 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](insights-perf-analytics.md)。
 * [檢視事件和稽核記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
-* 使用 Application Insights [監視任何網頁的可用性和回應性](../app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
- 
+* 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0413_2016-->

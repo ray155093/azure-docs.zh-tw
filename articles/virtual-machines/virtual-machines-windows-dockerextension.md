@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure 上 Linux 的 Docker 虛擬機器擴充程式"
-	description="描述 Docker 和容器、Azure 虛擬機器延伸模組，並指出更多資源來說明透過 Azure CLI 和入口網站建立 Docker 容器。"
+	description="描述 Docker 和容器、Azure 虛擬機器擴充功能，並指出更多資源來說明透過 Azure CLI 和 Azure 入口網站建立 Docker 容器。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="squillace"
@@ -22,4 +22,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-dockerextension](../../includes/virtual-machines-common-dockerextension.md)]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

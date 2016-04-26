@@ -5,7 +5,7 @@
 	documentationCenter="java"
 	authors="rmcmurray"
 	manager="wpickett"
-	editor="jimbe" />
+	editor="" />
 
 <tags
 	ms.service="storage"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="02/22/2016"
+	ms.date="04/08/2016"
 	ms.author="robmcm"/>
 
 # 如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合
@@ -204,4 +204,4 @@
 
 Hudson 就會使用上一節建立的範本建立從屬節點，並執行您針對這項工作指定於組建步驟中的指令碼。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

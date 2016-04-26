@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/30/2016"
+   ms.date="04/08/2016"
    ms.author="toddabel"/>
 
 
@@ -25,7 +25,7 @@
 這些工具將用來執行這份文件中的某些作業：
 
 * [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) (與 Azure 雲端服務相關，但具備有用的資訊和範例)
-* [Azure 資源管理員](../resource-group-overview.md)
+* [Azure Resource Manager](../resource-group-overview.md)
 * [Azure PowerShell](../powershell-install-configure.md)
 * [Azure Resource Manager 用戶端](https://github.com/projectkudu/ARMClient)
 
@@ -38,14 +38,15 @@
 
 
 ## 部署診斷延伸模組
-收集記錄檔的第一個步驟是將診斷延伸模組部署在 Service Fabric 叢集的每個 WM 上。診斷延伸模組會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。根據您是使用 Azure 入口網站或 Azure 資源管理員，以及是在建立叢集時或針對已存在的叢集來部署而定，步驟會稍微不同。讓我們看看每個案例的步驟。
+收集記錄檔的第一個步驟是將診斷延伸模組部署在 Service Fabric 叢集的每個 WM 上。診斷延伸模組會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。根據您是使用 Azure 入口網站或 Azure Resource Manager，以及是在建立叢集時或針對已存在的叢集來部署而定，步驟會稍微不同。讓我們看看每個案例的步驟。
 
 ### 透過入口網站建立叢集時部署診斷延伸模組
-為了在建立叢集時將診斷部署至叢集的 WM，我們使用下圖所示的診斷設定面板。根據預設會**啟用**支援記錄檔，且根據預設會**停用**應用程式診斷。在建立叢集之後，這些設定無法使用入口網站變更。
+為了在建立叢集時將診斷延伸模組部署至叢集中的 WM，我們使用下圖所示的診斷設定面板。若要啟用動作項目或可靠服務事件收集，請確定 [診斷] 設定為 [開啟]，這是預設設定。在建立叢集之後，這些設定無法使用入口網站變更。
 
-![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad-operational-insights/portal-cluster-creation-diagnostics-setting.png)
+![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
-Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於目前資源群組中的儲存體帳戶。應用程式診斷會將應用程式層級事件，包括[動作項目](service-fabric-reliable-actors-diagnostics.md)事件、[Reliable Service](service-fabric-reliable-services-diagnostics.md) 事件和某些系統層級 Service Fabric 事件設定為儲存至 Azure 儲存體。[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。使用入口網站建立叢集時，建議在部署完成後才匯出範本。範本可以由下列項目從入口網站匯出
+Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於資源群組中的其中一個儲存體帳戶。診斷設定會將應用程式層級事件，包括[動作項目](service-fabric-reliable-actors-diagnostics.md)事件、[可靠服務](service-fabric-reliable-services-diagnostics.md)事件和某些系統層級 Service Fabric 事件設定為儲存至 Azure 儲存體。[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。使用入口網站建立叢集時，建議在部署完成後才匯出範本。範本可以由下列項目從入口網站匯出
+
 1. 開啟您的資源群組
 2. 選取設定以顯示設定面板
 3. 選取 [部署] 以顯示部署歷程記錄面板
@@ -53,7 +54,7 @@ Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支�
 5. 選取 [匯出範本] 以顯示範本面板
 6. 選取 [儲存至檔案] 以匯出包含範本、參數和 PowerShell 檔案的 .zip 檔案。
 
-匯出檔案之後，需要進行修改。編輯 **parameters.json** 檔案，並移除 **adminPassword** 項目。執行部署指令碼時，這樣會導致密碼的提示。
+匯出檔案之後，需要進行修改。編輯 **parameters.json** 檔案，並移除 **adminPassword** 元素。執行部署指令碼時，這樣會導致密碼的提示。
 
 ### 使用 Azure Resource Manager 在建立叢集時部署診斷延伸模組
 若要使用資源管理員建立叢集，您需要在建立叢集之前，將診斷設定 JSON 加入至完整的資源管理員範本。我們在資源管理員範本範例中提供一個五 VM 叢集資源管理員範本，且已在其中加入診斷設定。您可以在 Azure 資源庫中的這個位置看到它：[具有診斷資源管理員範本範例的五節點叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)。若要查看資源管理員範本中的診斷設定，請開啟 **azuredeploy.json** 檔案，並搜尋 **IaaSDiagnostics**。若要使用這個範本建立叢集，只要按上面連結所提供的 [部署到 Azure] 按鈕即可。
@@ -178,4 +179,4 @@ New-AzureResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $de
 ## 後續步驟
 查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件，以更詳細了解進行問題移難排解時應該調查哪些事件。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

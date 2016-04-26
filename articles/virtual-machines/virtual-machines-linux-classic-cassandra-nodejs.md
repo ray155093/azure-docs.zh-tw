@@ -1,4 +1,4 @@
-<properties pageTitle="使用 Azure 上的 Linux 來執行 Cassandra | Microsoft Azure" description="如何從 Node.js 應用程式在 Azure 虛擬機器的 Linux 上執行 Cassandra 叢集" services="virtual-machines-linux" documentationCenter="nodejs" authors="rmcmurray" manager="wpickett" editor="" azure-service-management"/>
+<properties pageTitle="使用 Azure 上的 Linux 來執行 Cassandra | Microsoft Azure" description="如何從 Node.js 應用程式在 Azure 虛擬機器的 Linux 上執行 Cassandra 叢集" services="virtual-machines-linux" documentationCenter="nodejs" authors="hanuk" manager="wpickett" editor="" azure-service-management"/>
 
 <tags 
 	ms.service="virtual-machines-linux" 
@@ -6,8 +6,8 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/04/2016" 
-	ms.author="robmcm"/>
+	ms.date="04/12/2016" 
+	ms.author="hanuk;robmcm"/>
 
 # 在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取 
 
@@ -457,7 +457,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 我們將運用已經完成的單一區域部署，然後重複相同程序安裝第二個區域。單一和多重區域部署之間的主要差異在於區域間通訊的 VPN 通道設定。我們將從網路安裝開始、佈建 VM 以及設定 Cassandra。
 
 ###步驟 1：在第 2 個區域建立虛擬網路
-登入 Azure 傳統入口網站，並使用資料表中的屬性建立虛擬網路。請參閱[在 Azure 傳統入口網站中設定純雲端虛擬網路](../virtual-network/virtual-networks-create-vnet.md)，以取得程序的詳細步驟。
+登入 Azure 傳統入口網站，並使用資料表中的屬性建立虛擬網路。請參閱[在 Azure 傳統入口網站中設定純雲端虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)，以取得程序的詳細步驟。
 
 <table>
 <tr><th>屬性名稱    </th><th>值	</th><th>備註</th></tr>
@@ -697,4 +697,4 @@ Microsoft Azure 是一個富彈性的平台，可以執行 Microsoft 與開放�
 - [http://www.datastax.com](http://www.datastax.com) 
 - [http://www.nodejs.org](http://www.nodejs.org) 
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

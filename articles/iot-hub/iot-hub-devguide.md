@@ -48,7 +48,7 @@ Azure IoT 中樞是多租用戶服務，且公開功能給各種執行者。下�
     - 傳送裝置到雲端的訊息。使用這個端點傳送裝置到雲端的訊息。如需詳細資訊，請參閱[裝置到雲端傳訊](#d2c)。
     - 接收雲端到裝置的訊息。使用此端點來接收目標雲端到裝置訊息的裝置。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
 
-    這些端點會使用 HTTP、[MQTT][lnk-mqtt] 和 [AMQP][lnk-amqp] 通訊協定加以公開。請注意，AMQP 也可透過連接埠 443 上的 [WebSockets][lnk-websockets] 來取得。
+    這些端點會使用 HTTP 1.1、[MQTT v3.1.1][lnk-mqtt] 和 [AMQP 1.0][lnk-amqp] 通訊協定加以公開。請注意，AMQP 也可透過連接埠 443 上的 [WebSockets][lnk-websockets] 來取得。
 * 服務端點：各 IoT 中樞會公開您的應用程式後端可用來與您的裝置通訊的一組端點。目前僅使用 [AMQP][lnk-amqp] 通訊協定公開這些端點。
     - 接收裝置到雲端的訊息。此端點與 [Azure 事件中樞][lnk-event-hubs]相容，且後端服務可用它來讀取由您的裝置所傳送的所有裝置到雲端訊息。如需詳細資訊，請參閱[裝置到雲端傳訊](#d2c)。
     - 傳送雲端到裝置的訊息及接收傳遞通知。這些端點可讓您的應用程式後端傳送可靠的雲端到裝置訊息，以及接收相對應的傳遞或到期通知。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
@@ -68,7 +68,7 @@ Azure IoT 中樞是多租用戶服務，且公開功能給各種執行者。下�
 
     ![][img-eventhubcompatible]
 
-> [AZURE.NOTE] SDK 有時需要 [主機名稱] 或 [命名空間] 值。在此情況下，請從 [事件中樞相容端點] 移除配置。比方說，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
+> [AZURE.NOTE] 在 SDK 需要 [主機名稱] 或 [命名空間] 的情況下，從 [事件中樞相容端點] 移除配置。比方說，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
 
 然後，您可以使用具有 ServiceConnect 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 
@@ -338,7 +338,7 @@ IoT 中樞提供通訊的傳訊基礎︰
 
 IoT 中樞傳訊功能的核心屬性是訊息的可靠性和持久性。這可在裝置端上恢復間歇性連線，以及在雲端恢復事件處理的負載尖峰。IoT 中樞會針對裝置到雲端和雲端到裝置訊息，實作「至少一次」傳遞保證。
 
-IoT 中樞支援多個裝置面向通訊協定 (例如 AMQP 和 HTTP/1)。為了支援完美的跨通訊協定互通性，IoT 中樞定義了所有裝置面向通訊協定均可支援的通用訊息格式。
+IoT 中樞支援多個裝置面向通訊協定 (例如 MQTT、AMQP 和 HTTP)。為了支援完美的跨通訊協定互通性，IoT 中樞定義了所有裝置面向通訊協定均可支援的通用訊息格式。
 
 ### 訊息格式 <a id="messageformat"></a>
 
@@ -640,4 +640,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-eventhub-partitions]: ../event-hubs/event-hubs-overview.md#partitions
 [lnk-manage]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

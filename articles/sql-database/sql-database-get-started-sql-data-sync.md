@@ -3,8 +3,8 @@
 	description="本教學課程可協助您開始使用 Azure SQL 資料同步 (預覽)。"
 	services="sql-database"
 	documentationCenter=""
-	authors="spelluru"
-	manager="JennieHubbard"
+	authors="jhubbard"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -202,4 +202,4 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。如果�
 
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

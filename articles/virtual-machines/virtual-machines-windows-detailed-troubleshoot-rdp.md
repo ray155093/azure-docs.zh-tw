@@ -3,7 +3,7 @@
 	description="RDP 連線至執行 Windows 之 Azure 虛擬機器的詳細疑難排解。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor=""
 	tags="top-support-issue,azure-service-management,azure-resource-manager"/>
@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/08/2016"
-	ms.author="dkshir"/>
+	ms.date="04/06/2016"
+	ms.author="iainfou"/>
 
 # 以 Windows 為基礎的 Azure 虛擬機器之遠端桌面連線的詳細疑難排解
 
@@ -195,4 +195,4 @@ PortNumber 屬性會顯示目前的連接埠號碼。如有需要，請使用此
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

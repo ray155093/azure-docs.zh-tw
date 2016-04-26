@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-Xamarin 允許您以 C# 撰寫可在數個不同平台 (包括行動裝置和電腦之類) 上執行的應用程式。如果您正在建置使用 Xamarin 的應用程式，Azure AD 可讓您簡單又直截了當以 Active Directory 帳戶驗證您的使用者。它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
+Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置和電腦) 上執行的行動應用程式。如果您正在建置使用 Xamarin 的應用程式，Azure AD 可讓您簡單又直截了當以 Active Directory 帳戶驗證您的使用者。它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
 
 對於需要存取受保護資源的 Xamarin 應用程式，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)。ADAL 存在的唯一目的是為了讓您的應用程式輕鬆取得存取權杖。為了示範究竟有多麼簡單，我們將建置一個可執行下列動作的「目錄搜尋程式」應用程式：
 
@@ -41,12 +41,9 @@ Xamarin 允許您以 C# 撰寫可在數個不同平台 (包括行動裝置和電
 若要開始使用，請[下載基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip)。每一個都是 Visual Studio 2013 解決方案。您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
 ## *0.設定您的 Xamarin 開發環境*
-設定 Xamarin 有幾種不同的方式，視您想要鎖定的特定平台而定。由於本教學課程包括適用於 iOS、Android 和 Windows 的專案，我們選擇使用 Visual Studio 2013 和 [Xamarin.iOS 組建主機](http://developer.xamarin.com/guides/ios/getting_started/installation/windows/)，這將需要： - 一部可執行 Visual Studio 和 Windows 應用程式的 Windows 電腦 - 一部 OSX 電腦 (如果您希望能夠執行 iOS 應用程式) - Xamarin 企業訂用帳戶 ([免費試用](http://developer.xamarin.com/guides/cross-platform/getting_started/beginning_a_xamarin_trial/)就已足夠) - [Xamarin for Windows](https://xamarin.com/download)，其中包括 Xamarin.iOS、Xamarin.Android，以及 Visual Studio 整合 (建議在此範例中使用)。 - [Xamarin for OS X](https://xamarin.com/download)，其中包括 Xamarin.iOS (和 Xamarin.iOS 組建主機)、Xamarin.Android、Xamarin.Mac 和 Xamarin Studio。
-
-建議您從 [Xamarin 下載頁面](https://xamarin.com/download)開始，在您的 Mac 和 PC 上安裝 Xamarin。如果您沒有兩部可以使用的 Mac 和 PC 電腦，您仍然可以執行此範例，但可能必須略過某些專案。若是 iOS 和 Android，請依照[詳細安裝指南](http://developer.xamarin.com/guides/cross-platform/getting_started/installation/)進行，如果您想要深入了解開發可用選項的詳細資訊，請查看[建置跨平台應用程式](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/part_1_-_understanding_the_xamarin_mobile_platform/)指南。您不需要在此階段中設定開發裝置，您也不需要 Apple 開發人員計劃訂用帳戶 (當然，除非您想要在裝置上執行 iOS 應用程式)。
+因為本教學課程包含 iOS、Android 和 Windows 專案，所以您需要 Visual Studio 和 Xamarin。若要建立必要的環境，請依照 MSDN 上 Visual Studio 和 Xamarin [設定和安裝](https://msdn.microsoft.com/library/mt613162.aspx)的完整指示。這些指示包含的資料，可供您於等待安裝程式完成時檢閱，以深入了解 Xamarin。
 
 完成必要設定之後，您可以在 Visual Studio 中開啟解決方案並開始使用。您會看到六個專案：五個平台特定專案和一個可跨所有平台共用的可攜式類別庫，`DirectorySearcher.cs`
-
 
 ## *1.註冊目錄搜尋應用程式*
 若要啟用您的應用程式以取得權杖，您必須先在 Azure AD 租用戶中進行註冊，並對其授與存取 Azure AD Graph API 的權限：
@@ -62,7 +59,8 @@ Xamarin 允許您以 C# 撰寫可在數個不同平台 (包括行動裝置和電
 - 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。在 [**委派權限**] 下，為 [Azure Active Directory] 應用程式新增 [**存取您的組織目錄**] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
 
 ## *2.安裝及設定 ADAL*
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能夠與 Azure AD 進行通訊，您必須提供一些應用程式註冊相關資訊。從使用封裝管理員主控台將 ADAL 加入解決方案中的每個專案開始。
+既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
+-	從使用套件管理器主控台將 ADAL 加入方案的每一個專案來開始。
 
 `
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirectorySearcherLib -IncludePrerelease
@@ -201,4 +199,4 @@ ADAL 可讓您輕鬆地將常見的身分識別功能納入您的應用程式。
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0413_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/04/2016" 
+	ms.date="04/06/2016" 
 	ms.author="ccompy"/>
 
 # 在 App Service 環境中調整應用程式 #
@@ -31,13 +31,17 @@
 - 背景工作集區選取
 - 執行個體數目
 
-如需變更任一項目，都可以透過針對 ASE 託管之 App Service 方案所顯示的適用 UI 完成。ASP 相應增加的數量無法超過 ASP 所在背景工作集區中可用的計算資源數量。如果背景工作集區中需要計算資源，您必須讓 ASE 系統管理員增加資源。如需重新設定 ASE 的資訊，請閱讀以下資訊：[如何設定 App Service 環境][HowtoConfigureASE]。您也可能需利用 ASE 自動調整功能，以根據排程或計量增加容量。若要取得設定 ASE 環境本身自動調整的相關詳細資訊，請參閱[如何設定 App Service 環境的自動調整][ASEAutoscale]。
+如需變更任一項目，都可以透過針對 ASE 託管之 App Service 方案所顯示的適用 UI 完成。
 
 ![][1]
 
+ASP 相應增加的數量無法超過 ASP 所在背景工作集區中可用的計算資源數量。如果背景工作集區中需要計算資源，您必須讓 ASE 系統管理員增加資源。如需重新設定 ASE 的資訊，請閱讀以下資訊：[如何設定 App Service 環境][HowtoConfigureASE]。您也可能需利用 ASE 自動調整功能，以根據排程或計量增加容量。若要取得設定 ASE 環境本身自動調整的相關詳細資訊，請參閱[如何設定 App Service 環境的自動調整][ASEAutoscale]。
+
+您可以使用來自不同背景工作集區或相同背景工作集區的計算資源，建立多個 App Service 方案。例如，如果在背景工作集區 1 中有 (10) 個可用的計算資源，您可以選擇使用 (6) 個計算資源建立一個 App Service 方案，而第二個 App Service 方案使用 (4) 個計算資源。
+
 ### 調整執行個體數目 ###
 
-當您在 App Service 環境中首次建立 Web 應用程式時，您應該相應增加為至少 2 個執行個體，才能提供容錯功能。
+當您初次在 App Service 環境中建立 Web 應用程式時，它會從 1 個執行個體開始。您可以再相應放大至其他的執行個體，為應用程式提供額外的計算資源。
 
 如果 ASE 有足夠的容量，這就很簡單。您可移至具有您要相應增加之站台的 App Service 方案，然後選取 [調整]。這會開啟 UI，您可以在當中為 ASP 手動設定調整或設定自動調整規則。若要手動調整應用程式，只需將 [***調整依據***] 設為 [***手動輸入的執行個體計數***]。從這裡拖曳滑桿至所需的數量，或將所需數量輸入滑桿旁邊的方塊。
 
@@ -54,7 +58,7 @@
 
 將 ASP 從一個背景工作角色集區移到另一個集區之前，請務必確定您有足夠的容量可容納該 ASP。在背景工作集區清單中，不只會列出背景工作集區名稱，您也可以查看該背景工作集區中有多少可用的背景工作。請確定有足夠的執行個體可包含您的 App Service 方案。如果您需要在背景工作集區中移入更多計算資雲，則必須讓您的 ASE 系統管理員加以新增。
 
-> [AZURE.NOTE] 從一個背景工作角色集區移出 ASP，會導致該 ASP 中的應用程式重新啟動。這會造成應用程式短暫停機 (實際時間長短視重新啟動應用程式所花費的時間而定)。
+> [AZURE.NOTE] 從一個背景工作集區移出 ASP，會導致該 ASP 中的應用程式冷啟動。這可能會導致要求的執行速度變慢，因為您的應用程式在新的計算資源上是冷啟動。使用 Azure App Service 的 [application warm up capability][AppWarmup] 可以避免冷啟動。本文所述的應用程式初始化模組對冷啟動也有作用，因為當應用程式在新的計算資源上冷啟動時，也會叫用初始化程序。
 
 ## 開始使用
 
@@ -78,5 +82,6 @@
 [AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 [AppScale]: http://azure.microsoft.com/documentation/articles/web-sites-scale/
+[AppWarmup]: http://ruslany.net/2015/09/how-to-warm-up-azure-web-app-during-deployment-slots-swap/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0413_2016-->

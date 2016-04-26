@@ -1,25 +1,27 @@
-You must create a VNet and a gateway subnet first, before working on the following tasks. See the article [Configure a Virtual Network using the classic portal](../articles/expressroute/expressroute-howto-vnet-portal-classic.md) for more information.   
+您必須先建立 VNET 和閘道器子網路，才能進行下列工作。如需詳細資訊，請參閱[使用傳統入口網站設定虛擬網路](../articles/expressroute/expressroute-howto-vnet-portal-classic.md) 一文。
 
-## Add a gateway
+## 新增閘道
 
-Use the command below to create a gateway. Be sure to substitute any values for your own.
+使用以下的命令建立閘道器。所有的值請務必替換成您自己的值。
 
 	New-AzureVirtualNetworkGateway -VNetName "MyAzureVNET" -GatewayName "ERGateway" -GatewayType DynamicRouting -GatewaySKU  Standard
 
-## Verify the gateway was created
+## 確認已建立閘道
 
-Use the command below to verify that the gateway has been created. This command also retrieves the gateway ID, which you need for other operations.
+使用下列命令，確認已建立閘道。這個命令也會擷取閘道器識別碼，您在其他作業會需要它。
 
 	Get-AzureVirtualNetworkGateway
 
-## Resize a gateway
+## 調整閘道器大小
 
-There are three [Gateway SKUs](../articles/vpn-gateway/vpn-gateway-about-vpngateways.md). You can use the following command to change the Gateway SKU at any time.
+有三個[閘道器 SKU](../articles/vpn-gateway/vpn-gateway-about-vpngateways.md)。您可以使用下列命令隨時變更閘道器 SKU。
 
 	Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 
-## Remove a gateway
+## 移除閘道器
 
-Use the command below to remove a gateway
+使用以下的命令移除閘道器
 
 	Remove-AzureVirtualNetworkGateway -GatewayId <Gateway ID>
+
+<!---HONumber=AcomDC_0413_2016-->

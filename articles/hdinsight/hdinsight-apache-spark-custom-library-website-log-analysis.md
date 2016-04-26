@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/17/2016" 
+	ms.date="04/08/2016" 
 	ms.author="nitinme"/>
 
 # 在 HDInsight Spark 中使用自訂程式庫 (Linux) 分析記錄檔
@@ -52,7 +52,7 @@
 
 	![提供 Notebook 的名稱](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 
-4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark、SQL 和 Hive 內容。首先，您可以匯入此案例需要的類型。將下列程式碼片段貼到空白儲存格中，然後按 **SHIFT + ENTER**。
+4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例需要的類型。將下列程式碼片段貼到空白儲存格中，然後按 **SHIFT + ENTER**。
 
 
 		from pyspark.sql import Row
@@ -244,4 +244,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

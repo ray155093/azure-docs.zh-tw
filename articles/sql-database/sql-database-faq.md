@@ -3,8 +3,8 @@
    description="客戶詢問有關雲端資料庫與 Azure SQL Database、Microsoft 的關聯式資料庫管理系統 (RDBMS) 以及資料庫作為雲端中服務的一般問題的解答。" 
    services="sql-database" 
    documentationCenter="" 
-   authors="jeffgoll" 
-   manager="jeffreyg" 
+   authors="carlrabeler" 
+   manager="jhubbard" 
    editor="monicar"/>
 
 <tags
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
    ms.date="02/25/2016"
-   ms.author="sashan"/>
+   ms.author="sashan;carlrab"/>
 
 # SQL Database 常見問題集
 
@@ -61,12 +61,12 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 視您所需，不限次數。
 
 ## 變更單一資料庫的服務層次或效能等級，或將資料庫移入和移出彈性資料庫集區需要多久的時間？ 
-變更資料庫的服務層和移入和移出集區需要在平台上複製資料庫做為背景作業。這可能需要數分鐘到數小時的時間不等，視資料庫的大小而定。在這兩種情況下，在移動期間，資料庫將維持完全連線且可供使用的狀態。如需變更單一資料庫的詳細資訊，請參閱[變更資料庫的服務層](sql-database-scale-up.md)。針對彈性資料庫，請參閱[彈性集區參考](sql-database-elastic-pool-reference.md#latency-of-elastic-pool-operations)
+變更資料庫的服務層和移入和移出集區需要在平台上複製資料庫做為背景作業。這可能需要數分鐘到數小時的時間不等，視資料庫的大小而定。在這兩種情況下，在移動期間，資料庫將維持完全連線且可供使用的狀態。如需變更單一資料庫的詳細資訊，請參閱[變更資料庫的服務層](sql-database-scale-up.md)。
 
-##何時應該使用單一資料庫與彈性資料庫？ 
+## 何時應該使用單一資料庫與彈性資料庫？ 
 一般而言，彈性資料庫集區專為一般軟體即服務 (SaaS) 應用程式模式而設計，其中每一客戶或租用戶會有一個資料庫。購買個別資料庫並為了符合每個資料庫的變動尖峰需求而進行超規空間管理，通常不具成本效益。利用集區，您可管理集區的集體效能，而資料庫會自動相應增加和相應減少。
 
-Azure 的智慧型引擎如果發現必要的使用模式，將會對資料庫建議集區。如需詳細資料，請參閱 [SQL Database 定價層建議](sql-database-service-tier-advisor.md)。如需選擇在單一與彈性資料庫之間進行選擇的詳細指引，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+Azure 的智慧型引擎如果發現必要的使用模式，將會對資料庫建議集區。如需詳細資訊，請參閱 [SQL Database 定價層建議](sql-database-service-tier-advisor.md)。如需選擇在單一與彈性資料庫之間進行選擇的詳細指引，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 ## 備份儲存體可高達 200% 的最大可佈建資料庫儲存體，這是什麼意思？ 
 備份儲存體與自動資料庫備份相關聯，可用於時間點復原及異地復原。Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可佈建資料庫儲存體，且不須支付額外費用。例如，如果您擁有可佈建 DB 大小為 250GB 的標準 DB 執行個體，您將免費獲得 500GB 的備份儲存體。若您的資料庫超過所提供的備份儲存體，您可以連絡 Azure 支援部門，選擇縮短保留期限，或是以標準讀取存取地理備援儲存體 (RA-GRS) 費率，另購額外的備份儲存體。如需 RA-GRS 計費的詳細資訊，請參閱儲存體價格詳細資料。
@@ -89,4 +89,4 @@ Azure SQL Web 和 Business 資料庫現已淘汰。基本、標準、高階和�
 ## 若要監視主要資料庫和地區資料庫之間的複寫延遲，有哪些工具可以使用？
 我們會透過 DMV 將主要資料庫和地區次要資料庫之間的即時複寫延遲公開。如需詳細資訊，請參閱 [sys.dm\_geo\_replication\_link\_status](https://msdn.microsoft.com/library/mt575504.aspx)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

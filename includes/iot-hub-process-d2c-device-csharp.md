@@ -17,7 +17,7 @@
         await deviceClient.SendEventAsync(interactiveMessage);
         Console.WriteLine("{0} > Sending interactive message: {1}", DateTime.Now, interactiveMessageString);
 
-        Thread.Sleep(10000);
+        Task.Delay(10000).Wait();
       }
     }
     ```
@@ -36,6 +36,6 @@
 
 <!-- Links -->
 [Transient Fault Handling (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh675232.aspx
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
+[開始使用 IoT 中樞]: ../articles/iot-hub/iot-hub-csharp-csharp-getstarted.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0413_2016-->

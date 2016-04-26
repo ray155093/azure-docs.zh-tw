@@ -59,10 +59,10 @@ Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來
 
 例如，組態設定會如下所示：
 
-	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofpK7C8fHcZc2kIZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
+	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofvK7C6fHcZc2kRZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
 
 若要以儲存體模擬器為目標，您可以使用對應到已知帳戶名稱和金鑰的捷徑。在此情況下，您的連接字串設定會是︰
 
 	<add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

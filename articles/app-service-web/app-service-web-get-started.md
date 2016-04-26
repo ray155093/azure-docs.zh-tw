@@ -65,13 +65,13 @@
     
     依照提示，在瀏覽器中繼續使用具有 Azure 訂用帳戶的 Microsoft 帳戶進行登入。
 
-4. 在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式的 URL 會是 http://&lt;app_name>.azurewebsites.net。
+4. 在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。
 
         azure site create --git <app_name>
       
     >[AZURE.NOTE] 如果您從未設定 Azure 訂用帳戶的部署認證，系統將會提示您加以建立。App Service 只會將這些認證 (而不是您的 Azure 帳戶認證) 使用於 Git 部署與 FTP 登入。
     
-    不僅您的應用程式已建立於 Azure 中，而您目前的目錄也已進行 Git 初始化並連接到新的 App Service 應用程式而成為 Git 遠端。您可以瀏覽至您應用程式的 URL 來查看美麗的預設 HTML 網頁，但讓我們立即實際取得您自己的程式碼。
+    您的應用程式現在已建立於 Azure 中。此外，您目前的目錄也已進行 Git 初始化並連接到新的 App Service 應用程式而成為 Git 遠端。您可以進行瀏覽以查看應用程式的 URL (http://&lt;app_name>.azurewebsites.net) 來查看美麗的預設 HTML 網頁，但讓我們立即實際取得您自己的程式碼。
 
 4. 現在，將範例程式碼部署至新的 App Service 應用程式，如同使用 Git 推送任何程式碼一樣︰
 
@@ -109,7 +109,7 @@
 
 2. 在左列中，按一下 [應用程式服務]。
 
-3. 按一下您剛建立的 App Service 應用程式，以在入口網站中開啟其刀鋒視窗中。您會看到 [設定] 刀鋒視窗也已依預設開啟，方便您使用。
+3. 按一下您剛建立的應用程式，以在入口網站中開啟其頁面 (稱為[刀鋒視窗](../azure-portal-overview.md))。[設定] 刀鋒視窗也已依預設開啟，方便您使用。
 
     ![Azure App Service 中第一個應用程式的入口網站檢視](./media/app-service-web-get-started/portal-view.png)
 
@@ -139,4 +139,4 @@
 - [建立行動應用程式](/documentation/learning-paths/appservice-mobileapps/)
 - [建立 API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

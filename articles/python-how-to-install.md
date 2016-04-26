@@ -49,7 +49,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 
 ## 安裝於 Windows、Linux 和 MacOS (只有用戶端程式庫)
 
-如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。此作業會從 [Python 套件索引][] (PyPI) 下載封裝。
+如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。此作業會從 [Python 套件索引](PyPI) 下載封裝。
 
 請注意，您可能需要在 Linux 和 MacOS IE 上使用 `sudo` 命令。`sudo pip install azure`。
 
@@ -124,12 +124,12 @@ WebPI 安裝程式提供開發 Python Azure 應用程式所需的任何項目。
 
 ## 取得更多封裝
 
-[Python 套件索引][] (PyPI) 具有選擇性豐富的 Python 程式庫。如果您選擇安裝散發版本，便擁有從 Web 開發到工程運算等多樣化案例中令人感興趣的主要部分。
+[Python 套件索引](PyPI) 具有選擇性豐富的 Python 程式庫。如果您選擇安裝散發版本，便擁有從 Web 開發到工程運算等多樣化案例中令人感興趣的主要部分。
 
 
 ## Python Tools for Visual Studio
 
-[Python Tools for Visual Studio][] (PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
+[Python Tools for Visual Studio](PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
 
 ![how-to-install-python-ptvs](./media/python-how-to-install/how-to-install-python-ptvs.png)
 
@@ -195,7 +195,7 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。如�
 [Microsoft Azure SDK for Python 3.4]: http://go.microsoft.com/fwlink/?LinkID=516990
 [Setting up a Linux VM via the Azure portal]: create-and-configure-opensuse-vm-in-portal.md
 [How to use the Azure Command-Line Interface]: crossplat-cmd-tools.md
-[建立執行 Linux 的虛擬機器]: virtual-machines-linux-cli-create.md
+[建立執行 Linux 的虛擬機器]: virtual-machines-linux-quick-create-cli.md
 [使用 Django 建立網站]: web-sites-python-create-deploy-django-app.md
 [使用 Bottle 建立網站]: web-sites-python-create-deploy-bottle-app.md
 [使用 Flask 建立網站]: web-sites-python-create-deploy-flask-app.md
@@ -204,4 +204,4 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。如�
 [佇列儲存體]: storage-python-how-to-use-queue-storage.md
 [Blob 儲存體]: storage-python-how-to-use-blob-storage.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

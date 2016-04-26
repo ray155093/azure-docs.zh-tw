@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/13/2016"
+	ms.date="04/04/2016"
 	ms.author="byvinyal"/>
 
 #<a name="howtomonitor"></a>監視 Azure App Service 中的 Web 應用程式
@@ -201,7 +201,7 @@ Web 應用程式可以從 [Azure 傳統入口網站](https://manage.windowsazure
 
 如此可將記錄資訊顯示在執行命令的命令提示字元、PowerShell、Bash 或終端機工作階段中。
 
-> [AZURE.NOTE] 如果您尚未安裝 **azure** 命令，請參閱[如何使用 Azure CLI](../virtual-machines/virtual-machines-command-line-tools.md)，以取得安裝和組態資訊。
+> [AZURE.NOTE] 如果您尚未安裝 **azure** 命令，請參閱[安裝 Azure CLI](../xplat-cli-install.md)，以取得安裝和組態資訊。
 
 ### 讀取記錄檔 ###
 
@@ -288,4 +288,4 @@ Web 應用程式可以從 [Azure 傳統入口網站](https://manage.windowsazure
 [vmsizes]: http://go.microsoft.com/fwlink/?LinkID=309169
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

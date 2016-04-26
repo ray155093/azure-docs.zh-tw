@@ -1,32 +1,32 @@
 <properties
 	pageTitle="彈性資料庫集區的 SQL Database |Microsoft Azure"
-	description="了解如何透過跨多個資料庫共用可用資源的方式，有效使用彈性資料庫集區駕馭 SQL 資料庫中的爆炸性成長。"
+	description="使用集區管理數百或數千個資料庫。針對一組效能單位的一個價格可以分散在集區。您可以隨意將資料庫移入或移出。"
 	keywords="彈性資料庫、sql 資料庫"
 	services="sql-database"
 	documentationCenter=""
 	authors="sidneyh"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/24/2016"
+	ms.date="04/04/2016"
 	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 在 SQL 資料庫使用彈性資料庫集區駕馭爆炸性的成長，以共用資源
+# 什麼是 Azure 彈性資料庫集區？
 
-SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Database。彈性集區會在您控制的預算內，跨這些資料庫簡化建立、維護及效能管理。從集區任意加入或減少資料庫。請參閱[在 Azure 入口網站中建立 SQL 資料庫的可調整彈性資料庫集區](sql-database-elastic-pool-create-portal.md)，或[使用 PowerShell](sql-database-elastic-pool-powershell.md) 或 [C#](sql-database-elastic-pool-csharp.md)。
+SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Database。彈性資料庫集區可簡化跨多個資料庫的建立、維護和效能管理。從集區任意加入或減少資料庫。請參閱[在 Azure 入口網站中建立 SQL 資料庫的可調整彈性資料庫集區](sql-database-elastic-pool-create-portal.md)，或[使用 PowerShell](sql-database-elastic-pool-create-powershell.md) 或 [C#](sql-database-elastic-pool-csharp.md)。
 
 如需 API 和錯誤詳細資訊，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
 
 ## 運作方式
 
-常見的 SaaS 應用程式模式是針對提供資料庫的每個客戶。每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。由於需求有高有低，您要如何配置資源？ 您通常有兩個選項：根據尖峰使用量額外佈建資源並額外付款，或是少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。彈性資料庫集區會確保資料庫在必要時取得所需的效能資源，同時在可預測的預算之內，提供簡單的資源配置機制，藉此解決這個問題。
+單一租用戶資料庫模型的常見 SaaS 應用程式模式是︰每個客戶被授與一個資料庫。每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。由於需求有高有低，您要如何配置資源？ 您通常有兩個選項：(1) 根據尖峰使用量額外佈建資源並額外付款，或是 (2) 少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。彈性資料庫集區會確保資料庫在必要時取得所需的效能資源，同時在可預測的預算之內，提供簡單的資源配置機制，藉此解決這個問題。
 
 > [AZURE.VIDEO elastic-databases-helps-saas-developers-tame-explosive-growth]
 
@@ -49,11 +49,28 @@ SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Data
 
 > [AZURE.NOTE] 彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。
 
+## 彈性資料庫集區屬性
+彈性集區和彈性資料庫的限制。
+
+| 屬性 | 說明 |
+| :-- | :-- |
+| 服務層 | Basic、Standard 或 Premium。服務層決定可設定的效能和儲存體限制的範圍，以及商務持續性選項。在集區內的每個資料庫都與集區具有相同的服務層。「服務層」也稱為「版本」。|
+| 每個集區的 eDTU | 可由集區中的資料庫共用的 eDTU 數目上限。在相同的時間點，集區中的資料庫所使用的總 eDTU 數目不得超過此限制。 |
+| 每個集區的儲存體 | 可由集區中的資料庫所共用的儲存體數量上限。集區中的資料庫所使用的儲存體總數不得超過這個限制。這個限制是由每個集區的 eDTU 所決定。如果超過此限制，所有資料庫都會變成唯讀。 |
+| 每個資料庫的 eDTU 數目上限 | 集區中的任何資料庫可以使用的 eDTU 數目上限，並且適用於集區中的所有資料庫。每個資料庫的 eDTU 數目上限不等於資源保證。 |
+| 每個資料庫的 eDTU 數目下限 | 集區中的任何資料庫受到保證的 eDTU 數目下限，並且適用於集區中的所有資料庫。每個資料庫的 eDTU 數目下限可以設為 0。請注意，集區中的資料庫數目和每個資料庫 eDTU 數目下限的乘積不能超過每個集區的 eDTU。 |
+
+
+## 彈性集區和彈性資料庫的 eDTU 和儲存體限制
+
+
+[AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
+
 ## 彈性資料庫工作
 
 使用集區，只要在**[彈性工作](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。若要開始，請參閱[開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
 
-如需有關其他工具的詳細資訊，請參閱[彈性資料庫工具學習圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
+如需其他工具的詳細資訊，請參閱[彈性資料庫工具學習圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
 
 ## 集區中資料庫的業務續航力功能
 
@@ -86,4 +103,4 @@ SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Data
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0413_2016-->

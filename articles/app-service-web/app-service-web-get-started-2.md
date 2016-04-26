@@ -20,13 +20,13 @@
 
 # 開始使用 Azure App Service - 第 2 部分
 
-在[開始使用 Azure App Service](app-service-web-get-started.md) 中，您已將 Web 應用程式部署至 Azure App Service，所有設定皆可快速、輕鬆更新。在本文中，您將快速地將一些重要的功能新增至您所部署的應用程式，使其保持理想狀態。如此一來，您將了解 App Service 不僅僅是網站主機服務提供者。它可為您絕佳的應用程式提供企業級功能，以便您將創意活力集中在以您的應用程式取悅您的使用者，而不在於符合真實世界的安全性、延展性、效能、管理等需求。
+在[開始使用 Azure App Service](app-service-web-get-started.md) 中，您已將 Web 應用程式部署至 Azure App Service。在本文中，您將快速地將一些重要的功能新增至您所部署的應用程式。App Service 可為您絕佳的應用程式提供企業級功能，以符合真實世界的安全性、延展性、效能、管理等需求。
 
 按幾下滑鼠，您將了解如何︰
 
 - 強制執行使用者驗證
 - 自動調整您的應用程式
-- 接收您應用程式的效能警示。
+- 接收您應用程式的效能警示
 
 不論您在前一篇文章中部署哪一個範例應用程式，您都可以依照本教學課程執行。
 
@@ -46,7 +46,7 @@
 
     成功變更之後，您會看到通知鈴變成綠色，以及一則清楚的訊息。
 
-7. 回到您應用程式的入口網站刀鋒視窗，按一下 [URL] 連結 (或功能表列中的 [瀏覽])。此連結是 HTTP 位址。![驗證 - 瀏覽至 URL](./media/app-service-web-get-started/aad-login-browse-click.png) 但是在新的索引標籤中開啟應用程式後，URL 方塊就會重新導向數次並透過 HTTPS 位址到達您的應用程式。您會看到您已使用您的 Azure 訂用帳戶登入 Microsoft 帳戶，而且您已使用該帳戶自動登入應用程式。![驗證 - 已登入](./media/app-service-web-get-started/aad-login-browse-http-postclick.png)所以如果您現在在不同的瀏覽器中開啟未經驗證的工作階段，您將在瀏覽至相同 URL 時看到登入畫面：![驗證 - 登入頁面](./media/app-service-web-get-started/aad-login-browse.png)如果您從未使用過 Azure Active Directory，您的預設目錄可能沒有任何 Azure AD 使用者。在此情況下，那裡唯一的帳戶可能是以您的 Azure 訂用帳戶登入的 Microsoft 帳戶。這就是為什麼您先前會在相同的瀏覽器中自動登入此應用程式。您也可以使用相同的 Microsoft 帳戶登入此登入頁面。
+7. 回到您應用程式的入口網站刀鋒視窗，按一下 [URL] 連結 (或功能表列中的 [瀏覽])。此連結是 HTTP 位址。![驗證 - 瀏覽至 URL](./media/app-service-web-get-started/aad-login-browse-click.png) 但是在新的索引標籤中開啟應用程式後，URL 方塊就會重新導向數次並透過 HTTPS 位址到達您的應用程式。您會看到您已登入您的 Azure 訂用帳戶，而且您已自動在應用程式中進行驗證。![驗證 - 已登入](./media/app-service-web-get-started/aad-login-browse-http-postclick.png)所以如果您現在在不同的瀏覽器中開啟未經驗證的工作階段，您將在瀏覽至相同 URL 時看到登入畫面：![驗證 - 登入頁面](./media/app-service-web-get-started/aad-login-browse.png)如果您從未使用過 Azure Active Directory，您的預設目錄可能沒有任何 Azure AD 使用者。在此情況下，那裡唯一的帳戶可能是以您的 Azure 訂用帳戶登入的 Microsoft 帳戶。這就是為什麼您先前會在相同的瀏覽器中自動登入此應用程式。您也可以使用相同的 Microsoft 帳戶登入此登入頁面。
 
 恭喜，您已在驗證流向您的網站的所有流量。
 
@@ -62,7 +62,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 接下來，調整您的應用程式。調整您的 App Service 應用程式的方法有兩種︰
 
-- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰當您應增加 App Service 應用程式時，您會變更應用程式所屬的 App Service 方案的定價層。相應增加可提供更多的 CPU、記憶體、磁碟空間，以及額外的功能，例如專用 VM 執行個體、自動調整，99.95% 的 SLA、自訂網域、自訂 SSL 憑證、部署位置、備份、還原等等。較高層級可提供更多功能給您的 App Service 應用程式。  
+- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰當您應增加 App Service 應用程式時，您會變更應用程式所屬的 App Service 方案的定價層。相應增加可提供更多的 CPU、記憶體和磁碟空間給您。同時也可提供您額外的功能，例如專用 VM、自動調整、99.95% 的可用性、自訂網域和憑證、部署位置、備份等。較高層級可提供更多功能給您的 App Service 應用程式。  
 - [相應放大](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰當您相應放大 App Service 應用程式時，您會變更您的應用程式 (或相同 App Service 方案中的應用程式) 執行所在的 VM 執行個體數目。在標準層或更高層，您可以啟用根據效能計量自動調整 VM 執行個體。 
 
 我們就不再贅言，馬上為您的應用程式設定自動調整。
@@ -73,11 +73,11 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
     您已完成相應增加。
     
-    >[AZURE.IMPORTANT] 這一層將消耗您的免費試用額度。如果您有每次使用付費的帳戶，您的帳戶就會產生費用。
+    >[AZURE.IMPORTANT] 這一層會耗用您的免費試用額度。如果您有每次使用付費的帳戶，您的帳戶就會產生費用。
     
 3. 接下來，設定自動調整。在您應用程式的刀鋒視窗中，按一下 [設定] > [相應放大 (App Service 方案)]。![相應放大 - 設定刀鋒視窗](./media/app-service-web-get-started/scale-out-settings.png)
 
-4. 將 [調整依據] 變更為 [CPU 百分比]。下拉式清單之下的滑桿會跟著變更。然後，定義介於 1 與 2 之間的 [執行個體] 範圍，以及介於 40 與 80 之間的 [目標範圍]。做法為在方塊中輸入資料或移動滑桿。![相應放大 - 設定自動調整](./media/app-service-web-get-started/scale-out-configure.png)
+4. 將 [調整依據] 變更為 [CPU 百分比]。下拉式清單之下的滑桿會跟著更新。然後，定義介於 **1** 與 **2** 之間的 [執行個體] 範圍，以及介於 **40** 與 **80** 之間的 [目標範圍]。做法為在方塊中輸入資料或移動滑桿。![相應放大 - 設定自動調整](./media/app-service-web-get-started/scale-out-configure.png)
     
     根據此設定，當 CPU 使用率高於 80% 時，您的應用程式會自動相應放大，而當 CPU 使用率低於 40% 時則會相應縮小。
     
@@ -109,7 +109,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 恭喜，您現已接收警示。
 
-此警示設定現在會每隔 5 分鐘檢查一次 CPU 使用率。如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取] 按鈕。![查看有誰收到警示](./media/app-service-web-get-started/alert-rbac.png)
+此警示設定會每隔 5 分鐘檢查一次 CPU 使用率。如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取] 按鈕。![查看有誰收到警示](./media/app-service-web-get-started/alert-rbac.png)
 
 您應該會看到 [訂用帳戶管理員] 已經是應用程式的 [擁有者]。如果您是 Azure 訂用帳戶 (如您的試用訂用帳戶) 的帳戶管理員，您就包含在此群組中。如需 Azure 角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
@@ -127,4 +127,4 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 - [存取內部部署資源](web-sites-hybrid-connection-get-started.md)
 - [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md) 
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

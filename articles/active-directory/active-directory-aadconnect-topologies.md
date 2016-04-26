@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.workload="identity"
 	ms.topic="get-started-article"
-    ms.date="02/12/2016"
+    ms.date="04/14/2016"
     ms.author="andkjell"/>
 
 # Azure AD Connect 的拓撲
@@ -110,6 +110,8 @@ FSP 可在 ADDS 中用來代表安全性群組中來自其他樹系的成員。�
 
 此案例包含一個信任所有帳戶樹系的樹系。此樹系通常具有擴充的 AD 結構描述與 Exchange 和 Lync。所有的 Exchange 和 Lync 服務以及其他共用的服務都位於此樹系。使用者在此樹系中擁有停用的使用者帳戶，而信箱會連結至帳戶樹系。
 
+它也支援使用多個資源樹系。這會是合併之後的狀態。使用者在資源樹系中應該只會有一個已停用的帳戶。
+
 ## Office 365 和拓撲考量
 有些 Office 365 工作負載對受支援的拓撲有某些限制。如果您打算使用其中任何一項，請參閱每個工作負載的受支援拓撲頁面。
 
@@ -147,7 +149,10 @@ Azure AD Connect 同步處理伺服器和 Azure AD 目錄之間有 1:1 的關聯
 
 在此拓撲中，Azure AD 目錄執行個體之間沒有任何 "GALsync"，所以 Exchange Online 和商務用 Skype 中的通訊錄只會在相同的目錄中顯示使用者。
 
-利用此拓撲，只有其中一個 Azure AD 目錄可以利用內部部署 Active Directory 啟用 Exchange 混合。
+對於另外支援的案例，此拓撲具有下列限制︰
+
+- 只有其中一個 Azure AD 目錄可以啟用 Exchange 與內部部署 Active Directory 的混合。
+- Windows 10 裝置只能與一個 Azure AD 目錄相關聯。
 
 物件互斥集的需求也適用於寫回。這使得此拓撲不支援部分寫回功能，因為這些拓撲假設單一組態內部部署。其中包括：
 
@@ -177,4 +182,4 @@ Azure AD 目錄在設計上是隔離的。它不支援將 Azure AD Connect 同�
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

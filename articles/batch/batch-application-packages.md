@@ -198,10 +198,11 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 ```csharp
 // Create the unbound CloudPool
 CloudPool myCloudPool =
-    batchClient.PoolOperations.CreatePool(poolId: "myPool",
-                                          osFamily: "4",
-                                          virtualMachineSize: "small",
-                                          targetDedicated: "1");
+    batchClient.PoolOperations.CreatePool(
+        poolId: "myPool",
+        targetDedicated: "1",
+        virtualMachineSize: "small",
+        cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));
 
 // Specify the application and version to install on the compute nodes
 myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
@@ -238,7 +239,7 @@ string commandLine = @"cmd /c %AZ_BATCH_APP_PACKAGE_BLENDER%\blender.exe -my -co
 CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
-> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch功能概觀](batch-api-basics.md)的「工作的環境設定」。
+> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的「工作的環境設定」。
 
 ## 更新集區的應用程式封裝
 
@@ -316,4 +317,4 @@ foreach (ApplicationSummary app in applications)
 [12]: ./media/batch-application-packages/app_pkg_12.png "Azure 入口網站中的刪除封裝確認對話方塊"
 [13]: ./media/batch-application-packages/app_pkg_13.png "中繼資料檔案選取項目詳細資料"
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->

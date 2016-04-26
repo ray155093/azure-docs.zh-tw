@@ -28,7 +28,7 @@
 如果您熟悉傳統部署模型，請參閱[傳統與資源管理員之間的 IP 定址差異](virtual-network-ip-addresses-overview-classic.md#Differences-between-Resource-Manager-and-classic-deployments)。
 
 ## 公用 IP 位址
-Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服務 (例如 [Azure Redis Cache](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)、[SQL Database](sql-database-technical-overview.md) 和 [Azure 儲存體](storage-introduction.md)) 進行通訊。
+Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服務 (例如 [Azure Redis Cache](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)、[SQL Database](../sql-database/sql-database-technical-overview.md) 和 [Azure 儲存體](../storage/storage-introduction.md)) 進行通訊。
 
 在 Azure 資源管理員中，[公用 IP](resource-groups-networking.md#public-ip-address) 位址是有自己的屬性的資源。您可以將公用 IP 位址資源與下列任何資源建立關聯：
 
@@ -62,13 +62,13 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 您可以將公用 IP 位址指派給其**網路介面卡** (NIC)，以建立其與 [虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (VM) 的關聯。如果是多個 NIC 的 VM，您可以只將它指派給主要 NIC。您可以將動態或靜態公用 IP 位址指派給 VM。
 
 ### 網際網路對應負載平衡器
-您可以將公用 IP 位址指派給負載平衡器**前端**組態，以建立其與 [Azure 負載平衡器](load-balancer-overview.md)的關聯。此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現[多重 vip](load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
+您可以將公用 IP 位址指派給負載平衡器**前端**組態，以建立其與 [Azure 負載平衡器](../load-balancer/load-balancer-overview.md)的關聯。此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現[多重 vip](../load-balancer/load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
 
 ### VPN 閘道
-[Azure VPN 閘道](vpn-gateway-about-vpngateways.md)用來將 Azure 虛擬網路 (VNet) 連接到其他 Azure Vnet 或內部部署網路。您需要將公用 IP 位址指派給其 **IP 設定**，以便與遠端網路通訊。您目前只可以將動態公用 IP 位址指派給 VPN 閘道。
+[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)用來將 Azure 虛擬網路 (VNet) 連接到其他 Azure Vnet 或內部部署網路。您需要將公用 IP 位址指派給其 **IP 設定**，以便與遠端網路通訊。您目前只可以將動態公用 IP 位址指派給 VPN 閘道。
 
 ### 應用程式閘道
-您可以將公用 IP 位址指派給閘道的**前端**組態，以建立其與 Azure [應用程式閘道](application-gateway-introduction.md)的關聯。此公用 IP 位址可做為負載平衡的 VIP。您目前只可以將動態公用 IP 位址指派給應用程式閘道前端組態。
+您可以將公用 IP 位址指派給閘道的**前端**組態，以建立其與 Azure [應用程式閘道](../application-gateway/application-gateway-introduction.md)的關聯。此公用 IP 位址可做為負載平衡的 VIP。您目前只可以將動態公用 IP 位址指派給應用程式閘道前端組態。
 
 ### 快速總覽
 下表顯示特定的屬性，公用 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
@@ -113,7 +113,7 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 使用 Azure 受管理 DNS 伺服器設定的 VM，能夠將其 VNet 內所有 VM 的主機名稱解析為其私人 IP 位址。
 
 ### 內部負載平衡器 (ILB) 與應用程式閘道
-您可以將私人 IP 位址指派給 [Azure 內部負載平衡器](load-balancer-internal-overview.md) (ILB) 或 [Azure 應用程式閘道](application-gateway-introduction.md)的**前端**組態。此私人 IP 位址可做為內部端點，只能存取其虛擬網路 (VNet) 內的資源與連線到 VNet 的遠端網路。您可以將動態或靜態私人 IP 位址指派給前端組態。
+您可以將私人 IP 位址指派給 [Azure 內部負載平衡器](../load-balancer/load-balancer-internal-overview.md) (ILB) 或 [Azure 應用程式閘道](../application-gateway/application-gateway-introduction.md)的**前端**組態。此私人 IP 位址可做為內部端點，只能存取其虛擬網路 (VNet) 內的資源與連線到 VNet 的遠端網路。您可以將動態或靜態私人 IP 位址指派給前端組態。
 
 ### 快速總覽
 下表顯示特定的屬性，私人 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
@@ -137,4 +137,4 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 - 了解如何[使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)。
 - 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0413_2016-->
