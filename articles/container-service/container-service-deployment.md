@@ -40,7 +40,7 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 - 訂用帳戶 - 選取 Azure 訂用帳戶。
 - 資源群組 - 選取現有資源群組或建立新的群組。
 - 位置 - 選取 Azure 容器服務部署的 Azure 區域。
-- SSH 公開金鑰 - 新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。它看起來應該像下面這樣：「**ssh-rsa AAAAB3Nz...SNIPPEDCONTENT...UcyupgH azureuser@linuxvm**」。如需建立 SSH 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文章。
+- SSH 公開金鑰 - 新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。它看起來應該像下面這樣：「**ssh-rsa AAAAB3Nz...SNIPPEDCONTENT...UcyupgH azureuser@linuxvm**」。如需建立 SSH 金鑰的指引，請參閱 [Linux]( https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows]( https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文章。
 
 準備好繼續時請按一下 [確定]。
 
@@ -142,7 +142,7 @@ azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMP
 
 ## 使用 PowerShell 建立服務
 
-您也可以使用 PowerShell 部署 Azure 容器服務叢集。這份文件以 1.0 版的 [Azure PowerShell 模組](https://azure.microsoft.com/blog/azps-1-0/)為基礎。
+您也可以使用 PowerShell 部署 Azure 容器服務叢集。這份文件以 1.0 版的 [Azure PowerShell 模組]( https://azure.microsoft.com/blog/azps-1-0/)為基礎。
 
 若要部署 DC/OS 或 Docker Swarm 叢集，請選取下列其中一個範本。請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
 
@@ -193,4 +193,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
  
 [連接到 Azure 容器服務叢集](./container-service-connect.md) [使用 Azure 容器服務和 DC/OS](./container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](./container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0420_2016--->
