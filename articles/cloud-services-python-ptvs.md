@@ -1,9 +1,9 @@
 <properties
 	pageTitle="Python Web 和背景工作角色與 Python Tools 2.2 for Visual Studio | Microsoft Azure"
 	description="使用 Python Tools for Visual Studio 建立 Azure 雲端服務的概觀，包括 Web 角色和背景工作角色。"
-	services=""
+	services="cloud-services"
 	documentationCenter="python"
-	authors="huguesv"
+	authors="thraka"
 	manager="wpickett"
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="python"
 	ms.topic="hero-article"
 	ms.date="08/30/2015"
-	ms.author="huvalo"/>
+	ms.author="adegeo"/>
 
 
 
@@ -38,7 +38,7 @@ Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 
 
 如需詳細資訊，請參閱[什麼是雲端服務？] (英文)。
 
-> [AZURE.NOTE]*尋求建置簡單的網站？* 如果您的案例只需要簡單的網站前端，請考慮使用 Azure App Service 中的輕量型 Web Apps 功能。隨著網站擴大，以及需求改變，您可以很輕易地升級到雲端服務。請參閱 <a href="/develop/python/">Python 開發人員中心</a>，尋找 Azure App Service 中的 Web Apps 功能開發的相關文章。<br />
+> [AZURE.NOTE] *尋求建置簡單的網站？* 如果您的案例只需要簡單的網站前端，請考慮使用 Azure App Service 中的輕量型 Web Apps 功能。隨著網站擴大，以及需求改變，您可以很輕易地升級到雲端服務。請參閱 <a href="/develop/python/">Python 開發人員中心</a>，尋找 Azure App Service 中的 Web Apps 功能開發的相關文章。<br />
 
 
 ## 建立專案
@@ -114,17 +114,17 @@ Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 
 
 <!--Link references-->
 
-[什麼是雲端服務？]: /manage/services/cloud-services/what-is-a-cloud-service/
-[execution model-web sites]: fundamentals-application-models.md#WebSites
-[execution model-vms]: fundamentals-application-models.md#VMachine
-[execution model-cloud services]: fundamentals-application-models.md#CloudServices
+[什麼是雲端服務？]: ./cloud-services/cloud-services-choose-me.md
+[execution model-web sites]: ./app-service-web/app-service-web-overview.md
+[execution model-vms]: ./virtual-machines/virtual-machines-windows-about.md
+[execution model-cloud services]: ./cloud-services/cloud-services-choose-me.md
 [Python Developer Center]: /develop/python/
 
-[Blob 服務]: storage-python-how-to-use-blob-storage.md
-[佇列服務]: storage-python-how-to-use-queue-storage.md
-[資料表服務]: storage-python-how-to-use-table-storage.md
-[服務匯流排佇列]: service-bus-python-how-to-use-queues.md
-[服務匯流排主題]: service-bus-python-how-to-use-topics-subscriptions.md
+[Blob 服務]: ./storage/storage-python-how-to-use-blob-storage.md
+[佇列服務]: ./storage/storage-python-how-to-use-queue-storage.md
+[資料表服務]: ./storage/storage-python-how-to-use-table-storage.md
+[服務匯流排佇列]: ./service-bus/service-bus-python-how-to-use-queues.md
+[服務匯流排主題]: ./service-bus/service-bus-python-how-to-use-topics-subscriptions.md
 
 
 <!--External Link references-->
@@ -138,4 +138,4 @@ Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 
 [Python 2.7 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python 3.4 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517191
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0420_2016-->

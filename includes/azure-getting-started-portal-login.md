@@ -23,13 +23,13 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
 使用您[現有的訂用帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
 
-1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)，網址為 http://portal.azure.com/。
+1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/) (http://portal.azure.com/)。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-1. 登入頁面出現時，提供您訂用帳戶的認證
+1. 登入頁面出現時，請提供您訂用帳戶的認證
 
    ![登入](./media/azure-getting-started-portal-login/login.png)
    
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

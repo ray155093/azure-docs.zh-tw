@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/30/2016"
+	ms.date="04/15/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -33,9 +33,11 @@
 - 建立集合
 - 建立 JSON 文件
 - 查詢集合
+- 取代文件
+- 刪除文件
 - 刪除資料庫
 
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 上找到完整的方案。請參閱[取得完整的解決方案](#GetSolution)，以取得簡要指示。
+沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 上找到完整的方案。請跳至[取得完整的解決方案](#GetSolution)一節，以取得簡要指示。
 
 之後，請使用此頁面頂端或底部的投票按鈕，將意見反應提供給我們。如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
 
@@ -47,6 +49,7 @@
 
 - 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - [Visual Studio 2013/Visual Studio 2015](http://www.visualstudio.com/)。
+- .NET Framework 4.6
 
 ## 步驟 1：建立 DocumentDB 帳戶
 
@@ -56,14 +59,14 @@
 
 ##<a id="SetupVS"></a> 步驟 2：設定您的 Visual Studio 方案
 
-1. 在電腦上開啟 **Visual Studio**。
+1. 在電腦上開啟 **Visual Studio 2015**。
 2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
-3. 在 [新增專案] 對話方塊中，依序選取 [範本] / [Visual C#] / [主控台應用程式]、為專案命名，然後按一下 [確定]。
-4. 在 [方案總管] 中，以滑鼠右鍵按一下 Visual Studio 方案底下的新主控台應用程式。
-5. 然後在無需離開功能表的情況下，按一下 [管理 NuGet 封裝...]
-6. 在 [管理 NuGet 封裝] 視窗的最左側窗格上，依序按一下 [線上] / [nuget.org]。
-7. 在 [線上搜尋] 輸入方塊中，搜尋 **DocumentDB 用戶端程式庫**。
-8. 在結果中，尋找 [Microsoft Azure DocumentDB 用戶端程式庫]，並按一下 [安裝]。DocumentDB 用戶端程式庫的封裝識別碼為 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)
+3. 在 [新增專案] 對話方塊中，依序選取 [範本] / [Visual C#] / [主控台應用程式]、為專案命名，然後按一下 [確定]。![[新增專案] 視窗的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-new-project-2.png)
+4. 在 [**方案總管**] 中，以滑鼠右鍵按一下 Visual Studio 方案底下的新主控台應用程式。
+5. 然後在無需離開功能表的情況下，按一下 [管理 NuGet 封裝...]。![專案的滑鼠右鍵功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges.png)
+6. 在 [**管理 NuGet 封裝**] 視窗的最左側窗格上，依序按一下 [**線上**] / [**nuget.org**]。
+7. 在 [線上搜尋] 輸入方塊中，搜尋 **DocumentDB**。
+8. 在結果中，尋找 [**Microsoft Azure DocumentDB 用戶端程式庫**]，並按一下 [**安裝**]。DocumentDB 用戶端程式庫的封裝識別碼為 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB) ![用於尋找 DocumentDB 用戶端 SDK 的 Nuget 功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges-2.png)
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started/blob/master/src/Program.cs) 找到本教學課程的完整程式碼專案。
 
@@ -71,121 +74,218 @@
 
 首先，在 Program.cs 檔案中，將這些參考新增到 C# 應用程式的開頭：
 
+		// ADD THIS PART TO YOUR CODE
+		using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Net;
     using Microsoft.Azure.Documents;
     using Microsoft.Azure.Documents.Client;
-    using Microsoft.Azure.Documents.Linq;
     using Newtonsoft.Json;
 
 > [AZURE.IMPORTANT] 若要完成此 NoSQL 教學課程，請務必加入上述的相依性。
 
-接著，儲存 DocumentDB 帳戶端點以及主要或次要存取金鑰 (可於 [Azure 入口網站](https://portal.azure.com)中找到)。
+現在，在 public class Program 之下加入下列兩個常數和您的client 變數。
+
+	public class Program
+	{
+		// ADD THIS PART TO YOUR CODE
+		private const string EndpointUri = "<your endpoint URI>";
+		private const string PrimaryKey = "<your key>";
+		private DocumentClient client;
+
+接下來，前往 [Azure 入口網站](https://portal.azure.com)擷取您的 URI 和主索引鍵。需要 DocumentDB URI 和主索引鍵，您的應用程式才能了解要在連接到哪裡，而 DocumentDB 才會信任您的應用程式連接。
+
+在 Azure 入口網站中，瀏覽至步驟 1 的 DocumentDB 帳戶。
+
+按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代您程式中的 *<your endpoint URI>*。複製主索引鍵並以所複製的索引鍵取代您程式中的 *<your key>*。
 
 ![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。顯示 DocumentDB 帳戶，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
 
-    private const string EndpointUrl = "<your endpoint URI>";
-    private const string AuthorizationKey = "<your key>";
+讓我們建立 **DocumentClient** 的新執行個體，啟動快速入門應用程式。
 
-讓我們建立 **DocumentClient** 的新執行個體，來開始入門示範應用程式。建立新的且名為 **GetStartedDemo** 的非同步工作呼叫，並將新的 **DocumentClient** 具現化。
+在 **Main** 方法底下，加入 **GetStartedDemo** 這個新的非同步工作，以將新的 **DocumentClient** 具現化。
 
-	private static async Task GetStartedDemo()
+	static void Main(string[] args)
 	{
-		// Create a new instance of the DocumentClient
-		DocumentClient client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
 	}
 
-從 **Main** 方法呼叫非同步工作 (類似下列程式碼)。
+	// ADD THIS PART TO YOUR CODE
+	private async Task GetStartedDemo()
+	{
+		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
+	}
 
-	public static void Main(string[] args)
+加入下列程式碼，以從 **Main** 方法執行非同步工作。 **Main** 方法會攔截例外狀況並將它們寫入主控台。
+
+	static void Main(string[] args)
+	{
+			// ADD THIS PART TO YOUR CODE
+			try
+			{
+					Program p = new Program();
+					p.GetStartedDemo().Wait();
+			}
+			catch (DocumentClientException de)
+			{
+					Exception baseException = de.GetBaseException();
+					Console.WriteLine("{0} error occurred: {1}, Message: {2}", de.StatusCode, de.Message, baseException.Message);
+			}
+			catch (Exception e)
+			{
+					Exception baseException = e.GetBaseException();
+					Console.WriteLine("Error: {0}, Message: {1}", e.Message, baseException.Message);
+			}
+			finally
+			{
+					Console.WriteLine("End of demo, press any key to exit.");
+					Console.ReadKey();
+			}
+	}
+
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功連接到 DocumentDB 帳戶，讓我們立即看看如何使用 DocumentDB 資源。
+
+## 步驟 4：建立資料庫
+在您新增用於建立資料庫的程式碼之前，請新增用於寫入主控台的協助程式方法。
+
+複製 **WriteToConsoleAndPromptToContinue** 方法並貼到 **GetStartedDemo** 方法之下。
+
+	// ADD THIS PART TO YOUR CODE
+	private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
+	{
+			Console.WriteLine(format, args);
+			Console.WriteLine("Press any key to continue ...");
+			Console.ReadKey();
+	}
+
+可以使用 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法建立 DocumentDB [資料庫](documentdb-resources.md#databases)。資料庫是分割給多個集合之 JSON 文件儲存體的邏輯容器。
+
+複製 **CreateDatabaseIfNotExists** 方法並貼到 **GetStartedDemo** 方法之下。
+
+	// ADD THIS PART TO YOUR CODE
+	private async Task CreateDatabaseIfNotExists(string databaseName)
+	{
+			// Check to verify a database with the id=FamilyDB does not exist
+			try
+			{
+					await this.client.ReadDatabaseAsync(UriFactory.CreateDatabaseUri(databaseName));
+					this.WriteToConsoleAndPromptToContinue("Found {0}", databaseName);
+			}
+			catch (DocumentClientException de)
+			{
+					// If the database does not exist, create a new database
+					if (de.StatusCode == HttpStatusCode.NotFound)
+					{
+							await this.client.CreateDatabaseAsync(new Database { Id = databaseName });
+							this.WriteToConsoleAndPromptToContinue("Created {0}", databaseName);
+					}
+					else
+					{
+							throw;
+					}
+			}
+	}
+
+複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。這會建立名為 FamilyDB 的資料庫。
+
+	private async Task GetStartedDemo()
+	{
+		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
+
+		// ADD THIS PART TO YOUR CODE
+		await this.CreateDatabaseIfNotExists("FamilyDB");
+
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功建立 DocumentDB 資料庫。
+
+##<a id="CreateColl"></a>步驟 5：建立集合  
+
+> [AZURE.WARNING] **CreateDocumentCollectionAsync** 會建立含有保留輸送量且具有價格含意的新集合。如需詳細資訊，請造訪[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+
+您可以使用 **DocumentClient** 類別的 [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) 方法建立[集合](documentdb-resources.md#collections)。集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+
+複製 **CreateDocumentCollectionIfNotExists** 方法並貼到 **CreateDatabaseIfNotExists** 方法之下。
+
+	// ADD THIS PART TO YOUR CODE
+	private async Task CreateDocumentCollectionIfNotExists(string databaseName, string collectionName)
 	{
 		try
 		{
-			GetStartedDemo().Wait();
+			await this.client.ReadDocumentCollectionAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName));
+			this.WriteToConsoleAndPromptToContinue("Found {0}", collectionName);
 		}
-		catch (Exception e)
+		catch (DocumentClientException de)
 		{
-			Exception baseException = e.GetBaseException();
-			Console.WriteLine("Error: {0}, Message: {1}", e.Message, baseException.Message);
+			// If the document collection does not exist, create a new collection
+			if (de.StatusCode == HttpStatusCode.NotFound)
+			{
+				DocumentCollection collectionInfo = new DocumentCollection();
+				collectionInfo.Id = collectionName;
+
+				// Configure collections for maximum query flexibility including string range queries.
+				collectionInfo.IndexingPolicy = new IndexingPolicy(new RangeIndex(DataType.String) { Precision = -1 });
+
+				// Here we create a collection with 400 RU/s.
+				await this.client.CreateDocumentCollectionAsync(
+					UriFactory.CreateDatabaseUri(databaseName),
+					new DocumentCollection { Id = collectionName },
+					new RequestOptions { OfferThroughput = 400 });
+
+				this.WriteToConsoleAndPromptToContinue("Created {0}", collectionName);
+			}
+			else
+			{
+				throw;
+			}
 		}
 	}
 
-現在，您已經知道如何連接到 DocumentDB 帳戶和建立 **DocumentClient** 類別的執行個體，接下來說明使用 DocumentDB 資源。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 *FamilyCollection* 的文件集合。
 
-## 步驟 4：建立線上資料庫
-可以使用 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法建立 DocumentDB [資料庫](documentdb-resources.md#databases)。資料庫是分割給多個集合之 JSON 文件儲存體的邏輯容器。在您建立 **DocumentClient** 之後，在 **GetStartedDemo** 方法中建立新的資料庫。
+		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
-	// Check if the database FamilyDB does not exist
-	string databaseName = "FamilyDB";
-	
-	try
-	{
-		await this.client.ReadDatabaseAsync(UriFactory.CreateDatabaseUri(familyName));
-	}
-	catch (DocumentClientException de)
-	{
-		// If the database does not exist, create a new database
-		if (de.StatusCode == HttpStatusCode.NotFound)
-		{
-			await this.client.CreateDatabaseAsync(new Database { Id = familyName });
-			this.WriteToConsoleAndPromptToContinue("Created {0}", databaseName);
-		}
-		else
-		{
-			throw;
-		}
-	}
-	
-##<a id="CreateColl"></a>步驟 5：建立集合  
+		await this.CreateDatabaseIfNotExists("FamilyDB");
 
-> [AZURE.WARNING] **CreateDocumentCollectionAsync** 會建立含有保留輸送量且具有定價含意的新集合。如需詳細資訊，請造訪[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+		// ADD THIS PART TO YOUR CODE
+		await this.CreateDocumentCollectionIfNotExists("FamilyDB", "FamilyCollection");
 
-您可以使用 **DocumentClient** 類別的 [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) 方法建立[集合](documentdb-resources.md#collections)。集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。在 **GetStartedDemo** 方法中建立資料庫之後，建立名為 **FamilyCollection** 的新集合。
+按 **F5** 鍵執行您的應用程式。
 
-	string collectionName = "FamilyCollection";
-	try
-	{
-		await this.client.ReadDocumentCollectionAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName));
-	}
-	catch (DocumentClientException de)
-	{
-		// If the document collection does not exist, create a new collection
-		if (de.StatusCode == HttpStatusCode.NotFound)
-		{
-			// Configure the collection. Optionally, you can configure partitioning and indexing behavior of the collection here.
-			DocumentCollection collectionInfo = new DocumentCollection();
-			collectionInfo.Id = collectionName;
-
-			// DocumentDB collections can be reserved with throughput specified in request units/second. 1 RU is a normalized request equivalent to the read
-			// of a 1KB document.  Here we create a collection with 400 RU/s. 
-			await this.client.CreateDocumentCollectionAsync(
-				UriFactory.CreateDatabaseUri(databaseName),
-				new DocumentCollection { Id = collectionName },
-				new RequestOptions { OfferThroughput = 400 });
-
-			this.WriteToConsoleAndPromptToContinue("Created {0}", collectionName);
-		}
-		else
-		{
-			throw;
-		}
-	}
+恭喜！ 您已成功建立 DocumentDB 文件集合。
 
 ##<a id="CreateDoc"></a>步驟 6：建立 JSON 文件
 您可以使用 **DocumentClient** 類別的 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 方法來建立[文件](documentdb-resources.md#documents)。文件會是使用者定義的 (任意) JSON 內容。現在可插入一或多份文件。如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)。
 
 首先，我們需要建立 **Family** 類別以代表此範例中儲存在 DocumentDB 內的物件。我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。請注意，文件必須將 **Id** 屬性序列化為 JSON 中的**識別碼**。藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
 
+複製 **Family**、**Parent**、**Child**、**Pet** 和 **Address** 類別並貼到 **WriteToConsoleAndPromptToContinue** 方法之下。
+
+	private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
+	{
+		Console.WriteLine(format, args);
+		Console.WriteLine("Press any key to continue ...");
+		Console.ReadKey();
+	}
+
+	// ADD THIS PART TO YOUR CODE
 	public class Family
 	{
 		[JsonProperty(PropertyName = "id")]
 		public string Id { get; set; }
 		public string LastName { get; set; }
-		string string District { get; set; }
 		public Parent[] Parents { get; set; }
 		public Child[] Children { get; set; }
 		public Address Address { get; set; }
 		public bool IsRegistered { get; set; }
+		public override string ToString()
+		{
+				return JsonConvert.SerializeObject(this);
+		}
 	}
-	
+
 	public class Parent
 	{
 		public string FamilyName { get; set; }
@@ -213,14 +313,15 @@
 		public string City { get; set; }
 	}
 
+複製 **CreateFamilyDocumentIfNotExists** 方法並貼到 **CreateDocumentCollectionIfNotExists** 方法之下。
 
-接下來，在您的 **GetStartedDemo** 非同步方法內建立文件。首先，請如下所示建立 **CreateFamilyDocumentIfNotExists** 方法︰
-
+	// ADD THIS PART TO YOUR CODE
 	private async Task CreateFamilyDocumentIfNotExists(string databaseName, string collectionName, Family family)
 	{
 		try
 		{
 			await this.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, family.Id));
+			this.WriteToConsoleAndPromptToContinue("Found {0}", family.Id);
 		}
 		catch (DocumentClientException de)
 		{
@@ -236,107 +337,136 @@
 		}
 	}
 
-插入兩個文件，一個給 Andersen 家族，另一個給 Wakefield 家族，如下所示︰
+插入兩個文件，一個給 Andersen 家族，另一個給 Wakefield 家族。
 
-	// Insert a document, here we create a Family object
+複製下列程式碼並貼到 **GetStartedDemo** 方法的文件集合建立之下。
+
+	await this.CreateDatabaseIfNotExists("FamilyDB");
+
+	await this.CreateDocumentCollectionIfNotExists("FamilyDB", "FamilyCollection");
+
+	// ADD THIS PART TO YOUR CODE
 	Family andersenFamily = new Family
 	{
-		Id = "Andersen.1",
-		LastName = "Andersen",
-		Parents = new Parent[] 
-		{
-			new Parent { FirstName = "Thomas" },
-			new Parent { FirstName = "Mary Kay" }
-		},
-		Children = new Child[] 
-		{
-			new Child
+			Id = "Andersen.1",
+			LastName = "Andersen",
+			Parents = new Parent[]
 			{
-				FirstName = "Henriette Thaulow",
-				Gender = "female",
-				Grade = 5,
-				Pets = new Pet[] 
-				{
-					new Pet { GivenName = "Fluffy" }
-				}
-			}
-		},
-		District = "WA5",
-		Address = new Address { State = "WA", County = "King", City = "Seattle" },
-		IsRegistered = true
+					new Parent { FirstName = "Thomas" },
+					new Parent { FirstName = "Mary Kay" }
+			},
+			Children = new Child[]
+			{
+					new Child
+					{
+							FirstName = "Henriette Thaulow",
+							Gender = "female",
+							Grade = 5,
+							Pets = new Pet[]
+							{
+									new Pet { GivenName = "Fluffy" }
+							}
+					}
+			},
+			Address = new Address { State = "WA", County = "King", City = "Seattle" },
+			IsRegistered = true
 	};
 
 	await this.CreateFamilyDocumentIfNotExists("FamilyDB", "FamilyCollection", andersenFamily);
 
 	Family wakefieldFamily = new Family
 	{
-		Id = "Wakefield.7",
-		LastName = "Wakefield",
-		Parents = new Parent[]
-		{
-			new Parent { FamilyName = "Wakefield", FirstName = "Robin" },
-			new Parent { FamilyName = "Miller", FirstName = "Ben" }
-		},
-		Children = new Child[]
-		{
-			new Child
+			Id = "Wakefield.7",
+			LastName = "Wakefield",
+			Parents = new Parent[]
 			{
-				FamilyName = "Merriam",
-				FirstName = "Jesse",
-				Gender = "female",
-				Grade = 8,
-				Pets = new Pet[]
-				{
-					new Pet { GivenName = "Goofy" },
-					new Pet { GivenName = "Shadow" }
-				}
+					new Parent { FamilyName = "Wakefield", FirstName = "Robin" },
+					new Parent { FamilyName = "Miller", FirstName = "Ben" }
 			},
-			new Child
+			Children = new Child[]
 			{
-				FamilyName = "Miller",
-				FirstName = "Lisa",
-				Gender = "female",
-				Grade = 1
-			}
-		},
-		District = "NY23",
-		Address = new Address { State = "NY", County = "Manhattan", City = "NY" },
-		IsRegistered = false
+					new Child
+					{
+							FamilyName = "Merriam",
+							FirstName = "Jesse",
+							Gender = "female",
+							Grade = 8,
+							Pets = new Pet[]
+							{
+									new Pet { GivenName = "Goofy" },
+									new Pet { GivenName = "Shadow" }
+							}
+					},
+					new Child
+					{
+							FamilyName = "Miller",
+							FirstName = "Lisa",
+							Gender = "female",
+							Grade = 1
+					}
+			},
+			Address = new Address { State = "NY", County = "Manhattan", City = "NY" },
+			IsRegistered = false
 	};
 
 	await this.CreateFamilyDocumentIfNotExists("FamilyDB", "FamilyCollection", wakefieldFamily);
 
-您現在已經在 DocumentDB 帳戶中建立下列資料庫、集合和文件。
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功建立兩個 DocumentDB 文件。
 
 ![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-get-started/nosql-tutorial-account-database.png)
 
 ##<a id="Query"></a>步驟 7：查詢 DocumentDB 資源
 
-DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。下列範例程式碼示範可在我們於前一個步驟中插入的文件上執行的各種查詢 (同時使用 DocumentDB SQL 語法和 LINQ)。將這些查詢加入至 **GetStartedDemo** 非同步方法。
+DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。下列範例程式碼示範可在我們於前一個步驟中插入的文件上執行的各種查詢 (同時使用 DocumentDB SQL 語法和 LINQ)。
 
-	// Run a simple query via LINQ. DocumentDB indexes all properties, so queries can be completed efficiently and with low latency.
-	// Here we find the Andersen family via its LastName
-	IQueryable<Family> familyQuery = this.client.CreateDocumentQuery<Family>(
-		UriFactory.CreateDocumentCollectionUri(databaseName, collectionName))
-		.Where(f => f.LastName == "Andersen");
+複製 **ExecuteSimpleQuery** 方法並貼到 **CreateFamilyDocumentIfNotExists** 方法之下。
 
-	// The query is executed synchronously here, but can also be executed asynchronously via the IDocumentQuery<T> interface
-	Console.WriteLine("Running LINQ query...");
-	foreach (Family family in familyQuery)
+	// ADD THIS PART TO YOUR CODE
+	private void ExecuteSimpleQuery(string databaseName, string collectionName)
 	{
-			Console.WriteLine("\tRead {0}", family);
+		// Set some common query options
+		FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
+
+			// Here we find the Andersen family via its LastName
+			IQueryable<Family> familyQuery = this.client.CreateDocumentQuery<Family>(
+					UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions)
+					.Where(f => f.LastName == "Andersen");
+
+			// The query is executed synchronously here, but can also be executed asynchronously via the IDocumentQuery<T> interface
+			Console.WriteLine("Running LINQ query...");
+			foreach (Family family in familyQuery)
+			{
+					Console.WriteLine("\tRead {0}", family);
+			}
+
+			// Now execute the same query via direct SQL
+			IQueryable<Family> familyQueryInSql = this.client.CreateDocumentQuery<Family>(
+					UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
+					"SELECT * FROM Family WHERE Family.lastName = 'Andersen'",
+					queryOptions);
+
+			Console.WriteLine("Running direct SQL query...");
+			foreach (Family family in familyQuery)
+			{
+					Console.WriteLine("\tRead {0}", family);
+			}
+
+			Console.WriteLine("Press any key to continue ...");
+			Console.ReadKey();
 	}
 
-	// Now execute the same query via direct SQL
-	IQueryable<Family> familyQueryInSql = this.client.CreateDocumentQuery<Family>(
-		UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
-		"SELECT * FROM Family WHERE Family.lastName = 'Andersen'");
+複製下列程式碼並貼到 **GetStartedDemo** 方法的次要文件建立之下。
 
-	Console.WriteLine("Running direct SQL query...");
-	foreach (Family family in familyQuery)
-	{
-		Console.WriteLine("\tRead {0}", family);
-	}
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB", "FamilyCollection", wakefieldFamily);
+
+	// ADD THIS PART TO YOUR CODE
+	this.ExecuteSimpleQuery("FamilyDB", "FamilyCollection");
+
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功查詢 DocumentDB 集合。
 
 下圖說明如何針對您所建立的集合呼叫 DocumentDB SQL 查詢語法，相同邏輯也可以套用至 LINQ 查詢。
 
@@ -344,22 +474,100 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 
 因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
-##<a id="DeleteDatabase"></a>步驟 8：刪除線上資料庫
+##<a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
 
-刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。您可以刪除資料庫和文件用戶端，方法是在 **GetStartedDemo** 非同步方法的結尾處加入下列程式碼片段。
+DocumentDB 支援取代 JSON 文件。
 
+複製 **ReplaceFamilyDocument** 方法並貼到 **ExecuteSimpleQuery** 方法之下。
+
+	// ADD THIS PART TO YOUR CODE
+	private async Task ReplaceFamilyDocument(string databaseName, string collectionName, string familyName, Family updatedFamily)
+	{
+			try
+			{
+					await this.client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, familyName), updatedFamily);
+					this.WriteToConsoleAndPromptToContinue("Replaced Family {0}", familyName);
+			}
+			catch (DocumentClientException de)
+			{
+					throw de;
+			}
+	}
+
+複製下列程式碼並貼到 **GetStartedDemo** 方法的查詢執行之下。取代文件後，此程式碼會再次執行相同的查詢以檢視變更後的文件。
+
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB", "FamilyCollection", wakefieldFamily);
+
+	this.ExecuteSimpleQuery("FamilyDB", "FamilyCollection");
+
+	// ADD THIS PART TO YOUR CODE
+	// Update the Grade of the Andersen Family child
+	andersenFamily.Children[0].Grade = 6;
+
+	await this.ReplaceFamilyDocument("FamilyDB", "FamilyCollection", "Andersen.1", andersenFamily);
+
+	this.ExecuteSimpleQuery("FamilyDB", "FamilyCollection");
+
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功取代 DocumentDB 文件。
+
+##<a id="DeleteDocument"></a>步驟 9︰刪除 JSON 文件
+
+DocumentDB 支援刪除 JSON 文件。
+
+複製 **DeleteFamilyDocument** 方法並貼到 **ReplaceFamilyDocument** 方法之下。
+
+	// ADD THIS PART TO YOUR CODE
+	private async Task DeleteFamilyDocument(string databaseName, string collectionName, string documentName)
+	{
+			try
+			{
+					await this.client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentName));
+					Console.WriteLine("Deleted Family {0}", documentName);
+			}
+			catch (DocumentClientException de)
+			{
+							throw de;
+			}
+	}
+
+複製下列程式碼並貼到 **GetStartedDemo** 方法的次要查詢執行之下。
+
+	await this.ReplaceFamilyDocument("FamilyDB", "FamilyCollection", "Andersen.1", andersenFamily);
+
+	this.ExecuteSimpleQuery("FamilyDB", "FamilyCollection");
+
+	// ADD THIS PART TO CODE
+	await this.DeleteFamilyDocument("FamilyDB", "FamilyCollection", "Andersen.1");
+
+按 **F5** 鍵執行您的應用程式。
+
+恭喜！ 您已成功刪除 DocumentDB 文件。
+
+##<a id="DeleteDatabase"></a>步驟 10：刪除資料庫
+
+刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
+
+複製下列程式碼並貼到 **GetStartedDemo** 方法的文件刪除之下，以刪除整個資料庫和所有子系資源。
+
+	this.ExecuteSimpleQuery("FamilyDB", "FamilyCollection");
+
+	await this.DeleteFamilyDocument("FamilyDB", "FamilyCollection", "Andersen.1");
+
+	// ADD THIS PART TO CODE
 	// Clean up/delete the database
 	await this.client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri("FamilyDB"));
 
-##<a id="Run"></a>步驟 9：執行您的 C# 主控台應用程式！
+按 **F5** 鍵執行您的應用程式。
 
-您現在可以開始執行應用程式。在 **Main** 方法的結尾處加入下列程式碼行，這可讓您在應用程式完成執行之前讀取主控台輸出。
+恭喜！ 您已成功刪除 DocumentDB 資料庫。
 
-	Console.ReadLine();
+##<a id="Run"></a>步驟 11：一起執行您的 C# 主控台應用程式！
 
-現在，在 Visual Studio 中按 F5，即可在偵錯模式下建置應用程式。
+在 Visual Studio 中按 F5，即可在偵錯模式下建置應用程式。
 
-您現在應該可以看到入門應用程式的輸出。輸出將會顯示新增的查詢結果，而且應該符合以下的範例文字。
+您應該可以看到入門應用程式的輸出。輸出將會顯示新增的查詢結果，而且應該符合以下的範例文字。
 
 	Created FamilyDB
 	Press any key to continue ...
@@ -373,6 +581,13 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 		Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 	Running direct SQL query...
 		Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
+	Replaced Family Andersen.1
+	Press any key to continue ...
+	Running LINQ query...
+		Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
+	Running direct SQL query...
+		Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
+	Deleted Family Andersen.1
 	End of demo, press any key to exit.
 
 恭喜！ 您已經完成本 NoSQL 教學課程，並擁有運作中的 C# 主控台應用程式！
@@ -388,7 +603,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 ## 後續步驟
 
 -   需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱[使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
--	了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md)。
+-	了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md) (英文)。
 -	在 [Query Playground](https://www.documentdb.com/sql/demo) 中，針對範例資料集執行查詢。
 -	如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
 
@@ -396,4 +611,4 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

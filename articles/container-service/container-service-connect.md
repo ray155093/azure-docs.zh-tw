@@ -15,13 +15,13 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/16/2016"
+   ms.date="04/12/2016"
    ms.author="rogardle"/>
 
 
 # 連接到 Azure 容器服務叢集
 
-Azure 容器服務部署的 Mesos 和 Swarm 叢集公開了一些 REST 端點。不過，這些端點並不開放給外界。為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。一旦建立 SSH 通道，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
+Azure 容器服務部署的 DC/OS 和 Swarm 叢集公開了一些 REST 端點。不過，這些端點並不開放給外界。為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。一旦建立 SSH 通道，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
 
 >[AZURE.NOTE] 您可以建立與叢集管理系統的 SSH 工作階段。但不建議這樣做。直接使用管理系統可能會不小心變更組態。
 
@@ -29,42 +29,52 @@ Azure 容器服務部署的 Mesos 和 Swarm 叢集公開了一些 REST 端點。
 
 在 Linux 或 OS X 上建立 SSH 通道時，您所做的第一件事就是找出負載平衡主機的公用 DNS 名稱。若要這樣做，請展開資源群組以便顯示每個資源。找出並選取主機的公用 IP 位址。這會開啟一個刀鋒視窗，其中包含公用 IP 位址的相關資訊 (包含 DNS 名稱)。儲存這個名稱供稍後使用。<br />
 
+
 ![公用 DNS 名稱](media/pubdns.png)
 
 現在開啟殼層並執行下列命令，其中：
 
-**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 Mesos，請使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。
+**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。
 
-```
+> SSH 連線連接埠是 2200 而非標準連接埠 22。
+
+```bash
+# ssh sample
+
 ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]man.[REGION].cloudapp.azure.com -p 2200
 ```
-### Mesos 通道
 
-若要開啟 Mesos 相關端點的通道，請執行類似下列的命令：
+### DC/OS 通道
 
-```
+若要開啟 DC/OS 相關端點的通道，請執行類似下列的命令：
+
+```bash
+# ssh sample
+
 ssh -L 80:localhost:80 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
-您現在可以在下列位址存取 Mesos 相關端點：
+您現在可以在下列位址存取 DC/OS 相關端點：
 
-- Mesos：`http://localhost/mesos`
+- DC/OS：`http://localhost/`
 - Marathon：`http://localhost/marathon`
-- Chronos：`http://localhost/chronos`
+- Mesos：`http://localhost/mesos`
 
-同樣地，您可以透過此通道到達每個應用程式的 REST API：Marathon - `http://localhost/marathon/v2`。如需各種可用 API 的詳細資訊，請參閱 [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) 的 Mesosphere 文件。請參閱 [Chronos API](https://mesos.github.io/chronos/docs/api.html) 和 [Mesos 排程器 API](http://mesos.apache.org/documentation/latest/scheduler-http-api/) 的 Apache 文件。
+同樣地，您可以透過此通道到達每個應用程式的 REST API。
 
 ### Swarm 通道
 
 若要開啟 Swarm 端點的通道，請執行類似下列的命令：
 
-```
+```bash
+# ssh sample
+
 ssh -L 2375:localhost:2375 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
 現在您可以設定 DOCKER\_HOST 環境變數，如下所示，並繼續正常使用 Docker 命令列面 (CLI)。
 
-```
+```bash
 export DOCKER_HOST=:2375
 ```
 
@@ -83,10 +93,10 @@ export DOCKER_HOST=:2375
 ![PuTTY 組態 2](media/putty2.png)
 
 選取 `Tunnels` 並設定下列已轉送的連接埠：
-- 來源連接埠：您的喜好設定--Mesos 使用 80 或 Swarm 使用 2375。
-- 目的地：Mesos 使用 localhost:80 或 Swarm 使用 localhost:2375。
+- **來源連接埠：**您的喜好設定--DC/OS 使用 80 或 Swarm 使用 2375。
+- **目的地：**DC/OS 使用 localhost:80 或 Swarm 使用 localhost:2375。
 
-下列範例是針對 Mesos 而設定，但對於 Docker Swarm 而言也很類似。
+下列範例是針對 DC/OS 而設定，但對於 Docker Swarm 而言也很類似。
 
 >[AZURE.NOTE] 建立此通道時，連接埠 80 不得使用中。
 
@@ -96,47 +106,18 @@ export DOCKER_HOST=:2375
 
 ![PuTTY 事件記錄檔](media/putty4.png)
 
-設定 Mesos 的通道之後，您即可在下列位址存取相關的端點：
+設定 DC/OS 的通道之後，您即可在下列位址存取相關的端點：
 
-- Mesos：`http://localhost/mesos`
+- DC/OS：`http://localhost/`
 - Marathon：`http://localhost/marathon`
-- Chronos：`http://localhost/chronos`
+- Mesos：`http://localhost/mesos`
 
 設定 Docker Swarm 的通道之後，您即可透過 Docker CLI 存取 Swarm 叢集。您必須先使用值 ` :2375` 設定名稱為 `DOCKER_HOST` 的 Windows 環境變數。
 
-## 疑難排解
-
-### 建立通道並瀏覽至 mesos 或 marathon url 之後，我收到 502 錯誤的閘道...
-若要解決此問題，最簡單的方法是直接刪除您的叢集，然後加以重新部署。或者，您可以執行下列命令來強制 Zookeeper 自行修復︰
-
-登入每個主機，然後執行下列命令︰
-
-```
-sudo service nginx stop
-sudo service marathon stop
-sudo service chronos stop
-sudo service mesos-dns stop
-sudo service mesos-master stop 
-sudo service zookeeper stop
-```
-
-然後，一旦所有主機上的所有服務皆已停止︰
-```
-sudo mkdir /var/lib/zookeeperbackup
-sudo mv /var/lib/zookeeper/* /var/lib/zookeeperbackup
-sudo service zookeeper start
-sudo service mesos-master start
-sudo service mesos-dns start
-sudo service chronos start
-sudo service marathon start
-sudo service nginx start
-```
-在所有服務重新啟動後不久，您應該就能如文件所述使用您的叢集。
-
 ## 後續步驟
 
-使用 Mesos 或 Swarm 來部署及管理容器。
+使用 DC/OS 或 Swarm 來部署及管理容器。
 
-- [使用 Azure 容器服務和 Mesos](./container-service-mesos-marathon-rest.md)
+[使用 Azure 容器服務和 DC/OS](./container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](./container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

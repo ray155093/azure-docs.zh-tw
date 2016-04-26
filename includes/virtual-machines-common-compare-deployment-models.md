@@ -1,9 +1,9 @@
-Azure Resource Manager 包含的計算、網路與存放功能，可以大幅簡化各種 IaaS 複雜應用程式的部署和管理。很多應用程式需要各種的資源組合，其中包括虛擬網路、儲存體帳戶、虛擬機器以及網路介面。Azure Resource Manager 可以建構 JSON 範本，然後做為單一應用程式部署所有這些資源，並集中管理。
 
 
-## Azure Resource Manager 提供整合運算、網路和存放功能等優點
 
-Azure Resource Manager 可讓您輕鬆運用預先建立的應用程式範本，或建構應用程式範本來部署以及管理 Azure 上的運算、網路和儲存體資源。在本節中，我們將詳細說明利用 Azure Resource Manager 部署資源有哪些優點。
+## Azure Resource Manager 部署模型提供整合計算、網路和存放功能等優點
+
+Azure Resource Manager 部署模型可讓您輕鬆運用預先建立的應用程式範本，或建構應用程式範本來部署以及管理 Azure 上的計算、網路和儲存體資源。在本節中，我們將詳細說明利用 Azure Resource Manager 部署模型來部署資源有哪些優點。
 
 -	化繁為簡 -- 利用一個可共用的範本檔案來建立、整合及協調各種應用程式，它們可能包含整個範圍的 Azure 資源，例如網站、SQL 資料庫、虛擬機器或虛擬網路。
 -	當您使用相同的範本檔案時，可以彈性重複部署開發、devOps 和系統管理員
@@ -15,7 +15,7 @@ Azure Resource Manager 可讓您輕鬆運用預先建立的應用程式範本，
 
 ## Azure Resource Manager 提供各種先進的運算、網路和儲存體 API
 
-除了上述優點之外，發行的 API 在效能方面還有一些重要的改善。
+除了上述優點之外，發行的 API 在效能方面還有一些重要的改善：
 
 -	大規模平行部署虛擬機器
 -	可用性設定組 (Availability Set) 支援 3 個容錯網域
@@ -84,14 +84,14 @@ Azure 命令列介面 (Azure CLI) 有兩種部署模式 - **AzureServiceManageme
 
 **我可以透過新的 Azure Resource Manager API，繼續使用自動指令碼佈建虛擬機器、虛擬網路、儲存體帳戶嗎？**
 
-所有您建立的自動化和指令碼，仍然適用於 Azure 服務管理模式下建立的現有虛擬機器和虛擬網路。不過，您必須更新指令碼，才能使用新的結構描述並透過 Azure Resource Manager 模式建立相同的資源。進一步了解如何修改 [Azure CLI 指令碼](../articles/virtual-machines/virtual-machines-linux-cli-manage.md)。
+所有您建立的自動化和指令碼，仍然適用於 Azure 服務管理模式下建立的現有虛擬機器和虛擬網路。不過，您必須更新指令碼，才能使用新的結構描述並透過 Azure Resource Manager 模式建立相同的資源。
 
 **使用新的 Azure Resource Manager API 建立的虛擬網路，可以連線到我的 Express Route Circuit 嗎？**
 
 目前尚未支援。使用新的 Azure Resource Manager API 建立的虛擬網路並無法連線到 Express Route Circuit。未來將會支援。
 
-**哪裡可以找到 Azure 資源管理員範本的範例？**
+**哪裡可以找到 Azure Resource Manager 範本的範例？**
 
 一組完整的入門範本可在 [Azure 資源管理員快速入門範本](https://azure.microsoft.com/documentation/templates/)中找到。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

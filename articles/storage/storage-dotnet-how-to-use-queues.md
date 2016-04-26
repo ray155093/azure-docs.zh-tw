@@ -54,11 +54,13 @@ Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充�
 	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
     using Microsoft.WindowsAzure.Storage.Queue; // Namespace for Queue storage types
 
+### 解析連接字串
+
 [AZURE.INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### 建立佇列服務用戶端
 
-**CloudQueueClient** 類別可讓您擷取佇列儲存體中儲存的佇列。將下列程式碼新增至 **Main()** 方法：
+**CloudQueueClient** 類別可讓您擷取佇列儲存體中儲存的佇列。以下是建立服務用戶端的其中一種方式：
 
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
@@ -273,4 +275,4 @@ Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充�
   [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

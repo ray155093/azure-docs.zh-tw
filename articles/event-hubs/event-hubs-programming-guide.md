@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="Azure 事件中樞的程式設計指南 | Microsoft Azure"
-   description="說明使用 Azure.NET SDK 設計 Azure 事件中樞。"
-   services="event-hubs"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="Azure 事件中樞的程式設計指南 | Microsoft Azure"
+    description="說明使用 Azure.NET SDK 設計 Azure 事件中樞。"
+    services="event-hubs"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="event-hubs"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="tbd"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="event-hubs"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="tbd"
+    ms.date="04/15/2016"
+    ms.author="sethm" />
 
 # 事件中樞程式設計指南
 
@@ -33,7 +33,7 @@ Microsoft.ServiceBus.dll 組件中會提供支援事件中樞的 .NET 類別。�
 Install-Package WindowsAzure.ServiceBus
 ```
 
-## 建立事件中樞
+## 建立事件中心
 
 您可以使用 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來建立事件中樞。例如：
 
@@ -185,4 +185,4 @@ while(receive)
 - [Event Hubs code samples](http://code.msdn.microsoft.com/site/search?query=event hub&f[0].Value=event hub&f[0].Type=SearchText&ac=5)
 - [事件處理器主機 API 參考](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost.aspx)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

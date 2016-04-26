@@ -6,6 +6,7 @@ Latest Freshness check:  2016-04-11 , carlrab.
 
 As of circa 2016-04-11, the following topics might include this include:
 articles/sql-database/sql-database-get-started-tutorial.md
+articles/sql-database/sql-database-configure-firewall-settings
 
 -->
 ## 建立新的 Azure SQL Database 伺服器層級防火牆
@@ -19,16 +20,16 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
 2. 在 SQL Server 刀鋒視窗中，按一下要在其上建立防火牆規則的 SQL Database 伺服器。
 
-  	  ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-2.png)
-    
+ 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-2.png)
+           
 3. 檢閱您伺服器的屬性。
 
-    	![new server firewall](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-3.png)
+ 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-3.png)
       
 4. 在 [設定] 刀鋒視窗中，按一下 [防火牆]。
-    
-      ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-4.png)
 
+ 	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-4.png)
+    
 5. 按一下 [新增用戶端 IP] 讓 Azure 為您的用戶端 IP 位址建立規則。
 
       ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-5.png)
@@ -43,4 +44,4 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
 	>[AZURE.IMPORTANT] 您的用戶端 IP 位址可能會不時變動，且在您建立新的防火牆規則前，將可能無法存取伺服器。您可以使用 [Bing](http://www.bing.com/search?q=my%20ip%20address) 檢查 IP 位址，然後新增單一 IP 位址或某個範圍的 IP 位址。如需詳細資訊，請參閱[管理防火牆設定](sql-database-configure-firewall-settings.md#manage-existing-server-level-firewall-rules-through-the-azure-portal)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

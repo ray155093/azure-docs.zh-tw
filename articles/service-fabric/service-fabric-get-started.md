@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/26/2016"
+   ms.date="04/18/2016"
    ms.author="seanmck"/>
 
 # 準備您的開發環境
@@ -27,6 +27,8 @@
 - Windows 8/Windows 8.1
 - Windows Server 2012 R2
 - Windows 10
+
+>[AZURE.NOTE] 根據預設，Windows 7 只包含 Windows PowerShell 2.0。您必須安裝 PowerShell 3.0 或更新版本，才能使用 Service Fabric PowerShell Cmdlet。您可以從 Microsoft 下載中心[下載 Windows PowerShell 5.0][powershell5-download]。
 
 ## 安裝執行階段、SDK 和工具
 
@@ -60,5 +62,6 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 [full-bundle-vs2015]: http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-VS2015 "VS 2015 WebPI 連結"
 [full-bundle-dev15]: http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-Dev15 "Dev15 WebPI 連結"
 [core-sdk]: http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=ServiceFabricSDK "Core SDK WebPI 連結"
+[powershell5-download]: https://www.microsoft.com/zh-TW/download/details.aspx?id=50395
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

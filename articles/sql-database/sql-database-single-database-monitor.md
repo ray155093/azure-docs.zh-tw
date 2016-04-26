@@ -1,4 +1,12 @@
-<properties pageTitle="監視 Azure SQL Database 中的資料庫效能" | Microsoft Azure" description="了解使用 Azure 工具和動態管理檢視監視資料庫的選項。" keywords="資料庫監視, 雲端資料庫效能" services="sql-database" documentationCenter="" authors="carlrabeler" manager="jhubbard" editor=""/>
+<properties
+	pageTitle="監視 Azure SQL Database 中的資料庫效能 | Microsoft Azure"
+	description="了解使用 Azure 工具和動態管理檢視來監視您的資料庫的選項。"
+	keywords="資料庫監視, 雲端資料庫效能"
+	services="sql-database"
+	documentationCenter=""
+	authors="carlrabeler"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
 	ms.service="sql-database"
@@ -39,4 +47,4 @@
 
 若為彈性資料庫集區，您可以監視其中的個別資料庫，技巧如本節所述。但您也可以監視集區整體。如需詳細資訊，請參閱[監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

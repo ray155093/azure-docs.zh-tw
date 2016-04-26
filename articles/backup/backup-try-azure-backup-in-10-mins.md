@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="hero-article"
-   ms.date="04/09/2016"
+   ms.date="04/14/2016"
    ms.author="jimpark;"/>
 
 # 先睹為快︰將檔案和資料夾從 Windows Server 或用戶端備份到 Azure
@@ -142,4 +142,4 @@
 - 現在您已備份好檔案和資料夾，接下來您可以[管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 - 如果您需要還原備份，請使用本文來[還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

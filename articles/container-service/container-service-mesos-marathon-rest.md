@@ -1,6 +1,6 @@
 <properties
-   pageTitle="透過 REST API 進行 Azure Container Service 容器管理 | Microsoft Azure"
-   description="使用 Marathon REST API 將容器部署到 Azure Container Service Mesos 叢集。"
+   pageTitle="透過 REST API 進行 Azure 容器服務容器管理 | Microsoft Azure"
+   description="使用 Marathon REST API 將容器部署到 Azure 容器服務 Mesos 叢集。"
    services="container-service"
    documentationCenter=""
    authors="neilpeterson"
@@ -20,24 +20,24 @@
 
 # 透過 REST API 進行容器管理
 
-Mesos 提供環境來部署及調整叢集工作負載，同時將基礎硬體抽象化。在 Mesos 之上有架構會管理排程和執行計算工作負載。
+DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體抽象化。在 DC/OS 之上有架構會管理排程和執行計算工作負載。
 
-雖然許多常見的工作負載都有可用的架構，但這份文件只說明如何使用 Marathon 來建立及調整容器部署。在練習這些範例之前，您需要 Azure Container Service 中設定的 Mesos 叢集。您也需要有此叢集的遠端連線。如需這些項目的詳細資訊，請參閱下列文章。
+雖然許多常見的工作負載都有可用的架構，但這份文件只說明如何使用 Marathon 來建立及調整容器部署。在練習這些範例之前，您需要 Azure 容器服務中設定的 DC/OS 叢集。您也需要有此叢集的遠端連線。如需這些項目的詳細資訊，請參閱下列文章。
 
 - [部署 Azure 容器服務叢集](./container-service-deployment.md)
 - [連接到 Azure 容器服務叢集](./container-service-connect.md)
 
-連接到 Azure Container Service 叢集之後，您可以透過 http://localhost:local-port 存取 Mesos 和相關的 REST API。本文件中的範例假設您的通道為連接埠 80。例如，在 `http://localhost/marathon/v2/` 可以觸達 Marathon 端點。如需各種 API 的詳細資訊，請參閱 [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) 和 [Chronos API](https://mesos.github.io/chronos/docs/api.html) 的 Mesosphere 文件，以及 [Mesos 排程器 API](http://mesos.apache.org/documentation/latest/scheduler-http-api/) 的 Apache 文件
+連接到 Azure 容器服務叢集之後，您可以透過 http://localhost:local-port 存取 DC/OS 和相關的 REST API。本文件中的範例假設您的通道為連接埠 80。例如，在 `http://localhost/marathon/v2/` 可以觸達 Marathon 端點。如需各種 API 的詳細資訊，請參閱 [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) 和 [Chronos API](https://mesos.github.io/chronos/docs/api.html) 的 Mesosphere 文件，以及 [Mesos 排程器 API](http://mesos.apache.org/documentation/latest/scheduler-http-api/) 的 Apache 文件
 
-## 從 Mesos 和 Marathon 收集資訊
+## 從 DC/OS 和 Marathon 收集資訊
 
-將容器部署至 Mesos 叢集之前，請收集 Mesos 叢集的一些相關資訊，例如 Mesos 代理程式的名稱和目前狀態。若要這樣做，請查詢 Mesos REST API 的 `master/slaves` 端點。如果一切順利，您會看到 Mesos 代理程式清單及每個代理程式的數個屬性。
+將容器部署至 DC/OS 叢集之前，請收集 DC/OS 叢集的一些相關資訊，例如 DC/OS 代理程式的名稱和目前狀態。若要這樣做，請查詢 DC/OS REST API 的 `master/slaves` 端點。如果一切順利，您會看到 DC/OS 代理程式清單及每個代理程式的數個屬性。
 
 ```bash
 curl http://localhost/mesos/master/slaves
 ```
 
-現在，使用 Marathon `/apps` 端點來檢查目前部署至 Mesos 叢集的應用程式。如果這是新的叢集，您會看到空的應用程式陣列。
+現在，使用 Marathon `/apps` 端點來檢查目前部署至 DC/OS 叢集的應用程式。如果這是新的叢集，您會看到空的應用程式陣列。
 
 ```
 curl localhost/marathon/v2/apps
@@ -47,7 +47,7 @@ curl localhost/marathon/v2/apps
 
 ## 部署 Docker 格式化容器
 
-您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 Mesos 代理程式的連接埠 80 繫結至容器的連接埠 80。
+您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。
 
 ```json
 {
@@ -71,7 +71,9 @@ curl localhost/marathon/v2/apps
 若要部署 Docker 格式化容器，請建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
 
 ```
-curl -X POST http://localhost/marathon/v2/groups -d @marathon.json -H "Content-type: application/json"
+# deploy container
+
+curl -X POST http://localhost/marathon/v2/apps -d @marathon.json -H "Content-type: application/json"
 ```
 
 輸出將類似於：
@@ -99,6 +101,8 @@ curl localhost/marathon/v2/apps
 >[AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
 
 ```json
+# scale container
+
 curl http://localhost/marathon/v2/apps/nginx -H "Content-type: application/json" -X PUT -d @scale.json
 ```
 
@@ -112,13 +116,13 @@ curl localhost/marathon/v2/apps
 
 您可以在 Windows 系統上使用 PowerShell 命令來執行這些相同的動作。
 
-若要收集 Mesos 叢集的相關資訊，例如代理程式名稱和代理程式狀態，請執行下列命令。
+若要收集 DC/OS 叢集的相關資訊，例如代理程式名稱和代理程式狀態，請執行下列命令。
 
 ```powershell
 Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 ```
 
-您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 Mesos 代理程式的連接埠 80 繫結至容器的連接埠 80。
+您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。
 
 ```json
 {
@@ -142,6 +146,8 @@ Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
 
 ```powershell
+# deploy container
+
 Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile 'c:\marathon.json'
 ```
 
@@ -156,7 +162,13 @@ Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentTy
 > [AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
 
 ```powershell
+# scale container
+
 Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -ContentType application/json -InFile 'c:\scale.json'
 ```
 
-<!---HONumber=AcomDC_0406_2016-->
+## 後續步驟
+
+[深入了解 Meso HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。[深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
+
+<!---HONumber=AcomDC_0420_2016-->

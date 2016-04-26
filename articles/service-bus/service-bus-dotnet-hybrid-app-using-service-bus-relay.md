@@ -123,7 +123,7 @@
 
 ### 建立專案
 
-1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] \(或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。
+1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] (或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。
 
 2.  在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 
@@ -141,11 +141,11 @@
 
     ![][12]
 
-7.  如果已安裝 Visual Studio 的 NuGet 套件管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] (英文)，然後按一下 [安裝 NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 套件管理員，然後重新啟動 Visual Studio。
+7.  如果已安裝 Visual Studio 的 NuGet 套件管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] (英文)，然後按一下 [[安裝 NuGet]](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 套件管理員，然後重新啟動 Visual Studio。
 
 7.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
 
-8.  在 \[NuGet] 對話方塊的左欄中，按一下 [線上]。
+8.  在 [NuGet] 對話方塊的左欄中，按一下 [線上]。
 
 9. 	在右欄中，按一下 [搜尋] 方塊、鍵入「**服務匯流排**」，然後選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉此對話方塊。
 
@@ -337,11 +337,11 @@
             }
         }
 
-3.  在 [方案總管] 中，展開 Views\Shared 資料夾。
+3.  在 [方案總管] 中，展開 Views\\Shared 資料夾。
 
     ![][18]
 
-4.  按兩下 **_Layout.cshtml**，在 Visual Studio 編輯器中開啟它。
+4.  按兩下 **\_Layout.cshtml**，在 Visual Studio 編輯器中開啟它。
 
 5.  將所有出現的 **My ASP.NET Application** 變更為 **LITWARE's Products**。
 
@@ -349,7 +349,7 @@
 
 	![][41]
 
-7.  在 [方案總管] 中，展開 Views\Home 資料夾。
+7.  在 [方案總管] 中，展開 Views\\Home 資料夾。
 
     ![][20]
 
@@ -402,7 +402,7 @@
 
 ## 將應用程式準備好部署到 Azure
 
-您可以將您的應用程式部署到 Azure 雲端服務或 Azure 網站。若要深入了解網站與雲端服務之間的差異，請參閱 [Azure 執行模型][executionmodels] (英文)。若要了解如何將應用程式部署至 Azure 網站，請參閱[將 ASP.NET Web 應用程式部署至 Azure 網站](https://azure.microsoft.com/develop/net/tutorials/get-started/)。本節包含將應用程式部署至 Azure 雲端服務的詳細步驟。
+您可以將您的應用程式部署到 Azure [雲端服務][executionmodels]或 [Azure 網站][azureweb]。若要了解如何將應用程式部署至 Azure 網站，請參閱[將 ASP.NET Web 應用程式部署至 Azure 網站](https://azure.microsoft.com/develop/net/tutorials/get-started/)。本節包含將應用程式部署至 Azure 雲端服務的詳細步驟。
 
 若要將應用程式部署至雲端服務，您需要新增雲端服務專案部署專案至方案。部署專案包含在雲端適當地執行應用程式所需的組態資訊。
 
@@ -517,8 +517,7 @@
 
 10. 在最後一個頁面上，按一下 [發佈] 以啟動部署程序。
 
-    ![][34]
-這將需要大約 5-7 分鐘的時間。因為這是您第一次發佈，所以 Azure 會佈建虛擬機器 (VM)、執行安全性強化、在 VM 上建立 Web 角色來主控應用程式、將程式碼部署至該 Web 角色，最後並設定負載平衡器及網路，以便應用程式可供大眾使用。
+    ![][34]這將需要大約 5-7 分鐘的時間。因為這是您第一次發佈，所以 Azure 會佈建虛擬機器 (VM)、執行安全性強化、在 VM 上建立 Web 角色來主控應用程式、將程式碼部署至該 Web 角色，最後並設定負載平衡器及網路，以便應用程式可供大眾使用。
 
 11. 發佈期間，您將能夠在 [Azure 活動記錄檔] 視窗中監視活動，此視窗通常會固定在 Visual Studio 或 Visual Web Developer 底部。
 
@@ -531,8 +530,6 @@
     網站需要仰賴內部部署伺服器，因此您必須在本機執行 **ProductsServer** 應用程式，網站才能正常運作。在雲端網站上執行要求時，您將看到要求進入內部部署主控台應用程式，如下列螢幕擷取畫面中所顯示的 "GetProducts called" 輸出所指出。
 
     ![][37]
-
-若要深入了解網站與雲端服務之間的差異，請參閱 [Azure 執行模型][executionmodels] (英文)。
 
 ## 停止並刪除您的應用程式
 
@@ -609,6 +606,7 @@ Azure 會就每小時伺服器時間所使用的 Web 角色執行個體數進行
 
   [sbwacom]: /documentation/services/service-bus/
   [sbwacomqhowto]: service-bus-dotnet-how-to-use-queues.md
-  [executionmodels]: ../cloud-services/fundamentals-application-models.md
+  [executionmodels]: ../cloud-services/cloud-services-choose-me.md
+  [azureweb]: ../app-service-web/app-service-web-overview.md
 
-<!----HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

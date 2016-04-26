@@ -45,10 +45,10 @@
 
 HDInsight Tools for Visual Studio 和 Microsoft Hive ODBC Driver 已封裝在 Microsoft Azure SDK for .NET 2.5.1 版或更新版本內。您可以使用 [Web Platform Installer](http://go.microsoft.com/fwlink/?LinkId=255386) 來安裝。您必須選擇與 Visual Studio 版本相符的封裝。如果您沒有安裝 Visual Studio，可以使用 [Web Platform Installer](http://go.microsoft.com/fwlink/?LinkId=255386) 或使用下列連結，來安裝最新的 Visual Studio Community 和 Azure SDK：
 
-- [Visual Studio Community 2015 與 Microsoft Azure SDK](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VS2015CommunityAzurePack.appids) 
-- [Visual Studio Community 2013 與 Microsoft Azure SDK](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VS2013CommunityAzurePack.appids) 
-- [Microsoft Azure SDK for .NET (VS 2015)](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VWDOrVs2015AzurePack.appids) 
-- [Microsoft Azure SDK for .NET (VS 2013)](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VWDOrVs2013AzurePack.appids) 
+- [Visual Studio Community 2015 與 Microsoft Azure SDK](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VS2015CommunityAzurePack.appids)
+- [Visual Studio Community 2013 與 Microsoft Azure SDK](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VS2013CommunityAzurePack.appids)
+- [Microsoft Azure SDK for .NET (VS 2015)](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VWDOrVs2015AzurePack.appids)
+- [Microsoft Azure SDK for .NET (VS 2013)](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VWDOrVs2013AzurePack.appids)
 
 ![Hadoop 工具：HDinsight Tools for Visual Studio Web Platform installer.][1]
 
@@ -182,14 +182,14 @@ HDInsight Tools for Visual Studio 也可讓使用者透過收集和呈現特定 
 
 >[AZURE.NOTE] 此功能僅適用於 HDInsight 叢集 3.2 版及更新版本。
 
-HDInsight 工具用來透過 WebHCat (也稱為 Templeton) 提交 Hive 工作。傳回工作詳細資料和錯誤資訊所需的時間很長。為了解決此效能問題，HDInsight 工具會透過 HiveServer2 直接在叢集中執行 Hive 工作，以便略過 RDP/SSH。除了提升效能，使用者也可以檢視 Tez 圖形上的 Hive 和工作詳細資料。
+HDInsight 工具用來透過 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (也稱為 Templeton) 提交 Hive 工作。傳回工作詳細資料和錯誤資訊所需的時間很長。為了解決此效能問題，HDInsight 工具會透過 HiveServer2 直接在叢集中執行 Hive 工作，以便略過 RDP/SSH。除了提升效能，使用者也可以檢視 Tez 圖形上的 Hive 和工作詳細資料。
 
 若為 HDInsight 叢集 3.2 版或更新版本，您可以看見 [透過 HiveServer2 執行] 按鈕：
 
 ![透過 hiveserver2 執行 hdinsight visual studio 工具](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.execute.via.hiveserver2.png)
 
 而且，如果 Hive 查詢是在 Tez 中執行，您可以即時查看串流送回的記錄檔，以及查看工作圖形。
- 
+
 ![hdinsight visual studio 工具快速路徑 hive 執行](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.fast.path.hive.execution.png)
 
 **透過 HiveServer2 執行查詢與透過 WebHCat 提交查詢之間的差異**
@@ -208,7 +208,7 @@ HDInsight 工具用來透過 WebHCat (也稱為 Templeton) 提交 Hive 工作。
 
 HDInsight Visual Studio 工具支援顯示由 Tez 執行引擎執行之 Hive 工作的效能圖形。如需啟用 Tez 的資訊，請參閱[在 HDInsight 中使用 Hive][hdinsight.hive]。您提交 Visual Studio 中的 Hive 工作之後，Visual Studio 會在工作完成時顯示圖形。您可能會需要按一下 [重新整理] 按鈕來取得最新的工作狀態。
 
-> [AZURE.NOTE] 此功能只適用於高於 3.2.4.593 版的 HDInsight 叢集，且只能用於已完成的工作。這適用於以 Windows 和 Linux 為基礎的叢集。
+> [AZURE.NOTE] 此功能只適用於高於 3.2.4.593 版的 HDInsight 叢集，而且只能用於已完成的工作 (如果您透過 WebHCat 提交作業，此圖形會在您透過 HiveServer2 執行查詢時顯示)。這適用於以 Windows 和 Linux 為基礎的叢集。
 
 ![hadoop hive tez 效能圖表](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.hive.tez.performance.graph.png)
 
@@ -223,6 +223,14 @@ Tez 工作上 Hive 的工作執行檢視可用來取得結構化和視覺化 Hiv
 ## 執行 Pig 指令碼
 
 HDInsight Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsight 叢集。使用者可以從範本建立 Pig 專案，然後再提交指令碼至 HDInsight 叢集。
+
+## 意見反應和已知問題
+
+- 目前 HiveServer2 結果會以純文字形式顯示，但不太理想。我們正努力修正該問題。
+
+- 如果結果是以 NULL 值開頭，目前就不會顯示結果。我們已修正此問題，如果您因為此問題而遭到封鎖，歡迎寄電子郵件給我們，或連絡支援小組。
+
+如果您有任何建議或意見反應，或使用此工具時，遇到任何問題，歡迎寄電子郵件到 hdivstool@microsoft.com。
 
 ## 後續步驟
 在本文中，您學會如何使用 Hadoop 工具套件從 Visual Studio 連線到 HDInsight 叢集，以及如何執行 Hive 查詢。如需詳細資訊，請參閱：
@@ -267,4 +275,4 @@ HDInsight Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsig
 
 [apache.hive]: http://hive.apache.org
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

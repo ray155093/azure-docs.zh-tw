@@ -12,7 +12,7 @@
       ms.tgt_pltfrm="na"
       ms.devlang="dotnet"
       ms.topic="hero-article"
-	  ms.date="04/07/2016"
+	  ms.date="04/11/2016"
       ms.author="minet" />
 
 # 在 Windows 上開始使用 Azure 檔案儲存體
@@ -214,7 +214,7 @@ Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清�
 
 
 1. 首先，依照[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的指示建立新的 Azure 虛擬機器。
-2. 接著依照[使用 Azure 入口網站登入 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-log-on.md)中的指示遠端登入虛擬機器。
+2. 接著依照[使用 Azure 入口網站登入 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-connect-logon.md)中的指示遠端登入虛擬機器。
 3. 在虛擬機器上開啟 PowerShell 視窗。
 
 ### 在虛擬機器中保留您的儲存體帳戶認證
@@ -642,4 +642,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

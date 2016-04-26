@@ -3,7 +3,7 @@
    description="安裝適用於 Azure SQL 資料倉儲的 Visual Studio 及/或 SSDT 開發工具"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="twounder"
+   authors="sonyam"
    manager="barbkess"
    editor=""/>
 
@@ -13,12 +13,12 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
-   ms.author="mausher;barbkess;sonyama"/>
+   ms.date="04/20/2016"
+   ms.author="sonyama;barbkess"/>
 
 # 安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT
 
-若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2013 或更新版本，並搭配最新版本的 SQL Server Data Tools (SSDT)。
+若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2015 並搭配最新版本的 SQL Server Data Tools (SSDT)。也支援 Visual Studio 2013 搭配 SSDT。
 
 若要從 Visual Studio 整合式開發環境 (IDE) 執行查詢，您只需要安裝 SSDT。這將安裝 Visual Studio IDE 以及 SSDT，讓您可以使用 [SQL Server 物件總管] 連接到 Azure SQL Server。然後，您將能夠針對 SQL 資料倉儲資料庫檢視並執行查詢。
 
@@ -49,4 +49,4 @@
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

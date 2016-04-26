@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="Azure 事件中樞概觀 | Microsoft Azure"
-   description="Azure 事件中樞的簡介和概觀。"
-   services="event-hubs"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="Azure 事件中樞概觀 | Microsoft Azure"
+    description="Azure 事件中樞的簡介和概觀。"
+    services="event-hubs"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="event-hubs"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="event-hubs"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="04/15/2016"
+    ms.author="sethm" />
 
 # Azure 事件中樞概觀
 
@@ -168,4 +168,4 @@ Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用�
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->
