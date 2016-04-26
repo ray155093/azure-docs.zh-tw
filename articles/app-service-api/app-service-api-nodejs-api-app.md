@@ -130,11 +130,11 @@
 
     執行此命令將會啟動 Node.js HTTP 伺服器並開始為您的 API 提供服務。
 
-1. 當您瀏覽至 ****http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
+1. 當您瀏覽至 **http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
 
     ![所有連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/all-contacts-api-call.png)
 
-1. 當您瀏覽至 ****http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
+1. 當您瀏覽至 **http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
 
     ![特定連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/specific-contact-api-call.png)
 

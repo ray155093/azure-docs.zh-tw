@@ -129,7 +129,7 @@
 
 ### 建立專案
 
-1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] (或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
+1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] \(或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
 
     在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 
@@ -269,7 +269,7 @@
 
 2.  將類別命名為 QueueConnector.cs。按一下 [加入] 以建立類別。
 
-3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。在 QueueConnector.cs 中，加入下列程式碼，並在 [命名空間] (您的服務命名空間) 和 [yourKey] (也就是您稍早從 [Azure 傳統入口網站][]中取得的 SAS 金鑰) 中輸入值。
+3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。在 QueueConnector.cs 中，加入下列程式碼，並在 [命名空間] \(您的服務命名空間) 和 [yourKey] \(也就是您稍早從) [Azure 傳統入口網站][]中取得的 SAS 金鑰) 中輸入值。
 
         using System;
         using System.Collections.Generic;
