@@ -4,7 +4,7 @@
 	services="app-service\api"
 	documentationCenter="node"
 	authors="bradygaster"
-	manager="mohisri" 
+	manager="mohisri"
 	editor="tdykstra "/>
 
 <tags
@@ -130,11 +130,11 @@
 
     執行此命令將會啟動 Node.js HTTP 伺服器並開始為您的 API 提供服務。
 
-1. 當您瀏覽至 ****http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
+1. 當您瀏覽至 **http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
 
     ![所有連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/all-contacts-api-call.png)
 
-1. 當您瀏覽至 ****http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
+1. 當您瀏覽至 **http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
 
     ![特定連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/specific-contact-api-call.png)
 
@@ -243,4 +243,4 @@
 
 為了根據此範例進行建置，您可以將程式碼加入至處理常式，以便在資料庫中或在 API 應用程式執行個體的磁碟上儲存資料。既然您已連接 [連續部署]，變更 API 應用程式功能並加以擴充，就如同變更您的程式碼並推送至 Git 儲存機制一樣容易。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -89,7 +89,7 @@ properties 區段包含特定資源類型獨有的所有屬性。您在此區段
 
 您為 [type] 指定的值同時包含資源提供者和資源類型。在可用性設定組中，資源提供者為 Microsoft.Compute，而資源類型為 availabilitySets。執行下列 PowerShell 命令，即可取得可用的資源提供者清單：
 
-    PS C:\> Get-AzureRmResourceProvider -ListAvailable
+    Get-AzureRmResourceProvider -ListAvailable
 
 或者，如果您使用 Azure CLI，可以執行下列命令：
 
@@ -103,7 +103,7 @@ properties 區段包含特定資源類型獨有的所有屬性。您在此區段
 
 若要查看特定提供者的資源類型，請執行下列 PowerShell 命令︰
 
-    PS C:\> (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
+    (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
 
 或者，在 Azure CLI 中，下列命令將以 JSON 格式傳回可用的類型，並將它儲存到檔案。
 
@@ -133,7 +133,7 @@ properties 區段包含特定資源類型獨有的所有屬性。您在此區段
 
 現在，讓我們看看如何決定 [apiVersion]。您指定的值僅符合您在建立資源時所要使用的 REST API 版本。因此，您可以查看該資源類型的 REST API 文件。或者，您可以對特定類型執行下列 PowerShell 命令。
 
-    PS C:\> ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Network).ResourceTypes | Where-Object ResourceTypeName -eq publicIPAddresses).ApiVersions
+    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Network).ResourceTypes | Where-Object ResourceTypeName -eq publicIPAddresses).ApiVersions
 
 它會傳回下列值︰
 
@@ -503,4 +503,4 @@ properties 區段包含特定資源類型獨有的所有屬性。您在此區段
 - 若要深入了解範本的結構，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)
 - 若要了解如何部署範本，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

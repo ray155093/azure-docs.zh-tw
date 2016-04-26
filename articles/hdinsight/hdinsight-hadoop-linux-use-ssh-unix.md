@@ -35,7 +35,9 @@
 
 或
 
-* [適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)。
+* [Azure CLI](../xplat-cli-install.md)。
+
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 ##什麼是 SSH？
 
@@ -243,4 +245,4 @@ SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsi
 
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

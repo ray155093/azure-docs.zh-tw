@@ -28,7 +28,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 ###必要條件
 
-- **Visual Studio 2015、Visual Studio 2013 update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。目前不支援 Visual Studio "15"，我們正在開發中。** 
+- **Visual Studio 2015、Visual Studio 2013 update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。目前不支援 Visual Studio "15"，我們正在開發中。**
 - **Microsoft Azure SDK for .NET 2.7.1 版或更新版本**。請使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx) 來安裝。
 - **[Visual Studio 適用的資料湖工具](http://aka.ms/adltoolsvs)**。
 
@@ -361,4 +361,4 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     Get-AzureRmDataLakeStoreChildItem -Account $dataLakeStoreName -Path  "/Samples/Data/"
     #endregion
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

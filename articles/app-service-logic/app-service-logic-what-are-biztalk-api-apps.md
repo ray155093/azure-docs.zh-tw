@@ -13,13 +13,15 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="02/18/2016" 
+	ms.date="04/20/2016" 
 	ms.author="mandia"/>
 
 # 什麼是連接器和 BizTalk API 應用程式
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
 
-Azure 應用程式服務是根據可擴充性和通用連線性的原則，透過 API 應用程式建立的。*連接器* 是一種著重於連線性的 API 應用程式。連接器 (例如任何其他 API 應用程式) 是從 Web 應用程式、行動應用程式和邏輯應用程式使用的。連接器可讓您輕鬆地連接到現有的服務並協助您管理驗證、提供監視、分析功能等等。
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
+
+
+Azure 應用程式服務是根據可擴充性和通用連線性的原則，透過 API 應用程式建立的。連接器是一種著重於連線性的 API 應用程式。連接器 (例如任何其他 API 應用程式) 是從 Web 應用程式、行動應用程式和邏輯應用程式使用的。連接器可讓您輕鬆地連接到現有的服務並協助您管理驗證、提供監視、分析功能等等。
 
 所有開發人員均可建立自己的 API 應用程式並私下進行部署。將來，開發人員可以透過市集共用及販售其自訂建立的 API 應用程式。
 
@@ -48,4 +50,4 @@ Azure 應用程式服務中有不同的服務「層」可用。所有層都包�
 請參閱[連接器和 API 應用程式清單](app-service-logic-connectors-list.md)，以取得各類別內含的完整連接器和 API 應用程式清單，包括標準連接器、BizTalk EAI、高階連接器等。
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

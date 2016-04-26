@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/08/2016"
+	ms.date="04/14/2016"
 	ms.author="nitinme"/>
 
 
-# 開始使用：在 Azure HDInsight (Linux) 上建立 Apache Spark 叢集，並使用 Spark SQL 執行互動式查詢
+# 開始使用：在 HDInsight Linux 上建立 Apache Spark 叢集，並使用 Spark SQL 執行互動式查詢 (預覽)
 
 了解在 HDInsight 中建立 Apache Spark 叢集，然後使用 [Jupyter](https://jupyter.org) Notebook 對 Spark 叢集執行 Spark SQL 互動式查詢。
 
@@ -45,7 +45,7 @@
 
 1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。         
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-spark-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-spark-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
     ARM 範本位於公用 Blob 容器中，**https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-spark-cluster-in-hdinsight.json*。
    
@@ -79,7 +79,7 @@
 
 ## 使用 Jupyter Notebook 執行 Spark SQL 查詢
 
-在本節中，您會使用 Jupyter Notebook 來針對 Spark 叢集執行 Spark SQL 查詢。根據預設，Jupyter Notebook 附有 **Python2** 核心。HDInsight Spark 叢集另外還提供兩種核心，可讓您用於 Jupyter Notebook。它們是：
+在本節中，您會使用 Jupyter Notebook 來針對 Spark 叢集執行 Spark SQL 查詢。HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook。它們是：
 
 * **PySpark** (適用於以 Python 撰寫的應用程式)
 * **Spark** (適用於以 Scala 撰寫的應用程式)
@@ -100,7 +100,7 @@
 	>
 	> `https://CLUSTERNAME.azurehdinsight.net/jupyter`
 
-2. 建立新的 Notebook。按一下 [新建]，然後按一下 [PySpark]。
+2. 建立新的 Notebook。按一下 [新增]，然後按一下 [PySpark]。
 
 	![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
@@ -108,11 +108,11 @@
 
 	![提供 Notebook 的名稱](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 
-4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。方法是將下列程式碼片段貼到儲存格中，然後按下 **SHIFT + ENTER**。
+4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。方法是將下列程式碼片段貼到儲存格中，然後按下 SHIFT + ENTER。
 
 		from pyspark.sql.types import *
 		
-	每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。您也會在右上角的 **PySpark** 文字旁看到一個實心圓。工作完成後，實心圓將變成空心圓。
+	每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。您也會在右上角的 PySpark 文字旁看到一個實心圓。工作完成後，實心圓將變成空心圓。
 
 	 ![Jupyter Notebook 工作的狀態](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.jupyter.job.status.png "Jupyter Notebook 工作的狀態")
 
@@ -135,7 +135,7 @@
 		# Register the data fram as a table to run queries against
 		hvacdf.registerTempTable("hvac")
 
-5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需有關 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 hvac 上執行 SQL 查詢。如需 `%%sql` magic 以及可搭配 PySpark 核心使用的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 		
 		%%sql
 		SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = "6/1/13"
@@ -206,4 +206,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

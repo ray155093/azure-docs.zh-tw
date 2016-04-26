@@ -53,11 +53,11 @@
 
 如需使用快速安裝的影片，請參閱下列內容：
 
-[AZURE.VIDEO azure-active-directory-connect-express-settings]
+>[AZURE.VIDEO azure-active-directory-connect-express-settings]
 
 ## 後續步驟
 安裝了 Azure AD Connect 之後，您可以[驗證安裝和指派授權](active-directory-aadconnect-whats-next.md)。
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -3,8 +3,8 @@
 	description="本主題提供 Azure 媒體服務的概觀" 
 	services="media-services" 
 	documentationCenter="" 
-	authors="Juliako,anilmur" 
-	manager="dwrede" 
+	authors="Juliako" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
-	ms.date="02/02/2016"
-	ms.author="juliako"/>
+ 	ms.date="04/18/2016"
+	ms.author="juliako;anilmur"/>
 
 #Azure 媒體服務概觀和常見案例
 
@@ -57,7 +57,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 2. Azure 媒體服務帳戶。使用 Azure 傳統入口網站、.NET 或 REST API 建立 Azure 媒體服務帳戶。如需詳細資訊，請參閱[建立帳戶](media-services-create-account.md)。
 3. (選擇性) 設定開發環境。針對開發環境選擇 .NET 或 REST API。如需詳細資訊，請參閱[設定環境](media-services-dotnet-how-to-use.md)。 
 
-	此外，請了解如何以程式設計方式[連線](media-services-dotnet-connect_programmatically.md)。
+	此外，請了解如何以程式設計方式[連線](media-services-dotnet-connect-programmatically.md)。
 4. (建議) 配置一或多個縮放單位。建議您為生產環境中的應用程式配置一個或多個縮放單位。如需詳細資訊，請參閱[管理串流端點](media-services-manage-origins.md)。
 
 ##概念和概觀
@@ -236,4 +236,4 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 [live-overview2]: ./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

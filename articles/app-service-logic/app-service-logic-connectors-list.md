@@ -31,15 +31,12 @@
 
 名稱 | 說明
 --- | ---
-[Azure HDInsight](app-service-logic-connector-hdinsight.md) | 使用這個連接器可在 Azure 上建立 Hadoop 叢集、送出不同的 Hadoop 工作等等。
 [Azure 服務匯流排](app-service-logic-connector-azureservicebus.md) | 可以從「服務匯流排佇列和主題」傳送訊息，並接收來自「服務匯流排佇列和訂用帳戶」的訊息。
 [Bing 翻譯](https://azure.microsoft.com/marketplace/partners/microsoft_com/bingtranslator) | 使用 Bing，將文字翻譯成其他語言。
-[Chatter](app-service-logic-connector-chatter.md) | 連接到 Chatter，而且可以張貼訊息、搜尋，甚至擷取新的訊息。
 [HTTP](app-service-logic-connector-http.md) | HTTP 接聽程式會開啟當做 HTTP 伺服器的端點，並接聽內送的 HTTP 或 HTTPS 要求。HTTP 動作不需要 API Apps，Logic Apps 內原本就支援。
 [Microsoft Office 365](app-service-logic-connector-office365.md) | Office 365 連接器可以使用 Office 365 帳戶來傳送和接收電子郵件、管理您的行事曆及管理您的連絡人。
 [QuickBooks](app-service-logic-connector-quickbooks.md) | 您可以完成不同的工作，包括建立、更新和查詢來自 Intuit QuickBooks (如客戶、項目、發票等等) 的不同實體。
 [Slack](app-service-logic-connector-slack.md) | 連接至 Slack，並將訊息張貼至 Slack 通道。
-[SugarCRM](app-service-logic-connector-sugarcrm.md) | 連接到 SugarCRM Online，並且建立、更新、讀取不同類型的模組，包括帳戶、連絡人等等。
 [等候](app-service-logic-connector-wait.md) | 您可以使用這個連接器來延遲執行應用程式。您可以將應用程式延遲一段特定期間，或延遲到特定時刻發生為止。
 
 
@@ -83,4 +80,4 @@ MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器�
 ## 連接器和 API Apps 的詳細資訊
 [什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md) [在 Azure App Service 中使用混合式連接管理員](app-service-logic-hybrid-connection-manager.md) [管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,4 +1,11 @@
-<properties pageTitle="Azure Active Directory B2C 預覽：從 iOS 應用程式呼叫 Web API | Microsoft Azure" description="本文將示範如何建立 iOS「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。iOS 應用程式與 Web API 將會使用 Azure Active Directory B2C 管理使用者身分識別與驗證使用者。" services="active-directory-b2c" documentationCenter="ios" authors="brandwe" manager="mbaldwin" editor=""/>
+<properties
+	pageTitle="Azure Active Directory B2C 預覽：從 iOS 應用程式呼叫 Web API | Microsoft Azure"
+	description="本文將示範如何建立 iOS「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。iOS 應用程式與 Web API 將會使用 Azure Active Directory B2C 管理使用者身分識別與驗證使用者。"
+	services="active-directory-b2c"
+	documentationCenter="ios"
+	authors="brandwe"
+	manager="mbaldwin"
+	editor=""/>
 
 <tags
 	ms.service="active-directory-b2c"
@@ -29,12 +36,12 @@ Azure Active Directory (Azure AD) B2C 可讓您將強大的自助式身分識別
 
 ## 建立應用程式
 
-接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。在此案例中，因為應用程式與 Web API 會組成一個邏輯應用程式，所以將由單一**應用程式識別碼**代表。若要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
+接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。在此案例中，因為應用程式與 Web API 會組成一個邏輯應用程式，所以將由單一**應用程式識別碼**代表。如果要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
 
 - 在應用程式中加入 **Web 應用程式/Web API**。
 - 在 [回覆 URL] 中輸入 `http://localhost:3000/auth/openid/return`。這是此程式碼範例的預設 URL。
-- 為您的應用程式建立**應用程式密碼**，並複製起來。稍後您將會用到此資訊。
-- 複製指派給應用程式的**應用程式識別碼**。稍後您也會需要此資訊。
+- 為您的應用程式建立 [應用程式密碼]，然後複製該密碼。稍後您將會用到此資訊。
+- 複製指派給您 app 的**應用程式識別碼**。稍後您也會需要此資訊。
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
@@ -44,17 +51,17 @@ Azure Active Directory (Azure AD) B2C 可讓您將強大的自助式身分識別
 
 - 在註冊原則中，選擇 [顯示名稱] 和註冊屬性。
 - 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。您也可以選擇其他宣告。
-- 建立每個原則之後，請複製原則的**名稱**。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
+- 建立每個原則後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
 建立您的三個原則後，就可以開始建置您的應用程式。
 
-請注意，本文不涵蓋如何使用您剛才建立的原則。如需了解 Azure AD B2C 中的原則如何運作，請從 [.NET Web 應用程式使用者入門教學課程](active-directory-b2c-devquickstarts-web-dotnet.md)開始。
+請注意，本文不涵蓋如何使用您剛才建立的原則。如需了解 Azure AD B2C 中原則的運作方式，請從 [.NET Web 應用程式快速入門教學課程](active-directory-b2c-devquickstarts-web-dotnet.md)開始。
 
 ## 下載程式碼
 
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-NativeClient-iOS) 上。若要遵循指示建立範例，您可以[下載基本架構專案的 .zip 檔案](https://github.com/AzureADQuickStarts/B2C-NativeClient-iOS/archive/skeleton.zip)。您也可以複製基本架構：
+本教學課程的程式碼[保留在 GitHub 上](https://github.com/AzureADQuickStarts/B2C-NativeClient-iOS)。若要遵循指示建立範例，您可以[下載基本架構專案的 .zip 檔案](https://github.com/AzureADQuickStarts/B2C-NativeClient-iOS/archive/skeleton.zip)。您也可以複製基本架構：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-NativeClient-iOS.git
@@ -117,7 +124,7 @@ $ open Microsoft Tasks for Consumers.xcworkspace
 
 您需要有方法來取得具有所選原則的權杖，然後呼叫工作伺服器。現在就請您設定這些方法。
 
-在 Xcode 專案的 `/Microsoft Tasks` 底下建立名為 `samplesWebAPIConnector.h` 的檔案。
+在 Xcode 專案的 `/Microsoft Tasks` 下建立名為 `samplesWebAPIConnector.h` 的檔案。
 
 在其中新增下列程式碼以定義所需執行的工作：
 
@@ -430,7 +437,7 @@ completionBlock:(void (^) (bool, NSError* error)) completionBlock;
 
 工作程式碼不在本逐步解說的討論範圍內。但您可能已經注意到一些有趣的東西，那就是用來取得工作 URL 的 `craftRequest` 方法。您就是使用這個方法，透過收到的存取權杖對伺服器建立要求。現在就撰寫該方法。
 
-在 `samplesWebAPIConnector.m` 檔案中新增下列程式碼：
+將下列程式碼新增至 `samplesWebAPIConnector.m` 檔案：
 
 ```
 +(void) craftRequest : (NSString*)webApiUrlString
@@ -623,4 +630,4 @@ completionBlock:(void (^) (bool, NSError* error)) completionBlock
 
 [自訂 B2C 應用程式的 UX]()
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

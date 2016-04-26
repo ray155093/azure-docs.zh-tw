@@ -103,6 +103,8 @@ Blob 儲存體可使用於結構化和非結構化資料。Blob 儲存容器以�
 
 ###使用 Azure CLI
 
+[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+
 如果您已[安裝和設定 Azure CLI](../xplat-cli-install.md)，下列命令即可用於儲存體帳戶和容器。
 
 	azure storage account create <storageaccountname> --type LRS
@@ -300,4 +302,4 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 [img-hdi-quick-create]: ./media/hdinsight-hadoop-use-blob-storage/HDI.QuickCreateCluster.png
 [img-hdi-custom-create-storage-account]: ./media/hdinsight-hadoop-use-blob-storage/HDI.CustomCreateStorageAccount.png
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/26/2016"
+   ms.date="04/12/2016"
    ms.author="seanmck"/>
 
 # 在您的本機叢集上開始部署和升級應用程式
@@ -84,7 +84,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![將應用程式部署至本機叢集][deploy-app-to-local-cluster]
 
-7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index](http://localhost:8081/wordcount/index)。您應該會看到如下的結果：
+7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。您應該會看到如下的結果：
 
     ![部署應用程式 UI][deployed-app-ui]
 
@@ -148,11 +148,11 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
     ![在 PowerShell 中的升級進度][ps-appupgradeprogress]
 
-3. 當升級正在進行時，您可能會發現從 Service Fabric 總管監視其狀態更加輕鬆。啟動瀏覽器視窗並瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)。按一下左側樹狀目錄中的 [應用程式]，然後選擇 [進行中的升級]。
+3. 當升級正在進行時，您可能會發現從 Service Fabric 總管監視其狀態更加輕鬆。啟動瀏覽器視窗並瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)。展開左邊樹狀目錄中的 [應用程式]，然後選擇 [WordCount]，最後選擇 [fabric:/WordCount]。在 [基本功能] 索引標籤中，您會在升級繼續進行叢集的升級網域時的狀態。
 
     ![在 Service Fabric 總管中的升級進度][sfx-upgradeprogress]
 
-    請注意，[升級進度] 指示器代表在您的叢集的升級網域中的升級狀態。透過每個網域繼續升級時，系統會執行健康狀態檢查，以確保應用程式運作正常。
+    透過每個網域繼續升級時，系統會執行健康狀態檢查，以確保應用程式運作正常。
 
 4. 如果您對 fabric:/WordCount 應用程式包含的服務集合重新執行先前的查詢，您會注意到，雖然 WordCountService 的版本已變更，但 WordCountWebService 的版本維持不變：
 
@@ -190,4 +190,4 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 [sfx-upgradeprogress]: ./media/service-fabric-get-started-with-a-local-cluster/SfxUpgradeOverview.png
 [sfx-service-overview]: ./media/service-fabric-get-started-with-a-local-cluster/sfx-service-overview.png
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

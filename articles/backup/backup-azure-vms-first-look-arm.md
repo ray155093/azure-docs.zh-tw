@@ -1,6 +1,6 @@
 <properties
 	pageTitle="使用 Azure 備份保護 ARM VM | Microsoft Azure"
-	description="使用 Azure 備份服務保護 ARM VM。使用 ARM VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
+	description="使用 Azure 備份服務保護 ARM VM。使用 ARM VM 和進階儲存體 VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
@@ -24,7 +24,14 @@
 - [備份 ARM VM](backup-azure-vms-first-look-arm.md)
 - [備份傳統模式 VM](backup-azure-vms-first-look.md)
 
-本教學課程會帶領您完成一組步驟以建立復原服務保存庫和備份 Azure 虛擬機器 (VM)。本教學課程適用於復原服務保存庫，其可用來保護 IaaS v.2 VM 或以 Azure Resource Manager (ARM) 為基礎的 VM。
+本教學課程會帶領您完成步驟以建立復原服務保存庫和備份 Azure 虛擬機器 (VM)。復原服務保存庫可保護︰
+
+- Azure Resource Manager (ARM) VM
+- 傳統 VM
+- 標準儲存體 VM
+- 進階儲存體 VM
+
+如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#back-up-and-restore-premium-storage-vms)
 
 >[AZURE.NOTE] 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文適用於 Resource Manager VM 和以 ARM 為基礎的 VM。
 
@@ -221,8 +228,6 @@
 
 無論 VM 是否在執行，備份服務都會安裝備份擴充功能。執行中的 VM 提供了取得應用程式一致復原點的絕佳機會。不過，即使 VM 已關閉而無法安裝擴充功能，Azure 備份服務仍會繼續備份 VM。這稱為離線 VM。在此情況下，復原點將會是「當機時保持一致」。
 
-
-
 ## 疑難排解資訊
 如果您在完成本文中的某些工作時遇到問題，請參閱[疑難排解指引](backup-azure-vms-troubleshoot.md)。
 
@@ -230,4 +235,4 @@
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

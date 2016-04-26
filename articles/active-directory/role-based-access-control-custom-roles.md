@@ -13,14 +13,14 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="03/25/2016"
+	ms.date="04/18/2016"
 	ms.author="kgremban"/>
 
 
 # Azure RBAC 中的自訂角色
 
 
-如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。使用 Azure PowerShell、Azure 命令列介面 (CLI) 和 REST API，可以建立自訂角色。就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。
+如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。
 
 以下是可以監視和重新啟動虛擬機器的自訂角色範例：
 
@@ -92,11 +92,11 @@
 - 誰可以檢視自訂角色？ Azure RBAC 中的所有內建角色允許檢視可用於指派的角色。可以在範圍中執行 `Microsoft.Authorization/roleDefinition/read` 作業的使用者，可以檢視可用於在該範圍中指派的 RBAC 角色。
 
 ## 另請參閱
-- 在 Azure 入口網站中開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+- [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
 - 了解如何使用下列各項管理存取權：
 	- [PowerShell](role-based-access-control-manage-access-powershell.md)
 	- [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 	- [REST API](role-based-access-control-manage-access-rest.md)
-- [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)
+- [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資料。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

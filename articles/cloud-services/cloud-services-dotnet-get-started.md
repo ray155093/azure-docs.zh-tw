@@ -24,7 +24,7 @@
 
 ## 概觀
 
-本教學課程示範如何建立具有 ASP.NET MVC 前端的多層式 .NET 應用程式，並將它部署到 [Azure 雲端服務](fundamentals-application-models.md#CloudServices)。應用程式會使用 [Azure SQL Database](http://msdn.microsoft.com/library/azure/ee336279)、[Azure Blob 服務](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage) 和 [Azure 佇列服務](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern)。您可以從 MSDN Code Gallery [下載 Visual Studio 專案](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4)。
+本教學課程示範如何建立具有 ASP.NET MVC 前端的多層式 .NET 應用程式，並將它部署到 [Azure 雲端服務](cloud-services-choose-me.md)。應用程式會使用 [Azure SQL Database](http://msdn.microsoft.com/library/azure/ee336279)、[Azure Blob 服務](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage) 和 [Azure 佇列服務](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern)。您可以從 MSDN Code Gallery [下載 Visual Studio 專案](http://code.msdn.microsoft.com/Simple-Azure-Cloud-Service-e01df2e4)。
 
 本教學課程將示範如何在本機建置並執行應用程式、如何將應用程式部署至 Azure 並且在雲端執行，最後是如何從頭建置應用程式。之後，如果需要，也可以自從頭建置應用程式開始，然後執行測試和部署步驟。
 
@@ -51,7 +51,7 @@
 
 ## 必要條件
 
-本教學課程假設您了解 [Azure 雲端服務的基本概念](fundamentals-application-models.md#CloudServices)，例如「*Web 角色*」和「*背景工作角色*」術語。同時也假設您知道如何在 Visual Studio 中使用 [ASP.NET MVC](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) 或 [Web Form](http://www.asp.net/web-forms/tutorials/aspnet-45/getting-started-with-aspnet-45-web-forms/introduction-and-overview) 專案。範例應用程式使用 MVC，但大多數的教學課程內容亦適用於 Web Form。
+本教學課程假設您了解 [Azure 雲端服務的基本概念](cloud-services-choose-me.md)，例如「 *Web 角色* 」和「 *背景工作角色* 」術語。同時也假設您知道如何在 Visual Studio 中使用 [ASP.NET MVC](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) 或 [Web Form](http://www.asp.net/web-forms/tutorials/aspnet-45/getting-started-with-aspnet-45-web-forms/introduction-and-overview) 專案。範例應用程式使用 MVC，但大多數的教學課程內容亦適用於 Web Form。
 
 您不需 Azure 訂閱即可在本機執行應用程式，但需要訂閱才能將應用程式部署至雲端。如果您沒有這類帳戶，可以[啟用自己的 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A55E3C668)或是[申請免費試用](/pricing/free-trial/?WT.mc_id=A55E3C668)。
 
@@ -157,7 +157,7 @@ Azure 雲端服務是應用程式將執行所在的環境。
 
 1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，依序按一下 [新增] > [資料服務] > [SQL Database] > [快速建立]。
 
-1. 在 [**資料庫名稱**] 方塊中，輸入 *contosoads* 。
+1. 在 [**資料庫名稱**] 方塊中，輸入 *contosoads*。
 
 1. 從 [伺服器] 下拉式清單，選取 [新增 SQL Database 伺服器]。
 
@@ -205,7 +205,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 6. 將 [複寫] 下拉式清單設為 [本機備援]。
 
-	對儲存體帳戶啟用地理區域複寫時，儲存內容會複寫至次要資料中心，以便能在主要位置發生嚴重災難時容錯移轉至該位置。地理區域複寫會引發額外成本。對於測試和開發帳戶，您通常不會想要付費使用地理區域複寫功能。如需詳細資訊，請參閱[建立、管理或刪除儲存體帳戶](../storage-create-storage-account/#replication-options)。
+	對儲存體帳戶啟用地理區域複寫時，儲存內容會複寫至次要資料中心，以便能在主要位置發生嚴重災難時容錯移轉至該位置。地理區域複寫會引發額外成本。對於測試和開發帳戶，您通常不會想要付費使用地理區域複寫功能。如需詳細資訊，請參閱[建立、管理或刪除儲存體帳戶](../storage/storage-create-storage-account.md#replication-options)。
 
 5. 按一下 [**建立儲存體帳戶**]。
 
@@ -399,7 +399,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
 
 11. 在 [加入新的專案] 對話方塊中，於左窗格的 [Visual C#] 下選擇 [Windows]，然後按一下 [類別庫] 範本。
 
-10. 將專案命名為 *ContosoAdsCommon* ，然後按一下 [確定]。
+10. 將專案命名為 *ContosoAdsCommon*，然後按一下 [確定]。
 
 	您需要自 Web 和背景工作角色專案參考 Entity Framework 內容和資料模型。作為替代方式，您可以在 Web 角色專案中定義 EF 相關的類別，並從背景工作角色專案參考該專案。但在替代方法中，您的背景工作角色專案會有 Web 組件的參考，而這是專案所不需要的內容。
 
@@ -455,7 +455,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
 
 	將 [服務組態] 保持設為 [所有組態]。
 
-5. 加入名為 *StorageConnectionString* 的新設定。將 [**類型**] 設為 *ConnectionString*，並將 [**值**] 設為 *UseDevelopmentStorage=true* 。
+5. 加入名為 *StorageConnectionString* 的新設定。將 [**類型**] 設為 *ConnectionString*，並將 [**值**] 設為 *UseDevelopmentStorage=true*。
 
 	![New connection string](./media/cloud-services-dotnet-get-started/scall.png)
 
@@ -869,4 +869,4 @@ Contoso Ads 應用程式特意保持簡潔，以做為入門的教學課程。�
 * [如何管理雲端服務](cloud-services-how-to-manage.md)
 * [Azure 儲存體](/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

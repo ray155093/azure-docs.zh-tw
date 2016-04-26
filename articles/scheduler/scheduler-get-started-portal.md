@@ -1,6 +1,6 @@
 <properties
  pageTitle="開始在 Azure 入口網站中使用 Azure 排程器 | Microsoft Azure"
- description=""
+ description="開始在 Azure 入口網站中使用 Azure 排程器"
  services="scheduler"
  documentationCenter=".NET"
  authors="krisragh"
@@ -182,4 +182,4 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的�
 [14]: ./media/scheduler-get-started-portal/scheduler-get-started-portal014.png
 [15]: ./media/scheduler-get-started-portal/scheduler-get-started-portal015.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

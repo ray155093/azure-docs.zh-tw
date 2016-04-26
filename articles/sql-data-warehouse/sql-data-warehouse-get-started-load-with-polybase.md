@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="04/18/2016"
    ms.author="sahajs;barbkess;jrj;sonyama"/>
 
 
@@ -72,7 +72,7 @@
 
 若要尋找您的 Blob 服務端點：
 
-1. 從 Azure 傳統入口網站選取 [瀏覽] > [儲存體帳戶]。
+1. 從 Azure 入口網站選取 [瀏覽] > [儲存體帳戶]。
 2. 按一下您要使用的儲存體帳戶。
 3. 在儲存體帳戶刀鋒視窗中，按一下 [Blob]。
 
@@ -86,7 +86,7 @@
 
 若要找出您的 Azure 儲存體金鑰：
 
-1. 從主畫面中選取 [瀏覽] > [儲存體帳戶]。
+1. 從 Azure 入口網站選取 [瀏覽] > [儲存體帳戶]。
 2. 按一下您要使用的儲存體帳戶。
 3. 選取 [所有設定] > [存取金鑰]。
 4. 按一下複製方塊，將其中一個存取金鑰複製到剪貼簿。
@@ -128,7 +128,7 @@
 
 本節中，我們會建立外部資料表來定義範例資料。
 
-PolyBase 使用外部資料表存取 Azure Blob 儲存體或 Hadoop 中的資料。因為資料不會儲存在 SQL 資料倉儲內，PolyBase 使用資料庫範圍認證來處理外部資料的驗證。
+PolyBase 使用外部資料表存取 Azure Blob 儲存體中的資料。因為資料不會儲存在 SQL 資料倉儲內，PolyBase 使用資料庫範圍認證來處理外部資料的驗證。
 
 此步驟中的範例使用這些 Transact-SQL 陳述式建立外部資料表。
 
@@ -162,6 +162,7 @@ WITH
 
 
 -- C: Create an external data source
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
 -- CREDENTIAL: Provide the credential created in the previous step.
 
@@ -286,4 +287,4 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 [建立資料庫範圍認證 (Transact-SQL)]: https://msdn.microsoft.com/library/mt270260.aspx
 [DROP CREDENTIAL (Transact-SQL)]: https://msdn.microsoft.com/library/ms189450.aspx
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

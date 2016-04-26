@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="02/05/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
-# 概觀：Azure HDInsight 上的 Apache Spark (Linux)
+# 概觀：HDInsight Linux 上的 Apache Spark (預覽)
  
 <a href="http://spark.apache.org/" target="_blank">Apache Spark</a> 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。Spark 處理引擎是專為速度、易用性及精密分析打造的產品。Spark 的記憶體內計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇 。Spark 也能與 Azure Blob 儲存體 (WASB) 相容，因此您可以輕鬆地透過 Spark 處理儲存在 Azure 中的現有資料。
 
@@ -124,4 +124,4 @@ HDInsight 中的 Spark 也提供 [ODBC 驅動程式](http://go.microsoft.com/fwl
 
 [hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0420_2016-->

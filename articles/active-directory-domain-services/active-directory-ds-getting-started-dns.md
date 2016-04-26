@@ -1,4 +1,11 @@
-<properties pageTitle="Azure Active Directory 網域服務預覽：開始使用 | Microsoft Azure" description="開始使用 Azure Active Directory Domain Services" services="active-directory-ds" documentationCenter="" authors="mahesh-unnikrishnan" manager="stevenpo editor="curtand"/>
+<properties
+	pageTitle="Azure Active Directory 網域服務預覽：開始使用 | Microsoft Azure"
+	description="開始使用 Azure Active Directory 網域服務"
+	services="active-directory-ds"
+	documentationCenter=""
+	authors="mahesh-unnikrishnan"
+	manager="stevenpo"
+	editor="curtand"/>
 
 <tags
 	ms.service="active-directory-ds"
@@ -6,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="01/26/2016"
+	ms.date="04/11/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 開始使用
@@ -39,4 +46,4 @@
 ---
 [**下一步 - 啟用 Azure AD 網域服務的密碼同步處理。**](active-directory-ds-getting-started-password-sync.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->
