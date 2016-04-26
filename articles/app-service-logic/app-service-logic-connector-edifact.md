@@ -44,9 +44,9 @@ Edifact 連接器可以當作觸發程序或動作使用。
 - 從右窗格中按一下 [Edifact 連接器]︰
 
 ![觸發程序設定][3]
-- 按一下 ->：![觸發程序選項][4]
-- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：
-
+- 按一下 ->：  
+- ![觸發程序選項][4]
+- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：  
 ![發行批次輸入][5]
 
 - 這個觸發程序沒有輸入。按一下 ->：
@@ -108,4 +108,4 @@ Edifact 連接器可以當作觸發程序或動作使用。
 [9]: ./media/app-service-logic-connector-edifact/EncodeInput.PNG
 [10]: ./media/app-service-logic-connector-edifact/EncodeConfigured.PNG
 
-<!---HONumber=AcomDC_0413_2016-->
+<!----HONumber=AcomDC_0413_2016-->

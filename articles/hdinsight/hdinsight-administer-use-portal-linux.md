@@ -64,7 +64,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	
 	- **設定**和**所有設定**：顯示該叢集的 [設定] 刀鋒視窗，可讓您存取該叢集的詳細組態資訊。
 	- **儀表板**、**叢集儀表板**和 **URL：這些是存取叢集儀表板 (也就是適用於 Linux 型叢集的 Ambari Web) 的所有方法。
-- **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
+	- **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
 	- **調整叢集**：可讓您變更此叢集的背景工作節點數目。
 	- **刪除**：刪除叢集。
 	- **快速入門** (![雲和雷電圖示 = 快速入門](./media/hdinsight-administer-use-portal-linux/quickstart.png))：顯示可協助您開始使用 HDInsight 的資訊。
@@ -300,4 +300,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-portal-linux/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0413_2016-->
+<!----HONumber=AcomDC_0413_2016-->
