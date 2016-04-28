@@ -18,16 +18,11 @@
 
 ## 參與方法
 
-您可以透過以下幾種不同方法參與 [Azure 文件](http://azure.microsoft.com/documentation/)：
+您可以在 GitHub 使用者介面輕鬆地參與技術文件。在此儲存機制中尋找文章，或瀏覽 [http://azure.microsoft.com/documentation](http://azure.microsoft.com/documentation) 上的文章，然後按一下文章中的連結來前往 GitHub 來源。
 
-* 參與[論壇討論](http://social.msdn.microsoft.com/Forums/windowsazure/home)。
-* 在文章最下方提交 Disqus 註解。
-* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。在此儲存機制中尋找文章，或瀏覽 [http://azure.microsoft.com/documentation](http://azure.microsoft.com/documentation) 上的文章，然後按一下文章中的連結來前往 GitHub 來源。
-* 如果您要大幅變更現有文章、新增或變更圖片或是參與編輯新文章，您需要取用此儲存機制、安裝 Git Bash 和 MarkdownPad，並學習一些 git 命令。
+## 關於您對 Azure 內容的參與
 
-##關於您對 Azure 內容的參與
-
-###小幅度修正
+### 小幅度修正
 
 您在此儲存機制中針對文件和程式碼範例所提交的小幅度修正或釐清，將受到 [Azure 網站使用規定 (ToU)](http://azure.microsoft.com/support/legal/website-terms-of-use/) 的約束。
 
