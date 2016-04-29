@@ -22,7 +22,7 @@ Azure AD Connect 是一種工具，用來整合您的內部部署身分識別系
 
 <!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
 
-> [AZURE.IMPORTANT] [Azure AD Connect is the best way to connect your on-premises directory with Azure AD and Office 365. This is a great time to upgrade to Azure AD Connect from Windows Azure Active Directory Sync (DirSync) or Azure AD Sync as these tools are now deprecated and will reach end of support on April 13, 2017.]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
+> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Windows Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
