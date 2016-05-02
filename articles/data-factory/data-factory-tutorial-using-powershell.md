@@ -392,7 +392,7 @@ Azure 入口網站尚不支援建立資料集/資料表，因此在此版本中�
 
 	![RawGameEventsTable [資料配量] 刀鋒視窗][image-data-factory-monitoring-raw-game-events-table-dataslice-blade]
 
-	如果發生錯誤，您在這裡會看到 **[Failed] **狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting] (視系統處理配量的速度而定)。
+	如果發生錯誤，您在這裡會看到 **[Failed]** 狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting]\(視系統處理配量的速度而定)。
  
 	請參閱 [Azure Data Factory 開發人員參考資料][developer-reference]，以了解所有可能的配量狀態。
 
