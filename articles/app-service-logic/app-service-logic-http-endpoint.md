@@ -155,7 +155,7 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 | 設定 HTTP 方法 | 透過 API 管理 |
 | 設定相對路徑 | 透過 API 管理 |
 | 透過 `@triggerOutputs().body.Content` 參考連入主體 | 透過 `@triggerOutputs().body` 參考 |
-| HTTP 接聽程式上的**傳送 HTTP 回應**動作 | 按一下 [回應 HTTP 要求] (不需要 API 應用程式)
+| HTTP 接聽程式上的**傳送 HTTP 回應**動作 | 按一下 [回應 HTTP 要求]\(不需要 API 應用程式)
 
 
 [1]: ./media/app-service-logic-http-endpoint/manualtrigger.png
