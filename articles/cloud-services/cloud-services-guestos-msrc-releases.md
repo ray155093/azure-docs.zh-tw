@@ -13,12 +13,25 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="03/23/2016"
+   ms.date="04/18/2016"
    ms.author="yuemlu"/>
 
 # Azure 客體作業系統 
 
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。推出這些更新的特定[系列][family-explain]皆會包含這些更新。
+
+
+## 四月客體 OS 
+
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ---------------- | --------------------- |
+| MS16-037 | [3148531] | Internet Explorer 的累積安全性更新 | 4\.31, 3.38, 2.50 | 2016 年 4 月 12 日 |  
+| MS16-039 | [3148522] | Microsoft 圖形元件的安全性更新 | 4\.31, 3.38, 2.50 | 2016 年 4 月 12 日 | 
+| MS16-040 | [3148541] | Microsoft XML 核心服務的安全性更新 | 4\.31, 3.38, 2.50 | 2016 年 4 月 12 日 | 
+| MS16-044 | [3146706] | Windows OLE 的安全性更新 | 4\.31, 3.38, 2.50 | 2016 年 4 月 12 日 | 
+| MS16-045 | [3143118] | Windows Hyper-V 的安全性更新 | 4\.31, 3.38 | 2016 年 4 月 12 日 | 
+| MS16-047 | [3148527] | 安全性帳戶管理員遠端通訊協定的安全性更新 | 4\.31, 3.38, 2.50 | 2016 年 4 月 12 日 | 
+| MS16-048 | [3148528] | CSRSS 的安全性更新 | 4\.31, 3.38 | 2016 年 4 月 12 日 | 
 
 ## 三月客體作業系統 
 
@@ -256,6 +269,14 @@
 | N/A | [2999802][2999802] | 在 Windows 中列印虛線時會變成實線 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 | N/A | [2896881][2896881] | 在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 
+[3148531]: http://support.microsoft.com/kb/3148531
+[3148522]: http://support.microsoft.com/kb/3148522
+[3148541]: http://support.microsoft.com/kb/3148541
+[3146706]: http://support.microsoft.com/kb/3146706
+[3143118]: http://support.microsoft.com/kb/3143118
+[3148527]: http://support.microsoft.com/kb/3148527
+[3148528]: http://support.microsoft.com/kb/3148528
+
 
 [3142015]: http://support.microsoft.com/kb/3142015
 [3143148]: http://support.microsoft.com/kb/3143148
@@ -432,4 +453,4 @@
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-and-release-explanation
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

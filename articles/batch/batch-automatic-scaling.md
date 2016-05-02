@@ -13,20 +13,20 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="multiple"
-	ms.date="01/08/2016"
+	ms.date="04/18/2016"
 	ms.author="marsma"/>
 
 # 自動調整 Azure Batch 集區中的計算節點
 
-藉由在 Azure Batch 中使用自動調整，您可以動態地在作業執行期間加入或移除 Batch 集區中的計算節點，以自動調整應用程式使用的處理能力。此自動調整可以節省時間和金錢。
+透過自動調整功能，Azure Batch 服務可以根據您定義的參數，動態新增或移除集區中的計算節點。這可讓您自動調整您的應用程式所使用的計算資源數量，進而可能節省時間和金錢。
 
-您可以讓自動調整公式與集區 (例如 [Batch .NET](batch-dotnet-get-started.md) 程式庫中的 [PoolOperations.EnableAutoScale][net_enableautoscale] 方法) 產生關聯，以在計算節點的集區上啟用自動調整。Batch 服務會接著使用此公式來判斷要執行您的工作負載所需的計算節點數目。會回應定期收集的服務度量資料範例的集區中的計算節點數目，會根據相關聯的公式以可設定的間隔進行調整。
+您可讓您定義的自動調整公式與計算節點的集區 (例如 [Batch .NET](batch-dotnet-get-started.md) 程式庫中的 [PoolOperations.EnableAutoScale][net_enableautoscale] 方法) 產生關聯，以在該集區上啟用自動調整。Batch 服務會接著使用此公式來判斷要執行您的工作負載所需的計算節點數目。Batch 會回應定期收集的服務計量資料範例，並根據您的公式在可設定的間隔調整集區中的計算節點數目。
 
-您可以在建立集區時或在現有的集區上啟用自動調整。您也可以變更已啟用「自動調整」的集區上的現有的公式。Batch 可讓您在將公式指派給集區之前先評估公式，以及監視自動調整回合的狀態。
+您可以在建立集區時或在現有的集區上啟用自動調整。您也可以變更已啟用「自動調整」的集區上的現有的公式。Batch 可讓您在將公式指派給集區之前評估公式，以及監視自動調整回合的狀態。
 
 ## 自動調整公式
 
-自動調整公式是包含一或多個陳述式的字串值，已指派給集區的 [autoScaleFormula][rest_autoscaleformula] 元素 (Batch REST API) 或 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 屬性 (Batch .NET API)。您定義這些公式。若已指派給集區，公式則會決定集區中可供下一個處理間隔使用的計算節點數目 (稍後會詳細說明間隔)。公式字串的大小不得超過 8 KB、最多只能包含 100 個陳述式 (以分號隔開)，而且可以包含換行和註解。
+自動調整公式是您定義的字串值 (包含一或多個陳述式)，已指派給集區的 [autoScaleFormula][rest_autoscaleformula] 元素 (Batch REST) 或 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 屬性 (Batch .NET)。若已指派給集區，Batch 集區會使用您的公式來決定集區中可供下一個間隔處理的目標計算節點數目 (稍後會詳細說明間隔)。公式字串的大小不得超過 8 KB、最多只能包含 100 個陳述式 (以分號隔開)，而且可以包含換行和註解。
 
 您可以將自動調整公式視為使用 Batch 自動調整「語言」。 公式陳述式為任意格式的運算式，可以包含系統與使用者定義的變數和常數。它們可以使用內建類型、運算子和函數對這些值執行各種作業。例如，陳述式可能會採用下列格式：
 
@@ -39,7 +39,7 @@ VAR₀ = Expression₀(system-defined variables);
 VAR₁ = Expression₁(system-defined variables, VAR₀);
 ```
 
-透過在公式中使用陳述式，您的目標是要達到應該調整集區時的計算節點數目，也就是**專用節點**的**目標**數目。此數目可能會更高、更低，或與集區中目前的節點數目相同。Batch 服務會在特定間隔評估集區的自動調整公式 (下面會討論[自動調整間隔](#interval))。然後將集區中的目標節點數目調整為自動調整公式在評估時指定的數目。
+透過公式中的這些陳述式，您的目標是要達到應該調整集區時的計算節點數目，也就是**專用節點**的**目標**數目。此數目可能會更高、更低，或與集區中目前的節點數目相同。Batch 服務會在特定間隔評估集區的自動調整公式 (下面會討論[自動調整間隔](#automatic-scaling-interval))。然後將集區中的目標節點數目調整為自動調整公式在評估時指定的數目。
 
 舉一個快速範例，以下兩行自動調整公式會根據作用中的工作數目指定應該調整的節點數目 (最多 10 個計算節點)：
 
@@ -50,7 +50,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 本文的後續幾節會討論將構成自動調整公式的各種實體，包括變數、運算子、作業和函數。您將了解如何取得 Batch 內的各種計算資源和工作度量。您可以使用這些度量，根據資源使用量和工作狀態明智地調整集區的節點計數。然後，您將透過使用 Batch REST 和 .NET API，了解如何建立公式以及對集區啟用自動調整。我們將完成幾個範例公式。
 
-> [AZURE.NOTE] 每個 Azure Batch 帳戶限制為可用於處理的計算節點的數目上限。Batch 服務建立的節點數目最多達到該限制。因此不會達到公式所指定的目標數目。如需檢視和增加帳戶配額的相關資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
+> [AZURE.IMPORTANT] 每個 Azure Batch 帳戶限制為可用於處理的計算節點的數目上限。Batch 服務建立的節點數目最多達到該限制。因此不會達到公式所指定的目標數目。如需檢視和增加帳戶配額的相關資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
 ## <a name="variables"></a>變數
 
@@ -186,166 +186,37 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 以上列出的類型允許這些**作業**。
 
-<table>
-  <tr>
-    <th>作業</th>
-    <th>允許的運算子</th>
-  </tr>
-  <tr>
-    <td>double &lt;operator> double => double</td>
-    <td>+、-、*、/</td>
-  </tr>
-  <tr>
-    <td>double &lt;operator> timeinterval => timeinterval</td>
-    <td>*</td>
-  </tr>
-  <tr>
-    <td>doubleVec &lt;operator> double => doubleVec</td>
-    <td>+、-、*、/</td>
-  </tr>
-  <tr>
-    <td>doubleVec &lt;operator> doubleVec => doubleVec</td>
-    <td>+、-、*、/</td>
-  </tr>
-  <tr>
-    <td>timeinterval &lt;operator> double => timeinterval</td>
-    <td>*、/</td>
-  </tr>
-  <tr>
-    <td>timeinterval &lt;operator> timeinterval => timeinterval</td>
-    <td>+、-</td>
-  </tr>
-  <tr>
-    <td>timeinterval &lt;operator> timestamp => timestamp</td>
-    <td>+</td>
-  </tr>
-  <tr>
-    <td>timestamp &lt;operator> timeinterval => timestamp</td>
-    <td>+</td>
-  </tr>
-  <tr>
-    <td>timestamp &lt;operator> timestamp => timeinterval</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>&lt;operator>double => double</td>
-    <td>-、!</td>
-  </tr>
-  <tr>
-    <td>&lt;operator>timeinterval => timeinterval</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>double &lt;operator> double => double</td>
-    <td>&lt;、&lt;=、==、>=、>、!=</td>
-  </tr>
-  <tr>
-    <td>string &lt;operator> string => double</td>
-    <td>&lt;、&lt;=、==、>=、>、!=</td>
-  </tr>
-  <tr>
-    <td>timestamp &lt;operator> timestamp => double</td>
-    <td>&lt;、&lt;=、==、>=、>、!=</td>
-  </tr>
-  <tr>
-    <td>timeinterval &lt;operator> timeinterval => double</td>
-    <td>&lt;、&lt;=、==、>=、>、!=</td>
-  </tr>
-  <tr>
-    <td>double &lt;operator> double => double</td>
-    <td>&amp;&amp;、||</td>
-  </tr>
-  <tr>
-    <td>只測試 double (非 0 值為 true，0 為 false)</td>
-    <td>? :</td>
-  </tr>
-</table>
+| 作業 | 支援的運算子 | 結果類型 |
+| ------------------------------------- | --------------------- | ------------- |
+| double 運算子 double | +, -, *, / | double | | double 運算子 timeinterval | * | timeinterval | | doubleVec 運算子 double | +, -, *, / | doubleVec | | doubleVec 運算子 doubleVec | +, -, *, / | doubleVec | | timeinterval 運算子 double | *, / | timeinterval | | timeinterval 運算子 timeinterval | +, - | timeinterval | | timeinterval 運算子 timestamp | + | timestamp | | timestamp 運算子 timeinterval | + | timestamp | | timestamp 運算子 timestamp | - | timeinterval | | *運算子*double | -, ! | double | | *運算子*timeinterval | - | timeinterval | | double 運算子 double | <, <=, ==, >=, >, != | double | | string 運算子 string | <, <=, ==, >=, >, != | double | | timestamp 運算子 timestamp | <, <=, ==, >=, >, != | double | | timeinterval 運算子 timeinterval | <, <=, ==, >=, >, != | double | | double 運算子 double | &&, || | double |
+
+測試具有三元運算子的雙精準數 (`double ? statement1 : statement2`) 時，非零為 **true**，而零則為 **false**。
 
 ## 函式
 
 這些預先定義的**函式**可供您用來定義自動調整公式。
 
-<table>
-  <tr>
-    <th>函式</th>
-    <th>說明</th>
-  </tr>
-  <tr>
-    <td>double <b>avg</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 中所有值的平均值。</td>
-  </tr>
-  <tr>
-    <td>double <b>len</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 建立的向量的長度。</td>
-  <tr>
-    <td>double <b>lg</b>(double)</td>
-    <td>傳回 double 的對數底數 2。</td>
-  </tr>
-  <tr>
-    <td>doubleVec <b>lg</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 的 componentwise 對數底數 2。vec(double) 必須針對單一 double 參數明確傳遞。否則會假設為 double lg(double) 版本。</td>
-  </tr>
-  <tr>
-    <td>double <b>ln</b>(double)</td>
-    <td>傳回 double 的自然底數。</td>
-  </tr>
-  <tr>
-    <td>doubleVec <b>ln</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 的 componentwise 對數底數 2。vec(double) 必須針對單一 double 參數明確傳遞。否則會假設為 double lg(double) 版本。</td>
-  </tr>
-  <tr>
-    <td>double <b>log</b>(double)</td>
-    <td>傳回 double 的對數底數 10。</td>
-  </tr>
-  <tr>
-    <td>doubleVec <b>log</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 的 componentwise 對數底數 10。vec(double) 必須針對單一 double 參數明確傳遞。否則，會假設為 double log (double) 版本。</td>
-  </tr>
-  <tr>
-    <td>double <b>max</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 中的最大值。</td>
-  </tr>
-  <tr>
-    <td>double <b>min</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 中的最小值。</td>
-  </tr>
-  <tr>
-    <td>double <b>norm</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 建立的向量的 2-norm。
-  </tr>
-  <tr>
-    <td>double <b>percentile</b>(doubleVec v, double p)</td>
-    <td>傳回向量 v 的百分位數元素。</td>
-  </tr>
-  <tr>
-    <td>double <b>rand</b>()</td>
-    <td>傳回介於 0.0 到 1.0 之間的隨機值。</td>
-  </tr>
-  <tr>
-    <td>double <b>range</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 中最小和最大值之間的差異。</td>
-  </tr>
-  <tr>
-    <td>double <b>std</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 中值的標準差範例。</td>
-  </tr>
-  <tr>
-    <td><b>stop</b>()</td>
-    <td>停止評估自動調整運算式。</td>
-  </tr>
-  <tr>
-    <td>double <b>sum</b>(doubleVecList)</td>
-    <td>傳回 doubleVecList 所有元件的總和。</td>
-  </tr>
-  <tr>
-    <td>timestamp <b>time</b>(string dateTime="")</td>
-    <td>如果未傳遞參數，則傳回目前時間的時間戳記，如果有傳遞參數，則為 dateTime 字串的時間戳記。支援的 dateTime 格式為 W3C-DTF 和 RFC 1123。</td>
-  </tr>
-  <tr>
-    <td>double <b>val</b>(doubleVec v, double i)</td>
-    <td>傳回向量 v 中位置 i 的元素值，起始索引為零。</td>
-  </tr>
-</table>
+| 函式 | 傳回類型 | 說明
+| --------------------------------- | ------------- | --------- |
+| avg(doubleVecList) | double | 傳回 doubleVecList 中所有值的平均值。
+| len(doubleVecList) | double | 傳回 doubleVecList 建立的向量的長度。
+| lg(double) | double | 傳回 double 的對數底數 2。
+| lg(doubleVecList) | doubleVec | 傳回 doubleVecList 的 componentwise 對數底數 2。vec(double) 必須針對此參數明確傳遞。否則會假設為 double lg(double) 版本。
+| ln(double) | double | 傳回 double 的自然底數。
+| ln(doubleVecList) | doubleVec | 傳回 doubleVecList 的 componentwise 對數底數 2。vec(double) 必須針對此參數明確傳遞。否則會假設為 double lg(double) 版本。
+| log(double) | double | 傳回 double 的對數底數 10。
+| log(doubleVecList) | doubleVec | 傳回 doubleVecList 的 componentwise 對數底數 10。vec(double) 必須針對單一 double 參數明確傳遞。否則，會假設為 double log (double) 版本。
+| max(doubleVecList) | double | 傳回 doubleVecList 中的最大值。
+| min(doubleVecList) | double | 傳回 doubleVecList 中的最小值。
+| norm(doubleVecList) | double | 傳回 doubleVecList 建立的向量的 2-norm。
+| percentile(doubleVec v, double p) | double | 傳回向量 v 的百分位數元素。
+| rand() | double | 傳回介於 0.0 到 1.0 之間的隨機值。
+| range(doubleVecList) | double | 傳回 doubleVecList 中最小和最大值之間的差異。
+| std(doubleVecList) | double | 傳回 doubleVecList 中值的標準差範例。
+| stop() | | 停止評估自動調整運算式。
+| sum(doubleVecList) | double | 傳回 doubleVecList 所有元件的總和。
+| time(string dateTime="") | timestamp | 如果未傳遞參數，則傳回目前時間的時間戳記，如果有傳遞參數，則為 dateTime 字串的時間戳記。支援的 dateTime 格式為 W3C-DTF 和 RFC 1123。
+| val(doubleVec v, double i) | double | 傳回向量 v 中位置 i 的元素值，起始索引為零。
 
 上表中所述的某些函式可以接受清單做為引數。逗號分隔清單是 *double* 和 *doubleVec* 的任意組合。例如：
 
@@ -424,9 +295,9 @@ Batch 評估上述程式碼後，它會以值的向量形式傳回樣本範圍�
 
 `runningTasksSample=[1,1,1,1,1,1,1,1,1,1];`
 
-收集樣本向量後，您便可使用 `min()`、`max()` 和 `avg()` 等函數從所收集的範圍衍生出有意義的值。
+收集樣本向量後，您便可使用 `min()`、`max()` 和 `avg()` 等函式從所收集的範圍衍生出有意義的值。
 
-若要增加安全性，如果特定一段時間可用的樣本小於特定百分比，您可以強制公式評估為*失敗*。強制公式評估為失敗會指示 Batch 在指定的樣本百分比無法使用時停止進一步評估公式，而且將不會變更集區大小。若要指定評估成功所需的樣本百分比，請將其指定為 `GetSample()` 的第三個參數。以下指定了 75% 的樣本需求：
+若要增加安全性，如果特定一段時間可用的樣本小於特定百分比，您可以強制公式評估為「失敗」。強制公式評估為失敗會指示 Batch 在指定的樣本百分比無法使用時停止進一步評估公式，而且將不會變更集區大小。若要指定評估成功所需的樣本百分比，請將其指定為 `GetSample()` 的第三個參數。以下指定了 75% 的樣本需求：
 
 `runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);`
 
@@ -515,9 +386,9 @@ $TargetDedicated = min(400, $TotalNodes)
 - [BatchClient.PoolOperations.CreatePool](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.createpool.aspx)：呼叫這個 .NET 方法以建立集區之後，您接著要設定集區的 [CloudPool.AutoScaleEnabled](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.autoscaleenabled.aspx) 屬性和 [CloudPool.AutoScaleFormula](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.autoscaleformula.aspx) 屬性，以啟用自動調整。
 - [將集區加入至帳戶](https://msdn.microsoft.com/library/azure/dn820174.aspx)：在這個 REST API 要求中會使用 enableAutoScale 和 autoScaleFormula 元素，以便在集區建立時設定集區的自動調整。
 
-> [AZURE.IMPORTANT] 如果您使用上述其中一項技術建立已啟用自動調整的集區，則**不**得指定集區的 *targetDedicated* 參數。也請注意，如果您想要對已啟用自動調整的集區手動調整大小 (例如使用 [BatchClient.PoolOperations.ResizePool][net_poolops_resizepool])，則必須先在集區**停用**自動調整，然後調整其大小。
+> [AZURE.IMPORTANT] 如果您使用上述其中一項技術建立已啟用自動調整的集區，則**不**得指定集區的 targetDedicated 參數。也請注意，如果您想要對已啟用自動調整的集區手動調整大小 (例如使用 [BatchClient.PoolOperations.ResizePool][net_poolops_resizepool])，則必須先在集區**停用**自動調整，然後調整其大小。
 
-下列程式碼片段顯示如何使用 [Batch .NET][net_api] 程式庫建立啟用自動調整的集區 ([CloudPool][net_cloudpool])。集區的自動調整公式會將星期一的節點目標數目設定為 5，而一週的其他各天設定為 1。此外，自動調整間隔會設定為 30 分鐘 (請參閱下面的[自動調整間隔](#interval))。在本文中的此部分與其他 C# 程式碼片段中，"myBatchClient" 是適當初始化的 [BatchClient][net_batchclient] 執行個體。
+下列程式碼片段顯示如何使用 [Batch .NET][net_api] 程式庫建立啟用自動調整的集區 ([CloudPool][net_cloudpool])。集區的自動調整公式會將星期一的節點目標數目設定為 5，而一週的其他各天設定為 1。此外，自動調整間隔會設定為 30 分鐘 (請參閱下面的[自動調整間隔](#automatic-scaling-interval))。在本文中的此部分與其他 C# 程式碼片段中，"myBatchClient" 是適當初始化的 [BatchClient][net_batchclient] 執行個體。
 
 ```
 CloudPool pool = myBatchClient.PoolOperations.CreatePool("mypool", "3", "small");
@@ -527,7 +398,7 @@ pool.AutoScaleEvaluationInterval = TimeSpan.FromMinutes(30);
 pool.Commit();
 ```
 
-### <a name="interval"></a>自動調整間隔
+### 自動調整間隔
 
 依預設，Batch 服務會根據其自動調整公式每隔 **15 分鐘**調整集區的大小。不過，可使用下列的集區屬性設定此間隔：
 
@@ -540,7 +411,7 @@ pool.Commit();
 
 ## 建立集區之後啟用自動調整
 
-如果您已經使用 *targetDedicated* 參數設定具有指定計算節點數目的集區，則您稍後可以更新現有的集區以自動調整。您可以使用以下其中一種方式執行這項操作：
+如果您已經使用 targetDedicated 參數設定具有指定計算節點數目的集區，則您稍後可以更新現有的集區以自動調整。您可以使用以下其中一種方式執行這項操作：
 
 - [BatchClient.PoolOperations.EnableAutoScale][net_enableautoscale]：這個 .NET 方法需要現有集區的識別碼，以及要套用至集區的自動調整公式。
 - [在集區上啟用自動調整][rest_enableautoscale]：這個 REST API 要求需要 URI 中現有集區的識別碼，以及要求主體中的自動調整公式。
@@ -703,16 +574,9 @@ string formula = string.Format(@"
 
 ## 後續步驟
 
-1. 您可能需要存取計算節點，才能完整評估您應用程式的效率。若要使用遠端存取，必須將使用者帳戶加入至您想要存取的節點，而且必須擷取該節點的遠端桌面通訊協定 (RDP) 檔案。
-    - 使用以下其中一種方式新增使用者帳戶：
-        * [New-AzureBatchVMUser](https://msdn.microsoft.com/library/mt149846.aspx)：此 PowerShell Cmdlet 會採用集區名稱、計算節點名稱、帳戶名稱和密碼做為參數。
-        * [BatchClient.PoolOperations.CreateComputeNodeUser](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.createcomputenodeuser.aspx)：此 .NET 方法會建立 [ComputeNodeUser](https://msdn.microsoft.com/library/microsoft.azure.batch.computenodeuser.aspx) 類別的執行個體，其中可設定計算節點的帳戶名稱和密碼。然後在執行個體上呼叫 [ComputeNodeUser.Commit](https://msdn.microsoft.com/library/microsoft.azure.batch.computenodeuser.commit.aspx)，在該節點上建立使用者。
-        * [將使用者帳戶加入至節點](https://msdn.microsoft.com/library/dn820137.aspx)：集區的名稱與計算節點是在 URI 中指定。帳戶名稱和密碼則會傳送到此 REST API 要求的要求主體中的節點。
-    - 取得 RDP 檔案：
-        * [BatchClient.PoolOperations.GetRDPFile](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getrdpfile.aspx)：這個 .NET 方法需要集區的識別碼、節點識別碼，以及要建立之 RDP 檔案的名稱。
-        * [從節點取得遠端桌面通訊協定檔案](https://msdn.microsoft.com/library/dn820120.aspx)：這個 REST API 要求需要集區的名稱和計算節點的名稱。回應會包含 RDP 檔案的內容。
-        * [Get AzureBatchRDPFile](https://msdn.microsoft.com/library/mt149851.aspx)：此 PowerShell Cmdlet 會從指定的計算節點取得 RDP 檔案，並將其儲存至指定的檔案位置或串流。
-2.	有些應用程式會產生可能難以處理的大量資料。解決方法之一是透過[有效率的清單查詢](batch-efficient-list-queries.md)。
+* [使用並行節點工作最大化 Azure Batch 計算資源使用量](batch-parallel-node-tasks.md)包含有關如何對集區中的計算節點同時執行多項工作的詳細資料。除了自動調整，這項功能有助於減少某些工作負載的作業持續時間，進而節省金錢。
+
+* 另一種效率提升方式，則是確定您的 Batch 應用程式以最佳方式查詢 Batch 服務。在[有效率地查詢 Azure 批次服務](batch-efficient-list-queries.md)中，您將了解如何在查詢可能數千個計算節點或工作的狀態時，限制越過網路的資料量。
 
 [net_api]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [net_batchclient]: http://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient.aspx
@@ -728,4 +592,4 @@ string formula = string.Format(@"
 [rest_autoscaleinterval]: https://msdn.microsoft.com/zh-TW/library/azure/dn820173.aspx
 [rest_enableautoscale]: https://msdn.microsoft.com/library/azure/dn820173.aspx
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/19/2016" 
+	ms.date="04/05/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 進行轉換和分析
@@ -24,21 +24,20 @@
 
 轉換活動 | 計算環境 
 :----------------------- | :--------------------
-[Hive](data-factory-hive-activity.md) | HDInsight [Hadoop]
-[Pig](data-factory-pig-activity.md) | HDInsight [Hadoop]
-[MapReduce](data-factory-map-reduce.md) | HDInsight [Hadoop]
-[Hadoop 串流](data-factory-hadoop-streaming-activity.md) | HDInsight [Hadoop]
-[機器學習服務活動：批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) | Azure VM 
+[Hive](data-factory-hive-activity.md) | HDInsight [Hadoop] [Pig](data-factory-pig-activity.md) | HDInsight [Hadoop] [MapReduce](data-factory-map-reduce.md) | HDInsight [Hadoop] [Hadoop 串流](data-factory-hadoop-streaming-activity.md) | HDInsight [Hadoop] [機器學習服務活動：批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) | Azure VM 
 [預存程序](data-factory-stored-proc-activity.md) | Azure SQL、Azure SQL 資料倉儲或 SQL Server |
 [資料湖分析 U-SQL](data-factory-usql-activity.md) | Azure 資料湖分析 
 [DotNet](data-factory-use-custom-activities.md) | HDInsight [Hadoop] 或 Azure Batch
    
+> [AZURE.NOTE] 
+您可以使用 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。您可以建立自訂活動，以便在已安裝 R 的 HDInsight 叢集上執行 R 指令碼。請參閱 [Run R Script using Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。
+ 
 
 您需要為計算環境建立連結的服務，然後在定義轉換活動時使用連結的服務。Data Factory 支援兩種類型的資計算環境。
 
 1. **隨選**：在此情況下，運算環境完全由 Data Factory 進行管理。Data Factory 服務會在工作提交前自動建立運算環境以處理資料，而在工作完成時予以移除。使用者可以針對工作執行、叢集管理和啟動動作，設定和控制隨選計算環境的細微設定。 
 2. **攜帶您自己的裝置**：在此情況下，您可以註冊自己的運算環境 (例如 HDInsight 叢集)，做為 Data Factory 中的連結服務。運算環境由您自行管理，而 Data Factory 會使用它來執行活動。 
 
-請參閱〈[計算連結服務](data-factory-compute-linked-services.md)〉文章以了解 Data Factory 所支援的計算連結服務。
+請參閱〈[運算連結服務](data-factory-compute-linked-services.md)〉文章以了解 Data Factory 所支援的運算連結服務。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0420_2016-->

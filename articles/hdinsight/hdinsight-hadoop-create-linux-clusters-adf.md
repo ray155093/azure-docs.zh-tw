@@ -56,6 +56,8 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
 - [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 - [Azure CLI](../xplat-cli-install.md) 或 [Azure PowerShell](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。 
 
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
+
 ##準備儲存體帳戶
 
 在此案例中，您最多可以使用三個儲存體帳戶︰
@@ -82,6 +84,8 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
 **使用 Azure CLI 準備處存體並複製檔案**
 
     azure login
+    
+    azure config mode arm
 
     azure group create --name "<Azure Resource Group Name>" --location "East US 2"
 
@@ -93,7 +97,7 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
     azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted" 
     azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted" 
 
-容器名稱為 adfgetstarted。請讓它保持原狀。否則，您必須更新 ARM 範本。
+容器名稱為 *adfgetstarted*。請讓它保持原狀。否則，您必須更新 ARM 範本。
 
 如需有關此 CLI 指定碼的說明，請參閱[使用 Azure CLI 搭配 Azure 儲存體](../storage/storage-azure-cli.md)。
 
@@ -176,7 +180,7 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
 **檢查儲存體帳戶和內容**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側面板上的 [資源群組]。
+2. 按一下左窗格上的 [資源群組]。
 3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。 
 4. 除非您與其他專案共用資源群組，否則 [資源] 圖格應列出一個資源。這就是您先前指定名稱的儲存體帳戶。按一下儲存體帳戶名稱。
 5. 按一下 [Blob] 圖格。
@@ -212,9 +216,9 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
         ]
     }
 
-它包含一個稱為 hdinsight-hive-on-demand 的 Data Factory 資源 (此名稱不會顯示在螢幕擷取畫面上)。目前只有美國西部區域和北歐地區支援 Data Factory。
+它包含一個稱為 *hdinsight-hive-on-demand* 的 Data Factory 資源 (此名稱不會顯示在螢幕擷取畫面上)。目前只有美國西部區域和北歐地區支援 Data Factory。
 
-hdinsight-hive-on-demand 資源包含 4 個資源︰
+*hdinsight-hive-on-demand* 資源包含 4 個資源︰
 
 - 將做為預設 HDInsight 儲存體帳戶、輸入資料儲存體和輸出資料儲存體之儲存體帳戶的連結服務。
 - 即將建立之 HDInsight 叢集的連結服務：
@@ -240,7 +244,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
     即使尚未指定，也會在與儲存體帳戶相同的區域中建立叢集。
     
-    請注意 timeToLive 設定。Data Factory 會在叢集閒置 30 分鐘後自動刪除叢集。
+    請注意 *timeToLive* 設定。Data Factory 會在叢集閒置 30 分鐘後自動刪除叢集。
 - 輸入資料的資料集。檔案名稱和資料夾名稱的定義如下︰
 
         "fileName": "input.log",
@@ -334,9 +338,9 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 9. 按兩下 [AzureBlobOutput]。
 10. 在 [最近更新的配量] 上，您應該會看到一個配量。如果狀態為 [進行中]，請等到其變更為 [就緒]。
 
-檢查 Data Factory 輸出
+**檢查 Data Factory 輸出**
 
-1. 使用最後一個工作階段中的相同程序來檢查 adfgetstarted 容器的內容。除了 adfgetsarted，有兩個新容器：
+1. 使用最後一個工作階段中的相同程序來檢查 adfgetstarted 容器的內容。除了 adfgetsarted，還有兩個新容器：
 
     - adfhdinsight-hive-on-demand-hdinsightondemandlinked-xxxxxxxxxxxxx︰這是 HDInsight 叢集的預設容器。預設容器名稱的模式如下："adf>yourdatafactoryname>-linkedservicename-datetimestamp"。 
     - adfjobs︰這是 ADF 作業記錄檔的容器。
@@ -360,7 +364,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 **刪除資源群組**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側面板上的 [資源群組]。
+2. 按一下左窗格上的 [資源群組]。
 3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。這會在新的刀鋒視窗中開啟資源群組。
 4. 除非您與其他專案共用資源群組，否則 [資源] 圖格應列出預設儲存體帳戶和 Data Factory。
 5. 按一下刀鋒視窗最上方的 [刪除]。這麼做，您也會刪除儲存體帳戶和此儲存體帳戶中儲存的資料。
@@ -434,4 +438,4 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 - [HDInsight 文件](https://azure.microsoft.com/documentation/services/hdinsight/)
 - [Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

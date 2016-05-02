@@ -6,7 +6,7 @@
 	authors="mmacy"
 	manager="timlt"
 	editor="" />
-	
+
 <tags
 	ms.service="batch"
 	ms.devlang="multiple"
@@ -15,7 +15,7 @@
 	ms.workload="big-compute"
 	ms.date="01/22/2016"
 	ms.author="marsma" />
-	
+
 # 在 Azure Batch 計算節點上執行準備和完成的工作
 
 Azure Batch 作業通常在執行之前需要某種形式的安裝，同樣地，在作業的工作完成之後也需要某種作業後維護。Batch 以選擇性的*工作準備*和*工作解除*任務的形式提供此準備和維護機制。
@@ -78,7 +78,7 @@ Batch 作業通常需要一組常用的資料做為作業工作的輸入。例�
 
 		await myJob.CommitAsync();
 
-如上所述，終止或刪除工作時會執行解除任務。呼叫 [PoolOperations.TerminateJobAsync][net_job_terminate]，即可進行透過 Batch .NET API 終止作業。刪除作業則是透過 [PoolOperations.DeleteJobAsync][net_job_delete] 執行。上述兩個動作通常是在作業的工作完成或達到定義之逾時時進行。
+如上所述，終止或刪除工作時會執行解除任務。呼叫 [JobOperations.TerminateJobAsync][net_job_terminate]，即可進行透過 Batch .NET API 終止作業。刪除作業則是透過 [JobOperations.DeleteJobAsync][net_job_delete] 執行。上述兩個動作通常是在作業的工作完成或達到定義之逾時時進行。
 
 		// Terminate the job to mark it as Completed; this will initiate the Job Release Task on any node
 		// that executed job tasks. Note that the Job Release Task is also executed when a job is deleted,
@@ -187,4 +187,4 @@ Sample complete, hit ENTER to exit...
 [1]: ./media/batch-job-prep-release/batchexplorer-01.png
 [2]: ./media/batch-job-prep-release/batchexplorer-02.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

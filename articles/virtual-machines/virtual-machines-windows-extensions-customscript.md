@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="11/01/2015"
+   ms.date="03/29/2016"
    ms.author="kundanap"/>
 
 # 使用 Windows VM 的自訂指令碼擴充功能搭配 Azure Resource Manager 範本
@@ -38,7 +38,8 @@
        "properties": {
            "publisher": "Microsoft.Compute",
            "type": "CustomScriptExtension",
-           "typeHandlerVersion": "1.4",
+           "typeHandlerVersion": "1.7",
+           "autoUpgradeMinorVersion":true,
            "settings": {
                "fileUris": [
                "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
@@ -47,7 +48,7 @@
          }
        }
      }
-     
+
 在上述範例中，以您自己的設定取代檔案的 URL 和檔案名稱。
 
 編寫範本之後，您可以使用 Azure PowerShell 部署它。
@@ -56,4 +57,4 @@
 
 * [Windows VM 上的自訂指令碼擴充功能](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

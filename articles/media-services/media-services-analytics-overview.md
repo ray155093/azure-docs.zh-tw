@@ -13,9 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/18/2016"   
+	ms.date="04/14/2016"   
 	ms.author="milanga;juliako;johndeu"/>
-
 
 # Azure 媒體服務分析概觀
 
@@ -49,7 +48,9 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 
 - **監視** - 由於 IP 相機的成長，監視視訊遽增。手動檢閱監視視訊既耗時又容易發生人為錯誤。Azure 媒體分析提供數個元件，例如動作偵測、臉部偵測和 Hyperlapse，讓檢閱、管理和建立衍生物件的程序更加容易。
 
+##示範
 
+[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
 ##媒體服務學習路徑
 
@@ -67,4 +68,4 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -2,7 +2,7 @@
 	pageTitle="在 Logic Apps 中使用 BizTalk 轉換 | Microsoft Azure App Service" 
 	description="了解如何將 XML 文件轉換為不同的結構描述：" 
 	authors="anuragdalmia" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" 
 	services="app-service\logic" 
 	documentationCenter=""/>
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="04/20/2016"
 	ms.author="anuragdalmia"/>
 
 # BizTalk 轉換
 
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 ## 概觀
 BizTalk 轉換 API 應用程式會將資料從一種格式轉換成另一種格式。例如，您可能會從訂單中取用出貨和帳單地址，並將其插入發票文件中。或者，您的內送訊息中可能包含 *YearMonthDay* 格式的目前日期。您想要將日期重新格式化為 *MonthDayYear* 格式。
@@ -50,7 +50,7 @@ BizTalk 轉換 API 應用程式會將資料從一種格式轉換成另一種格�
 
 如果對應在上傳之後有所變更或修改，您可以上傳更新的對應，以取代轉換 API 應用程式中現有的對應。
 
-1.	在 Azure 入口網站上選取 [瀏覽] \(畫面的左側)，然後選取 [API 應用程式]。如果 [**API 應用程式**] 未顯示，請選取 [**全部**]，然後從可用的清單中選取 [**API 應用程式**]：
+1.	在 Azure 入口網站上選取 [瀏覽] (畫面的左側)，然後選取 [API 應用程式]。如果 [**API 應用程式**] 未顯示，請選取 [**全部**]，然後從可用的清單中選取 [**API 應用程式**]：
 
 	![][7]
 
@@ -117,4 +117,4 @@ BizTalk 轉換 API 應用程式會將資料從一種格式轉換成另一種格�
 
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

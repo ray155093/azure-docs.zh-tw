@@ -19,9 +19,32 @@
 
 [分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
-使用您的瀏覽器搜尋來尋找此頁面上的語言項目，其中結合了查詢、彙總和純量頁面的內容。
 
 [AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
+
+
+| | | | | 
+|---|---|---|---|---
+|[ago](#ago)|[dayofweek](#dayofweek)|[let 子句](#let-clause)|[range](#range)|[summarize 運算子](#summarize-operator)
+|[any](#any)|[dcount](#dcount)|[limit 運算子](#limit-operator)|[range 運算子](#range-operator)|[take 運算子](#take-operator)
+|[argmax](#argmax)|[let 子句中的動態物件](#dynamic-objects-in-let-clauses)|[makelist](#makelist)|[reduce 運算子](#reduce-operator)|[todatetime](#todatetime)
+|[argmin](#argmin)|[extend 運算子](#extend-operator)|[makeset](#makeset)|[Render 指示詞](#render-directive)|[todouble](#todouble)
+|[算術運算子](#arithmetic-operators)|[extract](#extract)|[max](#max)|[replace](#replace)|[todynamic](#todynamic)
+|[陣列和物件常值](#array-and-object-literals)|[extractjson](#extractjson)|[min](#min)|[純量比較](#scalar-comparisons)|[toint](#toint)
+|[arraylength](#arraylength)|[floor](#floor)|[mvexpand 運算子](#mvexpand-operator)|[sort 運算子](#sort-operator)|[tolong](#tolong)
+|[avg](#avg)|[getmonth](#getmonth)|[notempty](#notempty)|[分割](#split)|[tolower](#tolower)
+|[bin](#bin)|[gettype](#gettype)|[notnull](#notnull)|[sqrt](#sqrt)|[top 運算子](#top-operator)
+|[布林常值](#boolean-literals)|[getyear](#getyear)|[now](#now)|[startofmonth](#startofmonth)|[totimespan](#totimespan)
+|[布林運算子](#boolean-operators)|[雜湊](#hash)|[數值常值](#numeric-literals)|[startofyear](#startofyear)|[toupper](#toupper)
+|[buildschema](#buildschema)|[iff](#iff)|[模糊字串常值](#obfuscated-string-literals)|[stdev](#stdev)|[treepath](#treepath)
+|[轉換](#casts)|[isempty](#isempty)|[parse 運算子](#parse-operator)|[strcat](#strcat)|[union 運算子](#union-operator)
+|[計數](#count)|[isnotempty](#isnotempty)|[parsejson](#parsejson)|[字串比較](#string-comparisons)|[variance](#variance)
+|[count 運算子](#count-operator)|[isnotnull](#isnotnull)|[percentile](#percentile)|[字串常值](#string-literals)|[where 運算子](#where-operator)
+|[countof](#countof)|[isnull](#isnull)|[percentiles](#percentiles)|[strlen](#strlen)
+|[日期和時間運算式](#date-and-time-expressions)|[join 運算子](#join-operator)|[project 運算子](#project-operator)|[substring](#substring)
+|[日期和時間常值](#date-and-time-literals)|[JSON 路徑運算式](#json-path-expressions)|[rand](#rand)|[sum](#sum)
+
+
 
 
 
@@ -36,7 +59,7 @@ requests
 | count
 ```
     
-每個以縱線字元 `|` 做為前置詞的篩選條件，即為含有一些參數的「運算子」執行個體。前面管線所得到的結果會以資料表的形式做為運算子的輸入。在大部分情況下，任何參數皆是輸入資料行的[純量運算式](##scalars)。但在某些情況下，參數是輸入資料行的名稱或是第二個資料表。查詢的結果永遠是資料表，即使它只有一個資料行和一個資料列。
+每個以縱線字元 `|` 做為前置詞的篩選條件即為含有一些參數的運算子執行個體。前面管線所得到的結果會以資料表的形式做為運算子的輸入。大部分情況下，任何參數皆是輸入資料行的[純量運算式](##scalars)。但在某些情況下，參數是輸入資料行的名稱或是第二個資料表。查詢的結果永遠是資料表，即使它只有一個資料行和一個資料列。
 
 查詢能以一個或多個 [let 子句](#let-clause)做為前置詞，以定義可在查詢中使用的純量、資料表或函式。
 
@@ -67,7 +90,7 @@ requests
 
 **傳回**
 
-此函式會傳回含有一個記錄且資料行類型為 `long` 的資料表。唯一資料格的值是 T 中的記錄數目。
+此函式會傳回含有一筆記錄且資料行類型為 `long` 的資料表。唯一資料格的值是 T 中的記錄數目。
 
 **範例**
 
@@ -129,15 +152,15 @@ traces
 
 * Table1 - 聯結的「左側」。
 * Table2 - 聯結的「右側」。其可以是會輸出資料表的巢狀查詢運算式。
-* CommonColumn - 在這兩個資料表中的名稱皆相同的資料行。
-* Kind - 指定這兩個資料表中的資料列比對方式。
+* CommonColumn - 在兩個資料表中的名稱皆相同的資料行。
+* Kind - 指定兩個資料表中的資料列比對方式。
 
 **傳回**
 
 含有下列項目的資料表︰
 
 * 兩個資料表中的每個資料行各自佔據一個資料行，包括用來比對的索引鍵。如果名稱有衝突，右側的資料行會自動重新命名。
-* 輸入資料表間的每個相符項目各自佔據一個資料列。如果從其中一個資料表中選取的資料列，與另一個資料表中某個資料列的所有 `on` 欄位值皆相同，就代表是相符項目。 
+* 輸入資料表間的每個相符項目各自佔據一個資料列。其中一個資料表中選取的資料列如果和另一個資料表中的資料列在所有 `on` 欄位的值皆相同，就代表是相符項目。 
 
 * `Kind` (未指定)
 
@@ -161,7 +184,7 @@ traces
 
 若要獲得最佳效能︰
 
-* 在 `join` 前面使用 `where` 和 `project`，以減少輸入資料表中的資料列和資料行數目。 
+* 在 `join` 前面使用 `where` 和 `project` 以減少輸入資料表中的資料列和資料行數目。 
 * 如果某個資料表一定會比另一個資料表還小，請將它做為聯結的左側 (管線)。
 * 聯結相符項目的資料行必須具有相同名稱。如果必須重新命名其中一個資料表中的資料行，請使用 project 運算子。
 
@@ -184,17 +207,17 @@ traces
 
 ### let 子句
 
-表格式 let - 命名資料表
+**表格式 let - 命名資料表**
 
     let recentReqs = requests | where timestamp > ago(3d); 
     recentReqs | count
 
-純量 let - 命名值
+**純量 let - 命名值**
 
     let interval = 3d; 
     requests | where timestamp > ago(interval)
 
-Lambda let - 命名函式
+**Lambda let - 命名函式**
 
     let Recent = 
        (interval:timespan) { requests | where timestamp > ago(interval) };
@@ -202,7 +225,7 @@ Lambda let - 命名函式
 
 let 子句會將名稱繫結至表格式結果、純量值或函式。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
 
-語法
+**語法**
 
     let name = scalar_constant_expression ; query
 
@@ -213,7 +236,7 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 * type：`bool`、`int`、`long`、`double`、`string`、`timespan`、`datetime`、`guid`、[`dynamic`](#dynamic-type)
 * plain\_query：未在開頭加上 let 子句的查詢。
 
-範例
+**範例**
 
 
 
@@ -239,14 +262,14 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 
 傳回輸入資料表中的資料列，最多可傳回所指定的數目。此運算子無法保證會傳回哪些記錄 (若要傳回特定記錄，請使用 [`top`](#top-operator))。
 
-別名 `take`
+**別名** `take`
 
-語法
+**語法**
 
     T | limit NumberOfRows
 
 
-秘訣
+**秘訣**
 
 當您在進行互動工作時，`Take` 可讓您輕鬆、有效率地查看結果的樣本。但請注意，它無法保證一定會產生任何特定資料列，或以任何特定順序產生資料列。
 
@@ -262,7 +285,7 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 
 (另請參閱會執行相反函式的 [`summarize makelist`](#summarize-operator)。)
 
-範例
+**範例**
 
 假設輸入資料表如下︰
 
@@ -284,13 +307,13 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 |2|"world"|"v"|
 
 
-語法
+**語法**
 
     T | mvexpand  [bagexpansion=(bag | array)] ColumnName [limit Rowlimit]
 
     T | mvexpand  [bagexpansion=(bag | array)] [Name =] ArrayExpression [to typeof(Typename)] [limit Rowlimit]
 
-引數
+**引數**
 
 * ColumnName：在結果中，具名資料行中的陣列會展開為多個資料列。 
 * ArrayExpression：產生陣列的運算式。如果使用這種形式，則會加入新資料行，並保留現有資料行。
@@ -298,7 +321,7 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 * Typename：將展開的運算式轉換為特定類型
 * RowLimit：從每個原始資料列所產生的資料列數目上限。預設值為 128。
 
-傳回
+**傳回**
 
 具名資料行的任何陣列中或是陣列運算式中的每個值會佔據多個資料列。
 
@@ -309,7 +332,7 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 * `bagexpansion=bag`︰屬性包會展開為單一項目屬性包。這是預設展開模式。
 * `bagexpansion=array`︰屬性包會展開為有兩個元素的 `[`*索引鍵*`,`*值*`]` 陣列結構，以便能夠統一存取索引鍵和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。 
 
-範例
+**範例**
 
 
     exceptions | take 1 
@@ -354,17 +377,17 @@ let 子句會將名稱繫結至表格式結果、純量值或函式。子句是�
 
 **範例**
 
-`parse` 運算子透過在相同的 `string` 運算式上使用多個 `extract` 應用程式，來簡化資料表的 `extend`。當資料表的 `string` 資料行有好幾個值，而您想要將這些值分割到個別資料行時，最適合使用此運算子，開發人員追蹤 ("`printf`"/"`Console.WriteLine`") 陳述式所產生的資料行便是一例。
+`parse` 運算子透過在相同的 `string` 運算式上使用多個 `extract` 應用程式來簡化資料表的 `extend`。當資料表的 `string` 資料行有好幾個值，而您想要將這些值個別分割到一個資料行時，最適合使用此運算子，開發人員追蹤 ("`printf`"/"`Console.WriteLine`") 陳述式所產生的資料行便是一例。
 
 在下列範例中，假設資料表 `StormEvents` 的資料行 `EventNarrative` 包含 `{0} at {1} crested at {2} feet around {3} on {4} {5}` 格式的字串。下列運算會為資料表擴充兩個資料行︰`SwathSize` 和 `FellLocation`。
 
 
 |EventNarrative|
 |---|
-|Brownsville 的 Green River 在 12 月 12 日 0930EST 左右上升到最高水位 18.8 英呎。Brownsville 所訂出的洪水水位是 18 英呎。一旦到達此水位就會造成輕微氾濫。河水會溢流出水閘與一些高度較低的河堤，以及一些低窪農業用地。|
-|Boston 的 Rolling Fork River 在 12 月 12 日 1700EST 左右上升到最高水位 39.3 英呎。Boston 所訂出的洪水水位是 35 英呎。一旦到達此水位就會造成輕微氾濫，波及範圍會涵蓋一些低窪農業用地。|
-|Woodbury 的 Green River 在 12 月 16 日 0600EST 左右上升到最高水位 36.7 英呎。Woodbury 所訂出的洪水水位是 33 英呎。一旦到達此水位就會造成輕微氾濫，讓 Woodbury 鎮周圍的一些低窪地區淹水。|
-|Tell City 的 Ohio River 在 12 月 18 日 7 AM EST 左右上升到最高水位 39.0 英呎。Tell City 所訂出的洪水水位是 38 英呎。一旦到達此水位，河水就會開始溢出河堤。印第安納 66 號公路的 Rome 到 Derby 路段會淹水。|
+|Brownsville 的 Green River 在 12 月 12 日 0930EST 左右上升到最高水位 18.8 英呎 (The Green River at Brownsville crested at 18.8 feet around 0930EST on December 12)。Brownsville 所訂出的洪水水位是 18 英呎 (Flood stage at Brownsville is 18 feet).。一旦到達此水位就會造成輕微氾濫 (Minor flooding occurs at this level)。河水會溢流出水閘與一些高度較低的河堤，以及一些低窪農業用地 (The river overflows lock walls and some of the lower banks, along with some agricultural bottom land)。|
+|Boston 的 Rolling Fork River 在 12 月 12 日 1700EST 左右上升到最高水位 39.3 英呎 (The Rolling Fork River at Boston crested at 39.3 feet around 1700EST on December 12)。Boston 所訂出的洪水水位是 35 英呎 (Flood stage at Boston is 35 feet)。一旦到達此水位就會造成輕微氾濫，波及範圍會涵蓋一些低窪農業用地 (Minor flooding occurs at this level, with some agricultural bottom land covered)。|
+|Woodbury 的 Green River 在 12 月 16 日 0600EST 左右上升到最高水位 36.7 英呎 (The Green River at Woodbury crested at 36.7 feet around 0600EST on December 16)。Woodbury 所訂出的洪水水位是 33 英呎 (Flood stage at Woodbury is 33 feet)。一旦到達此水位就會造成輕微氾濫，讓 Woodbury 鎮周圍的一些低窪地區淹水 (Minor flooding occurs at this level, with some lowlands around the town of Woodbury covered with water)。|
+|Tell City 的 Ohio River 在 12 月 18 日 7 AM EST 左右上升到最高水位 39.0 英呎 (The Ohio River at Tell City crested at 39.0 feet around 7 AM EST on December 18)。Tell City 所訂出的洪水水位是 38 英呎 (Flood stage at Tell City is 38 feet)。一旦到達此水位，河水就會開始溢出河堤 (At this level, the river begins to overflow its banks above the gage)。印第安納 66 號公路的 Rome 到 Derby 路段會淹水 (Indiana Highway 66 floods between Rome and Derby)。|
 
 ```AIQL
 
@@ -415,7 +438,7 @@ StormEvents
 
     T | project cost=price*quantity, price
 
-選取要納入、重新命名或捨棄的資料行，以及插入新的計算資料行。結果中的資料行順序是由引數順序來指定。只有引數中指定的資料行才會包含在結果中︰輸入中的其他任何資料行則會遭到捨棄。(另請參閱 `extend`)。
+選取要納入、重新命名或捨棄的資料行，以及插入新的計算資料行。結果中的資料行順序是由引數順序來指定。只有引數中指定的資料行才會包含在結果中︰輸入中的其他任何資料行則會遭到捨棄。(另請參閱 `extend`。)
 
 
 **語法**
@@ -425,7 +448,7 @@ StormEvents
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。 
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何運算式，則該名稱的資料行必須出現在輸入中。 
 * Expression︰參考輸入資料行的選擇性純量運算式。 
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
@@ -472,7 +495,7 @@ T
 
 * ColumnName：輸出資料表中的單一資料行名稱。
 * Start︰輸出中的最小值。
-* Stop︰輸出中產生的最大值 (或者如果 step 跨越此值，為則最大值界限)。
+* Stop︰輸出中產生的最大值 (或最大值界限，如果 step 跨越此值)。
 * Step︰兩個連續值之間的差異。 
 
 引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函式](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator))。
@@ -514,7 +537,7 @@ range timestamp from ago(4h) to now() step 1m
 
     exceptions | reduce by outerMessage
 
-嘗試將相似的記錄群組在一起。對於每個群組，運算子會輸出其認定最能描述該群組的 `Pattern`，以及該群組中記錄的 `Count`。
+嘗試將相似的記錄群組在一起。對於每個群組，運算子會輸出其認定最能描述該群組的 `Pattern`，以及該群組中的記錄 `Count`。
 
 
 ![](./media/app-insights-analytics-queries/reduce.png)
@@ -666,14 +689,14 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* *Table1*, *Table2* ...
+* Table1, Table2 ...
  *  資料表名稱，例如 `events`；或
  *  查詢運算式，例如 `(events | where id==42)`
  *  使用萬用字元指定的一組資料表。例如，`E*` 會形成資料庫中名稱開頭為 `E` 之所有資料表的聯集。
 * `kind`： 
  * `inner` - 結果中會有所有輸入資料表共有之資料行的子集。
  * `outer` - 結果中會有任何輸入中出現的所有資料行。輸入資料列未定義的資料格會設為 `null`。
-* `withsource=`*ColumnName：*如果指定，輸出將會包含名為 *ColumnName* 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
+* `withsource=`*ColumnName：*如果指定，輸出中會包含名為 ColumnName 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
 
 **傳回**
 
@@ -819,7 +842,7 @@ traces
 
     buildschema(DynamicExpression)
 
-傳回容許 DynamicExpression 之所有值的最小結構描述。
+傳回容許 DynamicExpression 所有值的最小結構描述。
 
 參數資料行類型應該是 `dynamic` - 陣列或屬性包。
 
@@ -940,7 +963,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 傳回群組中 Expr 所有值的 `dynamic` (JSON) 陣列。
 
-* MaxListSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 *128*)。
+* MaxListSize 是所傳回元素數目最大值的選擇性整數限制 (預設值是 128)。
 
 ### makeset
 
@@ -948,7 +971,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 傳回 Expr 在群組中取得之一組相異值的 `dynamic` (JSON) 陣列 (秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount))。
   
-*  MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 *128*)。
+*  MaxSetSize 是所傳回元素數目最大值的選擇性整數限制 (預設值是 128)。
 
 **範例**
 
@@ -1240,17 +1263,7 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 |
-| * | 乘 |
-| / | 除 |
-| % | 模數 |
-||
-|`<` |小於
-|`<=`|小於或等於
-|`>` |大於
-|`>=`|大於或等於
-|`<>`|不等於
-|`!=`|不等於
+| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
 
 
 
@@ -1317,7 +1330,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 **引數**
 
-* x：>= 0 的實數。
+* x：> = 0 的實數。
 
 **傳回**
 
@@ -1366,7 +1379,7 @@ true 或 false，取決於值是 null 或不是 null。
 **datetime**|
 `datetime("2015-12-31 23:59:59.9")`<br/>`datetime("2015-12-31")`|時間一律是 UTC 格式。省略日期則會提供今天的時間。
 `now()`|目前的時間。
-`now(`-*timespan*`)`|`now()-`*timespan*
+`now(`-timespan`)`|`now()-`*timespan*
 `ago(`*timespan*`)`|`now()-`*timespan*
 **timespan**|
 `2d`|2 天
@@ -1585,7 +1598,7 @@ h"hello"
 `matches regex`|LHS 包含 RHS 的相符項目|是| `"Fabrikam" matches regex "b.*k"`
 
 
-如果您要測試是否有完整的語彙詞彙存在，也就是以非英數字元或欄位的開頭或結尾為界限的符號或英數字詞，請使用 `has` 或 `in`。`has` 的執行速度比 `contains` 或 `startswith` 還快。在下面兩個查詢中，第一個的執行速度較快︰
+如果您要測試是否有完整的語彙詞彙存在，也就是以非英數字元或欄位的開頭或結尾為界限的符號或英數字元，請使用 `has` 或 `in`。`has` 的執行速度比 `contains` 或 `startswith` 還快。在下面兩個查詢中，第一個的執行速度較快︰
 
     EventLog | where continent has "North" | count;
 	EventLog | where continent contains "nor" | count
@@ -1718,7 +1731,7 @@ extract("^.{2,2}(.{4,4})", 1, Text)
 **引數**
 
 * regex：用來搜尋 text 的[規則運算式](https://github.com/google/re2/wiki/Syntax)。它可以在 '('括號')' 中包含擷取群組。 
-* rewrite：*matchingRegex* 所找到之任何相符項目的取代 regex。使用 `\0` 來代表整個相符項目、`\1` 來代表第一個擷取群組，`\2` 和以上的數字來代表後續的擷取群組。
+* rewrite：matchingRegex 所找到之任何相符項目的取代 regex。使用 `\0` 來代表整個相符項目、`\1` 來代表第一個擷取群組，`\2` 和以上的數字來代表後續的擷取群組。
 * text：字串。
 
 **傳回**
@@ -1849,7 +1862,7 @@ substring("ABCD", 0, 2)       // AB
 
 ![](./media/app-analytics-scalars/310.png)
 
-**編製索引︰**和在 JavaScript 一樣編制陣列和物件的索引︰
+編製索引︰和在 JavaScript 一樣編制陣列和物件的索引︰
 
     exceptions | take 1
     | extend 
@@ -1858,7 +1871,7 @@ substring("ABCD", 0, 2)       // AB
 
 * 但使用 `arraylength` 和其他 Analytics 函式 (不是 ".length"！)
 
-**轉換** 有時您必須轉換從物件擷取到的項目，因為其類型可能不同。例如，`summarize...to` 就需要特定類型︰
+轉換 有時您必須轉換從物件擷取到的項目，因為其類型可能不同。例如，`summarize...to` 就需要特定類型︰
 
     exceptions 
     | summarize count() 
@@ -1868,12 +1881,12 @@ substring("ABCD", 0, 2)       // AB
     | summarize count() 
       by tostring(details[0].parsedStack[0].assembly)
 
-**常值** 若要建立明確的陣列或屬性包物件，請將它撰寫為 JSON 字串並進行轉換︰
+常值 若要建立明確的陣列或屬性包物件，請將它撰寫為 JSON 字串並進行轉換︰
 
     todynamic('[{"x":"1", "y":"32"}, {"x":"6", "y":"44"}]')
 
 
-**mvexpand：**若要分開物件的屬性，使這些屬性各自佔有一個資料列，請使用 mvexpand：
+mvexpand：若要分開物件的屬性使這些屬性各自佔有一個資料列，請使用 mvexpand：
 
     exceptions | take 1 
     | mvexpand details[0].parsedStack[0]
@@ -1882,7 +1895,7 @@ substring("ABCD", 0, 2)       // AB
 ![](./media/app-analytics-scalars/410.png)
 
 
-**treepath：**若要尋找複雜物件中的所有路徑︰
+treepath：若要尋找複雜物件中的所有路徑︰
 
     exceptions | take 1 | project timestamp, details 
     | extend path = treepath(details) 
@@ -1891,7 +1904,7 @@ substring("ABCD", 0, 2)       // AB
 
 ![](./media/app-analytics-scalars/420.png)
 
-**buildschema：**若要尋找可容許資料表中運算式所有值的最小結構描述︰
+buildschema：若要尋找可容許資料表中運算式所有值的最小結構描述︰
 
     exceptions | summarize buildschema(details)
 
@@ -1943,12 +1956,12 @@ T
 ```
 
 
-### 動態類型的運算子和函式
+## 動態物件函式
 
 |||
 |---|---|
-| *value* `in` *array*| 如果有 array 項目 == value 則為 true<br/>`where City in ('London', 'Paris', 'Rome')`
-| *value* `!in` *array*| 如果沒有 array 項目 == value，則為 true
+| value `in` array| 如果有 array 項目 == value 則為 true<br/>`where City in ('London', 'Paris', 'Rome')`
+| value `!in` array| 如果沒有 array 項目 == value，則為 true
 |[`arraylength(`array`)`](#arraylength)| 如果不是陣列則為 null
 |[`extractjson(`path,object`)`](#extractjson)|使用路徑來瀏覽至物件。
 |[`parsejson(`source`)`](#parsejson)| 將 JSON 字串變成動態物件。
@@ -2034,7 +2047,7 @@ arraylength(parsejson('21')) == null
 
 **效能秘訣**
 
-* 先套用 where 子句，再使用 `extractjson()`
+* 先套用 where 子句再使用 `extractjson()`
 * 請考慮改為搭配使用規則運算式相符項目與 [extract](#extract)。如果 JSON 是從範本產生，這麼做可以執行的非常快並且有效。
 * 如果您需要從 JSON 中擷取不只一個值，請使用 `parsejson()`。
 * 請考慮在擷取 JSON 時透過將資料行的類型宣告為動態以剖析 JSON。
@@ -2048,7 +2061,7 @@ arraylength(parsejson('21')) == null
 |`[0]`|陣列註標|
 |`.` 或 `[0]` | 子系|
 
-*(我們目前未實作萬用字元、遞迴、聯集或配量。)*
+(我們目前未實作萬用字元、遞迴、聯集或配量。)
 
 
 
@@ -2088,7 +2101,7 @@ T
 
 
 
-#### range
+### range
 
 `range()` 函式 (請勿與 `range` 運算子混淆) 會產生保有一系列等間距值的動態陣列。
 
@@ -2148,5 +2161,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
-
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="Identity"
-   ms.date="02/16/2016"
+   ms.date="04/20/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：設計概念
@@ -36,6 +36,7 @@ sourceAnchor 屬性的定義是*在物件存留期間不會變更的屬性*。�
 此屬性值必須遵循下列規則：
 
 - 長度小於 60 個字元
+    - 系統會將 a-z、A-Z 或 0-9 以外的字元編碼並計為 3 個字元
 - 不包含特殊字元︰&#92; ! # $ % & * + / = ? ^ &#96; { } | ~ < > ( ) ' ; : , [ ] " @ \_
 - 必須是全域唯一的
 - 必須是字串、整數或二進位
@@ -67,4 +68,4 @@ sourceAnchor 屬性會區分大小寫。"JohnDoe" 與 "johndoe" 是不同的值�
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

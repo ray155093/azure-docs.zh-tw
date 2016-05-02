@@ -13,10 +13,18 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="03/18/2016" 
+	ms.date="04/15/2016" 
 	ms.author="jeffstok"/>
 
 #串流分析版本資訊
+
+## 串流分析 2016 年 4 月 15 日版本的注意事項 ##
+
+此版本包含下列更新。
+
+課程名稱 | 說明
+---|---
+Power BI 輸出的一般可用性 | [Power BI 輸出](stream-analytics-power-bi-dashboard.md)現在已正式運作已移除 Power BI 的 90 天授權到期。如需需要更新授權的案例的詳細資訊，請參閱＜建立 Power BI 儀表板＞的[更新授權](stream-analytics-power-bi-dashboard.md#Renew-authorization)一節。
 
 ## 串流分析 2016/03/03 版的注意事項 ##
 
@@ -33,7 +41,7 @@
 課程名稱 | 說明
 ---|---
 REST API 版本更新 | REST API 的版本已更新至 2015-10-01。您可在[串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)和[在串流分析中整合機器學習服務](stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md)的 MSDN 中取得詳細資料。
-Azure 機器學習的整合 | 此版本開始支援 Azure 機器學習的使用者定義函數。如需詳細資訊，請參閱[教學課程](stream-analytics-machine-learning-integration-tutorial.md)及[部落格上的一般公告](http://blogs.technet.com/b/machinelearning/archive/2015/12/10/apply-azure-ml-as-a-function-in-azure-stream-analytics.aspx)。
+Azure 機器學習的整合 | 此版本開始支援 Azure 機器學習的使用者定義函數。如需詳細資訊，請參閱[教學課程](stream-analytics-machine-learning-integration-tutorial.md)及[一般部落格公告](http://blogs.technet.com/b/machinelearning/archive/2015/12/10/apply-azure-ml-as-a-function-in-azure-stream-analytics.aspx)。
 
 ## 串流分析 2015/11/12 版本的注意事項 ##
 
@@ -141,4 +149,4 @@ PowerBI 資料集只能包含一個資料表|PowerBI 不允許指定的資料集
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

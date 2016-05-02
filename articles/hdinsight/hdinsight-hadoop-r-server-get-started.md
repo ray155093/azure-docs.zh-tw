@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 HDInsight 中的 R Server | Azure"
-   description="了解如何在包含 R Server 的 HDInsight (Hadoop) 叢集上建立 Apache Spark，並在叢集上送出 R 指令碼。"
+   pageTitle="開始使用 HDInsight (預覽) 中的 R 伺服器 | Azure"
+   description="了解如何在包含 R 伺服器的 HDInsight (預覽) 叢集上建立 Apache Spark，並在叢集上送出 R 指令碼。"
    services="HDInsight"
    documentationCenter=""
    authors="jeffstokes72"
@@ -17,9 +17,9 @@
    ms.date="03/25/2016"
    ms.author="jeffstok"/>
 
-# 開始使用 HDInsight 中的 R Server
+#開始使用 HDInsight (預覽) 中的 R 伺服器
 
-Hdinsight 的進階層供應項目包括隨附於 HDInsight 叢集的 R Server。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。在本文中，您將了解如何在 HDInsight 上建立新的 R Server，然後執行 R 指令碼，以使用 Spark 進行分散式 R 計算。
+HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 的 R 伺服器。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。在本文中，您將了解如何在 HDInsight 上建立新的 R Server，然後執行 R 指令碼，以使用 Spark 進行分散式 R 計算。
 
 ![這份文件的工作流程圖表](./media/hdinsight-getting-started-with-r/rgettingstarted.png)
 
@@ -322,4 +322,4 @@ Hdinsight 的進階層供應項目包括隨附於 HDInsight 叢集的 R Server�
 
 如需使用 ARM 範本的一般資訊，請參閱[使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

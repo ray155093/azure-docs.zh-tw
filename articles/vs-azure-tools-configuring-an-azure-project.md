@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/05/2016"
+   ms.date="04/18/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 設定 Azure 雲端服務專案
@@ -47,7 +47,7 @@
 
 1. 如果要選取在本機執行或偵錯雲端服務時要使用的服務組態，請在 [服務組態] 清單中選擇該服務組態。
 
-  >[AZURE.NOTE]如果您想建立一個服務組態來使用，請參閱＜如何管理服務組態和設定檔＞。如果您想要修改某個角色的服務組態，請參閱[如何使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)。
+  >[AZURE.NOTE] 如果您想建立一個服務組態來使用，請參閱＜如何管理服務組態和設定檔＞。如果您想要修改某個角色的服務組態，請參閱[如何使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)。
 
 1. 如果要在您於本機執行或偵錯雲端服務時啟動 Azure 儲存體模擬器，請在 [啟動 Azure 儲存體模擬器] 中選擇 **True**。
 
@@ -61,4 +61,4 @@
 
 若要深入了解如何在 Visual Studio 中設定 Azure 雲端服務專案，請參閱[使用多個服務組態設定 Azure 專案](vs-azure-tools-multiple-services-project-configurations.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0420_2016-->

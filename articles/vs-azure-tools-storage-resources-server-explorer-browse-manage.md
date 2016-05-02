@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/27/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 使用伺服器總管瀏覽和管理儲存體資源
@@ -92,7 +92,7 @@ Blob 節點會顯示所選之儲存體帳戶的容器清單。Blob 容器包含 
 
     ![加入至 blob 容器的資料夾](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766038.png)
 
-1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] \(向上箭頭) 按鈕來瀏覽回容器的根。
+1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] (向上箭頭) 按鈕來瀏覽回容器的根。
 
 ### 刪除容器資料夾
 
@@ -314,4 +314,4 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。此服務是�
 
 若要了解如何使用 Azure 儲存體服務的詳細資訊，請參閱[存取 Azure 儲存體服務](https://msdn.microsoft.com/library/azure/ee405490.aspx)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

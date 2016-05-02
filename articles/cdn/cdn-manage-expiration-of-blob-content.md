@@ -1,6 +1,6 @@
 <properties
  pageTitle="如何管理 Azure 內容傳遞網路 (CDN) 中 Blob 內容的到期"
- description=""
+ description="深入了解選項，以控制 Azure CDN 快取中的 Blob 存留時間。"
  services="cdn"
  documentationCenter=".NET"
  authors="camsoper"
@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="article"
- ms.date="02/25/2016" 
+ ms.date="02/25/2016"
  ms.author="casoper"/>
 
 
@@ -96,4 +96,4 @@
 
 [如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期](./cdn-manage-expiration-of-cloud-service-content.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

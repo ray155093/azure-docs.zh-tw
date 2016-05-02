@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/11/2016"
+	ms.date="04/14/2016"
 	ms.author="adrianhall"/>
 
 # <a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
@@ -38,44 +38,20 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 
 若想進一步了解 Azure App Service 的優點，請參閱[比較行動服務與App Service] 主題。
 
-## <a name="why-not-migrate"></a>為何您不應移轉網站
-
-基於幾項原因，您不應立即移轉您的 Azure 行動服務：
-
-  *  您目前處於忙碌期間，無法承受網站重新啟動。
-  *  您不想在測試移轉程序之前對生產網站造成影響。
-  *  您有多個免費或基本定價層的網站，而不想要同時移轉所有的網站。
-
-在您處於忙碌期間，請規劃在排定的維護期間進行移轉。在移轉程序中會重新啟動您的網站，您的使用者可能會注意到此暫時性的可用性中斷。
-
-此清單中大部分的項目都有因應措施。請參閱以下的[開始之前](#before-you-begin)一節，以取得詳細資料。
-
 ## <a name="before-you-begin"></a>開始之前
 
-在移轉您的網站之前，您應遵循下列步驟：
+網站開始任何主要工作之前，您應該先[備份您的行動服務]指令碼和 SQL Database。
 
-  *  [備份您的行動服務]指令碼和 SQL Database
-  *  (選擇性) 將行動服務層提高至標準
-
-如果您想要在移轉生產網站之前先測試移轉程序，請複製您的生產環境 Azure 行動服務 (藉由複製資料來源來完成)，然後以新的 URL 測試移轉。您也需要指向測試網站的測試用戶端實作，以適當測試移轉後的網站。
-
-### <a name="opt-raise-service-tier"></a>(選擇性) 將行動服務層提高至標準
-
-所有共用主控方案的行動服務網站將會同時移轉。免費或基本定價層的行動服務，會與相同定價層和 [Azure 區域]中的其他服務共用主控方案。如果您的行動服務在標準定價層上運作，它會位在本身的主控方案中。如果您想要個別移轉免費或基本定價層中的網站，請將行動服務定價層暫時升級為標準。您可以在 [調整] 功能表中為您的行動服務執行此動作。
-
-  1.  登入 [Azure 傳統入口網站]。
-  2.  選取您的行動服務。
-  3.  選取 [相應增加] 索引標籤。
-  4.  在 [行動服務層] 下，按一下 [標準] 層。按一下位於頁面底部的 [儲存] 按鈕。
-
-移轉之後，請記得將定價層設定為適當的設定。
+如果您想要在移轉生產網站之前先測試移轉程序，請在新的 [Azure 區域]內複製您的生產環境 Azure 行動服務 (藉由複製資料來源來完成)，然後以新的 URL 測試移轉。您也需要指向測試網站的測試用戶端實作，以適當測試移轉後的網站。
 
 ## <a name="migrating-site"></a>移轉您的網站
+
+移轉程序會移轉單一 Azure 區域內的所有網站。
 
 若要移轉您的網站：
 
   1.  登入 [Azure 傳統入口網站]。
-  2.  選取您的行動服務。
+  2.  選取區域中您想要移轉的行動服務。
   3.  按一下 [移轉至 App Service] 按鈕。
 
     ![移轉按鈕][0]
@@ -83,8 +59,6 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
   4.  閱讀 [移轉至 App Service] 對話方塊。
   5.  在提供的方塊中輸入您的行動服務名稱。例如，如果您的網域名稱是 contoso.azure-mobile.net，請在提供的方塊中輸入 _contoso_。
   6.  按一下刻度按鈕。
-
-如果您移轉免費或基本定價層的行動服務，該定價層中的所有行動服務將會同時移轉。若要避免此狀況，您可以在移轉期間[將您要移轉的行動服務提升至](#opt-raise-service-tier)標準。
 
 您可以在活動監視器中監視移轉的狀態，且您的網站在 Azure 傳統入口網站中會列示為*移轉中*。
 
@@ -156,7 +130,7 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename_.PublishSettings。接著，您可以將發行設定匯入現有的專案中：
 
   1.  開啟 Visual Studio 和您的 Azure 行動服務專案。
-  2.  在 [方案總管] 中，以滑鼠右鍵按一下您的專案，然後選取 [發佈...]。
+  2.  在**方案總管**中，以滑鼠右鍵按一下您的專案，然後選取 [發佈...]。
   3.  按一下 [匯入]
   4.  按一下 [瀏覽]，然後選取已下載的發行設定檔案。按一下 [確定]。
   5.  按一下 [驗證連接]，以確保發行設定可運作。
@@ -274,7 +248,7 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 您的通知中樞將透過 [Azure 入口網站]受到管理。請記下通知中樞名稱 (您可以使用 [應用程式設定] 找到此項目)：
 
   1. 登入 [Azure 入口網站]。
-  2. 選取 [瀏覽>]，然後選取 \[通知中樞]
+  2. 選取 [瀏覽>]，然後選取 [通知中樞]
   3. 按一下與行動服務相關聯的通知中樞名稱。
 
 > [AZURE.NOTE] 您的通知中樞如果是「混合」類型，則不會顯示。「混合」類型的通知中樞會同時使用「通知中樞」和舊版的「服務匯流排」功能。您將必須[轉換混合式命名空間]。轉換完成後，您的通知中樞會出現在 [Azure 入口網站]中。
@@ -282,6 +256,12 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 如需詳細資訊，請檢閱[通知中樞]文件。
 
 > [AZURE.TIP] [Azure 入口網站]中的通知中樞管理功能仍處於預覽階段。[Azure 傳統入口網站]仍可用來管理您所有的通知中樞。
+
+### <a name="legacy-push"></a>舊版推播設定
+
+如果您在通知中樞引入前，即已設定行動服務的推播，您使用的就是舊版推播。如果您使用推播，組態中卻沒有列出通知中樞，您很可能使用的是舊版推播。這項功能會和所有其他功能一起移轉，仍然可以使用。不過，建議您完成移轉後盡快升級至通知中樞。
+
+在過渡時期，所有舊版推播設定 (APNS 憑證除外) 都可以在應用程式設定中取得。將網站上合適的檔案替換掉，就可以取代 APNS 憑證。透過 Azure App Service 提供的任何部署選項都可以完成這項作業。
 
 ### <a name="app-settings"></a>其他應用程式設定
 
@@ -374,17 +354,17 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [2]: ./media/app-service-mobile-migrating-from-mobile-services/triggering-job-with-postman.png
 
 <!-- Links -->
-[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
+[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
 [Application Insights]: ../application-insights/app-insights-overview.md
 [自動調整]: ../app-service-web/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [Azure App Service 部署文件]: ../app-service-web/web-sites-deploy.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [Azure 入口網站]: https://portal.azure.com
-[Azure 區域]: https://azure.microsoft.com/regions/
+[Azure 區域]: https://azure.microsoft.com/zh-TW/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
 [連續部署]: ../app-service-web/web-sites-publish-source-control.md
-[轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
+[轉換混合式命名空間]: https://azure.microsoft.com/zh-TW/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service-web/web-sites-custom-domain-name.md
 [Fiddler]: http://www.telerik.com/fiddler
@@ -401,4 +381,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [VNet]: ../app-service-web/web-sites-integrate-with-vnet.md
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

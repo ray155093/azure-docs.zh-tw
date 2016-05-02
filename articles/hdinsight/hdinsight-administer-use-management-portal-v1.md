@@ -31,6 +31,8 @@
 
 - 如需使用 Azure CLI 管理 HDInsight 的詳細資訊，請參閱[使用 Azure CLI 管理 HDInsight](hdinsight-administer-use-command-line.md)。
 
+> [AZURE.WARNING] 最新版的 Azure PowerShell 或 Azure CLI 預設會使用 Azure Resource Manager。無法使用 Azure 傳統入口網站來管理使用此模式建立的 HDInsight 叢集。
+
 ##必要條件
 
 開始閱讀本文之前，您必須符合下列必要條件：
@@ -198,4 +200,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal-v1/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 [image-hdiclustercreate-uploadcert]: ./media/hdinsight-administer-use-management-portal-v1/hdi.clustercreate.uploadcert.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

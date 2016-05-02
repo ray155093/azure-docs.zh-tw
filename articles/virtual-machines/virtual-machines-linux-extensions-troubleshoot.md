@@ -11,10 +11,10 @@
 <tags
    ms.service="virtual-machines-linux"
    ms.devlang="na"
-   ms.topic="article"
+   ms.topic="support-article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="09/01/2015"
+   ms.date="03/29/2016"
    ms.author="kundanap"/>
 
 # 針對 Azure Linux VM 擴充功能的失敗進行疑難排解
@@ -72,4 +72,4 @@ Azure CLI：
 
 一旦移除了延伸模組，範本就可以重新執行並在 VM 上執行指令碼。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

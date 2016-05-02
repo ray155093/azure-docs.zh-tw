@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="12/18/2015"
+   ms.date="04/18/2016"
    ms.author="tarcher" />
 
 # 設定具名的驗證認證
@@ -27,7 +27,7 @@ Azure Tools 也支援像以前一樣使用訂用帳戶檔案 (.publishsettings �
 
 - 有效的 X.509 v3 憑證
 
->[AZURE.NOTE]X.509 v3 憑證的金鑰長度必須至少為 2048 位元。Azure 將會拒絕任何不符合此需求或無效的憑證。
+>[AZURE.NOTE] X.509 v3 憑證的金鑰長度必須至少為 2048 位元。Azure 將會拒絕任何不符合此需求或無效的憑證。
 
 Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證。包含憑證公開金鑰的訂用帳戶檔案 (.publishsettings 檔案) 會參考適當的認證。訂用帳戶檔案可以包含多個訂用帳戶的認證。
 
@@ -35,7 +35,7 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
 如果您想要自行建立憑證，您可以參考[建立及上傳 Azure 的管理憑證](https://msdn.microsoft.com/library/windowsazure/gg551722.aspx)中的指示，然後手動將憑證上傳至管理入口網站。
 
->[AZURE.NOTE]Visual Studio 為管理雲端服務所需的這些認證，與針對 Azure 儲存體服務驗證要求所需的認證是不同的。
+>[AZURE.NOTE] Visual Studio 為管理雲端服務所需的這些認證，與針對 Azure 儲存體服務驗證要求所需的認證是不同的。
 
 ## 在 Visual Studio 中修改或匯出驗證認證
 
@@ -53,7 +53,7 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
 1. 選擇 [複製完整路徑] 按鈕。憑證 (.cer 檔案) 的路徑便會複製到剪貼簿。
 
-    >[AZURE.IMPORTANT]若要從 Visual Studio 發佈 Azure 應用程式，您必須將此憑證上傳至管理入口網站。
+    >[AZURE.IMPORTANT] 若要從 Visual Studio 發佈 Azure 應用程式，您必須將此憑證上傳至管理入口網站。
 
 1. 將憑證上傳至 Azure 管理入口網站：
 
@@ -71,4 +71,4 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
     1. 貼上您剛才建立的 .cer 檔案的完整路徑，然後輸入您指定的密碼。
 
-<!---HONumber=AcomDC_1223_2015-->
+<!---HONumber=AcomDC_0420_2016-->

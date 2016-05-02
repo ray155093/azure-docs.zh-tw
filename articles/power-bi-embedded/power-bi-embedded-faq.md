@@ -1,6 +1,6 @@
 <properties
    pageTitle="常見問題集"
-   description="常見問題集"
+   description="Power BI Embedded 常見問題集"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -91,7 +91,7 @@
 
 16.	**如何使用 Power BI Embedded 執行使用者驗證工作？**
 
-    Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而不是使用明確的使用者驗證。在應用程式權杖模型中，您的應用程式會管理您的使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報表。雖然您可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。如需應用程式權杖的詳細資訊，請參閱[應用程式權杖](https://azure.microsoft.com/documentation/articles/power-bi-embedded-get-started-sample/#key-flow)文件頁面。
+    Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而不是使用明確的使用者驗證。在應用程式權杖模型中，您的應用程式會管理您的使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報表。雖然您可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。如需應用程式權杖的詳細資訊，請參閱[應用程式權杖](https://azure.microsoft.com/zh-TW/documentation/articles/power-bi-embedded-get-started-sample/#key-flow)文件頁面。
 
 17.	**Power BI Embedded 目前支援哪些資料來源？**
 
@@ -101,7 +101,7 @@
 
     在 Power BI Embedded 模型中，沒有明確要求您的客戶必須是 Azure Active Directory (Azure AD) 租用戶。您可以選擇是否要為您的客戶要求 Azure AD。因此，您應用程式和基礎結構的架構將決定 Power BI Embedded 所需的租用模型。
 
-    建置您應用程式的開發人員/員工將需要有 Azure AD 使用者帳戶，他們才能透過 Azure 入口網站管理您的 Azure 訂用帳戶和工作區集合。可讓開發人員匯入報表、修改連接字串，以及讓內嵌 URL 改為使用應用程式權杖進行驗證，因此不需要 Azure AD 的程式設計 API。您可以在 [Azure.com 的 Power BI Embedded 文件頁面](https://azure.microsoft.com/documentation/services/power-bi-embedded/)找到如何使用我們的 API 和 Azure 入口網站的詳細資料。
+    建置您應用程式的開發人員/員工將需要有 Azure AD 使用者帳戶，他們才能透過 Azure 入口網站管理您的 Azure 訂用帳戶和工作區集合。可讓開發人員匯入報表、修改連接字串，以及讓內嵌 URL 改為使用應用程式權杖進行驗證，因此不需要 Azure AD 的程式設計 API。您可以在 [Azure.com 的 Power BI Embedded 文件頁面](https://azure.microsoft.com/zh-TW/documentation/services/power-bi-embedded/)找到如何使用我們的 API 和 Azure 入口網站的詳細資料。
 
 19.	**哪裡可以深入了解？**
 
@@ -116,4 +116,4 @@
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

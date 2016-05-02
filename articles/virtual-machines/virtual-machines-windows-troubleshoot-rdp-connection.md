@@ -4,7 +4,7 @@
 	keywords="遠端桌面錯誤、遠端桌面連線錯誤、無法連接到 VM、遠端桌面疑難排解"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor=""
 	tags="top-support-issue,azure-service-management,azure-resource-manager"/>
@@ -14,9 +14,9 @@
 	ms.workload="infrastructure-services"
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
-	ms.topic="article"
-	ms.date="01/25/2016"
-	ms.author="dkshir"/>
+	ms.topic="support-article"
+	ms.date="04/12/2016"
+	ms.author="iainfou"/>
 
 # 疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線
 
@@ -48,7 +48,7 @@
 
 - 檢查 VM 的資源健康情況是否有任何平台問題。<br> 依序按一下 [瀏覽] > [虛擬機器 (傳統)] > 您的 Windows 虛擬機器 > [設定] > [檢查健康情況]。
 
-## 使用資源管理員部署模型建立的虛擬機器
+### 使用資源管理員部署模型建立的虛擬機器
 
 這些步驟可解決使用資源管理員部署模型建立之 Azure 虛擬機器中最常見的遠端桌面連線失敗。在每個步驟完成後，請嘗試重新連接至 VM。
 
@@ -171,4 +171,4 @@ RDP 檔案中的位址部分有雲端服務的完整網域名稱，包含 VM (�
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

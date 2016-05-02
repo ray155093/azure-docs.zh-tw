@@ -17,7 +17,7 @@
 	ms.author="nitinme"/>
 
 
-# 快速入門：在 HDInsight 上建立 Apache Spark 並使用 Spark SQL 執行互動式查詢 (Windows)
+# 快速入門：在 HDInsight Windows 上建立 Apache Spark，並使用 Spark SQL (預覽) 執行互動式查詢
 
 [AZURE.INCLUDE [hdinsight-azure-portal](../../includes/hdinsight-azure-portal.md)]
 
@@ -48,7 +48,7 @@
 
 >[AZURE.NOTE]  請務必在支援叢集的位置建立您的儲存體帳戶。
 
-從清單中選取新儲存體帳戶，並按一下頁面底部的 [**管理存取金鑰**]。請記下 [**主要存取金鑰**] \(或 [**次要存取金鑰**]，任一金鑰皆可)。稍後在教學課程中需要這些資訊。如需詳細資訊，請參閱＜[如何建立儲存體帳戶][azure-create-storageaccount]＞。
+從清單中選取新儲存體帳戶，並按一下頁面底部的 [**管理存取金鑰**]。請記下 [**主要存取金鑰**] (或 [**次要存取金鑰**]，任一金鑰皆可)。稍後在教學課程中需要這些資訊。如需詳細資訊，請參閱＜[如何建立儲存體帳戶][azure-create-storageaccount]＞。
 	
 ##建立 HDInsight Spark 叢集
 
@@ -262,4 +262,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

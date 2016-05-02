@@ -35,7 +35,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 如需 Azure Multi-Factor Authentication 運作方式的概觀，請參閱以下影片。
 
 
-<center>[AZURE.VIDEO multi-factor-authentication-overview]</center>
+> [AZURE.VIDEO multi-factor-authentication-overview]
 
 ##為何使用 Azure Multi-Factor Authentication？
 
@@ -54,7 +54,7 @@ Azure Multi-Factor Authentication 是一個容易使用、可調整且可靠的�
 
 如需為何使用 Azure Multi-Factor Authentication 的其他資訊，請參閱以下影片。
 
-<center>[AZURE.VIDEO windows-azure-multi-factor-authentication]</center>
+> [AZURE.VIDEO windows-azure-multi-factor-authentication]
 
 
 ## Azure Multi-Factor Authentication 的作用
@@ -75,7 +75,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 
 如需其作用的詳細資訊，請觀看以下影片。
 
-[AZURE.VIDEO multi-factor-authentication-deep-dive-securing-access-on-premises]
+> [AZURE.VIDEO multi-factor-authentication-deep-dive-securing-access-on-premises]
 
 ## 適用於 Multi-Factor Authentication 的方法
 當使用者登入時，系統會將額外的驗證傳送給使用者。以下是適用於這個第二次驗證的方法清單。
@@ -209,4 +209,4 @@ MFA 報告 | ● | ●
 
 <center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

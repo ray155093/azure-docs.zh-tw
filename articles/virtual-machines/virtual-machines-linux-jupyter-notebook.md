@@ -6,7 +6,7 @@
 	authors="crwilcox"
 	manager="wpickett"
 	editor=""
-	tags=“azure-service-management,azure-resource-manager"/>
+	tags="azure-service-management,azure-resource-manager"/>
 
 <tags
 	ms.service="virtual-machines-linux"
@@ -199,4 +199,4 @@ Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供
 [儲存機制]: https://github.com/ipython/ipython
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

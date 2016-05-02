@@ -2,7 +2,7 @@
 	pageTitle="使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web Apps | Microsoft Azure" 
 	description="了解如何使用 Azure 資源管理員範本的部署 DocumentDB 帳戶、Azure App Service Web Apps，以及範例 Web 應用程式。" 
 	services="documentdb, app-service\web" 
-	authors="ryancrawcour" 
+	authors="stephbaron" 
 	manager="jhubbard" 
 	editor="monicar" 
 	documentationCenter=""/>
@@ -14,9 +14,9 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="02/01/2016" 
-	ms.author="ryancraw"/>
+	ms.author="stbaro"/>
 
-# 使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web Apps #
+# 使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web Apps
 
 本教學課程示範如何使用 Azure 資源管理員範本來部署和整合 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)、[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)、Web 應用程式及範例 Web 應用程式。
 
@@ -26,7 +26,7 @@
 -	如何使用 Azure 資源管理員範本來部署和整合 DocumentDB 帳戶、App Service Web Apps 中的 Web 應用程式，以及 Webdeploy 應用程式？
 
 <a id="Prerequisites"></a>
-## 必要條件 ##
+## 必要條件
 > [AZURE.TIP] 雖然本教學課程不會假設先前有使用 Azure 資源管理員範本、JSON 或 Azure PowerShell 的經驗，但是，如果您想要修改參考的範本或部署選項，則需要每個領域的知識。
 
 在依照本教學課程中的指示進行之前，請先確定您已備妥下列項目：
@@ -47,7 +47,7 @@
 ![包含反白顯示 [解除封鎖] 按鈕的 [內容] 視窗的螢幕擷取畫面](./media/documentdb-create-documentdb-website/image1.png)
 
 <a id="Build"></a>
-##步驟 2：部署文件帳戶、App Service Web 應用程式與示範應用程式範例 ##
+##步驟 2：部署文件帳戶、App Service Web 應用程式與示範應用程式範例
 
 現在讓我們來部署第一個範本。
 
@@ -147,7 +147,7 @@
 12. 任意瀏覽 DocumentDB 入口網站體驗，或修改範例 Todo 應用程式。當您準備好時，讓我們來部署另一個範本。
 	
 <a id="Build"></a>
-## 步驟 3：部署文件帳戶和 Web 應用程式範例 ##
+## 步驟 3：部署文件帳戶和 Web 應用程式範例
 
 現在讓我們來部署第二個範本。
 
@@ -210,4 +210,4 @@
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/12/2016"
+   ms.date="04/14/2016"
    ms.author="cawaMS" />
 
 # 在 Visual Studio 中設定 Service Fabric 應用程式的升級
@@ -94,4 +94,4 @@ Service Fabric 應用程式中的每個服務都可以有自己的健康情況�
 ## 後續步驟
 如需有關部署應用程式的詳細資訊，請參閱[在 Azure Service Fabric 中部署現有的應用程式](service-fabric-deploy-existing-app.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0420_2016-->

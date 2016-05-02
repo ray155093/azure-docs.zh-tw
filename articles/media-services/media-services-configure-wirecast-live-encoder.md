@@ -3,8 +3,8 @@
 	description="本主題示範如何設定 Wirecast 即時編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。" 
 	services="media-services" 
 	documentationCenter="" 
-	authors="Juliako,cenkdin,anilmur" 
-	manager="dwrede" 
+	authors="Juliako" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="02/03/2016" 
-	ms.author="juliako"/>
+	ms.date="04/18/2016" 
+	ms.author="juliako;cenkdin;anilmur"/>
 
 #使用 Wirecast 編碼器來傳送單一位元速率的即時串流
 
@@ -54,8 +54,7 @@
 
 請確認已選取 [**立即啟動新頻道**]。
 
-3. 按一下 [**建立頻道**]。
-	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
+3. 按一下 [**建立頻道**]。![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 
@@ -181,4 +180,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -14,17 +14,15 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="04/15/2016"
 	ms.author="cynthn"/>
 
 # 建立並上傳 Windows Server VHD 到 Azure
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
-
-
 本文說明如何使用作業系統上傳虛擬硬碟 (VHD)，以便用它做為映像，根據該映像建立虛擬機器。如需 Microsoft Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md)。
 
 
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。您也可以使用 Resource Manager 模型來[擷取](virtual-machines-windows-capture-image.md)和[上傳](virtual-machines-windows-upload-image.md)虛擬機器。
 
 ## 必要條件
 
@@ -153,7 +151,7 @@
 	其中：
 	- **BlobStorageURL** 是儲存體帳戶的 URL
 	- **YourImagesFolder** 是 Blob 儲存體中您要用來儲存映像的容器
-	- **VHDName** 是您要 Azure 傳統入口網站顯示，用來識別虛擬硬碟的名稱。
+	- **VHDName** 是您要 Azure 傳統入口網站顯示，用來識別虛擬硬碟的名稱
 	- **PathToVHDFile** 是 .vhd 檔案的完整路徑和名稱
 
 	![PowerShell Add-AzureVHD](./media/virtual-machines-windows-classic-createupload-vhd/powershell_upload_vhd.png)
@@ -205,4 +203,4 @@
 [Step 3: Prepare the connection to Azure]: #prepAzure
 [Step 4: Upload the .vhd file]: #upload
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

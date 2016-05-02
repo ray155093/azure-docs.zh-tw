@@ -18,7 +18,7 @@
 	ms.author="nitinme"/>
 
 
-# 開始使用：在 Azure HDInsight 上建立 Apache Spark 並使用 Spark SQL 執行互動式查詢
+# 開始使用：在 HDInsight Windows 上建立 Apache Spark，並使用 Spark SQL (預覽) 執行互動式查詢
 
 > [AZURE.NOTE] HDInsight 現在於 Linux 上提供 Spark 叢集。如需如何在 HDInsight Linux 上開始使用 Spark 叢集的資訊，請參閱 [開始使用：在 Azure HDInsight 上建立 Apache Spark (Linux)](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
@@ -296,4 +296,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,6 +1,6 @@
 <properties
  pageTitle="將高載節點新增至 HPC Pack 叢集 | Microsoft Azure"
- description="了解如何將在雲端服務中隨選做為計算資源來執行的背景工作角色執行個體，新增至 Azure 中的 HPC Pack 前端節點。"
+ description="了解如何新增在雲端服務中執行的背景工作角色執行個體，以隨選擴充 HPC Pack 叢集容量"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -13,15 +13,16 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-multiple"
  ms.workload="big-compute"
- ms.date="01/08/2016"
+ ms.date="04/13/2016"
  ms.author="danlep"/>
 
 # 將做為運算資源的隨選「高載」節點 (背景工作角色執行個體) 新增至 Azure 中的 HPC Pack 叢集
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
 本文將說明如何將隨選做為運算資源的 Azure「高載」節點 (在雲端服務中執行的背景工作角色執行個體) 新增至 Azure 中現有的 HPC Pack 前端節點。這可讓您依需求相應增加 Azure 中的 HPC 叢集的計算能力，且無需維護一組預先設定的計算節點 VM。
+
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 ![高載節點][burst]
 
@@ -33,7 +34,7 @@ ms.service="virtual-machines-windows"
 
 ## 必要條件
 
-* **在 Azure VM 中部署的 HPC Pack 前端節點** - 請參閱[在 Azure VM 中部署 HPC Pack 前端節點](virtual-machines-windows-hpcpack-cluster-headnode.md)，以了解在傳統 (服務管理) 部署模型中建立叢集前端節點的步驟。
+* **在 Azure VM 中部署的 HPC Pack 前端節點** - 請參閱[在 Azure VM 中部署 HPC Pack 前端節點](virtual-machines-windows-hpcpack-cluster-headnode.md)，以了解在傳統部署模型中建立叢集前端節點的步驟。
 
 * **Azure 訂用帳戶** - 若要新增 Azure 節點，您可以選擇用來部署前端節點 VM 的同一個訂用帳戶，或選擇一或多個不同的訂用帳戶。
 
@@ -46,13 +47,13 @@ ms.service="virtual-machines-windows"
 * 新的 Azure 雲端服務
 * 新的 Azure 儲存體帳戶
 
->[AZURE.NOTE] 請勿重複使用您的訂用帳戶中現有的雲端服務。也不要將個別的自訂雲端服務套件部署至此雲端服務。HPC Pack 會在您啟動 (佈建) Azure 節點時自動部署雲端服務套件。
+>[AZURE.NOTE] 請勿重複使用您的訂用帳戶中現有的雲端服務。
 
 **考量**
 
 * 您打算建立的每個 Azure 節點範本設定個別的雲端服務。不過，您可以將同一個儲存體帳戶用於多個節點範本。
 
-* 您通常應將部署的雲端服務與儲存體帳戶放置在相同區域中。
+* 您通常應將部署的雲端服務與儲存體帳戶放置在相同的 Azure 區域中。
 
 
 
@@ -79,13 +80,13 @@ ms.service="virtual-machines-windows"
 
 節點新增並啟動之後，即可供您用來執行叢集工作。
 
-如果您在部署 Azure 節點時遇到問題，請參閱 [使用 Microsoft HPC Pack 部署 Azure 節點時的疑難排解](http://technet.microsoft.com/library/jj159097(v=ws.10).aspx)。
+如果您在部署 Azure 節點時遇到問題，請參閱[使用 Microsoft HPC Pack 部署 Azure 節點時的疑難排解](http://technet.microsoft.com/library/jj159097.aspx)。
 
 ## 後續步驟
 
-* 如果您需要能根據叢集上目前的工作和任務的工作負載自動增加和縮減 Azure 計算資源的方法，請參閱[自動在 HPC Pack 叢集中增加和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
+* 如果您想要根據叢集上目前工作的工作負載自動增加或縮減 Azure 計算資源，請參閱[自動在 HPC Pack 叢集中增加和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
 <!--Image references-->
 [burst]: ./media/virtual-machines-windows-classic-hpcpack-cluster-node-burst/burst.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

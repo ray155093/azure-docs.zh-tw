@@ -21,6 +21,11 @@
 
 # 還原 Azure 中的虛擬機器
 
+> [AZURE.SELECTOR]
+- [在 Azure 入口網站中還原 VM](backup-azure-arm-restore-vms.md)
+- [在傳統入口網站中還原 VM](backup-azure-restore-vms.md)
+
+
 使用下列步驟，利用 Azure 備份保存庫中儲存的備份，將虛擬機器還原到新的 VM。
 
 ## 還原工作流程
@@ -60,9 +65,9 @@
   - 指定虛擬機器名稱：在指定的雲端服務中，虛擬機器名稱應該是唯一的。如果您打算使用相同的名稱取代現有的 VM，先刪除現有的 VM 和資料磁碟，然後從 Azure 備份還原資料。
   - 選取 VM 的雲端服務：這是建立 VM 的必要步驟。您可以選擇使用現有的雲端服務，或建立新的雲端服務。
 
-        無論雲端服務名稱為何，都必須是全域唯一的名稱。一般來說，雲端服務名稱會與形式為 [cloudservice].cloudapp.net 的公用 URL 相關聯。如果該名稱已有他人使用，Azure 不允許您建立新的雲端服務。如果您選擇建立新的雲端名稱，則該名稱會與虛擬機器相同，在這種情況下，所選擇的 VM 名稱應該是唯一的，以便套用至所有相關的雲端服務。
+        Whatever cloud service name is picked should be globally unique. Typically, the cloud service name gets associated with a public-facing URL in the form of [cloudservice].cloudapp.net. Azure will not allow you to create a new cloud service if the name has already been used. If you choose to create select create a new cloud service, it will be given the same name as the virtual machine – in which case the VM name picked should be unique enough to be applied to the associated cloud service.
 
-        我們只會顯示與還原執行個體詳細資料中的任何同質群組不關聯的雲端服務和虛擬網路。[深入瞭解](../virtual-network/virtual-networks-migrate-to-regional-vnet.md)。
+        We only display cloud services and virtual networks that are not associated with any affinity groups in the restore instance details. [Learn More](../virtual-network/virtual-networks-migrate-to-regional-vnet.md).
 
 2. 選取 VM 的儲存體帳戶：這是建立 VM 的必要步驟。您可以選取與 Azure 備份保存庫位於相同區域的現有儲存體帳戶。我們不支援區域備援或進階儲存體類型的儲存體帳戶。
 
@@ -144,4 +149,4 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。在�
 - [錯誤疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -74,6 +74,7 @@ blob 索引子可以從下列文件格式擷取文字：
 - ZIP
 - EML
 - 純文字檔案  
+- JSON (如需詳細資訊，請參閱[編製索引 JSON blob](search-howto-index-json-blobs.md))
 
 ## 文件擷取程序
 
@@ -191,7 +192,7 @@ PPT (application/vnd.ms-powerpoint) | `metadata_content_type`<br/>`metadata_auth
 MSG (application/vnd.ms-outlook) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` | 擷取文字，包括附件
 ZIP (application/zip) | `metadata_content_type` | 從封存中的所有文件擷取文字
 XML (application/xml) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 移除 XML 標記並且擷取文字
-JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>請注意：如果您需要從 JSON Blob 擷取多個文件欄位，請投票支持[這個 UserVoice 建議](https://feedback.azure.com/forums/263029-azure-search/suggestions/11113539-extract-document-structure-from-json-blobs/) (英文)
+JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>請注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊
 EML (message/rfc822) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` | 擷取文字，包括附件
 純文字 (text/plain) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 
 
@@ -208,7 +209,7 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 <a name="IndexerParametersConfigurationControl"></a>
 ## 使用索引子參數來控制文件擷取
 
-如果您需要擷取中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子設定來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入至每個 Blob 中。若要這樣做，請將 `parameters` 物件中的 `skipContent` 組態屬性設定為 `true`︰
+如果您需要擷取中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子設定來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入每個 Blob 中。若要這樣做，請將 `parameters` 物件中的 `skipContent` 組態屬性設定為 `true`︰
 
  	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -223,4 +224,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

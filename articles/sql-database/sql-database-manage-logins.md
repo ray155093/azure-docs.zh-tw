@@ -5,7 +5,7 @@
    services="sql-database"
    documentationCenter=""
    authors="BYHAM"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor=""
    tags=""/>
 
@@ -20,7 +20,7 @@
 
 # SQL Database 安全性：管理資料庫存取與登入安全性  
 
-深入了解 SQL Database 安全性管理，特別是如何透過伺服器層級主體帳戶管理資料庫存取與登入安全性。了解一些 SQL Database 與內部部署 SQL Server 登入安全性選項之間的異同。
+深入了解 SQL Database 安全性管理，特別是如何透過伺服器層級主體帳戶管理資料庫存取與登入安全性。了解一些 SQL Database 與內部部署 SQL Server 登入安全性選項之間的異同。如需快速教學課程，請參閱 [Azure SQL Database 教學課程︰開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md)。
 
 ## 資料庫佈建和伺服器層級主體登入
 
@@ -174,6 +174,6 @@ SELECT * FROM sys.databases;
 
 ## 另請參閱
 
-[Azure SQL Database 安全性方針和限制](sql-database-security-guidelines.md) [利用 Azure Active Directory 驗證連線到 SQL Database](sql-database-aad-authentication.md)
+[Azure SQL Database 教學課程︰開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md) [Azure SQL Database 安全性方針和限制](sql-database-security-guidelines.md) [使用 Azure Active Directory 驗證連接到 SQL Database](sql-database-aad-authentication.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

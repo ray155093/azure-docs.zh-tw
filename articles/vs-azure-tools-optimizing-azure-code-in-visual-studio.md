@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/30/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 最佳化您的 Azure 程式碼
@@ -532,4 +532,4 @@ public class BlogsController : Controller
 
 若要深入了解如何最佳化和疑難排解 Azure 應用程式，請參閱[使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式](./app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

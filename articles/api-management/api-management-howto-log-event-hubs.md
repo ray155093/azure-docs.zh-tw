@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何將事件記錄到 Azure API 管理中的 Azure 事件中樞" 
+	pageTitle="如何將事件記錄到 Azure API 管理中的 Azure 事件中樞 | Microsoft Azure" 
 	description="了解如何將事件記錄到 Azure API 管理中的 Azure 事件中樞。" 
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/15/2016" 
 	ms.author="sdanie"/>
 
 # 如何將事件記錄到 Azure API 管理中的 Azure 事件中樞
@@ -71,12 +71,14 @@
       "credentials" : {
         "name" : "Name of the Event Hub from the Azure Classic Portal",
         "connectionString" : "Endpoint=Event Hub Sender connection string"
-        }
+        },
+        "isBuffered": "true | false"
     }
 
 -	`type` 必須設為 `AzureEventHub`。
 -	`description` 提供記錄器的選擇性描述，如有需要，可以是零長度字串。
 -	`credentials` 包含 Azure 事件中樞的 `name` 和 `connectionString`。
+-	`isBuffered` 決定記錄器中的記錄會否在發佈前進行緩衝處理。這個屬性是選擇性的，預設值為 `true`。當記錄進行緩衝處理時，每隔 15 秒就會傳送至事件中樞，或緩衝區隨時會接收 256 KB 的訊息。
 
 當您提出要求時，如果記錄器已建立，會傳回狀態碼 `201 Created`。
 
@@ -133,4 +135,4 @@
 [event-hub-policy]: ./media/api-management-howto-log-event-hubs/event-hub-policy.png
 [add-policy]: ./media/api-management-howto-log-event-hubs/add-policy.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

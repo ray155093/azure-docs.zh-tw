@@ -85,6 +85,7 @@ Asset Bank 與 Azure AD 整合提供下列優點：
 
 7. 在結果窗格中，選取 [Asset Bank]，然後按一下 [完成] 以加入應用程式。
 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-assetbank-tutorial/tutorial_assetbank_02.png)
 
 ##  設定並測試 Azure AD 單一登入
 本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 Asset Bank 的 Azure AD 單一登入。
@@ -140,7 +141,7 @@ Asset Bank 與 Azure AD 整合提供下列優點：
 5. 若要為您的應用程式設定 SSO，請透過 [support@assetbank.co.uk](mailto:support@assetbank.co.uk) 連絡您的 Asset Bank 支援小組，並在電子郵件中附加您下載的中繼資料檔。
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -166,11 +167,11 @@ Asset Bank 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下功能表頂端的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-assetbank-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-assetbank-tutorial/create_aaduser_04.png)
 
@@ -280,4 +281,4 @@ Asset Bank 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-assetbank-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-assetbank-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

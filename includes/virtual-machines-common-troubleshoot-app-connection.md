@@ -25,7 +25,7 @@
 
 ![](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
 
-例如，如果應用程式是網頁伺服器，則在 VM 上執行瀏覽器，並嘗試存取在 VM 上託管的網頁。
+例如，如果應用程式是網頁伺服器，則在 VM 上開啟瀏覽器，並嘗試存取在 VM 上託管的網頁。
 
 如果您可以存取應用程式，請移至[步驟 3](#step2)。
 
@@ -102,4 +102,4 @@
 
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

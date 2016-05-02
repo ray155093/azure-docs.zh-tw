@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="Azure Mobile Engagement Android SDK 整合" 
+<properties
+	pageTitle="Azure Mobile Engagement Android SDK 整合"
 	description="Android SDK for Azure Mobile Engagement 的最新更新和程序"
-	services="mobile-engagement" 
-	documentationCenter="mobile" 
-	authors="piyushjo" 
-	manager="dwrede" 
+	services="mobile-engagement"
+	documentationCenter="mobile"
+	authors="piyushjo"
+	manager="dwrede"
 	editor="" />
 
-<tags 
-	ms.service="mobile-engagement" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile-android" 
-	ms.devlang="Java" 
-	ms.topic="article" 
-	ms.date="02/29/2016" 
+<tags
+	ms.service="mobile-engagement"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-android"
+	ms.devlang="Java"
+	ms.topic="article"
+	ms.date="04/18/2016"
 	ms.author="piyushjo" />
 
 #如何在 Android 上整合 Engagement Reach
@@ -145,7 +145,7 @@ Reach SDK 需要「Android 支援程式庫 (v4)」。
 			    Log.d("tmp", "String data push message received: " + body);
 			    return true;
 			  }
-			
+
 			  @Override
 			  protected Boolean onDataPushBase64Received(Context context, String category, byte[] decodedBody, String encodedBody)
 			  {
@@ -185,7 +185,7 @@ Reach SDK 需要「Android 支援程式庫 (v4)」。
 
 #### 系統通知
 
-若要自訂系統通知，您需要使用 [類別]。您可以跳到 [類別](#categories)。
+若要自訂系統通知，您需要使用 [類別]。您可以跳到 [類別][](#categories)。
 
 #### 應用程式內通知
 
@@ -218,15 +218,15 @@ Reach SDK 需要「Android 支援程式庫 (v4)」。
 			  android:orientation="vertical"
 			  android:layout_width="fill_parent"
 			  android:layout_height="fill_parent">
-			
+
 			  <ListView
 			    android:id="@android:id/list"
 			    android:layout_width="fill_parent"
 			    android:layout_height="fill_parent"
 			    android:layout_weight="1" />
-			
+
 			  <include layout="@layout/engagement_notification_area" />
-			
+
 			</LinearLayout>
 
 在此範例中我們加入了父容器，因為原始配置使用清單檢視做為最上層項目。我們也加入了 `android:layout_weight="1"`，以便在使用 `android:layout_height="fill_parent"` 設定的清單檢視下加入檢視。
@@ -292,27 +292,27 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 ##### 應用程式內通知
 
 如果您只想要針對特定類別使用替代配置，可以如下列範例所示實作：
-			
+
 			public class MyNotifier extends EngagementDefaultNotifier
 			{
 			  public MyNotifier(Context context)
 			  {
 			    super(context);
 			  }
-			
+
 			  @Override
 			  protected int getOverlayLayoutId(String category)
 			  {
 			    return R.layout.my_notification_overlay;
 			  }
-			
-			
+
+
 			  @Override
 			  public Integer getOverlayViewId(String category)
 			  {
 			    return R.id.my_notification_overlay;
 			  }
-			
+
 			  @Override
 			  public Integer getInAppAreaId(String category)
 			  {
@@ -328,9 +328,9 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			  android:id="@+id/my_notification_overlay"
 			  android:layout_width="fill_parent"
 			  android:layout_height="fill_parent">
-			
+
 			  <include layout="@layout/my_notification_area" />
-			
+
 			</RelativeLayout>
 
 如您所見，覆疊檢視識別碼與標準不同。很重要的是，每個配置要針對覆疊使用唯一識別碼。
@@ -342,25 +342,25 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			  xmlns:android="http://schemas.android.com/apk/res/android"
 			  android:layout_width="fill_parent"
 			  android:layout_height="fill_parent">
-			
+
 			  <RelativeLayout
 			    android:id="@+id/my_notification_area"
 			    android:layout_width="fill_parent"
 			    android:layout_height="64dp"
 			    android:layout_alignParentTop="true"
 			    android:background="#B000">
-			
+
 			    <LinearLayout
 			      android:orientation="horizontal"
 			      android:layout_width="fill_parent"
 			      android:layout_height="fill_parent"
 			      android:gravity="center_vertical">
-			
+
 			      <ImageView
 			        android:id="@+id/engagement_notification_icon"
 			        android:layout_width="48dp"
 			        android:layout_height="48dp" />
-			
+
 			      <LinearLayout
 			        android:id="@+id/engagement_notification_text"
 			        android:orientation="vertical"
@@ -368,7 +368,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			        android:layout_height="fill_parent"
 			        android:layout_weight="1"
 			        android:gravity="center_vertical">
-			
+
 			        <TextView
 			          android:id="@+id/engagement_notification_title"
 			          android:layout_width="fill_parent"
@@ -376,7 +376,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			          android:singleLine="true"
 			          android:ellipsize="end"
 			          android:textAppearance="@android:style/TextAppearance.Medium" />
-			
+
 			        <TextView
 			          android:id="@+id/engagement_notification_message"
 			          android:layout_width="fill_parent"
@@ -384,15 +384,15 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			          android:maxLines="2"
 			          android:ellipsize="end"
 			          android:textAppearance="@android:style/TextAppearance.Small" />
-			
+
 			      </LinearLayout>
-			
+
 			      <ImageView
 			        android:id="@+id/engagement_notification_image"
 			        android:layout_width="wrap_content"
 			        android:layout_height="fill_parent"
 			        android:adjustViewBounds="true" />
-			
+
 			      <ImageButton
 			        android:id="@+id/engagement_notification_close_area"
 			        android:visibility="invisible"
@@ -400,9 +400,9 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			        android:layout_height="fill_parent"
 			        android:src="@android:drawable/btn_dialog"
 			        android:background="#0F00" />
-			
+
 			    </LinearLayout>
-			
+
 			    <ImageButton
 			      android:id="@+id/engagement_notification_close"
 			      android:layout_width="wrap_content"
@@ -410,9 +410,9 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			      android:layout_alignParentRight="true"
 			      android:src="@android:drawable/btn_dialog"
 			      android:background="#0F00" />
-			
+
 			  </RelativeLayout>
-			
+
 			</merge>
 
 如您所見，通知區域檢視識別碼與標準不同。很重要的是，每個配置要針對通知區域使用唯一識別碼。
@@ -450,19 +450,19 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 			    .setSmallIcon(notification.icon)              // icon is mandatory
 			    .setContentIntent(notification.contentIntent) // keep content intent
 			    .setDeleteIntent(notification.deleteIntent);  // keep delete intent
-			
+
 			  /* Your customization */
 			  // builder.set...
-			
+
 			  /* Dismiss option can be managed only after build */
 			  Notification myNotification = builder.build();
 			  if (!content.isNotificationCloseable())
 			    myNotification.flags |= Notification.FLAG_NO_CLEAR;
-			
+
 			  /* Notify here instead of super class */
 			  NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 			  manager.notify(getNotificationId(content), myNotification); // notice the call to get the right identifier
-			
+
 			  /* Return false, we notify ourselves */
 			  return false;
 			}
@@ -472,7 +472,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 對於僅限通知之公告的點擊管理，可以藉由覆寫 `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` 以修改已備妥之 `Intent` 來自訂。使用此方法可讓您輕鬆地調整旗標。
 
 例如，若要加入 `SINGLE_TOP` 旗標：
-			
+
 			@Override
 			protected Intent onNotifAnnouncementIntentPrepared(EngagementNotifAnnouncement notifAnnouncement,
 			  Intent intent)
@@ -521,7 +521,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 
 			<activity android:name="com.your_company.MyCustomTextAnnouncementActivity">
 			  <intent-filter>
-			    <action android:name="com.microsoft.azure.engagement.intent.action.ANNOUNCEMENT"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
 			    <category android:name="my_category" />
 			    <data android:mimeType="text/plain" />
 			  </intent-filter>
@@ -550,7 +550,7 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 
 			<activity android:name="com.your_company.MyCustomWebAnnouncementActivity">
 			  <intent-filter>
-			    <action android:name="com.microsoft.azure.engagement.intent.action.ANNOUNCEMENT"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
 			    <category android:name="my_category" />
 			    <data android:mimeType="text/html" />    <!-- only difference with text announcements in the intent is the data mime type -->
 			  </intent-filter>
@@ -560,11 +560,11 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 
 			<activity android:name="com.your_company.MyCustomPollActivity">
 			  <intent-filter>
-			    <action android:name="com.microsoft.azure.engagement.intent.action.POLL"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
 			    <category android:name="my_category" />
 			  </intent-filter>
 			</activity>
-			
+
 ##### 從頭實作
 
 您可以實作公告 (和輪詢) 活動的類別，而不延伸 Reach SDK 所提供的其中一個 `Engagement*Activity` 類別。這非常適用於您想要定義不會使用與標準配置相同之檢視的配置。
@@ -578,12 +578,12 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 			public class MyCustomTextAnnouncement extends EngagementActivity
 			{
 			  private EngagementAnnouncement mContent;
-			
+
 			  @Override
 			  protected void onCreate(Bundle savedInstanceState)
 			  {
 			    super.onCreate(savedInstanceState);
-			
+
 			    /* Get content */
 			    mContent = EngagementReachAgent.getInstance(this).getContent(getIntent());
 			    if (mContent == null)
@@ -592,16 +592,16 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 			      finish();
 			      return;
 			    }
-			
+
 			    setContentView(R.layout.my_text_announcement);
-			
+
 			    /* Configure views by querying fields on mContent */
 			    // ...
 			  }
 			}
 
 若為統計資料，您應該報告內容已顯示在 `onResume` 事件中：
-			
+
 			@Override
 			protected void onResume()
 			{
@@ -623,7 +623,7 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 			{
 			  finish();
 			}
-			
+
 			@Override
 			protected void onPause()
 			{
@@ -643,6 +643,5 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 [這裡]: http://developer.android.com/tools/extras/support-library.html#Downloading
 [Google Cloud Messaging]: http://developer.android.com/guide/google/gcm/index.html
 [Amazon Device Messaging]: https://developer.amazon.com/sdk/adm.html
- 
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

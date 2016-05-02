@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用範例"
-   description="開始使用範例"
+   pageTitle="Power BI Embedded 範例"
+   description="Power BI Embedded 範例"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -32,6 +32,6 @@
 ## 另請參閱
 
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
-- [開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)
+- [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

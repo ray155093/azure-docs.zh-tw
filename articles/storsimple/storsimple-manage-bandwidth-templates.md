@@ -12,22 +12,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="12/02/2015"
+   ms.date="04/14/2015"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 頻寬範本
 
 ## 概觀
 
-頻寬範本可讓您設定多個日期時間排程以將 StorSimple 裝置的資料分層至雲端。您也可以將這些排程建立、修改、刪除和儲存成範本。然後這些頻寬範本就可以套用至所有磁碟區容器，以在執行包含雲端的作業時，控制 StorSimple 裝置所耗用的頻寬。根據頻寬使用模式，您也可以從預設範本的清單選擇。
+頻寬範本可讓您設定多個日期時間排程的網路頻寬使用量，以將 StorSimple 裝置的資料分層至雲端。
 
 利用頻寬節流排程，您可以：
 
-- 指定可根據工作負載自訂頻寬使用量的排程。
+- 根據工作負載網路使用情況，指定自訂的頻寬排程。
 
 - 集中管理，並且以簡單且順暢的方式跨多個裝置重複使用排程。
 
-這項功能只可供 StorSimple 實體裝置使用，不能用於虛擬裝置。服務的所有頻寬範本會以表格格式顯示，並包含下列資訊：
+> [AZURE.NOTE] 這項功能只可供 StorSimple 實體裝置使用，不能用於虛擬裝置。
+   
+服務的所有頻寬範本會以表格格式顯示，並包含下列資訊：
 
 - **名稱** – 在建立頻寬範本時，指派給頻寬範本的唯一名稱。
 
@@ -35,13 +37,7 @@
 
 - **使用者** – 使用頻寬範本的磁碟區數目。
 
-您使用 Azure 傳統入口網站中的 StorSimple Manager 服務 [設定] 頁面管理頻寬範本。與在此頁面上執行之頻寬範本相關的最常見工作如下：
-
-- 新增頻寬範本
-- 編輯頻寬範本
-- 刪除頻寬範本
-- 使用預設頻寬範本
-- 建立在指定時間啟動的全天頻寬範本
+您使用 Azure 傳統入口網站中的 StorSimple Manager 服務 [設定] 頁面管理頻寬範本。
 
 您也可以在下方找到協助設定頻寬範本的其他資訊：
 
@@ -68,7 +64,7 @@
    3. 從下拉式清單中，選取 [**開始時間**]。這就是排程開始的時間。
    4. 從下拉式清單中，選取 [**結束時間**]。這就是排程結束的時間。
    
-         > [AZURE.NOTE] 不允許重疊的排程。如果開始和結束時間會產生重疊排程，您會看到錯誤訊息。
+         > [AZURE.NOTE] Overlapping schedules are not allowed. If the start and end times will result in an overlapping schedule, you will see an error message to that effect.
 
    5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
    
@@ -94,7 +90,7 @@
 
 3. 若要儲存變更，請按一下頁面底部的 [**儲存**]。收到確認提示時，請按一下 [**是**]。
 
-> [AZURE.NOTE]如果已編輯的排程和您要修改的頻寬範本中現有的排程重疊，您就不能儲存變更。
+> [AZURE.NOTE] 如果已編輯的排程和您要修改的頻寬範本中現有的排程重疊，您就不能儲存變更。
 
 ## 刪除頻寬範本
 
@@ -176,4 +172,4 @@
 
 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0420_2016-->

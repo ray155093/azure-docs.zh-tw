@@ -13,11 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/05/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 HDInsight 上搭配使用 Zeppelin Notebook 和 Spark 叢集
+# 在 HDInsight Linux (預覽) 上搭配使用 Zeppelin Notebook 和 Spark 叢集
 
 了解如何在 Spark 叢集上安裝 Zeppelin Notebook 以及如何使用 Zeppelin Notebook。
 
@@ -332,4 +332,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

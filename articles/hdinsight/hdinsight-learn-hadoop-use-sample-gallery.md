@@ -30,10 +30,6 @@ HDInsight Getting Started Gallery 在 HDInsight 中執行範例應用程式，�
 	- 網站記錄分析
 	- Mahout 影片建議
 
-[AZURE.INCLUDE [hdinsight-azure-preview-portal](../../includes/hdinsight-azure-preview-portal.md)]
-
-* [使用 HDInsight Getting Started Gallery 了解 Hadoop](hdinsight-learn-hadoop-use-sample-gallery-v1.md)
-
 ![HDInsight Hadoop、Storm 和 HBase Getting Started Gallery 方案都含有範例資料。][hdinsight.sample.gallery]
 
 下列視訊顯示如何執行 Twitter 趨勢分析範例：
@@ -68,4 +64,4 @@ HDInsight Getting Started Gallery 在 HDInsight 中執行範例應用程式，�
 [hdinsight.infographic]: http://go.microsoft.com/fwlink/?linkid=523960
 [azure.portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

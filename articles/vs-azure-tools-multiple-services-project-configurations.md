@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/30/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 使用多個服務組態設定 Azure 專案
@@ -110,4 +110,4 @@ Web 角色預設會啟用診斷。Azure 雲端服務專案和儲存體帳戶已�
 |開發|在此頁面，您可以指定組建組態指示以及執行任何建置後事件的條件。|
 |Web|在此頁面，您可以設定 Web 伺服器的相關設定。|
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

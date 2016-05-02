@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/12/2016"
+   ms.date="04/14/2016"
    ms.author="sonyama;barbkess;sahajs"/>
 
 # 使用 DMV 監視工作負載
@@ -142,30 +142,16 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 
 ```
 
-
-## 調查資料扭曲
-
-使用 [DBCC PDW\_SHOWSPACEUSED][] 查閱資料表所使用的空間。
-
-```sql
--- Find data skew for a distributed table
-DBCC PDW_SHOWSPACEUSED("dbo.FactInternetSales");
-```
-
-此查詢的結果會顯示儲存在您資料庫中，每組 60 個散發內的資料表資料列數目。為了達到最佳效能，分散式資料表中的資料列應該平均分配在所有散發中。
-
-若要深入了解，請參閱[管理散發資料表的資料扭曲][]或[資料表設計][]。
-
 ## 後續步驟
-如需 Transact-SQL 和動態管理檢視 (DMV) 的詳細資訊，請參閱[參考概觀][]。如需其他管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。
+如需 Transact-SQL 和動態管理檢視 (DMV) 的詳細資訊，請參閱[參考概觀][]。如需管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。
 
 <!--Image references-->
 
 <!--Article references-->
 [管理概觀]: sql-data-warehouse-overview-manage.md
-[資料表設計]: sql-data-warehouse-develop-table-design.md
+[table design]: sql-data-warehouse-develop-table-design.md
 [參考概觀]: sql-data-warehouse-overview-reference.md
-[管理散發資料表的資料扭曲]: sql-data-warehouse-manage-distributed-data-skew.md
+[manage data skew for distributed tables]: sql-data-warehouse-manage-distributed-data-skew.md
 
 <!--MSDN references-->
 [sys.dm\_pdw\_dms\_workers]: http://msdn.microsoft.com/library/mt203878.aspx
@@ -174,6 +160,6 @@ DBCC PDW_SHOWSPACEUSED("dbo.FactInternetSales");
 [sys.dm\_pdw\_request\_steps]: http://msdn.microsoft.com/library/mt203913.aspx
 [sys.dm\_pdw\_sql\_requests]: http://msdn.microsoft.com/library/mt203889.aspx
 [DBCC PDW\_SHOWEXECUTIONPLAN]: http://msdn.microsoft.com/library/mt204017.aspx
-[DBCC PDW\_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
+[DBCC PDW_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

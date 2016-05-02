@@ -18,7 +18,7 @@
 	ms.author="nitinme"/>
 
 
-# Azure HDInsight 叢集上的 Spark 作業伺服器
+# Azure HDInsight Windows 叢集 (預覽) 的 Spark 工作伺服器
 
 > [AZURE.NOTE] HDInsight 現在在 Linux 上提供 Spark 叢集，它利用 Livy 來把工作遠端提交給 Spark 叢集。如需了解如何在 Linux 上搭配 HDInsight Spark 叢集來使用 Livy，請參閱[搭配 HDInsight 上的 Spark 叢集來利用 Livy 遠端提交 Spark 工作 (Linux)](hdinsight-apache-spark-livy-rest-interface.md)。
 
@@ -84,4 +84,4 @@ Azure HDInight 上的 Apache Spark 叢集能封裝 Spark 作業伺服器，使�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

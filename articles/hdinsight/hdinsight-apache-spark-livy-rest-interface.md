@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/05/2016"
+	ms.date="04/14/2016"
 	ms.author="nitinme"/>
 
 
-# 搭配 HDInsight (Linux) 上的 Spark 叢集利用 Livy 遠端提交 Spark 作業
+# 使用 Livy 將 Spark 工作遠端提交至 Linux 上的 HDInsight Spark 叢集 (預覽)
 
 Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面，可讓您從任何地方將作業遠端提交到 Spark 叢集。如需詳細文件，請參閱 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)。
 
@@ -189,4 +189,4 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

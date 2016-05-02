@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="04/14/2016"
 	ms.author="genli"/>
 
 #  Azure 計費及訂用帳戶常見問題集
@@ -43,6 +43,8 @@
 
 - [Azure 服務等級協定如何搭配目前的內部部署 Microsoft 授權合約運作？](#how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements)
 
+- [我沒有看見上期的發票。原因為何？](#i-do-not-see-an-invoice-for-the-last-billing-period-why)
+
 **訂用帳戶**
 
 - [我無法登入 Azure 入口網站](#i-am-unable-to-log-in-to-the-azure-portal)
@@ -53,7 +55,7 @@
 
 - [如何升級為更高階的 Azure 支援方案？](#how-do-i-upgrade-to-a-higher-tier-azure-support-plan)
 
--	[何時會收取 Azure 支援的費用？](#when-will-i-be-billed-for-azure-support)
+- [何時會收取 Azure 支援的費用？](#when-will-i-be-billed-for-azure-support)
 
 - [期限結束時，該怎麼辦？](#what-happens-at-the-end-of-the-term)
 
@@ -129,13 +131,13 @@
 
 **計劃性維護 (傳統入口網站)**：針對單一執行個體和多重執行個體組態，Azure 會預先傳送電子郵件通訊，警告您有關即將到來的計劃性維護 (單一執行個體為提前一週，多個執行個體為提前 48 小時)。這封電子郵件將會傳送到訂用帳戶中提供的帳戶管理員、系統管理員及共同系統管理員電子郵件帳戶。
 
-**注意：**如需虛擬機器的特定詳細資訊，請參閱 [Azure 虛擬機器的計劃性維護](virtual-machines/virtual-machines-linux-planned-maintenance.md)一文。
+**注意**：如需虛擬機器的特定詳細資訊，請參閱 [Azure 虛擬機器的計劃性維護](virtual-machines/virtual-machines-linux-planned-maintenance.md)一文。
 
 **非計劃性維護：**如果 Azure 平台發生非計劃性服務中斷，我們的[服務儀表板](http://status.azure.com/)上會進行狀態更新，而客戶會同時在 [Azure 傳統入口網站](https://manage.windowsazure.com/)收到通知。
 
 ### 何謂執行時間與連線能力的 Azure SLA 合約？
 
-Azure 針對所有已正式推出、且不在預覽階段的服務，另外備有 SLA。服務等級協定 (SLA) 描述 Microsoft 對執行時間與連線能力的承諾。如需最新詳細資料，請參閱 [SLA 頁面](https://azure.microsoft.com/support/legal/sla/)。
+Azure 針對所有已正式推出、且不在預覽階段的服務，另外備有 SLA。服務等級協定 (SLA) 描述 Microsoft 對執行時間與連線能力的承諾。如需最新詳細資訊，請參閱 [SLA 頁面](https://azure.microsoft.com/support/legal/sla/)。
 
 ### 什麼是 Azure SLA 信用額度？
 
@@ -145,6 +147,13 @@ Azure SLA 信用額度是依個別訂用帳戶來計算，形式為該服務在�
 
 Azure 服務等級協定是獨立於我們的內部部署 Microsoft 授權合約來運作。我們的 Azure SLA 針對您在雲端中使用的那些服務，提供每月執行時間保證，而且當我們未達到保證的內容時，提供您已計費的 SLA 信用額度。
 
+### 我沒有看見上期的發票。原因為何？
+
+可能的原因如下：
+- 您的 Azure 訂閱不滿 30 天。
+- 您的訂用帳戶是免費試用版，或沒有信用卡或其他相關付款方式的成員優惠之一 (MSDN/Open/BizSpark/DreamSpark)。
+- 還沒到發票產生日期。
+
 ## 訂用帳戶
 
 ### 我無法登入 Azure 入口網站
@@ -153,7 +162,7 @@ Azure 服務等級協定是獨立於我們的內部部署 Microsoft 授權合約
 
 [我無法登入來管理我的 Azure 訂用帳戶](billing-cannot-login-subscription.md)
 
-**注意**請確定以正確的系統管理員身分登入：帳戶管理員只能存取[帳戶中心](https://account.windowsazure.com/)，而服務管理員 (SA) 和共同管理員 (CA) 只有 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)的存取權。
+**注意**：請確定以正確的系統管理員身分登入：帳戶管理員只能存取[帳戶中心](https://account.windowsazure.com/)，而服務管理員 (SA) 和共同管理員 (CA) 只有 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)的存取權。
 
 ### 如何購買 Azure 支援？
 Azure 支援方案可於線上或透過 Enterprise 合約購買。開發人員、標準或專業直接支援方案可透過 [Azure 支援方案](https://azure.microsoft.com/support/plans/)頁面在線上取得。您必須是 Microsoft Azure 帳戶擁有者才能購買支援方案。
@@ -268,4 +277,4 @@ Auzre 已在全球超過 140 個國家/地區銷售，並可以多種貨幣計�
 
 目前並沒有透過 SPLA 提供 Azure 和 SQL Database 的計劃。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -71,11 +71,11 @@ ms.author="eugenesh" />
 
 由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，那麼 `Key` 欄位的值是 `PK1RK1`。
 
-> AZURE.NOTE `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以藉由在索引子屬性中啟用 `base64EncodeKeys` 選項，處理無效的字元 - 如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。(例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
+> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以藉由在索引子屬性中啟用 `base64EncodeKeys` 選項，處理無效的字元 - 如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。(例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
 
 ## 處理不同的欄位名稱
 
-通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用 [欄位對應] 將屬性名稱從資料表對應至您的搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
+通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用**欄位對應**將資料表裡的屬性名稱對應至您搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
 
 ## 增量編製索引和刪除偵測
  
@@ -100,4 +100,4 @@ ms.author="eugenesh" />
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/12/2016"
+   ms.date="04/20/2016"
    ms.author="sonyama;barbkess;jrj"/>
 
 # SQL 資料倉儲容量限制
@@ -233,4 +233,4 @@ An internal DMS error occurred that caused this operation to fail. Details: Exce
 
 <!--MSDN references-->
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

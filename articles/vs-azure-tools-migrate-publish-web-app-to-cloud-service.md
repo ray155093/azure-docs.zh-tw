@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/30/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 作法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure 雲端服務
@@ -45,7 +45,7 @@
 
     - MVC 2、MVC 3、MVC 4 和 Silverlight 商務應用程式所需的組件皆已將 [複製到本機] 屬性設定為 true。此設定會將這些組件新增到用於部署的服務封裝中。
 
-  >[AZURE.IMPORTANT] 如果此 Web 應用程式有其他必要組件或檔案，您必須手動設定這些檔案的屬性。如需如何設定這些屬性的相關資訊，請參閱本文後面的＜將檔案包含在服務封裝內＞一節。  
+  >[AZURE.IMPORTANT] 如果此 Web 應用程式有其他必要組件或檔案，您必須手動設定這些檔案的屬性。如需如何設定這些屬性的相關資訊，請參閱本文後面的＜將檔案包含在服務封裝內＞一節。
 
   >[AZURE.NOTE] 如果方案中的 Azure 專案已有特定 Web 專案的 Web 角色，此 Web 專案的捷徑功能表上就不會顯示 [轉換]、[轉換成 Azure 雲端服務專案]。
 
@@ -208,4 +208,4 @@
 ## 後續步驟
 如需有關發佈的詳細資訊，請參閱 [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。另請參閱[設定具名的驗證認證](vs-azure-tools-setting-up-named-authentication-credentials.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

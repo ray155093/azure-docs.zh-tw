@@ -24,32 +24,32 @@ Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的�
 
 <br /> ![Azure Container Service 提供一個方法來在 Azure 的多部主機上管理容器化應用程式。](./media/acs-intro/acs-cluster.png) <br /><br />
 
-Azure Container Service 會使用 Docker 容器格式，確保您的應用程式容器具有完全的可攜式特性。它也支援您對於 Marathon 和 Apache Mesos 或 Docker Swarm 的選擇，確保您可以將這些應用程式擴展為成千上萬個容器。
+Azure Container Service 會使用 Docker 容器格式，確保您的應用程式容器具有完全的可攜式特性。它也支援您對於 Marathon 和 DC/OS 或 Docker Swarm 的選擇，確保您可以將這些應用程式擴展為成千上萬個容器。
 
 藉由使用 Azure Container Service，您可以充分利用 Azure 的企業級功能，同時仍可保有應用程式可攜性--包括協調流程層的可攜性在內。
 
 使用 Azure 容器服務
 -----------------------------
 
-我們對於 Azure Container Service 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。為了這個目的，我們會為您所選擇的 Orchestrator 公開標準 API 端點。您可以使用這些端點來運用能夠與這些端點通訊的任何軟體。比方說，在 Docker Swarm 端點的案例中，您可能會選擇使用 Docker 命令列介面 (CLI)。若是 Apache Mesos，您可能會選擇使用 DCOS CLI。
+我們對於 Azure Container Service 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。為了這個目的，我們會為您所選擇的 Orchestrator 公開標準 API 端點。您可以使用這些端點來運用能夠與這些端點通訊的任何軟體。比方說，在 Docker Swarm 端點的案例中，您可能會選擇使用 Docker 命令列介面 (CLI)。若是 DC/OS，您可能會選擇使用 DCOS CLI。
 
 使用 Azure Container Service 建立 Docker 叢集
 -------------------------------------------------------
 
-若要開始使用 Azure Container Service，您要使用 Azure Resource Manager 範本來部署 Azure Container Service 叢集。您可以使用 Apache Mesos 或 Docker Swarm，透過不同的大小與可用性選項來設定此部署。您可以使用 Azure CLI 或 PowerShell，透過 Azure 入口網站來部署 Azure Resource Manager 範本。範本也可以修改來包含其他或進階的 Azure 組態。如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱[部署 Azure Container Service 叢集](./container-service-deployment.md)。
+若要開始使用 Azure Container Service，您要使用 Azure Resource Manager 範本來部署 Azure Container Service 叢集。您可以使用 DC/OS 或 Docker Swarm，透過不同的大小與可用性選項來設定此部署。您可以使用 Azure CLI 或 PowerShell，透過 Azure 入口網站來部署 Azure Resource Manager 範本。範本也可以修改來包含其他或進階的 Azure 組態。如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱[部署 Azure Container Service 叢集](./container-service-deployment.md)。
 
 部署應用程式
 ------------------------
 
-在預覽期間，我們會為協調流程提供 Docker Swarm 或 Apache Mesos (含 DCOS Marathon 和 DCOS Chronos 架構) 的選擇。
+Azure Container Service 提供協調流程的選擇：Docker Swarm 或 DC/OS。
 
-### 使用 Apache Mesos
+### 使用 DC/OS
 
-Apache Mesos 是存放在 Apache Software Foundation 的開放原始碼專案。它將一些 [IT 業界鼎鼎有名的人物](http://mesos.apache.org/documentation/latest/powered-by-mesos/)列為使用者與參與者。
+DC/OS 是存放在 Apache Software Foundation 的開放原始碼專案。它將一些 [IT 業界鼎鼎有名的人物](http://mesos.apache.org/documentation/latest/powered-by-mesos/)列為使用者與參與者。
 
-![針對顯示代理程式與主機的 Swarm 設定的 Azure Container Service。](media/acs-intro/acs-mesos.png)
+![針對顯示代理程式與主機的 Swarm 設定的 Azure Container Service。](media/acs-intro/dcos.png)
 
-Mesos 內含令人印象深刻的功能集︰
+DC/OS 內含令人印象深刻的功能集︰
 
 -   延展性為 10,000 節點
 
@@ -65,11 +65,11 @@ Mesos 內含令人印象深刻的功能集︰
 
 -   用於檢視叢集狀態的 Web UI
 
-Mesos 可支援大量的[架構](http://mesos.apache.org/documentation/latest/frameworks/)，其可用來排程 Azure Container Service 的工作負載。根據預設，Azure Container Service 包括 Marathon 和 Chronos 架構。
+DC/OS 可支援大量的[架構](http://mesos.apache.org/documentation/latest/frameworks/)，其可用來排程 Azure Container Service 的工作負載。根據預設，Azure Container Service 包括 Marathon 和 Chronos 架構。
 
 #### 使用 Marathon 和 Chronos
 
-在 cgroups 中，Marathon 是服務的全叢集初始化和控制系統--或者，若是 Azure Container Service，則為 Docker 格式的容器。它是 Chronos (Mesos 的容錯作業排程器) 的理想合作夥伴，其可處理相依性和以時間為基礎的排程。
+在 cgroups 中，Marathon 是服務的全叢集初始化和控制系統--或者，若是 Azure Container Service，則為 Docker 格式的容器。它是 Chronos (DC/OS 的容錯作業排程器) 的理想合作夥伴，其可處理相依性和以時間為基礎的排程。
 
 Marathon 和 Chronos 提供 Web UI，您可以用它來部署您的應用程式。您可以在 `http://DNS\_PREFIX.REGION.cloudapp.azure.com` 這樣的 URL 存取此程式：其中 DNS\_PREFIX 及 REGION 兩者都在部署時定義。當然，您也可以提供您自己的 DNS 名稱。如需有關如何使用 Marathon Web UI 來執行容器的詳細資訊，請參閱 [Container management through the web UI (透過 Web UI 來管理容器)](./container-service-mesos-marathon-ui.md)。
 
@@ -79,7 +79,7 @@ Marathon 和 Chronos 提供 Web UI，您可以用它來部署您的應用程式�
 
 Docker Swarm 為 Docker 提供原生叢集。由於 Docker Swarm 可作為標準 Docker API 使用，已與 Docker 精靈通訊的任何工具都可以使用 Swarm 無障礙地延伸到 Azure 容器服務上的多部主機。
 
-![設定來使用顯示 jumpbox、代理程式與主機之 Apache Mesos 設定的 Azure Container Service。](media/acs-intro/acs-swarm.png)
+![設定來使用 DC/OS 以顯示 jumpbox、代理程式與主機的 Azure 容器服務。](media/acs-intro/acs-swarm2.png)
 
 在 Swarm 叢集上管理容器的支援工具包括但不限於下列程式：
 
@@ -101,4 +101,4 @@ AzureCon 通知：
 
 > [AZURE.VIDEO connect-2015-getting-started-developing-with-docker-and-azure-container-service]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

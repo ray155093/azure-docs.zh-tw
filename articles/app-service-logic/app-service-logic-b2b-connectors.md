@@ -13,11 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/11/2016" 
+	ms.date="04/20/2016" 
 	ms.author="mandia"/>
 
 # Microsoft Azure App Service 中的企業對企業連接器和 API Apps
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 Microsoft Azure App Service (或簡稱 App Service) 包含許多對整合環境很重要的 BizTalk API Apps。這些 API Apps 會以 BizTalk Server 內所使用的概念和工具為基礎，但現在可做為 Azure App Service 的一部分提供。
 
@@ -193,7 +194,7 @@ Microsoft Azure App Service 會公開可使用這些 B2B API Apps 的不同應�
 
 4. 選取 [**確定**] 以儲存變更。
 
->[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請按一下[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
+>[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure 邏輯應用程式，請按一下[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
 
 ## 其他 B2B 資源
 
@@ -208,4 +209,4 @@ Microsoft Azure App Service 會公開可使用這些 B2B API Apps 的不同應�
 
 [連接器和 API Apps 清單](app-service-logic-connectors-list.md)<br/><br/>[什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="na"
-   ms.date="01/25/2016"
+   ms.date="04/18/2016"
    ms.author="zachal"/>
 
 # 將認證傳遞至 Azure DSC 延伸模組處理常式 #
@@ -89,4 +89,4 @@ $vm | Update-AzureVM
 
 若要尋找您可以使用 PowerShell DSC 管理的其他功能，[請瀏覽 PowerShell 資源庫](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0)以取得更多 DSC 資源。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

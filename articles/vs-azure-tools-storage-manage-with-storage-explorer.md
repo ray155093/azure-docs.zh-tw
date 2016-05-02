@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="01/30/2016"
+	ms.date="04/19/2016"
 	ms.author="tarcher" />
 
 # 使用儲存體總管管理 Azure 儲存體資源 (預覽)
@@ -182,4 +182,4 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 [19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS3c.png
 [20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS4c.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="建立執行 MySQL 的 VM | Microsoft Azure"
-	description="以傳統部署模型建立執行 Windows Server 2012 R2 的 Azure 虛擬機器，然後在該虛擬機器上安裝及設定 MySQL 資料庫。"
+	description="使用傳統部署模型，建立執行 Windows Server 2012 R2 和 MySQL 資料庫的 Azure 虛擬機器。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="cynthn"
@@ -14,29 +14,19 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="11/09/2015"
+	ms.date="04/15/2016"
 	ms.author="cynthn"/>
 
 
 # 在以傳統部署模型建立且執行 Windows Server 2012 R2 的虛擬機器上安裝 MySQL
 
+[MySQL](http://www.mysql.com) 是一種很受歡迎的開放原始碼 SQL 資料庫。本教學課程示範如何在執行 Windows Server 2012 R2 的虛擬機器上安裝並執行 MySQL 5.6.23 社群版本作為 MySQL 伺服器。如需在 Linux 上安裝 MySQL 的指示，請參閱[如何在 Azure 上安裝 MySQL](virtual-machines-linux-mysql-install.md)。
+
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
+## 建立執行 Windows Server 2012 R2 的虛擬機器
 
-[MySQL](http://www.mysql.com) 是一種很受歡迎的開放原始碼 SQL 資料庫。您可以使用 [Azure 傳統入口網站](http://manage.windowsazure.com)，從映像庫建立執行 Windows Server 2012 R2 的虛擬機器。您可以接著安裝並將它設定為 MySQL 伺服器。
-
-如需在 Linux 上安裝 MySQL 的指示，請參閱[如何在 Azure 上安裝 MySQL](virtual-machines-linux-mysql-install.md)。
-
-本教學課程說明如何：
-
-- 透過 Azure 傳統入口網站建立執行 Windows Server 2012 R2 的虛擬機器。
-
-- 在虛擬機器上安裝並執行 MySQL 5.6.23 社群版本作為 MySQL 伺服器。
-
-
-## 建立執行 Windows Server 的虛擬機器
-
-[AZURE.INCLUDE [virtual-machines-create-WindowsVM](../../includes/virtual-machines-create-windowsvm.md)]
+如果您還沒有執行 Windows Server 2012 R2 的 VM，則可以使用這個[教學課程](virtual-machines-windows-classic-tutorial.md)來建立虛擬機器。
 
 ## 連接資料磁碟
 
@@ -46,9 +36,7 @@
 
 ## 登入虛擬機器
 
-接著，您將登入虛擬機器，以安裝 MySQL。
-
-[AZURE.INCLUDE [virtual-machines-log-on-win-server](../../includes/virtual-machines-log-on-win-server.md)]
+接著，您將[登入虛擬機器](virtual-machines-windows-classic-connect-logon.md)，以安裝 MySQL。
 
 ##在虛擬機器上安裝和執行 MySQL Community Server
 
@@ -134,8 +122,8 @@
 		mysql -u dbadmin3 -p -h testmysql.cloudapp.net
 
 
-## 其他資源
+## 後續步驟
 
-如需 MySQL 的相關資訊，請參閱 [MySQL 文件](http://dev.mysql.com/doc/)。
+若要深入了解如何執行 MySQL，請參閱 [MySQL 文件](http://dev.mysql.com/doc/)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

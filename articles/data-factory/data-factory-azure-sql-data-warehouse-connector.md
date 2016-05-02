@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/14/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料
@@ -463,7 +463,13 @@
 | writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | 整數。(單位 = 資料列計數) | 否 (預設值 = 10000) |
 | writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：“00:30:00” (30 分鐘)。 | 否 | 
 | sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。如需詳細資訊，請參閱下面「重複性」一節。 | 查詢陳述式。 | 否 |
-| sliceIdentifierColumnName | 使用者指定了可供複製活動使用自動產生的配量識別碼填入的資料行名稱，在重新執行時將用來清除特定配量的資料。如需詳細資訊，請參閱下面「重複性」一節。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否 |
+| allowPolyBase | 指出是否使用 PolyBase (適用的話) 將資料載入 Azure SQL 資料倉儲 (而不是使用 BULKINSERT 機制)。<br/><br/>請注意，此時只支援 **format** 設為 **TextFormat** 的 **Azure Blob** 資料集做為來源資料集，近期即將支援其他來源類型。<br/><br/>請參閱 [使用 PolyBase 將資料載入 Azure SQL 資料倉儲](#use-polybase-to-load-data-into-azure-sql-data-warehouse)一節中的條件約束和詳細資料。 | True <br/>False (預設值) | 否 |  
+| polyBaseSettings | 可以在 **allowPolybase** 屬性設定為 **true** 時指定的一組屬性。 | &nbsp; | 否 |  
+| rejectValue | 指定在查詢失敗前可以拒絕的資料列數目或百分比。<br/><br/>在 [CREATE EXTERNAL TABLE (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) 主題的**引數**一節中，深入了解 PolyBase 的拒絕選項。 | 0 (預設值)、1、2、… | 否 |  
+| rejectType | 指定要將 rejectValue 選項指定為常值或百分比。 | 值 (預設值)、百分比 | 否 |   
+| rejectSampleValue | 決定在 PolyBase 重新計算已拒絕的資料列百分比之前，所要擷取的資料列數目。 | 1、2、… | 是，如果 **rejectType** 是 **percentage** |  
+| useTypeDefault | 指定當 PolyBase 從文字檔擷取資料時，如何處理分隔符號文字檔中的遺漏值。<br/><br/>從 [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx)的「引數」一節深入了解從這個屬性。 | True/False (預設值為 False) | 否 | 
+
 
 #### SqlDWSink 範例
 
@@ -471,8 +477,113 @@
     "sink": {
         "type": "SqlDWSink",
         "writeBatchSize": 1000000,
-        "writeBatchTimeout": "00:05:00",
+        "writeBatchTimeout": "00:05:00"
     }
+
+## 使用 PolyBase 將資料載入 Azure SQL 資料倉儲
+**PolyBase** 是以高輸送量將大量資料從 Azure Blob 儲存體載入到 Azure SQL 資料倉儲的有效方法。使用 PolyBase 而不是預設的 BULKINSERT 機制，即可看到輸送量大幅提升。
+
+如果您的來源資料存放區不是 Azure Blob 儲存體，您可以考慮先將來源資料存放區中的資料複製到 Azure Blob 儲存體做為預備，然後使用 PolyBase 將資料從預備存放區載入到 Azure SQL 資料倉儲。在此案例中，您將使用兩個複製活動，第一個複製活動設定為將資料從來源資料存放區複製到 Azure Blob 儲存體，第二個複製活動則會使用 PolyBase 將資料從 Azure Blob 儲存體複製到 Azure SQL 資料倉儲。
+
+將 **allowPolyBase** 屬性設定為如下列範例所示的 **true**，以便 Azure Data Factory 使用 PolyBase 將資料從 Azure Blob 儲存體複製到 Azure SQL 資料倉儲。當您將 allowPolyBase 設定為 true 時，您可以使用 **polyBaseSettings** 屬性群組來指定 PolyBase 特定屬性。如需您可搭配 polyBaseSettings 使用之屬性的詳細資訊，請參閱上面的 [SqlDWSink](#SqlDWSink) 一節。
+
+
+    "sink": {
+        "type": "SqlDWSink",
+		"allowPolyBase": true,
+		"polyBaseSettings":
+		{
+			"rejectType": "percentage",
+			"rejectValue": 10,
+			"rejectSampleValue": 100,
+			"useTypeDefault": true 
+		}
+
+    }
+
+Azure Data Factory 在使用 PolyBase 將資料複製到 Azure SQL 資料倉儲前，會先驗證資料是否符合下列需求。如果不符合需求，則會自動改回資料移動的 BULKINSERT 機制。
+
+1.	**來源連結服務**的類型為 **Azure 儲存體**，而且不會設定為使用 SAS (共用存取簽章) 驗證。如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。  
+2. **輸入資料集**的類型為 **Azure Blob**，而資料集的類型屬性符合下列準則︰ 
+	1. **Type** 必須是 **TextFormat**。 
+	2. **rowDelimiter** 必須是 **\\n**。 
+	3. **nullValue** 設定為**空字串** ("")。 
+	4. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。 
+	5. 未指定 **escapeChar** 和 **quoteChar**。 
+	6. **Compression** 不是 **BZIP2**。
+	 
+			"typeProperties": {
+				"folderPath": "<blobpath>",
+				"format": {
+					"type": "TextFormat",     
+					"columnDelimiter": "<any delimiter>", 
+					"rowDelimiter": "\n",       
+					"nullValue": "",           
+					"encodingName": "utf-8"    
+				},
+            	"compression": {  
+                	"type": "GZip",  
+	                "level": "Optimal"  
+    	        }  
+			},
+3.	管線中「複製活動」的 **BlobSource** 之下沒有 **skipHeaderLineCount** 設定。 
+4.	管線中「複製活動」的 **SqlDWSink** 之下沒有 **sliceIdentifierColumnName** 設定。(PolyBase 保證所有資料都已更新，或在單一執行未更新任何項目。若要達到**重複性**，您可以使用 **sqlWriterCleanupScript**。
+5.	目前沒有任何 **columnMapping** 使用於相關聯的複製活動。 
+
+### 使用 PolyBase 時的最佳作法
+
+#### 資料列大小限制
+Polybase 不支援大於 32 KB的資料列大小。嘗試載入資料列大於 32 KB 的資料表會導致下列錯誤︰
+
+	Type=System.Data.SqlClient.SqlException,Message=107093;Row size exceeds the defined Maximum DMS row size: [35328 bytes] is larger than the limit of [32768 bytes],Source=.Net SqlClient
+
+如果您的來源資料包含大於 32 KB 的資料列，建議您將來源資料表垂直分割成數個小型資料表，而每個資料表的最大資料列大小均不超過限制。然後可以使用 PolyBase 載入較小的資料表而在 Azure SQL 資料倉儲中合併在一起。
+
+#### Azure SQL 資料倉儲中的 tableName
+下表提供的範例有關於如何針對各種結構描述和資料表名稱組合在資料集 JSON 中指定 **tableName** 屬性。
+
+| DB 結構描述 | 資料表名稱 | tableName JSON 屬性 |
+| --------- | -----------| ----------------------- | 
+| dbo | MyTable | MyTable 或 dbo.MyTable 或 [dbo].[MyTable] |
+| dbo1 | MyTable | dbo1.MyTable 或 [dbo1].[MyTable] |
+| dbo | My.Table | [My.Table] 或 [dbo].[My.Table] |
+| dbo1 | My.Table | [dbo1].[My.Table] |
+
+如果您看到如下所示的錯誤，可能是您為 tableName 屬性指定的值有問題。請參閱上表，以正確的方式指定 tableName JSON 屬性的值。
+
+	Type=System.Data.SqlClient.SqlException,Message=Invalid object name 'stg.Account_test'.,Source=.Net SqlClient Data Provider
+
+#### 包含預設值的資料行
+Data Factory 中的 PolyBase 功能目前只接受與目標資料表中相同的資料行數目。假設您的資料表有 4 個資料行，而其中一個資料行是以預設值定義，則輸入資料仍應包含 4 個資料行。提供 3 個資料行的輸入資料集會產生如下所示的錯誤︰
+
+	All columns of the table must be specified in the INSERT BULK statement.
+
+NULL 值是一種特殊形式的預設值。如果資料行可為 null，該資料行的輸入資料 (在 Blob 中) 可以是空的 (不能在輸入資料集中遺漏)。PolyBase 會在 Azure SQL 資料倉儲中為其插入 NULL。
+
+#### 運用兩階段複製以便使用 PolyBase
+PolyBase 可以利用的資料存放區和格式有所限制。如果您的案例不符合需求，您應該利用「複製活動」將資料複製到 PolyBase 所支援的資料存放區及/或將資料轉換成 PolyBase 支援的格式。以下是您可以進行的轉換範例：
+
+-	將其他編碼方式的原始程式檔轉換為採用 UTF-8 的 Azure Blob
+-	將 SQL Server/Azure SQL Database 中的資料序列化為 CSV 格式的 Azure Blob。
+-	藉由指定 columnMapping 屬性來變更資料行的順序。
+
+以下是進行轉換時的一些秘訣︰
+
+- 將表格式資料轉換成 CSV 檔案時，請選取適當的分隔符號。
+
+	建議使用不太可能出現於資料中的字元做為資料行分隔符號。常用的分隔符號包括逗號 (,)、波狀符號 (~)、直立線符號 (|) 及 TAB (\\t)。如果您的資料包含分隔符號，您可以將資料行分隔符號設定為不可列印的字元，例如 “\\u0001”。Polybase 接受多字元的資料行分隔符號，以便您建構更複雜的資料行分隔符號。	
+- datetime 物件的格式
+
+	序列化 datetime 物件時，「複製活動」預設會使用格式："yyyy-MM-dd HH:mm:ss.fffffff"，而 PolyBase 預設不支援此格式。這裡可以找到支援的 datetime 格式︰[CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx)。無法符合 Polybase 預期的 datetime 格式會導致如下所示的錯誤︰
+
+		Query aborted-- the maximum reject threshold (0 rows) was reached while reading from an external source: 1 rows rejected out of total 1 rows processed.
+		(/AccountDimension)Column ordinal: 97, Expected data type: DATETIME NOT NULL, Offending value: 2010-12-17 00:00:00.0000000  (Column Conversion Error), Error: Conversion failed when converting the NVARCHAR value '2010-12-17 00:00:00.0000000' to data type DATETIME.
+
+	若要解決此錯誤，請指定如下列範例所示的 datetime 格式︰
+	
+		"structure": [
+    		{ "name" : "column", "type" : "int", "format": "yyyy-MM-dd HH:mm:ss" }
+		]
 
 
 [AZURE.INCLUDE [data-factory-type-repeatability-for-sql-sources](../../includes/data-factory-type-repeatability-for-sql-sources.md)]
@@ -531,4 +642,7 @@
 
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
-<!---HONumber=AcomDC_0309_2016-->
+## 效能和微調  
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+
+<!---HONumber=AcomDC_0420_2016-->

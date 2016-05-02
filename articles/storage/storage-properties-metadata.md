@@ -1,22 +1,21 @@
 
-<properties 
-  pageTitle="在 Azure 儲存體中設定和擷取物件的屬性與中繼資料 | Microsoft Azure" 
-  description="將物件的自訂中繼資料儲存在Azure 儲存體中，並設定和擷取系統屬性。" 
-  services="storage" 
-  documentationCenter="" 
-  authors="tamram" 
-  manager="carmonm" 
+<properties
+  pageTitle="在 Azure 儲存體中設定和擷取物件的屬性與中繼資料 | Microsoft Azure"
+  description="將物件的自訂中繼資料儲存在Azure 儲存體中，並設定和擷取系統屬性。"
+  services="storage"
+  documentationCenter=""
+  authors="tamram"
+  manager="carmonm"
   editor="tysonn"/>
 
-<tags 
-  ms.service="storage" 
-  ms.workload="storage" 
-  ms.tgt_pltfrm="na" 
-  ms.devlang="na" 
-  ms.topic="article" 
-  ms.date="02/20/2016" 
+<tags
+  ms.service="storage"
+  ms.workload="storage"
+  ms.tgt_pltfrm="na"
+  ms.devlang="na"
+  ms.topic="article"
+  ms.date="02/20/2016"
   ms.author="tamram"/>
-
 
 # 設定與擷取屬性和中繼資料 #
 
@@ -99,4 +98,4 @@
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx)
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/) 
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

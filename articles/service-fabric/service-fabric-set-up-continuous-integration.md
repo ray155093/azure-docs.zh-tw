@@ -196,7 +196,7 @@
 
 1.	下載 agent.zip。作法：
 
-    a.登入您的小組專案，例如 **https://[your-VSTS-account-name].visualstudio.com**。
+    a.登入您的小組專案，例如 ****https://[your-VSTS-account-name].visualstudio.com**。
 
     b.選取畫面右上角的齒輪圖示。
 
@@ -246,11 +246,22 @@
 
 >[AZURE.NOTE] 您根據這些指示建立的組建定義並不支援多個平行組建，即使是在不同的電腦上。這是因為每個組建會競用相同資源群組/叢集。如果您想要執行多個組建代理程式，您必須修改下列指示/指令碼來防止這種干擾。
 
-### 將連續整合指令碼新增至您的應用程式的原始檔控制。
+### 將 Service Fabric Azure Resource Manager 範本新增至您的應用程式
 
-1.	將 [ServiceFabricContinuousIntegrationScripts.zip](https://gallery.technet.microsoft.com/Set-up-continuous-f8b251f6) 解壓縮到您電腦上的任何資料夾。將 `Powershell\Automation` 的內容複製到原始檔控制中的任何資料夾。
+1. 從[此範例](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)下載 `azuredeploy.json` 和 `azuredeploy.parameters.json`。
 
-2.	簽入產生的檔案。
+2. 開啟 `azuredeploy.parameters.json`，然後編輯下列參數︰
+
+    |參數|值|
+    |---|---|
+    |clusterLocation|必須符合您的金鑰保存庫的位置。範例：`westus`|
+    |clusterName|必須符合您憑證的 DNS 名稱。例如，如果憑證的 DNS 名稱是 `mycluster.westus.cloudapp.net`，則 `clusterName` 必須是 `mycluster`。|
+    |adminPassword|8-123 個字元，至少包含下列其中 3 個類型的字元︰大寫、小寫、數字、特殊字元。|
+    |certificateThumbprint|來自 `CreateAndUpload-Certificate.ps1` 的輸出|
+    |sourceVaultValue|來自 `CreateAndUpload-Certificate.ps1` 的輸出|
+    |certificateUrlvalue|來自 `CreateAndUpload-Certificate.ps1` 的輸出|
+
+3. 將新檔案新增至原始檔控制，並推送到 VSTS。
 
 ### 建立組建定義
 
@@ -273,22 +284,7 @@
     |變數|值|Secret|在佇列時間允許|
     |---|---|---|---|
     |BuildConfiguration|發行||X|
-    |BuildPlatform|x64|||
-    |ServicePrincipalPassword|建立服務主體時所使用的密碼。|X||
-    |ServicePrincipalId|來自您用來建立服務主體之指令碼的輸出。|||
-    |ServicePrincipalTenantId|來自您用來建立服務主體之指令碼的輸出。|||
-    |ServicePrincipalSubscriptionId|來自您用來建立服務主體之指令碼的輸出。|||
-    |ServiceFabricCertificateThumbprint|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
-    |ServiceFabricKeyVaultId|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
-    |ServiceFabricCertificateSecretId|來自 CreateAndUpload-Certificate.ps1 的輸出。|||
-    |ServiceFabricClusterName|必須符合您的憑證的 DNS 名稱。|||
-    |ServiceFabricClusterResourceGroupName|任何您想要的名稱。|||
-    |ServiceFabricClusterLocation|必須符合您的金鑰保存庫的位置。|||
-    |ServiceFabricClusterAdminPassword|8-123 個字元，至少包含下列其中 3 個類型的字元︰大寫、小寫、數字、特殊字元。|X||
-    |ServiceFabricClusterResourceGroupTemplateFilePath|`<path/to/extracted/automation/scripts/ArmTemplate-Full-3xVM-Secure.json>`|||
-    |ServiceFabricPublishProfilePath|`<path/to/your/publish/profiles/MyPublishProfile.xml>` 發佈設定檔中的連接端點會被忽略。會改為使用暫存叢集的連接端點。|||
-    |ServiceFabricDeploymentScriptPath|`<path/to/Deploy-FabricApplication.ps1>`|||
-    |ServiceFabricApplicationProjectPath|`<path/to/your/fabric/application/project/folder>` 這應該是包含 .sfproj 檔案的資料夾。||||
+    |BuildPlatform|x64||||
 
 3.  儲存組建定義並且給予名稱。您想要的話可以在稍後變更此名稱。
 
@@ -296,7 +292,7 @@
 
 1. 在 [組建] 索引標籤中，選擇 [新增組建步驟…] 命令。
 
-2. 選擇 [封裝] > [NuGet 安裝程式]
+2. 選擇 [封裝] > [NuGet 安裝程式]。
 
 3. 選擇組建步驟的名稱旁的鉛筆圖示，並且將其重新命名為 [還原 NuGet 封裝]。
 
@@ -306,108 +302,115 @@
 
 ### 新增「組建」步驟
 
-1.	在 [組建] 索引標籤中，選取 [新增組建步驟…] 命令。
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
 2.	選取 [組建] > [MSBuild]。
 
 3.	選取組建步驟的名稱旁的鉛筆圖示，並且將其重新命名為 [組建]。
 
-4.	選取 [解決方案] 欄位旁的 [...] 按鈕，然後選取 .sln 檔案。
+4. 選取下列值：
 
-5.	針對 [平台] 輸入 `$(BuildPlatform)`。
+    |設定名稱|值|
+    |---|---|
+    |方案|按一下 [...] 按鈕，然後選取您方案的 `.sln` 檔案。|
+    |平台|`$(BuildPlatform)`|
+    |組態|`$(BuildConfiguration)`|
 
-6.	針對 [組態] 輸入 `$(BuildConfiguration)`。
-
-7.	清除 [還原 NuGet 封裝] 核取方塊 (如果尚未選取)。
-
-8.	儲存組建定義。
+5.	儲存組建定義。
 
 ### 新增「封裝」步驟
 
-1.	在 [組建] 索引標籤中，選取 [新增組建步驟…] 命令。
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
 2.	選取 [組建] > [MSBuild]。
 
 3.	選取組建步驟的名稱旁的鉛筆圖示，然後將其重新命名為 [封裝]。
 
-4.	選取 [解決方案] 欄位旁的 [...] 按鈕，然後選取應用程式專案的 .sfproj 檔案。
+4. 選取下列值：
 
-5.	針對 [平台] 輸入 `$(BuildPlatform)`。
+    |設定名稱|值|
+    |---|---|
+    |方案|按一下 [...] 按鈕，然後選取您應用程式專案的 `.sfproj` 檔案。|
+    |平台|`$(BuildPlatform)`|
+    |組態|`$(BuildConfiguration)`|
+    |MSBuild 引數|`/t:Package`|
 
-6.	針對 [組態] 輸入 `$(BuildConfiguration)`。
-
-7.	針對 [MSBuild 引數] 輸入 `/t:Package`。
-
-8.	清除 [還原 NuGet 封裝] 核取方塊 (如果尚未清除)。
-
-9.	儲存組建定義。
+5.	儲存組建定義。
 
 ### 新增「移除叢集資源群組」步驟
 
 如果前一個組建未在本身之後清除 (例如，如果組建已在可以清除之前取消)，可能會留下現有的資源群組而與新的資源群組發生衝突。若要避免衝突，在建立新的資源群組之前，清除任何剩餘的資源群組 (和其相關聯的資源)。
 
-1.	在 [組建] 索引標籤中，選取 [新增組建步驟…] 命令。
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
-2.	選取 [公用程式] > [PowerShell]。
-
-3.	選取組建步驟的名稱旁的鉛筆圖示，然後將其重新命名為 [移除叢集資源群組]。
-
-4.	選取 [指令碼檔案名稱] 旁邊的 [...] 命令。瀏覽至您解壓縮自動化指令碼的位置，然後選取 **Remove-ClusterResourceGroup.ps1**。
-
-5.	針對 [引數]，輸入 `-ServicePrincipalPassword "$(ServicePrincipalPassword)"`。
-
-6.	儲存組建定義。
-
-### 新增「佈建和部署至安全叢集」步驟
-
-1.	在 [組建] 索引標籤中，選取 [新增組建步驟…] 命令。
-
-2.	選取 [公用程式] > [PowerShell]。
-
-3.	選取組建步驟的名稱旁的鉛筆圖示，然後將其重新命名為 [佈建和部署至安全叢集]。
-
-4.	選取 [指令碼檔案名稱] 旁邊的 [...] 按鈕。瀏覽至您解壓縮自動化指令碼的位置，然後選取 **ProvisionAndDeploy-SecureCluster.ps1**。
-
-5.	針對 [引數]，輸入 `-ServicePrincipalPassword "$(ServicePrincipalPassword)" -ServiceFabricClusterAdminPassword "$(ServiceFabricClusterAdminPassword)"`
-
-6.	儲存組建定義。
-
-### 新增「移除叢集資源群組」步驟
-
-現在您已經完成使用暫存叢集，您應該清除它。如果您不這麼做，將會繼續針對暫存叢集向您計費。這個步驟會移除資源群組，如此會移除群組中的叢集與所有其他資源。
-
->[AZURE.NOTE] 這個步驟與上一個 [移除叢集資源群組] 步驟之間的差異在於：這個步驟應選取 [永遠執行]。
-
-1.	在 [組建] 索引標籤中，選取 [新增組建步驟…] 命令。
-
-2.	選取 [公用程式] > [PowerShell]。
+2.	選取 [部署] > [Azure 資源群組部署]。
 
 3.	選取組建步驟的名稱旁的鉛筆圖示，然後將其重新命名為 [移除叢集資源群組]。
 
-4.	選取 [指令碼檔案名稱] 旁邊的 [...] 按鈕。瀏覽至您解壓縮自動化指令碼的位置，然後選取 **RemoveClusterResourceGroup.ps1**。
+4. 選取下列值：
 
-5.	針對 [引數]，輸入 `-ServicePrincipalPassword "$(ServicePrincipalPassword)`。
+    |設定名稱|值|
+    |---|---|
+    |AzureConnectionType|**Azure Resource Manager**|
+    |Azure RM 訂用帳戶|選取您在＜建立服務主體＞一節中建立的連接端點。|
+    |動作|**刪除資源群組**|
+    |資源群組|輸入任何未使用的名稱。您必須在下一個步驟中使用相同的名稱。|
 
-6.	在 [控制選項] 底下，選取 [永遠執行] 核取方塊。
+5.	儲存組建定義。
 
-7.	儲存組建定義。
+### 新增「佈建安全叢集」步驟
+
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
+
+2.	選取 [部署] > [Azure 資源群組部署]。
+
+3.	選取組建步驟名稱旁的鉛筆圖示，然後將其重新命名為 [佈建安全叢集]。
+
+4. 選取下列值：
+
+    |設定名稱|值|
+    |---|---|
+    |AzureConnectionType|**Azure Resource Manager**|
+    |Azure RM 訂用帳戶|選取您在＜建立服務主體＞一節中建立的連接端點。|
+    |動作|**建立或更新資源群組**|
+    |資源群組|必須符合您在前一個步驟中使用的名稱。|
+    |位置|必須符合您的金鑰保存庫的位置。|
+    |範本|按一下 [...] 按鈕，然後選取 `azuredeploy.json`。|
+    |範本參數|按一下 [...] 按鈕，然後選取 `azuredeploy.parameters.json`。|
+
+5.	儲存組建定義。
+
+### 新增「部署」步驟
+
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
+
+2.	選取 [公用程式] > [PowerShell]。
+
+3.	選取組建步驟名稱旁的鉛筆圖示，然後將其重新命名為 [部署]。
+
+4. 選取下列值：
+
+    |設定名稱|值|
+    |---|---|
+    |類型|**檔案路徑**|
+    |指令碼檔名|按一下 [...] 按鈕，然後瀏覽至應用程式專案內的 [指令碼] 目錄。選取 `Deploy-FabricApplication.ps1`。|
+    |引數|`-PublishProfileFile path/to/MySolution/MyApplicationProject/PublishProfiles/MyPublishProfile.xml -ApplicationPackagePath path/to/MySolution/MyApplicationProject/pkg/$(BuildConfiguration)`|
+
+5.	儲存組建定義。
 
 ### 試試看
 
 選取 [佇列組建] 來啟動組建。推送或簽入時也會觸發組建。
 
-
 ## 替代解決方案
 
 先前的指示會為每個組建建立新叢集，並且在組建的結尾移除。如果您想要改為讓每個組建執行應用程式升級 (至現有的叢集)，請使用下列步驟：
 
-1.	透過 Azure 入口網站或 Azure PowerShell 手動建立測試叢集。您可以參考 `ProvisionAndDeploy-SecureCluster.ps1` 指令碼。
+1.	遵循[這些指示](service-fabric-cluster-creation-via-portal.md)，透過 Azure 入口網站或 Azure PowerShell 手動建立測試叢集。
 
 2.	藉由遵循[這些指示](service-fabric-visualstudio-configure-upgrade.md)，設定發佈設定檔以支援應用程式升級。
 
-3.	將 [佈建和部署至安全叢集] 步驟取代為直接呼叫 Deploy-FabricApplication.ps1 (並將它傳遞至發佈設定檔) 的步驟。
-
-4.	從您的組建定義移除這兩個 [移除叢集資源群組] 組建步驟。
+4.	從您的組建定義移除 [移除叢集資源群組] 和 [佈建叢集] 組建步驟。
 
 ## 後續步驟
 
@@ -417,4 +420,4 @@
  - [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
  - [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

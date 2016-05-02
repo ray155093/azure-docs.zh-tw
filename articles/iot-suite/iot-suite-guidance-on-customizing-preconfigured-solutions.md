@@ -58,15 +58,13 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 最常見的擴充功能活動之一是使用案例特定的裝置。使用裝置的方法有數種。這些方法包括變更模擬裝置以符合您的案例，或使用 [IoT Device SDK][] 將實體裝置連接到解決方案。
 
-如需將裝置加入遠端監視預先設定解決方案的竹步說明，請參閱 [Iot Suite 連接裝置](iot-suite-connecting-devices.md)。
+如需將裝置加入遠端監視預先設定解決方案的逐步指南，請參閱 [Iot 套件連接裝置](iot-suite-connecting-devices.md)和[遠端監視 C SDK 範例](https://github.com/Azure/azure-iot-sdks/tree/master/c/serializer/samples/remote_monitoring)，其設計是要搭配遠端監視預先設定解決方案。
 
 ### 建立自己的模擬裝置
 
 之前提及的遠端監視解決方案原始程式碼中包含 .NET 模擬器。此模擬器是解決方案中佈建的模擬器，並且可以變更以傳送不同的中繼資料、遙測或回應給不同的命令。
 
-遠端監視預先設定解決方案中的預先設定模擬器是發出溫度和濕度遙測的冷卻裝置，當您分接 GitHub 儲存機制後，您可以在 [Simulator.WebJob](https://github.com/Azure/azure-iot-remote-monitoring/tree/master/Simulator/Simulator.WebJob) 專案中修改模擬器。
-
-此外，Azure IoT 提供針對和遠端監視預先設定解決方案搭配使用所設計的 [C SDK 範例](https://github.com/Azure/azure-iot-sdks/tree/master/c/serializer/samples/remote_monitoring)。
+遠端監視預先設定解決方案中的預先設定模擬器，是發出溫度和濕度遙測的冷卻裝置，當您分接 GitHub 儲存機制後，可以在 [Simulator.WebJob](https://github.com/Azure/azure-iot-remote-monitoring/tree/master/Simulator/Simulator.WebJob) 專案中修改模擬器。
 
 ### 建置並使用自己的 (實體) 裝置
 
@@ -74,9 +72,9 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 ## 手動設定應用程式角色
 
-以下程序描述如何新增 **Admin** 和 **ReadOnly** 應用程式角色至預先設定的解決方案。請注意，從 azureiotsuite.com 網站佈建的預先設定解決方案有 **Admin** 和 **ReadOnly** 角色。
+以下程序描述如何將 **Admin** 和 **ReadOnly** 應用程式角色加入預先設定的解決方案中。請注意，從 azureiotsuite.com 網站佈建的預先設定解決方案已經包含 **Admin** 和 **ReadOnly** 角色。
 
-**ReadOnly** 角色的成員可以看到儀表板和裝置清單，但不能新增裝置、變更裝置屬性、或傳送命令。**Admin** 角色的成員具有解決方案中所有功能的完整存取權。
+**ReadOnly** 角色的成員可以看到儀表板和裝置清單，但不能加入裝置、變更裝置屬性或傳送命令。**Admin** 角色的成員具有解決方案中所有功能的完整存取權。
 
 1. 前往 [Azure 傳統入口網站][lnk-classic-portal]。
 
@@ -125,9 +123,9 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 9. 儲存更新後的.json 檔案 (可以覆寫現有的檔案)。
 
-10.  在 Azure 管理入口網站中，選取頁面底部的 [管理資訊清單]，然後選取 [上傳資訊清單] 上傳您在上一個步驟儲存的.json 檔案。
+10.  在 Azure 管理入口網站中，選取頁面底部的 [管理資訊清單]，然後選取 [上傳資訊清單] 上傳您在上一個步驟儲存的 .json 檔案。
 
-11. 您現在已為您的應用程式新增 **Admin** 和 **ReadOnly** 角色。
+11. 您現在已為您的應用程式加入 **Admin** 和 **ReadOnly** 角色。
 
 12. 若要將其中一個角色指派給您目錄中的使用者，請參閱 [azureiotsuite.com 網站的權限][lnk-permissions]。
 
@@ -143,4 +141,4 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 [lnk-permissions]: iot-suite-permissions.md
 [lnk-classic-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->
