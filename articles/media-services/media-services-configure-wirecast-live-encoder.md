@@ -54,7 +54,8 @@
 
 請確認已選取 [**立即啟動新頻道**]。
 
-3. 按一下 [**建立頻道**]。![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
+3. 按一下 [**建立頻道**]。
+	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 
@@ -138,7 +139,8 @@
 
 	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast7.png)
 
->[AZURE.IMPORTANT] 在您按一下 [資料流] 之前，**必須**確保通道已就緒。此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
+>[AZURE.IMPORTANT] 在您按一下 [資料流] 之前，**必須**確保通道已就緒。
+此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
 
 ##測試播放
   

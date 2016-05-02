@@ -196,7 +196,7 @@
 
 1.	下載 agent.zip。作法：
 
-    a.登入您的小組專案，例如 ****https://[your-VSTS-account-name].visualstudio.com**。
+    a.登入您的小組專案，例如 **https://[your-VSTS-account-name].visualstudio.com**。
 
     b.選取畫面右上角的齒輪圖示。
 

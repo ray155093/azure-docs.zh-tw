@@ -39,13 +39,13 @@
 
 ## 在建立叢集時安裝 Zeppelin
 
-您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。用以在 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從 ****https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh** 取得。
+您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。用以在 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh** 取得。
 
 ### 使用 Azure 入口網站
 
 如需有關如何使用 HDInsight .NET SDK 來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-azure-portal)。您必須對該文中的指示進行一些變更。
 
-* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 ****https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
+* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
 
 * 您只須在前端節點上執行此指令碼動作。
 
@@ -55,7 +55,7 @@
 
 如需有關如何使用 HDInsight .NET SDK 來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-hdinsight-net-sdk)。您必須對該文中的指示進行一些變更。
 
-* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 ****https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
+* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
 
 * 此指令碼不需要任何參數。
 

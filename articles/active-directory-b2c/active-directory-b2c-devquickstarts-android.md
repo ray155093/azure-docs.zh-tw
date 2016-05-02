@@ -954,7 +954,9 @@ Android 需要您處理某些回呼來操作應用程式。這些回呼是 `crea
 
 為供您參考，我們提供 [.zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-NativeClient-Android/archive/complete.zip)的完整範例。您也可以從 Github 複製它：
 
-```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-Android```
+```
+git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-Android
+```
 
 
 ## 重要資訊

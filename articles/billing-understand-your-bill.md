@@ -63,7 +63,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。某些費率方�
     ![摘要 - 帳單記錄 5](./media/billing-understand-your-bill/ContentViewaBillforMA5.png)
 
 
-***重要事項：****針對國際客戶所列在帳單上的費用僅為估算用途，因為銀行換匯的費用不同。*
+***重要事項：*** *針對國際客戶所列在帳單上的費用僅為估算用途，因為銀行換匯的費用不同。*
 
 
 以下是在 Microsoft Azure 上可使用之兩個不同優惠的某些範例陳述。

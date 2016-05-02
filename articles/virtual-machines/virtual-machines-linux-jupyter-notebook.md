@@ -195,7 +195,7 @@ Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供
 
 如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
-[portal-vm-linux]: https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
+[portal-vm-linux]: https://azure.microsoft.com/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
 [儲存機制]: https://github.com/ipython/ipython
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 

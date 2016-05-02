@@ -109,7 +109,7 @@ Spark MLlib 工具組針對此分散式環境帶來相當大的機器學習 (ML)
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-您也可以以瀏覽至 ******https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。您需要有系統管理員帳戶的密碼才能存取 Notebook。
+您也可以以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。您需要有系統管理員帳戶的密碼才能存取 Notebook。
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 

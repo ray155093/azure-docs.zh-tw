@@ -43,7 +43,8 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 
 ### BizTalk 服務入口網站更新之後的連線能力問題
 
-  當升級 BizTalk 服務來導入服務的變更時，如果 BizTalk 服務入口網站中已開啟，BizTalk 服務入口網站的連線能力可能會發生問題。解決方法是重新啟動瀏覽器、刪除瀏覽器快取，或在私用模式下啟動入口網站。
+  當升級 BizTalk 服務來導入服務的變更時，如果 BizTalk 服務入口網站中已開啟，BizTalk 服務入口網站的連線能力可能會發生問題。
+  解決方法是重新啟動瀏覽器、刪除瀏覽器快取，或在私用模式下啟動入口網站。
 
 ### 如果您在 BizTalk 服務專案中按一下錯誤或警告，Visual Studio IDE 找不到構件
 安裝 Visual Studio 2012 Update 3 RC 1 來修正問題。
@@ -53,7 +54,8 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 * 在相同的 Visual Studio 方案中，有一個 BizTalk 服務專案和一個自訂繫結專案。BizTalk 服務專案參考此自訂繫結專案檔。
 * BizTalk 服務專案參考自訂繫結/行為 DLL。
 
-您在 Visual Studio 中成功「建置」方案。然後，您「重建」或「清除」方案。之後，當您再次重建或清除時，就發生下列錯誤：無法將檔案 <Path to DLL> 複製到 "bin\\Debug\\FileName.dll"。由於已有另一個處理序正在使用該檔案，所以無法存取該檔案。
+您在 Visual Studio 中成功「建置」方案。然後，您「重建」或「清除」方案。之後，當您再次重建或清除時，就發生下列錯誤：
+無法將檔案 <Path to DLL> 複製到 "bin\\Debug\\FileName.dll"。由於已有另一個處理序正在使用該檔案，所以無法存取該檔案。
 
 #### 因應措施
 * 如果已安裝 [Visual Studio 2012 Update 3](https://www.microsoft.com/download/details.aspx?id=39305)，您有下列兩個選項：
@@ -74,10 +76,12 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 ### 超出有效交換的空白字元會導致空的訊息傳送至暫停端點  
 如果有超出 IEA 區段的空格，解譯器會將此情形視為目前交換結束，並查看下一組空白字元當做下一個訊息。因為這不是有效的交換，您可能會發現一個成功的訊息傳送至路由目的地，還有一個空的訊息傳送至暫停端點。
 ### 在 BizTalk 服務入口網站中追蹤  
-擷取的追蹤事件以 EDI 訊息處理和任何相互關聯為範圍。如果訊息在通訊協定階段之外失敗，追蹤會顯示為成功。在此情況下，請參閱 [追蹤] 的 [詳細資料] 資料行下的 [記錄] 區段，取得錯誤詳細資料。X12 接收和傳送設定 ([在 Azure BizTalk 服務中建立 X12 合約](https://msdn.microsoft.com/library/azure/hh689847.aspx)) 提供通訊協定階段的相關資訊。
+擷取的追蹤事件以 EDI 訊息處理和任何相互關聯為範圍。如果訊息在通訊協定階段之外失敗，追蹤會顯示為成功。在此情況下，請參閱 [追蹤] 的 [詳細資料] 資料行下的 [記錄] 區段，取得錯誤詳細資料。
+X12 接收和傳送設定 ([在 Azure BizTalk 服務中建立 X12 合約](https://msdn.microsoft.com/library/azure/hh689847.aspx)) 提供通訊協定階段的相關資訊。
 
 ### 更新合約  
-BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識符號。這會導致屬性不一致。比方說，合約使用 ZZ:1234567，而辨識符號為 ZZ:7654321。在 BizTalk 服務入口網站設定檔設定中，您將 ZZ:1234567 變更為 01:ChangedValue。您開啟合約，顯示的是 01:ChangedValue 而非 ZZ:1234567。若要修改身分識別的辨識符號，請刪除合約，更新夥伴設定檔中的 [身分識別]，然後重新建立合約。
+BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識符號。這會導致屬性不一致。比方說，合約使用 ZZ:1234567，而辨識符號為 ZZ:7654321。在 BizTalk 服務入口網站設定檔設定中，您將 ZZ:1234567 變更為 01:ChangedValue。您開啟合約，顯示的是 01:ChangedValue 而非 ZZ:1234567。
+若要修改身分識別的辨識符號，請刪除合約，更新夥伴設定檔中的 [身分識別]，然後重新建立合約。
 > AZURE.WARNING 此行為影響 X12 和 AS2。
 
 ### AS2 附件  
@@ -92,7 +96,10 @@ BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識
 
 * 關閉 .bcs 檔案 (藉由關閉 Visual Studio 中的索引標籤)，而不儲存變更。
 
-* 從 [方案總管] 再次開啟 .bcs 檔案。您會注意到相關聯的 .bridgeconfig 檔案具有您指定的新名稱，而在設計介面上的實體名稱還是舊名稱。如果您嘗試按兩下橋接器元件，以開啟橋接器組態，您會看到下列錯誤：「<old name>實體的相關聯檔案 <old name>.bridgeconfig 不存在」。為了避免發生這種情況，在 BizTalk 服務專案中重新命名實體之後，請記得儲存變更。
+* 從 [方案總管] 再次開啟 .bcs 檔案。  
+您會注意到相關聯的 .bridgeconfig 檔案具有您指定的新名稱，而在設計介面上的實體名稱還是舊名稱。如果您嘗試按兩下橋接器元件，以開啟橋接器組態，您會看到下列錯誤：
+  「<old name>實體的相關聯檔案 <old name>.bridgeconfig 不存在」。
+  為了避免發生這種情況，在 BizTalk 服務專案中重新命名實體之後，請記得儲存變更。
 ### 即使已經從 Visual Studio 專案中排除構件，BizTalk 服務專案仍會成功建置
 假設您將構件 (例如，XSD 檔案) 新增至 BizTalk 服務專案，在橋接器組態中加入此構件 (例如，將它指定為要求訊息類型)，然後從 Visual Studio 專案中排除它。在這種情況下，只要已刪除的構件仍留在它加入 Visual Studio 專案時的相同磁碟位置中，則建置專案不會發生任何錯誤。
 ### 設定橋接器時，BizTalk 服務專案不會檢查結構描述是否可用
@@ -141,7 +148,8 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 ### 即使已在構件存放區更新憑證，橋接器也不會使用更新的憑證
 請考慮下列情況：
 
-**案例 1：使用指紋型憑證來保護從橋接器到服務端點的訊息傳輸** 假設您在 BizTalk 服務專案中使用指紋型憑證。您在 BizTalk 服務入口網站中以相同名稱但不同指紋更新憑證，但未相應地更新 BizTalk 服務專案。在這種情況下，橋接器可能會繼續處理訊息，因為較舊的憑證資料可能仍在通道快取中。隨後，訊息處理就失敗。
+**案例 1：使用指紋型憑證來保護從橋接器到服務端點的訊息傳輸**  
+假設您在 BizTalk 服務專案中使用指紋型憑證。您在 BizTalk 服務入口網站中以相同名稱但不同指紋更新憑證，但未相應地更新 BizTalk 服務專案。在這種情況下，橋接器可能會繼續處理訊息，因為較舊的憑證資料可能仍在通道快取中。隨後，訊息處理就失敗。
 
 **因應措施**：在 BizTalk 服務專案中更新憑證，並重新部署專案。
 
@@ -152,7 +160,8 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 **因應措施**：在 BizTalk 服務專案中更新憑證，並重新部署專案。
 
 ### 即使 SQL 資料庫離線，橋接器還是繼續處理訊息
-即使 Microsoft Azure SQL Database (其中儲存執行資訊，例如已部署的構件和管線) 離線，BizTalk 服務橋接器還是繼續處理訊息一段時間。這是因為 BizTalk 服務使用快取的構件和橋接器組態。若不想讓橋接器在 SQL Database 離線時處理任何訊息，您可以使用 BizTalk 服務 PowerShell Cmdlet 來停止或暫停 BizTalk 服務。關於用於管理作業的 Windows PowerShell Cmdlet，請參閱 [Azure BizTalk 服務管理範例](http://go.microsoft.com/fwlink/p/?LinkID=329019)。
+即使 Microsoft Azure SQL Database (其中儲存執行資訊，例如已部署的構件和管線) 離線，BizTalk 服務橋接器還是繼續處理訊息一段時間。這是因為 BizTalk 服務使用快取的構件和橋接器組態。
+若不想讓橋接器在 SQL Database 離線時處理任何訊息，您可以使用 BizTalk 服務 PowerShell Cmdlet 來停止或暫停 BizTalk 服務。關於用於管理作業的 Windows PowerShell Cmdlet，請參閱 [Azure BizTalk 服務管理範例](http://go.microsoft.com/fwlink/p/?LinkID=329019)。
 ### 在橋接器的自訂程式碼元件內讀取 XML 訊息會包含額外的 BOM 字元
 假設您想要在橋接器的自訂程式碼內讀取 XML 訊息。如果您使用 .NET API System.Text.Encoding.UTF8.GetString(bytes)，輸出中的訊息開頭會包含額外的 BOM 字元。因此，如果您不希望輸出包含額外的 BOM 字元，您必須使用 ```System.IO.StreamReader().ReadToEnd()```。
 ### 使用 WCF 將訊息傳送至橋接器不會調整

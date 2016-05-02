@@ -538,7 +538,7 @@ BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression\_2016-04-1917\_24\_
 
 Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從遠端提交批次工作或互動式查詢。Livy 預設在 HDInsight Spark 叢集上啟用。如需 Livy 的詳細資訊，請參閱[使用 Livy 遠端提交 Spark 工作](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。
 
-您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用 **Microsoft Azure 儲存體總管**或 **AzCopy** 之類的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ******wasb:///example/python/ConsumeGBNYCReg.py***。
+您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用 **Microsoft Azure 儲存體總管**或 **AzCopy** 之類的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ***wasb:///example/python/ConsumeGBNYCReg.py***。
 
 >AZURE.NOTE︰您可在入口網站上，為 Spark 叢集關聯的儲存體帳戶尋找需要的存取金鑰。
 

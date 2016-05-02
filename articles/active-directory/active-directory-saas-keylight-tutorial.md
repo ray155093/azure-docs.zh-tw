@@ -173,11 +173,11 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     j.以**自動佈建安全性設定**身分選取 [標準使用者組態]。
    
-    k.在 [電子郵件屬性] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
+    k.在 [電子郵件屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
 
-    l.在 [名字屬性] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
+    l.在 [名字屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
 
-    m.在 [姓氏屬性] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
+    m.在 [姓氏屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
 
     n.按一下 [儲存]。
    

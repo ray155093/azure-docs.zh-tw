@@ -81,7 +81,7 @@
 
 	post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。您可以在 Solr 安裝內取得 post.jar 公用程式和範例文件。
 
-3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 ****http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [**核心選取器**] 下拉式清單中，選取 [**collection1**]，然後在其中按一下 [**查詢**]。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
+3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 **http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [**核心選取器**] 下拉式清單中，選取 [**collection1**]，然後在其中按一下 [**查詢**]。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
 
 	* 在 [**q**] 文字方塊中輸入 ***:***。如此便會傳回已在 Solr 中編製索引的所有文件。如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
 	

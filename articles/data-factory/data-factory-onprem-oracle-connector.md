@@ -292,7 +292,7 @@ XML | String
 
 ## 疑難排解秘訣
 
-****問題：**您會看見下列**錯誤訊息**：複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
+**問題：** 您會看見下列 **錯誤訊息** ： 複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
 
 **可能的原因**
 

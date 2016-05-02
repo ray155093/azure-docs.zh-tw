@@ -149,7 +149,7 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 
 | 2014-12-01-preview | 2015-08-01-preview |
 |---------------------|--------------------|
-| 按一下 [HTTP 接聽程式] API 應用程式 | 按一下 [手動觸發程序] (不需要 API 應用程式) |
+| 按一下 [HTTP 接聽程式] API 應用程式 | 按一下 [手動觸發程序] \(不需要 API 應用程式) |
 | HTTP 接聽程式設定 [自動傳送回應] | 可能包含**回應**動作或不在工作流程定義中 |
 | 設定基本或 OAuth 驗證 | 透過 API 管理 |
 | 設定 HTTP 方法 | 透過 API 管理 |
