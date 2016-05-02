@@ -1,4 +1,10 @@
-<properties pageTitle="適用於 Windows 市集 C++ 應用程式的 Analytics" description="C++ Windows 市集應用程式的分析使用量和效能。" services="application-insights" documentationCenter="cpp" authors="alancameronwills" manager="douge""/>
+<properties 
+    pageTitle="適用於 Windows 市集 C++ 應用程式的 Analytics" 
+    description="分析 C++ Windows 市集應用程式的使用情况和效能。" 
+    services="application-insights" 
+    documentationCenter="cpp"
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
     ms.service="application-insights" 
@@ -30,4 +36,4 @@ Microsoft 為裝置 devOps 提供兩個解決方案：適用於用戶端裝置�
 
 [這項變更的詳細資訊](https://azure.microsoft.com/blog/transitioning-mobile-apps-from-application-insights-to-hockeyapp/)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

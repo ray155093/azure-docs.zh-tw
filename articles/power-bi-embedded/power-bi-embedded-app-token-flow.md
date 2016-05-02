@@ -1,6 +1,6 @@
 <properties
    pageTitle="關於 Power BI Embedded 的應用程式權杖流程"
-   description="關於 Power BI Embedded 的應用程式權杖流程"
+   description="Power BI Embedded 關於驗證和授權用的應用程式權杖"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -56,4 +56,4 @@
 - [Microsoft Power BI Embedded Preview 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

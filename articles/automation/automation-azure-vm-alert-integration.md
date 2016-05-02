@@ -1,0 +1,79 @@
+<properties
+    pageTitle="使用 Azure 自動化 Runbook 補救 Azure VM 警示 | Microsoft Azure"
+    description="本文示範如何使用 Azure 自動化 Runbook 整合 Azure 虛擬機器警示，並自動補救問題"
+    services="automation"
+    documentationCenter=""
+    authors="csand-msft"
+    manager="stevenka"
+    editor="tysonn" />    
+<tags
+    ms.service="automation"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="infrastructure-services"
+    ms.date="04/11/2016"
+    ms.author="csand;magoedte" />
+
+# Azure 自動化解決方案 - 補救 Azure VM 警示
+
+Azure 自動化和 Azure 虛擬機器發行了一項新功能，可讓您設定虛擬機器 (VM) 警示以便執行自動化 Runbook。這項新功能可讓您自動執行標準補救以回應 VM 警示，例如重新啟動或停止 VM。
+
+先前，在建立 VM 警示規則期間，您能夠[指定自動化 Webhook](https://azure.microsoft.com/blog/using-azure-automation-to-take-actions-on-azure-alerts/) 給 Runbook，以便在觸發警示時執行 Runbook。不過，您需要進行建立 Runbook 的工作，為 Runbook 建立 Webhook，然後在警示規則建立期間複製並貼上 Webhook。使用這個新版本，此程序會更加容易，因為您可以在警示規則建立期間直接從清單中選擇 Runbook，而且可以選擇將執行 Runbook 或輕鬆建立帳戶的自動化帳戶。
+
+在本文中，我們將說明設定 Azure VM 警示以及設定在警示觸發時所要執行的自動化 Runbook 有多麼容易。範例案例包括：當記憶體使用量由於 VM 上的應用程式有記憶體流失而超過某個臨界值時重新啟動 VM，或是當 CPU 使用者時間在過去一小時已低於 1% 且不在使用中時停止 VM。我們也將說明在您的自動化帳戶中自動建立服務主體，如何簡化在 Azure 警示補救中使用 Runbook。
+
+## 在 VM 上建立警示
+
+執行下列步驟來設定警示，以在符合其臨界值時啟動 Runbook。
+
+>[AZURE.NOTE] 在此版本中，我們只支援 V2 虛擬機器，即將新增傳統 VM 的支援。
+
+1. 登入 Azure 入口網站，然後按一下 [虛擬機器]。  
+2. 選取其中一部虛擬機器。將會出現虛擬機器儀表板刀鋒視窗，而 [設定] 刀鋒視窗會出現在其右邊。  
+3. 在 [設定] 刀鋒視窗的 [監視] 區段之下，選取 [警示規則]。
+4. 在 [警示規則] 刀鋒視窗上，按一下 [加入警示]。
+
+這會開啟 [加入警示規則] 刀鋒視窗，您可以在此設定警示的條件，並選擇下列其中一個或所有選項︰傳送電子郵件給某人、使用 Webhook 將警示轉寄至另一個系統，及/或執行自動化 Runbook 以回應修補問題的嘗試。
+
+## 設定 Runbook
+
+若要設定 Runbook 以在符合 VM 警示臨界值時執行，請選取 [自動化 Runbook]。在 [設定 Runbook] 刀鋒視窗中，您可以選取要執行的 Runbook 以及用來執行 Runbook 的自動化帳戶。
+
+![設定自動化 Runbook 並建立新的自動化帳戶](media/automation-azure-vm-alert-integration/ConfigureRunbookNewAccount.png)
+
+>[AZURE.NOTE] 在此版本中，您可以從服務所提供的三個 Runbook 進行選擇 – 重新啟動 VM、停止 VM 或移除 VM (刪除它)。在未來版本中將提供選取其他 Runbook 或您自己的其中一個 Runbook 的功能。
+
+![可從中選擇的 Runbook](media/automation-azure-vm-alert-integration/RunbooksToChoose.png)
+
+在您選取其中一個可用的 Runbook 之後，[自動化帳戶] 下拉式清單隨即出現，以便您選取用來執行 Runbook 的自動化帳戶。Runbook 必須在您的 Azure 訂用帳戶中的[自動化帳戶](automation-security-overview.md)內容中執行。您可以選取已經建立的自動化帳戶，也可以為自己建立新的自動化帳戶。
+
+所提供的 Runbook 會使用服務主體進行Azure 驗證。如果您選擇在其中一個現有的自動化帳戶中執行 Runbook，我們將會自動為您建立服務主體。如果您選擇建立新的自動化帳戶，則我們會自動建立帳戶和服務主體。在這兩種情況下，也會在自動化帳戶中建立兩項資產 – 名為 **AzureRunAsCertificate** 的憑證資產和名為 **AzureRunAsConnection** 的連接資產。Runbook 將使用 **AzureRunAsConnection** 進行 Azure 驗證，以便對 VM 執行管理動作。
+
+>[AZURE.NOTE] 服務主體會建立於訂用帳戶範圍並獲得參與者角色。需要此角色，有權執行自動化 Runbook 的帳戶才能管理 Azure VM。建立自動化帳戶及/或服務主體是一次性事件。一旦建立，您可以使用該帳戶來對其他 Azure VM 警示執行 Runbook。
+
+當您按一下 [確定] 時，便會設定警示，如果您選取要建立新的自動化帳戶的選項，則會隨著服務主體一起建立。這可能需要幾秒鐘才會完成。
+
+![正在設定的 Runbook](media/automation-azure-vm-alert-integration/RunbookBeingConfigured.png)
+
+完成設定之後，您會看到 Runbook 名稱出現在 [加入警示規則] 刀鋒視窗中。
+
+![已設定的 Runbook](media/automation-azure-vm-alert-integration/RunbookConfigured.png)
+
+按一下 [加入警示規則] 刀鋒視窗中的 [確定]，如果虛擬機器處於執行中狀態，則會建立並啟動警示規則。
+
+### 啟用或停用 Runbook
+
+如果您有針對警示設定的 Runbook，您可以將它停用，而不需移除 Runbook 組態。這可讓警示保持執行中，而且您或許可測試某些警示規則，稍後重新啟用 Runbook。
+
+## 摘要
+
+當您在 Azure VM 上設定警示時，您現在能夠輕鬆地設定自動化 Runbook，以在警示觸發時自動執行補救動作。在此版本中，您可以根據您的警示情況，從 Runbook 中選擇重新啟動、停止或刪除 VM。這只是讓您用來控制警示觸發時會自動採取的動作 (通知、疑難排解、補救) 的案例開頭。
+
+## 後續步驟
+
+- 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
+- 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
+
+<!---HONumber=AcomDC_0420_2016-->

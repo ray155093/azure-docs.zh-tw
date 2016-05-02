@@ -13,21 +13,21 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-multiple"
  ms.workload="big-compute"
- ms.date="01/08/2016"
+ ms.date="04/18/2016"
  ms.author="danlep"/>
 
 # 在 Azure 的 HPC Pack 叢集中管理運算節點的數目和可用性
 
+如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個運算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
+
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
-如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個運算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼 (自 HPC Pack 2012 R2 Update 1 開始)。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
-
->[AZURE.NOTE] 這些指令碼位於前端節點上的 %CCP\_HOME%bin 資料夾中。您必須以系統管理員身分執行每個指令碼。
-
 ## 必要條件
 
-* **Azure VM 中的 HPC Pack 叢集** - 使用 HPC Pack 2012 R2 Update 1 或更新版本，在傳統 (服務管理) 部署模型中建立 HPC Pack 叢集。例如，您可以使用 Azure Marketplace 中的 HPC Pack VM 映像和 Azure PowerShell 指令碼，將部署自動化。如需相關資訊和必要條件，請參閱[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+* **Azure VM 中的 HPC Pack 叢集** - 使用 HPC Pack 2012 R2 Update 1 或更新版本，在傳統部署模型中建立 HPC Pack 叢集。例如，您可以使用 Azure Marketplace 中的目前 HPC Pack VM 映像和 Azure PowerShell 指令碼，將部署自動化。如需相關資訊和必要條件，請參閱[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+
+    部署之後，會在前端節點的 %CCP\_HOME%bin 資料夾中發現節點管理指令碼。您必須以系統管理員身分執行每個指令碼。
 
 * **Azure 發佈設定檔或管理憑證** - 您必須前端節點上執行下列其中一項：
 
@@ -177,6 +177,6 @@ Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 
 ## 後續步驟
 
-* 如果您需要能根據叢集上目前的工作和任務的工作負載自動增加和縮減叢集節點的方法，請參閱[在 HPC Pack 叢集中自動增加和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
+* 如果您需要能根據叢集上目前工作的工作負載自動增加或縮減叢集節點的方法，請參閱[在 Azure 中根據叢集工作負載自動增加和縮減 HPC Pack 叢集資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

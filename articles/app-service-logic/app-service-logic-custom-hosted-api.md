@@ -20,13 +20,15 @@
 
 雖然 Logic Apps 有一系列 40 餘個各式各樣的連接器，但您可能會想要呼叫自訂的 API 以執行自己的程式碼。是裝載您自己的自訂 Web API，最簡單且最具擴充性的方法之一是使用 App Service。本文說明如何呼叫裝載在 App Service API 應用程式、Web 應用程式或行動應用程式中的任何 Web API。
 
+如需將 API 建置為觸發程序或邏輯應用程式中的動作，請參閱[這篇文章](app-service-logic-create-api-app.md)。
+
 ## 部署 Web 應用程式
 
-首先，您必須將 API 部署為 App Service 中的 Web 應用程式。此處的指示說明的是基本部署：[建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。雖然您可以從邏輯應用程式呼叫任何 API，但是為了取得最佳體驗，我們建議您加入 Swagger 中繼資料，以便輕易地與邏輯應用程式動作整合。您可以在[加入 swagger](../app-service-api/app-service-api-dotnet-get-started.md/#use-swagger-metadata-and-ui)中取得詳細資料。
+首先，您必須將 API 部署為 App Service 中的 Web 應用程式。此處的指示說明的是基本部署：[建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。雖然您可以從邏輯應用程式呼叫任何 API，但是為了取得最佳體驗，我們建議您加入 Swagger 中繼資料，以便輕易地與邏輯應用程式動作整合。您可以在[加入 Swagger](../app-service-api/app-service-api-dotnet-get-started.md/#use-swagger-metadata-and-ui)中取得詳細資訊。
 
 ### API 設定
 
-為了讓 Logic Apps 設計工具能夠剖析您的 Swagger，請務必啟用 CORS，並設定 Web 應用程式的 APIDefinition 屬性。這很容易就能在 Azure 入口網站中設定。只需開啟您 Web 應用程式的 [設定] 刀鋒視窗，並在 API 區段下方，將 [API 定義] 設定為 swagger.json 檔案的 URL (這通常是 https://{name}.azurewebsites.net/swagger/docs/v1)，並針對 '*' 新增 CORS 原則，以允許來自 Logic Apps 設計工具的要求。
+為了讓 Logic Apps 設計工具能夠剖析您的 Swagger，請務必啟用 CORS，並設定 Web 應用程式的 APIDefinition 屬性。這很容易就能在 Azure 入口網站中設定。只需開啟您 Web 應用程式的 [設定] 刀鋒視窗，並在 API 區段下方，將 [API 定義] 設定為 swagger.json 檔案的 URL (這通常是 https://{name}.azurewebsites.net/swagger/docs/v1)，並針對 '*' 新增 CORS 原則，以允許來自邏輯應用程式設計工具的要求。
 
 ## 呼叫 API
 
@@ -43,7 +45,7 @@
 
 ### 第 1 部分：設定邏輯應用程式的應用程式身分識別碼
 
-這是邏輯應用程式用來對 Active Directory 進行驗證的項目。您只「需要」為您的目錄執行此動作一次。例如，您可以選擇讓您所有的邏輯應用程式使用相同的身分識別碼，儘管只要您願意，您也可以為每個邏輯應用程式建立唯一的身分識別碼。您可以在 UI 中執行這項操作，或使用 PowerShell。
+這是邏輯應用程式用來對 Active Directory 進行驗證的項目。您只*需要*為您的目錄執行此動作一次。例如，您可以選擇讓您所有的邏輯應用程式使用相同的身分識別碼，儘管只要您願意，您也可以為每個邏輯應用程式建立唯一的身分識別碼。您可以在 UI 中執行這項操作，或使用 PowerShell。
 
 #### 使用 Azure 傳統入口網站建立應用程式身分識別碼
 
@@ -167,4 +169,4 @@
 
 您仍然必須遵循前述步驟建立邏輯應用程式的應用程式身分識別碼，並用它來呼叫 API。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

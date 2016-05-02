@@ -32,11 +32,10 @@
 
 ##版本資訊
 
-###3\.2.0 (01/22/2016)
-*MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.3.0** 的一部分。
+###3\.3.0 (04/19/2016)
+*MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.4.0** 的一部分
 
--   動作 URL 現在可使用自訂配置、ms-appx 及 ms-appdata。
--   穩定性改進。
+-   已加入 "TestLogLevel" API 來啟用/停用/篩選 SDK 所發出的主控台記錄檔。
 
 如需較早版本，請參閱[完整版本資訊](mobile-engagement-windows-phone-release-notes.md)
 
@@ -44,15 +43,20 @@
 
 如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。請參閱完整的[升級程序](mobile-engagement-windows-phone-upgrade-procedure/)。例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。請參閱完整的[升級程序](mobile-engagement-windows-phone-upgrade-procedure/)。例如，如果您要從 0.10.1 移轉到 0.11.0 您必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
-###從 2.0.0 到 3.0.0
+###從 2.0.0 到 3.3.0
 
-無。
+####測試記錄檔
+
+SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+
+			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
+			EngagementAgent.Instance.Init();
 
 ### 從舊版升級
 
 請參閱[升級程序](mobile-engagement-windows-phone-upgrade-procedure/)
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

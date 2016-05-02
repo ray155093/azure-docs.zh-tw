@@ -13,9 +13,9 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/08/2016"   
+	ms.date="04/14/2016"   
 	ms.author="milanga;juliako;"/>
-
+ 
 #使用 Azure 媒體分析偵測臉部和情緒
 
 ##概觀
@@ -30,7 +30,7 @@
 
 - **情緒偵測**
 	
-	「情緒偵測」是臉部偵測媒體處理器的選擇性元件，它會根據已偵測的臉部，傳回多個情緒屬性的分析，包括快樂、悲傷、恐懼、憤怒等等。此資料能針對每個臉部個別傳回，或是以群組值的方式傳回，並可以根據可自訂的窗口和間隔進行彙總。
+	「情緒偵測」是臉部偵測媒體處理器的選擇性元件，它會根據已偵測的臉部，傳回多個情緒屬性的分析，包括快樂、悲傷、恐懼、憤怒等等。
 
 **Azure 媒體臉部偵測器** MP 目前為預覽功能。
 
@@ -164,18 +164,22 @@ facesDetected|這是位於 JSON 結果的末端，並能摘要說明演算法在
 	}
 
 
+####屬性描述
+
 屬性名稱|說明
 ---|---
 模式|臉部：僅臉部偵測 <br/>AggregateEmotion：傳回該畫面中所有臉部的平均情緒值。
 AggregateEmotionWindowMs|在已選取 AggregateEmotion 模式時使用。指定要用來產生每個彙總結果之影片的長度，以毫秒為單位。
 AggregateEmotionIntervalMs|在已選取 AggregateEmotion 模式時使用。指定產生彙總結果的頻率。
 
-彙總預設值。下列為彙總窗口和間隔設定的建議值。窗口應該要比間隔更長。
+####彙總預設值
+
+以下為彙總窗口和間隔設定的建議值。AggregateEmotionWindowMs 應該超過 AggregateEmotionIntervalMs。
 
  |預設|最大|最小
 ---|---|---|---
-窗口長度|2|3|1
-間隔|0\.5|1|0\.25
+AggregateEmotionWindowMs|0\.5|2|0\.25
+AggregateEmotionIntervalMs|0\.5|1|0\.25
 
 ###JSON 輸出
 
@@ -529,6 +533,8 @@ AggregateEmotionIntervalMs|在已選取 AggregateEmotion 模式時使用。指�
 
 ##相關連結
 
-[Azure Media Services Analytics Overview (Azure 媒體服務分析概觀)](media-services-analytics-overview.md)
+[Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+
+<!---HONumber=AcomDC_0420_2016-->

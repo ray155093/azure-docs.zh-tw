@@ -1,6 +1,6 @@
 <properties
-   pageTitle="適用於 HDInsight Premium 上的 R 伺服器的計算內容選項 | Azure"
-   description="了解 HDInsight Premium 上的 R 伺服器的使用者可用的不同計算內容選項"
+   pageTitle="適用於 HDInsight (預覽) 中 R 伺服器的計算內容選項 | Azure"
+   description="了解 HDInsight (預覽) 中 R 伺服器之使用者可用的不同計算內容選項"
    services="HDInsight"
    documentationCenter=""
    authors="jeffstokes72"
@@ -18,9 +18,9 @@
    ms.author="jeffstok"
 />
 
-# 適用於 HDInsight Premium 上的 R 伺服器的計算內容選項
+#適用於 HDInsight (預覽) 中 R 伺服器的計算內容選項
 
-HDI Spark 上的 R 伺服器提供最新功能，讓以 R 為基礎的分析使用您的 [Azure Blob](../storage/storage-introduction.md "Azure Blob 儲存體") 儲存體帳戶或本機 Linux 檔案系統上容器中的 HDFS 中儲存的資料。因為 R 伺服器的建置基礎為開放原始碼 R，因此您所建置的 R 應用程式可以任意運用 8000 多種開放原始碼 R 封裝，以及 [ScaleR](http://www.revolutionanalytics.com/revolution-r-enterprise-scaler "Revolution Analytics ScaleR") 中的常式與 R 伺服器隨附的 Microsoft 巨量資料分析封裝。Premium 叢集的邊緣節點提供便利的登陸區域，可連接到叢集並執行 R 指令碼。使用邊緣節點時，您可以透過使用 ScaleR 的 Hadoop Map Reduce 或 Spark 計算內容，跨邊緣節點伺服器核心或叢集節點，執行 ScaleR 的平行化分散式函式。
+HDInsight (預覽) 中的 R 伺服器提供最新功能，讓以 R 為基礎的分析使用您的 [Azure Blob](../storage/storage-introduction.md "Azure Blob 儲存體") 儲存體帳戶或本機 Linux 檔案系統之容器中儲存於 HDFS 的資料。因為 R 伺服器的建置基礎為開放原始碼 R，因此您所建置的 R 應用程式可以任意運用 8000 多種開放原始碼 R 封裝，以及 [ScaleR](http://www.revolutionanalytics.com/revolution-r-enterprise-scaler "Revolution Analytics ScaleR") 中的常式與 R 伺服器隨附的 Microsoft 巨量資料分析封裝。Premium 叢集的邊緣節點提供便利的登陸區域，可連接到叢集並執行 R 指令碼。使用邊緣節點時，您可以透過使用 ScaleR 的 Hadoop Map Reduce 或 Spark 計算內容，跨邊緣節點伺服器核心或叢集節點，執行 ScaleR 的平行化分散式函式。
 
 ## 邊緣節點的計算內容
 
@@ -79,4 +79,4 @@ HDI Spark 上的 R 伺服器提供最新功能，讓以 R 為基礎的分析使�
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight Premium 上的 R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

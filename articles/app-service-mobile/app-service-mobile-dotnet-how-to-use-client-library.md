@@ -30,7 +30,7 @@
 
 ##<a name="setup"></a>設定和必要條件
 
-我們假設您已建立並發佈您的行動應用程式後端專案 (包含在一個資料表中)。在本主題使用的程式碼中，資料表的名稱為 `TodoItem`，且其內容包含下列資料行：`Id`、`Text` 和 `Complete`。這就是當您完成 [Azure Mobile Apps 快速入門]時所建立的相同資料表。
+我們假設您已建立並發佈您的行動應用程式後端專案 (至少包含一個資料表)。在本主題使用的程式碼中，資料表的名稱為 `TodoItem`，且其內容包含下列資料行：`Id`、`Text` 和 `Complete`。這就是當您完成 [Azure Mobile Apps 快速入門]時所建立的相同資料表。
 
 C# 中對應的具類型用戶端類型如下：
 
@@ -437,10 +437,10 @@ Mobile Apps 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 支援兩個驗證流程：_伺服器流程_和_用戶端流程_。由於伺服器流程採用提供者的 Web 驗證介面，因此所提供的驗證體驗也最為簡單。因為用戶端流程採用提供者特定的裝置特定 SDK，因此可允許與裝置特定功能的深入整合。
 
-不論是哪種情況，您都必須向識別提供者註冊您的應用程式。您的識別提供者會提供用戶端識別碼和用戶端密碼。接著，您必須使用識別提供者所提供的用戶端識別碼和用戶端密碼，來設定 Azure App Service 驗證 / 授權。如需詳細資訊，請依照教學課程[將驗證新增至您的應用程式]中的詳細指示操作。
+不論是哪種情況，您都必須向識別提供者註冊您的應用程式。您的識別提供者會提供用戶端識別碼和用戶端密碼。接著，您必須使用識別提供者所提供的用戶端識別碼和用戶端密碼，來設定 Azure App Service 驗證/授權。如需詳細資訊，請依照教學課程[將驗證新增至您的應用程式]中的詳細指示操作。
 
 ###<a name="serverflow"></a>伺服器流程
-註冊識別提供者之後，請利用提供者的 [MobileServiceAuthenticationProvider] 值來呼叫 MobileServiceCleint.[LoginAsync 方法]。例如，下列程式碼將透過使用 Facebook 來初始化伺服器流程登入。
+註冊識別提供者之後，請使用提供者的 [MobileServiceAuthenticationProvider] 值來呼叫 MobileServiceClient.[LoginAsync 方法]。例如，下列程式碼將透過使用 Facebook 來初始化伺服器流程登入。
 
 	private MobileServiceUser user;
 	private async System.Threading.Tasks.Task Authenticate()
@@ -909,4 +909,4 @@ Xamarin 應用程式需要一些額外的程式碼，才能將執行於 iOS 或 
 [SymbolSource]: http://www.symbolsource.org/
 [SymbolSource 指示]: http://www.symbolsource.org/Public/Wiki/Using
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -44,18 +44,18 @@
 
 | 來源| 接收 |
 |:------- | :---- |
-| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure 資料湖存放區](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表](data-factory-web-table-connector.md)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL 資料庫](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure 資料湖存放區](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li></ul> |
+| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL 資料庫](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li></ul> |
 
 
 > [AZURE.NOTE] 您只可在 Azure DocumentDB 和其他 Azure 服務 (例如 Azure Blob、Azure 資料表、Azure SQL Database、Azure SQL 資料倉儲、Azure DocumentDB 和 Azure 資料湖存放區) 之間來回移動。短期內也會支援 Azure Document DB 的完整矩陣。
 
-如果您需要以**複製活動**不支援的資料存放區為目標來回移動資料，可以在 Data Factory 中使用**自訂活動**並搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
+如果您需要以**複製活動**不支援的資料存放區為目標來回移動資料，可以在 Data Factory 中使用**自訂活動**並搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
 
 ## 教學課程
 如需使用複製活動的快速教學課程，請參閱[教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-get-started.md)。在教學課程中，您會使用複製活動將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。
 
 ## <a name="copyactivity"></a>複製活動
-複製活動會將輸入資料集 (**來源**) 的資料複製到輸出資料集 (**接收器**)。資料複製是根據活動上指定的排程以批次方式完成。若要了解定義活動的概觀，請參閱[了解管線和活動](data-factory-create-pipelines.md)文章。
+複製活動會將輸入資料集 (**來源**) 的資料複製到輸出資料集 (**接收器**)。資料複製是根據活動上指定的排程以批次方式完成。若要了解定義活動的概觀，請參閱 [Azure Data Factory 中的管線及活動](data-factory-create-pipelines.md)一文。
 
 複製活動提供下列功能：
 
@@ -66,7 +66,7 @@
 
 來源資料存放區位置 | 目的地資料存放區位置 | 資料移動的執行者  
 -------------------------- | ------------------------------- | ----------------------------- 
-內部部署/Azure VM (IaaS) | 雲端 | 內部部署電腦/Azure VM 上的**資料管理閘道器**。資料不流經雲端服務。<br/><br/>注意：資料管理閘道可位於資料存放區所處的內部部署電腦/Azure VM，也可以位於另一個內部部署電腦/Azure VM，只要它可連接至這兩個資料存放區即可。
+內部部署/Azure VM (IaaS) | 雲端 | 內部部署電腦/Azure VM 上的**資料管理閘道器**。資料不流經雲端服務。<br/><br/>注意：資料管理閘道器可位於資料存放區所處的內部部署電腦/Azure VM，也可以位於另一個內部部署電腦/Azure VM，只要它可連接至這兩個資料存放區即可。
 雲端 | 內部部署/Azure VM (IaaS) | 同上。 
 內部部署/Azure VM (IaaS) | 內部部署/Azure VM | 與來源相關聯的**資料管理閘道器**。資料不流經雲端服務。請參閱上面的注意事項。   
 雲端 | 雲端 | **支援複製活動的雲端服務**。Azure Data Factory 會在最接近相同地理位置之接收位置的區域中使用此服務部署。請參閱下表以了解對應：<br/><br/><table><tr><th>目的地資料存放區的區域</th> <th>用於資料移動的區域</th></tr><tr><td>美國東部</td><td>美國東部</td></tr><tr><td>美國東部 2</td><td>美國東部 2</td><tr/><tr><td>美國中部</td><td>美國中部</td><tr/><tr><td>美國西部</td><td>美國西部</td></tr><tr><td>美國中北部</td><td>美國中北部</td></tr><tr><td>美國中南部</td><td>美國中南部</td></tr><tr><td>北歐</td><td>北歐</td></tr><tr><td>西歐</td><td>西歐</td></tr><tr><td>東南亞</td><td>東南亞</td></tr><tr><td>東亞</td><td>東南亞</td></tr><tr><td>日本東部</td><td>日本東部</td></tr><tr><td>日本西部</td><td>日本東部</td></tr><tr><td>巴西南部</td><td>巴西南部</td></tr><tr><td>澳大利亞東部</td><td>澳大利亞東部</td></tr><tr><td>澳大利亞東南部</td><td>澳大利亞東南部</td></tr></table>
@@ -107,7 +107,9 @@
 ### 複製活動屬性
 名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。
 
-以複製活動而言，**typeProperties** 區段會根據來源和接收的類型而有所不同。以上所列的每個資料存放區特定頁面都會記錄這些資料存放區類型專屬的屬性。
+以複製活動而言，**typeProperties** 區段會根據來源和接收的類型而有所不同。按一下[支援來源/接收](#supported-data-stores)一節的來源/接收，了解該資料存放區複製活動所支援的類型屬性。
+
+以上所列的每個資料存放區特定頁面都會記錄這些資料存放區類型專屬的屬性。
 
 ### 已排序的複本
 您可以利用循序/排序的方式，逐一執行多個複製作業。假設您在管線中有兩個複製活動︰CopyActivity1 和 CopyActivity，並具備下列輸入資料輸出資料集。
@@ -144,9 +146,9 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 #### 用法直覺且操作流暢的資料複製精靈 
 此精靈可讓您在幾分鐘內輕鬆地將資料從來源移動到目的地，只需要完成以下簡單的步驟即可︰
 
-1.	**選取來源**
-2.	**選取目的地**
-3.	**配置設定**
+1.	選取**來源**
+2.	選取**目的地**
+3.	配置**設定**
 
 ![選取資料來源](./media/data-factory-data-movement-activities/select-data-source-page.png)
 
@@ -172,7 +174,7 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 
 ### 立即試用 
-如需使用 **Data Factory 複製精靈**建立含複製活動之管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
+如需使用 **Data Factory 複製精靈**建立含複製活動之管線的快速逐步解說，請參閱[教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md)。
 
 
 ### Azure Blob 資料夾路徑中的變數
@@ -185,7 +187,7 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 	2016/03/01/03
 	...
 
-按一下 [瀏覽]按鈕以取用 [檔案或資料夾]，瀏覽至其中一個資料夾 (假設是 2016->03->01->02)，然後按一下 [選擇]。您現在應該會在文字方塊中看到 **2016/03/01/02**。現在，請將 **2016** 取代為 **{year}**、**03** 取代為 **{month}**、**01** 取代為 **{day}**、**02** 取代為 **{hour}**，然後按下 **TAB** 鍵。您應該會看到選取這些四個變數之**格式**的下拉式清單，如下所示︰
+按一下 [瀏覽]按鈕以取用 [檔案或資料夾]，瀏覽至其中一個資料夾 (假設是 2016->03->01->02)，然後按一下 [選擇]。您現在應該會在文字方塊中看到 **2016/03/01/02**。現在，請將 **2016** 取代為 **{year}**、**03** 取代為 **{month}**、**01** 取代為 **{day}**、**02** 取代為 **{hour}**，然後按下 **TAB** 鍵。您應該會看到選取這四個變數之**格式**的下拉式清單，如下所示︰
 
 ![使用系統變數](./media/data-factory-data-movement-activities/blob-standard-variables-in-folder-path.png)
 
@@ -193,4 +195,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

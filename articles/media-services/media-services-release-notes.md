@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="media" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="03/01/2016"
+ 	ms.date="04/18/2016"
 	ms.author="juliako"/>
 
 
@@ -25,6 +25,7 @@
 
 - [目前的已知問題](#issues)
 - [REST API 版本歷程記錄](#rest_version_history)
+- [2016 年 4 月版本](#apr_changes16)
 - [2016 年 2 月版本](#feb_changes16)
 - [2016 年 1 月版本](#jan_changes_16)
 - [2015 年 12 月版本](#dec_changes_15)
@@ -79,6 +80,10 @@ SDK 中的媒體服務物件無法序列化，因此無法與 Azure 快取搭配
 ##<a id="rest_version_history"></a>REST API 版本歷程記錄
 
 如需媒體服務 REST API 版本歷程記錄的相關資訊，請參閱 [Azure 媒體服務 REST API 參考]。
+
+##<a id="apr_changes16"></a>2016 年 4 月版本
+
+在此版本中，Azure 媒體服務引進了 Azure 媒體分析，提供功能強大的視訊智慧。如需詳細資訊，請參閱 (Azure 媒體服務分析概觀) [media-services-analytics-overview.md]。
 
 ##<a id="feb_changes16"></a>2016 年 2 月版本
 
@@ -655,4 +660,4 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
  
 
-<!----HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

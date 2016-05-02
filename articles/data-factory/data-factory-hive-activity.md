@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/18/2016" 
 	ms.author="spelluru"/>
 
 # Hive 活動
@@ -214,4 +214,12 @@ script | 指定 Hive 指令碼內嵌 | 否
 			SUM(Duration)
 		FROM HiveSampleIn Group by ProfileID
 
-<!---HONumber=AcomDC_0302_2016-------->
+
+## 另請參閱
+- [Pig 活動](data-factory-pig-activity.md)
+- [MapReduce 活動](data-factory-map-reduce.md)
+- [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+- [叫用 Spark 程式](data-factory-spark.md)
+- [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
+
+<!---HONumber=AcomDC_0420_2016-->

@@ -439,7 +439,7 @@
 | baseUri | 是 | 基底 uri 的字串。
 | relativeUri | 是 | 要加入至基底 uri 字串的相對 uri 字串。
 
-**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 ****http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 ****http://contoso.com/resources/** 的基底 URI。
+**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 **http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 **http://contoso.com/resources/** 的基底 URI。
 
 下列範例顯示如何根據上層範本的值建構巢狀範本的連結。
 
@@ -611,7 +611,7 @@
 | providerNamespace | 是 | 提供者的命名空間
 | resourceType | 否 | 所指定命名空間內的資源類型。
 
-每個支援的類型都會以下列格式傳回：
+每個支援的類型都會以下列格式傳回；不保證陣列排序：
 
     {
         "resourceType": "",
@@ -807,4 +807,4 @@
 - 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

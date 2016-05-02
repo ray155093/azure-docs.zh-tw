@@ -15,8 +15,8 @@
 |每個服務命名空間的分割主題/佇列數目|全系統|靜態|後續在服務命名空間上建立新的分割主題或佇列的要求將遭到拒絕。因此，如果透過 [Azure 傳統入口網站][]設定，將會產生錯誤訊息。如果從管理 API 呼叫，呼叫端程式碼將收到 **QuotaExceededException** 例外狀況。|100<br /><br />每個分割佇列或主題計入每個命名空間 10,000 個實體的配額內。|
 |任何訊息實體名稱的大小上限：命名空間、佇列、主題、訂用帳戶或事件中樞|實體|靜態|-|50 個字元|
 |事件中樞事件的大小上限|全系統|靜態|-|256 KB|
-|佇列/主題/訂用帳戶實體的訊息大小|全系統|靜態|超過這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。|訊息大小上限：256KB。<br /><br />**注意** 考量到系統負擔，這項限制通常會稍微小於 256KB。<br /><br />標頭大小上限：64KB<br /><br />屬性包中的標頭屬性數目上限：**MaxValue**<br /><br />屬性包中的屬性大小上限：沒有明確的限制。受限於標頭大小上限。|
-|[NetOnewayRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.netonewayrelaybinding.aspx) 和 [NetEventRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.neteventrelaybinding.aspx) 轉送的訊息大小|全系統|靜態|超過這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。|64KB
+|佇列/主題/訂用帳戶實體的訊息大小|全系統|靜態|超過這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。|訊息大小上限：256KB。<br /><br />**注意** 考量到系統負擔，這項限制通常會稍微小於 256KB。<br /><br />標頭大小上限：64KB<br /><br />屬性包中的標頭屬性數目上限：**byte/int.MaxValue**<br /><br />屬性包中的屬性大小上限：沒有明確的限制。受限於標頭大小上限。|
+|[NetOnewayRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.netonewayrelaybinding.aspx) 和 [NetEventRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.neteventrelaybinding.aspx) 轉送的訊息大小|全系統|靜態|超過這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。|64KB 
 |[HttpRelayTransportBindingElement](https://msdn.microsoft.com/library/microsoft.servicebus.httprelaytransportbindingelement.aspx) 和 [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) 轉送的訊息大小|全系統|靜態|-|無限制|
 |佇列/主題/訂用帳戶實體的訊息屬性大小|全系統|靜態|產生 **SerializationException** 例外狀況。|每一個屬性的訊息屬性大小上限為 32K。所有屬性的累計大小不得超過 64K。這適用於 [BrokeredMessage](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.aspx) 的整個標頭，其具有使用者屬性與系統屬性 (例如 [SequenceNumber](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.sequencenumber.aspx)、[Label](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.label.aspx)、[MessageId](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx) 等等)。|
 |每個主題的訂用帳戶數目|全系統|靜態|後續對主題建立更多訂用帳戶的要求將會遭到拒絕。因此，如果透過入口網站設定，將會顯示錯誤訊息。如果從管理 API 呼叫，呼叫端程式碼將收到例外狀況。|2,000|
@@ -26,4 +26,4 @@
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

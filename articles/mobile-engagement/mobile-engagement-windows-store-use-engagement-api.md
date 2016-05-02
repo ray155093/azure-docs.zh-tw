@@ -358,6 +358,14 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
 
 			{"birthdate":"1983-12-07","gender":"female"}
+
+##記錄
+###啟用記錄
+
+SDK 可以設定為在 IDE 主控台中產生測試記錄檔。預設不會啟用這些記錄檔。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+
+			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
+			EngagementAgent.Instance.Init();
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

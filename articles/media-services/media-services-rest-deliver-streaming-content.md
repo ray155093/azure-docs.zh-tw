@@ -2,7 +2,7 @@
 	pageTitle="如何從媒體服務傳遞串流內容" 
 	description="了解如何建立定位器，用來建置串流 URL。程式碼使用 REST API。" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" 
 	services="media-services" 
 	documentationCenter=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/03/2016"  
+ 	ms.date="04/18/2016"  
 	ms.author="juliako"/>
 
 
@@ -22,7 +22,7 @@
 > [AZURE.SELECTOR]
 - [.NET](media-services-deliver-streaming-content.md)
 - [REST](media-services-rest-deliver-streaming-content.md)
-- [Portal](media-services-manage-content.md#publish)
+- [入口網站](media-services-manage-content.md#publish)
 
 ##概觀
 
@@ -191,4 +191,4 @@ URL：**Path** + 資產檔案 MP4 名稱
 
 [設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

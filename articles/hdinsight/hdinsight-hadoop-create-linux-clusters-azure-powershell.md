@@ -1,6 +1,6 @@
 <properties
-   	pageTitle="在 Linux 上使用 Azure CLI 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Azure"
-   	description="了解如何在 Linux 上使用 Azure CLI 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
+   	pageTitle="在 Linux 上使用 Azure PowerShell 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Azure"
+   	description="了解如何在 Linux 上使用 Azure PowerShell 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
    	services="hdinsight"
    	documentationCenter=""
    	authors="nitinme"
@@ -146,4 +146,4 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

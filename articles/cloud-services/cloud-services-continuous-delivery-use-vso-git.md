@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/30/2016"
+	ms.date="04/19/2016"
 	ms.author="tarcher"/>
 
 # 使用 Visual Studio Team Services 和 Git 連續傳遞至 Azure
@@ -27,7 +27,7 @@
 
 若要使用 Visual Studio Team Services 將雲端服務設定為自動建立和部署至 Azure，請依照下列步驟進行。
 
-## 步驟 1：建立 Git 儲存機制
+## 1：建立 Git 儲存機制。
 
 1. 如果您還沒有 Visual Studio Team Services 帳戶，請在[這裡](http://go.microsoft.com/fwlink/?LinkId=397665)取得。建立小組專案時，請選擇 Git 作為原始檔控制系統。依照指示將 Visual Studio 連接至小組專案。
 
@@ -37,7 +37,7 @@
 
 3. 指定本機複本的位置，然後選擇 [複製] 按鈕。
 
-## 步驟 2：建立專案並向儲存機制認可該專案
+## 2：建立專案並認可至儲存機制
 
 1. 在 **Team Explorer** 中，在 [方案] 區段中選擇 [新增] 連結，在本機儲存機制中建立新專案。
 
@@ -57,7 +57,7 @@
 
 6. 您現在已在儲存機制的本機複本中認可變更。接下來，選擇 [同步處理] 連結，將這些變更同步至伺服器。
 
-## 步驟 3：將專案連接至 Azure
+## 3：將專案連線至 Azure
 
 1. 現在，您在 Visual Studio Team Services 中有一個 Git 儲存機制，裡面還有一些原始程式碼，您可以準備將 Git 儲存機制連接至 Azure。在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 + 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。
 
@@ -81,7 +81,7 @@
 
 	您下次將認可推送至儲存機制時，Visual Studio Team Services 將會建置專案並部署至 Azure。
 
-## 步驟 4：觸發重建和重新部署專案
+## 4：觸發重建和重新部署專案
 
 1. 在 Visual Studio 中，開啟檔案進行變更。例如，在 MVC Web 角色中，變更 Views\\Shared 資料夾下的 `_Layout.cshtml` 檔案。
 
@@ -170,19 +170,19 @@
 
 	![][33]
 
-## 步驟 5：重新部署舊版組建
+## 5：重新部署舊版組建
 
 此為選用步驟。在 Azure 傳統入口網站中，選擇先前的部署，然後選擇 [重新部署]，將網站倒回到更早的簽入。請注意，這會在 TFS 中觸發新的組建，並在部署歷程記錄中建立新的項目。
 
 ![][34]
 
-## 步驟 6：變更生產部署
+## 6：變更生產部署
 
 準備就緒後，您可以在 Azure 傳統入口網站中選擇 [交換] 按鈕，將預備環境升級至生產環境。新部署的預備環境會升級至「生產」，而先前的生產環境 (若有的話) 會變成預備環境。「作用中」部署可能與生產和預備環境不同，但最近組建的部署歷程記錄都一樣，與環境無關。
 
 ![][35]
 
-## 步驟 6：從工作分支部署。
+## 6：從工作分支部署。
 
 使用 Git 時，您通常會在工作分支中進行變更，等到開發達到完成狀態時，再整合至主要分支。在專案的開發階段期間，您可以建置工作分支並部署至 Azure。
 
@@ -272,4 +272,4 @@
 [47]: ./media/cloud-services-continuous-delivery-use-vso-git/SourceSettingsPage.PNG
 [48]: ./media/cloud-services-continuous-delivery-use-vso-git/IncludeWorkingBranch.PNG
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

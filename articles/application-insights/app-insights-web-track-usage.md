@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="11/25/2015" 
+	ms.date="04/08/2016" 
 	ms.author="awills"/>
  
 # 使用 Application Insights 進行 Web 應用程式的使用量分析
@@ -119,7 +119,7 @@ Visual Studio Application Insights 提供兩種使用情況追蹤層級：
 使用者及帳戶識別碼不得包含空格或字元 `,;=|`
 
 
-在 [計量瀏覽器][](app-insights-metrics-explorer.md) 中，您可以建立 [驗證的使用者] 和 [帳戶] 的圖表。
+在 [計量瀏覽器](app-insights-metrics-explorer.md) 中，您可以建立 [驗證的使用者] 和 [帳戶] 的圖表。
 
 ## 綜合流量
 
@@ -317,12 +317,13 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 ```C#
 
+
     // Telemetry initializer class
-    public class MyTelemetryInitializer : IContextInitializer
+    public class MyTelemetryInitializer : ITelemetryInitializer
     {
-        public void Initialize (TelemetryContext context)
+        public void Initialize (ITelemetry telemetry)
         {
-            context.Properties["AppVersion"] = "v2.1";
+            telemetry.Properties["AppVersion"] = "v2.1";
         }
     }
 ```
@@ -334,7 +335,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
     protected void Application_Start()
     {
         // ...
-        TelemetryConfiguration.Active.ContextInitializers
+        TelemetryConfiguration.Active.TelemetryInitializers
         .Add(new MyTelemetryInitializer());
     }
 ```
@@ -375,4 +376,4 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0420_2016-->

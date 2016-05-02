@@ -27,10 +27,6 @@
 
 按一下索引標籤選取器，以取得使用其他工具在 HDInsight 中建立 Hadoop 叢集的詳細資訊。
 
-[AZURE.INCLUDE [hdinsight-azure-preview-portal](../../includes/hdinsight-azure-preview-portal.md)]
-
-* [使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集](hdinsight-administer-use-management-portal-v1.md)
-
 **必要條件**
 
 開始閱讀本文之前，您必須符合下列必要條件：
@@ -389,4 +385,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

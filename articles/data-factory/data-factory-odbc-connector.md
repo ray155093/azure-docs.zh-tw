@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/19/2016" 
+	ms.date="04/13/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 ODBC 資料存放區移動資料
@@ -327,4 +327,34 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 [AZURE.INCLUDE [data-factory-type-repeatability-for-relational-sources](../../includes/data-factory-type-repeatability-for-relational-sources.md)]
 
-<!---HONumber=AcomDC_0316_2016-->
+## GE Historian 存放區
+您建立 ODBC 連結服務，將 [GE Proficy Historian (現為 GE Historian)](http://www.geautomation.com/products/proficy-historian) 資料存放區連結至 Azure Data Factory，如下例所示︰
+
+	{
+	    "name": "HistorianLinkedService",
+	    "properties":
+	    {
+	        "type": "OnPremisesOdbc",
+	        "typeProperties":
+	        {
+			    "connectionString": "DSN=<name of the GE Historian store>",
+			    "gatewayName": "<gateway name>",
+			    "authenticationType": "Basic",
+			    "userName": "<user name>",
+			    "password": "<password>"
+	        }
+	    }
+	}
+
+您必須在內部部署機器上安裝資料管理閘道，並向入口網站註冊閘道器。安裝在內部部署電腦上的閘道器，使用 GE Historian 的 ODBC 驅動程式連接到 GE Historian 的資料存放區，如果閘道器電腦上尚未安裝驅動程式，請安裝。如需詳細資訊，請參閱[啟用連線](#enabling-connectivity)一節。
+
+使用 Data Factory 方案中的 GE Historian 存放區之前，請先確認閘道器可否使用下節中的指示連接到資料存放區。
+
+如需在複製作業中將 ODBC 資料存放區用做來源資料存放區的詳細概觀，請從頭閱讀本文。
+
+[AZURE.INCLUDE [資料處理站的疑難排解](../../includes/data-factory-troubleshoot-connectivity.md)]
+
+## 效能和微調  
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="Azure 事件中樞 API 概觀 | Microsoft Azure"
-   description="一些主要事件中樞 .NET 用戶端 API 的摘要。"
-   services="event-hubs"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="Azure 事件中樞 API 概觀 | Microsoft Azure"
+    description="一些主要事件中樞 .NET 用戶端 API 的摘要。"
+    services="event-hubs"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="event-hubs"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="event-hubs"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="04/15/2016"
+    ms.author="sethm" />
 
 # 事件中樞 API 概觀
 
@@ -189,4 +189,4 @@ public class SimpleEventProcessor : IEventProcessor
 - [服務匯流排和事件中樞 .NET API 參考](https://msdn.microsoft.com/library/azure/mt419900.aspx)
 - [事件處理器主機 API 參考](https://msdn.microsoft.com/library/azure/mt445521.aspx)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

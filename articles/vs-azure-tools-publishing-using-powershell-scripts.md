@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/30/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 使用 Windows PowerShell 指令碼來發行至開發和測試環境
@@ -351,4 +351,4 @@ $WebDeployPackage = New-WebDeployPackage
 
 請參閱[使用 Windows PowerShell 撰寫指令碼](https://technet.microsoft.com/library/bb978526.aspx)來深入了解 PowerShell 指令碼，並參閱[指令碼中心](https://azure.microsoft.com/documentation/scripts/)內的其他 Azure PowerShell 指令碼。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

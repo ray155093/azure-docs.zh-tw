@@ -133,7 +133,7 @@ Application Insights 的 Power BI 內容套件會顯示一組有用的應用程�
 ![](./media/app-insights-export-power-bi/140.png)
 
 
-請務必將 [日期格式] 設為 \[YYYY-MM-DD] (含連接號)。
+**請務必將 [日期格式] 設為 [YYYY-MM-DD] (含連接號)。**
 
 路徑前置詞模式會指定串流分析在存放區中尋找輸入檔案的位置。您需要將它設定為與連續匯出儲存資料的方式相對應。請設定如下：
 
@@ -260,6 +260,12 @@ Application Insights 的 Power BI 內容套件會顯示一組有用的應用程�
 
 ![在 Power BI 中，選取您的資料集和欄位。](./media/app-insights-export-power-bi/210.png)
 
+
+### 沒有資料？
+
+* 請檢查是否正確[設定日期格式](#set-path-prefix-pattern)：YYYY-MM-DD (含連接號)。
+
+
 ### 影片
 
 Noam Ben Zeev 會示範如何匯出至 Power BI。
@@ -274,4 +280,4 @@ Noam Ben Zeev 會示範如何匯出至 Power BI。
 * [更多範例和逐步解說](app-insights-code-samples.md)
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/16/2016"
+   ms.date="04/14/2016"
    ms.author="andkjell;billmath"/>
 
 
@@ -113,7 +113,7 @@ AD FS 服務帳戶頁面，「使用網域使用者帳戶選項」|AD 使用者�
 
 會使用不會過期的長複雜密碼建立帳戶。
 
-這個帳戶是安全儲存其他帳戶密碼的方式。這些其他帳戶的密碼會加密儲存在資料庫中。加密金鑰的私密金鑰是使用 Windows 資料保護 (DPAPI) 的密碼編譯服務秘密金鑰加密保護。由於 Windows 基於安全性理由之後會摧毀加密金鑰，您不應該重設服務帳戶的密碼。
+這個帳戶是安全儲存其他帳戶密碼的方式。這些其他帳戶的密碼會加密儲存在資料庫中。加密金鑰的私密金鑰是使用 Windows 資料保護 API (DPAPI) 的密碼編譯服務祕密金鑰加密來保護。由於 Windows 基於安全性理由之後會摧毀加密金鑰，您不應該重設服務帳戶的密碼。
 
 如果您使用完整的 SQL Server，那麼服務帳戶將會是為同步引擎建立的資料庫的 DBO。使用其他權限，服務將無法如預期般運作。也會建立 SQL 登入。
 
@@ -134,4 +134,4 @@ AD FS 服務帳戶頁面，「使用網域使用者帳戶選項」|AD 使用者�
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

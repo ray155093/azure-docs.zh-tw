@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="Juliako" 
-	manager="dwrede,cenkdin" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-  ms.date="02/03/2016"
-	ms.author="juliako"/>
+	ms.date="04/18/2016"
+	ms.author="juliako;cenkdin"/>
 
 
 #使用 Azure 媒體服務 .NET SDK 建立篩選器
@@ -148,4 +148,4 @@
 [動態資訊清單概觀](media-services-dynamic-manifest-overview.md)
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

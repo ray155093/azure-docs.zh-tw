@@ -1,7 +1,7 @@
 <properties
 	pageTitle="使用 Azure 自動化垂直調整 Azure 虛擬機器大小 | Microsoft Azure"
-	description="如何垂直調整虛擬機器大小以回應 Azure 自動化的監視警示"
-	services="virtual-machines"
+	description="如何垂直調整 Windows 虛擬機器大小以回應 Azure 自動化的監視警示"
+	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="singhkay"
 	manager="drewm"
@@ -9,9 +9,9 @@
 	tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machines"
+	ms.service="virtual-machines-windows"
 	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-multiple"
+	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="03/29/2016"
@@ -53,27 +53,9 @@
 
 ## 將 Azure 自動化設定為可存取您的虛擬機器
 
-在本節中，您將完成下列工作
+您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。最近，自動化服務引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體來自動執行 Runbook。您可以在下文中閱讀更多相關資訊：
 
-* 在您的 Active Directory 中建立使用者
-* 以使用者的登入資訊建立 AutomationPSCredential
-* 將使用者設定為可存取您訂用帳戶中的資源
-
-必須對您的訂用帳戶授與 Azure 自動化存取權，才可在訂用帳戶中開始執行 Azure 自動化 Runbook。在 Active Directory 中建立另一位使用者，即可完成此作業。然後，您需要建立 AutomationPSCredential，讓使用者可以對 Azure 進行驗證，並執行 PowerShell 命令以調整虛擬機器的大小。
-
-如需建立使用者和 AutomationPSCredential 的逐步解說，請參閱下列文章
-
-* [設定 Azure 自動化](../automation/automation-configuring.md)
-
-建立使用者之後，必須讓該使用者成為您傳統資源的共同管理員，並為其授與 Azure Resource Manager 資源的「擁有者」角色。
-
-使用者必須加入成為傳統入口網站的共同管理員，才可存取傳統資源。
-
-![舊版入口網站共同管理員](./media/virtual-machines-vertical-scaling-automation/old-portal-automation-user.png)
-
-您必須使用 Azure 入口網站，允許使用者存取 Azure Resource Manager 虛擬機器。
-
-![新版入口網站管理員](./media/virtual-machines-vertical-scaling-automation/new-portal-automation-user.png)
+* [使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
 ## 將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
 
@@ -108,4 +90,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!----HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

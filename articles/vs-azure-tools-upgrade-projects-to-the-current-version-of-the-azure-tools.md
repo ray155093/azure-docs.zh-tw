@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/05/2016"
+   ms.date="04/18/2016"
    ms.author="tarcher" />
 
 # 如何將專案升級為目前版本的 Azure Tools for Visual Studio
@@ -37,7 +37,7 @@
 
 - 如果 Azure 快取裝載於一或多個專案的角色，當專案升級時，服務組態 (.cscfg 檔) 和服務定義 (.csdef 檔) 中的某些屬性會變更。如果專案使用 Azure 快取 NuGet 封裝，專案會升級到最新版的封裝。您應該開啟 web.config 檔案，並確認用戶端組態在升級程序期間已妥善維護。如果您加入 Azure 快取用戶端組件的參考，而未使用 NuGet 封裝，則不會更新這些組件。您必須手動更新對於新版本的參考。
 
->[AZURE.IMPORTANT]在 F# 專案中，您必須手動更新 Azure 組件的參考，使它們參考這些組件的較新版本。
+>[AZURE.IMPORTANT] 在 F# 專案中，您必須手動更新 Azure 組件的參考，使它們參考這些組件的較新版本。
 
 ### 如何將 Azure 專案升級至目前版本
 
@@ -51,4 +51,4 @@
 
 1. 建置專案，然後解決因為 API 變更而造成的任何錯誤。如需如何針對新版本來修改程式碼的相關資訊，請參閱特定 API 的文件。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0420_2016-->

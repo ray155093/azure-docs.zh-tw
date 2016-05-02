@@ -1,7 +1,7 @@
 <properties
    pageTitle="如何檢視 Azure Service Fabric 實體的彙總健康情況 | Microsoft Azure"
    description="說明如何透過健康情況查詢和一般查詢，來查詢、檢視和評估 Azure Service Fabric 實體的彙總健康情況。"
-   services="service-fabric"HealthManager
+   services="service-fabric"
    documentationCenter=".net"
    authors="oanapl"
    manager="timlt"
@@ -1132,4 +1132,4 @@ UpgradeReplicaSetCheckTimeout : 00:15:00
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

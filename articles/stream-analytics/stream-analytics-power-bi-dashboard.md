@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="03/18/2016"
+	ms.date="04/15/2016"
 	ms.author="jeffstok"/>
 
 #  串流分析及 Power BI：適用於串流資料的即時分析儀表板
@@ -25,7 +25,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 
 在這篇文章中，您將了解如何使用 Power BI 做為 Azure 串流分析工作的輸出，來建立您的自訂商業智慧型工具，以及如何利用即時儀表板。
 
-> [AZURE.NOTE] Power BI 輸出是 Azure 串流分析的預覽功能。在此階段，Azure 入口網站不支援 Power BI 輸出的建立及設定，只有 Azure 傳統入口網站支援。
+> [AZURE.NOTE] 在此階段，Azure 入口網站不支援 Power BI 輸出的建立及設定，只有 Azure 傳統入口網站支援。
 
 ## 必要條件
 
@@ -98,6 +98,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 * **輸出別名** – 您可以填寫任何容易記住的輸出別名。如果您決定讓工作擁有多個輸出，填寫輸出別名會非常有幫助。在這個情況下，您必須參考此查詢中的輸出。比方說，我們要使用的輸出別名值 = "OutPbi"。
 * **資料集名稱** - 提供一個 Power BI 輸出應該要有的資料集名稱。例如，"pbidemo"。
 *	**資料表名稱** - 提供 Power BI 輸出資料集的資料表名稱。暫時稱之為 "pbidemo"。目前，串流分析工作的 Power BI 輸出中，一個資料集只能有一個資料表。
+*	**工作區** – 在將用來建立資料集的 Power BI 租用戶中選取工作區。
 
 >	[AZURE.NOTE] 您不應該在 Power BI 帳戶中明確地建立資料集和資料表，這些資料集和資料表會在您啟動串流分析工作時自動建立，且串流分析工作會將輸出提取至 Power BI。如果您的工作佇列並未傳回任何結果，則不會建立資料集和資料表。
 
@@ -161,7 +162,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 
 請注意，本教學課程示範如何為一個資料集建立一種圖表類型。Power BI 可協助您為組織建立其他客戶商業智慧型工具。如需其他 Power BI 儀表板範例，請觀賞[開始使用 Power BI](https://youtu.be/L-Z_6P56aas?t=1m58s) 視訊。
 
-如需有關設定 Power BI 輸出及利用 Power BI 群組的進一步資訊，請檢閱[了解串流分析輸出](stream-analytics-define-outputs.md "了解串流分析輸出")的 [Power BI 小節](stream-analytics-define-outputs.md#power-bi)。另一個深入了解如何利用 Power BI 建立儀表板的實用資源，可參考 [Power BI 預覽中的儀表板](https://powerbi.microsoft.com/documentation/powerbi-service-dashboards/)。
+如需有關設定 Power BI 輸出及利用 Power BI 群組的進一步資訊，請檢閱[了解串流分析輸出](stream-analytics-define-outputs.md "了解串流分析輸出")的 [Power BI 小節](stream-analytics-define-outputs.md#power-bi)。另一個深入了解如何使用 Power BI 建立儀表板的實用資源，可參考 [Power BI 中的儀表板](https://powerbi.microsoft.com/documentation/powerbi-service-dashboards/)。
 
 ## 限制和最佳作法
 
@@ -199,7 +200,7 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 
 ### 更新授權
 
-有一個暫時性的限制，即每隔 90 天必須針對 Power BI 輸出的所有工作，以手動方式重新整理驗證 Token。如果您在建立工作之後或上次驗證過後變更了密碼，您也必須重新驗證您的 Power BI 帳戶。此問題發生時的徵兆就是沒有工作輸出，且作業記錄檔中出現「驗證使用者錯誤」：
+如果您在建立工作之後或上次驗證過後變更了密碼，則需要重新驗證您的 Power BI 帳戶。如果您在 Azure Active Directory (AAD) 租用戶上設定 Multi-Factor Authentication (MFA)，則也需要每 2 週更新一次 Power BI 授權。此問題發生時的徵兆就是沒有工作輸出，且作業記錄檔中出現「驗證使用者錯誤」：
 
 ![graphic12][graphic12]
 
@@ -233,4 +234,4 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 [graphic12]: ./media/stream-analytics-power-bi-dashboard/12-stream-analytics-power-bi-dashboard.png
 [graphic13]: ./media/stream-analytics-power-bi-dashboard/13-stream-analytics-power-bi-dashboard.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

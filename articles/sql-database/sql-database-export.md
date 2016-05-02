@@ -87,9 +87,8 @@
 
 ## 後續步驟
 
-- [匯入 Azure SQL Database][5]
-
-
+- [將 BACPCAC 匯入 Azure SQL Database](sql-database-import.md)
+- [將 BACPCAC 匯入 SQL Server 資料庫](https://msdn.microsoft.com/library/hh710052.aspx)
 
 ## 其他資源
 
@@ -105,4 +104,4 @@
 [4]: ./media/sql-database-export/export-history.png
 [5]: ./media/sql-database-export/bacpac-archive.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

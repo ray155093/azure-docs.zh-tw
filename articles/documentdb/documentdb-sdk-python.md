@@ -3,7 +3,7 @@
 	description="了解所有 Python SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Python SDK 每個版本之間的變更。" 
 	services="documentdb" 
 	documentationCenter="python" 
-	authors="ryancrawcour" 
+	authors="aliuy" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="python" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/18/2016" 
 	ms.author="rnagpal"/>
 
 # DocumentDB SDK
@@ -77,8 +77,8 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
-| [1\.6.1](#1.6.1) | 2016 年 4 月 8 日 |---
-| [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |---
+| [1\.6.1](#1.6.1) | 2016 年 4 月 8 日 |--- 
+| [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- 
 | [1\.5.0](#1.5.0) | 2016 年 1 月 3 日 |--- 
 | [1\.4.2](#1.4.2) | 2015 年 10 月 6 日 |--- 
 | [1\.4.1](#1.4.1) | 2015 年 10 月 6 日 |--- 
@@ -99,4 +99,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

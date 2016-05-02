@@ -1,6 +1,6 @@
 <properties
-   pageTitle="適用於 HDInsight Premium 上的 R 伺服器的 Azure 儲存體選項 | Azure"
-   description="了解 HDInsight Premium 上 R 伺服器的使用者可用的不同儲存體選項"
+   pageTitle="適用於 HDInsight (預覽) 中 R 伺服器的 Azure 儲存體選項 | Azure"
+   description="了解 HDInsight (預覽) 中 R 伺服器之使用者可用的不同儲存體選項"
    services="HDInsight"
    documentationCenter=""
    authors="jeffstokes72"
@@ -18,9 +18,9 @@
    ms.author="jeffstok"
 />
 
-# 適用於 HDInsight Premium 上的 R 伺服器的 Azure 儲存體選項
+# 適用於 HDInsight (預覽) 中的 R 伺服器的 Azure 儲存體選項
 
-HDI 叢集上的 R 伺服器具有 Azure Blob 和即將推出的 Azure Data Lake 儲存體的存取權，做為保存資料、程式碼、分析的結果物件等等的方法。
+HDInsight (預覽) 中的 R 伺服器具有 Azure Blob 和即將推出的 Azure Data Lake 儲存體的存取權，作為保存資料、程式碼、分析的結果物件等等的方法。
 
 當您在 HDInsight 中建立 Hadoop 叢集時，您需要指定一個 Azure 儲存體帳戶。該帳戶特定的 Blob 儲存體容器被指定為保留您建立的叢集的檔案系統，也就是 Hadoop 分散式檔案系統 (HDFS)。基於效能目的，系統會在與您指定的主要儲存體帳戶相同資料中心內建立 HDInsight 叢集。如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md "在 HDInsight 上使用 Azure Blob 儲存體")。
 
@@ -110,4 +110,4 @@ HDI 叢集上的 R 伺服器具有 Azure Blob 和即將推出的 Azure Data Lake
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight Premium 上的 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

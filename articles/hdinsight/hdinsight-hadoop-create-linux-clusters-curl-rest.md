@@ -36,7 +36,7 @@ Azure REST API 可讓您對裝載於 Azure 平台的服務執行管理作業，�
 
 - __Azure CLI__。Azure CLI 用來建立服務主體，此主體再用於為 Azure REST API 的要求產生驗證權杖。
 
-    如需安裝 CLI 的相關資訊，請參閱[安裝 Azure CLI](../xplat-cli-install.md)。
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 - __cURL__。此公用程式由封裝管理系統提供，也可以從 [http://curl.haxx.se/](http://curl.haxx.se/) 下載。
 
@@ -358,4 +358,4 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

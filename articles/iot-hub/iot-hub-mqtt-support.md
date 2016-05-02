@@ -67,7 +67,7 @@ IoT 中樞可讓裝置在連接埠 8883 使用 [MQTT v3.1.1][lnk-mqtt-org] 通�
 
 ### 將訊息傳送至 IoT 中樞
 
-成功連接之後，裝置可以使用 `devices/{did}/messages/events/` 或 `devices/{did}/messages/events/{property_bag}` 做為**主題名稱**，來將訊息傳送至 IoT 中樞。`{property_bag}` 項目可讓裝置以 URL 編碼格式傳送具有其他屬性的訊息。例如：
+成功連接之後，裝置可以使用 `devices/{device_id}/messages/events/` 或 `devices/{device_id}/messages/events/{property_bag}` 作為**主題名稱**，將訊息傳送至 IoT 中樞。`{property_bag}` 項目可讓裝置以 URL 編碼格式傳送具有其他屬性的訊息。例如：
 
 ```
 RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-encoded(<PropertyName2>)=RFC 2396-encoded(<PropertyValue2>)…
@@ -75,11 +75,11 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 
 > [AZURE.NOTE] 這是與用於 HTTP 通訊協定中的查詢字串相同的編碼。
 
-裝置用戶端應用程式也可以使用 `devices/{did}/messages/events/{property_bag}` 做為 **Will 主題名稱**，來定義要以遙測訊息形式轉送的 *Will 訊息*。
+裝置用戶端應用程式也可以使用 `devices/{device_id}/messages/events/{property_bag}` 作為 **Will 主題名稱**，來定義要以遙測訊息形式轉送的 *Will 訊息*。
 
 ### 接收訊息
 
-若要從 IoT 中樞接收訊息，裝置應該使用 `devices/{did}/messages/devicebound/#”` 做為**主題篩選**來進行訂閱。如果有任何訊息屬性，IoT 中樞會傳遞具有**主題名稱** `devices/{did}/messages/devicebound/` 或 `devices/{did}/messages/devicebound/{property_bag}` 的訊息。`{property_bag}` 包含以 URL 編碼的訊息屬性索引鍵/值組。屬性包中只會包含應用程式屬性和使用者可設定的系統屬性 (例如 **messageId** 或 **correlationId**)。系統屬性名稱具有前置詞 **$**，但應用程式屬性則會使用沒有前置詞的原始屬性名稱。
+若要從 IoT 中樞接收訊息，裝置應該使用 `devices/{device_id}/messages/devicebound/#”` 作為**主題篩選**來進行訂閱。如果有任何訊息屬性，IoT 中樞會傳遞具有**主題名稱** `devices/{device_id}/messages/devicebound/` 或 `devices/{device_id}/messages/devicebound/{property_bag}` 的訊息。`{property_bag}` 包含以 URL 編碼的訊息屬性索引鍵/值組。屬性包中只會包含應用程式屬性和使用者可設定的系統屬性 (例如 **messageId** 或 **correlationId**)。系統屬性名稱具有前置詞 **$**，但應用程式屬性則會使用沒有前置詞的原始屬性名稱。
 
 ## 後續步驟
 
@@ -102,4 +102,4 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 [lnk-sas-tokens]: iot-hub-sas-tokens.md
 [lnk-mqtt-devguide]: iot-hub-devguide.md#mqtt-support
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

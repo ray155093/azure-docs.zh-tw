@@ -3,7 +3,7 @@
 	description="在使用資源管理員部署模型建立的 Windows VM 上，重設管理員密碼或遠端桌面服務。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/17/2016"
-	ms.author="dkshir"/>
+	ms.date="04/12/2016"
+	ms.author="iainfou"/>
 
 # 如何在 Windows VM 中重設遠端桌面服務或其登入密碼
 
@@ -27,7 +27,7 @@
 視虛擬機器的部署模型，您可以使用 Azure 入口網站或 Azure PowerShell 中的 VM 存取擴充功能。如果您使用 PowerShell，請務必在工作電腦上安裝最新的 PowerShell 模組，並登入您的 Azure 訂用帳戶。如需詳細步驟，請閱讀[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 
-> [AZURE.TIP] 您可以使用 `Get-Module azure | format-table version` 命令來檢查已安裝之 PowerShell 的版本。
+> [AZURE.TIP] 您可以使用 `Import-Module Azure; Get-Module Azure | Format-Table Version` 來檢查已安裝的 PowerShell 版本。
 
 
 ## 傳統部署模型中的 Windows VM
@@ -140,4 +140,4 @@ Azure 入口網站目前不支援重設以 Azure Resource Manager 建立之虛�
 
 [疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

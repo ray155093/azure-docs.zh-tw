@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/04/2016"
+   ms.date="04/13/2016"
    ms.author="nitinme"/>
 
 # 整合資料湖存放區與其他 Azure 服務
@@ -47,6 +47,10 @@ Azure 資料湖存放區可以與其他 Azure 服務一起使用，以啟用更�
 
 Azure 資料湖存放區提供命令列工具 AdlCopy，可讓您將資料從 Azure Blob 儲存體複製到資料湖存放區帳戶。如需詳細資訊，請參閱[將資料從 Azure 儲存體 Blob 複製到資料湖存放區](data-lake-store-copy-data-azure-storage-blob.md)。
 
+## 在 Azure SQL Database 和 Data Lake Store 之間複製資料
+
+您可以使用 Apache Sqoop 在 Azure SQL Database 和 Data Lake Store 之間匯入及匯出資料。如需詳細資訊，請參閱[使用 Sqoop 在 Data Lake Store 和 Azure SQL Database 之間複製資料](data-lake-store-data-transfer-sql-sqoop.md)。
+
 
 ## 另請參閱
 
@@ -54,4 +58,4 @@ Azure 資料湖存放區提供命令列工具 AdlCopy，可讓您將資料從 Az
 - [使用入口網站開始使用資料湖存放區](data-lake-store-get-started-portal.md)
 - [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

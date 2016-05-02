@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/30/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 作法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure 雲端服務
@@ -208,4 +208,4 @@
 ## 後續步驟
 如需有關發佈的詳細資訊，請參閱 [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。另請參閱[設定具名的驗證認證](vs-azure-tools-setting-up-named-authentication-credentials.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

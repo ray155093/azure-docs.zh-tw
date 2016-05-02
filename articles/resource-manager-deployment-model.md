@@ -36,13 +36,13 @@
 
   - [Azure 入口網站](https://portal.azure.com/)。
 
-   ![Azure 入口網站](./media/resource-manager-deployment-model/preview-portal.png)
+        ![Azure portal](./media/resource-manager-deployment-model/preview-portal.png)
 
-   針對計算、儲存體及網路資源，您可以選擇使用資源管理員或傳統部署。選擇**資源管理員**。
+        For Compute, Storage, and Networking resources, you have the option of using either Resource Manager or Classic deployment. Select **Resource Manager**.
 
-   ![資源管理員部署](./media/resource-manager-deployment-model/select-resource-manager.png)
+        ![Resource Manager deployment](./media/resource-manager-deployment-model/select-resource-manager.png)
 
-  - 若使用 Azure PowerShell，請使用 Resource Manager 版本的命令。這些命令的格式是 Verb-AzureRmNoun，如下所示。
+  - 若使用 Azure PowerShell，請使用 Resource Manager 版本的命令。這些命令的格式是 *Verb-AzureRmNoun*，如下所示。
 
             Get-AzureRmResourceGroupDeployment
 
@@ -53,7 +53,7 @@
 
 - 資源類型的名稱中不包括 **(傳統)**。下圖顯示的類型為**儲存體帳戶**。
 
-   ![Web 應用程式](./media/resource-manager-deployment-model/resource-manager-type.png)
+    ![Web 應用程式](./media/resource-manager-deployment-model/resource-manager-type.png)
 
 下圖所示的應用程式示範如何將透過資源管理員所部署的資源包含在單一資源群組中。
 
@@ -83,13 +83,13 @@
 
   - [傳統入口網站](https://manage.windowsazure.com)
 
-   ![傳統入口網站](./media/resource-manager-deployment-model/azure-portal.png)
+        ![Classic portal](./media/resource-manager-deployment-model/azure-portal.png)
 
-   或安裝 Azure 入口網站並指定進行**傳統**部署 (範圍包括計算、儲存體及網路)
+        Or, the Azure portal and you specify **Classic** deployment (for Compute, Storage, and Networking).
 
-   ![傳統部署](./media/resource-manager-deployment-model/select-classic.png)
+        ![Classic deployment](./media/resource-manager-deployment-model/select-classic.png)
 
-  - 若使用 Azure PowerShell，請使用「服務管理」版本的命令。這些命令名稱的格式是 Verb-AzureNoun，如下所示。
+  - 若使用 Azure PowerShell，請使用「服務管理」版本的命令。這些命令名稱的格式是 *Verb-AzureNoun*，如下所示。
 
             Get-AzureDeployment
 
@@ -97,7 +97,7 @@
   - Azure CLI 命令會在 **asm** 或預設模式中執行。
 - 資源類型的名稱中包括 **(傳統)**。下圖顯示的類型為**儲存體帳戶 (傳統)**。
 
-   ![傳統類型](./media/resource-manager-deployment-model/classic-type.png)
+    ![傳統類型](./media/resource-manager-deployment-model/classic-type.png)
 
 您仍然可以使用 Azure 入口網站，來管理透過傳統部署所建立的資源。
 
@@ -169,16 +169,14 @@
 
 如果您負擔得起虛擬機器的停機時間，您可以從傳統部署轉換至資源管理員搭配使用 [ASM2ARM PowerShell 指令碼](https://github.com/fullscale180/asm2arm)。
 
-從傳統部署轉換至資源管理員時，如需對等 Azure CLI 命令的清單，請參閱 [VM 作業的對等資源管理員和服務管理命令](./virtual-machines/virtual-machines-linux-cli-manage.md)。
-
-如需轉換運算、儲存體和網路資源的詳細資訊，請參閱 [Azure 資源管理員提供的 Azure 運算、網路和儲存體提供者](./virtual-machines/virtual-machines-windows-compare-deployment-models.md)。
+如需轉換運算、儲存體和網路資源的詳細資訊，請參閱 [Azure 資源管理員下的 Azure 運算、網路和儲存體提供者](./virtual-machines/virtual-machines-windows-compare-deployment-models.md)。
 
 若要了解從不同部署模型連接虛擬網路，請參閱[將傳統 VNet 連接到新的 VNet](./virtual-network/virtual-networks-arm-asm-s2s.md)。
 
 ## 後續步驟
 
-- 針對定義虛擬機器、儲存體帳戶、虛擬網路的範本，如需可其建立逐步解說，請參閱 [Resource Manager 範本的逐步解說](resource-manager-template-walkthrough.md)。
+- 針對定義虛擬機器、儲存體帳戶、虛擬網路的範本，若需該範本的建立逐步解說，請參閱 [Resource Manager 範本的逐步解說](resource-manager-template-walkthrough.md)。
 - 若要了解 Resource Manager 範本的結構，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看部署範本的命令，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -123,7 +123,7 @@ WHERE	[table_name] = 'FactInternetSales'
 | [OPEN\_rowgroup\_rows\_MIN] | 開放群組會指出資料是緩慢移動載入資料表，或是先前的載入將剩餘的資料列溢出到此資料列群組。使用 MIN、MAX、AVG 欄位查看多少資料位於開放資料列群組。對於小型資料表，可能是所有資料的 100%！ 在此情況下，ALTER INDEX REBUILD 來強制資料進入資料行存放區。 |
 | [OPEN\_rowgroup\_rows\_MAX] | 同上。 |
 | [OPEN\_rowgroup\_rows\_AVG] | 同上。 |
-| [CLOSED\_rowgroup\_rows] | 查看關閉的資料列群組資料列做為例行性檢查。如果 |
+| [CLOSED\_rowgroup\_rows] | 查看關閉的資料列群組資料列做為例行性檢查。 |
 | [CLOSED\_rowgroup\_count] | 如果發現任何關閉資料列群組，其數目應該很小。關閉資料列群組可以使用 ALTER INDEX 轉換成壓縮資料列群組...REORGANISE 命令。不過，通常並不需要。關閉群組會透過背景 "tuple mover" 程序自動轉換成資料行存放區的資料列群組。 |
 | [CLOSED\_rowgroup\_rows\_MIN] | 關閉資料列群組應該具有極高的填滿率。如果關閉資料列群組的填滿率很低，就需要進一步分析資料行存放區。 |
 | [CLOSED\_rowgroup\_rows\_MAX] | 同上。 |
@@ -259,4 +259,4 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

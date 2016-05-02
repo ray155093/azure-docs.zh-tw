@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="09/01/2015"
+   ms.date="03/29/2016"
    ms.author="kundanap"/>
 
 # 使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本
@@ -49,4 +49,4 @@
 
 編寫範本之後，您可以使用 Azure CLI 部署它。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

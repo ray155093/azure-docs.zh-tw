@@ -28,9 +28,9 @@
 
 ### /html 資料夾
 
-- `EngagementNotification.html`：`Notification` Web 檢視的 html 設計。
+- `EngagementNotification.html`：應用程式內橫幅的 `Notification` Web 檢視 HTML 設計。
 
-- `EngagementAnnouncement.html`：`Announcement` Web 檢視的 html 設計。
+- `EngagementAnnouncement.html`：應用程式內橫幅的 `Announcement` Web 檢視 HTML 設計。
 
 ### /images 資料夾
 
@@ -44,17 +44,7 @@
 
 ### /overlay 資料夾
 
-- `EngagementBaseOverlay.cs`：`Announcement` 和 `Notification` 重疊使用的基底程式碼。
-
-- `EngagementOverlayAnnouncement.xaml`：`Announcement` xaml 設計。
-
-- `EngagementOverlayAnnouncement.xaml.cs`：`EngagementOverlayAnnouncement.xaml` 已連結的程式碼。
- 
-- `EngagementOverlayNotification.xaml`：`Notification` xaml 設計。
- 
-- `EngagementOverlayNotification.xaml.cs`：`EngagementOverlayNotification.xaml` 已連結的程式碼。
- 
-- `EngagementPageOverlay.cs`：`Overlay` 宣告和通知顯示的程式碼。
+- `EngagementPageOverlay.cs`：負責將 Engagement Reach 應用程式內 UI 加入子系的重疊頁面。
   
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

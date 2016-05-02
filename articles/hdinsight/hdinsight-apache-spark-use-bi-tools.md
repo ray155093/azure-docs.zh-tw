@@ -14,18 +14,20 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/18/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark (Linux)
+# 在 HDInsight Linux (預覽) 上搭配使用 BI 工具和 Apache Spark
 
 了解如何在 Azure HDInsight 中使用 Apache Spark 來執行下列作業：
 
 * 取得原始範例資料並儲存成 Hive 資料表
 * 使用 Power BI 和 Tableau 之類的 BI 工具來分析及視覺化資料。
 
-> [AZURE.TIP] 本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。如要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾中的 Notebook [搭配 HDInsight.ipynb 上的 Apache Spark 來使用 BI 工具]。
+> [AZURE.NOTE] 本教學課程只適用於在 Azure HDInsight 中建立的 Spark 1.5.2 叢集。
+
+本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。如要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾中的 Notebook [搭配 HDInsight.ipynb 上的 Apache Spark 來使用 BI 工具]。
 
 **必要條件：**
 
@@ -50,7 +52,7 @@
 	>
 	> `https://CLUSTERNAME.azurehdinsight.net/jupyter`
 
-2. 建立新的 Notebook。按一下 [**新建**]，然後按一下 [**PySpark**]。
+2. 建立新的 Notebook。按一下 [新建]，然後按一下 [PySpark]。
 
 	![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
@@ -79,12 +81,12 @@
 		hvac = hvacParts.map(lambda p: Entry(str(p[0]), str(p[1]), int(p[2]), int(p[3]), int(p[6])))
 		
 		# Infer the schema and create a table       
-		hvacTable = hiveContext.createDataFrame(hvac)
+		hvacTable = sqlContext.createDataFrame(hvac)
 		hvacTable.registerTempTable('hvactemptable')
 		dfw = DataFrameWriter(hvacTable)
 		dfw.saveAsTable('hvac')
 
-5. 確認資料表已成功建立。您可以使用 `%%sql` magic 直接執行 Hive 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+5. 確認資料表已成功建立。您可以使用 `%%sql` magic 直接執行 Hive 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 
 		%%sql
 		SHOW TABLES
@@ -231,4 +233,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

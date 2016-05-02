@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="04/18/2016"
 	ms.author="spelluru"/>
 
 # 在 Azure 資料處理站管線中使用自訂活動
@@ -823,6 +823,15 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 	  }
 	}
 
+## 範例
+
+| 範例 | 自訂活動的工作內容| 
+| ------ | ----------- | 
+| [HTTP 資料下載程式](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)。 | 使用 Data Factory 的自訂 C# 活動，從 HTTP 端點將資料下載到 Azure Blob 儲存體。 |
+| [Twitter 情緒分析範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TwitterAnalysisSample-CustomC%23Activity) | 叫用 Azure ML 模型，執行情感分析、評分、預測等等。 |
+| [執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 | 在已安裝 R 的 HDInsight 叢集上執行 RScript.exe 來叫用 R 指令碼。 | 
+| [跨 AppDomain.NET 活動](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) | 使用 Data Factory 啟動器 (例如，WindowsAzure.Storage v4.3.0、Newtonsoft.Json v6.0.x 等等) 用過的不同組件版本。
+ 
 
 ## 另請參閱
 
@@ -863,4 +872,4 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 [image-data-factory-azure-batch-tasks]: ./media/data-factory-use-custom-activities/AzureBatchTasks.png
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

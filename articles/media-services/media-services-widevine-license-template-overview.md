@@ -2,7 +2,7 @@
 	pageTitle="Widevine 授權範本概觀" 
 	description="本主題提供了用來設定 Widevine 授權之 Widevine 授權範本的概觀。" 
 	authors="juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" 
 	services="media-services" 
 	documentationCenter=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/03/2016"  
+ 	ms.date="04/18/2016"  
 	ms.author="juliako"/>
 
 #Widevine 授權範本概觀
@@ -210,4 +210,4 @@ override\_provider\_client\_token | 布林值。true 或 false |如果為 false 
 
 [使用 PlayReady 和/或 Widevine 動態 Common Encryption](media-services-protect-with-drm.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

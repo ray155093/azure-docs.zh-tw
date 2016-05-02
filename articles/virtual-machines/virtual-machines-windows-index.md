@@ -11,7 +11,7 @@
 <tags
    ms.service="virtual-machines-windows"
    ms.devlang="na"
-   ms.topic="get-started-article"
+   ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
    ms.date="02/24/2016"
@@ -37,9 +37,6 @@
 [了解 Azure Resource Manager 部署](../resource-group-overview.md)
 
 [Azure 中的虛擬機器和容器](virtual-machines-windows-containers.md)
-
-[虛擬機器調整集概觀](virtual-machines-windows-scale-sets-overview.md)
-
 
 
 ### 環境設定
@@ -115,8 +112,6 @@
 [Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-sql-automated-backup.md)
 
 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)
-
-[在虛擬機器調整集中自動調整機器](virtual-machines-windows-ps-vmss-create.md)
 
 
 
@@ -329,8 +324,6 @@
 
 [使用 Visual Studio 建立 Web 應用程式的虛擬機器](virtual-machines-windows-classic-web-app-visual-studio.md)
 
-[如何在 Azure 虛擬機器上以 .NET 執行需密集運算的工作](virtual-machines-windows-classic-run-compute-intensive-task.md)
-
 [如何在虛擬機器上以 Java 執行大量運算工作](virtual-machines-windows-classic-java-run-compute-intensive-task.md)
 
 [Windows Server VM 上的 Django Hello World Web 應用程式](virtual-machines-windows-classic-python-django-web-app.md)
@@ -375,4 +368,4 @@
 
 [在 Azure 中建立、重新啟動或調整 VM 大小時，對配置失敗進行疑難排解](virtual-machines-windows-allocation-failure.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

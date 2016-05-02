@@ -1,6 +1,6 @@
 <properties
  pageTitle="Azure 排程器的計劃和計費"
- description=""
+ description="Azure 排程器的計劃和計費"
  services="scheduler"
  documentationCenter=".NET"
  authors="krisragh"
@@ -85,4 +85,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

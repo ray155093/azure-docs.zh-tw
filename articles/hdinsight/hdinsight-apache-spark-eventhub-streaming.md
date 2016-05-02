@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/05/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# Spark Streaming：在 HDInsight 上使用 Apache Spark 處理來自 Azure 事件中樞的事件 (Linux)
+# Spark Streaming：在 HDInsight Linux (預覽) 上使用 Apache Spark 處理來自 Azure 事件中樞的事件
 
 Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、容錯的串流處理應用程式。資料能擷取自許多來源。在本文中，我們使用 Azure 事件中樞來擷取資料。事件中樞是可高度調整的擷取系統，每秒可以吸收數以百萬計的事件。
 
@@ -374,4 +374,4 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: ../storage-create-storage-account/
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/03/2016" 
+	ms.date="04/19/2016" 
 	ms.author="larryfr"/>
 
 #在 HDInsight 上使用 Hadoop 分析航班延誤資料
@@ -34,6 +34,8 @@
 - __Azure SQL Database__。您會使用 Azure SQL Database 做為目的地資料存放區。如果您還沒有 SQL Database，請參閱 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md)。
 
 - __Azure CLI__。如果您尚未安裝 Azure CLI，請參閱[安裝與設定 Azure CLI](../xplat-cli-install.md) 的詳細步驟。
+
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 
 ##下載航班資料
@@ -304,4 +306,4 @@
 
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

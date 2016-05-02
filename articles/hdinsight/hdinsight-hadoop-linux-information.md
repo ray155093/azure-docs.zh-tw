@@ -27,6 +27,9 @@
 
 * [cURL](https://curl.haxx.se/) - 用來與 Web 型服務通訊
 * [jq](https://stedolan.github.io/jq/) - 用來剖析 JSON 文件
+* [Azure CLI](../xplat-cli-install.md) - 用來從遠端管理 Azure 服務
+
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 ## 網域名稱
 
@@ -105,7 +108,7 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要�
 
 叢集建立期間，您會選取使用現有 Azure 儲存體帳戶和容器，或是建立新的。之後您可能就忘得一乾二淨。您可以使用 Ambari REST API 尋找預設的儲存體帳戶和容器。
 
-1. 請使用下列命令和 curl 來擷取 HDFS 組態資訊，並使用 [jq](https://stedolan.github.io/jq/) 加以篩選：
+1. 請使用下列命令和 CURL 來擷取 HDFS 組態資訊，並使用 [jq](https://stedolan.github.io/jq/) 加以篩選：
 
         curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.defaultFS"] | select(. != null)'
     
@@ -254,4 +257,4 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

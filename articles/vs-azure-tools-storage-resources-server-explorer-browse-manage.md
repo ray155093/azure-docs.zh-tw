@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/27/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 使用伺服器總管瀏覽和管理儲存體資源
@@ -314,4 +314,4 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。此服務是�
 
 若要了解如何使用 Azure 儲存體服務的詳細資訊，請參閱[存取 Azure 儲存體服務](https://msdn.microsoft.com/library/azure/ee405490.aspx)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

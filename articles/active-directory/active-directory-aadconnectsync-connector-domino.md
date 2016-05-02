@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/16/2016"
+   ms.date="04/20/2016"
    ms.author="andkjell"/>
 
 # Lotus Domino 連接器技術參考
@@ -112,7 +112,7 @@ IBM Lotus Notes 用戶端和 Domino 伺服器使用 Notes Remote Procedure Call 
 
 ![Notes2](./media/active-directory-aadconnectsync-connector-domino/notes2.png)
 
-**注意：**您必須啟動 Lotus Notes 一次，且啟動時所使用的使用者必須位於與將做為連接器服務帳戶之帳戶相同的伺服器上。
+**注意：**您必須啟動 Lotus Notes 一次，且啟動時所使用的使用者必須位於與將做為連接器服務帳戶之帳戶相同的伺服器上。也請務必關閉伺服器上的 Lotus Notes 用戶端。因為它無法在連接器嘗試連接到 Domino 伺服器時同時執行。
 
 ### 建立連接器
 
@@ -539,4 +539,4 @@ Domino 中有數種方式可延伸結構描述，使其顯示為連接器可使�
 
 -	如需如何啟用記錄來疑難排解連接器的資訊，請參閱[如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -4,8 +4,8 @@
 	services="azure-resource-manager" 
 	documentationCenter="" 
 	authors="tfitzmac" 
-	manager="wpickett" 
-	editor=""/>
+	manager="timlt" 
+	editor="tysonn"/>
 
 <tags 
 	ms.service="azure-resource-manager" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/18/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -24,17 +24,18 @@
 2. 資源不會再與先前的相同群組資源共用相同的生命週期。您想要將它移動到新的資源群組，以便您可以將該資源與其他資源分開管理。
 3. 資源現在共用與不同資源群組中之其他資源相同的生命週期。您想要將它移動到其他資源所屬的資源群組，以便一起管理。
 
-## 移動資源前的注意事項
+當移動資源時，會在作業期間鎖定來源群組和目標群組。群組上的寫入和刪除作業將會封鎖，直到移動完成。
 
-在移動資源之前，要考慮的重要事項如下︰
+您無法變更資源的位置。移動資源只會將它移動到新的資源群組。新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
 
-1. 您無法變更資源的位置。移動資源只會將它移動到新的資源群組。新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
-2. 目前並非所有服務都支援移動資源的功能。請參閱下方的清單，以取得哪些服務支援移動資源的相關資訊。
-3. 要移動之資源的資源提供者必須在目的地訂用帳戶中註冊。將資源移至新的訂用帳戶時，您可能會遇到這個問題，但永遠不會以該資源類型使用此訂用帳戶。例如，如果您要將 API 管理服務執行個體移動至尚未註冊 **Microsoft.ApiManagement** 資源提供者的訂用帳戶，將不會成功移動。若要了解如何檢查登錄狀態，並註冊資源提供者，請參閱[資源提供者和類型](../resource-manager-supported-services/#resource-providers-and-types)。
-4. 您要將資源移動到其中的目的地資源群組，只應包含與該資源共用相同應用程式生命週期的資源。
-5. 如果您使用 Azure PowerShell 或 Azure CLI，請確認您使用的是最新版本。若要更新您的版本，執行 Microsoft Web Platform Installer 並檢查是否有新的版本可用如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)，以及[安裝 Azure CLI](xplat-cli-install.md)。
-6. 移動作業可能需要一段時間來完成，且在作業期間，您的提示字元會等候到作業完成。
-7. 當移動資源時，會在作業期間鎖定來源群組和目標群組。群組上的寫入和刪除作業將會封鎖，直到移動完成。
+## 移動資源前的檢查清單
+
+在移動資源之前，要執行的重要步驟如下︰藉由驗證這些條件，您可以避免錯誤。
+
+1. 服務必須支援移動資源的功能。請參閱下方的清單，以取得哪些[服務支援移動資源](#services-that-support-move)的相關資訊。
+2. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。否則您會收到錯誤，指出未針對資源類型註冊訂用帳戶。將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。若要了解如何檢查註冊狀態，並註冊資源提供者，請參閱[資源提供者和類型](../resource-manager-supported-services/#resource-providers-and-types)。
+3. 如果您使用 Azure PowerShell 或 Azure CLI，請使用最新版本。若要更新您的版本，執行 Microsoft Web Platform Installer 並檢查是否有新的版本可用如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)，以及[安裝 Azure CLI](xplat-cli-install.md)。
+4. 如果您要移動 App Service 應用程式，您已檢閱 [App Service 限制](#app-service-limitations)。
 
 ## 支援移動的服務
 
@@ -90,14 +91,14 @@
 
 第一個範例顯示如何將某個資源移動到新的資源群組。
 
-    PS C:\> $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
-    PS C:\> Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
+    $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
+    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
 
 第二個範例顯示如何將多個資源移動到新的資源群組。
 
-    PS C:\> $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
-    PS C:\> $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
-    PS C:\> Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
+    $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
+    $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
+    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
 
 若要移動到新的訂用帳戶，請為 **DestinationSubscriptionId** 參數設定某個值。
 
@@ -127,14 +128,14 @@
 
 ![移動資源](./media/resource-group-move-resources/move-resources.png)
 
-您可以指定您想要將資源移動到何處。如果其他資源必須連同此資源移動，便會列出這些資源。
+您可以指定要將資源移動到何處。如果其他資源必須連同此資源移動，便會列出這些資源。
 
 ![選取目的地](./media/resource-group-move-resources/select-destination.png)
 
 ## 後續步驟
-- [Azure PowerShell 搭配資源管理員使用](./powershell-azure-resource-manager.md)
-- [Azure CLI 搭配資源管理員使用](./xplat-cli-azure-resource-manager.md)
-- [使用 Azure 入口網站管理資源](azure-portal/resource-group-portal.md)
-- [使用標記組織您的資源](./resource-group-using-tags.md)
+- 若要深入了解管理訂用帳戶用的 PowerShell Cmdlet，請參閱[搭配 Resource Manager 使用 Azure PowerShell](powershell-azure-resource-manager.md)。
+- 若要深入了解管理訂用帳戶用的 Azure CLI 命令，請參閱[搭配 Resource Manager 使用 Azure CLI](xplat-cli-azure-resource-manager.md)。
+- 若要深入了解管理訂用帳戶用的入口網站功能，請參閱[使用 Azure 入口網站管理資源](./azure-portal/resource-group-portal.md)。
+- 若要了解如何套用邏輯組織到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

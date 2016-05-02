@@ -1,5 +1,5 @@
 <properties
-	pageTitle="作法：進行防火牆設定 | Microsoft Azure"
+	pageTitle="如何：設定 SQL Database 防火牆 | Microsoft Azure"
 	description="了解如何設定存取 Azure SQL Database 之 IP 位址的防火牆。"
 	services="sql-database"
 	documentationCenter=""
@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article" 
-	ms.date="04/12/2016"
+	ms.date="04/14/2016"
 	ms.author="rickbyh;carlrab"/>
 
 
-# 如何：使用 Azure 入口網站在 SQL Database 上進行防火牆設定
+# 如何：使用 Azure 入口網站設定 Azure SQL Database 防火牆
 
 
 > [AZURE.SELECTOR]
@@ -57,4 +57,4 @@ Azure SQL Server 使用防火牆規則以允許連接到您的伺服器和資料
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

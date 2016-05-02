@@ -11,7 +11,7 @@
 
 <tags
 	ms.service="virtual-machines-linux"
-	ms.topic="get-started-article"
+	ms.topic="article"
 	ms.workload="infrastructure-services"
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
@@ -20,7 +20,7 @@
 
 # 在 Linux VM 中新增磁碟
 
-本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。若要新增磁碟，您需要處於資源管理員模式的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
+本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。若要新增磁碟，您需要在資源管理員模式中設定的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
 
 ## 快速命令
 
@@ -32,7 +32,7 @@ rick@ubuntu$ azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size
 
 ## 連接磁碟
 
-連接新磁碟很快。只要輸入 `azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>`，就能為 VM 建立並連接新的 GB 磁碟。您應該會看到類似下面的畫面：
+連接新磁碟很快。只要輸入 `azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>`，就能為 VM 建立並連接新的 GB 磁碟。如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。您應該會看到類似下面的畫面：
 
 	azure vm disk attach-new myuniquegroupname myuniquevmname 5
 	info:    Executing command vm disk attach-new
@@ -177,4 +177,4 @@ rick@ubuntu$ azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size
 - 檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議，確保您的 Linux VM 已正確設定。
 - 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

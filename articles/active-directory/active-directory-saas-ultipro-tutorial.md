@@ -106,7 +106,7 @@
     b.按 [下一步]。
 
 
-5. 若要為您的應用程式設定 SSO，請透過 [ultiproinfo@ultimatesoftware.com](mailto:ultiproinfo@ultimatesoftware.com) 連絡您的 Ultipro 支援小組，並提供下列資訊：
+5. 若要為您的應用程式設定 SSO，請連絡您的 UltiPro 帳戶管理員，並提供下列資訊：
 
     - 下載的憑證檔案
 
@@ -221,4 +221,4 @@
 [204]: ./media/active-directory-saas-ultipro-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-ultipro-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

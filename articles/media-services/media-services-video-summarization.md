@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/18/2016"   
+	ms.date="04/14/2016"   
 	ms.author="milanga;juliako;"/>
 
 #使用 Azure 媒體視訊縮圖建立視訊摘要
@@ -271,4 +271,6 @@ maxMotionThumbnailDurationInSecs|整數，指定整個結果視訊的片長。�
 
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+
+<!---HONumber=AcomDC_0420_2016-->

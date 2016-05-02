@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="04/15/2016" 
 	ms.author="casoper"/>
 
 # 使用規則引擎覆寫預設的 HTTP 行為
 
 ## 概觀
 
-規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。本教學課程將示範如何建立用以變更 CDN 資產之快取行為的規則。
+規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。本教學課程將示範如何建立用以變更 CDN 資產之快取行為的規則。[另請參閱](#see-also)一節中還有視訊內容。
 
 > [AZURE.NOTE] 規則引擎是高階 CDN 層的一項功能。如需標準和高階 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md)。
 
@@ -63,10 +63,7 @@
 - 多項規則的列出順序會影響規則的處理方式。後一項規則可能會覆寫前一項規則所指定的動作。
 
 ## 另請參閱
+* [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](../../videos/azure-cdns-powerful-new-premium-features/)
 * [規則引擎相符條件和功能詳細資料](cdn-rules-engine-details.md)
-* [Azure CDN 概觀](cdn-overview.md)
-* [Microsoft Azure CDN 中的即時統計資料](cdn-real-time-stats.md)
-* [進階 HTTP 報告](cdn-advanced-http-reports.md)
-* [分析邊緣效能](cdn-edge-performance.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,30 +1,31 @@
 <properties 
-   pageTitle="將虛擬網路連結到 ExpressRoute 循環 |Microsoft Azure"
-   description="本文件提供如何將虛擬網路 (Vnet) 連結到 ExpressRoute 循環的概觀。"
+   pageTitle="使用 PowerShell 將虛擬網路連結到 ExpressRoute 電路 | Microsoft Azure"
+   description="本文提供以下內容的概觀：如何使用 Resource Manager 部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 電路。"
    services="expressroute"
    documentationCenter="na"
    authors="ganesr"
-   manager="carolz"
+   manager="carmonm"
    editor=""
-   tags="azure-service-management"/>
+   tags="azure-resource-manager"/>
 <tags 
    ms.service="expressroute"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/16/2016"
+   ms.date="04/14/2016"
    ms.author="ganesr" />
 
 # 將虛擬網路連結到 ExpressRoute 電路
 
 > [AZURE.SELECTOR]
-- [PowerShell - 傳統](expressroute-howto-linkvnet-classic.md)
+- [Azure 入口網站 - Resource Manager](expressroute-howto-linkvnet-portal-resource-manager.md)
 - [PowerShell - 資源管理員](expressroute-howto-linkvnet-arm.md)
-- [範本 - 資源管理員](https://github.com/Azure/azure-quickstart-templates/tree/ecad62c231848ace2fbdc36cbe3dc04a96edd58c/301-expressroute-circuit-vnet-connection)
+- [PowerShell - 傳統](expressroute-howto-linkvnet-classic.md)
 
-本文提供如何將虛擬網路 (Vnet) 連結到 ExpressRoute 線路的概觀。虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。本文適用於使用資源管理員部署模型部署的 Vnet。如果您想要連結使用傳統部署模型部署的虛擬網路，請參閱[將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)。
 
+
+本文會協助您使用 Resource Manager 部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 電路。虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。
 
 **關於 Azure 部署模型**
 
@@ -38,11 +39,11 @@
 	- 遵循指示來[建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由您的連線提供者來啟用該線路。 
 	- 確定您已針對循環設定了 Azure 私用對等。請參閱[設定路由](expressroute-howto-routing-arm.md)一文，以取得路由指示。 
 	- Azure 私用對等必須設定，且在您的網路與 Microsoft 之間的 BGP 對等必須為您啟用端對端連線。
-	- 您必須有已建立且完整佈建的虛擬網路和虛擬網路閘道。請依照指示來建立 [VPN 閘道](../articles/vpn-gateway-create-site-to-site-rm-powershell.md)，但務必要使用 `-GatewayType ExpressRoute`。
+	- 您必須有已建立且完整佈建的虛擬網路和虛擬網路閘道。請依照指示來建立 [VPN 閘道](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)，但務必要使用 `-GatewayType ExpressRoute`。
 
 您最多可以將 10 個虛擬網路連結至 ExpressRoute 電路。所有的 ExpressRoute 循環都必須位於同一個地理區域。如果您已啟用 ExpressRoute 高階附加元件，則可將更大量的虛擬網路連結到您的 ExpressRoute 循環。如需進階附加元件的詳細資訊，請參閱[常見問題集](expressroute-faqs.md)。
 
-## 將同一個 Azure 訂用帳戶中的 VNet 連結到 ExpressRoute 電路
+## 將相同訂用帳戶中的 VNet 連接到電路
 
 您可以使用下列 Cmdlet，將虛擬網路閘道連結到 ExpressRoute 電路。執行 Cmdlet 之前，請確定您已建立虛擬網路閘道，並準備好進行連結。
 
@@ -50,9 +51,11 @@
 	$gw = Get-AzureRmVirtualNetworkGateway -Name "ExpressRouteGw" -ResourceGroupName "MyRG"
 	$connection = New-AzureRmVirtualNetworkGatewayConnection -Name "ERConnection" -ResourceGroupName "MyRG" -Location "East US" -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
 
-## 將不同 Azure 訂用帳戶中的虛擬網路連結到 ExpressRoute 電路
+## 將不同訂用帳戶的 VNet 連接到電路
 
-多個訂用帳戶間可共用一個 ExpressRoute 循環。此圖顯示簡單的圖解，示範如何在多個訂用帳戶間共用 ExpressRoute 循環的方式。大型雲端內的每個較小型雲端，會用來代表屬於組織內不同部門的訂用帳戶。組織內的每個部門都可以使用自己的訂用帳戶來部署它們的服務，但可共用單一 ExpressRoute 循環，以連接回內部部署網路。單一部門 (在此範例中：IT) 可以擁有 ExpressRoute 循環。組織內的其他訂用帳戶可以使用 ExpressRoute 電路。
+多個訂用帳戶間可共用一個 ExpressRoute 循環。此圖顯示簡單的圖解，示範如何在多個訂用帳戶間共用 ExpressRoute 循環的方式。
+
+大型雲端內的每個較小型雲端，會用來代表屬於組織內不同部門的訂用帳戶。組織內的每個部門都可以使用自己的訂用帳戶來部署它們的服務，但可共用單一 ExpressRoute 循環，以連接回內部部署網路。單一部門 (在此範例中：IT) 可以擁有 ExpressRoute 循環。組織內的其他訂用帳戶可以使用 ExpressRoute 電路。
 
 >[AZURE.NOTE] ExpressRoute 循環擁有者需支付專用循環的連線和頻寬費用。所有虛擬網路都會共用相同的頻寬。
 
@@ -72,21 +75,21 @@
 
 下列 Cmdlet 程式碼片段示範如何建立授權。
 
-		Add-AzureRmExpressRouteCircuitAuthorization -Circuit $circuit -Name "MyAuthorization1"
-		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
-		$circuit = Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
+	Add-AzureRmExpressRouteCircuitAuthorization -Circuit $circuit -Name "MyAuthorization1"
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
+	$circuit = Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 
-		$auth1 = Get-AzureRmExpressRouteCircuitAuthorization -Circuit $circuit -Name "MyAuthorization1"
+	$auth1 = Get-AzureRmExpressRouteCircuitAuthorization -Circuit $circuit -Name "MyAuthorization1"
 		
 
 對此動作的回應將包含授權金鑰和狀態
 
-		Name                   : MyAuthorization1
-		Id                     : /subscriptions/&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/resourceGroups/ERCrossSubTestRG/providers/Microsoft.Network/expressRouteCircuits/CrossSubTest/authorizations/MyAuthorization1
-		Etag                   : &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& 
-		AuthorizationKey       : ####################################
-		AuthorizationUseStatus : Available
-		ProvisioningState      : Succeeded
+	Name                   : MyAuthorization1
+	Id                     : /subscriptions/&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/resourceGroups/ERCrossSubTestRG/providers/Microsoft.Network/expressRouteCircuits/CrossSubTest/authorizations/MyAuthorization1
+	Etag                   : &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& 
+	AuthorizationKey       : ####################################
+	AuthorizationUseStatus : Available
+	ProvisioningState      : Succeeded
 
 		
 
@@ -139,4 +142,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,9 +13,9 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/08/2016"   
+	ms.date="04/14/2016"   
 	ms.author="milanga;juliako;"/>
-
+ 
 # 使用 Azure 媒體分析偵測動作
 
 ##概觀
@@ -347,6 +347,8 @@ RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓
 
 ##相關連結
 
-[Azure Media Services Analytics Overview (Azure 媒體服務分析概觀)](media-services-analytics-overview.md)
+[Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+
+<!---HONumber=AcomDC_0420_2016-->

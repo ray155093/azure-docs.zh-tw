@@ -1,6 +1,6 @@
 <properties
-	pageTitle="什麼是 HDInsight 中的 R？ HDInsight 中的 R 伺服器簡介 | Microsoft Azure"
-	description="什麼是 HDInsight 中的 R 以及如何使用 R 建立巨量資料分析的應用程式。"
+	pageTitle="什麼是 HDInsight 中的 R？ HDInsight (預覽) 中的 R 伺服器簡介 | Microsoft Azure"
+	description="什麼是 HDInsight (預覽) 中的 R 伺服器以及如何使用 R 建立巨量資料分析的應用程式。"
 	services="hdinsight"
 	documentationCenter=""
 	authors="jeffstokes72"
@@ -17,7 +17,7 @@
    ms.author="jeffstok"/>
 
 
-# 概觀：HDInsight 上的 R 伺服器
+#概觀：HDInsight (預覽) 中的 R 伺服器
 
 有了HDInsight Premium 之後，在 Azure 中建立 HDInsight 叢集時，即可選擇使用 R 伺服器。這項新功能可讓資料科學家、統計學家以及 R 程式設計人員隨其所需存取 HDInsight 上可調整大小的分散式分析方法。您可依據手邊的專案和工作調整叢集大小，並於不再需要時加以終止。這些叢集隸屬於 Azure HDInsight，具備企業級全年無休支援、99.9% 執行時間的 SLA，同時具備與 Azure 生態系統其他元件相整合的彈性。
 
@@ -109,4 +109,4 @@ HDInsight Premium 叢集的 Linux 邊緣節點，是 R 型分析的登陸區域�
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

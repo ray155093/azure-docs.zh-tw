@@ -31,7 +31,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 您可以在 Azure Site Recovery 入口網站中的 [伺服器] 索引標籤上刪除伺服器，以便從保存庫中取消註冊 VMM 伺服器。請注意：
 
 -  **連接的 VMM 伺服器**：建議您在連線至 Azure 時，取消註冊 VMM 伺服器。這可確保正確清除內部部署 VMM 伺服器及其相關聯的 VMM 伺服器上的設定 (包含雲端的 VMM 伺服器，這些雲端會對應至您想要刪除的伺服器上的雲端)。建議您只在連線有永久問題時，才移除未連線的伺服器。
-- **未連接的 VMM 伺服器**：如果 VMM 伺服器未連線，當您刪除該伺服器時，您必須手動執行指令碼，才能執行清除作業。指令碼位於 [Microsoft 資源庫](https://gallery.technet.microsoft.com/scriptcenter/Cleanup-Script-for-Windows-95101439)中。請記下伺服器的 VMM 識別碼，以完成手動清除程序。
+- **未連接的 VMM 伺服器**：如果 VMM 伺服器未連線，當您刪除該伺服器時，您必須手動執行指令碼，才能執行清除作業。指令碼位於 [Microsoft 資源庫](http://aka.ms/asr-cleanup-script-vmm)中。請記下伺服器的 VMM 識別碼，以完成手動清除程序。
 - **叢集中的 VMM 伺服器**：如果您需要取消註冊在叢集中部署的 VMM 伺服器，請執行下列操作：
 
 	- 如果伺服器已連線，請刪除 [伺服器] 索引標籤上已連線的 VMM 伺服器。若要解除安裝伺服器上的提供者，登入每個叢集節點，然後從 [控制台] 解除安裝該提供者。針對叢集中的所有被動節點執行上一節中所參考的清除指令碼，以刪除註冊項目。
@@ -220,4 +220,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 	
 		![移除選項](./media/site-recovery-manage-registration-and-protection/remove-vm.png)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

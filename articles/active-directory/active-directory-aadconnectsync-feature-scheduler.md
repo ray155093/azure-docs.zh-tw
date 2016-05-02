@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="02/26/2016"
+   ms.date="04/20/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect 同步處理：排程器
@@ -48,14 +48,20 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 - **MaintenanceEnabled**。顯示是否已啟用維護程序。它將會更新憑證/金鑰，並清除作業記錄。
 - **IsStagingModeEnabled**。顯示是否已啟用[預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。
 
-您可以使用 `Set-ADSyncScheduler` 來修改所有這些設定。IsStagingModeEnabled 是只有安裝精靈才能設定的參數。
+您可以使用 `Set-ADSyncScheduler` 變更這些設定的其中一部分。您可以修改下列參數：
+
+- CustomizedSyncCycleInterval
+- NextSyncCyclePolicyType
+- PurgeRunHistoryInterval
+- SyncCycleEnabled
+- MaintenanceEnabled
 
 排程器組態儲存在 Azure AD 中。如果您有預備伺服器，主要伺服器上的任何變更都會影響預備伺服器 (IsStagingModeEnabled 除外)。
 
 ## 啟動排程器
 排程器預設會每隔 30 分鐘執行一次。在某些情況下，您可能會想要在排定的循環之間執行同步處理循環，或是需要執行不同類型的同步處理循環。
 
-**差異同步處理循環** 差異同步處理循環包含下列步驟：
+**差異同步處理循環**：差異同步處理循環包含下列步驟：
 
 - 在所有的連接器上執行差異匯入
 - 在所有的連接器上執行差異同步處理
@@ -63,7 +69,7 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 您可能因為有一個必須立即同步處理的緊急變更，而需要手動執行循環。如果您需要手動執行循環，請從 PowerShell 執行 `Start-ADSyncSyncCycle -PolicyType Delta`。
 
-**完整同步處理循環** 如果您已進行下列其中一項組態變更，就需要執行完整同步處理循環 (也稱為Initial (初始))：
+**完整同步處理循環**：如果您已進行下列其中一項組態變更，就需要執行完整同步處理循環 (也稱為Initial (初始))：
 
 - 新增更多要從來源目錄匯入的物件或屬性
 - 對同步處理規則進行變更
@@ -84,11 +90,49 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 當同步處理循環正在執行時，您會無法進行組態變更。您可以等到排程器完成程序，也可以停止它，以便立即進行變更。停止目前的循環並無任何損害，所有尚未處理的變更都將在下一次執行時進行處理。
 
-1. 首先請使用 PowerShell Cmdlet `Stop-ADSyncSyncCycle` 來告訴排程器停止其目前的循環。
+1. 首先請使用 PowerShell Cmdlet `Stop-ADSyncSyncCycle` 以通知排程器停止其目前的循環。
 2. 停止排程器並不會阻止目前的連接器進行其目前的工作。若要強制停止連接器，請採取下列動作：![StopAConnector](./media/active-directory-aadconnectsync-feature-scheduler/stopaconnector.png)
     - 從 [開始] 功能表啟動 [同步處理服務]。移至 [連接器]，反白選取狀態為 [正在執行] 的連接器，然後從 [動作] 中選取 [停止]。
 
 排程器仍在作用中，並且會在下次有機會時重新啟動。
+
+## 自訂排程器
+本節說明的 Cmdlet 僅適用於組建 [1\.1.130.0](active-directory-aadconnect-version-history.md#111300) 和更新版本。
+
+如果內建的排程器無法滿足您的需求，您可以使用 PowerShell 來排程連接器。
+
+### Invoke-ADSyncRunProfile
+您可使用下列方式，啟動連接器的設定檔：
+
+```
+Invoke-ADSyncRunProfile -ConnectorName "name of connector" -RunProfileName "name of profile"
+```
+
+您可於 [Synchronization Service Manager UI](active-directory-aadconnectsync-service-manager-ui.md) 中找到[連接器名稱](active-directory-aadconnectsync-service-manager-ui-connectors.md)和[執行設定檔名稱](active-directory-aadconnectsync-service-manager-ui-connectors.md#configure-run-profiles)可用的名稱。
+
+![叫用執行設定檔](./media/active-directory-aadconnectsync-feature-scheduler/invokerunprofile.png)
+
+`Invoke-ADSyncRunProfile` Cmdlet 是同步的，亦即只有當連接器完成作業 (不論成功或發生錯誤) 時，它才會傳回控制項。
+
+排程連接器時，建議您遵循下列順序進行排程︰
+
+1. (完整/差異) 從內部部署目錄匯入，例如 Active Directory
+2. (完整/差異) 從 Azure AD 匯入
+3. (完整/差異) 從內部部署目錄同步處理，例如 Active Directory
+4. (完整/差異) 從 Azure AD 同步處理
+5. 匯出至 Azure AD
+6. 匯出至內部部署目錄，例如 Active Directory
+
+在查看內建的排程器時，這是連接器執行的順序。
+
+### Get-ADSyncConnectorRunStatus
+您也可以監視同步處理引擎，以查看其為忙碌或閒置。如果同步處理引擎處於閒置狀態且沒有執行連接器，這個 Cmdlet 會傳回空的結果。如果連接器正在執行，它會傳回連接器的名稱。
+
+```
+Get-ADSyncConnectorRunStatus
+```
+
+![連接器執行狀態](./media/active-directory-aadconnectsync-feature-scheduler/getconnectorrunstatus.png) 在上圖中，第一行是從同步處理引擎處於閒置狀態時開始。第二行則是從 Azure AD 連接器執行時開始。
 
 ## 排程器和安裝精靈
 如果您啟動安裝精靈，則排程器將會暫時停用。這是因為系統會假設您將進行組態變更，而如果同步處理引擎正在執行中，將會無法套用這些變更。基於這個理由，請勿讓安裝精靈保持開啟，因為這會阻止同步處理引擎執行任何同步處理動作。
@@ -98,4 +142,4 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

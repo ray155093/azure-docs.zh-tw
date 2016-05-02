@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="multiple"
 	ms.topic="article" 
-	ms.date="02/25/2016"
+	ms.date="03/13/2016"
 	ms.author="awills"/>
 
 # Application Insights 入口網站中的儀表板與導覽
@@ -21,15 +21,16 @@
 
 ## 儀表板
 
-當您登入 [Azure 入口網站](https://portal.azure.com)時，會先看見儀表板。您可以自訂它，或將它放入全螢幕模式。此範例已自訂為顯示其擁有者感興趣的主要圖表。
+當您登入 [Azure 入口網站](https://portal.azure.com)時，會先看見儀表板。您可以自訂它，或將它放入全螢幕模式。
 
+儀表板特別適合用來監視由多個應用程式組成的方案，不論其裝載位置為何。而且如果系統中有像串流分析之類的 Azure 元件，您也可以將其監視圖表加入儀表板中。
 
 ![自訂的儀表板。](./media/app-insights-dashboards/30.png)
 
 1. 隨時按一下左上角，即可返回儀表板。
-2. [+ 新增] 會建立新的資源。[Application Insights 資源](app-insights-create-new-resource.md)是用來儲存和分析來自您 app 的遙測的位置。
+2. [+ 新增] 會建立新的資源。[Application Insights 資源](app-insights-create-new-resource.md)是用來儲存和分析來自您應用程式的遙測位置。
 3. 瀏覽列會開啟現有的資源。
-4. 使用儀表板工具列來編輯和建立儀表板。
+4. 使用儀表板工具列來編輯和建立儀表板。您可以為不同的應用程式[建立不同的儀表板](#dashboards)。
 
 ## 尋找遙測
 
@@ -41,38 +42,6 @@
 
 
 
-## 時間範圍
-
-您可以在任何刀鋒視窗上變更圖表或格線涵蓋的時間範圍。
-
-![開啟 Azure 入口網站中應用程式的 [概觀] 刀鋒視窗](./media/app-insights-dashboards/03-range.png)
-
-
-如果您預期的部分資料尚未出現，請按一下 [重新整理]。圖表本身會定期重新整理，但是時間範圍越大，間隔時間會越長。在發行模式中，資料從分析管線往圖表上顯示可能需要一些時間。
-
-若要放大圖表的一部分，拖曳它，然後按一下 [放大鏡] 符號：
-
-![拖曳過圖表的一部分。](./media/app-insights-dashboards/12-drag.png)
-
-
-
-## 資料粒度和點值
-
-將滑鼠移至圖表上可顯示該點度量的值。
-
-![將滑鼠移至圖表上](./media/app-insights-dashboards/02-focus.png)
-
-特定點的度量值會繼著前一個取樣間隔而彙總。
-
-取樣間隔或「資料粒度」會顯示在刀鋒視窗的頂端。
-
-![刀鋒視窗的標題。](./media/app-insights-dashboards/11-grain.png)
-
-您可以在時間範圍刀鋒視窗中調整資料粒度：
-
-![刀鋒視窗的標題。](./media/app-insights-dashboards/grain.png)
-
-可提供的資料粒度取決於您選取的時間範圍。明確的資料粒度可替代時間範圍內的「自動」資料粒度。
 
 ## 應用程式概觀刀鋒視窗
 
@@ -98,6 +67,10 @@
 ## 儀表板
 
 Azure 入口網站儀表板是您第一次登入[入口網站](https://portal.azure.com)時看見的首頁。在儀表板上，您可以集合多個資源的圖表和磚 (圖表的群組)。
+
+如果您有由數個元件組成的系統，例如 Web 應用程式、後端伺服器，以及可能是某些 Azure 服務，您就可以在一個畫面中顯示所有元件的關鍵效能指標。
+
+如果您有多個應用程式，您可以建立及切換數個儀表板。
 
 ![按一下 [編輯]。拖曳磚和圖表。從組件庫加入磚。然後按一下 [完成]。](./media/app-insights-dashboards/30.png)
 
@@ -181,6 +154,40 @@ Azure 入口網站儀表板是您第一次登入[入口網站](https://portal.az
 
 ![在 [計量瀏覽器] 上方的按鈕中](./media/app-insights-dashboards/17-reset.png)
 
+
+## 時間範圍
+
+您可以在任何刀鋒視窗上變更圖表或格線涵蓋的時間範圍。
+
+![開啟 Azure 入口網站中應用程式的 [概觀] 刀鋒視窗](./media/app-insights-dashboards/03-range.png)
+
+
+如果您預期的部分資料尚未出現，請按一下 [重新整理]。圖表本身會定期重新整理，但是時間範圍越大，間隔時間會越長。在發行模式中，資料從分析管線往圖表上顯示可能需要一些時間。
+
+若要放大圖表的一部分，拖曳它，然後按一下 [放大鏡] 符號：
+
+![拖曳過圖表的一部分。](./media/app-insights-dashboards/12-drag.png)
+
+
+
+## 資料粒度和點值
+
+將滑鼠移至圖表上可顯示該點度量的值。
+
+![將滑鼠移至圖表上](./media/app-insights-dashboards/02-focus.png)
+
+特定點的度量值會繼著前一個取樣間隔而彙總。
+
+取樣間隔或「資料粒度」會顯示在刀鋒視窗的頂端。
+
+![刀鋒視窗的標題。](./media/app-insights-dashboards/11-grain.png)
+
+您可以在時間範圍刀鋒視窗中調整資料粒度：
+
+![刀鋒視窗的標題。](./media/app-insights-dashboards/grain.png)
+
+可提供的資料粒度取決於您選取的時間範圍。明確的資料粒度可替代時間範圍內的「自動」資料粒度。
+
 ## 搜尋
 
 [搜尋] 會顯示個別事件，例如頁面檢視、要求、例外狀況、紀錄追蹤和自訂事件。他不會顯示累績的計量或 TrackMetric() 呼叫的執行個體。
@@ -231,4 +238,12 @@ Azure 入口網站儀表板是您第一次登入[入口網站](https://portal.az
 
 如果儲存時使用「相對」時間範圍，重新開啟的分頁會具有最新資料。如果儲存時使用「絕對」時間範圍，則會每次都看到相同資料。
 
-<!---HONumber=AcomDC_0309_2016-->
+## Analytics
+
+[Analytics](app-insights-analytics.md) 是進階的搜尋功能，您可以用它診斷及了解有關應用程式的效能問題。
+
+![Analytics 範例](./media/app-insights-dashboards/025.png)
+
+按一下顯示 [Analytics] 圖格。
+
+<!---HONumber=AcomDC_0420_2016-->

@@ -49,7 +49,7 @@
 
 ## 建立應用程式服務方案
 
-您可以從 **App Service 方案**瀏覽體驗或應用程式建立期間，建立空白的 **App Service 方案**。
+您可以從 **App Service 方案**瀏覽體驗或在應用程式建立期間，建立空白的 **App Service 方案**。
 
 若要在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中這麼做，請按一下 [新增]，然後依序選取 [Web + 行動]、[Web 應用程式]、[行動應用程式]、[邏輯應用程式] 或 [API 應用程式]。![][createWebApp]
 
@@ -107,4 +107,4 @@
 [createWebApp]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/create-web-app.png
 [appclone]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/app-clone.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

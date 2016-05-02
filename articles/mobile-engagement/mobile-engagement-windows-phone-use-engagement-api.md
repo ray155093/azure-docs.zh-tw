@@ -378,5 +378,12 @@ Engagement 也提供將傳送未處理的例外狀況之方法。在 Silverlight
 
 			{"subscription":"2013-12-07","premium":"true"}
  
+##記錄
+###啟用記錄
 
-<!---HONumber=AcomDC_0302_2016-------->
+SDK 可以設定為在 IDE 主控台中產生測試記錄檔。預設不會啟用這些記錄檔。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+
+			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
+			EngagementAgent.Instance.Init();
+
+<!---HONumber=AcomDC_0420_2016-->

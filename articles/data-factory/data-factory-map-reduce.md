@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 # 從 Data Factory 叫用 MapReduce 程式
@@ -208,6 +208,9 @@ linkedServiceName | 表示您先前建立的 HDInsight 連結服務。
 	    }
 	}
 
+## 執行 Spark 程式
+您可以使用 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。
+
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456
 
@@ -217,7 +220,13 @@ linkedServiceName | 表示您先前建立的 HDInsight 連結服務。
 [adftutorial]: data-factory-tutorial.md
 
 [Developer Reference]: http://go.microsoft.com/fwlink/?LinkId=516908
-[Azure Classic Portal]: http://portal.azure.com
+[Azure Portal]: http://portal.azure.com
  
+## 另請參閱
+- [Hive 活動](data-factory-hive-activity.md)
+- [Pig 活動](data-factory-pig-activity.md)
+- [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+- [叫用 Spark 程式](data-factory-spark.md)
+- [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

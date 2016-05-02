@@ -1,6 +1,6 @@
 <properties
  pageTitle="排程器 PowerShell Cmdlet 參考"
- description=""
+ description="排程器 PowerShell Cmdlet 參考"
  services="scheduler"
  documentationCenter=".NET"
  authors="krisragh"
@@ -54,4 +54,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

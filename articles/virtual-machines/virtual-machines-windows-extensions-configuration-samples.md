@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="09/01/2015"
+   ms.date="03/29/2016"
    ms.author="kundanap"/>
 
 # Azure Windows VM 延伸模組組態範例
@@ -39,7 +39,7 @@
 
 本文列出部分 Windows 延伸模組所需的組態值。
 
-## VM 延伸模組的範例範本程式碼片段。
+## VM 擴充功能與 IaaS VM 的範例範本程式碼片段。
 用於部署延伸模組的範本程式碼片段如下所示：
 
       {
@@ -53,11 +53,34 @@
       "publisher": "Publisher Namespace",
       "type": "extension Name",
       "typeHandlerVersion": "extension version",
+      "autoUpgradeMinorVersion":true,
       "settings": {
       // Extension specific configuration goes in here.
       }
       }
       }
+
+## VM 擴充功能與 VM 調整集的範例範本程式碼片段。
+
+    {
+     "type":"Microsoft.Compute/virtualMachineScaleSets",
+    ....
+           "extensionProfile":{
+           "extensions":[
+             {
+               "name":"extension Name",
+               "properties":{
+                 "publisher":"Publisher Namespace",
+                 "type":"extension Name",
+                 "typeHandlerVersion":"extension version",
+                 "autoUpgradeMinorVersion":true,
+                 "settings":{
+                 // Extension specific configuration goes in here.
+                 }
+               }
+              }
+            }
+          }
 
 部署延伸模組之前，請檢查最新的延伸模組版本，並以目前最新版本取代 "typeHandlerVersion"。
 
@@ -65,18 +88,50 @@
 
 部署延伸模組之前，請檢查最新的延伸模組版本，並以目前最新版本取代 "typeHandlerVersion"。
 
-### CustomScript 延伸模組。
-    {
-        "publisher": "Microsoft.Compute",
-        "type": "CustomScriptExtension",
-        "typeHandlerVersion": "1.4",
-        "settings": {
-            "fileUris": [
-                "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
-            ],
-            "commandToExecute": "powershell.exe-ExecutionPolicyUnrestricted-Filestart.ps1"
+### CustomScript 擴充功能 1.4。
+      {
+          "publisher": "Microsoft.Compute",
+          "type": "CustomScriptExtension",
+          "typeHandlerVersion": "1.4",
+          "settings": {
+              "fileUris": [
+                  "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
+              ],
+              "commandToExecute": "powershell.exe-ExecutionPolicyUnrestricted -start.ps1"
+          },
+          "protectedSettings": {
+            "storageAccountName": "yourStorageAccountName",
+            "storageAccountKey": "yourStorageAccountKey"
+          }
+      }
+
+#### 參數說明︰
+
+- fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。如果未指定，則不會下載任何檔案。如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
+- commandToExecute：[必要參數]：這是擴充功能將執行的命令。
+- storageAccountName：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶名稱。
+- storageAccountKey：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶金鑰。
+
+### CustomScript 擴充功能 1.7。
+
+請參閱 CustomScript 1.4 版的參數說明。1.7 版支援將指令碼參數 (commandToExecute) 傳送為 protectedSettings，在此情況下，它們會在傳送之前進行加密。'commandToExecute' 參數可以指定於 settings 或 protectedSettings，但不能同時指定於兩者。
+
+        {
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.7",
+            "settings": {
+                "fileUris": [
+                    "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
+                ],
+                "commandToExecute": "powershell.exe-ExecutionPolicyUnrestricted -start.ps1"
+            },
+            "protectedSettings": {
+              "commandToExecute": "powershell.exe-ExecutionPolicyUnrestricted -start.ps1",
+              "storageAccountName": "yourStorageAccountName",
+              "storageAccountKey": "yourStorageAccountKey"
+            }
         }
-    }
 
 ### VMAccess 延伸模組。
 
@@ -316,4 +371,4 @@
 
 [Windows VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->
