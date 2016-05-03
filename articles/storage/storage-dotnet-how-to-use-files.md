@@ -199,8 +199,8 @@ Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清�
 
 當用戶端存取檔案儲存體，使用的 SMB 版本取決於作業系統所支援的 SMB 版本。下表提供 Windows 用戶端支援的摘要。請參閱此部落格以深入了解 [SMB 版本](http://blogs.technet.com/b/josebda/archive/2013/10/02/windows-server-2012-r2-which-version-of-the-smb-protocol-smb-1-0-smb-2-0-smb-2-1-smb-3-0-or-smb-3-02-you-are-using.aspx)的詳細資訊。
 
-| Windows 用戶端 | SMB 版本支援 |
-|------------------------|----------------------|
+| Windows 用戶端 | 支援的 SMB 版本 |
+|------------------------|-----------------------|
 | Windows 7 | SMB 2.1 |
 | Windows Server 2008 R2 | SMB 2.1 |
 | Windows 8 | SMB 3.0 |
@@ -642,4 +642,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -3,7 +3,7 @@
    description="了解如何使用 Azure 入口網站建立資料湖分析帳戶、使用 U-SQL 建立資料湖分析工作，以及提交工作。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="01/04/2016"
-   ms.author="jgao"/>
+   ms.date="04/21/2016"
+   ms.author="edmaca"/>
 
 # 教學課程：使用 Azure 入口網站開始使用 Azure 資料湖分析
 
@@ -24,16 +24,9 @@
 
 在本教學課程中，您將會開發一個工作以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。若要使用其他支援的工具進行同一個教學課程，請按一下此區段最上方的索引標籤。當第一個工作成功完成時，您便可開始使用 U SQL 撰寫更複雜的資料轉換。
 
-**基本資料湖分析程序：**
+[AZURE.INCLUDE [basic-process-include](../../includes/data-lake-analytics-basic-process.md)]
 
-![Azure 資料湖分析程序流程圖](./media/data-lake-analytics-get-started-portal/data-lake-analytics-process.png)
-
-1. 建立資料湖分析帳戶。
-2. 準備來源資料。資料湖分析工作可從 Azure 資料湖存放區帳戶或 Azure Blob 儲存體帳戶讀取資料。在本範例中，我們將從 Azure 資料湖存放區進行讀取。  
-3. 開發 U SQL 指令碼。
-4. 將工作 (U-SQL 指令碼) 提交至資料湖分析帳戶。此工作會讀取來源資料、依照 U-SQL 指令碼中的指示處理資料，然後將輸出儲存至資料湖存放區帳戶或 Blob 儲存體帳戶。
-
-###必要條件
+##必要條件
 
 開始進行本教學課程之前，您必須具備下列條件：
 
@@ -162,4 +155,4 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
 - 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0427_2016-->

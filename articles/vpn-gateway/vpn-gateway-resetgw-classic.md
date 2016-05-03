@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/04/2016"
+   ms.date="04/26/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 重設 Azure VPN 閘道
@@ -40,14 +40,14 @@
 
 下列範例會重設稱為 "ContosoVNet" 的虛擬網路的 Azure VPN 閘道。
  
-			D:\PS> Reset-AzureVNetGateway –VnetName “ContosoVNet” 
+		Reset-AzureVNetGateway –VnetName “ContosoVNet” 
 
-	 		Error          :
-	 		HttpStatusCode : OK
-	 		Id             : f1600632-c819-4b2f-ac0e-f4126bec1ff8
-	 		Status         : Successful
-			RequestId      : 9ca273de2c4d01e986480ce1ffa4d6d9
-			StatusCode     : OK
+	 	Error          :
+	 	HttpStatusCode : OK
+	 	Id             : f1600632-c819-4b2f-ac0e-f4126bec1ff8
+	 	Status         : Successful
+		RequestId      : 9ca273de2c4d01e986480ce1ffa4d6d9
+		StatusCode     : OK
 
 
 如果連接未在第一次重新啟動之後儲存，請再次發出相同的命令來重新啟動第二個 VM 執行個體 (新的使用中閘道器)。如果接連要求兩次重新啟動，兩個 VM 執行個體 (作用中和待命) 的重新啟動時間還要更久一點。此情況會導致 VPN 連線上較長的間隔，要讓 VM 完成重新啟動，最多需要 2 到 4 分鐘。
@@ -58,4 +58,4 @@
 	
 如需這個 cmdlet 的詳細資訊，請參閱 [PowerShell 參考](https://msdn.microsoft.com/library/azure/mt270366.aspx)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

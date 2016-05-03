@@ -17,7 +17,7 @@
      ms.date="02/19/2016"
      ms.author="dobett"/>
 
-# Azure IoT 套件的概觀
+# 什麼是 Azure IoT 套件？
 
 Azure 物聯網 (IoT) 服務提供廣泛的功能。這些企業等級的服務可讓您：
 
@@ -74,4 +74,4 @@ IoT 套件包括預先設定的解決方案，可讓您快速地開始使用，�
 [lnk-preconfig-start]: iot-suite-getstarted-preconfigured-solutions.md
 [lnk-iot-hub]: https://azure.microsoft.com/documentation/services/iot-hub/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

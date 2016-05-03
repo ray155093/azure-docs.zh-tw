@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="03/31/2016"
+    ms.date="04/20/2016"
     ms.author="magoedte"/>
 
 # 使用 Azure 執行身分帳戶驗證 Runbook
@@ -34,7 +34,7 @@
 ## 從 Azure 入口網站建立新的自動化帳戶
 在本節中，您將執行下列步驟以從 Azure 入口網站建立新的 Azure 自動化帳戶和服務主體。
 
->[AZURE.NOTE] 執行這些步驟的使用者必須是訂用帳戶管理員角色的成員。
+>[AZURE.NOTE] 執行這些步驟的使用者「必須」是訂用帳戶管理員角色的成員。
 
 1. 以您想要管理的 Azure 訂用帳戶的服務系統管理員身分登入 Azure 入口網站。
 2. 選取 [自動化帳戶]。
@@ -70,7 +70,7 @@ Install-Module AzureAutomationAuthoringToolkit -Scope CurrentUser
 
 PowerShell 指令碼會設定下列項目︰
 
-* Azure AD 應用程式，其可使用自我簽署憑證 (此應用程式在 Azure AD 中的服務主體帳戶) 進行驗證，並在目前的訂用帳戶中為此帳戶指派參與者角色 (您可以將此角色變更為擁有者或任何其他角色)。如需進一步資訊，請檢閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)文章。  
+* Azure AD 應用程式，其可使用自我簽署憑證進行驗證、建立此應用程式在 Azure AD 中的服務主體帳戶，並在目前的訂用帳戶中為此帳戶指派參與者角色 (您可以將此角色變更為擁有者或任何其他角色)。如需進一步資訊，請檢閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)文章。  
 * 名為 **AzureRunAsCertificate** 的指定自動化帳戶中的自動化憑證資產，其會保存服務主體中使用的憑證。
 * 指定的自動化帳戶中名為 **AzureRunAsConnection** 的自動化連線資產，其保有 applicationId、tenantId、subscriptionId 和憑證指紋。  
 
@@ -123,7 +123,7 @@ PowerShell 指令碼會設定下列項目︰
     $KeyCredential.Value = $KeyValue
 
     # Use Key credentials
-    $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ServicePrincipalDisplayName) -IdentifierUris ("http://" + $KeyId) -KeyCredentials $keyCredential
+    $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $KeyId) -KeyCredentials $keyCredential
 
     New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId | Write-Verbose
     Get-AzureRmADServicePrincipal | Where {$_.ApplicationId -eq $Application.ApplicationId} | Write-Verbose
@@ -156,7 +156,7 @@ PowerShell 指令碼會設定下列項目︰
     ```
 <br>
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。
-3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName 和 -CertPlainPassword 參數的值。<br>
+3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更「–ResourceGroup」、「-AutomationAccountName」、「-ApplicationDisplayName」和「-CertPlainPassword」參數的值。<br>
 
     ```
     .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> `
@@ -166,7 +166,7 @@ PowerShell 指令碼會設定下列項目︰
     ```   
 <br>
 
-    >[AZURE.NOTE] 執行指令碼之後，您會收到向 Azure 進行驗證的提示。您必須使用屬於訂用帳戶中服務管理員的帳戶進行登入。<br>
+    >[AZURE.NOTE] 執行指令碼之後，您會收到向 Azure 進行驗證的提示。您「必須」使用屬於訂用帳戶中服務管理員的帳戶進行登入。<br>
 4. 指令碼順利完成後請繼續進行下一節，以測試並確認新的認證組態。
 
 ### 確認驗證
@@ -175,7 +175,7 @@ PowerShell 指令碼會設定下列項目︰
 1. 在 Azure 入口網站中，開啟先前建立的自動化帳戶。  
 2. 按一下 [Runbook] 磚以開啟 Runbook 的清單。
 3. 按一下 [加入 Runbook] 按鈕建立新的 Runbook，然後在 [加入 Runbook] 刀鋒視窗中選取 [建立新的 Runbook]。
-4. 將 Runbook 命名為 Test-SecPrin-Runbook，然後選取 [PowerShell] 做為 [Runbook 類型]。按一下 [建立] 來建立 Runbook。
+4. 將 Runbook 命名為「Test-SecPrin-Runbook」，然後選取 [PowerShell] 做為 [Runbook 類型]。按一下 [建立] 來建立 Runbook。
 5. 在 [編輯 PowerShell Runbook] 刀鋒視窗中，將下列程式碼貼到畫布上︰<br>
 
     ```
@@ -200,4 +200,4 @@ PowerShell 指令碼會設定下列項目︰
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

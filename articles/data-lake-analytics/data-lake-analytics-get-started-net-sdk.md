@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/25/2016"
+   ms.date="04/21/2016"
    ms.author="edmaca"/>
 
 # 教學課程：透過 .NET SDK 開始使用 Azure 資料湖分析
@@ -25,14 +25,7 @@
 
 在本教學課程中，您將開發 C# 主控台應用程式，該應用程式包含 U-SQL 指令碼，可讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗號分隔值 (CSV) 檔案。若要使用其他支援的工具進行同一個教學課程，請按一下此區段最上方的索引標籤。
 
-**基本資料湖分析程序：**
-
-![Azure 資料湖分析程序流程圖](./media/data-lake-analytics-get-started-portal/data-lake-analytics-process.png)
-
-1. 建立資料湖分析帳戶。
-2. 準備來源資料。資料湖分析工作可讀取 Azure 資料湖存放區帳戶或 Azure Blob 儲存體帳戶資料中的資料。   
-3. 開發 U SQL 指令碼。
-4. 將工作 (U-SQL 指令碼) 提交至資料湖分析帳戶。此工作會讀取來源資料、依照 U-SQL 指令碼中的指示處理資料，然後將輸出儲存至資料湖存放區帳戶或 Blob 儲存體帳戶。
+[AZURE.INCLUDE [basic-process-include](../../includes/data-lake-analytics-basic-process.md)]
 
 ##必要條件
 
@@ -41,9 +34,6 @@
 - **已安裝 Visual Studio 2015、Visual Studio 2013 更新 4，或具有 Visual C++ 的 Visual Studio 2012**。
 - **Microsoft Azure SDK for .NET 2.5 版或更新版本**。使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx) 來進行安裝。
 - **[Visual Studio 適用的資料湖工具](http://aka.ms/adltoolsvs)**。 
-- **資料湖分析帳戶**。請參閱[建立 Azure 資料湖分析帳戶](data-lake-analytics-get-started-portal.md#create_adl_analytics_account)。
-
-	Visual Studio 適用的資料湖工具不支援建立資料湖分析帳戶。若要建立一個帳戶，請使用 Azure 入口網站、Azure PowerShell、Azure .NET SDK 或 Azure CLI。
 
 ##建立主控台應用程式
 
@@ -224,16 +214,13 @@
                     _adlaClient.SubscriptionId = subscriptionId;
 
                     _adlaJobClient = new DataLakeAnalyticsJobManagementClient(tokenCreds);
-                    _adlaJobClient.SubscriptionId = subscriptionId;
 
                     _adlaCatalogClient = new DataLakeAnalyticsCatalogManagementClient(tokenCreds);
-                    _adlaCatalogClient.SubscriptionId = subscriptionId;
 
                     _adlsClient = new DataLakeStoreAccountManagementClient(tokenCreds);
                     _adlsClient.SubscriptionId = subscriptionId;
 
                     _adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(tokenCreds);
-                    _adlsFileSystemClient.SubscriptionId = subscriptionId;
                 }
 
                 // Create accounts
@@ -296,7 +283,7 @@
                     var properties = new USqlJobProperties(script);
                     var parameters = new JobInformation(jobName, JobType.USql, properties);
 
-                    var jobInfo = _adlaJobClient.Job.Create(jobId, parameters, _adlaAccountName);
+                    var jobInfo = _adlaJobClient.Job.Create(_adlaAccountName, jobId, parameters);
                     
                     return jobId;
                 }
@@ -310,17 +297,17 @@
                     var properties = new USqlJobProperties(script);
                     var parameters = new JobInformation(jobName, JobType.USql, properties, priority: 1000, degreeOfParallelism: 1);
 
-                    var jobInfo = _adlaJobClient.Job.Create(jobId, parameters, _adlaAccountName);
+                    var jobInfo = _adlaJobClient.Job.Create(_adlaAccountName, jobId, parameters);
 
                     return jobId;
                 }
 
                 public static JobResult WaitForJob(Guid jobId)
                 {
-                    var jobInfo = _adlaJobClient.Job.Get(jobId, _adlaAccountName);
+                    var jobInfo = _adlaJobClient.Job.Get(_adlaAccountName, jobId);
                     while (jobInfo.State != JobState.Ended)
                     {
-                        jobInfo = _adlaJobClient.Job.Get(jobId, _adlaAccountName);
+                        jobInfo = _adlaJobClient.Job.Get(_adlaAccountName, jobId);
                     }
                     return jobInfo.Result.Value;
                 }
@@ -369,8 +356,8 @@
 - 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
 - 若要了解更複雜的查詢，請參閱[使用 Azure 資料湖分析分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
 - 若要開始開發 U-SQL 應用程式，請參閱[使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-- 若要了解 U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+- 若要了解 U-SQL，請參閱[開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 - 針對管理工作，請參閱[使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

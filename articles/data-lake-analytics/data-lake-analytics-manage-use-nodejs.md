@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="12/11/2015"
+   ms.date="04/21/2016"
    ms.author="jgao"/>
 
 # 使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
@@ -21,88 +21,126 @@
 
 [AZURE.INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Node.js 的 Azure ADK 可用於管理 Azure 資料湖分析帳戶、工作與目錄。若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
+Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
 
-**必要條件**
+它目前支援︰
 
-開始進行本教學課程之前，您必須具備下列條件：
+  *  **Node.js 版本：0.10.0 或更高版本**
+  *  **帳戶的 REST API 版本：2015-10-01-preview**
+  *  **目錄的 REST API 版本：2015-10-01-preview**
+  *  **作業的 REST API 版本：2016-03-20-preview**
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **Azure 資料湖分析帳戶**。請參閱[使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)，以建立帳戶。
-- **具備存取資料湖分析帳戶權限的服務主體**。請參閱[使用 Azure 資源管理員驗證服務主體](../resource-group-authenticate-service-principal.md)。
+## 特性
 
-## 安裝 SDK
+- 帳戶管理：建立、取得、列出、更新及刪除。
+- 作業管理︰提交、取得、列出、取消。
+- 目錄管理︰取得、列出、建立 (密碼)、更新 (密碼)、刪除 (密碼)。
 
-若要安裝 SDK，請使用下列步驟：
+## 如何安裝
 
-1. 安裝 [Node.js](https://nodejs.org/)。
-2. 從命令提示字元、終端機視窗或 Bash 視窗，執行下列命令：
+```bash
+npm install azure-arm-datalake-analytics
+```
 
-		npm install async
-		npm install adal-node
-		npm install azure-common
-		npm install azure-arm-datalake-analytics
+## 使用 Azure Active Directory 進行驗證
 
-## Node.js 範例
+ ```javascript
+ var msrestAzure = require('ms-rest-azure');
+ //user authentication
+ var credentials = new msRestAzure.UserTokenCredentials('your-client-id', 'your-domain', 'your-username', 'your-password', 'your-redirect-uri');
+ //service principal authentication
+ var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
+ ```
 
-下列範例會取得指定的 Azure 資料湖分析帳戶之作業清單。
+## 建立 Data Lake Analytics 用戶端
 
-	var async = require('async');
-	var adalNode = require('adal-node');
-	var azureCommon = require('azure-common');
-	var azureDataLakeAnalytics = require('azure-arm-datalake-analytics');
+```javascript
+var adlaManagement = require("azure-arm-datalake-analytics");
+var acccountClient = new adlaManagement.DataLakeAnalyticsAccountClient(credentials, 'your-subscription-id');
+var jobClient = new adlaManagement.DataLakeAnalyticsJobClient(credentials, 'azuredatalakeanalytics.net');
+var catalogClient = new adlaManagement.DataLakeAnalyticsCatalogClient(credentials, 'azuredatalakeanalytics.net');
+```
 
-	var resourceUri = 'https://management.core.windows.net/';
-	var loginUri = 'https://login.windows.net/'
+## 建立 Data Lake Analytics 帳戶
 
-	var clientId = 'application_id_(guid)';
-	var clientSecret = 'application_password';
+```javascript
+var util = require('util');
+var resourceGroupName = 'testrg';
+var accountName = 'testadlaacct';
+var location = 'eastus2';
 
-	var tenantId = 'aad_tenant_id';
-	var subscriptionId = 'azure_subscription_id';
-	var resourceGroup = 'adla_resourcegroup_name';
+// A Data Lake Store account must already have been created to create
+// a Data Lake Analytics account. See the Data Lake Store readme for
+// information on doing so. For now, we assume one exists already.
+var datalakeStoreAccountName = 'existingadlsaccount';
 
-	var accountName = 'adla_account_name';
+// account object to create
+var accountToCreate = {
+  tags: {
+    testtag1: 'testvalue1',
+    testtag2: 'testvalue2'
+  },
+  name: accountName,
+  location: location,
+  properties: {
+    defaultDataLakeStoreAccount: datalakeStoreAccountName,
+    dataLakeStoreAccounts: [
+      {
+        name: datalakeStoreAccountName
+      }
+    ]
+  }
+};
 
-	var context = new adalNode.AuthenticationContext(loginUri+tenantId);
+client.account.create(resourceGroupName, accountName, accountToCreate, function (err, result, request, response) {
+  if (err) {
+    console.log(err);
+    /*err has reference to the actual request and response, so you can see what was sent and received on the wire.
+      The structure of err looks like this:
+      err: {
+        code: 'Error Code',
+        message: 'Error Message',
+        body: 'The response body if any',
+        request: reference to a stripped version of http request
+        response: reference to a stripped version of the response
+      }
+    */
+  } else {
+    console.log('result is: ' + util.inspect(result, {depth: null}));
+  }
+});
+```
 
-	var client;
-	var response;
+## 取得作業清單
 
-	async.series([
-		function (next) {
-			context.acquireTokenWithClientCredentials(resourceUri, clientId, clientSecret, function(err, result){
-				if (err) throw err;
-				response = result;
-				next();
-			});
-		},
-		function (next) {
-			var credentials = new azureCommon.TokenCloudCredentials({
-				subscriptionId : subscriptionId,
-				authorizationScheme : response.tokenType,
-				token : response.accessToken
-			});
+```javascript
+var util = require('util');
+var accountName = 'testadlaacct';
+jobClient.job.list(accountName, function (err, result, request, response) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('result is: ' + util.inspect(result, {depth: null}));
+  }
+});
+```
 
-			client = azureDataLakeAnalytics.createDataLakeAnalyticsJobManagementClient(credentials, 'azuredatalakeanalytics.net');
+## 取得 Data Lake Analytics 目錄中的資料庫清單
+```javascript
+var util = require('util');
+var accountName = 'testadlaacct';
+catalogClient.catalog.listDatabases(accountName, function (err, result, request, response) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('result is: ' + util.inspect(result, {depth: null}));
+  }
+});
+```
 
-			next();
-		},
-		function (next) {
-			client.jobs.list(resourceGroup, accountName, function(err, result){
-				if (err) throw err;
-				console.log(result);
-			});
-		}
-	]);
+## 另請參閱
 
+- [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
+- [Microsoft Azure SDK for Node.js - Data Lake Store 管理](https://github.com/Azure/azure-sdk-for-node/tree/autorest/lib/services/dataLake.Store)
 
-##另請參閱
-
-- [Azure SDK for Node.js](http://azure.github.io/azure-sdk-for-node/)
-- [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
-- [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
-- [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
-- [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="開始使用 ASP.NET 和 Azure App Service | Microsoft Azure"
-	description="了解如何在 Visual Studio 中建立 ASP.NET Web 專案，並將它部署到 Azure App Service 中的新 Web 應用程式。"
+	pageTitle="開始使用 Azure App Service 和 ASP.NET | Microsoft Azure"
+	description="了解如何使用 Visual Studio 在 Azure App Service 中將 ASP.NET Web 專案部署到新的 Web 應用程式。"
 	services="app-service\web"
 	documentationCenter=".net"
 	authors="tdykstra"
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="03/02/2016"
+	ms.date="04/22/2016"
 	ms.author="tdykstra"/>
 
-# 使用 Visual Studio 在 Azure App Service 中開始使用 ASP.NET Web 應用程式
+# 使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps
 
 > [AZURE.SELECTOR]
 - [.Net](web-sites-dotnet-get-started.md)
@@ -162,7 +162,7 @@
 
 	![在 Visual Studio 功能表中選擇 [發佈]](./media/web-sites-dotnet-get-started/choosepublish.png)
 
-	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個*發佈設定檔*，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
+	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個 *發佈設定檔* ，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
 
 	發佈設定檔包含用於部署的使用者名稱和密碼。這些認證已事先為您產生，因此您不需要加以輸入或變更。密碼會加密並存放在 `Properties\PublishProfiles` 資料夾的使用者專屬隱藏檔案中。
 
@@ -199,8 +199,7 @@
 	![在 Azure 中執行的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13deployedsite.png)
 
 > [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
-
-![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
+> ![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
 
 ## <a id="portal"></a>在 Azure 入口網站中監控及管理 Web 應用程式
 
@@ -295,4 +294,4 @@
 
 	在 Azure 中，您可以在 App Service Web Apps 中執行 Web 應用程式 (如本教學課程所示)，或在雲端服務或虛擬機器中執行。如需詳細資訊，請參閱 [Azure Web 應用程式、雲端服務和 VM：每一項的使用時機](/manage/services/web-sites/choose-web-app-service/)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

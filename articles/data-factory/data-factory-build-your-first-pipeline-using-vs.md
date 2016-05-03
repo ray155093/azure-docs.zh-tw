@@ -45,7 +45,7 @@
 	
 
 ## 建立 Visual Studio 專案 
-1. 啟動 **Visual Studio 2013** 或 **Visual Studio 2015**。按一下 [**檔案**]，指向 [**新增**]，然後按一下 [**專案**]。您應該會看到 [新增專案] 對話方塊。  
+1. 啟動 **Visual Studio 2013** 或 **Visual Studio 2015**。按一下 [檔案]，指向 [新增]，然後按一下 [專案]。您應該會看到 [新增專案] 對話方塊。  
 2. 在 [新增專案] 對話方塊中，選取 [DataFactory] 範本，然後按一下 [空白 Data Factory 專案]。   
 
 	![[新增專案] 對話方塊](./media/data-factory-build-your-first-pipeline-using-vs/new-project-dialog.png)
@@ -288,6 +288,18 @@
 23. 在 [發佈項目] 頁面上，確認所有 Data Factory 實體都已選取，並按 [下一步] 切換至 [摘要] 頁面。     
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
 25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。 
+
+如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰
+
+- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
+		
+		Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+	
+	您可以執行下列命令來確認已註冊 Data Factory 提供者。
+	
+		Get-AzureRmResourceProvider
+- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+
  
 ## 監視管線
 
@@ -364,7 +376,7 @@
 藉由執行下列步驟來新增每個環境的組態檔：
 
 1. 在 Visual Studio 解決方案中以滑鼠右鍵按一下 Data Factory 專案，指向 [新增]，然後按一下 [新增項目]。
-2. 從左側的已安裝範本清單中選取 [組態]、選取 [組態檔]、輸入組態檔的「名稱」，然後按一下 [新增]。
+2. 從左側的已安裝範本清單中選取 [組態]、選取 [組態檔]、輸入組態檔的 [名稱]，然後按一下 [新增]。
 
 	![新增組態檔](./media/data-factory-build-your-first-pipeline-using-vs/add-config-file.png)
 3. 以下列格式新增組態參數和其值：
@@ -439,7 +451,7 @@
 
 	![選取組態檔](./media/data-factory-build-your-first-pipeline-using-vs/select-config-file.png)
 
-4. 選取您想要使用的「組態檔」，然後按 [下一步]。
+4. 選取您想要使用的**組態檔**，然後按 [下一步]。
 5. 確認您在 [摘要] 頁面上看到 JSON 檔案的名稱，然後按 [下一步]。 
 6. 部署作業完成後按一下 [完成]。 
 
@@ -449,4 +461,4 @@
 在本文中，您已經建立可在隨選 HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 複製資料到 Azure SQL，請參閱[教學課程：從 Azure Blob 複製資料到 Azure SQL](data-factory-get-started.md)。
   
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

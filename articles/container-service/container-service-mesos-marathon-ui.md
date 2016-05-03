@@ -57,6 +57,18 @@ ID | nginx
 
 ![](media/dcos/dcos6.png)
 
+如果您想要以靜態方式將容器連接埠對應至代理程式上的連接埠，這必須使用「JSON 模式」來完成。若要這樣做，請使用切換功能將新增應用程式精靈切換為 JSON 模式，然後在應用程式定義的 ‘portMappings’ 區段底下輸入下列程式行。此範例會將容器的連接埠 80 繫結至 DC/OS 代理程式的連接埠 80。完成這項變更之後，即可將此精靈從 JSON 模式切換出來。
+
+```none
+“hostPort”: 80,
+```
+
+![](media/dcos/dcos13.png)
+
+DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要從網際網路存取應用程式，它們必須部署到公用代理程式。若要這樣做，請選取新增應用程式精靈的 [選擇性] 索引標籤並在 [接受的資源角色] 中輸入「slave\_public」。
+
+![](media/dcos/dcos14.png)
+
 回到 Marathon 主頁面，您可以看到容器的部署狀態。
 
 ![](media/dcos/dcos7.png)
@@ -85,4 +97,4 @@ Marathon UI 可用來調整容器的執行個體計數。若要這樣做，請�
 
 [使用 DC/OS 和 Marathon API](./container-service-mesos-marathon-rest.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

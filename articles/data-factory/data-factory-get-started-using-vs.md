@@ -39,7 +39,7 @@
 - 下載 Azure SDK for Visual Studio 2013。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)並按一下 **.NET** 區段中的 [VS 2013 安裝]。
 
 ## 建立 Visual Studio 專案 
-1. 啟動 **Visual Studio 2013**。按一下 [**檔案**]，指向 [**新增**]，然後按一下 [**專案**]。您應該會看到 [新增專案] 對話方塊。  
+1. 啟動 **Visual Studio 2013**。按一下 [檔案]，指向 [新增]，然後按一下 [專案]。您應該會看到 [新增專案] 對話方塊。  
 2. 在 [新增專案] 對話方塊中，選取 **DataFactory** 範本，然後按一下 [空白 Data Factory 專案]。如果您沒有看到 DataFactory 範本，請關閉 Visual Studio、安裝 Azure SDK for Visual Studio 2013，並重新開啟 Visual Studio。  
 
 	![[新增專案] 對話方塊](./media/data-factory-get-started-using-vs/new-project-dialog.png)
@@ -115,7 +115,7 @@
 
 ### 建立輸出資料集
 
-11. 再次以滑鼠右鍵按一下 [**方案總管**] 中的 [**資料表**]，指向 [**新增**]，然後按一下 [**新增項目**]。
+11. 再次以滑鼠右鍵按一下 [方案總管] 中的 [資料表]，指向 [新增]，然後按一下 [新增項目]。
 12. 在 [加入新項目] 對話方塊中，選取 [Azure SQL]，然後按一下 [加入]。 
 13. 將 JSON 文字取代成下列 JSON 並儲存 **AzureSqlTableLocation1.json** 檔案。
 
@@ -220,6 +220,17 @@
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
 25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。 
 
+如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰
+
+- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
+		
+		Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+	
+	您可以執行下列命令來確認已註冊 Data Factory 提供者。
+	
+		Get-AzureRmResourceProvider
+- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+
 
 ## 使用伺服器總管檢視 Data Factory
 
@@ -239,4 +250,4 @@
 ## 另請參閱
 如需 Azure Data Factory 中複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

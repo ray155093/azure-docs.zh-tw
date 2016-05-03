@@ -9,10 +9,10 @@
 <tags 
    ms.service="storsimple"
    ms.devlang="NA"
-   ms.topic="article"
+   ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/12/2016"
+   ms.date="04/20/2016"
    ms.author="alkohli" />
 
 # 部署和管理 Azure 中的 StorSimple 虛擬裝置 (Update 2)
@@ -283,4 +283,4 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
  
 - 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->
