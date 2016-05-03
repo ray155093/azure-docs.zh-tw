@@ -1,6 +1,6 @@
 <properties
  pageTitle="如何使用 Azure 排程器建立複雜的排程和進階週期"
- description=""
+ description="如何使用 Azure 排程器建立複雜的排程和進階週期"
  services="scheduler"
  documentationCenter=".NET"
  authors="krisragh"
@@ -197,4 +197,4 @@ Azure 排程器工作中的日期時間參考遵循 [ISO 8601 規格](http://en.
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

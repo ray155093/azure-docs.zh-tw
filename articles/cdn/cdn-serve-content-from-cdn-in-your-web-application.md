@@ -45,7 +45,9 @@
 -	Visual Studio 2013 ([含適用於 Blob 管理 GUI 的 Azure SDK](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409))
 -	[Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409) (由[自動從 ASP.NET 應用程式中將內容上傳至 CDN 端點](#upload)使用)
 
-> [AZURE.NOTE] 您必須有 Azure 帳戶才能完成本教學課程：+ 您可以[免費申請帳戶](/pricing/free-trial/?WT.mc_id=A261C142F) - 我們會提供可用來試用付費 Azure 服務的點數，即使點數用完了，您仍然可以保留帳戶，使用免費的 Azure 服務，例如網站。 + 您可以[啟用 MSDN 訂閱者權益](/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂用帳戶每個月都會給您可用來試用付費 Azure 服務的點數。
+> [AZURE.NOTE] 要完成此教學課程，您必須要有 Azure 帳戶：
+> + 您可以[免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。
+> + 您可以[啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂閱每月會提供您額度，您可以用在 Azure 付費服務。
 
 <a name="static"></a>
 ## 從 Azure CDN 端點提供靜態內容 ##
@@ -256,7 +258,9 @@ Azure App Service 與 Azure CDN 或 Azure 雲端服務與 Azure CDN 整合將帶
 - 輕鬆地升級 CDN 提供的 NuGet 套件，例如 jQuery 或 Bootstrap 版本 
 - 從相同的 Visual Studio 介面來管理 Web 應用程式和 CDN 提供的內容
 
-如需相關教學課程，請參閱：- 「[在 Azure App Service 中使用 Azure CDN](../app-service-web/cdn-websites-with-cdn.md)」(英文) - [雲端服務整合 Azure CDN](cdn-cloud-service-with-cdn.md) (英文)
+相關教學課程，請參閱：
+- [在 Azure App Service 中使用 Azure CDN](../app-service-web/cdn-websites-with-cdn.md)
+- [整合雲端服務與 Azure CDN](cdn-cloud-service-with-cdn.md)
 
 即使未與 Azure App Service Web Apps 或 Azure 雲端服務整合，還是可以對指令碼套件組合使用 Azure CDN，但要注意下列幾點：
 
@@ -270,7 +274,7 @@ Azure App Service 與 Azure CDN 或 Azure 雲端服務與 Azure CDN 整合將帶
 - [在 Azure App Service 中使用 Azure CDN](../app-service-web/cdn-websites-with-cdn.md)
 - [整合雲端服務與 Azure CDN](cdn-cloud-service-with-cdn.md)
 - [如何將內容傳遞網路 (CDN) 內容對應至自訂網域](http://msdn.microsoft.com/library/azure/gg680307.aspx)
-- [使用 Azure 的 CDN](cdn-how-to-use-cdn.md)
+- [使用 Azure CDN](cdn-create-new-endpoint.md)
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

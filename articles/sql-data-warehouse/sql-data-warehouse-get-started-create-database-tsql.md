@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="04/20/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫
@@ -31,62 +31,49 @@
 若要完成這篇文章中的步驟，您需要下列項目︰
 
 - Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來完成這篇文章。
-- 。如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs)頁面。
-- V12 邏輯 SQL Server。您將需要 V12 SQL Server 來建立 SQL 資料倉儲。如果您沒有 V12 邏輯 SQL 伺服器，[Azure 入口網站教學課程][]會為您示範如何建立。
+- V12 邏輯 SQL Server。您將需要 V12 SQL Server 來建立 SQL 資料倉儲。如果您沒有 V12 邏輯 SQL Server，請參閱[如何從 Azure 入口網站建立 SQL 資料倉儲][]一文中的**設定和建立伺服器**。
+- 。如需免費的 Visual Studio，請參閱 [Visual Studio 下載][]頁面。
+
+
+> [AZURE.NOTE] 建立新的 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
 
 ## 使用 Visual Studio 建立資料庫
 
-本文不會涵蓋如何使用 Visual Studio 正確設定與連接。如需如何進行的完整說明，請參閱[連接及查詢][]文件。若要開始，請在 Visual Studio 中開啟 SQL Server 物件總管，並連接到您將用來建立 SQL 資料倉儲資料庫的伺服器。一旦您這麼做，您就能針對「主要」資料庫執行下列命令來建立 SQL 資料倉儲：
+如果您不熟悉 Visual Studio，請參閱[使用 Visual Studio 連接到 SQL 資料倉儲][]一文。若要開始，請在 Visual Studio 中開啟 SQL Server 物件總管，並連接到將要裝載 SQL 資料倉儲資料庫的伺服器。連接後，您即可對 **master** 資料庫執行下列 SQL 命令來建立 SQL 資料倉儲。此命令會建立服務目標為 DW400 的資料庫 MySqlDwDb，並允許此資料庫成長至大小上限 10 TB。
 
 ```sql
-CREATE DATABASE <Name> (EDITION='datawarehouse', SERVICE_OBJECTIVE = '<Compute Size - DW####>', MAXSIZE= <Storage Size - #### GB>);
+CREATE DATABASE MySqlDwDb (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB);
 ```
 
 ## 使用 sqlcmd 建立資料庫
 
-您也能透過開啟命令列並執行下列命令建立 SQL 資料倉儲：
+或者，您可以在命令提示字元執行下列命令，以使用 sqlcmd 執行相同的命令。
 
 ```sql
-sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREATE DATABASE <Name> (EDITION='datawarehouse', SERVICE_OBJECTIVE = '<Compute Size - DW####>', MAXSIZE= <Storage Size - #### GB>)"
+sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREATE DATABASE MySqlDwDb (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB)"
 ```
 
-執行上述 TSQL 陳述式時，請注意 `MAXSIZE` 和 `SERVICE_OBJECTIVE` 參數將會要求初始的儲存體大小並計算分配給資料倉儲執行個體的儲存體大小。`MAXSIZE` 接受下列大小，建議選擇較大的空間大小以保留成長空間：2
+**MAXSIZE** 和 **SERVICE\_OBJECTIVE** 參數可指定資料庫可使用的最大磁碟空間，以及配置給您的資料倉儲執行個體的計算資源。服務目標基本上是以線性方式隨著 DWU 大小調整的 CPU 和記憶體配置。
 
-+ 50 GB
-+ 500 GB
-+ 750 GB
-+ 1024 GB
-+ 5120 GB
-+ 10240 GB
-+ 20480 GB
-+ 30720 GB
-+ 40960 GB
-+ 51200 GB
-
-`SERVICE_OBJECTIVE` 會指出您的執行個體起始的 DWU 數量，並接受下列值：
-
-+ DW100
-+ DW200
-+ DW300
-+ DW400
-+ DW500
-+ DW600
-+ DW1000
-+ DW1200
-+ DW1500
-+ DW2000
-
-如需這些參數的計費影響詳細資訊，請參閱我們的[價格頁面][]。
+MAXSIZE 可以介於 250 GB 與 60 TB 之間。服務目標可以介於 DW100 與 DW2000 之間。如需所有 MAXSIZE 和 SERVICE\_OBJECTIVE 有效值的完整清單，請參閱 MSDN 文件中的 [CREATE DATABASE][]。使用 [ALTER DATABASE][] T-SQL 命令也可以變更 MAXSIZE 和 SERVICE\_OBJECTIVE。變更 SERVICE\_OBJECTIVE 時應使用警告，因為這會導致服務重新啟動而取消所有進行中的查詢。變更 MAXSIZE 時則不需要此警告，因為這只是簡單的中繼資料作業。
 
 ## 後續步驟
 您的 SQL 資料倉儲完成佈建之後，您可以[載入範例資料][]或查看如何[開發][]、[載入][]，或[移轉][]。
 
-[Azure 入口網站教學課程]: ./sql-data-warehouse-get-started-provision.md
-[連接及查詢]: ./sql-data-warehouse-get-started-connect.md
-[移轉]: ./sql-data-warehouse-overview-migrate.md
-[開發]: ./sql-data-warehouse-overview-develop.md
-[載入]: ./sql-data-warehouse-overview-load.md
-[載入範例資料]: ./sql-data-warehouse-get-started-manually-load-samples.md
-[價格頁面]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
+<!--Article references-->
+[如何從 Azure 入口網站建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[使用 Visual Studio 連接到 SQL 資料倉儲]: sql-data-warehouse-get-started-connect.md
+[移轉]: sql-data-warehouse-overview-migrate.md
+[開發]: sql-data-warehouse-overview-develop.md
+[載入]: sql-data-warehouse-overview-load.md
+[載入範例資料]: sql-data-warehouse-get-started-manually-load-samples.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!--MSDN references--> 
+[CREATE DATABASE]: https://msdn.microsoft.com/library/mt204021.aspx
+[ALTER DATABASE]: https://msdn.microsoft.com/library/mt204042.aspx
+
+<!--Other Web references-->
+[SQL 資料倉儲價格]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
+[Visual Studio 下載]: https://www.visualstudio.com/downloads/download-visual-studio-vs
+
+<!---HONumber=AcomDC_0427_2016-->

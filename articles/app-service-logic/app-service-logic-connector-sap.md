@@ -18,7 +18,8 @@
 
 
 # 開始使用 SAP 連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+
+>[AZURE.NOTE] 我們根據客戶的意見反應，正在升級這個連接器。一切就緒時即會更新本頁面。不建議在新版本前使用 SAP 連接器。這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
 
 連線至內部部署 SAP 以呼叫 RFC 或取得中繼資料。在某些案例中，您可能需要使用在內部部署安裝並位於防火牆後的 SAP。透過在流程中運用 SAP 連接器，您可以達到各種案例的目的。幾個範例：
 
@@ -98,4 +99,4 @@ SAP 連接器需要混合式連線才能連接到*任何* SAP 端點。若要建
 [6]: ./media/app-service-logic-connector-sap/LogicApp2.jpg
 [7]: ./media/app-service-logic-connector-sap/LogicApp3.jpg
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

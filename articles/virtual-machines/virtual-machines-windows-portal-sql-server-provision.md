@@ -3,22 +3,24 @@
 	description="在 Azure Resource Manager 模式下建立 SQL Server 虛擬機器。本教學課程主要是透過使用者介面作業，而非編寫指令碼。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
-	authors="MikeRayMSFT"
-    editor=""
-	manager="jeffreyg"
+	authors="rothja"
+	editor=""
+	manager="jhubbard"
 	tags="azure-resource-manager" />
-
-
 <tags
 	ms.service="virtual-machines-windows"
 	ms.devlang="na"
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="03/24/2016"
-	ms.author="mikeray" />
+	ms.date="04/22/2016"
+	ms.author="jroth" />
 
 # 在 Azure 入口網站中佈建 SQL Server 虛擬機器
+
+> [AZURE.SELECTOR]
+- [入口網站](virtual-machines-windows-portal-sql-server-provision.md)
+- [PowerShell](virtual-machines-windows-ps-sql-create.md)
 
 ## 概觀
 
@@ -63,14 +65,14 @@ Azure 入口網站中有五個用來設定 SQL Server 虛擬機器的刀鋒視�
 1.	檢閱摘要
 
 ## 1\.設定基本設定
-在 [建立虛擬機器] 刀鋒視窗的 [基本資料] 底下，提供下列資訊：
+在 [建立虛擬機器] 刀鋒視窗底下的 [基本資料]，提供下列資訊：
 
-* 唯一的 [虛擬機器名稱]。
-* [使用者名稱] 方塊中，該機器之本機系統管理員帳戶的唯一使用者名稱。這個帳戶也將會是 SQL Server 系統管理員 (sysadmin) 固定伺服器角色的成員。
+* 唯一的虛擬機器**名稱**。
+* 在 [使用者名稱] 方塊中，該機器之本機系統管理員帳戶的唯一使用者名稱。這個帳戶也將會是 SQL Server 系統管理員 (sysadmin) 固定伺服器角色的成員。
 * 在 [密碼] 方塊中，輸入強式密碼。
 * 如果您有多個訂用帳戶，請確認訂用帳戶是否適用於您即將建置的 VM。
 * 在 [資源群組] 方塊中，輸入資源群組的名稱。或者，若要使用現有的資源群組，請按一下 [選取現有項目]。資源群組是 Azure 中相關服務的集合。如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。確認 [位置] 符合您的需求。
-* 按一下 [確定] 來儲存變更。<br/>
+* 按一下 [確定] 來儲存設定。<br/>
 
 >![SQL ARM 基本概念](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-basic.png) <br/>
 
@@ -84,7 +86,7 @@ Azure 入口網站中有五個用來設定 SQL Server 虛擬機器的刀鋒視�
 
 >[AZURE.NOTE] 預設會啟用進階儲存體。這會自動將您機器的大小調整成支援「進階儲存體」的大小。如果您停用「進階儲存體」，則會使用您先前選取的機器大小。
 
-- 在 [儲存體帳戶] 底下，您可以接受自動佈建的儲存體帳戶名稱，或是按一下 [儲存體帳戶] 以選擇現有的帳路並設定儲存體帳戶類型。Azure 預設會建立具有本地備援儲存體的新儲存體帳戶。
+- 在 [儲存體帳戶] 底下，您可以接受自動佈建的儲存體帳戶名稱，或是按一下 [儲存體帳戶] 以選擇現有的帳戶並設定儲存體帳戶類型。Azure 預設會建立具有本地備援儲存體的新儲存體帳戶。
 
 - 在 [網路] 底下，您可以接受自動填入的功能值，或按一下每個功能以設定 [虛擬網路]、[子網路]、[公用 IP 位址] 及 [網路安全性群組]。Azure 預設會自動設定這些值。
 
@@ -119,7 +121,7 @@ Azure 入口網站中有五個用來設定 SQL Server 虛擬機器的刀鋒視�
 
 
 ### 驗證
-如果您需要「SQL Server 驗證」，請按一下 [SQL 驗證] 底下的 [啟用]。
+如果您需要「SQL Server 驗證」，請按一下 [SQL 驗證] 底下的 [啟用] 。
 
 <br/>![SQL ARM 驗證](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-authentication.png) <br/>
 
@@ -139,7 +141,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 下列影像顯示 [儲存體組態] 刀鋒視窗。<br/>![SQL ARM 儲存體](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-storage.png) <br/>
 
->[AZURE.NOTE] 儲存體組態限制取決於虛擬機器大小。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
+>[AZURE.NOTE] 儲存體組態限制取決於虛擬機器大小。如需相關資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
 
 ### 修補
 預設會啟用 [SQL 自動修補]。自動修補可讓 Azure 自動修補 SQL Server 和作業系統。請為維護期間指定一週當中的某一天、時間及持續時間。Azure 將會在維護期間執行修補。維護期間排程會使用 VM 地區設定做為時間。如果您不想要讓 Azure 自動修補 SQL Server 和作業系統，請按一下 [停用]。
@@ -203,4 +205,4 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 ##<a id="Next">後續步驟
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

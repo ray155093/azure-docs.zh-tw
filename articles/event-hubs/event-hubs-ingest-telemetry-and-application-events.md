@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="04/15/2016" 
 	ms.author="sethm"/>
 
 # 大規模擷取遙測和應用程式事件
  
-現代應用程式可在執行時建立大量的資訊。無論是行動應用程式中的使用者動作或是網站上的點選流，此遙測資料對於長期分析和即時健康情況監視或決策支援很有價值。服務匯流排提供擷取與處理此資訊所需的工具。
+現代應用程式可在執行時建立大量的資訊。無論是行動應用程式中的使用者動作或是網站上的點選流，此遙測資料對於長期分析和即時健康情況監視或決策支援很有價值。Microsoft Azure 事件中樞提供擷取與處理此資訊所需的工具。
 
 
 ## 瀏覽
@@ -37,4 +37,4 @@
 - [HDInsight](https://azure.microsoft.com/services/hdinsight/)
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

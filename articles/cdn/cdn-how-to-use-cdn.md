@@ -1,5 +1,5 @@
 <properties
-	pageTitle="如何使用 CDN |Microsoft Azure"
+	pageTitle="使用 Azure CDN"
 	description="了解如何使用 Azure 內容傳遞網路 (CDN) 來快取 Blob 和靜態內容，以傳遞高頻寬內容。"
 	services="cdn"
 	documentationCenter=".net"
@@ -12,12 +12,12 @@
 	ms.workload="tbd"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="03/18/2016"
+	ms.topic="article"
+	ms.date="04/15/2016"
 	ms.author="casoper"/>
 
 
-# 使用 Azure 的 CDN
+# 使用 Azure CDN
 
 Azure 內容傳遞網路 (CDN) 是在 Azure 中調整任何 HTTP/HTTPS 應用程式的基礎建置組塊。它透過快取和傳遞接近使用者的內容，將全域方案提供給 Azure 客戶。因此，使用者要求會聰明地路由傳送至可提供最佳回應時間的 CDN 邊緣節點 (POP，或存在點)，而不是每次都按原點。這會大幅增加效能和使用者經驗。如需 CDN 節點位置的最新清單，請參閱「[Azure 內容傳遞網路 (CDN) POP 位置](cdn-pop-locations.md)」。
 
@@ -128,7 +128,6 @@ Azure 可讓您使用 HTTPS 呼叫從 CDN 擷取內容。這可讓您將 CDN 中
 - 您必須使用 CDN 所提供的憑證。不支援協力廠商憑證。
 - 您必須使用 CDN 網域來存取內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
 
-如需有關為 CDN 內容啟用 HTTPS 的詳細資訊，請參閱「[如何啟用 Azure 內容傳遞網路 (CDN)](cdn-create-new-endpoint.md)」。
 
 
 ## 使用自訂網域存取所快取的內容
@@ -149,4 +148,4 @@ Azure 可讓您使用 HTTPS 呼叫從 CDN 擷取內容。這可讓您將 CDN 中
 - [清除 Azure CDN 端點](cdn-purge-endpoint.md)
 - [CDN 資源提供者 REST API](https://msdn.microsoft.com/library/mt634456.aspx)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

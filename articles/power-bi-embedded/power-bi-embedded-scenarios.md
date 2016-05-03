@@ -33,4 +33,4 @@
 - [開始使用範例](power-bi-embedded-get-started.md)
 - [使用自訂視覺效果擴充 Power BI](https://powerbi.microsoft.com/custom-visuals/)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

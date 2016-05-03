@@ -1,0 +1,595 @@
+<properties
+	pageTitle="評分 Spark 建置機器學習模型 | Microsoft Azure"
+	description="如何評分已儲存在 Azure Blob 儲存體 (WASB) 中的學習模型。"
+	services="machine-learning"
+	documentationCenter=""
+	authors="bradsev"
+	manager="paulettm"
+	editor="cgronlun" />
+
+<tags
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="04/19/2016"
+	ms.author="deguhath;bradsev" />
+
+# 評分 Spark 建置機器學習模型 
+
+[AZURE.INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
+
+
+## 簡介
+
+本主題說明如何載入已使用 Spark MLlib 所建立、並儲存在 Azure Blob 儲存體 (WASB) 的機器學習服務 (ML) 模型，以及如何使用已儲存在 WASB 的資料集加以評分。它會顯示如何前置處理輸入資料、使用 MLlib 工具組中的索引和編碼函式來轉換功能，以及如何建立可做為輸入的標示點資料物件，以便使用 ML 模型加以評分。用於評分的模型包含線性迴歸、羅吉斯迴歸、隨機樹系模型和漸層停駐提升樹狀結構模型。
+
+
+## 必要條件
+
+1. 您需要 Azure 帳戶和 HDInsight Spark 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md) 以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 **machine-learning-data-science-spark-model-consumption.ipynb** Notebook，其中包含本主題中的程式碼範例 (位於 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/Python))。
+
+2. 您也必須透過[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題運作，在這裡建立要評分的機器學習服務模型。
+
+
+[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+ 
+
+## 安裝 Spark 和目錄路徑以儲存資料和模型 
+
+Spark 也可以讀取和寫入 Azure 儲存體 Blob (WASB)。如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
+
+若要在 WASB 中儲存模型或檔案，必須正確指定路徑。可以使用以 "wasb//" 開頭的路徑，參考連接到 Spark 叢集的預設容器。下列程式碼範例會指定要讀取資料的位置，和將儲存模型輸出的模型儲存體目錄的路徑。
+
+
+### 在 WASB 中設定儲存位置的目錄路徑
+
+模型會儲存在：「wasb:///user/remoteuser/NYCTaxi/Models」。如果未正確設定此路徑，不會載入模型進行評分。
+
+評分的結果儲存在：「wasb:///user/remoteuser/NYCTaxi/ScoredResults」。如果資料夾的路徑不正確，不會將結果儲存在該資料夾中。
+
+>AZURE.NOTE︰可從 **machine-learning-data-science-spark-data-exploration-modeling.ipynb** notebook 的最後一個儲存格的輸出，將檔案路徑位置複製並貼至此程式碼的預留位置。
+
+	# LOCATION OF DATA TO BE SCORED (TEST DATA)
+	taxi_test_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Test.tsv";
+	
+	# SET THE MODEL STORAGE DIRECTORY PATH 
+	# NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+	modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/" 
+	
+	# SET SCORDED RESULT DIRECTORY PATH
+	# NOTE THE LAST BACKSLASH IN THIS PATH IS NEEDED
+	scoredResultDir = "wasb:///user/remoteuser/NYCTaxi/ScoredResults/"; 
+	
+	# FILE LOCATIONS FOR THE MODELS TO BE SCORED
+	logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS_2016-04-1817_40_35.796789"
+	linearRegFileLoc = modelDir + "LinearRegressionWithSGD_2016-04-1817_44_00.993832"
+	randomForestClassificationFileLoc = modelDir + "RandomForestClassification_2016-04-1817_42_58.899412"
+	randomForestRegFileLoc = modelDir + "RandomForestRegression_2016-04-1817_44_27.204734"
+	BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassification_2016-04-1817_43_16.354770"
+	BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-04-1817_44_46.206262"
+
+	# RECORD START TIME
+	import datetime
+	datetime.datetime.now()
+
+**輸出：**
+
+datetime.datetime(2016, 4, 19, 17, 21, 28, 379845)
+
+
+### 需要匯入程式庫並設定 Spark 內容 
+
+使用下列程式碼設定 Spark 內容並匯入必要的程式庫
+
+	#IMPORT LIBRARIES
+	import pyspark
+	from pyspark import SparkConf
+	from pyspark import SparkContext
+	from pyspark.sql import SQLContext
+	from pyspark.sql import Row
+	from pyspark.sql.functions import UserDefinedFunction
+	from pyspark.sql.types import *
+	import atexit
+	from numpy import array
+	import numpy as np
+	import datetime
+	
+	# SET SPARK CONTEXT
+	sc = SparkContext(conf=SparkConf().setMaster('yarn-client'))
+	sqlContext = SQLContext(sc)
+	atexit.register(lambda: sc.stop())
+	
+	sc.defaultParallelism
+
+**輸出：**
+
+4
+
+
+## 擷取資料並建立已清除的資料框架
+
+本節包含一系列工作的程式碼，為擷取要評分的資料所必需。在聯結的 0.1% 取樣的計程車車程和費用檔案中讀取 (儲存為 .tsv 檔案)、格式化資料，然後建立清空的資料框架。
+
+已根據[作用中的 Cortana Analytics 程序：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)主題提供的程序來聯結計程車車程和費用檔案。
+
+	# INGEST DATA AND CREATE A CLEANED DATA FRAME
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+	
+	# IMPORT FILE FROM PUBLIC BLOB
+	taxi_test_file = sc.textFile(taxi_test_file_loc)
+	
+	# GET SCHEMA OF THE FILE FROM HEADER
+	taxi_header = taxi_test_file.filter(lambda l: "medallion" in l)
+	
+	# PARSE FIELDS AND CONVERT DATA TYPE FOR SOME FIELDS
+	taxi_temp = taxi_test_file.subtract(taxi_header).map(lambda k: k.split("\t"))\
+	        .map(lambda p: (p[0],p[1],p[2],p[3],p[4],p[5],p[6],int(p[7]),int(p[8]),int(p[9]),int(p[10]),
+	                        float(p[11]),float(p[12]),p[13],p[14],p[15],p[16],p[17],p[18],float(p[19]),
+	                        float(p[20]),float(p[21]),float(p[22]),float(p[23]),float(p[24]),int(p[25]),int(p[26])))
+	    
+	# GET SCHEMA OF THE FILE FROM HEADER
+	schema_string = taxi_test_file.first()
+	fields = [StructField(field_name, StringType(), True) for field_name in schema_string.split('\t')]
+	fields[7].dataType = IntegerType() #Pickup hour
+	fields[8].dataType = IntegerType() # Pickup week
+	fields[9].dataType = IntegerType() # Weekday
+	fields[10].dataType = IntegerType() # Passenger count
+	fields[11].dataType = FloatType() # Trip time in secs
+	fields[12].dataType = FloatType() # Trip distance
+	fields[19].dataType = FloatType() # Fare amount
+	fields[20].dataType = FloatType() # Surcharge
+	fields[21].dataType = FloatType() # Mta_tax
+	fields[22].dataType = FloatType() # Tip amount
+	fields[23].dataType = FloatType() # Tolls amount
+	fields[24].dataType = FloatType() # Total amount
+	fields[25].dataType = IntegerType() # Tipped or not
+	fields[26].dataType = IntegerType() # Tip class
+	taxi_schema = StructType(fields)
+	
+	# CREATE DATA FRAME
+	taxi_df_test = sqlContext.createDataFrame(taxi_temp, taxi_schema)
+	
+	# CREATE A CLEANED DATA-FRAME BY DROPPING SOME UN-NECESSARY COLUMNS & FILTERING FOR UNDESIRED VALUES OR OUTLIERS
+	taxi_df_test_cleaned = taxi_df_test.drop('medallion').drop('hack_license').drop('store_and_fwd_flag').drop('pickup_datetime')\
+	    .drop('dropoff_datetime').drop('pickup_longitude').drop('pickup_latitude').drop('dropoff_latitude')\
+	    .drop('dropoff_longitude').drop('tip_class').drop('total_amount').drop('tolls_amount').drop('mta_tax')\
+	    .drop('direct_distance').drop('surcharge')\
+	    .filter("passenger_count > 0 and passenger_count < 8 AND payment_type in ('CSH', 'CRD') AND tip_amount >= 0 AND tip_amount < 30 AND fare_amount >= 1 AND fare_amount < 150 AND trip_distance > 0 AND trip_distance < 100 AND trip_time_in_secs > 30 AND trip_time_in_secs < 7200" )
+	
+	# CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
+	taxi_df_test_cleaned.cache()
+	taxi_df_test_cleaned.count()
+	
+	# REGISTER DATA-FRAME AS A TEMP-TABLE IN SQL-CONTEXT
+	taxi_df_test_cleaned.registerTempTable("taxi_test")
+	
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰15.36 秒
+
+
+## 準備資料在 Spark 中評分 
+
+本節說明如何索引、編碼及調整分類功能，準備將其用於分類和迴歸的 MLlib 監督式學習演算法中。
+
+### 功能轉換：索引並編碼分類功能以輸入至模型進行評分。 
+
+本節說明如何使用 `StringIndexer` 以索引分類資料，並將 `OneHotEncoder` 輸入模型中以編碼功能。
+
+[StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 會將標籤的字串資料行編碼至標籤索引的資料行。索引是按標籤頻率排序。
+
+[OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。這種編碼方式允許將預期連續值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
+	
+	#INDEX AND ONE-HOT ENCODE CATEGORICAL FEATURES
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+	
+	# LOAD PYSPARK LIBRARIES
+	from pyspark.ml.feature import OneHotEncoder, StringIndexer, VectorAssembler, OneHotEncoder, VectorIndexer
+	
+	# CREATE FOUR BUCKETS FOR TRAFFIC TIMES
+	sqlStatement = """
+	    SELECT *,
+	    CASE
+	     WHEN (pickup_hour <= 6 OR pickup_hour >= 20) THEN "Night" 
+	     WHEN (pickup_hour >= 7 AND pickup_hour <= 10) THEN "AMRush" 
+	     WHEN (pickup_hour >= 11 AND pickup_hour <= 15) THEN "Afternoon"
+	     WHEN (pickup_hour >= 16 AND pickup_hour <= 19) THEN "PMRush"
+	    END as TrafficTimeBins
+	    FROM taxi_test 
+	"""
+	taxi_df_test_with_newFeatures = sqlContext.sql(sqlStatement)
+	
+	# CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
+	taxi_df_test_with_newFeatures.cache()
+	taxi_df_test_with_newFeatures.count()
+	
+	# INDEX AND ONE-HOT ENCODING
+	stringIndexer = StringIndexer(inputCol="vendor_id", outputCol="vendorIndex")
+	model = stringIndexer.fit(taxi_df_test_with_newFeatures) # Input data-frame is the cleaned one from above
+	indexed = model.transform(taxi_df_test_with_newFeatures)
+	encoder = OneHotEncoder(dropLast=False, inputCol="vendorIndex", outputCol="vendorVec")
+	encoded1 = encoder.transform(indexed)
+	
+	# INDEX AND ENCODE RATE_CODE
+	stringIndexer = StringIndexer(inputCol="rate_code", outputCol="rateIndex")
+	model = stringIndexer.fit(encoded1)
+	indexed = model.transform(encoded1)
+	encoder = OneHotEncoder(dropLast=False, inputCol="rateIndex", outputCol="rateVec")
+	encoded2 = encoder.transform(indexed)
+	
+	# INDEX AND ENCODE PAYMENT_TYPE
+	stringIndexer = StringIndexer(inputCol="payment_type", outputCol="paymentIndex")
+	model = stringIndexer.fit(encoded2)
+	indexed = model.transform(encoded2)
+	encoder = OneHotEncoder(dropLast=False, inputCol="paymentIndex", outputCol="paymentVec")
+	encoded3 = encoder.transform(indexed)
+	
+	# INDEX AND ENCODE TRAFFIC TIME BINS
+	stringIndexer = StringIndexer(inputCol="TrafficTimeBins", outputCol="TrafficTimeBinsIndex")
+	model = stringIndexer.fit(encoded3)
+	indexed = model.transform(encoded3)
+	encoder = OneHotEncoder(dropLast=False, inputCol="TrafficTimeBinsIndex", outputCol="TrafficTimeBinsVec")
+	encodedFinal = encoder.transform(indexed)
+	
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰4.88 秒
+
+
+### 使用功能陣列建立 RDD 物件以輸入至模型
+
+本節包含程式碼，示範如何將分類的文字資料索引為 RDD 物件並加以單次編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和樹狀結構型模型。索引的資料是儲存在[彈性分散式資料集 (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) 物件中。這些是 Spark 中的基本抽象概念。RDD 物件代表不可變、資料分割、可與 Spark 平行操作的元素集合。
+
+它也包含程式碼，顯示如何使用 MLlib 提供的 `StandardScalar` 來調整資料 (用於使用隨機梯度下降 (SGD) 的線性迴歸)，為訓練廣泛的機器學習模型的常用演算法。[StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) 是用來調整單位變異數的功能。調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。
+
+
+	# CREATE RDD OBJECTS WITH FEATURE ARRAYS FOR INPUT INTO MODELS
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+
+	# IMPORT LIBRARIES
+	from pyspark.mllib.linalg import Vectors
+	from pyspark.mllib.feature import StandardScaler, StandardScalerModel
+	from pyspark.mllib.util import MLUtils
+	from numpy import array
+	
+	# INDEXING CATEGORICAL TEXT FEATURES FOR INPUT INTO TREE-BASED MODELS
+	def parseRowIndexingBinary(line):
+	    features = np.array([line.paymentIndex, line.vendorIndex, line.rateIndex, line.TrafficTimeBinsIndex,
+	                         line.pickup_hour, line.weekday, line.passenger_count, line.trip_time_in_secs, 
+	                         line.trip_distance, line.fare_amount])
+	    return  features
+	
+	# ONE-HOT ENCODING OF CATEGORICAL TEXT FEATURES FOR INPUT INTO LOGISTIC RERESSION MODELS
+	def parseRowOneHotBinary(line):
+	    features = np.concatenate((np.array([line.pickup_hour, line.weekday, line.passenger_count,
+	                                        line.trip_time_in_secs, line.trip_distance, line.fare_amount]), 
+	                                        line.vendorVec.toArray(), line.rateVec.toArray(), 
+	                                        line.paymentVec.toArray(), line.TrafficTimeBinsVec.toArray()), axis=0)
+	    return  features
+	
+	# ONE-HOT ENCODING OF CATEGORICAL TEXT FEATURES FOR INPUT INTO TREE-BASED MODELS
+	def parseRowIndexingRegression(line):
+	    features = np.array([line.paymentIndex, line.vendorIndex, line.rateIndex, line.TrafficTimeBinsIndex, 
+	                         line.pickup_hour, line.weekday, line.passenger_count, line.trip_time_in_secs, 
+	                         line.trip_distance, line.fare_amount])
+	    return  features
+	
+	# INDEXING CATEGORICAL TEXT FEATURES FOR INPUT INTO LINEAR REGRESSION MODELS
+	def parseRowOneHotRegression(line):
+	    features = np.concatenate((np.array([line.pickup_hour, line.weekday, line.passenger_count,
+	                                        line.trip_time_in_secs, line.trip_distance, line.fare_amount]), 
+	                                        line.vendorVec.toArray(), line.rateVec.toArray(), 
+	                                        line.paymentVec.toArray(), line.TrafficTimeBinsVec.toArray()), axis=0)
+	    return  features
+
+	# FOR BINARY CLASSIFICATION TRAINING AND TESTING
+	indexedTESTbinary = encodedFinal.map(parseRowIndexingBinary)
+	oneHotTESTbinary = encodedFinal.map(parseRowOneHotBinary)
+	
+	# FOR REGRESSION CLASSIFICATION TRAINING AND TESTING
+	indexedTESTreg = encodedFinal.map(parseRowIndexingRegression)
+	oneHotTESTreg = encodedFinal.map(parseRowOneHotRegression)
+	
+	# SCALING FEATURES FOR LINEARREGRESSIONWITHSGD MODEL
+	scaler = StandardScaler(withMean=False, withStd=True).fit(oneHotTESTreg)
+	oneHotTESTregScaled = scaler.transform(oneHotTESTreg)
+	
+	# CACHE RDDS IN MEMORY
+	indexedTESTbinary.cache();
+	oneHotTESTbinary.cache();
+	indexedTESTreg.cache();
+	oneHotTESTreg.cache();
+	oneHotTESTregScaled.cache();
+	
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰9.94 秒
+
+
+## 使用羅吉斯迴歸模型進行評分，並將輸出儲存至 blob
+
+本節的程式碼示範如何載入 Azure blob 儲存體中儲存的羅吉斯迴歸模型，並使用它來預測是否支付計程車車程的小費、使用標準分類度量評分，然後儲存結果並將其繪製至 blob 儲存體。評分的結果會儲存在 RDD 物件。
+
+
+	# SCORE AND EVALUATE LOGISTIC REGRESSION MODEL
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+	
+	# IMPORT LIBRARIES
+	from pyspark.mllib.classification import LogisticRegressionModel
+	
+	## LOAD SAVED MODEL
+	savedModel = LogisticRegressionModel.load(sc, logisticRegFileLoc)
+	predictions = oneHotTESTbinary.map(lambda features: (float(savedModel.predict(features))))
+	
+	## SAVE SCORED RESULTS (RDD) TO BLOB
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	logisticregressionfilename = "LogisticRegressionWithLBFGS_" + datestamp + ".txt";
+	dirfilename = scoredResultDir + logisticregressionfilename;
+	predictions.saveAsTextFile(dirfilename)
+	
+	
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰32.46 秒
+
+
+## 評分線性迴歸模型
+
+我們搭配使用 [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) 與隨機梯度下降 (SGD) 來訓練線性迴歸模型，以最佳化的方式預測支付的小費金額。
+
+本節的程式碼示範如何從 Azure blob 儲存體載入線性迴歸模型、使用調整變數評分，然後將結果存回 blob。
+
+	#SCORE LINEAR REGRESSION MODEL
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+	
+	#LOAD LIBRARIES​
+	from pyspark.mllib.regression import LinearRegressionWithSGD, LinearRegressionModel
+	
+	# LOAD MODEL AND SCORE USING ** SCALED VARIABLES **
+	savedModel = LinearRegressionModel.load(sc, linearRegFileLoc)
+	predictions = oneHotTESTregScaled.map(lambda features: (float(savedModel.predict(features))))
+	
+	# SAVE RESULTS
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	linearregressionfilename = "LinearRegressionWithSGD_" + datestamp;
+	dirfilename = scoredResultDir + linearregressionfilename;
+	predictions.saveAsTextFile(dirfilename)
+	
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL​
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰25.00 秒
+
+
+## 評分分類和迴歸的隨機樹系模型
+
+本節的程式碼示範如何載入已儲存的分類和迴歸的隨機樹系模型 (儲存在 Azure blob 儲存體)、使用標準分類器和迴歸措施來評分其效能，然後將結果存回 blob 儲存體。
+
+[隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests)是整體的決策樹。其結合許多決策樹以降低風險過度膨脹。隨機樹系可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
+
+[spark.mllib](http://spark.apache.org/mllib/) 使用連續和分類功能來支援二進位和多類別分類和迴歸的隨機樹系。
+
+	# SCORE RANDOM FOREST MODELS FOR CLASSIFICATION AND REGRESSION
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+
+	#IMPORT MLLIB LIBRARIES	
+	from pyspark.mllib.tree import RandomForest, RandomForestModel
+	
+	
+	# CLASSIFICATION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+	savedModel = RandomForestModel.load(sc, randomForestClassificationFileLoc)
+	predictions = savedModel.predict(indexedTESTbinary)
+	
+	# SAVE RESULTS
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	rfclassificationfilename = "RandomForestClassification_" + datestamp + ".txt";
+	dirfilename = scoredResultDir + rfclassificationfilename;
+	predictions.saveAsTextFile(dirfilename)
+	
+
+	# REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+	savedModel = RandomForestModel.load(sc, randomForestRegFileLoc)
+	predictions = savedModel.predict(indexedTESTreg)
+	
+	# SAVE RESULTS
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	rfregressionfilename = "RandomForestRegression_" + datestamp + ".txt";
+	dirfilename = scoredResultDir + rfregressionfilename;
+	predictions.saveAsTextFile(dirfilename)
+
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+
+**輸出：**
+
+執行上述儲存格所花費的時間︰52.2 秒
+
+
+## 評分分類和迴歸的漸層停駐提升樹狀結構模型
+
+本節的程式碼示範如何從 Azure blob 儲存體載入分類和迴歸的漸層停駐提升樹狀結構模型、使用標準分類器和迴歸措施來評分其效能，然後將結果存回 blob 儲存體。
+
+**spark.mllib** 使用連續和分類功能來支援二進位分類和迴歸的 GBT。
+
+[漸層停駐提升樹狀結構](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。GBT 可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。它們也可用於多類別分類設定。
+
+
+	# SCORE GRADIENT BOOSTING TREE MODELS FOR CLASSIFICATION AND REGRESSION
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+
+	#IMPORT MLLIB LIBRARIES
+	from pyspark.mllib.tree import GradientBoostedTrees, GradientBoostedTreesModel
+	
+	# CLASSIFICATION:LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+
+	#LOAD AND SCORE THE MODEL
+	savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeClassificationFileLoc)
+	predictions = savedModel.predict(indexedTESTbinary)
+	
+	# SAVE RESULTS
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	btclassificationfilename = "GradientBoostingTreeClassification_" + datestamp + ".txt";
+	dirfilename = scoredResultDir + btclassificationfilename;
+	predictions.saveAsTextFile(dirfilename)
+	
+
+	# REGRESSION: LOAD SAVED MODEL, SCORE AND SAVE RESULTS BACK TO BLOB
+
+	# LOAD AND SCORE MODEL 
+	savedModel = GradientBoostedTreesModel.load(sc, BoostedTreeRegressionFileLoc)
+	predictions = savedModel.predict(indexedTESTreg)
+	
+	# SAVE RESULTS
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	btregressionfilename = "GradientBoostingTreeRegression_" + datestamp + ".txt";
+	dirfilename = scoredResultDir + btregressionfilename;
+	predictions.saveAsTextFile(dirfilename)
+
+
+	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+	
+**輸出：**
+
+執行上述儲存格所花費的時間︰27.73 秒
+
+## 從記憶體清除物件和列印計分的檔案位置
+
+	# UNPERSIST OBJECTS CACHED IN MEMORY
+	taxi_df_test_cleaned.unpersist()
+	indexedTESTbinary.unpersist();
+	oneHotTESTbinary.unpersist();
+	indexedTESTreg.unpersist();
+	oneHotTESTreg.unpersist();
+	oneHotTESTregScaled.unpersist();
+
+
+	# PRINT OUT PATH TO SCORED OUTPUT FILES
+	print "logisticRegFileLoc: " + logisticregressionfilename;
+	print "linearRegFileLoc: " + linearregressionfilename;
+	print "randomForestClassificationFileLoc: " + rfclassificationfilename;
+	print "randomForestRegFileLoc: " + rfregressionfilename;
+	print "BoostedTreeClassificationFileLoc: " + btclassificationfilename;
+	print "BoostedTreeRegressionFileLoc: " + btregressionfilename;
+
+
+**輸出：**
+
+logisticRegFileLoc: LogisticRegressionWithLBFGS\_2016-04-1917\_22\_36.354603.txt
+
+linearRegFileLoc: LinearRegressionWithSGD\_2016-04-1917\_23\_06.083178
+
+randomForestClassificationFileLoc: RandomForestClassification\_2016-04-1917\_23\_33.994108.txt
+
+randomForestRegFileLoc: RandomForestRegression\_2016-04-1917\_24\_00.352683.txt
+
+BoostedTreeClassificationFileLoc: GradientBoostingTreeClassification\_2016-04-1917\_24\_21.465683.txt
+
+BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression\_2016-04-1917\_24\_32.371641.txt
+
+
+
+## 透過 Web 介面使用 Spark 模型
+
+Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從遠端提交批次工作或互動式查詢。Livy 預設在 HDInsight Spark 叢集上啟用。如需 Livy 的詳細資訊，請參閱[使用 Livy 遠端提交 Spark 工作](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。
+
+您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用 **Microsoft Azure 儲存體總管**或 **AzCopy** 之類的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ***wasb:///example/python/ConsumeGBNYCReg.py***。
+
+>AZURE.NOTE︰您可在入口網站上，為 Spark 叢集關聯的儲存體帳戶尋找需要的存取金鑰。
+
+一旦上傳至這個位置，此指令碼會在分散式內容的 Spark 叢集內執行。它會載入模型，並在以模型為基礎的輸入檔上執行預測。
+
+您可以在 Livy 上進行簡單的 HTTPS/REST 要求，從遠端叫用此指令碼。以下是 curl 命令，可建構 HTTP 要求以遠端叫用 Python 指令碼。您需要將 CLUSTERLOGIN、CLUSTERPASSWORD、CLUSTERNAME 取代為 Spark 叢集的適當值。
+
+
+	# CURL COMMAND TO INVOKE PYTHON SCRIPT WITH HTTP REQUEST
+
+    curl -k --user "CLUSTERLOGIN:CLUSTERPASSWORD" -X POST --data "{"file": "wasb:///example/python/ConsumeGBNYCReg.py"}" -H "Content-Type: application/json" https://CLUSTERNAME.azurehdinsight.net/livy/batches
+
+您可以藉由基本驗證來進行簡單 HTTPS 呼叫，使用遠端系統上的任何語言來叫用 Spark 作業。
+
+>AZURE.NOTE︰進行此 HTTP 呼叫時可方便地使用 Python 要求程式庫，但目前預設不會在 Azure Functions 中安裝它。因此會改用較舊的 HTTP 程式庫。
+
+以下是 HTTP 呼叫的 Python 程式碼 ︰
+
+	#MAKE AN HTTPS CALL ON LIVY. 
+
+	import os
+
+	# OLDER HTTP LIBRARIES USED HERE INSTEAD OF THE REQUEST LIBRARY AS THEY ARE AVAILBLE BY DEFAULT
+	import httplib, urllib, base64
+	
+	# REPLACE VALUE WITH ONES FOR YOUR SPARK CLUSTER
+	host = '<spark cluster name>.azurehdinsight.net:443'
+	username='<username>'
+	password='<password>'
+	
+	#AUTHORIZATION
+	conn = httplib.HTTPSConnection(host)
+	auth = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+	headers = {'Content-Type': 'application/json', 'Authorization': 'Basic %s' % auth}
+	
+	# SPECIFY THE PYTHON SCRIPT TO RUN ON THE SPARK CLUSTER
+	# IN THE FILE PARAMETER OF THE JSON POST REQUEST BODY
+	r=conn.request("POST", '/livy/batches', '{"file": "wasb:///example/python/ConsumeGBNYCReg.py"}', headers )
+	response = conn.getresponse().read()
+	print(response)
+	conn.close()
+
+
+您也可以將此 Python 程式碼新增至 [Azure Functions](../functions/) 以觸發 Spark 作業提交，以根據各種事件 (像是計時器、建立或更新 blob) 來評分 blob。
+
+如果您偏好程式碼可用的用戶端體驗，請使用 [Azure Logic Apps](../app-service/logic/) 來叫用 Spark 批次評分，方法是在 [Logic Apps Designer] 上定義 HTTP 動作並設定它的參數。
+
+- 從 Azure 入口網站中，選取 [+ 新增] -> [ Web + 行動 ] -> [邏輯應用程式] 來建立新的邏輯應用程式。 
+- 輸入邏輯應用程式和 App Service 方案的名稱來引進 **Logic Apps Designer**。
+- 選取 HTTP 動作，然後輸入下圖顯示的參數︰
+
+![](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
+
+<!---HONumber=AcomDC_0420_2016-->

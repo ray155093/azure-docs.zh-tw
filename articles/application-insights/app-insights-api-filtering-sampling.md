@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="02/25/2016" 
+	ms.date="04/13/2016" 
 	ms.author="awills"/>
 
 # 在 Application Insights SDK 中取樣、篩選及前置處理遙測
@@ -40,7 +40,7 @@
 
 [取樣](app-insights-sampling.md)是減少流量同時保留準確的統計資料所建議的方式。篩選器會選取相關的項目，使得您可以瀏覽診斷中的項目。事件計數會在計量瀏覽器中調整，以補償所篩選的項目。
 
-* 建議使用調適性取樣。它會自動調整取樣百分比，以達到特定的要求量。目前僅供 ASP.NET 伺服器端遙測使用。  
+* 建議使用調適性取樣。它會自動調整取樣百分比，以達到特定的要求量。目前僅供 ASP.NET 伺服器端遙測使用。 
 * [固定取樣率](app-insights-sampling.md)也可供使用。由您指定取樣百分比。可供 ASP.NET Web 應用程式程式碼和 JavaScript Web 頁面使用。用戶端和伺服器會同步處理它們的取樣，讓您可以在 [搜尋] 終於相關的頁面檢視和要求之間瀏覽。
 * 在 Application Insights 入口網站中收到遙測時會進行擷取取樣，所以無論使用何種 SDK 都可運用它。它不會減少網路上的遙測流量，但卻會降低 Application Insights 中處理與儲存的數量。只有保留的遙測會計入您的每月配額中。 
 
@@ -48,9 +48,11 @@
 
 從 [設定] 列中，開啟 [配額和價格] 刀鋒視窗。按一下 [取樣]，並選取取樣比率。
 
+如果 SDK 執行固定或自適性取樣，則不執行擷取。當 SDK 的取樣率小於 100% 時，即忽略擷取取樣設定。
+
 ### 啟用調適性取樣
 
-**更新專案的 NuGet** 套件至最新的 Application Insights「預先發行」版本：以滑鼠右鍵按一下方案總管中的專案，選擇 [管理 NuGet 封裝]，然後核取 [包含發行前版本] 並搜尋 Microsoft.ApplicationInsights.Web。
+**更新專案的 NuGet** 套件至最新的 Application Insights *預先發行*版本：以滑鼠右鍵按一下方案總管中的專案，選擇 [管理 NuGet 封裝]，然後核取 [包含發行前版本] 並搜尋 Microsoft.ApplicationInsights.Web。
 
 您可以針對下列項目，在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中調整演算法所針對最大的遙測率：
 
@@ -407,4 +409,4 @@ public void Process(ITelemetry item)
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

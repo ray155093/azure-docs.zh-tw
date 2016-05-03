@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/29/2016"
+   ms.date="04/19/2016"
    ms.author="larryfr"/>
 
 #使用 Ambari REST API 管理 HDInsight 叢集
@@ -29,6 +29,9 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 * [cURL](http://curl.haxx.se/)：cURL 是跨平台公用程式，可以用來從命令列使用 REST API。在本文件中，它用來與 Ambari REST API 進行通訊。
 * [jq](https://stedolan.github.io/jq/)：jq 是跨平台命令列公用程式，可與 JSON 文件搭配使用。在這份文件中，它用來剖析從 Ambari REST API 傳回的 JSON 文件。
+* [Azure CLI](../xplat-cli-install.md)：跨平台命令列公用程式，可與 Azure 服務搭配使用。
+
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 ##<a id="whatis"></a>什麼是 Ambari？
 
@@ -111,7 +114,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
     wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net
 
-之後您可以使用這項資訊搭配 [Azure CLI](../xplat-cli-install.md) 來上傳或從容器下載資料。例如：
+之後您可以使用這項資訊搭配 [Azure CLI](../xplat-cli-install.md) 來上傳或從容器下載資料。
 
 1. 取得儲存體帳戶的資源群組。將 __ACCOUNTNAME__ 取代為從 Ambari 擷取的儲存體帳戶名稱：
 
@@ -143,7 +146,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
         curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME?fields=Clusters/desired_configs"
         
-    這會傳回 JSON 文件，其中包含叢集上安裝之元件的目前組態 (由「標記」 值識別)。例如，以下是摘錄自從 Spark 叢集類型傳回的資料。
+    這會傳回 JSON 文件，其中包含叢集上安裝之元件的目前組態 (由 _tag_ 值識別)。例如，以下是摘錄自從 Spark 叢集類型傳回的資料。
     
         "spark-metrics-properties" : {
             "tag" : "INITIAL",
@@ -161,7 +164,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
             "version" : 1
         }
 
-    從此清單中，您需要複製元件的名稱 (例如，__spark\_thrift\_sparkconf__ 和__標記__值。
+    從此清單中，您需要複製元件的名稱 (例如，__spark\_thrift\_sparkconf__ 和 __tag__ 值。
     
 2. 使用下列命令以擷取元件和標記的組態。將 __spark-thrift-sparkconf__ 和 __INITIAL__ 取代為您想要擷取其組態的元件和標記。
 
@@ -169,11 +172,11 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
     
     Curl 會擷取 JSON 文件，然後 jq 用來做一些修改以建立範本，讓我們可用來新增/修改組態值。它特別具有下列功能：
     
-    * 建立唯一的值，其中包含字串「版本」和日期，會儲存在 __newtag__
+    * 建立唯一的值，其中包含字串 "string" 和日期，會儲存在 __newtag__
     * 建立新的所需組態的根文件
-    * 取得 .items 陣列的內容，並且在 __desired\_config__ 元素底下新增。
-    * 刪除 __href__、__version__ 和 __Config__ 元素，因為不需要提交新的組態
-    * 新增新的 __tag__ 元素，並且將其值設為 __version#################__，其中數值部分是根據目前的日期。每個組態都必須有唯一的標記。
+    * 取得 .items 陣列的內容，並且在 __desired\_config__ 元素底下加入。
+    * 刪除 __href__、__version__ 和 __Config__ 元素，因為提交新組態時不需要這些
+    * 加入新的 __tag__ 元素，並且將其值設為 __version#################__，其中數值部分是根據目前的日期。每個組態都必須有唯一的標記。
     
     最後，將資料儲存至 __newconfig.json__ 文件。此文件結構類似以下內容：
     
@@ -191,7 +194,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
             }
         }
 
-3. 開啟 __newconfig.json__ 文件並且在 __properties__ 物件中修改/新增值。例如，將 __"spark.yarn.am.memory"__ 的值從 __"1g"__ 變更為 __"3g"__，並且針對 __"spark.kryoserializer.buffer.max"__ 以值 __"256m"__ 新增新元素。
+3. 開啟 __newconfig.json__ 文件並且在 __properties__ 物件中修改/加入值。例如，將 __"spark.yarn.am.memory"__ 的值從 __"1g"__ 變更為 __"3g"__，並且針對 __"spark.kryoserializer.buffer.max"__ 以值 __"256m"__ 加入新元素。
 
         "spark.yarn.am.memory": "3g",
         "spark.kyroserializer.buffer.max": "256m",
@@ -202,11 +205,11 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
         cat newconfig.json | curl -u admin:PASSWORD -H "X-Requested-By: ambari" -X PUT -d "@-" "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME"
         
-    此命令使用管線將 __newconfig.json__ 檔案的內容傳送至 curl 要求，會將它提交至叢集中做為所需的組態。這會傳回 JSON 文件。這份文件中的 __VersionTag__ 元素應符合您所提交的版本，__configs__ 物件將會包含您所要求的組態變更。
+    此命令使用管線將 __newconfig.json__ 檔案的內容傳送至 CURL 要求，後者會將它提交至叢集中作為所需的新組態。這會傳回 JSON 文件。這份文件中的 __versionTag__ 元素應符合您所提交的版本，__configs__ 物件將會包含您所要求的組態變更。
 
 ###範例︰重新啟動服務元件
 
-此時，如果您看一下 Ambari Web UI，Spark 服務就會指出它需要重新啟動，新組態才會生效。使用下列步驟重新啟動服務。更仔細看會指出
+此時，如果您看一下 Ambari Web UI，Spark 服務就會指出它需要重新啟動，新組態才會生效。使用下列步驟重新啟動服務。
 
 1. 使用以下命令以啟用 Spark 服務的維護模式。
 
@@ -232,7 +235,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
             }
         }
     
-    這個 URI 所傳回的 `href` 值是使用叢集節點的內部 IP 位址。若要從叢集之外使用它，請將 '10.0.0.18:8080' 部分取代為叢集的 FQDN。例如，以下命令會擷取要求的狀態。
+    這個 URI 所傳回的 `href` 值會使用叢集節點的內部 IP 位址。若要從叢集之外使用它，請將 '10.0.0.18:8080' 部分取代為叢集的 FQDN。例如，以下命令會擷取要求的狀態。
     
         curl -u admin:PASSWORD -H "X-Requested-By: ambari" "https://CLUSTERNAME/api/v1/clusters/CLUSTERNAME/requests/29" | jq .Requests.request_status
     
@@ -254,4 +257,4 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 > [AZURE.NOTE] 某些 Ambari 功能已停用，因為這些功能是由 HDInsight 雲端服務所管理；例如，在叢集中新增或移除主機，或新增服務。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

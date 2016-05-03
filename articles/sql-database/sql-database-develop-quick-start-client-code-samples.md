@@ -3,8 +3,8 @@
 	description="提供適用於 Linux 上的 Node.js、Mac OS 上的 Python、Java 與 Windows、企業程式庫，以及 Azure SQL Database 用戶端的程式碼範例與驅動程式。"
 	services="sql-database" 
 	documentationCenter="" 
-	authors="MightyPen" 
-	manager="jeffreyg" 
+	authors="annemill" 
+	manager="jhubbard" 
 	editor=""/>
 
 
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="01/10/2016" 
-	ms.author="genemi"/>
+	ms.author="annemill"/>
 
 
 # SQL Database 的用戶端快速入門程式碼範例
@@ -94,4 +94,4 @@
 - [建立您的第一個 Azure SQL Database](sql-database-get-started.md)
 - [Entity Framework 6 在此處，EF 7 在 GitHub 上](http://entityframework.codeplex.com/)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

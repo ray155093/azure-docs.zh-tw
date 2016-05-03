@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="12/17/2015"
+   ms.date="04/18/2016"
    ms.author="tarcher" />
 
 
@@ -80,7 +80,7 @@
 
 若要了解有關 Visual Studio 中的效能分析的詳細資訊，請參閱[效能分析的初學者指南](https://msdn.microsoft.com/library/azure/ms182372.aspx)和[使用分析工具來分析應用程式效能](https://msdn.microsoft.com/library/azure/z9z62c29.aspx)。
 
->[AZURE.NOTE]發佈雲端服務時，您可以啟用 IntelliTrace 或分析。您不能同時啟用。
+>[AZURE.NOTE] 發佈雲端服務時，您可以啟用 IntelliTrace 或分析。您不能同時啟用。
 
 ###分析工具收集方法
 
@@ -102,7 +102,7 @@
 
 ![設定分析設定](./media/vs-azure-tools-performance-profiling-cloud-services/IC526984.png)
 
->[AZURE.NOTE]若要啟用 [啟用分析] 核取方塊，您必須要在用來發佈雲端服務的本機電腦上安裝分析工具。根據預設，當您安裝 Visual Studio 時會一併安裝程式碼剖析工具。
+>[AZURE.NOTE] 若要啟用 [啟用分析] 核取方塊，您必須要在用來發佈雲端服務的本機電腦上安裝分析工具。根據預設，當您安裝 Visual Studio 時會一併安裝程式碼剖析工具。
 
 ### 設定分析設定
 
@@ -146,4 +146,4 @@
 
 [從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)
 
-<!---HONumber=AcomDC_1223_2015-->
+<!---HONumber=AcomDC_0420_2016-->

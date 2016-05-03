@@ -1,22 +1,37 @@
-<properties pageTitle="針對使用資源管理員 | Microsoft Azure 的 VPN 閘道設定強制通道" description="如果您擁有使用跨單位 VPN 閘道的虛擬網路，您可以重新導向或「強制」所有網際網路繫結流量傳回內部部署位置。本文適用於資源管理員部署模型。" services="vpn-gateway" documentationCenter="na" authors="cherylmc" manager="carolz" editor="" tags="azure-resource-manager"/>
-<tags  
+<properties 
+   pageTitle="使用 Resource Manager 針對 VPN 閘道設定強制通道 | Microsoft Azure"
+   description="如果您擁有使用跨單位 VPN 閘道的虛擬網路，則可以將所有網際網路繫結流量重新導向或「強制」傳回內部部署位置。本文適用於資源管理員部署模型。"
+   services="vpn-gateway"
+   documentationCenter="na"
+   authors="cherylmc"
+   manager="carmonm"
+   editor=""
+   tags="azure-resource-manager"/>
+<tags 
    ms.service="vpn-gateway"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="11/17/2015"
+   ms.date="04/12/2016"
    ms.author="cherylmc" />
 
 # 使用 PowerShell 和 Azure 資源管理員設定強制通道
 
 > [AZURE.SELECTOR]
-- [PowerShell - Service Management](vpn-gateway-about-forced-tunneling.md)
-- [PowerShell - Resource Manager](vpn-gateway-forced-tunneling-rm.md)
+- [PowerShell - 服務管理](vpn-gateway-about-forced-tunneling.md)
+- [PowerShell - 資源管理員](vpn-gateway-forced-tunneling-rm.md)
 
-本文適用於使用 Azure 資源管理員部署模型建立的 VNet 和 VPN 閘道。如果您想要為使用服務管理 (也稱為「傳統部署模型」) 建立的 VNets 設定強制通道，請參閱[設定強制通道](vpn-gateway-about-forced-tunneling.md)。
+本文適用於使用 Azure 資源管理員部署模型建立的 VNet 和 VPN 閘道。
 
-[AZURE.INCLUDE [vpn-gateway-sm-rm](../../includes/vpn-gateway-sm-rm-include.md)]
+**關於 Azure 部署模型**
+
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+**強制通道的部署模型和工具**
+
+[AZURE.INCLUDE [vpn-gateway-table-forced-tunneling](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
+
 
 ## 有關強制通道
 
@@ -59,9 +74,10 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 
 在開始設定之前，請確認您具備下列項目。
 
-- Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-- Azure PowerShell Cmdlet (1.0 或更新版本)。比 1.0 更早的版本並不包含此組態所需的 Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 Windows PowerShell 區段下載並安裝此版本。如果您不是很了解如何安裝及設定 PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以取得詳細資訊。
+- 您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet (1.0 或更新版本)。如需安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+
 
 ### 組態步驟
 
@@ -75,7 +91,7 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 
 2. 指定您要使用的訂用帳戶。
 
-		Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+		Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
 		
 3. 建立資源群組。
 
@@ -134,4 +150,4 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 		Get-AzureRmVirtualNetworkGatewayConnection -Name "Connection1" -ResourceGroupName "ForcedTunneling"
 		
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

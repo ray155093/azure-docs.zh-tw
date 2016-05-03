@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/22/2016"
+   ms.date="04/19/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 建立 Azure 專案
@@ -62,4 +62,4 @@ Azure 雲端服務解決方案包含下列專案類型：
 
 1. 若要重新命名已加入至專案的角色，請將游標放在 [新增 Azure 專案] 對話方塊中的角色上面，然後選擇角色右側的 [重新命名]。您也可以為已加入方案的角色重新命名。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

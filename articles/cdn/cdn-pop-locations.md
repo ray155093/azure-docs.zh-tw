@@ -40,6 +40,7 @@
 ## 南美洲
 
 - 聖保羅
+- 里約熱內盧
 - 基多
 - Medellin
 - 布宜諾斯艾利斯
@@ -84,4 +85,4 @@
 
 您可能聽說過 Microsoft 已[與 Akamai 合作](https://azure.microsoft.com/blog/microsoft-and-akamai-bring-cdn-to-azure-customers/)。在未來幾個月內，我們將藉此合作機會大幅提升 Azure CDN 在世界各地的普及率。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

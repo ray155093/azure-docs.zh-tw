@@ -23,9 +23,9 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 
 本文將逐步引導您使用 Service Fabric 內部部署 (但可針對其他任何環境輕鬆地調整，例如其他雲端) 的獨立套件完成建立叢集的步驟。
 
-## Service Fabric 獨立套件
+## 下載 Service Fabric 獨立封裝
 
-適用於 Windows Server 2012 R2 部署的 Service Fabric 獨立套件的名稱為 *Microsoft.Azure.ServiceFabric.WindowsServer.&lt;version&gt;.zip*，可以在[這裡](http://go.microsoft.com/fwlink/?LinkId=730690)下載。
+[下載適用於 Windows Server 2012 R2 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690)，名稱為 *Microsoft.Azure.ServiceFabric.WindowsServer.&lt;version&gt;.zip*。
 
 在下載套件中，您將會找到下列檔案︰
 
@@ -114,4 +114,4 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 深入了解 Azure 叢集和獨立叢集︰
 - [獨立叢集建立功能以及與 Azure 受管理叢集比較的概觀](service-fabric-deploy-anywhere.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# 機器學習 - 使用 MLLib 和 HDInsight (Linux) 上的 Spark 對食品檢查資料進行預測分析
+# 機器學習服務：使用 MLLib 和 HDInsight Linux (預覽) 上的 Spark 對食品檢查資料進行預測分析
 
 > [AZURE.TIP] 本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。若要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾下的 Notebook **Spark 機器學習服務 - 使用 MLLib.ipynb 對食品檢查資料進行預測分析**。
 
@@ -412,4 +412,4 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

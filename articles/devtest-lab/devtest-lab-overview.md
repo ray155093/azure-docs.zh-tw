@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/30/2016"
+	ms.date="04/19/2016"
 	ms.author="tarcher"/>
 
 #什麼是研發/測試實驗室？
@@ -66,4 +66,4 @@ Azure 研發/測試實驗室是一項服務，可協助開發人員和測試人�
 
 若要開始使用研發/測試實驗室，請遵循[建立 Azure 研發/測試實驗室](devtest-lab-create-lab.md)逐步教學課程。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

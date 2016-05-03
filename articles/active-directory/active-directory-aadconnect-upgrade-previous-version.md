@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="Identity"
-   ms.date="02/29/2016"
+   ms.date="04/14/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：從舊版升級到最新版本
-本主題說明各種能夠把您的 Azure AD Connect 安裝升級到最新版本的不同方法。我們建議您讓 Azure AD Connect 保持在最新版本。
+本主題說明各種能夠把您的 Azure AD Connect 安裝升級到最新版本的方法。我們建議您讓 Azure AD Connect 保持在最新版本。
 
 如果您想要從 DirSync 升級，請改為參閱[從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)。
 
@@ -32,7 +32,7 @@
 如需必要權限的相關資訊，請參閱[升級所需的權限](active-directory-aadconnect-accounts-permissions.md#upgrade)。
 
 ## 就地升級
-就地升級適用於 Azure AD Sync 或 Azure AD Connect，但不適用於 DirSync，或是利用 FIM + Azure AD 連接器的解決方案。
+就地升級適用於 Azure AD Sync 或 Azure AD Connect，但不適用於 DirSync，也不適用於任何利用 FIM + Azure AD 連接器的解決方案。
 
 如果您只有一台伺服器，且擁有的物件少於 100000 個，這個方法是最適合您的。升級完成之後，系統會進行完整匯入及完整同步處理的作業。這能確保新的組態會套用到系統中所有現有的物件。這可能需要幾個小時的時間，視同步化引擎作業範圍內的物件數目而定。平常的差異同步處理排程 (預設為每隔 30 分鐘) 會暫停，但密碼同步處理會繼續進行。我們建議您在週末時進行就地升級。
 
@@ -45,26 +45,28 @@
 
 因此，我們建議您改用變換移轉方法。如要使用這個方法，您必須要有 (至少) 兩台伺服器，一台是作用中伺服器，而另一台是預備伺服器。作用中伺服器 (下圖中的藍色實線) 會負責處理作用中的負載，而預備伺服器 (下圖中的紫色虛線) 會進行系統升級作業；升級完畢之後，您會把這台伺服器的狀態改為作用中。現在，先前的作用中伺服器就擁有舊版的系統，而您會把它變成預備伺服器，然後進行升級。
 
+兩部伺服器可以使用不同版本，例如打算解除任務的作用中伺服器可以使用 Azure AD 同步，而新的預備伺服器可以使用 Azure AD Connect。
+
 ![預備伺服器](./media/active-directory-aadconnect-upgrade-previous-version/stagingserver1.png)
 
 請注意：我們注意到有些客戶在進行變換移轉時，會使用三或四台伺服器。因為預備伺服器正在升級，萬一您在這段期間有[災害復原](active-directory-aadconnectsync-operations.md#disaster-recovery)的需求，將會沒有備用伺服器可用。如果您使用最多四台伺服器，就能準備一組有新版本系統的主要/待命伺服器，以確保您永遠都有預備伺服器來接收工作。
 
-下列步驟也適用於從 Azure AD Sync 升級的案例，或是利用 FIM + Azure AD 連接器的解決方案。但這些步驟並不適用於 DirSync，不過您可以在[升級 Azure Active Directory 同步 (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md)一文中，找到 DirSync 適用的相同變換移轉 (也稱為平行部署) 方法的步驟。
+下列步驟也適用於從 Azure AD Sync 升級的案例，或是利用 FIM + Azure AD 連接器的解決方案。但這些步驟並不適用於 DirSync，不過您可以在[升級 Azure Active Directory 同步作業 (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md) 一文中，找到 DirSync 適用的相同變換移轉 (也稱為平行部署) 方法的步驟。
 
 ### 變換移轉的步驟
 
-1. 確認您的作用中伺服器和預備伺服器都使用相同版本的系統。
-2. 如果您已經建立了些自訂組態，但預備伺服器並沒有這些組態，請依照＜[把自訂組態從作用中伺服器移動到預備伺服器](#move-custom-configuration-from-active-to-staging-server)＞一節中的步驟進行。
-3. 把預備伺服器升級至最新版本。
-4. 讓同步化引擎執行完整匯入及完整同步處理的作業。
-5. 確認新的組態沒有造成任何預期以外的變更，方法是使用＜[驗證伺服器的組態](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server)＞一節中「Verify」下方的步驟。如果發現預期以外的變更，請加以修正、執行匯入及同步處理作業，然後加以驗證，直到資料看起來沒問題為止。您可以在上述連結的主題中找到這些步驟。
-6. 將預備伺服器切換成作用中伺服器。這就是＜[驗證伺服器的組態](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server)＞一節中的最後一個步驟「切換作用中的伺服器」。
-7. 將目前處於預備模式的伺服器升級到最新版本。依照與先前相同的步驟，來為資料及組態升級。
+1. 如果兩部伺服器都使用 Azure AD Connect，請在開始升級之前，確認作用中伺服器和預備伺服器兩者都使用相同版本。這樣一來，您稍後更容易比較出差異。如果您從 Azure AD 同步進行升級，這些伺服器會有不同的版本。
+2. 如果您已經建立了些自訂組態，但預備伺服器並沒有這些組態，請遵循[把自訂組態從作用中伺服器移動到預備伺服器](#move-custom-configuration-from-active-to-staging-server)一節中的步驟進行。
+3. 如果您要從舊版的 Azure AD Connect 升級，請將預備伺服器升級到最新版本。如果您要從 Azure AD 同步進行移動，請在預備伺服器上安裝 Azure AD Connect。
+4. 讓同步處理引擎在預備伺服器上執行完整匯入及完整同步處理的作業。
+5. 請使用[驗證伺服器的組態](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server)一節中**驗證**下方的步驟，以確認新的組態沒有造成任何非預期的變更。如果發現預期以外的變更，請加以修正、執行匯入及同步處理作業，然後加以驗證，直到資料看起來沒問題為止。您可以在上述連結的主題中找到這些步驟。
+6. 將預備伺服器切換成作用中伺服器。這就是[驗證伺服器的組態](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server)一節中的最後一個步驟**切換作用中的伺服器**。
+7. 如果您要升級 Azure AD Connect，請將目前處於預備模式的伺服器升級到最新版本。依照與先前相同的步驟，來為資料及組態升級。如果您要從 Azure AD Sync 進行移動，現在可以關閉舊伺服器並解除任務。
 
 ### 把自訂組態從作用中伺服器移動到預備伺服器
 如果您曾經變更作用中伺服器的組態，就必須把相同的變更套用到預備伺服器上。
 
-您可以使用 PowerShell，來移動您建立的自訂同步處理規則。而其他變更則必須用相同的方式，套用在這兩套系統上。
+您可以使用 PowerShell，來移動您建立的自訂同步處理規則。而其他變更則必須用相同的方式套用在這兩套系統上，而無法透過移轉。
 
 在兩台伺服器上都必須以相同方式設定的項目：
 
@@ -72,7 +74,7 @@
 - 所有網域及 OU 篩選
 - 相同的選用功能，例如密碼同步處理及密碼回寫功能。
 
-**移動同步處理規則** 如要移動自訂的同步處理規則，請執行下列步驟：
+**移動同步處理規則**：如要移動自訂的同步處理規則，請執行下列步驟：
 
 1. 開啟作用中伺服器上的 [同步處理規則編輯器]。
 2. 選取您的自訂規則。按一下 [匯出]。此時會出現一個記事本視窗。把暫存檔案儲存成副檔名為 PS1 的檔案，這會讓該檔案變成 PowerShell 指令碼。將該 PS1 檔案複製到預備伺服器上。![同步處理規則匯出](./media/active-directory-aadconnect-upgrade-previous-version/exportrule.png)
@@ -83,4 +85,4 @@
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

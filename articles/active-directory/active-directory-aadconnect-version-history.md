@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/12/2016"
+   ms.date="04/20/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect︰版本發行歷程記錄
@@ -22,19 +22,22 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 本文旨在協助您追蹤已發行的版本，以及了解您是否需要更新為最新版本。
 
-相關連結：
+下列為相關主題的清單︰
 
-- [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。
-- 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#upgrade)
-- [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
+| 主題 | |
+| --------- | --------- |
+| 從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。 |
+| 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#upgrade) |
+| 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) |
 
 ## 1\.1.130.0
 發行日期：2016 年 4 月
 
 **新功能︰**
 
-- 在[目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)中加入對多值屬性的支援。
-- 為[自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)加入的更多組態變數支援視為符合升級資格。
+- [目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)已新增支援多重值屬性。
+- [自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)已新增支援更多組態變化，以符合升級資格。
+- 已新增一些適用於[自訂排程器](active-directory-aadconnectsync-feature-scheduler.md#custom-scheduler)的 Cmdlet。
 
 ## 1\.1.119.0
 發行日期：2016 年 3 月
@@ -62,8 +65,8 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 - 適用於快速設定客戶的[自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)功能。
 - 使用安裝精靈中的 MFA 和 PIM 來提供全域管理員支援。
-    - 如果您使用 MFA，就必須讓您的 Proxy 也允許對 https://secure.aadcdn.microsoftonline-p.com 的流量。
-    - 您必須將 https://secure.aadcdn.microsoftonline-p.com 加入信任的網站清單中，MFA 才能正常運作。
+    - 如果您使用 MFA，就必須讓您的 Proxy 也允許流向 https://secure.aadcdn.microsoftonline-p.com 的流量。
+    - 您必須將 https://secure.aadcdn.microsoftonline-p.com 加入信任的網站清單，MFA 才能正常運作。
 - 允許在初始安裝之後變更使用者的登入方法。
 - 允許在安裝精靈中使用[網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。這也會允許連線到並非所有網域都可供使用的樹系。
 - [排程器](active-directory-aadconnectsync-feature-scheduler.md)是同步處理引擎的內建功能。
@@ -75,7 +78,7 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 **新的預覽功能：**
 
-- 新的預設同步處理循環間隔為 30 分鐘。過去所有舊版本都是 3 小時。加入可變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
+- 新的預設同步處理循環間隔為 30 分鐘。過去所有舊版本都是 3 小時。已新增變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
 
 **已修正的問題：**
 
@@ -265,4 +268,4 @@ AD 帳戶必須獲得其他權限，才能讀取來自 AD 的密碼雜湊。要�
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="01/21/2016"
+   ms.date="04/14/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect 同步處理：了解架構
@@ -254,4 +254,4 @@ Metaverse 物件包含同步處理引擎具有的連接器空間中預備物件�
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

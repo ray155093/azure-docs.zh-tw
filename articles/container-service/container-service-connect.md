@@ -36,12 +36,9 @@ Azure 容器服務部署的 DC/OS 和 Swarm 叢集公開了一些 REST 端點。
 
 **PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。
 
-> SSH 連線連接埠是 2200 而非標準連接埠 22。
-
 ```bash
 # ssh sample
-
-ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]man.[REGION].cloudapp.azure.com -p 2200
+ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
 ```
 
 ### DC/OS 通道
@@ -84,11 +81,11 @@ export DOCKER_HOST=:2375
 
 將 PuTTY 下載到 Windows 系統，並執行此應用程式。
 
-輸入叢集中第一個主機的主機名稱，由叢集系統管理員使用者名稱和公用 DNS 名稱所組成。[主機名稱] 看起來像這樣：`adminuser@PublicDNS`輸入 2200 作為 [連接埠]。
+輸入叢集中第一個主機的主機名稱，由叢集系統管理員使用者名稱和公用 DNS 名稱所組成。[主機名稱] 看起來像這樣：`adminuser@PublicDNS`。輸入 2200 作為 [連接埠]。
 
 ![PuTTY 組態 1](media/putty1.png)
 
-選取 `SSH` 和 `Authentication`加入用於驗證的私密金鑰檔。
+選取 `SSH` 和 `Authentication`。加入用於驗證的私密金鑰檔。
 
 ![PuTTY 組態 2](media/putty2.png)
 
@@ -120,4 +117,4 @@ export DOCKER_HOST=:2375
 
 [使用 Azure 容器服務和 DC/OS](./container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](./container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

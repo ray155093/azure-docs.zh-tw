@@ -3,8 +3,8 @@
 	description="本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。" 
 	services="media-services" 
 	documentationCenter="" 
-	authors="Mingfeiy,willzhan,Juliako" 
-	manager="dwrede" 
+	authors="Mingfeiy" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/03/2016" 
-	ms.author="juliako"/>
+	ms.date="04/18/2016"    
+	ms.author="Mingfeiy;willzhan;Juliako"/>
 
 
 #使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務
@@ -122,4 +122,4 @@ jti|權杖的唯一識別碼 (每個權杖在 castLabs 系統中只使用一次)
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

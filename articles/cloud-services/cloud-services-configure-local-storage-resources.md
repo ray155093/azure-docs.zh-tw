@@ -1,6 +1,6 @@
 <properties
-pageTitle="在 Azure 雲端服務中設定本機儲存體資源"
-description=""
+pageTitle="在 Azure 雲端服務中設定本機儲存體資源 | Microsoft Azure"
+description="了解在 Azure 雲端服務中設定本機儲存體資源"
 services="cloud-services"
 documentationCenter=""
 authors="cristy"
@@ -56,7 +56,7 @@ ms.author="cristyg"/>
 
 如需服務定義檔的詳細資訊，請參閱 [Azure 服務定義結構描述 (.csdef 檔)](https://msdn.microsoft.com/library/azure/ee758711.aspx)。
 
-> [AZURE.NOTE]如果您是使用 Azure Tools for Microsoft Visual Studio，則可以在角色的 [**屬性**] 頁面內定義本機儲存體資源。如需詳細資訊，請參閱[使用 Visual Studio 設定 Azure 應用程式](https://msdn.microsoft.com/library/ee405486.aspx)。
+> [AZURE.NOTE] 如果您是使用 Azure Tools for Microsoft Visual Studio，則可以在角色的 [**屬性**] 頁面內定義本機儲存體資源。如需詳細資訊，請參閱[使用 Visual Studio 設定 Azure 應用程式](https://msdn.microsoft.com/library/ee405486.aspx)。
 
 ## 以程式設計方式存取本機儲存體資源
 
@@ -102,6 +102,6 @@ Azure 受管理程式庫會提供一些類別，用於從角色執行個體中�
 
 ## 後續步驟
 
-- ＜[設定 Azure 的雲端服務](https://msdn.microsoft.com/library/azure/hh124108.aspx)＞
+- [設定 Azure 的雲端服務](https://msdn.microsoft.com/library/azure/hh124108.aspx)
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0420_2016-->

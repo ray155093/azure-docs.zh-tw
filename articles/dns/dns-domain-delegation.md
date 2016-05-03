@@ -3,7 +3,7 @@
    description="了解如何變更網域委派及使用 Azure DNS 名稱伺服器提供網域主機代管。"
    services="dns"
    documentationCenter="na"
-   authors="joaoma"
+   authors="cherylmc"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 
 # 將網域委派給 Azure DNS
@@ -71,8 +71,8 @@ DNS 階層中的網域裝載於個別的 DNS 區域。這些區域遍布全球�
 
 您可以使用 Azure PowerShell 抓取授權 NS 記錄，如下所示 (記錄名稱 "@" 用來參考區域頂點的記錄)。
 
-	PS C:\> $zone = Get-AzureRmDnsZone –Name contoso.com –ResourceGroupName MyAzureResourceGroup
-	PS C:\> Get-AzureRmDnsRecordSet –Name “@” –RecordType NS –Zone $zone
+	PS C:> $zone = Get-AzureRmDnsZone –Name contoso.com –ResourceGroupName MyAzureResourceGroup
+	PS C:> Get-AzureRmDnsRecordSet –Name “@” –RecordType NS –Zone $zone
 
 	Name              : @
 	ZoneName          : contoso.com
@@ -159,4 +159,4 @@ DNS 階層中的網域裝載於個別的 DNS 區域。這些區域遍布全球�
 
 [Azure DNS REST API 參考](https://msdn.microsoft.com/library/azure/mt163862.aspx)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

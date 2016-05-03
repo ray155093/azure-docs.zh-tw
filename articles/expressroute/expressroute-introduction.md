@@ -12,7 +12,7 @@
    ms.topic="get-started-article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="01/16/2016"
+   ms.date="04/19/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 技術概觀
@@ -33,21 +33,31 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私
 
 如需詳細資訊，請參閱〈[ExpressRoute 常見問題集](expressroute-faqs.md)〉。
 
-## 如何使用 ExpressRoute 將我的網路連線到 Microsoft？
+## <a name="howtoconnect"></a>如何使用 ExpressRoute 將我的網路連線到 Microsoft？
 
-有三種方法可以在內部部署網路與 Microsoft 雲端之間建立連線。
+有三種方法可以在內部部署網路與 Microsoft Cloud 之間建立連線：
 
-1. **共置於雲端交換。** 如果您共置於具有雲端交換的設施中，您可以訂購虛擬交叉連接，透過共置提供者的乙太網路交換而連接至 Microsoft 雲端。共置提供者可以在您於共置設施中的基礎結構與 Microsoft 雲端之間，提供第 2 層交叉連接或受管理的第 3 層交叉連接。
-2.	**點對點乙太網路連線。** 您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連接到 Microsoft 雲端。點對點乙太網路提供者可以在您的網路與 Microsoft 雲端之間，提供第 2 層連線或受管理的第 3 層連線。
-3.	**任意點對任意點 (IPVPN) 網路。** 您可以整合 WAN 與 Microsoft 雲端。IPVPN 提供者 (通常是 MPLS VPN) 在您的分公司與資料中心之間提供任意點對任意點連線。Microsoft 雲端可以相互連接到您的 WAN，看起來就像任何其他分公司一樣。WAN 提供者通常會提供受管理的第 3 層連線能力。
+### 共置於雲端交換
+
+如果您共置於具有雲端交換的設施中，您可以訂購虛擬交叉連接，透過共置提供者的乙太網路交換而連接至 Microsoft 雲端。共置提供者可以在您於共置設施中的基礎結構與 Microsoft 雲端之間，提供第 2 層交叉連接或受管理的第 3 層交叉連接。
+
+### 點對點乙太網路連線 
+
+您可以透過點對點乙太網路連結，將內部部署資料中心/辦公室連接到 Microsoft 雲端。點對點乙太網路提供者可以在您的網路與 Microsoft 雲端之間，提供第 2 層連線或受管理的第 3 層連線。
+
+### 任意點對任意點 (IPVPN) 網路
+
+您可以整合 WAN 與 Microsoft 雲端。IPVPN 提供者 (通常是 MPLS VPN) 在您的分公司與資料中心之間提供任意點對任意點連線。Microsoft 雲端可以相互連接到您的 WAN，看起來就像任何其他分公司一樣。WAN 提供者通常會提供受管理的第 3 層連線能力。在上述所有連線模型中，ExpressRoute 功能與特性完全相同。
+
+連線提供者可以提供一或多個連線模型。您可以洽詢連線提供者來選擇最適合您的模型。
 
 ![](./media/expressroute-introduction/expressroute-connectivitymodels.png)
 
-在上述所有連線模型中，ExpressRoute 功能與特性完全相同。連線提供者可以提供上述清單中的一或多個連線模型。您可以洽詢連線提供者來選擇最適合您的模型。
+
 
 ## ExpressRoute 特性
 
-ExpressRoute 支援下列特性與功能。
+ExpressRoute 支援下列特性與功能：
 
 ### 第 3 層連線能力
 
@@ -59,7 +69,7 @@ Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部�
 
 ### 連線到 Microsoft 雲端服務
 
-透過 ExpressRoute 連線可存取下列服務。
+透過 ExpressRoute 連線可存取下列服務：
 
 - Microsoft Azure 服務
 - Microsoft Office 365 服務
@@ -124,4 +134,4 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0427_2016-->

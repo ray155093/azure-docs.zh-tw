@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/03/2016"  
+ 	ms.date="04/18/2016" 
 	ms.author="juliako"/>
 
 
@@ -43,7 +43,7 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 >
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。如需詳細資訊，請參閱[媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
->成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect_programmatically.md)所述，對新的 URI 進行後續呼叫。
+>成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
  
 資產是媒體服務中多種類型或物件集的容器，包括視訊、音訊、影像、縮圖集合、文字播放軌和隱藏式字幕檔案。在 REST API 中，建立資產必須傳送 POST 要求給媒體服務，並將關於您資產的任何屬性資訊放在要求主體中。
 
@@ -224,7 +224,7 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 
 ###取得上傳 URL
 
-若要接收實際的上傳 URL，請建立 SAS 定位器。定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。如需詳細資訊，請參閱 [＜定位器＞](http://msdn.microsoft.com/library/azure/hh974308.aspx)。
+若要接收實際的上傳 URL，請建立 SAS 定位器。定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。如需詳細資訊，請參閱＜定位器＞[](http://msdn.microsoft.com/library/azure/hh974308.aspx)。
 
 
 SAS URL 具有下列格式：
@@ -529,4 +529,4 @@ IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產�
 [How to Get a Media Processor]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

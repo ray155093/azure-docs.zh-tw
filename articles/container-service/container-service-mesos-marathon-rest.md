@@ -47,7 +47,7 @@ curl localhost/marathon/v2/apps
 
 ## 部署 Docker 格式化容器
 
-您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。
+您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例將會部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。另請注意，‘acceptedResourceRoles’ 屬性會設定為 ‘slave\_public’。這會將容器部署到對外公開的代理程式調整集內的代理程式。
 
 ```json
 {
@@ -55,6 +55,9 @@ curl localhost/marathon/v2/apps
   "cpus": 0.1,
   "mem": 16.0,
   "instances": 1,
+    "acceptedResourceRoles": [
+    "slave_public"
+  ],
   "container": {
     "type": "DOCKER",
     "docker": {
@@ -171,4 +174,4 @@ Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -Cont
 
 [深入了解 Meso HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。[深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

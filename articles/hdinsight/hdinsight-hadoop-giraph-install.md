@@ -42,26 +42,24 @@
 
 ## 使用入口網站安裝 Giraph
 
-[AZURE.INCLUDE [hdinsight-azure-preview-portal](../../includes/hdinsight-azure-preview-portal.md)]
-
-* [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install-v1.md)
-
 1. 使用 [自訂建立] 選項，依[在 HDInsight 建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。
 2. 在精靈的 [**指令碼動作**] 頁面上，按一下 [**加入指令碼動作**] 以提供有關指令碼動作的詳細資料，如下所示：
 
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-giraph-install/hdi-script-action-giraph.png "使用指令碼動作以自訂叢集")
 
 	<table border='1'>
-	<tr><th>屬性</th><th>值</th></tr>
-	<tr><td>名稱</td>
-		<td>指定指令碼動作的名稱。例如，<b>安裝 Giraph</b>。</td></tr>
-	<tr><td>指令碼 URI</td>
-		<td>指定統一資源識別元 (URI) 給為了自訂叢集所叫用的指令碼。例如，<i>https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1</i></td></tr>
-	<tr><td>節點類型</td>
-		<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
-	<tr><td>參數</td>
-		<td>如果指令碼要求，請指定參數。要安裝 Giraph 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
-</table>您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
+		<tr><th>屬性</th><th>值</th></tr>
+		<tr><td>名稱</td>
+			<td>指定指令碼動作的名稱。例如，<b>安裝 Giraph</b>。</td></tr>
+		<tr><td>指令碼 URI</td>
+			<td>指定統一資源識別元 (URI) 給為了自訂叢集所叫用的指令碼。例如，<i>https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1</i></td></tr>
+		<tr><td>節點類型</td>
+			<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
+		<tr><td>參數</td>
+			<td>如果指令碼要求，請指定參數。要安裝 Giraph 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
+	</table>
+
+	您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
 
 ## 使用 Giraph
 
@@ -183,4 +181,4 @@
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

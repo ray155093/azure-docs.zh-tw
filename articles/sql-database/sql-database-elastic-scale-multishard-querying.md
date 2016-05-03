@@ -3,7 +3,7 @@
 	description="使用彈性資料庫用戶端程式跨分區執行查詢。" 
 	services="sql-database" 
 	documentationCenter="" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="torsteng" 
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
-	ms.author="torsteng;sidneyh"/>
+	ms.date="04/12/2016" 
+	ms.author="torsteng"/>
 
 # 多分區查詢
 
@@ -24,16 +24,12 @@
 
 ## 概觀
 
-您可以使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)來管理分區。程式庫包含名為 **Microsoft.Azure.SqlDatabase.ElasticScale.Query** 的命名空間，提供使用單一查詢和結果來查詢多個分區的功能。它提供一組分區的查詢抽象方法。它也提供替代執行原則，特別是部分結果，以處理查詢許多分區時的失敗。
-
-多分區查詢的主要進入點是 **MultiShardConnection** 類別。如同資料相依路由一樣，API 的用法類似於 ****[System.Data.SqlClient](http://msdn.microsoft.com/library/System.Data.SqlClient(v=vs.110).aspx)** 類別和方法。使用 **SqlClient** 程式庫時，第一個步驟是建立 **SqlConnection**，再建立連接的 **SqlCommand**，然後透過其中一個 **Execute** 方法執行命令。最後，**SqlDataReader** 逐一查看從命令執行傳回的結果集。多分區查詢 API 的用法依照下列步驟：
-
-1. 建立 **MultiShardConnection**。
-2. 建立 **MultiShardConnection** 的 **MultiShardCommand**。
-3. 執行命令。
-4. 透過 **MultiShardDataReader** 來使用結果。 
-
-主要差異是多分區連接的建構方式。其中，**SqlConnection** 在單一資料庫上運作，**MultiShardConnection** 接受 ***分區集合*** 做為輸入。您可以從分區分區來填入對應的集合。然後，使用 **UNION ALL** 語意在分區集合上執行查詢，以組成單一的整體結果。(選擇性) 在命令上使用**ExecutionOptions** 屬性，可將資料列的來源分區名稱加入至輸出。
+1. 使用 [**TryGetRangeShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.trygetrangeshardmap.aspx)、[**TryGetListShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.trygetlistshardmap.aspx) 或 [**GetShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getshardmap.aspx) 方法，取得 [**RangeShardMap**](https://msdn.microsoft.com/library/azure/dn807318.aspx) 或 [**ListShardMap**](https://msdn.microsoft.com/library/azure/dn807370.aspx)。請參閱[**建構 ShardMapManager**](sql-database-elastic-scale-shard-map-management.md#constructing-a-shardmapmanager) 和[**取得 RangeShardMap 或 ListShardMap**](sql-database-elastic-scale-shard-map-management.md#get-a-rangeshardmap-or-listshardmap)。
+2. 建立 **[MultiShardConnection](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardconnection.aspx)** 物件。
+2. 建立 **[MultiShardCommand](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardcommand.aspx)**。 
+3. 將 **[CommandText 屬性](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardcommand.commandtext.aspx#P:Microsoft.Azure.SqlDatabase.ElasticScale.Query.MultiShardCommand.CommandText)**設定為 T-SQL 命令。
+3. 呼叫 **[ExecuteReader 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardcommand.executereader.aspx)**，以執行命令。
+4. 使用 **[MultiShardDataReader 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multisharddatareader.aspx)**，以檢視結果。 
 
 ## 範例
 
@@ -62,7 +58,9 @@
              	} 
            } 
     } 
+
  
+主要差異是多分區連接的建構方式。其中，**SqlConnection** 在單一資料庫上運作，**MultiShardConnection** 接受 ***分區集合*** 做為輸入。從分區對應填入分區集合。然後，使用 **UNION ALL** 語意在分區集合上執行查詢，以組成單一的整體結果。(選擇性) 在命令上使用**ExecutionOptions** 屬性，可將資料列的來源分區名稱加入至輸出。
 
 請注意 **myShardMap.GetShards()** 的呼叫。這個方法會從分區對應擷取所有分區，並提供簡單的方式跨所有相關的資料庫執行查詢。在呼叫 **myShardMap.GetShards()** 所傳回的集合分區上執行 LINQ 查詢，可以進一步調整多分區查詢的分區集合。結合部分結果原則，多分區查詢目前的功能已設計成可適當處理數十個到數百個分區。
 
@@ -73,6 +71,13 @@
 多分區查詢不會驗證所查詢資料庫上的 Shardlet 是否參與進行中的分割/合併作業。(請參閱[使用彈性資料庫分割合併工具來縮放](sql-database-elastic-scale-overview-split-and-merge.md)。) 這可能會導致不一致的情況，亦即在相同的多分區查詢中，多個資料庫顯示相同 Shardlet 的資料列。請注意這些限制，在執行多分區查詢時，請考慮清空進行中的分割/合併作業和分區對應的變更。
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+
+## 另請參閱
+**[System.Data.SqlClient](http://msdn.microsoft.com/library/System.Data.SqlClient.aspx)** 類別和方法。
+
+
+使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)來管理分區。包含稱為 [Microsoft.Azure.SqlDatabase.ElasticScale.Query](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.aspx) 的命名空間，提供使用單一查詢和結果來查詢多個分區的功能。它提供一組分區的查詢抽象方法。它也提供替代執行原則，特別是部分結果，以處理查詢許多分區時的失敗。
+
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

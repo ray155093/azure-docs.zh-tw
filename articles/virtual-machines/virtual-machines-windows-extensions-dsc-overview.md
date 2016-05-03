@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="na"
-   ms.date="01/25/2016"
+   ms.date="04/18/2016"
    ms.author="zachal"/>
 
 # Azure 期望狀態組態擴充功能處理常式簡介 #
@@ -144,4 +144,4 @@ C:\\WindowsAzure\\Logs\\Plugins\\Microsoft.Powershell.DSC[Version Number]
 
 如需將敏感性參數傳遞到組態的詳細資訊，請參閱[使用 DSC 擴充功能處理常式安全地管理認證](virtual-machines-windows-extensions-dsc-credentials.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

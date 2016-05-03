@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="04/13/2016" 
 	ms.author="awills"/>
 
 
@@ -47,7 +47,7 @@
 
 ### 如果您的應用程式是在您的 IIS 伺服器上執行
 
-如果您的 Web 應用程式在 .NET 4.6 版或更新版本上執行，並且在應用程式中[安裝 Application Insights SDK](app-insights-asp-net.md)，就會自動獲得相依性追蹤。您不需要任何其他項目。
+如果您的 Web 應用程式在 .NET 4.6 或更新版本上執行，您可以在您的應用程式[安裝 Application Insights SDK](app-insights-asp-net.md)，或安裝 Application Insights 狀態監視器。不需要安裝二個。
 
 否則，請在伺服器上安裝 Application Insights 狀態監視器：
 
@@ -170,11 +170,17 @@
 
 如果您想要關閉標準的相依性追蹤模組，請移除 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中 DependencyTrackingTelemetryModule 的參考。
 
+## 疑難排解
+
+*相依性成功旗標一律顯示 true 或 false。*
+
+* 升級到最新版本的 SDK。如果您的 .NET 版本低於 4.6，請安裝[狀態監視器](app-insights-monitor-performance-live-website-now.md)。
+
 ## 後續步驟
 
-- [例外狀況](../article/application-insights/app-insights-asp-net-exception-mvc.md#selector1)
-- [使用者和頁面資料](../article/application-insights/app-insights-asp-net-client.md#selector1)
-- [Availability](../article/application-insights/app-insights-monitor-web-app-availability.md#selector1)
+- [例外狀況](app-insights-asp-net-exception-mvc.md#selector1)
+- [使用者和頁面資料](app-insights-asp-net-client.md#selector1)
+- [Availability](app-insights-monitor-web-app-availability.md#selector1)
 
 
 
@@ -196,4 +202,4 @@
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,16 +13,16 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="01/21/2016"
+	ms.date="04/18/2016"
 	ms.author="kgremban"/>
 
 #RBAC：內建角色
 
 ## 內建角色
 
-Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派給使用者、群組與服務。您無法修改內建角色定義。在即將發佈的 Azure RBAC 版本中，您將能從可在 Azure 資源上執行的可用動作清單中撰寫一系列動作，藉此定義自訂角色。
+Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派給使用者、群組與服務。您無法修改內建角色定義。不過，您可以建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)以符合您組織的特定需求。
 
-按一下下列連結，即可查看角色定義的 [動作] 和 [非動作] 屬性。[動作] 屬性會指定 Azure 資源上允許的動作。動作字串可以使用萬用字元。角色定義的 [非動作] 屬性可指定必須從允許的動作中排除的動作。
+下表提供內建角色的簡短描述。按一下角色名稱，以查看詳細角色的**動作**和**非動作**詳細清單。[動作] 屬性會指定 Azure 資源上允許的動作。動作字串可以使用萬用字元。非動作屬性可指定從允許的動作中排除的動作。
 
 
 | 角色名稱 | 說明 |
@@ -134,7 +134,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | ------- | ------ |
 | * | 建立和管理所有類型的資源 |
 
-| **非動作** | |
+| **非動作** ||
 | ------- | ------ |
 | Microsoft.Authorization/*/Write | 無法建立角色和角色指派 |
 | Microsoft.Authorization/*/Delete | 無法刪除角色和角色指派 |
@@ -304,7 +304,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
-| **非動作** | |
+| **非動作** ||
 | ------- | ------ |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 無法編輯稽核原則 |
 | Microsoft.Sql/servers/databases/connectionPolicies/* | 無法編輯連接原則 |
@@ -346,7 +346,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
-| **非動作** | |
+| **非動作** ||
 | ------- | ------ |
 | Microsoft.Sql/servers/auditingPolicies/* | 無法編輯 SQL Server 稽核原則 |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 無法編輯 SQL Server 資料庫稽核原則 |
@@ -486,7 +486,10 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Support/* | 建立和管理支援票證 |
 | Microsoft.Insights/components/* | 建立和管理 Insights 元件 |
 
-## RBAC 主題
-[AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
+## 另請參閱
+- [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
+- [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
+- [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
+- [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得解決常見問題的建議。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

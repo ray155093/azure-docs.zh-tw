@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="04/07/2016"
+	ms.date="04/25/2016"
 	ms.author="tamram"/>
 
 
@@ -23,7 +23,7 @@
 
 ## 概觀
 
-Azure Blob 儲存體是用來在雲端中儲存檔案資料的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
+Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
 
 ### 關於本教學課程
 
@@ -51,7 +51,7 @@ Azure Blob 儲存體是用來在雲端中儲存檔案資料的服務。Blob 儲�
 
 在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
 
-	using Microsoft.Azure; // Namespace for CloudConfigurationManager 
+	using Microsoft.Azure; // Namespace for CloudConfigurationManager
 	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
     using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 
@@ -90,7 +90,7 @@ Azure Blob 儲存體是用來在雲端中儲存檔案資料的服務。Blob 儲�
 
     container.SetPermissions(
         new BlobContainerPermissions { PublicAccess =
-	 BlobContainerPublicAccessType.Blob });
+	    BlobContainerPublicAccessType.Blob });
 
 網際網路上的任何人都可以看到公用容器中的 Blob，但要有適當的帳戶存取金鑰或共用存取簽章，才能修改或刪除這些 Blob。
 
@@ -350,21 +350,39 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
 
 如需了解有關 Blob 的三種類型間差異的資訊，請參閱[了解區塊 Blob、分頁 Blob 和附加 Blob](https://msdn.microsoft.com/library/azure/ee691964.aspx)。
 
+## 管理 Blob 安全性
+
+根據預設，Azure 儲存體會限制擁有帳戶存取金鑰的帳戶擁有者的存取權來保持資料安全。當您需要共用儲存體帳戶中的 Blob 資料時，請注意不可危及您帳戶存取金鑰的安全性。此外，您可以加密 blob 資料以確保透過網路與 Azure 儲存體中的安全。
+
+[AZURE.INCLUDE [storage-account-key-note-include](../../includes/storage-account-key-note-include.md)]
+
+### 控制對 blob 資料的存取
+
+根據預設，您儲存體帳戶中的 blob 資料僅供儲存體帳戶擁有者使用。依預設，驗證對 Blob 儲存體的要求需要帳戶存取金鑰。不過，您可能想要讓特定的 blob 資料可供其他使用者使用。您有兩個選擇：
+
+- **匿名存取︰**您可讓容器或其 blob 公開供匿名存取。如需詳細資訊，請參閱[管理對容器和 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+- **共用存取簽章︰**您可為用戶端提供共用存取簽章 (SAS)，可利用您指定的權限以及透過您指定的間隔，在儲存體帳戶中提供資源的委派存取。如需詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
+
+### 加密 blob 資料
+
+Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
+
+- **用戶端加密：**支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。程式庫也支援與 Azure 金鑰保存庫整合，以進行儲存體帳戶金鑰管理。如需詳細資訊，請參閱 [Microsoft Azure 儲存體的用戶端 .NET 加密](storage-client-side-encryption.md)。另請參閱[教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)。
+- **伺服器端加密**：Azure 儲存體現在支援伺服器端加密。請參閱[待用資料的 Azure 儲存體服務加密 (預覽)](storage-service-encryption.md)。 
+
 ## 後續步驟
 
 了解 Blob 儲存體的基礎概念之後，請使用下列連結深入了解。
 
-### Blob 儲存體參考文件
+### Blob 儲存體參考
 
 - [Storage Client Library for .NET 參考資料](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
 - [REST API 參考資料](http://msdn.microsoft.com/library/azure/dd179355)
 
-### 其他功能指南
+### 概念性指南
 
-- [開始使用適用於 .NET 的資料表儲存體](storage-dotnet-how-to-use-tables.md)
-- [開始使用適用於 .NET 的佇列儲存體](storage-dotnet-how-to-use-queues.md)
-- [開始使用適用於 .NET 的檔案儲存體](storage-dotnet-how-to-use-files.md)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy)
+- [開始使用適用於 .NET 的檔案儲存體](storage-dotnet-how-to-use-files.md)
 - [如何透過 WebJobs SDK 使用 Azure Blob 儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
 
   [Blob5]: ./media/storage-dotnet-how-to-use-blobs/blob5.png
@@ -378,4 +396,4 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
   [.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
   [REST API reference]: http://msdn.microsoft.com/library/azure/dd179355
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="02/03/2016"
+ ms.date="04/18/2016"
  ms.author="nberdy"/>
 
 # 診斷度量簡介
@@ -70,4 +70,4 @@ IoT 中樞提供數個度量，以讓您概略了解中樞的健全狀況和連�
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

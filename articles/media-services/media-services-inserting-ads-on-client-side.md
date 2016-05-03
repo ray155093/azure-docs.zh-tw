@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/03/2016"
+	ms.date="04/18/2016"
 	ms.author="juliako"/>
 
 
@@ -160,7 +160,7 @@ Application/x-javascript – 資源在 HTML <**scrip**> 標記中顯示。
 
 Application/x-shockwave-flash – 資源在 Flash Player 中顯示。
 
-**<IFrameResource>** 說明 HTML 資源，可以在 IFrame 中顯示。**<HTMLResource>** 說明 HTML 程式碼的片段，可以插入至網頁。**<TrackingEvents>** 指定追蹤事件以及當發生事件時要求的 URI。在此範例中，會追蹤 acceptInvitation 和 collapse 事件。如需有關 **<NonLinearAds>** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。請注意，**<TrackingEvents>** 元素是位於 ** <NonLinearAds>** 元素內，而非 **<NonLinear>** 元素。
+**<IFrameResource>** 說明 HTML 資源，可以在 IFrame 中顯示。**<HTMLResource>** 說明 HTML 程式碼的片段，可以插入至網頁。**<TrackingEvents>** 指定追蹤事件以及當發生事件時要求的 URI。在此範例中，會追蹤 acceptInvitation 和 collapse 事件。如需有關 **<NonLinearAds>** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。請注意，**<TrackingEvents>** 元素是位於 **<NonLinearAds>** 元素內，而非 **<NonLinear>** 元素。
 
 隨播廣告會在 <CompanionAds> 元素內定義。<CompanionAds> 元素可以包含一或多個 <Companion> 元素。每個 <Companion> 元素都會說明隨播廣告，而且可以包含 <StaticResource>、<IFrameResource> 或 <HTMLResource>，其指定方式與非線性廣告相同。VAST 檔案可以包含多個隨播廣告，而且播放器應用程式可以選擇要顯示的最適當廣告。如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
 
@@ -813,4 +813,4 @@ Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合
 
 [開發視訊播放程式應用程式](media-services-develop-video-players.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -24,7 +24,13 @@
 
 如果您不指定篩選述詞，便會移轉整個資料表。
 
-在 CTP 3.1 到 RC2 中，[啟用 Stretch 資料庫精靈] 已不再提供用以指定述詞的選項。您必須使用 ALTER TABLE 陳述式以利用此選項設定 Stretch Database。如需詳細資訊，請參閱 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-table.md) 和 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。
+在 RC3 中，當您執行 [Enable Database for Stretch Wizard]\(為資料庫啟用延伸功能精靈) 時，可以移轉整個資料表，也可以在精靈中指定以簡單日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行下列其中一項作業。
+
+-   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定述詞。
+
+-   結束精靈之後，請執行 ALTER TABLE 陳述式來指定述詞。
+
+本主題後面會說明用於加入述詞的 ALTER TABLE 語法。
 
 ## 嵌入資料表值函式的基本需求
 Stretch Database 篩選述詞所需的嵌入資料表值函式看起來如下列範例所示。
@@ -70,7 +76,7 @@ RETURN	SELECT 1 AS is_eligible
 
 -   比較函式參數及常數運算式。例如，`@column1 < 1000`。
 
-    以下是檢查 [date] 資料行的值是否為 &lt; 1/1/2016 的範例。
+    以下範例會檢查 *date* 資料行的值是否為 &lt; 1/1/2016。
 
     ```tsql
     CREATE FUNCTION dbo.fn_stretchpredicate(@column1 datetime)
@@ -91,7 +97,7 @@ RETURN	SELECT 1 AS is_eligible
 
 -   使用 IN 運算子來比較函式參數及常數值清單。
 
-    以下是檢查 [shipment\_status] 資料行的值是否為 `IN (N'Completed', N'Returned', N'Cancelled')` 的範例。
+    以下範例會檢查 *shipment\_status* 資料行的值是否為 `IN (N'Completed', N'Returned', N'Cancelled')`。
 
     ```tsql
     CREATE FUNCTION dbo.fn_stretchpredicate(@column1 nvarchar(15))
@@ -151,7 +157,7 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 只要有資料表將該函式做為其篩選述詞使用，您便無法卸除嵌入資料表值函式。
 
 ## 依日期篩選資料列
-下列範例會移轉 [date] 資料行包含 2016 年 1 月 1 日之前值的資料列。
+下列範例會移轉 **date** 資料行包含 2016 年 1 月 1 日之前值的資料列。
 
 ```tsql
 -- Filter by date
@@ -165,7 +171,7 @@ GO
 ```
 
 ## 依狀態資料行中的值篩選資料列
-下列範例會移轉 [status] 資料行包含其中一個指定值的資料列。
+下列範例會移轉 **status** 資料行包含其中一個指定值的資料列。
 
 ```tsql
 -- Filter by status column
@@ -185,7 +191,7 @@ GO
 
 -   此函式會使用結構描述繫結。因此，呼叫 ALTER FUNCTION 來移動滑動視窗，並無法每天僅「就地」更新函式。
 
-開始使用與下列範例類似的篩選述詞，而此篩選述詞會移轉 [systemEndTime] 資料行包含 2016 年 1 月 1 日之前值的資料列。
+開始使用與下列範例類似的篩選述詞，而此篩選述詞會移轉 **systemEndTime** 資料行包含 2016 年 1 月 1 日之前值的資料列。
 
 ```tsql
 CREATE FUNCTION dbo.fn_StretchBySystemEndTime20160101(@systemEndTime datetime2)
@@ -212,7 +218,7 @@ SET (
 
 當您想要更新滑動視窗時，請執行下列動作。
 
-1.  建立可指定新滑動視窗的新函式。下列範例會選取 2106 年 1 月 2 日之前的日期，而不是 2016 年 1 月 1 日。
+1.  建立可指定新滑動視窗的新函式。下列範例會選取 2016 年 1 月 2 日之前的日期，而不是 2016 年 1 月 1 日。
 
 2.  呼叫 ALTER TABLE，以將先前的篩選述詞取代為新的篩選述詞 (如下列範例所示)。
 
@@ -502,4 +508,4 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 [ALTER TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

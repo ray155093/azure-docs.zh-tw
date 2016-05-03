@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/09/2016"
+   ms.date="04/12/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -86,8 +86,11 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 ### 如果我的其中一個 ExpressRoute 連結失敗，連線是否就會中斷？
 如果其中一個交叉連線失敗，您的連線就會中斷。您可以使用備援連線來支援網路的負載。為取得失敗恢復，您可以在其他對等互連位置額外建立多個電路。
 
-### 我是否必須同時設定這兩個連結，才能讓服務開始運作？
-如果您透過提供第 3 層服務的合作夥伴進行連線，則合作夥伴會代替您設定備援連結。不過，如果您已與雲端 Exchange 提供者共置，您必須對雲端交換平台設定兩個 LAN 連結。如果您透過單一 WAN 連結從私用的資料中心連線到雲端提供者，您需要在本身的路由器上終止 WAN 連結，然後對雲端交換平台設定兩個 LAN 連結。
+### 如果我不要在雲端交換中共置，而我的服務提供者提供點對點連線，我需要在內部部署網路與 Microsoft 之間訂購兩個實體連線嗎？ 
+不需要，如果您的服務提供者可以透過實體連線建立兩個乙太網路的虛擬電路，您就只需要一個實體連線。實體連線 (例如光纖) 的終點在實體層 (L1) 裝置 (請見下圖)。兩個乙太網路虛擬電路都會標記不同的 VLAN ID，一個供主要電路使用，一個供次要電路使用。這些 VLAN ID 位於外部 802.1Q 乙太網路標頭中。內部 802.1Q 乙太網路標頭 (不顯示) 會對應至特定的 [ExpressRoute 路由網域](expressroute-circuit-peerings.md)。
+
+![](./media/expressroute-faqs/expressroute-p2p-ref-arch.png)
+
 
 ### 我可以使用 ExpressRoute 來擴充其中一個至 Azure 的 VLAN 嗎？
 否。我們不支援至 Azure 的第 2 層連線擴充程式。
@@ -221,9 +224,12 @@ ExpressRoute Premium 是下面所列功能的集合。
 1. 請檢閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md)，以確定您符合需求。
 2. 請檢閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md)中的服務提供者和位置清單，以確定符合您的連線需求。
 3. 透過檢閱 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/)來計劃您的容量需求。
-4. 依照以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程線路佈建和線路狀態](expressroute-workflows.md)。
+4. 依照以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程電路佈建和電路狀態](expressroute-workflows.md)。
 
 >[AZURE.IMPORTANT] 設定與 Office 365 服務和 CRM Online 的連線時，請確定您已啟用 ExpressRoute 進階附加元件。
+
+### 我是否需要啟用 Azure 公用對等以連接至 Office 365 服務和 CRM Online？
+否，您只需要啟用 Microsoft 對等互連。將會透過 Microsoft 對等互連傳送至 Azure AD 的驗證流量。
 
 ### 我的現有 ExpressRoute 電路是否支援與 Office 365 服務和 CRM Online 連線？
 是。您可以設定現有 ExpressRoute 電路以支援與 Office 365 服務的連線。請確保您有足夠的容量可以連線到 Office 365 服務，並確定您已啟用進階附加元件。[Office 365 的網路規劃和效能調整](http://aka.ms/tune/)將協助您計劃連線需求。另請參閱[建立和修改 ExpressRoute 電路](expressroute-howto-circuit-classic.md)。
@@ -241,4 +247,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 即使 ExpressRoute 已設定供我的組織使用，我是否可以透過網際網路存取 Office 365？
 是。即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

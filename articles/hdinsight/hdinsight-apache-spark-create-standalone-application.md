@@ -14,20 +14,23 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/05/2016"
+	ms.date="04/14/2016"
 	ms.author="nitinme"/>
 
 
-# 建立獨立 Scala 應用程式，並在 HDInsight Spark 叢集 (Linux) 上執行
+# 建立獨立 Scala 應用程式，以在 HDInsight Spark Linux 叢集 (預覽) 上執行
 
-本文提供相關的逐步指引，說明如何使用 IntelliJ IDEA 開發以 Scala 撰寫的獨立 Spark 應用程式。本文以 Apache Maven 做為建置系統，並且以 IntelliJ IDEA 為 Scala 提供的現有 Maven 原型做為起始點。概括來說，要在 IntelliJ IDEA 中建立 Scala 應用程式，必須執行下列步驟：
+本文提供相關的逐步指引，說明如何使用 Maven 與 IntelliJ IDEA 開發以 Scala 撰寫的獨立 Spark 應用程式。　本文以 Apache Maven 作為建置系統，並且以 IntelliJ IDEA 為 Scala 提供的現有 Maven 原型作為起始點。概括來說，要在 IntelliJ IDEA 中建立 Scala 應用程式，必須執行下列步驟：
 
 
 * 以 Maven 做為建置系統。
-* 更新專案物件模型 (POM) 檔案，以解析 Spark 模組相依性
+* 更新專案物件模型 (POM) 檔案，以解析 Spark 模組相依性。
 * 以 Scala 撰寫應用程式。
 * 產生可提交至 HDInsight Spark 叢集的 jar 檔案。
-* 使用 spark-submit 在 Spark 叢集上執行應用程式。
+* 使用 Livy 在 Spark 叢集上執行應用程式。
+
+>[AZURE.NOTE] HDInsight 也提供 IntelliJ IDEA 外掛程式工具，可簡化建立和提交應用程式至 Linux 上之 HDInsight Spark 叢集的程序。如需詳細資訊，請參閱[使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)。
+
 
 **必要條件**
 
@@ -196,4 +199,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -3,8 +3,8 @@
 	description="針對從 ADO.NET 和 PHP 之類的技術連接到 Azure SQL Database 的用戶端程式，統合收集連結和最佳做法建議的入門主題。" 
 	services="sql-database" 
 	documentationCenter="" 
-	authors="MightyPen" 
-	manager="jeffreyg" 
+	authors="annemill" 
+	manager="jhubbard" 
 	editor=""/>
 
 
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="01/07/2016" 
-	ms.author="genemi"/>
+	ms.author="annemill"/>
 
 
 # 連接到 SQL Database：最佳做法和設計方針
@@ -177,4 +177,4 @@ Azure 系統能夠在 SQL Database 服務出現繁重的工作負載時動態重
 
 - [SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 
-<!----HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0420_2016-->

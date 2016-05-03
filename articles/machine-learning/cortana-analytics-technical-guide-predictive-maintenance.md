@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/29/2016"
+	ms.date="04/10/2016"
 	ms.author="fboylu" />
 
 # 航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的技術指南
@@ -272,4 +272,4 @@ Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果
 
 -   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

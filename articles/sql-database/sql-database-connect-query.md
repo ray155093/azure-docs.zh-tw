@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="02/05/2016"
-	ms.author="genemi"/>
+	ms.date="04/25/2016"
+	ms.author="annemill"/>
 
 
 # 以 & #x 23; 撰寫程式以查詢和連接到 SQL Database
@@ -359,4 +359,4 @@ namespace ConnectAndQuery_Example
 
 [50-VSCopyToOutputDirectoryProperty]: ./media/sql-database-connect-query/connqry-vs-appconfig-copytoputputdir-h.png
 
-<!----HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

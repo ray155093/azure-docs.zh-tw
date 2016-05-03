@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在 Azure 入口網站中建立 Windows 虛擬機器 | Microsoft Azure"
-	description="了解如何使用 Azure 入口網站中的 Azure Marketplace，建立 Windows 虛擬機器或虛擬電腦"
+	pageTitle="在 Azure 入口網站中建立 Windows VM | Microsoft Azure"
+	description="了解如何使用 Azure 入口網站建立 Windows 虛擬機器。"
 	keywords="Windows 虛擬機器,建立虛擬機器,虛擬電腦,設定虛擬機器"
 	services="virtual-machines-windows"
 	documentationCenter=""
@@ -14,43 +14,28 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="03/11/2016"
+	ms.date="04/14/2016"
 	ms.author="cynthn"/>
 
-# 在 Azure 入口網站中建立 Windows 虛擬機器#
+# 在 Azure 入口網站中建立 Windows 虛擬機器
 
-> [AZURE.SELECTOR]
-- [入口網站](virtual-machines-windows-hero-tutorial.md)
-- [PowerShell](virtual-machines-windows-create-powershell.md)
-- [範本](virtual-machines-windows-ps-template.md)
+本教學課程示範使用 Azure 入口網站建立 Windows VM 有多麼容易，只需數分鐘。我們使用 Windows Server 2012 R2 資料中心映像做為範例，這只是 Azure 提供眾多映像中的一種。您的映像選擇取決於訂用帳戶。例如，桌面映像可能可供 [MSDN 訂閱者](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)使用。
 
-
-本教學課程示範在 Azure 入口網站中建立 Windows 虛擬機器有多麼容易，只需數分鐘。我們將使用 Windows Server 2012 R2 資料中心映像做為範例來建立虛擬機器，但這只是 Azure 提供之眾多映像的其中一個。您的映像選擇取決於訂用帳戶。例如，桌面映像可能可供 MSDN 訂閱者使用。
-
-[AZURE.INCLUDE [free-trial-note](../../includes/free-trial-note.md)]<br>
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-machines-windows-classic-createportal.md)。
+如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 ## 影片逐步解說
 
-以下是本教學課程的逐步解說。
-
-[AZURE.VIDEO create-a-virtual-machine-running-windows-in-the-azure-preview-portal]
-<br>
-
->[AZURE.TIP] 使用入口網站時，如果您希望 VM 成為可用性設定組的一部分，則需要在集合中建立第一個 VM 之前或當下，建立可用性設定組。如需建立和使用可用性設定組的詳細資訊，請參閱[管理虛擬機器可用性](virtual-machines-windows-manage-availability.md)。
+以下是本教學課程的[視訊逐步解說](https://channel9.msdn.com/Blogs/Azure-Documentation-Shorts/Create-A-Virtual-Machine-Running-Windows-In-The-Azure-Preview-Portal)。
 
 
+## 從 Marketplace 選取 Windows 2012 R2 虛擬機器映像
 
-## 選取 Windows 虛擬機器映像
-
-1. 登入 Azure 入口網站。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 在 [中樞] 功能表上，依序按一下 [新增] > [計算] > [Windows Server 2012 R2 資料中心]。
 
 	![顯示在入口網站中可用 Azure VM 映像的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/marketplace_new.png)
 
-	>[AZURE.TIP] 若要尋找其他映像，請按一下 [Marketplace]，然後搜尋或篩選可用的項目。
 
 3. 在 [Windows Server 2012 R2 資料中心] 頁面中，選取 [選取部署模型] 下的 [資源管理員]。按一下 [建立]。
 
@@ -64,9 +49,10 @@
 
 2. 輸入您要用於虛擬機器的 [名稱]。名稱不能包含特殊字元。
 
-3. 輸入系統管理 [使用者名稱]，以及強式 [密碼]。密碼長度必須介於 8-123 個字元，並且具有至少 3 個下列項目：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。**您將需要使用者名稱和密碼才能登入虛擬機器**。
+3. 輸入系統管理 [使用者名稱]，以及強式 [密碼]。密碼長度必須介於 8-123 個字元，並且具有至少 3 個下列項目：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。**您需要使用者名稱和密碼才能連線至虛擬機器**。
 
-4. 如果您有一個以上的訂用帳戶，請針對新的虛擬機器，以及新的或現有的**資源群組**和 Azure 資料中心**位置**，指定一個訂用帳戶。
+
+4. 如果您有多個訂用帳戶，指定一個新的虛擬機器。選取新的或現有的[資源群組](../resource-group-overview/#resource-groups)和 Azure 資料中心**位置**，例如**美國西部**。
 
 	![顯示可針對 Azure VM 選取的基本設定的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/create_vm_basics.PNG)
 
@@ -87,34 +73,28 @@
 
 8. 當 Azure 建立虛擬機器時，您可以在 [中樞] 功能表的 [虛擬機器] 下追蹤進度。
 
-## 登入 Windows 虛擬機器
 
-建立虛擬機器之後，您就可以登入虛擬機器以管理其設定，以及將在虛擬機器上執行的應用程式。
+## 連線至虛擬機器並登入
 
->[AZURE.NOTE] 如需要求和疑難排解提示，請參閱[透過 RDP 或 SSH 連接至 Azure 虛擬機器](https://msdn.microsoft.com/library/azure/dn535788.aspx)。
+1. 如果您尚未登入 [Azure 入口網站](https://portal.azure.com/)，請先登入。
 
-1. 如果您尚未登入 Azure 入口網站，請先登入。
+2.	在 [中樞] 功能表上，按一下 [虛擬機器]。
 
-2. 按一下儀表板上的虛擬機器，或按一下虛擬機器並且從清單中選取。
+3.	然後從清單中選取虛擬機器。
 
-3. 在 [虛擬機器] 刀鋒視窗中，按一下 [連接]。
+4. 在虛擬機器的刀鋒視窗中，按一下 [**連線**]。
 
-	![顯示您在 Azure VM 刀鋒視窗上找到 [連接] 按鈕的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/connect_vm_portal.png)
+	![顯示如何連接至 VM 的 Azure 入口網站螢幕擷取畫面。](./media/virtual-machines-windows-connect-logon/preview-portal-connect.png)
 
-4. 按一下 [開啟]，以使用系統自動為 Windows Server 虛擬機器建立的遠端桌面通訊協定檔案。
 
-5. 按一下 [連接]。
+[AZURE.INCLUDE [virtual-machines-log-on-win-server](../../includes/virtual-machines-log-on-win-server.md)]
 
-6. 輸入您建立虛擬機器時設定的使用者名稱和密碼，然後按一下 [確定]。
-
-7. 按一下 [是] 以驗證虛擬機器的身分識別。
+如果嘗試連線時遇到問題，請參閱[針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。
 
 您現在可以開始使用虛擬機器，就如同操作任何其他伺服器一樣。
 
 ## 後續步驟
 
-* 使用 Azure PowerShell 和 Azure CLI [尋找並選取虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
-* 使用 [Azure Resource Manager](https://azure.microsoft.com/documentation/templates/)，自動部署和管理虛擬機器和工作負載。
-* 您也可以使用 Azure CLI 快速[建立 Linux 虛擬機器](virtual-machines-linux-quick-create-cli.md)。
+* 您也可以[使用 Powershell 建立 Windows VM](virtual-machines-windows-ps-create.md) 或使用 Azure CLI [建立 Linux 虛擬機器](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -3,8 +3,8 @@
    description="如何建立 Azure DNS 的主機記錄。使用 CLI 設定記錄集和記錄"
    services="dns"
    documentationCenter="na"
-   authors="joaoma"
-   manager="Adinah"
+   authors="cherylmc"
+   manager="carmonm"
    editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="01/20/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 
 # 使用 CLI 建立 DNS 記錄
@@ -121,4 +121,4 @@ Azure DNS 支援所有常見的 DNS 記錄類型：A、AAAA、CNAME、MX、NS、
 [使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -14,12 +14,12 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="04/11/2016"
+	ms.date="04/19/2016"
 	ms.author="carlrab" />
 
 # 單一資料庫的 Azure SQL Database 效能指引
 
-## 概觀 
+## 概觀
 
 Microsoft Azure SQL Database 有三個[服務層](sql-database-service-tiers.md)，基本、標準和高階。這些服務層全都會嚴密區隔提供給您的 Azure SQL Database 的資源，並保證可預測的效能。為您的資料庫保證的輸送量會從基本層、標準層、高階層一路提高。
 
@@ -39,10 +39,10 @@ Microsoft Azure SQL Database 有三個[服務層](sql-database-service-tiers.md)
 
 Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如自動 HA 和內建管理。
 
-### 自動高可用性 (HA) 
+### 自動高可用性 (HA)
  Azure SQL Database 會為每個使用者資料庫保存至少三個複本，並且具有自動將每項變更同步認可至複本仲裁的邏輯。這可確保任何單一電腦失敗不會造成資料遺失。此外，每個複本會放在不同硬體機架，如此一來電源或網路交換器的耗損都不會影響您的資料庫。最後，如果電腦遺失，還有自動重建複本的邏輯，即使電腦狀況不良，也可讓系統自動保留所需的健全狀況內容。這些機制可避免今日安裝和設定高可用性解決方案所需的耗時程序。預先設定資料庫的 HA 解決方案可以解決使用傳統技術建置關鍵任務資料庫方案的另一個關鍵的麻煩。
 
-### 內建管理 
+### 內建管理
  Azure SQL Database 是做為服務執行的。這表示每個資料庫都有定義的執行時間目標，避免冗長的維護停機時間。Microsoft 提供服務的單一廠商解決方案，表示如果發生任何問題，只需要呼叫一家公司。Microsoft 也持續更新服務、新增功能、容量，並設法改善您在我們每次更新中的經驗。更新會以透明的方式進行，並且不需要停機時間，這表示更新已整合到我們正常的 HA 容錯移轉機制。這可讓您在我們公告新功能可供使用的同時立即使用，而不用等待某個伺服器在未來的停機時間升級。
 
 所有這些功能都會在所有服務層提供，從每個月幾美元的低項目價格點開始。這個價格遠低於購買和執行您自己的伺服器，這表示即使最小的專案也可以使用 Azure 而不需花一大筆錢。
@@ -123,12 +123,12 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 
 **並行要求數上限**是指資料庫中同時執行的並行使用者/應用程式要求數目上限。若要查看並行要求數目，請在 SQL Database 上執行下列 Transact-SQL 查詢：
 
-	SELECT COUNT(*) AS [Concurrent_Requests] 
+	SELECT COUNT(*) AS [Concurrent_Requests]
 	FROM sys.dm_exec_requests R
 
 如果您要分析內部部署 SQL Server 資料庫的工作負載，請修改此查詢來篩選您要分析的特定資料庫。比方說，如果您擁有名為 MyDatabase 的內部部署資料庫，則下列 Transact-SQL 查詢會傳回該資料庫中並行要求的計數。
 
-	SELECT COUNT(*) AS [Concurrent_Requests] 
+	SELECT COUNT(*) AS [Concurrent_Requests]
 	FROM sys.dm_exec_requests R
 	INNER JOIN sys.databases D ON D.database_id = R.database_id
 	AND D.name = 'MyDatabase'
@@ -173,17 +173,17 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 ### 使用 sys.dm\_db\_resource\_stats
 每一個 SQL Database 都有 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 檢視，其可提供相對於服務層的最新資源使用量資料。每隔 15 秒鐘就會記錄一次 CPU、資料 IO、記錄檔寫入和記憶體的平均百分比，並且會維持一個小時。
 
-因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
+因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats ** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
 
 	SELECT  
-	    AVG(avg_cpu_percent) AS 'Average CPU Utilization In Percent', 
-	    MAX(avg_cpu_percent) AS 'Maximum CPU Utilization In Percent', 
-	    AVG(avg_data_io_percent) AS 'Average Data IO In Percent', 
-	    MAX(avg_data_io_percent) AS 'Maximum Data IO In Percent', 
-	    AVG(avg_log_write_percent) AS 'Average Log Write Utilization In Percent', 
-	    MAX(avg_log_write_percent) AS 'Maximum Log Write Utilization In Percent', 
-	    AVG(avg_memory_usage_percent) AS 'Average Memory Usage In Percent', 
-	    MAX(avg_memory_usage_percent) AS 'Maximum Memory Usage In Percent' 
+	    AVG(avg_cpu_percent) AS 'Average CPU Utilization In Percent',
+	    MAX(avg_cpu_percent) AS 'Maximum CPU Utilization In Percent',
+	    AVG(avg_data_io_percent) AS 'Average Data IO In Percent',
+	    MAX(avg_data_io_percent) AS 'Maximum Data IO In Percent',
+	    AVG(avg_log_write_percent) AS 'Average Log Write Utilization In Percent',
+	    MAX(avg_log_write_percent) AS 'Maximum Log Write Utilization In Percent',
+	    AVG(avg_memory_usage_percent) AS 'Average Memory Usage In Percent',
+	    MAX(avg_memory_usage_percent) AS 'Maximum Memory Usage In Percent'
 	FROM sys.dm_db_resource_stats;  
 
 如需其他查詢的資訊，請參閱 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 中的範例。
@@ -206,9 +206,9 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 
 下列範例會示範如何公開此檢視中的資料：
 
-	SELECT TOP 10 * 
-	FROM sys.resource_stats 
-	WHERE database_name = 'resource1' 
+	SELECT TOP 10 *
+	FROM sys.resource_stats
+	WHERE database_name = 'resource1'
 	ORDER BY start_time DESC
 
 ![系統資源統計資料](./media/sql-database-performance-guidance/sys_resource_stats.png)
@@ -218,16 +218,16 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 >[AZURE.NOTE] 目前的 V12 資料庫中已變更 **sys.resource\_stats** 的某些資料行，因此下列範例中的範例查詢可能會產生錯誤。本主題日後更新時將會提供可解決此問題的新版查詢。
 
 1. 例如，若要查看 "userdb1" 資料庫在過去一週的資源使用量，您可以執行下列查詢。
-	
-		SELECT * 
-		FROM sys.resource_stats 
-		WHERE database_name = 'userdb1' AND 
+
+		SELECT *
+		FROM sys.resource_stats
+		WHERE database_name = 'userdb1' AND
 		      start_time > DATEADD(day, -7, GETDATE())
 		ORDER BY start_time DESC;
-	
+
 2. 為了評估您的工作負載與效能等級的符合程度，您必須鑽研資源度量的每個不同層面：CPU、讀取、寫入、背景工作數目和工作階段數目。以下是使用 sys.resource\_stats 修訂過的查詢，可報告這些資源度量的平均值和最大值。
-	
-		SELECT 
+
+		SELECT
 		    avg(avg_cpu_percent) AS 'Average CPU Utilization In Percent',
 		    max(avg_cpu_percent) AS 'Maximum CPU Utilization In Percent',
 		    avg(avg_physical_data_read_percent) AS 'Average Physical Data Read Utilization In Percent',
@@ -238,41 +238,41 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 		    max(active_session_count) AS 'Maximum # of Sessions',
 		    avg(active_worker_count) AS 'Average # of Workers',
 		    max(active_worker_count) AS 'Maximum # of Workers'
-		FROM sys.resource_stats 
+		FROM sys.resource_stats
 		WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
-	
+
 3. 利用上述各項資源度量的平均值和最大值等資訊，您可以評估您的工作負載與您所選之效能等級的符合程度。在大部分情況下，來字 sys.resource\_stats 的平均值可提供您對目標大小所使用的理想基準。它應該是您主要的量尺。例如，如果您使用標準服務層搭配 S2 效能等級，CPU、讀取和寫入的平均使用率百分比會低於 40%，背景工作平均數目會低於 50，工作階段平均數目會低於 200，您的工作負載可能符合 S1 效能等級。要看到您的資料庫是否符合背景工作和工作階段限制範圍內非常容易。若要查看資料庫在 CPU、讀取和寫入方面是否符合較低的效能等級，您要將較低效能等級的 DTU 數目除以目前效能等級的 DTU 數目，並將結果乘以 100：
-	
+
 	**S1 DTU / S2 DTU * 100 = 20 / 50 * 100 = 40**
-	
+
 	此結果是以百分比表示之兩個效能等級的相對效能差異。如果您的使用率未超過這個百分比，您的工作負載可能符合較低的效能等級。不過，您也需要查看所有範圍的資源使用量值，並以百分比判斷資料庫工作負載符合較低效能等級的頻率。下列查詢會根據上面計算的 40% 臨界值，輸出每個資源維度的相符百分比。
-	
-		SELECT 
+
+		SELECT
 		    (COUNT(database_name) - SUM(CASE WHEN avg_cpu_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'CPU Fit Percent'
 		    ,(COUNT(database_name) - SUM(CASE WHEN avg_log_write_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Log Write Fit Percent'
 		    ,(COUNT(database_name) - SUM(CASE WHEN avg_physical_data_read_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Physical Data Read Fit Percent'
 		FROM sys.resource_stats
 		WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
-	
+
 	根據您的資料庫服務等級目標 (SLO)，您可以決定您的工作負載是否符合較低的效能等級。如果您的資料庫工作負載 SLO 是 99.9%，且上述查詢針對三個資源維度傳回的值都大於 99.9，您的工作負載非常可能符合較低的效能等級。
-	
+
 	查看相符百分比也可讓您深入了解是否必須移到下一個較高的效能等級來滿足您的 SLO。例如，"userdb1" 會顯示過去一週的下列使用率。
-	
+
 	| 平均 CPU 百分比 | 最大 CPU 百分比 |
 	|---|---|
 	| 24\.5 | 100\.00 |
-	
+
 	平均 CPU 大約是效能等級限制的四分之一，完全符合資料庫的效能等級。不過，此最大值會顯示資料庫達到效能等級的限制。您需要移至下一個較高的效能等級嗎？ 您必須再次查看工作負載達到 100% 的次數並將其與您的資料庫工作負載 SLO 做比較。
-	
-		SELECT 
+
+		SELECT
 		(COUNT(database_name) - SUM(CASE WHEN avg_cpu_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'CPU Fit Percent'
 		,(COUNT(database_name) - SUM(CASE WHEN avg_log_write_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Log Write Fit Percent’
 		,(COUNT(database_name) - SUM(CASE WHEN avg_physical_data_read_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Physical Data Read Fit Percent'
 		FROM sys.resource_stats
 		WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
-	
+
 	如果上述查詢針對三個資源維度傳回的值小於 99.9，您應該考慮移到下一個較高的效能等級或使用應用程式微調技術減少 Azure SQL Database 的負載。
-	
+
 4. 上述練習也應該將您預計的未來工作負載增加納入考量。
 
 ## 微調您的應用程式
@@ -316,8 +316,8 @@ OLTP 資料庫效能中常見的問題與實體資料庫設計相關。資料庫
 	END
 	COMMIT TRANSACTION;
 	GO
-	SELECT m1.col1 
-	FROM dbo.missingindex m1 INNER JOIN dbo.missingindex m2 ON(m1.col1=m2.col1) 
+	SELECT m1.col1
+	FROM dbo.missingindex m1 INNER JOIN dbo.missingindex m2 ON(m1.col1=m2.col1)
 	WHERE m1.col2 = 4;
 
 ![具有遺漏索引的查詢計劃](./media/sql-database-performance-guidance/query_plan_missing_indexes.png)
@@ -328,25 +328,25 @@ Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常�
 
 下列查詢可用來評估潛在的遺漏索引。
 
-	SELECT CONVERT (varchar, getdate(), 126) AS runtime, 
-	    mig.index_group_handle, mid.index_handle, 
-	    CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact * 
-	            (migs.user_seeks + migs.user_scans)) AS improvement_measure, 
-	    'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' + 
-	              CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + ' 
-	              (' + ISNULL (mid.equality_columns,'') 
-	              + CASE WHEN mid.equality_columns IS NOT NULL 
-	                          AND mid.inequality_columns IS NOT NULL 
+	SELECT CONVERT (varchar, getdate(), 126) AS runtime,
+	    mig.index_group_handle, mid.index_handle,
+	    CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *
+	            (migs.user_seeks + migs.user_scans)) AS improvement_measure,
+	    'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +
+	              CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
+	              (' + ISNULL (mid.equality_columns,'')
+	              + CASE WHEN mid.equality_columns IS NOT NULL
+	                          AND mid.inequality_columns IS NOT NULL
 	                     THEN ',' ELSE '' END + ISNULL (mid.inequality_columns, '')
-	              + ')' 
-	              + ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement, 
-	    migs.*, 
-	    mid.database_id, 
+	              + ')'
+	              + ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement,
+	    migs.*,
+	    mid.database_id,
 	    mid.[object_id]
 	FROM sys.dm_db_missing_index_groups AS mig
-	INNER JOIN sys.dm_db_missing_index_group_stats AS migs 
+	INNER JOIN sys.dm_db_missing_index_group_stats AS migs
 	    ON migs.group_handle = mig.index_group_handle
-	INNER JOIN sys.dm_db_missing_index_details AS mid 
+	INNER JOIN sys.dm_db_missing_index_details AS mid
 	    ON mig.index_handle = mid.index_handle
 	ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC
 
@@ -371,7 +371,7 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 
 	DROP TABLE psptest1;
 	CREATE TABLE psptest1(col1 int primary key identity, col2 int, col3 binary(200));
-	
+
 	DECLARE @a int = 0;
 	SET NOCOUNT ON;
 	BEGIN TRANSACTION
@@ -384,16 +384,16 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 	COMMIT TRANSACTION
 	CREATE INDEX i1 on psptest1(col2);
 	GO
-	
+
 	CREATE PROCEDURE psp1 (@param1 int)
 	AS
 	BEGIN
-	    INSERT INTO t1 SELECT * FROM psptest1 
+	    INSERT INTO t1 SELECT * FROM psptest1
 	    WHERE col2 = @param1
 	    ORDER BY col2;
 	END
 	GO
-	
+
 	CREATE PROCEDURE psp2 (@param2 int)
 	AS
 	BEGIN
@@ -402,7 +402,7 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 	    OPTION (OPTIMIZE FOR (@param2 UNKNOWN))
 	END
 	GO
-	
+
 	CREATE TABLE t1 (col1 int primary key, col2 int, col3 binary(200));
 	GO
 
@@ -413,7 +413,7 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 	-- Prime Procedure Cache with scan plan
 	EXEC psp1 @param1=1;
 	TRUNCATE TABLE t1;
-	
+
 	-- Iterate multiple times to show the performance difference
 	DECLARE @i int = 0;
 	WHILE @i < 1000
@@ -427,7 +427,7 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 
 	EXEC psp2 @param2=1;
 	TRUNCATE TABLE t1;
-	
+
 	DECLARE @i int = 0;
 	WHILE @i < 1000
 	BEGIN
@@ -452,9 +452,9 @@ SQL Server 中也適用於 Azure SQL Database 的一個常見範例是關於如�
 
 藉由檢查 **sys.resource\_stats** 資料表可以看到這個影響 (請注意：從您執行測試的時間到資料填入資料表的時間將會發生延遲)。在此範例中，第 1 部分會在 22:25:00 時間範圍期間執行，而第 2 部分會在 22:35:00 執行。請注意，較早的時間範圍在該時間範圍內使用的資源比較晚的時間範圍還多 (因為計劃效率改善)。
 
-	SELECT TOP 1000 * 
-	FROM sys.resource_stats 
-	WHERE database_name = 'resource1' 
+	SELECT TOP 1000 *
+	FROM sys.resource_stats
+	WHERE database_name = 'resource1'
 	ORDER BY start_time DESC
 
 ![查詢微調](./media/sql-database-performance-guidance/query_tuning_4.png)
@@ -491,4 +491,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="支援的瀏覽器和裝置" 
-	description="" 
-	services="" 
-	documentationCenter="" 
-	authors="flanakin" 
-	writer="flanakin" 
-	manager="lwelicki" 
+<properties
+	pageTitle="支援的瀏覽器和裝置"
+	description="描述 Azure 入口網站運作所在的瀏覽器和裝置。" 
+	services=""
+	documentationCenter=""
+	authors="flanakin"
+	writer="flanakin"
+	manager="lwelicki"
 	editor=""/>
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="multiple" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/23/2015" 
+<tags
+	ms.service="multiple"
+	ms.workload="multiple"
+	ms.tgt_pltfrm="ibiza"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/23/2015"
 	ms.author="micflan"/>
 
 #支援的瀏覽器和裝置
@@ -32,4 +32,4 @@ Microsoft Azure 入口網站可在所有最新的桌上型電腦和平板電腦�
 - Chrome (最新版本)
 - Firefox (最新版本)
 
-<!---HONumber=AcomDC_1217_2015-->
+<!---HONumber=AcomDC_0420_2016-->

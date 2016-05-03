@@ -1,6 +1,6 @@
 <properties
- pageTitle="如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期"
- description=""
+ pageTitle="如何在 Azure CDN 中管理雲端服務內容的到期 | Microsoft Azure"
+ description="說明如何在 Azure CDN 中管理雲端服務內容的到期"
  services="cdn"
  documentationCenter=".NET"
  authors="camsoper"
@@ -12,10 +12,10 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="article"
- ms.date="02/25/2016" 
+ ms.date="02/25/2016"
  ms.author="casoper"/>
 
-#如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期
+# 如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期
 
 充分利用 Azure CDN 快取中獲益的物件是在其存留時間 (TTL) 期限期間經常存取。物件在 TTL 期限內存留於快取中，然後會在經過該時間之後從雲端服務進行重新整理。然後重複執行此程序。
 
@@ -50,4 +50,4 @@
 
 [如何管理 Azure 內容傳遞網路 (CDN) 中 Blob 內容的到期](./cdn-manage-expiration-of-blob-content.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

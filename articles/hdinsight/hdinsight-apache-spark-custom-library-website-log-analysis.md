@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
-# 在 HDInsight Spark 中使用自訂程式庫 (Linux) 分析記錄檔
+# 在 Linux 上使用 HDInsight Spark (預覽) 搭配自訂程式庫分析網站記錄
 
 此 Notebook 示範如何使用自訂程式庫與 HDInsight 上的 Spark 來分析記錄資料。我們使用的自訂程式庫是名為 **iislogparser.py** 的 Python 程式庫。
 
@@ -244,4 +244,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

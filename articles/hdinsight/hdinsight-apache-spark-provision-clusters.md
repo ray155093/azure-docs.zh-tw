@@ -17,7 +17,7 @@
     ms.date="12/08/2015"
     ms.author="nitinme"/>
 
-# 使用自訂選項在 HDInsight 中建立 Apache Spark 叢集 (Windows)
+# 使用自訂選項在 HDInsight Windows (預覽) 中建立 Apache Spark 叢集
 
 > [AZURE.NOTE] HDInsight 現在於 Linux 上提供 Spark 叢集。如需如何在 HDInsight Linux 上自訂/建立 Spark 叢集的資訊，請參閱[在 HDInsight 中建立 Linux 型叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
@@ -242,4 +242,4 @@ HDInsight 上的 Spark 叢集會使用 Azure Blob 儲存容器作為預設檔案
 
 [89e2276a]: /documentation/articles/hdinsight-use-sqoop/ "搭配 HDInsight 使用 Sqoop"
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/16/2016"
+   ms.date="04/21/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 建立具有站對站 VPN 連線的虛擬網路
@@ -189,4 +189,4 @@ VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azu
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -13,12 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/08/2016"   
+	ms.date="04/14/2016"   
 	ms.author="adsolank;juliako;"/>
 
 
 # 使用 Azure Media Indexer 2 Preview 編製媒體檔案索引
-
 
 ##概觀
 
@@ -288,4 +287,6 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+[Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
+
+<!---HONumber=AcomDC_0420_2016-->

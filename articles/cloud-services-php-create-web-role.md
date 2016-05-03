@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="01/08/2016"
+	ms.date="04/08/2016"
 	ms.author="robmcm"/>
 
 #如何建立 PHP Web 和背景工作角色
@@ -26,7 +26,7 @@
 
 Azure 提供三種運算模型來執行應用程式：Azure 應用程式服務、Azure 虛擬機器和 Azure 雲端服務。這三種模型都支援 PHP。雲端服務 (包含 Web 和背景工作角色) 可提供*平台即服務 (PaaS)*。在雲端服務中，Web 角色提供專用的 Internet Information Services (IIS) Web 伺服器，用來代管前端 Web 應用程式。背景工作角色可以執行非同步、長時間或永久的工作，且不受使用者互動或輸入所影響。
 
-如需這些選項的詳細資訊，請參閱[計算 Azure 提供的裝載選項](./cloud-services/fundamentals-application-models.md)。
+如需這些選項的詳細資訊，請參閱[計算 Azure 提供的裝載選項](./cloud-services/cloud-services-choose-me.md)。
 
 ## 下載 Azure SDK for PHP
 
@@ -211,4 +211,4 @@ Azure 模擬器所提供的本機環境，可讓您在 Azure 應用程式部署�
 [sqlsrv drivers]: http://php.net/sqlsrv
 []: http://go.microsoft.com/fwlink/?LinkID=239648
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

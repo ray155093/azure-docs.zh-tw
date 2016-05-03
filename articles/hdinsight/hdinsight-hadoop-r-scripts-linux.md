@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/05/2016"
+	ms.date="04/15/2016"
 	ms.author="larryfr"/>
 
 # 在 HDInsight Hadoop 叢集上安裝和使用 R
 
 您可以使用**指令碼動作**叢集自訂，在 HDInsight 上 Hadoop 中的任何一種叢集上安裝 R。這可讓資料科學家和分析師使用 R 來部署強大的 MapReduce/YARN 程式設計架構，以處理部署在 HDInsight 中之 Hadoop 叢集上的大量資料。
 
-HDInsight 的[進階層](https://azure.microsoft.com/pricing/details/hdinsight/)供應項目包括隨附於 HDInsight 叢集的 R Server。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。如需詳細資訊，請參閱[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。
+> [AZURE.IMPORTANT] HDInsight 的[進階層](https://azure.microsoft.com/pricing/details/hdinsight/)供應項目包括隨附於 HDInsight 叢集的 R 伺服器。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。如需詳細資訊，請參閱[開始使用 HDInsight 中的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。
 
 
 ## 什麼是 R？
@@ -146,4 +146,4 @@ R 指令碼可以在 HDInsight 中的 Hadoop 叢集上執行，這些叢集是�
 
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

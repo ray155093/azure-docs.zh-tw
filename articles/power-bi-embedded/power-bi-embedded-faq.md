@@ -1,6 +1,6 @@
 <properties
    pageTitle="常見問題集"
-   description="常見問題集"
+   description="Power BI Embedded 常見問題集"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -116,4 +116,4 @@
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -477,6 +477,8 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 在繼續之前，請確認您已安裝和設定 Azure CLI。如需詳細資訊，請參閱[安裝 Azure CLI](../xplat-cli-install.md)。
 
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
+
 1. 開啟系統的殼層工作階段、終端機、命令提示字元或其他命令列，並使用下列命令切換至 Azure Resource Manager 模式。
 
         azure config mode arm
@@ -678,4 +680,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "叢集建立期間的階段"
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

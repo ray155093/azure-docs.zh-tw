@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/06/2016"
+   ms.date="04/13/2016"
    ms.author="nitinme"/>
 
 # 使用 Distcp 在 Azure 儲存體 Blob 與資料湖存放區之間複製資料
@@ -67,4 +67,4 @@ HDInsight 叢集隨附 Distcp 公用程式，可用來將不同來源的資料�
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

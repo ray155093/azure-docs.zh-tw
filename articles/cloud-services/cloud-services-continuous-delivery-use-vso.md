@@ -22,16 +22,15 @@
 
 本教學課程假設您已安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
 
-> [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：
-> 您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
+> [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
 
 若要使用 Visual Studio Team Services 將雲端服務設定為自動建立和部署至 Azure，請依照下列步驟進行。
 
-## 步驟 1：建立 Team 專案
+## 1：建立 Team 專案
 
 請遵循[這裡](http://go.microsoft.com/fwlink/?LinkId=512980)的指示來建立您的 Team 專案，並將專案連結至 Visual Studio。本逐步解說假設您使用 Team Foundation 版本控制 (TFVC) 做為原始檔控制解決方案。如果您想使用 Git 進行版本控制，請參閱[本逐步解說的 Git 版本](http://go.microsoft.com/fwlink/p/?LinkId=397358) (英文)。
 
-## 步驟 2：將專案簽入原始檔控制
+## 2︰將專案簽入原始檔控制
 
 1. 在 Visual Studio 中，開啟您要部署的方案，或建立新方案。您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。
 如果要建立新方案，請建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。請確定專案以 .NET Framework 4 或 4.5 為目標，如果是建立雲端服務專案，
@@ -61,7 +60,7 @@
 
 	![][9]
 
-## 步驟 3：將專案連接至 Azure
+## 3：將專案連線至 Azure
 
 1. 您現有一個 VS Team Services 小組專案，且裡面有一些原始程式碼，可以準備將小組專案連接至 Azure。在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 **+** 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。請選擇 [使用 Visual Studio Team Services 設定發行] 連結。
 
@@ -83,7 +82,7 @@
 
 	![][14]
 
-## 步驟 4：觸發重建和重新部署專案
+## 4：觸發重建和重新部署專案
 
 1. 在 Visual Studio 的 [Team Explorer] 中，選擇 [原始檔控制總管] 連結。
 
@@ -178,19 +177,19 @@
 
 	![][33]
 
-## 步驟 5：重新部署舊版組建
+## 5：重新部署舊版組建
 
 此步驟適用於雲端服務，且為選用的。在 Azure 傳統入口網站中，選擇先前的部署，然後選擇 [重新部署] 按鈕，將網站倒回到更早的簽入。請注意，這會在 TFS 中觸發新的組建，並在部署歷程記錄中建立新的項目。
 
 ![][34]
 
-## 步驟 6：變更生產部署
+## 6：變更生產部署
 
 此步驟僅適用於雲端服務，不適用於 Web 應用程式。準備就緒後，您可以在 Azure 傳統入口網站中選擇 [交換] 按鈕，將預備環境升級至生產環境。新部署的預備環境會升級至「生產」，而先前的生產環境 (若有的話) 會變成預備環境。「作用中」部署可能與生產和預備環境不同，但最近組建的部署歷程記錄都一樣，與環境無關。
 
 ![][35]
 
-## 步驟 7：執行單元測試
+## 7：執行單元測試
 
 此步驟僅適用於 Web 應用程式，不適用於雲端服務。若要為部署的品質把關，您可以執行單元測試；如果測試失敗，則可以停止部署。
 
@@ -322,4 +321,4 @@
 [49]: ./media/cloud-services-continuous-delivery-use-vso/TestsFailed.PNG
 [50]: ./media/cloud-services-continuous-delivery-use-vso/TestsResultsFailed.PNG
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

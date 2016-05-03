@@ -13,19 +13,18 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="04/11/2016"
+   ms.date="04/19/2016"
    ms.author="deonhe"/>
 
 
 # Twitter 連接器已改善 
 
-[新的邏輯應用程式結構描述版本 2015-08-01 預覽](./app-service-logic-schema-2015-08-01.md)和更新版本現在才支援這個連接器。
+已移除本頁中與邏輯應用程式版本 2014-12-01 預覽相關的內容，因為這個連接器已升級，而且現在只獲新的[邏輯應用程式結構描述版本 2015-08-01 預覽](./app-service-logic-schema-2015-08-01.md)和更新版本支援。
 
 
 ## 後續步驟    
 
 - [深入了解這個新連接器](../connectors/connectors-create-api-twitter.md)
-- [移轉舊連接器](../connectors/connectors-schema-migration.md)到新的邏輯應用程式結構描述版本 2015-08-01 預覽
 - 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

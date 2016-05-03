@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/21/2016"
+   ms.date="04/13/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure PowerShell 建立 HDInsight 叢集與資料湖存放區
@@ -161,7 +161,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 
 在這一節中，您將執行相關步驟來建立 Azure Active Directory 應用程式的服務主體、指派角色給服務主體，並藉由提供憑證驗證為服務主體。執行下列命令以在 Azure Active Directory 中建立應用程式。
 
-1. 在 PowerShell 主控台視窗中貼上下列 Cmdlet。請確定您針對 **-DisplayName** 屬性指定的值是唯一的。此外，**-HomePage** 和 **-IdentiferUris** 的值是預留位置值且不會驗證。 
+1. 在 PowerShell 主控台視窗中貼上下列 Cmdlet。請確定您針對 **-DisplayName** 屬性指定的值是唯一的。此外，**-HomePage** 和 **-IdentiferUris** 的值是預留位置值且不會驗證。
 
 		$certificateFilePath = "$certificateFileDir\CertFile.pfx"
 
@@ -174,7 +174,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 		$credential = [System.Convert]::ToBase64String($rawCertificateData)
 
 		$application = New-AzureRmADApplication `
-					-DisplayName "HDIADL" ` 
+					-DisplayName "HDIADL" `
 					-HomePage "https://contoso.com" `
 					-IdentifierUris "https://mycontoso.com" `
 					-KeyValue $credential  `
@@ -378,4 +378,4 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

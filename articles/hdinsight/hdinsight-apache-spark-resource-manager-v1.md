@@ -18,9 +18,9 @@
 	ms.author="nitinme"/>
 
 
-# 在 Azure HDInsight 中管理 Apache Spark 叢集的資源 (Windows)
+# 在 HDInsight Windows (預覽) 上管理 Apache Spark 叢集的資源
 
-> [AZURE.NOTE] HDInsight 現在在 Linux 上提供 Spark 叢集。如需了解如何管理 HDInsight Linux 上的 Spark 叢集資源，請參閱[在 Azure HDInsight 中管理 Apache Spark 叢集的資源 (Linux)](hdinsight-apache-spark-resource-manager.md)。
+> [AZURE.NOTE] HDInsight 現在於 Linux 上提供 Spark 叢集。如需了解如何管理 HDInsight Linux 上的 Spark 叢集資源，請參閱[在 Azure HDInsight 中管理 Apache Spark 叢集的資源 (Linux)](hdinsight-apache-spark-resource-manager.md)。
 
 資源管理員是 Spark 叢集儀表板的元件，它能讓您管理諸如在叢集上執行之每個應用程式所使用的核心和 RAM 等資源。
 
@@ -84,4 +84,4 @@ HDInsight 中的 Apache Spark 叢集是專為多租用戶所設計，因此資�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -24,7 +24,7 @@
 
 開始之前，您應該先從 Visual Studio 發佈應用程式。如此可確保當您嘗試將發佈程序自動化時，所有資源皆可用並已初始化。
 
-## 步驟 1：設定組建伺服器
+## 1：設定組建伺服器
 
 您必須先在組建伺服器上安裝必要的軟體與工具，才能使用 MSBuild 建立 Azure 套件。
 
@@ -38,13 +38,13 @@
 	在安裝 Visual Studio 的電腦上，此檔案位於目錄 C:\\Program Files(x86)\\MSBuild\\Microsoft\\VisualStudio\\v14.0\\WebApplications。您應該將它複製至組建伺服器上的相同目錄。
 5.  安裝 [Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs.aspx)。
 
-## 步驟 2：使用 MSBuild 命令建置封裝
+## 2：使用 MSBuild 命令來建置封裝
 
 本節說明如何建構 MSBuild 命令來建置 Azure 套件。在組建伺服器上執行這個步驟，確認一切都已正確設定，且 MSBuild 命令會執行您要它執行的動作。您可以將此命令列新增至組建伺服器上的現有組建指令碼，也可以在 TFS 組建定義中使用此命令列 (說明於下節)。如需命令列參數及 MSBuild 的詳細資訊，請參閱 [MSBuild 命令列參考](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx)。
 
 1.  如果組建伺服器上已安裝 Visual Studio，請在 Windows 的 [Visual Studio Tools] 資料夾中找出並選擇 [Visual Studio 命令提示字元]。
 
-    如果組建伺服器上未安裝 Visual Studio，請開啟命令提示字元，並確定可在路徑上存取 MSBuild.exe。MSBuild 會與 .NET Framework 一起安裝在路徑 %WINDIR%\\Microsoft.NET\\Framework\\*Version* 中。例如，若要在已安裝 .NET Framework 4 時，將 MSBuild.exe 新增至 PATH 環境變數，請在命令提示字元中輸入下列命令：
+    如果組建伺服器上未安裝 Visual Studio，請開啟命令提示字元，並確定可在路徑上存取 MSBuild.exe。MSBuild 會與 .NET Framework 一起安裝在路徑 %WINDIR%\\Microsoft.NET\\Framework\*Version* 中。例如，若要在已安裝 .NET Framework 4 時，將 MSBuild.exe 新增至 PATH 環境變數，請在命令提示字元中輸入下列命令：
 
         set PATH=%PATH%;"C:\Windows\Microsoft.NET\Framework\v4.0.30319"
 
@@ -58,7 +58,7 @@
 
     (選擇性) 您可以指定專案名稱作為 MSBuild 參數。如果未指定，則會使用目前目錄。如需 MSBuild 命令列選項的詳細資訊，請參閱 [MSBuild 命令列參考][1]。
 
-4.  尋找輸出。依預設，這個命令會在相對於專案根資料夾的目錄中建立目錄，例如 *ProjectDir*\\bin\\*Configuration*\\app.publish\\。當您建置 Azure 專案時，會產生兩個檔案，即套件檔本身及伴隨的組態檔：
+4.  尋找輸出。依預設，這個命令會在相對於專案根資料夾的目錄中建立目錄，例如 *ProjectDir*\\bin\*Configuration*\\app.publish\\。當您建置 Azure 專案時，會產生兩個檔案，即套件檔本身及伴隨的組態檔：
 
     -   Project.cspkg
     -   ServiceConfiguration.*TargetProfile*.cscfg
@@ -75,7 +75,7 @@
 
     一旦建構並測試出適當的 MSBuild 命令列來建置專案並將它們結合為 Azure 套件，就可以將此命令新增至組建指令碼。如果您的組建伺服器使用自訂指令碼，則此程序將視您自訂建置流程的特性而定。如果您是使用 TFS 作為組建環境，則可以遵循下一步中的指示，將 Azure 套件新增至組建程序。
 
-## 步驟 3：使用 TFS Team Build 建置套件
+## 3：使用 TFS Team Build 建置封裝
 
 如果已設定 Team Foundation Server (TFS) 做為組建控制器，並設定組建伺服器做為 TFS 組建電腦，則可選擇性地為 Azure 套件設定自動化組建。如需如何設定並使用 Team Foundation Server 做為組建系統的相關資訊，請參閱[相應放大您的組建系統][]。特別是，下列程序假設您已經如[部署和設定組建伺服器][]中所述來設定組建伺服器，而且您已經建立 Team 專案，並在 Team 專案中建立雲端服務專案。
 
@@ -101,7 +101,7 @@
 
 5.  簽入專案的變更來測試組建步驟是否成功，或將新組建排入佇列。若要將新組建排入佇列，請在 [Team Explorer] 的 [**所有組建定義**] 上按一下滑鼠右鍵，然後選擇 [**將新組建排入佇列**]。
 
-## 步驟 4：使用 PowerShell 指令碼發佈封裝
+## 4：使用 PowerShell 指令碼來發佈封裝
 
 本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
 
@@ -123,7 +123,7 @@
 
     如此即會顯示訂用帳戶的相關資訊。確認一切正確無誤。
 
-4.  將本文結尾提供的指令碼範本儲存至您的指令碼資料夾，如 c:\\scripts\\WindowsAzure\\**PublishCloudService.ps1**。
+4.  將本文結尾提供的指令碼範本儲存至您的指令碼資料夾，如 c:\\scripts\\WindowsAzure\**PublishCloudService.ps1**。
 
 5.  檢閱指令碼的參數區段。新增或修改任何預設值。您永遠可以傳遞明確參數來覆寫這些值。
 
@@ -179,7 +179,7 @@
 
     >[AZURE.IMPORTANT] 依預設，指令碼如果偵測到現有的部署，會一律加以刪除或取代。此為不得不的方式，因為如此一來，完全省去使用者/作業員互動過程的自動化程序才有辦法進行連續傳遞。
 
-## 步驟 5：使用 TFS Team Build 發佈套件
+## 5：使用 TFS Team Build 發佈封裝
 
 這個選用的步驟會將 TFS Team Build 連接到步驟 4 中建立的指令碼，該指令碼負責處理將套件組建發佈至 Azure。這需要修改您的組建定義所使用的流程範本，使其在工作流程結束時執行 Publish 活動。Publish 活動會利用組建傳入的參數，執行 PowerShell 命令。所輸出的 MSBuild 目標與發佈指令碼將透過管道傳送至標準組建輸出。
 
@@ -573,4 +573,4 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
   [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
   [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

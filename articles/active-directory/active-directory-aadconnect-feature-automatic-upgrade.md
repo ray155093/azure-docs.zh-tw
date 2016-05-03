@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="02/16/2016"
+   ms.date="04/15/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：自動升級
@@ -43,7 +43,44 @@
 
 如果伺服器上正在執行 **Synchronization Service Manager** UI，則升級會暫止，直到 UI 關閉為止。
 
+## 疑難排解
+如果您的 Connect 安裝未如預期般自動升級，請遵循下列步驟來找出可能的錯誤。
+
+首先，不建議您在新版本發行的第一天就自動升級。由於升級前有刻意設計的隨機性，因此不用擔心您的安裝沒有立即升級。
+
+如果您認為有問題，請先執行 `Get-ADSyncAutoUpgrade` 確保已啟用自動升級。
+
+啟動事件記錄，並查看**應用程式**事件記錄。新增來源 **Azure AD Connect 升級**的事件記錄篩選以及事件識別碼範圍 **300-399**。 ![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogfilter.png)
+
+這可將已與自動升級狀態建立關聯的事件記錄提供給您。![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogresult.png)
+
+結果的前半段會提供狀態的概觀。
+
+| 結果前置詞 | 說明 |
+| --- | --- |
+| 成功 | 安裝已順利升級。 |
+| UpgradeAborted | 發生暫時狀況導致升級停止。它將會重試一次，而且預期會成功。 |
+| UpgradeNotSupported | 系統具有封鎖自動升級系統的組態。它將會重試以查看狀態是否已變更，但預期情況是系統必須手動升級。 |
+
+以下是最常見的訊息清單。清單不完整，但結果訊息應該清楚顯示問題所在。
+
+| 結果訊息 | 說明 |
+| --- | --- |
+| **UpgradeAborted** | |
+| UpgradeAbortedSyncExeInUse | 伺服器會開啟 [Synchronization Service Manager UI](active-directory-aadconnectsync-service-manager-ui.md)。
+| UpgradeAbortedInsufficientDiskSpace | 沒有足夠的光碟空間，以支援升級。 |
+| UpgradeAbortedSyncCycleDisabled | [排程器](active-directory-aadconnectsync-feature-scheduler.md)中的 SyncCycle 選項已停用。 |
+| UpgradeAbortedSyncOrConfigurationInProgress | 安裝精靈正在執行或排程器外部已排定同步處理。 |
+| **UpgradeNotSupported** | |
+| UpgradeNotSupportedCustomizedSyncRules | 您已將自己的自訂規則加入組態。 |
+| UpgradeNotSupportedDeviceWritebackEnabled | 您已啟用[裝置回寫](active-directory-aadconnect-feature-device-writeback.md)功能。 |
+| UpgradeNotSupportedGroupWritebackEnabled | 您已啟用[群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback)功能。 |
+| UpgradeNotSupportedMetaverseSizeExceeeded | Metaverse 中的物件超過 100,000 個。 |
+| UpgradeNotSupportedMultiForestSetup | 您正連接到多個樹系。快速安裝只會連接到一個樹系。 |
+| UpgradeNotSupportedNonMsolAccount | [AD Connector 帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)已不再是預設 MSOL\_ account。
+| UpgradeNotSupportedStagingModeEnabled | 伺服器設定為[預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。 |
+
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

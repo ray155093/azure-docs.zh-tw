@@ -33,7 +33,9 @@
 
 - **Azure 訂用帳戶**
 
-- **Azure CLI**：如需詳細資訊，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)。
+- **Azure CLI**
+
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ##設定環境變數
 
@@ -288,4 +290,4 @@
 
 [powershell-PSCredential]: http://social.technet.microsoft.com/wiki/contents/articles/4546.working-with-passwords-secure-strings-and-credentials-in-windows-powershell.aspx
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->
