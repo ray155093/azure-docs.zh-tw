@@ -70,7 +70,7 @@
 
 5. 再次以滑鼠右鍵按一下 [方案總管] 中的 [連結服務] 節點，指向 [加入]，然後按一下 [新增項目]。 
 6. 這次，請選取 [Azure SQL 連結服務]，然後按一下 [加入]。 
-7. 在 **AzureSqlLinkedService1.json 檔案**中，將**伺服器名稱**、**資料庫名稱**、****username@servername** 和**密碼**替換為您的 Azure SQL 伺服器和資料庫名稱、使用者帳戶和密碼。
+7. 在 **AzureSqlLinkedService1.json 檔案**中，將**伺服器名稱**、**資料庫名稱**、 **username@servername** 和 **密碼** 替換為您的 Azure SQL 伺服器和資料庫名稱、使用者帳戶和密碼。
 8.  儲存 **AzureSqlLinkedService1.json** 檔案。 
 
 
@@ -250,4 +250,4 @@
 ## 另請參閱
 如需 Azure Data Factory 中複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!-----HONumber=AcomDC_0427_2016-->
