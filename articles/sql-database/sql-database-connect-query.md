@@ -141,7 +141,7 @@
 1. 在 Visual Studio 中，從 [方案總管] 窗格開啟 App.config 檔案。
 
 2. 新增 **&#x3c;configuration&#x3e; &#x3c;/configuration&#x3e;** 元素，如下列範例的 App.config 程式碼範例所示。
- - 以您的實際值取代 *{your\_placeholders}*：
+ - 以您的實際值取代 *{your\_placeholders}* ：
 
 ```
 	<?xml version="1.0" encoding="utf-8" ?>
@@ -324,7 +324,8 @@ namespace ConnectAndQuery_Example
 
 
 
-如需詳細資訊，請參閱：<br/> [作法：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)。
+如需詳細資訊，請參閱：<br/> 
+[作法：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)。
 
 
 

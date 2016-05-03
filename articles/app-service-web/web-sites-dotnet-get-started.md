@@ -58,7 +58,7 @@
 
 2. 按一下 [檔案] > [新增] > [專案]。
 
-3. 在 [新增專案] 對話方塊中，依序按一下 [Visual C#] > [Web] > [ASP.NET Web 應用程式] (如有需要，您可以選擇 [Visual Basic])。
+3. 在 [新增專案] 對話方塊中，依序按一下 [Visual C#] > [Web] > [ASP.NET Web 應用程式] \(如有需要，您可以選擇 [Visual Basic])。
 
 3. 確定已選取 [.NET Framework 4.5.2] 來做為目標架構。
 
@@ -162,7 +162,7 @@
 
 	![在 Visual Studio 功能表中選擇 [發佈]](./media/web-sites-dotnet-get-started/choosepublish.png)
 
-	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個*發佈設定檔*，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
+	[發佈 Web] 精靈會在幾秒鐘後出現。此精靈會開啟某個 *發佈設定檔* ，其中包含能將 Web 專案部署到新 Web 應用程式的設定。如果您想要部署到不同的 Web 應用程式，可以按一下 [設定檔] 索引標籤來建立不同的設定檔。在本教學課程中，您會接受部署到您稍早建立的 Web 應用程式的設定。
 
 	發佈設定檔包含用於部署的使用者名稱和密碼。這些認證已事先為您產生，因此您不需要加以輸入或變更。密碼會加密並存放在 `Properties\PublishProfiles` 資料夾的使用者專屬隱藏檔案中。
 
@@ -198,7 +198,8 @@
 
 	![在 Azure 中執行的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13deployedsite.png)
 
-> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
+> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
+> ![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
 
 ## <a id="portal"></a>在 Azure 入口網站中監控及管理 Web 應用程式
 
