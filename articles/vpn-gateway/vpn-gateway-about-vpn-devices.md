@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/15/2016"
+   ms.date="04/25/2016"
    ms.author="cherylmc" />
 
 # 關於站對站 VPN 閘道連線的 VPN 裝置
@@ -58,6 +58,7 @@
 | Juniper | ISG | ScreenOS 6.3 (原則式和路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/ISG) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/ISG) |
 | Juniper | SSG | ScreenOS 6.2 (原則式和路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) |
 | Microsoft | 路由及遠端存取服務 | Windows Server 2012 | 不相容 | [Microsoft 範例](http://go.microsoft.com/fwlink/p/?LinkId=717761) |
+| 開啟系統 AG | 任務控制安全性閘道 | N/A | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan | Openswan | 2\.6.32 | (敬請期待) | 不相容 |
 | Palo Alto Networks | 所有執行 PAN-OS 5.0 或更新版本的裝置 | PAN-OS 5.x 或更新版本 | [Palo Alto Networks](https://support.paloaltonetworks.com/) | 不相容 |
 | Watchguard | 全部 | Fireware XTM v11.x | [組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network/) | 不相容 |
@@ -75,7 +76,7 @@
 **編輯範本：**
 
 1. 使用 [記事本] 開啟範本。 
-1. 搜尋所有 <文字> 字串並使用適合您環境的值加以取代。請務必加上 < and >。當有指定名稱時，您選取的名稱應該是唯一名稱。如果命令無法運作，請參閱裝置製造商文件。
+1. 搜尋所有 <*文字*> 字串並使用適合您環境的值加以取代。請務必加上 < and >。當有指定名稱時，您選取的名稱應該是唯一名稱。如果命令無法運作，請參閱裝置製造商文件。
 
 | **範本中的文字** | **變更為** |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -116,10 +117,7 @@
 | IKE 版本 | IKEv1 | IKEv2 |
 | 雜湊演算法 | SHA1(SHA128) | SHA1(SHA128) |
 | 階段 2 安全性關聯 (SA) 存留期 (時間) | 3,600 秒 | 3,600 秒 |
-| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - |
-| IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)|
-| 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) |
-| 停用的對等偵測 (DPD) | 不支援 | 支援 |
+| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - | | IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)| | 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) | | 停用的對等互連偵測 (DPD) | 不支援 | 支援 |
 
 ### 路由式閘道 IPsec 安全性關聯 (SA) 提供項目
 
@@ -143,12 +141,11 @@
 | 14 | AH MD5 與 ESP DES null HMAC，未提議存留期 | AH MD5 與 ESP DES MD5，無存留期 |
 | 15 | AH SHA1與 ESP DES SHA1，無存留期 | ESP SHA，無存留期 |
 | 16 | AH MD5 與 ESP DES MD5，無存留期 | ESP MD5，無存留期 |
-| 17 | - | AH SHA，無存留期 |
-| 18 | - | AH MD5，無存留期 |
+| 17 | - | AH SHA，無存留期 | | 18 | - | AH MD5，無存留期 |
 
 
 - 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。用戶端可能會選擇在 vnet 對 vnet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 
 - 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

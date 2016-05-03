@@ -9,10 +9,10 @@
 <tags 
    ms.service="storsimple"
    ms.devlang="NA"
-   ms.topic="article"
+   ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/12/2016"
+   ms.date="04/20/2016"
    ms.author="alkohli" />
 
 # 部署和管理 Azure 中的 StorSimple 虛擬裝置 (Update 2)
@@ -146,8 +146,7 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 
 開始此程序之前，請確定您擁有服務資料加密金鑰的複本。服務資料加密金鑰已在您設定第一個 StorSimple 裝置時建立，且系統已指示您將它儲存在安全的位置。如果您沒有服務資料加密金鑰的複本，就必須連絡 Microsoft 支援服務以尋求協助。
 
-執行下列步驟來設定和註冊 StorSimple 虛擬裝置。
-[AZURE.INCLUDE [設定和註冊虛擬裝置](../../includes/storsimple-configure-register-virtual-device.md)]
+執行下列步驟來設定和註冊 StorSimple 虛擬裝置。[AZURE.INCLUDE [設定和註冊虛擬裝置](../../includes/storsimple-configure-register-virtual-device.md)]
 
 ### 步驟 3：(選擇性) 修改裝置組態設定
 
@@ -283,4 +282,4 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
  
 - 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

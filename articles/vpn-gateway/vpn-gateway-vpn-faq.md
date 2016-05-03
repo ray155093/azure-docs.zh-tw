@@ -3,8 +3,8 @@
    description="VPN 閘道常見問題集。Microsoft Azure 虛擬網路跨單位連線、混合式組態連線和 VPN 閘道的常見問題集"
    services="vpn-gateway"
    documentationCenter="na"
-   authors="cherylmc"
-   manager="carmonm"
+   authors="yushwang"
+   manager="rossort"
    editor="" />
 <tags 
    ms.service="vpn-gateway"
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/10/2016"
-   ms.author="cherylmc" />
+   ms.author="yushwang" />
 
 # VPN 閘道常見問題集
 
@@ -273,4 +273,4 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0427_2016-->

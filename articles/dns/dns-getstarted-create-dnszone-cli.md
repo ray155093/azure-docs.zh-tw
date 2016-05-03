@@ -3,7 +3,7 @@
    description="了解如何使用 CLI 逐步建立 Azure DNS 的 DNS 區域來開始裝載 DNS 網域"
    services="dns"
    documentationCenter="na"
-   authors="joaoma"
+   authors="cherylmc"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/09/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # 開始藉由 CLI 使用 Azure DNS
 
@@ -43,7 +43,7 @@
 
 ### 步驟 2
 
-Azure DNS 使用 Azure 資源管理員。務必切換 CLI 以使用 ARM 命令和 DNS。
+Azure DNS 使用 Azure 資源管理員。請確定您已將 CLI 模式切換為使用 ARM 命令。
 
 	Azure config mode arm
 
@@ -78,15 +78,15 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 ## 標記
 
-標記與 Etag 不同。標記是名稱-值組的清單，由 Azure 資源管理員在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。Azure DNS CLI 在區域與記錄集上支援使用選項 ‘-Tag’ 參數來指定標記。下列範例示範如何使用兩個標記 ‘project = demo’ 和 ‘env = test’ 建立 DNS 區域：
+標記是名稱-值組的清單，由 Azure 資源管理員在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。Azure DNS CLI 透過使用選擇性的 ‘-Tag’ 參數來支援所指定 DNS 區域的標記。下列範例示範如何使用兩個標記 ‘project = demo’ 和 ‘env = test’ 建立 DNS 區域：
 
-	Azure network dns zone create -n contoso.com -g myresourcegroup -t "project=demo";"env=test"
+	Azure network dns zone create myresourcegroup contoso.com -t "project=demo";"env=test"
 
 ## 建立 DNS 區域
 
 使用 `azure network dns zone create` 命令建立 DNS 區域。在下列範例中，您將在稱為 'MyResourceGroup' 的資源群組中建立稱為 'contoso.com' 的 DNS 區域：
 
-    Azure network dns zone create -n contoso.com -g myresourcegroup
+    Azure network dns zone create myresourcegroup contoso.com
 
 
 >[AZURE.NOTE] 在 Azure DNS 中，指定區域名稱時不要以 ‘.’ 終止，例如指定為 ‘contoso.com’ 而非 ‘contoso.com.’。
@@ -121,7 +121,7 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 	data:      Refresh time                  : 900
 	data:      Retry time                    : 300
 	data:                                    :
-<BR> 若要檢視建立的 NS 記錄，請使用下列命令：
+<BR> 若要檢視使用區域建立的 NS 記錄，請使用下列命令：
 
 	azure network dns record-set show myresourcegroup "contoso.com" "@" NS
 	info:    Executing command network dns-record-set show
@@ -141,7 +141,7 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 >[AZURE.NOTE] 位於 DNS 區域的根 (或「頂點」) 的記錄集使用 "@" 做為記錄集名稱。
 
-建立第一個 DNS 區域之後，您可以使用 nslookup、DIG 之類的 DNS 工具或 **Resolve-DnsName** PowerShell Cmdlet 進行測試。如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 "azure network dns-record-set show" 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
+建立第一個 DNS 區域之後，您可以使用 nslookup、DIG 之類的 DNS 工具或 **Resolve-DnsName** PowerShell Cmdlet 進行測試。如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 "azure network dns record-set show" 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
 
 下列範例使用 DIG，使用為 DNS 區域指派的名稱伺服器來查詢網域 contoso.com。使用 DIG 的查詢必須指向我們所使用的 `@<name server for the zone>` 名稱伺服器與區域名稱。
 
@@ -171,4 +171,4 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 在建立 DNS 區域之後，您必須建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域的名稱。<BR> 您也可以了解[如何管理 DNS 區域](dns-operations-dnszones-cli.md)及其 DNS 區域作業。<BR> 了解[如何管理 DNS 記錄](dns-operations-recordsets-cli.md)和[使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)<BR> [Azure DNS REST API 參考](https://msdn.microsoft.com/library/azure/mt163862.aspx)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

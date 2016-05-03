@@ -17,7 +17,7 @@
      ms.date="03/02/2016"
      ms.author="dobett"/>
 
-# 教學課程：IoT 預先設定解決方案入門
+# 教學課程：開始使用預先設定的解決方案
 
 ## 簡介
 
@@ -248,10 +248,10 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
 [lnk-predictive]: iot-suite-predictive-overview.md
 [lnk-connecting-devices]: iot-suite-connecting-devices.md
-[lnk-permissions]: https://azure.microsoft.com/documentation/articles/iot-suite-permissions/
+[lnk-permissions]: iot-suite-permissions.md
 [lnk-logic-apps]: https://azure.microsoft.com/documentation/services/app-service/logic/
 [lnk-portal]: http://portal.azure.com/
 [lnk-rmgithub]: https://github.com/Azure/azure-iot-remote-monitoring
-[lnk-faq]: https://azure.microsoft.com/documentation/articles/iot-suite-faq/
+[lnk-faq]: iot-suite-faq.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

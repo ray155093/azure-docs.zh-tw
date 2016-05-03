@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="02/25/2016" 
+	ms.date="04/08/2016" 
 	ms.author="elizapo"/>
 
 # Azure RemoteApp 常見問題集
@@ -37,7 +37,7 @@
 
 ## 集合 - 支援的項目、您應該使用的項目，以及其他項目
 - **是否支援自訂的企業營運 (LOB) 應用程式？** 是。若要在 Azure RemoteApp 中使用自訂應用程式，請建立[自訂範本映像](remoteapp-create-custom-image.md)，然後將其上傳至 RemoteApp 收藏。
-- **我自訂的 LOB 應用程式能在 Azure RemoteApp 中運作嗎？** 最好的方式就是進行測試。檢閱[應用程式相容性需求](http://www.microsoft.com/download/details.aspx?id=18704)並查看 [RD 相容性中心](http://www.rdcompatibility.com/compatibility/default.aspx)。
+- **我自訂的 LOB 應用程式能在 Azure RemoteApp 中運作嗎？** 最好的方式就是進行測試。查看 [RD 相容性中心](http://www.rdcompatibility.com/compatibility/default.aspx)。
 - **哪一種部署方式 (雲端或混合式) 最適合我的組織？** 如果您想要與單一登入 (SSO) 完整整合，而且有安全的內部部署網路連線，混合式收藏能提供最完整的體驗。雲端收藏使用多種驗證方法，提供靈活簡單的方式隔離您的部署。深入了解[部署選項](remoteapp-whatis.md)。
 - **我們在內部部署或 Azure 中有 SQL 或其他資料庫。我們應使用何種部署類型？** 這取決於您的 SQL 或後端資料庫的所在位置。如果資料庫在私人網路中，請使用混合式收藏。如果資料庫公開於網際網路上並可供用戶端連線，您可以使用雲端收藏。
 - **磁碟機對應、USB 和序列埠、剪貼簿共用，以及印表機重新導向呢？** Azure RemoteApp 中都支援上述所有功能。預設會啟用剪貼簿共用和印表機重新導向。您可以在[這裡](remoteapp-redirection.md)深入了解重新導向。 
@@ -114,4 +114,4 @@
 ### 幫我們來協助您 
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0427_2016-->

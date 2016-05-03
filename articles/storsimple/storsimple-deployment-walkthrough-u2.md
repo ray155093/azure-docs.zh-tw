@@ -9,10 +9,10 @@
 <tags 
    ms.service="storsimple"
    ms.devlang="NA"
-   ms.topic="article"
+   ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/29/2016"
+   ms.date="04/20/2016"
    ms.author="alkohli" />
 
 # 部署您的內部部署 StorSimple 裝置 (Update 2)
@@ -245,4 +245,4 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 - 使用 [StorSimple Manager 服務](storsimple-manager-service-administration.md)以管理 StorSimple 裝置。
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

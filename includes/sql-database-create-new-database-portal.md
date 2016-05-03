@@ -8,7 +8,7 @@ As of circa 2016-04-11, the following topics might include this include:
 articles/sql-database/sql-database-get-started-tutorial.md
 
 -->
-## 建立新的 Aure SQL Database
+## 建立新的 Azure SQL Database
 
 在 Azure 入口網站中使用下列步驟，可在新的或現有 Azure SQL Database 邏輯伺服器上建立新的 Azure SQL Database。
 
@@ -47,4 +47,4 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
      ![新的資料庫](./media/sql-database-create-new-database-portal/sql-database-create-new-database-portal-6.png)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

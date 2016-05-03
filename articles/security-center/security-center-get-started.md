@@ -1,5 +1,5 @@
 <properties
-   pageTitle="開始使用 Azure 資訊安全中心 | Microsoft Azure"
+   pageTitle="Azure 資訊安全中心快速入門指南 | Microsoft Azure"
    description="本文帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。"
    services="security-center"
    documentationCenter="na"
@@ -13,10 +13,10 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/11/2016"
+   ms.date="04/26/2016"
    ms.author="terrylan"/>
 
-# 開始使用 Azure 資訊安全中心
+# Azure 資訊安全中心快速入門指南
 
 本文帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。
 
@@ -86,22 +86,14 @@
 
 3. 選取合作夥伴解決方案。在此範例中，選取 **F5 WAF2** 解決方案。隨即開啟一個刀鋒視窗，其中顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。選取 [解決方案主控台] 以開啟此解決方案的合作夥伴管理體驗。![合作夥伴解決方案詳細資料][10]
 
-合作夥伴解決方案的 [狀態] 可以是︰
-
-- 狀況良好 (綠色) - 沒有任何健康狀態問題
-- 狀況不良 (紅色) - 有需要立即注意的健康狀態問題
-- 停止報告 (橘色) - 解決方案已停止報告其健康狀態
-- 未知 (橘色) - 此時解決方案的健康狀態因為將新資源加入至現有解決方案的程序失敗，而呈現未知狀態
-- 未報告 (灰色) - 解決方案尚未報告任何狀態，如果解決方案才剛連接且仍在部署中，則可能未報告解決方案的狀態
-
-
 ## 後續步驟
 本文介紹了資訊安全中心的安全性監視和原則管理元件。若要深入了解，請參閱下列文章：
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
 - [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
 - [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) - 了解如何管理與回應安全性警示
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
 
@@ -117,4 +109,4 @@
 [9]: ./media/security-center-get-started/partner-solutions.png
 [10]: ./media/security-center-get-started/partner-solutions-detail.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->
