@@ -23,4 +23,4 @@ Azure Resource Manager 部署模型包含的計算、網路與儲存功能，可
 
 [AZURE.INCLUDE [virtual-machines-common-compare-deployment-models](../../includes/virtual-machines-common-compare-deployment-models.md)]
 
-<!------HONumber=AcomDC_0420_2016-->
+<!-------HONumber=AcomDC_0420_2016-->
