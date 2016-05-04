@@ -13,7 +13,7 @@
 * [儲存機制組織方式](#repository-organization)
 * [使用 GitHub、Git 和此儲存機制](#use-github-git-and-this-repository)
 * [如何使用 Markdown 來格式化主題](#how-to-use-markdown-to-format-your-topic)
-* [其他資源](#more-resources)
+* [其他資源](#其他資源)
 * [所有參與者指南文章的索引](https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md) (會開啟新頁面)
 
 ## 參與方法
