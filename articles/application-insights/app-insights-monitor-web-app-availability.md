@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/01/2016"
+	ms.date="04/18/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
@@ -66,6 +66,8 @@ Web 測試可分為兩種：
 
 - 如果五分鐘內有三個位置發生失敗，則依預設會將 [警示]傳送給您。某個位置的失敗很可能是網路問題，而不是您的網站發生問題。但您可以將臨界值變更為更敏感或更不敏感，也可以變更應該將電子郵件傳送給哪一個人。
 
+    您可以設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。
+
 #### 測試更多 URL
 
 加入更多測試。例如，除了測試首頁，您也可以測試搜尋的 URL 來確定資料庫在執行中。
@@ -118,7 +120,7 @@ Web 測試可分為兩種：
 或者，您可以下載結果檔案，然後在 Visual Studio 中檢查。
 
 
-*看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。If any of them fails, the test will be reported as failed, even if the main html page loads OK.
+看起來正常，但回報為失敗？ 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。If any of them fails, the test will be reported as failed, even if the main html page loads OK.
 
 
 
@@ -235,23 +237,24 @@ Web 測試外掛程式提供這種作法。
 
 ## 自動化
 
-您可以[使用 PowerShell 指令碼自動設定Web 測試](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/)。
+* [使用 PowerShell 指令碼自動設定 Web 測試](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/)。 
+* 設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。
 
 ## 有疑問嗎？ 有問題嗎？
 
-* *可以從我的 Web 測試呼叫程式碼嗎？*
+* 可以從我的 Web 測試呼叫程式碼嗎？
 
     否。測試步驟必須在 .webtest 檔案中。而且您不能呼叫其他 Web 測試或使用迴圈。但是這裡有一些您會覺得有用的外掛程式。
 
-* *是否支援 HTTPS？*
+* 是否支援 HTTPS？
 
     我們目前支援 SSL 3.0 和 TLS 1.0。
 
-* *「Web 測試」和「可用性測試」之間有任何差異嗎？*
+* 「Web 測試」和「可用性測試」之間有任何差異嗎？
 
     我們會交替使用這兩個詞彙。
 
-* *我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。*
+* 我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。
 
     設定防火牆以允許來自本文結尾之清單中的 IP 位址所發出的要求。
 
@@ -393,4 +396,4 @@ Web 測試外掛程式提供這種作法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/11/2016"
+   ms.date="04/22/2016"
    ms.author="yurid"/>
 
 #Azure 資訊安全中心的安全性健康情況監視
@@ -69,11 +69,11 @@
 - **虛擬機器**：遺失更新之虛擬機器的名稱。
 - **系統更新**：遺漏的系統更新數量。
 - **上次掃描時間**：資訊安全中心上次掃描 VM 更新的時間。
-- **狀態**：建議的目前狀態： 
+- **狀態**：建議的目前狀態：
 	- **未處理**：建議尚未處理
 	- **進行中**：正在將建議套用到這些資源，您不需要採取任何動作
 	- **已解決**：建議已經完成 (問題已解決時，該項目會呈現灰色)。
-- **嚴重性**：描述該特定建議的嚴重性： 
+- **嚴重性**：描述該特定建議的嚴重性：
 	- **高**：某個有意義的資源 (應用程式、VM、網路安全性群組) 有弱點存在，並且需要注意
 	- **中**：完成某個程序或消除弱點時所需的非關鍵性步驟或其他步驟
 	- **低**：應該處理但不需要立即注意的弱點。(預設不會顯示嚴重性低的建議，但是如果您要檢視它們，則可以篩選嚴重性低的建議)。
@@ -105,7 +105,7 @@
 開啟此刀鋒視窗後，您會看到兩個區段：
 - 網路功能的建議
 - 網路
- 
+
 在每個區段中，您可以選取個別的選項，以取得建議的相關詳細資訊。下列各節將詳細討論這方面的資訊。
 
 ####網路功能的建議
@@ -118,8 +118,8 @@
 
 - 未啟用[端點上的 ACL](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)
 - 未啟用[網路安全性群組](../virtual-network/virtual-networks-nsg.md)
-- 列出 NSG 中狀況良好的子網路和不受限制的存取。 
- 
+- 列出 NSG 中狀況良好的子網路和不受限制的存取。
+
 當您按一下這些建議的其中之一時，會開啟新的刀鋒視窗，其中包含與建議相關的更多詳細資料，如下列範例所示。
 
 ![限制端點](./media/security-center-monitoring/security-center-monitoring-fig11-new.png)
@@ -176,7 +176,7 @@
 
 ![應用程式](./media/security-center-monitoring/security-center-monitoring-fig19-new.png)
 
-[不安全的 Web 應用程式] 刀鋒視窗中會提供包含不被視為安全之應用程式的所有 VM 的清單。清單會顯示 VM 名稱、問題的目前狀態和問題的嚴重性。如果您按一下此 Web 應用程式，將會開啟 [加入 Web 應用程式防火牆] 刀鋒視窗，其中包含讓您安裝協力廠商 WAF (Web 應用程式防火牆) 的選項，如下所示。
+[不安全的 Web 應用程式] 刀鋒視窗中會提供包含不被視為安全之應用程式的所有 VM 的清單。清單會顯示 VM 名稱、問題的目前狀態和問題的嚴重性。如果您按一下此 Web 應用程式，將會開啟 [加入 Web 應用程式防火牆] 刀鋒視窗，其中包含讓您安裝第三方 WAF (Web 應用程式防火牆) 的選項，如下所示。
 
 ![新增 WAF](./media/security-center-monitoring/security-center-monitoring-fig20-new.png)
 
@@ -185,7 +185,8 @@
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何在 Azure 資訊安全中心設定安全性設定
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) - 了解如何管理與回應安全性警示
-- [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

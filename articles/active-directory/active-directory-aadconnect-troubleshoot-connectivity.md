@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
+	ms.date="04/14/2016"
 	ms.author="andkjell"/>
 
 # 使用 Azure AD Connect 疑難排解連線問題
@@ -37,10 +37,10 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 | URL | 連接埠 | 說明 |
 | ---- | ---- | ---- |
 | mscrl.microsoft.com | HTTP/80 | 用來下載 CRL 清單。 |
-| **.verisign.com | HTTP/80 | 用來下載 CRL 清單。| 
-| *.trust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。| 
-| *.windows.net | HTTPS/443 | 用來登入 Azure AD。| 
-| secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。| 
+| **.verisign.com | HTTP/80 | 用來下載 CRL 清單。|
+| *.trust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。|
+| *.windows.net | HTTPS/443 | 用來登入 Azure AD。|
+| secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。|
 | *.microsoftonline.com | HTTPS/443 | 用來設定您的 Azure AD 目錄及匯入/匯出資料。|
 
 ## 精靈中的錯誤
@@ -55,7 +55,7 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 - 如果看起來正確，請依照[確認 Proxy 連線](#verify-proxy-connectivity)中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ### 無法連線 MFA 端點
-如果無法連線端點 ****https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。
+如果無法連線端點 **https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。
 ![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
 
 - 如果您看到此錯誤，請確認是否已將 secure.aadcdn.microsoftonline-p.com 端點新增到 Proxy。
@@ -141,4 +141,4 @@ PowerShell 會使用 machine.config 中的組態來連絡 Proxy。winhttp/netsh 
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

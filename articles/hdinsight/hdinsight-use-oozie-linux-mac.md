@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="04/07/2016"
 	ms.author="larryfr"/>
 
 
@@ -35,6 +35,8 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。它可與 
 - **Azure 訂用帳戶**：請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 - **Azure CLI**：請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)
+	
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 - **HDInsight 叢集**：請參閱[開始使用 Linux 上的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 
@@ -284,7 +286,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 		<name>fs.defaultFS</name>
 		<value>wasb://mycontainer@mystorageaccount.blob.core.windows.net</value>
 
-	儲存 ****wasb://mycontainer@mystorageaccount.blob.core.windows.net** 值，後續的步驟中會使用該值。
+	儲存 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 值，後續的步驟中會使用該值。
 
 2. 使用以下命令取得叢集前端節點的 FQDN。該項目將用於叢集的 JobTracker 位址。這稍後會在組態檔中用到：
 
@@ -361,7 +363,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 		  </property>
 		</configuration>
 
-	* 將 ****wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體替換為您之前收到的值。
+	* 將 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體替換為您之前收到的值。
 
 	> [AZURE.WARNING] 您必須使用完整的 WASB 路徑，其中包含容器和儲存體帳戶做為路徑的一部分。使用簡短格式 (wasb:///) 會在工作開始時導致 RunHiveScript 動作失敗。
 
@@ -479,7 +481,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 1. 建立 HDInsight 叢集的 SSH 通道。如需執行這些動作的相關資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
 
-2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 ****https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
+2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
 
 3. 在頁面左邊選取 [Oozie]，然後依序選取 [快速連結] 和 [Oozie Web UI]。
 
@@ -720,4 +722,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

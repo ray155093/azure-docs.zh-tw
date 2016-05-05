@@ -1,6 +1,6 @@
 <properties
    pageTitle="何謂 Microsoft Power BI Embedded"
-   description="何謂 Microsoft Power BI Embedded"
+   description="Power BI Embedded 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -99,4 +99,4 @@
 - [Power BI REST API](http://docs.powerbi.apiary.io/reference)
 - [Azure 區域](https://azure.microsoft.com/regions/)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -310,27 +310,31 @@ Engagement API 可允許使用所有 Engagement 的進階功能，詳情請見�
 
 ##進階組態 (在 AndroidManifest.xml 中)
 
+### 線上醒機的鎖定
+
 如果您希望在使用 Wifi 或關閉螢幕時仍確保即時傳送統計資料，請新增下列選用權限：
 
 			<uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+### 當機報告
 
 如果您想要停用當機報告，請加入下列內容 (在 `<application>` 和 `</application>` 標記之間)：
 
 			<meta-data android:name="engagement:reportCrash" android:value="false"/>
 
+### 高載閾值
+
 根據預設，Engagement 會即時報告記錄檔。如果應用程式報告記錄檔的頻率很高，建議您緩衝記錄檔，以固定時段一次報告全部的記錄檔 (此稱為「高載模式」)。若要完成此作業，請加入下列內容 (在 `<application>` 和 `</application>` 標記之間)：
 
-			<meta-data android:name="engagement:burstThreshold" android:value="<interval between too bursts (in milliseconds)>"/>
+			<meta-data android:name="engagement:burstThreshold" android:value="{interval between too bursts (in milliseconds)}"/>
 
 高載模式可以稍微延長電池使用時間但對 Engagement 監視器會有影響： 所有工作階段和工作持續時間將調整為高載閾值 (因此，可能將看不到時間比高載閾值短的工作階段和作業)。建議使用低於 30000 (30 秒) 的閾值。
 
-根據預設，Engagement 服務在可使用網路時會立即與我們的伺服器建立連線。如果您想要延遲連線，請加入下列內容 (在 `<application>` 和 `</application>` 標記之間)：
-
-			<meta-data android:name="engagement:connection:delay" android:value="<delay (in milliseconds)>"/>
+### 工作階段逾時
 
 根據預設，工作階段會在最後一個活動結束後 10 秒終止 (最後一個活動通常發生在按 [首頁] 或 [上一步] 鍵、將行動電話設定為閒置或跳到另一個應用程式)。這是為了避免當使用者退出但很快又返回應用程式 (例如使用者挑選影像、檢查通知等等) 時，工作階段產生分割的狀況。您可以修改這個參數。若要完成此作業，請加入下列內容 (在 `<application>` 和 `</application>` 標記之間)：
 
-			<meta-data android:name="engagement:sessionTimeout" android:value="<session timeout (in milliseconds)>"/>
+			<meta-data android:name="engagement:sessionTimeout" android:value="{session timeout (in milliseconds)}"/>
 
 ##停用記錄報告
 
@@ -380,4 +384,4 @@ Engagement 在喜好設定檔案內會一律使用 `engagement:key` 布林值機
 <!-- URLs. -->
 [Device API]: http://go.microsoft.com/?linkid=9876094
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

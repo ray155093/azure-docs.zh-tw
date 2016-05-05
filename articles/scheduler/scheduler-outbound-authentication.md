@@ -1,6 +1,6 @@
 <properties
  pageTitle="排程器輸出驗證"
- description=""
+ description="排程器輸出驗證"
  services="scheduler"
  documentationCenter=".NET"
  authors="krisragh"
@@ -120,4 +120,4 @@
 
  [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

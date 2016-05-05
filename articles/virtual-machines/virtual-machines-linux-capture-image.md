@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/22/2016"
+	ms.date="04/15/2016"
 	ms.author="danlep"/>
 
 
@@ -23,11 +23,11 @@
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-machines-linux-classic-capture-image.md)。
 
 
-本文說明如何使用 Azure 命令列介面 (CLI) 擷取執行 Linux 的 Azure 虛擬機器，以便用它作為 Azure 資源管理員範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
+使用 Azure 命令列介面 (CLI) 擷取執行 Linux 的 Azure 虛擬機器，以便用它作為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
 
 ## 開始之前
 
-這些步驟假設您已在 Azure 資源管理員部署模型中建立 Azure 虛擬機器，並設定好作業系統，包括連接任何資料磁碟以及進行其他自訂作業 (如安裝應用程式)。如果您尚未這麼做，請參閱在 Azure 資源管理員模式中使用 Azure CLI 的相關指示：
+這些步驟假設您已在 Azure 資源管理員部署模型中建立 Azure 虛擬機器，並設定好作業系統，包括連接任何資料磁碟以及進行其他自訂作業 (如安裝應用程式)。有數種方式可以執行這項作業 (包括透過 Azure CLI)。如果您尚未這麼做，請參閱在 Azure 資源管理員模式中使用 Azure CLI 的相關指示：
 
 - [使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)
 
@@ -83,7 +83,7 @@
 
 	此命令會使用您為 VM 磁碟指定的 VHD 名稱前置詞，建立一般化 OS 映像。在原始 VM 使用的相同儲存體帳戶中預設會建立映像 VHD 檔案。**-t** 選項會建立本機 JSON 檔案範本，以便從映像建立新的 VM。
 
->[AZURE.TIP] 若要尋找映像的位置，請開啟 JSON 檔案範本。在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。例如，OS 磁碟映像的 uri 類似於 `https://clixxxxxxxxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/your-prefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。
+>[AZURE.TIP] 若要尋找映像的位置，請開啟 JSON 檔案範本。在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。例如，OS 磁碟映像的 uri 類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/<your-image-prefix>-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。
 
 ## 從擷取的映像部署新的 VM
 現在使用具有範本的映像來建立新的 Linux VM。下列步驟示範如何使用您利用 `azure vm capture` 命令建立的 Azure CLI 和 JSON 檔案範本，在新的虛擬網路中建立 VM。
@@ -178,7 +178,7 @@
 
 ## 使用 azure vm create 命令
 
-您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以使用 **azure vm create** 命令搭配 **--os-disk-vhd** (**-d**) 參數，以命令方式建立 VM。
+您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以搭配使用 **azure vm create** 命令與 **-Q** (**--image-urn**) 參數，以命令方式來建立 VM。您也會傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案的位置。這必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。此命令會自動將新 VM 的 VHD 複製到 vhds 容器。
 
 對映像執行 **azure vm create** 之前，請執行下列動作：
 
@@ -186,11 +186,10 @@
 
 2.	為新的 VM 建立公用 IP 位址資源和 NIC 資源。如需使用 CLI 建立虛擬網路、公用 IP 位址和 NIC 的步驟，請參閱本文前面的內容 (**azure vm create** 也可以建立新的 NIC，但您需要傳遞虛擬網路和子網路的其他參數)。
 
-3.	確定您將映像 VHD 複製到沒有資料夾 (虛擬目錄) 的 Blob 容器位置。根據預設，您擷取的映像會儲存在儲存體 Blob 容器的巢狀資料夾中 (類似 `https://clixxxxxxxxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/your-prefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd` 的 URI)。**azure vm create** 命令目前只能從儲存在 Blob 容器最頂層的 OS 磁碟 VHD 建立 VM。例如，您可以將映像 VHD 複製到 `https://yourstorage.blob.core.windows.net/vhds/your-prefix-OsDisk.vhd`。
 
-然後執行類似下列的命令。
+然後，將 URI 傳遞給新 OS VHD 檔案和現有映像，以執行與下面類似的命令。
 
-	azure vm create <your-resource-group-name> <your-new-vm-name> eastus Linux -o <your-storage-account-name> -d "https://yourstorage.blob.core.windows.net/vhds/your-prefix-OsDisk.vhd" -z Standard_A1 -u <your-admin-name> -p <your-admin-password> -f <your-nic-name>
+	azure vm create <your-resource-group-name> <your-new-vm-name> eastus Linux -d "https://xxxxxxxxxxxxxx.blob.core.windows.net/vhds/<your-new-VM-prefix>.vhd" -Q "https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/<your-image-prefix>-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd" -z Standard_A1 -u <your-admin-name> -p <your-admin-password> -f <your-nic-name>
 
 如需其他命令選項，請執行 `azure help vm create`。
 
@@ -198,4 +197,4 @@
 
 若要使用 CIL 管理 VM，請參閱[使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)中的工作。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

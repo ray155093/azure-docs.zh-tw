@@ -1,6 +1,6 @@
 <properties
    pageTitle="Microsoft Power BI Embedded - 連接到資料來源"
-   description="Microsoft Power BI Embedded - 連接到資料來源"
+   description="Power BI Embedded，連接到資料來源"
    services="power-bi-embedded"
    documentationCenter=""
    authors="dvana"
@@ -55,4 +55,4 @@
 - [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 - [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

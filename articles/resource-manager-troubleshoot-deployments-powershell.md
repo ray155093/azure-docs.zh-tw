@@ -39,19 +39,21 @@
 
 1. 若要擷取記錄檔項目，請執行 **Get-AzureRmLog** 命令。您可以使用 **ResourceGroup** 和 **Status** 參數，只傳回單一資源群組失敗的事件。如果未指定開始和結束時間，則會傳回最後一個小時的項目。例如，若要擷取過去一小時失敗的作業，請執行︰
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -Status Failed
+        Get-AzureRmLog -ResourceGroup ExampleGroup -Status Failed
 
     您可以指定特定的時間範圍。在下一個範例中，我們將尋找過去 14 天失敗的動作。
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) -Status Failed
+        Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) -Status Failed
       
     或者，您可以針對失敗的動作設定確切的開始和結束時間︰
 
-        PS C:\> Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00 -Status Failed
+        Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00 -Status Failed
 
 2. 如果這個命令傳回太多項目和屬性，您可以擷取 **Properties** 屬性，專注於進行稽核。我們也將加入 **DetailedOutput** 參數，以顯示錯誤訊息。
 
-        PS C:\> (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties
+        (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties
+        
+    以下列格式傳回記錄檔項目的內容︰
         
         Content
         -------
@@ -61,7 +63,9 @@
 
 3. 您可以藉由查看某一個特定項目的狀態訊息，進一步精簡結果。
 
-        PS C:\> (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties[1].Content["statusMessage"] | ConvertFrom-Json
+        (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties[1].Content["statusMessage"] | ConvertFrom-Json
+        
+    以下列格式傳回狀態訊息︰
         
         Code       : Conflict
         Message    : Website with given name mysite already exists.
@@ -74,7 +78,9 @@
 
 1. 若要取得部署的整體狀態，請使用 **Get-AzureRmResourceGroupDeployment** 命令。您可以篩選結果，只取得失敗的部署。
 
-        PS C:\> Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
+        Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
+        
+    以下列格式傳回失敗的部署︰
         
         DeploymentName    : ExampleDeployment
         ResourceGroupName : ExampleGroup
@@ -95,7 +101,9 @@
 
 2. 每個部署通常由多個作業所組成，而每個作業代表部署程序中的一個步驟。若要探索部署有何問題，您通常需要查看有關部署作業的詳細資訊。您可以利用 **Get-AzureRmResourceGroupDeploymentOperation** 查看作業的狀態。
 
-        PS C:\> Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName ExampleDeployment | Format-List
+        Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName ExampleDeployment | Format-List
+        
+    以下列格式傳回作業︰
         
         Id          : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/ExampleDeployment/operations/8518B32868A437C8
         OperationId : 8518B32868A437C8
@@ -103,9 +111,11 @@
                       Duration=PT2.8834832S; TrackingId=192fbfbf-a2e2-40d6-b31d-890861f78ed3; StatusCode=Conflict;
                       StatusMessage=; TargetResource=}
 
-3. 若要取得更多有關作業的詳細資訊，請擷取 **Properties** 物件。
+3. 若要取得有關作業的詳細資訊，請擷取 **Properties** 物件。
 
-        PS C:\> (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName ExampleDeployment -ResourceGroupName ExampleGroup).Properties
+        (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName ExampleDeployment -ResourceGroupName ExampleGroup).Properties
+        
+    以下列格式傳回作業屬性︰
         
         ProvisioningOperation : Create
         ProvisioningState     : Failed
@@ -120,7 +130,9 @@
 
 4. 若要專注於失敗作業的狀態訊息，請使用下列命令︰
 
-        PS C:\> ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName ExampleDeployment -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed).StatusMessage
+        ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName ExampleDeployment -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed).StatusMessage
+        
+    以下列格式傳回狀態訊息︰
         
         Code       : Conflict
         Message    : Website with given name mysite already exists.
@@ -130,7 +142,7 @@
 
 ## 後續步驟
 
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用資源管理員來稽核作業](resource-group-audit.md)。
+- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

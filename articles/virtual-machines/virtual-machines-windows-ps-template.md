@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用範本建立 VM | Microsoft Azure"
-	description="使用資源管理員範本，輕鬆搭配 PowerShell 建立新的 Windows 虛擬機器。"
+	pageTitle="使用 Resource Manager 範本建立 VM | Microsoft Azure"
+	description="使用 Resource Manager 範本和 PowerShell 輕鬆地建立新的 Windows 虛擬機器。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="davidmu1"
@@ -10,283 +10,276 @@
 
 <tags
 	ms.service="virtual-machines-windows"
-	ms.workload="infrastructure-services"
+	ms.workload="na"
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/07/2016"
+	ms.date="04/18/2016"
 	ms.author="davidmu"/>
 
 # 利用 Resource Manager 範本建立 Windows 虛擬機器
 
-> [AZURE.SELECTOR]
-- [入口網站 - Windows](virtual-machines-windows-hero-tutorial.md)
-- [PowerShell](virtual-machines-windows-create-powershell.md)
-- [PowerShell - 範本](virtual-machines-windows-ps-template.md)
-- [入口網站 - Linux](virtual-machines-linux-portal-create.md)
-- [CLI](virtual-machines-linux-quick-create-cli.md)
+本文介紹 Azure Resource Manager 範本，並說明如何使用 PowerShell 進行部署。此範本會在具有單一子網路的新虛擬網路上，部署執行 Windows Server 的單一虛擬機器。
 
-<br>
+執行本文中的步驟約需 20 分鐘的時間。
 
+## 步驟 1：建立範本檔案
 
+您可以使用[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)中的資訊來建立專屬範本。您也可以從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署已為您建立的範本。本文中所使用的範例類似 [Deploy a simple Windows VM in West US (在美國西部部署簡單 Windows VM)](https://azure.microsoft.com/documentation/templates/101-vm-simple-windows/) 中所述的範本。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。您無法以傳統部署模型建立此資源。
+1. 開啟您常用的文字編輯器，並將此 JSON 資訊複製至稱為 *VirtualMachineTemplate.json* 的新檔案：
 
-您可以使用資源管理員範本搭配 Azure PowerShell，輕鬆建立 Windows 架構的新 Azure 虛擬機器。這個範本建立的單一虛擬機器會採用 Windows ，而且是在新資源群組的單一子網路的新虛擬網路上執行。
-
-![](./media/virtual-machines-windows-ps-template/windowsvm.png)
-
-[AZURE.INCLUDE [powershell-preview](../../includes/powershell-preview-inline-include.md)]
-
-## 利用資源管理員範本搭配 Azure PowerShell 建立 Windows 虛擬機器
-
-依照下列步驟，搭配 Azure PowerShell 並使用 Github 範本儲存機制中的資源管理員範本來建立 Windows 虛擬機器。
-
-### 步驟 1：檢查範本的 JSON 檔案
-
-以下是範本的 JSON 檔案內容。
-
-	{
-    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "newStorageAccountName": {
-            "type": "string",
-            "metadata": {
-                "Description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
-            }
-        },
-        "adminUsername": {
-            "type": "string",
-            "metadata": {
-               "Description": "Username for the Virtual Machine."
-            }
-        },
-        "adminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "Description": "Password for the Virtual Machine."
-            }
-        },
-        "dnsNameForPublicIP": {
-            "type": "string",
-            "metadata": {
-                  "Description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-            }
-        },
-        "windowsOSVersion": {
-            "type": "string",
-            "defaultValue": "2012-R2-Datacenter",
-            "allowedValues": [
-                "2008-R2-SP1",
-                "2012-Datacenter",
-                "2012-R2-Datacenter",
-                "Windows-Server-Technical-Preview"
-            ],
-            "metadata": {
-                "Description": "The Windows version for the virtual machine. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter, Windows-Server-Technical-Preview."
-            }
-        }
-    },
-    "variables": {
-        "location": "West US",
-        "imagePublisher": "MicrosoftWindowsServer",
-        "imageOffer": "WindowsServer",
-        "OSDiskName": "osdiskforwindowssimple",
-        "nicName": "myVMNic",
-        "addressPrefix": "10.0.0.0/16",
-        "subnetName": "Subnet",
-        "subnetPrefix": "10.0.0.0/24",
-        "storageAccountType": "Standard_LRS",
-        "publicIPAddressName": "myPublicIP",
-        "publicIPAddressType": "Dynamic",
-        "vmStorageAccountContainerName": "vhds",
-        "vmName": "MyWindowsVM",
-        "vmSize": "Standard_D1",
-        "virtualNetworkName": "MyVNET",
-        "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-        "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
-    },
-    "resources": [
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[parameters('newStorageAccountName')]",
-            "apiVersion": "2015-05-01-preview",
-            "location": "[variables('location')]",
-            "properties": {
+          "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "newStorageAccountName": {
+              "type": "string",
+              "metadata": {
+                "Description": "The name of the storage account where the VM disk is stored."
+              }
+            },
+            "adminUsername": {
+              "type": "string",
+              "metadata": {
+                "Description": "The name of the administrator account on the VM."
+              }
+            },
+            "adminPassword": {
+              "type": "securestring",
+              "metadata": {
+                "Description": "The administrator account password on the VM."
+              }
+            },
+            "dnsNameForPublicIP": {
+              "type": "string",
+              "metadata": {
+                "Description": "The name of the public IP address used to access the VM."
+              }
+            }
+          },
+          "variables": {
+            "location": "Central US",
+            "imagePublisher": "MicrosoftWindowsServer",
+            "imageOffer": "WindowsServer",
+            "windowsOSVersion": "2012-R2-Datacenter",
+            "OSDiskName": "osdisk1",
+            "nicName": "nc1",
+            "addressPrefix": "10.0.0.0/16",
+            "subnetName": "sn1",
+            "subnetPrefix": "10.0.0.0/24",
+            "storageAccountType": "Standard_LRS",
+            "publicIPAddressName": "ip1",
+            "publicIPAddressType": "Dynamic",
+            "vmStorageAccountContainerName": "vhds",
+            "vmName": "vm1",
+            "vmSize": "Standard_A0",
+            "virtualNetworkName": "vn1",
+            "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+            "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "name": "[parameters('newStorageAccountName')]",
+              "apiVersion": "2015-06-15",
+              "location": "[variables('location')]",
+              "properties": {
                 "accountType": "[variables('storageAccountType')]"
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('publicIPAddressName')]",
-            "location": "[variables('location')]",
-            "properties": {
+              }
+            },
+            {
+              "apiVersion": "2016-03-30",
+              "type": "Microsoft.Network/publicIPAddresses",
+              "name": "[variables('publicIPAddressName')]",
+              "location": "[variables('location')]",
+              "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
-                    "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
+                  "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
                 }
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('virtualNetworkName')]",
-            "location": "[variables('location')]",
-            "properties": {
+              }
+            },
+            {
+              "apiVersion": "2016-03-30",
+              "type": "Microsoft.Network/virtualNetworks",
+              "name": "[variables('virtualNetworkName')]",
+              "location": "[variables('location')]",
+              "properties": {
                 "addressSpace": {
-                    "addressPrefixes": [
-                        "[variables('addressPrefix')]"
-                    ]
+                  "addressPrefixes": [
+                    "[variables('addressPrefix')]"
+                  ]
                 },
                 "subnets": [
-                    {
-                        "name": "[variables('subnetName')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnetPrefix')]"
-                        }
+                  {
+                    "name": "[variables('subnetName')]",
+                    "properties": {
+                      "addressPrefix": "[variables('subnetPrefix')]"
                     }
+                  }
                 ]
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('nicName')]",
-            "location": "[variables('location')]",
-            "dependsOn": [
+              }
+            },
+            {
+              "apiVersion": "2016-03-30",
+              "type": "Microsoft.Network/networkInterfaces",
+              "name": "[variables('nicName')]",
+              "location": "[variables('location')]",
+              "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
                 "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-            ],
-            "properties": {
+              ],
+              "properties": {
                 "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "properties": {
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
-                            },
-                            "subnet": {
-                                "id": "[variables('subnetRef')]"
-                            }
-                        }
+                  {
+                    "name": "ipconfig1",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "publicIPAddress": {
+                        "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
+                      },
+                      "subnet": {
+                        "id": "[variables('subnetRef')]"
+                      }
                     }
+                  }
                 ]
-            }
-        },
-        {
-            "apiVersion": "2015-05-01-preview",
-            "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('vmName')]",
-            "location": "[variables('location')]",
-            "dependsOn": [
+              }
+            },
+            {
+              "apiVersion": "2016-03-30",
+              "type": "Microsoft.Compute/virtualMachines",
+              "name": "[variables('vmName')]",
+              "location": "[variables('location')]",
+              "dependsOn": [
                 "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
-            ],
-            "properties": {
+              ],
+              "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[variables('vmSize')]"
+                  "vmSize": "[variables('vmSize')]"
                 },
                 "osProfile": {
-                    "computername": "[variables('vmName')]",
-                    "adminUsername": "[parameters('adminUsername')]",
-                    "adminPassword": "[parameters('adminPassword')]"
+                  "computername": "[variables('vmName')]",
+                  "adminUsername": "[parameters('adminUsername')]",
+                  "adminPassword": "[parameters('adminPassword')]"
                 },
                 "storageProfile": {
-                    "imageReference": {
-                        "publisher": "[variables('imagePublisher')]",
-                        "offer": "[variables('imageOffer')]",
-                        "sku" : "[parameters('windowsOSVersion')]",
-                        "version":"latest"
+                  "imageReference": {
+                    "publisher": "[variables('imagePublisher')]",
+                    "offer": "[variables('imageOffer')]",
+                    "sku" : "[variables('windowsOSVersion')]",
+                    "version":"latest"
+                  },
+                  "osDisk" : {
+                    "name": "osdisk",
+                    "vhd": {
+                      "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
                     },
-                   "osDisk" : {
-                        "name": "osdisk",
-                        "vhd": {
-                            "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
-                        },
-                        "caching": "ReadWrite",
-                        "createOption": "FromImage"
-                    }
+                    "caching": "ReadWrite",
+                    "createOption": "FromImage"
+                  }
                 },
                 "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
-                        }
-                    ]
+                  "networkInterfaces": [
+                    {
+                      "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+                    }
+                  ]
                 }
+              }
             }
+          ]
         }
-    ]
-	}
+        
+    >[AZURE.NOTE] 本文會建立執行 Windows Server 作業系統版本的虛擬機器。若要深入了解如何選取其他映像，請參閱[使用 Windows PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
+    
+2. 儲存範本檔案。
 
+## 步驟 2︰建立參數檔案
 
-### 步驟 2：使用範本建立虛擬機器
+若要為範本中所定義的資源參數指定值，您可以建立參數檔案，其中包含值並且將其提交至具有範本的資源管理員。
 
-填寫 Azure 部署名稱、資源群組名稱、Azure 資料中心位置，然後執行以下命令。
+1. 在文字編輯器中，將此 JSON 資訊複製至稱為 *Parameters.json* 的新檔案：
 
-	$deployName="<deployment name>"
-	$RGName="<resource group name>"
-	$locName="<Azure location, such as West US>"
-	$templateURI="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-simple-windows-vm/azuredeploy.json"
-	New-AzureRmResourceGroup –Name $RGName –Location $locName
-	New-AzureRmResourceGroupDeployment -Name $deployName -ResourceGroupName $RGName -TemplateUri $templateURI
+        {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "newStorageAccountName": { "value": "mytestsa1" },
+            "adminUserName": { "value": "mytestacct1" },
+            "adminPassword": { "value": "mytestpass1" },
+            "dnsNameForPublicIP": { "value": "mytestdns1" }
+          }
+        }
 
-執行 **New-AzureRmResourceGroupDeployment** 命令時，系統會提示您提供 JSON 檔案 "parameters" 區段中的參數值。指定所有的參數值後，這個命令會建立資源群組和虛擬機器。
+4. 儲存參數檔案。
 
-範例如下。
+## 步驟 3：安裝 Azure PowerShell
 
-	$deployName="TestDeployment"
-	$RGName="TestRG"
-	$locname="West US"
-	$templateURI="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-simple-windows-vm/azuredeploy.json"
-	New-AzureRmResourceGroup –Name $RGName –Location $locName
-	New-AzureRmResourceGroupDeployment -Name $deployName -ResourceGroupName $RGName -TemplateUri $templateURI
+如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
 
-您會看到類似下列畫面：
+## 步驟 4：建立資源群組
 
-	cmdlet New-AzureRmResourceGroupDeployment at command pipeline position 1
-	Supply values for the following parameters:
-	(Type !? for Help.)
-	newStorageAccountName: newsaacct
-	adminUsername: WinAdmin1
-	adminPassword: *********
-	dnsNameForPublicIP: contoso
-	VERBOSE: 10:56:59 AM - Template is valid.
-	VERBOSE: 10:56:59 AM - Create template deployment 'TestDeployment'.
-	VERBOSE: 10:57:08 AM - Resource Microsoft.Network/virtualNetworks 'MyVNET' provisioning status is succeeded
-	VERBOSE: 10:57:11 AM - Resource Microsoft.Network/publicIPAddresses 'myPublicIP' provisioning status is running
-	VERBOSE: 10:57:11 AM - Resource Microsoft.Storage/storageAccounts 'newsaacct' provisioning status is running
-	VERBOSE: 10:57:38 AM - Resource Microsoft.Storage/storageAccounts 'newsaacct' provisioning status is succeeded
-	VERBOSE: 10:57:40 AM - Resource Microsoft.Network/publicIPAddresses 'myPublicIP' provisioning status is succeeded
-	VERBOSE: 10:57:45 AM - Resource Microsoft.Compute/virtualMachines 'MyWindowsVM' provisioning status is running
-	VERBOSE: 10:57:45 AM - Resource Microsoft.Network/networkInterfaces 'myVMNic' provisioning status is succeeded
-	VERBOSE: 11:01:59 AM - Resource Microsoft.Compute/virtualMachines 'MyWindowsVM' provisioning status is succeeded
+所有資源都必須部署在資源群組中。如需詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
+1. 取得可以建立資源的可用位置清單。
 
-	DeploymentName    : TestDeployment
-	ResourceGroupName : TestRG
-	ProvisioningState : Succeeded
-	Timestamp         : 4/28/2015 6:02:13 PM
-	Mode              : Incremental
-	TemplateLink      :
-	Parameters        :
-                    	Name             Type                       Value
-	                    ===============  =========================  ==========
-	                    newStorageAccountName  String                     newsaacct
-	                    adminUsername    String                     WinAdmin1
-	                    adminPassword    SecureString
-	                    dnsNameForPublicIP  String                     contoso9875
-	                    windowsOSVersion  String                     2012-R2-Datacenter
+	    Get-AzureLocation | sort Name | Select Name
 
-	Outputs           :
+2. 使用清單中的位置 (例如**美國中部**) 取代 **$locName** 的值。建立變數。
 
-在新的資源群組中，您現在擁有新的 Windows 虛擬機器，名稱是 MyWindowsVM。
+        $locName = "location name"
+        
+3. 使用新資源群組的名稱取代 **$rgName** 的值。建立變數和資源群組。
+
+        $rgName = "resource group name"
+        New-AzureRmResourceGroup -Name $rgName -Location $locName
+        
+    您應該會看到如下的結果：
+    
+        ResourceGroupName : myrg1
+        Location          : centralus
+        ProvisioningState : Succeeded
+        Tags              :
+        ResourceId        : /subscriptions/{subscription-id}/resourceGroups/myrg1
+
+### 步驟 7 ︰使用範本和參數建立資源
+
+1. 使用部署名稱取代 **$deployName** 的值。使用範本檔案的路徑和名稱取代 **$templatePath** 的值。使用參數檔案的路徑和名稱取代 **$parameterFile** 的值。建立變數。 
+
+        $deployName="deployment name"
+        $templatePath = "template path"
+        $parameterFile = "parameter file"
+
+4. 部署範本。
+
+        New-AzureRmResourceGroupDeployment -ResourceGroupName "davidmurg6" -TemplateFile $templatePath -TemplateParameterFile $parameterFile
+
+    您會看到類似下列畫面：
+
+        DeploymentName    : VirtualMachineTemplate
+        ResourceGroupName : myrg1
+        ProvisioningState : Succeeded
+        Timestamp         : 4/14/2016 8:11:37 PM
+        Mode              : Incremental
+        TemplateLink      :
+        Parameters        :
+                            Name             Type                       Value
+                            ===============  =========================  ==========
+                            newStorageAccountName  String                     mytestsa1
+                            adminUsername    String                     mytestacct1
+                            adminPassword    SecureString
+                            dnsNameForPublicIP  String                     mytestdns1
+
+        Outputs           :
+
+    >[AZURE.NOTE] 您也可以從 Azure 儲存體帳戶部署範本和參數。若要深入了解，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](../storage-powershell-guide-full.md)。
 
 ## 後續步驟
 
-請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
+- 如果部署發生問題，下一個步驟是查看[使用 Azure 入口網站疑難排解資源群組部署](../resource-manager-troubleshoot-deployments-portal.md)。
+- 請檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -196,4 +196,4 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 - 若要了解透過入口網站管理資源，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
 - 若要了解範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

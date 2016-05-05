@@ -15,11 +15,13 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="03/09/2016"
+   ms.date="04/21/2016"
    ms.author="cfowler;mahender"/>
    
    
 # Azure Functions 概觀
+
+本主題提供 Azure Functions 的高階概觀。如果您想要直接進入正題並開始使用 Azure Functions，請從[建立您的第一個 Azure 函式](functions-create-first-azure-function.md)著手。如果您要尋找更多有關 Functions 的技術資訊，請參閱[開發人員參考](functions-reference.md)。
 
 ## 更快撰寫函式的方法
 
@@ -72,4 +74,12 @@ Azure Functions 支援各種與 Azure 和第三方服務的整合。您可以利
 
 [AZURE.INCLUDE [報告問題](../../includes/functions-reporting-issues.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+##後續步驟
+
++ [建立您的第一個 Azure 函式](functions-create-first-azure-function.md) 直接進入正題並使用 Azure Functions 快速入門建立您的第一個函式。 
++ [Azure Functions 開發人員參考](functions-reference.md) 提供更多有關 Azure Functions 執行階段的技術資訊，以及可供撰寫函式程式碼及定義觸發程序和繫結時參考。
++ [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
++ [如何調整 Azure 函數](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。 
++ [什麼是 Azure 應用程式服務？](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
+
+<!---HONumber=AcomDC_0427_2016-->

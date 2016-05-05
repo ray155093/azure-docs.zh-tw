@@ -50,7 +50,7 @@ Azure 應用程式服務 Web 應用程式是完全受管理的平台，可讓您
 - **混合式連線** - - 使用[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和 [VNET](../app-service-web/web-sites-integrate-with-vnet.md) 存取內部部署資料。
 
 ## 開始使用 ##
-若要開始使用 Web 應用程式，請遵循[建立 ASP.NET Web 應用程式][create]教學課程。
+若要開始使用 Web Apps，請遵循[在 Azure App Service 中開始使用 Web 應用程式][create]教學課程。
 
 如需 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][appservice]。
 
@@ -60,10 +60,10 @@ Azure 應用程式服務 Web 應用程式是完全受管理的平台，可讓您
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [appservice]: ../app-service/app-service-value-prop-what-is.md
-[create]: web-sites-dotnet-get-started.md
+[create]: app-service-web-get-started.md
 [Webjobs]: websites-dotnet-webjobs-sdk-get-started.md
 [Slots]: web-sites-staged-publishing.md
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

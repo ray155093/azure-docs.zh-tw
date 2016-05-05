@@ -37,8 +37,6 @@
 
 - __Python__ 與 [pip](https://pypi.python.org/pypi/pip) (英文)
 
-- __Azure CLI__。如需詳細資訊，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)
-
 ##取得 Twitter 摘要
 
 Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.com/docs/platform-objects/tweets) (英文)，做為 JavaScript 物件標記法 (JSON)。API 驗證需要 [OAuth](http://oauth.net) (英文)。您也必須建立包含用來存取 API 之設定的 _Twitter 應用程式_。
@@ -319,4 +317,4 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 [twitter-streaming-api]: https://dev.twitter.com/docs/streaming-apis
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

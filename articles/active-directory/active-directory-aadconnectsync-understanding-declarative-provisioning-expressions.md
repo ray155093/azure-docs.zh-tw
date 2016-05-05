@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
+	ms.date="04/14/2016"
 	ms.author="markusvi;andkjell"/>
 
 
@@ -112,13 +112,13 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 ### ImportedValue
 
-函式 ImportedValues 與其他所有函式都不同，屬性名稱必須以引號 (而非方括弧) 括住：ImportedValue("proxyAddresses")。
+函數 ImportedValue 與其他所有函數都不同，其屬性名稱必須以引號 (而非方括弧) 括住：ImportedValue("proxyAddresses")。
 
 通常在同步處理期間，屬性會使用預期的值，即使它尚未匯出或在匯出期間 (「協定塔的頂端」) 收到錯誤。輸入同步處理會假設尚未到達連線目錄的屬性最後還是會到達。在某些情況下，請務必只同步處理已被連線目錄確認的值，而且在此情況下請使用函式 ImportedValue (「全像圖和差異匯入協定塔」)。
 
 在 Exchange 預設的同步處理規則 In from AD – User Common 中可以找到上述的範例，在混合式 Exchange 中，由 Exchange Online 新增的值只有在確認值已成功匯出時，才能同步處理：
 
-`proxyAddresses` <- `RemoveDuplicates(Trim(ImportedValues("proxyAddresses")))`
+`proxyAddresses` <- `RemoveDuplicates(Trim(ImportedValue("proxyAddresses")))`
 
 如需完整的函式清單，請參閱 [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
 
@@ -130,4 +130,4 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

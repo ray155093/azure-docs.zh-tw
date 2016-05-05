@@ -12,10 +12,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="12/17/2015"
+   ms.date="04/18/2016"
    ms.author="tarcher" />
-
-
 
 # 使用 IntelliTrace 和 Visual Studio 偵錯發佈的雲端服務
 
@@ -23,9 +21,9 @@
 
 有了 IntelliTrace，您可以於角色執行個體在 Azure 中執行時，記錄其廣泛的偵錯資訊。如果您需要找出問題的原因，您可以從 Visual Studio 使用 IntelliTrace 記錄檔來瀏覽程式碼，如同它是在 Azure 中執行。實際上，Azure 應用程式在 Azure 中以雲端服務形式執行時，IntelliTrace 會記錄主要執行程式碼和環境資料，並且可讓您從 Visual Studio 重新播放記錄的資料。或者，您可以使用遠端偵錯以直接附加到在 Azure 中執行的雲端服務。請參閱[偵錯雲端服務](http://go.microsoft.com/fwlink/p/?LinkId=623041)。
 
->[AZURE.IMPORTANT]IntelliTrace 僅適用於偵錯，並且不應該用於生產環境部署。
+>[AZURE.IMPORTANT] IntelliTrace 僅適用於偵錯，並且不應該用於生產環境部署。
 
->[AZURE.NOTE]如果您有安裝 Visual Studio Enterprise，而您的 Azure 應用程式以 .NET Framework 4 或更新版本為目標，則可以使用 IntelliTrace。IntelliTrace 會收集 Azure 角色的資訊。這些角色的虛擬機器一律會執行 64 位元作業系統。
+>[AZURE.NOTE] 如果您有安裝 Visual Studio Enterprise，而您的 Azure 應用程式以 .NET Framework 4 或更新版本為目標，則可以使用 IntelliTrace。IntelliTrace 會收集 Azure 角色的資訊。這些角色的虛擬機器一律會執行 64 位元作業系統。
 
 ## 為 IntelliTrace 設定 Azure 應用程式
 
@@ -39,7 +37,7 @@
 
 1. 若要在發佈至雲端時收集您的應用程式的 IntelliTrace 記錄檔，請選取 [啟用 IntelliTrace] 核取方塊。
 
-    >[AZURE.NOTE]發佈 Azure 應用程式時，您可以啟用 IntelliTrace 或分析。您不能同時啟用。
+    >[AZURE.NOTE] 發佈 Azure 應用程式時，您可以啟用 IntelliTrace 或分析。您不能同時啟用。
 
 1. 若要自訂基本的 IntelliTrace 組態，請選擇 [設定] 超連結。
 
@@ -63,10 +61,10 @@ IntelliTrace 記錄檔是循環記錄檔，大小上限是在 IntelliTrace 設�
 
 下載 IntelliTrace 記錄檔時，您可以繼續使用 Visual Studio。當記錄檔完成下載時，它會自動在 Visual Studio 中開啟。
 
->[AZURE.NOTE]IntelliTrace 記錄檔可能包含架構產生和後續處理的例外狀況。內部架構程式碼會在正常啟動角色時產生這些例外狀況，因此您可以放心忽略。
+>[AZURE.NOTE] IntelliTrace 記錄檔可能包含架構產生和後續處理的例外狀況。內部架構程式碼會在正常啟動角色時產生這些例外狀況，因此您可以放心忽略。
 
 ## 另請參閱
 
 [偵錯雲端服務](https://msdn.microsoft.com/library/ee405479.aspx)
 
-<!---HONumber=AcomDC_1223_2015-->
+<!---HONumber=AcomDC_0420_2016-->

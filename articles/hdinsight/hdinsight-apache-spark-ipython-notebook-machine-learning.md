@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 Azure HDInsight 上使用 Apache Spark 建置機器學習服務應用程式 (Linux)
+# 建置機器學習服務應用程式以在 HDInsight Linux (預覽) 上的 Apache Spark 執行
 
 了解如何在 HDInsight 中使用 Apache Spark 叢集建置機器學習應用程式。本文說明如何使用叢集隨附的 Jupyter Notebook 來建置及測試應用程式。應用程式使用所有叢集預設提供的範例 HVAC.csv 資料。
 
@@ -254,4 +254,4 @@ HDInsight 上的 Apache Spark 叢集包含 Anaconda 程式庫。其中也包含�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/05/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 Azure HDInsight 中管理 Apache Spark 叢集的資源 (Linux)
+# 在 HDInsight Linux (預覽) 上管理 Apache Spark 叢集的資源
 
 Azure HDInsight (Linux) 上的 Spark 提供 Ambari Web UI 來管理叢集資源及監視叢集的健康狀態。您也可以使用 Spark 歷程記錄伺服器來追蹤已在叢集上完成執行的應用程式。您可以使用 YARN UI 來監視目前在叢集上執行的應用程式。本文說明如何存取這些 UI，以及如何使用這些介面執行一些基本資源管理工作。
 
@@ -138,4 +138,4 @@ Azure HDInsight (Linux) 上的 Spark 提供 Ambari Web UI 來管理叢集資源�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

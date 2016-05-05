@@ -23,33 +23,21 @@
 
 ## 概觀
 
-Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列、資料表和檔案服務。您的儲存體帳戶提供您 Azure 儲存體資料物件的唯一命名空間。根據預設，您帳戶中的資料只有帳戶擁有者 (也就是您) 可以使用。
+Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲存體資料物件。儲存體帳戶中的所有物件會作為群組共同計費。根據預設，您帳戶中的資料只有帳戶擁有者 (也就是您) 可以使用。
 
-儲存體帳戶分為兩種類型：
-
-- 標準儲存體帳戶包含 Blob、資料表、佇列和檔案儲存體。
-- 進階儲存體帳戶目前僅支援 Azure 虛擬機器磁碟。如需進階儲存體的深入概觀，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
+[AZURE.INCLUDE [儲存體-帳戶-類型-包括](../../includes/storage-account-types-include.md)]
 
 ## 儲存體帳戶計費
 
-我們會根據您的儲存體帳戶對 Azure 儲存體使用量計費。儲存體成本以四項因素為基礎：儲存體容量、複寫配置、儲存體交易和資料輸出。
-
-- 儲存體容量是指您用於儲存資料的儲存體帳戶配額。若只是儲存資料，則成本是由您所儲存的資料量和複寫資料的方式來決定。
-- 複寫會決定您的資料同時維護了多少複本，以及在哪些位置。
-- 交易是指對 Azure 儲存體進行的所有讀取和寫入作業。
-- 出口流量是指傳出 Azure 地區的資料。當您儲存體帳戶中的資料受不同地區中執行的應用程式存取時，不論該應用程式是雲端服務還是其他某類應用程式，您都要負擔出口流量的費用。(若為 Azure 服務，您可以採取步驟，將資料和服務群組在相同的資料中心，以減少或消除出口流量費用。)  
-
-[Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage)頁面提供了儲存體容量、複寫和交易的詳細價格資料。[資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)頁面則提供資料輸出的詳細價格資訊。
-
-如需儲存體帳戶容量和效能目標的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
+[AZURE.INCLUDE [儲存體-帳戶-計費-包括](../../includes/storage-account-billing-include.md)]
 
 > [AZURE.NOTE] 當您建立 Azure 虛擬機器時，如果您在部署位置中沒有儲存體帳戶，則會在該位置自動建立儲存體帳戶。因此，您無須依照下方的步驟為虛擬機器磁碟建立儲存體帳戶。儲存體帳戶名稱將以虛擬機器名稱為基礎。如需詳細資訊，請參閱 [Azure 虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)。
 
 ## 儲存體帳戶端點
 
-每個儲存在 Azure 儲存體中的物件都有一個唯一 URL 位址。儲存體帳戶名稱會構成該位址的子網域。子網域會和各服務的特定網域名稱組合，從而構成儲存體帳戶的「端點」。
+每個儲存在 Azure 儲存體中的物件都有一個唯一 URL 位址。儲存體帳戶名稱會構成該位址的子網域。子網域和每個服務的特定網域名稱的組合，會構成儲存體帳戶的*端點*。
 
-例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
+例如，如果您的儲存體帳戶名為 *mystorageaccount* ，則儲存體帳戶的預設端點將是：
 
 - Blob 服務：http://*mystorageaccount*.blob.core.windows.net
 
@@ -59,9 +47,11 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 - 檔案服務：http://*mystorageaccount*.file.core.windows.net
 
+> [AZURE.NOTE] Blob 儲存體帳戶只會公開 Blob 服務端點。
+
 用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。例如，Blob 位址的格式可能如下：http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*。
 
-您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。對於傳統儲存體帳戶，如需詳細資訊，請參閱[針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md)。對於 ARM 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com)，但是您可以使用 PowerShell 設定它。如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) Cmdlet。
+您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。對於傳統儲存體帳戶，如需詳細資訊，請參閱[針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md)。對於 ARM 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com)，但是您可以使用 PowerShell 設定它。如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。
 
 ## 建立儲存體帳戶
 
@@ -69,17 +59,21 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 2. 在 [中樞] 功能表上，選取 [新增] -> [資料+儲存體] -> [儲存體帳戶]。
 
-3. 輸入儲存體帳戶的名稱。
+3. 輸入儲存體帳戶的名稱。請參閱[儲存體帳戶端點](#storage-account-endpoints)以深入了解此儲存體帳戶名稱如何用來解析 Azure 儲存體中的物件。
 
 	> [AZURE.NOTE] 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
 	>  
 	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-	請參閱下方的[儲存體帳戶端點](#storage-account-endpoints)以深入了解此儲存體帳戶名稱如何用來解析 Azure 儲存體中的物件。
-
 4. 指定所要使用的部署模型：[資源管理員] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
-5. 指定儲存體帳戶的效能層︰[標準] 或 [進階]。預設值是 [進階]。如需標準和進階儲存體帳戶的詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](storage-introduction.md)和[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
+	> [AZURE.NOTE] 僅可使用資源管理員部署模型來建立 Blob 儲存體帳戶。
+
+5. 選取儲存體帳戶的類型︰[一般用途] 或 [Blob 儲存體]。[一般用途] 是預設值。
+
+	如果已選取 [一般用途]，則指定效能層︰[標準] 或 [進階]。預設值是 [標準]。如需標準和進階儲存體帳戶的詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](storage-introduction.md)和[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
+
+	如果已選取 **Blob 儲存體**，則指定存取層︰[經常存取] 或 [不常存取]。預設值為 [經常存取]。如需詳細資訊，請參閱 [Azure Blob 儲存體：經常存取及不常存取層](storage-blob-storage-tiers.md)。
 
 6. 選取儲存體帳戶的複寫選項︰[LRS]、[GRS]、[RA-GRS] 或 [ZRS]。預設值是 [RA-GRS]。如需 Azure 儲存體複寫選項的詳細資訊，請參閱 [Azure 儲存體複寫](storage-redundancy.md)。
 
@@ -95,9 +89,13 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 ### 變更帳戶組態
 
-建立儲存體帳戶之後，您可以修改其組態，例如變更帳戶所用的複寫選項。在 Azure 入口網站中，瀏覽至您的儲存體帳戶，按一下 [所有設定]，然後按一下 [組態] 以檢視和/或變更帳戶組態。變更複寫選項，將會變更您的價格。
+建立儲存體帳戶之後，您可以修改其組態，例如變更帳戶所用的複寫選項，或變更 Blob 儲存體帳戶的存取層。在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您的儲存體帳戶，按一下 [所有設定]，然後按一下 [組態] 以檢視和/或變更帳戶組態。
 
 > [AZURE.NOTE] 視您在建立儲存體帳戶時選擇的效能層而定，可能無法使用某些複寫選項。
+
+變更複寫選項，將會變更您的價格。如需詳細資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)頁面。
+
+針對 Blob 儲存體帳戶，變更存取層除了會變更您的定價之外，可能還會產生費用的變更。如需詳細資訊，請參閱 [Blob 儲存體帳戶 - 定價和計費](storage-blob-storage-tiers.md#pricing-and-billing)。
 
 ### 管理儲存體存取金鑰
 
@@ -113,13 +111,13 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 建議您定期變更儲存體帳戶的存取金鑰，保護儲存體連線的安全。指派了兩個存取金鑰，因此您可以在重新產生一個存取金鑰的同時，使用另一個存取金鑰維持儲存體帳戶連線。
 
-> [AZURE.WARNING] 重新產生存取金鑰會影響虛擬機器、媒體服務，以及任何相依於儲存體帳戶的應用程式。所有使用存取金鑰來存取儲存體帳戶的用戶端，都必須更新為使用新的金鑰。
-
-**虛擬機器** - 如果您的儲存體帳戶中有任何虛擬機器在執行中，您必須在重新產生存取金鑰之後，重新部署所有的虛擬機器。若要避免重新部署，請在重新產生存取金鑰之前關閉虛擬機器。
+> [AZURE.WARNING] 重新產生存取金鑰會影響 Azure 中的服務，以及您自己的相依於儲存體帳戶的應用程式。所有使用存取金鑰來存取儲存體帳戶的用戶端，都必須更新為使用新的金鑰。
 
 **媒體服務** - 如果您有媒體服務相依於儲存體帳戶，您必須在重新產生金鑰之後，將存取金鑰與媒體服務重新同步。
 
 **應用程式** - 如果您有 Web 應用程式或雲端服務使用儲存體帳戶，除非您變換金鑰，否則會在重新產生金鑰後失去連線。
+
+**儲存體總管** - 如果您使用任何[儲存體總管應用程式](storage-explorers.md)，可能需要更新這些應用程式所使用的儲存體金鑰。
 
 以下是替換儲存體存取金鑰的程序：
 
@@ -153,9 +151,10 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 ## 後續步驟
 
+- [Azure Blob 儲存體：經常存取及不常存取層](storage-blob-storage-tiers.md)
 - [Azure 儲存體複寫](storage-redundancy.md)
 - [設定 Azure 儲存體連接字串](storage-configure-connection-string.md)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/) (英文)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

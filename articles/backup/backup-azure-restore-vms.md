@@ -21,6 +21,11 @@
 
 # 還原 Azure 中的虛擬機器
 
+> [AZURE.SELECTOR]
+- [在 Azure 入口網站中還原 VM](backup-azure-arm-restore-vms.md)
+- [在傳統入口網站中還原 VM](backup-azure-restore-vms.md)
+
+
 使用下列步驟，利用 Azure 備份保存庫中儲存的備份，將虛擬機器還原到新的 VM。
 
 ## 還原工作流程
@@ -135,7 +140,7 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。在�
 
 2. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態，並使用該組態建立具備想要之組態的 VM。
 	- 使用[內部負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internal-getstarted/)在雲端服務中建立 VM
-	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/zh-TW/documentation/articles/load-balancer-internet-getstarted/)
+	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internet-getstarted/)
 	- 建立具有[多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/) 的 VM
 	- 建立具有[多個保留的 IP](https://azure.microsoft.com/documentation/articles/virtual-networks-reserved-public-ip/) 的 VM
 
@@ -144,4 +149,4 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。在�
 - [錯誤疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0420_2016-->

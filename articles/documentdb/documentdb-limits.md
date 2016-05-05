@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="04/18/2016" 
 	ms.author="arramac"/>
 
 
@@ -26,4 +26,4 @@
 
 以星號 (*) 列出的配額[可以透過聯絡 Azure 支援人員來進行調整](documentdb-increase-limits.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

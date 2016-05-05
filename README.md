@@ -13,21 +13,16 @@
 * [儲存機制組織方式](#repository-organization)
 * [使用 GitHub、Git 和此儲存機制](#use-github-git-and-this-repository)
 * [如何使用 Markdown 來格式化主題](#how-to-use-markdown-to-format-your-topic)
-* [其他資源](#more-resources)
-* [所有參與者指南文章的索引](./contributor-guide/contributor-guide-index.md) (會開啟新頁面)
+* [其他資源](#其他資源)
+* [所有參與者指南文章的索引](https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md) (會開啟新頁面)
 
 ## 參與方法
 
-您可以透過以下幾種不同方法參與 [Azure 文件](http://azure.microsoft.com/documentation/)：
+您可以在 GitHub 使用者介面輕鬆地參與技術文件。在此儲存機制中尋找文章，或瀏覽 [http://azure.microsoft.com/documentation](http://azure.microsoft.com/documentation) 上的文章，然後按一下文章中的連結來前往 GitHub 來源。
 
-* 參與[論壇討論](http://social.msdn.microsoft.com/Forums/windowsazure/home)。
-* 在文章最下方提交 Disqus 註解。
-* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。在此儲存機制中尋找文章，或瀏覽 [http://azure.microsoft.com/documentation](http://azure.microsoft.com/documentation) 上的文章，然後按一下文章中的連結來前往 GitHub 來源。
-* 如果您要大幅變更現有文章、新增或變更圖片或是參與編輯新文章，您需要取用此儲存機制、安裝 Git Bash 和 MarkdownPad，並學習一些 git 命令。
+## 關於您對 Azure 內容的參與
 
-##關於您對 Azure 內容的參與
-
-###小幅度修正
+### 小幅度修正
 
 您在此儲存機制中針對文件和程式碼範例所提交的小幅度修正或釐清，將受到 [Azure 網站使用規定 (ToU)](http://azure.microsoft.com/support/legal/website-terms-of-use/) 的約束。
 
@@ -62,7 +57,7 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 ### \includes
 
-您可以建立要加入到一個或多個文章中的可重複使用內容區段。請參閱[技術內容中使用的自訂延伸模組](./contributor-guide/custom-markdown-extensions.md)。
+您可以建立要加入到一個或多個文章中的可重複使用內容區段。請參閱[技術內容中使用的自訂延伸模組](https://github.com/Azure/azure-content/blob/master/contributor-guide/custom-markdown-extensions.md)。
 
 ### \markdown templates
 
@@ -74,9 +69,9 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 ## 使用 GitHub、Git 和此儲存機制
 
-如需如何參與、如何使用 GitHub UI 參與小型變更，以及如何取用和複製儲存機制以進行更大幅度參與的相關資訊，請參閱[在 GitHub 中安裝和設定編寫工具](./contributor-guide/tools-and-setup.md)。
+如需如何參與、如何使用 GitHub UI 參與小型變更，以及如何取用和複製儲存機制以進行更大幅度參與的相關資訊，請參閱[在 GitHub 中安裝和設定編寫工具](https://github.com/Azure/azure-content/blob/master/contributor-guide/tools-and-setup.md)。
 
-如果您安裝 GitBash 並選擇在本機工作，[用來建立新文章或更新現有文章的 Git 命令](./contributor-guide/git-commands-for-master.md)中有列出用來建立新的本機工作分支、進行變更，以及將變更提交回主要分支的相關步驟。
+如果您安裝 GitBash 並選擇在本機工作，[用來建立新文章或更新現有文章的 Git 命令](https://github.com/Azure/azure-content/blob/master/contributor-guide/git-commands-for-master.md) 中有列出用來建立新的本機工作分支、進行變更，以及將變更提交回主要分支的相關步驟。
 
 ### 分支
 
@@ -92,16 +87,16 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 - [Markdown 基本概念](https://help.github.com/articles/markdown-basics/)
 
-- [可列印的 Markdown 速查表](./contributor-guide/media/documents/markdown-cheatsheet.pdf?raw=true)
+- [可列印的 Markdown 速查表](https://github.com/Azure/azure-content/blob/master/contributor-guide/media/documents/markdown-cheatsheet.pdf?raw=true)
 
-- 如需 Markdown 編輯器清單，請參閱[工具和安裝主題](./contributor-guide/tools-and-setup.md#install-a-markdown-editor)。
+- 如需 Markdown 編輯器清單，請參閱[工具和安裝主題](https://github.com/Azure/azure-content/blob/master/contributor-guide/tools-and-setup.md#install-a-markdown-editor)。
 
 ## 文章中繼資料
 
-文章中繼資料可啟用 azure.microsoft.com 網站上的某些功能，例如作者屬性、參與者屬性、階層連結、文章說明和 SEO 最佳化，以及 Microsoft 用來評估內容成效的報告功能。因此，中繼資料非常重要！ [這裡有確認中繼資料的製作方式是否正確的指引](./contributor-guide/article-metadata.md)。
+文章中繼資料可啟用 azure.microsoft.com 網站上的某些功能，例如作者屬性、參與者屬性、階層連結、文章說明和 SEO 最佳化，以及 Microsoft 用來評估內容成效的報告功能。因此，中繼資料非常重要！ [這裡有確認中繼資料的製作方式是否正確的指引](https://github.com/Azure/azure-content/blob/master/contributor-guide/article-metadata.md)。
 
 ## 其他資源
 
-如需所有指引主題，請參閱[參與者指南索引](./contributor-guide/contributor-guide-index.md)。
+如需所有指引主題，請參閱[參與者指南索引](https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md)。
 
 <!---HONumber=AcomDC_0307_2016-->

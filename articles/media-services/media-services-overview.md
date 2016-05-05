@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
- 	ms.date="04/18/2016"
+ 	ms.date="04/26/2016"
 	ms.author="juliako;anilmur"/>
 
 #Azure 媒體服務概觀和常見案例
 
 Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置可擴充的媒體管理和傳遞應用程式。媒體服務是以 REST API 為基礎，可讓您安全地上傳、儲存、編碼和封裝視訊或音訊內容，以用於隨選和即時資料流傳遞給各種用戶端 (例如電視、電腦和行動裝置)。
 
-您可以建置完全採用媒體服務的端對端工作流程。您也可以選擇在工作流程的某些部分採用協力廠商元件。例如，使用第三方編碼器來進行編碼；然後使用媒體服務上傳、保護、封裝、傳遞。
+您可以建置完全採用媒體服務的端對端工作流程。您也可以選擇在工作流程的某些部分採用第三方元件。例如，使用第三方編碼器來進行編碼；然後使用媒體服務上傳、保護、封裝、傳遞。
 
 您可以選擇即時串流您的內容或隨選傳遞內容。本主題說明[即時](media-services-overview.md#live_scenarios)傳遞內容或 [隨選](media-services-overview.md#vod_scenarios)傳遞內容的常見案例。本主題也會連結到其他相關主題。
 
@@ -70,7 +70,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 本節描述常見的案例並提供相關主題的連結。下圖顯示在傳遞隨選內容中牽涉到的媒體服務平台的主要部分。
 
-![VoD 工作流程][vod-overview]
+![VoD 工作流程](./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png)
 
 
 ###保護儲存體中的內容並提供不加密的串流媒體
@@ -105,14 +105,19 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 1. 透過建立 OnDemand 定位器，來發佈資產。
 1. 串流發佈的內容。 
 
-###編製內容索引
+###使用媒體分析從您的視訊衍生可採取行動的見解 
+
+媒體分析是一組口說與視覺元件，組織或企業可利用它，從其影片檔輕鬆製作能採取行動的見解。如需詳細資訊，請參閱 [媒體服務分析概觀](media-services-analytics-overview.md)。
 
 1. 將高品質夾層檔上傳到資產。
-1. 編製內容索引。
-
-	索引會產生一些檔案，而它們可以當做播放視訊時會用到的隱藏式字幕 (CC)。它也會產生一些檔案，讓您可以在視訊中進行搜尋，然後跳至視訊的正確位置。
-
-1. 使用索引內容。
+2. 使用下列其中一項媒體分析服務來處理您的視訊︰
+	
+	- **媒體索引器** – [使用 Azure 媒體索引器 2 處理視訊](media-services-process-content-with-indexer2.md)
+	- **Hyperlapse** – [Hyperlapse Media 檔案與 Azure Media Hyperlapse](media-services-hyperlapse-content.md)
+	- **動作偵測** – [Azure 媒體分析的動作偵測](media-services-motion-detection.md)。
+	- **臉部偵測和臉部情緒** – [Azure 媒體分析的臉部和情緒偵測](media-services-face-and-emotion-detection.md)。
+	- **視訊摘要** – [使用 Azure 媒體視訊縮圖建立視訊摘要](media-services-video-summarization.md)
+3. 媒體分析的媒體處理器會產生 MP4 檔案或 JSON 檔案。如果媒體處理器產生了 MP4 檔案，您可以漸進式下載檔案。如果媒體處理器產生了 JSON 檔案，您可以從 Azure Blob 儲存體下載檔案。 
 
 
 ###提供漸進式下載 
@@ -133,7 +138,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 - [如何取得媒體處理器](media-services-get-media-processor.md)
 - [如何編碼內容](media-services-manage-content.md#encode)
 - [如何監視工作](media-services-portal-check-job-progress.md)
-- [如何編製內容索引](media-services-manage-content.md#index)
+- [如何使用分析](media-services-analytics-overview.md)
 - [如何保護內容](media-services-manage-content.md#encrypt)
 - [如何保護發佈](media-services-manage-content.md#publish)
 - [如何調整編碼](media-services-portal-encoding-units.md)
@@ -210,11 +215,6 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 
 [Azure 支援](https://azure.microsoft.com/support/options/)提供 Azure 的支援選項，包括媒體服務。
 
-##模式與實例指南
-
-[模式與實例指南](https://wamsg.codeplex.com/) [線上文件](https://msdn.microsoft.com/library/dn735912.aspx) [可下載的電子書](https://www.microsoft.com/download/details.aspx?id=42629)
-
-
 ##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
@@ -236,4 +236,4 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 [live-overview2]: ./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

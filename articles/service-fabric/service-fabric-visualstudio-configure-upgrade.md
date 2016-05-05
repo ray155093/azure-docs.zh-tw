@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="01/12/2016"
+   ms.date="04/14/2016"
    ms.author="cawaMS" />
 
 # 在 Visual Studio 中設定 Service Fabric 應用程式的升級
@@ -28,7 +28,7 @@ Azure Service Fabric 的 Visual Studio 工具提供發佈至本機或遠端叢�
 
 您可以選擇的部署類型有兩種：一般或升級。一般部署會將叢集上所有先前的部署資訊和資料都清除，而升級部署則會將其保留。當您在 Visual Studio 中升級 Service Fabric 應用程式時，您需要提供應用程式升級參數和健康情況檢查原則。應用程式升級參數可協助控制升級，而健康狀態檢查原則則可判斷升級是否成功。如需詳細資訊，請參閱 [Service Fabric 應用程式升級：升級參數](service-fabric-application-upgrade-parameters.md)。
 
-有三種升級模式：*Monitored*、*UnmonitoredAuto* 及 *UnmonitoredManual*。
+有三種升級模式： *Monitored* 、 *UnmonitoredAuto* 及 *UnmonitoredManual*。
 
   - Monitored 升級會自動進行升級和應用程式健康狀態檢查。
 
@@ -94,4 +94,4 @@ Service Fabric 應用程式中的每個服務都可以有自己的健康情況�
 ## 後續步驟
 如需有關部署應用程式的詳細資訊，請參閱[在 Azure Service Fabric 中部署現有的應用程式](service-fabric-deploy-existing-app.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0420_2016-->

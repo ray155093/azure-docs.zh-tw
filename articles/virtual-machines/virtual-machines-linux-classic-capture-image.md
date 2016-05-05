@@ -3,7 +3,7 @@
 	description="了解如何對以傳統部署模型建立的 Linux Azure 虛擬機器 (VM) 擷取映像。"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="iainfoulds"
 	manager="timlt"
 	editor="tysonn"
 	tags="azure-service-management"/>
@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/22/2016"
-	ms.author="dkshir"/>
+	ms.date="04/12/2016"
+	ms.author="iainfou"/>
 
 
 # 如何將傳統 Linux 虛擬機器擷取成映像
@@ -87,7 +87,7 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 
 
 ## 後續步驟
-映像已準備好用來建立虛擬機器。您可以使用 Azure CLI 命令 `azure vm create`，並提供您剛才建立的映像名稱。如需有關命令的詳細資訊，請參閱[使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 服務管理](../virtual-machines-command-line-tools.md)。或者，您也可以使用 [Azure 傳統入口網站][]，利用**從資源庫**方法並選取您剛才建立的映像，來建立自訂虛擬機器。如需詳細資料，請參閱[如何建立自訂虛擬機器][]。
+映像已準備好用來建立虛擬機器。您可以使用 Azure CLI 命令 `azure vm create`，並提供您剛才建立的映像名稱。如需命令的詳細資訊，請參閱[搭配使用 Azure CLI 與 Azure 服務管理](../virtual-machines-command-line-tools.md)。或者，您也可以使用 [Azure 傳統入口網站][]，利用**從資源庫**方法並選取您剛才建立的映像，來建立自訂虛擬機器。如需詳細資料，請參閱[如何建立自訂虛擬機器][]。
 
 **另請參閱：** [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md)
 
@@ -98,4 +98,4 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 [How to Attach a Data Disk to a Virtual Machine]: virtual-machines-windows-classic-attach-disk.md
 [如何建立 Linux 虛擬機器]: virtual-machines-linux-classic-create-custom.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

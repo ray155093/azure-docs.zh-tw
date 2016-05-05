@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="04/14/2016" 
 	ms.author="nitinme"/>
 
 
-# HDInsight (Linux) 上的 Spark 叢集可供 Jupyter Notebook 使用的核心
+# HDInsight (預覽) 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心
 
-在 HDInsight (Linux) 上的 Apache Spark 叢集包含可用來測試應用程式的 Jupyter Notebook。根據預設，Jupyter Notebook 附有 **Python2** 核心。核心是一個可執行並解譯程式碼的程式。HDInsight Spark 叢集另外還提供兩種核心，可讓您用於 Jupyter Notebook。它們是：
+在 HDInsight (Linux) 上的 Apache Spark 叢集包含可用來測試應用程式的 Jupyter Notebook。核心是一個可執行並解譯程式碼的程式。HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook。它們是：
 
 1. **PySpark** (適用於以 Python 撰寫的應用程式)
 2. **Spark** (適用於以 Scala 撰寫的應用程式)
@@ -50,11 +50,11 @@
 
 3. 這應該會開啟使用您所選核心的新 Notebook。
 
-## 為何要使用新的核心？
+## 為何應使用 PySpark 或 Spark 核心？
 
 以下是使用新核心的幾項好處。
 
-1. **預設內容**。使用可搭配 Jupyter Notebook 使用的預設 **Python2** 核心時，您必須先明確地設定 Spark 或 Hive 內容，才能開始使用您所開發的應用程式。如果您使用新的核心 (**PySpark** 或 **Spark**)，依預設會將這些內容提供給您使用。這些內容包括：
+1. **預設內容**。使用和 Jupyter Notebook 一起提供的 **PySpark** 或 **Spark** 核心時，您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您所開發的應用程式；這些都是預設可供您使用。這些內容包括：
 
 	* **sc** - 代表 Spark 內容
 	* **sqlContext** - 代表 Hive 內容
@@ -70,7 +70,7 @@
 
 	您可以直接在您的應用程式中使用現有的內容。
 	
-2. **Cell magic**。PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。magic 這個字應該是儲存格中的第一個字。在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。如需有關 magic 的詳細資訊，請參閱[這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
+2. **Cell magic**。PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。magic 這個字應該是儲存格中的第一個字。在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。如需 magic 的詳細資訊，請參閱[這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
 
 	下表列出可透過核心提供的不同 magic。
 
@@ -93,8 +93,8 @@
 
 | 參數 | 範例 | 說明 |
 |-----------|---------------------------------|--------------|
-| -o | `-o <VARIABLE NAME>` | 使用此參數在 %%local Python 內容中保存查詢的結果，做為 [Pandas](http://pandas.pydata.org/) 資料框架。資料框架變數的名稱是您指定的變數名稱。 |
-| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想要自動視覺化儲存格的內容，而且只想要擷取它做為資料框架，請使用 `-q -o <VARIABLE>`。如果您想要關閉視覺效果，而不擷取結果 (例如，執行有副作用的 SQL 查詢，例如 `CREATE TABLE` 陳述式)，只需使用 `-q` 而不指定 `-o` 引數。 |
+| -o | `-o <VARIABLE NAME>` | 使用此參數在 %%local Python 內容中保存查詢的結果，作為 [Pandas](http://pandas.pydata.org/) 資料框架。資料框架變數的名稱是您指定的變數名稱。 |
+| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想要自動視覺化儲存格的內容，而且只想要擷取它作為資料框架，請使用 `-q -o <VARIABLE>`。如果您想要關閉視覺效果，而不擷取結果 (例如，執行有副作用的 SQL 查詢，例如 `CREATE TABLE` 陳述式)，只需使用 `-q` 而不指定 `-o` 引數。 |
 | -m | `-m <METHOD>` | 其中 **METHOD** 是 **take** 或 **sample** (預設值是 **take**)。如果方法是 **take**，核心會從 MAXROWS 所指定之結果資料集頂端挑選項目 (如此表稍後所述)。如果方法是 **sample**，核心會根據 `-r` 參數隨機取樣資料集的項目，如此表稍後所述。 |
 | -r | `-r <FRACTION>` | 在這裡，**FRACTION** 是介於 0.0 到 1.0 之間的浮點數。如果 SQL 查詢的範例方法是 `sample`，則核心會隨機取樣為您指定的結果集項目分數；例如，如果您使用引數 `-m sample -r 0.01` 執行 SQL 查詢，則會隨機取樣結果資料列的 1%。 |
 | -n | `-n <MAXROWS>` | **MAXROWS** 是整數值。核心會將輸出資料列的數目限制為 **MAXROWS**。如果 **MAXROWS** 是負數，例如 **-1**，在結果集中的資料列數目不會受到限制。 |
@@ -114,9 +114,7 @@
 
 ## 使用新核心的考量
 
-無論您使用何種核心 (Python2、PySpark 或 Spark)，讓 Notebook 持續執行，都將會耗用您的叢集資源。使用 Python2 Notebook 時，由於您會明確地建立內容，因此您也可以在結束應用程式時刪除這些內容。
-
-但在使用 PySpark 和 Spark 核心時，由於內容會預先設定，因此您無法明確刪除內容。因此，在您剛結束 Notebook 之後，內容可能仍會執行，而使用您的叢集資源。使用 PySpark 和 Spark 核心時，理想的做法是使用 Notebook 的 [檔案] 功能表中的 [關閉並停止] 選項。這將會先刪除內容，再結束 Notebook。
+無論您使用何種核心 (PySpark 或 Spark)，讓 Notebook 持續執行，都將會耗用您的叢集資源。使用這些核心，因為已預設內容，光是結束 Notebook 並不會終止內容，因此也將繼續使用叢集資源。使用 PySpark 和 Spark 核心時，理想的做法是使用 Notebook 的 [檔案] 功能表中的 [關閉並停止] 選項。這將會先刪除內容，再結束 Notebook。
 
 
 ## 請舉例說明
@@ -182,4 +180,4 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

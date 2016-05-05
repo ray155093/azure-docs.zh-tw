@@ -197,7 +197,7 @@ Cloud App Discovery 是一項 [Azure AD Premium](https://azure.microsoft.com/pri
 
 | 文章指南 | |
 | :---: | --- |
-| 將單一登入應用程式部署到使用者可用的各種選項比較 | [對使用者部署 Azure AD 整合應用程式](active-directory-appssoaccess-whatis/#deploying-azure-ad-integrated-applications-to-users) |
+| 將單一登入應用程式部署到使用者可用的各種選項比較 | [對使用者部署 Azure AD 整合應用程式](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users) |
 | 存取面板和其行動對等 MyApps 的概觀 | [存取面板和 MyApps 簡介](active-directory-saas-access-panel-introduction.md)<br />— [iOS](https://itunes.apple.com/us/app/my-apps-azure-active-directory/id824048653?mt=8)<br />— [Android](https://play.google.com/store/apps/details?id=com.microsoft.myapps) |
 | 如何從 Office 365 網站存取 Azure AD 應用程式 | [使用 Office 365 應用程式啟動程式](https://support.office.com/zh-TW/article/Meet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a) |
 | 如何從 Intune Managed Browser 行動應用程式存取 Azure AD 應用程式 | [Intune Managed Browser](https://technet.microsoft.com/zh-TW/library/dn878029.aspx)<br />— [iOS](https://itunes.apple.com/us/app/microsoft-intune-managed-browser/id943264951?mt=8)<br />— [Android](https://play.google.com/store/apps/details?id=com.microsoft.intune.mam.managedbrowser) |
@@ -228,4 +228,4 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 
 [Azure Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

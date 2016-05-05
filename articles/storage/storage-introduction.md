@@ -20,12 +20,12 @@
 
 ## 概觀
 
-Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。透過閱讀此文件，開發人員、IT 專業人員，以及商業決策人員可以了解：
+Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。透過閱讀此文件，開發人員、IT 專業人員，以及商業決策人員可以了解關於：
 
 - 何謂 Azure 儲存體，以及可以如何在雲端、行動、伺服器和桌面應用程式中加以充分運用
 - 您可以使用 Azure 儲存體儲存哪些資料：Blob (物件) 資料、NoSQL 資料表資料、佇列訊息，以及檔案共用。
 - 如何管理 Azure 儲存體的資料存取
-- 如何透過備援和複寫來保護 Azure 儲存體資料
+- 如何透過備援和複寫來保持 Azure 儲存體資料的永久性
 - 若要打造第一個 Azure 儲存體應用程式下一步該怎麼做
 
 若要快速啟動並執行 Azure 儲存體，請參閱[在 5 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
@@ -44,47 +44,30 @@ Azure 儲存體使用自動分割系統，可自動根據流量負載平衡您�
 
 您可從世界各地、任何應用程式類型 (無論是在雲端、桌面、內部部署伺服器、行動或平板裝置上執行) 存取 Azure 儲存體。您可以在行動案例中使用 Azure 儲存體，案例中的應用程式會在裝置上儲存資料子集，然後將它與儲存在雲端中的整組資料同步處理。
 
-為了方便開發，Azure 儲存體支援使用各種作業系統 (包括 Windows 和 Linux) 和多種程式設計語言 (包括 .NET、Java 和 C++) 的用戶端。Azure 儲存體還可透過簡單 REST API 公開資料資源，REST API 適用於任何能夠透過 HTTP/HTTPS 傳送與接收資料的用戶端。
+為了方便開發，Azure 儲存體支援使用各種作業系統 (包括 Windows 和 Linux) 和多種程式設計語言 (包括 .NET、Java、Node.js、Python、Ruby、PHP 和 C++ 及行動程式設計語言) 的用戶端。Azure 儲存體還可透過簡單 REST API 公開資料資源，REST API 適用於任何能夠透過 HTTP/HTTPS 傳送與接收資料的用戶端。
 
 Azure Premium 儲存體對於 Azure 虛擬機器上執行的 I/O 密集工作負載提供高效能、低延遲磁碟支援。透過 Azure Premium 儲存體，您可以將多個持續資料磁碟連接到虛擬機器，並設定這些磁碟符合您的效能需求。各個資料磁碟都有 Azure Premium 儲存體的 SSD 磁碟做為備援，充分達到最大的 I/O 效能。如需詳細資訊，請參閱 [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
 
 ## Azure 儲存體服務簡介
 
-Azure 儲存體帳戶是可讓您存取 Azure 儲存體服務的安全帳戶。您的儲存體帳戶提供儲存體資源的唯一命名空間。儲存體帳戶分為兩種類型：
+Azure 儲存體提供以下四個服務：Blob 儲存體、表格儲存體、佇列儲存體和檔案儲存體。
 
-- 標準儲存體帳戶包含 Blob、資料表、佇列和檔案儲存體。
-- Premium 儲存體帳戶目前僅支援 Azure 虛擬機器磁碟。
-
-在建立儲存體帳戶之前，您必須擁有 Azure 訂閱，訂閱是指可讓您存取各種 Azure 服務的方案。單一訂用帳戶可讓您建立最多 100 個唯一命名的儲存體帳戶。如需關於儲存體帳戶限制的詳細資訊，請參閱[Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。如需批量價格的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
-
-您可以利用[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)來開始使用 Azure。在決定購買訂用計畫之後，您便可以選擇各種[購買選項](https://azure.microsoft.com/pricing/purchase-options/)。如果您是 [MSDN 訂閱者](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)，您將取得可在 Azure 服務 (包括 Azure 儲存體) 中使用的每月免費額度。
-
-### 標準儲存體帳戶
-
-標準儲存體帳戶可供您存取 Azure 儲存體資料服務：Blob 儲存體、表格儲存體、佇列儲存體和檔案儲存體：
-
-- 「Blob 儲存體」可儲存檔案資料。Blob 可以是任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
+- 「Blob 儲存體」可儲存非結構化物件資料。Blob 可以是任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
 - 「表格儲存體」可儲存結構化資料集。資料表儲存體屬於 NoSQL 索引鍵屬性資料儲存，可允許快速開發和迅速存取大量資料。
 - 「佇列儲存體」可為工作流程處理及雲端服務元件間的通訊，提供可靠的訊息服務。
 - 「檔案儲存體」可為使用標準 SMB 通訊協定的舊版應用程式提供共用儲存體。Azure 虛擬機器和雲端服務可以透過掛接的共用，在應用程式元件之間共用檔案資料，而內部部署應用程式可以透過檔案服務 REST API，存取共用中的檔案資料。
 
-每個標準儲存體帳戶都可包含多達 500 TB 的 Blob、佇列、資料表和檔案資料的組合。如需標準儲存體帳戶容量的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
-
-下圖顯示標準儲存體帳戶中 Azure 儲存體資源之間的關係：
+Azure 儲存體帳戶是可讓您存取 Azure 儲存體服務的安全帳戶。您的儲存體帳戶提供儲存體資源的唯一命名空間。下圖顯示儲存體帳戶中 Azure 儲存體資源之間的關係：
 
 ![Azure 儲存體資源](./media/storage-introduction/storage-concepts.png)
 
-若要了解如何建立標準儲存體帳戶，請參閱[建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)以取得詳細資訊。
-
-### Premium 儲存體帳戶
-
-Azure Premium 儲存體目前僅支援 Azure 虛擬機器磁碟。如需 Azure Premium 儲存體的深入概觀，請參閱 [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
+[AZURE.INCLUDE [儲存體-帳戶-類型-包括](../../includes/storage-account-types-include.md)]
 
 [AZURE.INCLUDE [storage-versions-include](../../includes/storage-versions-include.md)]
 
 ## Blob 儲存體
 
-若是擁有大量非結構化資料要儲存於雲端的使用者，Blob 儲存體提供具有成本效益且可擴充的解決方案。您可以使用 Blob 儲存體來儲存如下所示的內容：
+若是擁有大量非結構化物件資料要儲存於雲端的使用者，Blob 儲存體提供具有成本效益且可調整的解決方案。您可以使用 Blob 儲存體來儲存如下所示的內容：
 
 - 文件
 - 社交資料 (例如照片、視訊、音樂和部落格)
@@ -95,9 +78,11 @@ Azure Premium 儲存體目前僅支援 Azure 虛擬機器磁碟。如需 Azure P
 
 每個 Blob 會組織成一個容器。容器也提供對物件群組指派安全原則的實用方式。儲存體帳戶可包含任意數目的容器，而容器可包含任意數目的 Blob，儲存體帳戶的容量限制高達 500 TB。
 
-Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及分頁 Blob (磁碟)。區塊 Blob 已針對串流和儲存雲端物件進行最佳化，是儲存文件、媒體檔案、備份等的不錯選擇。附加 Blob 和區塊 Blob 類似，但已針對附加作業最佳化。附加 Blob 只能透過在結尾加入新的區塊來更新。對於如記錄等僅需要將新資料寫入 Blob 結尾的情況，附加 Blob 是不錯的選擇。
+Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及分頁 Blob (磁碟)。
 
-頁面 Blob 已針對顯示 IaaS 磁碟與支援隨機寫入進行最佳化，且大小可能可以高達 1 TB。Azure 虛擬機器網路附加 IaaS 磁碟是以頁面 Blob 方式儲存的 VHD。
+- 區塊 Blob 已針對串流和儲存雲端物件進行最佳化，是儲存文件、媒體檔案、備份等的不錯選擇。
+- 附加 Blob 和區塊 Blob 類似，但已針對附加作業最佳化。附加 Blob 只能透過在結尾加入新的區塊來更新。對於如記錄等僅需要將新資料寫入 Blob 結尾的情況，附加 Blob 是不錯的選擇。
+- 頁面 Blob 已針對顯示 IaaS 磁碟與支援隨機寫入進行最佳化，且大小可能可以高達 1 TB。Azure 虛擬機器網路附加 IaaS 磁碟是以頁面 Blob 方式儲存的 VHD。
 
 若是超大型資料集，網路限制會使得透過線路上傳或下載資料至 Blob 儲存體變得不切實際，您可以將硬碟送至 Microsoft，以便直接從資料中心匯入或匯出資料。請參閱[使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)。
 
@@ -159,11 +144,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 
 ## 定價
 
-客戶的 Azure 儲存體費用依據 4 項因素進行計算：使用的儲存體容量、選取的複寫選項、針對服務所做的要求次數，以及出口流量。
-
-儲存體容量是指您用於儲存資料的儲存體帳戶配額。若只是儲存資料，則成本是由您所儲存的資料量和複寫資料的方式來決定。對 Azure 儲存體進行的每個讀取和寫入操作也會對服務提出要求。出口流量是指傳出 Microsoft Azure 區域的資料。當您儲存體帳戶中的資料受不同地區中執行的應用程式存取時，不論該應用程式是雲端服務還是其他某類應用程式，您都要負擔出口流量的費用。(若為 Microsoft Azure 服務，您可以採取步驟，將資料和服務群組在相同的資料中心，以減少或消除處理和出口流量費用)。
-
-[Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)頁面提供了儲存體容量、複寫和交易的詳細價格資料。[資料傳輸定價詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)則提供了出口流量的詳細定價資訊。您可以使用 [Azure 儲存體定價計算機](https://azure.microsoft.com/pricing/calculator/?scenario=data-management)，以協助消除成本。
+[AZURE.INCLUDE [儲存體-帳戶-計費-包括](../../includes/storage-account-billing-include.md)]
 
 ## 儲存體 API、程式庫和工具
 
@@ -188,7 +169,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [適用於 PowerShell 1.0 的儲存體資源提供者 Cmdlet](https://msdn.microsoft.com/library/azure/mt607151.aspx)
 - [儲存體服務管理 REST API (傳統)](https://msdn.microsoft.com/library/azure/ee460790.aspx)
 
-### Azure 儲存體資料移動服務 
+### Azure 儲存體資料移動服務
 
 - [儲存體匯入/匯出服務 REST API](https://msdn.microsoft.com/library/azure/dn529096.aspx)
 - [適用於 .NET 的儲存體資料移動 用戶端程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
@@ -208,9 +189,10 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 
 - [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-### 針對 PowerShell 使用者
+### 系統管理員
 
 - [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
+- [使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md)
 
 ### 針對 .NET 開發人員
 
@@ -224,7 +206,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [如何使用 Java 的 Blob 儲存體](storage-java-how-to-use-blob-storage.md)
 - [如何使用 Java 的資料表儲存體](storage-java-how-to-use-table-storage.md)
 - [如何使用 Java 的佇列儲存體](storage-java-how-to-use-queue-storage.md)
-- [如何使用 Java 的檔案儲存體](storage-java-how-to-use-file-storage.md) 
+- [如何使用 Java 的檔案儲存體](storage-java-how-to-use-file-storage.md)
 
 ### 針對 Node.js 開發人員
 
@@ -251,4 +233,4 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 - [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
-<!----HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

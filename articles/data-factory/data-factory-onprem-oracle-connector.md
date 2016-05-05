@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/18/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從內部部署的 Oracle 移動資料 
@@ -292,7 +292,7 @@ XML | String
 
 ## 疑難排解秘訣
 
-****問題：**您會看見下列**錯誤訊息**：複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
+**問題：** 您會看見下列 **錯誤訊息** ： 複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
 
 **可能的原因**
 
@@ -312,4 +312,8 @@ XML | String
 
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
-<!---HONumber=AcomDC_0316_2016-->
+
+## 效能和微調  
+請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+
+<!---HONumber=AcomDC_0420_2016-->

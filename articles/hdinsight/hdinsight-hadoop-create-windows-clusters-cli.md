@@ -31,7 +31,9 @@
 開始執行本文中的指示之前，您必須擁有以下項目：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- **Azure CLI** - 請參閱 [安裝及設定 Azure CLI](../xplat-cli-install.md) 以取得安裝和設定資訊。
+- **Azure CLI**。
+
+	[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ##連接到 Azure
 
@@ -137,4 +139,4 @@
 - [使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-command-line.md)
 - [使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 服務管理](../virtual-machines-command-line-tools.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

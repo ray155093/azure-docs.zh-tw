@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在具有 R 伺服器的 HDInsight 叢集上安裝 RStudio | Microsoft Azure"
-	description="如何在具有 R 伺服器的 HDInsight 叢集上安裝 RStudio。"
+	pageTitle="在具有 R 伺服器的 HDInsight 叢集上安裝 RStudio (預覽) | Microsoft Azure"
+	description="如何在 HDInsight (預覽) 中使用 R 伺服器安裝 RStudio。"
 	services="hdinsight"
 	documentationCenter=""
 	authors="jeffstokes72"
@@ -17,15 +17,17 @@
    ms.author="jeffstok"/>
 
 
-# 在具有 R 伺服器的 HDInsight 叢集上安裝 RStudio
+# 在 HDInsight (預覽) 中使用 R 伺服器安裝 RStudio
 
 現今有多個整合的開發環境 (IDE) 適用於 R，包括 Microsoft 最近推出的 [R Tools for Visual Studio](https://www.visualstudio.com/zh-TW/features/rtvs-vs.aspx) (RTVS)、[RStudio](https://www.rstudio.com/products/rstudio-server/) 的桌面和伺服器工具系列，或 Walware 的 Eclipse 型 [StatET](http://www.walware.de/goto/statet)。在 Linux 上最熱門的是使用 [RStudio 伺服器](https://www.rstudio.com/products/rstudio-server/)，其提供可讓遠端用戶端使用的瀏覽器型 IDE。在 HDInsight Premium 叢集的邊緣節點上安裝 RStudio 伺服器時，可提供完整的 IDE 體驗以搭配叢集上的 R 伺服器開發和執行 R 指令碼；和預設使用 R 主控台相比，可以大幅提高生產力。
 
 在這篇文章中，您將學習如何使用自訂指令碼，在叢集的邊緣節點上安裝 RStudio Server 的社群 (免費) 版本。如果您偏好 RStudio 伺服器的商業授權 Pro 版本，您必須依照 [RStudio 伺服器](https://www.rstudio.com/products/rstudio/download-server/)的安裝指示。
 
+> [AZURE.NOTE] 這份文件中的步驟需要 HDInsight 叢集中的 R 伺服器，且如果您使用的 HDInsight 叢集上，當初是使用[安裝 R 指令碼動作](hdinsight-hadoop-r-scripts-linux.md)來安裝 R，將無法正常運作。
+
 ## 必要條件
 
-* 具有 R 伺服器的 Azure HDInsight 叢集已安裝。如需相關指示，請參閱[在 HDInsight 叢集上開始使用 R 伺服器](hdinsight-hadoop-r-server-get-started.mdulet)。
+* 具有 R 伺服器的 Azure HDInsight 叢集已安裝。如需相關指示，請參閱[開始使用 HDInsight 中的 R Server](hdinsight-hadoop-r-server-get-started.mdulet)。
 * SSH 用戶端。若為 Linux 和 Unix 發佈或 Macintosh OS X，`ssh` 命令會隨作業系統提供。若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。 
 
 
@@ -122,4 +124,4 @@
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

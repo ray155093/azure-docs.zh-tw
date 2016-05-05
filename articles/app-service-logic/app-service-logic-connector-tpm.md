@@ -13,11 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="02/10/2016"
+   ms.date="04/20/2016"
    ms.author="rajram"/>
 
 # 開始使用 BizTalk 交易夥伴管理並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
+
 
 BizTalk 交易夥伴管理 (TPM) 服務可以讓您定義並維持企業對企業的關係，例如夥伴和協議，以及相關聯的構件，例如結構描述和憑證。接著可透過相關的 API 服務 (例如 AS2、EDIFACT 和 X12) 強制執行這些關係。
 
@@ -41,4 +43,4 @@ TPM API 應用程式是 AS2 連接器、X12 API 應用程式和 EDIFACT API 應�
 <!--References-->
 [1]: app-service-logic-create-a-trading-partner-agreement.md
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

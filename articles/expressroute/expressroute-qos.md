@@ -4,7 +4,7 @@
    documentationCenter="na"
    services="expressroute"
    authors="cherylmc"
-   manager="carolz"
+   manager="carmonm"
    editor=""/>
 <tags
    ms.service="expressroute"
@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/16/2016"
+   ms.date="04/18/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute QoS 需求
@@ -21,7 +21,7 @@
 
 ![](./media/expressroute-qos/expressroute-qos.png)
 
-**附註：**QoS 需求僅適用於 Microsoft 對等項目。
+>[AZURE.NOTE] QoS 需求僅適用於 Microsoft 對等項目。
 
 下表提供一份商務用 Skype 所使用的 DSCP 標示清單。如需詳細資訊，請參閱[管理適用於商務用 Skype 的 QoS](https://technet.microsoft.com/library/gg405409.aspx)。
 
@@ -50,4 +50,4 @@
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0427_2016-->

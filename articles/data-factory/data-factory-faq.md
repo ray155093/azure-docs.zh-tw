@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/18/2016" 
 	ms.author="spelluru"/>
 
 # Azure 資料處理站-常見問題集
@@ -22,27 +22,11 @@
 
 ### Azure 資料處理站是什麼？
 
-Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。就像製造廠運轉設備來取得原物料並將之轉換成成品一樣，Data Factory 會協調現有服務的流程來收集原始資料，並將之轉換成隨時可用的資訊。
-
-Data Factory 會在內部部署、雲端資料來源和 SaaS 之間運作，以便擷取、準備、轉換、分析及發行您的資料。利用 [Azure HDInsight (Hadoop)](http://azure.microsoft.com/documentation/services/hdinsight/) 和 [Azure Batch](https://azure.microsoft.com/documentation/services/batch/) 這類的服務，使用 Data Factory 將服務撰寫到所管理的資料流程管線，以符合計算巨量資料的需求，另外也可以使用 [Azure Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/) 實施您的分析解決方案。不僅僅是表格式的監視檢視，還使用了豐富的視覺效果呈現 Data Factory，來快速顯示歷程和資料管線之間的相依性。從單一的統一檢視來監視所有的資料流程管線，輕鬆找出問題並設定監視警示。
+Data Factory 是雲端架構資料整合服務，用來**自動移動和轉換資料**。就像製造廠運轉設備來取得原物料並將之轉換成成品一樣，Data Factory 會協調現有服務的流程來收集原始資料，並將之轉換成隨時可用的資訊。
+ 
+Data Factory 服務可讓您建立資料驅動的工作流程，在內部部署和雲端資料存放區之間移動資料，以及使用例如 Azure HDInsight 和 Azure Data Lake Analytics 的計算服務來處理/轉換資料。建立管線以執行您需要的動作之後，您可以排程定期執行 (每小時、每天、每週等...)。
 
 如需詳細資訊，請參閱〈[概觀與重要概念](data-factory-introduction.md)〉。
- 
-### Data Factory 可解決何種客戶難題？
-
-Azure 資料處理站藉由完全受管理之服務的控制和監視功能，可在與非結構化資料並存的傳統關聯式儲存體中，平衡且靈活運用不同資料儲存體、處理和搬移服務。
-
-### 資料處理站的目標對象是誰？
-
-
-- 資料開發人員：負責建置 Hadoop 與其他系統之間的整合服務：
-	- 必須掌握及整合不斷變動和成長的資料環境
-	- 必須為昂貴、難以維護，且不是高度可用或容錯的資訊產品撰寫自訂程式碼
-
-- IT 專業人員：想要將更多不同資料併入其 IT 基礎結構內：
-	- 必須觀察組織內所有資料以衍生出豐富的業務深入見解
-	- 必須跨越內部部署和雲端來管理計算資源和儲存體資源，以平衡成本和規模
-	- 必須快速加入多個來源和處理動作以處理新的商務需求，同時維護所有計算資產和儲存體資產的可見度
 
 ### 哪裡可以找到 Azure 資料處理站的定價詳細資料？
 
@@ -50,18 +34,12 @@ Azure 資料處理站藉由完全受管理之服務的控制和監視功能，�
 
 ### 如何開始使用 Azure Data Factory？
 
-- 如需 Azure Data Factory 的概觀，請參閱 [Azure Data Factory 簡介][adf-introduction]。
-- 如需快速教學課程，請參閱[開始使用 Azure Data Factory][adfgetstarted]。
-- 如需完整文件，請參閱 [Azure Data Factory 文件][adf-documentation-landingpage]。
-
+- 如需 Azure Data Factory 的概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
+- 如需快速教學課程，請參閱[開始使用 Azure Data Factory](data-factory-get-started.md)。
+- 如需完整文件，請參閱 [Azure Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)。
   
-### 客戶如何存取資料處理站？
-
-客戶可透過 [Azure 入口網站][azure-portal]存取 Data Factory。
-
 ### 什麼是資料處理站的區域可用性？
-
-Data Factory 可在美國西部和北歐地區使用。資料處理站所使用的計算服務和儲存體服務可以在其他區域使用。
+Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站所使用的計算服務和儲存體服務可以在其他區域使用。請參閱[支援的區域](data-factory-introduction.md#supported-regions)。
  
 ### 資料處理站/管線/活動/資料集的數量有什麼限制？
  
@@ -72,22 +50,29 @@ Data Factory 可在美國西部和北歐地區使用。資料處理站所使用�
 
 您可以使用下列其中一項來撰寫/建立資料處理站：
 
-- **Azure 入口網站**。Azure 入口網站中的 Data Factory 刀鋒視窗提供豐富的使用者介面，讓您建立資料處理站和連結的服務。**Data Factory 編輯器**也是入口網站的一部分，讓您透過指定成品的 JSON 定義，輕鬆建立連結服務、資料表、資料集和管線。如需使用入口網站/編輯器來建立和部署 Data Factory 的範例，請參閱[開始使用 Data Factory][datafactory-getstarted]。   
-- **Azure PowerShell** (英文)。如果您是 PowerShell 使用者，而且想要使用 PowerShell，而不是入口網站 UI，則可以使用 Azure PowerShell 隨附的 Azure Data Factory Cmdlet 來建立和部署資料處理站。請參閱[使用 Azure PowerShell 建立和監視 Azure Data Factory][create-data-factory-using-powershell] 以取得簡單範例；以及[教學課程：使用 Data Factory 移動和處理記錄檔][adf-tutorial]，以取得使用 PowerShell Cmdlet 建立和部署 Data Factory 的進階範例。如需 Data Factory Cmdlet 的完整文件，請參閱 MSDN Library 上的 [Data Factory Cmdlet 參考][adf-powershell-reference]內容。  
-- **Visual Studio**。您也可以使用 Visual Studio，以程式設計方式建立、監視及管理 Data Factory。如需詳細資訊，請參閱〈[使用 Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory](data-factory-create-data-factories-programmatically.md)〉文章。  
-- **.NET 類別庫**。您可以使用 Data Factory .NET SDK，透過程式設計方式建立資料處理站。如需使用 .NET SDK 建立 Data Factory 的逐步解說，請參閱[使用 .NET SDK 建立、監視和管理 Data Factory][create-factory-using-dotnet-sdk]。如需 Data Factory .NET SDK 的完整文件，請參閱 [Data Factory 類別庫參考][msdn-class-library-reference]。  
-- **REST API**。您也可以使用 Azure Data Factory 服務所公開的 REST API 來建立和部署資料處理站。如需 Data Factory REST API 的完整文件，請參閱 [Data Factory REST API 參考][msdn-rest-api-reference]。 
+- **Azure 入口網站** Azure 入口網站中的 Data Factory 刀鋒視窗提供豐富的使用者介面，讓您建立資料處理站和連結的服務。**Data Factory 編輯器**也是入口網站的一部分，讓您透過指定成品的 JSON 定義，輕鬆建立連結服務、資料表、資料集和管線。如需使用入口網站/編輯器來建立和部署 Data Factory 的範例，請參閱[開始使用 Data Factory](data-factory-get-started.md)。   
+
+- **Azure PowerShell** 如果您是 PowerShell 使用者，而且想要使用 PowerShell，而不是入口網站 UI，則可以使用 Azure PowerShell 隨附的 Azure Data Factory Cmdlet 來建立和部署 Data Factory。請參閱[使用 Azure PowerShell 建立和監視 Azure Data Factory](data-factory-monitor-manage-using-powershell.md) 以取得簡單範例；以及[教學課程：使用 Data Factory 移動和處理記錄檔][adf-tutorial]，以取得使用 PowerShell Cmdlet 建立和部署 Data Factory 的進階範例。如需 Data Factory Cmdlet 的完整文件，請參閱 MSDN Library 上的 [Data Factory Cmdlet 參考][adf-powershell-reference]內容。
+  
+- **Visual Studio** 您也可以使用 Visual Studio，以程式設計方式建立、監視及管理 Data Factory。如需詳細資訊，請參閱〈[使用 Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory](data-factory-create-data-factories-programmatically.md)〉文章。
+  
+- **.NET 類別庫** 您可以使用 Data Factory .NET SDK，透過程式設計方式建立 Data Factory。如需使用 .NET SDK 建立 Data Factory 的逐步解說，請參閱[使用 .NET SDK 建立、監視和管理 Data Factory][create-factory-using-dotnet-sdk]。如需 Data Factory .NET SDK 的完整文件，請參閱 [Data Factory 類別庫參考][msdn-class-library-reference]。
+
+- **REST API** 您也可以使用 Azure Data Factory 服務所公開的 REST API 來建立和部署 Data Factory。如需 Data Factory REST API 的完整文件，請參閱 [Data Factory REST API 參考][msdn-rest-api-reference]。
+ 
+- **Azure Resource Manager 範本** 請參閱[教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory](data-factory-build-your-first-pipeline-using-arm.md) 以取得詳細資訊。
 
 ### 我是否可以重新命名資料處理站？
 否。和其他 Azure 資源一樣，您無法變更 Azure Data Factory 的名稱。
 
 ## 活動 - 常見問題集
-### 有什麼可支援的資料來源和活動？
+### 您可以在 Data Factory 管線中使用的不同類型活動有哪些？ 
 
-如需支援的資料來源和活動的相關資訊，請參閱〈[資料移動活動](data-factory-data-movement-activities.md)〉和〈[資料轉換活動](data-factory-data-transformation-activities.md)〉文章。
+- [資料移動活動](data-factory-data-movement-activities.md)以移動資料。
+- [資料轉換活動](data-factory-data-transformation-activities.md)以處理/轉換資料。 
 
 ### 何時執行活動？
-輸出資料表中的**可用性**組態設定決定何時執行活動。活動會在開始執行之前，檢查是否滿足所有輸入資料相依性 (即 [就緒] 狀態)。
+輸出資料表中的**可用性**組態設定決定何時執行活動。如果已指定輸入資料集，活動會在開始執行之前，檢查是否滿足所有輸入資料相依性 (即 [就緒] 狀態)。
 
 ## 複製活動 - 常見問題集
 ### 最好是一個管線有多個活動，還是每個活動都有不同的管線？ 
@@ -152,19 +137,12 @@ Data Factory 可在美國西部和北歐地區使用。資料處理站所使用�
 如果真的想要立即停止所有執行作業，唯一的方法就是刪除管線，然後再重新建立。如果您選擇刪除管線，則「不」需要刪除管線所使用的資料表和連結服務。
 
 
-
-[adfgetstarted]: data-factory-get-started.md
-[adf-introduction]: data-factory-introduction.md
-[adf-troubleshoot]: data-factory-troubleshoot.md
-[datafactory-getstarted]: data-factory-get-started.md
-[create-data-factory-using-powershell]: data-factory-monitor-manage-using-powershell.md
 [adf-tutorial]: data-factory-tutorial.md
 [create-factory-using-dotnet-sdk]: data-factory-create-data-factories-programmatically.md
 [msdn-class-library-reference]: https://msdn.microsoft.com/library/dn883654.aspx
 [msdn-rest-api-reference]: https://msdn.microsoft.com/library/dn906738.aspx
 
 [adf-powershell-reference]: https://msdn.microsoft.com/library/dn820234.aspx
-[adf-documentation-landingpage]: http://go.microsoft.com/fwlink/?LinkId=516909
 [azure-portal]: http://portal.azure.com
 [set-azure-datafactory-slice-status]: https://msdn.microsoft.com/library/mt603522.aspx
 
@@ -174,4 +152,4 @@ Data Factory 可在美國西部和北歐地區使用。資料處理站所使用�
 [hdinsight-alternate-storage-2]: http://blogs.msdn.com/b/cindygross/archive/2014/05/05/use-additional-storage-accounts-with-hdinsight-hive.aspx
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

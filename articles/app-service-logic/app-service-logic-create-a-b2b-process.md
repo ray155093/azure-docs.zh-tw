@@ -4,7 +4,7 @@
    services="app-service\logic" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
-   manager="dwrede" 
+   manager="erikre" 
    editor=""/>
 
 <tags
@@ -13,12 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="02/18/2016"
+   ms.date="04/20/2016"
    ms.author="rajram"/>
 
 # 建立 B2B 程序
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
+
 
 ## 商務案例 
 Contoso 和 Northwind 是兩個商業夥伴。Contoso (零售商) 會透過業界等級傳輸 (例如 AS2) 將採購單傳送至 Northwind (供應商)。Northwind 會在其雲端儲存體中儲存接收的所有訂單。採購單會是這兩個夥伴之間的 XML 訊息。將訊息儲存在 Northwind 的雲端儲存體之後，Northwind 的內部程序便會接手處理訂單。
@@ -69,4 +70,4 @@ Contoso 和 Northwind 是兩個商業夥伴。Contoso (零售商) 會透過業�
 [2]: ./media/app-service-logic-create-a-b2b-process/Tracking.png
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

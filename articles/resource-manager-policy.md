@@ -5,7 +5,7 @@
 	documentationCenter="na"
 	authors="ravbhatnagar"
 	manager="ryjones"
-	editor=""/>
+	editor="tysonn"/>
 
 <tags
 	ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="02/26/2016"
+	ms.date="04/18/2016"
 	ms.author="gauravbh;tomfitz"/>
 
 # 使用原則來管理資源和控制存取
@@ -23,8 +23,6 @@ Azure 資源管理員現在可讓您透過自訂原則來控制存取。您可�
 建立描述您想要明確拒絕之動作或資源的原則定義。在所需範圍內指派那些原則定義，例如訂用帳戶、資源群組或是個別的資源。
 
 在本文中，我們將說明您可用來建立原則的原則定義語言的基本結構。然後我們將說明如何在不同範圍套用這些原則，並在最後提供幾個範例，示範如何透過 REST API 達成這個目標。
-
-原則目前以預覽版提供。
 
 ## 它和 RBAC 有什麼不同？
 
@@ -56,10 +54,10 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
     {
       "if" : {
-        <condition> | <logical operator>
+          <condition> | <logical operator>
       },
       "then" : {
-        "effect" : "deny | audit"
+          "effect" : "deny | audit | append"
       }
     }
     
@@ -67,7 +65,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 使用 HTTP PUT 建立資源或部署範本時，會評估原則。部署範本時，會在範本中的每個資源建立期間評估原則。
 
-注意︰[原則] 不會評估不支援標記、種類、位置的資源類型，例如 Microsoft.Resources/deployments。未來將加入此支援。若要避免向下相容問題，撰寫原則時明確指定類型是最佳作法。例如，沒指定類型的標記原則會套用到所有類型，因此，如果不支援標記的巢狀資源的資源類型在未來加入評估時，範本部署可能會失敗。
+> [AZURE.NOTE] 目前，原則不會評估不支援標記、種類及位置的資源類型，例如 Microsoft.Resources/deployments 資源類型。未來將加入此支援。若要避免向下相容問題，撰寫原則時應該明確指定類型。例如，未指定類型的標記原則會套用於所有類型。在此情況下，如果有不支援標記的巢狀資源，且部署資源類型已加入原則評估中，未來範本部署可能會失敗。
 
 ## 邏輯運算子
 
@@ -93,7 +91,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 | 在 | "in" : [ "&lt;值 1&gt;","&lt;值 2&gt;" ]|
 | ContainsKey | "containsKey" : "&lt;機碼名稱&gt;" |
 
-## 欄位和來源
+### 欄位和來源
 
 條件是透過欄位和來源的使用所形成。欄位會顯示用來描述資源狀態的資源要求裝載屬性。來源代表要求本身的特性。
 
@@ -103,37 +101,70 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 來源：**action**。
 
-屬性別名可在原則定義中用來存取資源類型特定屬性，例如設定和 SKU。它適用於所有具有屬性的 API 版本。別名可使用以下 REST API 來擷取 (未來將新增 Powershell 支援)：
+### 屬性別名 
+屬性別名可在原則定義中用來存取資源類型特定屬性，例如設定和 SKU。它適用於所有具有屬性的 API 版本。別名可使用如下所示的 REST API 來擷取 (未來將新增 Powershell 支援)：
 
     GET /subscriptions/{id}/providers?$expand=resourceTypes/aliases&api-version=2015-11-01
 	
-別名定義如下所示。如您所見，別名在不同 API 版本中均會定義路徑，無論屬性名稱是否變更。
+別名的定義如下所示。如您所見，別名在不同 API 版本中均會定義路徑，無論屬性名稱是否變更。
 
-    "aliases": [
-      {
-        "name": "Microsoft.Storage/storageAccounts/sku.name",
-        "paths": [
-          {
-            "path": "Properties.AccountType",
-            "apiVersions": [ "2015-06-15", "2015-05-01-preview" ]
-          }
-        ]
-      }
-    ]
+	"aliases": [
+	    {
+	      "name": "Microsoft.Storage/storageAccounts/sku.name",
+	      "paths": [
+	        {
+	          "path": "properties.accountType",
+	          "apiVersions": [
+	            "2015-06-15",
+	            "2015-05-01-preview"
+	          ]
+	        },
+	        {
+	          "path": "sku.name",
+	          "apiVersions": [
+	            "2016-01-01"
+	          ]
+	        }
+	      ]
+	    }
+	]
 
 目前支援的別名為：
 
 | 別名名稱 | 說明 |
 | ---------- | ----------- |
-| {resourceType}/sku.name | 支援的資源類型為：Microsoft.Storage/storageAccounts、<br />Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
+| {resourceType}/sku.name | 支援的資源類型有：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
 | {resourceType}/sku.family | 支援的資源類型為 Microsoft.Cache/Redis |
 | {resourceType}/sku.capacity | 支援的資源類型為 Microsoft.Cache/Redis |
+| Microsoft.Compute/virtualMachines/imagePublisher | |
+| Microsoft.Compute/virtualMachines/imageOffer | |
+| Microsoft.Compute/virtualMachines/imageSku | |
+| Microsoft.Compute/virtualMachines/imageVersion | |
 | Microsoft.Cache/Redis/enableNonSslPort | |
 | Microsoft.Cache/Redis/shardCount | |
 
 
 如需有關動作的詳細資訊，請參閱 [RBAC - 內建角色](active-directory/role-based-access-built-in-roles.md)。目前，原則只能適用於 PUT 要求。
 
+## 效果
+原則支援三種效果類型 - **拒絕**、**稽核**和**附加**。
+
+- 拒絕會在稽核記錄檔中產生事件，並且使要求失敗
+- 稽核會在稽核記錄檔中產生事件，但不會使要求失敗
+- 附加會在要求中加入一組已定義的欄位 
+
+對於**附加**，您必須提供詳細資訊，如下所示︰
+
+    ....
+    "effect": "append",
+    "details": [
+      {
+        "field": "field name",
+        "value": "value of the field"
+      }
+    ]
+
+值可以是字串或 JSON 格式物件。
 
 ## 原則定義範例
 
@@ -154,6 +185,51 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
         "effect" : "deny"
       }
     }
+
+以下原則會在沒有標記時附加 costCenter 標記，並且具有預先定義的值。
+
+	{
+	  "if": {
+	    "field": "tags",
+	    "exists": "false"
+	  },
+	  "then": {
+	    "effect": "append",
+	    "details": [
+	      {
+	        "field": "tags",
+	        "value": {"costCenter":"myDepartment" }
+	      }
+	    ]
+	  }
+	}
+	
+以下原則會在有其他標記時附加 costCenter 標記，並且具有預先定義的值。
+
+	{
+	  "if": {
+	    "allOf": [
+	      {
+	        "field": "tags",
+	        "exists": "true"
+	      },
+	      {
+	        "field": "tags.costCenter",
+	        "exists": "false"
+	      }
+	    ]
+	
+	  },
+	  "then": {
+	    "effect": "append",
+	    "details": [
+	      {
+	        "field": "tags.costCenter",
+	        "value": "myDepartment"
+	      }
+	    ]
+	  }
+	}
 
 
 ### 地理區域法規遵循：確保資源位置
@@ -311,24 +387,25 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     }
 
 
-原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 *2015-10-01-preview*。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
+原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 *2016-04-01*。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
 
 ### 使用 PowerShell 建立原則定義
 
 您可以使用 New-AzureRmPolicyDefinition Cmdlet 建立新的原則定義，如下所示。下面範例會建立一個原則，只允許北歐和西歐中的資源。
 
-    $policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation onlyin certain regions" -Policy '{	"if" : {
-    	    			    "not" : {
-    	      			    	"field" : "location",
-    	      			    		"in" : ["northeurope" , "westeurope"]
-    	    			    	}
-    	    		          },
-    	      		    		"then" : {
-    	    			    		"effect" : "deny"
-    	      			    		}
-    	    		    	}'    		
+    $policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain regions" -Policy '{	
+      "if" : {
+        "not" : {
+          "field" : "location",
+          "in" : ["northeurope" , "westeurope"]
+    	}
+      },
+      "then" : {
+        "effect" : "deny"
+      }
+    }'    		
 
-執行的輸出會儲存 $policy 物件中，以便稍後可在指派原則期間使用它。針對原則參數，也可以提供包含原則之.json 檔案的路徑，而不是指定內嵌原則，如下所示。
+執行的輸出會儲存在 $policy 物件中，稍後可在指派原則期間使用它。針對原則參數，也可以提供包含原則之.json 檔案的路徑，而不是指定內嵌原則，如下所示。
 
     New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain 	regions" -Policy "path-to-policy-json-on-disk"
 
@@ -343,7 +420,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
     PUT https://management.azure.com /subscriptions/{subscription-id}/providers/Microsoft.authorization/policyassignments/{policyAssignmentName}?api-version={api-version}
 
-{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 *2015-10-01-preview*。
+{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 *2016-04-01*。
 
 使用如下的要求內文：
 
@@ -380,11 +457,11 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 如要檢視所有與拒絕效果相關的事件，可以使用下列命令。
 
-    Get-AzureRmLog | where {$_.subStatus -eq "Forbidden"}     
+    Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/deny/action"} 
 
 如要檢視所有與稽核效果相關的事件，可以使用下列命令。
 
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
     
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

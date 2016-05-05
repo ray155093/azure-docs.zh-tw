@@ -50,15 +50,14 @@
 
 	Login-AzureRmAccount
 
-使用下列命令取得您的訂用帳戶名稱。
+使用下列命令，可以取得可用的訂用帳戶。
 
 	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
-設定您的 Azure 訂用帳戶以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+設定目前工作階段的 Azure 訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
 
 	$subscr="<subscription name>"
-	Select-AzureSubscription -SubscriptionName $subscr –Current
-
+	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
 
 ## 步驟 3：建立資源
 
@@ -393,4 +392,4 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 
 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

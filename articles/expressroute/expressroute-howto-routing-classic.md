@@ -3,8 +3,8 @@
    description="本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。本文也示範如何檢查狀態、更新或刪除線路的對等。"
    documentationCenter="na"
    services="expressroute"
-   authors="cherylmc"
-   manager="carolz"
+   authors="ganesr"
+   manager="carmonm"
    editor=""
    tags="azure-service-management"/>
 <tags
@@ -13,18 +13,24 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/09/2016"
-   ms.author="cherylmc"/>
+   ms.date="04/08/2016"
+   ms.author="ganesr"/>
 
-# 使用 PowerShell 建立和修改 ExpressRoute 線路的路由
+# 建立和修改 ExpressRoute 電路的路由
 
 > [AZURE.SELECTOR]
-[PowerShell - Classic](expressroute-howto-routing-classic.md)
+[Azure Portal - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
 [PowerShell - Resource Manager](expressroute-howto-routing-arm.md)
+[PowerShell - Classic](expressroute-howto-routing-classic.md)
 
-本文將逐步引導您使用 PowerShell Cmdlet 和傳統部署模型，以建立和管理 ExpressRoute 線路的路由組態。下列步驟也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 線路的對等。
 
-[AZURE.INCLUDE [vpn-gateway-sm-rm](../../includes/vpn-gateway-sm-rm-include.md)]
+
+本文將逐步引導您使用 PowerShell 和傳統部署模型，以建立和管理 ExpressRoute 電路的路由組態。下列步驟也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 線路的對等。
+
+
+**關於 Azure 部署模型**
+
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## 組態必要條件
 
@@ -94,7 +100,7 @@
 
 	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### 取得 Azure 私用對等詳細資料
+### 檢視 Azure 私用對等詳細資訊
 
 您可以使用下列 Cmdlet 來取得組態詳細資料
 
@@ -144,7 +150,7 @@
 
 2. **建立 ExpressRoute 線路**
 	
-	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-classic.md)，並由連線提供者佈建它。如果您的連線提供者是提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 私用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
+	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-classic.md)，並由連線提供者佈建它。如果您的連線提供者提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 公用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
 
 3. **檢查 ExpressRoute 線路以確定已佈建**
 
@@ -175,10 +181,10 @@
 	- 主要連結的 /30 子網路。這必須是有效的公用 IPv4 首碼。
 	- 次要連結的 /30 子網路。這必須是有效的公用 IPv4 首碼。
 	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
-	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。您必須將公用 AS 編號用於此對等。
+	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
 	- MD5 雜湊 (如果選擇使用)。**這是選擇性的**。
 	
-	您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等
+	您可以執行下列 Cmdlet 來為電路設定 Azure 公用對等
 
 		New-AzureBGPPeering -AccessType Public -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -PeerAsn 1234 -VlanId 200
 
@@ -188,7 +194,7 @@
 
 	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### 取得 Azure 公用對等詳細資料
+### 檢視 Azure 公用對等詳細資訊
 
 您可以使用下列 Cmdlet 來取得組態詳細資料
 
@@ -267,7 +273,7 @@
 	- 主要連結的 /30 子網路。這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
 	- 次要連結的 /30 子網路。這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
 	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
-	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。您必須只使用公用 AS 編號。您必須擁有 AS 編號。
+	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
 	- 公告的首碼：您必須提供一份您打算在 BGP 工作階段上公告的所有首碼的清單。只接受公用 IP 位址首碼。如果您打算傳送一組首碼，您可以傳送逗號分隔清單。這些首碼必須在 RIR / IRR 中註冊給您。
 	- 客戶 ASN：如果您要公告的首碼未註冊給對等 AS 編號，您可以指定它們所註冊的 AS 編號。**這是選擇性的**。
 	- 路由登錄名稱：您可以指定可供註冊 AS 編號和首碼的 RIR / IRR。
@@ -278,7 +284,7 @@
 		New-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
 
 
-### 取得 Microsoft 對等詳細資料
+### 檢視 Microsoft 對等詳細資訊
 
 您可以使用下列 Cmdlet 來取得組態詳細資料。
 
@@ -318,4 +324,4 @@
 -  如需有關工作流程的詳細資訊，請參閱 [ExpressRoute 工作流程](expressroute-workflows.md)。
 -  如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

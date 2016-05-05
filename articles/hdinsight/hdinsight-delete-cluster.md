@@ -44,7 +44,7 @@ HDInsight 叢集是以小時計費，因此不再使用時，應該一律刪除�
 
 ##Azure CLI
 
-> [AZURE.NOTE] 如果您尚未安裝和設定 Azure CLI，可使用[安裝和設定 Azure CLI](../xplat-cli-install.md) 文件中的步驟。
+[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 在提示中，使用下列命令來刪除叢集︰
 
@@ -52,4 +52,4 @@ HDInsight 叢集是以小時計費，因此不再使用時，應該一律刪除�
     
 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

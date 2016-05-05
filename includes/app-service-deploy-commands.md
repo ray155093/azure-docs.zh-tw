@@ -4,6 +4,6 @@
 - [搭配使用 Azure PowerShell 與 Azure 資源管理員](../articles/powershell-azure-resource-manager.md)
 - [搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理](../articles/xplat-cli-azure-resource-manager.md)。
 
-下列範例假設您的帳戶中已經有所指定名稱的資源群組。
+下例假設您的帳戶中已經有已指定名稱的資源群組。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0420_2016-->

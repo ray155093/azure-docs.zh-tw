@@ -3,7 +3,7 @@
    description="SQL 資料倉儲的效能和調整功能簡介。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="TwoUnder"
+   authors="barbkess"
    manager="barbkess"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="03/03/2016"
-   ms.author="mausher;barbkess;jrj;nicw;sonyama"/>
+   ms.author="barbkess;sonyama"/>
 
 # 效能和調整概觀
 將您的資料倉儲放在雲端，就不再需要處理低階的硬體問題。您再也不需要為了獲得優異的資料倉儲效能，而研究處理器類型、需要的記憶體容量或儲存空間類型。相反地，SQL 資料倉儲要問您：您想要多快的資料分析速度？
@@ -83,4 +83,4 @@ SQL 資料倉儲引進了資料倉儲單位 (DWU)，做為許多節點的彙總�
 
 <!--Other web references-->
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

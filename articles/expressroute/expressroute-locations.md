@@ -12,14 +12,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/06/2016"
+   ms.date="04/19/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
 
 本文中的資料表會提供有關 ExpressRoute 連線提供者、ExpressRoute 地理涵蓋範圍、透過 ExpressRoute 支援的 Microsoft 雲端服務，以及 ExpressRoute 系統整合者 (SI) 的資訊。
 
-## ExpressRoute 連線提供者
+## <a name="partners"></a>ExpressRoute 連線提供者
 
 所有的 Azure 區域和位置都支援 ExpressRoute。以下地圖提供了 Azure 區域和 ExpressRoute 位置的清單。ExpressRoute 位置是指 Microsoft 與數個服務提供者對等互連的位置。
 
@@ -118,7 +118,7 @@
 | **e-shelter** | 敬請期待 | 不支援 | 柏林+|
 | **Interxion** | 支援 | 不支援 | 法蘭克福|
 
-## 透過未列出的服務提供者連線
+## <a name="nonpartners"></a>透過未列出的服務提供者連線
 
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
@@ -157,4 +157,4 @@
 - 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 - 請確定符合所有必要條件。請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -1,5 +1,13 @@
-<properties pageTitle="使用 PowerShell 針對 VPN 閘道設定強制通道 | Microsoft Azure" description="如果您有跨單位 VPN 閘道的傳統部署模型虛擬網路，您可以將重新導向或「強制」所有網際網路繫結流量回到內部部署位置。" services="vpn-gateway" documentationCenter="na" authors="cherylmc" manager="carmonm" editor="" tags="azure-service-management"/>
-<tags  
+<properties 
+   pageTitle="使用 PowerShell 針對 VPN 閘道設定強制通道 | Microsoft Azure"
+   description="如果您擁有使用跨單位 VPN 閘道的傳統部署模型虛擬網路，則可以將所有網際網路繫結流量重新導向或「強制」傳回內部部署位置。"
+   services="vpn-gateway"
+   documentationCenter="na"
+   authors="cherylmc"
+   manager="carmonm"
+   editor=""
+   tags="azure-service-management"/>
+<tags 
    ms.service="vpn-gateway"
    ms.devlang="na"
    ms.topic="article"
@@ -167,4 +175,4 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 
 	Remove-AzureVnetGatewayDefaultSites -VNetName <virtualNetworkName>
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

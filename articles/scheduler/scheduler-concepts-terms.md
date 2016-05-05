@@ -192,7 +192,7 @@
 
 若要設定重試原則，可以指定另外兩項設定：重試間隔 (**retryInterval**) 和重試次數 (**retryCount**)。
 
-搭配 **retryInterval** 物件指定的重試間隔是重試的間隔。其預設值為 1 分鐘、最小值為 1 分鐘，而最大值為 18 個月。它是以 ISO 8601 格式定義。同樣地，搭配 **retryCount** 物件指定的重試次數值，它是重試的次數。其預設值為 5，而最大值為 20。**retryInterval** 和 **retryCount** 都是選用的。如果 **retryType** 設定為 **fixed**，而且未明確地指定任何值，則會給與它們預設值。
+搭配 **retryInterval** 物件指定的重試間隔是重試的間隔。其預設值為 30 秒、最小可設定值為 15 秒，而最大值為 18 個月。免費作業集合中作業的最小可設定值為 1 小時。它是以 ISO 8601 格式定義。同樣地，搭配 **retryCount** 物件指定的重試次數值，它是重試的次數。其預設值為 4，而最大值為 20。**retryInterval** 和 **retryCount** 都是選用的。如果 **retryType** 設定為 **fixed**，而且未明確地指定任何值，則會給與它們預設值。
 
 ## 另請參閱
 
@@ -214,4 +214,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

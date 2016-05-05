@@ -3,7 +3,7 @@
    description="將您的解決方案帶入 Azure SQL 資料倉儲平台的移轉指導。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="jrowlandjones"
+   authors="barbkess"
    manager="barbkess"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="03/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+   ms.author="barbkess;jrj;sonyama"/>
 
 # 將您的解決方案移轉至 SQL 資料倉儲
 
@@ -52,4 +52,4 @@ SQL 資料倉儲是一個能夠彈性調整以符合您需求的分散式資料�
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

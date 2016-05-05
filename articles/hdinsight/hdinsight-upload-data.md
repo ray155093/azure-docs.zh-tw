@@ -62,6 +62,8 @@ Microsoft 提供下列公用程式來使用 Azure Blob 儲存體：
 
 Azure CLI 是可讓您管理 Azure 服務的跨平台工具。使用以下步驟將資料上傳至 Azure Blob 儲存體：
 
+[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+
 1. [安裝和設定適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)。
 
 2. 開啟命令提示字元、Bash 或其他殼層，然後使用以下命令驗證您的 Azure 訂用帳戶。
@@ -103,6 +105,8 @@ Azure CLI 是可讓您管理 Azure 服務的跨平台工具。使用以下步驟
 ###<a id="powershell"></a>Azure PowerShell
 
 Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。如需關於設定工作站以執行 Azure PowerShell 的資訊，請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+
+[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell.md)]
 
 **將本機檔案上傳至 Azure Blob 儲存體**
 
@@ -278,4 +282,4 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 [image-ase-addaccount]: ./media/hdinsight-upload-data/HDI.ASEAddAccount.png
 [image-ase-blob]: ./media/hdinsight-upload-data/HDI.ASEBlob.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

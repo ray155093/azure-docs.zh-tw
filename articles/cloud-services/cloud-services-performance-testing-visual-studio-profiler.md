@@ -123,7 +123,7 @@
 
 ![][14]
 
-## 5：進行變更與比較效能
+## 4：進行變更與比較效能
 
 您也可以在變更程式碼之前和之後比較效能。請停止執行中流程並編輯程式碼，以使用 StringBuilder 取代字串串連作業：
 
@@ -186,4 +186,4 @@
 [17]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally08.png
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

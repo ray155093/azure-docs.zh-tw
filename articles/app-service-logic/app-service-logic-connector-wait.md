@@ -13,11 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="02/10/2016"
+   ms.date="04/19/2016"
    ms.author="rajram"/>
 
 # 開始使用 Wait 連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+
+>[AZURE.NOTE] 我們即將結束對這個連接器的支援，因為當您建立新的邏輯應用程式時，它的功能現在預設包含為**延遲動作**。建議您升級所有使用這個連接器的邏輯應用程式。這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
 
 Wait 連接器可讓應用程式將其執行延遲一段指定的持續時間，或到出現指定的時間為止。您可以將 Wait 連接器加入您的商務工作流程，就能在邏輯應用程式的該工作流程中處理資料。在邏輯應用程式中使用時，它可用來延遲執行。
 
@@ -55,4 +56,4 @@ Wait 連接器可用作動作。它並沒有任何觸發程序。
 [2]: ./media/app-service-logic-wait/DelayInput.PNG
 [3]: ./media/app-service-logic-wait/ActionConfigured.PNG
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

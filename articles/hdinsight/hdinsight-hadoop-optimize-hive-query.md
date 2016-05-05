@@ -22,12 +22,6 @@
 
 根據預設，Hadoop 叢集不會為了效能進行最佳化。本文涵蓋幾個最常見 Hive 效能最佳化方法，您可將這些方法套用於我們的查詢。
 
-
-[AZURE.INCLUDE [preview-portal](../../includes/hdinsight-azure-preview-portal.md)]
-
-
-* [在 HDInsight 中最佳化 Hadoop 的 Hive 查詢](hdinsight-hadoop-optimize-hive-query-v1.md)。
-
 ##相應放大背景工作節點
 
 增加叢集中的背景工作節點數目，即可運用更多平行執行的對應器和歸納器。在 HDInsight 中您有兩種方法可相應放大：
@@ -226,4 +220,4 @@ ORC (最佳化的資料列單欄式) 格式是儲存 Hive 資料的高效率方�
 [image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query/tez_1.png
 [image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query/partitioning_1.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0420_2016-->

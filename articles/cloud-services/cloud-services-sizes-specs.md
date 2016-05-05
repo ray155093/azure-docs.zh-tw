@@ -19,7 +19,7 @@
 
 本主題描述雲端服務角色執行個體 (Web 角色和背景工作角色)的可用大小和選項。同時也提供計劃使用這些資源時，需注意的部署考量。
 
-Azure 虛擬機器和雲端服務是 Azure 所提供數種計算資源類型的其中兩種。如需說明，請參閱＜[計算 Azure 所提供的裝載選項](fundamentals-application-models.md)＞。
+雲端服務是 Azure 提供的數種計算資源類型之一。如需雲端服務的詳細資訊，請按一下[這裡](cloud-services-choose-me.md)。
 
 > [AZURE.NOTE]若要查看相關的 Azure 限制，請參閱 ＜[Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)＞
 
@@ -41,7 +41,7 @@ Azure 虛擬機器和雲端服務是 Azure 所提供數種計算資源類型的�
 
 * A8/A10 和 A9/A11 虛擬機器大小有相同的容量。A8 和 A9 虛擬機器執行個體包含額外的網路介面卡，其會連線到遠端直接記憶體存取 (RDMA) 網路，以利在虛擬機器之間進行快速通訊。A8 和 A9 執行個體是專為執行期間，節點之間需要常數和低延遲通訊的高效能計算應用程式所設計，例如，使用訊息傳遞介面 (MPI) 的應用程式。A10 和 A11 虛擬機器執行個體不包含額外的網路介面卡。A10 和 A11 執行個體專為不需要常數和低度延遲節點的高效能計算應用程式設計，也就是所謂的參數式或窘迫平行應用程式。
 
-    >[AZURE.NOTE] 如果您正在考慮調整 A8 到 A11 的大小，請閱讀[此](..\virtual-machines\virtual-machines-windows-a8-a9-a10-a11-specs.md)資訊。
+    >[AZURE.NOTE] 如果您正在考慮調整 A8 到 A11 的大小，請閱讀[此](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)資訊。
 
 >[AZURE.NOTE] 所有機器大小會提供**應用程式磁碟**，它會儲存您的雲端服務封裝的所有檔案，大小大約 1.5 GB。
 
@@ -156,4 +156,4 @@ Dv2 系列執行個體是第二代 D 系列執行個體，可做為虛擬機器�
 </WebRole>
 ```
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

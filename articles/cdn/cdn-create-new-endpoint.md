@@ -1,5 +1,5 @@
 <properties
-	 pageTitle="如何使用 Azure CDN"
+	 pageTitle="使用 Azure CDN"
 	 description="本主題說明如何啟用 Azure 內容傳遞網路 (CDN)。本教學課程會逐步建立新的 CDN 設定檔和端點。"
 	 services="cdn"
 	 documentationCenter=""
@@ -12,14 +12,14 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="04/15/2016" 
+	 ms.date="04/26/2016" 
 	 ms.author="casoper"/>
 
-# 如何使用 Azure CDN  
+# 使用 Azure CDN  
 
-您可以在 [Azure 入口網站](https://portal.azure.com)啟用 CDN。目前支援數種整合式 Azure 原始來源類型，包括 Web Apps、Blob 儲存體和雲端服務。您也可以針對您的 Azure 媒體服務啟用 CDN Azure 媒體服務串流端點。如果您的原始來源不是其中一項 Azure 服務，或是裝載於 Azure 之外的其他位置，您可以建立自訂原始來源。針對您的來源啟用 CDN 端點之後，所有可公開取得的物件皆能進行 CDN 邊緣快取。
+本主題將逐步解說如何透過建立新的 CDN 設定檔和端點來啟用 Azure CDN。
 
->[AZURE.NOTE] 如需 CDN 運作方式的簡介以及功能清單，請參閱 [CDN 概觀](./cdn-overview.md)。
+>[AZURE.IMPORTANT] 如需 CDN 運作方式的簡介以及功能清單，請參閱 [CDN 概觀](./cdn-overview.md)。
 
 ## 建立新的 CDN 設定檔
 
@@ -42,7 +42,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 3. 選取 [定價層] 或使用預設值。
 
-4. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](resource-group-overview/#resource-groups)。
+4. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview/#resource-groups)。
 
 5. 選取這個 CDN 設定檔的 [訂用帳戶]。
 
@@ -70,10 +70,10 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 3. 輸入這個 CDN 端點的 [名稱]。此名稱會用於存取位於網域 `<endpointname>.azureedge.net` 的快取資源。
 
-4. 在 [原始來源類型] 下拉式清單中，選取您的原始來源類型。
+4. 在 [原始來源類型] 下拉式清單中，選取您的原始來源類型。Azure 儲存體帳戶請選取 [儲存體]、Azure 雲端服務請選取 [雲端服務]、Azure Web 應用程式請選取 [Web 應用程式]，若為其他任何可公開存取的 Web 伺服器來源 (裝載於 Azure 或其他位置)，則請選取 [自訂原始來源]。
 
 	![CDN 原始來源類型](./media/cdn-create-new-endpoint/cdn-origin-type.png)
-
+		
 5. 在 [原始主機名稱] 下拉式清單中，選取您的原始網域類型。下拉式清單會列出您在步驟 4 中指定之類型的所有可用原始來源。如果您選取 [自訂原始來源] 作為您的 [原始來源類型]，您將會輸入自訂原始來源的網域。
 
 6. 在 [原始路徑] 文字方塊中，輸入您要快取的資源路徑，或保留空白以允許快取位於您在步驟 5 中指定之網域中的任何資源。
@@ -84,8 +84,8 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 	
 	> [AZURE.TIP] 使用 HTTPS 存取 CDN 內容具有下列限制：
 	> 
-	> - 您必須使用 CDN 所提供的 SSL 憑證。不支援協力廠商憑證。
-	> - 您必須使用 CDN 提供的網域 (`<identifier>.azureedge.net`) 來存取 HTTPS 內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
+	> - 您必須使用 CDN 所提供的 SSL 憑證。不支援第三方憑證。
+	> - 您必須使用 CDN 提供的網域 (`<endpointname>.azureedge.net`) 來存取 HTTPS 內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
 
 9. 按一下 [加入] 按鈕，以建立新的端點。
 
@@ -93,7 +93,10 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
     ![CDN 端點][cdn-endpoint-success]
 
-    > [AZURE.NOTE] 端點將無法立即可用。註冊可能需要 90 分鐘的處理時間，以透過 CDN 網路傳播。若使用者嘗試立即使用 CDN 網域名稱，則可能會顯示接收狀態碼 404，直到可透過 CDN 使用內容為止。
+    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN 網路。它通常在 90 分鐘之內即可供使用，但在某些情況下可能需要更久的時間。
+	>	 
+	> 嘗試在端點組態傳播到 POP 之前就使用 CDN 網域名稱的使用者會收到 HTTP 404 回應碼。
+
 
 ##另請參閱
 - [使用查詢字串控制 CDN 要求的快取行為](cdn-query-string.md)
@@ -107,4 +110,4 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

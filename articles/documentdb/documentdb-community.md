@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="03/18/2016"
+  ms.date="04/16/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -147,7 +147,10 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ------------------------ | ------- |
-| [組建 2016](https://build.microsoft.com/) | John Macintyre、Dharma Shukla | 美國加州舊金山 | 2016 年 3 月 30 日至 4 月 1 日 | [#MicrosoftBuild](https://twitter.com/hashtag/MicrosoftBuild)
+| [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) | Leonard Lobel | 美國加州橙市 | 2016 年 4 月 16 日 | [#GlobalAzure](https://twitter.com/hashtag/GlobalAzure)
+| [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) | David Makogon | 美國華盛頓州雷德蒙德 98052-6399 | 2016 年 4 月 16 日 | [#GlobalAzure](https://twitter.com/hashtag/GlobalAzure)
+| [Integration User Group](http://www.integrationusergroup.com/#) | Howard Edidin | Webinar | 2016 年 4 月 25 日 | n/a |
+| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
 | [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | [#SQLBits](https://twitter.com/hashtag/SQLBits)
 | [Meetup: UK Azure User Group](http://www.meetup.com/UKAzureUserGroup/events/229673468/) | Andrew Liu | 倫敦英國 | 2016 年 5 月 12 日 | n/a |
 
@@ -157,31 +160,40 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | 記錄 |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ---------------------- | --------- |
+| [SQL Saturday #481 - Israel 2016](http://www.sqlsaturday.com/481/Sessions/Details.aspx?sid=40912) | Leonard Lobel | 以色列中央區 | 2016 年 4 月 4 日 | n/a |
+| [組建 2016](https://build.microsoft.com/) | John Macintyre | 美國加州舊金山 | 2016 年 3 月 31 日 | [Delivering Applications at Scale with DocumentDB, Azure's NoSQL Document Database](https://channel9.msdn.com/Events/Build/2016/B840)
+| [SQL Saturday #505 - Belgium 2016](http://www.sqlsaturday.com/505/Sessions/Details.aspx?sid=44217) | Mihail Mateev | 比利時安特衛普 | 2016 年 3 月 19 日 | n/a |
 | [Meetup: CloudTalk](http://www.meetup.com/CloudTalk/events/227963695/) | Kirat Pandya | Bellevue, WA | 2016 年 3 月 3 日 | n/a |
 | [Meetup: Azure Austin](http://www.meetup.com/azureaustin/events/228209275/) | Merwan Chinta | Austin, TX | 2016 年 1 月 28 日 | n/a |
 | [Meetup: msdevmtl](http://www.meetup.com/msdevmtl/events/223839818/) | Vincent-Philippe Lauzon | 加拿大魁北克省蒙特婁 | 2015 年 12 月 1 日 | n/a |
 | [聚會：SeattleJS](http://www.meetup.com/seattlejs/events/220102664/) | David Makogon | 美國華盛頓州西雅圖 | 2015 年 11 月 12 日 | n/a |
 | [PASS Summit 2015](http://www.sqlpass.org/summit/2015/) | Jeff Renz、Andrew Hoh、Aravind Ramachandran、John Macintyre | 美國華盛頓州西雅圖 | 2015 年 10 月 27-30 日 | [在 Azure 上開發現代化應用程式](https://www.youtube.com/watch?v=k5Z24HX-RyQ) |
 | [CloudDevelop 2015](http://www.clouddevelop.org/) | David Makogon、Ryan Crawcour | 美國俄亥俄州哥倫布 | 2015 年 10 月 23 日 | n/a |
-| [SQL Saturday #430 - Sofia 2015](http://www.sqlsaturday.com/430/eventhome.aspx) | Leonard Lobel | 保加利亞索菲亞 | 2015 年 10 月 10 日 | n/a |
-| [SQL Saturday #429 - Oporto 2015](http://www.sqlsaturday.com/429/eventhome.aspx) | Leonard Lobel | 葡萄牙奧波圖 | 2015 年 10 月 3 日 | n/a |
+| [SQL Saturday #454 - Turin 2015](http://www.sqlsaturday.com/454/Sessions/Details.aspx?sid=40130) | Marco De Nittis | 義大利杜林 | 2015 年 10 月 10 日 | n/a |
+| [SQL Saturday #430 - Sofia 2015](http://www.sqlsaturday.com/430/Sessions/Details.aspx?sid=36090) | Leonard Lobel | 保加利亞索菲亞 | 2015 年 10 月 10 日 | n/a |
+| [SQL Saturday #444 - Kansas City 2015](http://www.sqlsaturday.com/444/Sessions/Details.aspx?sid=38576) | Jeff Renz | 美國密蘇里州堪薩斯城 | 2015 年 10 月 3 日 | n/a |
+| [SQL Saturday #429 - Oporto 2015](http://www.sqlsaturday.com/429/Sessions/Details.aspx?sid=36089) | Leonard Lobel | 葡萄牙奧波圖 | 2015 年 10 月 3 日 | n/a |
 | [AzureCon](https://azure.microsoft.com/azurecon/) | David Makogon、Ryan Crawcour、John Macintyre | 虛擬活動 | 2015 年 9 月 29 日 | [Azure 資料和分析平台](https://channel9.msdn.com/events/Microsoft-Azure/AzureCon-2015/ACON207)<br/>[在 DocumentDB 中使用 NoSQL 資料](https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON338) |
-| [SQL Saturday #434 - Holland 2015](http://www.sqlsaturday.com/434/eventhome.aspx) | Leonard Lobel | 荷蘭烏特勒支 | 2015 年 9 月 26 日 | [Azure DocumentDB 簡介](https://channel9.msdn.com/Blogs/Windows-Azure/SQL-Saturday-Holland-2015-Introduction-to-Azure-DocumentDB) |
+| [SQL Saturday #434 - Holland 2015](http://www.sqlsaturday.com/434/Sessions/Details.aspx?sid=36413) | Leonard Lobel | 荷蘭烏特勒支 | 2015 年 9 月 26 日 | [Azure DocumentDB 簡介](https://channel9.msdn.com/Blogs/Windows-Azure/SQL-Saturday-Holland-2015-Introduction-to-Azure-DocumentDB) |
+| [SQL Saturday #441 - Denver 2015](http://www.sqlsaturday.com/441/Sessions/Details.aspx?sid=39191) | Jeff Renz | 美國科羅拉多州丹佛 | 2015 年 9 月 19 日 | n/a |
 | [Meetup: San Francisco Bay Area Azure Developers](http://www.meetup.com/bayazure/events/223943785/) | Andrew Liu | 美國加州舊金山 | 2015 年 9 月 15 日 | n/a |
 | [白俄羅斯 Azure 使用者群組見面會](https://www.facebook.com/events/786540124800276/) | Alex Zyl | 明斯克，白俄羅斯 | 2015 年 9 月 9 日 | [DocumentDB 概念概觀簡介、一致性層級、分區化策略](https://www.youtube.com/watch?v=Uc_qwWzJKH8) |
 | [NoSQL Now!](http://nosql2015.dataversity.net/) | David Makogon、Ryan Crawcour | 美國加州聖荷西 | 2015 年 8 月 18-20 日 | n/a |
 | [@Scale Seattle](http://www.atscaleconference.com/) | Dharma Shukla | 美國華盛頓州西雅圖 | 2015 年 6 月 17 日 | [使用 Azure DocumentDB 編製與結構描述無關的索引](https://www.youtube.com/watch?v=VJQ_5qFFVP4) |
 | [Tech Refresh 2015](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015) | Bruno Lopes | 葡萄牙里斯本 | 2015 年 6 月 15 日 | [DocumentDB 101](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015/DPDEV01) |
+| [SQL Saturday #417 - Sri Lanka 2015](http://www.sqlsaturday.com/417/Sessions/Details.aspx?sid=21415) | Mihail Mateev | 斯里蘭卡可倫坡 | 2015 年 6 月 6 日 | n/a |
 | [Meetup:Seattle Scalability Meetup](http://www.meetup.com/Seattle-Scalability-Meetup/events/204010442/) | Dharma Shukla | 美國華盛頓州西雅圖 | 2015 年 5 月 27 日 | n/a |
+| [SQL Saturday #377 - Kiev 2015](http://www.sqlsaturday.com/377/Sessions/Details.aspx?sid=20322) | Mihail Mateev | 烏克蘭基輔 | 2015 年 5 月 23 日 | n/a |
 | [Database Month](http://www.databasemonth.com/database/azure-documentdb) | Dharma Shukla | 美國紐約 | 2015 年 5 月 19 日 | [Azure DocumentDB︰大規模可調整、多租用戶文件資料庫服務](https://www.youtube.com/watch?v=iZsqBc3Dkbk) |
 | [Meetup: London SQL Server User Group](http://www.meetup.com/London-SQL-Server-User-Group/events/221525058/) | Allan Mitchell | 倫敦英國 | 2015 年 5 月 19 日 | n/a |
 | [DevIntersection](https://devintersection.com/) | Andrew Liu | 美國亞利桑那州斯科茲代爾 | 2015 年 5 月 18-21 日 | n/a |
+| [Meetup: Seattle Web App Developers Group](http://www.meetup.com/Seattle-Web-App-Developers-Group/events/220591071/) | Andrew Liu | 美國華盛頓州西雅圖 | 2015 年 5 月 14 日 | n/a |
 | [Ignite](http://ignite.microsoft.com/) | Andrew Hoh、John Macintyre | 美國伊利諾州芝加哥 | 2015 年 5 月 4-8 日 | [最新精選 DocumentDB 影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-select-latest-from-microsoft-azure-documentdb/)<br/>[DocumentDB 和 Azure HDInsight︰相得益彰影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-microsoft-azure-documentdb-and-azure-hdinsight-better-together/) |
 | [Build 2015](http://www.buildwindows.com/) | Ryan Crawcour | 美國加州舊金山 | 2015 年 4 月 29 日至 5 月 1 日 | [使用 Azure 的 NoSQL 服務成就下一件大事︰DocumentDB](https://channel9.msdn.com/Events/Build/2015/2-729) |
 | [Global Azure Bootcamp 2015 - Spain](http://azurebootcamp.es/) | Luis Ruiz Pavon、Roberto Gonzalez | 馬德里西班牙 | 2015 年 4 月 25 日 | [在 Azure 上執行的 #DEAN DocumentDB + Express + AngularJS + NodeJS](https://channel9.msdn.com/events/Developers-Spain-Events/Global-Azure-Bootcamp-2015/DEAN-DocumentDB--Express--AngularJS--NodeJS-running-on-Azure) |
+| [Meetup: Azure Usergroup Denmark](http://www.meetup.com/Azure-Usergroup-Denmark/events/221026670/) | Christian Holm Diget | 丹麥哥本哈根 | 2015 年 4 月 16 日 | n/a |
 | [Meetup: Charlotte Microsoft Cloud](http://www.meetup.com/Charlotte-Microsoft-Cloud/events/221503519/) | Jamie Rance | 美國北卡羅來納州夏洛特 | 2015 年 4 月 8 日 | n/a |
-| [Meetup: Azure Usergroup Denmark](http://www.meetup.com/Azure-Usergroup-Denmark/events/221026670/) | Christian Holm Diget | 丹麥哥本哈根 | 2015 年 5 月 19 日 | n/a |
-| [Meetup: Seattle Web App Developers Group](http://www.meetup.com/Seattle-Web-App-Developers-Group/events/220591071/) | Andrew Liu | 美國華盛頓州西雅圖 | 2015 年 5 月 14 日 | n/a |
+| [SQL Saturday #375 - Silicon Valley 2015](http://www.sqlsaturday.com/375/Sessions/Details.aspx?sid=15289) | Ike Ellis | 美國加州山景城 | 2015 年 3 月 28 日 | n/a |
 | [Meetup: Istanbul Azure Meetup](http://www.meetup.com/istanbul-azure-meetup/events/220325538/) | Daron Yondem | 土耳其伊斯坦堡 | 2015 年 3 月 7 日 | n/a |
 | [Meetup: Great Lakes Area .Net User Group](http://www.meetup.com/Great-Lakes-Area-NET-User-Group-MIGANG/events/220364576/) | Michael Collier | 美國密西根州南菲爾德 | 2015 年 2 月 18 日 | n/a |
 | [TechX Azure](https://www.youtube.com/channel/UCDRlI2E4z5qmHsBXTrFOE2Q) | Magnus Mårtensson | 瑞典斯德哥爾摩 | 2015 年 1 月 28-29 日 | [Azure 中的 DocumentDB - 適用於雲端的新 NoSQL 選項](https://www.youtube.com/watch?v=Hw7hDYoChNI) |
@@ -190,6 +202,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 顯示 | 主講人 | 日期 | 劇集 |
 | ------------------------------------------- | --------------------------- | ------------------ | ------- |
+| Channel 9︰Microsoft + 開放原始碼 | Jose Miguel Parrella | 2016 年 4 月 14 日 | [From MEAN to DEAN in Azure with Bitnami, VM Scale Sets and DocumentDB](https://channel9.msdn.com/Blogs/Open/From-MEAN-to-DEAN-in-Azure-with-Bitnami-VM-Scale-Sets-and-DocumentDB) |
 | Wired2WinWebinar | Sai Sankar Kunnathukuzhiyil | 2016 年 3 月 9 日 | [Developing Solutions with Azure DocumentDB](https://www.youtube.com/watch?v=xKttEwXv_bs)
 | Integration User Group | Han Wong | 2016 年 2 月 17 日 | [使用 DocumentDB + Power BI 分析和視覺化非關聯式資料](http://www.integrationusergroup.com/analyze-visualize-non-relational-data-documentdb-power-bi/) |
 | Azure 播客 | Cale Teeter | 2016 年 1 月 14 日 | [Episode 110: Using DocumentDB & Search](http://azpodcast.azurewebsites.net/post/Episode-110-Using-DocumentDB-Search) |
@@ -294,4 +307,4 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 
 想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -17,7 +17,7 @@
 	ms.author="nitinme"/>
 
 
-# 快速入門：在 HDInsight 上建立 Apache Spark 並使用 Spark SQL 執行互動式查詢 (Windows)
+# 快速入門：在 HDInsight Windows 上建立 Apache Spark，並使用 Spark SQL (預覽) 執行互動式查詢
 
 [AZURE.INCLUDE [hdinsight-azure-portal](../../includes/hdinsight-azure-portal.md)]
 
@@ -262,4 +262,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

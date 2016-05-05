@@ -34,6 +34,8 @@
 - **工作站**：具有 SSH 用戶端的電腦。
 - **Azure CLI**：如需詳細資訊，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)
 
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+
 ##Sqoop export
 
 2. 使用下列命令來建立從 Sqoop lib 目錄到 SQL Server JDBC 驅動程式的連結。這可讓 Sqoop 使用此驅動程式來聯繫 SQL Database：
@@ -142,4 +144,4 @@
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

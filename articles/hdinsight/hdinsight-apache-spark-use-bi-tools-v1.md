@@ -18,9 +18,9 @@
 	ms.author="nitinme"/>
 
 
-# 在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark (Windows)
+# 在 HDInsight Windows (預覽) 上搭配使用 BI 工具和 Apache Spark
 
-> [AZURE.NOTE] HDInsight 現在在 Linux 上提供 Spark 叢集。如需了解如何在 HDInsight Linux 上搭配使用 BI 工具和 Spark，請參閱 [在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark (Linux)](hdinsight-apache-spark-use-bi-tools.md)。
+> [AZURE.NOTE] HDInsight 現在於 Linux 上提供 Spark 叢集。如需了解如何在 HDInsight Linux 上搭配使用 BI 工具和 Spark，請參閱 [在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark (Linux)](hdinsight-apache-spark-use-bi-tools.md)。
 
 了解如何在 Azure HDInsight 中使用 Apache Spark 來執行下列作業：
 
@@ -214,4 +214,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0420_2016-->

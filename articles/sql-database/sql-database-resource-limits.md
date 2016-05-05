@@ -3,8 +3,8 @@
 	description="此頁面描述一些 Azure SQL Database 常見的資源限制。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="rothja"
-	manager="jeffreyg"
+	authors="carlrabeler"
+	manager="jhubbard"
 	editor="monicar" />
 
 
@@ -14,8 +14,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="03/02/2016"
-	ms.author="jroth" />
+	ms.date="04/19/2016"
+	ms.author="carlrab" />
 
 
 # Azure SQL Database 資源限制
@@ -60,6 +60,10 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 | 領域 | 限制 | 說明 |
 |---|---|---|
 | 每個訂用帳戶使用自動匯出的資料庫 | 10 | 自動匯出可讓您建立自訂排程以備份 SQL Database。如需詳細資訊，請參閱 [SQL Database：自動 SQL Database 匯出的支援](http://weblogs.asp.net/scottgu/windows-azure-july-updates-sql-database-traffic-manager-autoscale-virtual-machines)。|
+| 每一部伺服器的資料庫 | 最多 5000 個 | 在 V12 伺服器上，每一伺服器最多允許 5000 個資料庫。實際上，會根據伺服器上所有資料庫的登入活動以及 master 資料庫中系統檢視的查詢使用情形來套用較低的限制。伺服器上的資料庫數目大幅增加時，建議客戶監視資料庫連線是否有任何問題。 |  
+| 每一部伺服器的 DTU | 45000 | 在 V12 伺服器上，每一部伺服器會有 45000 個 DTU，用於佈建資料庫、彈性集區和資料倉儲。 |
+
+
 
 ## 資源
 
@@ -69,4 +73,4 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 
 [SQL Database 用戶端程式的錯誤訊息](sql-database-develop-error-messages.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0420_2016-->

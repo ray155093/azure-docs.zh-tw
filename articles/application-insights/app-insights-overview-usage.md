@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="multiple"
 	ms.topic="article" 
-	ms.date="02/19/2016"
+	ms.date="04/08/2016"
 	ms.author="awills"/>
 
 # 使用 Application Insights 進行使用量分析
@@ -248,11 +248,11 @@ Web 工作階段在 30 分鐘無活動後會被計入。在電話或其他裝置
 您可以設定全域初始設定式，使得所有新 TelemetryClients 會自動使用您的內容。
 
     // Telemetry initializer class
-    public class MyTelemetryInitializer : IContextInitializer
+    public class MyTelemetryInitializer : ITelemetryInitializer
     {
-        public void Initialize (TelemetryContext context)
+        public void Initialize (ITelemetry telemetry)
         {
-            context.Properties["AppVersion"] = "v2.1";
+            telemetry.Properties["AppVersion"] = "v2.1";
         }
     }
 
@@ -261,7 +261,7 @@ Web 工作階段在 30 分鐘無活動後會被計入。在電話或其他裝置
     protected void Application_Start()
     {
         // ...
-        TelemetryConfiguration.Active.ContextInitializers
+        TelemetryConfiguration.Active.TelemetryInitializers
         .Add(new MyTelemetryInitializer());
     }
 
@@ -288,4 +288,4 @@ Web 工作階段在 30 分鐘無活動後會被計入。在電話或其他裝置
 
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0420_2016-->

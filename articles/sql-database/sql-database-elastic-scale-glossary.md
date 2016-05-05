@@ -3,7 +3,7 @@
     description="彈性資料庫工具所用詞彙的解釋" 
     services="sql-database" 
     documentationCenter="" 
-    manager="jeffreyg" 
+    manager="jhubbard" 
     authors="ddove" 
     editor=""/>
 
@@ -34,6 +34,14 @@
 **本機分區對應**：儲存在分區上的本機分區對應包含位於分區上之 Shardlet 的對應。
 
 **多分區查詢**：能夠對多個分區發出查詢，使用 UNION ALL 語意傳回結果集 (也稱為「展開傳送查詢」)。請對照**資料相依路由**。
+
+**多租用戶**和**單一租用戶**︰這會顯示單一租用戶資料庫和多租用戶資料庫︰
+
+![單一和多租用戶資料庫](./media/sql-database-elastic-scale-glossary/multi-single-simple.png)
+
+以下是**分區化**單一和多租用戶資料庫的呈現。
+
+![單一和多租用戶資料庫](./media/sql-database-elastic-scale-glossary/shards-single-multi.png)
 
 **範圍分區對應**：根據多個連續值範圍來制訂分區分佈策略的分區對應。
 
@@ -82,4 +90,4 @@
 [3]: ./media/sql-database-elastic-scale-glossary/h_versus_vert.png
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

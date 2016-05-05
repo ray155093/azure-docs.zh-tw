@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="04/20/2016"
 	ms.author="billmath"/>
 
 # Azure AD Connect 常見問題集
@@ -46,10 +46,12 @@
 - [Office 365、Azure 或 Intune 中的使用者名稱不符合內部部署的 UPN 或替代登入識別碼](https://support.microsoft.com/zh-TW/kb/2523192)
 - [在您將使用者帳戶的 UPN 變更為使用不同的同盟網域後，Azure Active Directory 同步作業工具未同步處理變更](https://support.microsoft.com/zh-TW/kb/2669550)
 
+您也可以將 Azure AD 設定為允許同步處理引擎更新 userPrincipalName，如 [Azure AD Connect 同步處理服務功能](active-directory-aadconnectsyncservice-features.md)中所述。
+
 ## 自訂組態
 **問：Azure AD Connect 適用的 PowerShell Cmdlet 記載於何處？** 除了記載於本網站上的 Cmdlet，在 Azure AD Connect 中找到的其他 PowerShell Cmdlet 不支援客戶使用。
 
-**問：我可以使用 *Synchronization Service Manager* 中的「伺服器匯出/伺服器匯入」在伺服器之間移動組態嗎？** 否。此選項將不會擷取所有組態設定，因此不應使用。您應該改用精靈在第二部伺服器上建立基底組態，並使用同步處理規則編輯器產生 PowerShell 指令碼，以在伺服器之間移動任何自訂規則。請參閱[把自訂組態從作用中伺服器移動到預備伺服器](active-directory-aadconnect-upgrade-previous-version.md#move-custom-configuration-from-active-to-staging-server)。
+**問：我可以使用 *Synchronization Service Manager* 中的「伺服器匯出/伺服器匯入」，在伺服器之間移動組態嗎？** 否。此選項將不會擷取所有組態設定，因此不應使用。您應該改用精靈在第二部伺服器上建立基底組態，並使用同步處理規則編輯器產生 PowerShell 指令碼，以在伺服器之間移動任何自訂規則。請參閱[把自訂組態從作用中伺服器移動到預備伺服器](active-directory-aadconnect-upgrade-previous-version.md#move-custom-configuration-from-active-to-staging-server)。
 
 ## 疑難排解
 **問：如何取得 Azure AD Connect 的說明？**
@@ -66,4 +68,4 @@
 
 - 使用此連結透過 Azure 入口網站取得支援。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

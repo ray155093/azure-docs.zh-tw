@@ -54,21 +54,18 @@
 
 ## 整合
 
-Engagment 提供兩種方式實作 Reach 通知和宣告：「重疊整合」和「Web 檢視」整合。
+Engagement 提供兩種方式在應用程式中加入 Reach 應用程式內橫幅，以及宣告和輪詢的插入式檢視：重疊整合和 Web 檢視手動整合。您不應該在相同頁面上結合這兩種方法。
 
-重疊整合不需要大量程式碼寫入您的應用程式。您只需要用 EngagementPageOverlay 標記您的頁面、xaml 和 cs 檔案。此外，如果您自訂 Engagement 預設檢視，您的自訂項目會在所有已標記的頁面之間共用，而且只定義一次。但如果您的頁面需要從 EngagementPageOverlay 以外的物件繼承，那麼您就只能使用「Web 檢視」整合。
+兩種整合之間的選擇可以如此歸納︰
 
-Web 檢視整合的實作較為複雜。但如果您的應用程式需要從 "Page" 以外的物件繼承，那麼您必須整合 「Web 檢視」和其行為。
-
-> [AZURE.TIP] 您應該考慮新增根層級的 `<Grid></Grid>` 元素，來包圍所有頁面內容。針對 Web 檢視整合，請新增 Webview 為此格線的子系。如果您需要在其他地方設定 Engagement 的元件，請記住您必須自行管理顯示的大小。
+-   如果您的頁面已繼承自代理程式 `EngagementPage`，您可以選擇重疊整合，只需在頁面中將 `EngagementPage` 取代為 `EngagementPageOverlay`，將 `xmlns:engagement="using:Microsoft.Azure.Engagement"` 取代為 `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"`。
+-   如果您想要精確地將 Reach UI 放在頁面中，或是不想在頁面加入另一個繼承層級，可以選擇 Web 檢視手動整合。 
 
 ### 重疊整合
 
-Engagement 提供通知和宣告顯示的重疊。
+Engagement 重疊會以動態方式加入用以在頁面中顯示觸達活動的 UI 元素。如果重疊不符合您的版面配置，您應該改為考慮 Web 檢視手動整合。
 
-如果您想要使用它，請不要使用 Web 檢視整合。
-
-將您 .xaml 檔案中的 EngagementPage 參考變更為 EngagementPageOverlay
+在您的 .xaml 檔案中，將 `EngagementPage` 參考變更為 `EngagementPageOverlay`
 
 -   新增至命名空間宣告：
 
@@ -81,7 +78,7 @@ Engagement 提供通知和宣告顯示的重疊。
 		<engagement:EngagementPage 
 		    xmlns:engagement="using:Microsoft.Azure.Engagement">
 		
-		    <!-- layout -->
+		    <!-- Your layout -->
 		</engagement:EngagementPage>
 
 **有 EngagementPageOverlay：**
@@ -89,19 +86,10 @@ Engagement 提供通知和宣告顯示的重疊。
 		<engagement:EngagementPageOverlay 
 		    xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay">
 		
-		    <!-- layout -->
+		    <!-- Your layout -->
 		</engagement:EngagementPageOverlay>
 
-> **有適用於 8.1+ 的 EngagementPageOverlay：**
-
-		<engagement:EngagementPageOverlay 
-		    xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay">
-		    <Grid>
-		      <!-- layout -->
-		    </Grid>
-		</engagement:EngagementPageOverlay>
-
-然後在您的 .cs 檔案中，使用 "EngagementPageOverlay" 標記您的頁面，而不是 "EngagementPage"，並匯入 "Microsoft.Azure.Engagement.Overlay"。
+然後在您的 .cs 檔案中以 `EngagementPageOverlay` 而不是 `EngagementPage` 標記頁面，並匯入 `Microsoft.Azure.Engagement.Overlay`。
 
 			using Microsoft.Azure.Engagement.Overlay;
 
@@ -131,156 +119,33 @@ Engagement 提供通知和宣告顯示的重疊。
 			  }
 			}
 
-現在此頁面將使用 Engagement 重疊機制，您不需要插入Web 檢視。
 
-Engagement 重疊會使用它在 xaml 檔案中找到的第一個 “Grid”元素，在您的頁面上新增兩個 Web 檢視。如果您想要找出會設定 Web 檢視的位置，您可以定義名為 “EngagementGrid” 的格線，像這樣：
+Engagement 重疊會在版面配置組成的頁面頂端加入 `Grid` 元素和兩個 `WebView` 元素，一個用於橫幅，另一個則用於插入式檢視。
 
-			<Grid x:Name="EngagementGrid"></Grid>
+您可以直接在 `EngagementPageOverlay.cs` 檔案中自訂重疊元素。
 
-您可以直接在重疊通知和宣告的 xaml 和 cs 檔案上自訂它們：
+### Web 檢視手動整合
 
--   `EngagementAnnouncement.html`：`Announcement` Web 檢視的 html 設計。
--   `EngagementOverlayAnnouncement.xaml`：`Announcement` xaml 設計。
--   `EngagementOverlayAnnouncement.xaml.cs`：`EngagementOverlayAnnouncement.xaml` 已連結的程式碼。
--   `EngagementNotification.html`：`Notification` Web 檢視的 html 設計。
--   `EngagementOverlayNotification.xaml`：`Notification` xaml 設計。
--   `EngagementOverlayNotification.xaml.cs`：`EngagementOverlayNotification.xaml` 已連結的程式碼。
--   `EngagementPageOverlay.cs`：`Overlay`宣告和通知顯示的程式碼。
+Reach 會搜尋頁面中負責顯示橫幅和插入式檢視的兩個 `WebView` 元素。您唯一要做的是將這兩個 `WebView` 元素加入頁面中的某處，範例如下︰
 
-### Web 檢視整合
+    <Grid x:Name="engagementGrid">
 
-如果您想要使用它，請不要使用重疊整合。
+      <!-- Your layout -->
 
-若要顯示 Engagement 內容，您需要在要顯示通知和宣告的每個頁面整合這兩個 xaml WebView。因此請將此程式碼新增至您的 xaml 檔案：
+      <WebView x:Name="engagement_notification_content" Visibility="Collapsed" Height="80" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+      <WebView x:Name="engagement_announcement_content" Visibility="Collapsed"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+    </Grid>
 
-			<WebView x:Name="engagement_notification_content" Visibility="Collapsed" Height="80" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-			<WebView x:Name="engagement_announcement_content" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top"/> 
 
-> **8.1+ 整合：**
+在此範例中，`WebView` 元素會伸展以符合其容器，容器會在螢幕旋轉或視窗大小變更時自動重新調整大小。
 
-			<engagement:EngagementPage
-			    xmlns:engagement="using:Microsoft.Azure.Engagement">
-			    <Grid>
-			      <!-- Your layout -->
-			      <WebView x:Name="engagement_notification_content" Visibility="Collapsed" Height="80" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-			      <WebView x:Name="engagement_announcement_content" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top"/> 
-			    </Grid>
-			</engagement:EngagementPage>
-
-您的關聯 .cs 檔案看起來會像這樣：
-
-    using Microsoft.Azure.Engagement;
-    using System;
-    using Windows.ApplicationModel.Core;
-    using Windows.UI.ViewManagement;
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Navigation;
-
-    namespace My.Namespace.Example
-    {
-			/// <summary>
-			/// An empty page that can be used on its own or navigated to within a Frame.
-			/// </summary>
-			public sealed partial class ExampleEngagementReachPage : EngagementPage
-			{
-			  public ExampleEngagementReachPage()
-			  {
-			    this.InitializeComponent();
-			
-			    /* Set your webview elements to the correct size. */
-			    SetWebView(width, height);
-			  }
-			
-			  #region to implement
-              /* Attach events when page is navigated. */
-              protected override void OnNavigatedTo(NavigationEventArgs e)
-              {
-                /* Update the webview when the app window is resized. */
-                Window.Current.SizeChanged += DisplayProperties_OrientationChanged;
-
-                /* Update the webview when the app/status bar is resized. */
-    #if WINDOWS_PHONE_APP || WINDOWS_UWP
-                ApplicationView.GetForCurrentView().VisibleBoundsChanged += DisplayProperties_VisibleBoundsChanged; 
-    #endif
-                base.OnNavigatedTo(e);
-              }
-
-			  /* When page is left ensure to detach SizeChanged handler. */
-			  protected override void OnNavigatedFrom(NavigationEventArgs e)
-			  {
-			    Window.Current.SizeChanged -= DisplayProperties_OrientationChanged;
-    #if WINDOWS_PHONE_APP || WINDOWS_UWP
-                ApplicationView.GetForCurrentView().VisibleBoundsChanged -= DisplayProperties_VisibleBoundsChanged;
-    #endif
-			    base.OnNavigatedFrom(e);
-			  }
-			  
-			  /* "width" and "height" are the current size of your application display. */
-    #if WINDOWS_PHONE_APP || WINDOWS_UWP
-			  double width = ApplicationView.GetForCurrentView().VisibleBounds.Width;
-			  double height = ApplicationView.GetForCurrentView().VisibleBounds.Height;
-    #else
-			  double width =  Window.Current.Bounds.Width;
-			  double height =  Window.Current.Bounds.Height;
-    #endif
-			
-			  /// <summary>
-			  /// Set your webview elements to the correct size.
-			  /// </summary>
-			  /// <param name="width">The width of your current display.</param>
-			  /// <param name="height">The height of your current display.</param>
-			  private void SetWebView(double width, double height)
-			  {
-			    #pragma warning disable 4014
-			    CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-			            () =>
-			            {
-			              this.engagement_notification_content.Width = width;
-			              this.engagement_announcement_content.Width = width;
-			              this.engagement_announcement_content.Height = height;
-			            });
-			  }
-			
-			  /// <summary>
-			  /// Handler that takes the Windows.Current.SizeChanged and indicates that webviews have to be resized.
-			  /// </summary>
-			  /// <param name="sender">Original event trigger.</param>
-			  /// <param name="e">Window Size Changed Event arguments.</param>
-			  private void DisplayProperties_OrientationChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-			  {
-			    double width = e.Size.Width;
-			    double height = e.Size.Height;
-			
-			    /* Set your webview elements to the correct size. */
-			    SetWebView(width, height);
-			  }
-
-    #if WINDOWS_PHONE_APP || WINDOWS_UWP			  
-			  /// <summary>
-			  /// Handler that takes the ApplicationView.VisibleBoundsChanged and indicates that webviews have to be resized
-			  /// </summary>
-			  /// <param name="sender">The related application view.</param>
-			  /// <param name="e">Related event arguments.</param>
-			  private void DisplayProperties_VisibleBoundsChanged(ApplicationView sender, Object e)
-			  {
-			    double width = sender.VisibleBounds.Width;
-			    double height = sender.VisibleBounds.Height;
-			
-			    /* Set your webview elements to the correct size. */
-			    SetWebView(width, height);
-			  }
-    #endif
-			  #endregion
-			}
-    }
-
-> 這項實作的內嵌 WebView 會在裝置的螢幕旋轉時重新調整大小。
+> [AZURE.WARNING] 請務必為 `WebView` 元素的 `engagement_notification_content` 和 `engagement_announcement_content` 保留相同的命名。Reach 依其名稱來識別。
 
 ## 處理資料推送 (選擇性)
 
 如果您希望您的應用程式接收 Reach 資料推送，您必須實作 EngagementReach 類別的兩個事件：
 
-在 App.xaml.cs 中的 "Public App(){}" 新增：
+在 App.xaml.cs 的 App() 建構函式中加入︰
 
 			EngagementReach.Instance.DataPushStringReceived += (body) =>
 			{
@@ -469,4 +334,4 @@ NotfificationHTML 是 `ms-appx-web:///Resources/EngagementNotification.html`。�
 			  #endregion
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

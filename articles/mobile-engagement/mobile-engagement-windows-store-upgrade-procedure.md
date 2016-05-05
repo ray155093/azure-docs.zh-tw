@@ -22,6 +22,26 @@
 
 如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。例如，如果您要從 0.10.1 移轉到 0.11.0 您必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
+##從 3.3.0 到 3.4.0
+
+### 測試記錄檔
+
+SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+
+			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
+			EngagementAgent.Instance.Init();
+
+### 資源
+
+已改善 Reach 重疊。它是 SDK NuGet 封裝資源的一部分。
+
+當您升級到新版的 SDK，可以選擇是否要保留資源之重疊資料夾中的現有檔案︰
+
+* 如果先前的重疊對您而言可以運作，或是您要手動整合 `WebView` 元素，則您可以決定保留現有檔案，這樣仍然可以運作。 
+* 如果您想要更新為新的重疊，那麼只要將資源的整個 `overlay` 資料夾取代為來自 SDK 封裝的新資料夾 (UWP 應用程式︰升級後，您可以從 %USERPROFILE%\\.nuget\\packages\\MicrosoftAzure.MobileEngagement\\3.4.0\\content\\win81\\Resources 取得新的重疊資料夾)。
+
+> [AZURE.WARNING] 使用新的重疊會覆寫先前版本上所做的任何自訂。
+
 ##從 3.2.0 到 3.3.0
 
 ### 資源
@@ -294,4 +314,4 @@ Engagement 使用連接字串。您不需要為 Mobile Engagement 指定應用�
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

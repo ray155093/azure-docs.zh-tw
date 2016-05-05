@@ -199,7 +199,7 @@
 
 4. 建立 TestVNet1 的子網路設定
 
-	下列範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 Fro|ntEnd，另一個名為 Backend。替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。如果您將其命名為其他名稱，閘道將會建立失敗。
+	下列範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 FrontEnd，另一個名為 Backend。替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。如果您將其命名為其他名稱，閘道將會建立失敗。
 
 	在下列範例中，閘道子網路為 /27。雖然技術上您可以使用小至 /29 的子網路來建立閘道子網路，但是不建議您這麼做。建議您使用較大的子網路，例如 /27 或 /26，以便您想要利用現有或未來可能需要較大閘道子網路的設定。
 
@@ -453,7 +453,7 @@
 
 		$vnet5     = Get-AzureRmVirtualNetwork -Name $VnetName5 -ResourceGroupName $RG5
 		$subnet5   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet5
-		$gwipconf5 = New-AzureRmVirtualNetworkGatewayIpConfig 
+		$gwipconf5 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName5 -Subnet $subnet5 -PublicIpAddress $gwpip5
 
 8. 建立 TestVNet5 閘道
 
@@ -530,4 +530,4 @@
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

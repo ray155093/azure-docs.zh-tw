@@ -2,7 +2,7 @@
 	pageTitle="利用 PowerShell 管理 Azure Media Services 帳戶" 
 	description="瞭解如何管理 PowerShell cmdlet 與 Azure Media Services 帳戶。" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" 
 	services="media-services" 
 	documentationCenter=""/>
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/03/2016"  
+	ms.date="04/18/2016"
 	ms.author="juliako"/>
 
 
 #利用 PowerShell 管理 Azure Media Services 帳戶
 
 > [AZURE.SELECTOR]
-- [Portal](media-services-create-account.md)
+- [入口網站](media-services-create-account.md)
 - [PowerShell](media-services-manage-with-powershell.md)
 - [REST](http://msdn.microsoft.com/library/azure/dn194267.aspx)
 
@@ -122,4 +122,4 @@ Azure 媒體服務使用 Azure 儲存體來儲存媒體內容。建立新的媒�
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

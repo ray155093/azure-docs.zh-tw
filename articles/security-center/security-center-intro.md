@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/11/2016"
+   ms.date="04/22/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心簡介
@@ -33,7 +33,7 @@
 | 防止 | 監視 Azure 資源的安全性狀態 |
 | | 根據貴公司的安全性需求、您使用的應用程式類型和資料的機密性，定義您的 Azure 訂用帳戶與資源群組原則 |
 | | 使用原則導向的安全性建議，引導服務擁有者完成需要控制項的實作程序 |
-| | 快速部署 Microsoft 和協力廠商的安全性服務和應用裝置 |
+| | 快速部署 Microsoft 和第三方的安全性服務和應用裝置 |
 | 偵測 |自動收集和分析下列來源的安全性資料：Azure 資源、網路，以及反惡意程式碼程式和防火牆等夥伴解決方案 |
 | | 利用 Microsoft 產品和服務、Microsoft 數位犯罪防治中心 (DCU)、Microsoft 安全性回應中心 (MSRC) 以及外部摘要的全域威脅智慧 |
 | | 套用進階分析，包括機器學習服務和行為分析 |
@@ -145,6 +145,7 @@
 - [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
 - [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
 
@@ -159,4 +160,4 @@
 [8]: ./media/security-center-intro/security-alert-detail.png
 [9]: ./media/security-center-intro/partner-solutions.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

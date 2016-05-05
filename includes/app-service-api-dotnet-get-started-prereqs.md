@@ -1,3 +1,7 @@
+### ASP.NET Web API
+
+此教學課程假設您基本上已了解如何在 Visual Studio 中使用 ASP.NET [Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)。
+
 ### Azure 帳戶
 
 您需要有 Azure 帳戶，才能完成本教學課程。您可以：
@@ -15,8 +19,4 @@
 
 >[AZURE.NOTE] 視您的電腦上有多少 SDK 相依性而定，安裝 SDK 可能需要很長的時間 (從數分鐘到半小時以上不等)。
 
-### ASP.NET Web API
-
-此教學課程假設您基本上已了解如何在 Visual Studio 中使用 ASP.NET [Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)。
-
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0427_2016-->

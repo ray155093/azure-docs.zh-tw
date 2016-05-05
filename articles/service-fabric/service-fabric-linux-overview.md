@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/29/2016"
+   ms.date="04/14/2016"
    ms.author="SubramaR"/>
 
 # Linux 上的 Service Fabric
@@ -38,4 +38,4 @@ Service Fabric 目前在 Linux 上可供有限預覽，讓您如同在 Windows �
 
 請熟悉 [Reliable Actors](service-fabric-reliable-actors-introduction.md) 和 [Reliable Services](service-fabric-reliable-services-introduction.md) 程式設計架構。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0420_2016-->

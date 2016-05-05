@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="04/11/2016"
+    ms.date="04/14/2016"
     ms.author="markvi"/>
 
 #如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單
@@ -44,6 +44,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_AppDynamics.jpg)| [AppDynamics](https://go.microsoft.com/fwLink/?LinkID=512728&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_ArcGIS.jpg)| [ArcGIS](https://go.microsoft.com/fwLink/?LinkID=510247&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Ariba.jpg)| [Ariba](https://go.microsoft.com/fwLink/?LinkID=708679&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_AssetBank.jpg)| [Asset Bank](http://go.microsoft.com/fwlink/?LinkId=733450&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_BambooHR.png)| [Bamboo HR](https://go.microsoft.com/fwLink/?LinkID=403260&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Benefitssolver.jpg)| [Benefitsolver](https://go.microsoft.com/fwLink/?LinkID=530235&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Bime.jpg)| [Bime](https://go.microsoft.com/fwLink/?LinkID=510240&clcid=0x409)|
@@ -97,6 +98,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_HackerOne.jpg)| [HackerOne](https://go.microsoft.com/fwLink/?LinkID=708668&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Halogen_Software.jpg)| [Halogen Software](https://go.microsoft.com/fwLink/?LinkID=530241&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Heroku.jpg)| [Heroku](https://go.microsoft.com/fwLink/?LinkID=733446&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_HighTail.jpg)| [Hightail](http://go.microsoft.com/fwlink/?LinkId=733463&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_HPESaaS.jpg)| [HPE SaaS](https://go.microsoft.com/fwLink/?LinkID=708663&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_HR2day.jpg)| [HR2day by Merces](https://go.microsoft.com/fwLink/?LinkID=708684&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Huddle.jpg)| [Huddle](https://go.microsoft.com/fwLink/?LinkID=403227&clcid=0x409)|
@@ -112,6 +114,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_JitbitHelpdesk.jpg)| [Jitbit Helpdesk](https://go.microsoft.com/fwLink/?LinkID=522554&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Jive.jpg)| [Jive](https://go.microsoft.com/fwLink/?LinkID=403258&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Jobscience.jpg)| [Jobscience](https://go.microsoft.com/fwLink/?LinkID=522559&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Keylight.jpg)| [Keylight](http://go.microsoft.com/fwlink/?LinkId=733459&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Kindling.jpg)| [Kindling](https://go.microsoft.com/fwLink/?LinkID=691856&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Kintone.jpg)| [Kintone](https://go.microsoft.com/fwLink/?LinkID=510252&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Kiteworks.jpg)| [Kiteworks](https://go.microsoft.com/fwLink/?LinkID=403222&clcid=0x409)|
@@ -185,6 +188,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SugarCM.jpg)| [SugarCRM](https://go.microsoft.com/fwLink/?LinkID=512733&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SumoLogic.jpg)| [SumoLogic](https://go.microsoft.com/fwLink/?LinkID=403259&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Syncplicity.jpg)| [Syncplicity](https://go.microsoft.com/fwLink/?LinkID=403237&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Tableau.jpg)| [Tableau 伺服器](http://go.microsoft.com/fwlink/?LinkId=785278&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_TalentLMS.jpg)| [TalentLMS](https://go.microsoft.com/fwLink/?LinkID=512727&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Tangoe.jpg)| [Tutorial: Azure Active Directory integration with Tangoe Command Premium Mobile (教學課程：Azure Active Directory 整合 Tangoe 命令高階行動裝置)](https://go.microsoft.com/fwLink/?LinkID=733462&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_TargetProcess.jpg)| [TargetProcess](https://go.microsoft.com/fwLink/?LinkID=691862&clcid=0x409)|
@@ -221,9 +225,10 @@
 
 
 
+
 ##相關文章
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

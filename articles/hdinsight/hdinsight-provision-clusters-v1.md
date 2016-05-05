@@ -20,9 +20,9 @@
 
 了解如何規劃 HDInsight 叢集佈建作業。
 
-[AZURE.INCLUDE [hdinsight-azure-portal](../../includes/hdinsight-azure-portal.md)]
-
-* [在 HDInsight 中佈建 Hadoop 叢集](hdinsight-provision-clusters.md) 
+> [AZURE.WARNING] 這份文件中的步驟使用 Azure 傳統入口網站，以及舊版的 Azure PowerShell 和 Azure CLI。Microsoft 不建議使用這些步驟。相反地，您應該使用 Azure 入口網站與最新版的 Azure PowerShell 和 Azure CLI。如需這份文件使用 Azure 入口網站與最新版 Azure PowerShell 和 Azure CLI 的版本，請參閱[佈建 HDInsight 中的 Hadoop 叢集](hdinsight-provision-clusters.md)
+>
+> 如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
 
 **必要條件：**
 
@@ -231,7 +231,7 @@
 
 	![diagram of point-to-site configuration](./media/hdinsight-provision-clusters-v1/hdinsight-vnet-point-to-site.png)
 
-如需有關透過虛擬網路 (包含虛擬網路的特定組態需求) 使用 HDInsight 的資訊，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
+如需搭配虛擬網路 (包含虛擬網路特定設定需求) 使用 HDInsight 的詳細資訊，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
 ## 佈建工具
 
@@ -442,12 +442,9 @@ HDInsight 會使用 Azure Blob 儲存容器作為預設檔案系統。必須要�
 
 > [AZURE.NOTE] 從 2014/8/29 開始，無法使用 Azure CLI 建立叢集與 Azure 虛擬網路的關聯。
 
-另一個佈建 HDInsight 叢集的選項是 Azure CLI。Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。您可以從下列位置安裝 CLI：
+另一個佈建 HDInsight 叢集的選項是 Azure CLI。Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
 
-- **Node.js SDK** - <a href="https://www.npmjs.com/package/azure-mgmt-hdinsight" target="_blank">https://www.npmjs.com/package/azure-mgmt-hdinsight</a>
-- **Azure CLI** - <a href="https://github.com/azure/azure-xplat-cli/archive/hdinsight-February-18-2015.tar.gz" target="_blank">https://github.com/azure/azure-xplat-cli/archive/hdinsight-February-18-2015.tar.gz</a>  
-
-如需如何使用 Azure CLI 的一般指南，請參閱[適用於 Mac、Linux 和 Linux 的 Azure CLI](../xplat-cli-install.md)。
+如需如何使用 Azure CLI 的一般指引，請參閱 [Azure CLI](../xplat-cli-install.md)。
 
 上述指示將引導您如何在 Linux 和 Windows 上安裝跨平台命令列，以及接著如何使用命令列來佈建叢集。
 
@@ -535,7 +532,7 @@ Azure CLI 可使用 NPM 或 Windows Installer 進行安裝。Microsoft 建議您
 
 **使用 Windows Installer 安裝 Azure CLI**
 
-1.	瀏覽至 ****http://azure.microsoft.com/downloads/**。
+1.	瀏覽至 **http://azure.microsoft.com/downloads/**。
 2.	向下捲動至 [**命令列工具**] 區段，然後按一下 [**Azure 命令列介面**]，並依照 Web Platform Installer 精靈操作。
 
 **下載及匯入發佈設定**
@@ -817,4 +814,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 [hdinsight-sdk-documentation]: http://msdn.microsoft.com/library/dn479185.aspx
 [azure-management-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

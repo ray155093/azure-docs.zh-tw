@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/20/2016"
+   ms.date="04/14/2016"
    ms.author="ryanwi"/>
 
 
@@ -57,11 +57,13 @@
 如需範例，請參閱[部署應用程式](service-fabric-deploy-remove-applications.md)。
 
 ## 測試
-1. 在部署至本機開發叢集或測試叢集之後，*服務開發人員*會執行內建的容錯移轉測試案例，方法是使用 [**FailoverTestScenarioParameters**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.failovertestscenarioparameters.aspx) 和 [**FailoverTestScenario**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.failovertestscenario.aspx) 類別，或 [**Invoke-ServiceFabricFailoverTestScenario** Cmdlet](https://msdn.microsoft.com/library/azure/mt125935.aspx)。容錯移轉測試案例會在重要的轉換和容錯移轉期間執行指定服務，以確保它是仍然可用且可運作。
+1. 在部署至本機開發叢集或測試叢集之後，*服務開發人員*會執行內建的容錯移轉測試案例，方法是使用 [**FailoverTestScenarioParameters**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.failovertestscenarioparameters.aspx) 和 [**FailoverTestScenario**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.failovertestscenario.aspx) 類別，或 [**Invoke-ServiceFabricFailoverTestScenario** Cmdlet](https://msdn.microsoft.com/library/azure/mt644783.aspx)。容錯移轉測試案例會在重要的轉換和容錯移轉期間執行指定服務，以確保它是仍然可用且可運作。
 
-2. 然後，*服務開發人員*會執行內建混亂測試案例，方法是使用 [**ChaosTestScenarioParameters**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.chaostestscenarioparameters.aspx) 和 [**ChaosTestScenario**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.chaostestscenario.aspx) 類別，或 [**Invoke-ServiceFabricChaosTestScenario** Cmdlet](https://msdn.microsoft.com/library/azure/mt126036.aspx)。混亂測試案例會在叢集中隨機引發多個節點、程式碼封裝和複本錯誤。
+2. 然後，*服務開發人員*會執行內建混亂測試案例，方法是使用 [**ChaosTestScenarioParameters**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.chaostestscenarioparameters.aspx) 和 [**ChaosTestScenario**](https://msdn.microsoft.com/library/azure/system.fabric.testability.scenario.chaostestscenario.aspx) 類別，或 [**Invoke-ServiceFabricChaosTestScenario** Cmdlet](https://msdn.microsoft.com/library/azure/mt644774.aspx)。混亂測試案例會在叢集中隨機引發多個節點、程式碼封裝和複本錯誤。
 
-如需範例，請參閱 [Testability 案例](service-fabric-testability-scenarios.md)。
+3. *服務開發人員*藉由撰寫在叢集各處移動主要複本的測試案例，[測試服務對服務的通訊](service-fabric-testability-scenarios-service-communication.md)。
+
+如需詳細資訊，請參閱[錯誤分析服務簡介](service-fabric-testability-overview.md)。
 
 ## 升級
 1. *服務開發人員*會更新具現化應用程式的組成服務及/或修正錯誤，並提供新版本的服務資訊清單。
@@ -70,19 +72,19 @@
 
 3. *應用程式系統管理員*會將新版本的應用程式類型併入目標應用程式，方法是更新適當的參數。
 
-4. *運算子*會使用 [**CopyApplicationPackage** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.copyapplicationpackage.aspx)或 [**Copy-ServiceFabricApplicationPackage** Cmdlet](https://msdn.microsoft.com/library/azure/mt125905.aspx)，將更新的應用程式封裝上傳至叢集映像存放區。應用程式封裝包含應用程式資訊清單和服務封裝集合。
+5. *運算子*會使用 [**CopyApplicationPackage** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.copyapplicationpackage.aspx)或 [**Copy-ServiceFabricApplicationPackage** Cmdlet](https://msdn.microsoft.com/library/azure/mt125905.aspx)，將更新的應用程式封裝上傳至叢集映像存放區。應用程式封裝包含應用程式資訊清單和服務封裝集合。
 
-5. *運算子*使用 [**ProvisionApplicationAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.provisionapplicationasync.aspx)、[**Register-ServiceFabricApplicationType** Cmdlet](https://msdn.microsoft.com/library/azure/mt125958.aspx)，或[**佈建應用程式** REST 作業](https://msdn.microsoft.com/library/azure/dn707672.aspx)，在目標叢集中佈建新版本的應用程式。
+6. *運算子*使用 [**ProvisionApplicationAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.provisionapplicationasync.aspx)、[**Register-ServiceFabricApplicationType** Cmdlet](https://msdn.microsoft.com/library/azure/mt125958.aspx)，或[**佈建應用程式** REST 作業](https://msdn.microsoft.com/library/azure/dn707672.aspx)，在目標叢集中佈建新版本的應用程式。
 
-6. 「運算子」使用 [**UpgradeApplicationAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.upgradeapplicationasync.aspx)、[**Start-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt125975.aspx) 或[**升級應用程式** REST 作業升級應用程式](https://msdn.microsoft.com/library/azure/dn707633.aspx)，將目標應用程式升級為新版本。
+7. 「運算子」使用 [**UpgradeApplicationAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.upgradeapplicationasync.aspx)、[**Start-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt125975.aspx) 或[**升級應用程式** REST 作業升級應用程式](https://msdn.microsoft.com/library/azure/dn707633.aspx)，將目標應用程式升級為新版本。
 
-7. *運算子*使用 [**GetApplicationUpgradeProgressAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.getapplicationupgradeprogressasync.aspx)、[**Get-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt125988.aspx)，或[**取得應用程式升級進度** REST 作業](https://msdn.microsoft.com/library/azure/dn707631.aspx)，檢查升級進度。
+8. *運算子*使用 [**GetApplicationUpgradeProgressAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.getapplicationupgradeprogressasync.aspx)、[**Get-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt125988.aspx)，或[**取得應用程式升級進度** REST 作業](https://msdn.microsoft.com/library/azure/dn707631.aspx)，檢查升級進度。
 
-8. 如果需要，*運算子*使用 [**UpdateApplicationUpgradeAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.updateapplicationupgradeasync.aspx)、[**Update-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt126030.aspx)，或[**更新應用程式升級** REST 作業](https://msdn.microsoft.com/library/azure/mt628489.aspx)，修改並重新套用目前應用程式升級的參數。
+9. 如果需要，*運算子*使用 [**UpdateApplicationUpgradeAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.updateapplicationupgradeasync.aspx)、[**Update-ServiceFabricApplicationUpgrade** Cmdlet](https://msdn.microsoft.com/library/azure/mt126030.aspx)，或[**更新應用程式升級** REST 作業](https://msdn.microsoft.com/library/azure/mt628489.aspx)，修改並重新套用目前應用程式升級的參數。
 
-9. 如果需要，*運算子*使用 [**RollbackApplicationUpgradeAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.rollbackapplicationupgradeasync.aspx)、[**Start-ServiceFabricApplicationRollback** Cmdlet](https://msdn.microsoft.com/library/azure/mt125833.aspx)，或[**回復應用程式升級** REST 作業](https://msdn.microsoft.com/library/azure/mt628494.aspx)，回復目前的應用程式升級。
+10. 如果需要，*運算子*使用 [**RollbackApplicationUpgradeAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.rollbackapplicationupgradeasync.aspx)、[**Start-ServiceFabricApplicationRollback** Cmdlet](https://msdn.microsoft.com/library/azure/mt125833.aspx)，或[**回復應用程式升級** REST 作業](https://msdn.microsoft.com/library/azure/mt628494.aspx)，回復目前的應用程式升級。
 
-10. Service Fabric 會升級在叢集中執行的目標應用程式，而不會遺失任何其組成服務的可用性。
+11. Service Fabric 會升級在叢集中執行的目標應用程式，而不會遺失任何其組成服務的可用性。
 
 如需範例，請參閱[應用程式升級教學課程](service-fabric-application-upgrade-tutorial.md)。
 
@@ -119,4 +121,4 @@
 - [Testability 概觀](service-fabric-testability-overview.md)
 - [REST 架構應用程式生命週期範例](service-fabric-rest-based-application-lifecycle-sample.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/07/2016"
+   ms.date="04/14/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 在 Azure SQL 資料倉儲中管理散發資料表的資料扭曲
@@ -27,6 +27,18 @@
 - 了解判斷何時可解決資料扭曲的秘訣
 - 重新建立資料表以解決資料扭曲
 
+## DBCC PDW\_SHOWSPACEUSED
+
+其中一種識別資料扭曲的方法是使用 [DBCC PDW\_SHOWSPACEUSED()][]
+
+```sql
+-- Find data skew for a distributed table
+DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
+```
+
+這個非常快速且簡單的方式，用來查看儲存在您資料庫中每 60 個散發內的資料表資料列數目。請記住，為了達到最平衡的效能，分散式資料表中的資料列應該平均分散到所有散發中。
+
+不過，如果您查詢 Azure SQL 資料倉儲動態管理檢視 (DMV)，則可以執行更詳細的分析。本文的其餘部分會顯示如何執行這項作業。
 
 ## 步驟 1︰建立檢視，尋找資料扭曲
 
@@ -218,7 +230,8 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 [雜湊散發]: sql-data-warehouse-develop-hash-distribution-key.md
 
 <!--MSDN references-->
+[DBCC PDW\_SHOWSPACEUSED()]: https://msdn.microsoft.com/zh-TW/library/mt204028.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

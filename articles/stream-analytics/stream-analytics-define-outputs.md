@@ -5,7 +5,7 @@
 	services="stream-analytics,documentdb,sql-database,event-hubs,service-bus,storage"
 	documentationCenter="" 
 	authors="jeffstokes72"
-	manager="paulettm"
+	manager="paulettm" 
 	editor="cgronlun"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="03/16/2016"
+	ms.date="04/15/2016"
 	ms.author="jeffstok"/>
 
 # 將串流分析資料轉換輸出的目標，設為分析工具及資料儲存體選項
@@ -169,8 +169,6 @@
 
 您可以把 [Power BI](https://powerbi.microsoft.com/) 當做串流分析工作的輸出，來為分析結果提供豐富的視覺體驗。這項功能可以用於可運作的儀表板、產生報告，以及度量驅動的報告。
 
-> [AZURE.NOTE] 目前，只有 Azure 傳統入口網站支援建立及 Power BI 輸出組態。
-
 ### 授權 Power BI 帳戶
 
 1.	在 Azure 管理入口網站中選取 Power BI 做為輸出時，您將會收到提示授權現有的 Power BI 使用者或建立新的 Power BI 帳戶。  
@@ -200,7 +198,7 @@
 
 ### 更新 Power BI 授權
 
-有一個暫時性的限制，即每隔 90 天必須針對 Power BI 輸出的所有工作，以手動方式重新整理驗證 Token。如果您在建立工作之後或上次驗證過後變更了密碼，您也必須重新驗證您的 Power BI 帳戶。此問題發生時的徵兆就是沒有工作輸出，且作業記錄檔中出現「驗證使用者錯誤」：
+如果您在建立工作之後或上次驗證過後變更了密碼，則需要重新驗證您的 Power BI 帳戶。如果您在 Azure Active Directory (AAD) 租用戶上設定 Multi-Factor Authentication (MFA)，則也需要每 2 週更新一次 Power BI 授權。此問題發生時的徵兆就是沒有工作輸出，且作業記錄檔中出現「驗證使用者錯誤」：
 
   ![Power BI 重新整理權杖錯誤](./media/stream-analytics-define-outputs/03-stream-analytics-define-outputs.png)
 
@@ -318,4 +316,4 @@
 [stream.analytics.query.language.reference]: http://go.microsoft.com/fwlink/?LinkID=513299
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0420_2016-->

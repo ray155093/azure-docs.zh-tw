@@ -1,6 +1,6 @@
 <properties
    pageTitle="雲端中的 Batch 和 HPC 解決方案 | Microsoft Azure"
-   description="介紹批次和高效能運算 (大量運算) 案例，以及在 Azure 中的解決方案選項"
+   description="介紹批次和高效能運算 (HPC 和 Big Compute) 案例，以及在 Azure 中的解決方案選項"
    services="batch, virtual-machines, cloud-services"
    documentationCenter=""
    authors="dlepow"
@@ -13,12 +13,12 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="big-compute"
-   ms.date="01/21/2016"
+   ms.date="04/21/2016"
    ms.author="danlep"/>
 
 # Azure 雲端中的 Batch 和 HPC 解決方案
 
-Azure 針對批次和高效能運算 (HPC) 提供有效、可調整的雲端解決方案 - 又稱為 *Big Compute*。在這裡了解 Big Compute 工作負載和支援它們的 Azure 的服務，或是直接跳至本文稍後的[解決方案案例](#scenarios)。本文主要適用於技術決策者、IT 經理和獨立軟體廠商，但其他 IT 專業人員和開發人員也可以使用它來熟悉這些解決方案。
+Azure 針對批次和高效能運算 (HPC) 提供有效、可調整的雲端解決方案 - 又稱為「Big Compute」。在這裡了解 Big Compute 工作負載和支援它們的 Azure 的服務，或是直接跳至本文稍後的[解決方案案例](#scenarios)。本文主要適用於技術決策者、IT 經理和獨立軟體廠商，但其他 IT 專業人員和開發人員也可以使用它來熟悉這些解決方案。
 
 組織有大規模的運算問題，包括工程設計和分析、影像轉譯、複雜模型、Monte Carlo 模擬和財務風險計算。Azure 可協助組織解決這些問題，並決定所需的資源、級別和排程。有了 Azure，組織就可以：
 
@@ -26,16 +26,16 @@ Azure 針對批次和高效能運算 (HPC) 提供有效、可調整的雲端解�
 
 * 完全在 Azure 中執行 HPC 叢集工具和工作負載
 
-* 使用受管理及可調整的 Azure 服務 (例如[批次](https://azure.microsoft.com/documentation/services/batch/)) 以執行大量運算工作負載，而不需要部署和管理運算基礎結構
+* 使用受管理及可調整的 Azure 服務 (例如[批次](https://azure.microsoft.com/documentation/services/batch/)) 以執行大量運算工作負載，而不需要部署和管理計算基礎結構
 
 雖然超出本文的範圍，Azure 也提供開發人員和合作夥伴一組完整的功能、架構選擇和開發工具，來建置大型、自訂 Big Compute 工作流程。日益成長的合作夥伴生態系統可協助您在 Azure 雲端，讓您的 Big Compute 工作負載具生產力。
 
 
 ## 批次和 HPC 應用程式
 
-不同於 Web 應用程式和許多特定業務應用程式、批次和 HPC 應用程式擁有既定的開始和結束，而且它們可以排程或隨選執行，有時候數小時或更久。大部分可分成兩個主要類別：*本質平行* (有時稱為「窘迫平行」，因為他們解決的問題能讓他們在多部電腦或處理器上平行執行) 和*緊密結合*。如需這些應用程式類型的詳細資訊，請參閱下表。某些 Azure 解決方案方法比較適合一種類型或其他類型。
+不同於 Web 應用程式和許多特定業務應用程式、批次和 HPC 應用程式擁有既定的開始和結束，而且它們可以排程或隨選執行，有時候數小時或更久。大部分可分成兩個主要類別：「本質平行」(有時稱為「窘迫平行」，因為他們解決的問題能讓他們在多部電腦或處理器上平行執行) 和「緊密結合」。如需這些應用程式類型的詳細資訊，請參閱下表。某些 Azure 解決方案方法比較適合一種類型或其他類型。
 
->[AZURE.NOTE] 在批次和 HPC 解決方案中，應用程式正在執行的執行個體通常稱為*作業*，而每項作業可能會分成*工作*。且應用程式的叢集計算資源通常稱為*運算節點*。
+>[AZURE.NOTE] 在批次和 HPC 解決方案中，應用程式正在執行的執行個體通常稱為「作業」，而每項作業可能會分成「工作」。且應用程式的叢集計算資源通常稱為「運算節點」。
 
 類型 | 特性 | 範例
 ------------- | ----------- | ---------------
@@ -68,7 +68,7 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 
 ## 計算管理和作業排程
 
-執行批次和 HPC 應用程式通常包括*叢集管理員*和*作業排程器*來協助管理叢集的計算資源，以及將其配置給執行作業的應用程式。這些函式可能會透過不同的工具或某種整合式工具或服務來完成。
+執行批次和 HPC 應用程式通常包括「叢集管理員」和「作業排程器」來協助管理叢集的計算資源，以及將其配置給執行作業的應用程式。這些函式可能會透過不同的工具或某種整合式工具或服務來完成。
 
 * **叢集管理員** - 佈建、發行及管理計算資源 (或運算節點)。叢集管理員可能會在計算節點上自動安裝作業系統映像和應用程式；根據需求調整計算資源；以及監視節點的效能。
 
@@ -85,9 +85,9 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 
  | 案例 | 為何選擇它？
 ------------- | ----------- | ---------------
-**將 HPC 叢集高載至 Azure**<br/><br/>[![叢集高載][burst_cluster]](./media/batch-hpc-solutions/burst_cluster.png) <br/><br/> 深入了解：<br/>• [使用 Microsoft HPC Pack 高載至 Azure](https://technet.microsoft.com/library/gg481749.aspx)<br/><br/>• [使用 Microsoft HPC Pack 設定混合式計算叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)<br/><br/>|• 在混合式解決方案中結合您的內部部署 [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) 叢集與額外的 Azure 資源。<br/><br/>• 擴充您的 Big Compute 工作負載以在平台即服務 (PaaS) 虛擬機器執行個體上執行 (目前僅限 Windows Server)。<br/><br/>• 藉由使用選擇性 Azure 虛擬網路以存取內部部署授權伺服器或資料存放區。|• 您有現有的 HPC Pack 叢集，並且需要更多資源 <br/><br/>• 您不想要購買和管理額外的 HPC 叢集基礎結構<br/><br/>• 您有暫時性尖峰需求期間或特殊專案。
+**將 HPC 叢集高載至 Azure**<br/><br/>[![叢集高載][burst_cluster]](./media/batch-hpc-solutions/burst_cluster.png) <br/><br/> 深入了解：<br/>• [使用 Microsoft HPC Pack 高載至 Azure](https://technet.microsoft.com/library/gg481749.aspx)<br/><br/>• [使用 Microsoft HPC Pack 設定混合式計算叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)<br/><br/>|• 在混合式解決方案中結合您的 [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) 或其他內部部署叢集與額外的 Azure 資源。<br/><br/>• 擴充您的 Big Compute 工作負載以在平台即服務 (PaaS) 虛擬機器執行個體上執行 (目前僅限 Windows Server)。<br/><br/>• 藉由使用選擇性 Azure 虛擬網路以存取內部部署授權伺服器或資料存放區。|• 您有現有的 HPC 叢集，並且需要更多資源 <br/><br/>• 您不想要購買和管理額外的 HPC 叢集基礎結構<br/><br/>• 您有暫時性尖峰需求期間或特殊專案。
 **完全在 Azure 中建立 HPC 叢集**<br/><br/>[![IaaS 中的叢集][iaas_cluster]](./media/batch-hpc-solutions/iaas_cluster.png)<br/><br/>深入了解：<br/>• [Azure 中的 HPC 叢集解決方案](./big-compute-resources.md)<br/><br/>|• 在標準或自訂 Windows 或 Linux 基礎結構即服務 (IaaS) 虛擬機器上，快速且一致地部署您的應用程式和叢集工具。<br/><br/>• 藉由使用您選擇的作業排程解決方案，執行各種 Big Compute 工作負載。<br/><br/>• 使用額外的 Azure 服務 (包括網路和儲存體) 以建立完整的以雲端為基礎的解決方案。 |• 您不想要購買和管理額外的 Linux 或 Windows HPC 叢集基礎結構<br/><br/>• 您有暫時性尖峰需求期間或特殊專案<br/><br/>• 您有一段時間期間需要額外的叢集，但是不想要投資用來部署叢集的電腦和空間<br/><br/>• 您想要卸載 Big Compute 的應用程式，讓它完全在雲端中做為服務執行。
-**相應放大平行應用程式至 Azure**<br/><br/>[![Azure 批次][batch_proc]](./media/batch-hpc-solutions/batch_proc.png)<br/><br/>深入了解：<br/>• [Azure Batch 的基本](./batch-technical-overview.md)<br/><br/>• [開始使用適用於 .NET 的 Azure Batch 程式庫](./batch-dotnet-get-started.md)|• 開發 [Azure Batch](https://azure.microsoft.com/documentation/services/batch/) API 以相應放大各種 Big Compute 工作負載，以在平台即服務 (PaaS) 虛擬機器的集區上執行 (目前僅限 Windows Server)。<br/><br/>• 使用 Azure 服務以管理部署和自動調整虛擬機器、作業排程、災害復原、資料移動、相依性管理和應用程式部署 - 不需要個別 HPC 叢集或作業排程器。|• 您不想要管理計算資源或作業排程器，而是想要著重在執行您的應用程式<br/><br/>• 您想要卸載大量計算的應用程式，讓它在雲端中做為服務執行<br/><br/>• 您想要自動調整您的計算資源以符合計算工作負載
+**相應放大平行應用程式至 Azure**<br/><br/>[![Azure 批次][batch_proc]](./media/batch-hpc-solutions/batch_proc.png)<br/><br/>深入了解：<br/>• [Azure Batch 的基本](./batch-technical-overview.md)<br/><br/>• [開始使用適用於 .NET 的 Azure Batch 程式庫](./batch-dotnet-get-started.md)|• 以 [Azure Batch](https://azure.microsoft.com/documentation/services/batch/) API 進行開發以相應放大各種 Big Compute 工作負載，以在 Windows 或 Linux 虛擬機器的集區上執行。<br/><br/>• 使用 Azure 服務以管理部署和自動調整虛擬機器、作業排程、災害復原、資料移動、相依性管理和應用程式部署 - 不需要個別 HPC 叢集或作業排程器。|• 您不想要管理計算資源或作業排程器，而是想要著重在執行您的應用程式<br/><br/>• 您想要卸載大量計算的應用程式，讓它在雲端中做為服務執行<br/><br/>• 您想要自動調整您的計算資源以符合計算工作負載
 
 
 ## 適合大量運算的 Azure 服務
@@ -98,14 +98,14 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 
 ### 計算服務
 
-Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。這些執行個體可以執行各種標準和自訂的 Linux 和 Windows 作業系統和工具。Azure 可以讓您選擇[執行個體大小](../virtual-machines/virtual-machines-linux-sizes.md)，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
+Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。這些執行個體可以執行各種標準和自訂的 Linux 和 Windows 作業系統和工具。Azure 可以讓您選擇[執行個體大小](../virtual-machines/virtual-machines-windows-sizes.md)，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
 
 >[AZURE.NOTE] 利用 A8-A11 執行個體，以改善某些 HPC 工作負載的效能，包括需要低延遲和高輸送量應用程式網路的平行 MPI 應用程式。請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
 服務 | 說明
 ------------- | -----------
 **[雲端服務](https://azure.microsoft.com/documentation/services/cloud-services/)**<br/><br/> |• 可以在背景工作角色執行個體中執行大量運算應用程式，這是執行 Windows Server 版本，而且完全受 Azure 管理的虛擬機器<br/><br/>• 啟用含低管理負擔，在平台即服務 (PaaS) 模型中執行的可調整、可靠的應用程式<br/><br/>• 可能需要額外的工具或開發以整合內部部署 HPC 叢集解決方案
-**[虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)**<br/><br/> |• 使用 Microsoft Hyper-V 技術來提供運算基礎結構即服務 (IaaS)<br/><br/>• 可讓您從標準的 Windows Server 或 Linux 映像、您自行提供或從[Azure Marketplace](https://azure.microsoft.com/marketplace/) 的映像和資料磁碟中，更靈活地佈建和管理永續性雲端電腦<br/><br/>• 在雲端中完全執行內部部署運算叢集工具和應用程式
+**[虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)**<br/><br/> |• 使用 Microsoft Hyper-V 技術來提供計算基礎結構即服務 (IaaS)<br/><br/>• 可讓您從標準的 Windows Server 或 Linux 映像、您自行提供或來自 [Azure Marketplace](https://azure.microsoft.com/marketplace/)<br/><br/> 的映像和資料磁碟中，更靈活地佈建和管理永續性雲端電腦• 可以 [VM 調整集](https://azure.microsoft.com/documentation/services/virtual-machine-scale-sets/)的形式部署或管理，以從相同的虛擬機器建置大規模服務，並具有自動調整功能可自動增加或減少容量<br/><br/>• 在雲端中完全執行內部部署計算叢集工具和應用程式<br/><br/>
 **[批次](https://azure.microsoft.com/documentation/services/batch/)**<br/><br/> |• 在完全受管理的服務中執行大規模的平行與批次工作負載<br/><br/>• 提供虛擬機器之受管理集區的作業排程和自動調整<br/><br/>• 允許開發人員建置和執行做為服務的應用程式，或啟用雲端的現有應用程式<br/>
 
 ### 儲存體服務
@@ -115,6 +115,8 @@ Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服�
 * [Blob、資料表和佇列儲存體](https://azure.microsoft.com/documentation/services/storage/) - 分別管理大量非結構化資料、NoSQL 資料，和工作流程和通訊的訊息。例如，您可以為大型技術資料集，或應用程式處理的輸入影像或媒體檔案使用 blob 儲存體。您可以在解決方案中使用佇列以速行非同步通訊。請參閱 [Microsoft Azure 儲存體簡介](../storage/storage-introduction.md)。
 
 * [Azure 檔案儲存體](https://azure.microsoft.com/services/storage/files/) - 在 Azure 中使用標準 SMB 通訊協定 (為一些 HPC 叢集解決方案必備) 來共用一般檔案和資料。
+
+* [Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) - 為雲端提供超大規模的 Apache Hadoop 分散式檔案系統，特別適用於批次分析、即時分析和互動式分析。
 
 ### 資料和分析服務
 
@@ -155,4 +157,4 @@ Big Compute 解決方案可能需要其他 Azure 服務，才能連線至內部�
 [burst_cluster]: ./media/batch-hpc-solutions/burst_cluster.png
 [batch_proc]: ./media/batch-hpc-solutions/batch_proc.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

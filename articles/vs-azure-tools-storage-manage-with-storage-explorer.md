@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="01/30/2016"
+	ms.date="04/19/2016"
 	ms.author="tarcher" />
 
 # 使用儲存體總管管理 Azure 儲存體資源 (預覽)
@@ -28,7 +28,7 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 
 ### 將 Azure 帳戶新增至儲存體總管
 
-1.	在 [儲存體總管] 工具列上選擇 [設定] (齒輪) 圖示。
+1.	在 [儲存體總管] 工具列上選擇 [設定]\(齒輪) 圖示。
 1.	選擇 [新增帳戶] 連結。登入您想要瀏覽儲存體資源的 Azure 帳戶。帳戶選擇器下拉式清單中應該已選取您剛才加入的帳戶。該帳戶的所有訂用帳戶會出現在帳戶項目下。
 
 	![][0]
@@ -182,4 +182,4 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 [19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS3c.png
 [20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS4c.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0420_2016-->

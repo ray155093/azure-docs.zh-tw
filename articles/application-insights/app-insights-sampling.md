@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/18/2016" 
+	ms.date="04/13/2016" 
 	ms.author="awills"/>
 
 #  Application Insights 中的取樣
@@ -42,6 +42,7 @@
 
 就跟其他取樣類型一樣，演算法會保留相關的遙測項目。舉例來說，當您在 [搜尋] 中檢查遙測時，將能夠尋找與特定例外狀況相關的要求。度量計量 (例如要求率及例外狀況率) 會正確地保留。
 
+進行 SDK 自適性或固定速率取樣時，不執行擷取取樣。如果 SDK 的取樣率小於 100%，則忽略您設定的擷取取樣率。
 
 
 ## 在您 Web 伺服器上的調適性取樣
@@ -342,4 +343,4 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
  * 使用新的 TelemetryConfiguration (非預設使用中的組態) 初始化個別的 TelemetryClient 執行個體。使用該執行個體來傳送您的罕見的事件。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0420_2016-->

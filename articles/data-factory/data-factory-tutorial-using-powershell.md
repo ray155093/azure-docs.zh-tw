@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/18/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 Data Factory 移動及處理記錄檔 (PowerShell)
@@ -108,7 +108,7 @@ Contoso 是為多個平台建立遊戲的遊戲公司，包含遊戲主機、手
 		![MarketingCampaignPipeline][image-data-factory-tutorial-analyze-marketing-campaign-pipeline]
 
 
-6. [監視管線和資料配量](#monitor-pipelines)。在此步驟中，您將使用 Azure 傳統入口網站監視管線、資料表和資料配量。
+6. [監視管線和資料配量](#monitor-pipelines)。在此步驟中，您將使用 Azure 入口網站來監視管線、資料表和資料配量。
 
 ## 上傳範例資料和指令碼
 在此步驟中，您將上傳所有範例資料 (包括所有記錄檔和參考資料) 和將由工作流程叫用的 Hive/Pig 指令碼。您執行的指令碼也會建立 Azure SQL Database (名為 **MarketingCampaigns**)、資料表、使用者定義型別和預存程序。
@@ -129,7 +129,7 @@ Contoso 是為多個平台建立遊戲的遊戲公司，包含遊戲主機、手
 	
 	或者，您可以使用資料夾 C:\\ADFWalkthrough\\Scripts 中的檔案，將 pig/hive 指令碼與範例檔案上傳至 Blob 儲存體中的 adfwalkthrough 容器，並在 MarketingCamapaigns Azure SQL 資料庫中建立 MarketingCampaignEffectiveness 資料表。
    
-2. 確認您的本機電腦可以存取 Azure SQL Database。若要啟用存取，請使用 [Azure 傳統入口網站](http://manage.windowsazure.com)，或master 資料庫上的 **sp\_set\_firewall\_rule**，為您電腦的 IP 位址建立防火牆規則。可能需要五分鐘的時間，這項變更才會生效。請參閱[設定 Azure SQL 的防火牆規則][azure-sql-firewall]。
+2. 確認您的本機電腦可以存取 Azure SQL Database。若要啟用存取，請使用 [Azure 入口網站](http://manage.windowsazure.com)，或 master 資料庫上的 **sp\_set\_firewall\_rule**，為您電腦的 IP 位址建立防火牆規則。可能需要五分鐘的時間，這項變更才會生效。請參閱[設定 Azure SQL 的防火牆規則][azure-sql-firewall]。
 4. 在 Azure PowerShell 中，瀏覽至您解壓縮範例的位置 (例如：**C:\\ADFWalkthrough**)
 5. 執行 **uploadSampleDataAndScripts.ps1** 
 6. 一旦指令碼執行成功，您會看到下列項目：
@@ -250,7 +250,7 @@ Contoso 是為多個平台建立遊戲的遊戲公司，包含遊戲主機、手
  
 上圖顯示的管線在中間資料列，而資料表在頂端和底部資料列。
 
-Azure 傳統入口網站尚不支援建立資料集/資料表，因此在此版本中，您必須使用 Azure PowerShell 來建立資料表。
+Azure 入口網站尚不支援建立資料集/資料表，因此在此版本中，您必須使用 Azure PowerShell 來建立資料表。
 
 ### 建立資料表
 
@@ -392,7 +392,7 @@ Azure 傳統入口網站尚不支援建立資料集/資料表，因此在此版�
 
 	![RawGameEventsTable [資料配量] 刀鋒視窗][image-data-factory-monitoring-raw-game-events-table-dataslice-blade]
 
-	如果發生錯誤，您在這裡會看到 **[Failed] **狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting] (視系統處理配量的速度而定)。
+	如果發生錯誤，您在這裡會看到 **[Failed]** 狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting]\(視系統處理配量的速度而定)。
  
 	請參閱 [Azure Data Factory 開發人員參考資料][developer-reference]，以了解所有可能的配量狀態。
 
@@ -504,4 +504,4 @@ Azure 傳統入口網站尚不支援建立資料集/資料表，因此在此版�
 
 [image-data-factory-new-datafactory-menu]: ./media/data-factory-tutorial-using-powershell/NewDataFactoryMenu.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0420_2016-->
