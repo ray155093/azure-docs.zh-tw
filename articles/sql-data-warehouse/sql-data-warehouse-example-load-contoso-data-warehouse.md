@@ -1241,7 +1241,7 @@ GROUP BY p.[BrandName]
 <!--Article references-->
 [將資料載入 SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
 [SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
-[管理資料行存放區索引]：
+[管理資料行存放區索引]:
 [統計資料]: ./sql-data-warehouse-develop-statistics.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
 [標籤]: ./sql-data-warehouse-develop-label.md
@@ -1253,4 +1253,4 @@ GROUP BY p.[BrandName]
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
 
-<!----HONumber=AcomDC_0420_2016-->
+<!-----HONumber=AcomDC_0420_2016-->
