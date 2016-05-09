@@ -198,7 +198,7 @@ ImageReference imageReference = new ImageReference(
 
 ## 虛擬機器映像的清單
 
-下表列出**在撰寫本文時**與可用的 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET)，以判斷並從目前可用的 SKU 中選取。
+下表列出**在撰寫本文時**與可用的 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] \(Python) 和 [ListNodeAgentSkus][net_list_skus] \(Batch .NET)，以判斷並從目前可用的 SKU 中選取。
 
 > [AZURE.WARNING] 下列清單可能隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，並在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
 

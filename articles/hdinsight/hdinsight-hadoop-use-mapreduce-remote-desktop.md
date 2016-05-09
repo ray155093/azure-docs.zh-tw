@@ -47,7 +47,7 @@
 
 		hadoop jar hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
 
-	這樣會啟動 **wordcount** 類別 (內含於目前目錄的 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 ****wasb://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 ****wasb:///example/data/WordCountOutput**。
+	這樣會啟動 **wordcount** 類別 (內含於目前目錄的 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 **wasb://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 **wasb:///example/data/WordCountOutput**。
 
 	> [AZURE.NOTE] 如需有關此 MapReduce 工作和範例資料的詳細資訊，請參閱<a href="hdinsight-use-mapreduce.md">在 HDInsight Hadoop 上使用 MapReduce</a>。
 
@@ -58,7 +58,7 @@
 		File Output Format Counters
         Bytes Written=337623
 
-3. 工作完成時，使用下列命令列出儲存在 ****wasb://example/data/WordCountOutput** 的輸出檔案：
+3. 工作完成時，使用下列命令列出儲存在 **wasb://example/data/WordCountOutput** 的輸出檔案：
 
 		hadoop fs -ls wasb:///example/data/WordCountOutput
 
@@ -70,7 +70,7 @@
 
 		hadoop fs -cat wasb:///example/data/WordCountOutput/part-r-00000
 
-	這會顯示 ****wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
+	這會顯示 **wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
 
 		wreathed        3
 		wreathing       1

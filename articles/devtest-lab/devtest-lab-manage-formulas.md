@@ -52,7 +52,7 @@
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，點選 [+ 加入]。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，點選 [+ 加入]。
 
     ![加入新的公式](./media/devtest-lab-manage-formulas/add-formula.png)
 
@@ -73,7 +73,7 @@
 
     	![建立公式](./media/devtest-lab-manage-formulas/create-formula.png)
 
-1. 點選 [建立] 建立公式。入口網站建立公式之後，該公式會列在 [Lab formulas] (實驗室公式) 刀鋒視窗上。
+1. 點選 [建立] 建立公式。入口網站建立公式之後，該公式會列在 [Lab formulas] \(實驗室公式) 刀鋒視窗上。
 
 	![新建的公式](./media/devtest-lab-manage-formulas/newly-created-formula.png)
 
@@ -96,7 +96,7 @@
 
 	![建立公式](./media/devtest-lab-manage-formulas/create-formula-menu.png)
 
-1. 在 [建立公式] 刀鋒視窗上，輸入新公式的 [名稱] 和 [描述]，或點選 [確定]。入口網站建立公式之後，該公式會列在 [Lab formulas] (實驗室公式) 刀鋒視窗上。
+1. 在 [建立公式] 刀鋒視窗上，輸入新公式的 [名稱] 和 [描述]，或點選 [確定]。入口網站建立公式之後，該公式會列在 [Lab formulas] \(實驗室公式) 刀鋒視窗上。
 
 	![建立公式刀鋒視窗](./media/devtest-lab-manage-formulas/create-formula-blade.png)
 
@@ -113,9 +113,9 @@
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，點選您想要修改的公式。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，點選您想要修改的公式。
 
-1. 在 [Update formula] (更新公式) 刀鋒視窗上，進行所需的編輯，然後點選 [更新]。
+1. 在 [Update formula] \(更新公式) 刀鋒視窗上，進行所需的編輯，然後點選 [更新]。
 
 ## 刪除公式 
 若要刪除公式，請遵循下列步驟︰
@@ -130,7 +130,7 @@
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，按一下您想要刪除之公式右邊的省略符號。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，按一下您想要刪除之公式右邊的省略符號。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
 

@@ -251,6 +251,6 @@ Parameters        :
 
 [Azure 資源管理員概觀]: ../resource-group-overview.md
 [使用 Azure Resource Manager 範本部署資源]: ../resource-group-template-deploy.md
-[Azure 快速入門範本]: https://azure.microsoft.com/zh-TW/documentation/templates/?term=service+bus
+[Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 
 <!---HONumber=AcomDC_0427_2016-->

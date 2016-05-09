@@ -223,7 +223,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 - 啟用或停用 ExpressRoute 線路的 ExpressRoute 進階附加元件。
 - 增加 ExpressRoute 線路的頻寬。請注意，不支援將循環的頻寬降級。 
 - 將計量方案從 [已計量資料] 變更為 [無限制資料]。請注意，不支援將計量方案從 [無限制資料] 變更為 [已計量資料]。 
--  您可以啟用和停用 [Allow Classic Operations] (允許傳統作業)。 
+-  您可以啟用和停用 [Allow Classic Operations] \(允許傳統作業)。 
 
 如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 

@@ -120,7 +120,7 @@
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] (如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
 
 	![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
 
@@ -130,7 +130,7 @@
 
 7. 在 [驗證/授權] 刀鋒視窗中，按一下 [儲存]。
 
-	![按一下 [Save] (儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
+	![按一下 [Save] \(儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
 
 現在，只有 Azure AD 租用戶中的使用者可以呼叫 API 應用程式。
 

@@ -112,7 +112,7 @@ HDInsight Spark 是開放原始碼 Spark 的 Azure 託管服務。它也支援 S
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-您也可以以瀏覽至 ******https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter 筆記本。您需要有系統管理員帳戶的密碼才能存取 Notebook。
+您也可以以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter 筆記本。您需要有系統管理員帳戶的密碼才能存取 Notebook。
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 

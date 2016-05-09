@@ -38,7 +38,7 @@
 
 和背景工作角色類似，Web 角色也代表無狀態的工作負載，因此在概念上也能對應至 Service Fabric 無狀態服務。不過，和 Web 角色不同的是，Service Fabric 不支援 IIS。若要將 Web 應用程式從 Web 角色移轉至無狀態服務，必須先移動到可以自我裝載且不仰賴 IIS 或 System.Web (例如 ASP.NET Core 1) 的 Web 架構。
 
-****應用程式 ** | **支援** | **移轉路徑**
+**應用程式** | **支援** | **移轉路徑**
 --- | --- | ---
 ASP.NET Web Forms | 否 | 轉換為 ASP.NET Core 1 MVC
 ASP.NET MVC | 移轉 | 升級至 ASP.NET Core 1

@@ -147,7 +147,7 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 3. 選取使用者所位於的 Active Directory 連接器。
 
-4. 選取 [Search Connector Space] (搜尋連接器空間)。
+4. 選取 [Search Connector Space]\(搜尋連接器空間)。
 
 5. 找出您要尋找的使用者。
 

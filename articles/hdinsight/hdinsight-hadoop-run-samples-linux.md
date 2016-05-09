@@ -99,9 +99,9 @@
 
     	yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/davinciwordcount
 
-    系統會從 ****wasb:///example/data/gutenberg/davinci.txt** 讀取這項工作的輸入。
+    系統會從 **wasb:///example/data/gutenberg/davinci.txt** 讀取這項工作的輸入。
 
-    此範例的輸出會儲存在 ****wasb:///example/data/davinciwordcount**。
+    此範例的輸出會儲存在 **wasb:///example/data/davinciwordcount**。
 
     > [AZURE.NOTE] 如 wordcount 範例的說明所述，您也可以指定多個輸入檔。例如，`hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/gutenberg/ulysses.txt /example/data/twowordcount` 會計算 davinci.txt 和 ulysses.txt 中的字數。
 
@@ -196,11 +196,11 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 
 使用下列步驟來產生資料、排序，並驗證輸出：
 
-1. 產生 10 GB 的資料，這些資料稍後會儲存在 HDInsight 叢集上預設儲存體的 ****wasb:///example/data/10GB-sort-input** 中：
+1. 產生 10 GB 的資料，這些資料稍後會儲存在 HDInsight 叢集上預設儲存體的 **wasb:///example/data/10GB-sort-input** 中：
 
         yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar teragen -Dmapred.map.tasks=50 100000000 /example/data/10GB-sort-input
 
-	`-Dmapred.map.tasks` 會告訴 Hadoop 在這項工作中要使用多少 map 工作。最後兩個參數會指示工作建立 10 GB 的資料量，並將資料儲存在 ****wasb:///example/data/10GB-sort-input**。
+	`-Dmapred.map.tasks` 會告訴 Hadoop 在這項工作中要使用多少 map 工作。最後兩個參數會指示工作建立 10 GB 的資料量，並將資料儲存在 **wasb:///example/data/10GB-sort-input**。
 
 2. 使用以下命令來排序資料：
 
