@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/05/2016"
+   ms.date="04/22/2016"
    ms.author="larryfr"/>
 
 #使用 Apache Storm on HDInsight 判斷 Twitter 的趨勢主題
@@ -140,4 +140,4 @@ Spout **TwitterSpout** 會使用 <a href="http://twitter4j.org/en/" target="_bla
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

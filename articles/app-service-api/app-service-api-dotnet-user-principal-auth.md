@@ -74,11 +74,17 @@
 
 如果您要遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，請跳至下一節 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。
 
-如果您要遵循適用於 API 應用程式的 .NET 入門系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至[設定驗證](#azureauth)一節。
+如果您要遵循適用於 API 應用程式的 .NET 入門系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至[在 App Service 和 Azure AD 中設定驗證](#azureauth)一節。
 
-如果您未進行第一個和第二個教學課程，且您想要遵循這個教學課程，請檢查[第一個教學課程](app-service-api-dotnet-get-started.md)列出的先決條件，然後使用[待辦事項清單範例儲存機制讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)中的 [部署至 Azure] 按鈕，以部署 API 應用程式和 Web 應用程式。
+如果您想要遵循此教學課程，而不通過第一個和第二個教學課程，請執行下列步驟︰
 
-部署完成時，會顯示連接至 Web 應用程式的 HTTP 連結。若要執行應用程式，並確認它可以正常操作，請將該 URL 變更為 HTTPS。
+1. 請確定您有[第一個教學課程](app-service-api-dotnet-get-started.md)中所列的所有必要條件。除了所列的必要條件之外，這些驗證教學課程還假設您已在 Visual Studio 和 Azure 入口網站中使用 App Service Web 應用程式和 API 應用程式。
+
+2. 按一下 [To Do List 範例儲存機制的讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)中的 [部署至 Azure] 按鈕，部署 API 應用程式和 Web 應用程式。記下所建立的 Azure 資源群組，因為您稍後可以使用它來查閱 Web 應用程式和 API 應用程式名稱。
+ 
+3. 下載或複製 [To Do List 範例儲存機制](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list)，以取得您將在 Visual Studio 中本機使用的程式碼。
+
+這些步驟會讓您的起始點就彷彿已完成前兩個教學課程一樣，只有一點例外︰Visual Studio 不會知道每個專案部署至哪些 Web 應用程式或 API 應用程式。當您部署專案時，必須選取要部署到的 Azure Web 應用程式或 API 應用程式。若要取得 Web 應用程式和 API 應用程式名稱，請開啟 Azure 入口網站並瀏覽至您在按下 [部署至 Azure] 按鈕時所建立的資源群組的資源群組刀鋒視窗。
 
 ## <a id="azureauth"></a> 在 App Service 和 Azure AD 中設定驗證
 
@@ -114,7 +120,7 @@
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] (如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
 
 	![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
 
@@ -254,7 +260,7 @@
 
 ### 將 ToDoListAngular 專案部署到 Azure
 
-8. 在 [方案總管] 中，以滑鼠右鍵按一下 ToDoListAngular 專案，然後按一下 [發佈]。
+8. 在方案總管中，以滑鼠右鍵按一下 ToDoListAngular 專案，然後按一下 [發佈]。
 
 9. 按一下 [發行]。
 
@@ -266,19 +272,19 @@
 
 ## 設定 ToDoListAPI 專案以使用驗證
 
-ToDoListAPI 專案目前會將 "*" 做為 `owner` 值傳送到 ToDoListDataAPI。在本節中，您將會變更用來傳送登入使用者識別碼的程式碼。
+ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI。在本節中，您將會變更用來傳送登入使用者識別碼的程式碼。
 
 對 ToDoListAPI 專案進行下列變更。
 
-1. 開啟 *Controllers/ToDoListController.cs* 檔案，並將每個動作方法中會把 `owner` 設定為 Azure AD `NameIdentifier` 宣告值的程式行取消註解。例如：
+1. 開啟 Controllers/ToDoListController.cs 檔案，並將每個動作方法中會把 `owner` 設定為 Azure AD `NameIdentifier` 宣告值的程式行取消註解。例如：
 
 		owner = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
 
-	重要︰不要取消註解 `ToDoListDataAPI` 方法中的程式碼；您稍後將在服務主體驗證教學課程中執行它。
+	**重要**︰不要取消註解 `ToDoListDataAPI` 方法中的程式碼；您稍後將在服務主體驗證教學課程中執行它。
 
 ### 將 ToDoListAPI 專案部署到 Azure
 
-8. 在 [方案總管] 中，以滑鼠右鍵按一下 ToDoListAPI 專案，然後按一下 [發佈]。
+8. 在方案總管中，以滑鼠右鍵按一下 ToDoListAPI 專案，然後按一下 [發佈]。
 
 9. 按一下 [發行]。
 
@@ -315,7 +321,7 @@ ToDoListAPI 專案目前會將 "*" 做為 `owner` 值傳送到 ToDoListDataAPI�
 
 兩個 Web API 專案是透過使用 Azure API 應用程式專案範本並以 ToDoList 控制器取代預設值控制器所建立。
 
-如需如何使用 Web API 2 後端建立 AngularJS 單一頁面應用程式的相關資訊，請參閱[實習實驗室：使用 ASP.NET Web API 和 Angular.js 建置單一頁面應用程式 (SPA)](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs)。如需如何新增 Azure AD 驗證程式碼的相關資訊，請參閱下列資源：
+如需如何使用 Web API 2 後端建立 AngularJS 單一頁面應用程式的相關資訊，請參閱 [Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Angular.js](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs) (實習實驗室：使用 ASP.NET Web API 和 Angular.js 建置單一頁面應用程式 (SPA))。如需如何新增 Azure AD 驗證程式碼的相關資訊，請參閱下列資源：
 
 * [使用 Azure AD 保護 AngularJS 單一頁面應用程式](../active-directory/active-directory-devquickstarts-angular.md)。
 * [簡介 ADAL JS v1](http://www.cloudidentity.com/blog/2015/02/19/introducing-adal-js-v1/)
@@ -331,5 +337,4 @@ ToDoListAPI 專案目前會將 "*" 做為 `owner` 值傳送到 ToDoListDataAPI�
 
 在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。在下一個教學課程中，您將學習如何[對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
 
-<!----HONumber=AcomDC_0309_2016-->
-
+<!---HONumber=AcomDC_0427_2016-->

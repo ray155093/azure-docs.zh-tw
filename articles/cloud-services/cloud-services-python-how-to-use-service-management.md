@@ -39,11 +39,11 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 ### Windows/Mac/Linux 上的管理憑證 (OpenSSL)
 您可以使用 [OpenSSL](http://www.openssl.org/) 建立管理憑證。實際上您需要建立兩個憑證，一個用於伺服器 (`.cer` 檔案)，一個用於用戶端 (`.pem` 檔案)。若要建立 `.pem` 檔案，請執行下列命令：
 
-	`openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem`
+    openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
 
 若要建立 `.cer` 憑證，請執行下列命令：
 
-	`openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer`
+    openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
 
 如需有關 Azure 憑證的詳細資訊，請參閱 [Azure 雲端服務的憑證概觀](./cloud-services-certs-create.md)。如需 OpenSSL 參數的完整說明，請參閱 [http://www.openssl.org/docs/apps/openssl.html](http://www.openssl.org/docs/apps/openssl.html) 上的文件。
 
@@ -435,4 +435,4 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 
 [雲端服務]: https://azure.microsoft.com/zh-TW/documentation/services/cloud-services/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

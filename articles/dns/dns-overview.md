@@ -3,8 +3,8 @@
    description="Microsoft Azure 上的 Azure DNS 主機服務和開始將網域裝載於 Microsoft Azure 的概觀" 
    services="dns" 
    documentationCenter="na" 
-   authors="joaoma" 
-   manager="adinah" 
+   authors="cherylmc" 
+   manager="carmonm" 
    editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
    ms.date="02/09/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # Azure DNS 概觀
 
@@ -44,4 +44,4 @@ Azure DNS 目前不支援購買網域名稱。若要購買網域，您洽詢第�
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -3,7 +3,7 @@
     description="了解如何使用 Salesforce 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
     services="active-directory"
     documentationCenter=""
-    authors="liviodlc"
+    authors="asmalser-msft"
     manager="stevenpo"
     editor=""/>
 
@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.workload="identity"
     ms.date="02/09/2016"
-    ms.author="liviodlc"/>
+    ms.author="asmalser-msft"/>
 
 #教學課程：如何整合 Salesforce 與 Azure Active Directory
 
@@ -216,7 +216,7 @@
 
 		![Confirm the assignment.][29]
 
-		> [AZURE.IMPORTANT] 如果您正在佈建至 Salesforce **開發人員**環境，您的每個設定檔可用的授權將十分有限。因此，最好的方法是將使用者佈建至具有 4,999 個可用授權的 **Chatter Free 使用者**設定檔。
+		> [AZURE.IMPORTANT] If you are provisioning to a Salesforce **developer** environment, you will have a very limited number of licenses available for each profile. Therefore, it's best to provision users to the **Chatter Free User** profile, which has 4,999 licenses available.
 
 4. 若要測試您的單一登入設定，請開啟 [https://myapps.microsoft.com](https://myapps.microsoft.com/) 的 [存取面板]、登入測試帳戶，然後按一下 [Salesforce]。
 
@@ -256,4 +256,4 @@
 [28]: ./media/active-directory-saas-salesforce-tutorial/assign-confirm.png
 [29]: ./media/active-directory-saas-salesforce-tutorial/assign-sf-profile.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

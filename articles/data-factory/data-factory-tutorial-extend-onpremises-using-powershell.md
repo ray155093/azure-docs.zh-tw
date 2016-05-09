@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 
@@ -38,7 +38,7 @@
 2. [建立 SQL Server 連結服務](#create-sql-server-linked-service)。在此步驟中，您會先在內部部署 SQL Server 電腦上建立資料庫和資料表，然後建立連結的服務：**OnPremSqlLinkedService**。
 3. [建立資料集和管線](#create-dataset-and-pipeline)。在此步驟中，您將建立資料表 **MarketingCampaignEffectivenessOnPremSQLTable** 和管線 **EgressDataToOnPremPipeline**。 
 
-4. [監視管線](#monitor-pipeline)。在此步驟中，您將使用 Azure 傳統入口網站監視管線、資料表和資料配量。
+4. [監視管線](#monitor-pipeline)。在此步驟中，您將使用 Azure 入口網站來監視管線、資料表和資料配量。
 
 
 ## 建立資料管理閘道
@@ -170,4 +170,4 @@
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

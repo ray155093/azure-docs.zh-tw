@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="佈建 Redis 快取" 
+	pageTitle="佈建 Redis Cache | Microsoft Azure" 
 	description="使用 Azure 資源管理員範本來部署 Azure Redis 快取。" 
 	services="app-service" 
 	documentationCenter="" 
-	authors="tfitzmac" 
-	manager="wpickett" 
+	authors="steved0x" 
+	manager="Erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
-	ms.author="tomfitz"/>
+	ms.date="04/22/2016" 
+	ms.author="sdanie"/>
 
 # 使用範本建立 Redis 快取
 
@@ -58,11 +58,11 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
       "type": "string"
     }
 
-### diagnosticsStorageAccountName
+### existingDiagnosticsStorageAccountName
 
 要用於診斷的現有儲存體帳戶名稱。
 
-    "diagnosticsStorageAccountName": {
+    "existingDiagnosticsStorageAccountName": {
       "type": "string"
     }
 
@@ -100,30 +100,29 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
       "location": "[parameters('redisCacheLocation')]",
       "properties": {
         "enableNonSslPort": "[parameters('enableNonSslPort')]",
-        "redisVersion": "[parameters('redisCacheVersion')]",
         "sku": {
           "capacity": "[parameters('redisCacheCapacity')]",
           "family": "[parameters('redisCacheFamily')]",
           "name": "[parameters('redisCacheSKU')]"
         }
       },
-        "resources": [
-          {
-            "apiVersion": "2014-04-01",
-            "type": "diagnosticSettings",
-            "name": "service", 
-            "location": "[parameters('redisCacheLocation')]",
-            "dependsOn": [
-              "[concat('Microsoft.Cache/Redis/', parameters('redisCacheName'))]"
-            ],
-            "properties": {
-              "status": "[parameters('diagnosticsStatus')]",
-              "storageAccountName": "[parameters('diagnosticsStorageAccountName')]",
-              "retention": "30"
-            }
+      "resources": [
+        {
+          "apiVersion": "2015-07-01",
+          "type": "Microsoft.Cache/redis/providers/diagnosticsettings",
+          "name": "[concat(parameters('redisCacheName'), '/Microsoft.Insights/service')]",
+          "location": "[parameters('redisCacheLocation')]",
+          "dependsOn": [
+            "[concat('Microsoft.Cache/Redis/', parameters('redisCacheName'))]"
+          ],
+          "properties": {
+            "status": "[parameters('diagnosticsStatus')]",
+            "storageAccountName": "[parameters('existingDiagnosticsStorageAccountName')]"
           }
-        ]
+        }
+      ]
     }
+
 
 ## 執行部署的命令
 
@@ -137,4 +136,4 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

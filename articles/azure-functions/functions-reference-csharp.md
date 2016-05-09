@@ -180,23 +180,23 @@ Azure Functions 裝載環境會自動加入下列組件︰
 
 #### 使用函式應用程式的 SCM (Kudu) 端點上傳 project.json
 
-1. 瀏覽至：https://<function_app_name>.scm.azurewebsites.net。
+1. 瀏覽至：`https://<function_app_name>.scm.azurewebsites.net`。
 
 2. 按一下 [偵錯主控台] > [CMD]。
 
-3. 瀏覽至 D:\\home\\site\\wwwroot<function\_name>。
+3. 瀏覽至 *D:\\home\\site\\wwwroot<function\_name>*。
 
 4. 將 *project.json* 檔案拖放到資料夾中 (在檔案格線上)。
 
 #### 使用 FTP 上傳 project.json
 
-1. 請依照[這裡](../app-service-web/web-sites-deploy.md#ftp)的指示取得所設定 FTP。
+1. 請遵循[這裡](../app-service-web/web-sites-deploy.md#ftp)的指示設定 FTP。
 
-2. 當您連線到函式應用程式網站時，請將 project.json 檔案複製到 /site/wwwroot/<function_name> 中。
+2. 當您連線到函數應用程式網站時，請將 *project.json* 檔案複製到 */site/wwwroot/<function_name>* 中。
 
 #### 封裝安裝記錄檔 
 
-上傳 project.json 檔案之後，您會在您的函式的串流記錄檔中看到如下列範例所示的輸出：
+上傳 *project.json* 檔案之後，您會在函數的串流記錄檔中看到如下列範例所示的輸出：
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -217,7 +217,7 @@ Azure Functions 裝載環境會自動加入下列組件︰
 
 ## 重複使用 .csx 程式碼
 
-您可以在您的 run.csx 檔案中使用其他 *.csx* 檔案中定義的類別和方法。若要這樣做，請在您的 run.csx 檔案中使用 `#load` 指示詞，如下列範例所示。
+您可以在您的 *run.csx* 檔案中使用其他 *.csx* 檔案中定義的類別和方法。若要這樣做，請在您的 *run.csx* 檔案中使用 `#load` 指示詞，如下列範例所示。
 
 範例 *run.csx*：
 
@@ -242,13 +242,13 @@ public static void MyLogger(TraceWriter log, string logtext)
 
 您可以使用包含 `#load` 指示詞的相對路徑︰
 
-* `#load "mylogger.csx"` 會載入位於函式資料夾中的檔案。
+* `#load "mylogger.csx"` 會載入位於函數資料夾中的檔案。
 
-* `#load "loadedfiles\mylogger.csx"` 會載入位於函式資料夾的資料夾中的檔案。
+* `#load "loadedfiles\mylogger.csx"` 會載入位於函數資料夾的資料夾中的檔案。
 
-* `#load "..\shared\mylogger.csx"` 會載入位於與函式資料夾相同層級的資料夾中的檔案 (也就是直接在 wwwroot 之下)。
+* `#load "..\shared\mylogger.csx"` 會載入位於與函數資料夾相同層級的資料夾中的檔案 (也就是直接在 *wwwroot* 之下)。
  
-`#load` 指示詞只適用於 .csx (C# 指令碼) 檔案，不適用於 *.cs* 檔案。
+`#load` 指示詞只適用於 *.csx* (C# 指令碼) 檔案，不適用於 *.cs* 檔案。
 
 ## 後續步驟
 
@@ -258,4 +258,4 @@ public static void MyLogger(TraceWriter log, string logtext)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

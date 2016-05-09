@@ -1,3 +1,3 @@
-> [AZURE.IMPORTANT] The steps in this document have been tested with the latest version of Azure PowerShell, Azure CLI, and HDInsight .NET SDK. If you are using an older version, the steps may not work or may return errors. To install the latest version, follow the steps in the [Install and Configure Azure CLI](../articles/xplat-cli-install.md) or [Install and Configure Azure PowerShell](../articles/powershell-install-configure.md) documents. To install the latest version of the HDInsight .NET SDK, use the information provided on the [Microsoft Azure HDInsight .NET SDK](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.HDInsight/) NuGet page.
+> [AZURE.IMPORTANT] 已在最新版的 Azure PowerShell、Azure CLI 和 HDInsight .NET SDK 中測試本文件中的步驟。如果您使用較舊的版本，這些步驟可能無法運作或可能傳回錯誤。若要安裝最新版本，請依照[安裝和設定 Azure CLI](../articles/xplat-cli-install.md) 和[安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md) 文件中的步驟執行。若要安裝最新版的 HDInsight .NET SDK，請使用 [Microsoft Azure HDInsight .NET SDK](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.HDInsight/) NuGet 頁面上提供的資訊。
 
-
+<!---HONumber=AcomDC_0427_2016-->

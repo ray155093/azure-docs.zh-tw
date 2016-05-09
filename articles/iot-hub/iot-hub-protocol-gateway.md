@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/03/2016"
+   ms.date="04/18/2016"
    ms.author="kdotchko"/>
 
 # 支援 IoT 中心的其他通訊協定
@@ -39,4 +39,4 @@ MQTT 配接器也會示範程式設計模型，此模型可為其他通訊協定
 * [GitHub 上的 Azure IoT 通訊協定閘道儲存機制 (英文)](https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md)
 * [Azure IoT 通訊協定閘道開發人員指南 (英文)](https://github.com/Azure/azure-iot-protocol-gateway/blob/master/docs/DeveloperGuide.md)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="04/08/2016"
+   ms.date="04/25/2016"
    ms.author="hascipio"/>
 
 # 使用行銷內容完成供應項目建立程序
@@ -29,32 +29,61 @@
   > [AZURE.IMPORTANT] 所有欄位都必須填入內容 (包含影像)，才能推送至預備環境。
 
 ### 詳細資料
-1. 輸入供應項目摘要、長摘要和供應項目的描述。
-2.	以 PNG 格式上傳必要規格的影像 (在發佈入口網站中提及)，每種大小各一個。
+1. 在 [詳細資料] 索引標籤下方，輸入優惠標題 (最多 50 個字元)、優惠摘要 (最多 100 個字元)、優惠完整摘要 (最多 256 個字元)、優惠描述 (最多 1300 個字元)、標誌
+2. 在 [方案] 索引標籤下方，輸入 SKU 標題 (最多 50 個字元)、SKU 摘要 (最多 100 個字元)、SKU 描述 (最多 2000 個字元)
+3. 請不要在優惠和 SKU 描述下方輸入重複文字。
+4. 請不要在 SKU 標題和優惠完整摘要下方輸入重複文字。
+5. 請不要在 SKU 標題和優惠摘要下方輸入重複文字。
+6. 以 PNG 格式上傳必要規格的影像 (在發佈入口網站中提及)，每種大小各一個。
+7. 請確定標誌遵循下面所提及的 Azure Marketplace 標誌指導方針。
 
-  ![繪圖](media/marketplace-publishing-push-to-staging/pubportal-02.png)
+  ![繪圖](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-details-02.png)
 
-  *優惠標題、描述和標誌*
+**Azure Marketplace 標誌指導方針**
+
+發佈入口網站中所上傳的所有標誌都應該遵循下列指導方針︰
+
+- Azure 設計具有簡單的調色盤。請保持標誌上具有最少的主要和次要色彩數目。
+- 標誌不應該放在白色背景上。建議使用簡單主要色彩或透明背景。
+- 請不要在標誌上使用漸層背景。
+- 避免在標誌上放置文字 (甚至是公司或品牌名稱)。
+- 您標誌的外觀與風格應該是「一般」，而且應該避免漸層。
+- 標誌不應該自動進行縮放。
+- 小型標誌的大小應該是 40 X 40 像素
+- 中型標誌的大小應該是 90 X 90 像素
+- 大型標誌的大小應該是 115 X 115 像素
+- 寬標誌的大小應該是 255 X 115 像素
+- 主圖標誌的大小應該是 815 X 290 像素
+
+  ![繪圖](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-details-03.png)
+
+**主圖標誌橫幅的其他指導方針：**
+
+- 主圖標誌為選用項。您可以選擇不上傳主圖標誌。
+- 優惠上線之後，會自動將發佈者顯示名稱、SKU 標題、優惠完整摘要和 [建立] 按鈕內嵌在主圖標誌內。因此您在設計主圖標誌時不需要輸入它們。
+- 以白色字型色彩顯示發佈者顯示名稱、SKU 標題和優惠完整摘要時，您應該避免將主圖圖示的背景保持為白色或任何淺色色彩。
+- 您應該在主圖圖示頂端保留上面文字的空間。文字的空間為 415x100，並從左邊位移 370 個像素。
+
+  ![繪圖](media/marketplace-publishing-push-to-staging/pubportal-herobanner.png)
 
 ### 連結
 在左側工具列的 [連結] 索引標籤上，輸入任何可能對客戶有幫助的資訊連結。輸入每個連結的名稱和 URL。
 
-![繪圖](media/marketplace-publishing-push-to-staging/pubportal-02.png)
+![繪圖](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-link-01.png)
 
 ### 範例影像 (選擇性)
 > [AZURE.NOTE] 加入範例影像是選擇性步驟。您可以填寫其他行銷內容來符合推送至預備環境的需求。
 
 在左側功能表的 [範例影像] 索引標籤上，按一下 [上傳新的影像] 以上傳新的影像。如果目前已有影像而您想要取代它，請按一下 [取代影像]。
 
-![繪圖](media/marketplace-publishing-push-to-staging/pubportal-03.png)
-
-### 計劃
-![繪圖](media/marketplace-publishing-push-to-staging/pubportal-02.png)
+![繪圖](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-sampleimg-01.png)
 
 ### 法律
-在 [法律聲明] 索引標籤上，提供您的使用原則/條款連結。在大型 [使用條款] 方塊中輸入或貼上條款。
+在 [法律聲明] 索引標籤上，提供您的使用原則/條款連結。在大型 [使用條款] 方塊中輸入或貼上條款。法律使用條款的字元限制為 1,000,000 個字元。
 
-> [AZURE.NOTE] 對於虛擬機器，一旦 SKU 已預備上線或上線，您就無法變更下列項目︰**優惠識別項**、**發行者識別碼**和 **SKU 識別碼**。
+![繪圖](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-legal-01.png)
+
+> [AZURE.NOTE] 對於虛擬機器，一旦 SKU 已預備上線或上線，您就無法變更下列項目︰**優惠識別碼**、**發佈者識別碼**和 **SKU 識別碼**。
 
 ## 步驟 2：設定價格
 ### 定價模式
@@ -107,7 +136,7 @@
 |Gold|$1000 美元/月|10,000 個功能 X、1,000 個功能 Y 和無限制的功能 Z 的配額。|可以移轉至所有方案，免費除外|
 
 ## 步驟 3：提供支援資訊
-有些資訊會在認證階段完成填寫。您可以使用下列步驟來加入或編輯資訊。合約詳細資料僅用於合作夥伴與 Microsoft 之間的內部通訊。支援 URL 可供一般客戶使用。
+合約詳細資料僅用於合作夥伴與 Microsoft 之間的內部通訊。支援 URL 可供一般客戶使用。
 
 1.	移至發佈入口網站左側的 [支援] 標題。
 2.	在 [工程連絡人] 下方輸入資訊。
@@ -118,7 +147,7 @@
 [類別] 索引標籤會提供選取項目的陣列。您的優惠可能會落在這些選取項目中，而且您最多可選取五個類別。
 
 ## 行銷活動的呈現方式
-以下是如何在 [Azure Marketplace 網站](https://azure.microsoft.com/marketplace/)上和 [Azure Preview 入口網站](https://ms.portal.azure.com)中使用優惠行銷資訊的詳細檢視。
+以下是如何在 [Azure Marketplace 網站](https://azure.microsoft.com/marketplace/)上和 [Azure 入口網站](https://portal.azure.com)中使用優惠行銷資訊的詳細檢視。
 
 ### Azure Marketplace
 ![繪圖](media/marketplace-publishing-push-to-staging/acom-catalog-01.png)
@@ -135,21 +164,21 @@
 
 *Azure.com Marketplace 網站上的優惠定價詳細資料*
 
-### Azure Preview 入口網站
+### Azure 入口網站
 ![繪圖](media/marketplace-publishing-push-to-staging/portal-catalog-01.png)
 
-*Azure Preview 入口網站中的優惠清單*
+*Azure 入口網站中的優惠清單*
 
 ![繪圖](media/marketplace-publishing-push-to-staging/portal-listing-details-01.png)
 
-*Azure Preview 入口網站中的優惠描述詳細資料*
+*Azure 入口網站中的優惠描述詳細資料*
 
 ## 後續步驟
 既然已載入您的 Marketplace 內容，讓我們繼續在預備環境中測試您的優惠。不過，您必須從下列清單選取適當的優惠類型，因為步驟會隨著優惠類型而有所不同。
 
 ||虛擬機器映像 |開發人員服務 | 資料服務 | 解決方案範本 |
 |----|----|----|----|----|
-| **步驟 3.推送優惠至預備環境** | [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md) | 私人預覽 | [在預備環境中測試您的資料服務優惠](marketplace-publishing-data-service-test-in-staging.md) | [在預備環境中測試您的解決方案範本](marketplace-publishing-solution-template-test-in-staging.md) |
+| **步驟 3：推送優惠至預備環境** | [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md) | 私人預覽 | [在預備環境中測試您的資料服務優惠](marketplace-publishing-data-service-test-in-staging.md) | [在預備環境中測試您的解決方案範本](marketplace-publishing-solution-template-test-in-staging.md) |
 
 ## 另請參閱
 - [使用者入門：如何將優惠發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
@@ -163,4 +192,4 @@
 [link-pubportal]: https://publish.windowsazure.com
 [link-push-to-production]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

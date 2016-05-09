@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/19/2016"
+	ms.date="04/20/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 管理 Azure Active Directory 中的自訂網域名稱
@@ -74,10 +74,10 @@
 
 -   [使用圖形 API 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
 
-**後續步驟**
+## 後續步驟
 
 -   [了解 Azure AD 中的網域名稱](active-directory-add-domain-concepts.md)
 
 -   [管理自訂網域名稱](active-directory-add-manage-domain-names.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

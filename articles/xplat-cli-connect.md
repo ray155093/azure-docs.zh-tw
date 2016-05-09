@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2015"
+	ms.date="04/08/2016"
 	ms.author="danlep"/>
 
 # 從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶
@@ -153,4 +153,4 @@ Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源
 
 * 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home) (英文)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

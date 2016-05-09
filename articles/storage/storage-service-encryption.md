@@ -77,11 +77,11 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 -   若要註冊功能，您可以使用 Register-AzureRmProviderFeature PowerShell Cmdlet。
 
-    `Register-AzureRmProviderFeature -FeatureName "EncryptionAtRest" -ProviderNamespace "Microsoft.Storage“`
-        
+    `Register-AzureRmProviderFeature -FeatureName "EncryptionAtRest" -ProviderNamespace "Microsoft.Storage"`
+
 -   若要查詢您的註冊的狀態，以查看訂用帳戶是否已核准，您可以使用 Get-AzureRmProviderFeature PowerShell Cmdlet。
 
-    `Get-AzureRmProviderFeature -FeatureName "EncryptionAtRest" -ProviderNamespace "Microsoft.Storage“`
+    `Get-AzureRmProviderFeature -FeatureName "EncryptionAtRest" -ProviderNamespace "Microsoft.Storage"`
 
 當註冊狀態傳回「已註冊」時，您的訂用帳戶已核准。另請造訪我們在 Yammer 上的 Azure 儲存體服務加密預覽群組。
 
@@ -225,4 +225,4 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。如需詳細資訊，請參閱[儲存體安全性指南](storage-security-guide.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -6,19 +6,19 @@
 	authors="mmacy"
 	manager="timlt"
 	editor="" />
-	
+
 <tags
 	ms.service="batch"
 	ms.devlang="multiple"
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="01/22/2016"
+	ms.date="04/21/2016"
 	ms.author="marsma" />
-	
+
 # 有效率地查詢 Azure Batch 服務
 
-在本文中，您將了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢 Batch 服務時所傳回的資料量，增加 Azure 備份應用程式的效能。
+在這裡，深入了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢 Batch 服務時所傳回的資料量，增加 Azure 備份應用程式的效能。
 
 Azure Batch 提供大型計算功能，在生產環境中，工作、作業和計算節點等實體可能有數千個。因此，取得這些項目的相關資訊可能產生必須在每個查詢上從服務傳送到您的應用程式的大量資料。透過限制項目數目及各項目傳回的資訊類型，您可以加速查詢，因而提高應用程式的效能。
 
@@ -26,14 +26,14 @@ Azure Batch 提供大型計算功能，在生產環境中，工作、作業和�
 
 此 [Batch .NET][api_net] API 程式碼片段會擷取與作業相關聯的所有作業，以及*所有*作業的屬性：
 
-```
+```csharp
 // Get a collection of all of the tasks and all of their properties for job-001
 IPagedEnumerable<CloudTask> allTasks = batchClient.JobOperations.ListTasks("job-001");
 ```
 
 不過，可以更有效率地執行清單查詢。在 [JobOperations.ListTasks][net_list_tasks] 方法中提供 [ODATADetailLevel][odata] 物件即可執行此動作。此程式碼片段只是傳回已完成之工作的識別碼、命令列和計算節點資訊屬性：
 
-```
+```csharp
 // Configure an ODATADetailLevel specifying a subset of tasks and their properties to return
 ODATADetailLevel detailLevel = new ODATADetailLevel();
 detailLevel.FilterClause = "state eq 'completed'";
@@ -43,10 +43,10 @@ detailLevel.SelectClause = "id,commandLine,nodeInfo";
 IPagedEnumerable<CloudTask> completedTasks = batchClient.JobOperations.ListTasks("job-001", detailLevel);
 ```
 
-在上述範例案例中，如果作業中有數千個作業，則第二次查詢傳回結果的速度，通常會比第一次快很多。使用 Batch .NET API 列出項目時，使用 ODATADetailLevel 的詳細資訊如下所示。
+在上述範例案例中，如果作業中有數千個作業，則第二次查詢傳回結果的速度，通常會比第一次快很多。使用 Batch .NET API 列出項目時，使用 ODATADetailLevel 的詳細資訊如[下](#efficient-querying-in-batch-net)所示。
 
 > [AZURE.IMPORTANT]
-我們強烈建議*一律*在 .NET API 清單呼叫中提供 ODATADetailLevel 物件，以確保應用程式發揮最高效率和效能。透過指定詳細層級，您可以幫助縮短 Batch 服務回應時間、提高網路使用率，以及讓用戶端應用程式的記憶體使用量降到最低。
+我們強烈建議「一律」在 .NET API 清單呼叫中提供 ODATADetailLevel 物件，以確保應用程式發揮最高效率和效能。透過指定詳細層級，您可以幫助縮短 Batch 服務回應時間、提高網路使用率，以及讓用戶端應用程式的記憶體使用量降到最低。
 
 ## 提高查詢效率的工具
 
@@ -89,13 +89,13 @@ IPagedEnumerable<CloudTask> completedTasks = batchClient.JobOperations.ListTasks
 
 在 [Batch .NET][api_net] API 內，[ODATADetailLevel][odata] 類別用來提供篩選、選取和展開字串給清單作業。ODataDetailLevel 物件有三個公用字串屬性，可以在建構函式中指定或是直接在物件上設定。然後您可以將 ODataDetailLevel 物件當做參數傳給各種清單作業，例如 [ListPools][net_list_pools]、[ListJobs][net_list_jobs] 和 [ListTasks][net_list_tasks]。
 
-- [ODATADetailLevel.FilterClause][odata_filter]：限制傳回的項目數。
-- [ODATADetailLevel.SelectClause][odata_select]：指定隨著每個項目一起傳回的屬性值。
-- [ODATADetailLevel.ExpandClause][odata_expand]：在單一 API 呼叫中擷取所有項目的資料，而不是針對每個項目個別呼叫。
+- [ODATADetailLevel][odata].[FilterClause][odata_filter]：限制傳回的項目數。
+- [ODATADetailLevel][odata].[SelectClause][odata_select]：指定隨著每個項目一起傳回的屬性值。
+- [ODATADetailLevel][odata].[ExpandClause][odata_expand]：在單一 API 呼叫中擷取所有項目的資料，而不是針對每個項目個別呼叫。
 
 下列程式碼片段使用 Batch .NET API，有效率地向 Batch 服務查詢一組特定集區的統計資料。在此案例中，Batch 使用者具有測試與生產的集區。這些測試集區識別碼前面會加上 "test"，而生產集區識別碼則會加上 "prod"。在程式碼片段中，*myBatchClient* 是適當初始化的 [BatchClient](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient) 類別的執行個體。
 
-```
+```csharp
 // First we need an ODATADetailLevel instance on which to set the expand, filter, and select
 // clause strings
 ODATADetailLevel detailLevel = new ODATADetailLevel();
@@ -126,8 +126,8 @@ List<CloudPool> testPools = await myBatchClient.PoolOperations.ListPools(detailL
 
 ### 篩選字串的對應
 
-- **.NET 清單方法** - 此欄的每個 .NET API 方法都接受 [ODATADetailLevel][odata] 物件做為參數。
-- **REST 清單要求** - 此資料行的每個 REST API 頁面都連結至一個資料表，其中指定*篩選*字串中允許的屬性和作業。建構 [ODATADetailLevel.FilterClause][odata_filter] 字串時會使用這些屬性名稱和作業。
+- **.NET 清單方法**：此欄的每個 .NET API 方法都接受 [ODATADetailLevel][odata] 物件作為參數。
+- **REST 清單要求**：此資料行的每個 REST API 頁面都連結至一個資料表，其中指定*篩選*字串中允許的屬性和作業。建構 [ODATADetailLevel.FilterClause][odata_filter] 字串時會使用這些屬性名稱和作業。
 
 | .NET 清單方法 | REST 清單要求 |
 |---|---|
@@ -144,8 +144,8 @@ List<CloudPool> testPools = await myBatchClient.PoolOperations.ListPools(detailL
 
 ### 選取字串的對應
 
-- **Batch .NET types** - Batch .NET API 類型。
-- **REST API ENTITIES** - 此資料行中的每個頁面包含一個或多個資料表，其中列出類型的 REST API 屬性名稱。建構 *select* 字串時會使用這些屬性名稱。建構 [ODATADetailLevel.SelectClause][odata_select] 字串時會使用這些相同的屬性名稱。
+- **Batch .NET types**：Batch .NET API 類型。
+- **REST API entities**：此資料行中的每個頁面包含一個或多個資料表，其中列出類型的 REST API 屬性名稱。建構 *select* 字串時會使用這些屬性名稱。建構 [ODATADetailLevel.SelectClause][odata_select] 字串時會使用這些相同的屬性名稱。
 
 | Batch .NET 類型 | REST API 實體 |
 |---|---|
@@ -183,6 +183,8 @@ List<CloudPool> testPools = await myBatchClient.PoolOperations.ListPools(detailL
 
 ## 後續步驟
 
+### 有效率的清單查詢程式碼範例
+
 請查閱 GitHub 上的 [EfficientListQueries][efficient_query_sample] 範例專案，以了解有效率的清單查詢可如何提升應用程式的效能。這個 C# 主控台應用程式會建立並將大量工作加入至作業。然後，它會對 [JobOperations.ListTasks][net_list_tasks] 方法進行多個呼叫，並且傳遞設定了不同屬性值的 [ODATADetailLevel][odata] 物件，來變更要傳回的資料量。它會產生類似下列的輸出：
 
 		Adding 5000 tasks to job jobEffQuery...
@@ -199,10 +201,16 @@ List<CloudPool> testPools = await myBatchClient.PoolOperations.ListPools(detailL
 
 如同經過時間的資訊中所顯示的，您可以透過限制屬性和傳回的項目數目來大幅降低查詢回應時間。您可以在 GitHub 上的 [azure-batch-samples][github_samples] 儲存機制，找到本範例專案和其他範例專案。
 
+### 批次論壇
+
+MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關服務的問題。請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
+
+
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx
 [api_rest]: http://msdn.microsoft.com/library/azure/dn820158.aspx
 [efficient_query_sample]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/EfficientListQueries
+[forum]: https://social.msdn.microsoft.com/forums/azure/zh-TW/home?forum=azurebatch
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [odata]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.odatadetaillevel.aspx
 [odata_ctor]: https://msdn.microsoft.com/library/azure/dn866178.aspx
@@ -246,4 +254,4 @@ List<CloudPool> testPools = await myBatchClient.PoolOperations.ListPools(detailL
 [net_schedule]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjobschedule.aspx
 [net_task]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.aspx
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

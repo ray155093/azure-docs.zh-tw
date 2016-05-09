@@ -3,7 +3,7 @@
 	description="本主題說明並逐步引導您在 Azure 虛擬機器中，部署並設定 SQL Server Reporting Services 原生模式報表伺服器。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
-	authors="rothja"
+	authors="guyinacube"
 	manager="jeffreyg"
 	editor="monicar" 
 	tags="azure-service-management"/>
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
 	ms.date="12/11/2015"
-	ms.author="jroth" />
+	ms.author="asaxton" />
 
 # 使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM
 
@@ -633,7 +633,7 @@
 
 		http://localhost/Reports
 
-- 從本機電腦瀏覽至 VM 上的**遠端**報告管理員。視需要更新下列範例中的 DNS 名稱。如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。使用者名稱的格式是 [網域](使用者名稱)，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\\testuser。如果您不是使用 HTTP**S**，請移除 URL 中的 **s**。如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
+- 從本機電腦瀏覽至 VM 上的**遠端**報告管理員。視需要更新下列範例中的 DNS 名稱。如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。使用者名稱的格式是 [網域][使用者名稱]，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\\testuser。如果您不是使用 HTTP**S**，請移除 URL 中的 **s**。如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
 
 		https://ssrsnativecloud.cloudapp.net/Reports
 
@@ -705,4 +705,4 @@
 
 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

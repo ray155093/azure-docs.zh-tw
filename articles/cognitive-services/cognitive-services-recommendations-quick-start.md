@@ -89,11 +89,11 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 
  我們應該註明類別目錄檔案可能更豐富，比方說，您可以新增產品相關的中繼資料 (我們稱之為「項目特徵」)。您應該查看＜API 參考＞中的[類別目錄格式](http://go.microsoft.com/fwlink/?LinkID=760716)一節，以取得更多有關類別目錄格式的詳細資料。
 
-1. 讓我們利用使用方式資料來執行相同動作。您會注意到，使用方式日期的格式是 `<User Id>,<Item Id>`。
+1. 讓我們利用使用方式資料來執行相同動作。您會注意到，使用方式日期的格式是 `<User Id>,<Item Id>,<Time Stamp>,<Event>`。
 
-  > 00030000A11B024B,GZA-00202<br> 0003BFFD93B934B7,P2W-00004<br> 000300009C01C881,W6F-00121<br> 00060000AF0D2B04,QR2-00011<br>
+  > 00037FFEA61FCA16,288186200,2015/08/04T11:02:52,Purchase 0003BFFDD4C2148C,297833400,2015/08/04T11:02:50,Purchase 0003BFFDD4C2118D,297833300,2015/08/04T11:02:40,Purchase 00030000D16C4237,297833300,2015/08/04T11:02:37,Purchase 0003BFFDD4C20B63,297833400,2015/08/04T11:02:12,Purchase 00037FFEC8567FB8,297833400,2015/08/04T11:02:04,Purchase
 
- 這是有效使用方式檔案所需的最基本資料。更複雜的使用方式檔案可能包含每一筆交易的其他資訊，包括交易的時間戳記及所發生的事件類型(按一下、購買等)。如需這個主題的詳細資訊，您可以參閱[使用方式格式](http://go.microsoft.com/fwlink/?LinkID=760712) 。
+請注意，前三個元素是必要的。事件類型是選擇性的。如需這個主題的詳細資訊，您可以參閱[使用方式格式](http://go.microsoft.com/fwlink/?LinkID=760712) 。
 
  > **您需要多少資料？**
  <p>
@@ -111,7 +111,7 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 
 1. 將[範例應用程式](http://go.microsoft.com/fwlink/?LinkID=759344)下載到本機資料夾。
 
-1. 在 Visual Studio 中開啟 **RecommendationsSample.sln** 方案(位於 **C#** 資料夾)。
+1. 在 Visual Studio 中開啟 **RecommendationsSample.sln** 方案 (位於 **C#** 資料夾)。
 
 1. 開啟 **SampleApp.cs** 檔案。請注意檔案中的下列步驟︰
  + 建立模型
@@ -121,7 +121,7 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
  + 根據一組項目配對來取得建議
 <p></p>
 
-1. 使用您的電子郵件與工作 1 的金鑰來取代 **accountEmail** 和 **accountKey** 欄位的值。
+1. 將 **AccountKey** 欄位的值取代為工作 1 的索引鍵。
 
 1. 逐步執行方案，您將會看到建立模型的方式。
 
@@ -166,4 +166,4 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 ### 後續步驟
 如果您已進展至此，恭喜您！ 若要深入了解，您可以瀏覽完整的 [Recommendations API 參考](http://go.microsoft.com/fwlink/?LinkId=759348) 如果您有任何疑問，請隨時與我們連絡：mlapi@microsoft.com
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

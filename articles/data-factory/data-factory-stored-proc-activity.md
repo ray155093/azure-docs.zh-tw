@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/19/2016" 
+	ms.date="04/05/2016" 
 	ms.author="spelluru"/>
 
 # SQL Server 預存程序活動
@@ -74,8 +74,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		CREATE CLUSTERED INDEX ClusteredID ON dbo.sampletable(Id);
 		GO
 
-	Id 是可唯一識別的，而 datetimestamp 資料行是產生對應識別碼的日期和時間。
-	![範例資料](./media/data-factory-stored-proc-activity/sample-data.png)
+	Id 是可唯一識別的，而 datetimestamp 資料行是產生對應識別碼的日期和時間。![範例資料](./media/data-factory-stored-proc-activity/sample-data.png)
 
 2. 建立下列**預存程序**，將資料插入 **sampletable**。
 
@@ -109,7 +108,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 
 7.	在適用於 **SProcDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。這會啟動 Data Factory 編輯器。 
 2.	在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure SQL]。您應該會在編輯器中看到用來建立 Azure SQL 連結服務的 JSON 指令碼。 
-4. 使用您的 Azure SQL Database 伺服器名稱來取代 **servername**、使用您在其中建立資料表和預存程序的資料庫來取代 **databasename**、使用有權存取資料庫的使用者帳戶來取代 **username@servername**，以及使用該使用者帳戶的密碼來取代 **password**。
+4. 使用您的 Azure SQL Database 伺服器名稱來取代 **servername**、使用您在其中建立資料表和預存程序的資料庫來取代 **databasename**、使用有權存取資料庫的使用者帳戶來取代 ****username@servername**，以及使用該使用者帳戶的密碼來取代 **password**。
 5. 按一下命令列的 [部署]，部署連結服務。
 
 ### 建立輸出資料表
@@ -208,4 +207,4 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		}
 	}
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

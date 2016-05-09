@@ -136,7 +136,7 @@
 	$locName="West US"
 	$frontendSubnet=New-AzureRmVirtualNetworkSubnetConfig -Name frontendSubnet -AddressPrefix 10.0.1.0/24
 	$backendSubnet=New-AzureRmVirtualNetworkSubnetConfig -Name backendSubnet -AddressPrefix 10.0.2.0/24
-	New-AzureRmVirtualNetwork -Name TestNet -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $frontendSubnet,$backendSubnet
+	New-AzureRmVirtualNetwork -Name TestNet -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -SubnetId $frontendSubnet,$backendSubnet
 
 使用這些命令列出現有的虛擬網路。
 
@@ -220,7 +220,7 @@ FrontendSubnet 的子網路索引為 0，而 backendSubnet 的子網路索引為
 	$bePoolIndex=<index of the back end pool, starting at 0>
 	$natRuleIndex=<index of the inbound NAT rule, starting at 0>
 	$lb=Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgName
-	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -Subnet $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex] -LoadBalancerInboundNatRule $lb.InboundNatRules[$natRuleIndex]
+	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex] -LoadBalancerInboundNatRule $lb.InboundNatRules[$natRuleIndex]
 
 $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛擬機器名稱併入字串中，例如 "LOB07-NIC"。
 
@@ -239,7 +239,7 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 	$lbName="<name of the load balancer instance>"
 	$bePoolIndex=<index of the back end pool, starting at 0>
 	$lb=Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgName
-	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -Subnet $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex]
+	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex]
 
 接下來，建立本機 VM 物件，並選擇性地將它新增至可用性集合。將下列兩個選項的其中一個複製到命令集，並填入名稱、大小和可用性集合名稱。
 
@@ -392,4 +392,4 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 
 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

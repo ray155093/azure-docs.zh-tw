@@ -3,7 +3,7 @@
    description="將網域裝載於 Azure DNS 時，在 Azure DNS 管理 DNS 記錄集和記錄。對記錄集和記錄執行作業的所有 PowerShell 命令。" 
    services="dns" 
    documentationCenter="na" 
-   authors="joaoma" 
+   authors="cherylmc" 
    manager="carmon" 
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
    ms.date="03/04/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # 如何使用 PowerShell 管理 DNS 記錄
 
@@ -297,4 +297,4 @@ Set-AzureRmDnsRecordSet Cmdlet 使用 ‘etag’ 檢查，以確保不會覆寫�
 [開始建立記錄集和記錄](dns-getstarted-create-recordset.md)<BR> [管理 DNS 區域](dns-operations-dnszones.md)<BR> [使用 .NET SDK 將作業自動化](dns-sdk.md)
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

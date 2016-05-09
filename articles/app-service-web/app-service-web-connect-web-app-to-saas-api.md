@@ -10,7 +10,7 @@
 <tags
 	ms.service="app-service-web"
 	ms.devlang="dotnet"
-	ms.topic="get-started-article"
+	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na" 
 	ms.date="02/26/2016"
@@ -89,4 +89,4 @@
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
  
 
-<!-----HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0427_2016-->

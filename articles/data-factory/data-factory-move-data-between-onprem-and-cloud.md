@@ -104,12 +104,7 @@
 
 | 網域名稱 | 連接埠 | 說明 |
 | ------ | --------- | ------------ |
-| *.servicebus.windows.net | 443、80 | 透過 TCP 之服務匯流排轉送上的接聽程式 (需要 443 才能取得存取控制權杖) |
-| *.servicebus.windows.net | 9350 至 9354 | 透過 TCP 的選擇性服務匯流排轉送 |
-| *.core.windows.net | 443 | HTTPS |
-| *.clouddatahub.net | 443 | HTTPS |
-| graph.windows.net | 443 | HTTPS |
-| login.windows.net | 443 | HTTPS | 
+| **.servicebus.windows.net | 443、80 | 透過 TCP 之服務匯流排轉送上的接聽程式 (需要 443 才能取得存取控制權杖) | | *.servicebus.windows.net | 9350 至 9354 | 透過 TCP 的選擇性服務匯流排轉送 | | *.core.windows.net | 443 | HTTPS | | *.clouddatahub.net | 443 | HTTPS | | graph.windows.net | 443 | HTTPS | | login.windows.net | 443 | HTTPS | 
 
 Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您可以在閘道電腦上相應地設定網域和連接埠。
 
@@ -160,7 +155,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 1.	當您嘗試註冊閘道器時，您會收到下列錯誤：「無法註冊閘道器金鑰。再次嘗試註冊閘道器金鑰之前，請確認資料管理閘道已處於連線狀態，且已啟動資料管理閘道主機服務。」
 2.	當您開啟組態管理員時，您會看到「已中斷連接」或「連接中」狀態。檢視 Windows 事件記錄檔時，在 [事件檢視器] > [應用程式和服務記錄檔] > [資料管理閘道] 中，您會看到錯誤訊息，例如「無法連接到遠端伺服器」或「資料管理閘道的元件沒有回應，將會自動重新啟動。元件名稱：閘道。」
 
-## 閘道器疑難排解
+## 閘道問題疑難排解
 
 
 - 您可以在 Windows 事件記錄檔的閘道器記錄檔中找到詳細資訊。您可以使用 **應用程式及服務記錄檔** > **資料管理閘道**下的 Windows **事件檢視器** 找到它們，而疑難排解閘道器的相關問題會在事件檢視器中尋找錯誤層級事件。
@@ -205,7 +200,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 5. 在 **DATA FACTORY** 刀鋒視窗中，按一下 [**製作和部署**] 磚來啟動 Data Factory 的 [**編輯器**]。
 
 	![[製作和部署] 磚](./media/data-factory-move-data-between-onprem-and-cloud/author-deploy-tile.png) 
-6.	在 [Data Factory 編輯器] 中，按一下工具列的 [...] \(省略符號)，選取 [新增資料閘道]。 
+6.	在 [Data Factory 編輯器] 中，按一下工具列的 [... (省略符號)]，選取 [新增資料閘道]。 
 
 	![工具列上的 [新增資料閘道]](./media/data-factory-move-data-between-onprem-and-cloud/NewDataGateway.png)
 2. 在 [**建立**] 刀鋒視窗上，輸入 **adftutorialgateway** 做為 [**名稱**]，然後按一下 [**確定**]。 	
@@ -428,7 +423,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 1.	在 **DATA FACTORY** 刀鋒視窗中，按一下 [**製作和部署**] 磚來啟動 Data Factory 的 [**編輯器**]。
 
 	![[製作和部署] 磚](./media/data-factory-move-data-between-onprem-and-cloud/author-deploy-tile.png) 
-2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] \(省略符號) 展開命令列。
+2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] (省略符號) 展開命令列。
 2.	使用下列文字取代右窗格中的 JSON：   
 
 
@@ -480,7 +475,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 	- 在 activities 區段中，只會有 **type** 設定為 **Copy** 的活動。
 	- 活動的**輸入**設定為 **EmpOnPremSQLTable**，活動的**輸出**則設定為 **OutputBlobTable**。
 	- 在 **transformation** 區段中，將 **SqlSource** 指定為**來源類型**，並將 **BlobSink** 指定為**接收類型**。
-	- **SqlSource** 的 **sqlReaderQuery** 屬性指定 SQL 查詢 **select * from emp**。
+- **SqlSource** 的 **sqlReaderQuery** 屬性指定 SQL 查詢 **select * from emp**。
 
 	將 **start** 屬性的值取代為目前日期，並將 **end** 值取代為隔天的日期。開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。例如：2014-10-14T16:32:41Z。**end** 時間為選擇性項目，但在本教學課程中會用到。
 	
@@ -691,4 +686,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 5.	閘道器會利用相同的憑證解密認證，然後利用適當的驗證類行連接到內部部署資料存放區。
 6.	閘道器會根據複製活動在資料管線中的設定方式，將資料從內部部署存放區複製到雲端儲存體，或從雲端儲存體複製到內部部署資料存放區。請注意：在這個步驟中，閘道器會透過安全 (HTTPS) 通道直接與以雲端為基礎的儲存體服務 (例如 Azure Blob、Azure SQL 等) 通訊。
 
-<!-----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0427_2016-->

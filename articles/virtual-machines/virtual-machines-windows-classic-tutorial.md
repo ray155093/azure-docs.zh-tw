@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/06/2016"
+	ms.date="04/19/2016"
 	ms.author="cynthn"/>
 
 # 在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器
@@ -56,4 +56,4 @@
 
 - 附加磁碟來儲存資料。您可以附加空的磁碟和含有資料的磁碟。如需指示，請參閱[將資料磁碟連接至以傳統部署模型建立的 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->
