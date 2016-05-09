@@ -34,7 +34,7 @@
 
 - [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)
 - [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制站](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md) 
-- [設定用於測試的混合式雲端環境](../virtual-network/virtual-networks-setup-hybrid-cloud-environment-testing.md)
+- [設定用於測試的混合式雲端環境](../virtual-machines/virtual-machines-windows-ps-hybrid-cloud-test-env-base.md)
 
 
 ## 其他資源
@@ -47,4 +47,4 @@
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

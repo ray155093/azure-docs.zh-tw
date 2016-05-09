@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/06/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure 機器學習服務活動建立預測管線   
@@ -38,7 +38,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，運用已發佈的 [Azure �
   
 完成重新訓練之後，您想要使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。您可以遵循下面的步驟來達到此目的：
 
-1. 將非預設的端點加入至評分 Web 服務。無法更新 Web 服務的預設端點，所以您必須使用 Azure 傳統入口網站建立新的非預設端點。如需概念資訊和程序步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。
+1. 將非預設的端點加入至評分 Web 服務。無法更新 Web 服務的預設端點，所以您必須使用 Azure 入口網站建立新的非預設端點。如需概念資訊和程序步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。
 2. 更新評分的現有 Azure ML 連結服務，以使用非預設端點。您應該開始使用新的端點，才能使用已更新的 Web 服務。
 3. 使用 [Azure ML 更新資源活動] 以新訓練的模型更新 Web 服務。  
 
@@ -455,7 +455,7 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 | Web 服務類型 | 說明 
 | :------------------ | :---------- 
 | **訓練 Web 服務** | 接收訓練資料並產生已訓練的模型。重新訓練的輸出是 Azure Blob 儲存體中的 .ilearner 檔案。當您將訓練實驗發佈為 Web 服務時，系統會自動為您建立**預設端點**。您可以建立多個端點，但此範例僅使用預設端點 |
-| **評分 Web 服務** | 接收未標記的資料範例並進行預測。預測的輸出可能有各種形式，例如 .csv 檔案或 Azure SQL Database 中的資料列 (視實驗的組態而定)。當您將預測實驗發佈為 Web 服務時，系統會自動為您建立預設端點。您必須使用 [Azure 傳統入口網站](https://manage.windowsazure.com)，來建立第二個**非預設且可更新的端點**。您可以建立多個端點，但此範例僅使用非預設且可更新的端點如需相關步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。       
+| **評分 Web 服務** | 接收未標記的資料範例並進行預測。預測的輸出可能有各種形式，例如 .csv 檔案或 Azure SQL Database 中的資料列 (視實驗的組態而定)。當您將預測實驗發佈為 Web 服務時，系統會自動為您建立預設端點。您必須使用 [Azure 入口網站](https://manage.windowsazure.com)，建立第二個**非預設且可更新的端點**。您可以建立多個端點，但此範例僅使用非預設且可更新的端點如需相關步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。       
  
 下圖描述 Azure ML 中訓練與評分端點之間的關聯性。
 
@@ -772,4 +772,4 @@ Azure ML 更新資源活動不會產生任何輸出，但在 Azure Data Factory 
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

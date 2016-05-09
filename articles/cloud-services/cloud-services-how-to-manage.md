@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/20/2016"
+	ms.date="04/26/2016"
 	ms.author="adegeo"/>
 
 
@@ -23,8 +23,8 @@
 # 如何管理雲端服務
 
 > [AZURE.SELECTOR]
-- [Azure classic portal](cloud-services-how-to-manage.md)
-- [Azure portal](cloud-services-how-to-manage-portal.md)
+- [Azure 入口網站](cloud-services-how-to-manage-portal.md)
+- [Azure 傳統入口網站](cloud-services-how-to-manage.md)
 
 在 Azure 傳統入口網站的 [**雲端服務**] 區域中，您可以更新服務角色或部署、將預備部署提升至生產、將資源連結至您的雲端服務以便於查看資源相依性，並將資源一起調整，以及刪除雲端服務或部署。
 
@@ -164,4 +164,4 @@
 * 設定[自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

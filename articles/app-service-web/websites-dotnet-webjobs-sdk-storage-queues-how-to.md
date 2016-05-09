@@ -544,7 +544,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 停用針對高輸送量的儀表板記錄。根據預設，SDK 會將記錄寫入儲存體，而且在處理許多訊息時，這項活動可能會降低效能。若要停用記錄，請將儀表板連接字串設定為 null，如下列範例所示。
 
 		JobHostConfiguration config = new JobHostConfiguration();       
-		config.DashboardConnectionString = “”;        
+		config.DashboardConnectionString = "";        
 		JobHost host = new JobHost(config);
 		host.RunAndBlock();
 
@@ -611,4 +611,4 @@ public static void ErrorMonitor(
 本指南提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0427_2016-->

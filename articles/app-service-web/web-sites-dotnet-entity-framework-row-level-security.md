@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/25/2016"
+	ms.date="04/25/2016"
 	ms.author="thmullan"/>
 
 # 教學課程：使用 Entity Framework 和資料列層級安全性的 Web 應用程式搭配多租用戶資料庫
@@ -250,4 +250,4 @@ go
 
 除了這些可能性，我們也正在努力讓 RLS 更臻完美。如果您有任何疑問、構想或期望，請留下您的意見。歡迎提供意見反應！
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

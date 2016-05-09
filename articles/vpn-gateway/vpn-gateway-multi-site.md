@@ -3,8 +3,8 @@
    description="本文將逐步引導您使用傳統部署模型的 VPN 閘道，將多個本機內部部署網站連線至虛擬網路。"
    services="vpn-gateway"
    documentationCenter="na"
-   authors="cherylmc"
-   manager="carolz"
+   authors="yushwang"
+   manager="rossort"
    editor=""
    tags="azure-service-management"/>
 
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="12/17/2015"
-   ms.author="cherylmc" />
+   ms.author="yushwang" />
 
 # 將多個內部部署網站連線到虛擬網路
 
@@ -177,4 +177,4 @@
 
 若要深入了解 VPN 閘道，請參閱[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

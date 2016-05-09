@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="04/26/2016"
 	ms.author="curtand"/>
 
 # 在 Azure Active Directory (Azure AD) 中指派系統管理員角色
@@ -32,8 +32,7 @@
 
 - **服務管理員**：管理服務要求，以及監控服務健全狀況。
 
-> [AZURE.NOTE]
-> 若要指派服務管理員角色給使用者，全域管理員必須先指派管理權限給服務中的該使用者，例如 Exchange Online，再指派服務管理員角色給 Azure 傳統入口網站中的使用者。
+	> [AZURE.NOTE] 若要指派服務管理員角色給使用者，全域管理員必須先指派管理權限給服務中的該使用者，例如 Exchange Online，再指派服務管理員角色給 Azure 傳統入口網站中的使用者。
 
 - **使用者管理員**：重設密碼、監控服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。部分限制適用於使用者管理管理員的權限。例如，他們無法刪除全域管理員，或建立其他管理員。此外，他們無法重設計費、全域和服務管理員的密碼。
 
@@ -95,7 +94,7 @@
 
 - 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 
-- 如需有關 Azure Active Directory 與您的 Azure 訂用帳戶產生關聯之方式的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
+- 如需進一步資訊，以了解 Azure Active Directory 如何與您的 Azure 訂用帳戶產生關聯，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 
 - [管理使用者](active-directory-create-users.md)
 
@@ -103,4 +102,4 @@
 
 - [管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0427_2016-->

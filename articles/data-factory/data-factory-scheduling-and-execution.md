@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/27/2016" 
+	ms.date="04/11/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Data Factory 進行排程和執行
@@ -262,7 +262,7 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 ![相同管線中的鏈結活動](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
 
 ### 已排序的複本
-能夠以循序/排序的方式，逐一執行多個複製作業。假設您在管線中有兩個複製活動︰CopyActivity1 和 CopyActivity，並具備下列輸入資料輸出資料集。
+您可以利用循序/排序的方式，逐一執行多個複製作業。假設您在管線中有兩個複製活動︰CopyActivity1 和 CopyActivity，並具備下列輸入資料輸出資料集。
 
 CopyActivity1：輸入：Dataset1 輸出 Dataset2
 
@@ -621,6 +621,51 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 	} 
 
 
+## Onetime 管線
+您可以建立和排程管線，以在管線定義中指定的開始和結束時間內定期執行 (每小時、每日等)。如需詳細資訊，請參閱[排程活動](#scheduling-and-execution)。您也可以建立只執行一次的管線。若要這樣做，請將管線定義中的 **pipelineMode** 屬性設定為 **onetime** (如下列 JSON 範例所示)。這個屬性的預設值是 **scheduled**。
+
+	{
+	    "name": "CopyPipeline",
+	    "properties": {
+	        "activities": [
+	            {
+	                "type": "Copy",
+	                "typeProperties": {
+	                    "source": {
+	                        "type": "BlobSource",
+	                        "recursive": false
+	                    },
+	                    "sink": {
+	                        "type": "BlobSink",
+	                        "writeBatchSize": 0,
+	                        "writeBatchTimeout": "00:00:00"
+	                    }
+	                },
+	                "inputs": [
+	                    {
+	                        "name": "InputDataset"
+	                    }
+	                ],
+	                "outputs": [
+	                    {
+	                        "name": "OutputDataset"
+	                    }
+	                ]
+	                "name": "CopyActivity-0"
+	            }
+	        ]
+	        "pipelineMode": "OneTime"
+	    }
+	}
+
+請注意：
+ 
+- 您不需要指定管線的**開始**和**結束**時間。 
+- 您目前需要指定輸入和輸出資料集的可用性 (頻率和間隔)，即使 Data Factory 未使用這些值也是一樣。  
+- 圖表檢視不會顯示一次性管線。原先的設計就是如此。 
+- 一次性管線無法進行更新。您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。 
+
+  
 
 
 
@@ -653,4 +698,4 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
   
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0427_2016-->

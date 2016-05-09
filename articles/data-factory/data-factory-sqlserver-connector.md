@@ -206,7 +206,7 @@
 	   }
 	}
 
-在上述範例中，已為 SqlSource 指定 **sqlReaderQuery**。複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。
+在上述範例中，已為 SqlSource 指定 **sqlReaderQuery**。複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。請注意，sqlReaderQuery 可以參考輸入資料集所參考資料庫內的多個資料表；不限於僅設定為資料集的 tableName typeProperty 的資料表。
  
 如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，就會使用資料集 JSON 的結構區段中定義的資料行來建立一個查詢，以對 SQL Server 資料庫執行 (從 mytable 選取 column1、column2)。如果資料集定義沒有結構，則會從資料表中選取所有資料行。
 
@@ -457,7 +457,7 @@
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| sqlReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select * from MyTable。如果未指定，執行的 SQL 陳述式：select from MyTable。 | 否 |
+| sqlReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select * from MyTable。可以參考輸入資料集所參考資料庫中的多個資料表。如果未指定，執行的 SQL 陳述式：select from MyTable。 | 否 |
 | sqlReaderStoredProcedureName | 從來源資料表讀取資料的預存程序名稱。 | 預存程序的名稱。 | 否 |
 | storedProcedureParameters | 預存程序的參數。 | 名稱/值組。參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 | 否 |
 
@@ -640,4 +640,4 @@
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

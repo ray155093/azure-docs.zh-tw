@@ -31,7 +31,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 * [jq](https://stedolan.github.io/jq/)：jq 是跨平台命令列公用程式，可與 JSON 文件搭配使用。在這份文件中，它用來剖析從 Ambari REST API 傳回的 JSON 文件。
 * [Azure CLI](../xplat-cli-install.md)：跨平台命令列公用程式，可與 Azure 服務搭配使用。
 
-    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
+    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ##<a id="whatis"></a>什麼是 Ambari？
 
@@ -257,4 +257,4 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 > [AZURE.NOTE] 某些 Ambari 功能已停用，因為這些功能是由 HDInsight 雲端服務所管理；例如，在叢集中新增或移除主機，或新增服務。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

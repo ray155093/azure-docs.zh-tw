@@ -97,12 +97,4 @@
 - 成為現有負載平衡集的成員。
 - 具有靜態 IP 位址。
 
-## 建立以 Linux 為基礎的 VM
-
-若要在 Azure 中建立以 Linux 為基礎且預先設定的新虛擬機器，請依照[使用 Azure Powershell 建立和預先設定 Linux 虛擬機器](virtual-machines-linux-classic-createpowershell.md)中的指示執行。
-
-- 具有額外的磁碟。
-- 成為現有負載平衡集的成員。
-- 具有靜態 IP 位址。
-
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

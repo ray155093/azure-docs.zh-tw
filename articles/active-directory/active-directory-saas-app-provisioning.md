@@ -3,7 +3,7 @@
     description="簡介如何使用 Azure AD 自動佈建、解除佈建，以及跨多個協力廠商 SaaS 應用程式持續更新使用者帳戶。"
     services="active-directory"
     documentationCenter=""
-    authors="liviodlc"
+    authors="asmalser-msft"
     manager="stevenpo"
     editor=""/>
 
@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.workload="identity"
     ms.date="02/09/2016"
-    ms.author="liviodlc"/>
+    ms.author="asmalser-msft"/>
 
 #自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建
 
@@ -116,4 +116,4 @@ Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，�
 - [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

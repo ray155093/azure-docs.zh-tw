@@ -3,7 +3,7 @@
    description="如何使用 Azure DNS 來建立 Web 應用程式的自訂網域 DNS 記錄。使用 CNAME 或 A 記錄，逐步確認網域擁有權" 
    services="dns" 
    documentationCenter="na" 
-   authors="joaoma" 
+   authors="cherylmc" 
    manager="carmonm" 
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
    ms.date="03/03/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # 在自訂網域中建立 Web 應用程式的 DNS 記錄
 
@@ -165,4 +165,4 @@ A 記錄可用來將名稱對應到其 IP 位址。在下列範例中，我們�
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

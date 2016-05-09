@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 # 使用案例 - 產品建議 
 
-Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana 分析套件。請參閱 [Cortana 分析套件](http://www.microsoft.com/cortanaanalytics)頁面以了解這個套件的詳細資料。在本文中，我們描述 Azure 使用者已經使用 Azure Data Factory 和其他 Cortana 分析元件服務解決與實作的常見使用案例。
+Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。請參閱 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics) 頁面以了解這個套件的詳細資料。在本文中，我們描述 Azure 使用者已經使用 Azure Data Factory 和其他 Cortana Intelligence 元件服務解決與實作的常見使用案例。
 
 ## 案例
 
@@ -36,7 +36,7 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 
 ## 解決方案概觀
 
-此範例使用已由實際 Azure 使用者利用 Azure Data Factory 和其他 Cortana 分析元件服務 (包括 [HDInsight](https://azure.microsoft.com/services/hdinsight/) 和 [Power BI](https://powerbi.microsoft.com/)) 解決及實作的案例，藉以擷取、準備、轉換、分析及發佈最終資料。
+此範例使用已由實際 Azure 使用者利用 Azure Data Factory 和其他 Cortana Intelligence 元件服務 (包括 [HDInsight](https://azure.microsoft.com/services/hdinsight/) 和 [Power BI](https://powerbi.microsoft.com/)) 解決及實作的案例，藉以擷取、準備、轉換、分析及發佈最終資料。
 
 線上零售商使用 Azure Blob 存放區、內部部署 SQL Server、Azure SQL DB 和關聯式資料市集做為整個工作流程的資料儲存體選項。Blob 存放區包含客戶資訊、客戶行為資料和產品資訊資料。產品資訊資料包含 SQL 資料倉儲中的產品品牌資訊和產品目錄預存內部部署。
 
@@ -52,7 +52,7 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 
 ## 優點
 
-藉由最佳化其產品建議策略並與業務目標對齊，解決方案可符合線上零售商的商務和行銷目標。此外，它們能夠以有效率、可靠且符合成本效益的方式作業化和管理產品建議工作流程，讓它們輕鬆地根據銷售點擊轉換成功的測量結果更新其模型並微調其有效性。藉由使用 Azure Data Factory，它們可以放棄其耗時且昂貴的手動雲端資源管理，移至隨選雲端資源管理，節省它們的時間和金錢並減少解決方案部署的時間。資料歷程檢視和作業服務健全狀況變得容易視覺化，且 Azure 傳統入口網站也提供利用直覺式 Data Factory 監視和管理 UI 進行的疑難排解。其解決方案可以立即排程與管理，如此可以可靠地產生完成的資料並將其傳送給其使用者，並可自動管理資料和處理相依性而不需人力介入。
+藉由最佳化其產品建議策略並與業務目標對齊，解決方案可符合線上零售商的商務和行銷目標。此外，它們能夠以有效率、可靠且符合成本效益的方式作業化和管理產品建議工作流程，讓它們輕鬆地根據銷售點擊轉換成功的測量結果更新其模型並微調其有效性。藉由使用 Azure Data Factory，它們可以放棄其耗時且昂貴的手動雲端資源管理，移至隨選雲端資源管理，節省它們的時間和金錢並減少解決方案部署的時間。資料歷程檢視和作業服務健全狀況變得容易視覺化，且 Azure 入口網站也提供利用直覺式 Data Factory 監視和管理 UI 進行的疑難排解。其解決方案可以立即排程與管理，如此可以可靠地產生完成的資料並將其傳送給其使用者，並可自動管理資料和處理相依性而不需人力介入。
 
 藉由提供此個人化的購物體驗，線上零售商可建立更具競爭力、更吸引人的客戶體驗，並因此增加銷售量和整體的客戶滿意度。
 
@@ -60,4 +60,4 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 
   
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

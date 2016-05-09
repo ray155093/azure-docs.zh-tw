@@ -3,7 +3,7 @@
 
 本主題將說明如何：
 
-- 將資料插入正在佈建的 Azure 虛擬機器
+- 將資料插入正在佈建的 Azure 虛擬機器 (VM)
 
 - 針對 Windows 和 Linux 進行擷取。
 
@@ -13,33 +13,32 @@
 
 ## 將自訂資料插入 Azure 虛擬機器
 
-目前僅在 [Microsoft Azure 命令列介面](https://github.com/Azure/azure-xplat-cli)中支援此功能。雖然您可能會在 `azure vm create` 命令中使用任何選項，但是下列將示範一個非常基本的方法。
+目前僅在 [Microsoft Azure 命令列介面](https://github.com/Azure/azure-xplat-cli)中支援此功能。我們在這裡建立 `custom-data.txt` 檔案，其中包含我們的資料，然後在佈建期間插入 VM。雖然您可能會在 `azure vm create` 命令中使用任何選項，但是下列將示範一個非常基本的方法：
 
 ```
-    PASSWORD='AcceptablePassword -- more than 8 chars, a cap, a num, a special'
-    VMNAME=mycustomdataubuntu
-    USERNAME=username
-    VMIMAGE= An image chosen from among those listed by azure vm image list
-    azure vm create $VMNAME $VMIMAGE $USERNAME $PASSWORD --location "West US" --json -d ./custom-data.txt -e 22
+    azure vm create <vmname> <vmimage> <username> <password> \  
+    --location "West US" --ssh 22 \  
+    --custom-data ./custom-data.txt  
 ```
 
 
 ## 在虛擬機器中使用自訂資料
 
-+ 如果 Azure 的虛擬機器是以 Windows 為基礎的虛擬機器，自訂資料檔案則會儲存至 `%SYSTEMDRIVE%\AzureData\CustomData.bin`。雖然從本機電腦傳送到新虛擬機器的資料是 base64 編碼，但是系統會自動將它解碼並立即開啟或使用。
++ 如果 Azure VM 是以 Windows 為基礎的 VM，自訂資料檔案則會儲存至 `%SYSTEMDRIVE%\AzureData\CustomData.bin`。雖然從本機電腦傳送到新 VM 的資料是 base64 編碼，但是系統會自動將它解碼並立即開啟或使用。
 
    > [AZURE.NOTE] 如果檔案已存在，則會被覆寫。目錄上的安全性會設為 [System:Full Control] 和 [Administrators:Full Control]。
 
-+ 如果您的 Azure 虛擬機器是以 Linux 為基礎的虛擬機器，自訂資料檔案則會位於下列兩個位置中。資料將會以 base64 編碼，因此您必須先解碼資料。
++ 如果您的 Azure VM 是以 Linux 為基礎的 VM，則根據您的散發套件而定，自訂資料檔案位於下列其中一個位置。資料將會以 base64 編碼，因此您必須先解碼資料：
 
-    + 於 `/var/lib/waagent/ovf-env.xml`
-    + 於 `/var/lib/waagent/CustomData`
+    - `/var/lib/waagent/ovf-env.xml`
+    - `/var/lib/waagent/CustomData`
+    - `/var/lib/cloud/instance/user-data.txt` 
 
 
 
 ## Azure 上的 Cloud-Init
 
-如果您的 Azure 虛擬機器是來自 Ubuntu 或 CoreOS 映像，則您可以使用 CustomData 將 cloud-config 傳送到 cloud-init。或者，如果您的自訂資料檔案是指令碼，則 cloud-init 只能執行它。
+如果您的 Azure VM 是來自 Ubuntu 或 CoreOS 映像，則您可以使用 CustomData 將 cloud-config 傳送到 cloud-init。或者，如果您的自訂資料檔案是指令碼，則 cloud-init 只能執行它。
 
 ### Ubuntu 雲端映像
 
@@ -59,4 +58,4 @@
 
 [Azure 命令列介面](https://github.com/Azure/azure-xplat-cli)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="04/11/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory - 命名規則 
@@ -27,4 +27,4 @@ Data Factory | 在 Microsoft Azure 中是唯一的。名稱不區分大小寫，
 連結的服務/資料表/管線 | 在 Data Factory 中是唯一的。名稱不區分大小寫。 | <ul><li>資料表名稱字元數上限: 260。</li><li>物件名稱必須以字母、數字或底線 (_) 開頭。</li><li>不允許使用下列字元：“.”、“+”、“?”、“/”、“<”、”>”、”*”、”%”、”&”、”:”、”\\”</li></ul> 
 資源群組 | 在 Microsoft Azure 中是唯一的。名稱不區分大小寫。| <ul><li>字元數上限為：1000。</li><li>名稱可包含字母、數字及下列字元：“-”、“_”、“,”及 “.”。</li></ul>
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

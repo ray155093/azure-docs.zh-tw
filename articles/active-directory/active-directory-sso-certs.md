@@ -3,7 +3,7 @@
 	description="了解如何自訂同盟憑證的到期日期，以及如何更新即將到期的憑證。"
 	services="active-directory"
 	documentationCenter=""
-	authors="liviodlc"
+	authors="asmalser-msft"
 	manager="stevenpo"
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="02/09/2016"
-	ms.author="liviodlc"/>
+	ms.author="asmalser-msft"/>
 
 #在 Azure Active Directory 中管理同盟單一登入的憑證
 
@@ -82,4 +82,4 @@
 - [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
 - [SAML 型單一登入疑難排解](active-directory-saml-debugging.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

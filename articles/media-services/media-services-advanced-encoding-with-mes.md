@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/27/2016"    
+	ms.date="04/24/2016"    
 	ms.author="juliako"/>
 
 
@@ -31,6 +31,7 @@
 - [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
 - [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
 - [只有音訊的預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
+- [串連兩個以上的視訊檔案](media-services-custom-mes-presets-with-dotnet.md#concatenate)
 
 ##<a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
@@ -38,10 +39,10 @@
 
 - 建立編碼工作。
 - 取得對 Media Encoder Standard 編碼器的參考
-- 載入自訂 XML 或 JSON 預設值。您可以在檔案中儲存 XML 或 JSON (例如[XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
+- 載入自訂 XML 或 JSON 預設值。您可以在檔案中儲存 XML 或 JSON (例如 [XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
 
-			// Load the XML (or JSON) from the local file.
-		    string configuration = File.ReadAllText(fileName);  
+		// Load the XML (or JSON) from the local file.
+	    string configuration = File.ReadAllText(fileName);  
 - 將編碼工作新增至作業。 
 - 指定要編碼的輸入資產。
 - 建立將包含已編碼資產的輸出資產。
@@ -441,11 +442,11 @@
 	- 預設值：Start:{Best}
 - 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
-##<a id="trim_video"></a>修剪影片 (裁剪)
+##<a id="trim_video"></a>修剪視訊 (裁剪)
 
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 – [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
-若要修剪您的影片，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應位於結構描述頂端。
+若要修剪您的視訊，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應該位於預設值開頭。
  
 ###<a id="json"></a>JSON 預設值
 	
@@ -569,7 +570,7 @@
 
 ###XML 預設值
 	
-若要修剪您的影片，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
+若要修剪您的視訊，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
 
 	<?xml version="1.0" encoding="utf-16"?>
 	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -690,15 +691,15 @@
 
 Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下列格式：png、jpg、gif 及 bmp。下面定義的預設值為視訊疊加層的基本範例。
 
-除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。影片檔必須是**主要**檔案。
+除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是**主要**檔案。
 
-上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給它的自訂預設檔案 (例如，後續的預設值) 建立編碼工作。
+上述 .NET 範例定義兩個函數：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函數會使用傳遞給其的自訂預設值檔案 (例如，後續的預設值) 建立編碼工作。
 
 >[AZURE.NOTE]目前限制：
 >
 >不支援疊加不透明度設定。
 >
->您的來源影片檔案和疊加檔案必須位於相同的資產。
+>來源視訊檔案和疊加影像檔案必須位在相同的資產中，而且視訊檔案需要設定為此資產中的主要檔案。
 
 ###JSON 預設值
 	
@@ -747,7 +748,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	      "KeyFrameInterval": "00:00:02",
 	      "H264Layers": [
 	        {
-	          "Profile": "Baseline",
+	          "Profile": "Auto",
 	          "Level": "auto",
 	          "Bitrate": 1045,
 	          "MaxBitrate": 1045,
@@ -756,8 +757,8 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	          "EntropyMode": "Cavlc",
 	          "AdaptiveBFrame": true,
 	          "Type": "H264Layer",
-	          "Width": "400",
-	          "Height": "400",
+	          "Width": "640",
+	          "Height": "360",
 	          "FrameRate": "0/1"
 	        }
 	      ],
@@ -776,6 +777,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	    }
 	  ]
 	}
+
 
 ###XML 預設值
 	
@@ -816,10 +818,10 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	      <H264Layers>
 	        <H264Layer>
 	          <Bitrate>1045</Bitrate>
-	          <Width>400</Width>
-	          <Height>400</Height>
+	          <Width>640</Width>
+	          <Height>360</Height>
 	          <FrameRate>0/1</FrameRate>
-	          <Profile>Baseline</Profile>
+	          <Profile>Auto</Profile>
 	          <Level>auto</Level>
 	          <BFrames>0</BFrames>
 	          <ReferenceFrames>3</ReferenceFrames>
@@ -840,13 +842,14 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	  </Outputs>
 	</Preset>
 
+
 ##<a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
 
 依照預設，如果您傳送僅包含視訊不含音訊的輸入到編碼器，輸出資產將包含僅含視訊資料的檔案。某些播放器可能無法處理此類型輸出資料流。您可以在該案例中使用此設定來強制編碼器將靜音曲目新增至輸出。
 
 若要強制編碼器在輸入不含音訊時產生包含靜音曲目的資產，請指定 "InsertSilenceIfNoAudio" 值。
 
-您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)列出的任何 MES 預設值，並執行以下修改：
+您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
 
 ###JSON 預設值
 
@@ -947,6 +950,116 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	  ]
 	}
 
+##<a id="concatenate"></a>串連兩個以上的視訊檔案
+
+下列範例示範如何產生預設值來串連兩個以上的視訊檔案。最常見的案例是您想要在主要視訊中加入標頭或預告片時。預定用法是一起編輯的視訊檔案共用相同屬性 (視訊解析度、畫面播放速率、曲目數等) 時。您應該注意不要混合使用不同畫面播放速率或不同曲目數的視訊。
+
+###需求和考量
+
+- 輸入視訊應該只有一個曲目。
+- 輸入視訊的畫面播放速率應該都相同。
+- 您必須將視訊上傳至不同的資產，並將視訊設定為每個資產中的主要檔案。
+- 您需要知道您視訊的持續時間。
+- 下列預設值範例假設所有輸入視訊的開頭為零時間戳記。如果視訊具有不同的開始時間戳記 (通常是即時封存的情況)，則需要修改 StartTime 值。
+- JSON 預設值會建立輸入資產之 AssetID 值的明確參考。
+- 範例程式碼假設 JSON 預設值已儲存至本機檔案 (例如 "C:\\supportFiles\\preset.json")。其也會假設已透過上傳兩個視訊檔案來建立兩個資產，並假設您知悉產生的 AssetID 值。
+- 程式碼片段和 JSON 預設值顯示串連兩個視訊檔案的範例。您可以將其擴充至兩個以上的視訊，方法是︰
+
+	1. 重複呼叫 task.InputAssets.Add() 依序加入更多視訊。
+	2. 加入更多項目，以依相同順序對 JSON 中的 "Sources" 元素進行對應編輯。 
+
+
+###.NET 程式碼
+
+	
+	IAsset asset1 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:606db602-efd7-4436-97b4-c0b867ba195b").FirstOrDefault();
+	IAsset asset2 = _context.Assets.Where(asset => asset.Id == "nb:cid:UUID:a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e").FirstOrDefault();
+	
+	// Declare a new job.
+	IJob job = _context.Jobs.Create("Media Encoder Standard Job for Concatenating Videos");
+	// Get a media processor reference, and pass to it the name of the 
+	// processor to use for the specific task.
+	IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
+	
+	// Load the XML (or JSON) from the local file.
+	string configuration = File.ReadAllText(@"c:\supportFiles\preset.json");
+	
+	// Create a task
+	ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
+	    processor,
+	    configuration,
+	    TaskOptions.None);
+	
+	// Specify the input videos to be concatenated (in order).
+	task.InputAssets.Add(asset1);
+	task.InputAssets.Add(asset2);
+	// Add an output asset to contain the results of the job. 
+	// This output is specified as AssetCreationOptions.None, which 
+	// means the output asset is not encrypted. 
+	task.OutputAssets.AddNew("Output asset",
+	    AssetCreationOptions.None);
+	
+	job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
+	job.Submit();
+	job.GetExecutionProgressTask(CancellationToken.None).Wait();
+
+###JSON 預設值
+
+使用您想要串連的資產識別碼以及每個視訊的適當時間區段，進而更新您的自訂預設值。
+
+	{
+	  "Version": 1.0,
+	  "Sources": [
+	    {
+	      "AssetID": "606db602-efd7-4436-97b4-c0b867ba195b",
+	      "StartTime": "00:00:01",
+	      "Duration": "00:00:15"
+	    },
+	    {
+	      "AssetID": "a7e2b90f-0565-4a94-87fe-0a9fa07b9c7e",
+	      "StartTime": "00:00:02",
+	      "Duration": "00:00:05"
+	    }
+	  ],
+	  "Codecs": [
+	    {
+	      "KeyFrameInterval": "00:00:02",
+	      "SceneChangeDetection": true,
+	      "H264Layers": [
+	        {
+	          "Level": "auto",
+	          "Bitrate": 1800,
+	          "MaxBitrate": 1800,
+	          "BufferWindow": "00:00:05",
+	          "BFrames": 3,
+	          "ReferenceFrames": 3,
+	          "AdaptiveBFrame": true,
+	          "Type": "H264Layer",
+	          "Width": "640",
+	          "Height": "360",
+	          "FrameRate": "0/1"
+	        }
+	      ],
+	      "Type": "H264Video"
+	    },
+	    {
+	      "Channels": 2,
+	      "SamplingRate": 48000,
+	      "Bitrate": 128,
+	      "Type": "AACAudio"
+	    }
+	  ],
+	  "Outputs": [
+	    {
+	      "FileName": "{Basename}_{Width}x{Height}_{VideoBitrate}.mp4",
+	      "Format": {
+	        "Type": "MP4Format"
+	      }
+	    }
+	  ]
+	}
+	
+
 ##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -959,4 +1072,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

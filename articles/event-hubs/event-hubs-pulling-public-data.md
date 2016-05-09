@@ -1,20 +1,20 @@
 <properties
-   pageTitle="將公用資料提取到 Azure 事件中樞 | Microsoft Azure"
-   description="從 Web 範例匯入事件中樞的概觀"
-   services="event-hubs"
-   documentationCenter="na"
-   authors="spyrossak"
-   manager="timlt"
-   editor=""/>
+    pageTitle="將公用資料提取到 Azure 事件中樞 | Microsoft Azure"
+    description="從 Web 範例匯入事件中樞的概觀"
+    services="event-hubs"
+    documentationCenter="na"
+    authors="spyrossak"
+    manager="timlt"
+    editor=""/>
 
 <tags 
-   ms.service="event-hubs"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="02/05/2016"
-   ms.author="spyros;sethm" />
+    ms.service="event-hubs"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="04/26/2016"
+    ms.author="spyros;sethm" />
 
 # 將公用資料提取到 Azure 事件中樞
 
@@ -47,4 +47,4 @@
 
 請參閱 [Azure 範例資源庫](https://azure.microsoft.com/documentation/samples/?service=event-hubs)中和 [MSDN](https://code.msdn.microsoft.com/site/search?query=event%20hubs&f%5B0%5D.Value=event%20hubs&f%5B0%5D.Type=SearchText&ac=5) 上的其他事件中樞範例。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0427_2016-->

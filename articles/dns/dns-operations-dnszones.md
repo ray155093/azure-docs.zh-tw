@@ -3,7 +3,7 @@
    description="您可以使用 Azure Powershell 管理 DNS 區域。如何在 Azure DNS 上更新、刪除及建立 DNS 區域" 
    services="dns" 
    documentationCenter="na" 
-   authors="joaoma" 
+   authors="cherylmc" 
    manager="carmonm" 
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
    ms.date="03/17/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # 如何管理使用 PowerShell 的 DNS 區域
 
@@ -113,4 +113,4 @@
 
 [使用 .NET SDK 自動化作業](dns-sdk.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->
