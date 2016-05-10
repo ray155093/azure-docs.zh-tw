@@ -4,7 +4,7 @@
 	services="cdn"
 	documentationCenter=".NET"
 	authors="juliako"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,9 +13,9 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/01/2016"
+	ms.date="04/25/2016"
 	ms.author="juliako"/>
-
+ 
 #媒體服務延伸模組中的 CDN 快取原則
 
 Azure 媒體服務提供 HTTP 式「彈性資料流」和漸進式下載功能。HTTP 式資料流具有快取 Proxy 和 CDN 層，以及快取用戶端的優點，所以延展性極佳。資料流端點提供一般串流功能，以及 HTTP 快取標頭的組態。串流端點會設定 HTTP Cache-Control: max-age 和 Expires 標頭。您可以從 [W3.org](http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html) (英文) 取得 HTTP 快取標頭的詳細資訊。
@@ -42,4 +42,4 @@ Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microso
 2. 如果沒有任何手動組態，系統會套用預設值。
 3. 根據預設，2 秒快取標頭會套用至即時資料流資訊清單 (播放清單)，無論 Azure 媒體或 Azure 儲存體組態為何，且此值無法被覆寫。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

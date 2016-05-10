@@ -190,10 +190,10 @@ Azure Redis 快取可以使用 .NET 物件及基本資料型別，但必須先�
 
 ## 將 ASP.NET 工作階段狀態和輸出快取移轉至 Azure Redis 快取
 
-Azure Redis 快取有適用於 ASP.NET 工作階段狀態和頁面輸出快取的提供者。若要移轉使用這些提供者之受管理的快取服務版本的應用程式，請先從您的 web.config 移除現有的區段，然後設定這些提供者的 Azure Redis 快取版本。如需使用 Azure Redis 快取 ASP.NET 提供者的指示，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](cache-asp.net-session-state-provider.md)和 [Azure Redis 快取的 ASP.NET 輸出快取提供者](cache-asp.net-output-cache-provider.md)。
+Azure Redis 快取有適用於 ASP.NET 工作階段狀態和頁面輸出快取的提供者。若要移轉使用這些提供者之受管理的快取服務版本的應用程式，請先從您的 web.config 移除現有的區段，然後設定這些提供者的 Azure Redis 快取版本。如需使用 Azure Redis 快取 ASP.NET 提供者的指示，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](cache-aspnet-session-state-provider.md)和 [Azure Redis 快取的 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)。
 
 ## 後續步驟
 
 瀏覽 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/)中的教學課程、範例、影片及其他資訊。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

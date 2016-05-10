@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="04/15/2016"
+	ms.date="04/25/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -62,11 +62,10 @@
 1. 在電腦上開啟 **Visual Studio 2015**。
 2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
 3. 在 [新增專案] 對話方塊中，依序選取 [範本] / [Visual C#] / [主控台應用程式]、為專案命名，然後按一下 [確定]。![[新增專案] 視窗的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-new-project-2.png)
-4. 在 [**方案總管**] 中，以滑鼠右鍵按一下 Visual Studio 方案底下的新主控台應用程式。
+4. 在 [方案總管] 中，以滑鼠右鍵按一下 Visual Studio 方案底下的新主控台應用程式。
 5. 然後在無需離開功能表的情況下，按一下 [管理 NuGet 封裝...]。![專案的滑鼠右鍵功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges.png)
-6. 在 [**管理 NuGet 封裝**] 視窗的最左側窗格上，依序按一下 [**線上**] / [**nuget.org**]。
-7. 在 [線上搜尋] 輸入方塊中，搜尋 **DocumentDB**。
-8. 在結果中，尋找 [**Microsoft Azure DocumentDB 用戶端程式庫**]，並按一下 [**安裝**]。DocumentDB 用戶端程式庫的封裝識別碼為 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB) ![用於尋找 DocumentDB 用戶端 SDK 的 Nuget 功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges-2.png)
+6. 在 [Nuget] 索引標籤中按一下 [瀏覽]，然後在搜尋方塊中輸入 **azure documentdb**。
+7. 在結果中尋找 [Microsoft.Azure.DocumentDB]，然後按一下 [安裝]。DocumentDB 用戶端程式庫的封裝識別碼為 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB) ![用於尋找 DocumentDB 用戶端 SDK 的 Nuget 功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges-2.png)
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started/blob/master/src/Program.cs) 找到本教學課程的完整程式碼專案。
 
@@ -74,10 +73,11 @@
 
 首先，在 Program.cs 檔案中，將這些參考新增到 C# 應用程式的開頭：
 
-		// ADD THIS PART TO YOUR CODE
-		using System;
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    // ADD THIS PART TO YOUR CODE
     using System.Net;
     using Microsoft.Azure.Documents;
     using Microsoft.Azure.Documents.Client;
@@ -85,7 +85,7 @@
 
 > [AZURE.IMPORTANT] 若要完成此 NoSQL 教學課程，請務必加入上述的相依性。
 
-現在，在 public class Program 之下加入下列兩個常數和您的client 變數。
+現在，在「public class Program」之下加入下列兩個常數和您的「client」變數。
 
 	public class Program
 	{
@@ -98,7 +98,7 @@
 
 在 Azure 入口網站中，瀏覽至步驟 1 的 DocumentDB 帳戶。
 
-按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代您程式中的 *<your endpoint URI>*。複製主索引鍵並以所複製的索引鍵取代您程式中的 *<your key>*。
+按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代您程式中的「<your endpoint URI>」。複製主索引鍵並以所複製的索引鍵取代您程式中的「<your key>」。
 
 ![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。顯示 DocumentDB 帳戶，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
 
@@ -116,7 +116,7 @@
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 	}
 
-加入下列程式碼，以從 **Main** 方法執行非同步工作。 **Main** 方法會攔截例外狀況並將它們寫入主控台。
+加入下列程式碼，以從 **Main** 方法執行非同步工作。**Main** 方法會攔截例外狀況並將它們寫入主控台。
 
 	static void Main(string[] args)
 	{
@@ -141,7 +141,6 @@
 					Console.WriteLine("End of demo, press any key to exit.");
 					Console.ReadKey();
 			}
-	}
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -162,7 +161,7 @@
 
 可以使用 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法建立 DocumentDB [資料庫](documentdb-resources.md#databases)。資料庫是分割給多個集合之 JSON 文件儲存體的邏輯容器。
 
-複製 **CreateDatabaseIfNotExists** 方法並貼到 **GetStartedDemo** 方法之下。
+複製 **CreateDatabaseIfNotExists** 方法並貼到 **WriteToConsoleAndPromptToContinue** 方法之下。
 
 	// ADD THIS PART TO YOUR CODE
 	private async Task CreateDatabaseIfNotExists(string databaseName)
@@ -243,7 +242,7 @@
 		}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 *FamilyCollection* 的文件集合。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 FamilyCollection 的文件集合。
 
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
@@ -611,4 +610,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

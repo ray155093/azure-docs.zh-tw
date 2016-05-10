@@ -5,7 +5,7 @@
    services="app-service\web" 
    documentationCenter=".net" 
    authors="Juliako" 
-   manager="dwrede" 
+   manager="erikre" 
    editor=""/>
 
 <tags
@@ -14,9 +14,9 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="01/31/2016"
+   ms.date="04/25/2016"
    ms.author="juliako"/>
-
+ 
 # Azure SDK for .NET 2.8、2.8.1 和 2.8.2
 
 ##概觀
@@ -103,4 +103,4 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

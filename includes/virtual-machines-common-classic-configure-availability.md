@@ -44,11 +44,7 @@
 
 	在新虛擬機器的儀表板中，您可以按一下 [設定] 並查看此虛擬機器是否隸屬於新的可用性設定組。
 
-若要使用 Azure PowerShell 命令建立 Azure 虛擬機器，並將它加入至新的或現有的可用性集合，請參閱下列內容：
-
-
-- [使用 Azure PowerShell 建立和預先設定以 Linux 為基礎的虛擬機器](../articles/virtual-machines/virtual-machines-linux-classic-createpowershell.md)
-- [使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-create-powershell.md)
+若要使用 Azure PowerShell 命令建立 Azure 虛擬機器，並將它新增至新的或現有的可用性設定組，請參閱[使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-create-powershell.md)
 
 ## <a id="addmachine"> </a>選項 2：將現有虛擬機器加入至可用性設定組##
 
@@ -80,7 +76,7 @@
 
 ## 其他資源
 
-[服務管理中針對虛擬機器的文章]
+[傳統虛擬機器的文章][]
 
 <!-- LINKS -->
 [選項 1：同時建立虛擬機器和可用性設定組]: #createset
@@ -91,6 +87,6 @@
 
 [建立執行 Windows 的虛擬機器]: ../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md
 [虛擬網路概觀]: ../articles/virtual-network/virtual-networks-overview.md
-[服務管理中針對虛擬機器的文章]: https://azure.microsoft.com/documentation/articles/?tag=azure-service-management&service=virtual-machines
+[傳統虛擬機器的文章]: https://azure.microsoft.com/documentation/articles/?tag=azure-service-management&service=virtual-machines
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

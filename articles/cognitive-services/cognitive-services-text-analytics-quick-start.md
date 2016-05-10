@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags
-	ms.service="machine-learning"
+	ms.service="cognitive-services"
 	ms.workload="data-services"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -240,4 +240,4 @@
 
 恭喜！ 您已完成對資料使用文字分析。現在您可以考慮使用一種工具，例如 [Power BI](//powerbi.microsoft.com) 以視覺化呈現您的資料，以及自動化您的見解，提供文字資料的即時檢視。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

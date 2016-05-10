@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter="xamarin"
 	authors="ggailey777"
-	manager="dwrede"
+	manager="erikre"
 	editor="" />
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="02/05/2016"
+	ms.date="05/03/2016"
 	ms.author="glenga" />
 
 #建立 Xamarin.Android 應用程式
@@ -70,7 +70,9 @@
 
 ##後續步驟
 
-* [加入驗證至應用程式](app-service-mobile-xamarin-android-get-started-users.md) <br/>了解如何使用身分識別提供者驗證應用程式的使用者。
+* [加入驗證至應用程式](app-service-mobile-xamarin-android-get-started-users.md) 了解如何使用身分識別提供者驗證應用程式的使用者。
+* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-android-get-started-push.md) 了解如何在應用程式中新增推播通知。
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md) 了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
 
 
 <!-- Images. -->
@@ -84,4 +86,4 @@
 [Azure Portal]: https://azure.portal.com/
 [Visual Studio]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

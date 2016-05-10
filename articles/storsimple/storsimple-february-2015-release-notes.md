@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
  <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/01/2015"
+   ms.date="04/18/2016"
    ms.author="v-sharos" />
 
 # StorSimple 8000 系列 Update 0.3 版本資訊 - 2015 年 2 月
@@ -27,7 +27,7 @@
 
 在 StorSimple 方案中部署更新之前，請檢閱版本資訊中所包含的資訊。
 
->[AZURE.IMPORTANT]
+>[AZURE.IMPORTANT]   
 >
 > - 使用 StorSimple Manager 服務來安裝 2 月的更新，而非 Windows PowerShell for StorSimple。   
 > - 安裝此更新，大約需要花費一小時。不過，如果您要安裝累積更新，可能需要約 3 個小時才能完成程序。  
@@ -86,4 +86,4 @@
 這個版本不包含任何虛擬裝置的更新。套用此更新不會變更虛擬裝置的軟體版本。
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -188,7 +188,22 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 | 作業 | 支援的運算子 | 結果類型 |
 | ------------------------------------- | --------------------- | ------------- |
-| double 運算子 double | +, -, *, / | double | | double 運算子 timeinterval | * | timeinterval | | doubleVec 運算子 double | +, -, *, / | doubleVec | | doubleVec 運算子 doubleVec | +, -, *, / | doubleVec | | timeinterval 運算子 double | *, / | timeinterval | | timeinterval 運算子 timeinterval | +, - | timeinterval | | timeinterval 運算子 timestamp | + | timestamp | | timestamp 運算子 timeinterval | + | timestamp | | timestamp 運算子 timestamp | - | timeinterval | | *運算子*double | -, ! | double | | *運算子*timeinterval | - | timeinterval | | double 運算子 double | <, <=, ==, >=, >, != | double | | string 運算子 string | <, <=, ==, >=, >, != | double | | timestamp 運算子 timestamp | <, <=, ==, >=, >, != | double | | timeinterval 運算子 timeinterval | <, <=, ==, >=, >, != | double | | double 運算子 double | &&, || | double |
+| double 運算子 double 				| +, -, *, /            | double		    |
+| double 運算子 timeinterval 		| *                     | timeinterval	    |
+| doubleVec 運算子 double 			| +, -, *, /            | doubleVec		    |
+|  doubleVec 運算子 doubleVec 		| +, -, *, /            | doubleVec		    |
+| timeinterval 運算子 double 		| *, /                  | timeinterval	    |
+| timeinterval 運算子 timeinterval 	| +, -                  | timeinterval	    |
+| timeinterval 運算子 timestamp 		| +                     | timestamp		    |
+| timestamp 運算子 timeinterval 		| +                     | timestamp		    |
+| timestamp 運算子 timestamp 		| -                     | timeinterval	    |
+|  *運算子*double 					| -, !                  | double		    |
+| *運算子*timeinterval 				| -                     | timeinterval	    |
+| double 運算子 double 				| <, <=, ==, >=, >, !=  | double		    |
+| string 運算子 string 				| <, <=, ==, >=, >, !=  | double		    |
+| timestamp 運算子 timestamp 		| <, <=, ==, >=, >, !=  | double		    |
+| timeinterval 運算子 timeinterval 	| <, <=, ==, >=, >, !=  | double		    |
+| double 運算子 double				| &&, &#124;&#124;      | double		    |
 
 測試具有三元運算子的雙精準數 (`double ? statement1 : statement2`) 時，非零為 **true**，而零則為 **false**。
 

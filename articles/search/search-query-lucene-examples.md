@@ -15,13 +15,13 @@
     ms.workload="search"
     ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.date="03/25/2016"
+    ms.date="04/22/2016"
     ms.author="liamca"
 />
 
 # 在 Azure 搜尋服務中建置查詢的 Lucene 查詢語法範例
 
-預設[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)的替代方案是使用 [ Azure 搜尋服務中的 Lucene 查詢剖析器](https://msdn.microsoft.com/library/azure/mt589323.aspx)。Lucene 查詢剖析器支援更複雜的查詢建構，例如欄位範圍查詢、模糊搜尋、鄰近搜尋、詞彙提升，和規則運算式搜尋。
+建構 Azure 搜尋服務的查詢時，您可以使用預設的[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)或替代的 [Azure 搜尋服務 Lucene 查詢剖析器](https://msdn.microsoft.com/library/azure/mt589323.aspx)。Lucene 查詢剖析器支援更複雜的查詢建構，例如欄位範圍查詢、模糊搜尋、鄰近搜尋、詞彙提升，和規則運算式搜尋。
 
 在本文中，您可以逐步了解並排顯示查詢語法和結果的範例。針對在 [JSFiddle](https://jsfiddle.net/) 中預先載入的搜尋索引執行的範例，這是測試指令碼和 HTML 的線上程式碼編輯器。
 
@@ -29,23 +29,31 @@
 
 > [AZURE.NOTE] 下列範例會根據 [紐約市 OpenData](https://nycopendata.socrata.com/) 計劃所提供的資料集，利用由可用工作所組成的搜尋索引。這項資料不應視為目前的或已完成。索引位於由 Microsoft 提供的沙箱服務上。您不需要 Azure 訂用帳戶或 Azure 搜尋服務即可嘗試這些查詢。
 
-## 在搜尋要求中設定 Lucene 查詢剖析器
+## 檢視本文中的範例
 
-若要使用 Lucene 查詢剖析器，請設定 **queryType** 搜尋參數來指定要使用哪個剖析器。您會在每次要求指定 **queryType**。有效值包括**簡單**|**完整**，預設值為**簡單**。如需指定查詢參數的詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798927.aspx)。
+本文中的所有範例都會透過 **queryType** 搜尋參數來指定 Lucene 查詢剖析器。從您的程式碼使用 Lucene 查詢剖析器時，每個要求您都會指定 **queryType**。有效值包括 **simple**|**full**，**simple** 為預設值，**full** 為 Lucene 查詢剖析器。如需指定查詢參數的詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798927.aspx)。
 
-**範例 1** -- 以滑鼠右鍵按一下下列查詢程式碼片段，以在載入 JSFiddle 及執行查詢的新瀏覽器頁面上將其開啟。此查詢會從工作索引傳回文件 (在沙箱服務上載入)︰
+**範例 1** -- 以滑鼠右鍵按一下下列查詢程式碼片段，以在載入 JSFiddle 及執行查詢的新瀏覽器頁面上將其開啟：
 - [&queryType=full&search=*](http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26searchFields=business_title%26$select=business_title%26queryType=full%26search=*)
 
-## 加入欄位的查詢作業
+此查詢會從工作索引傳回文件 (在沙箱服務上載入)
 
-在接下來的範例中，您會指定 **fieldname:searchterm** 建構來定義加入欄位的查詢作業，其中欄位是單一文字，而搜尋詞彙也是一個單一文字或片語，選擇性使用布林運算子。某些範例包括以下內容：
+在新的瀏覽器視窗中，您會看到 JavaScript 來源和 HTML 輸出並排顯示。指令碼會參考查詢，本文中的指令碼由範例 URL 提供。例如，在**範例 1** 中，基礎查詢如下所示︰
+
+    http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26searchFields=business_title%26$select=business_title%26queryType=full%26search=*
+
+請注意查詢會使用預先設定的 Azure 搜尋服務索引，名為 nycjobs。**searchFields** 參數會將搜尋限制在商務標題欄位。**queryType** 設為 **full**，指示 Azure 搜尋服務對這個查詢使用 Lucene 查詢剖析器。
+
+### 加入欄位的查詢作業
+
+您可以修改本文中的範例：指定 **fieldname:searchterm** 建構來定義加入欄位的查詢作業，其中欄位是單一文字，而搜尋詞彙也是一個單一文字或片語，選擇性使用布林運算子。某些範例包括以下內容：
 
 - business\_title:senior NOT junior
 - state:"New York" AND "New Jersey"
 
 如果您想要將字串視為單一實體評估，請務必將多個字串放在引號中，例如搜尋 [位置] 欄位中兩個不同城市的情況。此外，請確定運算子是大寫，如同您看到的 NOT 和 AND。
 
-**fieldname:searchterm** 中指定的欄位必須是可搜尋的欄位。如需欄位定義中索引屬性使用方式的詳細資料，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
+**fieldname:searchterm** 中指定的欄位必須是可搜尋的欄位。如需欄位定義中索引屬性使用方式的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
 
 ## 模糊搜尋
 
@@ -121,4 +129,4 @@
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

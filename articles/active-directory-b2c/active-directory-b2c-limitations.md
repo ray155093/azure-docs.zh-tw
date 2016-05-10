@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="04/19/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：限制
@@ -92,4 +92,4 @@ Azure AD B2C 預覽支援 OpenID Connect 和 OAuth 2.0。不過，並非每個�
 
 您目前無法在 [Azure 傳統入口網站](https://manage.windowsazure.com/)上順利驗證網域。我們正在努力修復此問題。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0427_2016-->

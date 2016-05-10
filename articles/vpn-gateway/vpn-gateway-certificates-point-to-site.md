@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/15/2016"
+   ms.date="04/26/2016"
    ms.author="cherylmc" />
 
 # 使用點對站設定的自我簽署根憑證
@@ -34,13 +34,13 @@ Makecert 是建立自我簽署根憑證的其中一種方式。下列步驟將�
 	
 		C:\Program Files (x86)\Windows Kits\10\bin\x64\makecert.exe
 
-3. 接下來，建立並安裝您的電腦上的個人憑證存放區中的根憑證。以下範例會建立您稍後將上傳的對應 .cer 檔案。以系統管理員身分執行下列命令，其中 RootCertificateName 是您想要用於憑證的名稱。
+3. 接下來，建立並安裝您的電腦上的個人憑證存放區中的根憑證。以下範例會建立您稍後將上傳的對應 *.cer* 檔案。以系統管理員身分執行下列命令，其中 *RootCertificateName* 是您想要用於憑證的名稱。
 
-	請注意：如果執行以下範例不做任何變更，結果將是根憑證和對應檔案 RootCertificateName.cer。您可以在執行命令所在的目錄中找到 .cer 檔案。憑證會位於您的憑證 - 目前使用者\\個人\\憑證。
+	請注意：如果執行以下範例不做任何變更，結果將是根憑證和對應檔案 *RootCertificateName.cer*。您可以在執行命令所在的目錄中找到 .cer 檔案。憑證會位於您的憑證 - 目前使用者\\個人\\憑證。
 
     	makecert -sky exchange -r -n "CN=RootCertificateName" -pe -a sha1 -len 2048 -ss My "RootCertificateName.cer"
 
-	>[AZURE.NOTE]因為您已經建立會產生用戶端憑證的根憑證，您可能會想要將此憑證及其私密金鑰匯出，並將它儲存到可復原的安全位置。
+	>[AZURE.NOTE] 因為您已經建立會產生用戶端憑證的根憑證，您可能會想要將此憑證及其私密金鑰匯出，並將它儲存到可復原的安全位置。
 
 ## 產生、匯出及安裝用戶端憑證
 
@@ -52,7 +52,7 @@ Makecert 是建立自我簽署根憑證的其中一種方式。下列步驟將�
 
 1. 在用來建立自我簽署根憑證的相同電腦上，以系統管理員身分開啟命令提示字元。
 
-2. 將目錄切換至您要儲存用戶端憑證檔案的位置。RootCertificateName 是指您產生的自我簽署根憑證。如果您執行以下範例 (但將 RootCertificateName 變更為您的根憑證名稱)，就會在個人憑證存放區中產生一個名為 "ClientCertificateName" 的用戶端憑證。
+2. 將目錄切換至您要儲存用戶端憑證檔案的位置。*RootCertificateName* 是指您產生的自我簽署根憑證。如果您執行以下範例 (但將 RootCertificateName 變更為您的根憑證名稱)，就會在個人憑證存放區中產生一個名為 "ClientCertificateName" 的用戶端憑證。
 
 3. 輸入以下命令：
 
@@ -62,7 +62,7 @@ Makecert 是建立自我簽署根憑證的其中一種方式。下列步驟將�
 
 ### 匯出用戶端憑證
 
-1. 若要匯出用戶端憑證，請使用 certmgr.msc。以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。這樣會開啟 [憑證匯出精靈]。
+1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。這樣會開啟 [憑證匯出精靈]。
 
 2. 在精靈中，按 [下一步]，然後選取 [是，匯出私密金鑰]，然後按 [下一步]。
 
@@ -78,7 +78,7 @@ Makecert 是建立自我簽署根憑證的其中一種方式。下列步驟將�
 
 您想要使用點對站連線與虛擬網路連線的每個用戶端，都必須安裝用戶端憑證。此憑證是必要的 VPN 設定封裝以外的項目。下列步驟將引導您手動安裝用戶端憑證。
 
-1. 找出 .pfx 檔案並複製到用戶端電腦。在用戶端電腦上按兩下 .pfx 檔案以安裝。將 [存放區位置] 保留為 [目前使用者]，然後按 [下一步]。
+1. 找出 *.pfx* 檔案並複製到用戶端電腦。在用戶端電腦上按兩下 *.pfx* 檔案以安裝。將 [存放區位置] 保留為 [目前使用者]，然後按 [下一步]。
 
 2. 在 [匯入檔案] 頁面上，請勿進行任何變更。按 [下一步]。
 
@@ -95,4 +95,4 @@ Makecert 是建立自我簽署根憑證的其中一種方式。下列步驟將�
 - 對於「資源管理員」部署模型步驟，請參閱 [Configure a Point-to-Site connection to a virtual network using PowerShell (使用 PowerShell 設定虛擬網路的點對站連線)](vpn-gateway-howto-point-to-site-rm-ps.md)。 
 - 如需「傳統」部署模型步驟，請參閱[設定 VNet 的點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0427_2016-->

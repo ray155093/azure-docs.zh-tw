@@ -22,7 +22,7 @@
 
 Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclipse 開發環境來建立、開發、測試及部署 Azure 應用程式。它是開放原始碼專案，您可以從專案網站，透過 Apache License 2.0 取得其原始程式碼：
 
-* <https://github.com/microsoft/azure-tools-for-java.>
+* <https://github.com/microsoft/azure-tools-for-java>
 
 ## 開始使用 Azure Toolkit for Eclipse ##
 
@@ -95,4 +95,4 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 [在 JSP 中使用 Azure 服務執行階段程式庫]: http://go.microsoft.com/fwlink/?LinkID=699551
 [適用於 Eclipse 的 Azure 工具組的新功能]: http://go.microsoft.com/fwlink/?LinkID=699552
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

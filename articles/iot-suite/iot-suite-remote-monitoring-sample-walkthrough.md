@@ -225,4 +225,12 @@ Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱
 
 ![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_08.png)
 
-<!---HONumber=AcomDC_0309_2016-->
+
+## 後續步驟
+
+下列 TechNet 部落格文章提供有關遠端監視預先設定之解決方案的其他詳細資料 ︰
+
+- [IoT 套件 - 幕後 - 遠端監視](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
+- [IoT 套件 - 遠端監視 - 新增即時與模擬裝置](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
+
+<!---HONumber=AcomDC_0504_2016-->

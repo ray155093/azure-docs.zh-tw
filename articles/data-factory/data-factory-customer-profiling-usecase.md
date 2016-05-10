@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 # 使用案例 - 客戶分析
 
-Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana 分析套件。如需有關 Cortana 分析的詳細資訊，請造訪 [Cortana 分析套件](http://www.microsoft.com/cortanaanalytics)。在本文中，我們會說明簡單的使用案例，以幫助您開始著手了解 Azure Data Factory 如何解決常見的分析問題。
+Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。如需 Cortana Intelligence 的詳細資訊，請瀏覽 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics)。在本文中，我們會說明簡單的使用案例，以幫助您開始著手了解 Azure Data Factory 如何解決常見的分析問題。
 
 若要存取並嘗試這個簡單的使用案例，您只需要 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。您可以藉由遵循[範例](data-factory-samples.md)一文所述的步驟，部署實作此使用案例的範例。
 
@@ -36,7 +36,7 @@ Contoso 的目標是要根據遊戲使用者的遊戲歷程記錄設定檔識別
 
 這個簡單的使用案例可以當做您如何使用 Azure Data Factory 擷取、準備、轉換、分析和發佈資料的範例。
 
-![端對端工作流程](./media/data-factory-customer-profiling-usecase/EndToEndWorkflow.png) 上圖說明部署資料管線之後，它們會如何出現在 Azure 傳統入口網站 UI 中。
+![端對端工作流程](./media/data-factory-customer-profiling-usecase/EndToEndWorkflow.png) 上圖說明部署資料管線之後，其會如何出現在 Azure 入口網站 UI 中。
 
 1.	**PartitionGameLogsPipeline** 從 Blob 儲存體讀取原始遊戲事件，並根據年、月和日建立分割區。
 2.	**EnrichGameLogsPipeline** 聯結分割的遊戲事件與地區代碼參考資料，並將 IP 位址對應到相對應的地理位置來充實資料。
@@ -48,4 +48,4 @@ Contoso 的目標是要根據遊戲使用者的遊戲歷程記錄設定檔識別
 
 藉由最佳化其使用者設定檔分析並將其與企業目標對齊，遊戲公司可以快速收集使用模式，並且為其所有不同的遊戲產品分析其行銷活動的效益。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/28/2015"
+   ms.date="04/25/2016"
    ms.author="v-sharos" />
 
 # 在 StorSimple Snapshot Manager 使用 MMC 功能表動作
@@ -27,9 +27,7 @@
 - 匯出清單 
 - 說明 
 
-這些動作是 Microsoft Management Console (MMC) 的一部分，並非是 StorSimple Snapshot Manager 特有的動作。
-
-本教學課程會描述這些動作，並說明如何在 StorSimple Snapshot Manager 使用其中每一個動作。
+這些動作是 Microsoft Management Console (MMC) 的一部分，並非是 StorSimple Snapshot Manager 特有的動作。本教學課程會描述這些動作，並說明如何在 StorSimple Snapshot Manager 使用其中每一個動作。
 
 ## 檢視
 
@@ -128,4 +126,4 @@
 - 深入了解 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
 - 深入了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0427_2016-->

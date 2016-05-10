@@ -187,7 +187,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 	- **RunSqoopExport**：此動作會使用 Sqoop 將建立的資料從 Hive 指令碼匯出到 SQL Database。只有 **RunHiveScript** 動作成功時才會執行此動作。
 
-		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 2.1 版)。
+		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 2.1 版)。
 
 	請注意，工作流程有數個項目，例如 `${jobTracker}` 會替換為您在本文件稍後的工作定義中所使用的值。
 
@@ -481,7 +481,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 1. 建立 HDInsight 叢集的 SSH 通道。如需執行這些動作的相關資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
 
-2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
+2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。 請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
 
 3. 在頁面左邊選取 [Oozie]，然後依序選取 [快速連結] 和 [Oozie Web UI]。
 
@@ -622,7 +622,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 ###JA009：無法初始化叢集
 
-**徵兆**：工作狀態會變更為 **SUSPENDED**。工作的詳細資料會將 RunHiveScript 狀態顯示為 **START_MANUAL**。選取該動作會顯示下列錯誤訊息：
+**徵兆**：工作狀態會變更為 **SUSPENDED**。工作的詳細資料會將 RunHiveScript 狀態顯示為 **START\_MANUAL**。選取該動作會顯示下列錯誤訊息：
 
 	JA009: Cannot initialize Cluster. Please check your configuration for map
 
@@ -632,7 +632,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 ###JA002：不允許 Oozie 模擬 &lt;USER>
 
-**徵兆**：工作狀態會變更為 **SUSPENDED**。工作的詳細資料會將 RunHiveScript 狀態顯示為 **START_MANUAL**。選取該動作會顯示下列錯誤訊息：
+**徵兆**：工作狀態會變更為 **SUSPENDED**。工作的詳細資料會將 RunHiveScript 狀態顯示為 **START\_MANUAL**。選取該動作會顯示下列錯誤訊息：
 
 	JA002: User: oozie is not allowed to impersonate <USER>
 
@@ -681,7 +681,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 
 
-[azure-data-factory-pig-hive]: data-factory-pig-hive-activities.md
+[azure-data-factory-pig-hive]: ../data-factory/data-factory-data-transformation-activities.md
 [hdinsight-oozie-coordinator-time]: hdinsight-use-oozie-coordinator-time.md
 [hdinsight-versions]: hdinsight-component-versioning.md
 [hdinsight-storage]: hdinsight-use-blob-storage.md
@@ -722,4 +722,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

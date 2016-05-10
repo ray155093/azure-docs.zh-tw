@@ -3,7 +3,7 @@
    description="了解如何使用 Azure CLI 匯入和匯出 DNS 區域檔案至 Azure DNS"
    services="dns"
    documentationCenter="na"
-   authors="joaoma"
+   authors="cherylmc"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="jonatul"/>
+   ms.author="cherylmc"/>
 
 # 匯入和匯出 DNS 區域檔案
 
@@ -176,4 +176,4 @@ Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。它可從 [A
 
 此命令會呼叫 Azure DNS 服務，以列舉區域中的記錄集並將結果匯出至 BIND 相容的區域檔案。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

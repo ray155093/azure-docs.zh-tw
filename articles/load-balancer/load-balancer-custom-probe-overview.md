@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/21/2016"
+   ms.date="04/05/2016"
    ms.author="joaoma" />
 
 
@@ -93,4 +93,4 @@ TCP 和 HTTP 探查於下列狀況時會視為狀況良好，並將角色執行�
 
 您可以使用[負載平衡器的記錄分析](load-balancer-monitor-log.md)來檢查探查健全狀況狀態和探查計數。記錄可以與 Power BI 或 Azure Operation Insights 搭配使用，以提供負載平衡器健康狀態。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

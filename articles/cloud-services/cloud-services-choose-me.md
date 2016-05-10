@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="09/01/2015" 
+	ms.date="04/15/2016" 
 	ms.author="adegeo"/>
 
 # 我該選擇雲端服務還是其他服務？
@@ -57,4 +57,4 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 ## 後續步驟
 [在 .NET 中建立雲端服務應用程式](cloud-services-dotnet-get-started.md) [在 Node.js 中建立雲端服務應用程式](cloud-services-nodejs-develop-deploy-app.md) [在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md) [在 Python 中建立雲端服務應用程式](../cloud-services-python-ptvs.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

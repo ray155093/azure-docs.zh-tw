@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/19/2016"
+   ms.date="03/30/2016"
    ms.author="cherylmc" />
 
 # 使用 PowerShell 設定虛擬網路的點對站連線
@@ -22,11 +22,22 @@
 - [PowerShell - 資源管理員](vpn-gateway-howto-point-to-site-rm-ps.md)
 - [入口網站 - 傳統](vpn-gateway-point-to-site-create.md)
 
-點對站設定可讓您從用戶端電腦個別地建立與虛擬網路的安全連線。VPN 連線的建立方式是從用戶端電腦啟動連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，點對站是絕佳的解決方案。點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[關於跨單位連線](vpn-gateway-cross-premises-options.md)。
+點對站設定可讓您從用戶端電腦個別地建立與虛擬網路的安全連線。VPN 連線的建立方式是從用戶端電腦啟動連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，點對站是絕佳的解決方案。
 
-本文適用於使用 **Azure Resource Manager** 部署模型建立的 VNet 和 VPN 閘道。如果您想為使用服務管理 (也稱為傳統部署模型) 建立的 VNet 設定點對站連線，請參閱[設定 VNet 的點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。
+點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。如需點對站連接的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[關於跨單位連接](vpn-gateway-cross-premises-options.md)。
 
-[AZURE.INCLUDE [vpn-gateway-classic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+本文章適用於使用 **Resource Manager 部署模型** (服務管理) 所建立之虛擬網路的點對站 VPN 閘道連線。
+
+**關於 Azure 部署模型**
+
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+**點對站連線的部署模型和工具**
+
+[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
+
+![Point-to-Site-diagram](./media/vpn-gateway-point-to-site-create/point2site.png "點對站")
+
 
 ## 關於此組態
 
@@ -35,8 +46,8 @@
 我們會針對此組態使用下列值：
 
 - 名稱：**TestVNet**，使用位址空間 **192.168.0.0/16** 與 **10.254.0.0/16**。請注意，您可以針對 VNet 使用一個以上的位址空間。
-- 子網路名稱：**FrontEnd**，使用 **192.168.1.0/24**
-- 子網路名稱：**BackEnd**，使用 **10.254.1.0/24**
+- 子網路名稱：**FrontEnd**，使用 **192.168.1.0/24**。
+- 子網路名稱：**BackEnd**，使用 **10.254.1.0/24**。
 - 子網路名稱：**GatewaySubnet**，使用 **192.168.200.0/24**。子網路名稱 *GatewaySubnet* 是閘道器能夠運作的必要項目。 
 - VPN 用戶端位址集區：**172.16.201.0/24**。使用這個點對站連線連線到 VNet 的 VPN 用戶端會接收來自這個集區的 IP 位址。
 - 訂用帳戶：如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
@@ -45,12 +56,12 @@
 - DNS 伺服器：您想要用於名稱解析的 DNS 伺服器的 **IP 位址**。
 - GW 名稱：**GW**
 - 公用 IP 名稱：**GWIP**
-- VpnType：**RouteBased**
+- VPNType：**RouteBased**
 
 
 ## 開始之前
 
-- 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，可以啟用您的 [MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 	
 - 您必須安裝 Azure 資源管理員 PowerShell Cmdlet (1.0.2 或更新版本)。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
@@ -229,4 +240,4 @@
 
 您可以將虛擬機器新增至虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

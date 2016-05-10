@@ -3,7 +3,7 @@
     description="了解如何使用 Google Apps 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
     services="active-directory"
     documentationCenter=""
-    authors="liviodlc"
+    authors="asmalser-msft"
     manager="stevenpo"
     editor=""/>
 
@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.workload="identity"
     ms.date="02/17/2016"
-    ms.author="liviodlc"/>
+    ms.author="asmalser-msft"/>
 
 #教學課程：如何整合 Google Apps 與 Azure Active Directory
 
@@ -313,4 +313,4 @@
 [29]: ./media/active-directory-saas-google-apps-tutorial/assign-users.png
 [30]: ./media/active-directory-saas-google-apps-tutorial/assign-confirm.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0427_2016-->

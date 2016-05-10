@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="12/07/2015"
+   ms.date="04/19/2016"
    ms.author="yuemlu"/>
 
 # Azure 客體作業系統可支援性和淘汰原則
@@ -90,4 +90,4 @@ Microsoft 可自行決定是否延長該期間，以緩和客戶轉換時的不�
 ## 後續步驟
 檢閱最新的[客體作業系統版本](cloud-services-guestos-update-matrix.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

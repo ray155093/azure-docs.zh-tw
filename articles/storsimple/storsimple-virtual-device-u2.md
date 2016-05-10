@@ -12,18 +12,14 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/20/2016"
+   ms.date="04/29/2016"
    ms.author="alkohli" />
 
-# 部署和管理 Azure 中的 StorSimple 虛擬裝置 (Update 2)
+# 部署和管理 Azure 中的 StorSimple 虛擬裝置
 
-> [AZURE.SELECTOR]
-- [Update 2](../articles/storsimple/storsimple-virtual-device-u2.md)
-- [Update 1](../articles/storsimple/storsimple-virtual-device-u1.md)
-- [GA 版本](../articles/storsimple/storsimple-virtual-device.md)
 
 ##概觀
-StorSimple 虛擬裝置是 Microsoft Azure StorSimple 解決方案提供的另一項功能。StorSimple 虛擬裝置會在 Microsoft Azure 虛擬網路中的虛擬機器上執行，而您可以使用它來備份和複製主機上的資料。
+StorSimple 8000 系列虛擬裝置是 Microsoft Azure StorSimple 解決方案提供的另一項功能。StorSimple 虛擬裝置會在 Microsoft Azure 虛擬網路中的虛擬機器上執行，而您可以使用它來備份和複製主機上的資料。本教學課程說明如何在 Azure 中部署和管理虛擬裝置，適用於所有執行軟體版本 Update 2 和更低版本的虛擬裝置。
 
 
 #### 虛擬裝置模型比較
@@ -37,10 +33,12 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 | **Azure VM** | Standard\_A3 (4 核心、7 GB 記憶體) | Standard\_DS3 (4 核心、14 GB 記憶體) |
 | **版本相容性** | 執行 Update 2 之前或更新版本的版本 | 執行 Update 2 或更新版本的版本 |
 | **區域可用性** | 所有 Azure 區域 | 支援進階儲存體的 Azure 區域<br></br>如需區域的清單，請參閱 [8020 的支援區域](#supported-regions-for-8020) |
-| **儲存體類型** | 使用 Azure 標準儲存體<br></br>了解如何[建立標準儲存體帳戶]() | 使用 Azure 進階儲存體<br></br>了解如何[建立進階儲存體帳戶](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk) |
+| **儲存體類型** | 將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何[建立標準儲存體帳戶]() | 將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk) |
 | **工作負載指引** | 從備份的檔案的項目層級擷取 | 雲端開發和測試案例、低延遲、較高效能工作負載<br></br>災害復原的次要裝置 |
  
 <sup>1</sup> *前身為 1100*。
+
+<sup>2</sup> *8010 和 8020 會將 Azure 標準儲存體使用於雲端層。差異僅存在於裝置內的本機層*。
 
 #### 8020 的支援區域
 
@@ -146,8 +144,7 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 
 開始此程序之前，請確定您擁有服務資料加密金鑰的複本。服務資料加密金鑰已在您設定第一個 StorSimple 裝置時建立，且系統已指示您將它儲存在安全的位置。如果您沒有服務資料加密金鑰的複本，就必須連絡 Microsoft 支援服務以尋求協助。
 
-執行下列步驟來設定和註冊 StorSimple 虛擬裝置。
-[AZURE.INCLUDE [設定和註冊虛擬裝置](../../includes/storsimple-configure-register-virtual-device.md)]
+執行下列步驟來設定和註冊 StorSimple 虛擬裝置。[AZURE.INCLUDE [設定和註冊虛擬裝置](../../includes/storsimple-configure-register-virtual-device.md)]
 
 ### 步驟 3：(選擇性) 修改裝置組態設定
 
@@ -283,4 +280,4 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
  
 - 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

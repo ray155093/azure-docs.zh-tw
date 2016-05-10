@@ -18,13 +18,7 @@
 
 # 在 Azure App Service 中開始使用 Node.js Web 應用程式
 
-> [AZURE.SELECTOR]
-- [.Net](web-sites-dotnet-get-started.md)
-- [Node.js](app-service-web-nodejs-get-started.md)
-- [Java](web-sites-java-get-started.md)
-- [PHP - Git](web-sites-php-mysql-deploy-use-git.md)
-- [PHP - FTP](web-sites-php-mysql-deploy-use-ftp.md)
-- [Python](web-sites-python-ptvs-django-mysql.md)
+[AZURE.INCLUDE [索引標籤](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程顯示如何建立簡單的 [Node.js](http://nodejs.org) 應用程式，並透過 cmd.exe 或 bash 之類的命令列將其部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中的 [Web 應用程式](app-service-web-overview.md)。本教學課程中的指示可運用在任何足以執行 Node.js 應用程式的作業系統上。
 
@@ -63,7 +57,7 @@
 
     依照提示，在瀏覽器中繼續使用具有 Azure 訂用帳戶的 Microsoft 帳戶進行登入。
 
-2. 確定您仍在應用程式的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式的 URL 會是 http://&lt;appname>.azurewebsites.net。
+2. 確定您仍在應用程式的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式的 URL 是 http://&lt;appname>.azurewebsites.net。
 
         azure site create --git <appname>
 
@@ -109,7 +103,7 @@ Azure App Service 使用 [iisnode](https://github.com/tjanczuk/iisnode/wiki) 來
 - 在 `git push azure master` 中，Kudu 會自動執行下列部署工作︰
 
     - 如果 package.json 位於儲存機制根目錄中，請執行 `npm install --production`。
-    - 在 package.json 中為指向啟動指令碼的 iisnode 產生 Web.config (例如 server.js 或 app.js)。
+    - 為 iisnode 產生指向 package.json 中的啟動指令碼的 Web.config (例如 server.js 或 app.js)。
     - 自訂 Web.config 以讓應用程式準備好使用節點偵測器進行偵錯。
     
 ## 使用 Node.js 架構
@@ -209,4 +203,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 - [Node.js 開發人員中心](/develop/nodejs/)
 - [在 Azure App Service 中開始使用 Web 應用程式](app-service-web-get-started.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

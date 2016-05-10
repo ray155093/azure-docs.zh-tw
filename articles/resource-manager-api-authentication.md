@@ -301,7 +301,8 @@ ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](
 |----|----
 | grant\_type | **client\_credentials**
 | client\_id | 您的應用程式的用戶端識別碼
-| resource | 正在針對存取權杖要求之資源的 URL 編碼識別碼。在此情況下，Azure AD Graph API 的識別項：**https://graph.windows.net/** | client\_secret 或 client\_assertion\_type + client\_assertion | 如果您的應用程式使用密碼認證，請使用 client\_secret。如果您的應用程式使用憑證認證，請使用 client\_assertion。
+| resource | 正在針對存取權杖要求之資源的 URL 編碼識別碼。在此情況下，Azure AD Graph API 的識別項：**https://graph.windows.net/** 
+| client\_secret 或 client\_assertion\_type + client\_assertion | 如果您的應用程式使用密碼認證，請使用 client\_secret。如果您的應用程式使用憑證認證，請使用 client\_assertion。
 
 用戶端認證授與權杖要求範例︰
 
@@ -443,4 +444,4 @@ ASP.net MVC 範例應用程式的 [RevokeRoleFromServicePrincipalOnSubscription 
 
 好了，使用者現在能使用您的應用程式來輕鬆連接及管理其 Azure 訂用帳戶。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!----HONumber=AcomDC_0420_2016-->

@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/20/2016"
+   ms.date="04/27/2016"
    ms.author="nitinme"/>
 
 # 使用 .NET SDK 開始使用 Azure 資料湖存放區
@@ -34,11 +34,17 @@
 * Visual Studio 2013 或 2015。以下指示使用 Visual Studio 2015。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-* **建立 Azure Active Directory 應用程式**。請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。對於您在本文中建立的 .NET 主控台應用程式，您必須建立**原生用戶端應用程式** (而不是連結中所示範的 Web 應用程式)。一旦您建立應用程式，請擷取與下列應用程式相關的值。
-	- 取得應用程式的**用戶端識別碼**和**重新導向 URI**。
-	- 設定委派權限
+* **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Direcotry 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式會有不同的必要條件。
+	* **針對互動式驗證** (本文所使用的方式) - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
+		- 設定委派權限
 
-	上面提供的連結中包含如何擷取這些值及設定權限的指示。
+	* **針對非互動式驗證** - 在 Azure Active Directory 中，您必須建立 **Web 應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**、**用戶端密碼**和**重新導向 URI**
+		- 設定委派權限
+		- 指派 Azure Active Directory 應用程式到角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。 
+
+	如需有關如何擷取這些值、設定權限和指派角色的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。
 
 ## 建立 .NET 應用程式
 
@@ -46,7 +52,7 @@
 
 2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 
-3. 在 [**新增專案**] 中，輸入或選取下列值：
+3. 在 [新增專案] 中，輸入或選取下列值：
 
 	| 屬性 | 值 |
 	|----------|-----------------------------|
@@ -58,7 +64,7 @@
 
 5. 將 Nuget 封裝新增至您的專案。
 
-	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [**管理 NuGet 封裝**]。
+	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [管理 NuGet 封裝]。
 	2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
 	3. 搜尋並安裝下列資料湖存放區封裝：
 
@@ -72,7 +78,7 @@
 		![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/adl.install.azure.auth.png "建立新的 Azure 資料湖帳戶")
 
 
-	5. 關閉 [**Nuget 封裝管理員**]。
+	5. 關閉 [Nuget 封裝管理員]。
 
 7. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以加入命名空間的參考。
 
@@ -520,4 +526,4 @@
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

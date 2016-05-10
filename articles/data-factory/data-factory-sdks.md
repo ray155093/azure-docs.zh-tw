@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/18/2016" 
+	ms.date="04/01/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 開發人員參考
 
-您可以建立、監視和管理使用 Azure 傳統入口網站、Azure PowerShell、.NET 類別庫或 REST API 的處理站。
+您可以建立、監視和管理使用 Azure 入口網站、Azure PowerShell、.NET 類別庫或 REST API 的處理站。
 
 方法 | 資源位置 | 開發人員參考
 ---------------------------------------------------- | ------------------------------ | -----------
@@ -30,4 +30,4 @@ REST API | 使用 Data Factory REST API 來建立、監視和管理 Azure Data F
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

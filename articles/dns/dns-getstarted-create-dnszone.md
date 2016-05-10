@@ -3,7 +3,7 @@
    description="了解如何建立 Azure DNS 的 DNS 區域。此逐步解說可幫助您建立第一個 DNS 區域，開始使用 PowerShell 來裝載 DNS 網域。"
    services="dns"
    documentationCenter="na"
-   authors="joaoma"
+   authors="cherylmc"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/03/2016"
-   ms.author="joaoma"/>
+   ms.author="cherylmc"/>
 
 # 開始藉由 Powershell 使用 Azure DNS
 
@@ -147,4 +147,4 @@ Azure DNS 使用 Etag 以安全地處理相同資源的並行變更。每個 DNS
 [開始建立記錄集與記錄](dns-getstarted-create-recordset.md)<BR> [如何管理 DNS 區域](dns-operations-dnszones.md)<BR> [如何管理 DNS 記錄](dns-operations-recordsets.md)<BR> [使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)<BR> [Azure DNS REST API 參考](https://msdn.microsoft.com/library/azure/mt163862.aspx)
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

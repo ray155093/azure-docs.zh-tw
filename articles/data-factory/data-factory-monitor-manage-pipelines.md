@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="監視和管理 Azure Data Factory 管線" 
-	description="瞭解如何使用 Azure 傳統入口網站和 Azure PowerShell 監視並管理您建立的 Azure 資料處理站和管線。" 
+	description="了解如何使用 Azure 入口網站和 Azure PowerShell 監視並管理您建立的 Azure 資料處理站和管線。" 
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/04/2016" 
+	ms.date="03/28/2016" 
 	ms.author="spelluru"/>
 
 
@@ -187,14 +187,14 @@ Data Factory 內的資料集狀態轉換流程有下列階段：等候中 -> 進
 
 
 ## 偵錯管線
-Azure Data Factory 透過 Azure 傳統入口網站和 Azure PowerShell 提供許多功能，可用來偵錯和疑難排解管線。
+Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功能，可用來偵錯和疑難排解管線。
 
 ### 尋找管線中的錯誤
 如果管線中的活動執行失敗，管線所產生的資料集會因為該失敗而處於錯誤狀態。您可以使用下列方法，在 Azure Data Factory 中偵錯和疑難排解錯誤。
 
-#### 使用 Azure 傳統入口網站執行偵錯：
+#### 使用 Azure 入口網站偵錯錯誤：
 
-1.	在 Data Factory 首頁，按一下 [**資料集**] 磚上的 [**發生錯誤**]。
+1.	在資料處理站首頁的**資料集**磚上按一下 [**發生錯誤**]。
 	
 	![發生錯誤的資料集磚](./media/data-factory-monitor-manage-pipelines/datasets-tile-with-errors.png)
 2.	在 [**出現錯誤的資料集**] 刀鋒視窗中，按一下您感興趣的資料表。
@@ -265,7 +265,7 @@ Azure Data Factory 透過 Azure 傳統入口網站和 Azure PowerShell 提供許
 
 ## 重新執行管線中的失敗
 
-### 使用 Azure 傳統入口網站
+### 使用 Azure 入口網站
 
 一旦您疑難排解和偵錯管線中的失敗，您可以瀏覽到錯誤配量並按一下命令列上的 [**執行**] 按鈕，重新執行失敗。
 
@@ -585,4 +585,4 @@ metricName 目前支援 2 個值︰
 
 ![移動資源對話方塊](./media/data-factory-monitor-manage-pipelines/MoveResources.png)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0427_2016-->

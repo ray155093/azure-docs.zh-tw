@@ -77,7 +77,7 @@
 | **MTN** | 支援 | 支援 | 倫敦 |
 | **NEXTDC** | 支援 | 支援 | 墨爾本、雪梨 |
 | **NTT Communications** | 支援 | 支援 | 倫敦、大阪、東京 |
-| **[Orange](http://www.orange-business.com/)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、華盛頓特區 |
+| **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、華盛頓特區 |
 | **PCCW Global Limited** | 支援 | 支援 | 香港 |
 | **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 不支援 | 新加坡 |
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
@@ -157,4 +157,4 @@
 - 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 - 請確定符合所有必要條件。請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->
