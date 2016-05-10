@@ -2,7 +2,7 @@
 	pageTitle="如何安裝和設定 Azure PowerShell"
 	description="了解如何安裝和設定 Azure PowerShell。"
 	editor="tysonn"
-	manager="stevenka"
+	manager="dongill"
 	documentationCenter=""
 	services=""
 	authors="coreyp-at-msft"/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="powershell"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/06/2016"
+	ms.date="04/22/2016"
 	ms.author="coreyp"/>
 
 # 如何安裝和設定 Azure PowerShell
@@ -175,4 +175,4 @@ Cmdlet 需要有您的訂閱，才能用來管理您的服務。您可以購買 
 
 如需可協助您了解如何使用指令碼來管理 Azure 的範例指令碼和指示，請參閱[指令碼中心](http://go.microsoft.com/fwlink/p/?LinkId=321940)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

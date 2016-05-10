@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="01/20/2016"
+    ms.date="04/05/2016"
     ms.author="spelluru"/>
 # 使用 Azure Batch 和 Data Factory 的 HPC 和資料協調
 
@@ -462,7 +462,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 ## 建立 Data Factory
 
-在 [建立自訂活動](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
+在 [建立自訂活動][](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
 
 自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (mycontainer\\inputfolder) 的 blob (檔案)。活動的輸出資料集代表 blob 儲存體中輸出資料夾 (mycontainer\\outputfolder) 的輸出 blob。
 
@@ -761,11 +761,11 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 	-   **AssemblyName** 會設定為 DLL 的名稱：**MyDotNetActivity.dll**。
 
-	-   **EntryPoint** 設定為 **MyDotNetActivityNS.MyDotNetActivity**。在您的程式碼中，它基本上是 \<namespace\>.\<classname\>。
+	-   **EntryPoint** 設定為 **MyDotNetActivityNS.MyDotNetActivity**。在您的程式碼中，它基本上是 <namespace>.<classname>。
 
 	-   **PackageLinkedService** 設為 **StorageLinkedService**，會指向包含自訂活動 zip 檔案的 Blob 儲存體。如果您將不同的 Azure 儲存體帳戶用於輸入/輸出檔案和自訂活動 zip 檔案，您必須建立另一個 Azure 儲存體連結服務。本文假設您使用相同的 Azure 儲存體帳戶。
 
-	-   **PackageFile** 設定為 **customactivitycontainer/MyDotNetActivity.zip**。其格式為：\<containerforthezip\>/\<nameofthezip.zip\>。
+	-   **PackageFile** 設定為 **customactivitycontainer/MyDotNetActivity.zip**。其格式為：<containerforthezip>/<nameofthezip.zip>。
 
 	-   自訂活動會採用 **InputDataset** 做為輸入和 **OutputDataset** 做為輸出。
 
@@ -901,13 +901,13 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 處理資料之後，您可以使用 **Microsoft Power BI** 之類的線上工具來取用資料。以下連結可協助您了解 Power BI，以及如何在 Azure 中加以使用：
 
--   [在 Power BI 中探索資料集](https://support.powerbi.com/knowledgebase/articles/475159)
+-   [在 Power BI 中探索資料集](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-service-get-data/)
 
--   [開始使用 Power BI Desktop](https://support.powerbi.com/knowledgebase/articles/471664)
+-   [開始使用 Power BI Desktop](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-desktop-getting-started/)
 
--   [重新整理 Power BI 中的資料](https://support.powerbi.com/knowledgebase/articles/474669)
+-   [重新整理 Power BI 中的資料](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-refresh-data/)
 
--   [Azure 和 Power BI - 基本概觀](https://support.powerbi.com/knowledgebase/articles/568614)
+-   [Azure 和 Power BI - 基本概觀](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-azure-and-power-bi/)
 
 ## 參考
 
@@ -929,4 +929,4 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     -   [開始使用 Azure Batch 程式庫 .NET](../batch/batch-dotnet-get-started.md)
 
-<!----HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0427_2016-->

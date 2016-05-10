@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
+	ms.date="05/03/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Windows 通用 App 的 Azure Mobile Engagement
@@ -36,7 +36,7 @@
 
 ##<a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 
-本教學課程將說明「基本整合」，這是收集資料及傳送推播通知所需的最低設定。您可以在 [Mobile Engagement Windows 通用 SDK 整合](../mobile-engagement-windows-store-sdk-overview/)中找到完整的整合文件。
+本教學課程將說明「基本整合」，這是收集資料及傳送推播通知所需的最低設定。您可以在 [Mobile Engagement Windows 通用 SDK 整合](mobile-engagement-windows-store-sdk-overview.md)中找到完整的整合文件。
 
 我們將會使用 Visual Studio 建立基本應用程式來示範整合。
 
@@ -210,4 +210,4 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 [12]: ./media/mobile-engagement-windows-store-dotnet-get-started/dashboard_services_push_1.png
 [13]: ./media/mobile-engagement-windows-store-dotnet-get-started/dashboard_services_push_creds.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

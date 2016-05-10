@@ -5,7 +5,7 @@
 	services="sql-database"
 	documentationCenter=""
 	authors="shontnew"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -56,7 +56,7 @@ SQL Server 的資料安全性向來是一項可靠的傳統，而 SQL Database �
 - 深入了解[彈性集區](sql-database-elastic-pool.md)。
 - 從[建立您的第一個資料庫](sql-database-get-started.md)開始。
 - [使用 SSMS 連接及查詢](sql-database-connect-query-ssms.md)
-- 以 [C#](sql-database-connect-query.md)、[Java](sql-database-develop-java-simple-windows.md)、[Node.js](sql-database-develop-nodejs-simple-windows.md)、[PHP](sql-database-develop-php-retry-windows.md)、[Python](sql-database-develop-python-simple-windows.md) 或 [Ruby](sql-database-develop-ruby-simple-linux) 建置您的第一個應用程式。
+- 以 C#、Java、Node.js、PHP、Python 或 Ruby 建置您的第一個應用程式：[SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 - 請參閱 [Azure SQL Database 服務的所有主題](sql-database-index-all-articles.md)中的標題索引和描述。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/26/2016"
+   ms.date="05/03/2016"
    ms.author="lodipalm;barbkess;mausher;jrj;sonyama;"/>
 
 
@@ -154,11 +154,11 @@ Polybase 易於使用，且可讓您透過使用相同的熟悉 T-SQL 命令運�
 
 <!--Article references-->
 [資料倉儲工作負載]: ./sql-data-warehouse-overview-workload.md
-[範例資料]: ./sql-data-warehouse-get-started-load-samples.md
+[範例資料]: ./sql-data-warehouse-get-started-manually-load-samples.md
 [佈建]: ./sql-data-warehouse-get-started-provision.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

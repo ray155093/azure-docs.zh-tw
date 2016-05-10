@@ -3,7 +3,7 @@
    description="資料湖分析是 Azure 巨量資料計算服務，可讓您使用從雲端中的資料獲得的深入資訊，使用資料驅動您的業務，不論其所在位置和大小。資料湖分析可以用最簡單、最可調整及最經濟的方式，達成這個目的。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="01/06/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # Microsoft Azure 資料湖分析概觀
 
@@ -77,4 +77,4 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
     - [提交要求功能](http://aka.ms/adlafeedback)
     - [在論壇上取得協助](http://aka.ms/adlaforums)
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0504_2016-->

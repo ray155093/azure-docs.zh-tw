@@ -41,11 +41,11 @@ Azure 應用程式著重於 Web 和行動應用程式的快速開發以及商務
 ### 應用程式類型
 應用程式服務可讓您從單一開發經驗建立下列應用程式類型：
 
-- [**Web 應用程式**](../app-service-web-overview) - 快速建立和部署與您的企業同步調整的關鍵 Web 應用程式。
-- [**行動應用程式**](../app-service-mobile-value-prop-preview) - 隨時透過任何裝置與員工、合作夥伴和客戶聯繫。
-- [**API Apps**](../app-service-api-apps-why-best-platform) - 輕鬆建置和取用雲端 API。
-- [**函式應用程式**](../functions-overview) - 建立輕量型函式來回應跨 Azure、內部部署和 SaaS 提供者的事件。
-- [**邏輯應用程式**](../app-service-logic-what-are-logic-apps) - 將跨雲端的資料存取和使用自動化，而不需要撰寫程式碼。
+- [**Web 應用程式**](../app-service-web/app-service-web-overview.md) - 快速建立和部署與您的企業同步調整的關鍵 Web 應用程式。
+- [**行動應用程式**](../app-service-mobile/app-service-mobile-value-prop.md) - 隨時透過任何裝置與員工、合作夥伴和客戶聯繫。
+- [**API Apps**](../app-service-api/app-service-api-apps-why-best-platform.md) - 輕鬆建置和取用雲端 API。
+- [**函數應用程式**](../azure-functions/functions-overview.md) - 建立輕量型函數來回應跨 Azure、內部部署和 SaaS 提供者的事件。
+- [**邏輯應用程式**](../app-service-logic/app-service-logic-what-are-logic-apps.md) - 將跨雲端的資料存取和使用自動化，而不需要撰寫程式碼。
 
 做為單一的整合式服務，App Service 可讓您輕鬆地將上述應用程式類型撰寫成單一方案，進而建置以使用相同後端的 Web 和行動用戶端為目標的應用程式，同時與內部部署系統和常用服務 (例如 Office 365 和 salesforce.com) 整合。
 
@@ -60,4 +60,4 @@ Azure 應用程式著重於 Web 和行動應用程式的快速開發以及商務
 立即免費[建立新的應用程式](http://go.microsoft.com/fwlink/?LinkId=523751)。不需要信用卡，無需承諾和繁複程序。
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

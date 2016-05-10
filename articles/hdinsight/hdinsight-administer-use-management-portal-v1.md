@@ -27,6 +27,7 @@
 ## 用來管理 HDInsight 的其他工具
 除了 Azure 傳統入口網站以外，還有其他工具可以用來管理 HDInsight。
 
+
 - 如需使用 Azure PowerShell 管理 HDInsight 的詳細資訊，請參閱[使用 Azure PowerShell 來管理 HDInsight](hdinsight-administer-use-powershell.md)。
 
 - 如需使用 Azure CLI 管理 HDInsight 的詳細資訊，請參閱[使用 Azure CLI 管理 HDInsight](hdinsight-administer-use-command-line.md)。
@@ -200,4 +201,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal-v1/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 [image-hdiclustercreate-uploadcert]: ./media/hdinsight-administer-use-management-portal-v1/hdi.clustercreate.uploadcert.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

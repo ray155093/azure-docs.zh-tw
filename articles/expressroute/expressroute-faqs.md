@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/12/2016"
+   ms.date="04/20/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -86,7 +86,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 ### 如果我的其中一個 ExpressRoute 連結失敗，連線是否就會中斷？
 如果其中一個交叉連線失敗，您的連線就會中斷。您可以使用備援連線來支援網路的負載。為取得失敗恢復，您可以在其他對等互連位置額外建立多個電路。
 
-### 如果我不要在雲端交換中共置，而我的服務提供者提供點對點連線，我需要在內部部署網路與 Microsoft 之間訂購兩個實體連線嗎？ 
+### <a name="onep2plink"></a>如果我不要在雲端交換中共置，而我的服務提供者提供點對點連線，我需要在內部部署網路與 Microsoft 之間訂購兩個實體連線嗎？ 
 不需要，如果您的服務提供者可以透過實體連線建立兩個乙太網路的虛擬電路，您就只需要一個實體連線。實體連線 (例如光纖) 的終點在實體層 (L1) 裝置 (請見下圖)。兩個乙太網路虛擬電路都會標記不同的 VLAN ID，一個供主要電路使用，一個供次要電路使用。這些 VLAN ID 位於外部 802.1Q 乙太網路標頭中。內部 802.1Q 乙太網路標頭 (不顯示) 會對應至特定的 [ExpressRoute 路由網域](expressroute-circuit-peerings.md)。
 
 ![](./media/expressroute-faqs/expressroute-p2p-ref-arch.png)
@@ -125,7 +125,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 否。從路由的觀點來看，所有連結至相同 ExpressRoute 電路的虛擬網路會屬於相同的路由網域，且不會相互隔離。如果需要路由隔離，您必須建立個別的 ExpressRoute 電路。
 
 ### 我可以將一個虛擬網路連結至多個 ExpressRoute 電路嗎？
-是。您最多可以將單一虛擬網路連結至 4 個 ExpressRoute 電路。它們必須透過 4 個不同的 [ExpressRoute 位置](expressroute-locations.md)來排序。
+是。您最多可以將單一虛擬網路連結至 4 個 ExpressRoute 電路。其必須透過 4 個不同的 [ExpressRoute 位置](expressroute-locations.md)來排序。
 
 ### 我可以從連線至 ExpressRoute 電路的虛擬網路來存取網際網路嗎？
 是。如果您尚未透過 BGP 工作階段通告預設路由 (0.0.0.0/0) 或網際網路路由首碼，您將能夠從連結至 ExpressRoute 電路的虛擬網路連線到網際網路。
@@ -149,9 +149,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 是。我們接受私人對等互連最多使用 4000 個路由首碼；公用對等互連和 Microsoft 對等互連各自最多使用 200 個路由首碼。如果您啟用 ExpressRoute 進階功能，您可以針對私人對等互連將此值提高至 10,000 個路由。
 
 ### 我可以透過 BGP 工作階段通告的 IP 範圍有無限制？
-透過 BGP 通告的首碼必須是 /29 或更大 (/28 至 /8)。
-
-我們將在公用對等互連 BGP 工作階段篩選出私人首碼 (RFC1918)。
+我們不接受公用對等互連 BGP 工作階段中的私人首碼 (RFC1918)。
 
 ### 如果超過 BGP 限制，該怎麼辦？
 BGP 工作階段將會被刪除。當首碼計數降至限制以下時，系統便會重設 BGP 工作階段。
@@ -224,7 +222,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 1. 請檢閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md)，以確定您符合需求。
 2. 請檢閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md)中的服務提供者和位置清單，以確定符合您的連線需求。
 3. 透過檢閱 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/)來計劃您的容量需求。
-4. 依照以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程電路佈建和電路狀態](expressroute-workflows.md)。
+4. 遵循以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程循環佈建和循環狀態](expressroute-workflows.md)。
 
 >[AZURE.IMPORTANT] 設定與 Office 365 服務和 CRM Online 的連線時，請確定您已啟用 ExpressRoute 進階附加元件。
 
@@ -247,4 +245,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 即使 ExpressRoute 已設定供我的組織使用，我是否可以透過網際網路存取 Office 365？
 是。即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -173,7 +173,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
     
 	$imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -Paths "/image/*" -BackendAddressPool $pool1 -BackendHttpSettings $poolSetting01
 
-	$videoPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule2" -Paths "/video/*" -BackendAddressPool $pool2 -BackendHttpSettings $poolSetting01
+	$videoPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule2" -Paths "/video/*" -BackendAddressPool $pool2 -BackendHttpSettings $poolSetting02
 
 如果路徑不符合任何預先定義的路徑規則，規則路徑對應組態也會設定預設的後端位址集區。
 
@@ -196,4 +196,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 ## 取得應用程式閘道
 	$getgw =  Get-AzureRmApplicationGateway -Name $appgwName -ResourceGroupName $rgname
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0427_2016-->

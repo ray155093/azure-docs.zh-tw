@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter=""
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="12/02/2015"
+   ms.date="04/18/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Snapshot Manager 來連接和管理 StorSimple 裝置
@@ -51,7 +51,7 @@
 - 刪除裝置組態 
 - 變更裝置密碼
 
->[AZURE.NOTE]所有這些動作也可在 [**動作**] 窗格中取得。
+>[AZURE.NOTE] 所有這些動作也可在 [**動作**] 窗格中取得。
  
 本教學課程說明如何使用 StorSimple Snapshot Manager，來連接和管理裝置，並執行下列工作：
 
@@ -65,7 +65,7 @@
 - 變更過期的裝置密碼
 - 更換故障的裝置
 
->[AZURE.NOTE]如需使用 StorSimple Snapshot Manager 介面的一般資訊，請至 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
+>[AZURE.NOTE] 如需使用 StorSimple Snapshot Manager 介面的一般資訊，請至 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
 
 
 ## 新增或更換裝置
@@ -222,9 +222,9 @@
 
 #### 若要在容錯移轉之後連接至新裝置
 
-1. 重新設定新裝置的 iSCSI 連接。如需相關指示，請移至[部署您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough.md)中的「步驟 7：掛載、初始化和格式磁碟區」。 
+1. 重新設定新裝置的 iSCSI 連接。如需相關指示，請移至[部署您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)中的「步驟 7：掛載、初始化和格式磁碟區」。 
 
->[AZURE.NOTE]如果新的 StorSimple 裝置具有與舊裝置相同的 IP 位址，則您也許能夠連接舊組態。
+>[AZURE.NOTE] 如果新的 StorSimple 裝置具有與舊裝置相同的 IP 位址，則您也許能夠連接舊組態。
 
 2. 停止 Microsoft StorSimple 管理服務：
 
@@ -263,4 +263,4 @@
 - 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 - 了解如何[使用 StorSimple Snapshot Manager 來檢視和管理磁碟區](storsimple-snapshot-manager-manage-volumes.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0427_2016-->

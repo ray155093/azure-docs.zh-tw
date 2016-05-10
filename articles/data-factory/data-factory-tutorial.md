@@ -100,7 +100,7 @@ Contoso 是一間打造多平台遊戲的遊戲公司：包括遊戲主機、手
 		![MarketingCampaignPipeline][image-data-factory-tutorial-analyze-marketing-campaign-pipeline]
 
 
-6. [監視管線](#monitor-pipelines)。在此步驟中，您將使用 Azure 傳統入口網站監視管線、資料表和資料配量。
+6. [監視管線](#monitor-pipelines)。在此步驟中，您將使用 Azure 入口網站來監視管線、資料表和資料配量。
 
 ## 上傳範例資料和指令碼
 在此步驟中，您將上傳所有範例資料 (包括所有記錄檔和參考資料) 和將由工作流程叫用的 Hive/Pig 指令碼。您執行的指令碼也會建立 Azure SQL Database (名為 **MarketingCampaigns**)、資料表、使用者定義型別和預存程序。
@@ -121,7 +121,7 @@ Contoso 是一間打造多平台遊戲的遊戲公司：包括遊戲主機、手
 	
 	或者，您可以使用資料夾 C:\\ADFWalkthrough\\Scripts 中的檔案，將 pig/hive 指令碼與範例檔案上傳至 Blob 儲存體中的 adfwalkthrough 容器，並在 MarketingCamapaigns Azure SQL 資料庫中建立 MarketingCampaignEffectiveness 資料表。
    
-2. 確認您的本機電腦可以存取 Azure SQL Database。若要啟用存取，請使用 [Azure 傳統入口網站](http://manage.windowsazure.com)，或master 資料庫上的 **sp\_set\_firewall\_rule**，為您電腦的 IP 位址建立防火牆規則。可能需要五分鐘的時間，這項變更才會生效。請參閱[設定 Azure SQL 的防火牆規則][azure-sql-firewall]。
+2. 確認您的本機電腦可以存取 Azure SQL Database。若要啟用存取，請使用 [Azure 入口網站](http://manage.windowsazure.com)，或 master 資料庫上的 **sp\_set\_firewall\_rule**，為您電腦的 IP 位址建立防火牆規則。可能需要五分鐘的時間，這項變更才會生效。請參閱[設定 Azure SQL 的防火牆規則][azure-sql-firewall]。
 4. 在 Azure PowerShell 中，瀏覽至您解壓縮範例的位置 (例如：**C:\\ADFWalkthrough**)
 5. 執行 **uploadSampleDataAndScripts.ps1** 
 6. 一旦指令碼執行成功，您會看到下列項目：
@@ -193,7 +193,7 @@ Contoso 是一間打造多平台遊戲的遊戲公司：包括遊戲主機、手
  
 ## 建立連結服務
 
-> [AZURE.NOTE] 本文使用 Azure 傳統入口網站 (尤其是 Data Factory 編輯器) 建立連結的服務、資料表和管線。如果您想要使用 Azure PowerShell 執行本教學課程，請參閱[使用 Azure PowerShell 執行教學課程][adftutorial-using-powershell]。
+> [AZURE.NOTE] 本文中使用 Azure 入口網站 (特別是資料 Factory 編輯器) 來建立連結服務、資料表和管線。如果您想要使用 Azure PowerShell 執行本教學課程，請參閱[使用 Azure PowerShell 執行教學課程][adftutorial-using-powershell]。
 
 在此步驟中，您將建立下列連結的服務：
 
@@ -391,7 +391,7 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 	![RawGameEventsTable [資料配量] 刀鋒視窗][image-data-factory-monitoring-raw-game-events-table-dataslice-blade]
 
-	如果發生錯誤，您在這裡會看到 **[Failed] **狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting] (視系統處理配量的速度而定)。
+	如果發生錯誤，您在這裡會看到 **[Failed] **狀態。您也可能會看到兩個配量的狀態都是 [Ready]，或都是 [Waiting] \(視系統處理配量的速度而定)。
 
 	如果配量不是 [就緒] 狀態，您可以在 [未就緒的上游配量] 清單中看到未就緒且阻礙目前配量執行的上游配量。
  
@@ -484,4 +484,4 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 [image-data-factory-new-datafactory-menu]: ./media/data-factory-tutorial/NewDataFactoryMenu.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

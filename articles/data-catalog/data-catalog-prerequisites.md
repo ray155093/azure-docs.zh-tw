@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="04/15/2016"
+   ms.date="04/25/2016"
    ms.author="maroche"/>
 
 # Azure 資料目錄必要條件
@@ -26,7 +26,7 @@
 ## Azure 訂閱
 若要設定 Azure 資料目錄，您必須是 Azure 訂用帳戶的擁有者或共同擁有者。
 
-Azure 訂用帳戶可協助您組織雲端服務資源的存取權，例如 Azure 資料目錄。它們也可協助您控制如何根據資源使用量產生報告、計費及付費。每一個訂用帳戶可以有不同的計費和付款設定，因此，依照部門、專案、區域辦事處等，您可以有不同的訂用帳戶和不同的計劃。每一個雲端服務都屬於某個訂用帳戶，在設定 Azure 資料目錄之前，您必須先有訂用帳戶。若要深入了解，請參閱[管理帳戶、訂用帳戶及管理角色](https://msdn.microsoft.com/library/azure/hh531793.aspx)。
+Azure 訂用帳戶可協助您組織雲端服務資源的存取權，例如 Azure 資料目錄。它們也可協助您控制如何根據資源使用量產生報告、計費及付費。每一個訂用帳戶可以有不同的計費和付款設定，因此，依照部門、專案、區域辦事處等，您可以有不同的訂用帳戶和不同的計劃。每一個雲端服務都屬於某個訂用帳戶，在設定 Azure 資料目錄之前，您必須先有訂用帳戶。若要深入了解，請參閱[管理帳戶、訂用帳戶及管理角色](../active-directory/active-directory-assign-admin-roles.md)。
 
 ## Azure Active Directory
 若要設定 Azure 資料目錄，您必須使用 Azure Active Directory 使用者帳戶登入。
@@ -45,4 +45,4 @@ Azure Active Directory (Azure AD) 為您的企業提供在雲端和內部部署�
 
 如需詳細資訊，請參閱[設定驗證原則](https://technet.microsoft.com/library/dn486781.aspx)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

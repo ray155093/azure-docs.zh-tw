@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="hero-article"
-	ms.date="02/08/2016"
+	ms.date="04/08/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure App Service 中建立 WordPress Web 應用程式
+
+[AZURE.INCLUDE [索引標籤](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程示範如何從 Azure Marketplace 部署 WordPress 部落格網站。
 
@@ -126,4 +128,4 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [7]: ./media/web-sites-php-web-site-gallery/search-web-app.png
 [browse]: ./media/web-sites-php-web-site-gallery/browse-web.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -19,13 +19,11 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 
 ##尋找可用的擴充功能
 
-Azure VM 延伸模組是 (如需所支援功能的完整延伸模組清單，請參閱 [Azure VM 延伸模組與功能](../articles/virtual-machines/virtual-machines-windows-extensions-features.md))。 您可以使用下列各項找到擴充功能和其他資訊：
+您可以使用下列各項找到擴充功能和其他資訊：
 
 -   PowerShell
 -   Azure 跨平台介面 (Azure CLI)
 -   服務管理 REST API
-
-[Azure PowerShell](https://msdn.microsoft.com/library/azure/dn495240.aspx) Cmdlet 或[服務管理 REST API](https://msdn.microsoft.com/library/ee460799.aspx)，來尋找可用延伸模組的相關資訊。
 
 ###Azure PowerShell
 
@@ -121,4 +119,4 @@ Azure VM 延伸模組是 (如需所支援功能的完整延伸模組清單，請
 
 >[AZURE.NOTE]擴充功能也可以使用 JSON 所定義的組態。使用這些類型的延伸模組時，只會使用 **SampleConfig** 元素。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

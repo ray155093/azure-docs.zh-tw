@@ -32,7 +32,7 @@
 
 必須在建立負載平衡器之前先設定下列項目：
 
-- 前端 IP 組態 - 會將公用 IP 位址加入至前端 IP 集區，以讓傳入網路流量能夠達到負載平衡。 
+- 前端 IP 組態 - 會將公用 IP 位址加入至前端 IP 集區，以讓傳入網路流量能夠達到負載平衡。
 
 - 後端位址集區 - 會設定可接收來自前端 IP 集區之負載平衡流量的網路介面。
 
@@ -54,7 +54,7 @@
 
 
 ### 步驟 1
-請確定您切換 PowerShell 模式來使用 ARM Cmdlet。如需詳細資訊，可在[搭配使用 Windows PowerShell 與資源管理員](powershell-azure-resource-manager.md)取得。
+請確定您切換 PowerShell 模式來使用 ARM Cmdlet。如需詳細資訊，可在[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)取得。
 
 
     PS C:\> Switch-AzureMode -Name AzureResourceManager
@@ -107,7 +107,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 
 建立前端 IP 集區要使用的公用 IP 位址：
 
-	$publicIP = New-AzurePublicIpAddress -Name PublicIp -ResourceGroupName NRP-RG -Location "West US" –AllocationMethod Dynamic -DomainNameLabel lbip 
+	$publicIP = New-AzurePublicIpAddress -Name PublicIp -ResourceGroupName NRP-RG -Location "West US" –AllocationMethod Dynamic -DomainNameLabel lbip
 
 >[AZURE.NOTE]公用 IP 位址網域名稱標籤屬性會是負載平衡器之 FQDN 的前置詞。
 
@@ -115,14 +115,14 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 
 設定傳入負載平衡器網路流量的前端 IP 集區以及後端位址集區，以接收負載平衡流量。
 
-### 步驟 1 
+### 步驟 1
 
 使用公用 IP 變數 ($publicIP) 建立前端 IP 集區。
 
-	$frontendIP = New-AzureLoadBalancerFrontendIpConfig -Name LB-Frontend -PublicIpAddress $publicIP 
+	$frontendIP = New-AzureLoadBalancerFrontendIpConfig -Name LB-Frontend -PublicIpAddress $publicIP
 
 
-### 步驟 2 
+### 步驟 2
 
 設定用來從前端 IP 集區接收傳入流量的後端位址集區：
 
@@ -157,7 +157,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 
 建立負載平衡器，並將所有物件 (NAT 規則、負載平衡器規則、探查組態) 加在一起：
 
-	$NRPLB = New-AzureLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Location "West US" -FrontendIpConfiguration $frontendIP -InboundNatRule $inboundNATRule1,$inboundNatRule2 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe 
+	$NRPLB = New-AzureLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Location "West US" -FrontendIpConfiguration $frontendIP -InboundNatRule $inboundNATRule1,$inboundNatRule2 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
 
 
 ## 建立網路介面
@@ -165,18 +165,18 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 建立負載平衡器之後，您需要定義要由哪些網路介面接收傳入的負載平衡網路流量，以及定義 NAT 規則和探查。在此情況下需個別設定網路介面，並在稍後指派給虛擬機器。
 
 
-### 步驟 1 
+### 步驟 1
 
 
 取得資源的虛擬網路和子網路以建立網路介面：
 
 	$vnet = Get-AzureVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
 
-	$backendSubnet = Get-AzureVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet 
+	$backendSubnet = Get-AzureVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet
 
 
 在此步驟中，我們會建立屬於負載平衡器後端集區的網路介面，並針對此網路介面的 RDP 與第一個 NAT 規則建立關聯：
-	
+
 	$backendnic1= New-AzureNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic1-be -Location "West US" -PrivateIpAddress 10.0.2.6 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[0]
 
 ### 步驟 2
@@ -238,7 +238,7 @@ PS C:\> $backendnic1
 
 
 
-### 步驟 3 
+### 步驟 3
 
 使用 Add-AzureVMNetworkInterface 命令將 NIC 指派給虛擬機器。
 
@@ -280,6 +280,5 @@ PS C:\> $backendnic1
 [設定負載平衡器分配模式](load-balancer-distribution-mode.md)
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
- 
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

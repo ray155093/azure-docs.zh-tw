@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/02/2016"
+   ms.date="04/22/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
@@ -111,4 +111,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 ### 支援 Linux 虛擬機器嗎？
 「Azure 資訊安全中心」提供適用於 Linux 虛擬機器 (僅限 Ubuntu 12.04、14.04、14.10 與 15.04 版本) 的基準監視。未來將會提供其他安全性健康情況監視與資料收集/分析，以及對其他 Linux 散發套件的支援。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0427_2016-->

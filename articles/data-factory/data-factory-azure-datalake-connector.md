@@ -412,13 +412,16 @@
 | subscriptionId | Azure 訂用帳戶識別碼。 | 否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
 | resourceGroupName | Azure 資源群組名稱 | 否 (若未指定，便會使用 Data Factory 的資源群組)。 |
 
-您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。請參閱下表以了解不同類型的使用者帳戶的到期時間。當驗證**權杖到期**時，您可能會看到下列錯誤訊息："認證作業發生錯誤：invalid\_grant - AADSTS70002：驗證認證時發生錯誤。AADSTS70008：提供的存取授權已過期或撤銷。追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21-09-31Z"。
+## 權杖到期 
+您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。請參閱下表以了解不同類型的使用者帳戶的到期時間。當驗證**權杖到期**時，您可能會看到下列錯誤訊息：認證作業發生錯誤：invalid\_grant - AADSTS70002：驗證認證時發生錯誤。AADSTS70008：提供的存取授權已過期或撤銷。追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21-09-31Z"。
 
 
 | 使用者類型 | 到期時間 |
 | :-------- | :----------- | 
 | 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等) | 12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 | 最後一次執行配量後的 14 天。<br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+
+請注意，如果您在此權杖的到期時間之前變更密碼，權杖將立即到期，且您會看到上述錯誤。
 
 如果要避免/解決此錯誤，您必須在權杖到期時使用 [授權] 按鈕重新授權，然後重新部署連結服務。您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。
 
@@ -461,7 +464,7 @@
 | folderPath | Azure 資料湖存放區中容器與資料夾的路徑。 | 是 |
 | fileName | Azure 資料湖存放區中的檔案名稱。fileName 為選用且區分大小寫。<br/><br/>若您指定 fileName，活動 (包括複製活動) 將只會在特定檔案上運作。<br/><br/>若未指定 fileName，則複製活動會包含輸入資料集 folderPath 中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，則所產生檔案的名稱會使用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
 | partitionedBy | partitionedBy 是選擇性的屬性。您可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。如需詳細資訊和範例，請參閱下面的＜運用 partitionedBy 屬性＞一節。 | 否 |
-| format | 支援三種格式類型：**TextFormat**、**AvroFormat** 及 **JsonFormat**。您需要將格式底下的 type 屬性設定為這些值。如果格式為 TextFormat，您可以指定格式的其他選擇性屬性。如需詳細資訊，請參閱以下[指定 TextFormat](#specifying-textformat) 一節。如果您使用 JsonFormat，請參閱[指定 JsonFormat](#specifying-jsonformat) 一節。 | 否
+| format | 支援三種格式類型：**TextFormat**、**AvroFormat** 及 **JsonFormat**。您需要將格式底下的 type 屬性設定為這些值。如果格式為 TextFormat，您可以指定格式的其他選擇性屬性。如需詳細資訊，請參閱以下[指定 TextFormat](#specifying-textformat) 一節。如果您使用 AvroFormat，請參閱[指定 AvroFormat](#specifying-avroformat) 一節。如果您使用 JsonFormat，請參閱[指定 JsonFormat](#specifying-jsonformat) 一節。 | 否
 | compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，目前不支援 **AvroFormat** 的資料壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 ### 運用 partitionedBy 屬性
@@ -611,4 +614,4 @@
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0427_2016-->

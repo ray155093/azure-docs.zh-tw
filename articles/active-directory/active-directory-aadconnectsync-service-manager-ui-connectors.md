@@ -63,10 +63,10 @@
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearch.png)
 
-一開始先選取**範圍**。您可以依據資料 (RDN、DN、錨點、子樹狀目錄) 或物件狀態 (所有其他選項) 進行搜尋。
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchscope.png) 
+一開始先選取**範圍**。您可以依據資料 (RDN、DN、錨點、子樹狀目錄) 或物件狀態 (所有其他選項) 進行搜尋。  
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchscope.png)  
 例如，如果您進行樹狀子目錄的搜尋，將會取得某一個 OU 中的所有物件。
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png) 
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png)  
 您可以從此處選取物件、選取 [屬性]，並[追隨物件](#follow-an-object-and-its-data-through-the-system)從來源連接器空間、通過 Metaverse，然後到目標連接器空間的過程。
 
 ## 在整個系統中遵循物件及其資料

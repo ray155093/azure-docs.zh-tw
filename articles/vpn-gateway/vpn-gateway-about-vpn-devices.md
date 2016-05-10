@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/25/2016"
+   ms.date="04/29/2016"
    ms.author="cherylmc" />
 
 # 關於站對站 VPN 閘道連線的 VPN 裝置
@@ -60,7 +60,7 @@
 | Microsoft | 路由及遠端存取服務 | Windows Server 2012 | 不相容 | [Microsoft 範例](http://go.microsoft.com/fwlink/p/?LinkId=717761) |
 | 開啟系統 AG | 任務控制安全性閘道 | N/A | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan | Openswan | 2\.6.32 | (敬請期待) | 不相容 |
-| Palo Alto Networks | 所有執行 PAN-OS 5.0 或更新版本的裝置 | PAN-OS 5.x 或更新版本 | [Palo Alto Networks](https://support.paloaltonetworks.com/) | 不相容 |
+| Palo Alto Networks | 所有執行 PAN-OS 的裝置 | PAN-OS 6.1.5 或更新版本 (原則式)、PAN-OS 7.0.5 或更新版本 (路由式) | [組態指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) | [組態指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
 | Watchguard | 全部 | Fireware XTM v11.x | [組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network/) | 不相容 |
 
 
@@ -122,7 +122,6 @@
 | 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) |
 | 停用的對等互連偵測 (DPD) | 不支援 | 支援 |
 
-
 ### 路由式閘道 IPsec 安全性關聯 (SA) 提供項目
 
 下表列出 IPsec SA 加密及驗證提供項目。提供項目是依其呈現或被接受的喜好設定順序而列出。
@@ -153,4 +152,4 @@
 
 - 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

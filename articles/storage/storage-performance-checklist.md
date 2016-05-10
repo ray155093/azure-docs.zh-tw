@@ -34,6 +34,7 @@
 |完成|	領域|	類別|	問題
 |----|------|-----------|-----------
 ||所有服務|	延展性目標|[您的應用程式是否旨在避免達到延展性目標？](#subheading1)
+||所有服務|	延展性目標|[您的命名慣例設計能因應更好的負載平衡嗎？](#subheading47)
 ||所有服務|	網路|	[用戶端裝置是否有足夠高的頻寬和足夠低的延遲，以達到所需的效能？](#subheading2)
 ||所有服務|	網路|	[用戶端裝置是否有足夠高的品質連結？](#subheading3)
 ||所有服務|	網路|	[用戶端應用程式的位置是否靠近儲存體帳戶？](#subheading4)
@@ -104,9 +105,18 @@
 
 ####有用資源
 下列連結提供有關延展性目標的其他詳細資料：
--	如需延展性目標的相關資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
--	如需儲存體備援選項的相關資訊，請參閱 [Azure 儲存體複寫](storage-redundancy.md)以及部落格文章 [Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)。
+-	如需延展性目標的資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
+-	如需儲存體備援選項的資訊，請參閱 [Azure 儲存體複寫](storage-redundancy.md)以及部落格文章 [Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)。
 -	如需 Azure 服務定價的最新資訊，請參閱 [Azure 定價](https://azure.microsoft.com/pricing/overview/)。  
+
+###<a name="subheading47"></a>分割區命名慣例
+Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系統。分割區索引鍵是用來將資料分割成數個範圍，這些範圍在整個系統都是負載平衡的。這表示命名慣例，如語彙順序 (例如 msftpayroll、msftperformance、msftemployees 等等) 或使用時間戳記 (log20160101、log20160102、log20160102 等等) 會將本身出借給可能共置於相同分割區伺服器的分割區，直到負載平衡作業將它們分割成較小的範圍。例如，容器內的所有 Bob 接受單一伺服器的服務，直到這些 Blob 的負載需要進一步重新平衡分割區範圍。同樣地，一群名稱依語彙順序排列的少量負載帳戶可能接受單一伺服器的服務，直到其中一個或所有帳戶的負載要求它們分割到多個分割區伺服器。每個負載平衡作業都可能在作業期間影響儲存體呼叫的延遲。系統處理某個分割區流量突然暴增的能力，會受到單一分割區伺服器延展性的限制，直到負載平衡作業著手重新平衡分割區索引鍵範圍。
+
+您可以遵循一些最佳做法來降低這類作業的頻率。
+
+-	詳細檢查帳戶、容器、Blob、資料表和佇列所使用的命名慣例。請考慮使用最符合您需求的雜湊函數，在帳戶名稱前加上 3 位數的雜湊。  
+-	如果使用時間戳記或數字識別碼組織資料，您必須確定您使用的不是僅附加在後 (或僅在前面加上) 的流量模式。這些模式並不適合範圍型的分割區系統，而且可能導致所有流量進入單一分割區並限制系統進行有效的負載平衡。例如，如果日常作業使用有時間戳記的 Blob 物件，如 yyyymmdd，則該日常作業的所有流量都會導向至由單一分割區伺服器服務的單一物件。請查看每個 Blob 的限制和每個分割區的限制是否符合您的需求，考慮是否需要將這項作業拆分成多個 Blob。同樣地，如果在資料表中儲存時間序列資料，則所有流量都可能導向到索引鍵命名空間的最後部分。如果必須使用時間戳記或數字識別碼，前面請加上 3 位數雜湊，或在時間戳記前加上時間的秒數部分，如 ssyyyymmdd。如果定期執行列出和查詢作業，請選擇會限制查詢次數的雜湊函數。其他情況，隨機的前置詞即足以應付。  
+-	如需 Azure 儲存體所用之分割區配置的其他資訊，請參閱[這裡](http://sigops.org/sosp/sosp11/current/2011-Cascais/printable/11-calder.pdf)的 SOSP 文件。
 
 ###網路
 雖然 API 呼叫非常重要，但應用程式的實體網路限制經常會對效能產生重大影響。下列說明了使用者可能會遇到的部分限制。
@@ -119,7 +129,7 @@
 與任何網路使用方式一樣，請留意導致錯誤和封包遺失的網路狀況將會減慢有效的輸送量。使用 WireShark 或 NetMon 可能有助於診斷此問題。
 
 #####有用資源
-如需虛擬機器大小與所配置頻寬的詳細資訊，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)。
+如需虛擬機器大小與所配置頻寬的詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
 ####<a name="subheading4"></a>位置
 在任何分散式環境中，將用戶端放置於伺服器附近可提供最佳的效能。若要以最低的延遲時間存取 Azure 儲存體，對用戶端而言的最佳位置是在同一個 Azure 區域內。例如，如果您擁有使用 Azure 儲存體的 Azure 網站，您應將這兩者置於單一區域內 (例如，美國西部或東南亞)。這可降低延遲和成本 — 本文撰寫期間，在單一區域內的頻寬使用量是免費的。
@@ -175,7 +185,7 @@
 
 	ThreadPool.SetMinThreads(100,100); //(Determine the right number for your application)  
 
-如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法] (http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
+如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法] ( http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
 
 ####<a name="subheading11"></a>充分運用 .NET 4.5 記憶體回收
 在用戶端應用程式中使用 .NET 4.5 或更新版本，以便在伺服器記憶體回收中充分運用效能改善。
@@ -394,4 +404,4 @@ Azure 儲存體支援兩種 Blob：分頁 Blob 和區塊 Blob。在指定使用�
 ##結論
 本文討論一些最常見的已經實證做法，以便在使用 Azure 儲存體時將效能最佳化。我們鼓勵每位應用程式開發人員根據上述的每個做法來評估他們的應用程式，並考慮照著建議去做，為其使用 Azure 儲存體的應用程式取得最佳效能。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0427_2016-->

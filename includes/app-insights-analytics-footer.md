@@ -4,15 +4,15 @@
 - [概觀](../articles/application-insights/app-insights-analytics.md)
 - [教學](../articles/application-insights/app-insights-analytics-tour.md)
  - 從這裡開始。涵蓋主要功能的教學課程。
-- [查詢](../articles/application-insights/app-insights-analytics-queries.md)
+- [查詢](../articles/application-insights/app-insights-analytics-reference.md#queries)
  - 使用像 `where` 和 `count` 這樣的運算子來建立查詢。
-- [彙總](../articles/application-insights/app-insights-analytics-aggregations.md)
+- [彙總](../articles/application-insights/app-insights-analytics-reference.md#aggregations)
  - 用於計算記錄群組的統計資料
-- [純量](../articles/application-insights/app-insights-analytics-scalars.md)
+- [純量](../articles/application-insights/app-insights-analytics-reference.md#scalars)
  - 用於構成查詢參數的數字、字串及其他運算式。
 - [使用](../articles/application-insights/app-insights-analytics-using.md)
  - 使用分析。
 - [參考](../articles/application-insights/app-insights-analytics-reference.md)
- - 結合 [查詢]、[彙總] 和 [純量] 頁面的單頁式參考資料。
+ - 一頁的參考。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

@@ -38,7 +38,7 @@
 
 和背景工作角色類似，Web 角色也代表無狀態的工作負載，因此在概念上也能對應至 Service Fabric 無狀態服務。不過，和 Web 角色不同的是，Service Fabric 不支援 IIS。若要將 Web 應用程式從 Web 角色移轉至無狀態服務，必須先移動到可以自我裝載且不仰賴 IIS 或 System.Web (例如 ASP.NET Core 1) 的 Web 架構。
 
-****應用程式 ** | **支援** | **移轉路徑**
+**應用程式** | **支援** | **移轉路徑**
 --- | --- | ---
 ASP.NET Web Forms | 否 | 轉換為 ASP.NET Core 1 MVC
 ASP.NET MVC | 移轉 | 升級至 ASP.NET Core 1
@@ -152,7 +152,7 @@ string value = RoleEnvironment.GetConfigurationSettingValue("Key");
 
 ```
 
-#### ServiceFabic
+#### Service Fabric
 
 每個服務都有自己的個別組態封裝。可供叢集中所有應用程式存取的全域組態設定沒有內建機制。使用組態封裝內的 Service Fabric 特殊組態檔 Settings.xml 時，Settings.xml 中的值可以在應用程式層級覆寫，實現應用程式層級的組態設定。
 
@@ -196,7 +196,7 @@ foreach (var settingChange in settingChanges)
 
 ```
 
-#### ServiceFabic
+#### Service Fabric
 
 服務中的三個封裝類型 (程式碼、組態和資料) 每個都有可在封裝已更新、新增或移除時通知服務執行個體的事件。服務可以包含多個各類型的封裝。例如，服務可以有多個組態封裝，每個都個別設定版本並可升級。
 
@@ -277,4 +277,4 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png
 [4]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/worker-role-to-stateless-service.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0427_2016-->

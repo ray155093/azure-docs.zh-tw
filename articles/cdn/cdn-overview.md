@@ -48,7 +48,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取網站所�
 
 標準 CDN 層包含下列功能：
 
-- 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、Web Apps 和[媒體服務](../media-services/media-services-manage-origins.md#enable_cdn)等 Azure 服務整合
+- 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable_cdn)等 Azure 服務整合
 - HTTPS 支援
 - 負載平衡
 - DDoS 保護
@@ -75,6 +75,6 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取網站所�
 
 現有的 CDN 客戶現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)管理您的 CDN 端點。
 
-若要查看作用中的 CDN，請參閱 [Build 2016 會議的影片](../../videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
+若要查看作用中的 CDN，請參閱 [Build 2016 會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

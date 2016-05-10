@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags
-	ms.service="machine-learning"
+	ms.service="cognitive-services"
 	ms.workload="data-services"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -26,7 +26,7 @@
 
 首先，您必須從 **Azure 入口網站**取得新的 API 金鑰：
 
-1. 透過 [Cortana Analytics 資源庫](//gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2)瀏覽至文字分析服務。您也會在這裡找到文件和程式碼範例的連結。
+1. 透過 [Cortana Intelligence 資源庫](//gallery.cortanaintelligence.com/MachineLearningAPI/Text-Analytics-2)瀏覽至文字分析服務。您也會在這裡找到文件和程式碼範例的連結。
 
 1. 按一下 [登入]。此連結會帶您前往 Azure 管理入口網站，您可以在其中註冊服務。
 
@@ -308,4 +308,4 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
 
 您現在應已準備就緒！ 使用小型範例測試您的程式碼，以確保您可以成功處理資料。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0427_2016-->

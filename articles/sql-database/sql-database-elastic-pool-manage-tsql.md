@@ -13,15 +13,15 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="NA"
     ms.workload="data-management" 
-    ms.date="04/11/2016"
+    ms.date="04/28/2016"
     ms.author="sidneyh"/>
 
 # 使用 Transact-SQL 監視和管理彈性資料庫集區  
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
-- [C#](sql-database-elastic-pool-manage-csharp.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
+- [C#](sql-database-elastic-pool-manage-csharp.md)
 - [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
 使用 [Create Database (Azure SQL Database)](https://msdn.microsoft.com/library/dn268335.aspx) 和 [Alter Database(Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx) 命令建立資料庫，以及將它移入和移出彈性集區。必須先有彈性集區，您才可以使用這些命令。這些命令只會影響資料庫。無法使用 T-SQL 命令來變更新集區的建立和集區屬性 (例如最小和最大 Edtu) 的設定。
@@ -45,7 +45,6 @@
 	ALTER DATABASE db1 MODIFY ( SERVICE_OBJECTIVE = ELASTIC_POOL (name = [PM125] ));
 	-- Move the database named db1 to a pool named P1M125  
 
-
 ## 將資料庫移入彈性集區 
 使用 ALTER DATABASE 命令搭配 MODIFY，並將 SERVICE\_OBJECTIVE 選項設定為 ELASTIC\_POOL；將名稱設定為目標集區的名稱。
 
@@ -61,16 +60,13 @@
 ## 列出彈性集區中的資料庫
 使用 [sys.database\_service\_objectives 檢視](https://msdn.microsoft.com/library/mt712619)列出彈性集區中的所有資料庫。登入 master 資料庫來查詢檢視。
 
->[AZURE.NOTE] 目前彈性集區中資料庫的 service\_objective\_column 會傳回服務目標字串的內部權杖。這將會由字串 "ElasticPool" 取代。
->
-
 	SELECT d.name, slo.*  
 	FROM sys.databases d 
 	JOIN sys.database_service_objectives slo  
 	ON d.database_id = slo.database_id
 	WHERE elastic_pool_name = 'MyElasticPool'; 
 
-## 監視彈性集區的資源使用量
+## 取得集區的資源使用量資料
 
 使用 [sys.elastic\_pool\_resource\_stats 檢視](https://msdn.microsoft.com/library/mt280062.aspx)來檢查邏輯伺服器上彈性集區的資源使用量統計資料。登入 master 資料庫來查詢檢視。
 
@@ -78,16 +74,14 @@
 	WHERE elastic_pool_name = 'MyElasticPool'
 	ORDER BY end_time DESC;
 
-## 監視彈性集區中資料庫的資源使用量
-使用 [sys.dm\_resource\_stats 檢視](https://msdn.microsoft.com/library/dn800981.aspx)或 [sys.resource\_stats 檢視](https://msdn.microsoft.com/library/dn269979.aspx)來檢查彈性集區中資料庫的資源使用量統計資料。此程序類似於查詢任何單一資料庫的資源使用量。
+## 取得彈性資料庫的資源使用量
 
-## 彈性集區的作業延遲
-
-- 每個資料庫的保證 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
-- 集區之集區儲存體限制的變更作業，則需視集區中所有資料庫使用的總空間量而定。變更作業平均每 100 GB 會在 90 分鐘以內完成。舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則集區 eDTU/儲存體限制變更作業的預期延遲時間會少於 3 小時。
+使用 [sys.dm\_ db\_ resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) 或 [sys.resource \_stats view](https://msdn.microsoft.com/library/dn269979.aspx) 來檢查彈性集區中資料庫的資源使用量統計資料。此程序類似於查詢任何單一資料庫的資源使用量。
 
 ## 後續步驟
 
 建立彈性資料庫集區後，可以藉由建立彈性工作來管理集區中的彈性資料庫。彈性工作有助於對集區中任意數目的資料庫執行 T-SQL 指令碼。如需詳細資訊，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
+
+<!---HONumber=AcomDC_0504_2016-->

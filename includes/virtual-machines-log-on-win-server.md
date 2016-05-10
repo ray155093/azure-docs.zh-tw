@@ -2,20 +2,22 @@
 
 4. 按一下 [連接] 建立並下載 [遠端桌面通訊協定] 檔案 (.rdp file)。按一下 [開啟] 使用這個檔案。
 
-5. 在 [遠端桌面] 視窗中按一下 [連接] 以繼續。
+	![下載的 .rdp 檔案的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/open-rdp.png)
 
-	![「未知發行者」相關警告的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/connectpublisher.png)
+5. 您會收到警告，表示 .rdp 來自未知的發行者。這是正常現象。在 [遠端桌面] 視窗中按一下 [連接] 以繼續。
+
+	![未知發行者相關警告的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/rdp-warn.png)
 
 6. 在 [Windows 安全性] 視窗中，輸入虛擬機器上帳戶的認證，然後按一下 [確定]。
 
  	認證通常是您在建立虛擬機器時所指定的本機帳戶使用者名稱和密碼。在此案例中，虛擬機器的名稱是網域，而它的輸入格式為 *vmname*&#92;*username*。
 	
-	如果虛擬機器隸屬於貴公司的網域，請確定使用者名稱會包含該網域的名稱且格式為 *Domain*&#92;*Username*。此帳戶也必須屬於系統管理員群組，或者已授與遠端存取 VM 的權限。
+	如果虛擬機器隸屬於貴公司的網域，請確定使用者名稱會包含該網域的名稱且格式為 Domain&#92;Username。此帳戶也必須屬於系統管理員群組，或者已授與遠端存取 VM 的權限。
 	
 	如果虛擬機器是網域控制站，請輸入該網域的網域系統管理員帳戶的使用者名稱和密碼。
 
 7.	按一下 [是] 來確認虛擬機器的身分識別，並完成登入。
 
-	![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/connectverify.png)
+	![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/cert-warning.png)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

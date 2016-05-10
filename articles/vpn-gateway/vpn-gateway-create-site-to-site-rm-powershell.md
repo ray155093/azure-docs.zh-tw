@@ -21,10 +21,10 @@
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-- [Azure 入口網站 - 傳統](vpn-gateway-site-to-site-create.md)
+- [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
-本文將逐步引導您使用 **Azure Resource Manager** 部署模型建立虛擬網路以及內部部署網路的站對站 VPN 連線。站對站連線可以用於跨部署與混合式組態。
+本文將逐步引導您使用 Azure Resource Manager 部署模型建立虛擬網路以及內部部署網路的站對站 VPN 連線。站對站連線可以用於跨部署與混合式組態。
 
 **關於 Azure 部署模型**
 
@@ -67,7 +67,9 @@
 
 ## 2\.建立虛擬網路和閘道器子網路
 
-以下範例示範 /28 的閘道器子網路。雖然您可以建立與 /29 一樣小的閘道器子網路，但是我們不建議這麼做。我們建議建立閘道器子網路 /27 或更大的子網路 (/26、/25 等)，以容納額外的功能需求。如果已有具備 /29 或更大的閘道器子網路的虛擬網路，您可以往前跳至[步驟 3 - 新增您的區域網路閘道](#localnet)。
+以下範例示範 /28 的閘道器子網路。雖然您可以建立與 /29 一樣小的閘道器子網路，但是我們不建議這麼做。我們建議建立閘道器子網路 /27 或更大的子網路 (/26、/25 等)，以容納額外的功能需求。
+
+如果已有具備 /29 或更大的閘道器子網路的虛擬網路，您可以往前跳至[新增您的區域網路閘道](#localnet)。
 
 ### 建立虛擬網路和閘道器子網路
 
@@ -146,10 +148,10 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 輸入下列值：
 
-- 站對站組態的 **-GatewayType** 是 **Vpn**。閘道器類型永遠是您實作的組態的特定類型。例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。 
+- 站對站組態的 -GatewayType 是 Vpn。閘道器類型永遠是您實作的組態的特定類型。例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。 
 
-- **-VpnType** 可以是 **RouteBased** (在某些文件中稱為動態閘道器)，或 **PolicyBased** (在某些文件中稱為靜態閘道器)。如需 VPN 閘道類型的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md#vpntype)。
-- **-GatewaySku** 可以是**Basic**、**Standard** 或 **HighPerformance**。 	
+- -VpnType 可以是 RouteBased (在某些文件中稱為動態閘道器)，或 PolicyBased (在某些文件中稱為靜態閘道器)。如需 VPN 閘道類型的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md#vpntype)。
+- -GatewaySku 可以是Basic、Standard 或 HighPerformance。 	
 
 		New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg -Location 'West US' -IpConfigurations $gwipconfig -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard
 
@@ -163,7 +165,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 ## 8\.建立 VPN 連線
 
-接下來，在虛擬網路閘道與 VPN 裝置之間建立站對站 VPN 連線。請務必將值取代為您自己的值。共用的金鑰必須符合您用於 VPN 裝置設定的值。請注意，站對站的 `-ConnectionType` 為 **IPsec**。
+接下來，在虛擬網路閘道與 VPN 裝置之間建立站對站 VPN 連線。請務必將值取代為您自己的值。共用的金鑰必須符合您用於 VPN 裝置設定的值。請注意，站對站的 `-ConnectionType` 為 IPsec。
 
 	$gateway1 = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
 	$local = Get-AzureRmLocalNetworkGateway -Name LocalSite -ResourceGroupName testrg
@@ -187,6 +189,8 @@ VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azu
 
 ## 後續步驟
 
-一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
+- 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0427_2016-->
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+
+<!---HONumber=AcomDC_0504_2016-->

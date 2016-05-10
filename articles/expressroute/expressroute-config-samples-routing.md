@@ -4,7 +4,7 @@
    documentationCenter="na"
    services="expressroute"
    authors="cherylmc"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags
    ms.service="expressroute"
@@ -12,14 +12,14 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/16/2016"
+   ms.date="04/19/2016"
    ms.author="cherylmc"/>
 
 # 設定和管理路由的路由器組態範例
 
 此頁面提供適用於 Cisco IOS XE 和 Juniper MX 系列路由器的介面和路由組態範例。這些範例僅可用作指引，不能依原樣使用。您可以和廠商合作來擬定適合您網路的組態。
 
->[AZURE.IMPORTANT]此頁面中的範例純粹只用作指引。您必須和廠商的業務人員 / 技術小組及您的網路團隊合作，來擬定適當的組態以符合您的需求。Microsoft 將不支援此頁面中所列組態的相關問題。您必須連絡您的裝置廠商來支援問題。
+>[AZURE.IMPORTANT] 此頁面中的範例純粹只用作指引。您必須和廠商的業務人員 / 技術小組及您的網路團隊合作，來擬定適當的組態以符合您的需求。Microsoft 將不支援此頁面中所列組態的相關問題。您必須連絡您的裝置廠商來支援問題。
 
 下列路由器組態範例適用於所有對等互連。如需更多路由的詳細資訊，請檢閱 [ExpressRoute 對等互連](expressroute-circuit-peerings.md)和 [ExpressRoute 路由需求](expressroute-routing.md) 。
 
@@ -210,4 +210,4 @@
 
 如需詳細資訊，請參閱〈[ExpressRoute 常見問題集](expressroute-faqs.md)〉。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0427_2016-->

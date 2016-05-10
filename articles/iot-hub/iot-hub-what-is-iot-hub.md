@@ -13,7 +13,7 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="02/03/2016"
+ ms.date="04/29/2016"
  ms.author="dobett"/>
 
 # 何謂 Azure IoT 中心？
@@ -57,7 +57,10 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
 -   **一組廣泛的裝置程式庫**。[Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援：C 表示許多 Linux 散發套件、Windows 和即時作業系統。Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 
--   **IoT 通訊協定和擴充性**。如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。您也可以透過自訂 [Azure IoT 通訊協定閘道器][protocol-gateway]開放原始碼元件，以將 IoT 中樞擴充為支援自訂通訊協定。您可以在雲端或內部部署中執行 Azure IoT 通訊協定閘道器。
+-   **IoT 通訊協定和擴充性**。如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
+
+    - 使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。 
+    - 自訂 [Azure IoT 通訊協定閘道][protocol-gateway]，這是在雲端執行的開放原始碼元件。
 
 -   **調整**。Azure IoT 中樞會調整為數百萬個同時連接的裝置，以及每秒數百萬個事件。
 
@@ -71,7 +74,7 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
 ## 閘道
 
-IoT 解決方案中的閘道器通常是部署於雲端中的[通訊協定閘道器][lnk-gateway]或使用您的裝置本機部署的[領域閘道器][lnk-field-gateway]。通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。領域閘道器提供裝置的本機管理服務。它可以是專用的裝置，或是在現有硬體部分上執行的軟體。這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
+IoT 解決方案中的閘道器通常是部署於雲端中的[通訊協定閘道器][lnk-gateway]或使用您的裝置本機部署的[領域閘道器][lnk-field-gateway]。通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。領域閘道可以在邊緣上執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，也可以執行通訊協定轉譯。這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
 
 現場閘道器與簡單的流量路由裝置 (例如網路位址轉譯 (NAT) 裝置或防火牆) 不同，因為它通常會在解決方案內管理存取和資訊流程中扮演主動的角色。
 
@@ -116,5 +119,6 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-apple-push]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9
 [lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
+[lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

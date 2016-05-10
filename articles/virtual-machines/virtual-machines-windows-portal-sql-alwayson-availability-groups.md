@@ -19,8 +19,9 @@
 # 在 Azure 資源管理員虛擬機器 (GUI) 中設定 AlwaysOn 可用性群組
 
 > [AZURE.SELECTOR]
-- [入口網站 - 資源管理員](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-- [入口網站 - 傳統](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+- [入口網站 - Resource Manager - 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
+- [入口網站 - 傳統 - 手動](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 - [PowerShell - 傳統](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 
 <br/>
@@ -58,7 +59,7 @@
 
 - 您已充分了解 AlwaysOn 可用性群組。如需詳細資訊，請參閱 [AlwaysOn 可用性群組 (SQL Server)](http://msdn.microsoft.com/library/hh510230.aspx)。
 
->[AZURE.NOTE] 如想將 AlwaysOn 可用性群組與 SharePoint 搭配使用，另請參閱[為 SharePoint 2013 設定 SQL Server 2012 AlwaysOn 可用性群組 ](http://technet.microsoft.com/library/jj715261.aspx)。
+>[AZURE.NOTE] 如想將 AlwaysOn 可用性群組與 SharePoint 搭配使用，另請參閱[設定 SharePoint 2013 的 SQL Server 2012 AlwaysOn 可用性群組](http://technet.microsoft.com/library/jj715261.aspx)。
 
 在本教學課程中，您將使用 Azure 入口網站執行下列動作：
 
@@ -77,24 +78,24 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 1. 	使用您的帳戶登入 Azure 入口網站。
 1.	在 Azure 入口網站上，按一下 [+新增]。 入口網站將會開啟 [新增] 刀鋒視窗。
 1.	在 [新增] 刀鋒視窗上，搜尋 **AlwaysOn**。![尋找 AlwaysOn 範本](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/16-findalwayson.png)
-1.	在搜尋結果中找出 **SQL Server AlwaysOn 叢集**。![AlwaysOn 範本](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/17-alwaysontemplate.png)
-1.	在 [選取部署模型] 中，選擇 [資源管理員]。
+1.	在搜尋結果中，找出 **SQL Server AlwaysOn 叢集**。![AlwaysOn 範本](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/17-alwaysontemplate.png)
+1.	在 [選取部署模型] 中，選擇 [Resource Manager]。
 
 ### 基本概念
 
-按一下 [基本資料] 並設定下列各項：
+按一下 [基本] 並設定下列各項：
 
-- [系統管理員使用者名稱] 是具有網域系統管理員權限，且在兩個 SQL Server 執行個體上隸屬於 SQL Server sysadmin 固定伺服器角色的使用者帳戶。本教學課程使用 **DomainAdmin**。
+- [系統管理員使用者名稱] 是具有網域系統管理員權限，且在兩個 SQL Server 執行個體上隸屬於 SQL Server sysadmin 固定伺服器角色成員的使用者帳戶。本教學課程使用 **DomainAdmin**。
 
 - [密碼] 是網域系統管理員帳戶的密碼。使用複雜密碼。確認密碼。
 
-- [訂用帳戶] 是執行針對 AlwaysOn 可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
+- [訂用帳戶] 是在執行 AlwaysOn 可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
 
 - [資源群組] 是本教學課程建立的所有 Azure 資源所屬群組的名稱。本教學課程使用 **SQL-HA-RG**。如需詳細資訊，請參閱 (Azure 資源管理員概觀)[resource-group-overview.md/#resource-groups]。
 
 - [位置] 是本教學課程將於其中建立資源的 Azure 區域。選取 Azure 區域來裝載基礎結構。
 
-以下是 [基本資料] 刀鋒視窗的外觀：
+以下是 [基本] 刀鋒視窗的外觀：
 
 ![基本概念](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/1-basics.png)
 
@@ -106,7 +107,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 在 [網域和網路設定] 刀鋒視窗上，檢閱網域和網路設定的預設值：
 
-- [樹系根網域名稱] 是裝載叢集的 AD 網域使用的網域名稱。本教學課程使用 **contoso.com**。
+- [樹系根網域名稱] 是裝載叢集的 AD 網域所使用的網域名稱。本教學課程使用 **contoso.com**。
 
 - [虛擬網路名稱] 是 Azure 虛擬網路的網路名稱。本教學課程使用 **autohaVNET**。
 
@@ -116,7 +117,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 若要深入了解 Azure 中的虛擬網路，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-[網域和網路設定] 應該看起來像這樣：
+[網域和網路設定] 看起來應該如下所示：
 
 ![網域和網路設定](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/2-domain.png)
 
@@ -156,15 +157,15 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [DC 儲存體帳戶] 是網域控制站的儲存體帳戶名稱。本教學課程使用 **alwaysondc01**。
 
-- [SQL Server 資料磁碟大小] (TB) 是 SQL Server 資料磁碟的大小 (TB)。指定從 1 到 4 的數字。這是會附加至每個 SQL Server 的資料磁碟的大小。本教學課程使用 **1**。
+- [SQL Server 資料磁碟大小] \(TB) 是 SQL Server 資料磁碟的大小 (TB)。指定從 1 到 4 的數字。這是會附加至每個 SQL Server 的資料磁碟的大小。本教學課程使用 **1**。
 
 - [儲存體最佳化] 會根據工作負載類型，設定 SQL Server 虛擬機器的特定儲存體組態設定。在此案例中，所有 SQL Server 都使用進階儲存體，且 Azure 磁碟主機快取設為唯讀。此外，有下列三種設定供您選擇，以最佳化 SQL Server 的工作負載設定：
 
-    - [一般工作負載] 不會設定任何特定的組態設定
+    - [一般工作負載] 不會設定任何特定的組態設定。
 
-    - [交易式處理] 會設定追蹤旗標 1117 和 1118
+    - [交易式處理] 會設定追蹤旗標 1117 和 1118。
 
-    - [資料倉儲] 會設定追蹤旗標 1117 和 610
+    - [資料倉儲] 會設定追蹤旗標 1117 和 610。
 
 本教學課程使用 [一般工作負載]。
 
@@ -207,7 +208,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [SQL 自動修補維護排程] 會識別 Azure 將自動修補 SQL Server 的工作日。在本教學課程中，請輸入**星期日**。
 
-- [SQL 自動修補維護開始小時] 是 Azure 區域在當天開始自動修補的時間。
+- [SQL 自動修補維護開始時間] 是 Azure 區域開始自動修補的當天時間。
 
 >[AZURE.NOTE]每個 VM 的修補時段會錯開一小時。一次只修補一個虛擬機器，以避免服務中斷。
 
@@ -221,7 +222,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 ###購買
 
-這個最終的刀鋒視窗包含 [使用條款] 和 [隱私權原則]。檢閱此資訊。當您準備好讓 Azure 開始建立虛擬機器，以及 AlwaysOn 可用性群組的其他所有必要資源時，請按一下 [建立]。
+這個最終的刀鋒視窗包含 [使用條款] 和 [隱私權原則]。檢閱此資訊。當您準備好讓 Azure 開始建立虛擬機器以及 AlwaysOn 可用性群組的其他所有必要資源時，請按一下 [建立]。
 
 Azure 入口網站會建立資源群組和所有資源。
 
@@ -244,15 +245,15 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 1.	在 [資源] 刀鋒視窗中，按一下 **ad-primary-dc**，這是主要網域控制站虛擬機器的電腦名稱。
 
 1.	在 **ad-primary-dc** 的刀鋒視窗上，按一下 [連接]。瀏覽器會詢問您是否要開啟或儲存遠端連線物件。按一下 [開啟]。![連接到 DC](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/13-ad-primary-dc-connect.png)
-1.	**遠端桌面連線**可能會警告您無法識別這個遠端連線的發行者。按一下 [連接]。
+1.	[遠端桌面連線] 可能會警告您無法識別這個遠端連線的發行者。按一下 [連接]。
 
 1.	Windows 安全性會提示您輸入認證，以連接到主要網域控制站的 IP 位址。按一下 [使用其他帳戶]。在 [使用者名稱] 中，輸入 **contoso\\DomainAdmin**。這是您針對系統管理員使用者名稱而選擇的帳戶。使用您設定範本時選擇的複雜密碼。
 
-1.	**遠端桌面**可能會警告您因為安全性憑證有問題，無法驗證遠端電腦。它會顯示安全性憑證名稱。如果您依照本教學課程進行，此名稱會是 **ad-primary-dc.contoso.com**。按一下 [是]。
+1.	[遠端桌面] 可能會警告您因為安全性憑證有問題，無法驗證遠端電腦。它會顯示安全性憑證名稱。如果您依照本教學課程進行，此名稱會是 **ad-primary-dc.contoso.com**。按一下 [是]。
 
 您現在已連接到主要網域控制站。若要以 RDP 連接至 SQL Server，請遵循下列步驟：
 
-1.	在網域控制站上開啟 [遠端桌面連線]。
+1.	在網域控制站上，開啟 [遠端桌面連線]。
 
 1.	在 [電腦] 中，輸入其中一個 SQL Server 的名稱。在本教學課程中，請輸入 **sqlserver-0**。
 
@@ -260,4 +261,4 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 
 您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定 AlwaysOn 可用性群組。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0427_2016-->

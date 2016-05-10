@@ -33,7 +33,7 @@ Azure Privileged Identity Management (PIM) 會產生下列警示，您可在 PIM
 
 ### 「特殊權限角色的可疑啟用更新」警示
 
-設定 [啟用更新時間範圍] 和 [Number of activation renewals] (啟用更新次數) 設定，控制觸發這個警示的時間。
+設定 [啟用更新時間範圍] 和 [Number of activation renewals] \(啟用更新次數) 設定，控制觸發這個警示的時間。
 
 1. 從儀表板的 [活動] 區段，選取 [安全性警示]。隨即會出現 [作用中的安全性警示] 刀鋒視窗。
 2. 按一下 [設定]。
