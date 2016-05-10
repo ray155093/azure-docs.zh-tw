@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在 Azure Active Directory 中新增使用者或變更使用者資訊 | Microsoft Azure"
-	description="說明如何在 Azure Active Directory 中新增使用者或變更使用者資訊，包括外部使用者和來賓使用者。"
+	pageTitle="將新的使用者加入 Azure Active Directory | Microsoft Azure"
+	description="說明如何在 Azure Active Directory 中新增新的使用者或變更使用者資訊。"
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
@@ -16,9 +16,9 @@
 	ms.date="03/31/2016"
 	ms.author="curtand;viviali"/>
 
-# 在 Azure Active Directory 中新增或變更使用者
+# 在 Azure Active Directory 新增新的使用者或具有 Microsoft 帳戶的使用者
 
-為每一個存取 Microsoft 雲端服務的使用者在租用戶目錄中新增帳戶。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+請新增使用者來填入您的目錄。本文說明如何在組織中新增新的使用者，以及如何新增具有 Microsoft 帳戶的使用者。如需新增來自 Azure Active Directory 中其他目錄之使用者或是來自合作夥伴公司之使用者的詳細資訊，請參閱[新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者](active-directory-create-users-external.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
 ## 新增使用者
 
@@ -29,12 +29,9 @@
 
 	- **您組織中的新使用者** – 在您的目錄中新增使用者帳戶。
 	- **現有 Microsoft 帳戶的使用者** – 將現有的 Microsoft 取用者帳戶加入至您的目錄 (例如，Outlook 帳戶)。
-	- **另一個 Azure AD 目錄中的使用者** – 將源自另一個 Azure AD 目錄的使用者帳戶加入至您的目錄。只有在您也是另一個目錄的成員時，才能選取該目錄中的使用者。
-	- **合作夥伴公司中的使用者** - 邀請並授權合作夥伴公司使用者使用您的目錄 ([請參閱 Azure Active Directory B2B 共同作業](active-directory-b2b-what-is-azure-ad-b2b.md))
 
-
-5. 根據 [使用者類型] 輸入使用者名稱、電子郵件地址，或上傳指定電子郵件地址的 CSV 檔案。
-6. 在 [使用者設定檔] 頁面上，提供姓氏和名字、使用者易記名稱，並從 [角色] 清單中選擇使用者角色。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。指定是否**啟用 Multi-Factor Authentication**。
+5. 根據 [使用者類型] 輸入使用者名稱 (適用於新使用者) 或電子郵件地址 (適用於具有 Microsoft 帳戶的使用者)。
+6. 在 [使用者設定檔] 頁面上，提供姓氏和名字、使用者易記名稱，並從 [角色] 清單中選擇使用者角色。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。指定是否為使用者**啟用 Multi-Factor Authentication**。
 7. 在 [取得暫時密碼] 頁面上，選取 [建立]。
 
 > [AZURE.IMPORTANT] 如果您的組織使用多個網域，當您新增使用者帳戶時，請注意下列問題：
@@ -52,45 +49,6 @@
 
 如果您嘗試變更的使用者已經與內部部署 Active Directory 服務同步處理，您將無法使用此程序來變更使用者資訊。若要變更此使用者，請使用您的內部部署 Active Directory 管理工具。
 
-## 重設使用者密碼
-
-1. 開啟您的目錄。
-2. 選取 [使用者] 索引標籤，然後選取想要變更之使用者的顯示名稱。
-3. 在命令列中，選取 [重設密碼]。
-4. 在 [重設密碼] 對話方塊中，按一下 [重設]。
-5. 選取核取記號以完成密碼重設。
-
-## 新增外部使用者
-
-您也可以從另一個所屬 Azure AD 目錄，或從合作夥伴公司上傳 CSV 檔案來新增使用者。若要新增外部使用者，請在 [使用者類型] 中指定 [另一個 Microsoft Azure AD 目錄中的使用者] 或 [合作夥伴公司中的使用者]。
-
-這兩種類型的使用者是源自另一個目錄，並且新增為 [外部使用者]。外部使用者可以和目錄中的其他使用者共同作業，而不需要另外新增帳戶和認證。外部使用者登入時會使用其主目錄進行驗證，驗證結果適用於其已加入的其他所有目錄。
-
-## 外部使用者管理和限制
-
-當您將另一個目錄的使用者加入至您的目錄時，該使用者在您的目錄中就是外部使用者。顯示名稱和使用者名稱會從其主目錄複製而來，並用於您的目錄中的外部使用者。從此以後，外部使用者帳戶的屬性就會完全獨立。如果對使用者在其主目錄中變更屬性，這些變更不會傳播到您的目錄中的外部使用者帳戶。
-
-兩個帳戶之間的唯一連結是，使用者永遠針對其主目錄或使用其 Microsoft 帳戶進行驗證。這就是為什麼您沒有看到針對外部使用者重設密碼或啟用 Multi-Factor Authentication 的選項。目前，主目錄或 Microsoft 帳戶的驗證原則是使用者登入時唯一會評估的原則。
-
-> [AZURE.NOTE]
-您仍然可以停用目錄中的外部使用者，以阻止其存取您的目錄。
-
-如果使用者在其主目錄中被刪除，或取消其 Microsoft 帳戶，外部使用者仍存在您的目錄中。不過，您的目錄中的使用者無法存取資源，因為這些資源無法使用主目錄或 Microsoft 帳戶進行驗證。
-
-### 目前支援讓 Azure AD 外部使用者存取的服務
-
-- **Azure 傳統入口網站**：允許身為多個目錄的管理員的外部使用者，管理這些目錄。
-- **SharePoint Online**：如果啟用外部共用，允許外部使用者存取 SharePoint Online 授權資源。
-- **Dynamics CRM**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics CRM 中的授權資源。
-- **Dynamics AX**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics AX 中的授權資源。[Azure AD 外部使用者](#known-limitations-of-azure-ad-external-users)和[來賓使用者](#guest-user-management-and-limitations)的限制也適用於 Dynamics AX 中的外部使用者。
-
-### Azure AD 外部使用者的已知限制
-
-- 身為管理員的外部使用者無法將來自合作夥伴公司的使用者加入至其主目錄以外的目錄 (B2B 共同作業)
-- 外部使用者無法同意在其主目錄以外的目錄中的多租用戶應用程式
-- PowerBI 目前不支援讓外部使用者存取
-- Office 入口網站不支援授權外部使用者
-
 ## 來賓使用者管理和限制
 
 來賓帳戶是來自其他目錄的使用者，其已受邀至您的目錄以存取 SharePoint 文件、應用程式或其他 Azure 資源。您的目錄中的來賓帳戶會將其基礎 UserType 屬性設為 [來賓]。 一般使用者 (具體而言是指您目錄的成員) 的 UserType 屬性則為 [成員]。
@@ -101,24 +59,25 @@
 - 查看其所屬之群組的成員
 - 如果他們已經知道使用者的完整電子郵件地址，則可以查閱目錄中的其他使用者
 - 僅能查看他們查閱的使用者的有限屬性集 - 僅限於顯示名稱、電子郵件地址、使用者主體名稱 (UPN) 和相片縮圖
-- 取得租用戶目錄中已驗證的網域清單
+- 取得目錄中已驗證的網域清單
 - 同意應用程式，授與它們與在您的目錄中相同的成員存取權
 
-## 設定使用者存取原則
+## 設定來賓使用者存取原則
 
-目錄內的 [設定] 索引標籤內含可控制外部使用者存取權限的選項。這些選項只可以由目錄全域管理員在 Azure 傳統入口網站中進行變更。目前沒有透過 PowerShell 或 API 的方法。
+目錄內的 [設定] 索引標籤內含可控制來賓使用者存取權限的選項。這些選項只可以由目錄全域管理員在 Azure 傳統入口網站中進行變更。目前沒有透過 PowerShell 或 API 的方法。
 
 若要在 Azure 傳統入口網站中開啟 [設定] 索引標籤，請選取 [Active Directory]，然後選取目錄的名稱。
 
 ![在 Azure Active Directory 中設定索引標籤][1]
 
-接著您可以編輯選項來控制外部使用者的存取權限。
+接著您可以編輯選項來控制來賓使用者的存取權限。
 
-![][2]
+![來賓使用者的存取控制選項][2]
 
 
-## 接下來
+## 後續步驟
 
+- [新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者](active-directory-create-users-external.md)
 - [管理 Azure AD](active-directory-administer.md)
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
@@ -127,4 +86,4 @@
 [1]: ./media/active-directory-create-users/RBACDirConfigTab.png
 [2]: ./media/active-directory-create-users/RBACGuestAccessControls.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

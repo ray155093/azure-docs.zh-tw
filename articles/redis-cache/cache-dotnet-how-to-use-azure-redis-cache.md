@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何使用 Azure Redis 快取" 
+	pageTitle="如何使用 Azure Redis 快取 | Microsoft Azure" 
 	description="了解如何改善與 Azure Redis 快取的 Azure 應用程式的效能" 
 	services="redis-cache,app-service" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="01/21/2016" 
+	ms.date="04/28/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Azure Redis 快取
@@ -34,7 +34,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 每一個階層都有不同的功能和定價。如需價格的相關資訊，請參閱[快取價格詳細資料][]。
 
-本指南說明如何使用採用 C# 程式碼的 [StackExchange.Redis][] 用戶端。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**加入和移除快取中的物件**。如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][]一節。
+本指南說明如何使用採用 C# 程式碼的 [StackExchange.Redis][] 用戶端。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**加入和移除快取中的物件**。如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][]一節。如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱[如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
 
 <a name="getting-started-cache-service"></a>
 ## 開始使用 Azure Redis 快取
@@ -57,7 +57,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 ![New cache][NewCacheMenu]
 
->[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用][]。
+>[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
 
 在 [新增 Redis 快取] 分頁中，指定所需的快取組態。
 
@@ -73,7 +73,7 @@ Microsoft Azure Redis 快取有下列階層：
 -	**虛擬網路**藉由將您的快取存取權限制於指定的 Azure 虛擬網路內的用戶端，以提供增強的安全性和隔離。您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。如需詳細資訊，請參閱[如何設定進階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
 -	使用 [診斷] 來指定快取度量的儲存體帳戶。如需有關設定和檢視快取度量的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)。
 
-一旦設定了新的快取選項，請按一下 [建立新快取]。建立快取可能需要數分鐘的時間。若要檢查狀態，您可以監視開始面板上的進度。在建立了快取之後，新快取的狀態會是「執行中」，而且準備好與預設設定搭配使用。
+一旦設定了新的快取選項，請按一下 [建立新快取]。建立快取可能需要數分鐘的時間。若要檢查狀態，您可以監視開始面板上的進度。在建立了快取之後，新快取的狀態會是**執行中**，而且準備好與預設設定搭配使用。
 
 ![Cache created][CacheCreated]
 
@@ -96,7 +96,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 ![Manage NuGet packages][NuGetMenu]
 
-在 [線上搜尋] 文字方塊中輸入 **StackExchange.Redis** 或 **StackExchange.Redis.StrongName**，從結果選取需要的版本，然後按一下 [安裝]。
+在搜尋文字方塊中輸入 **StackExchange.Redis** 或 **StackExchange.Redis.StrongName**、從結果選取需要的版本，然後按一下 [安裝]。
 
 >[AZURE.NOTE] 如果您偏好使用強式名稱版本的 **StackExchange.Redis** 用戶端程式庫，請選取 **StackExchange.Redis.StrongName**；否則選取 **StackExchange.Redis**。
 
@@ -239,7 +239,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 	-	[Azure Redis 快取 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)
 -	[啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具[下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)它們。
 -	請參閱 [StackExchange.Redis 快取用戶端文件][]。
-	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][] 和[以其他語言開發 Azure Redis 快取][]。
+	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][]。
 	-	Azure Redis 快取也可以與服務搭配使用 (例如 Redsmin)。如需詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
 -	請參閱 [Redis][] (英文) 文件，並閱讀有關 [Redis 資料類型][] (英文) 和 [Redis 資料類型的 15 分鐘簡介][] (英文)。
 
@@ -291,7 +291,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
    
 <!-- LINKS -->
 [http://redis.io/clients]: http://redis.io/clients
-[以其他語言開發 Azure Redis 快取]: http://msdn.microsoft.com/library/azure/dn690470.aspx
+[Develop in other languages for Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn690470.aspx
 [如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用]: https://redsmin.uservoice.com/knowledgebase/articles/485711-how-to-connect-redsmin-to-azure-redis-cache
 [Azure Redis Session State Provider]: http://go.microsoft.com/fwlink/?LinkId=398249
 [How to: Configure a Cache Client Programmatically]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
@@ -333,6 +333,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
-[Azure 免費試用]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="04/04/2016"
+	ms.date="04/27/2016"
 	ms.author="v-livech"/>
 
 # 使用 Azure 範本建立受保護的 Linux VM
@@ -66,4 +66,4 @@ info:    group create command OK
 
 使用範本建立 Linux VM 後，您會想要看看還有哪些應用程式架構可與範本搭配使用。請搜尋[範本庫](https://azure.microsoft.com/documentation/templates/)以探索接下來要部署哪些應用程式架構。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

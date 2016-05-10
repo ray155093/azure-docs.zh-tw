@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/14/2016"
+	ms.date="04/28/2016"
 	ms.author="cynthn"/>
 
 # 如何連接和登入執行 Windows Server 的 Azure 虛擬機器 
@@ -32,7 +32,7 @@
 
 4. 在虛擬機器的刀鋒視窗中，按一下 [**連線**]。
 
-	![顯示如何連接至 VM 的 Azure 入口網站螢幕擷取畫面。](./media/virtual-machines-windows-connect-logon/preview-portal-connect.png)
+	![顯示如何連接至 VM 的 Azure 入口網站螢幕擷取畫面。](./media/virtual-machines-windows-connect-logon/connect.png)
 
 ## 登入虛擬機器
 
@@ -43,4 +43,4 @@
 
 如果嘗試連線時遇到問題，請參閱[針對執行 Windows 之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

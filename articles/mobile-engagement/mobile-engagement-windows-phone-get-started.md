@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
+	ms.date="05/03/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement
@@ -37,7 +37,7 @@
 
 ##<a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 
-本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。您可以在 [Mobile Engagement Windows Phone SDK 整合](../mobile-engagement-windows-phone-sdk-overview/)文件中找到完整的整合文件。
+本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。您可以在 [Mobile Engagement Windows Phone SDK 整合](mobile-engagement-windows-phone-sdk-overview.md)文件中找到完整的整合文件。
 
 我們將會使用 Visual Studio 建立基本應用程式來示範整合。
 
@@ -166,4 +166,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [5]: ./media/mobile-engagement-windows-phone-get-started/reach-capabilities.png
 [6]: ./media/mobile-engagement-windows-phone-get-started/push-screenshot.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

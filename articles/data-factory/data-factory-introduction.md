@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="02/09/2016" 
+	ms.date="04/26/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 服務簡介
@@ -69,4 +69,4 @@ Azure Data Factory 本身不會儲存任何資料。它可讓您建立資料驅�
 未來我們計畫讓 Azure 在每個地理位置都能支援 Azure Data Factory。
   
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0504_2016-->

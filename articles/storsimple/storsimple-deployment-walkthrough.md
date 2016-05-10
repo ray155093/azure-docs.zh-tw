@@ -12,7 +12,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/22/2016"
+   ms.date="04/26/2016"
    ms.author="alkohli" />
 
 # 部署內部部署 StorSimple 裝置
@@ -34,7 +34,7 @@
 
 您必須需要有系統管理員權限，才能完成安裝和設定程序。建議您在開始之前，檢閱設定檢查清單。部署與設定程序可能需要一些時間才能完成。
 
-> [AZURE.NOTE] 發佈於 Microsoft Azure 網站上的 StorSimple 部署資訊僅適用於 StorSimple 8000 系列裝置。如需 5000 和 7000 系列裝置的完整資訊，請移至：[http://onlinehelp.storsimple.com/](http://onlinehelp.storsimple.com)。如需 5000 和 7000 系列部署資訊，請參閱 [StorSimple 系統快速入門指南](http://onlinehelp.storsimple.com/111_Appliance/)。
+> [AZURE.NOTE] 發佈於 Microsoft Azure 網站上的 StorSimple 部署資訊僅適用於 StorSimple 8000 系列裝置。如需 5000 和 7000 系列裝置的完整資訊，請移至：[http://onlinehelp.storsimple.com/](http://onlinehelp.storsimple.com)。如需 5000 和 7000 系列部署資訊，請參閱 [StorSimple System Quick Start Guide](http://onlinehelp.storsimple.com/111_Appliance/)。
 
 ## 部署步驟
 
@@ -168,7 +168,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。針對第一次�
 > [AZURE.IMPORTANT] 如果您並未啟用服務自動建立儲存體帳戶，您將必須在成功建立服務後，至少建立一個儲存體帳戶。當您建立磁碟區容器時，將會使用此儲存體帳戶。
 >
 > 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#configure-a-new-storage-account-for-the-service)以取得詳細指示。
->如果您已啟用自動建立儲存體帳戶，請移至[步驟 2：取得服務註冊金鑰](#step-2:-get-the-service-registration-key)。
+> 如果您已啟用自動建立儲存體帳戶，請移至[步驟 2：取得服務註冊金鑰](#step-2:-get-the-service-registration-key)。
 
 ## 步驟 2：取得服務註冊金鑰
 
@@ -290,8 +290,8 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。針對第一次�
 
 ## 後續步驟
 
-- 設定[虛擬裝置](storsimple-virtual-device.md)。
+- 設定[虛擬裝置](storsimple-virtual-device-u2.md)。
 
 - 使用 [StorSimple Manager 服務](https://msdn.microsoft.com/library/azure/dn772396.aspx)以管理 StorSimple 裝置。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

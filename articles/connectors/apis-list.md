@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Microsoft 管理的 API 清單 | Microsoft Azure App Service"
-	description="取得受 Microsoft 管理的 API 完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
+	pageTitle="Microsoft 管理的連接器清單 | Microsoft Azure App Service"
+	description="取得受 Microsoft 管理的連接器完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
 	services="app-service\logic"
 	documentationCenter=""
 	authors="MSFTMAN"
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/28/2016"
+	ms.date="04/29/2016"
 	ms.author="deonhe"/>
 
-# Managed API 清單
+# 受管理的連接器清單
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下[連接器清單](../app-service-logic/app-service-logic-connectors-list.md)。
 
@@ -25,31 +25,34 @@
 
 > [AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；沒有承諾。
 
-選取圖示，以了解如何快速地利用這些 API，來建置可呼叫這些服務的 app。這些 API 可以用來建立邏輯應用程式或 PowerApps 或是兩者。
+選取圖示，以了解如何快速地利用這些連接器，來建置可呼叫這些服務的 app。這些連接器可以用來建立邏輯應用程式、PowerApps 和流程。
 
 |API||||
 |-----------|-----------|-----------|-----------|
 |[![API 圖示][blobicon]<br/>**Azure Blob**][azureblobdoc]|[![API 圖示][bingsearchicon]<br/>**Bing 搜尋**][bingsearchdoc]|[![API 圖示][boxicon]<br/>**Box**][boxDoc]|[![API 圖示][crmonlineicon]<br/>**CRM Online**][crmonlinedoc]|
-|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|
-|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**影片**][office365videodoc]|
-|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|
-|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**線上**][sharepointdoc]|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|
-|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
+|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|
+[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|[![API 圖示][mailchimpicon]<br/>**MailChimp**][mailchimpdoc]|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|
+|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**影片**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**OneDrive<br/>for Business**][onedriveforbusinessdoc]|
+|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|
+|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**Online**][sharepointdoc]|
+|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|[![API 圖示][sqlicon]<br/>**SQL Mashup**][mashupsqldoc]|
+|[![API 圖示][trelloicon]<br/>**Trello**][trellodoc]|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|
+[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
 
-> [AZURE.NOTE] 如果您已使用 2014-12-01-preview 結構描述建立邏輯應用程式，您會發現上面並未列出適用於 BizTalk 的企業整合 API。我們知道這些都很重要，我們會努力為您提供這些服務。雖然我們未能公佈確切的公開上市日期，但請注意，為您提供這些服務是我們最高的優先順序之一。在此同時，您可以[從 Logic Apps 存取 v1 API 和 BizTalk API](https://blogs.msdn.microsoft.com/logicapps/2016/02/25/accessing-v1-apis-and-biztalk-apis-from-logic-apps/)。感謝您的理解。敬請期待。
+> [AZURE.NOTE] 如果您已使用 2014-12-01-preview 結構描述建立邏輯應用程式，您會發現上面並未列出適用於 BizTalk 的企業整合連接器。我們知道這些都很重要，我們會努力為您提供這些服務。雖然我們未能公佈確切的公開上市日期，但請注意，為您提供這些服務是我們最高的優先順序之一。在此同時，您可以[從 Logic Apps 存取 v1 API 和 BizTalk API](https://blogs.msdn.microsoft.com/logicapps/2016/02/25/accessing-v1-apis-and-biztalk-apis-from-logic-apps/)。感謝您的理解。敬請期待。
 
 
-### API 可以是觸發程序
-多個 API 提供觸發程序，可在發生特定事件時通知您的 app。例如，FTP API 具有 OnUpdatedFile 觸發程序。您可以建置邏輯應用程式或 PowerApp 來接聽此觸發程序，並且在每次引發觸發程序時採取動作。
+### 連接器可以是觸發程序
+多個連接器提供觸發程序，可在發生特定事件時通知您的 app。例如，FTP 連接器具有 OnUpdatedFile 觸發程序。您可以建置邏輯應用程式、PowerApp 或流程來接聽此觸發程序，並且在每次引發觸發程序時採取動作。
 
 觸發程序可分為兩種：
 
 * 輪詢觸發程序：這些觸發程序會以指定的頻率輪詢您的服務，以檢查是否有新資料。有新資料可用時，app 的新執行個體會以該資料做為輸入來執行。為了防止重複取用相同的資料，觸發程序可能會清除已讀取並傳遞至您 app 的資料。
-* 推送觸發程序：這些觸發程序會接聽端點上的資料，或接聽發生的事件。然後，觸發 app 的新執行個體。Twitter API 是其中一個範例。
+* 推送觸發程序：這些觸發程序會接聽端點上的資料，或接聽發生的事件。然後，觸發 app 的新執行個體。Twitter 連接器是其中一個範例。
 
 
-### API 可以是動作
-API 也可以用來做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用 API 提供的動作來執行此動作。動作會對應至 Swagger 中繼資料中定義的作業。
+### 連接器可以是動作
+連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 
 [最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md) [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md) [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md)
@@ -69,16 +72,26 @@ API 也可以用來做為 app 內的動作。動作很適合用來查閱可在�
 [officeunifieddoc]: ./connectors-create-api-bingsearch.md
 [office365usersdoc]: ./connectors-create-api-office365-users.md
 [office365videodoc]: ./connectors-create-api-office365-video.md
-[onedrivedoc]: ./connectors-create-api-onedrive.md "連接到您個人的 Microsoft OneDrive 上傳、刪除、列出檔案等等。"
+[onedrivedoc]: ./connectors-create-api-onedrive.md "連接到您個人的 Microsoft OneDrive 並上傳、刪除、列出檔案等等。"
+[onedriveforbusinessdoc]: ./connectors-create-api-onedriveforbusiness.md "連接到您企業的 Microsoft OneDrive 並上傳、刪除、列出您的檔案等等。"
+[outlookdoc]: ./connectors-create-api-outlook.md "連接到您的 Outlook 信箱，並存取您的電子郵件和執行其他作業。"
+[projectonlinedoc]: ./connectors-create-api-projectonline.md "連接到 Microsoft Project Online。"
+[rssdoc]: ./connectors-create-api-rss.md "RSS 連接器可讓使用者發佈和擷取摘要項目。它也可讓使用者在新項目發佈到摘要中時觸發作業。"
 [salesforcedoc]: ./connectors-create-api-salesforce.md "連接到您的 Salesforce 帳戶，並且管理客戶、潛在客戶、機會等等。"
+[sendgriddoc]: ./connectors-create-api-sendgrid.md "連接到 Microsoft Project Online。"
 [servicebusdoc]: ./connectors-create-api-servicebus.md "可以從「服務匯流排佇列和主題」傳送訊息，並接收來自「服務匯流排佇列和訂用帳戶」的訊息。"
 [sharepointdoc]: ./connectors-create-api-sharepointonline.md "連線至 SharePoint Online 來管理文件和清單項目。"
 [slackdoc]: ./connectors-create-api-slack.md "連接至 Slack，並將訊息張貼至 Slack 通道。"
 [sftpdoc]: ./connectors-create-api-sftp.md "連接到 SFTP，可以上傳、取得、刪除檔案等等。"
+[githubdoc]: ./connectors-create-api-github.md "連接到 GitHub，而且可以追蹤問題。"
+[mailchimpdoc]: ./connectors-create-api-mailchimp.md "傳送更好的電子郵件。"
 [smtpdoc]: ./connectors-create-api-smtp.md "連接至 SMTP 伺服器，還可以傳送帶有附件的電子郵件。"
 [sqldoc]: ./connectors-create-api-sqlazure.md "連接到 SQL Azure 資料庫。您可以建立、更新、取得和刪除 SQL 資料庫資料表上的項目。"
+[mashupsqldoc]: ./connectors-create-api-mashupsql.md "連接到 SQL。您可以建立、更新、取得和刪除 SQL 資料庫資料表上的項目。"
+[trellodoc]: ./connectors-create-api-trello.md "Trello 可以免費、彈性和視覺的方式組織任何人擁有的任何項目。"
 [twiliodoc]: ./connectors-create-api-twilio.md "連接到 Twilio，可以傳送及取得訊息、取得可用的號碼，管理撥入的電話號碼等等。"
 [twitterdoc]: ./connectors-create-api-twitter.md "連接到 Twitter，取得時間軸、張貼推文等等。"
+[wunderlistdoc]: ./connectors-create-api-wunderlist.md "讓您的生活保持同步。"
 [yammerdoc]: ./connectors-create-api-yammer.md "連接到 Yammer 張貼訊息並取得新的訊息。"
 
 <!--Icon references-->
@@ -86,23 +99,33 @@ API 也可以用來做為 app 內的動作。動作很適合用來查閱可在�
 [bingsearchicon]: ./media/apis-list/bingsearchicon.png
 [boxicon]: ./media/apis-list/boxicon.png
 [ftpicon]: ./media/apis-list/ftpicon.png
+[githubicon]: ./media/apis-list/githubicon.png
 [crmonlineicon]: ./media/apis-list/dynamicscrmicon.png
 [dropboxicon]: ./media/apis-list/dropboxicon.png
 [excelicon]: ./media/apis-list/excelicon.png
 [facebookicon]: ./media/apis-list/facebookicon.png
 [googledriveicon]: ./media/apis-list/googledriveicon.png
+[mailchimpicon]: ./media/apis-list/mailchimpicon.png
 [microsofttranslatoricon]: ./media/apis-list/translatoricon.png
 [office365icon]: ./media/apis-list/office365icon.png
 [onedriveicon]: ./media/apis-list/onedriveicon.png
+[onedriveforbusinessicon]: ./media/apis-list/onedriveforbusinessicon.png
+[outlookicon]: ./media/apis-list/outlookicon.png
+[projectonlineicon]: ./media/apis-list/projectonlineicon.png
+[rssicon]: ./media/apis-list/rssicon.png
 [salesforceicon]: ./media/apis-list/salesforceicon.png
+[sendgridicon]: ./media/apis-list/sendgridicon.png
 [servicebusicon]: ./media/apis-list/servicebusicon.png
 [sftpicon]: ./media/apis-list/sftpicon.png
 [sharepointicon]: ./media/apis-list/sharepointicon.png
 [slackicon]: ./media/apis-list/slackicon.png
 [smtpicon]: ./media/apis-list/smtpicon.png
 [sqlicon]: ./media/apis-list/sqlicon.png
+[mashupsqlicon]: ./media/apis-list/mashupsqlicon.png
+[trelloicon]: ./media/apis-list/trelloicon.png
 [twilioicon]: ./media/apis-list/twilioicon.png
 [twittericon]: ./media/apis-list/twittericon.png
+[wunderlisticon]: ./media/apis-list/wunderlisticon.png
 [yammericon]: ./media/apis-list/yammericon.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

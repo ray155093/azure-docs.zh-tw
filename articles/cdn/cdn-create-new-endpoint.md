@@ -42,7 +42,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 3. 選取 [定價層] 或使用預設值。
 
-4. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview/#resource-groups)。
+4. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md#resource-groups)。
 
 5. 選取這個 CDN 設定檔的 [訂用帳戶]。
 
@@ -52,7 +52,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 ## 建立新的 CDN 端點
 
-**為儲存體帳戶建立新的 CDN 端點**
+**建立新的 CDN 端點**
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到您的 CDN 設定檔。您可能已在先前步驟中將其釘選至儀表板。若否，則您可依序按一下 [瀏覽]、[CDN 設定檔] 尋找該設定檔，然後再按一下您要在其中加入端點的設定檔。
 
@@ -80,9 +80,11 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 7. 在 [原始主機標頭] 中，輸入您要 CDN 連同每個要求一起傳送的主機標頭，或保留預設值。
 
-8. 在 [通訊協定] 和 [原始連接埠] 中，指定用來存取原始來源之資源的通訊協定和連接埠。當您的用戶端存取 CDN 上的資源時，將會繼續使用這些相同的通訊協定和連接埠。至少必須選取一個通訊協定 (HTTP 或 HTTPS)。
+8. 在 [通訊協定] 和 [原始連接埠] 中，指定用來存取原始來源之資源的通訊協定和連接埠。至少必須選取一個通訊協定 (HTTP 或 HTTPS)。
 	
-	> [AZURE.TIP] 使用 HTTPS 存取 CDN 內容具有下列限制：
+	> [AZURE.NOTE] [原始連接埠] 只會影響端點用來從原始來源擷取資訊的連接埠。不論 [原始連接埠] 為何，端點本身只會透過預設 HTTP 和 HTTPS 連接埠 (80 和 443) 提供給終端用戶端使用。
+	>
+	>使用 HTTPS 存取 CDN 內容具有下列限制：
 	> 
 	> - 您必須使用 CDN 所提供的 SSL 憑證。不支援第三方憑證。
 	> - 您必須使用 CDN 提供的網域 (`<endpointname>.azureedge.net`) 來存取 HTTPS 內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
@@ -93,9 +95,9 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
     ![CDN 端點][cdn-endpoint-success]
 
-    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN 網路。它通常在 90 分鐘之內即可供使用，但在某些情況下可能需要更久的時間。
+    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN。它通常在 90 分鐘之內即可供使用，但在某些情況下可能需要更久的時間。
 	>	 
-	> 嘗試在端點組態傳播到 POP 之前就使用 CDN 網域名稱的使用者會收到 HTTP 404 回應碼。
+	> 嘗試在端點組態傳播到 POP 之前就使用 CDN 網域名稱的使用者會收到 HTTP 404 回應碼。如果在端點建立好後已過了好幾個小時，而您仍然收到 404 回應，請參閱[針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)。
 
 
 ##另請參閱
@@ -103,6 +105,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 - [如何將 CDN 內容對應至自訂網域](cdn-map-content-to-custom-domain.md)
 - [在 Azure CDN 端點上預先載入資產](cdn-preload-endpoint.md)
 - [清除 Azure CDN 端點](cdn-purge-endpoint.md)
+- [針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)
 
 [new-cdn-profile]: ./media/cdn-create-new-endpoint/cdn-new-profile.png
 [cdn-profile-settings]: ./media/cdn-create-new-endpoint/cdn-profile-settings.png
@@ -110,4 +113,4 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->
