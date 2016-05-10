@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="02/02/2016"
+    ms.date="04/28/2016"
     ms.author="cgronlun;tedway;olgali"/>
 
 
@@ -55,7 +55,7 @@ Azure Machine Learning 具備在雲端上建立預測性分析解決方案所需
 * 使用 Machine Learning Studio 中之[機器學習服務演算法和模組](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7)的大型程式庫，開始建立您的預測模型。從範例實驗、R 和 Python 封裝的程式庫，以及 Xbox 和 Bing 等 Microsoft 公司的一流演算法中進行選擇。使用您自訂的 [R](machine-learning-r-quickstart.md) 和 [Python](machine-learning-execute-python-scripts.md) 指令碼來擴充 Studio 模組。
 * 在 [Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md) 中，您可以嘗試其他人所撰寫的分析解決方案，或使用 Azure 服務 (包括機器學習服務、HDInsight (Hadoop)、串流分析、Data Lake Analytics 以及 Azure 巨量資料存放區和資料管理服務) 提供您自己的分析解決方案。在社群張貼關於實驗的問題或意見，或透過 LinkedIn 和 Twitter 等社交網路分享實驗的連結。  
 
-	![在 Azure Cortana Intelligence Gallery 資源庫中試做預測實驗或提供您自己的實驗](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-analytics-gallery.png)
+	![在 Azure Cortana Intelligence Gallery 資源庫中試做預測實驗或提供您自己的實驗](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
 
 ### 操作預測性分析解決方案：購買 Web 服務或發佈您自己的服務
 
@@ -118,4 +118,4 @@ Azure Machine Learning 具備在雲端上建立預測性分析解決方案所需
 <!-- Module References -->
 [learning-with-counts]: https://msdn.microsoft.com/library/azure/81c457af-f5c0-4b2d-922c-fdef2274413c/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

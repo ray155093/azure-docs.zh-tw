@@ -1,7 +1,7 @@
 <properties
 	pageTitle="SQL Database 教學課程：建立 SQL Database | Microsoft Azure"
 	description="了解如何設定 SQL Database 邏輯伺服器、伺服器防火牆規則、SQL Database、範例資料、使用用戶端工具連接、設定使用者和資料庫防火牆規則。"
-	keywords="sql database 教學課程,建立 sql database"
+	keywords="sql database 教學課程, 建立 sql database"
 	services="sql-database"
 	documentationCenter=""
 	authors="carlrabeler"
@@ -50,7 +50,7 @@
 
 - 如果您熟悉 Excel，請了解如何[使用 Excel 連接至 SQL Database](sql-database-connect-excel.md)。
 
-- 如果您已經準備開始撰寫程式碼，請參閱[使用 C# 連接和查詢 SQL Database](sql-database-connect-query.md) 和[從 .NET (C#) 使用 SQL Database](sql-database-develop-dotnet-simple.md)。如需 Node.js、Python、Ruby、Java、PHP 和 C++ 範例，以及 C# 以外的操作說明，請參閱 [SQL Database 的快速入門程式碼範例](sql-database-develop-quick-start-client-code-samples.md)。
+- 如果您準備好開始撰寫程式碼，請在 [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)選擇您的程式語言
 
 - 如果您想要進一步了解如何將內部部署的 SQL Server 資料庫移動至 Azure，請參閱[將資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 
@@ -59,4 +59,4 @@
 
 [SQL Database 概觀](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

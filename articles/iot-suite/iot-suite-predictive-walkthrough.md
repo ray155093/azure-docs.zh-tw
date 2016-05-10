@@ -109,6 +109,8 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 
 您現在已執行預先設定的預測性維護解決方案，您可加以修改，請參閱[自訂預先設定的解決方案指引][lnk-customize]。
 
+[IoT 套件 - 幕後 -預測性維護](http://social.technet.microsoft.com/wiki/contents/articles/33527.iot-suite-under-the-hood-predictive-maintenance.aspx) TechNet 部落格文章提供預先設定之預測性維護解決方案的其他詳細資料。
+
   
 [img-architecture]: media/iot-suite-predictive-walkthrough/architecture.png
 [img-resource-group]: media/iot-suite-predictive-walkthrough/resource-group.png
@@ -124,4 +126,4 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

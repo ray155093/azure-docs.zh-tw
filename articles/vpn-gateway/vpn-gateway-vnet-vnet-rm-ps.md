@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/15/2016"
+   ms.date="05/02/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure Resource Manager 和 PowerShell 來設定 VNet 對 VNet 連線
@@ -95,7 +95,7 @@
 - [位於不同訂用帳戶中的 VNet](#difsub)
 
 
-## <a name ="samesub"/>如何連接相同訂用帳戶中的 Vnet
+## <a name="samesub"></a>如何連接相同訂用帳戶中的 Vnet
 
 這項設定適用於相同訂用帳戶中的虛擬網路，如下圖所示︰
 
@@ -105,9 +105,9 @@
 
 - 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 	
-- 您必須安裝 Azure 資源管理員 PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+- 您必須安裝 Azure Resource Manager PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-### <a name ="Step1"/>步驟 1 - 規劃 IP 位址範圍
+### <a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
 
 
 請務必決定用來設定網路組態的範圍。請記住，您必須先確定您的 VNet 範圍或區域網路範圍沒有以任何方式重疊。
@@ -152,7 +152,7 @@
 
 
 
-### <a name ="Step2"/>步驟 2 - 建立及設定 TestVNet1
+### <a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
 
 1. 宣告變數
 
@@ -312,7 +312,7 @@
 
 	請稍候幾分鐘，應該就會建立連線。
 
-## <a name ="Verify"/>如何驗證 VNet 對 VNet 連線
+## <a name="Verify"></a>如何驗證 VNet 對 VNet 連線
 
 下方範例將示範如何驗證您的連線。請務必變更值，以符合您的環境。
 
@@ -355,7 +355,7 @@
 	Name                       : VNet1toVNet4
 	Id                         : /subscriptions/<SubscriptionID>/resourceGroups/TestRG1/providers/Micr osoft.Network/connections/VNet1toVNet4
 
-## <a name ="difsub"/>如何連接不同訂用帳戶中的 Vnet
+## <a name="difsub"></a>如何連接不同訂用帳戶中的 Vnet
 
 下列設定步驟加入其他的 VNet 對 VNet 連線，以將 TestVNet1 連線至 TestVNet5，其位於不同的訂用帳戶中。此處的差別為在第二個訂用帳戶的內容中 (尤其是當兩個訂用帳戶分屬不同組織時)，部分設定步驟需在不同的 PowerShell 工作階段中執行。完成下方步驟後，下圖中會顯示產生的設定︰
 
@@ -463,7 +463,7 @@
 
 在此範例中，因為閘道會在不同的訂用帳戶中，所以我們已將此步驟分作兩個 PowerShell 工作階段，其標示為 [訂用帳戶 1] 和 [訂用帳戶 5]。
 
-1. [訂用帳戶 1] 取得訂用帳戶 1 的虛擬網路閘道
+1. **[訂用帳戶 1]** 取得訂用帳戶 1 的虛擬網路閘道
 
 	請確定您已登入並連接到訂用帳戶 1。
 
@@ -481,7 +481,7 @@
 		PS D:> $vnet1gw.Id
 		/subscriptions/b636ca99-6f88-4df4-a7c3-2f8dc4545509/resourceGroupsTestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW
 
-2. [訂用帳戶 5] 取得訂用帳戶 5 的虛擬網路閘道
+2. **[訂用帳戶 5]** 取得訂用帳戶 5 的虛擬網路閘道
 
 	請確定您已登入並連接到訂用帳戶 5。
 
@@ -499,7 +499,7 @@
 		PS C:\> $vnet5gw.Id
 		/subscriptions/66c8e4f1-ecd6-47ed-9de7-7e530de23994/resourceGroups/TestRG5/providers/Microsoft.Network/virtualNetworkGateways/VNet5GW
 
-3. [訂用帳戶 1] 建立 TestVNet1 至 TestVNet5 的連線
+3. **[訂用帳戶 1]** 建立 TestVNet1 至 TestVNet5 的連線
 
 	在此步驟中，您將從 TestVNet1 建立連線至 TestVNet5。此處的差別為直接取得 $vnet5gw，因為其位於不同的訂用帳戶中。您必須使用上述步驟中從訂用帳戶 1 通訊的值來建立新的 PowerShell 物件。請以您自己的值來取代名稱、識別碼和共用金鑰。但請務必確認該共用金鑰必須適用於這兩個連線。建立連線可能需要一段時間才能完成。
 
@@ -511,7 +511,7 @@
 		$Connection15 = "VNet1toVNet5"
 		New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet5gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
 
-4. [訂用帳戶 5] 建立 TestVNet5 至 TestVNet1 的連線
+4. **[訂用帳戶 5]** 建立 TestVNet5 至 TestVNet1 的連線
 
 	此步驟類似上面的步驟，只不過您是建立 TestVNet5 至 TestVNet1 的連線。針對基於從訂用帳戶 1 所取得的值來建立 PowerShell 物件，該程序也適用於此處。在此步驟中，請確認共用金鑰相符。
 
@@ -530,4 +530,4 @@
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

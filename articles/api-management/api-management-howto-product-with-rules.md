@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/13/2016"
+	ms.date="04/27/2016"
 	ms.author="sdanie"/>
 
 # 使用 Azure API 管理以頻率限制保護 API
@@ -46,8 +46,7 @@
 
 在 [標題] 文字方塊中輸入**免費試用**。
 
-在 [描述] 文字方塊中輸入下列文字：
-**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
+在 [描述] 文字方塊中輸入下列文字：**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
 
 API 管理中的產品可以是受保護或開放的。受保護的產品必須先訂閱才能使用。開放產品不需要訂用帳戶即可使用。若要建立需要訂用帳戶的受保護產品，請務必選取 [需要訂用帳戶]。這是預設設定。
 
@@ -294,4 +293,4 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

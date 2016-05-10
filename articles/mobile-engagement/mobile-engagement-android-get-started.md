@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="hero-article"
-	ms.date="04/08/2016"
+	ms.date="05/03/2016"
 	ms.author="piyushjo;ricksal" />
 
 # 開始使用適用於 Android 應用程式的 Azure Mobile Engagement
@@ -36,7 +36,7 @@
 
 ## 將您的應用程式連線至 Mobile Engagement 後端
 
-本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。完整的整合文件位於 [Mobile Engagement Android SDK 整合](../mobile-engagement-android-sdk-overview/)中。
+本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。完整的整合文件位於 [Mobile Engagement Android SDK 整合](mobile-engagement-android-sdk-overview.md)中。
 
 我們將使用 Android Studio 建立一個基本應用程式來示範整合。
 
@@ -175,4 +175,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [10]: ./media/mobile-engagement-android-get-started/copy-resources.png
 [11]: ./media/mobile-engagement-android-get-started/paste-resources.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -129,7 +129,7 @@
 			}
 		}
 		
-1. 瀏覽至[線上 Swagger 編輯器](http://editor.swagger.io/)。抵達之後，依序按一下 [File] \(檔案) -> [Paste JSON] \(貼上 JSON) 功能表項目 。
+1. 瀏覽至[線上 Swagger 編輯器](http://editor.swagger.io/)。抵達之後，依序按一下 [File] (檔案) -> [Paste JSON] (貼上 JSON) 功能表項目 。
 
     ![貼上 Json](media/app-service-api-java-api-app/paste-json.png)
 
@@ -141,7 +141,7 @@
 
     ![檢視 Swagger 產生的文件](media/app-service-api-java-api-app/view-swagger-generated-docs.png)
 
-1. 依序選取 [Generate Server] \(產生伺服器) -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
+1. 依序選取 [Generate Server] (產生伺服器) -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
 
     ![產生程式碼功能表項目](media/app-service-api-java-api-app/generate-code-menu-item.png)
 	
@@ -181,6 +181,7 @@
         import com.sun.jersey.core.header.FormDataContentDisposition;
         import com.sun.jersey.multipart.FormDataParam;
         import javax.ws.rs.core.Response;
+        import javax.ws.rs.core.SecurityContext;
 
         @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-24T21:54:11.648Z")
         public class ContactsApiServiceImpl extends ContactsApiService {
@@ -295,4 +296,4 @@
 
 如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [ 開發人員中心](/develop/java/)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

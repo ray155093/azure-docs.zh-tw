@@ -3,7 +3,7 @@
 	description="了解 App Service 為您的企業行動應用程式帶來哪些優勢。"
 	services="app-service\mobile"
 	documentationCenter=""
-	authors="kirillg"
+	authors="adrianhall"
 	manager="dwrede"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="02/04/2016"
-	ms.author="kirillg"/>
+	ms.date="05/03/2016"
+	ms.author="adrianha"/>
 
 # <a name="getting-started"> </a>什麼是行動應用程式？
 
@@ -103,4 +103,4 @@ Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
 [學習地圖]: https://azure.microsoft.com/zh-TW/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

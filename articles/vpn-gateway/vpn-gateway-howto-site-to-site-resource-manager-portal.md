@@ -14,28 +14,30 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/25/2016"
+   ms.date="05/02/2016"
    ms.author="cherylmc"/>
 
-# 使用 Azure 入口網站建立具有站對站 VPN 連線的資源管理員 VNet
+# 使用 Azure 入口網站和 Azure Resource Manager 建立具有站對站 VPN 連線的 VNet
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-- [Azure 入口網站 - 傳統](vpn-gateway-site-to-site-create.md)
+- [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
 
 本文將逐步引導您使用 Azure Resource Manager 部署模型和 Azure 入口網站，建立虛擬網路以及內部部署網路的站對站 VPN 連線。
 
-**部署模型和部署工具**
+
+**關於 Azure 部署模型**
+
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+**站對站連線的部署模型和工具**
 
 [AZURE.INCLUDE [vpn-gateway-table-site-to-site-table](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
 如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。
 
-**關於 Azure 部署模型**
-
-[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## 開始之前
 
@@ -142,6 +144,8 @@
 
 ## 後續步驟
 
-一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱虛擬機器[學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines)。
+- 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱虛擬機器[學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines)。
 
-<!---HONumber=AcomDC_0406_2016-->
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+
+<!---HONumber=AcomDC_0504_2016-->

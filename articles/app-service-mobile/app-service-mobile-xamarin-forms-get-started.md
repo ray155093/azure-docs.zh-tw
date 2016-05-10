@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter="xamarin"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="02/04/2016"
-	ms.author="normesta"/>
+	ms.date="05/03/2016"
+	ms.author="glenga"/>
 
 #建立 Xamarin.Forms 應用程式
 
@@ -22,7 +22,7 @@
 
 ##概觀
 
-本教學課程說明如何使用 Azure 行動應用程式後端，將雲端型後端服務新增到 Xamarin.Forms 行動應用程式。您將同時建立新的行動應用程式後端，以及在 Azure 中儲存應用程式資料的簡單 Todo list Xamarin.Forms 應用程式。
+本教學課程說明如何使用 Azure 行動應用程式後端，將雲端型後端服務新增到 Xamarin.Forms 行動應用程式。您將同時建立新的行動應用程式後端，以及在 Azure 中儲存應用程式資料的簡單「Todo list」Xamarin.Forms 應用程式。
 
 完成本教學課程是所有其他 Xamarin.Forms 應用程式的行動應用程式教學課程的必要條件。
 
@@ -68,7 +68,7 @@
 讓我們繼續進行︰
 
  1. 在您的 Mac 或 Windows 電腦上，於瀏覽器視窗中開啟 [Azure 入口網站]。
- 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] \(在 [行動] 之下) > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] \(如果尚未選取的話)。接著按一下 [下載] 按鈕。
+ 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] (在 [行動] 之下) > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] (如果尚未選取的話)。接著按一下 [下載] 按鈕。
 
     這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
@@ -148,6 +148,13 @@
 > [AZURE.NOTE]
 您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
 
+##後續步驟
+
+* [加入驗證至應用程式](app-service-mobile-xamarin-forms-get-started-users.md) 了解如何使用身分識別提供者驗證應用程式的使用者。
+* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-forms-get-started-push.md) 了解如何在應用程式中新增推播通知。
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md) 了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
+
+
 <!-- Anchors. -->
 [Getting started with mobile app backends]: #getting-started
 [Create a new mobile app backend]: #create-new-service
@@ -168,4 +175,4 @@
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->
