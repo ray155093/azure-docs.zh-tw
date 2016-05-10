@@ -101,6 +101,6 @@ Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適
 [虛擬網路]: ../app-service-web/web-sites-integrate-with-vnet.md
 [ExpressRoute]: ../app-service/app-service-app-service-environment-network-configuration-expressroute.md
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
-[學習地圖]: https://azure.microsoft.com/zh-TW/documentation/learning-paths/appservice-mobileapps/
+[學習地圖]: https://azure.microsoft.com/documentation/learning-paths/appservice-mobileapps/
 
 <!---HONumber=AcomDC_0504_2016-->

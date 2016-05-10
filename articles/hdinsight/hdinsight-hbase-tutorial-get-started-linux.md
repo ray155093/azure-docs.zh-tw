@@ -43,7 +43,7 @@
 
 1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。ARM 範本位於公用 Blob 容器中。 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
@@ -116,7 +116,7 @@
 HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請參閱[大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
 
 
-範例資料檔案已上傳到公用 Blob 容器：**wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*。資料檔案的內容：
+範例資料檔案已上傳到公用 Blob 容器：*wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*。資料檔案的內容：
 
 	8396	Calvin Raji		230-555-0191	230-555-0191	5415 San Gabriel Dr.
 	16600	Karen Wu		646-555-0113	230-555-0192	9265 La Paz
@@ -182,8 +182,8 @@ HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請�
 
   此命令中使用的參數如下：
 
-    * **-u** - The user name and password used to authenticate the request.
-    * **-G** - Indicates that this is a GET request.
+    * **-u** - 用來驗證要求的使用者名稱和密碼。
+    * **-G** - 指出這是 GET 要求。
 
 2. 使用下列命令列出現有的 HBase 資料表：
 
@@ -219,7 +219,7 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 3. 在 [**類別**] 中，按一下 [**工作階段**]。
 4. 從您 PuTTY 工作階段螢幕的基本選項，輸入下列值：
 
-	- **主機名稱**：請在 [主機名稱] (或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。例如，*mycluster-ssh.azurehdinsight.net*。
+	- **主機名稱**：請在 [主機名稱] \(或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。例如，*mycluster-ssh.azurehdinsight.net*。
 	- **連接埠**：22。前端節點 0 上的 ssh 連接埠為 22。  
 5. 在對話方塊左側的 [類別] 區段中，依序展開 [連線] 和 [SSH]，最後按一下 [通道]。
 6. 在 [控制 SSH 連接埠轉送的選項] 表單中提供下列資訊：

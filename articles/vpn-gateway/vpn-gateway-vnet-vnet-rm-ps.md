@@ -179,17 +179,17 @@
 
 2. 連線到訂用帳戶 1
 
-	請確定您切換為 PowerShell 模式以使用資源管理員 Cmdlet。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
+請確定您切換為 PowerShell 模式以使用資源管理員 Cmdlet。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
 
-	開啟 PowerShell 主控台並連接到您的帳戶。使用下列範例來協助您連接：
+開啟 PowerShell 主控台並連接到您的帳戶。使用下列範例來協助您連接：
 
-		Login-AzureRmAccount
+	Login-AzureRmAccount
 
-	檢查帳戶的訂用帳戶。
+檢查帳戶的訂用帳戶。
 
-		Get-AzureRmSubscription 
+	Get-AzureRmSubscription 
 
-	指定您要使用的訂用帳戶。
+指定您要使用的訂用帳戶。
 
 		Select-AzureRmSubscription -SubscriptionName $Sub1
 
