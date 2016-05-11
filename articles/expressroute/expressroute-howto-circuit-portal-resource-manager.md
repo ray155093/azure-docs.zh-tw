@@ -47,11 +47,11 @@
 
 >[AZURE.IMPORTANT] ExpressRoute 循環將會從發出服務金鑰時開始收費。請確定在連線提供者準備好佈建循環之後，再執行這項作業。
 
-- **步驟 1.** 您可以選取建立新資源的選項來建立 ExpressRoute 循環。按一下 [新增] **>** [網路] **>** [ExpressRoute] (如下圖所示)。 
+- **步驟 1.** 您可以選取建立新資源的選項來建立 ExpressRoute 循環。按一下 [新增] **>** [網路] **>** [ExpressRoute] \(如下圖所示)。 
 
 	![](./media/expressroute-howto-circuit-portal-resource-manager/createcircuit1.png)
 
-- **步驟 2.** 按一下 [ExpressRoute] 之後，將會看到 [Create ExpressRoute circuit] (建立 ExpressRoute 循環) 刀鋒視窗。填寫此刀鋒視窗上的值時，請確定您指定正確的 SKU 層和資料計量。
+- **步驟 2.** 按一下 [ExpressRoute] 之後，將會看到 [Create ExpressRoute circuit] \(建立 ExpressRoute 循環) 刀鋒視窗。填寫此刀鋒視窗上的值時，請確定您指定正確的 SKU 層和資料計量。
 
 	- **層**會判斷是否啟用 ExpressRoute 標準或 ExpressRoute 進階附加元件。您可以指定 [標準] 取得標準 SKU，或針對進階附加元件指定 [進階]。
 
@@ -134,7 +134,7 @@
 
 - 將計量方案從 [已計量資料] 變更為 [無限制資料]。請注意，不支援將計量方案從 [無限制資料] 變更為 [已計量資料]。
 
--  您可以啟用和停用 [Allow Classic Operations] (允許傳統作業)。
+-  您可以啟用和停用 [Allow Classic Operations] \(允許傳統作業)。
 
 如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)頁面。
 
