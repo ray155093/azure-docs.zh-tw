@@ -28,7 +28,7 @@
 
 1. 按一下頁面頂端的 [全部瀏覽]。
 2. 在 [精簡依據] 之下，選取 [實驗] 以查看資源庫中的所有實驗。
-3. 您可以選取左邊的篩選器，進一步精簡清單。例如，若要瀏覽使用 PCA 型異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，以及 [使用的演算法] 之下的 [PCA 型異常偵測] (如果您沒有看到該演算法，請按一下清單底部的 [全部顯示])。<br></br> ![](./media/machine-learning-sample-experiments/refine-the-view.png) 
+3. 您可以選取左邊的篩選器，進一步精簡清單。例如，若要瀏覽使用 PCA 型異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，以及 [使用的演算法] 之下的 [PCA 型異常偵測] \(如果您沒有看到該演算法，請按一下清單底部的 [全部顯示])。<br></br> ![](./media/machine-learning-sample-experiments/refine-the-view.png) 
 4. 您可以使用搜尋方塊，進一步縮小您的選擇。例如，若要尋找 Microsoft 所貢獻並使用二元支援向量機器演算法的數字辨識相關實驗，請在 [搜尋] 方塊中輸入「數字辨識」，然後選取 [實驗]、[僅包含 Microsoft 內容] 和 [二級支援向量機器]：![](./media/machine-learning-sample-experiments/search-for-experiments.png) 
 5. 按一下實驗，以深入了解相關資訊。若要執行和 (或) 修改實驗，請按一下實驗頁面上的 [在 Studio 中開啟]。
 
