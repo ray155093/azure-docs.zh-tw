@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016" 
+ 	ms.date="05/03/2016"  
 	ms.author="juliako"/>
 
 #作法：檢查工作進度
@@ -44,10 +44,10 @@
 
 ##下一步
 
-發佈內容。如需詳細資訊，請參閱[作法：為資產編碼](../media-services-manage-content#publish)。
+發佈內容。如需詳細資訊，請參閱[作法：為資產編碼](media-services-manage-content.md#publish)。
 
 
 [checkstatus]: ./media/media-services-portal-check-job-progress/media-services-monitor-job-progress.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

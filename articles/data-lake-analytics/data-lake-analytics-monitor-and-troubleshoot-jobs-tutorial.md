@@ -3,7 +3,7 @@
    description="了解如何使用 Azure 入口網站疑難排解資料湖分析作業。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/11/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # 使用 Azure 入口網站疑難排解 Azure 資料湖分析作業
 
@@ -110,4 +110,4 @@
 - [透過 Visual Studio 開始使用 Azure 資料湖分析與 U-SQL](data-lake-analytics-u-sql-get-started.md)
 - [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

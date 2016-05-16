@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-html"
 	ms.devlang="javascript"
 	ms.topic="article"
-	ms.date="02/11/2016"
-	ms.author="adrianha"/>
+	ms.date="05/02/2016"
+	ms.author="glenga"/>
 
 # 新增推播通知至您的 Apache Cordova 應用程式
 
@@ -61,20 +61,17 @@
 
 在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。在您的 Android 手機上執行下列步驟：
 
-1. 移至 [設定] > [關於手機]
-2. 點選 [組建編號]，直到啟用開發人員模式
-3. 回到 [設定]
-4. 選取 [開發人員選項]
-5. 開啟 [USB 偵錯]
-6. 使用 USB 纜線將 Android 手機連接至開發電腦。
+1. 移至 [設定] > [About phone] (有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
+ 
+2. 回到 [設定] > [開發人員選項] 啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接到開發電腦。
 
-在測試本教學課程時，我們使用執行 Android 6.0 (Marshmallow) 版本的 Google Nexus 5X。不過，這些技術在任何現代化 Android 版本中都是相同的。
+我們測試時使用的是執行 Android 6.0 (Marshmallow) 的 Google Nexus 5 X 裝置。不過，這些技術在任何現代化 Android 版本中都是相同的。
 
 ##<a name="add-push-to-app"></a>將推播通知新增至應用程式
 
-您必須確認自己的 Apache Cordova 應用程式專案已經能夠處理推播通知。
+您必須確認自己的 Apache Cordova 應用程式專案已經能夠處理推播通知。您必須安裝 Cordova 推播外掛程式，再加上任何平台特定的推播服務。
 
-### 安裝 Apache Cordova 推播外掛程式
+### 安裝推播外掛程式
 
 Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些功能是由 [npm](https://www.npmjs.com/) 或 GitHub 上發佈的外掛程式所提供。`phonegap-plugin-push` 外掛程式是用來處理網路推播通知。
 
@@ -82,34 +79,33 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 **從命令提示：**
 
+執行以下命令：
+
     cordova plugin add phonegap-plugin-push
 
 **從 Visual Studio 內：**
 
-1.  在 [方案總管] 中開啟 `config.xml` 檔案。
-2.  按一下 [外掛程式] > [自訂]，請選取 [Git] 做為安裝來源，然後輸入 `https://github.com/phonegap/phonegap-plugin-push` 做為來源。
+1.  在方案總管中開啟 `config.xml` 檔案，按一下 [外掛程式] > [自訂]，選取 [Git] 作為安裝來源，然後輸入 `https://github.com/phonegap/phonegap-plugin-push` 作為來源。
 
 	![](./media/app-service-mobile-cordova-get-started-push/add-push-plugin.png)
 
-4.  按一下安裝來源旁的箭頭，然後按一下 [新增]
+2.  按一下安裝來源旁的箭頭，然後按一下 [加入]。
 
 推撥外掛程式現已安裝。
 
-### 安裝 Android Google Play 服務
+### 安裝 Google Play 服務
 
-PhoneGap 推播外掛程式仰賴 Google Play 服務來進行推播通知。若要安裝：
+推播外掛程式仰賴 Android Google Play 服務來進行推播通知。
 
-1.  開啟 **Visual Studio**
-2.  按一下 [工具] > [Android] > [Android SDK Manager]
-3.  勾選 Extras 資料夾中各個未安裝但必要之 SDK 旁邊的核取方塊。下列為必要封裝：
+1.  在 [Visual Studio] 中按一下 [工具] > [Android] > [Android SDK Manager]，然後展開 [Extras] 資料夾並核取方塊，確定已安裝下列所有的 SDK。    
     * Android Support Library (版本 23 或更高版本)
     * Android Support Repository (版本 20 或更高版本)
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
-4.  按一下 [安裝封裝]。
-5.  等待安裝完成。
+     
+2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
 
-目前的必要程式庫會在 [phonegap-plugin-push 安裝文件]中列出。
+目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
 ### 註冊您的裝置在啟動時推播
 
@@ -136,7 +132,7 @@ PhoneGap 推播外掛程式仰賴 Google Play 服務來進行推播通知。若�
 
 	此範例為驗證成功後呼叫 **registerForPushNotifications**，如果應用程式中同時使用推播通知和驗證，建議採此方法。
 
-2. 新增 `registerForPushNotifications()` 方法，如下所示：
+2. 加入新的 `registerForPushNotifications()` 方法，如下所示：
 
 	    // Register for Push Notifications.
 		// Requires that phonegap-plugin-push be installed.
@@ -169,13 +165,13 @@ PhoneGap 推播外掛程式仰賴 Google Play 服務來進行推播通知。若�
 
 3. 請在上述程式碼中，從 [Google Developer Console] 使用應用程式的數字專案識別碼取代 `Your_Project_ID`。
 
-## 對已發佈的行動服務進行應用程式測試
+## 在應用程式中測試推播通知 
 
-您可以直接使用 USB 纜線連接 Android 手機，以測試應用程式。請選取 [裝置]，而非 [Google Android 模擬器]。Visual Studio 會將應用程式下載至裝置並執行。您接著可以在裝置上與應用程式互動。
+您現在可以執行應用程式，在 TodoItem 資料表中插入項目，以測試推播通知。只要使用相同的後端，您可以在相同的裝置或第二部裝置上執行這項作業。以下列方法之一在 Android 平台上測試 Cordova 應用程式︰
 
-改善您的開發經驗。畫面共用應用程式 (例如 [Mobizen]) 可在電腦上將您的 Android 畫面投射到 Web 瀏覽器，並協助您開發 Android 應用程式。
+- **實體裝置︰**使用 USB 纜線將 Android 裝置連接到開發電腦。請選取 [裝置]，不要選取 [Google Android 模擬器]。Visual Studio 會將應用程式部署至裝置並執行。您接著可以在裝置上與應用程式互動。改善您的開發經驗。畫面共用應用程式 (例如 [Mobizen]) 可在電腦上將您的 Android 畫面投射到 Web 瀏覽器，並協助您開發 Android 應用程式。
 
-您也可以在 Android 模擬器上測試 Android 應用程式。請務必先在模擬器上新增 Google 帳戶。
+- **Android 模擬器︰**您必須先將 Google 帳戶加入模擬器，才能接收推播通知。
 
 ##<a name="next-steps"></a>後續步驟
 
@@ -195,7 +191,7 @@ PhoneGap 推播外掛程式仰賴 Google Play 服務來進行推播通知。若�
 [使用 Azure 行動應用程式的 .NET 後端伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Google 帳戶]: http://go.microsoft.com/fwlink/p/?LinkId=268302
 [Google Developer Console]: https://console.developers.google.com/home/dashboard
-[phonegap-plugin-push 安裝文件]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
+[phonegap-plugin-push Installation 文件]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
 [Mobizen]: https://www.mobizen.com/
 [Visual Studio Community 2015]: http://www.visualstudio.com/
 [Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/zh-TW/features/cordova-vs.aspx
@@ -204,4 +200,4 @@ PhoneGap 推播外掛程式仰賴 Google Play 服務來進行推播通知。若�
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

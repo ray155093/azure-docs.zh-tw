@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="04/20/2016"
+	ms.date="05/02/2016"
 	ms.author="carlrab" />
 
 
@@ -73,4 +73,4 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 
 [SQL Database 用戶端程式的錯誤訊息](sql-database-develop-error-messages.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

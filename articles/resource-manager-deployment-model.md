@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/23/2016"
+   ms.date="04/27/2016"
    ms.author="tomfitz"/>
 
 # Azure Resource Manager vs. 傳統部署：了解資源的部署模型和狀態
@@ -38,7 +38,7 @@
 
         ![Azure portal](./media/resource-manager-deployment-model/preview-portal.png)
 
-        針對計算、儲存體及網路資源，您可以選擇使用資源管理員或傳統部署。 選擇**資源管理員**。
+        For Compute, Storage, and Networking resources, you have the option of using either Resource Manager or Classic deployment. Select **Resource Manager**.
 
         ![Resource Manager deployment](./media/resource-manager-deployment-model/select-resource-manager.png)
 
@@ -131,29 +131,23 @@
 
 ## 部署模型支援的作業
 
-在傳統部署模型中所建立的資源不支援資源管理員作業。在某些情況下，資源管理員命令可以擷取透過傳統部署建立之資源的相關資訊，或可以執行系統管理工作 (例如將傳統資源移至另一個資源群組)，但這些情況下，不應讓您認為該類型支援資源管理員作業。例如，假設您有資源群組，其中包含使用資源管理員和傳統所建立的虛擬機器。若您執行下列 PowerShell 命令：
+在傳統部署模型中所建立的資源不支援資源管理員作業。在某些情況下，資源管理員命令可以擷取透過傳統部署建立之資源的相關資訊，或可以執行系統管理工作 (例如將傳統資源移至另一個資源群組)，但這些情況下，不應讓您認為該類型支援資源管理員作業。例如，假設您的資源群組包含使用傳統部署所建立的虛擬機器。若您執行下列 PowerShell 命令：
 
-    Get-AzureRmResourceGroup -Name ExampleGroup
+    Get-AzureRmResource -ResourceGroupName ExampleGroup -ResourceType Microsoft.ClassicCompute/virtualMachines
 
-它會傳回所有虛擬機器：
+它會傳回虛擬機器：
+    
+    Name              : ExampleClassicVM
+    ResourceId        : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.ClassicCompute/virtualMachines/ExampleClassicVM
+    ResourceName      : ExampleClassicVM
+    ResourceType      : Microsoft.ClassicCompute/virtualMachines
+    ResourceGroupName : ExampleGroup
+    Location          : westus
+    SubscriptionId    : {guid}
 
-    Resources :
-     Name                 Type                                          Location
-     ================     ============================================  ========
-     ExampleClassicVM     Microsoft.ClassicCompute/domainNames          eastus
-     ExampleClassicVM     Microsoft.ClassicCompute/virtualMachines      eastus
-     ExampleResourceVM    Microsoft.Compute/virtualMachines             eastus
-    ...
-
-不過，如果您執行 **Get-AzureRmVM** 命令：
+不過，**Get-AzureRmVM** Cmdlet 只會傳回透過 Resource Manager 所部署的虛擬機器。下列命令不會傳回透過傳統部署所建立的虛擬機器。
 
     Get-AzureRmVM -ResourceGroupName ExampleGroup
-
-則只會出現使用 Resource Manager 建立的虛擬機器。
-
-    Id       : /subscriptions/xxxx/resourceGroups/ExampleGroup/providers/Microsoft.Compute/virtualMachines/ExampleResourceVM
-    Name     : ExampleResourceVM
-    ...
 
 一般而言，您不應該預期透過傳統部署所建立的資源可使用資源管理員命令。
 
@@ -175,8 +169,8 @@
 
 ## 後續步驟
 
-- 針對定義虛擬機器、儲存體帳戶、虛擬網路的範本，若需該範本的建立逐步解說，請參閱 [Resource Manager 範本的逐步解說](resource-manager-template-walkthrough.md)。
-- 若要了解 Resource Manager 範本的結構，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
+- 針對定義虛擬機器、儲存體帳戶和虛擬網路的範本，若需該範本的建立逐步解說，請參閱 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。
+- 若要了解 Resource Manager 範本的結構，請參閱[製作 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看部署範本的命令，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

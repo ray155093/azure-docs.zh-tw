@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/08/2016"
+	ms.date="04/29/2016"
 	ms.author="bruceper"/>
 
 # 使用 CLI 管理金鑰保存庫 #
@@ -31,7 +31,6 @@
 如需 Azure 金鑰保存庫的概觀資訊，請參閱[什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
 ## 必要條件
-
 若要完成本教學課程，您必須具備下列項目：
 
 - Microsoft Azure 訂用帳戶。如果您沒有訂用帳戶，您可以註冊[免費試用](../../../pricing/free-trial)。
@@ -106,6 +105,12 @@
 
 第一個參數是資源群組名稱，而第二個參數是位置。請針對位置使用 `azure location list` 命令，以了解如何指定一個位置替代本範例中的位置。如果您需要更多資訊，請輸入：`azure help location`
 
+## 註冊金鑰保存庫資源提供者
+請確定已在訂用帳戶中註冊金鑰保存庫資源提供者：
+
+`azure provider register Microsoft.KeyVault`
+
+每個訂用帳戶只需要執行這項作業一次。
 
 
 ## 建立金鑰保存庫
@@ -134,13 +139,13 @@
 
     azure keyvault key import --vaultName 'ContosoKeyVault' --key-name 'ContosoFirstKey' --pem-file './softkey.pem' --password 'PaSSWORD' --destination software
 
-您現在可以參照您所建立或上傳至 Azure 金鑰保存庫的金鑰 (藉由使用其 URI)。使用 **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** 可一律取得最新的版本，使用 **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** 可取得此特定版本。
+您現在可以參照您所建立或上傳至 Azure 金鑰保存庫的金鑰 (藉由使用其 URI)。使用 ****https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** 可一律取得最新的版本，使用 ****https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** 可取得此特定版本。
 
 若要將名為 SQLPassword 且其 Azure 金鑰保存庫的值為 Pa$$w0rd 的密碼新增至保存庫，請輸入下列內容：
 
     azure keyvault secret set --vault-name 'ContosoKeyVault' --secret-name 'SQLPassword' --value 'Pa$$w0rd'
 
-透過使用其 URI，您現在可以參照您新增至 Azure 金鑰保存庫的密碼。使用 **https://ContosoVault.vault.azure.net/secrets/SQLPassword** 可一律取得最新的版本，使用 **https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** 可取得此特定版本。
+透過使用其 URI，您現在可以參照您新增至 Azure 金鑰保存庫的密碼。使用 ****https://ContosoVault.vault.azure.net/secrets/SQLPassword** 可一律取得最新的版本，使用 ****https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** 可取得此特定版本。
 
 讓我們來檢視剛剛建立的金鑰或密碼：
 
@@ -169,7 +174,7 @@
 
 3. 按一下 [**應用程式**]。如果您的目錄中尚未新增任何應用程式，則此頁面將僅會顯示 [**新增應用程式**] 連結。按一下此連結，或者您可以按一下命令列上的 [**新增**]。
 4.	在 [**新增應用程式**] 精靈的 [**您想做什麼？**] 頁面上，按一下 [**新增我的組織正在開發的應用程式**]。
-5.	在 [**告訴我們您的應用程式**] 頁面上，指定您的應用程式名稱，並選取 [**WEB 應用程式和/或 WEB API**] \(預設值)。按 [下一步] 圖示。
+5.	在 [**告訴我們您的應用程式**] 頁面上，指定您的應用程式名稱，並選取 [**WEB 應用程式和/或 WEB API**] (預設值)。按 [下一步] 圖示。
 6.	在 [**應用程式屬性**] 頁面上，為您的 Web 應用程式指定 [**登入 URL**] 和 [**應用程式識別碼 URI**]。如果您的應用程式沒有這些值，您可以在此步驟中虛構這些值 (例如，您可以在這兩個方塊中指定 http://test1.contoso.com)。這些網站是否存在並沒有影響；重要的是目錄中每個應用程式的應用程式識別碼 URI 都會有所不同。目錄會使用此字串來識別您的應用程式。
 7.	按一下 [完成] 圖示以在精靈中儲存變更。
 8.	在 [快速入門] 頁面上，按一下 [**設定**]。
@@ -186,6 +191,8 @@
 例如，如果您的保存庫名稱是 ContosoKeyVault，且您要授權的應用程式具有 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed 的用戶端識別碼，您想要授權應用程式使用保存庫中的金鑰來進行解密並簽署，則請執行下列作業：
 
     azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-keys '["decrypt","sign"]'
+
+>[AZURE.NOTE] 如果您是在 Windows 命令提示字元上執行，則應該將單引號取代為雙引號，並且同時逸出內部雙引號。例如："["decrypt","sign"]"。
 
 如果您想要授權該相同的應用程式讀取您保存庫中的機密資料，請執行以下命令：
 
@@ -256,4 +263,4 @@
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

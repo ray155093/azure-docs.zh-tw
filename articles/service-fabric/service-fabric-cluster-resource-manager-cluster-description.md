@@ -214,10 +214,10 @@ ClusterManifest.xml
 ClusterManifest.xml
 
 ```xml
-        <Section Name=" NodeBufferPercentage">
-            <Parameter Name="DiskSpace" Value="10" />
-            <Parameter Name="Memory" Value="15" />
-            <Parameter Name="SomeOtherMetric" Value="20" />
+        <Section Name="NodeBufferPercentage">
+            <Parameter Name="DiskSpace" Value="0.10" />
+            <Parameter Name="Memory" Value="0.15" />
+            <Parameter Name="SomeOtherMetric" Value="0.20" />
         </Section>
 ```
 建立呼叫會在叢集耗盡緩衝處理容量時導致新的服務失敗，確保叢集會保留足夠的備用額外負荷，讓升級和失敗不會造成節點實際超過容量。資源管理員透過 PowerShell 和查詢 API 來公開許多此類資訊，讓您看見緩衝處理容量設定、總容量及每個指定度量的目前耗用量。我們可以看到該輸出的範例如下︰
@@ -262,4 +262,4 @@ LoadMetricInformation     :
 [Image6]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-placement-constraints-node-properties.png
 [Image7]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-nodes-and-capacity.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="multiple"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="03/04/2016" 
+    ms.date="05/04/2016" 
     ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690945.aspx -->
@@ -64,7 +64,7 @@
 
 * 是否啟用共置快取。
 * 快取大小佔記憶體的百分比。
-* 當應用程式以雲端服務的形式執行時，用來儲存快取狀態的儲存體帳戶名稱，若不想儲存快取狀態，則為無 (在計算模擬器中執行應用程式時，不會使用儲存體帳戶名稱)。 如果您將儲存體帳戶名稱設定為 [(自動)] \(此為預設值)，您的快取設定會自動使用您在 [發佈至 Azure] 對話方塊中所選取的同一個儲存體帳戶。
+* 當應用程式以雲端服務的形式執行時，用來儲存快取狀態的儲存體帳戶名稱，若不想儲存快取狀態，則為無 (在計算模擬器中執行應用程式時，不會使用儲存體帳戶名稱)。 如果您將儲存體帳戶名稱設定為 [(自動)] (此為預設值)，您的快取設定會自動使用您在 [發佈至 Azure] 對話方塊中所選取的同一個儲存體帳戶。
 
 >[AZURE.NOTE] 只有在使用 Eclipse 工具組的發佈精靈發佈部署時，[(自動)] 設定才會有所要的效果。如果您改為使用外部機制 (例如 [Azure 管理入口網站][]) 手動發佈 .cspkg 檔案，部署作業將無法正確運作。
 
@@ -376,7 +376,7 @@
 <a name="ssl_offloading_properties"></a>
 ### SSL 卸載屬性 ###
 
-在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 \[SSL 卸載]。
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [SSL 卸載]。
 
 ![][ic719481]
 
@@ -439,4 +439,4 @@
 [ic719512]: ./media/azure-toolkit-for-eclipse-azure-role-properties/ic719512.png
 [ic719481]: ./media/azure-toolkit-for-eclipse-azure-role-properties/ic719481.png
 
-<!----HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="04/28/2016"
 	ms.author="mohabib;xibingao;bradsev" />
 
 # 將 Azure SQL Server 虛擬機器設定為 IPython Notebook 伺服器供進階分析使用
@@ -81,6 +81,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。�
     -   執行中 (佈建中)
     -   執行中
 
+
 ##<a name="RemoteDesktop"></a>使用遠端桌面開啟虛擬機器並完成設定
 
 1.  佈建完成時，請按一下虛擬機器的名稱以前往 [儀表板] 頁面。按一下頁面底部的 [**連接**]。
@@ -93,11 +94,12 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。�
 
 使用 Windows 遠端桌面連接到虛擬機器之後，虛擬機器的運作方式與任何其他電腦很像。請依照正常方法使用 SQL Server Management Studio (於虛擬機器上運作) 連接 SQL Server 的預設執行個體。
 
+
 ##<a name="InstallIPython"></a>安裝 IPython Notebook 和其他支援工具
 
 若要設定新的 SQL Server VM 做為 IPython Notebook 伺服器，並安裝其他的支援工具 (例如，AzCopy、Azure 儲存體總管、實用的資料科學 Python 封裝，以及其他工具)，系統為您提供了一個特殊的自訂指令碼。若要安裝：
 
-- 以滑鼠右鍵按一下 Windows [開始] 圖示，然後按一下 [**命令提示字元 (系統管理員)**]
+- 以滑鼠右鍵按一下 Windows [開始] 圖示，然後按一下 [命令提示字元 (系統管理員)]
 - 複製下列命令並貼至命令提示字元。
 
     	set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
@@ -154,7 +156,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 	若要使用 SQL Server management Studio 變更驗證模式：
 
-3.  在 SQL Server Management Studio 物件總管中，以滑鼠右鍵按一下 SQL Server 執行個體的名稱 (虛擬機器名稱)，然後按一下 [**屬性**]。
+3.  在 SQL Server Management Studio 物件總管中，以滑鼠右鍵按一下 SQL Server 執行個體的名稱 (虛擬機器名稱)，然後按一下 [屬性]。
 
     ![伺服器屬性][7]
 
@@ -168,13 +170,14 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
     ![重新啟動][9]
 
-7.  在 [SQL Server Management Studio] 對話方塊中，按一下 [**是**] 以同意重新啟動 SQL Server。
+7.  在 [SQL Server Management Studio] 對話方塊中，按一下 [是] 以同意重新啟動 SQL Server。
 
 ##<a name="Logins"></a>建立 SQL Server 驗證登入
 
 若要從另一部電腦連接 Database Engine，您至少必須建立一個 SQL Server 驗證登入。
 
-> [AZURE.TIP] 您也可以透過程式設計方式或使用 SQL Server Management Studio，來建立新的 SQL Server 登入。若要以程式設計的方式透過 SQL 驗證建立新的系統管理員使用者，請啟動下 [**新增查詢**]，然後執行下列指令碼。使用您選擇的使用者名稱和密碼取代 <new user name> 和 <new password>。視需要調整密碼原則 (程式碼範例會關閉原則檢查及密碼到期日)。如需 SQL Server 登入的詳細資訊，請參閱[建立登入](http://msdn.microsoft.com/library/aa337562.aspx)。
+您也可以透過程式設計方式或使用 SQL Server Management Studio，來建立新的 SQL Server 登入。若要以程式設計的方式透過 SQL 驗證建立新的系統管理員使用者，請啟動 [新增查詢]，然後執行下列指令碼。使用您選擇的「使用者名稱」和「密碼」取代 <new user name> 和 <new password>。
+
 
     USE master
     go
@@ -185,9 +188,12 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
     EXEC sp_addsrvrolemember @loginame = N'<new user name>', @rolename = N'sysadmin';
 
+
+視需要調整密碼原則 (程式碼範例會關閉原則檢查及密碼到期日)。如需 SQL Server 登入的詳細資訊，請參閱[建立登入](http://msdn.microsoft.com/library/aa337562.aspx)。
+
 若要使用 SQL Server Management Studio 建立新的 SQL Server 登入：
 
-1.  在 SQL Server Management Studio 物件總管中，展開要建立新登入之伺服器執行個體的資料夾。
+1.  在 SQL Server Management Studio 物件總管中，展開您要在其中建立新登入的伺服器執行個體資料夾。
 
 2.  以滑鼠右鍵按一下 [**安全性**] 資料夾，指向 [**新增**]，然後選取 [**登入...**]。
 
@@ -199,11 +205,11 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 5.  在 [密碼] 方塊中，輸入新使用者的密碼。在 [確認密碼] 方塊中再次輸入密碼。
 
-6.  若要強制執行複雜性和強制性密碼原則選項，請選取 \[強制執行密碼原則] (建議)。此為選取 SQL Server 驗證時的預設選項。
+6.  若要強制執行複雜性和強制性密碼原則選項，請選取 [強制執行密碼原則] (建議)。此為選取 SQL Server 驗證時的預設選項。
 
-7.  若要強制執行逾期密碼原則選項，請選取 \[強制執行密碼逾期] (建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+7.  若要強制執行逾期密碼原則選項，請選取 [強制執行密碼逾期] (建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
-8.  若要強制使用者在首次登入後建立新密碼，請選取 \[使用者必須在下次登入時變更密碼] (如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+8.  若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼] (如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
 9.  在 [預設資料庫] 清單中，選取登入的預設資料庫。**master** 是此選項的預設值。如果您尚未建立使用者資料庫，請保留 [master] 的設定。
 
@@ -221,11 +227,13 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 ##<a name="DNS"></a>決定虛擬機器的 DNS 名稱
 
-若要從另一部電腦連接 SQL Server Database Engine，您必須知道虛擬機器的網域名稱系統 (DNS) 名稱。(這是網際網路用來識別虛擬機器的名稱。您可以使用 IP 位址，不過當 Azure 因備援或維護而移動資源時，IP 位址可能會改變。DNS 名稱是穩定的，因為它可以重新導向新的 IP 位址。)
+若要從另一部電腦連接 SQL Server Database Engine，您必須知道虛擬機器的網域名稱系統 (DNS) 名稱。
+
+(這是網際網路用來識別虛擬機器的名稱。您可以使用 IP 位址，不過當 Azure 因備援或維護而移動資源時，IP 位址可能會改變。DNS 名稱是穩定的，因為它可以重新導向新的 IP 位址。)
 
 1.  在 Azure 傳統入口網站 (或前一個步驟) 中選取 [虛擬機器]。
 
-2.  在「**虛擬機器執行個體**」頁面的 [**DNS 名稱**] 欄中，尋找並複製前方加上 **http://** 的虛擬機器 DNS 名稱。(使用者介面可能無法顯示完整名稱，不過您可以在名稱上按一下滑鼠右鍵，然後選擇複製。)
+2.  在「**虛擬機器執行個體**」頁面的 [**DNS 名稱**] 欄中，尋找並複製前方加上 ****http://** 的虛擬機器 DNS 名稱。(使用者介面可能無法顯示完整名稱，不過您可以在名稱上按一下滑鼠右鍵，然後選擇複製。)
 
 ##<a name="cde"></a>從另一台電腦連接到 Database Engine
 
@@ -243,7 +251,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 ##<a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
 
-在「進階分析程序和技術」的後期階段，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 建置和部署機器學習服務模型。若要將從 SQL Server VM 資料庫擷取的資料直接匯入 Azure Machine Learning 供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「讀取器」模組。《進階分析程序和技術》指南中的連結提供更多與本主題相關的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
+在 Cortana Analytics 程序的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將從 SQL Server VM 資料庫擷取的資料直接匯入 Azure Machine Learning 供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用**讀取器**模組。《Cortana Analytics 程序》指南中的連結提供更多與本主題相關的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
 
 2.	在「[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)」模組的 [**屬性**] 窗格中，從 [**資料來源**] 下拉式清單中選取 [**Azure SQL Database**]。
 
@@ -298,4 +306,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

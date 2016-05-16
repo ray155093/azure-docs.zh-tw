@@ -3,7 +3,7 @@
    description="本文說明如何在雲端服務 Web 和背景工作角色上手動安裝 .NET Framework。"
    services="cloud-services"
    documentationCenter=".net"
-   authors="sbtron"
+   authors="thraka"
    manager="timlt"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="02/17/2016"
-   ms.author="saurabh"/>
+   ms.author="adegeo"/>
 
 # 在雲端服務角色上安裝 .NET 
 
@@ -183,4 +183,4 @@
 
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

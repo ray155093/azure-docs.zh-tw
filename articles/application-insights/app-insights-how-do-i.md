@@ -79,12 +79,12 @@
 
 ### 自動設定警示
 
-[使用 PowerShell 建立新的警示](app-insights-alerts/#set-alerts-by-using-powershell)
+[使用 PowerShell 建立新的警示](app-insights-alerts.md#set-alerts-by-using-powershell)
 
 ## 使用 PowerShell 管理 Application Insights
 
 * [建立新的資源](app-insights-powershell-script-create-resource.md)
-* [建立新的警示](app-insights-alerts/#set-alerts-by-using-powershell)
+* [建立新的警示](app-insights-alerts.md#set-alerts-by-using-powershell)
 
 ## 應用程式版本和戳記
 
@@ -241,4 +241,4 @@
 * 首先，[新增圖表](app-insights-metrics-explorer.md)，並查看計數器是否位於我們提供的基本組合中。
 * 如果沒有，請[將計數器加入效能計數器模組所收集的組合中](app-insights-web-monitor-performance.md#system-performance-counters)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

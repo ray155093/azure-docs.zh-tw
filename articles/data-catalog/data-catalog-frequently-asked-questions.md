@@ -64,7 +64,7 @@ Azure 資料目錄強化技術性和非技術性使用者的能力，包括：
 
 ## 問：如何開始使用 Azure 資料目錄？
 
-建議依照[開始使用資料目錄](../data-catalog-get-started/)中的指示開始使用。本文是服務中各項功能的端對端概觀。
+建議依照[開始使用資料目錄](data-catalog-get-started.md)中的指示開始使用。本文是服務中各項功能的端對端概觀。
 
 ## 問：如何註冊我的資料？
 
@@ -140,4 +140,4 @@ Azure 資料目錄是可以同時使用雲端和內部部署資料來源的雲�
 
 請前往 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)。那裡提出的問題會在這裡找到答案。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

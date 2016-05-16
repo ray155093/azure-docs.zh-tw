@@ -13,13 +13,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/05/2016"
+    ms.date="04/26/2016"
     ms.author="spelluru"/>
 # 使用 Azure Batch 和 Data Factory 的 HPC 和資料協調
 
-高效能運算 (HPC) 已經在內部部署資料中心的網域：處理資料的超級電腦，但是受到可用實體機器數目的限制。Azure Batch 服務藉由提供 HPC 做為服務徹底改變了這個情形。您可以設定所需的電腦。Batch 也會處理排程和協調工作，讓您專注於要執行的演算法。Azure Data Factory 是 Batch 的完美輔助工具；它可簡化資料移動的協調。使用 Data Factory，您可以針對 ETL 指定資料的規則移動、處理資料，然後再將結果移至永久儲存體。例如，從感應器收集的資料會 (由 Data Factory) 移至暫時的位置，其中 Batch (在 Data Factory 的控制項底下) 會處理資料，並且產生一組新的結果。然後 Data Factory 會將結果移至最後一個儲存機制。搭配使用這兩項服務，您可以有效率地使用 HPC 以定期排程處理大量資料。
+這是自動移動及處理大型資料集的範例方案。這是端對端且包含架構和程式碼的方案。它是以兩項 Azure 服務為基礎。Azure Batch 提供 HPC 作為服務來設定您需要的任意數量電腦，以及排程和協調工作。Azure Data Factory 透過簡化資料移動的協調流程來補充 Batch。您可以針對 ETL 指定資料的規則移動、處理資料，然後再將結果移至永久儲存體。
 
-我們提供端對端解決方案範例，自動移動及處理大型資料集。架構與許多案例相關，例如依金融服務、映像處理和轉譯以及基因分析進行的風險模型建立。架構設計人員和 IT 決策者會從圖表和基本步驟取得概觀。開發人員可以使用程式碼做為其本身實作的起點。本文包含完整的解決方案。
+架構與許多案例相關，例如依金融服務、映像處理和轉譯以及基因分析進行的風險模型建立。
 
 如果您在遵循範例解決方案之前不熟悉這些服務，請參閱 [Azure Batch](../batch/batch-api-basics.md) 和 [Data Factory](data-factory-introduction.md) 文件。
 
@@ -51,7 +51,7 @@
 
 **時間**：如果您熟悉 Azure、Data Factory 和 Batch，並且已符合先決條件，我們預估此解決方案將需要 1-2 小時來完成。
 
-### 先決條件
+## 先決條件
 
 1.  **Azure 訂用帳戶**。如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
@@ -101,7 +101,7 @@
 
 6.  **Microsoft Visual Studio 2012 或更新版本** (用以建立要在 Data Factory 解決方案中使用的自訂 Batch 活動)。
 
-### 建立解決方案的高階步驟
+## 建立解決方案的高階步驟
 
 1.  建立要在 Data Factory 解決方案中使用的自訂活動。自訂活動包含資料處理邏輯。
 
@@ -709,7 +709,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 > [AZURE.IMPORTANT] 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
 
-1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] \(省略符號) 就可看到。
+1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 
 2.  使用下列 JSON 指令碼取代右窗格中的 JSON。
 
@@ -893,9 +893,18 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 3.  建立 [每個 VM 的工作數上限] 較低/較高的集區。更新 Data Factory 解決方案中的 Azure Batch 連結服務，以使用您所建立的新集區。(請參閱「步驟 4：建立並執行管線」，以進一步了解 [每個 VM 的工作數上限] 設定。)
 
-4.  建立具有**自動調整**功能的 Azure Batch 集區。自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。請參閱[自動調整 Azure Batch 集區中的計算節點](../batch/batch-automatic-scaling.md)。
+4.  建立具有**自動調整**功能的 Azure Batch 集區。自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
+ 
+		pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);$TargetDedicated = max(pendingTaskSampleVector);
 
-    在範例解決方案中，**Execute** 方法會叫用可處理輸入資料配量以產生輸出資料配量的 **Calculate** 方法。您可以自行撰寫方法來處理輸入資料，然後呼叫您自己的方法，而取代 Execute 方法中的 Calculate 方法呼叫。
+	如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](../batch/batch-automatic-scaling.md)。
+
+	Azure Batch 服務可能需要 15-30 分鐘的時間先備妥 VM，然後在 VM 上執行自訂的活動。
+	 
+5. 在範例解決方案中，**Execute** 方法會叫用可處理輸入資料配量以產生輸出資料配量的 **Calculate** 方法。您可以自行撰寫方法來處理輸入資料，然後呼叫您自己的方法，而取代 Execute 方法中的 Calculate 方法呼叫。
+
+ 
+
 
 ## 後續步驟：取用資料
 
@@ -929,4 +938,4 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     -   [開始使用 Azure Batch 程式庫 .NET](../batch/batch-dotnet-get-started.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

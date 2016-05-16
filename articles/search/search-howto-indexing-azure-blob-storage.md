@@ -12,7 +12,7 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="03/08/2016"
+ms.date="05/03/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
@@ -29,14 +29,15 @@ ms.author="eugenesh" />
 
 索引子是一種用來連接資料來源與目標搜尋索引的資源。
 
-若要設定 blob 索引子，請執行下列作業：
+若要設定 Blob 編製索引，請執行下列作業：
 
 1. 建立類型 `azureblob` 的資料來源，它參考 Azure 儲存體帳戶中的容器 (和選擇性參考該容器中的資料夾)
 	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
 	- 指定容器名稱。您也可以選擇性地使用 `query` 參數來包含資料夾
-2. 藉由將您的資料來源連接至現有的目標索引來建立索引子 (如果沒有的話，請建立索引)
+2. 使用可搜尋的 `content` 欄位建立搜尋索引 
+3. 連接到目標索引的資料來源建立索引子
 
-下列範例提供相關說明：
+### 建立資料來源
 
 	POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -49,7 +50,27 @@ ms.author="eugenesh" />
 	    "container" : { "name" : "my-container", "query" : "my-folder" }
 	}   
 
-接下來，建立索引子，它參考資料來源和目標索引。例如：
+如需建立資料來源 API 的詳細資訊，請參閱[建立資料來源](search-api-indexers-2015-02-28-preview.md#create-data-source)。
+
+### 建立索引 
+
+	POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+  		"name" : "my-target-index",
+  		"fields": [
+    		{ "name": "id", "type": "Edm.String", "key": true, "searchable": false },
+    		{ "name": "content", "type": "Edm.String", "searchable": true }
+  		]
+	}
+
+如需建立索引 API 的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/dn798941.aspx)。
+
+### 建立索引子 
+
+最後，建立參考資料來源和目標索引的索引子。例如：
 
 	POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -61,6 +82,8 @@ ms.author="eugenesh" />
 	  "targetIndexName" : "my-target-index",
 	  "schedule" : { "interval" : "PT2H" }
 	}
+
+如需建立索引子 API 的詳細資訊，請參閱[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer)。
 
 
 ## 支援的文件格式
@@ -74,7 +97,7 @@ blob 索引子可以從下列文件格式擷取文字：
 - ZIP
 - EML
 - 純文字檔案  
-- JSON (如需詳細資訊，請參閱[編製索引 JSON blob](search-howto-index-json-blobs.md))
+- JSON (如需詳細資訊，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md))
 
 ## 文件擷取程序
 
@@ -144,7 +167,7 @@ Azure 搜尋服務會對每個文件 (blob) 編制索引，如下所示：
 	  "parameters" : { "base64EncodeKeys": true }
 	}
 
-> [AZURE.NOTE] 若要深入了解欄位對應，請參閱[這篇文章](search-indexers-customization.md)。
+> [AZURE.NOTE] 若要深入了解欄位對應，請參閱[這篇文章](search-indexer-field-mappings.md)。
 
 ## 增量編製索引和刪除偵測
 
@@ -192,7 +215,7 @@ PPT (application/vnd.ms-powerpoint) | `metadata_content_type`<br/>`metadata_auth
 MSG (application/vnd.ms-outlook) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` | 擷取文字，包括附件
 ZIP (application/zip) | `metadata_content_type` | 從封存中的所有文件擷取文字
 XML (application/xml) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 移除 XML 標記並且擷取文字
-JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>請注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊
+JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊。
 EML (message/rfc822) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` | 擷取文字，包括附件
 純文字 (text/plain) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 
 
@@ -209,9 +232,54 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 <a name="IndexerParametersConfigurationControl"></a>
 ## 使用索引子參數來控制文件擷取
 
-如果您需要擷取中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子設定來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入每個 Blob 中。若要這樣做，請將 `parameters` 物件中的 `skipContent` 組態屬性設定為 `true`︰
+有數個索引子設定參數可用來控制哪些 Blob，以及 Blob 內容和中繼資料的哪些部分會編製成索引。
 
- 	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
+### 只將具有特定副檔名的 Blob 編製成索引
+
+您可以使用 `indexedFileNameExtensions` 索引子組態參數，只將具有指定副檔名的 Blob 編製成索引。值是包含副檔名 (有前置句點) 逗號分隔清單的字串。例如，若只要將 .PDF 和 .DOCX Blob 編製成索引，請執行這項操作︰
+
+	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+	  ... other parts of indexer definition
+	  "parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }
+	}
+
+### 編製索引時排除具有特定副檔名的 Blob
+
+您可以使用 `excludedFileNameExtensions` 組態參數，在編製索引時排除具有特定副檔名的 Blob。值是包含副檔名 (有前置句點) 逗號分隔清單的字串。例如，若要將除 .PNG 和 .JPEG 副檔名以外的所有 Blob 都編製成索引，請執行下列動作︰
+
+	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+	  ... other parts of indexer definition
+	  "parameters" : { "configuration" : { "excludedFileNameExtensions" : ".png,.jpeg" } }
+	}
+
+如果同時有 `indexedFileNameExtensions` 和 `excludedFileNameExtensions` 參數，Azure 搜尋服務會先查閱 `indexedFileNameExtensions`，再查閱 `excludedFileNameExtensions`。這表示，如果兩份清單中有相同的副檔名，就會排除在索引編製外。
+
+### 只編製儲存體中繼資料的索引
+
+您可以使用 `indexStorageMetadataOnly` 組態屬性只編製儲存體中繼資料的索引，完全略過文件擷取程序。當您不需要文件內容，也不需要任何特定類型內容的中繼資料屬性時，這非常有用。若要這樣做，請將 `indexStorageMetadataOnly` 屬性設為 `true`：
+
+	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+	  ... other parts of indexer definition
+	  "parameters" : { "configuration" : { "indexStorageMetadataOnly" : true } }
+	}
+
+### 編製儲存體和內容類型中繼資料的索引，但略過內容擷取。
+
+如果您需要擷取全部中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子組態來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入每個 Blob 中。若要這樣做，請將 `skipContent` 索引子組態屬性設為 `true`︰
+
+	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
 	api-key: [admin key]
 
@@ -224,4 +292,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

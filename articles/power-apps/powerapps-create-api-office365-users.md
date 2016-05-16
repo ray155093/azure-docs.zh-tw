@@ -14,106 +14,108 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/29/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 # 在 PowerApps Enterprise 中建立新的 Office 365 使用者 API
 
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-office365-users.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-office365-users.md)
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-將 Office 365 使用者 API 加入您組織 (租用戶) 的 App Service 環境中。
+<!--Archived
+Add the Office 365 Users API to your organization's (tenant) app service environment. 
 
-## 在 Azure 入口網站中建立 API
+## Create the API in the Azure portal
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
  
-2. 選取工作列中的 [**瀏覽**]：  
+2. Select **Browse** in the task bar:  
 ![][14]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或鍵入 *powerapps*:  
-![][15]
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][15]  
 
-4. 在 [**PowerApps**] 中選取 [**管理 API**]：    
-![瀏覽至已註冊的 API][1]
+4. In **PowerApps**, select **Manage APIs**:    
+![Browse to registered apis][1]
 
-5. 在 [**管理 API**] 中，選取 [**新增**] 以新增 API：  
+5. In **Manage APIs**, select **Add** to add the new API:  
 ![Add API][2]
 
-6. 為您的 API 輸入描述性**名稱**。
+6. Enter a descriptive **name** for your API.  
 	
-7. 在 [**來源**] 中，選取 [**可用 API**] 以選取預先建置的 API，然後選取 [**Office 365 使用者**]：  
-![選取 Office 365 使用者 api][3]
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **Office 365 Users**:  
+![select Office 365 Users api][3]
 
-8. 選取 [**設定 - 進行必要的設定**]：  
-![進行 Office 365 使用者 API 設定][4]
+8. Select **Settings - Configure required settings**:  
+![configure Office 365 Users API settings][4]
 
-9. 輸入 Office 365 Azure Active Directory (AAD) 應用程式的*用戶端識別碼*與*用戶端密碼*。如果您還沒有這些值，請參閱本主題中的＜註冊 AAD 應用程式以搭配 PowerApps 使用＞一節，建立您需要的金鑰與密碼值。
+9. Enter the *Client Id* and *Client Secret* of your Office 365 Azure Active Directory (AAD) application. If you don't have one, see the "Register an AAD app for use with PowerApps" section in this topic to create the ID and secret values you need.  
 
-	> [AZURE.IMPORTANT] 儲存**重新導向 URL**。您在本主題的後半部可能需要此值。
+	> [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.  
 
-10. 選取 [**確定**] 以完成步驟。
+10. Select **OK** to complete the steps.
 
-完成時，新的 Office 365 使用者 API 會新增到您的 App Service 環境。
+When finished, a new Office 365 Users API is added to your app service environment.
 
-## 選擇性步驟：註冊 AAD 應用程式以搭配 PowerApps Office 365 使用者 API 使用
+## Optional: Register an AAD app for use with PowerApps Office 365 Users API
 
-如果您現在沒有 AAD 應用程式及金鑰與密碼值，請使用下列步驟建立應用程式，然後取得您需要的值。
+If you don't have an existing AAD app with the key and secret values, then use the following steps to create the application, and get the values you need. 
 
-1. 開啟 [Azure 入口網站][5]。
+1. Open [Azure Portal][5].
 
-2. 選取 [**瀏覽**]，然後選取 [**Active Directory**]：  
+2. Select **Browse** and then select **Active Directory**:  
 
-	> [AZURE.NOTE] 這會在 Azure 傳統入口網站中開啟 Active Directory。  
+	> [AZURE.NOTE] This opens Active Directory in the Azure classic portal.  
 
-3. 選取您組織的租用戶名稱：  
-![啟動 Azure Active Directory][6]
+3. Select your organization's tenant name:  
+![Launch Azure Active Directory][6]
 
-4. 選取 [**應用程式**] 索引標籤，然後選取 [**新增**]：  
-![AAD 租用戶應用程式][7]
+4. Select the **Applications** tab, and select **Add**:  
+![AAD tenant applications][7]
 
-5. 在 [**新增應用程式**] 中：  
+5. In **Add application**:  
 
-	1. 輸入您應用程式的「名稱」。  
-	2. 讓應用程式類型保持為 [Web]。  
-	3. 選取 [下一步]。  
+	1. Enter a **Name** for your application.  
+	2. Leave the application type as **Web**.  
+	3. Select **Next**.  
 
-	![加入 AAD 應用程式 - 應用程式資訊][8]
+	![Add AAD application - app info][8]
 
-6. 在 [應用程式屬性] 中：  
+6. In **App Properties**:  
 
-	1. 輸入您應用程式的「登入 URL」。由於您即將使用 PowerApps 適用的 AAD 來進行驗證，因此請把登入 URL 設定為 \__https://login.windows.net_。
-	2. 為您的應用程式輸入有效的「應用程式識別碼 URI」。  
-	3. 選取 [確定]。  
+	1. Enter the **SIGN-ON URL** of your application. Since you are going to authenticate with AAD for PowerApps, set the sign-on url to _https://login.windows.net_.  
+	2. Enter a valid **APP ID URI** for your app.  
+	3. Select **OK**.  
 
-	![加入 AAD 應用程式 - 應用程式屬性][9]
+	![Add AAD application - app properties][9]
 
-7. 完成後，系統會將您重新導向至新的 AAD 應用程式。選取 [**設定**]：  
-![Contoso AAD 應用程式][10]
+7. On successful completion, you are redirected to the new AAD app. Select **Configure**:  
+![Contoso AAD app][10]
 
-8. 將 [_OAuth 2_] 區段下方的[**回覆 URL**] 設為您在 Azure 入口網站中新增 Office 365 使用者 API 時收到的重新導向 URL (在本主題中)。選取 [**新增應用程式**]：  
-![設定 Contoso AAD 應用程式][11]
+8. Set the **Reply URL** under the _OAuth 2_ section to the redirect URL you received when you added the new Office 365 Users API in the Azure Portal (in this topic). Select **Add application**:  
+![Configure Contoso AAD app][11]
 
-9. 在 [**其他應用程式的權限**] 視窗中，選取 [**Office 365 統一 API (預覽)**]，然後選取 [**確定**]。
+9. In the **Permissions to other applications** window, select **Office 365 Unified API (Preview)**, and select **OK**.
 
-10. 回到設定頁面，注意 [_Office 365 統一 API (預覽)_] 是否已新增到 [_其他應用程式的權限_] 清單中。
+10. Back in the configure page, note that _Office 365 Unified API (Preview)_ is added to the _Permission to other applications_ list.
 
-11. 針對 [_Office 365 統一 API (預覽)_] 選取 [**委派的權限**]，然後選取 [**讀取所有使用者的基本設定檔**] 權限。
+11. Select **Delegated Permissions** for _Office 365 Unified API (Preview)_, and select the **Read all users' basic profiles** permission.
 
-Azure Active Directory 應用程式便建立好了。您可以在 Azure 入口網站的 Office 365 使用者 API 組態中使用此應用程式。
+A new Azure Active Directory app is created. You can use this app in your Office 365 Users API configuration in the Azure portal. 
 
-如需 AAD 應用程式的相關資訊，請參閱[將應用程式加入至 Azure AD 的方式和原因](../active-directory/active-directory-how-applications-are-added.md)。
+Some good info on AAD applications at [How and why applications are added to Azure AD](../active-directory/active-directory-how-applications-are-added.md).
 
-## 請參閱 REST API
+## See the REST APIs
 
-[Office 365 使用者 REST API](../connectors/connectors-create-api-office365-users.md) 參考。
+[Office 365 Users REST API](../connectors/connectors-create-api-office365-users.md) reference.
 
-## 摘要和後續步驟
-在本主題中，您已將 Office 365 使用者 API 新增至 PowersApps Enterprise。接下來，請授與使用者此 API 的存取權，讓使用者能夠將此 API 新增至其應用程式：
+## Summary and next steps
+In this topic, you added the Office 365 Users API to your PowersApps Enterprise. Next, give users access to the API so it can be added to their apps: 
 
-[新增連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
-
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
 
 <!--References-->
 [1]: ./media/powerapps-create-api-office365-users/browse-to-registered-apis.PNG
@@ -128,4 +130,4 @@ Azure Active Directory 應用程式便建立好了。您可以在 Azure 入口�
 [10]: ./media/powerapps-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/powerapps-create-api-office365-users/contoso-aad-app-configure.PNG
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

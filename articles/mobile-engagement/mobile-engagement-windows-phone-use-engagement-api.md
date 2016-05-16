@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/03/2016" 
 	ms.author="piyushjo" />
 
 #如何在 Windows Phone Silverlight 上使用 Engagement API
 
-此文件是[如何在 Windows Phone Silverlight 應用程式中整合 Mobile Engagement](../mobile-engagement-windows-phone-integrate-engagement/) 文件的附加說明。它會提供關於如何使用 Engagement API 來回報您應用程式的統計資料之詳細資訊。
+此文件是[如何在 Windows Phone Silverlight 應用程式中整合 Mobile Engagement](mobile-engagement-windows-phone-integrate-engagement.md) 文件的附加說明。它會提供關於如何使用 Engagement API 來回報您應用程式的統計資料之詳細資訊。
 
 如果您只想要 Engagement 報告應用程式的工作階段、活動、當機和技術資訊，最簡單的方式就是讓您所有的 `PhoneApplicationPage` 子類別繼承自 `EngagementPage` 類別。
 
@@ -386,4 +386,4 @@ SDK 可以設定為在 IDE 主控台中產生測試記錄檔。預設不會啟�
 			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
 			EngagementAgent.Instance.Init();
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

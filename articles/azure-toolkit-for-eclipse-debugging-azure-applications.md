@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="multiple"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="02/26/2016" 
+    ms.date="05/04/2016" 
     ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690949.aspx -->
@@ -85,7 +85,6 @@
     1. 核取 [啟用這個角色的遠端偵錯]。
     1. 針對 [要使用的輸入端點]，使用工具組自動產生的預設端點，列為 [偵錯 (public:8090, private:8090)]。
     1. 確定未核取 [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項。
-
         >[AZURE.IMPORTANT] [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項僅適用於計算模擬器中的進階偵錯案例 (不適用於雲端部署)。如果使用 [將 JVM 啟動在暫停模式，等候偵錯工具連線] 選項，它會暫停伺服器的啟動程序，直到 Eclipse 偵錯工具連線到其 JVM 為止。雖然您可以在使用計算模擬器的偵錯工作階段使用此選項，但請勿將它使用在雲端部署的偵錯工作階段。伺服器的初始化是在 Azure 啟動工作中進行，而 Azure 雲端在啟動工作完成之前不會提供公用端點。因此，如果在雲端部署中啟用此選項，啟動程序將無法順利完成，因為它無法接收來自外部 Eclipse 用戶端的連線。
     1. 按一下 [建立偵錯組態]。
 1. 在 [Azure 偵錯組態] 對話方塊中：
@@ -95,7 +94,9 @@
 1. 按一下 [確定] 關閉 [WorkerRole1 偵錯內容] 對話方塊。
 1. 在 index.jsp 中設定中斷點：
     1. 在 Eclipse 的專案總管中，依序展開 [MyHelloWorld]、[WebContent]，然後按兩下 [index.jsp]。
-    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]**Toggle Breakpoints**，如下所示：![][ic551537]如果您在 Java 程式碼左側藍色列中看到一個中斷點圖示，表示已設定中斷點。
+    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]，如下所示：![][ic551537]
+
+    如果您在 Java 程式碼左邊的藍色列內看到一個中斷點圖示，表示已設定中斷點。
 1. 按一下 Azure 工具列上的 [在 Azure 模擬器中執行] 按鈕，以在計算模擬器中啟動應用程式。
 1. 在 Eclipse 的功能表，按一下 [執行]，然後按一下 [偵錯組態]。
 1. 在 [偵錯組態] 對話方塊中，展開左窗格中的 [遠端 Java 應用程式]，選取 [Azure 模擬器 (WorkerRole1)]，然後按一下 [偵錯]。
@@ -132,4 +133,4 @@
 [ic719504]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic719504.png
 [ic551537]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic551537.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

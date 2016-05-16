@@ -1,19 +1,19 @@
 <properties 
    pageTitle="如何在 Azure 將傳統 VNet 連接到 ARM Vnet"
    description="了解如何在傳統 VNet 和新的 VNet 之間建立 VPN 連線"
-   services="virtual-network"
+   services="vpn-gateway"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="cherylmc"
    manager="carmonm"
    editor="tysonn" />
 <tags 
-   ms.service="virtual-network"
+   ms.service="vpn-gateway"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/22/2016"
-   ms.author="telmos" />
+   ms.author="cherylmc" />
 
 # 將傳統 VNet 連接到新的 VNet
 
@@ -44,7 +44,7 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 4. 在 [**CIDR (位址計數)**] 下拉式清單中，選取您想要連接到的 ARM VNet 所使用的 CIDR 區塊的網路部分所使用的位元數。
 5. 在 [**VPN 裝置 IP 位址 (選擇性)**] 中，輸入任何有效的公用 IP 位址。我們將在稍後變更此 IP 位址。然後，按一下畫面右下方的核取記號按鈕。下圖顯示此頁面的範例設定。
 
-	![區域網路設定](..\virtual-network\media\virtual-networks-arm-asm-s2s-howto\figurex1.png)
+	![區域網路設定](.\media\virtual-networks-arm-asm-s2s-howto\figurex1.png)
 
 5. 在 [**網路**] 頁面上，依序按一下 [**虛擬網路**]、您的傳統 VNet 和 [**設定**]。
 6. 在 [**站對站連線能力**] 下，啟用 [**連線到區域網路**] 核取方塊。
@@ -71,7 +71,7 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 4. 執行下列命令，來擷取用於閘道的子網路。
 
 		$subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet `
-			-VirtualNetwork (Get-AzureVirtualNetwork -Name VNetARM -ResourceGroupName RG1) 
+			-VirtualNetwork (Get-AzureRMVirtualNetwork -Name VNetARM -ResourceGroupName RG1) 
 
 	>[AZURE.IMPORTANT] 閘道子網路必須已經存在，而且必須命名為 GatewaySubnet。
 
@@ -118,4 +118,4 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 - 深入了解 [ARM 的網路資源提供者 (NRP)](resource-groups-networking.md)。
 - 建立[使用 S2S VPN 將傳統 VNet 連接到 ARM VNet 的端對端解決方案](virtual-networks-arm-asm-s2s.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -2,7 +2,7 @@
 	pageTitle="使用 PowerShell 建立及管理彈性資料庫作業" 
 	description="用來管理 Azure SQL Database 集區的 PowerShell" 
 	services="sql-database" documentationCenter=""  
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="ddove"/>
 
 <tags 
@@ -11,13 +11,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/02/2016" 
+	ms.date="05/03/2016" 
 	ms.author="ddove;sidneyh" />
 
 # 使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)
 
 > [AZURE.SELECTOR]
-- [Azure Classic Portal](sql-database-elastic-jobs-create-and-manage.md)
+- [Azure 傳統入口網站](sql-database-elastic-jobs-create-and-manage.md)
 - [PowerShell](sql-database-elastic-jobs-powershell.md)
 
 
@@ -694,4 +694,4 @@
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0504_2016-->

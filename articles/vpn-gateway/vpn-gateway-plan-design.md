@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/28/2016"
+   ms.date="04/20/2016"
    ms.author="cherylmc"/>
 
 # 規劃與設計 VPN 閘道
 
-根據您的網路需求而定，跨單位及 VNet 對 VNet 連線的規劃與設計作業有可能很簡單，也可能很複雜。
+根據您的網路需求而定，跨單位及 VNet 對 VNet 組態的規劃與設計作業有可能很簡單，也可能很複雜。本文將逐步引導您完成基本規劃和設計考量。
 
 ## 規劃
 
@@ -164,4 +164,4 @@
 
 如需有助您進行設計的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)和[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。如需連線拓撲的詳細資訊，請參閱[連線拓撲](vpn-gateway-topology.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

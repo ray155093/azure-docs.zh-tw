@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="04/30/2016"
    ms.author="sahajs;barbkess;sonyama"/>
 
 # 保護 SQL 資料倉儲中的資料庫
@@ -24,7 +24,9 @@
 
 「連線安全性」是指如何使用防火牆規則和連線加密，限制和保護資料庫的連線。
 
-伺服器和資料庫兩者都可使用防火牆規則，拒絕來自未明確設為允許清單的 IP 位址的連線嘗試。若要允許應用程式或用戶端機器的公用 IP 位址，嘗試連線至新的資料庫，您必須先使用 Azure 傳統入口網站、REST API 或 PowerShell 建立伺服器層級的防火牆規則。最好的作法是，您應該盡可能限制允許穿透您伺服器防火牆的 IP 位址範圍。如需詳細資訊，請參閱 [Azure SQL Database 防火牆][]。
+伺服器和資料庫兩者都可使用防火牆規則，拒絕來自未明確設為允許清單的 IP 位址的連線嘗試。若要允許來自應用程式或用戶端機器的公用 IP 位址的連接，您必須先使用 Azure 傳統入口網站、REST API 或 PowerShell 建立伺服器層級的防火牆規則。最好的作法是，您應該盡可能限制允許穿透您伺服器防火牆的 IP 位址範圍。若要從您的本機電腦存取 Azure SQL 資料倉儲，請確定您的網路和本機電腦上的防火牆允許 TCP 連接埠 1433 上的傳出通訊。如需詳細資訊，請參閱 [Azure SQL Database 防火牆][]。
+
+與您的 SQL 資料倉儲的連接可以透過在連接字串中設定加密模式來加密。開啟連接的加密的語法因通訊協定而異。為了協助您設定連接字串，請瀏覽至您在 Azure 入口網站上的資料庫。按一下 [程式集] 下的 [顯示資料庫連接字串]。
 
 
 ## 驗證
@@ -91,14 +93,13 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 稽核和追蹤資料庫事件可協助您遵循法規，並找出可疑的活動。SQL 資料倉儲稽核可讓您將資料庫中的事件記錄到 Azure 儲存體帳戶中的稽核記錄。SQL 資料倉儲稽核也整合了 Microsoft Power BI，具備向下鑽研報表和分析的功能。如需詳細資訊，請參閱[開始使用 Azure Database 稽核][]。
 
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
-
+如需使用不同通訊協定連接到您的 SQL 資料倉儲的詳細資訊和範例，請參閱[連接到 SQL 資料倉儲][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[開發概觀]: sql-data-warehouse-overview-develop.md
-
+[連接到 SQL 資料倉儲]: sql-data-warehouse-develop-connections.md
+[開始使用 Azure Database 稽核]: sql-database-auditing-get-started.md
 
 <!--MSDN references-->
 [Azure SQL Database 防火牆]: https://msdn.microsoft.com/library/ee621782.aspx
@@ -107,10 +108,9 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 [權限]: https://msdn.microsoft.com/library/ms191291.aspx
 [預存程序]: https://msdn.microsoft.com/library/ms190782.aspx
 [透明資料加密]: http://go.microsoft.com/fwlink/?LinkId=526242
-[開始使用 Azure Database 稽核]: sql-database-auditing-get-started.md
 [Azure 傳統入口網站]: https://portal.azure.com/
 
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: http://azure.microsoft.com/documentation/articles/role-based-access-control-configure.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

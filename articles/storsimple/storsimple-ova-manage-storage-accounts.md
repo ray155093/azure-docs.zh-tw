@@ -12,10 +12,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/02/2016"
+   ms.date="04/18/2016"
    ms.author="alkohli" />
 
-# 使用 StorSimple Manager 服務管理儲存體帳戶
+# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務管理儲存體帳戶
 
 ## 概觀
 
@@ -56,7 +56,9 @@
 
 您可以為指定的雲端服務提供者建立多個帳戶。儲存體帳戶在儲存時，服務會嘗試與您的雲端服務提供者通訊。此時會驗證您提供的認證與存取資料。只有當驗證成功時，才會建立儲存體帳戶。如果驗證失敗，則會顯示適當的錯誤訊息。
 
-新增儲存體帳戶的程序詳述如下。
+在 Azure 入口網站中建立的 Resource Manager 儲存體帳戶也支援 StorSimple。Resource Manager 儲存體帳戶會顯示在下拉式清單中供選取，只會顯示在 Azure 傳統入口網站中建立的儲存體帳戶。Resource Manager 儲存體帳戶必須使用如下所述的新增儲存體帳戶的程序來新增。
+
+新增 Azure 傳統儲存體帳戶的程序詳述如下。
 
 [AZURE.INCLUDE [add-a-storage-account](../../includes/storsimple-ova-configure-new-storage-account.md)]
 
@@ -101,4 +103,4 @@
 
 - 了解如何[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

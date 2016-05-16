@@ -125,7 +125,7 @@
 
 ##另請參閱##
 
-+ [混合式連線網站](../../services/biztalk-services/)
++ [混合式連線網站](https://azure.microsoft.com/services/biztalk-services/)
 + [混合式連線概觀](../biztalk-services/integration-hybrid-connection-overview.md)
 + [BizTalk 服務：儀表板、監視器、調整、設定和混合式連線索引標籤](../biztalk-services/biztalk-dashboard-monitor-scale-tabs.md)
 + [如何對 .NET 後端行動服務進行資料模型變更](mobile-services-dotnet-backend-how-to-use-code-first-migrations.md)
@@ -137,4 +137,4 @@
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 [開始使用行動服務]: mobile-services-dotnet-backend-windows-store-dotnet-get-started.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -10,10 +10,10 @@
 <tags
 	ms.service="active-directory"
 	ms.devlang="na"
-	ms.topic="get-started-article"
+	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="04/18/2016"
+	ms.date="04/28/2016"
 	ms.author="kgremban"/>
 
 
@@ -99,4 +99,4 @@
 	- [REST API](role-based-access-control-manage-access-rest.md)
 - [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資料。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排傳訊例外狀況 | Microsoft Azure"
-   description="服務匯流排傳訊例外狀況和建議的動作清單。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="服務匯流排傳訊例外狀況 | Microsoft Azure"
+    description="服務匯流排傳訊例外狀況和建議的動作清單。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="tysonn" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/25/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/02/2016"
+    ms.author="sethm" />
 
 # 服務匯流排傳訊例外狀況
 
@@ -21,7 +21,7 @@
 
 ## 例外狀況類別
 
-傳訊 API 會產生下列類別的例外狀況，以及可用來嘗試修正它們的相關動作：
+傳訊 API 會產生下列類別的例外狀況，以及可用來嘗試修正它們的相關動作。請注意，例外狀況的意義和原因會隨著傳訊實體 (轉送、佇列/主題、事件中樞) 的類型而異︰
 
 1.  使用者程式碼撰寫錯誤 ([System.ArgumentException](https://msdn.microsoft.com/library/system.argumentexception.aspx)、[System.InvalidOperationException](https://msdn.microsoft.com/library/system.invalidoperationexception.aspx)、[System.OperationCanceledException](https://msdn.microsoft.com/library/system.operationcanceledexception.aspx)、[System.Runtime.Serialization.SerializationException](https://msdn.microsoft.com/library/system.runtime.serialization.serializationexception.aspx))。一般動作：請先嘗試修正此程式碼，再繼續執行。
 
@@ -58,8 +58,75 @@
 | [MessagingEntityDisabledException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingentitydisabledexception.aspx) | 在停用的實體上要求執行階段作業。 | 啟用實體。 | 如實體在過渡期間被啟用，重試可能會有幫助。 |
 | [NoMatchingSubscriptionException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.nomatchingsubscriptionexception.aspx) | 如果您將訊息傳送至已啟用預先篩選的主題，但沒有符合的篩選，服務匯流排就會傳回此例外狀況。 | 確定至少有一個篩選相符。 | 重試將無助益。 |
 | [MessageSizeExceededException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesizeexceededexception.aspx) | 訊息裝載超過 256K 的限制。請注意，256k 的限制是總訊息大小，可包括系統屬性和任何 .NET 負荷。 | 減少訊息裝載大小，然後再重試作業。 | 重試將無助益。 |
-| [TransactionException](https://msdn.microsoft.com/library/system.transactions.transactionexception.aspx) | 環境交易 (*Transaction.Current*) 無效。其可能已完成或中止。內部例外狀況可能會提供其他資訊。 | | 重試並沒有任何幫助。 | -
-| [TransactionInDoubtException](https://msdn.microsoft.com/library/system.transactions.transactionindoubtexception.aspx) | 嘗試對不確定的交易執行作業，或是嘗試認可交易，但交易變成不確定。 | 應用程式必須處理這個例外狀況 (當成特殊狀況)，因為交易可能已遭認可。 | - |
+| [TransactionException](https://msdn.microsoft.com/library/system.transactions.transactionexception.aspx) | 環境交易 (*Transaction.Current*) 無效。其可能已完成或中止。內部例外狀況可能會提供其他資訊。 | | 重試並沒有任何幫助。 | - | [TransactionInDoubtException](https://msdn.microsoft.com/library/system.transactions.transactionindoubtexception.aspx) | 嘗試對不確定的交易執行作業，或是嘗試認可交易，但交易變成不確定。 | 應用程式必須處理這個例外狀況 (當成特殊狀況)，因為交易可能已遭認可。 | - |
+
+## QuotaExceededException
+
+[QuotaExceededException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.quotaexceededexception.aspx) 指出已超過某特定實體的配額。
+
+### 佇列和主題
+
+對佇列和主題而言，這通常是佇列的大小。錯誤訊息屬性會包含進一步的詳細資訊，如下例所示︰
+
+```
+Microsoft.ServiceBus.Messaging.QuotaExceededException
+Message: The maximum entity size has been reached or exceeded for Topic: ‘xxx-xxx-xxx’. 
+	Size of entity in bytes:1073742326, Max entity size in bytes:
+1073741824..TrackingId:xxxxxxxxxxxxxxxxxxxxxxxxxx, TimeStamp:3/15/2013 7:50:18 AM
+```
+
+訊息指出主題超過其大小限制，本例為 1 GB (預設大小限制)。
+
+#### 常見的原因
+
+這個錯誤有兩個常見的原因︰無效信件佇列和訊息接收者未作用。
+
+1. **無效信件佇列**：讀取器無法完成訊息，當鎖定過期後，訊息會傳回佇列/主題。如果讀取器遇到例外狀況，阻止它呼叫 [BrokeredMessage.Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx)，就會發生這個錯誤。訊息讀取 10 次後，預設會移至無效信件佇列。這種行為由 [QueueDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 屬性控制，預設值是 10。訊息堆積在無效信件佇列中會佔用空間。
+
+	若要解決此問題，請閱讀和完成無效信件佇列中的訊息，就像您處理任何其他佇列一樣。[QueueClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx) 類別甚至包含 [FormatDeadLetterPath](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.formatdeadletterpath.aspx) 方法，可協助格式化無效信件佇列路徑。
+
+2. **收件者停止**：收件者停止接收佇列或訂用帳戶的訊息。識別這個原因的方法是查看 [QueueDescription.MessageCountDetails](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.messagecountdetails.aspx) 屬性，它會顯示訊息的完整解析。如果 [ActiveMessageCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagecountdetails.activemessagecount.aspx) 屬性很高或不斷增加，表示訊息撰寫的速度超過讀取的速度。
+
+### 事件中樞
+
+每一個事件中樞都有 20 個用戶群組的限制。當您嘗試建立更多時，您會收到 [QuotaExceededException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.quotaexceededexception.aspx)。
+
+### 轉送
+
+若為服務匯流排轉送，這個例外狀況會包裝 [System.ServiceModel.QuotaExceededException](https://msdn.microsoft.com/library/system.servicemodel.quotaexceededexception.aspx)，指出已超過這個端點接聽程式的最大數目。這會表示在例外狀況訊息的 **MaximumListenersPerEndpoint** 值中。
+
+## TimeoutException 
+
+[TimeoutException][] 表示使用者啟始作業所用的時間長過作業逾時。
+
+### 佇列和主題
+
+佇列和主題的逾時是在 [MessagingFactorySettings.OperationTimeout](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx) 屬性中指定，作為連接字串的一部分，或透過 [ServiceBusConnectionStringBuilder](https://msdn.microsoft.com/library/azure/microsoft.servicebus.servicebusconnectionstringbuilder.aspx) 指定。錯誤訊息本身可能不盡相同，但它一定會包含目前作業的指定逾時值。
+
+### 事件中樞
+
+事件中樞的逾時是指定為連接字串的一部分，或透過 [ServiceBusConnectionStringBuilder](https://msdn.microsoft.com/library/azure/microsoft.servicebus.servicebusconnectionstringbuilder.aspx) 指定。錯誤訊息本身可能不盡相同，但它一定會包含目前作業的指定逾時值。
+
+### 轉送
+
+若為服務匯流排轉送，您可能會在第一次開啟轉送傳送者連線時收到逾時例外狀況。這個例外狀況有兩個常見的原因︰
+
+1. [OpenTimeout](https://msdn.microsoft.com/library/wcf.opentimeout.aspx) 值可能太小 (甚至幾分之一秒)。
+2. 內部部署轉送接聽程式可能沒有回應 (或可能遇到禁止接聽程式接受新用戶端連線的防火牆規則問題)，而 [OpenTimeout](https://msdn.microsoft.com/library/wcf.opentimeout.aspx) 值約小於 20 秒。
+
+例如：
+
+```
+'System.TimeoutException’: The operation did not complete within the allotted timeout of 00:00:10. The time allotted to this operation may have been a portion of a longer timeout.
+```
+
+### 常見的原因
+
+這個錯誤有兩個常見的原因︰設定不正確或暫時性服務錯誤。
+
+1. **設定不正確**：操作條件的作業逾時可能太小。用戶端 SDK 的作業逾時預設值為 60 秒。請檢查程式碼是否將值設定過小。請注意，網路和 CPU 使用量的狀況會影響特定作業完成所花費的時間，所以作業逾時不應設定非常小的值。
+
+2. **暫時性服務錯誤**：有時服務匯流排服務在處理要求時會遇到延遲，例如，高流量的時段。在這種情況下，您可以在延遲後重試作業，直到作業成功為止。如果多次嘗試同一作業之後仍然失敗，請瀏覽 [Azure 服務狀態網站](https://azure.microsoft.com/status/)，看看是否有任何已知的服務中斷。
 
 ## 後續步驟
 
@@ -71,4 +138,4 @@
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 - [服務匯流排架構](service-bus-architecture.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

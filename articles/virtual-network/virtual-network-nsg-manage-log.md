@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/15/2015"
+   ms.date="03/15/2016"
    ms.author="telmos" />
 
 #網路安全性群組 (NSG) 的記錄檔分析
@@ -30,7 +30,7 @@
 ##啟用記錄
 每個資源管理員資源都會隨時自動啟用稽核記錄。您需要啟用事件和計數器記錄，才能開始收集可透過這些記錄檔取得的資料。若要啟用記錄，請遵循下列步驟。
 
-1.  登入 [Azure Preview 入口網站](https://portal.azure.com)。如果您還沒有現有的網路安全性群組，請在繼續之前[建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
+1.  登入 [Azure 入口網站](https://portal.azure.com)。如果您還沒有現有的網路安全性群組，請在繼續之前[建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
 
 2.  在 Preview 入口網站中，按一下 [瀏覽] > [網路安全性群組]。
 
@@ -114,4 +114,4 @@
 - [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
 - [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

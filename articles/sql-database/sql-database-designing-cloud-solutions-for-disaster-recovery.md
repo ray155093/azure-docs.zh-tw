@@ -1,11 +1,11 @@
 <properties
-   pageTitle="雲端災害復原方案 - SQL Database 異地複寫 | Microsoft Azure"
+   pageTitle="雲端災害復原方案 - SQL Database 作用中異地複寫 | Microsoft Azure"
    description="了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。"
    keywords="cloud disaster recovery,disaster recovery solutions,app data backup,geo-replication,business continuity planning,雲端災害復原,災害復原方案,應用程式資料備份,異地複寫,商務持續性計劃"
    services="sql-database"
    documentationCenter=""
    authors="anosov1960"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor="monicar"/>
 
 <tags
@@ -14,12 +14,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="02/23/2016"
+   ms.date="04/25/2016"
    ms.author="sashan"/>
 
-# 使用 SQL Database 中的異地複寫針對雲端災害復原設計應用程式
+# 使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式
 
-了解如何使用 SQL Database 中的異地複寫設計應用程式，以包括雲端災害復原方案。對於商務持續性規劃，您需要考量應用程式部署拓撲、您要達到的服務等級協定、流量延遲及成本。在本文中，我們將探討常見的應用程式模式，並討論每個選項的優缺點。
+
+> [AZURE.NOTE] [Active Geo-Replication](sql-database-geo-replication-overview.md) 現在可供所有層中的所有資料庫使用。
+
+
+
+了解如何使用 SQL Database 的[異地複寫](sql-database-geo-replication-overview.md)，設計能夠復原區域失敗和嚴重中斷的資料庫應用程式。對於商務持續性規劃，您需要考量應用程式部署拓撲、您要達到的服務等級協定、流量延遲及成本。在本文中，我們將探討常見的應用程式模式，並討論每個選項的優缺點。
 
 ## 設計模式 1：雲端災害復原的主動-被動部署，使用共置資料庫
 
@@ -35,7 +40,7 @@
 
 除了主要應用程式執行個體，您還應該考慮部署小型的[背景工作角色應用程式](cloud-services-choose-me.md#tellmecs)，以定期發出 T-SQL 唯讀 (RO) 命令來監控主要資料庫。您可以利用它來自動觸發容錯移轉、在應用程式的系統管理員主控台產生警示，或兩種功能都執行。為了確保地區性的運作中斷不會影響監視，您應該將監視應用程式執行個體部署至每個區域，並將它們連接到其他區域中的資料庫，但只有次要地區中執行個體必須在作用中。
 
-> [AZURE.NOTE] 如果您使用[作用中異地複寫](https://msdn.microsoft.com/library/azure/dn741339.aspx)，您可以讓兩個監視應用程式都處於作用中，並探查主要和次要資料庫。後者可用來偵測次要地區中的失敗，並於應用程式未受保護時發出警示。
+> [AZURE.NOTE] 這兩個監視應用程式都應該為作用中，且探查主要和次要資料庫。後者可用來偵測次要地區中的失敗，並於應用程式未受保護時發出警示。
 
 下圖顯示此組態在運作中斷之前的情形。
 
@@ -44,7 +49,7 @@
 當主要區域發生運作中斷之後，監視應用程式會偵測到主要資料庫無法存取，並發出警示。根據您的應用程式 SLA，您可以決定連續多少個監視探查失敗後，才宣告資料庫運作中斷。為了達成應用程式端點和資料庫的協調式容錯移轉，您應該讓監視應用程式執行下列步驟：
 
 1. [更新主要端點的狀態](https://msdn.microsoft.com/library/hh758250.aspx)以觸發端點容錯移轉。
-2. 呼叫次要資料庫以[起始資料庫容錯移轉](https://msdn.microsoft.com/library/azure/dn509573.aspx)。
+2. 呼叫次要資料庫以[起始資料庫容錯移轉](sql-database-geo-replication-portal.md)。
 
 容錯移轉後，應用程式會處理次要地區中的使用者要求，但仍與資料庫共置，因為主要資料庫現在位於次要地區。下圖說明這種情形。在所有圖表中，實線表示作用中連線、虛線表示已暫停的連線，停止標誌表示動作觸發。
 
@@ -79,14 +84,14 @@
 
 如同模式 #1，您應該考慮部署類似的監視應用程式。但有別於模式 #1，此監視應用程式不負責觸發端點容錯移轉。
 
-> [AZURE.NOTE] 雖然此模式使用一個以上的次要資料庫，但其中只有一個次要資料庫用於容錯移轉，原因如稍早所述。因為這個模式需要次要資料庫的唯讀存取，所以需要[作用中異地複寫](https://msdn.microsoft.com/library/azure/dn741339.aspx)。
+> [AZURE.NOTE] 雖然此模式使用一個以上的次要資料庫，但其中只有一個次要資料庫用於容錯移轉，原因如稍早所述。因為這個模式需要次要資料庫的唯讀存取，所以需要作用中異地複寫。
 
 流量管理員應該設定為效能路由，將使用者連接導向最靠近使用者地理位置的應用程式執行個體。下圖說明此組態在運作中斷之前的情形。![無中斷：將效能轉送至最接近的應用程式。異地複寫。](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-1.png)
 
 如果主要區域中偵測到資料庫運作中斷，您應該開始將主要資料庫容錯移轉到其中一個次要地區，而這會變更主要資料庫的位置。流量管理員會自動從路由表中排除離線端點，但會繼續將使用者流量路由傳送至剩餘的線上執行個體。因為主要資料庫現在位於不同的區域，所有線上執行個體必須變更其讀寫 SQL 連接字串，以連接到新的主要資料庫。您必須在起始資料庫容錯移轉之前進行這項變更。唯讀 SQL 連接字串應該保持不變，因為它們永遠指向相同區域中的資料庫。容錯移轉步驟如下：
 
 1. 變更讀寫 SQL 連接字串來指向新的主要資料庫。
-2. 呼叫指定的次要資料庫以[起始資料庫容錯移轉](https://msdn.microsoft.com/library/azure/dn509573.aspx)。
+2. 呼叫指定的次要資料庫以[起始資料庫容錯移轉](sql-database-geo-replication-portal.md)。
 
 下圖說明容錯移轉之後的新組態。![容錯移轉之後的組態。雲端災害復原。](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-2.png)
 
@@ -118,7 +123,7 @@
 
 一旦主要區域的運作中斷情況趨緩，流量管理員會偵測主要區域中的連線恢復，然後將使用者流量切換回到主要區域中的應用程式執行個體。該應用程式執行個體會恢復執行，並使用主要資料庫在讀寫模式下運作。
 
-> [AZURE.NOTE] 因為這個模式需要次要資料庫的唯讀存取，所以需要[作用中異地複寫](https://msdn.microsoft.com/library/azure/dn741339.aspx)。
+> [AZURE.NOTE] 因為這個模式需要次要資料庫的唯讀存取，所以需要作用中異地複寫。
 
 如果次要地區發生運作中斷，流量管理員會將主要區域中的應用程式端點標示為降級，而且複寫通道會暫停。不過，在運作中斷期間不會影響應用程式的效能。一旦運作中斷情況趨緩，次要資料庫會立即與主要資料庫同步處理。在同步處理期間，主要資料庫的效能可能稍微受到影響，視需要同步處理的資料量而定。
 
@@ -148,4 +153,14 @@
 | 應用程式負載平衡的主動-主動部署 | 讀寫存取 < 5 秒 | 失敗偵測時間 + 容錯移轉 API 呼叫 + SQL 連接字串變更 + 應用程式驗證測試
 | 資料保留的主動-被動部署 | 唯讀存取 < 5 秒，讀寫存取 = 0 | 唯讀存取 = 連線失敗偵測時間 + 應用程式驗證測試 <br>讀寫存取 = 運作中斷趨緩的時間
 
-<!---HONumber=AcomDC_0309_2016-->
+
+## 其他資源
+
+
+- [業務續航力概觀](sql-database-business-continuity.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [使用 SQL Database 中的異地複寫針對雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
+
+<!---HONumber=AcomDC_0504_2016-->

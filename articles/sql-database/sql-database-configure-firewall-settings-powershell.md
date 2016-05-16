@@ -3,7 +3,7 @@
 	description="了解如何設定存取 Azure SQL Database 之 IP 位址的防火牆。"
 	services="sql-database"
 	documentationCenter=""
-	authors="BYHAM"
+	authors="stevestein"
 	manager="jhubbard"
 	editor=""/>
 
@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article" 
-	ms.date="02/04/2016"
-	ms.author="rickbyh"/>
+	ms.date="05/03/2016"
+	ms.author="stevestein"/>
 
 
 # 如何：使用 PowerShell 設定 Azure SQL Database 防火牆
@@ -68,4 +68,4 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,14 +13,14 @@ ms.service="virtual-machines-linux"
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="02/04/2016"
+ ms.date="04/29/2016"
  ms.author="danlep"/>
 
-# 使用 Microsoft HPC Pack 在 Azure 中建立及管理 Linux 高效能運算 (HPC) 叢集的選項
+# 使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項
 
 [AZURE.INCLUDE [virtual-machines-common-hpcpack-cluster-options](../../includes/virtual-machines-common-hpcpack-cluster-options.md)]
 
-如果您想要使用 HPC Pack 執行 Windows HPC 工作負載，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立和管理 Windows HPC 叢集的選項](virtual-machines-windows-hpcpack-cluster-options.md)。
+本文著重於使用 HPC Pack 執行 Linux 的工作負載的選項。另有[使用 HPC Pack 執行 Windows HPC 工作負載](virtual-machines-windows-hpcpack-cluster-options.md)的選項。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
@@ -52,12 +52,11 @@ ms.service="virtual-machines-linux"
 
 * [教學課程：在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
 
-
+* [教學課程：在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 STAR-CCM+](virtual-machines-linux-classic-hpcpack-cluster-starccm.md)
 
 ### 叢集管理
 
 * [將工作送出至 Azure 的 HPC Pack 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
-
 
 
 ## 建立 MPI 工作負載的 RDMA 叢集
@@ -66,4 +65,4 @@ ms.service="virtual-machines-linux"
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

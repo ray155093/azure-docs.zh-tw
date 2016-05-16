@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/03/2016" 
 	ms.author="piyushjo" />
 
 # Windows 通用 app Engagement SDK 整合
@@ -238,7 +238,7 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 
 (選擇性) 您可以報告應用程式的特定事件、錯誤和工作；若要這樣做，請使用 `EngagementAgent` 類別中找到的其他方法。Engagement API 允許使用所有 Engagement 的進階功能。
 
-如需詳細資訊，請參閱[如何在 Windows 通用 app 中使用進階的 Mobile Engagement 標記 API](../mobile-engagement-windows-store-use-engagement-api/)。
+如需詳細資訊，請參閱[如何在 Windows 通用 app 中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-store-use-engagement-api.md)。
 
 ##進階組態
 
@@ -283,4 +283,4 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 [NuGet website]: http://docs.nuget.org/docs/start-here/overview
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

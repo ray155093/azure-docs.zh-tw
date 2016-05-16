@@ -1,6 +1,6 @@
-<properties writer="kathydav" editor="tysonn" manager="timlt" />
+<properties writer="cynthn" editor="tysonn" manager="timlt" />
 
-1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com)。如果您還沒有訂用帳戶，請參考[免費試用](https://azure.microsoft.com/pricing/free-trial/)優惠。
+1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com)。  
 
 2. 在視窗底部的命令列上，按一下 [新增]。
 
@@ -12,7 +12,7 @@
 
 5. 在第一個 **[虛擬機器組態]** 頁面上：
 
-	- 輸入 [**虛擬機器名稱**] \(如 "testlinuxvm")。名稱必須介於 3 到 15 個字元，可以包含英數字和連字號，且必須以英文字母開頭，並以英文字母或數字結尾。
+	- 輸入 [**虛擬機器名稱**] (如 "testlinuxvm")。名稱必須介於 3 到 15 個字元，可以包含英數字和連字號，且必須以英文字母開頭，並以英文字母或數字結尾。
 
 	- 驗證 [**階層**] 並挑選 [**大小**]。階層可決定您可以選擇的大小。大小會影響其使用成本以及組態選項 (例如您可連接的資料磁碟數目)。如需詳細資訊，請參閱[虛擬機器的大小](../articles/virtual-machines-linux-sizes.md)。
 	- 輸入**新的使用者名稱**，或接受預設值 **azureuser**。這個名稱會新增至 Sudoers 清單檔案。
@@ -65,4 +65,3 @@
 
 [Image6]: ./media/create-and-configure-opensuse-vm-in-portal/putty.png
 
-<!---HONumber=AcomDC_0323_2016-->

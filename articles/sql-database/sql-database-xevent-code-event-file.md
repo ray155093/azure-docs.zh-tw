@@ -4,7 +4,7 @@
 	services="sql-database" 
 	documentationCenter="" 
 	authors="MightyPen" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	editor="" 
 	tags=""/>
 
@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/15/2016" 
+	ms.date="04/28/2016" 
 	ms.author="genemi"/>
 
 
@@ -586,7 +586,7 @@ Azure SQL Database 上擴充事件的主要主題是：
 
 如需 Azure 儲存體服務中帳戶和容器的詳細資訊，請參閱：
 
-- [如何使用 .NET 的 Blob 儲存體](storage-dotnet-how-to-use-blobs.md/)
+- [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
 - [命名和參考容器、Blob 及中繼資料](http://msdn.microsoft.com/library/azure/dd135715.aspx)
 - [使用根容器](http://msdn.microsoft.com/library/azure/ee395424.aspx)
 
@@ -597,4 +597,4 @@ Image references.
 
 [30_powershell_ise]: ./media/sql-database-xevent-code-event-file/event-file-powershell-ise-b30.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

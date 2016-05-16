@@ -12,20 +12,12 @@
 	ms.workload="web" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
-	ms.topic="get-started-article" 
-	ms.date="01/12/2016" 
+	ms.topic="article" 
+	ms.date="04/08/2016" 
 	ms.author="robmcm"/>
 
 
 #在 Azure App Service 中建立 PHP-MySQL Web 應用程式並使用 FTP 部署
-
-> [AZURE.SELECTOR]
-- [.Net](web-sites-dotnet-get-started.md)
-- [Node.js](app-service-web-nodejs-get-started.md)
-- [Java](web-sites-java-get-started.md)
-- [PHP - Git](web-sites-php-mysql-deploy-use-git.md)
-- [PHP - FTP](web-sites-php-mysql-deploy-use-ftp.md)
-- [Python](web-sites-python-ptvs-django-mysql.md)
 
 本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 FTP 部署該 Web 應用程式。本教學課程假定您的電腦已經安裝 [PHP][install-php]、[MySQL][install-mysql]、一台 Web 伺服器，以及一個 FTP 用戶端。本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
  
@@ -46,7 +38,7 @@
 請遵循以下步驟來建立 Web 應用程式與 MySQL 資料庫：
 
 1. 登入 [Azure 入口網站][management-portal]。
-2. 按一下 Azure 入口網站左上方的 [+新增]圖示。
+2. 按一下 Azure 入口網站左上方的 [+ 新增]圖示。
 
 	![Create New Azure Web Site][new-website]
 
@@ -252,7 +244,7 @@
 
 ##發佈您的應用程式
 
-當您在本機完成應用程式測試之後，可以使用 FTP 將其發行至您的 Web 應用程式。不過，您必須先更新應用程式中的資料庫連接資訊。使用您稍早取得的資料庫連接資訊 (在**＜取得 MySQL 和 FTP 連線資訊＞**一節中），將 `createdatabase.php` 和 `index.php` **兩者**檔案中的下列資訊都更新為適當的值：
+當您在本機完成應用程式測試之後，可以使用 FTP 將其發行至您的 Web 應用程式。不過，您必須先更新應用程式中的資料庫連接資訊。使用您稍早取得的資料庫連接資訊 (在＜取得 MySQL 和 FTP 連線資訊＞一節中），將 `createdatabase.php` 和 `index.php` **兩者**檔案中的下列資訊都更新為適當的值：
 
 	// DB connection info
 	$host = "value of Data Source";
@@ -264,7 +256,7 @@
 
 1. 開啟您選擇的 FTP 用戶端。
 
-2. 將您在以上步驟中從 `publishUrl` 屬性記下的主機名稱部分輸入到您的 FTP 用戶端。
+2. 將您在以上步驟中從 `publishUrl` 屬性記下的*主機名稱部分*輸入到您的 FTP 用戶端。
 
 3. 將您在以上步驟中記下的 `userName` 與 `userPWD` 屬性，原封不動地輸入到您的 FTP 用戶端。
 
@@ -303,4 +295,4 @@
 [download-publish-profile]: ./media/web-sites-php-mysql-deploy-use-ftp/download_publish_profile_3.png
  
 
-<!----HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

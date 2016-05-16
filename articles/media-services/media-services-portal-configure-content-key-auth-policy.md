@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/07/2016"  
+ 	ms.date="05/03/2016"   
 	ms.author="juliako"/>
 
 
@@ -97,7 +97,7 @@ Microsoft Azure 媒體服務可讓您傳遞受到進階加密標準 (AES) (使�
 
 
 ##後續步驟
-現在，您已設定內容金鑰的授權原則，請前往[作法：使用 Azure 傳統入口網站來啟用加密](../media-services-manage-content#encrypt/)主題。
+現在，您已設定內容金鑰的授權原則，請前往[作法：使用 Azure 傳統入口網站來啟用加密](media-services-manage-content.md#encrypt)主題。
 
 
 [open_policy]: ./media/media-services-portal-configure-content-key-auth-policy/media-services-protect-content-with-open-restriction.png
@@ -105,4 +105,4 @@ Microsoft Azure 媒體服務可讓您傳遞受到進階加密標準 (AES) (使�
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

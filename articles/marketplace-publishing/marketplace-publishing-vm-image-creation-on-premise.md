@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="Azure"
   ms.workload="na"
-  ms.date="02/04/2016"
+  ms.date="04/29/2016"
   ms.author="hascipio; v-divte"/>
 
 # 開發 Azure Marketplace 的內部部署虛擬機器映像
@@ -115,7 +115,7 @@
 
 > [AZURE.NOTE] 這些命令假設目前的儲存體帳戶內容已在 PowerShell 中設定。請參閱[設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)，來了解 PowerShell 安裝程式的詳細資訊。
 ### 使用適用於 Mac 和 Linux 的命令列工具建立儲存體帳戶
-從 [Linux 命令列工具](../virtual-machines/command-line-tools/)建立儲存體帳戶，如下所示。
+從 [Linux 命令列工具](../virtual-machines/virtual-machines-linux-cli-manage.md)建立儲存體帳戶，如下所示。
 
         azure storage account create mystorageaccount --location "West US"
 
@@ -132,11 +132,10 @@
         Add-AzureVhd –Destination “http://mystorageaccount.blob.core.windows.net/containername/vmsku.vhd” -LocalFilePath “C:\Users\Administrator\Desktop\vmsku.vhd”
 
 ### 使用適用於 Mac 和 Linux 的命令列工具上傳 VHD
-透過 [Linux 命令列工具](../virtual-machines/command-line-tools/)，使用下列語法：
-azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
+透過 [Linux 命令列工具](../virtual-machines/command-line-tools/)，使用下列語法：azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
 
 ## 另請參閱
 - [建立 Marketplace 的虛擬機器映像](marketplace-publishing-vm-image-creation.md)
 - [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

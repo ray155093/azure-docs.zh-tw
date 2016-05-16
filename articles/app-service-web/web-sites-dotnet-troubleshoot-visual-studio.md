@@ -5,7 +5,7 @@
 	documentationCenter=".net" 
 	authors="tdykstra" 
 	manager="wpickett" 
-	editor="jimbe"/>
+	editor=""/>
 
 <tags 
 	ms.service="app-service" 
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="01/08/2016" 
+	ms.date="04/28/2016" 
 	ms.author="tdykstra"/>
 
 # 使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式
 
 ## 概觀
 
-本教學課程示範如何使用 Visual Studio 工具，協助偵錯在 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中執行的 Web 應用程式，方法是以[偵錯模式](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)從遠端執行，或者檢視應用程式記錄與 Web 伺服器記錄。
+本教學課程示範如何使用 Visual Studio 工具，協助偵錯 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 Web 應用程式，方法是以[偵錯模式](http://www.visualstudio.com/get-started/debug-your-app-vs.aspx)從遠端執行，或者檢視應用程式記錄與 Web 伺服器記錄。
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -41,17 +41,17 @@
 
 本教學課程中所提供的程式碼範例適用於 C# MVC Web 應用程式，但是疑難排解程序則是與 Visual Basic 和 Web Form 應用程式一樣。
 
-遠端偵錯需要 Visual Studio 2013 或 Visual Studio 2012 含 Update 4。WebJobs 的遠端偵錯和 [伺服器總管] 功能需要 [Visual Studio 2013 Update 4](http://go.microsoft.com/fwlink/?LinkID=510314) 或更新版本。本教學課程中所示的其他功能也適用於 Visual Studio 2013 Express for Web 和 Visual Studio 2012 Express for Web。
+此教學課程假設您使用 Visual Studio 2015 或 2013。如果您使用 Visual Studio 2013，WebJobs 功能需要 [Update 4](http://go.microsoft.com/fwlink/?LinkID=510314) 或更新版本。
 
 串流記錄功能僅適用於鎖定 .NET Framework 4 或更新版本的應用程式。
 
 ## <a name="sitemanagement"></a>Web 應用程式組態與管理
 
-Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中可用的 Web 應用程式管理功能與組態設定的子集。本節將說明可用的項目。
+Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中可用的 Web 應用程式管理功能與組態設定的子集。本節將說明使用**伺服器總管**可用的項目。若要查看最新的 Azure 整合功能，也請試試**雲端總管**。您可以同時從 [檢視] 功能表開啟這兩個視窗。
 
 1. 如果您尚未在 Visual Studio 中登入 Azure，按一下 [伺服器總管] 中的 [連線到 Azure] 按鈕。
 
-	替代方式為安裝可讓您存取帳戶的管理憑證。如果您選擇安裝憑證，請以滑鼠右鍵按一下 [伺服器總管] 中的 [Azure] 節點，然後按一下內容功能表中的 [管理訂閱]。在 [管理 Azure 訂用帳戶] 對話方塊中，按一下 [憑證] 索引標籤，再按一下 [匯入]。請依照指示下載，然後匯入您 Azure 帳戶的訂用帳戶檔案 (亦稱為 *.publishsettings* 檔案)。
+	替代方式為安裝可讓您存取帳戶的管理憑證。如果您選擇安裝憑證，請以滑鼠右鍵按一下 [伺服器總管] 中的 [Azure] 節點，然後按一下內容功能表中的 [管理與篩選訂用帳戶]。在 [管理 Azure 訂用帳戶] 對話方塊中，按一下 [憑證] 索引標籤，再按一下 [匯入]。請依照指示下載，然後匯入您 Azure 帳戶的訂用帳戶檔案 (亦稱為 *.publishsettings* 檔案)。
 
 	> [AZURE.NOTE]
 	如果您下載了訂閱檔案，請將其儲存到原始程式碼目錄以外的資料夾 (例如在 Downloads 資料夾)，然後在匯入完成後刪除該檔案。惡意使用者一旦能夠存取此訂用帳戶檔案，就能夠編輯、建立和刪除您的 Azure 服務。
@@ -72,7 +72,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
    
 	如需此視窗中 [應用程式設定] 與 [連接字串] 方塊的詳細資訊，請參閱 [Azure Web Apps：應用程式設定與連接字串如何運作](http://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx)。
 
-	若您想要執行無法在此視窗中完成的 Web 應用程式管理工作，請按一下 [在管理入口網站中開啟]，以開啟 Azure 傳統入口網站的瀏覽器視窗。如需詳細資訊，請參閱[如何設定 Web 應用程式](/manage/services/web-sites/how-to-configure-websites/#howtochangeconfig)。
+	若您想要執行無法在此視窗中完成的 Web 應用程式管理工作，請按一下 [在管理入口網站中開啟]，以開啟 Azure 入口網站的瀏覽器視窗。
 
 ## <a name="remoteview"></a>在伺服器總管中存取 Web 應用程式檔案
 
@@ -149,31 +149,13 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 4. 當部署完成且您的瀏覽器開啟至 Web 應用程式的 Azure URL 之後，請關閉瀏覽器。
 
-5. 針對 Visual Studio 2013：在 [伺服器總管] 中，以滑鼠右鍵按一下您的 Web 應用程式，接著按一下 [連結偵錯工具]。
+5. 在 [伺服器總管] 中，以滑鼠右鍵按一下您的 Web 應用程式，接著按一下 [連結偵錯工具]。
 
 	![連結偵錯工具](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-attachdebugger.png)
 
 	瀏覽器會自動開啟至您在 Azure 中執行的首頁。您可能需要等候 20 秒左右的時間，讓 Azure 設定要偵錯的伺服器。通常只有當您第一次在 Web 應用程式上執行偵錯模式時，才會出現這個延遲現象。後續 48 小時內再次啟動的偵錯程序將不會再出現任何延遲。
 
-6. 針對 Visual Studio 2012 含 Update 4 或更新版本：<a id="vs2012"></a>
-
-	* 在 Azure 傳統入口網站中，針對您的 Web 應用程式移至 [設定] > [應用程式設定]，然後向下捲動至 [偵錯] 區段。
-
-	* 將 [遠端偵錯] 設為 [開啟]，然後將 [遠端 Visual Studio 版本] 設為 [2012]。
-
-	* 在 Visual Studio 的 [偵錯] 功能表中，按一下 [附加至處理序]。
-
-	* 在 [限定詞] 方塊中，輸入 Web 應用程式的 URL (不含 `http://` 前置詞)。
-
-	* 選取 [顯示所有使用者的處理序]。
-
-	* 當系統提示您輸入認證時，請輸入具有將內容部署至 Web 應用程式權限的使用者名稱與密碼。若要取得這些認證，請前往傳統入口網站中 Web 應用程式的 [儀表板] 索引標籤，然後按一下 [下載發行設定檔]。在文字編輯器中開啟檔案，這時您會在第一個出現的 **userName=** 與 **userPWD=** 的後面看到使用者名稱與密碼。
-
-	* 當 [可使用的處理序] 資料表中顯示處理序時，選取 [w3wp.exe]，然後按下 [附加]。
-
-	* 開啟瀏覽器至您 Web 應用程式的 URL。
-
-	您可能需要等候 20 秒左右的時間，讓 Azure 設定要偵錯的伺服器。通常只有當您第一次在 Web 應用程式上執行偵錯模式時，才會出現這個延遲現象。後續 48 小時內再次啟動的偵錯程序將不會再出現任何延遲。
+	**注意︰**如果您有任何啟動偵錯工具的問題，請試著使用**雲端總管**執行，而不是**伺服器總管**。
 
 6. 按一下功能表中的 [關於]。
 
@@ -195,7 +177,11 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 ## <a name="remotedebugwj"></a>遠端偵錯 WebJobs
 
-本節說明如何使用您在[開始使用 Azure WebJobs SDK](websites-dotnet-webjobs-sdk.md) 中建立的專案和 Web 應用程式進行遠端偵錯。本節顯示的功能僅適用於 Visual Studio 2013 含 Update 4 或更新版本。遠端偵錯僅適用於連續的 WebJobs。排程與隨選 WebJobs 不支援偵錯。
+本節說明如何使用您在[開始使用 Azure WebJobs SDK](websites-dotnet-webjobs-sdk.md) 中建立的專案和 Web 應用程式進行遠端偵錯。
+
+本節顯示的功能僅適用於 Visual Studio 2013 含 Update 4 或更新版本。
+
+遠端偵錯僅適用於連續的 WebJobs。排程與隨選 WebJobs 不支援偵錯。
 
 1. 開啟您在[開始使用 Azure WebJobs SDK][GetStartedWJ] 中建立的 Web 專案。
 
@@ -278,14 +264,10 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 在 Azure Web 應用程式中執行的 ASP.NET 應用程式，可建立下列各種記錄：
 
-* **應用程式追蹤記錄**<br/>
-  此應用程式會呼叫 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 類別的方法來建立這些記錄。
-* **Web 伺服器記錄**<br/>
-  Web 伺服器會為每個通往 Web 應用程式的 HTTP 要求建立記錄項目。
-* **詳細的錯誤訊息記錄**<br/>
-  Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。 
-* **失敗要求追蹤記錄**<br/>
-  Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML 檔案。Web 伺服器會一併提供 XSL 檔案，在瀏覽器中格式化 XML。
+* **應用程式追蹤記錄**<br/>此應用程式會呼叫 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 類別的方法來建立這些記錄。
+* **Web 伺服器記錄**<br/>Web 伺服器會為每個通往 Web 應用程式的 HTTP 要求建立記錄項目。
+* **詳細的錯誤訊息記錄**<br/>Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。 
+* **失敗要求追蹤記錄**<br/>Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML 檔案。Web 伺服器會一併提供 XSL 檔案，在瀏覽器中格式化 XML。
   
 記錄功能會影響 Web 應用程式效能，因此 Azure 可讓您視需要啟用或停用每一種記錄類型。對於應用程式記錄，您可以指定只寫入高於特定嚴重性層級的記錄。當您建立新的 Web 應用程式時，預設會停用所有記錄功能。
 
@@ -303,49 +285,36 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 ### 將追蹤陳述式新增至應用程式
 
-1. 開啟 *Controllers\\HomeController.cs*，然後使用下列程式碼來取代檔案內容，以便為 `System.Diagnostics` 加入 `Trace` 陳述式與 `using` 陳述式：
+1. 開啟 *Controllers\\HomeController.cs*，然後使用下列程式碼來取代`Index`、`About` 和 `Contact` 方法，以便為 `System.Diagnostics` 加入 `Trace` 陳述式與 `using` 陳述式：
 
-		using System;
-		using System.Collections.Generic;
-		using System.Configuration;
-		using System.Diagnostics;
-		using System.Linq;
-		using System.Web;
-		using System.Web.Configuration;
-		using System.Web.Mvc;
-		namespace MyExample.Controllers
+		public ActionResult Index()
 		{
-		    public class HomeController : Controller
-		    {
-		        public ActionResult Index()
-		        {
-		            Trace.WriteLine("Entering Index method");
-		            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-		            Trace.TraceInformation("Displaying the Index page at " + DateTime.Now.ToLongTimeString());
-		            Trace.WriteLine("Leaving Index method");
-		            return View();
-		        }
-		
-		        public ActionResult About()
-		        {
-		            Trace.WriteLine("Entering About method");
-		            ViewBag.Message = "Your app description page.";
-		            Trace.TraceWarning("Transient error on the About page at " + DateTime.Now.ToShortTimeString());
-		            Trace.WriteLine("Leaving About method");
-		            return View();
-		        }
-		
-		        public ActionResult Contact()
-		        {
-		            Trace.WriteLine("Entering Contact method");
-		            ViewBag.Message = "Your contact page.";
-		            Trace.TraceError("Fatal error on the Contact page at " + DateTime.Now.ToLongTimeString());
-		            Trace.WriteLine("Leaving Contact method");
-		            return View();
-		        }
-		    }
+		    Trace.WriteLine("Entering Index method");
+		    ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+		    Trace.TraceInformation("Displaying the Index page at " + DateTime.Now.ToLongTimeString());
+		    Trace.WriteLine("Leaving Index method");
+		    return View();
 		}
 		
+		public ActionResult About()
+		{
+		    Trace.WriteLine("Entering About method");
+		    ViewBag.Message = "Your app description page.";
+		    Trace.TraceWarning("Transient error on the About page at " + DateTime.Now.ToShortTimeString());
+		    Trace.WriteLine("Leaving About method");
+		    return View();
+		}
+		
+		public ActionResult Contact()
+		{
+		    Trace.WriteLine("Entering Contact method");
+		    ViewBag.Message = "Your contact page.";
+		    Trace.TraceError("Fatal error on the Contact page at " + DateTime.Now.ToLongTimeString());
+		    Trace.WriteLine("Leaving Contact method");
+		    return View();
+		}		
+
+2. 將 `using System.Diagnostics;` 陳述式新增至檔案頂端。
 				
 ### 在本機檢視追蹤輸出
 
@@ -425,7 +394,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 	不過，當您選取 [檢視串流記錄] 時，Visual Studio 會自動將 [Application Logging (File System)] 變更為 [錯誤]，代表回報的會是錯誤層級記錄。為了查看所有的追蹤記錄，您可以將此設定變更為 [詳細資訊]。當您選取低於錯誤的嚴重性層級時，將一併回報較高嚴重性層級的所有記錄。因此當您選取詳細資訊時，您會同時看到資訊、警告與錯誤記錄。
 
-4. 在 [伺服器總管] 中，以滑鼠右鍵按一下 Web 應用程式，然後按一下 [檢視設定] \(如同您稍早所做的動作)。
+4. 在 [伺服器總管] 中，以滑鼠右鍵按一下 Web 應用程式，然後按一下 [檢視設定] (如同您稍早所做的動作)。
 
 5. 將 [Application Logging (File System)] 變更為 [詳細資訊]，然後按一下 [儲存]。
  
@@ -480,9 +449,9 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。為了在 [
 	![輸出視窗中的 Web 伺服器記錄](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-wslogs.png)
 
 
-根據預設，當您第一次使用 Visual Studio 啟用 Web 伺服器記錄時，Azure 會將記錄寫入檔案系統。作為替代方式，您可以使用傳統入口網站來指定應該將 Web 伺服器記錄寫入儲存體帳戶中的某個 Blob 容器。如需詳細資訊，請參閱**如何設定網站**中的[網站診斷](/manage/services/web-sites/how-to-configure-websites/#howtochangeconfig)小節。
+根據預設，當您第一次使用 Visual Studio 啟用 Web 伺服器記錄時，Azure 會將記錄寫入檔案系統。作為替代方式，您可以使用 Azure 入口網站來指定應該將 Web 伺服器記錄寫入儲存體帳戶中的某個 Blob 容器。
 
-如果您使用傳統入口網站對 Azure 儲存體帳戶啟用 Web 伺服器記錄功能，然後在 Visual Studio 中停用記錄功能，當您在 Visual Studio 中重新啟用記錄功能時，將會還原您的儲存體帳戶設定。
+如果您使用入口網站對 Azure 儲存體帳戶啟用 Web 伺服器記錄功能，然後在 Visual Studio 中停用記錄功能，當您在 Visual Studio 中重新啟用記錄功能時，將會還原您的儲存體帳戶設定。
 
 ## <a name="detailederrorlogs"></a>檢視詳細的錯誤訊息記錄
 
@@ -643,11 +612,11 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 
 2. 在 Visual Studio 中，於 [Azure Web 應用程式] 視窗的 [組態] 索引標籤中按一下 [在管理入口網站中開啟]。
 
-3. 在適用於您 Web 應用程式的 Azure 入口網站 (https://portal.azure.com) 刀鋒視窗中，按一下 [設定 ] > [部署認證]，然後輸入新的使用者名稱和密碼。
+3. 在 [Azure 入口網站](https://portal.azure.com)適用於 Web 應用程式的 [設定] 刀鋒視窗中，按一下 [部署認證]，然後輸入新的使用者名稱和密碼。
 
 	![新的 FTP 使用者名稱與密碼](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-enterftpcredentials.png)
 
-	**當您登入時，必須使用此完整使用者名稱搭配 Web 應用程式名稱前置詞。例如，若您輸入使用者名稱 "myid"，而網站為 "myexample"，則會登入為 "myexample\\myid"。
+	****當您登入時，必須使用此完整使用者名稱搭配 Web 應用程式名稱前置詞。例如，若您輸入使用者名稱 "myid"，而網站為 "myexample"，則會登入為 "myexample\\myid"。
 
 5. 在新的瀏覽器視窗中，前往您 Web 應用程式之 [Web 應用程式] 刀鋒視窗的 [FTP 主機名稱] 或 [FTPS 主機名稱] 下方所示的 URL。
 
@@ -755,15 +724,8 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 
 Microsoft TechNet 網站內的[使用失敗要求追蹤](http://www.iis.net/learn/troubleshoot/using-failed-request-tracing) (英文) 小節可能有助您了解如何使用這些記錄。不過，本文主要著重在 IIS 內設定失敗要求追蹤功能，這是您無法在 Azure Web Apps 中執行的功能。
 
-### 偵錯雲端服務
-
-如果您想對 Azure 雲端服務 (而非 Web 應用程式) 進行偵錯，請參閱[偵錯雲端服務](http://msdn.microsoft.com/library/windowsazure/ee405479.aspx)。
-
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-
 [GetStarted]: web-sites-dotnet-get-started.md
 [GetStartedWJ]: websites-dotnet-webjobs-sdk.md
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,12 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="04/27/2016"
 	ms.author="jgao"/>
 
 
-#HDInsight 上 Hadoop 叢集的可用性和可靠性
+#HDInsight 上以 Windows 為基礎的 Hadoop 叢集的可用性和可靠性
 
+
+>[AZURE.NOTE] 此文件中使用的步驟是針對以 Windows 為基礎的 HDInsight 叢集。如果您使用以 Linux 為基礎的叢集，如需 Linux 特定的資訊，請參閱 [HDInsight 上以 Linux 為基礎的 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md)。
 
 HDInsight 可讓客戶部署各種不同的叢集類型，用於不同的資料分析工作負載。目前提供的叢集型別是查詢和分析工作負載的 Hadoop 叢集、NoSQL 工作負載的 HBase 叢集和即時事件處理工作負載的 Storm 叢集。在指定的叢集類型內，有各種節點的不同角色。例如：
 
@@ -106,4 +108,4 @@ SDK 的情況十分類似。使用 SDK 建立與佈建叢集的說明已記錄�
 - [使用 RDP 連接到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)
 - [使用 HDInsight .NET SDK](hdinsight-provision-clusters.md#sdk)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

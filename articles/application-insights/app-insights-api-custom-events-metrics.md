@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="04/18/2016" 
 	ms.author="awills"/>
 
 # 自訂事件和度量的 Application Insights API 
@@ -339,7 +339,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
     // Allow some time for flushing before shutdown.
     System.Threading.Thread.Sleep(1000);
 
-請注意，記憶體內部通道的函式為非同步，但如果您選擇使用[永續性通道](app-insights-windows-desktop.md#persistence-channel)則其為同步。
+請注意，記憶體內部通道的函式為非同步，但如果您選擇使用[永續性通道](app-insights-windows-services.md#persistence-channel)則其為同步。
 
 
 ## 通過驗證的使用者
@@ -567,16 +567,16 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 **針對 JavaScript Web 用戶端**，[請使用 JavaScript 遙測初始設定式](#js-initializer)。
 
-**若要將屬性新增至所有遙測資料**，並包括來自標準集合模組的資料，請[建立遙測初始設定式](app-insights-api-filtering-sampling.md#add-properties)。
+**若要將屬性加入所有遙測中**，並包括來自標準集合模組的資料，請[實作 `ITelemetryInitializer`](app-insights-api-filtering-sampling.md#add-properties)。
 
 
 ## 取樣、篩選及處理遙測資料 
 
 您可以撰寫程式碼，在從 SDK 傳送遙測資料前加以處理。處理包括從標準遙測模組 (如 HTTP 要求收集和相依性收集) 的資料。
 
-* [新增屬性](app-insights-api-filtering-sampling.md#add-properties)至遙測資料 - 例如版本號碼或從其他屬性計算得出的值。
-* [取樣](app-insights-api-filtering-sampling.md#sampling)可減少從您的應用程式傳送到入口網站的資料量，但不會影響顯示的計量，而且藉由在相關項目 (如例外狀況、要求和頁面檢視) 之間瀏覽，並不會影響您診斷問題的能力。
-* [篩選](app-insights-api-filtering-sampling.md#filtering)也會減少數量。您可控制要傳送或捨棄的項目，但是您必須考量這對您的度量的影響。視您捨棄項目的方式而定，您可能會喪失在相關項目之間瀏覽的能力。
+* 實作 `ITelemetryInitializer` 以[加入屬性](app-insights-api-filtering-sampling.md#add-properties)至遙測；例如，加入版本號碼或從其他屬性計算得出的值。 
+* [篩選](app-insights-api-filtering-sampling.md#filtering)可以先修改或捨棄遙測，再藉由實作 `ITelemetryProcesor` 從 SDK 傳送遙測。您可控制要傳送或捨棄的項目，但是您必須考量這對您的度量的影響。視您捨棄項目的方式而定，您可能會喪失在相關項目之間瀏覽的能力。
+* [取樣](app-insights-api-filtering-sampling.md#sampling)是減少從應用程式傳送至入口網站的資料量的封裝方案。但不會影響顯示的計量，而且藉由在相關項目 (如例外狀況、要求和頁面檢視) 之間瀏覽，並不會影響您診斷問題的能力。
 
 [深入了解](app-insights-api-filtering-sampling.md)
 
@@ -676,24 +676,14 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 * **工作階段** 識別使用者的工作階段。識別碼會設為產生的值，當使用者一段時間沒有作用時會變更。
 * **使用者** 使用者資訊。 
 
-
-
 ## 限制
 
-每個應用程式 (亦即每個檢測金鑰) 都有一些度量和事件的數目限制。
 
-1. 個別套用至每個檢測金鑰的每秒最大速率。若超過限制，則系統會捨棄部分資料。
- * 針對 TrackTrace 呼叫與已擷取記錄資料的每秒資料點數量上限為 500 個。(針對免費定價層則為每秒 100 個。)
- * 針對依我們模組或 TrackException 呼叫擷取的例外狀況，每秒資料點數量上限為 50 個。 
- * 針對其他所有資料 (包括依 SDK 模組傳送的標準遙測，以及依您程式碼傳送的自訂事件、度量和其他遙測資料)，則每秒資料點數量上限為 500 個。(針對免費定價層則為每秒 100 個。)
-1. 每月總計資料數量 (取決於您的[定價層](app-insights-pricing.md))。
-1.	您的應用程式具有最多 200 個唯一度量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型上的測量，例如事件。每個檢測金鑰的度量和屬性名稱是全域的，不只限於資料類型。
-2.	只有在每個屬性具有少於 100 個唯一值時，屬性才能用於篩選和分組依據。唯一值超過 100 之後，屬性仍可用於搜尋，但無法再用於篩選。
-3.	標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。超過 1000 個唯一值之後，額外值都會標示為「其他值」。原始值仍然可以用於全文檢索搜尋和篩選。
+[AZURE.INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]
 
 *如何避免達到資料速率限制？*
 
-* 安裝最新的 SDK 以使用[取樣](app-insights-sampling.md)。
+* 使用[取樣](app-insights-sampling.md)。
 
 *資料保留多久？*
 
@@ -758,4 +748,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

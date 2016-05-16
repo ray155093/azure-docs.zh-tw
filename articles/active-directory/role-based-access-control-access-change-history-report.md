@@ -10,10 +10,10 @@
 <tags
 	ms.service="active-directory"
 	ms.devlang="na"
-	ms.topic="get-started-article"
+	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="03/23/2016"
+	ms.date="04/28/2016"
 	ms.author="kgremban"/>
 
 # 建立存取權變更歷程記錄報告
@@ -67,4 +67,4 @@ azure authorization changelog
 - 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 - 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

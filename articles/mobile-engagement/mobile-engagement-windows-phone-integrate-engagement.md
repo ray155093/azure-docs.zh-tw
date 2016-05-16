@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/03/2016" 
 	ms.author="piyushjo" />
 
 #Windows Phone Silverlight Engagement SDK 整合
@@ -207,7 +207,7 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 
 (選擇性) 您可以報告應用程式的特定事件、錯誤和工作；若要這樣做，請使用 `EngagementAgent` 類別中找到的其他方法。Engagement API 允許使用所有 Engagement 的進階功能。
 
-如需詳細資訊，請參閱[如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標記 API](../mobile-engagement-windows-phone-use-engagement-api/)。
+如需詳細資訊，請參閱[如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-phone-use-engagement-api.md)。
 
 ##進階組態
 
@@ -247,4 +247,4 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 > [AZURE.WARNING] 高載閾值無法設定為小於一秒的時間間隔。如果您嘗試這樣做，SDK 會顯示含錯誤訊息的追蹤，並且會自動重設為預設值 (0 秒)。這樣會觸發 SDK 以即時的方式報告記錄檔。
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

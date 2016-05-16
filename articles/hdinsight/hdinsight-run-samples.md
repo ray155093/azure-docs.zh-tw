@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/04/2016"
 	ms.author="jgao"/>
 
 #在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例
@@ -45,11 +45,13 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 - **HDInsight 叢集**。如需可建立此類叢集之各種方式的指示，請參閱[在 HDInsight 中使用 Hadoop 叢集](hdinsight-provision-clusters.md)。
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝 Azure PowerShell 1.0 及更新版本](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。
+- **具有 Azure PowerShell 的工作站**。
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 ## <a name="hdinsight-sample-wordcount"></a>字數統計 - Java 
 
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
+如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 ****wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
 
 原始程式碼可以在[附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java) 中找到。
 
@@ -119,7 +121,7 @@ Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰�
 
 > [AZURE.NOTE] 本教學課程的步驟只適用於 Windows HDInsight 叢集。如需 Linux HDInsight 叢集的串流範例，請參閱[開發適用於 HDInsight 的 Python 串流程式](hdinsight-hadoop-streaming-python.md)。
 
-在範例中，mapper 與 reducer 是從 [stdin][stdin-stdout-stderr] (逐行) 讀取輸入並將輸出發出到 [stdout][stdin-stdout-stderr] 的可執行檔。程式會計算內容中的所有文字。
+在範例中，mapper 和 reducer 是從 [stdin][stdin-stdout-stderr] 讀取輸入 (循行) 並將輸出發出到 [stdout][stdin-stdout-stderr] 的可執行檔。程式會計算內容中的所有文字。
 
 在已為 **mappers** 指定可執行檔的情況下，當 mapper 初始化時，每個 mapper 工作都會將可執行檔啟動成為個別的處理程序。當 mapper 工作執行時，它會將其輸入傳換成行，並將這些行饋送至處理程序的 [stdin][stdin-stdout-stderr]。
 
@@ -127,7 +129,7 @@ Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰�
 
 在已為 **reducers** 指定可執行檔的情況下，當 reducer 初始化時，每個 reducer 工作都會將可執行檔啟動成為個別的處理程序。在執行 reducer 工作時，它會將其輸入索引鍵/值組傳換成行，並將這些行饋送至處理程序的 [stdin][stdin-stdout-stderr]。
 
-在此同時，reducer 會從處理程序的 [stdout][stdin-stdout-stderr] 收集行導向輸出。它會將每一行轉換成索引鍵/值組，其會做為 reducer 的輸出來收集。根據預設，從一行的前置詞一直到第一個定位字元即是索引鍵，行的其餘部分 (不包含定位字元) 則為值。
+同時，reducer 會收集來自處理程序 [stdout][stdin-stdout-stderr] 的行導向輸出。它會將每一行轉換成索引鍵/值組，其會做為 reducer 的輸出來收集。根據預設，從一行的前置詞一直到第一個定位字元即是索引鍵，行的其餘部分 (不包含定位字元) 則為值。
 
 如需有關 Hadoop 串流介面的詳細資訊，請參閱 [Hadoop 串流][hadoop-streaming]。
 
@@ -981,7 +983,7 @@ wc.cs 檔案中的 reducer 程式碼會使用 [StreamReader][streamreader] 物�
 [hdinsight-introduction]: hdinsight-hadoop-introduction.md
 
 
-[powershell-install-configure]: powershell-install-configure.md
+[powershell-install-configure]: ../powershell-install-configure.md
 
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 
@@ -996,5 +998,6 @@ wc.cs 檔案中的 reducer 程式碼會使用 [StreamReader][streamreader] 物�
 
 [streamreader]: http://msdn.microsoft.com/library/system.io.streamreader.aspx
 [console-writeline]: http://msdn.microsoft.com/library/system.console.writeline
+[stdin-stdout-stderr]: https://msdn.microsoft.com/library/3x292kth.aspx
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

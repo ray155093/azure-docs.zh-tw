@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/21/2016" 
+	ms.date="04/28/2016" 
 	ms.author="casoper"/>
     
 # CDN 檔案壓縮疑難排解
@@ -36,12 +36,14 @@
 
 ## 疑難排解步驟
 
+> [AZURE.TIP] 隨著新端點的部署，CDN 組態變更會需要一些時間才能傳播至整個網路。在大部分情況下，變更會在 90 分鐘內套用完成。如果這是您第一次設定 CDN 端點壓縮，您應該考慮先等候 1-2 小時，確定壓縮設定已傳播至 POP。
+
 ### 驗證要求
 
 首先，我們應該對要求進行快速的例行性檢查。您可以使用瀏覽器的[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)來檢視所做的要求。
 
 - 驗證要求正傳送至您的端點 URL `<endpointname>.azureedge.net`，而不是您的來源。
-- 驗證要求包含 **Accept-Encoding** 標頭，且該標頭的值包含 **gzip**、**defalte** 或 **bzip2**。
+- 驗證要求包含 **Accept-Encoding** 標頭，且該標頭的值包含 **gzip**、**deflate** 或 **bzip2**。
 
 ![CDN 要求標頭](./media/cdn-troubleshoot-compression/cdn-request-headers.png)
 
@@ -63,11 +65,10 @@
 在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。即會開啟補充入口網站。將滑鼠移至 [**HTTP 大型**] 索引標籤上，然後將滑鼠移至 [**快取設定**] 飛出視窗上。按一下 [**壓縮**]。
 
 - 驗證已啟用壓縮。
-- 驗證 [檔案類型] 清單包含以逗號分隔的 MIME 類型清單。
+- 驗證 [檔案類型] 清單包含以逗號分隔 (無空格) 的 MIME 類型清單。
 - 驗證要壓縮之內容的 MIME 類型已包含在壓縮格式清單中。
 
 ![CDN 進階壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings-premium.png)
-
 
 ### 驗證已快取內容
 
@@ -85,4 +86,4 @@
 - 超過 128 個位元組。
 - 小於 1 MB。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

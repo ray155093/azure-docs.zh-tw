@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="04/07/2016"
+     ms.date="05/03/2016"
      ms.author="dobett"/>
 
 # 使用 PowerShell 建立 IoT 中樞
@@ -112,10 +112,10 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 
 2. 將範本檔案儲存在本機電腦上。這個範例假設您將它儲存在名為 **c:\\templates** 的資料夾中。
 
-3. 執行下列命令來部署新的 IoT 中樞，並傳遞 IoT 中樞的名稱做為參數。此範例中，IoT 中樞的名稱是 **myiothub** (請注意，此名稱必須是全域唯一的)：
+3. 執行下列命令來部署新的 IoT 中樞，並傳遞 IoT 中樞的名稱做為參數。在此範例中，IoT 中樞名稱是 **abcmyiothub** (請注意，此名稱必須是全域唯一的，因此應該包含您的名稱或縮寫)：
 
     ```
-    New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName myiothub
+    New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName abcmyiothub
     ```
 
 4. 輸出會顯示您建立的 IoT 中樞的金鑰。
@@ -139,4 +139,4 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-azure-rm-overview]: ../resource-group-overview.md
 [lnk-powershell-arm]: ../powershell-azure-resource-manager.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

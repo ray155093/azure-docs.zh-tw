@@ -21,9 +21,9 @@
 
 分區化資料庫跨相應放大的資料層發佈資料列。所有參與的資料庫都有相同的結構描述，也稱為水平資料分割。使用彈性查詢，您可以建立跨越分區化資料庫中所有資料庫的報告。
 
-如需快速啟動，請參閱[分區化的彈性資料庫查詢 (水平資料分割)](sql-database-elastic-query-getting-started.md)。
+如需快速啟動，請參閱[跨相應放大的雲端資料庫報告](sql-database-elastic-query-getting-started.md)。
 
-若為非分區資料庫，請參閱[跨資料庫查詢 (垂直資料分割) 的彈性資料庫查詢](sql-database-elastic-query-vertical-partitioning.md)。
+如需非分區化資料庫，請參閱[對不同結構描述的雲端資料庫執行查詢](sql-database-elastic-query-vertical-partitioning.md)。
 
  
 ## 必要條件
@@ -173,7 +173,7 @@ DISTRIBUTION 子句會指定用於此資料表的資料散發。查詢處理器�
  
 ## 遠端 T-SQL 執行的預存程序：sp\_execute\_remote
 
-彈性查詢也會介紹可供直接存取分區的預存程序。預存程序稱為 **sp\_execute\_remote**，而且可用來在遠端資料庫上執行遠端預存程序或 T-SQL 程式碼。它需要以下參數：
+彈性查詢也會介紹可供直接存取分區的預存程序。預存程序稱為 [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714)，而且可用來在遠端資料庫上執行遠端預存程序或 T-SQL 程式碼。它需要以下參數：
 
 * 資料來源名稱 (nvarchar)：RDBMS 類型的外部資料來源名稱。 
 * 查詢 (nvarchar)：對每個分區執行的 T-SQL 查詢。 
@@ -208,4 +208,4 @@ sp\_execute\_remote 使用引動過程參數中提供的外部資料來源，在
 [1]: ./media/sql-database-elastic-query-horizontal-partitioning/horizontalpartitioning.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,47 +14,61 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/02/2016"
+   ms.date="05/02/2016"
    ms.author="guayan"/>
 
 # 設定 API 連接到 Azure Active Directory 網域上的後端資源
-隨著愈來愈多的使用者在 Azure Active Directory (AAD) 上建立網域，後端資源也被加入這些 AAD 網域中。您可以建立和設定 API 連接到這些後端資源。
 
-#### 開始使用的必要條件
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
 
-- 註冊 [PowerApps Enterprise](powerapps-get-started-azure-portal.md)。
-- 建立 [App Service 環境](powerapps-get-started-azure-portal.md)。
-- 安裝 [Azure PowerShell][11] 1.0 Preview 或更新版本。
-- 在 [App Service 環境](powerapps-register-api-hosted-in-app-service.md)中註冊 API。
+<!--Archived
+As more users are creating domains on Azure Active Directory (AAD), backend resources are also being added to these AAD domains. You can create and configure APIs to connect to these backend resources. 
 
-## 步驟 1：建立 Active Directory 應用程式並授與權限
+#### Prerequisites to get started
 
-若要存取 AAD 網域中的後端系統，請建立 AAD 應用程式並授與其現有後端 (也是 AAD 應用程式) 的適當權限。步驟：
+- Sign up for [PowerApps Enterprise](powerapps-get-started-azure-portal.md).
+- Create an [app service environment](powerapps-get-started-azure-portal.md).
+- Install [Azure PowerShell][11] 1.0 Preview or above.
+- Register an API in your [app service environment](powerapps-register-api-hosted-in-app-service.md).
 
-1. 在 [Azure 傳統入口網站][13]中，移至 Azure Active Directory，開啟租用戶 (或目錄)，然後選取 [應用程式] 索引標籤：![][14]
-2. 選取底部的 [加入] 按鈕。然後：  
+## Step 1: Create an Active Directory application and give it permissions
 
-	a) 選擇 [加入我的組織正在開發的應用程式]。b) 輸入應用程式名稱，並選取 [Web 應用程式和/或 Web API]。c) 在 [登入 URL] 和 [應用程式識別碼 URI] 中，輸入 AAD 內的唯一 URL 和對貴組織有意義的 URL。例如，您可以輸入 http://powerappssignon.contoso.com 或 http://powerappsappid.contoso.com。我們建議您使用貴組織 AAD 網域內的 URL。URL 用做識別碼，沒有任何需求。沒有人會瀏覽您所輸入的 URL。您可以輸入 HTTP 或 HTTPS。
+To access the backend system on an AAD domain, create an AAD application, and give it the proper permissions to your existing backend (which is also an AAD application). Steps:
 
-3. 在新建立的 AAD 應用程式頁面，移至 [設定] 索引標籤：![][15]
-4. 在 [金鑰] 區段中，使用下拉式清單選取持續時間。請注意，金鑰會在您選取 [儲存] 之後出現：![][16]
-5. 在 [單一登入] 中加入 ``https://<your App Service Environment name>.azure-apim.net:456/redirect`` 為**回覆 URL**。
-6. 在 [其他應用程式的權限] 中：  
+1. In the [Azure classic portal][13], go to your Azure Active Directory, open your tenant (or directory), and select the **applications** tab:  
+![][14]
+2. Select the **Add** button at the bottom. Then:  
 
-	1. 選取 [加入應用程式]。在快顯視窗中，選擇保護您現有後端的 AAD 應用程式：![][17]  
+	a) Choose **Add an application my organization is developing**.  
+	b) Enter a name for your application and select **Web application and/or web API**.  
+	c) In **Sign-on URL** and **App ID URI**, enter unique URLs within your AAD and URLs that make sense to your organization. For example, you can enter http://powerappssignon.contoso.com or http://powerappsappid.contoso.com.  We recommend using a URL within your organization's AAD domain. The URLs are used as identifiers and there is no requirement that they need to exist. No one is going to browse the URLs you enter. You can enter HTTP or HTTPS.  
 
-	2. 使用下拉式清單加入權限：![][18]
+3. In the newly created AAD application page, go to the **Configure** tab:  
+![][15]
+4. In the **keys** section, use the drop-down list to select a duration. Note that the key displays after you select **Save**:  
+![][16]
+5. In **single sign-on**, add ``https://<your App Service Environment name>.azure-apim.net:456/redirect`` as a **reply URL**.
+6. In **permissions to other applications**:  
 
-7. 選取底部的 [儲存]。
-8. 複製並儲存**用戶端識別碼**和**金鑰**。關閉 Azure 入口網站之後，金鑰就不再出現。 
+	1. Select **Add application**. In the pop-up window, choose the AAD application securing your existing backend:  
+	![][17]  
 
-如需 AAD 應用程式的詳細資訊，請參閱[整合應用程式與 Azure Active Directory](../active-directory/active-directory-integrating-applications.md)。
+	2. Use the drop-down list to add the permissions:  
+	![][18]
 
-## 步驟 2：使用 Azure PowerShell 設定 API
+7. Select **Save** at the bottom. 
+8. Copy the **client ID** and **key** and store them. The key isn't shown again after you close Azure portal. 
 
-此時，沒有任何 Azure 入口網站支援可初始化 API 需要的設定。若要在 Azure 入口網站中設定 API，請使用下列 Azure PowerShell 指令碼：
+See [Integrating Applications with Azure Active Directory](../active-directory/active-directory-integrating-applications.md) to learn more about  AAD applications. 
 
-> [AZURE.TIP] 若要了解如何安裝、設定和執行 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell][11]。下列指令碼可搭配 Azure PowerShell 1.0 Preview 或更新版本使用。
+## Step 2: Configure your API using Azure PowerShell
+
+At this point, there isn't any Azure portal support to initialize the configuration needed for your API. To configure the API in the Azure portal, use the following Auzre PowerShell script: 
+
+> [AZURE.TIP] To learn how to install, configure, and run Azure PowerShell, see [How to install and configure Azure PowerShell][11]. The following script works with Azure PowerShell 1.0 preview or above.
 
 ```powershell
 # get the API resource
@@ -85,16 +99,17 @@ Add-Member -InputObject $api.Properties -MemberType NoteProperty -Name Connectio
 New-AzureRmResource -Location $api.Location -ResourceId $api.ResourceId -Properties $api.Properties
 ```
 
-**請注意**，**權杖**連接參數名稱很重要。您可以自行選擇名稱，但必須是駝峰式命名法。稍後在後端程式碼或 API 原則中會使用這個名稱。
+**Notice** that the **token** connection parameter name is important. You can pick your own name as long as it's camel case. You'll use this name later in your backend code or API policy.
 
-接下來，請移至 [Azure 入口網站][19]，再到 API 的 [一般] 設定刀鋒視窗。您應該會看到其他的設定選項：![][21]
+Next, go to [Azure portal][19], and go to the **General** settings blade of your API. You should see the additional configuration options:  
+![][21]
 
 
-## 立即試用
+## Try it out
 
-在 PowerApps 中開啟應用程式。新的 API 會列在 [可用連線] 中。當您選取 [連接] 就會顯示 AAD 登入視窗。輸入貴組織的 AAD 帳戶詳細資訊後，隨即建立連接。
+Open an app in PowerApps. In **Available connections**, your new API is listed. When you select **Connect**, it displays an AAD sign-in window. Enter your organization's AAD account details and your connection is created.
 
-現在，當使用這個連接從您的應用程式向 API 進行執行階段呼叫時，後端會在 **x-ms-apim-tokens** HTTP 標頭中收到下列 [Base64 編碼][20]格式的使用者 AAD 權杖：
+Now when a runtime call is made from your app to the API using this connection, your backend receives the user's AAD token in the **x-ms-apim-tokens** HTTP header in the following [Base64 encoding][20] format:  
 
 ```json
 {
@@ -105,13 +120,13 @@ New-AzureRmResource -Location $api.Location -ResourceId $api.ResourceId -Propert
 }
 ```
 
-**請注意，**屬性名稱**權杖**要符合您設定此設定時所用的連接參數名稱。
+**Notice** that the property name **token** matches the connection parameter name you use when configuring the setting.
 
-然後，如有需要，後端程式碼才能從 **AccessToken** 屬性取得 AAD 權杖並使用它。App Service 環境會自動重新整理權杖。
+Your backend code can then get the AAD token from the **AccessToken** property and use it, if needed. The app service environment automatically refreshes the token.
 
-## 設定 API 原則
+## Configure the API policy
 
-或者，您也可以使用 API 原則，在標準的 HTTP **授權**標頭中設定 AAD 權杖。如此一來，如果後端程式碼需要使用 AAD 權杖，您就可以標準方式取得它，而不是研究自訂的 HTTP 標頭並進行 Base64 解碼。若要執行此作業，請移至 Azure 入口網站，再到 API 的 [原則] 刀鋒視窗中設定下列原則：
+Optionally, you can also use API policy to set the AAD token into the standard HTTP **Authorization** header. This way, if your backend code needs to use the AAD token, you can get it in a standard way rather than looking into a custom HTTP header and perform Base64 decoding. To do this, go to the Azure portal, go to the **Policy** blade of your API, and set the following policy:  
 
 ```xml
 <policies>
@@ -134,16 +149,16 @@ New-AzureRmResource -Location $api.Location -ResourceId $api.ResourceId -Propert
 </policies>
 ```
 
-請查看這個原則，基本上，它讓您使用**權杖**變數將 **x-ms-apim-tokens** 標頭中的值當做解碼的 JObject 參考。然後您就可以使用 **set-header** 原則取得實際的 AAD 權杖，並將它設定到**授權**標頭。這和 [Azure API 管理](https://azure.microsoft.com/services/api-management/)使用的原則一樣。如需詳細資訊，請參閱 [Azure API 管理的原則](../api-management/api-management-howto-policies.md)。
+Looking at this policy, it basically lets you reference the values in the **x-ms-apim-tokens** header as a decoded JObject using a **tokens** variable. Then you can use the **set-header** policy to get the actual AAD token and set it to the **Authorization** header. This is the same policy used by [Azure API Management](https://azure.microsoft.com/services/api-management/). To learn more, see [Policies in Azure API Management](../api-management/api-management-howto-policies.md).
 
-**請注意，**屬性名稱**權杖**要符合您設定此設定時所用的連接參數名稱。
+**Notice** that the property name **token** matches the connection parameter name you used when configuring the setting.
 
-## 摘要和後續步驟
+## Summary and next steps
 
-在本主題中，您已了解如何設定 API 連接 (和驗證) Azure Active Directory 網域中的後端資源。以下列出一些相關主題及資源，可以協助您深入了解 PowerApps：
+In this topic, you've seen how to configure an API to connect (and authenticate) to a backend resource on an Azure Active Directory domain. Here are some related topics and resources for learning more about PowerApps.
 
-- [開發 PowerApps 的 API](powerapps-develop-api.md)
-
+- [Develop an API for PowerApps](powerapps-develop-api.md)
+-->
 
 <!--References-->
 [11]: ../powershell-install-configure.md
@@ -157,4 +172,4 @@ New-AzureRmResource -Location $api.Location -ResourceId $api.ResourceId -Propert
 [20]: https://tools.ietf.org/html/rfc4648
 [21]: ./media/powerapps-configure-apis-aad/api-settings-aad.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

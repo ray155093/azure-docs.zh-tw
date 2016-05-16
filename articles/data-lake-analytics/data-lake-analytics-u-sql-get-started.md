@@ -3,7 +3,7 @@
    description="了解如何安裝適用於 Visual Studio 的資料湖工具，如何開發和測試 U-SQL 指令碼。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="01/04/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # 教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
 
-U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。U-SQL 的可調整分散式查詢功能可讓您有效率地分析存放區中的資料，以及跨 Azure SQL Database 等關聯式存放區分析資料。它可讓您藉由套用「讀取時的結構描述」(Schema-on-Read) 處理非結構化資料、插入自訂邏輯和 UDF，並可經由擴充功能來對如何大規模執行資料分析進行更細緻的掌控。若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](http://blogs.msdn.com/b/visualstudio/archive/2015/09/28/introducing-u-sql.aspx)。
+U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。U-SQL 的可調整分散式查詢功能可讓您有效率地分析存放區中的資料，以及跨 Azure SQL Database 等關聯式存放區分析資料。它可讓您藉由套用「讀取時的結構描述」(Schema-on-Read) 處理非結構化資料、插入自訂邏輯和 UDF，並可經由擴充功能來對如何大規模執行資料分析進行更細緻的掌控。若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
 U-SQL 與 ANSI SQL 或 T-SQL 有一些差異。例如，其關鍵字 (像是 SELECT) 一定要全是大寫字。
 
@@ -47,7 +47,7 @@ select 子句內部是型別系統和運算式語言，在這裡面述詞等項�
         TO "/output/SearchLog-first-u-sql.csv"
     USING Outputters.Csv();
 
-此指令碼沒有任何轉換步驟。它會從原始程式檔 **SearchLog.tsv** 讀取資料，為其建立結構描述，並將資料列集輸出回 **SearchLog-from-adltools.csv** 檔案。
+此指令碼沒有任何轉換步驟。它會從原始程式檔 **SearchLog.tsv** 讀取資料，為其建立結構描述，並將資料列集輸出回 **SearchLog-first-u-sql.csv** 檔案。
 
 請注意 [持續時間] 欄位的資料類型旁邊的問號。該符號表示 [持續時間] 欄位可能是 null。
 
@@ -64,7 +64,7 @@ select 子句內部是型別系統和運算式語言，在這裡面述詞等項�
     
         wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
 
-    >[AZURE.NOTE]目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。
+    >[AZURE.NOTE] 目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。
 
 ## 使用純量變數
 
@@ -419,4 +419,4 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 - [在論壇上取得協助](http://aka.ms/adlaforums)
 - [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0504_2016-->

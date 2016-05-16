@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/22/2016"
+   ms.date="04/26/2016"
    ms.author="v-sharos" />
 
 # 在 Government 入口網站中部署您的內部部署 StorSimple 裝置 (Update 2)
@@ -234,13 +234,13 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 
 如需為連接到 Linux 主機之 StorSimple 裝置安裝 MPIO 的指示，請移至[為 Linux 主機設定 MPIO](storsimple-configure-mpio-on-linux.md)。
 
-> [AZURE.NOTE] StorSimple 虛擬裝置不支援 MPIO。
+> [AZURE.NOTE] 在 Azure 中 StorSimple 虛擬裝置不支援 MPIO。
 
 ## 後續步驟
 
-- 設定[虛擬裝置](storsimple-virtual-device.md)。
+- 設定[虛擬裝置](storsimple-virtual-device-u2.md)。
 
 - 使用 [StorSimple Manager 服務](https://msdn.microsoft.com/library/azure/dn772396.aspx)以管理 StorSimple 裝置。
  
 
-<!----HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

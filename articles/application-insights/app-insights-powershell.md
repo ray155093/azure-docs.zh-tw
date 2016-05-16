@@ -181,7 +181,7 @@ Azure 應以嚴格的順序設定資源。為確保一項設定完成後再開�
 
 ## 定義計量警示
 
-您可以使用 [PowerShell 方法設定警示](app-insights-alerts.md/#set-alerts-by-using-powershell)。
+您可以使用 [PowerShell 方法設定警示](app-insights-alerts.md#set-alerts-by-using-powershell)。
 
 
 ## 範例
@@ -321,4 +321,4 @@ Azure 應以嚴格的順序設定資源。為確保一項設定完成後再開�
 * [將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [建立版本附註](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

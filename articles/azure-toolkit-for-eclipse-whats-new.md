@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="03/04/2016" 
+	ms.date="05/04/2016" 
 	ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694270.aspx -->
@@ -24,21 +24,29 @@
 
 本文包含適用於 Eclipse 的 Azure 工具組的各種版本和最新更新的相關資訊。
 
+### 2016 年 4 月 12 日
+
+Azure Toolkit for Eclipse - 2016 年 4 月版本包含下列增強功能：
+
+* **支援 Azure SDK v2.9.0**。最新版的 Azure SDK 現在是 Azure Toolkit for Eclipse 的最低必要條件。
+* **與 Azure Web 應用程式支援有關的其他使用性、回應性和效能改進**。工具組中多項與 Azure 通訊方式的效能最佳化會讓 UI 回應速度更快。
+* **能夠在 Eclipse 中刪除 Azure 現有的 Web 應用程式容器**。Azure Toolkit for Eclipse 現在可讓您刪除現有的 Azure Web 容器，不需要退出 Eclipse。
+
 ### 2016 年 3 月 7 日
 
 Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 
-* 支援輕量型 Java 應用程式的快速部署。Azure Toolkit for Eclipse 現在支援輕量型 Java 應用程式在 Azure Web 應用程式容器中的快速部署，所以現在部署 Java 應用程式是以秒計而不以分鐘計。
-* 支援 Azure 總管檢視使用 Web 應用程式管理。工具組中的 Azure 總管檢視現在支援列出、啟動及停止 Azure Web 應用程式。
-* 更新 Tomcat、Jetty 和 Zulu OpenJDK 發佈。Azure Toolkit for Eclipse 支援在 Azure 雲端服務部署 Java 的 Tomcat、Jetty 和 Zulu OpenJDK 更新版本。
+* **支援輕量型 Java 應用程式的快速部署**。Azure Toolkit for Eclipse 現在支援輕量型 Java 應用程式在 Azure Web 應用程式容器中的快速部署，所以現在部署 Java 應用程式是以秒計而不以分鐘計。
+* **支援 Azure 總管檢視使用 Web 應用程式管理**。工具組中的 Azure 總管檢視現在支援列出、啟動及停止 Azure Web 應用程式。
+* **更新 Tomcat、Jetty 和 Zulu OpenJDK 發佈**。Azure Toolkit for Eclipse 支援在 Azure 雲端服務部署 Java 的 Tomcat、Jetty 和 Zulu OpenJDK 更新版本。
 
-### 2015 年 1 月 4 日
+### 2016 年 1 月 4 日
 
 適用於 Eclipse 的 Azure 工具組 - 2016 年 1 月版本包含下列增強功能：
 
 * **支援 Zulu OpenJDK 更新**。如需詳細資訊，請參閱 [Zulu OpenJDK 的 Azul Systems 網頁]。
 * **已更新 Tomcat 和 Jetty 散發套件**。已更新 Microsoft Azure 上所提供、可搭配適用於 Eclipse 的 Azure 工具組使用的 Jetty 和 Tomcat 散發套件
-* Eclipse 和 IntelliJ Toolkits for Azure 之間的功能同位。 Azure Toolkit for Eclipse 和[ IntelliJ Toolkits for Azure ]現在支援相同的功能集合。
+* **Eclipse 和 IntelliJ Toolkits for Azure 之間的功能同位**。Azure Toolkit for Eclipse 和 [IntelliJ Toolkits for Azure] 現在支援相同的功能集合。
 
 ### 2015 年 9 月 1 日
 
@@ -304,7 +312,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 [Azure 服務端點]: http://go.microsoft.com/fwlink/?LinkID=699526
 [Azure 儲存體帳戶清單]: http://go.microsoft.com/fwlink/?LinkID=699528
 [適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[ IntelliJ Toolkits for Azure ]: https://plugins.jetbrains.com/plugin/8053
+[IntelliJ Toolkits for Azure]: https://plugins.jetbrains.com/plugin/8053
 [元件屬性]: http://go.microsoft.com/fwlink/?LinkID=699525#components_properties
 [在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
 [在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
@@ -335,4 +343,4 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 [ic710882]: ./media/azure-toolkit-for-eclipse-whats-new/ic710882.png
 [ic710883]: ./media/azure-toolkit-for-eclipse-whats-new/ic710883.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

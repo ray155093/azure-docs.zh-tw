@@ -31,7 +31,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 如需不同帳戶身分識別與 Azure 訂用帳戶的背景，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
 
-## 使用 azure 登入以互動方式透過 web 入口網站進行驗證
+## 使用 azure 登入以互動方式進行驗證
 
 使用 `azure login` 命令 (不含任何引數)，以下列其中一種方式進行互動驗證：
 
@@ -54,7 +54,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 	+
 	info:    login command OK
 
-## 使用 azure 登入及組織帳戶的使用者名稱與密碼
+## 使用 azure 登入與使用者名稱和密碼
 
 
 在您想要使用不需要多重要素驗證的工作或學校帳戶時，使用 `azure login` 命令與使用者名稱參數，或者使用使用者名稱與密碼進行驗證。下列範例會傳遞組織帳戶的使用者名稱︰
@@ -76,7 +76,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 如果您已建立 Active Directory 應用程式的服務主體，而且服務主體擁有訂用帳戶的權限，您就可以使用 `azure login` 命令來驗證服務主體。根據您的案例，您可以提供服務主體的認證做為 `azure login` 命令的明確參數，或透過 CLI 指令碼或應用程式程式碼。您也可以使用憑證以非互動方式驗證自動化案例的服務主體。如需詳細資料與範例，請參閱[使用 Azure Resource Manager 驗證服務主體](resource-group-authenticate-service-principal.md)。
 
-## 使用發行設定檔方法
+## 使用發行設定檔案
 
 如果您只需要使用 Azure 服務管理模式 CLI 命令，您可以使用發佈設定檔連線。
 
@@ -122,13 +122,13 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源︰
 
-* **Azure Resource Manager 模式** - 適用於以資源管理員部署模型使用 Azure 資源。若要設定此模式，請執行 `azure config mode arm`。
+* **Resource Manager 模式** - 適用於以 Resource Manager 部署模型使用 Azure 資源。若要設定此模式，請執行 `azure config mode arm`。
 
-* **Azure 服務管理模式** - 適用於以傳統部署模型使用 Azure 資源。若要設定此模式，請執行 `azure config mode asm`。
+* **服務管理模式** - 適用於以傳統部署模型使用 Azure 資源。若要設定此模式，請執行 `azure config mode asm`。
 
 最初安裝時，CLI 採用服務管理模式。
 
->[AZURE.NOTE]Azure Resource Manager 模式與 Azure 服務管理模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
+>[AZURE.NOTE]Resource Manager 模式與服務管理模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
 
 ## CLI 設定的儲存位置
 
@@ -147,10 +147,10 @@ Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源
 如果與帳戶關聯的訂用帳戶僅能對 Active Directory 驗證，進行登出時就會從本機設定檔中刪除訂用帳戶資訊。不過，如果也已匯入訂用帳戶的發佈設定檔，則進行登出時只會從本機設定檔中刪除 Active Directory 相關的資訊。
 ## 後續步驟
 
-* 若要使用 Azure CLI 命令，請參閱 [模Azure Resource Manager 模式中的 Azure CLI 命令](./virtual-machines/azure-cli-arm-commands.md)和 [Azure 服務管理模式中的 Azure CLI 命令](virtual-machines-command-line-tools.md)。
+* 若要使用 Azure CLI 命令，請參閱 [Resource Manager 模式中的 Azure CLI 命令](./virtual-machines/azure-cli-arm-commands.md)和[服務管理模式中的 Azure CLI 命令](virtual-machines-command-line-tools.md)。
 
 * 若要深入了解 Azure CLI、下載來源程式碼、回報問題，或是參與專案，請造訪 [Azure CLI 的 GitHub 儲存機制](https://github.com/azure/azure-xplat-cli)。
 
 * 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home) (英文)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->
