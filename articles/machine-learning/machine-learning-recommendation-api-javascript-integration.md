@@ -133,7 +133,8 @@
 
 
 ####3\.2.3.加入購物車事件
-當使用者將項目加入購物車時，應該會使用這個事件。參數：
+當使用者將項目加入購物車時，應該會使用這個事件。
+參數：
 * event (字串, 強制) – “addshopcart”
 * item (字串, 強制) – 項目的唯一識別碼
 * itemName (字串, 選擇性) – 項目的名稱
@@ -165,7 +166,8 @@
 
 參數：
 * event (字串) – “purchase”
-* items (已購買項目) - 陣列會為購買的每個項目保留一個項目。<br><br> 已購買項目的格式︰
+* items (已購買項目[] ) - 陣列會為購買的每個項目保留一個項目。<br><br>
+已購買項目的格式︰
 	* item (字串) – 項目的唯一識別碼。
 	* count (整數或字串) – 已購買的項目數。
 	* price (浮點數或字串) – 選擇性欄位 – 項目的價格。
@@ -184,7 +186,11 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
 
 參數：
 * event (字串) – “userlogin”
-* user (字串) - 使用者的唯一識別。<script> if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = ; } AzureMLRecommendationsEvent.push({event: "userlogin", user: “ABCD10AA” }); </script>
+* user (字串) - 使用者的唯一識別。
+		<script>
+			if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = ; } 
+			AzureMLRecommendationsEvent.push({event: "userlogin", user: “ABCD10AA” });
+		</script>
 
 ##4\.透過 JavaScript 取用建議
 取用建議的程式碼是由用戶端網頁的某些 JavaScript 事件所觸發。建議回應包含建議項目識別碼、其名稱及評等。最好只有在以清單顯示建議的項目時，才使用這個選項 – 較複雜的處理 (例如，新增項目的中繼資料) 應該在伺服器端整合完成。
