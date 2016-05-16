@@ -166,7 +166,7 @@ SQL Database 建議程式可讓您使用下列 3 個選項的其中任一選項�
 
 ## 監視索引建議的效能影響
 
-成功實作建議之後 (目前僅提供索引作業和參數化查詢建議)，您可以按一下 [建議詳細資料] 刀鋒視窗上的 [Query Insights] 來開啟 [查詢效能深入解析][](sql-database-query-performance.md)，並查看排名最前面的查詢對效能的影響。
+成功實作建議之後 (目前僅提供索引作業和參數化查詢建議)，您可以按一下 [建議詳細資料] 刀鋒視窗上的 [Query Insights] 來開啟 [查詢效能深入解析](sql-database-query-performance.md)，並查看排名最前面的查詢對效能的影響。
 
 ![監視效能影響](./media/sql-database-index-advisor/query-insights.png)
 

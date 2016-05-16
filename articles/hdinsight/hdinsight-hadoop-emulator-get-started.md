@@ -121,7 +121,7 @@ HDInsight Emulator 提供本機部署環境，與 Hadoop 沙箱極為相似。�
 			<value>*</value>
 		</property>
 
-3. 當 Visual Studio 嘗試連接到 WebHCat 服務時，您可能會收到錯誤 (「錯誤：找不到工作 job\_XXXX\_0001」)。若是如此，您必須重新啟動 WebHCat 服務，然後再試一次。若要重新啟動 WebHCat 服務，請啟動 [**服務**] MMC、以滑鼠右鍵按一下 [**Apache Hadoop Templeton**] (這是 WebHCat 服務的舊名稱)，然後按一下 [**重新啟動**]。
+3. 當 Visual Studio 嘗試連接到 WebHCat 服務時，您可能會收到錯誤 (「錯誤：找不到工作 job\_XXXX\_0001」)。若是如此，您必須重新啟動 WebHCat 服務，然後再試一次。若要重新啟動 WebHCat 服務，請啟動 [**服務**] MMC、以滑鼠右鍵按一下 [**Apache Hadoop Templeton**] \(這是 WebHCat 服務的舊名稱)，然後按一下 [**重新啟動**]。
 
 ##<a name="runwordcount"></a>字數統計 MapReduce 教學課程
 
@@ -494,7 +494,7 @@ HDInsight Emulator 也支援部分 Azure PowerShell Cmdlet。這些 Cmdlet 包�
 	$hdinsightJob = <JobDefinition>
 	Start-AzureHDInsightJob -Cluster http://localhost:50111 -Credential $creds -JobDefinition $hdinsightJob
 
-您將在呼叫 Get-Credential 時看見提示。您必須使用 **hadoop** 做為使用者名稱。密碼可以是任何字串。叢集名稱一律是 ****http://localhost:50111**。
+您將在呼叫 Get-Credential 時看見提示。您必須使用 **hadoop** 做為使用者名稱。密碼可以是任何字串。叢集名稱一律是 **http://localhost:50111**。
 
 如需提交 Hadoop 工作的詳細資訊，請參閱[以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)。如需適用於 HDInsight 之 Azure PowerShell Cmdlet 的詳細資訊，請參閱 [HDInsight Cmdlet 參考文件][hdinsight-powershell-reference]。
 

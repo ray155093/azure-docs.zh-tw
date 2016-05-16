@@ -46,9 +46,9 @@
 ## 存取存取面板
 
 
-使用者可以使用網頁瀏覽器瀏覽以下 URL 以存取「存取面板」：<br> ****http://myapps.microsoft.com**
+使用者可以使用網頁瀏覽器瀏覽以下 URL 以存取「存取面板」：<br> **http://myapps.microsoft.com**
 
-如果您已經為您的登入頁面設定自訂商標，在預設情況下，您可以將您組織的網域附加到 URL 結尾以載入此商標：<br> ****http://myapps.microsoft.com/contosobuild.com**
+如果您已經為您的登入頁面設定自訂商標，在預設情況下，您可以將您組織的網域附加到 URL 結尾以載入此商標：<br> **http://myapps.microsoft.com/contosobuild.com**
 
 在此情況下，可能會使用已經在 Azure 管理入口網站中您目錄的 [網域] 索引標籤底下設定的任何作用中網域名稱或已驗證的網域名稱，如以下螢幕擷取畫面所示。
 
@@ -130,7 +130,7 @@
 
 1. 按一下 Azure 入口網站或存取面板右上角的使用者功能表，並選取 [**登出**]。這可將您登出 Azure AD。
 
-2. 前往位於 ****http://myapps.microsoft.com** 的存取面板。
+2. 前往位於 **http://myapps.microsoft.com** 的存取面板。
 
 3. 在登入頁面中，輸入您目錄中想要測試的帳戶的使用者名稱和密碼。
  

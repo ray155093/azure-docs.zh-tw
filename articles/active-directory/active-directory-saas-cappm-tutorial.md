@@ -120,7 +120,7 @@ CA PPM 與 Azure AD 整合提供下列優點：
 
     a.在 [識別碼] 文字方塊中，使用以下模式輸入您使用者用以登入 CA PPM 應用程式的 URL：**https://ca.ondemand.saml.20.post.\<公司名稱>**。
 	
-	b.在 [回覆 URL] 文字方塊中，輸入 ****https://fedsso.ondemand.ca.com/affwebservices/public/saml2assertionconsumer**。
+	b.在 [回覆 URL] 文字方塊中，輸入 **https://fedsso.ondemand.ca.com/affwebservices/public/saml2assertionconsumer**。
 
 	c. 按一下 [下一步]。
  

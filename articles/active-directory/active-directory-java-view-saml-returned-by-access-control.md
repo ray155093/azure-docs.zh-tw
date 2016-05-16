@@ -184,7 +184,7 @@ Azure Access Services Control Filter 是社群技術預覽。由於是發行前�
 
 ## 後續步驟
 
-若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] (英文)。
+若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] \(英文)。
 
 [Prerequisites]: #pre
 [Modify the JSP file to display SAML]: #modify_jsp

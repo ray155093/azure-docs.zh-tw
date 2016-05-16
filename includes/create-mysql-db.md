@@ -27,7 +27,7 @@
 
 	![在 Azure 入口網站中管理 MySQL 資料庫](./media/create-mysql-db/manage-mysql-add-on.png)
 
-7. 按一下頁面底部的 [連接資訊] (如下所示)，即可取得資料庫連接資訊。
+7. 按一下頁面底部的 [連接資訊] \(如下所示)，即可取得資料庫連接資訊。
 
 	![MySql 連接資訊](./media/create-mysql-db/mysql-conn-info.png)
 
@@ -45,7 +45,7 @@
 
 	![提供網站詳細資料](./media/create-mysql-db/provide-website-details.png)
 
-4. 提供資料庫 [名稱]、選取資料庫的 [區域] (這應該與網站的區域相同)、同意 ClearDB 的法律條款，然後按一下框架底部的勾選記號。
+4. 提供資料庫 [名稱]、選取資料庫的 [區域] \(這應該與網站的區域相同)、同意 ClearDB 的法律條款，然後按一下框架底部的勾選記號。
 
 	![提供 MySQL 詳細資料](./media/create-mysql-db/provide-mysql-details.png)
 
@@ -65,7 +65,7 @@
 
 	![顯示的連接字串](./media/create-mysql-db/shown-conn-string.png)
 
-> [AZURE.NOTE] 您的網站應用程式可以根據連接字串名稱來存取連接字串。在 .NET 應用程式中，連接字串位於 **connectionStrings** 物件中。在其他程式設計語言中，連接字串則可以環境變數的形式受到存取。如需詳細資訊，請參閱[如何設定網站][configure]。
+> [AZURE.NOTE]您的網站應用程式可以根據連接字串名稱來存取連接字串。在 .NET 應用程式中，連接字串位於 **connectionStrings** 物件中。在其他程式設計語言中，連接字串則可以環境變數的形式受到存取。如需詳細資訊，請參閱[如何設定網站][configure]。
 
 [ClearDB]: http://www.cleardb.com/
 [Azure 市集]: http://www.cleardb.com/

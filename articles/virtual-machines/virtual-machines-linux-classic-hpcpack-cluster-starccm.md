@@ -289,7 +289,7 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
     exit ${RTNSTS}
 ```
 
-在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。對於該權杖，您必須對其將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 ****1999@flex.cd-adapco.com**，以及在命令列的 **-podkey** 選項中設定索引鍵。
+在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。對於該權杖，您必須對其將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及在命令列的 **-podkey** 選項中設定索引鍵。
 
 在進行某些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP\_NODES\_CORES** 環境變數中擷取要建置 hostfile 的節點清單，供 MPI 啟動程式使用。此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
 

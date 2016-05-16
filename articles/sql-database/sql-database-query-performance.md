@@ -46,7 +46,7 @@
 
 - 檢閱排名最前面的資源取用查詢清單。 
 - 選取個別的查詢來檢視其詳細資料。
-- 開啟 [效能建議程式][](sql-database-index-advisor.md)，並查看是否有任何建議。
+- 開啟 [效能建議程式](sql-database-index-advisor.md)，並查看是否有任何建議。
 - 放大以取得詳細資訊。
 - 
     ![效能儀表板](./media/sql-database-query-performance/performance.png)
@@ -158,7 +158,7 @@
 
 ## 後續步驟
 
-如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的 [效能建議程式][](sql-database-index-advisor.md)。
+如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的 [效能建議程式](sql-database-index-advisor.md)。
 
 ![效能建議程式](./media/sql-database-query-performance/ia.png)
 

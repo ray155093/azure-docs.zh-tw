@@ -206,13 +206,18 @@ EGT 也可能讓您必須評估並取捨您的設計：使用多個資料分割�
 
 先前的章節＜[Azure 資料表服務概觀](#overview)＞說明了某些對查詢設計有直接影響的重要 Azure 表格服務功能。這些功能產生了設計資料表服務查詢的一般指導方針。請注意，下列範例中使用的篩選語法來自於表格服務 REST API，如需詳細資訊，請參閱[查詢實體](http://msdn.microsoft.com/library/azure/dd179421.aspx)。
 
--	***點查詢***是使用上最有效率的查閱，建議用於高容量查閱或只能容許最低延遲的查閱。這類查詢使用索引尋找個別實體的效率極高，方法是同時指定 **PartitionKey** 和 **RowKey** 值。例如：$filter=(PartitionKey eq 'Sales') and (RowKey eq '2')  
--	次佳的是***範圍查詢***，它使用 **PartitionKey**，並篩選特定範圍的 **RowKey** 值，以傳回多個實體。**PartitionKey** 值會識別特定的分割，而 **RowKey** 值會識別該分割中實體的子集。例如：$filter=PartitionKey eq 'Sales' and RowKey ge 'S' and RowKey lt 'T'  
--	再其次是***分割掃描***，它使用 **PartitionKey**，並篩選另一個非索引鍵的，可傳回多個實體。**PartitionKey** 值會識別特定的分割，而屬性值會選取該分割中實體的子集。例如：$filter=PartitionKey eq 'Sales' and LastName eq 'Smith'  
--	***資料表掃描***不包含 **PartitionKey**，且效率極差，因為它會依序在所有組成資料表的分割中搜尋是否有任何相符的實體。無論您的篩選是否使用 **RowKey**，它都會執行資料表掃描。例如：$filter=LastName eq 'Jones'  
+-	***點查詢***是使用上最有效率的查閱，建議用於高容量查閱或只能容許最低延遲的查閱。這類查詢使用索引尋找個別實體的效率極高，方法是同時指定 **PartitionKey** 和 **RowKey** 值。例如：
+$filter=(PartitionKey eq 'Sales') and (RowKey eq '2')  
+-	次佳的是***範圍查詢***，它使用 **PartitionKey**，並篩選特定範圍的 **RowKey** 值，以傳回多個實體。**PartitionKey** 值會識別特定的分割，而 **RowKey** 值會識別該分割中實體的子集。例如： 
+$filter=PartitionKey eq 'Sales' and RowKey ge 'S' and RowKey lt 'T' 
+-	再其次是***分割掃描***，它使用 **PartitionKey**，並篩選另一個非索引鍵的，可傳回多個實體。**PartitionKey** 值會識別特定的分割，而屬性值會選取該分割中實體的子集。例如：  
+$filter=PartitionKey eq 'Sales' and LastName eq 'Smith'
+-	***資料表掃描***不包含 **PartitionKey**，且效率極差，因為它會依序在所有組成資料表的分割中搜尋是否有任何相符的實體。無論您的篩選是否使用 **RowKey**，它都會執行資料表掃描。例如： 
+$filter=LastName eq 'Jones' 
 -	傳回多個實體的查詢，在傳回時會以 **PartitionKey** 和 **RowKey** 順序排序。若要避免重新排序用戶端中的實體，請選擇定義最常見的排序次序的 **RowKey**。  
 
-請注意，使用 "**or**" 指定以 **RowKey** 值為基礎的篩選條件，會產生資料分割掃描且不被當作範圍查詢。因此，您應該避免會使用下列篩選條件的搜尋：例如 $filter=PartitionKey eq 'Sales' and (RowKey eq '121' or RowKey eq '322')
+請注意，使用 "**or**" 指定以 **RowKey** 值為基礎的篩選條件，會產生資料分割掃描且不被當作範圍查詢。因此，您應該避免會使用下列篩選條件的搜尋：例如 
+$filter=PartitionKey eq 'Sales' and (RowKey eq '121' or RowKey eq '322')
 
 如需使用儲存體用戶端程式庫執行有效率查詢的用戶端程式碼範例，請參閱：
 
@@ -1455,7 +1460,8 @@ Storage Analytics 會在內部緩衝處理記錄訊息，然後定期更新適�
 
 ### 非同步和平行作業  
 
-假設您要跨多個資料分割分散您的要求，您可以使用非同步或平行查詢來改善輸送量和用戶端的回應性。例如，您可以用兩個或更多背景工作角色執行個體，以平行方式存取您的資料表。您可以讓個別的背景工作角色負責特定的資料分割集，或僅使用多個背景工作角色執行個體，使其分別都能夠存取資料表中的所有資料分割。
+假設您要跨多個資料分割分散您的要求，您可以使用非同步或平行查詢來改善輸送量和用戶端的回應性。
+例如，您可以用兩個或更多背景工作角色執行個體，以平行方式存取您的資料表。您可以讓個別的背景工作角色負責特定的資料分割集，或僅使用多個背景工作角色執行個體，使其分別都能夠存取資料表中的所有資料分割。
 
 在用戶端執行個體中，您可以藉由以非同步方式執行儲存作業來提高輸送量。儲存體用戶端程式庫可讓您輕鬆撰寫非同步查詢並修改。比方說，首先您可以使用同步方法來擷取資料分割中的所有實體，如下列 C# 程式碼所示：
 
