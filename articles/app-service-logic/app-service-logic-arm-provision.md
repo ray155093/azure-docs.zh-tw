@@ -3,8 +3,8 @@
 	description="使用 Azure 資源管理員範本，部署空的邏輯應用程式以定義工作流程。" 
 	services="app-service\logic" 
 	documentationCenter="" 
-	authors="tfitzmac" 
-	manager="wpickett" 
+	authors="MSFTMan" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/04/2016" 
-	ms.author="tomfitz"/>
+	ms.date="04/27/2016" 
+	ms.author="deonhe"/>
 
 # 使用範本建立邏輯應用程式
 
@@ -56,20 +56,22 @@
 它使用與在其中進行部署的資源群組相同的位置。
 
     {
-        "apiVersion": "2014-06-01",
-        "name": "[parameters('svcPlanName')]",
-        "type": "Microsoft.Web/serverfarms",
-        "location": "[resourceGroup().location]",
-        "tags": {
-            "displayName": "AppServicePlan"
-        },
-        "properties": {
-            "name": "[parameters('svcPlanName')]",
-            "sku": "[parameters('sku')]",
-            "workerSize": "[parameters('svcPlanSize')]",
-            "numberOfWorkers": 1
-        }
-    }
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('hostingPlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "HostingPlan"
+      },
+      "sku": {
+        "name": "[parameters('hostingSkuName')]",
+        "capacity": "[parameters('hostingSkuCapacity')]"
+      },
+      "properties": {
+        "name": "[parameters('hostingPlanName')]"
+      }
+    },
+
 
 ### 邏輯應用程式
 
@@ -80,52 +82,53 @@
 這個特定的定義每小時執行一次，並 Ping **testUri** 參數中所指定的位置。
 
     {
-        "type": "Microsoft.Logic/workflows",
-        "apiVersion": "2015-02-01-preview",
-        "name": "[parameters('logicAppName')]",
-        "location": "[resourceGroup().location]",
-        "tags": {
-            "displayName": "LogicApp"
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2015-08-01-preview",
+      "name": "[parameters('logicAppName')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "LogicApp"
+      },
+      "properties": {
+        "sku": {
+          "name": "[parameters('flowSkuName')]",
+          "plan": {
+            "id": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/',parameters('hostingPlanName'))]"
+          }
         },
-        "properties": {
-            "sku": {
-                "name": "[parameters('sku')]",
-                "plan": {
-                    "id": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/',parameters('svcPlanName'))]"
-                }
-            },
-            "definition": {
-                "$schema": "http://schema.management.azure.com/providers/Microsoft.Logic/schemas/2014-12-01-preview/workflowdefinition.json#",
-                "contentVersion": "1.0.0.0",
-                "parameters": {
-                    "testURI": {
-                        "type": "string",
-                        "defaultValue": "[parameters('testUri')]"
-                    }
-                },
-                "triggers": {
-                    "recurrence": {
-                        "type": "recurrence",
-                        "recurrence": {
-                            "frequency": "Hour",
-                            "interval": 1
-                        }
-                    }
-                },
-                "actions": {
-                    "http": {
-                        "type": "Http",
-                        "inputs": {
-                            "method": "GET",
-                            "uri": "@parameters('testUri')"
-                        }
-                    }
-                },
-                "outputs": { }
-            },
-            "parameters": { }
-        }
+        "definition": {
+          "$schema": "http://schema.management.azure.com/providers/Microsoft.Logic/schemas/2014-12-01-preview/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "testURI": {
+              "type": "string",
+              "defaultValue": "[parameters('testUri')]"
+            }
+          },
+          "triggers": {
+            "recurrence": {
+              "type": "recurrence",
+              "recurrence": {
+                "frequency": "Hour",
+                "interval": 1
+              }
+            }
+          },
+          "actions": {
+            "http": {
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "@parameters('testUri')"
+              }
+            }
+          },
+          "outputs": {}
+        },
+        "parameters": {}
+      }
     }
+
 
 ## 執行部署的命令
 
@@ -142,4 +145,4 @@
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

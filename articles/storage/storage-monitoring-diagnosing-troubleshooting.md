@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="04/29/2016"
 	ms.author="jahogg"/>
 
 # 監視、診斷與疑難排解 Microsoft Azure 儲存體
@@ -28,7 +28,7 @@
 
 > [AZURE.NOTE] 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
 
-如需在 Azure 儲存體應用程式進行端對端疑難排解的實際操作指南，請參閱[使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](../storage-e2e-troubleshooting/)。
+如需在 Azure 儲存體應用程式進行端對端疑難排解的實際操作指南，請參閱[使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](storage-e2e-troubleshooting.md)。
 
 + [簡介]
 	+ [本指南架構]
@@ -411,7 +411,7 @@ Storage Client Library for .NET 能讓您針對應用程式所執行的儲存體
 
 高 **AverageServerLatency** 值同時也是資料表或查詢設計不良的徵兆，這種情況可能導致掃描作業，或是因為資料表或查詢遵循結尾附加/開頭附加的反模式而引起。如需詳細資訊，請參閱「[度量顯示 PercentThrottlingError 增加]」。
 
-> [AZURE.NOTE] 您可以在這裡找到完整的檢查清單，包括要注意的其他問題：[Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)。
+> [AZURE.NOTE] 您可以在這裡找到完整的檢查清單，包括效能檢查清單：[Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)。
 
 ### <a name="you-are-experiencing-unexpected-delays-in-message-delivery"></a>佇列上的訊息傳遞出現非預期的延遲
 
@@ -489,7 +489,7 @@ Microsoft.WindowsAzure.Storage|錯誤|1|85d077ab -…|重試原則不允許重�
 
 - 一般來說，當您為用戶端建立要使用的 SAS，不應該立即設定開始時間。如果使用目前時間來產生 SAS 的主機，以及儲存體服務之間出現些微的時鐘誤差，則儲存體服務有可能收到尚未生效的 SAS。
 - 您不應該設定極短暫的 SAS 到期時間。再說一次，產生 SAS 的主機，以及儲存體服務之間出現些微的時鐘誤差時，會導致 SAS 明顯比預期時間早到期。
-- SAS 金鑰中的版本參數 (例如 **sv=2015-04-05**) 是否與您所使用的儲存體用戶端程式庫版本相符。 建議您一律使用最新版的[儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)。如需有關 SAS 權杖版本設定及用戶端程式庫版本相依性的詳細資訊，請參閱 [Microsoft Azure 儲存體的新功能](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/14/what-s-new-for-microsoft-azure-storage-at-teched-2014.aspx)。
+- SAS 金鑰中的版本參數 (例如 **sv=2015-04-05**) 是否與您所使用的儲存體用戶端程式庫版本相符。 建議您一律使用最新版的[儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)。如需有關 SAS 權杖 版本設定，請參閱 [Microsoft Azure 儲存體新功能](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/14/what-s-new-for-microsoft-azure-storage-at-teched-2014.aspx)。
 - 如果您重新產生儲存體存取金鑰，會讓任何現有的 SAS 權杖失效。如果您產生的 SAS 權杖，內含很長的到期時間以便用戶端應用程式快取處理，則可能會出現問題。
 
 如果您是使用儲存體用戶端程式庫來產生 SAS 權杖，則您可以輕易地建立有效的權杖。不過，如果是使用「儲存體 REST API」並且是手動建構 SAS 權杖，您應該仔細閱讀 MSDN 上的<a href="http://msdn.microsoft.com/library/azure/ee395415.aspx" target="_blank">以共用存取簽章委派存取權</a>主題。
@@ -920,4 +920,4 @@ Microsoft Message Analyzer 內建的 **Web Proxy** 追蹤功能是依據 Fiddler
 [9]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-1.png
 [10]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-2.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

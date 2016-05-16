@@ -98,6 +98,7 @@
 您的 Visual Studio Web 應用程式需要可由 Azure 存取的成員資格資料庫。這必須要有 SQL Server 或 SQL Server Express 資料庫 (不是 MVC 範本依預設使用的 LocalDB 資料庫)，因此您接下來將會建立成員資格資料庫。
 
 1. 在 SQL Server Management Studio 中，連接到您剛剛安裝的 SQL Server。(如果 [連線到伺服器] 對話方塊未自動出現，請導覽至左窗格中的 [物件總管]，依序按一下 [連接] 和 [資料庫引擎]。)
+
 	![連線到伺服器][SSMSConnectToServer]
 
 	針對 [伺服器類型]，選擇 [資料庫引擎]。對於 [伺服器名稱]，您可以使用 **localhost** 或您要使用之電腦的名稱。選擇 [SQL Server 驗證]，然後以您先前建立的 sa 使用者名稱和密碼登入。
@@ -299,7 +300,7 @@
 
 [混合式連線概觀](/services/biztalk-services/)
 
-[BizTalk 服務：儀表板、監視器、調整、設定和混合式連線索引標籤](../biztalk-dashboard-monitor-scale-tabs/)
+[BizTalk 服務：儀表板、監視器、調整、設定和混合式連線索引標籤](../biztalk-services/biztalk-dashboard-monitor-scale-tabs.md)
 
 [透過絕佳的應用程式可攜性建置真實的混合式雲端 (第 9 頻道視訊)](http://channel9.msdn.com/events/TechEd/NorthAmerica/2014/DCIM-B323#fbid=)
 
@@ -364,4 +365,4 @@
 [HCTestSSMSTree]: ./media/web-sites-hybrid-connection-connect-on-premises-sql-server/F10HCTestSSMSTree.png
 [HCTestShowMemberDb]: ./media/web-sites-hybrid-connection-connect-on-premises-sql-server/F11HCTestShowMemberDb.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

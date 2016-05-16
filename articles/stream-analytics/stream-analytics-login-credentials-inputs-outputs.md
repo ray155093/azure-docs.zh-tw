@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="02/04/2016" 
+	ms.date="05/03/2016" 
 	ms.author="jeffstok"/>
 
 #在串流分析工作中替換輸入和輸出的登入認證
@@ -121,7 +121,11 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
 4.	繼續第 5 部分。  
 
 ##第 5 部分：移除舊的認證集
-這部分適用於下列的輸入/輸出：* Blob 儲存體 * 事件中樞 * SQL 資料庫 * 資料表儲存體
+此部分適用於下列的輸入/輸出：
+* Blob 儲存體
+* 事件中樞
+* SQL Database
+* 資料表儲存體
 
 ###Blob 儲存體/資料表儲存體
 為工作以前使用的存取金鑰，重複第 1 部分，以更新現在未使用的存取金鑰。
@@ -194,4 +198,4 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
 [graphic43]: ./media/stream-analytics-login-credentials-inputs-outputs/43-stream-analytics-login-credentials-inputs-outputs.png
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/22/2016"
+	ms.date="04/26/2016"
 	ms.author="davidmu"/>
 
 # 在虛擬機器調整集中自動調整機器
@@ -39,17 +39,17 @@
 
 您在本教學課程中建立的範本，類似於資源庫中提供的範本。若要深入了解，請參閱[使用 Windows VM 和 Jumpbox 部署簡易 VM 調整集](https://azure.microsoft.com/documentation/templates/201-vmss-windows-jumpbox/)。
 
-[AZURE.INCLUDE [powershell-preview-inline-include](../../includes/powershell-preview-inline-include.md)]
+## 步驟 1：安裝 Azure PowerShell
 
-## 步驟 1：建立資源群組和儲存體帳戶
+如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
 
-1. **登入 Microsoft Azure**。開啟 Microsoft Azure PowerShell 視窗，並執行 **Login-AzureRmAccount**。
+## 步驟 2：建立資源群組和儲存體帳戶
 
-2. **建立資源群組** – 所有資源都必須部署至資源群組。在本教學課程中，我們將資源群組命名為 **vmsstestrg1**。請參閱 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx)。
+1. **建立資源群組** – 所有資源都必須部署至資源群組。在本教學課程中，我們將資源群組命名為 **vmsstestrg1**。請參閱 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx)。
 
-3. **將儲存體帳戶部署到新的資源群組中** – 本教學課程使用數個儲存體帳戶，以利虛擬機器調整集的運作。使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) 建立名為 **vmsstestsa** 的儲存體帳戶。將 Azure PowerShell 保持在開啟狀態，供本教學課程後續的步驟使用。
+2. **將儲存體帳戶部署到新的資源群組中** – 本教學課程使用數個儲存體帳戶，以利虛擬機器調整集的運作。使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) 建立名為 **vmsstestsa** 的儲存體帳戶。將 Azure PowerShell 保持在開啟狀態，供本教學課程後續的步驟使用。
 
-## 步驟 2：建立範本
+## 步驟 3：建立範本
 有了 Azure 資源管理員範本之後，您就可以使用 JSON 來說明資源、相關設定和部署參數，一起部署和管理 Azure 資源。
 
 1. 在您慣用的編輯器中，建立檔案 C:\\VMSSTemplate.json ，並新增初始的 JSON 結構以支援範本。
@@ -486,7 +486,7 @@
 
 12.	儲存範本檔案。
 
-## 步驟 3：將範本上傳至儲存體
+## 步驟 4：將範本上傳至儲存體
 
 只要您知道您在步驟 1 中建立之儲存體帳戶的帳戶名稱和主要金鑰，即可從 Microsoft Azure PowerShell 視窗上傳範本。
 
@@ -515,15 +515,15 @@
             $fileName = "C:" + $BlobName
             Set-AzureStorageBlobContent -File $fileName -Container $ContainerName -Blob  $BlobName -Context $ctx
 
-## 步驟 4：部署範本
+## 步驟 5：部署範本
 
 建立範本後，您就可以開始部署資源。使用下列命令啟動程序：
 
-        New-AzureRmResourceGroupDeployment -Name "vmsstestdp1" -ResourceGroupName "vmsstestrg1" -TemplateUri "https://vmsstestsa.blob.core.windows.net/templates/VMSSTemplate.json"
+    New-AzureRmResourceGroupDeployment -Name "vmsstestdp1" -ResourceGroupName "vmsstestrg1" -TemplateUri "https://vmsstestsa.blob.core.windows.net/templates/VMSSTemplate.json"
 
 當您按 Enter 鍵時，系統會提示您提供您所指派的變數值。請提供下列值：
 
-	vmName: vmsstestvm1
+    vmName: vmsstestvm1
 	vmSSName: vmsstest1
 	instanceCount: 5
 	adminUserName: vmadmin1
@@ -532,26 +532,30 @@
 
 所有資源要順利部署完成約需要 15 分鐘，。
 
->[AZURE.NOTE]您也可以利用入口網站的功能來部署資源。若要這樣做，請使用下列連結：https://portal.azure.com/#create/Microsoft.Template/uri/<link to VM Scale Set JSON template>
+>[AZURE.NOTE] 您也可以利用入口網站的功能來部署資源。若要這樣做，請使用此連結：「https://portal.azure.com/#create/Microsoft.Template/uri/<link to VM Scale Set JSON template>」
 
-## 步驟 5：監視資源
+## 步驟 6：監視資源
 
 您可以使用下列方法，取得關於虛擬機器調整集的某些資訊：
 
  - Azure 入口網站 - 目前，使用入口網站可以取得限定數量的資訊。
  - [Azure 資源總管](https://resources.azure.com/) - 這是最適合用來瀏覽調整集現行狀態的工具。按照此路徑，您應該會看到您所建立之調整集的執行個體檢視：
 
-		subscriptions > {your subscription} > resourceGroups > vmsstestrg1 > providers > Microsoft.Compute > virtualMachineScaleSets > vmsstest1 > virtualMachines
+        subscriptions > {your subscription} > resourceGroups > vmsstestrg1 > providers > Microsoft.Compute > virtualMachineScaleSets > vmsstest1 > virtualMachines
 
  - Azure PowerShell - 使用下列命令可取得某些資訊：
 
-		Get-AzureRmResource -name vmsstest1 -ResourceGroupName vmsstestrg1 -ResourceType Microsoft.Compute/virtualMachineScaleSets -ApiVersion 2015-06-15
+        Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
+        
+        Or
+        
+        Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceView
 
  - 比照任何其他機器連接到 Jumpbox 虛擬機器，您即可從遠端存取調整集內的虛擬機器，以監視個別程序。
 
->[AZURE.NOTE]在[虛擬機器調整集](https://msdn.microsoft.com/library/mt589023.aspx)中可以找到用來取得調整集相關資訊的完整 REST API
+>[AZURE.NOTE] 在[虛擬機器調整集](https://msdn.microsoft.com/library/mt589023.aspx)中可以找到用來取得調整集相關資訊的完整 REST API
 
-## 步驟 6：移除資源
+## 步驟 7：移除資源
 
 您將為 Azure 中所使用的資源支付費用，因此，刪除不再需要的資源永遠是最好的做法。您不需要從資源群組個別刪除每個資源。您可以刪除資源群組，且其所有資源都將會自動刪除。
 
@@ -559,6 +563,11 @@
 
 如果您想要保留資源群組，您可以只刪除調整集。
 
-	Remove-AzureRmResource -Name vmsstest1 -ResourceGroupName vmsstestrg1 -ApiVersion 2015-06-15 -ResourceType Microsoft.Compute/virtualMachineScaleSets
+	Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name"
+    
+## 後續步驟
 
-<!---HONumber=AcomDC_0427_2016--->
+- 使用[管理虛擬機器擴展集中的虛擬機器](virtual-machine-scale-sets-windows-manage.md)中的資訊，管理您剛建立的擴展集。
+- 檢閱[使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)，深入了解垂直調整。
+
+<!---HONumber=AcomDC_0504_2016-->

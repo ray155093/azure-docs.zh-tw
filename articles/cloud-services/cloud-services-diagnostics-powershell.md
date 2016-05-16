@@ -3,7 +3,7 @@
 	description="了解如何使用 PowerShell 啟用雲端服務的診斷"
 	services="cloud-services"
 	documentationCenter=".net"
-	authors="sbtron"
+	authors="Thraka"
 	manager=""
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="02/09/2016"
-	ms.author="saurabh"/>
+	ms.author="adegeo"/>
 
 
 # 使用 PowerShell 在 Azure 雲端服務中啟用診斷
@@ -127,4 +127,4 @@ Visual Studio Online 使用類似的方法，來自動部署搭配診斷擴充�
 - [診斷組態結構描述](https://msdn.microsoft.com/library/azure/dn782207.aspx)說明診斷延伸模組的各種 XML 組態選項。
 - 若要了解如何啟用虛擬機器的診斷延伸模組，請參閱[使用 Azure 資源管理員範本建立具有監控和診斷功能的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

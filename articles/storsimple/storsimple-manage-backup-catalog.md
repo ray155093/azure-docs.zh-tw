@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/30/2015"
+   ms.date="04/28/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Manager 服務管理備份類別目錄
@@ -23,7 +23,7 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動備
 
 本教學課程說明如何列出、選取和刪除備份組。若要了解如何透過備份還原裝置內容，請移至[從備份組還原裝置](storsimple-restore-from-backup-set.md)。若要了解如何複製磁碟區，請移至[複製 StorSimple 磁碟區](storsimple-clone-volume.md)。
 
-![備份類別目錄](./media/storsimple-manage-backup-catalog/HCS_BackupCatalog.png)
+![備份類別目錄](./media/storsimple-manage-backup-catalog/backupcatalog.png)
 
 [備份類別目錄] 頁面提供查詢，可讓您縮小備份組選取範圍。您可以篩選根據下列參數擷取的備份組：
 
@@ -117,4 +117,4 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動備
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0504_2016-->

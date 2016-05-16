@@ -14,11 +14,35 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/29/2016"
+	ms.date="05/03/2016"
 	ms.author="nitinme"/>
 
 
 # Azure HDInsight 上 Hadoop 元件的版本資訊
+
+## HDInsight 04/11/2016 版本的注意事項
+
+使用此版本部署的 HDInsight 叢集的完整版本號碼：
+
+* HDInsight (Windows) 2.1.10.889.2191206 (HDP 1.3.12.0-01795 - 未變更)
+* HDInsight (Windows) 3.0.6.889.2191206 (HDP 2.0.13.0-2117 - 未變更)
+* HDInsight (Windows) 3.1.4.889.2191206 (HDP 2.1.15.0-2374 - 未變更)
+* HDInsight (Windows) 3.2.7.889.2191206 (HDP 2.2.9.1-10)
+* HDInsight (Windows) 3.3.0.889.2191206 (HDP 2.3.3.1-16 -未變更)
+* HDInsight (Linux) 3.2.1000.0.7339916 (HDP 2.2.9.1-10)
+* HDInsight (Linux) 3.3.1000.0.7339916 (HDP 2.3.3.1-16)
+* HDInsight (Linux) 3.3.1000.0.7338911 (HDP 2.4.1.1-3)
+* SDK 1.5.8
+
+此版本包含下列更新。
+
+| 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
+|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
+| HDI 3.4 的自訂中繼存放區升級問題 | 如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。這是因為升級指令碼時發生的錯誤現在已修正| 叢集建立 | 全部 | N/A
+| Livy Crash 復原 | 為所有已透過 Livy 提交的作業提供工作狀態復原 | 可靠性 | Spark on Linux| N/A
+| Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
+| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` 魔術，而非 `%%hive` 魔術。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
+| 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Linux 上的 Spark 叢集 | N/A
 
 ## HDInsight 03/29/2016 版本的注意事項
 
@@ -208,7 +232,7 @@
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
 |-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 修正 Spark 叢集節點的重新製作映像工作流程 | 修正造成 Spark 叢集節點重新製作映像後不復原的的錯誤 | 服務 | Spark| N/A |
+| 修正 Spark 叢集節點的重新製作映像工作流程 | 修正造成 Spark 叢集節點重新製作映像後不復原的錯誤 | 服務 | Spark| N/A |
 
 
 ## HDInsight 2015/07/31 版本的附註
@@ -1541,4 +1565,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,12 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="04/27/2016"
 	ms.author="jgao"/>
 
 
-#HDInsight 上 Hadoop 叢集的可用性和可靠性
+#HDInsight 上以 Windows 為基礎的 Hadoop 叢集的可用性和可靠性
 
+
+>[AZURE.NOTE] 此文件中使用的步驟是針對以 Windows 為基礎的 HDInsight 叢集。如果您使用以 Linux 為基礎的叢集，如需 Linux 特定的資訊，請參閱 [HDInsight 上以 Linux 為基礎的 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md)。
 
 HDInsight 可讓客戶部署各種不同的叢集類型，用於不同的資料分析工作負載。目前提供的叢集型別是查詢和分析工作負載的 Hadoop 叢集、NoSQL 工作負載的 HBase 叢集和即時事件處理工作負載的 Storm 叢集。在指定的叢集類型內，有各種節點的不同角色。例如：
 
@@ -50,7 +52,7 @@ Hadoop 叢集的標準實作通常包含單一前端節點。HDInsight 會透過
 
 
 ## 檢查作用中的前端節點服務狀態
-若要判斷出作用中的前端節點及其執行的服務狀態，您必須使用遠端桌面通訊協定 (RDP) 連接到 Hadoop 叢集。如需 RDP 指示，請參閱[使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#connect-to-hdinsight-clusters-by-using-rdp)。一旦遠端進入叢集後，按兩下位於桌面上的 **Hadoop 服務可用 ** 圖示，以取得執行 Namenode、Jobtracker、Templeton、Oozieservice、Metastore 和 Hiveserver2 服務的前端節點狀態，或在 HDI 3.0 中，取得執行 Namenode、Resource Manager、History Server、Templeton、Oozieservice、Metastore 和 Hiveserver2 服務的前端節點狀態。
+若要判斷出作用中的前端節點及其執行的服務狀態，您必須使用遠端桌面通訊協定 (RDP) 連接到 Hadoop 叢集。如需 RDP 指示，請參閱[使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#connect-to-hdinsight-clusters-by-using-rdp)。一旦遠端進入叢集後，按兩下位於桌面上的 **Hadoop 服務可用** 圖示，以取得執行 Namenode、Jobtracker、Templeton、Oozieservice、Metastore 和 Hiveserver2 服務的前端節點狀態，或在 HDI 3.0 中，取得執行 Namenode、Resource Manager、History Server、Templeton、Oozieservice、Metastore 和 Hiveserver2 服務的前端節點狀態。
 
 ![](./media/hdinsight-high-availability/Hadoop.Service.Availability.Status.png)
 
@@ -106,4 +108,4 @@ SDK 的情況十分類似。使用 SDK 建立與佈建叢集的說明已記錄�
 - [使用 RDP 連接到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)
 - [使用 HDInsight .NET SDK](hdinsight-provision-clusters.md#sdk)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

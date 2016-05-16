@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="03/25/2016"
+   	ms.date="05/02/2016"
    	ms.author="jgao"/>
 
 
@@ -45,15 +45,30 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 |Storm|Nimbus 節點 (2)、監督員伺服器 (1+)、Zookeeper 節點 (3)|![HDInsight Storm 叢集節點](./media/hdinsight-provision-clusters/HDInsight.Storm.roles.png)|
 |Spark|前端節點 (2)、背景工作角色節點 (1+)、Zookeeper 節點 (3) (A1 Zookeeper VM 大小不限)|![HDInsight Spark 叢集節點](./media/hdinsight-provision-clusters/HDInsight.Spark.roles.png)|
 
-* 括弧中是每種節點類型的節點數目。
+注意：括弧中是每種節點類型的節點數目。
+
+下表列出 HDInsight 的預設 VM 大小：
+
+|叢集類型|	Hadoop|	HBase|	Storm|	Spark|
+|------------|--------|------|-------|-------|
+|前端 – 預設 VM 大小|	D3 |A3|	A3|	D12|
+|前端 – 建議的 VM 大小|	D3、D4、D12 |A3、A4、A5 |A3、A4、A5|	D12、D13、D14|
+|背景工作 – 預設 VM 大小|	D3|	D3|	D3|	D12|
+|背景工作 – 建議的 VM 大小 |	D3、D4、D12|	D3、D4、D12 |D3、D4、D12|	D12、D13、D14|
+|Zookeeper – 預設 VM 大小| |	A2|	A2 | |
+|Zookeeper – 建議的 VM 大小 | |A2、A3、A4 |A2、A3、A4 | |
+
+注意：前端稱為 Storm 叢集類型的 Nimbus。背景工作稱為 HBase 叢集類型的「地區」以及 Storm 叢集類型的「監督員」。
+
+
 
 > [AZURE.IMPORTANT] 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB ram 的前端節點大小。
 
-您可以使用[指令碼動作](#customize-clusters-using-script-action)，將 Hue 或 R 等其他元件加入這些基本類型中。
+您可以使用[指令碼動作](#customize-clusters-using-script-action)，將其他元件 (例如 Hue 或 R) 加入這些基本類型中。
 
 ## 叢集層
 
-Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard 和 [Premium](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。HDInsight Premium 包括 R 和其他額外的元件。HDInsight Premium 只有在 HDInsight 3.4 版上受到支援。
+Azure HDInsight 提供兩種類別的巨量資料雲端提供項目：Standard 和 [Premium](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。HDInsight Premium 包括 R 和其他額外的元件。HDInsight Premium 只有在 HDInsight 3.4 版上受到支援。
 
 下表列出 HDInsight 叢集類型和 HDInsight Premium 支援矩陣。
 
@@ -101,14 +116,14 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard �
     
 - **資源群組名稱**
 
-	[ Azure Resource Manager (ARM)](resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用，稱為 Azure 資源群組。您可以透過單一、協調的作業來部署、更新、監視或刪除應用程式的所有資源。
+	[Azure Resource Manager (ARM)](resource-group-overview.md) 可讓您將應用程式中的資源作為群組使用，稱為 Azure 資源群組。您可以透過單一、協調的作業來部署、更新、監視或刪除應用程式的所有資源。
 
 - **認證**
 
 	HDInsight 叢集可讓您在建立叢集期間設定兩個使用者帳戶：
 
 	- HTTP 使用者。預設使用者名稱是在 Azure 入口網站上使用基本組態的 admin。有時稱之為「叢集使用者」。
-	- SSH 使用者 (Linux 叢集)：用來連線到使用 SSH 的叢集。叢集建立之後，您便可以依照[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)中的步驟建立其他 SSH 使用者帳戶。
+	- SSH 使用者 (Linux 叢集)：用來連線到使用 SSH 的叢集。當您依照[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 中的步驟建立叢集之後，即可建立其他 SSH 使用者帳戶。
 
     >[AZURE.NOTE] 對於以 Windows 為基礎的叢集，您可以建立 RDP 使用者，用來連接到使用 RDP 的叢集。
 
@@ -193,7 +208,7 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard �
         |Standard\_D13\_v2 |8|56 GB|8|暫存 (SSD) = 400 GB |16|16x500|
         |Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500|    
  
-    如需規劃使用這些資源時所需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-size-specs.md)。如需各式大小的價格資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight)。
+    如需規劃使用這些資源時所需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-size-specs.md)。如需各式大小的定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight)。
     
 	> [AZURE.IMPORTANT] 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB RAM 的前端節點大小。建立叢集後就開始計費，只有在刪除叢集時才會停止計費。如需價格的詳細資訊，請參閱 [HDInsight 價格詳細資料](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
@@ -202,7 +217,7 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard �
 
 在某些情況下，您可能想要將更多儲存體加入至叢集。例如，如果您有多個 Azure 儲存體帳戶在不同的地理區域，或用於不同的服務，但想要全部透過 HDInsight 來分析。
 
-如需有關使用次要 Blob 存放區的詳細資訊，請參閱[使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。如需使用次要 Data Lake Store 的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
+如需有關使用次要 Blob 存放區的詳細資訊，請參閱[使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。如需使用次要 Data Lake Store 的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 
 ## 使用 Hive/Oozie 中繼存放區
@@ -227,7 +242,7 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard �
     | -------------------------- | --------------------------- |
     | 站對站組態可讓您使用硬體 VPN 或路由及遠端存取服務，從資料中心將多項資源連接至 Azure 虛擬網路。<br />![diagram of site-to-site configuration](./media/hdinsight-hadoop-provision-linux-clusters/hdinsight-vnet-site-to-site.png) | 點對站組態可讓您使用軟體 VPN，將特定資源連接到 Azure 虛擬網路。<br />![diagram of point-to-site configuration](./media/hdinsight-hadoop-provision-linux-clusters/hdinsight-vnet-point-to-site.png) |
 
-如需搭配虛擬網路使用 HDInsight 的詳細資訊 (包含虛擬網路的特定設定需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
+如需搭配虛擬網路使用 HDInsight 的詳細資訊 (包含虛擬網路的特定組態需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
 ## 使用 HDInsight 叢集自訂功能 (Bootstrap) 來自訂叢集
 
@@ -268,4 +283,4 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard �
 | [.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [ARM 範本](hdinsight-hadoop-create-linux-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

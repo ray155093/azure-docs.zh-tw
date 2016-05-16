@@ -208,12 +208,12 @@ EGT 也可能讓您必須評估並取捨您的設計：使用多個資料分割�
 
 -	***點查詢***是使用上最有效率的查閱，建議用於高容量查閱或只能容許最低延遲的查閱。這類查詢使用索引尋找個別實體的效率極高，方法是同時指定 **PartitionKey** 和 **RowKey** 值。例如：
 $filter=(PartitionKey eq 'Sales') and (RowKey eq '2')  
--	次佳的是***範圍查詢***，它使用 **PartitionKey**，並篩選特定範圍的 **RowKey** 值，以傳回多個實體。**PartitionKey** 值會識別特定的分割，而 **RowKey** 值會識別該分割中實體的子集。例如：
-$filter=PartitionKey eq 'Sales' and RowKey ge 'S' and RowKey lt 'T'  
--	再其次是***分割掃描***，它使用 **PartitionKey**，並篩選另一個非索引鍵的，可傳回多個實體。**PartitionKey** 值會識別特定的分割，而屬性值會選取該分割中實體的子集。例如：
-$filter=PartitionKey eq 'Sales' and LastName eq 'Smith'  
--	***資料表掃描***不包含 **PartitionKey**，且效率極差，因為它會依序在所有組成資料表的分割中搜尋是否有任何相符的實體。無論您的篩選是否使用 **RowKey**，它都會執行資料表掃描。例如：
-$filter=LastName eq 'Jones'  
+-	次佳的是***範圍查詢***，它使用 **PartitionKey**，並篩選特定範圍的 **RowKey** 值，以傳回多個實體。**PartitionKey** 值會識別特定的分割，而 **RowKey** 值會識別該分割中實體的子集。例如： 
+$filter=PartitionKey eq 'Sales' and RowKey ge 'S' and RowKey lt 'T' 
+-	再其次是***分割掃描***，它使用 **PartitionKey**，並篩選另一個非索引鍵的，可傳回多個實體。**PartitionKey** 值會識別特定的分割，而屬性值會選取該分割中實體的子集。例如：  
+$filter=PartitionKey eq 'Sales' and LastName eq 'Smith'
+-	***資料表掃描***不包含 **PartitionKey**，且效率極差，因為它會依序在所有組成資料表的分割中搜尋是否有任何相符的實體。無論您的篩選是否使用 **RowKey**，它都會執行資料表掃描。例如： 
+$filter=LastName eq 'Jones' 
 -	傳回多個實體的查詢，在傳回時會以 **PartitionKey** 和 **RowKey** 順序排序。若要避免重新排序用戶端中的實體，請選擇定義最常見的排序次序的 **RowKey**。  
 
 請注意，使用 "**or**" 指定以 **RowKey** 值為基礎的篩選條件，會產生資料分割掃描且不被當作範圍查詢。因此，您應該避免會使用下列篩選條件的搜尋：例如 
@@ -612,7 +612,7 @@ EGT 可讓您在共用相的資料分割索引鍵的多個實體之間執行不�
 
 下列步驟概述您在使用第二個選項並且要新增員工時所應遵循的程序。在此範例中，我們會新增在銷售部門中識別碼為 000152、且姓氏為 Jones 的員工：
 1.	擷取具有 **PartitionKey** 值 "Sales" 和 **RowKey** 值 "Jones" 的索引實體。 儲存此實體的 ETag　以在步驟 2 中使用。  
-2.	建立實體群組交易 (也就是批次作業)，插入新的員工實體 (**PartitionKey** 值 "Sales" 和 **RowKey** 值 "000152")並更新索引實體 (**PartitionKey** 值 "Sales" 和 **RowKey** 值 "Jones")，方法是將新員工識別碼加入 EmployeeIDs 欄位中的清單。如需實體群組交易的詳細資訊，請參閱[實體群組交易](#entity-group-transactions)。 
+2.	建立實體群組交易 (也就是批次作業)，插入新的員工實體 (**PartitionKey** 值 "Sales" 和 **RowKey** 值 "000152")並更新索引實體 (**PartitionKey** 值 "Sales" 和 **RowKey** 值 "Jones")，方法是將新員工識別碼加入 EmployeeIDs 欄位中的清單。如需實體群組交易的詳細資訊，請參閱[實體群組交易](#entity-group-transactions)。  
 3.	如果實體群組交易因為開放式並行存取錯誤而失敗 (其他人剛修改過索引實體)，您就必須從步驟 1 重新執行。  
 
 如果您使用第二個選項，您可以使用類似的方法來刪除某位員工。變更員工的姓氏會稍微複雜一點，因為您需要執行會更新三個實體的實體群組交易：員工實體、舊姓氏的索引實體，與新姓氏的索引實體。您必須先擷取每個實體才能進行變更，以擷取接著可以用來透過開放式並行存取執行更新的 ETag 值。
@@ -1583,4 +1583,4 @@ Storage Analytics 會在內部緩衝處理記錄訊息，然後定期更新適�
 [29]: ./media/storage-table-design-guide/storage-table-design-IMAGE29.png
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

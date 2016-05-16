@@ -13,7 +13,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="02/12/2016"
+	ms.date="04/28/2016"
 	ms.author="yuridio"/>
 
 # 判斷混合式身分識別解決方案的內容管理需求
@@ -61,4 +61,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

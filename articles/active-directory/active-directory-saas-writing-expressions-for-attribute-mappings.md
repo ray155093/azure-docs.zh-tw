@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="04/30/2016"
 	ms.author="markusvi"/>
 
 
@@ -103,7 +103,7 @@
 |名稱| 必要 / 重複 | 型別 | 注意事項 |
 |--- | ---                 | ---  | ---   |
 | **separator** | 必要 | String | 用來分隔串連成一個字串的 source 值的字串。如果不需要分隔符號，可以是 ""。 |
-| ****source1 … sourceN ** | 必要、次數可變 | String | 要結合在一起的字串值。 |
+| **source1 … sourceN ** | 必要、次數可變 | String | 要結合在一起的字串值。 |
 
 
 
@@ -315,4 +315,4 @@
 - [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

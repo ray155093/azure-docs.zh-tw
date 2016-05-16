@@ -13,7 +13,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="02/02/2016"
+	ms.date="05/02/2016"
 	ms.author="billmath"/>
 
 # 判斷混合式身分識別解決方案的身分識別需求
@@ -44,7 +44,10 @@
 - 您的公司目前有任何內部部署同步處理服務嗎？
 - 您的貴公司是否使用任何協力廠商身分識別提供者 (IdP)？
 
-您也需要知道公司可能有的雲端服務。執行評估以了解您的環境中目前與 SaaS、IaaS 或 PaaS 模型的整合，是非常重要的。在此評估期間請確實回答下列問題：- 您的公司是否整合了任何雲端服務提供者？- 如果是，正在使用哪些服務？- 此整合目前是在生產環境中，還是處於試驗階段？
+您也需要知道公司可能有的雲端服務。執行評估以了解您的環境中目前與 SaaS、IaaS 或 PaaS 模型的整合，是非常重要的。請務必在這個評估期間回答下列問題︰
+- 貴公司是否與任何雲端服務提供者整合？
+- 如果是，請問使用了哪些服務？
+- 這項整合目前已投入使用，或只是一項試驗？
 
 
 >[AZURE.NOTE]
@@ -89,7 +92,8 @@
 - 使用者通常會以何種方式登入其內部部署環境？
 - 使用者將如何登入雲端？
 
->[附註] 請確定會記下每個答案，並了解答案背後的原理。[判斷事件回應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)將說明可用的選項，以及每個選項的優缺點。回答這些問題之後，您就能選取最適合業務需求的選項。
+>[AZURE.NOTE]
+請確定會記下每個答案，並了解答案背後的原理。[判斷事件回應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)將說明可用的選項，以及每個選項的優缺點。回答這些問題之後，您就能選取最適合業務需求的選項。
 
 ## 後續步驟
 [判斷目錄同步處理需求](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
@@ -97,4 +101,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0504_2016-->

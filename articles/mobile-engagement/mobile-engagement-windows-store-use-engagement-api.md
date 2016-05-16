@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/03/2016" 
 	ms.author="piyushjo" />
 
 #如何在 Windows 通用上使用 Engagement API
 
-此文件為[如何在 Windows 通用上整合 Engagement](../mobile-engagement-windows-store-integrate-engagement/) 的附加說明：它提供有關如何使用 Engagement API 來報告應用程式的統計資料之詳細資訊。
+此文件為[如何在 Windows 通用上整合 Engagement](mobile-engagement-windows-store-integrate-engagement.md) 的附加說明：它提供有關如何使用 Engagement API 來報告應用程式的統計資料之詳細資訊。
 
 請記住，如果您只想要 Engagement 向您報告應用程式的工作階段、活動、當機和技術資訊，那麼最簡單的方法是讓所有 `Page` 子類別繼承自 `EngagementPage` 類別。
 
@@ -30,7 +30,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 
 ##Engagement 概念
 
-以下部分簡要說明適用於 Windows 通用平台的常見 [Mobile Engagement 概念](../mobile-engagement-concepts/)。
+以下部分簡要說明適用於 Windows 通用平台的常見 [Mobile Engagement 概念](mobile-engagement-concepts.md)。
 
 ### `Session`和`Activity`
 
@@ -368,4 +368,4 @@ SDK 可以設定為在 IDE 主控台中產生測試記錄檔。預設不會啟�
 			EngagementAgent.Instance.Init();
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

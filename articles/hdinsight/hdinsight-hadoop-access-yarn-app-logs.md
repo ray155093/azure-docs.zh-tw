@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/29/2016"
+	ms.date="04/28/2016"
 	ms.author="jgao"/>
 
 # 存取以 Windows 為基礎之 HDInsight 上的 YARN 應用程式記錄
@@ -84,4 +84,4 @@ YARN ResourceManager UI 是在叢集前端節點上執行，並可透過 Azure �
 [binary-format]: https://issues.apache.org/jira/browse/HADOOP-3315
 [YARN-concepts]: http://hortonworks.com/blog/apache-hadoop-yarn-concepts-and-applications/
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0504_2016-->

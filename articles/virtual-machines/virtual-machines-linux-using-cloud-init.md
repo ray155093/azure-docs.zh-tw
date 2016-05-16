@@ -15,13 +15,13 @@
     ms.tgt_pltfrm="vm-linux"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/22/2016"
+    ms.date="04/29/2016"
     ms.author="v-livech"
 />
 
 # 在建立期間使用 cloud-init 自訂 Linux VM
 
-在本文中，我們會建立 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。接著使用 [Azure CLI](../xplat-cli-install.md)，在 Linux VM 的建立期間啟動這些 cloud-init 指令碼。
+本文中示範如何製作 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。接著，您可以在 VM 建立期間從 [Azure CLI](../xplat-cli-install.md) 使用這些 cloud-init 指令碼。
 
 ## 必要條件
 
@@ -45,16 +45,23 @@ Azure 有三種不同的方法可在 Linux VM 啟動時進行變更。
 
 ## 快速命令
 
+建立主機名稱 cloud-init 指令碼
+
 ```bash
-# Create a hostname cloud-init script
 #cloud-config
 hostname: exampleServerName
+```
 
-# Create an update Linux on first boot cloud-init script for Debian Family
+適用於 Debian 系列的第一次開機建立更新 Linux cloud-init 指令碼
+
+```bash
 #cloud-config
 apt_upgrade: true
+```
 
-# Create an add a user cloud-init script
+建立及加入使用者 cloud-init 指令碼
+
+```bash
 #cloud-config
 users:
   - name: exampleUser
@@ -62,21 +69,19 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-authorized-keys:
-      - ssh-rsa
-AAAAB3NzaC1yc2EAAAADAQABAAABAQDf0q4PyG0doiBQYV7OlOxbRjle<snip />== exampleuser@slackwarelaptop
-
+      - ssh-rsa AAAAB3<snip>==exampleuser@slackwarelaptop
 ```
 
 ## 詳細的逐步解說
 
 ### 將 cloud-init 指令碼加入使用 Azure CLI 建立 VM 的作業中
 
-在 Azure 中建立 VM 時，若要啟動 cloud-init 指令碼，請使用 Azure CLI `--custom-data` 切換來指定 cloud-init 檔案。
+在 Azure 中建立 VM 時，若要啟動 cloud-init 指令碼，請使用 Azure CLI `--custom-data` 參數來指定 cloud-init 檔案。
 
-注意︰本文討論內容雖然是使用 `--custom-data` switch 處理 cloud-init 檔案，但您也可以使用這個切換來傳送任意程式碼或檔案。如果 Linux VM 已經知道要用這類檔案做什麼，它們就會自動執行。
+注意︰本文討論內容雖然是使用 `--custom-data` 參數處理 cloud-init 檔案，但您也可以使用這個參數來傳送任意程式碼或檔案。如果 Linux VM 已經知道要用這類檔案做什麼，它們就會自動執行。
 
 ```bash
-bill@slackware$ azure vm create \
+azure vm create \
 --resource-group exampleRG \
 --name exampleVM \
 --location westus \
@@ -91,17 +96,17 @@ bill@slackware$ azure vm create \
 
 對任何 Linux VM 而言，其中一個最簡單且最重要的設定就是主機名稱。使用 cloud-init 和這個指令碼就可以輕鬆地設定這個項目。
 
-#### 範例 cloud-init 指令碼名為 `cloud_config_hostname.txt`。
+#### 名為 `cloud_config_hostname.txt` 的範例 cloud-init 指令碼。
 
 ``` bash
 #cloud-config
 hostname: exampleServerName
 ```
 
-在 VM 初始啟動期間，這個 cloud-init 指令碼會將主機名稱設定為 `exampleServerName`。
+在 VM 首次啟動期間，這個 cloud-init 指令碼會將主機名稱設定為 `exampleServerName`。
 
 ```bash
-bill@slackware$ azure vm create \
+azure vm create \
 --resource-group exampleRG \
 --name exampleVM \
 --location westus \
@@ -115,9 +120,9 @@ bill@slackware$ azure vm create \
 登入並驗證新 VM 的主機名稱。
 
 ```bash
-bill@slackware$ ssh exampleVM
-bill@ubuntu$ hostname
-bill@ubuntu$ exampleServerName
+ssh exampleVM
+hostname
+exampleServerName
 ```
 
 ### 建立 cloud-init 指令碼以更新 Linux
@@ -134,7 +139,7 @@ apt_upgrade: true
 新的 Linux VM 啟動之後，它會透過 `apt-get` 立即更新所有已安裝的封裝。
 
 ```bash
-bill@slackware$ azure vm create \
+azure vm create \
 --resource-group exampleRG \
 --name exampleVM \
 --location westus \
@@ -148,8 +153,8 @@ bill@slackware$ azure vm create \
 登入並驗證所有封裝是否皆已更新。
 
 ```bash
-bill@slackware$ ssh exampleVM
-bill@ubuntu$ sudo apt-get upgrade
+ssh exampleVM
+sudo apt-get upgrade
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -173,14 +178,13 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-authorized-keys:
-      - ssh-rsa
-AAAAB3NzaC1yc2EAAAADAQABAAABAQDf0q4PyG0doiBQYV7OlOxbRjle<snip />== exampleuser@slackwarelaptop
+      - ssh-rsa AAAAB3<snip>==exampleuser@slackwarelaptop
 ```
 
 新的 Linux VM 開機後，會建立新的使用者並將它加入 sudo 群組中。
 
 ```bash
-bill@slackware$ azure vm create \
+azure vm create \
 --resource-group exampleRG \
 --name exampleVM \
 --location westus \
@@ -194,7 +198,12 @@ bill@slackware$ azure vm create \
 登入並驗證新建立的使用者。
 
 ```bash
-bill@slackware$ cat /etc/group
+cat /etc/group
+```
+
+輸出
+
+```bash
 root:x:0:
 <snip />
 sudo:x:27:exampleUser
@@ -202,4 +211,4 @@ sudo:x:27:exampleUser
 exampleUser:x:1000:
 ```
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

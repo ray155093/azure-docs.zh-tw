@@ -13,19 +13,18 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/05/2015"
+	ms.date="04/22/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM (GUI) 中設定 AlwaysOn 可用性群組
 
 > [AZURE.SELECTOR]
-- [入口網站 - 資源管理員](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-- [入口網站 - 傳統](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-- [PowerShell - 傳統](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+- [入口網站](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+- [PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 
 <br/>
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
 本端對端教學課程將示範如何透過在 Azure 虛擬機器上執行的 SQL Server AlwaysOn 實作可用性群組。
@@ -549,4 +548,4 @@
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

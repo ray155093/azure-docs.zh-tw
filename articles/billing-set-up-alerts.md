@@ -1,4 +1,13 @@
-<properties pageTitle="為您的 Microsoft Azure 訂用帳戶設定計費警示 | Microsoft Azure" description="描述如何設定您的 Azure 帳單上的警示，以避免計費出現意外的狀況。" services="計費" documentationCenter="" authors="vikdesai" manager="msmbaldwin" editor=""/ tags="計費" />
+<properties
+	pageTitle="為您的 Microsoft Azure 訂用帳戶設定帳單通知 | Microsoft Azure"
+	description="描述如何設定您的 Azure 帳單上的警示，以避免計費出現意外的狀況。"
+	services="billing"
+	documentationCenter=""
+	authors="vikdesai"
+	manager="msmbaldwin"
+	editor=""
+	tags="billing"
+	/>
 
 <tags
 	ms.service="multiple"
@@ -39,4 +48,4 @@ Azure 支援任何電子郵件地址，但不會驗證電子郵件地址是否�
 [Image2]: ./media/azure-billing-set-up-alerts/billingalert2.png
 [Image3]: ./media/azure-billing-set-up-alerts/billingalerts3.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

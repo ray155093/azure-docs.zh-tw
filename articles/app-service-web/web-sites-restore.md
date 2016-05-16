@@ -18,7 +18,7 @@
 
 # 在 Azure App Service 中還原應用程式
 
-本文說明如何還原您先前使用 [App Service](app-service-value-prop-what-is)「備份」功能備份的 App Service 應用程式。如需詳細資訊，請參閱 [App Service 備份](web-sites-backup.md)。
+本文說明如何還原您先前使用 [App Service](../app-service/app-service-value-prop-what-is.md)「備份」功能備份的 App Service 應用程式。如需詳細資訊，請參閱 [App Service 備份](web-sites-backup.md)。
 
 App Service「還原」功能可讓您依需求，將應用程式及其連結的資料庫 (SQL Database 或 MySQL) 還原成先前的狀態，或是根據您其中一個原始的應用程式備份來建立新應用程式。建立與最新版本平行執行的新應用程式，對進行 A/B 測試來說，會相當有用。
 
@@ -106,4 +106,4 @@ App Service「還原」功能可讓您依需求，將應用程式及其連結的
 [OperationDetails]: ./media/web-sites-restore/13OperationDetails.png
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/04/2016" 
+	ms.date="04/27/2016" 
 	ms.author="sdanie"/>
 
 # 如何設定高階 Azure Redis 快取的虛擬網路支援
@@ -119,4 +119,4 @@ VNET 僅適用於高階快取。
 
 [redis-cache-vnet-info]: ./media/cache-how-to-premium-vnet/redis-cache-vnet-info.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

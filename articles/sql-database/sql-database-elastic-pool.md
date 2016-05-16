@@ -1,5 +1,5 @@
 <properties
-	pageTitle="彈性資料庫集區的 SQL Database |Microsoft Azure"
+	pageTitle="什麼是 Azure 彈性資料庫集區？| Microsoft Azure"
 	description="使用集區管理數百或數千個資料庫。針對一組效能單位的一個價格可以分散在集區。您可以隨意將資料庫移入或移出。"
 	keywords="彈性資料庫、sql 資料庫"
 	services="sql-database"
@@ -11,7 +11,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="04/04/2016"
+	ms.date="04/28/2016"
 	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -20,9 +20,7 @@
 
 # 什麼是 Azure 彈性資料庫集區？
 
-SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Database。彈性資料庫集區可簡化跨多個資料庫的建立、維護和效能管理。從集區任意加入或減少資料庫。請參閱[在 Azure 入口網站中建立 SQL 資料庫的可調整彈性資料庫集區](sql-database-elastic-pool-create-portal.md)，或[使用 PowerShell](sql-database-elastic-pool-create-powershell.md) 或 [C#](sql-database-elastic-pool-csharp.md)。
-
-如需 API 和錯誤詳細資訊，請參閱[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
+彈性集區提供符合成本效益的簡單解決方案，以管理多個不同且具備無法預測的使用模式資料庫的效能目標。
 
 ## 運作方式
 
@@ -49,22 +47,33 @@ SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Data
 
 > [AZURE.NOTE] 彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。
 
+## 彈性集區和彈性資料庫的 eDTU 和儲存體限制
+
+[AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
+
 ## 彈性資料庫集區屬性
-彈性集區和彈性資料庫的限制。
+
+### 彈性集區的限制
 
 | 屬性 | 說明 |
 | :-- | :-- |
-| 服務層 | Basic、Standard 或 Premium。服務層決定可設定的效能和儲存體限制的範圍，以及商務持續性選項。在集區內的每個資料庫都與集區具有相同的服務層。「服務層」也稱為「版本」。|
-| 每個集區的 eDTU | 可由集區中的資料庫共用的 eDTU 數目上限。在相同的時間點，集區中的資料庫所使用的總 eDTU 數目不得超過此限制。 |
-| 每個集區的儲存體 | 可由集區中的資料庫所共用的儲存體數量上限。集區中的資料庫所使用的儲存體總數不得超過這個限制。這個限制是由每個集區的 eDTU 所決定。如果超過此限制，所有資料庫都會變成唯讀。 |
-| 每個資料庫的 eDTU 數目上限 | 集區中的任何資料庫可以使用的 eDTU 數目上限，並且適用於集區中的所有資料庫。每個資料庫的 eDTU 數目上限不等於資源保證。 |
-| 每個資料庫的 eDTU 數目下限 | 集區中的任何資料庫受到保證的 eDTU 數目下限，並且適用於集區中的所有資料庫。每個資料庫的 eDTU 數目下限可以設為 0。請注意，集區中的資料庫數目和每個資料庫 eDTU 數目下限的乘積不能超過每個集區的 eDTU。 |
+| 服務層 | Basic、Standard 或 Premium。服務層決定可設定的效能和儲存體限制的範圍，以及商務持續性選項。在集區內的每個資料庫都與集區具有相同的服務層。「服務層」也稱為「版本」。 |
+| 每集區 eDTU | 可由集區中的資料庫共用的 eDTU 數目上限。在相同的時間點，集區中的資料庫所使用的總 eDTU 數目不得超過此限制。 |
+| 每集區最大儲存體 (GB) | 可由集區中的資料庫所共用的儲存體數量上限 (GB)。集區中的資料庫所使用的儲存體總數不得超過這個限制。這個限制是由每個集區的 eDTU 所決定。如果超過此限制，所有資料庫都會變成唯讀。 |
+| 每個集區的資料庫數目上限 | 每個集區允許的資料庫數目上限。 |
+| 每個集區的並行背景工作數上限 | 集區中所有資料庫可用的並行背景工作角色 (要求) 數目上限。 |
+| 每集區的並行登入數上限 | 集區中所有資料庫的並行登入數的 數目上限。 |
+| 每集區並行工作階段數上限 | 集區中所有資料庫可用的工作階段數目上限。 |
 
 
-## 彈性集區和彈性資料庫的 eDTU 和儲存體限制
+### 彈性資料庫的限制
 
+| 屬性 | 說明 |
+| :-- | :-- |
+| 每資料庫的 eDTU 上限 | 集區中的任何資料庫可以使用的 eDTU 數目上限，依集區中其他資料庫的使用量看是否可用。每個資料庫的 eDTU 數目上限不等於資料庫的資源保證。這是全域設定，會套用至集區中的所有資料庫。將每個資料庫的 eDTU 設定為最上限，以處理資料庫使用率的尖峰。某種程度的過量使用是可預期的情況，因為集區通常會假設資料庫的熱門和冷門使用模式；在這些模式中，所有資料庫不會同時處於尖峰期。例如，假設每個資料庫的尖峰使用量是 20 個 DTU，且集區中的 100 個資料庫只有 20% 會同時暴增到尖峰。如果每一資料庫的 eDTU 上限設為 20 個 eDTU，則以 5 倍的量過量使用集區，並將每集區 eDTU 設為 400 個是合理的作法。 |
+| 每資料庫的 eDTU 下限 | 集區中單一資料庫能夠保證的最小 eDTU 數。這是全域設定，會套用至集區中的所有資料庫。每個資料庫最小 eDTU 建議設定為 0，同時也是預設值。此屬性通常會設為 0 到每一資料庫的 eDTU 使用量平均值之間的任意數量。請注意，集區中的資料庫數目和每個資料庫 eDTU 數目下限的乘積不能超過每個集區的 eDTU。例如，如果集區有 20 個資料庫，且每個資料庫的最小 eDTU 設定為 10 eDTU，則每個集區 eDTU 必須至少為 200 個 eDTU。 |
+| 每個資料庫的儲存體上限 (GB) | 集區中資料庫的儲存體上限。彈性資料庫共用集區儲存體，所以資料庫儲存體的大小會限制為較小的剩餘集區儲存體，以及每資料庫儲存體的上限。|
 
-[AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
 ## 彈性資料庫工作
 
@@ -74,33 +83,23 @@ SaaS 開發人員必須建立並管理數十、數百或甚至數千個 SQL Data
 
 ## 集區中資料庫的業務續航力功能
 
-彈性資料庫支援 V12 伺服器上的單一資料庫可用的大部分[業務續航力功能](sql-database-business-continuity.md) (目前為預覽階段)。
+彈性資料庫通常會支援 V12 伺服器上單一資料庫可用的相同[業務續航力功能](sql-database-business-continuity.md)。
+
 
 ### 還原時間點
 
-系統會自動備份彈性資料庫集區中的資料庫，而且備份保留原則與單一資料庫相對應的服務層相同。總結來說，每一層的資料庫具有不同的還原範圍：
-
-* **基本集區**：可還原至過去 7 天內的任意點。
-* **標準集區**：可還原至過去 14 天內的任意點。
-* **進階集區**：可還原至過去 35 天內的任意點。
-
-在預覽期間，在集區中的資料庫將會還原到相同集區中的新資料庫。卸除的資料庫一律還原為集區外的獨立資料庫，而進入該服務層的最低效能層級。例如，標準集區中卸除的彈性資料庫將還原為 S0 資料庫。您可以透過 Azure 入口網站或以程式設計方式使用 REST API，來執行資料庫還原作業。PowerShell Cmdlet 支援即將推出。
+還原時間點會自動備份資料庫，以將集區中的資料庫復原到特定的時間點。請參閱[從使用者錯誤復原 Azure SQL Database](sql-database-user-error-recovery.md)
 
 ### 異地還原
 
-異地還原可讓您將集區中的資料庫復原到不同區域中的伺服器。在預覽期間，若要在不同的伺服器上還原集區中的資料庫，目標伺服器需要具有與來源集區同名的集區。如有必要，請在目標伺服器上建立新的集區，並提供相同名稱，再還原資料庫。如果目標伺服器上沒有同名的集區，異地還原作業將會失敗。如需詳細資料，請參閱[使用異地還原進行復原](sql-database-disaster-recovery.md#recover-using-geo-restore)。
+異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。請參閱[從中斷情況復原 Azure SQL Database](sql-database-disaster-recovery.md)
 
+### 主動式異地複寫
 
-### 異地複寫
-
-「標準」或「高階」彈性資料庫集區中的所有資料庫都可以使用異地複寫。只要服務層相同，異地複寫合作關係中的一個或所有資料庫就可以在彈性資料庫集區中。您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 為彈性資料庫集區設定異地複寫。
-
-### 匯入和匯出
-
-支援從集區將資料庫匯出。目前不支援直接將資料庫匯入至集區，但可以先匯入至單一資料庫，再將資料庫移到集區。
+針對需要比異地複寫更積極復原需求的應用程式，請使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 來設定主動式異地複寫。
 
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

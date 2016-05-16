@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/26/2016"
+   ms.date="05/04/2016"
    ms.author="larryfr"/>
 
 #在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
@@ -24,9 +24,11 @@
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。您將學習如何使用基本 C# 應用程式將 Pig 工作提交至 HDInsight 叢集。
 
-[AZURE.INCLUDE [azure-preview-portal](../../includes/hdinsight-azure-portal.md)]
-
-* [在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+> [AZURE.IMPORTANT] 本文件中的步驟使用 Azure 傳統入口網站。建立新的服務時，Microsoft 不建議您使用傳統入口網站。如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
+>
+> 本文件也包含使用 HDInsight.NET SDK 的相關資訊。提供的程式碼片段是以下列命令為基礎：使用 Azure 服務管理 (ASM) 來處理 HDInsight 及__已被取代__的命令。這些命令將在 2017 年 1 月 1 日之前予以移除。
+>
+>如需使用 Azure 入口網站的這份文件的版本，以及使用 Azure Resource Manager (ARM) 的 HDInsight .NET SDK 程式碼片段，請參閱[在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk.md)。
 
 ##<a id="prereq"></a>必要條件
 
@@ -160,4 +162,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

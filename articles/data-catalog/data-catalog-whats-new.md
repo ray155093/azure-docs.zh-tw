@@ -184,7 +184,7 @@
 自 2015 年 9 月 11 日當週起，**Azure 資料目錄**已新增下列功能：
 
 - 支援透過 HTTP/HTTPS 註冊和探索 SQL Server Analysis Servics 物件。使用者現在可以使用 URL (例如 https://servername/olap/msmdpump.dll) 連線至 SSAS 伺服器，而無需使用伺服器名稱，且可使用 Windows 驗證以外的基本驗證與匿名連線。如需 HTTP/HTTPS 連線至 SSAS 的其他資訊，請參閱[設定 Analysis Services 的 HTTP 存取](https://msdn.microsoft.com/library/gg492140.aspx)。
-- 針對 HDInsight 提供 Hive 資料來源支援。使用者現可在 HDInsight 資料來源的 Hadoop 中，註冊並探索適用於 Apache Hive 的 Hive 資料表。如需 HDInsight 上 Hive 的其他資訊，請參閱 [HDInsight 文件中心](../hdinsight-use-hive/)。
+- 針對 HDInsight 提供 Hive 資料來源支援。使用者現可在 HDInsight 資料來源的 Hadoop 中，註冊並探索適用於 Apache Hive 的 Hive 資料表。如需 HDInsight 上 Hive 的其他資訊，請參閱 [HDInsight 文件中心](../hdinsight/hdinsight-use-hive.md)。
 - 支援註冊與探索 Oracle 資料庫及 HDFS 叢集以做為容器。註冊 Oracle 資料表和檢視或 HDFS 時，**Azure 資料目錄**將會建立資料庫以及資料表和檢視的項目。您可以使用 **Azure 資料目錄**入口網站來探索資料庫，並為其加上註解。除了搜尋和篩選目錄內容之外，使用者亦可搜尋和篩選資料庫或叢集的內容。
 
 
@@ -216,4 +216,4 @@
 - 僅限標準版：將擁有者新增至資料資產時，**Azure 資料目錄**現在可同時支援將使用者帳戶和安全性群組做為擁有者。若要將安全性群組加入並使其成為所選資料資產的擁有者，您可以輸入群組的顯示名稱或群組的 UPN 電子郵件地址 (如果有的話)。
 - 支援 Azure Blob 儲存體的資料來源。使用者現在可以註冊並探索 Azure 儲存體 Blob 和目錄。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

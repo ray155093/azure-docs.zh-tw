@@ -67,7 +67,7 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 ## 建立網路安全性群組 ##
 如需有關網路安全性群組如何運作的完整詳細資訊，請參閱下列[資訊][NetworkSecurityGroups]。以下詳細資料是有關網路安全性群組的重點，著重於設定網路安全群組並套用到包含 App Service 環境的子網路。
 
-**注意：**網路安全性群組只能使用如下所述的 Powershell Cmdlet 設定。由於 Azure 入口網站僅允許使用與「v2」虛擬網路關聯的 NSG 圖形化組態，因此無法使用[入口網站](portal.azure.com) (portal.azure.com) 採圖形化方式設定網路安全性群組。不過，App Service 環境目前僅支援處理傳統 "v1" 虛擬網路。因此，您僅可使用 Powershell Cmdlet 將網路安全性群組設為與 "v1" 虛擬網路關聯。
+**注意：**網路安全性群組只能使用如下所述的 Powershell Cmdlet 設定。由於 Azure 入口網站僅允許使用與「v2」虛擬網路關聯的 NSG 圖形化組態，因此無法使用[入口網站](https://portal.azure.com) (portal.azure.com) 採圖形化方式設定網路安全性群組。不過，App Service 環境目前僅支援處理傳統 "v1" 虛擬網路。因此，您僅可使用 Powershell Cmdlet 將網路安全性群組設為與 "v1" 虛擬網路關聯。
 
 網路安全性群組首次會建立為與訂用帳戶相關聯的獨立實體。由於網路安全性群組建立於 Azure 區域，所以請確保網路安全性群組建立於與 App Service 環境相同的區域中。
 
@@ -149,4 +149,4 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

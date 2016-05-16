@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/22/2016"
+   ms.date="05/02/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
@@ -96,6 +96,11 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 - 針對虛擬機器的暴力密碼破解攻擊
 - 來自已整合的合作夥伴安全性解決方案 (例如「反惡意程式碼」或「Web 應用程式防火牆」) 的安全性警示
 
+### 在 Microsoft Security Response Center 與 Azure 資訊安全中心，偵測到威脅和收到警示有何差異？
+Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的選取安全性監視，並接收來自協力廠商的威脅情報和濫用客訴。當 MSRC 察覺到有非法或未經授權的合作對象存取客戶資料，或有客戶不遵守可接受用途的條款使用 Azure，安全性事件管理員就會通知客戶。通知的方式通常是傳送電子郵件給 Azure 資訊安全中心指定的安全性連絡人，如未指定安全性連絡人，則通知 Azure 訂用帳戶擁有者。
+
+資訊安全中心是一項 Azure 服務，它會持續監視客戶的 Azure 環境，以及套用分析自動偵測廣泛的潛在惡意活動。這些偵測會顯示為資訊安全中心儀表板中的安全性警示。日後，安全性警示的電子郵件通知也會傳送給安全性連絡人。
+
 ### 在 Azure 資訊安全中心如何處理權限？
 「Azure 資訊安全中心」支援角色型存取。若要深入了解 Azure 中的角色型存取控制 (RBAC)，請參閱 [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
@@ -111,4 +116,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 ### 支援 Linux 虛擬機器嗎？
 「Azure 資訊安全中心」提供適用於 Linux 虛擬機器 (僅限 Ubuntu 12.04、14.04、14.10 與 15.04 版本) 的基準監視。未來將會提供其他安全性健康情況監視與資料收集/分析，以及對其他 Linux 散發套件的支援。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

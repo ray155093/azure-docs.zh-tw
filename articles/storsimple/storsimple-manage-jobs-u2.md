@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor=""/>
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/15/2016"
+   ms.date="04/25/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務來檢視和管理 StorSimple 工作 (Update 2)
@@ -21,9 +21,9 @@
 
 ## 概觀
 
-[工作] 頁面提供單一中央入口網站，可針對連接到 StorSimple Manager 服務的裝置，檢視及管理在裝置上啟動的工作。您可以針對多個裝置，檢視已排程、執行中、完成和失敗的工作。結果會以表格式格式呈現。
+[工作] 頁面提供單一中央入口網站，可針對連接到 StorSimple Manager 服務的裝置，檢視及管理在裝置上啟動的工作。您可以針對多個裝置，檢視已排程、執行中、完成、已取消和失敗的工作。結果會以表格式格式呈現。
 
-![[工作] 頁面](./media/storsimple-manage-jobs-u2/HCS_JobsPage.png)
+![[工作] 頁面](./media/storsimple-manage-jobs-u2/jobs.png)
 
 您可以透過篩選欄位，快速找到您所感興趣的工作，例如：
 
@@ -73,7 +73,7 @@
 
 執行下列步驟來取消執行中工作。
 
->[AZURE.NOTE]有些工作無法取消，例如修改磁碟區以變更磁碟區類型或是展開磁碟區。
+>[AZURE.NOTE] 有些工作無法取消，例如修改磁碟區以變更磁碟區類型或是展開磁碟區。
 
 ### 取消工作
 
@@ -93,4 +93,4 @@
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0504_2016-->

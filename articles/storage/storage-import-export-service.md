@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="04/29/2016"
 	ms.author="renash"/>
 
 
@@ -239,13 +239,13 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 
 - 在美國和歐洲地區僅支援 [聯邦快遞](http://www.fedex.com/us/oadr/) (FedEx)。所有包裹都會透過 FedEx Ground 或 FedEx International Economy 寄回。
 
-- 在亞洲地區僅支援 [DHL](http://www.dhl.com/)。所有包裹都會透過 DHL Express Worldwide 寄回。
+- 亞太地區東部、亞太地區東南部、澳大利亞東部、澳大利亞東南部和日本西部，僅支援 [DHL](http://www.dhl.com/)。所有包裹都會透過 DHL Express Worldwide 寄回。
 
 	> [AZURE.IMPORTANT] 您必須將追蹤號碼提供給 Azure 匯入/匯出服務；否則無法處理您的工作。
 
 **退件是否有任何相關的成本？**
 
-- Microsoft 會使您在建立工作時提供的貨運公司客戶編號，將磁碟機從資料中心寄到您的寄回地址。請務必提供資料中心區域所支援之貨運公司的貨運公司客戶編號。您可以建立 [FedEx](http://www.fedex.com/us/oadr/) (適用於美國和歐洲) 或 [DHL](http://www.dhl.com/) (亞洲) 貨運公司客戶 (若沒有的話)。
+- Microsoft 會使您在建立工作時提供的貨運公司客戶編號，將磁碟機從資料中心寄到您的寄回地址。請務必提供資料中心區域所支援之貨運公司的貨運公司客戶編號。您可以建立 [FedEx](http://www.fedex.com/us/oadr/) (適用於美國和歐洲) 或 [DHL](http://www.dhl.com/) (亞洲和澳洲) 貨運公司帳戶 (若沒有的話)。
 
 - 寄回費用由您的運貨公司客戶收取，由運貨公司決定。
 
@@ -254,12 +254,17 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 - 在下列區域，匯入/匯出服務支援從儲存體帳戶中匯入資料和匯出資料：
 	- 美國東部
 	- 美國西部
+	- 美國東部 2
+	- 美國中部
 	- 美國中北部
 	- 美國中南部
 	- 北歐
 	- 西歐
 	- 東亞
 	- 東南亞
+	- 澳洲東部
+	- 澳洲東南部
+	- 日本西部
 
 - 將會提供您的儲存體帳戶所在區域中的寄送地址給您。例如，假設您住在美國，而儲存體帳戶位於西歐資料中心，則會提供歐洲的寄送地址讓您寄出磁碟機。
 
@@ -288,4 +293,4 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 [export-job-03]: ./media/storage-import-export-service/export-job-03.png
 [export-job-bitlocker-keys]: ./media/storage-import-export-service/export-job-bitlocker-keys.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="na" 
-	ms.date="01/08/2016" 
+	ms.date="04/27/2016" 
 	ms.author="tdykstra"/>
 
 # 使用 Visual Studio 部署 WebJob
@@ -39,16 +39,12 @@
 以 WebJob 的方式自我部署專案，或將專案連結到 Web 專案，因此每當您要部署 Web 專案時，專案便會自動部署。若要連結專案，Visual Studio 會在 Web 專案的 [webjobs-list.json](#webjobslist) 檔案中加上具有 WebJobs 功能的專案名稱。
 
 ![Diagram showing WebJob project linking to web project](./media/websites-dotnet-deploy-webjobs/link.png)
- 
-
 
 ## 必要條件
 
-安裝 Azure SDK 2.4 版或更新版本後，您便可在 Visual Studio 2013 中使用 WebJobs 部署功能：
+安裝 Azure SDK for .NET 時，您便可在 Visual Studio 2015 中使用 WebJobs 部署功能：
 
-* [Azure SDK for Visual Studio 2013](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409)。
-
-[Visual Studio 2013 Update 3](http://go.microsoft.com/fwlink/?linkid=397827&clcid=0x409) 及更新版本的更新也會包含 WebJobs 部署功能。
+* [Azure SDK for .NET (Visual Studio 2015)](http://go.microsoft.com/fwlink/?linkid=518003)。
 
 ## <a id="convert"></a>啟用現有主控台應用程式專案的 WebJobs 部署
 
@@ -100,7 +96,7 @@
 
 	建立專案，並設定在針對位於相同解決方案中的 Web 專案進行部署時，會自動以 WebJob 的方式部署此專案。當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
 
-> [AZURE.NOTE]WebJobs 新專案範本自動安裝 NuGet 套件，並包括適用於 [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs) 的 *Program.cs* 程式碼。如果您不想要使用 WebJobs SDK，或想要使用已排程而非連續的 WebJob，請移除或變更 *Program.cs* 中的 `host.RunAndBlock` 陳述式。
+> [AZURE.NOTE] WebJobs 新專案範本自動安裝 NuGet 套件，並包括適用於 [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs) 的 *Program.cs* 程式碼。如果您不想要使用 WebJobs SDK，或想要使用已排程而非連續的 WebJob，請移除或變更 *Program.cs* 中的 `host.RunAndBlock` 陳述式。
 
 ### <a id="createnolink"></a> 在獨立的 WebJob 中使用 WebJobs 新專案範本
   
@@ -188,13 +184,8 @@
 	
 若是獨立的 WebJob，則 Web 專案所使用的相同 [發行 Web] 精靈隨即出現，但其中幾個設定可以變更。
 
->[AZURE.NOTE]如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
-
 ## <a id="nextsteps"></a>後續步驟
 
-本文說明如何使用 Visual Studio 部署 WebJobs。如需如何在 Visual Studio 中使用連續傳遞程序部署 Azure WebJobs 的相關資訊，請參閱〈[Azure WebJobs - 建議資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)〉。
+本文說明如何使用 Visual Studio 部署 WebJobs。如需如何部署 Azure WebJobs 的詳細資訊，請參閱 [Azure WebJobs - 建議的資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0504_2016-->

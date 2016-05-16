@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="02/03/2016"
+     ms.date="04/29/2016"
      ms.author="dobett"/>
 
 # 教學課程：如何處理 IoT 中樞裝置到雲端訊息
@@ -24,13 +24,13 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 本教學課程是以 [IoT 中樞入門]中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
 
-- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。在實作「冷路徑」分析時，這種情況是很常見的，因為您會將 Blob 中作為輸入的資料儲存到 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊這類由工具所驅動的分析程序中。
+- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。極常見的情況是「冷路徑」分析，因為您會將 Blob 中作為輸入的遙測資料儲存到 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊這類由工具所驅動的分析程序中。
 
-- 「互動式」裝置到雲端訊息的可靠處理。當裝置到雲端訊息因為應用程式後端中的一組動作而立即觸發 (相較於送入分析引擎的「資料點」訊息) 時，此訊息會是互動式的。例如，相較於遙測訊息 (例如屬於資料點裝置到雲端訊息的溫度範例)，由必須觸發在 CRM 系統中插入票證的裝置所發出的警示，是互動式的裝置到雲端訊息。
+- 「互動式」裝置到雲端訊息的可靠處理。當裝置到雲端訊息因為應用程式後端中的一組動作而立即觸發 (相較於送入分析引擎的「資料點」訊息) 時，此訊息會是互動式的。例如，由必須觸發在 CRM 系統中插入票證的裝置所發出的警示是互動式訊息，要儲存供稍後分析的溫度遙測則是資料點訊息。
 
 由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程使用 [EventProcessorHost] 執行個體，它會：
 
-* 在 Azure Blob 中可靠地儲存「資料點」訊息。
+* 在 Azure Blob 儲存體中可靠地儲存「資料點」訊息。
 * 將「互動式」裝置到雲端訊息轉寄到[服務匯流排佇列]，以立即處理。
 
 服務匯流排是用來確保能可靠地處理互動式訊息的絕佳方式，因為它提供了各訊息的檢查點，以及以時間範圍為基礎的重複資料刪除。
@@ -39,11 +39,11 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 在本教學課程結尾處，您將會執行三個 Windows 主控台應用程式：
 
-* **SimulatedDevice**，這是 [IoT 中樞入門]教學課程中建立之應用程式的已修改版本，它會每秒傳送資料點裝置到雲端訊息，每 10 秒傳送互動式裝置到雲端訊息。此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
-* **ProcessDeviceToCloudMessages**，它會使用 [EventProcessorHost] 類別從事件中樞相容端點擷取訊息，然後將資料點訊息可靠地儲存在 Azure Blob 中，並將互動式訊息轉送至服務匯流排佇列。
-* **ProcessD2cInteractiveMessages**，它可將互動式訊息從服務匯流排佇列中清除。
+* **SimulatedDevice**，這是 [IoT 中樞入門]教學課程中建立之應用程式的已修改版本、每秒可傳送資料點裝置到雲端訊息，而且每 10 秒可傳送互動式裝置到雲端訊息。此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
+* **ProcessDeviceToCloudMessages** 使用 [EventProcessorHost] 類別從事件中樞相容端點擷取訊息，然後將資料點訊息可靠地儲存在 Azure Blob 儲存體中，並將互動式訊息轉送至服務匯流排佇列。
+* **ProcessD2CInteractiveMessages** 可將互動式訊息從服務匯流排佇列中清除。
 
-> [AZURE.NOTE] IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。如需如何以實體裝置取代本教學課程中模擬的裝置，以及通常如何將裝置連接到 Azure IoT 中樞的逐步指示，請參閱 [Azure IoT 開發人員中心]。
+> [AZURE.NOTE] IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。如需如何以實體裝置取代本教學課程中模擬的裝置，以及通常如何將裝置連接到 IoT 中樞的逐步指示，請參閱 [Azure IoT 開發人員中心]。
 
 本教學課程可直接套用至事件中樞相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。如需詳細資訊，請參閱 [Azure IoT 中樞開發人員指南 - 裝置到雲端]。
 
@@ -51,7 +51,7 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 + Microsoft Visual Studio 2015。
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fiot%2Ftutorials%2Fprocess-d2c%2F target="\_blank")。
++ 使用中的 Azure 帳戶。<br/>如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
 
 您應具備 [Azure 儲存體]和 [Azure 服務匯流排]的基本知識。
 
@@ -65,9 +65,9 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 現在您已經準備好執行應用程式。
 
-1.	在 Visual Studio 的 [方案總管] 中，以滑鼠右鍵按一下您的方案，然後選取 [設定啟始專案]。選取 [多個啟始專案]，然後針對 **ProcessDeviceToCloudMessages**、**SimulatedDevice** 和 **ProcessD2cInteractiveMessages** 專案選取 [啟動] 動作。
+1.	在 Visual Studio 的方案總管中，以滑鼠右鍵按一下您的方案，然後選取 [設定啟始專案]。選取 [多個啟始專案]，然後針對 **ProcessDeviceToCloudMessages**、**SimulatedDevice** 和 **ProcessD2CInteractiveMessages** 專案選取 [啟動] 動作。
 
-2.	按 **F5** 以啟動三個主控台應用程式。**ProcessD2CInteractiveMessages** 應用程式應處理從 **SimulatedDevice** 應用程式傳送的每則互動式訊息。
+2.	按 **F5** 啟動三個主控台應用程式。**ProcessD2CInteractiveMessages** 應用程式應處理從 **SimulatedDevice** 應用程式傳送的每則互動式訊息。
 
   ![][50]
 
@@ -121,4 +121,4 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-hubs]: https://azure.microsoft.com/documentation/services/event-hubs/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

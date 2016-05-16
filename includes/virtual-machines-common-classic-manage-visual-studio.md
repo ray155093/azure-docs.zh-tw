@@ -34,7 +34,7 @@
 
     按一下虛擬機器映像名稱，即可查看頁面右側的映像相關資訊。
 
-        >[AZURE.NOTE] You can't add virtual machine images to the **Public Images** or **MSDN Images** lists because they are read-only. All virtual machines that you create are added to the **Private Images** list.
+    >[AZURE.NOTE] 您無法將虛擬機器映像新增至 [公用映像] 或 [MSDN 映像] 清單，因為這些清單是唯讀的。您建立的所有虛擬機器會新增至 [私人映像] 清單。
 
     如果您是具有 Visual Studio 層級訂用帳戶的 MSDN 訂閱者，您可以建立一個預先建置的 Azure 虛擬機器，其中包含 Visual Studio 以及其他數個映像。如需詳細資訊，請參閱[使用映像在 Visual Studio 中建立虛擬機器、MSDN 訂閱者的 Visual Studio 2013 資源庫映像](http://visualstudio2013msdngalleryimage.azurewebsites.net)和 [MSDN 訂閱](https://www.visualstudio.com/products/msdn-subscriptions-vs)。|
 
@@ -42,7 +42,7 @@
 
     您將透過遠端桌面使用新名稱和密碼來登入電腦，所以最好能記新名稱和密碼，以免忘記。在 Visual Studio 中建立 Azure 虛擬機器之後，您可以在 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=253103)中變更其大小和其他設定。
 
-        >[AZURE.NOTE] If you choose larger sizes for the virtual machine, extra charges may apply. See [Virtual Machines Pricing Details](https://azure.microsoft.com/pricing/details/virtual-machines/) for more information.
+    >[AZURE.NOTE] 如果您選擇較大的虛擬機器，可能會酌收額外的費用。如需詳細資訊，請參閱[虛擬機器定價詳細資料](https://azure.microsoft.com/pricing/details/virtual-machines/)。
 
 1. 在 Visual Studio 中建立的虛擬機器需要雲端服務。在 [雲端服務設定] 頁面上，選取虛擬機器的雲端服務，如果您還沒有雲端服務或想使用新的雲端服務，請按一下下拉式清單中的 [<建立新的...>]。儲存體帳戶也是必要的，所以請在 [儲存體帳戶] 下拉式清單方塊中選擇儲存體帳戶 (或建立新的儲存體帳戶)。如需詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](./storage/storage-introduction/)。
 
@@ -158,4 +158,3 @@
 
 若要了解建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-quick-create-cli.md)和[在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md)。
 
-<!---HONumber=AcomDC_0413_2016-->

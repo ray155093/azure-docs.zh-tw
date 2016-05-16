@@ -20,30 +20,33 @@
       "type":"string"
     }
 
-### siteLocation
-
-用來建立 Web 應用程式和主控方案的位置。它必須是其中一個支援 Web 應用程式的 Azure 位置。
-
-    "siteLocation":{
-      "type":"string"
-    }
-
 ### sku
 
 主控方案的定價層。
 
-    "sku":{
-      "type":"string",
-      "allowedValues":[
-        "Free",
-        "Shared",
-        "Basic",
-        "Standard"
+    "sku": {
+      "type": "string",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
       ],
-      "defaultValue":"Free"
+      "defaultValue": "S1",
+      "metadata": {
+        "description": "The pricing tier for the hosting plan."
+      }
     }
 
-範本會定義此參數允許使用的值 (免費、共用、基本或標準)，並指派未指定任何值時的預設值 (免費)。
+此範本定義這個參數允許的值，並指派未指定任何值時的預設值 (S1)。
 
 ### workerSize
 
@@ -61,4 +64,3 @@
     
 範本會定義此參數允許使用的值 (0、1 或 2)，並指派未指定任何值時的預設值 (0)。這些值分別對應到小型、中型和大型。
 
-<!---HONumber=Oct15_HO3-->

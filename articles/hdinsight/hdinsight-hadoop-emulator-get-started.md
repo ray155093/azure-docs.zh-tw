@@ -41,7 +41,9 @@ HDInsight Emulator 提供本機部署環境，與 Hadoop 沙箱極為相似。�
 	- Windows 8
 	- Windows Server 2012
 
-- **Azure PowerShell** (英文)。請參閱[安裝和使用 Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/)。
+- **Azure PowerShell**
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ##<a name="install"></a>安裝 HDInsight Emulator
@@ -492,7 +494,7 @@ HDInsight Emulator 也支援部分 Azure PowerShell Cmdlet。這些 Cmdlet 包�
 	$hdinsightJob = <JobDefinition>
 	Start-AzureHDInsightJob -Cluster http://localhost:50111 -Credential $creds -JobDefinition $hdinsightJob
 
-您將在呼叫 Get-Credential 時看見提示。您必須使用 **hadoop** 做為使用者名稱。密碼可以是任何字串。叢集名稱一律是 ****http://localhost:50111**。
+您將在呼叫 Get-Credential 時看見提示。您必須使用 **hadoop** 做為使用者名稱。密碼可以是任何字串。叢集名稱一律是 **http://localhost:50111**。
 
 如需提交 Hadoop 工作的詳細資訊，請參閱[以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)。如需適用於 HDInsight 之 Azure PowerShell Cmdlet 的詳細資訊，請參閱 [HDInsight Cmdlet 參考文件][hdinsight-powershell-reference]。
 
@@ -505,8 +507,7 @@ HDInsight Emulator 也支援部分 Azure PowerShell Cmdlet。這些 Cmdlet 包�
 在本 MapReduce 教學課程中，您安裝了 HDInsight Emulator (Hadoop 沙箱) 並執行一些 Hadoop 工作。若要深入了解，請參閱下列文章：
 
 - [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
-- [開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)
-- [開發 HDInsight 的 C# Hadoop 串流 MapReduce 程式](hdinsight-hadoop-develop-deploy-streaming-jobs.md)
+- [〈開發 HDInsight 的 Java MapReduce 程式〉](hdinsight-develop-deploy-java-mapreduce.md)
 - [討論 HDInsight 的 MSDN 論壇](http://social.msdn.microsoft.com/Forums/hdinsight)
 
 
@@ -524,7 +525,6 @@ HDInsight Emulator 也支援部分 Azure PowerShell Cmdlet。這些 Cmdlet 包�
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md
 [hdinsight-powershell-reference]: https://msdn.microsoft.com/library/dn858087.aspx
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
-[hdinsight-develop-deploy-streaming]: hdinsight-hadoop-develop-deploy-streaming-jobs.md
 [hdinsight-versions]: hdinsight-component-versioning.md
 
 [Powershell-install-configure]: powershell-install-configure.md
@@ -534,4 +534,4 @@ HDInsight Emulator 也支援部分 Azure PowerShell Cmdlet。這些 Cmdlet 包�
 [image-hdi-emulator-services]: ./media/hdinsight-hadoop-emulator-get-started/HDI.Emulator.Services.png
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

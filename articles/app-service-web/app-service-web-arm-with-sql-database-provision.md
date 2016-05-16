@@ -3,9 +3,9 @@
 	description="使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。" 
 	services="app-service" 
 	documentationCenter="" 
-	authors="tfitzmac" 
+	authors="cephalin" 
 	manager="wpickett" 
-	editor="jimbe"/>
+	editor=""/>
 
 <tags 
 	ms.service="app-service" 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
-	ms.author="tomfitz"/>
+	ms.date="04/27/2016" 
+	ms.author="cephalin"/>
 
 # 佈建 Web 應用程式與 SQL Database
 
@@ -47,22 +47,6 @@
 
 [AZURE.INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
-### serverName
-
-要建立之新資料庫伺服器的名稱。
-
-    "serverName": {
-      "type": "string"
-    }
-
-### serverLocation
-
-資料庫伺服器的位置。為了達到最佳效能，這個位置應該與 Web 應用程式的位置相同。
-
-    "serverLocation": {
-      "type": "string"
-    }
-
 ### administratorLogin
 
 資料庫伺服器系統管理員要使用的帳戶名稱。
@@ -84,7 +68,8 @@
 要建立之新資料庫的名稱。
 
     "databaseName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "sampledb"
     }
 
 ### collation
@@ -102,9 +87,14 @@
 
     "edition": {
       "type": "string",
-      "defaultValue": "Standard",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
       "metadata": {
-        "description": "The type of database to create. The available options are: Web, Business, Basic, Standard, and Premium."
+        "description": "The type of database to create."
       }
     }
 
@@ -123,11 +113,30 @@
 
     "requestedServiceObjectiveName": {
       "type": "string",
-      "defaultValue": "S0",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
       "metadata": {
-        "description": "The name corresponding to the performance level for edition. The available options are: Shared, Basic, S0, S1, S2, S3, P1, P2, and P3."
+        "description": "Describes the performance level for Edition"
       }
     }
+
+## 名稱的變數
+
+這個範本包括建構範本所用名稱的變數。變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。
+
+    "variables": {
+        "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
+        "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
+        "sqlserverName": "[concat('sqlserver', uniqueString(resourceGroup().id))]"
+    },
 
 
 ## 要部署的資源
@@ -137,23 +146,28 @@
 建立新的 SQL Server 和資料庫。伺服器名稱指定於 **serverName** 參數，位置指定於 **serverLocation** 參數。在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。
 
     {
-      "name": "[parameters('serverName')]",
+      "name": "[variables('sqlserverName')]",
       "type": "Microsoft.Sql/servers",
-      "location": "[parameters('serverLocation')]",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "SqlServer"
+      },
       "apiVersion": "2014-04-01-preview",
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
-        "version": "12.0"
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]"
       },
       "resources": [
         {
           "name": "[parameters('databaseName')]",
           "type": "databases",
-          "location": "[parameters('serverLocation')]",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+            "[variables('sqlserverName')]"
           ],
           "properties": {
             "edition": "[parameters('edition')]",
@@ -163,21 +177,20 @@
           }
         },
         {
+          "type": "firewallrules",
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', parameters('serverName'))]"
+            "[variables('sqlserverName')]"
           ],
-          "location": "[parameters('serverLocation')]",
+          "location": "[resourceGroup().location]",
           "name": "AllowAllWindowsAzureIps",
           "properties": {
             "endIpAddress": "0.0.0.0",
             "startIpAddress": "0.0.0.0"
-          },
-          "type": "firewallrules"
+          }
         }
       ]
     },
-
 
 [AZURE.INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
@@ -186,18 +199,19 @@
 
     {
       "apiVersion": "2015-08-01",
-      "name": "[parameters('siteName')]",
+      "name": "[variables('webSiteName')]",
       "type": "Microsoft.Web/sites",
-      "location": "[parameters('siteLocation')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[variables('hostingPlanName')]"
       ],
       "tags": {
-        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "empty"
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "empty",
+        "displayName": "Website"
       },
       "properties": {
-        "name": "[parameters('siteName')]",
-        "serverFarmId": "[parameters('hostingPlanName')]"
+        "name": "[variables('webSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
       },
       "resources": [
         {
@@ -205,30 +219,32 @@
           "type": "config",
           "name": "connectionstrings",
           "dependsOn": [
-            "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+            "[variables('webSiteName')]"
           ],
           "properties": {
             "DefaultConnection": {
-              "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('databaseName'), ';User Id=', parameters('administratorLogin'), '@', parameters('serverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
-              "type": "SQLAzure"
+              "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('databaseName'), ';User Id=', parameters('administratorLogin'), '@', variables('sqlserverName'), ';Password=', parameters('administratorLoginPassword'), ';')]",
+              "type": "SQLServer"
             }
           }
         }
       ]
     },
 
+
 ### 自動調整
 
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
+      "name": "[concat(variables('hostingPlanName'), '-', resourceGroup().name)]",
       "type": "Microsoft.Insights/autoscalesettings",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "Resource",
+        "displayName": "AutoScaleSettings"
       },
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[variables('hostingPlanName')]"
       ],
       "properties": {
         "profiles": [
@@ -243,13 +259,13 @@
               {
                 "metricTrigger": {
                   "metricName": "CpuPercentage",
-                  "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                  "metricResourceUri": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                   "timeGrain": "PT1M",
                   "statistic": "Average",
                   "timeWindow": "PT10M",
                   "timeAggregation": "Average",
                   "operator": "GreaterThan",
-                  "threshold": 80
+                  "threshold": 80.0
                 },
                 "scaleAction": {
                   "direction": "Increase",
@@ -261,13 +277,13 @@
               {
                 "metricTrigger": {
                   "metricName": "CpuPercentage",
-                  "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                  "metricResourceUri": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                   "timeGrain": "PT1M",
                   "statistic": "Average",
                   "timeWindow": "PT1H",
                   "timeAggregation": "Average",
                   "operator": "LessThan",
-                  "threshold": 60
+                  "threshold": 60.0
                 },
                 "scaleAction": {
                   "direction": "Decrease",
@@ -280,38 +296,39 @@
           }
         ],
         "enabled": false,
-        "name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
-        "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "name": "[concat(variables('hostingPlanName'), '-', resourceGroup().name)]",
+        "targetResourceUri": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
       }
     },
 
+
 ### 狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則 
 
-    //Alert-Rules --> 5xx
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('ServerErrors ', parameters('siteName'))]",
+      "name": "[concat('ServerErrors ', variables('webSiteName'))]",
       "type": "Microsoft.Insights/alertrules",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+        "[variables('webSiteName')]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/sites', variables('webSiteName')))]": "Resource",
+        "displayName": "ServerErrorsAlertRule"
       },
       "properties": {
-        "name": "[concat('ServerErrors ', parameters('siteName'))]",
-        "description": "[concat(parameters('siteName'), ' has some server errors, status code 5xx.')]",
+        "name": "[concat('ServerErrors ', variables('webSiteName'))]",
+        "description": "[concat(variables('webSiteName'), ' has some server errors, status code 5xx.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]",
+            "resourceUri": "[resourceId('Microsoft.Web/sites', variables('webSiteName'))]",
             "metricName": "Http5xx"
           },
           "operator": "GreaterThan",
-          "threshold": 0,
+          "threshold": 0.0,
           "windowSize": "PT5M"
         },
         "action": {
@@ -321,27 +338,27 @@
         }
       }
     },
-    //Alert-Rules --> 403
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('ForbiddenRequests ', parameters('siteName'))]",
+      "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
       "type": "Microsoft.Insights/alertrules",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+        "[variables('webSiteName')]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/sites', variables('webSiteName')))]": "Resource",
+        "displayName": "ForbiddenRequestsAlertRule"
       },
       "properties": {
-        "name": "[concat('ForbiddenRequests ', parameters('siteName'))]",
-        "description": "[concat(parameters('siteName'), ' has some requests that are forbidden, status code 403.')]",
+        "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
+        "description": "[concat(variables('webSiteName'), ' has some requests that are forbidden, status code 403.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]",
+            "resourceUri": "[resourceId('Microsoft.Web/sites', variables('webSiteName'))]",
             "metricName": "Http403"
           },
           "operator": "GreaterThan",
@@ -355,27 +372,27 @@
         }
       }
     },
-    //Alert-Rules --> High CPU
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('CPUHigh ', parameters('hostingPlanName'))]",
+      "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
       "type": "Microsoft.Insights/alertrules",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[variables('hostingPlanName')]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "Resource",
+        "displayName": "CPUHighAlertRule"
       },
       "properties": {
-        "name": "[concat('CPUHigh ', parameters('hostingPlanName'))]",
-        "description": "[concat('The average CPU is high across all the instances of ', parameters('hostingPlanName'))]",
+        "name": "[concat('CPUHigh ', variables('hostingPlanName'))]",
+        "description": "[concat('The average CPU is high across all the instances of ', variables('hostingPlanName'))]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+            "resourceUri": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
             "metricName": "CpuPercentage"
           },
           "operator": "GreaterThan",
@@ -389,31 +406,31 @@
         }
       }
     },
-    //Alert-Rules --> HTTP Queue Length
     {
       "apiVersion": "2014-04-01",
-      "name": "[concat('LongHttpQueue ', parameters('hostingPlanName'))]",
+      "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
       "type": "Microsoft.Insights/alertrules",
-      "location": "East US",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[variables('hostingPlanName')]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName')))]": "Resource",
+        "displayName": "AutoScaleSettings"
       },
       "properties": {
-        "name": "[concat('LongHttpQueue ', parameters('hostingPlanName'))]",
-        "description": "[concat('The HTTP queue for the instances of ', parameters('hostingPlanName'), ' has a large number of pending requests.')]",
+        "name": "[concat('LongHttpQueue ', variables('hostingPlanName'))]",
+        "description": "[concat('The HTTP queue for the instances of ', variables('hostingPlanName'), ' has a large number of pending requests.')]",
         "isEnabled": false,
         "condition": {
           "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
           "dataSource": {
             "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+            "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]",
             "metricName": "HttpQueueLength"
           },
           "operator": "GreaterThan",
-          "threshold": 100,
+          "threshold": 100.0,
           "windowSize": "PT5M"
         },
         "action": {
@@ -423,22 +440,23 @@
         }
       }
     },
-
+    
 ### 應用程式情資
 
     {
       "apiVersion": "2014-04-01",
-      "name": "[parameters('siteName')]",
+      "name": "[concat('AppInsights', variables('webSiteName'))]",
       "type": "Microsoft.Insights/components",
       "location": "Central US",
       "dependsOn": [
-        "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+        "[variables('webSiteName')]"
       ],
       "tags": {
-        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
+        "[concat('hidden-link:', resourceId('Microsoft.Web/sites', variables('webSiteName')))]": "Resource",
+        "displayName": "AppInsightsComponent"
       },
       "properties": {
-        "ApplicationId": "[parameters('siteName')]"
+        "ApplicationId": "[variables('webSiteName')]"
       }
     }
 
@@ -457,4 +475,4 @@
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

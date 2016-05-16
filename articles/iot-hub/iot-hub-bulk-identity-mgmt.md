@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="02/03/2016"
+ ms.date="04/29/2016"
  ms.author="dobett"/>
 
 # 大量管理 IoT 中樞的裝置身分識別
@@ -77,7 +77,7 @@ while(true)
 
 *  指出是否要在匯出資料中排除驗證金鑰的*布林值*。若為 **false**，驗證金鑰會包含在匯出輸出中；否則會將金鑰匯出為 **null**。
 
-下列 C# 程式碼片段示範如何啟動匯出作業，然後執行輪詢以完成作業：
+下列 C# 程式碼片段示範如何啟動在匯出資料中包含裝置驗證金鑰的匯出作業，然後執行輪詢以完成作業：
 
 ```
 // Call an export job on the IoT Hub to retrieve all devices
@@ -131,21 +131,21 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 
 ## 匯入裝置
 
-**RegistryManager** 類別中的 **ImportDevicesAsync** 方法可讓您在 IoT 中樞裝置登錄中執行大量匯入和同步處理操作。和 **ExportDevicesAsync** 方法相同，**ImportDevicesAsync** 方法會使用作業架構。
+**RegistryManager** 類別中的 **ImportDevicesAsync** 方法可讓您在 IoT 中樞裝置登錄中執行大量匯入和同步處理操作。與 **ExportDevicesAsync** 方法相同，**ImportDevicesAsync** 方法會使用**作業**架構。
 
 請謹慎使用 **ImportDevicesAsync** 方法，因為除了會在裝置身分識別登錄中佈建新裝置外，此方法也會更新和刪除現有裝置。
 
 > [AZURE.WARNING]  匯入操作是無法復原的。請一律先使用 **ExportDevicesAsync** 方法將現有資料備份到另一個 Blob 容器，再對裝置身分識別登錄進行大量變更。
 
-**ImportDevicesAsync** 方法需要兩個參數：
+**ImportDevicesAsync** 方法會採用兩個參數：
 
-*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以做為作業之*輸入*的*字串*。此 URI 必須包含可授與容器讀取權限的 SAS 權杖。此容器必須包含名稱為 **devices.txt** 的 Blob，而此 Blob 中包含要匯入到裝置身分識別登錄的序列化裝置資料。匯入資料必須包含 **ExportImportDevice** 作業所建立之相同 JSON 格式的裝置資訊。SAS 權杖必須包含這些權限：
+*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之*輸入* 的*字串*。此 URI 必須包含可授與容器讀取權限的 SAS 權杖。此容器必須包含名稱為 **devices.txt** 的 Blob，而此 Blob 包含要匯入到裝置身分識別登錄的序列化裝置資料。匯入資料必須包含 **ExportImportDevice** 作業建立 **devices.txt** Blob 時所使用之相同 JSON 格式的裝置資訊。SAS 權杖必須包含這些權限：
 
     ```
     SharedAccessBlobPermissions.Read
     ```
 
-*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以做為作業之*輸出*的*字串*。作業會在此容器中建立區塊 Blob，以儲存來自已完成之匯入**作業**的任何錯誤資訊。SAS 權杖必須包含這些權限：
+*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之*輸出*的*字串*。作業會在此容器中建立區塊 Blob，以儲存來自已完成之匯入**作業**的任何錯誤資訊。SAS 權杖必須包含這些權限：
     
     ```
     SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
@@ -161,7 +161,7 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 
 ## 匯入行為
 
-您可以使用 **ImportDevicesAsync** 方法，在您的裝置身分識別登錄中執行下列大量操作：
+您可以使用 **ImportDevicesAsync** 方法，在您的裝置身分識別登錄中執行下列大量作業：
 
 -   大量註冊新裝置
 -   大量刪除現有裝置
@@ -169,7 +169,7 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 -   大量指派新的裝置驗證金鑰
 -   大量自動重新產生裝置驗證金鑰
 
-您可以在單一 **ImportDevicesAsync** 呼叫中執行上述操作的任意組合。比方說，您可以同時間註冊新裝置並刪除或更新現有裝置。搭配 **ExportDevicesAsync** 方法一起使用時，您可以將某個 IoT 中樞內的所有裝置移轉到另一個 IoT 中樞。
+您可以在單一 **ImportDevicesAsync** 呼叫中執行上述作業的任意組合。比方說，您可以同時間註冊新裝置並刪除或更新現有裝置。搭配 **ExportDevicesAsync** 方法一起使用時，您可以將某個 IoT 中樞內的所有裝置移轉到另一個 IoT 中樞。
 
 您可以在每個裝置的匯入序列化資料中使用選擇性的 **importMode** 屬性控制每個裝置的匯入程序。**ImportMode** 屬性具有下列選項：
 
@@ -178,12 +178,12 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 | **createOrUpdate** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。 |
 | **create** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則會在記錄檔中寫入錯誤。 |
 | **update** | 如果已存在具有指定**識別碼**的裝置，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
-| **updateIfMatchETag** | 如果已存在具有指定**識別碼**的裝置，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。<br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
+| **pdateIfMatchETagu** | 如果已存在具有指定**識別碼**的裝置，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。<br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
 | **createOrUpdateIfMatchETag** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。<br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
 | **delete** | 如果已存在具有指定**識別碼**的裝置，則會遭到刪除，而不管 **ETag** 值為何。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
 | **deleteIfMatchETag** | 如果已存在具有指定**識別碼**的裝置，則只會在 **ETag** 相符時予以刪除。如果裝置不存在，則會在記錄檔中寫入錯誤。<br/>如果 ETag 不相符，則會在記錄檔中寫入錯誤。 |
 
-> [AZURE.NOTE] 如果序列化資料未明確定義裝置的 **importMode** 旗標，則會在匯入操作期間預設為 **createOrUpdate**。
+> [AZURE.NOTE] 如果序列化資料未明確定義裝置的 **importMode** 旗標，則會在匯入作業期間預設為 **createOrUpdate**。
 
 ## 匯入裝置範例 - 大量裝置佈建 
 
@@ -338,4 +338,4 @@ static string GetContainerSasUri(CloudBlobContainer container)
 - [IoT 中樞用量度量](iot-hub-metrics.md)
 - [IoT 中樞作業監視](iot-hub-operations-monitoring.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

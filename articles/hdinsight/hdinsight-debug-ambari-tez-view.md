@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="02/16/2016"
+ms.date="05/03/2016"
 ms.author="larryfr"/>
 
 # 在 HDInsight 上使用 Ambari 檢視來為 Tez 作業偵錯
@@ -141,4 +141,4 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 
 如需如何搭配 HDInsight 來使用 Ambari 的詳細資訊，請參閱[使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

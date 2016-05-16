@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="02/14/2016"
+    ms.date="05/02/2016"
     ms.author="micurd"/>
 
 # 使用 Azure CLI 搭配 Azure 儲存體
@@ -221,4 +221,4 @@ Azure 檔案共用是 Azure 中的 SMB 檔案共用。所有目錄和檔案都�
 
 [Image1]: ./media/storage-azure-cli/azure_command.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -1,19 +1,19 @@
 <properties 
    pageTitle="如何在 Azure 將傳統 VNet 連接到 ARM Vnet - 解決方案指南"
    description="了解如何在傳統 VNet 和新的 VNet 之間建立 VPN 連線"
-   services="virtual-network"
+   services="vpn-gateway"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="cherylmc"
    manager="carmonm"
    editor="tysonn" />
 <tags 
-   ms.service="virtual-network"
+   ms.service="vpn-gateway"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="cherylmc" />
 
 # 將傳統 VNet 連接到新的 VNet
 
@@ -350,4 +350,4 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 - 深入了解 [ARM 的網路資源提供者 (NRP)](resource-groups-networking.md)。
 - 檢視有關如何[在傳統 VNet 和 ARM VNet 之間建立 S2S VPN 連線](virtual-networks-arm-asm-s2s-howto.md)的一般指導方針。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

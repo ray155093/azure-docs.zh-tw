@@ -3,7 +3,7 @@ pageTitle="使用 PowerShell 啟用 Azure 雲端服務中角色的遠端桌面�
 description="如何使用 PowerShell 設定的 Azure 雲端服務應用程式以允許遠端桌面連線" 
 services="cloud-services" 
 documentationCenter="" 
-authors="sbtron" 
+authors="thraka" 
 manager="timlt" 
 editor=""/>
 <tags 
@@ -13,12 +13,12 @@ ms.tgt_pltfrm="na"
 ms.devlang="na" 
 ms.topic="article" 
 ms.date="01/19/2016" 
-ms.author="saurabh"/>
+ms.author="adegeo"/>
 
 # 使用 PowerShell 啟用 Azure 雲端服務中角色的遠端桌面連線
 
 >[AZURE.SELECTOR]
-- [Azure classic portal](cloud-services-role-enable-remote-desktop.md)
+- [Azure 傳統入口網站](cloud-services-role-enable-remote-desktop.md)
 - [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
 - [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)
 
@@ -102,4 +102,4 @@ Remove-AzureServiceRemoteDesktopExtension -ServiceName $servicename -UninstallCo
 
 [如何設定雲端服務](cloud-services-how-to-configure.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0504_2016-->

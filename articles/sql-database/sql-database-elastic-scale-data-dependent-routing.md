@@ -3,7 +3,7 @@
 	description="如何在 .NET 應用程式中將 ShardMapManager 類別用於資料相依路由 (Azure SQL Database 的彈性資料庫的一項功能)" 
 	services="sql-database" 
 	documentationCenter="" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="torsteng" 
 	editor=""/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/04/2016" 
+	ms.date="05/03/2016" 
 	ms.author="torsteng;sidneyh"/>
 
 #資料相依路由
@@ -85,7 +85,7 @@
 
 **OpenConnectionForKey** 方法會傳回新的已開啟連接至正確的資料庫。以這種方式使用連接仍可充分利用 ADO.Net 連接共用。只要一次一個分區就可滿足交易和要求，則已經使用 ADO.Net 的應用程式中只需要如此修改。
 
-如果您的應用程式將非同步程式設計與 ADO.Net 搭配使用，則也可以使用 **[OpenConnectionForKeyAsync 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)**。其行為相當於 ADO.Net ****[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688(v=vs.110).aspx)** 方法的資料相依路由。
+如果您的應用程式將非同步程式設計與 ADO.Net 搭配使用，則也可以使用 **[OpenConnectionForKeyAsync 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)**。其行為相當於 ADO.Net **[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688(v=vs.110).aspx)** 方法的資料相依路由。
 
 ## 與暫時性錯誤處理整合 
 
@@ -133,4 +133,4 @@ int newPersonId = 4321;
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

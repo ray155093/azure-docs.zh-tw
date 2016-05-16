@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/05/2016"
+   ms.date="04/27/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定多重路徑 I/O
@@ -23,7 +23,7 @@ Microsoft 為 Windows Server 中的多重路徑 I/O (MPIO) 功能建立支援，
 
 MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。您應該透過伺服器管理員將它安裝為功能。本主題說明您應在執行 Windows Server 2012 R2 並與 StorSimple 實體裝置連接的主機上，據以安裝和使用 MPIO 功能的步驟。
 
->[AZURE.NOTE] **StorSimple 虛擬裝置不支援 MPIO。**
+>[AZURE.NOTE] **此程序僅適用於 StorSimple 8000 系列。StorSimple 虛擬裝置目前不支援 MPIO。**
 
 您必須依照下列步驟在 StorSimple 裝置上設定 MPIO：
 
@@ -173,4 +173,4 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。您應該透過
 深入了解[使用 StorSimple Manager 服務修改 StorSimple 裝置設定](storsimple-modify-device-config.md)。
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

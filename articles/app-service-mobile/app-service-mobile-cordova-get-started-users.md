@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter="javascript"
 	authors="adrianhall"
-	manager="ggailey777"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-html"
 	ms.devlang="javascript"
 	ms.topic="article"
-	ms.date="02/11/2016"
-	ms.author="adrianha"/>
+	ms.date="05/02/2016"
+	ms.author="glenga"/>
 
 # 新增驗證至您的 Apache Cordova 應用程式
 
@@ -32,9 +32,7 @@
 
 [AZURE.INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-+ 當您完成[開始使用行動應用程式]教學課程時，請在 Visual Studio 中開啟您建立的專案，然後在 **Google Android 模擬器**中執行您的應用程式，並驗證「未預期的連線錯誤」會在啟動應用程式之後顯示。
-
-    通常因為應用程式嘗試以未經驗證的使用者身分存取後端，而發生這種情況。後端會將使用者重新導向至使用 OAuth 的驗證頁面。不過，應用程式並不信任 OAuth 端點。
+現在，您可以驗證是否已停用後端的匿名存取。當您完成[開始使用行動應用程式]教學課程時，請在 Visual Studio 中開啟您建立的專案，然後在 **Google Android 模擬器**中執行您的應用程式，並驗證「未預期的連線錯誤」會在啟動應用程式之後顯示。
 
 接下來，您要將應用程式更新為在要求行動應用程式後端的資源之前必須驗證使用者。
 
@@ -111,4 +109,4 @@
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

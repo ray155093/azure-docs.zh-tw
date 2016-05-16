@@ -13,26 +13,25 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/25/2016"
+   ms.date="04/27/2016"
    ms.author="telmos" />
 
 # Azure 中的 IP 位址
-您可以將 IP 位址指派給 Azure 資源，來與其他 Azure 資源、內部部署網路和網際網路進行通訊。您可以在 Azure 中使用兩種類型的 IP 位址：公用和私人。
+您可以將 IP 位址指派給 Azure 資源，來與其他 Azure 資源、內部部署網路和網際網路進行通訊。您可以在 Azure 中使用兩種類型的 IP 位址：
 
-公用 IP 位址用於與網際網路通訊，包括 Azure 公眾對應服務。
-
-私人 IP 位址用於 Azure 虛擬網路 (VNet) 內的通訊，而當您使用 VPN 閘道或 ExpressRoute 電路將網路擴充至 Azure 時，則使用於內部部署網路內的通訊。
+- **公用 IP 位址**：用於與網際網路通訊，包括 Azure 公眾對應服務
+- **私人 IP 位址**：用於 Azure 虛擬網路 (VNet) 內的通訊，而當您使用 VPN 閘道或 ExpressRoute 電路將網路擴充至 Azure 時，則使用於內部部署網路內的通訊。
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-network-ip-addresses-overview-classic.md).
 
-如果您熟悉傳統部署模型，請參閱[傳統與資源管理員之間的 IP 定址差異](virtual-network-ip-addresses-overview-classic.md#Differences-between-Resource-Manager-and-classic-deployments)。
+如果您熟悉傳統部署模型，請參閱[傳統與 Resource Manager 之間的 IP 定址差異](virtual-network-ip-addresses-overview-classic.md#Differences-between-Resource-Manager-and-classic-deployments)。
 
 ## 公用 IP 位址
 Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服務 (例如 [Azure Redis Cache](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)、[SQL Database](../sql-database/sql-database-technical-overview.md) 和 [Azure 儲存體](../storage/storage-introduction.md)) 進行通訊。
 
 在 Azure 資源管理員中，[公用 IP](resource-groups-networking.md#public-ip-address) 位址是有自己的屬性的資源。您可以將公用 IP 位址資源與下列任何資源建立關聯：
 
-- VM
+- 虛擬機器 (VM)
 - 網際網路對應負載平衡器
 - VPN 閘道
 - 應用程式閘道
@@ -58,32 +57,32 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 
 >[AZURE.IMPORTANT] 所建立的每個網域名稱標籤必須是 Azure 位置中唯一的。
 
-### VM
-您可以將公用 IP 位址指派給其**網路介面卡** (NIC)，以建立其與 [虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (VM) 的關聯。如果是多個 NIC 的 VM，您可以只將它指派給主要 NIC。您可以將動態或靜態公用 IP 位址指派給 VM。
+### 虛擬機器
+您可以藉由將公用 IP 位址指派給其**網路介面**，以建立其與 [Windows](../virtual-machines/virtual-machines-windows-about.md) or [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的關聯。如果是多重網路介面 VM，您可以只將它指派給「主要」網路介面。您可以將動態或靜態公用 IP 位址指派給 VM。
 
 ### 網際網路對應負載平衡器
-您可以將公用 IP 位址指派給負載平衡器**前端**組態，以建立其與 [Azure 負載平衡器](../load-balancer/load-balancer-overview.md)的關聯。此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現[多重 vip](../load-balancer/load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
+您可以將公用 IP 位址指派給負載平衡器**前端**組態，以建立其與 [Azure Load Balancer](../load-balancer/load-balancer-overview.md) 的關聯。此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現[多重 VIP](../load-balancer/load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
 
 ### VPN 閘道
-[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)用來將 Azure 虛擬網路 (VNet) 連接到其他 Azure Vnet 或內部部署網路。您需要將公用 IP 位址指派給其 **IP 設定**，以便與遠端網路通訊。您目前只可以將動態公用 IP 位址指派給 VPN 閘道。
+[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)用來將 Azure 虛擬網路 (VNet) 連接到其他 Azure Vnet 或內部部署網路。您需要將公用 IP 位址指派給其 **IP 設定**，以便啟用與遠端網路的通訊。您目前只可以將*動態*公用 IP 位址指派給 VPN 閘道。
 
 ### 應用程式閘道
-您可以將公用 IP 位址指派給閘道的**前端**組態，以建立其與 Azure [應用程式閘道](../application-gateway/application-gateway-introduction.md)的關聯。此公用 IP 位址可做為負載平衡的 VIP。您目前只可以將動態公用 IP 位址指派給應用程式閘道前端組態。
+您可以將公用 IP 位址指派給閘道的**前端**組態，以建立其與 Azure [應用程式閘道](../application-gateway/application-gateway-introduction.md)的關聯。此公用 IP 位址可做為負載平衡的 VIP。您目前只可以將「動態」公用 IP 位址指派給應用程式閘道前端組態。
 
 ### 快速總覽
 下表顯示特定的屬性，公用 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
 
 |最上層資源|IP 位址關聯|動態|靜態|
 |---|---|---|---|
-|虛擬機器|網路介面卡 (NIC)|是|是|
+|虛擬機器|網路介面|是|是|
 |負載平衡器|前端組態|是|是|
 |VPN 閘道|閘道 IP 組態|是|否|
 |應用程式閘道|前端組態|是|否|
 
 ## 私人 IP 位址
-私人 IP 位址可讓 Azure 資源透過 VPN 閘道或 ExpressRoute 電路，與[虛擬網路](virtual-networks-overview.md)(VNet) 中或內部部署網路中的其他資源進行通訊，而不必使用可網際網路連線的 IP 位址。
+私人 IP 位址可讓 Azure 資源透過 VPN 閘道或 ExpressRoute 電路，與[虛擬網路](virtual-networks-overview.md)中或內部部署網路中的其他資源進行通訊，而不必使用可網際網路連線的 IP 位址。
 
-在 Azure 資源管理員部署模型中，私人 IP 位址會與各種 Azure 資源相關聯。
+在 Azure Resource Manager 部署模型中，私人 IP 位址會與下列 Azure 資源類型相關聯。
 
 - VM
 - 內部負載平衡器 (ILB)
@@ -102,13 +101,13 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 - 需要使用 IP 位址的防火牆規則的資源。
 - 其他應用程式/資源透過 IP 位址存取的資源。
 
-### VM
-私人 IP 位址會指派給[虛擬機器](../virtual-machines/virtual-machines-linux-about.md)的**網路介面卡** (NIC)。如果是多個 NIC 的 VM，每個 NIC 都會有指派的私人 IP 位址。您可以將 NIC 的配置方法指定為動態或靜態。
+### 虛擬機器
+私人 IP 位址會指派給 [Windows](../virtual-machines/virtual-machines-windows-about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的**網路介面**。如果是多重網路介面 VM，每個介面都會取得指派的私人 IP 位址。您可以將網路介面的配置方法指定為動態或靜態。
 
 #### 內部 DNS 主機名稱解析 (適用於 VM)
 除非明確設定自訂 DNS 伺服器，否則所有 Azure VM 預設都會設定 [Azure 受管理 DNS 伺服器](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution)。這些 DNS 伺服器會針對位於相同 VNet 的 VM 提供內部名稱解析。
 
-當您建立 VM 時，會將主機名稱與其私人 IP 位址的對應加入至 Azure 受管理 DNS 伺服器。如果是多個 NIC 的 VM，主機名稱會對應至主要 NIC 的私人 IP 位址。
+當您建立 VM 時，會將主機名稱與其私人 IP 位址的對應加入至 Azure 受管理 DNS 伺服器。如果是多重網路介面 VM，主機名稱會對應至主要網路介面的私人 IP 位址。
 
 使用 Azure 受管理 DNS 伺服器設定的 VM，能夠將其 VNet 內所有 VM 的主機名稱解析為其私人 IP 位址。
 
@@ -120,21 +119,21 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 
 |最上層資源|IP 位址關聯|動態|靜態|
 |---|---|---|---|
-|虛擬機器|網路介面卡 (NIC)|是|是|
+|虛擬機器|網路介面|是|是|
 |負載平衡器|前端組態|是|是|
 |應用程式閘道|前端組態|是|是|
 
 ## 限制
 
-加諸於 IP 位址上的限制，如在 Azure 中的完整[網路限制](azure-subscription-service-limits.md#networking-limits)所示。這些限制是針對每一區域、每一訂用帳戶。您可以[連絡支援人員](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，以根據您的業務需求將預設上限調升到最高上限。
+加諸於 IP 位址上的限制，如在 Azure 中的完整[網路限制](azure-subscription-service-limits.md#networking-limits)所示。這些限制是針對每一區域和每一訂用帳戶。您可以[連絡支援人員](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，以根據您的業務需求將預設上限調升到最高上限。
 
 ## 定價
 
 在大多數情況下，公用 IP 位址是免費的。使用額外和 (或) 靜態公用 IP 位址則會有少許費用。請務必了解[公用 IP 的定價結構](https://azure.microsoft.com/pricing/details/ip-addresses/)。
 
 ## 後續步驟
-- 使用 Azure 入口網站[部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-portal.md)。
-- 了解如何[使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)。
-- 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)。
+- [使用 Azure 入口網站部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-portal.md)
+- [使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)
+- 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

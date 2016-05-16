@@ -14,157 +14,164 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/02/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 
 # 管理及保護您的 PowerApps
-您建立 app 服務環境，然後新增 API 及其連線。現在您組織中的使用者便可以開始取用這些 API 和連線。您也可以管理在您組織中建立的所有 app。這些選項包含︰
 
-- 查看您 app 服務環境環境內的各種不同 app，包括 PowerApps、Web app、邏輯 app、行動 app 等。
-- 查看特定 app 使用的所有 API。
-- 檢視及管理使用者對 app 服務環境內 app 的存取權。 
-- 檢視及管理使用者對 API 及其連線的存取權。 
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-請記住，您的 app 服務環境是您要新增其他 app (包括 Web app 與邏輯 app) 的環境。接著，您可以開啟 PowerApps Enterprise 來查看及管理這些 app。
+<!--Archived
+You create your app service environment, and add APIs and their connections. Now users in your organization can start consuming these APIs and connections. You can also manage all apps created in your organization. These options include:
+
+- See the different apps within your app service environment, including PowerApps, web apps, logic apps, mobile apps, and more.
+- See all the APIs used by specific apps.
+- View and manage user access to the apps within the app service environment. 
+- View and manage user access to the APIs and their connections. 
+
+Remember, your app service environment is yours to add other apps, including web apps and logic apps. You can then open PowerApps Enterprise to see and manage these apps.
 
 
-## 新增 PowerApps 系統管理員
-PowerApps Enterprise 已啟用且可供使用，您可以新增系統管理員，以及監視您 app 服務環境內的其他 app。
+## Add PowerApps administrators
+After PowerApps Enterprise is enabled and ready to be used, you can add administrators, and monitor other apps within your app service environment.
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 選取 \[Settings] (設定)。
-3. 在 [Settings] \(設定) 中，選取 [Admin] \(系統管理員)：  
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. Select **Settings**.
+3. In **Settings**, select **Admin**:  
 ![][1]  
-4. 在 \[Users] (使用者) 中，選取 \[Add] (新增)。
-5. 選取 [Owner] \(擁有者) 角色：  
+4. In **Users**, select **Add**.
+5. Select the **Owner** role:  
 ![][2]  
 
-	> [AZURE.IMPORTANT]如果您要指派某個使用者做為「PowerApps 系統管理員」，請務必選取 [Owner] \(擁有者) 角色。其他列出的使用者並無法賦予使用者可管理 PowerApps 的完整存取權。
+	> [AZURE.IMPORTANT] Make sure that you select **Owner** role if you are assigning someone as a PowerApps Admin. Other roles listed won't give users full access to manage PowerApps. 
 
-6. 選取您的使用者或群組。
-7. 選取 [OK] \(確定) 以完成步驟。
+6. Select your users or groups.
+7. Select **OK** to complete the steps.
 
-當您將「系統管理員」新增到 PowerApps Enterprise 時，您新增為系統管理員的使用者和群組可以：
+When you add Administrators to PowerApps Enterprise, the users and groups you add as administrators can:
 
-- 新增其他使用者做為 PowerApps 系統管理員。
-- 管理所有 app 及其使用者存取權。
-- 無法變更計費。
+- Add other users as PowerApps administrators.
+- Manage all apps as well as their user access.
+- Cannot change the billing.
 
-> [AZURE.IMPORTANT] 「PowerApps 系統管理員」必須在獲得 app 服務環境之資源群組上的「擁有者」角色之後，才能對「App Service 環境」進行變更。若要這樣做，請參閱[開始使用 PowerApps Enterprise](powerapps-get-started-azure-portal.md)。
+> [AZURE.IMPORTANT] PowerApps Administrators cannot make changes to the App Service Environment until they are given the Owner role on the app service environment's resource group. To do this, see [Get started with PowerApps Enterprise](powerapps-get-started-azure-portal.md).
 
-獲得 app 服務環境之資源群組上的「擁有者」角色之後，PowerApps 系統管理員也可以：
+Once given the Owner role on the app service environment's resource group, the PowerApps administrators can also: 
 
-- 建立和設定 API 及其連線。
-- 對 PowerApps 設定 (包括 app 服務環境) 進行變更。
-- 新增其他使用者和群組，並賦予他們角色和對 API、其連線及 app 服務環境的權限。 
+- Create and configure APIs and their connections.
+- Make changes to the PowerApps settings, including the app service environment.
+- Add other users and groups and give them roles and permissions to the APIs,  thier connections, and the app service environment. 
 
 
-## 管理您的 PowerApps 及其他類型的 app
-啟用 PowerApps 和您的 app 服務環境之後，您可以將其他 app (例如 Web app 與邏輯 app) 新增到相同的 app 服務環境。執行這項操作之後，這些 app 就會與在 PowerApps 中建立的 app 一起列在 *\[All apps] (所有 app)* 底下。您可以按一下每一種類型的 app 來瀏覽 app。
+## Manage your PowerApps and other types of apps
+Once you enable PowerApps and your app service environment, you can add other apps, like web apps and logic apps to the same app service environment. After you do this, the apps are listed under *All apps* along with apps created in PowerApps. You can click on each type of app to browse through the apps. 
 
-### 檢視及管理您的 PowerApps
+### View and manage your PowerApps
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 從 [All apps] \(所有 app) 磚中，選取 [PowerApps]：
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. From the **All apps** tile, select **PowerApps**:  
 ![][3]  
-3. 選取一個 app 來檢視該 app 的詳細資料，包括：  
-	- App 使用的 API
-	- 具有 app 存取權的使用者和群組 
-	- App 的分析 (即將推出)
+3. Select an app to view details of the app, including:  
+	- The APIs the app uses
+	- Users and groups who have access to the app 
+	- The app's analytics (coming soon)
 
-#### 新增 app
+#### Add an app
 
-您可以透過 Azure 入口網站新增 app。目前，請移至 [PowerApps 入口網站](http://go.microsoft.com/fwlink/p/?LinkId=715583)。
+You cannot add an app through the Azure portal. Currently, go to the [PowerApps portal](http://go.microsoft.com/fwlink/p/?LinkId=715583).
 
-#### 刪除在 PowerApps 中建立的 app
-身為「PowerApps 系統管理員」，您可以刪除任何 app，包括在 PowerApps 中建立的 app 及您 app 服務環境中其他類型的 app。若要刪除您的 app，請選取 \[All apps] (所有 app) 磚，選取您的 app，然後選取 \[Delete] (刪除)：
+#### Delete your apps created in PowerApps
+As a PowerApps Admin, you can delete any app, including apps created in PowerApps and other types of apps in your app service environment. To delete your app, select the **All apps** tile, select your app, and then select **Delete**:  
 ![][4]
 
 
-#### 授與使用者或群組可使用 app 的存取權
-身為 PowerApps 系統管理員，您可以對 PowerApps 新增或移除使用者和群組。
+#### Give users or groups access to use an app
+As a PowerApps admin, you can add or remove users and groups to PowerApps.
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 在 [All apps] \(所有 app) 磚中，選取 [PowerApps]：  
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. In the **All apps** tile, select **PowerApps**:  
 ![][3]  
-3. 選取 app，例如 \[Service Desk] (服務台)。 
-4. 在 [Settings] \(設定) 中，選取 \[App user access] (App 使用者存取權)：  
+3. Select an app, such as **Service Desk**. 
+4. In **Settings**, select **App user access**:  
 ![][5]  
-5. 選取 \[Add] (新增) 來新增使用者或群組。 
-6. 選取角色：  
-	- Can Edit (可編輯)
-	- Can View (可檢視)
-7. 選取使用者或群組。
-8. 選取 [OK] \(確定) 以完成步驟。
+5. Select **Add** to add a new user or group. 
+6. Select a role:  
+	- Can Edit
+	- Can View
+7. Select the users or groups.
+8. Select **OK** to complete the steps.
 
-### 檢視及管理您的邏輯 app
+### View and manage your Logic apps
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 在 \[All apps] (所有 app) 磚中，選取 \[Logic apps] (邏輯 app)：  
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. In the **All apps** tile, select **Logic apps**:  
 ![][8]  
-3. 選取一個邏輯 app 來檢視該 app 的詳細資料。請確定您選取的是正確的 PowerApps 訂閱帳戶，如此才能列出正確的邏輯 app：  
+3. Select a logic app to view details of the app. Make sure you select the correction subscription for PowerApps to  list the correct logic apps:  
 ![][7]  
 
-	> [AZURE.IMPORTANT] 在公用預覽中，您可能會看到瀏覽刀鋒視窗中的邏輯 app 計數與主要 PowerApps 刀鋒視窗上顯示的計數不一致。這是預期行為。入口網站顯示的是所有虛擬主機方案的所有邏輯 app，並未篩選針對 PowerApps 部署的 app 服務環境下的邏輯 app。在未來的更新中將會修正這個行為。
+	> [AZURE.IMPORTANT] At public preview, you may see some inconsistency in the count of logic apps in the browsing blade vs. the count displayed on the main PowerApps blade. This is expected. The portal is displaying all logic apps across all hosting plans and not filtering the logic apps under the app service environment deployed for PowerApps. This behavior will be fixed in a future updates.
 
-	**若要深入了解邏輯 app 及如何管理它們，請參閱[這些指示](https://azure.microsoft.com/documentation/services/app-service/logic/)。**
+	**To learn more about Logic apps and how to manage them, see [these instructions](https://azure.microsoft.com/documentation/services/app-service/logic/).**
 
-### 檢視及管理您的 Web app
+### View and manage your Web Apps
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 在 [All apps] \(所有 app) 磚中，選取 \[Web apps] (Web app)：  
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. In the **All apps** tile, select **Web apps**:  
 ![][9]  
 
-	**若要深入了解 Web app 及如何管理它們，請參閱[這些指示](https://azure.microsoft.com/documentation/services/app-service/web/)。**
+	**To learn more about web apps and how to manage them, see [these instructions](https://azure.microsoft.com/documentation/services/app-service/web/).**
 
-### 檢視及管理您的行動 app
+### View and manage your Mobile Apps
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，開啟 [PowerApps]。
-2. 在 [All apps] \(所有 app) 磚中，選取 \[Mobile apps] (行動 app)：  
+1. In the [Azure portal](https://portal.azure.com/), open **PowerApps**.
+2. In the **All apps** tile, select **Mobile apps**:  
 ![][10]  
 
-	**若要深入了解行動 app 及如何管理它們，請參閱[這些指示](https://azure.microsoft.com/documentation/services/app-service/mobile/)。**
+	**To learn more about mobile apps and how to manage them, see [these instructions](https://azure.microsoft.com/documentation/services/app-service/mobile/).**
 
 
-## 檢閱安全性選項
-視您要執行的動作而定，會使用不同的安全性方法。以下是您需要知道的事項：
+## Review the security options
+Different security methods are used, depending on what you're doing. Here's what you need to know:
 
-- **Subscription administrator** (訂用帳戶管理員)：這些管理員控制計費，並負責幫您的公司註冊 PowerApps Enterprise。只有「訂用帳戶管理員」可以要求在您公司的 Azure 訂用帳戶內啟用 PowerApps。 
+- **Subscription administrator**: These administrators control billing and are responsible for signing up your company for PowerApps Enterprise. Only Subscription Administrators can request to enable PowerApps within your company's Azure subscription. 
 
-- **Runtime user access** (執行階段使用者存取權)：有三種不同類型的執行階段使用者存取權：
-	- **App user access** (App 使用者存取權)：此權限控制 app 的使用者是否「可編輯」app 或「可檢視」 app。
-	- **API user access** (API 使用者存取權)：此權限控制執行階段存取權。如果使用者具有此權限，就可以在其 app 中使用 API。使用者要不就是具有權限在執行階段使用 API，要不就是沒有權限。 
-	- **Connection user access** (連線使用者存取權)：*Can view* (可檢視) 和 *Can edit* (可編輯) 是可供連線使用的執行階段使用者權限。當您新增 API (或連線設定檔) 並建立其連線時，您會授與使用者和群組這些特定的權限：  
+- **Runtime user access**: There are three different types of runtime user access: 
+	- **App user access**: This permission controls if the user of the app *Can edit* the app or *Can view* the app.
+	- **API user access**: This permissions controls the runtime access. If users have this permission, he or she can use the API in their app. Users either have permission or don't have permission to use the API at runtime. 
+	- **Connection user access**: *Can view* and *Can edit* are the runtime user permissions available for a connection. When you add an API (or connection profile) and create its connection, you grant users and groups these specific permissions:  
 		![][6]  
 
-		例如，您可以將 SQL 連接器 API 的 *Can edit* (可編輯) 權限授與您公司內的「銷售」群組。具有 *Can edit* (可編輯) 權限的使用者將能夠在其 app 中使用該連線，以及編輯連線設定。具有 *Can view* (可檢視) 權限的使用者將能夠在其 app 中使用該連線，但無法修改連線設定 (例如連接字串)。
+		For example, you can give the Sales group within your company *Can edit* permission to a connection of a SQL connector API. User with *Can edit* permission will be able to use the connection in their apps as well as edit the connection configuration. User with *Can view* permission will be able to use the connection in their apps but can't modify the connection configuration such as connection string. 
 
-- **角色型存取控制** (RBAC)：許多 Azure 方案都使用角色型存取控制來決定哪個使用者可以執行什麼動作。在 PowerApps 中，RBAC 用於幾個地方：
-	- 當您第一次進入 PowerApps 入口網站時，您可以新增及管理應該是 PowerApps 系統管理員的使用者。 
-	- 當您建立 app 服務環境時，您可以將使用者或群組新增到 PowerApps，也可以從 PowerApps 移除使用者或群組。例如，您可以將公司內特定的「系統管理員」群組新增到 \[Owners] (擁有者) 角色；這可讓他們建立 API 和連線。接著，這些 API 和連線會新增到在 PowerApps 中建立的 app。
-	- 將使用者新增到 app (例如 Web app、邏輯 app 或行動 app) 時，您可以為這些使用者選擇角色。  
+- **Role-based access control** (RBAC): Many Azure offerings use role-based access control to determine who can do what. In PowerApps, RBAC is used in a couple of places:  
+	- When you first enter the PowerApps portal, you can add and manage users who should be administrators of the PowerApps. 
+	- When you create the app service environment, you add users or groups to PowerApps, and you can remove users or groups from PowerApps. For example, you can add specific Administrator groups within your company to the *Owners* role; which allows them to create APIs and connections. These APIs and connections are then added to apps created in PowerApps.
+	- When you add users to apps like Web apps, Logic apps, Mobile apps or Logic apps. You can choose the role for these users.  
 		
-		新增使用者並指派角色就像在 Azure 內使用[角色型存取控制](../role-based-access-control-configure.md)一樣。一些角色包括：
+		Adding users and assigning roles is just like using [Role-based access control](../role-based-access-control-configure.md) within Azure. Some roles include:   
 
-		角色 | 說明
+		Role | Description
 		--- | ---
-		參與者 | 可管理所有事項，但將存取權授予使用者除外。
-		讀取者 | 可以檢視所有事項，但無法進行任何變更。
-		擁有者 | 可以管理所有事項及將存取權授與使用者。
+		Contributor | Manages everything except grant access to users.
+		Reader | Can view everything, but can't make any changes.
+		Owner | Can manage everything and grant users access.
 
-藉由使用這些角色，您便可以將 Twitter 日常 app 的 **Can View** (可檢視) 權限授與 userA，以及將 ShuttleBus app 的 **Can Edit** (可編輯) 權限授與 userB。您可以將所有 API 的存取權授與 userB。您實際上可以再細分這些權限，或是為每個使用者新增一個特定的角色。這實際上取決於您的業務需求。
+Using these roles, you can grant userA **Can View** permission to a Twitter daily app and userB **Can Edit** permission to ShuttleBus app. You can grant userB access on all APIs. You can really get granular with these rights or add everyone with a specific role. It really depends on your business needs. 
 
 
-## 摘要和後續步驟
-在本主題中，您已閱讀有關可管理您 PowerApps 的各種不同選項，以及在 PowerApps 內實作的安全性方法。
+## Summary and next steps
+In this topic, you read about the different options to manage your PowerApps and the security methods implemented within PowerApps. 
 
-現在您既已設定好您的 Azure 入口網站體驗，讓我們開始建立您的 app。以下是一些適合的入門資源：
+Now that your Azure portal experience is configured, let's start creating your apps. These are good starters:
 
-- [在 PowerApps 中從範本建立 app](http://go.microsoft.com/fwlink/p/?LinkId=715536) 
-- [在 PowerApps 中從資料建立 app](http://go.microsoft.com/fwlink/?LinkId=715539) 
-- [在 PowerApps 中從頭開始建立 app](http://go.microsoft.com/fwlink/p/?LinkId=715538)
-
+- [Create an app from a template in PowerApps](http://go.microsoft.com/fwlink/p/?LinkId=715536) 
+- [Create an app from data in PowerApps](http://go.microsoft.com/fwlink/?LinkId=715539) 
+- [Create an app from scratch in PowerApps](http://go.microsoft.com/fwlink/p/?LinkId=715538)
+-->
 
 [1]: ./media/powerapps-manage-monitor-usage/addadmin.png
 [2]: ./media/powerapps-manage-monitor-usage/selectrole.png
@@ -177,4 +184,4 @@ PowerApps Enterprise 已啟用且可供使用，您可以新增系統管理員�
 [9]: ./media/powerapps-manage-monitor-usage/webapps.png
 [10]: ./media/powerapps-manage-monitor-usage/mobileapps.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

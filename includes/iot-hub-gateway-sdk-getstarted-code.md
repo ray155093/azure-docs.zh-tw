@@ -1,6 +1,6 @@
-## Typical output
+## 典型輸出
 
-Below is an example of the output written to the log file by the Hello World sample. Newline and Tab characters have been added for legibility:
+下列範例是 Hello World 範例寫入記錄檔中的輸出。已加入新行和 Tab 字元以利閱讀︰
 
 ```
 [{
@@ -30,15 +30,15 @@ Below is an example of the output written to the log file by the Hello World sam
 }]
 ```
 
-## Code snippets
+## 程式碼片段
 
-This section discusses some key parts of the code in the Hello World sample.
+本節探討 Hello World 範例中程式碼的一些重要部分。
 
-### Gateway creation
+### 建立閘道
 
-The developer must write the *gateway process*. This program creates the internal infrastructure (the message bus), loads the modules, and sets everything up to function correctly. The SDK provides the **Gateway_Create_From_JSON** function to enable you to bootstrap a gateway from a JSON file. To use the **Gateway_Create_From_JSON** function you must pass it the path to a JSON file that specifies the modules to load. 
+開發人員必須撰寫「閘道程序」。此程式會建立內部基礎結構 (訊息匯流排)、載入模組，以及設定所有項目才能正確運作。SDK 提供 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。若要使用 **Gateway\_Create\_From\_JSON** 函式，您必須將它傳遞到 JSON 檔案的路徑，而 JSON 檔案指定要載入的模組。
 
-You can find the code for the gateway process in the Hello World sample in the [main.c][lnk-main-c] file. For legibility, the snippet below shows an abbreviated version of the gateway process code. This program creates a gateway and then waits for the user to press the **ENTER** key before it tears down the gateway. 
+在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。此程式會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。
 
 ```
 int main(int argc, char** argv)
@@ -59,13 +59,13 @@ int main(int argc, char** argv)
 }
 ```
 
-The JSON settings file contains a list of modules to load. Each module must specify a:
+JSON 設定檔案包含要載入之模組的清單。每個模組都必須指定：
 
-- **module_name**: a unique name for the module.
-- **module_path**: the path to the library containing the module. For Linux this is a .so file, on Windows this is a .dll file.
-- **args**: any configuration information the module needs.
+- **module\_name**：模組的唯一名稱。
+- **module\_path**︰包含模組之程式庫的路徑。在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。
+- **args**：模組所需的任何組態資訊。
 
-The following sample shows the JSON settings file used to configure the Hello World sample on Linux. Whether a module requires an argument depends on the design of the module. In this example, the logger module takes an argument which is the path to the output file and the Hello World module does not take any arguments:
+下列範例示範用來在 Linux 上設定 Hello World 範例的 JSON 設定檔案。模組是否需要引數取決於模組的設計。在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 Hello World 模組不採用任何引數︰
 
 ```
 {
@@ -85,9 +85,9 @@ The following sample shows the JSON settings file used to configure the Hello Wo
 }
 ```
 
-### Hello World module message publishing
+### Hello World 模組訊息發佈
 
-You can find the code used by the "hello world" module to publish messages in the ['hello_world.c'][lnk-helloworld-c] file. The snippet below shows an amended version with additional comments and some error handling code removed for legibility:
+您可以在 ['hello\_world.c'][lnk-helloworld-c] 檔案中找到 "hello world" 模組所使用的程式碼來發佈訊息。下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
 
 ```
 int helloWorldThread(void *param)
@@ -135,9 +135,9 @@ int helloWorldThread(void *param)
 }
 ```
 
-### Hello World module message processing
+### Hello World 模組訊息處理
 
-The Hello World module never needs to process any messages that other modules publish to the message bus. This makes implementation of the message callback in the Hello World module a no-op function.
+Hello World 模組永遠不需要處理其他模組發佈至訊息匯流排的任何訊息。這樣會將 Hello World 模組中的訊息回呼實作設為無作業函式。
 
 ```
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -146,11 +146,11 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 }
 ```
 
-### Logger module message publishing and processing
+### Logger 模組訊息發佈和處理
 
-The Logger module receives messages from the message bus and writes them to a file. It never publishes messages to the message bus. Therefore, the code of the logger module never calls the **MessageBus_Publish** function.
+Logger 模組會接收來自訊息匯流排的訊息，並將它們寫入檔案。它永遠不會將訊息發佈至訊息匯流排。因此，Logger 模組的程式碼永遠不會呼叫 **MessageBus\_Publish** 函式。
 
-The **Logger_Recieve** function in the [logger.c][lnk-logger-c] file is the callback the message bus invokes to deliver messages to the logger module. The snippet below shows an amended version with additional comments and some error handling code removed for legibility:
+[logger.c][lnk-logger-c] 檔案中的 **Logger\_Recieve** 函式是訊息匯流排所叫用的回呼，以將訊息傳遞到 Logger 模組。下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
 
 ```
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -173,17 +173,17 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 
     // Start the construction of the final string to be logged by adding
     // the timestamp
-    STRING_HANDLE jsonToBeAppended = STRING_construct(",{\"time\":\"");
+    STRING_HANDLE jsonToBeAppended = STRING_construct(",{"time":"");
     STRING_concat(jsonToBeAppended, timetemp);
 
     // Add the message properties
-    STRING_concat(jsonToBeAppended, "\",\"properties\":"); 
+    STRING_concat(jsonToBeAppended, "","properties":"); 
     STRING_concat_with_STRING(jsonToBeAppended, jsonProperties);
 
     // Add the content
-    STRING_concat(jsonToBeAppended, ",\"content\":\"");
+    STRING_concat(jsonToBeAppended, ","content":"");
     STRING_concat_with_STRING(jsonToBeAppended, contentAsJSON);
-    STRING_concat(jsonToBeAppended, "\"}]");
+    STRING_concat(jsonToBeAppended, ""}]");
 
     // Write the formatted string
     LOGGER_HANDLE_DATA *handleData = (LOGGER_HANDLE_DATA *)moduleHandle;
@@ -191,14 +191,14 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 }
 ```
 
-## Next steps
+## 後續步驟
 
-To learn about how to use the Gateway SDK, see the following:
+若要了解如何使用閘道 SDK，請參閱下列項目︰
 
-- [IoT Gateway SDK – send device-to-cloud messages with a simulated device using Linux][lnk-gateway-simulated].
-- [Azure IoT Gateway SDK][lnk-gateway-sdk] on GitHub.
+- [IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
+- GitHub 上的 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
 
-You can find out more about device management with IoT Hub by reading [Overview of Azure IoT Hub device management][lnk-device-management].
+閱讀 [Azure IoT 中樞裝置管理概觀][lnk-device-management]，即可深入了解 IoT 中樞的裝置管理。
 
 <!-- Links -->
 [lnk-main-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/samples/hello_world/src/main.c
@@ -207,3 +207,4 @@ You can find out more about device management with IoT Hub by reading [Overview 
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 [lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-device-management]: ../articles/iot-hub/iot-hub-device-management-overview.md
+

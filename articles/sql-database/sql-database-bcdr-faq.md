@@ -4,7 +4,7 @@
    services="sql-database" 
    documentationCenter="" 
    authors="elfisher" 
-   manager="jeffreyg" 
+   manager="jhubbard" 
    editor="monicar"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
-   ms.date="02/09/2016"
+   ms.date="04/25/2016"
    ms.author="elfish"/>
 
 # 業務續航力常見問題集
@@ -50,14 +50,8 @@
 
 沒有可執行大量還原的內建功能。[Azure SQL Database: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) 指令碼是其中一種完成這項工作的範例。
 
-## 8\.標準異地複寫和主動式異地複寫有何不同？
-
-若為標準異地複寫，次要資料庫是不可讀取的。它僅適用於在中斷期間進行容錯移轉。
-
-若為主動式異地複寫，所有次要資料庫都是可讀取的 (最多 4 個次要資料庫)。
-
-## 9\.什麼是使用標準異地複寫或主動式異地複寫時的複寫延遲？
+## 8\.使用作用中異地複寫時，什麼是複寫延遲？
 
 使用 [sys.dm\_geo\_replication\_link\_status](https://msdn.microsoft.com/library/mt575504.aspx) 動態管理檢視 (DMV) 可取得上次複寫時間、上次複寫延遲和其他複寫連結的相關資訊。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

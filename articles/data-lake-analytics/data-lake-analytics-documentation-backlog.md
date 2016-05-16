@@ -3,8 +3,8 @@
    description="資料湖分析是 Azure 巨量資料計算服務，可讓您使用從雲端中的資料獲得的深入資訊，使用資料驅動您的業務，不論其所在位置和大小。資料湖分析可以用最簡單、最可調整及最經濟的方式，達成這個目的。此頁面是我們的文件工作的待處理項目"
    documentationCenter="na"
    services="data-lake-analytics"
-   authors="pablissima"
-   manager="pablissima"
+   authors="edmacauley"
+   manager="paulettm"
    editor="cgronlun"/>
 
 <tags
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/10/2016"
-   ms.author="mwinkle"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # Azure 資料湖分析文件待處理項目
 
@@ -62,4 +62,4 @@ U-SQL | REDUCE 和 COMBINE 的參考文件更新 | 1 | Pending | [@edmacauley](h
 * 在 [Azure 內容儲存機制](https://github.com/Azure/azure-content/blob/master/articles/data-lake-analytics/data-lake-analytics-documentation-backlog.md) 中提交這份文件的提取要求
 * 傳送電子郵件到 microsoft.com 的 [adlafeedback](mailto:adlafeedback@microsoft.com?subject=DocBacklog)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

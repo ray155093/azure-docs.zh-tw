@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/11/2016"
+	ms.date="05/02/2016"
 	ms.author="jodebrui"/>
 
 
@@ -55,7 +55,7 @@ SELECT DatabasePropertyEx(Db_Name(), 'IsXTPSupported');
 
 1. 在 Azure [入口網站](https://portal.azure.com/)中，
  - 導覽至伺服器。
- - 選取 [匯入資料庫][](sql-database-import.md) 選項。
+ - 選取 [匯入資料庫](sql-database-import.md) 選項。
  - 選取進階定價層。
 
 2. 使用 SSMS 匯入 bacpac：
@@ -68,7 +68,9 @@ SELECT DatabasePropertyEx(Db_Name(), 'IsXTPSupported');
 
 SSMS 包含您可以對具有作用中工作負載的資料庫執行的 [交易效能分析概觀] 報告。此報告會識別要移轉至 In-Memory OLTP 的候選資料表和預存程序。
 
-在 SSMS 中，若要產生報告，請：-在 [物件總管] 中，以滑鼠右鍵按一下您的資料庫節點。- 按一下 [報告] > [標準報告] > [交易效能分析概觀]。
+在 SSMS 中，若要產生報告︰
+- 在 [物件總管] 中，以滑鼠右鍵按一下您的資料庫節點。
+- 按一下 [報表] > [標準報表] > [交易效能分析概觀]。
 
 如需詳細資訊，請參閱[判斷資料表或預存程序是否應該移植到 In-Memory OLTP](http://msdn.microsoft.com/library/dn205133.aspx)。
 
@@ -83,7 +85,8 @@ SSMS 包含您可以對具有作用中工作負載的資料庫執行的 [交易�
 
 1. 使用 SSMS 連接到測試資料庫。
 
-2. 若要避免在查詢中用到 WITH (SNAPSHOT) 選項，請依照下列 T-SQL 陳述式中所示設定資料庫選項：```
+2. 若要避免在查詢中用到 WITH (SNAPSHOT) 選項，請依照下列 T-SQL 陳述式中所示設定資料庫選項：
+```
 ALTER DATABASE CURRENT
 	SET
 		MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = ON;
@@ -234,4 +237,4 @@ CREATE PROCEDURE schemaname.procedurename
 
 - [記憶體最佳化建議程式](http://msdn.microsoft.com/library/dn284308.aspx)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

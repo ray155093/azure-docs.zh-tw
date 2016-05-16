@@ -13,16 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/22/2015"
+	ms.date="04/22/2016"
 	ms.author="MikeRayMSFT" />
 
 # 在 Azure VM (GUI) 中設定 AlwaysOn 可用性群組
 
 > [AZURE.SELECTOR]
-- [入口網站 - Resource Manager - 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-- [入口網站 - Resource Manager - 手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
-- [入口網站 - 傳統 - 手動](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-- [PowerShell - 傳統](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+- [範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 
 <br/>
 
@@ -30,7 +28,7 @@
 
 本端對端教學課程將示範如何透過在 Azure Resource Manager 虛擬機器上執行的 SQL Server AlwaysOn 實作可用性群組。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]Resource Manager 模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]Resource Manager 模型。
 
 在本教學課程結束時，您 Azure 中的 SQL Server AlwaysOn 解決方案將包含下列項目：
 
@@ -52,7 +50,7 @@
 
 請注意以下這是一個可用的組態。比方說，您可以將雙複本可用性群組的 VM 數量減到最少，以縮短在 Azure 中的運算時數，方法是在 2 節點 WSFC 叢集中使用網域控制站作為仲裁檔案共用見證。此方法可讓上述組態減少一個 VM。
 
->[AZURE.NOTE] 完成本教學課程需要大量的時間。您也可以自動建置這整個解決方案。在 Azure 入口網站中，AlwaysOn 可用性群組有一個專用資源庫提供接聽程式。這可自動設定 AlwaysOn 可用性群組所需的所有項目。如需詳細資訊，請參閱 [入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。
+>[AZURE.NOTE] 完成本教學課程需要大量的時間。您也可以自動建置這整個解決方案。在 Azure 入口網站中，AlwaysOn 可用性群組有一個專用資源庫提供接聽程式。這可自動設定 AlwaysOn 可用性群組所需的所有項目。如需詳細資訊，請參閱[入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。
 
 本教學課程假設您已具備下列條件：
 
@@ -64,7 +62,7 @@
 
 >[AZURE.NOTE] 如想將 AlwaysOn 可用性群組與 SharePoint 搭配使用，另請參閱[為 SharePoint 2013 設定 SQL Server 2012 AlwaysOn 可用性群組 ](https://technet.microsoft.com/library/jj715261.aspx)。
 
-## 建立資源群組、網路和網域控制站
+## 建立資源群組、網路和可用性設定組
 
 ### 連接至您的 Azure 訂用帳戶並建立資源群組
 
@@ -104,7 +102,7 @@ Azure 會建立新的資源群組，並在入口網站中釘選資源群組的�
 
  ![新增項目](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/02-newiteminrg.png)
 
-1. 搜尋**虛擬網路**。
+1. 搜尋 [虛擬網路]。
 
  ![搜尋虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/04-findvirtualnetwork.png)
 
@@ -223,18 +221,18 @@ Azure 會讓您回到入口網站儀表板，並在建立新網路時通知您�
 | ----- | ---- 
 | **使用者名稱** | DomainAdmin
 | **密碼** | Contoso! 000 |
-| **訂用帳戶** | 您的訂用帳戶 |
+| **訂用帳戶** | *您的訂用帳戶* |
 | **資源群組** | SQL-HA-RG |
-| **位置** | 您的位置 
+| **位置** | *您的位置* 
 | **大小** | D1\_V2 (標準)
 | **儲存體類型** | 標準
-| **儲存體帳戶** | 自動建立
+| **儲存體帳戶** | *自動建立*
 | **虛擬網路** | autoHAVNET
 | **子網路** | subnet-1
-| **公用 IP 位址** | 與 VM 同名
-| **網路安全性群組** | 與 VM 同名
+| **公用 IP 位址** | *與 VM 同名*
+| **網路安全性群組** | *與 VM 同名*
 | **診斷** | 已啟用
-| **診斷儲存體帳戶** | 自動建立
+| **診斷儲存體帳戶** | *自動建立*
 | **可用性設定組** | adAvailabilitySet
 
 >[AZURE.NOTE] 在 VM 上建立可用性設定組後，就不能再變更。
@@ -243,7 +241,7 @@ Azure 會建立虛擬機器。
 
 在虛擬機器建立後，設定網域控制站。
 
-## 設定網域控制站
+### 設定網域控制站
 
 在下列步驟中，將 **ad-primary-dc** 電腦設定為 corp.contoso.com 的網域控制站。
 
@@ -314,7 +312,7 @@ Azure 會建立虛擬機器。
 
 	![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784629.png)
 
-1. 在命令列上按一下 [變更此連接的設定] \(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+1. 在命令列上按一下 [變更此連接的設定] (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 
 1. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]，然後按一下 [內容]。
 
@@ -391,9 +389,9 @@ Azure 會建立虛擬機器。
 |Page|VM1|VM2|VM3|
 |---|---|---|---|
 |選取適當的資源庫項目|**Windows Server 2012 R2 Datacenter**|**SQL Server 2014 SP1 Enterprise on Windows Server 2012 R2**|**SQL Server 2014 SP1 Enterprise on Windows Server 2012 R2**|
-| 虛擬機器組態 **基本概念** | **名稱** = cluster-fsw<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 | **名稱** = sqlserver-0<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 | **名稱** = sqlserver-1<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 |
-|虛擬機器組態 **大小** |DS1 (1 核心、3.5 GB 記憶體)|**SIZE** = DS 2 (2 核心、7 GB 記憶體)|**SIZE** = DS 2 (2 核心、7 GB 記憶體)|
-|虛擬機器組態 **設定**|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>
+| 虛擬機器組態**基本概念** | **名稱** = cluster-fsw<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 | **名稱** = sqlserver-0<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 | **名稱** = sqlserver-1<br/>**使用者名稱** = DomainAdmin<br/>**密碼** = Contoso!000<br/>**訂用帳戶** = 您的訂用帳戶<br/>**資源群組** = SQL-HA-RG<br/>**位置** = 您的 Azure 位置 |
+|虛擬機器組態**大小** |DS1 (1 核心、3.5 GB 記憶體)|**SIZE** = DS 2 (2 核心、7 GB 記憶體)|**SIZE** = DS 2 (2 核心、7 GB 記憶體)|
+|虛擬機器組態**設定**|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>|**儲存體** = Premium (SSD)<br/>**網路的子網路** = autoHAVNET<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**子網路** = subnet-2(10.1.1.0/24)<br/>**公用 IP 位址** = 無<br/>**網路安全性群組** = 無<br/>**監視診斷** = 已啟用<br/>**診斷儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = sqlAvailabilitySet<br/>
 |虛擬機器組態 **SQL Server 設定**|不適用|**SQL 連線** = 私用 (在虛擬網路內)<br/>**連接埠** = 1433<br/>**SQL 驗證** = 停用<br/>**儲存體組態** = 一般<br/>**自動化修補** = 星期六 2:00<br/>**自動化備份** = 已停用</br>**Azure 金鑰保存庫整合** = 已停用|**SQL 連線** = 私用 (在虛擬網路內)<br/>**連接埠** = 1433<br/>**SQL 驗證** = 停用<br/>**儲存體組態** = 一般<br/>**自動化修補** = 星期六 2:00<br/>**自動化備份** = 已停用</br>**Azure 金鑰保存庫整合** = 已停用|
 
 <br/>
@@ -431,7 +429,7 @@ Azure 會建立虛擬機器。
 
 	![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784629.png)
 
-1. 在命令列上按一下 [變更此連接的設定] \(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+1. 在命令列上按一下 [變更此連接的設定] (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 
 1. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]，然後按一下 [內容]。
 
@@ -550,7 +548,7 @@ Azure 會建立虛擬機器。
 
 您現已建立叢集，請確認組態並加入其餘節點。
 
-1. 在中央窗格中向下捲動至 [叢集核心資源] 區段，並展開 [名稱：Clutser1] 的詳細資料。在 [失敗] 狀態中，應該會同時出現 [名稱] 和 [IP 位址] 資源 。由於指派給叢集的 IP 位址與虛擬機器的的 IP 位址相同，是個重複的位址，因此無法讓該 IP 位址資源上線。
+1. 在中央窗格中向下捲動至 [叢集核心資源] 區段，並展開 [名稱：Clutser1] 的詳細資料。在 [失敗] 狀態中，應該會同時出現 [名稱] 和 [IP 位址] 資源 。由於指派給叢集的 IP 位址與虛擬機器的 IP 位址相同，是個重複的位址，因此無法讓該 IP 位址資源上線。
 
 1. 以滑鼠右鍵按一下失敗的 [**IP 位址**]資源，然後按一下 [**內容**]。
 
@@ -566,7 +564,7 @@ Azure 會建立虛擬機器。
 
 1. 在 [新增節點精靈] 中，按 [下一步]。在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **sqlserver-1** 和 **cluster-fsw** 新增至清單。完成之後，按 [下一步]。
 
-1. 在 [驗證警告] 頁面上，按一下 [否] \(實際操作時，請執行驗證測試)。然後按 [下一步]。
+1. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。然後按 [下一步]。
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
@@ -802,7 +800,7 @@ Azure 會建立虛擬機器。
 | **探查狀況不良臨界值** | 2
 | **探查使用者** | SQLAlwaysOnEndPointListener
 | **負載平衡規則**名稱 | SQLAlwaysOnEndPointListener
-| **負載平衡規則**通訊協定 | TCP
+| **負載平衡規則通訊協定** | TCP
 | **負載平衡規則連接埠** | 1433 - 請注意，這是因為這是 SQL Server 預設連接埠。
 | **負載平衡規則連接埠** | 1433 - 請注意，這是因為這是 SQL Server 預設連接埠。
 | **負載平衡規則後端連接埠** | 1433
@@ -867,4 +865,4 @@ Azure 會建立虛擬機器。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

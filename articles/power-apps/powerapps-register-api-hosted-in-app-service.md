@@ -14,65 +14,77 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/02/2016"
+   ms.date="05/02/2016"
    ms.author="guayan"/>
 
 # 註冊 App Service 環境代管的 API
-PowerApps 支援註冊託管於雲端或內部部署任何位置的 API，其功能非常強大。在某些情況下，您可能想要開發或建立一些新的 API。例如，您可能會想要：
 
-- 實作新的功能供貴組織使用。
-- 建置在現有的功能或資料之上，可以為使用者提供更好的應用程式建置體驗。
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。  
+> - 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
 
-當您在 App Service 環境託管 API 時，您會利用 [App Service 環境](../app-service-web/app-service-app-service-environment-intro.md)現有的全部功能，也會獲得較佳的整合經驗。
+<!--Archived
+PowerApps supports registering existing APIs hosted anywhere in the cloud or on-premises, which is really powerful. In some scenarios, you may want to develop or create some new APIs. For example, you may want to:
 
-若要在您的應用程式中使用這些 API，您必須在 Azure 入口網站中「註冊」API，方法是使用 Managed API、App Service 環境中現有的 API 或使用 Swagger 來建立 API。
+- Implement some new functionality for your organization to use.
+- Build on top of existing functionality or data to provide a better experience for users building their apps.
+
+When you host your APIs in your app service environment, you leverage all the existing capabilities of the [app service environment](../app-service-web/app-service-app-service-environment-intro.md), and also get a better integration experience.
+
+To use these APIs in your apps, you must "register" the APIs in the Azure portal using a managed API, existing APIs in your app service environment, or creating an API using Swagger. 
 
 > [AZURE.SELECTOR]
-- [Managed API](../articles/power-apps/powerapps-register-from-available-apis.md)
-- [在 ASE 中的 API](../articles/power-apps/powerapps-register-api-hosted-in-app-service.md)
-- [Swagger API](../articles/power-apps/powerapps-register-existing-api-from-api-definition.md)
+- [Managed APIs](../articles/power-apps/powerapps-register-from-available-apis.md)
+- [APIs in your ASE](../articles/power-apps/powerapps-register-api-hosted-in-app-service.md)
+- [Swagger APIs](../articles/power-apps/powerapps-register-existing-api-from-api-definition.md)
 
-在本主題中，我們著重在第二個選項：**註冊您的 App Service 環境內裝載的 Web 應用程式、API 應用程式，以及行動應用程式**。
+In this topic, we focus on the second option - **registering a web app, API app, and mobile app hosted in your app service environment**.
 
-#### 開始使用的必要條件
+#### Prerequisites to get started
 
-- 註冊 [PowerApps Enterprise](powerapps-get-started-azure-portal.md)。
-- 建立 [App Service 環境](powerapps-get-started-azure-portal.md)。
+- Sign up for [PowerApps Enterprise](powerapps-get-started-azure-portal.md).
+- Create an [app service environment](powerapps-get-started-azure-portal.md).
 
 
-## 在 App Service 環境中開發和部署 API
+## Develop and deploy an API in you app service environment
 
-在 App Service 環境中開發 API 很簡單。選擇您慣用的程式設計語言建置 Web API，然後使用 [Swagger 2.0](http://swagger.io) 描述 API 定義。部分範例包括：
+Developing an API in the app service environment is straightforward. You choose your favorite programming language to build a web API, and then use [Swagger 2.0](http://swagger.io) to describe the API definition. Some examples include:  
 
-- [在 Azure App Service 中建置和部署 .NET](../app-service-api/app-service-api-dotnet-get-started.md)
-- [在 Azure App Service 中建置和部署 Java API 應用程式](../app-service-api/app-service-api-java-api-app.md)
-- [在 Azure App Service 中建置和部署 Node.js API 應用程式](../app-service-api/app-service-api-nodejs-api-app.md)
+- [Build and deploy a .NET in Azure App Service](../app-service-api/app-service-api-dotnet-get-started.md)
+- [Build and deploy a Java API app in Azure App Service](../app-service-api/app-service-api-java-api-app.md)
+- [Build and deploy a Node.js API app in Azure App Service](../app-service-api/app-service-api-nodejs-api-app.md)
 
-您也可以選擇在 App Service 環境中部署 Web API，包括從 Visual Studio 部署，以及使用原始檔控制系統連續部署。[在 Azure App Service 中部署 Web 應用程式](../app-service-web/web-sites-deploy.md)是很好的資源。
+You also have options to deploy your web API into an app service environment, including deploying from Visual Studio, and deploying continuously using a source control system.  [Deploy a web app in Azure App Service](../app-service-web/web-sites-deploy.md) is a good resource. 
 
-## 在 App Service 環境中註冊您的自訂 API
+## Register your custom API in the app service environment
 
-API 部署至 App Service 環境之後，請使用下列步驟註冊：
+After the API is deployed to your app service environment, use the following steps to register:
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取 [PowerApps]，然後選取 [管理 API]：  
+1. In the [Azure portal](https://portal.azure.com/), select **PowerApps**, and then select **Manage APIs**:  
 ![][11]
-2. 在 [Manage APIs] \(管理 API) 中，選取 [Add] \(新增)：  
+2. In Manage APIs, select **Add**:  
 ![][12]  
-3. 在 [Add API] \(新增 API) 中，輸入 API 屬性：  
+3. In **Add API**, enter the API properties:  
 
-	- 在 [Name] \(名稱) 中，輸入 API 的名稱。請注意，您輸入的名稱會包含在 API 的執行階段 URL 中。請使用對貴組織有意義且為唯一的名稱。	
-	- 在 [來源] 中選取 [從 App Service 環境代管的 API 匯入]：![][13]
-4. 在 [App Service 環境代管的 API] 中選取要匯入的 API。這份清單會顯示已設定其 **apiDefinition.url** 屬性之 App Service 環境中的每一個 Web 應用程式、API 應用程式和行動應用程式。若要匯入 API，它會使用利用這個屬性公開的 Swagger 2.0 API 定義。當您註冊 API 時，請確定這個 URL 可公開存取：![][14]
-5. 選取 [加入] 完成這些步驟。
+	- In **Name**, enter a name for your API. Notice that the name you enter is included in the runtime URL of the API. Make the name meaningful and unique within your organization.	
+	- In **Source**, select **Import from APIs hosted in App Service Environment**:  
+	![][13]
+4. In **API hosted in App Service Environment**, select the API you want to import. This list shows every web app, API app, and mobile app in your app service environment  that has its **apiDefinition.url** property configured. To import the API, it uses the Swagger 2.0 API definition exposed using this property. Make sure this URL is publicly accessible when you register the API:  
+![][14]
+5. Select **ADD** to complete these steps.
 
-> [AZURE.TIP] 註冊 API 時，您是向您的 App Service 環境註冊 API。一旦其在 App Service 環境中，相同 App Service 環境內的其他應用程式便能使用它。
+> [AZURE.TIP] When you register an API, you're registering the API to your app service environment. Once in the app service environment, it can be used by other apps within the same app service environment.
 
-## 摘要和後續步驟
-在本主題中，您已看到如何註冊 App Service 環境代管的 API。以下是一些讓您深入了解 PowerApps 的相關主題與資源：
+## Summary and next steps
+In this topic, you've seen how to register an APIs hosted in your app service environment. Here are some related topics and resources for learning more about PowerApps: 
 
-- [設定 API 原則](powerapps-configure-apis.md)
-- [讓使用者存取 API](powerapps-manage-api-connection-user-access.md)
-- [開始在 PowerApps 中建立應用程式](https://powerapps.microsoft.com/tutorials/)
+- [Configure the API properties](powerapps-configure-apis.md)
+- [Give users access to the APIs](powerapps-manage-api-connection-user-access.md)
+- [Start creating your apps in PowerApps](https://powerapps.microsoft.com/tutorials/)
+-->
+
 
 <!--Reference-->
 [11]: ./media/powerapps-register-api-hosted-in-app-service/registered-apis-part.png
@@ -80,5 +92,4 @@ API 部署至 App Service 環境之後，請使用下列步驟註冊：
 [13]: ./media/powerapps-register-api-hosted-in-app-service/add-api-blade.png
 [14]: ./media/powerapps-register-api-hosted-in-app-service/add-api-select-from-ase.png
 
-<!---HONumber=AcomDC_0309_2016-->
-
+<!---HONumber=AcomDC_0504_2016-->

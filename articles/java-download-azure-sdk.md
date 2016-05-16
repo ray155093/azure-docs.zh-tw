@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="03/09/2016" 
+	ms.date="05/04/2016" 
 	ms.author="robmcm"/>
 
 # 下載 Azure SDK for Java
@@ -135,4 +135,4 @@ Azure Toolkit for Eclipse 會使用最新版的 Azure sdk。您可以使用 Web 
 [zip-download]: http://go.microsoft.com/fwlink/?LinkId=690320
 [Azure Toolkit for Eclipse 新功能]: http://go.microsoft.com/fwlink/?LinkId=690333
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

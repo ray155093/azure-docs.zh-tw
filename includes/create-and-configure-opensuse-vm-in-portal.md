@@ -1,6 +1,6 @@
-<properties writer="kathydav" editor="tysonn" manager="timlt" />
+<properties writer="cynthn" editor="tysonn" manager="timlt" />
 
-1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com)。如果您還沒有訂用帳戶，請參考[免費試用](https://azure.microsoft.com/pricing/free-trial/)優惠。
+1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com)。  
 
 2. 在視窗底部的命令列上，按一下 [新增]。
 
@@ -65,4 +65,3 @@
 
 [Image6]: ./media/create-and-configure-opensuse-vm-in-portal/putty.png
 
-<!---HONumber=AcomDC_0323_2016-->

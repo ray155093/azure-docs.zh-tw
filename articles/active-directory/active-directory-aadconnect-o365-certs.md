@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/14/2016"
+	ms.date="05/03/2016"
 	ms.author="billmath"/>
 
 
@@ -99,6 +99,6 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 4.	如果您不是在 AD FS 主要同盟伺服器的電腦上執行這些命令，請執行 Set-MSOLAdfscontext -Computer <AD FS primary server>，其中 <AD FS primary server> 是主要 AD FS 伺服器的內部 FQDN 名稱。此 Cmdlet 會建立讓您連線到 AD FS 的環境。
 5.	執行 Update-MSOLFederatedDomain –DomainName <domain>。此 Cmdlet 會將 AD FS 的設定更新成雲端服務，並設定兩者之間的信任關係。
 
->[AZURE.NOTE] 如果您需要支援多個頂層網域，例如 contoso.com 和 fabrikam.com，則您使用任何 Cmdlet 時必須搭配使用 SupportMultipleDomain 參數。如需詳細資訊，請參閱〈支援多個頂層網域〉。最後，確定使用 [Windows Server 2014 年 5 月](http://support.microsoft.com/kb/2955164)彙總套件來更新所有 Web 應用程式 Proxy 伺服器，否則 Proxy 可能無法使用新的憑證自行更新，而導致服務中斷。
+>[AZURE.NOTE] 如果您需要支援多個頂層網域，例如 contoso.com 和 fabrikam.com，則您使用任何 Cmdlet 時必須搭配使用 SupportMultipleDomain 參數。如需詳細資訊，請參閱[支援多個頂層網域](active-directory-aadconnect-multiple-domains.md)。最後，確定使用 [Windows Server 2014 年 5 月](http://support.microsoft.com/kb/2955164)彙總套件來更新所有 Web 應用程式 Proxy 伺服器，否則 Proxy 可能無法使用新的憑證自行更新，而導致服務中斷。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

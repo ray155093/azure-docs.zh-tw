@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/16/2016"
+   ms.date="04/27/2016"
    ms.author="larryfr"/>
 
 #利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop
@@ -68,6 +68,8 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 2. 從 `beeline>` 命令提示字元，使用下列命令來連接至 HiveServer2 服務。以稍早傳回的前端節點主機名稱取代 __HOSTNAME__：
 
         !connect jdbc:hive2://HOSTNAME:10001/;transportMode=http admin
+        
+    這會指示 Beeline 連接到所指定 __HOSTNAME__ 上的連接埠 __10001__，而 __HTTP__ 是傳輸方法。__系統管理員__帳戶用來驗證連線。
 
     出現提示時，輸入 HDInsight 叢集的系統管理員 (admin) 帳戶密碼。建議連線後，提示將變更如下：
     
@@ -75,7 +77,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 3. Beeline 命令通常以 `!` 字元開頭，例如 `!help` 顯示說明。不過，往往會省略 `!`。例如，`help` 也可行。
 
-    如果您檢視說明，您會注意到用來執行 HiveQL 陳述式的 `!sql`。不過，HiveQL 如此常用，所以您可省略前面的 `!sql`。下列兩個陳述式的結果完全相同；顯示目前可透過 Hive 取得的資料表：
+    如果您檢視說明，您會注意到用來執行 HiveQL 陳述式的 `!sql`。不過，HiveQL 如此常用，因此您可以省略前面的 `!sql`。下列兩個陳述式的結果完全相同；顯示目前可透過 Hive 取得的資料表：
     
         !sql show tables;
         show tables;
@@ -176,7 +178,7 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。使用下列步�
     
 3. 若要儲存檔案，請使用 __Ctrl__+___\_X__，然後輸入 __Y__，最後按 __Enter__。
 
-4. 使用下列命令，以使用 Beeline 來執行檔案。以稍早取得的前端節點名稱取代 __HOSTNAME__，以及以管理員帳戶的密碼取代 __PASSWORD__：
+4. 使用下列命令，以使用 Beeline 來執行檔案。以稍早取得的前端節點名稱取代 __HOSTNAME__，以及以系統管理員帳戶的密碼取代 __PASSWORD__：
 
         beeline -u 'jdbc:hive2://HOSTNAME:10001/;transportMode=http' -n admin -p PASSWORD -f query.hql
 
@@ -243,4 +245,4 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。使用下列步�
 
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

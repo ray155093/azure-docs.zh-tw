@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/11/2016"
+	ms.date="05/02/2016"
 	ms.author="jodebrui"/>
 
 
 # 監視記憶體內部 OLTP 儲存體
 
-使用 [In-Memory OLTP](sql-database-in-memory.md) 時，記憶體最佳化資料表中的資料和資料表變數位於記憶體內部 OLTP 儲存體中。每個進階服務層都有最大的記憶體內部儲存體大小，如 [SQL Database 服務層文章](sql-database-service-tiers.md#service-tiers-for-single-databases)所說明。一旦超過此限制，插入和更新作業可能會開始出錯 (錯誤碼 41823)。屆時您將需要刪除資料以回收記憶體，或升級您的資料庫的效能層。
+使用[記憶體內部 OLTP](sql-database-in-memory.md) 時，記憶體最佳化資料表中的資料和資料表變數位於記憶體內部 OLTP 儲存體中。每個進階服務層都有最大的記憶體內部 OLTP 儲存體大小，如 [SQL Database 服務層文章](sql-database-service-tiers.md#service-tiers-for-single-databases)所說明。一旦超過此限制，插入和更新作業可能會開始出錯 (錯誤碼 41823)。屆時您將需要刪除資料以回收記憶體，或升級您的資料庫的效能層。
 
 ## 判斷資料是否在記憶體內部儲存容量上限內
 
@@ -35,12 +35,12 @@
 您可以在 Azure [入口網站](https://portal.azure.com/)中，透過[效能層的儲存上限](sql-database-service-tiers.md#service-tiers-for-single-databases)的百分比來監視記憶體內部儲存體使用情形：
 
 - 在 [資料庫] 刀鋒視窗上，找出 [資源使用率方塊] 並按一下 [編輯]。
-- 然後選取 [記憶體內部 OLTP 儲存體百分比] 計量。
+- 然後選取計量 `In-Memory OLTP Storage percentage`。
 - 若要新增警示，請按一下 [資源使用率] 方塊以開啟 [計量] 刀鋒視窗，然後按一下 [新增警示]。
 
 或使用下列查詢來顯示記憶體內部儲存體使用率：
 
-    select xtp_storage_percent from sys.dm_db_resource_stats
+    SELECT xtp_storage_percent FROM sys.dm_db_resource_stats
 
 
 ## 更正記憶體不足情況 - 錯誤 41823
@@ -58,4 +58,4 @@
 ## 後續步驟
 深入了解[使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

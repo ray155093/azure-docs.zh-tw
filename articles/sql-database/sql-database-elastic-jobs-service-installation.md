@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/24/2016" 
+	ms.date="05/02/2016" 
 	ms.author="ddove;sidneyh"/>
 
 # 安裝彈性資料庫工作概觀
@@ -50,7 +50,7 @@
 
 		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
 
-2.	執行.\\InstallElasticDatabaseJobs.ps1 PowerShell 指令碼，並提供其所要求之變數的值。此指令碼將依[彈性資料庫工作元件和定價](sql-database-elastic-jobs-overview/#components-and-pricing)所述建立元件，以及將 Azure 雲端服務設定為適當地使用相依元件。
+2.	執行.\\InstallElasticDatabaseJobs.ps1 PowerShell 指令碼，並提供其所要求之變數的值。此指令碼將依[彈性資料庫工作元件和定價](sql-database-elastic-jobs-overview.md#components-and-pricing)所述建立元件，以及將 Azure 雲端服務設定為適當地使用相依元件。
 
 		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
 		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
@@ -187,4 +187,4 @@
 [3]: ./media/sql-database-elastic-jobs-service-installation/start-board.png
 [4]: ./media/sql-database-elastic-jobs-service-installation/not-done.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

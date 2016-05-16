@@ -4,7 +4,7 @@
    services="sql-database" 
    documentationCenter="" 
    authors="stevestein" 
-   manager="jeffreyg" 
+   manager="jhubbard" 
    editor="monicar"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="02/03/2016"
+   ms.date="04/28/2016"
    ms.author="sstein"/>
 
 # Azure SQL Database 查詢效能深入解析
@@ -46,10 +46,10 @@
 
 - 檢閱排名最前面的資源取用查詢清單。 
 - 選取個別的查詢來檢視其詳細資料。
-- 按一下 [設定] 來自訂資料的顯示方式，或顯示不同的期間。
-- 開啟[索引建議程式](sql-database-index-advisor.md)，並查看是否有任何建議。
-
-
+- 開啟 [效能建議程式](sql-database-index-advisor.md)，並查看是否有任何建議。
+- 放大以取得詳細資訊。
+- 
+    ![效能儀表板](./media/sql-database-query-performance/performance.png)
 
 > [AZURE.NOTE] SQL Database 的查詢存放區需要擷取幾個小時的資料，才能提供查詢效能深入解析。如果在某段時間內資料庫沒有任何作用中的活動或查詢存放區，則在顯示該期間時圖表會是空的。如果查詢存放區不在執行中，您可隨時加以啟用。
 
@@ -59,7 +59,7 @@
 
 在[入口網站](http://portal.azure.com)中執行下列動作：
 
-1. 瀏覽至 SQL Database 並按一下 [查詢效能深入解析]。 
+1. 瀏覽至 SQL Database，然後按一下 [所有設定] > [效能] > [查詢]。 
 
     ![查詢效能深入解析][1]
 
@@ -158,11 +158,9 @@
 
 ## 後續步驟
 
-資料庫工作負載會動態地持續變更。監視您的查詢並繼續進行微調，以改善效能。
+如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的 [效能建議程式](sql-database-index-advisor.md)。
 
-如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的[索引建議程式](sql-database-index-advisor.md)。
-
-![索引顧問](./media/sql-database-query-performance/ia.png)
+![效能建議程式](./media/sql-database-query-performance/ia.png)
 
 
 <!--Image references-->
@@ -170,4 +168,4 @@
 [2]: ./media/sql-database-query-performance/top-queries.png
 [3]: ./media/sql-database-query-performance/query-details.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

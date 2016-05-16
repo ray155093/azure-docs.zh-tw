@@ -4,7 +4,7 @@
    services="sql-database" 
    documentationCenter="" 
    authors="stevestein" 
-   manager="jeffreyg" 
+   manager="jhubbard" 
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="powershell"
    ms.workload="data-management" 
-   ms.date="03/23/2016"
+   ms.date="05/03/2016"
    ms.author="sstein"/>
 
 # 使用 C&#x23; 建立和管理 SQL Database
@@ -85,7 +85,7 @@ Azure SQL Database Library for .NET 提供 [Azure 資源管理員](../resource-g
 
     ![新增應用程式][8]
 
-7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] \(您在程式碼中需要用戶端識別碼)。
+7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] (您在程式碼中需要用戶端識別碼)。
 
     ![取得用戶端識別碼][9]
 
@@ -335,7 +335,7 @@ SQL Database 包含在伺服器中。伺服器名稱在全域的所有 Azure SQL
 
 ## 將現有資料庫移入彈性資料庫集區
 
-*建立集區之後，您也可以使用 Transact-SQL 將現有的資料庫移入和移出集區。如需詳細資訊，請參閱[彈性資料庫集區參考 - Transact-SQL](sql-database-elastic-pool-reference.md#Transact-SQL)。*
+*建立集區之後，您也可以使用 Transact-SQL 將現有的資料庫移入和移出集區。如需詳細資訊，請參閱[使用 Transact-SQL 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-tsql.md)。*
 
 若要將現有資料庫移入集區：
 
@@ -367,7 +367,7 @@ SQL Database 包含在伺服器中。伺服器名稱在全域的所有 Azure SQL
 
 ## 在彈性資料庫集區中建立新的資料庫
 
-*建立集區之後，您也可以使用 Transact-SQL 在集區中建立新的彈性資料庫。如需詳細資訊，請參閱[彈性資料庫集區參考 - Transact-SQL](sql-database-elastic-pool-reference.md#Transact-SQL)。*
+*建立集區之後，您也可以使用 Transact-SQL 在集區中建立新的彈性資料庫。如需詳細資訊，請參閱[使用 Transact-SQL 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-tsql.md)。*
 
 若要直接在集區中建立新的資料庫：
 
@@ -784,9 +784,6 @@ SQL Database 包含在伺服器中。伺服器名稱在全域的所有 Azure SQL
 
 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 
-[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
-
-
 <!--Image references-->
 [1]: ./media/sql-database-client-library/aad.png
 [2]: ./media/sql-database-client-library/permissions.png
@@ -798,4 +795,4 @@ SQL Database 包含在伺服器中。伺服器名稱在全域的所有 Azure SQL
 [8]: ./media/sql-database-client-library/add-application2.png
 [9]: ./media/sql-database-client-library/clientid.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/15/2016"
+	ms.date="04/29/2016"
 	ms.author="cynthn"/>
 
 # 建立一個執行 Windows 的自訂虛擬機器
@@ -30,4 +30,4 @@
 
 您也可以使用傳統入口網站[建立執行 Linux 的自訂虛擬機器](virtual-machines-linux-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -37,7 +37,7 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 
 熱門的 Web 開發工具支援一或多個這些部署程序。雖然您選擇的工具會決定可以利用的部署程序，但可供您使用的實際 DevOps 功能取決於部署程序的組合以及且您選擇的特定工具。例如，如果您從 [Visual Studio 搭配 Azure SDK](#vspros) 執行 Web Deploy，即使您未從 Kudu 獲得自動化，仍可在 Visual Studio 中獲得套件還原和 MSBuild 自動化。
 
->[AZURE.NOTE] 這些部署程序並不會實際[佈建 Azure 資源](resource-group-portal)，但這些資源可能是您的應用程式需要的。然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。您也可以在[使用命令列工具自動化部署](#automate)一節中找到佈建 Azure 資源的其他選項。
+>[AZURE.NOTE] 這些部署程序並不會實際[佈建 Azure 資源](../azure-portal/resource-group-portal.md)，但這些資源可能是您的應用程式需要的。然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。您也可以在[使用命令列工具自動化部署](#automate)一節中找到佈建 Azure 資源的其他選項。
      
 ## <a name="ftp"></a>手動將檔案複製到 Azure 以透過 FTP 進行部署
 如果您習慣以手動方式將網站內容複製到 Web 伺服器，則可以使用 [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) 公用程式來複製檔案，例如 Windows 檔案總管或 [FileZilla](https://filezilla-project.org/)。
@@ -93,7 +93,7 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 
 - 版本控制可進行回復。
 - 可設定適用於 Git 儲存機制 (若適用的話也含 Mercurial) 的持續部署。 
-- 分支專屬的部署，可以將不同的分支部署至不同的[位置](web-sites-staged-publishing)。
+- 分支專屬的部署，可以將不同的分支部署至不同的[位置](web-sites-staged-publishing.md)。
 - 可使用 Kudu 部署引擎中的所有功能 (例如部署版本控制、回復、封裝還原和自動化)。
 
 從雲端型原始檔控制服務進行部署的缺點如下：
@@ -111,7 +111,7 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 從本機 Git 進行部署的優點如下：
 
 - 版本控制可進行回復。
-- 分支專屬的部署，可以將不同的分支部署至不同的[位置](web-sites-staged-publishing)。
+- 分支專屬的部署，可以將不同的分支部署至不同的[位置](web-sites-staged-publishing.md)。
 - 可使用 Kudu 部署引擎中的所有功能 (例如部署版本控制、回復、封裝還原和自動化)。
 
 從本機 Git 進行部署的缺點如下：
@@ -226,4 +226,4 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

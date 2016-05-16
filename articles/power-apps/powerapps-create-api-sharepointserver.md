@@ -14,60 +14,71 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/03/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 # 在 PowerApps Enterprise 中建立新的 SharePoint Server API
 
-將 SharePoint Server API 加入您組織 (租用戶) 的 App Service 環境中。
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-## 在 Azure 入口網站中建立 API
+<!--Archived
+Add the SharePoint Server API to your organization's (tenant) app service environment. 
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
+## Create the API in the Azure portal
+
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
  
-2. 選取工作列中的 [瀏覽]：![][14]
+2. Select **Browse** in the task bar:  
+![][14]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![][15]
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][15]  
 
-4. 在 **PowerApps** 中選取 [管理 API]：![瀏覽至已註冊的 API][5]
+4. In **PowerApps**, select **Manage APIs**:  
+![Browse to registered apis][5]
 
-5. 在 [**管理 API**] 中，選取 [**新增**] 以新增 API：![Add API][6]
+5. In **Manage APIs**, select **Add** to add the new API:  
+![Add API][6]
 
-6. 為您的 API 輸入描述性**名稱**。
-7. 在 [**來源**] 中，選取 [**可用 API**]，以選取預先建置的 API，然後選取 [**SharePoint Server**]。 
-8. 選取 [**設定 - 進行必要的設定**]。
-9. 輸入 SharePoint Server Azure Active Directory (AAD 應用程式) 的*用戶端識別碼*和*應用程式金鑰*，以及 AAD Proxy 應用程式的 *SharePoint URL* 和*資源識別碼*。依照下節所列步驟設定您內部部署 SharePoint Server 的連線。  
+6. Enter a descriptive **name** for your API.	
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **SharePoint Server**. 
+8. Select **Settings - Configure required settings**.
+9. Enter the *Client Id* and *App Key* for the SharePoint Server Azure Active Directory (AAD app), and the *SharePoint URL* and *Resource Id* of the AAD Proxy app. Follow the steps outlined in the following section to configure connectivity to your on-premises SharePoint Server.  
 
-	> [AZURE.IMPORTANT] 儲存**重新導向 URL**。您在本主題的後半部可能需要此值。
+	> [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.  
 	
-10. 選取 [**確定**] 以完成步驟。
+10. Select **OK** to complete the steps.
 
-完成時，新的 SharePoint Server API 會新增至您的 App Service 環境。
+When finished, a new SharePoint Server API is added to your app service environment.
 
 
-## 設定內部部署 SharePoint Server 的連線
+## Configure connectivity to an on-premises SharePoint Server
 
-SharePoint Server 使用 Active Directory 進行使用者驗證。App Service 環境中的 API 透過 Azure Active Directory (AAD) 進行驗證。您不必交換使用者的 AAD 權杖及將它轉換成 AD 權杖。此 AD 權杖之後可用於連接至內部部署服務。
+SharePoint Server use Active Directory for user authentication. APIs in the app serviced environments are authenticated using Azure Active Directory (AAD). You do need to exchange the user’s AAD token and convert it to the AD token. This AD token can then be used to connect to the on-premises service.
 
-此需求將使用 [Azure 應用程式 Proxy (AAD Proxy)](../active-directory/active-directory-application-proxy-publish.md)。它是 GA 中的 Azure 服務，可保護對內部部署 Web 應用程式的遠端存取與 SSO。MSDN 中詳細記錄了啟用 AAD Proxy 的步驟。概括而言，步驟包括：
+[Azure Application Proxy (AAD Proxy)](../active-directory/active-directory-application-proxy-publish.md) is used for this requirement. It is an Azure Service in GA, and it secures remote access and SSO to on-premises web applications. The steps to enable AAD Proxy is well documented in MSDN. At a high level, the steps include:  
 
-1. [啟用應用程式 Proxy 服務](../active-directory/active-directory-application-proxy-enable.md) – 這包括：  
+1. [Enable Application Proxy Services](../active-directory/active-directory-application-proxy-enable.md) – This includes:  
 
-	- 在 Azure AD 中啟用應用程式 Proxy
-	- 安裝與註冊 Azure 應用程式 Proxy 連接器
+	- Enable Application Proxy in Azure AD
+	- Install and Register the Azure Application Proxy Connector
 
-2. [使用應用程式 Proxy 發佈應用程式](../active-directory/active-directory-application-proxy-publish.md) – 這包括：
+2. [Publish Applications with Application  Proxy](../active-directory/active-directory-application-proxy-publish.md) – This includes:  
 
-	- 使用精靈發佈應用程式 Proxy 應用程式。Proxy 應用程式建立後，請隨即記下內部網路 Sharepoint 網站的外部 URL。
-	- 將使用者與群組指派至應用程式。
-	- 輸入應用程式 Proxy 連接器使用的進階組態，如 SPN (服務主體名稱)，擷取內部部署的 Kerberos 權杖。
+	- Publish an Application Proxy app using the wizard. Note the external URL of the intranet sharepoint site once the Proxy app has been created.
+	- Assign users and group to the application.
+	- Enter advanced configuration like the SPN (Service Principal Name) that is used by the Application Proxy Connector to fetch the Kerberos token on-premises.
 
-Proxy 應用程式建立後，您必須建立另一個委派給 Proxy 應用程式的 AAD 應用程式。若要取得同意流程所需的存取權杖與重新整理權杖，這是必要動作。您可以遵循[這些指示](../active-directory/active-directory-integrating-applications.md)建立新的 AAD 應用程式。
+Once the Proxy app is created, you have to create another AAD app that delegates to the proxy application. This is required to obtain the access token and refresh token that are required for the consent flow. You can create a new AAD application by following [these instructions](../active-directory/active-directory-integrating-applications.md).
 
-## 摘要和後續步驟
-在本主題中，您已將 Office 365 Outlook API 新增至 PowersApps Enterprise。接下來，請授與使用者此 API 的存取權，讓使用者能夠將此 API 新增至其應用程式：
+## Summary and next steps
+In this topic, you added the Office 365 Outlook API to your PowersApps Enterprise. Next, give users access to the API so it can be added to their apps: 
 
-[新增連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
 
 
 <!--References-->
@@ -79,4 +90,4 @@ Proxy 應用程式建立後，您必須建立另一個委派給 Proxy 應用程�
 [14]: ./media/powerapps-create-api-office365-outlook/browseall.png
 [15]: ./media/powerapps-create-api-office365-outlook/allresources.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

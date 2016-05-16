@@ -1,18 +1,18 @@
-### Specifying TextFormat
+### 指定 TextFormat
 
-If the format is set to **TextFormat**, you can specify the following **optional** properties in the **Format** section.
+如果格式設為 **TextFormat**，您可以在 **Format** 區段中指定下列**選擇性**屬性。
 
-| Property | Description | Required |
+| 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| columnDelimiter | The character used as a column separator in a file. Only one character is allowed at this time. This tag is optional. The default value is comma (,). | No |
-| rowDelimiter | The character used as a raw separator in file. Only one character is allowed at this time. This tag is optional. The default value is any of the following: [“\r\n”, “\r”,” \n”]. | No |
-| escapeChar | The special character used to escape column delimiter shown in content. This tag is optional. No default value. You must specify no more than one character for this property.<br/><br/>For example, if you have comma (,) as the column delimiter but you want have comma character in the text (example: “Hello, world”), you can define ‘$’ as the escape character and use string “Hello$, world” in the source.<br/><br/>Note that you cannot specify both escapeChar and quoteChar for a table. | No | 
-| quoteChar | The special character is used to quote the string value. The column and row delimiters inside of the quote characters would be treated as part of the string value. This tag is optional. No default value. You must specify no more than one character for this property.<br/><br/>For example, if you have comma (,) as the column delimiter but you want have comma character in the text (example: <Hello, world>), you can define ‘"’ as the quote character and use string <"Hello, world"> in the source. This property is applicable to both input and output tables.<br/><br/>Note that you cannot specify both escapeChar and quoteChar for a table. | No |
-| nullValue | The character(s) used to represent null value in blob file content. This tag is optional. The default value is “\N”.<br/><br/>For example, based on above sample, “NaN” in blob will be translated as null value while copied into e.g. SQL Server. | No |
-| encodingName | Specify the encoding name. For the list of valid encoding names, see: [Encoding.EncodingName Property](https://msdn.microsoft.com/library/system.text.encoding.aspx). For example: windows-1250 or shift_jis. The default value is: UTF-8. | No | 
+| columnDelimiter | 在檔案中做為資料行分隔符號的字元。目前只允許一個字元。此標記是選擇性的。預設值是逗號 (,)。 | 否 |
+| rowDelimiter | 在檔案中做為資料列分隔符號的字元。目前只允許一個字元。此標記是選擇性的。預設值是下列任一項：[“\\r\\n”, “\\r”,” \\n”]。 | 否 |
+| escapeChar | 用來逸出內容中顯示之資料行分隔符號的特殊字元。此標記是選擇性的。沒有預設值。您為此屬性指定的字元不得超過一個。<br/><br/>例如，如果您以逗號 (,) 作為資料行分隔符號，但您想要在文字中使用逗號字元 (例如：“Hello, world”)，您可以定義 ‘$’ 作為逸出字元，並在來源中使用字串 “Hello$, world”。<br/><br/>請注意，您無法同時為資料表指定 escapeChar 和 quoteChar。 | 否 | 
+| quoteChar | 用來引用字串值的特殊字元。引號字元內的資料行和資料列分隔符號會被視為字串值的一部分。此標記是選擇性的。沒有預設值。您為此屬性指定的字元不得超過一個。<br/><br/>例如，如果您以逗號 (,) 做為資料行分隔符號，但您想要在文字中使用逗號字元 (例如：<Hello  world>)，您可以定義 ‘"’ 做為引用字元，並在來源中使用字串 <"Hello, world">。這個屬性同時適用於輸入和輸出資料表。<br/><br/>請注意，您無法同時為資料表指定 escapeChar 和 quoteChar。 | 否 |
+| nullValue | 用來代表 Blob 檔案內容中 null 值的字元。此標記是選擇性的。預設值為 “\\N”。<br/><br/>例如，根據上述範例，Blob 中的 “NaN” 會在複製到 SQL Server 時轉換成 Null 值。 | 否 |
+| encodingName | 指定編碼名稱。如需有效編碼名稱的清單，請參閱：[Encoding.EncodingName 屬性](https://msdn.microsoft.com/library/system.text.encoding.aspx)。例如：windows-1250 或 shift\_jis。預設值為 UTF-8。 | 否 | 
 
-#### TextFormat example
-The following sample shows some of the format properties for TextFormat.
+#### TextFormat 範例
+下列範例顯示 TextFormat 的一些格式屬性。
 
 	"typeProperties":
 	{
@@ -23,41 +23,41 @@ The following sample shows some of the format properties for TextFormat.
 	        "type": "TextFormat",
 	        "columnDelimiter": ",",
 	        "rowDelimiter": ";",
-	        "quoteChar": "\"",
+	        "quoteChar": """,
 	        "NullValue": "NaN"
 	    }
 	},
 
-To use an escapeChar instead of quoteChar, replace the line with quoteChar with the following:
+若要使用 escapeChar 而不是 quoteChar，請以下列內容取代具有 quoteChar 的行：
 
 	"escapeChar": "$",
 
-### Specifying AvroFormat
-If the format is set to AvroFormat, you do not need to specify any properties in the Format section within the typeProperties section. Example:
+### 指定 AvroFormat
+如果格式設為 AvroFormat，您不需要在 typeProperties 區段內的 Format 區段中指定任何屬性。範例：
 
 	"format":
 	{
 	    "type": "AvroFormat",
 	}
 
-To use Avro format in a Hive table, you can refer to [Apache Hive’s tutorial](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe).
+若要在 Hive 資料表中使用 Avro 格式，您可以參考 [Apache Hive 的教學課程](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe)。
 
-### Specifying JsonFormat
+### 指定 JsonFormat
 
-If the format is set to **JsonFormat**, you can specify the following **optional** properties in the **Format** section.
+如果格式設定為 **JsonFormat**，您可以在 **Format** 區段中指定下列**選擇性**屬性。
 
-| Property | Description | Required |
+| 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| filePattern | Indicate the pattern of data stored in each JSON file. Allowed values are: **setOfObjects** and **arrayOfObjects**. The **default** value is: **setOfObjects**. See sections below for details about these patterns.| No |
-| encodingName | Specify the encoding name. For the list of valid encoding names, see: [Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) Property. For example: windows-1250 or shift_jis. The **default** value is: **UTF-8**. | No | 
-| nestingSeparator | Character that is used to separate nesting levels. The **default** value is **. (dot)**. | No | 
+| filePattern | 表示每個 JSON 檔案中儲存的資料模式。允許的值為︰**setOfObjects** 和 **arrayOfObjects**。**預設**值為：**setOfObjects**。如需這些模式的詳細資料，請參閱下列各節。| 否 |
+| encodingName | 指定編碼名稱。如需有效編碼名稱的清單，請參閱：[Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) 屬性。例如：windows-1250 或 shift\_jis。**預設**值為 **UTF-8**。 | 否 | 
+| nestingSeparator | 用來分隔巢狀層級的字元。**預設**值為 **. (點)**。 | 否 | 
 
 
-#### setOfObjects file pattern
+#### setOfObjects 檔案模式
 
-Each file contains single object, or line-delimited/concatenated multiple objects. When this option is chosen in an output dataset, copy will produce a single JSON file with each object per line (line-delimited).
+每個檔案都會包含單一物件，或以行分隔/串連的多個物件。在輸出資料集中選擇此選項時，copy 將會產生單一 JSON 檔案，每行一個物件 (以行分隔)。
 
-**single object** 
+**單一物件**
 
 	{
 		"time": "2015-04-29T07:12:20.9100000Z",
@@ -68,7 +68,7 @@ Each file contains single object, or line-delimited/concatenated multiple object
 		"switch2": "Germany"
 	}
 
-**line-delimited JSON** 
+**以行分隔的 JSON**
 
 	{"time":"2015-04-29T07:12:20.9100000Z","callingimsi":"466920403025604","callingnum1":"678948008","callingnum2":"567834760","switch1":"China","switch2":"Germany"}
 	{"time":"2015-04-29T07:13:21.0220000Z","callingimsi":"466922202613463","callingnum1":"123436380","callingnum2":"789037573","switch1":"US","switch2":"UK"}
@@ -76,7 +76,7 @@ Each file contains single object, or line-delimited/concatenated multiple object
 	{"time":"2015-04-29T07:13:22.0960000Z","callingimsi":"466922202613463","callingnum1":"789037573","callingnum2":"789044691","switch1":"UK","switch2":"Australia"}
 	{"time":"2015-04-29T07:13:22.0960000Z","callingimsi":"466922202613463","callingnum1":"123436380","callingnum2":"789044691","switch1":"US","switch2":"Australia"}
 
-**concatenated JSON**
+**串連的 JSON**
 
 	{
 		"time": "2015-04-29T07:12:20.9100000Z",
@@ -104,9 +104,9 @@ Each file contains single object, or line-delimited/concatenated multiple object
 	}
 
 
-#### arrayOfObjects file pattern. 
+#### arrayOfObjects 檔案模式。 
 
-Each file contains an array of objects. 
+每個檔案都會包含物件的陣列。
 
 	[
 	    {
@@ -167,9 +167,9 @@ Each file contains an array of objects.
 	    }
 	]
 
-### JsonFormat example
+### JsonFormat 範例
 
-If you have a JSON file with the following content:  
+如果您的 JSON 檔案含有下列內容：
 
 	{
 		"Id": 1,
@@ -180,13 +180,13 @@ If you have a JSON file with the following content:
 		"Tags": ["Data Factory”, "Azure"]
 	}
 
-and you want to copy it into a an Azure SQL table in the following format: 
+而且您想要使用下列格式，將它複製到 Azure SQL 資料表︰
 
-Id	| Name.First | Name.Middle | Name.Last | Tags
+識別碼 | Name.First | Name.Middle | Name.Last | 標記
 --- | ---------- | ----------- | --------- | ----
 1 | John | null | Doe | ["Data Factory”, "Azure"]
 
-The input dataset with JsonFormat type is defined as follows: (partial definition with only the relevant parts)
+JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的部分定義)
 
 	"properties": {
 		"structure": [
@@ -209,14 +209,14 @@ The input dataset with JsonFormat type is defined as follows: (partial definitio
 		}
 	}
 
-If the structure is not defined, the Copy Activity flattens the structure by default and copy every thing. 
+如果未定義結構，複製活動預設會簡維結構，並複製每個項目。
 
-#### Supported JSON structure
-Note the following: 
+#### 支援的 JSON 結構
+請注意：
 
-- Each object with a collection of name/value pairs will be mapped to one row of data in a tabular format. Objects can be nested and you can define how to flatten the structure in a dataset with the  nesting separator (.) by default. See the [JsonFormat example](#jsonformat-example) section above for an example.  
-- If the structure is not defined in the Data Factory dataset, the Copy Activity detects the schema from the first object and flatten the whole object. 
-- If the JSON input has an array, the Copy Activity converts the entire array value into a string. You can choose to skip it by using [column mapping or filtering](#column-mapping-with-translator-rules).
-- If there are duplicate name at the same level, the Copy Activity will pick the last one.
-- Property names are case sensitive. Two properties with same name but different casing will be treated as two separate properties. 
+- 每個含有名稱/值組集合的物件將會對應到資料 (表格格式) 的某一個資料列。物件可以是巢狀的，而您可以定義預設要在資料集中使用巢狀分隔字元 (.) 來簡維結構的方式。如需範例，請參閱上述的 [JsonFormat 範例](#jsonformat-example)一節。  
+- 如果未在 Data Factory 資料集中定義結構，複製活動即會偵測到第一個物件的結構描述，並簡維整個物件。 
+- 如果 JSON 輸入具有陣列，複製活動就會將整個陣列值轉換為字串。您可以使用[資料行對應或篩選](#column-mapping-with-translator-rules)，選擇略過它。
+- 如果相同層級中有重複的名稱，複製活動將會挑選最後一個。
+- 屬性名稱會區分大小寫。名稱相同但大小寫不同的兩個屬性會被視為兩個不同的屬性。 
 
