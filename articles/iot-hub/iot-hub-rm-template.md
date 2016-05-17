@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="02/12/2016"
+     ms.date="05/03/2016"
      ms.author="dobett"/>
 
 # 使用 C# 程式和 ARM 範本建立 IoT 中樞
@@ -115,7 +115,7 @@
 
 3. 在 [方案總管] 中，以滑鼠右鍵按一下專案，按一下 [加入]，然後按一下 [新增項目]。將名為 **parameters.json** 的新 JSON 檔案加入至專案。
 
-4. 使用下列參數資訊取代 **parameters.json** 的內容，將新的 IoT 中樞的名稱設為 **mynewiothub** (請注意，此名稱必須是全域唯一的)：
+4. 使用下列參數資訊取代 **parameters.json** 的內容，設定新 IoT 中樞的名稱，例如 **{您的縮寫}mynewiothub** (請注意，此名稱必須是全域唯一的，因此應該包含您的名稱或縮寫)：
 
     ```
     {
@@ -215,4 +215,4 @@
 [lnk-azure-rm-overview]: ../resource-group-overview.md
 [lnk-storage-account]: ../storage/storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

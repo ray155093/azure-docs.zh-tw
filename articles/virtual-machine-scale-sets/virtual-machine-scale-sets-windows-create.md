@@ -14,34 +14,18 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/22/2016"
+	ms.date="04/26/2016"
 	ms.author="davidmu"/>
 
 # 使用 Azure PowerShell 建立 Windows 虛擬機器擴展集
 
-這些步驟會遵循填空方法建立 Azure 虛擬機器擴展集。整篇文章都是需要您提供值的變數。請使用對您的訂用帳戶和應用程式有意義的值取代括弧內的所有內容。
+這些步驟會遵循填空方法建立 Azure 虛擬機器擴展集。若要深入了解擴展集，請參閱[虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md)。
+
+執行本文中的步驟應該大約 30 分鐘的時間。
 
 ## 步驟 1：安裝 Azure PowerShell
 
-[AZURE.INCLUDE [powershell-preview](../../includes/powershell-preview-inline-include.md)]
-
-## 步驟 2：設定您的訂用帳戶
-
-1. 開啟 PowerShell 提示字元。
-
-2. 登入您的帳戶：
-
-        Login-AzureRmAccount
-
-3. 取得訂用帳戶：
-
-        Get-AzureSubscription | Sort SubscriptionName | Select SubscriptionName
-
-4. 設定目前要使用的訂用帳戶：
-
-        $subscr = "subscription name"
-        Select-AzureSubscription -SubscriptionName $subscr –Current
-
+如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
 
 ## 步驟 2：建立資源
 
@@ -51,7 +35,7 @@
 
 虛擬機器擴展集必須包含在資源群組中。
 
-1.  執行這個命令取得可用位置和支援服務的清單︰
+1.  取得可用位置和支援服務的清單︰
 
         Get-AzureLocation | Sort Name | Select Name, AvailableServices
 
@@ -78,13 +62,16 @@
         West India          {Compute, Storage, PersistentVMRole, HighMemory}
         West US             {Compute, Storage, PersistentVMRole, HighMemory}
 
-    挑選最適合您的位置，然後使用該位置的名稱取代引號內的文字︰
+2. 挑選最適合您的位置，使用該位置的名稱取代 **$locName** 的值，然後建立變數︰
 
         $locName = "location name from the list, such as Central US"
 
-4. 以您要使用的新資源群組名稱取代引號內的文字，然後在您之前設定的位置建立它︰
+3. 以您要用於新資源群組的名稱取代 **$rgName** 的值，然後建立變數︰
 
         $rgName = "resource group name"
+        
+4. 建立資源群組：
+    
         New-AzureRmResourceGroup -Name $rgName -Location $locName
 
     您應該會看到如下的結果：
@@ -99,16 +86,24 @@
 
 在擴展集中建立的虛擬機器需要儲存體帳戶來儲存相關聯的磁碟。
 
-1. 以您要使用的儲存體帳戶名稱取代引號內的文字，然後測試它是否為唯一的名稱︰
+1. 以您要用於儲存體帳戶的名稱取代 **saName** 的值，然後建立變數︰ 
 
         $saName = "storage account name"
+        
+2. 測試您選取的名稱是否是唯一的名稱︰
+    
         Test-AzureName -Storage $saName
 
     如果答案是 **False**，表示您設定的名稱是唯一的。
 
-2. 以儲存體帳戶的類型取代引號內的文字，然後使用您之前設定的名稱和位置建立帳戶。可能的值為︰Standard\_LRS、Standard\_GRS、Standard\_RAGRS 或 Premium\_LRS。
+3. 以儲存體帳戶的類型取代 **$saType** 的值，然後建立變數︰
 
         $saType = "storage account type"
+        
+    可能的值為︰Standard\_LRS、Standard\_GRS、Standard\_RAGRS 或 Premium\_LRS。
+        
+4. 建立帳戶：
+    
         New-AzureRmStorageAccount -Name $saName -ResourceGroupName $rgName –Type $saType -Location $locName
 
     您應該會看到如下的結果：
@@ -136,165 +131,163 @@
 
 擴展集中的虛擬機器需要虛擬網路。
 
-1. 以您要使用的虛擬網路子網路名稱取代引號內的文字，然後建立組態︰
+1. 以您要用於虛擬網路子網路的名稱取代 **$subName** 的值，然後建立變數︰ 
 
         $subName = "subnet name"
+        
+2. 建立子網路組態：
+    
         $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subName -AddressPrefix 10.0.0.0/24
+        
+    您的虛擬網路的位址前置詞可能不同。
 
-2. 以您要使用的虛擬網路名稱取代引號內的文字，然後使用您之前定義的資訊和資源建立它︰
+3. 以您要用於虛擬網路的名稱取代 **$netName** 的值，然後建立變數︰
 
-        $netName="virtual network name"
-        $vnet=New-AzureRmVirtualNetwork -Name $netName -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $subnet
-
+        $netName = "virtual network name"
+        
+4. 建立虛擬網路：
+    
+        $vnet = New-AzureRmVirtualNetwork -Name $netName -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 
 ### 公用 IP 位址
 
 您必須先建立公用 IP 位址，再建立網路介面。
 
-1. 以您要和公用 IP 位址一起使用的網域名稱標籤取代引號內的文字，然後測試它是否是唯一的名稱。標籤只能包含字母、數字和連字號，而最後一個字元必須是字母或數字︰
+1. 以您要用於公用 IP 位址的網域名稱標籤取代 **$domName** 的值，然後建立變數︰  
 
         $domName = "domain name label"
+        
+    標籤只能包含字母、數字和連字號，而最後一個字元必須是字母或數字。
+    
+2. 測試名稱是否是唯一的名稱︰
+    
         Test-AzureRmDnsAvailability -DomainQualifiedName $domName -Location $locName
 
-    如果答案是 **False**，表示您設定的名稱是唯一的。
+    如果答案是 **True**，表示您設定的名稱是唯一的。
 
-2. 以您要使用的公用 IP 位址名稱取代引號內的文字，然後建立它︰
+3. 以您要用於公用 IP 位址的名稱取代 **$pipName** 的值，然後建立變數︰
 
         $pipName = "public ip address name"
+        
+4. 建立公用 IP 位址：
+    
         $pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic -DomainNameLabel $domName
 
 ### 網路介面
 
 有了公用 IP 位址之後，您就可以建立網路介面。
 
-1. 以您要使用的網路介面名稱取代引號內的文字，然後使用您之前建立的資源建立它︰
+1. 以您要用於網路介面的名稱取代 **$nicName** 的值，然後建立變數︰ 
 
         $nicName = "network interface name"
+        
+2. 建立網路介面：
+    
         $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
 
+### 擴展集的組態
 
-### 建立虛擬機器擴展集
+您具備擴展集組態所需的所有資源，讓我們開始建立。
 
-您已有所需的全部資源，可以建立擴展集了。
-
-1. 以您要使用的 IP 組態名稱取代引號內的文字，然後建立它︰
+1. 以您要用於 IP 組態的名稱取代 **$ipName** 的值，然後建立變數︰ 
 
         $ipName = "IP configuration name"
+        
+2. 建立 IP 組態：
+
         $ipConfig = New-AzureRmVmssIpConfig -Name $ipName -LoadBalancerBackendAddressPoolsId $null -SubnetId $vnet.Subnets[0].Id
 
-2. 以您要使用的擴展集組態名稱取代引號內的文字，然後建立它。這個步驟包括設定集合中的虛擬機器大小 (稱為 SkuName)。請參閱 [Azure 中的虛擬機器大小](..\virtual-machines\virtual-machines-windows-sizes.md)找出符合您需求的大小。本例中建議使用 Standard\_A0.：
+2. 以您要用於擴展集組態的名稱取代 **$vmssConfig** 的值，然後建立變數︰
 
-        $vmssName = "Scale set configuration name"
-        $vmss = New-AzureRmVmssConfig -Location $locName -SkuCapacity 3 -SkuName "Standard_A0"
-        Add-AzureRmVmssNetworkInterfaceConfiguration -VirtualMachineScaleSet $vmss -Name $vmssName -Primary $true -IPConfiguration $ipConfig
+        $vmssConfig = "Scale set configuration name"
+        
+3. 建立擴展集的組態：
 
+        $vmss = New-AzureRmVmssConfig -Location $locName -SkuCapacity 3 -SkuName "Standard_A0" -UpgradePolicyMode "manual"
+        
+    此範例顯示使用 3 部虛擬機器建立的擴展集。若要深入了解擴展集的容量，請參閱[虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md)。這個步驟也包括設定集合中的虛擬機器大小 (稱為 SkuName)。請參閱[虛擬機器大小](..\virtual-machines\virtual-machines-windows-sizes.md)找出符合您需求的大小。
+    
+4. 將網路介面組態新增至擴展集組態：
+        
+        Add-AzureRmVmssNetworkInterfaceConfiguration -VirtualMachineScaleSet $vmss -Name $vmssConfig -Primary $true -IPConfiguration $ipConfig
+        
     您應該會看到如下的結果：
 
-        Sku                   : {
-                                  "name": "Standard_A0",
-                                  "tier": null,
-                                  "capacity": 3
-        						}
-        UpgradePolicy         : {
-                                  "mode": "automatic"
-                                }
-        VirtualMachineProfile : {
-                                  "osProfile": null,
-                                  "storageProfile": null,
-                                  "networkProfile": {
-                                    "networkInterfaceConfigurations": [
-                                      {
-                                        "name": "myniccfg1",
-                                        "properties.primary": true,
-                                        "properties.ipConfigurations": [
-                                          {
-                                            "name": "myipconfig1",
-                                            "properties.subnet": {
-                                              "id": "/subscriptions/########-####-####-####-############/resourceGroups/myrg1/providers/Microsoft.Network/virtualNetworks/myvn1/subnets/mysn1"
-                                            },
-                                            "properties.loadBalancerBackendAddressPools": [],
-                                            "properties.loadBalancerInboundNatPools": [],
-                                            "id": null
-                                          }
-                                        ],
-                                        "id": null
-                                      }
-                                    ]
-                                  },
-                                  "extensionProfile": {
-                                    "extensions": null
-                                  }
-                                }
+        Sku                   : Microsoft.Azure.Management.Compute.Models.Sku
+        UpgradePolicy         : Microsoft.Azure.Management.Compute.Models.UpgradePolicy
+        VirtualMachineProfile : Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile
         ProvisioningState     :
+        OverProvision         :
         Id                    :
         Name                  :
         Type                  :
         Location              : Central US
-        Tags.Count            : 0
         Tags                  :
 
-3. 以您要使用的電腦名稱前置詞、虛擬機器上的系統管理員帳戶名稱和帳戶密碼取代引號內的文字，然後建立作業系統設定檔︰
+#### 作業系統設定檔
+
+1. 以您要使用的電腦名稱前置詞名稱取代 **$computerName** 的值，然後建立變數︰ 
 
         $computerName = "computer name prefix"
+        
+2. 以虛擬機器的系統管理員帳戶的名稱取代 **$adminName** 的值，然後建立變數：
+
         $adminName = "administrator account name"
+        
+3. 以帳戶密碼取代 **$adminPassword** 的值，然後建立變數︰
+
         $adminPassword = "password for administrator accounts"
+        
+4. 建立作業系統設定檔：
+
         Set-AzureRmVmssOsProfile -VirtualMachineScaleSet $vmss -ComputerNamePrefix $computerName -AdminUsername $adminName -AdminPassword $adminPassword
 
-    您應該會在 osProfile 區段中看到如下的結果：
+#### 儲存體設定檔
 
-        "osProfile": {
-          "computerNamePrefix": "myvmss1",
-          "adminUsername": "########",
-          "adminPassword": "########",
-          "customData": null,
-          "windowsConfiguration": null,
-          "linuxConfiguration": null,
-          "secrets": null
-        },
-
-4. 以您要使用的儲存體設定檔名稱、映像資訊名稱和儲存虛擬機器磁碟的儲存體路徑名稱取代引號內的文字，然後建立設定檔。請參閱[使用 CLI 或 PowerShell 在 Azure 中巡覽並選取 Linux 虛擬機器映像](..\virtual-machines\virtual-machines-windows-cli-ps-findimage.md)尋找您需要的資訊：
+1. 以您要用於儲存體設定檔的名稱取代 **$storageProfile** 的值，然後建立變數︰  
 
         $storeProfile = "storage profile name"
-        $imagePublisher = "image publisher name, such as MicrosoftWindowsServer"
-        $imageOffer = "offer from publisher, such as WindowsServer"
-        $imageSku = "sku of image, such as 2012-R2-Datacenter"
+        
+2. 建立變數，該變數定義要使用的映像︰
+      
+        $imagePublisher = "MicrosoftWindowsServer"
+        $imageOffer = "WindowsServer"
+        $imageSku = "2012-R2-Datacenter"
+        
+    請參閱[使用 Windows PowerShell 和 Azure CLI 巡覽和選取 Azure 虛擬機器映像](..\virtual-machines\virtual-machines-windows-cli-ps-findimage.md)，尋找要使用的其他映像的資訊：
+        
+3. 以儲存虛擬硬碟所在的路徑取代 **$vhdContainer** 的值，例如 "https://mystorage.blob.core.windows.net/vhds"，然後建立變數：
+       
         $vhdContainer = "URI of storage container"
-        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -Name $storeProfile -VhdContainer $vhdContainer -OsDiskCreateOption "FromImage" -OsDiskCaching "None"
+        
+4. 建立儲存體設定檔：
 
-    您應該會在 storageProfile 區段中看到如下的結果：
+        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -Name $storeProfile -VhdContainer $vhdContainer -OsDiskCreateOption "FromImage" -OsDiskCaching "None"  
 
-        "storageProfile": {
-          "imageReference": {
-            "publisher": "MicrosoftWindowsServer",
-            "offer": "WindowsServer",
-            "sku": "2012-R2-Datacenter",
-            "version": "latest"
-          },
-          "osDisk": {
-            "name": "mystore1",
-            "caching": "None",
-            "createOption": "FromImage",
-            "osType": null,
-            "image": null,
-            "vhdContainers": {
-              "http://myst1.blob.core.windows.net/vhds"
-            }
-          }
-        },
+### 虛擬機器擴展集
 
-5. 以虛擬機器擴展集名稱取代引號內的文字，然後建立它︰
+最後，您可以建立擴展集。
+
+1. 以虛擬機器擴展集的名稱取代 **$vmssName** 的值，然後建立變數︰
 
         $vmssName = "scale set name"
+        
+2. 建立擴展集：
+
         New-AzureRmVmss -ResourceGroupName $rgName -Name $vmssName -VirtualMachineScaleSet $vmss
 
     您應該會看到如下的結果，告訴您部署成功︰
 
-        ProvisioningState     : Succeeded
-        Id                    : /subscriptions/########-####-####-####-############/resourceGroups/myrg1/providers/Microsoft.Compute/virtualMachineScaleSets/myvmss1
+        Sku                   : Microsoft.Azure.Management.Compute.Models.Sku
+        UpgradePolicy         : Microsoft.Azure.Management.Compute.Models.UpgradePolicy
+        VirtualMachineProfile : Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetVMProfile
+        ProvisioningState     : Updating
+        OverProvision         :
+        Id                    : /subscriptions/########-####-####-####-############/resourceGroups/myrg1/providers/Microso
+                               ft.Compute/virtualMachineScaleSets/myvmss1
         Name                  : myvmss1
         Type                  : Microsoft.Compute/virtualMachineScaleSets
         Location              : centralus
-        Tags.Count            : 0
         Tags                  :
 
 ## 步驟 3︰瀏覽資源
@@ -309,8 +302,8 @@
 
 ## 後續步驟
 
-1. 若要深入了解，請參閱 [Virtual Machine Scale Sets Overview](virtual-machine-scale-sets-overview.md) (虛擬機器擴展集概觀)。
+- 使用[管理虛擬機器擴展集中的虛擬機器](virtual-machine-scale-sets-windows-manage.md)中的資訊，管理您剛建立的擴展集。
+- 請考慮使用[自動調整與虛擬機器擴展集](virtual-machine-scale-sets-autoscale-overview.md)中的資訊設定自動調整擴展集。
+- 檢閱[使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)，深入了解垂直調整。
 
-2. 請考慮使用 [Automatic scaling and virtual machine scale sets](virtual-machine-scale-sets-autoscale-overview.md) (自動調整和虛擬機器擴展集) 中的資訊設定自動調整擴展集。
-
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

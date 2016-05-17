@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="04/25/2016"
+   ms.date="04/26/2016"
    ms.author="hascipio"/>
 
 # 使用行銷內容完成供應項目建立程序
@@ -165,11 +165,11 @@
 *Azure.com Marketplace 網站上的優惠定價詳細資料*
 
 ### Azure 入口網站
-![繪圖](media/marketplace-publishing-push-to-staging/portal-catalog-01.png)
+![繪圖](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-01.png)
 
 *Azure 入口網站中的優惠清單*
 
-![繪圖](media/marketplace-publishing-push-to-staging/portal-listing-details-01.png)
+![繪圖](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-02.png)
 
 *Azure 入口網站中的優惠描述詳細資料*
 
@@ -192,4 +192,4 @@
 [link-pubportal]: https://publish.windowsazure.com
 [link-push-to-production]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
- 	ms.date="04/18/2016" 
+ 	ms.date="05/03/2016" 
 	ms.author="cenkdin;juliako"/>
 
 #篩選器與動態資訊清單
@@ -74,7 +74,7 @@
 - 裝置特有：只傳遞用來播放內容的裝置所支援的指定轉譯和/或指定的語言資料軌 (「轉譯篩選」)。 
 - 縮小資訊清單以顯示即時事件的子剪輯 (「子剪輯篩選」)。
 - 修剪視訊開頭 (「修剪視訊」)。
-- 調整 \[簡報視窗]\(DVR)，以便在播放程式中提供長度有限的 DVR 視窗 (「調整簡報視窗」)。
+- 調整 [簡報視窗] \(DVR)，以便在播放程式中提供長度有限的 DVR 視窗 (「調整簡報視窗」)。
  
 為達到這種彈性，媒體服務會根據預先定義的[篩選器](media-services-dynamic-manifest-overview.md#filters)提供**動態資訊清單**。一旦您定義了篩選器，您的用戶端便會使用篩選器來串流視訊的特定轉譯或子剪輯。用戶端會在資料流 URL 中指定篩選器。篩選器可以套用到下列[動態封裝](media-services-dynamic-packaging-overview.md)支援的彈性位元速率資料流通訊協定：HLS、MPEG DASH、Smooth Streaming 和 HDS。例如：
 
@@ -87,7 +87,7 @@
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(filter=MyLocalFilter)
 
 
-如需如何傳遞內容和建置資料流 URL 的詳細資訊，請參閱[傳遞內容概觀](media-services-deliver-content-overview/)。
+如需如何傳遞內容和建置資料流 URL 的詳細資訊，請參閱[傳遞內容概觀](media-services-deliver-content-overview.md)。
 
 
 >[AZURE.NOTE]請注意，動態資訊清單不會變更資產和該資產的預設資訊清單。您的用戶端可以選擇要求包含或不含篩選器的資料流。
@@ -236,4 +236,4 @@
 [skiing]: ./media/media-services-dynamic-manifest-overview/media-services-skiing.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

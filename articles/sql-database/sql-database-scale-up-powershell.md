@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/29/2016"
+	ms.date="04/29/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -33,7 +33,7 @@
 
 
 - 若要將資料庫降級，資料庫應該小於目標服務層允許的大小上限。 
-- 升級資料庫時若將[異地複寫](sql-database-geo-replication-portal)啟用，您必須先將其次要資料庫升級為所需的效能層，然後再升級主要資料庫。
+- 升級資料庫時若將[異地複寫](sql-database-geo-replication-portal.md)啟用，您必須先將其次要資料庫升級為所需的效能層，然後再升級主要資料庫。
 - 從高階服務層降級時，您必須先終止所有的「異地複寫」關聯性。您可以遵循[從中斷情況復原](sql-database-disaster-recovery.md)主題所述的步驟，停止主要資料庫與作用中次要資料庫之間的複寫程序。
 - 還原服務會針對各種服務層提供不同的選項。降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。如需詳細資訊，請參閱 [Azure SQL Database 備份和還原](sql-database-business-continuity.md)。
 - 完成變更之前，不會將新屬性套用至資料庫。
@@ -128,4 +128,4 @@
 - [SQL Database 文件](http://azure.microsoft.com/documentation/services/sql-database/)
 - [Azure SQL Database Cmdlet](http://msdn.microsoft.com/library/mt574084.aspx)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

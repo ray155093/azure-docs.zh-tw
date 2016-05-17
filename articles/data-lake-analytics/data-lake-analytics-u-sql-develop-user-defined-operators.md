@@ -3,7 +3,7 @@
    description="深入了解如何開發使用者定義運算子，以在資料湖分析工作中使用和重複使用。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/10/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 
 # 針對 Azure 資料湖分析工作開發 U-SQL 使用者定義運算子
@@ -147,4 +147,4 @@
 - [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
 - [使用適用於 Visual Studio 的資料湖工具來開發 U-SQL 應用程式](data-lake-analytics-data-lake-tools-get-started.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

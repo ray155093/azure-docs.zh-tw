@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="12/01/2015"
+   ms.date="04/04/2016"
    ms.author="v-sharos" />
 
 # 部署 StorSimple Manager 服務
@@ -50,7 +50,7 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 
 您也可以選擇在建立服務時產生預設儲存體帳戶。
 
-單一服務可以管理多個裝置。不過，裝置不能跨越多個服務。大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。
+單一服務可以管理多個裝置。不過，裝置不能跨越多個服務。大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。請注意，您需要個別的 StorSimple Manager 服務來管理 StorSimple 8000 系列裝置和 StorSimple 虛擬陣列的執行個體。
 
 執行下列步驟來建立服務。
 
@@ -60,7 +60,7 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 
 刪除服務之前，請確定沒有任何連接的裝置正在使用它。如果服務正在使用中，請停用連接的裝置。停用作業將會斷絕裝置與服務之間的連接，但是會保留雲端中的裝置資料。
 
-[AZURE.IMPORTANT]刪除服務之後，就無法回復此作業。使用服務的任何裝置在可以搭配另一個服務使用之前，都必須恢復出廠預設值。在此案例中，裝置上的本機資料以及組態將會遺失。
+[AZURE.IMPORTANT] 刪除服務之後，就無法回復此作業。使用服務的任何裝置在可以搭配另一個服務使用之前，都必須恢復出廠預設值。在此案例中，裝置上的本機資料以及組態將會遺失。
 
 執行下列步驟來刪除服務。
 
@@ -115,4 +115,4 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0504_2016-->

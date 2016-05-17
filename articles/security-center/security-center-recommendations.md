@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/02/2016"
+   ms.date="05/02/2016"
    ms.author="terrylan"/>
 
 # 管理 Azure 資訊安全中心的安全性建議
@@ -82,6 +82,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 |在 SQL 資料庫上啟用透明資料加密|建議您針對 SQL 資料庫啟用加密 (僅適用於 Azure SQL 服務)。|
 |部署 VM 代理程式|可讓您查看哪些 VM 需要「VM 代理程式」。為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在 VM 上安裝「VM 代理程式」。預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/)。|
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。建議您的 VM 上的作業系統和資料磁碟區都進行加密。|
+|提供安全性連絡人詳細資料 | 建議您提供每個訂用帳戶安全性連絡人資訊。連絡人資訊為電子郵件地址和電話號碼。如果我們的安全性小組發現您的資源遭到入侵，就會用這項資訊連絡您。 |
 
 您可以篩選並關閉建議。
 
@@ -109,11 +110,12 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 ## 後續步驟
 在本文件中，已向您介紹「資訊安全中心」的安全性建議。如要深入了解資訊安全中心，請參閱下列主題：
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找在使用服務時經常會遇到的問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與法規遵循的部落格文章。
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) - 了解如何監視 Azure 資源的健全狀況。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章。
 
 <!--Image references-->
 [2]: ./media/security-center-recommendations/recommendations-tile.png
@@ -122,4 +124,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 [5]: ./media/security-center-recommendations/select-enable-antimalware.png
 [6]: ./media/security-center-recommendations/install-antimalware.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

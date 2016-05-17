@@ -5,14 +5,15 @@
    documentationCenter=""
    authors="mgoedtel"
    manager="jwhit"
-   editor="tysonn"/>
+   editor="tysonn"
+   keywords="aws 驗證, 設定 aws"/>
 <tags
    ms.service="automation"
    ms.workload="tbd"
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="get-started-article"
-   ms.date="04/08/2016"
+   ms.date="05/10/2016"
    ms.author="magoedte"/>
 
 # 使用 Amazon Web Services 驗證 Runbook
@@ -35,4 +36,4 @@
 
 - 檢閱[在 Amazon Web Services 中自動部署 VM](../automation/automation-scenario-aws-deployment.md) 解決方案文章以了解如何建立 Runbook 以在 AWS 中自動執行工作。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

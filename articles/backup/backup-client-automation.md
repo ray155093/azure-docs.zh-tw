@@ -76,15 +76,15 @@ PS C:\> MARSAgentInstaller.exe /?
 
 | 選項 | 詳細資料 | 預設值 |
 | ---- | ----- | ----- |
-| /q | 無訊息安裝 | - | 
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent |
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
-| /m | 選擇加入 Microsoft Update | - | 
-| /nu | 安裝完成後不要檢查更新 | - | 
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | 
-| /ph | Proxy 主機位址 | - | 
-| /po | Proxy 主機連接埠號碼 | - | 
-| /pu | Proxy 主機使用者名稱 | - | 
+| /q | 無訊息安裝 | - |
+| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent |
+| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
+| /m | 選擇加入 Microsoft Update | - |
+| /nu | 安裝完成後不要檢查更新 | - |
+| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - |
+| /ph | Proxy 主機位址 | - |
+| /po | Proxy 主機連接埠號碼 | - |
+| /pu | Proxy 主機使用者名稱 | - |
 | /pw | Proxy 密碼 | - |
 
 
@@ -592,7 +592,7 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 ## 後續步驟
 如需 Windows Server/用戶端的 Azure 備份詳細資訊，請參閱
 
-- [Azure 備份的簡介](backup-configure-vault.md)
-- [備份 Windows 伺服器](backup-azure-backup-windows-server.md)
+- [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
+- [備份 Windows 伺服器](backup-configure-vault.md)
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

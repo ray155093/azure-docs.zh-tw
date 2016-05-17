@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="dotnet"
     ms.topic="get-started-article"
-    ms.date="01/26/2016"
+    ms.date="05/09/2016"
     ms.author="sethm"/>
 
 # 如何使用服務匯流排佇列
@@ -28,9 +28,7 @@
 
 ## 新增服務匯流排 NuGet 封裝
 
-[服務匯流排 **NuGet** 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。NuGet Visual Studio 擴充功能可讓您輕易地安裝和更新 Visual Studio 和 Visual Studio Express 中的程式庫和工具。要取得服務匯流排 API，並對應用程式進行設定，以使用所有服務匯流排相依性的最簡單方法，便是使用服務匯流排 NuGet 封裝。
-
-若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
+[服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
 
 1.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
 2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉此對話方塊。
@@ -48,9 +46,9 @@
 
 在這兩種情況下，您都可以使用 [CloudConfigurationManager.GetSetting][GetSetting] 方法擷取連接字串，如本文稍後所示範。
 
-### 在使用雲端服務時設定連接字串
+### 設定連接字串
 
-服務組態機制為 Azure 雲端服務專案所獨有，可讓您從 [Azure 傳統入口網站][]動態變更組態設定，而無需重新部署應用程式。例如，在您的服務定義 (*.csdef) 檔案中加入 `Setting` 標籤，如下個範例所示。
+服務組態機制可讓您從 [Azure 傳統入口網站][]動態變更組態設定，而無需重新部署應用程式。例如，在您的服務定義 (*.csdef) 檔案中加入 `Setting` 標籤，如下個範例所示。
 
 ```
 <ServiceDefinition name="Azure1">
@@ -160,7 +158,7 @@ QueueClient Client =
 Client.Send(new BrokeredMessage());
 ```
 
-傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 物件的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。此外，您也可以提供 **System.IO.Stream** 物件。
+傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 物件的建構函數，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。此外，您也可以提供 **System.IO.Stream** 物件。
 
 下列範例將示範如何傳送五則測試訊息至上述程式碼範例中所取得的 `TestQueue` [QueueClient][] 物件。
 
@@ -255,4 +253,4 @@ Client.OnMessage((message) =>
   [QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
   [Complete]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

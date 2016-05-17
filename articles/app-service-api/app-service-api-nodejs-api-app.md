@@ -1,11 +1,11 @@
 <properties
-	pageTitle="在 Azure App Service 中建置和部署 Node.js API 應用程式"
-	description="了解如何建立 Node.js API 應用程式封裝並將其部署至 Azure App Service。"
+	pageTitle="Azure App Service 中的 Node.js API 應用程式 | Microsoft Azure"
+	description="了解如何建立 Node.js RESTful API，並將其部署至 Azure App Service 中的 API 應用程式。"
 	services="app-service\api"
 	documentationCenter="node"
 	authors="bradygaster"
-	manager="mohisri"
-	editor="tdykstra "/>
+	manager="wpickett"
+	editor=""/>
 
 <tags
 	ms.service="app-service-api"
@@ -13,60 +13,84 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="node"
 	ms.topic="get-started-article"
-	ms.date="02/25/2015"
+	ms.date="05/06/2016"
 	ms.author="bradygaster"/>
 
-# 在 Azure App Service 中建置和部署 Node.js API 應用程式
+# 建置 Node.js RESTful API 並將它部署至 Azure 中的 API 應用程式
 
 [AZURE.INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
+本教學課程示範如何建立簡易的 [Node.js](http://nodejs.org) API，並將其部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中的 [API 應用程式](app-service-api-apps-why-best-platform.md)。您可以使用任何能夠執行 Node.js 的作業系統，而且您將會使用 cmd.exe 或 bash 之類的命令列工具來執行所有工作。
+
 ## 必要條件
-1. 在開發電腦上執行的 [Node.js](http://nodejs.org) (此範例假設已安裝 Node.js 版本 4.2.2)
+
+1. 已安裝 [Node.js](http://nodejs.org) (此範例假設您有 Node.js 4.2.2 版)
+2. 已安裝 [Git](https://git-scm.com/)
 1. [GitHub](https://github.com/) 帳戶
 1. Microsoft Azure [免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/)
-1. 安裝在本機開發工作站上的 Git
 
-## 安裝指示
-您應該使用 Node.js 命令列執行下列命令。使用 Swaggerize Yo 產生器，即可建構您為 Swagger JSON 檔案中定義的 HTTP 要求提供服務時，所需的基準 Node.js 程式碼。
- 
-1. 全面安裝 **yo** 和 **generator swaggerize** NPM 模組。
+## 取得範例程式碼
 
-        npm install -g yo
-	    npm install -g generator-swaggerize
-		
-1. 複製[包含範例程式碼的 GitHub 儲存機制](https://github.com/Azure-Samples/app-service-api-node-contact-list)。
+1. 開啟可以執行 Node.js 和 Git 命令的命令列介面。
+
+1. 瀏覽至可供本機 Git 儲存機制使用的資料夾，然後複製[包含範例程式碼的 GitHub 儲存機制](https://github.com/Azure-Samples/app-service-api-node-contact-list)。
 
 		git clone https://github.com/Azure-Samples/app-service-api-node-contact-list.git
-				
-1. 執行此命令，建構以原始程式碼隨附的 **api.json** 檔案為基礎的 API。**api.json** 檔案是 Swagger 檔案，代表您將在下一個步驟中使用 "yo swaggerize" 命令建構的實際 API。
 
-        yo swaggerize
-        
-    **附註：**API.json 與 API Apps 預覽時間範圍內的 *apiapp.json* 檔案有所不同。
+	範例 API 提供兩個端點︰針對 `/contacts` 的 Get 要求會傳回內有名稱和電子郵件地址的 JSON 格式清單，而 `/contacts/{id}` 只會傳回選取的連絡人。
 
-1. Swaggerize 會建構處理常式，並設定 **api.json** 內含的 Swagger 中繼資料。在建構處理期間，系統會詢問您各種問題，如 GitHub 使用者名稱和電子郵件地址。此資訊用於在您的應用程式的資料夾中產生 **package.json** 檔案。在架構處理期間詢問的所有問題之中，最重要的是必須在系統詢問時選取 **express**；因為此範例會使用 express 檢視引擎，在 Azure 中執行 API 應用程式時產生 Swagger 說明頁面。
+## 根據 Swagger 中繼資料建立 Node.js 程式碼的結構
+
+[Swagger](http://swagger.io/) 是描述 RESTful API 之中繼資料的 JSON 檔案格式。Azure App Service 已[內建支援 Swagger 中繼資料](app-service-api-metadata.md)。在這部分的教學課程中，您將根據 Swagger 中繼資料檔案，建立範例 API 的伺服器程式碼結構。
+
+>[AZURE.NOTE] 如果您不想了解如何建立 Swagger 檔案的結構，可以只進行將範例程式碼部署到新的 API 應用程式的教學課程步驟。直接跳到後面的[在 Azure 中建立 API 應用程式](#createapiapp)一節。
+
+1. 執行下列命令，全域安裝 **yo** 和 **generator-swaggerize** NPM 模組。
+
+		npm install -g yo
+		npm install -g generator-swaggerize
+
+	Swaggerize 這項工具可產生 Swagger 中繼資料檔案所描述的 API 伺服器程式碼。您將使用的 Swagger 檔案的名稱為「api.json」，其位於您所複製的儲存機制的「start」資料夾內。
+
+2. 瀏覽至「start」資料夾，然後執行 `yo swaggerize` 命令。Swaggerize 會詢問一系列的問題。請在 **what to call this project** 中輸入 "contactlist"、在 **path to swagger document** 中輸入 "api.json"，並在 **Express, Hapi, or Restify** 中輸入 "express"。
+
+		yo swaggerize
 
 	![Swaggerize 命令列](media/app-service-api-nodejs-api-app/swaggerize-command-line.png)
     
-1. 移入包含所建構程式碼的資料夾 (在此例中為 *ContactList* 子資料夾)。然後，安裝 **jsonpath** NPM 模組。
+	**注意**︰如果您在此步驟中遇到錯誤，下一個步驟會說明如何加以修正。
 
-        npm install --save jsonpath
+	Swaggerize 會建立應用程式資料夾、建立處理常式和組態檔的結構，並產生 **package.json** 檔案。Swagger 說明頁面則是使用快速檢視引擎來產生。
+
+3. 如果 `swaggerize` 命令失敗，並顯示「非預期的權杖」或「無效的逸出序列」錯誤，請藉由編輯所產生的「package.json」檔案來修正錯誤原因。在 `scripts` 下的 `regenerate` 行，將「api.json」前面的反斜線變更為正斜線，使該行看起來像下列範例︰
+
+ 		"regenerate": "yo swaggerize --only=handlers,models,tests --framework express --apiPath config/api.json"
+
+1. 瀏覽至包含所建構程式碼的資料夾 (在此例中為「ContactList」子資料夾)。
+
+1. 執行 `npm install`。
+	
+		npm install
+		
+2. 安裝 **jsonpath** NPM 模組。
+
+		npm install --save jsonpath
         
-    您會在命令列體驗中看到安裝的結果。
-
     ![Jsonpath 安裝](media/app-service-api-nodejs-api-app/jsonpath-install.png)
 
 1. 安裝 **swaggerize-ui** NPM 模組。
 
-        npm install --save swaggerize-ui
+		npm install --save swaggerize-ui
         
-    您會在命令列體驗中看到安裝的結果。
-
     ![Swaggerize Ui 安裝](media/app-service-api-nodejs-api-app/swaggerize-ui-install.png)
 
-1. 從 **start** 資料夾將 **lib** 資料夾複製到建構者所建立的 **ContactList** 資料夾。
+## 自訂所建構的程式碼
 
-1. 以下列程式碼取代 **handlers/contacts.js** 檔案中的程式碼。此程式碼會使用 **lib/contactRepository.js** 所提供的 **lib/contacts.json** 檔案中儲存的 JSON 資料。以下的新 contacts.js 程式碼會回應 HTTP 要求，以取得使用此程式碼的所有連絡人。
+1. 從 **start** 資料夾將 **lib** 資料夾複製到建構者所建立的 **ContactList** 資料夾。 
+
+1. 以下列程式碼取代 **handlers/contacts.js** 檔案中的程式碼。
+
+	此程式碼會使用 **lib/contactRepository.js** 所提供的 **lib/contacts.json** 檔案中儲存的 JSON 資料。下面顯示的新 contacts.js 程式碼會回應 HTTP 要求，以取得所有連絡人，並將它們以 JSON 承載的形式傳回。
 
         'use strict';
         
@@ -78,7 +102,7 @@
             }
         };
 
-1. 以下列程式碼取代 **handlers/contacts/{id}.js** 檔案中的程式碼，其使用 **lib/contactRepository.js** 來取得 HTTP 要求所要求的連絡人並將它當作 JSON 承載傳回。
+1. 以下列程式碼取代 **handlers/contacts/{id}.js** 檔案中的程式碼。
 
         'use strict';
 
@@ -90,7 +114,9 @@
             }    
         };
 
-1. 以下列程式碼取代 **server.js** 中的程式碼。請注意，會使用註解醒目提示對 server.js 檔案所做的變更，因此您可以看到所做的變更。
+1. 以下列程式碼取代 **server.js** 中的程式碼。
+
+	對 server.js 檔案所做的變更會使用註解來標示，以便您可以看到所做的變更。
 
         'use strict';
 
@@ -120,15 +146,14 @@
           docs: '/swagger'  
         }));
 
-        server.listen(port, function () { // fifth change
-            app.setHost(undefined); // sixth and final change
+        server.listen(port, function () { // fifth and final change
         });
 
-1. 使用 Node.js 命令列可執行檔來啟動伺服器。
+## 測試於本機中執行的 API
+
+1. 使用 Node.js 命令列可執行檔來啟動伺服器。 
 
         node server.js
-
-    執行此命令將會啟動 Node.js HTTP 伺服器並開始為您的 API 提供服務。
 
 1. 當您瀏覽至 **http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
 
@@ -146,38 +171,77 @@
 
     ![Swagger Ui](media/app-service-api-nodejs-api-app/swagger-ui.png)
 
-## 在 Azure 入口網站中建立新的 API 應用程式
-本節將逐步說明在 Azure 中建立新的空白 API 應用程式的程序。然後，您會將應用程式連到 Git 儲存機制，以便連續傳遞您的程式碼變更。
+## <a id="createapiapp"></a> 在 Azure 入口網站中建立新的 API 應用程式
 
-您從中複製原始程式碼的 GitHub 儲存機制，並不是您要推送程式碼以供部署的同一個儲存機制。範例 GitHub 儲存機制包含了程式碼的「開始」狀態，而現在您已建構程式碼的「結束」狀態，您必須將該程式碼只推送至與您的 API 應用程式相關聯的 Git 儲存機制。第一個步驟是使用 Azure 入口網站建立 API 應用程式，然後您將
+本節將逐步說明在 Azure 中建立新的空白 API 應用程式的程序。然後，下一節您會將應用程式連到 Git 儲存機制，以便連續傳遞您的程式碼變更。
 
 1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。 
 
-1. 建立新的 API 應用程式。
+1. 按一下 **[新增] > [Web + 行動] > [API 應用程式]**。
 
-    ![新 Api 應用程式入口網站](media/app-service-api-nodejs-api-app/new-api-app-portal.png)
+    ![入口網站中的新 API 應用程式](media/app-service-api-nodejs-api-app/new-api-app-portal.png)
 
-1. 您可以將新的 API 應用程式加入至現有的資源群組和/或 App Service 方案，或者建立新的資源群組和 App Service 方案，如以下螢幕擷取畫面所示範。
+4. 在「azurewebsites.net」網域中輸入獨有的 [應用程式名稱]，例如 NodejsAPIApp 加上數字，使它成為獨有名稱。
 
-    ![Api 應用程式建立刀鋒視窗](media/app-service-api-nodejs-api-app/api-app-creation-blade.png)
+	如果您輸入了其他人已使用的名稱，您就會在右邊看到紅色驚嘆號，而不是綠色勾號，這代表您需要輸入不同的名稱。
 
-1. 在入口網站中建立 API 應用程式後，瀏覽至包含 API 應用程式設定的刀鋒視窗，如下所示。
+	Azure 將使用這個名稱做為 API URL 的前置詞。完整的 URL 組合是這個名稱加上「.azurewebsites.net」。例如，若名稱為 `NodejsAPIApp`，則 URL 是 `nodejsapiapp.azurewebsites.net`。
 
-    ![入口網站瀏覽至設定](media/app-service-api-nodejs-api-app/portal-nav-to-settings.png)
+6. 在 [資源群組] 下拉式清單中，按一下 [新增]，然後在 [新增資源群組名稱] 中輸入 "NodejsAPIAppGroup" 或其他您偏好使用的名稱。
 
-1. 按一下 [設定] 功能表中的 [部署認證] 瀏覽項目。刀鋒視窗一旦開啟，新增用來將 Node.js 程式碼發佈至 API 應用程式的使用者名稱和密碼。然後，按一下 [設定部署認證] 刀鋒視窗上的 [儲存] 按鈕。
+	[資源群組](../azure-portal/resource-group-portal.md)是 Azure 資源的集合，例如 API 應用程式、資料庫、VM 等等。在本教學課程中，最好建立新的資源群組，因為這麼做即可在一個步驟中輕鬆刪除您為本教學課程建立的所有 Azure 資源。
+
+4. 按一下 [App Service 方案/位置]，然後按一下 [新建]。
+
+	![建立 App Service 方案](./media/app-service-api-nodejs-api-app/newappserviceplan.png)
+
+	在下列步驟中，您會為新的資源群組建立 App Service 方案。App Service 方案會指定 API 應用程式執行所在的計算資源。例如，如果您選擇免費層，則 API 應用程式會在共用 VM 上執行，若為某些付費層，它則會在專用 VM 上執行。如需 App Service 方案的詳細資訊，請參閱 [App Service 方案概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
+
+5. 在 [App Service 方案] 刀鋒視窗中，輸入 "NodejsAPIAppPlan" 或您偏好的其他名稱。
+
+5. 在 [位置] 下拉式清單中，選擇最接近您的位置。
+
+	這個設定會指定應用程式將執行所在的 Azure 資料中心。您可以在本教學課程中選取任何區域，這不會造成顯著的差異。但是對於生產用的應用程式，您的伺服器應盡可能靠近存取該應用程式的用戶端，以將[延遲](http://www.bing.com/search?q=web%20latency%20introduction&qs=n&form=QBRE&pq=web%20latency%20introduction&sc=1-24&sp=-1&sk=&cvid=eefff99dfc864d25a75a83740f1e0090)降到最低。
+
+5. 按一下 [定價層] > [檢視全部] > [F1 免費]。
+
+	在本教學課程中，免費定價層會提供足夠的效能。
+
+	![選取免費定價層](./media/app-service-api-nodejs-api-app/selectfreetier.png)
+
+6. 在 [App Service 方案] 刀鋒視窗中，按一下 [確定]。
+
+7. 在 [API 應用程式] 刀鋒視窗中，按一下 [建立]。
+
+## 為 Git 部署設定新的 API 應用程式
+
+在教學課程的這一節當中，您將會建立用於部署的認證，並為 Azure App Service 中的 API 應用程式建立 Git 儲存機制。您會將認可推送至 Azure App Service 中的此儲存機制，以將您的程式碼部署到 API 應用程式。
+
+1. 在建立好 API 應用程式之後，從入口網站首頁按一下 [應用程式服務] > [{您的 API 應用程式}]。 
+
+	入口網站會顯示 [API 應用程式] 和 [設定] 刀鋒視窗。
+
+    ![入口網站的 API 應用程式刀鋒視窗](media/app-service-api-nodejs-api-app/portalapiappblade.png)
+
+    ![入口網站的設定刀鋒視窗](media/app-service-api-nodejs-api-app/portalsettingsblade.png)
+
+1. 在 [設定] 刀鋒視窗中，向下捲動至 [發佈] 區段，然後按一下 [部署認證]。
+ 
+3. 在 [設定部署認證] 刀鋒視窗中輸入使用者名稱和密碼，然後按一下 [儲存]。
+
+	您將使用這些認證將 Node.js 程式碼發佈至 API 應用程式。在下一個步驟中，您會建立與 API 應用程式相關聯的 Azure Git 儲存機制。
 
     ![部署認證](media/app-service-api-nodejs-api-app/deployment-credentials.png)
 
-1. 一旦設定部署認證，即可建立與 App Service 相關聯的 Git 儲存機制。每次將程式碼推送至這個儲存機制時，Azure App Service 將收取您的變更，並將它們直接部署到您的 API 應用程式執行個體。若要建立要與您的網站產生關聯的 Git 儲存機制，請按一下 [設定] 功能表刀鋒視窗中的 [連續部署] 功能表項目，如下所示。然後，選取 [選擇來源] 刀鋒視窗中的 [本機 Git 儲存機制] 選項。然後，按一下 [確定] 按鈕來建立 Git 儲存機制。
+1. 在 [設定] 刀鋒視窗中，按一下 [部署來源] > [選擇來源] > [本機 Git 儲存機制]，然後按一下 [確定]。
 
     ![建立 Git 儲存機制](media/app-service-api-nodejs-api-app/create-git-repo.png)
 
-1. 一旦建立 Git 儲存機制，此刀鋒視窗便會變更並顯示作用中的部署。由於這是新的儲存機制，所以清單中應該沒有作用中的部署。
+1. 一旦建立 Git 儲存機制，此刀鋒視窗便會變更並顯示作用中的部署。由於這是新的儲存機制，所以清單中沒有作用中的部署。
 
     ![沒有作用中的部署](media/app-service-api-nodejs-api-app/no-active-deployments.png)
 
-1. 最後一個步驟是從入口網站複製 Git 儲存機制 URL。若要這麼做，請瀏覽至新 API 應用程式的刀鋒視窗並查看刀鋒視窗的 [基本功能] 區段。您應該會在 [基本功能] 區段中看到 [Git 複製 URL]。旁邊會有一個圖示，可將 URL 複製到剪貼簿。按一下此圖示來複製 URL (此按鈕會在您將滑鼠移至 URL 上時顯示)，或選取整個 URL 並將它複製到剪貼簿。
+1. 複製 Git 儲存機制 URL。若要這麼做，請瀏覽至新 API 應用程式的刀鋒視窗並查看刀鋒視窗的 [基本功能] 區段。您會在 [基本功能] 區段中看到 [Git 複製 URL]。當您將滑鼠指標暫留在此 URL 上時，會在右側看到可將此 URL 複製到剪貼簿的圖示。按一下此圖示以複製此 URL。
 
     ![從入口網站取得 Git Url](media/app-service-api-nodejs-api-app/get-the-git-url-from-the-portal.png)
 
@@ -185,62 +249,73 @@
 
 現在，您有新的 API 應用程式並以 Git 儲存機制進行備份，您可以將程式碼推送至儲存機制並利用 Azure 的連續部署功能來自動部署變更。
 
-## 將 API 應用程式程式碼部署至 Azure
-使用 Azure App Service 所提供的內建連續傳遞功能，您只要將程式碼認可至與 App Service 相關聯的 Git 儲存機制，Azure 就會挑選您的程式碼並將它部署到 API 應用程式。
+## 將 API 程式碼部署至 Azure
 
-1. 將 swaggerize 建構者所建立的 **src/end/ContactList** 資料夾複製到您的桌面或其他資料夾，因為您將會為應存留在您從包含入門程式碼的 GitHub 複製的主要儲存機制外部的程式碼，建立新的本機 Git 儲存機制。 
+您將在本節執行下列步驟：
 
-1. 使用 Node.js 命令列體驗來瀏覽至新的資料夾。抵達之後，執行下列命令來建立新的本機 Git 儲存機制。
+* 建立包含 API 伺服器程式碼的本機 Git 儲存機制。
+* 在該儲存機制中建立指向您在 Azure 中建立的 API 應用程式儲存機制的遠端。
+* 將程式碼從本機儲存機制推送至遠端儲存機制。 
+
+Azure App Service 內建的持續傳遞功能，讓您只要將認可推送至與 API 應用程式相關聯的 Git 儲存機制，即可部署程式碼。
+
+1. 如果您已進行本教學課程的第一個部分，請將使用 swaggerize 建構者所建立的 `start\ContactList` 資料夾複製到其他資料夾。否則，請將 `end\ContactList` 資料夾複製到其他資料夾。
+
+1. 在命令列工具中瀏覽至新的資料夾，然後執行下列命令來建立新的本機 Git 儲存機制。
 
         git init
 
-    此命令會建立本機 Git 儲存機制，而您將看見已初始化新的儲存機制的確認訊息。
+     ![新本機 Git 儲存機制](media/app-service-api-nodejs-api-app/new-local-git-repo.png)
 
-    ![新本機 Git 儲存機制](media/app-service-api-nodejs-api-app/new-local-git-repo.png)
-
-1. 使用 Node.js 命令列體驗來執行下列命令，即可將 Git 遠端儲存機制新增到本機儲存機制。遠端儲存機制會是您剛建立的儲存機制，並與在 Azure 中執行的 API 應用程式相關聯。
+1. 執行下列命令來新增 API 應用程式儲存機制的 Git 遠端。
 
         git remote add azure YOUR_GIT_CLONE_URL_HERE
 
-    **注意**：您會想要以稍早複製的 Git 複製 URL 取代上述 "YOUR\_GIT\_CLONE\_URL\_HERE" 字串。
+    **注意**：請以稍早複製的 Git 複製 URL 取代 "YOUR\_GIT\_CLONE\_URL\_HERE" 字串。
 
-1. 接著，從 Node.js 命令列體驗執行以下兩個命令。
+1. 執行下面兩個命令來建立包含您所有程式碼的認可。
 
         git add .
         git commit -m "initial revision"
 
-    完成這兩個命令後，您應會在命令列視窗中會看到類似以下的螢幕擷取畫面。
-
     ![Git 認可輸出](media/app-service-api-nodejs-api-app/git-commit-output.png)
 
-1. 若要將程式碼推送至 Azure，以觸發對您的 API 應用程式部署，請在 Node.js 命令列中執行下列命令。當系統提示您輸入密碼時，請使用先前在 Azure 入口網站中建立部署認證時所使用的密碼。
+1. 執行命令以將您的程式碼推送至 Azure。當系統提示您輸入密碼時，請輸入先前在 Azure 入口網站中建立的密碼。
 
         git push azure master
 
-1. 如果您瀏覽回到 API 應用程式的 [連續部署] 刀鋒視窗，您會看到正在進行部署。
+	這會觸發您 API 應用程式的部署。
+
+1. 在瀏覽器中，瀏覽回到 API 應用程式的 [部署] 刀鋒視窗，然後您就會看到部署正在進行。
 
     ![發生的部署](media/app-service-api-nodejs-api-app/deployment-happening.png)
 
-    同時，Node.js 命令列將會反映您目前的部署狀態。
+    同時，命令列介面將會反映您目前的部署狀態。
 
     ![發生的節點 Js 部署](media/app-service-api-nodejs-api-app/node-js-deployment-happening.png)
 
-1. 一旦部署完成，[連續部署] 刀鋒視窗會將部署成功的程式碼變更反映至您的 API 應用程式。複製 [API 應用程式] 刀鋒視窗的 [基本功能] 區段中的 [URL]。
+	一旦部署完成，[部署] 刀鋒視窗會將部署成功的程式碼變更反映至您的 API 應用程式。
+
+## 測試於 Azure 中執行的 API
+ 
+3. 複製 [API 應用程式] 刀鋒視窗的 [基本功能] 區段中的 [URL]。 
 
     ![部署已完成](media/app-service-api-nodejs-api-app/deployment-completed.png)
 
-1. 使用 Postman 或 Fiddler 等 REST API 用戶端 (或您的 Web 瀏覽器)，提供您的連絡人API 呼叫的 URL，這應該是 API 應用程式的 **/contacts** 端點。
+1. 使用 Postman 或 Fiddler 等 REST API 用戶端 (或您的 Web 瀏覽器)，提供您的連絡人API 呼叫的 URL，這是 API 應用程式的 `/contacts` 端點。
 
-    **注意：**URL 會類似於 http://myapiapp.azurewebsites.net/contacts
+    **注意：**URL 會是 `https://{your API app name}.azurewebsites.net/contacts`
 
-    當您對此端點發出 GET 要求時，您應會看到您的 API 應用程式的 JSON 輸出。
+    當您對此端點發出 GET 要求時，會獲得 API 應用程式的 JSON 輸出。
 
     ![Postman Hitting Api](media/app-service-api-nodejs-api-app/postman-hitting-api.png)
+
+2. 在瀏覽器中移至 `/docs` 端點，試試 Swagger UI 在 Azure 中的執行情況。
+
+現在您已建構好連續傳遞，接下來可以進行程式碼變更，並簡單地透過將認可推送至 Azure Git 儲存機制來部署變更。
 
 ## 後續步驟
 
 此時您已使用 Node.js 成功建立並部署第一個 API 應用程式。API Apps 入門系列中的下一個教學課程示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。
 
-為了根據此範例進行建置，您可以將程式碼加入至處理常式，以便在資料庫中或在 API 應用程式執行個體的磁碟上儲存資料。既然您已連接 [連續部署]，變更 API 應用程式功能並加以擴充，就如同變更您的程式碼並推送至 Git 儲存機制一樣容易。
-
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

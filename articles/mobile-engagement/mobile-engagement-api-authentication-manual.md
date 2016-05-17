@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.workload="mobile" 
-	ms.date="03/11/2016"
+	ms.date="05/03/2016"
 	ms.author="piyushjo"/>
 
 # 使用 Mobile Engagement REST API 進行驗證 - 手動設定
 
 這是[使用 Mobile Engagement REST API 進行驗證](mobile-engagement-api-authentication.md)的附錄說明文件。請務必先閱讀它，以取得內容。這會說明如何使用 Azure 入口網站設定 Mobile Engagement REST API 驗證的一次性設定的替代方式。
 
->[AZURE.NOTE] 下列指示是根據這份 [Active Directory 指南](../resource-group-create-service-principal-portal/)，並且針對 Mobile Engagement API 驗證所需進行自訂。如果您想要了解以下的詳細步驟，請參閱它。
+>[AZURE.NOTE] 下列指示是根據這份 [Active Directory 指南](../resource-group-create-service-principal-portal.md)，並且針對 Mobile Engagement API 驗證所需進行自訂。如果您想要了解以下的詳細步驟，請參閱它。
 
 1. 透過[傳統入口網站](https://manage.windowsazure.com/)登入 Azure 帳戶。
 
@@ -144,4 +144,4 @@
 [20]: ./media/mobile-engagement-api-authentication-manual/add-user-select.png
 [21]: ./media/mobile-engagement-api-authentication-manual/add-access-final.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

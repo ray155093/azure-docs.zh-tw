@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="04/28/2016"
 	ms.author="jgao"/>
 
 # 開發 HDInsight 的指令碼動作指令碼
@@ -31,6 +31,8 @@
 ## 範例指令碼
 
 針對在 Windows 作業系統上建立 HDInsight 叢集，指令碼動作是 Azure PowerShell 指令碼。以下是設定網站組態檔的範例指令碼：
+
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 	param (
 	    [parameter(Mandatory)][string] $ConfigFileName,
@@ -351,4 +353,4 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 <!--Reference links in article-->
 [1]: https://msdn.microsoft.com/library/96xafkes(v=vs.110).aspx
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

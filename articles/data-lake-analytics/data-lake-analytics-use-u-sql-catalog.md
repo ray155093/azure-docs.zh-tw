@@ -3,7 +3,7 @@
    description="介紹 Azure 資料湖分析 U-SQL 目錄"
    services="data-lake-analytics"
    documentationCenter=""
-   authors="mumian"
+   authors="edmacauley"
    manager="paulettm"
    editor="cgronlun"/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/11/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # 使用 U-SQL 目錄
 
@@ -84,4 +84,4 @@ U-SQL 資料庫包含：
     - [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
     - [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

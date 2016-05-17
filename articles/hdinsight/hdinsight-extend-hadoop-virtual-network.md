@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/22/2016"
+   ms.date="05/04/2016"
    ms.author="larryfr"/>
 
 
@@ -21,7 +21,7 @@
 
 Azure 虛擬網路可讓您延伸 Hadoop 解決方案以合併內部部署資源，例如 SQL Server，或在雲端資源間建立安全的私人網路。
 
-> [AZURE.NOTE] HDInsight 不支援同質型 Azure 虛擬網路。在使用 HDInsight 時，您必須使用位置型虛擬網路。
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 
 ##<a id="whatis"></a>什麼是 Azure 虛擬網路？
@@ -80,20 +80,20 @@ Azure HDInsight 僅支援以位置為基礎的虛擬網路，目前無法使用�
 
 ###受保護的虛擬網路
 
-明確限制網際網路存取的 Azure 虛擬網路不支援 HDInsight。例如，使用「網路安全性群組」或 ExpressRoute 封鎖虛擬網路中資源的網際網路流量。
+HDInsight 服務是受管理服務，在佈建期間和執行時需要有網際網路存取。因此，Azure 可以監視叢集的健全狀況、起始叢集資源的容錯移轉、透過調整作業變更叢集中的節點數目，以及其他管理工作。
 
-HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存取網際網路，以便 Azure 可以監視叢集的健全狀況、起始叢集資源容錯移轉，以及其他自動化管理工作。下列 IP 位址必須能夠對內存取您要安裝 HDInsight 的子網路︰
+如果您需要將 HDInsight 安裝到安全虛擬網路，則必須針對下列 IP 位址允許透過連接埠 443 的輸入存取，讓 Azure 管理 HDInsight 叢集。
 
 * 168\.61.49.99
 * 23\.99.5.239
 * 168\.61.48.131
 * 138\.91.141.162
 
-允許從這些位址的對內存取，可讓您成功將 HDInsight 安裝到受保護的虛擬網路中。
+允許針對這些位址透過連接埠 443 的輸入存取，可讓您成功將 HDInsight 安裝到安全虛擬網路。
 
-以下的指令碼範例會建立新的網路安全性群組，這個群組允許必要的位址，並將安全性群組套用至虛擬網路內的子網路。這些步驟假設您已建立虛擬網路和要安裝 HDInsight 的子網路。
+下列各範例示範如何建立新的網路安全性群組，這個群組允許必要的位址，並將安全性群組套用至虛擬網路內的子網路。這些步驟假設您已建立虛擬網路和要安裝 HDInsight 的子網路。
 
-> [AZURE.NOTE] 您必須先安裝並設定好 Azure PowerShell，才能執行這個指令碼。如需詳細資訊，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
+__使用 Azure PowerShell__
 
     $vnetName = "Replace with your virtual network name"
     $resourceGroupName = "Replace with the resource group the virtual network is in"
@@ -114,10 +114,10 @@ HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存�
         -Location $location `
         | Add-AzureRmNetworkSecurityRuleConfig `
             -name "hdirule1" `
-            -Description "HDI health and management address 16.61.49.99" `
+            -Description "HDI health and management address 168.61.49.99" `
             -Protocol "*" `
             -SourcePortRange "*" `
-            -DestinationPortRange "*" `
+            -DestinationPortRange "443" `
             -SourceAddressPrefix "168.61.49.99" `
             -DestinationAddressPrefix "VirtualNetwork" `
             -Access Allow `
@@ -128,7 +128,7 @@ HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存�
             -Description "HDI health and management 23.99.5.239" `
             -Protocol "*" `
             -SourcePortRange "*" `
-            -DestinationPortRange "*" `
+            -DestinationPortRange "443" `
             -SourceAddressPrefix "23.99.5.239" `
             -DestinationAddressPrefix "VirtualNetwork" `
             -Access Allow `
@@ -139,7 +139,7 @@ HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存�
             -Description "HDI health and management 168.61.48.131" `
             -Protocol "*" `
             -SourcePortRange "*" `
-            -DestinationPortRange "*" `
+            -DestinationPortRange "443" `
             -SourceAddressPrefix "168.61.48.131" `
             -DestinationAddressPrefix "VirtualNetwork" `
             -Access Allow `
@@ -150,7 +150,7 @@ HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存�
             -Description "HDI health and management 138.91.141.162" `
             -Protocol "*" `
             -SourcePortRange "*" `
-            -DestinationPortRange "*" `
+            -DestinationPortRange "443" `
             -SourceAddressPrefix "138.91.141.162" `
             -DestinationAddressPrefix "VirtualNetwork" `
             -Access Allow `
@@ -165,9 +165,37 @@ HDInsight 服務是受管理的服務，並要求在佈建期間與執行時存�
         -AddressPrefix $subnet.AddressPrefix `
         -NetworkSecurityGroupId $nsg
 
-> [AZURE.IMPORTANT] 使用上述指令碼只會開啟 Azure 雲端上的 HDInsight 健全狀況與管理服務存取權。這可讓您將 HDInsight 叢集成功安裝在子網路中，但預設會封鎖從虛擬網路外部存取 HDInsight 叢集。如果想要允許從外部虛擬網路存取，必須加入額外的網路安全性群組規則。
+__使用 Azure CLI__
 
-如需網路安全性群組的詳細資訊，請參閱[網路安全性群組概觀](../virtual-network/virtual-networks-nsg.md)。如需在 Azure 虛擬網路中控制路由的詳細資訊，請參閱[使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
+1. 使用下列命令建立名為 `hdisecure` 的新網路安全性群組。將 __RESOURCEGROUPNAME__ 和 __LOCATION__ 取代為包含 Azure 虛擬網路的資源群組以及在其中建立群組的位置 (地區)。
+
+        azure network nsg create RESOURCEGROUPNAME hdisecure LOCATION
+    
+    建立群組之後，您會收到新群組的相關資訊。尋找與下列類似的一行，並儲存 `/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure` 資訊。後續步驟將會使用該資訊。
+    
+        data:    Id                              : /subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure
+
+2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。
+
+        azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule1 -p "*" -o "*" -u "443" -f "168.61.49.99" -e "VirtualNetwork" -c "Allow" -y 300 -r "Inbound"
+        azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule2 -p "*" -o "*" -u "443" -f "23.99.5.239" -e "VirtualNetwork" -c "Allow" -y 301 -r "Inbound"
+        azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule3 -p "*" -o "*" -u "443" -f "168.61.48.131" -e "VirtualNetwork" -c "Allow" -y 302 -r "Inbound"
+        azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule4 -p "*" -o "*" -u "443" -f "138.91.141.162" -e "VirtualNetwork" -c "Allow" -y 303 -r "Inbound"
+
+3. 建立規則之後，請使用下列將新的網路安全性群組套用至子網路。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。將 __VNETNAME__ 和 __SUBNETNAME__ 取代為 Azure 虛擬網路的名稱以及將在安裝 HDInsight 時使用的子網路。
+
+        azure network vnet subnet set RESOURCEGROUPNAME VNETNAME SUBNETNAME -w "/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
+    
+    此命令完成之後，即可將 HDInsight 順利安裝至這些步驟所使用子網路上的安全虛擬網路。
+
+> [AZURE.IMPORTANT] 使用上述步驟只會開啟 Azure 雲端上的 HDInsight 健全狀況和管理服務存取權。這可讓您將 HDInsight 叢集成功安裝在子網路中，但預設會封鎖從虛擬網路外部存取 HDInsight 叢集。如果想要允許從外部虛擬網路存取，必須加入額外的網路安全性群組規則。
+>
+> 例如，若要允許來自網際網路的 SSH 存取權，您需要加入與下列類似的規則︰
+>
+> * Azure PowerShell - ```Add-AzureRmNetworkSecurityRuleConfig -Name "SSSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 304 -Direction Inbound```
+> * Azure CLI - ```azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule4 -p "*" -o "*" -u "22" -f "*" -e "VirtualNetwork" -c "Allow" -y 304 -r "Inbound"```
+
+如需網路安全性群組的詳細資訊，請參閱[網路安全性群組概觀](../virtual-network/virtual-networks-nsg.md)。如需在 Azure 虛擬網路中控制路由的資訊，請參閱[使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
 
 ##<a id="tasks"></a>工作和資訊
 
@@ -275,4 +303,4 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 若要深入了解 Azure 虛擬網路，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

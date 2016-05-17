@@ -1,10 +1,10 @@
 <properties
-	pageTitle="使用 Azure App Service 將推播通知新增至 Xamarin.Android 應用程式"
+	pageTitle="將推播通知加入 Xamarin.Android 應用程式中 | Azure App Service"
 	description="了解如何使用 Azure App Service 及 Azure 通知中樞將推播通知傳送到 Xamarin.Android 應用程式"
 	services="app-service\mobile"
 	documentationCenter="xamarin"
 	authors="ggailey777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/03/2016"
 	ms.author="glenga"/>
 
 # 將推播通知新增至 Xamarin.Android 應用程式
@@ -79,4 +79,4 @@
 [Google Cloud Messaging Client Component]: http://components.xamarin.com/view/GCMClient/
 [Azure Mobile Services Component]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

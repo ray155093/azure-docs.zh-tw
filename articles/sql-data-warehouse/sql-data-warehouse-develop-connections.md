@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="04/30/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 連線到 SQL 資料倉儲
-若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，您也會看到特定連線設定都設定為建立查詢工作階段的一部分。
+若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，您也會看到特定連線設定都設定為建立查詢工作階段的一部分。如需安全性以及如何啟用您的 SQL 資料倉儲連線的相關資訊，您也可以檢閱文章[保護 SQL 資料倉儲中的資料庫][]。
 
 本文詳細說明連線到 SQL 資料倉儲的下列層面：
 
@@ -52,7 +52,9 @@
 - ADO.NET
 - ODBC
 - PHP
-- JDBC
+- JDBC 
+
+以下是每個通訊協定連接字串的一些範例。您也可以使用 Azure 入口網站來協助您設定連接字串。只要瀏覽至您在 Azure 入口網站上的資料庫。按一下 [程式集] 下的 [顯示資料庫連接字串]。
 
 ### 範例 ADO.NET 連接字串
 
@@ -95,7 +97,7 @@ SQL 資料倉儲會在連線和建立物件期間標準化一些設定。這些�
 
 每個查詢都會由一或多個要求識別碼表示。在該連線上提交的所有查詢都是單一工作階段的一部分，因此無法由單一工作階段識別碼表示。
 
-不過，SQL 資料倉儲是散發式的 MPP 系統，相較於 SQL Server，工作階段和要求識別碼的公開方式都有點不同。
+不過，SQL 資料倉儲是散發式的 MPP (大量平行處理) 系統，相較於 SQL Server，工作階段和要求識別碼的公開方式都有點不同。
 
 工作階段和要求皆由其各自的識別碼以邏輯方式表示。
 
@@ -153,9 +155,10 @@ WHERE   s.[session_id] <> SESSION_ID()
 <!--Azure.com references-->
 [連線及查詢]: ./sql-data-warehouse-get-started-connect.md
 [表格設計]: ./sql-data-warehouse-develop-table-design.md
+[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-security.md
 
 <!--MSDN references-->
 
 <!--Other references-->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

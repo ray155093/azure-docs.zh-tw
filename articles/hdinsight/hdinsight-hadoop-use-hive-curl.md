@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/16/2016"
+   ms.date="05/03/2016"
    ms.author="larryfr"/>
 
 #使用 Curl 在 HDInsight 中以 Hadoop 執行 Hive 查詢
@@ -192,4 +192,4 @@ Hive 與 HDInsight 搭配使用的一般資訊：
 
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

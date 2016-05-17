@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="在 Azure App Service 中使用 Azure CDN" 
 	description="教學課程，指導您如何將 Web 應用程式部署至提供整合式 Azure CDN 端點內容的 Azure App Service" 
-	services="app-service\web" 
+	services="app-service\web,cdn" 
 	documentationCenter=".net" 
 	authors="cephalin" 
 	manager="wpickett" 
@@ -566,13 +566,12 @@
 
 ## 相關資訊 
 - [Azure 內容傳遞網路 (CDN) 概觀](../cdn/cdn-overview.md)
-- [在 Web 應用程式中從 Azure CDN 提供內容](../cdn/cdn-serve-content-from-cdn-in-your-web-application.md)
+- [使用 Azure CDN](../cdn/cdn-create-new-endpoint.md)
 - [整合雲端服務與 Azure CDN](../cdn/cdn-cloud-service-with-cdn.md)
 - [ASP.NET 統合和縮製](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
-- [使用 Azure CDN](../cdn/cdn-create-new-endpoint.md)
 
 ## 變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

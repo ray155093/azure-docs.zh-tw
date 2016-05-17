@@ -3,8 +3,8 @@
     description="彈性查詢功能的概觀"    
     services="sql-database"
     documentationCenter=""  
-    manager="jeffreyg"
-    authors="sidneyh"/>
+    manager="jhubbard"
+    authors="torsteng"/>
 
 <tags
     ms.service="sql-database"
@@ -12,21 +12,41 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="01/22/2016"
+    ms.date="04/27/2016"
     ms.author="torsteng" />
 
 # Azure SQL Database 彈性資料庫查詢概觀 (預覽)
 
-彈性資料庫查詢功能 (預覽) 可讓您跨越 Azure SQL Database 中的多個資料庫執行 Transact-SQL 查詢 (SQLDB)。它可讓您執行跨資料庫查詢以存取遠端資料表，以及將 Microsoft 和協力廠商工具 (Excel、PowerBI、Tableau 等) 連接到具有多個資料庫的資料層。這項功能可讓您將查詢相應放大到 SQL Database 中的大型資料層，並將結果透過商務智慧 (BI) 報告視覺化。若要開始建置彈性資料庫查詢應用程式，請參閱[開始使用彈性資料庫查詢](sql-database-elastic-query-getting-started.md)。
+彈性資料庫查詢功能 (預覽) 可讓您跨越 Azure SQL Database 中的多個資料庫執行 Transact-SQL 查詢 (SQLDB)。它可讓您執行跨資料庫查詢以存取遠端資料表，以及將 Microsoft 和協力廠商工具 (Excel、PowerBI、Tableau 等) 連接到具有多個資料庫的資料層。這項功能可讓您將查詢相應放大到 SQL Database 中的大型資料層，並將結果透過商務智慧 (BI) 報告視覺化。
 
-## 彈性資料庫查詢的新功能
+## 文件
 
-* 現在可以用 T-SQL 完全定義具有單一遠端資料庫的跨資料庫查詢案例。如此即可進行遠端資料庫的唯讀查詢。目前內部部署 SQL Server 客戶可選擇使用三和四部分的名稱或 SQL DB 的連結伺服器來移轉應用程式。
-* 除了進階效能層以外，標準效能層現在也支援彈性查詢。請參閱下面「預覽限制」一節中較低效能層級的效能限制。
-* 彈性查詢現在可以將 SQL 參數發送至遠端資料庫以供執行。
-* 使用 sp\_execute\_fanout 的遠端預存程序呼叫或遠端函式引動現在可以使用類似於 [sp\_executesql](https://msdn.microsoft.com/library/ms188001.aspx) 的參數。
-* 從遠端資料庫擷取龐大結果集的效能已獲得改善。
-* 具有彈性查詢的外部資料表現在可以參考具有不同結構描述或資料表名稱的遠端資料表。
+* [開始使用跨資料庫查詢](sql-database-elastic-query-getting-started-vertical.md)
+* [所有相應放大之雲端資料庫的報告](sql-database-elastic-query-getting-started.md)
+* [跨分區化的雲端資料庫執行查詢 (垂直分割)](sql-database-elastic-query-horizontal-partitioning.md)
+* [對不同結構描述的雲端資料庫執行查詢 (垂直分割)](sql-database-elastic-query-vertical-partitioning.md)
+* [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714)
+
+
+## 為何使用彈性的查詢？
+
+**Azure SQL Database**
+
+完全在 T-SQL 中跨 Azure SQL Database 執行查詢。如此即可進行遠端資料庫的唯讀查詢。目前內部部署 SQL Server 客戶可選擇使用三和四部分的名稱或 SQL DB 的連結伺服器來移轉應用程式。
+
+**在標準層上提供**：除了進階效能層以外，標準效能層現在也支援彈性查詢。請參閱下面「預覽限制」一節中較低效能層級的效能限制。
+
+**推送到遠端資料庫**
+
+彈性查詢現在可以將 SQL 參數發送至遠端資料庫以供執行。
+
+**預存程序執行**
+
+使用 [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714) 執行遠端預存程序呼叫或遠端函式。
+
+**彈性**
+
+具有彈性查詢的外部資料表現在可以參考具有不同結構描述或資料表名稱的遠端資料表。
 
 ## 彈性資料庫查詢案例
 
@@ -66,9 +86,7 @@
 
 ### 拓撲 2：水平資料分割 - 分區化
 
-若要開始撰寫程式碼，請參閱[開始使用彈性資料庫查詢進行水平資料分割 (分區化)](sql-database-elastic-query-getting-started.md)
-
-使用彈性查詢在分區化 (即水平分割) 的資料層執行報告工作時，需要[彈性資料庫分區對應](sql-database-elastic-scale-shard-map-management.md)來代表資料層的資料庫。一般而言，這種案例中只會使用單一分區對應，並以具有彈性查詢功能的專用資料庫做為報告查詢的進入點。只有這個專用的資料庫需要存取分區對應。圖 2 說明此拓撲及其彈性查詢資料庫和分區對應的組態。請注意，只有彈性查詢資料庫必須是 Azure SQL Database v12 資料庫。資料層中的資料庫可以是任何 Azure SQL Database 版本。如需有關彈性資料庫用戶端程式庫和建立分區對應的詳細資訊，請參閱[分區對應管理](sql-database-elastic-scale-shard-map-management.md)。
+使用彈性查詢在分區化 (即水平分割) 的資料層執行報告工作時，需要[彈性資料庫分區對應](sql-database-elastic-scale-shard-map-management.md)來代表資料層的資料庫。一般而言，這種案例中只會使用單一分區對應，並以具有彈性查詢功能的專用資料庫做為報告查詢的進入點。只有這個專用的資料庫需要存取分區對應。圖 4 說明此拓撲及其彈性查詢資料庫和分區對應的組態。資料層中的資料庫可以是任何 Azure SQL Database 版本。如需有關彈性資料庫用戶端程式庫和建立分區對應的詳細資訊，請參閱[分區對應管理](sql-database-elastic-scale-shard-map-management.md)。
 
 **圖 4** 水平資料分割 - 使用彈性查詢來報告分區化資料層
 
@@ -76,6 +94,7 @@
 
 > [AZURE.NOTE] 專用彈性資料庫查詢資料庫必須是 SQL DB v12 資料庫。分區本身沒有任何限制。
 
+若要開始撰寫程式碼，請參閱[開始使用彈性資料庫查詢進行水平資料分割 (分區化)](sql-database-elastic-query-getting-started.md)。
 
 ## 實作彈性資料庫查詢
 
@@ -83,7 +102,7 @@
 
 ### 垂直資料分割 - 跨資料庫查詢
 
-下列步驟可針對需要存取位於某個遠端 SQLDB 資料庫上的某個資料表的垂直資料分割案例，設定彈性資料庫查詢：
+下列步驟可針對需要存取位於某個遠端 SQLDB 資料庫上具有相同結構描述的某個資料表的垂直資料分割案例，設定彈性資料庫查詢：
 
 *    [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
 *    [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
@@ -150,4 +169,4 @@
 
 <!--anchors-->
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0504_2016-->

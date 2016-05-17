@@ -12,7 +12,7 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="12/07/2015" 
+ms.date="05/02/2016" 
 ms.author="adegeo"/>
 
 # 在 .NET 中自訂 Web 或背景工作角色的生命週期
@@ -35,7 +35,7 @@ ms.author="adegeo"/>
 
 如果您的角色無法啟動，或在初始化、忙碌和停止狀態之間循環，每次角色重新啟動時，您的程式碼可能會在其中一個生命週期事件內擲回未處理的例外狀況。在此情況下，使用 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件判斷造成此例外狀況的原因，並適當地處理。您的角色可能也會從 [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法傳回，而導致該角色重新啟動。如需有關部署狀態的詳細資訊，請參閱[導致角色循環的常見問題](https://msdn.microsoft.com/library/azure/gg465402.aspx)。
 
-> [AZURE.NOTE]如果您要使用 [Azure Tools for Microsoft Visual Studio](https://msdn.microsoft.com/library/azure/ee405484.aspx) 開發您的應用程式，角色專案範本會在 WebRole.cs 及 WorkerRole.cs 檔案中，自動為您擴充 **RoleEntryPoint** 類別。
+> [AZURE.NOTE] 如果您要使用 [Azure Tools for Microsoft Visual Studio](https://msdn.microsoft.com/library/azure/ee405484.aspx) 開發您的應用程式，角色專案範本會在 WebRole.cs 及 WorkerRole.cs 檔案中，自動為您擴充 **RoleEntryPoint** 類別。
 
 ## OnStart 方法
 
@@ -63,7 +63,7 @@ public override bool OnStart()
 
 在 Azure 將角色執行個體離線之後，以及處理序結束之前，會呼叫 **OnStop** 方法。您可以覆寫此方法以呼叫讓您的角色執行個體正常關機所需的程式碼。
 
-> [AZURE.IMPORTANT]因為使用者起始關機以外的原因呼叫使用 **OnStop** 方法執行的程式碼時，其完成時間有限。經過這個時間之後，處理序便會終止，因此您必須確定 **OnStop** 方法中的該程式碼可以快速執行，或容許完成之前不執行。系統會在引發 **Stopping** 事件之後呼叫 **OnStop** 方法。
+> [AZURE.IMPORTANT] 因為使用者起始關機以外的原因呼叫使用 **OnStop** 方法執行的程式碼時，其完成時間有限。經過這個時間之後，處理序便會終止，因此您必須確定 **OnStop** 方法中的該程式碼可以快速執行，或容許完成之前不執行。系統會在引發 **Stopping** 事件之後呼叫 **OnStop** 方法。
 
 
 ## Run 方法
@@ -80,4 +80,4 @@ public override bool OnStart()
 ## 後續步驟
 了解如何[建立雲端服務封裝](cloud-services-model-and-package.md)。
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0504_2016-->

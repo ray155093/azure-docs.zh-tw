@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/07/2016"
+   ms.date="04/29/2016"
    ms.author="hascipio" />
 
 # 如何將優惠發佈至 Azure Marketplace
@@ -57,7 +57,7 @@
 
 - [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
 - [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)
-- [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines-windows-hero-tutorial/)
+- [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
 **資料服務**
 
@@ -82,4 +82,4 @@
 [link-pushstaging]: marketplace-publishing-push-to-staging.md
 [link-pushprod]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

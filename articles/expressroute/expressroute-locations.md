@@ -64,7 +64,7 @@
 |**China Telecom Global** | 支援 | 不支援 | 香港 |
 |**Cologix** | 支援 | 敬請期待 | 蒙特婁+、多倫多 |
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** | 支援 | 支援 | 阿姆斯特丹、都柏林、倫敦 |
-| **Comcast** | 支援 | 不支援 | 矽谷、華盛頓特區 |
+| **Comcast** | 支援 | 支援 | 矽谷、華盛頓特區 |
 | **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** | 支援 | 支援 | 洛杉磯 | 
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** | 支援 | 支援 | 阿姆斯特丹 |
@@ -157,4 +157,4 @@
 - 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 - 請確定符合所有必要條件。請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

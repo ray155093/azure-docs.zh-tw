@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="02/18/2016"
+	ms.date="05/03/2016"
 	ms.author="jeffstok"/>
 
 
@@ -64,7 +64,7 @@
 
 	請注意，您必須建立一個空白應用程式，才能產生權杖。  
 3.	將 TwitterClient.exe.config 中的 EventHubConnectionString 和 EventHubName 值換成事件中樞連接字串和名稱。您稍早複製的連接字串會提供事件中樞連接字串和名稱，因此請務必加以區隔，並將每個項目放在正確的欄位中。
-4.	*選用：* 調整搜尋關鍵字。根據預設，這個應用程式會尋找 Azure、Skype、XBox、Microsoft、Seattle。如有需要，您可以調整 TwitterClient.exe.config 的 twitter\_keywords 值。
+4.	*選用：*調整搜尋關鍵字。根據預設，這個應用程式會尋找 Azure、Skype、XBox、Microsoft、Seattle。如有需要，您可以調整 TwitterClient.exe.config 的 twitter\_keywords 值。
 5.	執行 **TwitterClient.exe** 以啟動應用程式。您會看到推文事件連同 CreatedAt、Topic 和 SentimentScore 值，一起傳送到事件中樞：
 
 	![情感分析：傳送至事件中樞的 SentimentScore 值。](./media/stream-analytics-twitter-sentiment-analysis-trends/stream-analytics-twitter-sentiment-output-to-event-hub.png)
@@ -238,4 +238,4 @@
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -251,6 +251,8 @@ AzureSqlLinkedService 定義如下︰
 ## 範圍資料集
 您可以使用 [資料集] 屬性建立範圍設定為管線的資料集。這些資料集只能由此管線中的活動使用，不能由其他管線中的活動使用。下列範例會定義具有兩個資料集 (InputDataset-rdc 和 OutputDataset-rdc) 的管線，以在管線內使用。
 
+> [AZURE.IMPORTANT] 只有一次性管線 (**pipelineMode** 設為 **OneTime**) 支援範圍資料集。如需詳細資訊，請參閱[一次性管線](data-factory-scheduling-and-execution.md#onetime-pipeline)。
+
 	{
 	    "name": "CopyPipeline-rdc",
 	    "properties": {
@@ -340,4 +342,4 @@ AzureSqlLinkedService 定義如下︰
 	    }
 	}
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

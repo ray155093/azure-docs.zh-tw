@@ -12,20 +12,32 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/07/2016"
+   ms.date="04/29/2016"
    ms.author="bruceper" />
 
 # Azure 金鑰保存庫開發人員指南
-
-> [AZURE.VIDEO azure-key-vault-developer-quick-start]
-
 透過金鑰保存庫，您可以從應用程式內安全地存取機密資訊，進而達到以下效果︰
 
 - 不需要自行撰寫程式碼即可保護金鑰和密碼，而且也能輕易地從應用程式加以使用。
 - 可以讓客戶擁有及管理他們自己的金鑰，因此您可以致力於提供核心軟體功能。透過這種方式，您的應用程式將不需要對客戶的租用戶金鑰和密碼負起責任或潛在責任。
 - 您的應用程式能使用金鑰進行簽署和加密，卻也能在應用程式外部管理金鑰，如此一來此解決方案便適用於位於不同地點的應用程式。
 
-如需 Azure 金鑰保存庫的一般詳細資訊，請參閱[什麼是金鑰保存庫？](key-vault-whatis.md)
+如需 Azure 金鑰保存庫的一般詳細資訊，請參閱[什麼是金鑰保存庫？](key-vault-whatis.md)。
+
+## 影片
+此影片示範如何建立專屬金鑰保存庫以及如何從 'Hello Key Vault' 範例應用程式使用它。
+
+影片中所提及資源的連結︰
+- [Azure PowerShell](http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409)
+- [Azure 金鑰保存庫範例程式碼](http://go.microsoft.com/fwlink/?LinkId=521527&clcid=0x409)
+
+若要深入了解，您可以遵循 [Key Vault Blog](http://aka.ms/kvblog) (金鑰保存庫部落格)，並加入 [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)。
+
+
+
+> [AZURE.VIDEO azure-key-vault-developer-quick-start]
+
+
 
 ## 建立及管理金鑰保存庫
 
@@ -40,7 +52,7 @@
 
 ## 撰寫金鑰保存庫的程式碼
 
-程式設計人員的金鑰保存庫管理系統由幾個介面組成，並以 REST 做為基礎 ([金鑰保存庫 REST API 參考](https://msdn.microsoft.com/library/azure/dn903609.aspx))。
+程式設計人員的金鑰保存庫管理系統由幾個介面組成，並以 REST 作為基礎 ([Key Vault REST API Reference (金鑰保存庫 REST API 參考))](https://msdn.microsoft.com/library/azure/dn903609.aspx)。
 
 已成功取得授權的使用者可以執行下列作業：
 
@@ -60,16 +72,18 @@
 
 如需搭配使用金鑰保存庫和應用程式的完整範例，請參閱︰
 
-- .NET 範例應用程式 HelloKeyVault 和 Azure Web 服務範例。[Azure 金鑰保存庫程式碼範例](http://www.microsoft.com/download/details.aspx?id=45343)
+- .NET 範例應用程式 *HelloKeyVault* 和 Azure Web 服務範例。[Azure 金鑰保存庫程式碼範例](http://www.microsoft.com/download/details.aspx?id=45343)
 - 幫助您了解如何從 Azure 之 Web 應用程式使用 Azure 金鑰保存庫的教學課程。[從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)
 
 ## 作法
 
-下列文章和案例提供工作的特定指引：
+下列文章和案例提供使用 Azure 金鑰保存庫的工作特定指引：
 
-- [如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰](key-vault-hsm-protected-keys.md)
-- [在部署期間傳遞安全值 (如密碼)](../resource-manager-keyvault-parameter.md)。
-- 如需整合金鑰保存庫和 Azure 及搭配使用的工作特定指引，請參閱 [Ryan Jones 金鑰保存庫 ARM 範本範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)
+- [如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰](key-vault-hsm-protected-keys.md) - 這將協助您規劃、產生並傳輸專屬受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。
+- [如何在部署期間傳遞安全值 (例如密碼)](../resource-manager-keyvault-parameter.md) - 當您需要在部署期間傳遞安全值 (例如密碼) 作為參數時，可以將該值儲存為 Azure 金鑰保存庫中的密碼，並在其他資源管理員範本中參考該值。
+- [如何搭配使用金鑰保存庫與 SQL Server 進行可延伸金鑰管理](https://msdn.microsoft.com/library/dn198405.aspx) - 適用於 Azure 金鑰保存庫的 SQL Server 連接器會啟用 SQL Server 和 SQL-in-a-VM，利用 Azure 金鑰保存庫服務作為可延伸金鑰管理 (EKM) 提供者來保護其針對應用程式連結的加密金鑰；透明資料加密、備份加密和資料行層級加密。
+
+如需整合金鑰保存庫和 Azure 及搭配使用的詳細工作特定指引，請參閱 [Ryan Jones 金鑰保存庫 ARM 範本範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
 ## 支援程式庫
 
@@ -77,4 +91,8 @@
 
 - [Microsoft Azure 金鑰保存庫延伸模組](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/1.0.0)提供 Azure 金鑰保存庫的擴充功能。
 
-<!---HONumber=AcomDC_0309_2016-->
+## 其他金鑰保存庫資源
+- [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
+- [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
+
+<!---HONumber=AcomDC_0504_2016-->

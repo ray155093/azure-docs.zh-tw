@@ -27,7 +27,7 @@
 
 ## 取得檢測金鑰
 
-在 [Microsoft Azure 入口網站](https://portal.azure.com)中，開啟您要顯示資料的 [Application Insights](start) 資源。(或[建立新的資源](app-insights-create-new-resource.md)。)
+在 [Microsoft Azure 入口網站](https://portal.azure.com)中，開啟您要顯示資料的 [Application Insights](app-insights-overview.md) 資源。(或[建立新的資源](app-insights-create-new-resource.md)。)
 
 取得一份可識別資源的檢測金鑰。
 
@@ -143,4 +143,4 @@
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

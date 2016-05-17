@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="get-started-article"
 	ms.date="05/03/2016"
-	ms.author="adrianha"/>
+	ms.author="krisragh"/>
 
 # <a name="getting-started"> </a>我使用行動服務，App Service 有何幫助？
 
@@ -61,4 +61,4 @@
 
 您可以藉由遵循此[教學課程](app-service-mobile-migrating-from-mobile-services.md)，開始將 *App Service* 運用於您現有的行動服務。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

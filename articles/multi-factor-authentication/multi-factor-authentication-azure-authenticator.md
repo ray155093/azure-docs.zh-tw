@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/16/2016" 
+	ms.date="05/02/2016" 
 	ms.author="billmath"/>
 
 
@@ -57,9 +57,7 @@
 
 一旦將所有帳戶加入至新應用程式，請從您的電話解除安裝舊版的應用程式。
 
-想知道如何移除舊應用程式中的個別帳戶？ 請點選該帳戶。您會取得 [刪除] 選項。
 
-![移除帳戶](./media/multi-factor-authentication-azure-authenticator/remove.png)
 
 ## 如何使用條碼掃描器新增帳戶
 
@@ -164,4 +162,10 @@
 
 ![Touch ID](./media/multi-factor-authentication-azure-authenticator/touchid2.png)
 
-<!---HONumber=AcomDC_0218_2016-->
+## 如何刪除帳戶
+
+若要從 Azure Authenticator 應用程式移除個別帳戶，只需點選帳戶即可。您會取得 [刪除] 選項。
+
+![移除帳戶](./media/multi-factor-authentication-azure-authenticator/remove.png)
+
+<!---HONumber=AcomDC_0504_2016-->

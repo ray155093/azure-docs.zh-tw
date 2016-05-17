@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/28/2016"
+   ms.date="04/30/2016"
    ms.author="sahajs;barbkess;sonyama"/>
 
 # 從 SQL 資料倉儲中的使用者錯誤復原資料庫
@@ -23,12 +23,10 @@ SQL 資料倉儲提供兩個核心功能，可從造成非預期之資料損毀�
 - 還原即時資料庫
 - 還原已刪除的資料庫
 
-這兩個功能會在相同的伺服器上還原至新的資料庫。請務必確定您要還原到的伺服器有足夠的 DTU 容量供新的資料庫使用。您可以[連絡支援人員][]，要求增加此配額。
-
+這兩個功能會在相同的伺服器上還原至新的資料庫。請務必確定您要還原到的伺服器有足夠的 DTU 容量供新的資料庫使用。請參閱此部落格文章以深入了解[如何檢視和增加 DTU 配額][]。
 
 ## 復原即時資料庫
 Azure SQL 資料倉儲服務至少每 8 小時會以資料庫快照集來保護所有即時資料庫，並保留 7 天，為您提供一組獨立的還原點。當您暫停或卸除資料庫時，也會建立資料庫快照集，並將其保留 7 天。當使用者錯誤造成非預期的資料修改時，您可以在保留期限內將資料庫還原到任何還原點。
-
 
 ### Azure 入口網站
 
@@ -41,12 +39,11 @@ Azure SQL 資料倉儲服務至少每 8 小時會以資料庫快照集來保護�
 5. 指定新的 [資料庫名稱]，並選取 [還原點]，然後按一下 [建立]。
 6. 資料庫還原程序就會開始，且您可以使用 [通知] 進行監視。
 
-
 ### PowerShell
 
-使用 Azure PowerShell 以程式設計方式執行資料庫還原。如要下載 Azure PowerShell 模組，請執行 [Microsoft Web Platform Installer](http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409)。您可以執行 Get-Module -ListAvailable -Name AzureRM.Sql 來檢查您的版本。本文是根據 Microsoft AzureRM.Sql PowerShell 1.0.5 版所撰寫。
+使用 Azure PowerShell 以程式設計方式搭配 [Restore-AzureRmSqlDatabase][] Cmdlet 執行資料庫還原。
 
-若要還原資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
+> [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0.3 版或更高版本。您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
 1. 開啟 Windows PowerShell。
 2. 連接到您的 Azure 帳戶，並列出與您的帳戶相關聯的所有訂用帳戶。
@@ -58,24 +55,30 @@ Azure SQL 資料倉儲服務至少每 8 小時會以資料庫快照集來保護�
 
 ```Powershell
 
+$SubscriptionName="<YourSubscriptionName>"
+$ResourceGroupName="<YourResourceGroupName>"
+$ServerName="<YourServerNameWithoutURLSuffixSeeNote>"  # Without database.windows.net
+$DatabaseName="<YourDatabaseName>"
+$NewDatabaseName="<YourDatabaseName>"
+
 Login-AzureRmAccount
 Get-AzureRmSubscription
-Select-AzureRmSubscription -SubscriptionName "<Subscription_name>"
+Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
 # List the last 10 database restore points
-((Get-AzureRMSqlDatabaseRestorePoints -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>").RestorePointCreationDate)[-10 .. -1]
+((Get-AzureRMSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName ($DatabaseName).RestorePointCreationDate)[-10 .. -1]
 
 # Or list all restore points
-Get-AzureRmSqlDatabaseRestorePoints -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>" 
-
-# Pick desired restore point using RestorePointCreationDate
-$PointInTime = "<RestorePointCreationDate>"
+Get-AzureRmSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Get the specific database to restore
-$Database = Get-AzureRmSqlDatabase -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>"
+$Database = Get-AzureRmSqlDatabase -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
+
+# Pick desired restore point using RestorePointCreationDate
+$PointInTime="<RestorePointCreationDate>"  
 
 # Restore database from a restore point
-$RestoredDatabase = Restore-AzureRmSqlDatabase –FromPointInTimeBackup –PointInTime $PointInTime -ResourceGroupName $Database.ResourceGroupName -ServerName $Database.ServerName -TargetDatabaseName "<NewDatabaseName>" –ResourceId $Database.ResourceID
+$RestoredDatabase = Restore-AzureRmSqlDatabase –FromPointInTimeBackup –PointInTime $PointInTime -ResourceGroupName $Database.ResourceGroupName -ServerName $Database.$ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $Database.ResourceID
 
 # Verify the status of restored database
 $RestoredDatabase.status
@@ -84,7 +87,6 @@ $RestoredDatabase.status
 
 >[AZURE.NOTE] 針對伺服器 foo.database.windows.net，請使用 "foo" 作為上述 PowerShell Cmdlet 中的 -ServerName。
 
-
 ### REST API
 使用 REST 可以程式設計方式執行資料庫還原。
 
@@ -92,13 +94,10 @@ $RestoredDatabase.status
 2. 使用[建立資料庫還原要求][]作業來開始還原。
 3. 使用[資料庫作業狀態][]作業來追蹤還原狀態。
 
-
 >[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
-
 
 ## 復原已刪除的資料庫
 Azure SQL 資料倉儲會在卸除資料庫前採用資料庫快照集，並將其保留 7 天。若意外刪除資料庫，您可以將已刪除的資料庫還原至刪除的時間點。
-
 
 ### Azure 入口網站
 
@@ -114,8 +113,6 @@ Azure SQL 資料倉儲會在卸除資料庫前採用資料庫快照集，並將�
 
 
 ### PowerShell
-使用 Azure PowerShell 以程式設計方式還原已刪除的資料庫。如要下載 Azure PowerShell 模組，請執行 [Microsoft Web Platform Installer](http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409)。您可以執行 Get-Module -ListAvailable -Name AzureRM.Sql 來檢查您的版本。本文是根據 Microsoft AzureRM.Sql PowerShell 1.0.5 版所撰寫。
-
 若要還原已刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
 
 1. 開啟 Windows PowerShell。
@@ -127,15 +124,21 @@ Azure SQL 資料倉儲會在卸除資料庫前採用資料庫快照集，並將�
 
 ```Powershell
 
+$SubscriptionName="<YourSubscriptionName>"
+$ResourceGroupName="<YourResourceGroupName>"
+$ServerName="<YourServerNameWithoutURLSuffixSeeNote>"  # Without database.windows.net
+$DatabaseName="<YourDatabaseName>"
+$NewDatabaseName="<YourDatabaseName>"
+
 Login-AzureRmAccount
 Get-AzureRmSubscription
-Select-AzureRmSubscription -SubscriptionName "<Subscription_name>"
+Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
 # Get the deleted database to restore
-$DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>"
+$DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $ResourceGroupNam -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Restore deleted database
-$RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName "<NewDatabaseName>" –ResourceId $DeletedDatabase.ResourceID
+$RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $DeletedDatabase.ResourceID
 
 # Verify the status of restored database
 $RestoredDatabase.status
@@ -143,7 +146,6 @@ $RestoredDatabase.status
 ```
 
 >[AZURE.NOTE] 針對伺服器 foo.database.windows.net，請使用 "foo" 作為上述 PowerShell Cmdlet 中的 -ServerName。
-
 
 ### REST API
 使用 REST 可以程式設計方式執行資料庫還原。
@@ -153,29 +155,30 @@ $RestoredDatabase.status
 3.	使用[建立資料庫還原要求][]作業來開始還原。
 4.	使用[資料庫作業狀態][]作業來追蹤還原狀態。
 
-
 >[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
-
 
 ## 後續步驟
 若要深入了解 Azure SQL Database 版本的業務持續性功能，請閱讀 [Azure SQL Database 業務持續性概觀][]。
 
-
 <!--Image references-->
 
 <!--Article references-->
-[Azure SQL Database 業務持續性概觀]: sql-database/sql-database-business-continuity.md
-[完成復原的資料庫]: sql-database/sql-database-recovered-finalize.md
+[Azure SQL Database 業務持續性概觀]: sql-database-business-continuity.md
+[完成復原的資料庫]: sql-database-recovered-finalize.md
+[如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
 
 <!--MSDN references-->
-[建立資料庫還原要求]: http://msdn.microsoft.com/library/azure/dn509571.aspx
-[資料庫作業狀態]: http://msdn.microsoft.com/library/azure/dn720371.aspx
-[取得可還原的已卸除資料庫]: http://msdn.microsoft.com/library/azure/dn509574.aspx
-[列出可還原的已卸除資料庫]: http://msdn.microsoft.com/library/azure/dn509562.aspx
+[建立資料庫還原要求]: https://msdn.microsoft.com/library/azure/dn509571.aspx
+[資料庫作業狀態]: https://msdn.microsoft.com/library/azure/dn720371.aspx
+[取得可還原的已卸除資料庫]: https://msdn.microsoft.com/library/azure/dn509574.aspx
+[列出可還原的已卸除資料庫]: https://msdn.microsoft.com/library/azure/dn509562.aspx
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
+
+<!--Blog references-->
+[如何檢視和增加 DTU 配額]: https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/
 
 <!--Other Web references-->
 [Azure 入口網站]: https://portal.azure.com/
-[連絡支援人員]: https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/
+[Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

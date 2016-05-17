@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/07/2016"
+   ms.date="05/02/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的資料行存放區索引
@@ -240,8 +240,6 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 ## 後續步驟
 
-如需索引管理的詳細建議，請檢閱[管理索引][]一文。
-
 如需更多管理祕訣，請前往[管理][]概觀。
 
 <!--Image references-->
@@ -251,7 +249,6 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 [資料表分割]: sql-data-warehouse-develop-table-partitions.md
 [並行]: sql-data-warehouse-develop-concurrency.md
 [管理]: sql-data-warehouse-manage-monitor.md
-[管理索引]: sql-data-warehouse-manage-indexes.md
 
 <!--MSDN references-->
 [ALTER INDEX]: https://msdn.microsoft.com/library/ms188388.aspx
@@ -259,4 +256,4 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

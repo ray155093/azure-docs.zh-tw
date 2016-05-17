@@ -13,7 +13,7 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="identity"
-      ms.date="02/16/2016"
+      ms.date="05/03/2016"
       ms.author="markvi"/>
 
 # 使用 Azure Active Directory 來管理應用程式
@@ -135,4 +135,4 @@ Azure AD 為您提供預先整合的報告與監控功能，可讓您知道可�
 
 [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

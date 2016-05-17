@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/14/2016"
+   ms.date="05/03/2016"
    ms.author="sonyama;barbkess;sahajs"/>
 
 # 使用 DMV 監視工作負載
@@ -39,7 +39,7 @@ SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed';
 -- Monitor running queries
 SELECT * FROM sys.dm_pdw_exec_requests WHERE status = 'Running';
 
--- Find the 10 longest running queries
+-- Find 10 queries which ran the longest
 SELECT TOP 10 * FROM sys.dm_pdw_exec_requests ORDER BY total_elapsed_time DESC;
 ```
 
@@ -143,15 +143,15 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 ```
 
 ## 後續步驟
-如需 Transact-SQL 和動態管理檢視 (DMV) 的詳細資訊，請參閱[參考概觀][]。如需管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。
+如需有關動態管理檢視 (DMV) 的詳細資訊，請參閱[系統檢視][]。如需管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。如需最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[管理概觀]: sql-data-warehouse-overview-manage.md
-[table design]: sql-data-warehouse-develop-table-design.md
-[參考概觀]: sql-data-warehouse-overview-reference.md
 [manage data skew for distributed tables]: sql-data-warehouse-manage-distributed-data-skew.md
+[管理概觀]: sql-data-warehouse-overview-manage.md
+[SQL Data 資料倉儲最佳做法]: sql-data-warehouse-best-practices.md
+[系統檢視]: sql-data-warehouse-reference-tsql-system-views.md
 
 <!--MSDN references-->
 [sys.dm\_pdw\_dms\_workers]: http://msdn.microsoft.com/library/mt203878.aspx
@@ -162,4 +162,4 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 [DBCC PDW\_SHOWEXECUTIONPLAN]: http://msdn.microsoft.com/library/mt204017.aspx
 [DBCC PDW_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

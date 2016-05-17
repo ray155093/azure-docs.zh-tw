@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="02/17/2016"
+	ms.date="05/03/2016"
 	ms.author="jeffstok"/>
 
 
@@ -510,4 +510,4 @@ WHERE
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

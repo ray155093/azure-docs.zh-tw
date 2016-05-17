@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/19/2016"
+   ms.date="05/05/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 
@@ -62,7 +62,7 @@ SQL 資料倉儲會將資料儲存於一或多個計算節點，而每個節點�
 
 ### 升級和停機
 
-在預覽期間，SQL 資料倉儲會定期進行升級以新增新功能，以及安裝重大修正程式。這些升級可能會產生干擾，而且目前無法在預期的排程上升級。如果您認為這個程序產生過多干擾，建議您 [建立支援票證]，以便我們可以協助您解決此程序。
+在預覽期間，SQL 資料倉儲會定期進行升級以新增新功能，以及安裝重大修正程式。這些升級可能會產生干擾，而且目前無法在預期的排程上升級。如果您認為這個程序產生過多干擾，建議您[建立支援票證][]，以便我們可以協助您解決此程序。
 
 
 ## 後續步驟
@@ -72,10 +72,11 @@ SQL 資料倉儲會將資料儲存於一或多個計算節點，而每個節點�
 <!--Image references-->
 
 <!--Article references-->
+[建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [開始使用]: ./sql-data-warehouse-get-started-provision.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

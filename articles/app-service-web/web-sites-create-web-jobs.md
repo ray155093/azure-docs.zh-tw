@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/12/2016" 
+	ms.date="04/27/2016" 
 	ms.author="tdykstra"/>
 
 # 使用 WebJob 執行背景工作
@@ -25,6 +25,8 @@
 本文說明如何使用 [Azure 入口網站](https://portal.azure.com)來部署 WebJob。如需如何使用 Visual Studio 或連續傳遞程序進行部署的相關資訊，請參閱[如何將 Azure WebJob 部署至 Web 應用程式](websites-dotnet-deploy-webjobs.md)。
 
 Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。如需詳細資訊，請參閱[什麼是 WebJobs SDK](websites-dotnet-webjobs-sdk.md)。
+
+ Azure Functions (目前為預覽) 是在 Azure App Service 中執行程式和指令碼的另一種方式。如需詳細資訊，請參閱 [Azure Functions 概觀](../azure-functions/functions-overview.md)。
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -201,14 +203,9 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
 - [基本] 和 [標準] 模式能提供「永遠開啟」功能，此功能在啟用後能預防 Web 應用程式進入閒置狀態。
 - 您僅可偵錯連續執行的 WebJobs。不支援偵錯排程或隨選的 WebJobs。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
-
 ## <a name="NextSteps"></a>後續步驟
  
 如需詳細資訊，請參閱 [Azure WebJobs 建議資源][WebJobsRecommendedResources]。
-
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [PSonWebJobs]: http://blogs.msdn.com/b/nicktrog/archive/2014/01/22/running-powershell-web-jobs-on-azure-websites.aspx
 [WebJobsRecommendedResources]: http://go.microsoft.com/fwlink/?LinkId=390226
@@ -238,4 +235,4 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
 [JobActionPageInScheduler]: ./media/web-sites-create-web-jobs/33JobActionPageInScheduler.png
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

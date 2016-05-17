@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="04/29/2016"
 	ms.author="robinsh"/>
 
 # Microsoft Azure 儲存體效能與延展性檢查清單
@@ -149,7 +149,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 這些技術可協助您避免 Web 應用程式上的不必要負荷 (和瓶頸)。
 
 ####有用資源
-如需 SAS 的詳細資訊，請參閱[共用存取簽章：第 1 部分：了解 SAS 模型](../storage-dotnet-shared-access-signature-part-1/)。
+如需 SAS 的詳細資訊，請參閱[共用存取簽章：第 1 部分：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
 
 如需 CORS 的詳細資訊，請參閱 [Azure 儲存體服務的跨原始資源共用 (CORS) 支援](http://msdn.microsoft.com/library/azure/dn535601.aspx)。
 
@@ -185,7 +185,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 
 	ThreadPool.SetMinThreads(100,100); //(Determine the right number for your application)  
 
-如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法] ( http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
+如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法] (http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
 
 ####<a name="subheading11"></a>充分運用 .NET 4.5 記憶體回收
 在用戶端應用程式中使用 .NET 4.5 或更新版本，以便在伺服器記憶體回收中充分運用效能改善。
@@ -393,7 +393,7 @@ Azure 儲存體支援兩種 Blob：分頁 Blob 和區塊 Blob。在指定使用�
 ###<a name=subheading44"></a>UpdateMessage
 您可以使用 **UpdateMessage** 來增加隱藏逾時，或更新訊息的狀態資訊。雖然這是個強大的功能，請記住，每個 **UpdateMessage** 作業都會算在延展性目標內。不過，相較於在工作的每個階段完成時，將工作從一個佇列傳遞到下一個佇列的工作流程，這會更有效率。使用 **UpdateMessage** 作業可讓應用程式將工作狀態儲存到訊息，然後繼續工作，而不是每次步驟完成時，便重新佇列訊息以進行下個工作步驟。
 
-如需詳細資訊，請參閱文章[如何：變更佇列訊息的內容](storage-dotnet-how-to-use-queues#change-the-contents-of-a-queued-message)。
+如需詳細資訊，請參閱文章[如何：變更佇列訊息的內容](storage-dotnet-how-to-use-queues.md#change-the-contents-of-a-queued-message)。
 
 ###<a name=subheading45"></a>應用程式架構
 您應使用佇列，讓應用程式變得具擴充性。下列將列出您可以使用佇列，讓應用程式變得較具擴充性的幾個方式：
@@ -404,4 +404,4 @@ Azure 儲存體支援兩種 Blob：分頁 Blob 和區塊 Blob。在指定使用�
 ##結論
 本文討論一些最常見的已經實證做法，以便在使用 Azure 儲存體時將效能最佳化。我們鼓勵每位應用程式開發人員根據上述的每個做法來評估他們的應用程式，並考慮照著建議去做，為其使用 Azure 儲存體的應用程式取得最佳效能。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="04/07/2016"
+ms.date="05/03/2016"
 ms.author="larryfr"/>
 
 #從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集
@@ -218,7 +218,7 @@ Spark 叢集之前可在預覽期間於 Windows 叢集上使用，不過發行�
 
 Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDInsight 叢集所支援。您應該改為使用下列其中一個方法，來將自訂活動實作為 ADF 管線的一部分。
 
--   在 Azure Batch 集區上執行 .NET 活動。請參閱[在 Azure Data Factory 管線中使用自訂活動](../data-factory/data-factory-use-custom-activities.md/#AzureBatch)的＜使用 Azure Batch 連結服務＞一節。
+-   在 Azure Batch 集區上執行 .NET 活動。請參閱[在 Azure Data Factory 管線中使用自訂活動](../data-factory/data-factory-use-custom-activities.md#AzureBatch)的＜使用 Azure Batch 連結服務＞一節。
 
 -   將活動實作為 MapReduce 活動。請參閱[從 Data Factory 叫用 MapReduce 程式](../data-factory/data-factory-map-reduce.md)，以取得詳細資訊。
 
@@ -254,4 +254,4 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 -   [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

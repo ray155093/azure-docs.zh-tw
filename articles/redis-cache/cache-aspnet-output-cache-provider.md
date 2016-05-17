@@ -1,19 +1,19 @@
 <properties
-   pageTitle="快取 ASP.NET 輸出快取提供者"
-   description="了解如何使用 Azure Redis 快取進行 ASP.NET 頁面輸出快取"
-   services="redis-cache"
-   documentationCenter="na"
-   authors="steved0x"
-   manager="erikre"
-   editor="tysonn" />
+	pageTitle="快取 ASP.NET 輸出快取提供者"
+	description="了解如何使用 Azure Redis 快取進行 ASP.NET 頁面輸出快取"
+	services="redis-cache"
+	documentationCenter="na"
+	authors="steved0x"
+	manager="erikre"
+	editor="tysonn" />
 <tags
-   ms.service="cache"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="cache-redis"
-   ms.workload="tbd"
-   ms.date="01/13/2016"
-   ms.author="sdanie" />
+	ms.service="cache"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="cache-redis"
+	ms.workload="tbd"
+	ms.date="04/27/2016"
+	ms.author="sdanie" />
 
 # Azure Redis 快取的 ASP.NET 輸出快取提供者
 
@@ -25,11 +25,11 @@ Redis 輸出快取提供者為輸出快取資料的程序外儲存體機制。�
 
 若要在 Visual Studio 中使用「Redis 輸出快取提供者 NuGet 封裝」來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。
 
-![Azure Redis 快取管理 NuGet 封裝](./media/cache-asp.net-output-cache-provider/IC729541.png)
+![Azure Redis 快取管理 NuGet 封裝](./media/cache-aspnet-output-cache-provider/redis-cache-manage-nuget-menu.png)
 
-在 [線上搜尋] 文字方塊中輸入 **RedisOutputCacheProvider**，從結果中選取後按一下 [安裝]。
+在搜尋文字方塊中輸入 **RedisOutputCacheProvider**，從結果中選取後按一下 [安裝]。
 
-![Azure Redis 快取輸出快取提供者](./media/cache-asp.net-output-cache-provider/IC751727.jpg)
+![Azure Redis 快取輸出快取提供者](./media/cache-aspnet-output-cache-provider/redis-cache-page-output-provider.png)
 
 「Redis 輸出快取提供者 NuGet 封裝」對「StackExchange.Redis.StrongName 封裝」有相依性。如果「StackExchange.Redis.StrongName 封裝」不在專案中，將會予以安裝。請注意，除了強式名稱的「StackExchange.Redis.StrongName 封裝」之外，另外還有 StackExchange.Redis 非強式名稱的版本。如果您的專案是使用非強式名稱的 StackExchange.Redis 版本，您必須在安裝「Redis 輸出快取提供者 NuGet 封裝」之前或之後將它解除安裝，否則專案中會出現命名衝突。如需這些封裝的相關詳細資訊，請參閱[設定 .NET 快取用戶端](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)。
 
@@ -81,4 +81,4 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
 
 請查看 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](cache-aspnet-session-state-provider.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

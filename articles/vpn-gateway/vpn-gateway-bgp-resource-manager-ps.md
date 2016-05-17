@@ -278,7 +278,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 請確定您已登入並連接到訂用帳戶 1。
 
 	$vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
-	$vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
+	$vnet2gw = Get-AzureRmLocalNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
 	
 #### 2\.建立兩個連線
 
@@ -300,4 +300,4 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

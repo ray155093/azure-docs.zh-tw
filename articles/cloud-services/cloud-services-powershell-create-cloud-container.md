@@ -1,10 +1,10 @@
 <properties
-   pageTitle="如何使用 Azure PowerShell 命令來建立空白的雲端服務容器 | Microsoft Azure"
-   description="本文說明如何使用 PowerShell 指令碼建立雲端服務容器，以及執行雲端服務相關管理作業"
+   pageTitle="使用 PowerShell 建立雲端服務容器 | Microsoft Azure"
+   description="這篇文章說明如何使用 PowerShell 建立雲端服務容器。容器會裝載 Web 和背景工作角色。"
    services="cloud-services"
    documentationCenter=".net"
    authors="cawaMS"
-   manager="paulyuk"
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="powershell"
    ms.workload="na"
-   ms.date="02/09/2016"
+   ms.date="04/25/2016"
    ms.author="cawa"/>
 
 # 使用 Azure PowerShell 命令來建立空白的雲端服務容器
@@ -32,11 +32,13 @@
     New-AzureService [-ServiceName] <String> [-Location] <String> [[-Label] <String>] [[-Description] <String>] [[-ReverseDnsFqdn] <String>] [<CommonParameters>]
 ```
 
-5. 遵循此範例以叫用 Cmdlet：```
-New-AzureService -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
+5. 遵循此範例以叫用 Cmdlet：
+```
+New-AzureService -ServiceName "mytestcloudservice" -Location "Central US" -Label "mytestcloudservice"
 ```
 
-如需有關建立 Azure 雲端服務的詳細資訊，請執行：```
+如需建立 Azure 雲端服務的詳細資訊，請執行：
+```
 Get-help New-AzureService
 ```
 
@@ -46,4 +48,4 @@ Get-help New-AzureService
 
  * 若要將雲端服務專案發佈至 Azure，請參閱[在 Azure 中持續提供雲端服務](cloud-services-dotnet-continuous-delivery.md)中的 **PublishCloudService.ps1** 程式碼範例
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -4,7 +4,7 @@
 	services="sql-database, automation"
 	documentationCenter=""
 	authors="jodoglevy"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor="monicar"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/03/2016"
 	ms.author="jolevy"/>
 
 
@@ -55,4 +55,4 @@ Azure 自動化也可直接與 SQL 伺服器通訊，只要使用 PowerShell 發
 - [Azure Automation: Your SQL Agent in the Cloud (Azure 自動化：雲端中的 SQL 代理程式)](https://azure.microsoft.com/blog/2014/06/26/azure-automation-your-sql-agent-in-the-cloud/) 
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -1,54 +1,105 @@
 <properties
-	pageTitle="監視、管理和估算彈性資料庫集區大小"
+	pageTitle="使用 Azure 入口網站監視和管理彈性資料庫集區 | Microsoft Azure"
 	description="了解如何使用 Azure 入口網站和 SQL Database 的內建智慧功能來管理、監視及準確估量可調整的彈性資料庫集區，以期能最佳化資料庫效能和管理成本。"
 	keywords=""
 	services="sql-database"
 	documentationCenter=""
-	authors="sidneyh"
+	authors="ninarn"
 	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="04/01/2016"
-	ms.author="sidneyh"
+	ms.date="05/02/2016"
+	ms.author="ninarn"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 使用 Azure 入口網站監視、管理和估算彈性資料庫集區大小
+# 使用 Azure 入口網站監視和管理彈性資料庫集區
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
-- [C#](sql-database-elastic-pool-manage-csharp.md)
 - [PowerShell](sql-database-elastic-pool-manage-powershell.md)
+- [C#](sql-database-elastic-pool-manage-csharp.md)
 - [T-SQL](sql-database-elastic-pool-manage-tsql.md)
 
 
-本文說明如何使用 Azure 入口網站來監視、管理及準確估量彈性資料庫集區和集區中的資料庫。SQL Database 擁有內建的智慧功能，可分析歷史的使用狀況遙測，並在更符合成本效益時主動推薦資料庫的集區。您也可以在認可變更之前加入及移除資料庫，然後再查看對集區效能和儲存體的影響。
+您可以使用 Azure 入口網站來監視、管理及設定彈性資料庫集區和集區中的資料庫。SQL Database 擁有內建的智慧功能，可分析伺服器上所有資料庫的歷史使用量 (無論是在集區中與否)，並在更符合成本效益時主動推薦資料庫的集區。
 
-若要逐一實施本文章中的步驟，您需要具備資料庫和集區。如果您已擁有資料庫，請參閱[建立集區](sql-database-elastic-pool-create-portal.md)；如果沒有，請參閱 [SQL Database 教學課程](sql-database-get-started)。
+入口網站可讓您變更集區和資料庫設定、預覽變更，並同時認可所有變更。您可以預覽變更，例如新增和移除資料庫。系統也會顯示對效能和價格的潛在影響。
 
-**選擇要使用的集區︰**
+若要逐一實施本文章中的步驟，您需要具備資料庫和集區。如果您有現有的資料庫，請參閱[建立集區](sql-database-elastic-pool-create-portal.md)；如果您沒有資料庫，請參閱 [SQL 資料庫教學課程](sql-database-get-started.md)。
 
-- 在 [Azure 入口網站](https://portal.azure.com)中依序按一下 [瀏覽] 和 [SQL 彈性集區]，然後在清單中按一下要使用的集區。
+## 選擇要使用的集區
 
-##監視集區的資源使用率
-選取要使用的集區之後，圖表和動態磚會在 [彈性集區監視] 下方顯示集區的重要使用率資訊。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [瀏覽]。
+2. 按一下 [SQL 彈性集區]
+3. 從清單中，按一下您想要使用的集區。
+
+## 將資料庫移入彈性集區
+
+您可以從現有的集區中新增或移除資料庫。資料庫可以位於其他集區。不過，您只可以新增位於相同邏輯伺服器上的資料庫。
+
+1. 在集區刀鋒視窗的 [彈性資料庫] 下，按一下 [設定集區]。
+
+    ![按一下 [設定集區]][1]
+
+2. 在 [設定集區] 刀鋒視窗中，按一下 [新增至集區]。
+
+	![按一下 [新增到集區]](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
+
+	
+3. 在 [新增資料庫] 刀鋒視窗中，選取要新增到集區中的資料庫。然後按一下 [選取]。
+
+	![選取要新增的資料庫](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
+
+    [設定集區] 刀鋒視窗現在會列出您才新增的資料庫，其狀態設為**處理中**。
+
+    ![擱置中的新增集區](./media/sql-database-elastic-pool-manage-portal/pending-additions.png)
+
+3. 在 [設定集區] 刀鋒視窗中，按一下 [儲存]。
+
+    ![按一下 [Save] (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
+
+## 將資料庫移出彈性集區
+
+1. 在 [設定集區] 刀鋒視窗中，選取要移除的資料庫。
+
+    ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/select-pools-removal.png)
+
+2. 按一下 [從集區移除]。
+
+    ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/remove-from-pool.png)
+
+	選取的資料庫會以「選取要移除的資料庫」在 UI 中顯示。
+
+
+## 監視集區的資源使用率
+
+
+1. 選擇要使用的集區。
+2. 圖表和動態磚會在 [彈性集區監視] 下方顯示集區的重要使用率資訊。
 
 ![監視彈性集區](./media/sql-database-elastic-pool-manage-portal/monitor-elastic-pool.png)
 
-**變更日期範圍、圖表類型 (橫條或線條) 或顯示的資源︰**
+**若要變更圖表和顯示：**
 
-- 按一下 [編輯]，並挑選您要的設定，然後按一下 [儲存] 以更新圖表。
+- 按一下 [**編輯**]。
 
-**變更動態磚︰**
+	![按一下 [編輯]。](./media/sql-database-elastic-pool-manage-portal/edit-resource-utlization.png)
 
-- 按一下 [新增磚]，然後從出現在左邊的磚資源庫選取需要的磚。
+- 在 [編輯圖表] 刀鋒視窗中，選取新的時間範圍 (過去或今天的時間，或上星期的時間)，或按一下 [自訂] 以設定不同的時間範圍。選取圖表類型 (長條圖或折線圖)，再選取要監視的資源。
 
-##將警示加入集區資源
+	![按一下 [編輯]。](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
+
+- 然後按一下 [確定]。
+
+
+## 將警示加入集區資源
+
 您可以將規則加入資源，以在當資源達到您設定的使用率閾值時，傳送電子郵件給人員或傳送警示字串到 URL 端點。
 
 **將警示加入任何資源：**
@@ -62,66 +113,35 @@
 4. 選擇 [條件] \(大於、小於等) 和 [閾值]。
 5. 按一下 [確定]。
 
-##變更每個集區的 eDTU 和資料庫 eDTU
-當您看到集區的資源使用率時，可能會發現集區需要不同的 eDTU 設定，或集區中的個別資料庫需要不同的 eDTU 設定。您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。如需詳細資訊，請參閱[價格和效能考量](sql-database-elastic-pool-guidance.md)。
+## 變更集區的效能設定
 
-**變更的集區 eDTU 和每個資料庫 eDTU：**
+當您監視集區的資源使用情況時，可能會發現集區需要更多的 eDTU。或者，集區中的個別資料庫需要不同的 eDTU 設定。您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。請參閱[何時應該使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)以取得更多資訊。
 
-1. 按一下 [設定集區] 以開啟 [設定效能] 刀鋒視窗。
+**要變更每個集區的 eDTU，以及每個資料庫的 eDTU：**
 
-    在 [彈性資料庫集區設定] 下方，圖表會以容量百分比為單位顯示集區最近的 eDTU 趨勢和儲存體使用量。
+1. 開啟 [設定集區] 刀鋒視窗。
+
+    在 [彈性資料庫集區設定] 下，使用滑桿來變更集區設定。
 
     ![彈性集區資源使用量](./media/sql-database-elastic-pool-manage-portal/resize-pool.png)
 
-2. 按一下不同的 [集區 eDTU]，您可以看到欲變更之項目的預估每月成本，而圖表會更新以使用您選取的新 eDTU 上限顯示預測使用率值。
+2. 當設定變更時，則會顯示變更的每月預估成本。
 
     ![更新集區和新的每月成本](./media/sql-database-elastic-pool-manage-portal/pool-change-edtu.png)
 
-3. 在 [彈性資料庫設定] 下方，橫條圖會顯示集區中每個資料庫的 eDTU 使用量。
+## 預覽資料庫動作
 
-4. 針對集區中的資料庫，按一下 [eDTU 上限] 可設定 eDTU 數目上限，而按一下 [eDTU 下限] 則可設定下限。
+在認可 [設定集區] 刀鋒視窗中的動作之前，您可以預覽新增和移除的資料庫：
 
-    ![更新彈性資料庫的 eDTU 下限和上限](./media/sql-database-elastic-pool-manage-portal/change-db-edtuminmax.png)
+![預覽新增和移除的資料庫](./media/sql-database-elastic-pool-manage-portal/pools-tab.png)。
 
-##加入及移除資料庫
 
-建立集區之後，您可以將資料庫加入集區或移除資料庫。您只能加入位在同一部 SQL Server 上的資料庫。
-
-**加入資料庫：**
-
-1. 在集區的刀鋒視窗中，於 [彈性資料庫] 下方按一下顯示集區中資料庫數目的連結。
-
-    ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/db-listing.png)
-
-2. 在 [彈性資料庫] 刀鋒視窗中，依序按一下 [加入資料庫]、您想要加入的資料庫及 [選取] 按鈕。
-
-    [彈性資料庫] 刀鋒視窗現在會列出您剛才加入的資料庫，並附上 [AVG DTU] 和以 [SIZE(GB)] 為單位的儲存體使用量，以及 [擱置中] 狀態。集區使用量值現在會顯示儲存變更後的新值。
-
-    ![建議的集區](./media/sql-database-elastic-pool-manage-portal/add-remove-databases.png)
-
-3. 按一下 [儲存]，然後當入口網站告訴您要求已提交時按一下 [確定]。當操作完成時，集區中的資料庫數目會出現在集區刀鋒視窗內。
-
-**移除資料庫：**
-
-1. 在集區的刀鋒視窗中，於 [彈性資料庫] 下方按一下顯示集區中資料庫數目的連結。
-
-    ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/db-listing.png)
-
-2. 在 [彈性資料庫] 刀鋒視窗中，從集區的資料庫清單按一下要移除的資料庫，然後按一下 [移除資料庫]。
-
-    集區使用量值現在會顯示儲存變更後的新值。
-
-3. 按一下 [儲存]，然後當入口網站告訴您要求已提交時按一下 [確定]。當操作完成時，集區中的資料庫數目會出現在集區刀鋒視窗內。
-
-## 在集區中建立新的資料庫
-
-只要在資料庫刀鋒視窗中按一下 [建立資料庫] 即可。SQL Database 的伺服器和集區已正確設定，因此您可以逐一點選以選取其他設定，然後按一下 [確定] 以在集區中建立新資料庫。
-
-   ![建立彈性資料庫](./media/sql-database-elastic-pool-portal/create-database.png)
-
-##建立及管理彈性工作
+## 建立及管理彈性工作
 
 彈性工作可讓您對集區中任意數目的資料庫執行 Transact-SQL 指令碼。使用工作之前，請安裝彈性工作元件並提供認證。如需詳細資訊，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
+
+請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
+
 
 ## 其他資源
 
@@ -131,4 +151,8 @@
 - [使用 C# 來建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)
 - [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+
+<!--Image references-->
+[1]: ./media/sql-database-elastic-pool-manage-portal/configure-pool.png
+
+<!---HONumber=AcomDC_0504_2016-->

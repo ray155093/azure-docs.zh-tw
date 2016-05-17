@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="02/02/2016"
+   ms.date="05/02/2016"
    ms.author="elizapo"/>
 
 # SQL Azure 搭配 Azure RemoteApp
@@ -50,4 +50,4 @@
 - 在 Azure RemoteApp 中裝載的用戶端應用程式承受壓力。選取不同的計費方案 (例如 Premium 計費) 會改善效能。另一個訣竅是監視您的應用程式正在使用的資源：在作用中工作階段期間，執行將啟動 SAS 畫面的 ctrl-alt-end 按鍵序列，選取 [工作管理員] 並觀察您的應用程式的資源使用率。
 - SQL Server 承受壓力或未最佳化。遵循 SQL 疑難排解指引。 
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

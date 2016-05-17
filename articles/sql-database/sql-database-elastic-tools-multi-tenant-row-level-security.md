@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/25/2016" 
+	ms.date="05/02/2016" 
 	ms.author="thmullan;torsteng;sidneyh" />
 
 # 使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式 
@@ -58,7 +58,7 @@
 
 ### Entity Framework
 
-對於使用 Entity Framework 的應用程式，最簡單的方法是在[使用 EF DbContext 的資料相依路由](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md/#data-dependent-routing-using-ef-dbcontext)一文中所述的 ElasticScaleContext 覆寫中設定 SESSION\_CONTEXT。在傳回透過資料相依路由來代理的連線之前，只要建立並執行 SqlCommand，來將 SESSION\_CONTEXT 中的「TenantId」設定為該連線專用的 shardingKey 即可。如此一來，您只需要編寫程式碼一次，就能設定 SESSION\_CONTEXT。
+對於使用 Entity Framework 的應用程式，最簡單的方法是在[使用 EF DbContext 的資料相依路由](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md#data-dependent-routing-using-ef-dbcontext)一文中所述的 ElasticScaleContext 覆寫中設定 SESSION\_CONTEXT。在傳回透過資料相依路由來代理的連線之前，只要建立並執行 SqlCommand，來將 SESSION\_CONTEXT 中的「TenantId」設定為該連線專用的 shardingKey 即可。如此一來，您只需要編寫程式碼一次，就能設定 SESSION\_CONTEXT。
 
 ```
 // ElasticScaleContext.cs 
@@ -312,4 +312,4 @@ GO
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

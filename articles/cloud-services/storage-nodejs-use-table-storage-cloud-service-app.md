@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/04/2016" 
 	ms.author="robmcm"/>
 
 # 使用儲存體的 Node.js Web 應用程式
@@ -403,4 +403,4 @@ Azure 會就每小時伺服器時間所使用的 Web 角色執行個體數進行
  
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

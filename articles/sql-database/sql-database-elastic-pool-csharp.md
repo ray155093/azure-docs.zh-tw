@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management"
-    ms.date="02/23/2016"
+    ms.date="05/03/2016"
     ms.author="sstein"/>
 
 # C&#x23; 資料庫開發：為 SQL 資料庫建立和設定彈性資料庫集區
@@ -84,7 +84,7 @@
 
     ![新增應用程式][8]
 
-7. 完成建立應用程式，按一下 [設定]，然後複製 \[用戶端識別碼] (您在程式碼中需要用戶端識別碼)。
+7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] \(您在程式碼中需要用戶端識別碼)。
 
     ![取得用戶端識別碼][9]
 
@@ -207,7 +207,7 @@
 
 
 
-若要允許其他 Azure 服務存取伺服器，則新增防火牆規則並且將 tartIpAddress 和 EndIpAddress 都設為 0.0.0.0。請注意，這可讓來自*任何* Azure 訂用帳戶的 Azure 流量存取伺服器。
+若要允許其他 Azure 服務存取伺服器，則新增防火牆規則並且將 StartIpAddress 和 EndIpAddress 都設為 0.0.0.0。請注意，這可讓來自*任何* Azure 訂用帳戶的 Azure 流量存取伺服器。
 
 
 ## 建立資料庫
@@ -318,7 +318,7 @@
 
 ## 在彈性資料庫集區中建立新的資料庫
 
-*建立集區之後，您也可以使用 Transact-SQL 在集區中建立新的彈性資料庫。*如需詳細資訊，請參閱[彈性資料庫集區參考 - Transact-SQL](sql-database-elastic-pool-reference.md#Transact-SQL)。
+*建立集區之後，您也可以使用 Transact-SQL 在集區中建立新的彈性資料庫。如需詳細資訊，請參閱[使用 Transact-SQL 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-tsql.md)。*
 
 下列範例會直接在集區中建立一個新的資料庫：
 
@@ -563,9 +563,6 @@
 
 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 
-[彈性資料庫集區參考](sql-database-elastic-pool-reference.md)。
-
-
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool-csharp/aad.png
 [2]: ./media/sql-database-elastic-pool-csharp/permissions.png
@@ -577,4 +574,4 @@
 [8]: ./media/sql-database-elastic-pool-csharp/add-application2.png
 [9]: ./media/sql-database-elastic-pool-csharp/clientid.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

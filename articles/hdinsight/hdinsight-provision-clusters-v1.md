@@ -13,16 +13,18 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="01/28/2016"
+   ms.date="04/28/2016"
    ms.author="jgao"/>
 
 #在 HDInsight 中佈建 Hadoop 叢集 (英文)
 
 了解如何規劃 HDInsight 叢集佈建作業。
 
-> [AZURE.WARNING] 這份文件中的步驟使用 Azure 傳統入口網站，以及舊版的 Azure PowerShell 和 Azure CLI。Microsoft 不建議使用這些步驟。相反地，您應該使用 Azure 入口網站與最新版的 Azure PowerShell 和 Azure CLI。如需這份文件使用 Azure 入口網站與最新版 Azure PowerShell 和 Azure CLI 的版本，請參閱[佈建 HDInsight 中的 Hadoop 叢集](hdinsight-provision-clusters.md)
+> [AZURE.IMPORTANT] 本文件中的步驟使用 Azure 傳統入口網站。建立新的服務時，Microsoft 不建議您使用傳統入口網站。如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
 >
-> 如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
+> 本文件也包含使用 Azure PowerShell 和 Azure CLI 的相關資訊。提供的程式碼片段是以下列命令為基礎：使用 Azure 服務管理 (ASM) 來處理 HDInsight 及__已被取代__的命令。這些命令將在 2017 年 1 月 1 日之前予以移除。
+>
+>如需使用 Azure 入口網站的這份文件的版本，以及使用 Azure Resource Manager (ARM) 的 PowerShell 和 Azure CLI 程式碼片段，請參閱[佈建 HDInsight 中的 Hadoop 叢集](hdinsight-provision-clusters.md)。
 
 **必要條件：**
 
@@ -231,7 +233,7 @@
 
 	![diagram of point-to-site configuration](./media/hdinsight-provision-clusters-v1/hdinsight-vnet-point-to-site.png)
 
-如需搭配虛擬網路 (包含虛擬網路特定設定需求) 使用 HDInsight 的詳細資訊，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
+如需搭配虛擬網路使用 HDInsight 的資訊 (包含虛擬網路的特定組態需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
 ## 佈建工具
 
@@ -444,7 +446,7 @@ HDInsight 會使用 Azure Blob 儲存容器作為預設檔案系統。必須要�
 
 另一個佈建 HDInsight 叢集的選項是 Azure CLI。Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
 
-如需如何使用 Azure CLI 的一般指引，請參閱 [Azure CLI](../xplat-cli-install.md)。
+如需如何使用 Azure CLI 的一般指南，請參閱 [Azure CLI](../xplat-cli-install.md)。
 
 上述指示將引導您如何在 Linux 和 Windows 上安裝跨平台命令列，以及接著如何使用命令列來佈建叢集。
 
@@ -709,7 +711,6 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 		using Microsoft.Azure.Common.Authentication.Models;
 		using Microsoft.Azure.Management.HDInsight;
 		using Microsoft.Azure.Management.HDInsight.Models;
-		using Microsoft.Azure.Management.Resources;
 
 		namespace CreateHDICluster
 		{
@@ -723,7 +724,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 		        private const string NewClusterName = "<HDINSIGHT CLUSTER NAME>";
 		        private const int NewClusterNumNodes = <NUMBER OF NODES>;
 		        private const string NewClusterLocation = "<LOCATION>";  // Must match the Azure Storage account location
-		        private const HDInsightClusterType NewClusterType = HDInsightClusterType.Hadoop;
+                private const string NewClusterType = "Hadoop";
 		        private const OSType NewClusterOSType = OSType.Windows;
 		        private const string NewClusterVersion = "3.2";
 
@@ -814,4 +815,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 [hdinsight-sdk-documentation]: http://msdn.microsoft.com/library/dn479185.aspx
 [azure-management-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -1,19 +1,19 @@
 <properties
-   pageTitle="快取 ASP.NET 工作階段狀態提供者"
-   description="了解如何使用 Azure Redis 快取來儲存 ASP.NET 工作階段狀態"
-   services="redis-cache"
-   documentationCenter="na"
-   authors="steved0x"
-   manager="erikre"
-   editor="tysonn" />
+	pageTitle="快取 ASP.NET 工作階段狀態提供者 | Microsoft Azure"
+	description="了解如何使用 Azure Redis 快取來儲存 ASP.NET 工作階段狀態"
+	services="redis-cache"
+	documentationCenter="na"
+	authors="steved0x"
+	manager="douge"
+	editor="tysonn" />
 <tags
-   ms.service="cache"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="cache-redis"
-   ms.workload="tbd"
-   ms.date="03/04/2016"
-   ms.author="sdanie" />
+	ms.service="cache"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="cache-redis"
+	ms.workload="tbd"
+	ms.date="04/27/2016"
+	ms.author="sdanie" />
 
 # Azure Redis 快取的 ASP.NET 工作階段狀態提供者
 
@@ -25,19 +25,19 @@ Azure Redis 快取提供工作階段狀態提供者，可讓您用來將工作�
 
 若要在 Visual Studio 中使用「Redis 快取工作階段狀態 NuGet 封裝」來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。
 
-![Azure Redis 快取管理 NuGet 封裝](./media/cache-asp.net-session-state-provider/IC729541.png)
+![Azure Redis 快取管理 NuGet 封裝](./media/cache-aspnet-session-state-provider/redis-cache-manage-nuget-menu.png)
 
-在 [線上搜尋] 文字方塊中輸入 **RedisSessionStateProvider**，從結果中選取後按一下 [安裝]。
+在搜尋文字方塊中輸入 **RedisSessionStateProvider**，從結果中選取後按一下 [安裝]。
 
 >[AZURE.IMPORTANT] 如果您使用進階層的叢集功能，則必須使用 [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 或更高版本，否則會擲回例外狀況。這是一項重大變更。如需詳細資訊，請參閱 [v2.0.0 重大變更詳細資料](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details) (英文)。
 
-![Azure Redis 快取工作階段狀態提供者](./media/cache-asp.net-session-state-provider/IC751730.png)
+![Azure Redis 快取工作階段狀態提供者](./media/cache-aspnet-session-state-provider/redis-cache-session-state-provider.png)
 
 「Redis 工作階段狀態提供者 NuGet 封裝」對「StackExchange.Redis.StrongName 封裝」有相依性。如果「StackExchange.Redis.StrongName 封裝」不在專案中，將會予以安裝。請注意，除了強式名稱的「StackExchange.Redis.StrongName 封裝」之外，另外還有 StackExchange.Redis 非強式名稱的版本。如果您的專案是使用非強式名稱的 StackExchange.Redis 版本，您必須在安裝「Redis 工作階段狀態提供者 NuGet 封裝」之前或之後將它解除安裝，否則專案中會出現命名衝突。如需這些封裝的相關詳細資訊，請參閱[設定 .NET 快取用戶端](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)。
 
 NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入至您的 web.config 檔案，該檔案包含 ASP.NET 應用程式使用 Redis 快取工作階段狀態提供者所需的組態。
 
-    <sessionStatemode="Custom" customProvider="MySessionStateStore">
+    <sessionState mode="Custom" customProvider="MySessionStateStore">
         <providers>
         <!--
 		<add name="MySessionStateStore"
@@ -106,4 +106,4 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
 
 查看 [Azure Redis 快取的 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

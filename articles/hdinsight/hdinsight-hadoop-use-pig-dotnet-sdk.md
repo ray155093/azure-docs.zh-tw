@@ -52,8 +52,6 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
 
-下列範例使用互動式使用者驗證。若要使用非互動式驗證，請參閱[建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)。
-
 
 1. 開啟 Visual Studio 2012 或 2013
 2. 從 [**檔案**] 功能表中，選取 [**新增**]，然後選取 [**專案**]。
@@ -209,4 +207,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

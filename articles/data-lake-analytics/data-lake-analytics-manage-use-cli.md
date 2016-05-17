@@ -3,7 +3,7 @@
    description="了解如何使用 Azure CLI 管理資料湖分析帳戶、資料來源、工作和使用者" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/11/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 # 使用 Azure 命令列介面 (CLI) 管理 Azure 資料湖分析
 
@@ -214,4 +214,4 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 - [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析工作](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

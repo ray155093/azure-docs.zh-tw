@@ -1,6 +1,6 @@
-    <properties
-	pageTitle="Create a lab in DevTest Labs | Microsoft Azure"
-	description="Create a new lab in DevTest Labs for virtual machines"
+<properties
+	pageTitle="在研測實驗室中建立實驗室 | Microsoft Azure"
+	description="在研測實驗室中為虛擬機器建立新的實驗室"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/03/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 # 在 Azure 研測實驗室中建立實驗室
@@ -27,7 +27,7 @@
 
 ## 建立實驗室
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
 1. 點選 [瀏覽]。
 
@@ -50,7 +50,7 @@
 
 建立您的實驗室之後，以下是要考慮的一些後續步驟：
 
-- [安全存取 DevTest 實驗室](devtest-lab-add-devtest-user.md)。
+- [安全存取實驗室](devtest-lab-add-devtest-user.md)。
 
 - [設定實驗室原則](devtest-lab-set-lab-policy.md)。
 
@@ -58,6 +58,6 @@
 
 - [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
 
-- [將具有構件的 VM 加入至 Azure DevTest 實驗室](devtest-lab-add-vm-with-artifacts.md)。
+- [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

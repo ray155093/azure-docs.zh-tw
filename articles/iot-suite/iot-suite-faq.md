@@ -14,7 +14,7 @@
   ms.topic="get-started-article"
   ms.tgt_pltfrm="na"
   ms.workload="na"
-  ms.date="04/22/2016"
+  ms.date="05/09/2016"
   ms.author="araguila"/>
    
 # IoT 套件的常見問題集
@@ -51,6 +51,8 @@
    
   `<setting name="MapApiQueryKey" value="" />`
 
+### 如果我有 Microsoft Azure for DreamSpark，是否可以建立預先設定的解決方案？
+目前，您無法使用 [Microsoft Azure for DreamSpark][lnk-dreamspark] 帳戶建立預先設定的解決方案。不過，您可以在數分鐘內建立 [Azure 免費試用帳戶][lnk-30daytrial]，該帳戶可讓您建立預先設定的解決方案。
 
 ### 如何刪除 AAD 租用戶？
 
@@ -61,6 +63,8 @@
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-classic-portal]: https://manage.windowsazure.com
 [lnk-remote-monitoring-github]: https://github.com/Azure/azure-iot-remote-monitoring
+[lnk-dreamspark]: https://www.dreamspark.com/Product/Product.aspx?productid=99
+[lnk-30daytrial]: https://azure.microsoft.com/free/
 [lnk-delete-aad-tennant]: http://blogs.msdn.com/b/ericgolpe/archive/2015/04/30/walkthrough-of-deleting-an-azure-ad-tenant.aspx
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

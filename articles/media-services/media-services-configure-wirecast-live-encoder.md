@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="05/03/2016" 
 	ms.author="juliako;cenkdin;anilmur"/>
 
 #使用 Wirecast 編碼器來傳送單一位元速率的即時串流
@@ -26,7 +26,7 @@
 
 本主題示範如何設定 [Telestream Wirecast](http://www.telestream.net/wirecast/overview.htm) 即時編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。如需詳細資訊，請參閱[使用啟用的通道以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
 
-本教學課程示範如何使用 Azure 媒體服務總管 (AMSE) 工具管理 Azure 媒體服務 (AMS)。此工具只會在 Windows 電腦上執行。如果您是用 Mac 或 Linux，請使用 Azure 傳統入口網站建立[通道](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel)和[程式](media-services-portal-creating-live-encoder-enabled-channel#create-and-manage-a-program)。
+本教學課程示範如何使用 Azure 媒體服務總管 (AMSE) 工具管理 Azure 媒體服務 (AMS)。此工具只會在 Windows 電腦上執行。如果您是用 Mac 或 Linux，請使用 Azure 傳統入口網站建立[通道](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel)和[程式](media-services-portal-creating-live-encoder-enabled-channel.md#create-and-manage-a-program)。
 
 
 ##必要條件
@@ -55,6 +55,7 @@
 請確認已選取 [**立即啟動新頻道**]。
 
 3. 按一下 [**建立頻道**]。
+
 	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
@@ -165,7 +166,7 @@
 	注意：建立程式時所使用的時間會比建立通道時更少。
  
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。
-6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿]\(或從 [程式資訊和設定] 功能表選項擷取這項資訊)。 
+6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。 
 
 串流現在已經可以內嵌於播放程式中，或散發給某個對象，以供即時檢視。
 
@@ -182,4 +183,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

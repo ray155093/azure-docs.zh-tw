@@ -26,7 +26,7 @@
 
 - 已安裝 Java Developer Kit (JDK) 1.6 版或更新版本。
 - 已安裝 Azure SDK。
-- 已安裝 Azure Libraries for Java 的 JAR 和任何適用的相依性 JAR，且位於 Java 編輯器所使用的組建路徑中。如需安裝 Azure Libraries for Java 的詳細資訊，請參閱[下載 Azure SDK for Java](java-download-azure-sdk.md)。
+- 已安裝 Azure Libraries for Java 的 JAR 和任何適用的相依性 JAR，且位於 Java 編輯器所使用的組建路徑中。如需安裝 Azure Libraries for Java 的詳細資訊，請參閱[下載 Azure SDK for Java](../../articles/java-download-azure-sdk.md)。
 - 已設定 Azure 儲存體帳戶。本文中的程式碼將會使用此儲存體帳戶的帳戶名稱和帳戶金鑰。如需建立儲存體帳戶的詳細資訊，請參閱[如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)，如需擷取帳戶金鑰的詳細資訊，請參閱[如何檢視並複製儲存體存取金鑰](storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
 - 您已建立一個已命名並儲存於路徑 c:\\myimages\\image1.jpg 中的本機影像檔案。或者，修改範例中的 **FileInputStream** 建構函式以使用其他影像路徑和檔案名稱。

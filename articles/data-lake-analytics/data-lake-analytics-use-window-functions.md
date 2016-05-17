@@ -3,7 +3,7 @@
    description="了解如何使用 U-SQL 視窗函式。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/11/2016"
-   ms.author="jgao"/>
+   ms.date="04/26/2016"
+   ms.author="edmaca"/>
 
 
 # 針對 Azure 資料湖分析工作使用 U-SQL 視窗函式  
@@ -743,4 +743,4 @@ PERCENTILE\_DISC 不會插補值，因此 Web 的中間值是 200 - 也就是在
 - [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -49,9 +49,9 @@
 
 	此值也用作這個儲存體帳戶在入口網站中的名稱，或用於透過程式設計方式存取此帳戶時。
 
-5.  選取 [**定價層**] 或使用預設值。如需定價層的詳細資訊，請參閱 [Azure 儲存體價格](../../pricing/details/storage)。
+5.  選取 [**定價層**] 或使用預設值。如需定價層的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
 
-6.  選取或建立 [**資源群組**]。如需資源群組的資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview/#resource-groups)。
+6.  選取或建立 [**資源群組**]。如需資源群組的資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md#resource-groups)。
 
 7. 選取將與儲存體帳戶搭配使用的 [**訂用帳戶**]。
 
@@ -104,7 +104,7 @@ CDN 設定檔為 CDN 端點的集合。每個設定檔皆包含一或多個 CDN 
 
     ![新增端點刀鋒視窗][cdn-add-endpoint]
 
-3. 輸入這個 CDN 端點的 [名稱]。此名稱會用於存取位於網域 `<EndpointName>.azureedge.net` 的快取資源。
+3. 輸入這個 CDN 端點的 [名稱]。此名稱會用於存取位於網域 `<endpointname>.azureedge.net` 的快取資源。
 
 4. 在 [**原始類型**] 下拉式清單中，選取 [*儲存體*]。
 
@@ -135,7 +135,7 @@ http://<*EndpointName*>.azureedge.net/<*myPublicContainer*>/<*BlobName*>
 
 如果不想要將內容快取到 Azure 內容傳遞網路 (CDN) 中，您可以採取下列其中一個步驟：
 
--   您可以將容器設為私人而非公用。如需詳細資訊，請參閱[管理對容器和 Blob 的匿名讀取權限](../storage-manage-access-to-resources/)。
+-   您可以將容器設為私人而非公用。如需詳細資訊，請參閱[管理對容器和 Blob 的匿名讀取權限](../storage/storage-manage-access-to-resources.md)。
 -   您可以使用管理入口網站來停用或刪除 CDN 端點。
 -   您可以修改託管服務，使其不再回應物件的要求。
 
@@ -154,4 +154,4 @@ http://<*EndpointName*>.azureedge.net/<*myPublicContainer*>/<*BlobName*>
 [cdn-add-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-a-storage-account-with-cdn/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0504_2016-->

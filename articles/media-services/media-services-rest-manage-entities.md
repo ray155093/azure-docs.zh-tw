@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/11/2016"  
+ 	ms.date="05/03/2016" 
 	ms.author="juliako"/>
 
 #使用 REST API 管理媒體服務實體
@@ -35,7 +35,7 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 >
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。如需詳細資訊，請參閱[媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
->成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect_programmatically.md)所述，對新的 URI 進行後續呼叫。
+>成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
 
 
 ##加入實體
@@ -175,4 +175,4 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

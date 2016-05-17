@@ -15,69 +15,83 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/03/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 
 # 在 PowerApps Enterprise 中建立新的 SQL Server API
 
-將 SQL Server API 加入您組織 (租用戶) 的 App Service 環境中。
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-## 在 Azure 入口網站中建立 API
+<!--Archived
+Add the SQL Server API to your organization's (tenant) app service environment. 
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。 
-2. 選取工作列中的 [瀏覽]：![][14]  
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![][15]  
-4. 在 **PowerApps** 中，選取 [管理 API]。
-5. 在 [管理 API] 中，選取 [加入] 以加入新的 API。
-6. 為您的 API 輸入描述性**名稱**。例如，您要將 SQL Server API 加入示範中，您可以將它命名為 *SQLServerDemo*。  	
-7. 在 [來源] 中，選取 [可用 API] 選取預先建置的 API，然後選取 [SQL Server]。 
-8. 選取 [確定] 以完成步驟。
+## Create the API in the Azure portal
 
-完成時，新的 SQL Server API 會加入 App Service 環境中。
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription. 
+2. Select **Browse** in the task bar:  
+![][14]  
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][15]  
+4. In **PowerApps**, select **Manage APIs**.
+5. In **Manage APIs**, select **Add** to add the new API.
+6. Enter a descriptive **name** for your API. For example, you're adding the SQL Server API for demo, you can name it *SQLServerDemo*.  	
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **SQL Server**. 
+8. Select **OK** to complete the steps.
 
-## 設定 SQL Server 內部部署的連線能力
+When finished, a new SQL Server API is added to your app service environment.
 
-您可以連接到 SQL Server 內部部署。若要建立這種混合式連接，您可以利用 Azure 現有的混合式網路功能解決方案，包括：
+## Configure connectivity to SQL Server on-premises
+
+You can connect to SQL Server on-premises. To establish this hybrid connectivity, you can leverage existing hybrid networking solutions in Azure, including:
 
 - [ExpressRoute](../expressroute/expressroute-introduction.md)
-- [站對站 VPN](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
-- [點對站連線能力](../vpn-gateway/vpn-gateway-point-to-site-create.md)  
+- [Site-to-site VPN](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
+- [Point-to-site connectivity](../vpn-gateway/vpn-gateway-point-to-site-create.md)  
 
-	> [AZURE.NOTE]  每個 App Service 環境都有與其相關聯的虛擬網路。您可以建立這個虛擬網路的這種網路連線。  
-- [混合式連線](../app-service-web/web-sites-hybrid-connection-get-started.md)  
+	> [AZURE.NOTE]  Every app service environment has a virtual  network associated with it. You can establish this network connectivity to this virtual network.  
+- [Hybrid connections](../app-service-web/web-sites-hybrid-connection-get-started.md)  
 
-	> [AZURE.NOTE]  App Service 環境中每個已註冊的 API 都有對應的 Web 應用程式。您可以從這個 Web 應用程式建立混合式連接，就像從任何其他 Web 應用程式建立連接一樣。
+	> [AZURE.NOTE]  Every registered API in your app service environment has a corresponding web app. You can establish hybrid connections from this web app just like you can from any other web app.
 	
-下列範例示範如何建立混合式連接：
+The following example shows how to create a hybrid connection:  
 
-1. 選取剛剛建立的 SQL Server API，並選取資源群組。在這個範例中，選取 [sqlconnectordemo] API，然後選取 [DedicatedAses] 資源群組：![資源群組](./media/powerapps-create-api-sqlserver/sqlapi.png)
+1. Select the SQL Server API you just created and select the Resource group. In this example, select the API called *sqlconnectordemo*, and select the *DedicatedAses* Resource Group:  
+![Resource group](./media/powerapps-create-api-sqlserver/sqlapi.png)
 
-2.  選取 [資源] 磚，然後選取與 SQL Server API 同名的 Web 應用程式。在這個範例中，選取 [sqlconnectordemo]：![SQL Web 應用程式](./media/powerapps-create-api-sqlserver/sqlwebapp.png)
+2.  Select the **Resources** tile, and then select the web app with the same name as your SQL Server API. In this example, select *sqlconnectordemo*:  
+![Sql Web app](./media/powerapps-create-api-sqlserver/sqlwebapp.png)
 
-3.  在 [設定] 中選取 [網路]。選取 [設定混合式連接端點]，然後依照[這些指示](../app-service-web/web-sites-hybrid-connection-get-started.md)建立混合式連接：![網路](./media/powerapps-create-api-sqlserver/network.png)
+3.  In **Settings**, select **Networking**. Select **Configure your hybrid connection endpoints**, and then follow [these instructions](../app-service-web/web-sites-hybrid-connection-get-started.md) to create the hybrid connection:  
+![Networking](./media/powerapps-create-api-sqlserver/network.png)
 
-只要建立並連上混合式連接，就已連接到內部部署伺服器。接下來，建立資料連接並授與使用者存取權：![混合式連接](./media/powerapps-create-api-sqlserver/hybridconn.png)
+Once your hybrid connection is created and connected, you have enabled the connection to your on-premises server. Next, create the connection to your data and give users access:  
+![Hybrid connection](./media/powerapps-create-api-sqlserver/hybridconn.png)
 
-## 建立 SQL Server API 連接
+## Create connection for SQL Server API
 
-1. 在 Azure 入口網站中開啟 PowerApps，然後選取 [管理 API]。隨即顯示已設定的 API 清單：![](./media/powerapps-create-api-sqlserver/apilist.png)
+1. In the Azure portal, open PowerApps, and select **Manage APIs**. A list of the configured APIs is displayed:  
+  ![](./media/powerapps-create-api-sqlserver/apilist.png)
 
-2. 選取想要的 API。在這個範例中，依次選取 [SQLServerDemo] 和 [連接]。
+2. Select the API you want. In this example, select **SQLServerDemo**, and select **Connections**. 
 
-3. 在 [連接] 中選取 [加入連接]：![](./media/powerapps-create-api-sqlserver/addconnection.png)
+3. In Connections, select **Add connection**:  
+![](./media/powerapps-create-api-sqlserver/addconnection.png)
 
-4. 輸入連接的名稱，然後輸入連接字串。輸入連接字串需要知道與要連接的服務有關的某些特定屬性。例如，如果要連接內部部署的 SQL Server，就需要知道使用者名稱、密碼和順利連接所需要的其他屬性。
+4. Enter a name for the connection and enter the connection string. Entering the connection string requires you to know some specific properties about the service you're connecting to. For example, if you're connecting to on-premises SQL Server, then you need to know the username, password, and other properties required to successfully make the connection. 
 
-5. 選取 [加入] 儲存變更。
+5. Select **Add** to save your changes.
 
-## 摘要和後續步驟
-在本主題中，您加入了 SQL Server API 以連接 SQL Server 內部部署。接下來，請授與使用者此 API 的存取權，讓使用者能夠在其應用程式中加入此 API：
+## Summary and next steps
+In this topic, you added the SQL Server API to connect to SQL Server on-premises. Next, give users access to the API so it can be added to their apps: 
 
-[加入連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
-
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
 
 [14]: ./media/powerapps-create-api-sqlserver/browseall.png
 [15]: ./media/powerapps-create-api-sqlserver/allresources.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

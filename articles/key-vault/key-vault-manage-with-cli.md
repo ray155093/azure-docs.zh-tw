@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/08/2016"
+	ms.date="04/29/2016"
 	ms.author="bruceper"/>
 
 # 使用 CLI 管理金鑰保存庫 #
@@ -31,7 +31,6 @@
 如需 Azure 金鑰保存庫的概觀資訊，請參閱[什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
 ## 必要條件
-
 若要完成本教學課程，您必須具備下列項目：
 
 - Microsoft Azure 訂用帳戶。如果您沒有訂用帳戶，您可以註冊[免費試用](../../../pricing/free-trial)。
@@ -106,6 +105,12 @@
 
 第一個參數是資源群組名稱，而第二個參數是位置。請針對位置使用 `azure location list` 命令，以了解如何指定一個位置替代本範例中的位置。如果您需要更多資訊，請輸入：`azure help location`
 
+## 註冊金鑰保存庫資源提供者
+請確定已在訂用帳戶中註冊金鑰保存庫資源提供者：
+
+`azure provider register Microsoft.KeyVault`
+
+每個訂用帳戶只需要執行這項作業一次。
 
 
 ## 建立金鑰保存庫
@@ -187,6 +192,8 @@
 
     azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-keys '["decrypt","sign"]'
 
+>[AZURE.NOTE] 如果您是在 Windows 命令提示字元上執行，則應該將單引號取代為雙引號，並且同時逸出內部雙引號。例如："["decrypt","sign"]"。
+
 如果您想要授權該相同的應用程式讀取您保存庫中的機密資料，請執行以下命令：
 
 	azure keyvault set-policy --vault-name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --perms-to-secrets '["get"]'
@@ -256,4 +263,4 @@
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="03/04/2016" 
+    ms.date="05/04/2016" 
     ms.author="robmcm" />
 
 # 如何檢視 Azure 存取控制服務傳回的 SAML
@@ -184,7 +184,7 @@ Azure Access Services Control Filter 是社群技術預覽。由於是發行前�
 
 ## 後續步驟
 
-若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] (英文)。
+若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] \(英文)。
 
 [Prerequisites]: #pre
 [Modify the JSP file to display SAML]: #modify_jsp
@@ -196,4 +196,4 @@ Azure Access Services Control Filter 是社群技術預覽。由於是發行前�
 [saml_output]: ./media/active-directory-java-view-saml-returned-by-access-control/SAML_Output.png
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

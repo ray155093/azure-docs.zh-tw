@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory 網域服務預覽：管理指南 | Microsoft Azure"
+	pageTitle="Azure Active Directory 網域服務預覽：在受管理的網域上管理 DNS | Microsoft Azure"
 	description="使用 Azure Active Directory 網域服務管理受管理網域上的 DNS"
 	services="active-directory-ds"
 	documentationCenter=""
@@ -13,19 +13,37 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="04/27/2016"
 	ms.author="maheshu"/>
 
 # 管理 Azure AD 網域服務受管理網域上的 DNS
-Azure Active Directory 網域服務包括可為受管理網域提供 DNS 解析的 DNS (網域名稱解析) 伺服器。有時候您可能需要在受管理網域上設定 DNS，以取得未加入網域的機器、負載平衡器的虛擬 IP 位址或外部 DNS 轉寄站的記錄。基於這個理由，屬於「AAD DC 系統管理員」群組的使用者會獲授與受管理網域上的 DNS 系統管理權限。
-
-## 佈建已加入網域的虛擬機器以從遠端管理受管理網域的 DNS
-使用 Active Directory 管理中心 (ADAC) 或 AD PowerShell 等熟悉的 Active Directory 系統管理工具，可以從遠端管理 Azure AD 網域服務受管理的網域。同樣地，使用 DNS 伺服器系統管理工具，可以從遠端管理受管理網域的 DNS。租用戶系統管理員沒有權限，不能透過遠端桌面連接受管理網域上的網域控制站。因此，「AAD DC 系統管理員」群組的成員可以使用 DNS 伺服器工具，從已加入受管理網域的 Windows Server/用戶端電腦遠端管理受管理網域的 DNS。在已加入受管理網域的 Windows Server 和用戶端電腦上，可以將 DNS 伺服器工具安裝做為遠端伺服器管理工具 (RSAT) 選擇性功能的一部分。
-
-第一個步驟是設定已加入受管理網域的 Windows Server 虛擬機器。如需如何執行這項操作的指示，請參閱標題為[將 Windows Server 虛擬機器加入 Azure AD 網域服務受管理網域](active-directory-ds-admin-guide-join-windows-vm.md)的文章。請注意，這些指示使用 Windows Server 虛擬機器來管理 AAD-DS 受管理的網域。您也可以選擇使用 Windows 用戶端 (例如 Windows 10) 虛擬機器來執行這項操作。在此情況下，您可以在虛擬機器上安裝遠端伺服器管理工具的選擇性功能。
+Azure Active Directory 網域服務包括可為受管理網域提供 DNS 解析的 DNS (網域名稱解析) 伺服器。有時候您可能需要在受管理網域上設定 DNS，為未加入網域的機器、負載平衡器的虛擬 IP 位址或外部 DNS 轉寄站建立 DNS 記錄。基於這個理由，屬於「AAD DC 系統管理員」群組的使用者會獲授與受管理網域上的 DNS 系統管理權限。
 
 
-## 在虛擬機器上安裝 DNS 伺服器工具
+## 開始之前
+若要執行本文中所列出的工作，您將需要︰
+
+1. 有效的 **Azure 訂用帳戶**。
+
+2. **Azure AD 目錄** - 與內部部署目錄或僅限雲端的目錄同步處理。
+
+3. **Azure AD 網域服務**必須已針對 Azure AD 目錄啟用。如果還沒有啟用，請按照[入門指南](./active-directory-ds-getting-started.md)所述的所有工作來進行。
+
+4. **已加入網域的虛擬機器**，來自您管理 Azure AD 網域服務受管理的網域。如果您沒有這類虛擬機器，請遵循名為[在受管理的網域中加入 Windows 虛擬機器](./active-directory-ds-admin-guide-join-windows-vm.md)文章中的列出的工作進行。
+
+5. 您需要目錄中**屬於「AAD DC 系統管理員」群組**hapi 認證，才能管理受管理網域的 DNS。
+
+<br>
+
+## 工作 1 - 佈建已加入網域的虛擬機器以從遠端管理受管理網域的 DNS
+使用 Active Directory 管理中心 (ADAC) 或 AD PowerShell 等熟悉的 Active Directory 系統管理工具，可以從遠端管理 Azure AD 網域服務受管理的網域。同樣地，使用 DNS 伺服器系統管理工具，可以從遠端管理受管理網域的 DNS。
+
+Azure AD 目錄中的系統管理員沒有權限，不能透過遠端桌面連接受管理網域上的網域控制站。因此，「AAD DC 系統管理員」群組的成員可以使用 DNS 伺服器工具，從已加入受管理網域的 Windows Server/用戶端電腦遠端管理受管理網域的 DNS。在已加入受管理網域的 Windows Server 和用戶端電腦上，可以將 DNS 伺服器工具安裝做為遠端伺服器管理工具 (RSAT) 選擇性功能的一部分。
+
+第一個工作是佈建已加入受管理網域的 Windows Server 虛擬機器。如需如何執行這項操作的指示，請參閱標題為[將 Windows Server 虛擬機器加入 Azure AD 網域服務受管理網域](active-directory-ds-admin-guide-join-windows-vm.md)的文章。
+
+
+## 工作 2 - 在虛擬機器上安裝 DNS 伺服器工具
 請執行下列步驟以在已加入網域的虛擬機器上安裝 DNS 系統管理工具。如需[安裝和使用遠端伺服器管理工具的詳細資訊](https://technet.microsoft.com/library/hh831501.aspx)，請參閱 TechNet。
 
 1. 在 Azure 傳統入口網站中瀏覽至 [虛擬機器] 節點。選取您剛建立的虛擬機器，然後按一下視窗底部命令列上的 [連線]。
@@ -63,8 +81,10 @@ Azure Active Directory 網域服務包括可為受管理網域提供 DNS 解析�
 	![確認電子郵件](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-dns-confirmation.png)
 
 
-## 啟動 DNS 管理主控台
+## 工作 3 - 啟動 DNS 管理主控台來管理 DNS
 既然加入網域的虛擬機器上已安裝了 [DNS 伺服器工具] 功能，我們就可以使用 DNS 工具來管理受管理網域上的 DNS。
+
+> [AZURE.NOTE] 您需要是「AAD DC 系統管理員」群組的一員，才能在受管理的網域上管理 DNS。
 
 1. 從 [開始] 畫面中，按一下 [系統管理工具]。您應該會看到安裝在虛擬機器上的 [DNS] 主控台。
 
@@ -87,4 +107,15 @@ Azure Active Directory 網域服務包括可為受管理網域提供 DNS 解析�
 
 如需管理 DNS 的詳細資訊，請參閱 [Technet 上的 DNS 工具文章](https://technet.microsoft.com/library/cc753579.aspx)。
 
-<!---HONumber=AcomDC_0420_2016-->
+
+## 相關內容
+
+- [Azure AD 網域服務 - 開始使用](./active-directory-ds-getting-started.md)
+
+- [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域) ](active-directory-ds-admin-guide-administer-domain.md)
+
+- [將 Windows Server 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-windows-vm.md)
+
+- [DNS 系統管理工具](https://technet.microsoft.com/library/cc753579.aspx)
+
+<!---HONumber=AcomDC_0504_2016-->

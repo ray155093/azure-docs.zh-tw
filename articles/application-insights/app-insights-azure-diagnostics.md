@@ -17,7 +17,7 @@
 
 # 設定 Azure 診斷以記錄至 Application Insights
 
-當您在 Microsoft Azure 中設定雲端服務專案或虛擬機器時，[Azure 可以產生診斷記錄](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md/)。您可以將此記錄傳送至 Application Insights，以便分析它與 Application Insights SDK 從應用程式內傳送的診斷和使用狀況遙測。Azure 記錄檔會包含應用程式管理的事件，例如啟動、停止、當機，以及效能計數器。記錄檔也會包含應用程式中對 System.Diagnostics.Trace 的呼叫。
+當您在 Microsoft Azure 中設定雲端服務專案或虛擬機器時，[Azure 可以產生診斷記錄](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)。您可以將此記錄傳送至 Application Insights，以便分析它與 Application Insights SDK 從應用程式內傳送的診斷和使用狀況遙測。Azure 記錄檔會包含應用程式管理的事件，例如啟動、停止、當機，以及效能計數器。記錄檔也會包含應用程式中對 System.Diagnostics.Trace 的呼叫。
 
 本文詳細說明診斷擷取的組態。
 
@@ -146,4 +146,4 @@ Azure 診斷會將資料儲存至 Azure 儲存體資料表。不過，您也可�
 * [使用 PowerShell 將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [Azure 診斷組態檔](https://msdn.microsoft.com/library/azure/dn782207.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

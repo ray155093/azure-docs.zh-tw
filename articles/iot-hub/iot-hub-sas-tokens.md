@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="tbd"
- ms.date="03/02/2016"
+ ms.date="04/29/2016"
  ms.author="elioda"/>
 
 # 使用 IoT 中樞安全性權杖
@@ -181,4 +181,4 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 [lnk-azure-protocol-gateway]: iot-hub-protocol-gateway.md
 [lnk-device-explorer]: https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

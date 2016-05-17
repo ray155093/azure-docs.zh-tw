@@ -37,8 +37,6 @@
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
 
-下列範例使用互動式使用者驗證。若要使用非互動式驗證，請參閱[建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
-
 **提交工作**
 
 1. 在 Visual Studio 建立 C# 主控台應用程式。
@@ -190,4 +188,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

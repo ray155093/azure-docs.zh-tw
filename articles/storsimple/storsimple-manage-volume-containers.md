@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/08/2016"
+   ms.date="05/01/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 磁碟區容器
@@ -66,4 +66,4 @@ Microsoft Azure StorSimple 裝置中的磁碟區容器包含一個或多個可�
 - 深入了解[管理 StorSimple 磁碟區](storsimple-manage-volumes.md)。 
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0504_2016-->

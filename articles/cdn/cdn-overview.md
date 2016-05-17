@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="04/15/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
 
-Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取網站所使用的 Azure Blob 和靜態內容，以提供最大輸送量來將內容傳遞給使用者。CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。如需目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
+Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。如需目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
 
-使用 CDN 來快取 Azure 資料的優點包括：
+使用 CDN 來快取網站資產的優點包括：
 
 - 讓使用者享有更好的效能和使用者經驗，尤其是當使用的應用程式需要反覆存取多次才能載入內容時。
 - 可進行大幅調整以更妥善地處理瞬間大量負載 (例如產品上市事件的開始)。
@@ -44,30 +44,27 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取網站所�
 6. 如果檔案的 TTL 尚未過期，Edge Server 便會從快取傳回檔案。這會產生更快、更靈敏回應的使用者經驗。
 
 
-## 標準功能
+## Azure CDN 功能
 
-標準 CDN 層包含下列功能：
+共有三種 Azure CDN 產品︰**來自 Akamai 的 Azure CDN 標準**、**來自 Verizon 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 進階**。下表列出每種產品的可用功能。
 
-- 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable_cdn)等 Azure 服務整合
-- HTTPS 支援
-- 負載平衡
-- DDoS 保護
-- [查詢字串快取](cdn-query-string.md)
-- [自訂網域名稱支援](cdn-map-content-to-custom-domain.md)
-- [國家 (地區) 篩選](cdn-restrict-access-by-country.md)
-- [核心分析](cdn-analyze-usage-patterns.md)
-- [快速清除](cdn-purge-endpoint.md)
-- [資產預先載入](cdn-preload-endpoint.md)
-- [透過 REST API 管理](https://msdn.microsoft.com/library/mt634456.aspx)
+| | 標準 Akamai | 標準 Verizon | 進階 Verizon |
+|-------|-----------------|------------------|-----------------|
+| 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable_cdn)等 Azure 服務整合 | **&#x2713;** | **&#x2713;** | **&#x2713;**|
+| HTTPS 支援 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| 負載平衡 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| DDoS 保護 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [自訂網域名稱支援](cdn-map-content-to-custom-domain.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [查詢字串快取](cdn-query-string.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [國家 (地區) 篩選](cdn-restrict-access-by-country.md) | | **&#x2713;** | **&#x2713;** |
+| [快速清除](cdn-purge-endpoint.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [資產預先載入](cdn-preload-endpoint.md) | | **&#x2713;** | **&#x2713;** |
+| [核心分析](cdn-analyze-usage-patterns.md) | | **&#x2713;** | **&#x2713;** |
+| [透過 REST API 管理](https://msdn.microsoft.com/library/mt634456.aspx) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [可自訂的、規則式內容傳遞引擎](cdn-rules-engine.md) | | | **&#x2713;** |
+| [進階 HTTP 報告](cdn-advanced-http-reports.md) | | | **&#x2713;** |
+| [即時統計資料](cdn-real-time-stats.md) | | | **&#x2713;** |
 
-
-## 進階功能
-
-高階 CDN 層包含所有標準層的功能，以及以下這些額外功能：
-
-- [可自訂的、規則式內容傳遞引擎](cdn-rules-engine.md)
-- [進階 HTTP 報告](cdn-advanced-http-reports.md)
-- [即時統計資料](cdn-real-time-stats.md)
 
 ## 後續步驟
 
@@ -77,4 +74,6 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取網站所�
 
 若要查看作用中的 CDN，請參閱 [Build 2016 會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
-<!---HONumber=AcomDC_0504_2016-->
+如需定價資訊，請參閱 [CDN 定價](https://azure.microsoft.com/pricing/details/cdn/)。
+
+<!---HONumber=AcomDC_0511_2016-->

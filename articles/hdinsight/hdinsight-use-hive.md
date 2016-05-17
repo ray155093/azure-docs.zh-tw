@@ -15,7 +15,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="02/16/2016"
+	ms.date="05/03/2016"
 	ms.author="larryfr"/>
 
 # 搭配 HDInsight 中的 Hadoop 使用 Hive 和 HiveQL 來分析範例 Apache Log4j 檔案
@@ -206,4 +206,4 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 [cindygross-hive-tables]: http://blogs.msdn.com/b/cindygross/archive/2013/02/06/hdinsight-hive-internal-and-external-tables-intro.aspx
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

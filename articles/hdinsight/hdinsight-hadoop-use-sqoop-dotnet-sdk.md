@@ -35,8 +35,6 @@
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。在本節中，您會建立 C# 主控台應用程式，將 hivesampletable 匯出至您稍早在本教學課程中建立的 SQL Database 資料表。
 
-下列範例使用互動式使用者驗證。若要使用非互動式驗證，請參閱[建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)。
-
 
 **提交 Sqoop 工作**
 
@@ -170,4 +168,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 - [使用 HDInsight 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)：使用 Hive 分析航班誤點資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
 - [將資料上傳至 HDInsight](hdinsight-upload-data.md)：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

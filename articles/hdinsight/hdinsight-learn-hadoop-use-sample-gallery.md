@@ -14,12 +14,12 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="02/04/2016"
+   ms.date="04/27/2016"
    ms.author="jgao"/>
 
 # 使用 Azure HDInsight Getting Started Gallery 了解 Hadoop
 
-HDInsight Getting Started Gallery 在 HDInsight 中執行範例應用程式，提供了簡單且快速的方式以了解 Hadoop。有些範例具備範例資料。您可以為其餘範例提供自己的資料。目前有下列六個範例 (還會推出更多)：
+只有以 Windows 為基礎的 HDInsight 叢集才能使用 Getting Started Gallery。此資源庫在 HDInsight 中執行範例應用程式，提供簡單且快速的方式以了解 Hadoop。有些範例具備範例資料。您可以為其餘範例提供自己的資料。目前有下列六個範例 (還會推出更多)：
 
 - 含有 Azure 資料的方案
 	- Microsoft Azure 網站記錄分析
@@ -60,8 +60,8 @@ HDInsight Getting Started Gallery 在 HDInsight 中執行範例應用程式，�
 [hdinsight.twitter.sample]: ./media/hdinsight-learn-hadoop-use-sample-gallery/HDInsight-Twitter-Trend-Analysis-sample.png
 
 <!--Link references-->
-[hdinsight.learn.map]: hdinsight-learn-map.md
+[hdinsight.learn.map]: https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/
 [hdinsight.infographic]: http://go.microsoft.com/fwlink/?linkid=523960
 [azure.portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

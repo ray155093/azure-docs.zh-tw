@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/08/2016"
+   ms.date="04/29/2016"
    ms.author="nitinme"/>
 
 # 使用 REST API 開始使用 Azure Data Lake Store
@@ -35,24 +35,66 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-- **建立 Azure Active Directory 應用程式**。請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。一旦您建立應用程式，請擷取與下列應用程式相關的值。
-	- 取得應用程式的用戶端識別碼和租用戶識別碼。
-	- 建立驗證金鑰
-	- 設定委派權限
+- **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Direcotry 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式，會有不同的必要條件。
+	* **針對互動式驗證** (本文所使用的方式) - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
+		- 設定委派權限
 
-	上面提供的連結中包含如何擷取這些值的指示。
-- **指派 Azure Active Directory 應用程式到角色**。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。
+	* **針對非互動式驗證** - 在 Azure Active Directory 中，您必須建立 **Web 應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**、**用戶端密碼**和**重新導向 URI**
+		- 設定委派權限
+		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。 
+
+	如需有關如何擷取這些值、設定權限和指派角色的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。
+
 - [cURL](http://curl.haxx.se/)。本文使用 cURL 示範如何對 Data Lake Store 帳戶進行 REST API 呼叫。
 
 ## 如何使用 Azure Active Directory 驗證？
 
 您可以使用兩種方法來使用 Azure Active Directory 進行驗證。
 
-* **互動式**，應用程式會提示使用者登入。如需詳細資訊，請參閱[授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
+### 互動式 (使用者驗證)
 
-* **非互動式**，應用程式自行提供認證。如需詳細資訊，請參閱[使用認證進行服務對服務呼叫](https://msdn.microsoft.com/library/azure/dn645543.aspx)。
+在此案例中，應用程式會提示使用者登入，且會在使用者的內容中執行所有作業。執行下列步驟以進行互動式驗證。
 
-本文使用**非互動式**方法。為此，您必須發出 POST 要求，如下列所示要求。
+1. 透過您的應用程式，將使用者重新導向至下列 URL：
+
+		https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
+
+	>[AZURE.NOTE] <REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，https://localhost，使用 `https%3A%2F%2Flocalhost`)
+
+	本教學課程的目的是讓您取代以上 URL 中的預留位置值，並將此值貼在網路瀏覽器網址列中。系統會將您重新導向，以使用 Azure 登入資料來進行驗證。一旦成功登入，回應會顯示在瀏覽器網址列中。回應格式如下：
+		
+		http://localhost/?code=<AUTHORIZATION-CODE>&session_state=<GUID>
+
+2. 擷取回應中的授權碼。在本教學課程中，您可以從網路瀏覽器的網址列中複製授權碼，並在 POST 要求中傳遞至權杖端點，如下所示：
+
+		curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token \
+        -F redirect_uri=<REDIRECT-URI> \
+        -F grant_type=authorization_code \
+        -F resource=https://management.core.windows.net/ \
+        -F client_id=<CLIENT-ID> \
+        -F code=<AUTHORIZATION-CODE>
+
+	>[AZURE.NOTE] 在此情況下，不需要編碼 <REDIRECT-URI>。
+
+3. 回應為 JSON 物件，包含存取權杖 (例如 `"access_token": "<ACCESS_TOKEN>"`) 重新整理權杖 (例如：`"refresh_token": "<REFRESH_TOKEN>"`)。您的應用程式會在存取 Azure Data Lake Store 時使用存取權杖，並會在存取權杖過期時重新整理以取得另一個存取權杖。
+
+		{"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","expires_on":"1461865782","not_before":	"1461861882","resource":"https://management.core.windows.net/","access_token":"<REDACTED>","refresh_token":"<REDACTED>","id_token":"<REDACTED>"}
+
+4.  存取權杖過期時，您可以使用重新整理權杖要求新的存取權杖，如下所示：
+
+		 curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
+      		-F grant_type=refresh_token \
+      		-F resource=https://management.core.windows.net/ \
+      		-F client_id=<CLIENT-ID> \
+      		-F refresh_token=<REFRESH-TOKEN>
+ 
+如需互動使用者驗證的詳細資料，請參閱[授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
+
+### 非互動式
+
+在此案例中，應用程式提供自己的認證來執行作業。為此，您必須發出 POST 要求，如下列所示要求。
 
 	curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
       -F grant_type=client_credentials \
@@ -64,13 +106,15 @@
 
 	{"token_type":"Bearer","expires_in":"3599","expires_on":"1458245447","not_before":"1458241547","resource":"https://management.core.windows.net/","access_token":"<REDACTED>"}
 
+本文使用**非互動式**方法。如需有關非互動式 (服務對服務呼叫) 的詳細資訊，請參閱[使用認證進行服務對服務呼叫](https://msdn.microsoft.com/library/azure/dn645543.aspx)。
+
 ## 建立 Data Lake Store 帳戶
 
 這項作業以在[這裡](https://msdn.microsoft.com/library/mt694078.aspx)定義的 REST API 呼叫為基礎。
 
 使用下列 cURL 命令。以 Data Lake Store 名稱取代 **<yourstorename>**。
 
-	curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview -d@C:\temp\input.json
+	curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -H "Content-Type: application/json" https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.DataLakeStore/accounts/<yourstorename>?api-version=2015-10-01-preview -d@"C:\temp\input.json"
 
 在上述命令中，以您稍早擷取的授權權杖取代 <`REDACTED`>。此命令的要求承載包含在提供給上方 `-d` 參數的 **input.json** 檔案中。Input.json 檔案的內容如下所示︰
 
@@ -232,4 +276,4 @@
 - [與 Azure Data Lake Store 相容的開放原始碼巨量資料應用程式](data-lake-store-compatible-oss-other-applications.md)
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/07/2016"
+   ms.date="05/10/2016"
    ms.author="nitinme"/>
 
 # 使用 Java 開始使用 Azure Data Lake Store
@@ -35,7 +35,17 @@
 * IntelliJ 或其他合適的 Java 開發環境。此為選用步驟，但建議執行。以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**回覆 URI** 和**金鑰**。如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
+* **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Direcotry 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式，會有不同的必要條件。
+	* **針對互動式驗證** - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
+		- 設定委派權限
+
+	* **針對非互動式驗證** (本文所使用的方式) - 在 Azure Active Directory 中，您必須建立 **Web 應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
+		- 取得應用程式的**用戶端識別碼**、**用戶端密碼**和**重新導向 URI**
+		- 設定委派權限
+		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。 
+
+	如需有關如何擷取這些值、設定權限和指派角色的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。
 
 ## 如何使用 Azure Active Directory 驗證？
 
@@ -45,13 +55,13 @@
 
 ## 建立 Java 應用程式
 
-1. 開啟 IntelliJ，並使用**命令列應用程式**範本建立新的 Java 專案。
+1. 開啟 IntelliJ，並使用**命令列應用程式**範本建立新的 Java 專案。完成精靈以建立專案。
 
 2. 在畫面左側的專案上按一下滑鼠右鍵，然後按一下 [新增架構支援]。選擇 [Maven] 並按一下 [確定]。
 
 3. 開啟新建立的 **"pom.xml"** 檔案，並在 **</version>** 標記和 **</project>** 標記之間新增下列一小段文字︰
 
-    注意︰此步驟是暫時性的，在 Maven 提供 Azure Data Lake Store SDK 後便不適用。一旦 Maven 提供此 SDK 後便會更新本文。此 SDK 未來的所有更新皆會透過 Maven 提供。
+    >[AZURE.NOTE] 此步驟是暫時性的，在 Maven 提供 Azure Data Lake Store SDK 後便不適用。一旦 Maven 提供此 SDK 後便會更新本文。此 SDK 未來的所有更新皆會透過 Maven 提供。
 
         <repositories>
         	<repository>
@@ -88,9 +98,9 @@
     	</dependencies>
 
 
-4. 移至 [檔案] > [設定] > [建置] > [執行] > [部署]。選取 [建置工具] > [Maven] > [匯入]。然後勾選 [自動匯入 Maven 專案]。
+4. 移至 [檔案] > [設定] > [建置] > [執行] > [部署]。展開 [建置工具] > [Maven] > [匯入]。選取 [自動匯入 Maven 專案] 的核取方塊。按一下 [套用]，然後按一下 [確定]。
 
-5. 開啟 **Main.java**，並以下列程式碼取代現有的程式碼區塊。此外，請提供程式碼片段中呼叫的參數值 (例如 **localFolderPath**、**\_adlsAccountName**、**\_resourceGroupName**) 並取代 **CLIENT-ID**、**CLIENT-SECRET**、**TENANT-ID** 和 **SUBSCRIPTION-ID** 的預留位置。
+5. 從左窗格中瀏覽至 [src] > [主要] > [java] > [<封裝名稱>]，然後開啟 **Main.java** 並以下列程式碼取代現有程式碼區塊。此外，請提供程式碼片段中呼叫的參數值 (例如 **localFolderPath**、**\_adlsAccountName**、**\_resourceGroupName**) 並取代 **CLIENT-ID**、**CLIENT-SECRET**、**TENANT-ID** 和 **SUBSCRIPTION-ID** 的預留位置。
 
     這個程式碼會進行以下程序：建立 Data Lake Store 帳戶、在存放區中建立檔案、串連檔案、下載檔案，並於最後刪除帳戶。
 
@@ -290,7 +300,7 @@
 ## 後續步驟
 
 - [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
-- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake 分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

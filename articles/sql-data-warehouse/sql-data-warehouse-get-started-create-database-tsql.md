@@ -76,4 +76,4 @@ MAXSIZE 可以介於 250 GB 與 60 TB 之間。服務目標可以介於 DW100 �
 [SQL 資料倉儲價格]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
 [Visual Studio 下載]: https://www.visualstudio.com/downloads/download-visual-studio-vs
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

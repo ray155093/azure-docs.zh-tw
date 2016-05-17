@@ -1,10 +1,10 @@
 <properties
-	pageTitle="在具有行動應用程式的 Android 上新增驗證 | Azure App Service"
+	pageTitle="在具有行動應用程式的 Android 上加入驗證 | Azure App Service"
 	description="了解如何在 Azure App Service 中使用行動應用程式透過眾多識別提供者驗證 Android 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。"
 	services="app-service\mobile"
 	documentationCenter="android"
-	authors="ggailey777"
-	manager="dwrede"
+	authors="RickSaling"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="02/04/2016"
-	ms.author="glenga"/>
+	ms.date="05/03/2016"
+	ms.author="ricksal"/>
 
 # 將驗證加入 Android 應用程式中
 
@@ -68,4 +68,4 @@
 <!-- URLs. -->
 [開始使用行動應用程式]: app-service-mobile-android-get-started.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

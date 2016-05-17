@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/31/2016"
+   ms.date="04/26/2016"
    ms.author="v-sharos" />
 
 # 從備份組還原 StorSimple 磁碟區 (Update 2)
@@ -23,7 +23,7 @@
 
 [備份類別目錄] 頁面會顯示在產生手動或自動備份時建立的所有備份組。您可以使用此頁面來列出備份原則或磁碟區的所有備份、選取或刪除備份，或是使用備份來還原或複製磁碟區。
 
- ![備份類別目錄頁面](./media/storsimple-restore-from-backup-set-u2/HCS_BackupCatalog.png)
+ ![備份類別目錄頁面](./media/storsimple-restore-from-backup-set-u2/restore.png)
 
 本教學課程說明如何使用 [備份類別目錄] 頁面，從備份組還原您的裝置。
 
@@ -73,7 +73,7 @@
 
 1. 在 StorSimple Manager 服務頁面上，按一下 [備份類別目錄] 索引標籤。
 
-    ![備份類別目錄](./media/storsimple-restore-from-backup-set-u2/HCS_Restore.png)
+    ![備份類別目錄](./media/storsimple-restore-from-backup-set-u2/restore.png)
 
 2. 選取備份組，如下所示：
   1. 選取適當的裝置。
@@ -115,4 +115,4 @@
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->

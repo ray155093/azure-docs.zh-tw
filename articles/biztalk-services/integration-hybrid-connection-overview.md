@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/29/2016"
+	ms.date="05/10/2016"
 	ms.author="mandia"/>
 
 
@@ -35,7 +35,7 @@
 - 使用混合式連線的應用程式只存取透過混合式連線發佈的特定內部部署資源。
 - 可以連接到任何使用靜態 TCP 連接埠的內部部署資源，例如 SQL Server、MySQL、HTTP Web API 和大部分的自訂 Web 服務。
 
-	> [AZURE.NOTE] 目前不支援使用動態連接埠的 TCP 服務 (例如 FTP 被動模式或延伸被動模式)。
+	> [AZURE.NOTE] 目前不支援使用動態連接埠的 TCP 服務 (例如 FTP 被動模式或延伸被動模式)。也不支援 LDAP。LDAP 使用靜態 TCP 連接埠，但它也可以使用 UDP。因此不受支援。
 
 - 可以與 Web Apps (.NET、PHP、Java、Python、Node.js) 和 Mobile Apps (Node.js、.NET) 支援的所有架構搭配使用。
 - Web Apps 和 Mobile Apps 能夠以完全相同的方式存取內部部署資源，就像是該 Web 或 Mobile Apps 位於本機網路一樣。例如，內部部署使用的相同連接字串也可以在 Azure 上使用。
@@ -47,7 +47,7 @@
 - 公司網路上的事件和稽核記錄可讓您查看混合式連線所存取的資源。
 
 
-## 支援的組態
+## 範例案例
 
 混合式連線支援下列架構和應用程式的組合：
 
@@ -103,4 +103,4 @@
 [HCOnPremSetup]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionOnPremSetup.png
 [HCManageConnection]: ./media/integration-hybrid-connection-overview/WABS_HybridConnectionManageConn.png
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0511_2016-->

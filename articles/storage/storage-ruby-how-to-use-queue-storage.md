@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ruby" 
 	ms.topic="article" 
-	ms.date="02/23/2016" 
+	ms.date="05/04/2016" 
 	ms.author="robmcm"/>
 
 
@@ -162,4 +162,4 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 若要比較本文所討論的 Azure 佇列服務與[如何使用服務匯流排佇列](/develop/ruby/how-to-guides/service-bus-queues/)一文中討論的 Azure 服務匯流排佇列，請參閱 [Azure 佇列和服務匯流排佇列 - 比較和對照](../service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md)。
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0504_2016-->

@@ -13,7 +13,7 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="02/06/2016"
+      ms.date="04/29/2016"
       ms.author="hascipio; v-divte" />
 
 # 建立 Azure Marketplace 解決方案範本的指南
@@ -58,13 +58,13 @@
 
 - VM 延伸模組：[VM 代理程式與 VM 延伸模組概觀](https://msdn.microsoft.com/library/azure/dn832621.aspx)及 [Azure VM 延伸模組與功能](https://msdn.microsoft.com/library/azure/dn606311.aspx)
 
-- Azure 資源管理員：[撰寫 Azure ARM 範本](../resource-group-authoring-templates/)和[簡單 ARM 範本範例](https://github.com/rjmax/ArmExamples)
+- Azure 資源管理員：[撰寫 Azure ARM 範本](../resource-group-authoring-templates.md)和[簡單 ARM 範本範例](https://github.com/rjmax/ArmExamples)
 
 - 儲存體帳戶節流：[如何監視儲存體帳戶節流](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx)和[進階儲存體](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage)
 
 [img-pubportal-menu-sol-templ]: media/marketplace-publishing-solution-template-creation/pubportal-menu-solution-templates.png
 [img-pubportal-sol-templ-new]: media/marketplace-publishing-solution-template-creation/pubportal-solution-template-new.png
-[link-acct-creation]: marketplace-publishing-microsoft-accounts-creation-registration.md
+[link-acct-creation]: marketplace-publishing-accounts-creation-registration.md
 [link-pubportal]: https://publish.windowsazure.com
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

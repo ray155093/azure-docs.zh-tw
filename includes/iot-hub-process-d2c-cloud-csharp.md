@@ -85,7 +85,7 @@
         blobClient = storageAccount.CreateCloudBlobClient();
         blobContainer = blobClient.GetContainerReference("d2ctutorial");
         blobContainer.CreateIfNotExists();
-        queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString, "d2ctutorial");
+        queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString);
       }
 
       Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
@@ -210,7 +210,7 @@
     using Microsoft.ServiceBus.Messaging;
     ```
 
-9. 如下所示修改 **Program** 類別中的 **Main** 方法，使用名為 **d2ctutorial** 之佇列的 [傳送] 權限取代 IoT 中樞 **iothubowner** 連接字串 (來自[開始使用 IoT 中樞]教學課程)、儲存體連接字串，以及服務匯流排連接字串：
+9. 如下所示修改 **Program** 類別中的 **Main** 方法，使用名為 **d2ctutorial** 之佇列的 [傳送] 權限取代 IoT 中樞 **iothubowner** 連接字串 (來自 [開始使用 IoT 中樞] 教學課程)、儲存體連接字串，以及服務匯流排連接字串：
 
     ```
     static void Main(string[] args)
@@ -255,7 +255,7 @@
     Console.WriteLine("Process D2C Interactive Messages app\n");
 
     string connectionString = "{service bus listen connection string}";
-    QueueClient Client = QueueClient.CreateFromConnectionString(connectionString, "d2ctutorial");
+    QueueClient Client = QueueClient.CreateFromConnectionString(connectionString);
 
     OnMessageOptions options = new OnMessageOptions();
     options.AutoComplete = false;
@@ -314,4 +314,3 @@
 [31]: ./media/iot-hub-process-d2c-cloud-csharp/createqueue3.png
 [32]: ./media/iot-hub-process-d2c-cloud-csharp/createqueue4.png
 
-<!---HONumber=AcomDC_0413_2016-->

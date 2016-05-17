@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/16/2016"
+   ms.date="05/03/2016"
    ms.author="larryfr"/>
 
 #利用 SSH 搭配使用 Hive 與 HDInsight 中的 Hadoop
@@ -150,4 +150,4 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 [img-hdi-hive-powershell-output]: ./media/hdinsight-use-hive/HDI.Hive.PowerShell.Output.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

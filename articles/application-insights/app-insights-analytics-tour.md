@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="04/27/2016" 
 	ms.author="awills"/>
 
 
@@ -160,14 +160,14 @@
 
 請注意，您可以在彙總運算式或 by 子句中使用 `name=` 設定結果資料行的名稱。
 
-### 計算資料點
+## 計算取樣的資料
 
 `sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是當[取樣](app-insights-sampling.md)進行時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。因此，加總 itemCount 可正確估算事件的原始數目。
 
 
 ![](./media/app-insights-analytics-tour/510.png)
 
-另外還有 `count()` 彙總，其適用於您確實想要計算群組中的資料列數目時。
+另外還有 `count()` 彙總 (以及計數作業)，適用於您確實想要計算群組中的資料列數目時。
 
 
 [彙總函式](app-insights-analytics-aggregations.md)有範圍。
@@ -423,4 +423,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

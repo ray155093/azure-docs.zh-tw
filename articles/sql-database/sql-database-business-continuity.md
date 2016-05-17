@@ -5,7 +5,7 @@
    services="sql-database"
    documentationCenter=""
    authors="elfisher"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor="monicar"/>
 
 <tags
@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="02/09/2016"
+   ms.date="04/27/2016"
    ms.author="elfish"/>
 
 # 概觀：雲端商務持續性和 SQL Database 的資料庫災害復原
@@ -64,8 +64,7 @@
 | --- |--- | --- | ---
 | 時間點還原 | 7 天內的任何還原點 | 14 天內的任何還原點 | 35 天內的任何還原點
 | 異地還原 | ERT < 12 小時，RPO < 1 小時 | ERT < 12 小時，RPO < 1 小時 | ERT < 12 小時，RPO < 1 小時
-| 標準異地複寫 | 未包括 | ERT < 30 秒，RPO < 5 秒 | ERT < 30 秒，RPO < 5 秒
-| 主動式異地複寫 | 未包括 | 未包括 | ERT < 30 秒，RPO < 5 秒
+| 主動式異地複寫 | ERT < 30 秒，RPO < 5 秒 | ERT < 30 秒，RPO < 5 秒 | ERT < 30 秒，RPO < 5 秒
 
 這些功能是為了解決稍早所列案例而提供。如需如何選取特定功能的指引，請參閱[業務續航力的設計](sql-database-business-continuity-design.md)一節。
 
@@ -80,12 +79,8 @@
 
 異地還原也適用於基本、標準和高階資料庫。它會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。異地還原與時間點還原類似，需要使用 Azure 異地備援儲存體中的資料庫備份。它會從異地複寫的備份複本還原，因此可彈性地回應主要區域的儲存體中斷情況。如需如何使用異地還原的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。
 
-###標準異地複寫
-
-標準異地複寫適用於標準和高階資料庫。其設計是針對可使用標準服務層容量，但比異地還原需要更主動復原的應用程式。當主要資料庫失敗時，您可以起始容錯移轉至儲存在 DR 配對區域中不可讀取的次要資料庫。如需如何設定異地複寫的詳細資訊，請參閱[業務續航力的設計](sql-database-business-continuity-design.md)；如需如何容錯移轉至次要資料庫的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。
-
 ###主動式異地複寫
 
-主動式異地複寫適用於高階資料庫。其設計是針對需要最主動復原的寫入密集型應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以使用與標準異地複寫相同的方式，來起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需如何設定異地複寫的詳細資訊，請參閱[業務續航力的設計](sql-database-business-continuity-design.md)；如需如何容錯移轉至次要資料庫的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。如需如何實作應用程式升級而不需要停機的詳細資訊，請參閱[升級應用程式而不需要停機](sql-database-business-continuity-application-upgrade.md)。
+所有資料庫層均提供作用中異地複寫。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需如何[設定異地複寫](sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](sql-database-geo-replication-failover-portal.md)的詳細資訊，請參閱[業務續航力的設計](sql-database-business-continuity-design.md)。如需如何實作應用程式升級而不需要停機的詳細資訊，請參閱[升級應用程式而不需要停機](sql-database-business-continuity-application-upgrade.md)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

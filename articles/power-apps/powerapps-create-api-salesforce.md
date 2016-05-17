@@ -14,80 +14,93 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/29/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 # 在 PowerApps Enterprise 中建立新的 Salesforce API
 
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-salesforce.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-salesforce.md)
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-將 Salesforce API 加入您組織 (租用戶) 的 App Service 環境中。
+<!--Archived
+Add the Salesforce API to your organization's (tenant) app service environment. 
 
-## 在 Azure 入口網站中建立 API
+## Create the API in the Azure portal
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
  
-2. 選取工作列中的 [瀏覽]：![][14]
+2. Select **Browse** in the task bar:  
+![][14]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![][15]
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][15]  
 
-4. 在 **PowerApps** 中選取 [管理 API]：![瀏覽至已註冊的 API][1]
+4. In **PowerApps**, select **Manage APIs**:    
+![Browse to registered apis][1]
 
-5. 在 [**管理 API**] 中，選取 [**新增**] 以新增 API：![Add API][2]
+5. In **Manage APIs**, select **Add** to add the new API:  
+![Add API][2]
 
-6. 為您的 API 輸入描述性**名稱**。
+6. Enter a descriptive **name** for your API.  
 	
-7. 在 [**來源**] 中，選取 [**可用 API**]，以選取預先建置的 API，然後選取 [**Salesforce**]：![選取 Salesforce api][3]
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **Salesforce**:  
+![select Salesforce api][3]
 
-8. 選取 [**設定 - 進行必要的設定**]：![進行 dropbox API 設定][7]
+8. Select **Settings - Configure required settings**:  
+![configure dropbox API settings][7]
 
-9. 輸入您 Salesforce 應用程式的*應用程式金鑰*與*應用程式密碼*值。如果您還沒有這些值，請參閱本主題中的＜註冊 Salesforce 應用程式以搭配 PowerApps 使用＞一節，建立您需要的金鑰與密碼值。
+9. Enter the *App Key* and *App Secret* of your Salesforce application. If you don't have one, see the "Register a Salesforce app for use with PowerApps" section in this topic to create the key and secret values you need.  
 
-	> [AZURE.IMPORTANT] 儲存**重新導向 URL**。您在本主題的後半部可能需要此值。
+	> [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.
 
-10. 選取 [**確定**] 以完成步驟。
+10. Select **OK** to complete the steps.
 
-完成時，新的 Salesforce API 會新增至您的 App Service 環境。
+When finished, a new Salesforce API is added to your app service environment.
 
 
-## 選擇性步驟：註冊 Salesforce 應用程式以搭配 PowerApps 使用
+## Optional: Register a Salesforce app for use with PowerApps
 
-如果您現在沒有 Salesforce 應用程式及金鑰與密碼值，請使用下列步驟建立應用程式，然後取得您需要的值。
+If you don't have an existing Salesforce app with the key and secret values, then use the following steps to create the application, and get the values you need. 
 
-1. 開啟 [Salesforce Developers (Salesforce 開發人員) 首頁][5]，並使用您的 Salesforce 帳戶登入。 
+1. Open [Salesforce developer homepage][5], and sign in with your Salesforce account. 
 
-2. 在首頁中，選取您的設定檔，然後選取 [**Setup (設定)**]：![Salesforce 首頁][6]
+2. In the homepage, select your profile, and select **Setup**:  
+![Salesforce homepage][6]
 
-3. 選取 [**Create (建立)**]，然後選取 [**Apps (應用程式)**]。在 [**Apps (應用程式)**] 頁面中，選取 [**Connected Apps (連接的應用程式)**] 下方的 [**New (新增)**]：![Salesforce 建立應用程式][7]
+3. Select **Create** and select **Apps**. In the **Apps** page, select **New** under **Connected Apps**:  
+![Salesforce create app][7]
 
-4. 在 [**New Connected App (新增連接的應用程式)**] 中：
+4. In **New Connected App**:  
 
-	1. 輸入 [已連線的應用程式名稱] 的值。  
-	2. 輸入 [API 名稱] 的值。  
-	3. 輸入 [連絡人電子郵件] 的值。  
-	4. 在 [API (啟用 OAuth 設定)] 下方，選取 [啟用 OAuth 設定]，然後把 [回呼 URL] 設為您在 Azure 入口網站中新增 Salesforce API 時收到的重新導向 URL (在本主題中)。  
+	1. Enter the value for **Connected App Name**.  
+	2. Enter the value for **API Name**.  
+	3. Enter the value for **Contact Email**.  
+	4. Under _API (Enable OAuth Settings)_, select **Enable OAuth Settings**, and set the **Callback URL** to the redirect URL you received when you added the new Salesforce API in the Azure Portal (in this topic).  
 
-5. 在 [_Selected OAuth scopes (選取的 OAuth 範圍)_] 下方，將下列範圍新增至 [**Selected OAuth Scopes (選取的 OAuth 範圍)**]：
+5. Under _Selected OAuth scopes_, add the following scopes to the **Selected OAuth Scopes**:  
 
-	- 存取與管理您的 Chatter 資料 (chatter\_api)
-	- 存取與管理您的資料 (api)
-	- 允許存取您的唯一識別碼 (openid)
-	- 隨時代表您執行要求 (refresh\_token，offline\_access)
+	- Access and manage your Chatter data (chatter_api)
+	- Access and manage your data (api)
+	- Allow access to your unique identifier (openid)
+	- Perform requests on your behalf at any time (refresh_token, offline_access)
 
-6. **儲存**您的變更：![Salesforce 新的應用程式][8]
+6. **Save** your changes:  
+![Salesforce new app][8]
 
-Salesforce 應用程式便建立好了。您可以在 Azure 入口網站的 Salesforce API 組態中使用此應用程式。
+A new Salesforce app is created. You can use this app in your Salesforce API configuration in the Azure portal. 
 
-## 請參閱 REST API
+## See the REST APIs
 
-[Salesforce REST API](../connectors/connectors-create-api-salesforce.md) 參考。
+[Salesforce REST API](../connectors/connectors-create-api-salesforce.md) reference.
 
-## 摘要和後續步驟
-在本主題中，您已將 Salesforce API 新增至 PowersApps Enterprise。接下來，請授與使用者此 API 的存取權，讓使用者能夠將此 API 新增至其應用程式：
+## Summary and next steps
+In this topic, you added the Salesforce API to your PowersApps Enterprise. Next, give users access to the API so it can be added to their apps: 
 
-[新增連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
+
 
 <!--References-->
 [1]: ./media/powerapps-create-api-salesforce/browse-to-registered-apis.PNG
@@ -101,4 +114,4 @@ Salesforce 應用程式便建立好了。您可以在 Azure 入口網站的 Sale
 [14]: ./media/powerapps-create-api-salesforce/browseall.png
 [15]: ./media/powerapps-create-api-salesforce/allresources.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

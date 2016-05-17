@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="powershell"
    ms.workload="TBD" 
-   ms.date="03/02/2016"
+   ms.date="04/29/2016"
    ms.author="coreyp"/>
 
 # Azure 自動化 DSC 概觀 #
@@ -98,8 +98,6 @@ Azure 自動化 DSC 中的編譯工作是組態編譯的執行個體，以建立
 
 ##錯誤/已知問題：##
 
-- 升級至 WMF 5 RTM 時，如果機器已註冊為 Azure Automation DSC 的節點，請從 Azure Automation DSC 將其取消註冊，並且在 WMF 5 RTM 升級之後重新註冊。
-
 - Azure 自動化 DSC 目前不支援進行部分或複合 DSC 組態。不過，DSC 複合資源可以匯入及使用，就像在本機 PowerShell 中，讓組態重複使用。
 
 - 必須安裝 WMF 5 的最新版本，Windows 適用的 PowerShell DSC 代理程式才能與 Azure 自動化通訊。必須安裝 Linux 適用之 PowerShell DSC 代理程式的最新版本，Linux 才能與 Azure 自動化通訊。
@@ -114,9 +112,11 @@ Azure 自動化 DSC 中的編譯工作是組態編譯的執行個體，以建立
 
 - 在註冊之後，每個節點會自動交涉唯一的驗證憑證，該憑證於一年之後到期。此時，當憑證即將過期時，PowerShell DSC 註冊通訊協定便無法自動更新憑證，因此您必須在一年之後重新註冊這些節點。在重新登錄之前，請確定每個節點都正在執行 Windows Management Framework 5.0 RTM。如果節點的驗證憑證過期，而且該節點尚未註冊，則該節點將無法與 Azure 自動化通訊，並將標示為「未回應」。 註冊執行方式與您一開始註冊節點時相同。與憑證到期時間相距 90 天或更短時間內執行的註冊，或是憑證到期時間之後任何時間點執行的註冊，將會產生新的憑證並予以使用。
 
-- 升級至 WMF 5 RTM 時，如果機器已註冊為 Azure Automation DSC 的節點，請從 Azure Automation DSC 將其取消註冊，並且在 WMF 5 RTM 升級之後重新註冊。在重新註冊之前，刪除 $env:windir\\system32\\configuration\\DSCEngineCache.mof 檔案。
+- 升級至 WMF 5 RTM 時，如果機器已註冊為 Azure Automation DSC 的節點，請從 Azure Automation DSC 將其取消註冊，並且在 WMF 5 RTM 升級之後重新註冊。重新註冊之前請先刪除 `$env:windir\system32\configuration\DSCEngineCache.mof` 檔案。
 
 - 如果將 WMF 5 RTM 安裝於 WMF 5 Production Preview 上，PowerShell DSC Cmdlet 可能不會運作。若要修正此問題，請在提高權限的 PowerShell 工作階段 (以系統管理員身分執行) 中執行下列命令︰`mofcomp $env:windir\system32\wbem\DscCoreConfProv.mof`
+
+- 如果之前在電腦上使用了 WMF 4 PowerShell DSC 功能，從這部電腦的 Azure 自動化 DSC 提取組態資訊，可能會因為這個例外狀況而失敗：「解密失敗」。若要修正這個問題，請刪除下列檔案，再重新向 Azure 自動化 DSC 註冊電腦︰`$env:windir\system32\configuration\Current.mof`、`$env:windir\system32\configuration\DSCEngineCache.mof`、`$env:windir\system32\configuration\DSCStatusHistory.mof`。
  
 
 ##相關文章##
@@ -127,4 +127,4 @@ Azure 自動化 DSC 中的編譯工作是組態編譯的執行個體，以建立
 - [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 - [使用 Azure 自動化 DSC 和 Chocolatey 的 IaaS VM 持續部署](automation-dsc-cd-chocolatey.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

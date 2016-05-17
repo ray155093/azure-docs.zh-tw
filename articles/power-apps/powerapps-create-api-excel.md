@@ -14,38 +14,49 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/03/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 # 在 PowerApps Enterprise 中建立新的 Excel API
 
-將 Excel API 加入您組織 (租用戶) 的 App Service 環境中。
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-## 在 Azure 入口網站中建立 API
+<!--Archived
+Add the Excel API to your organization's (tenant) app service environment. 
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
+## Create the API in the Azure portal
+
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
  
-2. 選取工作列中的 [瀏覽]：![][4]
+2. Select **Browse** in the task bar:  
+![][4]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![][5]
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][5]  
 
-4. 在 [PowerApps] 中選取 [管理 API]：![瀏覽至已註冊的 API][1]
+4. In **PowerApps**, select **Manage APIs**:  
+![Browse to registered apis][1]
 
-5. 在 [管理 API] 中，選取 [新增] 以新增 API：![Add API][2]
+5. In **Mange APIs**, select **Add** to add the new API:  
+![Add API][2]
 
-6. 為您的 API 輸入描述性**名稱**。
+6. Enter a descriptive **name** for your API.  
 	
-7. 在 [來源] 中，選取 [可用 API]，檢視預先建置的 API，然後選取 [Dropbox]：![選取 Excel API][3]
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and then select **Excel**:  
+![select Excel api][3]
 
-8. 選取 [確定] 以完成步驟。
+8. Select **OK** to complete these steps.
 
-完成時，新的 Excel API 會新增至您的 App Service 環境。
+When finished, a new Excel API is added to your app service environment.
 
-## 摘要和後續步驟
-在本主題中，您已將 Excel API 新增至 PowersApps Enterprise。接下來，請授與使用者此 API 的存取權，讓使用者能夠將此 API 新增至其應用程式：
+## Summary and next steps
+In this topic, you added the Excel API to your PowersApps Enterprise. Next, give users access to the API so it can be added to their apps: 
 
-[新增連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
-
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
 
 
 <!--References-->
@@ -55,4 +66,4 @@
 [4]: ./media/powerapps-create-api-excel/browseall.png
 [5]: ./media/powerapps-create-api-excel/allresources.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0504_2016-->

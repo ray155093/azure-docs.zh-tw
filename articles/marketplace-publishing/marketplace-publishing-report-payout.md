@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/04/2016"
+   ms.date="05/03/2016"
    ms.author="v-jeana; hascipio; v-dabosl"/>
 
 # 了解您的 Azure Marketplace 支出報告
@@ -22,15 +22,19 @@
 
 雖然我們轉換到開發人員中心，一些支出報告可能可以在開發人員中心的 https://dev.windows.com/zh-TW 中取得，而其他報告可能仍然會在發佈入口網站 https://publish.windowsazure.com 中找到。
 
-對於與現代化支出相關聯的任何 Marketplace 供應項目，支出報告可以在 [開發人員中心] 中取得；目前包括：- VM - B+C 供應項目 - 在 EA 下提供的資料和開發人員服務
+對於與現代化支出相關聯的任何 Marketplace 供應項目，支出報告可以在 [開發人員中心] 中取得；目前包括
+- VM
+- B+C 供應項目
+- 在 EA 下提供的資料和開發人員服務
 
-下列項目的支出報告仍然會在 [發佈入口網站]：- Web 直接下提供的資料和開發人員服務 (仍然使用舊版支出系統)。
+下列項目的支出報告仍然會在**發佈入口網站**提供：
+- Web Direct 下提供的資料和開發人員服務 (仍然使用舊版支出系統)。
 
 在每季結束後 45 天即可取得報告，而報告會在任何退款之後進行計算。
 
 ### 存取開發人員中心的支出報告
 
-1. 瀏覽至在位於 https://dev.windows.com/zh-TW 的開發人員中心。
+1. 瀏覽至位於 https://dev.windows.com/zh-TW 的開發人員中心。
 2. 按一下 [儀表板]。
 
     ![LandingPageDashboardHighlight][1]
@@ -112,4 +116,4 @@
 [8]: ./media/marketplace-publishing-report-payout/ledgerdefinitions.png
 [9]: ./media/marketplace-publishing-report-payout/payoutquestions.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0504_2016-->

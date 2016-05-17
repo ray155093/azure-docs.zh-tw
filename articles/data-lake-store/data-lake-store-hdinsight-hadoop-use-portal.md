@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/11/2016"
+   ms.date="04/27/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
@@ -29,7 +29,9 @@
 
 * **對於 Storm 叢集 (Windows 和 Linux)**，Data Lake Store 可以用來從 Storm 拓撲寫入資料。資料湖存放區也可以用來儲存參考資料，該資料稍後可以由 Storm 拓撲讀取。如需詳細資訊，請參閱[在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
 
-* **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。用於建立可存取資料湖存放區之 HBase 叢集的選項，只會在您使用 HDI 3.1 版或 3.2 版 (適用於 Windows) 或 HDI 3.2 版 (適用於 Linux) 時提供。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
+* **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
+
+> [AZURE.NOTE] 只有 HDInsight 3.2 版 (適用於 Windows 及 Linux) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。
 
 
 ## 必要條件
@@ -105,7 +107,7 @@
 
 	您也可以在網頁瀏覽器中移至 https://CLUSTERNAME.azurehdinsight.net，直接瀏覽至 Ambari (其中 **CLUSTERNAME** 是您的 HDInsight 叢集名稱)。
 
-2. 開啟 Hive 檢視。從頁面功能表選取方塊組合 (頁面右側的 [管理員] 連結和按鈕旁邊)，以列出可用的檢視。選取 [Hive 檢視]。
+2. 開啟 Hive 檢視。從頁面功能表選取方塊組合 (頁面右側的 [管理員] 連結和按鈕旁邊)，以列出可用的檢視。選取 [Hive] 檢視。
 
 	![選取 ambari 檢視](./media/data-lake-store-hdinsight-hadoop-use-portal/selecthiveview.png)
 
@@ -117,7 +119,7 @@
 
 		CREATE EXTERNAL TABLE vehicles (str string) LOCATION 'adl://mydatalakestore.azuredatalakestore.net:443/mynewfolder'
 
-5. 按一下 [查詢編輯器] 底部的 [執行] 按鈕，開始查詢。[查詢程序結果] 區段應該會出現在 [查詢編輯器] 下方並顯示工作的相關資訊。
+5. 按一下 [查詢編輯器] 底部的 [執行] 按鈕，開始查詢。[查詢程序結果] 區段應該會出現在 [查詢編輯器] 下方並顯示作業相關資訊。
 
 6. 查詢完成後，[查詢程序結果] 區段會顯示作業的結果。[結果] 索引標籤應包含下列資訊：
 
@@ -250,4 +252,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0504_2016-->

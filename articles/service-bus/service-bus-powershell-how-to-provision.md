@@ -1,6 +1,6 @@
 <properties
 	pageTitle="使用 PowerShell 管理服務匯流排 | Microsoft Azure"
-	description="使用 PowerShell 指令碼 (而非 .NET) 管理服務匯流排"
+	description="使用 PowerShell 指令碼管理服務匯流排"
 	services="service-bus"
 	documentationCenter=".net"
 	authors="sethmanheim"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="05/02/2016"
 	ms.author="sethm"/>
 
 # 使用 PowerShell 管理服務匯流排
@@ -156,16 +156,32 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 	Write-Output "The consumer group [$ConsumerGroupName] for the [$Path] event hub has been successfully created."
 	```
 
+## 將命名空間移轉到另一個 Azure 訂用帳戶
+
+下列的命令順序會從一個 Azure 訂用帳戶的命名空間移到另一個。若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員。
+
+```
+# Create a new resource group in target subscription
+Select-AzureRmSubscription -SubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff'
+New-AzureRmResourceGroup -Name 'targetRP' -Location 'East US'
+
+# Move namespace from source subscription to target subscription
+Select-AzureRmSubscription -SubscriptionId 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'
+$res = Find-AzureRmResource -ResourceNameContains mynamespace -ResourceType 'Microsoft.ServiceBus/namespaces'
+Move-AzureRmResource -DestinationResourceGroupName 'targetRP' -DestinationSubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff' -ResourceId $res.ResourceId
+```
+
 ## 後續步驟
 
 此文章提供您使用PowerShell 佈建服務匯流排實體的基本大綱。您可以使用 .NET 用戶端程式庫執行的任何動作，也都可以使用 PowerShell 指令碼來執行。
 
-這些部落格張貼文章中有更多詳細的範例可用：
+這些部落格文章中有更多詳細的範例可用：
 
 - [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂閱](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
 - [如何使用 PowerShell 指令碼來建立服務匯流排命名空間與事件中樞](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
 
-也有一些現成的指令碼可供下載：- [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/Service-Bus-PowerShell-a46b7059)
+也有一些現成的指令碼可供下載：
+- [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/Service-Bus-PowerShell-a46b7059)
 
 <!--Link references-->
 [購買選項]: http://azure.microsoft.com/pricing/purchase-options/
@@ -179,4 +195,4 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 [服務匯流排的 .NET API]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.aspx
 [NamespaceManager]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0504_2016-->

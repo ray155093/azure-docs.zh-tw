@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/16/2016" 
+	ms.date="05/02/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 來移動 Web 資料表的資料
@@ -27,7 +27,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 1.	[Web](#web-linked-service-properties) 類型的連結服務。
 2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
-3.	[WebTabe](#WebTable-dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
+3.	[WebTable](#WebTable-dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4.	具有使用 [WebSource](#websource-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
@@ -283,4 +283,7 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
-<!---HONumber=AcomDC_0224_2016-->
+## 效能和微調  
+請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+
+<!---HONumber=AcomDC_0504_2016-->

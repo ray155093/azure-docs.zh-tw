@@ -81,7 +81,7 @@ App Service Web Apps 採用平台即服務模型，能夠大幅節省成本又�
 
 App Service Web Apps 提供一個既穩定又可靠的平台，此平台已證實能夠處理各種不同的業務需求，從小型的內部開發和測試工作負載，到高度擴充的高流量網站都沒有問題。使用 Web Apps 後，您可以利用 Microsoft 公司在高價值 Web 工作負載中所使用的企業類別裝載平台。Web Apps 以及 Azure 平台上的所有服務是採用符合法規需求的安全性和規範建置而成，例如 ISO (ISO/IEC 27001:2005) ；SOC1 和 SOC2 SSAE 16/ISAE 3402 Attestations、HIPAA BAA、PCI 和 Fedramp 都是每個元素和功能的中心準則，如需詳細資訊，請參閱 [http://aka.ms/azurecompliance](/support/trust-center/compliance/)。
 
-Microsoft Azure 平台允許角色型權限控管，針對 Web Apps 中的資源提供企業層級的控管。RBAC 可讓企業在 Azure 環境中實作所有資產的專屬存取管理原則，方法是將使用者指派給群組，並針對資產 (例如 Web 應用程式) 依序將必要權限指派給這些群組。如需有關 Azure 中 RBAC 的詳細資訊，請參閱 [http://aka.ms/azurerbac](../role-based-access-control-configure/)。透過使用 Web Apps，您可以確定您的 Web 應用程式會在安全的環境中進行部署，而且您會擁有部署資產所在領域的完整控制權。
+Microsoft Azure 平台允許角色型權限控管，針對 Web Apps 中的資源提供企業層級的控管。RBAC 可讓企業在 Azure 環境中實作所有資產的專屬存取管理原則，方法是將使用者指派給群組，並針對資產 (例如 Web 應用程式) 依序將必要權限指派給這些群組。如需有關 Azure 中 RBAC 的詳細資訊，請參閱 [http://aka.ms/azurerbac](../active-directory/role-based-access-control-configure.md)。透過使用 Web Apps，您可以確定您的 Web 應用程式會在安全的環境中進行部署，而且您會擁有部署資產所在領域的完整控制權。
 
 Azure App Service 環境 [http://aka.ms/aseintro](http://aka.ms/aseintro) 是適用於想要利用 Azure App Service 的企業客戶的新進階服務方案選項，而這些環境可提供完全隔離且專用的環境。這可讓企業客戶部署可在非常高的程度上利用輸入和輸出網路流量，同時又能完全控制輸入和輸出網路流量的應用程式，而且 ASE 可讓應用程式透過虛擬網路，高速、安全地連線到內部部署資源。
 
@@ -114,7 +114,7 @@ App Service Web Apps 是一個可擴充的全域平台，可讓 Web 應用程式
 -	GAC 架構組件 – Web Apps 不允許將組件部署至全域組件快取 (GAC)。因此如果正在移轉的應用程式在內部部署使用了這項功能，請考慮將組件移至應用程式的 bin 資料夾。
 -	IIS5 相容性模式 - Web Apps 不支援 IIS5 相容性模式，因此，每個 Web Apps 執行個體與上層 Web Apps 執行個體下的所有 Web 應用程式會在單一應用程式集區內的相同背景工作處理序中執行。
 -	COM 元件的使用 – Web Apps 不允許在平台上註冊 COM 元件。因此，如果應用程式使用任何 COM 元件，則必須以 Managed 程式碼重新撰寫這些元件並利用應用程式進行部署。
--	ISAPI 篩選器 – Web Apps 上可支援 ISAPI 篩選器。它們必須作為應用程式的一部分進行部署，並在 Web 應用程式的 web.config 檔案中註冊。如需詳細資訊，請參閱 [http://aka.ms/azurewebsitesxdt](../web-sites-transform-extend/)。 
+-	ISAPI 篩選器 – Web Apps 上可支援 ISAPI 篩選器。它們必須作為應用程式的一部分進行部署，並在 Web 應用程式的 web.config 檔案中註冊。如需詳細資訊，請參閱 [http://aka.ms/azurewebsitesxdt](web-sites-transform-extend.md)。 
 
 在思考了這些主題之後，您的 Web 應用程式應該可以開始在雲端中使用。別擔心，如果部分主題未達到要求，移轉工具仍會盡全力移轉。
 
@@ -159,4 +159,4 @@ App Service Web Apps 針對快速發展環境中的企業動態需求，提供�
  
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0504_2016-->

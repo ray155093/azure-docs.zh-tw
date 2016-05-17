@@ -14,88 +14,103 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/29/2016"
+   ms.date="05/02/2016"
    ms.author="litran"/>
 
 # 在 PowerApps Enterprise 中建立新的 Google Drive API
 
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-googledrive.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-googledrive.md)
+> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> 
+> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> - 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
 
-將 Google Drive API 加入您組織 (租用戶) 的 App Service 環境中。
+<!--Archived
+Add the Google Drive API to your organization's (tenant) app service environment. 
 
-## 在 Azure 入口網站中建立 API
+## Create the API in the Azure portal
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中使用您的工作帳戶登入。例如，使用 yourUserName@*YourCompany*.com 登入。當您這樣做時，將會自動登入您的公司訂用帳戶。
+1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
  
-2. 選取工作列中的 [瀏覽]：![][15]
+2. Select **Browse** in the task bar:  
+![][15]
 
-3. 在清單中，您可以捲動以尋找 PowerApps 或輸入 *powerapps*：![][16]
+3. In the list, you can scroll to find PowerApps or type in *powerapps*:  
+![][16]  
 
-4. 在 **PowerApps** 中選取 [管理 API]：![瀏覽至已註冊的 API][1]
+4. In **PowerApps**, select **Manage APIs**:  
+![Browse to registered apis][1]
 
-5. 在 [**管理 API**] 中，選取 [**新增**] 以新增 API：![Add API][2]
+5. In **Manage APIs**, select **Add** to add the new API:  
+![Add API][2]
 
-6. 為您的 API 輸入描述性**名稱**。
+6. Enter a descriptive **name** for your API.  
 	
-7. 在 [**來源**] 中，選取 [**可用 API**] 以選取預先建置的 API，然後選取 [**Google 雲端硬碟**]：![選取 google drive api][3]
+7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **Google Drive**:  
+![select google drive api][3]
 
-8. 選取 [**設定 - 進行必要的設定**]：![進行 google drive API 設定][4]
+8. Select **Settings - Configure required settings**:  
+![configure google drive API settings][4]
 
-9. 輸入您 Google 雲端硬碟應用程式的*應用程式金鑰*與*應用程式密碼*。如果您還沒有這些值，請參閱本主題中的＜註冊 Google 雲端硬碟應用程式以搭配 PowerApps 使用＞一節，建立您需要的金鑰與密碼值。
+9. Enter *App Key* and *App Secret* of your Google Drive application. If you don't have one, see the "Register a Google Drive app for use with PowerApps" section in this topic to create the key and secret values you need.  
 
-	> [AZURE.IMPORTANT] 儲存**重新導向 URL**。您在本主題的後半部可能需要此值。
+	> [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.
 
-10. 選取 [**確定**] 以完成步驟。
+10. Select **OK** to complete the steps.
 
-完成時，新的 Google Drive API 會新增至您的 App Service 環境。
+When finished, a new Google Drive API is added to your app service environment.
 
 
-## 選擇性步驟：註冊 Google 雲端硬碟應用程式以搭配 PowerApps 使用
+## Optional: Register a Google Drive app for use with PowerApps
 
-如果您現在沒有 Google 雲端硬碟應用程式及金鑰與密碼值，請使用下列步驟建立應用程式，然後取得您需要的值。
+If you don't have an existing Google Drive app with the key and secret values, then use the following steps to create the application, and get the values you need. 
 
-1. 登入 [Google Developers Console][5]：![Google developers console (Google 開發人員主控台)][6]
+1. Sign in to [Google Developers Console][5]:  
+![Google developers console][6]
 
-2. 選取 [**建立空的專案**]。
+2. Select **Create an empty project**. 
 
-3. 為您的應用程式輸入名稱，同意條款與條件，然後選取 [**建立**]：![建立新的 google 雲端硬碟專案][7]
+3. Enter a name for your application, agree to the terms and conditions, and select **Create**:  
+![create new google drive project][7]
 
-4. 成功建立新的專案後，選取 [**使用 Google API**]：![使用 google api][8]
+4. On successful creation of the new project, select **Use Google APIs**:  
+![Use google apis][8]
 
-5. 在總覽頁面中選取 [**Drive API**]：![Google Drive API 總覽][9]
+5. In the overview page, select **Drive API**:  
+![Google Drive API overview][9]
 
-6. 選取 [**啟用 API**]：![啟用 Google Drive API][10]
+6. Select **Enable API**:  
+![Enable Google Drive API][10]
 
-7. 啟用 Drive API 後，選取 [**憑證**]，然後選取 [**OAuth 2.0 用戶端 ID**]：![新增憑證][12]
+7. On enabling the Drive API, select **Credentials**, and select **OAuth 2.0 Client ID**:  
+![Add credentials][12]
 
-8. 選取 [**設定同意畫面**]。
+8. Select **Configure consent screen**.
 
-9. 在 [**OAuth 同意畫面**] 索引標籤上，輸入**產品名稱**，然後選取 [**儲存**]：![設定同意畫面][13]
+9. In the **OAuth consent screen** tab, enter a **Product Name**, and select **Save**:  
+![Configure consent screen][13]
 
-10. 在 [建立用戶端 ID] 頁面中：
+10. In the create client id page:  
 
-	1. 在 [應用程式類型] 中，選取 [Web 應用程式]。  
-	2.  輸入用戶端的名稱。  
-	3. 將重新導向 URL 設為您在 Azure 入口網站中新增 Google Drive API 時收到的重新導向 URL (在本主題中)。  
-	4. 選取 [**建立**]。  
+	1. In **Application type**, select **Web application**.  
+	2.  Enter a name for the client.  
+	3. Set the redirect URL to the redirect URL you received when you added the new Google Drive API in the Azure Portal (in this topic).  
+	4. Select **Create**.  
 
-	![建立用戶端 id][14]
+	![Create client id][14] 
 
-11. 隨即會顯示所註冊應用程式的用戶端 ID 與用戶端密碼。
+11. You are shown the client id and client secret of the registered application.
 
-Google 雲端硬碟應用程式便建立好了。您可以在 Azure 入口網站的 Google Drive API 組態中使用此應用程式。
+A new Google Drive app is created. You can use this app in your Google Drive API configuration in the Azure portal. 
 
-## 請參閱 REST API
+## See the REST APIs
 
-[Google Drive REST API](../connectors/connectors-create-api-googledrive.md) 參考。
+[Google Drive REST API](../connectors/connectors-create-api-googledrive.md) reference.
 
-## 摘要和後續步驟
-在本主題中，您已將 Google Drive API 新增至 PowersApps Enterprise。接下來，請授與使用者此 API 的存取權，讓使用者能夠將此 API 新增至其應用程式：
+## Summary and next steps
+In this topic, you added the Google Drive API to your PowersApps Enterprise. Next, give users access to the API so it can be added to their apps: 
 
-[新增連接並授與使用者存取權](powerapps-manage-api-connection-user-access.md)
-
+[Add a connection and give users access](powerapps-manage-api-connection-user-access.md)
+-->
 
 <!--References-->
 [1]: ./media/powerapps-create-api-googledrive/browse-to-registered-apis.PNG
@@ -115,4 +130,4 @@ Google 雲端硬碟應用程式便建立好了。您可以在 Azure 入口網站
 [15]: ./media/powerapps-create-api-googledrive/browseall.png
 [16]: ./media/powerapps-create-api-googledrive/allresources.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0504_2016-->

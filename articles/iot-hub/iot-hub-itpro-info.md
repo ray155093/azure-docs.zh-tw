@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="02/03/2016"
+ ms.date="04/29/2016"
  ms.author="dobett"/>
 
 # 設定和管理 IoT 中心的存取權
@@ -30,6 +30,7 @@
 | AMQP | 5671 |
 | 透過 WebSockets 的 AMQP | 443 |
 | MQTT | 8883 |
+| LWM2M (裝置管理) | 5684 |
 
 當您在 Azure 區域中建立 IoT 中心後，中心將在該中心的存留期間，保留相同的 IP 位址。不過，為了維護服務品質，如果 Microsoft 將 IoT 中樞移至不同的縮放單位，則它會獲派新的 IP 位址。
 
@@ -51,4 +52,4 @@ IoT 中心內對其他管理端點的存取權，也是透過一組權限來控�
 [lnk-devguide]: iot-hub-devguide.md#security
 [lnk-manage-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0504_2016-->

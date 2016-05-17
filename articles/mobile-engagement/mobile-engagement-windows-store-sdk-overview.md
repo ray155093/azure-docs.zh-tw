@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/03/2016" 
 	ms.author="piyushjo" />
 
 #適用於 Azure Mobile Engagement 的 Windows 通用 SDK 概觀
@@ -68,6 +68,6 @@ SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自�
 
 ### 從舊版升級
 
-請參閱[升級程序](mobile-engagement-windows-store-upgrade-procedure/)
+請參閱[升級程序](mobile-engagement-windows-store-upgrade-procedure.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0504_2016-->

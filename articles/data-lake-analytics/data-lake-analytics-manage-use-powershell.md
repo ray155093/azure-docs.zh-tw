@@ -3,7 +3,7 @@
    description="了解如何管理資料湖分析工作、資料來源、使用者。" 
    services="data-lake-analytics" 
    documentationCenter="" 
-   authors="mumian" 
+   authors="edmacauley" 
    manager="paulettm" 
    editor="cgronlun"/>
  
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
    ms.date="01/26/2016"
-   ms.author="jgao"/>
+   ms.author="edmaca"/>
 
 # 使用 Azure PowerShell 管理 Azure 資料湖分析
 
@@ -392,4 +392,4 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 	  }
 	}
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0504_2016-->

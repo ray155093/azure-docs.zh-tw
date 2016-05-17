@@ -3,8 +3,8 @@
 	description="本文章提供在 Azure VM 上執行 SQL Server 的常見問題解答。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="rothja"
-	manager="jeffreyg"
+	authors="v-shysun"
+	manager="msmets"
 	editor=""
 	tags="azure-service-management"/>
 
@@ -14,8 +14,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/15/2016"
-	ms.author="jroth"/>
+	ms.date="04/27/2016"
+	ms.author="v-shysun"/>
 
 # Azure 虛擬機器上的 SQL Server 常見問題集
 
@@ -75,4 +75,4 @@
 - [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md)
 - [Azure 虛擬機器中的 SQL Server 應用程式模式和開發策略](virtual-machines-windows-sql-server-app-patterns-dev-strategies.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0504_2016-->

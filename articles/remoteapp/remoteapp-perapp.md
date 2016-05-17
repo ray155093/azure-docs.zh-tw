@@ -102,4 +102,4 @@ AclLevel 屬性的可能值如下：
 ## 還沒有機會試用預覽功能嗎？
 如果您還未參與使用預覽功能，請使用本[問卷](http://www.instant.ly/s/AY83p)來要求存取權。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0511_2016-->

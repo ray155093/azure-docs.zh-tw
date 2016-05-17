@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="02/10/2016"
+	ms.date="04/28/2016"
 	ms.author="brohrer;garye" />
 
 # 如何選擇 Microsoft Azure Machine Learning 的演算法
@@ -237,4 +237,4 @@ Azure 機器學習中也可存取 [Vowpal Wabbit](https://msdn.microsoft.com/lib
 [9]: ./media/machine-learning-algorithm-choice/image9.png
 [10]: ./media/machine-learning-algorithm-choice/image10.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0504_2016-->
