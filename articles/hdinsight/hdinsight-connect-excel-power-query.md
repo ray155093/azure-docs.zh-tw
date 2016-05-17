@@ -75,7 +75,7 @@ Power Query add-in for Excel 可協助您將 HDInsight 叢集中的資料匯入�
 
 在本文中，您已了解到如何使用 Power Query 將 HDInsight 中的資料擷取至 Excel。同樣地，您也可以將 HDInsight 中的資料擷取至 Azure SQL Database。此外也可以將資料上傳至 HDInsight。若要深入了解，請參閱下列文章：
 
-* [使用 Microsoft Hive ODBC Driver 將 Excel 連接到 HDInsight][hdinsight-ODBC]
+* [使用 Microsoft Hive ODBC Driver 將 Excel 連接到 HDInsight](../../articles/hdinsight-connect-excel-hive-odbc-driver.md)
 * [將資料上傳到 HDInsight][hdinsight-upload-data]
 
 [hdinsight-ODBC]: hdinsight-connect-excel-hive-ODBC-driver.md
