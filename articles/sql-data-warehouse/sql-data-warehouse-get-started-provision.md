@@ -44,7 +44,7 @@
 
 	- **資料庫名稱**︰將用來參考 SQL 資料倉儲的名稱。對伺服器而言，它必須是唯一的。
 	
-    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-overview-scalability.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/zh-TW/pricing/details/sql-data-warehouse/)。
+    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-overview-scalability.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。
 
     - **訂用帳戶**：選取此 SQL 資料倉儲將會計費的訂用帳戶。
 

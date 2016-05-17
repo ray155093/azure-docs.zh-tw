@@ -38,7 +38,7 @@
 
 若要安裝最新版本的 SSDT：
 
-1. [下載 SQL Server Data Tools Preview][] (適用於 Visual Studio 2013 或 2015)。
+1. [下載 SQL Server Data Tools Preview][] \(適用於 Visual Studio 2013 或 2015)。
 2. 依照下載網站上的指示進行安裝。
 
 ## 後續步驟
