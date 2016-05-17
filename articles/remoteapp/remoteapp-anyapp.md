@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="02/02/2016"
+   ms.date="05/02/2016"
    ms.author="elizapo"/>
 
 # 使用 Azure RemoteApp 在任何裝置上執行任何 Windows 應用程式
@@ -117,5 +117,6 @@
 現在，您已經熟悉如何建立集合，請嘗試建立[使用 Office 365 的集合](remoteapp-tutorial-o365anywhere.md)。或者，您可以建立可存取區域網路的[混合式集合](remoteapp-create-hybrid-deployment.md)。
 
 <!--Image references-->
+ 
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

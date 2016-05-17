@@ -1,6 +1,6 @@
 <properties
 	pageTitle="以 .NET 開始使用 Azure 表格儲存體 | Microsoft Azure"
-	description="使用 Azure 表格儲存體 (Microsoft 的 NoSQL 資料存放區) 將結構化的資料儲存在雲端。從簡單的表格儲存體作業來開始，包括建立和刪除表格以及插入、更新、刪除和查詢資料。"
+	description="使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
 	services="storage"
 	documentationCenter=".net"
 	authors="tamram"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="04/07/2016"
+	ms.date="04/29/2016"
 	ms.author="tamram"/>
 
 
@@ -88,7 +88,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 ## 將實體加入至資料表
 
-使用衍生自 **TableEntity** 的自訂類別，將實體對應至 C# 物件。若要將實體新增至資料表，請建立一個類別來定義實體的屬性。下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。應該儲存在資料表服務中的任何屬性，都必須是公開 `get` 和 `set` 之支援類型的公用屬性。此外，您的實體類型「必須」公開無參數建構函式。
+使用衍生自 **TableEntity** 的自訂類別，將實體對應至 C# 物件。若要將實體新增至資料表，請建立一個類別來定義實體的屬性。下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。應該儲存在資料表服務中的任何屬性，都必須是公開 `get` 和 `set` 之支援類型的公用屬性。此外，您的實體類型「必須」公開無參數建構函數。
 
     public class CustomerEntity : TableEntity
     {
@@ -463,4 +463,4 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
   [How to: Programmatically access Table storage]: #tablestorage
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

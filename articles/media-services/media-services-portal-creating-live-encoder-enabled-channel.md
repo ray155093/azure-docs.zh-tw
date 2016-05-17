@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="使用 Azure 傳統入口網站建立通道，以執行從單一位元速率到多位元速率串流的即時編碼" 
+	pageTitle="如何使用 Azure 媒體服務執行即時串流，以使用 Azure 傳統入口網站建立多位元速率串流" 
 	description="本教學課程將逐步引導您使用 Azure 傳統入口網站建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。" 
 	services="media-services" 
 	documentationCenter="" 
 	authors="juliako,anilmur" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,11 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
- 	ms.date="05/03/2016" 
+ 	ms.date="05/05/2016" 
 	ms.author="juliako"/>
 
 
-#使用 Azure 傳統入口網站建立通道，以執行從單一位元速率到多位元速率串流的即時編碼
+#如何使用 Azure 媒體服務執行即時串流，以使用 Azure 傳統入口網站建立多位元速率串流
 
 > [AZURE.SELECTOR]
 - [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
@@ -26,7 +26,7 @@
 
 本教學課程將逐步引導您建立**通道**，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
->[AZURE.NOTE]如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用通道執行從單一位元速率到多位元速率串流的即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
+>[AZURE.NOTE]如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 ##常見即時串流案例
 
@@ -109,7 +109,7 @@
 2.	選取 [通道] 頁面。
 3.	選取 [新增+] 以新增通道。
 
-選擇 [**標準**] 編碼類型。此類型指定您想要建立通道，而啟用通道即可進行即時編碼。這表示內送單一位元速率串流會傳送至通道，並編碼為使用所指定即時編碼器設定的多位元速率串流。如需詳細資訊，請參閱[使用執行從單一位元速率到多位元速率串流之即時編碼的通道](media-services-manage-live-encoder-enabled-channels.md)。
+選擇 [**標準**] 編碼類型。此類型指定您想要建立通道，而啟用通道即可進行即時編碼。這表示內送單一位元速率串流會傳送至通道，並編碼為使用所指定即時編碼器設定的多位元速率串流。如需詳細資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 ![standard0][standard0]
 
@@ -119,7 +119,7 @@
 - 單一位元速率 RTMP
 - RTP (MPEG-TS)：透過 RTP 的 MPEG-2 傳輸串流。
 
-如需每種通訊協定的詳細說明，請參閱[使用執行從單一位元速率到多位元速率串流之即時編碼的通道](media-services-manage-live-encoder-enabled-channels.md)。
+如需每個通訊協定的詳細說明，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 ![standard1][standard1]
 
@@ -127,7 +127,7 @@
 
 在 [**廣告組態**] 頁面上，您可以指定廣告標記信號的來源。使用入口網站時，您只能選取 API，其指出通道內的即時編碼器應該接聽非同步廣告標記 API。使用入口網站時，您只能選取 API。
 
-如需詳細資訊，請參閱[使用執行從單一位元速率到多位元速率串流之即時編碼的通道](media-services-manage-live-encoder-enabled-channels.md)。
+如需詳細資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 ![standard2][standard2]
 
@@ -148,7 +148,7 @@
 
 ![standard5][standard5]
 
-如需詳細資訊，請參閱[使用執行從單一位元速率到多位元速率串流之即時編碼的通道](media-services-manage-live-encoder-enabled-channels.md)。
+如需詳細資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 
 ##取得內嵌 URL
@@ -276,4 +276,4 @@
 [standard4]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard4.png
 [standard5]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard_encode.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

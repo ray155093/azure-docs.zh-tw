@@ -15,7 +15,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="04/21/2016"
+   ms.date="05/05/2016"
    ms.author="glenga"/>
 
 # 建立您的第一個 Azure 函式
@@ -29,7 +29,7 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
 下列影片顯示如何在本教學課程中執行基本步驟：
 
-[AZURE.VIDEO create-your-first-azure-function]
+[AZURE.VIDEO create-your-first-azure-function-simple]
 
 ##從快速入門建立函式
 
@@ -64,4 +64,4 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/06/2016"
+   ms.date="05/04/2016"
    ms.author="charleywen"/>
 
 # 為資源管理員部署模型設定 ExpressRoute 和站對站並存連線
@@ -115,7 +115,7 @@
 		$ckt = Get-AzureRmExpressRouteCircuit -Name "YourCircuit" -ResourceGroupName "YourCircuitResourceGroup"
 		New-AzureRmVirtualNetworkGatewayConnection -Name "ERConnection" -ResourceGroupName $resgrp.ResourceGroupName -Location $location -VirtualNetworkGateway1 $gw -PeerId $ckt.Id -ConnectionType ExpressRoute
 
-6. 接下來，建立站對站 VPN 閘道。如需 VPN 閘道組態的詳細資訊，請參閱[設定 VNet 對 VNet 連線](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)。GatewaySKU 必須是 Standard 或 HighPerformance。VpnType 必須是 RouteBased。
+6. <a name="vpngw"></a>接下來，建立站對站 VPN 閘道。如需 VPN 閘道組態的詳細資訊，請參閱[設定 VNet 對 VNet 連線](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)。GatewaySKU 必須是 Standard 或 HighPerformance。VpnType 必須是 RouteBased。
 
 		$gwSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet
 		$gwIP = New-AzureRmPublicIpAddress -Name "VPNGatewayIP" -ResourceGroupName $resgrp.ResourceGroupName -Location $location -AllocationMethod Dynamic
@@ -137,9 +137,11 @@
 
 ## <a name="add"></a>為已經存在的 VNet 設定並存的連線
 
-如果您現有的虛擬網路已透過 ExpressRoute 或站對站 VPN 連線進行連線，則為了啟用這兩個連線以連接到現有虛擬網路，您必須先刪除現有閘道器。這表示當您進行此設定時，本機設備將會與使用該閘道器的虛擬網路中斷連線。
+如果您有現有的虛擬網路，請檢查閘道器子網路大小。如果閘道器子網路是/28 或/29，您必須先刪除虛擬網路閘道器，並增加閘道器子網路大小。本節中的步驟將示範如何執行該作業。
 
-**開始設定之前：**請確認您的虛擬網路有足夠的 IP 位址，讓您能夠增加閘道器子網路的大小。請注意，即使您擁有足夠的 IP 位址，還是必須刪除閘道，然後重新建立它。這是因為閘道必須重新建立，才能容納並存的連線。
+如果閘道器子網路是/27 以上且虛擬網路是透過 ExpressRoute 連線，則可以略過下列步驟，並且繼續進行上一節中的[「步驟 6 - 建立站對站 VPN 閘道」](#vpngw)。
+
+>[AZURE.NOTE] 當您刪除現有閘道器時，您在進行此設定時，本機設備將會與虛擬網路中斷連線。
 
 1. 您必須安裝最新版的 Azure PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。 
 
@@ -149,19 +151,20 @@
 
 3. 刪除閘道子網路。
 		
-		$vnet = Get-AzureRmVirtualNetworkGateway -Name <yourvnetname> -ResourceGroupName <yourresourcegroup> 
+		$vnet = Get-AzureRmVirtualNetwork -Name <yourvnetname> -ResourceGroupName <yourresourcegroup> 
 		Remove-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet -VirtualNetwork $vnet
 
 4. 新增 /27 或更大的閘道子網路。
+	>[AZURE.NOTE] 如果您的虛擬網路中沒有足夠的 IP 位址可以增加閘道器子網路大小，您必須新增更多 IP 位址空間。
 
-		$vnet = Get-AzureRmVirtualNetworkGateway -Name <yourvnetname> -ResourceGroupName <yourresourcegroup>
+		$vnet = Get-AzureRmVirtualNetwork -Name <yourvnetname> -ResourceGroupName <yourresourcegroup>
 		Add-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet -AddressPrefix "10.200.255.0/24"
 
 	儲存 VNet 組態。
 
 		$vnet = Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
-5. 此時，您必須使用沒有閘道器的 VNet。若要建立新的閘道並完成連線，您可以繼續進行[步驟 4 - 建立 ExpressRoute 閘道](#gw) (您可以在先前的步驟組中找到)。
+5. 此時，您必須使用沒有閘道器的 VNet。若要建立新的閘道器並完成連接，您可以繼續進行[步驟 4 - 建立 ExpressRoute 閘道器](#gw) (您可以在先前的步驟組中找到)。
 
 ## 將點對站組態新增至 VPN 閘道
 您可以在並存設定中，依照下列步驟將點對站組態新增至您的 VPN 閘道。
@@ -191,4 +194,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -77,7 +77,7 @@
 [載入範例資料]: sql-data-warehouse-get-started-manually-load-samples.md
 [PowerShell Cmdlet 和 REST API]: sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: sql-database-configure-firewall-settings.md
-[如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
+[如何安裝和設定 Azure PowerShell]: ../powershell/powershell-install-configure.md
 [如何從 Azure 入口網站建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
 <!--MSDN references--> 
@@ -90,4 +90,4 @@
 [SQL 資料倉儲價格]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

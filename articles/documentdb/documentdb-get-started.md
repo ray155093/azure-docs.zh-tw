@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="04/25/2016"
+	ms.date="05/11/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -447,7 +447,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 					queryOptions);
 
 			Console.WriteLine("Running direct SQL query...");
-			foreach (Family family in familyQuery)
+			foreach (Family family in familyQueryInSql)
 			{
 					Console.WriteLine("\tRead {0}", family);
 			}
@@ -610,4 +610,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

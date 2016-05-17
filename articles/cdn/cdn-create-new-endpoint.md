@@ -12,7 +12,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="04/26/2016" 
+	 ms.date="05/11/2016" 
 	 ms.author="casoper"/>
 
 # 使用 Azure CDN  
@@ -27,28 +27,9 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 > [AZURE.NOTE] 依預設，一個 Azure 訂用帳戶只能擁有四個 CDN 設定檔。而每個 CDN 設定檔則只能擁有十個 CDN 端點。
 >
-> CDN 定價是根據 CDN 設定檔層級來套用的。如果您想要混合使用標準和進階的 CDN 功能，就需要擁有多個 CDN 設定檔。
+> CDN 定價是根據 CDN 設定檔層級來套用的。如果您想要混合使用 Azure CDN 定價層，您需要擁有多個 CDN 設定檔。
 
-
-**建立新的 CDN 設定檔**
-
-1. 在 [Azure 入口網站](https://portal.azure.com)的左上角，按一下 [新增]。在 [新增] 刀鋒視窗中，依序選取 [媒體 + CDN] 和 [CDN]。
-
-    此時會顯示新的 [CDN 設定檔] 刀鋒視窗。
-
-    ![新增 CDN 設定檔][new-cdn-profile]
-
-2. 輸入 CDN 設定檔的名稱。
-
-3. 選取 [定價層] 或使用預設值。
-
-4. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md#resource-groups)。
-
-5. 選取這個 CDN 設定檔的 [訂用帳戶]。
-
-6. 選取 [位置]。此為儲存您 CDN 設定檔資訊的所在 Azure 位置。其不會影響 CDN 端點位置。此位置不一定是與儲存體帳戶相同的位置。
-
-7. 按一下 [建立] 按鈕，以建立新的設定檔。
+[AZURE.INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## 建立新的 CDN 端點
 
@@ -84,7 +65,9 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 	
 	> [AZURE.NOTE] [原始連接埠] 只會影響端點用來從原始來源擷取資訊的連接埠。不論 [原始連接埠] 為何，端點本身只會透過預設 HTTP 和 HTTPS 連接埠 (80 和 443) 提供給終端用戶端使用。
 	>
-	>使用 HTTPS 存取 CDN 內容具有下列限制：
+	> **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 行為詳細資料](cdn-akamai-behavior-details.md)。
+	>
+	> 使用 HTTPS 存取 CDN 內容具有下列限制：
 	> 
 	> - 您必須使用 CDN 所提供的 SSL 憑證。不支援第三方憑證。
 	> - 您必須使用 CDN 提供的網域 (`<endpointname>.azureedge.net`) 來存取 HTTPS 內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
@@ -95,7 +78,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
     ![CDN 端點][cdn-endpoint-success]
 
-    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN。它通常在 90 分鐘之內即可供使用，但在某些情況下可能需要更久的時間。
+    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN。若為<b>來自 Akamai 的 Azure CDN</b> 設定檔，通常會在一分鐘之內完成傳播。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。
 	>	 
 	> 嘗試在端點組態傳播到 POP 之前就使用 CDN 網域名稱的使用者會收到 HTTP 404 回應碼。如果在端點建立好後已過了好幾個小時，而您仍然收到 404 回應，請參閱[針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)。
 
@@ -107,10 +90,9 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 - [清除 Azure CDN 端點](cdn-purge-endpoint.md)
 - [針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)
 
-[new-cdn-profile]: ./media/cdn-create-new-endpoint/cdn-new-profile.png
 [cdn-profile-settings]: ./media/cdn-create-new-endpoint/cdn-profile-settings.png
 [cdn-new-endpoint-button]: ./media/cdn-create-new-endpoint/cdn-new-endpoint-button.png
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

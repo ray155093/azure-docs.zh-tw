@@ -16,7 +16,9 @@
  ms.date="04/29/2016"
  ms.author="elfarber"/>
 
-# 開始使用 Azure IoT 中樞裝置管理 (預覽)
+# 利用 C# 開始使用 Azure IoT 中樞裝置管理 (預覽)
+
+[AZURE.INCLUDE [iot-hub-device-management-get-started-selector](../../includes/iot-hub-device-management-get-started-selector.md)]
 
 ## 簡介
 若要開始使用 Azure IoT 中樞裝置管理，您必須建立 Azure IoT 中樞、在 IoT 中樞佈建裝置，並啟動多個模擬的裝置。本教學課程將逐步引導您完成下列步驟。
@@ -51,7 +53,9 @@
   -   選取一個**價格和級別層**。本教學課程不需要特定層。
   -   在**資源群組**中，建立新的資源群組，或選取現有的資源群組。如需詳細資訊，請參閱[使用資源群組來管理您的 Azure 資源]。
   -   勾選 [啟用裝置管理] 方塊。
-  -   在 [位置] 中，選取要裝載您的 IoT 中樞的位置。IoT 中樞裝置管理功能僅適用於美國東部、北歐和東亞。
+  -   在 [位置] 中，選取要裝載您的 IoT 中樞的位置。在公開預覽期間，IoT 中樞裝置管理功能僅適用於美國東部、北歐和東亞。未來它可在所有區域使用。
+
+    > [AZURE.NOTE]  如果您未勾選 [啟用裝置管理] 方塊，則範例無法運作。
 
 4.  選擇 IoT 中樞組態選項時，請按一下 [建立]。Azure 可能需要幾分鐘的時間來建立您的 IoT 中樞。若要檢查狀態，您可以在「開始面板」或 [通知] 面板中監視進度。
 
@@ -79,19 +83,19 @@
 
 2.  複製 github 儲存機制。**務必在沒有任何空格的目錄中複製。**
 
-  ```
-  git clone --recursive --branch dmpreview https://github.com/Azure/azure-iot-sdks.git
-  ```
+	  ```
+	  git clone --recursive --branch dmpreview https://github.com/Azure/azure-iot-sdks.git
+	  ```
 
 3.  從您複製 **azure-iot-sdks** 儲存機制的根資料夾，瀏覽至 **\\azure-iot-sdks\\csharp\\service\\samples** 資料夾並執行，同時使用前一節的連接字串取代預留位置值︰
 
-  ```
-  setup.bat <IoT Hub Connection String>
-  ```
+	  ```
+	  setup.bat <IoT Hub Connection String>
+	  ```
 
 此指令碼會執行下列動作︰
 
-1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 ****azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
+1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 **azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
 
 2.  建立模擬的裝置專案 **iotdm\_simple\_sample.vcxproj**。
 
@@ -131,7 +135,7 @@
 
 - [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
 
-- [如何使用裝置工作更新裝置韌體][lnk-tutorial-jobs]
+- [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
 
 <!-- images and links -->
 [img-new-hub]: media/iot-hub-device-management-get-started/image1.png
@@ -148,4 +152,4 @@
 [lnk-tutorial-queries]: iot-hub-device-management-device-query.md
 [lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

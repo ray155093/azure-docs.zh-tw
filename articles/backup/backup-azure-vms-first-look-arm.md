@@ -78,29 +78,39 @@
 
     >[AZURE.IMPORTANT] 如果您不確定 VM 的所在位置，請關閉保存庫建立對話方塊，並移至入口網站的虛擬機器清單。如果您在多個區域中有虛擬機器，您必須在每個區域中建立復原服務保存庫。請先在第一個位置建立保存庫，再進入下一個位置。儲存備份資料時，不需要指定儲存體帳戶，復原服務保存庫和「Azure 備份」服務會自動處理此作業。
 
-8. 按一下 [建立]。要等復原服務保存庫建立好，可能需要一些時間。請監視入口網站右上方區域中的狀態通知。保存庫一旦建立好，就會在入口網站中開啟。
+8. 按一下 [建立]。要等復原服務保存庫建立好，可能需要一些時間。請監視入口網站右上方區域中的狀態通知。保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。
 
-9. 在您的保存庫中，按一下 [所有設定] > [備份組態] 以檢視 [儲存體複寫類型]。選擇保存庫的儲存體複寫選項。
+    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/rs-list-of-vaults.png)
 
-    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration.png)
+現在您已建立好保存庫，接下來要了解如何設定儲存體複寫。
 
-    根據預設，保存庫具有異地備援儲存體。如果您使用 Azure 做為主要的備份儲存體端點，則建議您繼續使用異地備援儲存體。如果您使用 Azure 做為非主要的備份儲存體端點，則可以考慮選擇本地備援儲存體，以減少在 Azure 中儲存資料的成本。在此[概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+### 設定儲存體複寫
+
+儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+
+若要編輯儲存體複寫設定︰
+
+1. 選取保存庫以開啟保存庫儀表板和 [設定] 刀鋒視窗。如果 [設定] 刀鋒視窗未開啟，請按一下保存庫儀表板中的 [所有設定]。
+
+2. 在 [設定] 刀鋒視窗上按一下 [備份基礎結構] > [備份組態]，開啟 [備份組態] 刀鋒視窗。在 [備份組態] 刀鋒視窗上，選擇保存庫的儲存體複寫選項。
+
+    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
 
     選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
-## 步驟 2 - 選取案例設定原則並定義要保護的項目
-在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何加入至訂用帳戶的新虛擬機器。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。
+## 步驟 2 - 選取備份目標、設定原則並定義要保護的項目
+
+在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何加入至訂用帳戶的新虛擬機器。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。在 Azure 入口網站中，案例是指您要放入復原服務保存庫中的項目。原則是復原點擷取頻率和時間的排程。原則也會包含復原點的保留範圍。
 
 1. 如果您已開啟復原服務保存庫，請繼續步驟 2。如果您並未開啟復原服務保存庫，但位於 Azure 入口網站中，請在 [中樞] 功能表上按一下 [瀏覽]。
 
-    - 在資源清單中輸入**復原服務**。
-    - 當您開始輸入時，清單將會根據您輸入的文字進行篩選。當您看到 [復原服務保存庫] 時，請按一下它。
+  - 在資源清單中輸入**復原服務**。
+  - 當您開始輸入時，清單將會根據您輸入的文字進行篩選。當您看到 [復原服務保存庫] 時，請按一下它。
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
     隨即會出現 [復原服務保存庫] 清單。
-
-    - 在 [復原服務保存庫] 清單中選取保存庫。
+  - 在 [復原服務保存庫] 清單中選取保存庫。
 
     選取的保存庫儀表板隨即開啟。
 
@@ -114,31 +124,33 @@
 
     ![探索 VM](./media/backup-azure-vms-first-look-arm/discovering-new-vms.png)
 
-3. 在 [備份] 刀鋒視窗中按一下 [案例] 以開啟 [案例] 刀鋒視窗。
+3. 在 [備份] 刀鋒視窗中，按一下 [備份目標] 以開啟 [備份目標] 刀鋒視窗。
 
-    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-scenario-one.png)
+    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-one.png)
 
-4. 在 [案例] 刀鋒視窗上，於 [備份類型] 功能表上選取 [Azure 虛擬機器備份]，然後按一下 [確定]。
+4. 在 [備份目標] 刀鋒視窗中，將 [工作負載的執行位置] 設定為 [Azure]，並將 [欲備份的項目] 設定為 [虛擬機器]，然後按一下 [確定]。
 
-    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-rs-backup-scenario-two.png)
+    [備份目標] 刀鋒視窗隨即關閉，然後開啟 [備份原則] 刀鋒視窗。
 
-    [案例] 刀鋒視窗隨即關閉，然後開啟 [備份原則] 刀鋒視窗。
+    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-two.png)
 
-5. 在 [備份] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定]。
+5. 在 [備份原則] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定]。
 
-    ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy.png)
+    ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
 
-    預設原則便會列在詳細資料中。如果您想要建立新原則，請選取 [建立新的]。如需定義備份原則的指示，請參閱[定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。一旦您按一下 [確定] 時，備份原則便會與保存庫建立關聯。接下來選擇要與保存庫建立關聯的 VM。
+    預設原則的詳細資料便會列在詳細資料中。如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]。下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。如需定義備份原則的指示，請參閱[定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。一旦您按一下 [確定] 時，備份原則便會與保存庫建立關聯。
+
+    接下來選擇要與保存庫建立關聯的 VM。
 
 6. 選擇要與指定原則建立關聯的虛擬機器，然後按一下 [選取]。
 
-    ![選取工作負載](./media/backup-azure-vms-first-look-arm/select-vms-to-backup.png)
+    ![選取工作負載](./media/backup-azure-vms-first-look-arm/select-vms-to-backup-new.png)
 
-    如果清單中沒有看到所需 VM，請按一下 [重新整理]。如果還是沒看到所需 VM，請確認它是否已存在於相同 Azure 位置中做為復原服務保存庫。
+    如果沒看到所需 VM，請確認它是否已存在於相同 Azure 位置中做為復原服務保存庫。
 
 7. 現在您已定義保存庫的所有設定，接下來在 [備份] 刀鋒視窗中按一下頁面底部的 [啟用備份]。這會將原則部署到保存庫和 VM。
 
-    ![啟用備份](./media/backup-azure-vms-first-look-arm/enable-backup-settings.png)
+    ![啟用備份](./media/backup-azure-vms-first-look-arm/enable-backup-settings-new.png)
 
 
 ## 步驟 3 - 初始備份
@@ -219,7 +231,7 @@
 | --- | --- | --- |
 | 安裝 VM 代理程式 | <li>下載並安裝[代理程式 MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。您需要有系統管理員權限，才能完成安裝。<li>[更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 | <li>從 GitHub 安裝最新的 [Linux 代理程式](https://github.com/Azure/WALinuxAgent)。您需要有系統管理員權限，才能完成安裝。<li> [更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 |
 | 更新 VM 代理程式 | 更新 VM 代理程式與重新安裝 [VM 代理程式二進位檔](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)一樣簡單。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 | 請遵循[更新 Linux VM 代理程式](../virtual-machines-linux-update-agent.md)上的指示。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 |
-| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的 C:\\WindowsAzure\\Packages 資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
+| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的「C:\\WindowsAzure\\Packages」資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
 
 
 ### 備份擴充功能
@@ -235,4 +247,4 @@
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

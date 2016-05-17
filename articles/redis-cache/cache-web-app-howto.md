@@ -12,8 +12,8 @@
 	ms.workload="tbd" 
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="04/28/2016" 
+	ms.topic="hero-article" 
+	ms.date="05/05/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Redis 快取建立 Web 應用程式
@@ -24,7 +24,7 @@
 
 -	如何在 Visual Studio 中建立 ASP.NET MVC 5 Web 應用程式。
 -	如何使用 Entity Framework 從資料庫存取資料。
--	如何透過使用 Azure Redis 快取來儲存和擷取資料，以改善整個資料並降低資料庫負載。
+-	如何透過使用 Azure Redis 快取來儲存和擷取資料，以改善資料輸送量並降低資料庫負載。
 -	如何使用 Redis 的已排序集合來擷取前 5 名的隊伍。
 -	如何使用 ARM 範本為應用程式佈建 Azure 資源。
 -	如何使用 Visual Studio 將應用程式發佈至 Azure。
@@ -838,4 +838,4 @@
 [cache-delete-resource-group]: ./media/cache-web-app-howto/cache-delete-resource-group.png
 [cache-delete-confirm]: ./media/cache-web-app-howto/cache-delete-confirm.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

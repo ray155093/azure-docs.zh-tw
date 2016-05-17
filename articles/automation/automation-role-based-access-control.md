@@ -5,15 +5,16 @@
    documentationCenter=""
    authors="SnehaGunda"
    manager="stevenka"
-   editor="tysonn" />
+   editor="tysonn"
+   keywords="自動化 rbac, 角色型存取控制, azure rbac" />
 <tags 
    ms.service="automation"
    ms.devlang="na"
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/11/2016"
-   ms.author="sngun"/>
+   ms.date="05/10/2016"
+   ms.author="magoedte;sngun"/>
 
 # Azure 自動化中的角色型存取控制
 
@@ -43,7 +44,7 @@
 
     ![[存取] 按鈕](media/automation-role-based-access-control/automation-01-access-button.png)
 
->[AZURE.NOTE]  **訂用帳戶管理員**已經存在做為預設的使用者。訂用帳戶管理員 Active Directory 群組包含服務系統管理員和 Azure 訂用帳戶的共同管理員。服務系統管理員為您的 Azure 訂用帳戶和其資源的擁有者，而且會具有對自動化帳戶繼承的擁有者角色。這表示存取權是對訂用帳戶的**服務系統管理員和共同管理員****繼承**，並且對所有其他的使用者**指派**。按一下 [訂用帳戶管理員] 來檢視有關其權限的其他詳細資料。
+>[AZURE.NOTE]  **訂用帳戶管理員**已經存在做為預設的使用者。訂用帳戶管理員 Active Directory 群組包含服務系統管理員和 Azure 訂用帳戶的共同管理員。服務系統管理員為您的 Azure 訂用帳戶和其資源的擁有者，而且會具有對自動化帳戶繼承的擁有者角色。這表示存取權是對訂用帳戶的 **服務系統管理員和共同管理員** **繼承**，並且對所有其他的使用者 **指派** 。按一下 [訂用帳戶管理員] 來檢視有關其權限的其他詳細資料。
 
 ### 加入新使用者並指派角色
 
@@ -139,4 +140,4 @@
 - 如需以不同方式啟動 Runbook 的詳細資訊，請參閱[啟動 Runbook](automation-starting-a-runbook.md)
 - 如需不同類型的詳細資訊，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

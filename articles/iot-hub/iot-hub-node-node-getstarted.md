@@ -56,10 +56,262 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 您現在已經建立 IoT 中樞，並擁有完成本教學課程其餘部分所需的 IoT 中樞主機名稱、IoT 中樞連接字串、事件中樞相容名稱和事件中樞相容端點值。
 
-[AZURE.INCLUDE [iot-hub-get-started-cloud-node](../../includes/iot-hub-get-started-cloud-node.md)]
+## 建立裝置識別
 
+在本節中，您將建立 Node.js 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。裝置無法連線到 IoT 中樞，除非它在裝置身分識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中心開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
-[AZURE.INCLUDE [iot-hub-get-started-device-node](../../includes/iot-hub-get-started-device-node.md)]
+1. 建立稱為 **createdeviceidentity** 的新的空資料夾。在 **createdeviceidentity** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。接受所有預設值：
+
+    ```
+    npm init
+    ```
+
+2. 在 **createdeviceidentity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iothub** 封裝：
+
+    ```
+    npm install azure-iothub --save
+    ```
+
+3. 使用文字編輯器，在 **createdeviceidentity** 資料夾中建立新的 **CreateDeviceIdentity.js** 檔案。
+
+4. 在 **CreateDeviceIdentity.js** 檔案開頭新增下列 `require` 陳述式：
+
+    ```
+    'use strict';
+    
+    var iothub = require('azure-iothub');
+    ```
+
+5. 將下列程式碼加入至 **CreateDeviceIdentity.js** 檔案，並將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串：
+
+    ```
+    var connectionString = '{iothub connection string}';
+    
+    var registry = iothub.Registry.fromConnectionString(connectionString);
+    ```
+
+6. 加入下列程式碼以在 IoT 中樞的裝置身分識別登錄建立新的裝置定義。如果登錄中沒有該裝置識別碼，此程式碼會建立新的裝置，否則會傳回現有裝置的金鑰：
+
+    ```
+    var device = new iothub.Device(null);
+    device.deviceId = 'myFirstDevice';
+    registry.create(device, function(err, deviceInfo, res) {
+      if (err) {
+        registry.get(device.deviceId, printDeviceInfo);
+      }
+      if (deviceInfo) {
+        printDeviceInfo(err, deviceInfo, res)
+      }
+    });
+
+    function printDeviceInfo(err, deviceInfo, res) {
+      if (deviceInfo) {
+        console.log('Device id: ' + deviceInfo.deviceId);
+        console.log('Device key: ' + deviceInfo.authentication.SymmetricKey.primaryKey);
+      }
+    }
+    ```
+
+7. 儲存並關閉 **CreateDeviceIdentity.js** 檔案。
+
+8. 若要執行 **createdeviceidentity** 應用程式，請在命令提示字元中於 createdeviceidentity 資料夾內執行下列命令：
+
+    ```
+    node CreateDeviceIdentity.js 
+    ```
+
+9. 記下**裝置識別碼**和**裝置金鑰**。稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，會需要這些資料。
+
+> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰，來做為安全性認證，以及啟用或停用旗標，讓您停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+
+## 接收裝置到雲端的訊息
+
+在本節中，您將建立 Node.js 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。[處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
+
+> [AZURE.NOTE] 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQPS 通訊協定。
+
+1. 建立稱為 **readdevicetocloudmessages** 的新的空資料夾。在 **readdevicetocloudmessages** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。接受所有預設值：
+
+    ```
+    npm init
+    ```
+
+2. 在 **readdevicetocloudmessages** 資料夾的命令提示字元中，執行下列命令以安裝 **amqp10** 和 **bluebird** 封裝：
+
+    ```
+    npm install amqp10 bluebird --save
+    ```
+
+3. 使用文字編輯器，在 **readdevicetocloudmessages** 資料夾中建立新的 **ReadDeviceToCloudMessages.js** 檔案。
+
+4. 在 **ReadDeviceToCloudMessages.js** 檔案開頭新增下列 `require` 陳述式：
+
+    ```
+    'use strict';
+
+    var AMQPClient = require('amqp10').Client;
+    var Policy = require('amqp10').Policy;
+    var translator = require('amqp10').translator;
+    var Promise = require('bluebird');
+    ```
+
+5. 新增下列變數宣告，將預留位置取代為您先前記下的值。**{您的事件中樞相容命名空間}** 預留位置的值來自入口網站中的 [事件中樞相容端點] 欄位，其形式為 **namespace.servicebus.windows.net** (沒有 **sb://* 首碼)。
+
+    ```
+    var protocol = 'amqps';
+    var eventHubHost = '{your event hub-compatible namespace}';
+    var sasName = 'iothubowner';
+    var sasKey = '{your iot hub key}';
+    var eventHubName = '{your event hub-compatible name}';
+    var numPartitions = 2;
+    ```
+
+    > [AZURE.NOTE] 此程式碼假設您已在 F1 (免費) 層建立 IoT 中樞。免費 IoT 中樞有 "0" 和 "1" 這兩個資料分割。如果您使用另一種定價層建立 IoT 中樞，則應調整程式碼來為每個資料分割建立 **MessageReceiver**。
+
+6. 新增下列篩選器定義。在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。這很適合測試環境，因為如此一來您就可以看到目前的訊息集，但在生產環境中，您的程式碼應該要確定它能處理所有訊息，如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+
+    ```
+    var filterOffset = new Date().getTime();
+    var filterOption;
+    if (filterOffset) {
+      filterOption = {
+      attach: { source: { filter: {
+      'apache.org:selector-filter:string': translator(
+        ['described', ['symbol', 'apache.org:selector-filter:string'], ['string', "amqp.annotation.x-opt-enqueuedtimeutc > " + filterOffset + ""]])
+        } } }
+      };
+    }
+    ```
+
+7. 新增下列程式碼來建立接收位址和 AMQP 用戶端：
+
+    ```
+    var uri = protocol + '://' + encodeURIComponent(sasName) + ':' + encodeURIComponent(sasKey) + '@' + eventHubHost;
+    var recvAddr = eventHubName + '/ConsumerGroups/$default/Partitions/';
+    
+    var client = new AMQPClient(Policy.EventHub);
+    ```
+
+8. 新增下列兩個會將輸出列印到主控台的函數：
+
+    ```
+    var messageHandler = function (partitionId, message) {
+      console.log('Received(' + partitionId + '): ', message.body);
+    };
+    
+    var errorHandler = function(partitionId, err) {
+      console.warn('** Receive error: ', err);
+    };
+    ```
+
+9. 新增下列函數，以做為使用篩選器的給定資料分割接收者：
+
+    ```
+    var createPartitionReceiver = function(partitionId, receiveAddress, filterOption) {
+      return client.createReceiver(receiveAddress, filterOption)
+        .then(function (receiver) {
+          console.log('Listening on partition: ' + partitionId);
+          receiver.on('message', messageHandler.bind(null, partitionId));
+          receiver.on('errorReceived', errorHandler.bind(null, partitionId));
+        });
+    };
+    ```
+
+10. 新增下列程式碼，以連接到事件中樞相容端點並啟動接收者：
+
+    ```
+    client.connect(uri)
+      .then(function () {
+        var partitions = [];
+        for (var i = 0; i < numPartitions; ++i) {
+          partitions.push(createPartitionReceiver(i, recvAddr + i, filterOption));
+        }
+        return Promise.all(partitions);
+    })
+    .error(function (e) {
+        console.warn('Connection error: ', e);
+    });
+    ```
+
+11. 儲存並關閉 **ReadDeviceToCloudMessages.js** 檔案。
+
+## 建立模擬裝置應用程式
+
+在本節中，您會撰寫 Node.js 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
+
+1. 建立稱為 **simulateddevice** 的新的空資料夾。在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。接受所有預設值：
+
+    ```
+    npm init
+    ```
+
+2. 在 **simulateddevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device-amqp** 封裝：
+
+    ```
+    npm install azure-iot-device-amqp --save
+    ```
+
+3. 使用文字編輯器，在 **simulateddevice** 資料夾中建立新的 **SimulatedDevice.js** 檔案。
+
+4. 在 **SimulatedDevice.js** 檔案開頭新增下列 `require` 陳述式：
+
+    ```
+    'use strict';
+
+    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+    var Message = require('azure-iot-device').Message;
+    ```
+
+5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdeviceid}** 和 **{yourdevicekey}** 取代為您在「建立裝置身分識別」一節中產生的裝置值：
+
+    ```
+    var connectionString = 'HostName={youriothubname}.azure-devices.net;DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
+    
+    var client = clientFromConnectionString(connectionString);
+    ```
+
+6. 新增下列函數來顯示應用程式的輸出：
+
+    ```
+    function printResultFor(op) {
+      return function printResult(err, res) {
+        if (err) console.log(op + ' error: ' + err.toString());
+        if (res) console.log(op + ' status: ' + res.constructor.name);
+      };
+    }
+    ```
+
+7. 建立回呼，並使用 **setInterval** 函數每秒將新訊息傳送至 IoT 中樞：
+
+    ```
+    var connectCallback = function (err) {
+      if (err) {
+        console.log('Could not connect: ' + err);
+      } else {
+        console.log('Client connected');
+
+        // Create a message and send it to the IoT Hub every second
+        setInterval(function(){
+            var windSpeed = 10 + (Math.random() * 4);
+            var data = JSON.stringify({ deviceId: 'mydevice', windSpeed: windSpeed });
+            var message = new Message(data);
+            console.log("Sending message: " + message.getData());
+            client.sendEvent(message, printResultFor('send'));
+        }, 2000);
+      }
+    };
+    ```
+
+8. 開啟您 IoT 中樞的連線，並開始傳送訊息︰
+
+    ```
+    client.open(connectCallback);
+    ```
+
+9. 儲存並關閉 **SimulatedDevice.js** 檔案。
+
+> [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+
 
 ## 執行應用程式
 
@@ -100,6 +352,12 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [43]: ./media/iot-hub-csharp-csharp-getstarted/usage.png
 
 <!-- Links -->
+[lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+
+[lnk-eventhubs-tutorial]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
+[lnk-devguide-identity]: iot-hub-devguide.md#identityregistry
+[lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
+
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/node/device/doc/devbox_setup.md
 [lnk-c2d-tutorial]: iot-hub-csharp-csharp-c2d.md
 [lnk-process-d2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
@@ -109,4 +367,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->
