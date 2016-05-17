@@ -20,17 +20,17 @@
 
 # 使用 Docker Swarm 管理容器
 
-Docker Swarm 提供跨一組匯集的 Docker 主機來部署容器化工作負載的環境。Docker Swarm 使用原生 Docker API，而且用來管理 Docker Swarm 上容器的工作流程與在單一容器主機時的工作流程幾乎相同。本文件將提供在 Docker Swarm 的 Azure 容器服務執行個體中部署容器化工作負載的簡單範例。如需有關 Docker Swarm 的更深入文件，請參閱 [Docker.com 上的 Docker Swarm](https://docs.docker.com/swarm/)。
+Docker Swarm 提供跨一組匯集的 Docker 主機來部署容器化工作負載的環境。Docker Swarm 使用原生 Docker API。用來管理 Docker Swarm 上容器的工作流程與在單一容器主機時的工作流程幾乎相同。本文件提供在 Docker Swarm 的 Azure 容器服務執行個體中部署容器化工作負載的簡單範例。如需有關 Docker Swarm 的更深入文件，請參閱 [Docker.com 上的 Docker Swarm](https://docs.docker.com/swarm/)。
 
 本文件中之練習的先決條件︰
 
-[在 Azure 容器服務上建立 Swarm 叢集](./container-service-deployment.md)
+[在 Azure 容器服務中建立 Swarm 叢集](./container-service-deployment.md)
 
-[連接到 Azure 容器服務上的 Swarm 叢集](./container-service-connect.md)
+[連接到 Azure 容器服務中的 Swarm 叢集](./container-service-connect.md)
 
 ## 部署新容器
 
-若要在 Docker Swarm 建立新容器，請使用 `docker run` 命令。此範例會從 `yeasy/simple-web` 映像建立容器。
+若要在 Docker Swarm 建立新容器，請使用 `docker run` 命令。此範例會從 `yeasy/simple-web` 映像建立容器：
 
 
 ```bash
@@ -39,7 +39,7 @@ user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
 4298d397b9ab6f37e2d1978ef3c8c1537c938e98a8bf096ff00def2eab04bf72
 ```
 
-建立容器之後，使用 `docker ps` 傳回容器的相關資訊。請注意，這裡會列出裝載容器的 Swarm 代理程式。
+建立容器之後，使用 `docker ps` 傳回容器的相關資訊。請注意，這裡會列出裝載容器的 Swarm 代理程式：
 
 
 ```bash
@@ -49,14 +49,14 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   31 seconds ago      Up 9 seconds        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-在此容器中執行的應用程式現在可以透過 Swarm 代理程式負載平衡器的公用 DNS 名稱來存取。您可以在 Azure 入口網站中找到此資訊。
+您現在可以透過 Swarm 代理程式負載平衡器的公用 DNS 名稱來存取此容器中執行的應用程式。您可在 Azure 入口網站中找到此資訊：
 
 
-![](media/real-visit.jpg)
+![實際瀏覽結果](media/real-visit.jpg)
 
 ## 部署多個容器
 
-當 Docker Swarm 叢集上啟動多個容器時，可使用 `docker ps` 命令來查看容器執行所在的主機。在此範例中，三個容器平均分散在三個 Swarm 代理程式中。
+當 Docker Swarm 叢集上啟動多個容器時，您可以使用 `docker ps` 命令來查看容器執行所在的主機。在此範例中，三個容器平均分散在三個 Swarm 代理程式中：
 
 
 ```bash
@@ -68,11 +68,11 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   2 minutes ago       Up 2 minutes        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-## 使用 Docker Compose 部署容器
+## 使用 Docker Compose 來部署容器
 
-Docker Compose 可用來自動部署和設定多個容器。若要這麼做，請確定已建立 SSH 通道，並已設定 DOCKER\_HOST 變數。
+您可以使用 Docker Compose 來自動部署和設定多個容器。若要這麼做，請確定已建立安全殼層 (SSH) 通道，並已設定 DOCKER\_HOST 變數。
 
-在您的本機系統上建立 docker-compose.yml 檔案。[這裡](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml)有提供範例。
+在您的本機系統上建立 docker-compose.yml 檔案。若要這樣做，請使用此[範例](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml)。
 
 ```bash
 web:
@@ -88,7 +88,7 @@ rest:
 
 ```
 
-執行 `docker-compose up -d` 以啟動容器部署。
+執行 `docker-compose up -d` 以啟動容器部署：
 
 
 ```bash
@@ -105,7 +105,7 @@ swarm-agent-3B7093B8-2: Pulling adtd/web:0.1... : downloaded
 Creating compose_web_1
 ```
 
-最後，您可以傳回執行中容器的清單，其中會反映出使用 Docker Compose 部署的容器。
+最後，將會傳回執行中容器的清單。這份清單會反映使用 Docker Compose 所部署的容器︰
 
 
 ```bash
@@ -115,8 +115,8 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 040efc0ea937        adtd/rest:0.1       "catalina.sh run"      3 minutes ago       Up 2 minutes        10.0.0.4:8080->8080/tcp   swarm-agent-3B7093B8-0/compose_rest_1
 ```
 
-## 後續步驟：
+## 後續步驟
 
-[深入了解 Docker Swarm](https://docs.docker.com/swarm/)。
+[深入了解 Docker Swarm](https://docs.docker.com/swarm/)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

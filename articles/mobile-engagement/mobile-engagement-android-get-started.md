@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="hero-article"
-	ms.date="05/03/2016"
+	ms.date="05/10/2016"
 	ms.author="piyushjo;ricksal" />
 
 # 開始使用適用於 Android 應用程式的 Azure Mobile Engagement
@@ -132,11 +132,14 @@ Android Studio 現在將建立要用於整合 Mobile Engagement 的示範應用�
 
 	public class MainActivity extends EngagementActivity {
 
+> [AZURE.NOTE] 如果基底類別不是「Activity」，請參閱[進階 Android 報告](mobile-engagement-android-advanced-reporting.md#modifying-your-codeactivitycode-classes)以了解如何從不同的類別繼承。
+
+
 您應該針對此簡單範例案例註解掉 (排除) 下列一行：
 
     // setSupportActionBar(toolbar);
 
-如果您想保留此行，則應查看[進階 Android 整合](mobile-engagement-android-integrate-engagement.md/#basic-reporting)中的「基本報告」案例
+如果您想保留此行，則應查看[進階 Android 整合](mobile-engagement-android-advanced-reporting.md#modifying-your-codeactivitycode-classes)。
 
 ## 將應用程式與即時監視連接
 
@@ -162,6 +165,10 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 [AZURE.INCLUDE [從入口網站傳送通知](../../includes/mobile-engagement-android-send-push-from-portal.md)]
 
+## 其他資源
+
+移至 [Android SDK](mobile-engagement-android-sdk-overview.md) 以取得有關 SDK 整合的詳細資訊。
+
 <!-- Images. -->
 [1]: ./media/mobile-engagement-android-get-started/android-studio-new-project.png
 [2]: ./media/mobile-engagement-android-get-started/android-studio-project-props.png
@@ -175,4 +182,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [10]: ./media/mobile-engagement-android-get-started/copy-resources.png
 [11]: ./media/mobile-engagement-android-get-started/paste-resources.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

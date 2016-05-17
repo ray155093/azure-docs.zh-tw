@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/13/2016"
+	ms.date="05/10/2016"
 	ms.author="jimpark; trinadhk"/>
 
 # 何謂 Azure 備份？
@@ -69,8 +69,7 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | Microsoft SQL Server | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft SharePoint | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft Exchange | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
-| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
-| Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
+| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) | | Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
 
 ## ARM 和 Linux 支援
 
@@ -99,13 +98,6 @@ Azure 備份服務現在可保護進階儲存體 VM。
 ### 還原進階儲存體 VM
 
 將進階儲存體 VM 的復原點還原到進階儲存體是常見的還原程序。不過，將進階儲存體 VM 的復原點還原至標準儲存體比較符合成本效益。如果您需要 VM 檔案的子集，則可以使用此還原類型。
-
-將進階儲存體 VM 的復原點還原到進階儲存體的步驟如下︰
-
-1. [將 VM 復原點還原至標準儲存體。](backup-azure-restore-vms.md)
-2. [將磁碟複製到進階儲存體。](../storage/storage-use-azcopy.md)
-3. [建立 Azure IaaS VM。](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
-
 
 ## 功能
 以下五個資料表概述備份功能如何處理每個元件。
@@ -149,7 +141,7 @@ Azure 備份服務現在可保護進階儲存體 VM。
 
 >[AZURE.WARNING] 只有客戶會看見用來加密備份資料的金鑰。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。如果錯置金鑰，則 Microsoft 無法復原備份資料。
 
-備份 Azure VM 時，需要在虛擬機器內設定加密。在 Windows 虛擬機器上使用 BitLocker，而在 Linux 虛擬機器上使用 **dm-crypt**。Azure 備份不會自動加密來自此路徑的備份資料。
+備份 Azure VM 時，需要在虛擬機器「內」設定加密。在 Windows 虛擬機器上使用 BitLocker，而在 Linux 虛擬機器上使用 **dm-crypt**。Azure 備份不會自動加密來自此路徑的備份資料。
 
 ### 支援的工作負載
 
@@ -206,7 +198,7 @@ Azure 備份代理程式提供的節流功能可讓您控制在資料傳輸期�
 ## Azure 備份與 Azure Site Recovery 有何不同？
 許多客戶會混淆備份復原和災害復原。兩者都可擷取資料和提供還原語意，但兩者的核心價值主張不同。
 
-Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及容錯回復。這兩項服務都很重要，因為您的災害復原解決方案必須讓資料保持安全且可復原 (備份)，並且在服務中斷時讓您的工作負載可供使用 (Site Recovery)。
+Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及容錯回復。這兩項服務都很重要，因為您的災害復原解決方案必須讓資料保持安全且可復原 (備份)，「並且」在服務中斷時讓您的工作負載可供使用 (Site Recovery)。
 
 下列概念可協助您做出有關備份和災害復原的重要決策。
 
@@ -235,4 +227,4 @@ Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -4,20 +4,19 @@
 	services="automation"
 	documentationCenter=""
 	authors="mgoedtel"
-	manager="stevenka"
-	editor=""/>
-
+	manager="jwhit"
+	editor=""
+	keywords="何謂自動化, azure 自動化, azure 自動化範例"/>
 <tags
 	ms.service="automation"
 	ms.workload="tbd"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article" 
-	ms.date="02/23/2016"
+	ms.date="05/10/2016"
 	ms.author="magoedte;bwren"/>
 
 # Azure 自動化概觀
-
 
 Microsoft Azure 自動化可讓使用者將執行於雲端和企業環境中的手動、長時間執行、易發生錯誤且重複性高的工作自動化。它可以節省時間並提高日常管理工作的可靠性，甚至將它們排程為定期自動執行。您可以使用 Runbook 自動執行程序，或使用「期望狀態設定」自動進行組態管理。本文提供 Azure 自動化的簡短概觀，並回答一些常見問題。您可以參考此文件庫中的其他文件，以取得不同主題的詳細資訊。
 
@@ -67,7 +66,7 @@ Azure 自動化中的 Runbook 是以 Windows PowerShell 或 Windows PowerShell �
 
 ## Azure 自動化的實際應用範例 
 
-以下是一些您可以使用 Azure 自動化自動進行的案例種類範例。
+以下是一些使用 Azure 自動化之自動化案例種類的範例。
 
 * 在不同的 Azure 訂用帳戶中建立和複製虛擬機器。 
 * 本機電腦中的檔案複本排程到 Azure Blob 儲存體容器。 
@@ -101,4 +100,4 @@ Azure 自動化中的 Runbook 是以 Windows PowerShell 或 Windows PowerShell �
 
 **請不吝提供意見！** 如果您要尋找 Azure 自動化 Runbook 解決方案或整合模組，請在指令碼中心提出指令碼要求。如果您有關於 Azure 自動化的任何意見或功能要求，請張貼在 [User Voice](http://feedback.windowsazure.com/forums/34192--general-feedback) 上。感謝您！
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="使用 .NET SDK 建立通道，以執行從單一位元速率到多位元速率串流的即時編碼" 
+	pageTitle="如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流" 
 	description="本教學課程將逐步引導您使用 .NET SDK 建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。" 
 	services="media-services" 
 	documentationCenter="" 
 	authors="juliako,anilmur" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,11 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
-	ms.date="03/08/2016"
+	ms.date="05/05/2016"
 	ms.author="juliako"/>
 
 
-#使用 .NET SDK 建立通道，以執行從單一位元速率到多位元速率串流的即時編碼
+#如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
 
 > [AZURE.SELECTOR]
 - [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
@@ -31,7 +31,7 @@
 
 本教學課程將逐步引導您建立**通道**，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
-如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用通道執行從單一位元速率到多位元速率串流的即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
+如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 
 ##常見即時串流案例
@@ -530,4 +530,4 @@
 
 如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請在下方提供您使用 Disqus 執行緒的意見反應給我們。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0511_2016-->

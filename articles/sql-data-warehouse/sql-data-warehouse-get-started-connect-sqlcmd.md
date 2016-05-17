@@ -34,7 +34,7 @@
 
 ## 取得您的完整 Azure SQL 伺服器名稱
 
-若要連接至您的資料庫，需要包含您想連接之資料庫的伺服器完整名稱 (**servername**.database.windows.net*)。
+若要連接至您的資料庫，需要包含您想連接之資料庫的伺服器完整名稱 (****servername**.database.windows.net*)。
 
 1. 移至 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽至您想連接的資料庫。
@@ -83,4 +83,4 @@ C:\>sqlcmd -S <Server Name>.database.windows.net -d <Database> -U <User> -P <Pas
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-get-started-connect/get-server-name.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

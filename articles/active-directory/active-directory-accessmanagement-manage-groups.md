@@ -1,7 +1,7 @@
 <properties
 
-	pageTitle="Managing security groups in Azure Active Directory | Microsoft Azure"
-	description="How to create and manage security groups to manage Azure resource access using Azure Active Directory."
+	pageTitle="Managing groups in Azure Active Directory | Microsoft Azure"
+	description="How to create and manage groups to manage Azure resource access using Azure Active Directory."
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
@@ -22,7 +22,7 @@
 
 Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的存取權。這些資源可以是目錄中的物件，或是目錄外部的資源 (例如 SaaS 應用程式、Azure 服務、SharePoint 網站或內部部署資源)。此外，資源擁有者可以指派 Azure AD 群組資源的存取權。這會將資源的存取權授與該群組的成員。然後，群組擁有者負責管理群組中的成員資格。實際上，資源擁有者是將指派使用者至其資源的權限委派給群組擁有者。
 
-## 如何建立安全性群組？
+## 如何建立群組？
 
 **建立群組**
 
@@ -88,7 +88,7 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 
 5. 接著，選取一個條件 (不等於、等於、開頭不是、開頭為、不包含、包含、不符合、符合)，最後指定所選使用者屬性的值。
 
-若要了解如何為動態群組成員資格建立進階規則 (可包含多個比較的規則)，請參閱[使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)。
+若要了解如何為動態群組成員資格建立「進階」規則 (可包含多個比較的規則)，請參閱[使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)。
 
 ## 其他資訊
 
@@ -102,4 +102,4 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

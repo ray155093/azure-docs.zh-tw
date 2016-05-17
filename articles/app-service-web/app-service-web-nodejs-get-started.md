@@ -26,14 +26,14 @@
 ## 必要條件
 
 - Node.js。安裝二進位檔可從[這裡](https://nodejs.org/)取得。
-- Yoeman。安裝指示在[這裡](http://yeoman.io/)。
+- Yeoman。安裝指示在[這裡](http://yeoman.io/)。
 - Git。安裝二進位檔可從[這裡](http://www.git-scm.com/downloads)取得。
 - Azure CLI。安裝指示在[這裡](../xplat-cli-install.md)。
 - Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 ## 建立和部署簡單的 Node.js Web 應用程式
 
-1. 開啟您選擇的命令列終端機來安裝[適用於 Yoeman 的 Express 產生器](https://github.com/petecoop/generator-express)。
+1. 開啟您選擇的命令列終端機來安裝[適用於 Yeoman 的 Express 產生器](https://github.com/petecoop/generator-express)。
 
         npm install -g generator-express
 
@@ -203,4 +203,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 - [Node.js 開發人員中心](/develop/nodejs/)
 - [在 Azure App Service 中開始使用 Web 應用程式](app-service-web-get-started.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

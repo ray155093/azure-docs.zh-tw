@@ -5,15 +5,15 @@
     documentationCenter=""
     authors="mgoedtel"
     manager="jwhit"
-    editor=""/>
-
+    editor=""
+	keywords="服務主體名稱, setspn, azure 驗證"/>
 <tags
     ms.service="automation"
     ms.workload="tbd"
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="04/20/2016"
+    ms.date="05/10/2016"
     ms.author="magoedte"/>
 
 # 使用 Azure 執行身分帳戶驗證 Runbook
@@ -188,7 +188,7 @@ PowerShell 指令碼會設定下列項目︰
 7. 按一下 [測試窗格] 來開啟 [測試] 刀鋒視窗。
 8. 按一下 [開始] 以開始測試。
 9. 隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並在窗格中顯示其狀態。  
-10. 作業狀態一開始會顯示為 [已排入佇列]，表示其正在等候雲端中的 Runbook 背景工作變為可用狀態。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
+10. 作業狀態一開始會顯示為「已排入佇列」，表示其正在等候雲端中的 Runbook 背景工作變為可用狀態。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
 11. Runbook 工作完成時，會顯示其輸出。在本例中，我們應該會看到狀態為 [完成]。<br> ![安全性主體 Runbook 測試](media/automation-sec-configure-azure-runas-account/runbook-test-results.png)<br>
 12. 關閉 [測試] 刀鋒視窗返回畫布。
 13. 關閉 [編輯 PowerShell Runbook] 刀鋒視窗。
@@ -200,4 +200,4 @@ PowerShell 指令碼會設定下列項目︰
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -27,7 +27,7 @@
 本教學課程示範如何使用 AzCopy 和 PolyBase 將資料載入 SQL 資料倉儲。課程結束後，您將了解如何：
 
 - 使用 AzCopy 將資料複製到 Azure Blob 儲存體
-- 建立資料庫物件以定義外部資料
+- 建立資料庫物件以定義資料
 - 執行 T-SQL 查詢以載入資料
 
 >[AZURE.VIDEO loading-data-with-polybase-in-azure-sql-data-warehouse]
@@ -253,7 +253,7 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 請參閱 [PolyBase 指南][]，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
 
 <!--Image references-->
-[1]: ./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png
+
 
 <!--Article references-->
 [PolyBase in SQL Data Warehouse Tutorial]: sql-data-warehouse-get-started-load-with-polybase.md
@@ -287,4 +287,4 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 [建立資料庫範圍認證 (Transact-SQL)]: https://msdn.microsoft.com/library/mt270260.aspx
 [DROP CREDENTIAL (Transact-SQL)]: https://msdn.microsoft.com/library/ms189450.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

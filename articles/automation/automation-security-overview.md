@@ -1,22 +1,23 @@
 <properties
    pageTitle="Azure 自動化安全性"
-   description="本文概述 Azure 自動化中的自動化帳戶安全性和可用的不同驗證方法。"
+   description="本文概述 Azure 自動化中的自動化安全性和自動化帳戶可用的不同驗證方法。"
    services="automation"
    documentationCenter=""
    authors="MGoedtel"
    manager="jwhit"
-   editor="tysonn" />
+   editor="tysonn"
+   keywords="自動化安全性, 安全的自動化" />
 <tags
    ms.service="automation"
    ms.devlang="na"
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/08/2016"
+   ms.date="05/10/2016"
    ms.author="magoedte" />
 
 # Azure 自動化安全性
-Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者 (例如 Amazon Web Services (AWS)) 的資源自動執行工作。為了讓 Runbook 執行其必要動作，其必須有權限能以安全地方式存取其使用的資源，且只透過訂用帳戶內的最少必要權限。本文將介紹 Azure 自動化支援的各種安全性案例，並說明如何根據您要管理的一或多個環境來開始使用。
+Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者 (例如 Amazon Web Services (AWS)) 的資源自動執行工作。為了讓 Runbook 執行其必要動作，其必須有權能以訂用帳戶內的最少必要權限，安全地存取資源。本文將介紹 Azure 自動化支援的各種驗證案例，並說明如何根據您要管理的一或多個環境來開始使用。
 
 ## 自動化帳戶概觀
 當您第一次啟動 Azure 自動化時，您必須建立至少一個自動化帳戶。自動化帳戶可讓您將您的自動化資源 (Runbook、資產、組態) 與其他自動化帳戶中包含的資源區隔開來。您可以使用自動化帳戶將資源分成個別的邏輯環境。例如，您可能會針對開發、生產和內部部署環境各自使用一個帳戶。Azure 自動化帳戶與 Microsoft 帳戶或您在 Azure 訂用帳戶中建立的帳戶不同。
@@ -44,4 +45,4 @@ Azure AD 服務主體物件 | Azure 資源管理員 | [使用 Azure 執行身分
 Windows 驗證 | 內部部署資料中心 | [驗證混合式 Runbook 背景工作角色的 Runbook](../automation/automation-hybrid-runbook-worker.md)
 AWS 認證 | Amazon Web Services | [使用 Amazon Web Services (AWS) 驗證 Runbook](../automation/automation-sec-configure-aws-account.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

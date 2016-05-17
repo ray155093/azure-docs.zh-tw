@@ -13,23 +13,23 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="04/04/2016" 
+	ms.date="05/10/2016" 
 	ms.author="billmath"/>
 
 # 開始使用 MFA Server Mobile App Web 服務
 
-Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] \(或輸入 PIN 再點選 [驗證]) 即可登入。
+Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] (或輸入 PIN 再點選 [驗證]) 即可登入。
 
 若要使用 Azure Multi-Factor Authentication 應用程式，使用者必須滿足以下條件，應用程式才能與 Mobile App Web 服務成功通訊：
 
 - 如需硬體和軟體需求，請參閱＜硬體和軟體需求＞
 - 您必須使用 Azure Multi-Factor Authentication Server 6.0 或更高版本
-- 必須將 Mobile App Web 服務安裝在執行 Microsoft® Internet Information Services (IIS) 6.x、IIS 7.x 的網際網路對向 Web 伺服器上。如需 IIS 的詳細資訊，請參閱 [IIS.NET](http://www.iis.net/)。
-- 在使用 IIS 6.x 時，請確定 ASP.NET v2.0.50727 已安裝、註冊並設定為 [已允許]
-- 使用 IIS 7.x 時所需的角色服務包括 ASP.NET 和 IIS 6 Metabase 相容性
+- 必須將 Mobile App Web 服務安裝在執行 Microsoft® Internet Information Services (IIS) IIS 7.x 或更高版本的網際網路對向 Web 伺服器上。如需 IIS 的詳細資訊，請參閱 [IIS.NET](http://www.iis.net/)。
+- 請確定 ASP.NET v4.0.30319 已安裝、註冊並設定為 [已允許]
+- 所需的角色服務包括 ASP.NET 和 IIS 6 Metabase 相容性
 - Mobile App Web 服務必須可透過公用 URL 存取
 - Mobile App Web 服務必須受到 SSL 憑證保護。
-- 必須以 IIS 6.x、IIS 7.x 將 Azure Multi-Factor Authentication Web 服務 SDK 安裝在 Azure Multi-Factor Authentication Server 所安裝的伺服器上。
+- 必須以 IIS 7.x 或更高版本將 Azure Multi-Factor Authentication Web 服務 SDK 安裝在 Azure Multi-Factor Authentication Server 所安裝的伺服器上。
 - Azure Multi-Factor Authentication Web 服務 SDK 必須受到 SSL 憑證保護。
 - Mobile App Web 服務必須要能透過 SSL 連接 Azure Multi-Factor Authentication Web 服務 SDK。
 - 行動裝置應用程式 Web 服務必須要能使用隸屬於 "PhoneFactor Admins" 安全性群組之服務帳戶的認證驗證 Azure Multi-Factor Authentication Web 服務 SDK。如果 Azure Multi-Factor Authentication Server 在加入網域的伺服器上執行，此服務帳戶和群組也會存在於 Active Directory 中。如果伺服器未加入網域，此服務帳戶和群組會存在於 Azure Multi-Factor Authentication Server 本機。
@@ -90,4 +90,4 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 <center>![Setup](./media/multi-factor-authentication-get-started-server-webservice/mobile.png)</center>
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

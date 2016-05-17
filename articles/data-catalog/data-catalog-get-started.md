@@ -1,10 +1,10 @@
 <properties
-   pageTitle="Azure 資料目錄開始使用資料目錄 | Microsoft Azure"
+   pageTitle="Azure 資料目錄 - 開始使用資料目錄 | Microsoft Azure"
    description="展示 Azure 資料目錄案例和功能的端對端教學課程。"
    documentationCenter=""
    services="data-catalog"
-   authors="dvana"
-   manager="mblythe"
+   authors="steelanddata"
+   manager=""
    editor=""
    tags=""/>
 <tags
@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="04/15/2016"
-   ms.author="derrickv"/>
+   ms.date="05/06/2016"
+   ms.author="maroche"/>
 
 # 開始使用 Azure 資料目錄
 
@@ -184,6 +184,8 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 在本練習中，您將描述性資訊加入至已註冊的資料資產，讓目錄使用者能夠利用他們所了解的詞彙來探索資料來源。
 
+> [AZURE.NOTE] 標準版的資料目錄包含允許目錄管理員定義中央商務分類的商務詞彙。目錄使用者接著可以為資料資產加上詞彙註解。如需詳細資訊，請參閱[如何設定控管標記的商務詞彙](data-catalog-how-to-business-glossary.md)
+
 ## 練習 5：群眾外包中繼資料
 
 在本練習中，您將與另一位使用者合作，將中繼資料加入至目錄中的資料資產。**Azure 資料目錄**對於註解的群眾外包作法，可讓任何使用者加入標記、描述和其他中繼資料，任何對資料資產及其用法有所見解的使用者，都能將此見解記錄下來分享給其他使用者。
@@ -260,4 +262,4 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 在本教學課程中，您已瀏覽 **Azure 資料目錄**的基本功能，包括註冊、註解、探索和管理企業資料來源。既然您已經完成本教學課程，現在可以開始使用。您可以立即開始註冊您和小組所依賴的資料來源，並邀請同事使用目錄。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

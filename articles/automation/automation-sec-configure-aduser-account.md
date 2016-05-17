@@ -5,14 +5,15 @@
    documentationCenter=""
    authors="MGoedtel"
    manager="jwhit"
-   editor="tysonn" />
+   editor="tysonn"
+   keywords="azure active directory 使用者, azure 服務管理, azure ad 使用者帳戶" />
 <tags
    ms.service="automation"
    ms.devlang="na"
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/08/2016"
+   ms.date="05/10/2016"
    ms.author="magoedte" />
 
 # 使用 Azure 服務管理和 Resource Manager 驗證 Runbook
@@ -86,4 +87,4 @@
 ## 後續步驟
 * 在接下來的 [Azure 自動化 Runbook 類型](../automation/automation-runbook-types.md)一文中，檢閱不同的 Runbook 類型和用於建立自己的 Runbook 的步驟
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

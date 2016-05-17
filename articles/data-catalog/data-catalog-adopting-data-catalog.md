@@ -1,20 +1,20 @@
 <properties
-   pageTitle="採用 Azure 資料目錄 | Microsoft Azure"
-   description="本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="dvana"
-   manager="NA"
-   editor=""
-   tags=""/>
+	pageTitle="採用 Azure 資料目錄 | Microsoft Azure"
+	description="本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。"
+	services="data-catalog"
+	documentationCenter=""
+	authors="spelluru"
+	manager="NA"
+	editor=""
+	tags=""/>
 <tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="hero-article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="04/06/2016"
-   ms.author="derrickv"/>
+	ms.service="data-catalog"
+	ms.devlang="NA"
+	ms.topic="hero-article"
+	ms.tgt_pltfrm="NA"
+	ms.workload="data-catalog"
+	ms.date="05/09/2016"
+	ms.author="spelluru"/>
 
 # 採用 Azure 資料目錄
 本文將協助您在組織中開始採用 **Azure 資料目錄**。為了能順利採用 **Azure 資料目錄**，您必須將重點放在三大要項：定義願景、找出組織內的重要商業使用案例，以及選擇試驗專案。
@@ -172,4 +172,4 @@
 -	[註解資料來源](data-catalog-get-started.md#exercise-4-annotating-registered-data-sources)
 - [將中繼資料群眾外包](data-catalog-get-started.md#exercise-5-crowdsourcing-metadata)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

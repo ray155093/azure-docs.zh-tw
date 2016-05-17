@@ -5,15 +5,16 @@
    documentationCenter=""
    authors="SnehaGunda"
    manager="stevenka"
-   editor="tysonn" />
+   editor="tysonn"
+   keywords="自動化 rbac, 角色型存取控制, azure rbac" />
 <tags 
    ms.service="automation"
    ms.devlang="na"
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/11/2016"
-   ms.author="sngun"/>
+   ms.date="05/10/2016"
+   ms.author="magoedte;sngun"/>
 
 # Azure 自動化中的角色型存取控制
 
@@ -139,4 +140,4 @@
 - 如需以不同方式啟動 Runbook 的詳細資訊，請參閱[啟動 Runbook](automation-starting-a-runbook.md)
 - 如需不同類型的詳細資訊，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

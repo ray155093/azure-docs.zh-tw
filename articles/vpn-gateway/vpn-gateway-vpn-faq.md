@@ -250,6 +250,12 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
 是，支援此做法。如需詳細資訊，請參閱[設定並存的 ExpressRoute 和站對站 VPN 連線](../expressroute/expressroute-howto-coexist-classic.md)。
 
+## BGP
+
+[AZURE.INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)]
+
+
+
 ## 跨單位連線與 VM
 
 ### 如果我的虛擬機器在虛擬網路中，而且我有跨單位連線，應該如何連接至 VM？
@@ -273,4 +279,4 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

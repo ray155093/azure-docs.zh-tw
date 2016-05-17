@@ -32,8 +32,8 @@
 
 - **服務限制有哪些？** 您可以在 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)中了解 Azure RemoteApp 的預設設定和服務限制。讓我們知道您是否有更多的問題。
 - **我必須有多少個使用者？** 至少 20 個使用者。容我再次重複 - 至少 20 個。您將為 20 個使用者付費。 
-- **RemoteApp 的價格為何？** 請查看 [Azure RemoteApp 價格詳細資料](../../../pricing/details/remoteapp/)。
-- **是否有某種類型的集合成本高於其他集合？** 是的，這取決於您的集合需求。混合式集合所需的集合範圍涵蓋從 Azure RemoteApp 到內部部署網路。如果您使用現有的 VNET/Express Route，就不需要額外的成本。但是，如果您使用新的 Azure VNET 以及閘道或 Express Route，就需支付 [VPN 閘道](../../../pricing/details/vpn-gateway)或 [Express Route](../../../pricing/details/expressroute/) 的費用。此成本 (請見連結中的詳細說明) 高居您每月 Azure RemoteApp 成本的第一名。
+- **RemoteApp 的價格為何？** 請查看 [Azure RemoteApp 價格詳細資料](https://azure.microsoft.com/pricing/details/remoteapp/)。
+- **是否有某種類型的集合成本高於其他集合？** 是的，這取決於您的集合需求。混合式集合所需的集合範圍涵蓋從 Azure RemoteApp 到內部部署網路。如果您使用現有的 VNET/Express Route，就不需要額外的成本。但是，如果您使用新的 Azure VNET 以及閘道或 Express Route，就需支付 [VPN 閘道](https://azure.microsoft.com/pricing/details/vpn-gateway)或 [Express Route](../../../pricing/details/expressroute/) 的費用。此成本 (請見連結中的詳細說明) 高居您每月 Azure RemoteApp 成本的第一名。
 
 ## 集合 - 支援的項目、您應該使用的項目，以及其他項目
 - **是否支援自訂的企業營運 (LOB) 應用程式？** 是。若要在 Azure RemoteApp 中使用自訂應用程式，請建立[自訂範本映像](remoteapp-create-custom-image.md)，然後將其上傳至 RemoteApp 收藏。
@@ -55,7 +55,7 @@
 
 
 
-- **驗證呢？ 支援何種方法？** 雲端收藏支援 Microsoft 帳戶與 Azure Active Directory 帳戶，而其同時也是 Office 365 帳戶。混合式收藏僅支援已從 Windows Server Active Directory 部署同步 (使用類似 [Azure Active Directory 同步作業](http://blogs.technet.com/b/ad/archive/2014/09/16/azure-active-directory-sync-is-now-ga.aspx)的工具) 的 Azure Active Directory 帳戶；更具體而言，就是同步時使用 [密碼同步] 選項，或是同步時已設定 Active Directory Federation Services (AD FS) 同盟。您也可以設定[多重要素驗證 (MFA)](../../services/multi-factor-authentication/)。
+- **驗證呢？ 支援何種方法？** 雲端收藏支援 Microsoft 帳戶與 Azure Active Directory 帳戶，而其同時也是 Office 365 帳戶。混合式收藏僅支援已從 Windows Server Active Directory 部署同步 (使用類似 [Azure Active Directory 同步作業](http://blogs.technet.com/b/ad/archive/2014/09/16/azure-active-directory-sync-is-now-ga.aspx)的工具) 的 Azure Active Directory 帳戶；更具體而言，就是同步時使用 [密碼同步] 選項，或是同步時已設定 Active Directory Federation Services (AD FS) 同盟。您也可以設定[多重要素驗證 (MFA)](https://azure.microsoft.com/services/multi-factor-authentication/)。
 
 >[AZURE.NOTE]Azure Active Directory 使用者必須來自於與您的訂用帳戶相關聯的租用戶。(您可以在入口網站的 [設定] 索引標籤上檢視和修改您的訂用帳戶。如需詳細資訊，請參閱[變更 RemoteApp 所使用的 Azure Active Directory 租用戶](remoteapp-changetenant.md)。)
 
@@ -88,7 +88,7 @@
 ##支援與意見反應
 
 
-- **RemoteApp 的支援計畫為何？** 計費及訂用帳戶管理支援均為免費提供。透過 [Azure 服務方案](../../../support/plans/)可以使用技術支援。您也可以透過我們的 [Azure 討論區論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=AzureRemoteApp)獲得免費的社群支援。 
+- **RemoteApp 的支援計畫為何？** 計費及訂用帳戶管理支援均為免費提供。透過 [Azure 服務方案](https://azure.microsoft.com/support/plans/)可以使用技術支援。您也可以透過我們的 [Azure 討論區論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=AzureRemoteApp)獲得免費的社群支援。 
 - **如何提交意見反應？** 請瀏覽[意見反應論壇](https://feedback.azure.com/forums/247748-azure-remoteapp/)。
 - **我可以和誰討論更多 Azure RemoteApp 的資訊？** 除了我們的[討論區論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=AzureRemoteApp) (這是張貼問題的最佳去處) 外，您還可加入每週的[專家請益網路研討會](https://azureinfo.microsoft.com/US-Azure-WBNR-FY15-11Nov-AzureRemoteAppAskTheExperts-Registration-Page.html)，在這裡我們會討論 RemoteApp 的一切。
 - **RemoteApp 文件呢？** 很高興您這麼問。除了入口網站說明庫的說明內容外 (只要按下入口網站任一頁面上的 **?**)，還有下列關於 RemoteApp 的文件：
@@ -114,4 +114,4 @@
 ### 幫我們來協助您 
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

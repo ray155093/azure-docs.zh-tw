@@ -5,6 +5,11 @@
 
 	+ **Node.js 後端**：接受通知，然後按一下 **建立 TodoItem 資料表**。這會在您的資料庫中建立新的「TodoItem」資料表。請記住，將現有後端切換到 Node.js 將會覆寫所有內容！
 
-	+ **C# (.NET 後端)**：按一下 [下載]、在 Visual Studio 中開啟已解壓縮的方案、建置專案來還原 NuGet 封裝，然後將專案部署至 Azure。如需逐步指示，請參閱[作法：發佈伺服器專案](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#publish-server-project)。
+	+ **C# (.NET 後端)**：
+		1. 按一下 [下載]，
+		2. 在 Visual Studio 中開啟已解壓縮的方案。
+		3. 建置專案以還原 NuGet 封裝，以及 
+		4. 將專案部署至 Azure。 
+	
+		如需將 C# 專案部署至 Azure 的詳細逐步指示，請參閱[作法：使用 Visual Studio 發佈後端專案](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#publish-server-project)。
 
-<!---HONumber=AcomDC_0427_2016-->

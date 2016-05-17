@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="01/26/2016"
+	ms.date="05/06/2016"
 	ms.author="sethm"/>
 
 
@@ -35,7 +35,7 @@
 
 ## 建立服務命名空間
 
-若要開始在 Azure 中使用服務匯流排轉送，您首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+若要開始在 Azure 中使用服務匯流排轉送，您首先必須建立命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
 建立服務命名空間：
 
@@ -75,9 +75,7 @@
 
 ## 取得服務匯流排 NuGet 封裝
 
-[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。NuGet Visual Studio 擴充功能可讓您輕易地安裝和更新 Visual Studio 和 Visual Studio Express 中的程式庫和工具。要取得服務匯流排 API，並對應用程式進行設定，以使用所有服務匯流排相依性的最簡單方法，便是使用服務匯流排 NuGet 封裝。
-
-若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
+[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
 
 1.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
 2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊。
@@ -265,8 +263,8 @@ using (var ch = cf.CreateChannel())
 
 了解基本的服務匯流排轉送服務之後，請參考下列連結以取得更多資訊。
 
+- [服務匯流排轉送傳訊概觀](service-bus-relay-overview.md)
 - [Azure 服務匯流排架構概觀](service-bus-fundamentals-hybrid-solutions.md)
-- [如何使用服務匯流排轉送服務](service-bus-dotnet-how-to-use-relay.md)
 - 從 [Azure 範例][]下載服務匯流排範例，或參閱[服務匯流排範例概觀][]。
 
   [Azure 傳統入口網站]: http://manage.windowsazure.com
@@ -274,4 +272,4 @@ using (var ch = cf.CreateChannel())
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
   [服務匯流排範例概觀]: service-bus-samples.md
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

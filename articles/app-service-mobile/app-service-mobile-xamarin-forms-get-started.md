@@ -12,8 +12,8 @@
 	ms.workload="mobile"
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
-	ms.topic="get-started-article"
-	ms.date="05/03/2016"
+	ms.topic="hero-article"
+	ms.date="05/06/2016"
 	ms.author="glenga"/>
 
 #建立 Xamarin.Forms 應用程式
@@ -63,12 +63,12 @@
 
 ##下載並執行 Xamarin.Forms 方案
 
-您在這裡有幾個選擇。您可以將方案下載到 Mac 並在 Xamarin Studio 中開啟，或者您也可以下載方案到 Windows 電腦並使用已加入網路的 Mac 在 Visual Studio 開啟，以便建置 iOS 應用程式。同樣地，如需相關指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+您在這裡有幾個選擇。您可以將方案下載到 Mac 並在 Xamarin Studio 中開啟，或者您也可以下載方案到 Windows 電腦並使用已加入網路的 Mac 在 Visual Studio 開啟，以便建置 iOS 應用程式。如果您需要更詳細的 Xamarin 設定案例指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
 
 讓我們繼續進行︰
 
  1. 在您的 Mac 或 Windows 電腦上，於瀏覽器視窗中開啟 [Azure 入口網站]。
- 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] \(在 [行動] 之下) > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] \(如果尚未選取的話)。接著按一下 [下載] 按鈕。
+ 2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] (在 [行動] 之下) > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] (如果尚未選取的話)。接著按一下 [下載] 按鈕。
 
     這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
@@ -77,6 +77,7 @@
 	![][9]
 
 	![][8]
+
 
 ##(選擇性) 執行 iOS 專案
 
@@ -93,13 +94,15 @@
 3. 在 [組態管理員] 對話方塊中，選取 iOS 專案的 [建置] 和 [部署] 核取方塊。
 4. 按 **F5** 鍵，以建置專案並在 iPhone 模擬器中啟動 app。
 
+	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
 
 ![][10]
 
 如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
 
-> [AZURE.NOTE]
+>[AZURE.NOTE]
 您將會看到在您方案的可攜式類別庫專案的 TodoItemManager.cs C# 檔案中，存取行動應用程式後端的程式碼。
 
 ##(選擇性) 執行 Android 專案
@@ -112,10 +115,13 @@
 2. 在 [執行] 功能表上按一下 [開始偵錯] 以建置專案，並在 Android 模擬器中啟動應用程式。
 
 ####在 Visual Studio 中
-1. 以滑鼠右鍵按一下 Android 專案，然後按一下 [設為起始專案]。
+1. 以滑鼠右鍵按一下 Android (Droid) 專案，然後按一下 [設為起始專案]。
 4. 從 [建置] 功能表中，按一下 [組態管理員]。
 5. 在 [組態管理員] 對話方塊中，選取 Android 專案的 [建置] 和 [部署] 核取方塊。
 6. 按 **F5** 鍵，以建置專案並在 Android 模擬器中啟動應用程式。
+
+	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+
 
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
 
@@ -139,6 +145,9 @@
 5. 在 [組態管理員] 對話方塊中，選取所選之 Windows 專案的 [建置] 和 [部署] 核取方塊。
 6. 按 **F5** 鍵，以建置專案並在 Windows 模擬器中啟動應用程式。
 
+	>[AZURE.NOTE] 如果在建置時發生問題，請執行 NuGet 封裝管理員並更新為最新版的 Xamarin 支援封裝。有時候快速入門專案可能未能及時更新為最新版本。
+
+
 在應用程式中，輸入有意義的文字 (例如「了解 Xamarin (Learn Xamarin)」)，然後按一下 **+** 按鈕。
 
 如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
@@ -150,9 +159,9 @@
 
 ##後續步驟
 
-* [加入驗證至應用程式](app-service-mobile-xamarin-forms-get-started-users.md) 了解如何使用身分識別提供者驗證應用程式的使用者。
-* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-forms-get-started-push.md) 了解如何在應用程式中新增推播通知。
-* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md) 了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
+* [加入驗證至應用程式](app-service-mobile-xamarin-forms-get-started-users.md)了解如何使用身分識別提供者驗證應用程式的使用者。
+* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-forms-get-started-push.md)了解如何在應用程式中新增推播通知。
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
 
 
 <!-- Anchors. -->
@@ -175,4 +184,4 @@
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

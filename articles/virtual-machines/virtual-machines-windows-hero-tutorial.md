@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="04/28/2016"
+	ms.date="05/05/2016"
 	ms.author="cynthn"/>
 
 # 在 Azure 入口網站中建立第一個 Windows 虛擬機器
@@ -49,7 +49,7 @@
 
 2. 輸入將用來在 VM 上建立本機帳戶的 [使用者名稱] 及強式 [密碼]。此本機帳戶用來登入及管理 VM。
 
-	密碼長度必須介於 8-123 個字元，並且具有至少 3 個下列項目：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
+	密碼長度必須至少介於 8-123 個字元，並且具有至少 3 個下列項目：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
 
 
 3. 選取現有的[資源群組](../resource-group-overview.md#resource-groups)，或輸入新群組的名稱。輸入 Azure 資料中心的 [位置]，例如 [美國西部]。
@@ -116,4 +116,4 @@
 
 * 您也可以[使用 Powershell 建立 Windows VM](virtual-machines-windows-ps-create.md) 或使用 Azure CLI [建立 Linux 虛擬機器](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

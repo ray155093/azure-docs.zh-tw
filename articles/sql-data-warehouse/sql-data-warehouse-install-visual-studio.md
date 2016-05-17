@@ -29,8 +29,8 @@
 
 若要安裝 Visual Studio 2015：
 
-1. 從 Visual Studio Team Services [下載 Visual Studio 2015](https://www.visualstudio.com/downloads)。
-2. 依照 MSDN 上的[安裝 Visual Studio](https://msdn.microsoft.com/library/e2h7fzkw.aspx) 指南進行安裝，並選擇預設組態。
+1. 從 Visual Studio Team Services [下載 Visual Studio 2015][]。
+2. 依照 MSDN 上的[安裝 Visual Studio][] 指南進行安裝，並選擇預設組態。
 
 ## 步驟 2：下載並安裝最新的 SQL Server Data Tools (SSDT)
 
@@ -38,15 +38,23 @@
 
 若要安裝最新版本的 SSDT：
 
-1. [下載 SQL Server Data Tools Preview](https://msdn.microsoft.com/library/mt204009.aspx) (適用於 Visual Studio 2013 或 2015)。
+1. [下載 SQL Server Data Tools Preview][] (適用於 Visual Studio 2013 或 2015)。
 2. 依照下載網站上的指示進行安裝。
 
 ## 後續步驟
 
-既然有了最新版本的 SSDT，您可以開始[連接](./sql-data-warehouse-get-started-connect.md)到資料庫。
+既然有了最新版本的 SSDT，您可以開始[連接][]到資料庫。
 
 <!--Anchors-->
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!--Arcticles-->
+[連接]: ./sql-data-warehouse-get-started-connect.md
+
+<!--Other-->
+[下載 Visual Studio 2015]: https://www.visualstudio.com/downloads/
+[安裝 Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
+[下載 SQL Server Data Tools Preview]: https://msdn.microsoft.com/library/mt204009.aspx
+
+<!---HONumber=AcomDC_0511_2016-->

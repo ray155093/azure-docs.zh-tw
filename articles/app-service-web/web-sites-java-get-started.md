@@ -167,9 +167,12 @@
 
 如需在 Azure 中開發 Java 應用程式的詳細資訊，請參閱 [Java 開發人員中心](/develop/java/)。
 
-<!-- External Links -->
+<!-- URL List -->
+
 [啟用自己的 Visual Studio 訂閱者權益]: http://go.microsoft.com/fwlink/?LinkId=623901
 [申請免費試用]: http://go.microsoft.com/fwlink/?LinkId=623901
 [試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
 
-<!---HONumber=AcomDC_0504_2016-->
+<!-- IMG List -->
+
+<!---HONumber=AcomDC_0511_2016-->

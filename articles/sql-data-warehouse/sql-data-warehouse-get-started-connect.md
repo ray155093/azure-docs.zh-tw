@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/20/2016"
+   ms.date="05/10/2016"
    ms.author="sonyama;barbkess"/>
 
 # 使用 Visual Studio 連接到 SQL 資料倉儲
@@ -53,7 +53,7 @@
 
     ![加入 SQL Server][3]
 
-1. 填寫 [連線到伺服器] 視窗中的欄位。
+4. 填寫 [連線到伺服器] 視窗中的欄位。
 
     ![連線到伺服器][4]
 
@@ -63,10 +63,11 @@
     - **資料庫名稱**。輸入 SQL DW 資料庫的資料庫名稱。
     - 按一下 [連接]。
 
-1. 若要瀏覽，請展開您的 Azure SQL 伺服器。您可以檢視與伺服器相關聯的資料庫。展開 AdventureWorksDW 以查看範例資料庫中的資料表。
+5. 若要瀏覽，請展開您的 Azure SQL 伺服器。您可以檢視與伺服器相關聯的資料庫。展開 AdventureWorksDW 以查看範例資料庫中的資料表。
 
     ![探索 AdventureWorksDW][5]
 
+> [AZURE.NOTE] 務必在連接時於 [資料庫名稱] 欄位中指定 SQL 資料倉儲資料庫 (步驟 4)，以便物件樹狀結構才能正常運作。如果您的邏輯伺服器上的某些資料庫已暫停，將此選項空白並連接到預設資料庫 **master** 可能沒有作用。最後會解決這項限制，但在此同時，連接到 SQL 資料倉儲資料庫將確保物件總管樹狀目錄的適當函數如上所示。
 
 ## 步驟 3：執行範例查詢
 
@@ -88,7 +89,7 @@
 
     ![執行查詢][7]
 
-1. 查看查詢結果。在此範例中，FactInternetSales 資料表有 60398 個資料列。
+5. 查看查詢結果。在此範例中，FactInternetSales 資料表有 60398 個資料列。
 
     ![查詢結果][8]
 
@@ -110,4 +111,4 @@
 [7]: ./media/sql-data-warehouse-get-started-connect/run-query.png
 [8]: ./media/sql-data-warehouse-get-started-connect/query-results.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

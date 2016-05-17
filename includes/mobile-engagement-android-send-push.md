@@ -3,27 +3,27 @@
 
 將下列應用程式內傳訊資源複製到您 Manifest.xml 的 `<application>` 和 `</application>` 標記之間。
 
-		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light">
+		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
   			<intent-filter>
     			<action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
     			<category android:name="android.intent.category.DEFAULT" />
     			<data android:mimeType="text/plain" />
   			</intent-filter>
 		</activity>
-		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity" android:theme="@android:style/Theme.Light">
+		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
 			<intent-filter>
 				<action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
 				<category android:name="android.intent.category.DEFAULT" />
 				<data android:mimeType="text/html" />
 			</intent-filter>
 		</activity>
-		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementPollActivity" android:theme="@android:style/Theme.Light">
+		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementPollActivity" android:theme="@android:style/Theme.Light" android:exported="false">
 			<intent-filter>
 				<action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity" android:theme="@android:style/Theme.Dialog">
+		<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity" android:theme="@android:style/Theme.Dialog" android:exported="false">
 			<intent-filter>
 				<action android:name="com.microsoft.azure.engagement.reach.intent.action.LOADING"/>
 				<category android:name="android.intent.category.DEFAULT"/>
@@ -59,7 +59,7 @@
 
 對於真正的應用程式，您可以根據 [Android 設計指導方針](http://developer.android.com/design/patterns/notifications.html)使用適合通知功能的圖示。
 
->[AZURE.TIP] 若要確保您使用了正確的圖示解析度，您可以查看[這些範例](https://www.google.com/design/icons)。請向下捲動至 [Notification] \(通知) 區段、按一下某個圖示，然後按一下 `PNGS` 來下載可繪製圖示集。您可看到對於每個版本的圖示要使用哪種解析度的可繪製資料夾。
+>[AZURE.TIP] 若要確保您使用了正確的圖示解析度，您可以查看[這些範例](https://www.google.com/design/icons)。請向下捲動至 [Notification] (通知) 區段、按一下某個圖示，然後按一下 `PNGS` 來下載可繪製圖示集。您可看到對於每個版本的圖示要使用哪種解析度的可繪製資料夾。
 
 ###啟用應用程式接收 GCM 推播通知
 
@@ -90,4 +90,6 @@
 		<uses-permission android:name="<Your package name>.permission.C2D_MESSAGE" />
 		<permission android:name="<Your package name>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 
-<!----HONumber=AcomDC_0330_2016-->
+
+
+
