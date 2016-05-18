@@ -56,11 +56,10 @@
 2. 指定通道名稱，描述欄位是選擇性的。在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [**標準**]，並將 [輸入通訊協定] 設為 [**RTP (MPEG-TS)**]。您可以將所有其他設定保留現狀。
 
 
-	請確認已選取 [**立即啟動新頻道**]。
+請確認已選取 [**立即啟動新頻道**]。
 
 3. 按一下 [**建立頻道**]。
-
-	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
+![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 

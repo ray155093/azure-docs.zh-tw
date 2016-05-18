@@ -37,7 +37,7 @@
 
 1. 在 OMS 主控台中按一下 [設定] 圖格。
 2. 選取 [帳戶]。
-3. 在 [工作區資訊] 區段中，按一下 [Connect to Power BI Account] (連接到 Power BI 帳戶)。
+3. 在 [工作區資訊] 區段中，按一下 [Connect to Power BI Account] \(連接到 Power BI 帳戶)。
 4. 輸入 Power BI 帳戶的認證。
 
 ## 建立 Power BI 排程
@@ -116,4 +116,4 @@
 - 深入了解[記錄搜尋](log-analytics-log-searches.md)，建置可以匯出至 Power BI 的查詢。
 - 深入了解 [Power BI](powerbi.microsoft.com)，建置以 Log Analytics 匯出為基礎的視覺效果。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!----HONumber=AcomDC_0504_2016-->

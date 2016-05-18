@@ -143,7 +143,7 @@
 	    
 	![][24] **iOS** ![][25] **Android**
 
-> [AZURE.NOTE] 請注意，您可以按一下任何範例通知螢幕上的[Click here for instructions on how to send these notifications from Mobile Engagement platform] (如需如何從 Mobile Engagement 平台傳送這些通知的指示，請按一下這裡)，檢視任何這些通知的詳細逐步指示 。
+> [AZURE.NOTE] 請注意，您可以按一下任何範例通知螢幕上的[Click here for instructions on how to send these notifications from Mobile Engagement platform] \(如需如何從 Mobile Engagement 平台傳送這些通知的指示，請按一下這裡)，檢視任何這些通知的詳細逐步指示 。
 
 
 [1]: ./media/mobile-engagement-demo-apps/home-windows.png
@@ -180,4 +180,4 @@
 [32]: ./media/mobile-engagement-demo-apps/notification-poll.png
 [33]: ./media/mobile-engagement-demo-apps/notification-data-push.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!-----HONumber=AcomDC_0504_2016-->
