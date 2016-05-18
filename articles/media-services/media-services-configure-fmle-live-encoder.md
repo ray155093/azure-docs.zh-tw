@@ -55,7 +55,7 @@
 請確認已選取 [**立即啟動新頻道**]。
 
 3. 按一下 [**建立頻道**]。
-	![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle2.png)
+![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 
@@ -172,4 +172,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!------HONumber=AcomDC_0504_2016-->
