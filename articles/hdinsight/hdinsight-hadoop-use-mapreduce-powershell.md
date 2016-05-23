@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/04/2016"
+   ms.date="04/26/2016"
    ms.author="larryfr"/>
 
 #使用 PowerShell 搭配執行 Hive 查詢與 HDInsight 上的 Hadoop
@@ -29,7 +29,9 @@
 
 - **Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 型或 Linux 型)**
 
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+- **具有 Azure PowerShell 的工作站**。
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 ##<a id="powershell"></a>使用 Azure PowerShell 執行 MapReduce 工作
 
@@ -182,4 +184,4 @@ MapReduce 工作的輸出會儲存在名稱為 *part-r-#####* 的檔案中。使
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/31/2016"
+   ms.date="04/19/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務來複製磁碟區 (Update 2)
@@ -35,7 +35,7 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 >
 >`Unable to modify the usage type for volume {0}. This can happen if the volume being modified is a transient clone and hasn’t been made permanent. Take a cloud snapshot of this volume and then retry the modify operation.`
 >
->先將暫時性複製品轉換為永久複製品，即可成功將磁碟區轉換為固定在本機的磁碟區。若要將暫時性複製品轉換為永久複製品，請拍下其雲端快照。
+>只有在您複製到不同裝置時才會收到這個錯誤。先將暫時性複製品轉換為永久複製品，即可成功將磁碟區轉換為固定在本機的磁碟區。若要將暫時性複製品轉換為永久複製品，請拍下其雲端快照。
 
 ## 建立磁碟區複製
 
@@ -55,11 +55,11 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
   1. 識別目標裝置。這是即將建立複製的位置。您可以選擇相同的裝置，或指定另一個裝置。如果您選擇與其他雲端服務提供者相關的磁碟區 (非 Azure)，目標裝置的下拉式清單將只會顯示實體裝置。您無法在虛擬裝置上複製與其他雲端服務提供者相關聯的磁碟區。
 
-        >[AZURE.NOTE] 確定要複製的容量小於目標裝置中可用的容量。
+        >[AZURE.NOTE] Make sure that the capacity required for the clone is lower than the capacity available on the target device.
 
   2. 為複製指定唯一的磁碟區名稱。此名稱必須包含 3 到 127 個字元。
     
-        >[AZURE.NOTE] 即使您複製了本機釘選磁碟區，**[將磁碟區複製為]** 欄位仍然會**分層**。 您無法變更此設定，但如果您需要在本機釘選複製的磁碟區，您可以在成功建立複製之後，將複製轉換到本機釘選的磁碟區。如需將分層磁碟區轉換到本機釘選的磁碟區之相關資訊，請前往[變更磁碟區類型](storsimple-manage-volumes-u2.md#change-the-volume-type).
+        >[AZURE.NOTE] The **Clone Volume As** field will be **Tiered** even if you are cloning a locally pinned volume. You cannot change this setting; however, if you need the cloned volume to be locally pinned as well, you can convert the clone to a locally pinned volume after you successfully create the clone. For information about converting a tiered volume to a locally pinned volume, go to [Change the volume type](storsimple-manage-volumes-u2.md#change-the-volume-type).
 
         ![Clone wizard 1](./media/storsimple-clone-volume-u2/clone1.png) 
 
@@ -90,9 +90,9 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
 ## 暫時性與永久複製
 
-您可以從備份組中複製特定磁碟區。以這種方式建立的複製就是「暫時性」複製。暫時性複製會有原始磁碟區的參考，並在本機寫入時使用該磁碟區來讀取。這可能導致效能變慢，特別是複製的磁碟區很大時。
+只有在您複製到不同裝置時才會建立暫時性和永久複製。您可以從備份組複製特定磁碟區到不同裝置。以這種方式建立的複製就是「暫時性」複製。暫時性複製會有原始磁碟區的參考，並在本機寫入時使用該磁碟區來讀取。
 
-在建立暫時性複製的雲端快照之後，產生的複製就是「永久」複製。永久複製獨立且沒有所複製原始磁碟區的任何參考。為了增進效能，建議您建立永久複製。
+在建立暫時性複製的雲端快照之後，產生的複製就是「永久」複製。永久複製獨立且沒有所複製原始磁碟區的任何參考。
 
 ## 暫時性複製與永久複製的案例
 
@@ -108,7 +108,7 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
 ### 利用永久複製在實際執行環境中進行測試
 
-您需要確認生產環境中的測試錯誤。您要在實際執行環境中建立磁碟區的複製。為了提高效能，您必須建立這個複製的雲端快照。複製的磁碟區現已獨立，進而促進效能。在此案例中，使用的是永久複製。
+您需要確認生產環境中的測試錯誤。您在生產環境中建立磁碟區的複製，並採用這個複製的雲端快照來建立獨立的複製磁碟區。在此案例中，使用的是永久複製。
 
 ## 後續步驟
 - 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set-u2.md)。
@@ -117,4 +117,4 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

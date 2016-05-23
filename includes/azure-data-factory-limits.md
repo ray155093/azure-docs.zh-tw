@@ -2,6 +2,7 @@
 
 **Resource** | **預設限制** | **上限**
 -------- | ------------- | -------------
+Azure 訂用帳戶中的 Data Factory | 50 | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
 資料處理站中的管線 | 100 | 2500
 資料處理站中的資料集 | 500 | 5000
 每個資料集的並行配量 | 10 | 10
@@ -29,4 +30,4 @@
 
 Azure 資源管理員有 API 呼叫限制。您可使用 [Azure 資源管理員 API 限制](../azure-subscription-service-limits/#resource-group-limits)內的速率進行 API 呼叫。
 
-<!---HONumber=AcomDC_0323_2016-->
+

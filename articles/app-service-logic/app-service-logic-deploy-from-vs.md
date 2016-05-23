@@ -1,8 +1,8 @@
 <properties 
-	pageTitle="從 Visual Studio 部署 | Microsoft Azure" 
+	pageTitle="從 Visual Studio 部署邏輯應用程式 | Microsoft Azure" 
 	description="在 Visual Studio 中建立專案來管理邏輯應用程式。" 
 	authors="stepsic-microsoft-com" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" 
 	services="app-service\logic" 
 	documentationCenter=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/19/2016"
+	ms.date="05/03/2016"
 	ms.author="stepsic"/>
 	
 # 從 Visual Studio 部署
@@ -27,7 +27,7 @@
 
 ## 建立專案
 
-1. 移至 [檔案] 功能表，選取 [新增] > [專案] \(或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
+1. 移至 [檔案] 功能表，選取 [新增] > [專案] (或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
 
 2. 在對話方塊中，尋找 [雲端]，然後選取 [Azure 資源群組]。輸入 [**名稱**]，然後按一下 [**確定**]。![加入新的專案](./media/app-service-logic-deploy-from-vs/addnewproject.png)
 
@@ -35,7 +35,7 @@
 
 4. 選取 [範本] 之後，按一下 [確定]。
 
-邏輯應用程式現在會加入至方案。您在 [方案總管] 中應該會看到部署：![Deployment](./media/app-service-logic-deploy-from-vs/deployment.png)
+邏輯應用程式現在會加入至方案。您在 [方案總管] 中應該會看到部署檔案：![Deployment](./media/app-service-logic-deploy-from-vs/deployment.png)
 
 ## 設定邏輯應用程式
 
@@ -63,8 +63,10 @@
 
      > [AZURE.NOTE]    務必為資源群組選取正確的範本和參數檔 (例如，如果是部署至生產環境，請選擇生產參數檔)。 
 4.  選取 [部署] 按鈕
+5. 將提示您修正我們偵測到的任何錯誤。例如：![部署到資源群組](./media/app-service-logic-deploy-from-vs/deploytoresourcegrouperror.png)
+ 
     
-5. [輸出] 視窗會顯示部署狀態 (您可能需要選擇 [Azure 佈建]。![輸出](./media/app-service-logic-deploy-from-vs/output.png)
+6. [輸出] 視窗會顯示部署狀態 (您可能需要選擇 [Azure 佈建]。![輸出](./media/app-service-logic-deploy-from-vs/output.png)
 
 未來，您可以在原始檔控制中修改邏輯應用程式，並利用 Visual Studio 來部署新的版本。
 
@@ -72,4 +74,4 @@
 
 > [AZURE.TIP] 如果您不想使用 Visual Studio，但仍想使用工具從原始檔控制來部署邏輯應用程式，您可以直接使用 [API](https://msdn.microsoft.com/library/azure/dn948510.aspx) 或 [PowerShell](../powershell-azure-resource-manager.md) 將部署作業自動化。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

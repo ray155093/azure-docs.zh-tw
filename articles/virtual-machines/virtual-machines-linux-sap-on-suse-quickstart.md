@@ -14,7 +14,7 @@
    ms.topic="campaign-page"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="na"
-   ms.date="02/12/2016"
+   ms.date="05/04/2016"
    ms.author="hermannd"/>
 
 # 在 Microsoft Azure SUSE Linux VM 上測試 SAP NetWeaver
@@ -161,4 +161,4 @@ SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特�
 
 在虛擬環境中，Oracle 對 Linux 的支援有所限制。雖然這不是 Azure 專屬的主題，不過仍請務必了解。SAP 不支援 SUSE 上的 Oracle 或類似 Azure 之公用雲端中的 Red Hat。若要討論這個主題，請直接連絡 Oracle。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -4,7 +4,7 @@
   services="app-service\mobile"
   documentationCenter=""
   authors="lindydonna"
-  manager="dwrede"
+  manager="erikre"
   editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
   ms.tgt_pltfrm="mobile-multiple"
   ms.devlang="dotnet"
   ms.topic="article"
-  ms.date="02/04/2016"
+  ms.date="05/10/2016"
   ms.author="donnam"/>
 
 # Mobile Apps 和行動服務中的用戶端和伺服器版本控制
@@ -79,8 +79,7 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 | 伺服器平台 | 版本 | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
-| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | ** 沒有版本標頭 ** | 
-|Node.js | (即將推出) | **沒有版本標頭** |
+| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **** 沒有版本標頭 ** | |Node.js | (即將推出) | **沒有版本標頭** |
 
 <!-- TODO: add Node npm version -->
 
@@ -113,7 +112,7 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 | 伺服器平台 | SDK | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
 | .NET | [Microsoft.Azure.Mobile.Server](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) | 2\.0.0 |
-| Node.js | [azure-mobile-apps 版本 1.0-beta1 (或更新版本)](https://www.npmjs.com/package/azure-mobile-apps) | 2\.0.0 |
+| Node.js | [azure-mobile-apps)](https://www.npmjs.com/package/azure-mobile-apps) | 2\.0.0 |
 
 ### Mobile Apps 後端的行為
 
@@ -138,4 +137,4 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 [Mobile App Server SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
 [將行動服務移轉至 Azure App Service]: app-service-mobile-migrating-from-mobile-services.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

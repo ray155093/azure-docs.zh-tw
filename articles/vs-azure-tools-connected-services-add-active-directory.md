@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="visual-studio-online"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 在 Visual Studio 中使用已連接服務加入 Azure Active Directory 
@@ -53,7 +53,7 @@
 
     ![在精靈中設定 Azure AD](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-3.png)
 
-1. 選擇 [完成] 按鈕。對話方塊會加入必要的組態程式碼和參考，讓您的專案啟用 Azure AD 驗證。您可以在 Azure 入口網站上看到 AD 網域。
+1. 選擇 [完成] 按鈕。對話方塊會加入必要的組態程式碼和參考，讓您的專案啟用 Azure AD 驗證。您可以在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)上看到 AD 網域。
 
 1. 檢閱瀏覽器中顯示的 [開始使用] 頁面以取得後續步驟的概念，並檢閱 [發生什麼情形] 頁面來查看專案的修改內容。如果您想要檢查是否一切正常，請開啟其中一個已修改的組態檔，並確認其中包含 [發生什麼情形] 中所提及的設定。例如，ASP.NET MVC 專案中的主要 web.config 必須加入這些設定：
 
@@ -79,4 +79,4 @@
 
  - [部落格文章：Azure AD 簡介](http://blogs.msdn.com/b/brunoterkaly/archive/2014/03/03/introduction-to-windows-azure-active-directory.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

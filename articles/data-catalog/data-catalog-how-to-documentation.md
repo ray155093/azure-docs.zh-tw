@@ -1,20 +1,20 @@
 <properties
-   pageTitle="如何記載資料來源 | Microsoft Azure"
-   description="專門說明如何在 Azure 資料目錄中記載資料資產的操作說明文章。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="dvana"
-   manager="NA"
-   editor=""
-   tags=""/>
+	pageTitle="如何記載資料來源 | Microsoft Azure"
+	description="專門說明如何在 Azure 資料目錄中記載資料資產的操作說明文章。"
+	services="data-catalog"
+	documentationCenter=""
+	authors="spelluru"
+	manager="NA"
+	editor=""
+	tags=""/>
 <tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="03/31/2016"
-   ms.author="derrickv"/>
+	ms.service="data-catalog"
+	ms.devlang="NA"
+	ms.topic="article"
+	ms.tgt_pltfrm="NA"
+	ms.workload="data-catalog"
+	ms.date="04/07/2016"
+	ms.author="spelluru"/>
 
 # 記載資料來源
 
@@ -48,4 +48,4 @@
 
 在 **Azure 資料目錄**中記載資料來源可依所需詳細程度建立資料資產的相關敘述。藉由使用連結，您可以連結至現有內容儲存機制中儲存的內容，以結合您現有的文件和資料資產。一旦使用者找到合適的資料資產，就能取得一組完整的說明文件。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

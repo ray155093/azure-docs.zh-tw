@@ -159,7 +159,7 @@ MP3 (MPEG-1 音訊層 3)|是|是
 Windows Media 音訊|是|是
 WAV/PCM|是|是
 [FLAC](https://en.wikipedia.org/wiki/FLAC)</a>|是|否
-[Opus](https://en.wikipedia.org/wiki/Opus_(audio_format) |是|否
+[Opus](https://en.wikipedia.org/wiki/Opus_(audio_format)) |是|否
 [Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a>|是|否
 
 
@@ -242,4 +242,4 @@ TransientError|涵蓋暫時性問題 (例如 Azure 儲存體暫時性網路問�
 <!--Reference links in article-->
 [1]: http://azure.microsoft.com/pricing/details/media-services/
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0511_2016-->

@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/02/2015"
+   ms.date="04/18/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Snapshot Manager 來建立和管理磁碟區群組
@@ -23,7 +23,7 @@
 
 磁碟區群組是用來確保應用程式具有一致備份之相關磁碟區的集區。如需詳細資訊，請參閱[磁碟區和磁碟區群組](storsimple-what-is-snapshot-manager.md#volumes-and-volume-groups)，以及[與 Windows 磁碟區陰影複製服務整合](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service)。
 
->[AZURE.IMPORTANT]
+>[AZURE.IMPORTANT] 
 >
 > * 磁碟區群組中的所有磁碟區必須來自單一雲端服務提供者。
 > 
@@ -54,7 +54,7 @@
 已選取 | [已選取] 資料行會顯示磁碟區群組中所包含的磁碟區數目。零 (0) 表示沒有任何應用程式與磁碟區群組中的磁碟區相關聯。
 已匯入 | [已匯入] 資料行會顯示已匯入的磁碟區數目。當設定為 **True** 時，此資料行會指出已從 Azure 傳統入口網站匯入磁碟區群組，而不是在 StorSimple Snapshot Manager 中建立它。
  
->[AZURE.NOTE]StorSimple Snapshot Manager 磁碟區群組也會顯示在 Azure 傳統入口網站的 [備份原則] 索引標籤上。
+>[AZURE.NOTE] StorSimple Snapshot Manager 磁碟區群組也會顯示在 Azure 傳統入口網站的 [備份原則] 索引標籤上。
  
 ## 建立磁碟區群組
 
@@ -64,7 +64,7 @@
 
 1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
 
-2. 在 [範圍] 窗格中，以滑鼠右鍵按一下 [磁碟區群組]，然後按一下 [建立磁碟區群組]。
+2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下 [**磁碟區群組**]，然後按一下 [**建立磁碟區群組**]。
 
     ![建立磁碟區群組](./media/storsimple-snapshot-manager-manage-volume-groups/HCS_SSM_Create_volume_group.png)
  
@@ -78,11 +78,11 @@
 
     2. 在 [應用程式] 方塊中，選取與您將新增至磁碟區群組之磁碟區相關聯的應用程式。
 
-        [應用程式] 方塊僅會列出那些使用 Azure StorSimple 磁碟區，並對它們啟用 VSS 寫入器的應用程式。只在寫入器注意的所有磁碟區都是 Azure StorSimple 磁碟區時，才會啟用 VSS 寫入器。如果 [應用程式] 方塊是空的，則不會安裝任何使用 Azure StorSimple 磁碟區，並具有支援之 VSS 寫入器的應用程式。(目前，Azure StorSimple 支援 Microsoft Exchange 和 SQL Server)。 如需 VSS 寫入器的詳細資訊，請參閱[與 Windows 磁碟區陰影複製服務整合](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service)。
+        [應用程式] 方塊僅會列出那些使用 StorSimple 磁碟區，並對它們啟用 VSS 寫入器的應用程式。只在寫入器注意的所有磁碟區都是 StorSimple 磁碟區時，才會啟用 VSS 寫入器。如果 [應用程式] 方塊是空的，則不會安裝任何使用 Azure StorSimple 磁碟區，並具有支援之 VSS 寫入器的應用程式。(目前，Azure StorSimple 支援 Microsoft Exchange 和 SQL Server)。 如需 VSS 寫入器的詳細資訊，請參閱[與 Windows 磁碟區陰影複製服務整合](storsimple-what-is-snapshot-manager.md#integration-with-windows-volume-shadow-copy-service)。
 
         如果選取應用程式，則會自動選取所有與其相關聯的磁碟區。相反地，如果選取與特定應用程式相關聯的磁碟區，則會在 [應用程式] 方塊中自動選取該應用程式。
 
-    3. 在 [磁碟區] 方塊中，選取要新增到磁碟區群組的 Azure StorSimple 磁碟區。
+    3. 在 [磁碟區] 方塊中，選取要新增到磁碟區群組的 StorSimple 磁碟區。
 
       - 您可以包含具有單一或多個磁碟分割的磁碟區。(多個磁碟分割磁碟區可以是具有多個磁碟分割的動態磁碟或基本磁碟)。 包含多個磁碟分割的磁碟區會被視為單一單位。因此，如果您只將其中一個磁碟分割新增到磁碟區群組，則所有其他磁碟分割會同時自動新增到該磁碟區群組。在將多個磁碟分割磁碟區新增到磁碟區群組之後，多個磁碟分割磁碟區會繼續被視為單一單位。
 
@@ -130,7 +130,7 @@
 
 請使用下列程序來刪除磁碟區群組。
 
->[AZURE.WARNING]這也會刪除所有與磁碟區群組相關聯的備份。
+>[AZURE.WARNING] 這也會刪除所有與磁碟區群組相關聯的備份。
 
 #### 若要刪除磁碟區群組
 
@@ -147,4 +147,4 @@
 - 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 - 了解如何[使用 StorSimple Snapshot Manager 建立和管理備份原則](storsimple-snapshot-manager-manage-backup-policies.md)。
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0511_2016-->

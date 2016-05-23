@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
-	ms.author="andkjell;markusvi"/>
+	ms.date="05/10/2016"
+	ms.author="andkjell;markvi"/>
 
 
 # Azure AD Connect 同步處理：設定篩選
@@ -51,13 +51,20 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 如果您有多個樹系，則必須將本主題中所說的篩選組態套用至每個樹系 (假設您想要讓所有樹系使用相同組態)。
 
 ### 停用排程的工作
-若要停用每 3 個小時觸發一次同步處理作業的排定工作，請遵循下列步驟：
+若要停用每 30 分鐘觸發一次同步處理週期的內建排程器，請遵循下列步驟：
+
+1. 移至 PowerShell 提示字元。
+2. 執行 `Set-ADSyncScheduler -SyncCycleEnabled $False` 停用排程器。
+3. 依本主題所述進行變更。
+4. 執行 `Set-ADSyncScheduler -SyncCycleEnabled $True` 重新啟用排程器。
+
+**如果您使用 1.1.105.0 之前的 Azure AD Connect 組建** 若要停用每 3 個小時觸發一次同步處理作業的排定工作，請遵循下列步驟：
 
 1. 從 [開始] 功能表啟動 [工作排程器]。
-2. 在 [工作排程器程式庫] 正下方尋找名稱為「Azure AD 同步排程器」的工作，以滑鼠右鍵按一下，然後選取 [停用]。![工作排程器](./media/active-directory-aadconnectsync-configure-filtering/taskscheduler.png)  
-3. 您現在可以進行組態變更，並從 [同步處理服務管理員] 主控台手動執行同步處理引擎。
+2. 在 [工作排程器程式庫] 正下方尋找名稱為 **Azure AD 同步排程器**的工作，按一下滑鼠右鍵選取 [停用]。![工作排程器](./media/active-directory-aadconnectsync-configure-filtering/taskscheduler.png)  
+3. 您現在可以從 **Synchronization Service Manager** 主控台進行組態變更和手動執行同步處理引擎。
 
-完成所有篩選變更之後，別忘了返回和並重新 [啟用] 工作。
+完成所有篩選變更之後，別忘了返回重新 [啟用] 工作。
 
 ## 篩選選項
 以下是可套用至目錄同步處理工具的篩選組態類型：
@@ -66,7 +73,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 - [**網域型**](#domain-based-filtering)：此選項可讓您選取要將哪些網域同步處理至 Azure AD。如果您在安裝 Azure AD Connect 同步處理之後對內部部署基礎結構進行變更，此選項也可讓您在同步處理引擎組態中新增和移除網域。
 
-- [**組織單位型**](#organizational-unitbased-filtering)：此篩選選項可讓您選取要將哪些組織單位同步處理至 Azure AD。此選項會套用在所選組織單位中的所有物件類型上。
+- [**組織單位型**](#organizational-unitbased-filtering)：此篩選選項可讓您選取要將哪些 OU 同步處理至 Azure AD。此選項會套用在所選組織單位中的所有物件類型上。
 
 - [**屬性型**](#attribute-based-filtering)：此選項可讓您根據物件屬性值篩選物件。您也可以讓不同物件類型透用不同篩選器。
 
@@ -81,14 +88,14 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 網域型篩選組態包含下列步驟：
 
-- [選取網域](#select-domains-to-be-synchronized)，這些網域是應該納入同步處理作業的網域。
-- 針對所新增和移除的每個網域，調整其[執行設定檔](#update-run-profiles)。
+- [選取網域](#select-domains-to-be-synchronized)，這些是應該納入同步處理作業的網域。
+- 針對所新增和移除的每個網域，調整[執行設定檔](#update-run-profiles)。
 - [套用並驗證變更](#apply-and-verify-changes)。
 
 ### 選取要同步處理的網域
 **若要設定網域篩選，請執行下列步驟：**
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組成員的帳戶，來登入執行 Azure AD Connect 同步處理的伺服器。
+1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理服務]。
 3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
 4. 按一下 [設定目錄分割]。
@@ -109,14 +116,14 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 - 差異同步處理
 - 匯出
 
-針對上述五個設定檔，請為每個「新增的」網域執行下列步驟：
+針對上述五個設定檔，請為每個**新增的**網域執行下列步驟：
 
 1. 選取執行設定檔，然後按一下 [新增步驟]。
 2. 在 [設定步驟] 頁面的 [類型] 下拉式清單中，選取與所要設定之設定檔同名的步驟類型。然後按 [下一步]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)  
 3. 在 [連接器組態] 頁面的 [分割] 下拉式清單中，選取您已新增至網域篩選的網域名稱。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)  
 4. 若要關閉 [設定執行設定檔] 對話方塊，可按一下 [完成]。
 
-針對上述五個設定檔，請為每個「移除的」網域執行下列步驟：
+針對上述五個設定檔，請為每個**移除的**網域執行下列步驟：
 
 1. 選取執行設定檔。
 2. 如果 [分割] 屬性的 [值] 是 GUID，請選取執行步驟，然後按一下 [刪除步驟]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)  
@@ -134,7 +141,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 **若要設定組織單位型篩選，請執行下列步驟：**
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組成員的帳戶，來登入執行 Azure AD Connect 同步處理的伺服器。
+1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理服務]。
 3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
 4. 按一下 [設定目錄分割]、選取要設定的網域，然後按一下 [容器]。
@@ -168,10 +175,10 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 #### 負面篩選：「不同步處理這些項目」
 在下列範例中，將篩選掉 (不同步處理) **extensionAttribute15** 的值為 **NoSync** 的所有使用者。
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組成員的帳戶，來登入執行 Azure AD Connect 同步處理的伺服器。
+1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 確定已選取 [輸入]，然後按一下 [新增規則]。
-4. 為規則提供一個描述性名稱，例如 "*In from AD – User DoNotSyncFilter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如：500)，然後按 [下一步]。![輸入 1 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)  
+4. 為規則提供一個描述性名稱，例如 "*In from AD – User DoNotSyncFilter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如 500)，然後按 [下一步]。![輸入 1 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)  
 5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [ExtensionAttribute15]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **NoSync**。按 [下一步]。![輸入 2 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)  
 6. 讓 [聯結] 規則保留空白，然後按 [下一步]。
 7. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
@@ -184,7 +191,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 在下列範例中，我們只會同步處理部門屬性值為 **Sales** 的使用者物件。
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組成員的帳戶，來登入執行 Azure AD Connect 同步處理的伺服器。
+1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 確定已選取 [輸入]，然後按一下 [新增規則]。
 4. 為規則提供一個描述性名稱，例如 "*In from AD – User Sales sync*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如：501)，然後按 [下一步]。![輸入 4 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound4.png)  
@@ -207,7 +214,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 我們將在此範例中變更篩選，如此一來，就只會同步處理 mail 和 userPrincipalName 都是以 @contoso.com 結束的使用者：
 
-1. 使用隸屬於 **ADSyncAdmins** 安全性群組成員的帳戶，來登入執行 Azure AD Connect 同步處理的伺服器。
+1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 在 [規則類型] 下方按一下 [輸出]。
 4. 尋找名為 **Out to AAD – User Join SOAInAD** 的規則。按一下 [**編輯**]。
@@ -233,7 +240,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 在進行過同步處理後，所有變更會進入匯出階段。實際在 Azure AD 中進行變更之前，我們會想要先驗證所有變更是否正確。
 
 1. 啟動 CMD 命令提示字元並移至 `%Program Files%\Microsoft Azure AD Sync\bin`
-2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱 (Name of Connector) 可以在 [同步處理服務] 中找到。它的名稱類似 Azure AD 的 "contoso.com – AAD"。
+2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。它的名稱類似 Azure AD 的 "contoso.com – AAD"。
 3. 執行：`CSExportAnalyzer %temp%\export.xml > %temp%\export.csv`
 4. 現在您在 %temp% 中已經有名稱為 export.csv 的檔案，可在 Microsoft Excel 中加以檢查。此檔案包含將要匯出的所有變更。
 5. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入、同步處理和驗證)，直到要匯出的變更皆如預期進行。
@@ -254,4 +261,4 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

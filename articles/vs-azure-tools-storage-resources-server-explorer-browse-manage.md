@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/19/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用伺服器總管瀏覽和管理儲存體資源
@@ -21,7 +21,7 @@
 
 若要在 Visual Studio 中檢視 [伺服器總管]，請在功能表列上選擇 [檢視] 和 [伺服器總管]。儲存體節點會顯示存在於您連接之每個 Azure 訂用帳戶/憑證下的儲存體帳戶。如果您的儲存體帳戶未出現，您可以遵循[本主題稍後](#add-storage-accounts-by-using-server-explorer)的指示加以新增。
 
-從 Azure SDK 2.7 開始，您也可以使用新的雲端總管來檢視和管理您的 Azure 資源。如需詳細資訊，請參閱[使用雲端總管管理 Azure 資源](vs-azure-tools-resources-managing-with-cloud-explorer)。
+從 Azure SDK 2.7 開始，您也可以使用新的雲端總管來檢視和管理您的 Azure 資源。如需詳細資訊，請參閱[使用雲端總管管理 Azure 資源](./vs-azure-tools-resources-managing-with-cloud-explorer.md)。
 
 
 ## 檢視和管理 Visual Studio 中的儲存體資源
@@ -40,7 +40,7 @@
 
 ## 使用 Blob 資源
 
-Blob 節點會顯示所選之儲存體帳戶的容器清單。Blob 容器包含 blob 檔案，您可以將這些 blob 組織成資料夾和子資料夾。如需詳細資訊，請參閱[如何從 .NET 使用 Blob 儲存體](..storage/storage-dotnet-how-to-use-blobs/) (英文)。
+Blob 節點會顯示所選之儲存體帳戶的容器清單。Blob 容器包含 blob 檔案，您可以將這些 blob 組織成資料夾和子資料夾。如需詳細資訊，請參閱[如何從 .NET 使用 Blob 儲存體](./storage/storage-dotnet-how-to-use-blobs.md) (英文)。
 
 ### 建立 Blob 容器
 
@@ -92,7 +92,7 @@ Blob 節點會顯示所選之儲存體帳戶的容器清單。Blob 容器包含 
 
     ![加入至 blob 容器的資料夾](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766038.png)
 
-1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] \(向上箭頭) 按鈕來瀏覽回容器的根。
+1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] (向上箭頭) 按鈕來瀏覽回容器的根。
 
 ### 刪除容器資料夾
 
@@ -308,10 +308,10 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。此服務是�
 
 - 在 [伺服器總管] 中，開啟帳戶名稱的捷徑功能表，然後選擇 [刪除]。如果您刪除儲存體帳戶，也會移除該帳戶的所有已儲存金鑰資訊。
 
-    >[AZURE.NOTE] 如果您從 [伺服器總管] 刪除儲存體帳戶，它並不會影響您的儲存體帳戶或其包含的任何資料，它只會從 [伺服器總管] 移除參考。若要永久刪除儲存體帳戶，請使用 Azure 管理入口網站。
+    >[AZURE.NOTE] 如果您從 [伺服器總管] 刪除儲存體帳戶，它並不會影響您的儲存體帳戶或其包含的任何資料，它只會從 [伺服器總管] 移除參考。若要永久刪除儲存體帳戶，請使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
 
 ## 後續步驟
 
 若要了解如何使用 Azure 儲存體服務的詳細資訊，請參閱[存取 Azure 儲存體服務](https://msdn.microsoft.com/library/azure/ee405490.aspx)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

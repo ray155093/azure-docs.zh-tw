@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="05/09/2016"
 	ms.author="robinsh"/>
 
 # Microsoft Azure 儲存體效能與延展性檢查清單
@@ -404,4 +404,4 @@ Azure 儲存體支援兩種 Blob：分頁 Blob 和區塊 Blob。在指定使用�
 ##結論
 本文討論一些最常見的已經實證做法，以便在使用 Azure 儲存體時將效能最佳化。我們鼓勵每位應用程式開發人員根據上述的每個做法來評估他們的應用程式，並考慮照著建議去做，為其使用 Azure 儲存體的應用程式取得最佳效能。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

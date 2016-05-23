@@ -4,7 +4,7 @@
 	services="" 
 	documentationCenter=".net" 
 	authors="devinrader" 
-	manager="twilio" 
+	manager="timlt" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="11/16/2015" 
+	ms.date="05/04/2016" 
 	ms.author="microsofthelp@twilio.com"/>
 
 
@@ -34,9 +34,9 @@
 
 您應知悉如何在 Azure 上建立基本 Web 角色。
 
-## <a name="howtocreateform"></a>作法：建立用以撥打電話的 Web 表單
+## </a><a name="howtocreateform">作法：建立用以撥打電話的 Web 表單
 
-<a id="use_nuget"></a>將 Twilio 程式庫新增至 Web 角色專案：
+</a><a id="use_nuget">將 Twilio 程式庫新增至 Web 角色專案：
 
 1.  在 Visual Studio 中開啟方案。
 2.  以滑鼠右鍵按一下 [參考]。
@@ -192,4 +192,4 @@
 
 [azure_runtime_ref_dotnet]: http://msdn.microsoft.com/library/windowsazure/microsoft.windowsazure.serviceruntime.aspx
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0511_2016-->

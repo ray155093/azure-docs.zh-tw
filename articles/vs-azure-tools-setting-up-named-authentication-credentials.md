@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 設定具名的驗證認證
@@ -33,7 +33,7 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
 您可以在 [新增/編輯訂用帳戶] 對話方塊中編輯訂用帳戶資訊，本主題稍後會有說明。
 
-如果您想要自行建立憑證，您可以參考[建立及上傳 Azure 的管理憑證](https://msdn.microsoft.com/library/windowsazure/gg551722.aspx)中的指示，然後手動將憑證上傳至管理入口網站。
+如果您想要自行建立憑證，您可以參考[建立及上傳 Azure 的管理憑證](https://msdn.microsoft.com/library/windowsazure/gg551722.aspx)中的指示，然後手動將憑證上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
 
 >[AZURE.NOTE] Visual Studio 為管理雲端服務所需的這些認證，與針對 Azure 儲存體服務驗證要求所需的認證是不同的。
 
@@ -53,15 +53,15 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
 1. 選擇 [複製完整路徑] 按鈕。憑證 (.cer 檔案) 的路徑便會複製到剪貼簿。
 
-    >[AZURE.IMPORTANT] 若要從 Visual Studio 發佈 Azure 應用程式，您必須將此憑證上傳至管理入口網站。
+    >[AZURE.IMPORTANT] 若要從 Visual Studio 發佈 Azure 應用程式，您必須將此憑證上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
 
-1. 將憑證上傳至 Azure 管理入口網站：
+1. 將憑證上傳到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)：
 
     1. 選擇 Azure 入口網站連結。
 
-         [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 隨即開啟。
+         [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 隨即開啟。
 
-    1. 使用您的 Microsoft 帳戶登入 Azure 管理入口網站，然後選擇 [雲端服務] 按鈕。
+    1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，然後選擇 [雲端服務] 按鈕。
 
     1. 選擇您感興趣的雲端服務。
 
@@ -71,4 +71,4 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
     1. 貼上您剛才建立的 .cer 檔案的完整路徑，然後輸入您指定的密碼。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

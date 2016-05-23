@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/07/2016"
+   ms.date="04/25/2016"
    ms.author="manuaery" />
 
 # StorSimple 本機固定磁碟區︰常見問題集 (FAQ)
@@ -183,7 +183,7 @@
 
 問： 是否可以複製本機固定磁碟區？
 
-答： 是，您可以這麼做。不過，本機固定磁碟區預設會複製為階層式磁碟區。有關如何[複製本機固定磁碟區](storsimple-clone-volume-u2)的詳細資訊
+答： 是，您可以這麼做。不過，本機固定磁碟區預設會複製為階層式磁碟區。有關如何[複製本機固定磁碟區](storsimple-clone-volume-u2.md)的詳細資訊
 
 ## 有關容錯移轉本機固定磁碟區的問題
 
@@ -195,7 +195,7 @@
 - 階層式磁碟機 (如果目標裝置正在執行 StorSimle 8000 系列 Update 1.x)
 - 階層式磁碟機 (如果目標裝置為雲端應用裝置且軟體版本為 Update 2 或 Update 1.x)
 
-有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recover.md#device-failover-across-software-versions) 的詳細資訊
+有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#device-failover-across-software-versions) 的詳細資訊
 
 問： 本機固定磁碟區是否會在災害復原 (DR) 期間立即還原？
 
@@ -211,6 +211,6 @@
 
 問： 是否可以將具有本機固定磁碟區的磁碟區容器容錯移轉到雲端應用裝置？
 
-答： 是，您可以這麼做。本機固定磁碟區會容錯移轉為階層式磁碟區。有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recover.md#device-failover-across-software-versions) 的詳細資訊
+答： 是，您可以這麼做。本機固定磁碟區會容錯移轉為階層式磁碟區。有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#considerations-for-device-failover) 的詳細資訊
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/09/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure AD 應用程式 Proxy 中的自訂網域
@@ -31,25 +31,40 @@
 
 ## 有關使用自訂網域的常見問題
 
-問：是否可以選取已上傳的憑證，而不再重新上載？ 答︰先前已上傳的憑證會自動繫結至應用程式，而只會有一個符合應用程式主機名稱的憑證。 …問：如何加入憑證，而已匯出的憑證應以何種格式上傳？ 答：憑證應從應用程式組態頁面進行上傳。此憑證應該是 PFX 檔案。 …問：是否可以使用 ECC 憑證？ 答：簽章方法沒有明確的限制。 …問：是否可以使用 SAN 憑證？ 答：可以。 ...問：是否可以使用萬用字元憑證？ 答：可以。 ...問：是否可以在每個應用程式上使用不同的憑證？ 答：可以，除非兩個應用程式共用相同的外部主機。 …問：如果我註冊新的網域，是否可以使用該網域？ 答：可以，網域清單是來自租用戶的已驗證網域清單。…問：憑證過期會發生什麼狀況？ 答：您會在應用程式組態頁面的 [憑證] 區段中收到警告。當使用者嘗試存取應用程式時，將會顯示安全性警告。 …問：我該如何取代指定應用程式的憑證？ 答：從應用程式組態頁面上傳新的憑證。 ...問：我是否可以刪除憑證並取代它？ 答：當您上傳新的憑證時，如果舊的憑證並未由另一個應用程式所使用，將會自動予以刪除。 ...問：憑證被撤銷時會發生什麼狀況？ 答：不會對憑證執行撤銷檢查。當使用者嘗試存取應用程式時，視瀏覽器而定，可能會出現安全性警告。 …問：是否可以使用自我簽署憑證？ 答：可以，可以使用自我簽署憑證。請注意，如果您使用私人憑證授權單位，則憑證的 CDP (憑證撤銷點散發點) 應是公開的。 ...問：是否有地方可以查看我的租用戶的所有憑證？ 答︰目前的版本不支援此功能。
+問：是否可以選取已上傳的憑證，而不再重新上載？ 答︰先前已上傳的憑證會自動繫結至應用程式，而只會有一個符合應用程式主機名稱的憑證。
+
+問：如何加入憑證，而已匯出的憑證應以何種格式上傳？ 答：憑證應從應用程式組態頁面進行上傳。此憑證應該是 PFX 檔案。
+
+問：是否可以使用 ECC 憑證？ 答：簽章方法沒有明確的限制。
+
+問：是否可以使用 SAN 憑證？ 答： 會。
+
+問：是否可以使用萬用字元憑證？ 答： 會。
+
+問：是否可以在每個應用程式上使用不同的憑證？ 答：可以，除非兩個應用程式共用相同的外部主機。
+
+問：如果我註冊新的網域，是否可以使用該網域？ 答：可以，網域清單是來自租用戶的已驗證網域清單。
+
+問：憑證過期會發生什麼狀況？ 答：您會在應用程式組態頁面的 [憑證] 區段中收到警告。當使用者嘗試存取應用程式時，將會顯示安全性警告。
+
+問：我該如何取代指定應用程式的憑證？ 答：從應用程式組態頁面上傳新的憑證。
+
+問：我是否可以刪除憑證並取代它？ 答：當您上傳新的憑證時，如果舊的憑證並未由另一個應用程式所使用，將會自動予以刪除。
+
+問：憑證被撤銷時會發生什麼狀況？ 答：不會對憑證執行撤銷檢查。當使用者嘗試存取應用程式時，視瀏覽器而定，可能會出現安全性警告。
+
+問：是否可以使用自我簽署憑證？ 答：可以，可以使用自我簽署憑證。請注意，如果您使用私人憑證授權單位，則憑證的 CDP (憑證撤銷點發佈點) 應是公開的。
+
+問：是否有地方可以查看我的租用戶的所有憑證？ 答︰目前的版本不支援此功能。
 
 
 ## 另請參閱
-應用程式 Proxy 還有其他更多用途：
 
 - [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
 - [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 - [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
-- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)- [使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
+- [將自訂網域名稱新增至 Azure AD](active-directory-add-domain.md)
 
-## 深入了解應用程式 Proxy
-- [看看我們的線上說明](active-directory-application-proxy-enable.md)
-- [查閱應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-- [觀看我們在 Channel 9 上的影片！](http://channel9.msdn.com/events/Ignite/2015/BRK3864)
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-## 其他資源
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [以組織方式註冊 Azure](sign-up-organization.md)
-- [Azure 身分識別](fundamentals-identity.md)
-
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/10/2015"
+	ms.date="05/05/2016"
 	ms.author="giridham;jimpark"/>
 
 # 從備份保存庫的另一部 DPM 伺服器復原資料
@@ -24,7 +24,7 @@
 ## 從另一部 DPM 伺服器復原資料
 從另一部 DPM 伺服器復原資料：
 
-1. 在 DPM 管理主控台的 [復原] 索引標籤中，按一下 [新增外部 DPM] \(在畫面左上方)。
+1. 在 DPM 管理主控台的 [復原] 索引標籤中，按一下 [新增外部 DPM] (在畫面左上方)。
 
     ![新增外部 DPM](./media/backup-azure-alternate-dpm-server/add-external-dpm.png)
 
@@ -32,7 +32,7 @@
 
     ![外部 DPM 認證](./media/backup-azure-alternate-dpm-server/external-dpm-credentials.png)
 
-    >[AZURE.NOTE]只有與相同登錄保存庫相關聯的 DPM 伺服器，才可以復原彼此的資料。
+    >[AZURE.NOTE] 只有與相同登錄保存庫相關聯的 DPM 伺服器，才可以復原彼此的資料。
 
     順利新增外部 DPM 伺服器之後，您就可以從 [復原] 索引標籤瀏覽外部 DPM 伺服器和本機 DPM 伺服器的資料。
 
@@ -73,7 +73,7 @@
 
     ![外部 DPM 復原選項摘要](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-options-summary.png)
 
-    >[AZURE.NOTE]您可以在 DPM 伺服器的 [監視] 索引標籤中監視復原工作。
+    >[AZURE.NOTE] 您可以在 DPM 伺服器的 [監視] 索引標籤中監視復原工作。
 
     ![監視復原](./media/backup-azure-alternate-dpm-server/monitoring-recovery.png)
 
@@ -103,4 +103,4 @@
 ## 後續步驟：
 • [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_1217_2015-->
+<!---HONumber=AcomDC_0511_2016-->

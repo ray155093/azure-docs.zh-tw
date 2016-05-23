@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 準備從 Visual Studio 發佈或部署 Azure 應用程式
@@ -30,7 +30,7 @@
 
 ## 建立雲端服務
 
-若要將雲端服務發佈至 Azure，您必須先建立在 Azure 環境中執行角色的雲端服務。您可以在 Azure 管理入口網站建立雲端服務，本主題稍後將在**使用 Azure 管理入口網站建立雲端服務**一節中說明。您也可以使用發佈精靈，在 Visual Studio 中建立雲端服務。
+若要將雲端服務發佈至 Azure，您必須先建立在 Azure 環境中執行角色的雲端服務。您可以在 **Azure 傳統入口網站**建立雲端服務，本主題稍後將在[使用 Azure 傳統入口網站建立雲端服務](http://go.microsoft.com/fwlink/?LinkID=213885)一節中說明。您也可以使用發佈精靈，在 Visual Studio 中建立雲端服務。
 
 ### 使用 Visual Studio 建立雲端服務
 
@@ -48,9 +48,9 @@
 
 1. 輸入雲端服務的名稱。名稱是構成服務之 URL 的一部分，因此必須是全域唯一的。名稱不區分大小寫。
 
-### 使用 Azure 管理入口網站建立雲端服務
+### 使用 Azure 傳統入口網站建立雲端服務
 
-1. 登入 Microsoft 網站上的 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
+1. 登入 Microsoft 網站上的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
 
 1. (選擇性) 若要顯示您已經建立的雲端服務清單，請選擇頁面左邊的雲端服務連結。
 
@@ -66,7 +66,7 @@
 
 ## 建立儲存體帳戶
 
-儲存體帳戶會提供 Blob、佇列和表格服務等存取權。您可以使用 Visual Studio 或 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)建立儲存體帳戶。
+儲存體帳戶會提供 Blob、佇列和表格服務等存取權。您可以使用 Visual Studio 或 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)建立儲存體帳戶。
 
 ### 使用 Visual Studio 建立儲存體帳戶
 
@@ -82,9 +82,9 @@
 
 1. 完成後，選擇 [建立]。新的儲存體帳戶會出現在 [伺服器總管] 的 [儲存體] 清單中。
 
-### 使用 Azure 管理入口網站建立儲存體帳戶
+### 使用 Azure 傳統入口網站建立儲存體帳戶
 
-1. 登入 Microsoft 網站上的 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
+1. 登入 Microsoft 網站上的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
 
 1. (選擇性) 若要檢視您的儲存體帳戶，請選擇頁面左側面板中的 [儲存體] 連結。
 
@@ -124,15 +124,15 @@
 
 1. 在 [訂用帳戶] 清單中，選擇您的訂用帳戶。如果訂用帳戶清單中沒有您想要的訂用帳戶，請選擇 [下載發佈設定] 連結。
 
-1. 在 [帳戶名稱] 清單中，選擇您的儲存體帳戶名稱。Azure Tools 會自動使用.publishsettings 檔案取得儲存體帳戶認證。若要手動指定儲存體帳戶認證，請選擇 [手動輸入的認證] 選項，然後繼續此程序。您可以從 [Azure 管理入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)取得您的儲存體帳戶名稱和主要金鑰。如果您不想手動指定儲存體帳戶設定，請選擇 [確定] 按鈕以關閉對話方塊。
+1. 在 [帳戶名稱] 清單中，選擇您的儲存體帳戶名稱。Azure Tools 會自動使用.publishsettings 檔案取得儲存體帳戶認證。若要手動指定儲存體帳戶認證，請選擇 [手動輸入的認證] 選項，然後繼續此程序。您可以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)取得您的儲存體帳戶名稱和主要金鑰。如果您不想手動指定儲存體帳戶設定，請選擇 [確定] 按鈕以關閉對話方塊。
 
 1. 選擇 [輸入儲存體帳戶] 認證連結。
 
 1. 在 [帳戶名稱] 方塊中，輸入您的儲存體帳戶名稱。
 
-    >[AZURE.NOTE] 登入管理入口網站，然後選擇 [儲存體] 按鈕。入口網站會顯示儲存體帳戶的清單。如果您選擇帳戶，其頁面就會開啟。您可以從這個頁面複製儲存體帳戶的名稱。如果您使用舊版管理入口網站，儲存體帳戶的名稱會出現在管理入口網站的 [儲存體帳戶] 檢視中。若要複製這個名稱，請在該檢視的 [屬性] 視窗中將其反白顯示，然後選擇 Ctrl-C 鍵。若要將名稱貼到 Visual Studio，請選擇 [帳戶名稱] 文字方塊，然後選擇 Ctrl+V 鍵。
+    >[AZURE.NOTE] 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，然後選擇 [儲存體] 按鈕。入口網站會顯示儲存體帳戶的清單。如果您選擇帳戶，其頁面就會開啟。您可以從這個頁面複製儲存體帳戶的名稱。如果您使用舊版傳統入口網站，儲存體帳戶的名稱會出現在 [儲存體帳戶] 檢視中。若要複製這個名稱，請在該檢視的 [屬性] 視窗中將其反白顯示，然後選擇 Ctrl-C 鍵。若要將名稱貼到 Visual Studio，請選擇 [帳戶名稱] 文字方塊，然後選擇 Ctrl+V 鍵。
 
-1. 在 [帳戶金鑰] 方塊中，輸入您的主要金鑰，或從[Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將其複製並貼上。從管理入口網站複製這個金鑰：
+1. 在 [帳戶金鑰] 方塊中，輸入您的主要金鑰，或從[Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將其複製並貼上。若要複製此金鑰︰
 
     1. 在適當儲存體帳戶的頁面底部，選擇 [管理金鑰] 按鈕。
 
@@ -153,4 +153,4 @@
 
 若要深入了解如何將應用程式從 Visual Studio 發佈至 Azure，請參閱[使用 Azure Tools 發佈雲端服務](vs-azure-tools-publishing-a-cloud-service.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

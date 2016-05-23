@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # Azure 的命令列建置
@@ -60,6 +60,6 @@
 
 ## Deployment
 
-建立封裝之後，您可以將它部署至 Azure。如需示範該程序的教學課程，請參閱 Azure 網站。如需如何自動化該程序的相關資訊，請參閱 [Azure 中雲端服務的連續傳遞](../cloud-services/cloud-services-dotnet-continuous-delivery)。
+建立封裝之後，您可以將它部署至 Azure。如需示範該程序的教學課程，請參閱 Azure 網站。如需如何自動化該程序的相關資訊，請參閱 [Azure 中雲端服務的連續傳遞](./cloud-services/cloud-services-dotnet-continuous-delivery.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

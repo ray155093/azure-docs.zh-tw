@@ -1,5 +1,5 @@
 <properties 
-    pageTitle="Elastic Scale 安全性設定 | Microsoft Azure" 
+    pageTitle="分割合併安全性設定 | Microsoft Azure" 
     description="設定加密的 x409 憑證" 
     metaKeywords="Elastic Database certificates security" 
     services="sql-database" 
@@ -13,11 +13,11 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="02/23/2016" 
+    ms.date="04/26/2016" 
     ms.author="torsteng;sidneyh" />
 
 
-# Split-Merge 安全性設定  
+# 分割合併安全性設定  
 
 若要使用 Split/Merge 服務，您必須正確地設定安全性。此服務是 Microsoft Azure SQL Database 的 Elastic Scale 功能的一部分。如需詳細資訊，請參閱 [Elastic Scale 分割及合併服務教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)
 
@@ -357,7 +357,7 @@
 * 在開啟的 [憑證] 對話方塊中，選取 [詳細資料] 索引標籤
 * 請確定 [顯示] 是顯示 [全部]
 * 在清單中選取名為 [憑證指紋] 的欄位
-* 複製憑證指紋值 **刪除第一個數字前面不可見的 Unicode 字元** 刪除所有的空格
+* 複製憑證指紋值 ** 刪除第一個數字前面不可見的 Unicode 字元 ** 刪除所有的空格
 
 ## 在服務組態檔中設定允許的用戶端
 
@@ -487,4 +487,4 @@
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

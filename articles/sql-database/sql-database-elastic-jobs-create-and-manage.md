@@ -1,5 +1,5 @@
 <properties
-	pageTitle="建立和管理彈性資料庫工作 | Micosoft Azure"
+	pageTitle="建立和管理相應放大的 SQL Azure 資料庫 | Micosoft Azure"
 	description="逐步解說如何建立和管理彈性資料庫工作。"
 	services="sql-database"
 	documentationCenter=""
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/11/2016"
+	ms.date="04/25/2016"
 	ms.author="ddove; sidneyh"/>
 
-# 使用入口網站建立和管理 SQL Database 彈性工作 (預覽)
+# 建立和管理相應放大的 SQL Azure 資料庫 (預覽)
 
 > [AZURE.SELECTOR]
-- [Azure portal](sql-database-elastic-jobs-create-and-manage.md)
+- [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
 - [PowerShell](sql-database-elastic-jobs-powershell.md)
 
 
@@ -115,4 +115,4 @@
 
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

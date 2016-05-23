@@ -36,18 +36,6 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。
 * Visual Studio 2012、2013 或 2015。
 
-## 尋找訂閱識別碼
-
-每個 Azure 訂閱都是透過 GUID 值 (稱為訂閱識別碼) 予以識別。請使用下列步驟來尋找此值。
-
-1. 造訪 [Azure 入口網站][preview-portal]。
-
-2. 從入口網站的左側列選取 [瀏覽全部]，然後從 [瀏覽] 刀鋒視窗選取 [訂用帳戶]。
-
-3. 在 [訂用帳戶] 刀鋒視窗所呈現的資訊中，找出您要使用的訂用帳戶，並記下 [訂用帳戶 ID] 欄中的值。
-
-儲存訂閱識別碼，供稍後使用。
-
 ## 建立應用程式
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
@@ -79,22 +67,10 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 5. 從 [**工具**] 功能表中，選取 [**程式庫封裝管理員**] 或 [**Nuget 封裝管理員**]，然後選取 [**封裝管理員主控台**]。
 6. 在主控台中執行下列命令，以安裝 .NET SDK 封裝。
 
-        Install-Package Microsoft.Azure.Common.Authentication -Pre
-        Install-Package Microsoft.Azure.Management.HDInsight -Pre
-        Install-Package Microsoft.Azure.Management.HDInsight.Job -Pre
+        Install-Package Microsoft.Azure.Management.HDInsight.Job
 
 7. 在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。將現有程式碼取代為下者。
 
-        using System;
-        using System.Collections.Generic;
-        using System.Security;
-        using System.Threading;
-        using Microsoft.Azure;
-        using Microsoft.Azure.Common.Authentication;
-        using Microsoft.Azure.Common.Authentication.Factories;
-        using Microsoft.Azure.Common.Authentication.Models;
-        using Microsoft.Azure.Management.Resources;
-        using Microsoft.Azure.Management.HDInsight;
         using Microsoft.Azure.Management.HDInsight.Job;
         using Microsoft.Azure.Management.HDInsight.Job.Models;
         using Hyak.Common;
@@ -103,32 +79,16 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
         {
             class Program
             {
-                private static HDInsightManagementClient _hdiManagementClient;
                 private static HDInsightJobManagementClient _hdiJobManagementClient;
-
-                private static Guid SubscriptionId = new Guid("<Your Subscription ID>");
-                private const string ResourceGroupName = "<Your Resource Group Name>";
 
                 private const string ExistingClusterName = "<Your HDInsight Cluster Name>";
                 private const string ExistingClusterUri = ExistingClusterName + ".azurehdinsight.net";
                 private const string ExistingClusterUsername = "<Cluster Username>";
                 private const string ExistingClusterPassword = "<Cluster User Password>";
 
-                private const string DefaultStorageAccountName = "<Default Storage Account Name>";
-                private const string DefaultStorageAccountKey = "<Default Storage Account Key>";
-                private const string DefaultStorageContainerName = "<Default Blob Container Name>";
-
                 static void Main(string[] args)
                 {
                     System.Console.WriteLine("The application is running ...");
-
-                    var tokenCreds = GetTokenCloudCredentials();
-                    var subCloudCredentials = GetSubscriptionCloudCredentials(tokenCreds, SubscriptionId);
-
-                    var resourceManagementClient = new ResourceManagementClient(subCloudCredentials);
-                    var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
-
-                    _hdiManagementClient = new HDInsightManagementClient(subCloudCredentials);
 
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
@@ -139,41 +99,17 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                     System.Console.ReadLine();
                 }
 
-                public static TokenCloudCredentials GetTokenCloudCredentials(string username = null, SecureString password = null)
-                {
-                    var authFactory = new AuthenticationFactory();
-
-                    var account = new AzureAccount { Type = AzureAccount.AccountType.User };
-
-                    if (username != null && password != null)
-                        account.Id = username;
-
-                    var env = AzureEnvironment.PublicEnvironments[EnvironmentName.AzureCloud];
-
-                    var accessToken =
-                        authFactory.Authenticate(account, env, AuthenticationFactory.CommonAdTenant, password, ShowDialog.Auto)
-                            .AccessToken;
-
-                    return new TokenCloudCredentials(accessToken);
-                }
-
-                public static SubscriptionCloudCredentials GetSubscriptionCloudCredentials(TokenCloudCredentials creds, Guid subId)
-                {
-                    return new TokenCloudCredentials(subId.ToString(), creds.Token);
-                }
-
-
                 private static void SubmitPigJob()
                 {
                     var parameters = new PigJobSubmissionParameters
                     {
                         Query = @"LOGS = LOAD 'wasb:///example/data/sample.log';
-                            LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
-                            FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
-                            GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
-                            FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
-                            RESULT = order FREQUENCIES by COUNT desc;
-                            DUMP RESULT;"
+                                    LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
+                                    FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
+                                    GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
+                                    FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
+                                    RESULT = order FREQUENCIES by COUNT desc;
+                                    DUMP RESULT;"
                     };
 
                     System.Console.WriteLine("Submitting the Pig job to the cluster...");
@@ -207,4 +143,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

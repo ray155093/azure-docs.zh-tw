@@ -1,5 +1,5 @@
 <properties
-	pageTitle="基本設定測試環境與 Azure 資源管理員"
+	pageTitle="基本設定測試環境與 Azure Resource Manager"
 	description="了解如何建立簡單的開發/測試環境來模擬 Microsoft Azure 中簡化的內部網路。"
 	documentationCenter=""
 	services="virtual-machines-windows"
@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/01/2016"
+	ms.date="04/25/2016"
 	ms.author="josephd"/>
 
 # 基本設定測試環境
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
 
-本文將逐步解說如何利用在資源管理員中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
+本文將逐步解說如何利用在 Resource Manager 中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
 
 產生的測試環境可以用於：
 
@@ -83,7 +83,7 @@
 	$locName="<location name, such as West US>"
 	New-AzureRMResourceGroup -Name $rgName -Location $locName
 
-以資源管理員為基礎的虛擬機器需要以資源管理員為基礎的儲存體帳戶。您必須為儲存體帳戶挑選只包含小寫字母和數字的全域唯一名稱。您可以使用此命令列出現有的儲存體帳戶。
+以 Resource Manager 為基礎的虛擬機器需要以 Resource Manager 為基礎的儲存體帳戶。您必須為儲存體帳戶挑選只包含小寫字母和數字的全域唯一名稱。您可以使用此命令列出現有的儲存體帳戶。
 
 	Get-AzureRMStorageAccount | Sort StorageAccountName | Select StorageAccountName
 
@@ -149,7 +149,7 @@ DC1 是 corp.contoso.com Active Directory 網域服務 (AD DS) 網域的網域�
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -289,7 +289,7 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 2.	在 [CLIENT1 的屬性] 中，按一下 [IE 增強式安全性設定] 旁的 [開啟]。
 3.	在 [Internet Explorer 增強式安全性設定] 中，按一下 [系統管理員] 和 [使用者] 的 [關閉]，然後按一下 [確定]。
 4.	從 [開始] 畫面中，按一下 [Internet Explorer]，然後按一下 [確定]。
-5.	在網址列中，鍵入 **http://app1.corp.contoso.com/**，然後按 ENTER。您應該會看到 APP1 的預設網際網路資訊服務網頁。
+5.	在網址列中，鍵入 ****http://app1.corp.contoso.com/**，然後按 ENTER。您應該會看到 APP1 的預設網際網路資訊服務網頁。
 6.	按一下桌面工作列中的 [檔案總管] 圖示。
 7.	在網址列中，輸入 **\\\app1\\Files**，然後按下 ENTER。
 8.	您應該會看到一個資料夾視窗，裡面有檔案共用資料夾的內容。
@@ -304,7 +304,8 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 
 ## 後續步驟
 
-- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)加入新的虛擬機器，或建置[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)新增虛擬機器。
+- 建置[模擬混合式雲端測試環境](virtual-machines-setup-simulated-hybrid-cloud-environment-testing.md)。
 
 
 ## <a id="costs"></a>將 Azure 的測試環境虛擬機器費用降至最低
@@ -334,4 +335,4 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "APP1"
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "CLIENT1"
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

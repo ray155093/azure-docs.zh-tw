@@ -1,6 +1,6 @@
 <properties
 	pageTitle="如何使用 Python 中的 Azure Blob 儲存體 | Microsoft Azure"
-	description="了解如何使用 Python 的 Azure Blob 儲存體來上傳、列出、下載及刪除 Blob。"
+	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	services="storage"
 	documentationCenter="python"
 	authors="emgerner-msft"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="02/29/2016"
+    ms.date="04/29/2016"
 	ms.author="jehine"/>
 
 # 如何使用 Python 的 Azure Blob 儲存體
@@ -125,4 +125,4 @@
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0511_2016-->

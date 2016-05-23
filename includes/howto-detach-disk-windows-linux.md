@@ -4,7 +4,7 @@
 
 如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連接至相同或其他虛擬機器。
 
-> [AZURE.NOTE] 您無法卸離作業系統磁碟，除非您同時刪除虛擬機器。
+> [AZURE.NOTE] 若要卸離作業系統磁碟，您必須先刪除虛擬機器。
 
 
 ## 尋找磁碟
@@ -32,5 +32,3 @@
 	![卸離磁碟詳細資料](./media/howto-detach-disk-windows-linux/DetachDiskDetails.png)
 
 磁碟仍留在儲存體中，但不再連接至虛擬機器。
-
-<!---HONumber=AcomDC_0211_2016-->

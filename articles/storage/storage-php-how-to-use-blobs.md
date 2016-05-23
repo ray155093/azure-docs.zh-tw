@@ -1,6 +1,6 @@
 <properties
 	pageTitle="如何使用 PHP 中的 Blob 儲存體 | Microsoft Azure"
-	description="了解如何使用 Azure Blob 服務來上傳、列出、下載及刪除 Blob。程式碼範例以 PHP 撰寫。"
+	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	documentationCenter="php"
 	services="storage"
 	authors="rmcmurray"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="02/17/2016"
+    ms.date="04/29/2016"
 	ms.author="robmcm"/>
 
 # 如何使用 PHP 的 Blob 儲存體
@@ -306,4 +306,4 @@
 [fopen]: http://www.php.net/fopen
 [stream-get-contents]: http://www.php.net/stream_get_contents
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

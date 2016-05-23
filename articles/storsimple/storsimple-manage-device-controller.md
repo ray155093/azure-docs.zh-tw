@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="管理 StorSimple 裝置控制器 | Microsoft Azure"
    description="了解如何停止、重新啟動、關閉或重設您的 StorSimple 裝置控制器。"
    services="storsimple"
@@ -6,13 +6,13 @@
    authors="alkohli"
    manager="carmonm"
    editor="" />
-<tags 
+<tags
    ms.service="storsimple"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/18/2016"
+   ms.date="04/25/2016"
    ms.author="alkohli" />
 
 # 管理 StorSimple 裝置控制器
@@ -24,7 +24,7 @@
 本教學課程包含使用下列內容管理裝置控制器的逐步指示：
 
 - StorSimple Manager 服務中 [**維護**] 頁面的 [**控制器**] 區段
-- Windows PowerShell for StorSimple 
+- Windows PowerShell for StorSimple
 
 我們建議您透過 StorSimple Manager 服務管理裝置控制器。如果動作只能使用 Windows PowerShell for StorSimple 執行，本教學課程會記錄下來。
 
@@ -41,7 +41,7 @@
 
 假設被動控制器可用，重新啟動裝置並不會干擾連線的啟動器。如果被動控制器不可用或已關閉，重新啟動主動控制器可能會導致服務中斷和停機。
 
-> [AZURE.IMPORTANT] 
+> [AZURE.IMPORTANT]
 
 > - **執行中的控制器應該永遠不會實際移除，因為這會導致失去備援並增加停機的風險。**
 
@@ -66,23 +66,17 @@
 	>[AZURE.NOTE] 如果您沒看到 [**管理控制器**]，表示您需要安裝更新。如需詳細資訊，請參閱[更新您的 StorSimple 裝置](storsimple-update-device.md)。
 
 1. 在 [**變更控制器設定**] 對話方塊中，執行下列動作：
-
-
-	- 從 [**選取控制器**] 下拉式清單中，選取您想要管理的控制器。選項為控制器 0 和控制器 1。這些控制器也可識別為主動或被動。
+    1. 從 [**選取控制器**] 下拉式清單中，選取您想要管理的控制器。選項為控制器 0 和控制器 1。這些控制器也可識別為主動或被動。
 
 		>[AZURE.NOTE] 如果控制器無法使用或已關閉，就無法管理它，而它也不會出現在下拉式清單中。
-	
 
+    2. 從 [**選取動作**] 下拉式清單中，選擇 [**重新啟動控制器**] 或 [**關閉控制器**]。
 
-	- 從 [**選取動作**] 下拉式清單中，選擇 [**重新啟動控制器**] 或 [**關閉控制器**]。
-	
 		![重新啟動 StorSimple 裝置被動控制器](./media/storsimple-manage-device-controller/IC766020.png)
- 
-
-	- 按一下核取圖示 ![核取圖示](./media/storsimple-manage-device-controller/IC740895.png)。
+    3. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-device-controller/IC740895.png)。
 
 這將會重新啟動或關閉控制器。下表根據您在 [**變更控制器設定**] 對話方塊中選取的項目，整理出所發生狀況的詳細資料摘要。
-													
+
 
 |選取項目 #|如果您選擇...|就會發生這個狀況。|
 |---|---|---|
@@ -101,16 +95,12 @@
 1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。
 
 1. 在橫幅訊息中，記下您已連接的控制器 (控制器 0 或控制器 1) 以及它是主動或被動 (待命) 控制器。
-	
-
-	- 若要關閉單一控制器，請在提示中輸入：
+    - 若要關閉單一控制器，請在提示中輸入：
 
 		`Stop-HcsController`
 
 		這會關閉您所連接的控制器。如果您停止主動控制器，它會在關閉之前容錯移轉到被動控制器。
-
-
-	- 若要重新啟動控制器，請在提示中輸入：
+    - 若要重新啟動控制器，請在提示中輸入：
 
 		`Restart-HcsController`
 
@@ -150,7 +140,7 @@
 
 ## 將裝置重設為出廠預設設定。
 
-此程序包含將 Microsoft Azure StorSimple 裝置重設為使用 Windows PowerShell for StorSimple 出廠預設設定所需的詳細步驟。
+此程序描述如何將 Microsoft Azure StorSimple 裝置重設為使用 Windows PowerShell for StorSimple 的出廠預設設定。根據預設，重設裝置會從整個叢集移除所有資料和設定。
 
 執行下列步驟來將 Microsoft Azure StorSimple 裝置重設為出廠預設設定：
 
@@ -160,19 +150,19 @@
 
 1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。
 
-1. 在出現提示時輸入下列命令：
+1. 在提示中，輸入下列命令來重設整個叢集，移除所有資料、中繼資料和控制器設定︰
 
 	`Reset-HcsFactoryDefault`
 
-	系統會重新啟動多次。重設成功完成時，系統將會通知您。根據系統模型，8100 裝置可能需要 45-60 分鐘來完成此程序，而 8600 需要 60-90 分鐘。
+    若要改為重設一個控制器，請使用 [Reset-hcsfactorydefault](http://technet.microsoft.com/library/dn688132.aspx) Cmdlet 搭配 `-scope` 參數。)
 
-	> [AZURE.TIP] 
-	
-	> - 如果恢復出廠預設值的 Cmdlet (如同上述用法) 回報韌體不符錯誤，請使用 `Reset-HcsFactoryDefault –SkipFirmwareVersionCheck` 命令略過韌體版本檢查：恢復出廠預設值因韌體版本不相符而無法繼續。在先前使用 Microsoft Update 或 Hotfix 機制更新的裝置上執行恢復出廠預設值時，您必須略過韌體檢查 (使用 `–SkipFirmwareCheck` 選項)。
-	
+    系統會重新啟動多次。重設成功完成時，系統將會通知您。根據系統模型，8100 裝置可能需要 45-60 分鐘來完成此程序，而 8600 需要 60-90 分鐘。
+
+	> [AZURE.TIP]
+
+	> - 如果您使用 Update 1.2 或更早版本，請使用 `–SkipFirmwareVersionCheck` 參數略過韌體版本檢查 (否則您將看到韌體不符錯誤：恢復出廠預設值因韌體版本不相符而無法繼續。)。
+
 	> - 在 Government 入口網站中執行 Update 1 或 1.1 ，且已執行成功的單一或雙重控制器更換 (含 pre-Update 1 軟體所隨附的更換控制器) 的 StorSimple 裝置的恢復出廠預設值程序可能會失敗。這會發生在針對不存在於 pre-Update 1 軟體的控制器上的 SHA1 檔案的目前狀態驗證恢復出廠預設值時。如果您看到這個恢復出廠預設值失敗，請連絡 Microsoft 支援服務以協助您進行下一個步驟。在具有 Update 1 或更新版本軟體的原廠出貨更換控制器不會看到這個問題。
-
-	> - 如需有關如何使用此 Cmdlet 的詳細資訊，請移至 [Windows PowerShell for StorSimple 的 Cmdlet 參考](https://technet.microsoft.com/library/dn688168.aspx)。
 
 
 ## 有關管理裝置控制器的問題與解答
@@ -223,4 +213,4 @@
 
 - 若要深入了解使用 StorSimple Manager 的方式，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

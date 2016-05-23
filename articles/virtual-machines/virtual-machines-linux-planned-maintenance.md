@@ -21,6 +21,8 @@
 
 了解什麼是 Azure 預定進行的維修，以及其對 Linux 虛擬機器可用性的影響為何。本文也適用於 [Windows 虛擬機器](virtual-machines-windows-planned-maintenance.md)。
 
+本文提供 Azure 計劃性維護程序的背景。如果您想要針對 VM 重新啟動的原因進行疑難排解，您可以[閱讀這篇部落格文章，其內容詳細說明檢視 VM 重新啟動記錄檔](https://azure.microsoft.com/blog/viewing-vm-reboot-logs/)。
+
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## Azure 執行計劃性維護的原因
@@ -33,4 +35,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-planned-maintenance](../../includes/virtual-machines-common-planned-maintenance.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

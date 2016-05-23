@@ -1,6 +1,6 @@
 <properties
-	pageTitle="將內部部署 AlwaysOn 可用性群組延伸至 Azure | Microsoft Azure"
-	description="本教學課程使用隨傳統部署模型建立的資源，並說明如何在 SQL Server Management Studio (SSMS) 中使用 [加入複本精靈]，以在 Azure 中加入 AlwaysOn 可用性群組複本。"
+	pageTitle="將內部部署 Always On 可用性群組延伸至 Azure | Microsoft Azure"
+	description="本教學課程使用隨傳統部署模型建立的資源，並說明如何在 SQL Server Management Studio (SSMS) 中使用 [加入複本精靈]，以在 Azure 中加入 Always On 可用性群組複本。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="MikeRayMSFT"
@@ -14,12 +14,12 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/05/2016"
+	ms.date="05/08/2016"
 	ms.author="mikeray" />
 
-# 將內部部署 AlwaysOn 可用性群組延伸至 Azure
+# 將內部部署 Always On 可用性群組延伸至 Azure
 
-AlwaysOn 可用性群組可透過新增次要複本，為資料庫群組提供高可用性。如果發生故障，這些複本便可容錯移轉資料庫。此外，它們還可用來卸載讀取工作負載或備份工作。
+Always On 可用性群組可透過新增次要複本，為資料庫群組提供高可用性。如果發生故障，這些複本便可容錯移轉資料庫。此外，它們還可用來卸載讀取工作負載或備份工作。
 
 您可使用 SQL Server 佈建一或多個 Azure VM，並將它們以複本形式新增至內部部署可用性群組，藉此將內部部署可用性群組延伸至 Microsoft Azure。
 
@@ -27,17 +27,17 @@ AlwaysOn 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 - 有效的 Azure 訂用帳戶。您可以[註冊免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-- 現有的 AlwaysOn 可用性群組內部部署。如需可用性群組的詳細資訊，請參閱 [AlwaysOn 可用性群組](https://msdn.microsoft.com/library/hh510230.aspx)。
+- 現有的 Always On 可用性群組內部部署。如需可用性群組的詳細資訊，請參閱 [Always On 可用性群組](https://msdn.microsoft.com/library/hh510230.aspx)。
 
 - 內部部署網路與 Azure 虛擬網路之間的連線如需關於建立此虛擬網路的詳細資訊，請參閱[在 Azure 傳統入口網站中設定站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
 
 ## 加入 Azure 複本精靈
 
-本章節將說明如何使用 [加入 Azure 複本精靈] 延伸您的 AlwaysOn 可用性群組解決方案以包含 Azure 複本。
+本章節將說明如何使用 [加入 Azure 複本精靈] 延伸您的 Always On 可用性群組解決方案使其包含 Azure 複本。
 
-1. 在 SQL Server Management Studio 中，依序展開 [AlwaysOn 高可用性] > [可用性群組] > [可用性群組名稱]。
+1. 在 SQL Server Management Studio 中，依序展開 [Always On 高可用性] > [可用性群組] > [您的可用性群組名稱]。
 
 1. 以滑鼠右鍵按一下 [可用性複本]，然後按一下 [新增複本]。
 
@@ -81,7 +81,7 @@ AlwaysOn 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 1. 按 [下一步]。
 
-1. 在 [選取初始資料同步處理] 頁面中，選取您要使用的資料同步處理方法，然後按 [下一步]。在大部分的情況下，請選取 [完整資料同步處理]。如需資料同步處理方法的詳細資訊，請參閱 [選取初始資料同步處理頁面 (AlwaysOn 可用性群組精靈)](https://msdn.microsoft.com/library/hh231021.aspx)。
+1. 在 [選取初始資料同步處理] 頁面中，選取您要使用的資料同步處理方法，然後按 [下一步]。在大部分的情況下，請選取 [完整資料同步處理]。如需資料同步處理方法的詳細資訊，請參閱[選取初始資料同步處理頁面 (Always On 可用性群組精靈)](https://msdn.microsoft.com/library/hh231021.aspx)。
 
 1. 檢閱 [驗證] 頁面中的結果。修正未解決的問題，並視需要重新執行驗證。按 [下一步]。
 
@@ -95,12 +95,12 @@ AlwaysOn 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 ## 建立可用性群組接聽程式
 
-建立可用性群組後，您應該建立供用戶端連線到複本的接聽程式。接聽程式會將連入連線導向主要或唯讀次要複本。如需接聽程式的詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+建立可用性群組後，您應該建立供用戶端連線到複本的接聽程式。接聽程式會將連入連線導向主要或唯讀次要複本。如需接聽程式的詳細資訊，請參閱[在 Azure 中設定 Always On 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 ## 後續步驟
 
-除了使用 [加入 Azure 複本精靈] 將您的 AlwaysOn 可用性群組延伸至 Azure 之外，您也可以將部分 SQL Server 工作負載完全移動至 Azure。若要開始進行，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+除了使用 [加入 Azure 複本精靈] 將您的 Always On 可用性群組延伸至 Azure 之外，您也可以將部分 SQL Server 工作負載完全移動至 Azure。若要開始進行，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

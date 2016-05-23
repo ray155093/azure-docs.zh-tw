@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/31/2016"
+   ms.date="05/09/2016"
    ms.author="curtand"/>
 
 # Azure Active Directory B2B 共同作業
@@ -47,7 +47,7 @@ Azure Active Directory B2B 共同作業的設定很簡單，各種規模的合�
 如需有關 B2B 共同作業運作方式的詳細資訊，請觀賞[這段影片](http://aka.ms/aadshowb2b)。
 
 ## 後續步驟
-請瀏覽有關 Azure B2B 共同作業的其他文章。
+請瀏覽有關 Azure AD B2B 共同作業的其他文章。
 
 - [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 - [運作方式](active-directory-b2b-how-it-works.md)
@@ -58,4 +58,4 @@ Azure Active Directory B2B 共同作業的設定很簡單，各種規模的合�
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

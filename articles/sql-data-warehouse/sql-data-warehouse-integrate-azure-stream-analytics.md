@@ -86,8 +86,8 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 
 <!--Article references-->
 
-[Azure 串流分析簡介]: stream-analytics-introductiond.md
-[開始使用 Azure 資料流分析]: stream-analytics-get-started.md
+[Azure 串流分析簡介]: ../stream-analytics/stream-analytics-introductiond.md
+[開始使用 Azure 資料流分析]: ../stream-analytics/stream-analytics-get-started.md
 [SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
 [SQL 資料倉儲整合概觀]: sql-data-warehouse-overview-integrate.md
 
@@ -96,4 +96,4 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 <!--Other Web references-->
 [Azure Stream Analytics documentation]: http://azure.microsoft.com/documentation/services/stream-analytics/
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -12,16 +12,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用雲端總管管理 Azure 資源
 
 ##概觀
 
-[雲端總管] 是為了讓您更輕鬆快速地在 Visual Studio IDE 內瀏覽和管理 Azure 資源。比方說，它可讓您在 Azure 入口網站或瀏覽器中開啟 Web 應用程式，或將偵錯工具附加給它，或者，您可以檢視 blob 容器的屬性並在 [Blob 容器編輯器] 中開啟它。
+[雲端總管] 是為了讓您更輕鬆快速地在 Visual Studio IDE 內瀏覽和管理 Azure 資源。比方說，它可讓您在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)或瀏覽器中開啟 Web 應用程式，或將偵錯工具附加給它，或者，您可以檢視 blob 容器的屬性並在 [Blob 容器編輯器] 中開啟它。
 
-[雲端總管] 以 Azure 資源管理員堆疊為基礎，就像 Microsoft Azure Preview 入口網站。它了解 Azure 資源群組等資源及邏輯應用程式和 API 應用程式等 Azure 服務，且支援[角色型存取控制](../role-based-access-control-configure/) (RBAC)。若要查看已加入或變更的 Azure 資源，請選擇 [雲端總管] 工具列的 [重新整理] 按鈕。
+[雲端總管] 以 Azure Resource Manager 堆疊為基礎，就像 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。它了解 Azure 資源群組等資源及邏輯應用程式和 API 應用程式等 Azure 服務，且支援[角色型存取控制](../role-based-access-control-configure/) (RBAC)。若要查看已加入或變更的 Azure 資源，請選擇 [雲端總管] 工具列的 [重新整理] 按鈕。
 
 [雲端總管] 安裝為 Visual Studio Tools for Azure SDK 2.7 的一部分。
 
@@ -66,12 +66,12 @@
 
 ![資源檢視下拉式清單](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819516.png)
 
-- [資源類型] 檢視 (也是用在 Azure 入口網站上的一般檢視) 會依類型分類來顯示 Azure 資源，例如 Web 應用程式、儲存體帳戶和虛擬機器。這類似 Azure 資源在 [伺服器總管] 中出現的方式。
+- [資源類型] 檢視 (也是用在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)上的一般檢視) 會依類型分類來顯示 Azure 資源，例如 Web 應用程式、儲存體帳戶和虛擬機器。這類似 Azure 資源在 [伺服器總管] 中出現的方式。
 
 - [資源群組] 檢視會依相關聯的 Azure 資源群組將 Azure 資源分類。
 
  
-	資源群組是通常由特定應用程式使用的 Azure 資源組合。若要深入了解 Azure 資源群組，請參閱 [Azure 資源管理員概觀](https://azure.microsoft.com/documentation/articles/resource-group-overview/)。
+	資源群組是通常由特定應用程式使用的 Azure 資源組合。若要深入了解 Azure 資源群組，請參閱 [Azure Resource Manager 概觀](./resource-group-overview.md)。
 
 ## 檢視和瀏覽資源
 
@@ -83,7 +83,7 @@
 
 - [屬性] 索引標籤會顯示資源的屬性，例如其類型、地區設定和相關聯的資源群組。
 
-每個資源都有 [在入口網站中開啟] 這個動作。當您選擇此動作時，[雲端總管] 會在 Azure 入口網站中顯示選取的資源。這項功能是特別方便瀏覽至深度巢狀的資源。
+每個資源都有 [在入口網站中開啟] 這個動作。當您選擇此動作時，[雲端總管] 會在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中顯示選取的資源。這項功能是特別方便瀏覽至深度巢狀的資源。
 
 根據 Azure 資源而定，也可能出現其他動作和屬性值。例如，除了 [在入口網站中開啟]，Web 應用程式和邏輯應用程式也有 [在瀏覽器中開啟] 和 [附加偵錯工具] 動作。當您選擇儲存體帳戶 blob、佇列或資料表時，將會出現開啟編輯器的動作。Azure 應用程式具有 **URL** 和 **狀態**屬性，而儲存體資源具有索引鍵和連接字串屬性。
 
@@ -95,4 +95,4 @@
 
 當您在 [搜尋] 方塊中輸入字元時，只有符合這些字元的資源才會出現在資源樹狀目錄中。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

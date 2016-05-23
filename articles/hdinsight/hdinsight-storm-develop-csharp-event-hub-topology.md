@@ -13,20 +13,20 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/28/2016"
+   ms.date="05/10/2016"
    ms.author="larryfr"/>
 
 # 利用 Storm on HDInsight 處理 Azure 事件中樞的事件 (C#)
 
 Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料。事件中樞 Spout 可讓您輕鬆地使用 Apache Storm on HDInsight 來即時分析資料。您也可以使用事件中樞 Bolt 將資料從 Storm 寫入事件中樞。
 
-在本教學課程中，您將了解如何使用 HDInsight Tools for Visual Studio 及事件中樞 Spout 和 Bolt 來建立兩個混合式 C#/Java 拓撲：
+在本教學課程中，您將了解如何使用隨 HDInsight Tools for Visual Studio 一起安裝的 Visual Studio 範本，以建立適用於 Azure 事件中樞的兩個拓撲。
 
 * **EventHubWriter**：隨機產生資料並將資料寫入事件中樞
 
 * **EventHubReader**：從事件中樞讀取資料，並將資料儲存在 Azure 資料表儲存體
 
-[AZURE.NOTE] 本文件的步驟只適用於以 Windows 為基礎的 HDInsight 叢集。Java 版本的這個專案將會使用 Linux 或 Windows 叢集，請參閱[使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)](hdinsight-storm-develop-java-event-hub-topology.md)。
+> [AZURE.NOTE] 本文件的步驟只適用於以 Windows 為基礎的 HDInsight 叢集。Java 版本的這個專案將會使用 Linux 或 Windows 叢集，請參閱[使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)](hdinsight-storm-develop-java-event-hub-topology.md)。
 
 ## 先決條件
 
@@ -40,7 +40,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
 ## 已完成的專案
 
-您可以從 GitHub 下載本教學課程中所建立之專案的完整版本：[eventhub-storm-hybrid](https://github.com/Blackmist/eventhub-storm-hybrid)。不過，您仍需要遵循本教學課程中的步驟，提供組態設定。
+您可以從 GitHub 下載本教學課程中所建立之專案的完整版本：[eventhub-storm-hybrid](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub)。不過，您仍需要遵循本教學課程中的步驟，提供組態設定。
 
 > [AZURE.NOTE] 使用已完成的專案時，您必須使用 [NuGet 封裝管理員] 來還原此方案所需的封裝。
 
@@ -52,25 +52,25 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 ### 下載 .jar 檔
 
-最新版的 **eventhubs-storm-spout-0.9-jar-with-dependencies.jar** 檔案包含在 **lib** 資料夾下的 <a href="https://github.com/hdinsight/hdinsight-storm-examples" target="_blank">HDInsight Storm 範例</a>專案。若要下載檔案，請使用下列其中一種方法。
+[HDInsight Storm 範例](https://github.com/hdinsight/hdinsight-storm-examples)專案下的 **lib** 資料夾包含最新版的 **eventhubs-storm-spout-0.9-jar-with-dependencies.jar** 檔案。若要下載檔案，請使用下列其中一種方法。
 
-> [AZURE.NOTE] 已提交 Spout 和 Bolt，以將其納入 Apache Storm 專案中。如需詳細資訊，請參閱 GitHub 中的 <a href="https://github.com/apache/storm/pull/336/files">STORM-583：Storm 事件中樞的初始簽入</a>
+> [AZURE.NOTE] 已提交 Spout 和 Bolt，以將其納入 Apache Storm 專案中。如需詳細資訊，請參閱 GitHub 中的 [STORM-583：Storm 事件中樞的初始簽入](https://github.com/apache/storm/pull/336/files)
 
-* **下載 ZIP 檔案**：從 <a href="https://github.com/hdinsight/hdinsight-storm-examples" target="_blank">HDInsight Storm 範例</a>網站選取右窗格中的 [下載 ZIP] 來下載包含專案的 .zip 檔案。
+* **下載 ZIP 檔案**：從 [HDInsight Storm 範例](https://github.com/hdinsight/hdinsight-storm-examples)網站，選取右窗格中的 [下載 ZIP] 下載包含專案的 .zip 檔案。
 
 	![下載 zip 按鈕](./media/hdinsight-storm-develop-csharp-event-hub-topology/download.png)
 
 	下載檔案後，您可以解壓縮此封存，則檔案便會出現在 **lib** 目錄中。
 
-* **複製專案**：如果您已安裝 <a href="http://git-scm.com/" target="_blank">Git</a>，請使用下列命令在本機複製儲存機制，然後在 **lib** 目錄中尋找檔案。
+* **複製專案**：如果您已安裝 [Git](http://git-scm.com/)，請使用下列命令在本機複製儲存機制，然後在 **lib** 目錄中尋找檔案。
 
 		git clone https://github.com/hdinsight/hdinsight-storm-examples
 
-## 設定事件中心
+## 設定事件中樞
 
 事件中樞是此範例的資料來源。請使用下列步驟建立新的事件中心。
 
-1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增] > [服務匯流排] > [事件中樞] > [自訂建立]。
+1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [自訂建立]。
 
 2. 在 [加入新的事件中樞] 畫面中輸入 [事件中樞名稱]、選取要建立中樞的 [區域]，然後建立新的命名空間或選取現有的命名空間。按一下 [箭頭] 以繼續。
 
@@ -78,19 +78,16 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 	> [AZURE.NOTE] 您應該選取與 Storm on HDInsight 伺服器相同的 [位置]，以便降低延遲和成本。
 
-2. 在 [設定事件中樞] 畫面中，輸入 [資料分割計數] 及 [訊息保留] 值。在此範例中，資料分割計數使用 10，訊息保留使用 1。請記下資料分割計數，因為您稍後會用到這個值。
-
-	![精靈頁面 2](./media/hdinsight-storm-develop-csharp-event-hub-topology/wiz2.png)
+2. 在 [設定事件中樞] 畫面中，輸入 [資料分割計數] 及 [訊息保留] 值。在此範例中，資料分割計數使用 8，訊息保留使用 1。請記下資料分割計數，因為您稍後會用到這個值。
 
 3. 建立事件中樞之後，依序選取命名空間、[事件中樞]，然後選取您先前建立的事件中樞。
 
 4. 選取 [設定]，然後使用下列資訊建立兩個新的存取原則。
 
-	<table>
-	<tr><th>名稱</th><th>權限</th></tr>
-	<tr><td>寫入器</td><td>傳送</td></tr>
-	<tr><td>讀取者</td><td>接聽</td></tr>
-	</table>
+	| 名稱 | 權限 |
+    | ----- | ----- |
+	| 寫入器 | 傳送 |
+	| 讀取者 | 接聽 |
 
 	建立權限之後，在頁面底部選取**儲存**圖示。這樣會建立共用存取原則，可用來傳送 (寫入器) 和接聽 (讀取器) 此事件中樞的訊息。
 
@@ -110,15 +107,21 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 	> [AZURE.NOTE] 您應該選取與事件中樞和 Storm on HDInsight 伺服器相同的 [位置]，以便降低延遲和成本。
 
-3. 佈建新的儲存體帳戶之後，請選取此帳戶，然後使用頁面底部的 [管理存取金鑰] 連結來擷取 [儲存體帳戶名稱] 和 [主要存取金鑰]。請儲存此資訊，因為稍後會用到。
+3. 建立新的儲存體帳戶之後，請選取此帳戶，然後使用頁面底部的 [管理存取金鑰] 連結，以擷取 [儲存體帳戶名稱] 和 [主要存取金鑰]。請儲存此資訊，因為稍後會用到。
 
 	![access keys](./media/hdinsight-storm-develop-csharp-event-hub-topology/managekeys.png)
+
+4. 開啟 Visual Studio。從 [檢視] 功能表選取 [Cloud Explorer]。在 __Cloud Explorer__ 中，展開 [儲存體帳戶]，再展開您稍早建立的儲存體帳戶。
+
+    ![Cloud Explorer](./media/hdinsight-storm-develop-csharp-event-hub-topology/createtablestorage.png)
+
+5. 以滑鼠右鍵按一下儲存體帳戶的 [資料表]，然後選取 [建立資料表]。出現提示時，輸入 **events** 做為資料表的名稱。儲存名稱，在稍後的步驟中需要用到此名稱。
 
 ## 建立 EventHubWriter
 
 在本節中，您將建立使用事件中樞 Bolt 將資料寫入事件中樞的拓樸。
 
-1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱<a href="../hdinsight-hadoop-visual-studio-tools-get-started/" target="_blank">開始使用 HDInsight Tools for Visual Studio</a>。
+1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
 2. 開啟 Visual Studio，並依序選取 [檔案] > [新增] 和 [專案]。
 
@@ -142,14 +145,13 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 3. 輸入下列設定。使用您稍早在 [值] 資料行中所建立的事件中樞資訊。
 
-	<table>
-	<tr><th style="text-align:left">名稱</th><th style="text-align:left">類型</th><th style="text-align:left">Scope</th></tr>
-	<tr><td style="text-align:left">EventHubPolicyName</td><td style="text-align:left">字串</td><td style="text-align:left">應用程式</td></tr>
-	<tr><td style="text-align:left">EventHubPolicyKey</td><td style="text-align:left">字串</td><td style="text-align:left">應用程式</td></tr>
-	<tr><td style="text-align:left">EventHubNamespace</td><td style="text-align:left">字串</td><td style="text-align:left">應用程式</td></tr>
-	<tr><td style="text-align:left">EventHubName</td><td style="text-align:left">字串</td><td style="text-align:left">應用程式</td></tr>
-	<tr><td style="text-align:left">EventHubPartitionCount</td><td style="text-align:left">int</td><td style="text-align:left">應用程式</td></tr>
-	</table>
+	| 名稱 | 類型 | Scope |
+    | ----- | ----- | ----- |
+	| EventHubPolicyName | 字串 | 應用程式 |
+	| EventHubPolicyKey | 字串 | 應用程式 |
+	| EventHubNamespace | 字串 | 應用程式 |
+	| EventHubName | 字串 | 應用程式 |
+	| EventHubPartitionCount | int | 應用程式 |
 
 4. 儲存並關閉 [屬性] 頁面。
 
@@ -157,7 +159,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 1. 在**方案總管**中，以滑鼠右鍵按一下 **Bolt.cs**，然後選取 [刪除]。您正在使用 Java 事件中樞 Bolt，因此不需要此檔案。
 
-2. 開啟 **Program.cs** 檔案，並在 `TopologyBuilder topologyBuilder = new TopologyBuilder("EventHubWriter");` 行後面緊接著加入下列程式碼。
+2. 開啟 **Program.cs** 檔案，並在 `TopologyBuilder topologyBuilder = new TopologyBuilder("EventHubWriter" + DateTime.Now.ToString("yyyyMMddHHmmss"));` 行後面緊接著加入下列程式碼。
 
 		int partitionCount = Properties.Settings.Default.EventHubPartitionCount;
 		List<string> javaDeserializerInfo =
@@ -230,7 +232,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 此時，您已完成使用 **Program.cs**。拓撲已定義完成，但現在您必須修改 **Spout.cs**，以便所產生的資料格式會是事件中樞 Bolt 可以使用的格式。
 
-> [AZURE.NOTE] 此拓撲將預設為建立一個背景工作處理序，這對於示範目的已足夠。如果您要針對生產叢集採用此做法，您應可加入下列內容來變更背景工作數目：
+> [AZURE.NOTE] 此拓撲將預設為建立一個背景工作處理序，這對於示範目的已足夠。如果您要針對生產叢集採用此做法，您應該加入下列內容來變更背景工作數目：
 
     StormConfig config = new StormConfig();
     config.setNumWorkers(1);
@@ -293,20 +295,23 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 1. 在**方案總管**中，以滑鼠右鍵按一下 [EventHubReader]，然後選取 [屬性]。
 
+2. 依序選取 [工具]、[NuGet 封裝管理員] 及 [Package Manager Console]。當主控台出現，使用下列命令安裝 Azure 儲存體封裝：
+
+        NuGet install WindowsAzure.Storage
+
 2. 在專案屬性中，依序選取 [設定] 和 [這個專案未包含預設的設定檔]**。請按這裡建立設定檔。**
 
 3. 輸入下列設定。使用您稍早在 [值] 資料行中所建立的事件中樞和儲存體帳戶資訊。
 
-	<table>
-	<tr><th style="text-align:left">名稱</th><th style="text-align:left">類型</th><th style="text-align:left">Scope</th></tr>
-	<tr><th style="text-align:left">EventHubPolicyName</th><th style="text-align:left">字串</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">EventHubPolicyKey</th><th style="text-align:left">字串</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">EventHubNamespace</th><th style="text-align:left">字串</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">EventHubName</th><th style="text-align:left">字串</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">EventHubPartitionCount</th><th style="text-align:left">int</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">StorageConnection</th><th style="text-align:left">(連接字串)</th><th style="text-align:left">應用程式</th></tr>
-	<tr><th style="text-align:left">TableName</th><th style="text-align:left">字串</th><th style="text-align:left">應用程式</th></tr>
-	</table>
+	| 名稱 | 類型 | Scope |
+    | ----- | ----- | ----- |
+	| EventHubPolicyName | 字串 | 應用程式 |
+	| EventHubPolicyKey | 字串 | 應用程式 |
+	| EventHubNamespace | 字串 | 應用程式 |
+	| EventHubName | 字串 | 應用程式 |
+	| EventHubPartitionCount | int | 應用程式 |
+	| StorageConnection | (連接字串) | 應用程式 |
+	| TableName | 字串 | 應用程式 |
 
 	在 **TableName** 中，輸入您想要用來儲存事件的資料表名稱。
 
@@ -320,7 +325,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 1. 在**方案總管**中，以滑鼠右鍵按一下 [Spout.cs]，然後選取 [刪除]。您正在使用 Java 事件中樞 Spout，因此不需要此檔案。
 
-2. 開啟 **Program.cs** 檔案，並在 `TopologyBuilder topologyBuilder = new TopologyBuilder("EventHubReader");` 行後面緊接著加入下列程式碼：
+2. 開啟 **Program.cs** 檔案，並在 `TopologyBuilder topologyBuilder = new TopologyBuilder("EventHubReader" + DateTime.Now.ToString("yyyyMMddHHmmss"));` 行後面緊接著加入下列程式碼：
 
 		int partitionCount = Properties.Settings.Default.EventHubPartitionCount;
 		EventHubSpoutConfig ehConfig = new EventHubSpoutConfig(
@@ -396,9 +401,9 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
 將資料寫入資料表儲存體時，您必須建立類別來說明要寫入的資料。
 
-1. 在**方案總管**中，以滑鼠右鍵按一下 [EventHubReader] 專案，然後依序選取 [新增]、[新增類別]。將新類別命名為 **Devices.cs**。
+1. 在 [方案總管]中，以滑鼠右鍵按一下 [EventHubReader] 專案，然後選取 [加入]，再選取 [類別]。將新類別命名為 **Devices.cs**。
 
-2. 開啟 **Devices.cs** 並以下列內容取代預設的程式碼：
+2. 開啟 **Device.cs** 並以下列內容取代預設的程式碼：
 
 		using System;
 		using System.Collections.Generic;
@@ -462,7 +467,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
         table = tableClient.GetTableReference(Properties.Settings.Default.TableName);
         table.CreateIfNotExists();
 
-	這將會使用先前設定的連接字串來連接到 **events** 資料表。建立資料表 (如果不存在)。
+	這樣會使用 `TableName` 中儲存的連接字串，連接到您稍早建立的 Azure 儲存體資料表。
 
 2. 找出 **Execute** 方法並取代為下列內容：
 
@@ -490,7 +495,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-0.9-jar-with-dependencies.ja
 
     > [AZURE.IMPORTANT] EventHubSpout 元件預期每個來自下游元件 (例如此 Bolt) 的 Tuple 都會有 ACK。如果未收到 ACK，EventHubSpout 將假設 Tuple 的處理失敗。
 
-此時，您便會有一個完整拓撲，此拓撲會從事件中樞讀取資料，並將資料儲存在資料表儲存體內名為 **events** 的資料表中。
+此時，您已有一個完整的拓撲，將會從事件中樞讀取資料，並將資料儲存在您稍早在表格儲存體中建立的資料表。
 
 ## 部署拓撲
 
@@ -565,4 +570,4 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -42,7 +42,7 @@
 | Livy Crash 復原 | 為所有已透過 Livy 提交的作業提供工作狀態復原 | 可靠性 | Spark on Linux| N/A
 | Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
 | 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` 魔術，而非 `%%hive` 魔術。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
-| 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Linux 上的 Spark 叢集 | N/A
+| 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Windows 上的 Spark 叢集 | N/A
 
 ## HDInsight 03/29/2016 版本的注意事項
 
@@ -1523,7 +1523,7 @@ HDInsight 2.x (HDP1.x) 與 HDInsight 3.x (HDP2.x) 之間有下列版本變更：
 
 
 ### 驅動程式
-SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部使用，且不適用於外部作業。如果您想要使用開放式資料庫連接 (ODBC) 連線至 HDInsight，請使用 Microsoft Hive ODBC 驅動程式。如需詳細資訊，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 HDInsight](../../articles/hdinsight/hdinsight-connect-excel-hive-odbc-driver.md)。
+SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部使用，且不適用於外部作業。如果您想要使用開放式資料庫連接 (ODBC) 連線至 HDInsight，請使用 Microsoft Hive ODBC 驅動程式。如需詳細資訊，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver.md)。
 
 
 ### 錯誤修正
@@ -1565,4 +1565,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

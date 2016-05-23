@@ -3,7 +3,7 @@
 	description="使用 RecoveryManager 類別來解決分區對應的問題" 
 	services="sql-database" 
 	documentationCenter=""  
-	manager="jeffreyg"
+	manager="jhubbard"
 	authors="ddove"/>
 
 <tags 
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/05/2016" 
 	ms.author="ddove"/>
 
 # 使用 RecoveryManager 類別來修正分區對應問題
@@ -129,14 +129,13 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 4. 在 GSM 和 LSM 之間的對應中偵測到不一致。 
 5. 解決 GSM 和 LSM 之間的差異，信任 LSM。 
 
-此範例會執行下列步驟：1.從分區對應移除分區，其反映分區在容錯移轉事件之前的位置。2.將分區附加至分區對應會反映新分區位置 (參數 "Configuration.SecondaryServer" 是是新伺服器名稱，但是相同的資料庫名稱)。3.透過偵測每個分區的 GSM 與 LSM 之間的對應差異來擷取復原權杖。4.透過信任來自每個分區 LSM 的對應，即可解決不一致情形。
+此範例會執行下列步驟：
+1. 從分區對應移除分區，其反映分區在容錯移轉事件之前的位置。
+2. 將分區附加至分區對應會反映新分區位置 (參數 "Configuration.SecondaryServer" 是是新伺服器名稱，但是相同的資料庫名稱)。
+3. 透過偵測每個分區的 GSM 與 LSM 之間的對應差異來擷取復原權杖。 
+4. 透過信任來自每個分區 LSM 的對應，即可解決不一致情形。 
 
-	var shards = smm.GetShards(); 
-	foreach (shard s in shards) 
-	{ 
-	 if (s.Location.Server == Configuration.PrimaryServer) 
-		 { 
-		  ShardLocation slNew = new ShardLocation(Configuration.SecondaryServer, s.Location.Database); 
+	var shards = smm.GetShards(); foreach (shard s in shards) { if (s.Location.Server == Configuration.PrimaryServer) { ShardLocation slNew = new ShardLocation(Configuration.SecondaryServer, s.Location.Database);
 		
 		  rm.DetachShard(s.Location); 
 		
@@ -149,7 +148,7 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 			   rm.ResolveMappingDifferences(g, MappingDifferenceResolution.KeepShardMapping); 
 			} 
 		} 
-	} 
+	}
 
 
 
@@ -160,4 +159,4 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 [1]: ./media/sql-database-elastic-database-recovery-manager/recovery-manager.png
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

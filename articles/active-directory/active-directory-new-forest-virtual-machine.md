@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="在 Azure 虛擬網路上安裝 Active Directory 樹系 | Microsoft Azure" 
-	description="說明如何在 Azure 虛擬網路之虛擬機器 (VM) 上建立新 Active Directory 樹系的教學課程。" 
+<properties
+	pageTitle="在 Azure 虛擬網路上安裝 Active Directory 樹系 | Microsoft Azure"
+	description="說明如何在 Azure 虛擬網路之虛擬機器 (VM) 上建立新 Active Directory 樹系的教學課程。"
 	services="active-directory, virtual-network"
     keywords="active directory 虛擬機器, 安裝 active directory 樹系, azure active directory 影片"
-	documentationCenter="" 
-	authors="markusvi" 
-	manager="stevenpo" 
+	documentationCenter=""
+	authors="markusvi"
+	manager="stevenpo"
 	tags=""/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.devlang="na" 
-	ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.workload="identity" 
-	ms.date="04/07/2016" 
+<tags
+	ms.service="active-directory"
+	ms.devlang="na"
+	ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="identity"
+	ms.date="04/07/2016"
 	ms.author="markusvi"/>
 
 
@@ -25,7 +25,7 @@
 您也可能對以下相關主題有興趣：
 
 - 如需顯示相關步驟的影片，請參閱[如何在 Azure 虛擬網路上安裝新的 Active Directory 樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
-- 您可以選擇性地[設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)，然後安裝新樹系，或將內部部署樹系延伸至 Azure 虛擬網路。如需相關步驟，請參閱[在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)。
+- 您可以選擇性地[設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)，然後安裝新樹系，或將內部部署樹系延伸至 Azure 虛擬網路。如需相關步驟，請參閱[在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../active-directory/active-directory-install-replica-active-directory-domain-controller.md)。
 -  如需在 Azure 虛擬網路上安裝 Active Directory 網域服務 (AD DS) 的概念指引，請參閱[在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)。
 
 ## 案例圖表
@@ -37,7 +37,7 @@
 
 在 Azure 或在內部部署上安裝網域控制台，差異並不會很多。下表列出主要差異。
 
-若要設定... | 內部部署 | Azure 虛擬網路	
+若要設定... | 內部部署 | Azure 虛擬網路
 ------------- | -------------  | ------------
 **網域控制站的 IP 位址** | 在網路介面卡內容上指派靜態 IP 位址 | 執行 Set-AzureStaticVNetIP Cmdlet 以指派靜態 IP 位址
 **DNS 用戶端解析程式** | 在網域成員的網路介面卡內容上設定慣用與替代的 DNS 伺服器位址 | 在虛擬網路內容上設定 DNS 伺服器位址
@@ -48,7 +48,7 @@
 ## 建立 Azure 虛擬網路
 
 1. 登入 Azure 傳統入口網站。
-2. 建立虛擬網路。按一下 [網路] > [建立虛擬網路]。使用下表中的值來完成精靈。 
+2. 建立虛擬網路。按一下 [網路] > [建立虛擬網路]。使用下表中的值來完成精靈。
 
 	在此精靈頁面上… | 指定這些值
 	------------- | -------------
@@ -59,7 +59,7 @@
 
 
 ## 建立 VM 來執行網域控制台與 DNS 伺服器角色
- 
+
 重複下列步驟，視需要建立裝載 DC 角色的 VM。您應該至少部署兩部虛擬網域控制站以提供容錯和冗餘。如果 Azure 虛擬網路包含至少兩個類似設定的 DC (亦即，它們都是 GC、執行 DNS 伺服器，並且未持有任何 FSMO 角色等等)，那麼可將執行這些 DC 的 VM 放在可用性集合以獲得改善的容錯。
 
 若要使用 Windows PowerShell 而非 UI 建立 VM，請參閱[使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../virtual-machines/virtual-machines-windows-classic-create-powershell.md)。
@@ -88,14 +88,14 @@
 
 ## 重設 Azure 虛擬網路的 DNS 伺服器
 
-1. 重設新 DC/DNS 伺服器的 DNS 轉寄站設定。 
-  1. 在 [伺服器管理員] 中，按一下 [**工具**] > [**DNS**]。 
-  2. 在 [**DNS 管理員**]，以滑鼠右鍵按一下 DNS 伺服器的名稱，然後按一下 [**屬性**]。 
-  3. 在 [**轉寄站**] 索引標籤上，按一下轉寄站的 IP 位址，按一下 [**編輯**]。選取的 IP 位址，然後按一下 [**刪除**]。 
-  4. 按一下 [**確定**] 以關閉編輯器，再按一下 [**確定**] 以關閉 DNS 伺服器屬性。 
-2. 更新虛擬網路的 DNS 伺服器設定。 
-  1. 按一下 [**虛擬網路**] > 按兩下您建立的虛擬網路 > [**設定**] > [**DNS 伺服器**]，輸入執行 DC/DNS 伺服器角色的 VM 的名稱和其中一個 IP，然後按一下 [**儲存**]。 
-  2. 選取 VM 並按一下 [重新啟動]，以觸發 VM 利用新 DNS 伺服器的 IP 位址來設定 DNS 解析程式設定。 
+1. 重設新 DC/DNS 伺服器的 DNS 轉寄站設定。
+  1. 在 [伺服器管理員] 中，按一下 [**工具**] > [**DNS**]。
+  2. 在 [**DNS 管理員**]，以滑鼠右鍵按一下 DNS 伺服器的名稱，然後按一下 [**屬性**]。
+  3. 在 [**轉寄站**] 索引標籤上，按一下轉寄站的 IP 位址，按一下 [**編輯**]。選取的 IP 位址，然後按一下 [**刪除**]。
+  4. 按一下 [**確定**] 以關閉編輯器，再按一下 [**確定**] 以關閉 DNS 伺服器屬性。
+2. 更新虛擬網路的 DNS 伺服器設定。
+  1. 按一下 [**虛擬網路**] > 按兩下您建立的虛擬網路 > [**設定**] > [**DNS 伺服器**]，輸入執行 DC/DNS 伺服器角色的 VM 的名稱和其中一個 IP，然後按一下 [**儲存**]。
+  2. 選取 VM 並按一下 [重新啟動]，以觸發 VM 利用新 DNS 伺服器的 IP 位址來設定 DNS 解析程式設定。
 
 
 ## 建立網域成員的 VM
@@ -121,7 +121,7 @@
 -  [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 
 -  [設定站台對站台 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)
--  [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)
+-  [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制台](../active-directory/active-directory-install-replica-active-directory-domain-controller.md)
 -  [Microsoft Azure IT Pro IaaS：(01) 虛擬機器基本概念](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 -  [Microsoft Azure IT Pro IaaS：(05) 建立虛擬網路和跨單位連線](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
 -  [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
@@ -136,6 +136,4 @@
 <!--Image references-->
 [1]: ./media/active-directory-new-forest-virtual-machine/AD_Forest.png
 
- 
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -35,8 +35,9 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝 Azure PowerShell 1.0 及更新版本](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。
+- **具有 Azure PowerShell 的工作站**。
 
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 - (選擇性) [cURL][curl]。若要安裝此項目，請參閱 [cURL 版本和下載][curl-download]。
 
@@ -128,17 +129,17 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
 監視 API 呼叫|URI|說明
 ---|---|---
 取得叢集|`/api/v1/clusters`|
-取得叢集資訊。|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net`|叢集、服務、主機
-取得服務|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/services`|服務包括：hdfs、mapreduce
-取得服務資訊|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/services/&lt;ServiceName&gt;`|
-取得服務元件|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/services/&lt;ServiceName&gt;/components`|HDFS：namenode、datanode<br/>MapReduce：jobtracker；tasktracker
-取得元件資訊|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/services/&lt;ServiceName&gt;/components/&lt;ComponentName&gt;`|ServiceComponentInfo、主機元件、度量
-取得主機|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/hosts`|headnode0、workernode0
-取得主機資訊|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/hosts/&lt;HostName&gt;`|
-取得主機元件|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/hosts/&lt;HostName&gt;/host_components`|namenode、resourcemanager
-取得主機元件資訊|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/hosts/&lt;HostName&gt;/host_components/&lt;ComponentName&gt;`|HostRoles、元件、主機、度量
-取得組態|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/configurations`|組態類型：core-site、hdfs-site、mapred-site、hive-site
-取得組態資訊|`/api/v1/clusters/&lt;ClusterName&gt;.azurehdinsight.net/configurations?type=&lt;ConfigType&gt;&tag=&lt;VersionName&gt;`|組態類型：core-site、hdfs-site、mapred-site、hive-site
+取得叢集資訊。|`/api/v1/clusters/<ClusterName>.azurehdinsight.net`|叢集、服務、主機
+取得服務|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/services`|服務包括：hdfs、mapreduce
+取得服務資訊|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/services/<ServiceName>`|
+取得服務元件|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/services/<ServiceName>/components`|HDFS：namenode、datanode<br/>MapReduce：jobtracker；tasktracker
+取得元件資訊|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/services/<ServiceName>/components/<ComponentName>`|ServiceComponentInfo、主機元件、度量
+取得主機|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/hosts`|headnode0、workernode0
+取得主機資訊|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/hosts/<HostName>`|
+取得主機元件|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/hosts/<HostName>/host_components`|namenode、resourcemanager
+取得主機元件資訊|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/hosts/<HostName>/host_components/<ComponentName>`|HostRoles、元件、主機、度量
+取得組態|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/configurations`|組態類型：core-site、hdfs-site、mapred-site、hive-site
+取得組態資訊|`/api/v1/clusters/<ClusterName>.azurehdinsight.net/configurations?type=<ConfigType>&tag=<VersionName>`|組態類型：core-site、hdfs-site、mapred-site、hive-site
 
 
 ##後續步驟
@@ -173,4 +174,4 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
 
 [img-jobtracker-output]: ./media/hdinsight-monitor-use-ambari-api/hdi.ambari.monitor.jobtracker.output.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

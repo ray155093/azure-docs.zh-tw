@@ -1,6 +1,6 @@
 <properties
  pageTitle="要執行 MPI 應用程式的 Linux RDMA 叢集 | Microsoft Azure"
- description="建立大小為 A8 或 A9 VM 的 Linux 叢集以使用 RDMA 執行 MPI 應用程式。"
+ description="建立大小為 A8 或 A9 VM 的 Linux 叢集以使用 RDMA 執行 MPI 應用程式"
  services="virtual-machines-linux"
  documentationCenter=""
  authors="dlepow"
@@ -13,80 +13,75 @@ ms.service="virtual-machines-linux"
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="infrastructure-services"
- ms.date="01/21/2016"
+ ms.date="05/09/2016"
  ms.author="danlep"/>
 
 # 設定 Linux RDMA 叢集以執行 MPI 應用程式
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
 
 
-本文說明如何在 Azure 中使用[ A8 和 A9 大小的虛擬機器](virtual-machines-windows-a8-a9-a10-a11-specs.md)設定 Linux RDMA 叢集，以便執行平行訊息傳遞介面 (MPI) 應用程式。當您設定 A8 和 A9 大小的 Linux VM 以執行支援的 MPI 實作時，MPI 應用程式可透過低延遲、高輸送量網路，在運用遠端直接記憶體存取 (RDMA) 技術的 Azure 中進行有效率的通訊。
+了解如何在 Azure 中使用[ A8 和 A9 大小的虛擬機器](virtual-machines-linux-a8-a9-a10-a11-specs.md)設定 Linux RDMA 叢集，以便執行平行訊息傳遞介面 (MPI) 應用程式。當您設定 A8 和 A9 大小 VM 的叢集以執行支援的 Linux HPC 發行版本和支援的 MPI 實作時，MPI 應用程式可透過低延遲、高輸送量網路，在運用遠端直接記憶體存取 (RDMA) 技術的 Azure 中進行有效率的通訊。
 
->[AZURE.NOTE] Azure Linux RDMA 目前支援在 Azure Marketplace 中的 SUSE Linux Enterprise Server 12 (SLES 12) 映像上執行的 Intel MPI Library 第 5 版。這篇文章根據 Intel MPI 5.0.3.048 版。
->
-> Azure 也提供 A10 和 A11 大量運算執行個體，包含與 A8 和 A9 執行個體相同的處理能力，但不含 RDMA 後端網路的連接。若要在 Azure 中執行 MPI 工作負載，使用 A8 和 A9 執行個體通常可獲得最佳效能。
+>[AZURE.NOTE] Azure Linux RDMA 目前支援在 A8 或 A9 大小 VM 上執行的 Intel MPI Library 第 5 版，這些 VM 建立於 Azure Marketplace 中的 SUSE Linux Enterprise Server (SLES) 12 HPC 映像或 CentOS 型 6.5 或 7.1 HPC 映像。Centos 型 HPC Marketplace 映像會安裝 Intel MPI 5.1.3.181 版。
 
 
-## Linux 叢集部署選項
+
+## 叢集部署選項
 
 您可以使用下列方法來建立包含或不含工作排程器的 Linux RDMA 叢集。
 
-* **HPC Pack** - 在 Azure 中建立 Microsoft HPC Pack 叢集並加入執行支援之 Linux 發行版本的計算節點。某些 Linux 節點可以設定為存取 RDMA 網路。請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
+* **HPC Pack** - 在 Azure 中建立 Microsoft HPC Pack 叢集並新增執行支援之 Linux 發行版本的 A8 或 A9 大小計算節點以存取 RDMA 網路。請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
 
-* **Azure CLI 指令碼** - 如同本文中其他部分的步驟所示，請使用適用於 Mac、Linux 和 Windows 的 [Azure 命令列介面](../xplat-cli-install.md) (CLI)，建置虛擬網路部署的指令碼和其他必要元件以建立 Linux 叢集。傳統 (服務管理) 部署模式中的 CLI 將循序建立叢集節點，因此如果您正在部署許多運算節點，則可能需要花費幾分鐘才能完成部署。
+* **Azure CLI 指令碼** - 如同本文中其他部分的步驟所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI)，建置虛擬網路部署的指令碼和其他必要元件以建立 A8 或 A9 大小的 Linux VM 叢集。服務管理模式中的 CLI 將循序在傳統部署模型中建立叢集節點，因此如果您正在部署許多計算節點，則可能需要花費幾分鐘才能完成部署。
 
-* **Azure 資源管理員範本** - 使用 Azure 資源管理員部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/) 頁面，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
+* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
 
-## Azure 服務管理中使用 Azure CLI 指令碼的部署
+## 傳統模型中的範例部署
 
-下列步驟可協助您使用 Azure CLI 部署 SUSE Linux Enterprise Server 12 VM、安裝 Intel MPI Library 和其他自訂項目、建立自訂的 VM 映像，然後再編寫 A8 或 A9 VM 叢集部署的指令碼。
+下列步驟可協助您使用 Azure CLI 從 Azure Marketplace 部署 SUSE Linux Enterprise Server 12 HPC VM、安裝 Intel MPI Library 和其他自訂項目、建立自訂的 VM 映像，然後再編寫 A8 或 A9 VM 叢集部署的指令碼。
 
-### 先決條件
+>[AZURE.TIP]  請使用類似的步驟，根據 Azure Marketplace 中的 CentOS 型 6.5 或 7.1 HPC 映像部署 A8 或 A9 VM 的叢集。步驟中註明差異。例如，由於 CentOS 型 HPC 映像包括 Intel MPI，您不需要在從這些映像建立的 VM 上個別安裝 Intel MPI。
+
+### 必要條件
 
 *   **用戶端電腦** - 您將需要 Mac、Linux 或 Windows 用戶端電腦才能與 Azure 進行通訊。這些步驟假設您使用 Linux 用戶端。
 
-*   **Azure 訂用帳戶** - 如果您沒有帳戶，僅需幾分鐘就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+*   **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立[免費帳戶](https://azure.microsoft.com/free/)。針對較大的叢集，請考慮隨收隨付訂用帳戶或其他購買選項。
 
-*   **核心配額** - 您可能需要增加核心配額以部署 A8 或 A9 VM 的叢集。例如，如果您想要部署 8 個 A9 VM，將需要至少 128 個核心，如這篇文章中所示。若要增加配額，請[開啟線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)，不另外加收費用。
+*   **核心配額** - 您可能需要增加核心配額以部署 A8 或 A9 VM 的叢集。例如，如果您想要部署 8 個 A9 VM，將需要至少 128 個核心，如這篇文章中所示。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
 
-*   **Azure CLI** - [安裝](../xplat-cli-install.md) Azure CLI 並[進行設定](../xplat-cli-connect.md)，以便從用戶端電腦連接至您的 Azure 訂用帳戶。
+*   **Azure CLI** - [安裝](../xplat-cli-install.md) Azure CLI 並從用戶端電腦[連接至您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
-*   **Intel MPI** - 為您的叢集自訂 Linux VM 映像的過程中 (請參閱本文稍後的詳細資料)，您必須從 [Intel.com 網站](https://software.intel.com/zh-TW/intel-mpi-library/)下載並安裝 Intel MPI Library 5 執行階段。若要為此做準備，註冊 Intel 之後，請遵循確認電子郵件中相關網頁的連結，並針對適當版本的 Intel MPI 複製 .tgz 檔案的下載連結。這篇文章根據 Intel MPI 5.0.3.048 版。
+*   **Intel MPI** - 若要為您的叢集自訂 SLES 12 HPC VM 映像 (請參閱本文稍後的詳細資料)，您必須從 [Intel.com 網站](https://software.intel.com/zh-TW/intel-mpi-library/)下載並安裝目前的 Intel MPI Library 5 執行階段。若要為此做準備，註冊 Intel 之後，請遵循確認電子郵件中相關網頁的連結，並針對適當版本的 Intel MPI 複製 .tgz 檔案的下載連結。這篇文章根據 Intel MPI 5.0.3.048 版。
+
+    >[AZURE.NOTE] 如果您使用 Azure Marketplace 中的 CentOS 6.5 或 CentOS 7.1 HPC 映像來建立叢集節點，會為您在 VM 上預先安裝 Intel MPI 5.1.3.181 版。
 
 ### 佈建 SLES 12 VM
 
-使用 Azure CLI 登入 Azure 之後，執行 `azure config list` 來確認輸出顯示 **asm** 模式，代表 CLI 處於 Azure 服務管理模式。如果不是，請執行此命令來設定模式：
+使用 Azure CLI 登入 Azure 之後，請執行 `azure config list` 來確認輸出顯示服務管理模式。如果不是，請執行此命令來設定模式：
 
-```
-azure config mode asm
-```
+
+    azure config mode asm
+
 
 輸入下列命令來列出已獲授權使用的所有訂用帳戶：
 
-```
-azure account list
-```
+
+    azure account list
 
 目前的使用中訂用帳戶會透過將 `Current` 設為 `true` 來進行識別。如果這不是您想要用來建立叢集的訂用帳戶，請將適當的訂用帳戶編號設定為使用中的訂用帳戶：
 
-```
-azure account set <subscription-number>
-```
+    azure account set <subscription-number>
 
 若要查看 Azure 中公開可用的 SLES 12 HPC 映像，假設您的 Shell 環境支援 **grep**，請執行類似下列的命令：
 
-```
-azure vm image list | grep "suse.*hpc"
-```
 
->[AZURE.NOTE]SLES 12 HPC 映像會使用適用於 Azure 的必需 Linux RDMA 驅動程式進行預先設定。
+    azure vm image list | grep "suse.*hpc"
 
 現在，執行類似下列的命令，使用可用的 SLES 12 HPC 映像來佈建 A9 大小的 VM：
 
-```
-azure vm create -g <username> -p <password> -c <cloud-service-name> -l <location> -z A9 -n <vm-name> -e 22 b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-v20150708
-```
+    azure vm create -g <username> -p <password> -c <cloud-service-name> -l <location> -z A9 -n <vm-name> -e 22 b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-v20150708
 
 其中
 
@@ -96,7 +91,9 @@ azure vm create -g <username> -p <password> -c <cloud-service-name> -l <location
 
 * 系統將在位置指定的 Azure 區域中建立新的雲端服務；指定一個位置例如「美國西部」，其中 A8 和 A9 執行個體可提供使用
 
-* 目前的映像名稱可以是 `b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-v20150708` (免費) 或 `b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-priority-v20150708` 以取得 SUSE 優先支援 (會收取費用)
+* 目前的 SLES 12 映像名稱可以是 `b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-v20150708` 或 `b4590d9e3ed742e4a1d46e5424aa335e__suse-sles-12-hpc-priority-v20150708` 以取得 SUSE 優先支援 (會收取費用)
+
+    >[AZURE.NOTE]如果您想要使用 CentOS 型 HPC 映像，目前的映像名稱是 `5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-65-HPC-20160408` 和 `5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-71-HPC-20160408`。
 
 ### 自訂 VM
 
@@ -104,54 +101,48 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
 
 >[AZURE.IMPORTANT]Microsoft Azure 不會提供 Linux VM 的根目錄存取權。若要在以使用者身分連接至 VM 時取得系統管理存取權，請使用 `sudo` 執行命令。
 
-*   **更新** - 使用 **zypper** 安裝更新。您也可能會想要安裝 NFS 公用程式。  
+* **更新** - 使用 **zypper** 安裝更新。您也可能會想要安裝 NFS 公用程式。  
 
-    >[AZURE.IMPORTANT]目前我們建議您不要套用核心更新，因為這可能會導致 Linux RDMA 驅動程式發生問題。
+    >[AZURE.IMPORTANT]如果您部署了 SLES 12 HPC V，目前我們建議您不要套用核心更新，因為這可能會導致 Linux RDMA 驅動程式發生問題。
+    >
+    >在來自 Marketplace 的 CentOS 型 HPC 映像上，核心更新已在 **yum** 組態檔中停用。這是因為 Linux RDMA 驅動程式以 RPM 封裝散發，如果更新核心，驅動程式更新可能無法運作。
 
-*   **Intel MPI** - 藉由執行與下列內容相似的命令，從 Intel.com 網站下載並安裝 Intel MPI Library 5 執行階段。
+* **Linux RDMA 驅動程式更新** - 如果您部署 SLES 12 HPC VM，您將需要更新 RDMA 驅動程式。如需詳細資料，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-linux-a8-a9-a10-a11.md#Linux-RDMA-driver-updates-for-SLES-12)。
 
-    ```
-    sudo wget <download link for your registration>
+* **Intel MPI** - 如果您部署 SLES 12 HPC VM，請藉由執行與下列內容相似的命令，從 Intel.com 網站下載並安裝 Intel MPI Library 5 執行階段。如果您部署 CentOS 型 6.5 或 7.1 HPC VM，就不一定需要這個步驟。
 
-    sudo tar xvzf <tar-file>
+        sudo wget <download link for your registration>
 
-    cd <mpi-directory>
+        sudo tar xvzf <tar-file>
 
-    sudo ./install.sh
+        cd <mpi-directory>
 
-    ```
+        sudo ./install.sh
 
     接受預設設定以在 VM 上安裝 Intel MPI。
 
-*   **鎖定記憶體** - 如需使用 MPI 程式碼防止 RDMA 使用記憶體，您需要在 /etc/security/limits.conf 檔案中加入或變更下列設定。(您需要編輯此檔案的根目錄存取權。)
+* **鎖定記憶體** - 如需使用 MPI 程式碼防止 RDMA 使用記憶體，您需要在 /etc/security/limits.conf 檔案中加入或變更下列設定。(您需要編輯此檔案的根目錄存取權。) 如果您部署 CentOS 型 6.5 或 7.1 HPC VM，設定已新增至這個檔案。
 
-    ```
-    <User or group name> hard    memlock <memory required for your application in KB>
+        <User or group name> hard    memlock <memory required for your application in KB>
 
-    <User or group name> soft    memlock <memory required for your application in KB>
-    ```
+        <User or group name> soft    memlock <memory required for your application in KB>
 
-    >[AZURE.NOTE]基於測試目的，您也可以將 memlock 設定為無限制。例如：`<User or group name>    hard    memlock unlimited`。
+    >[AZURE.NOTE]基於測試目的，您也可以將 memlock 設定為無限制。例如：'<User or group name> 硬 memlock 無限制。
 
+* **SLES 12 VM 的 SSH 金鑰** - 產生 SSH 金鑰以在執行 MPI 工作時，於 SLES 12 HPC 叢集的所有計算節點之中建立使用者帳戶的信任。(如果您部署 CentOS 型 HPC VM，請勿遵循此步驟。請參閱本文稍後的指示，在您擷取映像並部署叢集之後，設定叢集節點間的 passwordless SSH 信任。)
 
-*   **SSH 金鑰** - 產生 SSH 金鑰以在執行 MPI 工作時，於叢集的所有運算節點之中建立使用者帳戶的信任。執行以下命令建立 SSH 金鑰。只要按下 Enter 鍵即可在預設位置產生金鑰，不需要設定複雜密碼。
+    執行以下命令建立 SSH 金鑰。只要按下 Enter 鍵即可在預設位置產生金鑰，不需要設定複雜密碼。
 
-    ```
-    ssh-keygen
-    ```
+        ssh-keygen
 
     將公開金鑰附加至已知公開金鑰的 authorized\_keys 檔案。
 
-    ```
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-    ```
+        cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
     在 ~/.ssh 目錄中編輯或建立 config 檔案。提供您將在 Azure 中使用的私人網路 IP 位址範圍 (在本範例中為 10.32.0.0/16)：
 
-    ```
-    host 10.32.0.*
-    StrictHostKeyChecking no
-    ```
+        host 10.32.0.*
+        StrictHostKeyChecking no
 
     或者，列出叢集中每個 VM 的私人網路 IP 位址，如下所示：
 
@@ -189,7 +180,7 @@ azure vm capture -t <vm-name> <image-name>
 
 ### 使用映像部署叢集
 
-針對您的環境，使用適當的值修改下列 Bash 指令碼，並從用戶端電腦執行。因為服務管理部署方法會循序部署 VM，系統會花費幾分鐘部署這段指令碼中建議的 8 個 A9 VM。
+針對您的環境，使用適當的值修改下列 Bash 指令碼，並從用戶端電腦執行。因為 Azure 在傳統部署模型中循序部署 VM，系統會花費幾分鐘部署這段指令碼中建議的 8 個 A9 VM。
 
 ```
 #!/bin/bash -x
@@ -224,73 +215,52 @@ done
 # Save this script with a name like makecluster.sh and run it in your shell environment to provision your cluster
 ```
 
-## 為 SLES 12 更新 Linux RDMA 驅動程式
+## CentOS 叢集上的 passwordless SSH 信任
 
-在您建立以 SLES 12 HPC 映像為基礎的 Linux RDMA 叢集之後，您可能需要針對 RDMA 網路連線更新 VM 上的 RDMA 驅動程式。
+如果您使用 CentOS 型 HPC 映像部署叢集，有兩種方法可建立計算節點之間的信任︰以主機為基礎的驗證和以使用者為基礎的驗證。以主機為基礎的驗證超出本文的範圍，通常必須在部署期間透過擴充功能指令碼來完成。以使用者為基礎的驗證便於在部署之後建立信任，而且需要在叢集中計算節點之間產生與共用 SSH 金鑰。這通常稱為 passwordless SSH 登入，且為執行 MPI 工作時的必要項目。
 
->[AZURE.IMPORTANT]目前在大部分的 Azure 區域中，這是使用 Linux RDMA 叢集部署的**必要**步驟。**只有在下列 Azure 區域中建立的 SLES 12 VM 不應更新：美國西部、西歐，及日本東部。**
+從社群所貢獻的範例指令碼位於 [GitHub](https://github.com/tanewill/utils/blob/master/user_authentication.sh) 上，可在 CentOS 型 HPC 叢集上啟用簡單使用者驗證。您可以使用下列步驟來下載並使用此指令碼。您也可以修改此指令碼，或使用任何其他方法來建立叢集計算節點之間的 passwordless SSH 驗證。
 
-更新驅動程式之前，請先停止 VM 上所有的 **zypper** 處理程序或任何鎖定 SUSE 儲存機制資料庫的處理程序。否則驅動程式可能無法正確更新。
+    wget https://raw.githubusercontent.com/tanewill/utils/master/ user_authentication.sh
+    
+若要執行指令碼，您必須知道子網路 IP 位址的首碼。您可以藉由在其中一個叢集節點上執行下列命令來加以取得。您的輸出應該看起來像 10.1.3.5，而首碼是 10.1.3 部分。
+
+    ifconfig eth0 | grep -w inet | awk '{print $2}'
+
+現在請使用三個參數執行指令碼︰計算節點上的一般使用者名稱、該使用者在計算節點上的一般密碼，以及從上一個命令傳回的子網路首碼。
 
 
-在您的用戶端電腦上執行下列 Azure CLI 命令的其中一組，更新每部 VM 上的 Linux RDMA 驅動程式。
+    ./user_authentication.sh <myusername> <mypassword> 10.1.3
 
-**若 VM 以 Azure 服務管理佈建**
+此指令碼會執行下列動作︰
 
-```
-azure config mode asm
+* 在名為 .ssh 的主機節點上建立目錄，此為 passwordless 登入的必要項目。 
+* 在 .ssh 目錄中建立組態檔，它會指示 passwordless 登入允許從叢集中的任何節點登入。 
+* 建立檔案，其中包含叢集中所有節點的節點名稱與節點 IP 位址。在使用者執行指令碼做為參考之後，會保留這些檔案。 
+* 建立每個叢集節點的私密和公開金鑰組，包括主機節點，並共用金鑰組的相關資訊，以及在 authorized\_keys 檔案中建立項目。
 
-azure vm extension set <vm-name> RDMAUpdateForLinux Microsoft.OSTCExtensions 0.1
-```
+>[AZURE.WARNING]執行這個指令碼可能會建立潛在的安全性風險。請確定未散發 ~/.ssh 中的公開金鑰資訊。
 
-**若 VM 以 Azure 資源管理員佈建**
-
-```
-azure config mode arm
-
-azure vm extension set <resource-group> <vm-name> RDMAUpdateForLinux Microsoft.OSTCExtensions 0.1
-```
-
->[AZURE.NOTE]可能需要一些時間來安裝驅動程式，且命令會在沒有輸出的情況下傳回。更新之後，您的 VM 將會重新啟動，並應該在幾分鐘內準備好以供使用。
-
-您可以針對跨叢集中所有節點的驅動程式更新編寫指令碼。例如，下列指令碼會更新在先前步驟中由指令碼建立之 8 節點叢集的驅動程式。
-
-```
-
-#!/bin/bash -x
-
-# Define a prefix naming scheme for compute nodes, e.g., cluster11, cluster12, etc.
-
-vmname=cluster
-
-# Plug in appropriate numbers in the for loop below.
-
-for (( i=11; i<19; i++ )); do
-
-# For ASM VMs use the following command in your script.
-
-azure vm extension set $vmname$i RDMAUpdateForLinux Microsoft.OSTCExtensions 0.1
-
-# For ARM VMs use the following command in your script.
-
-# azure vm extension set <resource-group> $vmname$i RDMAUpdateForLinux Microsoft.OSTCExtensions 0.1
-
-done
-
-```
 
 ## 設定和執行 Intel MPI
 
-若要在 Azure Linux RDMA 上執行 MPI 應用程式，您需要設定 Intel MPI 專用的特定環境變數。以下範例 Bash 指令碼，可供您設定變數並執行應用程式。
+若要在 Azure Linux RDMA 上執行 MPI 應用程式，您需要設定 Intel MPI 專用的特定環境變數。以下範例 Bash 指令碼，可供您設定變數並執行應用程式。視 Intel MPI 的安裝需要來變更 mpivars.sh 路徑。
 
 ```
 #!/bin/bash -x
 
+# For a SLES 12 HPC cluster
+
 source /opt/intel/impi_latest/bin64/mpivars.sh
+
+# For a CentOS-based HPC cluster 
+
+# source /opt/intel/impi/5.1.3.181/bin64/mpivars.sh
+
 
 export I_MPI_FABRICS=shm:dapl
 
-# THIS IS A MANDATORY ENVIRONMENT VARIABLEAND MUST BE SET BEFORE RUNNING ANY JOB
+# THIS IS A MANDATORY ENVIRONMENT VARIABLE AND MUST BE SET BEFORE RUNNING ANY JOB
 # Setting the variable to shm:dapl gives best performance for some applications
 # If your application doesn’t take advantage of shared memory and MPI together, then set only dapl
 
@@ -321,15 +291,21 @@ mpirun -n <number-of-cores> -ppn <core-per-node> -hostfile <hostfilename>  /path
 如果您尚未這樣做，請先設定 Intel MPI 的環境。
 
 ```
+# For a SLES 12 HPC cluster
+
 source /opt/intel/impi_latest/bin64/mpivars.sh
+
+# For a CentOS-based HPC cluster 
+
+# source /opt/intel/impi/5.1.3.181/bin64/mpivars.sh
 ```
 
 ### 執行簡單的 MPI 命令
 
-在其中一個運算節點執行簡單的 MPI 命令，以顯示 MPI 已正確安裝而且可以在至少兩個運算節點之間通訊。下列 **mpirun** 命令會在兩個節點上執行 **hostname** 命令。
+在其中一個計算節點執行簡單的 MPI 命令，以顯示 MPI 已正確安裝而且可以在至少兩個計算節點之間通訊。下列 **mpirun** 命令會在兩個節點上執行 **hostname** 命令。
 
 ```
-/opt/intel/impi_latest/bin64/mpirun -ppn 1 -n 2 -hosts <host1>,<host2> -env I_MPI_FABRICS=shm:dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 hostname
+mpirun -ppn 1 -n 2 -hosts <host1>,<host2> -env I_MPI_FABRICS=shm:dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 hostname
 ```
 您的輸出應該會列出您傳遞做為 `-hosts` 之輸入的所有節點名稱。例如，具有兩個節點的 **mpirun** 命令會傳回類似下列類容的輸出：
 
@@ -343,7 +319,7 @@ cluster12
 下列的 Intel MPI 命令會使用 pingpong 基準測試驗證叢集組態和 RDMA 網路連線。
 
 ```
-/opt/intel/impi_latest/bin64/mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 /opt/intel/impi_latest/bin64/IMB-MPI1 pingpong
+mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 IMB-MPI1 pingpong
 ```
 
 您應該會在包含兩個節點的工作中叢集上看到類似下列的輸出。在 Azure RDMA 網路上，大小為 512 個位元組以下的訊息預期會出現 3 百萬分之一秒或以下的延遲。
@@ -412,13 +388,7 @@ cluster12
 
 ```
 
-## 網路拓撲考量
 
-* 在 Linux VM 上，Eth1 會保留給 RDMA 網路流量。請勿變更任何 Eth1 設定或參考到此網路之組態檔中的任何資訊。
-
-* 在 Azure 中，不支援透過 Infiniband (IB) 的 IP。僅支援透過 IB 的 RDMA。
-
-* 在 Linux VM 上，Eth0 會保留給一般 Azure 網路流量。
 
 ## 後續步驟
 
@@ -426,4 +396,6 @@ cluster12
 
 * 如需 Intel MPI 的指引，請參閱＜[Intel MPI Library 文件](https://software.intel.com/zh-TW/articles/intel-mpi-library-documentation/)＞。
 
-<!---HONumber=AcomDC_0323_2016-->
+* 請嘗試[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/intel-lustre-clients-on-centos)以使用 CentOS 型 HPC 映像建立 Intel Lustre 叢集。
+
+<!---HONumber=AcomDC_0511_2016-->

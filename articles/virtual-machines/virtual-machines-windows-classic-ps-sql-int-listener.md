@@ -1,6 +1,6 @@
 <properties
-	pageTitle="設定 AlwaysOn 可用性群組的 ILB 接聽程式 | Microsoft Azure"
-	description="本教學課程使用以傳統部署模型建立的資源，並使用內部負載平衡器 (ILB) 在 Azure 中建立 AlwaysOn 可用性群組接聽程式。"
+	pageTitle="設定 Always On 可用性群組的 ILB 接聽程式 | Microsoft Azure"
+	description="本教學課程使用以傳統部署模型建立的資源，並使用內部負載平衡器 (ILB) 在 Azure 中建立 Always On 可用性群組接聽程式。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="MikeRayMSFT"
@@ -13,10 +13,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/19/2016"
+	ms.date="05/08/2016"
 	ms.author="mikeray" />
 
-# 設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式
+# 設定 Azure 中 Always On 可用性群組的 ILB 接聽程式
 
 > [AZURE.SELECTOR]
 - [內部接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)
@@ -24,9 +24,9 @@
 
 ## 概觀
 
-本主題說明如何使用**內部負載平衡器 (ILB)** 來設定 AlwaysOn 可用性群組的接聽程式。
+本主題說明如何使用**內部負載平衡器 (ILB)** 來設定 Always On 可用性群組的接聽程式。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。若要在 Resource Manager 模型中設定 Always On 可用性群組的 ILB 接聽程式，請參閱[在 Azure 中設定 Always On 可用性群組的內部負載平衡器](virtual-machines-windows-portal-sql-alwayson-int-listener.md)。
 
 
 您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。下列步驟假設您已[設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
@@ -36,7 +36,7 @@
 
 - 可用性群組接聽程式支援 Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2。
 
-- 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為 ILB，且每個雲端服務僅有一個 ILB；但是可以建立多個外部接聽程式。如需詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組的外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)。
+- 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為 ILB，且每個雲端服務僅有一個 ILB；但是可以建立多個外部接聽程式。如需詳細資訊，請參閱[在 Azure 中設定 Always On 可用性群組的外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)。
 
 - 有外部接聽程式也使用雲端服務的公開 VIP 時，無法在同一個雲端服務中建立內部接聽程式。
 
@@ -138,4 +138,4 @@
 
 [AZURE.INCLUDE [Listener-Next-Steps](../../includes/virtual-machines-ag-listener-next-steps.md)]
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

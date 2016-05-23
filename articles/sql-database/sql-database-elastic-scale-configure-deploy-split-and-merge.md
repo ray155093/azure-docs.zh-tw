@@ -1,5 +1,5 @@
 <properties
-	pageTitle="彈性資料庫分割-合併工具教學課程 | Microsoft Azure"
+	pageTitle="部署分割合併服務 | Microsoft Azure"
 	description="使用彈性資料庫工具來分割及合併"
 	services="sql-database"  
 	documentationCenter=""
@@ -13,21 +13,24 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/23/2016"
-	ms.author="sidneyh" />
+	ms.date="04/26/2016"
+	ms.author="ddove" />
 
-# 彈性資料庫分割合併工具教學課程
+# 部署分割合併服務 
+
+分割合併工具可讓您在分區化資料庫之間移動資料。請參閱[在相應放大的雲端資料庫之間移動資料](sql-database-elastic-scale-overview-split-and-merge.md)
 
 ## 下載分割合併套件
+
 1. 從 [NuGet](http://docs.nuget.org/docs/start-here/installing-nuget) 下載最新的 NuGet 版本。
-2. 開啟命令提示字元並瀏覽至您下載 nuget.exe 的目錄。
+2. 開啟命令提示字元並瀏覽至您下載 nuget.exe 的目錄。下載包含 PowerShell 命令。
 3. 使用下列命令，將最新的分割合併封裝下載到目前的目錄：`nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge`  
 
-上述步驟將分割合併檔案下載至目前的目錄。檔案會放在名為 **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** 的目錄中，其中 *x.x.xxx.x* 反映版本號碼。在 **content\\splitmerge\\service** 子目錄中找出分割合併服務檔案，在 **content\\splitmerge\\powershell** 子目錄中找出分割合併 PowerShell 指令碼 (和必要的用戶端 .dll 檔)。
+檔案會放在名為 **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** 的目錄中，其中 *x.x.xxx.x* 反映版本號碼。在 **content\\splitmerge\\service** 子目錄中找出分割合併服務檔案，在 **content\\splitmerge\\powershell** 子目錄中找出分割合併 PowerShell 指令碼 (和必要的用戶端 .dll 檔)。
 
 ## 必要條件
 
-1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://ms.portal.azure.com)。建立新的 **SQL Database**。填入資料庫名稱，並建立新的使用者名稱和密碼。請務必記錄名稱和密碼，以供稍後使用。
+1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://ms.portal.azure.com)。建立新的 **SQL Database**。提供資料庫名稱，並建立新的系統管理員和密碼。請務必記錄名稱和密碼，以供稍後使用。
 
 2. 請確定您的 Azure SQL DB 伺服器允許 Azure 服務進行連接。在**防火牆設定**的入口網站中，確定 [**允許存取 Azure 服務**] 設定設為 [**開啟**]。按一下儲存圖示。
 
@@ -38,7 +41,7 @@
 4. 建立將包含分割合併服務的 Azure 雲端服務。移至 Azure 入口網站。在左列中，按一下 [**新增**]，然後按一下 [**計算**]、[**雲端服務**] 和 [**建立**]。
 
 
-## 設定分割-合併服務
+## 設定分割合併服務
 
 ### 分割合併服務組態
 
@@ -58,6 +61,7 @@
 5.    針對 **SplitMergeWorker** 角色，在 **WorkerRoleSynchronizationStorageAccountConnectionString** 設定中輸入有效的連接字串以連接至 Azure 儲存體。
         
 ### 設定安全性
+
 如需有關設定服務安全性的詳細指示，請參閱[分割合併安全性設定](sql-database-elastic-scale-split-merge-security-configuration.md)。
 
 為了執行簡單的測試部署以完成本教學課程，將會執行一組最基本的設定步驟，讓服務啟動並執行。這些步驟只會啟用一個電腦/帳戶來與服務通訊。
@@ -119,7 +123,7 @@ Web 角色：
 
 請注意，在實際執行部署中，CA、加密、伺服器憑證和用戶端憑證應該使用個別憑證。如需詳細指示，請參閱[安全性設定](sql-database-elastic-scale-split-merge-security-configuration.md)。
 
-### 部署分割合併服務
+## 部署您的服務
 
 1. 移至 [Azure 入口網站](https://manage.windowsazure.com)。
 2. 按一下左邊的 [雲端服務] 索引標籤，選取您稍早建立的雲端服務。
@@ -135,7 +139,7 @@ Web 角色：
 ![上傳][4]
 
 
-## 部署疑難排解
+## 疑難排解部署
 
 如果 Web 角色無法上線，安全性設定可能有問題。請檢查 SSL 的設定如上所述。
 
@@ -150,7 +154,7 @@ Web 角色：
 * 請確定伺服器名稱並不是以 ****https://** 開頭。
 * 請確定您的 Azure SQL DB 伺服器允許 Azure 服務進行連接。若要這樣做，請開啟 https://manage.windowsazure.com，按一下左邊的 [SQL Database]，按一下頂端的 [伺服器]，然後選取您的伺服器。按一下頂端的 [設定]，並確定 [Azure 服務] 設定已設為 [是]。(請參閱本文開頭的＜必要條件＞一節)。
 
-## 測試您的分割合併服務部署
+## 測試服務部署
 
 ### 使用網頁瀏覽器連接
 
@@ -212,7 +216,7 @@ Web 角色：
   </tr>
 </table>
 
-##使用 PowerShell 來驗證您的部署
+## 使用 PowerShell 來驗證您的部署
 
 1.    開啟新的 PowerShell 視窗，並瀏覽至您下載分割-合併套件的目錄，然後瀏覽到 "powershell" 目錄。
 2.    建立 Azure SQL Database 伺服器 (或選擇現有的伺服器)，其中將會建立分區對應管理員和分區。
@@ -292,11 +296,11 @@ Web 角色：
 
 6.    試驗其他資料類型！ 所有這些指令碼都採用可供指定金鑰類型的選擇性 -ShardKeyType 參數。預設值為 Int32，但您也可以指定 Int64、Guid 或二進位。
 
-## 建立您自己的要求
+## 建立要求
 
 您可以透過 Web UI，或匯入並使用將透過 Web 角色提交需求的 SplitMerge.psm1 PowerShell 模組，以使用此服務。
 
-分割合併服務可以移動分區化資料表和參考資料表中的資料。分區資料表具有分區化索引鍵資料行，且在每個分區上有不同的資料列資料。參考資料表並未分區，所以每個分區包含相同的資料列資料。參考資料表適用於不常變更的資料，且在查詢中用來「聯結」分區化資料表。
+此服務可以移動分區化資料表和參考資料表中的資料。分區資料表具有分區化索引鍵資料行，且在每個分區上有不同的資料列資料。參考資料表並未分區，所以每個分區包含相同的資料列資料。參考資料表適用於不常變更的資料，且在查詢中用來「聯結」分區化資料表。
 
 若要執行分割合併作業，您必須宣告想要移動的分區化資料表和參考資料表。這是透過 **SchemaInfo** API 來達成。此 API 位於 **Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.Schema** 命名空間中。
 
@@ -312,6 +316,7 @@ Web 角色：
 
 
 ## 疑難排解
+
 執行範例 powershell 指令碼時，您可能會看到以下訊息：
 
     Invoke-WebRequest : The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
@@ -334,4 +339,4 @@ Web 角色：
 [5]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/storage.png
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

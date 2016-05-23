@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/04/2016"   
+	ms.date="04/25/2016"   
 	ms.author="juliako"/>
 
 
@@ -61,7 +61,7 @@
 
 > [AZURE.SELECTOR]
 - [.NET](media-services-index-content.md)
-- [Portal](media-services-manage-content.md#index)
+- [入口網站](media-services-manage-content.md#index)
 
 Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生隱藏式字幕和關鍵字的全文檢索記錄。您可以使用 Azure 傳統入口網站，並遵循以下所示的步驟，來編製內容的索引。不過，如果您想要更充分掌控哪些檔案和如何執行索引工作，可以使用適用於 .NET 或 REST API 的媒體服務 SDK。如需詳細資訊，請參閱[使用 Azure Media Indexer 編製媒體檔案的索引](media-services-index-content.md)。
 
@@ -79,7 +79,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 > [AZURE.SELECTOR]
 - [.NET](media-services-dotnet-encode-asset.md)
 - [REST](media-services-rest-encode-asset.md)
-- [Portal](media-services-manage-content.md#encode)
+- [入口網站](media-services-manage-content.md#encode)
 
 若要透過網際網路傳遞數位視訊，您必須壓縮媒體。媒體服務提供媒體編碼程式，可讓您指定要如何為您的內容編碼 (例如，要使用的轉碼器、檔案格式、解析度及位元速率)。
 
@@ -100,7 +100,9 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 1.  選取您想要編碼的檔案。
 
-  如果支援此檔案類型的編碼，[內容] 頁面底部的 [處理] 按鈕將會啟用。4.在 [處理] 對話方塊中，選取 [媒體編碼器標準] 處理器。5.選擇其中一種**編碼組態**。
+  如果支援此檔案類型的編碼，[內容] 頁面底部的 [處理] 按鈕將會啟用。
+4. 在 [處理] 對話方塊中，選取 [媒體編碼器標準] 處理器。
+5. 選擇其中一種**編碼組態**。
 
 ![Process2][process2]
 
@@ -142,7 +144,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 > [AZURE.SELECTOR]
 - [.NET](media-services-deliver-streaming-content.md)
 - [REST](media-services-rest-deliver-streaming-content.md)
-- [Portal](media-services-manage-content.md#publish)
+- [入口網站](media-services-manage-content.md#publish)
 
 ###概觀
 
@@ -220,4 +222,4 @@ SAS URL 具有下列格式：
 [encrypt]: ./media/media-services-manage-content/media-services-encrypt-content.png
 [AMSPlayer]: ./media/media-services-manage-content/media-services-portal-player.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

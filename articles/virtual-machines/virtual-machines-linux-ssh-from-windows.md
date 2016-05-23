@@ -14,7 +14,7 @@ description="了解如何在 Windows 電腦上產生並使用 SSH 金鑰來連�
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/04/2016" 
+	ms.date="04/15/2016" 
 	ms.author="rasquill"/>
 
 #如何在 Azure 上搭配 Windows 使用 SSH
@@ -32,7 +32,7 @@ description="了解如何在 Windows 電腦上產生並使用 SSH 金鑰來連�
 
 您可以安裝的一般用戶端包括：
 
-- [puTTY 和 puTTYgen]((http://www.chiark.greenend.org.uk/~sgtatham/putty/)
+- [puTTY and puTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/)
 - [MobaXterm](http://mobaxterm.mobatek.net/)
 - [Cygwin](https://cygwin.com/)
 - [Git For Windows](https://git-for-windows.github.io/)，隨附於環境和工具
@@ -50,23 +50,16 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 1. 任何使用 [Azure 入口網站](https://portal.azure.com)的部署都需要 **ssh-rsa** 金鑰，無論部署模型為何。
 2. 需要 .pem 檔案才能使用[傳統入口網站](https://manage.windowsazure.com)來建立 VM。使用 [Azure CLI](../xplat-cli-install.md) 的傳統部署也支援 .pem 檔案。
 
-> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要在 Linux 或 Mac 上建立這些檔案，請輸入
+> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要在Windows 上建立這些檔案，輸入：<br /> openssl.exe x509 -outform der -in myCert.pem -out myCert.cer
 
 ## 取得 Windows 相關的 ssh-keygen 和 openssl ##
 
 [本節](#What-SSH-and-key-creation-programs-do-you-need)上方列出數個公用程式，它們包含適用於 Windows 的 `ssh-keygen` 和 `openssl`。以下列出一些範例：
 
-### 使用 Msysgit ###
+###使用 GitHub for Windows###
 
-1.	從下列位置下載並安裝 msysgit：[http://msysgit.github.com/](http://msysgit.github.com/)
-2.	從安裝目錄執行 `msys` (例如 c:\\msysgit\\msys.exe)
-3.	輸入 `cd bin` 切換至 `bin` 目錄。
-
-
-### 使用 GitHub for Windows ###
-
-1.	從下列位置下載並安裝 GitHub for Windows：[http://windows.github.com/](http://windows.github.com/)
-2.	從 [開始] 功能表 > [所有程式] > [GitHub, Inc] 執行 Git Shell
+1.	從下列位置下載並安裝 GitHub for Windows：[https://git-for-windows.github.io/](https://git-for-windows.github.io/)
+2.	從 [開始] 功能表 > [所有應用程式] > [GitHub] 執行 Git Bash
 
 > [AZURE.NOTE] 當您執行上述的 `openssl` 命令時，可能會遇到下列錯誤：
 
@@ -98,17 +91,35 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 1.	遵循以上的其中一組指示，以便執行 `openssl.exe`
 2.	輸入以下命令：
 
-		# openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
-
+  ```
+  openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
+  ```
 3.	畫面應該如下所示：
 
-	![linuxwelcomegit](./media/virtual-machines-linux-ssh-from-linux/linuxwelcomegit.png)
+  ```
+  $ openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
+  Generating a 2048 bit RSA private key
+  .......................................+++
+  .......................+++
+  writing new private key to 'myPrivateKey.key'
+  -----
+  You are about to be asked to enter information that will be incorporated
+  into your certificate request.
+  What you are about to enter is what is called a Distinguished Name or a DN.
+  There are quite a few fields but you can leave some blank
+  For some fields there will be a default value,
+  If you enter '.', the field will be left blank.
+  -----
+  Country Name (2 letter code) [AU]:
+  ```
 
 4.	回答提出的問題。
 5.	它會建立兩個檔案：`myPrivateKey.key` 和 `myCert.pem`。
 6.	如果您將直接使用 API，而不使用管理入口網站，請使用下列命令，將 `myCert.pem` 轉換為 `myCert.cer` (DER 編碼的 X509 憑證)：
 
-		# openssl.exe  x509 -outform der -in myCert.pem -out myCert.cer
+  ```
+  openssl.exe  x509 -outform der -in myCert.pem -out myCert.cer
+  ```
 
 ## 建立 Putty 的 PPK ##
 
@@ -155,4 +166,4 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 5.	按一下 [開啟] 以連線到虛擬機器。
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

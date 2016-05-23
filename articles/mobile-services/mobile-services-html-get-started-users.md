@@ -101,13 +101,15 @@
 			$("#logged-in button").click(logOut);
 		});
 
-    這會建立一組函數來處理驗證程序。使用者會透過 Facebook 登入受到驗證。如果您使用的識別提供者不是 Facebook，請將傳給上述 **login** 方法的值變更為以下其中一個： *microsoftaccount* 、 *facebook* 、 *twitter* 、 *google* 或 *aad* 。
+    這會建立一組函數來處理驗證程序。使用者會透過 Facebook 登入受到驗證。如果您使用的識別提供者不是 Facebook，請將傳給上述 **login** 方法的值變更為以下其中一個：*microsoftaccount*、*facebook*、*twitter*、*google* 或 *aad*。
 
-	>[AZURE.IMPORTANT]在 PhoneGap 應用程式中，您必須也將以下外掛程式新增至專案：<ul><li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git</code></li> <li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git</code></li></ul>
+	>[AZURE.IMPORTANT]在 PhoneGap 應用程式中，您必須也將下列外掛程式新增至專案：
+	><ul><li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git</code></li>
+	> <li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git</code></li></ul>
 
 9. 返回正在執行應用程式的瀏覽器，重新整理頁面。
 
-	   成功登入後，應用程式應會正確無誤地執行，而且您應能夠查詢行動服務並更新資料。
+	成功登入後，應用程式應會正確無誤地執行，而且您應能夠查詢行動服務並更新資料。
 
 	>[AZURE.NOTE]若是使用 Internet Explorer，登入之後可能會出現錯誤：<code>Cannot reach window opener.It may be on a different Internet Explorer zone</code>。這是因為快顯是在不同於 localhost (內部網路) 的安全性區域 (網際網路) 中執行。這只會在開發期間使用 localhost 時影響到應用程式。解決方法是開啟 [網際網路選項] 的 [安全性] 索引標籤，按一下 [近端內部網路]，按一下 [網站]，然後停用 [自動偵測內部網路]。完成測試時，請記得恢復此設定。
 
@@ -135,4 +137,4 @@
 [行動服務 HTML/JavaScript 作法概念性參考]: mobile-services-html-how-to-use-client-library.md
  
 
-<!--------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0511_2016-->

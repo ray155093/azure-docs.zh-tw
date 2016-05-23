@@ -38,11 +38,11 @@
     	private boolean loadUserTokenCache(MobileServiceClient client)
 	    {
 	        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-    	    String userId = prefs.getString(USERIDPREF, "undefined"); 
-	        if (userId == "undefined")
+    	    String userId = prefs.getString(USERIDPREF, null); 
+	        if (userId == null)
 	            return false;
-    	    String token = prefs.getString(TOKENPREF, "undefined"); 
-    	    if (token == "undefined")
+    	    String token = prefs.getString(TOKENPREF, null); 
+    	    if (token == null)
     	        return false;
         	    
     	    MobileServiceUser user = new MobileServiceUser(userId);
@@ -87,4 +87,5 @@
 
 6. 使用有效的帳戶建置應用程式，並且測試驗證。至少執行 2 次此動作。第一次執行時，您應該會收到登入並建立權杖快取的提示。之後每次執行時，系統會試圖載入用於驗證的權杖快取，而您無須再次登入。
 
-<!-------HONumber=AcomDC_1210_2015--->
+
+

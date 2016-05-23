@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/09/2016"
 	ms.author="kgremban"/>
 
 # 如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器
@@ -23,7 +23,7 @@
 您想要能傳送安裝指令碼至多部 Windows 伺服器，或傳送至未啟用使用者介面的 Windows Server。本主題說明如何建立 Windows PowerShell 指令碼來啟用自動安裝，以安裝並註冊您的 Azure AD 應用程式 Proxy 連接器。
 
 ## 啟用存取
-應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。但是，您可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
+應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。此外，您也可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
 
 ## 步驟 1：安裝連接器，但不註冊
 
@@ -125,24 +125,13 @@
 
 
 
-## 後續步驟
-應用程式 Proxy 還有其他更多用途：
+## 另請參閱
 
-
+- [啟用 Azure Active Directory 的應用程式 Proxy](active-directory-application-proxy-enable.md)
 - [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
 - [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
-- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
-- [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
+- [使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
 
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-### 深入了解應用程式 Proxy
-- [看看我們的線上說明](active-directory-application-proxy-enable.md)
-- [查閱應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-- [觀看我們在 Channel 9 上的影片！](http://channel9.msdn.com/events/Ignite/2015/BRK3864)
-
-## 其他資源
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [以組織方式註冊 Azure](sign-up-organization.md)
-- [Azure 身分識別](fundamentals-identity.md)
-
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

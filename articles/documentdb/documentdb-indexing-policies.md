@@ -14,7 +14,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="data-services" 
-    ms.date="03/30/2016" 
+    ms.date="05/05/2016" 
     ms.author="arramac"/>
 
 
@@ -44,9 +44,9 @@
 
     DocumentCollection collection = new DocumentCollection { Id = "myCollection" };
     
-    collection.IndexingPolicy.IndexingMode = IndexingMode.Consistent;
     collection.IndexingPolicy = new IndexingPolicy(new RangeIndex(DataType.String) { Precision = -1 });
-
+    collection.IndexingPolicy.IndexingMode = IndexingMode.Consistent;
+    
     await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), collection);   
 
 
@@ -287,7 +287,7 @@ DocumentDB 會針對在集合上所進行、且索引模式為 [無] 的查詢�
      
      collection.IndexingPolicy.IndexingMode = IndexingMode.Consistent;
      
-     collection = await client.CreateDocumentCollectionAsync(database.SelfLink, collection);
+     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("mydb"), collection);
 
 
 ### 索引路徑
@@ -543,20 +543,14 @@ DocumentDB 也支援每個路徑的空間索引類型 (可針對點資料類型�
 
 空間索引一律使用點的預設索引精準度，且無法被覆寫。
 
-下列範例示範如何使用 .NET SDK 提高集合中範圍索引的精確度。請注意，這樣會使用預設路徑 "/*"。
+下列範例示範如何使用 .NET SDK 提高集合中範圍索引的精確度。
 
 **使用自訂索引精確度建立集合**
 
     var rangeDefault = new DocumentCollection { Id = "rangeCollection" };
     
-    rangeDefault.IndexingPolicy.IncludedPaths.Add(
-        new IncludedPath { 
-            Path = "/*", 
-            Indexes = new Collection<Index> { 
-                new RangeIndex(DataType.String) { Precision = -1 }, 
-                new RangeIndex(DataType.Number) { Precision = -1 }
-            }
-        });
+    // Override the default policy for Strings to range indexing and "max" (-1) precision
+    rangeDefault.IndexingPolicy = new IndexingPolicy(new RangeIndex(DataType.String) { Precision = -1 });
 
     await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), rangeDefault);   
 
@@ -566,7 +560,7 @@ DocumentDB 也支援每個路徑的空間索引類型 (可針對點資料類型�
 同樣地，可以從索引編製完全排除路徑。下一個範例示範如何使用 "*" 萬用字元將文件 (也稱為樹狀子目錄) 的整個區段自索引編製作業中排除。
 
     var collection = new DocumentCollection { Id = "excludedPathCollection" };
-    collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/" });
+    collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
     collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*");
     
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
@@ -765,4 +759,4 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0511_2016-->

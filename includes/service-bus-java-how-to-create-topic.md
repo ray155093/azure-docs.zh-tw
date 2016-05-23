@@ -12,9 +12,9 @@
 
 ## 建立服務命名空間
 
-若要開始在 Azure 中使用服務匯流排主題和訂用帳戶，首先必須建立服務命名空間。服務命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+若要開始在 Azure 中使用服務匯流排主題和訂用帳戶，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
-建立服務命名空間：
+若要建立命名空間：
 
 1.  登入 [Azure 傳統入口網站][]。
 
@@ -56,5 +56,3 @@
 
   [6]: ./media/service-bus-java-how-to-create-topic/getting-started-multi-tier-27.png
   [34]: ./media/service-bus-java-how-to-create-topic/VSProperties.png
-
-<!---HONumber=AcomDC_1203_2015-->

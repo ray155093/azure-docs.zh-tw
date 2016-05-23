@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/22/2016"
+   ms.date="05/06/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員範本函數
@@ -228,15 +228,15 @@
 <a id="padleft" />
 ### padLeft
 
-**padLeft(stringToPad, totalLength, paddingCharacter)**
+**padLeft(valueToPad, totalLength, paddingCharacter)**
 
 藉由將字元新增至左邊，直到到達指定的總長度，以傳回靠右對齊的字串。
   
 | 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| stringToPad | 是 | 要靠右對齊的字串。
+| valueToPad | 是 | 要靠右對齊的字串或 int。
 | totalLength | 是 | 傳回字串中的字元總數。
-| paddingCharacter | 是 | 要用於左側填補直到達到總長度的字元。
+| paddingCharacter | 否 | 要用於左側填補直到達到總長度的字元。預設值是空格。
 
 下列範例顯示如何藉由新增零個字元，直到字傳達到 10 個字元，以填補使用者提供的參數值。如果原始參數值超過 10 個字元，就不新增任何字元。
 
@@ -299,15 +299,31 @@
 
 | 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| valueToConvert | 是 | 要轉換成字串的值。值的類型只能是布林值、整數或字串。
+| valueToConvert | 是 | 要轉換成字串的值。任何類型的值均可轉換，包括物件和陣列。
 
 下列範例會將使用者提供的參數值轉換成字串。
 
     "parameters": {
-        "appId": { "type": "int" }
+      "jsonObject": {
+        "type": "object",
+        "defaultValue": {
+          "valueA": 10,
+          "valueB": "Example Text"
+        }
+      },
+      "jsonArray": {
+        "type": "array",
+        "defaultValue": [ "a", "b", "c" ]
+      },
+      "jsonInt": {
+        "type": "int",
+        "defaultValue": 5
+      }
     },
     "variables": { 
-        "stringValue": "[string(parameters('appId'))]"
+      "objectString": "[string(parameters('jsonObject'))]",
+      "arrayString": "[string(parameters('jsonArray'))]",
+      "intString": "[string(parameters('jsonInt'))]"
     }
 
 <a id="substring" />
@@ -397,14 +413,14 @@
 
 **uniqueString (stringForCreatingUniqueString, ...)**
 
-執行所提供字串的 64 位元雜湊來建立唯一的字串。當您需要建立資源的唯一名稱時，這個函式很有幫助。您提供代表結果唯一性層級的參數值。您可以指定名稱對於您的訂用帳戶、資源群組或部署是否唯一。
+根據當作參數提供的值，建立唯一的字串。當您需要建立資源的唯一名稱時，這個函式很有幫助。您提供代表結果唯一性層級的參數值。您可以指定名稱對於您的訂用帳戶、資源群組或部署是否唯一。
 
 | 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
 | stringForCreatingUniqueString | 是 | 雜湊函式中用來建立唯一字串的基底字串。
 | 視需要，也會使用其他參數 | 否 | 您可以視需要新增多個字串，來建立指定唯一性層級的值。
 
-傳回的值不是完全隨機的字串，而是雜湊函式的結果。傳回的值為 13 個字元長。不保證是全域唯一。您可能想要結合值與來自命名慣例的前置詞，建立更易記的名稱。
+傳回的值不是隨機字串，而是雜湊函式的結果。傳回的值為 13 個字元長。不保證是全域唯一。建議您將值與來自命名慣例的前置詞結合，建立更容易辨識的名稱。
 
 下列範例顯示如何使用 uniqueString 來建立不同的常用層級的唯一值。
 
@@ -439,7 +455,7 @@
 | baseUri | 是 | 基底 uri 的字串。
 | relativeUri | 是 | 要加入至基底 uri 字串的相對 uri 字串。
 
-**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 **http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 **http://contoso.com/resources/** 的基底 URI。
+**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 ****http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 ****http://contoso.com/resources/** 的基底 URI。
 
 下列範例顯示如何根據上層範本的值建構巢狀範本的連結。
 
@@ -671,15 +687,6 @@
 		}
 	}
 
-如果您現在真的想要直接在範本中指定 API 版本，可以使用 [providers](#providers) 函式並擷取一個值，例如下列範例中的最新版本。
-
-    "outputs": {
-		"BlobUri": {
-			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob]",
-			"type" : "string"
-		}
-	}
-
 下列範例會參考不同的資源群組中的儲存體帳戶。
 
     "outputs": {
@@ -717,7 +724,7 @@
 <a id="resourceid" />
 ### resourceId
 
-**resourceId ([resourceGroupName], resourceType, resourceName1, [resourceName2]...)**
+**resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)**
 
 傳回資源的唯一識別碼。如果資源名稱不確定或未佈建在相同的範本內，請使用此函數。識別碼會以下列格式傳回：
 
@@ -725,6 +732,7 @@
       
 | 參數 | 必要 | 說明
 | :---------------: | :------: | :----------
+| subscriptionId | 否 | 選用訂用帳戶識別碼。預設值為目前的訂用帳戶。擷取另一個訂用帳戶中的資源時，請指定此值。
 | resourceGroupName | 否 | 選用資源群組名稱。預設值為目前資源群組。擷取另一個資源群組中的資源時，請指定此值。
 | resourceType | 是 | 資源的類型 (包括資源提供者命名空間)。
 | resourceName1 | 是 | 資源的名稱。
@@ -733,7 +741,7 @@
 下列範例顯示如何擷取網站和資料庫的資源識別碼。網站存在於名稱為 **myWebsitesGroup** 的資源群組中，而資料庫存在於此範本的目前資源群組中。
 
     [resourceId('myWebsitesGroup', 'Microsoft.Web/sites', parameters('siteName'))]
-    [resourceId('Microsoft.SQL/servers/databases', parameters('serverName'),parameters('databaseName'))]
+    [resourceId('Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]
     
 通常，在替代資源群組中使用儲存體帳戶或虛擬網路時，需要使用此函數。儲存體帳戶或虛擬網路可能用於多個資源群組中；因此，您不想要在刪除單一資源群組時刪除它們。下列範例顯示如何輕鬆地使用外部資源群組中的資源：
 
@@ -807,4 +815,4 @@
 - 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

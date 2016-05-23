@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="如何在 Linux VM 上安裝 Apache Qpid Proton-C | Microsoft Azure"
-   description="如何使用 Azure 虛擬機器建立 CentOS Linux VM，以及如何建置和安裝 Apache Qpid Proton-C 程式庫。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" /> 
+    pageTitle="如何在 Linux VM 上安裝 Apache Qpid Proton-C | Microsoft Azure"
+    description="如何使用 Azure 虛擬機器建立 CentOS Linux VM，以及如何建置和安裝 Apache Qpid Proton-C 程式庫。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 在 Azure Linux VM 上安裝 Apache Qpid Proton-C
 
@@ -116,4 +116,4 @@
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

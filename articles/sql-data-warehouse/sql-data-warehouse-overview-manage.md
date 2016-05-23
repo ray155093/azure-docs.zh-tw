@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/03/2016"
+   ms.date="05/04/2016"
    ms.author="barbkess;sonyama;"/>
 
 # 管理 Azure SQL 資料倉儲中的資料庫
@@ -42,7 +42,7 @@ SQL 資料倉儲會自動化管理您的資料庫的各個層面。例如，若�
 若要開始使用 Azure 入口網站，請參閱[建立 SQL 資料倉儲 (Azure 入口網站)][]。
 
 ### Visual Studio 中的 SQL Server Data Tools
-Visual Studio 中的 [SQL Server Data Tools][] \(SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
+Visual Studio 中的 [SQL Server Data Tools][] (SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
 
 SSDT 包含的 SQL Server 物件總管，可讓您針對 SQL 資料倉儲資料庫視覺化、連接和執行指令碼。若要快速連線至 SQL 資料倉儲，只需在 Azure 傳統入口網站檢視資料庫的詳細資料時，按一下命令列中的 [在 Visual Studio 中開啟] 按鈕即可。
 
@@ -115,7 +115,7 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Image references-->
 
 <!--Article references-->
-[Azure 儲存體備援選項]: storage-redundancy.md#read-access-geo-redundant-storage
+[Azure 儲存體備援選項]: ../storage/storage-redundancy.md#read-access-geo-redundant-storage
 [建立 SQL 資料倉儲 (Azure 入口網站)]: sql-data-warehouse-get-started-provision.md
 [建立資料庫 (PowerShell)]: sql-data-warehouse-get-started-provision-powershell
 [connection]: sql-data-warehouse-develop-connections.md
@@ -139,4 +139,4 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Other web references-->
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

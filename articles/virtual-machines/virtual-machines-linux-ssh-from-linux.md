@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="在 Mac 和 Linux 使用 SSH |Microsoft Azure" 
-	description="在 Linux 和 Mac 上產生和使用 SSH 金鑰，搭配 Azure 上資源管理員和傳統部署模型。" 
+	description="在 Linux 和 Mac 上產生和使用 SSH 金鑰，搭配 Azure 上 Resource Manager 和傳統部署模型。" 
 	services="virtual-machines-linux" 
 	documentationCenter="" 
 	authors="squillace" 
@@ -14,16 +14,16 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="12/15/2015" 
+	ms.date="04/15/2016" 
 	ms.author="rasquill"/>
 
-#如何在Azure 的 Linux 和 Mac 使用 SSH
+#如何在 Azure 的 Linux 和 Mac 使用 SSH
 
 > [AZURE.SELECTOR]
 - [Windows](virtual-machines-linux-ssh-from-windows.md)
 - [Linux/Mac](virtual-machines-linux-ssh-from-linux.md)
 
-本主題描述如何在 Linux 和 Mac 上使用 **ssh-keygen** 和 **openssl**，以建立和使用 **ssh-rsa** 格式和 **.pem** 格式檔案來保護與 Linux 型 Azure VM 的安全通訊。建議您建立新的部署時，使用資源管理員部署模型建立以 Linux 為基礎的 Azure 虛擬機器，並採用 *ssh-rsa* 類型的公用金鑰檔案或字串 (取決於部署用戶端)。[Azure 入口網站](https://portal.azure.com)目前只接受 **ssh-rsa** 格式的字串，無論是傳統部署或資源管理員部署。
+本主題描述如何在 Linux 和 Mac 上使用 **ssh-keygen** 和 **openssl**，以建立和使用 **ssh-rsa** 格式和 **.pem** 格式檔案來保護與 Linux 型 Azure VM 的安全通訊。建議您建立新的部署時，使用 Resource Manager 部署模型建立以 Linux 為基礎的 Azure 虛擬機器，並採用 *ssh-rsa* 類型的公用金鑰檔案或字串 (取決於部署用戶端)。[Azure 入口網站](https://portal.azure.com)目前只接受 **ssh-rsa** 格式的字串，無論是傳統部署或 Resource Manager 部署。
 
 > [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]若要建立這些類型的檔案，用於Windows 電腦與 Azure 中的 Linux VM 進行安全通訊 ，請參閱[在 Windows 上使用 SSH 金鑰](virtual-machines-linux-ssh-from-windows.md)。
 
@@ -38,7 +38,7 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 ## 建立金鑰與 SSH 搭配使用
 
-Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem 檔案，取決於您的案例。如果您已經有這類檔案，在建立 Azure VM 時傳遞公開金鑰檔。
+如果您已經有 SSH 金鑰，在建立 Azure VM 時傳遞公開金鑰檔。
 
 如果您需要建立檔案：
 
@@ -47,17 +47,14 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 	- 若是 Mac，請務必瀏覽 [Apple 產品安全性網站](https://support.apple.com/HT201222)，必要時選擇適當的更新。
 	- 若是 Ubuntu、Debian、Mint 等 Debian 型的 Linux 散發套件：
 
-			sudo apt-get update ssh-keygen
-			sudo apt-get update openssl
+			sudo apt-get install --upgrade-only openssl
 
 	- 若是 CentOS、Oracle Linux 等 RPM 型的 Linux 散發套件：
 
-			sudo yum update ssh-keygen
 			sudo yum update openssl
 
 	- 若是 SLES 和 OpenSUSE
 
-			sudo zypper update ssh-keygen
 			sudo zypper update openssl
 
 2. 使用 **ssh-keygen** 建立 2048 位元 RSA 公開和私密金鑰檔案，且除非您有要用於檔案的特定位置或特定名稱，否則接受預設位置和名稱 `~/.ssh/id_rsa`。基本命令是：
@@ -72,21 +69,19 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 
 	如果您想要從不同的私密金鑰檔案建立.pem 檔案，請修改 `-key` 引數。
 
-> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要在 Linux 或 Mac 上建立這些檔案，輸入：<br /> openssl.exe x509 -outform der -in myCert.pem -out myCert.cer
-
-將.pem 檔案轉換成 DER 編碼的 x509 憑證檔案。
+> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要 在 Linux 或 Mac 上將 .pem 檔轉換為 DER 編碼的 X509憑證檔，輸入：<br /> openssl x509 -outform der -in myCert.pem -out myCert.cer
 
 ## 使用您有的 SSH 金鑰
 
-您可以在所有新工作使用 ssh rsa (`.pub`) 金鑰，尤其是資源管理員部署模型和預覽入口網站；如果您需要使用傳統入口網站，您可能需要從您的金鑰建立 `.pem` 檔案。
+您可以在所有新工作使用 ssh rsa (`.pub`) 金鑰，尤其是 Resource Manager 部署模型和預覽入口網站；如果您需要使用傳統入口網站，您可能需要從您的金鑰建立 `.pem` 檔案。
 
 ## 建立 VM 與您的公開金鑰檔案
 
-建立所需的檔案之後，有許多方法可以建立能使用公開-私密金鑰交換進行安全連線的 VM。在幾乎所有的情況下，尤其是使用資源管理員部署，請在系統提示您提供 ssh 金鑰檔案路徑或檔案內容字串時，傳遞.pub 檔案。
+建立所需的檔案之後，有許多方法可以建立能使用公開-私密金鑰交換進行安全連線的 VM。在幾乎所有的情況下，尤其是使用 Resource Manager 部署，請在系統提示您提供 ssh 金鑰檔案路徑或檔案內容字串時，傳遞.pub 檔案。
 
 ### 範例：建立 VM with the id\_rsa.pub 檔案
 
-最常見的用法是以命令方式建立 VM 時 - 或上傳範本建立 VM 時。下列程式碼範例示範在 Azure 中建立新的、安全 Linux VM，做法是將公開檔案名稱 (在此案例中是預設 `~/.ssh/id_rsa.pub` 檔案) 傳遞給 `azure vm create` 命令。(其他引數已事先建立。)
+最常見的用法是以命令方式建立 VM 時 - 或上傳範本建立 VM 時。下列程式碼範例示範在 Azure 中建立新的、安全 Linux VM，做法是將公開檔案名稱 (在此案例中是預設 `~/.ssh/id_rsa.pub` 檔案) 傳遞給 `azure vm create` 命令。(其他引數，例如資源群組、儲存體帳戶已事先建立。）這個範例使用 Resource Manager 部署方法，因此請確定您的 Azure CLI 使用 `azure config mode arm` 據此設定：
 
 	azure vm create \
 	--nic-name testnic \
@@ -94,12 +89,12 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 	--vnet-name testvnet \
 	--vnet-subnet-name testsubnet \
 	--storage-account-name computeteststore 
-	--image-urn canonical:UbuntuServer:14.04.3-LTS:latest \
+	--image-urn canonical:UbuntuServer:14.04.4-LTS:latest \
 	--username ops \
 	-ssh-publickey-file ~/.ssh/id_rsa.pub \
 	testrg testvm westeurope linux
 
-下一個範例示範如何使用 **ssh-rsa** 格式與資源管理員範本和 Azure CLI，建立受到使用者名稱和 `~/.ssh/id_rsa.pub` 內容字串保護的 Ubuntu VM。(本範例縮短公開金鑰字串以利閱讀。)
+下一個範例示範如何使用 **ssh-rsa** 格式與 Resource Manager 範本和 Azure CLI，建立受到使用者名稱和 `~/.ssh/id_rsa.pub` 內容字串保護的 Ubuntu VM。(本範例縮短公開金鑰字串以利閱讀。)
 
 	azure group deployment create \
 	--resource-group test-sshtemplate \
@@ -133,23 +128,23 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 	data:    location               String  West Europe
 	data:    vmSize                 String  Standard_A2
 	data:    vmName                 String  sshvm
-	data:    ubuntuOSVersion        String  14.04.2-LTS
+	data:    ubuntuOSVersion        String  14.04.4-LTS
 	info:    group deployment create command OK
 
 
 ### 範例：以 .pem 檔案建立 VM
 
-接著您可以使用 .pem 檔案搭配傳統入口網站或是搭配傳統部署模式和 `azure vm create`，如以下範例所示：
+接著您可以使用 .pem 檔案搭配傳統入口網站或是搭配傳統部署模式 (`azure config mode asm`) 和 `azure vm create`，如以下範例所示：
 
 	azure vm create \
 	-l "West US" -n testpemasm \
 	-P -t myCert.pem -e 22 \
 	testpemasm \
-	b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20150908-zh-TW-30GB \
+	b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160406-zh-TW-30GB \
 	ops
 	info:    Executing command vm create
 	warn:    --vm-size has not been specified. Defaulting to "Small".
-	+ Looking up image b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20150908-zh-TW-30GB
+	+ Looking up image b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160406-zh-TW-30GB
 	+ Looking up cloud service
 	info:    cloud service testpemasm not found.
 	+ Creating cloud service
@@ -163,7 +158,7 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 
 **ssh** 命令需要登入用的使用者名稱、電腦的網路位址、要連接至該位址的連接埠、以及許多其他特殊變數。(如需關於 **ssh** 的詳細資訊，您可先從此篇[安全殼層說明文章](https://en.wikipedia.org/wiki/Secure_Shell)開始了解)
 
-資源管理員部署的典型用法看起來如下 (如果您只是指定子網域和部署位置)：
+Resource Manager 部署的典型用法看起來如下 (如果您只是指定子網域和部署位置)：
 
 	ssh user@subdomain.westus.cloudapp.azure.com -p 22
 
@@ -205,7 +200,7 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 	data:    Network Endpoints 0 enableDirectServerReturn false
 	info:    vm show command OK
 
-### 探索搭配資源管理員部署之 Azure VM SSH 的位址
+### 探索搭配 Resource Manager 部署之 Azure VM SSH 的位址
 
 	azure vm show testrg testvm
 	info:    Executing command vm show
@@ -263,30 +258,32 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
 	RSA key fingerprint is dc:bb:e4:cc:59:db:b9:49:dc:71:a3:c8:37:36:fd:62.
 	Are you sure you want to continue connecting (yes/no)? yes
 	Warning: Permanently added 'testpemasm.cloudapp.net,40.83.178.221' (RSA) to the list of known hosts.
-	Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.19.0-28-generic x86_64)
-
+	
+    Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.19.0-49-generic x86_64)
+	
 	* Documentation:  https://help.ubuntu.com/
 
-	System information as of Sat Oct 10 20:53:08 UTC 2015
+    System information as of Fri Apr 15 18:51:42 UTC 2016
 
-	System load: 0.52              Memory usage: 5%   Processes:       80
-	Usage of /:  45.3% of 1.94GB   Swap usage:   0%   Users logged in: 0
+    System load: 0.31              Memory usage: 2%   Processes:       213
+    Usage of /:  42.1% of 1.94GB   Swap usage:   0%   Users logged in: 0
 
-	Graph this data and manage this system at:
-		https://landscape.canonical.com/
+    Graph this data and manage this system at:
+    https://landscape.canonical.com/
 
-	Get cloud support with Ubuntu Advantage Cloud Guest:
-		http://www.ubuntu.com/business/services/cloud
+    Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
 
-	0 packages can be updated.
+    0 packages can be updated.
 	0 updates are security updates.
-
+	
 	The programs included with the Ubuntu system are free software;
 	the exact distribution terms for each program are described in the
 	individual files in /usr/share/doc/*/copyright.
-
+	
 	Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 	applicable law.
+
 
 ## 如果您遇到連接問題
 
@@ -296,4 +293,4 @@ Azure 需要 **ssh-rsa** 格式 2048 位元的金鑰檔案，或對等的.pem �
  
 既然您已連接到您的 VM，請務必先更新您所選的散發套件，再繼續使用它。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

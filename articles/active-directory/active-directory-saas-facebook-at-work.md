@@ -13,13 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/02/2016"
+	ms.date="04/26/2016"
 	ms.author="asmalser"/>
 
 
 # 教學課程：Azure Active Directory 與 Facebook at Work 整合
 
-本教學課程的目標是說明如何將 Facebook at Work 與 Azure Active Directory (Azure AD) 整合。<br>將 Facebook at Work 與 Azure AD 整合可為您提供下列好處：
+本教學課程旨在說明如何整合 Facebook at Work 與 Azure Active Directory (Azure AD)。
+
+Facebook at Work 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Facebook at Work 的人員 
 - 您可以自動佈建帳戶已獲授與存取 Facebook at Work 的使用者
@@ -47,15 +49,23 @@
 
 **若要從資源庫加入 Facebook at Work，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**的左側導覽窗格中，按一下 [Active Directory]。<br><br>![Active Directory][1]<br>
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+
+	![Active Directory][1]
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。<br><br>![應用程式][2]<br>
+3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-4. 按一下頁面底部的 [新增]。<br><br>![應用程式][3]<br>
+	![應用程式][2]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從組件庫中新增應用程式]。<br><br>![應用程式][4]<br>
+4. 按一下頁面底部的 [新增]。
+	
+	![應用程式][3]
+
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+
+	![應用程式][4]
 
 6. 在搜尋方塊中，輸入 **Facebook at Work**。
 
@@ -68,7 +78,7 @@
 
 **若要使用 Facebook at Work 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1.	在 Azure 管理入口網站中加入 Facebook at Work 後，按一下 [設定單一登入]。
+1.	在 Azure 傳統入口網站中加入 Facebook at Work 後，按一下 [設定單一登入]。
 
 2.	在 [設定應用程式 URL] 畫面上，輸入使用者將登入您的 Facebook at Work 應用程式的 URL。這是您的 Facebook at Work 租用戶 URL (範例：https://example.facebook.com/)。完成後按 [下一步]。
 
@@ -76,25 +86,25 @@
 
 4. 請遵循下列 URL 的指示，將 Facebook at Work 設定為使用 Azure AD 作為身分識別提供者：[https://developers.facebook.com/docs/facebook-at-work/authentication/cloud-providers](https://developers.facebook.com/docs/facebook-at-work/authentication/cloud-providers)
 
-5.	完成後，返回顯示 Azure 管理入口網站的瀏覽器視窗，按一下核取方塊以確認您已完成此程序，然後按 [下一步] 和 [完成]。
+5.	完成後，返回顯示 Azure 傳統入口網站的瀏覽器視窗，按一下核取方塊以確認您已完成此程序，然後按 [下一步] 和 [完成]。
 
 
 ## 自動佈建使用者至 Facebook at Work
 
 Azure AD 支援將指派的使用者的帳戶詳細資料自動同步處理至 Facebook at Work 的功能。這個自動同步處理可讓 Facebook at Work 在使用者嘗試第一次登入之前，取得授權使用者存取所需的資料。當存取在 Azure AD 中被撤銷時，它也會從 Facebook at Work 取消佈建使用者。
 
-自動佈建可以透過在 Azure 管理入口網站視窗中按一下 [設定帳戶佈建] 來設定。
+自動佈建可以透過在 Azure 傳統入口網站視窗中按一下 [設定帳戶佈建] 來設定。
 
 如需如何設定自動佈建的詳細資訊，請參閱 [https://developers.facebook.com/docs/facebook-at-work/provisioning/cloud-providers](https://developers.facebook.com/docs/facebook-at-work/provisioning/cloud-providers)
 
 
 ## 將使用者指派給 Facebook at Work
 
-若要讓佈建的 AAD 使用者能夠在其存取面板上看見 Facebook at Work，它們必須獲指派 Azure 管理入口網站內的存取。
+若要讓佈建的 AAD 使用者能夠在其存取面板上看見 Facebook at Work，它們必須獲指派 Azure 傳統入口網站內的存取。
 
 **若要將使用者指派給 Facebook at Work：**
 
-1.	在 Azure 管理入口網站中的 Facebook at Work 開始頁面上，按一下 [指派帳戶]。
+1.	在 Azure 傳統入口網站中的 Facebook at Work 開始頁面上，按一下 [指派帳戶]。
 
 2.	在 [顯示] 功能表中，選取您是否想要將使用者或群組指派給 Facebook at Work，然後按一下核取記號按鈕。
 
@@ -114,4 +124,4 @@ Azure AD 支援將指派的使用者的帳戶詳細資料自動同步處理至 F
 [3]: ./media/active-directory-saas-cs-stars-tutorial/tutorial_general_03.png
 [4]: ./media/active-directory-saas-cs-stars-tutorial/tutorial_general_04.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0511_2016-->

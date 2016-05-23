@@ -4,8 +4,8 @@
 	services="azure-resource-manager" 
 	documentationCenter="" 
 	authors="tfitzmac" 
-	manager="wpickett" 
-	editor=""/>
+	manager="timlt" 
+	editor="tysonn"/>
 
 <tags 
 	ms.service="azure-resource-manager" 
@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/04/2016" 
+	ms.date="04/25/2016" 
 	ms.author="tomfitz"/>
 
 # 使用 Azure 資源管理員來鎖定資源
 
-身為系統管理員，您會想在某些情況下鎖定訂用帳戶、資源群組或資源，以防止組織中其他使用者不小心刪除重要資源。鎖定時，經過授權的使用者仍然可以讀取和修改資源，但它們無法刪除資源。
+身為系統管理員，您可能需要鎖定訂用帳戶、資源群組或資源，以防止組織中其他使用者不小心刪除重要資源。鎖定時，經過授權的使用者仍然可以讀取和修改資源，但它們無法刪除資源。
 
-鎖定不同於使用以角色為基礎的存取控制來指派使用者權限以執行特定動作。如要了解使用者和角色的設定權限，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。不同於角色型存取控制，您可以使用管理鎖定來對所有使用者和角色套用限制，而您一般僅在有限間套用限制鎖定。
+不同於角色型存取控制，您可以使用管理鎖定來對所有使用者和角色套用限制。若要了解如何設定使用者和角色的權限，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
 當您在父範圍套用鎖定時，所有子系資源都會都繼承相同的鎖定。
 
 ## 誰可以建立或刪除您的組織中的鎖定
 
-若要建立或刪除管理鎖定，您必須擁有 **Microsoft.Authorization/*** 或 **Microsoft.Authorization/locks/*** 動作的存取權。在內建角色中，只有**擁有者**和**使用者存取系統管理員**被授與這些動作的存取權。如需指派存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
+若要建立或刪除管理鎖定，您必須擁有 **Microsoft.Authorization/*** 或 **Microsoft.Authorization/locks/*** 動作的存取權。在內建角色中，只有**擁有者**和**使用者存取系統管理員**被授與這些動作的存取權。
 
 ## 在範本中建立鎖定
 
@@ -90,4 +90,4 @@ Azure PowerShell 為使用中的鎖定提供其他命令，例如可更新鎖定
 - 若要變更資源所在的資源群組，請參閱[將資源移動到新的資源群組](resource-group-move-resources.md)
 - 您可以使用自訂原則，在訂用帳戶內套用限制和慣例。如需詳細資訊，請參閱[使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->
