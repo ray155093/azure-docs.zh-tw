@@ -178,7 +178,7 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 <!-- URL List -->
 
 [Azure 網站、雲端服務與虛擬機器的比較]: ../app-service-web/choose-web-site-cloud-service-vm.md
-[使用輕量型 Web 應用程式]：../app-service-web/web-sites-nodejs-develop-deploy-mac.md"
+[使用輕量型 Web 應用程式]:../app-service-web/web-sites-nodejs-develop-deploy-mac.md
 [Azure Powershell]: ../powershell-install-configure.md
 [Azure SDK for .NET 2.7]: http://www.microsoft.com/zh-TW/download/details.aspx?id=48178
 [連線 PowerShell]: ../powershell-install-configure.md#how-to-connect-to-your-subscription
@@ -197,5 +197,6 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 [A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
 [The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
 [The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
+
 
 <!---HONumber=AcomDC_0511_2016-->
