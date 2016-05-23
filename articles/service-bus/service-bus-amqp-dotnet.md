@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排和 .NET 與 AMQP 1.0 |Microsoft Azure"
-   description="搭配使用 .NET 的服務匯流排與 AMQP。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" /> 
+    pageTitle="服務匯流排和 .NET 與 AMQP 1.0 |Microsoft Azure"
+    description="搭配使用 .NET 的服務匯流排與 AMQP"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 搭配使用 .NET 的服務匯流排與 AMQP 1.0
 
@@ -45,7 +45,7 @@
 
 	Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
 
-其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] (英文)。
+其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] \(英文)。
 
 使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。此標記法會通知用戶端程式庫使用 AMQP 1.0 連線到服務匯流排。
 
@@ -203,4 +203,4 @@
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

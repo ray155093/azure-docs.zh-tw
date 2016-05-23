@@ -14,16 +14,16 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/03/2016" 
+	ms.date="04/25/2016" 
 	ms.author="josephd"/>
 
 # 設定用於測試的模擬混合式雲端環境
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](../ virtual-network/virtual-networks-setup-simulated-hybrid-cloud-environment-testing.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
 
-本文會引導您使用兩個不同的 Azure 虛擬網路逐步建立 Microsoft Azure 的模擬混合式雲端環境進行測試。當您沒有直接的網際網路連線和可用的公用 IP 位址時，使用此組態做為[設定用於測試的混合式雲端環境](../virtual-network/virtual-networks-setup-hybrid-cloud-environment-testing.md)的替代方案。以下是產生的組態。
+本文會引導您使用兩個不同的 Azure 虛擬網路逐步建立 Microsoft Azure 的模擬混合式雲端環境進行測試。當您沒有直接的網際網路連線和可用的公用 IP 位址時，使用此組態做為[設定用於測試的混合式雲端環境](virtual-machines-windows-ps-hybrid-cloud-test-env-base.md)的替代方案。以下是產生的組態。
 
-![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/CreateSimHybridCloud_4.png)
+![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/virtual-machines-setup-simulated-hybrid-cloud-environment-testing-ph4.png)
 
 這會模擬混合式雲端生產環境。其中包括：
 
@@ -54,7 +54,7 @@
 
 接下來，開啟 Azure PowerShell 提示字元。
 
-> [AZURE.NOTE] 下列命令集使用 Azure PowerShell 1.0 版和更新版本。如需詳細資訊，請參閱 Azure PowerShell 1.0。
+> [AZURE.NOTE] 下列命令集使用 Azure PowerShell 1.0 版和更新版本。如需詳細資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com/blog/azps-1-0/)。
 
 登入您的帳戶。
 
@@ -99,7 +99,7 @@
 
 這是您目前的組態。
 
-![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/CreateSimHybridCloud_1.png)
+![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/virtual-machines-setup-simulated-hybrid-cloud-environment-testing-ph1.png)
  
 ## 第 2 階段：建立 TestVNET 虛擬網路
 
@@ -127,7 +127,7 @@
 
 這是您目前的組態。
 
-![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/CreateSimHybridCloud_2.png)
+![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/virtual-machines-setup-simulated-hybrid-cloud-environment-testing-ph2.png)
  
 ##第 3 階段：建立 VNet 對 VNet 連線
 
@@ -141,11 +141,11 @@
 	New-AzureRmVirtualNetworkGatewayConnection -Name TestLab_to_TestVNET -ResourceGroupName $rgName -VirtualNetworkGateway1 $gwTestLab -VirtualNetworkGateway2 $gwTestVNET -Location $locName -ConnectionType Vnet2Vnet -SharedKey $sharedKey
 	New-AzureRmVirtualNetworkGatewayConnection -Name TestVNET_to_TestLab -ResourceGroupName $rgName -VirtualNetworkGateway1 $gwTestVNET -VirtualNetworkGateway2 $gwTestLab -Location $locName -ConnectionType Vnet2Vnet -SharedKey $sharedKey
 
-請稍候幾分鐘，應該就會建立連線。請注意，此時 Azure 入口網站還不會顯示透過 Azure 資源管理員建立的閘道器和連線。
+請稍候幾分鐘，應該就會建立連線。請注意，此時 Azure 入口網站還不會顯示透過 Azure Resource Manager 建立的閘道器和連線。
 
 這是您目前的組態。
 
-![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/CreateSimHybridCloud_3.png)
+![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/virtual-machines-setup-simulated-hybrid-cloud-environment-testing-ph3.png)
  
 ## 第 4 階段：設定 DC2
 
@@ -190,7 +190,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 8.	在 [選取檔案系統設定] 頁面上，按 [下一步]。
 9.	在 [確認選取項目] 頁面上，按一下 [建立]。
 10.	完成時，按一下 [關閉]。
-
+ 
 接著，將 DC2 設定為 corp.contoso.com 網域的複本網域控制站。從 DC2 的 Windows PowerShell 命令提示字元執行下列命令。
 
 	Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
@@ -200,19 +200,19 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 由於 TestVNET 虛擬網路有自己的 DNS 伺服器 (DC2)，因此您必須設定 TestVNET 的虛擬網路使用這個 DNS 伺服器。
 
-1.	在 Azure 入口網站的左窗格中，按一下虛擬網路的圖示，然後按一下 [TestVNET]。
-2.	在 [設定] 索引標籤中，按一下 [DNS 伺服器]。
+1.	在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
+2.	在 [設定] 索引標籤上，按一下 [DNS 伺服器]。
 3.	在 [主要 DNS 伺服器] 中，輸入 **192.168.0.4** 以取代 10.0.0.4。
 4.	按一下 [儲存]。
 
 這是您目前的組態。
 
-![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/CreateSimHybridCloud_4.png)
+![](./media/virtual-machines-setup-simulated-hybrid-cloud-environment-testing/virtual-machines-setup-simulated-hybrid-cloud-environment-testing-ph4.png)
  
 模擬混合式雲端環境到此準備就緒，可以進行測試。
 
 ## 後續步驟
 
-- [加入虛擬機器](virtual-machines-windows-create-powershell.md)到 TestVNET 子網路中，例如執行 Microsoft SQL Server 的虛擬機器。
+- [新增虛擬機器](virtual-machines-windows-create-powershell.md)到 TestVNET 子網路，例如執行 Microsoft SQL Server 的虛擬機器。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -1,24 +1,24 @@
-<properties 
-	pageTitle="如何在 Android 上使用 Engagement API" 
+<properties
+	pageTitle="如何在 Android 上使用 Engagement API"
 	description="最新 Android SDK - 如何在 Android 上使用 Engagement API"
-	services="mobile-engagement" 
-	documentationCenter="mobile" 
-	authors="piyushjo" 
-	manager="dwrede" 
+	services="mobile-engagement"
+	documentationCenter="mobile"
+	authors="piyushjo"
+	manager="erikre"
 	editor="" />
 
-<tags 
-	ms.service="mobile-engagement" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile-android" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/29/2016" 
-	ms.author="piyushjo" />
+<tags
+	ms.service="mobile-engagement"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-android"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="05/10/2016"
+	ms.author="piyushjo;ricksal" />
 
 #如何在 Android 上使用 Engagement API
 
-本文件是[如何在 Android 上整合 Engagement](mobile-engagement-android-integrate-engagement.md) 文件的補充。它會提供關於如何使用 Engagement API 來回報您應用程式的統計資料之詳細資訊。
+此文件是 [Android Mobile Engagement SDK 的進階報告選項](mobile-engagement-android-advanced-reporting.md)文件的補充。它會提供關於如何使用 Engagement API 來回報您應用程式的統計資料之詳細資訊。
 
 請記住，如果您只想要 Engagement 向您報告應用程式的工作階段、活動、當機和技術資訊，那麼最簡單的方法是讓所有 `Activity` 子類別繼承自對應的 `EngagementActivity` 類別。
 
@@ -136,7 +136,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 下列範例示範如何在應用程式處理程序執行時，每當手機記憶體不足時便報告錯誤。
 
 			public MyApplication extends EngagementApplication {
-			
+
 			  @Override
 			  protected void onApplicationProcessLowMemory() {
 			    EngagementAgent.getInstance(this).sendError("low_memory", null);
@@ -148,18 +148,18 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 ### 範例
 
 假設您想要報告登入程序持續時間：
-			
+
 			[...]
 			public void signIn(Context context, ...) {
-			
+
 			  /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
 			  EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
-			
+
 			  /* Report sign in job has started */
 			  engagementAgent.startJob("sign_in", null);
-			
+
 			  [... sign in ...]
-			
+
 			  /* Report sign in job is now ended */
 			  engagementAgent.endJob("sign_in");
 			}
@@ -177,10 +177,10 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 
 			  /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
 			  EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
-			
+
 			  /* Report sign in job has been started */
 			  engagementAgent.startJob("sign_in", null);
-			
+
 			  /* Try to sign in */
 			  while(true)
 			    try {
@@ -190,7 +190,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 			    catch(Exception e) {
 			      /* Report the error to Engagement */
 			      engagementAgent.sendJobError("sign_in_error", "sign_in", null);
-			
+
 			      /* Retry after a moment */
 			      sleep(2000);
 			    }
@@ -209,7 +209,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 假設我們有社交網路，且使用工作來報告使用者連線到伺服器這段期間的總時間。使用者可以在使用另一個應用程式或行動電話在休眠狀態時，保持在背景中連線，因此沒有工作階段。
 
 使用者可以接收來自朋友的訊息，這就是工作事件。
-			
+
 			[...]
 			public void signin(Context context, ...) {
 			  [...Sign in code...]
@@ -296,6 +296,5 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
 
 			{"expiration":"2016-12-07","status":"premium"}
- 
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0511_2016-->

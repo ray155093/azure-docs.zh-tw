@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/30/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用事件中樞串流最忙碌路徑中的 Azure 診斷資料
@@ -51,7 +51,7 @@ Azure 診斷會提供彈性的方法，用來收集來自計算 VM 的度量和�
 
 在此範例中，事件中樞 URL 設定為事件中樞的完整命名空間 (ServiceBus 命名空間 + “/” + 事件中樞名稱)。
 
-事件中樞 URL 會在[傳統 Azure 入口網站](https://manage.windowsazure.com)中的 [事件中樞] 儀表板上顯示。
+事件中樞 URL 會顯示在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)的 [事件中樞] 儀表板。
 
 [接收] 名稱可以設定為任何有效的字串，只要對於整個組態檔一致使用相同的值。
 
@@ -295,4 +295,4 @@ Azure 診斷會提供彈性的方法，用來收集來自計算 VM 的度量和�
 <!-- Images. -->
 [0]: ./media/event-hubs-streaming-azure-diags-data/dashboard.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

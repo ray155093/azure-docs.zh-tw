@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter=""
 	authors="mattchenderson"
-	manager="dwrede"
+	manager="erikref"
 	editor=""/>
 
 <tags
@@ -13,12 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/05/2016"
 	ms.author="mahender"/>
 
 # Azure Mobile Apps 中的驗證與授權
 
 ## 什麼是 App Service 驗證 / 授權？
+
+> [AZURE.NOTE] 本主題將移轉至合併的 [App Service 驗證/授權](../app-service/app-service-authentication-overview.md)主題，其中涵蓋 Web、Mobile 和 API Apps。
 
 App Service 驗證 / 授權是一項功能，可讓您的應用程式登入使用者，而不需在 app 後端進行任何程式碼變更。它提供簡單的方法來保護您的應用程式，以及使用每位使用者的資料。
 
@@ -102,4 +104,4 @@ App Service 驗證 / 授權會公開**未驗證要求時要採取的動作**的�
 [如何設定 App 以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
 [如何設定 App 以使用 Twitter 登入]: app-service-mobile-how-to-configure-twitter-authentication.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

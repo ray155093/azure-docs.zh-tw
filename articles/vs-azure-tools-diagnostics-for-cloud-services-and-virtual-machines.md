@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/19/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 為 Azure 雲端服務和虛擬機器設定診斷功能
@@ -43,7 +43,7 @@
 
 - 為了使用 PowerShell 簡化診斷延伸模組的設定程序，從 Visual Studio 的封裝輸出也包含每個角色之診斷延伸模組的公用組態 XML。Visual Studio 使用診斷連接字串填入出現在公用組態的儲存體帳戶資訊。公用設定檔會在延伸模組資料夾中建立並遵循模式 PaaSDiagnostics.<RoleName>.PubConfig.xml。任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
 
-- Azure 入口網站也會使用 .cscfg 檔案中的連接字串來存取診斷資料，所以它也可以出現在 [監視] 索引標籤中。若要在入口網站中顯示詳細監視資料，必須要有連接字串。
+- [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)也會使用 .cscfg 檔案中的連接字串來存取診斷資料，所以它也可以出現在 [監視] 索引標籤中。若要在入口網站中顯示詳細監視資料，必須要有連接字串。
 
 ## 將專案移轉至 Azure SDK 2.6 及、更新版本
 
@@ -215,7 +215,7 @@
 
 ### ETW 記錄檔
 
-如果您使用 [Windows 事件追蹤] (https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+如果您使用 [Windows 事件追蹤]\(https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
 
 從事件來源和您指定的事件資訊清單擷取事件。若要指定事件來源，請在 [事件來源] 區段中輸入名稱，然後選擇 [新增事件來源] 按鈕。同樣地，您可以指定 [事件資訊清單] 區段中的事件資訊清單，然後選擇 [新增事件資訊清單] 按鈕。
 
@@ -357,4 +357,4 @@ RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS�
 
 若要深入了解 Azure 中的診斷記錄，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)和[在 Azure App Service 中啟用 web 應用程式的診斷記錄](./app-service-web/web-sites-enable-diagnostic-log.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

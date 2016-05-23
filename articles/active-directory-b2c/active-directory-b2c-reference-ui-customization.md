@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="04/19/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：自訂 Azure AD B2C 使用者介面 (UI)
 
-使用者經驗是取用者面向應用程式中最重要的。這是良好應用程式和絕佳應用程式之間，以及只是作用中的取用者與真正投入的取用者之間的差別。Azure Active Directory (Azure AD) B2C 可讓您以精準的控制來自訂取用者註冊、登入 (*請參閱下面的注意事項*) 及設定檔編輯頁面。
+使用者經驗是取用者面向應用程式中最重要的。這是良好應用程式和絕佳應用程式之間，以及只是作用中的取用者與真正投入的取用者之間的差別。Azure Active Directory (Azure AD) B2C 可讓您以精準的像素控制來自訂取用者註冊、登入 (*請參閱下面的注意事項*)、設定檔編輯和密碼重設頁面。
 
 > [AZURE.NOTE]
-目前僅可使用[公司商標功能](../active-directory/active-directory-add-company-branding.md) (而不是經由本文中所述的機制)，自訂本機帳戶登入頁面、驗證電子郵件和自助式密碼重設頁面。
+目前，僅可使用[公司商標功能](../active-directory/active-directory-add-company-branding.md) (而不是經由本文中所述的機制) 自訂本機帳戶登入頁面 (及其伴隨的密碼重設頁面) 和驗證電子郵件。
 
 在本文中，您將了解：
 
@@ -36,7 +36,7 @@
 
 透過頁面 UI 自訂功能，您可以自訂取用者註冊、登入及設定檔編輯頁面的外觀和風格 (藉由設定[原則](active-directory-b2c-reference-policies.md))。取用者在您的應用程式與 Azure AD B2C 服務所提供的頁面之間進行瀏覽時，將會有一致的體驗。
 
-不同於其他 UI 選項有限或只能透過 API 取得 UI 選項的服務，Azure AD B2C 會使用新式 (且更簡單的) 方法進行頁面 UI 自訂。以下是其運作方式：Azure AD B2C 會在取用者的瀏覽器中執行程式碼並使用稱為[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法，從您在原則中指定的 URL 載入內容。您可以對不同的頁面指定不同的 URL。程式碼會合併來自 Azure AD B2C 的 UI 元素與從您 URL 載入的內容，並為取用者顯示此頁面。您只需要建立格式正確的 HTML5 內容，其中的 `<div id="api"></div>` 元素位於 `<body>` 中的某處。這個元素會標記插入 Azure AD B2C 內容的地方。此內容必須裝載於 HTTPS 端點 (允許 CORS) 上。您還可以完全設定 Azure AD B2C 的 UI 元素樣式。
+不同於其他 UI 選項有限或只能透過 API 取得 UI 選項的服務，Azure AD B2C 會使用新式 (且更簡單的) 方法進行頁面 UI 自訂。以下是其運作方式：Azure AD B2C 會在取用者的瀏覽器中執行程式碼並使用稱為[跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法，從您在原則中指定的 URL 載入內容。您可以對不同的頁面指定不同的 URL。程式碼會合併來自 Azure AD B2C 的 UI 元素與從您 URL 載入的內容，並為取用者顯示此頁面。您只需要建立格式正確的 HTML5 內容，其中的 `<div id="api"></div>` 元素 (必須是空的元素) 位於 `<body>` 中的某處。這個元素會標記插入 Azure AD B2C 內容的地方。此內容必須裝載於 HTTPS 端點 (允許 CORS) 上。您還可以完全設定 Azure AD B2C 的 UI 元素樣式。
 
 ## 試試 UI 自訂功能
 
@@ -44,7 +44,7 @@
 
 ## 每種頁面中的核心 UI 元素
 
-您將會在下列各節中找到 Azure AD B2C 合併至 <div id="api"></div> 元素 (位於您的內容中) 的 HTML5 片段範例 (適用於每種頁面)。您可以使用自己的樣式表來自訂這些 UI 元素。這些樣式表將覆寫我們在 <head> 片段中加入這些頁面的預設樣式表。
+您將會在下列各節中找到 Azure AD B2C 合併至 <div id="api"></div> 元素 (位於您的內容中) 的 HTML5 片段範例。請勿將這些片段插入 HTML 5 內容中。它們出現在這裡只是為了方便說明，Azure AD B2C 服務會在執行階段將它們插入。您可以使用自己的樣式表來自訂這些 UI 元素。這些樣式表將覆寫我們在 <head> 片段中加入這些頁面的預設樣式表。
 
 > [AZURE.IMPORTANT]
 	在預覽期間，確切的 UI 元素應會隨著我們了解您的意見反應並據以調整而改變。請務必檢查預設頁面的原始程式碼有無最新更新。事實上，第一個考慮的變更就是移除我們的預設樣式表；這表示您務必要針對內容中的這些 UI 元素，提供自己的樣式表。
@@ -265,7 +265,7 @@
 
 如果您打算使用頁面 UI 自訂功能，請檢閱以下最佳做法：
 
-- 不要複製 Azure AD B2C 的預設範本並嘗試修改它。最好是從頭建置您的 HTML5 內容並使用預設範本作為參考。
+- 請勿複製 Azure AD B2C 的預設內容來嘗試修改。最好是從頭建置您的 HTML5 內容，將預設範本當作參考即可。
 - 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。您所需的大多數功能應可立即使用。如果沒有，請使用 [User Voice (使用者心聲)](http://feedback.azure.com/forums/169401-azure-active-directory) 來要求新功能。
 - 支援的瀏覽器版本︰
 	- Internet Explorer 11
@@ -277,4 +277,4 @@
 	- Mozilla Firefox 38.0
 	- Mozilla Firefox 37.0
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

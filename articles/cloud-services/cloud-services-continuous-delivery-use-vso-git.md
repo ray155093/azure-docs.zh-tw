@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/19/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 # 使用 Visual Studio Team Services 和 Git 連續傳遞至 Azure
@@ -59,7 +59,7 @@
 
 ## 3：將專案連線至 Azure
 
-1. 現在，您在 Visual Studio Team Services 中有一個 Git 儲存機制，裡面還有一些原始程式碼，您可以準備將 Git 儲存機制連接至 Azure。在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 + 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。
+1. 現在，您在 Visual Studio Team Services 中有一個 Git 儲存機制，裡面還有一些原始程式碼，您可以準備將 Git 儲存機制連接至 Azure。在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 + 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。
 
 	![][9]
 
@@ -152,7 +152,7 @@
 
 	![][29]
 
-1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，選取預備環境之後，您可以在 [部署] 索引標籤上檢視相關聯的部署。
+1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取預備環境之後，您可以在 [部署] 索引標籤上檢視相關聯的部署。
 
 	![][30]
 
@@ -182,7 +182,7 @@
 
 ![][35]
 
-## 6：從工作分支部署。
+## 7：從工作分支部署。
 
 使用 Git 時，您通常會在工作分支中進行變更，等到開發達到完成狀態時，再整合至主要分支。在專案的開發階段期間，您可以建置工作分支並部署至 Azure。
 
@@ -272,4 +272,4 @@
 [47]: ./media/cloud-services-continuous-delivery-use-vso-git/SourceSettingsPage.PNG
 [48]: ./media/cloud-services-continuous-delivery-use-vso-git/IncludeWorkingBranch.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -71,7 +71,7 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 
 公開上市 (GA)：
 
-- *磁碟上* 的[資料行存放區索引](http://msdn.microsoft.com/library/dn817827.aspx)。
+- *磁碟上*的[資料行存放區索引](http://msdn.microsoft.com/library/dn817827.aspx)。
 
 
 預覽：
@@ -107,7 +107,7 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 
 2. 使用 SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx) 連接到資料庫。
 
-3. 將 [In-Memory OLTP Transact-SQL 指令碼](http://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/T-SQL/In-Memory/sql_in-memory_oltp_sample.sql)複製到剪貼簿。
+3. 將 [In-Memory OLTP Transact-SQL 指令碼](https://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/t-sql/In-Memory/sql_in-memory_oltp_sample.sql)複製到剪貼簿。
  - T-SQL 指令碼會在步驟 1 建立的 AdventureWorksLT 範例資料庫中建立所需的 In-Memory 物件。
 
 4. 將 T-SQL 指令碼貼到 SSMS，然後執行此指令碼。
@@ -348,7 +348,7 @@ EXECUTE Demo.usp_DemoReset;
  - 使用相同的名稱。
  - 選擇任何進階服務層。
 
-2. 將 [sql\_in-memory\_analytics\_sample](http://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/T-SQL/In-Memory/sql_in-memory_analytics_sample.sql) 複製到剪貼簿。
+2. 將 [sql\_in-memory\_analytics\_sample](https://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/t-sql/In-Memory/sql_in-memory_analytics_sample.sql) 複製到剪貼簿。
  - T-SQL 指令碼會在步驟 1 建立的 AdventureWorksLT 範例資料庫中建立所需的 In-Memory 物件。
  - 此指令碼會建立維度資料表和兩個事實資料表。每個事實資料表會填入 350 萬個資料列。
  - 此指令碼可能需要 15 分鐘才能完成。
@@ -371,7 +371,7 @@ EXECUTE Demo.usp_DemoReset;
 #### 用來比較資料行存放區索引的重要查詢
 
 
-[這裡](http://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/T-SQL/In-Memory/clustered_columnstore_sample_queries.sql)是您可以執行的數種 T-SQL 查詢類型，以便查看效能改進。在 T-SQL 指令碼的步驟 2 中，有一組直接相關的查詢。這兩個查詢的不同之處只有一行：
+[這裡](https://raw.githubusercontent.com/Azure/azure-sql-database-samples/master/t-sql/In-Memory/clustered_columnstore_sample_queries.sql)是您可以執行的數種 T-SQL 查詢類型，以便查看效能改進。在 T-SQL 指令碼的步驟 2 中，有一組直接相關的查詢。這兩個查詢的不同之處只有一行：
 
 
 - `FROM FactResellerSalesXL_PageCompressed a`
@@ -531,6 +531,6 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 - [SQL Server 的 Replay Markup Language (RML) 公用程式說明](http://support.microsoft.com/zh-TW/kb/944837)
 
-- 適用於 In-Memory OLTP 的 [監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
+- 適用於 In-Memory OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

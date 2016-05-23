@@ -26,7 +26,7 @@
 
     3. 指定備份頻率 (以分鐘、小時、天或週為單位)。
 
-    4. 選取保留期。保留選項會根據備份頻率而定。例如，針對每日原則，可以指定保留幾週，而針對每月原則，則可指定保留幾個月。
+    4. 選取保留期。保留選項會根據備份頻率而定。
  
     5. 選取原則的開始時間和日期。
 
@@ -40,4 +40,4 @@
 
     ![自訂備份原則](./media/storsimple-create-custom-backup-policy/HCS_CustomBackupPolicyM-include.png)。
 
-<!---HONumber=AcomDC_1203_2015-->
+

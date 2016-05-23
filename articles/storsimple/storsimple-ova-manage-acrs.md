@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/02/2016"
+   ms.date="05/03/2016"
    ms.author="alkohli" />
 
 # 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務管理存取控制記錄 
@@ -43,7 +43,7 @@
 
 使用 StorSimple Manager 服務的 [組態] 頁面加入 ACR。一般而言，您會讓一個 ACR 與一個磁碟區產生關聯。
 
-如需讓 ACR 與磁碟區產生關聯的詳細資訊，請移至[使用 StorSimple Manager 服務來管理 StorSimple Virtual Array 上的磁碟區](storsimple-ova-manage-volumes)。
+如需建立 ACR 與磁碟區之關聯的資訊，請移至[新增磁碟區](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
 
 >[AZURE.IMPORTANT] 
 > 
@@ -114,4 +114,4 @@
 
 - 深入了解[加入磁碟區和設定 ACR](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

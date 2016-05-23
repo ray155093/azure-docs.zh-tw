@@ -32,7 +32,7 @@
 
 網路上有許多 Hadoop 相關技術 (例如 Java 型 MapReduce 程式設計和串流) 的文件可供參考，此外也有適用於 Windows PowerShell 指令碼之 Cmdlet 的相關文件。如需有關這些資源的詳細資訊，請參閱：
 
-- [在 HDInsight 上開發 Hadoop 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)
+- [在 HDInsight 上開發 Hadoop 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 - [在 HDInsight 上提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
 - [Azure HDInsight 簡介][hdinsight-introduction]
 
@@ -55,7 +55,7 @@
 
 原始程式碼可以在[附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java) 中找到。
 
-如需開發 Java MapReduce 程式之程序，請參閱 - [在 HDInsight 中針對 Hadoop 開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)
+如需開發 Java MapReduce 程式之程序，請參閱 - [在 HDInsight 中針對 Hadoop 開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
  
 **提交字數統計 MapReduce 工作**
 
@@ -1000,4 +1000,4 @@ wc.cs 檔案中的 reducer 程式碼會使用 [StreamReader][streamreader] 物�
 [console-writeline]: http://msdn.microsoft.com/library/system.console.writeline
 [stdin-stdout-stderr]: https://msdn.microsoft.com/library/3x292kth.aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

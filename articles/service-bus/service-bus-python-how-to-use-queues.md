@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="python" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="sethm"/>
 
 
@@ -71,7 +71,7 @@ msg = Message(b'Test Message')
 bus_service.send_queue_message('taskqueue', msg)
 ```
 
-服務匯流排佇列最多可支援 256 KB 的訊息大小 (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如需有關配額的詳細資訊，請參閱 [Azure 佇列與服務匯流排佇列][]。
+服務匯流排佇列最多可支援 256 KB 的訊息大小 (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如需有關配額的詳細資訊，請參閱[服務匯流排配額][]。
 
 ## 從佇列接收訊息
 
@@ -109,10 +109,10 @@ msg.delete()
 
 -   請參閱[佇列、主題和訂用帳戶][]。
 
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure 傳統入口網站]: https://manage.windowsazure.com
 [Python Azure 封裝]: https://pypi.python.org/pypi/azure
 [佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[Azure 佇列與服務匯流排佇列]: service-bus-azure-and-service-bus-queues-compared-contrasted.md#capacity-and-quotas
+[服務匯流排配額]: service-bus-quotas.md
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

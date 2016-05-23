@@ -12,8 +12,9 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="05/09/2016"
 	ms.author="robinsh"/>
+
 
 # 使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解
 
@@ -200,7 +201,7 @@ Message Analyzer 包含 Azure 儲存體資產，可協助您分析伺服器、�
 
 1. 從 Microsoft 下載中心下載 [Message Analyzer](http://www.microsoft.com/download/details.aspx?id=44226)，並執行安裝程式。
 2. 啟動 Message Analyzer。
-3. 在 [開始] 頁面上，瀏覽至 [下載]，接著篩選 [Azure 儲存體]。您會看到 Azure 儲存體資產，如下圖所示。
+3. 從 [工具] 功能表，選取 [資產管理員]。在 [資產管理員] 對話方塊中，選取 [下載]，然後篩選 **Azure 儲存體**。您會看到 Azure 儲存體資產，如下圖所示。
 4. 按一下 [同步處理所有顯示的項目] 以安裝 Azure 儲存體資產。可用的資產包括：
 	- **Azure 儲存體色彩規則**：Azure 儲存體色彩規則可讓您定義特殊篩選條件，以使用色彩、文字和字型樣式來反白顯示在追蹤中包含特定資訊的訊息。
 	- **Azure 儲存體圖表**：Azure 儲存體圖表是圖形伺服器記錄資料的預先定義的圖表。請注意，若要在此時使用 Azure 儲存體圖表，您可能只要將伺服器記錄檔載入到 [分析方格]。
@@ -209,7 +210,7 @@ Message Analyzer 包含 Azure 儲存體資產，可協助您分析伺服器、�
 	- **Azure 儲存體檢視版面配置**：Azure 儲存體檢視版面配置是 [分析方格] 中預先定義的資料行版本配置和群組。
 4. 在您安裝資產之後，請重新啟動 Message Analyzer。
 
-![Message Analyzer 起始頁](./media/storage-e2e-troubleshooting/mma-start-page-1.png)
+![訊息分析器資產管理員](./media/storage-e2e-troubleshooting/mma-start-page-1.png)
 
 > [AZURE.NOTE] 安裝針對此教學課程的目的而顯示的所有 Azure 儲存體資產。
 
@@ -341,17 +342,17 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 | 佇列上未預期的訊息傳遞延遲 | AzureStorageClientDotNetV4.Description 包含「正在重試失敗的作業」。 | 用戶端 |
 | PercentThrottlingError 的 HTTP 增加 | HTTP.Response.StatusCode == 500 || HTTP.Response.StatusCode == 503 | 網路 |
 | PercentTimeoutError 增加 | HTTP.Response.StatusCode == 500 | 網路 |
-| PercentTimeoutError 增加 (全部) |    **StatusCode == 500 | All |
-| Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client |
-| HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network |
-| HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network |
-| 404 (all) | *StatusCode == 404 | All |
-| Shared Access Signature (SAS) authorization issue | AzureStorageLog.RequestStatus == "SASAuthorizationError" | Network |
-| HTTP 409 (Conflict) messages | HTTP.Response.StatusCode == 409 | Network |
-| 409 (all) | *StatusCode == 409 | All |
-| Low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors | AzureStorageLog.RequestStatus == "ClientOtherError" | Server |
-| Nagle Warning | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) and (AzureStorageLog.RequestPacketSize <1460) and (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | Server |
-| Range of time in Server and Network logs | #Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39 | Server, Network |
+| PercentTimeoutError 增加 (全部) |    *StatusCode == 500 | All | 
+| Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client | 
+| HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network | 
+| HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network | 
+| 404 (all) | *StatusCode == 404 | All | 
+| Shared Access Signature (SAS) authorization issue | AzureStorageLog.RequestStatus == "SASAuthorizationError" | Network | 
+| HTTP 409 (Conflict) messages | HTTP.Response.StatusCode == 409 | Network | 
+| 409 (all) | *StatusCode == 409 | All | 
+| Low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors | AzureStorageLog.RequestStatus == "ClientOtherError" | Server | 
+| Nagle Warning | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) and (AzureStorageLog.RequestPacketSize <1460) and (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | Server | 
+| Range of time in Server and Network logs | #Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39 | Server, Network | 
 | Range of time in Server logs | AzureStorageLog.Timestamp >= 2014-10-20T16:36:38 and AzureStorageLog.Timestamp <= 2014-10-20T16:36:39 | Server |
 
 
@@ -365,4 +366,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

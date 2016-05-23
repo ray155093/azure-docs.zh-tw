@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/21/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 佇列儲存體和 Visual Studio 已連接服務 (WebJob 專案)
@@ -543,4 +543,4 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 
 本文提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

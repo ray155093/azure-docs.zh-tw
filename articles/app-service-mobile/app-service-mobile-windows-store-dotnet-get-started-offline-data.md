@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/05/2016"
 	ms.author="wesmc"/>
 
 # 啟用 Windows 應用程式離線同步處理
@@ -52,7 +52,17 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
     >[AZURE.NOTE] 如果安裝在您已安裝的 SQLite 版本以外建立了其他的參考，您會收到編譯錯誤。您應該透過移除您專案中 [參考] 節點內的重複項目，來解決這個錯誤。
 
-3. 在方案總管中，以滑鼠右鍵按一下 Windows 8.1 執行階段和 Windows Phone 8.1 平台專案的 [參考]，並確定有 SQLite 的參考位於 [擴充功能] 區段中。
+3. SQLite 是原生程式庫，需要您選擇特定平台架構 (例如 **x86**、**x64** 或 **ARM**)。[任何 CPU] 不受支援。在方案總管中，按一下上方的 [方案]，將處理器架構下拉式方塊變更為您想測試的其中一項支援的設定。
+
+    >[AZURE.NOTE] 如果您使用 Visual Studio 2015，請以滑鼠右鍵按一下方案，然後按一下 [屬性] 開啟組態管理員，以設定 Windows 和 Windows Phone 專案的平台。
+
+    ![][13]
+
+
+4. 在 [方案總管] 中，以滑鼠右鍵按一下 Windows 8.1 Runtime 和 Windows Phone 8.1 平台專案的 [參考]。確定已參考位於 [擴充功能] 區段中的 SQLite。
+
+    >[AZURE.NOTE] 如果您使用 Visual Studio 2015，請以滑鼠右鍵按一下 Windows 8.1 Runtime 和 Windows Phone 8.1 平台專案的 [參考]，然後按一下 [加入參考] 以開啟 [參考管理員]。
+
 
     ![][1] </br>
 
@@ -62,9 +72,6 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
     **Windows Phone 8.1**
 
-4. SQLite 是原生程式庫，需要您選擇特定平台架構 (例如 **x86**、**x64** 或 **ARM**)。[任何 CPU] 不受支援。在方案總管中，按一下上方的 [方案]，將處理器架構下拉式方塊變更為您想測試的其中一項支援的設定。
-
-    ![][13]
 
 5. 在方案總管中，開啟共用專案中的 MainPage.cs 檔案。在檔案頂端取消註解下列 using 陳述式：
 
@@ -206,7 +213,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 4. 在應用程式中，按一下幾個項目旁邊的核取方塊，以在本機存放區中完成它們。
 
-  `UpdateCheckedTodoItem` 會呼叫 `SyncAsync` 來完成每個項目與行動應用程式後端的同步處理。`SyncAsync` 會同時呼叫推送與提取。不過，您應該注意**每當您針對用戶端進行變更的資料表執行提取時，一律會先自動執行用戶端同步處理內容推送**。這是為了確保本機存放區中的所有資料表和關聯性都保持一致。因此在此情況下，我們可以先移除對 `PushAsync` 的呼叫，因為執行提取時它會自動執行。如果您不注意，此行為會導致非預期的推送。如需此行為的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
+  `UpdateCheckedTodoItem` 會呼叫 `SyncAsync`，以便與行動應用程式後端同步處理每個已完成的項目。`SyncAsync` 會呼叫推送與提取。不過，您應該注意**每當您針對用戶端進行變更的資料表執行提取時，一律會先自動執行用戶端同步處理內容推送**。這是為了確保本機存放區中的所有資料表和關聯性都保持一致。因此在此情況下，我們可以先移除對 `PushAsync` 的呼叫，因為執行提取時它會自動執行。如果您不注意，此行為會導致非預期的推送。如需此行為的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]。
 
 
 ##摘要
@@ -242,7 +249,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 * [Azure 行動應用程式中的離線資料同步處理]
 
-* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 
 * [Azure Friday：Azure 行動服務中離線啟用的應用程式]
 
@@ -259,10 +266,10 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 
 <!-- URLs. -->
-[Azure Mobile Apps 中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
-[Azure 行動應用程式中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
-[create a windows app]: ../app-service-mobile-windows-store-dotnet-get-started.md
-[建立 Windows 應用程式]: ../app-service-mobile-windows-store-dotnet-get-started.md
+[Azure Mobile Apps 中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
+[Azure 行動應用程式中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
+[create a windows app]: app-service-mobile-windows-store-dotnet-get-started.md
+[建立 Windows 應用程式]: app-service-mobile-windows-store-dotnet-get-started.md
 [SQLite for Windows 8.1]: http://go.microsoft.com/fwlink/?LinkID=716919
 [SQLite for Windows Phone 8.1]: http://go.microsoft.com/fwlink/?LinkID=716920
 [SQLite for Windows 10]: http://go.microsoft.com/fwlink/?LinkID=716921
@@ -272,4 +279,4 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday：Azure 行動服務中離線啟用的應用程式]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0511_2016-->

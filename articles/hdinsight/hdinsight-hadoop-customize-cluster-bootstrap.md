@@ -33,6 +33,9 @@
 有 3 個方法可以使用 Bootstrap：
 
 - 使用 Azure PowerShell
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+    
 - 使用 .NET SDK
 - 使用 ARM 範本
 
@@ -100,7 +103,7 @@
 
 ## 使用 .NET SDK
 
-請參閱[在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk#use-bootstrap)。
+請參閱[使用 .NET SDK 在 HDInsight 中建立 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk#use-bootstrap)。
 
 ## 使用 Azure ARM 範本
 
@@ -249,4 +252,4 @@
 
     #endregion
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

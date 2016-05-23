@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="identity"
-   ms.date="03/31/2016"
+   ms.date="05/09/2016"
    ms.author="viviali"/>
 
 # Azure AD B2B 共同作業預覽：CSV 檔案格式
@@ -57,7 +57,7 @@ bsmith@contoso.com,Ben Smith,Hi Ben! I hope you’ve been doing well.,,cd3ed3de-
 ```
 
 ## 相關文章
-請瀏覽有關 Azure B2B 共同作業的其他文章
+請瀏覽有關 Azure AD B2B 共同作業的其他文章
 
 - [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 - [運作方式](active-directory-b2b-how-it-works.md)
@@ -67,4 +67,4 @@ bsmith@contoso.com,Ben Smith,Hi Ben! I hope you’ve been doing well.,,cd3ed3de-
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

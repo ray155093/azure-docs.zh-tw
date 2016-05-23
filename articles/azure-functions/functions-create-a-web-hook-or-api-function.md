@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="04/29/2016"
+   ms.date="05/07/2016"
    ms.author="glenga"/>
    
 # 建立 Webhook 或 API Azure 函式
@@ -38,7 +38,7 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 2. 如果您要使用現有的函式應用程式，請從 [Your function apps] \(函式應用程式) 中選取，然後按一下 [開啟]。若要建立新的函式應用程式，請輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱，選取您偏好的 [區域]，然後按一下 [Create + get started] \(建立 + 開始)。
 
-3. 在函式應用程式中，依序按一下 [+ New Function] \(+ 新增函式) > [GitHub Webhook - Node] \(GitHub Webhook - 節點) > [建立]。這會根據指定的範本以預設名稱建立函式。
+3. 在函式應用程式中，依序按一下 [+ New Function]\(+ 新增函式) > [GitHub Webhook - Node] \(GitHub Webhook - 節點) > [建立]。這會根據指定的範本以預設名稱建立函式。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook.png)
 
@@ -59,11 +59,11 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 1. 在 GitHub 中，瀏覽至您擁有的儲存機制，這包括您分岔的任何儲存機制。
  
-2. 按一下 [設定] > [Webhooks & services] \(Webhooks 和服務) > [Add Webhook] \(加入 Webhook)。
+2. 按一下 [設定] > [Webhooks & services]\(Webhooks 和服務) > [Add Webhook] \(加入 Webhook)。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-2.png)
 
-3. 將您的函式 URL 和密碼貼入 [Payload URL] \(承載 URL) 和 [密碼]，然後按一下 [Let me select individual events] \(讓我選擇個別事件)，選取 [問題註解] 並按一下 [Add Webhook] \(加入 Webhook)。
+3. 將您的函式 URL 和密碼貼入 [Payload URL]\(承載 URL) 和 [密碼]，然後按一下 [Let me select individual events] \(讓我選擇個別事件)，選取 [問題註解] 並按一下 [Add Webhook]\(加入 Webhook)。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-3.png)
 
@@ -89,4 +89,4 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!-----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

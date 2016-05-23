@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="command-line-interface"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="05/05/2016"
 	ms.author="danlep"/>
 
-# Azure Resource Manager (ARM) 模式中的 Azure CLI 命令
+# Resource Manager 模式中的 Azure CLI 命令
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](../virtual-machines-command-line-tools.md)。
 
@@ -1796,7 +1796,9 @@
 
 **建立使用預設資源的 VM**
 
-	vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>
+    vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password
+    
+>[AZURE.TIP]從 CLI 0.10 版開始，對於某些受歡迎的 Marketplace 映像，您可以在 `image-urn` 中提供簡短的別名，例如 "UbuntuLTS" 或 "Win2012R2Datacenter"。執行 `azure help vm quick-create` 以取得選項。此外，從 0.10 版開始，`azure vm quick-create` 依預設會使用進階儲存體 (如果在所選區域中可用)。
 
 **列出帳戶內的虛擬機器**
 
@@ -1872,4 +1874,4 @@
 	vm image list-skus [options] <location> <publisher> <offer>
 	vm image list [options] <location> <publisher> [offer] [sku]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

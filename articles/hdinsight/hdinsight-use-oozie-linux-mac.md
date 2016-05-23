@@ -481,7 +481,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 1. 建立 HDInsight 叢集的 SSH 通道。如需執行這些動作的相關資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
 
-2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。 請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
+2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
 
 3. 在頁面左邊選取 [Oozie]，然後依序選取 [快速連結] 和 [Oozie Web UI]。
 
@@ -495,7 +495,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 	![工作資訊](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. 您可以在 [Job Info] \(工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
+6. 您可以在 [Job Info]\(工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
 
 	* **工作記錄**：選取 [取得記錄] 按鈕，以取得工作的所有記錄，或使用 [輸入搜尋篩選條件] 欄位來篩選記錄
 
@@ -697,7 +697,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 [hdinsight-storage]: hdinsight-use-blob-storage.md
 [hdinsight-get-started-emulator]: hdinsight-get-started-emulator.md
 
-[hdinsight-develop-mapreduce]: hdinsight-develop-deploy-java-mapreduce.md
+[hdinsight-develop-mapreduce]: hdinsight-develop-deploy-java-mapreduce-linux.md
 
 [sqldatabase-create-configue]: sql-database-create-configure.md
 [sqldatabase-get-started]: sql-database-get-started.md
@@ -722,4 +722,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -146,7 +146,7 @@ Hadoop 資料流會透過 STDIN 與 STDOUT 與對應程式和減壓器通訊 (�
 	  }
 	}
 
-如需自行撰寫 MapReduce 工作的指示，請參閱[開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)。
+如需自行撰寫 MapReduce 工作的指示，請參閱[開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)。
 
 ##<a id="run"></a>執行 MapReduce
 
@@ -163,7 +163,7 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。請使用下表決定�
 
 雖然 MapReduce 提供強大的診斷功能，但要靈活運用還是頗具挑戰性。有數個以 Java 為基礎的架構可更輕鬆地定義 MapReduce 應用程式以及技術 (例如，Pig 和 Hive，這兩者提供更輕鬆的方式在 HDInsight 中使用資料)。若要深入了解，請參閱下列文章：
 
-* [開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)
+* [開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 
 * [開發 HDInsight 的 Python 資料流 MapReduce 程式](hdinsight-hadoop-streaming-python.md)
 
@@ -178,7 +178,7 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。請使用下表決定�
 
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
-[hdinsight-develop-mapreduce-jobs]: hdinsight-develop-deploy-java-mapreduce.md
+[hdinsight-develop-mapreduce-jobs]: hdinsight-develop-deploy-java-mapreduce-linux.md
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
 [hdinsight-samples]: hdinsight-run-samples.md
@@ -188,4 +188,4 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。請使用下表決定�
 
 [image-hdi-wordcountdiagram]: ./media/hdinsight-use-mapreduce/HDI.WordCountDiagram.gif
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

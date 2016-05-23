@@ -13,9 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="03/29/2016"
+   ms.date="04/25/2016"
    ms.author="juliako"/>
-
 
 # Azure SDK for .NET 2.9 版本資訊
 
@@ -44,7 +43,7 @@
 
 	此工具會經常更新，請前往[這裡](http://aka.ms/datalaketool)取得更新。
 
-- **伺服器總管**現在可讓您全部檢視，並建立一些 U-SQL 中繼資料實體。如需詳細資訊，請參閱[此部落格]()。
+- **伺服器總管**現在可讓您全部檢視，並建立一些 U-SQL 中繼資料實體。如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/documentation/services/data-lake-analytics/)。
 
 
 ##HDInsight 工具 
@@ -60,4 +59,4 @@
 
 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

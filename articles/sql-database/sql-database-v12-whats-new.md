@@ -114,7 +114,6 @@ V12 提供大幅改進的復原點目標 (RPO) 與預估復原時間 (ERT)：
 | 業務續航力功能 | 較早版本 | V12 |
 | :-- | :-- | :-- |
 | 異地還原 | • RPO < 24 小時。<br/>• ERT < 12 小時。 | • RPO < 1 小時。<br/>• ERT < 12 小時。 |
-| 標準異地複寫 | • RPO < 30 分鐘。<br/>• ERT < 2 小時。 | • RPO < 5 秒。<br/>• ERT < 30 秒。 |
 | 主動式異地複寫 | • RPO < 5 分鐘。<br/>• ERT < 1 小時。 | • RPO < 5 秒。<br/>• ERT < 30 秒。 |
 
 
@@ -167,4 +166,4 @@ V12 資料庫只能裝載在 V12 邏輯伺服器上。而 V12 只可以裝載 V1
 
 [Microsoft Azure 預覽專用的使用補充條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

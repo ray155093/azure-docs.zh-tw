@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="設定內部部署即時編碼器" 
+	pageTitle="使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流" 
 	description="本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。本主題列出示範如何設定列出之編碼器的教學課程連結。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"
+	ms.date="05/05/2016"
 	ms.author="juliako"/>
 
 
 
-#設定內部部署即時編碼器
+#使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流
 
 本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。本主題也列出示範如何設定列出之編碼器的教學課程連結。
 
@@ -51,6 +51,6 @@
 
 ## 另請參閱
 
-[使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
+[使用 Azure 媒體服務執行即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

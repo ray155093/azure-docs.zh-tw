@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter="android"
 	authors="RickSaling"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/09/2016"
 	ms.author="ricksal"/>
 
 
@@ -582,7 +582,7 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。您也可以使用已驗證的使用者 SID 來修改要求。
 
-前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] (英文)。
+前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] \(英文)。
 
 ### <a name="caching"></a>作法：將驗證碼新增至您的應用程式
 
@@ -840,4 +840,4 @@ Quickstart 教學課程包含可實作離線同步處理的程式碼。尋找前
 [Azure 入口網站]: https://portal.azure.com
 [開始使用驗證]: app-service-mobile-android-get-started-users.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0511_2016-->

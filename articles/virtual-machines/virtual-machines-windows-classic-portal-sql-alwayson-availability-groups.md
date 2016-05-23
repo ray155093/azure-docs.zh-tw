@@ -1,6 +1,6 @@
 <properties
-	pageTitle="設定 AlwaysOn 可用性群組 (GUI) | Microsoft Azure"
-	description="使用 Azure 虛擬機器建立 AlwaysOn 可用性群組。本教學課程主要是透過使用者介面作業，而非編寫指令碼。"
+	pageTitle="設定 Always On 可用性群組 (GUI) | Microsoft Azure"
+	description="使用 Azure 虛擬機器建立 Always On 可用性群組。本教學課程主要是透過使用者介面作業，而非編寫指令碼。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="MikeRayMSFT"
@@ -13,10 +13,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/22/2016"
+	ms.date="05/04/2016"
 	ms.author="mikeray" />
 
-# 在 Azure VM (GUI) 中設定 AlwaysOn 可用性群組
+# 在 Azure VM 中設定 Always On 可用性群組 (GUI)
 
 > [AZURE.SELECTOR]
 - [入口網站](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
@@ -24,14 +24,14 @@
 
 <br/>
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
 
 
-本端對端教學課程將示範如何透過在 Azure 虛擬機器上執行的 SQL Server AlwaysOn 實作可用性群組。
+本端對端教學課程將示範如何透過在 Azure 虛擬機器上執行的 SQL Server Always On 實作可用性群組。
 
->[AZURE.NOTE] 在 Azure 管理入口網站中，提供具有接聽程式的 AlwaysOn 可用性群組專用的新資源庫設定。這可自動設定 AlwaysOn 可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server AlwaysOn](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。若要使用 PowerShell，請參閱[使用 PowerShell 設定 Azure 中的 AlwaysOn 可用性群組](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)中，相同案例的教學課程。
+>[AZURE.NOTE] 在 Azure 管理入口網站中，提供具有接聽程式的 Always On 可用性群組專用的新資源庫設定。這可自動設定 Always On 可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server Always On](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。若要使用 PowerShell，請參閱[使用 PowerShell 設定 Azure 中的 Always On 可用性群組](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)中，相同案例的教學課程。
 
-在本教學課程結束時，您 Azure 中的 SQL Server AlwaysOn 解決方案將包含下列項目：
+在本教學課程結束時，您 Azure 中的 SQL Server Always On 解決方案將包含下列項目：
 
 - 包含多個子網路 (前端和後端子網路) 的虛擬網路
 
@@ -55,9 +55,9 @@
 
 - 您已了解如何透過 GUI 佈建來自虛擬機器資源庫的傳統 SQL Server VM。
 
-- 您已非常熟悉 AlwaysOn 可用性群組的功能。如需詳細資訊，請參閱 [AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/hh510230.aspx)。
+- 您已非常熟悉 Always On 可用性群組的功能。如需詳細資訊，請參閱 [Always On 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/hh510230.aspx)。
 
->[AZURE.NOTE] 如想將 AlwaysOn 可用性群組與 SharePoint 搭配使用，另請參閱[為 SharePoint 2013 設定 SQL Server 2012 AlwaysOn 可用性群組 ](https://technet.microsoft.com/library/jj715261.aspx)。
+>[AZURE.NOTE] 如想將 Always On 可用性群組與 SharePoint 搭配使用，另請參閱[為 SharePoint 2013 設定 SQL Server 2012 Always On 可用性群組](https://technet.microsoft.com/library/jj715261.aspx)。
 
 ## 建立虛擬網路和網域控制站伺服器
 
@@ -221,7 +221,7 @@
 
 	![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC784629.png)
 
-1. 在命令列上按一下 [變更此連接的設定] (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+1. 在命令列上按一下 [變更此連接的設定]\(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 
 1. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]，然後按一下 [內容]。
 
@@ -331,7 +331,7 @@
 
 1. 在左窗格中，展開 [容錯移轉叢集管理員]，然後按一下 [Cluster1.corp.contoso.com]。
 
-1. 在中央窗格中向下捲動至 [叢集核心資源] 區段，並展開 [名稱：Clutser1] 的詳細資料。在 [失敗] 狀態中，應該會同時出現 [名稱] 和 [IP 位址] 資源 。由於指派給叢集的 IP 位址與虛擬機器的的 IP 位址相同，是個重複的位址，因此無法讓該 IP 位址資源上線。
+1. 在中央窗格中向下捲動至 [叢集核心資源] 區段，並展開 [名稱：Clutser1] 的詳細資料。在 [失敗] 狀態中，應該會同時出現 [名稱] 和 [IP 位址] 資源 。由於指派給叢集的 IP 位址與虛擬機器的 IP 位址相同，是個重複的位址，因此無法讓該 IP 位址資源上線。
 
 1. 以滑鼠右鍵按一下失敗的 [**IP 位址**]資源，然後按一下 [**內容**]。
 
@@ -347,7 +347,7 @@
 
 1. 在 [新增節點精靈] 中，按 [下一步]。在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **ContosoSQL2** 和 **ContosoWSFCNode** 新增至清單。完成之後，按 [下一步]。
 
-1. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。然後按 [下一步]。
+1. 在 [驗證警告] 頁面上，按一下 [否]\(實際操作時，請執行驗證測試)。然後按 [下一步]。
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
@@ -367,7 +367,7 @@
 
 - 開啟防火牆以供 SQL Server 進行遠端存取
 
-- 啟用 [AlwaysOn 可用性群組] 功能
+- 啟用 Always On 可用性群組功能
 
 - 將 SQL Server 服務帳戶變更為 **CORP\\SQLSvc1** 和 **CORP\\SQLSvc2**
 
@@ -413,13 +413,13 @@
 
 1. 在 [名稱] 頁面中，指定規則名稱，例如在 [名稱] 文字方塊中指定 [SQL Server (程式規則)]，然後按一下 [完成]。
 
-1. 接下來，啟用 [AlwaysOn 可用性群組] 功能。在 [開始] 畫面中，啟動 [SQL Server 組態管理員]。
+1. 接下來，啟用 [Always On 可用性群組] 功能。在 [開始] 畫面中，啟動 [SQL Server 組態管理員]。
 
 1. 在瀏覽器樹狀目錄中按一下 [SQL Server 服務]，然後以滑鼠右鍵按一下 [SQL Server (MSSQLSERVER)] 服務，再按一下 [內容]。
 
-1. 如下方所示，按一下 [AlwaysOn 高可用性] 索引標籤，然後選取 [啟用 AlwaysOn 可用性群組]，再按一下 [套用]。按一下快顯對話方塊中的 [確定]，先不要關閉 [內容] 視窗。變更服務帳戶之後，將重新啟動 SQL Server 服務。
+1. 如下方所示，按一下 [Always On 高可用性] 索引標籤，然後選取 [啟用 Always On 可用性群組]，再按一下 [套用]。按一下快顯對話方塊中的 [確定]，先不要關閉 [內容] 視窗。變更服務帳戶之後，將重新啟動 SQL Server 服務。
 
-	![啟用 AlwaysOn 可用性群組](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665520.gif)
+	![啟用 Always On 可用性群組](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665520.gif)
 
 1. 接下來，變更 SQL Server 服務帳戶。按一下 [登入] 索引標籤，在 [帳戶名稱] 中輸入 **CORP\\SQLSvc1** (若為 **ContosoSQL1**)，或 **CORP\\SQLSvc2** (若為 **ContosoSQL2**)，填入密碼並加以確認，然後按一下 [確定]。
 
@@ -491,7 +491,7 @@
 
 ### 建立可用性群組：
 
-1. 回到 **ContosoSQL1** 的遠端桌面工作階段。如下方所示，在 SSMS 的 [物件總管] 中，以滑鼠右鍵按一下 [AlwaysOn 高可用性]，再按一下 [新增可用性群組精靈]。
+1. 回到 **ContosoSQL1** 的遠端桌面工作階段。如下方所示，在 SSMS 的 [物件總管] 中，以滑鼠右鍵按一下 [Always On 高可用性]，再按一下 [新增可用性群組精靈]。
 
 	![啟動新增可用性群組精靈](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665523.gif)
 
@@ -519,7 +519,7 @@
 
 	![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665529.gif)
 
-1. 在 [驗證] 頁面中按 [下一步]。此頁面的外觀類似於下圖。由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。完成此教學課程之後，若要設定接聽程式，請參閱[在 Azure 中為 AlwaysOn 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+1. 在 [驗證] 頁面中按 [下一步]。此頁面的外觀類似於下圖。由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。完成此教學課程之後，若要設定接聽程式，請參閱[在 Azure 中為 Always On 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 	![新增 AG 精靈：驗證](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665530.gif)
 
@@ -527,11 +527,11 @@
 
 	![新增 AG 精靈：結果](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665531.gif)
 
-1. 在 [物件總管] 中，展開 [AlwaysOn 高可用性]，再展開 [可用性群組]。新的可用性群組應會顯示在此容器中。以滑鼠右鍵按一下 [AG1 (主要)]，再按一下 [顯示儀表板]。
+1. 在 [物件總管] 中，展開 [Always On 高可用性]，再展開 [可用性群組]。新的可用性群組應會顯示在此容器中。以滑鼠右鍵按一下 [AG1 (主要)]，再按一下 [顯示儀表板]。
 
 	![顯示 AG 儀表板](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665532.gif)
 
-1. [AlwaysOn 儀表板] 的外觀應類似於下圖。當中會顯示複本、每個複本的容錯移轉模式和同步處理狀態。
+1. [Always On 儀表板] 的外觀應類似於下圖。當中會顯示複本、每個複本的容錯移轉模式和同步處理狀態。
 
 	![AG 儀表板](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665533.gif)
 
@@ -541,11 +541,11 @@
 
 	![容錯移轉叢集管理員中的 AG](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665534.gif)
 
->[AZURE.WARNING] 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。所有容錯移轉作業都應在 SSMS 的 **AlwaysOn 儀表板**中執行。如需詳細資訊，請參閱[容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
+>[AZURE.WARNING] 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。所有容錯移轉作業都應在 SSMS 的 **Always On 儀表板**中執行。如需詳細資訊，請參閱[容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
 
 ## 後續步驟
-現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server AlwaysOn。若要為此可用性群組設定接聽程式，請參閱[在 Azure 中為 AlwaysOn 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。若要為此可用性群組設定接聽程式，請參閱[在 Azure 中為 Always On 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

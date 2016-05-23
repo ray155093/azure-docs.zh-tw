@@ -13,17 +13,39 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/05/2016" 
+	ms.date="04/26/2016" 
 	ms.author="ddove;sidneyh"/>
 
-# 分區對應管理
+# 使用分區對應管理員相應放大資料庫
 
-在分區化資料庫環境中，[**分區對應**](sql-database-elastic-scale-glossary.md)會維護資訊，以便讓應用程式根據**分區化索引鍵**的值，連線到正確的資料庫。了解這些對應建構的方式，是分區對應管理的基本。針對 Azure SQL Database，使用可在[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)中找到的 [ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)來管理分區對應。
+若要在 SQL Azure 上輕鬆地相應放大資料庫，請使用分區對應管理員。分區對應管理員是特殊的資料庫，負責維護分區集中所有分區 (資料庫) 的全域對應資訊。此中繼資料可讓應用程式根據**分區化索引鍵**的值，連線到正確的資料庫。此外，分區集中的每個分區都包含可追蹤本機分區資料的對應 (稱為 **shardlet**)。
 
-若要轉換一組現有的資料庫，請參閱[轉換現有的資料庫以使用彈性資料庫工具](sql-database-elastic-convert-to-use-elastic-tools.md)。
- 
+![分區對應管理](./media/sql-database-elastic-scale-shard-map-management/glossary.png)
+
+了解這些對應建構的方式，是分區對應管理的基本。使用可在[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)中找到的 [ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)來管理分區對應，即可達成。
+
 
 ## 分區對應和分區對應方式
+
+對於每個分區，您必須選取要建立的分區對應類型。請依據資料庫結構進行選擇︰
+
+1. 每個資料庫的單一租用戶  
+2. 每個資料庫的多個租用戶 (兩種類型)︰
+	3. 清單對應
+	4. 範圍對應
+ 
+針對單一租用戶模型，建立**清單對應**分區對應。單一租用戶模型會指派每個租用戶一個資料庫。這是適用於 SaaS 開發人員的有效模式，因為它會簡化管理。
+
+![清單對應][1]
+
+多租用戶模型會將數個租用戶指派給單一資料庫 (而且您可以跨多個資料庫散發租用戶的群組)。預期每個租用戶有小型資料需求時，請使用此模型。在此模型中，我們使用**範圍對應**將某範圍的租用戶指派給資料庫。
+ 
+
+![範圍對應][2]
+
+或者，您可以使用「清單對應」來實作多租用戶資料庫模型，以將多個租用戶指派給單一資料庫。例如，DB1 是用來儲存租用戶 ID 1 和 5 的相關資訊，而 DB2 是用來儲存租用戶 7 和租用戶 10 的資料。
+
+![單一資料庫上的多個租用戶][3]
  
 ### 分區化索引鍵支援的 .Net 型別
 
@@ -151,7 +173,7 @@ Elastic Scale 支援下列 .Net Framework 型別作為分區化索引鍵：
 
 ### 只影響中繼資料 
 
-用來填入或變更 **ShardMapManager** 資料的方法不會改變分區本身中儲存的使用者資料。比方說，**CreateShard**、**DeleteShard**、**UpdateMapping** 等方法只會影響分區對應中繼資料。它們不會移除、新增或改變分區中所包含的使用者資料。相反地，這些方法是設計來搭配其他作業一起使用，例如，您可能執行這些作業來建立或移除實際的資料庫，或將資料列從一個分區移至另一個分區，以重新平衡分區化環境。(彈性資料庫工具隨附的**分割合併**工具會使用這些 API，以及協調分區之間實際的資料移動。) 請參閱[使用彈性資料庫分割合併工具來縮放](sql-database-elastic-scale-overview-split-and-merge.md)。
+用來填入或變更 **ShardMapManager** 資料的方法不會改變分區本身中儲存的使用者資料。比方說，**CreateShard**、**DeleteShard**、**UpdateMapping** 等方法只會影響分區對應中繼資料。它們不會移除、新增或改變分區中所包含的使用者資料。相反地，這些方法是設計來搭配其他作業一起使用，例如，您可能執行這些作業來建立或移除實際的資料庫，或將資料列從一個分區移至另一個分區，以重新平衡分區化環境。(彈性資料庫工具隨附的**分割合併**工具會使用這些 API，以及協調分區之間實際的資料移動。) (請參閱[使用彈性資料庫分割合併工具來縮放](sql-database-elastic-scale-overview-split-and-merge.md)。)
 
 ## 填入分區對應範例
  
@@ -312,5 +334,9 @@ Elastic Scale 支援下列 .Net Framework 型別作為分區化索引鍵：
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
  
+<!--Image references-->
+[1]: ./media/sql-database-elastic-scale-shard-map-management/listmapping.png
+[2]: ./media/sql-database-elastic-scale-shard-map-management/rangemapping.png
+[3]: ./media/sql-database-elastic-scale-shard-map-management/multipleonsingledb.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

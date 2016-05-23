@@ -1,5 +1,5 @@
 <properties
-	pageTitle="在 Azure 中安裝複本網域控制站 | Microsoft Azure"
+	pageTitle="在 Azure 中安裝複本 Active Directory 網域控制站 | Microsoft Azure"
 	description="此教學課程說明如何從 Azure 的虛擬機器上的內部部署 Active Directory 樹系中安裝網域控制站。"
 	services="virtual-network"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/01/2016"
+	ms.date="05/10/2016"
 	ms.author="curtand"/>
 
 
@@ -33,7 +33,7 @@
 
 應用程式伺服器和網域控制站會部署在不同的雲端服務中來分散計算處理工作，以及部署在[可用性設定組](../virtual-machines/virtual-machines-windows-manage-availability.md)中來改善容錯功能。網域控制站會使用 Active Directory 複寫功能，在彼此之間以及與內部部署網域控制站互相複寫。不需要任何同步處理工具。
 
-![][1]
+![Active Directory 網域控制器 Azure vnet 複本][1]
 
 ## 建立 Azure 虛擬網路的 Active Directory 站台
 
@@ -45,7 +45,7 @@
 
 ## 建立 Azure 虛擬網路
 
-1. 在 Azure 傳統入口網站中，依序按一下 [新增] > [網路服務] > [虛擬網路] > [自訂建立]，並使用下列值來完成精靈。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下 [新增] > [網絡服務] > [虛擬網路] > [自訂建立]，並使用下列值來完成精靈。
 
     在此精靈頁面上… | 指定這些值
 	------------- | -------------
@@ -58,12 +58,11 @@
 3. 在新的虛擬網路與內部部署 VPN 裝置之間建立站台對站台 VPN 連線。如需指示，請參閱[設定虛擬網路閘道](../vpn-gateway/vpn-gateway-configure-vpn-gateway-mp.md)。
 
 
-
 ## 建立 DC 角色的 Azure VM
 
 重複下列步驟，視需要建立裝載 DC 角色的 VM。您應該至少部署兩部虛擬網域控制站以提供容錯和冗餘。如果 Azure 虛擬網路包含至少兩個類似設定的 DC (亦即，它們都是 GC、執行 DNS 伺服器，並且未持有任何 FSMO 角色等等)，那麼可將執行這些 DC 的 VM 放在可用性集合以獲得改善的容錯。若要使用 Windows PowerShell 而非 UI 建立 VM，請參閱[使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../virtual-machines/virtual-machines-windows-classic-create-powershell.md)。
 
-1. 在 Azure 傳統入口網站中，按一下 [新增] > [運算] > [虛擬機器] > [從組件庫]。使用下列值來完成精靈。除非建議或需要另一個值，否則請接受設定的預設值。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下 [新增] > [計算] > [虛擬機器] > [從組件庫]。使用下列值來完成精靈。除非建議或需要另一個值，否則請接受設定的預設值。
 
     在此精靈頁面上… | 指定這些值
 	------------- | -------------
@@ -85,14 +84,13 @@
 
 ## 重新設定虛擬網路的 DNS 伺服器
 
-1. 在 Azure 傳統入口網站中，按一下虛擬網路的名稱，然後按一下 [**設定**] 索引標籤[重新設定虛擬網路的 DNS 伺服器 IP 位址](virtual-networks-manage-dns-in-vnet.md)，以使用指派給複本網域控制站的靜態 IP 位址，而不是內部部署 DNS 伺服器的 IP 位址。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下虛擬網路的名稱，然後按一下 [設定] 索引標籤[重新設定虛擬網路的 DNS 伺服器 IP 位址](../virtual-network/virtual-networks-manage-dns-in-vnet.md)，以使用指派給複本網域控制站的靜態 IP 位址，而不是內部部署 DNS 伺服器的 IP 位址。
 
 2. 若要確保虛擬網路上的所有複本 DC VM 都已設定使用虛擬網路上的 DNS 伺服器，請按一下 [虛擬機器]，按一下每個 VM 的狀態欄，然後按一下 [重新啟動]。請等到 VM 顯示 [執行中] 狀態，再嘗試登入。
 
 ## 建立應用程式伺服器的 VM
 
 1. 重複執行下列步驟來建立做為應用程式伺服器執行的 VM。除非建議或需要另一個值，否則請接受設定的預設值。
-
 
 	在此精靈頁面上… | 指定這些值
 	------------- | -------------
@@ -119,6 +117,6 @@
 -  [Azure 管理 Cmdlet](https://msdn.microsoft.com/library/azure/jj152841)
 
 <!--Image references-->
-[1]: ./media/virtual-networks-install-replica-active-directory-domain-controller/ReplicaDCsOnAzureVNet.png
+[1]: ./media/active-directory-install-replica-active-directory-domain-controller/ReplicaDCsOnAzureVNet.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,20 +13,22 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/10/2016"
+   ms.date="04/18/2016"
    ms.author="tomfitz"/>
 
 # 使用入口網站建立 Active Directory 應用程式和服務主體
 
 ## 概觀
-當您的自動化程序或應用程式必須存取或修改資源時，您可以使用傳統入口網站來建立 Active Directory 應用程式。當您經由入口網站建立 Active Directory 應用程式時，入口網戰其實會建立應用程式和服務主體。您可以用應用程式自己的身分識別或應用程式之登入使用者的身分識別執行應用程式。這兩種應用程式驗證方法分別稱為互動式 (使用者登入) 和非互動式 (應用程式提供自己的認證) 方法。在非互動式模式中，您必須將服務主體指派給具有正確權限的角色。
+當您的自動化程序或應用程式必須存取或修改資源時，您可以使用傳統入口網站來建立 Active Directory 應用程式。您可以用應用程式自己的身分識別或應用程式之登入使用者的身分識別執行應用程式。這兩種應用程式驗證方法分別稱為互動式 (使用者登入) 和非互動式 (應用程式提供自己的認證) 方法。在非互動式模式中，您必須將具有適當權限的角色指派給應用程式的身分識別。如果您的應用程式自動執行 (例如後端程序)，則必須使用非互動式驗證。
 
-本主題說明如何使用 Azure 入口網站來建立新的應用程式和服務主體。目前，您必須使用傳統入口網站來建立新的 Active Directory 應用程式。Azure 入口網站會在稍後的版本中新增這項功能 。您可以使用入口網站來將應用程式指派給角色。您也可以透過 Azure PowerShell 或 Azure CLI 執行下列步驟。如需了解搭配服務主體來使用 PowerShell 或 CLI 的詳細資訊，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)。
+本主題說明如何使用傳統入口網站來建立新的應用程式。目前，您必須使用傳統入口網站來建立新的 Active Directory 應用程式。您可以使用入口網站來將應用程式指派給角色。
+
+您也可以透過 Azure PowerShell 或 Azure CLI 執行下列步驟。如需了解搭配服務主體來使用 PowerShell 或 CLI 的詳細資訊，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)。
 
 ## 概念
 1. Azure Active Directory (AAD) - 雲端的身分識別與存取管理服務組建。如需更多詳細資訊，請參閱：[什麼是 Azure Active Directory](active-directory/active-directory-whatis.md)
-2. 服務主體 - 目錄中應用程式的執行個體。
-3. AD 應用程式 - AAD 中向 AAD 識別應用程式的目錄記錄。 
+2. AD 應用程式 - Active Directory 中可識別應用程式的目錄記錄。 
+3. 服務主體 - 您可以套用存取控制角色的應用程式執行個體。
 
 如需應用程式和服務主體的詳細說明，請參閱[應用程式物件和服務主體物件](active-directory/active-directory-application-objects.md)。如需 Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory/active-directory-authentication-scenarios.md)。
 
@@ -40,10 +42,14 @@
 2. 從左窗格中，選取 [**Active Directory**]。
 
      ![選取 Active Directory][1]
-
-3. 選取您想要用來建立新應用程式的目錄。
+     
+3. 選取您想要用來建立新應用程式的目錄。對於您的訂用帳戶中的資源，您只能將存取權指派給與您的訂用帳戶位於相同目錄的服務主體。您通常會想在您的訂用帳戶所在的目錄中建立應用程式。
 
      ![選擇目錄][2]
+     
+    如果您要尋找訂用帳戶的目錄，請選取 [設定] 並尋找該目錄名稱。
+   
+     ![尋找預設目錄](./media/resource-group-create-service-principal-portal/show-default-directory.png)
 
 3. 若要檢視目錄中的應用程式，請按一下 [**應用程式**]。
 
@@ -65,7 +71,7 @@
 
      ![名稱應用程式][9]
 
-7. 填寫您應用程式的屬性。針對 [**登入 URL**]，提供描述您應用程式之網站的 URI。不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。不會驗證端點的唯一性或其是否存在。如果您已選取 [原生用戶端應用程式] 做為應用程式類型，您將需要提供 [重新導向 URI] 值。按一下 [**完成**] 建立 AAD 應用程式。
+7. 填寫您應用程式的屬性。針對 [**登入 URL**]，提供描述您應用程式之網站的 URI。不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。不會驗證端點的唯一性或其是否存在。如果您已選取 [原生用戶端應用程式] 做為應用程式類型，您將需要提供 [重新導向 URI] 值。按一下 [完成] 以建立 AAD 應用程式。
 
      ![應用程式屬性][4]
 
@@ -83,7 +89,7 @@
 
 端點不適用於原生用戶端應用程式。相反地，您可以透過 PowerShell 來擷取租用戶識別碼︰
 
-    PS C:\> Get-AzureRmSubscription
+    Get-AzureRmSubscription
 
 或者，Azure CLI：
 
@@ -218,7 +224,7 @@
 
 - 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。  
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
-- 若要了解如何使用 Azure PowerShell 或 Azure CLI 來搭配 Active Directory 應用程式和服務主體，包括如何使用憑證進行驗證，請參閱[使用 Azure 資源管理員驗證服務主體](./resource-group-authenticate-service-principal.md)。
+- 若要了解如何使用 Azure PowerShell 或 Azure CLI 來搭配 Active Directory 應用程式和服務主體，包括如何使用憑證進行驗證，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)。
 - 如需使用 Azure 資源管理員來實作安全性的指南，請參閱 [Azure 資源管理員的安全性考量](best-practices-resource-manager-security.md)
 
 
@@ -237,4 +243,4 @@
 [12]: ./media/resource-group-create-service-principal-portal/add-icon.png
 [13]: ./media/resource-group-create-service-principal-portal/save-icon.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0511_2016-->

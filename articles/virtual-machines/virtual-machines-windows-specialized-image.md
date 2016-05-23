@@ -28,15 +28,15 @@
 
 ## 開始之前請檢查下列項目
 
-本文在您開始步驟之前假設您符合下列必要條件︰
+本文假設您已經：
 
-1. 您有執行 Windows 的 Azure 虛擬機器，使用傳統或 Resource Manager 部署模型所建立。您已設定作業系統、附加資料磁碟，以及進行像是安裝所需的應用程式等其他自訂。我們將使用此 VM 建立複本；如果您需要建立來源 VM 的說明，請參閱[如何建立利用 Resource Manager Windows VM](virtual-machines-windows-ps-create.md)。 
+1. 準備好傳統或 Resource Manager 部署模型的**執行 Windows 的 Azure 虛擬機器**，且已設定作業系統、連接資料磁碟、安裝所需的應用程式。如果您需要建立此 VM 的說明，請參閱[以 Resource Manager 建立 Windows VM](virtual-machines-windows-ps-create.md)。 
 
-1. 您已在您的電腦上安裝 Azure PowerShell 並登入您的 Azure 訂用帳戶。如需詳細資訊，請參閱[如何安裝和設定 PowerShell](../powershell-install-configure.md)。
+1. 在您的電腦上已安裝 **Azure PowerShell 1.0 或更新版本**，並登入您的 Azure 訂用帳戶。如需詳細資訊，請參閱[如何安裝和設定 PowerShell](../powershell-install-configure.md)。
 
-1. 您已下載並安裝 AzCopy 工具。如需這項工具的詳細資訊，請參閱[利用 AzCopy 命令列工具傳輸資料](../storage/storage-use-azcopy.md)。
+1. 在您的電腦上已安裝 **AzCopy tool**。如需詳細資訊，請參閱[利用 AzCopy 命令列工具傳輸資料](../storage/storage-use-azcopy.md)。
 
-1. 您有資源群組、儲存體帳戶以及在該資源群組中建立以複製 VHD 的 blob 容器。閱讀[建立或尋找 Azure 儲存體帳戶](virtual-machines-windows-upload-image.md#createstorage)一節以使用現有的儲存體帳戶或建立一個新帳戶。
+1. 擁有搭配**儲存體帳戶**的**資源群組**，以及在此群組中建立的 **blob 容器**以將 VHD 複製至此容器。閱讀[建立或尋找 Azure 儲存體帳戶](virtual-machines-windows-upload-image.md#createstorage)一節以使用現有的儲存體帳戶或建立一個新帳戶。
 
 
 
@@ -48,14 +48,14 @@
 
 1. 先藉由執行下列兩個選項之一，來釋放來源 VM 使用的 VHD：
 
-	- 如果您想要**複製**來源虛擬機器，然後**停止**和**解除配置**它。
+	- 如果您想要**複製**來源虛擬機器，請**停止**並**解除配置**它。
 	
 		- 針對使用傳統部署模型所建立的 VM，您可以使用[入口網站](https://portal.azure.com)，然後按一下 [瀏覽] > [虛擬機器 (傳統)] > [您的 VM] > [停止]，或使用 PowerShell 命令 `Stop-AzureVM -ServiceName <yourServiceName> -Name <yourVmName>`。 
 		
-		- 針對 Resource Manager 部署模型中的 VM，您可以登入入口網站，然後按一下 [瀏覽] > [虛擬機器] > [您的 VM] > [停止]，或使用 PowerShell 命令 `Stop-AzureRmVM -ResourceGroupName <yourResourceGroup> -Name <yourVmName>`。請注意，入口網站中的 VM 「狀態」會從**正在執行**變更為**已停止 (取消配置)**。
+		- 針對 Resource Manager 部署模型中的 VM，您可以登入入口網站，然後按一下 [瀏覽] > [虛擬機器] > [您的 VM] > [停止]，或使用 PowerShell 命令 `Stop-AzureRmVM -ResourceGroupName <yourResourceGroup> -Name <yourVmName>`。請注意，入口網站中的 VM「狀態」會從**執行中**變更為**已停止 (已解除配置)**。
 
 	
-	- 或者，如果您想要**移轉**來源虛擬機器，請**刪除**該 VM 並使用剩餘的 VHD。**瀏覽**至[入口網站](https://portal.azure.com)中的虛擬機器並按一下 [刪除]。
+	- 或者，如果您想要**移轉**來源虛擬機器，請**刪除**該 VM 並使用剩餘的 VHD。在[入口網站](https://portal.azure.com)中**瀏覽**至您的虛擬機器並按一下 [刪除]。
 	
 1. 尋找儲存體帳戶中的存取金鑰，其中包含您的來源 VHD，以及您將在其中複製 VHD 以建立新 VM 的儲存體帳戶。我們要在其中複製 VHD 的帳戶金鑰稱為「來源金鑰」，將它複製的目標帳戶稱為「目的地金鑰」。如需存取金鑰的詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
@@ -63,9 +63,9 @@
 	
 	- 針對使用 Resource Manager 部署模型所建立的 FM，或針對您將用於新 VM 的儲存體帳戶，請按一下 [瀏覽] > [儲存體帳戶] > [您的儲存體帳戶] > [所有設定] > [存取金鑰] 並複製標示為 **key1** 的金鑰。
 
-1. 取得存取您的來源和目的地儲存體帳戶的 RUL。在入口網站中，**瀏覽**至您的儲存體帳戶並按一下 [Blob]。然後按一下裝載來源 VHD 的容器 (例如傳統部署模型的 *vhd*) 或您想要複製 VHD 的目標容器。按一下容器的 [屬性] 並複製標示為 **URL** 的文字。我們需要來源和目的地容器的 URL。這些 URL 將類似 `https://myaccount.blob.core.windows.net/mycontainer`。
+1. 取得存取您的來源和目的地儲存體帳戶的 RUL。在入口網站中，**瀏覽**至您的儲存體帳戶並按一下 [Blob]。然後按一下裝載來源 VHD 的容器 (例如傳統部署模型的 *vhd*) 或您想要複製 VHD 的目標容器。按一下容器的 [屬性] 並複製標示為 **URL** 的文字。我們需要來源和目的地容器的 URL。這些 URL 看起來類似 `https://myaccount.blob.core.windows.net/mycontainer`。
 
-1. 在您的本機電腦上，開啟命令視窗並瀏覽至安裝 AzCopy 所在的資料夾。它會類似 *C:\\Program Files (x86) \\Microsoft SDKs\\Azure\\AzCopy*。從該處執行下列命令：</br>
+1. 在您的本機電腦上，開啟命令視窗並瀏覽至安裝 AzCopy 所在的資料夾。它會類似 *C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\AzCopy*。從該處執行下列命令：</br>
 
 		AzCopy /Source:<URL_of_the_source_blob_container> /Dest:<URL_of_the_destination_blob_container> /SourceKey:<Access_key_for_the_source_storage> /DestKey:<Access_key_for_the_destination_storage> /Pattern:<File_name_of_the_VHD_you_are_copying>
 </br>
@@ -78,7 +78,7 @@
 下列步驟將示範如何使用上述步驟中複製的 VHD，在新的虛擬網路中使用 Azure PowerShell 建立以 Resource Manager 為基礎的 Windows VM。VHD 和即將建立的新虛擬機器應該會位在相同的儲存體帳戶中。
 
 
-首先，以類似下文的指令碼設定新 VM 的虛擬網路和 NIC。為變數 (以 **$** 符號表示) 使用適合您應用程式的值。
+首先，以類似下文的指令碼設定新 VM 的虛擬網路和 NIC。變數 (以 **$** 符號表示) 請使用適合您應用程式的值。
 
 	$pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName -Location $location -AllocationMethod Dynamic
 
@@ -122,11 +122,11 @@
 	$vmList = Get-AzureRmVM -ResourceGroupName $rgName
 	$vmList.Name
 
-若要登入新的虛擬機器，請**瀏覽**至[入口網站](https://portal.azure.com)中的 VM，按一下 [連線] 並開啟「遠端桌面」RDP 檔案。使用原始虛擬機器的帳戶認證來登入新的虛擬機器。
+若要登入新的虛擬機器，請[瀏覽]至[入口網站](https://portal.azure.com)中的 VM，按一下 [連線] 並開啟「遠端桌面」RDP 檔案。使用原始虛擬機器的帳戶認證來登入新的虛擬機器。
 
 
 ## 後續步驟
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

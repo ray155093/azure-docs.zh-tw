@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/19/2016"
+	ms.date="05/09/2016"
 	ms.author="robinsh"/>
 
 # 搭配使用 Azure PowerShell 與 Azure 儲存體
@@ -665,13 +665,17 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 
 若要將 Azure 儲存體與[適用於美國政府的 Azure Government ](https://azure.microsoft.com/features/gov/) 搭配使用，請定義一個新環境，然後在此環境中建立新的儲存體內容：
 
-1. 呼叫 [Add-AzureEnvironment](http://msdn.microsoft.com/library/azure/dn790364.aspx) Cmdlet，以便為您的私人資料中心建立新的 Azure 環境。
+1.	執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
 
-    	Add-AzureEnvironment -Name $EnvironmentName -PublishSettingsFileUrl $publishSettingsFileUrl -ServiceEndpoint $serviceEndpoint -ManagementPortalUrl $managementPortalUrl -StorageEndpoint $storageEndpoint -ActiveDirectoryEndpoint $activeDirectoryEndpoint -ResourceManagerEndpoint $resourceManagerEndpoint -GalleryEndpoint $galleryEndpoint -ActiveDirectoryServiceEndpointResourceId $activeDirectoryServiceEndpointResourceId -GraphEndpoint $graphEndpoint -SubscriptionDataFile $subscriptionDataFile
+    `Get-AzureEnvironment`
 
-2. 執行 [New-AzureStorageContext](http://msdn.microsoft.com/library/azure/dn806380.aspx) Cmdlet，為這個新環境建立新的儲存體內容，方法如下所示。
+2.	將 Azure 美國政府帳戶新增至 Windows PowerShell：
 
-	    $Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment $EnvironmentName
+    `Add-AzureAccount –Environment AzureUSGovernment`
+
+3.	建立 AzureUSGovernment 帳戶的儲存體內容：
+
+    	$Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureUSGovernment
 
 如需詳細資訊，請參閱：
 
@@ -730,4 +734,4 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 [Next Steps]: #next
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

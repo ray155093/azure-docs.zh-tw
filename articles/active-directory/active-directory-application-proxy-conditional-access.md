@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/09/2016"
 	ms.author="kgremban"/>
 
 # 使用條件式存取
 > [AZURE.NOTE] 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-您現在可以啟用存取規則，以授與條件式存取給使用者和群組，以便存取使用應用程式 Proxy 發佈的應用程式。這可讓您：
+對於使用應用程式 Proxy 發佈的應用程式，您可以設定存取規則，以授與對這些應用程式的條件式存取。這可讓您：
 
 - 要求各應用程式的多重要素驗證
 - 只在使用者不在公司時要求多重要素驗證
@@ -33,9 +33,7 @@
 
 - Azure Active Directory Premium 的訂用帳戶
 - 同盟或受管理的 Azure Active Directory 租用戶
-- 同盟的租用戶需要啟用 Multi-Factor Authentication (MFA)
-
-![設定存取規則 - 要求 Multi-Factor Authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
+- 同盟租用戶需要 Multi-Factor Authentication (MFA) 已啟用 ![設定存取規則 - 要求 Multi-Factor Authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
 
 ## 設定每個應用程式的 Multi-Factor Authentication
 1. 在 Azure 傳統入口網站中，以系統管理員身分登入。
@@ -46,7 +44,7 @@
 
   - 若要明確地將安全性群組從規則中排除，請選取 [例外] 並指定一或多個群組。[除外] 清單中群組的使用者成員不需要執行 Multi-Factor Authentication。  
 
-  - 如果使用者已設定為使用每個使用者的 Multi-Factor Authentication 功能，則此設定會優先於應用程式的多重要素驗證規則。這表示已設定每個使用者的 Multi-Factor Authentication 的使用者都必須執行 Multi-Factor Authentication，即使他們已從應用程式的 Multi-Factor Authentication 規則中免除。深入了解 [Multi-Factor Authentication 和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。
+  - 如果使用者已設定為使用每個使用者的 Multi-Factor Authentication 功能，則此設定會優先於應用程式的多重要素驗證規則。這表示已設定每個使用者的 Multi-Factor Authentication 的使用者都必須執行 Multi-Factor Authentication，即使他們已從應用程式的 Multi-Factor Authentication 規則中免除。深入了解[多重要素驗證和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。
 
 6. 選取您要設定的存取規則：
 	- **需要多重要素驗證**︰套用存取規則的使用者必須先完成多重要素驗證，才能存取套用規則的應用程式。
@@ -63,23 +61,12 @@
 
 
 ## 另請參閱
-應用程式 Proxy 還有其他更多用途：
 
-- [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
-- [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
-- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 - [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
-- [使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
+- [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
+- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
+- [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
 
-## 深入了解應用程式 Proxy
-- [看看我們的線上說明](active-directory-application-proxy-enable.md)
-- [查閱應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-- [觀看我們在 Channel 9 上的影片！](http://channel9.msdn.com/events/Ignite/2015/BRK3864)
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-
-## 其他資源
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [以組織方式註冊 Azure](sign-up-organization.md)
-- [Azure 身分識別](fundamentals-identity.md)
-
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

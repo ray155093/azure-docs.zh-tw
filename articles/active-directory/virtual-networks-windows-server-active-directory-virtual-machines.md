@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="Azure VM 上的 Windows Server Active Directory | Microsoft Azure" 
-	description="您可以在 Azure 虛擬機器上執行 Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory 同盟服務 (AD FS)。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="markusvi" 
-	manager="stevenpo" 
+<properties
+	pageTitle="Azure VM 上的 Windows Server Active Directory | Microsoft Azure"
+	description="您可以在 Azure 虛擬機器上執行 Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory 同盟服務 (AD FS)。"
+	services="active-directory"
+	documentationCenter=""
+	authors="markusvi"
+	manager="stevenpo"
 	tags="azure-classic-portal"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="04/07/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="04/07/2016"
 	ms.author="markusvi"/>
 
 
@@ -24,7 +24,7 @@
 
 ## 概念性指導方針
 
-- [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx) 
+- [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 
 ## 影片
 
@@ -33,7 +33,7 @@
 ## 做法文章
 
 - [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)
-- [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制站](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md) 
+- [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制站](../active-directory/active-directory-install-replica-active-directory-domain-controller.md)
 - [設定用於測試的混合式雲端環境](../virtual-machines/virtual-machines-windows-ps-hybrid-cloud-test-env-base.md)
 
 
@@ -42,9 +42,4 @@
 - [以組織身分註冊 Azure](sign-up-organization.md)
 - [Azure 身分識別](fundamentals-identity.md)
 
-
-
-
- 
-
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

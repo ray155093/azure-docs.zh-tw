@@ -1,6 +1,6 @@
 <properties
     pageTitle="如何使用 iOS 中的 Azure Blob 儲存體 | Microsoft Azure"
-    description="了解如何使用 Azure Blob 儲存體來上傳、下載、列出及刪除 Blob 內容。範例是以 Objective-C 撰寫的。"
+	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
     services="storage"
     documentationCenter="ios"
     authors="micurd"
@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="Objective-C"
     ms.topic="article"
-    ms.date="01/05/2016"
+    ms.date="04/11/2016"
     ms.author="micurd"/>
 
 # 如何使用 iOS 的 Blob 儲存體
@@ -111,7 +111,7 @@
 		// Get a reference to a container in your Storage account
     	AZSCloudBlobContainer *blobContainer = [[AZSCloudBlobContainer alloc] initWithUrl:[NSURL URLWithString:@" your SAS URL"]];
 
-如您所見，使用 SAS 權杖時，您並不會在 iOS 應用程式中公開您的帳戶名稱和帳戶金鑰。您可以參閱[共用存取簽章：了解 SAS 模型](../storage-dotnet-shared-access-signature-part-1)，以進一步了解 SAS。
+如您所見，使用 SAS 權杖時，您並不會在 iOS 應用程式中公開您的帳戶名稱和帳戶金鑰。您可以參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)，以進一步了解 SAS。
 
 ##非同步作業
 > [AZURE.NOTE] 所有對服務執行要求的方法，都是非同步作業。在程式碼範例中，您會發現這些方法具有完成處理常式。完成處理常式內的程式碼會在要求完成**之後**執行。完成處理常式後面的程式碼會在進行要求**期間**執行。
@@ -355,4 +355,4 @@
 
 如果您有關於此程式庫的問題，歡迎您貼文到我們的 [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或[堆疊溢位](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。如果您有 Azure 儲存體功能方面的建議，請貼文到 [Azure 儲存體意見反應](https://feedback.azure.com/forums/217298-storage/)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -22,7 +22,7 @@
 [AZURE.INCLUDE [media-services-selector-manage-channels](../../includes/media-services-selector-manage-channels.md)]
 
 
-本教學課程將逐步引導您實作基本媒體服務即時串流應用程式；其中，通道會從內部部署即時編碼器接收多位元速率即時串流。如需使用通道和相關元件的詳細概觀，請參閱[使用通道從內部部署編碼器接收多位元速率即時串流](media-services-manage-channels-overview.md)。
+本教學課程將逐步引導您實作基本媒體服務即時串流應用程式；其中，通道會從內部部署即時編碼器接收多位元速率即時串流。如需使用通道和相關元件的詳細概觀，請參閱[使用通道從內部部署編碼器接收多位元速率即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
 在本教學課程中，Azure 傳統入口網站可用來完成下列工作：
 
@@ -88,7 +88,7 @@
 
 ![ingesturls](./media/media-services-portal-get-started-with-live/media-services-ingest-urls.png)
 
-如需內嵌 URL 的詳細資訊，請參閱[使用內部部署編碼器將多位元速率即時串流傳送至通道](media-services-manage-channels-overview.md)。
+如需內嵌 URL 的詳細資訊，請參閱[使用內部部署編碼器將多位元速率即時串流傳送至通道](media-services-live-streaming-with-onprem-encoders.md)。
 
 ## 設定即時編碼器並內嵌即時串流
 
@@ -212,4 +212,4 @@
 
 <!-- Images -->
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

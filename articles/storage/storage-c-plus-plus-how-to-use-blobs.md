@@ -1,6 +1,6 @@
 <properties
     pageTitle="如何使用 Blob 儲存體 (C++) | Microsoft Azure"
-    description="了解如何在 Azure 中使用 Blob 儲存體服務。範例是以 C++ 撰寫的。"
+	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
     services="storage"
     documentationCenter=".net"
     authors="tamram"
@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="02/17/2016"
+    ms.date="04/29/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的 Blob 儲存體  
@@ -238,4 +238,4 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

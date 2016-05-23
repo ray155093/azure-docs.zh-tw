@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/05/2016"
 	ms.author="wesmc"/>
 
 # 將推播通知新增至 Xamarin.Forms 應用程式
@@ -145,6 +145,9 @@
 		using Newtonsoft.Json.Linq;
 		using System.Text;
 		using System.Linq;
+		using Android.Support.V4.App;
+		using Android.Media;
+
 
 9. 在檔案頂端，`using` 陳述式和 `namespace` 宣告之間，加入下列權限要求。
 
@@ -189,12 +192,9 @@
 		    Log.Verbose("PushHandlerBroadcastReceiver", "GCM Registered: " + registrationId);
 		    RegistrationID = registrationId;
 
-		    createNotification("GcmService Registered...", "The device has been Registered, Tap to View!");
-
             var push = TodoItemManager.DefaultManager.CurrentClient.GetPush();
 
 		    MainActivity.CurrentActivity.RunOnUiThread(() => Register(push, null));
-
 		}
 
         public async void Register(Microsoft.WindowsAzure.MobileServices.Push push, IEnumerable<string> tags)
@@ -206,7 +206,7 @@
                 JObject templates = new JObject();
                 templates["genericMessage"] = new JObject
                 {
-                  {"body", templateBodyGCM}
+                	{"body", templateBodyGCM}
                 };
 
                 await push.RegisterAsync(RegistrationID, templates);
@@ -256,28 +256,35 @@
 		    createNotification("Unknown message details", msg.ToString());
 		}
 
-		void createNotification(string title, string desc)
-		{
-		    //Create notification
-		    var notificationManager = GetSystemService(Context.NotificationService) as NotificationManager;
+        void createNotification(string title, string desc)
+        {
+            //Create notification
+            var notificationManager = GetSystemService(Context.NotificationService) as NotificationManager;
 
-		    //Create an intent to show ui
-		    var uiIntent = new Intent(this, typeof(MainActivity));
+            //Create an intent to show ui
+            var uiIntent = new Intent(this, typeof(MainActivity));
 
-		    //Create the notification
-		    var notification = new Notification(Android.Resource.Drawable.SymActionEmail, title);
+            //Use Notification Builder
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-		    //Auto cancel will remove the notification once the user touches it
-		    notification.Flags = NotificationFlags.AutoCancel;
+            //Create the notification
+            //we use the pending intent, passing our ui intent over which will get called
+            //when the notification is tapped.
+            var notification = builder.SetContentIntent(PendingIntent.GetActivity(this, 0, uiIntent, 0))
+                    .SetSmallIcon(Android.Resource.Drawable.SymActionEmail)
+                    .SetTicker(title)
+                    .SetContentTitle(title)
+                    .SetContentText(desc)
 
-		    //Set the notification info
-		    //we use the pending intent, passing our ui intent over which will get called
-		    //when the notification is tapped.
-		    notification.SetLatestEventInfo(this, title, desc, PendingIntent.GetActivity(this, 0, uiIntent, 0));
+                    //Set the notification sound
+                    .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
 
-		    //Show the notification
-		    notificationManager.Notify(1, notification);
-		}
+                    //Auto cancel will remove the notification once the user touches it
+                    .SetAutoCancel(true).Build();
+
+            //Show the notification
+            notificationManager.Notify(1, notification);
+        }
 
 14. 您也必須為收接器實作 `OnUnRegistered` 和 `OnError` 處理常式。
 
@@ -297,13 +304,11 @@
 
 1. 在 Visual Studio 或 Xamarin Studio 中，以滑鼠右鍵按一下 **droid** 專案，然後按一下 [設定為啟始專案]。
 
-2. 按 [執行] 按鈕以建置專案並在可執行 iOS 的裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
+2. 按 [執行] 按鈕以建置專案，並在 Android 裝置上啟動應用程式。
 
-	> [AZURE.NOTE] 您必須明確地接受來自應用程式的推播通知。只有在應用程式第一次執行時，才會發生此要求。
+3. 在應用程式中輸入一項工作，然後按一下加號 (**+**) 圖示。
 
-2. 在應用程式中輸入一項工作，然後按一下加號 (**+**) 圖示。
-
-3. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
+4. 確認在加入項目時收到通知。
 
 
 
@@ -405,7 +410,7 @@
 
 1. 以滑鼠右鍵按一下 iOS 專案，然後按一下 [設定為啟始專案]。
 
-2. 在 Visual Studio 中按下 [執行] 按鈕或 **F5** 以建置專案，並在可執行 iOS 的裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
+2. 在 Visual Studio 中按下 [執行] 按鈕或 **F5** 以建置專案，並在 iOS 裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
 
 	> [AZURE.NOTE] 您必須明確地接受來自應用程式的推播通知。只有在應用程式第一次執行時，才會發生此要求。
 
@@ -437,9 +442,13 @@
 
 		using System.Threading.Tasks;
 		using Windows.Networking.PushNotifications;
-		using WesmcMobileAppGaTest;
 		using Microsoft.WindowsAzure.MobileServices;
 		using Newtonsoft.Json.Linq;
+
+	在包含 `TodoItemManager` 類別的可攜式專案中，也加入命名空間的 `using` 陳述式。
+
+		using <Your namespace for the TodoItemManager class>;
+ 
 
 2. 在 App.xaml.cs 中，加入下列 `InitNotificationsAsync` 方法。這個方法會取得推播通知通道，並註冊範本以接收來自通知中樞的範本通知。支援 `messageParam` 的範本通知，會傳送到此用戶端。
 
@@ -455,15 +464,15 @@
 
             JObject templates = new JObject();
             templates["genericMessage"] = new JObject
-                {
-                  {"body", templateBodyWNS},
-                  {"headers", headers} // Only needed for WNS & MPNS
-                };
+			{
+				{"body", templateBodyWNS},
+				{"headers", headers} // Only needed for WNS & MPNS
+			};
 
             await TodoItemManager.DefaultManager.CurrentClient.GetPush().RegisterAsync(channel.Uri, templates);
         }
 
-3. 在 App.xaml.cs 中，利用 `async` 屬性更新 `OnLaunched` 事件處理常式，並呼叫 `InitNotificationsAsync`
+3. 在 App.xaml.cs 中，利用 `async` 屬性更新 `OnLaunched` 事件處理常式，並在方法的底端加入 `InitNotificationsAsync`的呼叫。
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
@@ -510,13 +519,11 @@
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 **WinApp** 專案，然後按一下 [設定為啟始專案]。
 
 
-2. 按 [執行] 按鈕以建置專案並在可執行 iOS 的裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
+2. 按 [執行] 按鈕，以建立專案並啟動應用程式。
 
-	> [AZURE.NOTE] 您必須明確地接受來自應用程式的推播通知。只有在應用程式第一次執行時，才會發生此要求。
+3. 在應用程式中輸入新 todoitem 的名稱，然後按一下加號 (**+**) 圖示加入它。
 
-3. 在應用程式中輸入一項工作，然後按一下加號 (**+**) 圖示。
-
-4. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
+4. 確認在加入項目時收到通知。
 
 
 
@@ -527,4 +534,4 @@
 [Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="identity"
-   ms.date="02/09/2016"
+   ms.date="05/09/2016"
    ms.author="viviali"/>
 
 # Azure AD B2B 共同作業預覽：目前預覽限制
@@ -29,7 +29,7 @@
 - 透過 CSV 最多可以上傳 2,000 筆記錄。
 
 ## 相關文章
-請瀏覽有關 Azure B2B 共同作業的其他文章：
+請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
 - [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 - [運作方式](active-directory-b2b-how-it-works.md)
@@ -39,4 +39,4 @@
 - [外部使用者物件屬性變更](active-directory-b2b-references-external-user-object-attribute-changes.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

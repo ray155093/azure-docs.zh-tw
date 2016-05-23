@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/02/2016"
+	ms.date="05/06/2016"
 	ms.author="micurd"/>
 
 # 使用 AzCopy 命令列公用程式傳輸資料
@@ -477,7 +477,7 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 ### 指定要啟動的並行作業數目
 
-`/NC` 選項可指定並行複製作業的數目。AzCopy 預設的開始並行作業數目是 8 倍的所擁有核心處理器數目。如果您在低頻寬的網路上執行 AzCopy，則您可以在此選項中指定較低的數字，以避免因為資源競爭所導致的失敗。
+`/NC` 選項可指定並行複製作業的數目。根據預設，AzCopy 依預設會啟動特定數量的並行作業，以提高資料傳輸的輸送量。若為資料表作業，並行作業數目等於您所擁有的處理器數目。若為 Blob 和檔案作業，並行作業數目等於您所擁有處理器數目的 8 倍。如果您在低頻寬的網路上執行 AzCopy，則您可以在 /NC 中指定較低的數字，以避免因為資源競爭所導致的失敗。
 
 ### 針對 Azure 儲存體模擬器執行 AzCopy
 
@@ -583,7 +583,7 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 指出是否傳輸快照。此選項僅在來源是 Blob 才有效。
 
-傳輸的 Blob 快照集會以下列格式重新命名：[blob-name](snapshot-time)[extension]。
+傳輸的 Blob 快照集會以下列格式重新命名：blob-name (snapshot-time).extension
 
 依預設，不會複製快照。
 
@@ -864,4 +864,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

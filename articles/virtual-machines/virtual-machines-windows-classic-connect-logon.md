@@ -1,5 +1,5 @@
 <properties
-	pageTitle="登入 VM | Microsoft Azure"
+	pageTitle="登入傳統 Azure VM | Microsoft Azure"
 	description="使用 Azure 傳統入口網站來登入以傳統部署模型建立的 Windows 虛擬機器。"
 	services="virtual-machines-windows"
 	documentationCenter=""
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/11/2016"
+	ms.date="05/05/2016"
 	ms.author="cynthn"/>
 
 
@@ -57,4 +57,4 @@
 
 如果這些秘訣無效，或者不是您所需要的，請參閱[針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

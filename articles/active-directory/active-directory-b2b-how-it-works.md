@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="identity"
-   ms.date="02/03/2016"
+   ms.date="05/09/2016"
    ms.author="viviali"/>
 
 # Azure AD B2B 共同作業預覽：運作方式
@@ -34,7 +34,7 @@ Azure AD B2B 共同作業是根據邀請和兌換模型。您提供您想要合�
  - 管理租用戶商標是用來給予邀請電子郵件和兌換經驗商標，為受邀合作夥伴使用者提供更多內容。
 
 ## 相關文章
- 請瀏覽有關 Azure B2B 共同作業的其他文章
+ 請瀏覽有關 Azure AD B2B 共同作業的其他文章
 
  - [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
  - [詳細的逐步解說](active-directory-b2b-detailed-walkthrough.md)
@@ -44,4 +44,4 @@ Azure AD B2B 共同作業是根據邀請和兌換模型。您提供您想要合�
  - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
  - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

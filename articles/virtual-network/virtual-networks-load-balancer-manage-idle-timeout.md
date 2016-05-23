@@ -1,15 +1,15 @@
 <properties 
-   authors="danielceckert" 
+   authors="jimdial" 
    documentationCenter="dev-center-name" 
    editor=""
-   manager="jefco" 
+   manager="carmonm" 
    pageTitle="管理：負載平衡器的閒置逾時" 
    description="Azure 負載平衡器閒置逾時的管理功能" 
    services="virtual-network" 
    />
 
 <tags
-   ms.author="danecke"
+   ms.author="jdial"
    ms.date="09/01/2015"
    ms.devlang="na"
    ms.service="virtual-network"
@@ -152,4 +152,4 @@ LoadBalancerDistribution 的值可以是 sourceIP (適用於 2-tuple 同質性)�
     </LoadBalancedEndpointList>
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

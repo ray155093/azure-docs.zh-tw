@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/09/2016"
 	ms.author="kgremban"/>
 
 # 如何啟用原生用戶端應用程式以與 Proxy 應用程式互動
 
 > [AZURE.NOTE] 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程式，例如 SharePoint、Outlook Web Access 和自訂企業營運應用程式。它也可以用來發佈使用原生用戶端取用的 HTTP 後端應用程式。這是透過支援在標準授權 HTTP 標頭中傳送的 Azure AD 發出的權杖來實現。
+Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程式，例如 SharePoint、Outlook Web Access 和自訂企業營運應用程式。它也可以用來發佈原生用戶端應用程式，這種應用程式會安裝在裝置上，與 Web 應用程式不同。這是透過支援在標準授權 HTTP 標頭中傳送的 Azure AD 發出的權杖來實現。
 
 ![使用者、Azure Active Directory 和已發佈應用程式之間的關係](./media/active-directory-application-proxy-native-client/richclientflow.png)
 
@@ -35,11 +35,11 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 以下列方式設定原生應用程式：
 
 1. 登入 Azure 傳統入口網站。
-2. 按一下左側功能表中的 Active Directory 圖示，並按一下想要的目錄。
+2. 選取左側功能表中的 Active Directory 圖示，然後選取您的目錄。
 3. 在頂端功能表上，按一下 [**應用程式**]。如果您的目錄中尚未新增任何應用程式，此頁面僅會顯示 [新增應用程式] 連結。按一下該連結，或者您可以按一下命令列上的 [新增] 按鈕。
 4. 在 [欲執行動作] 頁面上，按一下此連結以[加入我的組織正在開發的應用程式]。
-5. 在 [告訴我們您的應用程式] 頁面上，指定您的應用程式的名稱並選擇 [原生用戶端應用程式]，其代表電話或電腦等裝置上安裝的應用程式。完成之後，按一下頁面右下角的箭頭圖示。
-6. 在 [應用程式屬性] 頁面上，提供原生用戶端應用程式的**重新導向 URI**，然後按一下頁面右下角的核取方塊。
+5. 在 [告訴我們您的應用程式] 頁面上，指定應用程式的名稱，然後選擇 [原生用戶端應用程式]。按一下箭號圖示以繼續。
+6. 在 [應用程式資訊] 頁面上，提供原生用戶端應用程式的 [重新導向 URI]，然後按一下核取記號以完成。
 
 已新增您的應用程式，而且您將會進入應用程式的 [快速啟動] 頁面。
 
@@ -80,23 +80,13 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 如需原生應用程式流程的詳細資訊，請參閱[原生應用程式到 Web API](active-directory-authentication-scenarios.md#native-application-to-web-api)。
 
 
-## 後續步驟
-應用程式 Proxy 還有其他更多用途：
+## 另請參閱
 
 - [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
-- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
-- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 - [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
+- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
+- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-### 深入了解應用程式 Proxy
-- [看看我們的線上說明](active-directory-application-proxy-enable.md)
-- [查閱應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-- [觀看我們在 Channel 9 上的影片！](http://channel9.msdn.com/events/Ignite/2015/BRK3864)
-
-## 其他資源
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [以組織方式註冊 Azure](sign-up-organization.md)
-- [Azure 身分識別](fundamentals-identity.md)
-
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->
