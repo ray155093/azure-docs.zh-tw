@@ -367,7 +367,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
             }
         }
 
-6. 設定先前程式碼中的常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 ****https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
+6. 設定先前程式碼中的常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
 
 7. 開啟 **Program.cs** 並以下列內容取代程式碼：
 

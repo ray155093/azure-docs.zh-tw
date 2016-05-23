@@ -157,7 +157,20 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| **/read | 讀取所有類型的資源 | | Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 | | Microsoft.DevTestLab/labs/formulas/delete | 刪除公式 | | Microsoft.DevTestLab/labs/formulas/write | 新增或修改公式 | | Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action | 評估實驗室原則 | | Microsoft.Compute/virtualMachines/start/action | 啟動虛擬機器 | | Microsoft.Compute/virtualMachines/restart/action | 重新啟動虛擬機器 | | Microsoft.Compute/virtualMachines/deallocate/action | 解除配置虛擬機器 | | Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 | | Microsoft.Network/virtualNetworks/subnets/join/action | 加入虛擬網路 | | Microsoft.Network/loadBalancers/backendAddressPools/join/action | 加入負載平衡器後端位址集區 | | Microsoft.Network/loadBalancers/inboundNatRules/join/action | 加入負載平衡器輸入 nat 規則 | | Microsoft.Network/publicIPAddresses/join/action | 加入公用 IP 位址 | | Microsoft.Network/networkInterfaces/join/action | 將虛擬機器加入至網路介面 | | Microsoft.Network/networkInterfaces/write | 寫入網路介面 |
+| */read | 讀取所有類型的資源 | | Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 | 
+| Microsoft.DevTestLab/labs/formulas/delete | 刪除公式 | 
+| Microsoft.DevTestLab/labs/formulas/write | 新增或修改公式 | 
+| Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action | 評估實驗室原則 | 
+| Microsoft.Compute/virtualMachines/start/action | 啟動虛擬機器 | 
+| Microsoft.Compute/virtualMachines/restart/action | 重新啟動虛擬機器 | 
+| Microsoft.Compute/virtualMachines/deallocate/action | 解除配置虛擬機器 | 
+| Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 | 
+| Microsoft.Network/virtualNetworks/subnets/join/action | 加入虛擬網路 | 
+| Microsoft.Network/loadBalancers/backendAddressPools/join/action | 加入負載平衡器後端位址集區 | 
+| Microsoft.Network/loadBalancers/inboundNatRules/join/action | 加入負載平衡器輸入 nat 規則 | 
+| Microsoft.Network/publicIPAddresses/join/action | 加入公用 IP 位址 | 
+| Microsoft.Network/networkInterfaces/join/action | 將虛擬機器加入至網路介面 | 
+| Microsoft.Network/networkInterfaces/write | 寫入網路介面 |
 
 ### Document DB 帳戶參與者
 可以管理 Document DB 帳戶
@@ -377,7 +390,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取密碼以外的所有類型資源。 | | Microsoft.Authorization/* | 讀取授權 |
+| */read | 讀取密碼以外的所有類型資源。 | 
+| Microsoft.Authorization/* | 讀取授權 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 傳統虛擬機器參與者

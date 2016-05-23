@@ -27,11 +27,11 @@
 
 ## 建立專案
 
-1. 移至 [檔案] 功能表，選取 [新增] > [專案] (或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
+1. 移至 [檔案] 功能表，選取 [新增] > [專案] \(或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
 
 2. 在對話方塊中，尋找 [雲端]，然後選取 [Azure 資源群組]。輸入 [**名稱**]，然後按一下 [**確定**]。![加入新的專案](./media/app-service-logic-deploy-from-vs/addnewproject.png)
 
-3. 您現在必須選取 [邏輯應用程式] 或 [Logic app and API app] (邏輯應用程式和 API 應用程式)。選取 [邏輯應用程式] 需要指向現有的 API。如果選取 [Logic app and API app] (邏輯應用程式和 API 應用程式)，則也可以同時建立新的空白 API 應用程式。我在本文中選取了 [邏輯應用程式]。![選取 Azure 範本](./media/app-service-logic-deploy-from-vs/selectazuretemplate.png)
+3. 您現在必須選取 [邏輯應用程式] 或 [Logic app and API app]\(邏輯應用程式和 API 應用程式)。選取 [邏輯應用程式] 需要指向現有的 API。如果選取 [Logic app and API app] \(邏輯應用程式和 API 應用程式)，則也可以同時建立新的空白 API 應用程式。我在本文中選取了 [邏輯應用程式]。![選取 Azure 範本](./media/app-service-logic-deploy-from-vs/selectazuretemplate.png)
 
 4. 選取 [範本] 之後，按一下 [確定]。
 

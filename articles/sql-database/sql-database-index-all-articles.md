@@ -343,7 +343,7 @@
 | 172 | [Azure SQL Database 資源限制](sql-database-resource-limits.md) | 此頁面描述一些 Azure SQL Database 常見的資源限制。 |
 | 173 | [Azure SQL Database Transact-SQL 差異](sql-database-transact-sql-information.md) | 在 Azure SQL Database 中未完整支援 Transact-SQL 陳述式 |
 | 174 | [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md) | 列出用戶端程式可用來連接到 Azure SQL Database 或 Microsoft SQL Server 之每個驅動程式的最低版本號碼。連結所提供的驅動程式版本資訊，是由社群 (而不是由 Microsoft) 所發行。 |
-| 175 | [使用篩選器搜尋](https://azure.microsoft.com/zh-TW/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
+| 175 | [使用篩選器搜尋](https://azure.microsoft.com/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
 
 
 ## 其他資訊

@@ -35,7 +35,7 @@ ms.service="virtual-machines-linux"
 
 * **Azure CLI 指令碼** - 如同本文中其他部分的步驟所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI)，建置虛擬網路部署的指令碼和其他必要元件以建立 A8 或 A9 大小的 Linux VM 叢集。服務管理模式中的 CLI 將循序在傳統部署模型中建立叢集節點，因此如果您正在部署許多計算節點，則可能需要花費幾分鐘才能完成部署。
 
-* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
+* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
 
 ## 傳統模型中的範例部署
 

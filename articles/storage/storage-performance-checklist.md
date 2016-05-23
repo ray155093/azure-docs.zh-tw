@@ -185,7 +185,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 
 	ThreadPool.SetMinThreads(100,100); //(Determine the right number for your application)  
 
-如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法] (http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
+如需詳細資訊，請參閱 [ThreadPool.SetMinThreads 方法](http://msdn.microsoft.com/library/system.threading.threadpool.setminthreads(v=vs.110).aspx))。
 
 ####<a name="subheading11"></a>充分運用 .NET 4.5 記憶體回收
 在用戶端應用程式中使用 .NET 4.5 或更新版本，以便在伺服器記憶體回收中充分運用效能改善。

@@ -31,8 +31,8 @@
 |---:|---|---|
 |![Azure 虛擬機器上的 SQL Server](./media/virtual-machines-windows-sql-server-iaas-overview/sql-server-virtual-machine.png)|[Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)|在 Azure 虛擬機器上執行 SQL Server。在零售版 SQL Server 上直接管理虛擬機器，並執行您的資料庫。 |
 |![SQL Database](./media/virtual-machines-windows-sql-server-iaas-overview/azure-sql-database.png)|[SQL Database](https://azure.microsoft.com/services/sql-database/)|使用 SQL Database 服務來存取及調整您的資料庫，而無需管理基礎結構。|
-|![SQL 資料倉儲](./media/virtual-machines-windows-sql-server-iaas-overview/azure-sql-data-warehouse.png)|[SQL 資料倉儲](https://azure.microsoft.com/zh-TW/services/sql-data-warehouse/)|使用 Azure SQL 資料倉儲來處理大量的關聯式與非關聯式資料。提供可調整的資料倉儲功能，做為一項服務。|
-|![SQL Server Stretch Database](./media/virtual-machines-windows-sql-server-iaas-overview/sql-server-stretch-database.png)|[SQL Server Stretch Database](https://azure.microsoft.com/zh-TW/services/sql-server-stretch-database/)|以動態方式將內部部署交易資料從 Microsoft SQL Server 2016 延展到 Azure。|
+|![SQL 資料倉儲](./media/virtual-machines-windows-sql-server-iaas-overview/azure-sql-data-warehouse.png)|[SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)|使用 Azure SQL 資料倉儲來處理大量的關聯式與非關聯式資料。提供可調整的資料倉儲功能，做為一項服務。|
+|![SQL Server Stretch Database](./media/virtual-machines-windows-sql-server-iaas-overview/sql-server-stretch-database.png)|[SQL Server Stretch Database](https://azure.microsoft.com/services/sql-server-stretch-database/)|以動態方式將內部部署交易資料從 Microsoft SQL Server 2016 延展到 Azure。|
 
 >[AZURE.NOTE] 如需 SQL VM 和 SQL Database 的完整比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/data-management-azure-sql-database-and-sql-server-iaas.md)。
 
