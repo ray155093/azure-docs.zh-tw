@@ -13,14 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/20/2016"
+   ms.date="05/16/2016"
    ms.author="mausher;barbkess;sonyama"/>
 
 # 使用 SQLCMD 連接及查詢
 
 > [AZURE.SELECTOR]
-- [Visual Studio](sql-data-warehouse-get-started-connect.md)
-- [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
+- [Visual Studio][]
+- [SQLCMD][]
 
 本逐步解說將示範使用 sqlcmd.exe 公用程式在短時間內連接和查詢 Azure SQL 資料倉儲資料庫的方式。在本逐步解說中，您將：
 
@@ -30,13 +30,13 @@
 
 ## 必要條件
 
-+ [sqlcmd.exe](https://msdn.microsoft.com/library/azure/ms162773.aspx) - 若要下載 sqlcmd.exe，請參閱 [適用於 SQL Server 的 Microsoft 命令列公用程式 11](http://go.microsoft.com/fwlink/?LinkId=321501)。
++ 若要下載 [sqlcmd.exe][]，請參閱[適用於 SQL Server 的 Microsoft 命令列公用程式 11][]。
 
 ## 取得您的完整 Azure SQL 伺服器名稱
 
-若要連接至您的資料庫，需要包含您想連接之資料庫的伺服器完整名稱 (**servername**.database.windows.net*)。
+若要連接至您的資料庫，需要包含您想連接之資料庫的伺服器完整名稱 (****servername**.database.windows.net*)。
 
-1. 移至 [Azure 入口網站](https://portal.azure.com)。
+1. 移至 [Azure 入口網站][]。
 2. 瀏覽至您想連接的資料庫。
 3. 找出完整的伺服器名稱 (我們將在下列步驟中使用此名稱)：
 
@@ -70,17 +70,27 @@ C:\>sqlcmd -S <Server Name>.database.windows.net -d <Database> -U <User> -P <Pas
 3> QUIT
 ```
 
-如需 sqlcmd 的其他資訊，請參閱 [sqlcmd 文件](https://msdn.microsoft.com/library/azure/ms162773.aspx)。
+如需 sqlcmd 的其他資訊，請參閱 [sqlcmd 文件][sqlcmd.exe]。
 
 
 ## 後續步驟
 
 您現在可以連接並查詢，請嘗試[使用 PowerBI 連接][]。
 
-[使用 PowerBI 連接]: ./sql-data-warehouse-integrate-power-bi.md
+若要針對 Windows 驗證設定您的環境，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲][]。
 
+<!--Articles-->
+[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲]: ../sql-database/sql-database-aad-authentication.md
+[使用 PowerBI 連接]: ./sql-data-warehouse-integrate-power-bi.md
+[Visual Studio]: ./sql-data-warehouse-get-started-connect.md
+[SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
+
+<!--Other-->
+[sqlcmd.exe]: https://msdn.microsoft.com/zh-TW/library/ms162773.aspx
+[適用於 SQL Server 的 Microsoft 命令列公用程式 11]: http://go.microsoft.com/fwlink/?LinkId=321501
+[Azure 入口網站]: https://portal.azure.com
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-get-started-connect/get-server-name.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

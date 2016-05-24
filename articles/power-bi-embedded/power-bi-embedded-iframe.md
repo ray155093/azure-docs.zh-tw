@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="05/06/2016"
+   ms.date="05/16/2016"
    ms.author="derrickv"/>
 
 # 使用 IFrame 內嵌 Power BI 報告
@@ -180,6 +180,40 @@ function postActionLoadReport() {
     iframe.contentWindow.postMessage(message, "*");
 }
 ```
+在報告內嵌到您的應用程式之後，您就可以篩選此報告。下一節說明如何使用 URL 語法篩選報告。
+
+## 篩選報告
+
+您可以使用 URL 語法，篩選內嵌的報表。若要這樣做，請將查詢字串參數加入含指定篩選的 iFrame src URL。您可以 [依值篩選] 和 [隱藏篩選窗格]。
+
+
+**依值篩選**
+
+若要依某個值篩選，請使用 **$filter** 查詢語法搭配 **eq** 運算子，如下所示︰
+
+```
+https://app.powerbi.com/reportEmbed
+?reportId=d2a0ea38-0694-...-ee9655d54a4a&
+$filter={tableName/fieldName}%20eq%20'{fieldValue}'
+```
+
+例如，您可以篩選 Store Chain 是 'Lindseys' 的地方。url 的篩選部分如下所示：
+
+```
+$filter=Store/Chain%20eq%20'Lindseys'
+```
+
+> [AZURE.NOTE] {表格名稱/欄位名稱} 不能包含空格或特殊字元。{欄位值} 接受單一類別目錄值。
+
+**隱藏篩選窗格**
+
+若要隱藏 [篩選窗格]，請將 **filterPaneEnabled** 加入至報告查詢字串，如下所示︰
+
+```
+&filterPaneEnabled=false
+```
+
+## 結論
 
 在本文中，為您介紹將 **Power BI** 報告整合到您的應用程式的程式碼。若要快速開始將報告整合到應用程式，請下載 GitHub 上的這些範例︰
 
@@ -194,4 +228,4 @@ function postActionLoadReport() {
 - [System.IdentityModel.Tokens.JwtSecurityTokenHandler](https://msdn.microsoft.com/library/system.identitymodel.tokens.signingcredentials.aspx)
 - [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

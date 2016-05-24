@@ -150,7 +150,7 @@
 ## 編輯程式碼來新增 API 實作
 在本節中，您將使用您自訂的程式碼，來取代編輯器所產生程式碼的伺服器端實作。新的程式碼會把連絡人實體的 ArrayList 傳回給呼叫中的用戶端。
 
-1. 使用 [Visual Studio Code](https://code.visualstudio.com) 或您偏好的文字編輯器，來開啟 *Contact.java* 模型檔案 (位於 *src/gen/java/io/swagger/model* 資料夾)。 
+1. 使用 [Visual Studio Code](https://code.visualstudio.com) 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。 
 
     ![開啟連絡人模型檔案](media/app-service-api-java-api-app/open-contact-model-file.png)
 
@@ -163,7 +163,7 @@
 			this.emailAddress = email;
 		}
 
-1. 使用 [Visual Studio Code](https://code.visualstudio.com) 或您偏好的文字編輯器，來開啟 *ContactsApiServiceImpl.java* 服務實作檔案 (位於 *src/main/java/io/swagger/api/impl* 資料夾)。
+1. 使用 [Visual Studio Code](https://code.visualstudio.com) 或您偏好的文字編輯器，來開啟「ContactsApiServiceImpl.java」服務實作檔案 (位於「src/main/java/io/swagger/api/impl」資料夾)。
 
     ![開啟連絡人服務程式碼](media/app-service-api-java-api-app/open-contact-service-code-file.png)
 
@@ -241,7 +241,7 @@
 
 		mvn package war:war
 		
-	當 WAR 檔案建立之後，將會放入 [target] 資料夾。瀏覽至 [target] 資料夾，然後將 WAR 檔案重新命名為「ROOT.war」(請確定字母的大小寫符合這個格式)。
+	當 WAR 檔案建立之後，將會放入 [target] 資料夾。瀏覽至 [target] 資料夾，然後將 WAR 檔案重新命名為 **ROOT.war** (請確定字母的大小寫符合這個格式)。
 	
 		rename swagger-jaxrs-server-1.0.0.war ROOT.war
 		
@@ -283,17 +283,17 @@
 		git remote add azure [YOUR GIT URL]		
 		git push azure master
 		
-	當您發出「推送」要求之後，系統會詢問您之前為部署認證所建立的密碼。如果您輸入密碼，應該就會看到您的入口網站顯示更新已經抵達，且已經部署。
+	當您發出**推送**要求之後，系統會詢問您之前為部署認證所建立的密碼。如果您輸入密碼，應該就會看到您的入口網站顯示更新已經抵達，且已經部署。
 		
 1. 如果您再次使用 Postman 來叫用您剛部署，且在 Azure App Service 中執行的新 API 應用程式，就會看到行為是一致的，且現在它會如預期般傳回連絡人資料，還會對以 Swagger.io 建構的 Java 程式碼進行簡單的程式碼變更。
 
 	![在 Azure 中即時使用您的 Java 連絡人 REST API](media/app-service-api-java-api-app/postman-calling-azure-contacts.png)
 	
 ## 後續步驟
-在這篇文章中，您從 Swagger JSON 檔案和一些利用 Swagger.io 編輯器建構的 Java 程式碼開始，然後您做的簡單變更和 Git 部署程序，讓您得到以 Java 撰寫的實用 API 應用程式。API Apps 入門系列中的下一個教學課程示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。
+在這篇文章中，您從 Swagger JSON 檔案和一些利用 Swagger.io 編輯器建構的 Java 程式碼開始，然後您做的簡單變更和 Git 部署程序，讓您得到以 Java 撰寫的實用 API 應用程式。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
 
 為了根據此範例進行建置，您可以深入了解 [Storage SDK for Java](../storage/storage-java-how-to-use-blob-storage.md) 來保存 JSON blob。或者，您可以使用 [Document DB Java SDK](../documentdb/documentdb-java-application.md) 來將您的連絡人資料儲存到 Azure Document DB。
 
 如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [ 開發人員中心](/develop/java/)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

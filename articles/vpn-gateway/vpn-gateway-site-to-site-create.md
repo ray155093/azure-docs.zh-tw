@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/02/2016"
+   ms.date="05/13/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路
@@ -27,17 +27,20 @@
 
 本文將逐步引導您建立虛擬網路以及內部部署網路的站對站 VPN 連線。站對站連線可以用於跨部署與混合式組態。本文適用於傳統部署模型並且會使用 Azure 傳統入口網站。
 
+
 **關於 Azure 部署模型**
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+## 連接圖表
  
 ![站對站圖表](./media/vpn-gateway-site-to-site-create/site2site.png "站對站")
 
 **站對站連線的部署模型和工具**
 
 [AZURE.INCLUDE [vpn-gateway-table-site-to-site](../../includes/vpn-gateway-table-site-to-site-include.md)]
- 
-如果您想要將 Vnet 連接在一起，但不要建立內部部署位置的連線，請參閱[設定傳統部署模型的 VNet 對 VNet 連線](virtual-networks-configure-vnet-to-vnet-connection.md)或[設定資源管理員部署模型的 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。
+
+如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定傳統部署模型的 VNet 對 VNet 連線](virtual-networks-configure-vnet-to-vnet-connection.md)。如果您要尋找不同類型的連線組態，請參閱 [VPN 閘道連線拓撲](vpn-gateway-topology.md)一文。
 
  
 ## 開始之前
@@ -109,4 +112,4 @@
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱[虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

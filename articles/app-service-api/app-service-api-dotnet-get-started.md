@@ -107,7 +107,7 @@
 
 ## 使用 Swagger 中繼資料和 UI
 
-Azure App Service 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼資料。每個 API 應用程式都會指定負責以 Swagger JSON 格式傳回 API 中繼資料的 URL 端點。從該端點傳回的中繼資料可以用來產生用戶端程式碼。
+Azure App Service 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼資料。每個 API 應用程式都可以指定會以 Swagger JSON 格式傳回 API 中繼資料的 URL 端點。從該端點傳回的中繼資料可以用來產生用戶端程式碼。
 
 ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/Swashbuckle) NuGet 封裝，動態產生 Swagger 中繼資料。Swashbuckle NuGet 封裝已安裝在您所下載的 ToDoListDataAPI 和 ToDoListAPI 專案中。
 
@@ -531,6 +531,6 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但是您要將其刪除�
 
 ## 後續步驟
 
-在本教學課程中，您已了解如何建立 API 應用程式、對其部署程式碼、為其產生用戶端程式碼，以及從 .NET 用戶端取用應用程式。API Apps 入門系列中的下一個教學課程示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
+在本教學課程中，您已了解如何建立 API 應用程式、對其部署程式碼、為其產生用戶端程式碼，以及從 .NET 用戶端取用應用程式。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

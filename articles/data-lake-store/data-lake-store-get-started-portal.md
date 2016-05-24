@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/07/2016"
+   ms.date="05/11/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站開始使用 Azure 資料湖分析
@@ -44,6 +44,13 @@
 3. 在 [新增資料湖存放區] 刀鋒視窗中，按一下 [註冊使用預覽版]。閱讀資訊，然後按一下 [**確定**]。您的訂用帳戶已啟用公開預覽版之後，您會收到一封電子郵件。
 
 	![註冊以取得公開預覽版](./media/data-lake-store-get-started-portal/preview-signup.png "建立新的 Azure 資料湖帳戶")
+
+## 使用影片快速學習？
+
+請觀看下列影片以開始使用 Data Lake Store。
+
+* [建立 Data Lake Store 帳戶](https://mix.office.com/watch/1k1cycy4l4gen)
+* [使用資料總管來管理 Azure Data Lake Store 中的資料](https://mix.office.com/watch/icletrxrh6pc)
 
 ## 建立 Azure 資料湖存放區帳戶
 
@@ -130,4 +137,4 @@
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

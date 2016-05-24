@@ -5,7 +5,7 @@
     documentationCenter=""
     authors="mgoedtel"
     manager="jwhit"
-    editor="jwhit"
+    editor=""
 	keywords="azure powershell, powershell 指令碼教學課程, powershell 自動化"/>
 <tags
     ms.service="automation"
@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="05/10/2016"
+    ms.date="05/16/2016"
     ms.author="magoedte;sngun"/>
 
 # 我的第一個 PowerShell Runbook
@@ -58,7 +58,7 @@
 1.	按一下 [測試窗格] 來開啟 [測試] 窗格。
 ![測試窗格](media/automation-first-runbook-textual-powershell/automation-testpane.png)  
 2.	按一下 [開始] 以開始測試。這應該是唯一啟用的選項。
-3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並顯示其狀態。工作狀態會從「已排入佇列」開始，表示等候雲端中的 Runbook 背景工作可供使用。然後當背景工作宣告該工作時，狀態將變更為*正在開始*，然後 Runbook 實際開始執行時再變更為「執行中」。  
+3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並顯示其狀態。工作狀態會從「已排入佇列」開始，表示等候雲端中的 Runbook 背景工作可供使用。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
 4.	Runbook 工作完成時，會顯示其輸出。在我們的情況中，我們應該會看到「Hello World」。
 ![測試窗格輸出](media/automation-first-runbook-textual-powershell/automation-testpane-output.png)  
 5.	關閉 [測試] 窗格以返回畫布。
@@ -93,13 +93,13 @@
 3.	輸入或是複製並貼上下列程式碼，此程式碼會處理您的自動化執行身分帳戶的驗證︰
 
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection `
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
     ``` 
 <br>
 4.	按一下 [測試] 窗格，我們便可以測試 Runbook。
-5.	按一下 [開始] 以開始測試。當它完成時，您應該會收到包含帳戶之環境和訂用帳戶識別碼的輸出。這可確認認證有效。
+5.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual-powershell/runbook-auth-results.png)
 
 ## 步驟 6 - 加入程式碼以啟動虛擬機器
 
@@ -108,7 +108,7 @@
 1.	在「Add-AzureRmAccount」後面輸入「Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'NameofResourceGroup'」，提供要啟動之虛擬機器的名稱和資源群組名稱。  
     
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection `
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationID `$Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint 
      Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'ResourceGroupName'
@@ -128,7 +128,7 @@
        [string]$VMName,
        [string]$ResourceGroupName
     )
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection `
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationID `$Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint 
      Start-AzureRmVM -Name $VMName -ResourceGroupName $ResourceGroupName
@@ -138,7 +138,7 @@
 3.	關閉 [測試] 窗格。
 4.	按一下 [發佈] 來發行新版本的 Runbook。
 5.	停止您在上一個步驟中啟動的虛擬機器。
-6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。
+6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。  
 	![傳遞參數](media/automation-first-runbook-textual-powershell/automation-pass-params.png)  
 7.	Runbook 完成時，請檢查虛擬機器已啟動。
 
@@ -158,4 +158,4 @@ PowerShell Runbook 的生命週期、功能和管理與 PowerShell 工作流程 
 -	若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 -	如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

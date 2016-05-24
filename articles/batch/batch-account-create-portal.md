@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/18/2016"
+	ms.date="05/12/2016"
 	ms.author="marsma"/>
 
 # 在 Azure 入口網站中建立和管理 Azure Batch 帳戶
@@ -30,7 +30,7 @@
 
 1. 登入 [Azure 入口網站][azure_portal]。
 
-2. 按一下 [**新增**] > [**計算**] > [**Batch 服務**]。
+2. 按一下 [新增] > [計算] > [Batch 服務]。
 
 	![Marketplace 中的批次][marketplace_portal]
 
@@ -38,39 +38,39 @@
 
 	![Azure 入口網站中的 Batch 服務建立刀鋒視窗][3]
 
-4. [新增 Batch 帳戶] 刀鋒視窗隨即出現。請參閱以下的項目 a 到 e*e*，以取得每個刀鋒視窗元素的說明。
+4. [新增 Batch 帳戶] 刀鋒視窗隨即出現。請參閱以下的項目「a」到「e」，以取得每個刀鋒視窗元素的說明。
 
     ![建立批次帳戶：][account_portal]
 
-	a.帳戶名稱 -- 為 Batch 帳戶指定唯一的名稱。此名稱必須是建立帳戶的 Azure 區域內的唯一名稱 (請參閱下面的「位置」)。它只能包含小寫字元、數字，且長度必須為 3-24 個字元。
+	a.**帳戶名稱** -- 為 Batch 帳戶指定唯一的名稱。此名稱必須是建立帳戶的 Azure 區域內的唯一名稱 (請參閱下面的「位置」)。它只能包含小寫字元、數字，且長度必須為 3-24 個字元。
 
-	b.訂用帳戶 -- 選取要在其中建立 Batch 帳戶的訂用帳戶。如果您只有一個訂用帳戶，則預設會選取此項目。
+	b.**訂用帳戶** -- 選取要在其中建立 Batch 帳戶的訂用帳戶。如果您只有一個訂用帳戶，則預設會選取此項目。
 
-	c.資源群組 -- 選取新的 Batch 帳戶的資源群組，如果您的訂用帳戶中沒有資源群組，則建立一個新的。
+	c.**資源群組** -- 選取新的 Batch 帳戶的資源群組，如果您的訂用帳戶中沒有資源群組，則建立一個新的。
 
-	d.位置 -- 選取要在其中建立 Batch 帳戶的 Azure 區域。只有您的訂用帳戶和資源群組所支援的區域會顯示為選項。
+	d.**位置** -- 選取要在其中建立 Batch 帳戶的 Azure 區域。只有您的訂用帳戶和資源群組所支援的區域會顯示為選項。
 
-    e.儲存體帳戶 (選用) -- 您可以將儲存體帳戶關聯 (連結) 至新的 Batch 帳戶。Batch 的[應用程式封裝](batch-application-packages.md)會在應用程式封裝的儲存和擷取作業中使用連結的儲存體帳戶。如需此功能的詳細資訊，請參閱[使用 Azure Batch 應用程式封裝部署應用程式](batch-application-packages.md)。
+    e.**儲存體帳戶** (選用) -- 您可以將**一般用途**的儲存體帳戶關聯 (連結) 至新的 Batch 帳戶。Batch 的[應用程式封裝](batch-application-packages.md)會在應用程式封裝的儲存和擷取作業中使用連結的儲存體帳戶。如需此功能的詳細資訊，請參閱[使用 Azure Batch 應用程式封裝部署應用程式](batch-application-packages.md)。
 
      > [AZURE.TIP] 在連結的儲存體帳戶中重新產生金鑰需要特殊的考量。如需詳細資訊，請參閱以下 [ Batch 帳戶的考量](#considerations-for-batch-accounts)。
 
 5. 按一下 [建立] 來建立帳戶。
 
-  入口網站會表示它正在「部署」帳戶，而 [Batch 帳戶] 刀鋒視窗會在完成時顯示。
+  入口網站會表示它正在**部署**帳戶，而 [Batch 帳戶] 刀鋒視窗會在完成時顯示。
 
 ## 檢視 Batch 帳戶屬性
 
 Batch 帳戶刀鋒視窗會顯示帳戶的數個屬性，以及可供存取額外的設定，例如存取金鑰、配額、使用者和儲存體帳戶關聯。
 
-* Batch 帳戶 URL -- 當您使用 [Batch REST][api_rest] API 或 [Batch .NET][api_net] 用戶端程式庫時，此 URL 可供存取您的 Batch 帳戶，並符合下列格式︰
+* **Batch 帳戶 URL** -- 當您使用 [Batch REST][api_rest] API 或 [Batch .NET][api_net] 用戶端程式庫時，此 URL 可供存取您的 Batch 帳戶，並符合下列格式︰
 
   `https://<account_name>.<region>.batch.azure.com`
 
-* 存取金鑰 -- 若要檢視及管理 Batch 帳戶的存取金鑰，請按一下金鑰圖示來開啟 [管理金鑰] 刀鋒視窗，或按一下 [所有設定] > [金鑰]。與 Batch 服務 API (例如 [Batch REST][api_rest] 或 [Batch .NET][api_net] 用戶端程式庫) 通訊時，需要有存取金鑰。
+* **存取金鑰** -- 若要檢視及管理 Batch 帳戶的存取金鑰，請按一下金鑰圖示來開啟 [管理金鑰] 刀鋒視窗，或按一下 [所有設定] > [金鑰]。與 Batch 服務 API (例如 [Batch REST][api_rest] 或 [Batch .NET][api_net] 用戶端程式庫) 通訊時，需要有存取金鑰。
 
  ![Batch 帳戶金鑰][account_keys]
 
-* 所有設定 -- 若要管理 Batch 帳戶的所有設定，或要檢視其屬性，請按一下 [所有設定] 以開啟 [設定] 刀鋒視窗。此刀鋒視窗可供存取帳戶的所有設定和屬性，包括檢視帳戶配額、選取要連結到 Batch 帳戶的 Azure 儲存體帳戶，以及管理使用者。
+* **所有設定** -- 若要管理 Batch 帳戶的所有設定，或要檢視其屬性，請按一下 [所有設定] 以開啟 [設定] 刀鋒視窗。此刀鋒視窗可供存取帳戶的所有設定和屬性，包括檢視帳戶配額、選取要連結到 Batch 帳戶的 Azure 儲存體帳戶，以及管理使用者。
 
  ![Batch 帳戶設定和屬性刀鋒視窗][5]
 
@@ -84,9 +84,11 @@ Batch 帳戶刀鋒視窗會顯示帳戶的數個屬性，以及可供存取額�
 
 * 如果您執行數個大型的 Batch 工作負載，請注意適用於您的 Azure 訂用帳戶和每個 Batch 帳戶的特定 [Batch 服務配額和限制](batch-quota-limit.md)。目前 Batch 帳戶的配額會出現在入口網站的帳戶內容。
 
-* 如果您將儲存體帳戶與 Batch 帳戶產生關聯，在重新產生儲存體帳戶存取金鑰時，請務必小心。您應該只重新產生單一儲存體帳戶金鑰，請按一下連結的儲存體帳戶刀鋒視窗中上的 [同步金鑰]，等候 5 分鐘，讓金鑰傳播至您的集區中的計算節點，然後重新產生並同步處理其他金鑰 (如有必要)。如果您同時重新產生這兩個金鑰，計算節點將無法同步處理任何一個金鑰，而且將無法存取儲存體帳戶。
+* 如果您將儲存體帳戶與 Batch 帳戶產生關聯 (連結)，在重新產生儲存體帳戶存取金鑰時，請務必小心。您應該只重新產生單一儲存體帳戶金鑰，請按一下連結的儲存體帳戶刀鋒視窗中上的 [同步金鑰]，等候 5 分鐘，讓金鑰傳播至您的集區中的計算節點，然後重新產生並同步處理其他金鑰 (如有必要)。如果您同時重新產生這兩個金鑰，計算節點將無法同步處理任何一個金鑰，而且將無法存取儲存體帳戶。
 
   ![重新產生儲存體帳戶金鑰][4]
+
+> [AZURE.IMPORTANT] Batch 目前「只」支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。當您將 Azure 儲存體帳戶連結至 Batch 帳戶時，請「只」連結**一般用途**的儲存體帳戶。
 
 ## 後續步驟
 
@@ -107,4 +109,4 @@ Batch 帳戶刀鋒視窗會顯示帳戶的數個屬性，以及可供存取額�
 [account_portal]: ./media/batch-account-create-portal/batch_acct_portal.png
 [account_keys]: ./media/batch-account-create-portal/account_keys.PNG
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/19/2016"
+   ms.date="05/11/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -64,7 +64,7 @@
 |**China Telecom Global** | 支援 | 不支援 | 香港 |
 |**Cologix** | 支援 | 敬請期待 | 蒙特婁+、多倫多 |
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** | 支援 | 支援 | 阿姆斯特丹、都柏林、倫敦 |
-| **Comcast** | 支援 | 支援 | 矽谷、華盛頓特區 |
+| **Comcast** | 支援 | 支援 | 芝加哥、矽谷、華盛頓特區 |
 | **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** | 支援 | 支援 | 洛杉磯 | 
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** | 支援 | 支援 | 阿姆斯特丹 |
@@ -79,7 +79,7 @@
 | **NTT Communications** | 支援 | 支援 | 倫敦、大阪、東京 |
 | **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、華盛頓特區 |
 | **PCCW Global Limited** | 支援 | 支援 | 香港 |
-| **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 不支援 | 新加坡 |
+| **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 支援 | 新加坡 |
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
 | **[Tata Communications](http://www.tatacommunications.com/lp/izo/azure/azure_index.html)** | 支援 | 支援 | 阿姆斯特丹、辰內、香港、倫敦、孟買、矽谷、新加坡、華盛頓特區 |
 | **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
@@ -134,7 +134,7 @@
 - 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
 	- 依照[建立 ExpressRoute 循環](expressroute-howto-circuit-classic.md)中的步驟來設定連線。
 
-|**連線提供者**|**Exchange**|**對等互連位置**|
+|**連線提供者**|**Exchange**|**位置**|
 |---|---|---|
 |**Alaska Communications**|Equinix|Seattle|
 |**[XO 通訊](http://www.xo.com/)**|Equinix|矽谷|
@@ -157,4 +157,4 @@
 - 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 - 請確定符合所有必要條件。請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

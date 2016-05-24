@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/05/2016"
+	ms.date="05/11/2016"
 	ms.author="glenga"/>
 
 
@@ -28,7 +28,7 @@
 
 本教學課程顯示如何使用 Azure 行動服務，將雲端型後端服務新增到通用 Windows 應用程式。通用 Windows 應用程式解決方案包括 Windows 市集 8.1 和 Windows Phone 市集 8.1 應用程式的專案，以及一般共用專案。如需詳細資訊，請參閱[建置目標為 Windows 和 Windows Phone 的通用 Windows 應用程式](http://msdn.microsoft.com/library/windows/apps/xaml/dn609832.aspx)。
 
-在本教學課程中，您將建立新的行動服務，並建立可在新的行動服務中儲存應用程式資料的簡單*待辦事項*應用程式。您所將建立的行動服務，會使用 Visual Studio 與支援的 .NET 語言撰寫伺服器端商務邏輯，並管理行動服務。若要建立可讓您以 JavaScript 撰寫伺服器端商務邏輯的行動服務，請參閱本主題的 JavaScript 後端版本。
+在本教學課程中，您將建立新的行動服務，並建立可在新的行動服務中儲存應用程式資料的簡單 *待辦事項* 應用程式。您所將建立的行動服務，會使用 Visual Studio 與支援的 .NET 語言撰寫伺服器端商務邏輯，並管理行動服務。若要建立可讓您以 JavaScript 撰寫伺服器端商務邏輯的行動服務，請參閱本主題的 JavaScript 後端版本。
 
 >[AZURE.NOTE]本主題將說明如何使用 Azure 傳統入口網站來建立新的行動服務專案和通用的 Windows 應用程式。使用 Visual Studio 2013 Update 3，可讓您將新的行動服務專案新增至現有的 Visual Studio 方案。如需詳細資訊，請參閱[將行動服務新增至現有的應用程式](mobile-services-dotnet-backend-windows-universal-dotnet-get-started-data.md)。
 
@@ -59,7 +59,7 @@
 
   	![行動服務快速入門步驟](./media/mobile-services-dotnet-backend-windows-store-dotnet-get-started/mobile-quickstart-steps.png)
 
-3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013] (如果您尚未這麼做)。
+3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013] \(如果您尚未這麼做)。
 
 4. 在 [Download and run your app and service locally] 中，選取 Windows 市集應用程式的語言，然後按一下 [下載]。
 
@@ -98,16 +98,16 @@
 請注意，您已完成快速入門，並了解如何執行行動服務中的其他重要工作：
 
 * [將行動服務新增至現有的應用程式][Get started with data] 
-<br/>深入了解使用行動服務來儲存與查詢資料。
+  <br/>深入了解使用行動服務來儲存與查詢資料。
 
-* [開始使用離線資料同步] 
+* [開始使用離線資料同步]
   <br/>了解如何使用離線資料同步功能來讓應用程式的反應更快，且更健全。
 
 * [在您的行動服務應用程式中新增驗證功能][Get started with authentication] 
-<br/>了解如何利用身分識別提供者來驗證您應用程式的使用者。
+  <br/>了解如何利用身分識別提供者來驗證您應用程式的使用者。
 
 * [將推播通知新增至您的應用程式][Get started with push notifications] 
-<br/>了解如何將非常基本的推播通知傳送至應用程式。
+  <br/>了解如何將非常基本的推播通知傳送至應用程式。
 
 * [行動服務 .NET 後端疑難排解]
   <br/> 了解如何診斷及修復行動服務 .NET 後端可能發生的問題。
@@ -125,14 +125,13 @@
 <!-- URLs. -->
 [Visual Studio 2013]: https://go.microsoft.com/fwLink/p/?LinkID=257546
 [Get started with data]: mobile-services-dotnet-backend-windows-universal-dotnet-get-started-data.md
-[Get started with data]: ../mobile-services-dotnet-backend-windows-store-dotnet-get-started-data.md
 [開始使用離線資料同步]: mobile-services-windows-store-dotnet-get-started-offline-data.md
-[Get started with authentication]: ../mobile-services-dotnet-backend-windows-store-dotnet-get-started-users.md
-[Get started with push notifications]: ../mobile-services-dotnet-backend-windows-store-dotnet-get-started-push.md
+[Get started with authentication]: mobile-services-dotnet-backend-windows-universal-dotnet-get-started-users.md
+[Get started with push notifications]: mobile-services-dotnet-backend-windows-universal-dotnet-get-started-push.md
 [Visual Studio Professional 2013]: https://go.microsoft.com/fwLink/p/?LinkID=257546
 [Mobile Services SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [JavaScript and HTML]: mobile-services-win8-javascript/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

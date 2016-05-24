@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/13/2016"
+   ms.date="05/11/2016"
    ms.author="nitinme"/>
 
 # Azure 資料湖存放區概觀
@@ -67,11 +67,18 @@ Azure 資料湖存放區會使用 Azure Active Directory 進行驗證，並使�
 | 驗證 | Azure 資料湖存放區整合了 Azure Active Directory (AAD)，可對 Azure 資料湖存放區中儲存的所有資料進行身分識別與存取管理。由於整合的結果，Azure 資料湖受惠於所有的 AAD 功能，包括 Multi-Factor Authentication、條件式存取、角色型存取控制、應用程式使用情況監視、安全性監視和警示等。Azure 資料湖存放區支援 OAuth 2.0 通訊協定以便在 REST 介面中進行驗證。 |
 | 存取控制 | Azure 資料湖存放區藉由支援 WebHDFS 通訊協定所公開的 POSIX 樣式權限，以提供存取控制。在目前的版本中，權限可於資料湖層級指定並套用到資料湖中的所有檔案和資料夾。在未來的更新中，我們將允許在個別檔案和資料夾上指定權限，以達到更細緻的存取控制。|
 
-如需有關如何在資料湖存放區中保護資料的指示，請參閱[在 Azure 資料湖存放區中保護資料](data-lake-store-secure-data.md)。
+想要深入了解如何保護 Data Lake Store中的資料。請依照下列連結執行。
+
+* 如需有關如何在資料湖存放區中保護資料的指示，請參閱[在 Azure 資料湖存放區中保護資料](data-lake-store-secure-data.md)。
+* 偏好影片？ [觀看這段影片](https://mix.office.com/watch/1q2mgzh9nn5lx)以了解如何保護 Data Lake Store 中儲存的資料。
 
 ## 與 Azure 資料湖存放區相容的應用程式
 
-如需可與 Azure 資料湖存放區互通的開放原始碼應用程式清單，請參閱[與 Azure 資料湖存放區相容的應用程式和服務](data-lake-store-compatible-oss-other-applications.md)。請參閱[與其他 Azure 服務整合](data-lake-store-integrate-with-other-services.md)，以了解 Azure 資料湖存放區如何與其他 Azure 服務一起使用，以促成更廣泛的案例。
+Azure Data Lake Store 與 Hadoop 生態系統中的大多數開放原始碼元件相容。此外，還與其他 Azure 服務完美整合。這讓 Data Lake Store 成為針對您的資料儲存需求的最佳選項。請遵循下列連結，深入了解 Data Lake Store 如何搭配開放原始碼元件及其他 Azure 服務使用。
+
+* 如需可與 Data Lake Store 互通的開放原始碼應用程式清單，請參閱[與 Azure Data Lake Store 相容的應用程式和服務](data-lake-store-compatible-oss-other-applications.md)。
+* 請參閱[與其他 Azure 服務整合](data-lake-store-integrate-with-other-services.md)，以了解 Azure 資料湖存放區如何與其他 Azure 服務一起使用，以促成更廣泛的案例。
+* 請參閱[使用 Data Lake Store 的案例](data-lake-store-data-scenarios.md)，以了解如何在擷取資料、處理資料、下載資料和視覺化資料等案例中使用 Data Lake Store。
 
 ## 什麼是 Azure 資料湖存放區檔案系統 (adl://)?
 
@@ -87,4 +94,20 @@ Azure 資料湖存放區會使用 Azure Active Directory 進行驗證，並使�
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 - [使用 .NET SDK 開始使用 Azure 資料湖存放區](data-lake-store-get-started-net-sdk.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+
+## Data Lake Store 影片
+
+如果您偏好藉由觀看影片來學習，Data Lake Store 提供了各種功能的影片。
+
+* [建立 Azure Data Lake Store 帳戶](https://mix.office.com/watch/1k1cycy4l4gen)
+* [使用資料總管來管理 Azure Data Lake Store 中的資料](https://mix.office.com/watch/icletrxrh6pc)
+* [將 Azure Data Lake Analytics 連接到 Azure Data Lake Store](https://mix.office.com/watch/qwji0dc9rx9k)
+* [透過 Data Lake Analytics 存取 Azure Data Lake Store](https://mix.office.com/watch/1n0s45up381a8)
+* [將 Azure HDInsight 連接到 Azure Data Lake Store](https://mix.office.com/watch/l93xri2yhtp2)
+* [透過 Hive 和 Pig 存取 Azure Data Lake Store](https://mix.office.com/watch/1n9g5w0fiqv1q)
+* [使用 DistCp (Hadoop Distributed Copy) 從 Azure Data Lake Store 雙向複製資料](https://mix.office.com/watch/1liuojvdx6sie)
+* [使用 Apache Sqoop 在相關來源與 Azure Data Lake Store 之間移動資料](https://mix.office.com/watch/1butcdjxmu114)
+* [使用 Azure Data Factory 進行 Azure Data Lake Store 的資料協調](https://mix.office.com/watch/1oa7le7t2u4ka)
+* [保護 Azure Data Lake Store 中的資料](https://mix.office.com/watch/1q2mgzh9nn5lx)
+
+<!---HONumber=AcomDC_0518_2016-->

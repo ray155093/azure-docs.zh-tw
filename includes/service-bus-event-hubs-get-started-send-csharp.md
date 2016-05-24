@@ -4,9 +4,9 @@
 
 1. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。將專案命名為 **Sender**。
 
-   ![][7]
+	![][7]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝]。 
+2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝]。
 
 3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。確定已在 [版本] 方塊中指定專案名稱 (傳送者)。按一下 [安裝] 並接受使用條款。
 
@@ -21,7 +21,7 @@
 	using Microsoft.ServiceBus.Messaging;
 	```
 
-5. 將下列欄位加入至 **Program** 類別，並將值替代為您在上一節中所建立的事件中樞名稱，以及將連接字串替代為 **Send** 權限 (**SendRule** 連接字串)：務必移除連接字串的 `EntityPath` 尾碼：
+5. 將下列欄位加入至 **Program** 類別，並以您在上一節中建立的事件中樞名稱替代預留位置值，以及您先前儲存的命名空間層級連接字串。
 
 	```
 	static string eventHubName = "{Event Hub name}";
@@ -69,5 +69,3 @@
 <!-- Images -->
 [7]: ./media/service-bus-event-hubs-getstarted/create-sender-csharp1.png
 [8]: ./media/service-bus-event-hubs-getstarted/create-sender-csharp2.png
-
-<!---HONumber=AcomDC_0413_2016-->

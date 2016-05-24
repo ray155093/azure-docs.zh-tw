@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/27/2016"
+	ms.date="05/10/2016"
 	ms.author="billmath;andkjell"/>
 
 # 自訂 Azure AD Connect 安裝
@@ -55,7 +55,7 @@
 請勿設定 | 不會安裝和設定任何功能。如果您已經有第三方的同盟伺服器或另一個現有的適當方案，請選擇此選項。 |
 
 ## 連接至 Azure AD
-在 [連接至 Azure AD] 畫面中，輸入全域系統管理員的帳戶和密碼。如果您在前一個頁面選取 [與 AD FS 同盟]，請勿以將啟用同盟的網域中的帳戶登入。建議使用隨附於 Azure AD 目錄的預設 **onmicrosoft.com** 網域中的帳戶。
+在 [連接至 Azure AD] 畫面中，輸入全域系統管理員的帳戶和密碼。如果您在前一個頁面選取 [與 AD FS 同盟]，請勿以您打算啟用同盟的網域中的帳戶登入。建議使用隨附於 Azure AD 目錄的預設 **onmicrosoft.com** 網域中的帳戶。
 
 此帳戶只會用來在 Azure AD 中建立服務帳戶，而且在精靈完成後便不會使用。![使用者登入](./media/active-directory-aadconnect-get-started-custom/connectaad.png)
 
@@ -71,6 +71,16 @@
 若要連接到您的 Active Directory 網域服務，Azure AD Connect 需要具有足夠權限的帳戶認證。您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\\syncuser 或 fabrikam.com\\syncuser。此帳戶可以是一般使用者帳戶，因為我們只需要預設的讀取權限。不過，視您的情況而定，也可能需要更多權限。如需詳細資訊，請參閱 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md#create-the-ad-ds-account)
 
 ![連線目錄](./media/active-directory-aadconnect-get-started-custom/connectdir.png)
+
+### Azure AD 登入組態
+此頁面將可讓您檢閱內部部署 AD DS 中存在的 UPN 網域，以及已在 Azure AD 中驗證的 UPN 網域。此頁面也可讓您設定要用於 userPrincipalName 的屬性。
+
+![未驗證的網域](./media/active-directory-aadconnect-get-started-custom/aadsigninconfig.png) 檢閱每一個標示為**未新增**和**未驗證**的網域。確定您所使用的網域皆已在 Azure AD 中完成驗證。驗證好網域時，按一下 [重新整理] 符號。如需詳細資訊，請參閱[新增並驗證網域](active-directory-add-domain.md)
+
+**UserPrincipalName**：屬性 userPrincipalName 是使用者登入 Azure AD 和 Office 365 時會使用的屬性。使用的網域 (也稱為 UPN 尾碼)，應該會在同步處理使用者前於 Azure AD 中進行驗證。Microsoft 建議保留預設屬性 userPrincipalName。如果此屬性不可路由傳送且無法驗證，則可以選取另一個屬性。例如，您可以選取電子郵件做為保存登入識別碼的屬性。使用 userPrincipalName 之外的其他屬性稱為**替代 ID**。替代 ID 屬性值必須遵循 RFC822 標準。替代 ID 可以搭配密碼同步和同盟來使用。
+
+>[AZURE.WARNING]
+使用替代 ID 會與所有 Office 365 工作負載不相容。如需詳細資訊，請參閱[設定替代的登入 ID](https://technet.microsoft.com/library/dn659436.aspx)。
 
 ### 網域和 OU 篩選
 預設會同步所有網域和 OU。如果您不想將部分網域或 OU 同步處理至 Azure AD，您可以取消選取這些網域和 OU。![DomainOU 篩選](./media/active-directory-aadconnect-get-started-custom/domainoufiltering.png) 精靈的這個頁面將會設定網域型篩選。如需詳細資訊，請參閱[網域型篩選](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)。
@@ -90,12 +100,7 @@
 sAMAccountName 與 MailNickName | 此選項會在預期可以找到使用者登入 ID 的屬性中聯結。 |
 特定的屬性 | 此選項可讓您選取您的屬性。**限制：**確定選擇的是已可在 Metaverse 中找到的屬性。如果您選擇自訂屬性 (並非在 Metaverse 中)，精靈將無法完成。 |
 
-- **來源錨點**：屬性 sourceAnchor 是使用者物件存留期間都不會變更的屬性。它是連結內部部署使用者與 Azure AD 中使用者的主要金鑰。因為無法改變屬性，所以您必須規劃並使用好的屬性。objectGUID 就是不錯的選項。只要使用者帳戶沒有在樹系/網域之間移動，此屬性就不會改變。若在多樹系環境中，您會在樹系間移動帳戶時，就必須使用另一個屬性，例如 employeeID 屬性。請避免使用會在某人結婚或變更指派時改變的屬性。因為不可以使用帶有 @ 符號的屬性，所以無法使用 email 和 userPrincipalName。屬性也有區分大小寫，因此在樹系間移動物件時，請務必保留大寫/小寫。二進位屬性會以 base64 編碼，但其他屬性類型則會維持未編碼狀態。在同盟情況以及部分 Azure AD 介面中，此屬性也稱為 immutableID。您可以在[設計概念](active-directory-aadconnect-design-concepts.md#sourceAnchor)中找到關於來源錨點的詳細資訊。
-
-- **UserPrincipalName**：屬性 userPrincipalName 是使用者登入 Azure AD 和 Office 365 時會使用的屬性。使用的網域 (也稱為 UPN 尾碼)，應該會在同步處理使用者前於 Azure AD 中進行驗證。建議保留預設屬性 userPrincipalName。如果此屬性不可路由傳送且無法驗證，則可以選取另一個屬性。例如，您可以選取電子郵件做為保存登入識別碼的屬性。使用 userPrincipalName 之外的其他屬性稱為**替代 ID**。替代 ID 屬性值必須遵循 RFC822 標準。替代 ID 可以搭配密碼同步和同盟來使用。
-
->[AZURE.WARNING]
-使用替代 ID 會與所有 Office 365 工作負載不相容。如需詳細資訊，請參閱[設定替代的登入 ID](https://technet.microsoft.com/library/dn659436.aspx)。
+**來源錨點**：屬性 sourceAnchor 是使用者物件存留期間都不會變更的屬性。它是連結內部部署使用者與 Azure AD 中使用者的主要金鑰。因為無法改變屬性，所以您必須規劃並使用好的屬性。objectGUID 就是不錯的選項。只要使用者帳戶沒有在樹系/網域之間移動，此屬性就不會改變。若在多樹系環境中，您會在樹系間移動帳戶時，就必須使用另一個屬性，例如 employeeID 屬性。請避免使用會在某人結婚或變更指派時改變的屬性。因為不可以使用帶有 @ 符號的屬性，所以無法使用 email 和 userPrincipalName。屬性也有區分大小寫，因此在樹系間移動物件時，請務必保留大寫/小寫。二進位屬性會以 base64 編碼，但其他屬性類型則會維持未編碼狀態。在同盟情況以及部分 Azure AD 介面中，此屬性也稱為 immutableID。您可以在[設計概念](active-directory-aadconnect-design-concepts.md#sourceAnchor)中找到關於來源錨點的詳細資訊。
 
 ### 根據群組進行同步處理篩選
 篩選群組功能可讓您只同步處理一小部分的物件來進行試驗。若要使用這項功能，請在內部部署 Active Directory 中建立此目的專用的群組。然後新增應該同步處理至 Azure AD 做為直接成員的使用者和群組。您稍後可以在此群組中新增和移除使用者，藉此維護應該要顯示在 Azure AD 中的物件清單。所有您想要同步處理的物件，都必須是直接隸屬於群組的成員。使用者、群組、連絡人及電腦/裝置全都必須是直接成員。系統不會解析巢狀群組成員資格。當您新增群組做為成員時，只會新增群組本身而不會新增其成員。
@@ -138,7 +143,7 @@ Azure AD 應用程式和屬性篩選 | 透過啟用 Azure AD 應用程式和屬�
 移除可能影響功能的屬性。如需最佳作法和建議，請參閱[同步處理的屬性](active-directory-aadconnectsync-attributes-synchronized.md#attributes-to-synchronize)。
 
 ### 目錄擴充屬性同步處理
-您可以使用組織新增的自訂屬性或 Active Directory 中的其他屬性在 Azure AD 中擴充結構描述。請選取 [選用功能] 頁面上的 [目錄擴充屬性同步處理] 以使用這項功能。您可以在此頁面上選取更多要同步處理的屬性。
+您可以使用組織新增的自訂屬性或 Active Directory 中的其他屬性在 Azure AD 中擴充結構描述。若要使用這項功能，請選取 [選用功能] 頁面上的 [目錄擴充屬性同步處理]。您可以在此頁面上選取更多要同步處理的屬性。
 
 ![目錄擴充](./media/active-directory-aadconnect-get-started-custom/extension2.png)
 
@@ -152,17 +157,17 @@ Azure AD 應用程式和屬性篩選 | 透過啟用 Azure AD 應用程式和屬�
 - 您想要使用的 Federation Service 名稱 (例如 sts.contoso.com) 的 SSL 憑證
 
 ### AD FS 組態必要條件
-為了使用 Azure AD Connect 成功設定 AD FS 伺服器陣列，請確定遠端伺服器上已啟用 WinRM。此外，請完成[表 3 - Azure AD Connect 和同盟伺服器/WAP](active-directory-aadconnect-ports.md#table-3---azure-ad-connect-and-federation-serverswap) 中列出的連接埠需求。
+若要使用 Azure AD Connect 設定 AD FS 伺服器陣列，請確定已在遠端伺服器啟用 WinRM。此外，請完成[表 3 - Azure AD Connect 和同盟伺服器/WAP](active-directory-aadconnect-ports.md#table-3---azure-ad-connect-and-federation-serverswap) 中列出的連接埠需求。
 
 ### 建立新的 AD FS 伺服器陣列或使用現有的 AD FS 伺服器陣列
 您可以使用現有的 AD FS 伺服器陣列，或選擇建立新的 AD FS 伺服器陣列。如果您選擇建立新的伺服器陣列，就必須提供 SSL 憑證。如果 SSL 憑證有密碼保護，則系統會提示您輸入密碼。
 
 ![AD FS 伺服器陣列](./media/active-directory-aadconnect-get-started-custom/adfs1.png)
 
-如果選擇使用現有的 AD FS 伺服器陣列，會略過幾個頁面將您直接導向至一個畫面，以設定 AD FS 與 Azure AD 的之間的信任關係。
+如果您選擇使用現有的 AD FS 伺服器陣列，將會前往設定 AD FS 與 Azure AD 之間信任關係的畫面。
 
 ### 指定 AD FS 伺服器
-輸入想要在其中安裝 AD FS 的伺服器。您可以根據容量規劃需求，加入一或多部伺服器。請先將所有伺服器加入 Active Directory，再執行這項設定。建議您安裝一部專門用於測試和試驗部署的 AD FS 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。
+輸入想要在其中安裝 AD FS 的伺服器。您可以根據容量規劃需求，加入一或多部伺服器。請先將所有伺服器加入 Active Directory，再執行這項設定。Microsoft 建議您安裝一部專門用於測試和試驗部署的 AD FS 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。
 
 >[AZURE.NOTE]
 請先確認所有伺服器均已加入 AD 網域，再執行這項設定。
@@ -170,10 +175,10 @@ Azure AD 應用程式和屬性篩選 | 透過啟用 Azure AD 應用程式和屬�
 ![AD FS 伺服器](./media/active-directory-aadconnect-get-started-custom/adfs2.png)
 
 ### 指定 Web 應用程式 Proxy 伺服器
-輸入您要做為 Web 應用程式 Proxy 伺服器的伺服器。Web 應用程式 Proxy 伺服器會部署在您的 DMZ (外部網路對應) 中，且支援來自外部網路的驗證要求。您可以根據容量規劃需求，加入一或多部伺服器。建議您安裝一部專門用於測試和試驗部署的 Web 應用程式 Proxy 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。我們建議準備同樣數目的 Proxy 伺服器，以滿足來自內部網路的驗證需求。
+輸入您要做為 Web 應用程式 Proxy 伺服器的伺服器。Web 應用程式 Proxy 伺服器會部署在您的 DMZ (外部網路對應) 中，且支援來自外部網路的驗證要求。您可以根據容量規劃需求，加入一或多部伺服器。Microsoft 建議您安裝一部專門用於測試和試驗部署的 Web 應用程式 Proxy 伺服器。然後在完成初始設定之後透過再次執行 Azure AD Connect，新增及部署更多伺服器以符合您的調整需求。我們建議準備同樣數目的 Proxy 伺服器，以滿足來自內部網路的驗證需求。
 
 >[AZURE.NOTE]
-<li> 如果您用來安裝 Azure AD Connect 的帳戶不是 AD FS 伺服器上的本機系統管理員，則系統會提示您提供系統管理員認證。</li>
+<li> 如果您使用的帳戶不是 AD FS 伺服器上的本機系統管理員，則系統會提示您提供系統管理員認證。</li>
 <li> 執行此步驟之前，請確認 Azure AD Connect 伺服器和 Web 應用程式 Proxy 伺服器之間有 HTTP/HTTPS 連線。</li>
 <li> 請確認 Web 應用程式伺服器和 AD FS 伺服器之間的 HTTP/HTTPS 連線是否允許流入驗證要求。</li>
 
@@ -194,7 +199,7 @@ AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Direct
 ![AD FS 服務帳戶](./media/active-directory-aadconnect-get-started-custom/adfs5.png)
 
 ### 選取您想要建立同盟的 Azure AD 網域
-此組態會用來設定 AD FS 與 Azure AD 之間的同盟關係。它會設定 AD FS 將安全性權杖簽發給 Azure AD，並將 Azure AD 設定為信任來自此特定 AD FS 執行個體的權杖。此頁面只能讓您在初始安裝中設定單一網域。您可於稍後再次執行 Azure AD Connect 以設定其他網域。
+此組態會用來設定 AD FS 與 Azure AD 之間的同盟關係。它會設定 AD FS 將安全性權杖簽發給 Azure AD，並將 Azure AD 設定為信任來自此特定 AD FS 執行個體的權杖。此頁面只能讓您在初始安裝中設定單一網域。您可稍後再次執行 Azure AD Connect 以設定其他網域。
 
 ![Azure AD 網域](./media/active-directory-aadconnect-get-started-custom/adfs6.png)
 
@@ -204,13 +209,13 @@ AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Direct
 ![Azure AD 網域](./media/active-directory-aadconnect-get-started-custom/verifyfeddomain.png)
 
 >[AZURE.NOTE]
-AD Connect 會嘗試在設定階段驗證網域。如果您繼續進行設定，但未在網域 DNS 的託管位置加入必要的 DNS 記錄，精靈將無法完成組態。
+AD Connect 會嘗試在設定階段驗證網域。如果您繼續進行設定，但未加入必要的 DNS 記錄，精靈將無法完成設定。
 
 ## 設定並確認頁面
-設定實際上會在此頁面發生。
+設定會在此頁面上進行。
 
 >[AZURE.NOTE]
-在繼續安裝之後，如果您已設定同盟，請確定您已設定[同盟伺服器的名稱解析](active-directory-aadconnect-prerequisites.md#name-resolution-for-federation-servers)。
+在繼續安裝之前，如果已設定同盟，請確定您已設定[同盟伺服器的名稱解析](active-directory-aadconnect-prerequisites.md#name-resolution-for-federation-servers)。
 
 ![準備設定](./media/active-directory-aadconnect-get-started-custom/readytoconfigure2.png)
 
@@ -243,4 +248,4 @@ AD Connect 會嘗試在設定階段驗證網域。如果您繼續進行設定，
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->
