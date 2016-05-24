@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/25/2016"
+	ms.date="05/16/2016"
 	ms.author="swkrish"/>
 
 
@@ -39,8 +39,8 @@
 
 您也可以瀏覽至 [https://portal.azure.com/{tenant}.onmicrosoft.com/?#blade/Microsoft\_AAD\_B2CAdmin/TenantManagementBlade/id/](https://portal.azure.com/{tenant}.onmicrosoft.com/?#blade/Microsoft_AAD_B2CAdmin/TenantManagementBlade/id/) (其中 **{tenant}** 是使用建立租用戶時所用的名稱來取代，例如 contosob2c)，直接存取刀鋒視窗。您可將此連結加入書籤供日後使用。
 
-> [AZURE.IMPORTANT]
-您必須是 B2C 租用戶的全域管理員，才能存取 B2C 功能刀鋒視窗。其他租用戶的全域管理員或所有租用戶的使用者均無法存取。
+    > [AZURE.IMPORTANT]
+    You need to be a Global Administrator of the B2C tenant to be able to access the B2C features blade. A Global Administrator from any other tenant or a user from any tenant cannot access it.
 
 ### 2\.在 Azure 傳統入口網站上進行存取
 
@@ -60,7 +60,7 @@
 
 5. 如果您正在撰寫行動應用程式，請將 [包含原生用戶端] 切換為 [是]。複製系統自動為您建立的預設**重新導向 URI**。
 6. 按一下 [建立] 以註冊您的應用程式。
-7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一**應用程式識別碼**。
+7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一**應用程式用戶端識別碼**。
 
 ## 建置快速啟動應用程式
 
@@ -68,4 +68,4 @@
 
 [AZURE.INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-b2c-quickstart-table.md)]
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0518_2016-->

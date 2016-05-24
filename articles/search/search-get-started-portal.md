@@ -4,7 +4,7 @@
 	services="search" 
 	documentationCenter="" 
 	authors="HeidiSteen" 
-	manager="mblythe" 
+	manager="paulettm" 
 	editor=""
     tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.workload="search" 
 	ms.topic="hero-article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="04/22/2016" 
+	ms.date="05/17/2016" 
 	ms.author="heidist"/>
 
 # 開始在入口網站中使用 Azure 搜尋服務
@@ -23,7 +23,7 @@
 
 本教學課程採用可使用我們的資料和指示輕鬆建立的[範例 Azure DocumentDB 資料庫](#apdx-sampledata)，但您也可以將這些步驟套用至 DocumentDB 或 SQL Database 中現有的資料。
 
-> [AZURE.NOTE] 本入門教學課程需要有 [Azure 訂用帳戶](../../includes/free-trial-note.md)和 [Azure 搜尋服務](search-create-service-portal.md)。如果尚未準備好註冊試用版訂用帳戶，則您可以略過本教學課程，並改為選擇 [試用 Azure App Service](search-tryappservice.md)。這個替代選項免費提供您 Azure 搜尋服務與 ASP.NET Web 應用程式 - 每個工作階段一小時 - 不需有訂用帳戶。
+> [AZURE.NOTE] 本入門教學課程需要有 [Azure 訂用帳戶](../../includes/free-trial-note.md)和 [Azure 搜尋服務](search-create-service-portal.md)。
  
 ## 尋找您的服務
 
@@ -76,7 +76,7 @@
 - [可篩選]、[可排序] 和 [可面向化] 判斷欄位是否可以用於篩選、排序或多面向導覽結構。 
 - [可搜尋] 表示欄位包含在全文檢索搜尋中。字串通常可以搜尋。數字欄位和布林值欄位通常會標示為不可搜尋。 
 
-離開此頁面之前，將您索引中的欄位標示為使用下列選項 (可擷取、可搜尋等等)。大部分的欄位都 [可擷取]。大部分的字串欄位都 [可搜尋] \(您不需要產生可搜尋的索引鍵)。有些欄位 (像是 orderableOnline、rating 和 tags) 也都 [可篩選]、[可排序] 和 [可面向化]。
+離開此頁面之前，將您索引中的欄位標示為使用下列選項 (可擷取、可搜尋等等)。大部分的欄位都 [可擷取]。大部分的字串欄位都 [可搜尋] (您不需要產生可搜尋的索引鍵)。有些欄位 (像是 orderableOnline、rating 和 tags) 也都 [可篩選]、[可排序] 和 [可面向化]。
 	
 欄位 | 類型 | 選項 |
 ------|------|---------|
@@ -167,7 +167,7 @@ lastUpdated | Edm.DateTimeOffset | |
 	- . . .
 	- 486\.json
 6. 重複執行以取得下一批次檔案，直到您已上傳最後一個 669.json 檔案為止。
-7. 按一下 [查詢總管] 以驗證資料已上傳，進而符合文件總管的上傳需求。
+7. 按一下 [查詢總管] 以確認資料已上傳，進而符合 Document Explorer 的上傳需求。
 
 若要這麼做，最簡單的方式就是使用預設查詢，但您也可以修改預設查詢，使其選取前 300 個 (此資料集中的項目少於 300 個)。
 
@@ -183,4 +183,4 @@ lastUpdated | Edm.DateTimeOffset | |
 [6]: ./media/search-get-started-portal/AzureSearch-GetStart-IndexerList.png
 [7]: ./media/search-get-started-portal/search-data-import-wiz-btn.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

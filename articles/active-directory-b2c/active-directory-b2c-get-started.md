@@ -5,7 +5,7 @@
 	documentationCenter=""
 	authors="swkrish"
 	manager="msmbaldwin"
-	editor="curtand"/>
+	editor="bryanla"/>
 
 <tags
 	ms.service="active-directory-b2c"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/25/2016"
+	ms.date="05/16/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：建立 Azure AD B2C 租用戶
@@ -46,9 +46,6 @@
 
 6. 您的租用戶現會建立，且將會出現在 Active Directory 擴充功能中。系統亦會將您設為租用戶的「全域管理員」。您可視需要新增其他「全域管理員」。
 
-    > [AZURE.IMPORTANT]
-    建立租用戶的所需時間最長為兩分鐘。如果您在租用戶建立期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
-
 ## 步驟 3：瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗
 
 1. 瀏覽至位於左側導覽列的 Active Directory 擴充。
@@ -61,7 +58,7 @@
 5. 系統會在新的瀏覽器索引標籤或視窗中，開啟顯示 B2C 功能刀鋒視窗的 Azure 入口網站。
 
     > [AZURE.IMPORTANT]
-    有一個已知的問題，此頁面不會正確載入 (適用於少數的租用戶)。重新整理瀏覽器應該可修正它。如果沒有，請連絡 Azure 支援中心。
+    最多可能需要 2 到 3 分鐘的時間，才能在 Azure 入口網站上存取租用戶。稍待一會兒後再重試這些步驟，即可修正此問題。否則請連絡支援人員。
 
 6. 將此刀鋒視窗釘選至「開始面板」，以方便您存取(釘選工具會在右上角的功能刀鋒視窗中標示為紅色)。
 
@@ -74,4 +71,4 @@
 
 請閱讀 [Azure Active Directory B2C 預覽：註冊您的應用程式](active-directory-b2c-app-registration.md)，了解如何使用 Azure AD B2C 註冊應用程式，以及建置快速啟動應用程式。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0518_2016-->

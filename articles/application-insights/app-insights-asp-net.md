@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="04/14/2016" 
+	ms.date="05/12/2016" 
 	ms.author="awills"/>
 
 
@@ -143,15 +143,20 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
 如果您沒有在將 Application Insights 加入此應用程式時登入 Azure，請立即登入。選取 [設定 Application Insights]。這樣做可讓您在部署應用程式後，繼續從上線的應用程式查看遙測。遙測會出現在 Application Insights 入口網站。
 
-### 度量：彙總資料
+### 即時串流
 
-在 [概觀] 圖表中尋找資料。剛開始的時候，您只會看見一或兩個資料點。例如：
+若要在偵錯時或直接在部署後快速檢視遙測資料，請使用即時串流。
 
-![Click through to more data](./media/app-insights-asp-net/12-first-perf.png)
+![在 [概觀] 刀鋒視窗中，按一下 [即時串流]](./media/app-insights-asp-net/45.png)
 
-按一下任何圖表以查看詳細度量。[深入了解度量。][perf]
 
-* 沒有使用者或頁面資料嗎？ - [新增使用者和頁面資料](app-insights-web-track-usage.md)
+即時串流經過設計，可讓您直接在部署後確認應用程式是否正常運作。
+
+它會顯示過去幾分鐘內的資料，但不會保留任何資料。
+
+它需要 2.1.0-beta1 或更新版本的 SDK。
+
+
 
 ### 搜尋：個別事件
 
@@ -161,7 +166,24 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
 [深入了解搜尋](app-insights-diagnostic-search.md)
 
-* 沒有相關聯的事件嗎？ 設定[伺服器例外狀況](app-insights-asp-net-exceptions.md)和[相依性](app-insights-asp-net-dependencies.md)。
+* *沒有相關聯的事件嗎？* 設定[伺服器例外狀況](app-insights-asp-net-exceptions.md)和[相依性](app-insights-asp-net-dependencies.md)。
+
+
+### 度量：彙總資料
+
+在 [概觀] 圖表中尋找彙總資料。剛開始的時候，您只會看見一或兩個資料點。例如：
+
+![Click through to more data](./media/app-insights-asp-net/12-first-perf.png)
+
+按一下任何圖表以查看詳細度量。[深入了解度量。][perf]
+
+* *沒有使用者或頁面資料嗎？* - [新增使用者和頁面資料](app-insights-web-track-usage.md)
+
+### 分析︰功能強大的查詢語言
+
+當您累積更多資料時，您就可以執行查詢以彙總資料並找出個別執行個體。[分析]()是功能強大的工具，既可了解效能和使用情況，也可進行診斷。
+
+![分析的範例](./media/app-insights-asp-net/025.png)
 
 
 ## 沒有資料？
@@ -169,7 +191,7 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 * 在 Visual Studio 中，請確定您的應用程式正在傳送遙測。您應該會在 [輸出] 視窗和 [診斷中樞] 中看到追蹤。
 * 請確定您在 Azure 中查看的是正確的項目。登入 [Azure 入口網站](https://portal.azure.com)，按一下 [瀏覽] > [Application Insights]，然後選取您的應用程式。
 * 使用應用程式、開啟不同頁面，以產生一些遙測。
-* 開啟 [搜尋][diagnostic] 刀鋒視窗，查看個別事件。有時候，事件通過計量管線所需的時間較長。
+* 開啟 [[搜尋][diagnostic]] 刀鋒視窗，查看個別事件。有時候，事件通過計量管線所需的時間較長。
 * 請稍等片刻，然後按一下 [重新整理]。
 * 請參閱[疑難排解][qna]。
 
@@ -179,19 +201,8 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
 現在部署應用程式並觀看資料累積情形。
 
-### 即時串流
+使用[即時串流](#live-stream)監視前幾分鐘的部署或重新部署，您就能知道應用程式是否正常運作。特別是當您在取代較舊的版本時，您會想要知道效能是否有所改善。如果發生問題，您可能會想要回復為舊版。
 
-部署的前幾分鐘就能讓您知道您的應用程式是否正常運作。特別是當您在取代較舊的版本時，您會想要知道效能是否有所改善。如果發生問題，您可能會想要回復為舊版。
-
-即時串流可讓您立即檢視一組關鍵效能度量。其設計成可讓您在重新部署或重新設定期間進行監看。
-
-![在 [概觀] 刀鋒視窗中，按一下 [即時串流]](./media/app-insights-asp-net/45.png)
-
-不同於其他度量圖表，即時串流會顯示過去幾分鐘內的資料，但不會保留任何資料。彙總管線最少，且顯示畫面每秒會重新整理一次。
-
-即時串流需要 2.1.0-beta1 或更新版本的 SDK。
-
-即時串流一直停留在其組態頁面？請重新整理瀏覽器 (F5)。
 
 #### 組建伺服器發生問題？
 
@@ -246,4 +257,4 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

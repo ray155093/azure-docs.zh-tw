@@ -15,14 +15,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/25/2016"
+	ms.date="05/09/2016"
 	ms.author="sstein;carlrab" />
 
 # 使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢
 
 > [AZURE.SELECTOR]
-- [C#](sql-database-connect-query.md)
 - [SSMS](sql-database-connect-query-ssms.md)
+- [C#](sql-database-connect-query.md)
 - [Excel](sql-database-connect-excel.md)
 
 本文說明如何使用最新版的 SQL Server Management Studio (SSMS) 連接到 Azure SQL Database，然後使用 Transact-SQL (T-SQL) 陳述式執行簡單查詢。
@@ -66,4 +66,4 @@
 
 若要開始建立資料庫使用者和資料庫系統管理員，請參閱[開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

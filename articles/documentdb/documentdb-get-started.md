@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="05/11/2016"
+	ms.date="05/13/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -47,7 +47,7 @@
 
 請確定您具有下列項目：
 
-- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
 - [Visual Studio 2013/Visual Studio 2015](http://www.visualstudio.com/)。
 - .NET Framework 4.6
 
@@ -594,6 +594,7 @@ DocumentDB 支援刪除 JSON 文件。
 ##<a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
+- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
 -   [DocumentDB 帳戶][documentdb-create-account]。
 -   您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 方案。
 
@@ -610,4 +611,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

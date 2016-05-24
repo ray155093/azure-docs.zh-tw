@@ -4,7 +4,7 @@
 首先，您必須安裝並執行 [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx) (1.0 或更新版本)。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md)。
 
 
->[AZURE.NOTE] SQL Database 的許多新功能只在使用 [Azure Resource Manager (ARM) 部署模型](../articles/resource-group-overview.md)時才支援，所以範例使用以 ARM 為基礎的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)。現有的傳統部署模型 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，但是建議使用以 ARM 為基礎的 Cmdlet。
+>[AZURE.NOTE] SQL Database 的許多新功能只在使用 [Azure Resource Manager 部署模型](../articles/resource-group-overview.md)時才支援，所以範例會使用適用於 Resource Manager 的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)。現有的傳統部署模型 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，但是建議使用 Resource Manager Cmdlet。
 
 
 執行 [**Add-AzureRmAccount**](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet，您會看到要輸入認證的登入畫面。使用您用來登入 Azure 入口網站的相同認證。

@@ -3,7 +3,7 @@
    description="設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="seanmck"
+   authors="rwike77"
    manager="timlt"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="04/12/2016"
-   ms.author="seanmck"/>
+   ms.author="ryanwi"/>
 
 # 在您的本機叢集上開始部署和升級應用程式
 Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地在本機叢集上開始部署和管理應用程式。在本文中，您將從 Windows PowerShell 建立本機叢集、將現有的應用程式部署至該叢集，然後將該應用程式升級為新版本。
@@ -190,4 +190,4 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 [sfx-upgradeprogress]: ./media/service-fabric-get-started-with-a-local-cluster/SfxUpgradeOverview.png
 [sfx-service-overview]: ./media/service-fabric-get-started-with-a-local-cluster/sfx-service-overview.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

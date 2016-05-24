@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="02/26/2016"
+	ms.date="05/17/2016"
 	ms.author="douglasl"/>
 
 # 開始執行為資料庫啟用延伸功能精靈
@@ -44,7 +44,7 @@
 |**名稱**|指定資料表中的資料欄名稱。|
 |(沒有標題)|如果此資料欄中出現符號，通常代表因為封鎖問題，而無法為選取的資料表啟用延伸功能。這可能是因為該資料表使用未支援的資料類型。以滑鼠暫留在符號上，以在工作提示中顯示更多資訊。如需詳細資訊，請檢閱 [Surface area limitations and blocking issues for Stretch Database (Stretch Database 的介面區域限制和封鎖問題)](sql-server-stretch-database-limitations.md)。|
 |**已延伸**|指出資料表是否已啟用。|
-|**移轉**|在 RC3 中，您可以移轉整個資料表 (**整個資料表**)，也可以在精靈中指定以日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選述詞。如需篩選述詞的詳細資訊，請參閱[使用篩選述詞選取要移轉的資料列 (Stretch Database)](sql-server-stretch-database-predicate-function.md)。如需有關如何套用述詞的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
+|**移轉**|您可以移轉整個資料表 (**整個資料表**)，也可以在精靈中指定以日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選述詞。如需篩選述詞的詳細資訊，請參閱[使用篩選述詞選取要移轉的資料列 (Stretch Database)](sql-server-stretch-database-predicate-function.md)。如需有關如何套用述詞的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
 |**列**|指定資料表中的資料列數目。|
 |**大小 (KB)**|指定資料表的大小 (以 KB 為單位)。|
 
@@ -163,4 +163,4 @@
 [StretchWizardImage7]: ./media/sql-server-stretch-database-wizard/stretchwiz7.png
 [StretchWizardImage8]: ./media/sql-server-stretch-database-wizard/stretchwiz8.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

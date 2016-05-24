@@ -5,7 +5,7 @@
 	services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
-    manager="jeffreyg" 
+    manager="jhubbard" 
     editor="cgronlun"/>
 
 <tags
@@ -14,45 +14,23 @@
     ms.topic="hero-article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="01/20/2016"
+    ms.date="05/09/2016"
     ms.author="sstein"/>
 
 # 建立新的 SQL Database 並使用 PowerShell Cmdlet 執行一般資料庫設定工作 
 
-**單一資料庫**
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-get-started.md)
-- [C#](sql-database-get-started-csharp.md)
 - [PowerShell](sql-database-get-started-powershell.md)
+- [C#](sql-database-get-started-csharp.md)
 
 
-了解如何建立新的 SQL Database 並使用 PowerShell Cmdlet 執行一般資料庫設定工作。
+
+了解如何使用 PowerShell Cmdlet 建立新的 SQL Database。(如需建立彈性資料庫，請參閱[使用 PowerShell 建立新的彈性資料庫集區](sql-database-elastic-pool-create-powershell.md))。
 
 
-若要執行 PowerShell Cmdlet，Azure PowerShell 必須已安裝且正在執行中。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-
-- 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來完成這篇文章。
-
-
-## 設定您的認證並選取您的訂用帳戶
-
-既然您已在執行 Azure 資源管理員模組，便可以存取建立 SQL Database 所需的所有必要 Cmdlet。
-
-您必須先建立 Azure 帳戶的存取權，以便執行以下 Cmdlet，然後您會看到要輸入認證的登入畫面。請使用與登入 Azure 入口網站相同的電子郵件和密碼。
-
-	Add-AzureRmAccount
-
-成功登入後，您將會在畫面中看到一些資訊，包括用於登入的 ID 與可以存取的 Azure 訂用帳戶。
-
-
-### 選取您的 Azure 訂用帳戶
-
-若要選取所需的訂用帳戶，您必須提供訂用帳戶 ID。您可以複製上一個步驟中的資訊，或者，如果您有多個訂用帳戶，則可以執行 **Get-AzureRmSubscription** Cmdlet，然後從結果集中複製所需的訂用帳戶資訊。當您的訂用帳戶執行了以下 Cmdlet 之後：
-
-	Select-AzureRmSubscription -SubscriptionId 4cac86b0-1e56-bbbb-aaaa-000000000000
-
-成功執行 **Select-AzureRmSubscription** 之後，您會返回 PowerShell 提示字元。如果您有一個以上的訂用帳戶，您可以執行 **Get-AzureRmSubscription** 並確認您要使用的訂用帳戶顯示 **IsCurrent: True**。
+[AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
 
 ## 資料庫設定：建立資源群組、伺服器和防火牆規則
 
@@ -142,4 +120,4 @@ SQL Database 會建立在 Azure SQL Database 伺服器內。執行 **New-AzureRm
 
 - [Azure SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0518_2016-->

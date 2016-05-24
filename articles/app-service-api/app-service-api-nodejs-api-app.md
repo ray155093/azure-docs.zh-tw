@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-本教學課程示範如何建立簡易的 [Node.js](http://nodejs.org) API，並將其部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中的 [API 應用程式](app-service-api-apps-why-best-platform.md)。您可以使用任何能夠執行 Node.js 的作業系統，而且您將會使用 cmd.exe 或 bash 之類的命令列工具來執行所有工作。
+本教學課程示範如何建立簡易的 [Node.js](http://nodejs.org) API，並使用 [Git](http://git-scm.com) 將其部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中的 [API 應用程式](app-service-api-apps-why-best-platform.md)。您可以使用任何能夠執行 Node.js 的作業系統，而且您將會使用 cmd.exe 或 bash 之類的命令列工具來執行所有工作。
 
 ## 必要條件
 
@@ -41,9 +41,9 @@
 
 ## 根據 Swagger 中繼資料建立 Node.js 程式碼的結構
 
-[Swagger](http://swagger.io/) 是描述 RESTful API 之中繼資料的 JSON 檔案格式。Azure App Service 已[內建支援 Swagger 中繼資料](app-service-api-metadata.md)。在這部分的教學課程中，您將根據 Swagger 中繼資料檔案，建立範例 API 的伺服器程式碼結構。
+[Swagger](http://swagger.io/) 是描述 RESTful API 之中繼資料的檔案格式。Azure App Service 已[內建支援 Swagger 中繼資料](app-service-api-metadata.md)。本教學課程會建立 API 開發工作流程的模型，其進行方式是透過先建立 Swagger 中繼資料，再以此建立 API 伺服器程式碼的結構。在這部分的教學課程中，您將了解如何根據 Swagger 中繼資料檔案，建立 Node.js 伺服器程式碼的結構。
 
->[AZURE.NOTE] 如果您不想了解如何建立 Swagger 檔案的結構，可以只進行將範例程式碼部署到新的 API 應用程式的教學課程步驟。直接跳到後面的[在 Azure 中建立 API 應用程式](#createapiapp)一節。
+>[AZURE.NOTE] 如果您不想經歷建立結構的步驟，則可以直接前往[在 Azure 中建立 API 應用程式](#createapiapp)一節，只在新的 API 應用程式中部署範例程式碼。
 
 1. 執行下列命令，全域安裝 **yo** 和 **generator-swaggerize** NPM 模組。
 
@@ -90,7 +90,7 @@
 
 1. 以下列程式碼取代 **handlers/contacts.js** 檔案中的程式碼。
 
-	此程式碼會使用 **lib/contactRepository.js** 所提供的 **lib/contacts.json** 檔案中儲存的 JSON 資料。下面顯示的新 contacts.js 程式碼會回應 HTTP 要求，以取得所有連絡人，並將它們以 JSON 承載的形式傳回。
+	此程式碼會使用 **lib/contactRepository.js** 所提供的 **lib/contacts.json** 檔案中儲存的 JSON 資料。新的 contacts.js 程式碼會回應 HTTP 要求，以取得所有連絡人，並將它們以 JSON 承載的形式傳回。
 
         'use strict';
         
@@ -155,11 +155,11 @@
 
         node server.js
 
-1. 當您瀏覽至 **http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
+1. 當您瀏覽至 ****http://localhost:8000/contacts** 時，您會看見連絡人清單的 JSON 輸出 (或者系統會提示您下載它，視您的瀏覽器而定)。
 
     ![所有連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/all-contacts-api-call.png)
 
-1. 當您瀏覽至 **http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
+1. 當您瀏覽至 ****http://localhost:8000/contacts/2** 時，您會看見該識別碼值所表示的連絡人。
 
     ![特定連絡人 Api 呼叫](media/app-service-api-nodejs-api-app/specific-contact-api-call.png)
 
@@ -189,7 +189,7 @@
 
 6. 在 [資源群組] 下拉式清單中，按一下 [新增]，然後在 [新增資源群組名稱] 中輸入 "NodejsAPIAppGroup" 或其他您偏好使用的名稱。
 
-	[資源群組](../azure-portal/resource-group-portal.md)是 Azure 資源的集合，例如 API 應用程式、資料庫、VM 等等。在本教學課程中，最好建立新的資源群組，因為這麼做即可在一個步驟中輕鬆刪除您為本教學課程建立的所有 Azure 資源。
+	[資源群組](../azure-portal/resource-group-portal.md)是 Azure 資源的集合，例如 API 應用程式、資料庫和 VM。在本教學課程中，最好建立新的資源群組，因為這麼做即可在一個步驟中輕鬆刪除您為本教學課程建立的所有 Azure 資源。
 
 4. 按一下 [App Service 方案/位置]，然後按一下 [新建]。
 
@@ -237,17 +237,17 @@
 
     ![建立 Git 儲存機制](media/app-service-api-nodejs-api-app/create-git-repo.png)
 
-1. 一旦建立 Git 儲存機制，此刀鋒視窗便會變更並顯示作用中的部署。由於這是新的儲存機制，所以清單中沒有作用中的部署。
+1. 一旦建立 Git 儲存機制，此刀鋒視窗便會變更為顯示作用中的部署。由於這是新的儲存機制，所以清單中沒有作用中的部署。
 
     ![沒有作用中的部署](media/app-service-api-nodejs-api-app/no-active-deployments.png)
 
-1. 複製 Git 儲存機制 URL。若要這麼做，請瀏覽至新 API 應用程式的刀鋒視窗並查看刀鋒視窗的 [基本功能] 區段。您會在 [基本功能] 區段中看到 [Git 複製 URL]。當您將滑鼠指標暫留在此 URL 上時，會在右側看到可將此 URL 複製到剪貼簿的圖示。按一下此圖示以複製此 URL。
+1. 複製 Git 儲存機制 URL。若要這麼做，請瀏覽至新 API 應用程式的刀鋒視窗並查看刀鋒視窗的 [基本功能] 區段。請注意 [基本功能] 區段中的 [Git 複製 URL]。當您將滑鼠指標暫留在此 URL 上時，會在右側看到可將此 URL 複製到剪貼簿的圖示。按一下此圖示以複製此 URL。
 
     ![從入口網站取得 Git Url](media/app-service-api-nodejs-api-app/get-the-git-url-from-the-portal.png)
 
     **注意**：您在下一個步驟中需要使用 [Git 複製 URL]，才能確保暫時將它儲存在某個地方。
 
-現在，您有新的 API 應用程式並以 Git 儲存機制進行備份，您可以將程式碼推送至儲存機制並利用 Azure 的連續部署功能來自動部署變更。
+現在您已擁有 API 應用程式且已使用 Git 儲存機制加以備份，接下來您可以將程式碼推送至儲存機制，以將程式碼部署至 API 應用程式。
 
 ## 將 API 程式碼部署至 Azure
 
@@ -273,7 +273,7 @@ Azure App Service 內建的持續傳遞功能，讓您只要將認可推送至�
 
     **注意**：請以稍早複製的 Git 複製 URL 取代 "YOUR\_GIT\_CLONE\_URL\_HERE" 字串。
 
-1. 執行下面兩個命令來建立包含您所有程式碼的認可。
+1. 執行下列命令來建立包含您所有程式碼的認可。
 
         git add .
         git commit -m "initial revision"
@@ -316,6 +316,6 @@ Azure App Service 內建的持續傳遞功能，讓您只要將認可推送至�
 
 ## 後續步驟
 
-此時您已使用 Node.js 成功建立並部署第一個 API 應用程式。API Apps 入門系列中的下一個教學課程示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。
+此時您已使用 Node.js 成功建立並部署第一個 API 應用程式。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->
