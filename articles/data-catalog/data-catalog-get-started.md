@@ -24,7 +24,7 @@
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-- **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[](https://azure.microsoft.com/pricing/free-trial/)免費試用以取得詳細資訊。
+- **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[免費試](https://azure.microsoft.com/pricing/free-trial/)用以取得詳細資訊。
 - **Azure Active Directory** - Azure 資料目錄使用 [Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 來管理身分識別和存取權。
 - **資料來源** - Azure 資料目錄可探索資料來源。本教學課程使用 Adventure Works 範例資料庫，但如果喜歡使用您熟悉且與您角色相關的資料，您可以使用任何支援的資料來源。如需支援的資料來源清單，請參閱[支援的資料來源](data-catalog-dsr.md)。
 
