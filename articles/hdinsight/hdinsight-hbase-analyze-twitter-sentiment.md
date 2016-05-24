@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="05/09/2016" 
 	ms.author="jgao"/>
 
 # 使用 HDInsight 中的 HBase 分析即時的 Twitter 情緒
@@ -23,7 +23,7 @@
 
 社交網站是巨量資料採用的主要驅使力之一。像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。在本教學課程中，您將開發主控台串流服務應用程式和 ASP.NET Web 應用程式，來執行下列作業：
 
-![][img-app-arch]
+![HDInsight HBase Analyze Twitter sentiment][img-app-arch]
 
 - 串流應用程式
 	- 使用 Twitter 串流 API 即時取得標記地理位置的推文
@@ -146,8 +146,8 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 		Install-Package Microsoft.HBase.Client
 		Install-Package TweetinviAPI
     這些命令會安裝 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 套件 (要存取 HBase 叢集的用戶端程式庫) 和 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) 套件 (用來存取 Twitter API)。
-3. 從 [方案總管]，將 **System.Configuration" 新增到參考中。
-4. 將一個新類別檔案新增到名為 **HBaseWriter.cs** 的專案中，然後以下列內容取代程式碼：
+3. 從 [方案總管] 中，將 **System.Configuration** 新增至參考。
+4. 將新的類別檔案加入至名為 **HBaseWriter.cs** 的專案中，然後以下列內容取代程式碼：
 
         using System;
         using System.Collections.Generic;
@@ -193,12 +193,12 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                     client = new HBaseClient(credentials);
 
                     // create the HBase table if it doesn't exist
-                    if (!client.ListTables().name.Contains(HBASETABLENAME))
+                    if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
                         tableSchema.name = HBASETABLENAME;
                         tableSchema.columns.Add(new ColumnSchema { name = "d" });
-                        client.CreateTable(tableSchema);
+                        client.CreateTableAsync(tableSchema).Wait;
                         Console.WriteLine("Table "{0}" is created.", HBASETABLENAME);
                     }
 
@@ -344,7 +344,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                                 }
 
                                 // Write the Tweet by words cell set to the HBase table
-                                client.StoreCells(HBASETABLENAME, set);
+								client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
                             Thread.Sleep(100);
@@ -367,7 +367,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
             }
         }
 
-6. 設定先前程式碼中的常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 ****https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
+6. 設定先前程式碼中的常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
 
 7. 開啟 **Program.cs** 並以下列內容取代程式碼：
 
@@ -445,9 +445,9 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 若要執行串流服務，請按 **F5**。以下是主控台應用程式的螢幕擷取畫面：
 
-	![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
+![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
     
-開發 Web 應用程式時，請保持串流主控台應用程式的執行狀態，如此一來，您將有更多的資料可使用。若要檢查插入資料格中的資料，您可以使用 HBase 殼層。請參閱[開始在 HDInsight 中使用 Apache HBase](hdinsight-hbase-tutorial-get-started.md#create-tables-and-insert-data)
+開發 Web 應用程式時，請保持串流主控台應用程式的執行狀態，如此一來，您將有更多的資料可使用。若要檢查插入資料格中的資料，您可以使用 HBase 殼層。請參閱[開始在 HDInsight 中使用 HBase](hdinsight-hbase-tutorial-get-started.md#create-tables-and-insert-data)。
 
 
 ## 將即時情緒視覺化
@@ -1236,8 +1236,8 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 - [開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]
 
 
-[hbase-get-started]: ../hdinsight-hbase-tutorial-get-started.md
-[website-get-started]: ../web-sites-dotnet-get-started.md
+[hbase-get-started]: hdinsight-hbase-tutorial-get-started-linux.md
+[website-get-started]: ../app-service-web/web-sites-dotnet-get-started.md
 
 
 
@@ -1248,9 +1248,8 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 
 
-[hdinsight-develop-mapreduce]: hdinsight-develop-deploy-java-mapreduce.md
+[hdinsight-develop-mapreduce]: hdinsight-develop-deploy-java-mapreduce-linux.md
 [hdinsight-analyze-twitter-data]: hdinsight-analyze-twitter-data.md
-[hdinsight-hbase-get-started]: ../hdinsight-hbase-tutorial-get-started.md
 
 
 
@@ -1277,4 +1276,4 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 [hdinsight-hive-odbc]: hdinsight-connect-excel-hive-ODBC-driver.md
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

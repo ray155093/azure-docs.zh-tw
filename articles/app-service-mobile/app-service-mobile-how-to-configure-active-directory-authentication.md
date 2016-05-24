@@ -2,9 +2,9 @@
 	pageTitle="如何為您的應用程式服務應用程式設定 Azure Active Directory 驗證"
 	description="了解如何為您的應用程式服務應用程式設定 Azure Active Directory 驗證。"
 	authors="mattchenderson"
-	services="app-service\mobile"
+	services="app-service"
 	documentationCenter=""
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="05/04/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式使用 Azure Active Directory 登入
@@ -21,9 +21,6 @@
 [AZURE.INCLUDE [app-service-mobile-selector-authentication](../../includes/app-service-mobile-selector-authentication.md)]
 
 本主題說明如何設定 Azure 應用程式服務，以使用 Azure Active Directory 做為驗證提供者。
-
-> [AZURE.NOTE] 本主題示範 App Service 驗證/授權功能的用法。這會取代大部分應用程式的 App Service 閘道器。如果使用閘道器，請參閱[另一種方法]。該小節中使用閘道器所產生的差異都列在注意事項中。
-
 
 ## <a name="express"> </a>使用快速設定設定 Azure Active Directory
 
@@ -68,11 +65,6 @@
 
     ![][3]
 
-
-	> [AZURE.NOTE]
-	如果您使用的是 App Service 閘道器，而不是App Service 驗證/授權功能，回覆 URL 會改用閘道器 URL 加上 _/signin-aad_ 路徑。
-
-
 9. 按一下 [儲存]。然後，複製應用程式的 [**用戶端識別碼**]。稍後您會設定您的應用程式使用此資訊。
 
 10. 在底部命令列中，按一下 [檢視端點]，然後複製 [同盟中繼資料文件] URL 並下載該文件，或在瀏覽器中瀏覽至該文件。
@@ -80,10 +72,6 @@
 11. 在根 **EntityDescriptor** 項目中，應該會有 `https://sts.windows.net/` 格式的 **entityID** 屬性，後面是您的租用戶專屬的 GUID (稱為「租用戶識別碼」)。複製這個值，此值將做為您的「簽發者 URL」。稍後您會設定您的應用程式使用此資訊。
 
 ### <a name="secrets"> </a>將 Azure Active Directory 資訊新增至應用程式
-
-> [AZURE.NOTE]
-如果您使用 App Service 閘道器，請忽略此章節，並改為在入口網站中瀏覽至您的閘道器。依序選取 [設定]、[身分識別]，[Azure Active Directory]。貼入 ClientID 並將租用戶識別碼新增至 [允許的租用戶] 清單。按一下 [儲存]。
-
 
 13. 回到 [Azure 入口網站]，並瀏覽到您的應用程式。依序按一下 [**設定**] 及 [**驗證/授權**]。
 
@@ -113,7 +101,7 @@ Azure Active Directory 也可讓您註冊更能控制權限對應的原生用戶
 
 4. 在 [新增應用程式精靈] 中，輸入應用程式的 [名稱]，然後按一下 [原生用戶端應用程式] 類型。接著，按一下以繼續。
 
-5. 在 [**重新導向 URI**] 方塊中，請使用 HTTPS 配置輸入您網站的 _/.auth/login/done_ 端點。此值應與 \__https://contoso.azurewebsites.net/.auth/login/done_ 類似。
+5. 在 [**重新導向 URI**] 方塊中，請使用 HTTPS 配置輸入您網站的 _/.auth/login/done_ 端點。此值應與 \__https://contoso.azurewebsites.net/.auth/login/done_ 類似。如果是建立 Windows 應用程式，請改用[封裝 SID](app-service-mobile-dotnet-how-to-use-client-library.md#package-sid) 作為 URI。
 
 6. 新增原生應用程式之後，按一下 [**設定**] 索引標籤。請找到**用戶端識別碼**並記下該值。
 
@@ -140,7 +128,6 @@ Azure Active Directory 也可讓您註冊更能控制權限對應的原生用戶
 
 [Azure 入口網站]: https://portal.azure.com/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
-[ios-adal]: ../app-service-mobile-xamarin-ios-aad-sso.md
-[另一種方法]: #advanced
+[alternative method]: #advanced
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

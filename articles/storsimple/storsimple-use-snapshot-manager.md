@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/28/2015"
+   ms.date="04/25/2016"
    ms.author="v-sharos" />
 
 # StorSimple Snapshot Manager 使用者介面
 
 ## 概觀
 
-StorSimple Snapshot Manager 有直覺式的圖形化使用者介面 (GUI) 可讓您管理磁碟區群組的備份複本，包括儲存在本機和雲端的備份複本。本教學課程提供介面的簡介，並接著說明如何使用每個元件。如需 StorSimple Snapshot Manager 的詳細說明，請參閱[何謂 StorSimple Snapshot Manager？](storsimple-what-is-snapshot-manager.md)
+StorSimple Snapshot Manager 有直覺式使用者介面，可讓您用來取得並管理備份。本教學課程提供使用者介面的簡介，並接著說明如何使用每個元件。如需 StorSimple Snapshot Manager 的詳細說明，請參閱[何謂 StorSimple Snapshot Manager？](storsimple-what-is-snapshot-manager.md)
 
 ### 主控台說明
 
@@ -110,7 +110,7 @@ StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Micros
 
 - [**說明**] 欄說明如何使用 [**動作**] 功能表或 [動作] 窗格上的每個動作，並解釋其用途。
 
->[AZURE.NOTE] [**動作**] 窗格和 [**動作**] 功能表包含其他選項，例如 [**檢視**]、[**從這裡開啟新視窗**]、[**重新整理**]、[**匯出清單**]，以及 [**說明**]。這些選項可當做 MMC 一部分來使用，並不是 StorSimple Snapshot Manager 專用的。下表包含這些選項的說明。
+>[AZURE.NOTE] [**動作**] 窗格和 [**動作**] 功能表包含其他選項，例如 [**檢視**]、[**從這裡開啟新視窗**]、[**重新整理**]、[**匯出清單**]，以及 [**說明**]。這些選項可當做 MMC 一部分來使用，並不是 StorSimple Snapshot Manager 專用的。下表包含這些選項的說明。
  
 | 動作 | 瀏覽 | 說明 |
 |:--------|:------------|:-------------|
@@ -234,7 +234,7 @@ StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Micros
  
 ## 範圍窗格
 
-[**範圍**] 窗格是 StorSimple Snapshot Manager UI 中的左窗格。其包含主控台 (或節點) 樹狀目錄，而且是 StorSimple Snapshot Manager 的主要導覽機制。
+[範圍] 窗格是 StorSimple Snapshot Manager UI 中最左邊的窗格。其包含主控台 (或節點) 樹狀目錄，而且是 StorSimple Snapshot Manager 的主要導覽機制。
  
 ### 範圍窗格結構
 
@@ -307,7 +307,7 @@ StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Micros
 
 - 若要查看備份原則清單，請按一下 [**範圍**] 窗格中的 [**備份原則**]。備份原則清單連同每個原則的相關資訊清單會出現在 [**結果**] 窗格中。
 
->[AZURE.NOTE]您最多可以保留 64 個備份。
+>[AZURE.NOTE] 您最多可以保留 64 個備份。
 
 
 ### 備份目錄頁面
@@ -516,4 +516,4 @@ StorSimple Snapshot Manager 可啟用 Windows 作業系統和 Microsoft Manageme
 - 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 - 了解如何[使用 StorSimple Snapshot Manager 來連接和管理裝置](storsimple-snapshot-manager-manage-devices.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0511_2016-->

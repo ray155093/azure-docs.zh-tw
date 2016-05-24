@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/03/2016"
+	ms.date="04/20/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 將使用者指派至自訂網域
@@ -56,10 +56,10 @@
 
 ## 後續步驟
 
-- [使用自訂網域名稱，以簡化您的使用者的登入體驗](active-directory-add-domain.md)
-- [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
-- [Add and verify a custom domain name in Azure Active Directory (新增及驗證 Azure Active Directory 中的自訂網域名稱)](active-directory-add-domain-add-verify-general.md)
-- [變更您的自訂網域名稱的 DNS 註冊機構](active-directory-add-domain-change-registrar.md)
-- [刪除 Azure Active Directory 中的自訂網域](active-directory-add-domain-delete-domain.md)
+-   [使用自訂網域名稱，以簡化您的使用者的登入體驗](active-directory-add-domain.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+-   [管理自訂網域名稱](active-directory-add-manage-domain-names.md)
+
+-   [了解 Azure AD 中的網域管理概念](active-directory-add-domain-concepts.md)
+
+<!---HONumber=AcomDC_0511_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="設定 AlwaysOn 可用性群組 Azure 資源管理員 | Microsoft Azure"
-	description="在 Azure 資源管理員 (GUI) 模式中使用 Azure 虛擬機器建立 AlwaysOn 可用性群組。本教學課程主要是透過此使用者介面來自動建立整個解決方案。"
+	pageTitle="設定 Always On 可用性群組 Azure Resource Manager | Microsoft Azure"
+	description="在 Azure Resource Manager 模式中使用 Azure 虛擬機器建立 Always On 可用性群組。本教學課程主要是透過此使用者介面來自動建立整個解決方案。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="MikeRayMSFT"
@@ -13,27 +13,25 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="02/04/2016"
+	ms.date="05/10/2016"
 	ms.author="mikeray" />
 
-# 在 Azure 資源管理員虛擬機器 (GUI) 中設定 AlwaysOn 可用性群組
+# 在 Azure Resource Manager 虛擬機器 (GUI) 中設定 Always On 可用性群組
 
 > [AZURE.SELECTOR]
-- [入口網站 - Resource Manager - 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-- [入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
-- [入口網站 - 傳統 - 手動](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-- [PowerShell - 傳統](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+- [範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 
 <br/>
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統模型。
 
 
-此端對端教學課程將示範如何使用 Azure 資源管理員虛擬機器建立 SQL Server 可用性群組。本教學課程使用 Azure 刀鋒視窗來設定範本。逐步進行本教學課程時，您將在入口網站中檢閱預設設定、輸入必要的設定，以及更新刀鋒視窗。
+此端對端教學課程將示範如何使用 Azure Resource Manager 虛擬機器建立 SQL Server 可用性群組。本教學課程使用 Azure 刀鋒視窗來設定範本。逐步進行本教學課程時，您將在入口網站中檢閱預設設定、輸入必要的設定，以及更新刀鋒視窗。
 
->[AZURE.NOTE] 在 Azure 管理入口網站中，AlwaysOn 可用性群組有一個新的資源庫設定提供接聽程式。這可自動設定 AlwaysOn 可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server AlwaysOn](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。
+>[AZURE.NOTE] 在 Azure 管理入口網站中，提供具有接聽程式的 Always On 可用性群組專用的新資源庫設定。這可自動設定可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server Always On](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。
 
-在本教學課程結束時，您 Azure 中的 SQL Server AlwaysOn 解決方案將包含下列項目：
+在本教學課程結束時，您 Azure 中的 SQL Server 可用性群組解決方案將包含下列項目：
 
 - 包含多個子網路 (前端和後端子網路) 的虛擬網路
 
@@ -55,15 +53,15 @@
 
 - 您已經有 Azure 帳戶。如果您沒有帳戶，請[註冊一個試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。
 
-- 您已經知道如何透過 GUI 佈建來自虛擬機器資源庫的 SQL Server VM。如需詳細資訊，請參閱[在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)
+- 您已經知道如何透過 GUI 佈建來自虛擬機器資源庫的 SQL Server VM。如需詳細資訊，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)
 
-- 您已充分了解 AlwaysOn 可用性群組。如需詳細資訊，請參閱 [AlwaysOn 可用性群組 (SQL Server)](http://msdn.microsoft.com/library/hh510230.aspx)。
+- 您已非常熟悉可用性群組的功能。如需詳細資訊，請參閱 [Always On 可用性群組 (SQL Server)](http://msdn.microsoft.com/library/hh510230.aspx)。
 
->[AZURE.NOTE] 如想將 AlwaysOn 可用性群組與 SharePoint 搭配使用，另請參閱[設定 SharePoint 2013 的 SQL Server 2012 AlwaysOn 可用性群組](http://technet.microsoft.com/library/jj715261.aspx)。
+>[AZURE.NOTE] 如想將可用性群組與 SharePoint 搭配使用，另請參閱[為 SharePoint 2013 設定 SQL Server 2012 Always On 可用性群組 ](http://technet.microsoft.com/library/jj715261.aspx)。
 
 在本教學課程中，您將使用 Azure 入口網站執行下列動作：
 
-- 從入口網站選取新的 AlwaysOn 可用性群組範本
+- 從入口網站選取 Always On 範本
 
 - 檢閱範本設定，並針對您的環境更新一些組態設定
 
@@ -71,7 +69,7 @@
 
 - 連接至其中一個網域控制站，再連接至其中一個 SQL Server
 
-## 使用資源管理員部署模型從資源庫佈建 AlwaysOn 可用性群組
+## 使用 Resource Manager 部署模型從資源庫佈建可用性群組
 
 Azure 提供整個解決方案的資源庫映像。若要找出範本，請執行下列動作：
 
@@ -89,9 +87,9 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [密碼] 是網域系統管理員帳戶的密碼。使用複雜密碼。確認密碼。
 
-- [訂用帳戶] 是在執行 AlwaysOn 可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
+- [訂用帳戶] 是在執行可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
 
-- [資源群組] 是本教學課程建立的所有 Azure 資源所屬群組的名稱。本教學課程使用 **SQL-HA-RG**。如需詳細資訊，請參閱 (Azure 資源管理員概觀)[resource-group-overview.md/#resource-groups]。
+- [資源群組] 是本教學課程建立的所有 Azure 資源所屬群組的名稱。本教學課程使用 **SQL-HA-RG**。如需詳細資訊，請參閱 (Azure Resource Manager 概觀)[resource-group-overview.md/#resource-groups]。
 
 - [位置] 是本教學課程將於其中建立資源的 Azure 區域。選取 Azure 區域來裝載基礎結構。
 
@@ -117,7 +115,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 若要深入了解 Azure 中的虛擬網路，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-[網域和網路設定] 看起來應該如下所示：
+[網域和網路設定] 看起來應該像這樣：
 
 ![網域和網路設定](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/2-domain.png)
 
@@ -157,7 +155,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [DC 儲存體帳戶] 是網域控制站的儲存體帳戶名稱。本教學課程使用 **alwaysondc01**。
 
-- [SQL Server 資料磁碟大小] \(TB) 是 SQL Server 資料磁碟的大小 (TB)。指定從 1 到 4 的數字。這是會附加至每個 SQL Server 的資料磁碟的大小。本教學課程使用 **1**。
+- [SQL Server 資料磁碟大小]\(TB) 是 SQL Server 資料磁碟的大小 (TB)。指定從 1 到 4 的數字。這是會附加至每個 SQL Server 的資料磁碟的大小。本教學課程使用 **1**。
 
 - [儲存體最佳化] 會根據工作負載類型，設定 SQL Server 虛擬機器的特定儲存體組態設定。在此案例中，所有 SQL Server 都使用進階儲存體，且 Azure 磁碟主機快取設為唯讀。此外，有下列三種設定供您選擇，以最佳化 SQL Server 的工作負載設定：
 
@@ -191,7 +189,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [Windows Server 備份和存放集區](http://technet.microsoft.com/library/dn390929.aspx)
 
-如需 SQL Server 組態最佳做法的詳細資訊，請參閱 [Performance best practices for SQL Server in Azure Virtual Machines (Azure 虛擬機器中的 SQL Server 效能最佳做法)](virtual-machines-windows-sql-performance.md)。
+如需 SQL Server 組態最佳做法的詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。
 
 
 ###SQL Server 設定
@@ -222,7 +220,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 ###購買
 
-這個最終的刀鋒視窗包含 [使用條款] 和 [隱私權原則]。檢閱此資訊。當您準備好讓 Azure 開始建立虛擬機器以及 AlwaysOn 可用性群組的其他所有必要資源時，請按一下 [建立]。
+這個最終的刀鋒視窗包含 [使用條款] 和 [隱私權原則]。檢閱此資訊。當您準備好讓 Azure 開始建立虛擬機器以及可用性群組的其他所有必要資源時，請按一下 [建立]。
 
 Azure 入口網站會建立資源群組和所有資源。
 
@@ -259,6 +257,6 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 
 1.	使用您以 RDP 連接至網域控制站時所用的相同使用者帳戶和密碼。
 
-您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定 AlwaysOn 可用性群組。
+您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定可用性群組。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

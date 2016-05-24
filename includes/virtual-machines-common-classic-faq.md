@@ -13,6 +13,13 @@
 
 針對 Windows 用戶端映像，特定版本的 Windows 7 和 Windows 8.1 可供 MSDN Azure 權益訂閱者和 MSDN 開發與測試隨用隨付訂閱者 (針對開發與測試工作) 使用。如需詳細資訊 (包括指示和限制)，請參閱 [MSDN 訂閱者的 Windows 用戶端映像](https://azure.microsoft.com/blog/2014/05/29/windows-client-images-on-azure/)。
 
+## 為何同質群組遭到取代？
+
+同質群組是一個舊概念，原先提供來改善早期 Azure 網路設計中的 VM 對 VM 網路效能，並支援初版虛擬網路 (VNet)，其受限於區域中少數的硬體集。目前區域內的 Azure 網路設計不再需要同質群組。VNet 也在區域範圍內，因此使用 VNet 時不再需要同質群組。由於這些改善，我們不再建議客戶使用同質群組，因為它們在某些案例中可能有所限制。使用同質群組不一定會建立 VM 和特定硬體之間的關聯，後者將會限制您對可用 VM 大小的選擇。如果與同質群組相關聯的特定硬體接近容量極限，它也可能在嘗試新增 VM 時造成容量相關錯誤。
+
+在 Azure Resource Manager 部署模型和入口網站中，同質群組功能已經被取代。我們會從傳統入口網站淘汰建立同質群組，以及建立釘選到同質群組的儲存體資源等支援。使用同質群組的現有雲端服務不需要修改。除非 Azure 支援專家建議使用，否則新的雲端服務不應該使用同質群組。
+
+
 ## 我可以使用多少的儲存體搭配虛擬機器？
 
 每個資料磁碟最多可達 1 TB。可使用的資料磁碟數量取決於虛擬機器的大小。如需詳細資訊，請參閱[虛擬機器的大小](../articles/virtual-machines/virtual-machines-linux-sizes.md)。
@@ -137,5 +144,3 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 [建立 Linux 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-linux-creation-choices.md)
 
 [建立 Windows 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-windows-creation-choices.md)
-
-<!---HONumber=AcomDC_0413_2016-->

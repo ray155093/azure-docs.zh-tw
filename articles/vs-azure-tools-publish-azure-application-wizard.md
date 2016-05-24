@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/19/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 發佈 Azure 應用程式精靈
@@ -29,7 +29,7 @@
 
 1. 取得 Microsoft 帳戶和 Azure 訂用帳戶。您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)免費試用 Azure 訂用帳戶一個月
 
-1. 在 Azure 上建立雲端服務和儲存體帳戶。您可以從 Visual Studio 中的 [伺服器總管] 執行此動作，或使用 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)執行。
+1. 在 Azure 上建立雲端服務和儲存體帳戶。您可以從 Visual Studio 中的 [伺服器總管] 執行此動作，或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)執行。
 
 1. 啟用 Azure 的 web 應用程式。若要啟用 web 應用程式以將其從 Visual Studio 發佈至 Azure，您必須將它與 Visual Studio 中的 Azure 雲端服務專案產生關聯。若要建立相關聯的雲端服務專案，請開啟 web 應用程式專案的捷徑功能表，然後選擇 [轉換]，**轉換成 Azure 雲端服務專案**。
 
@@ -139,4 +139,4 @@
 
 [測試雲端服務的效能](https://msdn.microsoft.com/library/azure/hh369930.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

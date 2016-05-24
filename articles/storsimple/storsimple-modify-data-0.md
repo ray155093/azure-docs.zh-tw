@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,19 +12,22 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/15/2016"
+   ms.date="04/25/2016"
    ms.author="alkohli" />
 
 # 修改 StorSimple 裝置上的 DATA 0 網路介面設定
 
 ## 概觀
 
-Microsoft Azure StorSimple 裝置有 6 個網路介面，從 DATA 0 至 DATA 5。DATA 0 介面一律透過 Windows PowerShell 介面或序列主控台設定，且已自動啟用雲端功能。DATA 0 介面會在初始部署 StorSimple 裝置期間，透過安裝精靈進行第一次設定。當裝置處於操作模式時，您可能需要重新進行 DATA 0 設定。本教學課程提供兩種修改 DATA 0 網路設定的方法，皆需透過 Windows PowerShell for StorSimple 進行。
+Microsoft Azure StorSimple 裝置有 6 個網路介面，從 DATA 0 至 DATA 5。DATA 0 介面一律透過 Windows PowerShell 介面或序列主控台設定，且已自動啟用雲端功能。請注意，您無法透過 Azure 傳統入口網站設定 DATA 0 網路介面。
+
+DATA 0 介面會在初始部署 StorSimple 裝置期間，透過安裝精靈進行第一次設定。當裝置處於操作模式時，您可能需要重新進行 DATA 0 設定。本教學課程提供兩種修改 DATA 0 網路設定的方法，皆需透過 Windows PowerShell for StorSimple 進行。
 
 閱讀本教學課程之後，您將能夠：
 
 - 透過安裝精靈修改 DATA 0 網路設定
 - 透過 `Set-HcsNetInterface` Cmdlet 修改 DATA 0 網路設定
+
 
 
 ## 透過安裝精靈修改 DATA 0 網路設定
@@ -40,11 +43,11 @@ Microsoft Azure StorSimple 裝置有 6 個網路介面，從 DATA 0 至 DATA 5�
 
 3. 安裝精靈將會出現以協助您設定裝置的 DATA 0 介面。提供 IP 位址、閘道器和網路遮罩的新值。
 
-> [AZURE.NOTE]固定控制器 IP 必須在 Azure 傳統入口網站透過 StorSimple 裝置的 [設定] 頁面重新設定。如需詳細資訊，請移至[修改網路介面](storsimple-modify-device-config.md#modify-network-interfaces)。
+> [AZURE.NOTE] 固定控制器 IP 必須在 Azure 傳統入口網站透過 StorSimple 裝置的 [設定] 頁面重新設定。如需詳細資訊，請移至[修改網路介面](storsimple-modify-device-config.md#modify-network-interfaces)。
 
 
 ## 透過 Set-HcsNetInterface cmdlet 修改 DATA 0 網路設定
-重新設定 DATA 0 網路介面的替代方式為透過使用 `Set-HcsNetInterface` cmdlet。cmdlet 是從 StorSimple 裝置的 Windows PowerShell 介面執行。執行下列步驟以修改 DATA 0 設定：
+重新設定 DATA 0 網路介面的替代方式為透過使用 `Set-HcsNetInterface` cmdlet。cmdlet 是從 StorSimple 裝置的 Windows PowerShell 介面執行。使用此程序時，控制器固定 IP 也可以在此設定。執行下列步驟以修改 DATA 0 設定：
 
 #### 透過 Set-HcsNetInterface cmdlet 修改 DATA 0 網路設定
 
@@ -66,10 +69,12 @@ Microsoft Azure StorSimple 裝置有 6 個網路介面，從 DATA 0 至 DATA 5�
 
 	- 控制器 1 的固定的 IPv4 位址
 
+	如需使用此 Cmdlet 的詳細資訊，請移至 [Windows PowerShell for StorSimple Cmdlet 參考](https://technet.microsoft.com/library/dn688161.aspx)。
+
 ## 後續步驟
 
 - 若要設定 DATA 0 以外的網路介面，您可以使用 [Azure 傳統入口網站中的設定頁面](storsimple-modify-device-config.md)。 
 
 - 如果您在設定您的網路介面時遇到任何問題，請參閱[疑難排解部署問題](storsimple-troubleshoot-deployment.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0511_2016-->

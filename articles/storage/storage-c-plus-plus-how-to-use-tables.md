@@ -1,6 +1,6 @@
 <properties
     pageTitle="如何使用資料表儲存體 (C++) | Microsoft Azure"
-    description="如何在 Azure 中使用資料表儲存體服務。範例是以 C++ 撰寫的。"
+	description="使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
     services="storage"
     documentationCenter=".net"
     authors="tamram"
@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="02/17/2016"
+	ms.date="04/29/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的資料表儲存體
@@ -414,4 +414,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 -	[Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!----HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

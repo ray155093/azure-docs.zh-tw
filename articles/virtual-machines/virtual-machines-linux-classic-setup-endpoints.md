@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/06/2016"
+	ms.date="04/19/2016"
 	ms.author="cynthn"/>
 
 # 如何在 Azure 中的傳統虛擬機器上設定端點
@@ -23,13 +23,15 @@
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
-當您在 Azure 傳統入口網站中建立 Linux 虛擬機器時，一般會自動為您建立安全殼層 (SSH) 等通用端點。建立虛擬機器或日後有需要時，您可以設定其他端點。
+當您在 Azure 傳統入口網站中建立 Linux 虛擬機器時，通常會自動為您建立安全殼層 (SSH) 的端點。建立虛擬機器或日後有需要時，您可以設定其他端點。
  
 
 [AZURE.INCLUDE [virtual-machines-common-classic-setup-endpoints](../../includes/virtual-machines-common-classic-setup-endpoints.md)]
 
 ## 後續步驟
 
-* 也可以在[服務管理模式](../virtual-machines-command-line-tools.md)中使用 Azure 命令列介面建立 VM 端點。執行 **azure vm endpoint create** 命令。
+* 您也可以使用 [Azure 命令列介面](../virtual-machines-command-line-tools.md)建立 VM 端點。執行 **azure vm endpoint create** 命令。
 
-<!---HONumber=AcomDC_0413_2016-->
+* 如果您已在 Resource Manager 部署模型中建立虛擬機器，您可以使用 Resource Manager 模式中的 Azure CLI 來[建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-cli.md)以控制 VM 的流量。
+
+<!---HONumber=AcomDC_0511_2016-->

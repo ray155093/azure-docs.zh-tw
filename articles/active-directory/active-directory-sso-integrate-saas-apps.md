@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="02/09/2016"
+    ms.date="04/26/2016"
     ms.author="curtand"/>
 
 # 整合 Azure Active Directory 單一登入與 SaaS 應用程式  
@@ -47,7 +47,7 @@ Azure AD 提供幾種可自訂的方式，來對您組織中的使用者部署�
 
 ### 對應使用者帳戶
 
-使用者的身分識別通常有唯一身分識別碼，可能是電子郵件地址或通用個人名稱 (UPN)。您必須將每個使用者的應用程式身分識別連結 (對應) 至其各自的 Azure AD 身分識別。根據您的應用程式驗證的需求，有好幾種方法可完成這項作業。
+使用者的身分識別通常有唯一識別碼，可能是電子郵件地址或使用者主體名稱 (UPN)。您必須將每個使用者的應用程式身分識別連結 (對應) 至其各自的 Azure AD 身分識別。根據您的應用程式驗證的需求，有好幾種方法可完成這項作業。
 
 如需對應應用程式身分識別與 Azure AD 身分識別的詳細資訊，請參閱[自訂 SAML 權杖中發出的宣告](http://social.technet.microsoft.com/wiki/contents/articles/31257.azure-active-directory-customizing-claims-issued-in-the-saml-token-for-pre-integrated-apps.aspx)和[自訂佈建的屬性對應](active-directory-saas-customizing-attribute-mappings.md)。
 
@@ -72,4 +72,4 @@ Azure.com 文件庫中還有更多關於這些議題的詳細資訊，請先閱�
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

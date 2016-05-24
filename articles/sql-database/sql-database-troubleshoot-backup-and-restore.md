@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/14/2016"
+	ms.date="05/11/2016"
 	ms.author="daleche"/>
 
 # 將資料庫還原至先前的時間點、還原已刪除的資料庫，或從資料中心中斷情況復原
@@ -42,4 +42,4 @@ Azure 也能為不同區域中 (異地備援備份) 的每個資料庫提供備�
 
 - 在 [Azure 入口網站](https://azure.microsoft.com/)中，依序按一下 [新增]、[資料和儲存體] 和 [SQL Database]，然後選取 [備份] 作為資料庫來源。如需詳細資訊，請參閱[從中斷情況復原 Azure SQL Database](sql-database-disaster-recovery.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

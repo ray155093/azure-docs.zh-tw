@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="安裝您的 StorSimple 8600 裝置 | Microsoft Azure"
    description="描述如何打開包裝、掛接機架和佈線 StorSimple 8600 裝置，再部署和設定軟體。"
    services="storsimple"
@@ -6,13 +6,13 @@
    authors="alkohli"
    manager="carmonm"
    editor="" />
-<tags 
+<tags
    ms.service="storsimple"
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/01/2015"
+   ms.date="04/25/2016"
    ms.author="alkohli" />
 
 # 打開包裝、掛接機架和佈線 StorSimple 8600 裝置
@@ -43,10 +43,10 @@
 2. 開啟外箱，然後取出對應主要機箱和 EBOD 機箱的兩個箱子。您現在可以拆封主要機箱和 EBOD 機箱。下圖顯示其中一個機箱拆封後的樣子。
 
     ![打開您的儲存體裝置包裝](./media/storsimple-8600-hardware-installation/HCSUnpackyour4Udevice.png)
- 
+
     **儲存體裝置打開包裝的樣子**
 
-     標籤 | 說明 
+     標籤 | 說明
      ----- | -------------
      1 | 包裝箱
      2 | SAS 纜線 (在附件和纜線匣)
@@ -57,7 +57,7 @@
 
 3. 打開兩個箱子的包裝之後，請確定您有：
 
-  - 1 個主要機箱 (主要機箱與 EBOD 機箱是在兩個不同的箱子中) 
+  - 1 個主要機箱 (主要機箱與 EBOD 機箱是在兩個不同的箱子中)
   - 1 個 EBOD 機箱
   - 4 條電源線，每個箱子各 2 條
   - 2 條 SAS 纜線 (連接主要機箱與 EBOD 機箱)
@@ -77,6 +77,11 @@
 遵循下列步驟，以具有前後端柱子的標準 19 英吋機架安裝 StorSimple 8600 儲存體裝置。此裝置有兩個機箱：主要機箱和 EBOD 機箱。兩個機箱都需要機架掛接。
 
 安裝包含多個步驟，會在下列程序中討論每個步驟。
+
+> [AZURE.IMPORTANT]
+StorSimple 裝置需要機架掛接才能正常運作。
+
+
 
 ### 場地準備
 
@@ -108,7 +113,7 @@
 
 #### 在滑軌上安裝 EBOD 機箱
 
-2. 只有在您的裝置上未安裝內部滑軌時才執行此步驟。通常，內部滑軌會在工廠安裝。如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。他們是在每一邊使用六個公制螺絲來連接。為了協助辨識方向，滑軌標示為 [**LH – Front**] \(左邊 – 前) 和 [**RH – Front**] \(右邊 – 前)，接至機箱後端的尾端有錐型結尾。
+2. 只有在您的裝置上未安裝內部滑軌時才執行此步驟。通常，內部滑軌會在工廠安裝。如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。他們是在每一邊使用六個公制螺絲來連接。為了協助辨識方向，滑軌標示為 [**LH – Front**]\(左邊 – 前) 和 [**RH – Front**] \(右邊 – 前)，接至機箱後端的尾端有錐型結尾。
 
     ![將滑軌連接至機箱底座](./media/storsimple-8600-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
 
@@ -118,7 +123,7 @@
     ----- | -----------
     1 | M 3x4 圓頭螺釘
     2 | 底座滑軌
- 
+
 3. 將左邊滑軌和右邊滑軌組件連接至機櫃垂直面。托架會標示 [**LH**] \(左邊)，[**RH**] \(右邊) 和 [**This side up**] \(此面向上)，引導您正確的方向。
 
 4. 找出滑軌組件前後方的滑軌插梢。延伸滑軌以適合機架柱，並且將插梢插入前後端機架柱垂直面的孔洞。請確定滑軌組件是水平的。
@@ -139,13 +144,13 @@
      4 | 固定螺絲
      5 | 左邊後端滑軌位置插梢
 
-### 在機架中掛接 EBOD 機箱 
+### 在機架中掛接 EBOD 機箱
 
 使用剛才安裝的機架滑軌，執行下列步驟以在機架中掛接 EBOD 機箱。
 
 #### 掛接 EBOD 機箱
 
-1. 使用輔助工具，將機箱抬起並且對齊機架滑軌。 
+1. 使用輔助工具，將機箱抬起並且對齊機架滑軌。
 
 2. 仔細地將機箱插入滑軌，然後將機箱完全推入至機櫃。
 
@@ -162,7 +167,7 @@
      ![安裝輪緣蓋](./media/storsimple-8600-hardware-installation/HCSInstallingFlangeCaps.png)
 
     **安裝輪緣蓋**
- 
+
      標籤 | 說明
      ----- | -----------
      1 | 機箱鎖固螺絲
@@ -173,8 +178,8 @@
 完成掛接 EBOD 機箱之後，您必須遵循相同步驟以掛接主要機箱。
 
 > [AZURE.NOTE]
-> 
-> - 主要機箱與 EBOD 機箱之間的機架中可能會有一些空的插槽。 
+>
+> - 主要機箱與 EBOD 機箱之間的機架中可能會有一些空的插槽。
 > - 使用提供的 2m SAS 纜線以連接主要機箱與 EBOD 機箱。
 > - EBOD 單元的前端單元相對位置沒有限制。因此，主要機箱可以放在最上層插槽中，而 EBOD 機箱可以放在下方，或者反之亦然。
 
@@ -196,7 +201,7 @@
 - 提供的序列纜線
 - 序列 USB 轉換器，且您的電腦上已安裝適當驅動程式 (如果需要)
 - 提供 4 個 QSFP-to-SFP+ 配接器以用於 10 GbE 網路介面
-- [10 GbE 網路介面在 StorSimple 裝置上支援的硬體](storsimple-supported-hardware-for-10-gbe-network-interfaces.md) 
+- [10 GbE 網路介面在 StorSimple 裝置上支援的硬體](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
 
 ### SAS 及電源佈線
 
@@ -221,7 +226,7 @@
      ![8600 裝置的後擋板](./media/storsimple-8600-hardware-installation/HCSBackplaneof2UDevicewithPortsLabeled.jpg)
 
     **裝置後方的資料連接埠**
- 
+
      標籤 | 說明
      ------- | -----------
      0,1,4,5 | 1 GbE 網路介面
@@ -256,11 +261,11 @@ H,I | 主機 (例如，檔案伺服器)
 - 各個控制器上至少已連接兩個網路介面，一個用於雲端存取，一個用於 iSCSI。DATA 0 連接埠會自動啟用並透過裝置的序列主控台設定。除了 DATA 0，另一個資料連接埠也需要透過 Azure 傳統入口網站來設定。在此情況下，請將 DATA 0 連接埠連接到主要區域網路 (具有網際網路存取的網路)。其他資料連接埠可以連線到網路的 SAN/iSCSI LAN (VLAN) 區段，視預期的角色而定。
 
 - 各個控制器上的相同介面已連接到相同的網路以確保可用性 (如果發生控制器容錯移轉)。例如，如果您選擇對於其中一個控制器連接 DATA 0 和 DATA 3，您需要在其他控制器上連接對應的 DATA 0 和 DATA 3。
-	
+
 針對高可用性和效能，請記住：
 
 
-- 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議 10 GbE) 的網路介面。 
+- 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議 10 GbE) 的網路介面。
 
 - 可能的話，請將各個控制器的網路介面連接到兩個不同的交換器，以確保交換器發生錯誤時的可用性。下圖說明兩個從各個控制器連接到兩個不同交換器的 10 GbE 網路介面 (DATA 2 和 DATA 3)。如需詳細資訊，請參閱 [StorSimple 裝置的高可用性需求](storsimple-system-requirements.md#high-availability-requirements-for-storsimple) 下的**網路介面**。
 
@@ -296,6 +301,5 @@ H,I | 主機 (例如，檔案伺服器)
 ## 後續步驟
 
 您現在已準備好[部署和設定您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough.md)。
- 
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

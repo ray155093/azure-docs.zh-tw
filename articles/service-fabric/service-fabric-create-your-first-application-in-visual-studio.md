@@ -3,7 +3,7 @@
    description="使用 Visual Studio 建立、部署和偵錯 Service Fabric 應用程式"
    services="service-fabric"
    documentationCenter=".net"
-   authors="seanmck"
+   authors="rwike77"
    manager="timlt"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="03/27/2016"
-   ms.author="seanmck"/>
+   ms.author="ryanwi"/>
 
 # 在 Visual Studio 中建立第一個 Azure Service Fabric 應用程式
 
@@ -115,9 +115,9 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
   在我們做結論之前，請務必記得本機叢集非常真實。即使在停止偵錯工具並關閉 Visual Studio 之後，您的應用程式將會繼續在背景執行。視您的應用程式的本質而言，此背景活動可能會佔用您電腦上的大量資源。您有數個選項可管理此項目：
 
   1. 若要移除個別的應用程式及其所有資料，請使用 Service Fabric 總管中的 [刪除應用程式] 動作，搭配左窗格中應用程式清單檢視的 [動作] 功能表或內容功能表。
-  
+
     ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
-    
+
   2. 從叢集中刪除應用程式之後，您可以接著對移除應用程式封裝 (包括其程式碼和組態) 的應用程式，從叢集的映像存放區選擇 [解除佈建類型]。
   3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
 
@@ -150,4 +150,4 @@ Temporarily removing this link because we have removed the ASP.NET template.
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

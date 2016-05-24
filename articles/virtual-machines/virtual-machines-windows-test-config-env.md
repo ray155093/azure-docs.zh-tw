@@ -1,5 +1,5 @@
 <properties
-	pageTitle="基本設定測試環境與 Azure 資源管理員"
+	pageTitle="基本設定測試環境與 Azure Resource Manager"
 	description="了解如何建立簡單的開發/測試環境來模擬 Microsoft Azure 中簡化的內部網路。"
 	documentationCenter=""
 	services="virtual-machines-windows"
@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="Windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/01/2016"
+	ms.date="04/25/2016"
 	ms.author="josephd"/>
 
 # 基本設定測試環境
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
 
-本文將逐步解說如何利用在資源管理員中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
+本文將逐步解說如何利用在 Resource Manager 中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
 
 產生的測試環境可以用於：
 
@@ -83,7 +83,7 @@
 	$locName="<location name, such as West US>"
 	New-AzureRMResourceGroup -Name $rgName -Location $locName
 
-以資源管理員為基礎的虛擬機器需要以資源管理員為基礎的儲存體帳戶。您必須為儲存體帳戶挑選只包含小寫字母和數字的全域唯一名稱。您可以使用此命令列出現有的儲存體帳戶。
+以 Resource Manager 為基礎的虛擬機器需要以 Resource Manager 為基礎的儲存體帳戶。您必須為儲存體帳戶挑選只包含小寫字母和數字的全域唯一名稱。您可以使用此命令列出現有的儲存體帳戶。
 
 	Get-AzureRMStorageAccount | Sort StorageAccountName | Select StorageAccountName
 
@@ -304,7 +304,8 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 
 ## 後續步驟
 
-- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)加入新的虛擬機器，或建置[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)新增虛擬機器。
+- 建置[模擬混合式雲端測試環境](virtual-machines-setup-simulated-hybrid-cloud-environment-testing.md)。
 
 
 ## <a id="costs"></a>將 Azure 的測試環境虛擬機器費用降至最低
@@ -334,4 +335,4 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "APP1"
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "CLIENT1"
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

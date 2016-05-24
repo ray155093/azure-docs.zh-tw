@@ -74,7 +74,7 @@
 ## (選擇性) 藉由安裝代理程式來直接連接伺服器和 Operations Management Suite
 1. 針對您要安裝的電腦架構，依序按一下 [設定] 圖格、[連接的來源] 索引標籤，然後按一下 [下載 Windows 代理程式]。您只能將代理程式安裝在 Windows Server 2008 SP1 或更新版本，亦或是 Windows 7 SP1 或更新版本。
 2. 將代理程式安裝在一或多部伺服器上。您可以逐一安裝代理程式、使用搭配[自訂指令碼](log-analytics-windows-agents.md)的自動化方法，也可以使用現有的軟體散發解決方案。
-3. 在同意授權合約及選擇安裝資料夾之後，請選取 [Connect the agent to Microsoft Azure Operational Insights] (將代理程式連線至 Microsoft Azure Operational Insights)。(OMS 先前稱為 Operational Insights)。![代理程式設定](./media/log-analytics-get-started/oms-onboard-agent.png)
+3. 在同意授權合約及選擇安裝資料夾之後，請選取 [Connect the agent to Microsoft Azure Operational Insights] \(將代理程式連線至 Microsoft Azure Operational Insights)。(OMS 先前稱為 Operational Insights)。![代理程式設定](./media/log-analytics-get-started/oms-onboard-agent.png)
 
 4. 在下一個頁面中，系統會詢問您的工作區識別碼和工作區金鑰。您的工作區 ID 和金鑰會顯示在下載代理程式檔案的畫面上。![代理程式金鑰](./media/log-analytics-get-started/oms-onboard-mma-keys.png) ![附加伺服器](./media/log-analytics-get-started/oms-onboard-key.png)
 5. 在安裝期間，您可以按一下 [進階] 以選擇性地設定 Proxy 伺服器及提供驗證資訊。按 [下一步] 按鈕返回工作區資訊畫面。
@@ -112,4 +112,4 @@
 - 熟悉[記錄搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
 - 使用[儀表板](log-analytics-dashboards.md)來儲存及顯示您的自訂搜尋。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!----HONumber=AcomDC_0504_2016-->

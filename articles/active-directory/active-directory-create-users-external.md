@@ -74,13 +74,14 @@
 - 外部使用者無法同意在其主目錄以外的目錄中的多租用戶應用程式
 - PowerBI 目前不支援讓外部使用者存取
 - Office 入口網站不支援授權外部使用者
+- 對於 Azure AD PowerShell，外部使用者會登入其主目錄，因此無法管理其身分為外部使用者的目錄
 
 
-## 後續步驟
+## 接下來
 
 - [將新的使用者加入 Azure Active Directory](active-directory-create-users.md)
 - [管理 Azure AD](active-directory-administer.md)
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

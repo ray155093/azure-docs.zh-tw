@@ -1,7 +1,7 @@
 <properties 
-	pageTitle="Azure App Service 環境" 
-	description="了解 App Service 的運作方式" 
-	keywords="app service 環境, azure app service 環境"
+	pageTitle="App Service 環境 | Microsoft Azure" 
+	description="何謂 Azure App Service 環境？ App Service 環境簡介。" 
+	keywords="azure app service 環境, 虛擬網路, 安全網路"
 	services="app-service" 
 	documentationCenter="" 
 	authors="yochay" 
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/18/2016" 
+	ms.date="05/10/2016" 
 	ms.author="stefsch"/>
 
-# 概觀
+# App Service 環境文件
 
 App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
 
@@ -59,4 +59,4 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 [SiteToSite]: https://azure.microsoft.com/documentation/articles/vpn-gateway-site-to-site-create/
 [ExpressRoute]: http://azure.microsoft.com/services/expressroute/
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->

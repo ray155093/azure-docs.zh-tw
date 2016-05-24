@@ -1,6 +1,6 @@
 <properties
 	pageTitle="如何使用 Node.js 中的 Azure 資料表儲存體 | Microsoft Azure"
-	description="了解如何使用 Azure 資料表儲存體。程式碼範例以 Node.js API 撰寫。"
+	description="使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
 	services="storage"
 	documentationCenter="nodejs"
 	authors="rmcmurray"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="04/29/2016"
 	ms.author="micurd"/>
 
 
@@ -442,4 +442,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
   [使用 Azure 表格服務的 Node.js Web 應用程式]: ../storage-nodejs-use-table-storage-web-site.md
   [Create and deploy a Node.js application to an Azure website]: ../web-sites-nodejs-develop-deploy-mac.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

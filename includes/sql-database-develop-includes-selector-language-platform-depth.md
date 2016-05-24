@@ -1,8 +1,7 @@
-> [AZURE.SELECTOR-LIST (Language | Platform & Depth)]
-- [(CSharp | 任何。入門)](sql-database-develop-dotnet-simple.md)
-- [(Java | 任何。入門)](sql-database-develop-java-simple.md)
-- [(Node.js | 任何。入門)](sql-database-develop-nodejs-simple.md)
-- [(PHP | 任何。入門)](sql-database-develop-php-simple.md)
-- [(Python | 任何。入門)](sql-database-develop-python-simple.md)
-- [(Ruby | 任何。入門)](sql-database-develop-ruby-simple.md)
-
+> [AZURE.SELECTOR]
+- [CSharp](sql-database-develop-dotnet-simple.md)
+- [Java](sql-database-develop-java-simple.md)
+- [Node.js](sql-database-develop-nodejs-simple.md)
+- [PHP](sql-database-develop-php-simple.md)
+- [Python](sql-database-develop-python-simple.md)
+- [Ruby](sql-database-develop-ruby-simple.md)

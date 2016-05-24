@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/05/2016"
+   ms.date="05/02/2016"
    ms.author="chackdan"/>
 
 # 在 Windows Server 或 Linux 上建立獨立的 Service Fabric 叢集
@@ -62,4 +62,4 @@ Service Fabric 會提供可下載的安裝套件。下載此套件之後，您�
 
 在執行 Linux 的 VM 或電腦上建立叢集︰[Linux 上的 Service Fabric](service-fabric-linux-overview.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

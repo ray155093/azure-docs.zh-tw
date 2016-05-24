@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure AD Connect 的 AD FS 管理和自訂 | Microsoft Azure"
+	pageTitle="使用 Azure AD Connect 管理和自訂 Active Directory Federation Services | Microsoft Azure"
 	description="使用 Azure AD Connect 進行 AD FS 管理，以及使用 Azure AD Connect 和 PowerShell 的使用者 AD FS 登入經驗的自訂。"
 	services="active-directory"
 	documentationCenter=""
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="05/04/2016"
 	ms.author="anandy"/>
 
-# 使用 Azure AD Connect 的 AD FS 管理和自訂
+# 使用 Azure AD Connect 管理和自訂 Active Directory Federation Services
 
-此文章詳述可以使用 Azure AD Connect 執行的各種 AD FS 相關工作，以及可能需要完整 AD FS 伺服器陣列組態的其他一般 AD FS 工作。
+此文章詳述可以使用 Azure AD Connect 執行的各種 Active Directory Federation Services (AD FS) 相關工作，以及可能需要完整 AD FS 伺服器陣列組態的其他一般 AD FS 工作。
 
 ## AD FS 管理
 
@@ -28,7 +28,7 @@ Azure AD Connect 提供可以使用 Azure AD Connect 精靈，以最少使用者
 
 Azure AD Connect 可以檢查 AD FS 和 Azure ADtrust 目前的健全狀況，並採取適當的動作來修復信任。請遵循下列步驟來修復您的 Azure AD 和 AD FS 信任。
 
-從可用的工作清單中選取 **修復 Azure AD 和 ADFS 信任**。
+從可用的工作清單中選取 [修復 AAD 和 ADFS 信任]。
 
 ![](media\active-directory-aadconnect-federation-management\RepairADTrust1.PNG)
 
@@ -84,9 +84,9 @@ Azure AD Connect 可以檢查 AD FS 和 Azure ADtrust 目前的健全狀況，�
 
 ![](media\active-directory-aadconnect-federation-management\AddNewADFSServer8.PNG)
 
-### 新增新的 AD FS WAP 伺服器
+### 加入新的 AD FS Web 應用程式 Proxy 伺服器
 
-> [AZURE.NOTE] Azure AD Connect 需要 PFX 憑證檔案，才能新增 WAP 伺服器。因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
+> [AZURE.NOTE] Azure AD Connect 需要 PFX 憑證檔案，才能新增 Web 應用程式 Proxy 伺服器。因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
 
 從可用的工作清單中選取 [部署 Web 應用程式 Proxy]。
 
@@ -102,7 +102,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure ADtrust 目前的健全狀況，�
 
 ![](media\active-directory-aadconnect-federation-management\WapServer4.PNG)
 
-在下一個頁面上，新增要新增做為 WAP 的伺服器。因為 WAP 伺服器可能會或可能不會新增網域，精靈會要求要新增之伺服器的系統管理認證。
+在下一個頁面上，新增要做為 Web 應用程式 Proxy 的伺服器。因為 Web 應用程式 Proxy 伺服器可能會或可能不會新增網域，精靈會要求要新增之伺服器的系統管理認證。
 
 ![](media\active-directory-aadconnect-federation-management\WapServer5.PNG)
 
@@ -138,7 +138,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure ADtrust 目前的健全狀況，�
 
 ![](media\active-directory-aadconnect-federation-management\AdditionalDomain4.PNG)
 
-選擇網域之後，精靈會提供您關於精靈將採取的進一步動作和組態影響的適當資訊。在某些情況下，如果您選取尚未在 Azure AD 中驗證的網域，精靈將提供資訊協助您驗證網域。如需有關如何驗證您的網域的詳細資料，請參閱[新增及驗證 Azure Active Directory 中的自訂網域名稱](active-directory-add-domain-add-verify-general.md)。
+選擇網域之後，精靈會提供您關於精靈將採取的進一步動作和組態影響的適當資訊。在某些情況下，如果您選取尚未在 Azure AD 中驗證的網域，精靈將提供資訊協助您驗證網域。如需有關如何驗證您的網域的詳細資料，請參閱[將您的自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。
 
 按 [下一步]，[準備設定] 頁面會顯示 Azure AD Connect 即將執行的動作清單。按一下 [安裝] 以完成組態。
 
@@ -191,7 +191,10 @@ AD FS 提供選項來指定自訂規則，以發出宣告。它支援豐富的�
 
 此規則只會定義暫時旗標 “idflag”，如果沒有為使用者填入 ms-ds-concistencyguid，則會設為 “useguid”。背後邏輯是實際上 ADFS 不允許空的宣告。所以，在規則 1 中新增宣告 http://contoso.com/ws/2016/02/identity/claims/objectguid 和 http://contoso.com/ws/2016/02/identity/claims/msdsconcistencyguid 時，只有在為使用者填入該值時，您才會得到 msdsconsistencyguid 宣告。如果未填入，ADFS 會發現結果為空值，然後會捨棄它。如您所知所有物件都有 ObjectGuid，因此執行規則 1 之後，宣告一律會在此處
 
-**規則 3：發出 ms-ds-consistencyguid 為固定 ID，如果出現** c:[Type == "http://contoso.com/ws/2016/02/identity/claims/msdsconcistencyguid"] => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Value = c.Value);
+**規則 3：發出 ms-ds-consistencyguid 為固定 ID (如果有的話)**
+
+    c:[Type == "http://contoso.com/ws/2016/02/identity/claims/msdsconcistencyguid"]
+    => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Value = c.Value);
 
 這是隱含的存在檢查。如果宣告的值存在，則發出做為固定 ID。請注意，我即將發出 nameidentifier 宣告。您必須為您的環境中的固定 ID 使用適當的宣告類型變更它。
 
@@ -205,4 +208,35 @@ AD FS 提供選項來指定自訂規則，以發出宣告。它支援豐富的�
 
 > [AZURE.NOTE] 這些規則的順序很重要。
 
-<!---HONumber=AcomDC_0427_2016-->
+#### 使用子網域 UPN 的 SSO
+
+您可以新增多個要使用 Azure AD Connect 加入同盟的網域 ([加入新的同盟網域](active-directory-aadconnect-federation-management.md#add-a-new-federated-domain))。需要修改 UPN 宣告，讓簽發者識別碼對應至根網域，而不是子網域，因為同盟根網域也涵蓋子系。
+
+根據預設，簽發者識別碼的宣告規則會設定為︰
+
+	c:[Type 
+	== “http://schemas.xmlsoap.org/claims/UPN“]
+
+	=> issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(c.Value, “.+@(?<domain>.+)“, “http://${domain}/adfs/services/trust/“));
+
+![預設簽發者識別碼宣告](media\active-directory-aadconnect-federation-management\issuer_id_default.png)
+
+預設規則只是取得 UPN 尾碼，並用在簽發者識別碼宣告中。比方說，John 是 sub.contoso.com 中的使用者，而 contoso.com 與 Azure AD 同盟。John 在登入 Azure AD 時輸入 john@sub.contoso.com 做為使用者名稱，接著，AD FS 中的預設簽發者識別碼宣告規則依下列方式處理它︰
+
+c:[Type == “http://schemas.xmlsoap.org/claims/UPN“]
+
+=> issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(john@sub.contoso.com, “.+@(?<domain>.+)“, “http://${domain}/adfs/services/trust/“));
+
+**宣告值：**http://sub.contoso.com/adfs/services/trust/
+
+為了讓簽發者宣告值中只有根網域，請將宣告規則變更為︰
+
+	c:[Type == “http://schemas.xmlsoap.org/claims/UPN“]
+
+	=> issue(Type = “http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid“, Value = regexreplace(c.Value, “^((.*)([.|@]))?(?<domain>[^.]*[.].*)$”, “http://${domain}/adfs/services/trust/“));
+
+## 後續步驟
+
+深入了解[使用者登入選項](active-directory-aadconnect-user-signin.md)
+
+<!---HONumber=AcomDC_0511_2016-->

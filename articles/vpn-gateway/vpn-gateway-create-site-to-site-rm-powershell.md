@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/21/2016"
+   ms.date="05/13/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 建立具有站對站 VPN 連線的虛擬網路
@@ -26,15 +26,21 @@
 
 本文將逐步引導您使用 Azure Resource Manager 部署模型建立虛擬網路以及內部部署網路的站對站 VPN 連線。站對站連線可以用於跨部署與混合式組態。
 
+
 **關於 Azure 部署模型**
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+## 連接圖表 
 
 ![站對站圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/site2site.png "站對站")
 
 **站對站連線的部署模型和工具**
 
 [AZURE.INCLUDE [vpn-gateway-table-site-to-site](../../includes/vpn-gateway-table-site-to-site-include.md)]
+
+如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。如果您要尋找不同類型的連線組態，請參閱 [VPN 閘道連線拓撲](vpn-gateway-topology.md)一文。
+
 
 ## 開始之前
 
@@ -70,6 +76,9 @@
 以下範例示範 /28 的閘道器子網路。雖然您可以建立與 /29 一樣小的閘道器子網路，但是我們不建議這麼做。我們建議建立閘道器子網路 /27 或更大的子網路 (/26、/25 等)，以容納額外的功能需求。
 
 如果已有具備 /29 或更大的閘道器子網路的虛擬網路，您可以往前跳至[新增您的區域網路閘道](#localnet)。
+
+
+[AZURE.INCLUDE [vpn-gateway-no-nsg](../../includes/vpn-gateway-no-nsg-include.md)]
 
 ### 建立虛擬網路和閘道器子網路
 
@@ -193,4 +202,4 @@ VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azu
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

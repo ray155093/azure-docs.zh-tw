@@ -6,14 +6,14 @@
     authors="mgoedtel"
     manager="jwhit"
     editor=""
-	keywords="powershell 工作流程, powershell 工作流程範例, powershell 工作流程" />
+	keywords="powershell 工作流程, powershell 工作流程範例, 工作流程 powershell"/>
 <tags
     ms.service="automation"
     ms.workload="tbd"
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="05/10/2016"
+    ms.date="05/18/2016"
     ms.author="magoedte;bwren"/>
 
 # 我的第一個 PowerShell 工作流程 Runbook
@@ -45,8 +45,23 @@
 
 您可以直接將程式碼輸入到 runbook 中，或從程式庫控制項選取 cmdlet、runbook 和資產，並利用任何相關的參數將它們加入至 runbook。在此逐步解說中，我們將直接輸入至 runbook。
 
-1.	我們的 runbook 目前是空白的，只有必要的「工作流程」關鍵字、runbook 名稱以及將括住整個工作流程的大括弧。<br> ![Runbook 控制項](media/automation-first-runbook-textual/empty-runbook.png)
-2.	在括號之間輸入「Write-Output "Hello World."」。<br> ![Hello world](media/automation-first-runbook-textual/hello-world.png)
+1.	我們的 runbook 目前是空白的，只有必要的「工作流程」關鍵字、runbook 名稱以及將括住整個工作流程的大括弧。 
+
+    ```
+    Workflow MyFirstRunbook-Workflow
+    {
+    }
+    ```
+
+2.	在括號之間輸入「Write-Output "Hello World."」。
+   
+    ```
+    Workflow MyFirstRunbook-Workflow
+    {
+      Write-Output "Hello World"
+    }
+    ```
+
 3.	按一下 [儲存] 來儲存 Runbook。<br> ![儲存 Runbook](media/automation-first-runbook-textual/runbook-edit-toolbar-save.png)
 
 ## 步驟 3 - 測試 Runbook
@@ -73,28 +88,43 @@
 8.	關閉 [輸出] 窗格。
 9.	按一下 [資料流] 以開啟 Runbook 工作的 [資料流] 窗格。我們應該只會在輸出資料流中看到「Hello World」，但可能也會顯示 Runbook 工作的其他資料流，例如 Runbook 寫入時發生的詳細資訊和錯誤。<br> ![工作摘要](media/automation-first-runbook-textual/job-pane-streams.png)
 10.	關閉 [資料流] 窗格和 [工作] 窗格，以返回 MyFirstRunbook 窗格。
-11.	按一下 [作業] 以開啟此 Runbook 的 [工作] 窗格。這樣會列出此 Runbook 所建立的所有工作。由於我們只執行一次作業，因此應該只會看到列出一項作業。<br> ![作業](media/automation-first-runbook-textual/runbook-control-jobs.png)
+11.	按一下 [作業] 以開啟此 Runbook 的 [工作] 窗格。這樣會列出此 Runbook 所建立的所有工作。由於我們只執行一次工作，因此應該只會看到列出一項工作。<br> ![作業](media/automation-first-runbook-textual/runbook-control-jobs.png)
 12.	您可以按一下此工作以開啟我們啟動 Runbook 時所檢視的相同 [工作] 窗格。這可讓您回到過去的時間並檢視針對特定 Runbook 所建立的任何工作的詳細資料。
 
 ## 步驟 5 - 加入驗證來管理 Azure 資源
 
-我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。我們想要讓它管理 Azure 資源。不過它無法辦到這點，除非我們使用在[必要條件](#prerequisites)中提及的認證對其進行驗證。我們會利用 **Add-AzureAccount** Cmdlet 來執行。
+我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。我們想要讓它管理 Azure 資源。不過它無法辦到這點，除非我們使用在[必要條件](#prerequisites)中提及的認證對其進行驗證。我們會利用 **Add-AzureRMAccount** Cmdlet 來執行。
 
 1.	按一下 MyFirstRunbook-Workflow 窗格上的 [編輯] 以開啟文字編輯器。<br> ![編輯 Runbook](media/automation-first-runbook-textual/runbook-toolbar-edit.png)
 2.	我們不再需要 **Write-Output** 行，因此可以放心刪除。
 3.	將游標放在大括弧之間的空白行。
-4.	在程式庫控制項中，展開 [資產] 以及 [認證]。
-5.	以滑鼠右鍵按一下您的認證，然後按一下 [加入至畫布]。這會新增認證的 **Get-AutomationPSCredential** 活動。
-6.	在 **Get-AutomationPSCredential** 前面，輸入 *$Credential =* 以將認證指派給變數。
-7.	在下一行輸入「Add-AzureAccount -Credential $Credential」。<br> ![驗證](media/automation-first-runbook-textual/authentication.png)
-8.	按一下 [測試] 窗格，我們便可以測試 Runbook。
-9.	按一下 [開始] 以開始測試。當它完成時，您應該會收到類似下列輸出，它會傳回認證中的使用者資訊。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual/authentication-test.png)
+4.	輸入或是複製並貼上下列程式碼，此程式碼會處理您的自動化執行身分帳戶的驗證︰
+
+    ```
+    $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
+    Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
+    -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+    ```
+
+5.	按一下 [測試] 窗格，我們便可以測試 Runbook。
+6.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual/runbook-auth-results.png)
 
 ## 步驟 6 - 加入程式碼以啟動虛擬機器
 
 由於我們的 runbook 正在驗證我們的 Azure 訂用帳戶，所以我們可以管理資源。我們將新增一個命令以啟動虛擬機器。您可以在您的 Azure 訂用帳戶中挑選任何虛擬機器，而現在我們會將該名稱硬式編碼成 Cmdlet。
 
-1.	在「Add-AzureAccount」後面，輸入「Start-AzureVM -Name 'VMName' -ServiceName 'VMServiceName'」，提供虛擬機器的名稱和服務名稱以便啟動。<br> ![驗證](media/automation-first-runbook-textual/start-azurevm.png)
+1.	在「Add-AzureRmAccount」後面輸入「Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'NameofResourceGroup'」，提供要啟動之虛擬機器的名稱和資源群組名稱。  
+
+    ```
+    workflow MyFirstRunbook-Workflow
+    {
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
+     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
+     -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+     Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'ResourceGroupName'
+    }
+    ```
+
 2.	儲存 Runbook，然後按一下 [測試] 窗格，我們便能加以測試。
 3.	按一下 [開始] 以開始測試。當它完成時，請檢查虛擬機器已啟動。
 
@@ -102,18 +132,35 @@
 
 我們的 Runbook 目前會啟動我們在 runbook 中硬式編碼的虛擬機器，但如果可以在啟動 runbook 時指定虛擬機器，它會更有用。我們現在會將輸入參數加入 Runbook，以提供該功能。
 
-1.	如下圖所示，將「VMName」和「VMServiceName」的參數加入至 Runbook，並搭配使用這些變數與 **Start-AzureVM** Cmdlet。<br> ![驗證](media/automation-first-runbook-textual/params.png)
+1.	如下列範例所示，將 [VMName] 和 [ResourceGroupName] 的參數加入至 Runbook，並搭配使用這些變數與 **Start-AzureRmVM** Cmdlet。 
+
+    ```
+    workflow MyFirstRunbook-Workflow
+    {
+       Param(
+        [string]$VMName,
+        [string]$ResourceGroupName
+       )  
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
+     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
+     -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+     Start-AzureRmVM -Name $VMName -ResourceGroupName $ResourceGroupName
+    }
+    ```
+
 2.	儲存 Runbook 並開啟 [測試] 窗格。請注意，您現在可以提供測試中將使用的兩個輸入變數的值。
 3.	關閉 [測試] 窗格。
 4.	按一下 [發佈] 來發行新版本的 Runbook。
 5.	停止您在上一個步驟中啟動的虛擬機器。
-6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 **VMName** 和 **VMServiceName**。<br> ![啟動 Runbook](media/automation-first-runbook-textual/start-runbook-input-params.png)
+6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。<br> ![啟動 Runbook](media/automation-first-runbook-textual/automation-pass-params.png)
 
 7.	Runbook 完成時，請檢查虛擬機器已啟動。
 
-## 相關文章
+## 後續步驟
 
--	[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
--	[我的第一個 PowerShell Runbook](automation-first-runbook-textual-PowerShell.md)
+-  若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
+-	若要開始使用 PowerShell Runbook，請參閱[我的第一個 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
+-  若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
+-	如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

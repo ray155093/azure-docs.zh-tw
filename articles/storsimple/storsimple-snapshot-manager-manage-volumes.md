@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/02/2015"
+   ms.date="04/18/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Snapshot Manager 來檢視和管理磁碟區
 
 ## 概觀
 
-您可以使用 StorSimple Snapshot Manager 的 [磁碟區] 節點 (在 [範圍] 窗格上)，選取磁碟區並檢視其相關資訊。磁碟區會呈現為對應至主機所掛接磁碟區的磁碟機。[磁碟區] 節點會顯示 Azure StorSimple 所支援的本機磁碟區和磁碟區類型，包括透過使用 iSCSI 及裝置探索到的磁碟區。
+您可以使用 StorSimple Snapshot Manager 的 [磁碟區] 節點 (在 [範圍] 窗格上)，選取磁碟區並檢視其相關資訊。磁碟區會呈現為對應至主機所掛接磁碟區的磁碟機。[磁碟區] 節點會顯示 StorSimple 所支援的本機磁碟區和磁碟區類型，包括透過使用 iSCSI 及裝置探索到的磁碟區。
 
 如需支援之磁碟區的詳細資訊，請移至《[支援多個磁碟區類型](storsimple-what-is-snapshot-manager.md#support-for-multiple-volume-types)》。
 
@@ -35,11 +35,11 @@
 - 設定基本磁碟區並將其備份
 - 設定動態鏡像磁碟區並將其備份
 
->[AZURE.NOTE]所有 [磁碟區] 節點動作也可以在 [動作] 窗格中取得。
+>[AZURE.NOTE] 所有 [磁碟區] 節點動作也可以在 [動作] 窗格中取得。
  
 ## 掛接磁碟區
 
-請使用下列程序，來掛接、初始化和格式化 Azure StorSimple 磁碟區。此程序使用 [磁碟管理]，這是一種系統公用程式，用於管理硬碟及其包含的磁碟區或磁碟分割。如需 [磁碟管理] 的詳細資訊，請移至 Microsoft TechNet 網站上的[磁碟管理](https://technet.microsoft.com/library/cc770943.aspx)。
+請使用下列程序，來掛接、初始化和格式化 StorSimple 磁碟區。此程序使用 [磁碟管理]，這是一種系統公用程式，用於管理硬碟及其相對應的磁碟區或磁碟分割。如需 [磁碟管理] 的詳細資訊，請移至 Microsoft TechNet 網站上的[磁碟管理](https://technet.microsoft.com/library/cc770943.aspx)。
 
 #### 若要掛接磁碟區
 
@@ -55,7 +55,7 @@
 
     - 啟動 [系統管理工具]，展開 [電腦管理] 節點，然後選取 [磁碟管理]。
 
-    >[AZURE.NOTE]您必須使用系統管理員權限，才能執行 [磁碟管理]。
+    >[AZURE.NOTE] 您必須使用系統管理員權限，才能執行 [磁碟管理]。
  
 4. 將磁碟區連線：
 
@@ -110,7 +110,7 @@
 
 請使用下列程序，從 StorSimple Snapshot Manager 中刪除磁碟區。
 
->[AZURE.NOTE]如果磁碟區是任何磁碟區群組的一部分，則您無法將其刪除。(磁碟區若是磁碟區群組的成員，無法對其使用刪除選項。) 您必須刪除整個磁碟區群組，才能刪除磁碟區。
+>[AZURE.NOTE] 如果磁碟區是任何磁碟區群組的一部分，則您無法將其刪除。(磁碟區若是磁碟區群組的成員，無法對其使用刪除選項。) 您必須刪除整個磁碟區群組，才能刪除磁碟區。
 
 
 #### 若要刪除磁碟區
@@ -153,7 +153,7 @@
 
 開始之前：
 
-- 確定已正確設定 StorSimple 裝置和主機電腦。如需詳細資訊，請移至[部署內部部署 StorSimple 裝置](storsimple-deployment-walkthrough.md)。
+- 確定已正確設定 StorSimple 裝置和主機電腦。如需詳細資訊，請移至[部署內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)。
 
 - 安裝和設定 StorSimple Snapshot Manager。如需詳細資訊，請移至[部署 StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md)。
 
@@ -195,7 +195,7 @@
 
 開始之前：
 
-- 確定已正確設定 StorSimple 裝置和主機電腦。如需詳細資訊，請移至[部署內部部署 StorSimple 裝置](storsimple-deployment-walkthrough.md)。
+- 確定已正確設定 StorSimple 裝置和主機電腦。如需詳細資訊，請移至[部署內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)。
 
 - 安裝和設定 StorSimple Snapshot Manager。如需詳細資訊，請移至[部署 StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md)。
 
@@ -271,4 +271,4 @@
 <!--Reference links-->
 [1]: https://msdn.microsoft.com/library/ee338480(v=ws.10).aspx
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0511_2016-->

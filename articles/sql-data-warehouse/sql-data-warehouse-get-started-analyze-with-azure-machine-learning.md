@@ -3,7 +3,7 @@
    description="搭配使用 Azure 機器學習服務與 SQL 資料倉儲以便開發解決方案的秘訣。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sahaj08"
+   authors="shivaniguptamsft"
    manager="barbkess"
    editor=""/>
 
@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
-   ms.author="sahajs;barbkess;sonyama"/>
+   ms.date="05/17/2016"
+   ms.author="shivaniguptamsft;barbkess;sonyama"/>
 
 # 使用 Azure Machine Learning 分析資料
 本教學課程將說明如何透過使用 Azure SQL 資料倉儲資料的 Azure Machine Learning 建置預測性機器學習模型。在本教學課程中，我們將為 Adventure Work 建置鎖定目標的行銷活動，預測客戶是否可能購買自行車。
@@ -65,9 +65,6 @@ FROM [dbo].[vTargetMail]
 實驗成功執行完畢之後，按一下讀取器模組底部的輸出連接埠，然後選取 [視覺化] 以查看匯入的資料。![檢視匯入的資料][3]
 
 
-
-
-
 ## 步驟 2：清除資料
 我們將會卸除與模型無關的某些資料行。
 
@@ -75,8 +72,6 @@ FROM [dbo].[vTargetMail]
 2. 按一下 [屬性] 窗格中的 [啟動資料行選取器] 來指定您想要卸除的資料行。![專案資料行][4]
 
 3. 排除兩個資料行：CustomerAlternateKey 和 GeographyKey。![移除不必要的資料行][5]
-
-
 
 
 ## 步驟 3：建立模型
@@ -91,9 +86,6 @@ FROM [dbo].[vTargetMail]
 5. 選取 **BikeBuyer** 資料行做為要預測的資料行。![選取要預測的資料行][8]
 
 
-
-
-
 ## 步驟 4：計分模型
 現在，我們將測試模型如何在測試資料上執行。我們將會比較我們選擇的演算法和不同的演算法，以查看何者的執行效果比較好。
 
@@ -103,8 +95,6 @@ FROM [dbo].[vTargetMail]
 4. 將 [評估模型] 模組拖曳至畫布以比較兩個演算法。
 5. **執行**實驗。![執行實驗][10]
 6. 按一下 [評估模型] 模組底部的輸出連接埠，然後按一下 [視覺化]。![將評估結果視覺化][11]
-
-
 
 提供的度量資訊包括 ROC 曲線、正確性-召回圖表和升力曲線。查看這些度量，我們可以看到第一個模型的執行效果優於第二個。若要查看第一個模型的預測內容，請按一下 [分數模型] 的輸出連接埠，再按一下 [視覺化]。![將評分結果視覺化][12]
 
@@ -118,8 +108,6 @@ FROM [dbo].[vTargetMail]
 ## 後續步驟
 
 若要深入了解如何建置預測性機器學習模型，請參閱 [Azure 上的機器學習服務簡介][]。
-
-
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-get-started-analyze-with-azure-machine-learning/img1_reader.png
@@ -142,4 +130,4 @@ FROM [dbo].[vTargetMail]
 [手動載入範例資料]: sql-data-warehouse-get-started-manually-load-samples.md
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="04/28/2016"
+    ms.date="05/10/2016"
     ms.author="sidneyh"/>
 
 # 透過 PowerShell 監視和管理彈性資料庫集區 
@@ -31,6 +31,7 @@
 集區值可在 [eDTU 和儲存體限制](sql-database-elastic-pool#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)中找到。
 
 ## 必要條件
+
 * Azure PowerShell 1.0 或更新版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 * 只有 SQL Database V12 伺服器才可以使用彈性資料庫集區。如果您有 SQL Database V11 伺服器，可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md)。
 
@@ -101,6 +102,26 @@
 要擷取度量：
 
     $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/databases/myDB -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015") 
+
+## 收集和監視訂用帳戶中多個集區的資源使用量資料
+
+當訂用帳戶中有大量資料庫時，難以分開監視每個彈性集區。因此，可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區與其資料庫收集資源使用量資料，以便監視和分析資源使用量。在 GitHub SQL Server 範例儲存機制中可以找到這一組 Powershell 指令碼的[範例實作](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)，以及其作用和使用方式的相關文件。
+
+若要使用此範例實作，請遵循下列步驟執行。
+
+
+1. 下載[指令碼和文件](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)：
+2. 為您的環境修改指令碼。指定裝載彈性集區的一或多部伺服器。
+3. 指定儲存所收集度量的遙測資料庫。 
+4. 自訂指令碼，以指定指令碼的執行持續時間。
+
+概括而言，指令碼會執行下列作業︰
+
+*	列舉指定的 Azure 訂用帳戶 (或指定的伺服器清單) 中的所有伺服器。
+*	執行每部伺服器的背景作業。作業會在迴圈中定期執行，並收集伺服器中所有集區的遙測資料。然後將所收集的資料載入到指定的遙測資料庫。
+*	列舉每個集區中的資料庫清單，以收集資料庫資源使用量資料。然後將所收集的資料載入到遙測資料庫。
+
+您可以分析遙測資料庫中收集的度量，以監視彈性集區和資料庫的健康狀態。指令碼也會在遙測資料庫中安裝預先定義的資料表值函式 (TVF)，協助彙總指定時間範圍的度量。例如，TVF 的結果可用來顯示「在指定的時間範圍內具有最大 eDTU 使用率的前 N 個彈性集區」。 或者，使用分析工具 (例如 Excel 或 Power BI) 來查詢和分析所收集的資料。
 
 ## 範例︰擷取集區和其資料庫的資源消耗度量
 
@@ -190,4 +211,4 @@ Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方�
 - [建立彈性工作](sql-database-elastic-jobs-overview.md) 彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 - 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

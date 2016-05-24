@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="identity"
-   ms.date="02/09/2016"
+   ms.date="05/09/2016"
    ms.author="viviali"/>
 
 # Azure AD B2B 共同作業預覽：簡單安全的合作夥伴雲端整合
@@ -32,7 +32,7 @@
 如需 Azure AD B2B 共同作業、Azure AD B2C 和 Azure AD 多租用戶應用程式的使用案例比較，請參閱[使用 Azure AD 比較用於管理外部身分識別的功能](active-directory-b2b-compare-external-identities.md)。
 
 ## 相關文章
-請瀏覽有關 Azure B2B 共同作業的其他文章：
+請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
 - [運作方式](active-directory-b2b-how-it-works.md)
 - [詳細的逐步解說](active-directory-b2b-detailed-walkthrough.md)
@@ -42,4 +42,4 @@
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

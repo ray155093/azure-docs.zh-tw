@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="04/18/2016" 
+	ms.date="05/18/2016" 
 	ms.author="andrl"/>
 
 #<a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
@@ -30,7 +30,7 @@
 
 ![本教學課程所建立的待辦事項清單 Web 應用程式的螢幕擷取畫面 - ASP NET MVC 教學課程逐步解說](./media/documentdb-dotnet-application/asp-net-mvc-tutorial-image1.png)
 
-本逐步解說說明如何使用 Azure 所提供的 DocumentDB 服務，來儲存和存取 Azure 上所託管 ASP.NET MVC Web 應用程式的資料。
+本逐步解說說明如何使用 Azure 所提供的 DocumentDB 服務，來儲存和存取 Azure 上所託管 ASP.NET MVC Web 應用程式的資料。如果您要尋找僅著重於 DocumentDB (而不是 ASP.NET MVC 元件) 的教學課程，請參閱[建置 DocumentDB C# 主控台應用程式](documentdb-get-started.md)。
 
 > [AZURE.TIP] 本教學課程假設您先前有過使用 ASP.NET MVC 和 Azure 網站的經驗。如果您不熟悉 ASP.NET 或[必備工具](#_Toc395637760)，我們建議您從 [GitHub][] 下載完整的範例專案，並依照此範例的指示進行。建置完成後，您可以檢閱此文章，以加深對專案內容中程式碼的了解。
 
@@ -99,11 +99,11 @@
 
   	![[方案總管] 中 Web 應用程式專案的滑鼠右鍵選項的螢幕擷取畫面，內含反白顯示的 [管理 NuGet 封裝]。](./media/documentdb-dotnet-application/image21.png)
 
-	[管理 NuGet 封裝] 對話方塊隨即出現。
+	[**管理 NuGet 封裝**] 對話方塊隨即出現。
 
-2. 在 [線上搜尋] 方塊中，輸入 ***Azure DocumentDB***。
+2. 在 NuGet [瀏覽] 方塊中，輸入 **Azure DocumentDB**。
 	
-	從結果中，安裝 [Microsoft Azure DocumentDB 用戶端程式庫] 封裝。這會下載和安裝 DocumentDB 封裝，以及所有依存項目 (例如 Newtonsoft.Json)。
+	從結果中，安裝 [Microsoft Azure DocumentDB 用戶端程式庫] 封裝。這會下載和安裝 DocumentDB 封裝，以及所有依存項目 (例如 Newtonsoft.Json)。按一下 [預覽] 視窗中的 [確定]，以及 [接受授權] 視窗中的 [我接受] 來完成安裝。
 
   	![[管理 NuGet 封裝] 視窗的螢幕擷取畫面，內含反白顯示的 Microsoft Azure DocumentDB 用戶端程式庫](./media/documentdb-dotnet-application/nuget.png)
 
@@ -391,6 +391,10 @@
 			return View(items);
 		}
 	
+7. 開啟 **Global.asax.cs** 並將下列一行新增至 **Application\_Start** 方法。
+ 
+		DocumentDBRepository<todo.Models.Item>.Initialize();
+	
 此時，應該已經可以建置方案，而不會發生任何錯誤。
 
 如果您現在執行應用程式，您可以前往 **HomeController** 及該控制器的 [**索引**] 檢視。這是我們在一開始時所選擇的 MVC 範本專案預設行為，但是我們不想要這樣的行為！ 讓我們變更此 MVC 應用程式上的路由以改變此行為。
@@ -587,4 +591,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

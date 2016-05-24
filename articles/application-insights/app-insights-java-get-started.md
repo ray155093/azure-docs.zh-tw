@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/02/2016"
+	ms.date="05/12/2016"
 	ms.author="awills"/>
 
 # 在 Java Web 專案中開始使用 Application Insights
 
-*Application Insights 目前僅供預覽。*
+Application Insights 目前僅供預覽。
 
 [AZURE.INCLUDE [app-insights-selector-get-started](../../includes/app-insights-selector-get-started.md)]
 
@@ -32,7 +32,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 * Oracle JRE 1.6 或更新版本，或 Zulu JRE 1.6 或更新版本
 * [Microsoft Azure](https://azure.microsoft.com/) 訂用帳戶。(您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。)
 
-*如果您有使用中的 Web 應用程式，您可以依照替代的程序[在執行階段將 SDK 加入 Web 伺服器](app-insights-java-live.md)。替代方法可避免重建程式碼，但您沒有選項可撰寫程式碼來追蹤使用者活動。*
+如果您有使用中的 Web 應用程式，您可以依照替代的程序[在執行階段將 SDK 加入 Web 伺服器](app-insights-java-live.md)。替代方法可避免重建程式碼，但您沒有選項可撰寫程式碼來追蹤使用者活動。
 
 
 ## 1\.取得 Application Insights 檢測金鑰
@@ -50,7 +50,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 
 ## 2\.將 Java 適用的 Application Insights SDK 加入至專案
 
-*選擇適合您的專案的方式。*
+選擇適合您的專案的方式。
 
 #### 如果您使用 Eclipse 建立 Maven 或動態 Web 專案...
 
@@ -80,8 +80,8 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
     </dependencies>
 
 
-* *建置或總和檢查碼驗證錯誤？* 嘗試使用特定版本，例如：`<version>1.0.n</version>`。您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)或 [Maven 成品](http://search.maven.org/#search%7Cga%7C1%7Capplicationinsights)中找到最新版本。
-* *需要更新為新的 SDK？* 請重新整理專案的相依項目。
+* 建置或總和檢查碼驗證錯誤？ 嘗試使用特定版本，例如：`<version>1.0.n</version>`。您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)或 [Maven 成品](http://search.maven.org/#search%7Cga%7C1%7Capplicationinsights)中找到最新版本。
+* 需要更新為新的 SDK？ 請重新整理專案的相依項目。
 
 #### 如果您使用 Gradle...
 
@@ -98,8 +98,8 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
       // or applicationinsights-core for bare API
     }
 
-* *建置或總和檢查碼驗證錯誤？ 嘗試使用特定版本，例如：* `version:'1.0.n'`。*您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)中找到最新版本。*
-* *更新為新版 SDK*
+* 建置或總和檢查碼驗證錯誤？ 嘗試使用特定版本，例如：`version:'1.0.n'`。您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)中找到最新版本。
+* 更新為新版 SDK
  * 請重新整理專案的相依項目。
 
 #### 否則...
@@ -111,12 +111,12 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 
 ### 問題...
 
-* *ZIP 中的 `-core` 和 `-web` 元件之間有何關係？*
+* ZIP 中的 `-core` 和 `-web` 元件之間有何關係？
 
  * `applicationinsights-core` 會提供裸機 API。您一律會需要它。
  * `applicationinsights-web` 提供追蹤 HTTP 要求計數和回應時間的度量。如果您不想自動收集此遙測，您可以忽略這個。例如，如果您想要自己撰寫。
 
-* *在我們發佈變更時更新 SDK*
+* 在我們發佈變更時更新 SDK
  * 下載最新的 [Application Insights SDK for Java](https://azuredownloads.blob.core.windows.net/applicationinsights/sdk.zip) 並取代舊的。
  * [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)中會說明變更內容。
 
@@ -214,35 +214,38 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 
 ## 6\.在 Application Insights 中檢視遙測
 
+
 返回 [Microsoft Azure 入口網站](https://portal.azure.com) 中的 Application Insights 資源。
 
 [概觀] 分頁上會顯示 HTTP 要求資料。(如果沒有出現，請稍等片刻，然後按一下 [重新整理]。)
 
 ![範例資料](./media/app-insights-java-get-started/5-results.png)
 
+[深入了解度量。][metrics]
 
-逐一點選任何圖表以查看更詳細的度量。
+按一下任何圖表以查看詳細彙總度量。
 
 ![](./media/app-insights-java-get-started/6-barchart.png)
 
+> Application Insights 假設 MVC 應用程式的 HTTP 要求的格式為：`VERB controller/action`。例如，`GET Home/Product/f9anuh81`、`GET Home/Product/2dffwrf5` 和 `GET Home/Product/sdf96vws` 將會分組至 `GET Home/Product`。這可提供要求有意義的彙總，例如要求數量和要求的平均執行時間。
 
 
-而檢視要求的屬性時，您可以查看與它關聯的遙測事件，例如要求和例外狀況。
+### 執行個體資料 
+
+點選特定要求類型以查看個別執行個體。
+
+Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並顯示為平均值、計數和總和)；以及執行個體資料 (HTTP 要求、例外狀況、頁面檢視或自訂事件的個別報表)。
+
+檢視要求的屬性時，您可以查看與它關聯的遙測事件，例如要求和例外狀況。
 
 ![](./media/app-insights-java-get-started/7-instance.png)
 
 
+### 分析︰功能強大的查詢語言
 
-[深入了解度量。][metrics]
+當您累積更多資料時，您就可以執行查詢以彙總資料並找出個別執行個體。[分析]()是功能強大的工具，既可了解效能和使用情況，也可進行診斷。
 
-#### 智慧型位址名稱計算
-
-Application Insights 假設 MVC 應用程式的 HTTP 要求的格式為：`VERB controller/action`
-
-
-例如，`GET Home/Product/f9anuh81`、`GET Home/Product/2dffwrf5` 和 `GET Home/Product/sdf96vws` 將會分組至 `GET Home/Product`。
-
-這可提供要求有意義的彙總，例如要求數量和要求的平均執行時間。
+![分析的範例](./media/app-insights-java-get-started/025.png)
 
 
 ## 5\.在伺服器上安裝您的 App
@@ -282,7 +285,7 @@ Application Insights 假設 MVC 應用程式的 HTTP 要求的格式為：`VERB 
 
 ## 效能計數器
 
-按一下 [伺服器] 圖格，您就會看到一些效能計數器。
+按一下 [伺服器] 磚，您就會看到一些效能計數器。
 
 
 ![](./media/app-insights-java-get-started/11-perf-counters.png)
@@ -398,4 +401,4 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [metrics]: app-insights-metrics-explorer.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0518_2016-->

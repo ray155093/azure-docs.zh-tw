@@ -1,20 +1,20 @@
 <properties
-   pageTitle="Azure 資料目錄 | Microsoft Azure"
-   description="本文章說明 Azure 資料目錄的鍵盤快速鍵。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="dvana"
-   manager="NA"
-   editor="steelanddata"
-   tags=""/>
+	pageTitle="Azure 資料目錄 | Microsoft Azure"
+	description="本文章說明 Azure 資料目錄的鍵盤快速鍵。"
+	services="data-catalog"
+	documentationCenter=""
+	authors="spelluru"
+	manager="NA"
+	editor=""
+	tags=""/>
 <tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="03/31/2016"
-   ms.author="derrickv"/>
+	ms.service="data-catalog"
+	ms.devlang="NA"
+	ms.topic="article"
+	ms.tgt_pltfrm="NA"
+	ms.workload="data-catalog"
+	ms.date="03/31/2016"
+	ms.author="spelluru"/>
 
 # Azure 資料目錄的鍵盤快速鍵
 
@@ -92,4 +92,4 @@
 |切換 [開啟位置] 功能表 | ALT+O
 |如果資產是容器，請瀏覽容器 | ALT+L
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/03/2016"
+   ms.date="05/04/2016"
    ms.author="barbkess;sonyama;"/>
 
 # 管理 Azure SQL 資料倉儲中的資料庫
@@ -115,7 +115,7 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Image references-->
 
 <!--Article references-->
-[Azure 儲存體備援選項]: storage-redundancy.md#read-access-geo-redundant-storage
+[Azure 儲存體備援選項]: ../storage/storage-redundancy.md#read-access-geo-redundant-storage
 [建立 SQL 資料倉儲 (Azure 入口網站)]: sql-data-warehouse-get-started-provision.md
 [建立資料庫 (PowerShell)]: sql-data-warehouse-get-started-provision-powershell
 [connection]: sql-data-warehouse-develop-connections.md
@@ -139,4 +139,4 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Other web references-->
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

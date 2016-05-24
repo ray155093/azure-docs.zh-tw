@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/25/2016"
+	ms.date="05/10/2016"
 	ms.author="billmath;andkjell"/>
 
 # 使用快速設定開始使用 Azure AD Connect
@@ -43,11 +43,12 @@
 4. 在 [快速設定] 畫面上，按一下 [使用快速設定]。![歡迎使用 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/express.png)
 5. 在 [連接到 Azure AD] 畫面上，輸入您的 Azure AD 的全域系統管理員使用者名稱和密碼。按 [下一步]。![連接至 Azure AD](./media/active-directory-aadconnect-get-started-express/connectaad.png) 如果您收到錯誤訊息，而且有連線問題，請參閱[針對連線問題進行疑難排解](active-directory-aadconnect-troubleshoot-connectivity.md)。
 6. 在 [連接到 AD DS] 畫面上輸入企業系統管理員帳戶的使用者名稱和密碼。您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\\administrator 或 fabrikam.com\\administrator。按 [下一步]。![連線到 AD DS](./media/active-directory-aadconnect-get-started-express/connectad.png)
-7. 在 [準備設定] 畫面中，按一下 [安裝]。
-	- 在 [準備設定] 頁面上，您可以取消選取 [設定一完成，即開始同步處理程序] 核取方塊。如果您想要進行其他設定 (例如[篩選](active-directory-aadconnectsync-configure-filtering.md))，您應該取消選取此核取方塊。若您取消選取此選項，精靈會設定同步處理，但是會讓排程器保持停用。在您重新執行安裝精靈以手動啟用排程器之前，排程器將不會執行。
+7. 如果您的 UPN 網域已在內部部署 Active Directory 中註冊卻不存在或尚未驗證，便會出現此頁面。如果內部部署 AD DS 中的 UPN 網域皆已驗證，則不會出現此頁面。![未驗證的網域](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png) 如果您看到此頁面，請檢閱每一個標示為**未新增**和**未驗證**的網域。確定您所使用的網域皆已在 Azure AD 中完成驗證。驗證好網域時，按一下 [重新整理] 符號。如需詳細資訊，請參閱[新增並驗證網域](active-directory-add-domain.md)
+8. 在 [準備好設定] 畫面中，按一下 [安裝]。
+	- 在 [準備設定] 頁面上，您可以取消選取 [設定一完成，即開始同步處理程序] 核取方塊。如果您想要進行其他設定 (例如[篩選](active-directory-aadconnectsync-configure-filtering.md))，應該取消選取此核取方塊。若您取消選取此選項，精靈會設定同步處理，但是會讓排程器保持停用。在您重新執行安裝精靈以手動啟用排程器之前，排程器將不會執行。
 	- 此外，您也可以選取對應 [Exchange 混合式部署] 的核取方塊，以設定其同步處理服務。如果您打算在雲端和內部部署均設置 Exchange 信箱，請啟用此選項。![準備設定 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
-8. 當安裝完成時，按一下 [結束]。
-9. 安裝完成之後，請先登出再重新登入，才能使用 Synchronization Service Manager 或同步處理規則編輯器。
+9. 當安裝完成時，按一下 [結束]。
+10. 安裝完成之後，請先登出再重新登入，才能使用 Synchronization Service Manager 或同步處理規則編輯器。
 
 如需使用快速安裝的影片，請參閱：
 
@@ -58,4 +59,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

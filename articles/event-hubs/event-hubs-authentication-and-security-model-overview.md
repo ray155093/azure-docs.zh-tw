@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="事件中樞驗證和安全性模型概觀 | Microsoft Azure"
-   description="事件中樞驗證和安全性模型概觀。"
-   services="event-hubs"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="事件中樞驗證和安全性模型概觀 | Microsoft Azure"
+    description="事件中樞驗證和安全性模型概觀。"
+    services="event-hubs"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="event-hubs"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="event-hubs"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/03/2016"
+    ms.author="sethm;clemensv" />
 
 # 事件中樞驗證和安全性模型概觀
 
@@ -25,9 +25,9 @@
 
 ## 裝置驗證
 
-事件中樞安全性模型是以[共用存取簽章 (SAS)](../service-bus/service-bus-shared-access-signature-authentication.md) 權杖和事件發佈者的組合為基礎。事件發佈者能定義事件中樞的虛擬端點。發佈者只能用來將訊息傳送到事件中樞。您無法接收來自發佈者的訊息。
+事件中樞安全性模型是以[共用存取簽章 (SAS)](../service-bus/service-bus-shared-access-signature-authentication.md) 權杖和*事件發行者*的組合為基礎。事件發佈者能定義事件中樞的虛擬端點。發佈者只能用來將訊息傳送到事件中樞。您無法接收來自發佈者的訊息。
 
-一般而言，事件中樞會針對每個裝置採用一個發佈者。系統會將所有傳送到事件中樞之任何發佈行者的訊息排入該事件中樞內的佇列。發佈者允許更精密的存取控制和節流。
+一般而言，事件中樞會針對每個裝置採用一個發佈者。系統會將所有傳送到事件中樞之任何發佈行者的訊息排入該事件中樞內的佇列。發行者會啟用更細緻的存取控制和節流。
 
 系統會為每個裝置指派一個唯一權杖，該權杖會上傳至裝置。權杖的產生機制讓每個唯一權杖都能授與相異唯一發佈者的存取權限。擁有權杖的裝置只能傳送到一個發佈者，無法再傳送到其他發佈者。如果多個裝置共用同一個權杖，這些裝置會共用一個發佈者。
 
@@ -50,7 +50,7 @@ Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", serviceNamespace, string.
 TokenProvider td = TokenProvider.CreateSharedAccessSignatureTokenProvider(namespaceManageKeyName, namespaceManageKey);
 NamespaceManager nm = new NamespaceManager(namespaceUri, namespaceManageTokenProvider);
 
-// Create Event hub with a SAS rule that allows sending to that Event hub
+// Create Event Hub with a SAS rule that enables sending to that Event Hub
 EventHubDescription ed = new EventHubDescription("MY_EVENT_HUB") { PartitionCount = 32 };
 string eventHubSendKeyName = "EventHubSendKey";
 string eventHubSendKey = SharedAccessAuthorizationRule.GenerateRandomKey();
@@ -145,13 +145,13 @@ ACS 支援以多種方法來建立服務身分識別、信賴憑證者及規則�
 
 若要深入了解事件中樞，請造訪下列主題：
 
-- [事件中樞概觀]。
+- [事件中心概觀]
 - [使用事件中樞的完整範例應用程式]。
 - 使用服務匯流排佇列的[佇列訊息解決方案]。
 
-[事件中樞概觀]: event-hubs-overview.md
+[事件中心概觀]: event-hubs-overview.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0511_2016-->

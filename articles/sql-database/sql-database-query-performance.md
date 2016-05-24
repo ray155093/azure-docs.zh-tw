@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="04/28/2016"
+   ms.date="05/05/2016"
    ms.author="sstein"/>
 
 # Azure SQL Database 查詢效能深入解析
@@ -46,9 +46,9 @@
 
 - 檢閱排名最前面的資源取用查詢清單。 
 - 選取個別的查詢來檢視其詳細資料。
-- 開啟 [效能建議程式](sql-database-index-advisor.md)，並查看是否有任何建議。
+- 開啟 [SQL Database 建議程式](sql-database-index-advisor.md)，並查看是否有任何建議。
 - 放大以取得詳細資訊。
-- 
+
     ![效能儀表板](./media/sql-database-query-performance/performance.png)
 
 > [AZURE.NOTE] SQL Database 的查詢存放區需要擷取幾個小時的資料，才能提供查詢效能深入解析。如果在某段時間內資料庫沒有任何作用中的活動或查詢存放區，則在顯示該期間時圖表會是空的。如果查詢存放區不在執行中，您可隨時加以啟用。
@@ -71,8 +71,9 @@
 
     底部格線則代表可見查詢的彙總資訊。
 
-    -	每個查詢在可觀察間隔時間內的平均 CPU。 
-    -	每個查詢的持續時間總計。
+    -	查詢識別碼 – 資料庫內部查詢的唯一識別碼。 
+    -	在可觀察時間間隔期間每個查詢的 CPU (取決於彙總函式)。
+    -	每個查詢的持續時間 (取決於彙總函式)。
     -	特定查詢的總執行次數。
 
 
@@ -125,7 +126,7 @@
 擷取原則可以設定為：
 
 - **All**：擷取所有的查詢。這是預設選項。
-- **Auto**：會忽略並不頻繁執行的查詢，以及編譯和執行持續時間微不足道的查詢。執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。
+- **Auto**：會忽略執行不頻繁的查詢，以及編譯和執行持續時間微不足道的查詢。執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。
 - **None**：查詢存放區會停止擷取新的查詢。
 	
 我們建議您將所有原則設定為 [AUTO]，並將清除原則設定為 30 天：
@@ -151,14 +152,14 @@
 
 ## 摘要
 
-「查詢效能深入解析」可協助您了解您的查詢工作負載的影響，以及其與資料庫資源取用量的關係。使用此功能，您將了解排名最前面的取用查詢，並且在發生問題前輕鬆地找出要修正的項目。請按一下某個資料庫的 [查詢效能深入解析]，來查看排名最前面的資源 (CPU) 取用查詢。
+「查詢效能深入解析」可協助您了解您的查詢工作負載的影響，以及其與資料庫資源取用量的關係。使用此功能，您將了解排名最前面的取用查詢，並且在發生問題前輕鬆地找出要修正的項目。
 
 
 
 
 ## 後續步驟
 
-如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的 [效能建議程式](sql-database-index-advisor.md)。
+如需改善您 SQL Database 效能的其他建議，請按一下[查詢效能深入解析] 刀鋒視窗的 [SQL Database 建議程式](sql-database-index-advisor.md)。
 
 ![效能建議程式](./media/sql-database-query-performance/ia.png)
 
@@ -168,4 +169,4 @@
 [2]: ./media/sql-database-query-performance/top-queries.png
 [3]: ./media/sql-database-query-performance/query-details.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

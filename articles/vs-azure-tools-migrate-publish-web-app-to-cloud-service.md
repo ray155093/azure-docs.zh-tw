@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/19/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 作法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure 雲端服務
@@ -45,7 +45,7 @@
 
     - MVC 2、MVC 3、MVC 4 和 Silverlight 商務應用程式所需的組件皆已將 [複製到本機] 屬性設定為 true。此設定會將這些組件新增到用於部署的服務封裝中。
 
-  >[AZURE.IMPORTANT] 如果此 Web 應用程式有其他必要組件或檔案，您必須手動設定這些檔案的屬性。如需如何設定這些屬性的相關資訊，請參閱本文後面的＜將檔案包含在服務封裝內＞一節。  
+  >[AZURE.IMPORTANT] 如果此 Web 應用程式有其他必要組件或檔案，您必須手動設定這些檔案的屬性。如需如何設定這些屬性的相關資訊，請參閱本文後面的＜將檔案包含在服務封裝內＞一節。
 
   >[AZURE.NOTE] 如果方案中的 Azure 專案已有特定 Web 專案的 Web 角色，此 Web 專案的捷徑功能表上就不會顯示 [轉換]、[轉換成 Azure 雲端服務專案]。
 
@@ -55,17 +55,17 @@
 
 如果 Web 應用程式的連接字串使用內部部署的 SQL Server Database ，您必須變更此連接字串，使其改用 Azure 裝載之 SQL Database 的執行個體。
 
->[AZURE.IMPORTANT] 您的訂用帳戶必須能讓您使用 SQL Database。如果您從 Azure 管理入口網站存取訂用帳戶，您可以確定訂用帳戶所提供的服務。下列指示適用於已發行的管理入口網站。如果您是使用預覽管理入口網站，請跳至下一個程序。
+>[AZURE.IMPORTANT] 您的訂用帳戶必須能讓您使用 SQL Database。如果您從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)存取訂用帳戶，您可以確定訂用帳戶所提供的服務。下列指示適用於已發行的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。如果您是使用 [Azure 入口網站](http://portal.microsoft.com)，請跳至下一個程序。
 
 ### 對連接字串使用 Web 角色中的 SQL Database 執行個體
 
-1. 若要在 Azure 管理入口網站中建立 SQL Database 的執行個體，請遵循下列文章中的步驟：[建立 SQL Database 伺服器](http://go.microsoft.com/fwlink/?LinkId=225109)。
+1. 若要在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中建立 SQL Database 的執行個體，請遵循下列文章中的步驟：[建立 SQL Database 伺服器](http://go.microsoft.com/fwlink/?LinkId=225109)。
 
     >[AZURE.NOTE] 在設定 SQL Database 執行個體的防火牆規則時，您必須選取 [允許其他 Azure 服務存取此伺服器] 核取方塊。
 
 1. 若要建立用於連接字串的 SQL Database 執行個體，請遵循下列文章中下一節的步驟：[建立 SQL Database](http://go.microsoft.com/fwlink/?LinkId=225110)。
 
-1. 若要複製 ADO.NET 連接字串以用於您的連接字串，請在 Azure 管理入口網站中執行下列步驟。
+1. 若要複製 ADO.NET 連接字串以用於您的連接字串，請在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中執行下列步驟。
 
   1. 選擇 [資料庫] 按鈕，然後開啟您用來建立 SQL Database 執行個體之訂用帳戶的節點。
 
@@ -99,9 +99,9 @@
 
 1. 儲存修改過的檔案，然後重新發佈應用程式。
 
-### 透過 Azure 管理入口網站使用 SQL Database 執行個體
+### 透過 Azure 傳統入口網站使用 SQL Database 執行個體
 
-1. 在 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選擇 [SQL Databases] 節點。
+1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選擇 [SQL Databases] 節點。
 
   - 如果您想要使用的 SQL Database 執行個體出現，請進行選擇來將其開啟。
 
@@ -135,7 +135,7 @@
 
 1. (選用) 若要取消部署程序，請開啟活動記錄檔中該細目的捷徑功能表，然後選擇 [取消並移除]。這會停止部署程序，並從 Azure 中刪除部署環境。
 
-    >[AZURE.NOTE] 若要在部署此部署環境後將其移除，您必須使用 Azure 管理入口網站。
+    >[AZURE.NOTE] 若要在部署此部署環境後將其移除，您必須使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
 
 1. (選用) 角色執行個體啟動後，Visual Studio 會自動在 [雲端總管] 或 [伺服器總管] 的 [Azure 計算] 節點中顯示部署環境。您可以從這裡檢視個別角色執行個體的狀態。
 
@@ -168,7 +168,7 @@
 
 1. 若要建立可用於 ASP.NET 動態實體 Web 應用程式的 SQL Azure 資料庫，請遵循本主題前面的＜將 SQL Azure 資料庫用於應用程式＞程序的步驟。
 
-1. 從 Azure 管理入口網站新增此資料庫所需的資料表和欄位。
+1. 從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)新增此資料庫所需的資料表和欄位。
 
 1. 在 web.config 檔案中，此類型應用程式的連接字串具有下列格式：
 
@@ -208,4 +208,4 @@
 ## 後續步驟
 如需有關發佈的詳細資訊，請參閱 [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。另請參閱[設定具名的驗證認證](vs-azure-tools-setting-up-named-authentication-credentials.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -252,7 +252,7 @@ Azure DocumentDB 已新增使用 [REST API 版本 2015-12-16](https://msdn.micro
 
     await client.ExecuteStoredProcedureAsync<DeviceReading>(
         UriFactory.CreateStoredProcedureUri("db", "coll", "SetLatestStateAcrossReadings"),
-        new RequestOptions { PartitionKey = new PartitionKey("XMS-001") },
+        new RequestOptions { PartitionKey = new PartitionKey("XMS-001") }, 
         "XMS-001-FE24C");
 
 在下一節中，我們會探討如何從單一資料分割集合改為資料分割的集合。
@@ -319,4 +319,4 @@ DocumentDB 最常見的其中一個使用案例是用在記錄與遙測。您可
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0511_2016-->

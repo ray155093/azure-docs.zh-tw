@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="hero-article"
-	ms.date="05/10/2016"
+	ms.date="05/12/2016"
 	ms.author="piyushjo;ricksal" />
 
 # 開始使用適用於 Android 應用程式的 Azure Mobile Engagement
@@ -165,7 +165,7 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 [AZURE.INCLUDE [從入口網站傳送通知](../../includes/mobile-engagement-android-send-push-from-portal.md)]
 
-## 其他資源
+## 後續步驟
 
 移至 [Android SDK](mobile-engagement-android-sdk-overview.md) 以取得有關 SDK 整合的詳細資訊。
 
@@ -182,4 +182,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [10]: ./media/mobile-engagement-android-get-started/copy-resources.png
 [11]: ./media/mobile-engagement-android-get-started/paste-resources.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

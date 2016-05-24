@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="04/18/2016"
+	ms.date="05/10/2016"
 	ms.author="kgremban"/>
 
 #RBAC：內建角色
@@ -34,7 +34,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [ClearDB MySQL DB 參與者](#cleardb-mysql-db-contributor) | 可以管理 ClearDB MySQL 資料庫 |
 | [參與者](#contributor) | 可以管理存取以外的所有內容。 |
 | [Data Factory 參與者](#data-factory-contributor) | 可以管理資料處理站 |
-| [研發/測試實驗室使用者](#devtest-lab-user) | 可以檢視所有項目，並連接、啟動、重新啟動和關閉虛擬機器 |
+| [DevTest Labs 使用者](#devtest-labs-user) | 可以檢視所有項目，並連接、啟動、重新啟動和關閉虛擬機器 |
 | [Document DB 帳戶參與者](#document-db-account-contributor) | 可以管理 Document DB 帳戶 |
 | [Intelligent Systems 帳戶參與者](#intelligent-systems-account-contributor) | 可以管理 Intelligent Systems 帳戶 |
 | [網路參與者](#network-contributor) | 可以管理網路資源 |
@@ -152,22 +152,25 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
-### 研發/測試實驗室使用者
+### DevTest Labs 使用者
 可以檢視所有項目，並連接、啟動、重新啟動和關閉虛擬機器
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取所有類型的資源 | | Microsoft.DevTestLab/labs/labStats/action | 讀取實驗室狀態 | | Microsoft.DevTestLab/Environments/* | 建立和管理環境 |
-| Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 |
-| Microsoft.Compute/virtualMachines/start/action | 啟動虛擬機器 |
-| Microsoft.Compute/virtualMachines/restart/action | 重新啟動虛擬機器 |
-| Microsoft.Compute/virtualMachines/deallocate/action | 取消配置虛擬機器 |
-| Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 |
-| Microsoft.Network/virtualNetworks/join/action | 加入虛擬網路 |
-| Microsoft.Network/loadBalancers/join/action | 加入負載平衡器 |
-| Microsoft.Network/publicIPAddresses/link/action | 連結至公開 IP 位址 |
-| Microsoft.Network/networkInterfaces/link/action | 連結至網路介面 |
-| Microsoft.Network/networkInterfaces/write | 撰寫網路介面 |
+| */read | 讀取所有類型的資源 | | Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 | 
+| Microsoft.DevTestLab/labs/formulas/delete | 刪除公式 | 
+| Microsoft.DevTestLab/labs/formulas/write | 新增或修改公式 | 
+| Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action | 評估實驗室原則 | 
+| Microsoft.Compute/virtualMachines/start/action | 啟動虛擬機器 | 
+| Microsoft.Compute/virtualMachines/restart/action | 重新啟動虛擬機器 | 
+| Microsoft.Compute/virtualMachines/deallocate/action | 解除配置虛擬機器 | 
+| Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 | 
+| Microsoft.Network/virtualNetworks/subnets/join/action | 加入虛擬網路 | 
+| Microsoft.Network/loadBalancers/backendAddressPools/join/action | 加入負載平衡器後端位址集區 | 
+| Microsoft.Network/loadBalancers/inboundNatRules/join/action | 加入負載平衡器輸入 nat 規則 | 
+| Microsoft.Network/publicIPAddresses/join/action | 加入公用 IP 位址 | 
+| Microsoft.Network/networkInterfaces/join/action | 將虛擬機器加入至網路介面 | 
+| Microsoft.Network/networkInterfaces/write | 寫入網路介面 |
 
 ### Document DB 帳戶參與者
 可以管理 Document DB 帳戶
@@ -369,17 +372,17 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 儲存體帳戶參與者
-可以管理儲存體帳戶
+可管理儲存體帳戶，但無法存取它們。
 
 | **動作** ||
 | ------- | ------ |
 | Microsoft.Storage/storageAccounts/* | 建立及管理儲存體帳戶 |
 | Microsoft.Authorization/*/read | 讀取所有授權 |
-| Microsoft.Resources/subscriptions/resources/read | 讀取訂閱資源 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取訂用帳戶資源群組 |
-| Microsoft.Resources/subscriptions/resourceGroups/resources/read | 讀取訂用帳戶資源群組資源 |
 | Microsoft.Resources/subscriptions/resourceGroups/deployments/* | 建立和管理訂用帳戶資源群組部署 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
+| Microsoft.Insights/diagnosticSettings/* | 管理診斷設定 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 使用者存取系統管理員
@@ -387,7 +390,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取密碼以外的所有類型資源。 |
+| */read | 讀取密碼以外的所有類型資源。 | 
 | Microsoft.Authorization/* | 讀取授權 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
@@ -492,4 +495,4 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 - [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
 - [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得解決常見問題的建議。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

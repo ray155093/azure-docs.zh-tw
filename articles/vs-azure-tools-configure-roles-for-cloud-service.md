@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="02/24/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 設定 Azure 雲端服務的角色
@@ -279,8 +279,8 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。您必
 
 1. 選擇您要在 [帳戶名稱] 使用的儲存體帳戶。
 
-    如果您手動輸入儲存體帳戶認證，請在 [帳戶金鑰]中複製或輸入您的主要金鑰。可從 Azure 管理入口網站複製這個金鑰。若要複製這個金鑰，請遵循 Azure 管理入口網站中**儲存體帳戶**檢視的下列步驟：
-
+    如果您手動輸入儲存體帳戶認證，請在 [帳戶金鑰]中複製或輸入您的主要金鑰。可從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)複製這個金鑰。若要複製這個金鑰，請遵循 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中 [儲存體帳戶]檢視的下列步驟：
+    
   1. 選取您要用於雲端服務的儲存體帳戶。
 
   1. 選擇位於畫面底部的 [管理存取金鑰] 按鈕。[管理存取金鑰] 對話方塊隨即出現。
@@ -319,7 +319,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。您必
 
 如果您加入 HTTPS 端點，您需要使用 SSL 憑證。若要這樣做，您可以將憑證與所有服務組態的角色產生關聯，並將其用於您的端點。
 
->[AZURE.IMPORTANT] 這些憑證不會與您的服務一起封裝。您必須透過 Azure 平台管理入口網站將憑證分別上傳至 Azure
+>[AZURE.IMPORTANT] 這些憑證不會與您的服務一起封裝。您必須透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將憑證分別上傳至 Azure。
 
 只有在您的雲端服務執行於 Azure 中時，才會套用與您的服務組態相關聯的管理憑證。當您的雲端服務在本機開發環境中執行時，它會使用由 Azure 計算模擬器所管理的標準憑證。
 
@@ -376,4 +376,4 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。您必
 ## 後續步驟
 藉由參閱[設定 Azure 專案](vs-azure-tools-configuring-an-azure-project.md)深入了解 Visual Studio 中的 Azure 專案。藉由參閱[結構描述參考](https://msdn.microsoft.com/library/azure/dd179398)深入了解雲端服務結構描述。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0511_2016-->
