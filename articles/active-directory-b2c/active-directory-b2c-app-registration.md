@@ -31,7 +31,7 @@
 
 您可以從 Azure 入口網站或 Azure 傳統入口網站瀏覽至 B2C 功能刀鋒視窗。
 
-### 1\.在 Azure 入口網站上進行存取
+### 1.在 Azure 入口網站上進行存取
 
 若您已將 B2C 功能刀鋒視窗釘選至「開始面板」，則在您以 B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)時，即會看見該刀鋒視窗。
 
@@ -42,7 +42,7 @@
     > [AZURE.IMPORTANT]
     You need to be a Global Administrator of the B2C tenant to be able to access the B2C features blade. A Global Administrator from any other tenant or a user from any tenant cannot access it.
 
-### 2\.在 Azure 傳統入口網站上進行存取
+### 2.在 Azure 傳統入口網站上進行存取
 
 以訂用帳戶管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。(此為您註冊 Azure 時所用的相同工作或學校帳戶，或是相同的 Microsoft 帳戶)。 瀏覽至左側的 Active Directory 擴充，然後按一下 B2C 租用戶。在 [快速啟動] 索引標籤 (第一個開啟的索引標籤) 上，按一下 [管理] 下方的 [管理 B2C 設定]。此動作將會在新的瀏覽器視窗或索引標籤中，開啟 B2C 功能刀鋒視窗。
 
