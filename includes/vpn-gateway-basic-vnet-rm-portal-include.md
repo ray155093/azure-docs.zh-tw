@@ -1,6 +1,4 @@
-若要使用 Azure 入口網站建立 VNet，請遵循下列步驟。請注意，已提供螢幕擷取畫面做為範例。請務必將值取代為您自己的值。
-
-如需使用虛擬網路的詳細資訊，請參閱[虛擬網路概觀](../articles/virtual-network/virtual-networks-overview.md)。
+若要使用 Azure 入口網站建立 VNet，請遵循下列步驟。請注意，已提供螢幕擷取畫面做為範例。請務必將值取代為您自己的值。如需使用虛擬網路的詳細資訊，請參閱[虛擬網路概觀](../articles/virtual-network/virtual-networks-overview.md)。
 
 1. 透過瀏覽器瀏覽至 [Azure 入口網站](http://portal.azure.com)，並視需要使用您的 Azure 帳戶登入。
 
@@ -8,7 +6,7 @@
 
 	![VNetBlade](./media/vpn-gateway-basic-vnet-rm-portal-include/newvnetportal650.png)
 
-3. 從接近 [虛擬網路] 刀鋒視窗底部的 [選取部署模型] 清單中，選取 [資源管理員]，然後按一下 [建立]。
+3. 從接近 [虛擬網路] 刀鋒視窗底部的 [選取部署模型] 清單中，選取 [Resource Manager]，然後按一下 [建立]。
 
 
 	![選取資源管理員](./media/vpn-gateway-basic-vnet-rm-portal-include/resourcemanager250.png)
@@ -31,5 +29,3 @@
 9. 按一下 [建立] 之後，您會看到儀表板上有一個圖格會反映 VNet 的進度。建立 VNet 時，此圖格將會變更。
 
 	![建立虛擬網路磚](./media/vpn-gateway-basic-vnet-rm-portal-include/deploying150.png)
-
-<!---HONumber=AcomDC_0504_2016-->

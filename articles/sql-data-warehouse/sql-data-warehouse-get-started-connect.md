@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/10/2016"
+   ms.date="05/13/2016"
    ms.author="sonyama;barbkess"/>
 
 # 使用 Visual Studio 連接到 SQL 資料倉儲
@@ -22,27 +22,26 @@
 - [Visual Studio](sql-data-warehouse-get-started-connect.md)
 - [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
 
-本逐步解說示範如何使用 Visual Studio 的 SQL Server Data Tools (SSDT) 在短時間內連接到 Azure SQL 資料倉儲資料庫。一旦連線，您將執行簡單的查詢。
+本逐步解說示範如何使用 Visual Studio 的 SQL Server Data Tools (SSDT) 擴充功能在短時間內連接到 Azure SQL 資料倉儲。一旦連線，您將執行簡單的查詢。
 
 ## 必要條件
 
-+ SQL 資料倉儲中的 AdventureWorksDW 範例資料庫。若要建立此資料庫，請參閱[建立 SQL 資料倉儲資料庫](sql-data-warehouse-get-started-provision.md)。
-+ Visual Studio 的 SQL Server Data Tools。如需安裝指示和選項，請參閱[安裝 Visual Studio 和/或 SSDT](sql-data-warehouse-install-visual-studio.md)
++ SQL 資料倉儲中的 AdventureWorksDW 範例資料。若要建立此資料庫，請參閱[建立 SQL 資料倉儲][]。
++ Visual Studio 的 SQL Server Data Tools。如需安裝指示和選項，請參閱[安裝 Visual Studio 和 SSDT][]。
 
 ## 步驟 1：尋找完整的 Azure SQL 伺服器名稱
 
-您的資料庫會與 Azure SQL 伺服器相關聯。若要連接至您的資料庫，您需要伺服器的完整名稱 (**servername**.database.windows.net*)。
+您的 SQL 資料倉儲會與 Azure SQL 伺服器相關聯。若要連接至您的資料庫，您需要伺服器的完整名稱 (**servername**.database.windows.net*)。
 
 若要尋找完整的伺服器名稱。
 
-1. 移至 [Azure 入口網站](https://portal.azure.com)。
+1. 移至 [Azure 入口網站][]。
 2. 按一下 [SQL 資料庫]，再按一下您想要連接的資料庫。此範例使用 AdventureWorksDW 範例資料庫。
 3. 找出完整的伺服器名稱。
 
     ![完整伺服器名稱][1]
 
-## 步驟 2：連接到您的 SQL 資料庫
-如需最佳體驗，請使用 Visual Studio 2015 搭配 [最新的 SQL Server Data Tools (SSDT) 更新](https://msdn.microsoft.com/library/mt204009.aspx)。
+## 步驟 2：連接到您的 SQL 資料倉儲
 
 1. 開啟 Visual Studio 2013 或 2015。
 2. 開啟 [SQL Server 物件總管]。若要這麼做，請選取 [檢視] > [SQL Server 物件總管]。
@@ -57,17 +56,14 @@
 
     ![連線到伺服器][4]
 
-    - **伺服器名稱**。輸入先前找到的伺服器名稱。
-    - **驗證**。選取 [SQL Server 驗證]。
-    - **使用者名稱**和**密碼**。輸入 Azure SQL 伺服器的使用者名稱和密碼。
-    - **資料庫名稱**。輸入 SQL DW 資料庫的資料庫名稱。
+    - **伺服器名稱**。輸入先前找到的**伺服器名稱**。
+    - **驗證**。選取 [SQL Server 驗證] 或 [Active Directory 整合式驗證]。
+    - [使用者名稱] 和 [密碼]。如果上面已選取 [SQL Server 驗證]，請輸入使用者名稱和密碼。
     - 按一下 [連接]。
 
 5. 若要瀏覽，請展開您的 Azure SQL 伺服器。您可以檢視與伺服器相關聯的資料庫。展開 AdventureWorksDW 以查看範例資料庫中的資料表。
 
     ![探索 AdventureWorksDW][5]
-
-> [AZURE.NOTE] 務必在連接時於 [資料庫名稱] 欄位中指定 SQL 資料倉儲資料庫 (步驟 4)，以便物件樹狀結構才能正常運作。如果您的邏輯伺服器上的某些資料庫已暫停，將此選項空白並連接到預設資料庫 **master** 可能沒有作用。最後會解決這項限制，但在此同時，連接到 SQL 資料倉儲資料庫將確保物件總管樹狀目錄的適當函數如上所示。
 
 ## 步驟 3：執行範例查詢
 
@@ -97,8 +93,16 @@
 
 您現在可以連接並查詢，請嘗試[使用 PowerBI 將資料視覺化][]。
 
+若要針對 Windows 驗證設定您的環境，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲][]。
+
+<!--Arcticles-->
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[安裝 Visual Studio 和 SSDT]: sql-data-warehouse-install-visual-studio.md
+[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲]: ../sql-database/sql-database-aad-authentication.md
 [使用 PowerBI 將資料視覺化]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
 
+<!--Other-->
+[Azure 入口網站]: https://portal.azure.com
 
 <!--Image references-->
 
@@ -111,4 +115,4 @@
 [7]: ./media/sql-data-warehouse-get-started-connect/run-query.png
 [8]: ./media/sql-data-warehouse-get-started-connect/query-results.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

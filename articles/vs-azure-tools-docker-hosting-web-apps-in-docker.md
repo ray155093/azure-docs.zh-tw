@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/26/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher"/>
 
 # 將 ASP.NET 容器部署到遠端 Docker 主機
@@ -51,11 +51,11 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 1.  重新啟動 Visual Studio。
 
 ## 5\.設定 Azure Docker 主機端點
-將您的應用程式從 Visual Studio 部署至 Azure 之前，請將端點 80 新增到 Docker 主機虛擬機器，讓您稍後可從瀏覽器檢視應用程式。此操作可以透過傳統 Azure 入口網站或透過 Windows PowerShell 完成︰
+將您的應用程式從 Visual Studio 部署至 Azure 之前，請將端點 80 新增到 Docker 主機虛擬機器，讓您稍後可從瀏覽器檢視應用程式。此操作可以透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)或透過 Windows PowerShell 完成︰
 
-- **使用傳統 Azure 入口網站來設定 Azure Docker 主機端點**
+- **使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)來設定 Azure Docker 主機端點**
 
-    1.  瀏覽到 [Azure 傳統入口網站](https://manage.windowsazure.com/)。 
+    1.  瀏覽到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 
     
     1.  點選 [虛擬機器]。
     
@@ -83,7 +83,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 
 1.  將啟動目標變更為 [Docker]。
 
-1.  點選 [Docker] 圖示，以建置並執行應用程式。
+1.  點選 **Docker** 圖示，以建置並執行應用程式。
 
 ![啟動應用程式][2]
 
@@ -96,4 +96,4 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 [2]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
 [3]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0511_2016-->

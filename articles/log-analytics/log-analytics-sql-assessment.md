@@ -81,26 +81,26 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 6. 修改，然後在每個 SQL Server 執行個體上執行下列 T-SQL 範例，授與執行身分帳戶所需的最小權限授以執行 SQL 評估。不過，如果執行身分帳戶已是 SQL Server 執行個體上 sysadmin 伺服器角色的一部分，您就不需要這樣做。
 
 ```
----
-    -- Replace <UserName> with the actual user name being used as Run As Account.
-    USE master
-
-    -- Create login for the user, comment this line if login is already created.
-    CREATE LOGIN [<UserName>] FROM WINDOWS
-
-    -- Grant permissions to user.
-    GRANT VIEW SERVER STATE TO [<UserName>]
-    GRANT VIEW ANY DEFINITION TO [<UserName>]
-    GRANT VIEW ANY DATABASE TO [<UserName>]
-
-    -- Add database user for all the databases on SQL Server Instance, this is required for connecting to individual databases.
-    -- NOTE: This command must be run anytime new databases are added to SQL Server instances.
-    EXEC sp_msforeachdb N'USE [?]; CREATE USER [<UserName>] FOR LOGIN [<UserName>];'
+	---
+	    -- Replace <UserName> with the actual user name being used as Run As Account.
+	    USE master
+	
+	    -- Create login for the user, comment this line if login is already created.
+	    CREATE LOGIN [<UserName>] FROM WINDOWS
+	
+	    -- Grant permissions to user.
+	    GRANT VIEW SERVER STATE TO [<UserName>]
+	    GRANT VIEW ANY DEFINITION TO [<UserName>]
+	    GRANT VIEW ANY DATABASE TO [<UserName>]
+	
+	    -- Add database user for all the databases on SQL Server Instance, this is required for connecting to individual databases.
+	    -- NOTE: This command must be run anytime new databases are added to SQL Server instances.
+	    EXEC sp_msforeachdb N'USE [?]; CREATE USER [<UserName>] FOR LOGIN [<UserName>];'
 
 ```
-#### To configure the SQL Run As account using Windows PowerShell
+#### 使用 Windows PowerShell 設定 SQL 執行身分帳戶
 
-Open a PowerShell window and run the following script after you’ve updated it with your information:
+以您的資訊更新它之後，開啟 PowerShell 視窗並執行下列指令碼：
 
 ```
 
@@ -112,70 +112,70 @@ Open a PowerShell window and run the following script after you’ve updated it 
     Set-SCOMRunAsProfile -Action "Add" -Profile $Profile -Account $Account
 ```
 
-## Understanding how recommendations are prioritized
+## 了解建議的排列方式
 
-Every recommendation made is given a weighting value that identifies the relative importance of the recommendation. Only the ten most important recommendations are shown.
+智慧套件會為每項建議指派加權值，該值能顯現建議的相對重要性。唯有重要性排行前十名的建議會出現在清單中。
 
-### How weights are calculated
+### 加權的計算方式
 
-Weightings are aggregate values based on three key factors:
+加權是彙集以下三個重要因素的值：
 
-- The *probability* that an issue identified will cause problems. A higher probability equates to a larger overall score for the recommendation.
+- 識別之疑難引發問題的*機率*。機率較高等同於建議的整體分數較高。
 
-- The *impact* of the issue on your organization if it does cause a problem. A higher impact equates to a larger overall score for the recommendation.
+- 疑難對組織的 *影響力* (如果確實引發問題)。影響力較高等同於建議的整體分數較高。
 
-- The *effort* required to implement the recommendation. A higher effort equates to a smaller overall score for the recommendation.
+- 實作建議所需的*勞力*。勞力較高等同於建議的整體分數較低。
 
-The weighting for each recommendation is expressed as a percentage of the total score available for each focus area. For example, if a recommendation in the Security and Compliance focus area has a score of 5%, implementing that recommendation will increase your overall Security and Compliance score by 5%.
+每項建議之加權的表示採用每個焦點區域之總分的百分比。例如，如果針對安全性和法務遵循焦點區域之建議的分數為 5%，代表實作該項建議能增加 5% 的安全性和法務遵循整體分數。
 
-### Focus areas
+### 焦點區域
 
-**Security and Compliance** - This focus area shows recommendations for potential security threats and breaches, corporate policies, and technical, legal and regulatory compliance requirements.
+**安全性和法務遵循** - 這個重點區域會顯示下列項目的建議：潛在安全性威脅和填補缺口、公司原則，以及技術、法律和法務遵循要求。
 
-**Availability and Business Continuity** - This focus area shows recommendations for service availability, resiliency of your infrastructure, and business protection.
+**可用性和業務續航力** - 這個重點區域會顯示下列項目的建議：服務可用性、基礎結構備援和企業保護。
 
-**Performance and Scalability** - This focus area shows recommendations to help your organization's IT infrastructure grow, ensure that your IT environment meets current performance requirements, and is able to respond to changing infrastructure needs.
+**效能和延展性** - 這個重點區域會顯示建議來協助貴組織的 IT 基礎結構成長、確定您的 IT 環境是否符合目前的效能需求，而且能夠回應不斷變動的基礎結構需求。
 
-**Upgrade, Migration and Deployment** - This focus area shows recommendations to help you upgrade, migrate, and deploy SQL Server to your existing infrastructure.
+**升級、移轉和部署** - 這個重點區域會顯示建議來協助您升級、移轉和將 SQL Server 部署到您的現有基礎結構。
 
-**Operations and Monitoring** - This focus area shows recommendations to help streamline your IT operations, implement preventative maintenance, and maximize performance.
+**作業和監視** - 這個重點區域會顯示建議來協助您的 IT 作業更加順暢、執行預防性維護並將效能最大化。
 
-**Change and Configuration Management** - This focus area shows recommendations to help protect day-to-day operations, ensure that changes don't negatively affect your infrastructure, establish change control procedures, and to track and audit system configurations.
+**變更及組態管理** - 這個重點區域會顯示建議來協助保護每日作業，確保變更不會對您的基礎結構造成負面影響，同時建立變更控管程序，並追蹤及審核系統組態。
 
-### Should you aim to score 100% in every focus area?
+### 我應該為每個焦點區域訂定 100% 的分數嗎？
 
-Not necessarily. The recommendations are based on the knowledge and experiences gained by Microsoft engineers across thousands of customer visits. However, no two server infrastructures are the same, and specific recommendations may be more or less relevant to you. For example, some security recommendations might be less relevant if your virtual machines are not exposed to the Internet. Some availability recommendations may be less relevant for services that provide low priority ad hoc data collection and reporting. Issues that are important to a mature business may be less important to a start-up. You may want to identify which focus areas are your priorities and then look at how your scores change over time.
+不一定。建議乃源自 Microsoft 工程師上千次客戶拜訪所得到的知識和經驗。然而，世界上沒有兩個一模一樣的伺服器基礎結構，因此特定建議與您的關聯性可能會有所增減。例如，如果您的虛擬機器並未暴露在網際網路中，某些安全性建議的關聯性就會降低。對於提供低優先順序臨機操作資料收集和報告的服務來說，某些可用性建議的關聯性就會降低。會對成熟企業造成重大影響的問題，不見得會對新公司造成同等嚴重的影響。因此，建議您先找出自己的優先焦點區域，然後觀察一段時間內的分數變化。
 
-Every recommendation includes guidance about why it is important. You should use this guidance to evaluate whether implementing the recommendation is appropriate for you, given the nature of your IT services and the business needs of your organization.
+每項建議都包含其重要性的指引。在已知 IT 服務之本質和組織之商務需求的情況下，您應使用該指引來評估實作建議的適當性。
 
-## Use assessment focus area recommendations
+## 使用評估焦點區域建議
 
-Before you can use an assessment solution in OMS, you must have the solution installed. To read more about installing solutions, see [Add Log Analytics solutions from the Solutions Gallery](log-analytics-add-solutions.md). After it is installed, you can view the summary of recommendations by using the SQL Assessment tile on the Overview page in OMS.
+在使用 OMS 中的評估方案之前，您必須先安裝方案。如需閱讀安裝方案的更多資訊，請參閱 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)。安裝之後，您可以在 OMS 中使用 [概觀] 頁面上的 [SQL 評估] 圖格檢視建議摘要。
 
-View the summarized compliance assessments for your infrastructure and then drill-into recommendations.
+檢視基礎結構的總結法務遵循評估結果，然後再深入鑽研建議事項。
 
-### To view recommendations for a focus area and take corrective action
+### 檢視的焦點區域的建議並採取更正措施
 
-1. On the **Overview** page, click the **SQL Assessment** tile.
-2. On the **SQL Assessment** page, review the summary information in one of the focus area blades and then click one to view recommendations for that focus area.
-3. On any of the focus area pages, you can view the prioritized recommendations made for your environment. Click a recommendation under **Affected Objects** to view details about why the recommendation is made.  
-    ![image of SQL Assessment recommendations](./media/log-analytics-sql-assessment/sql-assess-focus.png)
-4. You can take corrective actions suggested in **Suggested Actions**. When the item has been addressed, later assessments will record that recommended actions were taken and your compliance score will increase. Corrected items appear as **Passed Objects**.
+1. 在 [概觀] 頁面上，按一下 [SQL 評估] 圖格。
+2. 在 [SQL 評估] 頁面中檢閱任一重點區域刀鋒視窗中的摘要資訊，然後按一下重點區域以檢視建議。
+3. 在任一焦點區域頁面中，您可以檢視針對環境且按照優先順序排列的建議。按一下 [受影響的物件] 下方的建議，可檢視建議提出原因的詳細資料。
+    ![SQL 評定建議圖片](./media/log-analytics-sql-assessment/sql-assess-focus.png)
+4. 您可以採取 [建議動作] 中所建議的更正動作。當您解決某個項目後，後續評估會記錄您實施的建議動作並提高法務遵循分數。更正後的項目將呈現為 [**通過的物件**]。
 
-## Ignore recommendations
+## 忽略建議
 
-If you have recommendations that you want to ignore, you can create a text file that OMS will use to prevent recommendations from appearing in your assessment results.
+如果您有想要忽略的建議，則可以建立 OMS 將用來防止建議出現在您評估結果的文字檔。
 
-### To identify recommendations that you will ignore
+### 識別您將忽略的建議
 
-1.	Sign in to your workspace and open Log Search. Use the following query to list recommendations that have failed for computers in your environment.
+1.	登入您的工作區，並開啟記錄檔搜尋。使用下列查詢來列出您環境中電腦的失敗建議。
 
     ```
     Type=SQLAssessmentRecommendation RecommendationResult=Failed | select  Computer, RecommendationId, Recommendation | sort  Computer
     ```
 
-    Here's a screen shot showing the Log Search query:
-    ![failed recommendations](./media/log-analytics-sql-assessment/sql-assess-failed-recommendations.png)
+    以下是顯示記錄檔搜尋查詢的螢幕擷取畫面︰
+    ![失敗的建議](./media/log-analytics-sql-assessment/sql-assess-failed-recommendations.png)
 
 2.	選擇您想要忽略的建議。您將使用下一個程序中的 RecommendationId 值。
 

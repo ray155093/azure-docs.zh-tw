@@ -41,7 +41,7 @@ Azure 容器服務部署的 DC/OS 和 Swarm 叢集公開了一些 REST 端點。
 ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
 ```
 
-### DC/OS 通道
+## DC/OS 通道
 
 若要開啟 DC/OS 相關端點的通道，請執行類似下列的命令：
 
@@ -59,7 +59,7 @@ ssh -L 80:localhost:80 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com 
 
 同樣地，您可以透過此通道到達每個應用程式的 REST API。
 
-### Swarm 通道
+## Swarm 通道
 
 若要開啟 Swarm 端點的通道，請執行類似下列的命令：
 
@@ -117,4 +117,4 @@ export DOCKER_HOST=:2375
 
 [使用 Azure 容器服務和 DC/OS](./container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](./container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

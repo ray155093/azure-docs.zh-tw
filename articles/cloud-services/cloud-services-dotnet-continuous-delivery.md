@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/03/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 # Azure 中雲端服務的連續傳遞
@@ -30,7 +30,7 @@
 
 組建伺服器上不需要安裝 Visual Studio。若要使用 Team Foundation Build Service 來管理組建伺服器，請遵循 [Team Foundation Build Service][] 文件。
 
-1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] (其中包含 MSBuild)。
+1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] \(其中包含 MSBuild)。
 2.  安裝最新版的[適用於 .NET 的 Azure 編寫工具](https://azure.microsoft.com/develop/net/)。
 3.	安裝 [Azure Libraries for .NET](http://go.microsoft.com/fwlink/?LinkId=623519)。
 4.  將 Microsoft.WebApplication.targets 檔案從 Visual Studio 安裝複製到組建伺服器上。
@@ -56,7 +56,7 @@
 
     此選項可以縮寫為 /t:Publish。當已安裝 Azure SDK 時，MSBuild 中的 /t:Publish 選項不應該與 Visual Studio 中的 [發行] 命令混淆。/t:Publish 選項只會建置 Azure 套件。其並不會如 Visual Studio 中的 [發行] 命令一樣部署套件。
 
-    (選擇性) 您可以指定專案名稱作為 MSBuild 參數。如果未指定，則會使用目前目錄。如需 MSBuild 命令列選項的詳細資訊，請參閱 [MSBuild 命令列參考][1]。
+    (選擇性) 您可以指定專案名稱作為 MSBuild 參數。如果未指定，則會使用目前目錄。如需 MSBuild 命令列選項的詳細資訊，請參閱 [MSBuild 命令列參考](1)。
 
 4.  尋找輸出。依預設，這個命令會在相對於專案根資料夾的目錄中建立目錄，例如 *ProjectDir*\\bin\*Configuration*\\app.publish\\。當您建置 Azure 專案時，會產生兩個檔案，即套件檔本身及伴隨的組態檔：
 
@@ -105,7 +105,7 @@
 
 本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
 
-1.  安裝 [Azure PowerShell Cmdlet][] (0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
+1.  安裝 [Azure PowerShell Cmdlet][] \(0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
 
 2.  使用 [開始] 功能表或 [開始] 頁面啟動 Azure PowerShell。如果以此方式啟動，則會載入 Azure PowerShell Cmdlet。
 
@@ -129,11 +129,11 @@
 
 6.  確定訂閱中建立了可作為發佈指令碼之目標的有效雲端服務與儲存體帳戶。儲存體帳戶 (Blob 儲存) 將用來在建立部署期間上傳並暫時儲存部署套件與組態檔。
 
-    -   若要建立新的雲端服務，您可以呼叫此指令碼或使用 Azure 管理入口網站。雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
+    -   若要建立新的雲端服務，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
 
             New-AzureService -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
 
-    -   若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 Azure 管理入口網站。儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。您可以嘗試使用與雲端服務相同的名稱。
+    -   若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。您可以嘗試使用與雲端服務相同的名稱。
 
             New-AzureStorageAccount -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
 
@@ -145,7 +145,7 @@
 
         PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Staging -serviceName mycloudservice -storageAccountName mystoragesaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
 
-    此作業後面通常接著測試執行驗證及 VIP 交換。VIP 交換可以透過 Azure 管理入口網站或使用 Move-Deployment Cmdlet 來完成。
+    此作業後面通常接著測試執行驗證及 VIP 交換。VIP 交換可以透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)或使用 Move-Deployment Cmdlet 來完成。
 
     **範例案例 2：**連續部署至專用測試服務的生產環境
 
@@ -169,7 +169,7 @@
 
         Add-AzureCertificate -serviceName 'mytestcloudservice' -certToDeploy (get-item cert:\CurrentUser\MY\C33B6C432C25581601B84C80F86EC2809DC224E8
 
-    或者，您也可以使用 Azure 管理入口網站，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。若要深入了解，請閱讀下列文章：[http://msdn.microsoft.com/library/windowsazure/gg443832.aspx][]。
+    或者，您也可以使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。若要深入了解，請閱讀下列文章：[http://msdn.microsoft.com/library/windowsazure/gg443832.aspx][]。
 
     **升級部署以及刪除部署再新增部署**
 
@@ -573,4 +573,4 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
   [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
   [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

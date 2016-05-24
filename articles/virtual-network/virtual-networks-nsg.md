@@ -40,8 +40,7 @@ NSG 規則包含下列屬性。
 |---|---|---|---|
 |**名稱**|規則的名稱|在區域內必須是唯一<br/>可以包含字母、數字、底線、句號和連字號<br/>必須以字母或數字開頭<br/>必須以字母、數字或底線結尾<br/>可以有最多 80 個字元|在 NSG 內可以有數個規則，因此請確定您遵循可讓您識別規則的功能的命名慣例|
 |**通訊協定**|規則要符合的通訊協定|TCP、UDP 或 *|使用 * 作為包括 ICMP (僅東西向流量) 以及 UDP 和 TCP 的通訊協定，而且可能會減少所需規則的數目<br/>同時，使用 * 可能是過於廣泛的方法，因此請確定您只在真的必要時使用|
-|**來源連接埠範圍**|規則要符合的來源連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65635)，或 * (所有連接埠)|來源連接埠可以是暫時的。除非您的用戶端程式使用特定連接埠，否則請在大部分情況下使用 "*"。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起 
-|目的地連接埠範圍|規則要符合的目的地連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65535)，或 * (所有連接埠)|請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起
+|**來源連接埠範圍**|規則要符合的來源連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65635)，或 * (所有連接埠)|來源連接埠可以是暫時的。除非您的用戶端程式使用特定連接埠，否則請在大部分情況下使用 "*"。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起 |目的地連接埠範圍|規則要符合的目的地連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65535)，或 * (所有連接埠)|請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起
 |**來源位址首碼**|規則要符合的來源位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
 |**Destination address prefix**|規則要符合的目的地位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
 |**Direction**|規則要符合的流量方向|inbound (輸入) 或 outbound (輸出)|輸入和輸出規則會根據方向分別處理|
@@ -125,10 +124,10 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 |部署工具|傳統|資源管理員|
 |---|---|---|
 |傳統入口網站|![否][red]|![否][red]|
-|Azure 入口網站|![是][green]|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-pportal)|
-|PowerShell|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-ps)|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-ps)|
-|Azure CLI|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-cli)|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-cli)|
-|ARM 範本|![否][red]|[![是][green]]( https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-template)|
+|Azure 入口網站|![是][green]|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-pportal">![是][green]</a>|
+|PowerShell|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-ps">![是][green]</a>|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-ps">![是][green]</a>|
+|Azure CLI|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-cli">![是][green]</a>|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-cli">![是][green]</a>|
+|ARM 範本|![否][red]|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-template">![是][green]</a>|
 
 |**Key**|![是][green] 支援。按一下文章。|![否][red] 不支援。|
 |---|---|---|
@@ -173,7 +172,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 ### ICMP 流量
 
-目前的 NSG 規則僅可用於通訊協定 TCP 或 UDP。ICMP 沒有特定的標記。不過，系統依預設會透過輸入 VNet 規則 (預設規則 65500 輸入) 來允許虛擬網路內的 ICMP 流量，該規則會允許 VNet 內任何連接埠的輸入/輸出流量以及通訊協定。
+目前的 NSG 規則僅可用於通訊協定 TCP 或 UDP。ICMP 沒有特定的標記。不過，系統依預設會透過輸入 VNet 規則 (預設規則 65000 輸入) 來允許虛擬網路內的 ICMP 流量，該規則會允許 VNet 內任何連接埠的輸入/輸出流量以及通訊協定。
 
 ### 子網路
 
@@ -282,4 +281,4 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 [yellow]: ./media/virtual-network-nsg-overview/yellow.png
 [red]: ./media/virtual-network-nsg-overview/red.png
 
-<!------HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,0 +1,58 @@
+<properties
+   pageTitle="Azure SQL Database 建置多租用戶的應用程式"
+   description="了解 Azure SQL Database 如何建置多租用戶的應用程式"
+   keywords=""
+   services="sql-database"
+   documentationCenter=""
+   authors="carlrabeler"
+   manager="jhubbard"
+   editor=""/>
+
+<tags
+   ms.service="sql-database"
+   ms.devlang="NA"
+   ms.topic="article"
+   ms.tgt_pltfrm="NA"
+   ms.workload="data-management"
+   ms.date="05/04/2016"
+   ms.author="carlrab"/>
+
+# 使用 Azure SQL Database 建置多租用戶的應用程式
+
+## 利用彈性集區及建置更有效率的多租用戶應用程式
+
+如果您是負責撰寫多租用戶應用程式並處理多位客戶的 SaaS 開發人員，通常會面臨在客戶效能、管理與安全性方面的取捨。但有了 Azure SQL Database 的彈性資料庫集區之後，您再也不必面對這樣的兩難情況了。這些集區可協助您管理及監視多租用戶應用程式，並獲得一位客戶一個資料庫的隔離優點。
+
+![build-multi-tenant-apps](./media/sql-database-build-multi-tenant-apps/sql-database-build-multi-tenant-apps.png)
+
+## 自動調整控制
+
+集區會即時自動調整彈性資料庫的效能和儲存體容量。您可以控制指派給集區的效能、依照需求新增或移除彈性資料庫，以及定義彈性資料庫的效能，但不會影響集區的整體成本。這表示您不需要擔心個別資料庫的使用管理。
+
+[閱讀文件](sql-database-elastic-pool.md)
+
+## 您的環境的智慧型管理
+
+內建大小建議會主動識別因集區而獲益的資料庫。這些建議可讓「假設」分析快速最佳化，以符合您的效能目標。豐富的效能監視和疑難排解儀表板可協助您視覺化過去的集區使用率。
+
+[閱讀文件](sql-database-elastic-pool-guidance.md)
+
+## 符合您的需求的效能和價格
+
+基本、標準和進階集區會提供廣泛的效能、儲存體和價格選項。集區最多可以包含 400 個彈性資料庫。彈性資料庫可以自動相應增加至 1000 個彈性資料庫交易單位 (eDTU)。
+
+[閱讀文件](https://azure.microsoft.com/pricing/details/sql-database/?b=16.50)
+
+## 彈性工具
+
+除了彈性集區，還有 SQL Database 功能可協助管理跨多個資料庫的作業活動︰
+
+** 執行跨資料庫的查詢和報告。** [彈性資料庫查詢](sql-database-elastic-query-overview.md)可讓您在彈性集區中執行跨資料庫的查詢或報告，以及一次存取多個資料庫中儲存的遠端資料。
+
+** 執行跨資料庫的交易。** [彈性資料庫交易](sql-database-elastic-transactions-overview.md)可讓您在 SQL Database 中執行跨多個資料庫的交易以及執行作業 (也就是在處理跨資料庫的財務交易時，或在更新一個資料庫中的庫存及訂單時)。
+
+** 執行多個資料庫相同的作業。** [彈性資料庫工作](sql-database-elastic-jobs-overview.md)會執行系統管理作業，例如重建索引或更新彈性集區中跨越每個資料庫的結構描述。
+
+請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
+
+<!---HONumber=AcomDC_0511_2016-->

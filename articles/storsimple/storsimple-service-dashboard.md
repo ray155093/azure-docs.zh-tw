@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="StorSimple Manager 服務儀表板 | Microsoft Azure"
    description="描述 StorSimple Manager 服務儀表板，以及如何使用它來監視 StorSimple 解決方案的健全狀況。"
    services="storsimple"
@@ -6,13 +6,13 @@
    authors="SharS"
    manager="carolz"
    editor="" />
-<tags 
+<tags
    ms.service="storsimple"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/01/2016"
+   ms.date="05/10/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Manager 服務儀表板
@@ -25,7 +25,7 @@ StorSimple Manager 服務儀表板頁面提供連線至 StorSimple Manager 服�
 
 StorSimple Manager 服務儀表板會顯示下列資訊：
 
-- 在**圖表**區域中，您可以查看裝置的相關度量圖表。您可以檢視所有裝置上使用的主要儲存體，以及經過一段時間裝置已耗用的雲端儲存體。使用圖表右上角的控制項，指定 1 週、1 個月、3 個月或 1 年的時間範圍。
+- 在**圖表**區域中，您可以查看裝置的相關度量圖表。您可以檢視所有裝置上使用的主要儲存體 (本機釘選與分層式)，以及經過一段時間裝置已耗用的雲端儲存體。使用圖表右上角的控制項，指定 1 週、1 個月、3 個月或 1 年的時間範圍。
 
 - [**使用量概觀**] 相對於所有裝置可用的總儲存體，顯示所有裝置已佈建和使用的主要儲存體。[**已佈建**] 是指已準備和配置來使用的儲存體數量，而 [**已使用**] 是指向連接至裝置的啟動器所可看的磁碟區用量。
 
@@ -45,7 +45,7 @@ StorSimple Manager 服務儀表板會顯示下列資訊：
 
 服務註冊金鑰用於向 StorSimple Manager 服務註冊 Microsoft Azure StorSimple 裝置，之後裝置就會出現在Azure 傳統入口網站中，讓您採取進一步的管理動作。金鑰是在第一個裝置上建立，然後與其餘裝置共用。
 
-按一下 [**註冊金鑰**]\(在頁面底部) 會開啟 [**服務註冊金鑰**] 對話方塊，您可以在此處將目前的服務註冊金鑰複製到剪貼簿，或重新產生服務註冊金鑰。
+按一下 [**註冊金鑰**] \(在頁面底部) 會開啟 [**服務註冊金鑰**] 對話方塊，您可以在此處將目前的服務註冊金鑰複製到剪貼簿，或重新產生服務註冊金鑰。
 
 重新產生金鑰並不會影響先前註冊的裝置：只會影響重新產生金鑰之後，才向服務註冊的裝置。
 
@@ -76,4 +76,4 @@ StorSimple Manager 服務儀表板會顯示下列資訊：
 
 - 深入了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

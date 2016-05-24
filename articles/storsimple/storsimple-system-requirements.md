@@ -1,10 +1,10 @@
-<properties 
-   pageTitle="StorSimple 系統需求 | Microsoft Azure" 
-   description="描述 Microsoft Azure StorSimple 解決方案的軟體、網路及高可用性需求和最佳作法。" 
-   services="storsimple" 
-   documentationCenter="NA" 
-   authors="alkohli" 
-   manager="carmonm" 
+<properties
+   pageTitle="StorSimple 系統需求 | Microsoft Azure"
+   description="描述 Microsoft Azure StorSimple 解決方案的軟體、網路及高可用性需求和最佳作法。"
+   services="storsimple"
+   documentationCenter="NA"
+   authors="alkohli"
+   manager="carmonm"
    editor=""/>
 
 <tags
@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="TBD" 
-   ms.date="03/23/2016"
+   ms.workload="TBD"
+   ms.date="05/10/2016"
    ms.author="alkohli"/>
 
 # StorSimple 軟體、高可用性和網路需求
@@ -29,14 +29,14 @@
 - **StorSimple 的高可用性需求** - 描述高可用性需求，以及 StorSimple 裝置和主機電腦的最佳作法。 
 
 
-## 儲存體用戶端的軟體需求 
+## 儲存體用戶端的軟體需求
 
 下列軟體需求適用於存取 StorSimple 裝置的儲存體用戶端。
 
 | 受支援的作業系統 | 必要版本 | 其他需求/注意事項 |
 | --------------------------- | ---------------- | ------------- |
 | Windows Server | 2008R2 SP1、2012、2012R2 |僅支援在下列 Windows 磁碟類型上使用 StorSimple iSCSI 磁碟區：<ul><li>基本磁碟上的簡單磁碟區</li><li>動態磁碟上的簡單和鏡像磁碟區</li></ul>使用 StorSimple iSCSI 磁碟區時，支援 Windows Server 2012 精簡佈建和 ODX 功能。<br><br>StorSimple 能建立精簡佈建及完整佈建磁碟區。它無法建立部分佈建的磁碟區。<br><br>將精簡佈建的磁碟區重新格式化，可能需要很長的時間。建議刪除磁碟區，然後建立新的磁碟區，而不是重新格式化。但是，如果您仍然偏好重新格式化磁碟區：<ul><li>在重新格式化之前先執行下列命令，以避免空間回收延遲：<br>`fsutil behavior set disabledeletenotify 1`</br></li><li>完成格式化之後，使用下列命令重新啟用空間回收：<br>`fsutil behavior set disabledeletenotify 0`</br></li><li>如 [KB 2878635](https://support.microsoft.com/kb/2870270) 所述，將 Windows Server 2012 Hotfix 套用到 Windows Server 電腦。</li></ul></li></ul></ul> 如果您要設定 StorSimple Snapshot Manager 或 StorSimple Adapter for SharePoint，請移至[選用元件的軟體需求](#software-requirements-for-optional-components)。|
-| VMWare ESX | 5\.1、5.5 和 6.0 | 受 VMWare vSphere 支援為 iSCSI 用戶端。StorSimple 裝置上的 VMWare vSphere 支援 VAAI 區塊功能。 
+| VMWare ESX | 5\.5 和 6.0 | 受 VMWare vSphere 支援為 iSCSI 用戶端。StorSimple 裝置上的 VMWare vSphere 支援 VAAI 區塊功能。
 | Linux RHEL/CentOS | 5 和 6 | 支援具備 Open-iSCSI 啟動器第 5 版和第 6 版的 Linux iSCSI 用戶端。 |
 | Linux | SUSE Linux 11 | |
  > [AZURE.NOTE] StorSimple 目前不支援 IBM AIX。
@@ -49,13 +49,13 @@
 | --------------------------- | ---------------- | ------------- |
 | StorSimple Snapshot Manager | Windows Server 2008R2 SP1、2012、2012R2 | 在 Windows Server 上需要使用 StorSimple Snapshot Manager，才能備份/還原鏡像動態磁碟及進行任何應用程式一致備份。<br> 只有 Windows Server 2008 R2 SP1 (64 位元)、Windows 2012 R2 和 Windows Server 2012 才支援 StorSimple Snapshot Manager。<ul><li>如果您使用 Window Server 2012，您必須先安裝 .NET 3.5–4.5，再安裝 StorSimple Snapshot Manager。</li><li>如果您使用 Windows Server 2008 R2 SP1，您必須先安裝 Windows Management Framework 3.0，再安裝 StorSimple Snapshot Manager。</li></ul> |
 | StorSimple Adapter for SharePoint | Windows Server 2008R2 SP1、2012、2012R2 |<ul><li>只有 SharePoint 2010 和 SharePoint 2013 才支援 StorSimple Adapter for SharePoint。</li><li>RBS 需要 SQL Server Enterprise Edition 2008 R2 或 2012 版。</li></ul>|
- 
+
 ## StorSimple 裝置的網路需求。
 
 您的 StorSimple 裝置是鎖定的裝置。不過，您的防火牆中必須開啟連接埠，以允許 iSCSI、雲端和管理流量。下表列出必須在防火牆中開啟的連接埠。在這個資料表中，*in* 或 *inbound* 指的是輸入用戶端要求存取裝置的方向。*Out* 或 *outbound* 指的是 StorSimple 裝置於外部傳送資料至部署之上的方向：例如，輸出到網際網路。
 
 | 連接埠號碼 <sup>1,2</sup> | 內或外 | 連接埠範圍 | 必要 | 注意事項 |
-|------------------------|-----------|------------|----------|-------| 
+|------------------------|-----------|------------|----------|-------|
 |TCP 80 (HTTP)<sup>3</sup>| 外 | WAN | 否 |<ul><li>輸出連接埠可用於網際網路存取以擷取更新。</li><li>輸出 web proxy 可由使用者設定。</li><li>若要允許系統更新，此連接埠也必須為控制器固定 IP 開啟。</li></ul> |
 |TCP 443 (HTTPS)<sup>3</sup>| 外 | WAN | 是 |<ul><li>輸出連接埠可用於存取雲端中的資料。</li><li>輸出 web proxy 可由使用者設定。</li><li>若要允許系統更新，此連接埠也必須為控制器固定 IP 開啟。</li></ul>|
 |UDP 53 (DNS) | 外 | WAN | 在某些情況下，請參閱附註。 |只有當您使用網際網路 DNS 伺服器時，才需要此連接埠。 |
@@ -73,7 +73,7 @@
 
 > [AZURE.IMPORTANT] 請確定防火牆不會修改或解密 StorSimple 裝置和 Azure 之間的任何 SSL 流量。
 
-### 防火牆規則的 URL 模式 
+### 防火牆規則的 URL 模式
 
 網路系統管理員通常可以根據 URL 模式設定進階防火牆規則，來篩選輸入和輸出流量。您的 StorSimple 裝置和 StorSimple Manager 服務取決於其他 Microsoft 應用程式，例如 Azure 服務匯流排、Azure Active Directory 存取控制、儲存體帳戶和 Microsoft Update 伺服器。與這些應用程式相關聯的 URL 模式可以用來設定防火牆規則。請務必了解與這些應用程式相關聯的 URL 模式可以變更。接著，您將需要網路系統管理員監控 StorSimple 的防火牆規則，並在需要時更新。
 
@@ -121,22 +121,22 @@
 Update 2 有幾項網路相關的改進且路由度量已變更。行為可以解釋，如下所示。
 
 - 一組預先決定的值已指派給網路介面。 	
-		
+
 - 當網路介面已啟用雲端或已停用雲端功能，但是已設定閘道器時，請考量以下所示的範例資料表，其中包含指派給各種網路介面的值。請注意，此處指派的值僅為範例值。
 
-		
+
 	| 網路介面 | 已啟用雲端 | 已停用雲端且具有閘道器 |
 	|-----|---------------|---------------------------|
-	| Data 0 | 1 | - |
-	| Data 1 | 2 | 20 |
-	| Data 2 | 3 | 30 |
-	| Data 3 | 4 | 40 |
-	| Data 4 | 5 | 50 |
+	| Data 0 | 1 | - | 
+	| Data 1 | 2 | 20 | 
+	| Data 2 | 3 | 30 | 
+	| Data 3 | 4 | 40 | 
+	| Data 4 | 5 | 50 | 
 	| Data 5 | 6 | 60 |
 
 
 - 雲端流量透過網路介面路由的順序為：
-	 
+
 	*Data 0 > Data 1 > Date 2 > Data 3 > Data 4 > Data 5*
 
 	這也可以由下列範例來說明。
@@ -144,23 +144,23 @@ Update 2 有幾項網路相關的改進且路由度量已變更。行為可以�
 	請考慮具有兩個已啟用雲端網路介面 (Data 0 和 Data 5) 的 StorSimple 裝置。Data 1 到 Data 4 已停用雲端，但是具有已設定的閘道器。針對此裝置路由流量的順序為：
 
 	*Data 0 (1) > Data 5 (6) > Data 1 (20) > Data 2 (30) > Data 3 (40) > Data 4 (50)*
-	
+
 	*以括號括住的數字表示個別的路由度量。*
-	
+
 	如果 Data 0 失敗，雲端流量將會透過 Data 5 路由。假設已在其他所有網路上設定閘道器，如果 Data 0 和 Data 5 失敗，則雲端流量會通過 Data 1。
- 
+
 
 - 如果已啟用雲端網路介面失敗，則會重試 3 次 (有 30 秒的延遲) 以連線到介面。如果所有重試失敗，會將流量路由至路由資料表決定的下一個可用已啟用雲端介面。如果所有已啟用雲端網路介面失敗，則裝置將容錯移轉至另一個控制器 (在此案例中無需重新開機)。
-	
+
 - 如果有已啟用 iSCSI 網路介面的 VIP 失敗，則會重試 3 次 (有 2 秒的延遲)。這種行為與舊版相同。如果所有 iSCSI 網路介面都失敗，會發生控制器容錯移轉 (伴隨重新開機)。
 
 
 - 有 VIP 失敗時，您的 StorSimple 裝置上也會引發警示。如需詳細資訊，請移至[警示快速參考](storsimple-manage-alerts.md)。
-	
+
 - 根據重試，iSCSI 將會優先於雲端。
 
 	請考慮下列範例：StorSimple 裝置已啟用兩個網路介面，Data 0 和 Data 1。Data 0 已啟用雲端功能，而 Data 1 已啟用雲端和 iSCSI 功能。此裝置上沒有其他網路介面啟用雲端或 iSCSI。
-		
+
 	如果 Data 1 失敗，假設它是最後一個 iSCSI 網路介面，這會導致控制器容錯移轉至其他控制器上的 Data 1。
 
 
@@ -276,8 +276,8 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 
 - [了解 StorSimple 系統限制](storsimple-limits.md)。
 - [了解如何部署 StorSimple 解決方案](storsimple-deployment-walkthrough-u2.md)。
- 
+
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0511_2016-->

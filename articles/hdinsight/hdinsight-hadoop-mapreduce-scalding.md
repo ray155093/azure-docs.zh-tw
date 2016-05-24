@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="02/05/2016"
+ ms.date="04/26/2016"
  ms.author="larryfr"/>
 
 # 使用 HDInsight 上的 Apache Hadoop 開發 Scalding MapReduce 工作
@@ -201,15 +201,15 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
     > [AZURE.NOTE] 如果您使用密碼保護 SSH 帳戶，系統會提示您輸入密碼。如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑。例如，`ssh -i /path/to/private/key username@clustername-ssh.azurehdinsight.net`
 
-3. 連接到前端節點之後，請使用下列命令來執行字數統計工作
+3. 連接到前端節點之後，請使用下列命令來執行字數統計作業
 
-        hadoop jar scaldingwordcount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount --hdfs --input wasb:///example/data/gutenberg/davinci.txt --output wasb:///example/wordcountout
+        yarn jar scaldingwordcount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount --hdfs --input wasb:///example/data/gutenberg/davinci.txt --output wasb:///example/wordcountout
 
     這會執行您稍早實作的 WordCount 類別。`--hdfs` 會指示工作使用 HDFS。`--input` 會指定輸入文字檔，而 `--output` 會指定輸出位置。
 
 4. 工作完成後，請使用下列命令來檢視輸出。
 
-        hadoop fs -text wasb:///example/wordcountout/part-00000
+        hdfs dfs -text wasb:///example/wordcountout/part-00000
 
     這時將會顯示類似以下的說明資訊：
 
@@ -229,9 +229,9 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 ## 在以 Windows 為基礎的叢集上執行工作
 
-> [AZURE.NOTE] 下列步驟會使用 Windows PowerShell。如需執行 MapReduce 工作的其他方法，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
+下列步驟會使用 Windows PowerShell。如需執行 MapReduce 工作的其他方法，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
 
-1. [安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 2. 啟動 Azure PowerShell 並且登入您的 Azure 帳戶。提供您的認證之後，命令會傳回您的帳戶的相關資訊。
 
@@ -344,4 +344,4 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

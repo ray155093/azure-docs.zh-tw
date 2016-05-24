@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
-	ms.date="05/05/2016" 
+	ms.date="05/18/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Redis 快取建立 Web 應用程式
@@ -688,12 +688,13 @@
 1. 在 [自訂部署] 刀鋒視窗中，選取要使用的 Azure 訂用帳戶，然後選取現有資源群組或建立新的資源群組，並指定資源群組的位置。
 2. 在 [參數] 刀鋒視窗中，指定系統管理員帳戶名稱 (**ADMINISTRATORLOGIN** - 請勿使用 **admin**)、系統管理員登入密碼 (**ADMINISTRATORLOGINPASSWORD**) 和資料庫名稱 (**DATABASENAME**)。其他參數則針對免費的 App Service 主控方案進行設定，至於 SQL Database 和 Azure Redis 快取請設定較低成本選項，因為免費層不提供這兩種服務。
 3. 視需要變更任何其他設定，或保留預設值，然後按一下 [確定]。
-4. 設定完成後，按一下 [檢閱法律條款]。
+
 
 ![部署至 Azure][cache-deploy-to-azure-step-2]
 
-1. 閱讀 [建立] 刀鋒視窗上的條款，然後按一下 [建立]。
-2. 若要開始佈建資源，按一下 [自訂部署] 刀鋒視窗上的 [建立]。
+1. 按一下 [檢閱法律條款]。
+2. 閱讀 [購買] 刀鋒視窗上的條款，然後按一下 [購買]。
+3. 若要開始佈建資源，按一下 [自訂部署] 刀鋒視窗上的 [建立]。
 
 若要檢視部署進度，請按一下 [通知] 圖示，然後按一下 [部署已開始]。
 
@@ -838,4 +839,4 @@
 [cache-delete-resource-group]: ./media/cache-web-app-howto/cache-delete-resource-group.png
 [cache-delete-confirm]: ./media/cache-web-app-howto/cache-delete-confirm.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

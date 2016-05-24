@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何設定雲端服務 | Microsoft Azure" 
+	pageTitle="如何設定雲端服務 (傳統入口網站) | Microsoft Azure" 
 	description="了解如何在 Azure 中設定雲端服務。了解更新雲端服務組態和設定角色執行個體的遠端存取。" 
 	services="cloud-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/15/2016"
+	ms.date="04/22/2016"
 	ms.author="adegeo"/>
 
 
@@ -22,8 +22,8 @@
 # 如何設定雲端服務
 
 > [AZURE.SELECTOR]
-- [Azure portal](cloud-services-how-to-configure-portal.md)
-- [Azure classic portal](cloud-services-how-to-configure.md)
+- [Azure 入口網站](cloud-services-how-to-configure-portal.md)
+- [Azure 傳統入口網站](cloud-services-how-to-configure.md)
 
 您可以在 Azure 傳統入口網站中設定雲端服務的最常用設定。或者，如果您想要直接更新組態檔，可以下載要更新的服務組態檔、上傳更新過的檔案，然後將雲端服務更新為使用這些組態變更。使用上述任一種方式，都會將組態更新推送到所有角色執行個體。
 
@@ -43,11 +43,9 @@ Azure 傳統入口網站也可讓您[啟用 Azure 雲端服務中角色的遠端
 
 3. 針對服務角色 (依角色分組)，您可以更新下列設定：
     
-    >**設定**
-    >修改服務組態檔 (.cscfg) 之 *ConfigurationSettings* 元素中所指定的其他組態設定值。
+    >**設定** 修改服務組態檔 (.cscfg) 之 *ConfigurationSettings* 元素中所指定的其他組態設定值。
     >
-    >**憑證**
-    >變更要在角色之 SSL 加密中使用的憑證指紋。若要變更憑證，您必須先上傳新的憑證 (在 [憑證] 頁面上)。然後，更新角色設定中所顯示憑證字串中的指紋。
+    >**憑證** 變更要在角色之 SSL 加密中使用的憑證指紋。若要變更憑證，您必須先上傳新的憑證 (在 [憑證] 頁面上)。然後，更新角色設定中所顯示憑證字串中的指紋。
 
 4. 在 [作業系統] 中，您可以變更角色執行個體的作業系統系列或版本，或選擇 [自動] 以啟用自動更新目前的作業系統版本。作業系統設定會套用於 Web 角色和背景工作角色，但不影響虛擬機器。
 
@@ -88,4 +86,4 @@ Azure 傳統入口網站也可讓您[啟用 Azure 雲端服務中角色的遠端
 * [啟用 Azure 雲端服務中角色的遠端桌面連線](cloud-services-role-enable-remote-desktop.md)
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

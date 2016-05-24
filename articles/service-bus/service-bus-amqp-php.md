@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排和 PHP 與 AMQP 1.0 |Microsoft Azure"
-   description="搭配使用 PHP 的服務匯流排與 AMQP"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" /> 
+    pageTitle="服務匯流排和 PHP 與 AMQP 1.0 |Microsoft Azure"
+    description="搭配使用 PHP 的服務匯流排與 AMQP"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 搭配使用 PHP 的服務匯流排與 AMQP 1.0
 
@@ -187,4 +187,4 @@ if ($message->properties != null)
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

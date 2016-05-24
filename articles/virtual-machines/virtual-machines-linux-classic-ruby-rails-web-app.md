@@ -14,21 +14,16 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="ruby"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="05/06/2016"
 	ms.author="robmcm"/>
 
-
-
-
-
-#Azure VM 上的 Ruby on Rails Web 應用程式
+# Azure VM 上的 Ruby on Rails Web 應用程式
 
 此教學課程說明如何在 Azure 上使用 Linux 虛擬機器，於 Rails 網站裝載 Ruby。
 
 此教學課程使用 Ubuntu Server 14.04 LTS 通過驗證。若使用不同的 Linux 發行版本，您可能需要修改這些步驟以安裝 Rails。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
-
 
 ## 建立 Azure VM
 
@@ -70,9 +65,9 @@
 
 3. 使用下列命令來安裝 Rails：
 
-		sudo gem install rails --no-rdoc --no-ri
+		sudo gem install rails --no-rdoc --no-ri -V
 
-	使用 --no-rdoc 與 --no-ri 旗標來略過安裝文件，這樣安裝速度會比較快。
+	使用 --no-rdoc 與 --no-ri 旗標來略過安裝文件，這樣安裝速度會比較快。此命令的執行可能需要很長的時間，所以新增 -V 會顯示安裝進度的相關資訊。
 
 ## 建立及執行應用程式
 
@@ -93,7 +88,6 @@
 	[2015-06-09 23:34:23] INFO  WEBrick 1.3.1
 	[2015-06-09 23:34:23] INFO  ruby 1.9.3 (2013-11-22) [x86_64-linux]
 	[2015-06-09 23:34:23] INFO  WEBrick::HTTPServer#start: pid=27766 port=3000
-
 
 ## 新增端點。
 
@@ -129,8 +123,7 @@
 
 	![預設 rails 頁面][default-rails-cloud]
 
-
-##<a id="next"></a>接續步驟
+## 後續步驟
 
 在此教學課程中，您必須手動執行大部分的步驟。在生產環境中，您會在開發電腦上撰寫應用程式，並將它部署至 Azure VM。另外，大部分生產環境均代管 Rails 應用程式以及 Apache 或 NginX 之類的其他伺服器程序，處理傳送至多個 Rails 應用程式及執行個體並提供靜態資源的要求。如需詳細資訊，請參閱 http://rubyonrails.org/deploy/。
 
@@ -144,35 +137,23 @@
 
 * [使用內容傳遞網路提供高頻寬內容][cdn-howto]
 
-
-
 <!-- WA.com links -->
 [blobs]: ../storage/storage-ruby-how-to-use-blob-storage.md
-
-[cdn-howto]: /develop/ruby/app-services/
-
+[cdn-howto]: https://azure.microsoft.com/develop/ruby/app-services/
 [management-portal]: https://manage.windowsazure.com/
-
-[tables]: /develop/ruby/how-to-guides/table-service/
-
+[tables]: ../storage/storage-ruby-how-to-use-table-storage.md
 [vm-instructions]: virtual-machines-linux-classic-createportal.md
-
 
 <!-- External Links -->
 [rails-guides]: http://guides.rubyonrails.org/
-
 [sqlite3]: http://www.sqlite.org/
 
 <!-- Images -->
 
 [default-rails-cloud]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/basicrailscloud.png
-
 [vmlist]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/vmlist.png
-
 [endpoints]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/endpoints.png
-
 [new-endpoint]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/newendpoint.png
-
 [new-endpoint1]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/newendpoint1.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

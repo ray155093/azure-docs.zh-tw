@@ -173,7 +173,13 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 
     ![加入參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-reference.png)
     
-    加入參考，您可以將 Web 應用程式專案連結至資源群組專案中，並設定三個重要屬性。[其他屬性] 包含 Web 部署封裝預備位置，將會推送至 Azure 儲存體。[包含檔案路徑] 包含建立封裝所在的路徑。[包含目標] 包含部署將會執行的命令。預設值 [建立封裝] 會讓部署建立 Web 部署封裝 (package.zip)。不需要發佈設定檔，因為部署會從屬性取得必要的資訊來建立封裝。
+    加入參考，您可以將 Web 應用程式專案連結至資源群組專案中，並自動設定三個重要屬性。
+    
+    - [其他屬性] 包含 Web 部署封裝預備位置，將會推送至 Azure 儲存體。 
+    - [包含檔案路徑] 包含建立封裝所在的路徑。[包含目標] 包含部署將會執行的命令。 
+    - 預設值 [建立封裝] 會讓部署建立 Web 部署封裝 (package.zip)。  
+    
+    不需要發佈設定檔，因為部署會從屬性取得必要的資訊來建立封裝。
     
       ![查看參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/see-reference.png)
       
@@ -194,6 +200,6 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 ## 後續步驟
 
 - 若要了解透過入口網站管理資源，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
-- 若要了解範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+- 若要了解範本，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

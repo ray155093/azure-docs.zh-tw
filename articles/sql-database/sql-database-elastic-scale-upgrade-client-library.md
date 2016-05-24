@@ -4,7 +4,7 @@
 	description="Upgrade apps and libraries using Nuget" 
 	services="sql-database" 
 	documentationCenter="" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="ddove"/>
 
 <tags 
@@ -13,12 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/01/2016" 
+	ms.date="04/26/2016" 
 	ms.author="ddove;sidneyh" />
 
-# 升級至最新的彈性資料庫用戶端程式庫
+# 將應用程式升級以使用最新的彈性資料庫用戶端程式庫
 
-新版本的[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)是透過 Visual Studio 中的 [NuGet](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) 和 NuGetPackage Manager 介面提供。升級包含用戶端程式庫的錯誤修正以及對新功能的支援。
+新版本的[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)是透過 Visual Studio 中的 NuGet 和 NuGetPackage Manager 介面提供。升級包含用戶端程式庫的錯誤修正以及對新功能的支援。
+
+**如需最新版本**：請瀏覽 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。
 
 使用新的程式庫重新建置您的應用程式，以及變更您 Azure SQL Databases 中儲存的現有分區對應管理員中繼資料以支援新功能。
 
@@ -39,7 +41,7 @@
 
 **3.升級您的分割合併服務。** 如果您使用彈性資料庫分割合併工具來重新安排分區資料，請[下載並部署最新版本的工具](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/)。服務的詳細升級步驟可以在[這裡](sql-database-elastic-scale-overview-split-and-merge.md)找到。
 
-**4.升級您的分區對應管理員資料庫。**升級支援您 Azure SQL Database 中之分區對應的中繼資料。您可以使用 PowerShell 或 C# 來完成此作業。下面會說明這兩個選項。
+**4.升級您的分區對應管理員資料庫**。升級支援您 Azure SQL Database 中之分區對應的中繼資料。您可以使用 PowerShell 或 C# 來完成此作業。下面會說明這兩個選項。
 
 **選項 1：使用 PowerShell 升級中繼資料**
 
@@ -74,20 +76,7 @@
 
 ## 彈性資料庫用戶端版本歷程記錄 
 
-**1.0 版 -- 2015 年 4 月**
-
-* 公開上市發行
-* 已新增支援 Datetime 類型做為分區化索引鍵
-
-**0.8 版 – 2015 年 3 月**
-
-* 已使用新的 ShardMap.OpenConnectionForKeyAsync 方法針對資料相關路由新增非同步支援。 
-* 已新增公用 KeyType 屬性至 ShardMap 
-* 已新增支援分區資料庫還原和災害復原案例的增強功能 
-
-**0.7 版 – 2014 年 10 月**
-
-初始預覽版本
+如需版本歷程記錄，請瀏覽 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)
 
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
@@ -97,4 +86,4 @@
 [1]: ./media/sql-database-elastic-scale-upgrade-client-library/nuget-upgrade.png
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0511_2016-->

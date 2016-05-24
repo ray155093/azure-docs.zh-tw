@@ -6,7 +6,7 @@
    tags=""
    authors="tfitzmac"
    manager="timlt"
-   editor=""/>
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/24/2016"
+   ms.date="04/19/2016"
    ms.author="tomfitz"/>
 
 # 解決以 Azure Resource Manager 部署資源至 Azure 時的常見錯誤
@@ -22,6 +22,16 @@
 本主題說明如何解決將資源部署至 Azure 時一些可能會遇到的常見錯誤。如需部署疑難排解的資訊，請參閱[疑難排解資源群組部署](resource-manager-troubleshoot-deployments-portal.md)。
 
 部署之前先驗證您的範本和參數，即可避免發生一些錯誤。如需驗證範本的範例，請參閱[使用 Azure Resource Manager 範本部署資源](resource-group-template-deploy.md)。
+
+## 範本或資源無效
+
+如果您收到錯誤指出範本或資源屬性無效，您的範本中可能有遺漏的字元。使用範本運算式時很容易造成此錯誤，因為運算式會包在引號中，所以 JSON 仍會驗證且您的編輯器可能無法偵測到此錯誤。例如，儲存體帳戶的下列名稱指派包含一組方括號、三個函式、三組圓括號、一組單引號和一個屬性︰
+
+    "name": "[concat('storage', uniqueString(resourceGroup().id))]",
+
+如果您未提供所有相符的語法，範本將會產生與您所要的值截然不同的值。
+
+視遺漏的字元是否位於您的範本中而定，您會收到錯誤指出範本或資源無效。此錯誤也指出部署程序無法處理範本語言運算式。當您收到此類錯誤時，請仔細檢閱運算式語法。
 
 ## 資源名稱已經存在。
 
@@ -100,7 +110,7 @@
 
 ## 超過配額
 
-當部署超過配額時 (也許是每個資源群組、訂用帳戶、帳戶及其他範圍的配額)，可能會發生問題。例如，您的訂用帳戶可能設定為要限制區域的核心數目。如果您嘗試部署超過允許核心數目的虛擬機器，您會收到錯誤訊息指出已超過配額。如需完整的配額資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](./azure-subscription-service-limits.md)。
+當部署超過配額時 (也許是每個資源群組、訂用帳戶、帳戶及其他範圍的配額)，可能會發生問題。例如，您的訂用帳戶可能設定為要限制區域的核心數目。如果您嘗試部署超過允許核心數目的虛擬機器，您會收到錯誤訊息指出已超過配額。如需完整的配額資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](azure-subscription-service-limits.md)。
 
 若要檢查您的訂用帳戶的核心配額，可以使用 Azure CLI 中的 `azure vm list-usage` 命令以。以下範例示範核心配額為 4 的免費試用帳戶：
 
@@ -148,7 +158,7 @@
 
 如需角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-除了角色型存取控制，您的部署動作可能會受限於訂用帳戶的原則。透過原則，系統管理員可以強制執行訂用帳戶中所有資源部署的慣例。例如，系統管理員可以要求的資源類型提供特定的標記值。如果您未達成原則的需求，便會在部署期間收到錯誤。如需原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](./resource-manager-policy.md)。
+除了角色型存取控制，您的部署動作可能會受限於訂用帳戶的原則。透過原則，系統管理員可以強制執行訂用帳戶中所有資源部署的慣例。例如，系統管理員可以要求的資源類型提供特定的標記值。如果您未達成原則的需求，便會在部署期間收到錯誤。如需原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
 ## 檢查資源提供者註冊
 
@@ -168,7 +178,7 @@
     Microsoft.AppService            Registered        {apiapps, appIdentities, gateways, deploymenttemplates...}
     Microsoft.Batch                 Registered        {batchAccounts}
 
-若要註冊提供者，使用 **Register-AzureRmResourceProvider** ，並提供您想要註冊的資源提供者的名稱。
+若要註冊提供者，使用 **Register-AzureRmResourceProvider**，並提供您想要註冊的資源提供者的名稱。
 
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Cdn
 
@@ -213,7 +223,7 @@
 
 ## 自訂指令碼擴充功能錯誤
 
-如果在部署虛擬機器時遇到自訂指令碼擴充功能錯誤，請參閱[疑難排解 Azure Windows VM 擴充功能失敗](./virtual-machines/virtual-machines-windows-extensions-troubleshoot.md)或[疑難排解 Azure Linux VM 擴充功能失敗](./virtual-machines/virtual-machines-linux-extensions-troubleshoot.md)。
+如果在部署虛擬機器時遇到自訂指令碼擴充功能錯誤，請參閱[針對 Azure Windows VM 擴充功能失敗進行疑難排解](./virtual-machines/virtual-machines-windows-extensions-troubleshoot.md)或[針對 Azure Linux VM 擴充功能失敗進行疑難排解](./virtual-machines/virtual-machines-linux-extensions-troubleshoot.md)。
 
 ## 了解部署何時就緒 
 
@@ -223,7 +233,7 @@ Azure Resource Manager 會部署成功傳回所有提供者時，報告部署成
 
 ## 後續步驟
 
-- 若要了解稽核動作，請參閱[使用 Resource Manager 來稽核作業](./resource-group-audit.md)。
-- 若要了解部署期間針對錯誤要採取什麼動作，請參閱[疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-portal.md)。
+- 若要了解稽核動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
+- 若要了解部署期間針對錯誤要採取什麼動作，請參閱[針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="02/05/2016"
+   ms.date="04/22/2016"
    ms.author="larryfr"/>
 
 #使用 HDInsight Tools for Visual Studio 執行 Hive 查詢
@@ -31,7 +31,13 @@
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Linux 或 Windows 型)
 
-* Visual Studio 2012 [Update 4](http://www.microsoft.com/download/details.aspx?id=39305)、Visual Studio 2013 [Update 3](http://go.microsoft.com/fwlink/?LinkId=390465) 或 [Visual Studio Express 2013](http://www.microsoft.com/download/details.aspx?id=40769)
+* Visual Studio (下列其中一個版本)：
+
+    Visual Studio 2013 Community/Professional/Premium/Ultimate，含 [Update 4](https://www.microsoft.com/download/details.aspx?id=44921)
+
+    Visual Studio 2015 (Community/Enterprise)
+
+- HDInsight Tools for Visual Studio。如需有關安裝和設定工具的資訊，請參閱[開始使用 Visual Studio Hadoop Tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
 ##<a id="run"></a>使用 HDInsight Tools for Visual Studio 執行 Hive 查詢
 
@@ -59,7 +65,7 @@
     * **SELECT**：選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。這應該會傳回值 **3**，因為有三個資料列包含此值。
     * **INPUT\_\_FILE\_\_NAME LIKE '%.log'** - 告訴 Hive 我們只應該從檔名以 log 結尾的檔案中傳回資料。這將限制包含此資料的 sample.log 檔案搜尋，對於不符合我們所定義結構描述的其他範例資料檔案，會防止其傳回資料。
 
-3. 從工具列中，選取您要用於此查詢的 [**HDInsight 叢集**]，然後選取 [**提交**] 以 Hive 工作形式執行陳述式。[**Hive 工作摘要**] 將會出現並顯示執行中工作的相關資訊。使用 [**重新整理**] 連結來重新整理工作資訊，直到 [**工作狀態**] 變更為 [**已完成**] 為止。
+3. 從工具列中，選取您要用於此查詢的 [HDInsight 叢集]，然後選取 [提交至 WebHCat]，使用 WebHCat 以 Hive 作業形式執行陳述式。如果您的叢集版本可使用 HiveServer2，您也可以使用 [透過 HiveServer2 執行] 按鈕來提交作業。[**Hive 工作摘要**] 將會出現並顯示執行中工作的相關資訊。使用 [**重新整理**] 連結來重新整理工作資訊，直到 [**工作狀態**] 變更為 [**已完成**] 為止。
 
 4. 使用 [**工作輸出**] 連結檢視此工作的輸出。它應該會顯示 `[ERROR] 3`，這是 SELECT 陳述式所傳回的值。
 
@@ -135,4 +141,4 @@
 [img-hdi-hive-powershell-output]: ./media/hdinsight-use-hive/HDI.Hive.PowerShell.Output.png
 [image-hdi-hive-architecture]: ./media/hdinsight-use-hive/HDI.Hive.Architecture.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0511_2016-->

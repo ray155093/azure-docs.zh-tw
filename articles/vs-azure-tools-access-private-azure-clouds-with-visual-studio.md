@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 存取 Azure 私人雲端
@@ -23,7 +23,7 @@
 
 ## 存取 Visual Studio 中的 Azure 私人雲端
 
-1. 在私人雲端的管理入口網站中下載發佈設定檔，或連絡您的系統管理員以取得發佈設定檔。在 Azure 的公用版本上，下載此檔案的連結是 [https://manage.windowsazure.com/publishsettings/](https://manage.windowsazure.com/publishsettings/)。(下載檔案的副檔名應該是 .publishsettings)。
+1. 在私人雲端的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中下載發佈設定檔，或連絡您的系統管理員以取得發佈設定檔。在 Azure 的公用版本上，下載此檔案的連結是 [https://manage.windowsazure.com/publishsettings/](https://manage.windowsazure.com/publishsettings/)。(下載檔案的副檔名應該是 .publishsettings)。
 
 1. 在 Visual Studio 的 [伺服器總管] 中選擇 [Azure] 節點，並在捷徑功能表上選擇 [管理訂用帳戶] 命令。
 
@@ -43,4 +43,4 @@
 
 [如何：下載和匯入發佈設定和訂用帳戶資訊](https://msdn.microsoft.com/library/dn385850(v=nav.70).aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

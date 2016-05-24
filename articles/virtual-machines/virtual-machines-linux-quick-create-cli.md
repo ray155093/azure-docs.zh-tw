@@ -166,10 +166,9 @@ Warning: Permanently added 'rhel-westu-1630678171-pip.westus.cloudapp.azure.com,
 `azure vm quick-create` 可快速部署 VM，因此您可以登入 bash 殼層並開始運作。使用 `vm quick-create` 不會提供複雜環境的其他優點。若要部署為您的基礎結構自訂的 Linux VM，您可以依照以下任何文章執行。
 
 - [使用 Azure Resource Manager 範本來建立特定的部署](virtual-machines-linux-cli-deploy-templates.md)
-- [直接使用 Azure CLI 命令來建立您自己的 Linux VM 自訂環境](virtual-machines-linux-cli-deploy-templates.md)。
+- [直接使用 Azure CLI 命令來建立您自己的 Linux VM 自訂環境](virtual-machines-linux-create-cli-complete.md)。
 - [使用範本在 Azure 上建立受 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
-- [使用 CLI 建立 Linux VM](virtual-machines-linux-create-cli-complete.md)
 
 這些文章可幫您開始建置 Azure 基礎結構，以及多種專屬和開放原始碼基礎結構部署、組態和協調流程工具。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

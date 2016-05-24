@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="05/09/2016"
 	ms.author="renash"/>
 
 
@@ -195,6 +195,7 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 	- Anker 68UPSATAA-02BU
 	- Anker 68UPSHHDS-BU
 	- Startech SATADOCK22UE
+	- Sharkoon QuickPort XT HC
 
 > [AZURE.NOTE] 若您有以上未列出的轉換器，您可以嘗試使用您的轉換器執行 [Azure 匯入/匯出工具] 來準備磁碟機，看看是否有用，再決定購買支援的轉換器。
 
@@ -239,7 +240,7 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 
 - 在美國和歐洲地區僅支援 [聯邦快遞](http://www.fedex.com/us/oadr/) (FedEx)。所有包裹都會透過 FedEx Ground 或 FedEx International Economy 寄回。
 
-- 亞太地區東部、亞太地區東南部、澳大利亞東部、澳大利亞東南部和日本西部，僅支援 [DHL](http://www.dhl.com/)。所有包裹都會透過 DHL Express Worldwide 寄回。
+- 亞太地區東部、亞太地區東南部、澳大利亞東部、澳大利亞東南部、日本西部、日本東部和印度中部，僅支援 [DHL](http://www.dhl.com/)。所有包裹都會透過 DHL Express Worldwide 寄回。
 
 	> [AZURE.IMPORTANT] 您必須將追蹤號碼提供給 Azure 匯入/匯出服務；否則無法處理您的工作。
 
@@ -265,6 +266,8 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 	- 澳洲東部
 	- 澳洲東南部
 	- 日本西部
+	- 日本東部
+	- 印度中部
 
 - 將會提供您的儲存體帳戶所在區域中的寄送地址給您。例如，假設您住在美國，而儲存體帳戶位於西歐資料中心，則會提供歐洲的寄送地址讓您寄出磁碟機。
 
@@ -293,4 +296,4 @@ Azure 匯入/匯出工具會針對每個備妥的磁碟機產生一個「磁碟�
 [export-job-03]: ./media/storage-import-export-service/export-job-03.png
 [export-job-bitlocker-keys]: ./media/storage-import-export-service/export-job-bitlocker-keys.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

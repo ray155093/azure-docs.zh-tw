@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/19/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用 Azure Tools 發佈雲端服務
 
 您可以使用 Azure Tools for Microsoft Visual Studio，直接從 Visual Studio 發佈 Azure 應用程式。Visual Studio 支援以整合方式發佈至雲端服務的預備或生產環境。
 
-您必須具有 Azure 訂用帳戶才可以發佈 Azure 應用程式。您也必須設定要供應用程式使用的雲端服務和儲存體帳戶。在 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)即可進行這些設定。
+您必須具有 Azure 訂用帳戶才可以發佈 Azure 應用程式。您也必須設定要供應用程式使用的雲端服務和儲存體帳戶。在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)即可進行這些設定。
 
 >[AZURE.IMPORTANT] 在發佈時，您可以為雲端服務選取部署環境。您也必須選取用來儲存部署所需應用程式套件的儲存體帳戶。在部署後，就會從儲存體帳戶移除應用程式套件。
 
@@ -35,7 +35,7 @@
 
 在發佈 Azure 應用程式時，可以執行下列其中一項工作：
 
-- 建立服務封裝：您可以從 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，使用此封裝和服務組態檔將應用程式發佈至部署環境。
+- 建立服務封裝：您可以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，使用此封裝和服務組態檔將應用程式發佈至部署環境。
 
 - 從 Visual Studio 發佈 Azure 專案：若要將應用程式直接發佈至 Azure，您可以使用 [發佈精靈]。如需相關資訊，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
 
@@ -55,13 +55,13 @@
 
   1. 若要建立封裝，請選擇 [封裝] 連結。
 
-      [檔案總管] 會顯示新建立之封裝的檔案位置。您可以複製這個位置，以從 Azure 管理入口網站使用它。
+      [檔案總管] 會顯示新建立之封裝的檔案位置。您可以複製這個位置，以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)使用它。
 
-  1. 若要將此封裝發佈至部署環境，您必須在建立雲端服務時使用此位置做為封裝位置，並透過 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將此封裝部署到環境中。
+  1. 若要將此封裝發佈至部署環境，您必須在建立雲端服務時使用此位置做為封裝位置，並透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將此封裝部署到環境中。
 
 1. (選用) 若要取消部署程序，請在活動記錄檔細目的捷徑功能表上，選擇 [取消並移除]。這會停止部署程序，並從 Azure 中刪除部署環境。
 
-    >[AZURE.NOTE] 若要在部署此部署環境後將其移除，您必須使用 Azure 管理入口網站。
+    >[AZURE.NOTE] 若要在部署此部署環境後將其移除，您必須使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。
 
 1. (選用) 角色執行個體啟動後，Visual Studio 會自動在 [伺服器總管] 的 [雲端服務] 節點中顯示部署環境。您可以從這裡檢視個別角色執行個體的狀態。請參閱[使用雲端總管管理 Azure 資源](vs-azure-tools-resources-managing-with-cloud-explorer.md)。下圖顯示仍處於初始化狀態的角色執行個體：
 
@@ -121,7 +121,7 @@
 
 1. Web Deploy 預設會使用不受信任的自我簽署憑證，在上傳機密資料時不建議使用此憑證。如果您需要確保機密資料在進行此程序時安全無虞，可以新增 SSL 憑證以用於 Web Deploy 連線。此憑證必須是從憑證授權單位 (CA) 取得的受信任憑證。
 
-    若要讓每個虛擬機器上的每個 Web 角色能夠安全使用 Web Deploy，您必須將想要用於 Web Deploy 的受信任憑證上傳到 [Azure 管理入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。如此可確保在您發佈應用程式時，針對 Web 角色所建立的虛擬機器中會新增此憑證。
+    若要讓每個虛擬機器上的每個 Web 角色能夠安全使用 Web Deploy，您必須將想要用於 Web Deploy 的受信任憑證上傳到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。如此可確保在您發佈應用程式時，針對 Web 角色所建立的虛擬機器中會新增此憑證。
 
 1. 若要將受信任的 SSL 憑證新增至 IIS 以用於遠端連線，請遵循下列步驟：
 
@@ -129,7 +129,7 @@
 
       瀏覽器會提示您下載 .RDP 檔案。
 
-  1. 若要新增 SSL 憑證，請開啟 IIS 管理員中的管理服務。在 IIS 管理員中，開啟 [動作] 窗格中的 [繫結] 連結來啟用 SSL。[新增站台繫結] 對話方塊隨即出現。選擇 [新增]，然後在 [類型] 下拉式清單中選擇 HTTPS。在 [SSL 憑證] 清單中，選擇您已透過 CA 簽署並上傳至 Azure 管理入口網站的 SSL 憑證。如需詳細資訊，請參閱[設定管理服務的連線設定](http://go.microsoft.com/fwlink/?LinkId=215824)。
+  1. 若要新增 SSL 憑證，請開啟 IIS 管理員中的管理服務。在 IIS 管理員中，開啟 [動作] 窗格中的 [繫結] 連結來啟用 SSL。[新增站台繫結] 對話方塊隨即出現。選擇 [新增]，然後在 [類型] 下拉式清單中選擇 HTTPS。在 [SSL 憑證] 清單中，選擇您已透過 CA 簽署並上傳至 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)的 SSL 憑證。如需詳細資訊，請參閱[設定管理服務的連線設定](http://go.microsoft.com/fwlink/?LinkId=215824)。
 
       >[AZURE.NOTE] 如果您新增受信任的 SSL 憑證，[發佈精靈] 中就不會再出現黃色警告三角形。
 
@@ -173,4 +173,4 @@
 
 若要深入了解如何從 Visual Studio 發佈至 Azure，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

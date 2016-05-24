@@ -87,7 +87,7 @@
 
 ##概念
 
-如需了解如何傳遞點播內容的概念，請參閱[媒體服務概念](media-services-concepts.md)。
+如需瞭解如何傳遞點播內容的概念，請參閱[媒體服務概念](media-services-concepts.md)。
 
 ##媒體服務學習路徑
 
@@ -101,4 +101,4 @@
 [vod-overview]: ./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

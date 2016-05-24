@@ -30,6 +30,9 @@ articles/sql-database/sql-database-configure-firewall-settings
 
  	![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-4.png)
     
+
+ 	> [AZURE.IMPORTANT] 如果在您所尋找的刀鋒視窗上看不到 [防火牆] 選項，請返回並確定您是在 SQL Database 邏輯伺服器的刀鋒視窗 (而不是 SQL Database 的刀鋒視窗) 上尋找。
+
 5. 按一下 [新增用戶端 IP] 讓 Azure 為您的用戶端 IP 位址建立規則。
 
       ![新的伺服器防火牆](./media/sql-database-create-new-server-firewall-portal/sql-database-create-new-server-firewall-portal-5.png)

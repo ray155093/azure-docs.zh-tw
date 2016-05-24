@@ -4,7 +4,7 @@
    services="storsimple" 
    documentationCenter="NA" 
    authors="SharS" 
-   manager="Carolz" 
+   manager="carmonm" 
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD" 
-   ms.date="01/22/2016"
+   ms.date="05/03/2016"
    ms.author="v-sharos"/>
 
 # StorSimple 安全性和資料保護
@@ -70,7 +70,7 @@ StorSimple 裝置是包含固態硬碟 (SSD) 和硬碟 (HDD) 的內部部署混�
 
 Windows PowerShell for StorSimple 是一個可讓您管理 StorSimple 裝置的命令列介面。Windows PowerShell for StorSimple 的功能包括：可讓您註冊您的裝置、在您的裝置上設定網路介面、安裝特定類型的更新，以及透過存取支援工作階段及變更裝置狀態來疑難排解您的裝置。藉由連線至裝置上的序列主控台或使用 Windows PowerShell 遠端處理，您可以存取 Windows PowerShell for StorSimple。
 
-您可以透過 HTTPS 或 HTTP 執行 PowerShell 遠端處理。如果已啟用透過 HTTPS 進行遠端管理，則您必須從裝置下載遠端管理憑證，並將它安裝在遠端用戶端。如需有關 PowerShell 遠端執行功能的詳細資訊，請移至[遠端連接至 StorSimple 裝置](storsimple-remote-connect)。
+您可以透過 HTTPS 或 HTTP 執行 PowerShell 遠端處理。如果已啟用透過 HTTPS 進行遠端管理，則您必須從裝置下載遠端管理憑證，並將它安裝在遠端用戶端。如需有關 PowerShell 遠端執行功能的詳細資訊，請移至[遠端連接至 StorSimple 裝置](storsimple-remote-connect.md)。
 
 使用 Windows PowerShell for StorSimple 連接至裝置之後，您必須提供裝置系統管理員密碼才能登入裝置。
 
@@ -269,4 +269,4 @@ StorSimple 會使用下列加密演算法，來保護儲存在 StorSimple 解決
 [部署您的 StorSimple 裝置](storsimple-deployment-walkthrough.md)。
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

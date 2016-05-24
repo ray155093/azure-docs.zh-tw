@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="Windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="05/04/2016" 
 	ms.author="josephd"/>
 
 # Azure 基礎結構服務工作負載：高可用性企業營運應用程式
@@ -52,7 +52,7 @@
 其中包括：
 
 - 在 Web 和資料庫層中具有兩部伺服器的內部網路專用企業營運應用程式。
-- 具有兩個執行 SQL Server 的虛擬機器以及叢集中多數節點電腦的 SQL Server AlwaysOn 組態。
+- 具有兩個執行 SQL Server 的虛擬機器以及叢集中多數節點電腦的 SQL Server Always On 組態。
 - 虛擬網路中具有兩個複本網域控制站的 Active Directory 網域服務。
 
 如需企業營運應用程式的概觀，請參閱[企業營運應用程式架構藍圖](http://msdn.microsoft.com/dn630664)。
@@ -75,9 +75,9 @@
 
 	建立 Web 伺服器虛擬機器並將您的企業營運應用程式加入其中。如需詳細的設定步驟，請參閱＜[第 4 階段](virtual-machines-windows-ps-lob-ph4.md)＞。
 
-- 第 5 階段：設定 SQL Server AlwaysOn 可用性群組。
+- 第 5 階段：設定 SQL Server Always On 可用性群組。
 
-	準備應用程式資料庫，並建立 SQL Server AlwaysOn 可用性群組，然後將應用程式資料庫新增至其中。如需詳細的設定步驟，請參閱＜[第 5 階段](virtual-machines-windows-ps-lob-ph5.md)＞。
+	準備應用程式資料庫，並建立 SQL Server Always On 可用性群組，然後將應用程式資料庫新增至其中。如需詳細的設定步驟，請參閱＜[第 5 階段](virtual-machines-windows-ps-lob-ph5.md)＞。
 
 一旦設定之後，您可以透過新增更多的 Web 伺服器或執行 SQL Server 至叢集的虛擬機器，輕鬆擴充此企業營運應用程式。
 
@@ -85,4 +85,4 @@
 
 - 在設定組態前先取得生產工作負載[概觀](virtual-machines-windows-lob-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

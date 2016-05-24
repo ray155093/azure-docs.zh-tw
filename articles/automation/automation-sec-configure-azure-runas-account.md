@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="05/10/2016"
+    ms.date="05/16/2016"
     ms.author="magoedte"/>
 
 # 使用 Azure 執行身分帳戶驗證 Runbook
@@ -53,7 +53,15 @@
 
 7. 在 Azure 建立自動化帳戶時，您可以在功能表的 [通知] 底下追蹤進度。
 
-完成時，自動化帳戶便會建立，且建立時所使用的憑證資產名為 **AzureRunAsCertificate** (有效期為一年)，而所使用的連線資產名為 **AzureRunAsConnection**。
+### 包含的資源
+自動化帳戶建立完成時，系統已自動為您建立了幾項資源。下表中有其摘要。
+
+資源|說明 
+----|----
+AzureAutomationTutorial Runbook|此為範例 Runbook，會示範如何使用執行身分帳戶進行驗證，並顯示訂用帳戶中的前 10 個 Azure VM。
+AzureRunAsCertificate|如果您選取在建立自動化帳戶期間建立執行身分帳戶，或使用下列適用於現有帳戶的 PowerShell 指令碼，則為已建立的憑證資產。此憑證有一年的有效期。 
+AzureRunAsConnection|如果您選取在建立自動化帳戶期間建立執行身分帳戶，或使用下列適用於現有帳戶的 PowerShell 指令碼，則為已建立的連線資產。
+模組|15 個模組，其中含有適用於 Azure、PowerShell 和自動化，以立刻開始使用 Runbook 的 Cmdlet。  
 
 ## 使用 PowerShell 更新自動化帳戶
 下列程序會使用 PowerShell 更新現有的自動化帳戶並建立服務主體。如果您建立了一個帳戶但拒絕建立執行身分帳戶，則必須進行此程序。
@@ -92,6 +100,9 @@ PowerShell 指令碼會設定下列項目︰
     [String] $ApplicationDisplayName,
 
     [Parameter(Mandatory=$true)]
+    [String] $SubscriptionName,
+
+    [Parameter(Mandatory=$true)]
     [String] $CertPlainPassword,
 
     [Parameter(Mandatory=$false)]
@@ -100,6 +111,7 @@ PowerShell 指令碼會設定下列項目︰
 
     Login-AzureRmAccount
     Import-Module AzureRM.Resources
+    Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
     $CurrentDate = Get-Date
     $EndDate = $CurrentDate.AddMonths($NoOfMonthsUntilExpired)
@@ -156,12 +168,13 @@ PowerShell 指令碼會設定下列項目︰
     ```
 <br>
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。
-3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更「–ResourceGroup」、「-AutomationAccountName」、「-ApplicationDisplayName」和「-CertPlainPassword」參數的值。<br>
+3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更「–ResourceGroup」、「-AutomationAccountName」、「-ApplicationDisplayName」、「-SubscriptionName」和「-CertPlainPassword」參數的值。<br>
 
     ```
     .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> `
      -AutomationAccountName <NameofAutomationAccount> `
      -ApplicationDisplayName <DisplayNameofAutomationAccount> `
+     -SubscriptionName <SubscriptionName> `
      -CertPlainPassword "<StrongPassword>"
     ```   
 <br>
@@ -179,10 +192,10 @@ PowerShell 指令碼會設定下列項目︰
 5. 在 [編輯 PowerShell Runbook] 刀鋒視窗中，將下列程式碼貼到畫布上︰<br>
 
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection `
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
-   ```  
+    ```  
 <br>
 6. 按一下 [儲存] 來儲存 Runbook。
 7. 按一下 [測試窗格] 來開啟 [測試] 刀鋒視窗。
@@ -194,10 +207,43 @@ PowerShell 指令碼會設定下列項目︰
 13. 關閉 [編輯 PowerShell Runbook] 刀鋒視窗。
 14. 關閉 [Test-SecPrin-Runbook] 刀鋒視窗。
 
-您將會把上面用來確認是否已正確設定新帳戶的程式碼用在 PowerShell Runbook 中，以便在 Azure 自動化中進行驗證以管理 ARM 資源。當然，您也可以繼續使用目前所用的自動化帳戶進行驗證。
+## 用來向 ARM 資源進行驗證的範例程式碼
+
+您可以使用下列已更新的範例程式碼 (取自 AzureAutomationTutorial 範例 Runbook)，以執行身分帳戶進行驗證來使用 Runbook 管理 ARM 資源。
+
+   ```
+   $connectionName = "AzureRunAsConnection"
+   $SubId = Get-AutomationVariable -Name 'SubscriptionId'
+   try
+   {
+      # Get the connection "AzureRunAsConnection "
+      $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
+
+      "Logging in to Azure..."
+      Add-AzureRmAccount `
+         -ServicePrincipal `
+         -TenantId $servicePrincipalConnection.TenantId `
+         -ApplicationId $servicePrincipalConnection.ApplicationId `
+         -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
+	  "Setting context to a specific subscription"	 
+	  Set-AzureRmContext -SubscriptionId $SubId	 		 
+   }
+   catch {
+       if (!$servicePrincipalConnection)
+       {
+           $ErrorMessage = "Connection $connectionName not found."
+           throw $ErrorMessage
+       } else{
+           Write-Error -Message $_.Exception
+           throw $_.Exception
+       }
+   } 
+   ```
+
+指令碼中包含兩行額外的程式碼以支援參考訂用帳戶內容，以便您可以輕鬆地在多個訂用帳戶之間進行工作。名為 SubscriptionId 的變數資產包含訂用帳戶識別碼，而且在 Add-AzureRmAccount Cmdlet 陳述式之後，[Set-AzureRmContext Cmdlet](https://msdn.microsoft.com/library/mt619263.aspx) 會以參數集「-SubscriptionId」開頭。如果變數名稱太過一般，您可以修改變數名稱使其包含前置詞或其他命名慣例，以便讓名稱能夠更容易地指出您的目的。或者，您可以使用參數集 -SubscriptionName (而非 -SubscriptionId) 與對應的變數資產。
 
 ## 後續步驟
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

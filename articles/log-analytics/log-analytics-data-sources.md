@@ -29,7 +29,12 @@ Log Analytics 會從 OMS 工作區的 [連接的來源] 收集資料，並將它
 
 | 資料來源 | 事件類型 | 說明 |
 |:--|:--|:--|
-| [自訂的記錄檔](log-analytics-data-sources-custom-logs.md) | <記錄檔名稱>\_CL | 包含記錄檔資訊的 Windows 或 Linux 代理程式上的文字檔案。| | [Windows 事件記錄檔](log-analytics-data-sources-windows-events.md) |事件 | 從 Windows 電腦上的事件記錄檔收集的事件。| | [Windows 效能計數器](log-analytics-data-sources-performance-counters.md) | Perf | 從 Windows 電腦收集的效能計數器。| | [Linux 效能計數器](log-analytics-data-sources-performance-counters.md) | Perf |從 Linux 電腦收集的效能計數器。| | [IIS 記錄檔](log-analytics-data-sources-iis-logs.md) |W3CIISLog | W3C 格式的 Internet Information Services 記錄檔。| |Syslog |Syslog | 在 Windows 或 Linux 電腦上的 Syslog 事件。|
+| [自訂的記錄檔](log-analytics-data-sources-custom-logs.md) | \<記錄檔名稱\>_CL | 包含記錄檔資訊的 Windows 或 Linux 代理程式上的文字檔案。|
+| [Windows 事件記錄檔](log-analytics-data-sources-windows-events.md) |事件 | 從 Windows 電腦上的事件記錄檔收集的事件。|
+| [Windows 效能計數器](log-analytics-data-sources-performance-counters.md) | Perf | 從 Windows 電腦收集的效能計數器。|
+| [Linux 效能計數器](log-analytics-data-sources-performance-counters.md) | Perf |從 Linux 電腦收集的效能計數器。|
+| [IIS 記錄檔](log-analytics-data-sources-iis-logs.md) |W3CIISLog | W3C 格式的 Internet Information Services 記錄檔。|
+|Syslog |Syslog | 在 Windows 或 Linux 電腦上的 Syslog 事件。|
 
 ## 設定資料來源
 

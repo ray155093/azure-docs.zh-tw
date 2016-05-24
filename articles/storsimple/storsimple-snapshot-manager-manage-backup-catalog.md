@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,14 +12,22 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/28/2015"
+   ms.date="04/26/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Snapshot Manager 來管理備份目錄
 
 ## 概觀
 
-StorSimple Snapshot Manager 的主要功能是可讓您以快照集的形式建立應用程式一致的 Azure StorSimple 磁碟區備份複本。快照集會列在稱為*備份目錄*的 XML 檔案中。備份目錄會根據磁碟區群組、然後根據本機快照集或雲端快照集組織快照集。
+StorSimple Snapshot Manager 的主要功能是可讓您以快照集的形式建立應用程式一致的 StorSimple 磁碟區備份複本。快照集會列在稱為*備份目錄*的 XML 檔案中。備份目錄會根據磁碟區群組、然後根據本機快照集或雲端快照集組織快照集。
+
+本教學課程描述如何使用**備份目錄**節點來完成下列工作：
+
+- 還原磁碟區 
+- 複製磁碟區或磁碟區群組 
+- 刪除備份 
+- 復原檔案
+- 還原 Storsimple Snapshot Manager 資料庫
 
 您可以藉由展開 [**範圍**] 窗格中的**備份目錄**節點來檢視備份目錄，然後再展開磁碟區群組。
 
@@ -33,7 +41,7 @@ StorSimple Snapshot Manager 的主要功能是可讓您以快照集的形式建�
 
     - **擁有者** – 內容擁有者。
 
-    - **可用** – 目前是否為可用的快照集。True 表示快照集可供使用，且可還原；False 表示快照集已經無法使用。
+    - **可用** – 目前是否為可用的快照集。**True** 表示快照集可供使用，且可還原；**False** 表示快照集已經無法使用。
 
     - **匯入** – 是否已匯入備份。**True** 表示裝置 StorSimple Snapshot Manager 中設定時已從 StorSimple Manager 服務匯入備份；**False** 表示它尚未匯入，但已由 StorSimple Snapshot Manager 建立。(您可以輕鬆地識別已匯入的磁碟區群組，因為已匯入磁碟區群組的裝置會新增尾碼以供識別。)
 
@@ -49,13 +57,6 @@ StorSimple Snapshot Manager 的主要功能是可讓您以快照集的形式建�
 
     - **可用** – 目前是否為可用的快照集。**True** 表示快照集可供使用，且可還原；**False** 表示快照集已經無法使用。
 
-本教學課程描述如何使用**備份目錄**節點來完成下列工作：
-
-- 還原磁碟區 
-- 複製磁碟區或磁碟區群組 
-- 刪除備份 
-- 復原檔案
-- 還原 Storsimple Snapshot Manager 資料庫
 
 ## 還原磁碟區
 
@@ -69,7 +70,7 @@ StorSimple Snapshot Manager 在建立預防措施備份時，會顯示下列訊�
 
 ![自動快照集訊息](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Automatic_snap.png)
 
->[AZURE.IMPORTANT]您無法刪除磁碟區，因為它是磁碟區群組的一部分的。無法使用刪除選項。<br>
+>[AZURE.IMPORTANT] 您無法刪除磁碟區，因為它是磁碟區群組的一部分的。無法使用刪除選項。<br>
 
 #### 還原磁碟區
 
@@ -117,7 +118,7 @@ StorSimple Snapshot Manager 在建立預防措施備份時，會顯示下列訊�
 
 使用下列程序從備份目錄刪除快照集。
 
->[AZURE.NOTE]刪除快照集會刪除和快照集相關聯的備份資料。不過，從雲端清除資料的程序可能需要一些時間。<br>
+>[AZURE.NOTE] 刪除快照集會刪除和快照集相關聯的備份資料。不過，從雲端清除資料的程序可能需要一些時間。<br>
  
 #### 刪除備份
 
@@ -183,7 +184,7 @@ StorSimple Snapshot Manager 在建立預防措施備份時，會顯示下列訊�
 
 2. 在主機電腦上，瀏覽至 C:\\ProgramData\\Microsoft\\StorSimple\\BACatalog。
 
-    >[AZURE.NOTE]ProgramData 是隱藏的資料夾。
+    >[AZURE.NOTE] ProgramData 是隱藏的資料夾。
  
 3. 尋找目錄 XML 檔案、複製檔案，並將複本儲存在安全位置或雲端中。如果主機失敗，您可以使用這個備份檔協助復原您在 StorSimple Snapshot Manager 中建立的備份原則。
 
@@ -208,4 +209,4 @@ StorSimple Snapshot Manager 在建立預防措施備份時，會顯示下列訊�
 - 深入了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 - 深入了解 [StorSimple Snapshot Manager 工作和工作流程](storsimple-snapshot-manager-admin.md#storsimple-snapshot-manager-tasks-and-workflows)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0511_2016-->

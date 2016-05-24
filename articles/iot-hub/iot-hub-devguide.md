@@ -68,7 +68,7 @@ Azure IoT 中樞是多租用戶服務，且公開功能給各種執行者。下�
 
     ![][img-eventhubcompatible]
 
-> [AZURE.NOTE] 在 SDK 需要 [主機名稱] 或 [命名空間] 的情況下，從 [事件中樞相容端點] 移除配置。比方說，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
+> [AZURE.NOTE] 在 SDK 需要 [主機名稱] 或 [命名空間] 的情況下，從 [事件中樞相容端點] 移除配置。比方說，如果您的事件中樞相容端點為 ****sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
 
 然後，您可以使用具有 ServiceConnect 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 
@@ -82,7 +82,7 @@ Endpoint={Event Hub-compatible endpoint};SharedAccessKeyName={iot hub policy nam
 
 * [Java 事件中樞用戶端](https://github.com/hdinsight/eventhubs-client)
 * [Apache Storm Spout](../hdinsight/hdinsight-storm-develop-csharp-event-hub-topology.md)。您可以檢視 GitHub 上的 [Spout 原始檔](https://github.com/apache/storm/tree/master/external/storm-eventhubs)。
-* [Apache Spark 整合](../hdinsight/hdinsight-apache-spark-csharp-apache-zeppelin-eventhub-streaming.md)
+* [Apache Spark 整合](../hdinsight/hdinsight-apache-spark-eventhub-streaming.md)
 
 ## 裝置身分識別登錄
 
@@ -557,4 +557,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-mqtt-support]: iot-hub-mqtt-support.md
 [lnk-throttle-blog]: https://azure.microsoft.com/blog/iot-hub-throttling-and-you/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

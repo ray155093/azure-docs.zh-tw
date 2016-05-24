@@ -84,8 +84,7 @@
 
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 * [在 Hadoop 叢集上安裝和使用 Spark](hdinsight-hadoop-spark-install.md)
-* [HDInsight 叢集上的 Spark 作業伺服器](hdinsight-apache-spark-job-server.md)
-* [佈建 Apache Spark 並使用 Spark SQL 執行互動式查詢](hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1.md)
+
 
 
 ## 巨量資料解決方案
@@ -131,4 +130,4 @@
 * [解譯錯誤訊息](hdinsight-debug-jobs.md)
 * [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/home?forum=hdinsight)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0511_2016-->

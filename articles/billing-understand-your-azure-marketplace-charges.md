@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="05/10/2016"
 	ms.author="cjiang"/>
 
 # 了解您的 Azure Marketplace 費用
@@ -27,9 +27,13 @@
 若要檢視或下載帳單：
 
 1. 使用您的 Org 識別碼，登入 Azure 帳戶入口網站。
-2. 按一下 [Marketplace]。所顯示的清單是由您的 Azure 帳戶訂購的所有 Marketplace 訂單的完整清單。您會注意到訂單是依據父 Azure 訂用帳戶名稱和識別碼加以群組。![Marketplace 訂單](./media/billing-understand-your-azure-marketplace-charges/marketplace-orders.png)
-3. 按一下任何顯示的訂單，將會帶您前往該訂單目前計費週期的摘要概觀。不同價格模型的說明可以在 [Marketplace 常見問題集](https://azure.microsoft.com/marketplace/faq/)中找到。
-![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
+2. 按一下 [Marketplace]。所顯示的清單是由您的 Azure 帳戶訂購的所有 Marketplace 訂單的完整清單。您會發現訂單依照父 Azure 訂用帳戶名稱和識別碼分組。
+
+    ![Marketplace 訂單](./media/billing-understand-your-azure-marketplace-charges/marketplace-orders.png)
+
+3. 按一下任何顯示的訂單，將會帶您前往該訂單目前計費週期的摘要概觀。在 [Marketplace 常見問題集](https://azure.microsoft.com/marketplace/faq/)中可以找到不同定價模式的說明。
+
+    ![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
 
 [摘要] 檢視包含每筆訂單的下列資訊︰
 - 價格
@@ -45,19 +49,28 @@
 
 > [AZURE.NOTE] 如果您使用您的組織識別碼來變更個人資訊，您需要具有支援的票證。
 
-若要更新您的付款方式，請按一下頁面右側的 [變更付款方式] 連結。![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
+若要更新您的付款方式，請按一下頁面右側的 [變更付款方式] 連結。
+
+![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
 
 此連結會帶您前往不同的入口網站，您可以在那裡變更您的慣用付款方式。
 
 若要變更您的付款方式，請遵循下列步驟：
 
-1. 按一下 [變更您的付款方式]。![訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/subscriptions.jpg)
-2. 選取您想變更的付款方式。[付款方式] 選項可讓您選取您的信用卡。[新增付款方式] 選項可讓您加入新的信用卡。![變更付款方式](./media/billing-understand-your-azure-marketplace-charges/change-payment-method.jpg)
+1. 按一下 [變更您的付款方式]。
+
+    ![訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/subscriptions.jpg)
+
+2. 選取您想變更的付款方式。[付款方式] 選項可讓您選取您的信用卡。[新增付款方式] 選項可讓您加入新的信用卡。
+
+    ![變更付款方式](./media/billing-understand-your-azure-marketplace-charges/change-payment-method.jpg)
 
 ## 訂單管理
-從 [摘要概觀] 頁面，您會看到 [管理訂單] 連結。此連結會帶您前往您的入口網站，您可以在那裡看到所有 Marketplace 訂單，檢視服務健康情況，以及要求支援。![入口網站](./media/billing-understand-your-azure-marketplace-charges/portal.jpg)
+從 [摘要概觀] 頁面，您會看到 [管理訂單] 連結。此連結會帶您前往您的入口網站，您可以在那裡看到所有 Marketplace 訂單，檢視服務健全狀況，以及要求支援。
 
-若要要求支援，按一下 [說明 + 支援] 圖格。這會顯示下列 [說明 + 支援] 頁面，您可在此執行下列作業：
+![入口網站](./media/billing-understand-your-azure-marketplace-charges/portal.jpg)
+
+如需要求支援，請按一下 [說明 + 支援] 圖格。這會顯示下列 [說明 + 支援] 頁面，您可在此執行下列作業：
 - 開啟新的支援要求。
 - 管理現有的支援要求。
 - 管理資源健康狀態。
@@ -67,11 +80,22 @@
 ## 帳單記錄
 [摘要] 頁面上的新功能是檢視使用量型的優惠，例如虛擬機器。現在，您可以針對目前和已關閉的期間，根據計費週期下載使用量。若要檢視使用量，請按一下您想要檢視的每個期間的 [下載使用量] 連結。
 
-如果您想要檢視實際費用，請按一下 [檢視費用]。系統會將您重新導向至不同的入口網站，您可以在那裡檢視所有含稅的費用。如果您使用組織識別碼，[檢視費用] 按鈕將不會啟用，您必須提交支援票證以要求您的費用摘要。![帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-history.png)
+如果您想要檢視實際費用，請按一下 [檢視費用]。系統會將您重新導向至不同的入口網站，您可以在那裡檢視所有含稅的費用。如果您使用組織識別碼，[檢視費用] 按鈕將不會啟用，您必須提交支援票證以要求您的費用摘要。
+
+![帳單記錄](./media/billing-understand-your-azure-marketplace-charges/billing-history.png)
 
 若要檢視實際費用，請遵循下列步驟：
 
-1. 按一下 [帳單記錄] 頁面上的 [檢視費用]。新的索引標籤會開啟，顯示[訂單歷程記錄](https://account.microsoft.com/billing/orders#/)。請注意，如果您嘗試在「帳單與帳戶管理入口網站」存取提取原始的使用量，您必須按一下頁面底部的支援連結以連絡支援人員。)![訂單歷程記錄](./media/billing-understand-your-azure-marketplace-charges/order-history.jpg)
-2. 找出您想要檢閱的訂單，然後按一下 [詳細資料] 以檢視費用的細項，包含小計、稅金和總計費用。![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
+1. 按一下 [帳單記錄] 頁面上的 [檢視費用]。
 
-<!----HONumber=AcomDC_0309_2016-->
+	新的索引標籤會開啟，顯示[訂單歷程記錄](https://account.microsoft.com/billing/orders#/)。
+
+    請注意，如果您嘗試在「帳單與帳戶管理入口網站」存取原始的使用量，您必須按一下頁面底部的支援連結以連絡支援人員。)
+
+    ![訂單歷程記錄](./media/billing-understand-your-azure-marketplace-charges/order-history.jpg)
+
+2. 找出您想要檢閱的訂單，然後按一下 [詳細資料] 以檢視費用的細項，包含小計、稅金和總計費用。
+
+    ![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
+
+<!---HONumber=AcomDC_0511_2016-->

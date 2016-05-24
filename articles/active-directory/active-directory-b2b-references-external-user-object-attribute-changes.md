@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="na"
-   ms.date="02/03/2016"
+   ms.date="05/09/2016"
    ms.author="viviali"/>
 
 # Azure AD B2B 共同作業預覽：外部使用者物件屬性變更
@@ -27,7 +27,7 @@ Azure AD 目錄中的每個使用者都以使用者物件形式呈現。Azure AD
 在 Azure AD 中追蹤這些屬性，有助您疑難排解夥伴使用者是否已兌換其 B2B 共同作業邀請。
 
 ## 相關文章
-請瀏覽有關 Azure B2B 共同作業的其他文章：
+請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
 - [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 - [運作方式](active-directory-b2b-how-it-works.md)
@@ -37,4 +37,4 @@ Azure AD 目錄中的每個使用者都以使用者物件形式呈現。Azure AD
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

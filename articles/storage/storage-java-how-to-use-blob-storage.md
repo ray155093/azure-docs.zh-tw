@@ -1,6 +1,6 @@
 <properties
 	pageTitle="如何使用 Java 的 Azure Blob 儲存體 | Microsoft Azure"
-	description="了解如何使用 Azure Blob 儲存體來上傳、下載、列出及刪除 Blob 內容。範例以 Java 撰寫。"
+	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	services="storage"
 	documentationCenter="java"
 	authors="rmcmurray"
@@ -66,7 +66,7 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 
 **CloudBlobClient** 物件可讓您取得容器和 Blob 的參考物件。下列程式碼將建立 **CloudBlobClient** 物件。
 
-> [AZURE.NOTE] 還有其他方法可建立 **CloudStorageAccount** 物件。如需詳細資訊，請參閱 [Azure 儲存體用戶端 SDK 參考] (英文) 中的 **CloudStorageAccount**。
+> [AZURE.NOTE] 還有其他方法可建立 **CloudStorageAccount** 物件。如需詳細資訊，請參閱 [Azure 儲存體用戶端 SDK 參考] \(英文) 中的 **CloudStorageAccount**。
 
 [AZURE.INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
@@ -267,4 +267,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 [Azure 儲存體 REST API]: https://msdn.microsoft.com/library/azure/dd179355.aspx
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0511_2016-->

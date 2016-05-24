@@ -6,7 +6,7 @@
 	authors="rothja"
 	manager="jeffreyg"
 	editor="monicar"
-	tags="azure-service-management" />
+	tags="azure-resource-management" />
 
 <tags
 	ms.service="virtual-machines-windows"
@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="02/03/2016"
+	ms.date="05/06/2016"
 	ms.author="jroth" />
 
 # Azure 虛擬機器中的 SQL Server 備份和還原
@@ -33,29 +33,29 @@
 
 下列章節包含 Azure 虛擬機器所支援之不同版本 SQL Server 的特定資訊。
 
-## 當資料庫檔案儲存在 Microsoft Azure Blob 服務時的備份考量
+## SQL Server 虛擬機器
 
-將資料庫檔案儲存在 Microsoft Azure Blob 儲存體時，執行資料庫備份和基礎備份技術的原因本身已有所不同。如需在 Azure Blob 儲存體中儲存資料庫檔案的詳細資訊，請參閱 [Azure 中的 SQL Server 資料檔案](https://msdn.microsoft.com/library/jj919148.aspx)。
+當您的 SQL Server 執行個體在 Azure 虛擬機器上執行時，您的資料庫檔案已經位於 Azure 中的資料磁碟。這些磁碟存在於 Azure Blob 儲存體中。因為這樣，您備份資料庫的原因和方法就會稍有不同。請考慮下列。
 
 - 您不再需要執行資料庫備份來提供硬體或媒體故障防護，因為 Microsoft Azure 提供這項防護，做為 Microsoft Azure 服務的一部分。
 
 - 您仍然需要執行資料庫備份來提供防護，以免發生使用者錯誤，或基於保存之目的、稽核的原因或系統管理目的而備份。
 
-- 您可以在 Microsoft SQL Server 2016 Community Technology Preview 3 (CTP3) 中使用 SQL Server 檔案快照集備份功能，執行幾乎即時的備份及快速還原。如需詳細資訊，請參閱[適用於在 Azure 中的資料庫檔案的檔案快照集備份](https://msdn.microsoft.com/library/mt169363.aspx)。
+- 您可以直接在 Azure 中儲存備份的檔案。如需詳細資訊，請參閱下列各節提供的不同版本 SQL Server 的指引。
 
-## Microsoft SQL Server 2016 Community Technology Preview 3 (CTP3) 中的備份及還原
+## SQL Server 2016 發行候選版本
 
-Microsoft SQL Server 2016 Community Technology Preview 3 (CTP3) 支援[透過 Azure Blob 備份和還原](https://msdn.microsoft.com/library/jj919148.aspx)功能，這些資訊可在 SQL Server 2014 中找到，以下也會加以描述。不過它也包含下列增強功能：
+Microsoft SQL Server 2016 發行候選版本 (RC3) 支援[透過 Azure Blob 備份和還原](https://msdn.microsoft.com/library/jj919148.aspx)功能，這些功能 SQL Server 2014 中也有。不過它也包含下列增強功能：
 
-- **串接**：當備份至 Microsoft Azure Blob 儲存體時，SQL Server 2016 支援備份至多個 Blob，以啟用可高達 12.8 TB 之大型資料庫的備份。
+| 2016 增強功能 | 詳細資料 |
+|---------------------|-------------------------------|
+| **串接** | 當備份至 Microsoft Azure Blob 儲存體時，SQL Server 2016 支援備份至多個 Blob，以啟用可高達 12.8 TB 之大型資料庫的備份。 |
+| **快照集備份** | 藉由 Azure 快照集，SQL Server 檔案快照集備份對使用 Azure Blob 儲存體服務儲存的資料庫檔案，提供幾乎即時的備份及快速還原。這項功能可簡化備份和還原原則。檔案快照集備份也支援還原時間點。如需詳細資訊，請參閱[適用於在 Azure 中的資料庫檔案的快照集備份](https://msdn.microsoft.com/library/mt169363%28v=sql.130%29.aspx)。 |
+| **管理備份排程** | SQL Server Managed Backup 至 Azure 現在支援自訂排程。如需詳細資訊，請參閱 [SQL Server Managed Backup 至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。 |
 
-- **快照集備份**：藉由 Azure 快照集，SQL Server 檔案快照集備份對使用 Azure Blob 儲存體服務儲存的資料庫檔案，提供幾乎即時的備份及快速還原。這項功能可簡化備份和還原原則。檔案快照集備份也支援還原時間點。如需詳細資訊，請參閱[適用於在 Azure 中的資料庫檔案的快照集備份](https://msdn.microsoft.com/library/mt169363%28v=sql.130%29.aspx)。
+如需在使用 Azure Blob 儲存體時使用 SQL Server 2016 功能的教學課程，請參閱[教學課程：使用 Microsoft Azure Blob 儲存體服務搭配 SQL Server 2016 資料庫](https://msdn.microsoft.com/library/dn466438.aspx)。
 
-- **管理備份排程**：SQL Server Managed Backup 至 Azure 現在支援自訂排程。如需詳細資訊，請參閱 [SQL Server Managed Backup 至 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。
-
->[AZURE.NOTE] 如需在使用 Azure Blob 儲存體時使用 SQL Server 2016 功能的教學課程，請參閱[教學課程：使用 Microsoft Azure Blob 儲存體服務搭配 SQL Server 2016 資料庫](https://msdn.microsoft.com/library/dn466438.aspx)。
-
-## SQL Server 2014 中的備份及還原
+## SQL Server 2014
 
 SQL Server 2014 包含下列增強功能：
 
@@ -68,7 +68,7 @@ SQL Server 2014 包含下列增強功能：
 
 1. **加密**：SQL Server 2014 支援在建立備份時加密資料。它支援數種加密演算法以及使用憑證或非對稱金鑰。如需詳細資訊，請參閱[備份加密](https://msdn.microsoft.com/library/dn449489%28v=sql.120%29.aspx)。
 
-## SQL Server 2012 中的備份及還原
+## SQL Server 2012
 
 如需 SQL Server 2012 中 SQL Server 備份及還原的詳細資訊，請參閱 [SQL Server 資料庫備份及還原 (SQL Server 2012)](https://msdn.microsoft.com/library/ms187048%28v=sql.110%29.aspx)。
 
@@ -78,7 +78,7 @@ SQL Server 2014 包含下列增強功能：
 
 如需最佳做法建議和疑難排解資訊，請參閱[備份與還原最佳做法 (Azure Blob 儲存體服務)](https://msdn.microsoft.com/library/jj919149%28v=sql.110%29.aspx)。
 
-## 在 Azure 虛擬機器中支援的其他 SQL Server 版本的備份及還原
+## SQL Server 2008
 
 如需在 SQL Server 2008 R2 中進行 SQL Server 備份及還原，請參閱[在 SQL Server 中備份和還原資料庫 (SQL Server 2008 R2)](https://msdn.microsoft.com/library/ms187048%28v=sql.105%29.aspx)。
 
@@ -86,10 +86,10 @@ SQL Server 2014 包含下列增強功能：
 
 ## 後續步驟
 
-如果您仍計畫在 Azure VM 中部署 SQL Server，您可以在下列教學課程找到佈建的指示：[利用 Azure Resource Manager 在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+如果您計畫在 Azure VM 中部署 SQL Server，您可以在下列教學課程找到佈建的指示：[利用 Azure Resource Manager 在 Azure 中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
 雖然備份和還原可用來將資料移轉，但對於移轉到 Azure VM 上的 SQL Server，可能仍有更容易的資料移轉路徑。如需移轉選項和建議的完整討論，請參閱[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
 請檢閱其他[在 Azure 虛擬機器中執行 SQL Server 的資源](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0511_2016-->

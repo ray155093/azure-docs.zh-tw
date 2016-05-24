@@ -12,7 +12,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="article"
-	 ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	 ms.author="casoper"/>
 
 # 如何將自訂網域對應至內容傳遞網路 (CDN) 端點
@@ -81,4 +81,4 @@
 
 [如何啟用 Azure 內容傳遞網路 (CDN)](./cdn-create-new-endpoint.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0511_2016-->

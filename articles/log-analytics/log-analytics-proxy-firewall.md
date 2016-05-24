@@ -27,9 +27,10 @@
 
 |**代理程式資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443| |*.oms.opinsights.azure.com|連接埠 443|
+|*.ods.opinsights.azure.com|Port 443|
+|*.oms.opinsights.azure.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
-|**.blob.core.windows.net|Port 443|
+|*.blob.core.windows.net|Port 443|
 
 您可以使用以下程序來使用控制台為 Microsoft Monitoring Agent 設定 Proxy 設定。您將需要針對每部伺服器使用此程序。如果您需要設定許多伺服器，使用指令碼將此程序自動化會比較容易。如果是，請參閱下一個程序[使用指令碼設定 Microsoft Monitoring Agent 的 Proxy 設定](#to-configure-proxy-settings-for-the-microsoft-monitoring-agent-using-a-script)。
 
@@ -39,7 +40,8 @@
 
 2. 開啟 [**Microsoft Monitoring Agent**].
 
-3. 按一下 [**Proxy 設定**] 索引標籤。![[Proxy 設定] 索引標籤](./media/log-analytics-proxy-firewall/proxy-direct-agent-proxy.png)
+3. 按一下 [**Proxy 設定**] 索引標籤。  
+  ![[Proxy 設定] 索引標籤](./media/log-analytics-proxy-firewall/proxy-direct-agent-proxy.png)
 
 4. 選取 [**使用 Proxy 伺服器**] 並輸入 URL 與連接埠號碼 (如果需要)，如範例所示。如果您的 Proxy 伺服器需要驗證，請輸入使用者名稱與密碼以存取 Proxy 伺服器。
 
@@ -95,25 +97,32 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 |**代理程式資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443| |*.oms.opinsights.azure.com|連接埠 443|
+|*.ods.opinsights.azure.com|Port 443|
+|*.oms.opinsights.azure.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
-|**.blob.core.windows.net/|Port 443|
+|*.blob.core.windows.net/|Port 443|
 
 以下是管理伺服器資源和連接埠的清單︰
 
 |**管理伺服器資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443| |service.systemcenteradvisor.com|Port 443| |scadvisor.accesscontrol.windows.net|Port 443| |scadvisorservice.accesscontrol.windows.net|Port 443| |*.blob.core.windows.net|連接埠 443|
+|*.ods.opinsights.azure.com|Port 443|
+|service.systemcenteradvisor.com|Port 443|
+|scadvisor.accesscontrol.windows.net|Port 443|
+|scadvisorservice.accesscontrol.windows.net|Port 443|
+|*.blob.core.windows.net|連接埠 443|
 |data.systemcenteradvisor.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
-|**.systemcenteradvisor.com|Port 443|
+|*.systemcenteradvisor.com|Port 443|
 
 以下是 OMS 和 Operations Manager 主控台資源和連接埠的清單。
 
 |**OMS 和 Operations Manager 主控台資源**|**連接埠**|
 |----|----|
-|*.systemcenteradvisor.com|Port 80 and 443| |*.live.com|連接埠 80 和 443|
-|**.microsoftonline.com|Port 80 and 443| |login.windows.net|Port 80 and 443|
+|*.systemcenteradvisor.com|Port 80 and 443|
+|*.live.com|連接埠 80 和 443|
+|*.microsoftonline.com|Port 80 and 443|
+|login.windows.net|Port 80 and 443|
 
 
 
@@ -129,9 +138,12 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 1. 開啟 Operations Manager 主控台，然後選取 [**管理**] 工作區。
 
-2. 展開 [**Operational Insights**]，然後選取 [**Operational Insights 連線**]。![Operations Manager OMS 連線](./media/log-analytics-proxy-firewall/proxy-om01.png)
-3. 在 [OMS 連線] 檢視中，按一下 [設定 Proxy 伺服器]。![Operations Manager OMS 連線設定 Proxy 伺服器](./media/log-analytics-proxy-firewall/proxy-om02.png)
-4. 在 [Operational Insights 設定精靈：Proxy 伺服器] 中，選取 [**使用 Proxy 伺服器來存取 Operational Insights Web 服務**]，然後輸入具有連接埠號碼的 URL，例如，**http://myproxy:80**。![Operations Manager OMS Proxy 位址](./media/log-analytics-proxy-firewall/proxy-om03.png)
+2. 展開 [**Operational Insights**]，然後選取 [**Operational Insights 連線**]。  
+    ![Operations Manager OMS 連線](./media/log-analytics-proxy-firewall/proxy-om01.png)
+3. 在 [OMS 連線] 檢視中，按一下 [設定 Proxy 伺服器]。  
+    ![Operations Manager OMS 連線設定 Proxy 伺服器](./media/log-analytics-proxy-firewall/proxy-om02.png)
+4. 在 [Operational Insights 設定精靈：Proxy 伺服器] 中，選取 [**使用 Proxy 伺服器來存取 Operational Insights Web 服務**]，然後輸入具有連接埠號碼的 URL，例如，**http://myproxy:80**。  
+    ![Operations Manager OMS Proxy 位址](./media/log-analytics-proxy-firewall/proxy-om03.png)
 
 
 ### 在 Proxy 伺服器需要驗證時指定認證
@@ -139,17 +151,24 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 1. 開啟 Operations Manager 主控台，然後選取 [**管理**] 工作區。
 2. 在 [**RunAs 組態**] 底下，選取 [**設定檔**]。
-3. 開啟 [**System Center Advisor 執行身份設定檔 Proxy**] 設定檔。![System Center Advisor 執行身份 Proxy 設定檔的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct1.png)
-4. 在 [執行身分設定檔精靈] 中，按一下 [**新增**] 以使用執行身分帳戶。您可以建立新的執行身分帳戶，或使用現有的帳戶。此帳戶必須有足夠的權限，才能通過 Proxy 伺服器。![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct2.png)
-5. 若要設定帳戶來管理，請選擇 [**選取的類別、群組或物件**] 來開啟 [物件搜尋] 方塊。![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct2-1.png)
-6. 搜尋並選取 [**Microsoft System Center Advisor 監控伺服器群組**]。![[物件搜尋] 方塊的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct3.png)
-7. 按一下 [確定] 以關閉 [加入執行身分帳戶] 方塊。![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct4.png)
-8. 完成精靈並儲存變更。![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct5.png)
+3. 開啟 [**System Center Advisor 執行身份設定檔 Proxy**] 設定檔。  
+    ![System Center Advisor 執行身份 Proxy 設定檔的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct1.png)
+4. 在 [執行身分設定檔精靈] 中，按一下 [**新增**] 以使用執行身分帳戶。您可以建立新的執行身分帳戶，或使用現有的帳戶。此帳戶必須有足夠的權限，才能通過 Proxy 伺服器。  
+    ![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct2.png)
+5. 若要設定帳戶來管理，請選擇 [**選取的類別、群組或物件**] 來開啟 [物件搜尋] 方塊。  
+    ![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct2-1.png)
+6. 搜尋並選取 [**Microsoft System Center Advisor 監控伺服器群組**]。  
+    ![[物件搜尋] 方塊的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct3.png)
+7. 按一下 [確定] 以關閉 [加入執行身分帳戶] 方塊。  
+    ![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct4.png)
+8. 完成精靈並儲存變更。  
+    ![[執行身份設定檔精靈] 的影像](./media/log-analytics-proxy-firewall/proxy-proxyacct5.png)
 
 
 ### 驗證 OMS 管理套件已下載
 
-- 如果您已將方案加入 OMS 中，可以在 Operations Manager 主控台的 [管理] 底下以管理套件檢視它們。搜尋 *System Center Advisor* 以快速找出它們。![已下載的管理組件](./media/log-analytics-proxy-firewall/proxy-mpdownloaded.png)
+- 如果您已將方案加入 OMS 中，可以在 Operations Manager 主控台的 [管理] 底下以管理套件檢視它們。搜尋 *System Center Advisor* 以快速找出它們。  
+    ![已下載的管理組件](./media/log-analytics-proxy-firewall/proxy-mpdownloaded.png)
 - 或者，您也可以使用 Operations Manager 管理伺服器中的下列 Windows PowerShell 命令，檢查 OMS 管理套件：
 
         get-scommanagementpack | where {$_.DisplayName -match 'Advisor'} | select Name,DisplayName,Version,KeyToken
@@ -160,8 +179,10 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 1. 在 Operations Manager 管理伺服器中，開啟效能監視器 (perfmon.exe)，然後選取 [**效能監視器**]。
 2. 按一下 [**新增**]，然後選取 [**健康情況服務管理群組**]。
-3. 加入開頭為 **HTTP** 的所有計數器。![新增計數器](./media/log-analytics-proxy-firewall/proxy-sendingdata1.png)
-4. 如果您的 Operations Manager 組態良好，您會看到健全狀況服務管理計數器的事件和其他資料項目的活動，根據您在 OMS 中加入的管理套件和設定的記錄收集原則。![顯示活動的效能監視器](./media/log-analytics-proxy-firewall/proxy-sendingdata2.png)
+3. 加入開頭為 **HTTP** 的所有計數器。  
+    ![新增計數器](./media/log-analytics-proxy-firewall/proxy-sendingdata1.png)
+4. 如果您的 Operations Manager 組態良好，您會看到健全狀況服務管理計數器的事件和其他資料項目的活動，根據您在 OMS 中加入的管理套件和設定的記錄收集原則。  
+    ![顯示活動的效能監視器](./media/log-analytics-proxy-firewall/proxy-sendingdata2.png)
 
 
 ## Azure 自動化 Hybrid Runbook Worker
@@ -176,3 +197,4 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 - 熟悉[記錄搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
 
 <!---HONumber=AcomDC_0504_2016-->
+

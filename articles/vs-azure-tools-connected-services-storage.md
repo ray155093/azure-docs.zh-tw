@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="mobile"
-   ms.date="04/18/2016"
+   ms.date="05/08/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 的已連接服務加入 Azure 儲存體
@@ -79,7 +79,7 @@
  - 若為 ASP.NET 專案，請參閱[發生什麼情形 – ASP.NET 專案](http://go.microsoft.com/fwlink/p/?LinkId=513126)。 
  - 若為 ASP.NET 5 專案，請參閱[發生什麼情形 – ASP.NET 5 專案](http://go.microsoft.com/fwlink/p/?LinkId=513124)。 
  - 若為雲端服務專案 (Web 角色和背景工作角色)，請參閱[發生什麼情形 – 雲端服務專案](http://go.microsoft.com/fwlink/p/?LinkId=516965)。 
- - 若為 WebJob 專案，請參閱[發生什麼情形 – WebJob 專案](vs-storage-webjobs-what-happened/)。
+ - 若為 WebJob 專案，請參閱[發生什麼情形 – WebJob 專案](./storage/vs-storage-webjobs-what-happened.md)。
 
 ## 後續步驟
 
@@ -94,4 +94,4 @@
 
      - [azure.microsoft.com 上的儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

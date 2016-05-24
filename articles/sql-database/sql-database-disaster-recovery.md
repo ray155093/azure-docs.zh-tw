@@ -1,6 +1,6 @@
 <properties 
    pageTitle="SQL Database 嚴重損壞修復" 
-   description="了解如何使用 Azure SQL Database 的作用中異地複寫、標準異地複寫和異地還原功能，從區域資料中心中斷或失敗情況復原資料庫。" 
+   description="了解如何使用 Azure SQL Database 的作用中異地複寫和異地還原功能，從區域資料中心中斷或失敗情況復原資料庫。" 
    services="sql-database" 
    documentationCenter="" 
    authors="elfisher" 
@@ -13,135 +13,101 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
-   ms.date="02/09/2016"
+   ms.date="05/10/2016"
    ms.author="elfish"/>
 
-# 從中斷情況復原 Azure SQL Database
+# 還原 Azure SQL Database 或容錯移轉到次要資料庫
 
 Azure SQL Database 提供下列功能，以從中斷復原：
 
-- 主動式異地複寫 [(部落格)](http://azure.microsoft.com/blog/2014/07/12/spotlight-on-sql-database-active-geo-replication/)
-- 標準異地複寫 [(部落格)](http://azure.microsoft.com/blog/2014/09/03/azure-sql-database-standard-geo-replication/)
-- 異地還原 [(部落格)](http://azure.microsoft.com/blog/2014/09/13/azure-sql-database-geo-restore/)
-- 新的異地複寫功能 [(部落格)](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+- [主動式異地複寫](sql-database-geo-replication-overview.md)
+- [異地還原](sql-database-geo-restore.md)
 
 若要了解如何為嚴重損壞情況做準備，以及何時可復原資料庫，請瀏覽我們的[業務續航力的設計](sql-database-business-continuity-design.md)頁面。
 
-##何時起始復原 
+## 何時起始復原
 
 復原作業會影響應用程式。它需要變更 SQL 連接字串，並且可能會導致永久的資料遺失。因此，只有在中斷情況可能持續超過應用程式的 RTO 時，才應該執行這項作業。將應用程式部署至生產環境之後，您應該定期監視應用程式健全狀況，並利用下列資料點判斷是否需要復原：
 
-1. 從應用程式層到資料庫的連接發生永久性失敗。
-2. 您的 Azure 入口網站顯示有關區域中影響廣泛之事件的警示。
+1.	從應用程式層到資料庫的連接發生永久性失敗。
+2.	Azure 入口網站顯示有關區域中影響廣泛之事件的警示。
+3.	Azure SQL Database 伺服器標示為已降級。 
 
-> [AZURE.NOTE] 復原資料庫之後，您可以遵循[在復原後設定資料庫](#postrecovery)指南，設定資料庫以供使用。
+視您應用程式的停機容忍度和可能的商務責任而定，您可以考慮下列復原選項。
+
+## 等候服務復原
+
+Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言，有可能需要數小時或數天的時間。如果您的應用程式可以容忍長時間停機，您可以等待復原完成。在此情況下，您不需要採取任何動作。您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上看見目前的服務狀態。在區域復原後，您應用程式的可用性將會還原。
 
 ## 容錯移轉至異地複寫的次要資料庫
-> [AZURE.NOTE] 您必須進行設定，以取得可用於容錯移轉的次要資料庫。異地複寫僅適用於標準和高階資料庫。了解[如何設定異地複寫](sql-database-business-continuity-design.md)
 
-###Azure 入口網站
-使用 Azure 入口網站終止與地理複寫次要資料庫的連續複製關聯性。
+如果您應用程式的停機可能會導致商務責任，您應該在應用程式中使用異地複寫的資料庫。這可讓應用程式在發生中斷時，快速還原不同區域的可用性。了解如何[設定異地複寫](sql-database-geo-replication-portal.md)。
 
-1. 登入 [Azure 入口網站](https://portal.Azure.com)
-2. 在畫面左側選取 [瀏覽]，然後選取 [SQL Database]。
-3. 巡覽至您的資料庫，然後加以選取。 
-4. 在資料庫分頁底部選取 [異地複寫對應]。
-4. 在 [次要] 下，以滑鼠右鍵按一下含有您要復原之資料庫名稱的資料列，然後選取 [容錯移轉]。
+若要還原資料庫的可用性，您必須使用其中一種支援的方法，開始容錯移轉到異地複寫的次要資料庫。
 
-###PowerShell
-使用 [Set-AzureRMSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx) Cmdlet，進而以 PowerShell 起始容錯移轉至異地複寫次要資料庫。
-		
-		$database = Get-AzureRMSqlDatabase –DatabaseName "mydb” –ResourceGroupName "rg2” –ServerName "srv2”
-		$database | Set-AzureRMSqlDatabaseSecondary –Failover -AllowDataLoss
 
-###REST API 
-使用 REST 以程式設計方式起始容錯移轉至次要資料庫。
+使用下列其中一份指南，容錯移轉至異地複寫的次要資料庫：
 
-1. 使用[取得複寫連結](https://msdn.microsoft.com/library/mt600778.aspx)作業取得特定次要資料庫的複寫連結。
-2. 使用[設定次要資料庫做為主要資料庫](https://msdn.microsoft.com/library/mt582027.aspx)，且允許資料遺失，容錯移轉至次要資料庫。 
+- [使用 Azure 入口網站容錯移轉至異地複寫的次要資料庫](sql-database-geo-replication-portal.md)
+- [使用 PowerShell 容錯移轉至異地複寫的次要資料庫](sql-database-geo-replication-powershell.md)
+- [使用 T-SQL 容錯移轉至異地複寫的次要資料庫](sql-database-geo-replication-transact-sql.md) 
+
+
 
 ## 使用異地還原進行復原
 
-如果發生資料庫中斷的情況，您可以使用異地還原，從資料庫最新的異地備援備份來復原資料庫。
+如果您應用程式的停機不會導致任何商務責任，您可以使用異地還原做為復原應用程式資料庫的方法。它會從其最新的異地備援備份建立資料庫的複本。
 
-> [AZURE.NOTE] 復原資料庫會建立新的資料庫。請務必確定您要復原到的伺服器有足夠的 DTU 容量供新的資料庫使用。您可以[連絡支援人員](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/)，要求增加此配額。
+使用下列其中一份指南，將資料庫異地還原到新的區域︰
 
-###Azure 入口網站 (復原到獨立資料庫)
-若要使用 Azure 入口網站中的異地還原還原 SQL Database，請使用下列步驟。
+- [使用 Azure 入口網站將資料庫異地還原到新的區域](sql-database-geo-restore-portal.md)
+- [使用 PowerShell 將資料庫異地還原到新的區域](sql-database-geo-restore-powershell.md) 
 
-1. 登入 [Azure 入口網站](https://portal.Azure.com)
-2. 在畫面左側選取 [新增]，然後依序選取 [資料和儲存體] 和 [SQL Database]。
-2. 選取 [備份] 做為來源，然後選取您要從中復原的異地備援備份。
-3. 指定其餘資料庫內容，然後按一下 [建立]。
-4. 資料庫還原程序就會開始，您可以使用畫面左側的 [通知] 監視程序。
 
-###Azure 入口網站 (復原到彈性資料庫集區)
-若要使用入口網站利用異地還原將 SQL Database 還原到彈性資料庫集區，請遵循以下指引。
+## 在復原之後設定資料庫
 
-1. 登入 [Azure 入口網站](https://portal.Azure.com)
-2. 在畫面左側選取 [瀏覽]，接著選取 [SQL 彈性集區]。
-3. 選取您要將資料庫異地還原到的集區。
-4. 在彈性集區刀鋒視窗頂端，選取 [建立資料庫]
-5. 選取 [備份] 做為來源，然後選取您要從中復原的異地備援備份。
-6. 指定其餘資料庫內容，然後按一下 [建立]。
-7. 資料庫還原程序就會開始，您可以使用畫面左側的 [通知] 監視程序。
-
-###PowerShell 
-> [AZURE.NOTE] 目前搭配 PowerShell 使用異地還原，只支援還原到獨立資料庫。若要異地還原到彈性資料庫集區，請使用 [Azure 入口網站](https://portal.Azure.com)。
-
-若要使用異地還原搭配 PowerShell 還原 SQL Database，請使用 [start-AzureSqlDatabaseRecovery](https://msdn.microsoft.com/library/azure/dn720224.aspx) Cmdlet 啟動異地還原要求。
-
-		$Database = Get-AzureSqlRecoverableDatabase -ServerName "ServerName" –DatabaseName “DatabaseToBeRecovered"
-		$RecoveryRequest = Start-AzureSqlDatabaseRecovery -SourceDatabase $Database –TargetDatabaseName “NewDatabaseName” –TargetServerName “TargetServerName”
-		Get-AzureSqlDatabaseOperation –ServerName "TargetServerName" –OperationGuid $RecoveryRequest.RequestID
-
-###REST API 
-
-使用 REST 可以程式設計方式執行資料庫復原。
-
-1.	使用[列出可復原的資料庫](http://msdn.microsoft.com/library/azure/dn800984.aspx)作業來取得可復原的資料庫清單。
-	
-2.	使用[取得可復原的資料庫](http://msdn.microsoft.com/library/azure/dn800985.aspx)作業來取得您要復原的資料庫。
-	
-3.	使用[建立資料庫復原要求](http://msdn.microsoft.com/library/azure/dn800986.aspx)作業來建立復原要求。
-	
-4.	使用[資料庫作業狀態](http://msdn.microsoft.com/library/azure/dn720371.aspx)作業來追蹤復原狀態。
- 
-## 在復原之後設定資料庫<a name="postrecovery"></a>
-
-這份工作檢查清單可以用來幫助您準備產生復原的資料庫。
+如果您使用異地還原選項的異地複寫容錯移轉，從中斷情況復原您的應用程式，您必須確定已正確設定新資料庫的連線，才能繼續執行正常的應用程式功能。以下工作檢查清單可協助您準備產生復原的資料庫。
 
 ### 更新連接字串
 
-請確認您應用程式的連接字串是指向剛復原的資料庫。如果有以下其中一種情況，請更新連接字串：
-
-  + 復原的資料庫使用的名稱與來源資料庫不同
-  + 復原的資料庫和來源伺服器位於不同的伺服器
+因為復原的資料庫將位於不同的伺服器，所以您必須更新您應用程式的連接字串以指向該伺服器。
 
 如需變更連接字串的詳細資訊，請參閱[連接至 Azure SQL Database：重要的建議](sql-database-connect-central-recommendations.md)。
- 
-### 修改防火牆規則
-請確認伺服器層級和資料庫層級的防火牆規則，並確定已啟用您用戶端電腦或 Azure 與伺服器以及剛復原之資料庫的連接。如需詳細資訊，請參閱[如何：進行防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)。
 
-### 確認伺服器登入和資料庫使用者
+### 設定防火牆規則
 
-確認應用程式使用的所有登入，是否都在主控您已復原資料庫的伺服器上。重新建立缺少的登入，並將適當的已復原資料庫之權限授與登入。如需詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入](sql-database-manage-logins.md)。
+您需要確認伺服器和資料庫上設定的防火牆規則符合主要伺服器與主要資料庫上設定的防火牆規則。如需詳細資訊，請參閱[如何：進行防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)。
 
-請確認已復原資料庫中的每位資料庫使用者，是否都和有效的伺服器登入相關聯。使用 ALTER USER 陳述式，將使用者對應至有效的伺服器登入。如需詳細資訊，請參閱 [ALTER USER](http://go.microsoft.com/fwlink/?LinkId=397486)。
 
+### 設定登入和資料庫使用者
+
+您需要確定應用程式使用的所有登入，都存在於主控已復原資料庫的伺服器上。如需詳細資訊，請參閱「如何在災害復原期間管理安全性」。如需詳細資訊，請參閱[異地複寫的安全性設定](sql-database-geo-replication-security-config.md)。
+
+>[AZURE.NOTE] 如果您使用異地還原選項從中斷情況復原，您應該在 DR 演練期間設定伺服器防火牆規則和登入，以確定主要伺服器仍可用於擷取其組態。因為異地還原會使用資料庫備份，所以在中斷期間可能無法使用此伺服器層級組態。演練之後，您可以移除已還原的資料庫，但保留此伺服器與其組態，以供復原程序使用。如需 DR 演練的詳細資訊，請參閱[執行災害復原演練](sql-database-disaster-recovery-drills.md)。
 
 ### 設定遙測警示
 
-確認現有的警示規則設定是否對應至復原的資料庫。如果有以下其中一種情況，請更新設定：
-
-  + 復原的資料庫使用的名稱與來源資料庫不同
-  + 復原的資料庫和來源伺服器位於不同的伺服器
+您必須確定現有的警示規則設定已更新，才能對應至復原的資料庫和不同的伺服器。
 
 如需資料庫警示規則的詳細資訊，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](../azure-portal/insights-service-health.md)。
-
 
 ### 啟用稽核
 
 如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。用戶端應用程式必須在 *.database.secure.windows.net 的模式中使用安全連接字串，才能有良好的稽核指標。如需詳細資訊，請參閱[開始使用 SQL 資料庫稽核](sql-database-auditing-get-started.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+
+
+
+## 其他資源
+
+
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [時間點還原](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
+- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
+
+<!---HONumber=AcomDC_0511_2016-->

@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="02/02/2016" 
+    ms.date="04/26/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Benefitsolver 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 Benefitsolver 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-benefitsolver-tutorial/IC700993.png "Active Directory")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Benefitsolver] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Benefitsolver] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-benefitsolver-tutorial/IC804824.png "設定單一登入")
 
@@ -83,8 +83,7 @@
     ![設定 App 設定](./media/active-directory-saas-benefitsolver-tutorial/IC804826.png "設定 App 設定")
 
     1.  在 [登入 URL] 文字方塊中，輸入 **http://azure.benefitsolver.com**。
-	2.  在 [回覆 URL] 文字方塊中，輸入 **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**。
-
+2.  在 [回覆 URL] 文字方塊中，輸入 **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**。
 
     3.  按 [下一步]。
 
@@ -96,7 +95,7 @@
 
     >[AZURE.NOTE] Benefitsolver 支援小組必須執行實際的 SSO 組態。當您的訂用帳戶啟用 SSO 之後，您會收到通知。
 
-6.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-benefitsolver-tutorial/IC804828.png "設定單一登入")
 
@@ -134,7 +133,7 @@
 
 ###若要將使用者指派給 Benefitsolver，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Benefitsolver] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -146,4 +145,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!-----HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0511_2016-->

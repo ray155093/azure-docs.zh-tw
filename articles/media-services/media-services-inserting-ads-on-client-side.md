@@ -21,7 +21,7 @@
 
 本主題包含如何在用戶端上插入各種類型廣告的相關資訊。
 
-如需了解即時串流視訊的隱藏式字幕和廣告支援，請參閱[隱藏式字幕支援和廣告插入標準](media-services-manage-channels-overview.md#cc_and_ads)。
+如需了解即時串流視訊的隱藏式字幕和廣告支援，請參閱[隱藏式字幕支援和廣告插入標準](media-services-live-streaming-with-onprem-encoders.md#cc_and_ads)。
 
 >[AZURE.NOTE] Azure 媒體播放器目前不支援廣告。
 
@@ -813,4 +813,4 @@ Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合
 
 [開發視訊播放程式應用程式](media-services-develop-video-players.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

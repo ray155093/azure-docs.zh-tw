@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="管理您的 StorSimple 頻寬範本 | Microsoft Azure"
    description="描述如何管理可讓您控制頻寬耗用量的 StorSimple 頻寬範本。"
    services="storsimple"
@@ -6,13 +6,13 @@
    authors="alkohli"
    manager="carolz"
    editor="" />
-<tags 
+<tags
    ms.service="storsimple"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/14/2015"
+   ms.date="05/10/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 頻寬範本
@@ -28,7 +28,7 @@
 - 集中管理，並且以簡單且順暢的方式跨多個裝置重複使用排程。
 
 > [AZURE.NOTE] 這項功能只可供 StorSimple 實體裝置使用，不能用於虛擬裝置。
-   
+
 服務的所有頻寬範本會以表格格式顯示，並包含下列資訊：
 
 - **名稱** – 在建立頻寬範本時，指派給頻寬範本的唯一名稱。
@@ -63,11 +63,11 @@
    2. 如果排程會強制執行全天，請選取 [**整天**] 選項。核取此選項時，您無法再指定 [**開始時間**] 或 [**結束時間**]。排程執行時間從 12:00 AM 到 11:59 PM。
    3. 從下拉式清單中，選取 [**開始時間**]。這就是排程開始的時間。
    4. 從下拉式清單中，選取 [**結束時間**]。這就是排程結束的時間。
-   
+
          > [AZURE.NOTE] 不允許重疊的排程。如果開始和結束時間會產生重疊排程，您會看到錯誤訊息。
 
-   5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
-   
+   5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中 (上傳與下載) 的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
+
    6. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png)。您已建立的範本會新增至服務**設定**頁面上的頻寬範本清單。
 
     ![建立新的頻寬範本](./media/storsimple-manage-bandwidth-templates/HCS_CreateNewBT1.png)
@@ -172,4 +172,4 @@
 
 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

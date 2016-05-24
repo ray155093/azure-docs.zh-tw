@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/09/2016"
 	ms.author="kgremban"/>
 
 
@@ -25,9 +25,7 @@
 
 如果在存取已發佈的應用程式或發佈應用程式時發生錯誤，請檢查下列選項以查看 Microsoft Azure AD 應用程式 Proxy 是否運作正常︰
 
-- 開啟 [Windows 服務] 主控台並確認 [Microsoft AAD 應用程式 Proxy 連接器] 服務已啟用並在執行中。您也可以查看應用程式 Proxy 服務屬性頁面，如下圖所示：
-
-  ![[Microsoft AAD 應用程式 Proxy 連接器屬性] 視窗螢幕擷取畫面](./media/active-directory-application-proxy-troubleshoot/connectorproperties.png)
+- 開啟 [Windows 服務] 主控台並確認 [Microsoft AAD 應用程式 Proxy 連接器] 服務已啟用並在執行中。您也可以查看應用程式 Proxy 服務屬性頁面，如下圖所示：![[Microsoft AAD 應用程式 Proxy 連接器屬性] 視窗螢幕擷取畫面](./media/active-directory-application-proxy-troubleshoot/connectorproperties.png)
 
 - 開啟 [事件檢視器] 並尋找與應用程式 Proxy 連接器相關的事件 (位於 [應用程式及服務記錄檔] > [Microsoft] > [AadApplicationProxy] > [Connector] > [Admin] 之下)。
 - 如有需要，開啟分析和偵錯記錄檔及開啟應用程式 Proxy 連接器工作階段記錄檔，即可取得更詳細的記錄檔。
@@ -54,8 +52,8 @@
 | 連接器註冊失敗︰確定您的電腦已連線到網際網路。錯誤︰「沒有任何在 `https://connector.msappproxy.net:9090/register/RegisterConnector` 上進行接聽的端點可以接受該訊息。這通常是由不正確的位址或 SOAP 動作所造成。如需詳細資訊，請參閱 InnerException (如果有的話)。」 | 如果您使用 Azure AD 使用者名稱和密碼進行登入，但之後收到這個錯誤，可能是所有超過 8081 的連接埠遭到封鎖。 | 確定必要的連接埠已開啟。如需詳細資訊，請參閱[應用程式 Proxy 先決條件](active-directory-application-proxy-enable.md)。 |
 | 清除錯誤會顯示在註冊視窗中。無法繼續 - 只能關閉視窗。 | 您輸入的使用者名稱或密碼錯誤。 | 請再試一次。 |
 | 連接器註冊失敗︰確定您已在 Azure 管理入口網站中啟用應用程式 Proxy，並已正確地輸入您的 Active Directory 使用者名稱和密碼。錯誤︰「AADSTS50059: 在要求中找不到租用戶識別資訊，或任何提供的認證均未隱含租用戶識別資訊，而且依服務原則 URI 的搜尋已失敗。 | 您嘗試使用 Microsoft 帳戶進行登入，而非使用屬於您嘗試存取之目錄的組織識別碼的網域。 | 確定系統管理員屬於與租用戶網域相同的網域名稱，例如，若 Azure AD 網域是 contoso.com，則系統管理員應該是 admin@contoso.com。 |
-| 無法擷取目前的執行原則以供執行 PowerShell 指令碼 | 如果連接器安裝失敗，請檢查以確定未停用 PowerShell 執行原則。 | 開啟 [群組原則編輯器]。移至 [電腦設定] > [系統管理範本] > [Windows 元件] > [Windows PowerShell]，連按兩下 [開啟指令碼執行]。這可設為 [未設定] 或 [已啟用]。如果設為 [已啟用]，請確定 [選項] 之下的 [執行原則] 設定為 [允許本機指令碼和遠端已簽署的指令碼] 或 [允許所有指令碼]。 |
-| 連接器無法下載組態 | 連接器用於驗證的用戶端憑證已過期。如果您將連接器安裝在 Proxy 後面，也可能發生這種情形。在此情況下，連接器無法存取網際網路，且無法將應用程式提供給遠端使用者。 | 在 Windows PowerShell 中使用 `Register-AppProxyConnector` Cmdlet，手動更新信任。如果您的連接器位於 Proxy 後面，則必須將網際網路存取權授與「網路服務」和「本機系統」連接器帳戶。授與 Proxy 的存取權或將其設為略過 Proxy，即可完成此作業。 |
+| 無法擷取目前的執行原則以供執行 PowerShell 指令碼。 | 如果連接器安裝失敗，請檢查以確定未停用 PowerShell 執行原則。 | 開啟 [群組原則編輯器]。移至 [電腦設定] > [系統管理範本] > [Windows 元件] > [Windows PowerShell]，連按兩下 [開啟指令碼執行]。這可設為 [未設定] 或 [已啟用]。如果設為 [已啟用]，請確定 [選項] 之下的 [執行原則] 設定為 [允許本機指令碼和遠端已簽署的指令碼] 或 [允許所有指令碼]。 |
+| 連接器無法下載組態。 | 連接器用於驗證的用戶端憑證已過期。如果您將連接器安裝在 Proxy 後面，也可能發生這種情形。在此情況下，連接器無法存取網際網路，且無法將應用程式提供給遠端使用者。 | 在 Windows PowerShell 中使用 `Register-AppProxyConnector` Cmdlet，手動更新信任。如果您的連接器位於 Proxy 後面，則必須將網際網路存取權授與「網絡服務」和「本機系統」連接器帳戶。授與 Proxy 的存取權或將其設為略過 Proxy，即可完成此作業。 |
 | 連接器註冊失敗︰確定您是 Active Directory 的全域管理員以註冊連接器。錯誤︰「註冊要求被拒絕。」 | 您嘗試用以登入的別名不是此網域的系統管理員。您的連接器永遠都會針對擁有使用者網域的目錄進行安裝。 | 確定您嘗試用以登入的系統管理員身分具有 Azure AD 租用戶的全域權限。|
 
 
@@ -76,28 +74,17 @@
 
 
 ## 另請參閱
-應用程式 Proxy 還有其他更多用途：
 
-
+- [啟用 Azure Active Directory 的應用程式 Proxy](active-directory-application-proxy-enable.md)
 - [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
-- [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
 - [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 - [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
-- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 
-## 深入了解應用程式 Proxy
-- [看看我們的線上說明](active-directory-application-proxy-enable.md)
-- [查閱應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-- [觀看我們在 Channel 9 上的影片！](http://channel9.msdn.com/events/Ignite/2015/BRK3864)
-
-## 其他資源
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [以組織方式註冊 Azure](sign-up-organization.md)
-- [Azure 身分識別](fundamentals-identity.md)
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
 
 <!--Image references-->
 [1]: ./media/active-directory-application-proxy-troubleshoot/connectorproperties.png
 [2]: ./media/active-directory-application-proxy-troubleshoot/sessionlog.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0511_2016-->

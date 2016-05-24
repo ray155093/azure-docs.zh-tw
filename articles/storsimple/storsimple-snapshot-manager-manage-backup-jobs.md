@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/28/2015"
+   ms.date="04/26/2016"
    ms.author="v-sharos" />
 
 
@@ -40,7 +40,7 @@
 
     - [**上次執行**] – 最新排定之快照的日期和時間
 
-    >[AZURE.NOTE]若為僅一次快照，[**下次執行**] 和 [**上次執行**] 將相同。
+    >[AZURE.NOTE] 若為僅一次快照，[**下次執行**] 和 [**上次執行**] 將相同。
  
     ![排定的備份工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_scheduled.png)
  
@@ -96,11 +96,11 @@
     
     - [**經過時間**] – 從備份開始後所經過的時間量。
 
-    - [**平均輸送量 (MB)**] – 平均傳遞的資料量，以 MB 表示。
+    - **平均輸送量 (MB)** – 處理的總資料位元組與處理所花時間的比率 (以 MB 為單位)。
 
-    - [**已處理的位元組數 (MB)**] – 來自磁碟區群組已處理的資料量 (以 MB 為單位)。
+    - **處理的位元組 (MB)** – 處理的總資料位元組 (以 MB 為單位)。
 
-    - **已寫入的位元組數 (MB)** – 已寫入至備份的資料量 (以 MB 為單位)。
+    - **寫入的位元組 (MB)** – 寫入的總資料位元組 (以 MB 為單位)。它包含資料以及中繼資料，因此通常大於處理的位元組。
 
     ![目前執行中的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_running.png)
 
@@ -130,4 +130,4 @@
 
  
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0511_2016-->

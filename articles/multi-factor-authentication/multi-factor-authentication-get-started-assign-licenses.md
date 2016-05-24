@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/10/2016" 
+	ms.date="05/12/2016" 
 	ms.author="billmath"/>
 
 # 將 Azure MFA、Azure AD Premium 或 Enterprise Mobility 授權指派給使用者
@@ -33,4 +33,4 @@
 7. **按一下**核取記號圖示以儲存變更。![指派授權](./media/multi-factor-authentication-get-started-assign-licenses/assign4.png)
 8. 您應該會看到訊息，指出已指派多少授權以及多少授權已失敗。按一下 [確定]。![指派授權](./media/multi-factor-authentication-get-started-assign-licenses/assign5.png)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

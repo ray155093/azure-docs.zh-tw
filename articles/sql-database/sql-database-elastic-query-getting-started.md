@@ -1,9 +1,9 @@
 <properties
-	pageTitle="開始使用彈性查詢進行分區化 (水平資料分割) | Microsoft Azure"
+	pageTitle="跨相應放大雲端資料庫報告 (水平分割) | Microsoft Azure"
 	description="如何使用跨資料庫的資料庫查詢"
 	services="sql-database"
 	documentationCenter=""  
-	manager="jeffreyg"
+	manager="jhubbard"
 	authors="sidneyh"/>
 
 <tags
@@ -12,14 +12,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/22/2016"
+	ms.date="04/26/2016"
 	ms.author="SilviaDoomra" />
 
-# 開始使用彈性查詢進行分區化 (水平資料分割)
+# 跨相應放大雲端資料庫報告 (預覽)
 
-Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連接點跨越多個資料庫的 T-SQL 查詢。如需有關彈性資料庫查詢功能的詳細資訊，請參閱 [功能概觀頁](sql-database-elastic-query-overview.md)。
+您可以使用[彈性查詢](sql-database-elastic-query-overview.md)，從單一連接點的多個 Azure SQL Database 建立報告。資料庫必須水平分割 (也稱為「分區化」)。
 
-本主題會延伸[彈性資料庫工具入門](sql-database-elastic-scale-get-started.md)中可找到的範例。完成時，您將：了解如何設定和使用 Azure SQL Database 以執行跨越多個相關資料庫的查詢。
+如果您有現有的資料庫，請參閱[將現有的資料庫移轉到相應放大的資料庫](sql-database-elastic-convert-to-use-elastic-tools.md)。
+
+若要了解查詢所需的 SQL 物件，請參閱[跨水平分割資料庫查詢](sql-database-elastic-query-horizontal-partitioning.md)。
+
 ## 必要條件
 
 下載並執行[彈性資料庫工具範例入門](sql-database-elastic-scale-get-started.md)。
@@ -142,4 +145,4 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 [5]: ./media/sql-database-elastic-query-getting-started/exel-sources.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0511_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/08/2016"
+   ms.date="04/26/2016"
    ms.author="jgao"/>
 
 # 使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集
@@ -30,7 +30,7 @@
 開始執行本文中的指示之前，您必須擁有以下項目：
 
 - [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- [Azure PowerShell](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater) 和/或 [Azure CLI](../xplat-cli-install.md)。
+- Azure PowerShell 和/或 Azure CLI
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
@@ -38,7 +38,7 @@
 
 ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式建立 HDInsight 叢集、其依存的資源 (例如預設儲存體帳戶) 和其他資源 (例如使用 Apache Sqoop 所需的 Azure SQL Database)。在範本中，您會定義應用程式所需的資源，並指定部署參數以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
 
-您可在[附錄 A](#appx-a-arm-template) 中找到用來建立 HDInsight 叢集和相依 Azure 儲存體帳戶的 ARM 範本。使用跨平台 [VSCode](https://code.visualstudio.com/#alt-downloads) (附檔名為 [ARM 附檔名](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)) 或文字編輯器，將範本儲存至您工作站上的檔案。您將了解如何使用各種方法來呼叫此範本。
+用來建立 HDInsight 叢集和相依 Azure 儲存體帳戶的 ARM 範本可在[附錄 A](#appx-a-arm-template) 中找到。使用跨平台 [VSCode](https://code.visualstudio.com/#alt-downloads) (附檔名為 [ARM 附檔名](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)) 或文字編輯器，將範本儲存至您工作站上的檔案。您將了解如何使用各種方法來呼叫此範本。
 
 如需 ARM 範本的詳細資訊，請參閱
 
@@ -93,7 +93,7 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
         New-AzureRmResourceGroup -Name $resourceGroupName -Location $Location
 
         # Create cluster and the dependent storage accounge
-        $parameters = @{clusterName="$hdinsightClusterName";clusterStorageAccountName="$defaultStorageAccountName"}
+        $parameters = @{clusterName="$hdinsightClusterName"}
 
         New-AzureRmResourceGroupDeployment `
             -Name $armDeploymentName `
@@ -123,13 +123,13 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
 
 ## 使用 REST API 進行部署
 
-請參閱[使用 REST API 進行部署](../resource-group-template-deploy.md#deploy-with-the-rest-api)。
+請參閱[使用 REST API 部署](../resource-group-template-deploy.md#deploy-with-the-rest-api)。
 
 ## 透過 Visual Studio 部署
 
 有了 Visual Studio，您可以透過其使用者介面建立資源群組專案，並將其部署至 Azure。選取要包含在您專案中的資源類型後，這些資源會自動新增至資源管理員範本中。該專案也提供 PowerShell 指令碼來部署範本。
 
-如需搭配資源群組使用 Visual Studio 的簡介，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
+如需搭配資源群組使用 Visual Studio 的簡介，請參閱[透過 Visual Studio 建立與部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
 ##後續步驟
 在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
@@ -137,8 +137,8 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
 - 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫和範本部署資源](../virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](../solution-dev-test-environments.md)。
-- 如要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
-- 如需可以在 Azure Resource Manager 範本中使用的函數清單，請參閱[範本函數](../resource-group-template-functions.md)。
+- 若要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
+- 如需您可以在 Azure Resource Manager 範本中使用的函式清單，請參閱[範本函式](../resource-group-template-functions.md)。
 
 ##附錄 A：ARM 範本
 
@@ -276,7 +276,7 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
             "roles": [
                 {
                 "name": "headnode",
-                "targetInstanceCount": "1",
+                "targetInstanceCount": "2",
                 "hardwareProfile": {
                     "vmSize": "Large"
                 },
@@ -313,4 +313,4 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
     }
     }
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

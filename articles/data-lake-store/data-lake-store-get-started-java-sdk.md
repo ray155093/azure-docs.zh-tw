@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/10/2016"
+   ms.date="05/12/2016"
    ms.author="nitinme"/>
 
 # 使用 Java 開始使用 Azure Data Lake Store
@@ -29,12 +29,19 @@
 
 了解如何使用 Azure Data Lake Store Java SDK 以建立 Azure Data Lake 帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
+## Azure Data Lake Store Java SDK
+
+下列連結適用於 Data Lake Store 的 Java SDK 和 Java SDK 參考的下載位置。在本教學課程中，您不需要下載 SDK 或遵循參考文件。下列連結僅供參考。
+
+* 在 [GitHub](https://github.com/Azure/azure-sdk-for-java) 上可取得適用於 Data Lake Store 的 Java SDK 原始程式碼。
+* 在 [https://azure.github.io/azure-sdk-for-java/](https://azure.github.io/azure-sdk-for-java/) 可取得適用於 Data Lake Store 的 Java SDK 參考。
+
 ## 必要條件
 
 * Java Development Kit (JDK) 8 (使用 Java 1.8 版)。
 * IntelliJ 或其他合適的 Java 開發環境。此為選用步驟，但建議執行。以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+* **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 * **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Direcotry 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式，會有不同的必要條件。
 	* **針對互動式驗證** - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
 		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
@@ -299,8 +306,8 @@
 
 ## 後續步驟
 
-- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
-- [搭配 Data Lake Store 使用 Azure Data Lake 分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
+- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

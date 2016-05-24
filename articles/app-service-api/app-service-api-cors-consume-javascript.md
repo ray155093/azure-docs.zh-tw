@@ -54,7 +54,7 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
@@ -72,7 +72,7 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 ## <a id="tutorialstart"></a>繼續進行 .NET 入門教學課程
 
-如果您要遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，請跳至下一節 [App Service API 應用程式的驗證](app-service-api-authentication.md)。
+如果您正遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，則您已完成入門系列。請跳至[後續步驟](#next-steps)一節，尋找進一步了解 API Apps 的建議。
 
 本文其餘部分是 .NET 入門系列的延續，並假設您已成功完成[第一個教學課程](app-service-api-dotnet-get-started.md)。
 
@@ -80,7 +80,7 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 在[第一個教學課程](app-service-api-dotnet-get-started.md)中，您建立了中介層 API 應用程式和資料層 API 應用程式。在本教學課程中，您將建立單一頁面應用程式 (SPA) Web 應用程式來呼叫中介層 API 應用程式。為了讓 SPA 正常運作，您必須在中介層 API 應用程式上啟用 CORS。
 
-在 [ToDoList 範例應用程式](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list)中，ToDoListAngular 專案是簡單的 AngularJS 用戶端，並且會呼叫中介層 ToDoListAPI Web API 專案。app/scripts/todoListSvc.js 檔案中的 JavaScript 程式碼會使用 AngularJS HTTP 提供者來呼叫 API。
+在 [ToDoList 範例應用程式](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list)中，ToDoListAngular 專案是簡單的 AngularJS 用戶端，並且會呼叫中介層 ToDoListAPI Web API 專案。「app/scripts/todoListSvc.js」檔案中的 JavaScript 程式碼會使用 AngularJS HTTP 提供者來呼叫 API。
 
 		angular.module('todoApp')
 		.factory('todoListSvc', ['$http', function ($http) {
@@ -140,16 +140,16 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 4. 按一下 [儲存]。
 
-	在 Azure 中執行程式碼時，這個值會覆寫 Web.config 檔案中的 localhost URL。
+	在 Azure 中執行程式碼時，這個值會覆寫「Web.config」檔案中的 localhost URL。
 
-	取得設定值的程式碼位於 index.cshtml：
+	取得設定值的程式碼位於「index.cshtml」：
 
 		<script type="text/javascript">
 		    var apiEndpoint = "@System.Configuration.ConfigurationManager.AppSettings["toDoListAPIURL"]";
 		</script>
 		<script src="app/scripts/todoListSvc.js"></script>
 
-	todoListSvc.js 中的程式碼會使用設定：
+	「todoListSvc.js」中的程式碼會使用設定：
 
 		return {
 		    getItems : function(){
@@ -208,7 +208,7 @@ App Service 提供內建的跨原始來源資源共用 (CORS) 支援，可讓 Ja
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。在這個螢幕擷取畫面中，ToDoListAPI0223 API 應用程式會接受來自 ToDoListAngular Web 應用程式的 JavaScript 用戶端呼叫。
 
@@ -264,6 +264,13 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 		    [EnableCors(origins:"https://todolistangular0121.azurewebsites.net", headers:"accept,content-type,origin,x-my-header", methods: "get,post")]
 		    public class ToDoListController : ApiController
  
+## 搭配 API Apps 使用 Azure API 管理
+
+如果您搭配 API 應用程式使用 Azure API 管理，請在 API 管理而非 API 應用程式中設定 CORS。如需詳細資訊，請參閱下列資源：
+
+* [Azure API 管理概觀 (影片︰CORS 開始於 12:10)](https://azure.microsoft.com/documentation/videos/azure-api-management-overview/)
+* [API 管理跨網域原則](https://msdn.microsoft.com/library/azure/dn894084.aspx#CORS)
+ 
 ## 疑難排解
 
 如果您在進行本教學課程時遇到問題，請確定您使用的是最新版 Azure SDK for .NET。若要這麼做，最簡單的方法是[下載 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)；如果您已安裝最新版本，Web Platform Installer 會指出不需要進行安裝。
@@ -279,6 +286,6 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 
 ## 後續步驟 
 
-在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。在下一篇 API Apps 入門系列文章中，您將了解 [App Service API 應用程式的驗證](app-service-api-authentication.md)。
+在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。若要深入了解 API 應用程式，請閱讀 [App Service 中的驗證簡介](../app-service/app-service-authentication-overview.md)，然後前往 [API 應用程式的使用者驗證](app-service-api-dotnet-user-principal-auth.md)教學課程。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

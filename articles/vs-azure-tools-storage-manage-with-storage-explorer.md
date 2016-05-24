@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="04/19/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher" />
 
 # 使用儲存體總管管理 Azure 儲存體資源 (預覽)
@@ -42,8 +42,8 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 ### 附加外部儲存體
 
 1. 取得您想要附加的儲存體帳戶的帳戶名稱和金鑰。
-	1.	在 Azure Preview 入口網站中，選擇想要附加的儲存體帳戶。
-	1.	在 Azure Preview 入口網站中的 [設定] 窗格的 [管理] 區段，選擇 [金鑰] 按鈕。
+	1.	在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中，選擇想要附加的儲存體帳戶。
+	1.	在 [設定] 窗格的 [管理] 區段，選擇 [金鑰] 按鈕。
 	1.	複製 [儲存體帳戶名稱] 和 [主要存取金鑰] 值。
 
 		![][2]
@@ -182,4 +182,4 @@ Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆
 [19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS3c.png
 [20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS4c.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0511_2016-->

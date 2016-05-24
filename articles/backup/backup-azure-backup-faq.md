@@ -110,13 +110,15 @@
 
 **Q22.您可以在 Azure VM 上安裝 Azure 備份代理程式來備份 Azure VM 所提供的暫存儲存體中存在的檔案和資料夾嗎？** <br/> A22.您可以在客體 Windows 作業系統上安裝 Azure 備份代理程式，並將檔案和資料夾備份至暫存儲存體。但請注意，一旦抹除暫存儲存體資料，備份就會失敗。此外，如果暫存儲存體資料已遭刪除，您只能還原至非變動性儲存體。
 
-**Q23.可以使用 Azure 備份代理程式指定為 Azure 備份原則一部分的檔案路徑的長度為何？** <br/> A23.Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。如果您的檔案路徑超過 Windows API 允許的長度，您可以備份所需檔案的父資料夾或磁碟機。
+**Q23.我已安裝 Azure 備份代理程式來保護我的檔案和資料夾。現在可以安裝 SCDPM 來與 Azure 備份代理程式搭配使用，以保護內部部署應用程式/VM 對 Azure 的工作負載嗎？** <br/> A23.若要搭配使用 Azure 備份與 SCDPM，建議您先安裝 SCDPM，然後只安裝 Azure 備份代理程式。這可確保 Azure 備份代理程式能與 SCDPM 緊密整合，並可讓您直接從 SCDPM 的管理主控台保護針對 Azure 的檔案/資料夾、應用程式工作負載及 VM。既不建議也不支援在安裝 Azure 備份代理程式之後，為了前述目的安裝 SCDPM。
 
-**Q24.使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？** <br/> A24.Azure 備份代理程式依存於 NTFS。它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions)成為檔案規格的一部分。
+**Q24.可以使用 Azure 備份代理程式指定為 Azure 備份原則一部分的檔案路徑的長度為何？** <br/> A24.Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。在備份檔案路徑長度大於 Windows API 所指定長度的檔案時，客戶可以選擇備份備份檔案的父資料夾或磁碟機。
 
-**Q25.可以使用 Azure 備份伺服器來為實體伺服器建立裸機復原 (BMR) 備份嗎？** <br/> A25.是。
+**Q25.使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？** <br> A25.Azure 備份代理程式依存於 NTFS。它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions)成為檔案規格的一部分。
 
-**Q26.可以設定備份服務以在備份作業失敗時傳送郵件嗎？** <br/> A26.是，備份服務有多個可與 PowerShell 指令碼搭配使用的事件型警示。如需完整說明，請參閱[警示通知](backup-azure-manage-vms.md#alert-notifications)
+**Q26.可以使用 Azure 備份伺服器來為實體伺服器建立裸機復原 (BMR) 備份嗎？** <br/> A26.是。
+
+**Q27.可以設定備份服務以在備份作業失敗時傳送郵件嗎？** <br/> A27.是，備份服務有多個可與 PowerShell 指令碼搭配使用的事件型警示。如需完整說明，請參閱[警示通知](backup-azure-manage-vms.md#alert-notifications)
 
 
 
@@ -165,7 +167,7 @@
 
 **Q12.是否有辦法調整備份服務所使用的頻寬量？**<br/> A12.是，使用備份代理程式中的 [變更屬性] 選項來調整頻寬。調整頻寬量以及您使用該頻寬的時間。如需詳細資訊，請參閱[網路節流](../backup-configure-vault.md#enable-network-throttling)。
 
-**Q13.我的網際網路頻寬有限，不適用於我需要備份的資料量。是否有方法可將資料移動到網路頻寬較大的特定位置，再將該資料推送到 Azure 中？** <br/> Q13.您可以透過標準的線上備份程序將資料備份到 Azure ，或是使用 Azure 匯入/匯出服務將資料傳輸到 Azure 中的 Blob 儲存體。沒有其他方法可將資料備份到 Azure 儲存體。如需如何搭配使用 Azure 匯入/匯出服務與 Azure 備份的相關資訊，請參閱[離線備份工作流程](backup-azure-backup-import-export)一文。
+**Q13.我的網際網路頻寬有限，不適用於我需要備份的資料量。是否有方法可將資料移動到網路頻寬較大的特定位置，再將該資料推送到 Azure 中？** <br/> A13.您可以透過標準的線上備份程序將資料備份到 Azure ，或是使用 Azure 匯入/匯出服務將資料傳輸到 Azure 中的 Blob 儲存體。沒有其他方法可將資料備份到 Azure 儲存體。如需如何搭配使用 Azure 匯入/匯出服務與 Azure 備份的相關資訊，請參閱[離線備份工作流程](backup-azure-backup-import-export)一文。
 
 
 ## 復原
@@ -203,5 +205,20 @@
   ```PS C:\> Net start obengine```
 
   一旦在新的快取位置成功完成備份建立，您就可以移除原始的快取資料夾。
+  
+**Q2.我可以把快取資料夾放在何處，以讓 Azure 備份代理程式如預期般運作？**<br/> A2.快取資料夾不建議使用下列位置︰
 
-<!---HONumber=AcomDC_0504_2016-->
+- 網路共用或卸除式媒體︰快取資料夾必須是在需要使用線上備份進行備份之伺服器的本機位置。不支援網路位置或卸除式媒體，例如 USB 磁碟機。
+- 離線磁碟區︰快取資料夾必須在線上才能使用 Azure 備份代理程式進行預期的備份。
+
+**Q3.快取資料夾是否有任何不受支援的屬性？**<br/> A3.快取資料夾不支援下列屬性或其組合︰
+
+- 已加密
+- 已刪除重複資料
+- 已壓縮
+- 疏鬆
+- 重新分析點
+
+快取資料夾和中繼資料 VHD 都不建議有上述屬性，以便 Azure 備份代理程式能如預期般運作。
+
+<!---HONumber=AcomDC_0518_2016-->

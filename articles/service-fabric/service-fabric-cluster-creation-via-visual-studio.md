@@ -51,7 +51,7 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 預設會自動產生叢集名稱，而且「叢集」前置詞後面會附加一個隨機的尾碼，使該名稱變成唯一的。如此便可以很容易使用範本做為**連續整合** (CI) 系統的一部分。如果您想要為您的叢集使用特定的名稱，對您有意義的一個名稱，請將資源管理員範本檔案 (`ServiceFabricCluster.json`) 中 `clusterName` 變數的值設定為您所選擇的名稱。該名稱是該檔案中定義的第一個變數。
 
 ## 選擇性：新增公用應用程式連接埠
-您也可能想變更叢集的公用應用程式連接埠再部署它。根據預設，範本只會開啟兩個公用 TCP 連接埠 (80 和 8081)。如果您的應用程式需要更多，請修改範本中的 Azure 負載平衡器定義。此定義儲存在主要範本檔案 (`SecureFabricCluster.json`) 中。開啟該檔案，並搜尋 `loadBalancedAppPort`。您會注意到每個連接埠會與三個成品相關聯：
+您也可能想變更叢集的公用應用程式連接埠再部署它。根據預設，範本只會開啟兩個公用 TCP 連接埠 (80 和 8081)。如果您的應用程式需要更多，請修改範本中的 Azure 負載平衡器定義。此定義儲存在主要範本檔案 (`ServiceFabricCluster.json`) 中。開啟該檔案，並搜尋 `loadBalancedAppPort`。您會注意到每個連接埠會與三個成品相關聯：
 
 1. 範本參數：定義連接埠的 TCP 連接埠值：
 
@@ -126,4 +126,4 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 [2]: ./media/service-fabric-cluster-creation-via-visual-studio/selecting-azure-template.png
 [3]: ./media/service-fabric-cluster-creation-via-visual-studio/deploy-to-azure.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0511_2016-->
