@@ -22,7 +22,8 @@ Azure SQL Database 的連接問題可以廣泛地分類為下列任一項︰
 - [暫時性錯誤 (短期或間歇性)](#troubleshoot-the-transient-errors)
 - [持續性或非暫時性錯誤 (定期重複發生的錯誤)](#troubleshoot-the-persistent-errors-non-transient-errors)
 
-如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 針對暫時性錯誤進行疑難排解
 如果您的應用程式發生暫時性錯誤，請檢閱下列主題以取得有關如何疑難排解這些錯誤並減少其發生頻率的提示︰
