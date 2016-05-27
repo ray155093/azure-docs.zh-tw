@@ -45,4 +45,4 @@
 
 如果嘗試連線時遇到問題，請參閱[針對執行 Windows 之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0518_2016--->

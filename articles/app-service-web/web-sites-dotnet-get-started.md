@@ -241,4 +241,4 @@
 
 	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Azure 入口網站來部署及管理 Azure 資源](../resource-group-portal.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0504_2016--->
