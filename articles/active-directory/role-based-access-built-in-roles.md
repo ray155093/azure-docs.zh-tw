@@ -157,7 +157,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取所有類型的資源 | | Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 | 
+| */read | 讀取所有類型的資源 | 
+| Microsoft.DevTestLab/labs/createEnvironment/action | 建立實驗室環境 | 
 | Microsoft.DevTestLab/labs/formulas/delete | 刪除公式 | 
 | Microsoft.DevTestLab/labs/formulas/write | 新增或修改公式 | 
 | Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action | 評估實驗室原則 | 
