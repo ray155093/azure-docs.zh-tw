@@ -96,7 +96,7 @@
 
 1.  在 [適用於 VMware 與實體機器] 標題下的 [保存庫] > [設定] > [管理站台復原基礎結構] > [組態伺服器] 中，選取組態伺服器。按一下 [開啟] + [處理序伺服器]
 
-	![](./media/site-recovery-failback-azure-to-vmware-new/add-processserver.png)
+	![](./media/site-recovery-failback-azure-to-vmware-new/add-processserver.PNG)
 
 2. 選擇將處理序伺服器部署為「在 Azure 中部署容錯回復處理序伺服器」
 
@@ -106,11 +106,11 @@
 
 5. 如果您已選取*傳統部署*網路 - 系統會要求您透過 Azure 資源庫建立新的 VM，並在其中安裝處理序伺服器。
 
-	![](./media/site-recovery-failback-azure-to-vmware-new/add-classic.png)
+	![](./media/site-recovery-failback-azure-to-vmware-new/add-classic.PNG)
 	
 	1. 映像的名稱是 *Microsoft Azure Site Recovery Process Server V2*。請確定您選取 [傳統] 做為部署模型。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/templatename.png)
+		![](./media/site-recovery-failback-azure-to-vmware-new/templateName.PNG)
 	
 	2. 根據[這裡提供](./site-recovery-vmware-to-azure-classicz.md#step-5-install-the-management-server)的各步驟安裝處理序伺服器
 	
@@ -126,7 +126,7 @@
 	
 	5. 選擇特定子網路和網路介面來連接至處理序伺服器。注意 - 您必須建立您自己的[網路介面](../virtual-network/virtual-networks-multiple-nics.md) (NIC)，並在部署時選取。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/psinputsadd.png)
+		![](./media/site-recovery-failback-azure-to-vmware-new/PSinputsadd.PNG)
 	
 	6. 按一下 [確定]。這樣會觸發利用處理序伺服器安裝程式建立資源管理員部署類型虛擬機器的工作。您必須在 VM 內部執行安裝程式，將伺服器註冊到組態伺服器。您可以依照[這些步驟](./site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)來執行。
 
@@ -250,4 +250,4 @@
 - ExpressRoute 應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 - 資料會複寫至公用端點上的 Azure 儲存體帳戶。您應該在 ExpressRoute 中設定與目標資料中心的公用對等互連，這樣一來，Site Recovery 複寫才能使用 ExpressRoute。
 
-<!---HONumber=AcomDC_0518_2016--->
+<!----HONumber=AcomDC_0518_2016--->
