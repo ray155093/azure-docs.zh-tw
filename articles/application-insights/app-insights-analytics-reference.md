@@ -543,7 +543,7 @@ range timestamp from ago(4h) to now() step 1m
 嘗試將相似的記錄群組在一起。對於每個群組，運算子會輸出其認定最能描述該群組的 `Pattern`，以及該群組中的記錄 `Count`。
 
 
-![](./media/app-insights-analytics-queries/reduce.png)
+![](./media/app-insights-analytics-reference/reduce.png)
 
 **語法**
 
@@ -625,7 +625,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
     T | summarize count() by price_range=bin(price, 10.0)
 
-顯示有多少項目的價格落在 [0,10.0] 、 [10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
+顯示有多少項目的價格落在 [0,10.0]、[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
 
 
 **語法**
@@ -844,7 +844,7 @@ traces
       by name
 
 
-![](./media/app-insights-analytics-aggregations/argmin.png)
+![](./media/app-insights-analytics-reference/argmin.png)
  
 
 
@@ -980,7 +980,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
     | summarize cities=dcount(client_City) 
       by client_CountryOrRegion
 
-![](./media/app-insights-analytics-aggregations/dcount.png)
+![](./media/app-insights-analytics-reference/dcount.png)
 
 ### makelist
 
@@ -1004,7 +1004,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
     | summarize cities=makeset(client_City) 
       by client_CountryOrRegion
 
-![](./media/app-insights-analytics-aggregations/makeset.png)
+![](./media/app-insights-analytics-reference/makeset.png)
 
 另請參閱相反函數的 [`mvexpand` 運算子](#mvexpand-operator)。
 
@@ -1052,7 +1052,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
         percentiles(duration, 5, 20, 50, 80, 95) 
       by name
 
-![](./media/app-insights-analytics-aggregations/percentiles.png)
+![](./media/app-insights-analytics-reference/percentiles.png)
 
 結果顯示，針對 /Events/Index 要求，5% 的要求在小於 2.44 秒內回應，有一半在 3.52 秒內，有 5% 超過 6.85 秒。
 
@@ -1288,17 +1288,7 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 |
-| * | 乘 |
-| / | 除 |
-| % | 模數 |
-||
-|`<` |小於
-|`<=`|小於或等於
-|`>` |大於
-|`>=`|大於或等於
-|`<>`|不等於
-|`!=`|不等於
+| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
 
 
 
@@ -1911,7 +1901,7 @@ substring("ABCD", 0, 2)       // AB
 
 以下是 Application Insights 例外狀況的查詢結果。`details` 中的值是陣列。
 
-![](./media/app-insights-analytics-scalars/310.png)
+![](./media/app-insights-analytics-reference/310.png)
 
 編製索引︰和在 JavaScript 一樣編製陣列和物件的索引︰
 
@@ -1943,7 +1933,7 @@ substring("ABCD", 0, 2)       // AB
     | mvexpand details[0].parsedStack[0]
 
 
-![](./media/app-insights-analytics-scalars/410.png)
+![](./media/app-insights-analytics-reference/410.png)
 
 
 **treepath：**若要尋找複雜物件中的所有路徑︰
@@ -1953,7 +1943,7 @@ substring("ABCD", 0, 2)       // AB
     | mvexpand path
 
 
-![](./media/app-insights-analytics-scalars/420.png)
+![](./media/app-insights-analytics-reference/420.png)
 
 **buildschema：**若要尋找可容許資料表中運算式所有值的最小結構描述︰
 
@@ -2233,4 +2223,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0427_2016--->
+<!---HONumber=AcomDC_0518_2016-->

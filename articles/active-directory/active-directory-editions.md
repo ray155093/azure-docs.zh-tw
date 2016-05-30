@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
+	ms.date="05/12/2016"
 	ms.author="markvi"/>
 
 # Azure Active Directory 版本
@@ -30,7 +30,7 @@ Azure Active Directory 是一項可在雲端中為您的員工、合作夥伴和
 Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比較表中說明。
 
 
-> [AZURE.NOTE] 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。<br>目前在中國不支援 Azure Active Directory Premium 和 Azure Active Directory Basic。請透過 Azure Active Directory 論壇與我們連絡以取得詳細資訊
+> [AZURE.NOTE] 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。目前在中國不支援 Azure Active Directory Premium 和 Azure Active Directory Basic。請透過 Azure Active Directory 論壇與我們連絡以取得詳細資訊
 
 
 - **Azure Active Directory Basic** - 針對具有雲端優先需求的任務背景工作角色設計，此版本提供以雲端為中心的應用程式存取和自助身分識別管理解決方案。有了 Azure Active Directory 的 Basic 版本，您可獲得生產力增強和成本節約功能，例如：群組式存取管理、雲端應用程式的自助式密碼重設、Azure Active Directory 應用程式 Proxy (以使用 Azure Active Directory 發佈內部部署 Web 應用程式)，全都由可獲得 99.9% 運作時間的企業級 SLA 支援。
@@ -50,7 +50,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 ##比較正式推出的功能
 
-> [AZURE.NOTE] 如需這項資料的不同檢視，請參閱 [Azure Active Directory 功能](https://www.microsoft.com/server-cloud/products/azure-active-directory/Features.aspx)。
+> [AZURE.NOTE] 如需這項資料的不同檢視，請參閱 [Azure Active Directory 功能](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx)。
 
 | | Azure AD Free | Azure AD Basic | Azure AD Premium |
 | ---                      | :-:           | :-:            | :-:              |
@@ -60,7 +60,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-<br>
+
 
 **常用功能**
 
@@ -117,8 +117,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-<br>
-<hr>
+
+
 ## 常用功能
 #### 目錄物件 
 
@@ -134,7 +134,6 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 | 最多 500,000 個物件| 沒有物件數目限制| 沒有物件數目限制| Office 365 使用者帳戶沒有物件數目限制|
 
 
-<br>
 
 #### 使用者與群組管理 (新增/更新/刪除)/以使用者為基礎的佈建、裝置註冊
 
@@ -153,8 +152,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 - [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)
 
 
-<br>
-<hr>
+
+
 #### 單一登入 (SSO)
 
 **類型：**常用功能
@@ -164,7 +163,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 | 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| 每個使用者 10 個應用程式 [1] <br>(預先整合的 SaaS 和開發人員整合的應用程式)| 每個使用者 10 個應用程式 [1] <br> (免費層 + 應用程式 Proxy 應用程式) | 沒有限制 [2] <br> (免費層、基本層 + 自助式應用程式整合範本)| 每個使用者 10 個應用程式 [1] <br> (預先整合的 SaaS 和開發人員整合的應用程式)|
+| 每個使用者 10 個應用程式 [1] (預先整合的 SaaS 和開發人員整合的應用程式)| 每個使用者 10 個應用程式 [1] (免費層 + 應用程式 Proxy 應用程式) | 沒有限制 [2] (免費層、基本層 + 自助式應用程式整合範本)| 每個使用者 10 個應用程式 [1] (預先整合的 SaaS 和開發人員整合的應用程式)|
 
 [1] 使用 Azure AD Free 和 Azure AD Basic 時，使用者如果已獲指派 SaaS 應用程式的存取權，便可在其 [存取面板] 最多看見 10 個應用程式，並取得這些應用程式的 SSO 存取權。使用 Free 和 Basic 版本時，系統管理員可以設定 SSO 並指派任意數量的 SaaS 應用程式存取權給使用者，不過使用者在其 [存取面板] 中一次只能看到 10 個應用程式。
 
@@ -174,8 +173,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [使用 Azure Active Directory (AD) 管理應用程式](active-directory-enable-sso-scenario.md)
 
-<br>
-<hr>
+
+
 #### 雲端使用者的自助式密碼變更
 
 **類型：**常用功能
@@ -191,8 +190,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 - [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md)
 
 
-<br>
-<hr>
+
+
 #### Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎) 
 
 **類型：**常用功能
@@ -208,8 +207,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<br>
-<hr>
+
+
 #### 安全性/使用量報告
 
 **類型：**常用功能
@@ -225,8 +224,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
-<br>
-<hr>
+
+
 
 ## 進階和基本功能
 #### 以群組為基礎的存取管理/佈建
@@ -244,8 +243,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [使用群組來管理 SaaS 應用程式的存取權](active-directory-accessmanagement-group-saasapps.md)
 
-<br>
-<hr>
+
+
 #### 雲端使用者的自助式密碼重設
 
 **類型：**基本功能
@@ -261,8 +260,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [使用者和系統管理員的 Azure AD 密碼重設](active-directory-passwords.md)
 
-<br>
-<hr>
+
+
 #### 創建公司品牌 (登入頁面/存取面板自訂)
 
 **類型：**基本功能
@@ -278,8 +277,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
 
-<br>
-<hr>
+
+
 #### 應用程式 Proxy
 
 **類型：**基本功能
@@ -295,8 +294,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)
 
-<br>
-<hr>
+
+
 #### SLA 99.9%
 
 **類型：**基本功能
@@ -312,8 +311,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [服務等級協定](https://azure.microsoft.com/support/legal/sla/)
 
-<br>
-<hr>
+
+
 
 ## 進階功能
 #### 自助式群組和應用程式管理/自助式應用程式新增/動態群組
@@ -329,7 +328,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-<br>
+
          
 #### 使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定
 
@@ -344,7 +343,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-<br>
+
 
 #### Multi-Factor Authentication (雲端與內部部署 (MFA Server))
 
@@ -361,8 +360,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
-<br>
-<hr>
+
+
 #### MIM CAL + MIM 伺服器 
 
 Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 (任何版本) 一起授與。由於 Microsoft Identity Manager 在 Windows Server OS 上執行，只要該伺服器正在執行有效且已授權的 Windows Server 複本，Microsoft Identity Manager 便可以在該伺服器上安裝並使用。Microsoft Identity Manager Server 不需要其他個別授權。
@@ -378,7 +377,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 
-<br>
+
 
 #### Cloud App Discovery 
 
@@ -395,8 +394,8 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 - [使用 Cloud App Discovery 尋找未受管理的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 
-<br>
-<hr>
+
+
 #### Connect Health
 
 **類型：**進階功能
@@ -412,8 +411,8 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 - [在雲端中監視內部部署身分識別基礎結構和同步處理服務。](active-directory-aadconnect-health.md)
 
-<br>
-<hr>
+
+
 #### 群組帳戶的自動密碼變換
 
 **類型：**進階功能
@@ -426,8 +425,8 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 | | | ![勾選][12]| |
 
 
-<br>
-<hr>
+
+
 ## Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 #### 將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原
 
@@ -441,7 +440,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 | ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
 
-<br>
+
 
 #### MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員
 
@@ -454,7 +453,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
-<hr>
+
 
 
 ## Azure AD 預覽功能
@@ -483,4 +482,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

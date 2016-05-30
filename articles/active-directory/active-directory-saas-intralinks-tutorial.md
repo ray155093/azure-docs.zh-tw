@@ -63,6 +63,7 @@ Intralinks 與 Azure AD 整合提供下列優點：
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
+
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
@@ -80,11 +81,14 @@ Intralinks 與 Azure AD 整合提供下列優點：
 6. 在搜尋方塊中，輸入 **Intralinks**。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_01.png)
+
 7. 在結果窗格中，選取 [Intralinks]，然後按一下 [完成] 以加入應用程式。
 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_02.png)
 
 
 ##  設定並測試 Azure AD 單一登入
+
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Intralinks 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Intralinks 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 Intralinks 中相關使用者之間的連結關聯性。
@@ -114,7 +118,7 @@ Intralinks 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_03.png)
 
-3. 在 [設定應用程式設定] 對話方塊頁面，執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_04.png)
 
@@ -174,7 +178,7 @@ Intralinks 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_06.png)
+6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-intralinks-tutorial/create_aaduser_06.png)
 
     a.在 [名字] 文字方塊中，輸入 **Britta**。
 
@@ -274,7 +278,7 @@ Intralinks 針對其他所有 Intralinks 應用程式使用相同的單一登入
 	a.在 [登入 URL] 文字方塊中，輸入使用者用來登入 Intralinks 應用程式的 URL，格式為：**https://\<CompanyName>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<AzureADTenantID>/**
 
 
-11. 按 [下一步]
+11. 按 [下一步]。
 
 12. 如**[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)**一節所示，指派應用程式給使用者或群組
 
@@ -311,4 +315,4 @@ Intralinks 針對其他所有 Intralinks 應用程式使用相同的單一登入
 [204]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,28 +14,30 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/01/2016"
+	ms.date="05/04/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
 # 準備環境以備份 Azure 虛擬機器
 
+> [AZURE.SELECTOR]
+- [準備備份 ARM VM](backup-azure-arm-vms-prepare.md)
+- [準備備份 Azure VM](backup-azure-vms-prepare.md)
+
 在您可以備份 Azure 虛擬機器 (VM) 之前，有三個條件必須存在。
 
-- 您需要在*與您的 VM 的相同區域中*建立備份保存庫，或識別現有的備份保存庫。
+- 您需要在「與 VM 的相同區域中」建立備份保存庫，或識別現有的備份保存庫。
 - 在 Azure 公用網際網路位址和 Azure 儲存體端點之間建立網路連線。
 - 在 VM 上安裝 VM 代理程式。
 
-如果您知道這些條件已存在於您的環境，則繼續前往[備份 VM 的文章](backup-azure-vms.md)。否則，請繼續閱讀，這篇文章會引導您逐步完成備妥環境來備份 Azure VM。
+如果您知道環境滿足這些條件，請繼續依[備份 VM 文章](backup-azure-vms.md)中的指示進行。否則，請繼續閱讀，這篇文章會引導您逐步完成備妥環境來備份 Azure VM。
 
 
 ## 備份和還原 VM 時的限制
 
->[AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../resource-manager-deployment-model.md)。下列清單提供在傳統的模型中部署時的限制。
+>[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。下列清單提供在傳統的模型中部署時的限制。
 
-- 目前不支援備份以 Azure Resource Manager (ARM) 為基礎 (也稱為 IaaS V2) 的虛擬機器。
 - 不支援備份具有 16 個以上資料磁碟的虛擬機器。
-- 不支援使用進階儲存體來備份虛擬機器。
 - 不支援備份具有保留的 IP 且沒有已定義之端點的虛擬機器。
 - 不支援在還原期間取代現有的虛擬機器。先刪除現有的虛擬機器及任何相關聯的磁碟，然後從備份還原資料。
 - 不支援跨區域備份和還原。
@@ -43,11 +45,11 @@
 - 只有特定的作業系統版本才支援使用「Azure 備份」服務來備份虛擬機器：
   - **Linux**：請參閱[經 Azure 背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)。只要虛擬機器上有 VM 代理程式，其他「攜帶您自己的 Linux」散發套件應該也可以運作。
   - **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
-	- 只有透過 PowerShell 才支援還原屬於多網域控制站 (DC) 組態的 DC VM。進一步了解[還原多 DC 網域控制站](backup-azure-restore-vms.md#restoring-domain-controller-vms)。
-	- 僅支援透過 PowerShell 還原具有以下特殊網路組態的虛擬機器。藉由使用 UI 中的還原工作流程來建立的 VM 在還原作業完成之後，將不會具有這些網路組態。若要深入了解，請參閱[還原具有特殊網路組態的 VM](backup-azure-restore-vms.md#restoring-vms-with-special-netwrok-configurations)。
-		- 負載平衡器組態下的虛擬機器 (內部與外部)
-		- 具有多個保留的 IP 位址的虛擬機器
-		- 具有多個網路介面卡的虛擬機器
+- 只有透過 PowerShell 才支援還原屬於多網域控制站 (DC) 組態的 DC VM。進一步了解[還原多 DC 網域控制站](backup-azure-restore-vms.md#restoring-domain-controller-vms)。
+- 僅支援透過 PowerShell 還原具有以下特殊網路組態的虛擬機器。藉由使用 UI 中的還原工作流程來建立的 VM 在還原作業完成之後，將不會具有這些網路組態。若要深入了解，請參閱[還原具有特殊網路組態的 VM](backup-azure-restore-vms.md#restoring-vms-with-special-netwrok-configurations)。
+    - 負載平衡器組態下的虛擬機器 (內部與外部)
+    - 具有多個保留的 IP 位址的虛擬機器
+    - 具有多個網路介面卡的虛擬機器
 
 ## 為 VM 建立備份保存庫
 
@@ -63,11 +65,11 @@
 
     ![Ibiza 入口網站](./media/backup-azure-vms-prepare/Ibiza-portal-backup01.png)
 
-    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] \(請參閱下圖)。
+    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] (請參閱下圖)。
 
     ![建立備份保存庫](./media/backup-azure-vms-prepare/backup_vaultcreate.png)
 
-3. 針對 [名稱]，輸入保存庫的易記識別名稱。必須是 Azure 訂用帳戶中唯一的名稱。輸入包含 2 到 50 個字元的名稱。該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
+3. 在 [名稱] 中，輸入易記名稱來識別保存庫。必須是 Azure 訂用帳戶中唯一的名稱。輸入包含 2 到 50 個字元的名稱。該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
 
 4. 在 [**區域**] 中，選取保存庫的地理區域。保存庫必須與您想要保護的虛擬機器位於相同區域。如果您在多個區域中有虛擬機器，您必須在每個區域中建立備份保存庫。儲存備份資料時，不需要指定儲存體帳戶，備份保存庫和「Azure 備份」服務會自動處理此作業。
 
@@ -88,56 +90,83 @@
 
 ## 網路連線
 
-備份擴充功能必須連線至 Azure 公用 IP 位址才能正常運作，因為它會傳送命令給「Azure 儲存體」端點 (HTTP URL) 以管理 VM 的快照。若無適當的網際網路連線，這些來自 VM 的 HTTP 要求將會逾時，而備份作業將會失敗。
+為了管理 VM 快照，備份擴充功能需要連接 Azure 公用 IP 位址。若無適當的網際網路連線，虛擬機器的 HTTP 要求將會逾時，而備份作業將會失敗。如果您的部署有存取限制 (如透過網路安全性群組 (NSG))，請選擇其中一個選項來為備份流量提供明確的路徑︰
 
-### NSG 的網路限制
+- [將 Azure 資料中心 IP 範圍列入白名單](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653) - 請參閱文章以取得將 IP 位址列入白名單的指示。
+- 部署 HTTP Proxy 伺服器來路由傳送流量。
 
-如果您的部署具有適當的存取限制 (例如，透過網路安全性群組 (NSG))，您就必須採取額外的步驟來確保傳送至備份保存庫的備份流量不受影響。
-
-有兩種方式可提供備份流量的路徑：
-
-1. 將 [Azure 資料中心 IP 範圍](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)列入允許清單。
-2. 部署 HTTP Proxy 來路由傳送流量。
-
-管理能力、精確控制和成本之間必須有所取捨。
+在決定該使用哪個選項時，要取捨的不外乎是可管理性、精確控制及成本等要素。
 
 |選項|優點|缺點|
 |------|----------|-------------|
-|選項 1：將 IP 範圍列入允許清單| 沒有額外的成本。<br><br>如需在某個 NSG 中開啟存取權，請使用 <i>Set-AzureNetworkSecurityRule</i> Cmdlet。 | 由於受影響的 IP 範圍會隨著時間改變，因此難以管理。<br>提供整個 Azure 的存取權，而不只是「儲存體」的存取權。|
-|選項 2：HTTP Proxy| 可在 Proxy 中精確控制允許的儲存體 URL。<br>為 VM 提供單一網際網路存取點。<br>不受 Azure IP 位址變更影響。| 使用 Proxy 軟體執行 VM 時的額外成本。|
+|將 IP 範圍列入允許清單| 沒有額外的成本。<br><br>如需在某個 NSG 中開啟存取權，請使用 <i>Set-AzureNetworkSecurityRule</i> Cmdlet。 | 由於受影響的 IP 範圍會隨著時間改變，因此難以管理。<br><br>提供整個 Azure 的存取權，而不只是「儲存體」的存取權。|
+|HTTP Proxy| 可在 Proxy 中精確控制允許的儲存體 URL。<br>為 VM 提供單一網際網路存取點。<br>不受 Azure IP 位址變更影響。| 使用 Proxy 軟體執行 VM 時的額外成本。|
+
+### 將 Azure 資料中心的 IP 範圍列入允許清單
+
+若要將 Azure 資料中心 IP 範圍列入白名單，請參閱 [Azure 網站](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)以取得 IP 範圍的詳細資料和指示。
 
 ### 使用 HTTP Proxy 進行 VM 備份
-備份 VM 時，會使用 HTTPS API 將快照管理命令從備份擴充功能傳送到 Azure 儲存體。此流量必須透過 Proxy 從擴充功能路由傳送，因為只有 Proxy 會被設定為具有公用網際網路存取權。
+備份 VM 時，VM 上的備份擴充功能會使用 HTTPS API 將快照管理命令傳送到 Azure 儲存體。透過 HTTP Proxy 路由傳送擴充功能流量，因為它是唯一為了要存取公用網際網路而設定的元件。
 
 >[AZURE.NOTE] 對於應該使用什麼 Proxy 軟體，並無任何建議。請務必挑選與下面設定步驟相容的 Proxy。
 
-在下面的範例中，必須將「應用程式 VM」設定為針對前往公用網際網路的所有 HTTP 流量使用 Proxy VM。必須將 Proxy VM 設定為允許來自虛擬網路中 VM 的連入流量。最後，NSG (名為 *NSG-lockdown*) 需要新的安全性規則，以允許來自 Proxy VM 的輸出網際網路流量。
+以下範例影像示範使用 HTTP Proxy 所需的三個組態步驟︰
+
+- 應用程式 VM 會透過 Proxy VM 路由傳送所有連往公用網際網路的 HTTP 流量。
+- Proxy VM 允許從虛擬網路之 VM 傳輸的傳入流量。
+- 名為 NSF-lockdown 的網路安全性群組 (NSG) 需要允許從 Proxy VM 傳輸之輸出網際網路流量的安全性規則。
 
 ![包含 HTTP Proxy 部署圖表的 NSG](./media/backup-azure-vms-prepare/nsg-with-http-proxy.png)
 
-**A) 允許連出網路連線：**
+若要使用 HTTP Proxy 來與公用網際網路通訊，請依照下列步驟執行︰
 
-1. 若為 Windows 電腦，請在提高權限的命令提示字元中執行下列命令：
+#### 步驟 1.設定連出網路連線
+###### Windows 電腦
+這會設定本機系統帳戶的 Proxy 伺服器組態。
 
-    ```
-    netsh winhttp set proxy http://<proxy IP>:<proxy port>
-    ```
-    這會設定一個整部機器的 Proxy 設定，並用於任何連出 HTTP/HTTPS 流量。
+1. 下載 [PsExec](https://technet.microsoft.com/sysinternals/bb897553)
+2. 從提升權限的提示字元執行下列命令。
 
-2. 針對 Linux 電腦，請將下面一行新增至 ```/etc/environment``` 檔案：
+     ```
+     psexec -i -s "c:\Program Files\Internet Explorer\iexplore.exe"
+     ```
+    它會開啟 Internet Explorer 視窗。
+3. 移至 [工具]-> [網際網路選項]-> [連線]-> [區域網路設定]。
+4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。 
+5. 關閉 Internet Explorer。
 
-    ```
-    http_proxy=http://<proxy IP>:<proxy port>
-    ```
+這會設定一個整部機器的 Proxy 設定，並用於任何連出 HTTP/HTTPS 流量。
+   
+如果您已在目前的使用者帳戶 (非本機系統帳戶) 上設定 Proxy 伺服器，請使用下列指令碼將它們套用至 SYSTEMACCOUNT︰
 
-  將下列幾行新增至 ```/etc/waagent.conf``` 檔案：
+```
+   $obj = Get-ItemProperty -Path Registry::”HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections"
+   Set-ItemProperty -Path Registry::”HKEY_USERS\S-1-5-18\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" -Name DefaultConnectionSettings -Value $obj.DefaultConnectionSettings
+   Set-ItemProperty -Path Registry::”HKEY_USERS\S-1-5-18\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" -Name SavedLegacySettings -Value $obj.SavedLegacySettings
+   $obj = Get-ItemProperty -Path Registry::”HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+   Set-ItemProperty -Path Registry::”HKEY_USERS\S-1-5-18\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -Value $obj.ProxyEnable
+   Set-ItemProperty -Path Registry::”HKEY_USERS\S-1-5-18\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name Proxyserver -Value $obj.Proxyserver
+```
 
-    ```
-    HttpProxy.Host=<proxy IP>
-    HttpProxy.Port=<proxy port>
-    ```
+>[AZURE.NOTE] 如果您在 Proxy 伺服器記錄檔中發現「(407) 需要 Proxy 驗證」，請檢查驗證設定是否正確。
 
-**B) 在 Proxy 伺服器上允許連入連線：**
+######Linux 電腦 
+
+在 ```/etc/environment``` 檔案中新增以下文字行：
+
+```
+http_proxy=http://<proxy IP>:<proxy port>
+```
+
+將下列幾行新增至 ```/etc/waagent.conf``` 檔案：
+   
+```
+HttpProxy.Host=<proxy IP>
+HttpProxy.Port=<proxy port>
+```
+
+#### 步驟 2.在 Proxy 伺服器上允許連入連線：
 
 1. 在 Proxy 伺服器上，開啟 [Windows 防火牆]。存取防火牆最簡單的方式搜尋「具有進階安全性的 Windows 防火牆」。
 
@@ -148,6 +177,7 @@
     ![建立新的規則](./media/backup-azure-vms-prepare/firewall-02.png)
 
 3. 在 [新增輸入規則精靈] 中，針對 [規則類型] 選擇 [自訂] 選項，然後按 [下一步]。
+
 4. 在選取 [程式] 的頁面上，選擇 [所有程式]，然後按 [下一步]。
 
 5. 在 [通訊協定和連接埠] 頁面上，輸入下列資訊，然後按一下 [下一步]：
@@ -160,16 +190,16 @@
 
     在精靈的其餘部分，按一下直到結束為止並指定此規則的名稱。
 
-**C) 新增 NSG 例外規則：**
+#### 步驟 3.新增 NSG 例外規則：
 
 在 Azure PowerShell 命令提示字元中，輸入下列命令：
+
+下列命令會新增 NSG 例外狀況。此例外狀況允許從 10.0.0.5 上任何連接埠傳輸至 80 (HTTP) 或 443 (HTTPS) 連接埠上任何網際網路位址的 TCP 流量。如果您需要公用網際網路中的特定連接埠，請務必將該連接埠一併新增至 ```-DestinationPortRange```。
 
 ```
 Get-AzureNetworkSecurityGroup -Name "NSG-lockdown" |
 Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -Type Outbound -Priority 200 -SourceAddressPrefix "10.0.0.5/32" -SourcePortRange "*" -DestinationAddressPrefix Internet -DestinationPortRange "80-443"
 ```
-
-此命令會新增 NSG 例外，以允許從 10.0.0.5 上任何連接埠傳輸至 80 (HTTP) 或 443 (HTTPS) 連接埠上任何網際網路位址的 TCP 流量。如果您需要叫用公用網際網路中的特定連接埠，請務必一併將該連接埠新增至 ```-DestinationPortRange```。
 
 *務必以適合您的部署的詳細資料取代範例中的名稱。*
 
@@ -186,7 +216,7 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 | --- | --- | --- |
 | 安裝 VM 代理程式 | <li>下載並安裝[代理程式 MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。您需要有系統管理員權限，才能完成安裝。<li>[更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 | <li>從 GitHub 安裝最新的 [Linux 代理程式](https://github.com/Azure/WALinuxAgent)。您需要有系統管理員權限，才能完成安裝。<li> [更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 |
 | 更新 VM 代理程式 | 更新 VM 代理程式與重新安裝 [VM 代理程式二進位檔](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)一樣簡單。<br><br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 | 請遵循[更新 Linux VM 代理程式](../virtual-machines-linux-update-agent.md)上的指示。<br><br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 |
-| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的 *C:\\WindowsAzure\\Packages* 資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
+| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的 C:\\WindowsAzure\\Packages 資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
 
 
 深入了解 [VM 代理程式](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409)和[如何安裝](https://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/)。
@@ -208,4 +238,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

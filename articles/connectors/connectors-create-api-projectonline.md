@@ -14,7 +14,7 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="04/29/2016"
+ms.date="05/16/2016"
 ms.author="deonhe"/>
 
 # 開始使用 ProjectOnline 連接器
@@ -65,7 +65,8 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 |屬性| 必要|說明|
 | ---|---|---|
 |權杖|是|提供 ProjectOnline 認證|
-建立連接後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+
+>[AZURE.INCLUDE [建立至 ProjectOnline 連線的步驟](../../includes/connectors-create-api-projectonline.md)]
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
@@ -523,4 +524,4 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

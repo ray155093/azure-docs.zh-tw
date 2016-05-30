@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,7 +19,7 @@
 
 # 監視和診斷指引
 
-![模式與實例標誌](media/best-practices-monitoring/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 概觀
 雲端中執行的分散式應用程式及服務依其本質為包括多個移動組件的複雜軟體片段。在生產環境中，務必能夠追蹤使用者利用您系統的方式、追蹤資源使用量的方式，以及通常監視您系統之健康狀況和效能的方式。您可以使用此資訊當做診斷協助來偵測並更正問題，同時也能夠協助找出潛在的問題並避免發生。
@@ -664,4 +664,4 @@ _圖 6.根據分析和儲存體需求分割資料_
 - [接收警示通知](./azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](./azure-portal/insights-service-health.md)
 - [Application Insights](./application-insights/app-insights-get-started.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

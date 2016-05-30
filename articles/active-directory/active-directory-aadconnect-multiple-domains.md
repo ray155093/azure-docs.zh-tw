@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/14/2016"
+	ms.date="05/12/2016"
 	ms.author="billmath"/>
 
 # 與 Azure AD 同盟的多網域支援
@@ -153,4 +153,4 @@
 ![取代宣告](./media/active-directory-multiple-domains/sub2.png)
 5.	按一下 [確定]。按一下 [套用]。按一下 [確定]。關閉 [AD FS 管理]。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

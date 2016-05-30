@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/04/2016"
+   ms.date="05/17/2016"
    ms.author="tomfitz"/>
 
 # 編寫 Azure 資源管理員範本
@@ -77,7 +77,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
        "authorizationHeader": "[concat('Basic ', base64(variables('usernameAndPassword')))]"
     }
 
-如需範本函數的完整清單，請參閱 [Azure 資源管理員範本函數](./resource-group-template-functions.md)。
+如需範本函數的完整清單，請參閱 [Azure 資源管理員範本函數](resource-group-template-functions.md)。
 
 
 ## 參數
@@ -167,7 +167,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
        }
     }
 
-如需如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](../resource-group-template-deploy/#parameter-file)。
+如需如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md#parameter-file)。
 
 ## 變數
 
@@ -241,14 +241,14 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 
 | 元素名稱 | 必要 | 說明
 | :----------------------: | :------: | :----------
-| apiVersion | 是 | 要用來建立資源的 REST API 版本。如要為特定資源類型判斷可用的版本號碼，請參閱[支援的 API 版本](../resource-manager-supported-services/#supported-api-versions)。
+| apiVersion | 是 | 要用來建立資源的 REST API 版本。如要為特定資源類型判斷可用的版本號碼，請參閱[支援的 API 版本](resource-manager-supported-services.md#supported-api-versions)。
 | 類型 | 是 | 資源類型。這個值是資源提供者的命名空間與資源提供者所支援資源類型的組合。
-| 名稱 | 是 | 資源名稱。此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。
-| location | 視情況而異 | 所提供資源的支援地理位置。如果要判斷可用的位置，請參閱[支援的區域](../resource-manager-supported-services/#supported-regions)。大部分的資源類型都需要有位置，但某些類型 (例如角色指派) 不需要位置。
+| 名稱 | 是 | 資源名稱。此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。此外，將資源名稱公開到外部合作對象的 Azure 服務會驗證該名稱，確定不是有人嘗試詐騙其他身分識別。請參閱[檢查資源名稱](https://msdn.microsoft.com/library/azure/mt219035.aspx)。
+| location | 視情況而異 | 所提供資源的支援地理位置。若要判斷可用的位置，請參閱[支援的區域](resource-manager-supported-services.md#supported-regions)。大部分的資源類型都需要有位置，但某些類型 (例如角色指派) 不需要位置。
 | tags | 否 | 與資源相關聯的標記。
 | 註解 | 否 | 您在範本中記錄資源的註解
 | dependsOn | 否 | 正在定義的資源所相依的資源。評估資源與依相依順序部署資源之間的相依性。資源若不互相依賴，則會嘗試平行部署資源。值可以是以逗號分隔的資源名稱或資源唯一識別碼清單。
-| 屬性 | 否 | 資源特定的組態設定。properties 的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是完全一樣的。如需資源結構描述文件或 REST API 的連結，請參閱[資源管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
+| 屬性 | 否 | 資源特定的組態設定。properties 的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是完全一樣的。如需資源結構描述文件或 REST API 的連結，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 | 資源 | 否 | 與正在定義的資源相依的下層資源。您只能提供父資源的結構描述所允許的資源類型。子資源類型的完整名稱包含父資源的名稱，例如 **Microsoft.Web/sites/extensions**。父資源的相依性不是隱含的；您必須明確定義該相依性。 
 
 
@@ -370,20 +370,11 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
        }
     }
 
-## 進階案例。
-本主題介紹範本。然而，您的案例可能需要更進階的工作。
-
-您可能必須將兩個範本合併在一起，或在上層範本中使用下層範本。如需詳細資訊，請參閱[透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
-
-若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-
-您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](../resource-group-template-functions#resourceid)。
-
 ## 後續步驟
 - 若要檢視許多不同類型的解決方案的完整範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
-- 如需關於您可以在範本內使用之函式的詳細資訊，請參閱 [Azure 資源管理員範本函式](resource-group-template-functions.md)
-- 若要了解如何部署您建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
-- 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)
-- 若要查看可用的結構描述，請參閱 [Azure 資源管理員結構描述](https://github.com/Azure/azure-resource-manager-schemas)
+- 如需您可以在範本內使用之函式的詳細資訊，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
+- 若要在部署期間合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
+- 若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+- 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

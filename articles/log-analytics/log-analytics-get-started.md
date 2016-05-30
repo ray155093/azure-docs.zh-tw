@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016"
+	ms.date="05/11/2016"
 	ms.author="banders"/>
 
 
@@ -24,11 +24,30 @@
 - Microsoft Operations Management Suite 網站
 - Microsoft Azure 訂用帳戶
 
-您可以使用 OMS 網站建立 OMS 工作區，也可以使用 Microsoft Azure 訂用帳戶建立 OMS 工作區。這兩個工作區擁有相同的功能。如果您使用 Azure 訂用帳戶，也可以使用該訂用帳戶來存取其他 Azure 服務。不論建立工作區的方法為何，您都會使用 Microsoft 帳戶或組織帳戶來建立工作區。
+您可以使用 OMS 網站建立免費 OMS 工作區。也可以使用 Microsoft Azure 訂用帳戶建立 OMS 工作區。這兩個工作區的功能相同，差別在於免費 OMS 工作區每天只能傳送 500 MB 的資料給 OMS 服務。如果您使用 Azure 訂用帳戶，也可以使用該訂用帳戶來存取其他 Azure 服務。不論建立工作區的方法為何，您都會使用 Microsoft 帳戶或組織帳戶來建立工作區。
 
 以下就來看看此程序：
 
 ![上架圖表](./media/log-analytics-get-started/oms-onboard-diagram.png)
+
+## Log Analytics 先決條件和部署考量
+
+- 您需要付費的 Microsoft Azure 訂用帳戶，才能充分利用 Log Analytics。如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/)，以便存取任何 Azure 服務。或者，您也可以在 [Operations Management Suite](http://microsoft.com/oms) 網站按一下 [免費試用]，以建立免費 OMS 帳戶。
+- OMS 工作區
+- 您想要從中收集資料的每一部 Windows 電腦，必須執行 Windows Server 2008 SP1 或更新版本
+- 以[防火牆](log-analytics-proxy-firewall)存取 OMS Web 服務的位址
+- [OMS Log Analytics 轉寄站](https://blogs.technet.microsoft.com/msoms/2016/03/17/oms-log-analytics-forwarder) (閘道器) 伺服器，將流量從伺服器轉送到 OMS (如果電腦沒有網際網路存取)
+- 如果您使用 Operations Manager，Log Analytics 支援 Operations Manager 2012 SP1 UR6 和更新版本，以及 Operations Manager 2012 R2 UR2 和更新版本。Operations Manager 2012 SP1 UR7 和 Operations Manager 2012 R2 UR3 中已加入 Proxy 支援。決定它如何與 OMS 整合。
+- 決定您的電腦是否可直接存取網際網路。如果不是，它們需要閘道伺服器才能存取 OMS Web 服務網站。所有存取都是透過 HTTPS。
+- 決定哪些技術和伺服器會將資料傳送至 OMS。例如，網域控制站、SQL Server 等。
+- 授權給 OMS 和 Azure 中的使用者。
+- 如果您擔心資料使用量，請個別部署每個方案，並在加入其他方案之前先測試效能影響。
+- 當您將方案和功能加入至 Log Analytics 時，請檢閱資料使用量和效能。這包括事件收集、記錄檔收集、效能資料收集等。一開始最好先少量收集，直到確認資料使用量或效能影響為止。
+- 確認 Windows 代理程式也並未受到 Operations Manager 管理，否則會產生重複的資料。這也適用於已啟用 Azure 診斷的 Azure 型代理程式。
+- 安裝代理程式之後，請確認代理程式運作正常。如果不是，請使用群組原則來檢查，確定「密碼編譯 API：新一代 (CNG)」金鑰隔離未停用。
+- 某些 Log Analytics 方案還有其他需求
+
+
 
 ## 使用 Operations Management Suite 的 3 個註冊步驟
 
@@ -38,11 +57,11 @@
 
 您已準備好開始使用 Operations Management Suite 入口網站。
 
-您可以參閱[管理 Log Analytics 的存取權](log-analytics-manage-access.md)，以深入了解工作區設定以及將現有 Azure 帳戶與使用 Operations Management Suite 建立之工作區連結的資訊。
+在[管理對 Log Analytics 的存取](log-analytics-manage-access.md)中，您可以深入了解設定工作區，以及將現有 Azure 帳戶連結至以 Operations Management Suite 建立的工作區。
 
 ## 使用 Microsoft Azure 快速註冊
 
-1. 前往 [Azure 入口網站](https://portal.azure.com)，登入後瀏覽服務清單，然後選取 [Log Analytics (OMS)]。![Azure 入口網站](./media/log-analytics-get-started/oms-onboard-azure-portal.png)
+1. 移至 [Azure 入口網站](https://portal.azure.com)並登入，瀏覽服務清單，然後選取 [Log Analytics (OMS)]。![Azure 入口網站](./media/log-analytics-get-started/oms-onboard-azure-portal.png)
 2. 按一下 [加入]，然後選取下列項目：
     - **OMS 工作區**名稱
     - **訂用帳戶** - 如果您有多個訂用帳戶，請選擇想要與新工作區建立關聯的帳戶。
@@ -54,14 +73,14 @@
 
 您現在已經準備就緒，可以開始使用 Operations Management Suite 入口網站。
 
-您可以參閱[管理 Log Analytics 的存取權](log-analytics-manage-access.md)，以深入了解工作區設定以及將使用 Operations Management Suite 建立之現有工作區與 Azure 訂用帳戶連結的資訊。
+在[管理對 Log Analytics 的存取](log-analytics-manage-access.md)中，您可以深入了解設定工作區，以及將現有工作區連結至以 Operations Management Suite 建立的 Azure 訂用帳戶。
 
 ## 開始使用 Operations Management Suite 入口網站
 若要選擇方案及連接要管理的伺服器，請按一下 [設定] 圖格，然後遵循本節的步驟操作。
 
 ![開始使用](./media/log-analytics-get-started/oms-onboard-get-started.png)
 
-- **新增方案** - 選取要使用的方案，然後按一下 [Add selected Solutions] (新增選取的方案)。![解決方案](./media/log-analytics-get-started/oms-onboard-solutions.png)
+- **新增方案** - 選取要使用的方案，然後按一下 [新增選取的方案]。![解決方案](./media/log-analytics-get-started/oms-onboard-solutions.png)
 - **連接資料來源** - 選擇收集資料的伺服器環境連接方式：
     - 藉由安裝代理程式來直接連接任何 Windows Server 或用戶端。
     - 使用 System Center Operations Manager 來附加管理群組或整個 Operations Manager 部署。
@@ -74,7 +93,7 @@
 ## (選擇性) 藉由安裝代理程式來直接連接伺服器和 Operations Management Suite
 1. 針對您要安裝的電腦架構，依序按一下 [設定] 圖格、[連接的來源] 索引標籤，然後按一下 [下載 Windows 代理程式]。您只能將代理程式安裝在 Windows Server 2008 SP1 或更新版本，亦或是 Windows 7 SP1 或更新版本。
 2. 將代理程式安裝在一或多部伺服器上。您可以逐一安裝代理程式、使用搭配[自訂指令碼](log-analytics-windows-agents.md)的自動化方法，也可以使用現有的軟體散發解決方案。
-3. 在同意授權合約及選擇安裝資料夾之後，請選取 [Connect the agent to Microsoft Azure Operational Insights] \(將代理程式連線至 Microsoft Azure Operational Insights)。(OMS 先前稱為 Operational Insights)。![代理程式設定](./media/log-analytics-get-started/oms-onboard-agent.png)
+3. 在同意授權合約及選擇安裝資料夾之後，請選取 [將代理程式連線至 Microsoft Azure Operational Insights]。(OMS 先前稱為 Operational Insights)。![代理程式設定](./media/log-analytics-get-started/oms-onboard-agent.png)
 
 4. 在下一個頁面中，系統會詢問您的工作區識別碼和工作區金鑰。您的工作區 ID 和金鑰會顯示在下載代理程式檔案的畫面上。![代理程式金鑰](./media/log-analytics-get-started/oms-onboard-mma-keys.png) ![附加伺服器](./media/log-analytics-get-started/oms-onboard-key.png)
 5. 在安裝期間，您可以按一下 [進階] 以選擇性地設定 Proxy 伺服器及提供驗證資訊。按 [下一步] 按鈕返回工作區資訊畫面。
@@ -109,7 +128,7 @@
 ## 後續步驟
 
 - [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)，以加入功能和收集資料。
-- 熟悉[記錄搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
-- 使用[儀表板](log-analytics-dashboards.md)來儲存及顯示您的自訂搜尋。
+- 熟悉[記錄檔搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
+- 使用[儀表板](log-analytics-dashboards.md)以儲存和顯示您自己的自訂搜尋。
 
-<!----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

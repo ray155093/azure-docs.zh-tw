@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/16/2016" 
+	ms.date="05/16/2016"
 	ms.author="billmath"/>
 
 #Azure Multi-Factor Authentication 的作用
@@ -34,7 +34,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 
 如需其作用的詳細資訊，請觀看以下影片。
 
-[AZURE.VIDEO multi-factor-authentication-deep-dive-securing-access-on-premises]
+>[AZURE.VIDEO multi-factor-authentication-deep-dive-securing-access-on-premises]
 
 ##適用於 Multi-Factor Authentication 的方法
 當使用者登入時，系統會將額外的驗證傳送給使用者。以下是適用於這個第二次驗證的方法清單。
@@ -54,7 +54,7 @@ Azure Multi-Factor Authentication 備有三個不同的版本。下表是每種�
 ------------- | ------------- |
 Multi-Factor Authentication for Office 365 | 這個版本專門搭配 Office 365 應用程式運作，並且可從 Office 365 入口網站管理。系統管理員現在可以使用 Multi-Factor Authentication 來保護其 Office 365 資源的安全。此版本隨附於 Office 365 訂用帳戶。
 適用於 Azure 系統管理員的 Multi-Factor Authentication | 適用於 Office 365 的 Multi-Factor Authentication 功能的相同子集將免費提供給所有 Azure 系統管理員。Azure 訂用帳戶的每個管理帳戶現可透過啟用此 Multi-Factor Authentication 核心功能來取得額外防護。因此想要存取 Azure 入口網站以建立 VM、網站、管理儲存體、行動服務或任何其他 Azure 服務的系統管理員，可在其系統管理員帳戶中新增多因素驗證。
-Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最豐富的功能。<br><br>它能透過 Azure 管理入口網站、進階報告及一系列內部部署和雲端應用程式支援來提供其他設定選項。Azure Multi-Factor Authentication 可以當做獨立授權購買，也能搭配 Azure Active Directory Premium 和 Enterprise Mobility Suite 銷售。<br><br>它也可以透過在 Azure 訂用帳戶中建立 Azure Multi-Factor Authentication 提供者，根據耗用量購買。
+Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最豐富的功能。<br><br>它能透過 Azure 管理入口網站、進階報告及支援一系列內部部署和雲端應用程式來提供其他組態選項。Azure Multi-Factor Authentication 可以當做獨立授權購買，也能搭配 Azure Active Directory Premium 和 Enterprise Mobility Suite 銷售。<br><br>它也可以透過在 Azure 訂用帳戶中建立 Azure Multi-Factor Authentication 提供者，根據耗用量購買。
 ##版本的功能比較
 下表提供 Azure Multi-Factor Authentication 各版本中可用的功能清單。
 
@@ -91,4 +91,4 @@ Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最�
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

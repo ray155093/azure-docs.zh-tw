@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="05/06/2016"
 	ms.author="cabailey"/>
 #如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰
 
@@ -151,7 +151,7 @@ KeyVault-BYOK-Tools-Australia.zip
 
 ---
 
-[**Azure Government：**](../../../../features/gov/)
+[**Azure Government:**](https://azure.microsoft.com/features/gov/)
 
 KeyVault-BYOK-Tools-USGovCloud.zip
 
@@ -182,7 +182,7 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 在 Windows 電腦上安裝 nCipher (Thales) 支援軟體，然後將 Thales HSM 附加至該電腦。
 
-確定 Thales 工具位於您的路徑 (**%nfast\_home%\\bin** 和 **%nfast\_home%\\python\\bin**)。例如，輸入下列內容：
+確定 Thales 工具位於您的路徑 (**%nfast\_home%\\bin** 和 ** %nfast\_home%\\python\\bin**)。例如，輸入下列內容：
 
 		set PATH=%PATH%;”%nfast_home%\bin”;”%nfast_home%\python\bin”
 
@@ -380,4 +380,4 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。如需詳細資訊，請參閱[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)教學課程中的**如果您想要使用硬體安全模組 (HSM)** 一節。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

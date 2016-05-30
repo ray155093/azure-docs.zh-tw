@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何監視 Azure Redis 快取" 
+	pageTitle="如何監視 Azure Redis 快取 | Microsoft Azure" 
 	description="了解如何監視您 Azure Redis 快取執行個體的健全狀況和效能" 
 	services="redis-cache" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/10/2016" 
 	ms.author="sdanie"/>
 
 # 如何監視 Azure Redis 快取
@@ -82,8 +82,8 @@ Azure Redis 快取可讓您將診斷資料儲存在儲存體帳戶中，因此�
 | 已使用的記憶體 | 在指定的報告間隔期間，針對快取中金鑰/值組使用的快取記憶體數量 (MB)。這個值會對應至 Redis INFO `used_memory` 命令。這不包括中繼資料或片段。 |
 | 已用的記憶體 RSS | 在指定的報告間隔期間使用的快取記憶體數量 (MB)，包括片段和中繼資料。這個值會對應至 Redis INFO `used_memory_rss` 命令。 |
 | CPU | 所指定報告間隔期間的 Azure Redis 快取伺服器 CPU 使用率 (百分比)。這個值會對應至作業系統 `\Processor(_Total)\% Processor Time` 效能計數器。 |
-| 快取讀取 | 所指定報告間隔期間，從快取讀取的資料量 (KB/s)。這個值衍生自網路介面卡，而網路介面卡支援裝載快取且非 Redis 特有的虛擬機器。 |
-| 快取寫入 | 所指定報告間隔期間，寫入至快取的資料量 (KB/s)。這個值衍生自網路介面卡，而網路介面卡支援裝載快取且非 Redis 特有的虛擬機器。 |
+| 快取讀取 | 所指定報告間隔期間，從快取讀取的資料量 (以 MB/s 為單位)。這個值衍生自網路介面卡，而網路介面卡支援裝載快取且非 Redis 特有的虛擬機器。**這個值對應於此快取所使用的網路頻寬。如果您想要設定伺服器端網路頻寬限制的警示，請使用此 `Cache Read` 計數器加以建立。如需不同快取定價層和大小的觀察頻寬限制，請參閱[本表](cache-faq.md#cache-performance)。** |
+| 快取寫入 | 所指定報告間隔期間，寫入至快取的資料量 (以 MB/s 為單位)。這個值衍生自網路介面卡，而網路介面卡支援裝載快取且非 Redis 特有的虛擬機器。此值對應從用戶端傳送給快取之資料的網路頻寬。 |
 
 ## 監視圖表
 
@@ -259,4 +259,4 @@ Azure Redis 快取可讓您將診斷資料儲存在儲存體帳戶中，因此�
 
 [redis-cache-premium-point-shard]: ./media/cache-how-to-monitor/redis-cache-premium-point-shard.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

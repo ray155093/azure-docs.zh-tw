@@ -78,7 +78,7 @@ Barracuda WAF 使用 TCP 連接埠 8000，以透過其管理入口網站進行�
 
 ![網站轉譯][WebsiteTranslations]
 
-## 使用網路資源群組保護 App Service 環境流量的安全##
+## 使用網路安全性群組 (NSG) 保護 App Service 環境流量的安全##
 如需使用雲端服務的 VIP 位址只限制從 WAF 流入 App Service 環境之流量的詳細資訊，請遵循[控制輸入流量文件](app-service-app-service-environment-control-inbound-traffic.md)。以下是針對 TCP 通訊埠 80 執行這項工作的範例 Powershell 命令。
 
 
@@ -99,4 +99,4 @@ Barracuda WAF 使用 TCP 連接埠 8000，以透過其管理入口網站進行�
 [ConfigureTrafficManager]: ./media/app-service-app-service-environment-web-application-firewall/ConfigureTrafficManager.png
 [WebsiteTranslations]: ./media/app-service-app-service-environment-web-application-firewall/WebsiteTranslations.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,10 +1,10 @@
 <properties
-   pageTitle="Azure 自動化混合式 Runbook 背景工作"
+   pageTitle="Azure 自動化 Hybrid Runbook Worker | Microsoft Azure"
    description="本文提供有關安裝和使用混合式 Runbook 背景工作的相關資訊，它是 Azure 自動化的一項功能，可讓您在本機資料中心內的機器上執行 Runbook。"
    services="automation"
    documentationCenter=""
-   authors="bwren"
-   manager="stevenka"
+   authors="mgoedtel"
+   manager="jwhit"
    editor="tysonn" />
 <tags
    ms.service="automation"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/11/2016"
+   ms.date="05/18/2016"
    ms.author="bwren" />
 
 # Azure 自動化混合式 Runbook 背景工作
@@ -23,9 +23,11 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
 ![混合式 Runbook 背景工作概觀](media/automation-hybrid-runbook-worker/automation-hybrid-runbook-worker-overview.png)
 
-您可以指定您的資料中心中的一或多部電腦，以做為混合式 Runbook 背景工作，然後從 Azure 自動化執行 Runbook。每一個背景工作角色都需要 Microsoft Management Agent 能夠連接 Microsoft Operations Management Suite (OMS) 和 Azure 自動化 Runbook 環境。OMS 僅用來安裝及維護管理代理程式，以及監視背景工作角色的功能。Runbook 的傳遞和執行的指示都是透過 Azure 自動化執行。
+您可以指定您的資料中心中的一或多部電腦，以做為混合式 Runbook 背景工作，然後從 Azure 自動化執行 Runbook。每一個背景工作角色都需要 Microsoft Management Agent 能夠連接 Microsoft Operations Management Suite 和 Azure 自動化 Runbook 環境。Operations Management Suite 僅用來安裝及維護管理代理程式，以及監視背景工作角色的功能。Runbook 的傳遞和執行的指示都是透過 Azure 自動化執行。
 
 ![混合式 Runbook 背景工作元件](media/automation-hybrid-runbook-worker/automation-hybrid-runbook-worker-components.png)
+
+>[AZURE.NOTE] Operational Insights 目前正在整合到 Operations Management Suite 中，您可能會看到入口網站和文件中使用任一名稱。
 
 沒有輸入防火牆需求可支援混合式 Runbook 背景工作。本機電腦上的代理程式會起始與雲端中 Azure 自動化的所有通訊。啟動 Runbook 時，Azure 自動化會建立代理程式會擷取的指示。代理程式接著會在執行之前取得 Runbook 和任何參數。它也會從 Azure 自動化擷取 Runbook 使用的任何[資產](http://msdn.microsoft.com/library/dn939988.aspx)。
 
@@ -39,10 +41,11 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
 ## Hybrid Runbook Worker 的需求
 
-您必須指定至少一台內部部署電腦，才能執行混合式 Runbook 工作。這台電腦必須安裝下列軟體：
+您必須指定至少一台內部部署電腦，才能執行混合式 Runbook 作業。這台電腦必須安裝下列軟體：
 
 - Windows Server 2012 或更新版本
 - Windows PowerShell 4.0 或更新版本
+- 至少雙核心和 4 GB 的 RAM
 
 針對混合式背景工作角色，請考慮下列建議：
 
@@ -52,28 +55,28 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
 防火牆需求：
 
-- 執行 Hybrid Runbook Worker 的內部部署電腦必須有連接埠 443、 9354 和 30000-30199 上的 *.cloudapp.net 的對外存取權。
+- 執行 Hybrid Runbook Worker 的內部部署電腦必須有連接埠 443、9354 和 30000-30199 上的 *.cloudapp.net 的對外存取權。
 
 ## 安裝混合式 Runbook 背景工作
 下列程序描述如何安裝和設定 Hybrid Runbook Worker。對您的自動化環境執行一次前兩個步驟，再對每一台背景工作角色電腦重複其餘步驟。
 
-### 1\.建立 OMS 工作區
-如果尚無 OMS 工作區，請使用[設定工作區](https://technet.microsoft.com/library/mt484119.aspx)中的指示建立工作區。如果您已經有工作區，可以使用現有的工作區。
+### 1\.建立 Operations Management Suite 工作區
+如果尚無 Operations Management Suite 工作區，請使用[設定工作區](https://technet.microsoft.com/library/mt484119.aspx)中的指示建立工作區。如果您已經有工作區，可以使用現有的工作區。
 
-### 2\.將自動化解決方案加入至 OMS 工作區
-解決方案會將功能加入至 OMS。自動化解決方案會增加 Azure 自動化的功能，包括支援 Hybrid Runbook Worker。將解決方案加入至工作區時，它會自動將背景工作角色元件往下推送給您在下一步將安裝的代理程式電腦。
+### 2\.將自動化解決方案加入至 Operations Management Suite 工作區
+解決方案會將功能加入至 Operations Management Suite。自動化解決方案會增加 Azure 自動化的功能，包括支援 Hybrid Runbook Worker。將解決方案加入至工作區時，它會自動將背景工作角色元件往下推送給您在下一步將安裝的代理程式電腦。
 
-請依照下列[新增解決方案](https://technet.microsoft.com/library/mt674635.aspx)中的指示，將 [自動化] 解決方案新增至您的 OMS 工作區。
+請依照[使用解決方案資源庫新增解決方案](https://technet.microsoft.com/library/mt674635.aspx)中的指示，將**自動化**解決方案新增至 Operations Management Suite 工作區。
 
 ### 3\.安裝 Microsoft Management Agent
-Microsoft Management Agent 可將電腦連線至 OMS。將代理程式安裝在內部部署電腦，並連接到您的工作區時，它會自動下載 Hybrid Runbook Worker 所需的元件。
+Microsoft Management Agent 可將電腦連線至 Operations Management Suite。將代理程式安裝在內部部署電腦，並連接到您的工作區時，它會自動下載 Hybrid Runbook Worker 所需的元件。
 
-請依照[將 Windows 電腦直接連接到 OMS](https://technet.microsoft.com/library/mt484108.aspx) 中的指示，將代理程式安裝在內部部署電腦上。您可以對多部電腦重複此程序，將多個背景工作角色加入至您的環境。
+請依照[將電腦直接連接到 Operational Insights](https://technet.microsoft.com/library/mt484108.aspx) 中的指示，將代理程式安裝在內部部署電腦上。您可以對多部電腦重複此程序，將多個背景工作角色加入至您的環境。
 
-當代理程式成功連接到 OMS 時，它會列在 OMS [設定] 窗格的 [已連接的來源] 索引標籤上。當 C:\\Program Files\\Microsoft Monitoring Agent\\Agent 中出現 [**AzureAutomationFiles**] 資料夾時，就可確認代理程式已正確下載自動化解決方案。
+當代理程式成功連接到 Operations Management Suite 時，它會列在 Operations Management Suite [**設定**] 窗格的 [**已連接的來源**] 索引標籤上。當 C:\\Program Files\\Microsoft Monitoring Agent\\Agent 中出現 [**AzureAutomationFiles**] 資料夾時，就可確認代理程式已正確下載自動化解決方案。
 
 ### 4\.安裝 Runbook 環境並連接到 Azure 自動化
-將代理程式新增至 OMS 時，自動化解決方案會往下推送包含 **Add-HybridRunbookWorker** Cmdlet 的 **HybridRegistration** PowerShell 模組。您可以使用這個 Cmdlet 在電腦上安裝 Runbook 環境並向 Azure 自動化進行註冊。
+將代理程式新增至 Operations Management Suite 時，自動化解決方案會往下推送包含 **Add-HybridRunbookWorker** Cmdlet 的 **HybridRegistration** PowerShell 模組。您可以使用這個 Cmdlet 在電腦上安裝 Runbook 環境並向 Azure 自動化進行註冊。
 
 以系統管理員模式開啟 PowerShell 工作階段，並執行下列命令來匯入模組。
 
@@ -102,13 +105,13 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 ## 移除 Hybrid Runbook Worker
 
-在內部部署電腦上執行 **Remove-HybridRunbookWorker** Cmdlet，即可從該電腦移除混合式 Runbook 背景工作。使用 **-Verbose** 參數可取得移除程序的詳細記錄。
+在內部部署電腦上執行 **Remove-HybridRunbookWorker** Cmdlet，即可從該電腦移除 Hybrid Runbook Worker。使用 **-Verbose** 參數可取得移除程序的詳細記錄。
 
 ## 在混合式 Runbook 背景工作上啟動 Runbook
 
 [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md) 描述啟動 Runbook 的不同方法。混合式 Runbook 背景工作加入了 **RunOn** 選項，您可以在其中指定混合式 Runbook 背景工作群組的名稱。如果未指定群組，則會擷取 Runbook，且由該群組中的背景工作執行。如果未指定此選項，則會正常在 Azure 自動化中執行。
 
-在 Azure 入口網站中啟動 Runbook 時，您會看到**執行於**選項，您可以在此選取 [Azure] 或 [混合式背景工作角色]。如果您選取 [**混合式背景工作**]，則您可以從下拉式清單中選取群組。
+在 Azure 入口網站中啟動 Runbook 時，您會看到**執行於**選項，您可以在此選取 [Azure] 或 [Hybrid Runbook Worker]。如果您選取 [**混合式背景工作**]，則您可以從下拉式清單中選取群組。
 
 使用 **RunOn** 參數。您可以使用下列命令使用 Windows PowerShell 在混合式 Runbook 背景工作群組上啟動名為 Test-Runbook 的 Runbook。
 
@@ -118,7 +121,7 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 ## Runbook 權限
 
-在混合式 Runbook 背景工作角色上執行的 Runbook 不能使用相同的[通常用於 Runbook 對 Azure 資源驗證的方法](automation-configuring.md#configuring-authentication-to-azure-resources)，因為它們將存取 Azure 外部的資源。Runbook 可以提供自己的驗證給本機資源，或者您可以指定 RunAs 帳戶以對所有 Runbook 提供使用者內容。
+在 Hybrid Runbook Worker 上執行的 Runbook 不能使用相同的[通常用於 Runbook 對 Azure 資源驗證的方法](automation-configuring.md#configuring-authentication-to-azure-resources)，因為它們將存取 Azure 外部的資源。Runbook 可以提供自己的驗證給本機資源，或者您可以指定 RunAs 帳戶以對所有 Runbook 提供使用者內容。
 
 ### Runbook 驗證
 
@@ -135,11 +138,11 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 ### RunAs 帳戶
 
-您不需要讓 Runbook 提供自己的驗證給本機資源，您可以針對混合式背景工作角色群組指定 **RunAs** 帳戶。您指定具有本機資源存取權的[認證資產](automation-credentials.md)，在群組中的混合式 Runbook 背景工作角色執行時，所有 Runbook 會在這些認證下執行。
+您不需要讓 Runbook 提供自己的驗證給本機資源，您可以針對混合式背景工作角色群組指定 **RunAs** 帳戶。您指定具有本機資源存取權的[認證資產](automation-credentials.md)，在群組中的 Hybrid Runbook Worker 執行時，所有 Runbook 會在這些認證下執行。
 
 認證的使用者名稱必須是下列格式之一：
 
-- 網域\\使用者名稱
+- 網域\\使用者名稱 
 - username@domain
 - 使用者名稱 (適用於內部部署機器的本機帳戶)
 
@@ -148,8 +151,8 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 1. 建立具有本機資源存取權的[認證資產](automation-credentials.md)。
 2. 在 Azure 入口網站中，開啟自動化帳戶。
-2. 選取 [混合式背景工作角色群組] 圖格，然後選取群組。
-3. 選取 [所有設定]，然後選取 [混合式背景工作角色群組設定]。
+2. 選取 [Hybrid Runbook Worker 群組] 圖格，然後選取群組。
+3. 選取 [所有設定]，然後選取 [Hybrid Runbook Worker 群組設定]。
 4. 將 [身分] 從 [預設] 變更為 [自訂]。
 5. 選取認證，然後按一下 [儲存]。
 
@@ -166,6 +169,7 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 記錄檔儲存每一個混合式背景工作角色本機的 C:\\ProgramData\\Microsoft\\System Center\\Orchestrator\\7.2\\SMA\\Sandboxes 中。
 
+如果您的 Runbook 成功完成，但作業摘要顯示 [暫止] 狀態，請檢閱疑難排解文章 [Hybrid Runbook Worker：Runbook 作業在暫止狀態下終止](automation-troubleshooting-hrw-runbook-terminates-suspended.md)。
 
 ## 與 Service Management Automation 的關聯性
 
@@ -175,16 +179,18 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 您可以使用下列準則來判斷 Azure 自動化搭配混合式 Runbook 背景工作或 Service Management Automation 更適合您的需求。
 
-- SMA 需要本機安裝 Windows Azure 套件，其較 Azure 自動化具有更多的本機資源和更高的維護成本，Azure 自動化只需要在本機 Runbook 背景工作角色上安裝代理程式。代理程式是由 OMS 管理，可進一步減少其維護成本。
+- SMA 需要本機安裝 Windows Azure 套件，其較 Azure 自動化具有更多的本機資源和更高的維護成本，Azure 自動化只需要在本機 Runbook 背景工作角色上安裝代理程式。代理程式由 Operations Management Suite 管理，進一步減少維護成本。
 - Azure 自動化會在雲端中儲存其 Runbook，並提供它們至內部部署混合式 Runbook 背景工作。如果您的安全性原則不允許這種行為，您應該使用 SMA。
 - Windows Azure Pack 可免費下載，而 Azure 自動化可能需支付訂用帳戶費用。
 - Azure 自動化搭配混合式 Runbook 背景工作，可讓您在一個位置管理雲端資源的 Runbook 和本機資源，與個別管理 Azure 自動化和 SMA 相對。
 - Azure 自動化具備的進階功能包括 SMA 中並未提供的圖形編寫。
 
 
-## 相關文章
+## 後續步驟
 
-- [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
-- [在 Azure 自動化中編輯 Runbook](https://msdn.microsoft.com/library/dn879137.aspx)
+- 若要深入了解用來啟動 Runbook 的各種方法，請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
+- 若要了解使用文字式編輯器在 Azure 自動化中使用 PowerShell 和 PowerShell 工作流程 Runbook 的不同程序，請參閱[在 Azure 自動化中編輯 Runbook](automation-edit-textual-runbook.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+ 
+
+<!---HONumber=AcomDC_0518_2016-->

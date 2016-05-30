@@ -3,8 +3,8 @@
 	description="使用 Azure 資源管理員範本來部署 Web 應用程式和 Redis 快取。" 
 	services="app-service" 
 	documentationCenter="" 
-	authors="tfitzmac" 
-	manager="wpickett" 
+	authors="steved0x" 
+	manager="erickson-doug" 
 	editor=""/>
 
 <tags 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="03/04/2016" 
-	ms.author="tomfitz"/>
+	ms.author="sdanie"/>
 
 # 使用範本建立 Web 應用程式和 Redis 快取
 
@@ -41,6 +41,15 @@
 
 [AZURE.INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
+## 名稱的變數
+
+這個範本會使用變數來建構資源的名稱。它會使用 [uniqueString](../resource-group-template-functions/#uniquestring) 函式，根據資源群組識別碼來建構值。
+
+    "variables": {
+      "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
+      "webSiteName": "[concat('webSite', uniqueString(resourceGroup().id))]",
+      "cacheName": "[concat('cache', uniqueString(resourceGroup().id))]"
+    },
 
 
 ## 要部署的資源
@@ -49,69 +58,67 @@
 
 ### Redis 快取
 
-建立與 Web 應用程式搭配使用的 Azure Redis 快取。快取的名稱指定於 **redisCacheName** 參數中。
+建立與 Web 應用程式搭配使用的 Azure Redis 快取。快取的名稱指定於 **cacheName** 變數中。
 
-此範本會在與 Web 應用程式相同的位置中建立快取，而這項建議可達到最佳效能。
+範本會在資源群組的相同位置建立快取。
 
     {
-      "apiVersion": "2014-04-01-preview",
-      "name": "[parameters('redisCacheName')]",
+      "name": "[variables('cacheName')]",
       "type": "Microsoft.Cache/Redis",
-      "location": "[parameters('siteLocation')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "cache"
+      },
       "properties": {
         "sku": {
-          "name": "[parameters('redisCacheSKU')]",
-          "family": "[parameters('redisCacheFamily')]",
-          "capacity": "[parameters('redisCacheCapacity')]"
-        },
-        "redisVersion": "[parameters('redisCacheVersion')]",
-        "enableNonSslPort": true
+          "name": "[parameters('cacheSKUName')]",
+          "family": "[parameters('cacheSKUFamily')]",
+          "capacity": "[parameters('cacheSKUCapacity')]"
+        }
       }
     }
 
+
 ### Web 應用程式
 
-使用 **siteName** 參數中所指定的名稱來建立 Web 應用程式。
+使用 **webSiteName** 變數中所指定的名稱來建立 Web 應用程式。
 
 請注意，Web 應用程式是使用應用程式設定屬性所設定，可讓它使用 Redis 快取。此應用程式設定是根據部署期間所提供的值動態建立。
         
     {
-      "apiVersion": "2015-04-01",
-      "name": "[parameters('siteName')]",
+      "apiVersion": "2015-08-01",
+      "name": "[variables('webSiteName')]",
       "type": "Microsoft.Web/sites",
-      "location": "[parameters('siteLocation')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-          "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
-          "[resourceId('Microsoft.Cache/Redis', parameters('redisCacheName'))]"
+        "[concat('Microsoft.Web/serverFarms/', variables('hostingPlanName'))]",
+        "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
       ],
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]": "empty",
+        "displayName": "Website"
+      },
       "properties": {
-          "serverFarmId": "[parameters('hostingPlanName')]"
+        "name": "[variables('webSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
       },
       "resources": [
-          {
-              "apiVersion": "2015-06-01",
-              "type": "config",
-              "name": "web",
-              "dependsOn": [
-                  "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
-              ],
-              "properties": {
-                  "appSettings": [
-                      {
-                          "name": "REDIS_HOST",
-                          "value": "[concat(parameters('siteName'), '.redis.cache.windows.net:6379')]"
-                      },
-                      {
-                          "name": "REDIS_KEY",
-                          "value": "[listKeys(resourceId('Microsoft.Cache/Redis', parameters('redisCacheName')), '2014-04-01').primaryKey]"
-                      }
-                  ]
-              }
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', variables('webSiteName'))]",
+            "[concat('Microsoft.Cache/Redis/', variables('cacheName'))]"
+          ],
+          "properties": {
+            "CacheConnection": "[concat(variables('cacheName'),'.redis.cache.windows.net,abortConnect=false,ssl=true,password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('cacheName')), '2015-08-01').primaryKey)]"
           }
+        }
       ]
     }
-
-
 
 ## 執行部署的命令
 
@@ -125,4 +132,4 @@
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

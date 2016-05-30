@@ -47,7 +47,7 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
     ![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-cloudservices/02-props.png)
 
 
-最好能夠從每個 Web 和背景工作角色針對資料建立不同的資源。
+[最好能夠從每個 Web 和背景工作角色針對資料建立不同的資源](app-insights-separate-resources.md)。
 
 或者，您可以從所有角色僅將資料傳送至一個資源，但是設定[預設屬性][apidefaults]，讓您可以篩選或群組每個角色的結果。
 
@@ -59,7 +59,7 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
     ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]](./media/app-insights-cloudservices/03-nuget.png)
 
 
-2. 新增 [Application Insights for Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet 封裝。此 SDK 版本包含新增伺服器內容 (如角色資訊) 的模組。若為背景工作角色，請使用 Windows 服務的 Application Insights。
+2. 若為 Web 角色，新增 [Application Insights for Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet 封裝。此 SDK 版本包含新增伺服器內容 (如角色資訊) 的模組。若為背景工作角色，請使用 [Windows 服務的 Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/)。
 
     ![搜尋「Application Insights」](./media/app-insights-cloudservices/04-ai-nuget.png)
 
@@ -129,7 +129,7 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
 
 如果角色意外失敗或無法啟動，Azure 診斷特別有用。
 
-1. 以滑鼠右鍵按一下 [角色] \(不是專案！) 以開啟其 [屬性]，然後選取 [啟用診斷]、[將診斷傳送至 Application Insights]。
+1. 以滑鼠右鍵按一下 [角色] (不是專案！) 以開啟其 [屬性]，然後選取 [啟用診斷]、[將診斷傳送至 Application Insights]。
 
     ![搜尋「Application Insights」](./media/app-insights-cloudservices/21-wad.png)
 
@@ -275,7 +275,7 @@ Application Insights SDK 可以報告應用程式對外部相依性的呼叫，�
 
 [api]: app-insights-api-custom-events-metrics.md
 [apidefaults]: app-insights-api-custom-events-metrics.md#default-properties
-[apidynamicikey]: app-insights-api-custom-events-metrics.md#dynamic-ikey
+[apidynamicikey]: app-insights-separate-resources.md#dynamic-ikey
 [availability]: app-insights-monitor-web-app-availability.md
 [azure]: app-insights-azure.md
 [client]: app-insights-javascript.md
@@ -286,4 +286,4 @@ Application Insights SDK 可以報告應用程式對外部相依性的呼叫，�
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

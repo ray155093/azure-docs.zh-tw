@@ -19,7 +19,7 @@
 # 在 Azure 資料處理站管線中使用自訂活動
 您可以在 Azure Data Factory 管線中使用兩種活動。
  
-- 在[支援的資料存放區](data-factory-data-movement-activities#supported-data-stores)之間移動資料的[資料移動活動](data-factory-data-movement-activities.md)。
+- 在[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores)之間移動資料的[資料移動活動](data-factory-data-movement-activities.md)。
 - 使用 Azure HDInsight、Azure Batch 及 Azure Machine Learning 等計算來轉換/處理資料的[資料轉換活動](data-factory-data-transformation-activities.md)。例如︰HDInsight Hive 和 Machine Learning Batch 執行。  
 
 如果您需要以 Azure Data Factory 不支援的資料存放區為目標移動資料，可以利用自己的資料移動邏輯建立自訂 .NET 活動，然後在管線中使用活動。
@@ -47,17 +47,19 @@
 1. 使用 [Azure 入口網站](http://manage.windowsazure.com)建立 **Azure Batch 帳戶**。請參閱[建立和管理 Azure Batch 帳戶][batch-create-account]文章以取得指示。記下 Azure Batch 帳戶名稱和帳戶金鑰。
 
 	您也可以使用 [New-AzureBatchAccount][new-azure-batch-account] Cmdlet 建立 Azure Batch 帳戶。如需使用此 Cmdlet 的詳細指示，請參閱[使用 Azure PowerShell 管理 Azure Batch 帳戶][azure-batch-blog]。
-2. 建立 **Azure Batch 集區**。您可以下載、編譯並使用 [Azure Batch 總管工具][batch-explorer]的原始碼，或使用[適用於 .NET 的 Azure Batch 程式庫][batch-net-library]來建立 Azure Batch 集區。如需有關使用 Azure Batch 總管的逐步指示，請參閱 [Azure Batch 總管範例逐步解說][batch-explorer-walkthrough]。
-
+2. 建立 **Azure Batch 集區**。
+	1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [批次帳戶]。 
+	2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶] 刀鋒視窗。 
+	3. 按一下 [集區] 圖格。
+	4. 在 [集區] 刀鋒視窗中，按一下工具列上的 [新增] 按鈕以新增集區。
+		1. 輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。 
+		2. 指定作業系統系列設定的 **Windows Server 2012 R2**。
+		3. 選取**節點定價層**。 
+		3. 輸入 **2** 做為 [目標專用] 設定的值。
+		4. 輸入 **2** 做為 [每個節點的工作上限] 設定的值。
+	5. 按一下 [確定] 以建立集區。 
+ 
 	您也可以使用 [New-AzureBatchPool](https://msdn.microsoft.com/library/mt628690.aspx) Cmdlet 建立 Azure Batch 集區。
-
-	您可能會想要使用至少 2 個計算節點建立 Azure Batch 集區，以便以平行方式處理配量。如果您使用 Batch 總管：
-
-	- 請輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。 
-	- 指定作業系統系列設定的 **Windows Server 2012 R2**。
-	- 指定 **2** 做為**每個計算節點之最大工作**設定的值。
-	- 指定 **2** 做為 [目標專用數字] 設定的值。 
-
 
 ### 高階步驟 
 1.	**建立自訂活動**以使用 Data Factory 管線。此範例中的自訂活動包含資料轉換/處理邏輯。 
@@ -93,7 +95,7 @@
 - **活動**。這個參數代表目前的計算實體 - 在此情況下為 Azure Batch。
 - **記錄器**。記錄器可讓您撰寫會呈現為管線的「使用者」記錄檔的偵錯註解。 
 
-此方法會傳回可用來將自訂活動鏈結在一起的字典。這項功能目前尚無法支援。
+此方法會傳回未來可用來將自訂活動鏈結在一起的字典。尚未實作這項功能，因此只會從方法傳回空的字典。
 
 ### 程序 
 1.	建立 **.NET 類別庫**專案。
@@ -234,7 +236,9 @@
             logger.Write("Writing {0} to the output blob", output);
             outputBlob.UploadText(output);
 
-            // return a new Dictionary object (unused in this code).
+			// The dictionary can be used to chain custom activities together in the future.
+			// This feature is not implemented yet, so just return an empty dictionary.  
+
             return new Dictionary<string, string>();
         }
 
@@ -543,7 +547,7 @@
 		    }
 		}
 
- 	輸出位置是 **adftutorial/customactivityoutput/YYYYMMDDHH/**，其中 YYYYMMDDHH 是產生配量的年、月、日、時。如需詳細資訊，請參閱[開發人員參考資料][adf-developer-reference]。
+ 	輸出位置是 **adftutorial/customactivityoutput/**，而輸出檔案名稱是 yyyy-MM-dd-HH.txt ，其中 yyyy-MM-dd-HH 是產生配量的年、月、日、時。如需詳細資訊，請參閱[開發人員參考資料][adf-developer-reference]。
 
 	為每個輸入配量產生輸出 blob/檔案。以下是為每個配量命名輸出檔案的方式。所有的輸出檔案會產生於一個輸出資料夾：**adftutorial\\customactivityoutput**。
 
@@ -563,7 +567,7 @@
 
 ### 建立並執行使用自訂活動的管線
 
-1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] \(省略符號) 就可看到。
+1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 2. 使用下列 JSON 指令碼取代右窗格中的 JSON。 
 
 		{
@@ -654,8 +658,11 @@
 如需有關監視資料集和管線的詳細步驟，請參閱[監視和管理管線](data-factory-monitor-manage-pipelines.md)。
 
 Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-<pool name>:job-xxx**。配量的每個活動執行都會建立一個作業。如果有 10 個配量就緒可供處理，此作業中會建立 10 個作業。如果您在集區中有多個計算結點，您可以同時執行多個配量。如果每個計算結點的最大工作設為 > 1，您也可以在相同的計算中執行多個配量。
+
 	
 ![Batch 總管工作](./media/data-factory-use-custom-activities/BatchExplorerTasks.png)
+
+> [AZURE.NOTE] 下載 [Azure Batch 總管工具][batch-explorer]的原始程式碼，將其編譯並使用它來建立和監視批次集區。如需有關使用 Azure Batch 總管的逐步指示，請參閱 [Azure Batch 總管範例逐步解說][batch-explorer-walkthrough]。
 
 ![Data Factory & Batch](./media/data-factory-use-custom-activities/DataFactoryAndBatch.png)
 
@@ -667,8 +674,8 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-<pool 
 ### 偵錯管線
 偵錯包含一些基本技術：
 
-1.	如果輸入配量不是設定為**就緒**，請確認輸入資料夾結構正確，且 **file.txt** 存在於輸入資料夾中。 
-2.	在自訂活動的 **Execute** 方法中，使用可協助您針對問題進行疑難排解的 **IActivityLogger** 物件記錄資訊。記錄的訊息會顯示在使用者記錄檔 (一或多個名為 user-0.log、user-1.log、user-2.log... 的檔案) 中。 
+1.	如果輸入配量不是設定為 [就緒]，請確認輸入資料夾結構正確，且 **file.txt** 存在於輸入資料夾中。 
+2.	在自訂活動的 **Execute** 方法中，使用可協助您疑難排解問題的 **IActivityLogger** 物件記錄資訊。記錄的訊息會顯示在使用者記錄檔 (一或多個名為 user-0.log、user-1.log、user-2.log... 的檔案) 中。 
 
 	在 [OutputDataset] 刀鋒視窗中，按一下配量，以查看該配量的 [資料配量] 刀鋒視窗。您會看到該配量的**活動執行**。您會看到一個為該配量執行的活動。如果您按一下命令列中的 [執行]，您可以為相同的配量啟動另一個活動執行。
 
@@ -725,6 +732,14 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-<pool 
     	logger.Write("<key:{0}> <value:{1}>", entry.Key, entry.Value);
 	}
 
+## Azure Batch 的自動調整功能
+您也可以建立具有**自動調整**功能的 Azure Batch 集區。例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
+ 
+	pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);$TargetDedicated = max(pendingTaskSampleVector);
+
+如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](../batch/batch-automatic-scaling.md)。
+
+如果集區使用預設 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)，Batch 服務在執行自訂活動之前，可能需要 15-30 分鐘的時間準備 VM。如果集區使用不同的 autoScaleEvaluationInterval，Batch 服務可能需要 autoScaleEvaluationInterval + 10 分鐘。
 
 ## 使用 Azure HDInsight 連結服務
 在逐步解說中，您會使用 Azure Batch 計算來執行自訂活動。您也可以使用自己的 HDInsight 叢集，或讓 Data Factory 建立隨選 HDInsight 叢集，然後讓自訂活動在 HDInsight 叢集上執行。以下是使用 HDInsight 叢集的高階步驟。
@@ -732,7 +747,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-<pool 
 1. 建立 Azure HDInsight 連結服務。   
 2. 使用 HDInsight 連結服務來取代管線 JSON 中的 AzureBatchLinkedService。 
 
-您會想要變更管線的開始和結束時間，讓您能夠使用 Azure HDInsight 服務來測試案例。
+您會想要變更管線的**開始**和**結束**時間，讓您能夠使用 Azure HDInsight 服務來測試案例。
 
 #### 建立 Azure HDInsight 連結服務 
 Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來產生輸出資料。您也可以使用自己的叢集執行相同作業。當您使用隨選 HDInsight 叢集時，系統會為每個配量建立叢集。然而，如果您使用自己的 HDInsight 叢集，叢集已經準備好立即處理配量。因此，在使用隨選叢集時，可能無法像使用自己的叢集那麼快看到輸出資料。
@@ -756,7 +771,7 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 			        "typeProperties": {
 			            "clusterSize": 4,
 			            "timeToLive": "00:05:00",
-			            "osType": "linux",
+			            "osType": "Windows",
 			            "linkedServiceName": "AzureStorageLinkedService",
 			        }
 			    }
@@ -778,7 +793,7 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 請參閱[計算連結服務](data-factory-compute-linked-services.md)以取得詳細資料。
 
-在管線 **JSON** 中，使用 HDInsight (隨選或自有) 連結服務︰
+在**管線 JSON** 中，使用 HDInsight (隨選或自有) 連結服務︰
 
 	{
 	  "name": "ADFTutorialPipelineCustom",
@@ -825,12 +840,12 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 ## 範例
 
-| 範例 | 自訂活動的工作內容| 
-| ------ | ----------- | 
-| [HTTP 資料下載程式](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)。 | 使用 Data Factory 的自訂 C# 活動，從 HTTP 端點將資料下載到 Azure Blob 儲存體。 |
-| [Twitter 情緒分析範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TwitterAnalysisSample-CustomC%23Activity) | 叫用 Azure ML 模型，執行情感分析、評分、預測等等。 |
-| [執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 | 在已安裝 R 的 HDInsight 叢集上執行 RScript.exe 來叫用 R 指令碼。 | 
-| [跨 AppDomain.NET 活動](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) | 使用 Data Factory 啟動器 (例如，WindowsAzure.Storage v4.3.0、Newtonsoft.Json v6.0.x 等等) 用過的不同組件版本。
+範例 | 自訂活動的工作內容 
+------ | ----------- 
+[HTTP 資料下載程式](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/HttpDataDownloaderSample)。 | 使用 Data Factory 的自訂 C# 活動，從 HTTP 端點將資料下載到 Azure Blob 儲存體。
+[Twitter 情緒分析範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TwitterAnalysisSample-CustomC%23Activity) | 叫用 Azure ML 模型，執行情感分析、評分、預測等等。
+[執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 | 在已安裝 R 的 HDInsight 叢集上執行 RScript.exe 來叫用 R 指令碼。 
+[跨 AppDomain.NET 活動](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/CrossAppDomainDotNetActivitySample) | 使用非 Data Factory 啟動器所使用的組件版本  
  
 
 ## 另請參閱
@@ -844,7 +859,6 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 [batch-technical-overview]: ../batch/batch-technical-overview.md
 [batch-get-started]: ../batch/batch-dotnet-get-started.md
 [monitor-manage-using-powershell]: data-factory-monitor-manage-using-powershell.md
-[adf-tutorial]: data-factory-tutorial.md
 [use-custom-activities]: data-factory-use-custom-activities.md
 [troubleshoot]: data-factory-troubleshoot.md
 [data-factory-introduction]: data-factory-introduction.md
@@ -872,4 +886,4 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 [image-data-factory-azure-batch-tasks]: ./media/data-factory-use-custom-activities/AzureBatchTasks.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

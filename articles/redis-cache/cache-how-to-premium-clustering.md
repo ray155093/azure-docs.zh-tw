@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何設定高階 Azure Redis 快取的 Redis 叢集" 
+	pageTitle="如何設定高階 Azure Redis 快取的 Redis 叢集 | Microsoft Azure" 
 	description="了解如何建立和管理高階層 Azure Redis 快取執行個體的 Redis 叢集" 
 	services="redis-cache" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/18/2016" 
 	ms.author="sdanie"/>
 
 # 如何設定高階 Azure Redis 快取的 Redis 叢集
@@ -59,6 +59,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 如需搭配 StackExchange.Redis 用戶端使用叢集的範例程式碼，請參閱 [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) 範例的 [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) 部分。
 
 <a name="move-exceptions"></a>
+
 >[AZURE.IMPORTANT] 使用 StackExchange.Redis 連接已啟用叢集的 Azure Redis 快取時，您可能會碰到問題並收到 `MOVE` 例外狀況。這是因為 StackExchange.Redis 快取用戶端收集快取叢集中節點資訊的間隔時間短。如果您是第一次連接快取，並在用戶端完成收集此資訊前立即呼叫快取，便會發生這些例外狀況。解決應用程式中此問題最簡單方式就是連接快取，然後等候一秒後再對快取進行任何呼叫。做法是依照下列範例程式碼所示新增 `Thread.Sleep(1000)`。請注意，`Thread.Sleep(1000)` 只會在初次連接快取的期間發生。如需詳細資訊，請參閱 [StackExchange.Redis.RedisServerException - MOVED #248](https://github.com/StackExchange/StackExchange.Redis/issues/248)。此問題的修正程式正在開發中，若有任何更新，將張貼於此處。**更新**：此問題已在 StackExchange.Redis 最新的[發行前版本 1.1.572-alpha](https://www.nuget.org/packages/StackExchange.Redis/1.1.572-alpha) 組建中解決。請查看 [StackExchange.Redis NuGet 頁面](https://www.nuget.org/packages/StackExchange.Redis/)，以取得最新組建。
 
 
@@ -97,7 +98,17 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 下列清單包含 Azure Redis 快取叢集常見問題的解答。
 
-## 我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？
+-	[我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+-	[如何在叢集中散發索引鍵？](#how-are-keys-distributed-in-a-cluster)
+-	[我可以建立的最大快取大小為何？](#what-is-the-largest-cache-size-i-can-create)
+-	[所有 Redis 用戶端都支援叢集嗎？ ](#do-all-redis-clients-support-clustering)
+-	[啟用叢集後，要如何連接到我的快取？](#how-do-i-connect-to-my-cache-when-clustering-is-enabled)
+-	[我可以直接連接到我的快取的個別分區嗎？](#can-i-directly-connect-to-the-individual-shards-of-my-cache)
+-	[我可以為先前建立的快取設定叢集嗎？](#can-i-configure-clustering-for-a-previously-created-cache)
+-	[我可以設定基本或標準快取的叢集嗎？](#can-i-configure-clustering-for-a-basic-or-standard-cache)
+-	[我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
+
+### 我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？
 
 -	啟用叢集時，只可以使用資料庫 0。如果用戶端應用程式使用多個資料庫，並嘗試讀取或寫入至 0 以外的資料庫，就會擲回下列例外狀況。`Unhandled Exception: StackExchange.Redis.RedisConnectionException: ProtocolFailure on GET --->` `StackExchange.Redis.RedisCommandException: Multiple databases are not supported on this server; cannot switch to database: 6`
 -	如果您使用 [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/)，則必須使用 1.0.481 或更新版本。您可以使用與連接未啟用叢集的快取時所用的相同[端點、連接埠和金鑰](cache-configure.md#properties)來連接快取。唯一的差別在於必須在資料庫 0 上完成所有的讀取和寫入。
@@ -105,7 +116,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 -	如果您的應用程式使用分成單一命令的多個索引鍵作業，則所有索引鍵都必須位於相同的分區。若要完成此動作，請參閱[如何在叢集中散發金鑰？](#how-are-keys-distributed-in-a-cluster)。
 -	如果您使用 Redis ASP.NET 工作階段狀態提供者，則必須使用 2.0.1 或更高版本。請參閱[我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)。
 
-## 如何在叢集中散發索引鍵？
+### 如何在叢集中散發索引鍵？
 
 依據 Redis [金鑰散發模型](http://redis.io/topics/cluster-spec#keys-distribution-model)文件︰金鑰空間會分割成 16384 個位置。每個索引鍵都會雜湊並指派給上述的其中一個位置，而這些位置散發於叢集的各個節點。您可以設定哪個部分的索引鍵會雜湊，以確保多個索引鍵位於使用雜湊標記的相同分區中。
 
@@ -118,21 +129,21 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 如需搭配 StackExchange.Redis 用戶端使用叢集，並尋找相同分區中之金鑰的範例程式碼，請參閱 [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) 範例的 [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) 部分。
 
-## 我可以建立的最大快取大小為何？
+### 我可以建立的最大快取大小為何？
 
 最大的高階快取大小為 53 GB。您最多可以建立 10 個分區，等於最大大小為 530 GB。如果您需要較大的大小，可以[要求更多](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase)。如需詳細資訊，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
 
-## 所有 Redis 用戶端都支援叢集嗎？
+### 所有 Redis 用戶端都支援叢集嗎？
 
 現階段，並非所有用戶端都支援 Redis 叢集。StackExchange.Redis 就是不支援的其中一例。如需其他用戶端的詳細資訊，請參閱 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)的[試用叢集](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster)一節。
 
 >[AZURE.NOTE] 如果您使用 StackExchange.Redis 做為您的用戶端，請確定您使用的是最新版的 [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/) (1.0.481) 或更新版本，叢集才能正常運作。如果您有任何關於移動例外狀況的問題，請參閱[移動例外狀況](#move-exceptions)，以取得詳細資訊。
 
-## 啟用叢集後，要如何連接到我的快取？
+### 啟用叢集後，要如何連接到我的快取？
 
 您可以使用與連接未啟用叢集的快取時所用的相同[端點、連接埠和金鑰](cache-configure.md#properties)來連接快取。Redis 會管理後端上的叢集，因此您不需從用戶端進行管理。
 
-## 我可以直接連接到我的快取的個別分區嗎？
+### 我可以直接連接到我的快取的個別分區嗎？
 
 目前官方尚未提供支援。如前所述，每個分區都包含一個主要/複本快取組，統稱為快取執行個體。您可以使用 GitHub 中 Redis 存放庫[不穩定](http://redis.io/download)分支內的 redis-cli 公用程式，連接到這些快取執行個體。使用 `-c` 參數啟用這個版本時，會實作基本支援。如需詳細資訊，請參閱 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)中 [http://redis.io](http://redis.io) 上的[試用叢集](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster)。
 
@@ -146,15 +157,15 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 如為 SSL，將 `1300N` 取代為 `1500N`。
 
-## 我可以為先前建立的快取設定叢集嗎？
+### 我可以為先前建立的快取設定叢集嗎？
 
 目前您只能在建立快取時啟用叢集。您可以在建立快取之後變更叢集大小，但無法在建立快取之後將叢集新增至進階快取，或從進階快取中移除叢集。已啟用叢集且只有一個分區的高階快取，與相同大小且沒有叢集的高階快取不同。
 
-## 我可以設定基本或標準快取的叢集嗎？
+### 我可以設定基本或標準快取的叢集嗎？
 
 叢集僅適用於高階快取。
 
-## 我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？
+### 我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？
 
 -	**Redis 輸出快取提供者** - 不需要變更。
 -	**Redis 工作階段狀態提供者** - 若要使用叢集，您必須使用 [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 或更高版本，否則會擲回例外狀況。這是一項重大變更。如需詳細資訊，請參閱 [v2.0.0 重大變更詳細資料](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details)。
@@ -185,4 +196,4 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 [redis-cache-redis-cluster-size]: ./media/cache-how-to-premium-clustering/redis-cache-redis-cluster-size.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -34,7 +34,7 @@
 - 非同步：API 是非同步的，可確保在產生 IO 時不會封鎖執行緒。
 - 交易式：API 會利用交易的抽象方法，讓您能夠輕鬆管理服務內多個可靠的集合。
 
-可靠的集合具有現成的增強式一致性保證，可讓您更輕鬆地推論應用程式的狀態。增強式一致性的實現方式是藉由確保僅有在整個交易已套用到複本仲裁之後 (包括主要複本)，才認可交易。若要達成較弱的一致性，應用程式可在非同步認可傳回之前，返回向用戶端/要求者進行確認。
+可靠的集合具有現成的增強式一致性保證，可讓您更輕鬆地推論應用程式的狀態。增強式一致性的實現方式是藉由確保僅有在整個交易已記錄到複本多數仲裁之後 (包括主要複本)，才認可交易。若要達成較弱的一致性，應用程式可在非同步認可傳回之前，返回向用戶端/要求者進行確認。
 
 可靠的集合 API 是並行集合 API (位於 **System.Collections.Concurrent** 命名空間) 的一種演化：
 
@@ -55,7 +55,7 @@
 可靠的集合支援兩種隔離等級：
 
 - **可重複讀取**：指定陳述式無法讀取已經修改但尚未由其他交易確認的資料，以及指定在目前的交易完成之前，任何其他交易都不能修改已經由目前交易讀取的資料。如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
-- **快照集**：指定交易中任何陳述式所讀取的資料都會與交易開始時就存在的資料版本一致。交易只能辨識交易開始之前所認可的資料修改。在目前交易中執行的陳述式無法看到在目前交易開始之後，其他交易所進行的資料修改。效果就如同交易中的陳述式會取得認可資料的快照集，因為這項資料於交易開始時就存在。如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
+- **快照集**：指定交易中任何陳述式所讀取的資料都會與交易開始時就存在的資料版本一致。交易只能辨識交易開始之前所認可的資料修改。在目前交易中執行的陳述式無法看到在目前交易開始之後，其他交易所進行的資料修改。效果就如同交易中的陳述式會取得認可資料的快照集，因為這項資料於交易開始時就存在。可靠的集合的快照集都是一致的。如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
 
 可靠的字典和可靠的佇列皆支援「讀寫一致性」(Read Your Writes)。換句話說，在屬於相同交易的下列讀取作業皆可看到交易內的任何寫入作業。
 
@@ -99,24 +99,28 @@
 
 ## 建議
 
-- 請勿修改讀取作業所傳回的自訂類型物件 (例如 `TryPeekAsync` 或 `TryGetAsync`)。可靠的集合就像並行的集合一樣，會傳回物件參考而不是複本。
+- 請勿修改讀取作業所傳回的自訂類型物件 (例如 `TryPeekAsync` 或 `TryGetValueAsync`)。可靠的集合就像並行的集合一樣，會傳回物件參考而不是複本。
 - 請不要在未經修改之前，就深層複製傳回的自訂類型物件。因為結構和內建類型都是傳值，因此您不需要在其上執行深層複製。
 - 請勿針對逾時使用 `TimeSpan.MaxValue`。逾時應該用來偵測死結。
 - 請不要在另一個交易的 `using` 陳述式內建立交易，因為它會造成死結。
+- 請務必確保 `IComparable<TKey>` 實作是正確的。系統會對此採取相依性以合併檢查點。
+- 請考慮使用備份和還原功能以擁有災害復原。
 
 以下是要牢記在心的一些事項：
 
 - 所有可靠的集合 API 的預設逾時都是 4 秒。大部分使用者應該都不會覆寫此預設值。
 - 在所有可靠的集合 API 中，預設的取消權杖為 `CancellationToken.None`。
 - 可靠字典的索引鍵類型參數 (*TKey*) 必須正確實作 `GetHashCode()` 和 `Equals()`。索引鍵必須是不可變的。
-- 在集合中，快照集中的列舉都是一致的。但是，在跨多個集合的情況下，列舉並不是一致的。
 - 若要讓可靠的集合達到高度可用性，每個服務應至少有一個目標和大小為 3 的最小複本集。
+- 次要複本上的讀取作業可能會讀取未認可的仲裁版本。這表示從單一次要複本讀取的資料版本進度可能有誤。當然，從主要複本讀取一定最穩定︰進度一定不會有誤。
 
 ## 後續步驟
 
 - [Reliable Services 快速入門](service-fabric-reliable-services-quick-start.md)
+- [備份與還原 Reliable Services (災害復原)](service-fabric-reliable-services-backup-restore.md)
+- [Reliable State Manager 組態](service-fabric-reliable-services-configuration.md)
 - [開始使用 Service Fabric Web API 服務](service-fabric-reliable-services-communication-webapi.md)
 - [Reliable Services 程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
 - [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="安裝 Azure 命令列介面 | Microsoft Azure"
-	description="安裝適用於 Mac、Linux 和 Windows 的 Azure CLI 以開始使用 Azure 服務"
+	description="安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (CLI) 以開始使用 Azure 服務"
 	editor=""
 	manager="timlt"
 	documentationCenter=""
@@ -14,10 +14,14 @@
 	ms.tgt_pltfrm="command-line-interface"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="04/20/2016"
 	ms.author="danlep"/>
-
+    
 # 安裝 Azure CLI
+
+> [AZURE.SELECTOR]
+- [PowerShell](powershell-install-configure.md)
+- [Azure CLI](xplat-cli-install.md)
 
 快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。您有數個安裝選擇：針對不同的作業系統使用提供的其中一個安裝程式封裝、從 npm 封裝中進行安裝，或將 Azure CLI 安裝為 Docker 主機中的容器。如需詳細的選項和背景，請參閱 [GitHub](https://github.com/azure/azure-xplat-cli) 上的專案儲存機制。
 
@@ -31,7 +35,7 @@
 
 * [Windows 安裝程式][windows-installer]
 
-* [OS X 安裝程式](http://go.microsoft.com/fwlink/?LinkId=252249)
+* [OS X 安裝程式][mac-installer]
 
 * [Linux 安裝程式][linux-installer]
 
@@ -59,6 +63,11 @@ docker run -it microsoft/azure-cli
 ```
 azure help
 ```
+> [AZURE.NOTE]在一些 Linux 散發套件上，您可能會收到錯誤 (/usr/bin/env: ‘node’: 沒有這類檔案或目錄)，這個錯誤來自將安裝在 /usr/bin/nodejs 的最新 nodejs 安裝。若要修正此錯誤，請執行下列命令來建立 /usr/bin/node 的符號連結：
+
+```
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+```
 
 若要查看您所安裝的 Azure CLI 版本，請輸入下列命令：
 
@@ -66,7 +75,9 @@ azure help
 azure --version
 ```
 
-您現在已經準備就緒！ 若要存取所有 CLI 命令以搭配您的資源使用，[請從 Azure CLI 連接到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
+您現在已經準備就緒！ 若要存取所有 CLI 命令以搭配您的資源使用，請[從 Azure CLI 連接到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
+
+>[AZURE.NOTE] 當您第一次使用 Azure CLI 版本 0.9.20 或更新版本時，會看到一則訊息，詢問您是否要允許 Microsoft 收集您如何使用 CLI 的相關資訊。參與為自願性質。如果您選擇參與，則執行 `azure telemetry --disable` 隨時都可以停止。若要隨時啟用參與，請執行 `azure telemetry --enable`。
 
 
 ## 更新 CLI
@@ -93,4 +104,4 @@ npm update -g azure-cli
 [cliasm]: virtual-machines-command-line-tools.md
 [cliarm]: ./virtual-machines/azure-cli-arm-commands.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

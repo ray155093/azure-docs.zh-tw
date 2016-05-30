@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/22/2016"
+   ms.date="05/13/2016"
    ms.author="larryfr"/>
 
 #開發適用於 HDInsight 的 Python 串流程式
@@ -32,6 +32,8 @@ Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言�
 * HDInsight 叢集上的 Linux 型 Hadoop
 
 * 文字編輯器
+
+    > [AZURE.IMPORTANT] 文字編輯器必須使用 LF 做為行尾結束符號。如果使用 CRLF，在以 Linux 為基礎的 HDInsight 叢集上執行 MapReduce 作業時會導致錯誤。如果您不確定，請使用[執行 MapReduce](#run-mapreduce) 一節中的選擇性步驟將所有 CRLF 轉換為 LF。
 
 * 若為 Windows 用戶端，則需要 PuTTY 和 PSCP。這些公用程式可從 <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTY 下載頁面</a>取得。
 
@@ -154,6 +156,11 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 
 	> [AZURE.NOTE] 如果您使用密碼保護 SSH 帳戶，系統會提示您輸入密碼。如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑，例如 `ssh -i /path/to/private/key username@clustername-ssh.azurehdinsight.net`。
 
+2. (選擇性) 如果您建立 mapper.py 和 reducer.py 檔案時使用的文字編輯器是以 CRLF 做為行尾結束符號，或者，您不知道您的編輯器使用哪種行尾結束符號，請使用下列命令將 mapper.py 和 reducer.py 中出現的 CRLF 轉換為 LF。
+
+        perl -pi -e 's/\r\n/\n/g' mappery.py
+        perl -pi -e 's/\r\n/\n/g' reducer.py
+
 2. 使用下列命令啟動 MapReduce 工作。
 
 		yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout
@@ -205,4 +212,4 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/19/2016"
+	ms.date="05/16/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：限制
 
-Azure Active Directory (Azure AD) B2C 有幾項特性與功能在預覽期間還不支援。在 Azure AD B2C 正式運作之前將移除其中諸多限制，但如果您在預覽期間使用 Azure AD B2C 建置消費者導向的應用程式，則應該注意這些限制。
+Azure Active Directory (Azure AD) B2C 有幾項特性與功能在預覽期間還不支援。在 Azure AD B2C 正式運作之前將移除其中諸多已知問題和限制，但如果您在預覽期間使用 Azure AD B2C 建置消費者導向的應用程式，則應該注意這些限制。
 
 [AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
 
@@ -92,4 +92,11 @@ Azure AD B2C 預覽支援 OpenID Connect 和 OAuth 2.0。不過，並非每個�
 
 您目前無法在 [Azure 傳統入口網站](https://manage.windowsazure.com/)上順利驗證網域。我們正在努力修復此問題。
 
-<!---HONumber=AcomDC_0427_2016-->
+## Safari 瀏覽器上的使用 MFA 原則來登入的問題
+
+在 Safari 瀏覽器上，登入原則的要求 (在開啟 MFA 時) 偶爾會失敗，並出現 HTTP 400 (不正確的要求) 錯誤。這是因為 Safari 的低 Cookie 大小限制所致。此問題有許多因應措施︰
+
+- 使用「註冊或登入原則」而不是「登入原則」。
+- 減少原則中所要求的**應用程式宣告**數目。 
+
+<!---HONumber=AcomDC_0518_2016-->

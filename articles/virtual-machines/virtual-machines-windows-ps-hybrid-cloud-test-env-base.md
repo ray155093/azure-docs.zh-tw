@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -331,4 +331,4 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如�
 
 - 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)，或 [Office 365 Directory 同步處理 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

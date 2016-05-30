@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/14/2016"   
+	ms.date="04/22/2016"   
 	ms.author="milanga;juliako;johndeu"/>
 
 # Azure 媒體服務分析概觀
@@ -22,9 +22,14 @@
 
 越來越多組織和企業採用視訊做為慣用的媒體，用來訓練員工、連絡客戶與記錄商務功能。雲端運算可讓您有效儲存、串流及存取這些大型媒體檔案，但是當公司擴充其視訊內容庫，他們必須具備同樣有效的方式從視訊擷取新的解析，以建立與其對象間更有意義與個人化的互動，並將其業務提升到更高的層次。
 
-為了解決市場的成長需求，Azure 媒體服務提供媒體分析、企業規模的語音和電腦視覺服務集合、相容性、安全性和遍及全球的觸角。Azure 媒體分析服務使用核心 Azure 媒體服務平台元件建置，因此可隨時進行一天的大規模媒體處理。
+為了解決市場的成長需求，Azure 媒體服務提供媒體分析、語音和視覺元件集合 (具企業規模、相容性、安全性和遍及全球的觸角)，讓組織和企業從其影片檔輕鬆製作出能採取行動的深入見解內容。Azure 媒體分析服務使用核心 Azure 媒體服務平台元件建置，因此可隨時進行一天的大規模媒體處理。
 
 Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊的視覺功能，並將此進階功能引進到 Bot 和應用程式。Azure 媒體分析的建置使用對象是大型組織所需的企業環境，其具備完整規模、相容性、安全性和遍及全球的觸角。
+
+下圖顯示**媒體分析**和媒體服務平台的其他主要部分。請注意，媒體分析的媒體處理器會產生 MP4 檔案或 JSON 檔案。如果媒體處理器產生了 MP4 檔案，您可以漸進式下載檔案。如果媒體處理器產生了 JSON 檔案，您可以從 Azure Blob 儲存體下載檔案。
+
+![VoD 工作流程](./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png)
+
 
 ## Azure 媒體分析服務
 
@@ -65,7 +70,8 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 [媒體服務分析公告](https://azure.microsoft.com/blog/introducing-azure-media-analytics/)
   
 
+<!-- Images -->
 
- 
+[overview]: ./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

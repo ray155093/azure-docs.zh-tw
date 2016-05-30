@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/03/2016"
+   ms.date="05/13/2016"
    ms.author="alkohli" />
 
 # StorSimple Virtual Array 版本資訊
@@ -40,6 +40,6 @@
 | **10.** | Azure PowerShell | 在這版本中，無法透過 Azure PowerShell 管理 StorSimple 虛擬裝置。 | 所有虛擬裝置的管理應該透過 Azure 傳統入口網站和本機 Web UI 來完成。 |
 | **11.** | 密碼變更 | 虛擬陣列裝置主控台僅接受美式鍵盤格式的輸入。 | |
 | **12.** | CHAP | CHAP 認證一經建立，即無法移除。此外，若是修改了 CHAP 認證，必須先讓磁碟區離線再上線，變更才會生效。 | 這些問題在新版本中都會獲得解決。 |
-| **13.** | 固定在本機的磁碟區 | 顯示在本機固定的磁碟區中的 [使用的儲存體] 在服務與 iSCSI 主機中可能不同。 | 主機會看到檔案系統。<br></br>裝置則會在達到磁碟區大小上限時，看到所配置的區塊。|
+| **13.** | iSCSI 伺服器 | 顯示在 iSCSI 磁碟區的 [使用的儲存體] 在 StorSimple Manager 服務與 iSCSI 主機中可能不同。 | iSCSI 主機會看到檔案系統。<br></br>裝置則會在達到磁碟區大小上限時，看到所配置的區塊。|
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

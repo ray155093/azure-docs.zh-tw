@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 
@@ -66,25 +66,7 @@ CDN 設定檔為 CDN 端點的集合。每個設定檔皆包含一或多個 CDN 
 
 > [AZURE.TIP] 若您已有您想要用於本教學課程的 CDN 設定檔，請繼續進行[步驟 3](#step-3-create-a-new-cdn-endpoint)。
 
-**建立新的 CDN 設定檔**
-
-1. 在 [Azure 管理入口網站](https://portal.azure.com)的左上角，按一下 [新增]。在 [新增] 刀鋒視窗中，依序選取 [媒體 + CDN] 和 [CDN]。
-
-    此時會顯示新的 [CDN 設定檔] 刀鋒視窗。
-
-    ![新增 CDN 設定檔][new-cdn-profile]
-
-2. 輸入 CDN 設定檔的名稱。
-
-3. 選取 [定價層] 或使用預設值。
-
-4. 選取或建立 [**資源群組**]。此資源群組並不必然是與您儲存體帳戶相同的資源群組。
-
-5. 針對此 CDN 設定檔選取 [**訂用帳戶**]。基於本教學課程用途，此訂用帳戶必須為與儲存體帳戶相同的訂用帳戶。
-
-6. 選取 [**位置**]。此為儲存您 CDN 設定檔資訊的所在 Azure 位置。其不會影響 CDN 端點位置。此位置不一定是與儲存體帳戶相同的位置。
-
-7. 按一下 [**建立**] 按鈕，以建立新設定檔。
+[AZURE.INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
 ## 步驟 3：建立新的 CDN 端點
 
@@ -148,10 +130,9 @@ http://<*EndpointName*>.azureedge.net/<*myPublicContainer*>/<*BlobName*>
 
 [create-new-storage-account]: ./media/cdn-create-a-storage-account-with-cdn/CDN_CreateNewStorageAcct.png
 
-[new-cdn-profile]: ./media/cdn-create-a-storage-account-with-cdn/cdn-new-profile.png
 [cdn-profile-settings]: ./media/cdn-create-a-storage-account-with-cdn/cdn-profile-settings.png
 [cdn-new-endpoint-button]: ./media/cdn-create-a-storage-account-with-cdn/cdn-new-endpoint-button.png
 [cdn-add-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-a-storage-account-with-cdn/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

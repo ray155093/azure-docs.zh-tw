@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="05/11/2016"
 	ms.author="jroth"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
@@ -41,6 +41,7 @@
 - [API 管理](#api-management-limits)
 - [App Service](#app-service-limits)
 - [Application Insights](#application-insights-limits)
+- [自動化](#automation-limits)
 - [Azure Redis 快取](#azure-redis-cache-limits)
 - [Azure RemoteApp](#azure-remoteapp-limits)
 - [備份](#backup-limits)
@@ -272,6 +273,9 @@
 ### Multi-Factor Authentication
 [AZURE.INCLUDE [azure-mfa-service-limits](../includes/azure-mfa-service-limits.md)]
 
+### 自動化限制
+[AZURE.INCLUDE [自動化限制](../includes/azure-automation-service-limits.md)]
+
 ### SQL Database 限制
 
 如需 SQL Database 的限制，請參閱 [SQL Database 資源限制](sql-database/sql-database-resource-limits.md)。
@@ -284,4 +288,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

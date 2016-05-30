@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="01/08/2016"
+   ms.date="05/16/2016"
    ms.author="mbaldwin"/>
 
 
@@ -31,7 +31,7 @@
 - **ServicePrincipal 物件**：此物件代表您目錄租用戶中應用程式的執行個體。您可以將原則套用到 ServicePrincipal 物件，包括指派權限給 ServicePrincipal，讓應用程式能夠讀取您租用戶的目錄資料。每當您變更 Application 物件時，所做的變更也會套用到您租用戶中相關聯的 ServicePrincipal 物件上。
 
 
-> [AZURE.NOTE]當您的應用程式設定為供外部存取時，如果沒有先移除取用者租用戶的存取權，然後再重新授與存取權，則對 Application 物件的變更就不會反映在取用者租用戶的 ServicePrincipal 上。
+> [AZURE.NOTE] 當您的應用程式設定為供外部存取時，如果沒有先移除取用者租用戶的存取權，然後再重新授與存取權，則對 Application 物件的變更就不會反映在取用者租用戶的 ServicePrincipal 上。
 
 
 
@@ -85,4 +85,4 @@
 
 ##
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0518_2016-->

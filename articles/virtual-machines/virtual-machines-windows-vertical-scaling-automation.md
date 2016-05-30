@@ -53,7 +53,7 @@
 
 ## 將 Azure 自動化設定為可存取您的虛擬機器
 
-您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。最近，自動化服務引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體來自動執行 Runbook。您可以在下文中閱讀更多相關資訊：
+您首先要做的是建立 Azure 自動化帳戶，其要裝載用來調整虛擬機器的 Runbook。最近，自動化服務引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體來自動執行 Runbook。您可以在下文中閱讀更多相關資訊：
 
 * [使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
@@ -90,4 +90,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

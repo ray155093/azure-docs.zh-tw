@@ -1,5 +1,5 @@
 <properties
-   pageTitle="資源管理員支援的服務、區域、結構描速及版本 |Microsoft Azure"
+   pageTitle="Resource Manager 支援的服務 | Microsoft Azure"
    description="說明支援資源管理員、其結構描述及可用 API 版本的資源提供者，以及可裝載資源的區域。"
    services="azure-resource-manager"
    documentationCenter="na"
@@ -13,13 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/01/2016"
+   ms.date="05/17/2016"
    ms.author="tomfitz"/>
 
 # 資源管理員提供者、區域、API 版本及結構描述
 
-Azure 資源管理員提供一種新方式來部署和管理組成應用程式的服務。
-大部分但並非所有的服務都支援資源管理員，有些服務僅部分支援資源管理員。Microsoft 會針對每個服務啟用資源管理員，這對於未來的解決方案而言很重要，但在支援一致化之前，您需要了解每個服務的目前狀態。本主題提供支援 Azure 資源管理員的資源提供者清單。
+Azure 資源管理員提供一種新方式來部署和管理組成應用程式的服務。大部分但並非所有的服務都支援資源管理員，有些服務僅部分支援資源管理員。Microsoft 會針對每個服務啟用資源管理員，這對於未來的解決方案而言很重要，但在支援一致化之前，您需要了解每個服務的目前狀態。本主題提供支援 Azure 資源管理員的資源提供者清單。
 
 部署資源時，您也需要知道哪些區域支援這些資源，以及哪些 API 版本適用於資源。[支援區域](#supported-regions)一節說明如何找出哪些區域適用於您的訂用帳戶和資源。[支援的 API 版本](#supported-api-versions)一節說明如何判斷您可以使用哪些 API 版本。
 
@@ -36,9 +35,7 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | Dynamics 週期服務 | 是 | | | [Microsoft.DynamicsLcs](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DynamicsLcs%22&type=Code)
 | Service Fabric (Preview) | 是 | [Service Fabric Rest](https://msdn.microsoft.com/library/azure/dn707692.aspx) | | [Microsoft.ServiceFabric](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ServiceFabric%22&type=Code) |
 | 虛擬機器 | 是 | [VM REST](https://msdn.microsoft.com/library/azure/mt163647.aspx) | [2015-08-01](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-08-01/Microsoft.Compute.json) | [Microsoft.Compute](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.Compute%22&type=Code) |
-| 虛擬機器 (傳統) | 有限 | - | - |
-| 遠端應用程式 | 否 | - | - |
-| 雲端服務 (傳統) | 有限 (請參閱下文) | - | - | - |
+| 虛擬機器 (傳統) | 有限 | - | - | | 遠端應用程式 | 否 | - | - | | 雲端服務 (傳統) | 有限 (請參閱下文) | - | - | - |
 
 虛擬機器 (傳統) 是指已透過傳統部署模型部署的資源，而不是透過資源管理員部署模型部署的資源。一般而言，這些資源不支援資源管理員作業，但已啟用某些作業。如需這些部署模型的詳細資訊，請參閱[了解資源管理員部署和傳統部署](resource-manager-deployment-model.md)。
 
@@ -91,8 +88,7 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | 資料湖存放區 | 是 | | | |
 | HDInsights | 是 | [HDInsights REST](https://msdn.microsoft.com/library/azure/mt622197.aspx) | | [Microsoft.HDInsight](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.HDInsight%22&type=Code) |
 | 串流分析 | 是 | [串流分析 REST](https://msdn.microsoft.com/library/azure/dn835031.aspx) | | [Microsoft.StreamAnalytics](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.StreamAnalytics%22&type=Code) |
-| 機器學習服務 | 否 | - | - |
-| 資料目錄 | 否 | - | - |
+| 機器學習服務 | 否 | - | - | | 資料目錄 | 否 | - | - |
 
 ## 物聯網 (Internet of Things)
 
@@ -116,12 +112,10 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | ------- | ------- | -------- | ------ | ------ |
 | BizTalk 服務 | 是 | | [2014-04-01](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2014-04-01/Microsoft.BizTalkServices.json) | [Microsoft.BizTalkServices](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.BizTalkServices%22&type=Code) |
 | 服務匯流排 | 是 | | | [Microsoft.ServiceBus](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ServiceBus%22&type=Code) |
-| 備份 | 否 | - | - |
-| 網站復原 | 否 | - | - |
 
 ## 身分識別與存取管理 
 
-Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳戶啟用角色型存取控制。若要深入了解使用角色型存取控制和 Active Directory，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
+Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳戶啟用角色型存取控制。若要了解如何使用角色型存取控制和 Active Directory，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
 ## 開發人員服務 
 
@@ -139,6 +133,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 | 自動化 | 是 | | | [Microsoft.Automation](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.Automation%22&type=Code) |
 | 金鑰保存庫 | 是 | [金鑰保存庫 REST](https://msdn.microsoft.com/library/azure/dn903609.aspx) | [金鑰保存庫](resource-manager-template-keyvault.md)<br />[金鑰保存庫密碼](resource-manager-template-keyvault-secret.md) | [Microsoft.KeyVault](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.KeyVault%22&type=Code) |
 | Operational Insights | 是 | | | [Microsoft.OperationalInsights](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.OperationalInsights%22&type=Code) |
+| [復原服務] | 是 | | | |
 | 排程器 | 是 | [排程器 REST](https://msdn.microsoft.com/library/azure/mt629143.aspx) | [2014-08-01](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2014-08-01/Microsoft.Scheduler.json) | [Microsoft.Scheduler](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.Scheduler%22&type=Code) |
 | 安全性 (Preview) | 是 | | | [Microsoft.Security](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.Security%22&type=Code) |
 
@@ -158,7 +153,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 
 ### REST API
 
-若要取得所有可用的資源提供者，包括其類型、位置、API 版本及註冊狀態，請使用[列出所有資源提供者](https://msdn.microsoft.com/library/azure/dn790524.aspx)作業。若要註冊提供者，請參閱[向資源提供者註冊訂用帳戶](https://msdn.microsoft.com/library/azure/dn790548.aspx)。
+若要取得所有可用的資源提供者 (包括其類型、位置、API 版本及註冊狀態)，請使用[列出所有資源提供者](https://msdn.microsoft.com/library/azure/dn790524.aspx)作業。如果您需要註冊資源提供者，請參閱[向資源提供者註冊訂用帳戶](https://msdn.microsoft.com/library/azure/dn790548.aspx)。
 
 ### PowerShell
 
@@ -253,7 +248,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 
     azure location list
 
-您也可以使用 [jq](https://stedolan.github.io/jq/) 之類的 JSON 公用程式來篩選位置結果。
+您也可以使用 [jq](https://stedolan.github.io/jq/) 這類 JSON 公用程式來篩選位置結果。
 
     azure location list --json | jq '.[] | select(.name == "Microsoft.Web/sites")'
 
@@ -305,4 +300,4 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 - 若要了解如何建立資源管理員範本，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 - 若要了解如何部署資源，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

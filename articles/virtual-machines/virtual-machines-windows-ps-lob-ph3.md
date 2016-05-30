@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -135,7 +135,7 @@
 ### 若要初始化空磁碟和新增資料夾
 
 1. 在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2. 在 [內容] 窗格的 [**磁碟**] 群組中，按一下 [磁碟 **2**] \([**磁碟分割**] 設為 [**未知**])。
+2. 在 [內容] 窗格的 [**磁碟**] 群組中，按一下 [磁碟 **2**] ([**磁碟分割**] 設為 [**未知**])。
 3. 按一下 [工作]，然後按一下 [新增磁碟區]。
 4. 在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5. 在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -259,4 +259,4 @@ SQL Server AlwaysOn 可用性群組依賴 Windows Server 的容錯移轉叢集 (
 
 - 依照[第 4 階段](virtual-machines-windows-ps-lob-ph4.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

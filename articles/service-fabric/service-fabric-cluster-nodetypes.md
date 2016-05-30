@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/17/2016"
+   ms.date="05/02/2016"
    ms.author="chackdan"/>
 
 
@@ -66,7 +66,7 @@
 
 連接埠是以 VM 調整集執行個體的遞增順序配置。因此，在 FrontEnd 節點類型的範例中，五個執行個體的每個連接埠分別如下。您現在需要對您的 VM 調整集執行個體進行相同的對應。
 
-|**VMSS 執行個體**|**連接埠**|
+|**VM 擴展集執行個體**|**連接埠**|
 |-----------------------|--------------------------|
 |FrontEnd\_0|3389|
 |FrontEnd\_1|3390|
@@ -133,4 +133,4 @@ Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG nam
 [NATRules]: ./media/service-fabric-cluster-nodetypes/NATRules.png
 [RDP]: ./media/service-fabric-cluster-nodetypes/RDP.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

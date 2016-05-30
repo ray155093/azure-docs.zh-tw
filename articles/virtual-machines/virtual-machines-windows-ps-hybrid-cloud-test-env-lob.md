@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -208,7 +208,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 10.	在 [確認安裝選項] 頁面上，按一下 [安裝]。
 11.	等候元件安裝完成，然後按一下 [關閉]。
 12.	以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
-13.	在網址列中，鍵入 **http://lob1/**，然後按 ENTER。您應該會看見預設的 IIS 8 網頁。
+13.	在網址列中，鍵入 ****http://lob1/**，然後按 ENTER。您應該會看見預設的 IIS 8 網頁。
 
 這是您目前的組態。
 
@@ -220,4 +220,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - 部署[生產環境](virtual-machines-windows-lob-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -22,7 +22,7 @@
 
 在 Azure App Service 中，您可以將應用程式 (Web、行動或 API) 連接到您訂用帳戶中的虛擬網路 (VNet)。這項功能稱為 VNet 整合。VNet 整合功能不應該與 App Service 環境功能混淆，後者可讓您在虛擬網路中執行 Azure App Service 的執行個體。
 
-VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與使用傳統部署模型或 Azure Resource Manager 部署模型所部署的虛擬網路整合。如果您想要深入了解此功能，請參閱[將您的應用程式與 Azure 虛擬網路整合](web-sites-integrate-with-vnet)。
+VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與使用傳統部署模型或 Azure Resource Manager 部署模型所部署的虛擬網路整合。如果您想要深入了解此功能，請參閱[將您的應用程式與 Azure 虛擬網路整合](web-sites-integrate-with-vnet.md)。
 
 本文不是關於如何使用 UI，而是如何使用 PowerShell 啟用整合。由於每種部署模型的命令都不同，所以本文中每種部署模型各有一節。
 
@@ -725,4 +725,4 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 [createvpngateway]: http://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/
 [azureportal]: http://portal.azure.com
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

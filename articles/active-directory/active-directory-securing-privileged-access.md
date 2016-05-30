@@ -34,7 +34,8 @@ Microsoft 建議您遵循 [Securing Privileged Access (保護特殊權限存取)
 Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。它可以透過一些簡單的驗證選項，包括電話、文字訊息、行動應用程式通知，或驗證代碼和協力廠商 OATH 權杖，來提供強大的驗證功能。
 
 如需 Azure Multi-Factor Authentication 運作方式的概觀，請參閱以下影片。
-<center>[AZURE.VIDEO windows-azure-multi-factor-authentication]</center>
+
+>[AZURE.VIDEO windows-azure-multi-factor-authentication]
 
 如需詳細資訊，請參閱 [MFA for Office 365 and MFA for Azure (MFA for Office 365 和 MFA for Azure)](https://blogs.technet.microsoft.com/ad/2014/02/11/mfa-for-office-365-and-mfa-for-azure/)。
 
@@ -50,7 +51,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 
 ## 攻擊偵測
 
-[Azure Active Directory Identity Protection](active-directory-identityprotection.d) 提供您整合檢視會影響組織身分識別的風險事件和潛在弱點。Identity Protection 會根據風險事件，計算每位使用者的使用者風險層級，讓您設定以風險為基礎的原則來自動保護您組織的身分識別。這些原則和 Azure Active Directory 與 EMS 提供的其他條件式存取控制，可以自動封鎖使用者或提供建議，包括重設密碼以及強制 Multi-Factor Authentication。
+[Azure Active Directory Identity Protection](active-directory-identityprotection.md) 提供您整合檢視會影響組織身分識別的風險事件和潛在弱點。Identity Protection 會根據風險事件，計算每位使用者的使用者風險層級，讓您設定以風險為基礎的原則來自動保護您組織的身分識別。這些原則和 Azure Active Directory 與 EMS 提供的其他條件式存取控制，可以自動封鎖使用者或提供建議，包括重設密碼以及強制 Multi-Factor Authentication。
 
 ![Azure AD Identity Protection][3]
 
@@ -82,4 +83,4 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 [3]: ./media/active-directory-identityprotection/29.png
 [4]: ./media/active-directory-conditional-access/conditionalaccess-saas-apps.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

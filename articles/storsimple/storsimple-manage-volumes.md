@@ -4,15 +4,15 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
-<tags 
+<tags
    ms.service="storsimple"
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/29/2016"
+   ms.date="05/11/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Manager 服務來管理磁碟區
@@ -51,11 +51,11 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 
 最常見與磁碟區相關聯的工作如下：
 
-- 新增磁碟區 
-- 修改磁碟區 
-- 刪除磁碟區 
-- 使磁碟區離線 
-- 監視磁碟區 
+- 新增磁碟區
+- 修改磁碟區
+- 刪除磁碟區
+- 使磁碟區離線
+- 監視磁碟區
 
 ## 新增磁碟區
 
@@ -74,14 +74,14 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 4. 在 [新增磁碟區精靈] 的 [基本設定] 下，執行列動作：
 
   1. 輸入磁碟區的 [名稱]。
-  2. 為磁碟區指定 [佈建的容量] \(GB 或 TB)。實體裝置的容量必須介於 1 GB 到 64 TB 之間。可為 StorSimple 虛擬裝置上的磁碟區佈建的最大容量為 30 TB。
+  2. 為磁碟區指定 [佈建的容量] (GB 或 TB)。實體裝置的容量必須介於 1 GB 到 64 TB 之間。可為 StorSimple 虛擬裝置上的磁碟區佈建的最大容量為 30 TB。
   3. 為磁碟區選取 [使用類型]。如果您針對封存資料使用分層磁碟區，選取 [使用此磁碟區存放不常存取的封存資料] 核取方塊會將您磁碟區的重複資料刪除區塊大小變更為 512 KB。如果未核取此選項，對應的分層磁碟區會使用 64 KB 的區塊大小。較大的重複資料刪除區塊大小可讓裝置加速傳送大型封存資料到雲端 (分層式磁碟區之前稱為主要磁碟區)。
   5. 按一下箭號圖示 ![箭號圖示](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)，前往 [其他設定] 頁面。
 
         ![Add Volume wizard Additional Settings](./media/storsimple-manage-volumes/AddVolume2.png)
-   
+
 5. 在 [其他設定] 下，加入新的存取控制記錄 (ACR)：
-  
+
   1. 在下拉式清單中選取存取控制記錄 (ACR)。或者，您可以加入新的 ACR。ACR 會藉由比對主機與記錄中列出的 IQN 來決定哪些主機可以存取磁碟區。
   2. 建議選取 [**啟用此磁碟區的預設備份**] 核取方塊啟用預設備份。
    3. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-volumes/HCS_CheckIcon.png)，以利用指定的設定來建立磁碟區。
@@ -92,10 +92,10 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 
 當您需要擴充磁碟區，或變更存取該磁碟區的主機時，請修改磁碟區。
 
-> [AZURE.IMPORTANT] 
+> [AZURE.IMPORTANT]
 >
-> - 如果您修改裝置上的磁碟區大小，也必須變更主機上的磁碟區大小。 
-> - 此處所述的主機端步驟適用於 Windows Server 2012 (2012R2)。Linux 或其他主機作業系統的程序會有所不同。如果要在執行其他作業系統的主機上修改磁碟區，請參考主機作業系統的指示。 
+> - 如果您修改裝置上的磁碟區大小，也必須變更主機上的磁碟區大小。
+> - 此處所述的主機端步驟適用於 Windows Server 2012 (2012R2)。Linux 或其他主機作業系統的程序會有所不同。如果要在執行其他作業系統的主機上修改磁碟區，請參考主機作業系統的指示。
 
 ### 若要修改磁碟區
 
@@ -116,7 +116,7 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 
   - 修改 ACR，若是磁碟區已離線。如果磁碟區已連線，您必須先讓它離線。修改 ACR 之前，請參閱[使磁碟區離線](#take-a-volume-offline)中的步驟。
   - 在磁碟區離線之後，才修改 ACR 清單。
- 
+
     > [AZURE.NOTE] 您無法變更此磁碟區的 [**啟用此磁碟區的預設備份**] 選項。
 
 6. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-volumes/HCS_CheckIcon.png)，即可儲存您的變更。Azure 傳統入口網站將會顯示更新磁碟區訊息。如果磁碟區已成功更新，即會顯示成功訊息。
@@ -198,6 +198,4 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
- 
-
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

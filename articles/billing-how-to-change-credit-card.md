@@ -18,7 +18,7 @@
 	ms.date="05/05/2016"
 	ms.author="genli"/>
 
-# 如何變更用來支付 Azure 帳單的信用卡
+# 如何變更用來支付 Azure 訂用帳戶的信用卡
 
 您有時可能需要在帳戶資訊中更新信用卡的詳細資料，或變更用來支付帳單的信用卡。
 
@@ -51,4 +51,4 @@
 3. 在頁面右側，選取 [變更付款方式]。
 4. 在 [選擇付款方式] 頁面上，依序選取信用卡旁邊的下拉式箭號、您要使用的信用卡，然後選取 ![checkbutton](./media/billing-how-to-change-credit-card/checkbutton.png) 以關閉視窗。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

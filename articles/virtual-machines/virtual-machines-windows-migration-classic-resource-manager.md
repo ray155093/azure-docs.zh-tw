@@ -23,13 +23,13 @@
 
 ## 我們的移轉目標為何？
 
-對於虛擬機器上可用的新體驗和 API 所提供的能力和功能，我們感到很興奮。我們認為這真的會改變您在許多方面使用雲端的方式。新推出的模型可讓您在資源群組中部署、管理及監視相關服務。Resource Manager 實現了透過範本部署複雜的應用程式、可使用 VM 延伸模組設定虛擬機器，並納入了存取管理和標記。它也可將虛擬機器的可調整平行部署納入至可用性設定組內。此外，新的模型也針對計算、網路和儲存體個別提供生命週期管理功能。並且會聚焦在預設啟用安全性，其方法是透過在虛擬網路中強制使用虛擬機器。
+對於虛擬機器上可用的新體驗和 API 所提供的能力和功能，我們感到很興奮。我們相信這可以改變您使用雲端的許多方式。使用發行的新模型時，您可以在資源群組中部署、管理及監視相關的服務。Resource Manager 實現了透過範本部署複雜的應用程式、可使用 VM 延伸模組設定虛擬機器，並納入了存取管理和標記。它也可將虛擬機器的可調整平行部署納入至可用性設定組內。此外，新的模型也針對計算、網路和儲存體個別提供生命週期管理功能。最後會重點說明，為了啟用預設的安全性，而在虛擬網路中強制使用虛擬機器的做法。
 
-從功能的觀點來看，幾乎所有功能皆支援 Azure Resource Manager 下的計算、網路和儲存體，雖然有幾個功能例外，但我們正積極嘗試在未來的幾個月內完成其支援。此外，我們會持續改善使用者體驗，並在 Azure 入口網站中新增更多功能，以銜接這些體驗。
+從功能的觀點來看，幾乎來自傳統部署模型的所有功能皆支援 Azure Resource Manager 中的計算、網路和儲存體，僅有幾個功能例外，而我們正積極嘗試在未來的幾個月內完成其支援。此外，我們會持續改善使用者體驗，並在 Azure 入口網站中新增更多功能，以銜接這些體驗。
 
 因為新的 Azure Resource Manager 具備這項新的能力，而且部署基礎也不斷成長，我們想要讓客戶能夠移轉傳統中的現有部署。
 
->[AZURE.NOTE] 伴隨著此一宣佈，我們推出了移轉服務的公開預覽版。在公開預覽期間，我們只建議您移轉 Azure 訂用帳戶中的開發/測試工作負載。
+>[AZURE.NOTE] 伴隨著此一宣佈，我們推出了移轉服務的公開預覽版。在公開預覽期間，我們只建議您移轉 Azure 訂用帳戶中非生產環境的工作負載。
 
 ## 自動化與工具在移轉之後的變更
 
@@ -50,29 +50,33 @@
 
 ### 移轉 (不在虛擬網路中的) 虛擬機器
 
-在 Resource Manager 部署模型中，我們預設會在應用程式中強制實施安全性。因此，在 Resource Manager 模型中，所有 VM 都必須位在虛擬網路內。因此在移轉過程中，我們會重新啟動 (停止解除配置並啟動) VM。說到虛擬網路，您會有幾個選擇︰
+在 Resource Manager 部署模型中，我們預設會在應用程式中強制實施安全性。因此，在 Resource Manager 模型中，所有 VM 都必須位在虛擬網路內。也就是說，在移轉過程中，我們會重新啟動 (停止解除配置並啟動) VM。說到虛擬網路，您會有幾個選擇︰
 - 您可以要求平台建立新的虛擬網路，並將虛擬機器移轉到新的虛擬網路 (或)
 - 將虛擬機器移轉到 Resource Manager 中的現有虛擬網路
+
+- 您可以要求平台建立新的虛擬網路，並將 VM 移轉到新的虛擬網路 (或)
+- 將 VM 移轉到 Resource Manager 中的現有虛擬網路
 
 >[AZURE.NOTE] 在此移轉範圍內，移轉進行期間可能會有一段時間不允許進行「管理平面」和「資料平面」作業。
 
 ### 移轉 (虛擬網路中的) 虛擬機器
 
-在此範圍內，針對大多數的 VM 組態，我們只會在傳統和 Resource Manager 之間移轉中繼資料。基礎虛擬機器會在相同硬體、相同網路上，使用相同的儲存體來執行。因此，當我們提到將中繼資料從傳統移轉至 Resource Manager 時，移轉期間可能會有一段時間不允許進行「管理平面」作業。不過，「資料平面」仍可繼續運作，也就是說，在虛擬機器 (傳統) 之上執行的應用程式，不會在移轉期間造成停機時間。
+在此範圍內，針對大多數的 VM 組態，我們只會在傳統和 Resource Manager 之間移轉中繼資料。基礎 VM 會在相同硬體、相同網路上，使用相同的儲存體來執行。因此，當我們提到將中繼資料從傳統移轉至 Resource Manager 時，移轉期間可能會有一段時間不允許進行「管理平面」作業。不過，「資料平面」仍可繼續運作，也就是說，在 VM (傳統) 之上執行的應用程式，不會在移轉期間造成停機時間。
 
-目前來說，下列組態還不受支援。不過，當我們在未來新增對它們的支援時，此組態中的某些 VM 可能會造成停機時間 (停止解除配置並重新啟動)︰
+目前來說，下列組態還不受支援。當我們在未來新增支援這些設定時，可能會造成此設定中某些 VM 的停機時間 (停止解除配置並重新啟動)︰
 
 -	如果您在單一雲端服務中有超過 1 個可用性設定組
 -	如果您在單一雲端服務中有「1 或多個可用性設定組」和「不在可用性設定組中的 VM」
 
->[AZURE.NOTE] 在此移轉範圍內，移轉進行期間可能會有一段時間不允許進行「管理平面」。如上所述的某些特殊組態會造成「資料平面」停機時間。
+>[AZURE.NOTE] 在此移轉範圍內，移轉進行期間可能會有一段時間不允許進行「管理平面」。針對上述的某些特殊設定，這會造成「資料平面」停機時間。
 
 ### 儲存體帳戶和移轉
 
-公開預覽版目前不支援儲存體帳戶移轉。不過，儲存體帳戶的移轉支援已在規劃中，應該很快就會推出。關於移轉和其儲存體帳戶行為有兩個重要層面。
+本公開預覽版目前不支援儲存體帳戶移轉。不過，儲存體帳戶的移轉支援已在規劃中，應該很快就會推出。關於移轉和其儲存體帳戶行為有兩個重要層面。
 
 - 讓 Resource Manager VM 可部署在傳統儲存體帳戶中。為了讓移轉順暢進行，我們已啟用在傳統儲存體帳戶中部署 Resource Manager VM 的功能。透過這項功能，您就可以移轉計算和網路資源，而不必受到儲存體帳戶的約束。
-- 儲存體帳戶移轉的最佳作法。當儲存體帳戶移轉受到支援時，平台就會強制讓計算和網路資源與儲存體帳戶分開，以便實現順暢的體驗。
+- 儲存體帳戶移轉的最佳做法
+	- 一旦支援儲存體帳戶的移轉時，平台就會強制將儲存體帳戶與計算和網路資源分開，以便實現順暢的體驗。
 
 ## 不支援的功能和組態
 
@@ -87,7 +91,7 @@
 計算 | 開機診斷
 計算 | 未關聯的虛擬機器磁碟
 計算 | 虛擬機器映像
-網路 | 未關聯的保留 IP [如果未連接至虛擬機器]。連接至 VM 的保留 IP 則會受到支援。
+網路 | 未建立關聯的保留 IP [如果未連接至 VM]。連接至 VM 的保留 IP 則會受到支援。
 網路 | 未關聯的網路安全性群組 [如果未連接至虛擬網路或網路介面]。VNET 所參考的 NSG 則會受到支援。
 網路 | 端點 ACL
 網路 | 虛擬網路閘道 (網站間、ExpressRoute、點對站)
@@ -113,13 +117,13 @@ Dynamics 週期服務 | 包含 Dynamics 週期服務所管理之虛擬機器的�
 
 ## 移轉體驗
 
-在開始移轉體驗之前，我們強烈建議您遵循幾個步驟
+在開始移轉體驗之前，我們強烈建議您遵循幾個步驟：
 
 1. 確定正在規劃移轉的資源不會利用任何不支援的功能或組態。在大部分情況下，平台會偵測這些問題，並擲回錯誤。
 2. 如果您有不在虛擬網路中的 VM，它們會在準備作業期間停止解除配置。因此，如果您不想遺失公用 IP 位址，請先保留 IP 位址再觸發準備作業。不過，如果 VM 位於虛擬網路中，則不會停止解除配置。
-3. Azure 建議您先設定具有類似設定的測試環境並移轉這些資源，再移轉生產部署。
+3. Azure 建議您此時先不要嘗試移轉生產環境資源。
 4. 規劃非上班時間的移轉，以便因應移轉期間可能發生的任何非預期失敗。
-5. 使用 PowerShell、CLI 命令或 REST API 下載最新的虛擬機器組態，以便能夠在完成準備步驟之後輕鬆進行驗證。
+5. 使用 PowerShell、CLI 命令或 REST API 下載最新的 VM 設定，以便能夠在完成準備步驟之後輕鬆進行驗證。
 6. 先更新用來處理 Resource Manager 部署模型的自動化/作業化指令碼，再開始移轉。此外，您也可以選擇在資源處於已準備就緒的狀態下執行 GET 作業。
 7. 在移轉完成之後，評估傳統 IaaS 資源上設定的 RBAC 原則並備妥計劃。
 
@@ -140,7 +144,7 @@ Dynamics 週期服務 | 包含 Dynamics 週期服務所管理之虛擬機器的�
   * 在此步驟中，您可以選擇使用您稍早下載的組態，以確認移轉正確無誤。或者，您也可以登入到入口網站，並快速檢查屬性和資源，以確認該中繼資料的移轉正確無誤。
 	* 如果您要移轉虛擬網路，大多數的虛擬機器組態不會重新啟動。對於這些 VM 上的應用程式，您可以確認應用程式是否仍會啟動並執行。
 	* 您可以測試您的監視/自動化和作業指令碼，以查看 VM 是否如預期方式運作，以及更新後的指令碼是否正常運作。請注意，當資源處於已準備就緒的狀態下時，將只會支援 GET 作業。
-  * 「認可」移轉並沒有設定一定要在什麼時間之前完成的限制。您可以在此狀態停留任何長度的時間。但請注意，這些資源的管理平面會遭到鎖定，直到您「中止」或「認可」為止。
+  * 您可以慢慢考慮是否要「認可」移轉，因為系統對此並沒有時間限制。您可以在此狀態停留任何長度的時間。但請注意，這些資源的管理平面會遭到鎖定，直到您「中止」或「認可」為止。
   * 如果您發現任何問題，您一律可以「中止」移轉，並返回「傳統」部署模型。一次您返回，我們就會開啟資源的平面管理作業，讓您可以繼續在傳統部署模型中對這些 VM 進行正常作業。
 
 3. 中止
@@ -148,27 +152,20 @@ Dynamics 週期服務 | 包含 Dynamics 週期服務所管理之虛擬機器的�
 
 4.	認可
   * 一旦您完成確認之後，就可以「認可」移轉，之後資源將不會再出現在傳統中，而只會在 Resource Manager 部署模型中提供使用。這也表示只能在新的入口網站中管理移轉的資源。
-	* 如果此作業失敗，建議您重試幾次。如果一直失敗，請建立支援票證，或在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)建立標籤為 ClassicIaaSMigration 的論壇文章
+	* 如果此作業失敗，建議您重試幾次。如果一直失敗，請建立支援票證，或在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)建立標籤為 ClassicIaaSMigration 的論壇文章。
 
 >[AZURE.NOTE] 請注意，下述所有作業都是等冪。如果您遇到不支援的功能或設定錯誤以外的任何情況，建議您再試一次準備、中止或認可作業，平台將會重試一次動作。
 
-## 後續步驟
-現在您已了解傳統 IaaS 資源至 Resource Manager 的移轉，可以開始移轉資源。
-
-- [深入技術探討支援從傳統移轉至 Azure Resource Manager 的平台](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
-- [使用 PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-windows-ps-migration-classic-resource-manager.md)
-- [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
-- [利用 Community PowerShell 指令碼複製傳統虛擬機器至 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
 ## 常見問題集
 
 **此移轉計劃是否會影響任何現有在 Azure 虛擬機器上執行的服務或應用程式？**
 
-不會。虛擬機器 (傳統) 是受到完整支援的 GA 服務，而且您可以繼續利用這些資源，來擴充您在 Microsoft Azure 雲端的資源使用量。
+不會。VM (傳統) 是受到完整支援的 GA 服務，而且您可以繼續利用這些資源，來擴充您在 Microsoft Azure 雲端的資源使用量。
 
 **如果我最近沒有移轉的打算，我的 VM 會出現什麼狀況？**
 
-我們沒有要淘汰現有的傳統 API 和資源模型。我們想要透過 Resource Manager 部署模型中提供的進階功能，讓移轉變得非常簡單。因此，我們強烈建議您在[這裡](virtual-machines-windows-compare-deployment-models.md)檢閱一些在 Resource Manager 底下的 IaaS 中所發生的進展。
+我們沒有要淘汰現有的傳統 API 和資源模型。我們想要透過 Resource Manager 部署模型中提供的進階功能，讓移轉變得非常簡單。因此，我們強烈建議您檢閱[這裡](virtual-machines-windows-compare-deployment-models.md)提供的 Resource Manager IaaS 相關進展。
 
 **對於我現有的工具來說，此移轉計劃有何意義？**
 
@@ -184,11 +181,11 @@ Dynamics 週期服務 | 包含 Dynamics 週期服務所管理之虛擬機器的�
 
 **認可作業失敗時，是否可以將移轉回復？**
 
-如果認可作業失敗，就無法中止移轉。包括認可作業在內的所有移轉作業都是等冪。因此，建議您在稍微等一下之後再重試作業。如果仍遇到錯誤，請建立支援票證，或在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)建立標籤為 ClassicIaaSMigration 的論壇文章
+如果認可作業失敗，就無法中止移轉。包括認可作業在內的所有移轉作業都是等冪。因此，建議您在稍微等一下之後再重試作業。如果仍遇到錯誤，請建立支援票證，或在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)建立標籤為 ClassicIaaSMigration 的論壇文章。
 
 **如果我必須利用 Resource manager 底下的 IaaS，是否必須購買其他 ExpressRoute 線路？**
 
-不必。我們最近已啟用[跨傳統和 Resource Manager 共存 ExpressRoute 線路](../expressroute/expressroute-howto-coexist-resource-manager.md)。如果您已有 ExpressRoute 線路，就不需要購買新的。
+不需要。我們最近已啟用[跨傳統和 Resource Manager 共存 ExpressRoute 線路](../expressroute/expressroute-howto-coexist-resource-manager.md)。如果您已有 ExpressRoute 線路，就不需要購買新的。
 
 **您有何時會將不支援的案例新增至移轉清單的藍圖嗎？**
 
@@ -200,7 +197,7 @@ Dynamics 週期服務 | 包含 Dynamics 週期服務所管理之虛擬機器的�
 
 **如果我目前正在使用 Azure 上的 Azure Site Recovery 或備份服務，該怎麼辦？**
 
-Resource Manager 底下的虛擬機器最近已新增對於 Azure Site Recovery 和備份的支援。我們正在積極與各小組合作，以便一併啟用將 VM 移轉至 Resource Manager 的支援功能。目前來說，如果您正在利用這些功能，建議您不要執行移轉。
+Resource Manager 中的 VM 最近已新增支援 Azure Site Recovery 及備份。我們正在積極與各小組合作，以便一併啟用將 VM 移轉至 Resource Manager 的支援功能。目前來說，如果您正在利用這些功能，建議您不要執行移轉。
 
 **我是否可以驗證訂用帳戶或資源，以查看其是否能夠進行移轉？**
 
@@ -212,7 +209,7 @@ Resource Manager 底下的虛擬機器最近已新增對於 Azure Site Recovery 
 
 **如果我沒有支援合約，該如何回報問題？**
 
-請在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)的虛擬機器論壇上，使用關鍵字 ClassicIaaSMigration 張貼您對於移轉的問題和疑惑。我們建議您在此論壇中張貼您的所有問題，不過，如果您有支援合約，我們也非常歡迎您記錄支援票證。
+請在[這裡](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=WAVirtualMachinesforWindows)的 VM 論壇上，使用關鍵字 ClassicIaaSMigration 張貼您對於移轉的問題和疑惑。我們建議您在此論壇中張貼您的所有問題，不過，如果您有支援合約，我們也非常歡迎您記錄支援票證。
 
 **如果我不喜歡平台在移轉期間為我的資源群組選擇的名稱，該怎麼辦？**
 
@@ -220,6 +217,15 @@ Resource Manager 底下的虛擬機器最近已新增對於 Azure Site Recovery 
 
 **如果我不喜歡平台在移轉期間選擇的資源名稱，該怎麼辦？**
 
-您在傳統部署模型中明確提供名稱的所有資源，皆會在移轉期間保留起來。在某些情況下，則會建立新的資源。例如︰會為每個 VM 建立網路介面。此時此刻，我們不支援控制移轉期間所建立的新資源名稱。請在[這裡](http://feedback.azure.com)投票支持這項功能
+您在傳統部署模型中明確提供名稱的所有資源，皆會在移轉期間保留起來。在某些情況下，則會建立新的資源。例如︰會為每個 VM 建立網路介面。此時此刻，我們不支援控制移轉期間所建立的新資源名稱。請在[這裡](http://feedback.azure.com)投票支持這項功能。
 
-<!---HONumber=AcomDC_0511_2016-->
+
+## 後續步驟
+現在您已了解傳統 IaaS 資源至 Resource Manager 的移轉，可以開始移轉資源。
+
+- [深入技術探討支援從傳統移轉至 Azure Resource Manager 的平台](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+- [使用 PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-windows-ps-migration-classic-resource-manager.md)
+- [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
+- [利用 Community PowerShell 指令碼複製傳統虛擬機器至 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
+
+<!---HONumber=AcomDC_0518_2016-->

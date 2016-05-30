@@ -19,8 +19,10 @@
 # 利用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器從 Azure 容錯回復到 VMware (舊版)
 
 > [AZURE.SELECTOR]
-- [增強](site-recovery-failback-azure-to-vmware-classic.md)
-- [舊版](site-recovery-failback-azure-to-vmware-classic-legacy.md)
+- [Azure 入口網站](site-recovery-failback-azure-to-vmware.md)
+- [Azure 傳統入口網站](site-recovery-failback-azure-to-vmware-classic.md)
+- [Azure 傳統入口網站 (舊版)](site-recovery-failback-azure-to-vmware-classic-legacy.md)
+
 
 Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。機器可以複寫至 Azure，或次要的內部部署資料中心。如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)
 
@@ -28,7 +30,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 本文件說明如何在您從內部部署網站複寫到 Azure 之後，將 VMware 虛擬機器和 Windows/Linux 實體伺服器從 Azure 容錯回復到內部部署網站。
 
->[AZURE.NOTE] 這篇文章說明舊版案例。如果您使用[這些舊版指示](site-recovery-vmware-to-azure-classic-legacy.md)複寫至 Azure，應該僅使用這篇文章中的指示。如果您使用[增強部署](site-recovery-vmware-to-azure-classic-legacy.md)設定複寫，則依照[這篇文章](site-recovery-failback-azure-to-vmware-classic.md)中的指示以進行容錯回復。
+>[AZURE.NOTE] 這篇文章說明舊版案例。您只有在使用[這些舊版指示](site-recovery-vmware-to-azure-classic-legacy.md)複寫至 Azure 的情況下，才應該使用這篇文章中的指示。如果您使用[增強部署](site-recovery-vmware-to-azure-classic-legacy.md)設定複寫，則請依照[這篇文章](site-recovery-failback-azure-to-vmware-classic.md)中的指示以進行容錯回復。
 
 
 ## 架構
@@ -44,8 +46,8 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 設定容錯回復的方式如下︰
 
-1. 設定容錯回復元件：您必須在內部部署設定 vContinuum 伺服器，並將它指向 Azure 中的組態伺服器 VM。您也會將處理序伺服器設定為 Azure VM，以將資料傳送回內部部署主要目標伺服器。您向處理容錯移轉的組態伺服器註冊處理序伺服器。您安裝內部部署主要目標伺服器。如果您需要 Windows 主要目標伺服器，它會在您安裝 vContinuum 時自動設定。如果您需要 Linux，您必須在不同的伺服器上手動設定。
-2. 啟用保護和容錯回復︰您已經設定好元件之後，在 vContinuum 中您將需要為已容錯移轉的 Azure VM 啟用保護。您將執行 VM 整備檢查，並從 Azure 執行容錯移轉至您的內部部署網站。完成容錯回復之後，您重新保護內部部署機器，讓它們開始複寫至 Azure。
+1. **設定容錯回復元件**：您必須在內部部署設定 vContinuum 伺服器，並將它指向 Azure 中的組態伺服器 VM。您也會將處理序伺服器設定為 Azure VM，以將資料傳送回內部部署主要目標伺服器。您向處理容錯移轉的組態伺服器註冊處理序伺服器。您安裝內部部署主要目標伺服器。如果您需要 Windows 主要目標伺服器，它會在您安裝 vContinuum 時自動設定。如果您需要 Linux，您必須在不同的伺服器上手動設定。
+2. **啟用保護和容錯回復**︰您已經設定好元件之後，在 vContinuum 中您將需要為已容錯移轉的 Azure VM 啟用保護。您將執行 VM 整備檢查，並從 Azure 執行容錯移轉至您的內部部署網站。完成容錯回復之後，您重新保護內部部署機器，讓它們開始複寫至 Azure。
 
 
 
@@ -66,7 +68,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![](./media/site-recovery-failback-azure-to-vmware/image5.png)
 
-7. 在 [CS 複雜密碼詳細資料] 頁面上，指定您在註冊組態伺服器時記下的複雜密碼。如果您不記得，請在組態伺服器 VM 上的 C:\\Program Files (x86) \\InMage Systems\\private\\connection.passphrase 中查看。
+7. 在 [CS 複雜密碼詳細資料] 頁面上，指定您在註冊組態伺服器時記下的複雜密碼。如果您不記得，請在組態伺服器 VM 上的 **C:\\Program Files (x86) \\InMage Systems\\private\\connection.passphrase** 中查看。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image6.png)
 
@@ -141,7 +143,7 @@ Windows 主要目標已經隨附於 vContinuum 安裝程式中。當您安裝 vC
 
 	![](./media/site-recovery-failback-azure-to-vmware/image14.png)
 
-4. 查看含有 disk.EnableUUID 的資料列是否已經存在？如果存在且已設定為 False，請將它設定為 **True** (不區分大小寫)。如果存在且已設為 True，可按一下 [取消]，然後在其開機之後，於客體作業系統內部測試 SCSI 命令。如果不存在，請按一下 [加入資料列]。
+4. 查看含有 **disk.EnableUUID** 的資料列是否已經存在？如果存在且已設定為 **False**，請將它設定為 **True** (不區分大小寫)。如果存在且已設為 True，可按一下 [取消]，然後在其開機之後，於客體作業系統內部測試 SCSI 命令。如果不存在，請按一下 [加入資料列]。
 5. 在 [名稱] 欄中加入 disk.EnableUUID。將其值儲存為 TRUE。請勿為上述值加上雙引號。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image15.png)
@@ -150,7 +152,7 @@ Windows 主要目標已經隨附於 vContinuum 安裝程式中。當您安裝 vC
 
 注意：請先確定系統具有網際網路連線，然後再下載並安裝其他封裝。
 
-\# yum install -y xfsprogs perl lsscsi rsync wget kexec-tools
+# yum install -y xfsprogs perl lsscsi rsync wget kexec-tools
 
 此命令會從 CentOS 6.6 儲存機制下載這 15 個封裝，並加以安裝：
 
@@ -186,17 +188,17 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 注意：如果來源機器會針對根目錄或開機裝置使用 Reiser 或 XFS 檔案系統，則下列封裝應該下載並安裝於 Linux 主要目標上，才能提供保護。
 
-\# cd /usr/local
+# cd /usr/local
 
-\# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm>
+# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm>
 
-\# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm>
+# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm>
 
-\# rpm -ivh kmod-reiserfs-0.0-1.el6.elrepo.x86\_64.rpm reiserfs-utils-3.6.21-1.el6.elrepo.x86\_64.rpm
+# rpm -ivh kmod-reiserfs-0.0-1.el6.elrepo.x86\_64.rpm reiserfs-utils-3.6.21-1.el6.elrepo.x86\_64.rpm
 
-\# wget <http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_64.rpm>
+# wget <http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_64.rpm>
 
-\# rpm -ivh xfsprogs-3.1.1-16.el6.x86\_64.rpm
+# rpm -ivh xfsprogs-3.1.1-16.el6.x86\_64.rpm
 
 #### 套用自訂組態變更
 
@@ -205,11 +207,11 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 1. 將 RHEL 6-64 整合代理程式二進位檔複製到新建立的作業系統。
 
-2. 執行這個命令來解壓縮二進位檔：tar -zxvf <檔案名稱>
+2. 執行這個命令來解壓縮二進位檔：**tar -zxvf <檔案名稱>**
 
-3. 執行此命令，以授與權限：# chmod 755 ./ApplyCustomChanges.sh
+3. 執行此命令，以授與權限：# **chmod 755 ./ApplyCustomChanges.sh**
 
-4. 執行指令碼：# ./ApplyCustomChanges.sh。只需在伺服器上執行指令碼一次。指令碼執行後，請重新啟動伺服器。
+4. 執行指令碼：**# ./ApplyCustomChanges.sh**。只需在伺服器上執行指令碼一次。指令碼執行後，請重新啟動伺服器。
 
 
 
@@ -221,7 +223,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 3. 使用您選擇的 ssh 用戶端，登入 Linux 主要目標伺服器虛擬機器
 4. 如果您已連接到 Azure 網路 (您已在其上透過 VPN 連線部署 Linux 主要目標伺服器)，則可使用您在虛擬機器 [儀表板] 索引標籤中發現之伺服器的內部 IP 位址，以及使用連接埠 22 來連接到使用安全殼層的 Linux 主要目標伺服器。
 5. 如果您透過公用網際網路連線連接到 Linux 主要目標伺服器，則可使用 Linux 主要目標伺服器的公用虛擬 IP 位址 (從虛擬機器 [儀表板] 索引標籤)，以及針對 ssh 建立的公用端點來登入 Linux 伺服器。
-6. 藉由從包含安裝程式檔案的目錄執行：“tar –xvzf Microsoft-ASR\_UA\_8.2.0.0\_RHEL6-64*”，從 gzipped Linux 主要目標伺服器安裝程式 tar 封存檔解壓縮檔案。
+6. 藉由從包含安裝程式檔案的目錄執行：*“tar –xvzf Microsoft-ASR\_UA\_8.2.0.0\_RHEL6-64*”*，從 gzipped Linux 主要目標伺服器安裝程式 tar 封存檔解壓縮檔案。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image16.png)
 
@@ -298,7 +300,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 	![](./media/site-recovery-failback-azure-to-vmware/image25.png)
 
-	選項 | 選項建議值
+	**選項** | **選項建議值**
 	---|---
 	處理序伺服器 IP 位址 | 選取部署在 Azure 中的處理序伺服器
 	保留大小 (以 MB 為單位)| 
@@ -312,7 +314,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 	![](./media/site-recovery-failback-azure-to-vmware/image26.png)
 
-	屬性 | 詳細資料
+	**屬性** | **詳細資料**
 	---|---
 	網路組態| 針對偵測到的每個網路介面卡，請選取它，然後按一下 [變更] 來設定虛擬機器的容錯回復 IP 位址。 
 	硬體組態| 指定 VM 的 CPU 和記憶體。這些設定可套用到您嘗試保護的所有 VM。若要識別 CPU 和記憶體的正確值，您可以參考 IAAS VM 角色大小，並查看核心數及指派的記憶體。
@@ -371,7 +373,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 	![](./media/site-recovery-failback-azure-to-vmware/image38.png)
 
-3. 您可以根據多個選項進行復原，但建議您使用 最新的標記，然後選取 [套用所有 VM] 以確保使用虛擬機器的最新資料。
+3. 您可以根據多個選項進行復原，但建議您使用 **最新的標記**，然後選取 [套用所有 VM] 以確保使用虛擬機器的最新資料。
 4. 執行 [整備檢查]。 這會檢查是否設為啟用 VM 復原的正確參數。如果所有檢查都成功，請按 [下一步]。如果未成功，請檢查記錄檔並解決錯誤。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image39.png)
@@ -422,8 +424,8 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 
 
-- [閱讀](site-recovery-vmware-to-azure-classic.md)使用增強部署將 VMware 虛擬機器和實體伺服器複寫至 Azure。
+- [深入了解](site-recovery-vmware-to-azure-classic.md)使用增強部署將 VMware 虛擬機器和實體伺服器複寫至 Azure。
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

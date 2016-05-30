@@ -13,18 +13,17 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/10/2016" 
 	ms.author="sunliangms;fashah;garye;bradsev" />
 
 #<a name="heading"></a>Azure blob 儲存體中的取樣資料
 
-## 簡介
 
-本文件說明為儲存於 Azure blob 儲存體中的資料進行取樣，您可以利用程式設計方式下載它，然後使用 Python 程式碼範例來對它進行取樣。執行此動作的步驟如下：
+本文件說明為儲存於 Azure blob 儲存體中的資料進行取樣的方法，您可以利用程式設計方式加以下載，然後使用以 Python 撰寫的程序進行取樣。
 
 **為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
 
-以下**功能表**會連結至說明如何從各種不同儲存體環境進行資料取樣的主題。
+以下**功能表**會連結至如何從各種不同儲存體環境進行資料取樣的說明主題。
 
 [AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
@@ -65,7 +64,7 @@
     	sample_rows = np.random.choice(dataframe_blobdata.index.values, sample_size)
     	dataframe_blobdata_sample = dataframe_blobdata.ix[sample_rows]
 
-	現在您可以使用上述具有 1% 樣本的資料框架，進行進一步探索和功能產生。
+現在您可以使用上述具有 1% 樣本的資料框架，進行進一步探索和功能產生。
 
 ##<a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
 
@@ -99,13 +98,8 @@
 
 3. 使用 Azure ML [讀取器](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)讀取 Azure Blob 的資料，如下圖所示：
  
-![讀取器 Blob][1]
+![讀取器 Blob](./media/machine-learning-data-science-sample-data-blob/reader_blob.png)
 
-[1]: ./media/machine-learning-data-science-sample-data-blob/reader_blob.png
-
-
-<!-- Module References -->
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

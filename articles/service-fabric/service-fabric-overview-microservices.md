@@ -27,7 +27,7 @@
 
 這些商務需求會影響我們「如何」建置應用程式。
 
-如需有關 Azure 使用微服務之方式的詳細資訊，請參閱[微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+如需 Azure 使用微服務之方式的詳細資訊，請參閱[Microservices: An application revolution powered by the cloud (微服務︰採用雲端技術的應用程式革命)](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)。
 
 ## 單體式與微服務設計方法
 所有應用程式會隨著時間而演化。成功的應用程式因為有實用性而演化。失敗的應用程式不會演化，最後會取代。問題在於您現在對需求了解多少，以及未來有何變化？ 比方說，如果您為某個部門建置報告應用程式，並確定這將會保留於公司的範圍內，而且報告將只會短暫存在，則您選擇的方法將不同於建置服務來傳遞視訊內容給數千萬個客戶的方式。在已知後來可以重新設計應用程式的情況下，有時向外尋求概念證明才是驅動因素。從來不用卻過度設計並沒有太大意義。這就是一般所謂的工程取捨。另一方面，公司談論建置雲端時都會期望成長和使用量。問題在於無法預期成長和範圍。我們想要能夠迅速建立原型，同時還要了解我們正在通往未來成功的路徑上。這是精簡的創業方法：建置、測量、學習、反覆執行。
@@ -148,4 +148,4 @@ Service Fabric 的目標是將使用微服務方法建置應用程式時的複�
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

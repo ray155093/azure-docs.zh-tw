@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="05/06/2016" 
 	ms.author="sethm"/>
 
 # 如何使用服務匯流排佇列
 
 [AZURE.INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-本文說明如何使用服務匯流排佇列。這些範例均以 JavaScript 撰寫並使用 Node.js Azure 模組。本文說明的案例包括**建立佇列**、**傳送並接收訊息**，以及**刪除佇列**。如需佇列的詳細資訊，請參閱＜後續步驟＞一節。
+本文說明如何使用 Node.js 中的服務匯流排佇列。這些範例均以 JavaScript 撰寫並使用 Node.js Azure 模組。本文說明的案例包括**建立佇列**、**傳送並接收訊息**，以及**刪除佇列**。如需佇列的詳細資訊，請參閱＜後續步驟＞一節。
 
 [AZURE.INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
@@ -145,7 +145,7 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 });
 ```
 
-服務匯流排佇列最多可支援 256 KB 的訊息大小 (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如需有關配額的詳細資訊，請參閱 [Azure 佇列與服務匯流排佇列][]。
+服務匯流排佇列最多可支援 256 KB 的訊息大小 (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如需有關配額的詳細資訊，請參閱[服務匯流排配額][]。
 
 ## 從佇列接收訊息
 
@@ -185,7 +185,7 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
 
 ## 後續步驟
 
-若要深入了解，請參閱下列資源。
+若要深入了解佇列，請參閱下列資源。
 
 -   [佇列、主題和訂用帳戶][]
 -   GitHub 上的 [Azure SDK for Node][] 儲存機制
@@ -199,7 +199,7 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
   [建立 Node.js 應用程式並將其部署到 Azure 網站]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
   [使用儲存體的 Node.js 雲端服務]: ../cloud-services/storage-nodejs-use-table-storage-cloud-service-app.md
   [使用儲存體的 Node.js Web 應用程式]: ../storage/storage-nodejs-how-to-use-table-storage.md
-  [Azure 佇列與服務匯流排佇列]: service-bus-azure-and-service-bus-queues-compared-contrasted.md#capacity-and-quotas
+  [服務匯流排配額]: service-bus-quotas.md
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

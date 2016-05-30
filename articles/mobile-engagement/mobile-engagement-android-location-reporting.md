@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Android Mobile Engagement 位置報告"
-	description="Android for Azure Mobile Engagement 位置報告"
+	pageTitle="Azure Mobile Engagement Android SDK 位置報告"
+	description="描述如何設定 Azure Mobile Engagement Android SDK 位置報告"
 	services="mobile-engagement"
 	documentationCenter="mobile"
 	authors="piyushjo"
@@ -13,20 +13,19 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="05/12/2016"
 	ms.author="piyushjo;ricksal" />
 
-# Android 上的 Engagement 位置報告
+# Azure Mobile Engagement Android SDK 位置報告
 
 > [AZURE.SELECTOR]
 - [Android](mobile-engagement-android-integrate-engagement.md)
 
-本主題說明如何在 Android 應用程式中進行 Engagement 位置報告。
+本主題說明如何為您的 Android 應用程式進行位置報告。
 
 ## 必要條件
 
 [AZURE.INCLUDE [必要條件](../../includes/mobile-engagement-android-prereqs.md)]
-
 
 ## 位置報告
 
@@ -47,7 +46,7 @@
 
 您還需要新增下列權限 (如果未有此權限)：
 
-		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 或者如果您已經在應用程式中使用 ``ACCESS_FINE_LOCATION``，則可以繼續使用。
 
@@ -66,7 +65,7 @@
 
 您還需要新增下列權限 (如果未有此權限)：
 
-		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 或者如果您已經在應用程式中使用 ``ACCESS_FINE_LOCATION``，則可以繼續使用。
 
@@ -82,7 +81,7 @@
 
 您還需要新增下列權限 (如果未有此權限)：
 
-		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### 背景報告
 
@@ -98,18 +97,18 @@
 
 如果使用者重新啟動裝置，就會停止背景位置報表，您可以加入以下內容，讓它在開機時自動重新啟動：
 
-		<receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
-			   android:exported="false">
-			<intent-filter>
-			    <action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
+	<receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
+		   android:exported="false">
+		<intent-filter>
+		    <action android:name="android.intent.action.BOOT_COMPLETED" />
+		</intent-filter>
+	</receiver>
 
 您還需要新增下列權限 (如果未有此權限)：
 
-		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-### Android M 權限
+## Android M 權限
 
 從 Android M 開始，某些權限會在執行階段管理，而且需要使用者核准。
 
@@ -160,4 +159,4 @@
         getEngagementAgent().refreshPermissions();
     }
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

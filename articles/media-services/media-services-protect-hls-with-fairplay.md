@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="05/04/2016"
+ 	ms.date="05/11/2016"
 	ms.author="juliako"/>
 
 #使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容 
 
 Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時資料流 (HLS) 內容︰
 
-- **AES-128 信封清除金鑰** - 使用 **AES-128 CTR** 模式加密整個區塊。iOS 和 OSX 播放程式原本就支援資料流解密。如需詳細資訊，請參閱[本篇文章](media-services-protect-with-aes128.md)。
+- **AES-128 信封清除金鑰** - 使用 **AES-128 CBC** 模式加密整個區塊。iOS 和 OSX 播放程式原本就支援資料流解密。如需詳細資訊，請參閱[本篇文章](media-services-protect-with-aes128.md)。
 
 - **Apple FairPlay** - 使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。**FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。在 OS X 上的 Safari 可讓您使用加密媒體擴充功能 (EME) 介面支援的 FPS。
 
@@ -97,10 +97,14 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
 1. 若要取得串流 URL，請建立隨選定位器。
 
->[AZURE.NOTE] Azure 媒體播放器不支援現成的 FairPlay 播放。您需要從 Apple 開發人員帳戶取得範例播放程式，才能在 MAC OSX 上播放 FairPlay。
->
->您也可以使用 iOS SDK 開發應用程式。
+##透過播放程式/用戶端應用程式使用 FairPlay 金鑰傳遞
 
+客戶可以使用 iOS SDK 開發播放應用程式。為了能夠播放 FairPlay 內容，客戶必須實作授權交換通訊協定。授權交換通訊協定並非由 Apple 所指定，而是由各個應用程式決定如何傳送金鑰傳遞要求。AMS FairPlay 金鑰傳遞服務會對即將到來的 SPC 視為如下列格式的 www-form-url 已編碼張貼訊息：
+
+	spc=<Base64 encoded SPC>
+
+>[AZURE.NOTE] Azure 媒體播放器不支援現成的 FairPlay 播放。客戶需要從 Apple 開發人員帳戶取得範例播放程式，才能在 MAC OSX 上播放 FairPlay。
+ 
 
 ##.NET 範例
 
@@ -536,4 +540,4 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="分割訊息實體 | Microsoft Azure"
-   description="說明如何使用多個訊息代理人分割訊息實體。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" /> 
+    pageTitle="分割訊息實體 | Microsoft Azure"
+    description="說明如何使用多個訊息代理人分割訊息實體。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="12/28/2015"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 分割訊息實體
 
@@ -23,9 +23,9 @@ Azure 服務匯流排會採用多個訊息代理人來處理訊息，並採用�
 
 ## 分割的佇列和主題
 
-每個分割的佇列或主題都包含多個片段。每個片段儲存在不同的訊息存放區中，並由不同的訊息代理人處理。當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。選取作業由服務匯流排或傳送者可以指定的分割索引鍵隨機進行。
+每個分割的佇列或主題都包含多個片段。每個片段儲存在不同的訊息存放區中，並由不同的訊息代理人處理。當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。選取作業由服務匯流排或使用傳送者可指定的分割索引鍵隨機進行。
 
-當用戶端想要從分割的佇列或從分割主題的訂用帳戶接收訊息時，服務匯流排會查詢所有片段的訊息，然後傳回由任何訊息存放區傳回給接收者的第一個訊息。服務匯流排會快取其他訊息，然後在它收到其他接收要求時將其傳回。接收的用戶端並不知道分割。分割佇列或主題的用戶端對向行為 (例如讀取、完成、延遲、無效化、預先擷取) 和一般實體的行為相同。
+當用戶端想要從分割的佇列或從分割主題的訂用帳戶接收訊息時，服務匯流排會查詢所有片段的訊息，然後將取自任何訊息存放區的第一個訊息傳回給接收者。服務匯流排會快取其他訊息，然後在它收到其他接收要求時將其傳回。接收的用戶端並不知道分割。分割佇列或主題的用戶端對向行為 (例如讀取、完成、延遲、無效化、預先擷取) 和一般實體的行為相同。
 
 傳送訊息給分割的佇列或主題，或從該處接收訊息時，不需要額外成本。
 
@@ -144,4 +144,4 @@ Azure 服務匯流排支援從分割實體自動轉送訊息、自動轉送訊�
   [QueueDescription.ForwardTo]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.forwardto.aspx
   [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0518_2016-->

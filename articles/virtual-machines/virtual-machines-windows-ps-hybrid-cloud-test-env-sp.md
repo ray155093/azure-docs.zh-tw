@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -201,7 +201,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 3.	在通知可能需要在組態期間重新啟動某些服務的對話方塊中，按一下 [是]。
 4.	在 [連接到伺服器陣列] 頁面上，按一下 [建立新的伺服器陣列]，然後按 [下一步]。
 5.	在 [指定組態資料庫設定] 頁面上，於 [資料庫伺服器] 中輸入 **sql1.corp.contoso.com**，於 [使用者名稱] 中輸入**CORP\\SPFarmAdmin**，於 [密碼] 中輸入 SPFarmAdmin 帳戶密碼，然後按 [下一步]。
-6.	在 [指定伺服器陣列安全性設定] 頁面上，於 [複雜密碼] 和 [確認複雜密碼] 中，鍵入 **P@ssphrase**，然後按一下 [下一步]。
+6.	在 [指定伺服器陣列安全性設定] 頁面上，於 [複雜密碼] 和 [確認複雜密碼] 中，鍵入 ****P@ssphrase**，然後按一下 [下一步]。
 7.	在 [設定 SharePoint 管理中心 Web 應用程式] 頁面中，按 [**下一步**]。
 8.	在 [完成 SharePoint 產品組態精靈] 頁面上，按一下 [下一步]。SharePoint 產品組態精靈可能需要幾分鐘才能完成。
 9.	在 [組態成功] 頁面中，按一下 [**完成**]。完成之後，Internet Explorer 會啟動，並顯示名稱為「初始伺服器陣列組態精靈」的索引標籤。
@@ -209,10 +209,10 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 11.	針對**要用什麼方式設定 SharePoint 伺服器陣列？**，按一下 [啟動精靈]。
 12.	在 [設定您的 SharePoint 伺服器陣列] 頁面的 [服務帳戶] 中，按一下 [使用現有受管理帳戶]。
 13.	在 [服務] 中，取消選取所有核取方塊 ([狀態服務] 旁的方塊除外)，然後按一下 [下一步]。在其網頁上的 [工作] 可能顯示一段時間才會完成。
-14.	在 [建立網站集合] 頁面的 [標題和描述] 中，於 [標題] 鍵入 **Contoso Corporation**，指定 URL **http://sp1**/，然後按一下 [確定]。在其網頁上的 [工作] 可能顯示一段時間才會完成。這個步驟會針對團隊網站使用 URL http://sp1。
+14.	在 [建立網站集合] 頁面的 [標題和描述] 中，於 [標題] 鍵入 **Contoso Corporation**，指定 URL ****http://sp1**/，然後按一下 [確定]。在其網頁上的 [工作] 可能顯示一段時間才會完成。這個步驟會針對團隊網站使用 URL http://sp1。
 15.	在 [這將完成伺服器陣列組態精靈] 頁面中，按一下 [完成]。[Internet Explorer] 索引標籤將顯示 SharePoint 2013 管理中心網站。
 16.	以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
-17.	在網址列中，鍵入 **http://sp1/**，然後按 ENTER。您應該會看見 Contoso Corporation 的 SharePoint 團隊網站。網站可能需要一些時間才會呈現。
+17.	在網址列中，鍵入 ****http://sp1/**，然後按 ENTER。您應該會看見 Contoso Corporation 的 SharePoint 團隊網站。網站可能需要一些時間才會呈現。
 
 這是您目前的組態。
 
@@ -222,6 +222,6 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 ## 後續步驟
 
-- 部署[生產工作負載](virtual-machines-windows-sp-intranet-overview.md)。
+- [設定](https://technet.microsoft.com/library/ee836142.aspx) SharePoint 伺服器陣列。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

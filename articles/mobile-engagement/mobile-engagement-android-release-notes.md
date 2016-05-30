@@ -13,11 +13,21 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="05/17/2016"
 	ms.author="piyushjo" />
 
 
 #版本資訊
+
+##4\.2.2 (2016/05/17)
+
+- 穩定性改進。
+
+##4\.2.1 (2016/05/10)
+
+- 安全性︰停用 Web 檢視本機檔案存取權限。
+- 安全性︰移除 `EngagementPreferenceActivity` 類別，其可擴充過時且不安全的 `PreferenceActivity` 類別。
+- 安全性︰現在會記載觸達活動以使用 `exported="false"`，此旗標也可用於先前的 SDK 版本。
 
 ##4\.2.0 (03/11/2016)
 
@@ -70,4 +80,4 @@
 -   增強安全性。
 -   已移除 Google Play 和 SmartAd 追蹤。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

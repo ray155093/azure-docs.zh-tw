@@ -12,18 +12,21 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/10/2016" 
+	ms.date="05/07/2016" 
 	ms.author="awills"/>
  
 # 從 Application Insights 匯出遙測
 
-想要對您的遙測執行一些自訂的分析？ 或也許您想要對具有特定屬性的事件以電子郵件寄送警示？ 連續匯出很適合此用途。在 Application Insights 入口網站中看見的事件，可以使用 JSON 格式匯出到 Microsoft Azure 中的儲存體。從那裡，您可以下載資料並編寫處理所需的任何程式碼。
+想要讓遙測保留比標準保留期限還久的時間？ 或以某些特殊方式處理它？ 連續匯出很適合此用途。在 Application Insights 入口網站中看見的事件，可以使用 JSON 格式匯出到 Microsoft Azure 中的儲存體。從那裡，您可以下載資料並編寫處理所需的任何程式碼。
 
 在免費試用期間，或是使用[標準及高階定價方案](https://azure.microsoft.com/pricing/details/application-insights/)時，都可使用「連續匯出」功能。
 
->[AZURE.NOTE] 如果您想要[在 Power BI 中探索資料](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)，不需要用到「連續匯出」也可以這麼做。
->
->如果您只想要[一次性匯出](app-insights-metrics-explorer.md#export-to-excel)您在度量或搜尋刀鋒視窗上看到的內容，請按一下刀鋒視窗頂端的 [匯出]。
+
+在設定連續匯出之前，您可能要考慮某些替代作法︰
+
+* 度量或搜尋刀鋒視窗頂端的[匯出按鈕](app-insights-metrics-explorer.md#export-to-excel)，可讓您傳送資料表和圖表到 Excel 試算表。 
+* [分析](app-insights-analytics.md)可提供功能強大的遙測查詢語言，也可以匯出結果。
+* 如果您想要[在 Power BI 中探索資料](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)，不需要用到「連續匯出」也可以這麼做。
 
 
 ## 建立儲存體帳戶
@@ -74,6 +77,8 @@
 
 匯出的資料是我們從您的應用程式接收的原始遙測，只不過我們加入了從用戶端 IP 位址計算的位置資料。
 
+[取樣](app-insights-sampling.md)已捨棄的資料不會包含在匯出的資料中。
+
 未包含其他計算的度量。例如，我們不會匯出平均 CPU 使用率，但我們會匯出用以計算平均的原始遙測。
 
 該資料也包含您曾設定之[可用性 Web 測試](app-insights-monitor-web-app-availability.md)的任何結果。
@@ -107,6 +112,7 @@ Where
 ## <a name="format"></a> 資料格式
 
 * 每個 Blob 是包含多個以 '\\n' 分隔的列的文字檔案。
+* 每個資料列都代表遙測資料點，例如要求或頁面檢視。
 * 每列是未格式化的 JSON 文件。如果您想要靜靜地仔細觀看，請在 Visual Studio 中開啟，並依序選擇 [編輯]、[進階]、[格式檔案]：
 
 ![使用合適的工具檢視遙測](./media/app-insights-export-telemetry/06-json.png)
@@ -223,4 +229,4 @@ Where
 
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

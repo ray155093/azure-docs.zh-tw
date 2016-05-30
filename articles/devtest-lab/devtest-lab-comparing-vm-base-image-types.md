@@ -1,5 +1,5 @@
 <properties
-	pageTitle="比較研測實驗室中的自訂映像和公式 | Microsoft Azure"
+	pageTitle="比較 DevTest Labs 中的自訂映像和公式 | Microsoft Azure"
 	description="了解自訂映像與作為 VM 基礎的公式之間的差異，以決定哪一個最適合您的環境。"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
-# 比較研測實驗室中的自訂映像和公式
+# 比較研發/測試實驗室中的自訂映像和公式
 
 ## 概觀
-[自訂映像](./devtest-lab-create-template.md)和[公式](./devtest-lab-manage-formulas.md)可以當作[建立新 VM](./devtest-lab-add-vm-with-artifacts.md) 的基礎。不過，自訂映像與公式的主要差別在於自訂映像只是根據 VHD 的影像，而公式是根據 VHD 的影像*並且*具有預先設定的設定 (例如 VM 大小、虛擬網路和子網路、構件等)。這些預先設定的設定是使用預設值所設定，並且可以在建立 VM 時予以覆寫。本文說明使用自訂映像與使用公式的一些優缺點。
+[自訂映像](./devtest-lab-create-template.md)和[公式](./devtest-lab-manage-formulas.md)可以當作[建立新 VM](./devtest-lab-add-vm-with-artifacts.md) 的基礎。不過，自訂映像與公式的主要差別在於自訂映像只是根據 VHD 的影像，而公式是根據 VHD 的影像並且具有預先設定的設定 (例如 VM 大小、虛擬網路和子網路、構件等)。這些預先設定的設定是使用預設值所設定，並且可以在建立 VM 時予以覆寫。本文說明使用自訂映像與使用公式的一些優缺點。
  
 ## 自訂映像的優缺點
 自訂映像提供靜態、不可變的方式，從所需的環境中建立 VM。
@@ -42,4 +42,4 @@
 **缺點**
 - 透過公式建立 VM 所需的時間多於透過自訂映像建立 VM。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 #國碼
+
+[AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
 **國家 (地區) 篩選**功能可使用國碼來定義國家 (地區)，以允許或封鎖該國家 (地區) 對受保護目錄的要求。下表包含所有國碼。如果您指定 "EU" (歐洲) 或 "AP" (亞太地區)，來自該區域中任何國家 (地區) 的 IP 位址子集將會被封鎖或允許。如需如何使用國家 (地區) 篩選功能的詳細資料，請參閱[如何根據國家 (地區) 限制存取您的內容](cdn-restrict-access-by-country.md)。
 
@@ -268,4 +270,4 @@
 | ZM | 尚比亞 | |
 | ZW | 辛巴威 | |
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

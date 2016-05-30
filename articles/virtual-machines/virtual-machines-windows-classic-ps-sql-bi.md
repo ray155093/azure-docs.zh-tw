@@ -4,7 +4,7 @@
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="guyinacube"
-	manager="jeffreyg"
+	manager="mblythe"
 	editor="monicar"
 	tags="azure-service-management"/>
 <tags
@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="12/11/2015"
+	ms.date="05/13/2016"
 	ms.author="asaxton" />
 
 # Azure 虛擬機器中的 SQL Server Business Intelligence
@@ -50,27 +50,29 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 
 	Set-AzureSubscription -SubscriptionName $subscriptionName -Certificate $certificate -SubscriptionID $subscriptionID
 
+	Write-Host -foregroundcolor green "List of available gallery images where imagename contains 2016"
+	Write-Host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	get-azurevmimage | where {$_.ImageName -Like "*SQL-Server-2016*"} | select imagename,category, location, label, description
+
 	Write-Host -foregroundcolor green "List of available gallery images where imagename contains 2014"
 	Write-Host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 	get-azurevmimage | where {$_.ImageName -Like "*SQL-Server-2014*"} | select imagename,category, location, label, description
-
-	Write-Host -foregroundcolor green "List of available gallery images where imagename contains 2012"
-	Write-Host -foregroundcolor green ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-	get-azurevmimage | where {$_.ImageName -Like "*SQL-Server-2012*"} | select imagename,category, location, label, description
 
 如需有關版本與 SQL Server 所支援的功能的詳細資訊，請參閱下列各項：
 
 - [SQL Server 版本](https://www.microsoft.com/server-cloud/products/sql-server-editions/#fbid=Zae0-E6r5oh)
 
-- [SQL Server 2014 的版本所支援的功能](https://msdn.microsoft.com/library/cc645993.aspx)
+- [SQL Server 2016 的版本所支援的功能](https://msdn.microsoft.com/library/cc645993.aspx)
 
 ### SQL Server 虛擬機器資源庫映像上安裝的 BI 功能
 
 下表摘要說明常見的 Microsoft Azure 虛擬機器資源庫映像上所安裝 SQL Server 的商務智慧功能
 
-- SQL Server 2014 RTM Enterprise
+- SQL Server 2016 RC3
 
-- SQL Server 2014 Standard
+- SQL Server 2014 SP1 Enterprise
+
+- SQL Server 2014 SP1 Standard
 
 - SQL Server 2012 SP2 Enterprise
 
@@ -81,7 +83,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 |**Reporting Services 原生模式**|是|已安裝但需要組態，包括報表管理員 URL。請參閱[設定 Reporting Services](#configure-reporting-services) 一節。|
 |**Reporting Services SharePoint 模式**|否|Microsoft Azure 虛擬機器資源庫映像庫不包含 SharePoint 或 SharePoint 安裝檔案。<sup>1</sup>|
 |**Analysis Services 多維度和資料採礦 (OLAP)**|是|已安裝並設定為預設的 Analysis Services 執行個體|
-|**Analysis Services 表格式**|否|SQL Server 2012 和 2014 映像中支援，但預設不會安裝。安裝另一個執行個體的 Analysis Services。請參閱本主題中的＜安裝其他 SQL Server 服務和功能＞。|
+|**Analysis Services 表格式**|否|SQL Server 2012、2014 和 2016 映像中支援，但預設不會安裝。安裝另一個執行個體的 Analysis Services。請參閱本主題中的＜安裝其他 SQL Server 服務和功能＞。|
 |**適用於 SharePoint 的 Analysis Services Power Pivot **|否|Microsoft Azure 虛擬機器資源庫映像庫不包含 SharePoint 或 SharePoint 安裝檔案。<sup>1</sup>|
 
 <sup>1</sup> 如需有關 SharePoint 和 Azure 虛擬機器的詳細資訊，請參閱[適用於 SharePoint 2013 的 Microsoft Azure 架構](https://technet.microsoft.com/library/dn635309.aspx)和 [Microsoft Azure 虛擬機器上的 SharePoint 部署](https://www.microsoft.com/download/details.aspx?id=34598)。
@@ -184,7 +186,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 按一下 [開始]，然後按一下 [所有程式]。
 
-1. 按一下 [Microsoft SQL Server 2012]。
+1. 按一下 [Microsoft SQL Server 2016]。
 
 1. 按一下 [組態工具]。
 
@@ -240,9 +242,9 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 在 [進度和完成] 頁面上，按一下 [下一步]。
 
-**報告管理員 URL：**
+**入口網站 URL 或 2012 和 2014 版的報表管理員 URL：**
 
-1. 按一下左窗格中的 [報表管理員 URL]。
+1. 在左窗格中，按一下 [Web Portal URL] (入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
 
 1. 按一下 [Apply (套用)]。
 
@@ -260,31 +262,33 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 在 VM 上瀏覽至 http://localhost/reports。
 
-### 連接到遠端報表管理員
+### 若要連接遠端入口網站或 2012 和 2014 版的報表管理員
 
-如果您想要從遠端電腦連接到虛擬機器上的報表管理員，請建立新的虛擬機器 TCP 端點。根據預設，報表伺服器會接聽**連接埠 80** 上的 HTTP 要求。如果您將報表伺服器 URL 設定為使用不同的連接埠，您必須在下列指示中指定該連接埠編號。
+如果您想要從遠端電腦連接到虛擬機器上的入口網站或 2012 和 2014 版報表管理員，請建立新的虛擬機器 TCP 端點。根據預設，報表伺服器會接聽**連接埠 80** 上的 HTTP 要求。如果您將報表伺服器 URL 設定為使用不同的連接埠，您必須在下列指示中指定該連接埠編號。
 
 1. 為虛擬機器的 TCP 連接埠 80 建立端點。如需詳細資訊，請參閱這份文件中的[虛擬機器端點和防火牆連接埠](#virtual-machine-endpoints-and-firewall-ports)一節。
 
 1. 在虛擬機器防火牆中開啟連接埠 80。
 
-1. 使用 Azure 虛擬機器 **DNS 名稱**做為 URL 中的伺服器名稱，瀏覽至報表管理員。例如：
+1. 使用 Azure 虛擬機器 **DNS 名稱**做為 URL 中的伺服器名稱，瀏覽至入口網站或報表管理員。例如：
 
-	**報表管理員**: http://uebi.cloudapp.net/reportserver **報表伺服器**: http://uebi.cloudapp.net/reports
+	**報表伺服器**：http://uebi.cloudapp.net/reportserver **入口網站**：http://uebi.cloudapp.net/reports
 
-	[為報表伺服器存取設定防火牆](https://technet.microsoft.com/library/bb934283.aspx)
+	[為報表伺服器存取設定防火牆](https://msdn.microsoft.com/library/bb934283.aspx)
 
 ### 建立並將報表發佈至 Azure 虛擬機器
 
-下表將摘要列出一些可用來從內部部署電腦發佈現有報表至 Microsoft Azure 虛擬機器上代管的報表伺服器的選項：
+下表摘要列出一些選項，可將現有報表從內部部署電腦發佈至 Microsoft Azure 虛擬機器上託管的報表伺服器：
 
-- **報表產生器**：虛擬機器包含 Click Once 版本的 Microsoft SQL Server 報表產生器。若要在虛擬機器上首次啟動報表產生器：
+- **報表產生器**：虛擬機器包含適用於 SQL 2012 和 2014 的 Click Once 版本 Microsoft SQL Server 報表產生器。若要在虛擬機器上首次啟動搭配 SQL 2016 的報表產生器：
 
 	1. 以管理權限啟動瀏覽器。
 
-	1. 瀏覽至虛擬機器上的報表管理員，然後按一下功能區中的 [報表產生器]。
+	1. 瀏覽至虛擬機器上的入口網站，並選取右上角的**下載**圖示。
+	
+	1. 選取 [報表產生器]。
 
-	如需詳細資訊，請參閱[安裝、解除安裝和支援報表產生器](https://technet.microsoft.com/library/dd207038.aspx)。
+	如需詳細資訊，請參閱[啟動報表產生器](https://msdn.microsoft.com/library/ms159221.aspx)。
 
 - **SQL Server Data Tools**：VM：SQL Server Data Tools 安裝在虛擬機器上，並可用在虛擬機器上建立**報表伺服器專案**和報表。SQL Server Data Tools 可以將報表發佈至虛擬機器上的報表伺服器。
 
@@ -308,11 +312,11 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 按一下 [開始]，然後按一下 [所有程式]。
 
-1. 按一下 [Microsoft SQL Server 2014] 或 [Microsoft SQL Server 2012]，然後按一下 [組態工具]。
+1. 按一下 [Microsoft SQL Server 2016]、[Microsoft SQL Server 2014] 或 [Microsoft SQL Server 2012]，然後按一下 [設定工具]。
 
 1. 按一下 [SQL Server 安裝中心]。
 
-或執行 C:\\SQLServer\_12.0\_full\\setup.exe 或 C:\\SQLServer\_11.0\_full\\setup.exe
+或執行 C:\\SQLServer\_13.0\_full\\setup.exe、C:\\SQLServer\_12.0\_full\\setup.exe 或 C:\\SQLServer\_11.0\_full\\setup.exe
 
 >[AZURE.NOTE] 第一次執行 SQL Server 安裝程式時，可能會下載更多安裝檔，且需要將虛擬機器重新開機和重新啟動 SQL Server 安裝程式。
 >
@@ -324,13 +328,13 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 - [以表格式模式安裝 Analysis Services](https://msdn.microsoft.com/library/hh231722.aspx)
 
-- [表格式模型化 (Adventure Works 教學課程)](https://technet.microsoft.com/library/140d0b43-9455-4907-9827-16564a904268)
+- [表格式模型化 (Adventure Works 教學課程)](https://msdn.microsoft.com/library/140d0b43-9455-4907-9827-16564a904268)
 
 **若要安裝 Analysis Services 表格式模式：**
 
 1. 在 SQL Server 安裝精靈中，按一下左窗格中的 [安裝]，然後按一下 [新的 SQL 伺服器安裝或將功能加入到現有安裝]。
 
-	- 如果您看到 [瀏覽資料夾]，請瀏覽至 c:\\SQLServer\_12.0\_full 或 c:\\SQLServer\_11.0\_full，然後按一下 [確定]。
+	- 如果您看到 [瀏覽資料夾]，請瀏覽至 c:\\SQLServer\_13.0\_full、c:\\SQLServer\_12.0\_full 或 c:\\SQLServer\_11.0\_full，然後按一下 [確定]。
 
 1. 在產品更新頁面上，按 [下一步]。
 
@@ -388,9 +392,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 	|連接埠|類型|說明|
 |---|---|---|
-|**80**|TCP|報表伺服器遠端存取 (*).|
-|**1433**|TCP|SQL Server Management Studio (*).|
-|**1434**|UDP|SQL Server Browser。在 VM 加入網域時所需。|
+|**80**|TCP|報表伺服器遠端存取 (*).| |**1433**|TCP|SQL Server Management Studio (*).| |**1434**|UDP|SQL Server Browser。在 VM 加入網域時所需。|
 |**2382**|TCP|SQL Server Browser。|
 |**2383**|TCP|SQL Server Analysis Services 預設執行個體和叢集具名執行個體。|
 |**使用者定義**|TCP|為您選擇的連接埠編號建立靜態 Analysis Services 具名執行個體連接埠，然後在防火牆中解除封鎖連接埠號碼。|
@@ -433,4 +435,4 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

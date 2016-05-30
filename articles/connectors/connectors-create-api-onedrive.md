@@ -14,7 +14,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/16/2016"
+ms.date="05/12/2016"
 ms.author="mandia"/>
 
 # 開始使用 OneDrive API
@@ -59,7 +59,7 @@ OneDrive API 包含下列觸發程序及動作。
 1. 登入您的 OneDrive 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 OneDrive。 
 
-當您建立連線之後，請輸入 OneDrive 的屬性，例如資料夾路徑或檔案名稱。本主題的 **REST API 參考**一節會說明這些屬性。
+>[AZURE.INCLUDE [建立至 OneDrive 連線的步驟](../../includes/connectors-create-api-onedrive.md)]
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的連線。
 
@@ -312,4 +312,4 @@ OneDrive API 包含下列觸發程序及動作。
 [6]: ./media/connectors-create-api-onedrive/onedrive-new-app.png
 [7]: ./media/connectors-create-api-onedrive/onedrive-app-api-settings.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

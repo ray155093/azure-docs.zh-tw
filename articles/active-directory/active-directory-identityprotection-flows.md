@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory Identity Protection 流程| Microsoft Azure"
+	pageTitle="使用 Azure AD Identity Protection 時的登入體驗 | Microsoft Azure"
 	description="當 Identity Protection 已降低或補救使用者時，或是原則需要 Multi-Factor Authentication 時，請提供使用者經驗的概觀。"
 	services="active-directory"
 	keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="05/17/2016"
 	ms.author="markvi"/>
 
-#Azure Active Directory Identity Protection 流程
+# 使用 Azure AD Identity Protection 時的登入體驗
 
 透過 Azure Active Directory Identity Protection，您可以：
 
@@ -158,4 +158,4 @@
 
 - [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

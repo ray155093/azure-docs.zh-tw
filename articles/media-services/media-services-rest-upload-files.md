@@ -49,8 +49,7 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 
 您可以在建立資產時指定的其中一個屬性是 **Options**。**Options** 是列舉值，描述可用來建立資產的加密選項。有效的值是以下清單的其中一個值，而不是值的組合。
 
-- **None** = **0**：將不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。
-	如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
+- **None** = **0**：將不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
 
 - **StorageEncrypted** = **1**：如果要用 AES-256 位元加密來加密您的檔案，以便進行上傳和儲存，請指定此值。
 
@@ -324,8 +323,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，會傳回下列訊息：
-	HTTP/1.1 204 沒有內容
+如果成功，會傳回下列訊息：HTTP/1.1 204 沒有內容
 
 ### 刪除 Locator 和 AccessPolicy 
 
@@ -426,17 +424,48 @@ IngestManifestAssets 代表 IngestManifest 中配合大量內嵌使用的資產�
 	Expect: 100-continue
 	{ "ParentIngestManifestId" : "nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048", "Asset" : { "Id" : "nb:cid:UUID:b757929a-5a57-430b-b33e-c05c6cbef02e"}}
 
-###(選用) 建立要用於加密的 ContentKey
 
-如果您的資產將會使用加密，就必須在為資產建立 IngestManifestFiles 之前，建立要用於加密 ContentKey。在此情況下，要求本文中會包含下列屬性。
+###為每個資產建立 IngestManifestFile
+
+IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產上傳此物件以做為大量內嵌的一部分。除非資產正在使用加密選項，否則不需與加密相關的屬性。本節使用的範例示範如何建立 IngestManifestFile，針對先前建立的資產使用 StorageEncryption。
+
+
+**HTTP 回應**
+
+	POST https://media.windows.net/API/IngestManifestFiles HTTP/1.1
+	Content-Type: application/json;odata=verbose
+	Accept: application/json;odata=verbose
+	DataServiceVersion: 3.0
+	MaxDataServiceVersion: 3.0
+	x-ms-version: 2.11
+	Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=070500D0-F35C-4A5A-9249-485BBF4EC70B&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1334275521&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=GxdBb%2fmEyN7iHdNxbawawHRftLhPFFqxX1JZckuv3hY%3d
+	Host: media.windows.net
+	Content-Length: 367
+	Expect: 100-continue
+	
+	{ "Name" : "REST_Example_File.wmv", "ParentIngestManifestId" : "nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048", "ParentIngestManifestAssetId" : "nb:maid:UUID:beed8531-9a03-9043-b1d8-6a6d1044cdda", "IsEncrypted" : "true", "EncryptionScheme" : "StorageEncryption", "EncryptionVersion" : "1.0", "EncryptionKeyId" : "nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510" }
+	
+###將檔案上傳至 Blob 儲存體
+
+您可以使用任何高速用戶端應用程式，此應用程式能夠將資產檔案上傳至 IngestManifest 之 BlobStorageUriForUpload 屬性所提供的 Blob 儲存體容器 URI。一個著名的高速上傳服務是 [Aspera On Demand for Azure Application](http://go.microsoft.com/fwlink/?LinkId=272001)。
+
+###監視大量內嵌進度
+
+您可以藉由輪詢 IngestManifest 的 Statistics 屬性，來監視 IngestManifest 的大量內嵌作業進度。該屬性是複雜類型 [IngestManifestStatistics](https://msdn.microsoft.com/library/azure/jj853027.aspx)。若要輪詢 Statistics 屬性，請送出 HTTP GET 要求以傳遞 IngestManifest 識別碼。
  
-要求本文屬性 |描述
-識別碼 | 我們自行產生的 ContentKey 識別碼會使用下列格式：“nb:kid:UUID:<NEW GUID>”。
+
+##建立要用於加密的 ContentKey
+
+如果您的資產會使用加密功能，就必須在建立資產檔案前，建立要用於加密的 ContentKey。對於儲存體加密，要求本文中應該包含下列屬性。
+ 
+要求本文屬性 | 說明
+---|---
+識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼："nb:kid:UUID:<NEW GUID>"。
 ContentKeyType | 這是針對此內容金鑰以整數表示的內容金鑰類型。我們會傳遞值 1 來進行儲存體加密。
-EncryptedContentKey |我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。
-ProtectionKeyId |這是適用於儲存體加密 X.509 憑證的保護金鑰識別碼，可用來加密我們的內容金鑰。
-ProtectionKeyType |這是適用於保護金鑰的加密類型，可用來將內容金鑰加密。針對本文範例，此值為 StorageEncryption(1)。
-Checksum |MD5 會針對內容金鑰計算出總和檢查碼。它是使用內容金鑰來將內容識別碼加密計算而得的。範例程式碼示範如何計算總和檢查碼。
+EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。
+ProtectionKeyId | 這是適用於儲存體加密 X.509 憑證的保護金鑰識別碼，可用來加密我們的內容金鑰。
+ProtectionKeyType | 這是適用於保護金鑰的加密類型，可用來將內容金鑰加密。針對本文範例，此值為 StorageEncryption(1)。
+總和檢查碼 |MD5 會針對內容金鑰計算出總和檢查碼。它是使用內容金鑰來將內容識別碼加密計算而得的。範例程式碼示範如何計算總和檢查碼。
 
 
 **HTTP 回應**
@@ -473,35 +502,6 @@ Checksum |MD5 會針對內容金鑰計算出總和檢查碼。它是使用內容
 	
 	{ "uri": "https://media.windows.net/api/ContentKeys('nb%3Akid%3AUUID%3A32e6efaf-5fba-4538-b115-9d1cefe43510')"}
 
-###為每個資產建立 IngestManifestFile
-
-IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產上傳此物件以做為大量內嵌的一部分。除非資產正在使用加密選項，否則不需與加密相關的屬性。本節使用的範例示範如何建立 IngestManifestFile，針對先前建立的資產使用 StorageEncryption。
-
-
-**HTTP 回應**
-
-	POST https://media.windows.net/API/IngestManifestFiles HTTP/1.1
-	Content-Type: application/json;odata=verbose
-	Accept: application/json;odata=verbose
-	DataServiceVersion: 3.0
-	MaxDataServiceVersion: 3.0
-	x-ms-version: 2.11
-	Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=070500D0-F35C-4A5A-9249-485BBF4EC70B&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1334275521&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=GxdBb%2fmEyN7iHdNxbawawHRftLhPFFqxX1JZckuv3hY%3d
-	Host: media.windows.net
-	Content-Length: 367
-	Expect: 100-continue
-	
-	{ "Name" : "REST_Example_File.wmv", "ParentIngestManifestId" : "nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048", "ParentIngestManifestAssetId" : "nb:maid:UUID:beed8531-9a03-9043-b1d8-6a6d1044cdda", "IsEncrypted" : "true", "EncryptionScheme" : "StorageEncryption", "EncryptionVersion" : "1.0", "EncryptionKeyId" : "nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510" }
-	
-###將檔案上傳至 Blob 儲存體
-
-您可以使用任何高速用戶端應用程式，此應用程式能夠將資產檔案上傳至 IngestManifest 之 BlobStorageUriForUpload 屬性所提供的 Blob 儲存體容器 URI。一個著名的高速上傳服務是 [Aspera On Demand for Azure Application](http://go.microsoft.com/fwlink/?LinkId=272001)。
-
-###監視大量內嵌進度
-
-您可以藉由輪詢 IngestManifest 的 Statistics 屬性，來監視 IngestManifest 的大量內嵌作業進度。該屬性是複雜類型 [IngestManifestStatistics](https://msdn.microsoft.com/library/azure/jj853027.aspx)。若要輪詢 Statistics 屬性，請送出 HTTP GET 要求以傳遞 IngestManifest 識別碼。
- 
-
 **HTTP 回應**
 
 	GET https://media.windows.net/API/IngestManifests('nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048') HTTP/1.1
@@ -529,4 +529,4 @@ IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產�
 [How to Get a Media Processor]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

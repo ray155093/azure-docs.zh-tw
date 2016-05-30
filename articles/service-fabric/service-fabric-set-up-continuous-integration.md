@@ -3,7 +3,7 @@
    description="取得如何使用 Visual Studio Team Services (VSTS) 設定 Service Fabric 應用程式之持續整合的概觀。"
    services="service-fabric"
    documentationCenter="na"
-   authors="cawams"
+   authors="mthalman-msft"
    manager="timlt"
    editor="" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
    ms.date="03/29/2016"
-   ms.author="cawa" />
+   ms.author="mthalman" />
 
 # 使用 Visual Studio Team Services 為 Service Fabric 應用程式設定持續整合
 
@@ -45,7 +45,7 @@
 
     a.如果您執行具有最新更新的 Windows 10，您可以略過此步驟 (已經安裝 PowerShellGet)。
 
-    b.如果不是，請安裝 [Windows Management Framework 5.0](http://www.microsoft.com/download/details.aspx?id=48729)，其中包括 PowerShellGet。
+    b.如果不是，請安裝 [Windows Management Framework 5.0](https://aka.ms/wmf5download)，其中包括 PowerShellGet。
 
 2.	安裝和更新 AzureRM 模組。如果您已安裝任何舊版的 Azure PowerShell，請將它移除：
 
@@ -53,11 +53,9 @@
 
     b.搜尋 "Azure PowerShell" 並將它解除安裝。
 
-    c.開啟 PowerShell 命令提示字元。
+    c.以系統管理員身分開啟 PowerShell 命令提示字元。
 
     d.使用命令 `Install-Module AzureRM` 安裝 AzureRM 模組。
-
-    e.使用命令 `Update-AzureRM` 更新 AzureRM 模組。
 
 3.	停用 (或啟用) Azure 資料收集。
 
@@ -81,7 +79,7 @@
 
 ### 建立服務主體
 
-1. 請依照[這些指示](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)，為您的專案建立服務主體和服務端點。
+1. 請遵循[這些指示](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)，為您的專案建立服務主體和服務端點。
 
 2. 請注意，值會列印在指令碼的輸出結尾。您需要這些值才能設定組建定義。
 
@@ -89,7 +87,7 @@
 
 >[AZURE.NOTE] 此範例指令碼會產生自我簽署的憑證，這並非安全做法，僅有實驗時可以接受。請遵循組織的指導方針，改為取得合法的憑證。這些指示也會針對伺服器和用戶端使用單一憑證。在生產環境中，您應該使用不同的伺服器和用戶端憑證。
 
-1. 下載並解壓縮 [ServiceFabricContinuousIntegrationScripts.zip](https://gallery.technet.microsoft.com/Set-up-continuous-f8b251f6) 到這台電腦上的資料夾。
+1. 下載並解壓縮 [ServiceFabricContinuousIntegrationScripts.zip](https://gallery.technet.microsoft.com/Set-up-continuous-f8b251f6) 到這部電腦上的資料夾。
 
 2. 在系統管理 PowerShell 命令提示字元中，將目錄變更為 `<extracted zip>/Manual`。
 
@@ -99,10 +97,10 @@
 | --- | --- |
 | KeyVaultLocation | 任何值。這個參數必須符合您打算建立叢集的位置。 |
 | CertificateSecretName | 任何值。 |
-| CertificateDnsName | 必須符合您的叢集的 DNS 名稱。範例：`mycluster.westus.azure.cloudapp.net` |
+| CertificateDnsName | 必須符合您的叢集的 DNS 名稱。範例：`mycluster.westus.cloudapp.azure.com` |
 | SecureCertificatePassword | 任何值。當您在組建電腦上匯入憑證時會使用這個參數。 |
-| KeyVaultResourceGroupName | 任何值。不過，不要使用您計劃用於您的叢集的資源群組名稱。 |
 | KeyVaultName | 任何值。 |
+| KeyVaultResourceGroupName | 任何值。不過，不要使用您計劃用於您的叢集的資源群組名稱。 |
 | PfxFileOutputPath| 任何值。此檔案是用來將憑證匯入您的組建電腦。 |
 
 當指令碼完成時，它會輸出下列三個值。請記下這些值，因為它們會用來做為組建變數。
@@ -123,13 +121,13 @@
 
 2. 選取畫面左上角的 [新增] 命令。
 
-3. 瀏覽 [Marketplace]。
+3. 選取 [Marketplace]。
 
 4. 搜尋 **Visual Studio 2015**。
 
-5. 依序選取 [計算] > [虛擬機器] > [從資源庫]。
+5. 依序選取 [計算] -> [虛擬機器] -> [從資源庫]。
 
-6. 選取映像 **Visual Studio Enterprise 2015 Update 1 With Azure SDK 2.8 on Windows Server 2012 R2**。
+6. 選取映像 **Visual Studio Enterprise 2015 Update 2 with Universal Windows Tools 和 Azure SDK 2.9 on Windows Server 2012 R2**。
 
     >[AZURE.NOTE] Azure SDK 不是必要的元件，但是目前沒有任何可用的映像僅安裝 Visual Studio 2015。
 
@@ -137,7 +135,7 @@
 
 ### 安裝 Service Fabric SDK
 
-在您的電腦上安裝 [Service Fabric SDK](https://azure.microsoft.com/campaigns/service-fabric/)。
+在您的電腦上安裝 [Service Fabric SDK](service-fabric-get-started.md#install-the-runtime-sdk-and-tools)。
 
 ### 安裝 Azure PowerShell
 
@@ -145,13 +143,13 @@
 
 ### 以網路服務帳戶註冊 Azure PowerShell 模組
 
->[AZURE.NOTE] 執行這項操作之後再啟動組建代理程式。否則，它不會挑選新的環境變數。
+>[AZURE.NOTE] 執行這項操作，然後啟動組建代理程式。否則，它不會挑選新的環境變數。
 
-1. 按 Windows 標誌鍵 + R、鍵入 **regedit**，再按 Enter。
+1. 按 Windows 標誌鍵 + R、鍵入 **regedit**，然後按 Enter。
 
 2. 以滑鼠右鍵按一下節點 `HKEY_Users\.Default\Environment`，然後選取 [新增] > [可擴充字串值]。
 
-3. 輸入 `PSModulePath` 做為名稱，輸入 `%PROGRAMFILES%\WindowsPowerShell\Modules` 做為值。將 `%PROGRAMFILES%` 取代為 `PROGRAMFILES` 環境變數的值。
+3. 輸入 `PSModulePath` 作為名稱，輸入 `%PROGRAMFILES%\WindowsPowerShell\Modules` 作為值。將 `%PROGRAMFILES%` 替換成 `PROGRAMFILES` 環境變數的值。
 
 ### 匯入自動化憑證
 
@@ -161,10 +159,10 @@
 
     b.開啟系統管理 PowerShell 命令提示字元，使用您稍早傳遞至 `CreateAndUpload-Certificate.ps1` 的密碼執行下列命令。
 
-        ```
-        $password = Read-Host -AsSecureString
-        Import-PfxCertificate -FilePath <path/to/cert.pfx> -CertStoreLocation Cert:\LocalMachine\My -Password $password -Exportable
-        ```
+    ```powershell
+    $password = Read-Host -AsSecureString
+    Import-PfxCertificate -FilePath <path/to/cert.pfx> -CertStoreLocation Cert:\LocalMachine\My -Password $password -Exportable
+    ```
 
 2.	執行憑證管理員。
 
@@ -184,7 +182,7 @@
 
     d.選取 [新增] 按鈕、輸入 [網路服務]，然後選取 [檢查名稱]。
 
-    e.選取 [確定]，然後關閉憑證管理員。
+    e.選取 [確定]。
 
     ![授與本機服務帳戶權限之步驟的螢幕擷取畫面](media/service-fabric-set-up-continuous-integration/windows-certificate-manager.png)
 
@@ -196,7 +194,7 @@
 
 1.	下載 agent.zip。作法：
 
-    a.登入您的小組專案，例如 **https://[your-VSTS-account-name].visualstudio.com**。
+    a.登入您的小組專案，例如 ****https://[your-VSTS-account-name].visualstudio.com**。
 
     b.選取畫面右上角的齒輪圖示。
 
@@ -221,7 +219,7 @@
 |代理程式集區|輸入代理程式集區的名稱。(如果您尚未建立代理程式集區，接受預設值。)|
 |工作資料夾|接受預設值。這是組建代理程式實際建置您的應用程式的資料夾。如果您打算使用 ASP.NET 5 Web 服務，建議您為此資料夾選擇可能的最短名稱，以避免在部署期間發生 PathTooLongExceptions 錯誤。|
 |安裝為 Windows 服務？|預設值為 N。將值變更為 **Y**。|
-|執行服務的使用者帳戶|接受預設值，`NT AUTHORITY\NetworkService`。|
+|執行服務的使用者帳戶|預設值為 `NT AUTHORITY\LOCAL SERVICE`。將預設值變更為 `NT AUTHORITY\NetworkService`。|
 |`NT AUTHORITY\Network Service` 的密碼|網路服務帳戶沒有密碼，但會拒絕空白密碼。輸入任何非空白字串的密碼 (將會忽略您所輸入的資料)。|
 |取消設定現有的代理程式？|接受預設值，**N**。|
 
@@ -277,7 +275,9 @@
 
     e.確認已選取正確的儲存機制和分支。
 
-    f.選取您註冊組建代理程式的代理程式佇列，然後選取 [連續整合] 核取方塊。
+    f.核取 [連續整合] 核取方塊，以確保每次更新分支時都會觸發這個組建。
+
+    g.選取已註冊組建代理程式的代理程式佇列。
 
 2.	在 [變數] 索引標籤上，使用這些值建立下列變數。
 
@@ -337,11 +337,11 @@
 
 5.	儲存組建定義。
 
-### 新增「移除叢集資源群組」步驟
+### <a name="RemoveClusterResourceGroup"></a>加入「移除叢集資源群組」步驟
 
 如果前一個組建未在本身之後清除 (例如，如果組建已在可以清除之前取消)，可能會留下現有的資源群組而與新的資源群組發生衝突。若要避免衝突，在建立新的資源群組之前，清除任何剩餘的資源群組 (和其相關聯的資源)。
 
-1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
+1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
 
 2.	選取 [部署] > [Azure 資源群組部署]。
 
@@ -352,15 +352,16 @@
     |設定名稱|值|
     |---|---|
     |AzureConnectionType|**Azure Resource Manager**|
-    |Azure RM 訂用帳戶|選取您在＜建立服務主體＞一節中建立的連接端點。|
+    |Azure RM 訂用帳戶|選取您在**建立服務主體**一節中建立的連接端點。|
     |動作|**刪除資源群組**|
     |資源群組|輸入任何未使用的名稱。您必須在下一個步驟中使用相同的名稱。|
+    |發生錯誤時繼續|如果沒有資源群組，這個步驟就會失敗。啟用 [控制選項] 區段的 [發生錯誤時繼續] 以避免這種情況。|
 
 5.	儲存組建定義。
 
 ### 新增「佈建安全叢集」步驟
 
-1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
+1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
 
 2.	選取 [部署] > [Azure 資源群組部署]。
 
@@ -371,7 +372,7 @@
     |設定名稱|值|
     |---|---|
     |AzureConnectionType|**Azure Resource Manager**|
-    |Azure RM 訂用帳戶|選取您在＜建立服務主體＞一節中建立的連接端點。|
+    |Azure RM 訂用帳戶|選取您在**建立服務主體**一節中建立的連接端點。|
     |動作|**建立或更新資源群組**|
     |資源群組|必須符合您在前一個步驟中使用的名稱。|
     |位置|必須符合您的金鑰保存庫的位置。|
@@ -382,7 +383,7 @@
 
 ### 新增「部署」步驟
 
-1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
+1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
 
 2.	選取 [公用程式] > [PowerShell]。
 
@@ -397,6 +398,14 @@
     |引數|`-PublishProfileFile path/to/MySolution/MyApplicationProject/PublishProfiles/MyPublishProfile.xml -ApplicationPackagePath path/to/MySolution/MyApplicationProject/pkg/$(BuildConfiguration)`|
 
 5.	儲存組建定義。
+
+### 加入「驗證」步驟
+
+1. 當您第一次設定這個組建定義時，這個步驟是選擇性的。但是，只要成功執行組建並確保其他建置步驟正確，您就可以在這裡插入自己的驗證建置步驟。這會是應用程式專用的，也是確認已部署在叢集中的應用程式正確性。
+  
+### 加入最後的「清除」步驟
+
+1. 遵循[加入「移除叢集資源群組」步驟](#RemoveClusterResourceGroup)中的相同指示。這會清除所有在建置期間所建立的已佈建 Azure 資源。
 
 ### 試試看
 
@@ -420,4 +429,4 @@
  - [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
  - [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

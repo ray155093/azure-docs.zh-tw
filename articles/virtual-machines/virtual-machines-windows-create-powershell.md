@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用 Powershell 來建立 VM | Microsoft Azure"
-	description="使用 PowerShell 與資源管理員部署模型建立並設定 Azure 虛擬機器。"
+	pageTitle="使用 PowerShell 來建立 VM | Microsoft Azure"
+	description="使用 PowerShell 與 Resource Manager 部署模型建立並設定 Azure 虛擬機器。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="cynthn"
@@ -17,7 +17,7 @@
 	ms.date="03/04/2016"
 	ms.author="cynthn"/>
 
-# 利用資源管理員和 Azure PowerShell 建立及設定 Windows 虛擬機器
+# 使用 Resource Manager 部署模型中的 Azure PowerShell 建立並設定 Windows 虛擬機器
 
 > [AZURE.SELECTOR]
 - [入口網站 - Windows](virtual-machines-windows-hero-tutorial.md)
@@ -28,17 +28,15 @@
 
 <br>
 
-
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-machines-windows-classic-create-powershell.md)。
-
 下列步驟將示範如何建構一組 Azure PowerShell 命令，以建立和設定 Azure 虛擬機器。您可以使用此建置組塊程序，對於以 Windows 為基礎的新虛擬機器快速建立命令集，並擴充現有部署。您也可以用它來建立多個命令集以快速建置自訂開發/測試或 IT 專業人員環境。
 
 這些步驟遵循建立 Azure PowerShell 命令集合的填空方法。如果您剛使用 PowerShell 或只想知道可指定哪些值來成功設定組態，這個方法相當實用。如果您是進階 PowerShell 的使用者，您可以使用命令並取代本身的變數值 (以 "$" 開頭的行)。
 
+> [AZURE.IMPORTANT] 如果您希望 VM 屬於可用性設定組的一部分，可在建立 VM 時將其加入設定組。目前不支援在建立 VM 之後，再將其加入可用性設定組。
+
 ## 步驟 1：安裝 Azure PowerShell
 
-有兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [WebPI](http://aka.ms/webpi-azps)。WebPI 每個月都會更新。PowerShell 資源庫將持續更新。
+您有下列兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [WebPI](http://aka.ms/webpi-azps)。WebPI 每個月都會更新。PowerShell 資源庫將持續更新。
 
 如需詳細資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com//blog/azps-1-0/)。
 
@@ -52,7 +50,7 @@
 
 使用下列命令，可以取得可用的訂用帳戶。
 
-	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
+	Get-AzureRmSubscription | Sort SubscriptionName | Select SubscriptionName
 
 設定目前工作階段的 Azure 訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
 
@@ -115,6 +113,7 @@
 ### 可用性集合
 
 
+
 如果需要，請使用這些命令建立新虛擬機器的新可用性集合。
 
 	$avName="<availability set name>"
@@ -136,7 +135,7 @@
 	$locName="West US"
 	$frontendSubnet=New-AzureRmVirtualNetworkSubnetConfig -Name frontendSubnet -AddressPrefix 10.0.1.0/24
 	$backendSubnet=New-AzureRmVirtualNetworkSubnetConfig -Name backendSubnet -AddressPrefix 10.0.2.0/24
-	New-AzureRmVirtualNetwork -Name TestNet -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -SubnetId $frontendSubnet,$backendSubnet
+	New-AzureRmVirtualNetwork -Name TestNet -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $frontendSubnet,$backendSubnet
 
 使用這些命令列出現有的虛擬網路。
 
@@ -220,7 +219,7 @@ FrontendSubnet 的子網路索引為 0，而 backendSubnet 的子網路索引為
 	$bePoolIndex=<index of the back end pool, starting at 0>
 	$natRuleIndex=<index of the inbound NAT rule, starting at 0>
 	$lb=Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgName
-	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex] -LoadBalancerInboundNatRule $lb.InboundNatRules[$natRuleIndex]
+	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -Subnet $vnet.Subnets[$subnetIndex] -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex] -LoadBalancerInboundNatRule $lb.InboundNatRules[$natRuleIndex]
 
 $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛擬機器名稱併入字串中，例如 "LOB07-NIC"。
 
@@ -239,7 +238,7 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 	$lbName="<name of the load balancer instance>"
 	$bePoolIndex=<index of the back end pool, starting at 0>
 	$lb=Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgName
-	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[$subnetIndex].Id -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex]
+	$nic=New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -Subnet $vnet.Subnets[$subnetIndex] -LoadBalancerBackendAddressPool $lb.BackendAddressPools[$bePoolIndex]
 
 接下來，建立本機 VM 物件，並選擇性地將它新增至可用性集合。將下列兩個選項的其中一個複製到命令集，並填入名稱、大小和可用性集合名稱。
 
@@ -293,7 +292,7 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 |MicrosoftWindowsServerEssentials | WindowsServerEssentials | WindowsServerEssentials |
 |MicrosoftWindowsServerHPCPack | WindowsServerHPCPack | 2012R2 |
 
-如果未列出您需要的虛擬機器映像，請使用[這裡](virtual-machines-linux-cli-ps-findimage.md#powershell)的指示來判斷發行者、優惠以及 SKU 名稱。
+如果未列出您需要的虛擬機器映像，請使用[這裡](virtual-machines-windows-cli-ps-findimage.md#powershell)的指示來判斷發行者、優惠以及 SKU 名稱。
 
 將這些命令複製到您的命令集，並填入發行者、優惠和 SKU 名稱。
 
@@ -317,7 +316,7 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 
 檢閱在步驟 4 中使用文字編輯器或 PowerShell ISE 建立的 Azure PowerShell 命令集。確定您已指定所有變數，且這些變數具有正確的值。也確定已移除所有 < and > 字元。
 
-如果您將您的命令放入文字編輯器中，將命令複製到剪貼簿，然後以滑鼠右鍵按一下 Azure PowerShell 提示字元。這會將命令集設為一系列的 PowerShell 命令，並建立 Azure 虛擬機器。或者，從 Azure PowerShell ISE 執行命令集。
+如果您的命令是在文字編輯器中，請將命令集複製到剪貼簿，然後在 Windows PowerShell 提示字元上按一下滑鼠右鍵。這會將命令集設為一系列的 PowerShell 命令，並建立 Azure 虛擬機器。或者，從 PowerShell ISE 執行命令集。
 
 如果您要重複使用這項資訊來建立其他虛擬機器，可以將這個命令集儲存為 PowerShell 指令碼檔案 (*.ps1)。
 
@@ -341,7 +340,7 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 	# Set the existing virtual network and subnet index
 	$vnetName="AZDatacenter"
 	$subnetIndex=0
-	$vnet=Get-AzureRMVirtualNetwork -Name $vnetName -ResourceGroupName $rgName
+	$vnet=Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName
 
 	# Create the NIC
 	$nicName="LOB07-NIC"
@@ -392,4 +391,4 @@ $NicName 字串必須是資源群組中獨特的字串。最佳作法是將虛�
 
 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

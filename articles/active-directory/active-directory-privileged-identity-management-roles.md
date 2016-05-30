@@ -60,7 +60,7 @@ Privileged Identity Management 可讓您將使用者指派給常見的系統管�
 
 Exchange Online 或 SharePoint Online 內的角色 (除了前面提及的角色外) 並不會出現在 Azure AD 中，因此您不會在 PIM 中看到。如需在這些 Office 365 服務中變更精細角色指派的詳細資訊，請參閱 [Office 365 中的權限](https://support.office.com/article/Permissions-in-Office-365-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
-Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。若要管理 Azure 訂用帳戶，請參閱[如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator)，如需 Azure RBAC 的詳細資訊，則請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。若要管理 Azure 訂用帳戶，請參閱[如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)，如需 Azure RBAC 的詳細資訊，則請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 <!--**The above links might be replaced by ones that are from within this documentation repository **-->
 
@@ -87,4 +87,4 @@ Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。若要管理 
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -29,7 +29,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 ## 必要條件
 
-* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-hpcpack-cluster-powershell-script)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由 Windows Server 2012 R2 前端節點與大小為 4 的大型 (A3) CentOS 6.6 計算節點所組成。請視環境需要採用此選項。
+* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由 Windows Server 2012 R2 前端節點與大小為 4 的大型 (A3) CentOS 6.6 計算節點所組成。請視環境需要採用此選項。
 
 
 * **NAMD 軟體與教學課程檔案** - 從 [NAMD](http://www.ks.uiuc.edu/Research/namd/) 網站下載 Linux 的 NAMD 軟體 (需要註冊)。這篇文章是根據 NAMD 2.10 版，並使用 [Linux-x86\_64 (64 位元 Intel/AMD，具有乙太網路)](http://www.ks.uiuc.edu/Development/Download/download.cgi?UserID=&AccessCode=&ArchiveID=1310) 封存，您會用來在叢集網路中的多個 Linux 運算節點上執行 NAMD。另請下載 [NAMD 教學課程檔案](http://www.ks.uiuc.edu/Training/Tutorials/#namd)。因為下載的是 .tar 檔案，所以需要 Windows 工具將檔案解壓縮至叢集前端節點。請依照本文稍後的指示執行此該操作。
@@ -241,7 +241,7 @@ host CENTOS66LN-03 ++cpus 2
 5. 按一下左側導覽的 [編輯工作]，再按一下 [加入] 將工作加入作業中。
 
 
-6. 在 [Task Details and I/O Redirection] \(工作詳細資料和 I/O 重新導向) 頁面上，設定下列值。
+6. 在 [Task Details and I/O Redirection] (工作詳細資料和 I/O 重新導向) 頁面上，設定下列值。
 
     * **命令列** - `/namd2/hpccharmrun.sh ++remote-shell ssh /namd2/namd2 /namd2/namdsample/1-2-sphere/ubq_ws_eq.conf > /namd2/namd2_hpccharmrun.log`
 
@@ -415,4 +415,4 @@ exit ${RTNSTS}
 [task_details]: ./media/virtual-machines-linux-classic-hpcpack-cluster-namd/task_details.png
 [vmd_view]: ./media/virtual-machines-linux-classic-hpcpack-cluster-namd/vmd_view.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

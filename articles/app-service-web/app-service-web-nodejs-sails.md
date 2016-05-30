@@ -55,7 +55,7 @@
 
     依照提示，在瀏覽器中繼續使用具有 Azure 訂用帳戶的 Microsoft 帳戶進行登入。
 
-2. 確定您仍在 Sails.js 專案的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式 URL 會是 http://&lt;appname>.azurewebsites.net。
+2. 確定您仍在 Sails.js 專案的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式的 URL 是 http://&lt;appname>.azurewebsites.net。
 
         azure site create --git <appname>
 
@@ -238,4 +238,4 @@
 - [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

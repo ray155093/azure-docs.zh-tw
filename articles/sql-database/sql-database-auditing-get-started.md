@@ -13,9 +13,9 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/11/2016"
+	ms.date="05/17/2016"
 	ms.author="carlrabeler; ronitr"/>
- 
+
 # 開始使用 SQL Database 稽核
 Azure SQL Database 稽核會追蹤資料庫事件，並將稽核事件寫入 Azure 儲存體帳戶中的稽核記錄。基本、標準和進階服務層皆提供稽核功能。
 
@@ -57,7 +57,7 @@ SQL Database 稽核可讓您：
 
 可以針對特定資料庫定義稽核原則，或將稽核原則定義為預設伺服器原則。預設伺服器稽核原則會套用至伺服器上的所有資料庫，其中該伺服器並沒有定義特定覆寫的資料庫稽核原則。
 
-在設定稽核之前，請先檢查您目前使用的是否是[「下層用戶端」](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
+在設定稽核之前，請先檢查您目前使用的是否是[「下層用戶端」](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。此外，如果您有嚴格的防火牆設定，請注意在啟用 [稽核] 時[您資料庫的 IP 端點將會變更](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
 
 
 ##<a id="subheading-2"></a>設定資料庫的稽核
@@ -140,7 +140,7 @@ SQL Database 稽核可讓您：
 3. 返回 [稽核組態] 刀鋒視窗，將 [儲存體存取金鑰] 從 [次要] 切換成 [主要]，然後按一下 [儲存]。
 
 4. 返回儲存體 UI 並**重新產生**「次要存取金鑰」 (為下一個金鑰重新整理週期做準備)。
-  
+
 ##<a id="subheading-7"></a>自動化
 有數個 PowerShell Cmdlet 可用來設定 Azure SQL Database 中的稽核：
 
@@ -175,7 +175,4 @@ SQL Database 稽核可讓您：
 [7]: ./media/sql-database-auditing-get-started/7_auditing_get_started_classic_portal_storage.png
 [8]: ./media/sql-database-auditing-get-started/8_auditing_get_started_storage_key_rotation.png
 
-
- 
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -60,12 +60,12 @@
 
 若要開始 Office 365 FastTrack 試用，您需要虛構的公司名稱和 Microsoft 帳戶。雖然非必要，但建議您使用 Contoso (這是 Microsoft 範例內容中使用的虛構公司名稱) 以外公司名稱作為公司名稱。
 
-接著，註冊新的 Microsoft 帳戶。移至 **http://outlook.com** 並透過類似 user123@outlook.com 的電子郵件地址建立一個帳戶。您將使用這個帳戶註冊 Office 365 FastTrack 試用。
+接著，註冊新的 Microsoft 帳戶。移至 ****http://outlook.com** 並透過類似 user123@outlook.com 的電子郵件地址建立一個帳戶。您將使用這個帳戶註冊 Office 365 FastTrack 試用。
 
 接著，註冊新的 Office 365 企業 E3 試用版。
 
 1.	以 CORP\\User1 帳戶認證登入 CLIENT1。
-2.	開啟 Internet Explorer 並移至 **https://go.microsoft.com/fwlink/p/?LinkID=403802**。
+2.	開啟 Internet Explorer 並移至 ****https://go.microsoft.com/fwlink/p/?LinkID=403802**。
 3.	進行註冊 Office 365 企業 E3 試用版的程序。
 
 當系統提示輸入**公司電子郵件地址**時，請指定您新的 Microsoft 帳戶。
@@ -142,7 +142,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 接下來，在 DS1 上安裝及設定 Azure AD Connect 工具。
 
-1.	執行 Internet Explorer，在網址列中輸入 **https://www.microsoft.com/download/details.aspx?id=47594**，然後按 ENTER 鍵。
+1.	執行 Internet Explorer，在網址列中輸入 ****https://www.microsoft.com/download/details.aspx?id=47594**，然後按 ENTER 鍵。
 2.	執行 Microsoft Azure AD Connect 安裝程式。
 3.	從桌面上，按兩下 [Azure AD Connect]。
 4.	在 [歡迎] 頁面上，選取 [我同意授權合約及隱私權注意事項]，然後按一下 [繼續]。
@@ -167,7 +167,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 3.	在 [指派授權] 索引標籤上，選取 [設定使用者位置] 中的位置 (例如美國)。
 4.	選取 [Microsoft Office 365 方案 E3]，然後按一下 [儲存]。
 5.	關閉 Internet Explorer。
-6.	執行 Internet Explorer 並移至 **http://portal.microsoftonline.com**。
+6.	執行 Internet Explorer 並移至 ****http://portal.microsoftonline.com**。
 7.	使用 Lynda Meyer 的 Office 365 認證登入。她的使用者名稱將是 lyndam@<*虛構名稱*>.onmicrosoft.com。密碼是 Lynda Meyer Active Directory 使用者帳戶密碼。
 8.	成功登入後，您將看見 Office 365 入口網站的主要首頁顯示「讓今天有所不同」。
 
@@ -181,4 +181,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - 在[生產](http://technet.microsoft.com/library/dn635310.aspx)中部署此工作負載。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

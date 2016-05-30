@@ -86,7 +86,7 @@
 
 ### 準備好您的應用程式以使用 Apple 推送通知
 
-請依照本指南進行：《如何準備您的應用程式以使用 Apple 推送通知》。
+請依照本指南進行：[如何準備您的應用程式以使用 Apple 推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
 
 ### 加入必要的用戶端程式碼
 
@@ -416,4 +416,4 @@
 
 	@end
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

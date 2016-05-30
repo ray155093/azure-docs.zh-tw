@@ -6,27 +6,25 @@
 
 服務匯流排佇列為適用於各種情況的通用技術：
 
--   多層式 Azure 應用程式中 Web 角色和背景工作角色之間的通訊。
--   混合式解決方案中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
--   在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
+- 多層式 Azure 應用程式中 Web 角色和背景工作角色之間的通訊。
+- 混合式解決方案中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
+- 在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
 
-使用佇列可讓應用程式更容易地進一步向外延展，提高架構的備援能力。
+使用佇列，可讓應用程式更容易地進一步向外延展，並啟用架構的備援能力。
 
 ## 建立服務命名空間
 
-若要開始在 Azure 中使用服務匯流排佇列，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
-建立服務命名空間：
+若要建立命名空間：
 
 1.  登入 [Azure 傳統入口網站][]。
 
 2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
 
-3.  在入口網站的下方窗格中，按一下 [建立]。
-	![](./media/service-bus-java-how-to-create-queue/sb-queues-03.png)
+3.  在入口網站的下方窗格中，按一下 [建立]。![](./media/service-bus-java-how-to-create-queue/sb-queues-03.png)
 
-4.  在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
-	![](./media/service-bus-java-how-to-create-queue/sb-queues-04.png)
+4.  在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。![](./media/service-bus-java-how-to-create-queue/sb-queues-04.png)
 
 5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
 
@@ -42,18 +40,14 @@
 
 若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。您可以從入口網站取得這些認證。
 
-1.  在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單：
-	![](./media/service-bus-java-how-to-create-queue/sb-queues-13.png)
+1.  在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單：![](./media/service-bus-java-how-to-create-queue/sb-queues-13.png)
 
 2.  從顯示的清單中，選取您剛建立的命名空間。
 
-3.  按一下 [**設定**]，檢視您的命名空間的共用存取原則。
-	![](./media/service-bus-java-how-to-create-queue/sb-queues-14.png)
+3.  按一下 [**設定**]，檢視您的命名空間的共用存取原則。![](./media/service-bus-java-how-to-create-queue/sb-queues-14.png)
 
 4.  記下主要金鑰，或將它複製到剪貼簿。
 
   [Azure 傳統入口網站]: http://manage.windowsazure.com
 
   [34]: ./media/service-bus-java-how-to-create-queue/VSProperties.png
-
-<!---HONumber=AcomDC_0128_2016-->

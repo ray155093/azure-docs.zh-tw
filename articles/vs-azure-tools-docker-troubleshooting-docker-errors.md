@@ -12,92 +12,108 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/18/2016"
+   ms.date="05/15/2016"
    ms.author="tarcher" />
 
-# 疑難排解 Docker 錯誤
+# 疑難排解 Visual Studio Docker 開發
 
-設定應用程式 Docker 容器的所有設定之後，您應該確定設定和路徑正確。Visual Studio 在 [發佈] 對話方塊中提供 [驗證] 按鈕來協助您執行這項操作。
+使用 Visual Studio Tools for Docker Preview 時，可能會因預覽本質而發生一些問題。以下是一些常見問題和解決方法。
 
-本主題將協助您診斷和修正或解決在 Docker 中裝載 Visual Studio 應用程式時會遇到的最常見的問題。之後遇到的更多問題會加入本主題。
+##無法設定 Program.cs 進行 Docker 支援
 
-## 嘗試在 [發佈 Web] 對話方塊中驗證您的 Docker 主機連接時，收到失敗的訊息
-
-以下是這個問題的某些可能解決方案。
-
-- 在 [發佈] 對話方塊的 [連接] 索引標籤中，請確定 [伺服器 URL] 正確無誤，而且 [伺服器 URL] 上的結尾 `:<port_number>` 會是 Docker 精靈正在接聽的連接埠。
-
-- 在 [發佈] 對話方塊的 [連接] 索引標籤中，展開 [Docker 進階選項] 區段，並確定已指定了正確的 [驗證] 選項。
-  - 如果在伺服器上的 Docker 精靈設定為使用 TLS 安全性，則 Windows Docker 命令列介面 (docker.exe) 依預設會在 `<%userprofile%>\.docker` 資料夾下尋找用戶端金鑰 (key.pem) 和憑證 (cert.pem)。如果這些項目中沒有顯示，將必須使用 OpenSSL 來產生。如需有關設定 Docker 使用 TLS 的詳細資訊，請參閱[使用 HTTPS 保護 Docker 精靈通訊端](https://docs.docker.com/articles/https/)。
-
-	確保 Docker 已正確從 Windows 用戶端向 Linux 伺服器驗證的一個方式是複製 [預覽] 文字方塊的內容到新的命令視窗，並將 `<command>` 變更為 "info"，如下所示：
-
-    ```
-    // This example assumes the Docker daemon is configured to use the default port
-    // of 2376 to listen for connections.docker.
-
-    --tls -H tcp://contoso.cloudapp.net:2376 info
-    ```
-
-    作為將用戶端憑證和金鑰檔複製到 .docker 資料夾的替代方案，您可以藉由加入下列參數來變更 [驗證] 選項：
-
-    ```
-    --tls --tlscert=C:\mycert\cert.pem --tlskey=C:\mycert\key.pem
-    ```
-- 確定 Docker 主機電腦上的 Docker 精靈 1.6 版或更新版本。
-
-## 在 Docker 資料夾中使用您自己的憑證而沒有用戶端憑證時的逾時錯誤
-
-如果您選擇在 Visual Studio 中建立 Docker 主機時使用您自己的憑證 (也就是說，您清除 [在 Microsoft Azure 上建立虛擬機器] 中的 [自動產生 Docker 憑證] 核取方塊)，您必須將用戶端憑證與金鑰檔案 (cert.pem 和 key.pem) 複製到 Docker 資料夾 (`<%userprofile%>\.docker`)。否則，發佈您的專案時，會在一小時內收到逾時錯誤，並且發佈作業會失敗。
-
-## 需要 PowerShell 3.0 才能發佈至 Docker 容器
-
-如果作業系統是 Windows 7 或 Windows Server 2008，您必須安裝 PowerShell 3.0 才能發佈至 Docker 容器。PowerShell 3.0 會隨附於 [Windows Management Framework 3.0](https://www.microsoft.com/zh-TW/download/details.aspx?id=34595)。您必須在安裝完成後重新啟動系統。
-
-做為替代的解決方法，您可以升級到已具備 PowerShell 3.0 的 Windows 8.1 或 Windows 10。
-
-## PowerShell 視窗不會自動關閉
-
-建立 VM 之後，有時候 PowerShell 視窗不會自動關閉。關閉此視窗也會關閉 Visual Studio。因為視窗不會影響任何 Visual Studio 或 Docker 工具功能，請保留它開啟直到完成您的工作。
-
-## 常見問題集
-
-問：如何在 Azure 中使用 Visual Studio 工具建立新的啟用 Docker 的 Linux 機器？
-
-答：如需如何執行此動作的詳細資訊，請參閱[在 Docker 中裝載 Web Apps](vs-azure-tools-docker-hosting-web-apps-in-docker.md)。
-
-問：哪些 Visual Studio 專案範本支援發佈至 Linux Docker 容器？
-
-答：Visual Studio 目前支援 C# 主控台應用程式 (封裝) 和 C# ASP.NET 5 Preview 網站範本，包括：
-
-- 空白
-
-- Web API
-
-- Web 應用程式
-
-問：如何從命令列使用 MSBUILD 將我的 ASP.NET 5 Web 或主控台專案發佈至 Docker？
-
-答：使用下列 MSBuild 命令：
-
-    `msbuild <projectname.xproj> /p:deployOnBuild=true;publishProfile=<profilename>`
-
-問：如何從命令列使用 PowerShell 將我的 ASP.NET 5 Web 或主控台專案發佈至 Docker？
-
-答：使用下列 PowerShell 命令：
-
+新增 Docker 支援時，必須將 `.UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_SERVER.URLS"))` 新增至 WebHostBuilder()。如果找不到 Program.cs、Main() 函式或新的 WebHostBuilder 類別，則會顯示警告。需要有 UseUrls()，才能讓 Kestrel 接聽連入流量 (在 Docker 容器內執行時，localhost 除外)。完成時，一般程式碼看起來如下︰
 ```
-.\contoso-Docker-publish.ps1 -packOutput $env:USERPROFILE\AppData\Local\Temp\PublishTemp -pubxmlFile .\contoso-Docker.pubxml
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var host = new WebHostBuilder()
+            .UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_SERVER.URLS") ?? String.Empty)
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory() ?? "")
+            .UseIISIntegration()
+            .UseStartup<Startup>()
+            .Build();
+
+        host.Run();
+    }
+}
 ```
+UseUrls() 已設定 WebHost 接聽連入 URL 流量。[Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS) 將以 dockerfile.debug/release 模式設定環境變數，如下所示：
+```
+# Configure the listening port to 80
+ENV ASPNETCORE_SERVER.URLS http://*:80
+```
+## 磁碟區對應未運作
+若要啟用「編輯和重新整理」功能，磁碟區對應設定成將專案的原始程式碼共用到容器內的 .app 資料夾。主機電腦上的檔案變更時，容器 /app 目錄會使用相同的目錄。在 docker-compose.debug.yml 中，下列組態會啟用磁碟區對應︰
+```
+    volumes:
+      - ..:/app
+```
+若要測試磁碟區對應是否運作，請嘗試下列命令︰
 
-問：我自己的 Linux 伺服器已安裝 Docker，在 [Web 發佈] 對話方塊中如何指定？
+**從 Windows**
+```
+docker run -it -v /c/Users/Public:/wormhole busybox
+cd wormhole
+/ # ls
+```
+您應該會看到「使用者/公用」資料夾中的目錄清單。如果未顯示任何檔案，而且「/c/使用者/公用」資料夾不是空的，則未正確地設定磁碟區對應。
+```
+bin       etc       proc      sys       usr       wormhole
+dev       home      root      tmp       var
+```
+切換至 wormhole 目錄，以查看 `/c/Users/Public` 目錄的內容：
+```
+/ # cd wormhole/
+/wormhole # ls
+AccountPictures  Downloads        Music            Videos
+Desktop          Host             NuGet.Config     a.txt
+Documents        Libraries        Pictures         desktop.ini
+/wormhole #
+```
+**注意：***使用 Linux VM 時，容器檔案系統區分大小寫。*
 
-答：請參閱[在 Docker 中裝載 Web Apps](vs-azure-tools-docker-hosting-web-apps-in-docker.md) 主題中的**提供自訂 Docker 主機**一節。
+如果您看不到內容，請嘗試下列動作︰
 
-問：我使用自己的 Linux 伺服器並安裝了 Docker。如何產生金鑰和憑證以設定使用 TLS 的驗證？
+**Docker for Windows Beta**
+- 請在系統匣中尋找白鯨圖示並確定它是白色且運作，確認 Docker for Windows 桌面應用程式正在執行。
+- 以滑鼠右鍵按一下系統匣中的白鯨圖示，並選取設定，然後按一下 [管理共用磁碟機]，確認已設定磁碟區對應
 
-答：一個方式是在伺服器上使用 OpenSSL 來為 CA、伺服器和用戶端產生必要的憑證和金鑰。然後您可以使用協力廠商軟體建立 SSH/SFTP 連接，然後將憑證複製到本機的 Windows 開發電腦。根據預設，Docker (CLI) 會嘗試使用位於 `<userprofile>\.docker` 資料夾的憑證。
+**Docker 工具箱 (含 VirtualBox)**
 
-另一個選項是下載 OpenSSL for Windows 並產生需要的憑證和金鑰，然後上傳 CA、伺服器憑證和金鑰到 Linux 機器。如需有關建立 Docker 的安全連接的詳細資訊，請參閱[使用 HTTPS 保護 Docker 精靈通訊端](https://docs.docker.com/articles/https/)。
+根據預設，VirtualBox 會將 `C:\Users` 當做 `c:/Users` 來共用。可能的話，請將您的專案移到此目錄下方。否則，您可以手動將它新增至 VirtualBox [共用資料夾](https://www.virtualbox.org/manual/ch04.html#sharedfolders)。
+	
+##建置：無法建置映像、查看 TLS 連線時發生錯誤：主機並未執行
 
-<!---HONumber=AcomDC_0420_2016-->
+- 請確認預設的 Docker 主機正在執行。請參閱[設定 Docker 用戶端](./vs-azure-tools-docker-setup.md)一文。
+
+##把 Microsoft Edge 當做預設瀏覽器
+
+如果您在使用 Microsoft Edge 瀏覽器，網站可能不會開啟，原因是 Edge 認為該 IP 位址不安全。如要修正這個問題，請執行下列步驟：
+1. 從 Windows [執行] 方塊中，輸入 `Internet Options`。
+2. 點選出現的 [網際網路選項]。 
+2. 點選 [安全性] 索引標籤。
+3. 選取 [近端內部網路] 區域。
+4. 點選 [網站]。 
+5. 將您虛擬機器 (在這個案例中為 Docker 主機) 的 IP 位址新增到清單中。 
+6. 在 Edge 中重新整理網頁，此時您應該會看到網站已正常運作。 
+7. 如需這個問題的詳細資訊，請瀏覽 Scott Hanselman 的部落格文章：[Microsoft Edge can't see or open VirtualBox-hosted local web sites](http://www.hanselman.com/blog/FixedMicrosoftEdgeCantSeeOrOpenVirtualBoxhostedLocalWebSites.aspx) (Microsoft Edge 無法看到或開啟裝載在 VirtualBox 上的本機網站)。 
+
+##疑難排解 0.15 版或更舊版本
+
+
+###執行應用程式會導致 PowerShell 開啟、顯示錯誤訊息，然後關閉。瀏覽器頁面未開啟。
+
+這可能是在 `docker-compose-up` 期間發生的錯誤。如要檢視該錯誤，請執行下列步驟：
+
+1. 開啟 `Properties\launchSettings.json` 檔案。找出 Docker 項目。
+1. 找出開頭為下列內容的那一行：
+
+    "commandLineArgs": "-ExecutionPolicy RemoteSigned …”
+	
+1. 新增 `-noexit` 參數，讓該行看起來類似下列內容。這會使 PowerShell 保持開啟，讓您能檢視錯誤訊息。
+
+	"commandLineArgs": "-noexit -ExecutionPolicy RemoteSigned …”
+
+<!---HONumber=AcomDC_0518_2016-->

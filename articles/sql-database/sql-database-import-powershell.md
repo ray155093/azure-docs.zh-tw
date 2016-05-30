@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="02/05/2016"
+    ms.date="05/10/2016"
     ms.author="sstein"/>
 
 # 使用 PowerShell 匯入 BACPAC 檔案以建立新的 Azure SQL Database
@@ -41,10 +41,6 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。如需�
 - 您要匯入之資料庫的 .bacpac 檔案 (BACPAC)。BACPAC 必須位於 [Azure 儲存體帳戶 (傳統)](../storage/storage-create-storage-account.md) Blob 容器內。
 
 
-> [AZURE.IMPORTANT] 本文包含適用於 Azure PowerShell 版本的命令，適用版本最新至*但不包括*版本 1.0 和更新版本。您可以使用 **Get-Module azure | format-table version** 命令來檢查 Azure PowerShell 的版本。
-
-
-
 ## 設定您的認證並選取您的訂用帳戶
 
 您必須先建立 Azure 帳戶的存取權，因此請啟動 PowerShell 並執行下列 Cmdlet。在登入畫面中，請輸入與登入 Azure 入口網站相同的電子郵件和密碼。
@@ -67,7 +63,7 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。如需�
 
 在下列幾個變數中，您要將範例值取代為您的資料庫和儲存體帳戶的特定值。
 
-伺服器名稱必須為目前存在於上一個步驟所選取之訂用帳戶中的伺服器，而且是您要在其中建立資料庫的目的地伺服器。
+伺服器名稱必須為目前存在於上一個步驟所選取之訂用帳戶中的伺服器，而且是您要在其中建立資料庫的目的地伺服器。請注意，不支援直接將資料庫匯入至彈性集區，但可以先匯入至單一資料庫，再將資料庫移到集區。
 
 資料庫名稱是您想要為新資料庫命名的名稱。
 
@@ -153,4 +149,4 @@ Blob 名稱是您想要用來建立資料庫之現有的 .bacpac 檔案名稱。
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

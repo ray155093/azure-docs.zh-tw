@@ -52,7 +52,9 @@ Azure PowerShell 是一套模組，提供各種 Cmdlet，讓您透過 Windows Po
         + FullyQualifiedErrorId : CommandNotFoundException
 ```
 
-您可以藉由重新啟動電腦來解決這個問題。
+This can be corrected by restarting the machine or importing the cmdlets from C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\ as following (where XXXX is the version of PowerShell installed:
+```
+import-module "C:\\Program Files\\WindowsPowerShell\\Modules\\Azure\\XXXX\\azure.psd1" import-module "C:\\Program Files\\WindowsPowerShell\\Modules\\Azure\\XXXX\\expressroute\\expressroute.psd1" ```
 
 ###從 PowerShell 資源庫安裝 Azure PowerShell
 
@@ -175,4 +177,4 @@ Cmdlet 需要有您的訂閱，才能用來管理您的服務。您可以購買 
 
 如需可協助您了解如何使用指令碼來管理 Azure 的範例指令碼和指示，請參閱[指令碼中心](http://go.microsoft.com/fwlink/p/?LinkId=321940)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

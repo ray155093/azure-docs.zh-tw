@@ -15,7 +15,7 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="04/07/2016"
+	ms.date="05/13/2016"
 	ms.author="chrande"/>
 
 # Azure Functions 開發人員參考
@@ -80,7 +80,7 @@ mycsharpfunction
 指令碼主機會指向包含組態檔和一個或多個函數的資料夾。
 
 ```
-parentFolder (for example, wwwroot)
+parentFolder (for example, wwwroot in a function app)
  | - host.json
  | - mynodefunction
  | | - function.json
@@ -93,11 +93,49 @@ parentFolder (for example, wwwroot)
  | | - run.csx
 ```
 
-*host.json* 檔案包含一些指令碼主機特有組態，並位在上層資料夾中。
+*host.json* 檔案包含一些指令碼主機特有組態，並位在上層資料夾中。如需可用設定的資訊，請參閱 WebJobs.Script 百科儲存庫中的 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
 
-每個函數都會有一個資料夾包含程式碼檔案、*function.json* 和其他相依性。
+每個函數都會有一個資料夾，其中包含程式碼檔案、*function.json* 和其他相依性。
 
 設定專案以將函數部署至 Azure App Service 中的函數應用程式時，您可以將此資料夾結構視為您的網站程式碼。您可以使用現有工具 (如持續整合和部署) 或自訂部署指令碼來執行部署時間封裝安裝或程式碼 Transpilation。
+
+## <a id="fileupdate"></a> 如何更新函數的應用程式檔案
+
+Azure 入口網站內建的函數編輯器可讓您更新 *function.json* 檔案和函數的程式碼檔案。若要上傳或更新其他檔案，例如 *package.json* 或 *project.json* 或相依性，您必須使用其他部署方法。
+
+函數應用程式是建置於 App Service 之上，因此[標準 Web 應用程式可用的部署選項](../app-service-web/web-sites-deploy.md)也可供函式應用程式使用。以下是一些您可以用來上傳或更新函式應用程式檔案的方法。
+
+#### 使用 Visual Studio Online (Monaco)
+
+1. 在 Azure Functions 入口網站中，按一下 [函式應用程式設定]。
+
+2. 在 [進階設定] 區段中，按一下 [移至 App Service 設定]。
+
+3. 按一下 [工具]。
+
+4. 在 [開發] 之下按一下 [Visual Studio Online]。
+
+5. 如果尚未啟用，請將它 [開啟]，然後按一下 [執行]。
+
+	Visual Studio Online 載入之後，您會看到在 *wwwroot* 下有 *host.json* 檔和函式資料夾。
+
+6. 開啟檔案加以編輯，或從您的開發電腦拖放檔案以上傳檔案。
+
+#### 使用函式應用程式的 SCM (Kudu) 端點
+
+1. 瀏覽至：`https://<function_app_name>.scm.azurewebsites.net`。
+
+2. 按一下 [偵錯主控台] > [CMD]。
+
+3. 瀏覽至 `D:\home\site\wwwroot` 更新 *host.json*，或瀏覽至 `D:\home\site\wwwroot<function_name>` 更新函式的檔案。
+
+4. 將您要上傳的檔案拖放至檔案方格中適當資料夾。
+
+#### 使用 FTP
+
+1. 請遵循[這裡](../app-service-web/web-sites-deploy.md#ftp)的指示設定 FTP。
+
+2. 當您連線到函數應用程式網站時，請將更新的 *host.json* 檔案複製到 `/site/wwwroot`，或將函數檔案複製到 `/site/wwwroot/<function_name>`。
 
 ## 平行執行
 
@@ -106,6 +144,16 @@ parentFolder (for example, wwwroot)
 ## Azure Functions 脈衝  
 
 脈衝是顯示您函數執行頻率以及成功和失敗的即時事件資料流。您也可以監視平均執行時間。我們將持續加入更多功能和自訂。您可以存取 [監視] 索引標籤的 [脈衝] 頁面。
+
+## 儲存機制
+
+Azure Functions 的程式碼是開放原始碼，儲存於 GitHub 儲存機制中︰
+
+* [Azure Functions 執行階段](https://github.com/Azure/azure-webjobs-sdk-script/)
+* [Azure Functions 入口網站](https://github.com/projectkudu/AzureFunctionsPortal)
+* [Azure Functions 範本](https://github.com/Azure/azure-webjobs-sdk-templates/)
+* [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/)
+* [Azure WebJobs SDK 延伸模組](https://github.com/Azure/azure-webjobs-sdk-extensions/)
 
 ## 繫結
 
@@ -124,5 +172,6 @@ parentFolder (for example, wwwroot)
 * [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
+* [Azure Functions︰Azure App Service 團隊部落格上的旅程](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/)。Azure Functions 的開發歷史。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

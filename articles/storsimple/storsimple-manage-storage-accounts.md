@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/01/2015"
+   ms.date="04/29/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Manager 服務管理儲存體帳戶
@@ -60,7 +60,10 @@
 
 儲存體帳戶在儲存時，服務會嘗試與您的雲端服務提供者通訊。此時會驗證您提供的認證與存取資料。只有當驗證成功時，才會建立儲存體帳戶。如果驗證失敗，則會顯示適當的錯誤訊息。
 
-> [AZURE.NOTE]新增儲存體帳戶的程序將因為使用的軟體版本而有所不同。請務必依照您 StorSimple 版本適用的程序執行。
+在 Azure 入口網站中建立的 Resource Manager 儲存體帳戶也支援 StorSimple。嘗試建立磁碟區容器時，下拉式清單中將不會顯示 Resource Manager 儲存體帳戶供選取，只會顯示在 Azure 傳統入口網站中建立的儲存體帳戶。Resource Manager 儲存體帳戶必須使用如下所述的新增儲存體帳戶的程序來新增。
+
+> [AZURE.NOTE] 新增儲存體帳戶的程序將因為使用的軟體版本而有所不同。請務必依照您 StorSimple 版本適用的程序執行。
+
 
 [AZURE.INCLUDE [add-a-storage-account-update1](../../includes/storsimple-configure-new-storage-account-u1.md)]
 
@@ -87,7 +90,7 @@
   
 ## 刪除儲存體帳戶
 
-> [AZURE.IMPORTANT]只有在其未由磁碟區容器使用時，您才可以刪除儲存體帳戶。如果磁碟區容器正在使用儲存體帳戶，請先刪除磁碟區容器，然後再刪除相關聯的儲存體帳戶。
+> [AZURE.IMPORTANT] 只有在其未由磁碟區容器使用時，您才可以刪除儲存體帳戶。如果磁碟區容器正在使用儲存體帳戶，請先刪除磁碟區容器，然後再刪除相關聯的儲存體帳戶。
 
 #### 若要刪除儲存體帳戶
 
@@ -103,7 +106,7 @@
 
 基於安全性理由，通常是在資料中心內才需要替換金鑰。
 
-> [AZURE.NOTE]下面的金鑰輪替資訊和程序僅適用於 Microsoft Azure 儲存體帳戶。若您使用的是其他雲端服務提供者，可以透過該提供者的儀表板管理儲存體帳戶金鑰。
+> [AZURE.NOTE] 下面的金鑰輪替資訊和程序僅適用於 Microsoft Azure 儲存體帳戶。若您使用的是其他雲端服務提供者，可以透過該提供者的儀表板管理儲存體帳戶金鑰。
  
 每個 Microsoft Azure 訂用帳戶可以有一或多個相關聯的儲存體帳戶。訂用帳戶與每個儲存體帳戶的存取金鑰可以控制這些帳戶的存取權。
 
@@ -151,4 +154,4 @@ Microsoft Azure 系統管理員可以直接存取儲存體帳戶 (透過 Microso
 - 深入了解 [StorSimple 安全性](storsimple-security.md)。
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0518_2016-->

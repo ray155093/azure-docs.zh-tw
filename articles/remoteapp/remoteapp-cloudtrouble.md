@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="02/05/2016"
-    ms.author="vikbucha" />
+    ms.date="05/13/2016"
+    ms.author="elizapo" />
 
 
 
@@ -42,4 +42,4 @@
 
 如果看到這個錯誤，通常表示您已經升級至付費帳戶，但您正在嘗試使用 Microsoft 提供的映像，而該映像只在服務的試用模式期間有效。在此情況下，請嘗試再次建立您的雲端集合，但務必指定正確的映像。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

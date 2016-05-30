@@ -18,13 +18,12 @@
 
 # Azure App Service 中 API Apps 的使用者驗證
 
-[AZURE.INCLUDE [選取器](../../includes/app-service-api-auth-selector.md)]
-
 ## 概觀
 
-這是 App Service API Apps 入門系列中的第四篇文章。在本文中，您將了解：
+本文說明如何保護 Azure API 應用程式，以便只有已驗證的使用者可以呼叫它。本文假設您已閱讀 [Azure App Service 驗證概觀](../app-service/app-service-authentication-overview.md)。
 
-* 如何保護 App Service API 應用程式，以便只有通過驗證的使用者可以呼叫它。
+您將了解：
+
 * 如何使用 Azure Active Directory (Azure AD) 的詳細資料設定驗證提供者。
 * 如何使用 [JavaScript 適用的 Active Directory 驗證程式庫 (ADAL)](https://github.com/AzureAD/azure-activedirectory-library-for-js) 取用受保護的 API 應用程式。
 
@@ -32,7 +31,7 @@
 
 * [如何在 Azure App Service 中設定使用者驗證](#authconfig)一節大致說明如何為 API 應用程式設定使用者驗證，且一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。
 
-* 從[繼續 .NET 使用者入門教學課程](#tutorialstart)一節開始，本文會引導您使用 .NET 後端和 AngularJS 前端設定範例應用程式，使其使用 Azure Active Directory 進行使用者驗證。
+* 從[繼續進行 .NET API Apps 教學課程](#tutorialstart)一節開始，本文會引導您使用 .NET 後端和 AngularJS 前端設定範例應用程式，使其使用 Azure Active Directory 進行使用者驗證。
 
 ## <a id="authconfig"></a>如何在 Azure App Service 中設定使用者驗證
 
@@ -70,21 +69,21 @@
 
 為了讓 API 呼叫受到驗證，呼叫端會在 HTTP 要求的 Authorization 標頭中包含驗證提供者的 OAuth 2.0 持有人權杖。若要取得權杖，請使用驗證提供者的 SDK。
 
-## <a id="tutorialstart"></a>繼續進行 .NET 入門教學課程
+## <a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程
 
-如果您要遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，請跳至下一節 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。
+如果您要遵循適用於 API 應用程式的 Node.js 或 Java 教學課程，請跳至下一節 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。
 
-如果您要遵循適用於 API 應用程式的 .NET 入門系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至[在 App Service 和 Azure AD 中設定驗證](#azureauth)一節。
+如果您要遵循適用於 API 應用程式的 .NET 教學課程系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至[在 App Service 和 Azure AD 中設定驗證](#azureauth)一節。
 
-如果您想要遵循此教學課程，而不通過第一個和第二個教學課程，請執行下列步驟︰
+如果您想要遵循此教學課程，但又不想進行第一個和第二個教學課程，請進行下列步驟，其將會說明如何開始使用自動化程序來部署範例應用程式。
+
+>[AZURE.NOTE] 下列步驟會讓您的起始點就彷彿已完成前兩個教學課程一樣，只有一點例外︰Visual Studio 不會知道每個專案部署至哪些 Web 應用程式或 API 應用程式。這表示此教學課程中不會有說明如何部署至正確目標的確切指示。如果您不熟悉該如何找出自行進行部署步驟的方式，您最好遵循[第一個教學課程](app-service-api-dotnet-get-started.md)中的教學課程系列，而非從這個自動化部署程序來開始。
 
 1. 請確定您有[第一個教學課程](app-service-api-dotnet-get-started.md)中所列的所有必要條件。除了所列的必要條件之外，這些驗證教學課程還假設您已在 Visual Studio 和 Azure 入口網站中使用 App Service Web 應用程式和 API 應用程式。
 
 2. 按一下 [To Do List 範例儲存機制的讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)中的 [部署至 Azure] 按鈕，部署 API 應用程式和 Web 應用程式。記下所建立的 Azure 資源群組，因為您稍後可以使用它來查閱 Web 應用程式和 API 應用程式名稱。
  
 3. 下載或複製 [To Do List 範例儲存機制](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list)，以取得您將在 Visual Studio 中本機使用的程式碼。
-
-這些步驟會讓您的起始點就彷彿已完成前兩個教學課程一樣，只有一點例外︰Visual Studio 不會知道每個專案部署至哪些 Web 應用程式或 API 應用程式。當您部署專案時，必須選取要部署到的 Azure Web 應用程式或 API 應用程式。若要取得 Web 應用程式和 API 應用程式名稱，請開啟 Azure 入口網站並瀏覽至您在按下 [部署至 Azure] 按鈕時所建立的資源群組的資源群組刀鋒視窗。
 
 ## <a id="azureauth"></a> 在 App Service 和 Azure AD 中設定驗證
 
@@ -120,7 +119,7 @@
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] (如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
 
 	![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
 
@@ -130,7 +129,7 @@
 
 7. 在 [驗證/授權] 刀鋒視窗中，按一下 [儲存]。
 
-	![按一下 [Save] \(儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
+	![按一下 [Save] (儲存)。](./media/app-service-api-dotnet-user-principal-auth/authsave.png)
 
 現在，只有 Azure AD 租用戶中的使用者可以呼叫 API 應用程式。
 
@@ -337,4 +336,4 @@ ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI�
 
 在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。在下一個教學課程中，您將學習如何[對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

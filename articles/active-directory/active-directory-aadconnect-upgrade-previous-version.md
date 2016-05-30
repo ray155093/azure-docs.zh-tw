@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="Identity"
-   ms.date="04/14/2016"
+   ms.date="05/12/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：從舊版升級到最新版本
@@ -34,7 +34,7 @@
 ## 就地升級
 就地升級適用於 Azure AD Sync 或 Azure AD Connect，但不適用於 DirSync，也不適用於任何利用 FIM + Azure AD 連接器的解決方案。
 
-如果您只有一台伺服器，且擁有的物件少於 100000 個，這個方法是最適合您的。升級完成之後，系統會進行完整匯入及完整同步處理的作業。這能確保新的組態會套用到系統中所有現有的物件。這可能需要幾個小時的時間，視同步化引擎作業範圍內的物件數目而定。平常的差異同步處理排程 (預設為每隔 30 分鐘) 會暫停，但密碼同步處理會繼續進行。我們建議您在週末時進行就地升級。
+如果您只有一台伺服器，且擁有的物件少於 100000 個，這個方法是最適合您的。在升級之後，如果現成的同步處理規則有任何變更，便會進行完整匯入和完整同步處理。這能確保新的組態會套用到系統中所有現有的物件。這可能需要幾個小時的時間，視同步化引擎作業範圍內的物件數目而定。平常的差異同步處理排程 (預設為每隔 30 分鐘) 會暫停，但密碼同步處理會繼續進行。我們建議您在週末時進行就地升級。如果新的 Azure AD Connect 版本的現成組態沒有變更，則會改為啟動一般的差異匯入/同步處理。
 
 ![就地升級](./media/active-directory-aadconnect-upgrade-previous-version/inplaceupgrade.png)
 
@@ -85,4 +85,4 @@
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

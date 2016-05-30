@@ -14,7 +14,7 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="04/29/2016"
+ms.date="05/17/2016"
 ms.author="deonhe"/>
 
 # 開始使用 GitHub 連接器
@@ -29,7 +29,7 @@ ms.author="deonhe"/>
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從立即建立邏輯應用程式開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
@@ -59,7 +59,9 @@ GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都�
 |屬性| 必要|說明|
 | ---|---|---|
 |權杖|是|提供 GitHub 認證|
-建立連接後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+
+>[AZURE.INCLUDE [建立至 GitHub 連線的步驟](../../includes/connectors-create-api-github.md)]
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
@@ -177,4 +179,4 @@ GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

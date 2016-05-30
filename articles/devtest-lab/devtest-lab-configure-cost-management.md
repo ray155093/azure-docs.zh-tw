@@ -1,6 +1,6 @@
 <properties
 	pageTitle="設定成本管理 | Microsoft Azure"
-	description="了解如何設定您的研測實驗室成本管理功能。"
+	description="了解如何設定您的研發/測試實驗室成本管理功能。"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 # 設定成本管理
@@ -26,7 +26,7 @@
 
 若要啟用每月估計成本趨勢圖表，請遵循下列步驟︰
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
 1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
 
@@ -36,11 +36,11 @@
 
 	![Settings](./media/devtest-lab-configure-cost-management/lab-blade-settings.png)
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [Cost Policies] \(成本原則) 下，點選 [Cost Thresholds] \(成本臨界值)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [Cost Policies] (成本原則) 下，點選 [Cost Thresholds] (成本臨界值)。
 
 	![功能表](./media/devtest-lab-configure-cost-management/menu.png)
  
-1. 在 [Cost Thresholds] \(成本臨界值) 刀鋒視窗上，點選 [開啟] 啟用此功能，點選 [關閉] 則予以停用。
+1. 在 [Cost Thresholds] (成本臨界值) 刀鋒視窗上，點選 [開啟] 啟用此功能，點選 [關閉] 則予以停用。
 
 1. 點選 [儲存]。
 
@@ -68,4 +68,4 @@
 - [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - 研測實驗室支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何使用 VM 中的構件。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

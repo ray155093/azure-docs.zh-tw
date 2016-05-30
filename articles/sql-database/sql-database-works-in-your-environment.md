@@ -43,4 +43,14 @@
 
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
-<!---HONumber=AcomDC_0511_2016-->
+## 後續步驟
+
+取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+
+## 詳細資訊
+
+瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+ 
+檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
+
+<!---HONumber=AcomDC_0518_2016-->

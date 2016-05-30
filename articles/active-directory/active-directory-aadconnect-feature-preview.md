@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="04/14/2016"
+   ms.date="05/11/2016"
    ms.author="andkjell;billmath"/>
 
 # 有關預覽中之功能的其他詳細資料
@@ -36,19 +36,11 @@
 >[AZURE.NOTE] 需要 Azure AD Premium 的訂用帳戶才能使用群組回寫功能。
 
 ## 使用者回寫
-> [AZURE.IMPORTANT] 在 Azure AD Connect 的 2015 年 8 月更新中，已暫時移除使用者的回寫預覽功能。如果已啟用它，則您應該停用這個功能。
-
-使用者回寫是在早期預覽中。只在下列情況時才能使用它：Azure AD 是所有使用者物件的來源，且內部部署 Active Directory 在您啟用此功能之前是空的 (嶄新部署)。
-
->[AZURE.WARNING] 應該只在測試環境中評估此功能，因此不應該用於針對生產用途使用的 Azure AD 目錄。
-
-。
-
->[AZURE.NOTE] 需要 Azure AD Premium 的訂用帳戶才能使用使用者回寫功能。
+> [AZURE.IMPORTANT] 在 Azure AD Connect 的 2015 年 8 月更新中，已移除使用者的回寫預覽功能。如果已啟用它，則您應該停用這個功能。
 
 ## 後續步驟
 繼續[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

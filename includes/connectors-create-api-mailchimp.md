@@ -1,15 +1,11 @@
-### Prerequisites
-- A [MailChimp](https://www.MailChimp.com/) account 
+### 必要條件
+- [MailChimp](https://www.MailChimp.com/) 帳戶 
 
-Before you can use your MailChimp account in a Logic app, you must authorize the Logic app to connect to your MailChimp account. Fortunately, you can do this easily from within your Logic app on the Azure Portal. 
+您必須先授與邏輯應用程式連接到 MailChimp 帳戶的權限，之後才能在邏輯應用程式中使用您的 MailChimp 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
-Here are the steps to authorize your Logic app to connect to your MailChimp account:
+若要授與邏輯應用程式連接到 MailChimp 帳戶的權限，其步驟如下：
 
-1. To create a connection to MailChimp, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *MailChimp* in the search box. Select the trigger or action you'll like to use:  
-  ![MailChimp step 1](./media/connectors-create-api-mailchimp/mailchimp-1.png)
-2. If you haven't created any connections to MailChimp before, you'll get prompted to provide your MailChimp credentials. These credentials will be used to authorize your Logic app to connect to, and access your MailChimp account's data:  
-  ![MailChimp step 2](./media/connectors-create-api-mailchimp/mailchimp-2.png)
-3. Provide your MailChimp user name and password to authorize your Logic app:  
-  ![MailChimp step 3](./media/connectors-create-api-mailchimp/mailchimp-3.png)   
-4. Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:  
-  ![MailChimp step 4](./media/connectors-create-api-mailchimp/mailchimp-4.png)
+1. 若要建立 MailChimp 連線，請在邏輯應用程式設計工具中，選取下拉式清單的 [Show Microsoft managed APIs] (顯示 Microsoft Managed API)，然後在搜尋方塊中輸入 *MailChimp*。選取您要使用的觸發程序或動作：![MailChimp 步驟 1](./media/connectors-create-api-mailchimp/mailchimp-1.png)
+2. 如果您之前尚未建立任何 MailChimp 連線，系統會提示您提供 MailChimp 認證。這些認證會用來授與邏輯應用程式連接並存取 MailChimp 帳戶資料的權限：![MailChimp 步驟 2](./media/connectors-create-api-mailchimp/mailchimp-2.png)
+3. 提供您的 MailChimp 使用者名稱和密碼以授與邏輯應用程式權限：![MailChimp 步驟 3](./media/connectors-create-api-mailchimp/mailchimp-3.png)   
+4. 請注意，此時已建立連線，您現可進行邏輯應用程式中的其他步驟：![MailChimp 步驟 4](./media/connectors-create-api-mailchimp/mailchimp-4.png)

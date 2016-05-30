@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure Mobile Engagement 的 Android SDK 整合"
-	description="Android SDK for Azure Mobile Engagement 的最新更新和程序"
+	description="描述如何整合 Azure Mobile Engagement SDK 至 Android 應用程式"
 	services="mobile-engagement"
 	documentationCenter="mobile"
 	authors="piyushjo"
@@ -13,11 +13,10 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="05/17/2016"
 	ms.author="piyushjo;ricksal" />
 
-
-# 使用適用於 Android 應用程式的進階 Azure Mobile Engagement 功能
+# Azure Mobile Engagement 的 Android SDK 整合
 
 > [AZURE.SELECTOR]
 - [Universal Windows](mobile-engagement-windows-store-sdk-overview.md)
@@ -25,7 +24,7 @@
 - [iOS](mobile-engagement-ios-sdk-overview.md)
 - [Android](mobile-engagement-android-sdk-overview.md)
 
-了解您可以整合到 Android 應用程式中的所有 Azure Mobile Engagement 進階功能。
+此文件說明適用於 Azure Mobile Engagement Android SDK 的所有整合及組態選項。
 
 ## 必要條件
 
@@ -53,6 +52,16 @@
 
 ## 版本資訊
 
+### 4\.2.2 (2016/05/17)
+
+- 穩定性改進。
+
+### 4\.2.1 (2016/05/10)
+
+- 安全性︰停用 Web 檢視本機檔案存取權限。
+- 安全性︰移除 `EngagementPreferenceActivity` 類別，其可擴充過時且不安全的 `PreferenceActivity` 類別。
+- 安全性︰現在會記載觸達活動以使用 `exported="false"`，此旗標也可用於先前的 SDK 版本。
+
 ### 4\.2.0 (03/11/2016)
 
 - SDK 現在是在 MIT 中授權的。
@@ -64,4 +73,4 @@
 
 如果您已經將較舊版的 SDK 整合到應用程式中，請參閱[升級程序](mobile-engagement-android-upgrade-procedure.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,11 +14,30 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="05/13/2016"
 	ms.author="nitinme"/>
 
 
 # Azure HDInsight 上 Hadoop 元件的版本資訊
+
+## HDInsight 2016/05/13 版本的注意事項
+
+使用此版本部署的 HDInsight 叢集的完整版本號碼：
+
+* HDInsight (Windows) 2.1.10.875.2159884 (HDP 1.3.12.0-01795 - 未變更)
+* HDInsight (Windows) 3.0.6.875.2159884 (HDP 2.0.13.0-2117 - 未變更)
+* HDInsight (Windows) 3.1.4.922.2266903 (HDP 2.1.15.0-2374 - 未變更)
+* HDInsight (Windows) 3.2.7.922.2266903 (HDP 2.2.9.1-11)
+* HDInsight (Windows) 3.3.0.922.2266903 (HDP 2.3.3.1-18)
+* HDInsight (Linux) 3.2.1000.0.7565644 (HDP 2.2.9.1-11)
+* HDInsight (Linux) 3.3.1000.0.7565644 (HDP 2.3.3.1-18)
+* HDInsight (Linux) 3.4.1000.0.7548380 (HDP 2.4.2.0)
+
+此版本包含下列更新。
+
+| 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
+|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
+| Spark 版本更新和其他錯誤修正 | 此版本將 HDInsight 叢集中的 Spark 版本更新至 1.6.1，並修正其他錯誤| 服務 | Spark| N/A
 
 ## HDInsight 04/11/2016 版本的注意事項
 
@@ -31,7 +50,7 @@
 * HDInsight (Windows) 3.3.0.889.2191206 (HDP 2.3.3.1-16 -未變更)
 * HDInsight (Linux) 3.2.1000.0.7339916 (HDP 2.2.9.1-10)
 * HDInsight (Linux) 3.3.1000.0.7339916 (HDP 2.3.3.1-16)
-* HDInsight (Linux) 3.3.1000.0.7338911 (HDP 2.4.1.1-3)
+* HDInsight (Linux) 3.4.1000.0.7338911 (HDP 2.4.1.1-3)
 * SDK 1.5.8
 
 此版本包含下列更新。
@@ -41,7 +60,7 @@
 | HDI 3.4 的自訂中繼存放區升級問題 | 如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。這是因為升級指令碼時發生的錯誤現在已修正| 叢集建立 | 全部 | N/A
 | Livy Crash 復原 | 為所有已透過 Livy 提交的作業提供工作狀態復原 | 可靠性 | Spark on Linux| N/A
 | Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
-| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` 魔術，而非 `%%hive` 魔術。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
+| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` 魔術，而非 `%%hive` 魔術。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
 | 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Windows 上的 Spark 叢集 | N/A
 
 ## HDInsight 03/29/2016 版本的注意事項
@@ -62,7 +81,7 @@
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
 |-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本附註可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 所有 Linux 叢集| N/A
+| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本資訊可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 所有 Linux 叢集| N/A
 | HDInsight Premium | HDInsight 現在有兩種類別：Standard 和 Premium。HDInsight Premium 目前為預覽版，僅適用於 Linux 上的 Hadoop 和 Spark 叢集。如需詳細資訊，請參閱[這裡](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
 | Microsoft R 伺服器 | HDInsight Premium 提供 Microsoft R 伺服器，它可以隨附於 Linux 上的 Hadoop 與 Spark 叢集。如需詳細資訊，請參閱 [HDInsight 上的 R 伺服器的概觀](hdinsight-hadoop-r-server-overview.md)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
 | Spark 1.6.0 | HDInsight 3.4 叢集現在包含 Spark 1.6.0| 服務 | Linux 上的 Spark 叢集| N/A
@@ -1523,7 +1542,7 @@ HDInsight 2.x (HDP1.x) 與 HDInsight 3.x (HDP2.x) 之間有下列版本變更：
 
 
 ### 驅動程式
-SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部使用，且不適用於外部作業。如果您想要使用開放式資料庫連接 (ODBC) 連線至 HDInsight，請使用 Microsoft Hive ODBC 驅動程式。如需詳細資訊，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 HDInsight](../../articles/hdinsight/hdinsight-connect-excel-hive-odbc-driver.md)。
+SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部使用，且不適用於外部作業。如果您想要使用開放式資料庫連接 (ODBC) 連線至 HDInsight，請使用 Microsoft Hive ODBC 驅動程式。如需詳細資訊，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver.md)。
 
 
 ### 錯誤修正
@@ -1565,4 +1584,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

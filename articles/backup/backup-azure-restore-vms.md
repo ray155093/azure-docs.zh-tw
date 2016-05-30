@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/22/2016"
+	ms.date="05/06/2016"
 	ms.author="trinadhk; jimpark;"/>
 
 
@@ -62,12 +62,12 @@
 
 1. 在 [**選取還原執行個體**] 畫面中，指定要將虛擬機器還原至何處的詳細資料。
 
-  - 指定虛擬機器名稱：在指定的雲端服務中，虛擬機器名稱應該是唯一的。如果您打算使用相同的名稱取代現有的 VM，先刪除現有的 VM 和資料磁碟，然後從 Azure 備份還原資料。
+  - 指定虛擬機器名稱：在指定的雲端服務中，虛擬機器名稱應該是唯一的。我們不支援覆寫現有的 VM。 
   - 選取 VM 的雲端服務：這是建立 VM 的必要步驟。您可以選擇使用現有的雲端服務，或建立新的雲端服務。
 
-        無論雲端服務名稱為何，都必須是全域唯一的名稱。一般來說，雲端服務名稱會與形式為 [cloudservice].cloudapp.net 的公用 URL 相關聯。如果該名稱已有他人使用，Azure 不允許您建立新的雲端服務。如果您選擇建立新的雲端名稱，則該名稱會與虛擬機器相同，在這種情況下，所選擇的 VM 名稱應該是唯一的，以便套用至所有相關的雲端服務。
+        Whatever cloud service name is picked should be globally unique. Typically, the cloud service name gets associated with a public-facing URL in the form of [cloudservice].cloudapp.net. Azure will not allow you to create a new cloud service if the name has already been used. If you choose to create select create a new cloud service, it will be given the same name as the virtual machine – in which case the VM name picked should be unique enough to be applied to the associated cloud service.
 
-        我們只會顯示與還原執行個體詳細資料中的任何同質群組不關聯的雲端服務和虛擬網路。[深入瞭解](../virtual-network/virtual-networks-migrate-to-regional-vnet.md)。
+        We only display cloud services and virtual networks that are not associated with any affinity groups in the restore instance details. [Learn More](../virtual-network/virtual-networks-migrate-to-regional-vnet.md).
 
 2. 選取 VM 的儲存體帳戶：這是建立 VM 的必要步驟。您可以選取與 Azure 備份保存庫位於相同區域的現有儲存體帳戶。我們不支援區域備援或進階儲存體類型的儲存體帳戶。
 
@@ -101,6 +101,12 @@
 ![已完成還原工作](./media/backup-azure-restore-vms/restore-job-complete.png)
 
 還原虛擬機器後，您可能需要重新安裝原始虛擬機器 (VM) 上現有的擴充功能，並為 Azure 入口網站中的虛擬機器[修改端點](virtual-machines-set-up-endpoints)。
+
+## 備份還原 VM
+如果您已將 VM 還原至相同的雲端服務，並使用與原始備份 VM 相同的名稱，備份將會在還原後繼續進行。如果您已將 VM 還原至不同的雲端服務，或為還原 VM 指定不同名稱，系統會將該 VM 視為新 VM，因此您需要為還原 VM 設定備份。
+
+## 在 Azure 資料中心發生災害時還原 VM
+如果 VM 執行的主要資料中心發生災害，而您已將備份保存庫設定為異地備援，Azure 備份可讓您將備份 VM 還原至配對的資料中心。在這種情況下，您需要選取配對之資料中心內的儲存體帳戶，其餘的還原程序則保持不變。Azure 備份會使用配對之地理區域的計算服務來建立還原虛擬機器。
 
 ## 還原網域控制站 VM
 備份網域控制站 (DC) 虛擬機器是 Azure 備份支援的案例。不過在還原程序期間必須小心。對於單一 DC 組態中的網域控制站 VM 與在多 DC 組態中的 VM 而言，還原體驗會大為不同。
@@ -140,7 +146,7 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。在�
 
 2. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態，並使用該組態建立具備想要之組態的 VM。
 	- 使用[內部負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internal-getstarted/)在雲端服務中建立 VM
-	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internet-getstarted/)
+	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/zh-TW/documentation/articles/load-balancer-internet-getstarted/)
 	- 建立具有[多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/) 的 VM
 	- 建立具有[多個保留的 IP](https://azure.microsoft.com/documentation/articles/virtual-networks-reserved-public-ip/) 的 VM
 
@@ -149,4 +155,4 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。在�
 - [錯誤疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

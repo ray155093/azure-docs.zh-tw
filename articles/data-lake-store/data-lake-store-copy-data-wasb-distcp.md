@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/13/2016"
+   ms.date="05/11/2016"
    ms.author="nitinme"/>
 
 # 使用 Distcp 在 Azure 儲存體 Blob 與資料湖存放區之間複製資料
@@ -27,6 +27,10 @@
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 - 可存取資料湖存放區帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。請確實為叢集啟用遠端桌面。
+
+## 使用影片快速學習？
+
+[觀看這部影片](https://mix.office.com/watch/1liuojvdx6sie)，主題是關於如何使用 DistCp 在 Azure 儲存體 Blob 與 Data Lake Store 之間複製資料。
 
 ## 從遠端桌面 (Windows 叢集) 或 SSH (Linux 叢集) 使用 Distcp
 
@@ -52,13 +56,13 @@ HDInsight 叢集隨附 Distcp 公用程式，可用來將不同來源的資料�
 
 		hadoop distcp wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder
 
-	這會將 WASB 中的 **/example/data/gutenberg/** 資料夾的內容複製到資料湖存放區帳戶中的 **/myfolder**。
+	這會將 WASB 中的 **/example/data/gutenberg/** 資料夾的內容複製到 Data Lake Store 帳戶中的 **/myfolder**。
 
 6. 同樣地，請使用 Distcp 將資料從資料湖存放區帳戶複製到 WASB。
 
 		hadoop distcp adl://<data_lake_store_account>.azuredatalakestore.net:443/myfolder wasb://<container_name>@<storage_account_name>.blob.core.windows.net/example/data/gutenberg
 
-	這會將資料湖存放區帳戶中的 **/myfolder** 的內容複製到 WASB 中的 **/example/data/gutenberg/** 資料夾。
+	這會將 Data Lake Store 帳戶中的 **/myfolder** 的內容複製到 WASB 中的 **/example/data/gutenberg/** 資料夾。
 
 ## 另請參閱
 
@@ -67,4 +71,4 @@ HDInsight 叢集隨附 Distcp 公用程式，可用來將不同來源的資料�
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

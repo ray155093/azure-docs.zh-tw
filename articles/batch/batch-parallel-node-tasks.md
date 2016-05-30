@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="01/22/2016"
+	ms.date="04/21/2016"
 	ms.author="marsma" />
 
 # 使用並行節點工作最大化 Azure Batch 運算資源使用量
 
-在本文中，您將了解如何在您的 Azure Batch 集區中每個計算節點上，同時執行一個以上的工作。在集區的計算節點上啟用並行工作執行，即可在集區中較少數量的節點上最大化資源使用量。對於某些工作負載，這可以節省您的時間和金錢。
+了解如何在您的 Azure Batch 集區中每個計算節點上，同時執行一個以上的工作。在集區的計算節點上啟用並行工作執行，即可在集區中較少數量的節點上最大化資源使用量。對於某些工作負載來說，這會產生縮短作業時間和降低成本的效益。
 
-雖然某些案例受益於可用於配置給單一工作的所有節點的資源，但是許多案例受益於允許多個工作共用這些資源：
+雖然某些案例受益於將節點的所有資源配置給單一工作，但是許多案例受益於允許多個工作共用這些資源：
 
  - 當工作可以共用資料時**最小化資料傳輸**。在此案例中，您可以將共用資料複製到較少數量的節點，並在每個節點上平行執行工作，以大幅降低資料傳輸費用。此做法尤其適用於當要複製到每個節點的資料必須在地理區域之間傳輸時。
 
@@ -32,15 +32,15 @@
 
 ## 範例案例
 
-以下範例說明平行工作執行的優點。讓我們假設您的工作應用程式有 CPU 和記憶體需求，這樣 Standard\_D1 節點大小是合適的。但是為了在要求的時間內執行作業，需要 1000 個這類節點。
+以下範例說明平行工作執行的優點。讓我們假設您的工作應用程式有 CPU 和記憶體需求，這樣 [Standard\_D1](../cloud-services/cloud-services-sizes-specs.md#general-purpose-d) 節點大小是合適的。但是為了在要求的時間內執行作業，需要 1000 個這類節點。
 
-如果不使用 Standard\_D1 節點 (具有 1 個 CPU 核新)，您可以採用具有 16 個核心的 Standard\_D14 節點，並啟用平行工作執行。在此情況下，不需使用 1000 個節點，而是可以使用 *16 倍較少的節點*，僅需 63 個節點。如果每個節點需要大型應用程式檔案或參考資料，這樣可大幅改進作業執行時間和效率。
+如果不使用 Standard\_D1 節點 (具有 1 個 CPU 核新)，您可以採用具有 16 個核心的 [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md#memory-intensive-d) 節點，並啟用平行工作執行。在此情況下，不需使用 1000 個節點，而是可以使用「16 倍較少的節點」，僅需 63 個節點。如果每個節點需要大型應用程式檔案或參考資料，這樣可大幅改進作業執行時間和效率。
 
 ## 啟用平行工作執行
 
 針對集區層級的平行工作執行，您會在 Batch 解決方案中設定計算節點。使用 Batch .NET 程式庫時，您會在建立集區時設定 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性。如果您使用 Batch REST API，您會在集區建立期間於要求主體中設定 [maxTasksPerNode][rest_addpool] 元素。
 
-Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大] (四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
+Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大] (四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
 > [AZURE.TIP] 為您的集區建構[自動調整公式][enable_autoscaling]時，請務必考慮 `maxTasksPerNode` 值。例如，評估 `$RunningTasks` 的公式可能大幅受到每個節點的工作增加的影響。如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](batch-automatic-scaling.md)。
 
@@ -50,13 +50,13 @@ Azure Batch 允許您將每個節點的最大工作數目設定為多達節點�
 
 使用 [CloudPool.TaskSchedulingPolicy][task_schedule] 屬性，您可以指定工作應該跨集區中的所有節點平均指派 (「散佈」)。或者，您可以在工作指派到集區中其他節點之前，盡可能將最多工作指派給每個節點 (「封裝」)。
 
-做為這項功能有何重要的範例，請考慮上述範例中 Standard\_D14 節點的集區，以 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 的值 16 進行設定。如果 [CloudPool.TaskSchedulingPolicy][task_schedule] 以 [ComputeNodeFillType][fill_type] 為 *Pack* 進行設定，它會最大化每個節點全部 16 個核心的使用量，並且允許[自動調整集區](./batch-automatic-scaling.md)從集區剪除未使用的節點 (未指派任何工作的節點)。這可最小化資源使用量和節省金錢。
+做為這項功能有何重要的範例，請考慮上述範例中 [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md#memory-intensive-d) 節點的集區，以 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 的值 16 進行設定。如果 [CloudPool.TaskSchedulingPolicy][task_schedule] 以 [ComputeNodeFillType][fill_type] 為 *Pack* 進行設定，它會最大化每個節點全部 16 個核心的使用量，並且允許[自動調整集區](batch-automatic-scaling.md)從集區剪除未使用的節點 (未指派任何工作的節點)。這可最小化資源使用量和節省金錢。
 
 ## Batch .NET 範例
 
 這個 [Batch .NET][api_net] API 程式碼片段示範建立集區的要求，該集區包含四個大型節點，而每個節點最多有四項工作。它會指定工作排程原則，該原則會先以工作填滿每個節點，再將工作指派給集區中的其他節點。如需有關使用 Batch .NET API 新增集區的詳細資訊，請參閱 [BatchClient.PoolOperations.CreatePool][poolcreate_net]。
 
-```
+```csharp
 CloudPool pool =
     batchClient.PoolOperations.CreatePool(
         poolId: "mypool",
@@ -73,7 +73,7 @@ pool.Commit();
 
 這個 [Batch REST][api_rest] API 程式碼片段示範建立集區的要求，該集區包含兩個大型節點，而每個節點最多有四項工作。如需有關如何使用 REST API 新增集區的詳細資訊，請參閱[將集區新增至帳戶][rest_addpool]。
 
-```
+```json
 {
   "odata.metadata":"https://myaccount.myregion.batch.azure.com/$metadata#pools/@Element",
   "id":"mypool",
@@ -116,7 +116,7 @@ Duration: 00:08:48.2423500
 
 第二次執行範例會顯示作業持續時間大幅降低。這是因為集區已設定為每個節點四項工作，可允許平行工作執行以在近一季的時間完成作業。
 
-> [AZURE.NOTE] 在上述摘要中的作業持續時間不包括集區建立時間。上述的每個工作已提交至先前建立的集區，其運算節點在提交時間處於 [閒置] 狀態。
+> [AZURE.NOTE] 在上述摘要中的作業持續時間不包括集區建立時間。上述的每個作業已提交至先前建立的集區，其運算節點在提交時間處於 [閒置] 狀態。
 
 ## Batch 總管熱圖
 
@@ -141,4 +141,4 @@ Duration: 00:08:48.2423500
 
 [1]: ./media/batch-parallel-node-tasks\heat_map.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

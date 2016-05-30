@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # 在 Azure CDN 端點上預先載入資產
+
+[AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
 根據預設，資產被要求時會先快取。這表示每個區域的第一個要求可能需要較長的時間，因為 Edge Server 沒有快取的內容，而且必須將要求轉送至原始伺服器。預先載入內容以避免此第一次點擊的延遲。
 
@@ -58,4 +60,4 @@
 - [清除 Azure CDN 端點](cdn-purge-endpoint.md)
 - [Azure CDN REST API 參考資料 - 清除或預先載入端點](https://msdn.microsoft.com/library/mt634451.aspx)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016"
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # Microsoft Azure CDN 中的進階 HTTP 報告
@@ -22,7 +22,7 @@
 
 本文件說明 Microsoft Azure CDN 中的進階 HTTP 報告。這些報告提供有關 CDN 活動的詳細資訊。
 
-> [AZURE.NOTE] 進階 HTTP 報告是高階 CDN 層的一項功能。如需標準和高階 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md)。
+[AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## 存取進階 HTTP 報告
 
@@ -196,4 +196,4 @@
 * [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
 * [分析邊緣效能](cdn-edge-performance.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

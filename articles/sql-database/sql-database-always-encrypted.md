@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/02/2016"
+	ms.date="05/09/2016"
 	ms.author="sstein"/>
 
 # 一律加密 - 透過資料庫加密來保護 SQL Database 中的機密資料，並將您的加密金鑰儲存在 Windows 憑證存放區
@@ -550,4 +550,4 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - [Always Encrypted Wizard (永遠加密精靈)](https://msdn.microsoft.com/library/mt459280.aspx)
 - [Always Encrypted Blog (永遠加密部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

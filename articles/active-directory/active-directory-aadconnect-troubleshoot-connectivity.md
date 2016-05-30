@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="04/27/2016"
 	ms.author="andkjell"/>
 
 # 使用 Azure AD Connect 疑難排解連線問題
@@ -26,9 +26,8 @@ Azure AD Connect 使用「新式驗證」(使用 ADAL 程式庫) 來進行驗證
 
 首先，我們必須確定已正確設定 [**machine.config**](active-directory-aadconnect-prerequisites.md#connectivity)。 ![machineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/machineconfig.png)
 
-> [AZURE.NOTE] 在某些非 Microsoft 的部落格中則是表示應該改為變更 miiserver.exe.config。不過，每次升級時都會覆寫這個檔案，因此，即使在初始安裝期間能運作，在第一次升級時系統將停止運作。基於該理由，建議您改為更新 machine.config。
-
-
+>[AZURE.NOTE]
+在某些非 Microsoft 的部落格中則是表示應該改為變更 miiserver.exe.config。不過，每次升級時都會覆寫這個檔案，因此，即使在初始安裝期間能運作，在第一次升級時系統將停止運作。基於該理由，建議您改為更新 machine.config。
 
 Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)中。
 
@@ -37,11 +36,7 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 | URL | 連接埠 | 說明 |
 | ---- | ---- | ---- |
 | mscrl.microsoft.com | HTTP/80 | 用來下載 CRL 清單。 |
-| **.verisign.com | HTTP/80 | 用來下載 CRL 清單。|
-| *.trust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。|
-| *.windows.net | HTTPS/443 | 用來登入 Azure AD。|
-| secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。|
-| *.microsoftonline.com | HTTPS/443 | 用來設定您的 Azure AD 目錄及匯入/匯出資料。|
+| **.verisign.com | HTTP/80 | 用來下載 CRL 清單。| | *.entrust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。| | *.windows.net | HTTPS/443 | 用來登入 Azure AD。| | secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。| | *.microsoftonline.com | HTTPS/443 | 用來設定您的 Azure AD 目錄及匯入/匯出資料。|
 
 ## 精靈中的錯誤
 安裝精靈會使用兩種不同的安全性內容。在 [連線到 Azure AD] 頁面上，使用的是目前登入的使用者。在 [設定] 頁面上，它會變更為[執行同步處理引擎服務的帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-accounts)。我們進行的是電腦全域的 Proxy 設定，因此如果發生問題，問題將最有可能已經出現在精靈中的 [連線到 Azure AD] 頁面。
@@ -55,8 +50,7 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 - 如果看起來正確，請依照[確認 Proxy 連線](#verify-proxy-connectivity)中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ### 無法連線 MFA 端點
-如果無法連線端點 **https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。
-![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
+如果無法連線端點 ****https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
 
 - 如果您看到此錯誤，請確認是否已將 secure.aadcdn.microsoftonline-p.com 端點新增到 Proxy。
 
@@ -127,6 +121,42 @@ PowerShell 會使用 machine.config 中的組態來連絡 Proxy。winhttp/netsh 
 1/11/2016 8:49 | connect://*bba900-anchor*.microsoftonline.com:443
 1/11/2016 8:49 | connect://*bba800-anchor*.microsoftonline.com:443
 
+## 驗證錯誤
+本節說明可能從 ADAL (Azure AD Connect 所使用的驗證程式庫) 和 PowerShell 傳回的錯誤。其中所說明的錯誤應可幫助您了解後續步驟。
+
+### 無效的授與
+無效的使用者名稱或密碼。如需詳細資訊，請參閱[無法驗證密碼](#the-password-cannot-be-verified)。
+
+### 不明的使用者類型
+Azure AD 目錄找不到或無法解析。可能是您嘗試以未驗證網域中的使用者名稱登入？
+
+### 使用者領域探索失敗
+網路或 Proxy 組態問題。無法與網路連線，請參閱[在安裝精靈中疑難排解連線問題](#troubleshoot-connectivity-issues-in-the-installation-wizard)。
+
+### 使用者密碼過期
+您的認證已過期。請變更密碼。
+
+### AuthorizationFailure
+未知的問題。
+
+### 驗證取消
+已取消 Multi-Factor Authentication (MFA) 查問。
+
+### ConnectToMSOnline
+驗證成功，但 Azure AD PowerShell 發生驗證問題。
+
+### AzureRoleMissing
+驗證成功。您不是全域管理員。
+
+### PrivilegedIdentityManagement
+驗證成功。已啟用 Privileged Identity Management，而且您目前不是全域管理員。如需詳細資訊，請參閱 [Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md)。
+
+### CompanyInfoUnavailable
+驗證成功。無法從 Azure AD 擷取公司資訊。
+
+### RetrieveDomains
+驗證成功。無法從 Azure AD 擷取網域資訊。
+
 ## 舊版的疑難排解步驟
 從組建編號 1.1.105.0 (於 2016 年 2 月發行) 的版本開始即已淘汰登入小幫手。應該已不再需要本節及組態設定，但仍保留供參考之用。
 
@@ -141,4 +171,4 @@ PowerShell 會使用 machine.config 中的組態來連絡 Proxy。winhttp/netsh 
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

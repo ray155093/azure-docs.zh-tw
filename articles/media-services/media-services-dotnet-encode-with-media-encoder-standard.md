@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"
+ 	ms.date="05/03/2016"
 	ms.author="juliako;anilmur"/>
 
 
@@ -37,12 +37,15 @@
 
 Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
 
-###MES 輸入和輸出中繼資料
+###輸入和輸出中繼資料
 
-[這裡](http://msdn.microsoft.com/library/azure/dn783120.aspx)說明編碼器輸入中繼資料。
+如果您使用 MES 為輸入資產 (或資產) 編碼，在該編碼工作完成時，您便能取得輸出資產。輸出資產包含視訊、音訊、縮圖、資訊清單等等，依據您所使用的編碼預設格式而定。
 
-[這裡](http://msdn.microsoft.com/library/azure/dn783217.aspx)說明編碼器輸出中繼資料。
+輸出資產也包含隨附關於輸入資產元資料的檔案。元資料 XML 檔案的名稱具備下列格式︰<asset_id>\_metadata.xml (例如：41114ad3-eb5e-4c57-8d92-5354e2b7d4a4\_metadata.xml)，其中的 <asset_id> 是輸入資產的 AssetId 值。[這裡](http://msdn.microsoft.com/library/azure/dn783120.aspx)說明了此輸入元資料 XML 的結構描述。
 
+輸出資產也包含隨附關於輸出資產元資料的檔案。元資料 XML 檔案的名稱具備下列格式︰<source_file_name>\_manifest.xml (例如：BigBuckBunny\_manifest.xml)。[這裡](http://msdn.microsoft.com/library/azure/dn783217.aspx)說明了此輸出元資料 XML 的結構描述。
+
+如果您想要檢查這兩個元資料檔案的任一個，可以建立 SAS 定位器並將檔案下載到您的本機電腦。您可以找到關於如何建立 SAS 定位器的範例，並且下載使用媒體服務 .NET SDK 擴充功能的檔案。
 
 ##下載範例
 
@@ -147,4 +150,4 @@ Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618
 
 [如何使用 Media Encoder Standard 搭配 .NET 產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md) [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

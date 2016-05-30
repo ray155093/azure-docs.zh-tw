@@ -1,53 +1,53 @@
-# Internet of Things security best practices
+# 物聯網安全性最佳做法
 
-Securing an Internet of Things (IoT) infrastructure requires a rigorous security-in-depth strategy. Starting from securing data in the cloud, to protecting data integrity while in transit over the public internet, and providing the ability to securely provision devices, each layer builds greater security assurance in the overall infrastructure. 
+保護物聯網 (IoT) 基礎結構需要嚴格的深度安全性防禦策略。從保護雲端資料的安全開始，到保護資料在公用網際網路上傳輸時的資料完整性，以及提供安全佈建裝置的功能，在整體基礎結構的每一階層建置更強大的安全性保證。
 
-## Securing an IoT infrastructure
+## 保護 IoT 基礎結構安全
  
-This security-in-depth strategy can be developed and executed with active participation of various players involved with the manufacturing, development, and deployment of IoT devices and infrastructure. Following is a high level description of these players.  
+此深度安全性保護可由製造、開發及部署 IoT 裝置與基礎結構時所牽涉的各方積極參與者來開發及執行。以下是這些參與者的高層級說明。
 
-- **IoT hardware manufacturer/integrator**: typically these are the manufacturers of IoT hardware being deployed, hardware integrator assembling hardware from various manufacturers, or hardware supplier providing hardware for an IoT deployment manufactured or integrated by other suppliers.
-- **IoT solution developer**: the development of an IoT solution is typically done by a solution developer, which may part of an in-house team, or a System Integrator (SI) specializing in this activity. The IoT solution developer can develop various components of the IoT solution from scratch, integrate various off the shelf or open source components, or adopt pre-configured solutions with minor adaptation.
-- **IoT solution deployer**: once an IoT solution is developed, it needs to be deployed in the field. This involves deployment of hardware, interconnection of devices, and deployment of solutions in hardware devices, or in the cloud.
-- **IoT solution operator**: once the IoT solution is deployed, it requires long term operations, monitoring, upgrades, and maintenance. This may be done by an in-house team comprising information technology specialists, hardware operations and maintenance teams, and domain specialists who monitor the correct behavior of overall IoT infrastructure. 
+- **IoT 硬體製造商/整合者**：通常這些是所部署之 IoT 硬體的製造商、組裝來自各個製造商之硬體的硬體整合者，或針對 IoT 部署提供由其他供應商製造或整合之硬體的硬體供應商。
+- **IoT 方案開發人員**：IoT 方案的開發通常是由方案開發人員完成，他們可能是內部團隊的成員，或專精於此活動的系統整合者 (SI)。IoT 解決方案開發人員可從頭開始開發 IoT 解決方案的各種元件、整合各種現成或開放原始碼元件，或採用僅需輕微調整之預先設定的解決方案。
+- **IoT 方案部署人員**：在 IoT 方案完成開發之後，就需要在現場部署方案。這牽涉到硬體部署、裝置互連，以及在硬體裝置中或在雲端部署解決方案。
+- **IoT 方案操作員**：在 IoT 方案部署完成之後，就需要長時間操作、監視、升級及維護。這可由內部團隊來完成，內部團隊則是由資訊技術專家、硬體操作及維護團隊，以及負責監督整體 IoT 基礎結構是否正確運作的網域專家所組成。 
 
-The sections that follows provide best practices for each of these players so as to develop, deploy and operate a secure IoT infrastructure. 
+後續小節會為各個參與者提供最佳作法，以協助開發、部署及操作安全的 IoT 基礎結構。
 
-## IoT hardware manufacturer/integrator
+## IoT 硬體製造商/整合者
 
-Follow the best practices below if you are an IoT hardware manufacture or a hardware integrator:
+如果您是 IoT 硬體製造商或硬體整合者，請依循下面的最佳作法：
 
-- **Scope hardware to minimum requirements**: the hardware design should include minimum features required for operation of the hardware, and nothing more. An example is to include USB ports only if required for the operation of the device. These additional features open the device for unwanted attack vectors, which should be avoided. 
-- **Make hardware tamper proof**: build in mechanism to detect physical tampering of hardware, such as opening of device cover, removing a part of the device, etc. These tamper signals may be part of the data stream uploaded to the cloud enabling alerting of these events to the operators. 
-- **Build around secure hardware**: if COGS permit, build security features such as secure and encrypted storage and Trusted Platform Module (TPM) based boot functionality. These features make devices more secure protecting the overall IoT infrastructure.
-- **Make upgrades secure**: upgrading firmware during lifetime of the device is inevitable. Building devices with secure paths for upgrades and cryptographic assurance of firmware version will allow the device to be secure during and after upgrades.
+- **設定符合最小需求的硬體範圍**：硬體設計應包括硬體運作時所需的最少功能，僅此而已。其中一個範例就是只有在裝置運作需要時才包括 USB 連接埠。這些額外功能會讓硬體產生不必要的攻擊媒介，應予以避免。 
+- **讓硬體具備防竄改功能**：內建偵測硬體實體竄改 (例如開啟裝置外蓋、移除裝置零件等等) 的機制。這些竄改訊號可能是上傳至雲端之資料流的一部份，以向操作員提供這些事件的警示。 
+- **建立周圍安全的硬體**：如果 COGS 允許，請建立安全性功能，例如以安全與加密儲存體及信任的平台模組 (TPM) 為基礎的開機功能。這些功能可讓裝置更安全，以保護整體 IoT 基礎結構。
+- **保護裝置升級安全**：在裝置存留期間升級韌體是不可避免的。建置安全的裝置升級路徑和韌體版本加密保證，將可保護裝置在升級期間和升級之後的安全。
 
-## IoT solution developer
+## IoT 解決方案開發人員
 
-Follow the best practices below if you are an IoT solution developer:
+如果您是 IoT 解決方案開發人員，請依循下面的最佳作法：
 
-- **Follow secure software development methodology**: developing secure software requires a ground-up thinking about security from the inception of the project all the way to its implementation, testing, and deployment. The choice of platforms, languages, and tools are all influenced with this methodology. The Microsoft Security Development Lifecycle provides a step-by-step approach to building secure software.
-- **Choose open source software with care**: open source software provides an opportunity to quickly develop solutions. When choosing open source software, consider the activity level of the community for each open source component. An active community ensures software will be supported; issues will be discovered and addressed. Alternatively, an obscure and inactive open source software will not be supported and issues will most probably not be discovered.
-- **Integrate with care**: many of the software security flaws exist at the boundary of libraries and APIs. Functionality which may not be required for the current deployment may still be available via an API layer. Making sure that all interfaces of components being integrated are secure ensures overall security.      
+- **依循安全軟體開發方法**：開發安全軟體需要從專案一開始時就思考安全性相關事項，一直到專案的實作、測試及部署。平台、語言及工具的選擇也都會受到這個方法影響。Microsoft 安全性開發週期提供建置安全軟體的逐步建置方式。
+- **小心選擇開放原始碼軟體**：開放原始碼軟體可提供快速開發方案的機會。選擇開放原始碼軟體時，請考量每個開放原始碼元件之社群的活動層級。活躍的社群可確保軟體將會受到支援；問題將被發現並加以解決。相反的，隱蔽或不活躍的開放原始碼軟體將不會受到支援，且問題也可能不會被發現。
+- **小心整合**：程式庫和 API 的界限中存在許多軟體安全性弱點。目前部署中不需要的功能可能仍然可以透過 API 層使用。確定正在整合之元件的所有介面都是安全的，以確保整體安全性。      
 
-## IoT solution deployer
+## IoT 解決方案部署人員
 
-Follow the best practices below if you are an IoT solution deployer:
+如果您是 IoT 解決方案部署人員，請依循下面的最佳作法：
 
-- **Deploy hardware securely**: IoT deployments may require hardware to be deployed in unsecure locations, such as in public spaces or unsupervised locales. In such situations, ensure that hardware deployment is tamper proof to the maximum extent. If USB or other ports are available on the hardware, ensure that these are covered securely. Many attack vectors can use these as entry point for attacks.
-- **Keep authentication keys safe**: during deployment, each device requires device IDs and associated authentication keys generated by the cloud service. Keep these keys physically safe even after the deployment. Any compromised key can be used by a malicious device to masquerade as an existing device.
+- **安全地部署硬體**：IoT 部署可能需要將硬體部署在不安全的位置，例如公共空間或不受監督的區域。在這種情況下，請確定硬體部署有設置最大程度的防竄改措施。如果硬體上有 USB 或其他連接埠可用，請確定這些連接埠有蓋上安全保護蓋。許多攻擊媒介可能會使用這些連接埠做為攻擊的進入點。
+- **維護驗證金鑰安全**：在部署期間，每個裝置都需要由雲端服務所產生的裝置識別碼和關聯的驗證金鑰。在部署之後也務必保護這些金鑰的實體安全。任何洩漏的金鑰都可能被惡意裝置用來偽裝成現有的裝置。
 
-## IoT solution operator
+## IoT 解決方案操作人員
 
-Follow the best practices below if you are an IoT solution operator:
+如果您是 IoT 解決方案操作人員，請依循下面的最佳作法：
 
-- **Keep system up to date**: ensure device operating systems and all device drivers are updated to the latest versions. Windows 10 (IoT or other SKUs), with automatic updates turned on, is kept up to date by Microsoft, providing a secure operating system for IoT devices. For other operating systems, such as Linux, keeping them up to date ensures they are also protected against malicious attacks. 
-- **Protect against malicious activity**: if the operating system permits, place the latest anti-virus and anti-malware capabilities on each device operating system. This can help mitigate most external threats. Most modern operating systems, such as Windows 10 IoT and Linux, can be protected against this threat by taking appropriate steps. 
-- **Audit frequently**: auditing IoT infrastructure for security related issues is key when responding to security incidents. Most operating systems, such as Windows 10 (IoT and other SKUs), provide built-in event logging that should be reviewed frequently to make sure no security breach has occurred. Audit information can be sent as a separate telemetry stream to the cloud service and analyzed.
-- **Physically protect the IoT infrastructure**: the worst security attacks against IoT infrastructure are launched using physical access to devices. Protecting against malicious use of USB ports and other physical access is an important safety and security practice. Logging of physical access, such as USB port usage, is key to uncovering any breach that may have occurred. Again, Windows 10 (IoT and other SKUs) enables detailed logging of these events.
-- **Protect cloud credentials**: cloud authentication credentials used for configuring and operating an IoT deployment are possibly the easiest way to gain access and compromise an IoT system. Protect the credentials by changing the password frequently, and not using these credentials on public machines. 
+- **讓系統維持在最新狀態**：確保裝置的作業系統和所有裝置驅動程式都已更新至最新版本。已開啟自動更新的 Windows 10 (IoT 或其他 SKU) 都會由 Microsoft 維持在最新狀態，為 IoT 裝置提供安全的作業系統。對於其他作業系統 (例如 Linux)，請將它們維持在最新狀態，以確保它們也能夠受到保護以避免遭到惡意攻擊。 
+- **針對惡意活動提供保護**：如果作業系統允許，請在每部裝置的作業系統中加裝防毒或反惡意程式碼功能。這有助於減輕大部分的外部威脅。可透過採取適當步驟，讓最現代化的作業系統 (例如 Windows 10 IoT 和 Linux) 受到保護以避免受此威脅。 
+- **經常稽核**：回應安全性事件時，針對安全性相關問題稽核 IoT 基礎結構是關鍵所在。大部分作業系統 (例如 Windows 10 (IoT 和其他 SKU)) 有提供內建事件記錄，應經常加以檢閱以確保沒有發生安全性缺口。稽核資訊可以以個別遙測資料流的方式傳送至雲端服務並加以分析。
+- **實體保護 IoT 基礎結構**：對 IoT 基礎結構最嚴重的安全性攻擊是透過實際接觸裝置的方式進行攻擊。針對惡意使用 USB 連接埠與其他實際接觸方式提供保護，是非常重要的安全和安全性作法。若要找出任何可能已發生之安全性缺口，記錄實際接觸 (例如使用 USB 連接埠) 是關鍵作法。同樣地，Windows 10 (IoT 和其他 SKU) 可詳細記錄這些事件。
+- **保護雲端認證**：用來設定及操作 IoT 部署的雲端驗證認證可能是存取及危及 IoT 系統的最簡單方式。可透過經常變更密碼，以及不要在公用電腦上使用這些認證來保護認證。 
 
-Capabilities of different IoT devices vary. On one hand, some devices may be full blown computers running common desktop operating systems, while on the other hand, some devices may be running very light-weight operating systems. Security best practices described above may be applicable to these devices in varying degree. If provided, additional security and deployment best practices provided by manufacturer of these devices should be followed. 
+不同 IoT 裝置的功能會有所差異。某些裝置可能是執行一般桌面作業系統的成熟電腦，某些裝置可能是執行非常輕量的作業系統。上述說明的安全性最佳作法可能適用於這些分屬各種等級的裝置。如果這些裝置的製造商有提供額外的安全性和部署最佳作法，應加以依循。
 
-Some legacy and constrained devices may not have been designed specifically for IoT deployment. These devices may lack the capability to encrypt data, connect with the Internet, provide advanced auditing, etc. In these cases, using a modern and secure field gateway to aggregate data from legacy devices may provide the security required for connecting these devices over the Internet. Field gateways in this case provides secure authentication, negotiation of encrypted sessions, receipt of commands from the cloud, and many other security features. 
+某些舊型和功能受限的裝置可能尚未針對 IoT 部署特別設計。這些裝置可能缺少將資料加密、連線網際網路及提供進階稽核等功能。在這些情況下，使用現代化且安全的場域閘道器來彙總來自舊型裝置的資料，可提供透過網際網路連線這些裝置時所需的安全性。此情況下的場域閘道器可提供安全驗證、加密工作階段交涉、雲端命令接收，以及許多其他安全性功能。
 

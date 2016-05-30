@@ -262,8 +262,6 @@ ________________________________________
 
   - **注意**：如果某個欄位未將上述屬性設為 `true` (`searchable`、`filterable`、`sortable` 或 `facetable`)，系統就會從反向索引中有效地排除該欄位。針對查詢中未使用，但需要在搜尋結果中使用的欄位來說，此選項非常實用。從索引中排除這類欄位有助於提高效能。
 
-`suggestions` - 舊版的 API 包含 `suggestions` 屬性。這個布林值屬性現已淘汰，無法在 `2015-02-28` 或 `2015-02-28-Preview` 中使用。請改用[建議工具 API](#Suggesters)。在 `2014-07-31` 版本中，使用 `suggestions` 屬性來指定欄位是否可針對類型 `Edm.String` 或 `Collection(Edm.String)` 的欄位用來執行自動完成自動提示。`suggestions` 預設是 `false`，因為它在您的索引中需要額外的空間，但若您啟用了它，請參閱[在 Azure 搜尋服務中從預覽版本轉換為一般版本](search-transition-from-preview.md)，以取得如何轉換為新 API 的相關指示。
-
 `key` - 將欄位標記為包含索引內之文件的唯一識別碼。您必須只選擇一個欄位做為 `key` 欄位，而它的類型必須是 `Edm.String`。索引鍵欄位可以用來透過[查閱 API](#LookupAPI) 直接查閱文件。
 
 `retrievable` - 設定搜尋結果中是否會傳回該欄位。當您想要使用某個欄位 (例如邊距) 做為篩選、排序或評分機制，但不想讓使用者看見該欄位時，這非常有用。針對 `key` 欄位，此屬性必須是 `true`。
@@ -1047,7 +1045,7 @@ ________________________________________
       ]
     }
 
-> [AZURE.NOTE] 文件索引鍵可以只包含字母、數字、連字號 ("-")、底線 ("\_")，及等號 ("=")。如需更多詳細資訊，請參閱[命名規則](https://msdn.microsoft.com/library/azure/dn857353.aspx)。
+> [AZURE.NOTE] 文件索引鍵可以只包含字母、數字、連字號 ("-")、底線 ("\_")，及等號 ("=")。如需詳細資訊，請參閱[命名規則](https://msdn.microsoft.com/library/azure/dn857353.aspx)。
 
 **文件動作**
 
@@ -1152,7 +1150,7 @@ ________________________________________
 
 使用 HTTP GET 呼叫**搜尋** API 時，您需要留意要求 URL 的長度不能超過 8 KB。這對大部分的應用程式通常已足夠。不過，有些應用程式會產生非常大型的查詢或 OData 篩選條件運算式。對於這些應用程式而言，使用 HTTP POST 是較好的選擇，因為它允許比 GET 更大型的篩選與查詢。使用 POST 時，限制因素為查詢中的字詞或子句數目，而不是原始查詢的大小，因為 POST 的要求大小限制約為 16 MB。
 
-> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解搜尋查詢和篩選複雜性限制的相關詳細資訊。**要求**
+> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解搜尋查詢和篩選複雜性限制的詳細資訊。**要求**
 
 服務要求需要使用 HTTPS。**搜尋**要求可以使用 GET 或 POST 方法來建構。
 
@@ -1223,7 +1221,7 @@ ________________________________________
 - `interval` (如果是數字，整數間隔大於 0，如果是日期時間值，則為 `minute`、`hour`、`day`、`week`、`month`、`quarter` 或 `year`)
   - 例如：`facet=baseRate,interval:100` 會根據大小為 100 的基本匯率範圍來產生值區。舉例來說，如果基本匯率全都介於 60 美元到 600 美元之間，則會有下列值區：0-100、100-200、200-300、300-400、400-500 及 500-600。
   - 例如：`facet=lastRenovationDate,interval:year` 會在旅館重新整修期間，每一年產生一個值區。
-- `timeoffset` ([+-]hh:mm、[+-]hhmm，或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至類型 `Edm.DateTimeOffset` 的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
+- `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至類型 `Edm.DateTimeOffset` 的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
   - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限。
 - **注意**：`count` 和 `sort` 可以在相同面向規格中組合在一起，但它們無法與 `interval` 或 `values` 結合，而且 `interval` 和 `values` 無法組合在一起。
 - **注意**：如果未指定 `timeoffset`，日期時間間隔 Facet 就會依據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。 
@@ -1641,7 +1639,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 使用 HTTP GET 呼叫**建議** API 時，需要留意要求 URL 的長度不能超過 8 KB。這對大部分的應用程式通常已足夠。不過，有些應用程式會產生非常大型的查詢，特別是 OData 篩選條件運算式。對於這些應用程式而言，使用 HTTP POST 是較好的選擇，因為它允許比 GET 更大型的篩選。使用 POST 時，限制因素為篩選中的子句數目，而不是原始篩選字串的大小，因為 POST 的要求大小限制約為 16 MB。
 
-> [AZURE.NOTE] 即使 POST 要求大小限制很大，篩選運算式也不能任意複雜化。請參閱和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解篩選複雜性限制的相關詳細資訊。
+> [AZURE.NOTE] 即使 POST 要求大小限制很大，篩選運算式也不能任意複雜化。請參閱 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解篩選複雜性限制的詳細資訊。
 
 **要求**
 
@@ -1774,4 +1772,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

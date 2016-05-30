@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/25/2016"
+	ms.date="05/06/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 # 管理和監視 Azure 虛擬機器備份
@@ -42,11 +42,13 @@
     ![作業](./media/backup-azure-manage-vms/backup-job.png)
 
 ## 虛擬機器的隨選備份
-設定保護後，您可以執行虛擬機器的隨選備份。如果虛擬機器的初始備份已暫止，則隨選備份會在 Azure 備份保存庫中建立虛擬機器的完整複本。如果已完成第一個備份，隨選備份只會將先前備份的變更傳送到 Azure 備份保存庫。
+設定保護後，您可以執行虛擬機器的隨選備份。如果虛擬機器的初始備份已暫止，則隨選備份會在 Azure 備份保存庫中建立虛擬機器的完整複本。如果已完成第一個備份，隨選備份只會將先前備份的變更傳送到 Azure 備份保存庫 (亦即一律是增量備份)。
+
+>[AZURE.NOTE] 隨選備份的保留範圍，已設定為在與 VM 對應之備份原則中針對每日保留指定的保留值。
 
 若要進行虛擬機器的隨選備份：
 
-1. 瀏覽至 [受保護項目] 頁面，並選取 [Azure 虛擬機器] 做為 [類型] \(若尚未選取)，然後按一下 [選取] 按鈕。
+1. 瀏覽至 [受保護項目] 頁面，並選取 [Azure 虛擬機器] 做為 [類型] (若尚未選取)，然後按一下 [選取] 按鈕。
 
     ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
 
@@ -198,62 +200,38 @@ Azure 備份提供由客戶觸發之備份作業的「作業記錄檔」檢閱�
     ![Operation Details](./media/backup-azure-manage-vms/ops-logs-details-window.png)
 
 ## 警示通知
-您可以在入口網站取得工作的自訂警示通知。這是藉由在作業記錄檔事件中定義以 PowerShell 為基礎的警示規則來達成。
-
-Azure 資源模式中以事件為基礎的警示工作。藉由執行下列提高權限之命令模式的 cmdlet，切換至 Azure 資源模式：
-
-```
-PS C:\> Switch-AzureMode AzureResourceManager
-```
+您可以在入口網站取得工作的自訂警示通知。這是藉由在作業記錄檔事件中定義以 PowerShell 為基礎的警示規則來達成。我們建議使用「PowerShell 1.3.0 版或更新版本」。
 
 若要定義自訂通知以警示備份失敗，範例命令看起來像：
 
 ```
-PS C:\> Add-AlertRule -Operator GreaterThanOrEqual -Threshold 1 -ResourceId '/subscriptions/86eeac34-eth9a-4de3-84db-7a27d121967e/resourceGroups/RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US/providers/microsoft.backupbvtd2/BackupVault/trinadhVault' -EventName Backup  -EventSource Administrative -Level Error -OperationName 'Microsoft.Backup/backupVault/Backup' -ResourceProvider Microsoft.Backup -Status Failed  -SubStatus Failed -RuleType Event -Location eastus -ResourceGroup RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US -Name Backup-Failed -Description 'Backup failed for one of the VMs in vault trinadhkVault' -CustomEmails 'contoso@microsoft.com' -SendToServiceOwners
+PS C:\> $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail contoso@microsoft.com
+PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -ResourceGroup RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US -OperationName Microsoft.Backup/backupVault/Backup -Status Failed -TargetResourceId /subscriptions/86eeac34-eth9a-4de3-84db-7a27d121967e/resourceGroups/RecoveryServices-DP2RCXUGWS3MLJF4LKPI3A3OMJ2DI4SRJK6HIJH22HFIHZVVELRQ-East-US/providers/microsoft.backupbvtd2/BackupVault/trinadhVault -Actions $actionEmail
 ```
 
 **ResourceId**：您可從以上章節所述的 [作業記錄檔] 快顯視窗中取得。作業之詳細資料快顯視窗中的 ResourceUri 是要套用於此 cmdlet 的 ResourceId。
 
-**EventName**：對於 IaaS VM 備份的警示，支援的值為 - Register,Unregister,ConfigureProtection,Backup,Restore,StopProtection,DeleteBackupData,CreateProtectionPolicy,DeleteProtectionPolicy,UpdateProtectionPolicy
+**OperationName**：其格式將會是 "Microsoft.Backup/backupvault/<EventName>"，其中 EventName 為以下任一值：Register,Unregister,ConfigureProtection,Backup,Restore,StopProtection,DeleteBackupData,CreateProtectionPolicy,DeleteProtectionPolicy,UpdateProtectionPolicy
 
-**層級**：支援的值為 - 資訊、錯誤。對於失敗動作的警示請使用「錯誤」，對於成功工作的警示請使用「資訊」。
-
-**OperationName**：這將會是 EventName 如上述所採用的 "Microsoft.Backup/backupvault/<EventName>" 格式。
-
-**狀態**：支援的值為 - 已開始、成功和失敗。建議您保留「資訊」做為「成功」狀態的層級。
-
-**子狀態**：與備份作業的狀態相同
-
-**RuleType**：保持為*事件*，因為備份警示會以事件為根據。
+**狀態**：支援的值為 - 已開始、成功和失敗。
 
 **ResourceGroup**：觸發作業所在的資源 ResourceGroup。您可以從 ResourceId 值加以取得。在 ResourceId 值中，介於欄位 */resourceGroups/* 和 */providers/* 之間的值即為 ResourceGroup 的值。
 
 **名稱**：警示規則的名稱。
 
-**說明**：警示規則的說明。
+**CustomEmail**：指定您要傳送警示通知的自訂電子郵件地址
 
-**CustomEmails**：指定您要傳送警示通知的自訂電子郵件地址
-
-**SendToServiceOwners**：此選項會將警示通知傳送給訂用帳戶的所有系統管理員和共同管理員。
-
-範例警示郵件看起來像這樣：
-
-範例標頭：
-
-![警示標頭](./media/backup-azure-manage-vms/alert-header.png)
-
-警示郵件的範例本文：
-
-![警示本文](./media/backup-azure-manage-vms/alert-body.png)
+**SendToServiceOwners**：此選項會將警示通知傳送給訂用帳戶的所有系統管理員和共同管理員。它可以用於 **New-AzureRmAlertRuleEmail** Cmdlet 中
 
 ### 警示的限制
 以事件為基礎的警示受限於下列限制：
 
 1. 在備份保存庫中的所有虛擬機器上觸發警示。您無法自訂它以取得備份保存庫中特定一組虛擬機器的警示。
-2. 在下一個警示期間，如果沒有符合觸發事件的警示，則會自動解析警示。使用 Add-AlertRule Cmdlet 中的 *WindowSize* 參數，設定警示觸發持續時間。
+2. 這項功能只能預覽。[深入了解](../azure-portal/insights-powershell-samples.md/#create-alert-rules)
+3. 您會收到 "alerts-noreply@mail.windowsazure.com" 傳送的警示。目前您無法修改電子郵件寄件者。 
 
 ## 後續步驟
 
 - [還原 Azure VM](backup-azure-restore-vms.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

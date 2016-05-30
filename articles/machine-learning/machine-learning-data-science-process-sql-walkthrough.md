@@ -3,7 +3,7 @@
 	description="進階分析程序和技術實務"  
 	services="machine-learning"
 	documentationCenter=""
-	authors="msolhab"
+	authors="bradsev"
 	manager="paulettm"
 	editor="cgronlun" />
 
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
-	ms.author="mohabib;fashah;bradsev"/>
+	ms.date="05/10/2016"
+	ms.author="fashah;bradsev"/>
 
 
 # Cortana 分析程序實務：使用 SQL Server
 
-在此教學課程，您會跟著逐步解說，使用可公開取得的資料集 ([NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/)資料集) 建置和部署模型。此程序遵循 Cortana Analytics (CAP) 工作流程。
+在此教學課程中，您可以跟著逐步解說，使用可公開取得的資料集 ([NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/)資料集) 建置和部署機器學習服務模型。程序會遵循標準的資料科學工作流程︰包括擷取和瀏覽資料，以及設計功能以加快學習，接著建置和部署模型。
 
 
 ## <a name="dataset"></a>NYC 計程車車程資料集
@@ -716,4 +716,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

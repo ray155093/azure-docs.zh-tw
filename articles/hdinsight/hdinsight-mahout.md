@@ -41,7 +41,9 @@ Mahout 是 Apache Hadoop 的[機器學習][ml]庫。Mahout 包含可處理資料
 ##先決條件
 
 - **HDInsight 中 Windows 架構的 Hadoop 叢集**。如需建立此叢集的相關資訊，請參閱[開始在 HDInsight 中使用 Hadoop][getstarted]。
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝 Azure PowerShell 1.0 及更新版本](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。
+- **具有 Azure PowerShell 的工作站**。
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ##<a name="recommendations"></a>使用 Windows PowerShell 產生推薦
@@ -425,9 +427,9 @@ Mahout 安裝於 HDInsight 3.1 叢集上，且可使用下列步驟來手動安�
 
 			mvn -Dhadoop2.version=2.2.0 -DskipTests clean package
 
-    	建置完成之後，JAR 檔案會建立在 __mahout\mrlegacy\target\mahout-mrlegacy-1.0-SNAPSHOT-job.jar__ 中。
+    	After the build completes, you can find the JAR file at __mahout\mrlegacy\target\mahout-mrlegacy-1.0-SNAPSHOT-job.jar__.
 
-    	> [AZURE.NOTE] 當 Mahout 1.0 發行時，您應能搭配 HDInsight 3.0 使用預先建置的封裝。
+    	> [AZURE.NOTE] When Mahout 1.0 is released, you should be able to use the prebuilt packages with HDInsight 3.0.
 
 2. 將 jar 檔案上傳至叢集預設儲存庫中的 __example/jars__。使用您 HDInsight 叢集的名稱來取代下列程式碼中的 CLUSTERNAME，並且使用指向 __mahout-coure-0.9-job.jar__ 檔案的路徑來取代 FILENAME。
 
@@ -527,4 +529,4 @@ HDInsight 3.1 叢集包含 Mahout。路徑和檔案名稱包含叢集上安裝�
 [tools]: https://github.com/Blackmist/hdinsight-tools
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

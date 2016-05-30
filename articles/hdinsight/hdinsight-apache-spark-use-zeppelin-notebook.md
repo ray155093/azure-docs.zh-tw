@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/14/2016" 
+	ms.date="05/16/2016" 
 	ms.author="nitinme"/>
 
 
@@ -26,7 +26,7 @@
 **必要條件：**
 
 * 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-provision-clusters.md)。
+* Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 * SSH 用戶端。若為 Linux 和 Unix 發佈或 Macintosh OS X，`ssh` 命令會隨作業系統提供。若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 	> [AZURE.NOTE] 如果您想要使用 `ssh` 或 PuTTY 以外的 SSH 用戶端，請參考您用戶端的說明文件，了解如何建立 SSH 通道。
@@ -39,13 +39,15 @@
 
 ## 在建立叢集時安裝 Zeppelin
 
-您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。用以在 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh** 取得。
+您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。您可以使用自訂指令碼從 Azure 入口網站安裝 Zeppelin，使用 HDInsight.NET SDK 或 Azure PowerShell 都可以。
 
 ### 使用 Azure 入口網站
 
 如需有關如何使用 HDInsight .NET SDK 來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-azure-portal)。您必須對該文中的指示進行一些變更。
 
-* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
+* 您必須使用指令碼來安裝 Zeppelin。用以在 HDInsight 上的 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從下列連結取得：
+	* Spark 1.6.0 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark160-v01.sh`
+	* Spark 1.5.2 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh`
 
 * 您只須在前端節點上執行此指令碼動作。
 
@@ -55,7 +57,9 @@
 
 如需有關如何使用 HDInsight .NET SDK 來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-hdinsight-net-sdk)。您必須對該文中的指示進行一些變更。
 
-* 您必須使用指令碼來安裝 Zeppelin。要使用的指令碼是 **https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh**。
+* 您必須使用指令碼來安裝 Zeppelin。用以在 HDInsight 上的 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從下列連結取得：
+	* Spark 1.6.0 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark160-v01.sh`
+	* Spark 1.5.2 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh`
 
 * 此指令碼不需要任何參數。
 
@@ -63,7 +67,13 @@
 
 ### 使用 Azure PowerShell
 
-使用下列 PowerShell 程式碼片段，在已安裝 Zeppelin 的 HDInsight Linux 上建立 Spark 叢集。繼續之前，請確定您已安裝 PowerShell。如需指示，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
+使用下列 PowerShell 程式碼片段，在已安裝 Zeppelin 的 HDInsight Linux 上建立 Spark 叢集。您必須更新以下的 PowerShell 片段，加入對應之自訂指令碼的連結，連結依您擁有的 Spark 叢集版本而異。
+
+* Spark 1.6.0 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark160-v01.sh`
+* Spark 1.5.2 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark151-v01.sh`
+
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+
 
 	Login-AzureRMAccount
 	
@@ -217,13 +227,13 @@
 
 2. 建立新的 Notebook。按一下標頭窗格中的 [Notebook]，然後按一下 [建立新 Note]。
 
-	![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.createnewnote.png "建立新的 Zeppelin Notebook")
+	![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.createnewnote.png "建立新的 Zeppelin Notebook")
 
 	在同一個頁面的 [Notebook] 標頭下方，您應該會看到名稱開頭為「Note XXXXXXXXX」的新 Notebook。按一下新的 Notebook。
 
 3. 在新 Notebook 的網頁上按一下標題，需要的話可以變更 Notebook 的名稱。按下 ENTER 以儲存名稱變更。此外，請確定 Notebook 標頭的右上角顯示 [已連線] 狀態。
 
-	![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.newnote.connected.png "Zeppelin Notebook 狀態")
+	![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.newnote.connected.png "Zeppelin Notebook 狀態")
 
 4. 將範例資料載入暫存資料表。當您在 HDInsight 中建立 Spark 叢集時，系統會將範例資料檔案 **hvac.csv** 複製到相關聯的儲存體帳戶中 (位於 **\\HdiSamples\\SensorSampleData\\hvac**)。
 
@@ -250,7 +260,7 @@
 		
 	按下 **SHIFT + ENTER**，或是按一下 [播放] 按鈕來讓段落執行程式碼片段。段落右上角的狀態應該會從「準備就緒」逐一轉變成「擱置」、「執行中」及「已完成」。輸出會顯示在同一個段落的底部。螢幕擷取畫面如下所示：
 
-	![從原始資料建立暫存資料表](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.note.loaddataintotable.png "從原始資料建立暫存資料表")
+	![從原始資料建立暫存資料表](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.loaddDataintotable.png "從原始資料建立暫存資料表")
 
 	您也可以為每個段落提供標題。按一下右下角的設定圖示，然後按一下 [顯示標題]。
 
@@ -265,7 +275,7 @@
 
 	以下螢幕擷取畫面顯示輸出。
 
-	![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.note.sparksqlquery1.png "使用 Notebook 執行 Spark SQL 陳述式")
+	![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery1.png "使用 Notebook 執行 Spark SQL 陳述式")
 
 	 按一下顯示選項 (以矩形反白顯示) 以針對相同輸出切換不同的表示法。按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。在上方的螢幕擷取畫面中，索引鍵為 **buildingID**，而值為 **temp\_diff** 的平均值。
 
@@ -279,13 +289,13 @@
 
 	將此程式碼片段貼到新的段落中，然後按下 **SHIFT + ENTER**。以下螢幕擷取畫面顯示輸出。
 
-	![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.note.sparksqlquery2.png "使用 Notebook 執行 Spark SQL 陳述式")
+	![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery2.png "使用 Notebook 執行 Spark SQL 陳述式")
 
 	對於後續的查詢，您可以從下拉式清單選取新的值，然後再次執行查詢。按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。上述螢幕擷取畫面使用 **buildingID** 做為索引鍵、平均 **temp\_diff** 做為值，而 **targettemp** 做為群組。
 
 7. 重新啟動 Spark SQL 解譯器以結束應用程式。按一下頂端的 [解譯器] 索引標籤，然後針對 Spark 解譯器按一下 [重新啟動]。
 
-	![重新啟動 Zeppelin 解譯器](./media/hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql-v1/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
+	![重新啟動 Zeppelin 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
 
 
 ## <a name="seealso"></a>另請參閱
@@ -332,4 +342,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

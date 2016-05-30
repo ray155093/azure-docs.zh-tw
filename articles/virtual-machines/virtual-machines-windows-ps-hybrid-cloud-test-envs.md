@@ -11,7 +11,7 @@
 <tags
 	ms.service="virtual-machines-windows"
 	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="Windows"
+	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="index-page"
 	ms.date="04/01/2016"
@@ -52,4 +52,4 @@
 
 - 了解在 Azure 基礎架構服務中設計自訂的開發/測試或生產環境部署的[實作指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

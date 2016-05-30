@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/16/2016" 
 	ms.author="mandia"/>
 
 
@@ -236,17 +236,14 @@
 
 ##### 在圖表中移除或顯示度量：
 1. 選取 [**監視**] 索引標籤。
-2. 選取工作列中的 [加入度量]：
-![選取 [新增度量]][AddMetrics]
+2. 選取工作列中的 [加入度量]：![選取 [新增度量]][AddMetrics]
 3. 勾選您要顯示的效能度量。
 4. 選取勾選記號以回到 [**監視**] 索引標籤。
 5. 選取度量旁邊的圓圈，將該度量的值顯示在圖表中。  
 
-	例如，[CPU 使用率] 度量呈現灰色，其輸出不會出現在圖表中：
-![CPU 使用量度量呈現灰色][GrayedMetric]  
+	例如，[CPU 使用率] 度量呈現灰色，其輸出不會出現在圖表中：![CPU 使用量度量呈現灰色][GrayedMetric]
 
-	選取灰色的圓圈以啟用 [CPU 使用率] 度量，將其輸出顯示在圖表中：
-![CPU 使用量度量已啟用][EnabledMetric]
+	選取灰色的圓圈以啟用 [CPU 使用率] 度量，將其輸出顯示在圖表中：![CPU 使用量度量已啟用][EnabledMetric]
 
 6. 若要從顯示圖表和清單中移除度量，請選取工作列中的 [**移除度量**]。若要將度量加回到清單中，請選取工作列的 [加入度量]，勾選度量，然後選取勾選記號以回到 [監視] 索引標籤。選取灰色圓圈以啟用度量。
 
@@ -365,4 +362,4 @@
 [EnabledMetric]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_EnabledMetric.png
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

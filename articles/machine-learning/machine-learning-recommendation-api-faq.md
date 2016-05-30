@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/01/2016" 
+	ms.date="05/18/2016" 
 	ms.author="luisca"/>
 
 #設定和使用 Machine Learning Recommendations API 的常見問題集
@@ -135,4 +135,4 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

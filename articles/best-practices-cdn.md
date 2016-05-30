@@ -4,7 +4,7 @@
    services="cdn"
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,7 +19,7 @@
 
 # 內容傳遞網路 (CDN) 指引
 
-![模式與實例標誌](./media/best-practices-cdn/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 概觀
 Microsoft Azure 內容傳遞網路 (CDN) 為開發人員提供一套傳遞高頻寬內容 (裝載在 Azure 或任何其他位置中) 的通用解決方案。使用 CDN，可讓您快取從 Azure Blob 儲存體、Web 應用程式、虛擬機器、應用程式資料夾或其他 HTTP/HTTPS 位置載入的公用物件。CDN 快取可以保留在策略性位置上，以提供最大頻寬將內容傳遞給使用者。CDN 通常用來傳遞靜態內容，例如影像、樣式表、文件、檔案、用戶端指令碼和 HTML 頁面。
@@ -65,8 +65,7 @@ CDN 的典型用法包括：
 |韓國首爾| 190 | 190 | 0% |
 
 
-\* 在同一城市中具有 Azure CDN 節點。  
-\*\* 在鄰近城市中具有 Azure CDN 節點。  
+* 在同一城市中具有 Azure CDN 節點。** 在鄰近城市中具有 Azure CDN 節點。
 
 ## 挑戰  
 
@@ -284,4 +283,4 @@ Azure CDN 可讓您指定[自訂網域名稱](./cdn/cdn-map-content-to-custom-do
 + [整合雲端服務與 Azure CDN](./cdn/cdn-cloud-service-with-cdn.md/)
 + [Microsoft Azure 內容傳遞網路的最佳作法](https://azure.microsoft.com/blog/2011/03/18/best-practices-for-the-windows-azure-content-delivery-network/)
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/02/2016"
+   ms.date="05/13/2016"
    ms.author="bwren" />
 
 # 什麼是 Log Analytics？
@@ -69,8 +69,8 @@ Log Analytics 的部署需求非常少，因為中心元件託管於 Azure 雲�
 
 ## 後續步驟
 
-- [申請免費的 Log Analytics 帳戶](log-analytics)，在自己的環境中測試。
+- [申請免費的 Log Analytics 帳戶](log-analytics-get-started.md)，在自己的環境中測試。
 - 檢視可用來將資料收集到 OMS 儲存機制的不同[資料來源](log-analytics-data-sources.md)。 
 - [瀏覽方案庫中可用的方案](log-analytics-add-solutions.md)，將功能加入 Log Analytics。 
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

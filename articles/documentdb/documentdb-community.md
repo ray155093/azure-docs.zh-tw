@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="04/16/2016"
+  ms.date="05/09/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -147,12 +147,8 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ------------------------ | ------- |
-| [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) | Leonard Lobel | 美國加州橙市 | 2016 年 4 月 16 日 | [#GlobalAzure](https://twitter.com/hashtag/GlobalAzure)
-| [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) | David Makogon | 美國華盛頓州雷德蒙德 98052-6399 | 2016 年 4 月 16 日 | [#GlobalAzure](https://twitter.com/hashtag/GlobalAzure)
-| [Integration User Group](http://www.integrationusergroup.com/#) | Howard Edidin | Webinar | 2016 年 4 月 25 日 | n/a |
-| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
-| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | [#SQLBits](https://twitter.com/hashtag/SQLBits)
 | [Meetup: UK Azure User Group](http://www.meetup.com/UKAzureUserGroup/events/229673468/) | Andrew Liu | 倫敦英國 | 2016 年 5 月 12 日 | n/a |
+| [聚會：ONETUG - Orlando .NET User Group ](http://www.meetup.com/ONETUG/events/230797164/) | Santosh Hari | 佛羅里達州奧蘭多市 | 2016 年 5 月 12 日 | [#ONETUG](https://twitter.com/search?q=%23onetug&src=typd) |
 
 您在演講或舉辦活動嗎？ [請告訴我們](mailto:askdocdb@microsoft.com)該如何協助您！
 
@@ -160,6 +156,11 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | 記錄 |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ---------------------- | --------- |
+| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | n/a
+| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
+| [Integration User Group](http://www.integrationusergroup.com/#) | Howard Edidin | Webinar | 2016 年 4 月 25 日 | n/a |
+| [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) | Leonard Lobel | 美國加州橙市 | 2016 年 4 月 16 日 | n/a |
+| [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) | David Makogon | 美國華盛頓州雷德蒙德 98052-6399 | 2016 年 4 月 16 日 | n/a |
 | [SQL Saturday #481 - Israel 2016](http://www.sqlsaturday.com/481/Sessions/Details.aspx?sid=40912) | Leonard Lobel | 以色列中央區 | 2016 年 4 月 4 日 | n/a |
 | [組建 2016](https://build.microsoft.com/) | John Macintyre | 美國加州舊金山 | 2016 年 3 月 31 日 | [Delivering Applications at Scale with DocumentDB, Azure's NoSQL Document Database](https://channel9.msdn.com/Events/Build/2016/B840)
 | [SQL Saturday #505 - Belgium 2016](http://www.sqlsaturday.com/505/Sessions/Details.aspx?sid=44217) | Mihail Mateev | 比利時安特衛普 | 2016 年 3 月 19 日 | n/a |
@@ -202,7 +203,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 顯示 | 主講人 | 日期 | 劇集 |
 | ------------------------------------------- | --------------------------- | ------------------ | ------- |
-| Channel 9︰Microsoft + 開放原始碼 | Jose Miguel Parrella | 2016 年 4 月 14 日 | [From MEAN to DEAN in Azure with Bitnami, VM Scale Sets and DocumentDB](https://channel9.msdn.com/Blogs/Open/From-MEAN-to-DEAN-in-Azure-with-Bitnami-VM-Scale-Sets-and-DocumentDB) |
+| Channel 9︰Microsoft + 開放原始碼 | Jose Miguel Parrella | 2016 年 4 月 14 日 | [From MEAN to DEAN in Azure with Bitnami, VM Scale Sets and DocumentDB ](https://channel9.msdn.com/Blogs/Open/From-MEAN-to-DEAN-in-Azure-with-Bitnami-VM-Scale-Sets-and-DocumentDB) |
 | Wired2WinWebinar | Sai Sankar Kunnathukuzhiyil | 2016 年 3 月 9 日 | [Developing Solutions with Azure DocumentDB](https://www.youtube.com/watch?v=xKttEwXv_bs)
 | Integration User Group | Han Wong | 2016 年 2 月 17 日 | [使用 DocumentDB + Power BI 分析和視覺化非關聯式資料](http://www.integrationusergroup.com/analyze-visualize-non-relational-data-documentdb-power-bi/) |
 | Azure 播客 | Cale Teeter | 2016 年 1 月 14 日 | [Episode 110: Using DocumentDB & Search](http://azpodcast.azurewebsites.net/post/Episode-110-Using-DocumentDB-Search) |
@@ -305,6 +306,6 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 | [![Allan Mitchell](./media/documentdb-community/wizard-allan-mitchell.jpg)](https://twitter.com/allansqlis) <br/> [Allan Mitchell](https://twitter.com/allansqlis) | [![Jen Stirrup](./media/documentdb-community/wizard-jen-stirrup.jpg)](https://twitter.com/jenstirrup) <br/> [Jen Stirrup](https://twitter.com/jenstirrup) | [![Lenni Lobel](./media/documentdb-community/wizard-lenni-lobel.jpg)](https://twitter.com/lennilobel) <br/> [Lenni Lobel](https://twitter.com/lennilobel) | [![Mihail Mateev](./media/documentdb-community/wizard-mihail-mateev.jpg)](https://twitter.com/mihailmateev) <br/> [Mihail Mateev](https://twitter.com/mihailmateev)|
 | [![Larry Maccherone](./media/documentdb-community/wizard-larry-maccherone.jpg)](https://twitter.com/lmaccherone) <br/> [Larry Maccherone](https://twitter.com/lmaccherone) | [![Howard Edidin](./media/documentdb-community/wizard-howard-edidin.jpg)](https://twitter.com/hsedidin) <br/> [Howard Edidin](https://twitter.com/hsedidin)
 
-想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
+想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[寄電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

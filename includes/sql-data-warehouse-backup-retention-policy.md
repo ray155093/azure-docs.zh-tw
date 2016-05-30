@@ -8,8 +8,8 @@ As of circa 2016-04-22, the following topics might include this include:
 articles/sql-data-warehouse/sql-data-warehouse-overview-expectations.md
 articles/sql-data-warehouse/sql-data-warehouse-overview-backup-and-restore.md
 -->
-SQL Data Warehouse backs up all live data at least every 8 hours using Azure Storage Snapshots. These snapshots are maintained for 7 days. This allows you to restore the data to one of at least 21 points in time within the past 7 days up to the time when the last snapshot was taken. 
+SQL 資料倉儲會使用 Azure 儲存體快照集，至少每 8 小時備份一次所有即時資料。這些快照會保留 7 天。這可讓您在擷取最新快照集的過去 7 天內，就有一個至少 21 個時間點可用來還原資料。
 
-SQL Data Warehouse takes a database snapshot before a database is dropped and retains it for 7 days. When this occurs, it no longer retains snapshots from the live database. This allows you to restore a deleted database to the point when it was deleted.
+SQL 資料倉儲會在卸除資料庫前擷取資料庫快照集，並將其保留 7 天。發生這種情況時，就不會再保留即時資料庫中的快照集。這可讓您將已刪除的資料庫還原到其刪除時的時間點。
 
-SQL Data Warehouse copies snapshots asynchronously to a different geographical Azure region for added recoverability in case of a regional failure. If you cannot access your database because of a failure in an Azure region, you can restore your database to one of the geo-redundant snapshots.
+SQL 資料倉儲會將快照集非同步複製到不同的地理 Azure 區域，以在區域失敗時增加復原能力。如果您因 Azure 區域失敗而無法存取資料庫，則可以將資料庫還原到其中一個異地備援快照集。

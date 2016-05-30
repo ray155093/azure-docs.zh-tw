@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/27/2016"
+   ms.date="05/13/2016"
    ms.author="tomfitz"/>
 
 # Azure Resource Manager vs. 傳統部署：了解資源的部署模型和狀態
@@ -26,7 +26,9 @@
 - **儲存體** - 支援儲存虛擬機器之 VHD 所需的儲存體帳戶，包括它們的作業系統和其他資料磁碟。
 - **網路** - 支援必要的 NIC、虛擬機器 IP 位址及虛擬網路內的子網路，以及選擇性的負載平衡器、負載平衡器 IP 位址與網路安全性群組。
 
-針對這些資源類型，您必須知道您使用哪一個版本，因為支援的作業將會不同。為了解您的資源是以哪一個模型部署，讓我們來探討這兩個模型。
+針對這些資源類型，您必須知道您使用哪一個版本，因為支援的作業將會不同。如果您準備好將資源從傳統部署移轉至 Resource Manager 部署，請參閱[支援將 IaaS 資源從傳統移轉至 Azure Resource Manager 的平台](./virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)。
+
+為了解您的資源是以哪一個模型部署，讓我們來探討這兩個模型。
 
 ## 資源管理員特性
 
@@ -38,7 +40,7 @@
 
         ![Azure portal](./media/resource-manager-deployment-model/preview-portal.png)
 
-        針對計算、儲存體及網路資源，您可以選擇使用資源管理員或傳統部署。 選擇**資源管理員**。
+        For Compute, Storage, and Networking resources, you have the option of using either Resource Manager or Classic deployment. Select **Resource Manager**.
 
         ![Resource Manager deployment](./media/resource-manager-deployment-model/select-resource-manager.png)
 
@@ -161,7 +163,7 @@
 - 使用資源管理員部署模型部署的虛擬機器必須包含在虛擬網路中。
 - 使用傳統部署模型部署的虛擬機器不一定要包含在虛擬網路中。
 
-如果您負擔得起虛擬機器的停機時間，您可以從傳統部署轉換至資源管理員搭配使用 [ASM2ARM PowerShell 指令碼](https://github.com/fullscale180/asm2arm)。
+如果您準備好將資源從傳統部署移轉至 Resource Manager 部署，請參閱[支援將 IaaS 資源從傳統移轉至 Azure Resource Manager 的平台](./virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)。
 
 如需轉換運算、儲存體和網路資源的詳細資訊，請參閱 [Azure 資源管理員下的 Azure 運算、網路和儲存體提供者](./virtual-machines/virtual-machines-windows-compare-deployment-models.md)。
 
@@ -173,4 +175,4 @@
 - 若要了解 Resource Manager 範本的結構，請參閱[製作 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看部署範本的命令，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -27,7 +27,7 @@
 
 - [在 HDInsight 叢集中建立 Hadoop](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊。
 
-- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql.md)：在 Windows 作業系統上建立 Spark 類型的叢集。
+- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-jupyter-spark-sql.md)：建立 HDInsight Spark 叢集。
 
 - [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊。
 
@@ -233,7 +233,7 @@ Spark SQL 可讓您使用 Spark 來執行以結構化查詢語言 (SQL)、HiveQL
 
 ## 使用 Azure PowerShell 安裝 Spark
 
-本節中，我們使用 **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** Cmdlet，使用指令碼動作叫用指令碼以自訂叢集。在繼續之前，請確認您已安裝和設定 Azure PowerShell。如需設定工作站以執行適用於 HDInsight 的 Azure Powershell Cmdlet 的相關資訊，請參閱[安裝和設定 Azure PowerShell][powershell-install-configure]。
+本節中，我們使用 **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** Cmdlet，使用指令碼動作叫用指令碼以自訂叢集。在繼續之前，請確認您已安裝和設定 Azure PowerShell。如需設定工作站以執行適用於 HDInsight 的 Azure Powershell Cmdlet 的相關資訊，請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 執行下列步驟：
 
@@ -306,7 +306,7 @@ Spark SQL 可讓您使用 Spark 來執行以結構化查詢語言 (SQL)、HiveQL
 ## 另請參閱
 
 - [在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)：建立 HDInsight 叢集。
-- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-zeppelin-notebook-jupyter-spark-sql.md)：開始在 HDInsight 上使用 Spark。
+- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-jupyter-spark-sql.md)：開始在 HDInsight 上使用 Spark。
 - [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集。
 - [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)：開發指令碼動作指令碼。
 - [在 HDInsight 叢集上安裝 R][hdinsight-install-r] 說明如何使用叢集自訂，以在 HDinsight Hadoop 叢集上安裝和使用 R。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
@@ -318,4 +318,4 @@ Spark SQL 可讓您使用 Spark 來執行以結構化查詢語言 (SQL)、HiveQL
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
 [powershell-install-configure]: powershell-install-configure.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

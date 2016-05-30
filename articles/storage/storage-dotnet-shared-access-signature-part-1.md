@@ -69,8 +69,8 @@
 
 - **API 版本**選擇性參數，指定要用來執行要求的儲存體服務版本。
 - **服務版本**必要參數，指定要用於驗證要求的儲存體服務版本。
-- **開始時間。** 這是指 SAS 生效的時間。共用存取簽章的開始時間是選擇性選項，如果略過，則 SAS 會立即生效。
-- **到期時間。** 這是指 SAS 何時失效的時間。最佳做法建議您為 SAS 指定過期時間，或將它與預存存取原則建立關聯 (請參閱以下詳細資訊)。
+- **開始時間。** 這是指 SAS 生效的時間。共用存取簽章的開始時間是選擇性選項，如果略過，則 SAS 會立即生效。必須以 UTC (國際標準時間) 表示，並包含特殊的 UTC 指示項 ("Z")，例如 1994-11-05T13:15:30Z。
+- **到期時間。** 這是指 SAS 何時失效的時間。最佳做法建議您為 SAS 指定過期時間，或將它與預存存取原則建立關聯。必須以 UTC (國際標準時間) 表示，並包含特殊的 UTC 指示項 ("Z")，例如 1994-11-05T13:15:30Z (詳細請參閱下面)。
 - **權限。** 在 SAS 上指定的權限表示用戶端可以使用 SAS 來對儲存體資源執行哪些作業。帳戶 SAS 和服務 SAS 的可用權限不同。
 - **IP。** 選用參數，可指定要從中接受要求且位於 Azure 外部的 IP 位址或 IP 位址範圍 (請參閱適用於 Express Route 的[路由工作階段組態狀態](../expressroute/expressroute-workflows.md#routing-session-configuration-state)一節)。
 - **通訊協定。** 選擇性參數，指定對要求允許的通訊協定。可能的值為 HTTPS 和 HTTP (https、http)，也就是預設值或僅限 HTTPS (https)。請注意，僅 HTTP 是不允許的值。
@@ -318,4 +318,4 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
 [sas-storage-fe-proxy-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-fe-proxy-service.png
 [sas-storage-provider-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-provider-service.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

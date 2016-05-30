@@ -31,11 +31,13 @@
 
 - **儲存在 .vhd 檔案中的 Linux 作業系統** - 您已將支援的 Linux 作業系統安裝在虛擬硬碟中。有多項工具可用來建立 .vhd 檔案，例如，您可以使用虛擬化解決方案 (例如 Hyper-V) 來建立 .vhd 檔案並安裝作業系統。如需指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
-	**重要**：Azure 不支援較新的 VHDX 格式。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
+	> [AZURE.NOTE] Azure 不支援較新的 VHDX 格式。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
 
-	如需背書散發套件清單，請參閱 [Linux on Azure 背書散發套件](virtual-machines-linux-endorsed-distros.md)。如需 Linux 散發套件的一般清單，請參閱[非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md)。
+如需背書散發套件清單，請參閱 [Linux on Azure 背書散發套件](virtual-machines-linux-endorsed-distros.md)。如需 Linux 散發套件的一般清單，請參閱[非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md)。
 
 - **Azure 命令列介面** - 安裝和使用 [Azure 命令列介面](../virtual-machines-command-line-tools.md)來上傳 VHD。
+
+> [AZURE.TIP] Azure 不支援上傳動態 VHD，因此您必須將此類磁碟轉換成靜態 VHD 再上傳。您可以使用[適用於 GO 的 Azure VHD 公用程式](https://github.com/Microsoft/azure-vhd-utils-for-go)之類的工具來轉換動態磁碟。
 
 <a id="prepimage"> </a>
 ## 步驟 1：準備要上傳的映像
@@ -50,7 +52,7 @@ Azure 支援各種 Linux 散發套件 (請參閱[背書散發套件](virtual-mac
 - **[Ubuntu](virtual-machines-linux-create-upload-ubuntu.md)**
 - **[其他：非背書散發套件](virtual-machines-linux-create-upload-generic.md)**
 
-如需有關準備 Azure 之 Linux 映像的更多秘訣，另請參閱 **[Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#linuxinstall)**。
+如需有關準備 Azure 之 Linux 映像的更多秘訣，另請參閱 **[Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)**。
 
 完成上述指南中的步驟之後，您應會有一個 VHD 檔案，準備好上傳到 Azure。
 
@@ -69,7 +71,7 @@ azure login
 
 您需要一個可供上傳 VHD 檔案的儲存體帳戶。您可以選取現有的或建立新的儲存體帳戶。若要建立儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md)。
 
-在上傳 .vhd 檔案時，您可以將 .vhd 檔案放在 Blob 儲存體中的任一處。在下列命令範例中，**BlobStorageURL** 是您打算使用的儲存體帳戶的 URL，**YourImagesFolder** 是您在 blob 儲存體中要用來儲存映像的容器。**VHDName** 是 [Azure 入口網站](http://portal.azure.com)或 [Azure 傳統入口網站](http://manage.windowsazure.com)中，用來識別虛擬硬碟的顯示標籤。**PathToVHDFile** 是 .vhd 檔案在您電腦上的完整路徑和名稱。
+在上傳 .vhd 檔案時，您可以將 .vhd 檔案放在 Blob 儲存體中的任一處。在下列命令範例中，**BlobStorageURL** 是您打算使用的儲存體帳戶的 URL，**YourImagesFolder** 是您在 blob 儲存體中要用來儲存映像的容器。**VHDName** 是顯示於 [Azure 入口網站](http://portal.azure.com)或 [Azure 傳統入口網站](http://manage.windowsazure.com)中，用來識別虛擬硬碟的顯示標籤。**PathToVHDFile** 是 .vhd 檔案在您電腦上的完整路徑和名稱。
 
 使用 Azure CLI 上傳映像，方法是使用下列命令：
 
@@ -81,4 +83,4 @@ azure login
 [Step 2: Prepare the connection to Azure]: #connect
 [Step 3: Upload the image to Azure]: #upload
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

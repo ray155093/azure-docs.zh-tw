@@ -1,14 +1,14 @@
 <properties
 	pageTitle="媒體服務延伸模組中的 CDN 快取原則"
-	description="本主題提供媒體服務延伸模組中的 CDM 快取原則的概觀。"
-	services="cdn"
+	description="本主題提供媒體服務擴充功能中的 CDN 快取原則的概觀。"
+	services="media-services,cdn"
 	documentationCenter=".NET"
 	authors="juliako"
 	manager="erikre"
 	editor=""/>
 
 <tags
-	ms.service="cdn"
+	ms.service="media-services"
 	ms.workload="tbd"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -26,7 +26,9 @@ Azure 媒體服務提供 HTTP 式「彈性資料流」和漸進式下載功能�
 
 ##Azure CDN 整合
 
-Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microsoft.com/updates/azure-media-services-now-fully-integrated-with-azure-cdn/)。Cache-control 標頭的套用方式與將資料流端點套用支援 CDN 的資料流端點的方式相同。Azure CDN 使用資料流端點設定的快取值，定義內部快取物件的存留期，也用此值設定傳遞快取標頭。使用支援 CDN 的資料流端點時，不建議將快取值設得太小。將值設得太小會降低效能，並減少 CDN 帶來的好處。支援 CDN 的資料流端點的快取標頭值不得設為 600 秒以下。
+Azure 媒體服務為資料流端點提供[整合式 CDN](https://azure.microsoft.com/updates/azure-media-services-now-fully-integrated-with-azure-cdn/)。Cache-control 標頭的套用方式與將資料流端點套用支援 CDN 的資料流端點的方式相同。Azure CDN 使用資料流端點設定的快取值，定義內部快取物件的存留期，也用此值設定傳遞快取標頭。使用支援 CDN 的資料流端點時，不建議將快取值設得太小。將值設得太小會降低效能，並減少 CDN 帶來的好處。支援 CDN 的資料流端點的快取標頭值不得設為 600 秒以下。
+
+>[AZURE.IMPORTANT] Azure 媒體服務與 Azure CDN 的整合會在**來自 Verizon 的 Azure CDN** 上實作。如果您想要將**來自 Akamai 的 Azure CDN** 用於 Azure 媒體服務，您必須[手動設定端點](cdn-create-new-endpoint.md)。如需 Azure CDN 功能的詳細資訊，請參閱 [CDN 概觀](cdn-overview.md)。
 
 ##使用 Azure 媒體服務設定快取標頭
 
@@ -42,4 +44,4 @@ Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microso
 2. 如果沒有任何手動組態，系統會套用預設值。
 3. 根據預設，2 秒快取標頭會套用至即時資料流資訊清單 (播放清單)，無論 Azure 媒體或 Azure 儲存體組態為何，且此值無法被覆寫。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

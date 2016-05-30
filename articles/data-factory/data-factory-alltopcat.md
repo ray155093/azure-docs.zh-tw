@@ -4,7 +4,7 @@
 	services="data-factory"
 	documentationCenter=""
 	authors="spelluru"
-	manager="jhubbard"
+	manager="paulettm"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="05/12/2016"
 	ms.author="spelluru"/>
 
 
@@ -22,14 +22,6 @@
 本主題會列出每一個直接適用於 Azure Data Factory 服務的主題。您可以使用 **Ctrl+F**，利用關鍵字搜尋本網頁，以尋找目前感興趣的主題。
 
 
-
-
-## 新增
-
-
-| 課程名稱 | 說明 |
-| :-- | :-- |
-| [從 Data Factory 叫用 Spark 程式](data-factory-spark.md) | 了解如何從 Azure Data Factory 使用 MapReduce 活動叫用 Spark 程式。 |
 
 
 ## 核心概念
@@ -58,11 +50,6 @@
 | [教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md) | 在本教學課程中，您將使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。 |
 | [教學課程：使用 Data Factory 編輯器建立具有複製活動的管線](data-factory-get-started-using-editor.md) | 在本教學課程中，您將使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。 |
 | [教學課程：使用 Visual Studio 建立具有複製活動的管線](data-factory-get-started-using-vs.md) | 在本教學課程中，您將使用 Visual Studio，建立具有複製活動的 Azure Data Factory 管線。 |
-| [教學課程：使用 Azure Data Factory 移動和處理記錄檔 (Azure 入口網站)](data-factory-tutorial.md) | 此進階教學課程說明接近現實情況的案例，並使用 Azure 入口網站中的 Azure Data Factory 服務和 Data Factory 編輯器來實作案例。 |
-| [教學課程：使用 Data Factory 移動及處理記錄檔 (PowerShell)](data-factory-tutorial-using-powershell.md) | 此進階教學課程說明接近現實情況的案例，並使用 Azure Data Factory 服務和 Azure PowerShell 來實作案例。 |
-| [逐步解說：將輸出資料複製到內部部署的 SQL Server 資料庫 (Azure 入口網站)](data-factory-tutorial-extend-onpremises.md) | 本逐步解說使用 Azure 入口網站中的 Data Factory 編輯器擴充教學課程，如此可讓管線將輸出資料複製到 SQL Server Database。 |
-| [逐步解說：將輸出資料複製到內部部署的 SQL Server 資料庫 (Azure PowerShell)](data-factory-tutorial-extend-onpremises-using-powershell.md) | 本逐步解說使用 Azure PowerShell 擴充教學課程，如此可讓管線將輸出資料複製到 SQL Server Database。 |
-
 
 ## 資料移動
 
@@ -105,6 +92,7 @@
 | [Hive 活動](data-factory-hive-activity.md) | 了解如何使用 Azure 資料處理站中的 Hive 活動，以在隨選/您自己的 HDInsight 叢集上執行 Hive 查詢。 |
 | [使用 Azure Batch 和 Data Factory 的 HPC 和資料協調](data-factory-data-processing-using-batch.md) | 說明如何使用 Azure Batch 的平行處理功能處理 Azure Data Factory 管線中的大量資料。 |
 | [從 Data Factory 叫用 MapReduce 程式](data-factory-map-reduce.md) | 了解如何從 Azure Data Factory，在 Azure HDInsight 叢集上執行 MapReduce 程式以處理資料。 |
+| [從 Data Factory 叫用 Spark 程式](data-factory-spark.md) | 了解如何從 Azure Data Factory 使用 MapReduce 活動叫用 Spark 程式。 |
 | [Pig 活動](data-factory-pig-activity.md) | 了解如何使用 Azure 資料處理站中的 Pig 活動，以在隨選/您自己的 HDInsight 叢集上執行 Pig 指令碼。 |
 | [從 Azure Data Factory 在 Azure 資料湖分析上執行 U-SQL 指令碼](data-factory-usql-activity.md) | 了解如何在 Azure 資料湖分析計算服務上執行 U-SQL 指令碼來處理資料。 |
 | [SQL Server 預存程序活動](data-factory-stored-proc-activity.md) | 深入了解如何使用 SQL Server 預存程序活動，以從 Data Factory 管線叫用 Azure SQL Database 或 Azure SQL 資料倉儲中的預存程序。 |
@@ -156,7 +144,6 @@
 | [Azure 資料處理站-常見問題集](data-factory-faq.md) | 關於 Azure Data Factory 的常見問題。 |
 | [Azure Data Factory - 函式與系統變數](data-factory-functions-variables.md) | 提供 Azure Data Factory 函式與系統變數清單 |
 | [Azure Data Factory - 命名規則](data-factory-naming-rules.md) | 描述 Data Factory 實體的命名規則。 |
-| [Azure Data Factory 版本資訊](data-factory-release-notes.md) | Data Factory 版本資訊 |
 | [對 Data Factory 問題進行疑難排解](data-factory-troubleshoot.md) | 了解如何使用 Azure Data Factory 進行問題的疑難排解。 |
 
 
@@ -170,4 +157,4 @@
 
 - 學習路徑圖：[Data Factory](http://azure.microsoft.com/documentation/learning-paths/data-factory/)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

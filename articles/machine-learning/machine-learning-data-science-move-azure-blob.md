@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
-	ms.author="bradsev;sunliangms;sachouks;mohabib" />
+	ms.date="05/10/2016"
+	ms.author="bradsev;sunliangms;sachouks" />
 
 # 從 Azure Blob 儲存體來回移動資料
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
-
-## 簡介
 
 以下是有關從 Azure Blob 儲存體來回移動資料所使用之技術的指引連結：
 
@@ -39,4 +37,4 @@
 - 若要設定 Azure 訂用帳戶，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 - 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

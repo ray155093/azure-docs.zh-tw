@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,12 +19,10 @@
 
 # 自動調整指引
 
-![模式與實例標誌](media/best-practices-auto-scaling/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 概觀
 自動調整是以動態方式配置應用程式所需資源的程序，以便符合效能需求並滿足服務等級協定 (SLA)，同時將執行階段成本降至最低。當工作量增長時，應用程式可能需要額外的資源，才能及時執行其工作。當需求減緩時，可以取消配置資源，讓成本降至最低，同時又能維護適當的效能並符合 SLA。自動調整會充分利用雲端裝載環境的彈性，以降低管理負擔。執行此動作的方式是減少操作員持續監視系統效能的需求，並做出有關新增或移除資源的決策。
-<br\>
-
 >[AZURE.NOTE] 自動調整會套用至應用程式使用的所有資源，不侷限於計算資源。例如，如果您的系統使用訊息佇列來傳送和接收資訊，它可以在調整時建立更多佇列。
 
 ## 調整類型
@@ -113,4 +111,4 @@
 - [自動調整的相關作業](http://msdn.microsoft.com/library/azure/dn510374.aspx)
 - [Microsoft.WindowsAzure.Management.Monitoring.Autoscale 命名空間](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.management.monitoring.autoscale.aspx)
 
-<!-----HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,23 +14,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="02/25/2016"
+   ms.date="05/16/2016"
    ms.author="mandia"/>
 
 
 # 開始使用 SQL Azure API
-連線到 SQL Azure 來管理資料表和資料列，例如插入資料列、取得資料表等等。
+連線到 Azure SQL Database 來管理資料表和資料列，例如插入資料列、取得資料表等等。
 
-您可以從下列應用程式使用 SQL Azure API：
+您可以從下列應用程式使用 Azure SQL Database API：
 
-- 邏輯應用程式 
+- 邏輯應用程式 (如本主題所述)
+- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-SQL Azure 可讓您：
+使用 Azure SQL Database，您可以：
 
-- 根據您從 SQL Azure 所取得的資料，來建置您的商務流程。 
-- 使用動作來取得資料列、插入資料列等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以從 SQL Azure 取得一列資料，然後把該資料新增到 Excel 中。 
+- 根據您從 Azure SQL Database 所取得的資料，來建置您的商務流程。 
+- 使用動作來取得資料列、插入資料列等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以從 Azure SQL Database 取得一列資料，然後把該資料新增到 Excel 中。 
 
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -49,9 +50,9 @@ None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插�
 
 |屬性| 必要|說明|
 | ---|---|---|
-|SQL 連接字串|是|輸入您的 SQL Azure 連接字串|
+|SQL 連接字串|是|輸入您的 Azure SQL Database 連接字串|
 
-當您建立連線之後，請輸入 SQL 的屬性，例如資料表名稱。本主題的＜REST API 參考＞一節會說明這些屬性。
+當您建立連線之後，請輸入 SQL 的屬性，例如資料表名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中使用這個連線。
 
@@ -227,4 +228,4 @@ None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插�
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->
