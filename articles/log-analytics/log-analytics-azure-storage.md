@@ -43,9 +43,11 @@ Log Analytics 會使用來自內部部署或雲端基礎結構中之伺服器的
 2.	瀏覽以尋找 **Log Analytics (OMS)**，然後加以選取。
 3.	在您的 OMS 工作區清單中，選取 Azure VM 要連接的工作區。 ![OMS 工作區](./media/log-analytics-azure-storage/oms-connect-azure-01.png)
 4.	在 [Log Analytics 管理] 下方，按一下 [虛擬機器]。![虛擬機器](./media/log-analytics-azure-storage/oms-connect-azure-02.png)
-5.	在 [虛擬機器] 清單中，選取您要為其安裝代理程式的虛擬機器。VM 的 [OMS connection status] (OMS 連接狀態) 會指出它是 [未連接] 狀態。![VM 未連接](./media/log-analytics-azure-storage/oms-connect-azure-03.png)
+5.	在 [虛擬機器] 清單中，選取您要為其安裝代理程式的虛擬機器。VM 的 [OMS connection status]\(OMS 連接狀態) 會指出它是 [未連接] 狀態。![VM 未連接](./media/log-analytics-azure-storage/oms-connect-azure-03.png)
 6.	在虛擬機器的詳細資訊中，按一下 [連接]。隨即自動安裝代理程式並針對 OMS 工作區進行設定，但程序可能需要幾分鐘才能完成。![連接 VM](./media/log-analytics-azure-storage/oms-connect-azure-04.png)
-7.	當代理程式安裝並連接時，您會看到 [OMS connection status] (OMS 連接狀態) 更新為顯示 [This workspace] (此工作區)。![已連接](./media/log-analytics-azure-storage/oms-connect-azure-05.png)
+7.	當代理程式安裝並連接時，您會看到 [OMS connection status]\(OMS 連接狀態) 更新為顯示 [This workspace]\(此工作區)。
+
+![已連接](./media/log-analytics-azure-storage/oms-connect-azure-05.png)
 
 >[AZURE.NOTE] 您必須安裝 [Azure VM 代理程式](../virtual-machines/virtual-machines-windows-extensions-features.md)，才會自動安裝 OMS 的代理程式。如果您有 Azure Resource Manager 虛擬機器，代理程式也不會顯示在清單中，而必須使用 PowerShell 或建立 ARM 範本來進行安裝。
 

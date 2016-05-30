@@ -241,7 +241,7 @@ host CENTOS66LN-03 ++cpus 2
 5. 按一下左側導覽的 [編輯工作]，再按一下 [加入] 將工作加入作業中。
 
 
-6. 在 [Task Details and I/O Redirection] (工作詳細資料和 I/O 重新導向) 頁面上，設定下列值。
+6. 在 [Task Details and I/O Redirection] \(工作詳細資料和 I/O 重新導向) 頁面上，設定下列值。
 
     * **命令列** - `/namd2/hpccharmrun.sh ++remote-shell ssh /namd2/namd2 /namd2/namdsample/1-2-sphere/ubq_ws_eq.conf > /namd2/namd2_hpccharmrun.log`
 

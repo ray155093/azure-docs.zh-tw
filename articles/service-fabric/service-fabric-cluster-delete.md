@@ -45,7 +45,7 @@ Remove-AzureRmResourceGroup -Name <name of ResouceGroup> -Force
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽至您想要刪除的 Service Fabric 叢集。
 3. 按一下叢集基本功能頁面上的 [資源群組] 名稱。
-4. 這會顯示 [Resource Group Essentials] (資源群組基本功能) 頁面。
+4. 這會顯示 [Resource Group Essentials] \(資源群組基本功能) 頁面。
 5. 按一下 [刪除]。
 6. 遵循該頁面上的指示，以完成資源群組的刪除。
 

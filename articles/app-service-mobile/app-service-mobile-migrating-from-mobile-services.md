@@ -381,17 +381,17 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [2]: ./media/app-service-mobile-migrating-from-mobile-services/triggering-job-with-postman.png
 
 <!-- Links -->
-[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
+[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
 [Application Insights]: ../application-insights/app-insights-overview.md
 [自動調整]: ../app-service-web/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [Azure App Service 部署文件]: ../app-service-web/web-sites-deploy.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [Azure 入口網站]: https://portal.azure.com
-[Azure 區域]: https://azure.microsoft.com/zh-TW/regions/
+[Azure 區域]: https://azure.microsoft.com/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
 [連續部署]: ../app-service-web/web-sites-publish-source-control.md
-[轉換混合式命名空間]: https://azure.microsoft.com/zh-TW/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
+[轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service-web/web-sites-custom-domain-name.md
 [Fiddler]: http://www.telerik.com/fiddler

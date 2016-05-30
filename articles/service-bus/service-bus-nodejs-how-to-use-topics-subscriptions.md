@@ -27,7 +27,7 @@
 
 ## 建立 Node.js 應用程式
 
-建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js Cloud Service] (使用 Windows PowerShell) 或使用 WebMatrix 的網站。
+建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js Cloud Service]\(使用 Windows PowerShell) 或使用 WebMatrix 的網站。
 
 ## 設定應用程式以使用服務匯流排
 
@@ -35,7 +35,7 @@
 
 ### 使用 Node Package Manager (NPM) 取得封裝
 
-1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] \(Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 
 2.  在命令視窗中輸入 **npm install azure**，這應該會導致下列輸出：
 
@@ -314,7 +314,7 @@ for (i = 0;i < 5;i++) {
 
 -   請參閱[佇列、主題和訂用帳戶][]。
 -   [SqlFilter][] 的 API 參考資料。
--   造訪 GitHub 上的 [Azure SDK for Node][] (英文) 儲存機制。
+-   造訪 GitHub 上的 [Azure SDK for Node][] \(英文) 儲存機制。
 
   [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
   [Azure 傳統入口網站]: https://manage.windowsazure.com

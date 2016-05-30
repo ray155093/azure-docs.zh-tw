@@ -147,7 +147,7 @@ Sample complete, hit ENTER to exit...
 
 ### 以 Batch 總管檢查作業準備和解除工作
 
-[Azure Batch 總管][batch_explorer_article] (在 GitHub 上的[範例程式碼存放庫][batch_explorer_project]中也能找到) 是以 Azure Batch 開發解決方案時的絕佳工具。例如，當您執行上述的範例應用程式時，您可以使用 Batch 總管檢視作業和其工作的屬性，或甚至下載作業的工作修改過的共用文字檔案。
+[Azure Batch 總管][batch_explorer_article]\(在 GitHub 上的[範例程式碼存放庫][batch_explorer_project]中也能找到) 是以 Azure Batch 開發解決方案時的絕佳工具。例如，當您執行上述的範例應用程式時，您可以使用 Batch 總管檢視作業和其工作的屬性，或甚至下載作業的工作修改過的共用文字檔案。
 
 以下螢幕擷取畫面會醒目提示當您在 [作業] 索引標籤中選取 *JobPrepReleaseSampleJob* 作業時，在 [作業詳細資料] 窗格中顯示的作業準備和解除工作屬性。
 

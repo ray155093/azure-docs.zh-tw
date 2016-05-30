@@ -189,13 +189,13 @@ Jupyter 不只是文字處理器，因為它能夠混合運算和多樣化媒體
 
 Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供強大的介面。它涵蓋的用途範圍相當廣泛，包括簡單的探究和學習 Python、資料分析和視覺化、模擬和平行運算。最終產生的 Notebook 文件會完整記錄已執行且能夠與其他 Jupyter 使用者共享的運算。Jupyter Notebook 可以用來做為本機應用程式，不過它相當適合用於 Azure 上的雲端部署
 
-您也可以透過 [Python Tools for Visual Studio][] (PTVS)，在 Visual Studio 中使用 Jupyter 的核心功能。PTVS 是 Microsoft 提供的免費開放原始碼外掛程式，可以將 Visual Studio 轉變為進階 Python 開發環境，其中包括具有 IntelliSense、偵錯、剖析和平行運算整合功能的進階編輯器。
+您也可以透過 [Python Tools for Visual Studio][]\(PTVS)，在 Visual Studio 中使用 Jupyter 的核心功能。PTVS 是 Microsoft 提供的免費開放原始碼外掛程式，可以將 Visual Studio 轉變為進階 Python 開發環境，其中包括具有 IntelliSense、偵錯、剖析和平行運算整合功能的進階編輯器。
 
 ## 後續步驟
 
 如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
-[portal-vm-linux]: https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
+[portal-vm-linux]: https://azure.microsoft.com/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
 [儲存機制]: https://github.com/ipython/ipython
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 

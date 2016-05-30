@@ -328,8 +328,8 @@
 ### 資源
 下列指南適用於在 Azure 上部署 SAP 的主題︰
 
-* [SAP NetWeaver on Azure virtual machines (VMs) – Planning and Implementation Guide][planning-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南)
-* [SAP NetWeaver on Azure virtual machines (VMs) - Deployment Guide][deployment-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) – Planning and Implementation Guide][planning-guide]\(Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) - Deployment Guide][deployment-guide] \(Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南)
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南 (本文件)][dbms-guide]
 
 下列 SAP 附註會與 Azure 上的 SAP 主題相關︰

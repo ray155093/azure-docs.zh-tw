@@ -128,7 +128,7 @@
 ##子網域的支援
 在加入子網域時，因為 Azure AD 處理網域的方式，導致子網域會繼承父項的設定。這表示 IssuerUri 需要與父項相符。
 
-因此，假設我有 bmcontoso.com，後來再加入 corp.bmcontoso.com。這表示來自 corp.bmcontoso.com 之使用者的 IssuerUri 必須是 ****http://bmcontoso.com/adfs/services/trust.** 然而，根據前述針對 Azure AD 實作的標準規則，產生之權杖的簽發者會是 ****http://corp.bmcontoso.com/adfs/services/trust.** 由於它與網域的必要值不符，因此驗證將會失敗。
+因此，假設我有 bmcontoso.com，後來再加入 corp.bmcontoso.com。這表示來自 corp.bmcontoso.com 之使用者的 IssuerUri 必須是 **http://bmcontoso.com/adfs/services/trust.** 然而，根據前述針對 Azure AD 實作的標準規則，產生之權杖的簽發者會是 **http://corp.bmcontoso.com/adfs/services/trust.** 由於它與網域的必要值不符，因此驗證將會失敗。
 
 ### 如何啟用子網域的支援
 若要解決這個問題，您需要更新 Microsoft Online 的 AD FS 信賴憑證者信任。若要這樣做，您必須設定自訂宣告規則，以使其在建構自訂簽發者值時能夠從使用者的 UPN 尾碼移除任何子網域。

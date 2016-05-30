@@ -107,7 +107,7 @@
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-您也可以瀏覽至 ******https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。只需使用您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。您需要有系統管理員帳戶的密碼才能存取 Notebook。
+您也可以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。只需使用您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。您需要有系統管理員帳戶的密碼才能存取 Notebook。
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 

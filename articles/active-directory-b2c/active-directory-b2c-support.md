@@ -40,7 +40,7 @@
     - [問題類型] 是 [技術]。
 	- 選擇適當的 [訂用帳戶]。
     - [服務] 是 [Active Directory]。
-    - 選擇適當的 [支援方案]。如果您沒有任何方案，可以在[這裡](https://azure.microsoft.com/zh-TW/support/plans/)註冊一個。
+    - 選擇適當的 [支援方案]。如果您沒有任何方案，可以在[這裡](https://azure.microsoft.com/support/plans/)註冊一個。
 
     ![支援 - 基本](./media/active-directory-b2c-support/support-basics.png)
 

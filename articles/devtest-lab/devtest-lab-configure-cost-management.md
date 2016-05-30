@@ -36,11 +36,11 @@
 
 	![Settings](./media/devtest-lab-configure-cost-management/lab-blade-settings.png)
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [Cost Policies] (成本原則) 下，點選 [Cost Thresholds] (成本臨界值)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [Cost Policies]\(成本原則) 下，點選 [Cost Thresholds]\(成本臨界值)。
 
 	![功能表](./media/devtest-lab-configure-cost-management/menu.png)
  
-1. 在 [Cost Thresholds] (成本臨界值) 刀鋒視窗上，點選 [開啟] 啟用此功能，點選 [關閉] 則予以停用。
+1. 在 [Cost Thresholds]\(成本臨界值) 刀鋒視窗上，點選 [開啟] 啟用此功能，點選 [關閉] 則予以停用。
 
 1. 點選 [儲存]。
 

@@ -145,7 +145,7 @@ Storm UI 是以 REST API 為建置基礎，因此您可以使用 REST API 執行
 
 ### 基底 URI
 
-在以 Linux 為基礎的 HDInsight 叢集上的 REST API 基底 URI 可於前端節點 (位於 ****https://HEADNODEFQDN:8744/api/v1/**) 取得；不過，前端節點的網域名稱是在叢集建立期間產生，而且不是靜態。
+在以 Linux 為基礎的 HDInsight 叢集上的 REST API 基底 URI 可於前端節點 (位於 **https://HEADNODEFQDN:8744/api/v1/**) 取得；不過，前端節點的網域名稱是在叢集建立期間產生，而且不是靜態。
 
 您可以用幾種不同的方式尋找叢集前端節點的完整網域名稱 (FQDN)：
 

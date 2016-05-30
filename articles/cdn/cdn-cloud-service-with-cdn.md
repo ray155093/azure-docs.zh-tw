@@ -159,7 +159,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 -	任何控制器/動作
 -	任何含有查詢字串的 URL (若 CDN 端點已啟用查詢字串的話)
 
-實際上，上述組態可讓您從 **http://*&lt;cdnName>*.azureedge.net/** 託管整個雲端服務。若瀏覽至 ****http://camservice.azureedge.net/**，則會從 Home/Index 取得動作結果。
+實際上，上述組態可讓您從 **http://*&lt;cdnName>*.azureedge.net/** 託管整個雲端服務。若瀏覽至 **http://camservice.azureedge.net/**，則會從 Home/Index 取得動作結果。
 
 ![](media/cdn-cloud-service-with-cdn/cdn-2-home-page.PNG)
 

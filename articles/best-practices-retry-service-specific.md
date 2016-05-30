@@ -683,7 +683,7 @@ StackExchange.Redis 用戶端會使用透過一組選項設定的連接管理員
 
 ### 原則組態 (Azure Redis 快取)
 
-重試原則是以程式設計的方式設定的，做法是先設定用戶端的選項，再連接至快取。做法是建立 **ConfigurationOptions** 類別的執行個體、填入其屬性，並將它傳遞給 **Connect ** 方法。
+重試原則是以程式設計的方式設定的，做法是先設定用戶端的選項，再連接至快取。做法是建立 **ConfigurationOptions** 類別的執行個體、填入其屬性，並將它傳遞給 **Connect** 方法。
 
 ```csharp
 var options = new ConfigurationOptions { EndPoints = { "localhost" },
