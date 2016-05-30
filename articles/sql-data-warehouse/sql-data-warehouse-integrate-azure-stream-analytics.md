@@ -3,7 +3,7 @@
    description="搭配使用 Azure 串流分析與 SQL 資料倉儲以便開發解決方案的秘訣。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sahaj08"
+   authors="shivaniguptamsft"
    manager="barbkess"
    editor=""/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
-   ms.author="sahajs;mausher;barbkess;sonyama"/>
+   ms.date="05/17/2016"
+   ms.author="shivaniguptamsft;barbkess;sonyama"/>
 
 # 搭配使用 Azure 串流分析與 SQL 資料倉儲
 
@@ -88,12 +88,12 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 
 [Azure 串流分析簡介]: ../stream-analytics/stream-analytics-introductiond.md
 [開始使用 Azure 資料流分析]: ../stream-analytics/stream-analytics-get-started.md
-[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
-[SQL 資料倉儲整合概觀]: sql-data-warehouse-overview-integrate.md
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[SQL 資料倉儲整合概觀]: ./sql-data-warehouse-overview-integrate.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 [Azure Stream Analytics documentation]: http://azure.microsoft.com/documentation/services/stream-analytics/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

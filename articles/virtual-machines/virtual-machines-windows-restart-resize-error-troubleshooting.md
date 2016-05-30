@@ -1,27 +1,27 @@
 <properties
    pageTitle="VM 重新啟動或調整大小的問題 | Microsoft Azure"
    description="針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器的 Resource Manager 部署問題進行疑難排解"
-   services="virtual-machines"
+   services="virtual-machines-windows, azure-resource-manager"
    documentationCenter=""
-   authors="delhan"
+   authors="Deland-Han"
    manager="felixwu"
    editor=""
    tags="top-support-issue"/>
 
 <tags
-   ms.service="virtual-machines"
-   ms.topic="support-article"
-   ms.tgt_pltfrm="virtual-machines"
+   ms.service="virtual-machines-windows"
+   ms.topic="article"
+   ms.tgt_pltfrm="vm-windows"
    ms.devlang="na"
    ms.workload="required"
-   ms.date="04/28/2016"
+   ms.date="05/12/2016"
    ms.author="delhan"/>
 
 # 針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器的 Resource Manager 部署問題進行疑難排解
 
 > [AZURE.SELECTOR]
 - [傳統](../articles/virtual-machines/virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
-- [Resource Manager](../articles/virtual-machines/virtual-machines-windows-arm-restart-resize-error-troubleshooting.md)
+- [資源管理員](../articles/virtual-machines/virtual-machines-windows-restart-resize-error-troubleshooting.md)
 
 當您嘗試啟動已停止的 Azure 虛擬機器 (VM)，或調整現有 Azure VM 的大小時，常會遇到的錯誤是配置失敗。當叢集或區域沒有可用的資源或無法支援所要求的 VM 大小，就會產生此錯誤。
 
@@ -70,10 +70,10 @@
 * 如果無法變更要求的 VM 的大小︰
 
   1. 停止可用性設定組中的所有 VM。
-  
+
     * 按一下 [資源群組] > [您的資源群組] > [資源] > [您的可用性設定組] > [虛擬機器] > [您的虛擬機器] > [停止]。
 
   2. 所有 VM 都停止後，將所需 VM 調整為較大的大小。
   3. 選取已調整大小的 VM，按一下 [啟動]，然後再啟動每個已停止的 VM。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

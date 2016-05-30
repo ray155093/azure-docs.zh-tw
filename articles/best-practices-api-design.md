@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,10 +19,7 @@
 
 # API 設計指引
 
-![](media/best-practices-api-design/pnp-logo.png)
-
-本指引中的某些主題正在討論中，未來可能有所變更。歡迎您提供的意見反應！
-
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 概觀
 
@@ -522,4 +519,4 @@ Content-Length: ...
 - [RESTful Cookbook](http://restcookbook.com/) (英文) 含有建置符合 REST 限制之 Web API 的簡介。
 - Web [API 檢查清單](https://mathieu.fenniak.net/the-api-checklist/) (英文) 含有在設計及實作 Web API 時應納入考量的實用項目清單。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

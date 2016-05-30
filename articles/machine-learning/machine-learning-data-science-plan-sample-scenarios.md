@@ -3,9 +3,9 @@
 	description="針對 Azure Machine Learning 中的進階預測性分析程序選取適當的案例。"
 	services="machine-learning"
 	documentationCenter=""
-	authors="msolhab"
+	authors="bradsev"
 	manager="paulettm"
-	editor="" />
+	editor="cgronlun" />
 
 <tags
 	ms.service="machine-learning"
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
-	ms.author="msolhab;bradsev" />
+	ms.date="05/10/2016" 
+	ms.author="bradsev" />
 
 
 # 在 Azure 機器學習中的進階分析案例
 
-本文概述可以運用 Cortana 分析程序 (CAP) 來處理的各種範例資料來源和目標案例。本文將根據資料特性、來源位置和在 Azure 中的目標儲存機制，來說明處理順序中可用的選項。
+本文概述可以運用 Cortana Analytics 程序來處理的各種範例資料來源和目標案例。本文將根據資料特性、來源位置和在 Azure 中的目標儲存機制，來說明處理順序中可用的選項。
 
 最後一節提供**決策樹**，讓您在選取適合您資料和目標的範例案例時可以使用。
 
@@ -314,4 +314,4 @@
 <!-- Module References -->
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

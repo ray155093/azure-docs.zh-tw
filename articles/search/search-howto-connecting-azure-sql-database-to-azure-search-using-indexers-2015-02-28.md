@@ -13,7 +13,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="02/08/2016" 
+	ms.date="05/06/2016" 
 	ms.author="eugenesh"/>
 
 #使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務
@@ -70,7 +70,7 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 然後，建立目標 Azure 搜尋服務索引 (如果您尚未建立)。您可以從 [Azure 入口網站 UI](https://portal.azure.com) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。確保您的目標索引結構敘述與來源資料表結構敘述相容。請參閱下列資料表，對應 SQL 及 Azure 搜尋服務間的資料類型。
 
-**SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
+## SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
 
 |SQL 資料類型 | 允許的目標索引欄位類型 |注意事項 
 |------|-----|----|
@@ -275,4 +275,4 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 答： 會。索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮調整您的搜尋服務。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/25/2016"
+	ms.date="05/09/2016"
 	ms.author="szark"/>
 
 # 準備適用於 Azure 的 SLES 或 openSUSE 虛擬機器
@@ -34,18 +34,20 @@
 - SUSE 是建置您自己的 VHD 的替代選項，其也可在 [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007) 發佈 SLES 的 BYOS (自備訂用帳戶，Bring Your Own Subscription) 映像。
 
 
-**SLES / openSUSE 安裝注意事項**
+### SLES / openSUSE 安裝注意事項
+
+- 另請參閱[一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)，以了解準備用於 Azure 的 Linux 的更多訣竅。
 
 - Azure 不支援 VHDX 格式，只支援**固定 VHD**。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
 
-- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果願意，您可以在資料磁碟上使用 LVM 或 [RAID](virtual-machines-linux-configure-raid.md)。
+- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。您也可以視需要在資料磁碟上使用[LVM](virtual-machines-linux-configure-lvm.md) 或 [RAID](virtual-machines-linux-configure-raid.md)。
 
 - 請勿在作業系統磁碟上設定交換磁碟分割。您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。您可以在以下步驟中找到與此有關的詳細資訊。
 
 - 所有 VHD 的大小都必須是 1 MB 的倍數。
 
 
-## 準備執行 SUSE Linux Enterprise Server 11 SP3 ##
+## 準備 SUSE Linux Enterprise Server 11 SP4 ##
 
 1. 在 Hyper-V 管理員的中央窗格中，選取虛擬機器。
 
@@ -61,24 +63,53 @@
 
 		# sudo zypper install WALinuxAgent
 
-6. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。作法是，在文字編輯器中開啟 "/boot/grub/menu.lst"，並確定預設核心包含以下參數：
+6. 檢查 chkconfig 中的 waagent 是否設為「啟用」，若否，請啟用以便自動啟動：
+               
+		# sudo chkconfig waagent on
+
+7. 檢查 waagent 服務是否正在執行，若否，請加以啟動：
+
+		# sudo service waagent start
+                
+8. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。作法是，在文字編輯器中開啟 "/boot/grub/menu.lst"，並確定預設核心包含以下參數：
 
 		console=ttyS0 earlyprintk=ttyS0 rootdelay=300
 
 	這將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。
 
-7.	建議您編輯檔案 "/etc/sysconfig/network/dhcp"，並將 `DHCLIENT_SET_HOSTNAME` 參數變更如下：
+9. 確認 /boot/grub/menu.lst 和 /etc/fstab 兩者參考的磁碟是使用其 UUID (by-uuid) 而非磁碟識別碼 (by-id) 。
+
+	取得磁碟 UUID
+	
+		# ls /dev/disk/by-uuid/
+
+	如果您是使用 /dev/disk/by-id/，請以適當的 by-uuid 值，更新 /boot/grub/menu.lst 和 /etc/fstab
+
+	變更之前
+	
+		root=/dev/disk/bi-id/SCSI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx-part1
+
+	變更之後
+	
+		root=/dev/disk/bi-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+10. 修改 udev 角色可防止產生乙太網路介面的靜態規則。在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
+
+		# sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
+		# sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
+
+11.	建議您編輯檔案 "/etc/sysconfig/network/dhcp"，並將 `DHCLIENT_SET_HOSTNAME` 參數變更如下：
 
 		DHCLIENT_SET_HOSTNAME="no"
 
-8.	在 "/etc/sudoers" 中，註解化或移除下列程式碼行 (如果存在的話)：
+12.	在 "/etc/sudoers" 中，註解化或移除下列程式碼行 (如果存在的話)：
 
 		Defaults targetpw   # ask for the password of the target user i.e. root
 		ALL    ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
 
-9.	確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。這通常是預設值。
+13.	確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。這通常是預設值。
 
-10.	請勿在作業系統磁碟上建立交換空間。
+14.	請勿在作業系統磁碟上建立交換空間。
 
 	Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。請注意，資源磁碟是*暫存*磁碟，可能會在 VM 取消佈建時清空。安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
 
@@ -88,13 +119,13 @@
 		ResourceDisk.EnableSwap=y
 		ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-11.	執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
+15.	執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
 
 		# sudo waagent -force -deprovision
 		# export HISTSIZE=0
 		# logout
 
-12. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
+16. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
 
 
 ----------
@@ -178,6 +209,6 @@
 13. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
 
 ## 後續步驟
-您現在可以開始使用您的 SUSE Linux 虛擬硬碟在 Azure 建立新的虛擬機器。如果這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和 3。
+您現在可以開始使用您的 SUSE Linux 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

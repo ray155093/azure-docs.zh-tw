@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016"
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # 在 Microsoft Azure CDN 中分析邊緣節點效能
 
+[AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
+
 ## 概觀
 邊緣效能分析詳細提供 CDN 的資訊流量和頻寬使用量。這項資訊可用來產生趨勢統計資料，讓您深入了解您的資產如何放入快取中和傳遞到您的用戶端。這進而可讓您產生策略來設法最佳化內容傳遞，以及決定應該解決什麼問題以充分利用 CDN。如此一來，不僅能夠改善資料傳遞的效能，還能夠減少 CDN 成本。
 
-> [AZURE.NOTE] 邊緣效能分析是高階 CDN 層的一項功能。如需標準和高階 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md)。
->
-> 所有報告都採用 UTC/GMT 標記法來指定日期/時間。
+> [AZURE.NOTE] 所有報告都採用 UTC/GMT 標記法來指定日期/時間。
 
 ## 報告和記錄收集
 
@@ -192,4 +192,4 @@ HTTP 回應碼 | 分解由我們的邊緣伺服器傳遞至 HTTP 用戶端的 HT
 * [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
 * [進階 HTTP 報告](cdn-advanced-http-reports.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

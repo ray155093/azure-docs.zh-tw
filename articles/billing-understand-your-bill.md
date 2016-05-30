@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/13/2016"
+   ms.date="04/28/2016"
    ms.author="erihur"/>
 
 
@@ -35,11 +35,11 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。某些費率方�
 
 ### 檢視或下載 Microsoft Azure 帳單
 
-在 [Azure 帳戶入口網站中](https://account.windowsazure.com/subscriptions)，您可以檢視目前的帳單和下載過去的帳單。
+在 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)，您可以檢視目前的帳單和下載過去的帳單。
 
 檢視或下載帳單：
 
-1. 使用 Microsoft 帳戶識別碼或工作或學校帳戶識別碼登入[帳戶入口網站](https://account.windowsazure.com/subscriptions)。
+1. 使用 Microsoft 帳戶識別碼或工作或學校帳戶識別碼登入[帳戶中心](https://account.windowsazure.com/subscriptions)。
 
 2. 按一下您想要查看詳細資料和使用狀況的訂用帳戶。
 
@@ -48,7 +48,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。某些費率方�
     ![摘要 - 帳單記錄 - 1](./media/billing-understand-your-bill/ContentViewaBillforMA1.png)
 
 
-4. [**帳單記錄**] 區段會列出您最後 6 個計費週期再加上目前未開立帳單期間的對帳單。目前期間的對帳單是產生估計時的估計費用。此資訊每天只會更新一次，而且可能不包含截至本日為止的所有使用量。您的每月帳單可能會與這項估計有所不同。
+4. [帳單記錄] 區段會列出先前計費週期再加上目前未開立帳單期間的對帳單。目前期間的對帳單是產生估計時的估計費用。此資訊每天只會更新一次，而且可能不包含截至本日為止的所有使用量。您的每月帳單可能會與這項估計有所不同。
 
     ![摘要 - 帳單記錄 2](./media/billing-understand-your-bill/ContentViewaBillforMA2.png)
 
@@ -63,7 +63,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。某些費率方�
     ![摘要 - 帳單記錄 5](./media/billing-understand-your-bill/ContentViewaBillforMA5.png)
 
 
-***重要事項：*** *針對國際客戶所列在帳單上的費用僅為估算用途，因為銀行換匯的費用不同。*
+***重要事項：****針對國際客戶所列在帳單上的費用僅為估算用途，因為銀行換匯的費用不同。*
 
 
 以下是在 Microsoft Azure 上可使用之兩個不同優惠的某些範例陳述。
@@ -140,7 +140,7 @@ Microsoft Azure 付款位址。
 ![其他資訊](./media/billing-understand-your-bill/AdditionalInformation.png)
 
 ### 詳細的使用量
-在 [詳細的使用量] 描述中的連結會將您引導至帳戶入口網站，您可以在此檢視此訂用帳戶的詳細使用量。現在有兩個版本可供下載：**.csv 第 1 版**包含舊的命名慣例和使用情況欄位，**.csv 第 2 版**包含每個類別的客戶易記名稱，加上可協助您了解正在 Microsoft Azure 上使用哪些服務的其他欄位。請注意，在 .csv 第 1 版沒有 Azure Resource Manager 的詳細資訊。.csv 第 2 版有 Azure Resource Manager 的資訊。
+在 [詳細的使用量] 描述中的連結會將您引導至帳戶中心，您可以在此檢視此訂用帳戶的詳細使用量。現在有兩個版本可供下載：**.csv 第 1 版**包含舊的命名慣例和使用情況欄位，**.csv 第 2 版**包含每個類別的客戶易記名稱，加上可協助您了解正在 Microsoft Azure 上使用哪些服務的其他欄位。請注意，在 .csv 第 1 版沒有 Azure Resource Manager 的詳細資訊。.csv 第 2 版有 Azure Resource Manager 的資訊。
 
 ### 其他資訊和有用資源
 此區段包含關於計算執行個體大小、SQL DB 費用等簡單問題的連結，以及可幫助您進一步回答問題的有用連結。
@@ -238,18 +238,19 @@ N/A | 標記 | _**新增資料行。**_ Azure 中的新資源類型可讓您標�
 
 - [Azure 計費及訂用帳戶常見問題集](billing-subscription-faq.md)
 
-- [管理您的付款方法](https://msdn.microsoft.com/library/azure/dn736054.aspx)
+- [如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)
 
-- [編輯現有信用卡的付款資訊](https://msdn.microsoft.com/library/azure/dn736053.aspx)
-
-- [新增信用卡做為付款方法](https://msdn.microsoft.com/library/azure/dn736057.aspx)
-
-- [變更 Microsoft Azure 帳戶上的信用卡](https://msdn.microsoft.com/library/azure/dn736050.aspx)
-
-<!-- - [What do I do if my Azure subscription become disabled?](https://msdn.microsoft.com/library/azure/dn736049.aspx)-->
+<!--
+OLD MSDN Articles
+- [What do I do if my Azure subscription become disabled?](https://msdn.microsoft.com/library/azure/dn736049.aspx)
+- [Edit payment information for an existing credit card](https://msdn.microsoft.com/library/azure/dn736053.aspx)
+- [Add a new credit card to use as a payment method](https://msdn.microsoft.com/library/azure/dn736057.aspx)
+- [Change the credit card on your Microsoft Azure account](https://msdn.microsoft.com/library/azure/dn736050.aspx)
+- [Manage your payment method](https://msdn.microsoft.com/library/azure/dn736054.aspx)
+-->
 
 
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

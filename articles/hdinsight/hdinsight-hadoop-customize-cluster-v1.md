@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
+	ms.date="05/17/2016" 
 	ms.author="nitinme"/>
 
 # 使用指令碼動作來自訂 HDInsight 叢集
 
-[AZURE.INCLUDE [hdinsight-azure-portal](../../includes/hdinsight-azure-portal.md)]
-
-* [使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md)
+> [AZURE.IMPORTANT] 本文件中的步驟使用 Azure 傳統入口網站。建立新的服務時，Microsoft 不建議您使用傳統入口網站。如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
+>
+> 本文件也包含使用 Azure PowerShell 和 HDInsight .NET SDK 的相關資訊。文中提供的程式碼片段是以下列命令為基礎：使用 Azure 服務管理 (ASM) 來處理 HDInsight 及__已被取代__的命令。這些命令將在 2017 年 1 月 1 日之前予以移除。
+>
+>如需這份文件的「使用 Azure 入口網站搭配使用 Azure Resource Manager (ARM) 的 PowerShell 和 HDInsight .NET SDK 程式碼片段」版本，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md)。
 
 HDInsight 提供一個稱為 [指令碼動作] 的組態選項，可叫用自訂指令碼，以定義佈建處理期間要在叢集上執行的自訂。這些指令碼可用來在叢集上安裝額外的軟體或變更叢集上的應用程式組態。
 
@@ -86,7 +88,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝下列元件：
   
 **從 Azure PowerShell cmdlet**
 
-使用適用於 HDInsight 的 Azure PowerShell 命令來執行單一指令碼動作和多個指令碼動作。您可以使用 **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** Cmdlet 來叫用自訂指令碼。若要使用這些 Cmdlet，您必須已安裝並設定 Azure PowerShell。如需設定工作站以執行適用於 HDInsight 的 Azure Powershell Cmdlet 之相關資訊，請參閱[安裝和設定 Azure PowerShell][powershell-install-configure]。
+使用適用於 HDInsight 的 Azure PowerShell 命令來執行單一指令碼動作和多個指令碼動作。您可以使用 **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** Cmdlet 來叫用自訂指令碼。若要使用這些 Cmdlet，您必須已安裝並設定 Azure PowerShell。如需設定工作站以執行適用於 HDInsight 的 Azure Powershell Cmdlet 之相關資訊，請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 請使用下列 Azure PowerShell 命令，以在部署 HDInsight 叢集時，執行單一指令碼動作：
 
@@ -178,4 +180,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-v1/HDI-Cluster-state.png "叢集佈建期間的階段"
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

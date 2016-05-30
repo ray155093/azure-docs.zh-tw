@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/02/2016" 
+	ms.date="05/12/2016" 
 	ms.author="elizapo"/>
 
 # 如何為 Azure RemoteApp 建立自訂範本映像
@@ -142,4 +142,4 @@ Azure RemoteApp 會使用 Windows Server 2012 R2 範本映像來主控您要與�
 - [如何建立 RemoteApp 的雲端收藏](remoteapp-create-cloud-deployment.md)
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

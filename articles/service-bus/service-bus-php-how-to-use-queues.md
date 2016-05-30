@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="05/06/2016" 
 	ms.author="sethm"/>
 
 # 如何使用服務匯流排佇列
@@ -47,8 +47,10 @@
 
 > [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過編輯器安裝 PHP Client Libraries for Azure。如果您以手動方式或以 PEAR 套件方式安裝程式庫，則必須參考 **WindowsAzure.php** 自動換片器檔案。
 
-	require_once 'vendor\autoload.php';
-	use WindowsAzure\Common\ServicesBuilder;
+```
+require_once 'vendor\autoload.php';
+use WindowsAzure\Common\ServicesBuilder;
+```
 
 在下列各範例中，一律會顯示 `require_once` 陳述式，但只會參考要執行之範例所需的類別。
 
@@ -56,9 +58,11 @@
 
 若要具現化服務匯流排用戶端，您必須具備符合下列格式的有效連接字串：
 
-	Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[Default Key]
+```
+Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[Default Key]
+```
 
-其中，**Endpoint** 的格式通常是 `https://[yourNamespace].servicebus.windows.net`。
+其中，**Endpoint** 的格式通常是 `[yourNamespace].servicebus.windows.net`。
 
 若要建立任何 Azure 服務用戶端，您必須使用 **ServicesBuilder** 類別。您可以：
 
@@ -69,14 +73,15 @@
 
 在本文的各範例中，將會直接傳遞連接字串。
 
-	require_once 'vendor\autoload.php';
+```
+require_once 'vendor\autoload.php';
 
-	use WindowsAzure\Common\ServicesBuilder;
+use WindowsAzure\Common\ServicesBuilder;
 
-	$connectionString = "Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[Default Key]";
+$connectionString = "Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[Default Key]";
 
-	$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-
+$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
+```
 
 ## 如何建立佇列
 
@@ -84,61 +89,65 @@
 
 下列範例將說明如何具現化 **ServiceBusRestProxy** 並呼叫 **ServiceBusRestProxy->createQueue**，以在 `MySBNamespace` 服務命名空間內建立名為 `myqueue` 的佇列：
 
-    require_once 'vendor\autoload.php';
+```
+require_once 'vendor\autoload.php';
 
-	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
-	use WindowsAzure\ServiceBus\Models\QueueInfo;
+use WindowsAzure\Common\ServicesBuilder;
+use WindowsAzure\Common\ServiceException;
+use WindowsAzure\ServiceBus\Models\QueueInfo;
 
-	// Create Service Bus REST proxy.
-		$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
+// Create Service Bus REST proxy.
+$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 	
-	try	{
-		$queueInfo = new QueueInfo("myqueue");
+try	{
+	$queueInfo = new QueueInfo("myqueue");
 		
-		// Create queue.
-		$serviceBusRestProxy->createQueue($queueInfo);
-	}
-	catch(ServiceException $e){
-		// Handle exception based on error codes and messages.
-		// Error codes and messages are here: 
-		// http://msdn.microsoft.com/library/windowsazure/dd179357
-		$code = $e->getCode();
-		$error_message = $e->getMessage();
-		echo $code.": ".$error_message."<br />";
-	}
+	// Create queue.
+	$serviceBusRestProxy->createQueue($queueInfo);
+}
+catch(ServiceException $e){
+	// Handle exception based on error codes and messages.
+	// Error codes and messages are here: 
+	// http://msdn.microsoft.com/library/windowsazure/dd179357
+	$code = $e->getCode();
+	$error_message = $e->getMessage();
+	echo $code.": ".$error_message."<br />";
+}
+```
 
-> [AZURE.NOTE] 您可以在 `ServiceBusRestProxy` 物件上使用 `listQueues` 方法，來檢查服務命名空間內是否已有指定名稱的佇列存在。
+> [AZURE.NOTE] 您可以在 `ServiceBusRestProxy` 物件上使用 `listQueues` 方法，來檢查命名空間內是否已有指定名稱的佇列存在。
 
 ## 如何傳送訊息至佇列
 
 若要傳送訊息至服務匯流排佇列，應用程式會呼叫 **ServiceBusRestProxy->sendQueueMessage** 方法。下列程式碼示範如何將訊息傳送至先前在 `MySBNamespace` 服務命名空間中建立的 `myqueue` 佇列。
 
-	require_once 'vendor\autoload.php';
+```
+require_once 'vendor\autoload.php';
 
-	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
-	use WindowsAzure\ServiceBus\Models\BrokeredMessage;
+use WindowsAzure\Common\ServicesBuilder;
+use WindowsAzure\Common\ServiceException;
+use WindowsAzure\ServiceBus\Models\BrokeredMessage;
 
-	// Create Service Bus REST proxy.
-	$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
+// Create Service Bus REST proxy.
+$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 		
-	try	{
-		// Create message.
-		$message = new BrokeredMessage();
-		$message->setBody("my message");
+try	{
+	// Create message.
+	$message = new BrokeredMessage();
+	$message->setBody("my message");
 	
-		// Send message.
-		$serviceBusRestProxy->sendQueueMessage("myqueue", $message);
-	}
-	catch(ServiceException $e){
-		// Handle exception based on error codes and messages.
-		// Error codes and messages are here: 
-		// http://msdn.microsoft.com/library/windowsazure/hh780775
-		$code = $e->getCode();
-		$error_message = $e->getMessage();
-		echo $code.": ".$error_message."<br />";
-	}
+	// Send message.
+	$serviceBusRestProxy->sendQueueMessage("myqueue", $message);
+}
+catch(ServiceException $e){
+	// Handle exception based on error codes and messages.
+	// Error codes and messages are here: 
+	// http://msdn.microsoft.com/library/windowsazure/hh780775
+	$code = $e->getCode();
+	$error_message = $e->getMessage();
+	echo $code.": ".$error_message."<br />";
+}
+```
 
 傳送至 (和擷取自) 服務匯流排佇列的訊息是 **BrokeredMessage** 類別的執行個體。**BrokeredMessage** 物件具有一組標準方法 (例如 **getLabel**、**getTimeToLive**、**setLabel** 和 **setTimeToLive**)、用來保存自訂應用程式特定屬性的屬性，以及一組任意的應用程式資料。
 
@@ -154,41 +163,43 @@
 
 下列範例說明如何使用 **PeekLock** 模式 (這不是預設模式) 來接收與處理訊息。
 
-	require_once 'vendor\autoload.php';
+```
+require_once 'vendor\autoload.php';
 
-	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
-	use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
+use WindowsAzure\Common\ServicesBuilder;
+use WindowsAzure\Common\ServiceException;
+use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 
-	// Create Service Bus REST proxy.
-	$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
+// Create Service Bus REST proxy.
+$serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 		
-	try	{
-		// Set the receive mode to PeekLock (default is ReceiveAndDelete).
-		$options = new ReceiveMessageOptions();
-		$options->setPeekLock();
+try	{
+	// Set the receive mode to PeekLock (default is ReceiveAndDelete).
+	$options = new ReceiveMessageOptions();
+	$options->setPeekLock();
 		
-		// Receive message.
-		$message = $serviceBusRestProxy->receiveQueueMessage("myqueue", $options);
-		echo "Body: ".$message->getBody()."<br />";
-		echo "MessageID: ".$message->getMessageId()."<br />";
+	// Receive message.
+	$message = $serviceBusRestProxy->receiveQueueMessage("myqueue", $options);
+	echo "Body: ".$message->getBody()."<br />";
+	echo "MessageID: ".$message->getMessageId()."<br />";
 		
-		/*---------------------------
-			Process message here.
-		----------------------------*/
+	/*---------------------------
+		Process message here.
+	----------------------------*/
 		
-		// Delete message. Not necessary if peek lock is not set.
-		echo "Message deleted.<br />";
-		$serviceBusRestProxy->deleteMessage($message);
-	}
-	catch(ServiceException $e){
-		// Handle exception based on error codes and messages.
-		// Error codes and messages are here:
-		// http://msdn.microsoft.com/library/windowsazure/hh780735
-		$code = $e->getCode();
-		$error_message = $e->getMessage();
-		echo $code.": ".$error_message."<br />";
-	}
+	// Delete message. Not necessary if peek lock is not set.
+	echo "Message deleted.<br />";
+	$serviceBusRestProxy->deleteMessage($message);
+}
+catch(ServiceException $e){
+	// Handle exception based on error codes and messages.
+	// Error codes and messages are here:
+	// http://msdn.microsoft.com/library/windowsazure/hh780735
+	$code = $e->getCode();
+	$error_message = $e->getMessage();
+	echo $code.": ".$error_message."<br />";
+}
+```
 
 ## 如何處理應用程式當機與無法讀取的訊息
 
@@ -209,4 +220,4 @@
 
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

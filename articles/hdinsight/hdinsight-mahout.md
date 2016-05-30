@@ -41,7 +41,9 @@ Mahout 是 Apache Hadoop 的[機器學習][ml]庫。Mahout 包含可處理資料
 ##先決條件
 
 - **HDInsight 中 Windows 架構的 Hadoop 叢集**。如需建立此叢集的相關資訊，請參閱[開始在 HDInsight 中使用 Hadoop][getstarted]。
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝 Azure PowerShell 1.0 及更新版本](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。
+- **具有 Azure PowerShell 的工作站**。
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ##<a name="recommendations"></a>使用 Windows PowerShell 產生推薦
@@ -527,4 +529,4 @@ HDInsight 3.1 叢集包含 Mahout。路徑和檔案名稱包含叢集上安裝�
 [tools]: https://github.com/Blackmist/hdinsight-tools
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

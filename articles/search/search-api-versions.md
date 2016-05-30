@@ -65,9 +65,8 @@ Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然�
 
 不過，因為預覽功能均有可能變更，所以我們建議避免撰寫依存於預覽版本的實際程式碼。如果您正在使用舊版預覽版本，建議您移轉到正式推出的 (GA) 版本。
 
-- 如需程式碼移轉的 .NET SDK：指南，請參閱[升級 .NET SDK](search-dotnet-sdk-migration.md)。
-- 如需程式碼移轉的 REST API：指南，請參閱[從預覽轉換至 GA](search-transition-from-preview.md)。
+如需程式碼移轉的 .NET SDK：指南，請參閱[升級 .NET SDK](search-dotnet-sdk-migration.md)。
 
 正式推出意指 Azure 搜尋服務已受到服務等級協定 (SLA) 約束。SLA 可以在 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)中找到。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

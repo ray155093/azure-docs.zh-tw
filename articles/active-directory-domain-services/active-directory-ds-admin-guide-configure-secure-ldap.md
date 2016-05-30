@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="04/27/2016"
 	ms.author="maheshu"/>
 
 # 針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
@@ -26,7 +26,7 @@
 
 2. **Azure AD 目錄** - 與內部部署目錄或僅限雲端的目錄同步處理。
 
-3. **網域服務**必須已針對 Azure AD 目錄啟用。如果還沒有啟用，請按照[入門指南](./active-directory-ds-getting-started.md)所述的所有工作來進行。
+3. **Azure AD 網域服務**必須已針對 Azure AD 目錄啟用。如果還沒有啟用，請按照[入門指南](./active-directory-ds-getting-started.md)所述的所有工作來進行。
 
 4. **用來啟用安全 LDAP 的憑證**。
     - **建議** - 從您的企業 CA 或公共憑證授權單位取得憑證。這是更安全的組態選項。
@@ -242,4 +242,4 @@
 
 - [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域) ](active-directory-ds-admin-guide-administer-domain.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

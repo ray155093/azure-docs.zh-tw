@@ -44,7 +44,7 @@
 >
 > Azure App Service 支援橢圓曲線密碼編譯 (ECC) 憑證；不過，它們相對而言比較新，您應該在具體步驟中使用 CA 來建立 CSR。
 
-如果 CA 使用**[中繼憑證](http://en.wikipedia.org/wiki/Intermediate_certificate_authorities)** (也稱為鏈結憑證)，則您還需要取得這些中繼憑證。使用中繼憑證比使用「未鏈結憑證」安全，因此常會見到 CA 使用中繼憑證。中繼憑證通常是從 CA 網站個別下載而得。本文提供的步驟為確保任何中繼憑證與已上傳至應用程式的憑證相合併。
+如果 CA 使用**[中繼憑證](http://en.wikipedia.org/wiki/Intermediate_certificate_authorities)** (也稱為鏈結憑證)，則您還需要取得這些中繼憑證。使用中繼憑證比使用「未鏈結憑證」安全，因此常會見到 CA 使用中繼憑證。中繼憑證通常是從 CA 網站個別下載而得。本文提供所的步驟，旨在確保任何中繼憑證均能與已上傳至應用程式的憑證相互合併。
 
 > [AZURE.NOTE]
 >
@@ -392,7 +392,7 @@ OpenSSL 可以用來建立憑證要求 (並讓該要求使用 SubjectAltName 延
 <a name="bkmk_standardmode"></a>
 ## 2\.設定標準或高階定價層
 
-在 Azure App Service 中針對自訂網域啟用 HTTPS 僅適用於**標準**和**高階**定價層。請使用下列步驟將您的 App Service 方案切換至 [**標準**] 層。
+在 Azure App Service 中，只有**標準**和**高階**定價層才能針對自訂網域啟用 HTTPS 。請使用下列步驟將您的 App Service 方案切換至 [**標準**] 層。
 
 > [AZURE.NOTE] 在將應用程式從**免費**層切換至**標準**層之前，您應該先移除訂用帳戶的支出費用上限，以免帳單期間還未結束，應用程式就因為已達支出費用上限而變得無法使用。如需共用與**標準**層的詳細資訊，請參閱[定價詳細資料][pricing]。
 
@@ -435,13 +435,13 @@ OpenSSL 可以用來建立憑證要求 (並讓該要求使用 SubjectAltName 延
 
 	![SSL 上傳][uploadcert]
 
-9. 在 [**SSL 設定**] 索引標籤的 [**SSL 繫結**] 區段中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用[伺服器名稱指示][sni] (SNI) 還是 IP SSL。
+9. 在 [**SSL 設定**] 索引標籤的 [**SSL 繫結**] 區段中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用[伺服器名稱指示][sni] \(SNI) 還是 IP SSL。
 
 	![SSL 繫結][sslbindings]
 
 	* IP SSL 會將伺服器的專用公用 IP 位址對應至網域名稱，以建立憑證與網域名稱的關聯。這需要與您服務相關聯的每個網域名稱 (contoso.com、fabricam.com 等) 都有專用 IP 位址。這是傳統用來建立 SSL 憑證與網頁伺服器之關聯的方法。
 
-	* SNI SSL 是 SSL 和[傳輸層安全性][tls] (TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。如需 SNI 的詳細資訊，請參閱 Wikipedia 上的[伺服器名稱指示][sni]一文。
+	* SNI SSL 是 SSL 和[傳輸層安全性][tls] \(TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。如需 SNI 的詳細資訊，請參閱 Wikipedia 上的[伺服器名稱指示][sni]一文。
 
 10. 按一下 [儲存]，儲存變更並啟用 SSL。
 
@@ -455,13 +455,14 @@ OpenSSL 可以用來建立憑證要求 (並讓該要求使用 SubjectAltName 延
 >
 > 2. 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
 
+> [AZURE.NOTE] 如果您將**以 IP 為主的 SSL** 加入已經有不同憑證之 **SNI 繫結**的 Web 應用程式中，只要 Web 應用程式啟用 IP SSL，我們就會重新將網站的主機名稱對應至該 IP 位址；因此如果其他的主機名稱是該網站主機名稱的 CNAME，它也會取得 IP SSL 位址上的流量。在這種情況下，我們會再建立一個 DNS 項目：sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net，其中 &lt;您的 Web 應用程式名稱&gt; 是 Azure App Service Web 應用程式的名稱。因此，您應該將 DNS 記錄變更為指向 SNI 繫結所用的名稱，以便將它改為指向 sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net。
 
 此時您應該可以使用 `HTTPS://` (而非 `HTTP://`) 來造訪您的應用程式，以確認憑證設定正確。
 
 <a name="bkmk_enforce"></a>
 ## 4\.在應用程式上強制使用 HTTPS
 
-Azure App Service「*不會*」強制使用 HTTPS。訪客可能仍會使用 HTTP 存取您的應用程式，而這可能會危及應用程式的安全性。如果想要強制您的應用程式使用 HTTPS，您可以使用 **URL Rewrite** 模組。Azure App Service 隨附 URL Rewrite 模組，此模組可讓您定義連入要求在送達應用程式之前要套用的規則。**它可用於以任何 Azure 支援的程式設計語言所撰寫的應用程式。**
+Azure App Service「*不會*」強制使用 HTTPS。訪客可能仍會使用 HTTP 存取您的應用程式，而這可能會危及應用程式的安全性。如果想要強制您的應用程式使用 HTTPS，則可以使用 **URL Rewrite** 模組。Azure App Service 隨附 URL Rewrite 模組，此模組可讓您定義連入要求在送達應用程式之前要套用的規則。**它可用於以任何 Azure 支援的程式設計語言所撰寫的應用程式。**
 
 > [AZURE.NOTE] .NET MVC 應用程式應使用 [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) 篩選，而非 URL Rewrite。如需使用 RequireHttps 的詳細資訊，請參閱[將安全的 ASP.NET MVC 5 應用程式部署至 Web 應用程式](../articles/app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)。
 >
@@ -563,5 +564,3 @@ Azure App Service「*不會*」強制使用 HTTPS。訪客可能仍會使用 HTT
 [certwiz2]: ./media/configure-ssl-web-site/waws-certwiz2.png
 [certwiz3]: ./media/configure-ssl-web-site/waws-certwiz3.png
 [certwiz4]: ./media/configure-ssl-web-site/waws-certwiz4.png
-
-<!---HONumber=AcomDC_0323_2016-->

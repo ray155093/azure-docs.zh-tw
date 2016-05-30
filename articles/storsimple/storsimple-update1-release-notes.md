@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
  <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/01/2015"
+   ms.date="05/16/2016"
    ms.author="alkohli" />
 
 # StorSimple 8000 系列 Update 1.2 版本資訊  
@@ -124,4 +124,4 @@ Update 1.2 可以套用至任何執行 Release (GA)、Update 0.1、Update 0.2 �
 - [在您的裝置上安裝 Update 1.2](storsimple-install-update-1.md)。
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0518_2016-->

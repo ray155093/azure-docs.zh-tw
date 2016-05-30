@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="02/09/2016"
+    ms.date="05/16/2016"
     ms.author="asmalser-msft"/>
 
 #教學課程：如何整合 Salesforce 與 Azure Active Directory
@@ -22,7 +22,7 @@
 
 ##必要條件
 
-1. 若要透過 [Azure 管理入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
+1. 若要透過 [Azure 傳統入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
 
 2. 您在 [Salesforce.com](https://www.salesforce.com/) 中必須具備有效的租用戶。
 
@@ -46,7 +46,7 @@
 
 ##步驟 1：將 Salesforce 加入您的目錄
 
-1. 在 [Azure 管理入口網站](https://manage.windowsazure.com)的左方瀏覽窗格中，按一下 [Active Directory]。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![從左方的導覽窗格中選取 [Active Directory]。][0]
 
@@ -256,4 +256,4 @@
 [28]: ./media/active-directory-saas-salesforce-tutorial/assign-confirm.png
 [29]: ./media/active-directory-saas-salesforce-tutorial/assign-sf-profile.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

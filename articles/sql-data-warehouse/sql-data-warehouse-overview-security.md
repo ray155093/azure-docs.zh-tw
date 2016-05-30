@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/30/2016"
+   ms.date="05/02/2016"
    ms.author="sahajs;barbkess;sonyama"/>
 
 # 保護 SQL 資料倉儲中的資料庫
@@ -86,7 +86,7 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 
 ```
 
-您也可以從 [Azure 傳統入口網站][]中的資料庫設定，啟用透明資料加密。如需詳細資訊，請參閱[開始使用透明資料加密 (TDE)](sql-data-warehouse-encryption-tde-tsql.md)。
+您也可以從 [Azure 入口網站][]中的資料庫設定，啟用透明資料加密。如需詳細資訊，請參閱[開始使用透明資料加密 (TDE)](sql-data-warehouse-encryption-tde-tsql.md)。
 
 ## 稽核
 
@@ -108,9 +108,9 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 [權限]: https://msdn.microsoft.com/library/ms191291.aspx
 [預存程序]: https://msdn.microsoft.com/library/ms190782.aspx
 [透明資料加密]: http://go.microsoft.com/fwlink/?LinkId=526242
-[Azure 傳統入口網站]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: http://azure.microsoft.com/documentation/articles/role-based-access-control-configure.aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

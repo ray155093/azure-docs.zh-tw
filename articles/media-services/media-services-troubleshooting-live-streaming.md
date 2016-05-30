@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="針對即時資料流進行疑難排解的指南" 
+	pageTitle="為即時串流而設的疑難排解指南" 
 	description="本主題提供有關如何疑難排解即時資料流問題的建議。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -16,7 +16,7 @@
  	ms.date="03/02/2016"  
 	ms.author="juliako"/>
 
-#針對即時資料流進行疑難排解的指南 
+#為即時串流而設的疑難排解指南
 
 本主題提供有關如何疑難排解某些即時資料流問題的建議。
 
@@ -85,4 +85,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

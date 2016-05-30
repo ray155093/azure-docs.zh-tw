@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="04/20/2016"
 	ms.author="jimpark; aashishr; anuragm"/>
 
 
@@ -99,8 +99,8 @@ PS C:\> MARSAgentInstaller.exe /?
 | 選項 | 詳細資料 | 預設值 |
 | ---- | ----- | ----- |
 | /q | 無訊息安裝 | - |
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent |
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
+| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent |
+| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
 | /m | 選擇加入 Microsoft Update | - |
 | /nu | 安裝完成後不要檢查更新 | - |
 | /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - |
@@ -168,7 +168,7 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -StagingAreaPath "C:\StagingArea"
 ```
 
-在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\StagingArea*。請確保指定的資料夾已經存在，否則訂閱設定的最終認可將會失敗。
+在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\\StagingArea*。請確保指定的資料夾已經存在，否則訂閱設定的最終認可將會失敗。
 
 
 ### 加密設定
@@ -300,7 +300,10 @@ PS C:\> Set-DPMReplicaCreationMethod -ProtectionGroup $MPG -NOW
 PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 ## 檢視備份點
-您可以使用 [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) Cmdlet 來取得資料來源所有復原點的清單。在此範例中，我們：- 擷取 DPM 伺服器上所有將儲存在陣列 ```$PG``` 中的 PG - 取得對應至 ```$PG[0]``` 的資料來源 - 取得資料來源的所有復原點。
+您可以使用 [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) Cmdlet 來取得資料來源所有復原點的清單。在此範例中，我們將會：
+- 擷取 DPM 伺服器上的所有的 PG 並儲存在陣列中 ```$PG```
+- 取得與 ```$PG[0]``` 對應的資料來源
+- 取得資料來源的所有復原點。
 
 ```
 PS C:\> $PG = Get-DPMProtectionGroup –DPMServerName "TestingServer"
@@ -333,4 +336,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/01/2016"
+	ms.date="05/16/2016"
 	ms.author="curtand"/>
 
 # 如何開始使用 Azure AD
@@ -44,4 +44,4 @@ Azure AD 為系統管理員提供了幾種報告。在 Azure AD 的付費版本�
 * [以組織身分註冊 Azure](sign-up-organization.md)
 * [Azure 身分識別](fundamentals-identity.md)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0518_2016-->

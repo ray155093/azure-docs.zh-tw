@@ -6,14 +6,14 @@
    authors="bmscholl"
    manager="timlt"
    editor=""/>
-   
+
 <tags
    ms.service="service-fabric"
    ms.devlang="dotnet"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/12/2016"
+   ms.date="05/17/2016"
    ms.author="bscholl"/>
 
 # 將來賓可執行檔部署至 Service Fabric
@@ -34,7 +34,7 @@
 
 ## 應用程式和服務資訊清單檔的快速概觀
 
-在深入探討部署來賓可執行檔的細節之前，最好先了解 Service Fabric 封裝和部署模型。Service Fabric 封裝部署模型主要依賴兩個檔案：
+在深入探討部署來賓可執行檔的細節之前，最好先了解 Service Fabric 封裝和部署模型。Service Fabric 封裝部署模型主要依賴兩個 XML 檔案：應用程式和服務資訊清單。ApplicationManifest.xml 和 ServiceManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\\Program Files\\Microsoft SDKs\\Service Fabric\\schemas\\ServiceFabricServiceModel.xsd*。
 
 
 * **應用程式資訊清單**
@@ -248,10 +248,10 @@ SetupEntrypoint 元素用來指定任何應在服務的程式碼啟動前執行�
 Connect-ServiceFabricCluster localhost:19000
 
 Write-Host 'Copying application package...'
-Copy-ServiceFabricApplicationPackage -ApplicationPackagePath 'C:\Dev\MultipleApplications' -ImageStoreConnectionString 'file:C:\SfDevCluster\Data\ImageStoreShare' -ApplicationPackagePathInImageStore 'Store\nodeapp'
+Copy-ServiceFabricApplicationPackage -ApplicationPackagePath 'C:\Dev\MultipleApplications' -ImageStoreConnectionString 'file:C:\SfDevCluster\Data\ImageStoreShare' -ApplicationPackagePathInImageStore 'nodeapp'
 
 Write-Host 'Registering application type...'
-Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'Store\nodeapp'
+Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'nodeapp'
 
 New-ServiceFabricApplication -ApplicationName 'fabric:/nodeapp' -ApplicationTypeName 'NodeAppType' -ApplicationTypeVersion 1.0
 
@@ -272,11 +272,11 @@ Service Fabric 服務可以各種「組態」部署。 例如，它可部署為�
 
 在 Service Fabric 總管中，找出執行服務的節點。在此範例中，它是在 Node1 上執行：
 
-![服務執行所在的節點](./media/service-fabric-deploy-existing-app/runningapplication.png)
+![服務執行所在的節點](./media/service-fabric-deploy-existing-app/nodeappinsfx.png)
 
 如果您巡覽至節點並瀏覽至應用程式，您會看到基本節點資訊，包括它在磁碟上的位置。
 
-![在磁碟上的位置](./media/service-fabric-deploy-existing-app/locationondisk.png)
+![在磁碟上的位置](./media/service-fabric-deploy-existing-app/locationondisk2.png)
 
 如果您使用 [伺服器總管] 瀏覽至目錄，您可以找到工作目錄和服務的記錄檔資料夾，如下所示。
 
@@ -286,8 +286,8 @@ Service Fabric 服務可以各種「組態」部署。 例如，它可部署為�
 ## 後續步驟
 在本文中，您已經學會如何封裝來賓可執行檔並部署至 Service Fabric。接下來，您可以閱讀這個主題的其他內容。
 
-- [GitHub 上封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Custom/SimpleApplication)，包括封裝工具預先發行版本的連結
+- [GitHub 上封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)，包括封裝工具預先發行版本的連結。
 - [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 - [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/07/2016" 
+	ms.date="05/10/2016" 
 	ms.author="fashah;garye;bradsev" />
 
 #<a name="heading"></a>在 Azure 上 SQL Server 中進行資料取樣
 
-
-## 簡介
 
 本文件顯示如何使用 SQL 或 Python 程式設計語言，對儲存在 Azure 上之 SQL Server 中的資料進行取樣。也示範如何透過將取樣的資料儲存到檔案，讓取樣資料移動到 Azure Machine Learning、將取樣的資料上傳至 Azure blob，然後將其讀入 Azure Machine Learning Studio。
 
@@ -29,7 +27,7 @@ Python 取樣使用 [pyodbc](https://code.google.com/p/pyodbc/) ODBC 程式庫�
 
 **為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
 
-以下**功能表**會連結至說明如何從各種不同儲存體環境進行資料取樣的主題。
+以下**功能表**會連結至如何從各種不同儲存體環境進行資料取樣的說明主題。
 
 [AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
@@ -126,4 +124,4 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -11,7 +11,7 @@
 
 工作 | 服務管理模式 | 資源管理員模型
 -------------- | ----------- | -------------------------
-建立最基本的 VM | `azure vm create [options] <dns-name> <image> [userName] [password]` | `azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(從 `azure vm image list` 命令取得 `image-urn`。)如需範例，請參閱[這篇文章](../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md)。)
+建立最基本的 VM | `azure vm create [options] <dns-name> <image> [userName] [password]` | `azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(執行 `azure help vm quick-create`，以取得熱門 Marketplace 映像的 `image-urn`。例如，對於 *publisherName:offer:skus:version* 形式的 URN，請參閱[本文](../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md))。
 建立 Linux VM | `azure vm create [options] <dns-name> <image> [userName] [password]` | `azure  vm create [options] <resource-group> <name> <location> -y "Linux"`
 建立 Windows VM | `azure vm create [options] <dns-name> <image> [userName] [password]` | `azure  vm create [options] <resource-group> <name> <location> -y "Windows"`
 列出 VM | `azure  vm list [options]` | `azure  vm list [options]`
@@ -42,4 +42,3 @@
 
 * 如需 CLI 命令的其他範例，請參閱 [Azure 服務管理模式中的 Azure CLI 命令](../articles/virtual-machines-command-line-tools.md)和 [Azure Resource Manager 模式中的 Azure CLI 命令](../articles/virtual-machines/azure-cli-arm-commands.md)。
 
-<!---HONumber=AcomDC_0420_2016-->

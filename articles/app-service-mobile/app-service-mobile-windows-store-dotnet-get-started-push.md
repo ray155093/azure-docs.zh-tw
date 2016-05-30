@@ -1,6 +1,6 @@
 <properties
-	pageTitle="新增推播通知至 Windows 執行階段 8.1 通用 app | Azure 行動應用程式"
-	description="了解如何使用 Azure App Service 行動應用程式與 Azure 通知中樞傳送推播通知至 Windows 應用程式。"
+	pageTitle="將推播通知新增至您的通用 Windows 平台 (UWP) 應用程式 | Azure Mobile Apps"
+	description="了解如何使用 Azure App Service Mobile Apps 與 Azure 通知中樞，將推播通知傳送至通用 Windows 平台 (UWP) 應用程式。"
 	services="app-service\mobile,notification-hubs"
 	documentationCenter="windows"
 	authors="ggailey777"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/02/2016"
+	ms.date="05/15/2016"
 	ms.author="glenga"/>
 
 # 新增推播通知至 Windows 執行階段 8.1 通用 app
@@ -22,18 +22,9 @@
 
 ##概觀
 
-本主題將示範如何使用 Azure App Service 行動應用程式與 Azure 通知中樞將推播通知傳送至 Windows 執行階段 8.1 通用 app。在此案例中，加入新項目時，您的行動應用程式後端會傳送通知至所有註冊 Windows 通知服務 (WNS) 的 Windows 應用程式
+本主題說明如何使用 Azure App Service 中的 Mobile Apps 與 Azure 通知中樞，將推播通知傳送至通用 Windows 平台 (UWP) 應用程式。在此案例中，加入新項目時，您的行動應用程式後端會傳送通知至所有註冊 Windows 通知服務 (WNS) 的 Windows 應用程式
 
-本教學課程以應用程式服務行動應用程式快速入門為基礎。在開始本教學課程之前，您必須先完成快速入門教學課程：[建立 Windows 應用程式](app-service-mobile-windows-store-dotnet-get-started.md)。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
-
-##必要條件
-
-若要完成此教學課程，您需要下列項目：
-
-* 有效的 [Microsoft 市集帳戶](http://go.microsoft.com/fwlink/p/?LinkId=280045)。
-* [Visual Studio Community 2013](https://go.microsoft.com/fwLink/p/?LinkID=391934)
-* 完成[快速入門教學課程](app-service-mobile-windows-store-dotnet-get-started.md)。
-
+本教學課程以 Azure Mobile Apps 快速入門為基礎。在開始本教學課程之前，您必須先完成快速入門教學課程：[建立 Windows 應用程式](app-service-mobile-windows-store-dotnet-get-started.md)。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##<a name="create-hub"></a>建立通知中樞
 
@@ -43,8 +34,23 @@
 
 在您能從 Azure 傳送推播通知到您的 Windows 應用程式之前，您必須將應用程式提交至 Windows 市集。接著您可以設定您的伺服器專案與 WNS 整合。
 
-[AZURE.INCLUDE [app-service-mobile-register-wns](../../includes/app-service-mobile-register-wns.md)]
+1. 在 Visual Studio 方案總管中，以滑鼠右鍵按一下 UWP 應用程式專案，然後按一下 [市集] > [將應用程式與市集建立關聯...]。 
 
+    ![建立應用程式與 Windows 市集的關聯](./media/app-service-mobile-windows-store-dotnet-get-started-push/notification-hub-associate-uwp-app.png)
+    
+2. 在精靈中按 [**下一步**]、使用 Microsoft 帳戶登入，在 [**保留新的應用程式名稱**] 中輸入您應用程式的名稱，然後按一下 [**保留**]。
+
+3. 成功建立應用程式註冊之後，選取新的應用程式名稱，按一下 [下一步]，然後按一下 [關聯]。這會將所需的 Windows 市集註冊資訊新增至應用程式資訊清單。
+
+7. 瀏覽至 [Windows 開發人員中心](https://dev.windows.com/zh-TW/overview)、使用您的 Microsoft 帳戶登入、在 [**我的應用程式**] 中按一下 [新增應用程式註冊]，然後展開 [**服務**] > [**推播通知**]。
+
+8. 在 [**推播通知**] 頁面上，按一下 [**Microsoft Azure 行動服務**] 底下的 [**線上服務網站**]。
+
+9. 在註冊頁面中，記下 [應用程式密碼] 和 [封裝 SID] 底下的值，以在接下來用來設定您的行動應用程式後端。
+
+	![建立應用程式與 Windows 市集的關聯](./media/app-service-mobile-windows-store-dotnet-get-started-push/app-service-mobile-uwp-app-push-auth.png)
+
+    > [AZURE.IMPORTANT] 用戶端密碼和封裝 SID 是重要的安全性認證。請勿與任何人共用這些值，或與您的應用程式一起散發密碼。**應用程式識別碼**會與密碼搭配用來設定 Microsoft 帳戶驗證。
 
 ##設定後端來傳送推播通知
 
@@ -155,7 +161,9 @@
 
 ##<a id="update-app"></a>將推播通知新增至應用程式
 
-1. 開啟共用的 **App.xaml.cs** 專案檔案，並新增下列 `using` 陳述式：
+接下來，您的應用程式必須在啟動時註冊推播通知。當您已啟用驗證時，請確定使用者在嘗試註冊推播通知之前已登入。如需詳細資訊，請參閱快速入門完整範例中的[第一次驗證](https://github.com/Azure-Samples/app-service-mobile-windows-quickstart/blob/master/README.md#authenticate-first)。
+
+1. 開啟 **App.xaml.cs** 專案檔案，並新增下列 `using` 陳述式：
 
 		using System.Threading.Tasks;
         using Windows.Networking.PushNotifications;
@@ -185,15 +193,7 @@
 
     這樣可保證在每次啟動應用程式時都會註冊存留期較短的 ChannelURI。
 
-    >[AZURE.NOTE] 如果您也已啟用驗證，請確定使用者在嘗試註冊推播通知之前已登入。如需詳細資訊，請參閱快速入門完整範例中的[第一次驗證](https://github.com/Azure-Samples/app-service-mobile-windows-quickstart/blob/master/README.md#authenticate-first)。
-
-4. 在 [方案總管] 中，按兩下 Windows 市集應用程式的 **Package.appxmanifest**，並將 [**通知**] 中的 [**支援快顯通知**] 設為 [**是**]：
-
-    從 [檔案] 功能表中，按一下 [全部儲存]。
-
-5. 針對 Windows Phone 市集應用程式專案重複上一個步驟。
-
-您的應用程式現在已能夠接收快顯通知。
+4. 重建 UWP 應用程式專案。您的應用程式現在已能夠接收快顯通知。
 
 ##<a id="test"></a>在應用程式中測試推播通知
 
@@ -213,4 +213,4 @@
 <!-- Images. -->
 ))) )
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="sethm"/>
 
 # 建置可靠且彈性、具有傳訊功能的雲端應用程式 
@@ -39,10 +39,11 @@
 
 - [Azure 佇列和 Azure 服務匯流排佇列 - 異同比較](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 - [服務匯流排 REST API 參考](http://msdn.microsoft.com/library/azure/hh780717.aspx)
+- [服務匯流排 RP REST API 參考](https://msdn.microsoft.com/library/azure/mt639375.aspx)
 
 ## 相關服務
 
 - [雲端服務](https://azure.microsoft.com/services/cloud-services/) 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

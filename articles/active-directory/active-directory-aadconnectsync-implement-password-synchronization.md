@@ -12,49 +12,56 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="05/02/2016"
 	ms.author="markusvi;andkjell"/>
 
 
 # 使用 Azure AD Connect 同步處理實作密碼同步處理
 
-透過密碼同步處理，您的內部部署 Active Directory 密碼也可以用來登入 Azure Active Directory。
-
-本主題提供在您的環境中啟用及針對密碼同步處理所需的資訊進行疑難排解。
+本主題提供您所需資訊，以讓您將使用者密碼從內部部署 Active Directory (AD) 同步處理至雲端式 Azure Active Directory (Azure AD)。
 
 
 ## 什麼是密碼同步處理
 
-密碼同步處理是用來將使用者密碼從內部部署 Active Directory 同步處理至雲端式 Azure Active Directory (Azure AD) 的功能。使用此功能即可用和登入內部部署網路的相同密碼，登入 Azure Active Directory 服務 (如 Office 365、Microsoft Intune 和 CRM Online)。若要使用此功能，您需要安裝 Azure Active Directory Connect 同步處理服務 (Azure AD Connect 同步處理)。
+您因為忘記密碼而無法完成工作的機率，與您必須記住的不同密碼數目有關。必須記住的密碼越多，將其中之一遺忘的機率就越高。關於密碼重設和其他密碼相關問題的疑問和來電，佔據了最多的技術服務資源。
+
+密碼同步處理是用來將使用者密碼從內部部署 Active Directory 同步處理至雲端式 Azure Active Directory (Azure AD) 的功能。使用此功能即可用和登入內部部署 Active Directory 的相同密碼，登入 Azure Active Directory 服務 (如 Office 365、Microsoft Intune、CRM Online 和 Azure AD 網域服務)。
+
+![何謂 Azure AD Connect](./media/active-directory-aadconnectsync-implement-password-synchronization/arch1.png)
+
+密碼同步處理可透過將使用者需要維護的密碼數目減少到只剩一個，協助您︰
+
+- 提升使用者的生產力 
+- 減少技術服務相關成本  
+
+此外，如果您選擇使用[**與 AD FS 同盟**](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Configuring-AD-FS-for-user-sign-in-with-Azure-AD-Connect)，則可以選擇性地啟用密碼同步處理，做為 AD FS 基礎結構失敗時的備用方式。
+
+密碼同步處理是 Azure AD Connect 同步處理實作的目錄同步作業功能的延伸。若要在環境中使用密碼同步處理，您需要︰
+
+- 安裝 Azure AD Connect。  
+
+- 設定您的內部部署 AD 與 Azure Active Directory 之間的目錄同步作業
+
+- 啟用密碼同步處理
+
+
+如需詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+
 
 
 > [AZURE.NOTE] 如需針對 FIPS 和密碼同步處理設定的 Active Directory 網域服務的詳細資訊，請參閱[密碼同步處理和 FIPS](#password-synchronization-and-fips)。
 
 ## 密碼同步處理如何運作
 
-密碼同步處理是 Azure AD Connect 同步處理實作的目錄同步作業功能的延伸。這項功能需要設定您的內部部署 AD 與 Azure Active Directory 之間的目錄同步作業。
+Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式儲存密碼。雜湊值是單向數學函式 (「雜湊演算法」) 的計算結果。沒有任何方法可將單向函式的結果還原為純文字版本的密碼。您無法使用密碼雜湊來登入您的內部部署網路。
 
-Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式儲存密碼。您無法使用密碼雜湊來執行下列動作︰
+為了同步密碼，Azure AD Connect 同步處理會從內部部署的 Active Directory 擷取您的密碼雜湊。在將密碼雜湊與 Azure Active Directory 驗證服務同步之前，會進行額外的安全性處理。密碼會以每個使用者為基礎，依照時間先後順序來進行同步處理。
 
-- 登入您的內部部署網路
-
-- 將它還原成純文字版本的密碼
-
-為了同步密碼，Azure AD Connect 同步處理會從內部部署的 Active Directory 擷取您的密碼雜湊。在將密碼雜湊與 Azure Active Directory 驗證服務同步之前，會進行額外的安全性處理。密碼同步處理程序的實際資料流程，就類似同步處理 DisplayName 或電子郵件地址等使用者資料。
-
-密碼的同步處理原則如下︰
-
-- 以每個使用者為基礎
-
-- 依時間順序
-
-- 比其他屬性的標準目錄同步作業週期更加頻繁
-
-同步處理後的密碼會覆寫現有的雲端密碼。
+密碼同步處理程序的實際資料流程，就類似同步處理 DisplayName 或電子郵件地址等使用者資料。不過，相較於其他屬性的標準目錄同步作業週期，密碼會更頻繁地進行同步。密碼同步處理程序每 2 分鐘會執行一次。您無法修改此程序的執行頻率。當您同步處理密碼時，它便會覆寫現有的雲端密碼。
 
 第一次啟用密碼同步功能時，它會對範圍內的所有使用者執行初次的密碼同步處理。您無法明確定義一小組要同步處理的使用者密碼。
 
-當您變更內部部署密碼時，更新後的密碼將會進行同步處理，而這個動作大多會在幾分鐘內完成。密碼同步處理功能會自動重試失敗的使用者密碼同步。若嘗試同步密碼期間發生錯誤，該錯誤會記錄在事件檢視器中。
+當您變更內部部署密碼時，更新後的密碼將會進行同步處理，而這個動作大多會在幾分鐘內完成。密碼同步處理功能會自動重試失敗的同步處理嘗試。若嘗試同步密碼期間發生錯誤，該錯誤會記錄在事件檢視器中。
 
 密碼同步處理不會影響目前已登入的使用者。目前的雲端服務工作階段不會立即受到同步處理的密碼變更之影響，會在您登入雲端服務時才會受到影響。不過，當雲端服務要求您重新驗證時，就需要提供新的密碼。
 
@@ -62,7 +69,8 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 ### 密碼同步處理對 Azure AD 網域服務的運作方式
 
-如果您在 Azure AD 中啟用這項服務，則需要密碼同步處理選項，才能獲得單一登入體驗。啟用此服務時，密碼同步處理的行為會變更。密碼雜湊也會依原樣從內部部署 Active Directory 同步處理到 Azure AD 網域服務。功能類似於 Active Directory 移轉工具 (ADMT)。它能夠讓 Azure AD 網域服務以內部部署 AD 中提供的所有方法來驗證使用者。
+您也可以使用密碼同步處理功能，將內部部署密碼同步處理到 [Azure AD 網域服務](../active-directory-domain-services/active-directory-ds-overview.md)。此案例可讓 Azure AD 網域服務，以內部部署 AD 中所有可用的方法驗證雲端中的使用者。此案例的體驗類似於在內部部署環境中使用 Active Directory 遷移工具 (ADMT)。
+
 
 ### 安全性考量
 
@@ -79,27 +87,17 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 **密碼複雜性原則**
 
-當您啟用密碼同步處理時：
-
-- 在內部部署 Active Directory 中的密碼複雜性原則，高過於已同步處理的使用者雲端中之複雜性原則。 
-
-- 您可以使用內部部署 Active Directory 的所有有效密碼，來存取 Azure AD 服務。
+當您啟用密碼同步處理時，在內部部署 Active Directory 中的密碼複雜性原則，會覆寫已同步處理的使用者在雲端中的複雜性原則。您可以使用內部部署 Active Directory 的所有有效密碼，來存取 Azure AD 服務。
 
 > [AZURE.NOTE] 直接在雲端建立的使用者的密碼仍受制於在雲端定義的密碼原則。
 
 **密碼到期原則**
 
-如果使用者位於密碼同步處理的範圍內︰
-
-- 雲端帳戶的密碼設定為「永不過期」。 
-
-- 您可以使用內部部署環境中已過期的同步處理密碼，繼續登入雲端服務。
-
-您的雲端密碼會於下一次您在內部部署環境中變更密碼時更新。
+如果使用者在密碼同步處理範圍內，雲端帳戶的密碼會設定為「永不過期」。您可以繼續使用已在您的內部部署環境中過期的同步處理密碼登入雲端服務。您的雲端密碼會於下一次您在內部部署環境中變更密碼時更新。
 
 ### 覆寫已同步的密碼
 
-系統管理員可以使用 PowerShell 手動重設您的密碼。
+系統管理員可以使用 Windows PowerShell 手動重設您的密碼。
 
 在此情況下，新的密碼會覆寫您已同步處理的密碼，且雲端中定義的所有密碼原則都會套用到新的密碼。
 
@@ -108,46 +106,50 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 ## 啟用密碼同步處理
 
-若要啟用密碼同步處理，您有兩個選項︰
+當您使用**快速設定**安裝 Azure AD Connect 時，便會自動啟用密碼同步處理。如需詳細資訊，請參閱[使用快速設定開始使用 Azure AD Connect](active-directory-aadconnect-get-started-express.md)。
 
-- 如果您在安裝 Azure AD Connect 時使用快速設定，則會依預設啟用密碼同步處理。
-
-- 如果您在安裝 Azure AD Connect 時使用自訂設定，則必須在使用者登入頁面上啟用密碼同步處理。
+如果您在安裝 Azure AD Connect 時使用自訂設定，則必須在使用者登入頁面上啟用密碼同步處理。如需詳細資訊，請參閱[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
 
 
 ![啟用密碼同步處理](./media/active-directory-aadconnectsync-implement-password-synchronization/usersignin.png)
 
 
-如果選擇使用 [與 AD FS 同盟]，則可以選擇性地啟用密碼同步，做為 AD FS 基礎結構失敗時的備用方式。如果打算使用 Azure AD 網域服務，也可以啟用它。
-
 ### 密碼同步處理和 FIPS
 
-如果已經根據 FIPS (美國聯邦資訊處理標準) 鎖定您的伺服器，則已停用 MD5。若要為密碼同步處理啟用 MD5，請在 C:\\Program Files\\Azure AD Sync\\Bin 的 miiserver.exe.config 中加入 enforceFIPSPolicy 索引鍵。
+如果已經根據美國聯邦資訊處理標準 (FIPS) 鎖定您的伺服器，則已停用 MD5。
 
-```
-<configuration>
-    <runtime>
-        <enforceFIPSPolicy enabled="false"/>
-    </runtime>
-</configuration>
-```
 
-可以在組態檔的結尾找到執行階段組態/節點。
+**若要針對密碼同步處理啟用 MD5，請執行下列步驟︰**
+
+    <configuration>
+        <runtime>
+            <enforceFIPSPolicy enabled="false"/>
+        </runtime>
+    </configuration>
+
+1. 移至 **%programfiles%\\Azure AD Sync\\Bin**。
+2. 開啟 **miiserver.exe.config**。
+2. 移至 **configuration/runtime** 節點 (位於檔案結尾)。 
+3. 新增下列節點︰**<enforceFIPSPolicy enabled="false"/>** 
+4. 儲存您的變更。
 
 如需安全性和 FIPS 的詳細資訊，請參閱 [AAD 密碼同步、加密和 FIPS 法規遵循](http://blogs.technet.com/b/ad/archive/2014/06/28/aad-password-sync-encryption-and-and-fips-compliance.aspx)
 
 
 ## 針對密碼同步處理進行疑難排解
 
+您可以藉由檢閱物件的目前狀態，輕鬆地疑難排解密碼同步處理相關問題。
+
+
 **若要針對密碼同步處理進行疑難排解，請執行下列步驟︰**
 
-1. 開啟 [Synchronization Service Manager]。
+1. 啟動 **[Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md)**。
 
 2. 按一下 [連接器]。
 
-3. 選取使用者所位於的 Active Directory 連接器。
+3. 選取使用者所位於的 **Active Directory 連接器**。
 
-4. 選取 [Search Connector Space]\(搜尋連接器空間)。
+4. 選取 [搜尋連接器空間]。
 
 5. 找出您要尋找的使用者。
 
@@ -177,7 +179,7 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 ## 觸發所有密碼的完整同步處理
 
-一般而言，並不需要強制所有密碼進行完整同步處理。但若有必要，您可以使用下列指令碼對所有密碼觸發完整同步處理作業︰
+一般而言，並不需要觸發所有密碼的完整同步處理。但若有必要，您可以使用下列指令碼對所有密碼觸發完整同步處理作業︰
 
     $adConnector = "<CASE SENSITIVE AD CONNECTOR NAME>"
     $aadConnector = "<CASE SENSITIVE AAD CONNECTOR NAME>"
@@ -199,4 +201,4 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

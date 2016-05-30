@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="c"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="03/08/2016"
+	ms.date="05/13/2016"
 	ms.author="sethm"/>
 
 # 開始使用事件中心
@@ -36,35 +36,7 @@
 
 + 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-## 建立事件中心
-
-1. 登入 [Azure 傳統入口網站]，並按一下畫面底部的 [新增]。
-
-2. 依序按一下 [應用程式服務]、[服務匯流排]、[事件中心]、[快速建立]。
-
-	![][1]
-
-3. 為您的事件中樞輸入名稱、選取所需的區域，然後按一下 [**建立新的事件中樞**]。
-
-	![][2]
-
-4. 按一下您剛才建立的命名空間 (通常是 ***event hub name*-ns**)。
-
-	![][3]
-
-5. 按一下頁面頂端的 [事件中心] 索引標籤，然後按一下您剛建立的事件中心。
-
-	![][4]
-
-6. 按一下頁面頂端的 [設定] 索引標籤，新增名為 **SendRule** 且具有 *Send* 權限的規則，並新增另一個名為 **ReceiveRule** 且具有 *Listen* 權限的規則，然後按一下 [儲存]。
-
-	![][5]
-
-7. 在相同頁面上，記下為 **SendRule** 和 **ReceiveRule** 產生的金鑰。
-
-	![][6c]
-
-現已建立事件中心，並具有傳送與接收事件所需的連接字串。
+[AZURE.INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
 [AZURE.INCLUDE [service-bus-event-hubs-get-started-send-c](../../includes/service-bus-event-hubs-get-started-send-c.md)]
 
@@ -90,18 +62,10 @@
 - [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][]教學課程說明如何使用 C# 撰寫 Storm 管線。
 
 <!-- Images. -->
-[1]: ./media/event-hubs-c-storm-getstarted/create-event-hub1.png
-[2]: ./media/event-hubs-c-storm-getstarted/create-event-hub2.png
-[3]: ./media/event-hubs-c-storm-getstarted/create-event-hub3.png
-[4]: ./media/event-hubs-c-storm-getstarted/create-event-hub4.png
-[5]: ./media/event-hubs-c-storm-getstarted/create-event-hub5.png
-[6]: ./media/event-hubs-getstarted/create-event-hub6.png
-[6c]: ./media/event-hubs-c-storm-getstarted/create-event-hub6c.png
-
 [23]: ./media/event-hubs-c-storm-getstarted/receive-storm3.png
 
 <!-- Links -->
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Azure classic portal]: https://manage.windowsazure.com/
 [Event Processor Host]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
 [事件中樞概觀]: event-hubs-overview.md
 
@@ -110,4 +74,4 @@
 [使用 Storm 和 HDInsight 分析感應器資料]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
 [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

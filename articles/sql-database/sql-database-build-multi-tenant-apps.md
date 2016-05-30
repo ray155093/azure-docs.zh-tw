@@ -1,5 +1,5 @@
 <properties
-   pageTitle="Azure SQL Database 建置多租用戶的應用程式"
+   pageTitle="Azure SQL Database 會以隔離和高效率方式建置多租用戶應用程式"
    description="了解 Azure SQL Database 如何建置多租用戶的應用程式"
    keywords=""
    services="sql-database"
@@ -17,7 +17,7 @@
    ms.date="05/04/2016"
    ms.author="carlrab"/>
 
-# 使用 Azure SQL Database 建置多租用戶的應用程式
+# 使用 Azure SQL Database 以隔離和高效率方式建置多租用戶應用程式
 
 ## 利用彈性集區及建置更有效率的多租用戶應用程式
 
@@ -55,4 +55,14 @@
 
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
-<!---HONumber=AcomDC_0511_2016-->
+## 後續步驟
+
+取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+
+## 詳細資訊
+
+瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+ 
+檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
+
+<!---HONumber=AcomDC_0518_2016-->

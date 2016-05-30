@@ -31,7 +31,7 @@
 開始執行本文中的指示之前，您必須擁有以下項目：
 
 - [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- [Azure PowerShell](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater) 和/或 [Azure CLI](../xplat-cli-install.md)。 
+- Azure PowerShell 或 Azure CLI
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
@@ -140,7 +140,7 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
 - 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](../solution-dev-test-environments.md)。
 - 如要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
-- 如需可以在 Azure Resource Manager 範本中使用的函數清單，請參閱[範本函數](../resource-group-template-functions.md)。
+- 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱[範本函式](../resource-group-template-functions.md)。
 
 
 
@@ -294,4 +294,4 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
         }
     }
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

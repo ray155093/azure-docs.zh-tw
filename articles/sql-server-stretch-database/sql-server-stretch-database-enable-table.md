@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/26/2016"
+	ms.date="05/17/2016"
 	ms.author="douglasl"/>
 
 # 為資料表啟用 Stretch Database
@@ -43,7 +43,7 @@
 
 確認您想要啟用的資料表皆已顯示且選取。
 
-在 RC3 中，您可以移轉整個資料表，也可以在精靈中指定以簡單日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行下列其中一項作業。
+您可以移轉整個資料表，也可以在精靈中指定以簡單日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行下列其中一項作業。
 
 -   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定述詞。
 
@@ -60,7 +60,7 @@
 檢閱結果。
 
 ## <a name="EnableTSQLTable"></a>使用 Transact-SQL 以在資料表上啟用 Stretch Database
-您可以使用 Transact-SQL ，為現有的資料表啟用 Stretch Database，或者建立新資料表並啟用 Stretch Database。
+您可以使用 Transact-SQL，為現有的資料表啟用 Stretch Database，或者建立新資料表並啟用 Stretch Database。
 
 ### 選項
 當您執行 CREATE TABLE 或 ALTER TABLE 以在資料表上啟用 Stretch Database 時，請使用下列選項。
@@ -118,4 +118,4 @@ CREATE TABLE <table name> ...
 
 [CREATE TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms174979.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

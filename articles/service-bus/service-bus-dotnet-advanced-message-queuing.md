@@ -5,7 +5,7 @@
 	documentationCenter=".net" 
 	authors="sethmanheim" 
 	manager="timlt" 
-	editor="tysonn"/>
+	editor=""/>
 
 <tags 
 	ms.service="service-bus" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="sethm"/>
 
 # 如何透過服務匯流排 .NET API 使用 AMQP 1.0
@@ -40,7 +40,7 @@
 
 ### 透過 App.config 來設定
 
-讓應用程式使用 App.config 組態檔案來儲存設定是建議的作法。對於服務匯流排應用程式，您可以使用 App.config 來儲存服務匯流排 **ConnectionString**。此範例應用程式也會使用 App.config 來儲存它使用的服務匯流排訊息實體的名稱。
+讓應用程式使用 App.config 組態檔案來儲存設定是建議的做法。對於服務匯流排應用程式，您可以使用 App.config 來儲存服務匯流排 **ConnectionString**。此範例應用程式也會使用 App.config 來儲存它使用的服務匯流排訊息實體的名稱。
 
 以下是範例 App.config 檔案：
 
@@ -306,7 +306,7 @@ exit
 * 工作階段鎖定更新
 * 某些輕微的行為差異
 
-如需詳細資訊，請參閱[服務匯流排 AMQP 概觀](service-bus-amqp-dotnet.md)。該主題含有不支援之 API 的詳細清單。
+如需詳細資訊，請參閱[服務匯流排 AMQP 概觀](service-bus-amqp-dotnet.md)。本文包含不支援之 API 的詳細清單。
 
 ## 摘要
 
@@ -322,6 +322,6 @@ exit
 * [如何搭配使用 Java 訊息服務 (JMS) API 與服務匯流排和 AMQP 1.0](service-bus-java-how-to-use-jms-api-amqp.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
  
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure 傳統入口網站]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

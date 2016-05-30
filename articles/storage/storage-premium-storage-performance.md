@@ -177,7 +177,7 @@ IO 大小是其中一個很重要的因素。IO 大小是指應用程式所產�
 | Standard\_DS14 | 16 | 112 GB | 作業系統 = 1023 GB <br> 本機 SSD = 224 GB | 32 | 576 GB | 50,000 IOPS <br> 每秒 512 MB | 4,000 IOPS 和每秒 33 MB |
 | Standard\_GS5 | 32 | 448 GB | 作業系統 = 1023 GB <br> 本機 SSD = 896 GB | 64 | 4224 GB | 80,000 IOPS <br> 每秒 2,000 MB | 5,000 IOPS 和每秒 50 MB |
 
-若要檢視所有可用的 Azure VM 大小的完整清單，請參閱 [Azure 虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)。選擇可以符合並調整為期望的應用程式效能需求的 VM 大小。此外，選擇 VM 大小時，請將下列重要因素納入考量。
+若要檢視所有可用的 Azure VM 大小的完整清單，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。選擇可以符合並調整為期望的應用程式效能需求的 VM 大小。此外，選擇 VM 大小時，請將下列重要因素納入考量。
 
 
 *調整限制* 每個 VM 和每個磁碟的最大 IOPS 限制都不同且各自獨立。請確定應用程式在 VM 及它連接的高階磁碟的限制內推動 IOPS。否則，應用程式效能會發生節流現象。
@@ -540,4 +540,4 @@ rate_iops=12500
 - [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/virtual-machines-windows-sql-performance.md)
 - [Azure 進階儲存體為 Azure VM 中的 SQL Server 提供最高效能](http://blogs.technet.com/b/dataplatforminsider/archive/2015/04/23/azure-premium-storage-provides-highest-performance-for-sql-server-in-azure-vm.aspx) 
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

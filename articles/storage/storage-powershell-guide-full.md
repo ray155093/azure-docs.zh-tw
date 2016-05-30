@@ -3,7 +3,7 @@
 	description="了解如何使用適用於 Azure 儲存體的 Azure PowerShell Cmdlet 建立和管理儲存體帳戶；使用 Blob、資料表、佇列和檔案；設定和查詢儲存體分析，並建立共用存取簽章。"
 	services="storage"
 	documentationCenter="na"
-	authors="robinsh" 
+	authors="robinsh"
 	manager="carmonm"/>
 
 <tags
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="05/18/2016"
 	ms.author="robinsh"/>
 
 # 搭配使用 Azure PowerShell 與 Azure 儲存體
@@ -102,16 +102,16 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 	- **$SubscriptionName：**您必須使用自己的訂用帳戶名稱更新此變數。依照下列其中一個方式執行，即可找出您的訂用帳戶名稱：
 
 		a.在 [Windows PowerShell ISE] 中，按一下 [檔案] > [新增]，建立新的指令碼檔。將下列指令碼複製到新的指令碼檔，然後按一下 [偵錯] > [執行]。下列指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境，然後顯示連接到本機 PowerShell 工作階段的所有訂用帳戶。請記下遵循此教學課程時，您所要使用的訂用帳戶名稱：
-		
+
 			Add-AzureAccount
 				Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName
-		
+
 		b.若要在 [Azure 入口網站](https://portal.azure.com)中尋找並複製您的訂用帳戶名稱，請按一下左側 [中樞] 功能表，再按一下 [訂用帳戶]。複製您想要在執行本指南中的指令碼時使用的訂用帳戶名稱。
-		
+
 		![Azure 入口網站][Image2]
-		  
+
 		c.若要在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中尋找並複製您的訂用帳戶名稱，請向下捲動並按一下入口網站左側的 [設定]。按一下 [訂用帳戶] 以查看您的訂用帳戶清單。複製您想要在執行本指南中提供的指令碼時使用的訂用帳戶名稱。
-		
+
 		![Azure 傳統入口網站][Image1]
 
 	- **$StorageAccountName：**使用指令碼中的指定名稱，或是為儲存體帳戶輸入新名稱。**重要事項：**儲存體帳戶的名稱在 Azure 中必須是唯一的名稱。而且必須是小寫字母！
@@ -235,8 +235,26 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。�
 
 您現已設定您的電腦並學會如何使用 Azure PowerShell 管理訂用帳戶和儲存體帳戶。請移至下一節，以了解如何管理 Azure Blob 和 Blob 快照集。
 
+### 如何抓取和重新產生 Azure 儲存體金鑰
+
+Azure 儲存體帳戶會隨附兩個帳戶金鑰。您可以使用下列 Cmdlet 來抓取您的金鑰。
+
+	Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
+
+使用下列 Cmdlet 來抓取特定的金鑰。有效值為 Primary 和 Secondary。
+
+	(Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary
+
+	(Get-AzureStorageKey -StorageAccountName $StorageAccountName).Secondary
+
+如果您想要重新產生金鑰，請使用下列 Cmdlet。-KeyType 的有效值為 "Primary" 和 "Secondary"
+
+	New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Primary”
+
+	New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Secondary”
+
 ## 如何管理 Azure blob
-Azure Blob 儲存體是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。本節假設您已熟悉 Azure Blob 儲存體服務概念。如需詳細資訊，請參閱[使用 .NET 開始使用 Blob 儲存體](storage-dotnet-how-to-use-blobs.md)和 [Blob 服務概念](http://msdn.microsoft.com/library/azure/dd179376.aspx)。
+Azure Blob 儲存體是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。本節假設您已熟悉 Azure Blob 儲存體服務概念。如需詳細資訊，請參閱[以 .NET 開始使用 Blob 儲存體](storage-dotnet-how-to-use-blobs.md)和 [Blob 服務概念](http://msdn.microsoft.com/library/azure/dd179376.aspx)。
 
 ### 如何建立容器
 Azure 儲存體中的每個 Blob 必須位於一個容器中。您可以使用 New-AzureStorageContainer Cmdlet 建立私用容器：
@@ -244,7 +262,7 @@ Azure 儲存體中的每個 Blob 必須位於一個容器中。您可以使用 N
     $StorageContainerName = "yourcontainername"
     New-AzureStorageContainer -Name $StorageContainerName -Permission Off
 
-> [AZURE.NOTE] 匿名讀取權限有三個層級：**Off**、**Blob** 和 **Container**。若要防止匿名存取 Blob，請將 Permission 參數設定為 **Off**。新容器預設為私人，且只能由帳戶擁有者存取。若要允許 Blob 資源的匿名公開讀取權限，但不允許容器中繼資料或容器中 Blob 清單的匿名公開讀取權限，請將 Permission 參數設定為 **Blob**。若要允許 Blob 資源、容器中繼資料或容器中 Blob 清單的完整公開讀取權限，請將 Permission 參數設定為 **Container**。如需詳細資訊，請參閱[管理對容器和 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+> [AZURE.NOTE] 匿名讀取權限有三個層級：**Off**、**Blob** 和 **Container**。若要防止匿名存取 Blob，請將 Permission 參數設定為 **Off**。新容器預設為私人，且只能由帳戶擁有者存取。若要允許 Blob 資源的匿名公開讀取權限，但不允許容器中繼資料或容器中 Blob 清單的匿名公開讀取權限，請將 Permission 參數設定為 **Blob**。若要允許 Blob 資源、容器中繼資料或容器中 Blob 清單的完整公開讀取權限，請將 Permission 參數設定為 **Container**。如需詳細資訊，請參閱[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
 ### 如何將 Blob 上傳到容器中
 Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。如需詳細資訊，請參閱[了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
@@ -300,7 +318,7 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。如需詳細資訊，請�
 ### 如何從次要位置複製 Blob
 您可以從支援 RA-GRS 之帳戶的次要位置複製 Blob。
 
-    #define secondary storage context using a connection string constructed from secondary endpoints. 
+    #define secondary storage context using a connection string constructed from secondary endpoints.
     $SrcContext = New-AzureStorageContext -ConnectionString "DefaultEndpointsProtocol=https;AccountName=***;AccountKey=***;BlobEndpoint=http://***-secondary.blob.core.windows.net;FileEndpoint=http://***-secondary.file.core.windows.net;QueueEndpoint=http://***-secondary.queue.core.windows.net; TableEndpoint=http://***-secondary.table.core.windows.net;"
     Start-AzureStorageBlobCopy –Container *** -Blob *** -Context $SrcContext –DestContainer *** -DestBlob *** -DestContext $DestContext
 
@@ -613,7 +631,7 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 - **臨機操作 SAS**：當您建立臨機操作的 SAS 時，SAS 的開始時間、到期時間和權限全都標示在 SAS URI 上。您可以在容器、Blob、資料表或佇列上建立此類型的 SAS，而且無法撤銷它。
 - **具有預存存取原則的 SAS**：預存存取原則是在資源容器、Blob 容器、資料表或佇列中定義，且可用來管理一或多個共用存取簽章的條件約束。當您將 SAS 與預存存取原則建立關聯時，SAS 會繼承為該預存存取原則所定義的限制 (開始時間、過期時間和權限)。這種類型的 SAS 是可撤銷的。
 
-如需詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+如需詳細資訊，請參閱[共用存取簽章，第 1 部分：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
 在下一節中，您將了解如何為 Azure 資料表建立共用存取簽章權杖和預存的存取原則。Azure PowerShell 也會為容器、Blob 和佇列提供類似的 Cmdlet。若要執行本節中的指令碼，請下載 [Azure PowerShell 0.8.14 版](http://go.microsoft.com/?linkid=9811175&clcid=0x409)或更高版本。
 
@@ -732,6 +750,5 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 [How to manage Shared Access Signature (SAS) and Stored Access Policy]: #sas
 [How to use Azure Storage for U.S. government and Azure China]: #gov
 [Next Steps]: #next
- 
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

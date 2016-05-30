@@ -31,12 +31,12 @@
 
 進行變更之後，將不會再次顯示精靈。下次當您或其他安全性系統管理員使用 PIM 時，您會看到 PIM 儀表板。
 
-- 如果您想要從角色新增或移除使用者，或將指派從永久變更為暫時，請參閱 [Azure AD Privileged Identity Management：如何開始安全性檢閱](active-directory-privileged-identity-management-how-to-add-role-to-user)。
-- 如果您想要讓更多使用者存取管理 PIM，請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何授與存取權以管理 Azure AD Privileged Identity Management)](active-directory-privileged-identity-management-how-to-give-access-to-pim)。
+- 如果您想要從角色新增或移除使用者，或將指派從永久變更為暫時，請參閱 [Azure AD Privileged Identity Management：如何開始安全性檢閱](active-directory-privileged-identity-management-how-to-add-role-to-user.md)。
+- 如果您想要讓更多使用者存取管理 PIM，請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何授與存取權以管理 Azure AD Privileged Identity Management)](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
 
 
 
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

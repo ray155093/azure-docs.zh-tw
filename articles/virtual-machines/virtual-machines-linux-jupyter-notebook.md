@@ -92,7 +92,7 @@ Azure 提供您可以用來[快速開始使用 Jupyter](http://blogs.technet.com
 	rm -rf anaconda/
 
 	# Update Jupyter to the latest install and generate its config file
-	sudo /anaconda3/bin/conda install -f jupyter -y
+	sudo /anaconda3/bin/conda install jupyter -y
 	/anaconda3/bin/jupyter-notebook --generate-config
 
 
@@ -124,7 +124,7 @@ Azure 提供您可以用來[快速開始使用 Jupyter](http://blogs.technet.com
     Verify password:
     sha1:b86e933199ad:a02e9592e59723da722.. (elided the rest for security)
 
-接著，我們將編輯設定檔的組態檔，也就是您所在目錄中的 `jupyter_notebook_config.py` 檔案。請注意，這個檔案可能不存在 -- 如果不存在，只需建立它即可。此檔案有許多欄位，預設為注釋排除所有欄位。您可以使用您喜好的任何文字編輯器開啟此檔案，並且應該確保其中至少有以下內容。請務必使用前一個步驟中的 sha1 來取代密碼。
+接著，我們將編輯設定檔的組態檔，也就是您所在目錄中的 `jupyter_notebook_config.py` 檔案。請注意，這個檔案可能不存在 -- 如果不存在，只需建立它即可。此檔案有許多欄位，預設為注釋排除所有欄位。您可以使用您喜好的任何文字編輯器開啟此檔案，並且應該確保其中至少有以下內容。**請務必使用前一個步驟中的 sha1 來取代 c.NotebookApp.password**。
 
     c = get_config()
 
@@ -135,7 +135,7 @@ Azure 提供您可以用來[快速開始使用 Jupyter](http://blogs.technet.com
     c.NotebookApp.password = u'sha1:b86e933199ad:a02e9592e5 etc... '
 
     # Network and browser details. We use a fixed port (9999) so it matches
-    # our Azure setup, where we've allowed :wqtraffic on that port
+    # our Azure setup, where we've allowed traffic on that port
     c.NotebookApp.ip = '*'
     c.NotebookApp.port = 9999
     c.NotebookApp.open_browser = False
@@ -189,7 +189,7 @@ Jupyter 不只是文字處理器，因為它能夠混合運算和多樣化媒體
 
 Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供強大的介面。它涵蓋的用途範圍相當廣泛，包括簡單的探究和學習 Python、資料分析和視覺化、模擬和平行運算。最終產生的 Notebook 文件會完整記錄已執行且能夠與其他 Jupyter 使用者共享的運算。Jupyter Notebook 可以用來做為本機應用程式，不過它相當適合用於 Azure 上的雲端部署
 
-您也可以透過 [Python Tools for Visual Studio][] (PTVS)，在 Visual Studio 中使用 Jupyter 的核心功能。PTVS 是 Microsoft 提供的免費開放原始碼外掛程式，可以將 Visual Studio 轉變為進階 Python 開發環境，其中包括具有 IntelliSense、偵錯、剖析和平行運算整合功能的進階編輯器。
+您也可以透過 [Python Tools for Visual Studio][]\(PTVS)，在 Visual Studio 中使用 Jupyter 的核心功能。PTVS 是 Microsoft 提供的免費開放原始碼外掛程式，可以將 Visual Studio 轉變為進階 Python 開發環境，其中包括具有 IntelliSense、偵錯、剖析和平行運算整合功能的進階編輯器。
 
 ## 後續步驟
 
@@ -199,4 +199,4 @@ Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供
 [儲存機制]: https://github.com/ipython/ipython
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

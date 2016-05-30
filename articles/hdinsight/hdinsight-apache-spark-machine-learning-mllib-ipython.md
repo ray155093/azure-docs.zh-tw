@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/14/2016" 
+	ms.date="05/16/2016" 
 	ms.author="nitinme"/>
 
 
@@ -170,7 +170,7 @@
 1. 我們要著手了解資料集的內容為何。例如，**結果**資料行中有哪些不同的值？
 
 
-	df.select('results').distinct().show()
+		df.select('results').distinct().show()
 
 	
 	您應該會看到如下的輸出：
@@ -412,4 +412,4 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

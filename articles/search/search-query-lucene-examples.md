@@ -15,7 +15,7 @@
     ms.workload="search"
     ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.date="04/22/2016"
+    ms.date="05/17/2016"
     ms.author="liamca"
 />
 
@@ -48,8 +48,8 @@
 
 您可以修改本文中的範例：指定 **fieldname:searchterm** 建構來定義加入欄位的查詢作業，其中欄位是單一文字，而搜尋詞彙也是一個單一文字或片語，選擇性使用布林運算子。某些範例包括以下內容：
 
-- business\_title:senior NOT junior
-- state:"New York" AND "New Jersey"
+- business\_title:(senior NOT junior)
+- state:("New York" AND "New Jersey")
 
 如果您想要將字串視為單一實體評估，請務必將多個字串放在引號中，例如搜尋 [位置] 欄位中兩個不同城市的情況。此外，請確定運算子是大寫，如同您看到的 NOT 和 AND。
 
@@ -129,4 +129,4 @@
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

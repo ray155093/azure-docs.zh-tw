@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/05/2016"
+	ms.date="05/07/2016"
 	ms.author="awills"/>
 
 # Application Insights 中的資源、角色及存取控制
@@ -58,7 +58,7 @@
 
 您必須擁有訂用帳戶或資源群組的擁有者權限。
 
-使用者必須有 [Microsoft 帳戶][account]。您可以提供存取權給個人，也可以提供給在 Azure Active Directory 中定義的使用者群組。
+使用者必須擁有 [Microsoft 帳戶][account]，或其[組織的 Microsoft 帳戶](..\active-directory\sign-up-organization.md)存取權。您可以提供存取權給個人，也可以提供給在 Azure Active Directory 中定義的使用者群組。
 
 #### 瀏覽至資源群組
 
@@ -104,8 +104,8 @@ Application Insights 元件參與者 | 可以編輯 Application Insights 資源�
 <!--Link references-->
 
 [account]: https://account.microsoft.com
-[group]: ../azure-preview-portal-using-resource-groups.md
-[portal]: http://portal.azure.com/
+[group]: ../azure-portal/resource-group-portal.md
+[portal]: https://portal.azure.com/
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

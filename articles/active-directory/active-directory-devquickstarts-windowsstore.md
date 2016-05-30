@@ -37,7 +37,7 @@
 3. 安裝及設定 ADAL。
 5. 使用 ADAL 來取得 Azure AD 的權杖。
 
-若要開始使用，請[下載基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip)。每一個都是 Visual Studio 2013 解決方案。您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
+若要開始使用，請[下載基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip)。每一個都是 Visual Studio 2015 解決方案。您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
 ## *1.註冊目錄搜尋應用程式*
 若要啟用您的應用程式以取得權杖，您必須先在 Azure AD 租用戶中進行註冊，並對其授與存取 Azure AD Graph API 的權限：
@@ -53,7 +53,8 @@
 - 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。對於 "Azure Active Directory" 應用程式，在 [委派權限] 下，加入 [以登入使用者的身分存取目錄] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
 
 ## *2.安裝及設定 ADAL*
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能夠與 Azure AD 進行通訊，您必須提供一些應用程式註冊相關資訊。從使用封裝管理員主控台將 ADAL 加入 DirectorySearcher 專案開始。
+既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
+-	首先，使用 Package Manager Console 將 ADAL 新增到 DirectorySearcher 專案中。
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
@@ -96,13 +97,16 @@ public MainPage()
 private async void Search(object sender, RoutedEventArgs e)
 {
     ...
-    AuthenticationResult result = await authContext.AcquireTokenAsync(graphResourceId, clientId, redirectURI);
-    if (result.Status != AuthenticationStatus.Success)
+    AuthenticationResult result = null;
+    try
     {
-        if (result.Error != "authentication_canceled")
+        result = await authContext.AcquireTokenAsync(graphResourceId, clientId, redirectURI, new PlatformParameters(PromptBehavior.Auto, false));
+    }
+    catch (AdalException ex)
+    {
+        if (ex.ErrorCode != "authentication_canceled")
         {
-            MessageDialog dialog = new MessageDialog(string.Format("If the error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", result.Error, result.ErrorDescription), "Sorry, an error occurred while signing you in.");
-            await dialog.ShowAsync();
+            ShowAuthError(string.Format("If the error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", ex.ErrorCode, ex.Message));
         }
         return;
     }
@@ -114,8 +118,8 @@ private async void Search(object sender, RoutedEventArgs e)
 - 現在可以開始使用您剛才取得的 access\_token。另外，在 `Search(...)` 方法中，將您取得的權杖附加至 Graph API GET 要求的授權標頭中：
 
 ```C#
-// Add the access token to the Authorization Header of the call to the Graph API
-httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
+// Add the access token to the Authorization Header of the call to the Graph API, and call the Graph API.
+httpClient.DefaultRequestHeaders.Authorization = new HttpCredentialsHeaderValue("Bearer", result.AccessToken);
 
 ```
 - 您也可以使用 `AuthenticationResult` 物件，在應用程式中顯示使用者的相關資訊，例如使用者的識別碼：
@@ -146,4 +150,4 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0518_2016-->

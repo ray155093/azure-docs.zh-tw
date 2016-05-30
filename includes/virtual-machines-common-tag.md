@@ -44,24 +44,3 @@
 新標籤現在應出現在您的資源的標記清單中。
 
 ![Azure 入口網站中儲存的新標記](./media/virtual-machines-common-tag/azure-portal-saved-new-tag.png)
-
-
-## 在使用量詳細資料中檢視標記
-
-透過「Azure 資源管理員」在「運算」、「網路」及「儲存體」資源上放置的標記，將會填入[帳務入口網站](https://account.windowsazure.com/)中您的使用情況詳細資料中。
-
-按一下 [**下載使用情況詳細資料**]，以檢視您訂用帳戶中的使用情況詳細資料。
-
-![Azure 入口網站中的使用量詳細資料](./media/virtual-machines-common-tag/azure-portal-tags-usage-details.png)
-
-選取您的帳單和 [**版本 2**] 使用情況詳細資料：
-
-![Azure 入口網站中的版本 2 預覽使用量詳細資料](./media/virtual-machines-common-tag/azure-portal-version2-usage-details.png)
-
-從使用情況詳細資料中，您可以在 [**標記**] 資料行中看到所有標記：
-
-![Azure 入口網站中的標記資料行](./media/virtual-machines-common-tag/azure-portal-tags-column.png)
-
-藉由分析這些標記和使用量，組織將可對其耗用資料產生新的見解。
-
-<!---HONumber=AcomDC_0406_2016-->

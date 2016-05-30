@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/16/2016"
 	ms.author="dastrock"/>
 
 
@@ -24,7 +24,9 @@
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-如果您正在開發 Windows Phone 應用程式，Azure AD 可讓您簡單又直截了當以 Active Directory 帳戶驗證您的使用者。它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
+如果您正在開發 Windows Phone 8.1 應用程式，Azure AD 可讓您簡單又直截了當以 Active Directory 帳戶驗證您的使用者。它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
+
+> [AZURE.NOTE] 此程式碼範例會使用 ADAL 2.0 版。若要最新技術，您可以改為嘗試[使用 ADAL 3.0 版的 Windows Universal 教學課程](active-directory-devquickstarts-windowsstore.md)。如果您確實要建置適用於 Windows Phone 8.1 的應用程式，則這是正確位置。ADAL 2.0 版仍受到完整支援，並且是使用 Azure AD 來針對 Windows Phone 8.1 開發應用程式的建議方式。
 
 對於需要存取受保護資源的 .NET 原生用戶端，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)。ADAL 存在的唯一目的是為了讓您的應用程式輕鬆取得存取權杖。為了示範究竟有多麼簡單，我們將建置一個可執行下列動作的「目錄搜尋程式」Windows Phone 8.1 應用程式：
 
@@ -54,7 +56,8 @@
 - 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。在 [**委派權限**] 下，為 [Azure Active Directory] 應用程式新增 [**存取您的組織目錄**] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
 
 ## *2.安裝及設定 ADAL*
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能夠與 Azure AD 進行通訊，您必須提供一些應用程式註冊相關資訊。從使用封裝管理員主控台將 ADAL 加入 DirectorySearcher 專案開始。
+既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
+-	首先，使用 Package Manager Console 將 ADAL 新增到 DirectorySearcher 專案中。
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
@@ -172,4 +175,4 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

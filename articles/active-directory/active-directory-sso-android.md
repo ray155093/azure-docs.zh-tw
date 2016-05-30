@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="03/17/2015"
+	ms.date="05/16/2016"
 	ms.author="brandwe"/>
 
 
@@ -259,4 +259,4 @@ MANAGE_ACCOUNTS
 
 現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

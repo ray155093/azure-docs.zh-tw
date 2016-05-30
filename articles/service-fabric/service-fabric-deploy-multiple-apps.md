@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/12/2016"
+   ms.date="05/17/2016"
    ms.author="bscholl"/>
 
 
@@ -61,7 +61,7 @@
 以下是所使用之參數的描述：
 
 - **/source** 指向應封裝之應用程式的目錄。
-- **/target** 定義應在其中建立封裝的目錄。這個目錄必須是與目標目錄不同的目錄。
+- **/target** 定義應在其中建立封裝的目錄。這個目錄必須是與來源目錄不同的目錄。
 - **/appname** 定義現有應用程式的應用程式名稱。請務必了解這會轉譯成資訊清單中的服務名稱，而不是轉譯成 Service Fabric 應用程式名稱。
 - **/exe** 定義 Service Fabric 應啟動的可執行檔，在此例中為 `node.exe`。
 - **/ma** 定義要用來啟動可執行檔的引數。由於未安裝 Node.js，因此 Service Fabric 需要執行 `node.exe bin/www` 來啟動 Node.js Web 伺服器。`/ma:'bin/www'` 會告訴封裝工具使用 `bin/ma` 做為 node.exe 的引數。
@@ -182,10 +182,10 @@ mongod.exe --dbpath [path to data]
 Connect-ServiceFabricCluster localhost:19000
 
 Write-Host 'Copying application package...'
-Copy-ServiceFabricApplicationPackage -ApplicationPackagePath '[yourtargetdirectory]' -ImageStoreConnectionString 'file:C:\SfDevCluster\Data\ImageStoreShare' -ApplicationPackagePathInImageStore 'Store\NodeAppType'
+Copy-ServiceFabricApplicationPackage -ApplicationPackagePath '[yourtargetdirectory]' -ImageStoreConnectionString 'file:C:\SfDevCluster\Data\ImageStoreShare' -ApplicationPackagePathInImageStore 'NodeAppType'
 
 Write-Host 'Registering application type...'
-Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'Store\NodeAppType'
+Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'NodeAppType'
 
 New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationTypeName 'NodeAppType' -ApplicationTypeVersion 1.0  
 ```
@@ -198,4 +198,4 @@ New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationType
 
 - 了解如何[手動封裝來賓應用程式](service-fabric-deploy-existing-app.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0518_2016-->

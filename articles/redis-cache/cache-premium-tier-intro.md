@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="Azure Redis Cache 高階層簡介" 
+	pageTitle="Azure Redis Cache 高階層簡介 | Microsoft Azure" 
 	description="了解如何建立和管理高階層 Azure Redis Cache 執行個體的 Redis 永續性、Redis 叢集和 VNET 支援" 
 	services="redis-cache" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/27/2016" 
+	ms.date="05/18/2016" 
 	ms.author="sdanie"/>
 
 # Azure Redis Cache 高階層簡介
 Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資料存取，藉此協助您建置具高度延展性且快速回應的應用程式。
 
-新的高階層是可供企業立即使用的層，其中包括所有標準層功能及其他優點，例如更佳的效能、更大的工作負載、嚴重損壞修復和增強的安全性。請繼續閱讀，以深入了解高階快取層的其他功能。
+新的高階層是可供企業立即使用的層，其中包括所有標準層功能及其他優點，例如更佳的效能、更大的工作負載、災害復原、匯入/匯出和增強的安全性。請繼續閱讀，以深入了解高階快取層的其他功能。
 
 ## 效能優於標準或基本層。
 **效能優於標準或基本層。** 高階層中的快取是部署在擁有較快處理器的硬體上，因此效能優於基本或標準層。高階層快取的輸送量較高，延遲較低。
@@ -45,6 +45,16 @@ Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資�
 
 如需詳細資訊，請參閱[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
+## 匯入/匯出
+
+匯入/匯出是 Azure Redis 快取資料管理作業，可讓您將資料匯入 Azure Redis 快取或將資料從 Azure Redis 快取匯出，方法是從進階快取將 Redis 快取資料庫 (RDB) 快照匯入和匯出至 Azure 儲存體帳戶中的分頁 blob。這可讓您在不同的 Azure Redis 快取執行個體之間移轉，或在使用前將資料填入快取。
+
+匯入可以用來從執行雲端或環境的任何 Redis 伺服器 (包含在 Linux、Windows 上執行的 Redis，或任何雲端提供者，例如 Amazon Web Services 等) 引入 Redis 相容 RDB 檔案。匯入資料是使用預先填入資料建立快取的輕鬆方式。在匯入程序期間，Azure Redis 快取會從 Azure 儲存體將 RDB 檔案載入記憶體，然後將金鑰插入快取。
+
+匯出可讓您將儲存在 Azure Redis 快取中的資料匯出至 Redis 相容 RDB 檔案。您可以使用這項功能，將資料從一個 Azure Redis 快取執行個體移到另一個或其他 Redis 伺服器。在匯出程序期間，會在裝載 Azure Redis 快取伺服器執行個體的 VM 上建立站存檔案，並將檔案上傳至指定的儲存體帳戶。當匯出作業完成時的狀態為成功或失敗時，都會刪除暫存檔案。
+
+如需詳細資訊，請參閱[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)。
+
 ## 後續步驟
 
 建立快取並探索高階層的新功能。
@@ -52,6 +62,7 @@ Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資�
 -	[如何設定高階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
 -	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
 -	[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)
+-	[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)
   
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

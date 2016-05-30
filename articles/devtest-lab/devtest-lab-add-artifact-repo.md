@@ -1,6 +1,6 @@
 <properties
-	pageTitle="將 Git 構件儲存機制加入研發/測試實驗室 | Microsoft Azure"
-	description="將適用於自訂構件的 GitHub 或 Visual Studio Team Services Git 儲存機制加入至實驗室"
+	pageTitle="將 Git 構件儲存機制加入實驗室 | Microsoft Azure"
+	description="將適用於自訂構件的 GitHub 或 Visual Studio Team Services Git 儲存機制加入至研發/測試實驗室"
 	services="devtest-lab,virtual-machines,visual-studio-online"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/21/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
-# 將 Git 構件儲存機制加入研發/測試實驗室
+# 將 Git 構件儲存機制加入實驗室
 
-> [AZURE.NOTE] 按一下下列連結可檢視本文隨附的影片：[如何在 DevTest 實驗室中新增私人構件儲存機制](/documentation/videos/how-to-add-your-private-artifacts-repository-in-a-devtest-lab)
+> [AZURE.NOTE] 按一下以下連結可檢視本文隨附的影片：[如何在研發/測試實驗室中新增私人構件儲存機制至實驗室](/documentation/videos/how-to-add-your-private-artifacts-repository-in-a-devtest-lab)
 
 ## 概觀
 
-根據預設，研發/測試實驗室包含來自官方 Azure 研發/測試實驗室構件儲存機制的構件。您可以將 Git 構件儲存機制加入您的實驗室，以包含小組建立的構件 。儲存機制可以裝載在 [GitHub](https://github.com) 或 [Visual Studio Team Services (VSTS)](https://visualstudio.com) 上。
+根據預設，實驗室包含來自官方 Azure DevTest Labs 構件儲存機制的構件。您可以將 Git 構件儲存機制加入您的實驗室，以包含小組建立的構件 。儲存機制可以裝載在 [GitHub](https://github.com) 或 [Visual Studio Team Services (VSTS)](https://visualstudio.com) 上。
 
 - 若要了解如何建立 GitHub 儲存機制，請參閱 [GitHub Bootcamp](https://help.github.com/categories/bootcamp/)。
 - 若要了解如何使用 Git 儲存機制建立 Team Services 專案，請參閱[連接到 Visual Studio Team Services](https://www.visualstudio.com/get-started/setup/connect-to-visual-studio-online)。
@@ -51,9 +51,9 @@
 
 ###將您的實驗室連接至 GitHub 儲存機制
 
-1. 登入 [Azure Preview 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 點選 [瀏覽]，然後從清單中點選 [研測實驗室]。
 
 1. 從實驗室清單中，點選所需的實驗室。
 
@@ -101,7 +101,7 @@
 
 1. 完成時，新的權杖將會出現在 [個人存取權杖] 清單中。點選 [複製權杖]，然後儲存權杖值，因為短時間內將會用到此資訊。
 
-### 在研發/測試實驗室中
+### 在實驗室
 
 1. 在實驗室的刀鋒視窗上，點選 [設定]。
 
@@ -117,4 +117,4 @@
     3. 在構件儲存機制中輸入儲存的**個人存取權杖**。
     4. 點選 [儲存]。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

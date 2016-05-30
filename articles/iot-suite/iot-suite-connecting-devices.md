@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/04/2016"
+   ms.date="05/09/2016"
    ms.author="dobett"/>
 
 
-# 將裝置連接至 IoT 套件遠端監視預先設定方案
+# 將裝置連接至遠端監視預先設定方案 (Windows)
 
 [AZURE.INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
@@ -54,7 +54,6 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     #include "iothub_client.h"
     #include "serializer.h"
     #include "schemaserializer.h"
-    #include "threadapi.h"
     ```
 
 2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請將 [IoTHub Name] 取代為 contoso：
@@ -360,4 +359,4 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
 
 [lnk-setup-windows]: https://github.com/azure/azure-iot-sdks/blob/develop/c/doc/devbox_setup.md#windows
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

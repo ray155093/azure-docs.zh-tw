@@ -1,6 +1,6 @@
 <properties
-	pageTitle="航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的架構 | Microsoft Azure"
-	description="航太、公用事業和運輸中預測性維護的 Microsoft Cortana Intelligence 解決方案範本的架構圖表。"
+	pageTitle="預測性維護架構 | Microsoft Azure"
+	description="航太、公用事業、運輸中預測性維護的 Microsoft Cortana Intelligence 解決方案範本的架構圖表"
 	services="cortana-analytics"
 	documentationCenter=""
 	authors="garyericson"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/12/2016"
+	ms.date="05/14/2016"
 	ms.author="garye" />
 
 # 航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的架構
@@ -26,4 +26,4 @@
 
 [image]: ./media/cortana-analytics-architecture-predictive-maintenance/ca-topologies-maintenance-prediction.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

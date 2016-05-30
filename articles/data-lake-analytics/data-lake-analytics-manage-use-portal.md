@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 使用 Azure 入口網站管理 Azure 資料湖分析
@@ -167,7 +167,7 @@
 |參與者|存取入口網站；提交及監視工作。參與者也需要資料湖儲存區帳戶的讀取或寫入權限，才能提交工作。|
 |DataLakeAnalyticsDeveloper | 使用者可以提交工作、監視所有的工作，但只能取消自己的工作。他們也無法管理自己的帳戶，例如新增使用者、變更權限或刪除帳戶。這些使用者需要資料湖儲存區帳戶的讀取或寫入權限，才能執行工作。 | 
 |讀取者|可讓您檢視所有項目，但是無法進行變更。|  
-|研發/測試實驗室使用者|可讓您檢視所有項目，以及連接、啟動、重新啟動和關閉虛擬機器。|  
+|DevTest Labs 使用者|可讓您檢視所有項目，以及連接、啟動、重新啟動和關閉虛擬機器。|  
 |使用者存取系統管理員|可讓您管理 Azure 資源的使用者存取。|  
 
 如需有關建立 Azure Active Directory 使用者和安全性群組的詳細資訊，請參閱[什麼是 Azure Active Directory](../active-directory/active-directory-whatis.md)。
@@ -293,4 +293,4 @@
 - [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

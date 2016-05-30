@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="java" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="05/02/2016" 
 	ms.author="andrl"/>
 
 # DocumentDB SDK
@@ -35,6 +35,12 @@
 </table></br>
 
 ## 版本資訊
+
+### <a name="1.7.1"/>[1\.7.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.1)
+- 新加入節流的重試原則支援。  
+
+### <a name="1.7.0"/>[1\.7.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.0)
+- 新加入文件的存留時間 (TTL) 支援。 
 
 ### <a name="1.6.0"/>[1\.6.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.6.0)
 - 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。 
@@ -77,6 +83,8 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
+| [1\.7.1](#1.7.1) | 2016 年 4 月 30 日 |--- 
+| [1\.7.0](#1.7.0) | 2016 年 4 月 27 日 |--- 
 | [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- 
 | [1\.5.1](#1.5.1) | 2015 年 12 月 31 日 |--- 
 | [1\.5.0](#1.5.0) | 2015 年 12 月 4 日 |--- 
@@ -86,12 +94,12 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 | [1\.1.0](#1.1.0) | 2015 年 7 月 9 日 |--- 
 | [1\.0.1](#1.0.1) | 2015 年 5 月 12 日 |--- 
 | [1\.0.0](#1.0.0) | 2015 年 4 月 7 日 |--- 
-| 0.9.5 發行前版本 | 2015 年 3 月 9 日 | 2016 年 2 月 29 日 
-| 0.9.4 發行前版本 | 2015 年 2 月 17 日 | 2016 年 2 月 29 日 
-| 0.9.3 發行前版本 | 2015 年 1 月 13 日 | 2016 年 2 月 29 日 
-| 0.9.2 發行前版本 | 2014 年 12 月 19 日 | 2016 年 2 月 29 日 
-| 0.9.1 發行前版本 | 2014 年 12 月 19 日 | 2016 年 2 月 29 日 
-| 0.9.0 發行前版本 | 2014 年 12 月 10 日 | 2016 年 2 月 29 日
+| 0.9.5-發行前版本 | 2015 年 3 月 9 日 | 2016 年 2 月 29 日 
+| 0.9.4-發行前版本 | 2015 年 2 月 17 日 | 2016 年 2 月 29 日 
+| 0.9.3-發行前版本 | 2015 年 1 月 13 日 | 2016 年 2 月 29 日 
+| 0.9.2-發行前版本 | 2014 年 12 月 19 日 | 2016 年 2 月 29 日 
+| 0.9.1-發行前版本 | 2014 年 12 月 19 日 | 2016 年 2 月 29 日 
+| 0.9.0-發行前版本 | 2014 年 12 月 10 日 | 2016 年 2 月 29 日
 
 ## 常見問題集
 [AZURE.INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
@@ -100,4 +108,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

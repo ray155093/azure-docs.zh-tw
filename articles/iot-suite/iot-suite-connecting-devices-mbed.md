@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/05/2016"
+   ms.date="04/26/2016"
    ms.author="dobett"/>
 
 
-# 將裝置連接至 IoT 套件遠端監視預先設定方案
+# 將裝置連接至遠端監視預先設定方案 (mbed)
 
 [AZURE.INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
@@ -199,7 +199,7 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 
     ![][11]
 
-4. 在 PuTTY 中，按一下 [序列] 連接類型。裝置通常的連線傳輸速率是 115200，因此請在 [速度] 方塊中輸入 115200。然後按一下 [開啟]。
+4. 在 PuTTY 中，按一下 [序列] 連接類型。裝置通常的連線傳輸速率是 9600，因此請在 [速度] 方塊中輸入 9600。然後按一下 [開啟]。
 
 5. 程式開始執行。連線時如果程式沒有自動啟動，您可能必須重設面板 (按 CTRL + Break 或按面板的重設按鈕)。
 
@@ -220,4 +220,4 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 [lnk-mbed-pcconnect]: https://developer.mbed.org/platforms/FRDM-K64F/#pc-configuration
 [lnk-serializer]: https://azure.microsoft.com/documentation/articles/iot-hub-device-sdk-c-intro/#serializer
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="12/10/2015"
+	ms.date="05/18/2016"
 	ms.author="rashimg;cgronlun"/>
 
 # 在 Azure HDInsight 的 Hadoop 中使用 Hive 記憶體設定修正記憶體不足 (OOM) 錯誤
@@ -109,7 +109,7 @@
 
 如部落格文章所建議，下列兩個記憶體設定會定義堆積的容器記憶體：**hive.tez.container.size** 和 **hive.tez.java.opts**。從我們的經驗來看，OOM 例外狀況不表示容器大小太小。它表示 Java 堆積大小 (hive.tez.java.opts) 太小。因此，每當您看到 OOM 時，可嘗試增加 **hive.tez.java.opts**。必要時，您可能需要增加 **hive.tez.container.size**。**Java.opts** 設定應該大約 **container.size** 的 80%。
 
-> [AZURE.NOTE]**hive.tez.java.opts** 設定必須一律小於 **hive.tez.container.size**。
+> [AZURE.NOTE]  **hive.tez.java.opts** 設定必須一律小於 **hive.tez.container.size**。
 
 由於 D12 電腦具有 28GB 記憶體，因此我們決定使用 10GB (10240 MB) 的容器大小並指派 80% 給 java.opts。您可以使用下列設定，在 Hive 主控台上完成此動作：
 
@@ -122,4 +122,4 @@
 
 遇到 OOM 錯誤不一定表示容器大小太小。相反地，您應該設定記憶體設定，如此一來即可增加堆積大小，至少是容器記憶體大小的 80%。
 
-<!---HONumber=AcomDC_1217_2015-->
+<!---HONumber=AcomDC_0518_2016-->

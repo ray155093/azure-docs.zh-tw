@@ -43,9 +43,11 @@ Log Analytics 會使用來自內部部署或雲端基礎結構中之伺服器的
 2.	瀏覽以尋找 **Log Analytics (OMS)**，然後加以選取。
 3.	在您的 OMS 工作區清單中，選取 Azure VM 要連接的工作區。 ![OMS 工作區](./media/log-analytics-azure-storage/oms-connect-azure-01.png)
 4.	在 [Log Analytics 管理] 下方，按一下 [虛擬機器]。![虛擬機器](./media/log-analytics-azure-storage/oms-connect-azure-02.png)
-5.	在 [虛擬機器] 清單中，選取您要為其安裝代理程式的虛擬機器。VM 的 [OMS connection status] \(OMS 連接狀態) 會指出它是 [未連接] 狀態。![VM 未連接](./media/log-analytics-azure-storage/oms-connect-azure-03.png)
+5.	在 [虛擬機器] 清單中，選取您要為其安裝代理程式的虛擬機器。VM 的 [OMS connection status]\(OMS 連接狀態) 會指出它是 [未連接] 狀態。![VM 未連接](./media/log-analytics-azure-storage/oms-connect-azure-03.png)
 6.	在虛擬機器的詳細資訊中，按一下 [連接]。隨即自動安裝代理程式並針對 OMS 工作區進行設定，但程序可能需要幾分鐘才能完成。![連接 VM](./media/log-analytics-azure-storage/oms-connect-azure-04.png)
-7.	當代理程式安裝並連接時，您會看到 [OMS connection status] \(OMS 連接狀態) 更新為顯示 [This workspace] \(此工作區)。![已連接](./media/log-analytics-azure-storage/oms-connect-azure-05.png)
+7.	當代理程式安裝並連接時，您會看到 [OMS connection status]\(OMS 連接狀態) 更新為顯示 [This workspace]\(此工作區)。
+
+![已連接](./media/log-analytics-azure-storage/oms-connect-azure-05.png)
 
 >[AZURE.NOTE] 您必須安裝 [Azure VM 代理程式](../virtual-machines/virtual-machines-windows-extensions-features.md)，才會自動安裝 OMS 的代理程式。如果您有 Azure Resource Manager 虛擬機器，代理程式也不會顯示在清單中，而必須使用 PowerShell 或建立 ARM 範本來進行安裝。
 
@@ -80,21 +82,28 @@ Set-AzureVMExtension -VM $vm -Publisher 'Microsoft.EnterpriseCloud.Monitoring' -
 Login-AzureRMAccount
 Select-AzureSubscription -SubscriptionId "**"
 
+$workspaceName = "your workspace name"
+$VMresourcegroup = "**"
+$VMresourcename = "**"
 
-$workspaceId="**"
-$workspaceKey="**"
+$workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq $workspaceName})
 
-$resourcegroup = "**"
-$resourcename = "**"
+if ($workspace.Name -ne $workspaceName) 
+{
+    Write-Error "Unable to find OMS Workspace $workspaceName. Do you need to run Select-AzureRMSubscription?"
+}
 
-$vm = Get-AzureRMVM -ResourceGroupName $resourcegroup -Name $resourcename
+$workspaceId = $workspace.CustomerId 
+$workspaceKey = (Get-AzureRmOperationalInsightsWorkspaceSharedKeys -ResourceGroupName $workspace.ResourceGroupName -Name $workspace.Name).PrimarySharedKey
+
+$vm = Get-AzureRMVM -ResourceGroupName $VMresourcegroup -Name $VMresourcename
 $location = $vm.Location
 
-Set-AzureRMVMExtension -ResourceGroupName $resourcegroup -VMName $resourcename -Name 'MicrosoftMonitoringAgent' -Publisher 'Microsoft.EnterpriseCloud.Monitoring' -ExtensionType 'MicrosoftMonitoringAgent' -TypeHandlerVersion '1.0' -Location $location -SettingString "{'workspaceId':  '$workspaceId'}" -ProtectedSettingString "{'workspaceKey': '$workspaceKey' }"
+Set-AzureRMVMExtension -ResourceGroupName $VMresourcegroup -VMName $VMresourcename -Name 'MicrosoftMonitoringAgent' -Publisher 'Microsoft.EnterpriseCloud.Monitoring' -ExtensionType 'MicrosoftMonitoringAgent' -TypeHandlerVersion '1.0' -Location $location -SettingString "{'workspaceId':  '$workspaceId'}" -ProtectedSettingString "{'workspaceKey': '$workspaceKey' }"
 
 
 ```
-使用 PowerShell 進行設定時，您必須提供工作區識別碼及主要金鑰。您可以在 OMS 入口網站的 [設定] 頁面上找到您的工作區 ID 及主索引鍵。
+使用 PowerShell 進行設定時，您必須提供工作區識別碼及主要金鑰。您可以在 OMS 入口網站的 [設定] 頁面上，或使用上述範例所示的 PowerShell，找到您的工作區 ID 及主索引鍵。
 
 ![工作區 ID 及主索引鍵](./media/log-analytics-azure-storage/oms-analyze-azure-sources.png)
 
@@ -130,12 +139,15 @@ Syslog|傳送至 Syslog 或 Rsyslog 精靈的事件
 目前，OMS 能夠分析：
 
 - 來自 Web 角色和虛擬機器的 IIS 記錄檔
-- 從 Web 角色、背景工作角色和 Azure 虛擬機器執行 Windows 作業系統的 Windows 事件記錄檔
+- 來自執行 Windows 作業系統的 Web 角色、背景工作角色及 Azure 虛擬機器的 Windows 事件記錄檔和 ETW 記錄檔
 - 從 Azure 虛擬機器執行 Linux 作業系統的 Syslog
+- 針對網路安全性群組、應用程式閘道和 KeyVault 資源，以 json 格式寫入 blob 儲存體的診斷
 
 記錄檔必須位於下列位置：
 
 - WADWindowsEventLogsTable (資料表儲存體) – 包含來自 Windows 事件記錄檔的資訊。
+- WADETWEventTable (表格儲存體) – 包含來自 Windows ETW 記錄檔的資訊。
+- WADServiceFabricSystemEventTable, WADServiceFabricReliableActorEventTable, WADServiceFabricReliableServiceEventTable (表格儲存體) - 包含 Service Fabric 作業、執行者和服務事件的相關資訊。
 - wad-iis-logfiles (Blob 儲存體) – 包含 IIS 記錄檔的相關資訊。
 - LinuxsyslogVer2v0 (資料表儲存體) – 包含 Linux syslog 事件。
 
@@ -143,7 +155,7 @@ Syslog|傳送至 Syslog 或 Rsyslog 精靈的事件
 
 若為虛擬機器，您也可以選擇將 [Microsoft Monitoring Agent](http://go.microsoft.com/fwlink/?LinkId=517269) 安裝於虛擬機器以啟用其他見解。除了分析 IIS 記錄檔和事件記錄檔之外，您也能夠執行其他分析，包括組態變更追蹤、SQL 評估及更新評估。
 
-您可以在[意見反應頁面](http://feedback.azure.com/forums/267889-azure-operational-insights/category/88086-log-management-and-log-collection-policy)進行投票，幫助我們為 OMS 排定其他記錄檔的分析優先順序。
+您可以在[意見反應頁面](http://feedback.azure.com/forums/267889-azure-log-analytics/category/88086-log-management-and-log-collection-policy)進行投票，幫助我們為 OMS 排定其他記錄檔的分析優先順序。
 
 ## 在 Web 角色中針對 IIS 記錄檔和事件集合啟用 Azure 診斷
 
@@ -261,6 +273,6 @@ Syslog|傳送至 Syslog 或 Rsyslog 精靈的事件
 
 ## 後續步驟
 
-- 如果您的組織使用 Proxy 伺服器或防火牆，請[進行 Log Analytics 的 Proxy 與防火牆設定](log-analytics-proxy-firewall.md)，以讓代理程式可與 Log Analytics 服務通訊。
+- 如果您的組織使用 Proxy 伺服器或防火牆，請[在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md)，讓代理程式可與 Log Analytics 服務通訊。
 
-<!-----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

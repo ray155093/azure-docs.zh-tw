@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/27/2016" 
+	ms.date="05/04/2016" 
 	ms.author="awills"/>
 
 
@@ -31,10 +31,10 @@
 
 在 Application Insights 中，從 app 的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
 
-![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics/001.png)
+![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-tour/001.png)
 
 	
-## [Take](app-insights-analytics-aggregations.md#take)：顯示 n 個資料列
+## [Take](app-insights-analytics-reference.md#take-operator)：顯示 n 個資料列
 
 記錄使用者作業的資料點 (通常是 Web 應用程式收到的 HTTP 要求) 會儲存在名為 `requests` 的資料表。每個資料列都是從應用程式中的 Application Insights SDK 接收的遙測資料點。
 
@@ -56,7 +56,7 @@
 
 > [AZURE.NOTE] 按一下資料行的標頭，以重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。請注意，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用 `top` 或 `sort` 運算子。
 
-## [Top](app-insights-analytics-aggregations.md#top) 和 [sort](app-insights-analytics-aggregations.md#sort)
+## [Top](app-insights-analytics-reference.md#top-operator) 和 [sort](app-insights-analytics-reference.md#sort-operator)
 
 `take` 可用來取得快速的結果範例，但它不會依特定順序顯示資料表中的資料列。若要取得已排序的檢視，請使用 `top` (適用於某個範例) 或 `sort` (整個資料表)。
 
@@ -84,9 +84,9 @@
 資料表檢視中的資料行標頭也可用來排序畫面上的結果。當然，如果您已使用 `take` 或 `top` 只擷取部分的資料表，您只會重新排列您所擷取的記錄。
 
 
-## [Project](app-insights-analytics-aggregations.md#project)：選取、重新命名和計算資料行
+## [Project](app-insights-analytics-reference.md#project-operator)：選取、重新命名和計算資料行
 
-使用 [`project`](app-insights-analytics-aggregations.md#project)，只挑出您想要的資料行︰
+使用 [`project`](app-insights-analytics-reference.md#project-operator)，只挑出您想要的資料行︰
 
 ```AIQL
 
@@ -117,11 +117,13 @@
 * `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s``0.01s`。
 * `floor` (別名 `bin`) 會將一個值無條件捨去為您提供的基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
-[運算式](app-insights-analytics-scalars.md)可以包含所有常見的運算子 (`+`、`-`...)，而且有一些實用的函式。
+[運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一些實用的函式。
 
-## [Extend](app-insights-analytics-aggregations.md#extend)：計算資料行
+    
 
-如果您只要將資料行加入現有的資料行，請使用 [`extend`](app-insights-analytics-aggregations.md#extend)：
+## [Extend](app-insights-analytics-reference.md#extend-operator)：計算資料行
+
+如果您只要將資料行加入現有的資料行，請使用 [`extend`](app-insights-analytics-reference.md#extend-operator)：
 
 ```AIQL
 
@@ -130,9 +132,53 @@
     | extend timeOfDay = floor(timestamp % 1d, 1s)
 ```
 
-如果您要保留所有現有的資料行，使用 [`extend`](app-insights-analytics-aggregations.md#extend) 比 [`project`](app-insights-analytics-aggregations.md#project) 精簡。
+如果您要保留所有現有的資料行，使用 [`extend`](app-insights-analytics-reference.md#extend-operator) 比 [`project`](app-insights-analytics-reference.md#project-operator) 精簡。
 
-## [Summarize](app-insights-analytics-aggregations.md#summarize)：彙總資料列群組
+
+## 存取巢狀物件
+
+巢狀物件可以輕鬆地存取。例如，在例外狀況串流中，您會看到如下的結構化物件︰
+
+![結果](./media/app-insights-analytics-tour/520.png)
+
+您可以選擇您感興趣的屬性來將它平面化︰
+
+```AIQL
+
+    exceptions | take 10
+    | extend method1 = details[0].parsedStack[1].method
+```
+
+## 自訂屬性和測量
+
+如果您的應用程式附加[自訂維度 (屬性) 和自訂測量](app-insights-api-custom-events-metrics.md#properties)到事件，則您會在 `customDimensions` 和 `customMeasurements` 物件看到它們。
+
+
+例如，如果您的應用程式包括︰
+
+```C#
+
+    var dimensions = new Dictionary<string, string> 
+                     {{"p1", "v1"},{"p2", "v2"}};
+    var measurements = new Dictionary<string, double>
+                     {{"m1", 42.0}, {"m2", 43.2}};
+	telemetryClient.TrackEvent("myEvent", dimensions, measurements);
+```
+
+若要在分析中擷取這些值︰
+
+```AIQL
+
+    customEvents
+    | extend p1 = customDimensions.p1, 
+      m1 = todouble(customMeasurements.m1) // cast numerics
+
+``` 
+
+> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加至任何遙測類型的所有自訂測量，會連同使用 `TrackMetric()` 傳送的度量一起出現在 [度量] 刀鋒視窗中。但在分析中，自訂測量仍會附加至其所執行的任何一種類型的遙測，而且度量會出現在自己的 `metrics` 串流中。
+
+
+## [Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
 
 `Summarize` 會對資料列群組套用指定的彙總函式。
 
@@ -170,7 +216,7 @@
 另外還有 `count()` 彙總 (以及計數作業)，適用於您確實想要計算群組中的資料列數目時。
 
 
-[彙總函式](app-insights-analytics-aggregations.md)有範圍。
+[彙總函式](app-insights-analytics-reference.md#aggregations)有範圍。
 
 
 ## 製作結果圖表
@@ -196,7 +242,7 @@
 請注意，雖然我們並未依時間排序結果 (如資料表顯示中所示），但圖表顯示一律會以正確的順序顯示日期時間。
 
 
-## [Where](app-insights-analytics-aggregations.md#where)︰篩選條件
+## [Where](app-insights-analytics-reference.md#where-operator)︰篩選條件
 
 如果您已針對應用程式的[用戶端](app-insights-javascript.md)與伺服器端設定 Application Insights 監視，則資料庫中的某些遙測資料會來自瀏覽器。
 
@@ -218,7 +264,7 @@
  * `==`、`<>`︰等於和不等於
  * `=~`、`!=`︰不區分大小寫的字串等於和不等於。有更多的字串比較運算子。
 
-深入了解[純量運算式](app-insights-analytics-scalars.md)。
+深入了解[純量運算式](app-insights-analytics-reference.md#scalars)。
 
 ### 篩選事件
 
@@ -230,7 +276,7 @@
     | where isnotempty(resultCode) and toint(resultCode) >= 400
 ```
 
-`responseCode` 具有字串類型，所以我們必須[將它轉換](app-insights-analytics-scalars.md#casts)以進行數值比較。
+`responseCode` 具有字串類型，所以我們必須[將它轉換](app-insights-analytics-reference.md#casts)以進行數值比較。
 
 彙整不同的回應︰
 
@@ -339,7 +385,7 @@
 
 
 
-## [百分位數](app-insights-analytics-aggregations.md#percentiles)
+## [百分位數](app-insights-analytics-reference.md#percentiles)
 
 哪些持續時間範圍涵蓋不同的工作階段百分比？
 
@@ -385,7 +431,7 @@
 ![](./media/app-insights-analytics-tour/190.png)
 
 
-## [Join](app-insights-analytics-aggregations.md#join)
+## [Join](app-insights-analytics-reference.md#join)
 
 我們可以存取數個資料表，包括要求和例外狀況。
 
@@ -404,7 +450,7 @@
 
 
 
-## [Let](app-insights-analytics-aggregations.md#let)︰將結果指派給變數
+## [Let](app-insights-analytics-reference.md#let-clause)︰將結果指派給變數
 
 使用 [let](./app-insights-analytics-syntax.md#let-statements) 來分隔前一個運算式的各個部分。結果不變：
 
@@ -423,4 +469,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

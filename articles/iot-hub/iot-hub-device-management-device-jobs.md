@@ -18,9 +18,12 @@
 
 # 教學課程：如何使用裝置工作更新裝置韌體 (預覽)
 
+[AZURE.INCLUDE [iot-hub-device-management-job-selector](../../includes/iot-hub-device-management-jobs-selector.md)]
+
+## 簡介
 Azure IoT 裝置管理可讓您使用裝置工作來與實體裝置進行互動。識別裝置對應項 (實體裝置的服務呈現) 之後，您可以使用裝置工作與其對應的實體裝置進行互動。裝置工作可協調多個裝置上的複雜程序。此程序可以包含多個步驟以及長時間執行的作業。
 
-Azure IoT 中樞裝置管理目前提供六種類型的裝置工作 (我們會在客戶需要其他作業時新增作業)：
+Azure IoT 中樞裝置管理目前提供六種類型的裝置作業 (我們會在客戶需要其他作業時新增作業)：
 
 - **韌體更新**：更新實體裝置上的韌體 (或 OS 映像)。
 - **重新啟動**：重新啟動實體裝置。
@@ -29,7 +32,7 @@ Azure IoT 中樞裝置管理目前提供六種類型的裝置工作 (我們會�
 - **讀取裝置屬性**︰取得實體裝置上裝置屬性的最新值。
 - **寫入裝置屬性**︰變更實體裝置上的裝置屬性。
 
-如需如何使用所有這些作業的詳細資訊，請參閱 [API 文件][lnk-apidocs]。
+如需如何使用這些作業的詳細資訊，請參閱 [API 文件][lnk-apidocs]。
 
 您可以查詢作業記錄，了解所啟動作業的狀態。如需一些範例查詢，請參閱[我們的查詢運算式程式庫][lnk-query-samples]。
 
@@ -53,7 +56,7 @@ Azure IoT 中樞裝置管理目前提供六種類型的裝置工作 (我們會�
 
 ## 執行韌體更新範例
 
-下列範例延伸[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程功能。從執行不同的模擬裝置開始，會啟動作業來更新這些裝置上的韌體。
+下列範例延伸了[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程的功能。從執行不同的模擬裝置開始，會啟動作業來更新這些裝置上的韌體。
 
 ### 必要條件 
 
@@ -71,7 +74,7 @@ Azure IoT 中樞裝置管理目前提供六種類型的裝置工作 (我們會�
 
 ### 啟動裝置工作
 
-一般而言，是在 **JobClient** 執行個體上使用多種 **Schedule&lt;工作名稱&gt;Async** 方法來啟動裝置工作。在韌體更新範例中，稱為 **ScheduleFirmwareUpdateAsync** 方法。因為我們傳遞具有 6 個裝置識別碼的陣列，所以會啟動 7 個裝置工作：一個正在更新的裝置會有一個裝置工作，而且一個用來追蹤其他 6 個裝置工作的父裝置工作。
+一般而言，是在 **JobClient** 執行個體上使用多種 **Schedule&lt;作業名稱&gt;Async** 方法來啟動裝置作業。在韌體更新範例中，是 **ScheduleFirmwareUpdateAsync** 方法。因為我們傳遞具有 6 個裝置識別碼的陣列，所以會啟動 7 個裝置工作：一個正在更新的裝置會有一個裝置工作，而且一個用來追蹤其他 6 個裝置工作的父裝置工作。
 
 在下列程式碼片段中，會從 **FirmwareUpdate** 專案的 **Program.cs** 中啟動韌體更新作業。此呼叫取用 **deviceId** 值的字串陣列作為參數，代表我們想要更新的裝置。
 
@@ -122,15 +125,15 @@ private static async Task OutputRunningJobs()
 }
 ```
 
-父裝置工作完成之後，範例會輸出所有裝置工作的清單。如下圖所示。父工作只有在所有相關聯的子工作都完成之後才完成。在下面螢幕擷取畫面中，父工作是清單中的最後一個作業，您可以分辨這個作業，因為 **ParentJobId** 是 **''**。父工作也會將 **Reason** 欄位設定為表示查詢彙總結果的字串。在此情況下，它會顯示已更新 6 個裝置，而且全部都成功。
+父裝置工作完成之後，範例會輸出所有裝置工作的清單。如下圖所示。父工作只有在所有相關聯的子工作都完成之後才完成。在下面螢幕擷取畫面中，父作業是清單中的最後一個作業，您可以分辨這個作業，因為 **ParentJobId** 是 **''**。父作業也會將 **Reason** 欄位設定為表示查詢彙總結果的字串。在此情況下，它會顯示已更新 6 個裝置，而且全部都成功。
 
 ![][img-output2]
 
-上述清單的產生方式是查詢所有作業並依開始時間排序。**JobResponse** 物件的任何屬性 (如下所示) 都可以用來查詢裝置工作記錄。
+上述清單的產生方式是查詢所有作業並依開始時間排序。**JobResponse** 物件的任何屬性 (如下所示) 都可以用來查詢裝置作業記錄。
 
 ![][img-properties]
 
-如需查詢裝置工作記錄的其他範例，請參閱[我們的查詢運算式程式庫][lnk-query-samples]。
+如需查詢裝置作業記錄的其他範例，請參閱[我們的查詢運算式程式庫][lnk-query-samples]。
 
 ### 裝置模擬器實作詳細資料
 
@@ -175,4 +178,4 @@ Azure IoT 中樞裝置管理用戶端程式庫會處理裝置與服務之間的�
 [lnk-github-firmware]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/c/iotdm_client/samples/iotdm_simple_sample/iotdm_simple_sample.c
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -21,9 +21,11 @@
 
 根據預設，Hadoop 叢集不會為了效能進行最佳化。本文涵蓋幾個最常見 Hive 效能最佳化方法，您可將這些方法套用於我們的查詢。
 
-[AZURE.INCLUDE [入口網站](../../includes/hdinsight-azure-portal.md)]
-
-* [在 HDInsight 中最佳化 Hadoop 的 Hive 查詢](hdinsight-hadoop-optimize-hive-query.md)。
+> [AZURE.IMPORTANT] 本文件中的步驟使用 Azure 傳統入口網站。建立新的服務時，Microsoft 不建議您使用傳統入口網站。如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
+>
+> 本文件也包含使用 Azure PowerShell 的相關資訊。提供的程式碼片段是以下列命令為基礎：使用 Azure 服務管理 (ASM) 來處理 HDInsight 及__已被取代__的命令。這些命令將在 2017 年 1 月 1 日之前予以移除。
+>
+>如需這份文件的「使用 Azure 入口網站搭配使用 Azure Resource Manager (ARM) 的 PowerShell 程式碼片段」版本，請參閱[在 Hdinsight 中最佳化 Hadoop 的 Hive 查詢](hdinsight-hadoop-optimize-hive-query.md)。
 
 ##相應放大背景工作節點
 
@@ -218,4 +220,4 @@ ORC (最佳化的資料列單欄式) 格式是儲存 Hive 資料的高效率方�
 [image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/tez_1.png
 [image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/partitioning_1.png
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/10/2016"
+   ms.date="05/17/2016"
    ms.author="larryfr"/>
 
 # 利用 Storm on HDInsight 處理 Azure 事件中樞的事件 (C#)
@@ -567,7 +567,9 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 
 * [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 
+* [SCP 程式設計指南](hdinsight-storm-scp-programming-guide.md)
+
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

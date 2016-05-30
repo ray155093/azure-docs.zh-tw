@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="05/04/2016" 
@@ -119,4 +119,4 @@
 
 - 如果您要在 Azure 中部署自己的 IT 工作負載，請參閱這些[指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

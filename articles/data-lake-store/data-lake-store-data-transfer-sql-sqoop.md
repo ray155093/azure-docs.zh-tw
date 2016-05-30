@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="02/29/2016"
+   ms.date="05/11/2016"
    ms.author="nitinme"/>
 
 # 使用 Sqoop 在資料湖存放區和 Azure SQL Database 之間複製資料
@@ -36,6 +36,10 @@
 - **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。 
 - 可存取資料湖存放區帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。本文假設您已使用資料湖存放區存取 HDInsight Linux 叢集。
 - **Azure SQL Database**。如需建立方式的指示，請參閱[建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
+
+## 使用影片快速學習？
+
+[觀看這部影片](https://mix.office.com/watch/1butcdjxmu114)，主題是關於如何使用 DistCp 在 Azure 儲存體 Blob 與 Data Lake Store 之間複製資料。
 
 ## 在 Azure SQL Database 中建立範例資料表
 
@@ -67,7 +71,7 @@
 		) ON [PRIMARY] 
 		GO
 
-2. 在 **Table1** 中，新增一些範例資料。保留 **Table2** 空白。我們從 **Table1** 匯入資料至資料湖存放區。然後，我們會從資料湖存放區將資料匯出到 **Table2**。執行下列程式碼片段。
+2. 在 **Table1** 中，新增一些範例資料。保留 **Table2** 空白。我們從 **Table1** 匯入資料至 Data Lake Store。然後，我們會從 Data Lake Store 將資料匯出到 **Table2**。執行下列程式碼片段。
 
 		 
 		INSERT INTO [dbo].[Table1] VALUES (1,'Neal','Kell'), (2,'Lila','Fulton'), (3, 'Erna','Myers'), (4,'Annette','Simpson'); 
@@ -90,7 +94,7 @@ HDInsight 叢集已有可用的 Sqoop 套件。如果您已設定 HDInsight 叢�
 
 3. 瀏覽至提供 Sqoop 封裝的目錄。一般而言，這會在 `/usr/hdp/<version>/sqoop/bin`。 
 
-4. 從 **Table1** 將資料匯入至資料湖存放區帳戶。使用下列語法：
+4. 從 **Table1** 將資料匯入至 Data Lake Store。使用下列語法：
 
 		
 		sqoop-import --connect "jdbc:sqlserver://<sql-database-server-name>.database.windows.net:1433;username=<username>@<sql-database-server-name>;password=<password>;database=<sql-database-name>" --table Table1 --target-dir adl://<data-lake-store-name>.azuredatalakestore.net/Sqoop/SqoopImportTable1
@@ -121,7 +125,7 @@ HDInsight 叢集已有可用的 Sqoop 套件。如果您已設定 HDInsight 叢�
 
 ### 從資料湖存放區將資料匯出到 Azure SQL Database
 
-6. 從資料湖存放區帳戶將資料匯出到 Azure SQL Database 中的空白資料表 **Table2**。使用下列語法。
+6. 從 Data Lake Store 帳戶將資料匯出到 Azure SQL Database 中的空白資料表 **Table2**。使用下列語法。
 
 		
 		sqoop-export --connect "jdbc:sqlserver://<sql-database-server-name>.database.windows.net:1433;username=<username>@<sql-database-server-name>;password=<password>;database=<sql-database-name>" --table Table2 --export-dir adl://<data-lake-store-name>.azuredatalakestore.net/Sqoop/SqoopImportTable1 --input-fields-terminated-by ","
@@ -152,4 +156,4 @@ HDInsight 叢集已有可用的 Sqoop 套件。如果您已設定 HDInsight 叢�
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

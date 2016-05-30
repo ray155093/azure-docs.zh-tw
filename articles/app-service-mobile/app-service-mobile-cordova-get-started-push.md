@@ -61,7 +61,7 @@
 
 在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。在您的 Android 手機上執行下列步驟：
 
-1. 移至 [設定] > [About phone] \(有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
+1. 移至 [設定] > [About phone] (有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
  
 2. 回到 [設定] > [開發人員選項] 啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接到開發電腦。
 
@@ -103,7 +103,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
      
-2.  按一下 [Install Packages] \(安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages]\(安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
@@ -196,8 +196,8 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 [Visual Studio Community 2015]: http://www.visualstudio.com/
 [Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/zh-TW/features/cordova-vs.aspx
 [通知中樞]: ../notification-hubs/notification-hubs-overview.md
-[Apache Cordova SDK]: app-service-mobile-codova-how-to-use-client-library.md
+[Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

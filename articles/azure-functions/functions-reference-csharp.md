@@ -15,7 +15,7 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="04/14/2016"
+	ms.date="05/13/2016"
 	ms.author="chrande"/>
 
 # Azure Functions C# 開發人員參考
@@ -100,8 +100,10 @@ public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter 
 
 * `System`
 * `System.Collections.Generic`
+* `System.IO`
 * `System.Linq`
 * `System.Net.Http`
+* `System.Threading.Tasks`
 * `Microsoft.Azure.WebJobs`
 * `Microsoft.Azure.WebJobs.Host`。
 
@@ -121,7 +123,7 @@ public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter 
 
 Azure Functions 裝載環境會自動加入下列組件︰
 
-* `mscorlib`
+* `mscorlib`,
 * `System`
 * `System.Core`
 * `System.Xml`
@@ -132,17 +134,19 @@ Azure Functions 裝載環境會自動加入下列組件︰
 * `System.Web.Http`
 * `System.Net.Http.Formatting`。
 
-此外，下列組件為特殊案例，可以簡單名稱參考 (例如 `#r "AssemblyName"`)：
+此外，下列組件為特殊案例，可以用簡單名稱參考 (例如 `#r "AssemblyName"`)：
 
 * `Newtonsoft.Json`
+* `Microsoft.WindowsAzure.Storage`
+* `Microsoft.ServiceBus`
 * `Microsoft.AspNet.WebHooks.Receivers`
 * `Microsoft.AspNEt.WebHooks.Common`。
 
-如果您需要參考私用組件，您可以將組件檔案上傳至相對於您的函式的 `bin` 資料夾並使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 參考它。
+如果您需要參考私用組件，您可以將組件檔案上傳至相對於您的函式的 `bin` 資料夾並使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 參考它。如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
 
 ## 封裝管理
 
-若要在 C# 函式中使用 NuGet 封裝，請將 *project.json* 檔案上傳至函式應用程式的檔案系統中的函式資料夾。以下是範例 project.json 檔案，該檔案會新增 Microsoft.ProjectOxford.Face 1.1.0 版的參考︰
+若要在 C# 函式中使用 NuGet 封裝，請將 *project.json* 檔案上傳至函式應用程式的檔案系統中的函式資料夾。以下是範例 *project.json* 檔案，該檔案會新增對 Microsoft.ProjectOxford.Face 1.1.0 版的參考︰
 
 ```json
 {
@@ -156,47 +160,17 @@ Azure Functions 裝載環境會自動加入下列組件︰
 }
 ```
 
-當您上傳 *project.json* 檔案時，執行階段會取得封裝並自動新增封裝組件的參考。您不需要新增 `#r "AssemblyName"` 指示詞。只要將所需的 `using` 陳述式新增至 run.csx 檔案，即可使用 NuGet 封裝中定義的類型。
+當您上傳 *project.json* 檔案時，執行階段會取得封裝並自動新增封裝組件的參考。您不需要新增 `#r "AssemblyName"` 指示詞。只要將所需的 `using` 陳述式新增至 *run.csx* 檔案，即可使用 NuGet 封裝中定義的類型。
 
 ### 如何上傳 project.json 檔案
 
-首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
+1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。 
 
-函式應用程式會建置於 App Service 上，因此[標準 Web 應用程式可用的部署選項](../app-service-web/web-sites-deploy.md)也可供函式應用程式使用。以下是您可以使用的一些方法。
+	這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
 
-#### 使用 Visual Studio Online (Monaco) 上傳 project.json
+2. 若要上傳 project.json 檔案，請使用 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函式應用程式檔案**一節所述的其中一個方法。
 
-1. 在 Azure Functions 入口網站中，按一下 [函式應用程式設定]。
-
-2. 在 [進階設定] 區段中，按一下 [移至 App Service 設定]。
-
-3. 按一下 [工具]。
-
-4. 在 [開發] 之下按一下[Visual Studio Online]。
-
-5. 如果尚未啟用，請將它 [開啟]，然後按一下 [執行]。
-
-6. 在 Visual Studio Online 載入後，將 project.json 檔案拖放到您函式的資料夾 (依您的函式命名的資料夾) 中。
-
-#### 使用函式應用程式的 SCM (Kudu) 端點上傳 project.json
-
-1. 瀏覽至：`https://<function_app_name>.scm.azurewebsites.net`。
-
-2. 按一下 [偵錯主控台] > [CMD]。
-
-3. 瀏覽至 *D:\\home\\site\\wwwroot<function\_name>*。
-
-4. 將 *project.json* 檔案拖放到資料夾中 (在檔案格線上)。
-
-#### 使用 FTP 上傳 project.json
-
-1. 請遵循[這裡](../app-service-web/web-sites-deploy.md#ftp)的指示設定 FTP。
-
-2. 當您連線到函數應用程式網站時，請將 *project.json* 檔案複製到 */site/wwwroot/<function_name>* 中。
-
-#### 封裝安裝記錄檔 
-
-上傳 *project.json* 檔案之後，您會在函數的串流記錄檔中看到如下列範例所示的輸出：
+3. 上傳 *project.json* 檔案之後，您會在函數的串流記錄檔中看到如下列範例所示的輸出：
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -213,6 +187,25 @@ Azure Functions 裝載環境會自動加入下列組件︰
 2016-04-04T19:02:57.189 
 2016-04-04T19:02:57.189 
 2016-04-04T19:02:57.455 Packages restored.
+```
+
+## 環境變數
+
+若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如下列程式碼範例所示︰
+
+```csharp
+public static void Run(TimerInfo myTimer, TraceWriter log)
+{
+    log.Info($"C# Timer trigger function executed at: {DateTime.Now}");
+    log.Info(GetEnvironmentVariable("AzureWebJobsStorage"));
+    log.Info(GetEnvironmentVariable("WEBSITE_SITE_NAME"));
+}
+
+public static string GetEnvironmentVariable(string name)
+{
+    return name + ": " + 
+        System.Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
+}
 ```
 
 ## 重複使用 .csx 程式碼
@@ -258,4 +251,4 @@ public static void MyLogger(TraceWriter log, string logtext)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

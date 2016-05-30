@@ -19,9 +19,11 @@
 # 使用 Powershell - Classic 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
 
 > [AZURE.SELECTOR]
-- [Azure 傳統入口網站](site-recovery-vmm-to-azure.md)
+- [Azure 入口網站](site-recovery-vmm-to-azure.md)
+- [PowerShell - ARM](site-recovery-vmm-to-azure-powershell-resource-manager.md)
+- [傳統入口網站](site-recovery-vmm-to-azure-classic.md)
 - [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
-- [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md) 
+
 
 ## 概觀
 
@@ -447,4 +449,4 @@ marsagentinstaller.exe /q /nu
 
 [閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。</a>。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

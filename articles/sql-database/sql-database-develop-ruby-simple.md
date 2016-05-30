@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Ruby 連接到 SQL Database"
+	pageTitle="使用 Ruby 連接到 SQL Database | Microsoft Azure"
 	description="提供您可執行以連接到 Azure SQL Database 的 Ruby 程式碼範例。"
 	services="sql-database"
 	documentationCenter=""
@@ -40,4 +40,4 @@
 
 [使用 Ruby 連接到 SQL 的概念證明](http://msdn.microsoft.com/library/mt715797.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

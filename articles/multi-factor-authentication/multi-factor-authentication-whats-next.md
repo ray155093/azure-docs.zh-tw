@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/07/2016" 
+	ms.date="05/12/2016" 
 	ms.author="billmath"/>
 
 # 設定 Azure Multi-Factor Authentication
@@ -376,4 +376,4 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

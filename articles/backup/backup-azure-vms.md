@@ -19,6 +19,11 @@
 
 
 # 備份 Azure 虛擬機器
+
+> [AZURE.SELECTOR]
+- [將 ARM VM 備份至 Azure](backup-azure-arm-vms.md)
+- [備份 Azure 虛擬機器](backup-azure-vms.md)
+
 本文提供如何備份 Azure 虛擬機器 (VM) 的程序。
 
 首先，您必須注意幾件事，才能備份 Azure 虛擬機器。如果您尚未這樣做，請完成[必要條件](backup-azure-vms-prepare.md)，讓您的環境準備好進行備份 VM 的工作。
@@ -55,7 +60,6 @@
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
 6. 按一下頁面底部的 [**探索**]。
-
 	![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
@@ -78,7 +82,6 @@
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
 3. 按一下頁面底部的 [註冊]。
-
 	![註冊按鈕](./media/backup-azure-vms/register-button-only.png)
 
 4. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。如果有兩個以上同名的虛擬機器，請使用雲端服務加以區別。
@@ -144,7 +147,7 @@
 
     建立的工作可設定保護原則，並將虛擬機器與您所選取的每個虛擬機器的該項原則相關聯。
 
-6. 若要檢視 [設定保護] 工作的清單，可按一下保存庫功能表中的 [工作]，然後從 [作業] 篩選器選取 [設定保護]。
+6. 若要檢視 [設定保護] 作業的清單，可按一下保存庫功能表中的 [作業]，然後從 [作業] 篩選器選取 [設定保護]。
 
     ![設定保護工作](./media/backup-azure-vms/protect-configureprotection.png)
 
@@ -168,7 +171,7 @@
 ![搭配復原點備份虛擬機器](./media/backup-azure-vms/protect-backedupvm.png)
 
 ## 檢視備份狀態和詳細資料
-虛擬機器受到保護後，[**儀表板**] 頁面摘要中的虛擬機器計數也會遞增。[儀表板] 頁面也會顯示過去 24 小時內「成功」、「失敗」及「進行中」的工作數目。在 [工作] 頁面上，使用 [狀態]、[作業]，或 [從] 和 [至] 功能表來篩選工作。
+虛擬機器受到保護後，[**儀表板**] 頁面摘要中的虛擬機器計數也會遞增。[儀表板] 頁面也會顯示過去 24 小時內「成功」、「失敗」及「進行中」的作業數目。在 [作業] 頁面上，使用 [狀態]、[作業]，或 [從] 和 [至] 功能表來篩選作業。
 
 ![儀表板頁面中的備份狀態](./media/backup-azure-vms/dashboard-protectedvms.png)
 
@@ -182,4 +185,4 @@
 - [管理和監視虛擬機器](backup-azure-manage-vms.md)
 - [還原虛擬機器](backup-azure-restore-vms.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

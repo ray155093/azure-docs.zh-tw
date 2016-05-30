@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="bradsev" />
 
 # 設定用於 Cortana 分析程序中的資料科學環境
@@ -27,4 +27,4 @@ Cortana 分析程序使用各種資料科學環境儲存、處理和分析資料
 
 [AZURE.INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

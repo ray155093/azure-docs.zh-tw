@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/02/2016"
+   ms.date="05/04/2016"
    ms.author="bwren" />
 
 # Log Analytics 中的自訂記錄檔
@@ -39,7 +39,7 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 
 1.	在 OMS 入口網站中，移至 [設定]。
 2.	依序按一下 [資料] 和 [自訂記錄檔]。
-3.	根據預設，所有設定變更都會自動發送給所有代理程式。若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines] (將下列設定套用至我的 Linux 機器) 方塊即可。
+3.	根據預設，所有設定變更都會自動發送給所有代理程式。若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines]\(將下列設定套用至我的 Linux 機器) 方塊即可。
 4.	按一下 [新增+] 開啟自訂記錄檔精靈。
 
 ### 步驟 2.上傳和剖析範例記錄檔
@@ -70,8 +70,8 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 |:--|:--|
 | Windows 代理程式上的「C:\\Logs」中，副檔名為 .txt 的所有檔案 | C:\\Logs\\*.txt |
 | Windows 代理程式上的「C:\\Logs」中，名稱開頭為 log 且副檔名為 .txt 的所有檔案 | C:\\Logs\\log*.txt |
-| Windows 代理程式上的「/var/log/audit」中，副檔名為 .txt 的所有檔案 | /var/log/audit/*.txt |
-| Windows 代理程式上的「/var/log/audit」中，名稱開頭為 log 且副檔名為 .txt 的所有檔案 | /var/log/audit/log*.txt |
+| Windows 代理程式上的 */var/log/audit* 中副檔名為 .txt 的所有檔案 | /var/log/audit/*.txt |
+| Linux 代理程式上的 */var/log/audit*中，名稱開頭為 log 且副檔名為 .txt 的所有檔案 | /var/log/audit/log*.txt |
   
 
 1.	選取 Windows 或 Linux 以指定您要新增的路徑格式。
@@ -178,4 +178,4 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 - 使用[自訂欄位](log-analytics-custom-fields.md)，以將自訂記錄檔中的項目剖析至個別欄位。
 - 了解[記錄搜尋](log-analytics-log-searches.md)，以分析從資料來源和解決方案所收集的資料。 
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

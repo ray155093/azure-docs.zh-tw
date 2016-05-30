@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="05/13/2016"
 	ms.author="jgao"/>
 
 #使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集
@@ -64,7 +64,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	
 	- **設定**和**所有設定**：顯示該叢集的 [設定] 刀鋒視窗，可讓您存取該叢集的詳細組態資訊。
 	- **儀表板**、**叢集儀表板**和 **URL：這些是存取叢集儀表板 (也就是適用於 Linux 型叢集的 Ambari Web) 的所有方法。
-	- **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
+- **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
 	- **調整叢集**：可讓您變更此叢集的背景工作節點數目。
 	- **刪除**：刪除叢集。
 	- **快速入門** (![雲和雷電圖示 = 快速入門](./media/hdinsight-administer-use-portal-linux/quickstart.png))：顯示可協助您開始使用 HDInsight 的資訊。
@@ -196,17 +196,49 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 
 如需定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。若要從入口網站刪除叢集，請參閱[刪除叢集](#delete-clusters)
 
-##變更叢集使用者名稱
+##變更密碼
 
-HDInsight 叢集可以有兩個使用者帳戶。HDInsight 叢集使用者帳戶 (A.K.A.HTTP 使用者帳戶) 以及 SSH 使用者帳戶都會在建立程序期間建立。您可以使用 Ambari web UI，以變更叢集使用者帳戶的使用者名稱和密碼︰
+HDInsight 叢集可以有兩個使用者帳戶。HDInsight 叢集使用者帳戶 (A.K.A.HTTP 使用者帳戶) 以及 SSH 使用者帳戶都會在建立程序期間建立。您可以使用 Ambari Web UI 來變更叢集使用者帳戶的使用者名稱、密碼，以及用於變更 SSH 使用者帳戶的指令碼動作。
 
-**變更 HDInsight 叢集使用者密碼**
+###變更叢集使用者密碼
+
+> [AZURE.NOTE] 如果您變更叢集使用者 (管理員) 密碼，可能會造成針對此叢集執行的指令碼動作失敗。如果您有任何以背景工作節點為目標的持續性指令碼動作，當您透過調整大小作業新增節點到叢集，這些指令碼動作可能會失敗。如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 1. 使用 HDInsight 叢集使用者認證登入 Ambari Web UI。預設的使用者名稱為 **admin**。URL 是 **https://<HDInsight Cluster Name>azurehdinsight.net**。
-2. 從頂端功能表按一下 [Admin]，然後按一下 [管理 Ambari]。 
-3. 從左側功能表中，按一下 [使用者]。
+2. 按一下頂端功能表中的 [管理]，然後按一下 [管理 Ambari]。 
+3. 按一下從左側功能表中的 [使用者]。
 4. 按一下 Admin。
 5. 按一下 [變更密碼]。
+
+Ambari 會變更叢集中所有節點上的密碼。
+
+###變更 SSH 使用者密碼
+
+1. 使用文字編輯器中，將下列文字儲存為檔案並命名為 __changepassword.sh__。
+
+    > [AZURE.IMPORTANT] 您必須使用行尾結束符號為 LF 的編輯器。如果編輯器使用 CRLF，指令碼將無法運作。
+    
+        #! /bin/bash
+        USER=$1
+        PASS=$2
+
+        usermod --password $(echo $PASS | openssl passwd -1 -stdin) $USER
+
+2. 將檔案上傳至可以使用 HTTP 或 HTTPS 位址從 HDInsight 存取的儲存位置。例如，OneDrive 或 Azure Blob 儲存體這類的公用檔案存放區。將 URI (HTTP 或 HTTPS 位址) 儲存至檔案，在下一個步驟需用到此檔案。
+
+3. 從 Azure 入口網站選取 HDInsight 叢集，然後選取 [所有設定]。從 [設定] 刀鋒視窗，選取 [指令碼動作]。
+
+4. 從 [指令碼動作] 刀鋒視窗，選取 [提交新的]。[提交指令碼動作] 刀鋒視窗出現後，輸入下列資訊。
+
+    | 欄位 | 值 |
+    | ----- | ----- |
+    | 名稱 | 變更 SSH 密碼 |
+    | Bash 指令碼 URI | changepassword.sh 檔案的 URI |
+    | 節點 (前端、背景工作、Nimbus、監督員、Zookeeper 等) | ✓ 針對列出的所有節點類型 |
+    | 參數 | 輸入 SSH 使用者名稱，然後輸入密碼。使用者名稱和密碼之間應該有一個空格。
+    | 保存這個指令碼動作... | 不選取此欄位。
+
+5. 按一下 [建立] 套用指令碼。指令碼完成後，您可以使用 SSH 與新密碼連接到叢集。
 
 ##授與/撤銷存取權
 
@@ -225,9 +257,9 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 **尋找您的 Azure 訂用帳戶識別碼**
 
 1. 登入[入口網站][azure-portal]。
-2. 按一下左側功能表的 [全部瀏覽]，然後按一下 [訂用帳戶]。每個訂用帳戶都有一個名稱和識別碼。
+2. 按一下左側功能表中的 [全部瀏覽]，然後按一下 [訂用帳戶]。每個訂用帳戶都有一個名稱和識別碼。
 
-每個叢集都會繫結至一個 Azure 訂用帳戶。訂用帳戶識別碼會顯示在叢集 [Essential] 圖格上。請參閱[列出和顯示叢集](#list-and-show-clusters)。
+每個叢集都會繫結至一個 Azure 訂用帳戶。訂用帳戶識別碼會顯示在叢集 [基本資料] 圖格上。請參閱[列出和顯示叢集](#list-and-show-clusters)。
 
 ##尋找資源群組 
 
@@ -254,7 +286,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 2. 開啟 [Hive 檢視]，如下列螢幕擷取畫面所示：  
 
 	![HDInsight Hive 檢視](./media/hdinsight-administer-use-portal-linux/hdinsight-hive-view.png)
-3. 按一下頂端功能表的 [查詢]。
+3. 按一下頂端功能表中的 [查詢]。
 4. 在**查詢編輯器**中輸入 Hive 查詢，然後按一下 [執行]。
 
 ##監視工作
@@ -266,7 +298,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 使用 Azure 入口網站時，您可以瀏覽預設容器的內容。
 
 1. 登入 [https://portal.azure.com](https://portal.azure.com)。
-2. 按一下左側功能表的 [HDInsight 叢集] 以列出現有的叢集。
+2. 按一下左側功能表中的 [HDInsight 叢集] 以列出現有的叢集。
 3. 按一下叢集名稱。如果叢集清單很長，您可以使用頁面頂端的篩選器。
 4. 按一下 [設定]。
 5. 從 [設定] 刀鋒視窗，選取 [Azure 儲存體金鑰]。
@@ -300,4 +332,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-portal-linux/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!----HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

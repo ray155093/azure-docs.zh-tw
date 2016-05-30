@@ -47,18 +47,7 @@ Yammer 包含下列觸發程序及動作。
 | ---|---|---|
 |權杖|是|提供 Yammer 的認證|
 
-請遵循下列步驟登入 Yammer，並在邏輯應用程式中完成 Yammer **連接**的組態：
-
-1. 選取 [週期]
-2. 選取 [頻率] 並輸入 [間隔]
-3. 選取 [加入動作] ![設定 Yammer][1]
-4. 在搜尋方塊中輸入 yammer，等候搜尋傳回名稱中有 Yammer 的所有項目
-5. 選取 [Yammer - 取得所有訊息]
-6. 選取 [登入 Yammer]：![設定 Yammer][2]
-7. 提供您的 Yammer 認證來登入以授權應用程式 ![設定 Yammer][3]  
-8. 您將會重新導向至組織的登入頁面。**允許** Yammer 與邏輯應用程式互動：![設定 Yammer][4] 
-9. 登入之後，返回邏輯應用程式，設定 [Yammer - 取得所有訊息] 區段並加入其他所需的觸發與動作後即可完成。![設定 Yammer][5]  
-10. 選取上方功能表列的 [儲存] 來儲存您的工作。
+>[AZURE.INCLUDE [建立至 Yammer 連線的步驟](../../includes/connectors-create-api-yammer.md)]
 
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
@@ -206,4 +195,4 @@ Yammer 包含下列觸發程序及動作。
 [4]: ./media/connectors-create-api-yammer/connectionconfig4.png
 [5]: ./media/connectors-create-api-yammer/connectionconfig5.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

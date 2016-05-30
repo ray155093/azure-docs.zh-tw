@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/14/2016"
-   ms.author="mani-ramaswamy"/>
+   ms.date="05/13/2016"
+   ms.author="subramar"/>
 
 # 在服務資訊清單中指定資源
 
 ## 概觀
 
-服務資訊清單可宣告/變更服務使用的資源，且不需變更已編譯的程式碼。Azure Service Fabric 支援針對服務的端點資源組態。透過應用程式資訊清單中的 SecurityGroup，即可控制存取服務資訊清單中的指定資源。資源宣告可讓您在部署階段變更這些資源，也就是服務不需要導入新的組態機制。
+服務資訊清單可宣告/變更服務使用的資源，且不需變更已編譯的程式碼。Azure Service Fabric 支援針對服務的端點資源組態。透過應用程式資訊清單中的 SecurityGroup，即可控制存取服務資訊清單中的指定資源。資源宣告可讓您在部署階段變更這些資源，也就是服務不需要導入新的組態機制。ServiceManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\\Program Files\\Microsoft SDKs\\Service Fabric\\schemas\\ServiceFabricServiceModel.xsd*。
 
-## 端點
+## Endpoints
 
 如果沒有指定明確通訊埠 (例如，請查看下列 *ServiceEndpoint1* 端點)，在服務資訊清單中定義端點資源時，Service Fabric 會從保留的應用程式連接埠範圍指派連接埠。此外，服務也可以在資源中要求特定連接埠。不同的連接埠號碼可以指派給在不同叢集節點上執行的服務複本，而在同一節點上執行的相同服務複本也可以共用同一個連接埠。服務複本可將此類連接埠用於各種用途，例如複寫、接聽用戶端要求等。
 
@@ -137,4 +137,4 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
 </ApplicationManifest>
 ```
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/10/2016" 
+	ms.date="05/10/2016"
 	ms.author="bradsev" />
 
 # 使用 Azure 儲存體總管從 Azure Blob 儲存體來回移動資料
 
-## 簡介 
-
-Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及更改 Azure 儲存體帳戶中的資料。本主題說明如何使用它來於 Azure Blob 儲存體中上傳及下載資料。您可以從 [Azure Storage Explorer (Azure 儲存體總管)](http://storageexplorer.com/) 下載該工具。
+Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及更改 Azure 儲存體帳戶中的資料。本主題說明如何使用它來於 Azure Blob 儲存體中上傳及下載資料。您可以從 [Azure 儲存體總管](http://storageexplorer.com/)下載該工具。
 
 以下是有關從 Azure Blob 儲存體來回移動資料所使用之技術的指引連結：
  
@@ -59,4 +57,4 @@ Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及�
 [2]: ./media/machine-learning-data-science-move-azure-blob/data-science-process-uploading-data-to-blob-storage-img2.png
 [3]: ./media/machine-learning-data-science-move-azure-blob/data-science-process-uploading-data-to-blob-storage-img3.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

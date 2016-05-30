@@ -21,9 +21,11 @@
 
 了解如何在 [Azure 虛擬網路][1]上建立 Azure HDInsight HBase 叢集。
 
-[AZURE.INCLUDE [hdinsight-azure-portal](../../includes/hdinsight-azure-portal.md)]
-
-* [在 Azure 虛擬網路上佈建 HBase 叢集](hdinsight-hbase-provision-vnet.md)
+> [AZURE.IMPORTANT] 本文件中的步驟使用 Azure 傳統入口網站。建立新的服務時，Microsoft 不建議您使用傳統入口網站。如需 Azure 入口網站的優點說明，請參閱 [Microsoft Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。
+>
+> 本文件也包含使用 Azure PowerShell 的相關資訊。提供的程式碼片段是以下列命令為基礎：使用 Azure 服務管理 (ASM) 來處理 HDInsight 及__已被取代__的命令。這些命令將在 2017 年 1 月 1 日之前予以移除。
+>
+>如需這份文件的「使用 Azure 入口網站搭配使用 Azure Resource Manager (ARM) 的 PowerShell 程式碼片段」版本，請參閱[在 Azure 虛擬網路上佈建 HBase 叢集](hdinsight-hbase-provision-vnet.md)。
 
 由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。其優點包括：
 
@@ -86,7 +88,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 
 > [AZURE.NOTE] HDInsight 叢集使用 Azure Blob 儲存體來儲存資料。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop](hdinsight-hadoop-use-blob-storage.md) (英文)。您將會需要儲存體帳戶和 Blob 儲存體容器。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。
 
-像其他 HDInsight 叢集一樣，HBase 叢集需要 Azure 儲存體帳戶和 Blob 儲存體容器做為預設檔案系統。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop][hdinsight-storage] (英文)。當您佈建 HBase 叢集時，可以選擇建立新叢集或使用現有叢集。此程序顯示如何使用 Azure 傳統入口網站建立儲存體帳戶和 Blob 儲存體容器。
+像其他 HDInsight 叢集一樣，HBase 叢集需要 Azure 儲存體帳戶和 Blob 儲存體容器做為預設檔案系統。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop][hdinsight-storage]\(英文)。當您佈建 HBase 叢集時，可以選擇建立新叢集或使用現有叢集。此程序顯示如何使用 Azure 傳統入口網站建立儲存體帳戶和 Blob 儲存體容器。
 
 1. 登入 [Azure 傳統入口網站][azure-portal]。
 2. 按一下左下角的 [新增]，並指向 [資料服務]，接著指向 [儲存體]，然後按一下 [快速建立]。
@@ -434,4 +436,4 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 [img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "佈建新 HBase 叢集的詳細資料"
 [img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作以自訂 HBase 叢集"
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

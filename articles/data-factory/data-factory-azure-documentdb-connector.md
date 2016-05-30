@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/24/2016" 
+	ms.date="05/09/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 DocumentDB 來回移動資料
@@ -419,12 +419,14 @@ DocumentDB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。Azure Data 
 
 	**回：**如果記錄有 [識別碼] 欄位，而複製作業嘗試插入具有相同識別碼的記錄，則複製作業會擲回錯誤。
  
-3. **問：**資料處理站支援[範圍或雜湊式資料分割]( https://azure.microsoft.com/documentation/articles/documentdb-partition-data/)嗎？
+3. **問：**資料處理站支援[範圍或雜湊式資料分割](https://azure.microsoft.com/documentation/articles/documentdb-partition-data/)嗎？
 
 	**答：**否。 
 4. **問：**我可以指定多個資料表 DocumentDB 集合嗎？
 	
 	**回：**否。目前只能指定一個集合。
      
+## 效能和微調  
+請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0309_2016--->
+<!---HONumber=AcomDC_0518_2016-->

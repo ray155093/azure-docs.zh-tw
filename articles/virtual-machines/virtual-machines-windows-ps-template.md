@@ -23,11 +23,13 @@
 
 執行本文中的步驟約需 20 分鐘的時間。
 
+> [AZURE.IMPORTANT] 如果您希望 VM 屬於可用性設定組的一部分，可在建立 VM 時將其加入設定組。目前不支援在建立 VM 之後，再將其加入可用性設定組。
+
 ## 步驟 1：建立範本檔案
 
-您可以使用[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)中的資訊來建立專屬範本。您也可以從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署已為您建立的範本。本文中所使用的範例類似 [Deploy a simple Windows VM in West US (在美國西部部署簡單 Windows VM)](https://azure.microsoft.com/documentation/templates/101-vm-simple-windows/) 中所述的範本。
+您可以使用[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)中的資訊來建立專屬範本。您也可以從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署為您建立的範本。本文中所使用的範例類似 [Deploy a simple Windows VM in West US](https://azure.microsoft.com/documentation/templates/101-vm-simple-windows/) (在美國西部部署簡單 Windows VM) 中所述的範本。
 
-1. 開啟您常用的文字編輯器，並將此 JSON 資訊複製至稱為 *VirtualMachineTemplate.json* 的新檔案：
+1. 開啟您常用的文字編輯器，並將此 JSON 資訊複製至名為 *VirtualMachineTemplate.json* 的新檔案：
 
         {
           "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
@@ -193,7 +195,7 @@
           ]
         }
         
-    >[AZURE.NOTE] 本文會建立執行 Windows Server 作業系統版本的虛擬機器。若要深入了解如何選取其他映像，請參閱[使用 Windows PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
+    >[AZURE.NOTE] 本文會建立執行 Windows Server 作業系統版本的虛擬機器。如需深入了解如何選取其他映像，請參閱[使用 Windows PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
     
 2. 儲存範本檔案。
 
@@ -201,7 +203,7 @@
 
 若要為範本中所定義的資源參數指定值，您可以建立參數檔案，其中包含值並且將其提交至具有範本的資源管理員。
 
-1. 在文字編輯器中，將此 JSON 資訊複製至稱為 *Parameters.json* 的新檔案：
+1. 在文字編輯器中，將此 JSON 資訊複製至名為 *Parameters.json* 的新檔案：
 
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
@@ -275,11 +277,11 @@
 
         Outputs           :
 
-    >[AZURE.NOTE] 您也可以從 Azure 儲存體帳戶部署範本和參數。若要深入了解，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](../storage-powershell-guide-full.md)。
+    >[AZURE.NOTE] 您也可以從 Azure 儲存體帳戶部署範本和參數。如需深入了解，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](../storage-powershell-guide-full.md)。
 
 ## 後續步驟
 
-- 如果部署發生問題，下一個步驟是查看[使用 Azure 入口網站疑難排解資源群組部署](../resource-manager-troubleshoot-deployments-portal.md)。
+- 如果部署發生問題，下一個步驟是查看[使用 Azure 入口網站為資源群組部署疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
 - 請檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -19,8 +19,9 @@
 # 使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure (舊版)
 
 > [AZURE.SELECTOR]
-- [增強](site-recovery-vmware-to-azure-classic.md)
-- [舊版](site-recovery-vmware-to-azure-classic-legacy.md)
+- [Azure 入口網站](site-recovery-vmware-to-azure.md)
+- [傳統入口網站](site-recovery-vmware-to-azure-classic.md)
+- [傳統入口網站 (舊版)](site-recovery-vmware-to-azure-classic-legacy.md)
 
 
 Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。機器可以複寫至 Azure，或次要的內部部署資料中心。如需快速概觀，請參閱[什麼是 Azure Site Recovery？](site-recovery-overview.md)。
@@ -58,7 +59,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 1. 深入了解[增強功能](site-recovery-vmware-to-azure-classic.md#enhanced-deployment)，並確定您了解新[架構](site-recovery-vmware-to-azure-classic.md#scenario-architecture)，然後檢查增強部署的[必要條件](site-recovery-vmware-to-azure-classic.md#before-you-start-deployment)。
 2. 從您目前保護的電腦解除安裝行動服務。在您新增行動服務至新的保護群組時，將在電腦上安裝新版本的行動服務
 3. 取得[保存庫註冊金鑰](site-recovery-vmware-to-azure-classic.md#step-4-download-a-vault-registration-key)並[執行整合安裝精靈](site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)，以在管理伺服器上安裝組態伺服器、處理序伺服器和主要目標伺服器元件。深入了解[容量規劃](site-recovery-vmware-to-azure-classic.md#capacity-planning)。
-4. 如果您有可以存取它的 VMware vCenter 伺服器[設定認證](site-recovery-vmware-to-azure-classic.md#step-6-set-up-credentials-for-the-vcenter-server)，Site Recovery 就可以自動探索其所管理的 VM。深入了解[所需的權限](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)。
+4. 如果您有可以存取它的 VMware vCenter 伺服器[設定認證](site-recovery-vmware-to-azure-classic.md#step-6-set-up-credentials-for-the-vcenter-server)，Site Recovery 就可以自動探索它所管理的 VM。深入了解[所需的權限](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)。
 5. 加入 [vCenter 伺服器或 ESXi 主機](site-recovery-vmware-to-azure-classic.md#step-7-add-vcenter-servers-and-esxi-hosts)。可能需要 15 分鐘讓入口網站重新整理，以便顯示認證。
 6. 建立[新的保護群組](site-recovery-vmware-to-azure-classic.md#step-8-create-a-protection-group)。可能需要 15 分鐘讓入口網站重新整理，以便探索和顯示虛擬機器。如果您不想等待，可以反白顯示管理伺服器名稱 (不要按它) > [重新整理]。
 7. 在新的保護群組底下按一下 [移轉機器]。
@@ -72,7 +73,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration3.png)
 
-10. 在 [指定帳戶] 中，選取您建立的帳戶以將新版本的行動服務自動推入受保護的機器。
+10. 在 [指定帳戶] 中，選取您建立的帳戶以將新版本的行動服務自動推入至受保護的機器。
 
 	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration4.png)
 
@@ -80,11 +81,11 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 12. 在作業完成之後會自動同步處理虛擬機器。同步處理完成之後，您可以從舊版保護群組中刪除虛擬機器。
 13. 所有機器都移轉之後，您可以刪除舊版保護群組。
 14. 請記得在同步處理完成之後指定機器的容錯移轉屬性和 Azure 網路設定。
-15. 如果您有現有的復原計畫，您可以使用 [移轉復原計畫] 選項將其移轉至增強部署。您應該只在已經移轉所有受保護的機器之後執行這項操作。 
+15. 如果您有現有的復原計畫，您可以使用 [移轉復原計畫] 選項將它們移轉至增強部署。您應該只在已經移轉所有受保護的機器之後執行這項操作。 
 
 	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration5.png)
 
->[AZURE.NOTE] 在您完成移轉步驟之後，應繼續閱讀有關[增強的文章](site-recovery-vmware-to-azure-classic.md)。移轉之後，此舊版文章的其餘部分將不再相關，因此您不需要再依照文章中說明的任何其他步驟執行作業**。
+>[AZURE.NOTE] 在您完成移轉步驟之後，應繼續閱讀[增強的文章](site-recovery-vmware-to-azure-classic.md)。移轉之後，此舊版文章的其餘部分將不再相關，因此您不需要再依照文章中說明的任何其他步驟執行作業**。
 
 
 
@@ -427,7 +428,6 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 	2. 使用安全殼層用戶端登入伺服器。請注意，如果您已透過 VPN 連線到 Azure 網路，請使用內部 IP 位址。否則請使用外部 IP 位址與 SSH 公用端點。
 	3. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR\_UA\_8.4.0.0\_RHEL6-64***  
 	![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
-	
 	4. 請確認您在解壓縮 tar 檔案內容的目錄中。
 	5. 使用命令 **echo *`<passphrase>`* >passphrase.txt** 將組態伺服器的複雜密碼複製到本機檔案
 	6. 執行命令 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i *`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**”。
@@ -815,4 +815,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

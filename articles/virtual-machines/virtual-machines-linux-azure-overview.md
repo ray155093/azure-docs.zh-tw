@@ -20,7 +20,7 @@
 Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web，因此很適合用來裝載您的方案。Microsoft Azure 提供可調整的運算平台，可讓您用多少就付多少且隨時都能使用，完全不必投資內部部署的硬體。Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
  
 ## Azure 虛擬機器
-Azure 虛擬機器可供您靈活部署各種運算方案。若您要部署 Windows 或 Linux 虛擬機器，可透過映像庫或我們不斷增加的夥伴清單內的任何成員所建立的自訂映像來進行。您幾乎可以在任何作業系統上以幾乎任何語言部署幾乎任何工作負載。還是沒找到您在尋找的映像嗎？ 別擔心，您也可以使用您在內部部署中擁有的映像。
+Azure 虛擬機器可供您靈活部署各種運算方案。您可以在大部分的作業系統 (Windows、Linux，或來自我們持續增加合作夥伴的自訂建立作業系統)，部署幾乎任何工作負載和任何語言。還是沒找到您在尋找的映像嗎？ 別擔心，您也可以使用您在內部部署中擁有的映像。
  
 ## 在 Microsoft Azure 中開始使用 Linux
 
@@ -29,7 +29,7 @@ Azure 虛擬機器可供您靈活部署各種運算方案。若您要部署 Wind
 1. 免費試用帳戶。[前往取得](https://azure.microsoft.com/pricing/free-trial/)。
 2. 適用於 Linux、Mac 和 Windows 的 Azure 命令列介面 (Azure CLI)。[加以安裝](../xplat-cli-install.md)。
 3. Linux VM。[加以建立](virtual-machines-linux-quick-create-cli.md)。
-4. 其他關於 Linux 和 Azure 的資訊，包括如何符合服務等級協定 (SLA) 的資格。**即使您不喜歡法律文件也請閱讀本文件**。
+4. 其他關於 Linux 和 Azure 的資訊，包括如何符合[服務等級協定 (SLA)](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 的資格。**即使您不喜歡法律文件也請閱讀本文件**。
 
 ## 物流︰區域、散發套件、可用性、VM 大小和配額
 ### 區域
@@ -58,6 +58,6 @@ Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 
 
 ## 後續步驟
 
-免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶而想要試用看看，請**[安裝 Azure CLI](../xplat-cli-install.md)**。如果您已試用完畢，則請[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
+免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶而想要試用看看，請**[安裝 Azure CLI](../xplat-cli-install.md)**。如果您已安裝，請[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -11,7 +11,7 @@
 <tags
 	ms.service="virtual-machines-windows"
 	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="Windows"
+	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/04/2016"
@@ -67,4 +67,4 @@ Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬�
 
 - 探索 Azure 基礎結構服務中其他的 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 組態。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

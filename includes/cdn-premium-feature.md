@@ -1,1 +1,1 @@
-> [AZURE.IMPORTANT] This is a feature of **Azure CDN Premium from Verizon**, and is not available with **Azure CDN Standard** products.  For a comparison of CDN features, see [Azure CDN Overview](cdn-overview.md#azure-cdn-features). 
+> [AZURE.IMPORTANT] 這是一項**透過 Verizon 提供的 Azure CDN 進階版**功能，因此 **Azure CDN 標準版**產品並不提供此功能。如需 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md#azure-cdn-features)。

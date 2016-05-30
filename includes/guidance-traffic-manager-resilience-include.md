@@ -1,7 +1,7 @@
-##Highly available solutions with Azure traffic manager
+##使用 Azure 流量管理員的高可用性方案
 
-You need to determine whether your workload's high availability requirements can be met by using Azure traffic manager alone, or if you need to combine traffic manager with other DNS solutions, or processes. Depending on your needs, you can use:
+首先，您必須判斷如何滿足您的工作負載高可用性需求：是單獨使用 Azure 流量管理員即可，還是需要結合流量管理員與其他 DNS 方案或處理序。根據您的需求，您可以：
 
-- **Traffic manager alone**. If a 99.99% up time is sufficient for your workload, you can use traffic manager by itself. In the event of failure in the traffic manager service, users will not be able to access your workload until the traffic manager service is reestablished.
+- **只使用流量管理員**。如果 99.99% 的運作時間對您的工作負載來說已足夠，則可以只使用流量管理員。在流量管理員服務發生故障的情況下，使用者必須在重新建立流量管理員服務之後，才能存取您的工作負載。
 
-- **Use another traffic manager solution along with Azure traffic manager**. In the event of failure in the traffic manager service, you can change your CNAME record to point to the other traffic manager service. Access to your workload is still available, and distributed to all locations hosting your workload. This is the most expensive solution, but may be required for workloads that need a higher SLA.
+- **搭配使用其他流量管理員方案與 Azure 流量管理員**。在流量管理員服務發生故障的情況下，您可以變更您的 CNAME 記錄，以指向其他流量管理員服務。您的工作負載仍可供存取，並會分散至裝載工作負載的所有位置。這是最昂貴的方案，但在需要較高 SLA 的工作負載情況下可能是必要的。

@@ -3,12 +3,12 @@
 適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：
 
 ``` XML
-<dependency> 
-    <groupId>com.microsoft.azure</groupId> 
-    <artifactId>azure-eventhubs-clients</artifactId> 
-    <version>0.6.0</version> 
-</dependency>   
- ```
+<dependency>
+	<groupId>com.microsoft.azure</groupId>
+	<artifactId>azure-eventhubs</artifactId>
+	<version>0.6.9</version>
+</dependency>
+```
  
 對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。
 
@@ -56,5 +56,3 @@ public class Send
 }
 
 ``` 
-
-<!---HONumber=AcomDC_0323_2016-->

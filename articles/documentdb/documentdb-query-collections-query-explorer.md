@@ -19,7 +19,7 @@
 
 # 使用查詢總管針對 DocumentDB 撰寫、編輯和執行 SQL 查詢 
 
-本篇文章提供了 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 查詢總管的概述，它是一項 Azure 入口網站工具，可讓您針對 [DocumentDB 集合](documentdb-create-collection)撰寫、編輯和執行 SQL 查詢。
+本篇文章提供了 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 查詢總管的概述，它是一項 Azure 入口網站工具，可讓您針對 [DocumentDB 集合](documentdb-create-collection.md)撰寫、編輯和執行 SQL 查詢。
 
 1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB 帳戶]。如果看不到 [DocumentDB 帳戶]，請按一下 [瀏覽]，然後按一下 [DocumentDB 帳戶]。
 
@@ -37,7 +37,7 @@
 
     按一下 [執行查詢] 以檢視結果。
 
-	![在 [查詢總管] (SQL 查詢編輯器) 中撰寫 SQL 查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
+	![在 [查詢總管]\(SQL 查詢編輯器) 中撰寫 SQL 查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
 
 4. [結果] 刀鋒視窗會顯示查詢的輸出。
 
@@ -57,7 +57,7 @@
 
 如果您使用多個查詢，而且想要在其間快速切換，您可以在 [查詢總管] 刀鋒視窗的查詢文字方塊中輸入所有查詢，將您要執行的查詢反白，然後按一下 [執行查詢] 以檢視結果。
 
-![在 [查詢總管] (SQL 查詢編輯器) 中撰寫多個 SQL 查詢，然後反白顯示並執行個別查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
+![在 [查詢總管]\(SQL 查詢編輯器) 中撰寫多個 SQL 查詢，然後反白顯示並執行個別查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
 
 ## 將查詢從檔案加入至 SQL 查詢編輯器
 
@@ -79,4 +79,4 @@ Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL
 
 若要深入了解 [查詢總管] 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢小祕技](documentdb-sql-query-cheat-sheet.md)。您也可以享受 [Query Playground](https://www.documentdb.com/sql/demo) 體驗，在其中使用範例資料集在線上測試查詢。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

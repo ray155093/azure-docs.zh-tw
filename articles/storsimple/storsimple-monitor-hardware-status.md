@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/05/2016"
+   ms.date="05/18/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務監視硬體元件和狀態
@@ -39,7 +39,7 @@
 
 - **EBOD 控制器 1 元件** – 構成 EBOD 機箱 1 的元件，類似於 EBOD 機箱 0 的詳細元件。
 
->[AZURE.NOTE]**StorSimple 虛擬裝置 (1100) 的 [維護] 頁面中沒有硬體狀態區段。**
+>[AZURE.NOTE] **StorSimple 虛擬裝置 (1100) 的 [維護] 頁面中沒有硬體狀態區段。**
 
 
 ## 監視硬體狀態
@@ -136,4 +136,4 @@
 
 - 如果持續發生裝置問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0518_2016-->

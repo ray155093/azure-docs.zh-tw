@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
+	ms.date="05/16/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：檔案支援要求
@@ -40,7 +40,7 @@
     - [問題類型] 是 [技術]。
 	- 選擇適當的 [訂用帳戶]。
     - [服務] 是 [Active Directory]。
-    - 選擇適當的 [支援方案]。如果您沒有任何方案，可以在[這裡](https://azure.microsoft.com/zh-TW/support/plans/)註冊一個。
+    - 選擇適當的 [支援方案]。如果您沒有任何方案，可以在[這裡](https://azure.microsoft.com/support/plans/)註冊一個。
 
     ![支援 - 基本](./media/active-directory-b2c-support/support-basics.png)
 
@@ -70,4 +70,4 @@
 
 ![支援 - 無訂用帳戶](./media/active-directory-b2c-support/support-no-sub.png)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

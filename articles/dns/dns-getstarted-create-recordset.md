@@ -1,5 +1,5 @@
 <properties
-   pageTitle="建立 DNS 區域的記錄集和記錄 | Microsoft Azure"
+   pageTitle="使用 PowerShell 建立 DNS 區域的記錄集和記錄 | Microsoft Azure"
    description="如何建立 Azure DNS 的主機記錄。使用 PowerShell 設定記錄集和記錄"
    services="dns"
    documentationCenter="na"
@@ -13,11 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/03/2016"
+   ms.date="05/06/2016"
    ms.author="cherylmc"/>
 
 
-# 建立 DNS 記錄
+
+# 使用 PowerShell 建立 DNS 記錄集和記錄
 
 
 > [AZURE.SELECTOR]
@@ -25,69 +26,83 @@
 - [PowerShell](dns-getstarted-create-recordset.md)
 - [Azure CLI](dns-getstarted-create-recordset-cli.md)
 
-建立 DNS 區域之後，您必須加入網域的 DNS 記錄。若要這樣做，您必須先了解 DNS 記錄和記錄集。
+本文將逐步引導您使用 PowerShell 建立記錄和記錄集。建立 DNS 區域之後，您必須加入網域的 DNS 記錄。若要這樣做，您必須先了解 DNS 記錄和記錄集。
 
+[AZURE.INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
-## 了解記錄集和記錄
-每一筆 DNS 記錄都有名稱和類型。
+## 開始之前
 
-_完整_名稱包含區域名稱，而_相對_名稱不含區域名稱。比方說，區域 'contoso.com' 中的相對記錄名稱 'www' 就給出完整記錄名稱 'www.contoso.com'。
-
->[AZURE.NOTE] 在 Azure DNS 中，記錄是使用相對名稱來指定。
-
-記錄根據所包含的資料而有各種類型。最常見的類型為 'A' 記錄，可將名稱對應到 IPv4 位址。另一個類型為 'MX' 記錄，可將名稱對應到郵件伺服器。
-
-Azure DNS 支援所有常見的 DNS 記錄類型：A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。(請注意，[應該使用 TXT 記錄類型建立 SPF 記錄](http://tools.ietf.org/html/rfc7208#section-3.1)。)
-
-有時候，您需要以指定的名稱和類型建立多筆 DNS 記錄。例如，假設 www.contoso.com 網站裝載於兩個不同的 IP 位址。這需要兩筆不同的 A 記錄，每個 IP 位址各一筆：
-
-	www.contoso.com.		3600	IN	A	134.170.185.46
-	www.contoso.com.		3600	IN	A	134.170.188.221
-
-這是記錄集的範例。記錄集是指一個區域中有相同名稱和相同類型的 DNS 記錄集合。大部分的記錄集只包含單一記錄，但像以上的記錄集包含多筆記錄的例子也屢見不鮮。(SOA 和 CNAME 類型的記錄集是例外，DNS 標準不允許這些類型有多筆相同名稱的記錄。)
-
-存留時間 (TTL) 指定每一筆記錄由用戶端快取多久，之後才會重新查詢。在上述範例中，TTL 是 3600 秒 (1 小時)。TTL 是針對記錄集而指定，而非針對每一筆記錄，因此相同的值套用至該記錄集內的所有記錄。
-
->[AZURE.NOTE] Azure DNS 使用記錄集來管理 DNS 記錄。
-
-
+請確認您已安裝最新版的 Azure Resource Manager PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 建立記錄集和記錄
 
-下列範例將示範如何建立記錄集與記錄。我們將使用 DNS 'A' 記錄類型，如需其他記錄類型，請參閱[如何管理 DNS 記錄](dns-operations-recordsets.md)
+在本章節中，我們將示範如何建立記錄集與記錄。
 
 
-### 步驟 1
+### 1\.連線至您的訂用帳戶 
 
-建立記錄集，並指派給變數 $rs：
+開啟 PowerShell 主控台並連接到您的帳戶。使用下列範例來協助您連接：
 
-	PS C:\>$rs = New-AzureRmDnsRecordSet -Name "www" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 60
+	Login-AzureRmAccount
 
-記錄集在 DNS 區域 'contoso.com' 中有相對記錄名稱 'www'，因此記錄的完整名稱為 'www.contoso.com'。記錄類型為 'A'，TTL 為 60 秒。
+檢查帳戶的訂用帳戶。
 
->[AZURE.NOTE] 若要在區域頂點 (在此案例中為 'contoso.com') 建立記錄集，請使用記錄名稱 "@" (包括引號)。這是常見的 DNS 慣例。
+	Get-AzureRmSubscription 
 
-這個記錄集是空的，而我們必須新增記錄，才能使用新建立的 "www" 記錄集。<BR>
+指定您要使用的訂用帳戶。
 
-### 步驟 2
+	Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
 
-使用在步驟 1 建立記錄集時所指派的 $rs 變數，將 IPv4 A 記錄加入至 "www" 記錄集：
+如需使用 PowerShell 的詳細資訊，請參閱[搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
-	PS C:\> Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.185.46
-	PS C:\> Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.188.221
 
-使用 Add-AzureRmDnsRecordConfig 將記錄加入至記錄集是離線作業。只有本機變數 $rs 會更新。
+### 2\.建立記錄集
 
-### 步驟 3
-認可對記錄集所做的變更。使用 Set-AzureRmDnsRecordSet 將記錄集的變更上傳到 Azure DNS：
+請使用 `New-AzureRmDnsRecordSet` Cmdlet 建立記錄集。當您建立記錄集時，您必須指定記錄集名稱、區域、存留時間 (TTL) 和記錄類型。
 
+若要在區域頂點 (在此案例中為 'contoso.com') 建立記錄集，請使用記錄名稱 "@" (包括引號)。這是常見的 DNS 慣例。
+
+下列範例在 DNS 區域 *contoso.com* 中建立具有相對名稱 *www* 的記錄集。記錄的完整名稱將是 *www.contoso.com*，記錄類型是 *A*，TTL 為 60 秒。完成此步驟之後，您就具有指派給變數 *$rs* 的空 *www* 記錄集。
+
+	$rs = New-AzureRmDnsRecordSet -Name "www" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 60
+
+#### 如果記錄集已經存在
+
+如果記錄集已經存在，則命令會失敗，除非使用 *-Overwrite* 參數。*-Overwrite* 選項會觸發確認提示，但可使用 *-Force* 參數來隱藏提示。
+
+
+	$rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 -ZoneName contoso.com -ResouceGroupName MyAzureResouceGroup [-Tag $tags] [-Overwrite] [-Force]
+
+
+在上例中，區域是使用區域名稱和資源群組名稱來指定。或者，您可以指定區域物件，如同 `Get-AzureRmDnsZone` 或 `New-AzureRmDnsZone` 所傳回。
+
+	$zone = Get-AzureRmDnsZone -Name contoso.com –ResourceGroupName MyAzureResourceGroup
+	$rs = New-AzureRmDnsRecordSet -Name www -RecordType A -Ttl 300 –Zone $zone [-Tag $tags] [-Overwrite] [-Force]
+
+`New-AzureRmDnsRecordSet` 傳回本機物件，代表 Azure DNS 中建立的記錄集。
+
+### 3\.新增記錄
+
+為了能夠使用新建立的 *www* 記錄集，您必須將記錄新增至其中。您可以使用下列範例將 IPv4 *A* 記錄新增至 *www* 記錄集。這個範例會依賴您在上一個步驟中設定的變數，$rs。
+
+使用 `Add-AzureRmDnsRecordConfig` 將記錄加入至記錄集是離線作業。只有本機變數 *$rs* 會更新。
+
+
+	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.185.46
+	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address 134.170.188.221
+
+### 4\.認可變更
+
+認可對記錄集所做的變更。使用 `Set-AzureRmDnsRecordSet` 將記錄集的變更上傳到 Azure DNS。
 
 	Set-AzureRmDnsRecordSet -RecordSet $rs
 
-變更已完成。您可以使用 Get-AzureRmDnsRecordSet，從 Azure DNS 擷取記錄集。
+### 5\.擷取記錄集
+
+您可以使用 `Get-AzureRmDnsRecordSet` 從 Azure DNS 擷取記錄集，如下列範例所示。
 
 
-	PS C:\> Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
+	Get-AzureRmDnsRecordSet –Name www –RecordType A -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 
 
 	Name              : www
@@ -100,13 +115,12 @@ Azure DNS 支援所有常見的 DNS 記錄類型：A、AAAA、CNAME、MX、NS、
 	Tags              : {}
 
 
-
 您也可以使用 nslookup 或其他 DNS 工具來查詢新的記錄集。
 
->[AZURE.NOTE] 如同建立區域時一樣，如果您還沒有將網域委派給 Azure DNS 名稱伺服器，則必須明確指定區域的名稱伺服器位址。
+如果您還沒有將網域委派給 Azure DNS 名稱伺服器，則必須明確指定區域的名稱伺服器位址。
 
 
-	C:\> nslookup www.contoso.com ns1-01.azure-dns.com
+	nslookup www.contoso.com ns1-01.azure-dns.com
 
 	Server: ns1-01.azure-dns.com
 	Address:  208.76.47.1
@@ -115,15 +129,21 @@ Azure DNS 支援所有常見的 DNS 記錄類型：A、AAAA、CNAME、MX、NS、
 	Addresses:  134.170.185.46
     	        134.170.188.221
 
+## 其他記錄類型範例
+
+
+下列範例示範如何建立每一種記錄類型的記錄集 (包含單一記錄)。
+
+[AZURE.INCLUDE [dns-add-record-ps-include](../../includes/dns-add-record-ps-include.md)]
 
 
 ## 後續步驟
 
 [如何管理 DNS 區域](dns-operations-dnszones.md)
 
-[如何管理 DNS 記錄](dns-operations-recordsets.md)<BR>
+[如何管理 DNS 記錄](dns-operations-recordsets.md)
 
 [使用 .NET SDK 自動化 Azure 作業](dns-sdk.md)
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

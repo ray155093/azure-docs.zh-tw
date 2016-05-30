@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # 使用規則引擎覆寫預設的 HTTP 行為
 
+[AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
+
 ## 概觀
 
-規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。本教學課程將示範如何建立用以變更 CDN 資產之快取行為的規則。[另請參閱](#see-also)一節中還有視訊內容。
-
-> [AZURE.NOTE] 規則引擎是高階 CDN 層的一項功能。如需標準和高階 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md)。
+規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。本教學課程將示範如何建立用以變更 CDN 資產之快取行為的規則。「[另請參閱](#see-also)」一節中還有視訊內容。
 
 ## 教學課程
 
@@ -38,6 +38,8 @@
 
 	![CDN 新規則選項](./media/cdn-rules-engine/cdn-new-rule.png)
 
+	>[AZURE.IMPORTANT] 多項規則的列出順序會影響規則的處理方式。後一項規則可能會覆寫前一項規則所指定的動作。
+	
 3. 在 [名稱/描述] 文字方塊中輸入名稱。
 
 4. 識別將套用此規則的要求類型。預設會選取 [永遠] 相符條件。本教學課程將使用 [永遠]，因此請維持選取。
@@ -58,12 +60,10 @@
 
 6.  按一下 [加入] 按鈕，以儲存新規則。新規則現在正在等待核准。核准後，狀態會從 [暫止 XML] 變更為 [使用中 XML]。
 
-## 考量
-
-- 多項規則的列出順序會影響規則的處理方式。後一項規則可能會覆寫前一項規則所指定的動作。
+	>[AZURE.IMPORTANT] 規則變更可能需要最多 90 分鐘才能傳遍 CDN。
 
 ## 另請參閱
-* [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](../../videos/azure-cdns-powerful-new-premium-features/)
+* [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/)
 * [規則引擎相符條件和功能詳細資料](cdn-rules-engine-details.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

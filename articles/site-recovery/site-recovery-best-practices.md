@@ -33,7 +33,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **元件** | **複寫至 Azure (具有 VMM)** | **複寫至 Azure (不具 VMM)** | **複寫至次要網站 (具有 VMM)**
 ---|---|---|---
-**VMM** | 在 System Center 2012 R2 上執行的一或多部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。 | 不適用 | 至少有一個 VMM 伺服器執行於 System Center 2012 R2 上。我們建議每個網站中有一部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。雲端應該設定 Hyper-V 容量設定檔。 
+**VMM** | 在 System Center 2012 R2 上執行的一或多部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。 | 不適用 | 至少有一個 VMM 伺服器執行於 System Center 2012 R2 上。我們建議每個網站中有一部 VMM 伺服器。VMM 伺服器至少應該有一個雲端包含一或多個 VMM 主機群組。雲端應該設定 Hyper-V 容量設定檔。
 **Hyper-V** | 內部部署資料中心中，有一或多部 Hyper-V 主機伺服器至少執行 Windows Server 2012 R2。Hyper-V 伺服器必須位於 VMM 雲端中的主機群組。 | 來源和目標網站中有一或多部 Hyper-V 伺服器至少執行 Windows Server 2012 R2。 | 來源和目標網站中有一或多部 Hyper-V 伺服器至少執行包含最新更新的 Windows Server 2012。Hyper-V 伺服器必須位於 VMM 雲端中的主機群組。
 **虛擬機器** | 來源 Hyper-V 伺服器上至少需有一部 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。 | 來源 Hyper-V 伺服器上至少有一個 VM。複寫至 Azure 的 VM 必須符合 [Azure 虛擬機器必要條件](#azure-virtual-machine-requirements)。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。 | 來源 VMM 雲端中至少有一部 VM。<br> 使用[這裡](https://technet.microsoft.com/library/hh846766.aspx#BKMK_step4)提供的步驟，在 VM 中安裝或升級[整合服務](https://technet.microsoft.com/library/dn798297.aspx)。
 **Azure 帳戶** | 您需要有 [Azure](https://azure.microsoft.com/) 帳戶和訂用帳戶。 | 不適用 | 您需要有 [Azure](https://azure.microsoft.com/) 帳戶和訂用帳戶。
@@ -57,9 +57,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **元件** | **複寫至 Azure (已增強)** | **複寫至次要網站**
 ---|---|---
-**內部部署主要網站** | 您會安裝可執行所有 Site Recovery 元件 (組態、程序、主要目標) 的管理伺服器。 | 您會安裝處理序伺服器，以便在複寫資料傳送到次要站台之前，快取、壓縮及加密複寫資料。您可以安裝其他處理序伺服器進行負載平衡或容錯。 
-**內部部署次要網站** | 不適用 | 您會安裝用於設定、管理和監視部署的單一組態伺服器。<br/><br>我們建議您安裝 vContinuum 伺服器，以便進行組態伺服器管理。<br/><br/>您必須將主要目標伺服器設定為在次要 vSphere 伺服器上執行的 VM。 
-**VMware vCenter/ESXi** | 如果您要在主要網站中複寫 VMware VM (或想要容錯回復實體伺服器)，您的主要網站中需要有 vSphere ESX/ESXi。我們還建議以 VMware vCenter 伺服器管理您的 ESXi 主機。 | 在主要和次要網站中，您需要一或多個 VMware ESXi 主機 (和一部選用的 vCenter 伺服器)。 
+**內部部署主要網站** | 您會安裝可執行所有 Site Recovery 元件 (組態、程序、主要目標) 的管理伺服器。 | 您會安裝處理序伺服器，以便在複寫資料傳送到次要站台之前，快取、壓縮及加密複寫資料。您可以安裝其他處理序伺服器進行負載平衡或容錯。
+**內部部署次要網站** | 不適用 | 您會安裝用於設定、管理和監視部署的單一組態伺服器。<br/><br>我們建議您安裝 vContinuum 伺服器，以便進行組態伺服器管理。<br/><br/>您必須將主要目標伺服器設定為在次要 vSphere 伺服器上執行的 VM。
+**VMware vCenter/ESXi** | 如果您要在主要網站中複寫 VMware VM (或想要容錯回復實體伺服器)，您的主要網站中需要有 vSphere ESX/ESXi。我們還建議以 VMware vCenter 伺服器管理您的 ESXi 主機。 | 在主要和次要網站中，您需要一或多個 VMware ESXi 主機 (和一部選用的 vCenter 伺服器)。
 **容錯回復** | 即使您在複寫實體伺服器，都需要 VMware 環境才能從 Azure 容錯回復。<br/><br/>您必須設定處理序伺服器做為 Azure VM <br/><br/>組態伺服器會做為主要目標伺服器，但如果您要容錯回復大量流量，您可以設定額外的內部部署主要目標伺服器。[深入了解](site-recovery-failback-azure-to-vmware-classic.md)| 即使您已容錯移轉實體機器，從次要網站到主要站台的容錯回復仍僅限於 VMware。如需容錯回復，您必須設定主要目標伺服器做為主要 vSphere 伺服器上的 VM。
 **Azure 帳戶** | 您需要有 [Azure](https://azure.microsoft.com/) 帳戶和訂用帳戶。 | 不適用
 **Azure 儲存體** | 您需要 [Azure 儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)來儲存複寫的資料。複寫的資料會儲存在 Azure 儲存體，容錯移轉時會啟動 Azure VM。 | 不適用
@@ -85,7 +85,7 @@ VMware hypervisor | 支援的作業系統 | [檢查需求](site-recovery-vmware-
 資料磁碟計數 | 16 或更少 (最大值是所建立之虛擬機器大小的函數。16 = XL) | 如果不支援，則先決條件檢查會失敗
 資料磁碟 VHD 大小 | 最大 1023 GB | 如果不支援，則先決條件檢查會失敗
 網路介面卡 | 支援多個介面卡 |
-靜態 IP 位址 | 支援 | 如果主要虛擬機器使用靜態 IP 位址，您可以為將在 Azure 中建立的虛擬機器指定靜態 IP 位址。請注意，不支援在 Hyper-v 上執行的 Linux 虛擬機器的靜態 IP 位址。 
+靜態 IP 位址 | 支援 | 如果主要虛擬機器使用靜態 IP 位址，您可以為將在 Azure 中建立的虛擬機器指定靜態 IP 位址。請注意，不支援在 Hyper-v 上執行的 Linux 虛擬機器的靜態 IP 位址。
 iSCSI 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 共用 VHD | 不支援 | 如果不支援，則先決條件檢查會失敗
 FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
@@ -112,7 +112,19 @@ FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 - **RPO**：當您複寫至 Azure 時，Site Recovery 支援幾乎同步的復原點目標 (RPO)。這是假設您的資料中心與 Azure 之間有足夠的頻寬。
 
 
+##服務 URL
+確定可以從伺服器存取這些 URL
 
+
+**URL** | **VMM 至 VMM** | **VMM 至 Azure** | **Hyper-V 網站至 Azure** | **VMware 至 Azure**
+---|---|---|---|---
+ *.accesscontrol.windows.net | 必要的存取 | 必要的存取 | 必要的存取 | 必要的存取
+ *.backup.windowsazure.com | | 必要的存取 | 必要的存取 | 必要的存取
+ *.hypervrecoverymanager.windowsazure.com | 必要的存取 | 必要的存取 | 必要的存取 | 必要的存取
+ *.store.core.windows.net | 必要的存取 | 必要的存取 | 必要的存取 | 必要的存取
+ *.blob.core.windows.net | | 必要的存取 | 必要的存取 | 必要的存取
+ https://www.msftncsi.com/ncsi.txt | 必要的存取 | 必要的存取 | 必要的存取 | 必要的存取
+ https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi | | | | 必要的存取
 
 
 ## 後續步驟
@@ -127,4 +139,4 @@ FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 - [利用 SAN 將 Hyper-V VM 複寫至次要網站](site-recovery-vmm-san.md)
 - [利用單一 VMM 伺服器複寫 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

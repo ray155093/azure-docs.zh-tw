@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="12/16/2015"
+   ms.date="04/25/2016"
    ms.author="sngun"/>
 
 # Runbook 輸入參數
@@ -172,7 +172,7 @@ Runbook 有多種啟動方式：透過 Azure 入口網站 UI、透過 Webhook、
         }
     ```
 
-    - **Azure 資源管理員方法：**您可以使用程式設計語言的 SDK 來啟動 Runbook。以下 C# 程式碼片段用於在您的自動化帳戶中啟動 Runbook。您可以在我們的 [GitHub 儲存機制](https://github.com/Azure/azure-sdk-for-net/blob/master/src/ResourceManagement/Automation/Automation.Tests/TestSupport/AutomationTestBase.cs)中檢視完整的程式碼。  
+    - **Azure Resource Manager 方法：**您可以使用程式設計語言的 SDK 來啟動 Runbook。以下 C# 程式碼片段用於在您的自動化帳戶中啟動 Runbook。您可以在我們的 [GitHub 儲存機制](https://github.com/Azure/azure-sdk-for-net/blob/master/src/ResourceManagement/Automation/Automation.Tests/TestSupport/AutomationTestBase.cs)中檢視完整的程式碼。  
 
     ```
         public Job StartRunbook(string runbookName, IDictionary<string, string> parameters = null)
@@ -271,4 +271,4 @@ Runbook 作業可透過 Azure 自動化 REST API，使用 **PUT** 方法和下�
 - 若要編輯文字 Runbook，請參閱[編輯文字 Runbook](automation-edit-textual-runbook.md)。
 - 若要編輯圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

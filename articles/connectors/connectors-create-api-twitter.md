@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在 PowerApps Enterprise 及邏輯應用程式中新增 Twitter API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Twitter API 的概觀"
+	pageTitle="在 PowerApps Enterprise 及邏輯應用程式中新增 Twitter 連接器 | Microsoft Azure"
+	description="搭配 REST API 參數來使用 Twitter 連接器的概觀"
 	services=""
 	documentationCenter="" 
 	authors="MandiOhlinger"
@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/16/2016"
+   ms.date="05/12/2016"
    ms.author="mandia"/>
 
 
-# 開始使用 Twitter API
-連線到 Twitter 來張貼推文、取得使用者的時間軸等等。您可以從下列應用程式使用 Twitter API：
+# 開始使用 Twitter 連接器
+連線到 Twitter 來張貼推文、取得使用者的時間軸等等。您可以從下列應用程式使用 Twitter 連接器：
 
 - 邏輯應用程式 
 - PowerApps
@@ -37,9 +37,9 @@
 - 根據您從 Twitter 所取得的資料，來建置您的商務流程。 
 - 在有新推文時使用觸發程序。
 - 使用動作來張貼推文、搜尋推文等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當有新推文出現時，您可以在 Facebook 上張貼這個推文。
-- 將 Twitter API 新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 Twitter 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中加入連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -51,17 +51,17 @@ Twitter 包含下列觸發程序及動作。
 --- | ---
 <ul><li>當有新推文出現時</li></ul>| <ul><li>張貼新推文</li><li>當有新推文出現時</li><li>取得首頁時間軸</li><li>取得使用者</li><li>取得使用者的時間軸</li><li>搜尋推文</li><li>取得跟隨者</li><li>取得我的跟隨者</li><li>取得正在關注的對象</li><li>取得我正在關注的對象</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
 ## 建立至 Twitter 的連線
 
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Twitter 帳戶。
+當您將這個連接器新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Twitter 帳戶。
 
 1. 登入您的 Twitter 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Twitter 帳戶。 
 
-當您建立連線之後，請輸入 Twitter 的屬性，例如推文的文字。本主題的 **REST API 參考**一節會說明這些屬性。
+>[AZURE.INCLUDE [建立至 Twitter 連線的步驟](../../includes/connectors-create-api-twitter.md)]
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Twitter 連線。
 
@@ -90,7 +90,7 @@ Twitter 包含下列觸發程序及動作。
 
 
 ### 當有新推文出現時 
-當某個新推文符合您的搜尋查詢時，就會觸發某個工作流程。```GET: /onnewtweet```
+當某個新推文符合您的搜尋查詢時，就會觸發某個工作流程。 ```GET: /onnewtweet```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -315,4 +315,4 @@ Twitter 包含下列觸發程序及動作。
 [6]: ./media/connectors-create-api-twitter/twitter-apps-page.png
 [7]: ./media/connectors-create-api-twitter/twitter-app-create.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

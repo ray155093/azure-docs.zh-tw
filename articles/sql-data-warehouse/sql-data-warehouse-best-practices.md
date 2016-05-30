@@ -46,7 +46,7 @@ SQL 資料倉儲的一個重要功能，是能夠在您不使用它時予以暫�
 ## 使用 PolyBase 快速地載入及將資料匯出
 SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase、BCP) 來載入及匯出資料。若是小量的資料，效能不是那麼重要，任何工具都可以滿足您的需求。不過，當您要載入或匯出大量資料，或者需要快速的效能時，PolyBase 是最佳選擇。PolyBase 利用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此載入及匯出巨量資料的速度比其他任何工具更快。您可使用 CTAS 或 INSERT INTO 來執行 PolyBase 載入。**使用 CTAS 可以減少交易記錄，是載入資料最快的方法。** Azure Data Factory 也支援 PolyBase 載入。PolyBase 支援各種不同的檔案格式，包括 Gzip 檔案。**若要在使用 gzip 文字檔案時獲得最大的輸送量，將檔案分成 60 個以上的檔案讓載入有最大化的平行處理。** 如需更快的總輸送量，請考慮同時載入資料。
 
-另請參閱[資料載入 SQL 資料倉儲][]、[在 SQL 資料倉儲中使用 PolyBase 指南][]、[Azure SQL 資料倉儲載入模式和策略][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 將資料移進和移出 Azure SQL 資料倉儲][]、[建立外部檔案格式 (Transact-SQL)][]、[SQL 資料倉儲中的 Create Table As Select (CTAS)][]
+另請參閱[資料載入 SQL 資料倉儲][]、[在 SQL 資料倉儲中使用 PolyBase 指南][]、[Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料][]、[CREATE EXTERNAL FILE FORMAT (Transact-SQL) (建立外部檔案格式 (Transact-SQL))][]、[在 SQL 資料倉儲中的 Create Table As Select (CTAS)][]
 
 ## 雜湊分散大型資料表
 根據預設，資料表是以「循環配置資源」方式分散。這可讓使用者更容易開始建立資料表，而不必決定應該如何分散其資料表。循環配置資源的資料表在某些工作負載中執行良好，但通常選取分散資料行的執行效能會更好。依資料行分散資料表的效能遠勝於循環配置資源資料表的最常見例子，是聯結兩個大型事實資料表。例如，如果您有一個依 order\_id 分散的訂單資料表，以及一個也是依 order\_id 分散的交易資料表，當您將訂單資料聯結至交易資料表上的 order\_id，此查詢會變成傳遞查詢，也就是資料移動作業會被消除。較少的步驟代表較快的查詢。較少的資料移動也會讓查詢更快。這樣的解釋只是大致的梗概。載入分散的資料表時，請確定您的內送資料的分散式索引鍵沒有排序，因為這會拖慢載入。關於選取分散資料行如何能提升效能，以及如何在 CREATE TABLE 陳述式的 WITH 子句中定義分散的資料表，如需詳細資訊請參閱以下的連結。
@@ -110,6 +110,7 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [create a support ticket]: sql-data-warehouse-get-started-create-support-ticket.md
 [SQL 資料倉儲中的並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
 [SQL 資料倉儲中的 Create Table As Select (CTAS)]: sql-data-warehouse-develop-ctas.md
+[在 SQL 資料倉儲中的 Create Table As Select (CTAS)]: sql-data-warehouse-develop-ctas.md
 [在 SQL 資料倉儲中使用 PolyBase 指南]: sql-data-warehouse-load-polybase-guide.md
 [雜湊分散及其對 SQL 資料倉儲中的查詢效能的影響]: sql-data-warehouse-develop-hash-distribution-key.md
 [資料載入 SQL 資料倉儲]: sql-data-warehouse-overview-load.md
@@ -119,7 +120,7 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [管理 Azure SQL 資料倉儲中的資料行存放區索引]: sql-data-warehouse-manage-columnstore-indexes.md
 [管理 SQL 資料倉儲中的統計資料]: sql-data-warehouse-develop-statistics.md
 [使用 DMV 監視工作負載]: sql-data-warehouse-manage-monitor.md
-[使用 Azure Data Factory 將資料移進和移出 Azure SQL 資料倉儲]: data-factory-azure-sql-data-warehouse-connector.md
+[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
 [最佳化 SQL 資料倉儲的交易]: sql-data-warehouse-develop-best-practices-transactions.md
 [暫停計算資源]: sql-data-warehouse-overview-scalability.md#pause-compute-bk
 [繼續計算資源]: sql-data-warehouse-overview-scalability.md#resume-compute-bk
@@ -135,7 +136,7 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [ALTER TABLE (Transact-SQL)]: https://msdn.microsoft.com/library/ms190273.aspx
 [資料行存放區索引指南]: https://msdn.microsoft.com/library/gg492088.aspx
 [CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)]: https://msdn.microsoft.com/library/mt203953.aspx
-[建立外部檔案格式 (Transact-SQL)]: https://msdn.microsoft.com/library/dn935026.aspx
+[CREATE EXTERNAL FILE FORMAT (Transact-SQL) (建立外部檔案格式 (Transact-SQL))]: https://msdn.microsoft.com/library/dn935026.aspx
 [CREATE TABLE AS SELECT (Azure SQL 資料倉儲)]: https://msdn.microsoft.com/library/mt204041.aspx
 [建立統計資料 (Transact-SQL)]: https://msdn.microsoft.com/library/ms188038.aspx
 [DBCC PDW\_SHOWEXECUTIONPLAN (Transact-SQL)]: https://msdn.microsoft.com/library/mt204017.aspx
@@ -155,6 +156,6 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [Azure SQL 資料倉儲意見反應]: https://feedback.azure.com/forums/307516-sql-data-warehouse
 [Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/sqlserver/home?forum=AzureSQLDataWarehouse
 [Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
-[Azure SQL 資料倉儲載入模式和策略]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
+[Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -15,10 +15,11 @@
 
 ## 為何同質群組遭到取代？
 
-同質群組是一個舊概念，原先提供來改善早期 Azure 網路設計中的 VM 對 VM 網路效能，並支援初版虛擬網路 (VNet)，其受限於區域中少數的硬體集。目前區域內的 Azure 網路設計不再需要同質群組。VNet 也在區域範圍內，因此使用 VNet 時不再需要同質群組。由於這些改善，我們不再建議客戶使用同質群組，因為它們在某些案例中可能有所限制。使用同質群組不一定會建立 VM 和特定硬體之間的關聯，後者將會限制您對可用 VM 大小的選擇。如果與同質群組相關聯的特定硬體接近容量極限，它也可能在嘗試新增 VM 時造成容量相關錯誤。
+同質群組是舊的概念，可依地理位置將 Azure 內的客戶雲端服務部署和儲存體帳戶進行分組。一開始提供它們的目的在於改善早期 Azure 網路設計中的 VM 到 VM 網路效能。它們也支援初版的虛擬網路 (VNet)，而這只限於區域中的一小組硬體。
 
-在 Azure Resource Manager 部署模型和入口網站中，同質群組功能已經被取代。我們會從傳統入口網站淘汰建立同質群組，以及建立釘選到同質群組的儲存體資源等支援。使用同質群組的現有雲端服務不需要修改。除非 Azure 支援專家建議使用，否則新的雲端服務不應該使用同質群組。
+區域內的目前 Azure 網路設計不再需要同質群組。虛擬網路也在區域範圍內，因此使用虛擬網路時不再需要同質群組。由於這些改善，我們不再建議客戶使用同質群組，因為它們在某些案例中可能有所限制。使用同質群組不一定會建立 VM 與特定硬體的關聯，後者會限制您對可用 VM 大小的選擇。如果與同質群組相關聯的特定硬體接近容量極限，它也可能在嘗試新增 VM 時造成容量相關錯誤。
 
+在 Azure Resource Manager 部署模型和 Azure 入口網站中，同質群組功能已經遭到取代。對於傳統 Azure 入口網站，我們將不再支援建立同質群組，以及建立釘選到同質群組的儲存體資源。您不需要修改使用同質群組的現有雲端服務。不過，除非 Azure 支援專家建議使用同質群組，否則您不應該使用新雲端服務的同質群組。
 
 ## 我可以使用多少的儲存體搭配虛擬機器？
 
@@ -28,7 +29,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 可以使用哪些虛擬硬碟類型？
 
-Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中使用 VHDX 格式磁碟，請先使用 Hyper-V 管理員或 [convert-VHD](http://go.microsoft.com/fwlink/p/?LinkId=393656) Cmdlet 來加以轉換。接著，請使用 [Add-AzureVHD](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet (以 [服務管理] 模式) 將 VHD 上傳到 Azure 中的儲存體帳戶，您便可以在虛擬機器上使用。
+Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中使用 VHDX，則需要先使用 Hyper-V 管理員或 [convert-VHD](http://go.microsoft.com/fwlink/p/?LinkId=393656) Cmdlet 進行轉換。接著，請使用 [Add-AzureVHD](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet (以 [服務管理] 模式) 將 VHD 上傳到 Azure 中的儲存體帳戶，您便可以在虛擬機器上使用。
 
 - 如需適用於 Linux 的指示，請參閱[建立及上傳含有 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md)。
 
@@ -50,7 +51,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中�
 
 ## 如何存取我的虛擬機器？
 
-您需要建立遠端連線以登入虛擬機器，針對 Windows VM，請使用遠端桌面連線，針對 Linux VM，請使用安全殼層 (SSH)。如需相關指示，請參閱：
+您需要建立遠端連線以登入虛擬機器，針對 Windows VM，請使用遠端桌面連線；針對 Linux VM，請使用安全殼層 (SSH)。如需相關指示，請參閱：
 
 - [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-connect-logon.md)：最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。  
 - [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-classic-log-on.md)。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。

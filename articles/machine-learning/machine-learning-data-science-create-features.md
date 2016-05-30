@@ -13,22 +13,19 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/05/2016"
+	ms.date="05/10/2016"
 	ms.author="zhangya;bradsev" />
 
 
 # Cortana 分析程序的特性工程設計 
 
-特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。
+本主題說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。用來說明此程序的範例是取自 Azure Machine Learning Studio。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
-##簡介
+這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
-本主題說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。這些範例是根據 Azure Machine Learning Studio 繪製。
-
-功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 特性工程設計和選取屬於 CAP 的**開發功能**步驟。
+特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 特性工程設計和選取項目屬於 CAP 的**開發功能**步驟。
 * **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
 * **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
@@ -98,4 +95,4 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 請注意，不一定要執行特性工程設計和特性選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
  
 
-<!----HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

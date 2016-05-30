@@ -3,11 +3,9 @@
 	description="請設定 ADF 管線來編寫兩個資料移轉活動，這兩個活動會每天在內部部署及雲端中的資料庫之間一同移動資料。"
 	services="machine-learning"
 	documentationCenter=""
-	authors="fashah"
-	manager="jacob.spoelstra"
-	editor=""
-	videoId=""
-	scriptId="" />
+	authors="bradsev"
+	manager="paulettm"
+	editor="cgronlun" />
 
 <tags
 	ms.service="machine-learning"
@@ -15,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="05/10/2016"
 	ms.author="fashah;bradsev" />
 
 
@@ -27,6 +25,7 @@
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
+
 ## <a name="intro"></a>簡介：什麼是 ADF ，以及其應該用來移轉資料的時機？
 
 Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來協調及自動化資料的移動和轉換。ADF 模型中的重要概念是管線。管線是活動的邏輯群組，各個群組都會定義包含在資料集中的資料上要執行的動作。連結的服務是用來定義 Data Factory 所需的資訊，以便連接到資料資源。
@@ -34,6 +33,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 使用 ADF，您可將現有的資料處理服務組合成具高可用性的資料管線，並在雲端中管理。這些資料管線可排程來內嵌、準備、轉換、分析和發佈資料，而 ADF 會管理並協調所有複雜的資料和處理中的相依項目。您可以快速地在雲端中建置和部署解決方案，藉此連接逐漸增加的內部部署和雲端資料來源。
 
 若資料需要持續在同時存取內部部署和雲端資源的混合式案例中移轉，或是資料有交易、需要修改，或者在移轉過程中新增了商務邏輯，請考慮使用 ADF。ADF 允許使用定期管理資料移動的簡易 JSON 指令碼，來進行排程和監視的工作。ADF 也有其他功能，例如支援複雜作業。如需 ADF 的詳細資訊，請參閱 [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/) 上的文件。
+
 
 ## <a name="scenario"></a>案例
 
@@ -55,6 +55,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 
 > [AZURE.NOTE] 此程序會使用 [Azure 入口網站](https://ms.portal.azure.com/)。
 
+
 ##<a name="upload-data"></a>將資料上傳至您的內部部署 SQL Server
 
 我們會使用 [NYC 計程車資料集](http://chriswhong.com/open-data/foil_nyc_taxi/)示範移轉程序。NYC 計程車資料集可在 Azure Blob 儲存體 [NYC 計程車資料](http://www.andresmh.com/nyctaxitrips/)中取得 (已在該文章中註明)。該資料有兩個檔案：包含路線詳細資料的 trip\_data.csv 檔案，以及包含每次車程支付車資之詳細資料的 trip\_far.csv 檔案。這些檔案的範例和說明都會在 [NYC 計程車車程資料集說明](machine-learning-data-science-process-sql-walkthrough.md#dataset)中提供。
@@ -62,9 +63,11 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 
 您可以將這裡提供的程序調整為自己的資料集，或者遵循上述步驟使用 NYC 計程車資料集。若要將 NYC 計程車資料集上傳至您的內部部署 SQL Server 資料庫，請遵循[大量匯入資料到 SQL Server 資料庫](machine-learning-data-science-process-sql-walkthrough.md#dbload)中概述的程序進行。這些指示適用於 Azure 虛擬機器上的 SQL Server，但將資料上傳至內部部署 SQL Server 的程序是相同的。
 
+
 ##<a name="create-adf"></a> 建立 Azure Data Factory
 
 用於建立新 Azure Data Factory 的指示及 [Azure 入口網站](https://ms.portal.azure.com/)中的資源群組，已在[建立 Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#step-1-creating-the-data-factory) 提供。將新的 ADF 執行個體命名為 *adfdsp*，並將建立的資源群組命名為 *adfdsprg*。
+
 
 ## 安裝和設定資料管理閘道
 
@@ -208,6 +211,7 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
 
 	New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\AzureSqlTable.json  
 
+
 ##<a name="adf-pipeline"></a>定義和建立管線
 
 指定屬於管線的活動，並使用下列指令碼型程序建立管線。JSON 檔案是用來定義管線屬性。
@@ -294,6 +298,7 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
 
 ![](media/machine-learning-data-science-move-sql-azure-adf/DJP1kji.png)
 
+
 ##<a name="adf-pipeline-start"></a>啟動管線
 現在可使用下列命令來執行管線：
 
@@ -305,4 +310,4 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
 
 請注意，我們尚未運用 ADF 提供的功能，以遞增方式輸送資料。如需關於如何執行此功能和 ADF 提供之其他功能的詳細資料，請參閱 [ADF 文件](https://azure.microsoft.com/services/data-factory/)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

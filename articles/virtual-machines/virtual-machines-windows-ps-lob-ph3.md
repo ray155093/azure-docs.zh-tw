@@ -11,7 +11,7 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/01/2016" 
@@ -259,4 +259,4 @@ SQL Server AlwaysOn 可用性群組依賴 Windows Server 的容錯移轉叢集 (
 
 - 依照[第 4 階段](virtual-machines-windows-ps-lob-ph4.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

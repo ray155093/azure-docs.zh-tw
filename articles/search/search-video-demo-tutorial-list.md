@@ -4,7 +4,7 @@
 	services="search"
 	documentationCenter=""
 	authors="HeidiSteen"
-	manager="mblythe"
+	manager="paulettm"
 	editor=""
     tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.workload="search"
 	ms.topic="article" 
 	ms.tgt_pltfrm="na"
-	ms.date="03/15/2016"
+	ms.date="05/17/2016"
 	ms.author="heidist"/>
 
 #Azure 搜尋服務：程式碼範例、示範、影片和教學課程
@@ -37,9 +37,8 @@
 
 [Azure 搜尋示範用紐約市 (NYC) 徵才入口網站](http://aka.ms/azjobsdemo)是一個活躍的 ASP.NET 網站，使用 NYC 開放資料計劃中的資料來示範 Azure 搜尋的功能。此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。
 
-[在 ASP.NET MVC 組合應用程式中試用 App Service + Azure 搜尋服務](search-tryappservice.md)具有免費一小時工作階段與 Azure 搜尋，其中包含資料、實用的 Web 應用程式，以及讓您可以線上修改以便試用多種搜尋功能的原始碼。
 
-[Azure 搜尋服務示範網站](https://searchsamples.azurewebsites.net/#/)是一系列 Azure 搜尋服務的示範應用程式。使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。
+[**Azure 搜尋服務示範網站**](https://searchsamples.azurewebsites.net/#/)是一系列 Azure 搜尋服務的示範應用程式。使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。
 
 ##前五個
 
@@ -47,7 +46,7 @@
 
 - [影片︰Microsoft Virtual Academy 介紹 Azure 搜尋服務](https://mva.microsoft.com/zh-TW/training-courses/adding-microsoft-azure-search-to-your-websites-and-apps-10540?l=ADkxnd97_9304984382)是精通 Azure 搜尋服務的絕佳資源。
 - [影片：AzureCon 2015：Azure 搜尋服務的最佳作法](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-search-best-practices-for-web-and-mobile-applications/)提供在建置 Web 或行動應用程式時，如何相應放大、讓效能最佳化，以及達到高編碼效率的實際建議。 
-- [.NET 用戶端程式庫的程式碼範例](https://github.com/Azure-Samples/search-dotnet-getting-started)，這是利用 .NET 用戶端程式庫進行搜尋作業的 ASP.NET MVC 5 應用程式。+
+- [.NET 用戶端程式庫的程式碼範例](https://github.com/Azure-Samples/search-dotnet-getting-started)，這是利用 .NET 用戶端程式庫進行搜尋作業的 ASP.NET MVC 5 應用程式。
 - [教學課程：如何在 .NET 中使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)|設定及執行與 Azure 搜尋服務整合的範例 Visual Studio Web 應用程式。
 - [教學課程︰開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md)純粹是以入口網站為主的逐步解說，它能讓您不需要撰寫任何程式碼即可取得索引和資料。此教學課程適合用來學習如何在入口網站中執行一般工作。
 
@@ -89,4 +88,4 @@
 [評分設定檔教學課程](search-get-started-scoring-profiles.md)|使用主控台應用程式來試用評分設定檔。
 [Azure 搜尋管理 REST API 教學課程](search-get-started-management-api.md)|如何使用管理 REST API 來佈建服務和管理系統管理員或查詢 API 金鑰。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # 分析 CDN 使用模式
+
+[AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
 您可以使用下列報告檢視 CDN 的使用模式：
 
@@ -142,4 +144,4 @@
 
 報告只會產生於過去 18 個月內。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

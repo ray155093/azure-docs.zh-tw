@@ -13,18 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/10/2016" 
-	ms.author="fashah;mohabib;bradsev" />
+	ms.date="05/10/2016" 
+	ms.author="fashah;bradsev" />
 
 # 移動資料至 Azure 虛擬機器上的 SQL Server
 
-## 簡介
-
-**本文**將概述從一般檔案 (CSV 或 TSV 格式) 或是內部部署的 SQL Server，將資料移動至 Azure 虛擬機器上之 SQL Server 的選項。這些用於將資料移至雲端的工作是 Azure 所提供 Cortana 分析程序的一部分。
+本主題概述從一般檔案 (CSV 或 TSV 格式) 或是內部部署的 SQL Server，將資料移動至 Azure 虛擬機器上之 SQL Server 的選項。這些用於將資料移至雲端的工作是 Azure 所提供 Cortana 分析程序的一部分。
 
 如需概述移動資料至機器學習的 Azure SQL Database 之選項的主題，請參閱[移動資料至 Azure Machine Learning 的 Azure SQL Database](machine-learning-data-science-move-sql-azure.md)。
 
-以下**功能表**會連結至說明如何將資料擷取至其他目標環境，以在 Cortana Analytics 程序 (CAPS) 期間儲存和處理該資料的主題。
+以下**功能表**連結至其他主題，說明如何將資料擷取至其他目標環境，以在 Cortana Analytics 程序 (CAP) 期間儲存和處理該資料。
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -85,6 +83,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 	`bcp dbname..tablename in datafilename.tsv -f exportformatfilename.xml -S servername\sqlinstancename -U username -P password -b block_size_to_move_in_single_attemp -t \t -r \n`
 
 > **最佳化 BCP 插入**：請參閱[最佳化大量匯入的指導方針](https://technet.microsoft.com/library/ms177445%28v=sql.105%29.aspx)這篇文章，以將這類插入最佳化。
+
 
 ### <a name="insert-tables-bulkquery-parallel"></a>平行插入以進行更快速的資料移動
 
@@ -160,6 +159,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 - 如需 SQL Server Data Tools 的詳細資料，請參閱 [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/tools.aspx)  
 - 如需匯入/匯出精靈的詳細資料，請參閱 [SQL Server 匯入和匯出精靈](https://msdn.microsoft.com/library/ms141209.aspx)
 
+
 ## <a name="sqlonprem_to_sqlonazurevm"></a>從內部部署的 SQL Server 移動資料至 Azure VM 上的 SQL Server
 
 您也可以使用下列移轉策略：
@@ -224,4 +224,4 @@ SQL Server Management Studio 的資料庫備份/還原選項的螢幕擷取畫�
 [1]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/sqlserver_builtin_utilities.png
 [2]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/database_migration_wizard.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

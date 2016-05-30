@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/26/2016"
+	ms.date="05/17/2016"
 	ms.author="douglasl"/>
 
 # 透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database
@@ -68,4 +68,4 @@
 
 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

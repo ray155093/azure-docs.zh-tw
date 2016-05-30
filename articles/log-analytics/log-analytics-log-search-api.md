@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Log Analytics 記錄搜尋 API | Microsoft Azure"
-	description="本指南提供基本教學課程，說明可如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 API，並提供使用命令的範例。"
+	pageTitle="Log Analytics 記錄檔搜尋 REST API | Microsoft Azure"
+	description="本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。"
 	services="log-analytics"
 	documentationCenter=""
 	authors="bandersmsft"
@@ -17,21 +17,21 @@
 	ms.author="banders"/>
 
 
-# Log Analytics 記錄搜尋 API
+# Log Analytics 記錄檔搜尋 REST API
 
-本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 API，並提供使用命令的範例。本文中的部分範例參考 Operational Insights，這是舊版 Log Analytics 的名稱。
+本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。本文中的部分範例參考 Operational Insights，這是舊版 Log Analytics 的名稱。
 
-## Log Search API 概觀
+## 記錄檔搜尋 REST API 概觀
 
-Log Analytics 搜尋 API 是一種 RESTful API，並可透過 Azure Resource Manager API 存取。在這份文件中，您會發現可在其中透過 [ARMClient](https://github.com/projectkudu/ARMClient) 存取 API 的範例，以及簡化叫用 Azure 資源管理員 API 的開放原始碼命令列工具。使用 ARMClient 和 PowerShell 是存取 Log Analytics 搜尋 API 的許多選項之一。透過這些工具，您可以利用 RESTful Azure Resource Manager API 呼叫 OMS 工作區並在其中執行搜尋命令。API 會以 JSON 格式向您輸出搜尋結果，讓您以程式設計方式透過許多不同的方法使用搜尋結果。
+Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來存取。在這份文件中，您會發現可在其中透過 [ARMClient](https://github.com/projectkudu/ARMClient) 存取 API 的範例，以及簡化叫用 Azure 資源管理員 API 的開放原始碼命令列工具。使用 ARMClient 和 PowerShell 是存取 Log Analytics 搜尋 API 的許多選項之一。另一個選項是使用 OperationalInsights 的 Azure PowerShell 模組，其中包含可存取搜尋的 Cmdlet。透過這些工具，您可以利用 RESTful Azure Resource Manager API 呼叫 OMS 工作區並在其中執行搜尋命令。API 會以 JSON 格式向您輸出搜尋結果，讓您以程式設計方式透過許多不同的方法使用搜尋結果。
 
-Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) 以及 [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx) 使用。檢閱按讚的網頁以深入了解。
+Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) 以及 [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx) 使用。檢閱連結的網頁以深入了解。
 
-## 基本 Log Analytics 搜尋 API 教學課程
+## 基本 Log Analytics 搜尋 REST API 教學課程
 
 ### 使用 ARM 用戶端
 
-1. 安裝 [Chocolatey](https://chocolatey.org/)，也就是 Windows 的開放原始碼機器封裝管理員。以系統管理員身分開啟命令提示字元視窗，然後執行下列命令：
+1. 安裝 [Chocolatey](https://chocolatey.org/)，這是適用於 Windows 的開放原始碼封裝管理員。以系統管理員身分開啟命令提示字元視窗，然後執行下列命令：
 
     ```
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
@@ -51,7 +51,7 @@ Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/libr
     armclient login
     ```
 
-    成功的登入會列出繫結至指定帳戶的所有訂用帳戶。例如：
+    成功登入會列出繫結至指定帳戶的所有訂用帳戶：
 
     ```
     PS C:\Users\SampleUserName> armclient login
@@ -63,13 +63,13 @@ Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/libr
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 3)
     ```
 
-2. 取得 Operations Management Suite 工作區。例如：
+2. 取得 Operations Management Suite 工作區：
 
     ```
     armclient get /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces?api-version=2015-03-20
     ```
 
-    成功的 Get 呼叫會輸出繫結至訂用帳戶的所有工作區。例如：
+    成功的 Get 呼叫會輸出繫結至訂用帳戶的所有工作區：
 
     ```
     {
@@ -87,18 +87,18 @@ Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/libr
        ]
     }
     ```
-3. 建立您的搜尋變數。例如：
+3. 建立您的搜尋變數：
 
     ```
     $mySearch = "{ 'top':150, 'query':'Error'}";
     ```
-4. 使用新的搜尋變數搜尋。例如：
+4. 使用新的搜尋變數來搜尋：
 
     ```
     armclient post /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{WORKSPACE NAME}/search?api-version=2015-03-20 $mySearch
     ```
 
-## Log Analytics 搜尋 API 參考範例
+## Log Analytics 搜尋 REST API 參考範例
 下列範例顯示如何使用 Search API。
 
 ### 搜尋 - 動作/讀取
@@ -197,7 +197,7 @@ Azure 資源管理員可透過 [Library for.NET](https://msdn.microsoft.com/libr
 	armclient post /subscriptions/{SubId}/resourceGroups/{ResourceGroupId}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/search/{SearchId}?api-version=2015-03-20
 ```
 
->[AZURE.NOTE] 如果搜尋會傳回「擱置中」狀態，則輪詢更新的結果可以透過此 API 完成。6 分鐘後，搜尋的結果將會從快取卸除，並將傳回 Http Gone。如果初始搜尋要求立即傳回「成功」狀態，它就不會加入至快取，使 API在被查詢時傳回 Http Gone。Http 200 結果內容的格式將會和更新值相同，都是初始搜尋要求。
+>[AZURE.NOTE] 如果搜尋會傳回「擱置中」狀態，則輪詢更新的結果可以透過此 API 完成。6 分鐘後，搜尋的結果將會從快取卸除，並將傳回 HTTP Gone。如果初始搜尋要求立即傳回「成功」狀態，它就不會加入至快取，使 API在被查詢時傳回 HTTP Gone。HTTP 200 結果內容的格式將會和更新值相同，都是初始搜尋要求。
 
 ### 已儲存的搜尋 - 僅限於 REST
 
@@ -379,7 +379,7 @@ armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Na
 
 已儲存搜尋的定義必須包含 Group 標籤與 Computer 值，才能將搜尋分類為電腦群組。
 
-	$etag=get-date -f yyyy-MM-ddThh:mm:ss.msZ
+	$etag=Get-Date -Format yyyy-MM-ddThh:mm:ss.msZ
 	$groupName="My Computer Group"
 	$groupQuery = "Computer=srv* | Distinct Computer"
 	$groupCategory="My Computer Groups"
@@ -402,4 +402,4 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 
 - 了解[記錄搜尋](log-analytics-log-searches.md)，以使用自訂欄位作為準則來建立查詢。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

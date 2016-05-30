@@ -37,7 +37,9 @@
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-- **具有 Azure PowerShell 的工作站**。請參閱[安裝 Azure PowerShell 1.0 及更新版本](hdinsight-administer-use-powershell.md#install-azure-powershell-10-and-greater)。
+- **具有 Azure PowerShell 的工作站**。
+
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 ##了解案例
 
@@ -78,16 +80,16 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
-    ARM 範本位於公用 Blob 容器中，**https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json*。
+    ARM 範本位於公用 blob 容器 **https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json* 中。
     
-    ARM 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 封裝也位於公用 Blob 容器中，https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
+    ARM 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 封裝也位於公用 blob 容器 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 中。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
     
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
     
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
-    - **ClusterName**：輸入您將建立的 Hadoop 叢集名稱。
+    - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
     - **叢集登入名稱和密碼**：預設登入名稱是 admin。
     - **SSH 使用者名稱和密碼**。
     - **SQL Database 伺服器登入名稱和密碼**。
@@ -101,13 +103,13 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
     
     請記下這些值。稍後在教學課程中需要這些資訊。
     
-3\. 按一下 [確定] 儲存參數。
+3\.按一下 [確定] 儲存參數。
 
-4\. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
+4\.在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
 
-5\. 按一下 [法律條款]，然後按一下 [建立]。
+5\.按一下 [法律條款]，然後按一下 [建立]。
 
-6\. 按一下 [建立]。您將會看到新的圖格，標題為「提交範本部署的部署」。大約需要 20 分鐘的時間來建立叢集和 SQL Database。
+6\.按一下 [建立]。您將會看到新的圖格，標題為「提交範本部署的部署」。大約需要 20 分鐘的時間來建立叢集和 SQL Database。
 
 如果您選擇使用現有的 Azure SQL Database 或 Microsoft SQL Server
 
@@ -624,7 +626,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md
 
-[sqldatabase-get-started]: ../sql-database-get-started.md
+[sqldatabase-get-started]: ../sql-database/sql-database-get-started.md
 [sqldatabase-create-configue]: ../sql-database-create-configure.md
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
@@ -633,4 +635,4 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

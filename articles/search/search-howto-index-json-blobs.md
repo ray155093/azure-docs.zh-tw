@@ -49,7 +49,7 @@ ms.author="eugenesh" />
 
 ## 使用欄位對應建置搜尋文件 
 
-目前，Azure 搜尋服務無法直接編製索引任意 JSON 文件，因為它只支援基本資料類型、字串陣列和 GeoJSON 點。不過，您可以使用**欄位對應**挑選 JSON 文件的部分，並將它們「抬」到搜尋文件的最上層欄位。若要深入了解欄位對應的基礎概念，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
+目前，Azure 搜尋服務無法直接編製索引任意 JSON 文件，因為它只支援基本資料類型、字串陣列和 GeoJSON 點。不過，您可以使用**欄位對應**挑選 JSON 文件的部分，並將它們「抬」到搜尋文件的最上層欄位。若要了解欄位對應基礎概念，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
 
 回到我們的範例 JSON 文件︰
 
@@ -127,4 +127,4 @@ ms.author="eugenesh" />
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

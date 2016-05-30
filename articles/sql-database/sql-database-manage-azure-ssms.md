@@ -3,8 +3,8 @@
 	description="了解如何使用 SQL Server Management Studio 管理 SQL Database 伺服器和資料庫。" 
 	services="sql-database" 
 	documentationCenter=".net" 
-	authors="jeffgoll" 
-	manager="jeffreyg" 
+	authors="stevestein" 
+	manager="jhubbard" 
 	editor="tysonn"/>
 
 <tags 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/07/2016" 
-	ms.author="jeffreyg"/>
+	ms.date="05/09/2016" 
+	ms.author="sstein"/>
 
 
 # 使用 SQL Server Management Studio 管理 Azure SQL Database 
@@ -27,7 +27,9 @@
 
 您可以使用 SQL Server Management Studio (SSMS) 來管理 Azure SQL Database 邏輯伺服器與資料庫。本主題會引導您使用 SSMS 的一般工作。在您開始之前，您應該已經有 Azure SQL Database 中建立的邏輯伺服器與資料庫。如需如何連線，然後執行簡單 SELECT 查詢的相關資訊，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)以及關於如何[使用 SSMS 進行連線與查詢](sql-database-connect-query-ssms.md)的文章。
 
-每當您使用 Azure SQL Database 時，建議您使用最新版本的 SSMS。請造訪[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 以取得。
+每當您使用 Azure SQL Database 時，建議您使用最新版本的 SSMS。
+
+> [AZURE.IMPORTANT] 您必須一律使用最新版本的 SQL Server Management Studio (SSMS) 保持與 Microsoft Azure 及 SQL Database 更新同步。舊版 SSMS 無法順利搭配 SQL Database 運作，請造訪[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 以取得 SSMS。
 
 ## 建立和管理 Azure SQL 資料庫
 
@@ -149,4 +151,4 @@ SQL Database 支援數種動態管理檢視，您可用他們來監視個別資�
  
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

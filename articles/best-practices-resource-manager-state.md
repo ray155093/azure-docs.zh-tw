@@ -365,7 +365,7 @@ enableJumpbox | 來自條件約束清單的字串 (enabled/disabled) | 識別是
         "type": "string"
       }
      
-如需使用已連結範本的輸出區段傳回虛擬機器之資料磁碟的範例，請參閱 [Creating multiple data disks for a Virtual Machine (為虛擬機器建立多個資料磁碟)](./resource-group-create-multiple/#creating-multiple-data-disks-for-a-virtual-machine)。
+如需使用已連結範本的輸出區段傳回虛擬機器之資料磁碟的範例，請參閱 [Creating multiple data disks for a Virtual Machine (為虛擬機器建立多個資料磁碟)](resource-group-create-multiple.md#creating-multiple-data-disks-for-a-virtual-machine)。
 
 ## 為虛擬機器定義驗證設定
 
@@ -426,4 +426,4 @@ enableJumpbox | 來自條件約束清單的字串 (enabled/disabled) | 識別是
 - 如要了解範本的各區段，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看範本中可以使用的函數，請參閱 [Azure Resource Manager 範本函數](resource-group-template-functions.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

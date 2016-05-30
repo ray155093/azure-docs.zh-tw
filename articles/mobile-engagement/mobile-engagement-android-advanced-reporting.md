@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Android Azure Mobile Engagement SDK 的進階報告選項"
-	description="Android Azure Mobile Engagement SDK 的 Android 進階報告選項"
+	pageTitle="Azure Mobile Engagement Android SDK 的進階報告選項"
+	description="描述如何為 Azure Mobile Engagement Android SDK 進行進階報告以擷取分析"
 	services="mobile-engagement"
 	documentationCenter="mobile"
 	authors="piyushjo"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="05/12/2016"
 	ms.author="piyushjo;ricksal" />
 
 # Android 上使用 Engagement 的報告選項
@@ -28,40 +28,6 @@
 [AZURE.INCLUDE [必要條件](../../includes/mobile-engagement-android-prereqs.md)]
 
 您完成的教學課程相當直接明瞭，但您還有許多選項可選擇。
-
-## 使用 ProGuard 建置
-
-如果您使用 ProGuard 建立應用程式封裝，您需要保留一些類別。您可以使用下列組態程式碼片段：
-
-
-			-keep public class * extends android.os.IInterface
-			-keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {
-			<methods>;
-		 	}
-
-## AndroidManifest.xml 檔案中的標籤
-
-在 AndroidManifest.xml 檔案中的 service 標籤中，`android:label` 屬性可讓您選擇 Engagement 服務的名稱，此名稱會出現在使用者電話的「執行中服務」畫面中。建議將此屬性設定為 `"<Your application name>Service"` (例如 `"AcmeFunGameService"`)。
-
-指定 `android:process` 屬性可確保 Engagement 服務在本身的處理程序中執行 (在與應用程式相同的處理程序中執行 Engagement，可能會造成主要/UI 執行緒回應速度較慢)。
-
-## 使用 Application.onCreate()
-
-您放置在 `Application.onCreate()` 和其他應用程式回呼中的程式碼，將針對您所有應用程式的處理程序而執行，包括 Engagement 服務。可能會產生不必要的副作用，例如 Engagement 處理程序中有不必要的記憶體配置和執行緒，或重複的廣播接收器或服務。
-
-如果覆寫 `Application.onCreate()`，建議在 `Application.onCreate()` 函數的開頭加入下列程式碼片段：
-
-			 public void onCreate()
-			 {
-			   if (EngagementAgentUtils.isInDedicatedEngagementProcess(this))
-			     return;
-
-			   ... Your code...
-			 }
-
-您可以對 `Application.onTerminate()`、`Application.onLowMemory()` 和 `Application.onConfigurationChanged(...)` 執行相同的動作。
-
-您也可以不延伸 `Application`，改為延伸 `EngagementApplication`：回呼 `Application.onCreate()` 會進行處理程序檢查，並在目前的處理程序不是裝載 Engagement 服務的處理程序時才會呼叫 `Application.onApplicationProcessCreate()`，相同規則也適用於其他回呼。
 
 ## 修改 `Activity` 類別
 
@@ -79,24 +45,57 @@
 
 下列是一個範例：
 
-			public class MyActivity extends Some3rdPartyActivity
-			{
-			  @Override
-			  protected void onResume()
-			  {
-			    super.onResume();
-			    String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
-			    EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
-			  }
+	public class MyActivity extends Some3rdPartyActivity
+	{
+	  @Override
+	  protected void onResume()
+	  {
+	    super.onResume();
+	    String activityNameOnEngagement = EngagementAgentUtils.buildEngagementActivityName(getClass()); // Uses short class name and removes "Activity" at the end.
+	    EngagementAgent.getInstance(this).startActivity(this, activityNameOnEngagement, null);
+	  }
 
-			  @Override
-			  protected void onPause()
-			  {
-			    super.onPause();
-			    EngagementAgent.getInstance(this).endActivity();
-			  }
-			}
+	  @Override
+	  protected void onPause()
+	  {
+	    super.onPause();
+	    EngagementAgent.getInstance(this).endActivity();
+	  }
+	}
 
 這個範例非常類似於 `EngagementActivity` 類別及其變體，原始程式碼位於 `src` 資料夾中。
 
-<!---HONumber=AcomDC_0511_2016-->
+## 使用 Application.onCreate()
+
+您放置在 `Application.onCreate()` 和其他應用程式回呼中的程式碼，將針對您所有應用程式的處理程序而執行，包括 Engagement 服務。可能會產生不必要的副作用，例如 Engagement 處理程序中有不必要的記憶體配置和執行緒，或重複的廣播接收器或服務。
+
+如果覆寫 `Application.onCreate()`，建議在 `Application.onCreate()` 函式的開頭加入下列程式碼片段：
+
+	 public void onCreate()
+	 {
+	   if (EngagementAgentUtils.isInDedicatedEngagementProcess(this))
+	     return;
+
+	   ... Your code...
+	 }
+
+您可以對 `Application.onTerminate()`、`Application.onLowMemory()` 和 `Application.onConfigurationChanged(...)` 執行相同的動作。
+
+您也可以不延伸 `Application`，改為延伸 `EngagementApplication`：回呼 `Application.onCreate()` 會進行處理程序檢查，並在目前的處理程序不是裝載 Engagement 服務的處理程序時才會呼叫 `Application.onApplicationProcessCreate()`，相同規則也適用於其他回呼。
+
+## AndroidManifest.xml 檔案中的標籤
+
+在 AndroidManifest.xml 檔案中的 service 標籤中，`android:label` 屬性可讓您選擇 Engagement 服務的名稱，此名稱會出現在使用者電話的「執行中服務」畫面中。建議將此屬性設定為 `"<Your application name>Service"` (例如 `"AcmeFunGameService"`)。
+
+指定 `android:process` 屬性可確保 Engagement 服務在本身的處理程序中執行 (在與應用程式相同的處理程序中執行 Engagement，可能會造成主要/UI 執行緒回應速度較慢)。
+
+## 使用 ProGuard 建置
+
+如果您使用 ProGuard 建立應用程式封裝，您需要保留一些類別。您可以使用下列組態程式碼片段：
+
+	-keep public class * extends android.os.IInterface
+	-keep class com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity$EngagementReachContentJS {
+	<methods>;
+ 	}
+
+<!---HONumber=AcomDC_0518_2016-->

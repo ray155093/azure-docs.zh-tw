@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="04/27/2016"
 	ms.author="markusvi"/>
 
 
@@ -150,7 +150,7 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 1. 具有特定屬性組態的使用者會繼續接收匯出錯誤，而非隔離屬性。例如：
 
-    a.新使用者會建立於 AD 中，其 UPN 為 **Joe@contoso.com** 而 ProxyAddress 為 **smtp:Joe@contoso.com**。
+    a.新使用者會建立於 AD 中，其 UPN 為 ****Joe@contoso.com** 而 ProxyAddress 為 **smtp:Joe@contoso.com**。
 
     b.此物件的屬性與現有群組發生衝突，其中 ProxyAddress 為 **SMTP:Joe@contoso.com**。
 
@@ -158,9 +158,9 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 2. 尋找已解決重複屬性衝突的計時器工作只會比較 UPN 衝突與其他 UPN 衝突。這會造成下列案例的步驟 4 所示的問題︰
 
-    a. **UserA@contoso.com** 有非唯一的 UPN，因為另一個物件的 ProxyAddress 也有該值。
+    a. ****UserA@contoso.com** 有非唯一的 UPN，因為另一個物件的 ProxyAddress 也有該值。
 
-    b.UserA 會取得暫存 **MOERA UPN** (**UserA1234@contoso.onmicrosoft.com**)，而真正的 UPN 值會遭到隔離 (如預期一般)。
+    b.UserA 會取得暫存 **MOERA UPN** (****UserA1234@contoso.onmicrosoft.com**)，而真正的 UPN 值會遭到隔離 (如預期一般)。
 
     c.其他衝突的物件稍後會移除 ProxyAddress。
 
@@ -188,9 +188,9 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
     b.接著嘗試同步處理 **User B** 與 **UPN = User@contoso.com**。
 
-    c.**User B** 的 UPN 已變更為 **User1234@contoso.onmicrosoft.com**，而 **User@contoso.com** 已新增至 **DirSyncProvisioningErrors**。
+    c.**User B** 的 UPN 已變更為 ****User1234@contoso.onmicrosoft.com**，而 ****User@contoso.com** 已新增至 **DirSyncProvisioningErrors**。
 
-    d.**User B** 的錯誤訊息應指出 **User A** 已有 **User@contoso.com** 作為 UPN，但卻顯示 **User B** 自己的 displayName。
+    d.**User B** 的錯誤訊息應指出 **User A** 已有 ****User@contoso.com** 作為 UPN，但卻顯示 **User B** 自己的 displayName。
 
 3. 此報告可能只會對具有 **UPN** 衝突的使用者，而不會對具有 **ProxyAddress** 錯誤的使用者顯示詳細錯誤資訊 (仍會調查此行為是否一致或因環境而異)。
 
@@ -200,4 +200,4 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

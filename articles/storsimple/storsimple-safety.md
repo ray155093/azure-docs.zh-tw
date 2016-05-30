@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/20/2016"
+   ms.date="05/13/2016"
    ms.author="alkohli" />
 
 # 安全地安裝和操作您的 StorSimple 裝置
@@ -179,4 +179,4 @@
 
 - 針對 8600 裝置，請至[安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0518_2016-->

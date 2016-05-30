@@ -30,6 +30,8 @@
 
 Visual Studio 中的 SQL Server Management Studio (SSMS) 和 SQL Server Data Tools (SSDT) 都是可在您電腦上執行的用戶端工具，並可讓您連接、管理和開發雲端中的資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，[請嘗試使用 Visual Studio 中的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)。許多資料庫系統管理員都熟悉可和 Azure SQL Database 搭配使用的 SSMS。[下載最新版的 SSMS](https://msdn.microsoft.com/library/mt238290)，並一律以最新版和 Azure SQL Database 搭配使用。如需使用 SSMS 管理 Azure SQL Database 的詳細資訊，請參閱[使用 SSMS 管理 SQL Database](sql-database-manage-azure-ssms.md)。
 
+> [AZURE.IMPORTANT] 您必須一律使用最新版本的 SQL Server Management Studio 和 SQL Server Data Toools for Visual Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。舊版工具無法順利搭配 SQL Database 運作。
+
 ## 命令列工具。
 
 您可以使用命令列工具 (例如 PowerShell) 來管理資料庫和彈性資料庫集區，以及自動化 Azure 資源部署工作。若您要在生產環境中管理大量資料庫並自動化部署和資源變更，Microsoft 建議使用這項工具。
@@ -44,4 +46,4 @@ Visual Studio 中的 SQL Server Management Studio (SSMS) 和 SQL Server Data Too
 * 使用 [Elastic Scale 用戶端程式庫](sql-database-elastic-database-client-library.md)，管理單一租用戶模型或多租用戶模型中的資料庫。
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->
