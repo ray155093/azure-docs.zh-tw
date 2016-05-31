@@ -139,7 +139,7 @@
 		  		}
 			}
 
-	將 **servername**、**databasename**、****username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
+	將 **servername**、**databasename**、**username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
 
 2.	執行以下命令建立連結服務。
 	

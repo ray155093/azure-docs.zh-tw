@@ -102,7 +102,7 @@
 
 	![編輯器 Azure SQL 設定][image-editor-azure-sql-settings]
 
-2. 將 **servername**、**databasename**、****username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
+2. 將 **servername**、**databasename**、**username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
 3. 按一下工具列上的 [**部署**]，建立並部署 AzureSqlLinkedService。 
    
 
@@ -157,7 +157,7 @@
 	- **availability** 設為**每小時** (**frequency** 設為**小時**且 **interval** 設為 **1**)，因此 Data Factory 服務每個小時皆會在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
 	
 
-	如果您沒有指定**輸入****資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+	如果您沒有指定**輸入**資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
  
 	如果您未指定輸出資料表的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
 

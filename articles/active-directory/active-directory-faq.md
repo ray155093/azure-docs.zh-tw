@@ -28,7 +28,7 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 ## 存取 Azure 和 Azure Active Directory
 
 
-****問︰當我嘗試在 Azure 傳統入口網站中存取 Azure AD，為何會收到「找不到訂用帳戶」(https://manage.windowsazure.com)?**
+**問︰當我嘗試在 Azure 傳統入口網站中存取 Azure AD，為何會收到「找不到訂用帳戶」(https://manage.windowsazure.com)?**
 
 **答：**若要存取 Azure 傳統入口網站，每位使用者都必須擁有 Azure 訂用帳戶的權限。如果您有付費的 Office 365 或 Azure AD，請瀏覽至 [http://aka.ms/accessAAD](http://aka.ms/accessAAD) 以進行一次性啟用步驟，否則您必須啟用完整的 [Azure 試用版](https://azure.microsoft.com/pricing/free-trial/)或付費訂用帳戶。
 
