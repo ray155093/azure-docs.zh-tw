@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/16/2016"
+	ms.date="05/20/2016"
 	ms.author="marsma"/>
 
 # Azure Batch 的基本概念
 
 Azure Batch 可讓您在雲端有效率地執行大規模的平行和高效能運算 (HPC) 應用程式。它是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
 
-使用 Batch 服務可讓您以程式設計方式定義 Azure 計算資源來執行大規模的批次作業。您可以依需要或依排程執行這些作業，而不需要手動設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或作業排程器。
+在使用 Batch 服務時，您可以定義用來大規模平行執行應用程式的 Azure 計算資源。您可以依需要或依排程的工作來執行，而不需要手動建立、設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或複雜的作業和工作排程基礎結構。
 
 ## Batch 的使用案例
 
@@ -58,23 +58,36 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 
 - **Batch 帳戶** - 當您的應用程式與 Batch 服務互動時，可以使用帳戶名稱、帳戶的 URL 及存取金鑰做為認證。所有 Batch 資源 (如集區、計算節點、作業和工作) 都與 Batch 帳戶相關聯。您可以在 Azure 入口網站中[建立和管理 Batch 帳戶](batch-account-create-portal.md)。
 
-- **儲存體帳戶** - Batch 內建就支援處理 [Azure 儲存體][azure_storage]中的檔案。幾乎每個 Batch 案例都會使用 Azure 儲存體來預備檔案 (用於工作執行的程式及它們處理的資料)，以及儲存工作所產生的輸出資料。若要建立儲存體帳戶，請參閱[關於 Azure 儲存體帳戶](./../storage/storage-create-storage-account.md)。
+- **儲存體帳戶** - Batch 內建就支援處理 [Azure 儲存體][azure_storage]中的檔案。幾乎每個 Batch 案例都會使用 Azure 儲存體，來預備工作執行的程式及其處理的資料，以及儲存其產生的輸出資料。若要建立儲存體帳戶，請參閱[關於 Azure 儲存體帳戶](./../storage/storage-create-storage-account.md)。
 
-### Batch 開發程式庫和工具
+### Batch 開發 API
 
-若要使用 Azure Batch 建置解決方案，您可以使用 Batch .NET 用戶端程式庫、PowerShell，甚至直接發出 REST API 呼叫。請使用任何或所有這些工具來開發在 Batch 中執行作業的用戶端應用程式和服務。
+應用程式和服務可以發出直接的 REST API 呼叫、使用一或多個下列用戶端程式庫或結合使用兩者，以使用 Batch 服務管理計算資源和大規模執行平行的工作負載。
 
-- [Batch .NET][api_net] 用戶端程式庫 - 大部分 Batch 解決方案都是使用 Batch .NET 用戶端程式庫建置，您可以[透過 NuGet 取得][api_net_nuget]它。
+| API | API 參考資料 | 下載 | 程式碼範例 |
+| ----------------- | ------------- | -------- | ------------ |
+| **Batch REST** | [MSDN][batch_rest] | N/A | [MSDN][batch_rest] |
+| **Batch .NET** | [MSDN][api_net] | [NuGet][api_net_nuget] | [GitHub][api_sample_net] |
+| **Batch Python** | [readthedocs.io][api_python] | [PyPI][api_python_pypi] |[GitHub][api_sample_python] |
+| **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - |
 
-- [Batch Management .NET][api_net_mgmt] 用戶端程式庫 - 也可以[透過 NuGet 取得][api_net_mgmt_nuget]，在您的用戶端應用程式或服務中，使用 Batch Management .NET 用戶端程式庫以程式設計方式管理 Batch 帳戶。
+### Batch 資源管理
 
-- [Batch REST][batch_rest] API - Batch REST API 提供與 Batch .NET 用戶端程式庫相同的所有功能。事實上，Batch .NET 程式庫本身會在幕後使用 Batch REST API 與 Batch 服務互動。
+除了用戶端 API，您也可以使用下列項目來管理 Batch 帳戶內的資源。
 
-- [Batch PowerShell Cmdlet][batch_ps] - [Azure PowerShell](./../powershell-install-configure.md) 模組中的 Batch PowerShell Cmdlet 可讓您使用 PowerShell 來管理 Batch 資源。
+- [Batch PowerShell Cmdlet][batch_ps]：[Azure PowerShell](../powershell-install-configure.md) 模組中的 Batch PowerShell Cmdlet 可讓您使用 PowerShell 來管理 Batch 資源。
 
-- [Azure Batch 總管][batch_explorer] - Batch 總管是可[透過 GitHub 取得][github_samples]的其中一個 Batch .NET 範例應用程式。使用 Visual Studio 2013 或 2015 建置此 Windows Presentation Foundation (WPF) 應用程式，在您開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。在 Batch 總管介面中只需按幾下滑鼠，就可以檢視作業、集區和工作詳細資訊、從計算節點下載檔案，甚至使用您取得的遠端桌面 (RDP) 檔案從遠端連接到節點。
+- [Azure CLI](../xplat-cli-install.md)：Azure 命令列介面 (Azure CLI) 是跨平台工具組，可提供用來與許多 Azure 服務 (包括 Batch) 互動的殼層命令。
 
-- [Microsoft Azure 儲存體總管][storage_explorer] - 嚴格來說，雖然儲存體總管不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
+- [Batch Management .NET](batch-management-dotnet.md) 用戶端程式庫：也可以透過 [NuGet][api_net_mgmt_nuget] 取得，您可以使用 Batch Management .NET 用戶端程式庫，以程式設計方式管理 Batch 帳戶、配額和應用程式封裝。管理程式庫的參考資料位於 [MSDN][api_net_mgmt]。
+
+### Batch 工具
+
+雖然不一定要使用 Batch 建置解決方案，但這些工具可視為建置和偵錯 Batch 應用程式和服務時的必要項目。
+
+- [Azure Batch 總管][batch_explorer]：Batch 總管是可[透過 GitHub 取得][github_samples]的其中一個 Batch .NET 範例應用程式。使用 Visual Studio 2013 或 2015 建置此 Windows Presentation Foundation (WPF) 應用程式，在您開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。在 Batch 總管介面中只需按幾下滑鼠，就可以檢視作業、集區和工作詳細資訊、從計算節點下載檔案，甚至使用您取得的遠端桌面 (RDP) 檔案從遠端連接到節點。
+
+- [Microsoft Azure 儲存體總管][storage_explorer]：嚴格來說，雖然儲存體總管不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
 
 ## 案例：相應放大平行工作負載
 
@@ -121,6 +134,12 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 [api_net_nuget]: https://www.nuget.org/packages/Azure.Batch/
 [api_net_mgmt]: https://msdn.microsoft.com/library/azure/mt463120.aspx
 [api_net_mgmt_nuget]: https://www.nuget.org/packages/Microsoft.Azure.Management.Batch/
+[api_nodejs]: http://azure.github.io/azure-sdk-for-node/azure-batch/latest/
+[api_nodejs_npm]: https://www.npmjs.com/package/azure-batch
+[api_python]: http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.batch.html
+[api_python_pypi]: https://pypi.python.org/pypi/azure-batch
+[api_sample_net]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp
+[api_sample_python]: https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch
 [batch_explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch_ps]: https://msdn.microsoft.com/library/azure/mt125957.aspx
 [batch_rest]: https://msdn.microsoft.com/library/azure/Dn820158.aspx
@@ -134,4 +153,4 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

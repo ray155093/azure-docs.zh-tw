@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/28/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # 開始使用 Azure AD Privileged Identity Management
@@ -35,9 +35,9 @@ Azure Active Directory (AD) Privileged Identity Management 可讓您管理、控
 6. 選取 [釘選到儀表板]，然後按一下 [建立] 按鈕。Privileged Identity Management 應用程式隨即開啟。
 
 
-如果您是在目錄中使用 Azure AD Privileged Identity Management 的第一個人，則[安全性精靈](active-directory-privileged-identity-management-security-wizard.md)會引導您完成初始指派體驗。之後，您就會自動成為目錄的第一個**安全性系統管理員**。只有安全性管理員可以存取這個應用程式來管理其他管理員的存取權。
+如果您是在目錄中使用 Azure AD Privileged Identity Management 的第一個人，則[安全性精靈](active-directory-privileged-identity-management-security-wizard.md)會引導您完成初始指派體驗。之後，您就會自動成為目錄的第一個**安全性系統管理員**和**特殊權限角色管理員**。只有特殊權限角色管理員可以存取這個應用程式來管理其他管理員的存取權。
 
-否則，如果其他的安全性系統管理員指派給您一或多個角色，您就必須選擇要啟用哪個角色。如果您自己就是安全性系統管理員角色，您也會看到 [管理識別身分] 的選項。
+否則，如果其他的特殊權限角色管理員指派給您一或多個角色，您就必須選擇要啟用哪個角色。如果您自己就是特殊權限角色管理員角色，您也會看到 [管理識別身分] 的選項。
 
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
@@ -47,4 +47,4 @@ Azure Active Directory (AD) Privileged Identity Management 可讓您管理、控
 
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -12,7 +12,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="05/11/2016" 
+	 ms.date="05/24/2016" 
 	 ms.author="casoper"/>
 
 # 使用 Azure CDN  
@@ -25,7 +25,7 @@
 
 CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 CDN 端點。您可能會想要使用多個設定檔，依網際網路網域、Web 應用程式或其他準則來組織您的 CDN 端點。
 
-> [AZURE.NOTE] 依預設，一個 Azure 訂用帳戶只能擁有四個 CDN 設定檔。而每個 CDN 設定檔則只能擁有十個 CDN 端點。
+> [AZURE.NOTE] 依預設，一個 Azure 訂用帳戶只能擁有八個 CDN 設定檔。而每個 CDN 設定檔則只能擁有十個 CDN 端點。
 >
 > CDN 定價是根據 CDN 設定檔層級來套用的。如果您想要混合使用 Azure CDN 定價層，您需要擁有多個 CDN 設定檔。
 
@@ -97,4 +97,4 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,5 +1,5 @@
 <properties
-	pageTitle="以 .NET 開始使用 Azure Blob 儲存體 | Microsoft Azure"
+	pageTitle="以 .NET 開始使用 Azure Blob 儲存體 (物件儲存體) | Microsoft Azure"
 	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	services="storage"
 	documentationCenter=".net"
@@ -395,4 +395,4 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
   [.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
   [REST API reference]: http://msdn.microsoft.com/library/azure/dd179355
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

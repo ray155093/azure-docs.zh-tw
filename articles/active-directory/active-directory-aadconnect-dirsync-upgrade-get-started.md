@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure AD Connect：從 Windows Azure AD 同步作業工具 (DirSync) 升級 | Microsoft Azure"
-   description="了解如何從 DirSync 升級至 Azure AD Connect。本文說明如何將目前 Windows Azure AD 同步作業工具 (DirSync) 升級至 Azure AD Connect 的步驟。"
+   pageTitle="Azure AD Connect：從 Microsoft Azure AD 同步作業工具 (DirSync) 升級 | Microsoft Azure"
+   description="了解如何從 DirSync 升級至 Azure AD Connect。本文說明如何將目前 Microsoft Azure AD 同步作業工具 (DirSync) 升級至 Azure AD Connect 的步驟。"
    services="active-directory"
    documentationCenter=""
    authors="andkjell"
@@ -13,29 +13,29 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="get-started-article"
-   ms.date="04/25/2016"
+   ms.date="05/19/2016"
    ms.author="andkjell;shoatman;billmath"/>
 
-# Azure AD Connect：升級 Windows Azure Active Directory 同步 (DirSync)
+# Azure AD Connect：升級 Microsoft Azure Active Directory 同步 (DirSync)
 
 下列文件將協助您將現有的 DirSync 安裝升級至 Azure AD Connect。
 
 ## 相關文件
 如果您尚未閱讀[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)上的文件，下表提供相關主題的連結。在開始從 DirSync 升級之前，您需要閱讀以粗體顯示的前兩個主題。
 
-| 主題 | |
-| --------- | --------- |
-| **下載 Azure AD Connect** | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) |
-| **硬體和必要條件** | [Azure AD Connect：硬體和必要條件](active-directory-aadconnect-prerequisites.md) |
-| **用於安裝的帳戶** | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md) |
+ 主題 |  
+--------- | ---------
+**下載 Azure AD Connect** | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
+**硬體和必要條件** | [Azure AD Connect：硬體和必要條件](active-directory-aadconnect-prerequisites.md)
+**用於安裝的帳戶** | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
 
 ## 從 DirSync 升級
 根據您目前的 DirSync 部署，有不同的升級選項。如果預期的升級時間少於 3 小時，則我們建議執行就地升級。如果預期的升級時間超過 3 小時，則我們建議在另一部伺服器上進行平行部署。如果您有超過 5 萬個物件，預估會花費超過 3 個小時來進行升級。
 
-| 案例 | |
-| ---- | ---- |
-| [就地升級](#in-place-upgrade) | 如果升級預期少於 3 小時，則為慣用選項。 |
-| [平行部署](#parallel-deployment) | 如果升級預期超過 3 小時，則為慣用選項。 |
+案例 |  
+---- | ----
+[就地升級](#in-place-upgrade) | 如果升級預期少於 3 小時，則為慣用選項。
+[平行部署](#parallel-deployment) | 如果升級預期超過 3 小時，則為慣用選項。
 
 >[AZURE.NOTE] 當您規劃從 DirSync 升級至 Azure AD Connect 時，在升級之前請勿自行解除安裝 DirSync。Azure AD Connect 會讀取和移轉來自 DirSync 的組態，並且在檢查伺服器之後解除安裝。
 
@@ -93,7 +93,7 @@ DirSync 用於服務帳戶的密碼無法擷取且不會移轉。這些密碼將
     - 如果您使用 SQL Server Express 並且具有少於 5 萬個物件，則會顯示以下畫面：![分析已完成，準備好從 DirSync 升級](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReady.png)
     - 如果您針對 DirSync 使用完整的 SQL Server，您會看到這個頁面：![分析已完成，準備好從 DirSync 升級](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReadyFullSQL.png)<BR/> 系統會顯示有關 DirSync 所使用之現有 SQL Server 資料庫伺服器的資訊。如果需要，請進行適當的調整。按一下 [下一步] 繼續安裝。
     - 如果您有超過 5 萬個物件，您會改為看到這個畫面：![分析已完成，準備好從 DirSync 升級](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisRecommendParallel.png)<BR/> 若要繼續進行就地升級，請按一下這個訊息旁的核取方塊：[繼續升級此電腦上的 DirSync]。 若要改為執行[平行部署](#parallel-deployment)，請匯出 DirSync 組態設定並將其移至新的伺服器。
-5. 提供您目前用來連線到 Azure AD 之帳戶的密碼。必須是 DirSync 目前使用的帳戶。![輸入您的 Azure AD 認證](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ConnectToAzureAD.png) 如果您收到錯誤訊息，而且有連線問題，請參閱[疑難排解連線問題](active-directory-aadconnect-troubleshoot-connectivity.md)。
+5. 提供您目前用來連線到 Azure AD 之帳戶的密碼。必須是 DirSync 目前使用的帳戶。![輸入您的 Azure AD 認證](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ConnectToAzureAD.png) 如果您收到錯誤訊息，而且有連線問題，請參閱[針對連線問題進行疑難排解](active-directory-aadconnect-troubleshoot-connectivity.md)。
 6. 提供 Active Directory 的企業系統管理員帳戶。![輸入您的 ADDS 認證](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ConnectToADDS.png)
 7. 您現在已經可以進行設定。當您按一下 [升級] 時，系統將會解除安裝 DirSync，而 Azure AD Connect 將會完成設定並開始同步處理。![準備設定](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ReadyToConfigure.png)
 8. 安裝完成之後，請先登出 Windows 再重新登入，才能使用 Synchronization Service Manager、同步化規則編輯器，或嘗試任何其他組態變更。
@@ -171,8 +171,8 @@ DirSync 用於服務帳戶的密碼無法擷取且不會移轉。這些密碼將
 
 ### 解除安裝 DirSync (舊伺服器)
 
-- 從 [程式和功能] 中，尋找 [Windows Azure Active Directory 同步作業工具]
-- 解除安裝 [Windows Azure Active Directory 同步作業工具]
+- 從 [程式和功能] 中，尋找 [Microsoft Azure Active Directory 同步作業工具]
+- 解除安裝 [Microsoft Azure Active Directory 同步作業工具]
 - 請注意，可能需要 15 分鐘的時間才能完成解除安裝。
 
 解除安裝 DirSync 之後，沒有任何作用中的伺服器會匯出至 Azure AD。您在內部部署 Active Directory 中的任何變更繼續同步至 Azure AD 之前，必須完成下一個步驟。
@@ -199,4 +199,4 @@ Azure AD Connect 現在是您的作用中伺服器。
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -12,7 +12,7 @@
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article"
+	ms.topic="get-started-article"
 	ms.date="05/11/2016"
 	ms.author="banders"/>
 
@@ -35,7 +35,7 @@
 - 您需要付費的 Microsoft Azure 訂用帳戶，才能充分利用 Log Analytics。如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/)，以便存取任何 Azure 服務。或者，您也可以在 [Operations Management Suite](http://microsoft.com/oms) 網站按一下 [免費試用]，以建立免費 OMS 帳戶。
 - OMS 工作區
 - 您想要從中收集資料的每一部 Windows 電腦，必須執行 Windows Server 2008 SP1 或更新版本
-- 以[防火牆](log-analytics-proxy-firewall)存取 OMS Web 服務的位址
+- 以[防火牆](log-analytics-proxy-firewall.md)存取 OMS Web 服務的位址
 - [OMS Log Analytics 轉寄站](https://blogs.technet.microsoft.com/msoms/2016/03/17/oms-log-analytics-forwarder) (閘道器) 伺服器，將流量從伺服器轉送到 OMS (如果電腦沒有網際網路存取)
 - 如果您使用 Operations Manager，Log Analytics 支援 Operations Manager 2012 SP1 UR6 和更新版本，以及 Operations Manager 2012 R2 UR2 和更新版本。Operations Manager 2012 SP1 UR7 和 Operations Manager 2012 R2 UR3 中已加入 Proxy 支援。決定它如何與 OMS 整合。
 - 決定您的電腦是否可直接存取網際網路。如果不是，它們需要閘道伺服器才能存取 OMS Web 服務網站。所有存取都是透過 HTTPS。
@@ -131,4 +131,4 @@
 - 熟悉[記錄檔搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
 - 使用[儀表板](log-analytics-dashboards.md)以儲存和顯示您自己的自訂搜尋。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

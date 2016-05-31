@@ -52,7 +52,7 @@
 
 [AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
-集區中的每個資料庫也須遵循該服務層的單一資料庫特性。例如，標準集區的工作階段數上限為每個集區 2,400 - 28,800 個，但該集區中的個別資料庫的資料庫限制為 300 個工作階段 (如上一節中指定的單一基本資料庫限制)。
+集區中的每個資料庫也須遵循該服務層的單一資料庫特性。例如，標準集區的工作階段數上限為每個集區 4800 - 28800 個，但該集區中的個別資料庫的資料庫限制為 300 個工作階段 (如上一節中指定的單一基本資料庫限制)。
 
 ## 了解 DTU
 
@@ -64,4 +64,4 @@
 - 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
 - 如果您認識了 SQL Database 各個層，可以[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

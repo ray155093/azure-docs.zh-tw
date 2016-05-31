@@ -34,6 +34,7 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 * [Microsoft Azure](http://azure.com) 訂用帳戶。如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 * Visual Studio 2013 Update 3 或更新版本。
 
+
 ## <a name="ide"></a> 在 Visual Studio 中將 Application Insights 加入專案
 
 #### 對於新專案
@@ -62,7 +63,7 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
 ####<a name="land"></a>「加入 Application Insights」執行了哪些動作？
 
-命令執行了下列步驟 (如果想要的話，可以改為[手動執行](app-insights-start-monitoring-app-health-usage.md))：
+命令執行了下列步驟 (如果想要的話，可以改為[手動執行](app-insights-asp-net-manual.md))：
 
 1. 將 Application Insights Web SDK NuGet 封裝加入您的專案。若要在 Visual Studio 中看到它，請以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
 2. 在 [Azure 入口網站][portal]中建立 Application Insights 資源。這是您會看到您的資料的位置。它會擷取可識別資源的「檢測金鑰」。
@@ -257,4 +258,4 @@ Application Insights SDK 會從 Web 應用程式傳送分析遙測至 Azure 入�
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->
