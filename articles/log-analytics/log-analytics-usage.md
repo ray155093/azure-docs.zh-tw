@@ -12,7 +12,7 @@
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article"
+	ms.topic="get-started-article"
 	ms.date="04/28/2016"
 	ms.author="banders"/>
 
@@ -61,4 +61,4 @@ Operations Management Suite (OMS) 中的 Log Analytics 會收集資料，並定�
 
 - 請參閱 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

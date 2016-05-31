@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/28/2016"
+	ms.date="05/18/2016"
 	ms.author="jgao"/>
 
 
@@ -144,7 +144,7 @@ Blob 儲存體可使用於結構化和非結構化資料。Blob 儲存容器以�
 	New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageAccountName -Location $Location -Type Standard_LRS 
 	
 	# Create default blob containers
-	$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName |  %{ $_.Key1 }
+	$storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $StorageAccountName)[0].Value
 	$destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey  
 	New-AzureStorageContainer -Name $containerName -Context $destContext
 
@@ -228,7 +228,7 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 	Select-AzureRmSubscription -SubscriptionID "<Your Azure Subscription ID>"
 	
 	Write-Host "Create a context object ... " -ForegroundColor Green
-	$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName | %{ $_.key1 }
+	$storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName)[0].Value
 	$storageContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey  
 	
 	Write-Host "Download the blob ..." -ForegroundColor Green
@@ -245,7 +245,7 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 	
 	$cluster = Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $clusterName
 	$defaultStorageAccount = $cluster.DefaultStorageAccount -replace '.blob.core.windows.net'
-	$defaultStorageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccount |  %{ $_.Key1 }
+	$defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccount)[0].Value
 	$defaultStorageContainer = $cluster.DefaultStorageContainer
 	$storageContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccount -StorageAccountKey $defaultStorageAccountKey 
 	
@@ -304,4 +304,4 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 [img-hdi-quick-create]: ./media/hdinsight-hadoop-use-blob-storage/HDI.QuickCreateCluster.png
 [img-hdi-custom-create-storage-account]: ./media/hdinsight-hadoop-use-blob-storage/HDI.CustomCreateStorageAccount.png
 
-<!----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

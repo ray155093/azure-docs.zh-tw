@@ -45,7 +45,7 @@
 
 ## 開始之前
 
-在開始設定之前，請確認您具備下列項目。
+在開始設定之前，請確認您具備下列項目：
 
 - 相容的 VPN 裝置以及能夠進行設定的人員。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您將需要與能夠提供那些詳細資料的人協調。
 
@@ -56,7 +56,7 @@
 ### <a name="values"></a>此練習的範例組態值
 
 
-練習這些步驟時，您可以使用範例組態值。
+練習這些步驟時，您可以使用範例組態值：
 
 - VNet 名稱︰TestVNet1
 - 位址空間︰10.11.0.0/16 和 10.12.0.0/16
@@ -158,4 +158,4 @@
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

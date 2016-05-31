@@ -7,7 +7,7 @@
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, 容器, 微服務, DC/OS, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -34,12 +34,14 @@ Azure 容器服務部署的 DC/OS 和 Swarm 叢集公開了一些 REST 端點。
 
 現在開啟殼層並執行下列命令，其中：
 
-**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。
+**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。**PATH\_TO\_PRIVATE\_KEY** [選用] 是與建立容器服務叢集時所提供的公開金鑰對應的私密金鑰之路徑。搭配使用此選項與 -i 旗標。
 
 ```bash
 # ssh sample
-ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
+
+ssh -L PORT:localhost:PORT -f -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
 ```
+> SSH 連線連接埠是 2200 而非標準連接埠 22。
 
 ## DC/OS 通道
 
@@ -48,7 +50,7 @@ ssh -L PORT:localhost:PORT -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure
 ```bash
 # ssh sample
 
-ssh -L 80:localhost:80 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
+sudo ssh -L 80:localhost:80 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
 您現在可以在下列位址存取 DC/OS 相關端點：
@@ -66,7 +68,7 @@ ssh -L 80:localhost:80 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com 
 ```bash
 # ssh sample
 
-ssh -L 2375:localhost:2375 -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
+ssh -L 2375:localhost:2375 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
 現在您可以設定 DOCKER\_HOST 環境變數，如下所示，並繼續正常使用 Docker 命令列面 (CLI)。
@@ -115,6 +117,6 @@ export DOCKER_HOST=:2375
 
 使用 DC/OS 或 Swarm 來部署及管理容器。
 
-[使用 Azure 容器服務和 DC/OS](./container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](./container-service-docker-swarm.md)
+[使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,12 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/11/2016"
+	ms.date="05/24/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
 
-Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。如需目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
+> [AZURE.NOTE] 本文件說明 Azure 內容傳遞網路 (CDN) 是什麼、其運作方式與每項 Azure CDN 產品的功能。如果您想要跳過這項資訊，直接進入如何建立 CDN 端點的教學課程，請參閱[使用 Azure CDN](cdn-create-new-endpoint.md)。如果您想要查看目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
+
+Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。
 
 使用 CDN 來快取網站資產的優點包括：
 
@@ -76,4 +78,4 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需定價資訊，請參閱 [CDN 定價](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

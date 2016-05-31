@@ -53,19 +53,21 @@
 
 ## 下載程式碼
 
-本教學課程的程式碼[保留在 GitHub 上](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet)。若要遵循指示建置範例，您可以[下載 .zip 格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
+[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-devquickstarts-bug-fix.md)]
+
+本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet) 上。如要依照指示建置範例，請[下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet.git
 ```
 
-完整的 App 也[提供 .zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/complete.zip)，或放在相同儲存機制的 `complete` 分支中。
+完整的應用程式也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/complete.zip)，或是放在相同存放庫的 `complete` 子目錄中。
 
 下載範例程式碼之後，請開啟 Visual Studio .sln 檔案開始進行。方案檔包含兩個專案：`TaskWebApp` 和 `TaskService`。`TaskWebApp` 是使用者所互動的 MVC Web 應用程式。`TaskService` 是 app 的後端 Web API ，其會儲存每位使用者的待辦事項清單。
 
 ## 設定工作 Web 應用程式
 
-使用者與 `TaskWebApp` 互動時，用戶端會傳送要求給 Azure AD，然後傳回可用於呼叫 `TaskService` Web API 的權杖。若要讓使用者登入並取得權杖，您必須提供 app 的部分相關資訊給 `TaskWebApp`。在 `TaskWebApp` 專案中，開啟專案根目錄中的 `web.config` 檔案，並取代 `<appSettings>` 區段中的值：
+使用者與 `TaskWebApp` 互動時，用戶端會傳送要求給 Azure AD，然後傳回可用於呼叫 `TaskService` Web API 的權杖。若要讓使用者登入並取得權杖，您必須提供 app 的部分相關資訊給 `TaskWebApp`。在 `TaskWebApp` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：
 
 ```
 <appSettings>
@@ -87,7 +89,7 @@ git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-Dot
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-另外有兩個 `[PolicyAuthorize]` 裝飾項目，需要您提供您的登入原則名稱。當使用者嘗試存取 app 中需要驗證的頁面時，可使用 `[PolicyAuthorize]` 屬性來叫用特定的原則。
+還有兩個 `[PolicyAuthorize]` 裝飾項目需要您提供您的登入原則名稱。當使用者嘗試存取應用程式中需要驗證的頁面時，可使用 `[PolicyAuthorize]` 屬性來叫用特定的原則。
 
 ```C#
 // Controllers\HomeController.cs
@@ -215,7 +217,7 @@ public IEnumerable<Models.Task> Get()
 
 ## 執行範例應用程式
 
-最後，建置並執行 `TaskWebApp` 和 `TaskService`。使用電子郵件地址或使用者名稱來註冊 app。在使用者的待辦事項清單中建立一些工作，觀察即使停止並重新啟動用戶端之後，這些工作仍持續存在 API 中。
+最後，請建置並執行 `TaskWebApp` 和 `TaskService`。使用電子郵件地址或使用者名稱來註冊 app。在使用者的待辦事項清單中建立一些工作，觀察即使停止並重新啟動用戶端之後，這些工作仍持續存在 API 中。
 
 ## 編輯您的原則
 
@@ -233,4 +235,4 @@ You can now move onto more advanced B2C topics. You may try:
 
 -->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

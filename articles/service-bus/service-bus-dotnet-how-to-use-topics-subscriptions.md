@@ -52,7 +52,7 @@
 
 ### 設定連接字串
 
-服務組態機制可讓您從 [Azure 傳統入口網站][]動態變更組態設定，而無需重新部署應用程式。例如，在您的服務定義 (**.csdef**) 檔案中加入 `Setting` 標籤，如下個範例所示。
+服務組態機制可讓您從 [Azure 傳統入口網站][]動態變更組態設定，而無需重新部署應用程式。例如，在您的服務定義 (****.csdef**) 檔案中加入 `Setting` 標籤，如下個範例所示。
 
 ```
 <ServiceDefinition name="Azure1">
@@ -234,11 +234,11 @@ for (int i=0; i<5; i++)
 }
 ```
 
-服務匯流排主題支援 [256 KB 的訊息大小上限](service-bus-quotas.md) (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。此主題大小會在建立時定義，上限是 5 GB。如果啟用分割，上限會更高。如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。此主題大小會在建立時定義，上限是 5 GB。如果啟用分割，上限會更高。如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)。
 
 ## 如何自訂用帳戶接收訊息
 
-自訂用帳戶接收訊息的建議方式是使用 [SubscriptionClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.aspx) 物件。[SubscriptionClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.aspx) 物件可在兩種不同的模式下運作：[ReceiveAndDelete 和 PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx)。
+自訂用帳戶接收訊息的建議方式是使用 [SubscriptionClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.aspx) 物件。[SubscriptionClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.aspx) 物件可在兩種不同的模式下運作：[*ReceiveAndDelete* 和 *PeekLock*](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx)。
 
 使用 **ReceiveAndDelete** 模式時，接收是一次性作業；也就是說，當服務匯流排在訂用帳戶中收到訊息的讀取要求時，它會將此訊息標示為已使用，並將它傳回應用程式。**ReceiveAndDelete** 模式是最簡單的模型，且最適合可容許在發生失敗時不處理訊息的應用程式案例。若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。因為服務匯流排會將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
 
@@ -327,4 +327,4 @@ namespaceManager.DeleteSubscription("TestTopic", "HighMessages");
   [服務匯流排代理傳訊 .NET 教學課程]: service-bus-brokered-tutorial-dotnet.md
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

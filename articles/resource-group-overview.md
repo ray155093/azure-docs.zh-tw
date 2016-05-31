@@ -4,8 +4,8 @@
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/11/2016"
+   ms.date="05/20/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員概觀
@@ -59,7 +59,7 @@
 
 ## 資源提供者
 
-資源提供者是一項服務，提供資源讓您可透過資源管理員進行部署及管理。每個資源提供者都會提供 REST API 作業，以便能運用資源。例如，如果想要部署 Azure 金鑰保存庫來儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。此資源提供者提供名為 **vaults** 的資源類型來建立金鑰保存庫、名為 **vaults/secrets** 的資源類型來建立金鑰保存庫中的密碼，以及一組 [REST API 作業](https://msdn.microsoft.com/library/azure/dn903609.aspx)。
+資源提供者是一項服務，提供資源讓您可透過資源管理員進行部署及管理。每個資源提供者都會提供 REST API 作業，以便能運用資源。例如，如果想要部署 Azure 金鑰保存庫來儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。此資源提供者提供名為 **vaults** 的資源類型來建立金鑰保存庫，以及名為 **vaults/secrets** 的資源類型來建立金鑰保存庫中的密碼。您可以查看 REST API 作業 (例如[金鑰保存庫 REST API 作業](https://msdn.microsoft.com/library/azure/dn903609.aspx))，藉此了解資源提供者。
 
 若要部署和管理基礎結構，您需要了解資源提供者的詳細資料；例如提供的資源類型為何、REST API 作業的版本號碼、支援的作業以及設定要建立的資源類型值時要使用的結構描述。如需了解支援的資源提供者，請參閱[資訊管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
@@ -69,6 +69,8 @@
 
 在此範本中，您會定義應用程式的基礎結構、如何設定基礎結構，以及如何將應用程式程式碼發佈至該基礎結構。您不需要擔心部署的順序，因為 Azure 資源管理員會分析相依性，確保以正確的順序建立資源。如需詳細資訊，請參閱[定義 Azure 資源管理員範本中的相依性](resource-group-define-dependencies.md)。
 
+當您從 Marketplace 建立方案，方案會自動包含部署範本。您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。將資源群組的目前狀態匯出至範本，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。檢視匯出的範本有助於了解範本語法。若要深入了解如何使用匯出的範本，[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
+
 您不需要在單一的範本中定義整個基礎結構。通常的合理作法是將您的部署需求分成一組有目標及特定目的的範本。您可以輕鬆地將這些份本重複使用於不同的方案。若要部署特定的方案，您會建立連結所有必要範本的主版範本。如需詳細資訊，請參閱[透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
 
 您也可以使用範本進行基礎結構的更新。例如，您可以將新的資源新增至您的應用程式，並將組態規則新增至已部署的資源。如果此範本會指定建立新的資源，但該資源已經存在，Azure 資源管理員會執行更新，而不必建立新資產。Azure 資源管理員會將現有資產更新為和新資產相同的狀態。或者，您可以指定資源管理員刪除範本中任何未指定的資源。若要了解部署時的各種選項，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
@@ -77,17 +79,11 @@
 
 當您需要其他作業 (例如安裝不包含在安裝程式的特定軟體) 時，資源管理員會提供案例的延伸模組。如果您已經使用組態管理服務，例如 DSC、Chef 或 Puppet，您可以透過使用擴充功能繼續使用該服務。
 
-當您從 Marketplace 建立方案，方案會自動包含部署範本。您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。
-
-將資源群組的目前狀態匯出至範本，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。這兩個選擇均顯示於[使用 Azure 入口網站來部署及管理 Azure 資源](./azure-portal/resource-group-portal.md)中。
-
 最後，範本會成為應用程式原始碼的一部分。您可以檢查您的原始程式碼存放庫，並隨著您的應用程式發展加以更新。您可以透過 Visual Studio 編輯範本。
 
-如需關於定義範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](./resource-group-authoring-templates.md)。
+如需關於定義範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-如需建立範本的逐步指示，請參閱[資源管理員範本逐步解說](resource-manager-template-walkthrough.md)。
-
-如需如何建構您的範本的相關指引，請參閱[設計 Azure 資源管理員範本的最佳做法](best-practices-resource-manager-design-templates.md)。
+如需建立範本的逐步指示，請參閱 [逐Resource Manager 範本步解說](resource-manager-template-walkthrough.md)。
 
 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
 
@@ -97,7 +93,7 @@
 
 資源不需要位於相同的資源群組即可共用標記。您可以建立自己的標記分類，以確保組織中的所有使用者都使用常見的標記，而不是使用者意外套用稍有不同的標記 (例如 "dept" 而不是 "department")。
 
-如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](./resource-group-using-tags.md)。您可以建立[自訂原則](#manage-resources-with-customized-policies)，表示必須在部署時在資源中加入標記。
+如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](resource-group-using-tags.md)。您可以建立[自訂原則](#manage-resources-with-customized-policies)，表示必須在部署時在資源中加入標記。
 
 ## 存取控制
 
@@ -119,25 +115,25 @@
 
 資源管理員透過 Azure PowerShell、Azure CLI for Mac、Linux 和 Windows、Azure 入口網站或 REST API 提供完全相容的作業。您可以使用最適合您的介面，而且可以在介面之間快速移動，而不會造成混淆。入口網站甚至會顯示在網站外部採取動作的通知。
 
-如需 PowerShell 的相關資訊，請參閱 [Azure PowerShell 搭配資源管理員使用](./powershell-azure-resource-manager.md)和 [Azure 資源管理員 Cmdlet](https://msdn.microsoft.com/library/azure/dn757692.aspx)
+如需 PowerShell 的相關資訊，請參閱 [Azure PowerShell 搭配資源管理員使用](powershell-azure-resource-manager.md)和 [Azure 資源管理員 Cmdlet](https://msdn.microsoft.com/library/azure/dn757692.aspx)
 
-如需 Azure CLI 的相關資訊，請參閱 [Azure CLI for Mac、Linux 和 Windows 搭配 Azure 資源管理使用](./xplat-cli-azure-resource-manager.md)。
+如需 Azure CLI 的相關資訊，請參閱 [Azure CLI for Mac、Linux 和 Windows 搭配 Azure 資源管理使用](xplat-cli-azure-resource-manager.md)。
 
 如需 REST API 的相關資訊，請參閱 [Azure 資源管理員 REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)。若要檢視已部署資源的 REST 作業，請參閱[使用 Azure 資源總管來檢視及修改資源](resource-manager-resource-explorer.md)。
 
-如需使用入口網站的相關資訊，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](azure-portal/resource-group-portal.md)。
+如需使用入口網站的相關資訊，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
 
 Azure 資源管理員支援跨原始資源共用 (CORS)。利用 CORS，您可以從位於不同網域的 Web 應用程式呼叫資源管理員 REST API 或 Azure 服務 REST API。若沒有 CORS 支援，網頁瀏覽器將會阻止某個網域中的應用程式存取另一個網域中的資源。資源管理員會對所有具備有效驗證認證的要求啟用 CORS。
 
 ## 後續步驟
 
-- 若要了解如何建立範本，請參閱[撰寫範本](./resource-group-authoring-templates.md)。
+- 若要了解如何建立範本，請參閱[撰寫範本](resource-group-authoring-templates.md)。
 - 若要部署您所建立的範本，請參閱[部署範本](resource-group-template-deploy.md)
-- 若要了解您可以在範本中使用的函式，請參閱[範本函式](./resource-group-template-functions.md)
+- 若要了解您可以在範本中使用的函式，請參閱[範本函式](resource-group-template-functions.md)
 - 如需設計範本的指引，請參閱[設計 Azure 資源管理員範本的最佳做法](best-practices-resource-manager-design-templates.md)
 
 以下是此概觀的示範影片。
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

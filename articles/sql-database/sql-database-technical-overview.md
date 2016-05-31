@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="03/29/2016"
+   ms.date="05/23/2016"
    ms.author="shkurhek"/>
 
 # 什麼是 SQL Database？ SQL Database 簡介
@@ -31,7 +31,7 @@ SQL Database 是以領先市場的 Microsoft SQL Server 引擎為基礎，位於
 
 對於許多企業和應用程式而言，只要能夠建立資料庫，並依需求調高或調低單一資料庫的效能即可，尤其是當使用模式相當容易預測時更是如此。但如果您有無法預測的使用模式，則管理成本和商務模式就會變得相當困難。
 
-SQL Database 中的[彈性集區](sql-database-elastic-pool.md)可解決此問題。概念很簡單。您可以將效能配置給集區，並針對集區的整體效能 (而非單一資料庫的效能) 付款。您不需要調高或調低資料庫的效能。集區中的資料庫 (即彈性資料庫) 可依據需求自動擴大或縮減規模。彈性資料庫會取用集區的資源，但不會超過其限制，因此您的成本可在資料庫使用情形無法預測的狀況下維持可預測性。此外，您還可以[將資料庫移入/移出集區](sql-database-elastic-pool-manage-portal.md)，並將您的應用程式從數個資料庫擴充至數千個，而且全都在您可掌控的預算之內。
+SQL Database 中的[彈性集區](sql-database-elastic-pool.md)可解決此問題。概念很簡單。您可以將效能配置給集區，並針對集區的整體效能 (而非單一資料庫的效能) 付款。您不需要調高或調低資料庫的效能。集區中的資料庫 (即彈性資料庫) 可依據需求自動擴大或縮減規模。彈性資料庫會取用集區的資源，但不會超過其限制，因此您的成本可在資料庫使用情形無法預測的狀況下維持可預測性。此外，您還可以[將資料庫移入/移出集區](sql-database-elastic-pool-manage-portal.md)，並將您的應用程式從數個資料庫擴充至數千個，而且全都在您可掌控的預算之內。若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱[採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 因此，不論您要使用單一或彈性資料庫，都將不再受到限制。您可以混合使用彈性資料庫集區與單一資料庫，並變更單一資料庫和集區的服務層，以製作創新的設計。此外，透過 Azure 功能強大而無遠弗屆的特性，您可以使用 SQL Database 混合和搭配 Azure 服務，滿足您獨特新型應用程式的設計需求、有效運用成本和資源，並且產生新的商機。
 
@@ -59,4 +59,4 @@ SQL Server 的資料安全性向來是一項可靠的傳統，而 SQL Database �
 - 以 C#、Java、Node.js、PHP、Python 或 Ruby 建置您的第一個應用程式：[SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 - 請參閱 [Azure SQL Database 服務的所有主題](sql-database-index-all-articles.md)中的標題索引和描述。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

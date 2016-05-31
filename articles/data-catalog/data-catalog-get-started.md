@@ -24,7 +24,7 @@
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-- **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[免費試](https://azure.microsoft.com/pricing/free-trial/)用以取得詳細資訊。
+- **Azure 訂用帳戶** - 如果您沒有訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[](https://azure.microsoft.com/pricing/free-trial/)免費試用以取得詳細資訊。
 - **Azure Active Directory** - Azure 資料目錄使用 [Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 來管理身分識別和存取權。
 - **資料來源** - Azure 資料目錄可探索資料來源。本教學課程使用 Adventure Works 範例資料庫，但如果喜歡使用您熟悉且與您角色相關的資料，您可以使用任何支援的資料來源。如需支援的資料來源清單，請參閱[支援的資料來源](data-catalog-dsr.md)。
 
@@ -160,7 +160,7 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 在此範例中，您對資料資產執行**分組**搜尋，其中 name 等於 product 且 tags 等於 illustration 或 tags 等於 photo。
 
 1. 前往 https://azure.microsoft.com/services/data-catalog，按一下 [開始使用]，再登入 [Azure 資料目錄] 入口網站。
-2. 在 [搜尋資料目錄] 方塊中，輸入**分組**查詢：(tags:description OR tags:photo)。
+2. 在 [搜尋資料目錄] 方塊中，輸入**分組**查詢：(**tags:description OR tags:photo**)。
 3. 按一下搜尋圖示，或按 Enter 鍵。**Azure 資料目錄**會顯示這個搜尋查詢傳回的資料資產。
 
     ![](media/data-catalog-get-started/data-catalog-search-box.png)
@@ -188,7 +188,7 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 ## 練習 5：群眾外包中繼資料
 
-在本練習中，您將與另一位使用者合作，將中繼資料加入至目錄中的資料資產。**Azure 資料目錄**對於註解的群眾外包作法，可讓任何使用者加入標記、描述和其他中繼資料，任何對資料資產及其用法有所見解的使用者，都能將此見解記錄下來分享給其他使用者。
+在本練習中，您將與另一位使用者合作，將中繼資料加入至目錄中的資料資產。**Azure 資料目錄**對於註解的群眾外包作法，可讓任何使用者加入標記、描述和其他元資料，任何對資料資產及其用法有所見解的使用者，都能將此見解記錄下來分享給其他使用者。
 
 > [AZURE.NOTE] 如果沒有另一位使用者可配合您一起進行本教學課程，請別擔心！ 任何存取資料目錄的使用者都可以選擇加入自己的觀點。這種關於中繼資料的群眾外包方法，可讓目錄的內容和目錄中繼資料的豐富性隨著時間不斷成長。
 
@@ -198,7 +198,7 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 ![](media/data-catalog-get-started/data-catalog-crowdsource.png)
 
-在本練習中，您探索 **Azure 資料目錄**的中繼資料群眾外包功能，任何目錄使用者都可以加註他找到的資料資產。
+在本練習中，您探索 **Azure 資料目錄**的元資料群眾外包功能，任何目錄使用者都可以加註他找到的資料資產。
 
 ## 練習 6：連接到資料來源
 
@@ -262,4 +262,4 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 
 在本教學課程中，您已瀏覽 **Azure 資料目錄**的基本功能，包括註冊、註解、探索和管理企業資料來源。既然您已經完成本教學課程，現在可以開始使用。您可以立即開始註冊您和小組所依賴的資料來源，並邀請同事使用目錄。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

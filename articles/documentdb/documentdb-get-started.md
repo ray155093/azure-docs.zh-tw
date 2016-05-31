@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="05/13/2016"
+	ms.date="05/16/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -602,7 +602,8 @@ DocumentDB 支援刪除 JSON 文件。
 
 ## 後續步驟
 
--   需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱[使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
+- 需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱[使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
+- 想要執行 DocumentDB 的規模和效能測試？ 請參閱 [Azure DocumentDB 的效能和規模測試](documentdb-performance-testing.md)
 -	了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md) (英文)。
 -	在 [Query Playground](https://www.documentdb.com/sql/demo) 中，針對範例資料集執行查詢。
 -	如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
@@ -611,4 +612,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

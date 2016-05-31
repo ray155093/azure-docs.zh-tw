@@ -56,7 +56,9 @@
 
 設定行動應用程式後端之後，您就可以建立新用戶端應用程式或修改現有的應用程式，以連接到 Azure。在本節中，您會下載 UWP 應用程式範本專案，而該專案已自訂要連接到行動應用程式後端。
 
-1. 回到行動應用程式後端的 [開始使用] 刀鋒視窗中，按一下您的 [建立新的應用程式] > [下載]，然後解壓縮壓縮的專案檔案至本機電腦。
+1. 回到行動應用程式後端的 [快速啟動] 刀鋒視窗中，按一下您的 [建立新的應用程式] > [下載]，然後解壓縮壓縮的專案檔案至本機電腦。
+
+	![下載 Windows 快速入門專案](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-app-windows-quickstart.png)
 
 3. (選擇性) 將 UWP 應用程式專案加入至與伺服器專案相同的方案。如此即可更輕鬆地在相同的 Visual Studio 方案中偵錯及測試應用程式和後端 (如果您選擇這麼做的話)。若要將 UWP 應用程式專案加入方案，您必須使用 Visual Studio 2015 或更新版本。
 
@@ -64,13 +66,13 @@
 
 5. 在應用程式的 [插入 TodoItem] 文字方塊中輸入有意義的文字 (例如「完成教學課程」(Complete the tutorial)」)，然後按一下 [儲存]。
 
-	![](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-startup.png)
+	![Windows 快速入門完整桌面](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-startup.png)
 
 	如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。
 
 6. (選擇性) 停止應用程式，並在不同的裝置或行動裝置模擬器上加以重新啟動。
 
-	![](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-completed.png)
+	![Windows 快速入門完整手機](./media/app-service-mobile-windows-store-dotnet-get-started/mobile-quickstart-completed.png)
 
 	請注意，從先前步驟中儲存的資料，會在 UWP 應用程式啟動後從 Azure 載入。
 
@@ -87,6 +89,6 @@
 <!-- URLs. -->
 [Mobile App SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure portal]: https://portal.azure.com/
-[Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
+[Visual Studio Community 2015]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

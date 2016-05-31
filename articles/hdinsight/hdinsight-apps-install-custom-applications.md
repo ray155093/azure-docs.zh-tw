@@ -14,7 +14,7 @@
    	ms.topic="hero-article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="05/18/2016"
+   	ms.date="05/24/2016"
    	ms.author="jgao"/>
 
 # 安裝自訂 HDInsight 應用程式
@@ -48,7 +48,7 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2FIaas-Applications%2Fmaster%2FHue%2Fazuredeploy.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2FIaas-Applications%2Fmaster%2FHue%2Fazuredeploy.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
     此按鈕會在 Azure 入口網站上開啟 ARM 範本。ARM 範本位於 [https://github.com/hdinsight/Iaas-Applications/tree/master/Hue](https://github.com/hdinsight/Iaas-Applications/tree/master/Hue)。若要了解如何撰寫此 ARM 範本，請參閱 [MSDN：安裝 HDInsight 應用程式](https://msdn.microsoft.com/library/mt706515.aspx)。
     
@@ -65,7 +65,7 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhdinsightapps%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhdinsightapps%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
     此按鈕會在 Azure 入口網站上開啟 ARM 範本。ARM 範本位於 [https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json)。若要了解如何撰寫此 ARM 範本，請參閱 [MSDN：安裝 HDInsight 應用程式](https://msdn.microsoft.com/library/mt706515.aspx)。
 
@@ -86,8 +86,25 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
  
 ## 安裝疑難排解
 
-請參閱「安裝 HDInsight 應用程式」中的[疑難排解](hdinsight-apps-install-applications.md#troubleshoot)一節。
+您可以從入口網站通知檢查應用程式安裝狀態 (按一下入口網站頂端的鈴鐺圖示)。
 
+如果應用程式安裝失敗，您可以從 3 個地方查看錯誤訊息和偵錯資訊︰
+
+- HDInsight 應用程式︰一般錯誤資訊。
+
+    從入口網站中開啟叢集，然後從 [設定] 刀鋒視窗按一下 [應用程式]︰
+
+    ![hdinsight 應用程式的應用程式安裝錯誤](./media/hdinsight-apps-install-applications/hdinsight-apps-error.png)
+
+- HDInsight 指令碼動作︰如果 HDInsight 應用程式的錯誤訊息指出指令碼動作失敗，則 [指令碼動作] 窗格會顯示指令碼失敗的詳細資訊。
+
+    從 [設定] 刀鋒視窗按一下 [指令碼動作]。指令碼動作歷程記錄會顯示錯誤訊息
+
+    ![hdinsight 應用程式的指令碼動作錯誤](./media/hdinsight-apps-install-applications/hdinsight-apps-script-action-error.png)
+    
+- Ambari Web UI︰如果安裝指令碼是失敗的原因，請使用 Ambari Web UI 來檢查有關安裝指令碼的完整記錄檔。
+
+    如需詳細資訊，請參閱[疑難排解](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)。
 
 ## 後續步驟
 
@@ -96,4 +113,4 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 - [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 - [使用 ARM 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 ARM 範本來建立 HDInsight 叢集。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -12,7 +12,7 @@
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article"
+	ms.topic="get-started-article"
 	ms.date="04/28/2016"
 	ms.author="banders"/>
 
@@ -41,17 +41,17 @@
 
 目前，Log Analytics 工作區提供：
 
-- 儲存資料的地理位置。 
-- 計費的細微度 
-- 資料隔離 
+- 儲存資料的地理位置。
+- 計費的細微度
+- 資料隔離
 
 根據上述特性，您在下列情況下可能想要建立多個工作區︰
 
-- 您是一家全球性公司，基於資料主權/合規性理由，您需要將資料儲存在特定區域。 
+- 您是一家全球性公司，基於資料主權/合規性理由，您需要將資料儲存在特定區域。
 - 您使用 Azure，想要將 Log Analytics 工作區和它所管理的 Azure 資源放在相同區域中，以避免輸出資料傳輸費用。
 - 您想要根據不同部門/事業群的使用量來分配費用。藉由建立每個部門/事業群的工作區，Azure 帳單和用量表會個別顯示每個工作區的費用。
-- 您是受管理的服務提供者，需要將您管理的每個客戶的 Log Analytics 資料和其他客戶的資料保持隔離。 
-- 您管理多個客戶，想要讓每個客戶/部門/事業群只看到他們自己的資料，而不是其他客戶/部門/事業群的資料。 
+- 您是受管理的服務提供者，需要將您管理的每個客戶的 Log Analytics 資料和其他客戶的資料保持隔離。
+- 您管理多個客戶，想要讓每個客戶/部門/事業群只看到他們自己的資料，而不是其他客戶/部門/事業群的資料。
 
 使用代理程式收集資料時，您可以設定每個代理程式向必要的工作區回報。
 
@@ -246,4 +246,4 @@ OMS Add On for System Center 提供 OMS Log Analytics 進階方案的權利 (如
 - [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)，以加入功能和收集資料。
 - 如果您的組織使用 Proxy 伺服器或防火牆，請[在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md)，讓代理程式可與 Log Analytics 服務通訊。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

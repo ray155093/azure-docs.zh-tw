@@ -62,8 +62,8 @@
 
 ## 後續步驟
 
-若要管理您的記錄集和記錄，請參閱[使用 CLI 管理 DNS 記錄和記錄集](dns-operations-recordsets-portal.md)。
+若要管理您的記錄集和記錄，請參閱[使用 CLI 管理 DNS 記錄和記錄集](dns-operations-recordsets-cli.md)。
 
 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

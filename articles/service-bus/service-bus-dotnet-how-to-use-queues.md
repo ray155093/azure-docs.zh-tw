@@ -177,7 +177,7 @@ for (int i=0; i<5; i++)
 }
 ```
 
-服務匯流排佇列[最多可支援 256 KB 的訊息大小](service-bus-azure-and-service-bus-queues-compared-contrasted.md#capacity-and-quotas) (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如果啟用分割，上限會更高。如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)。
+服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。此佇列大小會在建立時定義，上限是 5 GB。如果啟用分割，上限會更高。如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)。
 
 ## 如何從佇列接收訊息
 
@@ -253,4 +253,4 @@ Client.OnMessage((message) =>
   [QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
   [Complete]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->
