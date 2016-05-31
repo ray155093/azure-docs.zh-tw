@@ -87,12 +87,12 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | Type=Perf Computer="MyComputer" | 來自特定電腦的所有效能資料 |
 | Type=Perf CounterName="Current Disk Queue Length" | 來自特定計數器的所有效能資料 |
 | Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=\_Total | measure Avg(Average) as AVGCPU by Computer | 所有電腦的平均 CPU 使用率 |
-| Type=Perf (CounterName="% Processor Time") | measure max(Max) by Computer | 所有電腦的最大 CPU 使用率 |
-| Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" | measure Avg(Average) by InstanceName | 指定電腦之所有執行個體的平均目前磁碟佇列長度 |
-| Type=Perf CounterName="DiskTransfers/sec" | measure percentile95(Average) by Computer | 所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
-| Type=Perf CounterName="% Processor Time" InstanceName="\_Total" | measure avg(CounterValue) by Computer Interval 1HOUR | 所有電腦的每小時平均 CPU 使用量 |
-| Type=Perf Computer="MyComputer" CounterName=%* InstanceName=\_Total | measure percentile70(CounterValue) by CounterName Interval 1HOUR | 特定電腦每小時 70 百分數的每個百分比計數器 |
-| Type=Perf CounterName="% Processor Time" InstanceName="\_Total" (Computer="MyComputer") | measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR | 特定電腦的每小時平均、最小、最大及 75 百分位數 CPU 使用量 |
+| Type=Perf (CounterName="% Processor Time") &#124; measure max(Max) by Computer | 所有電腦的最大 CPU 使用率 |
+| Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName | 指定電腦之所有執行個體的平均目前磁碟佇列長度 |
+| Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer | 所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
+| Type=Perf CounterName="% Processor Time" InstanceName="\_Total" &#124; measure avg(CounterValue) by Computer Interval 1HOUR | 所有電腦的每小時平均 CPU 使用量 |
+| Type=Perf Computer="MyComputer" CounterName=%* InstanceName=\_Total &#124; measure percentile70(CounterValue) by CounterName Interval 1HOUR | 特定電腦每小時 70 百分數的每個百分比計數器 |
+| Type=Perf CounterName="% Processor Time" InstanceName="\_Total" (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR | 特定電腦的每小時平均、最小、最大及 75 百分位數 CPU 使用量 |
 
 ## 檢視效能資料
 
