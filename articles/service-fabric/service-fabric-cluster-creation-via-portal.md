@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/28/2016"
+   ms.date="05/02/2016"
    ms.author="chackdan"/>
 
 
@@ -32,9 +32,9 @@
 
     b.在 [全部內容] 下方輸入 "Fabric"，然後按 Enter 鍵。有時自動篩選功能會無法運作，因此請務必按下 Enter 鍵。![在 Azure 入口網站上搜尋 Service Fabric 叢集範本的螢幕擷取畫面。][SearchforServiceFabricClusterTemplate]
 
-3. 選取清單中的 \[Service Fabric 叢集]
+3. 選取清單中的 [Service Fabric 叢集]。
 
-4. 瀏覽至 \[Service Fabric 叢集] 刀鋒視窗，按一下 [建立]。
+4. 瀏覽至 [Service Fabric 叢集] 刀鋒視窗，按一下 [建立]。
 
 5. 您現在會看到 [建立 Service Fabric 叢集] 刀鋒視窗列出 4 個步驟。
 
@@ -75,7 +75,7 @@
 
 	b.選取 VM 大小/定價層。預設值為 [D4 標準]，但如果您只是要用這個叢集來測試自己的應用程式，也可以選取 [D2] 或任何較小的 VM。
 
-	c.主要節點類型的 VM 數目下限取決於您選擇的可靠性層級。可靠性層級的預設值為 Silver。進一步閱讀如何[選擇 Service Fabric 叢集可靠性和持久性](service-fabric-cluster-reliability-and-durability.md)的文件。
+	c.主要節點類型的 VM 數目下限取決於您選擇的可靠性層級。可靠性層級的預設值為 Silver。進一步閱讀如何[選擇 Service Fabric 叢集可靠性和持久性](service-fabric-cluster-capacity.md)的文件。
 
 	c.選擇節點類型的 VM 數目。您可以在稍後相應增加或相應減少節點類型中的 VM 數目，但數目下限取決於您選擇的可靠性層級。其他節點類型的下限則可以是 1 部 VM。
 
@@ -141,39 +141,39 @@
 
 ### 連線到不安全的叢集
 
-    ```powershell
-    Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAliveIntervalInSec 10
-    ```
+```powershell
+Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAliveIntervalInSec 10
+```
 
 ### 連線到安全的叢集
 
-    1. 執行下列命令，以便在您即將用來執行「Connect-serviceFabricCluster」PowerShell 命令的電腦上設定憑證。
+1. 執行下列命令，以便在您即將用來執行「Connect-serviceFabricCluster」PowerShell 命令的電腦上設定憑證。
 
-        ```powershell
-        Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
-                -FilePath C:\docDemo\certs\DocDemoClusterCert.pfx `
-                -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
-        ```
+    ```powershell
+    Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
+            -FilePath C:\docDemo\certs\DocDemoClusterCert.pfx `
+            -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
+    ```
 
-    2. 執行下列 PowerShell 命令來連線到安全的叢集。憑證的詳細資料與您在入口網站所提供的資訊相同。
+2. 執行下列 PowerShell 命令來連線到安全的叢集。憑證的詳細資料與您在入口網站所提供的資訊相同。
 
-        ```powershell
-        Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
-                  -KeepAliveIntervalInSec 10 `
-                  -X509Credential -ServerCertThumbprint <Certificate Thumbprint> `
-                  -FindType FindByThumbprint -FindValue <Certificate Thumbprint> `
-                  -StoreLocation CurrentUser -StoreName My
-        ```
+    ```powershell
+    Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
+              -KeepAliveIntervalInSec 10 `
+              -X509Credential -ServerCertThumbprint <Certificate Thumbprint> `
+              -FindType FindByThumbprint -FindValue <Certificate Thumbprint> `
+              -StoreLocation CurrentUser -StoreName My
+    ```
 
-        舉例來說，上述 PowerShell 命令應該會類似下列內容：
+    舉例來說，上述 PowerShell 命令應該會類似下列內容：
 
-        ```powershell
-        Connect-serviceFabricCluster -ConnectionEndpoint sfcluster4doc.westus.cloudapp.azure.com:19000 `
-                  -KeepAliveIntervalInSec 10 `
-                  -X509Credential -ServerCertThumbprint C179E609BBF0B227844342535142306F3913D6ED `
-                  -FindType FindByThumbprint -FindValue C179E609BBF0B227844342535142306F3913D6ED `
-                  -StoreLocation CurrentUser -StoreName My
-        ```
+    ```powershell
+    Connect-serviceFabricCluster -ConnectionEndpoint sfcluster4doc.westus.cloudapp.azure.com:19000 `
+              -KeepAliveIntervalInSec 10 `
+              -X509Credential -ServerCertThumbprint C179E609BBF0B227844342535142306F3913D6ED `
+              -FindType FindByThumbprint -FindValue C179E609BBF0B227844342535142306F3913D6ED `
+              -StoreLocation CurrentUser -StoreName My
+    ```
 
 ### 部署應用程式
 現在您已經建立連線了，請執行下列命令來部署應用程式，但別忘了要先用您電腦上適當的路徑來取代以下所示的路徑。下列範例會部署 WordCount 範例應用程式。
@@ -205,9 +205,9 @@
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 
-## 遠端連線到虛擬機器擴展集 (VMSS) 執行個體或叢集節點
+## 遠端連接到虛擬機器擴展集執行個體或叢集節點
 
-您在叢集中指定的每個 NodeTypes 都會進行 VMSS 設定。如需詳細資訊，請參閱[如何 RDP 到 VMSS 執行個體](service-fabric-cluster-nodetypes.md)。
+您在叢集中指定的每個 NodeTypes 都會進行 VM 擴展集設定。如需詳細資訊，請參閱[遠端連接到 VM 擴展集執行個體](service-fabric-cluster-nodetypes.md#remote-connect-to-a-vm-scale-set-instance-or-a-cluster-node)。
 
 ## 後續步驟
 
@@ -229,4 +229,4 @@
 [ClusterDashboard]: ./media/service-fabric-cluster-creation-via-portal/ClusterDashboard.png
 [SecureConnection]: ./media/service-fabric-cluster-creation-via-portal/SecureConnection.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

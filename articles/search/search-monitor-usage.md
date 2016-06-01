@@ -4,7 +4,7 @@
    services="search" 
    documentationCenter="" 
    authors="HeidiSteen" 
-   manager="mblythe" 
+   manager="paulettm" 
    editor=""
    tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required" 
-   ms.date="02/04/2016"
+   ms.date="05/17/2016"
    ms.author="heidist"/>
 
 # 監視在 Azure 搜尋服務中的使用量和統計資料
@@ -59,4 +59,4 @@ Azure 搜尋服務 REST API 和 .NET SDK 都提供以程式設計方式存取服
 
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

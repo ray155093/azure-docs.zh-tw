@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/11/2016" 
+	ms.date="05/12/2016" 
 	ms.author="billmath"/>
 
 # 管理雲端中 Azure Multi-Factor Authentication 的使用者設定
@@ -86,4 +86,4 @@
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

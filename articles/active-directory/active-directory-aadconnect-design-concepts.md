@@ -65,7 +65,32 @@ sourceAnchor 屬性會區分大小寫。"JohnDoe" 與 "johndoe" 是不同的值�
 - 如果您安裝其他 Azure AD Connect 伺服器，您必須選取如先前所用的相同 sourceAnchor 屬性。如果您稍早已使用 DirSync 並移至 Azure AD Connect，則必須使用 **objectGUID**，因為這是 DirSync 所用的屬性。
 - 如果 sourceAnchor 值在物件匯出至 Azure AD 之後變更，則 Azure AD Connect Sync 將會擲回錯誤，並不允許在修正問題且 sourceAnchor 於來源目錄中變回之前，對此物件進行任何其他變更。
 
+## Azure AD 登入
+
+整合您的內部部署目錄與 Azure AD 時，請務必了解同步處理設定對使用者驗證的方式有何影響。Azure AD 使用 userPrincipalName 或 UPN 來驗證使用者。不過，當您同步處理使用者時，必須小心選擇要用於 userPrincipalName 值的屬性。
+
+### 選擇 userPrincipalName 的屬性
+
+當您選取屬性以便提供要用於 Azure 的 UPN 值時，應確保
+
+* 屬性值符合 UPN 語法 (RFC 822)，其格式應該是 username@domain。
+* 這些值的尾碼符合 Azure AD 中其中一個已驗證的自訂網域
+
+在快速設定中，屬性的假定選擇會是 userPrincipalName。不過，如果您認為 userprincipalname 屬性不包含您希望使用者用於登入 Azure 的值，則您必須選擇 [自訂安裝] 並提供適當的屬性。
+
+### 自訂網域狀態和 UPN
+請務必確保 UPN 尾碼有已驗證的網域。
+
+John 是 contoso.com 中的使用者。在您將使用者同步至 Azure AD 目錄 azurecontoso.onmicrosoft.com 之後，您希望 John 使用內部部署 UPN john@contoso.com 來登入 Azure。若要這樣做，您必須將 contoso.com 新增為 Azure AD 中的自訂網域並加以驗證，才能開始同步處理使用者。如果 John 的 UPN 尾碼 (也就是 contoso.com) 不符合 Azure AD 中已驗證的網域，則 Azure AD 會以 azurecontoso.onmicrosoft.com 取代 UPN 尾碼，而 John 將必須使用 john@azurecontoso.onmicrosoft.com 來登入 Azure。
+
+### 無法路由傳送的內部部署網域與 Azure AD 的 UPN
+有些組織有無法路由傳送的網域，例如 contoso.local 或簡單單一標籤網域，例如 contoso。在 Azure AD 中，您將無法驗證無法路由傳送的網域。Azure AD Connect 可以僅同步至 Azure AD 中已驗證的網域。當您建立 Azure AD 目錄時，它會建立可路由傳送的網域，而該網域會成為 Azure AD 的預設網域，例如 contoso.onmicrosoft.com。因此，您必須在此類案例中驗證任何其他可路由傳送的網域，以免您不想要同步至預設的 .onmicrosoft.com 網域。
+
+如需有關如何新增和驗證網域的詳細資訊，請參閱[將您的自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。
+
+Azure AD Connect 會偵測您是否在無法路由傳送的網域環境中執行，並且會適當地警告您不要繼續進行快速設定。如果您是在不可路由傳送的網域中操作，則使用者的 UPN 可能也有不可路由傳送的尾碼。例如，如果您是在 contoso.local 之下執行，Azure AD Connect 會建議您使用自訂設定，而不是使用快速設定。使用自訂設定，在使用者同步至 Azure AD 之後，您將能夠指定應做為 UPN 以供登入 Azure 的屬性。如需詳細資訊，請參閱下面的**選取 Azure AD 中使用者主體名稱的屬性**。
+
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

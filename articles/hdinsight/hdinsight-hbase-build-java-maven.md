@@ -361,7 +361,10 @@ ms.author="larryfr"/>
 
 ##上傳 JAR 檔案並啟動工作
 
-> [AZURE.NOTE] 有許多方法可將檔案上傳至 HDInsight 叢集，如[在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。下列步驟會使用 [Azure PowerShell](../powershell-install-configure.md)。
+有許多方法可將檔案上傳至 HDInsight 叢集，如[在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。下列步驟會使用 Azure PowerShell。
+
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+
 
 1. 安裝並設定 Azure PowerShell 之後，建立名為 __hbase-runner.psm1__ 的新檔案。使用下列項目做為此檔案的內容：
 
@@ -629,4 +632,4 @@ ms.author="larryfr"/>
 
 請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/22/2016" 
+	ms.date="05/13/2016" 
 	ms.author="ccompy"/>
 
 # 將您的應用程式與 Azure 虛擬網路整合 #
@@ -59,7 +59,9 @@ VNET 整合功能：
 
 ## 啟用 VNET 整合 ##
 
-您可以選擇連接新的或現有的虛擬網路。如果您建立新網路，則除了建立 VNET 外，還會為您預先設定動態路由閘道器，並將啟用點對站 VPN。
+本文件主要著重於使用 Azure 入口網站進行 VNET 整合。若要使用 PowerShell 啟用與您應用程式的 VNET 整合，請遵循這裡的指示︰[使用 PowerShell 將應用程式連接到虛擬網路][IntPowershell]。
+
+您可以選擇將應用程式連接到新的或現有的虛擬網路。如果您在整合時建立新網路，則除了建立 VNET 外，還會為您預先設定動態路由閘道器，並將啟用點對站 VPN。
 
 >[AZURE.NOTE] 設定新的虛擬網路整合可能需要幾分鐘的時間才能完成。
 
@@ -89,7 +91,7 @@ VNET 整合 UI 可讓您從 VNET 的清單中選取。V1 VNET 會在 VNET 名稱
 
 ##### 在 V2 VNET 中啟用點對站 #####
 
-若要使用閘道器和點對站設定 V2 VNET，您必須如以下文件所述使用 PowerShell，[使用 PowerShell 設定虛擬網路的點對站連接][V2VNETP2S]。用來執行這項功能的 UI 尚無法使用。
+若要使用閘道器和點對站設定 V2 VNET，您必須如以下文件所述使用 PowerShell：[使用 PowerShell 設定虛擬網路的點對站連接][V2VNETP2S]。用來執行這項功能的 UI 尚無法使用。
 
 ### 建立預先設定的 VNET ###
 如果您想要建立新的 VNET，以閘道器和點對站進行設定，則 App Service 網路 UI 具有功能可以完成這項操作，但是僅適用於 V2 VNET。如果您想要以閘道器和點對站建立 V1 VNET，您需要透過網路使用者介面手動執行。
@@ -165,9 +167,9 @@ VNET 位址空間需要以 CIDR 標記法指定。如果您不熟悉 CIDR 標記
 
 ![][7]
 
-路由如先前所述，VNET 中所定義的路由用於將應用程式中的流量導向至 VNET。還有一些用途，就是客戶想要將額外的輸出流量從應用程式傳送到 VNET，但已對他們提供此功能。傳送後流量發生什麼情況取決於客戶如何設定其 VNET。
+**路由**如先前所述，VNET 中所定義的路由用於將應用程式中的流量導向至 VNET。還有一些用途，就是客戶想要將額外的輸出流量從應用程式傳送到 VNET，但已對他們提供此功能。傳送後流量發生什麼情況取決於客戶如何設定其 VNET。
 
-憑證憑證狀態反映 App Service 執行的檢查，此檢查用來驗證用於 VPN 連線的憑證是否依然完好。啟用 VNET 整合時，如果這是此 ASP 中的任何應用程式與該 VNET 的第一個整合，則需要交換憑證以確保連線的安全性。除了憑證以外，我們還得到 DNS 組態、路由，以及其他描述網路的類似項目。如果這些憑證或網路資訊已變更，您將需要按一下 [同步處理網路]。注意：當按一下 [同步處理網路] 時，將導致應用程式與 VNET 之間的連線短暫中斷。如果應用程式不重新啟動，失去連線會導致您的網站無法正常運作。
+**憑證**憑證狀態反映 App Service 執行的檢查，此檢查用來驗證用於 VPN 連線的憑證是否依然完好。啟用 VNET 整合時，如果這是此 ASP 中的任何應用程式與該 VNET 的第一個整合，則需要交換憑證以確保連線的安全性。除了憑證以外，我們還得到 DNS 組態、路由，以及其他描述網路的類似項目。如果這些憑證或網路資訊已變更，您將需要按一下 [同步處理網路]。**注意**：當按一下 [同步處理網路] 時，將導致應用程式與 VNET 之間的連線短暫中斷。如果應用程式不重新啟動，失去連線會導致您的網站無法正常運作。
 
 ##存取內部部署資源##
 
@@ -184,7 +186,7 @@ VNET 整合功能的優點之一就是，如果 VNET 以站對站 VPN 連接到�
 
 您的應用程式若要能夠使用此功能，它們必須位於標準或進階 App Service 方案中。您可以在這裡看到這些成本的詳細資料：[App Service 價格][ASPricing]。
 
-由於處理點對站 VPN 的方式，您必須付費，才能透過 VNET 整合連線輸出資料，即使 VNET 位於相同的資料中心也一樣。若要查看這些花費，請參閱這裡：[資料傳輸價格詳細資料][DataPricing]。
+由於處理點對站 VPN 的方式，您必須付費，才能透過 VNET 整合連線輸出資料，即使 VNET 位於相同的資料中心也一樣。若要查看這些花費，請參閱這裡：[資料傳輸定價詳細資料][DataPricing]。
 
 最後一個項目就是 VNET 閘道器的成本。如果對其他項目 (例如站對站 VPN) 您不需要閘道器，表示您的付費是讓閘道器支援 VNET 整合功能。這裡有這些成本的詳細資料：[VPN 閘道器價格][VNETPricing]。
 
@@ -287,5 +289,6 @@ App Service 環境功能可讓您在 VNET 中執行 Azure App Service 的執行�
 [VNETPricing]: http://azure.microsoft.com/pricing/details/vpn-gateway/
 [DataPricing]: http://azure.microsoft.com/pricing/details/data-transfers/
 [V2VNETP2S]: http://azure.microsoft.com/documentation/articles/vpn-gateway-howto-point-to-site-rm-ps/
+[IntPowershell]: http://azure.microsoft.com/documentation/articles/app-service-vnet-integration-powershell/
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -94,20 +94,14 @@ Azure IoT 中樞裝置管理目前提供六種類型的裝置作業 (我們會�
 
 ## 裝置實作
 
-現在，我們已經涵蓋服務端概念，接下來將討論如何建立具有管理功能的裝置。裝置上的 Azure IoT 中樞裝置管理用戶端程式庫提供必要的構件來實作您實體裝置與 IoT 中樞之間的通訊。
+現在，我們已經涵蓋服務端概念，接下來將討論如何建立受管理的實體裝置。Azure IoT 中樞 DM 用戶端程式庫可讓您使用 Azure IoT 中樞管理您的 IoT 裝置。「管理」包含重新啟動、恢復出廠預設值和更新韌體等動作。目前我們提供的是各平台通用的 C 程式庫，但我們很快就會增加對其他語言的支援。
 
-Azure IoT 中樞 DM 用戶端程式庫會抽取 [LWM2M][lnk-lwm2m] 標準和 CoAP 型要求/回應通訊協定。因此，程式庫的裝置機型為「物件」和「資源定義」：
+DM 用戶端程式庫在裝置管理中擔負兩項重責大任︰
 
--   物件會描述系統中的一組一致功能實體 (例如裝置和韌體更新)。
--   資源會描述這些物件中包含的屬性或動作 (例如電池電量資訊和重新啟動動作)。
+- 將實體裝置的屬性與其在 IoT 中樞內的裝置對應項進行同步處理
+- 設計由 IoT 中樞傳送到裝置的裝置作業
 
-當您使用 Azure IoT 中樞 DM 用戶端程式庫時，需要實作實體裝置上每個資源的讀取、寫入和執行作業回呼。此程式庫會處理屬性變更時的 IoT 中樞非同步更新。
-
-下圖顯示 IoT 中樞用戶端代理程式中所需的不同元件。
-
-![][img-client]
-
-您可以在[適用於 C 的 Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]中深入了解實體裝置上的實作。
+在[適用於 C 的 Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]中，深入了解實體裝置上的這些責任和實作。
 
 ## 後續步驟
 
@@ -135,4 +129,4 @@ Azure IoT 中樞 DM 用戶端程式庫會抽取 [LWM2M][lnk-lwm2m] 標準和 CoA
 [lnk-apidocs]: http://azure.github.io/azure-iot-sdks/
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/04/2016"
+	ms.date="05/17/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 偵測到的風險事件類型 
@@ -78,4 +78,4 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 
 - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

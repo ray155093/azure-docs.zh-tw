@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/04/2016"
+   ms.date="05/16/2016"
    ms.author="stuartle;tomfitz"/>
 
 # 使用 Azure 資源總管來檢視及修改資源
@@ -67,11 +67,11 @@
 
 ![PowerShell](./media/resource-manager-resource-explorer/are-07-powershell.png)
 
-如需 Azure PowerShell Cmdlet 的詳細資訊，請參閱[將 Azure PowerShell 與 Azure Resource Manager 搭配使用](./powershell-azure-resource-manager.md)。
+如需 Azure PowerShell Cmdlet 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
 
 ## 摘要
 與 ARM 搭配使用時，資源總管可以成為非常有用的工具。這是用來探索如何使用 PowerShell 來查詢及變更的好方法。如果您正在使用 REST API，這是在您開始撰寫程式碼之前開始使用及快速測試 API 的好方法。以及如果您正在撰寫 ARM 範本，這可以是了解資源階層及尋找組態放置位置的好方法 - 您可以在入門網站中變更，然後在資源總管中尋找相對應的項目。
 
 如需詳細資訊，請參閱 [Channel 9 video with Scott Hanselman and David Ebbo (Channel 9 中 Scott Hanselman 和 David Ebbo 的影片)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Resource-Manager-Explorer-with-David-Ebbo)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

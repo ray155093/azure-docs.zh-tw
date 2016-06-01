@@ -77,7 +77,7 @@
 	2. 輸入 Data Factory 的 [名稱]。
 	3. 選取要建立 Data Factory 的 [Azure 訂用帳戶]。 
 	4. 選取 Data Factory 的 [資源群組]。
-	5. 針對 [區域] 選取 [美國西部] 或 [北歐]。
+	5. 針對 [區域] 選取 [美國西部]、[美國東部] 或 [北歐]。
 	6. 按 [下一步]。 
 9. 在 [設定資料存放區] 頁面上，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶] \(或建立新項目)，然後按 [下一步]。 
 10. 在 [設定計算] 頁面上選取預設值，然後按 [下一步]。 
@@ -99,4 +99,4 @@
 
 如需使用 Visual Studio 來撰寫 Data Factory 實體及發行至 Azure 的詳細資料，請參閱[建置第一個 Data Factory (Visual Studio)](data-factory-build-your-first-pipeline-using-vs.md)。
 
-<!----HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

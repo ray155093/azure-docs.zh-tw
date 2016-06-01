@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/20/2016"
+   ms.date="05/11/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -149,7 +149,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 是。我們接受私人對等互連最多使用 4000 個路由首碼；公用對等互連和 Microsoft 對等互連各自最多使用 200 個路由首碼。如果您啟用 ExpressRoute 進階功能，您可以針對私人對等互連將此值提高至 10,000 個路由。
 
 ### 我可以透過 BGP 工作階段通告的 IP 範圍有無限制？
-我們不接受公用對等互連 BGP 工作階段中的私人首碼 (RFC1918)。
+我們不接受公用和 Microsoft 對等互連 BGP 工作階段中的私人首碼 (RFC1918)。
 
 ### 如果超過 BGP 限制，該怎麼辦？
 BGP 工作階段將會被刪除。當首碼計數降至限制以下時，系統便會重設 BGP 工作階段。
@@ -245,4 +245,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 即使 ExpressRoute 已設定供我的組織使用，我是否可以透過網際網路存取 Office 365？
 是。即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
 
-<!---HONumber=AcomDC_0427_2016-->
+### 可以透過 ExpressRoute 連線存取 Dynamics AX 嗎？
+不，不支援此做法。
+
+<!---HONumber=AcomDC_0518_2016-->

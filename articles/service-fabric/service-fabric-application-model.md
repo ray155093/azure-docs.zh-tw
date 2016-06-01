@@ -3,7 +3,7 @@
    description="如何在 Service Fabric 中建立模型和描述應用程式與服務。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="seanmck"
+   authors="rwike77"
    manager="timlt"
    editor="mani-ramaswamy"/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/05/2016"   
-   ms.author="seanmck"/>
+   ms.date="05/12/2016"   
+   ms.author="ryanwi"/>
 
 # 在 Service Fabric 中模型化應用程式
 
@@ -29,7 +29,7 @@
 
 應用程式類型是應用程式的分類，由服務類型的組合所組成。服務類型是一項服務分類。分類可以有不同的設定和組態，但是核心功能保持不變。服務的執行個體是相同服務類型的不同服務組態變形。
 
-應用程式和服務的類別 (或「類型」) 是透過 XML 檔案 (應用程式資訊清單和服務資訊清單) 來說明，這類檔案是應用程式可針對它從叢集的映像存放區具現化的範本。
+應用程式和服務的類別 (或「類型」) 是透過 XML 檔案 (應用程式資訊清單和服務資訊清單) 來說明，這類檔案是應用程式可針對它從叢集的映像存放區具現化的範本。ServiceManifest.xml 和 ApplicationManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\\Program Files\\Microsoft SDKs\\Service Fabric\\schemas\\ServiceFabricServiceModel.xsd*。
 
 不同應用程式執行個體的程式碼會執行為個別的程序，即使是由相同的 Service Fabric 節點所裝載。此外，每個應用程式執行個體的生命週期可以獨立進行管理 (也就是升級)。下圖顯示應用程式類型如何由服務類型組成，依序分別為程式碼、組態和封裝的組成。為了簡化此圖，只會顯示 `ServiceType4` 的程式碼/組態/資料封裝，但每個服務類型都包含這其中部分或所有的封裝類型。
 
@@ -44,7 +44,7 @@
 ![服務內的分割和複本][cluster-application-instances]
 
 
->[AZURE.TIP] 您可以使用 Service Fabric 總管工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+>[AZURE.TIP] 您可以使用 Service Fabric Explorer 工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 ## 描述服務
 
@@ -254,4 +254,4 @@ PS D:\temp>
 [11]: service-fabric-manage-multiple-environment-app-configuration.md
 [12]: service-fabric-application-runas-security.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

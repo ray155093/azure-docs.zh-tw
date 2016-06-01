@@ -20,6 +20,25 @@
 
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。推出這些更新的特定[系列][family-explain]皆會包含這些更新。
 
+## 5 月客體 OS 
+
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ---------------- | --------------------- |
+| MS16-051 | [3155533] | Internet Explorer 的累積安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 |  
+| MS16-053 | [3156764] | JScript 與 VBScript 的累積安全性更新 | 2\.51 | 2016 年 5 月 10 日 | 
+| MS16-055 | [3156754] | Microsoft 圖形元件的安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| MS16-057 | [3156987] | Windows Shell 的安全性更新 | 4\.32 | 2016 年 5 月 10 日 | 
+| MS16-060 | [3154846] | Windows Kernel 的安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| MS16-061 | [3155520] | RPC 的安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| MS16-062 | [3158222] | 核心模式驅動程式的安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| MS16-065 | [3156757] | .Net Framework 的安全性更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| MS16-067 | [3155784] | 磁碟區管理員驅動程式的安全性更新 | 4\.32, 3.39 | 2016 年 5 月 10 日 | 
+| | [3148851] | Windows 中的俄羅斯時區變更 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+| | [3133977] | BitLocker 無法加密磁碟機，原因是 Windows 7 或 Windows Server 2008 R2 中 svchost.exe 程序中的服務損毀 | 2\.51 | 2016 年 5 月 10 日 | 
+| | [3133681] | 虛擬機器並未回應您在 Windows Server 2012 R2 中 SCVMM 中的作業 | 4\.32 | 2016 年 5 月 10 日 | 
+| | [3123245] | 更新可改善 Windows Server 2012 R2 中的連接埠耗盡識別 | 4\.32 | 2016 年 5 月 10 日 | 
+| | [停用 RC4] | Microsoft 安全性諮詢︰停用 RC4 的更新 | 4\.32, 3.39, 2.51 | 2016 年 5 月 10 日 | 
+
 
 ## 四月客體 OS 
 
@@ -269,6 +288,23 @@
 | N/A | [2999802][2999802] | 在 Windows 中列印虛線時會變成實線 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 | N/A | [2896881][2896881] | 在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 
+[3155533]: http://support.microsoft.com/kb/3155533
+[3156764]: http://support.microsoft.com/kb/3156764
+[3156754]: http://support.microsoft.com/kb/3156754
+[3156987]: http://support.microsoft.com/kb/3156987
+[3141083]: http://support.microsoft.com/kb/3141083
+[3154846]: http://support.microsoft.com/kb/3154846
+[3155520]: http://support.microsoft.com/kb/3155520
+[3158222]: http://support.microsoft.com/kb/3158222
+[3156757]: http://support.microsoft.com/kb/3156757
+[3155784]: http://support.microsoft.com/kb/3155784
+[3148851]: http://support.microsoft.com/kb/3148851
+[3133977]: http://support.microsoft.com/kb/3133977
+[3133681]: http://support.microsoft.com/kb/3133681
+[3123245]: http://support.microsoft.com/kb/3123245
+[停用 RC4]: https://blogs.msdn.microsoft.com/azuresecurity/2016/04/12/azure-cipher-suite-change-removes-rc4-support/
+
+
 [3148531]: http://support.microsoft.com/kb/3148531
 [3148522]: http://support.microsoft.com/kb/3148522
 [3148541]: http://support.microsoft.com/kb/3148541
@@ -453,4 +489,4 @@
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-and-release-explanation
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

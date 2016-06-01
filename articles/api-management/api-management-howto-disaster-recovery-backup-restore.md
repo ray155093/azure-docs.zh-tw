@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何在 Azure API 管理中使用服務備份和還原實作災害復原" 
+	pageTitle="如何在 Azure API 管理中使用服務備份和還原實作災害復原 | Microsoft Azure" 
 	description="了解如何在 Azure API 管理中使用備份和還原來執行災難復原。" 
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/16/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -191,4 +191,4 @@
 [api-management-endpoint]: ./media/api-management-howto-disaster-recovery-backup-restore/api-management-endpoint.png
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

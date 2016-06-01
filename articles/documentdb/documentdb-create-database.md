@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="如何在 DocumentDB 中建立資料庫 |Microsoft Azure" 
-	description="了解如何使用 Azure DocumentDB 的線上服務入口網站 (其為一種 JSON 的 NoSQL 文件資料庫)，來建立受管理的資料庫。立即取得免費帳戶。" 
+	description="了解如何使用 Azure DocumentDB 的線上服務入口網站來建立資料庫 - 您的炫目的高速、全球級的 NoSQL 資料庫。" 
 	keywords="如何建立資料庫" 
 	services="documentdb" 
 	authors="mimig1" 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/19/2016" 
+	ms.date="05/16/2016" 
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站建立 DocumentDB 的資料庫
@@ -51,4 +51,4 @@
 
 在集合中有了文件之後，您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其中一個 [SDK](documentdb-sdk-dotnet.md)，針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-sql-queries)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

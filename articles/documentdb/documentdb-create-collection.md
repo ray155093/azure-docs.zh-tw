@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="05/16/2016" 
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站建立 DocumentDB 集合
@@ -44,15 +44,15 @@
 
 	如果您要建立分割的集合，請跳至步驟 7，因為您不需要選取定價層。
 
-7. 選取集合的 [資料分割模式]，亦即 [單一資料分割] 或 [已分割]。單一資料分割保留的儲存體容量為 10 GB，且輸送量層級可以從每秒 400 個到 10,000 個要求單位。已分割的集合可以進行調整以處理多個資料分割總共 250 GB 的儲存體，且輸送量層級可以從每秒 10,100 個到 250,000 個要求單位。
+7. 選取集合的 [資料分割模式]，亦即 [單一資料分割] 或 [已分割]。單一資料分割保留的儲存體容量為 10 GB，且輸送量層級可以從每秒 400 個到 10,000 個要求單位。已分割的集合可以進行調整以處理多個資料分割總共 250 GB 的儲存體，且輸送量層級可以從每秒 10,100 個到 250,000 個要求單位。如需在建立集合之後要求增加這些預設配置的詳細資訊，請參閱[要求增加 DocumentDB 帳戶限制](documentdb-increase-limits.md)。
 
 8. 選取已分割之集合的 [輸送量]。一個要求單位 (RU) 會對應至讀取 1 KB 文件的輸送量。如需要求單位的詳細資訊，請參閱[要求單位](documentdb-request-units.md)。
 
 9. 如果您要建立已分割的集合，請選取集合的 [資料分割索引鍵]。選取正確的資料分割索引鍵對於建立高效能集合來說很重要。如需選取資料分割索引鍵的詳細資訊，請參閱[在 DocumentDB 中分割資料](documentdb-partition-data.md)。
 
-10. 按一下螢幕底部的 [確定]，以建立新的集合。
+10. 按一下螢幕底部的 [**確定**]，以建立新的集合。
 
-11. 新的集合現在便會出現在 [資料庫] 刀鋒視窗上的 [集合] 鏡頭中。
+11. 新的集合現在便會出現在 [**資料庫**] 刀鋒視窗上的 [**集合**] 鏡頭中。
  
 	![[資料庫] 刀鋒視窗中新集合的螢幕擷取畫面- 適用於 DocumentDB 的 Azure 入口網站 - NoSQL JSON 資料庫的雲端式資料庫建立者](./media/documentdb-create-collection/docdb-collection-creation-9.png)
 
@@ -68,9 +68,9 @@
 
 集合不一定要使用入口網站來建立，您也可以使用 [DocumentDB SDK](documentdb-sdk-dotnet.md) 和 REST API 來建立集合。
 
-- 如需 C# 程式碼範例，請參閱 [C# 集合樣本](documentdb-dotnet-samples.md#collection-examples)。 
-- 如需 Node.js 程式碼範例，請參閱 [Node.js 集合樣本](documentdb-nodejs-samples.md#collection-examples)。
-- 如需 Python 程式碼範例，請參閱 [Python 集合樣本](documentdb-python-samples.md#collection-examples)。
+- 如需 C# 程式碼範例，請參閱 [C# 集合範例](documentdb-dotnet-samples.md#collection-examples)。 
+- 如需 Node.js 程式碼範例，請參閱 [Node.js 集合範例](documentdb-nodejs-samples.md#collection-examples)。
+- 如需 Python 程式碼範例，請參閱 [Python 集合範例](documentdb-python-samples.md#collection-examples)。
 - 如需 REST API 範例，請參閱[建立集合](https://msdn.microsoft.com/library/azure/mt489078.aspx)。
 
 ## 疑難排解
@@ -87,4 +87,4 @@
 
 當集合中有文件之後，您就可以利用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或其中一個 [SDK](documentdb-sdk-dotnet.md)，來針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-queries)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -702,4 +702,4 @@ Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式�
 [4]: ./media/active-directory-scim-provisioning/scim-figure-4.PNG
 [5]: ./media/active-directory-scim-provisioning/scim-figure-5.PNG
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

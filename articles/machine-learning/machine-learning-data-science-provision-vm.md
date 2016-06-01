@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="bradsev" />
 
 
 # 佈建 Microsoft 資料科學虛擬機器
-
-## 簡介
 
 Microsoft 資料科學虛擬機器是預先安裝並設定數個常用於資料分析和機器學習之熱門工具的 Azure 虛擬機器 (VM) 映像。這些工具包括：
 
@@ -99,7 +97,7 @@ Microsoft 資料科學虛擬機器可快速啟動分析專案。它能讓您處�
 
 在看到提示時選擇強式密碼。
 
-您會在輸出中看到格式為 "sha1:xxxxxx" 的密碼雜湊。複製此密碼雜湊並取代您的 Notebook 設定檔中含參數名稱 ***c.NotebookApp.password*** 的現有雜湊，設定檔位於：**C:\\ProgramData\\jupyter\\jupyter\_notebook\_config.py**。
+您會在輸出中看到格式為 "sha1:xxxxxx" 的密碼雜湊。複製此密碼雜湊，並用此資訊取代您 Notebook 設定檔中包含參數名稱 **c.NotebookApp.password** 的現有雜湊；設定檔位於：**C:\\ProgramData\\jupyter\\jupyter\_notebook\_config.py**。
 
 您只應取代引號內現有的雜湊值。必須保留參數值的引號與 ***sha1:*** 前置詞。
 
@@ -114,7 +112,7 @@ Microsoft 資料科學虛擬機器可快速啟動分析專案。它能讓您處�
 為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。這個散佈包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。您可以使用安裝在 Visual Studio 2015 Community 版本內的 Python Tools for Visual Studio (PTVS)，或隨附於 Anaconda 的其中一個整合式開發環境 (IDE)，像是 IDLE 或 Spyder。您可以藉由在搜尋列 (**Win** + **S** 鍵) 上搜尋以啟動其中一個。**注意**：若要在 Anaconda Python 2.7 和 3.5 指向 Python Tools for Visual Studio，您必須為每個版本建立自訂環境，方法是瀏覽至 [工具]-> [Python 工具]-> [Python 環境]，然後按一下 Visual Studio 2015 Community 版本中的 [+ 自訂] 並設定環境路徑。Anaconda Python 2.7 安裝在 C:\\Anaconda 之下，Anaconda Python 3.5 則安裝在 c:\\Anaconda\\envs\\py35 之下。如需詳細步驟，請參閱 [PTVS 文件](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it)。
 
 ### Jupyter Notebook
-Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與分析的環境。Jupyter Notebook 伺服器已經預先設定 Python 2、Python 3 及 R 核心。有一個名為 Jupyter Notebook 的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。如果您是透過遠端桌面登入 VM，您也可以造訪 [https://localhost:9999/](https://localhost:9999/) 以存取 Jupyter Notebook 伺服器 (附註：如果您收到任何憑證警告，只要繼續作業即可。)我們已封裝範例筆記本 - 一個使用 Python，另一個使用 R。當您使用在較早步驟中建立的密碼向 Jupyter Notebook 驗證之後，您就可以在 Notebook 首頁看到範例的連結。
+Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與分析的環境。Jupyter Notebook 伺服器已經預先設定 Python 2、Python 3 及 R 核心。有一個名為 Jupyter Notebook 的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。如果您是透過遠端桌面登入 VM，也可以造訪 [https://localhost:9999/](https://localhost:9999/) 以存取 Jupyter Notebook 伺服器 (附註：如果收到任何憑證警告，只要繼續作業即可。)我們已封裝範例筆記本 - 一個使用 Python，另一個使用 R。當您使用在較早步驟中建立的密碼向 Jupyter Notebook 驗證之後，您就可以在 Notebook 首頁看到範例的連結。
 
 ### Visual Studio 2015 Community 版本
 VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱門整合式開發環境 (IDE)E 的免費版本，您可以用於評估用途，適合非常小型的團隊。您可以在[這裡](https://www.visualstudio.com/support/legal/mt171547)查看授權條款。按兩下桌面圖示或 [開始] 功能表以開啟 Visual Studio。您也可以使用 **Win** + **S** 並輸入「Visual Studio」來搜尋程式。之後您就可以使用像是 C#、Python 等語言來建立專案。您也將會看到已安裝的外掛程式，它們可以讓您更方便使用 Azure 服務，例如 Azure 資料目錄、Azure HDInsight (Hadoop、Spark) 及 Azure 資料湖。
@@ -127,8 +125,8 @@ VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱�
 ### Azure 
 有數個 Azure 工具會安裝於 VM 上：
 - 有一個桌面捷徑可用來存取 Azure SDK 文件。 
-- **AzCopy** 可用來將資料移入和移出 Microsoft Azure 儲存體帳戶。 
-- **Azure 儲存體總管**可用來瀏覽您已儲存在 Azure 儲存體帳戶內的物件。 
+- **AzCopy** 可用來將資料從 Microsoft Azure 儲存體帳戶移入和移出。 
+- **Azure 儲存體總管**可用來瀏覽您已儲存在 Azure 儲存體帳戶中的物件。 
 - **Microsoft Azure Powershell** - 利用 Powershell 指令碼語言來管理您的 Azure 資源的工具，也會安裝在您的 VM 上。 
 
 ###Power BI
@@ -149,4 +147,4 @@ VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱�
 * 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)，以取得使用 Cortana Intelligence Suite 的機器學習服務和資料分析範例。我們也已經在虛擬機器的開始功能表與桌面上提供圖示以方便存取 
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

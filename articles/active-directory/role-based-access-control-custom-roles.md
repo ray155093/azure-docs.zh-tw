@@ -20,7 +20,7 @@
 # Azure RBAC 中的自訂角色
 
 
-如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。
+如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。自訂角色會儲存在 Azure AD 租用戶中，而且可以在所有訂用帳戶之間共用，而這些訂用帳戶使用該租用戶做為訂用帳戶的 Azure AD 目錄。
 
 以下是可以監視和重新啟動虛擬機器的自訂角色範例：
 
@@ -99,4 +99,4 @@
 	- [REST API](role-based-access-control-manage-access-rest.md)
 - [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資料。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

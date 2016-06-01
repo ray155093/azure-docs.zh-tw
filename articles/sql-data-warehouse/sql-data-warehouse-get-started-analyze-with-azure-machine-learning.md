@@ -13,10 +13,15 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/17/2016"
-   ms.author="shivaniguptamsft;barbkess;sonyama"/>
+   ms.date="05/18/2016"
+   ms.author="shigu;barbkess;sonyama"/>
 
 # 使用 Azure Machine Learning 分析資料
+
+> [AZURE.SELECTOR]
+- [Power BI][]
+- [Azure Machine Learning][]
+
 本教學課程將說明如何透過使用 Azure SQL 資料倉儲資料的 Azure Machine Learning 建置預測性機器學習模型。在本教學課程中，我們將為 Adventure Work 建置鎖定目標的行銷活動，預測客戶是否可能購買自行車。
 
 > [AZURE.VIDEO integrating-azure-machine-learning-with-azure-sql-data-warehouse]
@@ -37,7 +42,7 @@
 3. 輸入您的實驗名稱：目標行銷。
 4. 將 [讀取器] 模組從模組窗格拖曳到畫布上。
 5. 在 [屬性] 窗格中指定 SQL 資料倉儲資料庫的詳細資料。
-6. 指定資料庫「查詢」以利讀取感興趣的資料。
+6. 指定資料庫**查詢**以利讀取感興趣的資料。
 
 ```sql
 SELECT [CustomerKey]
@@ -59,7 +64,7 @@ SELECT [CustomerKey]
 FROM [dbo].[vTargetMail]
 ```
 
-按一下實驗畫布下方的 [**執行**]，以執行實驗。![執行實驗][1]
+按一下實驗畫布下方的 [執行]，以執行實驗。![執行實驗][1]
 
 
 實驗成功執行完畢之後，按一下讀取器模組底部的輸出連接埠，然後選取 [視覺化] 以查看匯入的資料。![檢視匯入的資料][3]
@@ -129,5 +134,7 @@ FROM [dbo].[vTargetMail]
 [Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [手動載入範例資料]: sql-data-warehouse-get-started-manually-load-samples.md
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
+[Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

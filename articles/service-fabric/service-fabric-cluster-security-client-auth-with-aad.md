@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/11/2016"
+   ms.date="04/22/2016"
    ms.author="seanmck"/>
 
 # 預覽︰建立使用 Azure Active Directory 進行用戶端驗證的 Service Fabric 叢集
 
-您可以保護對使用 Azure Active Directory (AAD) 的 Service Fabric 叢集管理端點的存取。本文涵蓋如何建立必要 AAD 構件、如何在叢集建立期間填入它們，以及之後如何連線到這些叢集。
+您可以為使用 Azure Active Directory (AAD) 的 Service Fabric 叢集，保護其管理端點的存取。本文涵蓋如何建立必要 AAD 構件、如何在叢集建立期間填入它們，以及之後如何連線到這些叢集。
 
 >[AZURE.IMPORTANT] 與 Service Fabric 叢集的 AAD 整合目前為預覽版本。Service Fabric 5.0 執行階段中提供本文中所述的所有內容，但是目前建議您不要將它用於生產叢集。
 
@@ -33,9 +33,13 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
 >[AZURE.NOTE] 您必須在建立叢集之前執行這些步驟；因此，在指令碼預期叢集名稱和端點的情況下，這些應該是計劃的值，而不是您所建立的值。
 
-1. [下載指令碼][sf-aad-ps-script-download]，並先將它們解壓縮再繼續進行。
+1. [下載指令碼][sf-aad-ps-script-download]到您的電腦。
 
-2. 提供 TenantId、ClusterName 和 WebApplicationReplyUrl 作為參數，來執行 `SetupApplications.ps1`。例如：
+2. 以滑鼠右鍵按一下 ZIP 檔案，選擇 [屬性]，然後核取 [解除封鎖] 核取方塊並套用。
+
+3. 解壓縮 zip 檔案。
+
+4. 提供 TenantId、ClusterName 和 WebApplicationReplyUrl 作為參數，來執行 `SetupApplications.ps1`。例如：
 
     ```powershell
     .\SetupApplications.ps1 -TenantId '690ec069-8200-4068-9d01-5aaf188e557a' -ClusterName 'mycluster' -WebApplicationReplyUrl 'https://mycluster.westus.cloudapp.azure.com:19080/Explorer/index.html'
@@ -45,7 +49,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
     https://<i></i>manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/ActiveDirectoryExtension/Directory/**690ec069-8200-4068-9d01-5aaf188e557a**/users
 
-    在指令碼所建立之 AAD 應用程式的前面會加上**叢集名稱**。它不需要完全符合實際的叢集名稱，因為它只是用來讓您更輕鬆地將 AAD 構件對應到與之搭配使用的 Service Fabric 叢集。
+    在指令碼所建立的 AAD 應用程式前面會加上**叢集名稱**。它不需要完全符合實際的叢集名稱，因為它只是用來讓您更輕鬆地將 AAD 構件對應到與之搭配使用的 Service Fabric 叢集。
 
     **WebApplicationReplyUrl** 是 AAD 在完成登入程序之後讓您的使用者返回的預設端點。您應該將此設定為您叢集的 Service Fabric Explorer 端點，其預設值為︰
 
@@ -56,7 +60,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
     - *ClusterName*\_Cluster
     - *ClusterName*\_Client
 
-    此指令碼將會列印下節建立叢集時 Azure Resource Manager (ARM) 範本所需的 Json，讓 PowerShell 視窗持續開啟。
+    此指令碼將會列印下節建立叢集時 Azure Resource Manager (ARM) 範本所需的 Json，因此請讓 PowerShell 視窗持續開啟。
 
     ![SetupApplication 指令碼的輸出包括 ARM 範本所需的 Json][setupapp-script-output]
 
@@ -85,7 +89,7 @@ clusterApplication 指的是上一節所建立的 Web 應用程式。您可以�
 1. 瀏覽至您的租用戶，然後選擇 [應用程式]。
 2. 選擇 Web 應用程式，而其名稱類似 `myTestCluster_Cluster`。
 3. 按一下 [使用者] 索引標籤。
-4. 選擇要指派的使用者，然後按一下畫面底部的 [指派] 按鈕：
+4. 選擇要指派的使用者，然後按一下畫面底部的 [指派] 按鈕。
 
     ![將使用者指派給角色按鈕][assign-users-to-roles-button]
 
@@ -135,7 +139,7 @@ Connect-ServiceFabricCluster -AzureActiveDirectory -ConnectionEndpoint <cluster_
 
 從原生用戶端 (例如 Visual Studio 或 PowerShell) 驗證時，可能會看到如下的錯誤訊息︰
 
-回覆位址*http://localhost/不符合針對應用程式 &lt;叢集用戶端應用程式 GUID&gt; 所設定的回覆位址*
+回覆地址*http://localhost/不符合針對應用程式 &lt;叢集用戶端應用程式 GUID&gt; 所設定的回覆位址*
 
 若要解決這個問題，除了已經存在的位址 'urn:ietf:wg:oauth:2.0:oob' 之外，也請將 **http://<i></i>localhost** 當成重新導向 URI 來加入 AAD 的叢集用戶端應用程式定義中。
 
@@ -156,4 +160,4 @@ Connect-ServiceFabricCluster -AzureActiveDirectory -ConnectionEndpoint <cluster_
 [setupapp-script-output]: ./media/service-fabric-cluster-security-client-auth-with-aad/setupapp-script-arm-json-output.png
 [vs-publish-aad-login]: ./media/service-fabric-cluster-security-client-auth-with-aad/vs-login-prompt.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -53,7 +53,7 @@ JMS 使用 Java 命名及目錄介面 (JNDI) 建立邏輯名稱與實際名稱�
 	
 # Register a ConnectionFactory in JNDI using the form:
 # connectionfactory.[jndi_name] = [ConnectionURL]
-connectionfactory.SBCF = amqps://[username]:[password]@[namespace].servicebus.windows.net
+connectionfactory.SBCF = amqps://[SASPolicyName]:[SASPolicyKey]@[namespace].servicebus.windows.net
 	
 # Register some queues in JNDI using the form
 # queue.[jndi_name] = [physical_name]
@@ -77,13 +77,13 @@ connectionfactory.[jndi_name] = [ConnectionURL]
 **ConnectionURL** 的格式如下：
 
 ```
-amqps://[username]:[password]@[namespace].servicebus.windows.net
+amqps://[SASPolicyName]:[SASPolicyKey]@[namespace].servicebus.windows.net
 ```
-其中 **[namespace]**、**[username]** 及 **[password]** 具有下列意義：
+其中 **[namespace]**、**[SASPolicyName]** 和 **[SASPolicyKey]** 具有下列意義：
 
 - **[namespace]**：服務匯流排命名空間。
-- **[username]**：服務匯流排簽發者名稱。
-- **[password]**：服務匯流排簽發者金鑰的 URL 編碼形式。
+- **[SASPolicyName]**：佇列共用存取簽章原則名稱。
+- **[SASPolicyKey]**：佇列共用存取簽章原則金鑰。
 
 > [AZURE.NOTE] 您必須手動使用 URL 將密碼編碼。[http://www.w3schools.com/tags/ref\_urlencode.asp](http://www.w3schools.com/tags/ref_urlencode.asp) 中提供實用的 URL 編碼公用程式。
 
@@ -339,4 +339,4 @@ exit
 
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

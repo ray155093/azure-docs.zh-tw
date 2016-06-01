@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/26/2016" 
+	ms.date="04/28/2016" 
 	ms.author="sdanie"/>
 
 # Azure API 管理常見問題集
@@ -35,6 +35,7 @@
 -	[API 管理閘道 IP 位址是否固定？ 我可以用在防火牆規則嗎？](#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules)
 -	[可以設定具有 ADFS 安全性的 OAUth 2.0 授權伺服器嗎？](#can-i-configure-an-oauth-20-authorization-server-with-adfs-security)
 -	[API 管理在部署到多個地理位置時使用什麼路由方法？](#what-routing-method-does-api-management-use-when-deployed-to-multiple-geographic-locations)
+-	[可以使用 ARM 範本建立 API 管理服務執行個體嗎？](#can-i-create-an-api-management-service-instance-using-an-arm-template)
 
 
 
@@ -54,7 +55,7 @@
 
 1. 使用 HTTP 基本驗證。如需詳細資訊，請參閱[設定 API 設定](api-management-howto-create-apis.md#configure-api-settings)。
 2. 使用 SSL 相互驗證，如[如何使用 Azure API 管理中的用戶端憑證驗證保護後端服務](api-management-howto-mutual-certificates.md)中所述。
-3. 在您的後端服務上使用 IP 允許清單。如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變，而您可以設定您的允許清單，以允許此 IP 位址。您可以在 Azure 傳統入口網站中的「儀表板」上擷取API 管理執行個體的 IP 位址。
+3. 在您的後端服務上使用 IP 允許清單。如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變，而您可以設定您的允許清單，以允許此 IP 位址。您可以在 Azure 傳統入口網站中的**儀表板**上擷取API 管理執行個體的 IP 位址。
 4. 您可以將您的 API 管理執行個體連線至 Azure 虛擬網路 (傳統)。如需詳細資訊，請參閱[如何在 Azure API 管理中設定 VPN 連線](api-management-howto-setup-vpn.md)。
 
 ### 我要如何將 API 管理執行個體複製到新的執行個體？
@@ -71,7 +72,18 @@
 
 ### 我要如何新增使用者至系統管理員群組？
 
-此時，系統管理員限制為透過 Azure 傳統入口網站，以包含 API 管理執行個體之 Azure 訂用帳戶的系統管理員或共同管理員身分登入的使用者。發行者入口網站中建立的使用者無法指定為系統管理員，或加入系統管理員群組。
+透過下列步驟即可實現︰
+
+1. 登入新的 [Azure 入口網站](https://portal.azure.com) 
+2. 瀏覽至包含所需 API 管理執行個體的資源群組
+3. 將所需的使用者新增至「API 管理參與者」角色
+
+完成之後，新增的參與者就可以使用 Azure PowerShell [Cmdlet](https://msdn.microsoft.com/library/mt613507.aspx) 來以系統管理員身分登入︰
+
+1. 使用 `Login-AzureRmAccount` Cmdlet 來登入
+2. 使用 `Set-AzureRmContext -SubscriptionID <subscriptionGUID>` 將內容設定為包含服務的訂用帳戶
+3. 使用 `Get-AzureRmApiManagementSsoToken -ResourceGroupName <rgName> -Name <serviceName>` 取得 SSO 權杖
+4. 在瀏覽器中複製貼上 URL，且使用者應該要有系統管理員入口網站存取權
 
 
 ### 為什麼原則編輯器中我想要加入的原則沒有啟用？
@@ -121,4 +133,8 @@ IP 位址 (或是多重區域部署情況下的位址) 可以在 Azure 傳統入
 
 API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-routing-methods.md#performance-traffic-routing-method)。連入流量會傳送至最接近的 API 閘道。如果一個區域離線，連入流量會自動傳送至下一個最接近的閘道。如需路由方法的詳細資訊，請參閱[流量管理員路由方法](../traffic-manager/traffic-manager-routing-methods.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+### 可以使用 ARM 範本建立 API 管理服務執行個體嗎？
+
+是，請參閱 [Azure API 管理服務](http://aka.ms/apimtemplate)快速入門範本。
+
+<!---HONumber=AcomDC_0518_2016-->

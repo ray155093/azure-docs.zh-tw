@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/02/2016"
+	ms.date="05/09/2016"
 	ms.author="sstein"/>
 
 # 一律加密 - 透過資料加密並將您的加密金鑰儲存在 Azure 金鑰保存庫，來保護 SQL Database 中的機密資料
@@ -69,8 +69,8 @@
 7. 複製您的 [用戶端識別碼] \(您之後在程式碼中將需要此值)。
 8. 在 [金鑰] 區段中，將 [選取持續時間] 下拉式清單設定為 [1 年] \(我們將會在下方儲存後複製金鑰)。
 11. 向下捲動並按一下 [新增應用程式]。
-12. 將 [顯示] 保持設定為 [Microsoft 應用程式]，然後尋找並選取 [Windows Azure 服務管理]，並按一下核取記號以繼續。
-13. 在 [Windows Azure 服務管理員...] 列上，按一下 [委派的權限] 下拉式清單，然後選取 [存取 Azure 服務管理]。
+12. 將 [顯示] 保持設定為 [Microsoft 應用程式]，然後尋找並選取 [Microsoft Azure 服務管理]，並按一下核取記號以繼續。
+13. 在 [Microsoft Azure 服務管理員...] 列上，按一下 [委派的權限] 下拉式清單，然後選取 [存取 Azure 服務管理]。
 14. 按一下 [儲存] \(位於底部)。
 15. 儲存完成後，請尋找並複製 [金鑰] 區段中的金鑰值 (您之後在程式碼中將需要此值)。 
 
@@ -689,4 +689,4 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - [Always Encrypted Wizard (永遠加密精靈)](https://msdn.microsoft.com/library/mt459280.aspx)
 - [Always Encrypted Blog (永遠加密部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

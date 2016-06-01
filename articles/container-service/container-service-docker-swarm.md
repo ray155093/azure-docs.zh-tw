@@ -24,9 +24,9 @@ Docker Swarm 提供跨一組匯集的 Docker 主機來部署容器化工作負�
 
 本文件中之練習的先決條件︰
 
-[在 Azure 容器服務中建立 Swarm 叢集](./container-service-deployment.md)
+[在 Azure 容器服務中建立 Swarm 叢集](container-service-deployment.md)
 
-[連接到 Azure 容器服務中的 Swarm 叢集](./container-service-connect.md)
+[連接到 Azure 容器服務中的 Swarm 叢集](container-service-connect.md)
 
 ## 部署新容器
 
@@ -119,4 +119,4 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 
 [深入了解 Docker Swarm](https://docs.docker.com/swarm/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -12,10 +12,13 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/18/2016"
+	ms.date="05/20/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
+
+
+[AZURE.INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
 
 開發 Web 應用程式之後，您可以設定 Web 測試來監視其可用性和回應性。Application Insights 會定期傳送來自全球各地的 Web 要求，如果應用程式回應太慢或完全沒有回應，則會警告您。
 
@@ -120,7 +123,7 @@ Web 測試可分為兩種：
 或者，您可以下載結果檔案，然後在 Visual Studio 中檢查。
 
 
-看起來正常，但回報為失敗？ 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。If any of them fails, the test will be reported as failed, even if the main html page loads OK.
+*看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。If any of them fails, the test will be reported as failed, even if the main html page loads OK.
 
 
 
@@ -242,21 +245,43 @@ Web 測試外掛程式提供這種作法。
 
 ## 有疑問嗎？ 有問題嗎？
 
-* 可以從我的 Web 測試呼叫程式碼嗎？
+* *可以從我的 Web 測試呼叫程式碼嗎？*
 
     否。測試步驟必須在 .webtest 檔案中。而且您不能呼叫其他 Web 測試或使用迴圈。但是這裡有一些您會覺得有用的外掛程式。
 
-* 是否支援 HTTPS？
+* *是否支援 HTTPS？*
 
     我們目前支援 SSL 3.0 和 TLS 1.0。
 
-* 「Web 測試」和「可用性測試」之間有任何差異嗎？
+* *「Web 測試」和「可用性測試」之間有任何差異嗎？*
 
     我們會交替使用這兩個詞彙。
 
-* 我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。
+* *我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。*
 
     設定防火牆以允許來自本文結尾之清單中的 IP 位址所發出的要求。
+
+* 上傳多步驟 Web 測試失敗
+
+    有 300k 的大小限制。
+
+    不支援迴圈。
+
+    不支援其他 Web 測試的參考。
+
+    不支援資料來源。
+
+    
+* 多步驟測試未完成
+
+    每個測試有 100 個要求的限制。
+
+    如果執行時間超過兩分鐘，就會停止測試。
+
+* 如何使用用戶端憑證執行測試？
+
+    很抱歉，我們不支援此功能。
+
 
 ## <a name="video"></a>影片
 
@@ -396,4 +421,4 @@ Web 測試外掛程式提供這種作法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -20,7 +20,7 @@
 
 # 快取指引
 
-![模式與實例標誌](media/best-practices-caching/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 快取是改善系統的效能和延展性的常用技術。這樣做的方法是暫時將經常存取的資料複製到所在位置接近應用程式的快速儲存體中。如果這個快速資料儲存體比原始來源的位置更接近應用程式，則快取可以透過更快速地提供資料，大幅改善用戶端應用程式的回應時間。
 
@@ -934,4 +934,4 @@ subscriber.PublishAsync("messages:blogPosts", blogPost.Title);
 - StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Transactions.md) 頁面
 - Microsoft 網站上的[資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

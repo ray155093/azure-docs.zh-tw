@@ -1,11 +1,11 @@
 <properties
-	pageTitle="Web 應用程式概觀"
-	description="深入了解應用程式服務 Web 應用程式"
+	pageTitle="Web Apps 概觀 | Microsoft Azure"
+	description="了解 Azure App Service 如何協助您開發和裝載 Web 應用程式"
 	services="app-service\web"
 	documentationCenter=""
 	authors="jaime-espinosa"
 	manager="wpickett"
-	editor="jimbe"/>
+	editor=""/>
 
 <tags
 	ms.service="app-service-web"
@@ -13,57 +13,55 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="01/09/2016"
-	ms.author="jaime.espinosa"/>
+	ms.date="05/16/2016"
+	ms.author="tdykstra"/>
 
+# Web 應用程式概觀
 
-#Web 應用程式概觀
+「App Service Web Apps」是受到完整管理的計算平台，非常適合用來裝載網站和 Web 應用程式。Microsoft Azure 的這個[平台即服務](https://en.wikipedia.org/wiki/Platform_as_a_service) (PaaS) 產品可讓您專注於商務邏輯，而讓 Azure 負責處理用來執行及調整應用程式的基礎結構。
 
-[應用程式服務](http://go.microsoft.com/fwlink/?LinkId=529714)是專業開發人員的完全受管理平台，可將一組豐富的功能帶入 Web、行動和整合案例。使用 Azure 應用程式服務，快速建立和部署隨著企業延展的任務關鍵 Web 應用程式。
+如需 5 分鐘影片的概觀，請參閱[與 Yochay Kiriaty 一起討論 Azure App Service Web Apps](https://azure.microsoft.com/documentation/videos/azure-app-service-web-apps-with-yochay-kiriaty/)。
 
-運用[應用程式服務 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=529714)以使用您所知且相依的語言和架構、將應用程式快速部署至 Azure 雲端，並持續改善程式碼，而不需要再擔心基礎結構。
+## 什麼是 App Service 中的 Web 應用程式？
 
-![Web Marketplace](./media/app-service-web-overview/marketplace.png)
+在 App Service 中，「Web 應用程式」是 Azure 提供用來裝載網站或 Web 應用程式的計算資源。
 
-[AZURE.INCLUDE [compute-table](../../includes/compute-options-table.md)]
+計算資源可能位於共用或專用的虛擬機器 (VM)，一切視您選擇的定價層而定。應用程式的程式碼會在與其他客戶隔離開來的受管理 VM 中執行。
 
-## 不只是網站##
+程式碼可以使用 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 所支援的任何語言或架構，例如 ASP.NET、Node.js、Java、PHP 或 Python。您也可以在 Web 應用程式中，執行使用 [PowerShell 和其他指令碼語言](web-sites-create-web-jobs.md#acceptablefiles)的指令碼。
 
-現代企業使用比以前更複雜的方式與客戶互動。所有類型的公司都會將公司網站空間視為其業務的重要部分、其業務方案中的主要元件。為因應此重要性，企業正尋求能提供它們具有彈性、安全性與延展性的平台。此外，它們需要能連結至其現有商務系統的能力，以在全球快速部署新的程式碼和運轉執行個體。使用 Azure 應用程式服務和 Web 應用程式，組織可以快速並以符合成本效益方式來取悅其客戶。
+如需可使用 Web Apps 之典型應用程式案例的範例，請參閱 [Web 應用程式案例](https://azure.microsoft.com/documentation/scenarios/web-app/)。
 
-## 為什麼是 Web 應用程式？ ##
+## 為何要使用 Web Apps？
 
-Azure 應用程式服務 Web 應用程式是完全受管理的平台，可讓您快速建置、部署和延展企業級 Web 應用程式。專注於應用程式碼，並讓 Azure 負責延展並安全地執行基礎結構。Web 應用程式：
+以下是 Web Apps 的一些主要功能︰
 
-- **熟悉並快速** - 使用現有技能，以您偏好的語言、架構和 IDE 中編寫程式碼。只要按幾下，就可以將版本控制、更新、單一登入、識別代理人、隔離儲存體和效能監視加入現有的 Web 應用程式。存取豐富的組件庫，以用做加速開發的建置組塊。使用連續整合、即時網站偵錯和業界領先 Visual Studio IDE 這類尖端功能，體驗前所未有的開發人員產能。
-- **企業級** - Web 應用程式的設計目的是建置和裝載安全的關鍵任務應用程式。建置安全地連線到內部部署資源的 Active Directory 整合商務應用程式，然後將它們裝載在 ISO、SOC2 和 PCI 相容的安全雲端平台。同時享有企業層級 SLA。
-- **全球規模** - Web 應用程式已最佳化，對通用資料中心基礎結構提供可用性和自動調整。依需求輕鬆地向上延展或向下延展應用程式。運用位於和跨不同地理區域提供的高可用性。在多個位置中複寫資料並裝載服務十分快速並簡單，只要按一下滑鼠，就可以擴充到新的區域和地理位置。  
+- **熟悉且快速** - 使用現有技能，以您偏好的語言、架構和整合式開發環境 (IDE) 編寫程式碼。在幾秒鐘之內佈建新的 Web 應用程式，並對其部署程式碼。
 
-## Web 應用程式概念 ##
+- **企業級** - Web Apps 的設計目的是建置和裝載安全的關鍵任務應用程式。建置安全地連線到內部部署資源的 Active Directory 整合商務應用程式，然後將它們裝載在 [ISO](https://www.microsoft.com/TrustCenter/Compliance/ISO-IEC-27001)、[SOC](https://www.microsoft.com/TrustCenter/Compliance/SOC) 和 [PCI](https://www.microsoft.com/TrustCenter/Compliance/pci) 相容的安全雲端平台。全都具有企業級 [SLA](https://azure.microsoft.com/support/legal/sla/app-service/)。
 
-- **Web 應用程式庫** - 從不斷成長的現有 Web 應用程式範本清單中進行選取。使用單鍵安裝封裝 (例如 Wordpress、Joomla 和 Drupal)，充分運用 OSS 應用程式社群。運用 .NET MVC、Django 和 CakePHP 這類架構，就能開始應用程式開發程序。
-- **自動調整** - Web 應用程式可讓您快速地向上延展或向下延展以處理任何內送的客戶載入。手動選取 VM 的數目和大小，或設定自動調整以根據負載或排程來調整您的伺服器。
-- **連續整合** - 使用VSTS、GitHub、TeamCity、Hudson 或 BitBucket 設定連續整合和部署工作流程，可讓您在每次成功的程式碼簽入或整合測試中自動建置、測試及部署 Web 應用程式。
-- **部署位置** - 實作[分段部署][Slots]以在生產前環境中驗證程式碼，而此環境與 Azure 應用程式服務中的生產 Web 應用程式相同。符合時，執行交換作業，以發行零停機時間的應用程式新版本。 
-- **在生產環境中測試** - 將分段部署帶到下一個層級，並執行 A/B 測試以即時流量的可設定部分確認新的程式碼。 
-- **Webjobs** - 在 Web 應用程式 VM 上，執行任何程式或指令碼。在多個 VM 上，持續或依排程和規模執行工作。使用 Azure [WebJobs SDK][Webjobs] 以與 Azure 儲存體或服務匯流排整合。
-- **混合式連線** - - 使用[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和 [VNET](../app-service-web/web-sites-integrate-with-vnet.md) 存取內部部署資料。
+- **全球規模** - Web Apps 可讓您快速地[向上](../app-service/app-service-scale.md)延展或[向下](../azure-portal/insights-how-to-scale.md)延展以處理任何內送的客戶載入。手動選取 VM 的數目和大小，或設定以負載或排程為基礎的自動調整。Microsoft 的全球資料中心基礎結構會裝載 Web 應用程式，並可輕鬆地在多個位置複寫資料和裝載服務。
 
-## 開始使用 ##
-若要開始使用 Web Apps，請遵循[在 Azure App Service 中開始使用 Web 應用程式][create]教學課程。
+- **Azure Marketplace** - 從不斷成長的 [Web 應用程式範本清單](https://azure.microsoft.com/marketplace/)中進行選取。使用單鍵安裝封裝 (例如 Wordpress、Joomla 和 Drupal)，充分運用 OSS 應用程式社群。
 
-如需 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][appservice]。
+- **持續整合** - 使用 Visual Studio Team Services、GitHub 或 BitBucket 設定[持續整合和部署](app-service-continous-deployment.md)工作流程。在每個成功的程式碼簽入或整合測試中，自動建置、測試和部署 Web 應用程式。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
+- **預備環境和測試環境** - 實作[分段部署](web-sites-staged-publishing.md)以在與生產環境相同的生產前環境中驗證程式碼。當您準備好時，執行交換作業，以發行零停機時間的應用程式新版本。
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+- **在生產環境中測試** - 將分段部署帶到下一個層級，並[執行 A/B 測試](app-service-web-test-in-production-get-start.md)以即時流量的可設定部分確認新的程式碼。
 
-[appservice]: ../app-service/app-service-value-prop-what-is.md
-[create]: app-service-web-get-started.md
-[Webjobs]: websites-dotnet-webjobs-sdk-get-started.md
-[Slots]: web-sites-staged-publishing.md
+- **Webjobs** - 在 Web Apps VM 上，[執行任何程式或指令碼](web-sites-create-web-jobs.md)。以連續方式、依排程或由事件觸發來執行工作。Azure [WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md) 可簡化您撰寫來與其他 Azure 服務 (例如儲存體佇列、Blob 和資料表，以及服務匯流排佇列和主題) 整合的程式碼。
 
- 
+- **混合式連線** - 使用[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和 [VNET](../app-service-web/web-sites-integrate-with-vnet.md) 存取內部部署資料。
 
-<!---HONumber=AcomDC_0427_2016-->
+- **Visual Studio 整合** - Visual Studio 中的專用工具，可簡化建立、部署、使用、偵錯和管理 Web 應用程式的工作。如需詳細資訊，請參閱[發表 Azure SDK 2.8.1 for .NET](https://azure.microsoft.com/blog/announcing-azure-sdk-2-8-1-for-net/)。
+
+此外，Web 應用程式可以利用 [API Apps](../app-service-api/app-service-api-apps-why-best-platform.md) (例如 CORS 支援) 和 [Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) (例如推播通知) 所提供的功能。反之亦然︰您可以使用 API 應用程式或行動應用程式裝載 Web 應用程式，並利用 Web Apps 功能，例如自動調整與預備部署。這三個應用程式類型 (API、Web、行動) 之間的唯一差異是它們在 Azure 入口網站中所使用的名稱和圖示。如需 App Service 中的應用程式類型詳細資訊，請參閱 [Azure App Service 概觀](../app-service/app-service-value-prop-what-is.md)。
+
+## 開始使用
+
+若要開始在 App Service 中的新 Web 應用程式部署範例程式碼，請遵循[在 5 分鐘內將第一個 Web 應用程式部署至 Azure 中](app-service-web-get-started.md)教學課程。您將需要免費的 Azure 帳戶。
+
+如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
+
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/10/2016"
+   ms.date="05/17/2016"
    ms.author="navale;tomfitz;"/>
 
 # Azure Resource Manager SDK for .Net  
@@ -28,7 +28,7 @@ Azure SDK for .NET 是以一組 NuGet 封裝的形式提供，可協助您呼叫
 在[這裡](https://github.com/dx-ted-emea/Azure-Resource-Manager-Documentation/tree/master/ARM/SDKs/Samples/Net)可以找到從中取得以下所有程式碼片段之可完全下載的範例專案。
 
 ## 驗證
-ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。若要取得此權杖，您必須先建立所謂 Azure AD 應用程式和服務主體，它們將用來進行登入。請依照[建立 Azure AD 應用程式和服務主體](./resource-group-create-service-principal-portal.md)的逐步指示。
+ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。若要取得此權杖，您必須先建立所謂 Azure AD 應用程式和服務主體，它們將用來進行登入。請依照[建立 Azure AD 應用程式和服務主體](resource-group-create-service-principal-portal.md)的逐步指示。
 
 建立服務主體之後，您應該有︰
 * 用戶端識別碼 (GUID)
@@ -274,7 +274,7 @@ private static async Task<VirtualMachine> CreateVirtualMachineAsync(TokenCredent
 ```
 
 ### 使用樣板化部署
-請閱讀並依照[使用 .NET 程式庫和範本部署 Azure 資源](./arm-template-deployment/#step-4-create-the-credentials-that-are-used-to-authenticate-requests)教學課程中的詳細指示來部署範本。
+請閱讀並依照[使用 .NET 程式庫和範本部署 Azure 資源](./virtual-machines/virtual-machines-windows-csharp-template.md)教學課程中的詳細指示來部署範本。
 
 簡單地說，部署範本比手動佈建資源輕鬆許多，而以下程式碼藉由指向具有範本和參數檔案的 URI，示範如何進行這項作業。
 
@@ -298,4 +298,4 @@ private static async Task<DeploymentExtended> CreateTemplatedDeployment(TokenCre
  
    
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

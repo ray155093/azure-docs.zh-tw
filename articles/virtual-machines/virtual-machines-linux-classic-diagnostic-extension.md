@@ -44,7 +44,7 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 若要直接從 Azure 入口網站檢視及設定系統和效能資料，請遵循這些[步驟](https://azure.microsoft.com/blog/2014/09/02/windows-azure-virtual-machine-monitoring-with-wad-extension/ "Windows 部落格的 URL"/)。
 
 
-本文將著重在透過 Azure CLI 命令啟動及設定延伸模組。這可讓您直接從儲存體資料表讀取和檢視資料。
+本文將著重在透過 Azure CLI 命令啟動及設定延伸模組。這可讓您直接從儲存體資料表讀取和檢視資料。請注意，以下描述的設定方法無法用於 Azure 入口網站。若要直接從 Azure 入口網站檢視和設定系統及效能資料，就必須透過 Azure 入口網站啟用此擴充功能 (如上一段所述)。
 
 
 ## 必要條件
@@ -74,15 +74,13 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 ###   案例 2.自訂效能監視器度量  
 本節描述如何自訂效能和診斷資料的資料表。
 
-步驟 1.使用下一個範例中顯示的內容建立名為 PrivateConfig.json 的檔案。指定您想要收集的特定資料。
+步驟 1.使用上述「案例 1」的內容建立名為 PrivateConfig.json 的檔案。同時也建立下一個範例中所示名為 PublicConfig.json 的檔案。指定您想要收集的特定資料。
 
 若需所有受支援的提供者和變數，請參考這個[文件](https://scx.codeplex.com/wikipage?title=xplatproviders)。您可以有多個查詢，並藉由將更多查詢附加至指令碼，將它們儲存成多個資料表。
 
 根據預設，一律會收集 Rsyslog 資料。
 
 	{
-     	"storageAccountName":"storage account to receive data",
-     	"storageAccountKey":"key of the account",
       	"perfCfg":[
            	{"query":"SELECT PercentAvailableMemory, AvailableMemory, UsedMemory ,PercentUsedSwap FROM SCX_MemoryStatisticalInformation","table":"LinuxMemory"
            	}
@@ -90,17 +88,15 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 	}
 
 
-步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions 2.* --private-config-path PrivateConfig.json**。
+步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions '2.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json**。
 
 
 ###   案例 3.上傳您自己的記錄檔
 本節說明如何收集和上傳特定記錄檔至儲存體帳戶。您必須指定記錄檔的路徑，並指定要儲存記錄檔的資料表名稱。您可以將多個檔案/資料表項目加入至指令碼，以擁有多個記錄檔。
 
-步驟 1.使用下列內容建立名為 PrivateConfig.json 的檔案。
+步驟 1.使用「案例 1」的內容建立名為 PrivateConfig.json 的檔案。使用下列內容建立另一個名為 PublicConfig.json 的檔案。
 
 	{
-     	"storageAccountName":"the storage account to receive data",
-     	"storageAccountKey":"key of the account",
       	"fileCfg":[
            	{"file":"/var/log/mysql.err",
              "table":"mysqlerr"
@@ -109,21 +105,19 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 	}
 
 
-步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions 2.* --private-config-path PrivateConfig.json**。
+步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions '2.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json**。
 
 
 ###   案例 4.停用 Linux 監視器延伸模組
-步驟 1.使用下列內容建立名為 PrivateConfig.json 的檔案。
+步驟 1.使用「案例 1」的內容建立名為 PrivateConfig.json 的檔案。使用下列內容建立另一個名為 PublicConfig.json 的檔案。
 
 	{
-     	"storageAccountName":"the storage account to receive data",
-     	"storageAccountKey":"the key of the account",
-     	“perfCfg”:[],
-     	“enableSyslog”:”False”
+     	"perfCfg":[],
+     	"enableSyslog":”False”
 	}
 
 
-步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions 2.* --private-config-path PrivateConfig.json**。
+步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions '2.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json**。
 
 
 ## 檢閱資料
@@ -143,4 +137,4 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 ## 已知問題
 - 若為 2.0 版，只能透過指令碼存取 Rsyslog 資訊和客戶指定記錄檔。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

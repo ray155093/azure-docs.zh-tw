@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/14/2016"   
+	ms.date="04/22/2016"   
 	ms.author="adsolank;juliako;"/>
 
 
@@ -56,7 +56,7 @@
 
 ##工作組態 (預設)
 
-以 **Azure Media Indexer 2 Preview* 建立索引工作時，您必須指定設定預設值。
+以 **Azure 媒體索引器 2 預覽**建立索引工作時，您必須指定設定預設值。
 
 下列 JSON 會設定可用的參數。
 
@@ -289,4 +289,4 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

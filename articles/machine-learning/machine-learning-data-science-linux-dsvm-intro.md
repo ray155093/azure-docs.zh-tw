@@ -13,12 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/05/2016"
+	ms.date="05/10/2016"
 	ms.author="gokuma;bradsev" />
 
 # 佈建 Linux 資料科學虛擬機器 
 
-## 簡介
 
 Linux 資料科學虛擬機器是預先安裝並設定常用於進行資料分析和機器學習之工具集合的 Azure 虛擬機器 (VM) 映像。包含的重要軟體元件如下︰
 
@@ -108,8 +107,8 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。若要連接到 Linux VM 圖形化桌面，您需要在用戶端上進行下列動作。
 
 1. 從[這裡](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您的用戶端平台適用的 X2Go 用戶端。    
-2. 執行 X2Go 用戶端，並選取 [New Session] (新增工作階段)。它會開啟具有多個索引標籤的組態視窗。輸入下列組態參數︰ 
-    * **[Session] (工作階段) 索引標籤**：
+2. 執行 X2Go 用戶端，並選取 [新增工作階段]。它會開啟具有多個索引標籤的組態視窗。輸入下列組態參數︰ 
+    * **[工作階段] 索引標籤**：
         - **主機**︰Linux 資料科學 VM 的主機名稱或 IP 位址。
         - **登入**︰Linux VM 上的登入使用者名稱。
         - **SSH 連接埠**︰保留預設值 22。
@@ -162,7 +161,7 @@ Python 2.7 安裝於 */anaconda/bin*。
 
 Python 3.5 安裝於 */anaconda/envs/py35/bin*
 
-現在，要叫用 Python 互動式工作階段，只需要在殼層中輸入 ***python***。如果您在圖形化介面，或已設定 X11 轉寄，則可以輸入 ***spyder*** 命令，以啟動 Python IDE。
+現在，若要叫用 Python 互動式工作階段，只需要在殼層中輸入 ***python***。如果您在圖形化介面，或已設定 X11 轉寄，則可以輸入 ***spyder*** 命令，以啟動 Python IDE。
 
 ### Jupyter Notebook
 Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與分析的環境。Jupyter Notebook 伺服器已經預先設定 Python 2、Python 3 及 R 核心。有一個名為 Jupyter Notebook 的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。如果您是透過 SSH 或 X2go 用戶端進入 VM，您也可以造訪 [https://localhost:9999/](https://localhost:9999/) 存取 Jupyter Notebook 伺服器。
@@ -358,4 +357,4 @@ Rattle (R Analytical Tool To Learn Easily) 可讓您用 GUI 類型資料探索�
 * 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) 以取得使用 Cortana Analytics Suite 的機器學習服務和資料分析範例。 
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

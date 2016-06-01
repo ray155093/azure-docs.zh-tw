@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/12/2016" 
+	ms.date="05/17/2016" 
 	ms.author="nitinme"/>
 
 # 在 HDInsight Hadoop 叢集上安裝和使用 Solr
@@ -51,16 +51,18 @@
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install-v1/hdi-script-action-solr.png "使用指令碼動作以自訂叢集")
 	
 	<table border='1'>
-	<tr><th>屬性</th><th>值</th></tr>
-	<tr><td>名稱</td>
-		<td>指定指令碼動作的名稱。例如，<b>安裝 Solr</b>。</td></tr>
-	<tr><td>指令碼 URI</td>
-		<td>指定為了自訂叢集所叫用之指令碼的統一資源識別項 (URI)。例如，<i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
-	<tr><td>節點類型</td>
-		<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
-	<tr><td>參數</td>
-		<td>如果指令碼要求，請指定參數。用來安裝 Solr 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
-</table>您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
+		<tr><th>屬性</th><th>值</th></tr>
+		<tr><td>名稱</td>
+			<td>指定指令碼動作的名稱。例如，<b>安裝 Solr</b>。</td></tr>
+		<tr><td>指令碼 URI</td>
+			<td>指定為了自訂叢集所叫用之指令碼的統一資源識別項 (URI)。例如，<i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
+		<tr><td>節點類型</td>
+			<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
+		<tr><td>參數</td>
+			<td>如果指令碼要求，請指定參數。用來安裝 Solr 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
+	</table>	
+
+	您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
 
 您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，在 HDInsight 上使用指令碼安裝 Solr。本主題稍後會提供這些程序的指示。
 
@@ -84,7 +86,7 @@
 
 	post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。您可以在 Solr 安裝內取得 post.jar 公用程式和範例文件。
 
-3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 ****http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [**核心選取器**] 下拉式清單中，選取 [**collection1**]，然後在其中按一下 [**查詢**]。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
+3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 **http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [**核心選取器**] 下拉式清單中，選取 [**collection1**]，然後在其中按一下 [**查詢**]。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
 	1. 在 [**q**] 文字方塊中輸入 ***:***。如此便會傳回已在 Solr 中編製索引的所有文件。如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
 	2. 在 [**wt**] 文字方塊中，選取輸出格式。預設值是 [**json**]。按一下 [**執行查詢**]。
 
@@ -196,4 +198,4 @@
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0518_2016-->

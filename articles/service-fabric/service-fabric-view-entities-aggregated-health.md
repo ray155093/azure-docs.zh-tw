@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/23/2016"
+   ms.date="04/25/2016"
    ms.author="oanapl"/>
 
 # 檢視 Service Fabric 健康狀態報告
@@ -763,7 +763,7 @@ HealthEvents          :
 
 目前的健全狀況區塊查詢僅對叢集實體公開。它會傳回叢集健全狀況區塊，其中包含︰
 
-- 叢集彙總健康狀態。
+- 叢集彙總健全狀況狀態。
 
 - 採用輸入篩選器的節點健康狀態區塊清單。
 
@@ -1132,4 +1132,4 @@ UpgradeReplicaSetCheckTimeout : 00:15:00
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

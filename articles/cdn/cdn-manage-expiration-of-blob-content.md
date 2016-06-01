@@ -25,70 +25,72 @@
 1.	請不要設定快取值，因此會使用預設 TTL：7 天。
 2.	在 [**放置 Blob**]、[**放置封鎖清單**] 或 [**設定 Blob 屬性**] 要求上明確地設定 *x-ms-blob-cache-control* 屬性，或使用 Azure 受管理程式庫來設定 [BlobProperties.CacheControl](https://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.blobproperties.cachecontrol.aspx) 屬性。設定此屬性會設定 Blob 之 *Cache-Control* 標頭的值。標頭或屬性的值應該指定適當的值 (秒)。例如，若要將快取期間上限設為一年，您可以將要求標頭指定為 `x-ms-blob-cache-control: public, max-age=31556926`。如需有關設定快取標頭的詳細資料，請參閱 [HTTP/1.1 規格](http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html)。  
 
-您想要透過 CDN 快取的任何內容都必須以公開存取的 Blob 形式儲存在 Azure 儲存體帳戶中。如需 Azure Blob 服務的詳細資料，請參閱 **Blob 服務概念**。
+您想要透過 CDN 快取的任何內容都必須以公開存取的 Blob 形式儲存在 Azure 儲存體帳戶中。如需 Azure Blob 服務的詳細資料，請參閱 [Blob 服務概念](https://msdn.microsoft.com/library/dd179376.aspx)。
 
 有數種不同的方式可使用 Blob 服務中的內容：
 
--	使用 **Azure 受管理程式庫參考**所提供的受管理 API。
+-	使用[適用於 .NET 的 Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/azure/mt347887.aspx)所提供的受管理 API。
 -	使用協力廠商儲存體管理工具。
--	使用 Azure 儲存體服務 REST API。  
+-	使用 [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)。  
 
-下列程式碼範例是一個主控台應用程式，可使用 Azure 受管理程式庫建立容器、設定其公開存取的權限，以及在容器內建立 Blob。它也會在 Blob 上設定 Cache-Control 標頭，以明確地指定想要的重新整理間隔。
+下列程式碼範例是一個主控台應用程式，可使用 Azure 儲存體用戶端程式庫建立容器、設定其公開存取的權限，以及在容器內建立 Blob。它也會在 Blob 上設定 Cache-Control 標頭，以明確地指定想要的重新整理間隔。
 
 假設您已啟用 CDN (如上所示)，則 CDN 將會快取所建立的 Blob。請務必使用您自己的儲存體帳戶和存取金鑰來指定帳戶認證：
 
-	using System;
-	using Microsoft.WindowsAzure;
-	using Microsoft.WindowsAzure.StorageClient;
+```
+using System;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.StorageClient;
 
-	namespace BlobsInCDN
+namespace BlobsInCDN
+{
+	class Program
 	{
-	    class Program
-	    {
-	        static void Main(string[] args)
-	        {
-	            //Specify storage credentials.
-	            StorageCredentialsAccountAndKey credentials = new StorageCredentialsAccountAndKey("storagesample",
-	                "m4AHAkXjfhlt2rE2BN/hcUR4U2lkGdCmj2/1ISutZKl+OqlrZN98Mhzq/U2AHYJT992tLmrkFW+mQgw9loIVCg==");
+		static void Main(string[] args)
+		{
+			//Specify storage credentials.
+			StorageCredentialsAccountAndKey credentials = new StorageCredentialsAccountAndKey("storagesample",
+				"<your storage account key>");
 
-	            //Create a reference to your storage account, passing in your credentials.
-	            CloudStorageAccount storageAccount = new CloudStorageAccount(credentials, true);
+			//Create a reference to your storage account, passing in your credentials.
+			CloudStorageAccount storageAccount = new CloudStorageAccount(credentials, true);
 
-	            //Create a new client object, which will provide access to Blob service resources.
-	            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+			//Create a new client object, which will provide access to Blob service resources.
+			CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-	            //Create a new container.
-	            CloudBlobContainer container = blobClient.GetContainerReference("cdncontent");
-	            container.CreateIfNotExist();
+			//Create a new container.
+			CloudBlobContainer container = blobClient.GetContainerReference("cdncontent");
+			container.CreateIfNotExist();
 
-	            //Specify that the container is publicly accessible.
-	            BlobContainerPermissions containerAccess = new BlobContainerPermissions();
-	            containerAccess.PublicAccess = BlobContainerPublicAccessType.Container;
-	            container.SetPermissions(containerAccess);
+			//Specify that the container is publicly accessible.
+			BlobContainerPermissions containerAccess = new BlobContainerPermissions();
+			containerAccess.PublicAccess = BlobContainerPublicAccessType.Container;
+			container.SetPermissions(containerAccess);
 
-	            //Create a new blob and write some text to it.
-	            CloudBlob blob = blobClient.GetBlobReference("cdncontent/testblob.txt");
-	            blob.UploadText("This is a test blob.");
+			//Create a new blob and write some text to it.
+			CloudBlob blob = blobClient.GetBlobReference("cdncontent/testblob.txt");
+			blob.UploadText("This is a test blob.");
 
-	            //Set the Cache-Control header on the blob to specify your desired refresh interval.
-	            blob.SetCacheControl("public, max-age=31536000");
-	        }
-	    }
-
-	    public static class BlobExtensions
-	    {
-	        //A convenience method to set the Cache-Control header.
-	        public static void SetCacheControl(this CloudBlob blob, string value)
-	        {
-	            blob.Properties.CacheControl = value;
-	            blob.SetProperties();
-	        }
-	    }
+			//Set the Cache-Control header on the blob to specify your desired refresh interval.
+			blob.SetCacheControl("public, max-age=31536000");
+		}
 	}
+
+	public static class BlobExtensions
+	{
+		//A convenience method to set the Cache-Control header.
+		public static void SetCacheControl(this CloudBlob blob, string value)
+		{
+			blob.Properties.CacheControl = value;
+			blob.SetProperties();
+		}
+	}
+}
+```
 
 測試可透過 CDN 特有的 URL 來提供 Blob。針對上面顯示的 Blob，URL 會與下面類似：
 
-	http://az1234.vo.msecnd.net/cdncontent/testblob.txt  
+	http://<endpoint>.azureedge.net/cdncontent/testblob.txt  
 
 如有需要，您可以使用 **wget** 或 Fiddler 這類工具，檢查要求和回應的詳細資料。
 
@@ -96,4 +98,4 @@
 
 [如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期](./cdn-manage-expiration-of-cloud-service-content.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

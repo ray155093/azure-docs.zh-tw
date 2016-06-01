@@ -3,7 +3,7 @@
 	description="展示了 Spark MLlib 工具組的資料探索和模型化功能。"
 	services="machine-learning"
 	documentationCenter=""
-	authors="bradsev"
+	authors="bradsev,deguhath,gokuma"
 	manager="paulettm"
 	editor="cgronlun" />
 
@@ -13,21 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="05/05/2016"
 	ms.author="deguhath;bradsev" />
 
 # 使用 Spark 資料探索和模型化
 
 [AZURE.INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-## 簡介 
-
 本逐步解說會使用 HDInsight Spark，在 NYC 計程車車程和費用 2013 資料集上執行資料探索和二進位分類和迴歸模型化。它將引導您逐步完成[資料科學程序](http://aka.ms/datascienceprocess)、端對端、使用 HDInsight Spark 叢集處理，並使用 Azure blob 來儲存資料和模型。程序會探索和視覺化從 Azure 儲存體 Blob 中引進的資料，然後準備資料來建立預測模型。這些模型是使用 Spark MLlib 工具組來執行二進位分類和迴歸模型工作。
 
 - **二進位分類**工作可預測是否已支付某趟車程的小費。 
 - **迴歸**工作可根據其他小費功能來預測小費金額。 
-
-模型化步驟也包含程式碼來示範如何訓練、評估和儲存每類模型。已使用 Python 來編寫解決方案程式碼，並顯示相關的繪圖。
 
 我們使用的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹︰
 
@@ -36,24 +32,25 @@
 - [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests)是整體的決策樹。其結合許多決策樹以降低風險過度膨脹。隨機樹系適用於迴歸和分類，並可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
 - [漸層停駐推進式決策樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。GBT 適用於迴歸和分類，並可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。它們也可用於多類別分類設定。
 
+模型化步驟也包含程式碼來示範如何訓練、評估和儲存每類模型。已使用 Python 來編寫解決方案程式碼，並顯示相關的繪圖。
 
->AZURE.NOTE︰雖然 Spark MLlib 工具組設計成可處理大型資料集，但為示範其模型化功能，我們會使用極小的範例 (使用 170 個資料列，原始的 NYC 資料集約 0.1%，~30 Mb)。此處提供的練習有效地在含有 2 個背景工作節點的 HDInsight 叢集上執行 (大約 10 分鐘)。相同的程式碼中 (稍加修改) 可以用來處理大型資料集，適當修改的程式碼則可快取記憶體的資料，或變更叢集大小。
+
+>[AZURE.NOTE] 雖然 Spark MLlib 工具組設計成可處理大型資料集，但為示範其模型化功能，我們會使用極小的範例 (使用 170 個資料列，原始的 NYC 資料集約 0.1%，~30 Mb)。此處提供的練習有效地在含有 2 個背景工作節點的 HDInsight 叢集上執行 (大約 10 分鐘)。相同的程式碼中 (稍加修改) 可以用來處理大型資料集，適當修改的程式碼則可快取記憶體的資料，或變更叢集大小。
 
 ## 必要條件
 
-您需要 Azure 帳戶和 HDInsight Spark 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md) 以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。**machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例 (位於 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/Python))。
+您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md) 以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。**machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例 (位於 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark))。
 
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 
-## 安裝程式︰儲存體位置、程式庫和 Spark 內容
+## 安裝程式︰儲存體位置、程式庫和預設 Spark 內容
 
 Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
 
-若要在 WASB 中儲存模型或檔案，必須正確指定路徑。可以使用以「wasb///」開頭的路徑，參考連接到 Spark 叢集的預設容器。其他位置由「wasb://」參考。
+若要在 WASB 中儲存模型或檔案，必須正確指定路徑。可以使用以「wasb:///」開頭的路徑，參考連接到 Spark 叢集的預設容器。其他位置由「wasb://」參考。
 
-安裝程式也需要匯入必要的程式庫並設定 Spark 內容。
 
 ### 在 WASB 中設定儲存位置的目錄路徑
 
@@ -66,13 +63,13 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	taxi_train_file_loc = "wasb://mllibwalkthroughs@cdspsparksamples.blob.core.windows.net/Data/NYCTaxi/JoinedTaxiTripFare.Point1Pct.Train.tsv";
 
 	# SET THE MODEL STORAGE DIRECTORY PATH 
-	# Note that the final backslash in the path is needed.
+	# NOTE THAT THE FINAL BACKSLASH IN THE PATH IS NEEDED.
 	modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/" 
 
 
-### 需要匯入程式庫並設定 Spark 內容 
+### 匯入程式庫
 
-使用下列程式碼設定 Spark 內容並匯入必要的程式庫。
+安裝程式也需要匯入必要的程式庫。使用下列程式碼設定 Spark 內容並匯入必要的程式庫。
 
 
 	# IMPORT LIBRARIES
@@ -80,7 +77,6 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	from pyspark import SparkConf
 	from pyspark import SparkContext
 	from pyspark.sql import SQLContext
-	%matplotlib inline
 	import matplotlib
 	import matplotlib.pyplot as plt
 	from pyspark.sql import Row
@@ -90,21 +86,25 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	from numpy import array
 	import numpy as np
 	import datetime
-	datetime.datetime.now()
-	
-	# SET SPARK CONTEXT
-	sc = SparkContext(conf=SparkConf().setMaster('yarn-client'))
-	sqlContext = SQLContext(sc)
-	atexit.register(lambda: sc.stop())
-	
-	sc.defaultParallelism
-
-**輸出：**
-
-4
 
 
-## 資料擷取
+### 預設 Spark 內容及 PySpark magic
+
+使用和 Jupyter Notebook 一併提供的 PySpark 核心時，已具備預設內容，所以您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您開發的應用程式；這些都是預設可供您使用的項目。這些內容包括：
+
+- sc - 代表 Spark 
+- sqlContext - 代表 Hive
+
+PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 呼叫的特殊命令。在這些程式碼範例中，就使用了兩個此類型的命令。
+
+- **%%local** 會指定後續行所列的程式碼，將在本機執行。程式碼必須是有效的 Python 程式碼。
+- **%%sql -o <variable name>** 會針對 sqlContext 執行 Hive 查詢。如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
+ 
+
+如需關於 Jupyter Notebook 核心，以及其所提供的名稱包含 %% 之預先定義「magic」(例如：%%local) 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
+ 
+
+## 來自公用 Blob 的資料擷取
 
 本節包含一系列工作的程式碼，為擷取要模型化的資料範例所必要。在聯結的 0.1% 取樣的計程車車程和費用檔案中讀取 (儲存為 .tsv 檔案)、格式化和清除資料、建立和快取記憶體中的資料框架，然後將它登錄為 SQL 內容中的暫存資料表。
 
@@ -152,7 +152,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	                        float(p[11]),float(p[12]),p[13],p[14],p[15],p[16],p[17],p[18],float(p[19]),
 	                        float(p[20]),float(p[21]),float(p[22]),float(p[23]),float(p[24]),int(p[25]),int(p[26])))
 	
-	    
+	
 	# CREATE DATA FRAME
 	taxi_train_df = sqlContext.createDataFrame(taxi_temp, taxi_schema)
 	
@@ -162,7 +162,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	    .drop('dropoff_longitude').drop('tip_class').drop('total_amount').drop('tolls_amount').drop('mta_tax')\
 	    .drop('direct_distance').drop('surcharge')\
 	    .filter("passenger_count > 0 and passenger_count < 8 AND payment_type in ('CSH', 'CRD') AND tip_amount >= 0 AND tip_amount < 30 AND fare_amount >= 1 AND fare_amount < 150 AND trip_distance > 0 AND trip_distance < 100 AND trip_time_in_secs > 30 AND trip_time_in_secs < 7200" )
-	
+
 	
 	# CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
 	taxi_df_train_cleaned.cache()
@@ -174,11 +174,11 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	# PRINT HOW MUCH TIME IT TOOK TO RUN THE CELL
 	timeend = datetime.datetime.now()
 	timedelta = round((timeend-timestart).total_seconds(), 2) 
-	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds";
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰19.8 秒
+執行上述儲存格所花費的時間︰51.72 秒
 
 
 ## 資料探索和虛擬化
@@ -187,67 +187,92 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 ### 在計程車車程範例中繪製乘客計數頻率的長條圖
 
-程式碼會使用 SQL squery 來取樣資料，並將結果轉換為 Pandas 資料框架以繪製。
+此程式碼與後續程式碼片段使用了 SQL magic 來查詢範例及本機 magic 以繪製資料。
+
+- **SQL magic (`%%sql`)** HDInsight PySpark 核心支援透過 sqlContext 進行簡單的內嵌 HiveQL 查詢。「-o VARIABLE\_NAME」引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas dataframe。這代表會在本機模式中使用此引數。
+- **`%%local` magic** 用來在 Jupyter 伺服器本機 (通常是 HDInsight 叢集的前端節點) 上執行程式碼。一般而言，您會使用 `%%local` magic 來搭配含有 -o 參數的 `%%sql` magic。-o 參數會保存本機 SQL 查詢的輸出，然後 %%local magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
+
+執行完程式碼後，輸出將會自動以視覺化方式呈現。
+
+此查詢會擷取按乘客計數排列的車程。
 
 	# PLOT FREQUENCY OF PASSENGER COUNTS IN TAXI TRIPS
 
-	# SQL SQUERY
-	sqlStatement = """
-	    SELECT passenger_count, COUNT(*) as trip_counts 
-	    FROM taxi_train 
-	    WHERE passenger_count > 0 and passenger_count < 7
-	    GROUP BY passenger_count 
-	"""
-	sqlResults = sqlContext.sql(sqlStatement)
+	# HIVEQL QUERY AGAINST THE sqlContext
+	%%sql -q -o sqlResults
+	SELECT passenger_count, COUNT(*) as trip_counts 
+	FROM taxi_train 
+	WHERE passenger_count > 0 and passenger_count < 7 
+	GROUP BY passenger_count 
+
+此程式碼從查詢輸出中建立了本機資料框架，以及繪製資料。`%%local` magic 建立了本機資料框架「`sqlResults`」，其能用於搭配 Matplotlib 進行繪製。
+
+>[AZURE.NOTE] 在本逐步解說中，會多次使用此 PySpark magic。如果資料總量很大，您應該取樣以建立可容納於本機記憶體的資料框架。
+
+	#CREATE LOCAL DATA-FRAME AND USE FOR MATPLOTLIB PLOTTING
+
+	# RUN THE CODE LOCALLY ON THE JUPYTER SERVER
+	%%local
 	
-	#CONVERT TO PANDAS DATA FRAME FOR PLOTTING IN PYTHON
-	resultsPDDF = sqlResults.toPandas()
-	
+	# USE THE JUPYTER AUTO-PLOTTING FEATURE TO CREATE INTERACTIVE FIGURES. 
+	# CLICK ON THE TYPE OF PLOT TO BE GENERATED (E.G. LINE, AREA, BAR ETC.)
+	sqlResults
+
+以下是繪製按乘客計數排列車程的程式碼
+
 	# PLOT PASSENGER NUMBER VS. TRIP COUNTS
-	x_labels = resultsPDDF['passenger_count'].values
-	fig = resultsPDDF[['trip_counts']].plot(kind='bar', facecolor='lightblue')
+	%%local
+	import matplotlib.pyplot as plt
+	%matplotlib inline
+	
+	x_labels = sqlResults['passenger_count'].values
+	fig = sqlResults[['trip_counts']].plot(kind='bar', facecolor='lightblue')
 	fig.set_xticklabels(x_labels)
-	fig.set_title('Frequency of trips by passenger count')
+	fig.set_title('Counts of trips by passenger count')
+	fig.set_xlabel('Passenger count in trips')
+	fig.set_ylabel('Trip counts')
 	plt.show()
 
 **輸出：**
 
 ![按乘客計數排列的車程頻率](./media/machine-learning-data-science-spark-data-exploration-modeling/trip-freqency-by-passenger-count.png)
 
+在 Notebook 內使用 [類型] 功能表按鈕，您可以選擇多種不同類型的視覺效果 (資料表、折線圖、圓形圖、橫條圖、區域圖)。橫條圖繪製結果會在此顯示。
 	
-### 繪製小費金額，和小費金額如何隨付款金額和類型變化的長條圖。
+### 繪製小費金額，和小費金額如何隨乘客計數和費用金額變化的長條圖。
 
-程式碼會使用 SQL squery 來取樣資料，並將結果轉換為 Pandas 資料框架以繪製。
+使用 SQL 查詢來取樣資料。
 
 	#PLOT HISTOGRAM OF TIP AMOUNTS AND VARIATION BY PASSENGER COUNT AND PAYMENT TYPE
+	
+	# HIVEQL QUERY AGAINST THE sqlContext
+	%%sql -q -o sqlResults
+	SELECT fare_amount, passenger_count, tip_amount, tipped 
+	FROM taxi_train 
+	WHERE passenger_count > 0 
+	AND passenger_count < 7 
+	AND fare_amount > 0 
+	AND fare_amount < 200 
+	AND payment_type in ('CSH', 'CRD') 
+	AND tip_amount > 0 
+	AND tip_amount < 25
 
-	# RECORD START TIME
-	timestart = datetime.datetime.now()
+
+此程式碼儲存格使用 SQL 查詢來建立三種圖的資料。
+
+	# RUN THE CODE LOCALLY ON THE JUPYTER SERVER
+	%%local
 	
-	# SQL SQUERY
-	sqlStatement = """
-	    SELECT fare_amount, passenger_count, tip_amount, tipped
-	    FROM taxi_train 
-	    WHERE passenger_count > 0 AND passenger_count < 7
-	    AND fare_amount > 0 AND fare_amount < 200
-	    AND payment_type in ('CSH', 'CRD')
-	    AND tip_amount > 0 AND tip_amount < 25
-	"""
-	sqlResults = sqlContext.sql(sqlStatement)
-	
-	#CONVERT TO PANDAS DATA FRAME FOR PLOTTING IN PYTHON
-	resultsPDDF= sqlResults.toPandas()
-	
-	# HISTOGRAM OF TIP AMOUNTS
-	ax1 = resultsPDDF[['tip_amount']].plot(kind='hist', bins=25, facecolor='lightblue')
+	# HISTOGRAM OF TIP AMOUNTS AND PASSENGER COUNT
+	ax1 = sqlResults[['tip_amount']].plot(kind='hist', bins=25, facecolor='lightblue')
 	ax1.set_title('Tip amount distribution')
 	ax1.set_xlabel('Tip Amount ($)')
 	ax1.set_ylabel('Counts')
 	plt.suptitle('')
 	plt.show()
 	
-	# TIP AMOUNT BY PASSENGER COUNT
-	ax2 = resultsPDDF.boxplot(column=['tip_amount'], by=['passenger_count'])
+	# TIP BY PASSENGER COUNT
+	ax2 = sqlResults.boxplot(column=['tip_amount'], by=['passenger_count'])
 	ax2.set_title('Tip amount by Passenger count')
 	ax2.set_xlabel('Passenger count')
 	ax2.set_ylabel('Tip Amount ($)')
@@ -255,17 +280,12 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	plt.show()
 	
 	# TIP AMOUNT BY FARE AMOUNT, POINTS ARE SCALED BY PASSENGER COUNT
-	ax = resultsPDDF.plot(kind='scatter', x= 'fare_amount', y = 'tip_amount', c='blue', alpha = 0.10, s=5*(resultsPDDF.passenger_count))
+	ax = sqlResults.plot(kind='scatter', x= 'fare_amount', y = 'tip_amount', c='blue', alpha = 0.10, s=5*(sqlResults.passenger_count))
 	ax.set_title('Tip amount by Fare amount')
 	ax.set_xlabel('Fare Amount ($)')
 	ax.set_ylabel('Tip Amount ($)')
-	plt.axis([-2, 120, -2, 30])
+	plt.axis([-2, 100, -2, 20])
 	plt.show()
-	
-	# PRINT ELAPSED TIME
-	timeend = datetime.datetime.now()
-	timedelta = round((timeend-timestart).total_seconds(), 2) 
-	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
 
 **輸出：**
@@ -275,8 +295,6 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 ![按乘客計數排列的小費金額](./media/machine-learning-data-science-spark-data-exploration-modeling/tip-amount-by-passenger-count.png)
 
 ![按費用金額排列的小費金額](./media/machine-learning-data-science-spark-data-exploration-modeling/tip-amount-by-fare-amount.png)
-
-執行上述儲存格所花費的時間︰10.61 秒
 
 
 ## 模型化的功能工程、轉換和資料準備
@@ -294,7 +312,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 此程式碼示範如何將小時納入流量時間值區以建立新功能，以及如何從記憶體快取產生的資料框架。在重複使用彈性分散式資料集 (RDD) 和資料框架的位置，快取可改善執行時間。因此，我們會在逐步解說中的幾個階段快取 RDD 和資料框架。
 
-	## CREATE FOUR BUCKETS FOR TRAFFIC TIMES
+	# CREATE FOUR BUCKETS FOR TRAFFIC TIMES
 	sqlStatement = """
 	    SELECT *,
 	    CASE
@@ -307,7 +325,9 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	"""
 	taxi_df_train_with_newFeatures = sqlContext.sql(sqlStatement)
 	
-	## CACHE DATA FRAME IN MEMORY & MATERIALIZE IT IN MEMORY
+	# CACHE DATA-FRAME IN MEMORY & MATERIALIZE DF IN MEMORY
+	# THE .COUNT() GOES THROUGH THE ENTIRE DATA-FRAME,
+	# MATERIALIZES IT IN MEMORY, AND GIVES THE COUNT OF ROWS.
 	taxi_df_train_with_newFeatures.cache()
 	taxi_df_train_with_newFeatures.count()
 
@@ -321,7 +341,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 - **樹狀結構型模型化**需要將類別編碼為數值 (例如，含 3 個類別的功能可能會使用 0、1、2 編碼)。這是由 MLlib 的 [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 函式所提供。此函式會將標籤的字串資料行，編碼為標籤頻率所排序的標籤索引的資料行。請注意，雖然使用輸入和資料處理的數值編製索引，仍可指定樹狀結構型演算法，將其視為類別適當地處理。 
 
-- **羅吉斯和線性迴歸模型**需要一個有效編碼方式，例如，含 3 個類別的一個功能可擴充至 3 個功能資料行，根據觀察的類別，每個資料行包含 0 或 1。MLlib 提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式以執行一個有效編碼方式。此編碼器會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。這種編碼方式允許將預期連續值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
+- **羅吉斯和線性迴歸模型**需要一個有效編碼方式，例如，含 3 個類別的一個功能可擴充至 3 個功能資料行，根據觀察的類別，每個資料行包含 0 或 1。MLlib 提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式以執行一個有效編碼方式。此編碼器會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。這種編碼方式允許將預期數值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
 
 以下是要索引及編碼分類功能的程式碼︰
 
@@ -369,7 +389,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰1.42 秒
+執行上述儲存格所花費的時間︰1.28 秒
 
 ### 建立輸入到 ML 函式的標示點物件
 
@@ -377,10 +397,11 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 本節包含程式碼，示範如何將分類的文字資料索引為[標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point)資料類型並加以編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。標示點物件是彈性分散式資料集 (RDD)，由標籤 (目標/回應變數) 和功能變數組成。這是 MLlib 中許多 ML 演算法輸入時的所需格式。
 
+以下是要為二進位分類進行索引及編碼文字功能的程式碼。
 
 	# FUNCTIONS FOR BINARY CLASSIFICATION
 
-	# LOAD PYSPARK LIBRARIES
+	# LOAD LIBRARIES
 	from pyspark.mllib.regression import LabeledPoint
 	from numpy import array
 
@@ -401,6 +422,8 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	    labPt = LabeledPoint(line.tipped, features)
 	    return  labPt
 
+
+以下是要為線性迴歸分析進行編碼及建立類別文字功能的程式碼。
 
 	# FUNCTIONS FOR REGRESSION WITH TIP AMOUNT AS TARGET VARIABLE
 
@@ -464,15 +487,18 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰0.26 秒
+執行上述儲存格所花費的時間︰0.24 秒
 
 
 ### 調整功能
 
 調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler)，將功能縮放至單位變異數。這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸，為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。
 
->AZURE.NOTE︰ 我們找到了適用於調整功能的 LinearRegressionWithSGD 演算法。
+>[AZURE.NOTE] 我們找到了適用於調整功能的 LinearRegressionWithSGD 演算法。
 
+以下是要用於正規化線性 SGD 演算法的比例調整變數的程式碼。
+
+	# FEATURE SCALING
 
 	# RECORD START TIME
 	timestart = datetime.datetime.now()
@@ -503,7 +529,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰6.63 秒
+執行上述儲存格所花費的時間︰13.17 秒
 
 
 ### 快取記憶體中的物件
@@ -536,7 +562,7 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 **輸出：**
 
-執行上述儲存格所花費的時間︰0.11 秒
+執行上述儲存格所花費的時間︰0.15 秒
 
 
 ## 使用二進位分類模型來預測是否支付小費
@@ -557,13 +583,16 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 
 本節的程式碼顯示如何訓練評估，並使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。
 
+**使用 CV 及超參數掃掠來定型羅吉斯迴歸模型**
 
-	#PREDICT WHETHER A TIP IS PAID OR NOT USING LOGISTIC REGRESSION WITH LBFGS
+	# LOGISTIC REGRESSION CLASSIFICATION WITH CV AND HYPERPARAMETER SWEEPING
+
+	# GET ACCURACY FOR HYPERPARAMETERS BASED ON CROSS-VALIDATION IN TRAINING DATA-SET
 
 	# RECORD START TIME
 	timestart = datetime.datetime.now()
 	
-	# LOAD PYSPARK LIBRARIES
+	# LOAD LIBRARIES
 	from pyspark.mllib.classification import LogisticRegressionWithLBFGS 
 	from sklearn.metrics import roc_curve,auc
 	from pyspark.mllib.evaluation import BinaryClassificationMetrics
@@ -575,6 +604,33 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	                                               regParam=0.01, regType='l2', intercept=True, corrections=10, 
 	                                               tolerance=0.0001, validateData=True, numClasses=2)
 	
+	# PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
+	# NOTE: There are 20 coefficient terms for the 10 features, 
+	#       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+	print("Coefficients: " + str(logitModel.weights))
+	print("Intercept: " + str(logitModel.intercept))
+	
+	# PRINT ELAPSED TIME
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+
+**輸出：**
+
+係數：[0.0082065285375, -0.0223675576104, -0.0183812028036, -3.48124578069e-05, -0.00247646947233, -0.00165897881503, 0.0675394837328, -0.111823113101, -0.324609912762, -0.204549780032, -1.36499216354, 0.591088507921, -0.664263411392, -1.00439726852, 3.46567827545, -3.51025855172, -0.0471341112232, -0.043521833294, 0.000243375810385, 0.054518719222]
+
+截距：-0.0111216486893
+
+執行上述儲存格所花費的時間︰14.43 秒
+
+**使用標準度量評估二進位分類模型**
+
+	#EVALUATE LOGISTIC REGRESSION MODEL WITH LBFGS
+
+	# RECORD START TIME
+	timestart = datetime.datetime.now()
+
 	# PREDICT ON TEST DATA WITH MODEL
 	predictionAndLabels = oneHotTESTbinary.map(lambda lp: (float(logitModel.predict(lp.features)), lp.label))
 	
@@ -596,13 +652,61 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	print("Precision = %s" % precision)
 	print("Recall = %s" % recall)
 	print("F1 Score = %s" % f1Score)
+
+
+	## SAVE MODEL WITH DATE-STAMP
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	logisticregressionfilename = "LogisticRegressionWithLBFGS_" + datestamp;
+	dirfilename = modelDir + logisticregressionfilename;
+	logitModel.save(sc, dirfilename);
 	
-	# CREATE A PANDAS DATA-FRAME AND PLOT ROC-CURVE, FROM PREDICTED PROBS AND LABELS                                     
+	# OUTPUT PROBABILITIES AND REGISTER TEMP TABLE
 	logitModel.clearThreshold(); # This clears threshold for classification (0.5) and outputs probabilities
 	predictionAndLabelsDF = predictionAndLabels.toDF()
-	test_predictions = predictionAndLabelsDF.toPandas()
-	predictions_pddf = test_predictions.rename(columns={'_1': 'probability', '_2': 'label'})
+	predictionAndLabelsDF.registerTempTable("tmp_results");
 	
+	# PRINT ELAPSED TIME
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds";
+
+**輸出：**
+
+PR 下的領域 = 0.985297691373
+
+ROC 下的領域 = 0.983714670256
+
+摘要狀態
+
+精確度 = 0.984304060189
+
+回收 = 0.984304060189
+
+F1 分數 = 0.984304060189
+
+執行上述儲存格所花費的時間︰57.61 秒
+
+**繪製 ROC 曲線。**
+
+predictionAndLabelsDF 已在先前的儲存格中註冊為 tmp\_results 資料表。tmp\_results 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。程式碼如下。
+
+
+	# QUERY RESULTS                              
+	%%sql -q -o sqlResults
+	SELECT * from tmp_results
+
+
+以下是建立預測和繪製 ROC 曲線的程式碼。
+
+	# MAKE PREDICTIONS AND PLOT ROC-CURVE
+
+	# RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+	%%local
+	%matplotlib inline
+	from sklearn.metrics import roc_curve,auc
+
+	# MAKE PREDICTIONS
+	predictions_pddf = test_predictions.rename(columns={'_1': 'probability', '_2': 'label'})
 	prob = predictions_pddf["probability"] 
 	fpr, tpr, thresholds = roc_curve(predictions_pddf['label'], prob, pos_label=1);
 	roc_auc = auc(fpr, tpr)
@@ -619,27 +723,13 @@ Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。如此可使
 	plt.legend(loc="lower right")
 	plt.show()
 	
-	## SAVE MODEL WITH DATE-STAMP
-	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
-	logisticregressionfilename = "LogisticRegressionWithLBFGS_" + datestamp;
-	dirfilename = modelDir + logisticregressionfilename;
-	
-	logitModel.save(sc, dirfilename);
-	
-	# PRINT ELAPSED TIME
-	timeend = datetime.datetime.now()
-	timedelta = round((timeend-timestart).total_seconds(), 2) 
-	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
 **輸出：**
 
-Area under PR = 0.985319161941 Area under ROC = 0.983511076103 Summary Stats Precision = 0.984187223276 Recall = 0.984187223276 F1 Score = 0.984187223276
-
 ![羅吉斯迴歸 ROC curve.png](./media/machine-learning-data-science-spark-data-exploration-modeling/logistic-regression-roc-curve.png)
 
-執行上述儲存格所花費的時間︰26.63 秒
 
-### 隨機樹系模型類別
+### 隨機樹系分類
 
 本節的程式碼顯示如何訓練評估及儲存隨機樹系模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。
 	
@@ -672,8 +762,6 @@ Area under PR = 0.985319161941 Area under ROC = 0.983511076103 Summary Stats Pre
 	
 	# AREA UNDER ROC CURVE
 	metrics = BinaryClassificationMetrics(predictionAndLabels)
-
-	# PRINT TEST METRICS
 	print("Area under ROC = %s" % metrics.areaUnderROC)
 	
 	# PERSIST MODEL IN BLOB
@@ -690,7 +778,9 @@ Area under PR = 0.985319161941 Area under ROC = 0.983511076103 Summary Stats Pre
 
 **輸出：**
 
-Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 秒
+ROC 下的領域 = 0.985297691373
+
+執行上述儲存格所花費的時間︰31.09 秒
 
 
 ### 漸層停駐提升樹狀結構類別
@@ -734,12 +824,19 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
 
+**輸出：**
+
+ROC 下的領域 = 0.985297691373
+
+執行上述儲存格所花費的時間︰19.76 秒
+
+
 ## 使用迴歸模型預測計程車車程的小費金額
 
 本節說明如何使用三種迴歸工作模型，根據其他小費功能預測支付的計程車車程的小費金額。顯示模型如下︰
 
 - 正規化線性迴歸
-- 隨機樹系模型
+- 隨機樹系
 - 漸層停駐提升樹狀結構
 
 這些模型將在簡介中說明。每個模型建置程式碼區段會分成步驟︰
@@ -752,20 +849,27 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 
 本節的程式碼示範如何使用縮放功能來訓練線性迴歸 (使用隨機梯度下降 (SGD) 以最佳化)，以及如何評分、評估並將模型儲存在 Azure Blob 儲存體 (WASB)。
 
->AZURE NOTE︰在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會經常發生問題，且必須小心變更/最佳化參數以取得有效的模型。調整變數很有用 (如下所示)。
+>[AZURE.TIP] 在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會發生問題，且必須小心變更/最佳化參數以取得有效的模型。調整變數對於聚合很有用。
+
 
 	#PREDICT TIP AMOUNTS USING LINEAR REGRESSION WITH SGD
 
 	# RECORD START TIME
 	timestart = datetime.datetime.now()
 	
-	# LOAD PYSPARK LIBRARIES
+	# LOAD LIBRARIES
 	from pyspark.mllib.regression import LabeledPoint, LinearRegressionWithSGD, LinearRegressionModel
 	from pyspark.mllib.evaluation import RegressionMetrics
 	from scipy import stats
 	
 	# USE SCALED FEATURES TO TRAIN MODEL
 	linearModel = LinearRegressionWithSGD.train(oneHotTRAINregScaled, iterations=100, step = 0.1, regType='l2', regParam=0.1, intercept = True)
+
+	# PRINT COEFFICIENTS AND INTERCEPT OF THE MODEL
+	# NOTE: There are 20 coefficient terms for the 10 features, 
+	#       and the different categories for features: vendorVec (2), rateVec, paymentVec (6), TrafficTimeBinsVec (4)
+	print("Coefficients: " + str(linearModel.weights))
+	print("Intercept: " + str(linearModel.intercept))
 	
 	# SCORE ON SCALED TEST DATA-SET & EVALUATE
 	predictionAndLabels = oneHotTESTregScaled.map(lambda lp: (float(linearModel.predict(lp.features)), lp.label))
@@ -775,7 +879,7 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	print("RMSE = %s" % testMetrics.rootMeanSquaredError)
 	print("R-sqr = %s" % testMetrics.r2)
 	
-	# SAVE MODEL IN BLOB
+	# SAVE MODEL WITH DATE-STAMP IN THE DEFAULT BLOB FOR THE CLUSTER
 	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
 	linearregressionfilename = "LinearRegressionWithSGD_" + datestamp;
 	dirfilename = modelDir + linearregressionfilename;
@@ -787,10 +891,22 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	timedelta = round((timeend-timestart).total_seconds(), 2) 
 	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
+**輸出：**
+
+係數：[0.00457675809917, -0.0226314167349, -0.0191910355236, 0.246793409578, 0.312047890459, 0.359634405999, 0.00928692253981, -0.000987181489428, -0.0888306617845, 0.0569376211553, 0.115519551711, 0.149250164995, -0.00990211159703, -0.00637410344522, 0.545083566179, -0.536756072402, 0.0105762393099, -0.0130117577055, 0.0129304737772, -0.00171065945959]
+
+截距：0.853872718283
+
+RMSE = 1.24190115863
+
+R-sqr = 0.608017146081
+
+執行上述儲存格所花費的時間︰58.42 秒
+
 
 ### 隨機樹系迴歸
 
-本節的程式碼顯示如何訓練評估及儲存隨機樹系模型，可預測 NYC 計程車車程資料的小費金額。
+本節的程式碼會顯示如何訓練評估及儲存隨機樹系迴歸，可預測 NYC 計程車車程資料的小費金額。
 
 
 	#PREDICT TIP AMOUNTS USING RANDOM FOREST
@@ -816,9 +932,9 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	## PREDICT AND EVALUATE ON TEST DATA-SET
 	predictions = rfModel.predict(indexedTESTreg.map(lambda x: x.features))
 	predictionAndLabels = oneHotTESTreg.map(lambda lp: lp.label).zip(predictions)
-	testMetrics = RegressionMetrics(predictionAndLabels)
 
-	# PRINT TEST METRICS
+	# TEST METRICS
+	testMetrics = RegressionMetrics(predictionAndLabels)
 	print("RMSE = %s" % testMetrics.rootMeanSquaredError)
 	print("R-sqr = %s" % testMetrics.r2)
 	
@@ -834,11 +950,20 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	timedelta = round((timeend-timestart).total_seconds(), 2) 
 	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
+**輸出：**
+
+RMSE = 0.891209218139
+
+R-sqr = 0.759661334921
+
+執行上述儲存格所花費的時間︰49.21 秒
+
 
 ### 漸層停駐提升樹狀結構迴歸
 
 本節的程式碼顯示如何訓練評估及儲存漸層停駐提升樹狀結構模型，可預測 NYC 計程車車程資料的小費金額。
 
+****訓練及評估**
 
 	#PREDICT TIP AMOUNTS USING GRADIENT BOOSTING TREES
 
@@ -857,16 +982,53 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	## EVALUATE A TEST DATA-SET
 	predictions = gbtModel.predict(indexedTESTreg.map(lambda x: x.features))
 	predictionAndLabels = indexedTESTreg.map(lambda lp: lp.label).zip(predictions)
-	testMetrics = RegressionMetrics(predictionAndLabels)
 
-	# PRINT TEST METRICS
+	# TEST METRICS
+	testMetrics = RegressionMetrics(predictionAndLabels)
 	print("RMSE = %s" % testMetrics.rootMeanSquaredError)
 	print("R-sqr = %s" % testMetrics.r2)
+
+	# SAVE MODEL IN BLOB
+	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
+	btregressionfilename = "GradientBoostingTreeRegression_" + datestamp;
+	dirfilename = modelDir + btregressionfilename;
+	gbtModel.save(sc, dirfilename)
 	
-	# PLOT SCATTER-PLOT BETWEEN ACTUAL AND PREDICTED TIP VALUES
+	# CONVER RESULTS TO DF AND REGISER TEMP TABLE
 	test_predictions = sqlContext.createDataFrame(predictionAndLabels)
-	test_predictions_pddf = test_predictions.toPandas()
+	test_predictions.registerTempTable("tmp_results");
 	
+	# PRINT ELAPSED TIME
+	timeend = datetime.datetime.now()
+	timedelta = round((timeend-timestart).total_seconds(), 2) 
+	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
+
+**輸出：**
+
+RMSE = 0.908473148639
+
+R-sqr = 0.753835096681
+
+執行上述儲存格所花費的時間︰34.52 秒
+
+**圖**
+
+tmp\_results 在先前的儲存格中已註冊為 Hive 資料表。來自資料表的結果已輸出至 sqlResults 資料框架以供繪製之用。程式碼如下
+
+	# PLOT SCATTER-PLOT BETWEEN ACTUAL AND PREDICTED TIP VALUES
+
+	# SELECT RESULTS
+	%%sql -q -o sqlResults
+	SELECT * from tmp_results
+
+以下是使用 Jupyter 伺服器繪製資料的程式碼。
+
+	# RUN THE CODE LOCALLY ON THE JUPYTER SERVER AND IMPORT LIBRARIES
+	%%local
+	%matplotlib inline
+	import numpy as np
+
+	# PLOT 
 	ax = test_predictions_pddf.plot(kind='scatter', figsize = (6,6), x='_1', y='_2', color='blue', alpha = 0.25, label='Actual vs. predicted');
 	fit = np.polyfit(test_predictions_pddf['_1'], test_predictions_pddf['_2'], deg=1)
 	ax.set_title('Actual vs. Predicted Tip Amounts ($)')
@@ -876,23 +1038,8 @@ Area under ROC = 0.985240932843 執行上述儲存格所花費的時間︰25.62 
 	plt.axis([-1, 20, -1, 20])
 	plt.show(ax)
 	
-	# SAVE MODEL IN BLOB
-	datestamp = unicode(datetime.datetime.now()).replace(' ','').replace(':','_');
-	btregressionfilename = "GradientBoostingTreeRegression_" + datestamp;
-	dirfilename = modelDir + btregressionfilename;
-	
-	gbtModel.save(sc, dirfilename)
-	
-	# PRINT ELAPSED TIME
-	timeend = datetime.datetime.now()
-	timedelta = round((timeend-timestart).total_seconds(), 2) 
-	print "Time taken to execute above cell: " + str(timedelta) + " seconds"; 
 
-**OUTLOOK**
-
-RMSE = 0.962160568829
-
-R-sqr = 0.717354800581
+**輸出：**
 
 ![Actual-vs-predicted-tip-amounts](./media/machine-learning-data-science-spark-data-exploration-modeling/actual-vs-predicted-tips.png)
 
@@ -924,7 +1071,7 @@ R-sqr = 0.717354800581
 
 ## 記錄模型的儲存位置供耗用和評分
 
-針對[評分及評估 Spark 建置機器學習模型](machine-learning-data-science-spark-model-consumption.md) 主題所說明的耗用和評分獨立資料集，您必須將包含這裡所建立之儲存模型的檔案名稱，複製並貼到 Consumption Jupyter Notebook。以下程式碼可將路徑列印到您在該處所需要的模型檔案。
+針對[評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md) 主題所說明的耗用和評分獨立資料集，您必須將在這裡所建立之儲存模型的檔案名稱，複製並貼到 Consumption Jupyter Notebook。以下程式碼可將路徑列印到您在該處所需要的模型檔案。
 
 	# MODEL FILE LOCATIONS FOR CONSUMPTION
 	print "logisticRegFileLoc = modelDir + "" + logisticregressionfilename + """;
@@ -935,10 +1082,27 @@ R-sqr = 0.717354800581
 	print "BoostedTreeRegressionFileLoc = modelDir + "" + btregressionfilename + """;
 
 
+**輸出**
+
+logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS\_2016-05-0317\_03\_23.516568"
+
+linearRegFileLoc = modelDir + "LinearRegressionWithSGD\_2016-05-0317\_05\_21.577773"
+
+randomForestClassificationFileLoc = modelDir + "RandomForestClassification\_2016-05-0317\_04\_11.950206"
+
+randomForestRegFileLoc = modelDir + "RandomForestRegression\_2016-05-0317\_06\_08.723736"
+
+BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassification\_2016-05-0317\_04\_36.346583"
+
+BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression\_2016-05-0317\_06\_51.737282"
+
+
 ## 後續步驟
 
-現在已使用 Spark MlLib 建立迴歸和分類模型，您已瞭解如何評分及評估這些模型。
+現在已使用 Spark MlLib 建立迴歸和分類模型，您已瞭解如何評分及評估這些模型。進階資料探索和模型化筆記本深入探討到包括交叉驗證、超參數清除和模型評估。
 
-**模型耗用量︰**若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱[評分及評估 Spark 建置機器學習模型](machine-learning-data-science-spark-model-consumption.md)。
+**模型耗用量︰**若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱[評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+**交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
+
+<!---HONumber=AcomDC_0518_2016-->

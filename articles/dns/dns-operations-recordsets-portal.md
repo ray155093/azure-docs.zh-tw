@@ -10,14 +10,14 @@
 
 <tags
    ms.service="dns"
-   ms.devlang="en"
+   ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="03/29/2016"
+   ms.date="05/06/2016"
    ms.author="cherylmc"/>
 
-# 如何使用 Azure 入口網站建立和管理 DNS 記錄和記錄集
+# 使用 Azure 入口網站管理 DNS 記錄和記錄集
 
 
 > [AZURE.SELECTOR]
@@ -26,9 +26,9 @@
 - [PowerShell](dns-operations-recordsets.md)
 
 
-本指南示範如何使用 Azure 入口網站建立和管理 DNS 區域的記錄集和記錄。
+本文說明如何使用 Azure 入口網站管理 DNS 區域的記錄集和記錄。
 
-請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。記錄集是指一個區域中有相同名稱和相同類型的記錄集合。如需詳細資訊，請參閱[了解記錄集和記錄](../dns-getstarted-create-recordset#Understanding-record-sets-and-records)。
+請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。記錄集是指一個區域中有相同名稱和相同類型的記錄集合。如需詳細資訊，請參閱[了解記錄集和記錄](dns-getstarted-create-recordset-portal.md)。
 
 ## 建立新的記錄集和記錄
 
@@ -44,7 +44,7 @@
 	![搜尋記錄集](./media/dns-operations-recordsets-portal/searchset500.png)
 
 
-## 將新記錄加入至現有的記錄集
+## 將新記錄加入記錄集
 
 任何記錄集最多只能加入 20 筆記錄。記錄集不能包含兩筆相同的記錄。您可以建立空的記錄集 (沒有記錄)，但不會出現在 Azure DNS 名稱伺服器上。類型為 CNAME 的記錄集最多只能包含一筆記錄。
 
@@ -77,14 +77,11 @@
 	![修改記錄](./media/dns-operations-recordsets-portal/modifyrecord500.png)
 
 3. 按一下刀鋒視窗頂端的 [儲存] 來儲存您的設定。您會在右上角看到記錄已儲存好的通知。
-
 	
 	![儲存記錄](./media/dns-operations-recordsets-portal/saved150.png)
 
 
-
 3. 記錄儲存好之後，[DNS] 刀鋒視窗上之記錄集的值就會反映更新的記錄。
-
 
 
 ## 從記錄集移除記錄
@@ -135,4 +132,8 @@
 
 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。如需自動化 DNS 的相關資訊，請參閱[使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+
+如果您想要使用反向 DNS 記錄，請參閱[如何管理反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
+ 
+
+<!---HONumber=AcomDC_0518_2016-->

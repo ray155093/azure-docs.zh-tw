@@ -14,10 +14,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/29/2016"
+   ms.date="05/09/2016"
    ms.author="cherylmc"/>
 
-# 在 Azure 入口網站中建立和管理 DNS 區域
+# 在 Azure 入口網站中建立 DNS 區域
 
 
 > [AZURE.SELECTOR]
@@ -29,13 +29,8 @@
 
 本文將逐步引導您完成使用 Azure 入口網站建立 DNS 區域的步驟。您也可以使用 PowerShell 或 CLI 建立 DNS 區域。
 
-網域 "contoso.com" 可能包含許多的 DNS 記錄，例如 "mail.contoso.com" (用於郵件伺服器) 和 "www.contoso.com" (用於網站)。DNS 區域用來裝載特定網域的 DNS 記錄。為了開始裝載您的網域，您必須先建立 DNS 區域。針對特定網域建立的任何 DNS 記錄，都位於該網域的 DNS 區域內。
+[AZURE.INCLUDE [dns-create-zone-about](../../includes/dns-create-zone-about-include.md)]
 
-### <a name="names"></a>關於 DNS 區域名稱
- 
-- 區域的名稱在資源群組內必須是唯一的，且區域必須尚未存在。否則作業會失敗。
-
-- 不同的資源群組或不同的 Azure 訂用帳戶中，可重複使用相同的區域名稱。雖然多個區域共用相同的名稱，但每個執行個體會被指派不同的名稱伺服器位址，而且從父系網域只能委派一個執行個體。如需詳細資訊，請參閱[將網域委派給 Azure DNS](#delegate)。
 
 ### 關於 Azure DNS 的標記
 
@@ -57,13 +52,13 @@
 
 	![建立區域](./media/dns-getstarted-create-dnszone-portal/newzone250.png)
 
-4. 在 [建立 DNS 區域] 刀鋒視窗中，提供 DNS 區域的 [名稱]。例如 contoso.com。請參閱上面的[關於 DNS 區域名稱](#names)一節。
+4. 在 [建立 DNS 區域] 刀鋒視窗中，提供 DNS 區域的 [名稱]。例如 *contoso.com*。請參閱上面的[關於 DNS 區域名稱](#names)一節。
 
 5. 接下來，指定您想要使用的資源群組。您可以建立新的資源群組，或選取已經存在的資源群組。
 
 6. 在 [位置] 下拉式清單中指定資源群組的位置。請注意，這項設定是指資源群組的位置，而非 DNS 區域的位置。實際的 DNS 區域資源會自動遍布「全域」，因此不是您可以 (或必須) 在入口網站中指定的項目。
 
-7. 如果您想要輕鬆地在儀表板上找到您的新區域，您可以讓 [釘選到儀表板] 核取方塊保持選取狀態。然後按一下 [建立]。
+7. 如果您想要輕鬆地在儀表板上找到您的新區域，您可以讓 [釘選到儀表板] 核取方塊保持選取狀態。然後按一下 [**建立**]。
 
 	![釘選到儀表板](./media/dns-getstarted-create-dnszone-portal/pindashboard150.png)
 
@@ -74,7 +69,7 @@
 9. 新區域建立好之後，新區域的刀鋒視窗就會在儀表板上開啟。
 
 
-## 檢視 DNS 區域記錄
+## 檢視記錄
 
 建立 DNS 區域也會建立下列記錄：
 
@@ -93,6 +88,29 @@
 
 	![區域](./media/dns-getstarted-create-dnszone-portal/viewzone500.png)
 
+## 測試
+
+您可以使用 nslookup、dig 或 [Resolve-DnsName PowerShell Cmdlet](https://technet.microsoft.com/library/jj590781.aspx) 等 DNS 工具測試您的 DNS 區域。
+
+如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 `Get-AzureRmDnsRecordSet` 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
+
+	nslookup
+	> set type=SOA
+	> server ns1-01.azure-dns.com
+	> contoso.com
+
+	Server: ns1-01.azure-dns.com
+	Address:  208.76.47.1
+
+	contoso.com
+        	primary name server = ns1-01.azure-dns.com
+        	responsible mail addr = msnhst.microsoft.com
+        	serial  = 1
+        	refresh = 900 (15 mins)
+        	retry   = 300 (5 mins)
+        	expire  = 604800 (7 days)
+        	default TTL = 300 (5 mins)
+
 
 
 ## 刪除 DNS 區域
@@ -106,6 +124,6 @@
 
 ## 後續步驟
 
-在建立 DNS 區域之後，請參閱[開始建立記錄集和記錄](dns-getstarted-create-recordset-portal.md)、[如何管理 DNS 區域](dns-operations-dnszones.md)和[如何管理 DNS 記錄](dns-operations-recordsets-portal.md)。
+建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-portal.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

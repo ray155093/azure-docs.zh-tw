@@ -89,7 +89,7 @@
     ![插入建立新 KV 的影像](./media/app-service-web-purchase-ssl-web-site/NewKV.jpg)
  
     > [AZURE.NOTE]
-    Azure 金鑰保存庫儲存此憑證會產生少許費用。成本大約是 $0.03 分錢 (美金)。如需詳細資訊，請參閱 **[Azure 金鑰保存庫價格詳細資料](https://azure.microsoft.com/pricing/details/key-vault/)**。
+    Azure 金鑰保存庫儲存此憑證會產生少許費用。如需詳細資訊，請參閱 **[Azure 金鑰保存庫定價詳細資料](https://azure.microsoft.com/pricing/details/key-vault/)**。
 
 4. 一旦您選取儲存憑證所在的金鑰保存庫儲存機制，請繼續進行並儲存，方法是按一下 [金鑰保存庫狀態] 刀鋒視窗頂端的 [儲存] 按鈕。
 
@@ -208,4 +208,4 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

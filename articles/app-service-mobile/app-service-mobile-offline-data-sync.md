@@ -60,7 +60,7 @@
 
 本機存放區會使用初始化方法 (例如 [.NET 用戶端 SDK] 中的 `IMobileServicesSyncContext.InitializeAsync(localstore)`)，來與同步處理內容產生關聯。
 
-## 離線同步處理如何運作
+## <a name="how-sync-works"></a>離線同步處理如何運作
 
 使用同步處理資料表的時候，您的用戶端程式碼可控制本機變更與 Azure 行動應用程式後端同步處理的時機。在有呼叫要「推送」(*push*) 變更之前不會傳送任何項目到後端。同樣地，只當有呼叫要「提取」(*pull*) 時才會將新資料填入本機存放區。
 
@@ -76,9 +76,10 @@
 
   查詢名稱可以是您選擇的任何字串，但它在應用程式中的每個邏輯查詢都必須是唯一的。否則，不同的提取作業可能會覆寫相同的增量同步處理時間戳記，您的查詢可能因此傳回不正確的結果。
 
-  如果查詢具有參數，一個建立唯一查詢名稱的方法是納入該參數值。例如，如果您要篩選 userid，您的查詢名稱可能如下：
+  如果查詢具有參數，一個建立唯一查詢名稱的方法是納入該參數值。例如，如果您要篩選 userid，您的查詢名稱可能如下 (在 C# 中)：
 
-		await todoTable.PullAsync("todoItems" + userid, syncTable.Where(u => u.UserId = userid));
+		await todoTable.PullAsync("todoItems" + userid, 
+			syncTable.Where(u => u.UserId = userid));
 
   如果您想選擇不要增量同步處理，則傳遞 `null` 做為查詢識別碼。在此情況下，每次呼叫 `PullAsync` 時都會擷取所有的記錄，這可能會沒有效率。
 
@@ -103,4 +104,4 @@
 [Xamarin Android：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
 [Windows 8.1：啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

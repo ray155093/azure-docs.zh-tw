@@ -48,7 +48,7 @@ Azure 媒體服務現在提供一種服務，來傳遞 Microsoft PlayReady 授�
 
 XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayReady 授權範本 XML 結構描述區段中定義。
 
-媒體服務也會定義一組可以用來在 XML 中序列化和還原序列化的 .NET 類別。對於主要類別的描述，請參閱 [媒體服務 .NET 類別]((media-services-playready-license-template-overview.md#classes)。用於設定授權範本。
+媒體服務也會定義一組可以用來在 XML 中序列化和還原序列化的 .NET 類別。對於主要類別的描述，請參閱[媒體服務 .NET 類別](media-services-playready-license-template-overview.md#classes)。其作用是設定授權範本。
 
 如需使用 .NET 類別來設定 PlayReady 授權範本的端對端範例，請參閱[使用 PlayReady 動態加密和授權傳遞服務](https://msdn.microsoft.com/library/azure/dn783467.aspx)。
 
@@ -311,4 +311,4 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

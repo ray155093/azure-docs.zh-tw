@@ -49,7 +49,7 @@
 |[D1-14](#standard-tier-d-series) |160 |
 |[D1-15v2](#standard-tier-dv2-series) |210 - 250 *|
 |[DS1-14](#standard-tier-ds-series) |160 |
-|[DS1-14v2](#standard-tier-dsv2-series) |210-250* |
+|[DS1-15v2](#standard-tier-dsv2-series) |210-250* |
 |[G1-5](#standard-tier-g-series) |180 - 240 *|
 |[GS1-5](#standard-tier-gs-series) |180 - 240 *|
 
@@ -62,7 +62,7 @@
 
 * 儲存體容量是使用 1024^3 位元組當作 GB 的度量單位來表示。這有時稱為 gibibyte 或基底 2 定義。比較使用不同基底系統的大小時，請記住，基底 2 的大小可能會顯示為小於基底 10，但是對於任何特定的大小 (例如 1 GB)，基底 2 的系統可提供比基底 10 系統更大的容量，因為 1024^3 大於 1000^3。
 
-* 最大網路頻寬是每個 VM 類型配置並指派的最大彙總頻寬。最大頻寬提供選取正確 VM 類型的指導方針，以確保有適當的網路容量可用。在低、中度、高和極高之間移動時，輸送量將隨之增加。實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
+* 最大網路頻寬是依據各 VM 類型而配置與指派的最大彙總頻寬。最大頻寬能指導我們選取正確的 VM 類型，以確保有適當的網路容量可用。在低、中度、高和極高之間移動時，輸送量將隨之增加。實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
 
 
 ## 標準層級：A 系列
@@ -150,6 +150,7 @@
 |Standard\_DS12\_v2 |4|28|4|本機 SSD 磁碟 = 56 GB |8|144| 每秒 12,800 192 MB | 高 |
 |Standard\_DS13\_v2 |8|56|8|本機 SSD 磁碟 = 112 GB |16|288| 每秒 25,600 384 MB | 高 |
 |Standard\_DS14\_v2 |16|112|8|本機 SSD 磁碟 = 224 GB |32|576| 每秒 50,000 768 MB | 非常高 |
+|Standard\_DS15\_v2 |20|140 GB|10|本機 SSD 磁碟 = 280 GB |40| 720|每秒 62,500 960 MB | 非常高 |
 
 
 **磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
@@ -190,6 +191,7 @@
 ## 後續步驟
 
 - 了解 [Azure 訂用帳戶及服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
-- 深入了解像是高效能運算 (HPC) 之工作負載的 [A8、A9、A10 及 A11 計算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+- 深入了解像是高效能運算 (HPC) 之工作負載的[關於 A8、A9、A10 和 A11 計算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+
+

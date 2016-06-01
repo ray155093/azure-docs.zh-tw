@@ -71,7 +71,7 @@
 		-ResourceGroupName $resourceGroupName `
 		-Name $dataLakeAnalyticsAccountName  
 
-您也可以使用 Azure 資源群組範本。該範本可用於建立資料湖分析帳戶與相依資料湖存放區帳戶，它位於[附錄 A](#appendix-a) 中。將範本儲存成 .json 範本的檔案，然後使用下列 PowerShell 指令碼呼叫該範本：
+您也可以使用 Azure 資源群組範本。該範本可用於建立 Data Lake Analytics 帳戶與相依 Data Lake Store 帳戶，它位於[附錄 A](#appendix-a) 中。將範本儲存成 .json 範本的檔案，然後使用下列 PowerShell 指令碼呼叫該範本：
 
 
 	$AzureSubscriptionID = "<Your Azure Subscription ID>"
@@ -132,7 +132,7 @@ Cmdlet 將傳回 **True** 或 **False**。
 	
 	Remove-AzureRmDataLakeAnalyticsAccount -Name $dataLakeAnalyticsAccountName 
 
-刪除分析帳戶不會刪除相依的資料湖儲存體帳戶。下列範例會刪除資料湖分析帳戶和預設的資料湖存放區帳戶
+刪除 Data Lake Analytics 帳戶不會刪除相依的 Data Lake 儲存體帳戶。下列範例會刪除資料湖分析帳戶和預設的資料湖存放區帳戶
 
 	$resourceGroupName = "<ResourceGroupName>"
 	$dataLakeAnalyticsAccountName = "<DataLakeAnalyticsAccountName>"
@@ -326,7 +326,7 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 
 ![Azure 資料湖分析帳戶與儲存體](./media/data-lake-analytics-manage-use-portal/data-lake-analytics-arm-structure.png)
 
-資料湖分析帳戶和相依儲存體帳戶必須位於同一個 Azure 資料中心。但 ARM 群組可位在不同的資料中心內。
+資料湖分析帳戶和相依的儲存體帳戶必須位於相同的 Azure 資料中心。但 ARM 群組可位在不同的資料中心內。
 
 ##另請參閱 
 
@@ -392,4 +392,4 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 	  }
 	}
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

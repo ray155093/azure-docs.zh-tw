@@ -20,7 +20,7 @@
 # 什麼是 Azure 應用程式服務？
 Azure 應用程式服務是唯一整合您所需的一切，用以快速而輕鬆地為任何平台和任何裝置建置 Web 和行動應用程式的雲端服務。App Service 是針對開發人員而建置的，它是一個受到完整管理的平台且具有強大的功能，例如內建的營運開發，Visual Studio Team Services 和 GitHub 的連續整合、預備和生產支援，以及自動修補等功能。
 
-Azure App Service 是包含 Azure 網站、Azure 行動服務和 Azure Biztalk 服務之所有功能的單一服務。Azure Functions 是不斷為 App Service 添加功能而能夠實現新一代應用程式的範例。
+Azure 應用程式服務是包含 Azure 網站、Azure 行動服務和 Azure Biztalk 服務的所有現有功能，同時又加入新功能整合而成的單一服務。[深入了解](https://azure.microsoft.com/documentation/services/app-service/)應用程式服務與這些現有服務有何關聯。
 
 ## 為何要使用應用程式服務？
 Azure 應用程式著重於 Web 和行動應用程式的快速開發以及商務程序的自動化，因而透過單一開發和管理使用性，提供了一組整合式的企業功能，讓您享有下列好處：
@@ -44,7 +44,6 @@ Azure 應用程式著重於 Web 和行動應用程式的快速開發以及商務
 - [**Web 應用程式**](../app-service-web/app-service-web-overview.md) - 快速建立和部署與您的企業同步調整的關鍵 Web 應用程式。
 - [**行動應用程式**](../app-service-mobile/app-service-mobile-value-prop.md) - 隨時透過任何裝置與員工、合作夥伴和客戶聯繫。
 - [**API Apps**](../app-service-api/app-service-api-apps-why-best-platform.md) - 輕鬆建置和取用雲端 API。
-- [**函數應用程式**](../azure-functions/functions-overview.md) - 建立輕量型函數來回應跨 Azure、內部部署和 SaaS 提供者的事件。
 - [**邏輯應用程式**](../app-service-logic/app-service-logic-what-are-logic-apps.md) - 將跨雲端的資料存取和使用自動化，而不需要撰寫程式碼。
 
 做為單一的整合式服務，App Service 可讓您輕鬆地將上述應用程式類型撰寫成單一方案，進而建置以使用相同後端的 Web 和行動用戶端為目標的應用程式，同時與內部部署系統和常用服務 (例如 Office 365 和 salesforce.com) 整合。
@@ -60,4 +59,4 @@ Azure 應用程式著重於 Web 和行動應用程式的快速開發以及商務
 立即免費[建立新的應用程式](http://go.microsoft.com/fwlink/?LinkId=523751)。不需要信用卡，無需承諾和繁複程序。
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/31/2016"
+   ms.date="05/06/2016"
    ms.author="maroche"/>
 
 # Azure 資料目錄術語
@@ -73,7 +73,7 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 
 ## 擁有者
 
-擁有者是具有額外權限來管理 Azure 資料目錄中的資料資產的使用者。使用者可以取得已註冊的資料資產的擁有權，而擁有者可以加入其他使用者成為共同擁有者。
+擁有者是具有額外權限來管理 Azure 資料目錄中的資料資產的使用者。使用者可以取得已註冊的資料資產的擁有權，而擁有者可以加入其他使用者成為共同擁有者。如需詳細資訊，請參閱[如何管理資料資產](data-catalog-how-to-manage.md)。
 > [AZURE.NOTE] 只有標準版 Azure 資料目錄中支援擁有權和管理。
 
 ## 註冊
@@ -86,4 +86,4 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 
 - 〈[開始使用 Azure 資料目錄](data-catalog-get-started.md)〉 - 這篇文章提供端對端教學課程，示範如何使用 Azure 資料目錄來探索資料來源。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

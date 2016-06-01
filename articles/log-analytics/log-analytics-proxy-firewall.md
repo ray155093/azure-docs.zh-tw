@@ -12,7 +12,7 @@
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
-	ms.topic="article"
+	ms.topic="get-started-article"
 	ms.date="04/28/2016"
 	ms.author="banders"/>
 
@@ -27,7 +27,7 @@
 
 |**代理程式資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443|
+|*.ods.opinsights.azure.com|Port 443| 
 |*.oms.opinsights.azure.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
 |*.blob.core.windows.net|Port 443|
@@ -97,7 +97,7 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 |**代理程式資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443|
+|*.ods.opinsights.azure.com|Port 443| 
 |*.oms.opinsights.azure.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
 |*.blob.core.windows.net/|Port 443|
@@ -106,10 +106,10 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 |**管理伺服器資源**|**連接埠**|
 |--------------|-----|
-|*.ods.opinsights.azure.com|Port 443|
-|service.systemcenteradvisor.com|Port 443|
-|scadvisor.accesscontrol.windows.net|Port 443|
-|scadvisorservice.accesscontrol.windows.net|Port 443|
+|*.ods.opinsights.azure.com|Port 443| 
+|service.systemcenteradvisor.com|Port 443| 
+|scadvisor.accesscontrol.windows.net|Port 443| 
+|scadvisorservice.accesscontrol.windows.net|Port 443| 
 |*.blob.core.windows.net|連接埠 443|
 |data.systemcenteradvisor.com|連接埠 443|
 |ods.systemcenteradvisor.com|連接埠 443|
@@ -119,9 +119,9 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 |**OMS 和 Operations Manager 主控台資源**|**連接埠**|
 |----|----|
-|*.systemcenteradvisor.com|Port 80 and 443|
+|*.systemcenteradvisor.com|Port 80 and 443| 
 |*.live.com|連接埠 80 和 443|
-|*.microsoftonline.com|Port 80 and 443|
+|*.microsoftonline.com|Port 80 and 443| 
 |login.windows.net|Port 80 and 443|
 
 
@@ -196,5 +196,4 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 - [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)，以加入功能和收集資料。
 - 熟悉[記錄搜尋](log-analytics-log-searches.md)以檢視方案所收集的詳細資訊。
 
-<!---HONumber=AcomDC_0504_2016-->
-
+<!---HONumber=AcomDC_0525_2016-->

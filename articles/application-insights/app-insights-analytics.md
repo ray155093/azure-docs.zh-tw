@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="04/18/2016" 
 	ms.author="awills"/>
 
 
@@ -30,14 +30,14 @@
 
 ```AIQL
 
-    requests 
-    | where timestamp > ago(30d) and client_City == "Hyderabad"
+    requests      // Table of events that log HTTP requests.
+    | where timestamp > ago(7d) and client_City == "Hyderabad"
     | summarize clients = dcount(client_IP) 
       by tod_UTC=bin(timestamp % 1d, 1h), resultCode
     | extend local_hour = (tod_UTC + 5h + 30min) % 24h + datetime("2001-01-01") 
 ```
 
-我們會計算不同的用戶端 IP 位址，並以過去 30 天每天的小時為單位將它們群組。
+我們會計算不同的用戶端 IP 位址，並以過去 7 天每天的小時為單位將它們群組。
 
 使用橫條圖展示來顯示結果，選擇以不同的回應碼來堆疊結果：
 
@@ -53,9 +53,9 @@
 
 這個語言具有許多吸引人的功能︰
 
-* 依任何欄位[篩選](app-insights-analytics-queries.md)未經處理的應用程式遙測，包括您的自訂屬性和計量。
-* [加入](app-insights-analytics-queries.md#join-operator)多個資料表 – 將要求與頁面檢視、相依性呼叫、例外狀況和記錄追蹤相互關聯。
-* 功能強大的統計[彙總](app-insights-analytics-aggregations.md)。
+* 依任何欄位[篩選](app-insights-analytics-reference.md#where-operator)未經處理的 app 遙測，包括您的自訂屬性和計量。
+* [加入](app-insights-analytics-reference.md#join-operator)多個資料表 – 將要求與頁面檢視、相依性呼叫、例外狀況和記錄追蹤相互關聯。
+* 功能強大的統計[彙總](app-insights-analytics-reference.md#aggregations)。
 * 功能如同 SQL 一般強大，但更容易用來進行複雜的查詢︰您可以使用管線將資料從某一個基本運算傳送到下一個運算，而不需使用巢串陳述式。
 * 立即且功能強大的視覺效果。
 
@@ -82,4 +82,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

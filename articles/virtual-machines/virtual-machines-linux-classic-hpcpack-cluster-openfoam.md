@@ -30,7 +30,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 ## 必要條件
 
-*   **具有大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-hpcpack-cluster-powershell-script)，在 Azure 上部署大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由大小為 A8 的 Windows Server 2012 R2 前端節點與 2 個大小為 A8 的 SUSE Linux Enterprise Server 12 計算節點所組成。請將您的訂用帳戶和服務名稱取代為適當的值。 
+*   **具有大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由大小為 A8 的 Windows Server 2012 R2 前端節點與 2 個大小為 A8 的 SUSE Linux Enterprise Server 12 計算節點所組成。請將您的訂用帳戶和服務名稱取代為適當的值。 
 
     **其他應該知道的事項**
 
@@ -654,4 +654,4 @@ exit ${RTNSTS}
 [isosurface_color]: ./media/virtual-machines-linux-classic-hpcpack-cluster-openfoam/isosurface_color.png
 [linux_processes]: ./media/virtual-machines-linux-classic-hpcpack-cluster-openfoam/linux_processes.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

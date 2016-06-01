@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="05/10/2016"
 	ms.author="zhangya;bradsev" />
 
 
@@ -23,11 +23,12 @@
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
-## 簡介
 
 本主題說明機器學習服務的資料增強程序中功能選取的目的，並提供其角色的範例。這些範例是根據 Azure Machine Learning Studio 繪製。
 
-功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 功能工程設計和選取是 CAP **開發功能** 的一部分。* **功能工程設計**：這個程序會嘗試從資料的現有原始特性建立其他相關功能，以及提高學習演算法的預測能力。* **功能選取**：這個程序會在嘗試降低定型問題的維度中選取原始資料功能的鍵值子集。
+功能的工程設計與選取是 [Cortana 分析程序是什麼？](machine-learning-data-science-the-cortana-analytics-process.md)中所概述 CAP 程序的其中一部分 特性工程設計和選取項目屬於 CAP 的**開發功能**步驟。
+* **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
+* **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
 通常會先套用**功能工程設計**以產生其他功能，然後執行**功能選取**步驟以排除不相關、多餘或高度相關的功能。
 
@@ -73,4 +74,4 @@ Azure Machine Learning Studio 中有針對特性選取而提供的模組。如�
 [fisher-linear-discriminant-analysis]: https://msdn.microsoft.com/library/azure/dcaab0b2-59ca-4bec-bb66-79fd23540080/
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

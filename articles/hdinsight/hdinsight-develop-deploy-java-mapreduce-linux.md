@@ -14,14 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="05/05/2016"
 	ms.author="larryfr"/>
 
-# 在 HDInsight 上開發 Hadoop 的 Java MapReduce 程式
+# 在 HDInsight Linux 上開發 Hadoop 的 Java MapReduce 程式
 
-[AZURE.INCLUDE [Pig 選取器](../../includes/hdinsight-maven-mapreduce-selector.md)]
-
-本文件會逐步指示您使用 Apache Maven 建立 MapReduce 應用程式，然後在以 Linux 為基礎的 HDInsight 中 Hadoop 叢集上部署並執行該應用程式。如需在 HDInsight 叢集上使用以 Windows 為基礎之 Hadoop 的相關資訊，請參閱[在 HDInsight (Windows) 上開發 Hadoop 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce.md)
+本文件會逐步指示您使用 Apache Maven 建立 MapReduce 應用程式，然後在以 Linux 為基礎的 HDInsight 中 Hadoop 叢集上部署並執行該應用程式。
 
 ##<a name="prerequisites"></a>必要條件
 
@@ -290,4 +288,4 @@
 
 [powershell-PSCredential]: http://social.technet.microsoft.com/wiki/contents/articles/4546.working-with-passwords-secure-strings-and-credentials-in-windows-powershell.aspx
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

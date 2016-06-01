@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="04/13/2016" 
+	ms.date="04/27/2016" 
 	ms.author="awills"/>
 
 # 在 Application Insights SDK 中取樣、篩選及前置處理遙測
@@ -79,7 +79,8 @@
 
 [深入了解取樣](app-insights-sampling.md)。
 
-## 篩選
+<a name="filtering"></a>
+## 篩選︰ITelemetryProcessor
 
 這項技術可讓您更直接地控制包含在遙測串流中或排除於遙測串流外的內容。您可以將它與取樣搭配使用或分開使用。
 
@@ -239,8 +240,8 @@ public void Process(ITelemetry item)
 
 ```
 
-
-## 加入屬性
+<a name="add-properties"></a>
+## 新增屬性︰ITelemetryInitializer
 
 使用遙測初始設定式來定義與所有遙測一起傳送的全域屬性；並覆寫選取的標準遙測模組行為。
 
@@ -368,6 +369,15 @@ public void Process(ITelemetry item)
 您可以依需要加入多個初始設定式。
 
 
+## ITelemetryProcessor 和 ITelemetryInitializer
+
+遙測處理器與遙測初始設定式之間有何差異？
+
+* 它們的用途有部分重疊︰兩者都可以用來在遙測中新增屬性。
+* TelemetryInitializers 一律會在 TelemetryProcessors 之前執行。
+* TelemetryProcessors 可讓您完全取代或捨棄遙測項目。
+* TelemetryProcessors 不會處理效能計數器遙測。
+
 ## 參考文件
 
 * [API 概觀](app-insights-api-custom-events-metrics.md)
@@ -409,4 +419,4 @@ public void Process(ITelemetry item)
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

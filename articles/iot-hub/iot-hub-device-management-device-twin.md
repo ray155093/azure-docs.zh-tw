@@ -16,7 +16,10 @@
  ms.date="04/29/2016"
  ms.author="elfarber"/>
 
-# 教學課程︰如何使用裝置對應項 (預覽)
+# 教學課程︰如何透過 C# 使用裝置對應項 (預覽)
+
+[AZURE.INCLUDE [iot-hub-device-management-twin-selector](../../includes/iot-hub-device-management-twin-selector.md)]
+## 簡介
 
 Azure IoT 中樞裝置管理引進裝置對應項 (實體裝置的服務呈現)。下圖顯示裝置對應項的不同元件。
 
@@ -28,7 +31,7 @@ Azure IoT 中樞裝置管理引進裝置對應項 (實體裝置的服務呈現)�
 
 ## 裝置屬性同步處理
 
-實體裝置是裝置屬性的授權來源。透過 LWM2M 所描述的「觀察/通知」模式，自動將實體裝置上選取的值同步處理到 IoT 中樞內的裝置對應項。
+實體裝置是裝置屬性的授權來源。透過 [LWM2M][lnk-lwm2m] 所描述的「觀察/通知」模式，自動將實體裝置上選取的值同步處理到 IoT 中樞內的裝置對應項。
 
 實體裝置連接到 IoT 中樞時，服務會初始化所選取裝置屬性上的「觀察」。然後，實體裝置會「通知」 IoT 中樞有關裝置屬性的變更。為了實作磁滯現象，**pmin** (通知之間的最短時間) 設定為 5 分鐘。這表示，針對每個屬性，實體裝置每 5 分鐘只會通知 IoT 中樞一次，即使發生變更也是一樣。為了確保有效性，**pmax** (通知之間的最長時間) 設定為 6 小時。這表示，針對每個屬性，實體裝置每 6 小時至少會通知 IoT 中樞一次，即使屬性在這段時間內未曾變更也是一樣。
 
@@ -38,9 +41,10 @@ Azure IoT 中樞裝置管理引進裝置對應項 (實體裝置的服務呈現)�
 
 ![][img-observed]
 
+
 ## 執行裝置對應項範例
 
-下列範例延伸[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程功能。從執行不同的模擬裝置開始，會使用裝置對應項來讀取和變更模擬裝置上的屬性。
+下列範例延伸了[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程的功能。從執行不同的模擬裝置開始，會使用裝置對應項來讀取和變更模擬裝置上的屬性。
 
 ### 必要條件 
 
@@ -97,7 +101,7 @@ JobResponse jobResponse = await deviceJobClient.ScheduleDevicePropertyReadAsync(
 此作業會將訊息傳送到實體裝置，以更新指定的屬性。作業完成時，不會立即更新裝置對應項。您必須等到下一個通知間隔。同步處理之後，您可以使用淺層讀取來查看裝置對應項中的變更。
 
 ```
-JobResponse jobResponse = await deviceJobClient.ScheduleDevicePropertyWriteAsync(Guid.NewGuid().ToString(), deviceId, propertyToSet, setValue);
+JobResponse jobResponse = await deviceJobClient.ScheduleDevicePropertyWriteAsync(Guid.NewGuid().ToString(), deviceId, propertyToSet, setValue); TODO
 ```
 
 ### 裝置模擬器實作詳細資料
@@ -127,6 +131,7 @@ set_device_batterylevel(0, level);
 [img-twin]: media/iot-hub-device-management-device-twin/image1.png
 [img-observed]: media/iot-hub-device-management-device-twin/image2.png
 
+[lnk-lwm2m]: http://technical.openmobilealliance.org/Technical/technical-information/release-program/current-releases/oma-lightweightm2m-v1-0
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-dm-library]: iot-hub-device-management-library.md
 [lnk-get-started]: iot-hub-device-management-get-started.md
@@ -134,4 +139,4 @@ set_device_batterylevel(0, level);
 [lnk-dm-jobs]: iot-hub-device-management-device-jobs.md
 [lnk-edison]: https://github.com/Azure/azure-iot-sdks/tree/dmpreview/c/iotdm_client/samples/iotdm_edison_sample
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

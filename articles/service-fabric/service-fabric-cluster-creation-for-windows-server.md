@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/28/2016"
+   ms.date="05/12/2016"
    ms.author="chackdan"/>
 
 
@@ -53,6 +53,7 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 - .NET Framework 4.5.1 或更高版本，完整安裝
 - Windows PowerShell 3.0
 - 部署和設定叢集的叢集系統管理員必須擁有每部電腦的系統管理員權限。
+- RemoteRegistry 服務應該在所有電腦上執行。
 
 ### 步驟 3︰決定初始叢集大小
 每個節點都包含完整的 Service Fabric 堆疊，而且是 Service Fabric 叢集的個別成員。在一般 Service Fabric 部署中，每個作業系統執行個體 (實體或虛擬) 都有一個節點。叢集大小取決於您的業務需求。不過，您必須至少有三個節點 (電腦/VM) 的叢集大小。請注意，基於開發目的，在一部指定的電腦上可以有多個節點。在生產環境中，對於每個實體或虛擬機器，Service Fabric 只支援一個節點。
@@ -114,4 +115,4 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 深入了解 Azure 叢集和獨立叢集︰
 - [獨立叢集建立功能以及與 Azure 受管理叢集比較的概觀](service-fabric-deploy-anywhere.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

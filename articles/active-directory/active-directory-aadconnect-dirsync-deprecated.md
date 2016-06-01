@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="05/11/2016"
 	ms.author="andkjell"/>
 
 
@@ -46,11 +46,7 @@ Azure AD Connect 是 DirSync 和 Azure AD Sync 的後續產品。它結合了兩
 
 如果您想要了解如何從 DirSync Azure AD Connect 執行就地升級，請參閱這個第 9 頻道視訊︰
 
-<!-- The next section is actually supposed to look like this, but video ids are not working at present.
 > [AZURE.VIDEO azure-active-directory-connect-in-place-upgrade-from-legacy-tools]
--->
-
-[Azure Active Directory Connect︰從舊版工具就地升級](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-Active-Directory-Connect-in-place-upgrade-from-legacy-tools) ![就地升級](./media/active-directory-aadconnect-dirsync-deprecated/inplaceupgrade.png)
 
 ## 常見問題集
 **問：我是使用 Connect，卻收到來自 Azure 團隊及/或來自 Office 365 郵件中心的訊息。** 這項通知也會傳送給使用 Azure AD Connect 組建編號 1.0.*.0 (使用 1.1 發行前版本) 的客戶。Microsoft 建議客戶使用最新的 Azure AD Connect 版本。1.1 版的[自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)功能可讓您持續輕鬆擁有最新的 Azure AD Connect 安裝版本。
@@ -65,4 +61,4 @@ Azure AD Connect 是 DirSync 和 Azure AD Sync 的後續產品。它結合了兩
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,7 +13,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="data-services" 
-    ms.date="03/30/2016" 
+    ms.date="05/16/2016" 
     ms.author="arramac"/>
     
 # 使用 Azure DocumentDB 中的地理空間資料
@@ -181,7 +181,7 @@ DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用�
 
 ST\_WITHIN 可用來檢查點是否在多邊形內。多邊形常用來表示邊界，例如郵遞區號、州省邊界或自然構成物。此外，如果您將空間索引編製包含在索引編製原則中，則「距離內」查詢將會透過索引獲得有效利用。
 
-ST\_WITHIN 中的多邊形引數只可以包含單一環狀，也就是多邊形本身不能有漏洞。請查看 [DocumentDB 限制](documentdb-limits.md)，了解 ST\_WITHIN 查詢的多邊形中所允許的點數目上限。
+ST\_WITHIN 中的多邊形引數只可以包含單一環狀，也就是多邊形本身不能有漏洞。
 
 **查詢**
 
@@ -346,4 +346,4 @@ DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提�
 - 深入了解 [DocumentDB 查詢](documentdb-sql-query.md)
 - 深入了解 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

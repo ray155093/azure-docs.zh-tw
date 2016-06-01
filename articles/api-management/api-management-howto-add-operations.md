@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何將操作加入至 Azure API 管理中的 API" 
+	pageTitle="如何將操作加入至 Azure API 管理中的 API | Microsoft Azure" 
 	description="了解如何將操作加入 Azure API 管理中的 API。" 
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="04/19/2016" 
 	ms.author="sdanie"/>
 
 # 如何將操作加入至 Azure API 管理中的 API
@@ -40,9 +40,13 @@
 
 ![HTTP method][api-management-http-method]
 
+<a name="url-template"></a>
+
 輸入 URL 片段 (由一或多個 URL 路徑區段及零個以上的查詢字串參數組成)，以定義 URL 範本。URL 範本 (附加至 API 的基礎 URL) 可識別單一 HTTP 操作。可能包含一或多個以大括弧識別的具名變數部分。這些變數部分稱為範本參數，當 API 管理平台處理要求時，就會動態地指派從要求的 URL 中擷取的值給這些變數。
 
 ![URL template][api-management-url-template]
+
+<a name="rewrite-url-template"></a>
 
 若需要，請指定 [Rewrite URL template]。這樣可讓您在前端使用標準 URL 範本來處理傳入的要求，同時根據重寫範本利用轉換過的 URL 來呼叫後端。重寫範本中應該使用 URL 範本中的範本參數。下列範例顯示如何利用 URL 範本，將前一個範例的 Web 服務中以路徑區段編碼的內容類型，提供給透過 API 管理平台所發佈的 API 中作為查詢參數。
 
@@ -164,4 +168,4 @@
 [如何建立和發佈產品]: api-management-howto-add-products.md
 [如何在 Azure API 管理中快取操作結果]: api-management-howto-cache.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

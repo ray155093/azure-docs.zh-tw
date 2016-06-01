@@ -123,7 +123,7 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 
 5. 應用程式需要兩個相依性 jar：
 
-	* **EventHub 接收者 jar**。必須要有此項目，Spark 才能從事件中樞接收訊息。此 jar 位於您的 Spark Linux 叢集上：`/usr/hdp/current/spark-client/lib/spark-streaming-eventhubs-example-1.5.2.2.3.3.1-7-jar-with-dependencies.jar`。您可以使用 pscp 將 jar 複製到您的本機電腦。
+	* **EventHub 接收者 jar**。必須要有此項目，Spark 才能從事件中樞接收訊息。此 jar 位於您的 Spark Linux 叢集上：`/usr/hdp/current/spark-client/lib/spark-streaming-eventhubs-example-1.5.2.2.3.3.1-7-jar-with-dependencies.jar`。您可以使用 pscp 將 jar 複製到您的本機電腦。(請注意︰某些執行個體的檔案在 `/usr/hdp/2.4.1.0-327/spark/lib` 下)
 
 			pscp sshuser@mysparkcluster-ssh.azurehdinsight.net:/usr/hdp/current/spark-client/lib/spark-streaming-eventhubs-example-1.5.2.2.3.3.1-7-jar-with-dependencies.jar C:/eventhubjar
 
@@ -257,6 +257,8 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 
 這些 **.Jar** 檔案位於您的 HDInsight Spark 叢集上：`/usr/hdp/current/spark-client/lib`。**hive-site.xml** 位於 `/usr/hdp/current/spark-client/conf`。
 
+
+
 您可以使用 [WinScp](http://winscp.net/eng/download.php) 將這些檔案從叢集複製到您的本機電腦。接著，您可以使用工具，將這些檔案複製到與叢集相關聯的儲存體帳戶。如需關於如何將檔案上傳至儲存體帳戶的詳細資訊，請參閱[在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)。
 
 將檔案複製到您的 Azure 儲存體帳戶之後，請開啟命令提示字元，導覽至您安裝 CURL 的目錄，然後執行下列命令 (取代使用者名稱/密碼與叢集名稱)：
@@ -374,4 +376,4 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: ../storage-create-storage-account/
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="01/22/2016"
+	ms.date="04/21/2016"
 	ms.author="marsma" />
 
 # 在 Azure Batch 計算節點上執行準備和完成的工作
 
-Azure Batch 作業通常在執行之前需要某種形式的安裝，同樣地，在作業的工作完成之後也需要某種作業後維護。Batch 以選擇性的*工作準備*和*工作解除*任務的形式提供此準備和維護機制。
+Azure Batch 作業通常在執行之前需要某種形式的安裝，在作業的工作完成之後也需要某種作業後維護。Batch 以選擇性的作業準備和作業解除任務的形式提供此準備和維護機制。
 
-在任何作業的工作執行之前，作業準備工作會在排定要執行工作的所有計算節點上執行。作業一旦完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一項工作。對於作業準備和解除作業，您都可以指定要在執行工作時叫用的命令列。這些特殊的工作會提供許多熟悉的工作功能，例如檔案下載、提升權限的執行、自訂環境變數、最大執行持續時間、重試計數、檔案保留時間。
+在任何作業的工作執行之前，作業準備工作會在排定要執行工作的所有計算節點上執行。作業一旦完成，作業解除工作會在集區中的每個節點上執行，集區至少會執行一項工作。如同一般的 Batch 工作，您可以將作業準備或解除工作的命令列指定為在工作執行時叫用。這些特殊的工作會提供其他熟悉的工作功能，例如檔案下載、提升權限的執行、自訂環境變數、最大執行持續時間、重試計數、檔案保留時間。
 
 在接下來幾節中，您將了解如何在 [Batch .NET][api_net] API 中利用 [JobPreparationTask][net_job_prep] 類別和 [JobReleaseTask][net_job_release] 類別來使用這兩種特殊工作類型。
 
@@ -58,7 +58,7 @@ Batch 作業通常需要一組常用的資料做為作業工作的輸入。例�
 
 ## Batch .NET API 中的作業準備和解除工作
 
-若要指定作業準備工作，您可建立及設定 [JobPreparationTask][net_job_prep] 物件並將它指派給作業的 [CloudJob.JobPreparationTask][net_job_prep_cloudjob] 屬性。同樣地，初始化 [JobReleaseTask][net_job_release] 並將它指派給作業的 [CloudJob.JobReleaseTask][net_job_prep_cloudjob] 屬性，即可設定作業的解除工作。
+若要使用作業準備工作，您可建立及設定 [JobPreparationTask][net_job_prep] 物件並將它指派給作業的 [CloudJob.JobPreparationTask][net_job_prep_cloudjob] 屬性。同樣地，初始化 [JobReleaseTask][net_job_release] 並將它指派給作業的 [CloudJob.JobReleaseTask][net_job_prep_cloudjob] 屬性，即可設定作業的解除工作。
 
 在此程式碼片段中，`myBatchClient` 是 [BatchClient][net_batch_client] 完全初始化的執行個體，`myPool` 是 Batch 帳戶內的現有集區。
 
@@ -147,7 +147,7 @@ Sample complete, hit ENTER to exit...
 
 ### 以 Batch 總管檢查作業準備和解除工作
 
-[Azure Batch 總管][batch_explorer_article] (在 GitHub 上的[範例程式碼存放庫][batch_explorer_project]中也能找到) 是以 Azure Batch 開發解決方案時的絕佳工具。例如，當您執行上述的範例應用程式時，您可以使用 Batch 總管檢視作業和其工作的屬性，或甚至下載作業的工作修改過的共用文字檔案。
+[Azure Batch 總管][batch_explorer_article]\(在 GitHub 上的[範例程式碼存放庫][batch_explorer_project]中也能找到) 是以 Azure Batch 開發解決方案時的絕佳工具。例如，當您執行上述的範例應用程式時，您可以使用 Batch 總管檢視作業和其工作的屬性，或甚至下載作業的工作修改過的共用文字檔案。
 
 以下螢幕擷取畫面會醒目提示當您在 [作業] 索引標籤中選取 *JobPrepReleaseSampleJob* 作業時，在 [作業詳細資料] 窗格中顯示的作業準備和解除工作屬性。
 
@@ -185,6 +185,5 @@ Sample complete, hit ENTER to exit...
 [net_list_tasks]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listtasks.aspx
 
 [1]: ./media/batch-job-prep-release/batchexplorer-01.png
-[2]: ./media/batch-job-prep-release/batchexplorer-02.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

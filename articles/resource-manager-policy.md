@@ -91,15 +91,13 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 | 在 | "in" : [ "&lt;值 1&gt;","&lt;值 2&gt;" ]|
 | ContainsKey | "containsKey" : "&lt;機碼名稱&gt;" |
 
-### 欄位和來源
+### 欄位
 
 條件是透過欄位和來源的使用所形成。欄位會顯示用來描述資源狀態的資源要求裝載屬性。來源代表要求本身的特性。
 
 支援下列欄位和來源：
 
 欄位：**name**、**kind**、**type**、**location**、**tags**、**tags.*** 和 **property alias**。
-
-來源：**action**。
 
 ### 屬性別名 
 屬性別名可在原則定義中用來存取資源類型特定屬性，例如設定和 SKU。它適用於所有具有屬性的 API 版本。別名可使用如下所示的 REST API 來擷取 (未來將新增 Powershell 支援)：
@@ -133,7 +131,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 | 別名名稱 | 說明 |
 | ---------- | ----------- |
-| {resourceType}/sku.name | 支援的資源類型有：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
+| {resourceType}/sku.name | 支援的資源類型包括：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
 | {resourceType}/sku.family | 支援的資源類型為 Microsoft.Cache/Redis |
 | {resourceType}/sku.capacity | 支援的資源類型為 Microsoft.Cache/Redis |
 | Microsoft.Compute/virtualMachines/imagePublisher | |
@@ -339,8 +337,8 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
                 }
               },
               {
-                "source": "action",
-                "like": "Microsoft.Storage/*"
+                "field": "type",
+                "equals": "Microsoft.Storage/storageAccounts"
               }
             ]
         },
@@ -464,4 +462,4 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
     
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

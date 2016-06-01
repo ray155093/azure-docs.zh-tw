@@ -13,43 +13,31 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="04/27/2016"
 	ms.author="spelluru"/>
 
 
 # 複製活動的效能及微調指南
 本文說明在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素。它也列出在內部測試期間所觀察到的效能，並討論要讓複製活動效能最佳化的各種方式。
 
-## Azure Data Factory 中的資料移動概觀
-「複製活動」會在 Azure Data Factory 中執行資料移動，而此活動是由[全域可用的資料移動服務](data-factory-data-movement-activities.md#global)所提供，可以使用安全、可靠、可調整且有效率的方式，在[各種不同的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-for-copy-activity)之間複製資料。資料移動服務會根據來源與接收資料存放區的位置，自動選擇用最佳區域來執行資料移動作業。系統會使用目前最靠近接收資料存放區的區域。
+透過複製活動，您將可以取得高水準的資料移動輸送量，如下列範例所示︰
 
-讓我們來了解在不同情況下發生這個資料移動的方式。
+- 在 3 小時內，從內部部署檔案系統和 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure Blob 儲存體 (也就是 @ 100 MBps)
+- 在 3 小時內，從內部部署檔案系統和 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure Data Lake Store (也就是 @ 100 MBps) 
+- 在 3 小時內，從 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure SQL 資料倉儲 (也就是 @ 100 MBps) 
 
-### 在兩個雲端資料存放區之間複製資料
-當來源和接收 (目的地) 資料存放區同時位於雲端時，複製活動就會經歷下列階段，將資料從來源複製/移動到接收資料存放區。
+請參閱下列章節，深入了解複製活動的效能以及加以進一步改善的微調秘訣。
 
-1.	從來源資料存放區讀取資料
-2.	根據輸入資料集、輸出資料集和複製活動的組態，執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換
-3.	將資料寫入目的地資料存放區
-
-![在兩個雲端資料存放區之間複製資料](./media/data-factory-copy-activity-performance/copy-data-between-two-cloud-stores.png)
-
-**注意：**虛線圖形 (壓縮、資料行對應等) 是不一定可在您的使用案例中運用的功能。
-
-
-### 在內部部署資料存放區和雲端資料存放區之間複製資料
-若要[在內部部署資料存放區和雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)，您必須安裝資料管理閘道器，這是一個代理程式，能夠在內部部署的電腦上啟用混合式資料移動及處理。在此案例中，會根據輸入資料集、輸出資料集的組態，執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換，且由資料管理閘道器執行複製活動。
-
-![在內部部署與雲端資料存放區之間複製資料](./media/data-factory-copy-activity-performance/copy-data-between-onprem-and-cloud.png)
+> [AZURE.NOTE] 如果您大致來說並不熟悉複製活動，請先參閱[資料移動活動](data-factory-data-movement-activities.md)再通讀本文。
 
 ## 效能微調步驟
 以下列出我們建議您執行，以透過複製活動對您的 Azure Data Factory 解決方案進行效能調整的一般步驟。
 
 1.	**建立基準。** 在開發階段，透過複製活動依據具代表性的範例資料測試您的管線。您可以利用 Azure Data Factory 的[切割模型](data-factory-scheduling-and-execution.md#time-series-datasets-and-data-slices)來限制您所使用的資料量。
 
-	在 Azure Preview 入口網站中查看輸出資料集的 [資料配量] 刀鋒視窗和 [活動執行詳細資料] 刀鋒視窗 (其中顯示複製活動持續時間和複製的資料大小)，以收集執行時間和效能特性。
-
-	![活動執行詳細資料](./media/data-factory-copy-activity-performance/activity-run-details.png)
+	藉由**監視及管理應用程式**收集執行時間和效能特性︰按一下 Data Factory 首頁上的 [監視和管理] 圖格，選取樹狀檢視中的 [輸出資料集]，然後在 [活動時段] 清單中選取複製活動回合。您應該會在 [活動時段] 清單中看到複製活動的持續時間，並在右邊的 [活動時段總管] 視窗看到複製資料的大小和輸送量。若要深入了解應用程式，請參閱[使用監視及管理應用程式來監視及管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
+	
+	![活動執行詳細資料](./media/data-factory-copy-activity-performance/mmapp-activity-run-details.png)
 
 	您可以比較您的案例的效能和組態，根據內部的觀察值發佈於下方的複製活動[效能參考](#performance-reference)。
 2. **效能診斷與最佳化**：如果您觀察到的效能值低於預期，您必須找出效能瓶頸並執行最佳化，以消除或減少瓶頸的影響。效能診斷的完整說明不在本文的討論之列，但我們會列出一些常見的考量，如下所示。
@@ -60,6 +48,9 @@
 	- [資料行對應](#considerations-on-column-mapping)
 	- [資料管理閘道](#considerations-on-data-management-gateway)
 	- [其他考量](#other-considerations)
+	- [平行複製](#parallel-copy)
+	- [雲端資料移動單位](#cloud-data-movement-units)    
+
 3. **將組態擴充至您的整體資料**：如果您對執行結果及效能感到滿意，您可以將資料集定義和管線作用期間涵蓋至圖片中的整體資料。
 
 ## 效能參考
@@ -67,13 +58,12 @@
 
 ![效能矩陣](./media/data-factory-copy-activity-performance/CopyPerfRef.png)
 
-> [AZURE.NOTE] **即將推出：**我們正在改善基準效能特性，屆時您將在上表中看到更多且更理想的輸送量數據。
-
 注意事項：
 
 - 輸送量的計算公式如下：[從來源讀取的資料大小]/[複製活動執行持續時間]
 - [TPC-H](http://www.tpc.org/tpch/) 資料集已運用在上述數據的計算上。
 - 如果使用 Microsoft Azure 資料存放區，來源和接收器會位於相同的 Azure 區域中。
+- **cloudDataMovementUnits** 設為 1，且未指定 **parallelCopies**。
 - 如果是混合式 (內部部署至雲端或雲端至內部部署) 資料移動，則會使用下列組態，將資料管理閘道器 (單一執行個體) 裝載在不同於內部部署資料存放區的電腦上。請注意，若閘道器上僅執行單一活動，複製作業將只會取用這部電腦一小部分的 CPU/記憶體資源和網路頻寬。
 	<table>
 	<tr>
@@ -90,21 +80,114 @@
 	</tr>
 	</table>
 
+## 平行複製
+想要增強複製作業的輸送量並減少資料移動時間，其中一種方法是**在複製活動回合內以平行方式**從來源讀取資料和/或將資料寫入至目的地。
+ 
+請注意，此設定不同於活動定義中的**並行**屬性。並行屬性可決定**並行複製活動回合**的數目，這些回合會在執行階段一起執行，以處理來自不同活動時段 (1-2 AM、2-3 AM、3-4 AM，依此類推) 的資料。在執行歷程載入時，這個屬性非常有用。然而，此處所討論的平行複製功能則適用於**單一活動回合**。
+
+讓我們看一下**範例案例**︰請試想以下有多個過往配量需要處理的範例。Data Factory 服務會對每個配量執行一個複製活動執行個體 (活動回合)。
+
+- 第 1 個活動時段 (1 AM - 2 AM) 的資料配量 ==> 活動回合 1
+- 第 2 個活動時段 (2 AM - 3 AM) 的資料配量 ==> 活動回合 2
+- 第 2 個活動時段 (3 AM - 4 AM) 的資料配量 ==> 活動回合 3
+- 等等。
+
+在此範例中，若**並行**設定為 **2**，則可讓**活動回合 1** 和**活動回合 2** **並行**複製兩個活動時段的資料，以改善資料移動效能。不過，如果有多個檔案與活動回合 1 相關聯，則一次只會從來源複製一個檔案到目的地。
+
+### parallelCopies
+您可以使用 **parallelCopies** 屬性，來指出您想要複製活動使用的平行處理原則。簡單地說，您可以將此屬性視為複製活動內，以平行方式從來源讀取和/或寫入至接收資料存放區中的執行緒數目上限。
+
+對於每個複製活動回合，Azure Data Factory 會明智地決定要用來將資料從來源資料存放區，複製到目的地資料存放區的平行複製數目。它會使用的預設平行複製數目取決於來源和接收的類型︰
+
+來源和接收 |	由服務決定的預設平行複製計數
+------------- | -------------------------------------------------
+在**檔案型存放區** (Azure Blob、Azure Data Lake、內部部署檔案系統、內部部署 HDFS) 之間複製資料 | **1 到 32** 之間的任何值，取決於**檔案大小**和用來在兩個雲端資料存放區之間複製資料的**雲端資料移動單位的數值** (其定義請參閱下一節)，(或) 用於混合式複製的實體閘道器電腦組態 (複製資料至內部部署資料存放區/從內部部署資料存放區複製資料)
+將資料從**任何來源資料存放區複製到 Azure 資料表** | 4
+所有其他來源和接收組 | 1
+
+在大多數情況下，預設行為應可提供最佳輸送量。不過，您也可以藉由指定 **parallelCopies** 屬性的值來覆寫預設值，以便控制資料存放區電腦上的負載，或調整複製效能。該值必須介於 **1 (含) 到 32 (含)**。在執行階段，複製活動會選擇小於或等於設定值的值，以提供最佳效能。
+
+	"activities":[  
+	    {
+	        "name": "Sample copy activity",
+	        "description": "",
+	        "type": "Copy",
+	        "inputs": [{ "name": "InputDataset" }],
+	        "outputs": [{ "name": "OutputDataset" }],
+	        "typeProperties": {
+	            "source": {
+	                "type": "BlobSource",
+	            },
+	            "sink": {
+	                "type": "AzureDataLakeStoreSink"
+	            },
+	            "parallelCopies": 8
+	        }
+	    }
+	]
+
+請注意：
+
+- 在複製檔案型存放區之間的資料時，平行處理原則會發生在檔案層級；換句話說，單一檔案中不會進行區塊化。在執行階段用於複製作業的實際平行複製數目，將不會超過您擁有的檔案數目。如果複製行為是 mergeFile，則不會利用平行處理原則。
+- 在為 parallelCopies 屬性指定值時，請務必考慮其將為來源和接收資料存放區增加的負載，以及如果是混合式複製，尤其是當您有多個活動或對相同資料存放區執行相同活動的並行回合時，請務必考慮其將為閘道器增加的負載。如果您注意到資料存放區或閘道器已無法應付負載，請減少 parallelCopies 值以減輕負載。
+- 將資料從非檔案型存放區複製到檔案型存放區時，即使已指定 parallelCopies 屬性，也會遭到忽略，並且不會利用任何平行處理原則。
+
+> [AZURE.NOTE] 若要在進行混合式複製時利用 parallelCopies 功能，您必須使用 1.11 版或更新版本的資料管理閘道器。
+
+### 雲端資料移動單位
+**雲端資料移動單位**是一項量值，代表用來執行雲端到雲端複製作業的 Azure Data Factory 服務中，單一單位的能力 (CPU、記憶體和網路資源配置的組合)。在進行混合式複製時，它並不會派上用場。根據預設，Azure Data Factory 服務會使用一個雲端資料移動單位來執行一個複製活動回合。您可以藉由指定 **cloudDataMovementUnits** 屬性的值來覆寫此預設值。此時，只有在**兩個 Azure Blob 儲存體之間**或從 **Azure Blob 儲存體到 Azure Data Lake Store** 複製資料時，**才會支援** CloudDataMovementUnits 設定，而且此設定只會在您有多個要個別複製的檔案，且其大小大於或等於 16 MB 時生效。
+
+如果您要複製許多較大型的檔案，設定較高的 **parallelCopies** 屬性值可能無法改善效能，因為單一雲端資料移動單位的資源有所限制。在這種情況下，您可能會想要使用更多個雲端資料移動單位，以便以高輸送量複製大量資料。若要指定您想要複製活動使用的雲端資料移動單位數目，請如下所示設定 **cloudDataMovementUnits** 屬性的值︰
+
+	"activities":[  
+	    {
+	        "name": "Sample copy activity",
+	        "description": "",
+	        "type": "Copy",
+	        "inputs": [{ "name": "InputDataset" }],
+	        "outputs": [{ "name": "OutputDataset" }],
+	        "typeProperties": {
+	            "source": {
+	                "type": "BlobSource",
+	            },
+	            "sink": {
+	                "type": "AzureDataLakeStoreSink"
+	            },
+	            "cloudDataMovementUnits": 4
+	        }
+	    }
+	]
+
+cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8。如果您需要更多雲端資料移動單位以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。在執行階段用於複製作業的**雲端資料移動單位的實際數目**，將會等於或小於設定的值，視要從符合大小準則的來源複製的檔案數目。
+
+> [AZURE.NOTE] parallelCopies (若有指定) 應該大於或等於 cloudDataMovementUnits；當 cloudDataMovementUnits 大於 1 時，平行資料移動就會分散給該複製活動回合的 cloudDataMovementUnits，因而提高輸送量。
+
+在 **cloudDataMovementUnits** 設定為 2、4 和 8 的情況下複製多個大型檔案時，效能可達到＜效能參考＞一節所述之參考數字的 2x (2 倍)、4x 及 7x。
+
+請參閱這裡的[範例使用案例](#case-study---parallel-copy)，以更好地利用上述 2 個屬性來增強資料移動輸送量。
+ 
+請**務必**要記住，您將必須根據複製作業的總時間付費。因此，若過去某複製作業使用 1 個雲端單位花費 1 小時，現在使用 4 個雲端單位花費 15 分鐘，兩種的整體費用幾乎相同。再以另一個案例為例：假設您在某複製活動回合中使用 4 個雲端單位：第 1 個雲端單位費時 10 分鐘、第 2 個單位費時 10 分鐘、第 3 個單位費時 5 分鐘、第 4 個單位費時 5 分鐘。整個複製 (資料移動) 作業以複製的時間總計計費，等於 10 + 10 + 5 + 5 = 30 分鐘。是否使用 **parallelCopies** 對計費沒有任何影響。
+
+
+
 ## 來源的考量
 ### 一般
 請確定基礎資料存放區未被執行於其上的其他工作負載全面佔據，這包括 (但不限於) 複製活動。
 
 針對 Microsoft 資料存放區，請參閱資料存放區特定的[監視和微調主題](#appendix-data-store-performance-tuning-reference)，這可協助您了解資料存放區的效能特性、最小化回應時間和最大化輸送量。
 
+如果您要從 **Azure Blob 儲存體**複製資料至 **Azure SQL 資料倉儲**，請考慮啟用 **PolyBase** 以提升效能。如需詳細資訊，請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md###use-polybase-to-load-data-into-azure-sql-data-warehouse)。
+
+
 ### 以檔案為基礎的資料存放區
-*(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)*
+(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)
 
 - **平均檔案大小和檔案計數**：複製活動會依檔案傳送資料檔案。在要移動的資料量相同的前提下，如果資料包含大量的小型檔案，其整體輸送量將會低於少量的大型檔案，因為每個檔案都需要啟動程序階段。因此，可能的話，請將小型檔案合併為較大的檔案，以提高輸送量。
 - **檔案格式和壓縮**：請參閱[序列化/還原序列化的考量](#considerations-on-serializationdeserialization)和[壓縮的考量](#considerations-on-compression)小節，以了解可改善效能的其他方法。
 - 此外，對於必須使用**資料管理閘道器**的**內部部署檔案系統**案例，請參閱[閘道器的考量](#considerations-on-data-management-gateway)一節。
 
 ### 關聯式資料存放區
-*(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database、Oracle 資料庫、MySQL 資料庫、DB2 資料庫、Teradata 資料庫、Sybase 資料庫、PostgreSQL 資料庫)*
+(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database、Oracle 資料庫、MySQL 資料庫、DB2 資料庫、Teradata 資料庫、Sybase 資料庫、PostgreSQL 資料庫)
 
 - **資料模式**：資料表結構描述對複製輸送量會有影響。若要複製相同的資料量，較大的資料列大小將會有優於較小資料列大小的效能，因為資料庫可以更有效率地擷取包含較少資料列數的較少資料批次。
 - **查詢或預存程序**：最佳化您在複製活動來源中指定的查詢或預存程序邏輯，以更有效率地擷取資料。
@@ -117,8 +200,11 @@
 
 針對 Microsoft 資料存放區，請參閱資料存放區特定的[監視和微調主題](#appendix-data-store-performance-tuning-reference)，這可協助您了解資料存放區的效能特性、最小化回應時間和最大化輸送量。
 
+如果您要從 **Azure Blob 儲存體**複製資料至 **Azure SQL 資料倉儲**，請考慮啟用 **PolyBase** 以提升效能。如需詳細資訊，請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md###use-polybase-to-load-data-into-azure-sql-data-warehouse)。
+
+
 ### 以檔案為基礎的資料存放區
-*(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)*
+(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)
 
 - **複製行為**：如果您從另一個以檔案為基礎的資料存放區複製資料，複製活動會透過 "copyBehavior" 屬性提供三種類型的行為：保留階層、扁平化階層，以及合併檔案。保留或扁平化階層只會造成些微甚至沒有效能負荷，而合併檔案則會導致額外的效能負荷。
 - **檔案格式和壓縮**：請參閱[序列化/還原序列化的考量](#considerations-on-serializationdeserialization)和[壓縮的考量](#considerations-on-compression)小節，以了解可改善效能的其他方法。
@@ -126,7 +212,7 @@
 - 此外，對於必須使用**資料管理閘道器**的**內部部署檔案系統**案例，請參閱[閘道器的考量](#considerations-on-data-management-gateway)一節。
 
 ### 關聯式資料存放區
-*(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database)*
+(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database)
 
 - **複製行為**：根據為 "sqlSink" 設定的屬性，複製活動會以不同的方式將資料寫入目的地資料庫中：
 	- 根據預設，資料移動服務會使用大量複製 API 以附加模式插入資料，而提供最佳效能。
@@ -139,7 +225,7 @@
 
 
 ### NoSQL 存放區
-*(包括 Azure 資料表、Azure DocumentDB)*
+(包括 Azure 資料表、Azure DocumentDB)
 
 - 針對 **Azure 資料表**：
 	- **資料分割**：將資料寫入至交錯的資料分割，會大幅降低效能。您可以選擇依資料分割索引鍵來排序您的來源資料，使資料能在分割後有效率地插入資料分割中，或者，您可以調整邏輯，將資料寫入單一資料分割中。
@@ -214,7 +300,26 @@
 
 在此情況下，BZIP2 資料壓縮可能會拖慢整個管線。改用 GZIP 壓縮轉碼器，可以緩解此瓶頸。
 
-## 附錄 – 資料存放區效能微調參考
+
+## 案例研究 - 平行複製  
+
+**案例 I：**從內部部署檔案系統複製 1000 個 1 MB 的檔案至 Azure Blob 儲存體
+
+**分析和效能微調︰**假設您已在四核心電腦上安裝資料管理閘道器，Data Factory 預設會使用 16 個平行複製，以並行方式從檔案系統中將檔案移至 Azure Blob。這應該會導致良好的輸送量。如果您想要的話，也可以明確指定平行複製計數。在複製大量的小型檔案時，平行複製可藉由更有效率地利用所涉及的資源，而對輸送量大有幫助。
+
+![案例 1](./media/data-factory-copy-activity-performance/scenario-1.png)
+
+**案例 II：**從 Azure Blob 儲存體複製 20 個 Blob (每個 Blob 有 500 MB) 到 Azure Data Lake Store Analysis 並微調效能。
+
+**分析和效能微調︰**在此案例中，Data Factory 預設會使用一個複製 (parallelCopies 為 1) 以及使用一個雲端資料移動單位，將資料從 Azure Blob 複製到 Azure Data Lake。您所觀察到的輸送量將會接近上面的[效能參考](#performance-reference)一節所述。
+
+![案例 2](./media/data-factory-copy-activity-performance/scenario-2.png)
+
+當個別檔案的大小大於數十 MB 且總數量很大時，增加 parallelCopies 並不會提升複製效能，因為單一雲端資料移動單位的資源有所限制。相反地，您應該指定更多個雲端資料移動單位，以取得更多用來執行資料移動的資源。請不要指定 parallelCopies 屬性的值，以便讓 Data Factory 為您處理平行處理原則。在此案例中，將 cloudDataMovementUnits 指定為 4 會讓輸送量變成大約 4 倍。
+
+![案例 3](./media/data-factory-copy-activity-performance/scenario-3.png)
+
+## 資料存放區效能微調參考
 以下是幾個支援的資料存放區所適用的一些效能監視及調整參考：
 
 - Azure 儲存體 (包括 Azure Blob 和 Azure 資料表)：[Azure 儲存體的擴充性目標](../storage/storage-scalability-targets.md)和 [Azure 儲存體效能和擴充性檢查清單](../storage//storage-performance-checklist.md)
@@ -224,4 +329,4 @@
 - 內部部署 SQL Server：[效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)。
 - 內部部署檔案伺服器：[檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

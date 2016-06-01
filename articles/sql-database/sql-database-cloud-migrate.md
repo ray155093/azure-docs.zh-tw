@@ -85,4 +85,4 @@ SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供
 
 	 ![SQL Server 資料庫移轉 - 將 SQL Database 移轉至雲端。](./media/sql-database-cloud-migrate/01SSMSDiagram_new.png)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

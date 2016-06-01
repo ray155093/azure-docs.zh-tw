@@ -12,17 +12,29 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/13/2016" 
+	ms.date="05/07/2016" 
 	ms.author="awills"/>
 
 #  Application Insights 中的取樣
 
-*Application Insights 目前僅供預覽。*
+Application Insights 目前僅供預覽。
 
 
 取樣是 Application Insights 中的功能，可讓您收集和儲存縮小的一組遙測，同時保有應用程式資料統計的正確分析。它會減少流量，並且協助避免[節流](app-insights-pricing.md#data-rate)。篩選資料的方式會允許相關的項目通過，讓您可以在執行診斷調查時於項目之間瀏覽。在入口網站中呈現度量計數時，就會重新正規化以考慮取樣，以將對統計資料帶來的任何影響降至最低。
 
 取樣目前為 Beta 版，因此在未來可能有所變更。
+
+## 簡單地說︰
+
+* 取樣會保留「n」筆記錄的其中 1 筆，並捨棄其餘部分。比方說，它可能會保留 5 個事件的其中 1 個，取樣率為 20%。
+* 如果您的應用程式傳送大量遙測，便會自動取樣。自動取樣只會在大量時發生，並且只會在 ASP.NET Web 伺服器應用程式中發生。
+* 您也可以手動設定取樣，不論是透過入口網站的定價頁面 (以減少保留的遙測量，並保持在每月配額內) 或是在 ASP.NET SDK 的 .config 檔案中，以便同時降低網路流量。
+* 目前的取樣率是每一筆記錄的屬性。在 [搜尋] 視窗中，開啟要求之類的事件。展開完整的屬性省略符號 "..." 來尋找 "* count" 屬性，例如 "request count" 或 "event count" 等名稱 (視遙測類型而定)。如果數量大於 1，則會發生取樣。如果有 3 個，表示取樣是 33%︰每筆保留下來的記錄代表 3 筆原本產生的記錄。
+* 如果您有記錄自訂事件，而且想要確定某組事件已一起保留下來還是遭到捨棄，請確定它們有相同的 OperationId 值。
+* 如果您要撰寫分析查詢，請[考慮到取樣](app-insights-analytics-tour.md#counting-sampled-data)。特別是，您應該使用 `summarize sum(itemCount)`，而非只計算記錄。
+
+
+## 取樣類型
 
 有三個替代的取樣方法：
 
@@ -41,6 +53,8 @@
 ![在 [應用程式概觀] 刀鋒視窗中，依序按一下 [設定]、[配額]、[範例]，然後選取某個取樣率，並按一下 [更新]。](./media/app-insights-sampling/04.png)
 
 就跟其他取樣類型一樣，演算法會保留相關的遙測項目。舉例來說，當您在 [搜尋] 中檢查遙測時，將能夠尋找與特定例外狀況相關的要求。度量計量 (例如要求率及例外狀況率) 會正確地保留。
+
+遭到取樣捨棄的資料點將無法在任何 Application Insights 功能中使用，例如[連續匯出](app-insights-export-telemetry.md)。
 
 進行 SDK 自適性或固定速率取樣時，不執行擷取取樣。如果 SDK 的取樣率小於 100%，則忽略您設定的擷取取樣率。
 
@@ -74,7 +88,7 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
     當取樣百分比值變更時，多久之後我們可以降低取樣百分比，以擷取較少的資料。
 
-* `<SamplingPercentageIncreaseTimeout>00:15:00</SamplingPercentageDecreaseTimeout>`
+* `<SamplingPercentageIncreaseTimeout>00:15:00</SamplingPercentageIncreaseTimeout>`
 
     當取樣百分比值變更時，多久之後我們可以增加取樣百分比，以擷取較多的資料。
 
@@ -242,6 +256,7 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 ([深入了解遙測處理器](app-insights-api-filtering-sampling.md#filtering)。)
 
+
 ## 何時使用取樣？
 
 如果您使用 ASP.NET SDK 版本 2.0.0-beta3 或更新版本，調適性取樣會自動啟用。無論您使用哪個版本的 SDK，都可以 (在我們的伺服器上) 使用擷取取樣 。
@@ -315,9 +330,7 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
  * 是的，調適性取樣會根據目前觀察到的遙測量，逐漸變更取樣百分比。
 
-*是否可以找出調適性取樣使用的取樣率？*
-
- * 是 - 使用程式碼方法來設定調適性取樣；您可以提供取得取樣率的回呼。如果您使用連續匯出，就可以看見匯出資料點中列出的取樣率。
+ 
 
 *如果我使用固定取樣率，如何知道哪個取樣百分比最適合我的應用程式？*
 
@@ -343,4 +356,4 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
  * 使用新的 TelemetryConfiguration (非預設使用中的組態) 初始化個別的 TelemetryClient 執行個體。使用該執行個體來傳送您的罕見的事件。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

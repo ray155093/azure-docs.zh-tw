@@ -17,7 +17,7 @@
      ms.date="03/02/2016"
      ms.author="stevehob"/>
 
-# 自訂預先設定的解決方案
+# 自訂預先設定的方案
 
 Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運作的服務可提供端對端解決方案。從這個起點開始，有好幾個地方可以擴充並針對特定案例自訂解決方案。下列各節說明這些常見的自訂點。
 
@@ -38,7 +38,7 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 您可以直接編輯這些工作以改變邏輯，或新增案例特有的邏輯。您可以尋找串流分析工作，如下所示︰
  
-1. 移至 [Azure 入口網站](https://portal.azure.com)。
+1. 移至 [Azure 入口網站][](https://portal.azure.com)。
 2. 瀏覽至名稱與 IoT 解決方案相同的資源群組。 
 3. 選取要修改的 Azure 串流分析作業。 
 4. 在命令集中選取 [停止] 以停止作業。 
@@ -141,4 +141,4 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 [lnk-permissions]: iot-suite-permissions.md
 [lnk-classic-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

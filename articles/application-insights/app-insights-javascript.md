@@ -12,10 +12,11 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/19/2016"
+	ms.date="05/18/2016"
 	ms.author="awills"/>
 
 # 適用於網頁的 Application Insights
+
 
 [AZURE.INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
 
@@ -89,8 +90,14 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
     // Don't log browser exceptions.
     disableExceptionTracking: true,
 
+    // Don't log ajax calls.
+    disableAjaxTracking: boolean,
+
     // Limit number of Ajax calls logged, to reduce traffic.
     maxAjaxCallsPerView: 10, // default is 500
+
+    // Time page load up to execution of first trackPageView().
+    overridePageViewDuration: boolean,
 
     // Set these dynamically for an authenticated user.
     appUserId: string,
@@ -123,7 +130,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 ![](./media/app-insights-javascript/08-client-split.png)
 
-請注意， *網路連接* 時間通常低於您所預期的時間，因為它是從瀏覽器到伺服器之所有要求的平均值。許多個別要求的連接時間為 0，因為已經有與伺服器的作用中連線。
+請注意，*網路連接*時間通常低於您所預期的時間，因為它是從瀏覽器到伺服器之所有要求的平均值。許多個別要求的連接時間為 0，因為已經有與伺服器的作用中連線。
 
 ### 載入緩慢？
 
@@ -204,7 +211,11 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 
 ### 頁面檢視屬性
 
-* **網頁檢視期間**：載入網頁並開始執行指令碼所花費的時間。具體來說，開始載入頁面及執行 trackPageView 之間的間隔。如果您在指令碼的初始設定之後將 trackPageView 從一般位置移走，它會反映不同的值。
+* **頁面檢視持續時間** 
+
+ * 根據預設，載入頁面所花費的時間，從用戶端要求到完整載入 (包括輔助檔案，但不包括非同步工作，例如 Ajax 呼叫)。
+ * 如果您在[頁面組態](#detailed-configuration)中設定 `overridePageViewDuration`，則為用戶端要求到執行第一個 `trackPageView` 之間的間隔。如果您在指令碼的初始設定之後將 trackPageView 從一般位置移走，它會反映不同的值。
+ * 如果設定了 `overridePageViewDuration`，且 `trackPageView()` 呼叫中有提供持續時間引數，則會改為使用引數值。 
 
 
 ## 自訂頁面計數
@@ -238,4 +249,4 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 * [自訂事件和計量](app-insights-api-custom-events-metrics.md)
 * [Build-measure-learn](app-insights-overview-usage.md)
 
-<!------HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="04/18/2016"
 	ms.author="csand"/>
 
 # 使用 Azure 自動化管理 Azure 服務匯流排
@@ -30,14 +30,13 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 
 ## Azure 自動化如何有助於管理 Azure 服務匯流排？
 
-您可以在 Azure 自動化中使用[服務匯流排 REST API](https://msdn.microsoft.com/library/azure/hh780717.aspx) 來管理服務匯流排。在 Azure 自動化內，您可以利用 REST API 執行 PowerShell 指令碼，以執行許多服務匯流排工作。您也可以將 Azure 自動化中的這些 REST API 與其他 Azure 服務的 PowerShell Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
+您可以在 Azure 自動化中使用[服務匯流排 REST API](https://msdn.microsoft.com/library/azure/hh780717.aspx) 來管理服務匯流排。在 Azure 自動化內，您可以利用 REST API 執行 PowerShell 指令碼，以執行許多服務匯流排工作。您也可以將 Azure 自動化中的這些 REST API 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
 以下是使用 PowerShell 來管理 Azure 服務匯流排的一些範例︰
-
-- [自訂 PowerShell Cmdlet 來管理 Azure 服務匯流排佇列](https://blogs.technet.microsoft.com/uktechnet/2014/12/04/sample-of-custom-powershell-cmdlets-to-manage-azure-servicebus-queues/)
-- [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂閱](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
-- [使用 PowerShell 建立 Azure 服務匯流排命名空間](http://buildazure.com/2015/09/24/create-azure-service-bus-namespaces-using-powershell-and-x-plat-cli/)
-- [可供新增組態節點以建立 Azure 服務匯流排的 DSCResource 模組](https://www.powershellgallery.com/packages/AzureServiceBusCreation/1.0)
+* [自訂 PowerShell Cmdlet 來管理 Azure 服務匯流排佇列](https://blogs.technet.microsoft.com/uktechnet/2014/12/04/sample-of-custom-powershell-cmdlets-to-manage-azure-servicebus-queues/)
+* [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂閱](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
+* [使用 PowerShell 建立 Azure 服務匯流排命名空間](http://buildazure.com/2015/09/24/create-azure-service-bus-namespaces-using-powershell-and-x-plat-cli/)
+* [可供新增組態節點以建立 Azure 服務匯流排的 DSCResource 模組](https://www.powershellgallery.com/packages/AzureServiceBusCreation/1.0)
 
 ## 後續步驟
 
@@ -46,4 +45,4 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 * 請參閱 Azure 自動化[快速入門教學課程](https://azure.microsoft.com/documentation/learning-paths/automation/)。
 * 請參閱如何[使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

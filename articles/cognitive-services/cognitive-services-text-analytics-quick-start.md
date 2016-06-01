@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/24/2016"
+	ms.date="04/05/2016"
 	ms.author="onewth"/>
 
 # 開始使用文字分析 API 來偵測情緒、主要片語、主題和語言
@@ -24,7 +24,7 @@
 
 請參閱 [API 定義](//go.microsoft.com/fwlink/?LinkID=759346)，以取得 API 的技術文件。
 
-本指南適用於第 2 版的 API。如需第 1 版 API 的詳細資訊，[請參閱這份文件](machine-learning-apps-text-analytics/)。
+本指南適用於第 2 版的 API。如需第 1 版 API 的詳細資訊，[請參閱這份文件](../machine-learning-apps-text-analytics/)。
 
 本教學課程結束時，您將能夠以程式設計方式偵測︰
 
@@ -64,7 +64,7 @@
 
 在您的文字中偵測情感、主要片語和語言很容易。以程式設計方式取得與[示範體驗](//go.microsoft.com/fwlink/?LinkID=759712)所傳回的相同結果。
 
-**秘訣！** 對於情感分析，我們建議您將文字分割成句子。這通常可以讓情感預測的精確度更高。
+>[AZURE.TIP] 對於情感分析，我們建議您將文字分割成句子。這通常可以讓情感預測的精確度更高。
 
 1. 您必須將標頭設為下列項目。請注意，JSON 目前只接受 API 的輸入格式。不支援 XML。
 
@@ -236,8 +236,52 @@
 			}
 		}
 
+請注意，對來自 `operations` 端點之主題的成功回應會有下列結構描述︰
+
+	{
+    		"topics" : [{
+        		"id" : "string",
+        		"score" : "number",
+        		"keyPhrase" : "string"
+    		}],
+    		"topicAssignments" : [{
+        		"documentId" : "string",
+        		"topicId" : "string",
+        		"distance" : "number"
+    		}],
+    		"errors" : [{
+        		"id" : "string",
+        		"message" : "string"
+    		}]
+    	}
+
+回應之每個部分的說明如下所示：
+
+**主題**
+
+| 金鑰 | 說明 |
+|:-----|:----|
+| id | 每個主題的唯一識別碼。 |
+| 分數 | 指派給主題的文件數。 |
+| keyPhrase | 主題彙總的單字或片語。 |
+
+**topicAssignments**
+
+| 金鑰 | 說明 |
+|:-----|:----|
+| documentId | 文件的識別碼等於輸入中包含的識別碼。 |
+| topicId | 已獲指派文件的主題識別碼。 |
+| distance | 介於 0 和 1 之間的文件-主題關係分數。距離分數越低，主題關係越強。 |
+
+**錯誤**
+
+| 金鑰 | 說明 |
+|:-----|:----|
+| id | 輸入錯誤所指的文件唯一識別碼。 |
+| 訊息 | 錯誤訊息。 |
+
 ## 後續步驟 ##
 
 恭喜！ 您已完成對資料使用文字分析。現在您可以考慮使用一種工具，例如 [Power BI](//powerbi.microsoft.com) 以視覺化呈現您的資料，以及自動化您的見解，提供文字資料的即時檢視。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

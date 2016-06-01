@@ -14,13 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="05/10/2016"
 	ms.author="garye;bradsev" />
 
 
 # 從各種資料來源將訓練資料匯入 Azure Machine Learning Studio
-
-## 簡介
 
 若要在 Machine Learning Studio 中使用您自己的資料來開發和訓練預測性分析方案，您可以：
 
@@ -91,4 +89,4 @@ Machine Learning Studio 使用名為***資料表格***的內部資料類型以�
 [metadata-editor]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

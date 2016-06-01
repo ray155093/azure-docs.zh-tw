@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/10/2016"
+	ms.date="05/16/2016"
 	ms.author="jeedes"/>
 
 
@@ -45,7 +45,7 @@
 
  
 ## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。 <br>
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。<br>
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫加入 Moxtra 
@@ -76,7 +76,7 @@
 ##  設定並測試 Azure AD 單一登入
 本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 Moxtra 的 Azure AD 單一登入。
 
-若要讓單一登入運作，Azure AD 必須知道 Moxtra 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者和 Moxtra 中的相關使用者之間建立連結關聯性。<br>
+若要讓單一登入運作，Azure AD 必須知道 Moxtra 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者和 Moxtra 中的相關使用者之間建立連結關聯性。<br> 
 建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 Moxtra 中 **Username** 的值。
  
 若要設定及測試對 Moxtra 的 Azure AD 單一登入，您需要完成下列建置組塊：
@@ -104,8 +104,8 @@ Moxtra 應用程式需要特定格式的 SAML 判斷提示，因此您必須將�
 2. 在 [要如何讓使用者登入 Moxtra] 頁面上，選取 [Azure AD 單一登入]，然後按一下 [下一步]。
 <br><br> ![設定單一登入](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_03.png) <br>
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
-<br><br>![設定單一登入](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_04.png) <br>
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟
+：<br><br>![設定單一登入](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_04.png) <br>
 
     a.在 [登入 URL] 文字方塊中，輸入下列 URL：**https://www.moxtra.com/service/#login**。
 
@@ -321,4 +321,4 @@ Moxtra 應用程式需要特定格式的 SAML 判斷提示，因此您必須將�
 [204]: ./media/active-directory-saas-moxtra-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-moxtra-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

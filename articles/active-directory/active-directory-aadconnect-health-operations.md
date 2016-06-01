@@ -92,7 +92,7 @@ Azure AD Connect Health 支援下列內建角色。
 |參與者| 參與者可以在 Azure AD Connect Health 內檢視入口網站中的所有資訊 (例如檢視警示) 以及變更設定 (例如電子郵件通知)。|
 |讀取者| 讀取者可以在 Azure AD Connect Health 內檢視入口網站中的所有資訊 (例如檢視警示)。|
 
-其他即使有在入口網站體驗中提供的所有角色 (例如「使用者存取系統管理員」或「DevTest 實驗室使用者」) ，對 Azure AD Connect Health 內的存取則沒有影響。
+其他即使有在入口網站體驗中提供的所有角色 (例如「使用者存取系統管理員」或「DevTest Labs 使用者」)，對 Azure AD Connect Health 內的存取則沒有影響。
 
 #### 存取範圍
 
@@ -135,7 +135,7 @@ Azure AD Connect 支援兩個層級的管理存取：
 >[AZURE.NOTE] 被指派「讀取者」角色的使用者將無法執行「建立」作業，以從 Azure Marketplace 取得 Azure AD Connect Health 擴充。這位使用者仍可前往上述連結以存取刀鋒視窗。為方便之後使用，使用者可以將刀鋒視窗釘選到儀表板。
 
 ### 移除使用者和/或群組
-您可以移除新增到 Azure AD Connect Health 角色型存取控制組件的使用者或群組，方法是以滑鼠右鍵按一下並選取 [移除]。<br>
+您可以移除新增到 Azure AD Connect Health 角色型存取控制組件的使用者或群組，方法是以滑鼠右鍵按一下並選取 [移除]。<br> 
 ![Azure AD Connect Health RBAC 移除使用者](./media/active-directory-aadconnect-health/RBAC_remove.png)
 
 [//]: # "End of RBAC section"
@@ -149,4 +149,4 @@ Azure AD Connect 支援兩個層級的管理存取：
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

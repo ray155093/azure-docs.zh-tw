@@ -19,7 +19,8 @@
 # 如何使用 Azure Redis 快取
 
 > [AZURE.SELECTOR]
-- [.Net](cache-dotnet-how-to-use-azure-redis-cache.md)
+- [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
+- [ASP.NET](cache-web-app-howto.md)
 - [Node.js](cache-nodejs-get-started.md)
 - [Java](cache-java-get-started.md)
 - [Python](cache-python-get-started.md)
@@ -47,43 +48,13 @@ Microsoft Azure Redis 快取有下列階層：
 <a name="create-cache"></a>
 ## 建立快取
 
-若要建立快取，請先登入 [Azure 入口網站][]，然後依序按一下 [新增]、[資料 + 儲存體] 和 [Redis 快取]。
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
->[AZURE.NOTE] 除了在 Azure 入口網站中建立快取，您也可以使用 ARM 範本、PowerShell 或 Azure CLI 來建立。
->
->-	若要使用 ARM 範本建立快取，請參閱[使用範本建立 Redis 快取](cache-redis-cache-arm-provision.md)。
->-	若要使用 Azure PowerShell 建立快取，請參閱[使用 Azure PowerShell 管理 Azure Redis 快取](cache-howto-manage-redis-cache-powershell.md)。
->-	若要使用 Azure CLI 建立快取，請參閱[如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取](cache-manage-cli.md)。
+### 在建立好之後存取快取
 
-![New cache][NewCacheMenu]
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
 
->[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
-
-在 [新增 Redis 快取] 分頁中，指定所需的快取組態。
-
-![Create cache][CacheCreate]
-
--	在 [DNS 名稱] 中，輸入要用於快取端點的快取名稱。快取名稱必須是介於 1 到 63 個字元的字串，而且只能包含數字、字母和 `-` 字元。快取名稱的開頭或結尾不能是 `-` 字元，且連續的 `-` 字元無效。
--	針對 [訂閱]，選取您要用於快取的 Azure 訂閱。如果您的帳戶僅有一個訂閱，則會自動加以選取，而且不會顯示 [訂閱] 下拉式清單。
--	在 [資源群組] 中，選取或建立快取的資源群組。如需詳細資訊，請參閱[使用資源群組管理您的 Azure 資源][]。 
--	使用 [位置] 來指定管理快取所在的地理位置。為獲得最佳效能，Microsoft 強烈建議您在與快取用戶端應用程式相同的區域中建立快取。
--	使用 [價格層] 來選取需要的快取大小和功能。
--	**Redis 叢集**可讓您建立大於 53 GB 的快取，以及將資料分散於多個 Redis 節點。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取的叢集](cache-how-to-premium-clustering.md)。
--	**Redis 持續性**可讓您將您的快取保存至 Azure 儲存體帳戶。如需設定永續性的相關指示，請參閱[如何設定進階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)。
--	**虛擬網路**藉由將您的快取存取權限制於指定的 Azure 虛擬網路內的用戶端，以提供增強的安全性和隔離。您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。如需詳細資訊，請參閱[如何設定進階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
--	使用 [診斷] 來指定快取度量的儲存體帳戶。如需有關設定和檢視快取度量的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)。
-
-一旦設定了新的快取選項，請按一下 [建立新快取]。建立快取可能需要數分鐘的時間。若要檢查狀態，您可以監視開始面板上的進度。在建立了快取之後，新快取的狀態會是**執行中**，而且準備好與預設設定搭配使用。
-
-![Cache created][CacheCreated]
-
-建立快取之後，您可以從 [瀏覽] 分頁加以存取。
-
-![Browse blade][BrowseCaches]
-
-按一下 [Redis 快取] 來檢視您的快取。
-
-![Caches][Caches]
+如需設定快取的詳細資訊，請參閱[如何設定 Azure Redis 快取](cache-configure.md)。
 
 <a name="NuGet"></a>
 ## 設定快取用戶端
@@ -151,13 +122,9 @@ NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參�
 	    }
 	}
 
-如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][] (英文)。
+如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][] \(英文)。
 
-快取端點和金鑰可自您快取執行個體的 [Redis 快取] 分頁取得。
-
-![Cache properties][CacheProperties]
-
-![Manage keys][ManageKeys]
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
 一旦建立連線，即會透過呼叫 `ConnectionMultiplexer.GetDatabase` 方法傳回 Redis 快取資料庫的參考。透過 `GetDatabase` 方法傳回的物件是輕量型傳遞物件，而且不需要儲存。
 
@@ -241,7 +208,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 -	請參閱 [StackExchange.Redis 快取用戶端文件][]。
 	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][]。
 	-	Azure Redis 快取也可以與服務搭配使用 (例如 Redsmin)。如需詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
--	請參閱 [Redis][] (英文) 文件，並閱讀有關 [Redis 資料類型][] (英文) 和 [Redis 資料類型的 15 分鐘簡介][] (英文)。
+-	請參閱 [Redis][] \(英文) 文件，並閱讀有關 [Redis 資料類型][] \(英文) 和 [Redis 資料類型的 15 分鐘簡介][] \(英文)。
 
 
 
@@ -265,9 +232,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
   
 <!-- IMAGES -->
-[NewCacheMenu]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-new-cache-menu.png
 
-[CacheCreate]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-cache-create.png
 
 [StackExchangeNuget]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-stackexchange-redis.png
 
@@ -283,7 +248,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [Caches]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-caches.png
 
-[CacheCreated]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-cache-created.png
+
 
 
 
@@ -315,14 +280,14 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [NuGet Package Manager Installation]: http://go.microsoft.com/fwlink/?LinkId=240311
 [快取價格詳細資料]: http://www.windowsazure.com/pricing/details/cache/
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
 [Overview of Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=320830
 [Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=398247
 
 [Migrate to Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=317347
 [Azure Redis Cache Samples]: http://go.microsoft.com/fwlink/?LinkId=320840
-[使用資源群組管理您的 Azure 資源]: http://azure.microsoft.com/documentation/articles/resource-group-overview/
+[Using Resource groups to manage your Azure resources]: http://azure.microsoft.com/documentation/articles/resource-group-overview/
 
 [StackExchange.Redis]: http://github.com/StackExchange/StackExchange.Redis
 [StackExchange.Redis 快取用戶端文件]: http://github.com/StackExchange/StackExchange.Redis#documentation
@@ -333,4 +298,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

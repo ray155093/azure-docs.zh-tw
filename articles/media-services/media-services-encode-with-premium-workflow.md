@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/25/2016" 
+	ms.date="05/15/2016" 
 	ms.author="juliako"/>
 
 #使用 Media Encoder Premium Workflow 進行進階編碼
 
->[AZURE.NOTE]- 如有高階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
->
->- 本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
+>[AZURE.NOTE] 本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
+
+如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
 ##概觀
 
@@ -30,7 +30,7 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 - [Media Encoder Premium Workflow 支援的格式](media-services-premium-workflow-encoder-formats.md) – 討論 **Media Encoder Premium Workflow** 支援的檔案格式和轉碼器。
 
-- [比較編碼器](media-services-encode-asset.md#compare_encoders)一節會比較「媒體編碼器高階工作流程」和「媒體編碼器標準」的編碼功能。
+- [比較編碼器](media-services-encode-asset.md#compare_encoders)一節比較**媒體編碼器高階工作流程**和**媒體編碼器標準**的編碼功能。
 
 本主題示範如何使用 .NET 以 **Media Encoder Premium Workflow** 進行編碼。
 
@@ -268,6 +268,7 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 	}
 
 
+如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
 ##媒體服務學習路徑
 
@@ -277,4 +278,4 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

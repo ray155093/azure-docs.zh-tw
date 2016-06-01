@@ -37,7 +37,7 @@ Azure Functions 的其中一個優點是您的執行中程式碼只會視需要�
 * [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)或動態服務方案 
 * 執行環境的記憶體大小 
 
-函數的成本會根據所選取的服務方案類型而變更。使用動態服務方案時，成本是執行時間、記憶體大小與執行次數的函數。僅使用在實際執行程式碼時產生的變更。
+函數的成本會根據所選取的服務方案類型而變更。使用動態服務方案時，成本是執行時間、記憶體大小與執行次數的函數。僅使用在實際執行程式碼時產生的費用。
 
 一般服務方案可讓您在現有 VM 上裝載函數，而這些 VM 也可能用來執行其他程式碼。每個月支付這些 VM 之後，在其上執行函數即不需額外付費。
 
@@ -47,4 +47,4 @@ Azure Functions 的其中一個優點是您的執行中程式碼只會視需要�
 
 [AZURE.INCLUDE [動態服務方案](../../includes/functions-dynamic-service-plan.md)]
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

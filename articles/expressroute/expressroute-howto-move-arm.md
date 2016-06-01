@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/01/2016"
+   ms.date="05/05/2016"
    ms.author="ganesr"/>
 
 
@@ -98,7 +98,7 @@
 
     get-azurededicatedcircuit
 
-您必須能夠看到列出的服務金鑰。您現在可以管理 ExpressRoute 電路的連結。下列文件會引導您了解如何管理 ExpressRoute 電路的連結︰
+您必須能夠看到列出的服務金鑰。您現在可以使用命令管理連至 ExpressRoute 線路的連結，標準傳統部署模型命令用於傳統 VNET，標準 ARM 命令用於 ARM VNET。下列文件會引導您了解如何管理 ExpressRoute 電路的連結︰
 
 - [在 Resource Manager 部署模型中將虛擬網路連結到 ExpressRoute 電路](expressroute-howto-linkvnet-arm.md)
 - [在傳統部署模型中將虛擬網路連結到 ExpressRoute 電路](expressroute-howto-linkvnet-classic.md)
@@ -126,4 +126,4 @@
 - [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-arm.md)
 - [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

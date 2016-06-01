@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="bradsev" />
 
 # 使用 SQL 資料分割資料表平行處理大量資料匯入
 
-本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。
-
-若要將巨量資料載入/傳輸至 SQL Database，可使用「資料分割資料表和檢視」，來改善將資料匯入 SQL DB 和後續查詢的效能。
+本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。若要將巨量資料載入/傳輸至 SQL Database，可使用「資料分割資料表和檢視」，來改善將資料匯入 SQL DB 和後續查詢的效能。
 
 
 ## 建立新的資料庫和一組檔案群組
@@ -92,6 +90,7 @@
 	    ON <TablePScheme>(<partition_field>)
 
 - 如需詳細資訊，請參閱[建立分割區資料表及索引](https://msdn.microsoft.com/library/ms188730.aspx)。
+
 
 ## 大量匯入每個個別資料分割資料表的資料
 
@@ -166,6 +165,7 @@
     While (Get-Job -State "Running") { Start-Sleep 10 }
     date
 
+
 ## 建立索引以將聯結和查詢效能最佳化
 
 - 如果您會從多個資料表擷取資料來進行模型化，請在聯結索引鍵上建立索引來提升聯結效能。
@@ -181,9 +181,10 @@
 
  > [AZURE.NOTE] 您可以選擇在大量匯入資料之前建立索引。在大量匯入之前建立索引，將讓資料載入速度變慢。
 
+
 ## 進階分析程序和技術實務範例
 
 如需使用公用資料集進行 Cortana 分析程序的端對端逐步解說範例，請參閱 [Cortana 分析程序實務範例：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

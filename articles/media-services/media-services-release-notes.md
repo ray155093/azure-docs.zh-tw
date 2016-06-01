@@ -83,8 +83,14 @@ SDK 中的媒體服務物件無法序列化，因此無法與 Azure 快取搭配
 
 ##<a id="apr_changes16"></a>2016 年 4 月版本
 
-在此版本中，Azure 媒體服務引進了 Azure 媒體分析，提供功能強大的視訊智慧。如需詳細資訊，請參閱 (Azure 媒體服務分析概觀) [media-services-analytics-overview.md]。
+### Azure 媒體分析
 
+Azure 媒體服務引進了 Azure 媒體分析，提供功能強大的視訊智慧。如需詳細資訊，請參閱 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)。
+
+### Apple FairPlay (預覽)
+
+Azure 媒體服務現在能讓您透過 Apple FairPlay 來動態加密您的 HTTP 即時資料流 (HLS) 內容。您也可以使用 AMS 授權傳遞服務，將 FairPlay 授權傳遞給用戶端。如需詳細資訊，請參閱[使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容](media-services-protect-hls-with-fairplay.md)。
+  
 ##<a id="feb_changes16"></a>2016 年 2 月版本
 
 Azure Media Services SDK for .NET (3.5.3) 的最新版本包含 Widevine 相關的錯誤修正。問題是：AssetDeliveryPolicy 無法重複用於多個以 Widevine 加密的資產。在此錯誤修正中，已將下列屬性加入至 SDK：**WidevineBaseLicenseAcquisitionUrl**。
@@ -660,4 +666,4 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

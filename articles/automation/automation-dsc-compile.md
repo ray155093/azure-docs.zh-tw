@@ -37,7 +37,7 @@
 
 在您決定編譯方法後，您可以依照下列個別的程序開始編譯。
 
-##使用 Azure Preview 入口網站編譯 DSC 組態##
+##使用 Azure 入口網站編譯 DSC 組態##
 
 1.  從您的自動化帳戶中，按一下 [組態]。
 2.  按一下組態以開啟其刀鋒視窗。
@@ -115,7 +115,7 @@ PowerShell 會要求您將參數放入 [hashtable](http://technet.microsoft.com/
     }
     
     
-    Start-AzureRMAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "ParametersExample" -Parameters $Parameters 
+    Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "ParametersExample" -Parameters $Parameters 
     
 
 如需如何將 PSCredentials 傳入作為參數的相關資訊，請參閱下方的<a href="#credential-assets">**認證資產**</a>。
@@ -228,4 +228,4 @@ Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。如需詳
     
     Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "CredentialSample" -ConfigurationData $ConfigData
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

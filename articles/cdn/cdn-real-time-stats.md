@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 # Microsoft Azure CDN 中的即時統計資料
 
+[AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
+
 ## 概觀
 
 本文件說明 Microsoft Azure CDN 中的即時統計資料。將內容傳遞給您的用戶端時，此功能可提供關於 CDN 效能的即時資料。
-
-> [AZURE.NOTE] 即時統計資料是高階 CDN 層的一項功能。如需標準和高階 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md)。
 
 檢視以 HTTP 為基礎的平台即時統計資料時，可以使用下列圖表：
 
@@ -99,4 +99,4 @@
 * [進階的 HTTP 報表](cdn-advanced-http-reports.md)
 * [分析邊緣效能](cdn-edge-performance.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

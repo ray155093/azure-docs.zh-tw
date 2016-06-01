@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/08/2015"
+	ms.date="04/20/2015"
 	ms.author="anuragm;jimpark;delhan"/>
 
 
@@ -32,6 +32,7 @@
 - 代理程式和保存庫認證已下載至 DPM 伺服器。
 - 代理程式已安裝於 DPM 伺服器。
 - 保存庫認證已用來註冊 DPM 伺服器。
+- 如果您要保護 Exchange 2016，請升級為 DPM 2012 R2 UR9 或更新版本
 
 ## DPM 保護代理程式  
 若要在 Exchange Server 上安裝 DPM 保護代理程式，請遵循下列步驟：
@@ -131,4 +132,4 @@
 
 - [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

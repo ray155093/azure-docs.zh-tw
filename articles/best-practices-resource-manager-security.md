@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure 資源管理員的安全性考量"
+	pageTitle="Resource Manager 的安全性考量 | Microsoft Azure"
 	description="在 Azure 資源管理員中顯示建議的方法，以便透過金鑰和密碼、角色型存取控制和網路安全性群組保護資源的安全。"
 	services="azure-resource-manager"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/09/2016"
+	ms.date="05/16/2016"
 	ms.author="georgem;tomfitz"/>
 
 
@@ -306,7 +306,7 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
 
 ### BGP 路由
 
-在撰寫本文時，Azure 資源管理員的[網路資源提供者](virtual-network/resource-groups-networking.md)尚未支援 [ExpressRoute](./expressroute/expressroute-introduction.md)。在 NRP 上支援 ExpressRoute 之後，如果您在內部部署網路與 Azure 之間有 ExpressRoute 連線，可以啟用 BGP，將路由從內部部署網路傳播至 Azure。這些 BGP 路由的使用方式與預設路由相同，也與每個 Azure 子網路中的使用者定義路由相同。如需詳細資訊，請參閱 [ExpressRoute 簡介](./expressroute/expressroute-introduction.md)。
+在撰寫本文時，Azure 資源管理員的[網路資源提供者](./virtual-network/resource-groups-networking.md)尚未支援 [ExpressRoute](./expressroute/expressroute-introduction.md)。在 NRP 上支援 ExpressRoute 之後，如果您在內部部署網路與 Azure 之間有 ExpressRoute 連線，可以啟用 BGP，將路由從內部部署網路傳播至 Azure。這些 BGP 路由的使用方式與預設路由相同，也與每個 Azure 子網路中的使用者定義路由相同。如需詳細資訊，請參閱 [ExpressRoute 簡介](./expressroute/expressroute-introduction.md)。
 
 >[AZURE.NOTE] 在 NRP 上支援 ExpressRoute 時，您將可以設定 Azure 環境透過內部部署網路使用強制通道，方法是，為使用 VPN 閘道做為下一個躍點的子網路 0.0.0.0/0 建立使用者定義的路由。不過，這只有在您使用的是 VPN 閘道，而不是 ExpressRoute 時，才有作用。若是 Expressroute，強制通道是透過 BGP 設定。
 
@@ -339,4 +339,4 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
 - 若要設定路由和 IP 轉送，請參閱[在 Resource Manager 中使用範本建立使用者定義的路由 (UDR)](./virtual-network/virtual-network-create-udr-arm-template.md)。
 - 如需角色型存取控制的概觀，請參閱 Microsoft Azure 入口網站中的[角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

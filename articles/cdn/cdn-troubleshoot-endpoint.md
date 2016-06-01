@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
     
 # 針對傳回 404 狀態的 CDN 端點進行疑難排解
@@ -37,7 +37,7 @@
 
 ## 疑難排解步驟
 
-> [AZURE.IMPORTANT] 建立 CDN 端點之後，無法立即使用，因為註冊需要時間透過 CDN 進行散佈。它通常在 90 分鐘之內即可供使用，但在某些情況下可能需要更久的時間。如果您完成這份文件中的步驟，而仍然收到 404 回應；請考慮在開啟支援票證之前，等候數小時後再次進行檢查。
+> [AZURE.IMPORTANT] 建立 CDN 端點之後，無法立即使用，因為註冊需要時間透過 CDN 進行散佈。若為<b>來自 Akamai 的 Azure CDN</b> 設定檔，通常會在一分鐘之內完成傳播。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。如果您完成這份文件中的步驟，而仍然收到 404 回應；請考慮在開啟支援票證之前，等候數小時後再次進行檢查。
 
 ### 請檢查來源檔案
 
@@ -66,6 +66,8 @@
 其他需要在此檢查的是 **HTTP** 和 **HTTPS 連接埠**。在大部分情況下，80 和 443 皆正確，而且您不需要進行任何變更。不過，如果原始伺服器是透過不同連接埠連接，那麼就必須在這裡表示。如果您不確定，不妨看一下原始檔案的 URL。HTTP 和 HTTPS 規格指定連接埠 80 和 443 做為預設值。在我的 URL 中，`https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`，未指定連接埠，因此會假設預設值為 443，而且我的設定值正確無誤。
 
 不過，假如您在稍早測試的原始檔案 URL 為 `http://www.contoso.com:8080/file.txt`。請注意主機名稱區段結尾的 `:8080`。這會告知瀏覽器使用連接埠 `8080` 來連線到於 `www.contoso.com` 的 Web 伺服器，因此您必須在 [HTTP 連接埠] 欄位輸入 8080。請務必注意，這些連接埠設定只會影響端點用來從來源擷取資訊的連接埠。
+
+> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 行為詳細資料](cdn-akamai-behavior-details.md)。
   
 ### 請檢查端點設定
 
@@ -85,7 +87,7 @@
 
 #### 原始主機標頭
 
-**原始主機標頭** 為隨著每個要求傳送至來源的主機標頭值。在大部分情況下，這應該和我們稍早驗證的是相同的**原始主機名稱**。此欄位中不正確的值通常不會造成 404 狀態；但根據來源預期的結果，可能會導致其他 4xx 狀態。
+**原始主機標頭**為隨著每個要求傳送至來源的主機標頭值。在大部分情況下，這應該和我們稍早驗證的是相同的**原始主機名稱**。此欄位中不正確的值通常不會造成 404 狀態；但根據來源預期的結果，可能會導致其他 4xx 狀態。
 
 #### 原始路徑
 
@@ -93,6 +95,6 @@
 
 例如，在我的端點中，我想要能夠使用儲存體帳戶上的所有資源，因此我會將**來源路徑**保留空白。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，結果會讓我的端點連線至要求 `/publicblob/lorem.txt` 的 `cdndocdemo.core.windows.net`。同樣地，對於 `https://cdndocdemo.azureedge.net/donotcache/status.png` 的要求會導致端點從原始要求 `/donotcache/status.png`。
 
-但如果我不想在我的來源上的每個路徑使用 CDN 呢？ 假設我只想要公開 `publicblob` 路徑。如果我在 [原始路徑] 欄位中輸入 /publicblob，將導致端點在對來源做每個要求之前，都要插入 /publicblob。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，現在實際上會取 URL 的 `/publicblob/lorem.txt` 要求部分，並將 `/publicblob` 附加至開頭。這會造成從來源對 `/publicblob/publicblob/lorem.txt` 進行要求。如果該路徑未解析為實際檔案，來源會傳回 404 狀態。實際上，在此範例中擷取 lorem.txt 的正確 URL 會是 `https://cdndocdemo.azureedge.net/lorem.txt`。請注意，我們完全不會納入 /publicblob 路徑，因為 URL 要求的部份是 `/lorem.txt`，且端點新增 `/publicblob` 會造成 `/publicblob/lorem.txt` 將要求傳遞至來源。
+但如果我不想在我的來源上的每個路徑使用 CDN 呢？ 假設我只想要公開 `publicblob` 路徑。如果我在 [原始路徑] 欄位中輸入 */publicblob*，將導致端點在對來源做每個要求之前，都要插入 */publicblob*。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，現在實際上會取 URL 的 `/publicblob/lorem.txt` 要求部分，並將 `/publicblob` 附加至開頭。這會造成從來源對 `/publicblob/publicblob/lorem.txt` 進行要求。如果該路徑未解析為實際檔案，來源會傳回 404 狀態。實際上，在此範例中擷取 lorem.txt 的正確 URL 會是 `https://cdndocdemo.azureedge.net/lorem.txt`。請注意，我們完全不會納入 */publicblob * 路徑，因為 URL 要求的部份是 `/lorem.txt`，且端點新增 `/publicblob` 會造成 `/publicblob/lorem.txt` 將要求傳遞至來源。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

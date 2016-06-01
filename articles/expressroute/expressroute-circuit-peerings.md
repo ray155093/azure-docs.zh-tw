@@ -73,7 +73,7 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 |---|---|---|---|
 |**每個對等支援的前置詞數目最大值**|預設為 4000，ExpressRoute Premium 中為 10000|200|200|
 |**支援的 IP 位址範圍**|您的 WAN 內任何有效的 IPv4 位址。|您或您的連線提供者所擁有的公用 IPv4 位址。|您或您的連線提供者所擁有的公用 IPv4 位址。|
-|**AS 編號需求**|私密和公用 AS 編號。您必須擁有公用 AS 編號。 | 私密和公用 AS 編號。不過，您必須提供公用 AS 編號，驗證公用 IP 位址的擁有權。| 私密和公用 AS 編號。不過，您必須提供公用 AS 編號，驗證公用 IP 位址的擁有權。|
+|**AS 編號需求**|私密和公用 AS 編號。您必須擁有公用 AS 編號。 | 私密和公用 AS 編號。不過，您必須證明公用 IP 位址的擁有權。| 私密和公用 AS 編號。不過，您必須證明公用 IP 位址的擁有權。|
 |**路由介面 IP 位址**|RFC1918 和公用 IP 位址|在路由註冊中向您註冊的公用 IP 位址。| 在路由註冊中向您註冊的公用 IP 位址。|
 |**MD5 雜湊支援**| 是|是|是|
 
@@ -90,4 +90,4 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 	- [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

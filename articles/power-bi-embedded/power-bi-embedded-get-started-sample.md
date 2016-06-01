@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="03/29/2016"
+   ms.date="05/16/2016"
    ms.author="derrickv"/>
 
 # 開始使用 Microsoft Power BI Embedded 範例
@@ -222,14 +222,14 @@ Task<ActionResult> Report(string reportId)
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-iframe-code.png)
 
 
-### 篩選內嵌在應用程式中的報表
+## 篩選內嵌在應用程式中的報表
 
-您可以使用 URL 語法，篩選內嵌的報表。若要這樣做，請將查詢字串參數加入含指定篩選的 iFrame src URL。以下是篩選的查詢語法︰
+您可以使用 URL 語法，篩選內嵌的報表。若要這樣做，請將含有 **eq** 運算子的 **$filter** 查詢字串參數新增到含指定篩選的 iFrame src URL。以下是篩選的查詢語法︰
 
 ```
 https://app.powerbi.com/reportEmbed
-?reportId=d2a0ea38-0694-4c70-9673-ee9655d54a4a&
-$filter={tableName/fieldName} eq '{fieldValue}'
+?reportId=d2a0ea38-...-9673-ee9655d54a4a&
+$filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [AZURE.NOTE] {表格名稱/欄位名稱} 不能包含空格或特殊字元。{欄位值} 接受單一類別目錄值。
@@ -242,4 +242,4 @@ $filter={tableName/fieldName} eq '{fieldValue}'
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 - [關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

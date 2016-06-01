@@ -1,5 +1,5 @@
 <properties
-   pageTitle="透過資源管理員範本使用金鑰保存庫密碼 | Microsoft Azure"
+   pageTitle="金鑰保存庫密碼與 Resource Manager 範本 | Microsoft Azure"
    description="示範如何在部署期間從金鑰保存庫中傳遞密碼做為參數。"
    services="azure-resource-manager,key-vault"
    documentationCenter="na"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/09/2016"
+   ms.date="05/16/2016"
    ms.author="tomfitz"/>
 
 # 在部署期間傳遞安全值
@@ -103,4 +103,4 @@
 - 如需搭配虛擬機器使用金鑰保存庫的相關資訊，請參閱 [Azure Resource Manager 的安全性考量](best-practices-resource-manager-security.md)。
 - 如需參考金鑰密碼的完整範例，請參閱[金鑰保存庫範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

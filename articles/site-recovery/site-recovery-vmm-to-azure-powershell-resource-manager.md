@@ -19,9 +19,11 @@
 # 使用 PowerShell 和 Azure Resource Manager 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
 
 > [AZURE.SELECTOR]
-- [Azure 傳統入口網站](site-recovery-vmm-to-azure.md)
+- [Azure 入口網站](site-recovery-vmm-to-azure.md)
+- [PowerShell - ARM](site-recovery-vmm-to-azure-powershell-resource-manager.md)
+- [傳統入口網站](site-recovery-vmm-to-azure-classic.md)
 - [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
-- [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md) 
+
 
 
 ## 概觀
@@ -121,7 +123,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 		Set-AzureRmContext –SubscriptionID <subscriptionId>
 
 
-## 步驟 2：建立復原服務保存庫
+## 步驟 2：建立復原服務保存庫 
 
 1. 如果您還沒有 ARM 資源群組，請加以建立
 
@@ -131,19 +133,11 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 		$vault = New-AzureRmRecoveryServicesVault -Name #vaultname -ResouceGroupName #ResourceGroupName -Location #location 
 
-## 步驟 3：產生保存庫註冊金鑰
+## 步驟 3：設定復原服務保存庫內容
 
-在保存庫中產生註冊金鑰。下載 Azure Site Recovery 提供者並將其安裝在 VMM 伺服器之後，您將使用此金鑰在保存庫中註冊 VMM 伺服器。
+1.  執行下面的命令來設定保存庫內容。
 
-1.	取得保存庫設定檔並設定內容：
-	
-
-		Get-AzureRmRecoveryServicesVaultSettingsFile -Vault vaultname -Path #VaultSettingFilePath
-	
-	
-2.	執行下列命令來設定保存庫內容：
-	
-		Import-AzureRmSiteRecoveryVaultSettingsFile -Path $VaultSettingFilePath
+		Set-AzureRmSiteRecoveryVaultSettings -ARSVault $vault
 
 ## 步驟 4：安裝 Azure Site Recovery 提供者
 
@@ -319,7 +313,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 ### 執行非計劃性容錯移轉
 
-1. 執行下列命令來啟動計劃性容錯移轉：
+1. 執行下列命令來啟動非計劃性容錯移轉：
 		
 		$protectionEntity = Get-AzureRmSiteRecoveryProtectionEntity -Name $VMName -ProtectionContainer $protectionContainer
 
@@ -351,4 +345,4 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 [閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊</a>。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->
