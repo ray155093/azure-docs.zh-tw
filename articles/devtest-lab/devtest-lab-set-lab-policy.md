@@ -56,7 +56,7 @@
 
 設定允許的 VM 大小的原則有助於將實驗室的成本浪費降至最低，方式是讓您指定實驗室中允許的 VM 大小。如果啟用此原則，就只能使用此清單中的 VM 大小來建立 VM。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，點選 [Allowed VM Sizes]\(允許的 VM 大小)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，點選 [Allowed VM Sizes] \(允許的 VM 大小)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
  

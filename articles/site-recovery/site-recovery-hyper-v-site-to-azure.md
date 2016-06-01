@@ -168,7 +168,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 設定 Hyper-V 網站、在 Hyper-V 主機上安裝 Azure Site Recovery Provider 和 Azure 復原服務代理程式，並在保存庫註冊主機。
 
 
-1. 按一下 [Step 2: Prepare Infrastructure]\(步驟 2：準備基礎結構) > [來源]。若要加入新的 Hyper-V 網站作為 Hyper-V 主機或叢集的容器，請按一下 [+Hyper-V Site] (+Hyper-V 網站)。 
+1. 按一下 [Step 2: Prepare Infrastructure]\(步驟 2：準備基礎結構) > [來源]。若要加入新的 Hyper-V 網站作為 Hyper-V 主機或叢集的容器，請按一下 [+Hyper-V Site] \(+Hyper-V 網站)。 
 
 	![設定來源](./media/site-recovery-hyper-v-site-to-azure/set-source1.png)
 
@@ -176,7 +176,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![設定來源](./media/site-recovery-hyper-v-site-to-azure/set-source2.png)
 
-3. 按一下 [+Hyper-V Server] (+Hyper-V 伺服器) 將伺服器加入網站。
+3. 按一下 [+Hyper-V Server] \(+Hyper-V 伺服器) 將伺服器加入網站。
 4. 在 [加入伺服器] > [伺服器類型] 中，檢查已顯示 [Hyper-V 伺服器]。確定您想要加入的 Hyper-V 伺服器符合[必要條件](#on-premises-prerequisites)，而且能夠存取指定的 URL。
 4. 下載 Azure Site Recovery Provider 安裝檔案。您將執行這個檔案來在每個 Hyper-V 主機上安裝 Provider 和復原服務代理程式。
 5. 下載註冊金鑰。您會在執行安裝程式時用到此金鑰。該金鑰在產生後會維持 5 天有效。
@@ -250,7 +250,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	如果您想要使用傳統模型建立儲存體帳戶，請在 [Azure 入口網站](../storage/storage-create-storage-account-classic-portal.md)中執行該作業。
 	
-5.	如果您尚未建立 Azure 網路，而且想要使用 ARM 建立一個，請按一下 [+Network] (+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
+5.	如果您尚未建立 Azure 網路，而且想要使用 ARM 建立一個，請按一下 [+Network] \(+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
 
 	![網路](./media/site-recovery-hyper-v-site-to-azure/gs-createnetwork.png)
 
