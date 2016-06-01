@@ -13,17 +13,20 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
+   ms.date="05/18/2016"
    ms.author="lodipalm;barbkess;sonyama" />
 
 # 使用 Power BI 視覺化資料
 
+> [AZURE.SELECTOR]
+- [Power BI][]
+- [Azure Machine Learning][]
+
+本教學課程會示範如何使用 Power BI 來連接到 SQL 資料倉儲，並建立一些基本的視覺效果。
 
 > [AZURE.NOTE] 若要完成本教學課程，您需要隨著 AdventureWorksDW 範例資料庫預先載入的 SQL 資料倉儲資料庫。[建立 SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)示範如何建立一個資料倉儲。
 >
 > 如果您已經有 SQL 資料倉儲資料庫但沒有範例資料，您可以[手動載入範例資料][]。
-
-本教學課程會示範如何使用 Power BI 來連接到 SQL 資料倉儲，並建立一些基本的視覺效果。
 
 > [AZURE.VIDEO azure-sql-data-warehouse-sample-data-and-powerbi]
 
@@ -85,7 +88,7 @@
 您也可以隨時按一下 [檔案]，並選取 [儲存] 來儲存您的進度。
 
 ## 後續步驟
-既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][]、[載入][]或[移轉][]。
+既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][]、[載入][]或[移轉][]。或者，看一下 [Power BI 網站][]。
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
@@ -106,9 +109,13 @@
 [開發]: ./sql-data-warehouse-overview-develop.md
 [載入]: ./sql-data-warehouse-overview-load.md
 [手動載入範例資料]: ./sql-data-warehouse-get-started-manually-load-samples.md
-[Azure 入口網站]: https://portal.azure.com/
-[Power BI]: http://www.powerbi.com/
 [connecting to SQL Data Warehouse]: ./sql-data-warehouse-integrate-power-bi.md
 [Create a SQL Data Warehouse]: ./sql-data-warehouse-get-started-provision.md
+[Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
+[Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!--Other-->
+[Azure 入口網站]: https://portal.azure.com/
+[Power BI 網站]: http://www.powerbi.com/
+
+<!---HONumber=AcomDC_0525_2016-->

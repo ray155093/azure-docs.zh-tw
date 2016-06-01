@@ -1,6 +1,6 @@
 <properties
-	pageTitle="將擁有者和使用者加入研發/測試實驗室 | Microsoft Azure"
-	description="將不在訂用帳戶內的使用者安全地加入 Azure 研發/測試實驗室。"
+	pageTitle="將擁有者和使用者加入實驗室 | Microsoft Azure"
+	description="將不在訂用帳戶內的使用者安全地加入 Azure DevTest Labs"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,33 +13,32 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
-# 將擁有者和使用者加入研發/測試實驗室
+# 將擁有者和使用者加入實驗室
 
-> [AZURE.NOTE] 按一下下列連結可檢視本文隨附的影片：[如何在 DevTest 實驗室中設定安全性](/documentation/videos/how-to-set-security-in-your-devtest-lab)
+> [AZURE.NOTE] 按一下下列連結可檢視本文隨附的影片：[如何在研發/測試實驗室中設定安全性](/documentation/videos/how-to-set-security-in-your-devtest-lab)。
 
 ## 概觀
-
-研發/測試實驗室的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。若要深入了解，可在 Azure Preview 入口網站中搜尋[角色型存取控制 (RBAC)](https://azure.microsoft.com/searchresults?query=Role%20Based%20Access%20Control%20%28RBAC%29)。
+DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。若要深入了解，可在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中搜尋[角色型存取控制 (RBAC)](https://azure.microsoft.com/search/?q=role%20based%20access%20control)。
 
 您可以透過下列兩個角色，將存取權授與實驗室：
 
- - **擁有者**：已在實驗室層級指派給 [擁有者] 角色的使用者具備實驗室的完整存取權 (包括管理和監視功能)。在實驗室層級指派的 [擁有者] 角色不會授與使用者權限來存取實驗室範圍之外的訂用帳戶資源。在 Azure 訂用帳戶層級指派給 [擁有者] 角色的使用者，會自動擁有在該訂用帳戶中建立的任何實驗室的 [擁有者] 權限。
+- **擁有者**：已在實驗室層級指派給 [擁有者] 角色的使用者具備實驗室的完整存取權 (包括管理和監視功能)。在實驗室層級指派的 [擁有者] 角色不會授與使用者權限來存取實驗室範圍之外的訂用帳戶資源。在 Azure 訂用帳戶層級指派給 [擁有者] 角色的使用者，會自動擁有在該訂用帳戶中建立的任何實驗室的 [擁有者] 權限。
 
- -  **研發/測試實驗室使用者**：已指派給**研發/測試實驗室使用者**角色的使用者可以建立、更新和刪除指定實驗室中的 VM。使用者可以是*內部* (訂用帳戶的 Azure Active Directory 成員) 或*外部* (不屬於 Azure AD 成員的使用者，例如合作夥伴組織的成員)。
+-  **研發/測試實驗室使用者**：已指派給**研發/測試實驗室使用者**角色的使用者可以建立、更新和刪除指定實驗室中的 VM。使用者可以是*內部* (訂用帳戶的 Azure Active Directory 成員) 或*外部* (不屬於 Azure AD 成員的使用者，例如合作夥伴組織的成員)。
 	-  **研發/測試實驗室使用者**角色必須透過實驗室的 [新增使用者] 磚來指派。
-	-  **研發/測試實驗室使用者**角色中的使用者只能在指派他們的實驗室內部執行這些作業。例如， **研發/測試實驗室使用者**無法使用訂用帳戶的虛擬機器服務來建立虛擬機器。只允許從研發/測試實驗室帳戶建立虛擬機器。
+	-  **研發/測試實驗室使用者**角色中的使用者只能在指派他們的實驗室內部執行這些作業。例如，**研發/測試實驗室使用者**無法使用訂用帳戶的虛擬機器服務來建立虛擬機器。只允許從研發/測試實驗室帳戶建立虛擬機器。
 	- *外部*使用者必須擁有其中一個 Microsoft 帳戶網域 (也就是 @hotmail.com、@live.com、@msn.com、@passport.com、@outlook.com，或者特定國家/地區的任何變體) 的帳戶。
-
+ 
 ## 將擁有者加入您的實驗室
 
-研發/測試實驗室會考慮將包含實驗室的 Azure 訂用帳戶擁有者當成這些實驗室的擁有者。雖然您可以透過 Azure Preview 入口網站中實驗室的刀鋒視窗，將額外的擁有者加入研發/測試實驗室，但目前不支援此功能。
+DevTest Labs 會考慮將包含實驗室的 Azure 訂用帳戶擁有者當成這些實驗室的擁有者。雖然您可以透過 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中實驗室的刀鋒視窗，將額外的擁有者加入實驗室，但目前不支援此功能。
 
 若要將擁有者加入您已在其中建立實驗室或將在其中建立新實驗室的 Azure 訂用帳戶，請遵循下列步驟：
 
-1. 登入 [Azure Preview 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
 1. 在左側導覽中，點選 [訂用帳戶]。
 
@@ -71,7 +70,7 @@
 
 若要將研發/測試實驗室使用者加入您的實驗室，請遵循下列步驟：
 
-1. 登入 [Azure Preview 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
 1. 點選 [瀏覽]。
 
@@ -99,6 +98,6 @@
 
 	1. 點選 [確定] 以關閉 [新增存取] 刀鋒視窗。
 
-	1. [使用者] 刀鋒視窗會顯示新增的角色及使用者。
+1. [使用者] 刀鋒視窗會顯示新增的角色及使用者。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

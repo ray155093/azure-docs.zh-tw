@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
  <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/15/2016"
+   ms.date="05/16/2016"
    ms.author="v-sharos" />
 
 
@@ -26,7 +26,7 @@
 
 請檢閱版本資訊中包含的下列資訊，以取得 2015 年 1 月的更新。
 
-> [AZURE.IMPORTANT]
+> [AZURE.IMPORTANT]  
 >
 >- 此更新無法透過 Windows Update 取得，安裝方式也和其他更新不一樣。即使您透過 Azure 傳統入口網站套用此更新，您的裝置也不會收到更新。此更新只會適用於 2015 年 1 月 20 日之後建立的虛擬裝置。 
 > 
@@ -78,4 +78,4 @@
 
  
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0518_2016-->

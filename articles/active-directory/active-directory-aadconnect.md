@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/20/2016"
+	ms.date="05/19/2016"
 	ms.author="andkjell;billmath"/>
 
 # 整合內部部署身分識別與 Azure Active Directory
@@ -22,7 +22,7 @@ Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。�
 
 <!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
 
-> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Windows Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
+> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Microsoft Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
@@ -50,38 +50,38 @@ Azure Active Directory Connect 由三個主要元件組成︰同步處理服務�
 您可以在 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=615771)下載 Azure AD Connect。
 
 
-| 方案 | 案例 |
-| ----- | ----- |
-| 開始之前 - [硬體和必要條件](active-directory-aadconnect-prerequisites.md) | <li>開始安裝 Azure AD Connect 之前所應完成的步驟。</li> |
-| [快速設定](active-directory-aadconnect-get-started-express.md) | <li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li>
-| [自訂設定](active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
-| [從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) | <li>在您有已在執行中的現有 DirSync 伺服器時使用。</li>
-| [從 Azure AD Sync 或 Azure AD Connect 升級](active-directory-aadconnect-upgrade-previous-version.md)| <li>視您的偏好而定會有數種不同的方法。</li>
+方案 | 案例
+----- | ----- |
+開始之前 - [硬體和必要條件](active-directory-aadconnect-prerequisites.md) | <li>開始安裝 Azure AD Connect 之前所應完成的步驟。</li>
+[快速設定](active-directory-aadconnect-get-started-express.md) | <li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li>
+[自訂設定](active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
+[從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) | <li>在您有已在執行中的現有 DirSync 伺服器時使用。</li>
+[從 Azure AD Sync 或 Azure AD Connect 升級](active-directory-aadconnect-upgrade-previous-version.md)| <li>視您的偏好而定會有數種不同的方法。</li>
 
 
 [安裝後](active-directory-aadconnect-whats-next.md)，您應該確認它是依照預期方式運作，並將授權指派給使用者。
 
 ### 安裝 Azure AD Connect 的後續步驟
 
-| 主題 | |
-| --------- | --------- |
-| 下載 Azure AD Connect | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) |
-| 使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md) |
-| 使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md) |
-| 從 DirSync 升級 | [從 Azure AD Sync 工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) |
-| 安裝之後 | [驗證安裝和指派授權](active-directory-aadconnect-whats-next.md) |
+主題 |  
+--------- | ---------
+下載 Azure AD Connect | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
+使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
+使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
+從 DirSync 升級 | [從 Azure AD Sync 工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
+安裝之後 | [驗證安裝和指派授權](active-directory-aadconnect-whats-next.md)
 
 ### 深入了解安裝 Azure AD Connect
 
 您也想要準備[操作](active-directory-aadconnectsync-operations.md)考量。您可能想要有一個待命伺服器，讓您可在[災害](active-directory-aadconnectsync-operations.md#disaster-recovery)發生時輕鬆地容錯移轉。如果您打算進行頻繁的組態變更，則應該規劃[預備模式](active-directory-aadconnectsync-operations.md#staging-mode) 伺服器。
 
-| 主題 | |
-| --------- | --------- |
-| 支援的拓撲 | [Azure AD Connect 的拓撲](active-directory-aadconnect-topologies.md) |
-| 設計概念 | [Azure AD Connect 的設計概念](active-directory-aadconnect-design-concepts.md) |
-| 用於安裝的帳戶 | [進一步了解 Azure AD Connect 認證和權限](active-directory-aadconnect-accounts-permissions.md) |
-| 作業規劃 | [Azure AD Connect 同步處理：作業工作和考量](active-directory-aadconnectsync-operations.md) |
-| 使用者登入選項 | [Azure AD Connect 使用者登入選項](active-directory-aadconnect-user-signin.md) |
+主題 |  
+--------- | ---------
+支援的拓撲 | [Azure AD Connect 的拓撲](active-directory-aadconnect-topologies.md)
+設計概念 | [Azure AD Connect 的設計概念](active-directory-aadconnect-design-concepts.md)
+用於安裝的帳戶 | [進一步了解 Azure AD Connect 認證和權限](active-directory-aadconnect-accounts-permissions.md)
+作業規劃 | [Azure AD Connect 同步處理：作業工作和考量](active-directory-aadconnectsync-operations.md)
+使用者登入選項 | [Azure AD Connect 使用者登入選項](active-directory-aadconnect-user-signin.md)
 
 ## 設定同步處理功能
 Azure AD Connect 隨附數個您可以選擇性地開啟或預設為啟用的功能。在特定案例與拓撲中，有些功能有時可能需要進行其他設定。
@@ -100,14 +100,14 @@ Azure AD Connect 隨附數個您可以選擇性地開啟或預設為啟用的功
 
 ### 設定同步處理功能的後續步驟
 
-| 主題 | |
-| --------- | --------- |
-| 設定篩選 | [Azure AD Connect 同步處理：設定篩選](active-directory-aadconnectsync-configure-filtering.md) |
-| 密碼同步處理 | [Azure AD Connect 同步處理：實作密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md) |
-| 密碼回寫 | [開始使用密碼管理](active-directory-passwords-getting-started.md) |
-| 裝置回寫 | [在 Azure AD Connect 中啟用裝置回寫](active-directory-aadconnect-feature-device-writeback.md) |
-| 防止意外刪除 | [Azure AD Connect 同步處理：防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) |
-| 自動升級 | [Azure AD Connect：自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)|
+主題 |  
+--------- | --------- |
+設定篩選 | [Azure AD Connect 同步處理：設定篩選](active-directory-aadconnectsync-configure-filtering.md)
+密碼同步處理 | [Azure AD Connect 同步處理：實作密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)
+密碼回寫 | [開始使用密碼管理](active-directory-passwords-getting-started.md)
+裝置回寫 | [在 Azure AD Connect 中啟用裝置回寫](active-directory-aadconnect-feature-device-writeback.md)
+防止意外刪除 | [Azure AD Connect 同步處理：防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)
+自動升級 | [Azure AD Connect：自動升級](active-directory-aadconnect-feature-automatic-upgrade.md)
 
 ## 自訂 Azure AD Connect 同步處理
 Azure AD Connect 同步處理隨附一個適用於大部分客戶和拓撲的預設組態。但總是會有一些情況，預設組態並不適用，因而必須進行調整。支援依照本節和連結主題所述進行變更。
@@ -120,14 +120,14 @@ Azure AD Connect 同步處理隨附一個適用於大部分客戶和拓撲的預
 
 ### 自訂 Azure AD Connect 同步處理的後續步驟。
 
-| 主題 | |
-| --------- | --------- |
-| 所有 Azure AD Connect 同步處理文章 | [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md) |
-| 技術概念 | [Azure AD Connect 同步處理：技術概念](active-directory-aadconnectsync-technical-concepts.md) |
-| 了解預設組態 | [Azure AD Connect 同步處理：了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md) |
-| 了解使用者和連絡人 | [Azure AD Connect 同步處理：了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md) |
-| 宣告式佈建 | [Azure AD Connect 同步處理：了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) |
-| 變更預設組態 | [變更預設組態的最佳作法](active-directory-aadconnectsync-best-practices-changing-default-configuration.md) |
+主題 |  
+--------- | ---------
+所有 Azure AD Connect 同步處理文章 | [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
+技術概念 | [Azure AD Connect 同步處理：技術概念](active-directory-aadconnectsync-technical-concepts.md)
+了解預設組態 | [Azure AD Connect 同步處理：了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)
+了解使用者和連絡人 | [Azure AD Connect 同步處理：了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md)
+宣告式佈建 | [Azure AD Connect 同步處理：了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)
+變更預設組態 | [變更預設組態的最佳作法](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
 
 ## 設定同盟功能
 ADFS 可以設定為支援[多個網域](active-directory-aadconnect-multiple-domains.md)。例如，您可以有多個必須用於同盟的最上層網域。
@@ -136,22 +136,22 @@ ADFS 可以設定為支援[多個網域](active-directory-aadconnect-multiple-do
 
 ### 設定同盟功能的後續步驟
 
-| 主題 | |
-| --------- | --------- |
-| 設定 ADFS 與子網域 | [與 Azure AD 同盟的多網域支援](active-directory-aadconnect-multiple-domains.md) |
-| 管理 AD FS 伺服器陣列 | [使用 Azure AD Connect 管理和自訂 AD FS](active-directory-aadconnect-federation-management.md) |
-| 手動更新同盟憑證 | [續約 Office 365 和 Azure AD 的同盟憑證](active-directory-aadconnect-o365-certs.md) |
+主題 |  
+--------- | ---------
+設定 ADFS 與子網域 | [與 Azure AD 同盟的多網域支援](active-directory-aadconnect-multiple-domains.md)
+管理 AD FS 伺服器陣列 | [使用 Azure AD Connect 管理和自訂 AD FS](active-directory-aadconnect-federation-management.md)
+手動更新同盟憑證 | [續約 Office 365 和 Azure AD 的同盟憑證](active-directory-aadconnect-o365-certs.md)
 
 ## 詳細資訊和參考
 
-| 主題 | |
-| --------- | --------- |
-| 版本歷程記錄 | [版本歷程記錄](active-directory-aadconnect-version-history.md) |
-| 比較 DirSync、Azure ADSync 和 Azure AD Connect | [目錄整合工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md) |
-| Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-directory-aadconnect-federation-compatibility.md) |
-| 同步處理的屬性 | [同步處理的屬性](active-directory-aadconnectsync-attributes-synchronized.md) |
-| 使用 Azure AD Connect Health 進行監控 | [Azure AD Connect Health](active-directory-aadconnect-health.md) |
-| 常見問題集 | [Azure AD Connect 常見問題集](active-directory-aadconnect-faq.md) |
+主題 |  
+--------- | --------- |
+版本歷程記錄 | [版本歷程記錄](active-directory-aadconnect-version-history.md)
+比較 DirSync、Azure ADSync 和 Azure AD Connect | [目錄整合工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md)
+Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-directory-aadconnect-federation-compatibility.md)
+同步處理的屬性 | [同步處理的屬性](active-directory-aadconnectsync-attributes-synchronized.md)
+使用 Azure AD Connect Health 進行監控 | [Azure AD Connect Health](active-directory-aadconnect-health.md)
+常見問題集 | [Azure AD Connect 常見問題集](active-directory-aadconnect-faq.md)
 
 
 **其他資源**
@@ -161,4 +161,4 @@ ADFS 可以設定為支援[多個網域](active-directory-aadconnect-multiple-do
 
 >[AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!-----HONumber=AcomDC_0427_2016--->
+<!---HONumber=AcomDC_0525_2016-->

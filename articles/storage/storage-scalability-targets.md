@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="storage"
-   ms.date="04/11/2016"
+   ms.date="04/19/2016"
    ms.author="robinsh" />
 
 # Azure 儲存體延展性和效能目標
@@ -22,8 +22,6 @@
 本主題描述 Microsoft Azure 儲存體的延展性和效能。如需其他 Azure 限制的摘要，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
 
 >[AZURE.NOTE] 所有儲存體帳戶都能在一般網路拓撲上執行，並支援下面說明的延展性和效能目標，無論它們在何時建立。如需 Azure 儲存體平面網路架構及延展性的詳細資訊，請參閱 [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)。
-
-<!-- -->
 
 >[AZURE.IMPORTANT] 列於此處的延展性和效能目標都是高階目標，但仍可達成。在所有情況下，您的儲存體帳戶所達到的要求率和頻寬取決於已儲存物件的大小、使用的存取模式、應用程式執行的工作負載類型。請務必測試您的服務，以判斷效能是否達到您的要求。如果可能，請避免流量率突增，確保流量在不同分割之間妥善分散。
 
@@ -40,8 +38,7 @@
 
 [AZURE.INCLUDE [azure-storage-limits-vm-disks](../../includes/azure-storage-limits-vm-disks.md)]
 
-
-如需其他詳細資訊，請參閱[虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md)。
+如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
 ### 標準儲存體帳戶
 
@@ -86,4 +83,4 @@
 - [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)
 - [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

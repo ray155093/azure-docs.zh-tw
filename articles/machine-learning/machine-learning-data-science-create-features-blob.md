@@ -13,23 +13,19 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/10/2016" 
 	ms.author="fashah;garye;bradsev" />
 
 #使用 Panda 建立 Azure blob 儲存體資料功能
 
-
-##簡介
-
-本文件涵蓋如何使用 [Pandas](http://pandas.pydata.org/) Python 封裝對儲存在 Azure blob 容器的資料建立功能。概述如何載入 Panda 資料框架後，接著會示範如何使用 Python 指令碼，產生帶有指標值與分類收納功能的分類功能。
+本文件說明如何使用 [Pandas](http://pandas.pydata.org/) Python 封裝，對儲存在 Azure blob 容器的資料建立特徵。概述如何將資料載入 Panda 資料框架後，接著會示範如何使用 Python 指令碼，搭配指標值和分類收納特徵，以產生分類特徵。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
-## 先決條件
-本文假設您已經：
 
-* 建立您的 Azure blob 儲存體帳戶並將您的資料儲存在該處。如需設定帳戶的指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)
+## 必要條件
+本文假設您已建立 Azure Blob 儲存體帳戶，並將您的資料儲存在該處。如需設定帳戶的指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)
 
 
 ## 將資料載入至 Pandas 資料框架
@@ -141,4 +137,4 @@
 
  
 
-<!---HONumber=AcomDC_0309_2016--->
+<!----HONumber=AcomDC_0518_2016-->

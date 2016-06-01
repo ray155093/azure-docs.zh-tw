@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="03/07/2016" 
+	ms.date="05/16/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 Visual Studio 建立具有複製活動的管線
@@ -70,7 +70,7 @@
 
 5. 再次以滑鼠右鍵按一下 [方案總管] 中的 [連結服務] 節點，指向 [加入]，然後按一下 [新增項目]。 
 6. 這次，請選取 [Azure SQL 連結服務]，然後按一下 [加入]。 
-7. 在 **AzureSqlLinkedService1.json 檔案**中，將**伺服器名稱**、**資料庫名稱**、 **username@servername** 和 **密碼** 替換為您的 Azure SQL 伺服器和資料庫名稱、使用者帳戶和密碼。
+7. 在 **AzureSqlLinkedService1.json 檔案**中，將**伺服器名稱**、**資料庫名稱**、**username@servername** 和**密碼**替換為您的 Azure SQL 伺服器和資料庫名稱、使用者帳戶和密碼。
 8.  儲存 **AzureSqlLinkedService1.json** 檔案。 
 
 
@@ -210,9 +210,8 @@
 	
 		> [AZURE.NOTE]  
 		Azure Data Factory 的名稱在全域必須是唯一的。如果您在發佈時收到與 Data Factory 名稱有關的錯誤，請變更 Data Factory 的名稱 (例如 yournameVSTutorialFactory) 並嘗試再發佈一次。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
-		> 
-		> Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-	3. 針對 [訂用帳戶] 欄位選取適當的訂用帳戶。 
+		
+	3. 針對 [訂用帳戶] 欄位選取適當的訂用帳戶。
 	4. 針對要建立的 Data Factory 選取 [資源群組]。 
 	5. 選取 Data Factory 的 [區域]。 
 	6. 按 [下一步]，切換至 [發佈項目] 頁面。 
@@ -220,16 +219,30 @@
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
 25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。 
 
-如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰
+請注意：
 
-- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
+- 如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰ 
+
+	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
 		
-		Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+			Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
 	
-	您可以執行下列命令來確認已註冊 Data Factory 提供者。
+		您可以執行下列命令來確認已註冊 Data Factory 提供者。
 	
-		Get-AzureRmResourceProvider
-- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+			Get-AzureRmResourceProvider
+	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+- 	Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
+- 	若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
+
+## 摘要
+在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。您已使用 Visual Studio 建立 Data Factory、連結服務、資料集和管線。以下是您在本教學課程中執行的高階步驟：
+
+1.	建立 Azure **Data Factory**。
+2.	建立**連結服務**：
+	1. **Azure 儲存體**連結服務可連結保留輸入資料的 Azure 儲存體帳戶。 	
+	2. **Azure SQL** 連結服務可連結保留輸出資料的 Azure SQL Database。 
+3.	建立可描述管線輸入資料和輸出資料的**資料集**。
+4.	建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。 
 
 
 ## 使用伺服器總管檢視 Data Factory
@@ -248,6 +261,12 @@
 如需如何使用 Azure 入口網站來監視您在本教學課程中建立的管線和資料集的指示，請參閱[監視資料集和管線](data-factory-get-started-using-editor.md#monitor-pipeline)。
 
 ## 另請參閱
-如需 Azure Data Factory 中複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
+| 主題 | 說明 |
+| :---- | :---- |
+| [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
+| [管線](data-factory-create-pipelines.md) | 本文將協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
+| [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!-----HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -123,7 +123,7 @@
 		$pip = New-AzureRmPublicIpAddress -Name $GWIPName -ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
 		$ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
 		
-10. 將根憑證 .cer 檔案上傳至 Azure。您可以使用來自您的企業憑證環境的根憑證，或者您可以使用自我簽署的根憑證。您最多可上傳 20 個根憑證。如需使用 *makecert* 建立自我簽署根憑證的相關指示，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。請注意，.cer 檔案不應該包含根憑證的私密金鑰。
+10. 將根憑證 .cer 檔案上傳至 Azure。您可以使用來自您的企業憑證環境的根憑證，或者您可以使用自我簽署的根憑證。您最多可上傳 20 個根憑證。如需使用 *makecert* 建立自我簽署根憑證的相關指示，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。請注意，.cer 檔案不應該包含根憑證的私密金鑰。若要取得如下例所示的公開金鑰，請將 .cer 檔匯出成 Base-64 編碼的 X.509 (.CER) 檔案，再使用記事本開啟該檔案。複製兩者間的所有項目：-----BEGIN CERTIFICATE----- & -----END CERTIFICATE-----
 	
 	以下是其外觀的範例。上傳公開憑證資料的具挑戰性部分是您必須複製並貼上整個字串，且不含空格。否則，上傳將無法運作。您將需要針對此步驟使用您自己的憑證 .cer 檔案。請勿嘗試從下方複製並貼上範例。
 
@@ -240,4 +240,4 @@
 
 您可以將虛擬機器新增至虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

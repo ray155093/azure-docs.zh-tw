@@ -13,13 +13,14 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="03/04/2016"
+	ms.date="05/24/2016"
 	ms.author="sdanie"/>
 
 # 如何搭配使用 Azure Redis 快取與 Python
 
 > [AZURE.SELECTOR]
-- [.Net](cache-dotnet-how-to-use-azure-redis-cache.md)
+- [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
+- [ASP.NET](cache-web-app-howto.md)
 - [Node.js](cache-nodejs-get-started.md)
 - [Java](cache-java-get-started.md)
 - [Python](cache-python-get-started.md)
@@ -34,30 +35,37 @@
 
 ## 在 Azure 上建立 Redis 快取
 
-在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=398536)中，依序按一下 [新增] 和 [資料 + 儲存體]，然後選取 [Redis 快取]。
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-  ![][1]
+## 擷取主機名稱和存取金鑰
 
-輸入 DNS 主機名稱。它的形式為 `<name>
-  .redis.cache.windows.net`。按一下 [建立]。
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-  ![][2]
 
-  建立快取之後，請[瀏覽至該快取](cache-configure.md#configure-redis-cache-settings)以檢視其設定。您將需要：
+## 啟用非 SSL 端點
 
-  - **主機名稱。** 您在建立快取時輸入了這個名稱。
-  - **連接埠。** 按一下 [連接埠] 下方的連結，以檢視連接埠。請使用 SSL 連接埠。
-  - **存取金鑰。** 按一下 [金鑰] 下方的連結，並複製主要金鑰。
+有些 Redis 用戶端不支援 SSL，且預設會[停用新的 Azure Redis 快取執行個體的非 SSL 連接埠](cache-configure.md#access-ports)。在本文撰寫當下，[redis-py](https://github.com/andymccurdy/redis-py) 用戶端不支援 SSL。
 
-  ## 在快取中加入項目並擷取該項目
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-non-ssl-port.md)]
 
-  >>> >>> import redis >>> r = redis.StrictRedis(host='<name>.redis.cache.windows.net', port=6380, db=0, password='<key>', ssl=True) >>> r.set('foo', 'bar') True >>> r.get('foo') b'bar'
 
-將 *&lt;name&gt;* 取代為您的快取名稱，並將 *&lt;key&gt;* 取代為您的存取金鑰。
+## 在快取中加入項目並擷取該項目
+
+
+	>>> import redis
+	>>> r = redis.StrictRedis(host='<name>.redis.cache.windows.net',
+	      port=6380, db=0, password='<key>', ssl=True)
+	>>> r.set('foo', 'bar')
+	True
+	>>> r.get('foo')
+	b'bar'
+
+
+將 `<name>` 取代為您的快取名稱，並將 `key` 取代為您的存取金鑰。
 
 
 <!--Image references-->
-[1]: ./media/cache-python-get-started/cache01.png
-[2]: ./media/cache-python-get-started/cache02.png
+[1]: ./media/cache-python-get-started/redis-cache-new-cache-menu.png
+[2]: ./media/cache-python-get-started/redis-cache-cache-create.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

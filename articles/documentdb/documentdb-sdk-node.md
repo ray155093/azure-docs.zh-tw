@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="04/26/2016" 
 	ms.author="andrl"/>
 
 # DocumentDB SDK
@@ -37,12 +37,16 @@
 
 ##版本資訊
 
+###<a name="1.7.0"/>1.7.0</a>
+
+- 新加入文件的存留時間 (TTL) 功能支援。
+
 ###<a name="1.6.0"/>1.6.0</a>
 - 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。 
 
 ###<a name="1.5.6"/>1.5.6</a>
 
-- 修正的 RangePartitionResolver.resolveForRead 錯誤，其因錯誤的結果 CONCAT 而無法傳回連結
+- 已修正 RangePartitionResolver.resolveForRead 錯誤，其因錯誤的結果 CONCAT 而無法傳回連結。
 
 ###<a name="1.5.5"/>1.5.5</a>
 
@@ -58,15 +62,15 @@
 
 ###<a name="1.5.2"/>1.5.2</a>
 
-- 修正問題 [#95](https://github.com/Azure/azure-documentdb-node/issues/95) - EventEmitter 接聽程式洩漏警告
+- 修正問題 [#95](https://github.com/Azure/azure-documentdb-node/issues/95) - EventEmitter 接聽程式洩漏警告。
 
 ###<a name="1.5.1"/>1.5.1</a>
 
-- 修正問題 [#92](https://github.com/Azure/azure-documentdb-node/issues/90) - 重新命名資料夾雜湊以針對區分大小寫的系統進行雜湊
+- 修正問題 [#92](https://github.com/Azure/azure-documentdb-node/issues/90) - 重新命名資料夾雜湊以針對區分大小寫的系統進行雜湊。
 
 ### <a name="1.5.0"/>1.5.0</a>
 
-- 藉由新增雜湊和範圍分割解析程式來實作分區化支援
+- 藉由新增雜湊和範圍分割解析程式來實作分區化支援。
 
 ### <a name="1.4.0"/>1.4.0</a>
 
@@ -74,17 +78,17 @@
 
 ### <a name="1.3.0"/>1.3.0</a>
 
-- 已略過以配合其他 SDK 的版本號碼
+- 已略過以配合其他 SDK 的版本號碼。
 
 ### <a name="1.2.2"/>1.2.2</a>
 
-- 將 Q Pomise 包裝函式分割至新的儲存機制
-- 更新至 npm 登錄的封裝檔案
+- 將 Q Pomise 包裝函式分割至新的儲存機制。
+- 更新至 npm 登錄的封裝檔案。
 
 ### <a name="1.2.1"/>1.2.1</a>
 
-- 實作以識別碼為基礎的路由
-- 修正問題 [#49](https://github.com/Azure/azure-documentdb-node/issues/49) - 目前屬性與 current() 方法衝突
+- 實作以識別碼為基礎的路由。
+- 修正問題 [#49](https://github.com/Azure/azure-documentdb-node/issues/49) - 目前屬性與 current() 方法衝突。
 
 ### <a name="1.2.0"/>1.2.0</a>
 
@@ -94,11 +98,11 @@
 
 ### <a name="1.1.0"/>1.1.0</a>
 
-- 實作 V2 索引原則
+- 實作 V2 索引原則。
 
 ### <a name="1.0.3"/>1.0.3</a>
 
-- 問題 [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - 核心與 Promise SDK 中實作的 eslint 和 grunt 組態
+- 問題 [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - 核心與 Promise SDK 中實作的 eslint 和 grunt 組態。
 
 ### <a name="1.0.2"/>1.0.2</a>
 
@@ -106,13 +110,13 @@
 
 ### <a name="1.0.1"/>1.0.1</a>
 
-- 已實作透過新增 readConflicts、readConflictAsync 及 queryConflicts 來查詢衝突的功能
-- 已更新 API 文件
-- 問題 [#41](https://github.com/Azure/azure-documentdb-node/issues/41) - client.createDocumentAsync 錯誤  
+- 已實作透過新增 readConflicts、readConflictAsync 及 queryConflicts 來查詢衝突的功能。
+- 已更新 API 文件。
+- 問題 [#41](https://github.com/Azure/azure-documentdb-node/issues/41) - client.createDocumentAsync 錯誤。
 
 ### <a name="1.0.0"/>1.0.0</a>
 
-- GA SDK
+- GA SDK。
 
 ## 發行和停用日期
 Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順利轉換至較新/支援的版本。
@@ -128,6 +132,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
+| [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- 
 | [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- 
 | [1\.5.6](#1.5.6) | 2016 年 3 月 8 日 |--- 
 | [1\.5.5](#1.5.5) | 2016 年 2 月 2 日 |--- 
@@ -160,4 +165,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

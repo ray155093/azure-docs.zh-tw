@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/22/2016"
+   ms.date="05/17/2016"
    ms.author="larryfr"/>
 
 # 使用 Visual Studio 的 Hadoop 工具開發 Apache Storm on HDInsight 的 C# 拓撲
@@ -640,6 +640,10 @@ Context.Logger.Info("Component started");
 
 如需更多使用 HDInsight 的方式，或更多 Storm on HDinsight 範例，請參閱下列內容：
 
+**Microsoft SCP.NET**
+
+* [SCP 程式設計指南](hdinsight-storm-scp-programming-guide.md)
+
 **Apache Storm on HDInsight**
 
 -	[使用 Apache Storm on HDInsight 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology.md)
@@ -658,4 +662,4 @@ Context.Logger.Info("Component started");
 
 -	[開始使用 HBase on HDInsight](hdinsight-hbase-tutorial-get-started.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

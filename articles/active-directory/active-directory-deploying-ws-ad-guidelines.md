@@ -53,7 +53,7 @@
 - [在 Azure 入口網站中設定純雲端虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)
 - [在 Azure 入口網站中設定站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)
 - [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)
-- [在 Azure 中安裝複本 Active Directory 網域控制站](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)
+- [在 Azure 中安裝複本 Active Directory 網域控制站](../active-directory/active-directory-install-replica-active-directory-domain-controller.md)
 - [Microsoft Azure IT Pro IaaS：(01) 虛擬機器基本概念](https://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 - [Microsoft Azure IT Pro IaaS：(05) 建立虛擬網路和跨單位連線](https://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
 
@@ -338,7 +338,7 @@ LDAP 感知應用程式會部署在 Azure 虛擬機器上。支援 Windows 整�
 
 - [網路拓撲](#BKMK_NetworkTopology)：使用[跨單位連線](../vpn-gateway/vpn-gateway-site-to-site-create.md)建立 Azure 虛擬網路。
 
-- [安裝方法](#BKMK_InstallMethod)︰從公司 Windows Server Active Directory 網域部署複本 DC。對於複本 DC，您可以在 VM 上安裝 Windows Server AD DS，並選擇性地使用從媒體安裝 (IFM) 功能來減少在安裝期間複寫到新的 DC 所需的資料量。如需教學課程，請參閱[在 Azure 中安裝複本 Active Directory 網域控制站](../virtual-network/virtual-networks-install-replica-active-directory-domain-controller.md)。即使您使用 IFM，但是更有效率的方式可能是建置虛擬 DC 內部部署，並將整個虛擬硬碟 (VHD) 移至雲端，而不是在安裝期間複寫 Windows Server AD DS。基於安全考量，建議您在 VHD 複製到 Azure 之後，從內部部署網路刪除。
+- [安裝方法](#BKMK_InstallMethod)︰從公司 Windows Server Active Directory 網域部署複本 DC。對於複本 DC，您可以在 VM 上安裝 Windows Server AD DS，並選擇性地使用從媒體安裝 (IFM) 功能來減少在安裝期間複寫到新的 DC 所需的資料量。如需教學課程，請參閱[在 Azure 中安裝複本 Active Directory 網域控制站](../active-directory/active-directory-install-replica-active-directory-domain-controller.md)。即使您使用 IFM，但是更有效率的方式可能是建置虛擬 DC 內部部署，並將整個虛擬硬碟 (VHD) 移至雲端，而不是在安裝期間複寫 Windows Server AD DS。基於安全考量，建議您在 VHD 複製到 Azure 之後，從內部部署網路刪除。
 
 - [Windows Server Active Directory 網站拓撲](#BKMK_ADSiteTopology)：在 Active Directory 網站及服務中建立新的 Azure 網站。建立 Windows Server Active Directory 子網路物件來代表 Azure 虛擬網路，並且將子網路加入至網站。建立新的網站連結，其中包含新的 Azure 網站和 Azure 虛擬網路 VPN 端點所在的網站，以便控制和最佳化 Windows Server Active Directory 與 Azure 之間的流量。
 
@@ -558,4 +558,4 @@ Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要�
 
 > [AZURE.NOTE] 若要取得 Azure 上 Windows Server AD FS 端點的負載平衡，請在相同的雲端服務中設定 Windows Server AD FS 伺服器陣列的所有成員，並針對 HTTP (預設為 80) 和 HTTPS 連接埠 (預設為 443) 使用 Azure 的負載平衡功能。如需詳細資訊，請參閱 [Azure 負載平衡器探查](https://msdn.microsoft.com/library/azure/jj151530)。Azure 不支援 Windows Server 網路負載平衡 (NLB)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -250,6 +250,37 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 
+
+### 連線到安全的叢集
+
+1. 執行下列命令，以便在您即將用來執行「Connect-serviceFabricCluster」PowerShell 命令的電腦上設定憑證。
+
+    ```powershell
+    Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
+            -FilePath C:\docDemo\certs\DocDemoClusterCert.pfx `
+            -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
+    ```
+
+2. 執行下列 PowerShell 命令來連線到安全的叢集。憑證的詳細資料與您設定叢集時所提供的資訊相同。
+
+    ```powershell
+    Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
+              -KeepAliveIntervalInSec 10 `
+              -X509Credential -ServerCertThumbprint <Certificate Thumbprint> `
+              -FindType FindByThumbprint -FindValue <Certificate Thumbprint> `
+              -StoreLocation CurrentUser -StoreName My
+    ```
+
+    舉例來說，上述 PowerShell 命令應該會類似下列內容：
+
+    ```powershell
+    Connect-serviceFabricCluster -ConnectionEndpoint sfcluster4doc.westus.cloudapp.azure.com:19000 `
+              -KeepAliveIntervalInSec 10 `
+              -X509Credential -ServerCertThumbprint C179E609BBF0B227844342535142306F3913D6ED `
+              -FindType FindByThumbprint -FindValue C179E609BBF0B227844342535142306F3913D6ED `
+              -StoreLocation CurrentUser -StoreName My
+    ```
+
 ## 後續步驟
 
 - [Service Fabric 叢集升級程序與您的期望](service-fabric-cluster-upgrade.md)
@@ -263,4 +294,4 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 [Node-to-Node]: ./media/service-fabric-cluster-security/node-to-node.png
 [Client-to-Node]: ./media/service-fabric-cluster-security/client-to-node.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

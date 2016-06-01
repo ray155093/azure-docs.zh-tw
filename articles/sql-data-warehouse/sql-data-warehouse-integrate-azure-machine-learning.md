@@ -3,7 +3,7 @@
    description="搭配使用 Azure 機器學習服務與 SQL 資料倉儲以便開發解決方案的秘訣。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sahaj08"
+   authors="shivaniguptamsft"
    manager="barbkess"
    editor=""/>
 
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
-   ms.author="sahajs;barbkess;sonyama"/>
+   ms.date="05/17/2016"
+   ms.author="shigu;barbkess;sonyama"/>
 
 # 搭配使用 Azure 機器學習服務與 SQL 資料倉儲
 
-Azure 機器學習服務是一項完全受管理的預測性分析服務，您可用來在 SQL 資料倉儲中針對您的資料建立預測模型，並將這些模型發佈為可供取用 Web 服務。閱讀[Azure 上的機器學習服務簡介][]，即可了解預測性分析和機器學習的基本概念。然後，您可以使用[建立實驗教學課程][]，了解如何建立、定型、評分和測試機器學習模型。
+Azure 機器學習服務是一項完全受管理的預測性分析服務，您可用來在 SQL 資料倉儲中針對您的資料建立預測模型，並發佈為可供取用 Web 服務。閱讀[Azure 上的機器學習服務簡介][]，即可了解預測性分析和機器學習的基本概念。然後，您可以使用[建立實驗教學課程][]，了解如何建立、定型、評分和測試機器學習模型。
 
 在本文中，您將了解如何使用 [Azure Machine Learning Studio][] 來執行下列動作：
 
@@ -43,7 +43,7 @@ Azure 機器學習服務是一項完全受管理的預測性分析服務，您�
 選取 [讀取器] 模組並填寫屬性窗格。
 
 1. 選取 Azure SQL Database 做為資料來源。
-2. 資料庫伺服器名稱：輸入伺服器名稱。您可以使用 [Azure 傳統入口網站][]進行搜尋。
+2. 資料庫伺服器名稱：輸入伺服器名稱。您可以使用 [Azure 入口網站][]進行搜尋。
 
 ![][server_name]
 
@@ -101,7 +101,7 @@ FROM dbo.DimProduct;
 選取 [寫入器] 模組並填寫屬性窗格。
 
 1. 選取 Azure SQL Database 做為資料目的地。
-2. 資料庫伺服器名稱：輸入伺服器名稱。您可以使用 [Azure 傳統入口網站][]進行搜尋。
+2. 資料庫伺服器名稱：輸入伺服器名稱。您可以使用 [Azure 入口網站][]進行搜尋。
 3. 資料庫名稱：輸入您剛指定的伺服器上的資料庫名稱。
 4. 伺服器使用者帳戶名稱：輸入具有資料庫寫入權限的帳戶的使用者名稱。
 5. 伺服器使用者帳戶名稱：提供指定之使用者帳戶的密碼。
@@ -136,12 +136,12 @@ FROM dbo.DimProduct;
 
 <!--Article references-->
 
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop/
-[SQL 資料倉儲整合概觀]: ./sql-data-warehouse-overview-integration/
-[建立實驗教學課程]: https://azure.microsoft.com/zh-TW/documentation/articles/machine-learning-create-experiment/
-[Azure 上的機器學習服務簡介]: https://azure.microsoft.com/zh-TW/documentation/articles/machine-learning-what-is-machine-learning/
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[SQL 資料倉儲整合概觀]: ./sql-data-warehouse-overview-integration.md
+[建立實驗教學課程]: https://azure.microsoft.com/documentation/articles/machine-learning-create-experiment/
+[Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [Azure Machine Learning Studio]: https://studio.azureml.net/Home
-[Azure 傳統入口網站]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 
 <!--MSDN references-->
 
@@ -149,4 +149,4 @@ FROM dbo.DimProduct;
 
 [Azure Machine Learning documentation]: http://azure.microsoft.com/documentation/services/machine-learning/
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

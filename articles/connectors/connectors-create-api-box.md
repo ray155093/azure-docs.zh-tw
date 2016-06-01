@@ -14,13 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="02/25/2016"
+   ms.date="05/16/2016"
    ms.author="mandia"/>
 
 # 開始使用 Box API
 連線到 Box 來建立檔案、刪除檔案等等。您可以從下列應用程式使用 Box API：
 
-- 邏輯應用程式 
+- 邏輯應用程式 (如本主題所述)
+- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -37,7 +38,7 @@ Box 包含下列觸發程序及動作。
 
 | 觸發程序 | 動作|
 | --- | --- |
-|<ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>使用識別碼來取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
+|<ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>使用識別碼來取得檔案元資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
 
 所有 API 都支援 JSON 和 XML 格式的資料。
 
@@ -47,7 +48,7 @@ Box 包含下列觸發程序及動作。
 1. 登入您的 Box 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Box。 
 
-當您建立連線之後，請輸入 Box 的屬性。本主題的＜REST API 參考＞一節會說明這些屬性。
+當您建立連線之後，請輸入 Box 的屬性。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Box 連線。
 
@@ -160,7 +161,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 使用識別碼來取得檔案中繼資料
-使用檔案識別碼來擷取 Box 中的檔案中繼資料。```GET: /datasets/default/files/{id}```
+使用檔案識別碼來擷取 Box 中的檔案元資料。```GET: /datasets/default/files/{id}```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -174,7 +175,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 使用路徑來取得檔案中繼資料
-使用路徑來擷取 Box 中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
+使用路徑來擷取 Box 中的檔案元資料。```GET: /datasets/default/GetFileByPath```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -262,4 +263,4 @@ Box 包含下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

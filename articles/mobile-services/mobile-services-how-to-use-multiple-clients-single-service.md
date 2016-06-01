@@ -138,8 +138,6 @@
 
 有跨平台工具可以在行動裝置上提供更豐富的原生使用經驗，但仍共用單一程式碼基底，最常見的就是 JavaScript。行動服務提供下列開發平台的快速入門教學課程，可讓您輕鬆建立及管理跨平台應用程式開發平台的後端服務：
 
-+ [**Appcelerator**](http://go.microsoft.com/fwlink/p/?LinkId=509987)<br/>Appcelerator 可讓您使用 JavaScript 來開發單一應用程式，編譯成能夠在所有行動裝置平台上執行的原生應用程式。如此可提供在 UI 中的豐富使用者經驗、對所有原生裝置資源的存取權，以及原生應用程式效能。如需詳細資訊，請參閱 [Appcelerator 教學課程][Appcelerator]。
-
 + [**PhoneGap**](https://go.microsoft.com/fwLink/p/?LinkID=390707)**/**[**Cordova**](http://cordova.apache.org/)<br/>PhoneGap (Apache Cordova 專案的散發套件) 是免費的開放原始碼架構，可讓您使用標準化的 Web API、HTML 和 JavaScript 來開發在 Android、iOS 和 Windows 裝置上執行的單一應用程式。PhoneGap 提供 Web 檢視形式的 UI，但能夠存取推播通知、加速計、相機、儲存體、地理位置和應用程式內部瀏覽器等裝置上的原生資源，因而增強了使用者經驗。如需詳細資訊，請參閱 [PhoneGap 快速入門教學課程][PhoneGap]。
 
 	Visual Studio 現在也可以讓您使用 Visual Studio 的多重裝置混合式應用程式擴充功能 (發行前軟體) 來建置跨平台 Cordova 應用程式。如需詳細資訊，請參閱[藉由 HTML 和 JavaScript 開始使用多重裝置混合式應用程式](http://msdn.microsoft.com/library/dn771545.aspx) (英文)。
@@ -167,7 +165,7 @@
 [TemplatePushMessage]: http://msdn.microsoft.com/library/azure/microsoft.windowsazure.mobile.service.templatepushmessage.aspx
 [PhoneGap]: mobile-services-javascript-backend-phonegap-get-started.md
 [Sencha]: partner-sencha-mobile-services-get-started.md
-[Appcelerator]: ../partner-appcelerator-mobile-services-javascript-backend-appcelerator-get-started.md
+[Appcelerator]: partner-appcelerator-mobile-services-javascript-backend-appcelerator-get-started.md
 [SendAsync]: http://msdn.microsoft.com/library/microsoft.windowsazure.mobile.service.notifications.pushclient.sendasync.aspx
 [ApiServices.Push]: http://msdn.microsoft.com/library/microsoft.windowsazure.mobile.service.notifications.pushclient.sendasync.aspx
 [IPushMessage]: http://msdn.microsoft.com/library/microsoft.windowsazure.mobile.service.notifications.pushclient.sendasync.aspx
@@ -175,4 +173,4 @@
 [Building universal Windows apps for all Windows devices]: http://go.microsoft.com/fwlink/p/?LinkId=509905
 [Universal Windows app project for Azure Mobile Services using MVVM]: http://code.msdn.microsoft.com/Universal-Windows-app-for-db3564de
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0518_2016-->

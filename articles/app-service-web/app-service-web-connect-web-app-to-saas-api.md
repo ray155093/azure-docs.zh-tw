@@ -22,12 +22,7 @@
 
 ## 必要條件
 
-本教學課程是根據 API 應用程式教學課程系列所建置：
-
-1. [建立 Azure API 應用程式](../app-service-dotnet-create-api-app)
-3. [部署 Azure API 應用程式](../app-service-dotnet-deploy-api-app)
-4. [偵錯 Azure API 應用程式](../app-service-dotnet-remotely-debug-api-app)
-
+本教學課程是根據[建立 Azure API 應用程式](../app-service-api/app-service-api-dotnet-get-started.md)所建置。
 
 ## 在 Visual Studio 中建立 ASP.NET MVC 應用程式
 
@@ -89,4 +84,4 @@
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

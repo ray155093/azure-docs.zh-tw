@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
 
 
 # CDN 規則引擎比對條件和功能詳細資料
 
-本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件和功能的詳細說明。
+[AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-> [AZURE.NOTE] 規則引擎需要高階 CDN 層。如需標準和高階 CDN 層的功能詳細資訊，請參閱 [Azure 內容傳遞網路的概觀](cdn-overview.md)。
+本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件和功能的詳細說明。
 
 ## 比對條件
 
@@ -98,6 +98,8 @@ URL 查詢萬用字元 | 根據要求的查詢字串來比較指定的值。
 ### Access
 
 這些功能是設計來控制內容的存取權。
+
+> [AZURE.NOTE] 權杖驗證尚未正式推出，但將在未來版本中支援。
 
 名稱 | 目的
 -----|--------
@@ -206,4 +208,4 @@ Web 應用程式防火牆功能會判斷要求是否將由 Web 應用程式防�
 * [Azure CDN 概觀](cdn-overview.md)
 * [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0518_2016-->

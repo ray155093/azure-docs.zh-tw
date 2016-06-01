@@ -83,4 +83,4 @@
 
 所有資料庫層均提供[作用中異地複寫](sql-database-geo-replication-overview.md)。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需如何[設定異地複寫](sql-database-business-continuity-design.md)和[容錯移轉至次要資料庫](sql-database-geo-replication-portal.md)的詳細資訊，請參閱[業務續航力的設計](sql-database-geo-replication-failover-portal.md)。如需如何實作應用程式升級而不需要停機的詳細資訊，請參閱[升級應用程式而不需要停機](sql-database-business-continuity-application-upgrade.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

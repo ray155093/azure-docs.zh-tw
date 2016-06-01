@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="09/03/2015"
+   ms.date="05/17/2016"
    ms.author="alanwar"/>
 
 # 具狀態 Reliable Services 診斷功能
@@ -44,4 +44,4 @@ StatefulRunAsyncInvocation、StatefulRunAsyncCompletion，和 StatefulRunAsyncCa
 
 只要 RunAsync 工作的取消要求所花費的時間超過四秒，就會發出 StatefulRunAsyncSlowCancellation。當服務完成取消所花費的時間太久，它會影響服務快速在另一個節點上重新啟動的能力。這可能會影響服務的整體可用性。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

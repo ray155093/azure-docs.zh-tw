@@ -1,25 +1,27 @@
 <properties 
-   pageTitle="服務匯流排範例概觀 | Microsoft Azure"
-   description="分類及描述服務匯流排範例與每個範例的連結。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="服務匯流排範例概觀 | Microsoft Azure"
+    description="分類及描述服務匯流排範例與每個範例的連結。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 服務匯流排範例
 
 服務匯流排範例會示範[服務匯流排](https://azure.microsoft.com/services/service-bus/) (雲端服務) 和 [Windows Server 服務匯流排](https://msdn.microsoft.com/library/dn282144.aspx)中的重要功能。本主題分類及描述可用的範例與每個範例的連結。
 
 >[AZURE.NOTE] 服務匯流排範例不會與 SDK 一起安裝。若要取得範例，請造訪 [Azure SDK 範例頁面](https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=5)。
+>
+>此外，[這裡](https://github.com/Azure-Samples/azure-servicebus-messaging-samples)提供一組更新過的服務匯流排訊息範例 (在進行這項撰寫時，本文未說明過它們)。[這裡](https://github.com/Azure-Samples/azure-servicebus-relay-samples)是轉送範例。
 
 ## 服務匯流排代理傳訊
 
@@ -132,4 +134,4 @@
 - [服務匯流排架構](service-bus-architecture.md)
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

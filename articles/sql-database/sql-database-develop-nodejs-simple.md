@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Node.js 連接到 SQL Database"
+	pageTitle="使用 Node.js 連接到 SQL Database | Microsoft Azure"
 	description="提供可用來連接到 Azure SQL Database 的 Node.js 程式碼範例。"
 	services="sql-database"
 	documentationCenter=""
@@ -38,4 +38,4 @@
 
 [使用 Node.js 連接到 SQL 的概念證明](https://msdn.microsoft.com/library/mt715784.aspx)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

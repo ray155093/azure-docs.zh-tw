@@ -24,8 +24,8 @@ DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體�
 
 雖然許多常見的工作負載都有可用的架構，但這份文件只說明如何使用 Marathon 來建立及調整容器部署。在練習這些範例之前，您需要 Azure 容器服務中設定的 DC/OS 叢集。您也需要有此叢集的遠端連線。如需這些項目的詳細資訊，請參閱下列文章。
 
-- [部署 Azure 容器服務叢集](./container-service-deployment.md)
-- [連接到 Azure 容器服務叢集](./container-service-connect.md)
+- [部署 Azure 容器服務叢集](container-service-deployment.md)
+- [連接到 Azure 容器服務叢集](container-service-connect.md)
 
 連接到 Azure 容器服務叢集之後，您可以透過 http://localhost:local-port 存取 DC/OS 和相關的 REST API。本文件中的範例假設您的通道為連接埠 80。例如，在 `http://localhost/marathon/v2/` 可以觸達 Marathon 端點。如需各種 API 的詳細資訊，請參閱 [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) 和 [Chronos API](https://mesos.github.io/chronos/docs/api.html) 的 Mesosphere 文件，以及 [Mesos 排程器 API](http://mesos.apache.org/documentation/latest/scheduler-http-api/) 的 Apache 文件
 
@@ -172,6 +172,6 @@ Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -Cont
 
 ## 後續步驟
 
-[深入了解 Meso HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。[深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
+[深入了解 Mesos HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。[深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

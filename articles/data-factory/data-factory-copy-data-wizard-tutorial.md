@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="03/07/2016" 
+	ms.date="05/16/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
@@ -67,7 +67,7 @@
 	> [AZURE.NOTE] 如果您看到網頁瀏覽器停留在「授權中...」，請停用/取消核取 [封鎖第三方 Cookie 和站台資料] 設定 (或) 將它保持啟用並為 **login.microsoftonline.com** 建立例外狀況，然後再次嘗試啟動精靈。
 2. 在 [屬性] 頁面︰
 	1. 輸入 **CopyFromBlobToAzureSql** 做為 [工作名稱]
-	2. 輸入**說明** \(選擇性)。
+	2. 輸入**說明** (選擇性)。
 	3. 請記住 [開始日期時間] 和 [結束日期時間]。將 [結束日期時間] 變更為 [開始日期時間] 的隔天。 
 	3. 按 [下一步]。  
 
@@ -108,6 +108,15 @@
 13. 使用[使用監視應用程式監視和管理管線](data-factory-monitor-manage-app.md)中的指示，了解如何監視您剛才建立的管線。
 
 	![監視應用程式](./media/data-factory-copy-data-wizard-tutorial/monitoring-app.png)
-  
+ 
 
-<!---HONumber=AcomDC_0330_2016-->
+## 另請參閱
+| 主題 | 說明 |
+| :---- | :---- |
+| [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
+| [管線](data-factory-create-pipelines.md) | 本文將協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
+| [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
+
+<!---HONumber=AcomDC_0525_2016-->

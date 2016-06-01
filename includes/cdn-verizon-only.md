@@ -1,1 +1,1 @@
-> [AZURE.IMPORTANT] This feature is available with **Azure CDN from Verizon** products (Standard and Premium). It is not supported on **Azure CDN from Akamai**.  For a comparison of CDN features, see [Azure CDN Overview](cdn-overview.md#azure-cdn-features). 
+> [AZURE.IMPORTANT] **透過 Verizon 提供的 Azure CDN** 產品 (標準版和進階版) 具有這項功能。此功能不支援**透過 Akamai 提供的 Azure CDN**。如需 CDN 功能的比較，請參閱 [Azure CDN 概觀](cdn-overview.md#azure-cdn-features)。

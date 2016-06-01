@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/04/2016"
+   ms.date="05/18/2016"
    ms.author="v-sharos" />
 
 # 使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案
@@ -39,7 +39,7 @@ StorSimple Snapshot Manager 中央管理主控台可讓您建立一致、 時間
 
 - 如需 StorSimple Snapshot Manager 部署程序，請移至[部署 StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md)。
 
->[AZURE.NOTE]您無法使用 StorSimple Snapshot Manager 來管理 Microsoft Azure StorSimple Virtual Arrays (也稱為 StorSimple 內部部署虛擬裝置)。
+>[AZURE.NOTE] 您無法使用 StorSimple Snapshot Manager 來管理 Microsoft Azure StorSimple Virtual Arrays (也稱為 StorSimple 內部部署虛擬裝置)。
 
 ## StorSimple Snapshot Manager 工作和工作流程
 
@@ -62,4 +62,4 @@ StorSimple Snapshot Manager 中央管理主控台可讓您建立一致、 時間
 
 [下載 StorSimple Snapshot Manager](https://www.microsoft.com/download/details.aspx?id=44220)。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0518_2016-->

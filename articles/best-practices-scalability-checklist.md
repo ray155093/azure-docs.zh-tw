@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,7 +19,7 @@
 
 # 延展性檢查清單
 
-![](media/best-practices-scalability-checklist/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 服務設計
 - **分割工作負載**。將程序的組件設計為離散與可分解狀態。在遵循分離需求功能的一般規則與單一責任原則的情況下，將各個組件的大小減至最小。如此一來，散佈元件組件時，即可充分運用每個計算單位 (例如角色或資料庫伺服器)。它也能藉由新增特定資源的執行個體，更輕鬆地調整應用程式。如需詳細資訊，請參閱「[計算分割指引](https://msdn.microsoft.com/library/dn589773.aspx)」。
@@ -68,4 +68,4 @@
 - **考慮最小化服務帳戶數目**。例如，使用特定帳戶存取會造成連線限制，或在連線較少情況下表現較佳的資源或服務。這個方法很常用在如資料庫的服務上，但由於原始使用者模擬的關係，會影響到正確稽核作業的能力。
 - 在開發期間**執行效能分析與負載測試**，視為測試常式的一部分，並在確定發行之前，確認應用程式可視需要執行或調整。這個測試應在與生產平台相同的硬體類型上執行，並使用相同的資料類型、數量和使用者負載，因為在生產過程中也會遇到相同情況。如需詳細資訊，請參閱[測試雲端服務的效能](vs-azure-tools-performance-profiling-cloud-services.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

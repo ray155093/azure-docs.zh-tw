@@ -20,9 +20,9 @@
 # 在 Azure App Service 中設定自訂網域名稱
 
 > [AZURE.SELECTOR]
-- [Buy Domain for Web Apps](custom-dns-web-site-buydomains-web-app.md)
-- [Web Apps with External Domains](web-sites-custom-domain-name.md)
-- [Web Apps with Traffic Manager](web-sites-traffic-manager-custom-domain-name.md)
+- [購買 Web Apps 的網域](custom-dns-web-site-buydomains-web-app.md)
+- [內含外部網域的 Web Apps](web-sites-custom-domain-name.md)
+- [包含流量管理員的 Web 應用程式](web-sites-traffic-manager-custom-domain-name.md)
 - [GoDaddy](web-sites-godaddy-custom-domain-name.md)
 
 當您建立 Web 應用程式時，Azure 會將它指派給 azurewebsites.net 的子網域。例如，如果您的 Web 應用程式名稱為 **contoso**，則 URL 會是 **contoso.azurewebsites.net**。Azure 也會指派虛擬 IP 位址。
@@ -112,7 +112,7 @@
 - **contoso.com**，對應至 168.62.48.183。
 - 對應至 **contoso.azurewebsites.net** 的 **www.contoso.com**。
 
->[AZURE.NOTE] 您可以使用 Azure DNS 來裝載 web 應用程式所需的網域記錄。若要在 Azure DNS 設定您的自訂網域，並建立您的記錄，請參閱[建立 Web 應用程式的自訂 DNS 記錄](../dns/dns-web-sites-custom-domain)。
+>[AZURE.NOTE] 您可以使用 Azure DNS 來裝載 web 應用程式所需的網域記錄。若要在 Azure DNS 設定您的自訂網域，並建立您的記錄，請參閱[建立 Web 應用程式的自訂 DNS 記錄](../dns/dns-web-sites-custom-domain.md)。
 
 <a name="awverify" />
 ## 建立 awverify 記錄 (僅限 A 記錄)
@@ -155,4 +155,4 @@
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

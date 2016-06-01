@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="部署企業營運應用程式 | Microsoft Azure" 
-	description="在 Azure 中透過五個階段，部署包含 SQL Server AlwaysOn 可用性群組的 Web 型、高可用性企業營運應用程式。" 
+	description="透過五個階段的程序，在 Azure 中部署具有 SQL Server Always On 可用性群組的 Web 型、高可用性企業營運應用程式。" 
 	documentationCenter=""
 	services="virtual-machines-windows" 
 	authors="JoeDavies-MSFT" 
@@ -11,17 +11,17 @@
 <tags 
 	ms.service="virtual-machines-windows" 
 	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="Windows" 
+	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/25/2016" 
+	ms.date="05/08/2016" 
 	ms.author="josephd"/>
 
 # 在 Azure 中部署高可用性的企業營運應用程式
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
 
-本文包含在 Azure 基礎結構服務中，部署包含 SQL Server AlwaysOn 可用性群組之高可用性、內部網路專屬 Web 型企業營運應用程式的逐步指示連結。應用程式會裝載於這些電腦上：
+本文包含的逐步指示連結，可在 Azure 基礎結構服務中部署具有 SQL Server Always On 可用性群組之高可用性、內部網路專屬 Web 型企業營運應用程式。應用程式會裝載於這些電腦上：
 
 - 兩部 Web 伺服器
 - 兩部資料庫伺服器
@@ -73,9 +73,9 @@
 
 - [第 1 階段：設定 Azure](virtual-machines-windows-ps-lob-ph1.md)。建立儲存體帳戶、可用性集合及跨單位虛擬網路。
 - [第 2 階段：設定網域控制站](virtual-machines-windows-ps-lob-ph2.md)。建立和設定複本 Active Directory 網域服務 (AD DS) 網域控制站。
-- [第 3 階段：設定 SQL Server 基礎結構](virtual-machines-windows-ps-lob-ph3.md)。建立和設定執行 SQL Server 的虛擬機器、建立叢集，以及啟用 SQL Server AlwaysOn 可用性群組。
+- [第 3 階段：設定 SQL Server 基礎結構](virtual-machines-windows-ps-lob-ph3.md)。建立和設定執行 SQL Server 的虛擬機器、建立叢集，以及啟用 SQL Server Always On 可用性群組。
 - [第 4 階段：設定 Web 伺服器](virtual-machines-windows-ps-lob-ph4.md)。建立和設定兩部 Web 伺服器虛擬機器。
-- [第 5 階段：將應用程式資料庫加入 SQL Server AlwaysOn 可用性群組](virtual-machines-windows-ps-lob-ph5.md)。準備企業營運應用程式資料庫並將其加入至 SQL Server AlwaysOn 可用性群組。
+- [第 5 階段：將應用程式資料庫加入 SQL Server Always On 可用性群組](virtual-machines-windows-ps-lob-ph5.md)。準備企業營運應用程式資料庫並將其加入 SQL Server Always On 可用性群組。
 
 此部署是設計來搭配[企業營運應用程式架構藍圖](http://msdn.microsoft.com/dn630664)並納入最新的建議。
 
@@ -93,4 +93,4 @@
 
 - 依照[第 1 階段](virtual-machines-windows-ps-lob-ph1.md)指示開始設定此工作負載。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

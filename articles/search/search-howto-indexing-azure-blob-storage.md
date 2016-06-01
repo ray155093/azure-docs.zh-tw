@@ -12,12 +12,12 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="05/03/2016"
+ms.date="05/17/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
 
-本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編制索引 (例如 PDF 或 Office 檔案)。新的 Azure 搜尋服務 Blob 索引子可以讓此程序快速且順暢。
+本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。新的 Azure 搜尋服務 Blob 索引子可以讓此程序快速且順暢。
 
 > [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 
@@ -31,11 +31,11 @@ ms.author="eugenesh" />
 
 若要設定 Blob 編製索引，請執行下列作業：
 
-1. 建立類型 `azureblob` 的資料來源，它參考 Azure 儲存體帳戶中的容器 (和選擇性參考該容器中的資料夾)
-	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
-	- 指定容器名稱。您也可以選擇性地使用 `query` 參數來包含資料夾
-2. 使用可搜尋的 `content` 欄位建立搜尋索引 
-3. 連接到目標索引的資料來源建立索引子
+1. 建立類型 `azureblob` 的資料來源，它參考 Azure 儲存體帳戶中的容器 (和選擇性參考該容器中的資料夾)。
+	- 傳入您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數。
+	- 指定容器名稱。您也可以選擇性地使用 `query` 參數來包含資料夾。
+2. 使用可搜尋的 `content` 欄位建立搜尋索引。 
+3. 將資料來源連接到目標索引來建立索引子。
 
 ### 建立資料來源
 
@@ -104,7 +104,7 @@ blob 索引子可以從下列文件格式擷取文字：
 Azure 搜尋服務會對每個文件 (blob) 編制索引，如下所示：
 
 - 文件的全部文字內容會擷取至名為 `content` 的字串欄位。請注意，我們目前不支援從單一 blob 擷取多個文件：
-	- 例如，CSV 檔案會編制索引為單一文件。
+	- 例如，CSV 檔案會編制索引為單一文件。如果您需要將 CSV 中的每一行視為個別的文件，請投票使用[此 UserVoice 建議](https://feedback.azure.com/forums/263029-azure-search/suggestions/13865325-please-treat-each-line-in-a-csv-file-as-a-separate)。
 	- 複合或內嵌文件 (例如 ZIP 封存或具有內嵌 PDF 附件的 Outlook 電子郵件的 Word 文件) 也會編制索引為單一文件。
 
 - 顯示在 blob 中的使用者指定中繼資料屬性 (如果有的話)，會逐字擷取。中繼資料屬性也可用來控制某些方面的文件擷取程序，如需詳細資訊，請參閱[使用自訂中繼資料以控制文件擷取](#CustomMetadataControl)。
@@ -260,11 +260,11 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 	  "parameters" : { "configuration" : { "excludedFileNameExtensions" : ".png,.jpeg" } }
 	}
 
-如果同時有 `indexedFileNameExtensions` 和 `excludedFileNameExtensions` 參數，Azure 搜尋服務會先查閱 `indexedFileNameExtensions`，再查閱 `excludedFileNameExtensions`。這表示，如果兩份清單中有相同的副檔名，就會排除在索引編製外。
+如果同時有 `indexedFileNameExtensions` 和 `excludedFileNameExtensions` 參數，Azure 搜尋服務會先查看 `indexedFileNameExtensions`，再查看 `excludedFileNameExtensions`。這表示，如果兩份清單中有相同的副檔名，就會排除在索引編製外。
 
 ### 只編製儲存體中繼資料的索引
 
-您可以使用 `indexStorageMetadataOnly` 組態屬性只編製儲存體中繼資料的索引，完全略過文件擷取程序。當您不需要文件內容，也不需要任何特定類型內容的中繼資料屬性時，這非常有用。若要這樣做，請將 `indexStorageMetadataOnly` 屬性設為 `true`：
+您可以使用 `indexStorageMetadataOnly` 組態屬性只編製儲存體元資料的索引，完全略過文件擷取程序。當您不需要文件內容，也不需要任何特定類型內容的中繼資料屬性時，這非常有用。若要這樣做，請將 `indexStorageMetadataOnly` 屬性設為 `true`：
 
 	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -277,7 +277,7 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 ### 編製儲存體和內容類型中繼資料的索引，但略過內容擷取。
 
-如果您需要擷取全部中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子組態來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入每個 Blob 中。若要這樣做，請將 `skipContent` 索引子組態屬性設為 `true`︰
+如果您需要擷取全部元資料但跳過所有 Blob 的內容擷取，可以使用索引子組態來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 元資料加入每個 Blob 中。若要這樣做，請將 `skipContent` 索引子組態屬性設為 `true`︰
 
 	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -292,4 +292,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

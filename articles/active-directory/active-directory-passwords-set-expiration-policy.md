@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/05/2016"
+	ms.date="05/16/2016"
 	ms.author="curtand"/>
 
 
 # 在 Azure Active Directory 中設定密碼到期原則
-> [AZURE.NOTE]本主題針對仰賴 Microsoft Azure Active Directory 提供身分識別與目錄服務的雲端服務 (例如 Microsoft Intune 和 Office 365)，提供相關線上說明內容。
+> [AZURE.NOTE] 本主題針對仰賴 Microsoft Azure Active Directory 提供身分識別與目錄服務的雲端服務 (例如 Microsoft Intune 和 Office 365)，提供相關線上說明內容。
 
 身為 Microsoft 雲端服務的全域管理員，您可使用「適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組」，將使用者密碼設為不會到期。您亦可使用 Windows PowerShell Cmdlet 移除永不到期組態，或是查看哪些使用者密碼設為不會到期。
 
-  >[AZURE.NOTE]您僅可將未透過目錄同步作業執行同步處理的使用者帳戶密碼，設定為不會到期。如需目錄同步作業的詳細資訊，請參閱[目錄同步作業藍圖](https://msdn.microsoft.com/library/azure/hh967642.aspx)中的主題清單。
+  > [AZURE.NOTE] 您僅可將未透過目錄同步作業執行同步處理的使用者帳戶密碼，設定為不會到期。如需目錄同步作業的詳細資訊，請參閱[目錄同步作業藍圖](https://msdn.microsoft.com/library/azure/hh967642.aspx)中的主題清單。
 
 若要使用 Windows PowerShell Cmdlet，您必須先安裝它們。
 
@@ -64,4 +64,4 @@
 
 	- 若要將組織中所有使用者的密碼設為永久有效，請執行下列 Cmdlet：`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires \$true`
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0518_2016-->

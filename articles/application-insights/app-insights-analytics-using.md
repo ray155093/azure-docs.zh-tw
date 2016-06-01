@@ -29,7 +29,7 @@
 
 在 Application Insights 中，從您的應用程式的首頁資源，按一下 [分析]。
 
-![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics/001.png)
+![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-using/001.png)
 
 內嵌教學課程將提供您一些可執行作業的概念。
 
@@ -37,7 +37,7 @@
 
 ## 撰寫查詢
 
-撰寫以任何列在左側的資料表名稱開頭的查詢。使用 `|` 建立[運算子](app-insights-analytics-queries.md)的管線。
+撰寫以任何列在左側的資料表名稱開頭的查詢。使用 `|` 建立[運算子](app-insights-analytics-reference.md#queries-and-operators)的管線。
 
 
 ![](./media/app-insights-analytics-using/150.png)
@@ -60,9 +60,9 @@
 
 ![](./media/app-insights-analytics-using/030.png)
 
-> [AZURE.NOTE] 按一下資料行的標頭，即可快速重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。所以，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用[top](app-insights-analytics-queries.md#top-operator) 或 [sort](app-insights-analytics-queries.md#sort-operator) 運算子。
+> [AZURE.NOTE] 按一下資料行的標頭，即可快速重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。所以，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用[top](app-insights-analytics-reference.md#top-operator) 或 [sort](app-insights-analytics-reference.md#sort-operator) 運算子。
 
-但使用 [take](app-insights-analytics-queries.md#take-operator)、[top](app-insights-analytics-queries.md#top-operator) 或 [summarize](app-insights-analytics-queries.md#summarize-operator) 運算子，避免從伺服器下載大型資料表是相當好的做法。無論如何都自動限制每個查詢 10000 個資料列。
+但使用 [take](app-insights-analytics-reference.md#take-operator)、[top](app-insights-analytics-reference.md#top-operator) 或 [summarize](app-insights-analytics-reference.md#summarize-operator) 運算子，避免從伺服器下載大型資料表是相當好的做法。無論如何都自動限制每個查詢 10000 個資料列。
 
 
 ## 圖表
@@ -75,7 +75,7 @@
 
 ![](./media/app-insights-analytics-using/100.png)
 
-根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-queries.md#render-directive)以選取圖表。
+根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-reference.md#render-directive)以選取圖表。
 
 ## 匯出至 Excel
 
@@ -104,4 +104,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

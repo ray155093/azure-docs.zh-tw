@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/10/2016"
 	ms.author="sunliangms;fashah;garye;bradsev" />
 
 #<a name="heading"></a>處理使用進階分析的 Azure Blob 資料
@@ -48,6 +48,7 @@
     	dataframe_blobdata = pd.read_csv(LOCALFILE)
 
 現在您已經準備好探索資料並在此資料集上產生功能。
+
 
 ##<a name="blob-dataexploration"></a>資料探索
 
@@ -149,6 +150,7 @@
 
 		dataframe_blobdata_with_bin_bool = dataframe_blobdata.join(dataframe_blobdata_bin_bool)	
 
+
 ##<a name="sql-featuregen"></a>將資料寫回 Azure Blob 並在 AzureMachine Learning 中取用
 
 在您探索資料和建立必要功能後，可以上傳資料 (取樣性或功能性) 至 Azure Blob，並在 Azure Machine Learning 中透過下列步驟取用資料：請注意，您也可以在 Azure Machine Learning Studio 中建立其他功能。
@@ -189,4 +191,4 @@
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

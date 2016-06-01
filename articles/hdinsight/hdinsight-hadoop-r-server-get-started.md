@@ -1,6 +1,6 @@
 <properties
    pageTitle="開始使用 HDInsight (預覽) 中的 R 伺服器 | Azure"
-   description="了解如何在包含 R 伺服器的 HDInsight (預覽) 叢集上建立 Apache Spark，並在叢集上送出 R 指令碼。"
+   description="了解如何在包含 R Server (預覽) 的 HDInsight (Hadoop) 叢集上建立 Apache Spark，並在叢集上送出 R 指令碼。"
    services="HDInsight"
    documentationCenter=""
    authors="jeffstokes72"
@@ -14,12 +14,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="03/25/2016"
-   ms.author="jeffstok"/>
+   ms.date="05/16/2016"
+   ms.author="jeffstok"
+/>
 
-#開始使用 HDInsight (預覽) 中的 R 伺服器
+# 開始使用 HDInsight (預覽) 中的 R 伺服器
 
-HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 的 R 伺服器。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。在本文中，您將了解如何在 HDInsight 上建立新的 R Server，然後執行 R 指令碼，以使用 Spark 進行分散式 R 計算。
+HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R 伺服器。這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。在本文中，您將了解如何在 HDInsight 上建立新的 R Server，然後執行 R 指令碼，以使用 Spark 進行分散式 R 計算。
 
 ![這份文件的工作流程圖表](./media/hdinsight-getting-started-with-r/rgettingstarted.png)
 
@@ -174,80 +175,110 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 的 R 伺�
         
 1. 在 R 主控台中，使用下列項目將範例資料載入 HDInsight 的預設儲存體。
 
-        # Set the NameNode and port for the cluster
-        myNameNode <- "default"
-        myPort <- 0
         # Set the HDFS (WASB) location of example data
         bigDataDirRoot <- "/example/data"
-        # Source for the data to load
-        source <- system.file("SampleData/AirlineDemoSmall.csv", package="RevoScaleR")
-        # Directory in bigDataDirRoot to load the data into
-        inputDir <- file.path(bigDataDirRoot,"AirlineDemoSmall") 
+        # create a local folder for storaging data temporarily
+        source <- "/tmp/AirOnTimeCSV2012"
+        dir.create(source)
+        # Download data to the tmp folder
+        remoteDir <- "http://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012"
+        download.file(file.path(remoteDir, "airOT201201.csv"), file.path(source, "airOT201201.csv"))
+        download.file(file.path(remoteDir, "airOT201202.csv"), file.path(source, "airOT201202.csv"))
+        download.file(file.path(remoteDir, "airOT201203.csv"), file.path(source, "airOT201203.csv"))
+        download.file(file.path(remoteDir, "airOT201204.csv"), file.path(source, "airOT201204.csv"))
+        download.file(file.path(remoteDir, "airOT201205.csv"), file.path(source, "airOT201205.csv"))
+        download.file(file.path(remoteDir, "airOT201206.csv"), file.path(source, "airOT201206.csv"))
+        download.file(file.path(remoteDir, "airOT201207.csv"), file.path(source, "airOT201207.csv"))
+        download.file(file.path(remoteDir, "airOT201208.csv"), file.path(source, "airOT201208.csv"))
+        download.file(file.path(remoteDir, "airOT201209.csv"), file.path(source, "airOT201209.csv"))
+        download.file(file.path(remoteDir, "airOT201210.csv"), file.path(source, "airOT201210.csv"))
+        download.file(file.path(remoteDir, "airOT201211.csv"), file.path(source, "airOT201211.csv"))
+        download.file(file.path(remoteDir, "airOT201212.csv"), file.path(source, "airOT201212.csv"))
+        # Set directory in bigDataDirRoot to load the data into
+        inputDir <- file.path(bigDataDirRoot,"AirOnTimeCSV2012") 
         # Make the directory
         rxHadoopMakeDir(inputDir)
         # Copy the data from source to input
-        rxHadoopCopyFromLocal(source, inputDir)
+        rxHadoopCopyFromLocal(source, bigDataDirRoot)
 
-2. 接下來，我們要建立幾個因數，並定義資料來源，以便使用資料。
+2. 接下來，我們要建立一些資料資訊，並定義兩個資料來源，以便使用資料。
 
         # Define the HDFS (WASB) file system
-        hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, 
-                                   port=myPort)
-        # Create Factors for the days of the week
-        colInfo <- list(DayOfWeek = list(type = "factor",
-             levels = c("Monday", 
-                        "Tuesday", 
-                        "Wednesday", 
-                        "Thursday", 
-                        "Friday", 
-                        "Saturday", 
-                        "Sunday")))
-        # Define the data source
-        airDS <- RxTextData(file = inputDir, 
-                            missingValueString = "M",
-                            colInfo  = colInfo, 
-                            fileSystem = hdfsFS)
+        hdfsFS <- RxHdfsFileSystem()
+        # Create info list for the airline data
+        airlineColInfo <- list(
+            DAY_OF_WEEK = list(type = "factor"),
+            ORIGIN = list(type = "factor"),
+            DEST = list(type = "factor"),
+            DEP_TIME = list(type = "integer"),
+            ARR_DEL15 = list(type = "logical"))
 
-3. 現在，我們來使用本機計算內容執行資料的線性迴歸。
+        # get all the column names
+        varNames <- names(airlineColInfo)
+
+        # Define the text data source in hdfs
+        airOnTimeData <- RxTextData(inputDir, colInfo = airlineColInfo, varsToKeep = varNames, fileSystem = hdfsFS)
+        # Define the text data source in local system
+        airOnTimeDataLocal <- RxTextData(source, colInfo = airlineColInfo, varsToKeep = varNames)
+
+        # formula to use
+        formula = "ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME + DEST"
+
+3. 現在，我們來使用本機計算內容執行資料的羅吉斯迴歸。
 
         # Set a local compute context
         rxSetComputeContext("local")
-        # Run a linear regression
+        # Run a logistic regression
         system.time(
-            modelLocal <- rxLinMod(ArrDelay~CRSDepTime+DayOfWeek,
-                                   data = airDS)
+            modelLocal <- rxLogit(formula, data = airOnTimeDataLocal)
         )
         # Display a summary 
-        summary(modelLocal) 
+        summary(modelLocal)
 
     您應該會看到結尾類似以下幾行的輸出：
-    
-        Residual standard error: 40.39 on 582620 degrees of freedom
-        Multiple R-squared: 0.01465
-        Adjusted R-squared: 0.01464
-        F-statistic:  1238 on 7 and 582620 DF,  p-value: < 2.2e-16
-        Condition number: 10.6542
 
-4. 接著，我們使用 Spark 內容來執行相同的線性迴歸。Spark 內容會將處理作業分散到 HDInsight 叢集的所有背景工作節點中。
+        Data: airOnTimeDataLocal (RxTextData Data Source)
+        File name: /tmp/AirOnTimeCSV2012
+        Dependent variable(s): ARR_DEL15
+        Total independent variables: 634 (Including number dropped: 3)
+        Number of valid observations: 6005381
+        Number of missing observations: 91381
+        -2*LogLikelihood: 5143814.1504 (Residual deviance on 6004750 degrees of freedom)
+
+        Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)
+        (Intercept)   -3.370e+00  1.051e+00  -3.208  0.00134 **
+        ORIGIN=JFK     4.549e-01  7.915e-01   0.575  0.56548
+        ORIGIN=LAX     5.265e-01  7.915e-01   0.665  0.50590
+        ......
+        DEST=SHD       5.975e-01  9.371e-01   0.638  0.52377
+        DEST=TTN       4.563e-01  9.520e-01   0.479  0.63172
+        DEST=LAR      -1.270e+00  7.575e-01  -1.676  0.09364 .
+        DEST=BPT         Dropped    Dropped Dropped  Dropped
+        ---
+        Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+        Condition number of final variance-covariance matrix: 11904202
+        Number of iterations: 7
+
+4. 接著，我們使用 Spark 內容來執行相同的羅吉斯迴歸。Spark 內容會將處理作業分散到 HDInsight 叢集的所有背景工作節點中。
 
         # Define the Spark compute context 
-        mySparkCluster <- RxSpark(consoleOutput=TRUE) 
+        mySparkCluster <- RxSpark()
         # Set the compute context 
-        rxSetComputeContext(mySparkCluster) 
-        # Run a linear regression 
+        rxSetComputeContext(mySparkCluster)
+        # Run a logistic regression 
         system.time(  
-            modelSpark <- rxLinMod(ArrDelay~CRSDepTime+DayOfWeek, data = airDS) 
+            modelSpark <- rxLogit(formula, data = airOnTimeData)
         )
         # Display a summary
         summary(modelSpark)
 
-    由於我們設定為 `consoleOutput=TRUE`，因此 Spark 處理的輸出會寫入主控台。
-    
     > [AZURE.NOTE] 您也可以使用 MapReduce，將計算分散到叢集節點。如需計算內容的詳細資訊，請參閱[適用於 HDInsight 進階層 R Server 的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
 
 ##將 R 程式碼分散到多個節點
 
-使用 R Server 時，您可以輕鬆採用現有的 R 程式碼並利用 `rxExec` 以跨多個叢集節點加以執行。執行參數掃掠或模擬時，這非常有用。以下是使用 `rxExec` 的範例：
+使用 R Server 時，您可以輕鬆採用現有的 R 程式碼並利用 `rxExec` 以跨多個叢集節點加以執行。執行參數掃掠或模擬時，這非常有用。以下是使用 `rxExec` 的範例。
 
     rxExec( function() {Sys.info()["nodename"]}, timesToRun = 4 )
     
@@ -277,13 +308,13 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 的 R 伺�
 
 > [AZURE.IMPORTANT] 僅有在建立叢集之後，才可以使用指令碼動作來安裝其他 R 封裝。您不應在叢集建立期間使用，因為指令碼是相依於已完整安裝與設定的 R Server。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，選取您 HDInsight 叢集上的 R Server。
+1. 從 [Azure 入口網站](https://portal.azure.com)選取您 HDInsight 叢集上的 R Server。
 
-2. 在叢集刀鋒視窗中，依序選取 [所有設定] 和 [指令碼動作]。在 [指令碼動作] 刀鋒視窗中，選取 [送出新的] 以送出新的指令碼動作。
+2. 在叢集刀鋒視窗中，依序選取 [所有設定] 和 [指令碼動作]。在 [指令碼動作] 刀鋒視窗中，選取 [提交新的] 以送出新的指令碼動作。
 
     ![指令碼動作刀鋒視窗的影像](./media/hdinsight-getting-started-with-r/newscriptaction.png)
 
-3. 在 [送出指令碼動作] 刀鋒視窗中，提供下列資訊。
+3. 在 [提交指令碼動作] 刀鋒視窗中，提供下列資訊。
 
     * __名稱__︰用來識別此指令碼的易記名稱
     * __Bash 指令碼 URI__：http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh
@@ -322,4 +353,4 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 的 R 伺�
 
 如需使用 ARM 範本的一般資訊，請參閱[使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

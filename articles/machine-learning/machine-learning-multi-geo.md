@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/12/2016"
+   ms.date="05/09/2016"
    ms.author="tedway; neerajkh"/>
 
 # Multi-Geo 說明文件
@@ -38,7 +38,9 @@
 
 ## Web 服務管理
 
-若要以程式設計方式管理 Web 服務，例如重新訓練、使用特定地區的地址：****https://asiasoutheast.management.azureml.net**
+若要以程式設計方式管理 Web 服務，例如重新訓練、使用特定地區的地址：
+- https://asiasoutheast.management.azureml.net
+- https://europewest.management.azureml.net
 
 ### 注意事項
 
@@ -57,4 +59,4 @@
 [3]: ./media/machine-learning-multi-geo/multi-geo_3.png
 [4a]: ./media/machine-learning-multi-geo/multi-geo_4a.png
 
-<!----HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0518_2016-->

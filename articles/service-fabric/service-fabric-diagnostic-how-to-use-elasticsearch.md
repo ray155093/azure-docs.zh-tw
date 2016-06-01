@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/31/2016"
+   ms.date="05/16/2016"
    ms.author="karolz@microsoft.com"/>
 
 # 把 Elasticsearch 當做 Service Fabric 應用程式追蹤存放區來使用
@@ -24,11 +24,9 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 
 需要在 Service Fabric 叢集節點上即時 (當應用程式正在執行時) 擷取追蹤並傳送至 Elasticsearch 端點，Elasticsearch 中才會顯示追蹤。追蹤擷取有兩個主要選項：
 
-+ **同處理序追蹤擷取** 
-應用程式 (更準確來說是服務處理序) 負責將診斷資料送出到追蹤存放區 (Elasticsearch)。
++ **同處理序追蹤擷取** 應用程式 (更準確來說是服務處理序) 負責將診斷資料送出到追蹤存放區 (Elasticsearch)。
 
-+ **跨處理序追蹤擷取** 
-另外的代理程式擷取來自一或多個服務處理序的追蹤，並傳送至追蹤存放區。
++ **跨處理序追蹤擷取** 另外的代理程式擷取來自一或多個服務處理序的追蹤，並傳送至追蹤存放區。
 
 以下說明如何在 Azure 上設定 Elasticsearch、討論這兩種擷取選項的優缺點，並說明如何設定 Service Fabric 服務將資料傳送至 Elasticsearch。
 
@@ -36,14 +34,14 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 ## 在 Azure 上設定 Elasticsearch
 若要在 Azure 上設定 Elasticsearch 服務，最直接的方法是透過 [**Azure 資源管理員範本**](../resource-group-overview.md)。Azure 快速入門範本儲存機制提供完整的 [Elasticsearch 快速入門 Azure 資源管理員範本](https://github.com/Azure/azure-quickstart-templates/tree/master/elasticsearch)。這個範本會針對縮放單位使用不同的儲存體帳戶 (節點群組)。它也可以佈建具有不同組態和連接各種數量的資料磁碟的個別用戶端與伺服器節點。
 
-此處我們將使用 [Microsoft 模式和作法 ELK 分支](https://github.com/mspnp/semantic-logging/tree/elk/)中的另一個範本，稱為 **ES-MultiNode**。此範本比較容易使用，依預設會建立由 HTTP 基本驗證所保護的 Elasticsearch 叢集。繼續之前，請從 GitHub 將 [Microsoft 模式和做法 ELK 儲存機制](https://github.com/mspnp/semantic-logging/tree/elk/)下載到您的電腦 (透過複製儲存機制或下載 zip 檔案)。ES-MultiNode 範本位於具有相同名稱的資料夾中。
+在這裡，我們會使用 [Azure diagnostic tools repository (Azure 診斷工具儲存機制)](https://github.com/Azure/azure-diagnostics-tools) 中的另一個範本，稱為 **ES-MultiNode**。這個範本比較容易使用，它會建立由 HTTP 基本驗證所保護的 Elasticsearch 叢集。繼續之前，請從 GitHub 將儲存機制下載到您的電腦 (透過複製儲存機制或下載 ZIP 檔案)。ES-MultiNode 範本位於具有相同名稱的資料夾中。
 
 ### 準備電腦以執行 Elasticsearch 安裝指令碼
 若要使用 ES-MultiNode 範本，最簡單的方式是透過提供的 Azure PowerShell 指令碼，稱為 `CreateElasticSearchCluster`。若要使用這個指令碼，您需要安裝 PowerShell 模組和名為 **openssl** 的工具。需要後者，才能建立可用來從遠端管理 Elasticsearch 叢集的 SSH 金鑰。
 
-注意：`CreateElasticSearchCluster` 指令碼主要是為了從 Windows 電腦輕鬆使用 ES-MultiNode 範本。可以在非 Windows 電腦上使用此範本，但這已超出本文的範圍。
+請注意，`CreateElasticSearchCluster` 指令碼主要是為了從 Windows 電腦輕鬆使用 ES-MultiNode 範本。可以在非 Windows 電腦上使用此範本，但這已超出本文的範圍。
 
-1. 如果您尚未安裝它們，請安裝 [**Azure PowerShell 模組**](http://aka.ms/webpi-azps)。出現提示時，請按一下 [執行]，再按一下 [安裝]。
+1. 如果您尚未安裝它們，請安裝 [**Azure PowerShell 模組**](http://aka.ms/webpi-azps)。出現提示時，請按一下 [執行]，然後按一下 [安裝]。需要 Azure PowerShell 1.3 或更新版本。
 
 2. [**Git for Windows**](http://www.git-scm.com/downloads) 的散發中包含 **openssl** 工具。如果您尚未安裝，請立即安裝 [Git for Windows](http://www.git-scm.com/downloads)。(預設安裝選項是 [確定])。
 
@@ -71,12 +69,12 @@ Service Fabric 執行階段會使用 ETW 來取得診斷資訊 (追蹤)。它也
 |dataDiskSize |將配置給每個資料節點的資料磁碟大小 (以 GB 為單位)。每個節點將會收到 4 個資料磁碟，專供 ElasticSearch 服務使用。|
 |region |應該放置 Elastic Search 叢集的 Azure 區域的名稱。|
 |esUserName |將設定為可存取 ES 叢集的使用者的使用者名稱 (受限於 HTTP 基本驗證)。密碼不是參數檔案的一部分，而且必須在叫用 `CreateElasticSearchCluster` 指令碼時提供。|
-|vmSizeDataNodes |Elastic Search 叢集節點的 Azure 虛擬機器大小。預設為 Standard\_D1。|
+|vmSizeDataNodes |Elastic Search 叢集節點的 Azure 虛擬機器大小。預設為 Standard\_D2。|
 
 您現在可以開始執行指令碼。發出以下命令：
 
 ```powershell
-CreateElasticSearchCluster -ResourceGroupName <es-group-name>
+CreateElasticSearchCluster -ResourceGroupName <es-group-name> -Region <azure-region> -EsPassword <es-password>
 ```
 
 其中
@@ -92,7 +90,7 @@ CreateElasticSearchCluster -ResourceGroupName <es-group-name>
 如果執行指令碼發生錯誤，而且您判斷錯誤起因於錯誤的範本參數值，請更正參數檔案，然後以不同資源群組名稱再次執行指令碼。您也可以將 `-RemoveExistingResourceGroup` 參數加入至指令碼引動過程，以重複使用相同的資源群組名稱，並讓指令碼清除舊的資源群組。
 
 ### 執行 CreateElasticSearchCluster 指令碼的結果
-執行 `CreateElasticSearchCluster` 指令碼之後會建立下列主要構件。為了清楚說明，我們假設您已使用 'myBigCluster' 作為 `dnsNameForLoadBalancerIP` 參數的值，而且您建立叢集的區域為美國西部。
+執行 `CreateElasticSearchCluster` 指令碼之後會建立下列主要構件。為了清楚說明，我們假設您已使用 "myBigCluster" 作為 `dnsNameForLoadBalancerIP` 參數的值，而且您建立叢集的區域為美國西部。
 
 |構件|名稱、位置及備註|
 |----------------------------------|----------------------------------|
@@ -152,7 +150,7 @@ Microsoft.Diagnostic.Listeners 程式庫是 PartyCluster 範例 Service Fabric �
 
 2. 從 PartyCluster 叢集範例目錄中，將 Microsoft.Diagnostics.Listeners 和 Microsoft.Diagnostics.Listeners.Fabric 專案 (整個資料夾)，複製到應該會將資料傳送到 Elasticsearch 的應用程式的方案資料夾。
 
-3. 開啟目標方案，在 [方案總管] 中的方案節點上按一下滑鼠右鍵，然後選擇 [加入現有專案]。將 Microsoft.Diagnostics.Listeners 專案加入至方案。針對 Microsoft.Diagnostics.Listeners.Fabric 專案重複相同的步驟。
+3. 開啟目標方案，在方案總管中的方案節點上按一下滑鼠右鍵，然後選擇 [加入現有專案]。將 Microsoft.Diagnostics.Listeners 專案加入至方案。針對 Microsoft.Diagnostics.Listeners.Fabric 專案重複相同的步驟。
 
 4. 新增從服務專案至兩個已加入之專案的專案參考。 (每個應該會將資料傳送至 Elasticsearch 的服務，都應該參考 Microsoft.Diagnostics.EventListeners 和 Microsoft.Diagnostics.EventListeners.Fabric)。
 
@@ -257,4 +255,4 @@ Elasticsearch 連接資料應該放在服務組態檔 (**PackageRoot\\Config\\Se
 [1]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/listener-lib-references.png
 [2]: ./media/service-fabric-diagnostics-how-to-use-elasticsearch/kibana.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

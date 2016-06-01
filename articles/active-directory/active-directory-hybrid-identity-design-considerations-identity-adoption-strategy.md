@@ -13,7 +13,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="02/23/2016"
+	ms.date="05/12/2016"
 	ms.author="billmath"/>
 
 
@@ -73,7 +73,10 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 | Exchange ActiveSync | 提示輸入認證 | 在 Lync 中需要單一登入，在 Exchange 中會提示輸入認證 |
 | 行動應用程式 | 提示輸入認證 | 提示輸入認證 |
 
-如果您從工作 1 判斷您已經有或將要使用協力廠商 IdP，以支援與 Azure AD 同盟，您必須知道下列支援的功能：任何符合 SP-Lite 設定檔的 SAML 2.0 提供者，可能支援向 Azure AD 及相關聯的應用程式驗證 - 支援被動驗證，便於向 OWA、SPO 等驗證 - 透過 SAML 2.0 增強型用戶端設定檔 (ECP) 可支援 Exchange Online 用戶端
+如果您已在工作 1 確定您擁有第三方的 IdP，或是要使用 IdP 來提供與 Azure AD 的同盟，您需要留意下列支援功能︰
+- 任何與 SP-Lite 設定檔相容的 SAML 2.0 提供者，皆可支援對 Azure AD 和相關聯應用程式的驗證
+- 支援被動驗證，可協助對 OWA、SPO 等的驗證。
+- 可透過 SAML 2.0 增強型用戶端設定檔 (ECP) 支援 Exchange Online 用戶端
 
 您也必須知道無法使用哪些功能：
 
@@ -197,4 +200,4 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

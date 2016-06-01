@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="rest-api"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="05/13/2016"
 	ms.author="kgremban"/>
 
 # 使用 REST API 管理角色型存取控制
@@ -36,7 +36,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 搭配下列 URI 使用 **GET** 方法：
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&filter={filter}
+	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
 在 URI 內進行下列替代動作以自訂要求：
 
@@ -56,8 +56,8 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 | 條件 | *{Filter}* | 將 |
 |-----------|------------|---------|
 | 若僅要列出指定範圍的角色指派，不包括子範圍內的角色指派。 | `atScope()` | |
-| 若僅要列出特定使用者、群組或應用程式的角色指派 | `principalId%20eq%20'{objectId}'` | 將 *{objectId}* 取代為使用者、群組或服務主體的 Azure AD objectId。例如：`&filter=principalId%20eq%20'3a477f6a-6739-4b93-84aa-3be3f8c8e7c2'` |
-| 若僅要列出特定使用者的角色指派，包括指派給群組的使用者，而使用者為該群組的成員 | `assignedTo('{objectId}')` | 將 *{objectId}* 取代為使用者的 Azure AD objectId。例如：`&filter=assignedTo('3a477f6a-6739-4b93-84aa-3be3f8c8e7c2')` |
+| 若僅要列出特定使用者、群組或應用程式的角色指派 | `principalId%20eq%20'{objectId}'` | 將 *{objectId}* 取代為使用者、群組或服務主體的 Azure AD objectId。例如，`&$filter=principalId%20eq%20'3a477f6a-6739-4b93-84aa-3be3f8c8e7c2'` |
+| 若僅要列出特定使用者的角色指派，包括指派給群組的使用者，而使用者為該群組的成員 | `assignedTo('{objectId}')` | 將 *{objectId}* 取代為使用者的 Azure AD objectId。例如，`&$filter=assignedTo('3a477f6a-6739-4b93-84aa-3be3f8c8e7c2')` |
 
 
 
@@ -259,7 +259,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 搭配下列 URI 使用 **GET** 方法：
 
-	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&filter={filter}
+	https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
 在 URI 內進行下列替代動作以自訂要求：
 
@@ -714,4 +714,4 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 ```
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

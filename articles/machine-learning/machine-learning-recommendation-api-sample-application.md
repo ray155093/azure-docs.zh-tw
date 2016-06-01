@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="05/18/2016" 
 	ms.author="luisca"/>
 
 
@@ -90,4 +90,4 @@
 範例應用程式並非預期在實際執行環境中執行。目錄中提供的資料太小，而且它將不會提供有意義的建議模型。提供資料基於示範目的。
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0518_2016-->

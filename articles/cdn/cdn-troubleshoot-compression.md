@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016" 
+	ms.date="05/11/2016"
 	ms.author="casoper"/>
     
 # CDN 檔案壓縮疑難排解
@@ -45,11 +45,13 @@
 - 驗證要求正傳送至您的端點 URL `<endpointname>.azureedge.net`，而不是您的來源。
 - 驗證要求包含 **Accept-Encoding** 標頭，且該標頭的值包含 **gzip**、**deflate** 或 **bzip2**。
 
+> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 設定檔只支援 **gzip** 編碼。
+
 ![CDN 要求標頭](./media/cdn-troubleshoot-compression/cdn-request-headers.png)
 
 ### 驗證壓縮設定 (標準 CDN 設定檔)
 
-> [AZURE.NOTE] 此步驟僅適用於您的 CDN 設定檔位於**標準**定價層的情況。
+> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Akamai 的 Azure CDN 標準**或**來自 Verizon 的 Azure CDN 標準**設定檔，才能套用此步驟。
 
 在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [設定] 按鈕。
 
@@ -60,7 +62,7 @@
 
 ### 驗證壓縮設定 (進階 CDN 設定檔)
 
-> [AZURE.NOTE] 此步驟僅適用於您的 CDN 設定檔位於**進階**定價層的情況。
+> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN 進階**設定檔，才能套用此步驟。
 
 在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。即會開啟補充入口網站。將滑鼠移至 [**HTTP 大型**] 索引標籤上，然後將滑鼠移至 [**快取設定**] 飛出視窗上。按一下 [**壓縮**]。
 
@@ -72,6 +74,8 @@
 
 ### 驗證已快取內容
 
+> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+
 使用您瀏覽器的開發人員工具，檢查回應標頭以確保檔案會快取在要求它的區域中。
 
 - 檢查 **Server** 回應標頭。標頭應該具有格式 **平台 (POP/伺服器識別碼)**，如以下範例所示。
@@ -81,9 +85,11 @@
 
 ### 驗證檔案符合大小需求
 
+> [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
+
 若要進行壓縮，檔案必須符合下列的大小需求︰
 
 - 超過 128 個位元組。
 - 小於 1 MB。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

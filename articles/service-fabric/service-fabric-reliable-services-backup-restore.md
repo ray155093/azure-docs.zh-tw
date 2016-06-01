@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/15/2016"
+   ms.date="05/13/2016"
    ms.author="mcoskun"/>
 
 # 備份與還原 Reliable Services 和 Reliable Actors
@@ -193,4 +193,4 @@ Reliable Actors 的備份和還原是以 Reliable Services 所提供的備份和
 
 **RestoreAsync** 會先卸除過去呼叫的主要複本中的所有現有狀態。然後，可靠的狀態管理員會建立存在於備份資料夾中所有可靠的物件。接下來，可靠的物件會獲得指示從其備份資料夾中的檢查點還原。最後，可靠的狀態管理員會從備份資料夾中的記錄檔記錄復原自己的狀態，並執行復原。做為復原程序的一部分，作業是從「開始點」開始，在備份資料夾中認可記錄檔記錄，並對可靠的物件重新執行。這個步驟可確保復原的狀態一致。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

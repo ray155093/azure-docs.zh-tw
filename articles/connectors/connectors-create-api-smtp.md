@@ -14,13 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="02/25/2016"
+   ms.date="05/16/2016"
    ms.author="mandia"/>
 
 # 開始使用 SMTP API
 連線到 SMTP 伺服器來傳送電子郵件。您可以從下列應用程式使用 SMTP API：
 
-- 邏輯應用程式
+- 邏輯應用程式 (如本主題所述)
+- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -29,7 +30,7 @@
 - 建置您的商務流程，包括使用 SMTP 傳送電子郵件。 
 - 使用動作來傳送電子郵件。這個動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當您的 FTP 伺服器上有新檔案時，您可以取得該檔案，並利用 SMTP 來傳送已附加該檔案的電子郵件。 
 
-如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 SMTP API 提供下列動作，但不包含觸發程序。
@@ -49,7 +50,7 @@ SMTP API 提供下列動作，但不包含觸發程序。
 | 使用者名稱 |是 |輸入要連線到 SMTP 伺服器的使用者名稱。 |
 | 密碼 | 是|輸入使用者名稱的密碼。 |
 
-當您建立連線之後，請輸入 SMTP 的屬性，例如收件者或副本值。本主題的＜REST API 參考＞一節會說明這些屬性。
+當您建立連線之後，請輸入 SMTP 的屬性，例如收件者或副本值。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 SMTP 連線。
 
@@ -94,4 +95,4 @@ SMTP API 提供下列動作，但不包含觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

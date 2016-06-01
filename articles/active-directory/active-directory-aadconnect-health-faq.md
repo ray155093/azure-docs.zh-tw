@@ -83,7 +83,7 @@ ADFS 伺服器上安裝 Microsoft Identity Health 代理程式對於 CPU、記�
 
 **問：Azure AD Connect Health 警示如何獲得解決？**
 
-Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。對於少數幾個警示，隱藏是以時間為基礎。也就是說，如果在警示產生的 48 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
+Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。對於少數幾個警示，隱藏是以時間為基礎。也就是說，如果在警示產生的 72 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
 
 
 
@@ -106,4 +106,4 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Conne
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="為您的研發/測試實驗室 VM 建立自訂構件 | Microsoft Azure"
+	pageTitle="為您的 DevTest Labs VM 建立自訂構件 | Microsoft Azure"
 	description="了解如何撰寫自己的構件以用於研發/測試實驗室"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="05/08/2016"
 	ms.author="tarcher"/>
 
 #為您的研發/測試實驗室 VM 建立自訂構件
@@ -118,10 +118,10 @@
 
 	![構件 Git 儲存機制範例](./media/devtest-lab-artifact-author/git-repo.png)
 
-1. 將構件儲存機制加入實驗室 - 請參閱[將 Git 構件儲存機制加入研發/測試實驗室](devtest-lab-add-artifact-repo.md)一文。
+1. 將構件儲存機制加入實驗室 - 請參閱[將 Git 構件儲存機制加入實驗室](devtest-lab-add-artifact-repo.md)一文。
 
 ## 後續步驟
 
-- 了解如何[將 Git 構件儲存機制加入研發/測試實驗室](devtest-lab-add-artifact-repo.md)。
+- 了解如何[將 Git 構件儲存機制加入實驗室](devtest-lab-add-artifact-repo.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

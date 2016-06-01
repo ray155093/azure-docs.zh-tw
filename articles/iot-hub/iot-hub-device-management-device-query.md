@@ -16,7 +16,9 @@
  ms.date="04/29/2016"
  ms.author="elfarber"/>
 
-# 教學課程：如何使用查詢找出裝置對應項 (預覽)
+# 教學課程：如何使用查詢與 C# 找出裝置對應項 (預覽)
+
+[AZURE.INCLUDE [iot-hub-device-management-query-selector](../../includes/iot-hub-device-management-query-selector.md)]
 
 Azure IoT 裝置管理可讓您使用查詢找出裝置對應項 (實體裝置的服務呈現)。您可以根據裝置對應項中的裝置屬性、服務屬性或標記來進行查詢。您可以使用標記和屬性進行查詢︰
 
@@ -28,7 +30,7 @@ Azure IoT 裝置管理可讓您使用查詢找出裝置對應項 (實體裝置�
 
 ## 執行裝置查詢範例
 
-下列範例延伸[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程功能。從執行不同的模擬裝置開始，會使用查詢來尋找特定裝置。
+下列範例延伸了[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程的功能。從執行不同的模擬裝置開始，會使用查詢來尋找特定裝置。
 
 ### 必要條件 
 
@@ -53,26 +55,29 @@ Azure IoT 裝置管理可讓您使用查詢找出裝置對應項 (實體裝置�
 - **專案**：運算式指定裝置物件中要包含在查詢結果集中的欄位 (相當於 SQL 中的 SELECT)：
 
   ```
-  var query = JsonConvert.SerializeObject(
-      project = new
-      {
-        all = false,
-        properties = new []
-        {
-          new
-          {
-            name = "CustomerId",
-            type = "service"
-          },
-          new
-          {
-            name = "Weight",
-            type = "service"
-          }
-        }
-      }
-  );
-```
+	  var query = JsonConvert.SerializeObject(
+		  new
+		  {
+			  project = new
+			  {
+				  all = false,
+				  properties = new[]
+				  {
+					  new
+					  {
+					  name = "CustomerId",
+					  type = "service"
+					  },
+					  new
+					  {
+					  name = "Weight",
+					  type = "service"
+					  }
+				  }
+			  }
+		  }
+	  );
+	```
 
 - **篩選**：運算式限制查詢結果集中所包含的裝置物件 (相當於 SQL 中的 WHERE)：
 
@@ -216,4 +221,4 @@ Azure IoT 中樞裝置管理用戶端程式庫會啟用查詢。只要同步處�
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 [lnk-query-expression-guide]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/node/service/devdoc/query_expression_requirements.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0518_2016-->

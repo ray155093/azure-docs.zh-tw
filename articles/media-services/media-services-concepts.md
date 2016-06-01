@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/25/2016" 
+	ms.date="05/11/2016" 
 	ms.author="juliako"/>
 
 #Azure 媒體服務概念 
@@ -252,4 +252,4 @@ StreamingEndpoint 代表可以直接將內容傳遞給用戶端播放程式應�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

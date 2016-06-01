@@ -12,7 +12,7 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="04/12/2016"
+ms.date="05/12/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
@@ -29,15 +29,16 @@ ms.author="eugenesh" />
 
 索引子會從資料來源讀取資料，然後將資料載入到目標搜尋索引。
 
-設定資料表索引子：
+設定資料表編製索引：
 
 1. 建立類型 `azuretable` 的資料來源，它會參考 Azure 儲存體帳戶中的資料表 (和選擇性參考「查詢」)
 	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
 	- 使用 `container.name` 參數指定資料表名稱
 	- (選擇性) 使用 `container.query` 參數指定查詢。可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
-2. 藉由將您的資料來源連接至現有的目標索引來建立索引子 (如果沒有的話，請建立索引)
+2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。 
+3. 將資料來源連接到搜尋索引來建立索引子。
 
-下列範例提供相關說明：
+### 建立資料來源
 
 	POST https://[service name].search.windows.net/datasources?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -50,7 +51,27 @@ ms.author="eugenesh" />
 	    "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
 	}   
 
-接下來，建立索引子，它參考資料來源和目標索引。例如：
+如需建立資料來源 API 的詳細資訊，請參閱[建立資料來源](search-api-indexers-2015-02-28-preview.md#create-data-source)。
+
+### 建立索引 
+
+	POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
+	Content-Type: application/json
+	api-key: [admin key]
+
+	{
+  		"name" : "my-target-index",
+  		"fields": [
+    		{ "name": "key", "type": "Edm.String", "key": true, "searchable": false },
+    		{ "name": "SomeColumnInMyTable", "type": "Edm.String", "searchable": true }
+  		]
+	}
+
+如需建立索引 API 的詳細資訊，請參閱[建立索引](https://msdn.microsoft.com/library/dn798941.aspx)
+
+### 建立索引子 
+
+最後，建立參考資料來源和目標索引的索引子。例如：
 
 	POST https://[service name].search.windows.net/indexers?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -63,19 +84,21 @@ ms.author="eugenesh" />
 	  "schedule" : { "interval" : "PT2H" }
 	}
 
+如需建立索引子 API 的詳細資訊，請參閱[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer)。
+
 就是這麼簡單 - 快樂地編制索引吧！
+
+## 處理不同的欄位名稱
+
+通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用**欄位對應**，將資料表中的屬性名稱對應至您搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
 
 ## 處理文件索引鍵
 
 在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。每個搜尋索引必須確實具有一個 `Edm.String` 類型的索引鍵欄位。要新增至索引的每個文件都需要有索引鍵欄位 (實際上它是唯一必要的欄位)。
 
-由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，那麼 `Key` 欄位的值是 `PK1RK1`。
+由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，則 `Key` 欄位的值是 `PK1RK1`。
 
-> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以藉由在索引子屬性中啟用 `base64EncodeKeys` 選項，處理無效的字元 - 如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。(例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
-
-## 處理不同的欄位名稱
-
-通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。您可以使用**欄位對應**將資料表裡的屬性名稱對應至您搜尋索引中的欄位名稱。若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
+> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
 
 ## 增量編製索引和刪除偵測
  
@@ -100,4 +123,4 @@ ms.author="eugenesh" />
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

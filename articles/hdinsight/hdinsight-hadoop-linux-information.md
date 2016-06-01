@@ -86,7 +86,7 @@ Hadoop 相關檔案可以在叢集節點的 `/usr/hdp` 上找到。此目錄包�
 
 ## HDFS、Azure Blob 儲存體及儲存最佳作法
 
-在大部分的 Hadoop 散發套件中，是以叢集機器上的本機儲存體支援 HDFS 的運作。這樣的方式雖有效率，但在用於雲端解決方案時則需高昂成本，因為運算資源是以每小時為單位來計費。
+在大部分的 Hadoop 散發套件中，是以叢集機器上的本機儲存體支援 HDFS 的運作。這樣的方式雖有效率，但在用於雲端解決方案時則需高昂成本，因為運算資源是以每小時或每分鐘為單位來計費。
 
 HDInsight 則是使用 Azure Blob 儲存體當做預設存放區，這麼做有下列好處：
 
@@ -257,4 +257,4 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

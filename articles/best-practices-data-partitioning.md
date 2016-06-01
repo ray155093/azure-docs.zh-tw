@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="dragon119"
-   manager="masimms"
+   manager="christb"
    editor=""
    tags=""/>
 
@@ -19,7 +19,7 @@
 
 # 資料分割指引
 
-![](media/best-practices-data-partitioning/pnp-logo.png)
+[AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
 ## 概觀
 
@@ -567,4 +567,4 @@ _圖 10.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構_
 [何謂 Azure 搜尋服務？]: search/search-what-is-azure-search.md
 [什麼是 Azure SQL Database？]: sql-database/sql-database-technical-overview.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

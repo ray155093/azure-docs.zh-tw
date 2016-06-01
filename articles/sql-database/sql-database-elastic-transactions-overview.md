@@ -1,10 +1,10 @@
 <properties
-   pageTitle="Azure SQL Database 的彈性資料庫交易概觀"
+   pageTitle="跨雲端資料庫的分散式交易"
    description="Azure SQL Database 的彈性資料庫交易概觀"
    services="sql-database"
    documentationCenter=""
    authors="torsteng"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor="sidneyh"/>
 
 <tags
@@ -16,7 +16,7 @@
    ms.date="02/23/2016"
    ms.author="torsteng"/>
 
-# Azure SQL Database 的彈性資料庫交易概觀
+# 跨雲端資料庫的分散式交易
 
 Azure SQL Database (SQL DB) 的彈性資料庫交易可讓您在 SQL DB 中跨多個資料庫執行交易。SQL DB 的彈性資料庫交易適用於使用 ADO .NET 的 .NET 應用程式，而且與以往熟悉使用 [System.Transaction](https://msdn.microsoft.com/library/system.transactions.aspx) 類別的程式設計經驗整合。如要取得程式庫，請參閱 [.NET Framework 4.6.1 (Web 安裝程式)](https://www.microsoft.com/download/details.aspx?id=49981)。
 
@@ -149,6 +149,7 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 * 僅支援 SQL DB 中跨資料庫的交易。其他 [X/Open XA](https://en.wikipedia.org/wiki/X/Open_XA) 資源提供者和 SQL DB 以外的資料庫無法參與彈性資料庫交易。這表示彈性資料庫交易無法延伸到內部部署 SQL Server 和 Azure SQL Database。對於內部部署的分散式交易，請繼續使用 MSDTC。 
 * 僅支援來自 .NET 應用程式的用戶端協調交易。目前已規劃 T-SQL 的伺服器端支援，例如 BEGIN DISTRIBUTED TRANSACTION，但尚未推出。 
 * 僅支援 Azure SQL DB V12 上的資料庫。
+* 不支援跨 WCF 服務的交易。例如，您有執行交易的 WCF 服務方法。納入交易範圍內的呼叫將會失敗，因為 [System.ServiceModel.ProtocolException](https://msdn.microsoft.com/library/system.servicemodel.protocolexception)。
 
 ## 詳細資訊
 
@@ -157,4 +158,4 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 <!--Image references-->
 [1]: ./media/sql-database-elastic-transactions-overview/distributed-transactions.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

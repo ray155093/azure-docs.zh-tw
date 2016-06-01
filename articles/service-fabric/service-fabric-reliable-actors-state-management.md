@@ -232,4 +232,4 @@ class MyActor : Actor, IMyActor
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
  - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

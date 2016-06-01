@@ -14,14 +14,16 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/10/2016"
+	ms.date="05/18/2016"
 	ms.author="jroth"/>
 
 # Azure 虛擬機器上的 SQL Server 概觀
 
 [Azure 虛擬機器上執行的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) 可讓您將 SQL Server 資料庫架設於雲端。例如，您可以將內部部署資料庫移轉至預先設定好 Windows Server 2012 R2 和 SQL Server 2014 Enterprise 版的 Azure VM。但是，有許多其他可能案例，例如支援高可用性或混合式架構並可連線到內部部署網路的多電腦組態。
 
-如需總體概觀，請觀看影片 [Azure VM 是 SQL Server 2016 的最佳平台](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016)。
+如需絕佳的概觀，請觀看以下影片︰
+
+> [AZURE.VIDEO data-driven-sql-server-2016-azure-vm-is-the-best-platform-for-sql-server-2016]
 
 ## SQL 供應項目
 
@@ -42,7 +44,7 @@
 
 當您註冊訂用帳戶之後，在 Azure 中部署 SQL Server 虛擬機器最簡單的方式，就是[在 Azure 中佈建 SQL Server 機器資源庫映像](virtual-machines-windows-portal-sql-server-provision.md)。這些映像包含的 SQL Server 授權，是以 VM 為計價單位。
 
-請務必注意，建立及管理 Azure 虛擬機器的模型有兩種：傳統及 Resource Manager。Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。如需詳細資訊，請參閱[了解 Resource Manager 部署和傳統部署](../resource-manager-deployment-model.md)。每個主題應該清楚描述其目標模型，除非它和本文一樣同時適用於傳統和 Resource Manager 模型。
+請務必注意，建立及管理 Azure 虛擬機器的模型有兩種：傳統及 Resource Manager。Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。每個主題應該清楚描述其目標模型，除非它和本文一樣同時適用於傳統和 Resource Manager 模型。
 
 ## 選擇 SQL VM 映像
 下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。按一下表格中任何一個連結即可建立該版本與作業系統的 VM。
@@ -84,8 +86,8 @@
 
 首先，[在 Azure 入口網站中建立您自己的 SQL Server VM](virtual-machines-windows-portal-sql-server-provision.md)。
 
-然後，當您考慮將您的 SQL Server 工作負載移至 Azure VM 時，請閱讀[效能最佳作法](virtual-machines-windows-sql-performance.md)和[移轉技術](virtual-machines-windows-migrate-sql.md)。
+然後，當您考慮將您的 SQL Server 工作負載移至 Azure VM 時，請檢閱[效能最佳做法](virtual-machines-windows-sql-performance.md)和[移轉技術](virtual-machines-windows-migrate-sql.md)。
 
 如果您有關於 Azure 虛擬機器上 SQL Server 的問題，請參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。或是將您的意見加入任何 SQL VM 主題的底部，與 Microsoft 和社群互動。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

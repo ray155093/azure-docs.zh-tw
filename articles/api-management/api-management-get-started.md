@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="03/04/2016"
+	ms.date="05/25/2016"
 	ms.author="sdanie"/>
 
 # 在 Azure API 管理中管理您的第一個 API
@@ -105,7 +105,7 @@ API 是從發佈者入口網站所設定，您可以透過 Azure 傳統入口網
 
 執行下列步驟來設定計算機 API：
 
-1. 按一下 [從 URL]、在 [規格文件 URL] 文字方塊中輸入 ****http://calcapi.cloudapp.net/calcapi.json**，然後按一下 [Swagger] 選項按鈕。
+1. 按一下 [從 URL]、在 [規格文件 URL] 文字方塊中輸入 **http://calcapi.cloudapp.net/calcapi.json**，然後按一下 [Swagger] 選項按鈕。
 2. 在 [Web API URL 尾碼] 文字方塊中，輸入 **calc**。
 3. 按一下 [**產品 (選擇性)**] 方塊，然後選擇 [**入門**]。
 4. 按一下 [**儲存**] 匯入 API。
@@ -245,4 +245,4 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 [api-management-]: ./media/api-management-get-started/api-management-.png
 [api-management-]: ./media/api-management-get-started/api-management-.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

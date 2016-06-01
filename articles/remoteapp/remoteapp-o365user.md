@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="02/08/2016" 
+    ms.date="05/13/2016" 
     ms.author="elizapo" />
 
 
@@ -45,4 +45,4 @@
 
 此時您的 Azure RemoteApp 訂用帳戶會與您的 Office 365 Azure AD 產生相關；您可以搭配 Azure RemoteApp 使用現有的 Office 365 使用者帳戶！
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

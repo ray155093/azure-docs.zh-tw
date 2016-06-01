@@ -1,7 +1,7 @@
-Resource|Maximum Limit
+資源|上限
 ---|---
-Max number of new jobs that can be submitted every 30 seconds per Automation Account (non Scheduled jobs)|100
-Max number of concurrent running jobs at the same instance of time per Automation Account (non Scheduled jobs)|200
-Max number of modules that can be imported every 30 seconds per Automation Account|5
-Max size of a Module|100 MB
-Job Run Time - Free tier|500 minutes per subscription per calendar month
+每個自動化帳戶每隔 30 秒可以送出的新作業數量上限 (非排程作業)|100
+每個自動化帳戶在相同時間點的並行執行作業數量上限 (非排程作業)|200
+每個自動化帳戶每隔 30 秒可匯入的模組數量上限|5
+模組的大小上限|100 MB
+工作執行時間 - 免費層|每個訂用帳戶每行事曆月份 500 分鐘

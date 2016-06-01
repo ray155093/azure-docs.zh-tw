@@ -460,7 +460,7 @@ GO
 Azure SQL Database 中的 In-Memory OLTP 功能[於 2015 年 10 月 28 日進入預覽階段](https://azure.microsoft.com/updates/public-preview-in-memory-oltp-and-real-time-operational-analytics-for-azure-sql-database/)。
 
 
-在公開上市 (GA) 前的預覽階段期間，只對下列資料庫支援 In-Memory OLTP：
+在目前的預覽版本中，記憶體內部 OLTP 支援僅適用於：
 
 - 在*進階*服務層的資料庫。
 
@@ -491,7 +491,11 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 #### 其他關聯性
 
 
-- 在預覽期間不支援將 In-Memory OLTP 功能使用於彈性集區中的資料庫，但未來可提供支援：
+- 在預覽期間不支援將記憶體內部 OLTP 功能使用於彈性集區中的資料庫。
+ - 若要將具有或已經有記憶體內部 OLTP 物件的資料庫移動至彈性集區，請遵循下列步驟 ︰
+  - 1. 在資料庫中卸除任何記憶體最佳化資料表、資料表類型和原生編譯的 T-SQL 模組
+  - 2. 將資料庫的服務層變更為標準 (* 目前有導致過去已有記憶體內部 OLTP 物件之高階資料庫無法移入彈性集區的問題；Azure DB 小組正積極地解決問題)
+  - 3. 將資料庫移入彈性集區。
 
 - 不支援使用 In-Memory OLTP 搭配 SQL 資料倉儲。
  - SQL 資料倉儲支援 In-Memory Analytics 的資料行存放區索引功能。
@@ -533,4 +537,4 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 - 適用於 In-Memory OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -34,7 +34,7 @@ Reliable Services 可以是無狀態的，就像大部分的服務平台一樣�
 
 Reliable Services 也可以是具狀態且為 Service Fabric 專有，其狀態使用 Reliable Collections 直接保存在服務本身中。狀態透過複寫變得高度可用，並透過資料分割散發，全由 Service Fabric 自動管理。
 
-[深入了解 Reliable Services](service-fabric-reliable-services-introduction) 或從[撰寫第一個 Reliable Services](service-fabric-reliable-services-quick-start.md) 開始。
+[深入了解 Reliable Services](service-fabric-reliable-services-introduction.md) 或從[撰寫第一個 Reliable Services](service-fabric-reliable-services-quick-start.md) 開始。
 
 ## Reliable Actors
 
@@ -45,4 +45,4 @@ Reliable Actors 本身是建置在 Reliable Services 上的應用程式架構，
 ## 後續步驟
 [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md) 或從[撰寫第一項 Reliable Actor 服務](service-fabric-reliable-actors-get-started.md)開始。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

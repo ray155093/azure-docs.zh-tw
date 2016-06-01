@@ -31,7 +31,7 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 
 ## 解決暫時性連線問題的步驟
 1.	檢查 [Microsoft Azure 服務儀表板](https://azure.microsoft.com/status)，以取得應用程式報告錯誤期間發生的任何已知中斷。
-2. 連接到雲端服務的應用程式 (例如 Azure SQL Database) 應該預期定期的重新設定事件，並實作應用程式重試邏輯來處理這些錯誤，而不是將這些錯誤當做應用程式錯誤呈現給使用者。如需詳細資訊和一般重試策略，請檢閱[暫時性錯誤](sql-database-connectivity-issues.md)一節以及[最佳作法和設計指南](sql-database-connect-central-recommendations.md) 。然後，請參閱[程式碼範例](sql-database-develop-quick-start-client-code-samples.md)以獲得詳情。
+2. 連接到雲端服務的應用程式 (例如 Azure SQL Database) 應該預期定期的重新設定事件，並實作應用程式重試邏輯來處理這些錯誤，而不是將這些錯誤當做應用程式錯誤呈現給使用者。如需詳細資訊和一般重試策略，請檢閱[暫時性錯誤](sql-database-connectivity-issues.md)一節以及[最佳作法和設計指南](sql-database-connect-central-recommendations.md) 。如需詳細資訊，請接著參閱[適用於 SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)的程式碼範例 。
 3.	由於資料庫接近其資源限制，因此似乎是暫時性連線問題。請參閱[移難排解效能問題](sql-database-troubleshoot-performance.md)。
 4.	如果連線問題繼續發生，或如果您的應用程式發生錯誤的持續時間超過 60 秒，或如果您在一天當中，看到錯誤多次發生，請在 [Azure 支援](https://azure.microsoft.com/support/options)網站上選取 [取得支援]，來提出 Azure 支援要求。
 
@@ -39,4 +39,4 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 - 如果您收到不同的錯誤，請評估[錯誤訊息](sql-database-develop-error-messages.md)，找出問題的線索。
 - 如果問題持續發生，請造訪[疑難排解 SQL Azure Database 常見的連接問題](sql-database-troubleshoot-common-connection-issues.md)中的指引。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0518_2016-->

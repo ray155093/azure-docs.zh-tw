@@ -24,13 +24,13 @@
 [AZURE.INCLUDE [virtual-machines-common-extensions-troubleshoot](../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## 檢視擴充功能狀態
-Azure Resource Manager 範本可以從 Azure Powershell 執行。一旦執行範本之後，即可以從 Azure 資源總管或命令列工具檢視延伸模組狀態。
+Azure Resource Manager 範本可以從 Azure PowerShell 執行。一旦執行範本之後，即可以從 Azure 資源總管或命令列工具檢視延伸模組狀態。
 
 下列是一個範例：
 
-Azure Powershell：
+Azure PowerShell：
 
-      Get-AzureVM -ResourceGroupName $RGName -Name $vmName -Status
+      Get-AzureRmVM -ResourceGroupName $RGName -Name $vmName -Status
 
 以下是範例輸出：
 
@@ -64,10 +64,10 @@ Azure Powershell：
 如果您使用自訂指令碼擴充功能在 VM 上執行指令碼，有時候可能會遇到雖然成功建立了 VM 但指令碼卻失敗的錯誤。在這樣的情況下，若要從錯誤中復原，建議您移除延伸模組並再次重新執行範本。請注意：未來將增強這項功能，以移除對解除安裝延伸模組的需求。
 
 
-#### 從 Azure Powershell 移除擴充功能
+#### 從 Azure PowerShell 移除擴充功能
 
-    Remove-AzureVMExtension -ResourceGroupName $RGName -VMName $vmName -Name "myCustomScriptExtension"
+    Remove-AzureRmVMExtension -ResourceGroupName $RGName -VMName $vmName -Name "myCustomScriptExtension"
 
 一旦移除了延伸模組，範本就可以重新執行並在 VM 上執行指令碼。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

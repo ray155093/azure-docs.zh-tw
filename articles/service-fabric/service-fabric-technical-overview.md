@@ -3,7 +3,7 @@
    description="Service Fabric 的術語概觀討論重要術語概念和文件其餘部分中使用的詞彙。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="msfussell"
+   authors="rwike77"
    manager="timlt"
    editor="chackdan;subramar"/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="04/05/2016"
-   ms.author="msfussell"/>
+   ms.author="ryanwi"/>
 
 # Service Fabric 術語概觀
 
@@ -67,7 +67,7 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 **命名服務**：每個 Service Fabric 叢集有一個命名服務，其會將服務名稱解析至叢集中的位置，並可讓您能夠管理服務名稱和屬性。這正如同叢集的網際網路網域名稱服務 (DNS) 一般。使用命名服務，用戶端可以安全地與叢集中的任何節點通訊，來解析服務名稱和位置 (亦即掌握實際機器 IP 位址和目前執行所在的連接埠)。使用通訊用戶端 API 時，儘管應用程式會在叢集內移動 (例如因為失敗、資源平衡或重新調整叢集大小)，您也可以開發能夠解析目前網路位置的服務和用戶端。
 
-如需有關使用搭配命名服務運作之用戶端與服務通訊 API 的詳細資訊，請閱讀[與服務通訊](service-fabric-connect-and-communicate-with-services.md)一文。
+如需使用搭配命名服務運作之用戶端與服務通訊 API 的詳細資訊，請閱讀[與服務通訊](service-fabric-connect-and-communicate-with-services.md)一文。
 
 **映像儲存區服務**︰每個 Service Fabric 叢集都有一個映像儲存區服務，其中保存已部署且版本化的應用程式封裝。您必須將應用程式封裝的內容複製到映像存放區服務，然後註冊該應用程式封裝內含的應用程式類型。接著，在佈建應用程式類型後，您可以建立其具名應用程式。在刪除應用程式類型的所有具名應用程式之後，可以從映像存放區服務取消註冊該應用程式類型。
 
@@ -90,4 +90,4 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 - [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
 - [應用程式案例](service-fabric-application-scenarios.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0518_2016-->

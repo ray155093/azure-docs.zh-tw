@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="03/15/2016"
+   ms.date="05/11/2016"
    ms.author="nitinme"/>
 
 # 保護儲存在 Azure 資料湖儲存區中的資料
@@ -34,6 +34,10 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - **Azure 資料湖儲存區帳戶**。如需有關如何建立帳戶的詳細指示，請參閱[開始使用 Azure 資料湖儲存區](data-lake-store-get-started-portal.md)
+
+## 使用影片快速學習？
+
+[觀看這段影片](https://mix.office.com/watch/1q2mgzh9nn5lx)以了解如何保護 Data Lake Store 中儲存的資料。
 
 ## 在 Azure Active Directory 中建立安全性群組
 
@@ -98,8 +102,8 @@
 
 	![列出標準和自訂存取](./media/data-lake-store-secure-data/adl.acl.2.png "列出標準和自訂存取")
 
-	* 標準存取為 UNIX 樣式存取，可讓您指定讀取、寫入、執行 (rwx) 三種不同的使用者類別：擁有者、群組和其他。
-	* 自訂存取會對應至 POSIX ACL，讓您除了設定檔案擁有者或群組的權限外，還可以設定特定命名的使用者或群組的權限。
+	* **標準存取**為 UNIX 樣式存取，可讓您指定讀取、寫入、執行 (rwx) 三種不同的使用者類別：擁有者、群組和其他。
+	* **自訂存取**會對應至 POSIX ACL，讓您除了設定檔案擁有者或群組的權限外，還可以設定特定命名的使用者或群組的權限。 
 	
 	如需詳細資訊，請參閱 [HDFS ACLs](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)。
 
@@ -111,8 +115,13 @@
 
 	![將權限指派至群組](./media/data-lake-store-secure-data/adl.acl.4.png "將權限指派至群組")
 
+	權限可以如以下方式了解︰
 
-	>[AZURE.NOTE] 您必須擁有「執行」權限才可列舉目錄，而且在提供資料唯讀存取給使用者或群組時也經常需要使用該權限。
+	* **讀取** - 如果在目錄上設定此權限，它會提供可在目錄中讀取檔案名稱的功能。
+	* **撰寫** - 如果在目錄上設定此權限，它會提供可在目錄中修改項目的功能，例如建立檔案、刪除檔案或重新命名檔案。
+	* **執行** - 如果在目錄上設定此權限，它會提供可在目錄中存取檔案內容的功能。如果已知檔案名稱，此權限也提供存取檔案的元資料。不過，此權限無法讓您在目錄中列出檔案，除非也設定了**讀取**權限。
+
+	>[AZURE.NOTE] 您必須擁有**讀取 + 執行**權限才可列舉目錄，而且在提供資料唯讀存取給使用者或群組時也經常需要使用該權限。
 
 
 6. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。具有相關權限的新增群組現在會列在 [存取] 刀鋒視窗中。
@@ -165,4 +174,4 @@
 - [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
 - [使用 .NET SDK 開始使用資料湖存放區](data-lake-store-get-started-net-sdk.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

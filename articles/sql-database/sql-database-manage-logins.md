@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="03/22/2016"
+   ms.date="05/12/2016"
    ms.author="rickbyh"/>
 
 # SQL Database 安全性：管理資料庫存取與登入安全性  
@@ -24,7 +24,7 @@
 
 ## 資料庫佈建和伺服器層級主體登入
 
-在 Microsoft Azure SQL Database 中，當您登入服務時，佈建程序會建立 Azure SQL Database 伺服器、名為 **master** 的資料庫，以及 Azure SQL Database 伺服器之伺服器層級主體的登入。該登入類似於 SQL Server 內部部署執行個體的伺服器層級主體 (**sa**)。
+在 Microsoft Azure SQL Database 中，當您登入服務時，佈建程序會建立 Azure SQL Database 伺服器、名為 **master** 的資料庫，以及 Azure SQL Database 伺服器之伺服器層級主體的登入。該登入類似於 SQL Server 內部部署執行個體的伺服器層級主體 (**sa**)。本主題所描述的概念也適用於 Azure SQL 資料倉儲。
 
 Azure SQL Database 伺服器層級主體帳戶一律擁有管理所有伺服器層級和資料庫層級安全性的權限。本主題描述如何使用伺服器層級主體和其他帳戶來管理 SQL Database 的登入和資料庫。
 
@@ -88,7 +88,7 @@ CREATE LOGIN login1 WITH password='<ProvidePassword>';
 
 若要使用您所建立的登入連接到 Microsoft Azure SQL Database，您必須先使用 ``CREATE USER`` 命令授與每個登入資料庫層級權限。如需詳細資訊，請參閱下面**授與登入資料庫存取權**一節。
 
-由於部分工具以不同的方式實作表格式資料流 (TDS)，您可能需要以 ``<login>@<server>`` 標記法，將 Azure SQL Database 伺服器名稱附加至登入中的連接字串。在這些案例中，請使用 ``@`` 符號分隔登入和 Azure SQL Database 伺服器名稱。例如，如果您的登入名為 **login1** 且 Azure SQL Database 伺服器的完整的名稱是 **servername.database.windows.net**，則您的連接字串使用者名稱參數應該是：**login1@servername**。這項限制會限制您針對登入名稱可選用的文字。如需詳細資訊，請參閱 [CREATE LOGIN (Transact-SQL)](https://msdn.microsoft.com/library/ms189751.aspx)。
+由於部分工具以不同的方式實作表格式資料流 (TDS)，您可能需要以 ``<login>@<server>`` 標記法，將 Azure SQL Database 伺服器名稱附加至登入中的連接字串。在這些案例中，請使用 ``@`` 符號分隔登入和 Azure SQL Database 伺服器名稱。例如，如果您的登入名為 **login1** 且 Azure SQL Database 伺服器的完整的名稱是 **servername.database.windows.net**，則您的連接字串使用者名稱參數應該是：****login1@servername**。這項限制會限制您針對登入名稱可選用的文字。如需詳細資訊，請參閱 [CREATE LOGIN (Transact-SQL)](https://msdn.microsoft.com/library/ms189751.aspx)。
 
 ## 授與登入伺服器層級權限
 
@@ -176,4 +176,4 @@ SELECT * FROM sys.databases;
 
 [Azure SQL Database 教學課程︰開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md) [Azure SQL Database 安全性方針和限制](sql-database-security-guidelines.md) [使用 Azure Active Directory 驗證連接到 SQL Database](sql-database-aad-authentication.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

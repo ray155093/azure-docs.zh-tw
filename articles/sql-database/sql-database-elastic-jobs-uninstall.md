@@ -3,7 +3,7 @@
 	description="如何解除安裝彈性資料庫工作工具" 
 	services="sql-database" 
 	documentationCenter="" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="sidneyh" 
 	editor=""/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/23/2016" 
+	ms.date="05/17/2016" 
 	ms.author="ddove; sidneyh"/>
 
 #解除安裝彈性資料庫工作元件
@@ -62,4 +62,6 @@
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0224_2016-->
+ 
+
+<!---HONumber=AcomDC_0518_2016-->

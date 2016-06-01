@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/04/2016"
+	ms.date="05/13/2016"
 	ms.author="larryfr"/>
 
 # 使用指令碼動作自訂 Linux 型 HDInsight 叢集
@@ -49,9 +49,11 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 * 可以透過 __Azure 入口網站__、__Azure PowerShell__、__Azure CLI__ 或 __HDInsight .NET SDK__ 使用。
 
-> [AZURE.IMPORTANT] 沒有任何自動方式可復原指令碼動作所做的變更。如果您需要還原指令碼的效果，您必須了解已做了哪些變更並手動進行還原 (或提供可進行還原的指令碼動作)。
+    [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell-cli-and-dotnet-sdk.md)]
 
 為了協助了解哪些指令碼已套用到叢集，以及判斷可供升級或降級的指令碼 ID，叢集會保留所有已執行指令碼的歷程記錄。
+
+> [AZURE.IMPORTANT] 沒有任何自動方式可復原指令碼動作所做的變更。如果您需要還原指令碼的效果，您必須了解已做了哪些變更並手動進行還原 (或提供可進行還原的指令碼動作)。
 
 ### 叢集建立程序中的指令碼動作
 
@@ -89,6 +91,8 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
     StartTime         : 2/23/2016 7:40:55 PM
     EndTime           : 2/23/2016 7:41:05 PM
     Status            : Succeeded
+
+> [AZURE.NOTE] 如果您在叢集建立後變更叢集使用者 (管理員) 密碼，可能會造成針對此叢集執行的指令碼動作失敗。如果您有任何以背景工作節點為目標的持續性指令碼動作，當您透過調整大小作業新增節點到叢集，這些指令碼動作可能會失敗。
 
 ## 範例指令碼動作指令碼
 
@@ -420,7 +424,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 ### 從 Azure 入口網站將指令碼動作套用到執行中的叢集
 
-1. 從 [Azure 入口網站](https://portal.azure.com)，選取您的 HDInsight 叢集。
+1. 從 [Azure 入口網站](https://portal.azure.com)選取您的 HDInsight 叢集。
 
 2. 從 HDInsight 叢集刀鋒視窗，選取 [設定]。
 
@@ -437,7 +441,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 5. 從 [新增指令碼動作] 刀鋒視窗，輸入下列資訊。
 
     * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `R`。
-    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh`
+    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh`。
     * __前端__、__背景工作角色__和 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端] 和 [背景工作]。
     * __參數__：如果指令碼接受參數，請在此輸入參數。
     * __已保存__︰如果您要保存指令碼，請勾選此項目，此項目也會在您相應增加叢集時套用到新的背景工作節點。
@@ -515,7 +519,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 ### 使用 Azure 入口網站
 
-1. 從 [Azure 入口網站](https://portal.azure.com)，選取您的 HDInsight 叢集。
+1. 從 [Azure 入口網站](https://portal.azure.com)選取您的 HDInsight 叢集。
 
 2. 從 HDInsight 叢集刀鋒視窗，選取 [設定]。
 
@@ -612,7 +616,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 	![作業的螢幕擷取畫面](./media/hdinsight-hadoop-customize-cluster-linux/script_action_logs_in_storage.png)
 
 	在其下，記錄檔會個別針對前端節點、背景工作節點和 Zookeeper 節點進行組織。部分範例如下：
-	* **Headnode** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
+	* **前端節點** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
 	* **背景工作節點** - `<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
 	* **Zookeeper 節點** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
@@ -680,4 +684,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "叢集建立期間的階段"
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

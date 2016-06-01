@@ -70,7 +70,7 @@
 	    logger.info('Running TodoItem.insert');
 	    
 	    // Define the template payload.
-	    var payload = '{"messageParam": context.item.text}'; 
+	    var payload = '{"messageParam":' + context.item.text + '}'; 
 	    
 	    // Execute the insert.  The insert returns the results as a Promise,
 	    // Do the push as a post-execute action within the promise flow.
@@ -100,5 +100,3 @@
 	插入新的 todo 項目時，這會傳送包含 item.text 的範本通知。
 
 2. 當您在本機電腦上編輯檔案時，請重新發佈伺服器專案。
-
-<!---HONumber=AcomDC_1223_2015-->

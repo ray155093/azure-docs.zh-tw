@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="05/16/2016"
 	ms.author="dastrock"/>
 
 # Azure AD B2C 預覽：驗證通訊協定
@@ -70,4 +70,4 @@ OAuth 2.0 和 OpenID Connect 的 Azure AD B2C 實作廣泛運用持有人權杖�
 - 使用 OAuth 2.0 資源擁有者密碼認證流程，利用使用者名稱和密碼來取得權杖 (敬請期待)
 - 使用 OAuth 2.0 代理者流程在 Web API 中取得權杖 (敬請期待)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0518_2016-->

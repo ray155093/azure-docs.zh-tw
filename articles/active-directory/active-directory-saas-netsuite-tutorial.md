@@ -13,22 +13,22 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="02/09/2016"
+    ms.date="05/16/2016"
     ms.author="asmalser-msft"/>
 
 #教學課程：如何整合 NetSuite 與 Azure Active Directory
 
 本教學課程將示範如何將 NetSuite 環境與 Azure Active Directory (Azure AD) 連接。您將學習如何設定單一登入 NetSuite、如何啟用自動的使用者佈建，以及如何指派使用者存取 NetSuite。
 
-##先決條件
+##必要條件
 
-1. 若要透過 [Azure 管理入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
+1. 若要透過 [Azure 傳統入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
 
 2. 您必須具備系統管理員權限才能存取 [NetSuite](http://www.netsuite.com/portal/home.shtml) 訂用帳戶。您可以使用免費試用帳戶來使用任何服務。
 
 ##步驟 1：將 NetSuite 加入您的目錄
 
-1. 在 [Azure 管理入口網站](https://manage.windowsazure.com)的左方瀏覽窗格中，按一下 [Active Directory]。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![從左方的導覽窗格中選取 [Active Directory]。][0]
 
@@ -259,4 +259,4 @@
 [31]: ./media/active-directory-saas-netsuite-tutorial/assign-users.png
 [32]: ./media/active-directory-saas-netsuite-tutorial/assign-confirm.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

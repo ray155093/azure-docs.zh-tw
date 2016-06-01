@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="將服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Azure"
-   description="說明您可用來保護應用程式，避免潛在服務匯流排中斷的技巧。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" /> 
+    pageTitle="將服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Azure"
+    description="說明您可用來保護應用程式，避免潛在服務匯流排中斷的技巧。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="tysonn" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="01/26/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="05/06/2016"
+    ms.author="sethm" />
 
 # 將應用程式與服務匯流排中斷和災難隔絕的最佳做法
 
@@ -27,7 +27,7 @@
 
 服務匯流排使用多個訊息存放區來儲存傳送至佇列或主題的訊息。非分割的佇列或主題會指派給一個訊息存放區。如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。
 
-所有服務匯流排訊息實體 (佇列、主題、轉送) 都位於附屬於資料中心的服務命名空間中。服務匯流排不會啟用自動的資料異地複寫，也不會允許跨多個資料中心的服務命名空間。
+所有服務匯流排訊息實體 (佇列、主題、轉送) 都位於附屬於資料中心的服務命名空間中。服務匯流排不會啟用自動資料異地複寫，也不會允許跨多個資料中心的命名空間。
 
 ## 保護 ACS 免於中斷
 
@@ -41,7 +41,7 @@
 
 ## 保護資料中心免於中斷或災害
 
-若要允許兩個資料中心之間的容錯移轉，您可以在每個資料中心建立服務匯流排服務命名空間。例如，服務匯流排服務命名空間 **contosoPrimary.servicebus.windows.net** 可能位於美國 (北部/中部) 區域而 **contosoSecondary.servicebus.windows.net** 可能位於美國 (南部/中部) 區域。如果服務匯流排訊息實體必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該實體。
+若要允許兩個資料中心之間的容錯移轉，您可以在每個資料中心建立服務匯流排服務命名空間。例如，服務匯流排服務命名空間 **contosoPrimary.servicebus.windows.net** 可能位於美國北部/中部區域，而 **contosoSecondary.servicebus.windows.net** 可能位於美國南部/中部區域。如果服務匯流排訊息實體必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該實體。
 
 如需詳細資訊，請參閱[非同步傳訊模式和高可用性][]中的「Azure 資料中心內服務匯流排的失敗」一節。
 
@@ -111,4 +111,4 @@
   [Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
   [Azure 業務持續性技術指引]: https://msdn.microsoft.com/library/azure/hh873027.aspx
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0518_2016-->

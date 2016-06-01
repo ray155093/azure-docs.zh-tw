@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/19/2016"
-	ms.author="andkjell;markusvi"/>
+	ms.date="05/10/2016"
+	ms.author="andkjell;markvi"/>
 
 # Azure AD Connect 同步處理服務功能
 
@@ -25,7 +25,7 @@ Azure AD connect 同步處理功能有兩個元件：
 
 本主題說明 **Azure AD Connect 同步處理服務**的下列功能如何運作，以及如何使用 Windows PowerShell 進行設定。
 
-這些設定會由[適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](http://aka.ms/aadposh)進行設定，而您必須從 Azure AD Connect 個別下載並安裝此模組，才能加以設定。說明的 Cmdlet 已導入 [2016 年 3 月版本 (組建 9031.1)](http://social.technet.microsoft.com/wiki/contents/articles/28552.microsoft-azure-active-directory-powershell-module-version-release-history.aspx#Version_9031_1)。如果您沒有本主題說明的 Cmdlet，或它們未產生相同的結果，請確認您執行的是最新版本。
+這些設定會由[適用於 Windows PowerShell 的 Windows Azure Active Directory 模組](http://aka.ms/aadposh)進行設定，而您必須從 Azure AD Connect 個別下載並安裝此模組，才能加以設定。說明的 Cmdlet 已導入 [2016 年 3 月版本 (組建 9031.1)](http://social.technet.microsoft.com/wiki/contents/articles/28552.microsoft-azure-active-directory-powershell-module-version-release-history.aspx#Version_9031_1)。如果您沒有本主題說明的 Cmdlet，或它們未產生相同的結果，請確認您執行的是最新版本。
 
 若要查看 Azure AD 目錄中的組態，請執行 `Get-MsolDirSyncFeatures`。![Get-MsolDirSyncFeatures 結果](./media/active-directory-aadconnectsyncservice-features/getmsoldirsyncfeatures.png)
 
@@ -72,12 +72,12 @@ Set-MsolDirSyncFeature -Feature EnableSoftMatchOnUpn -Enable $true
 ## 同步處理 userPrincipalName 更新
 在過去，除非下列兩項條件都成立，否則皆會將透過內部部署使用同步處理服務的 UserPrincipalName 屬性更新封鎖：
 
-- 使用者受到管理 (非同盟)
+- 使用者受到管理 (非同盟)。
 - 使用者尚未指派授權。
 
 如需詳細資訊，請參閱 [Office 365、Azure 或 Intune 中的使用者名稱不符合內部部署的 UPN 或替代登入識別碼](https://support.microsoft.com/kb/2523192)。
 
-除非您使用同盟的網域，否則啟用此功能可讓同步處理引擎在內部部署變更 userPrincipalName 時加以更新。
+當內部部署中的 userPrincipalName 有所變更，且您使用密碼同步處理時，啟用此功能可讓同步處理引擎更新 userPrincipalName。如果您使用同盟，這項功能不會發生作用。
 
 在新建立的 Azure AD 目錄中，預設會開啟這項功能。您可以執行下列項目，查看是否已啟用此功能︰
 ```
@@ -100,4 +100,4 @@ Set-MsolDirSyncFeature -Feature SynchronizeUpnForManagedUsers -Enable $true
 
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

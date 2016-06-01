@@ -14,13 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="02/25/2016"
+   ms.date="05/16/2016"
    ms.author="mandia"/>
 
 # 開始使用 Facebook API
 連線到 Facebook 並張貼在動態時報上、取得頁面摘要等等。您可以從下列應用程式使用 Facebook API：
 
-- 邏輯應用程式 
+- 邏輯應用程式 (如本主題所述)
+- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -48,7 +49,7 @@ Facebook API 包含下列觸發程序及動作。
 1. 登入您的 Facebook 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Facebook。 
 
-當您建立連線之後，請輸入 Facebook 的屬性。本主題的＜REST API 參考＞一節會說明這些屬性。
+>[AZURE.INCLUDE [建立至 Facebook 連線的步驟](../../includes/connectors-create-api-facebook.md)]
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Facebook 連線。
 
@@ -435,4 +436,4 @@ Facebook API 包含下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

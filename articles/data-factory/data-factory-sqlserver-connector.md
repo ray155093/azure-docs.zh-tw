@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="從 SQL Server 來回移動資料 | Azure Data Factory" 
-	description="了解如何使用 Azure Data Factory，從內部部署或 Azure VM 中的 SQL Server 資料庫來回移動資料。" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
+<properties
+	pageTitle="從 SQL Server 來回移動資料 | Azure Data Factory"
+	description="了解如何使用 Azure Data Factory，從內部部署或 Azure VM 中的 SQL Server 資料庫來回移動資料。"
+	services="data-factory"
+	documentationCenter=""
+	authors="spelluru"
+	manager="jhubbard"
 	editor="monicar"/>
 
-<tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="04/18/2016" 
+<tags
+	ms.service="data-factory"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="04/18/2016"
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 SQL Server 內部部署或 IaaS (Azure VM) 上來回移動資料
@@ -36,7 +36,7 @@
 
 1.	[OnPremisesSqlServer](data-factory-sqlserver-connector.md#sql-server-linked-service-properties) 類型的連結服務。
 2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
-3.	[SqlServerTable](data-factory-sqlserver-connector.md#sql-server-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。 
+3.	[SqlServerTable](data-factory-sqlserver-connector.md#sql-server-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4.	具有使用 [SqlSource](data-factory-sqlserver-connector.md#sql-server-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
@@ -71,7 +71,7 @@
 
 **SQL Server 輸入資料集**
 
-此範例假設您已在 SQL Server 中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。
+此範例假設您已在 SQL Server 中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。請注意，您可以在使用單一資料集的相同資料庫內，透過多個資料表進行查詢，但是單一資料表必須用於資料集的 tableName typeProperty。
 
 設定 “external”: ”true” 和指定 externalData 原則資訊和 Azure Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
 
@@ -101,7 +101,7 @@
 **Azure Blob 輸出資料集**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。資料夾路徑會使用開始時間的年、月、日和小時部分。
-	
+
 	{
 	  "name": "AzureBlobOutput",
 	  "properties": {
@@ -206,8 +206,10 @@
 	   }
 	}
 
+
 在上述範例中，已為 SqlSource 指定 **sqlReaderQuery**。複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。請注意，sqlReaderQuery 可以參考輸入資料集所參考資料庫內的多個資料表；不限於僅設定為資料集的 tableName typeProperty 的資料表。
- 
+
+
 如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，就會使用資料集 JSON 的結構區段中定義的資料行來建立一個查詢，以對 SQL Server 資料庫執行 (從 mytable 選取 column1、column2)。如果資料集定義沒有結構，則會從資料表中選取所有資料行。
 
 
@@ -226,7 +228,7 @@
 此範例會每小時將屬於時間序列的資料從 Azure Blob 複製到 SQL Server 資料庫中的資料表。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 **SQL Server 連結服務**
-	
+
 	{
 	  "Name": "SqlServerLinkedService",
 	  "properties": {
@@ -253,7 +255,7 @@
 **Azure Blob 輸入資料集**
 
 每小時從新的 Blob 挑選資料 (頻率：小時，間隔：1)。根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑和檔案名稱。資料夾路徑使用開始時間的年、月、日部分，而檔案名稱使用開始時間的小時部分。“external”: “true” 設定會通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
-	
+
 	{
 	  "name": "AzureBlobInput",
 	  "properties": {
@@ -316,11 +318,11 @@
 	    }
 	  }
 	}
-	
+
 **SQL Server 輸出資料集**
 
 此範例會將資料複製到 SQL Server 中名為 "MyTable" 的資料表。您應該在 SQL Server 中建立此資料表，其資料行的數目如您預期 Blob CSV 檔案要包含的數目。此資料表會每小時加入新的資料列。
-	
+
 	{
 	  "name": "SqlServerOutput",
 	  "properties": {
@@ -394,7 +396,7 @@
 | 類型 | 類型屬性應設為：**OnPremisesSqlServer**。 | 是 |
 | connectionString | 指定使用 SQL 驗證或 Windows 驗證連接至內部部署 SQL Server 資料庫所需的 connectionString 資訊。 | 是 |
 | gatewayName | Data Factory 服務應該用來連接到內部部署 SQL Server 資料庫的閘道器名稱。 | 是 |
-| username | 如果您使用「Windows 驗證」，請指定使用者名稱。 | 否 |
+| username | 如果您使用「Windows 驗證」，請指定使用者名稱。範例︰**domainname\\username**。 | 否 |
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 否 |
 
 您可以使用 **New-AzureRmDataFactoryEncryptValue** Cmdlet 加密認證，並在連接字串中使用這些認證，如下列範例所示 (**EncryptedCredential** 屬性)：
@@ -404,7 +406,7 @@
 ### 範例
 
 **使用 SQL 驗證的 JSON**
-	
+
 	{
 	    "name": "MyOnPremisesSQLDB",
 	    "properties":
@@ -419,16 +421,16 @@
 
 如果已指定使用者名稱和密碼，閘道器會使用它們來模擬指定的使用者帳戶來連接至內部部署 SQL Server 資料庫。否則閘道器將會直接利用閘道器的安全性內容 (其啟動帳戶) 連接到 SQL Server。
 
-	{ 
-	     "Name": " MyOnPremisesSQLDB", 
-	     "Properties": 
-	     { 
-	         "type": "OnPremisesSqlLinkedService", 
-	         "ConnectionString": "Data Source=<servername>;Initial Catalog=MarketingCampaigns;Integrated Security=True;", 
-	         "username": "<username>", 
-	         "password": "<password>", 
-	         "gatewayName": "<gateway name>" 
-	     } 
+	{
+	     "Name": " MyOnPremisesSQLDB",
+	     "Properties":
+	     {
+	         "type": "OnPremisesSqlLinkedService",
+	         "ConnectionString": "Data Source=<servername>;Initial Catalog=MarketingCampaigns;Integrated Security=True;",
+	         "username": "<domain\\username>",
+	         "password": "<password>",
+	         "gatewayName": "<gateway name>"
+	     }
 	}
 
 如需為 SQL Server 資料來源設定認證的詳細資料，請參閱[設定認證和安全性](data-factory-move-data-between-onprem-and-cloud.md#set-credentials-and-security)。
@@ -476,32 +478,32 @@
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：“00:30:00” (30 分鐘)。 | 否 | 
+| writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：“00:30:00” (30 分鐘)。 | 否 |
 | writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | 整數。(單位 = 資料列計數) | 否 (預設值 = 10000)
 | sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。如需詳細資訊，請參閱下面「重複性」一節。 | 查詢陳述式。 | 否 |
 | sliceIdentifierColumnName | 使用者指定了可供複製活動使用自動產生的配量識別碼填入的資料行名稱，在重新執行時將用來清除特定配量的資料。如需詳細資訊，請參閱下面「重複性」一節。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否 |
 | sqlWriterStoredProcedureName | 將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 | 預存程序的名稱。 | 否 |
-| storedProcedureParameters | 預存程序的參數。 | 名稱/值組。參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 | 否 | 
+| storedProcedureParameters | 預存程序的參數。 | 名稱/值組。參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 | 否 |
 | sqlWriterTableType | 使用者指定了要用於上述預存程序中的資料表類型名稱。複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 | 資料表類型名稱。 | 否 |
 
 ## 疑難排解連線問題
 
 1. 將 SQL Server 設定成接受遠端連線。啟動 [SQL Server Management Studio]、用滑鼠右鍵按一下 [伺服器]，然後按一下 [屬性]。選取清單中 [連接]，然後核取 [允許此伺服器的遠端連接]。
-	
+
 	![啟用遠端連線](.\media\data-factory-sqlserver-connector\AllowRemoteConnections.png)
 
-	如需詳細步驟，請參閱[設定 remote access 伺服器組態選項](https://msdn.microsoft.com/library/ms191464.aspx)。 
+	如需詳細步驟，請參閱[設定 remote access 伺服器組態選項](https://msdn.microsoft.com/library/ms191464.aspx)。
 2. 啟動 [SQL Server 組態管理員]。展開您想要之執行個體的 [SQL Server 網路組態]，然後選取 [MSSQLSERVER 的通訊協定]。您應該會在右窗格中看到通訊協定。用滑鼠右鍵按一下 [TCP/IP]，然後按一下 [啟用] 來啟用 TCP/TP。
 
 	![啟用 TCP/IP](.\media\data-factory-sqlserver-connector\EnableTCPProptocol.png)
 
-	如需啟用 TCP/IP 通訊協定的詳細資料及替代方式，請參閱[啟用或停用伺服器網路通訊協定](https://msdn.microsoft.com/library/ms191294.aspx)。 
+	如需啟用 TCP/IP 通訊協定的詳細資料及替代方式，請參閱[啟用或停用伺服器網路通訊協定](https://msdn.microsoft.com/library/ms191294.aspx)。
 3. 在相同的視窗中，按兩下 [TCP/IP] 來啟動 [TCP/IP 屬性] 視窗。
 4. 切換到 [IP 位址] 索引標籤。向下捲動到 [IPAll] 區段。記下 **TCP 連接埠** (預設值是 **1433**)。
 5. 在電腦上建立 **Windows 防火牆規則**，來允許透過此連接埠的連入流量。  
 6. **確認連線**：利用 SQL Server Management Studio，來從不同的電腦使用完整名稱連線到 SQL Server。例如：<machine>.<domain>.corp.<company>.com,1433。
 
-	> [AZURE.IMPORTANT] 
+	> [AZURE.IMPORTANT]
 	如需詳細資訊，請參閱[連接埠和安全性考量](data-factory-move-data-between-onprem-and-cloud.md#port-and-security-considerations)。
 	>   
 	> 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
@@ -570,7 +572,7 @@
 	        },
 	        "external": false,
 	        "policy": {}
-	    }	
+	    }
 	}
 
 
@@ -609,8 +611,8 @@
 | 十進位 | 十進位 |
 | FILESTREAM 屬性 (varbinary(max)) | 位元組 |
 | Float | 兩倍 |
-| image | 位元組 | 
-| int | Int32 | 
+| image | 位元組 |
+| int | Int32 |
 | money | 十進位 |
 | nchar | String、Char |
 | ntext | String、Char |
@@ -620,7 +622,7 @@
 | rowversion | 位元組 |
 | smalldatetime | DateTime |
 | smallint | Int16 |
-| smallmoney | 十進位 | 
+| smallmoney | 十進位 |
 | sql\_variant | 物件 * |
 | 文字 | String、Char |
 | 分析 | TimeSpan |
@@ -640,4 +642,4 @@
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

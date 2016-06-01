@@ -43,11 +43,13 @@
 
 **RHEL 安裝注意事項**
 
-- Azure 不支援較新的 VHDX 格式。您可以使用 Hyper-V 管理員或 **convert-vhd** Powershell Cmdlet，將磁碟轉換為 VHD 格式。
+- 如需有關準備 Azure 之 Linux 的更多秘訣，另請參閱[一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)。
+
+- Azure 不支援較新的 VHDX 格式。您可以使用 Hyper-V 管理員或 **convert-vhd** PowerShell Cmdlet，將磁碟轉換為 VHD 格式。
 
 - 建立的 VHD 必須為「固定」形式，動態 VHD 不受支援。
 
-- 安裝 Linux 作業系統時，我們建議您使用標準磁碟分割而不是邏輯磁碟區管理員 (LVM，其經常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了進行疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果您想要的話，可以在資料磁碟上使用 LVM 或 RAID。
+- 安裝 Linux 系統時，我們建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果願意，您可以在資料磁碟上使用 LVM 或 [RAID](virtual-machines-linux-configure-raid.md)。
 
 - 請勿在作業系統磁碟上設定交換磁碟分割。您可以設定 Linux 代理程式以在暫存資源磁碟上建立交換檔。您可以在以下步驟中找到與前述內容相關的詳細資訊。
 
@@ -513,7 +515,7 @@
 
 
 
-### <a id="rhel67vmware"> </a>從 VMware 準備 RHEL 6.7 虛擬機器###
+### <a id="rhel67vmware"> </a>從 VMWare 準備 RHEL 6.7 虛擬機器###
 
 1.	執行下列命令以解除安裝 NetworkManager：
 
@@ -625,7 +627,7 @@
         # qemu-img convert -f raw -o subformat=fixed -O vpc rhel-6.7.raw rhel-6.7.vhd
 
 
-### <a id="rhel7xvmware"> </a>從 VMware 準備 RHEL 7.1/7.2 虛擬機器###
+### <a id="rhel7xvmware"> </a>從 VMWare 準備 RHEL 7.1/7.2 虛擬機器###
 
 1.	在 /etc/sysconfig/ 目錄中，建立名為 **network** 且包含下列文字的檔案：
 
@@ -910,8 +912,8 @@
 如需詳細資訊，請參閱[重建 initramfs](https://access.redhat.com/solutions/1958) 的相關資訊。
 
 ## 後續步驟
-您現在可以開始使用您的 Red Hat Enterprise Linux 虛擬硬碟在 Azure 建立新的虛擬機器。如果這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和 3。
+您現在可以開始使用您的 Red Hat Enterprise Linux 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
 
 如需已通過認證可執行 Red Hat Enterprise Linux 之 Hypervisor 的詳細資訊，請參閱 [Red Hat 網站](https://access.redhat.com/certified-hypervisors)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

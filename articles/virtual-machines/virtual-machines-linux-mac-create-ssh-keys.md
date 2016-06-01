@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/02/2016"
+	ms.date="05/16/2016"
 	ms.author="v-livech"/>
 
 # 在 Linux 和 Mac 上為 Azure 中的 Linux VM 建立 SSH 金鑰
 
-若要建立受密碼保護的 SSH 公開和私密金鑰，您需要在工作站上開啟終端機。擁有 SSH 金鑰後，預設可以使用該金鑰建立新 VM，或使用 Azure CLI 和 Azure 範本將公開金鑰新增至現有 VM。
+若要建立受密碼保護的 SSH 公開和私密金鑰，您需要在工作站上開啟終端機。擁有 SSH 金鑰後，預設可以使用該金鑰建立新 VM，或使用 Azure CLI 和 Azure 範本將公開金鑰新增至現有 VM。這將允許使用更安全的金鑰和密碼驗證方法，透過 SSH 進行無密碼登入。
 
 ## 快速命令清單
 
@@ -64,7 +64,7 @@ $
 
 ## 簡介
 
-想要登入 Linux 伺服器，最簡單的方式是使用 SSH 公開和私密金鑰，但比起使用密碼來登入 Azure 中的 Linux 或 BSD VM，使用[公開金鑰密碼編譯](https://en.wikipedia.org/wiki/Public-key_cryptography)會安全得多，因為密碼非常容易遭到暴力破解。公開金鑰可以與任何人共用；但只有您 (或您的本機安全性基礎結構) 會擁有私密金鑰。建立的 SSH 私密金鑰將會有[安全密碼](https://www.xkcd.com/936/)來保護它，此密碼只能用於存取 SSH 私密金鑰，而**不是**使用者帳戶密碼。任何擁有私密金鑰但沒有密碼的人員都可以使用所安裝的公開金鑰來存取任何伺服器。如果沒有密碼，就不能使用私密金鑰。
+想要登入 Linux 伺服器，最簡單的方式是使用 SSH 公開和私密金鑰，但比起使用密碼來登入 Azure 中的 Linux 或 BSD VM，使用[公開金鑰密碼編譯](https://en.wikipedia.org/wiki/Public-key_cryptography)會安全得多，因為密碼非常容易遭到暴力破解。公開金鑰可以與任何人共用；但只有您 (或您的本機安全性基礎結構) 會擁有私密金鑰。建立的 SSH 私密金鑰將會有[安全密碼](https://www.xkcd.com/936/)來保護它，此密碼只能用於存取 SSH 私密金鑰，而**不是**使用者帳戶密碼。當您將密碼新增至 SSH 金鑰時，私密金鑰便會加密，而未利用密碼解除鎖定的私密金鑰無法加以使用。如果攻擊者可以竊取您的私密金鑰，而且該金鑰沒有密碼，他們就能使用該私密金鑰來登入已安裝對應公開金鑰的伺服器。如果私密金鑰受密碼保護，攻擊者就無法使用該金鑰，進而為您在 Azure 上的基礎結構提供額外的安全性。
 
 
 本文會建立 ssh-rsa 格式的金鑰檔案，因為它們是 Resource Manager 上的部署所建議使用的檔案，而且也是在[入口網站](https://portal.azure.com)上進行傳統部署和資源管理員部署時所必須使用的檔案。
@@ -76,7 +76,7 @@ Azure 需要至少 2048 位元的 ssh-rsa 格式公開和私密金鑰。為了�
 
 ## 使用 ssh-keygen
 
-此命令會使用 2048 位元 RSA 建立密碼保護的 SSH 金鑰組，並為其加上註解以供輕鬆識別。
+此命令會使用 2048 位元 RSA 建立密碼保護(加密) 的 SSH 金鑰組，並為其加上註解以供輕鬆識別。
 
 ```bash
 ssh-keygen -t rsa -b 2048 -C "ahmet@fedoraVMAzure"
@@ -235,4 +235,4 @@ ssh fedora22
 - [使用 Azure 入口網站建立安全的 Linux VM](virtual-machines-linux-quick-create-portal.md)
 - [使用 Azure CLI 建立安全的 Linux VM](virtual-machines-linux-quick-create-cli.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

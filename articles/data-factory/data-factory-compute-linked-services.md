@@ -66,7 +66,7 @@ HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceNa
 屬性 | 說明 | 必要
 -------- | ----------- | --------
 類型 | type 屬性應設為 **HDInsightOnDemand**。 | 是
-clusterSize | 隨選叢集的大小。指定您希望此隨選叢集中有多少個節點。 | 是
+clusterSize | 叢集中的背景工作/資料節點數。HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。節點大小為具有 4 個核心的 Standard\_D3，因此 4 個背景工作節點的叢集將會需要 24 個核心 (4*4 用於背景工作節點 + 2*4 用於前端節點)。如需 Standard\_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 | 是
 timetolive | 隨選 HDInsight 叢集允許的閒置時間。指定如果叢集中沒有其他作用中工作，隨選 HDInsight 叢集在活動執行完成後會保持運作的時間長度。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，則叢集會在 6 分鐘的活動執行處理後保持運作 5 分鐘。如果另一輪活動執行了 6 分鐘，則會由相同的叢集處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一些時間)，所以視需要使用此設定，藉由重複使用隨選 HDInsight 叢集來改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，則處理活動執行後便會刪除叢集。另一方面，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用相同的隨選 HDInsight 叢集執行個體 | 是
 版本 | HDInsight 叢集的版本。針對 Windows 叢集的預設值為 3.1，針對 Linux 叢集的預設值為 3.2。 | 否
 linkedServiceName | 隨選叢集用於儲存及處理資料的 Blob 存放區。 | 是
@@ -137,9 +137,9 @@ yarnConfiguration | 指定 HDInsight 叢集的 Yarn 組態參數 (yarn-site.xml)
 
 屬性 | 說明 | 必要
 :-------- | :----------- | :--------
-headNodeSize | 指定前端節點的大小。預設值為：大。如需詳細資料，請參閱以下**指定節點大小**一節。 | 否
-dataNodeSize | 指定資料節點的大小。預設值為：大 | 否
-zookeeperNodeSize | 指定 Zoo Keeper 節點的大小。預設值為：小 | 否
+headNodeSize | 指定前端節點的大小。預設值為：Standard\_D3。如需詳細資料，請參閱以下**指定節點大小**一節。 | 否
+dataNodeSize | 指定資料節點的大小。預設值為：Standard\_D3。 | 否
+zookeeperNodeSize | 指定 Zoo Keeper 節點的大小。預設值為：Standard\_D3。 | 否
  
 #### 指定節點大小
 如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md#size-tables)一文。值必須符合本文件中所參考的 **CMDLET 與 APIS**。如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。
@@ -339,4 +339,4 @@ sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階�
 
 您可建立 Azure SQL 連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties)一文。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

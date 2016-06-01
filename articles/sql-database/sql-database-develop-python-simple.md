@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Python 連接到 SQL Database"
+	pageTitle="使用 Python 連接到 SQL Database | Microsoft Azure"
 	description="提供可用來連接到 Azure SQL Database 的 Python 程式碼範例。"
 	services="sql-database"
 	documentationCenter=""
@@ -47,4 +47,4 @@
 
 如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

@@ -20,7 +20,7 @@
 
 本主題說明如何在資源管理員模型中執行的 Azure 虛擬機器中建立 SQL Server AlwaysOn 可用性群組的內部負載平衡器。當 SQL Server 執行個體位於 Azure 虛擬機器時，AlwaysOn 可用性群組需要負載平衡器。負載平衡器會儲存可用性群組接聽程式的 IP 位址。如果可用性群組跨越多個區域，則每個區域都需要負載平衡器。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統模型。
 
 若要完成這項工作，您需要在資源管理員模型中的 Azure 虛擬機器上部署 SQL Server AlwaysOn 可用性群組。這兩部 SQL Server 虛擬機器必須屬於相同的可用性設定組。您可以使用 [Microsoft 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)在 Azure Resource Manager 中自動建立 AlwaysOn 可用性群組。此範本會自動為您建立內部負載平衡器。
 
@@ -267,4 +267,4 @@ SQLCMD 連線會自動連接到裝載主要複本的 SQL Server 執行個體。
 - 使用內部負載平衡器，您只能從相同的虛擬網路內存取接聽程式。
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

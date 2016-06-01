@@ -15,7 +15,7 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="04/06/2016"
+	ms.date="05/13/2016"
 	ms.author="chrande"/>
 
 # Azure Functions NodeJS 開發人員參考
@@ -138,10 +138,22 @@ context.res = { status: 202, body: 'You successfully ordered more coffee!' };
 
 Node 版本目前鎖定在 `5.9.1`。我們正在調查加入更多版本並允許設定的支援。
 
-您可以將封裝加入您的函數目錄 (也就是透過 `npm install`)，然後將它們和平常一樣匯入到函數中 (也就是透過 `require('packagename')`)
+您可以在您的函式中加入封裝，做法是將 *project.json* 檔案上傳至函式應用程式的檔案系統中的您的函式資料夾。如需上傳指示，請參閱 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函式應用程式檔案**一節。
+
+您也可以在函式應用程式的 SCM (Kudu) 命令列介面中使用 `npm install`︰
+
+1. 瀏覽至：`https://<function_app_name>.scm.azurewebsites.net`。
+
+2. 按一下 [偵錯主控台] > [CMD]。
+
+3. 瀏覽至 `D:\home\site\wwwroot<function_name>`。
+
+4. 執行 `npm install`。
+
+一旦安裝好您需要的封裝，以一般方式將它們匯入您的函式 (也就是透過 `require('packagename')`)
 
 ```javascript
-// Import the underescore.js library
+// Import the underscore.js library
 var _ = require('underscore');
 var version = process.version; // version === 'v5.9.1'
 
@@ -163,4 +175,4 @@ module.exports = function(context) {
 * [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

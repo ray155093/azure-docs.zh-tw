@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/16/2016"
 	ms.author="dastrock"/>
 
 
@@ -53,7 +53,8 @@
 - 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。在 [**委派權限**] 下，為 [Azure Active Directory] 應用程式新增 [**存取您的組織目錄**] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
 
 ## *2.安裝及設定 ADAL*
-既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能夠與 Azure AD 進行通訊，您必須提供一些應用程式註冊相關資訊。從使用封裝管理員主控台將 ADAL 加入 DirectorySearcher 專案開始。
+既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
+-	首先，使用 Package Manager Console 將 ADAL 新增到 DirectorySearcher 專案中。
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
@@ -65,7 +66,7 @@ PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
     -	`ida:RedirectUri` 是您在入口網站中註冊的重新導向 url。
 
 ## *3.使用 ADAL 來取得 AAD 的權杖*
-ADAL 的基本原則是每當您的應用程式需要存取權杖時，它只需呼叫 `authContext.AcquireToken(...)`，ADAL 就會進行其餘工作。
+ADAL 的基本原則是每當您的應用程式需要存取權杖時，它只需呼叫 `authContext.AcquireTokenAsync(...)`，ADAL 就會進行其餘工作。
 
 -	在 `DirectorySearcher` 專案中，開啟 `MainWindow.xaml.cs` 並找出 `MainWindow()` 方法。第一步是初始化應用程式的 `AuthenticationContext` - ADAL 的主要類別。您在這裡將 ADAL 與 Azure AD 通訊所需的座標傳給 ADAL，並告訴它如何快取權杖。
 
@@ -75,22 +76,28 @@ public MainWindow()
     InitializeComponent();
 
     authContext = new AuthenticationContext(authority, new FileCache());
-    ...
+
+    CheckForCachedToken();
 }
 ```
 
 - 現在請找到 `Search(...)` 方法，這是在使用者按一下應用程式 UI 的 [搜尋] 按鈕時所叫用的方法。這個方法會對 Azure AD Graph API 提出 GET 要求，以查詢 UPN 開頭為指定搜尋詞彙的使用者。但為了能夠查詢 Graph API，要求的 `Authorization` 標頭必須包含 access\_token - ADAL 可以提供這方面的協助。
 
 ```C#
-private void Search(object sender, RoutedEventArgs e)
+private async void Search(object sender, RoutedEventArgs e)
 {
-    ...
+    // Validate the Input String
+    if (string.IsNullOrEmpty(SearchText.Text))
+    {
+        MessageBox.Show("Please enter a value for the To Do item name");
+        return;
+    }
 
     // Get an Access Token for the Graph API
     AuthenticationResult result = null;
     try
     {
-        result = authContext.AcquireToken(graphResourceId, clientId, redirectUri);
+        result = await authContext.AcquireTokenAsync(graphResourceId, clientId, redirectUri, new PlatformParameters(PromptBehavior.Auto));
         UserNameLabel.Content = result.UserInfo.DisplayableId;
         SignOutButton.Visibility = Visibility.Visible;
     }
@@ -106,10 +113,10 @@ private void Search(object sender, RoutedEventArgs e)
     ...
 }
 ```
-- 當您的應用程式透過呼叫 `AcquireToken(...)` 要求權杖時，ADAL 會嘗試在不要求使用者認證的情況下傳回權杖。如果 ADAL 決定使用者需要登入才能取得權杖，它會顯示登入對話方塊、收集使用者的認證，並在成功驗證後傳回權杖。如果基於任何原因 ADAL 無法傳回權杖，則會擲回 `AdalException`。
+- 當您的應用程式透過呼叫 `AcquireTokenAsync(...)` 要求權杖時，ADAL 會嘗試在不要求使用者認證的情況下傳回權杖。如果 ADAL 決定使用者需要登入才能取得權杖，它會顯示登入對話方塊、收集使用者的認證，並在成功驗證後傳回權杖。如果基於任何原因 ADAL 無法傳回權杖，則會擲回 `AdalException`。
 - 請注意，`AuthenticationResult` 物件包含 `UserInfo` 物件，可用來收集您的應用程式可能需要的資訊。在 DirectorySearcher 中，`UserInfo` 用來以使用者的識別碼自訂應用程式的 UI。
 
-- 當使用者按一下 [登出] 按鈕時，我們想要確保下次呼叫 `AcquireToken(...)` 時會要求使用者登入。有了 ADAL，這會和清除權杖快取一樣簡單：
+- 當使用者按一下 [登出] 按鈕時，我們想要確保下次呼叫 `AcquireTokenAsync(...)` 時會要求使用者登入。有了 ADAL，這會和清除權杖快取一樣簡單：
 
 ```C#
 private void SignOut(object sender = null, RoutedEventArgs args = null)
@@ -121,20 +128,16 @@ private void SignOut(object sender = null, RoutedEventArgs args = null)
 }
 ```
 
-- 不過，如果使用者未按一下 [登出] 按鈕，您會想要維護使用者的工作階段，供他們下一次執行 DirectorySearcher 繼續使用。當應用程式啟動時，您可以在 ADAL 的權杖快取中檢查現有的權杖，並據此更新 UI。回到 `MainWindow()`, ，再呼叫一次 `AcquireToken(...)`這次要傳入 `PromptBehavior.Never` 參數。`PromptBehavior.Never` 告訴 ADAL 不要提示使用者進行登入，而如果 ADAL 無法傳回權杖，則應該改為擲回例外狀況。
+- 不過，如果使用者未按一下 [登出] 按鈕，您會想要維護使用者的工作階段，供他們下一次執行 DirectorySearcher 繼續使用。當應用程式啟動時，您可以在 ADAL 的權杖快取中檢查現有的權杖，並據此更新 UI。在 `CheckForCachedToken()` 方法中，再呼叫一次 `AcquireTokenAsync(...)`，這次要傳入 `PromptBehavior.Never` 參數。`PromptBehavior.Never` 告訴 ADAL 不要提示使用者進行登入，而如果 ADAL 無法傳回權杖，則應該改為擲回例外狀況。
 
 ```C#
-public MainWindow()
+public async void CheckForCachedToken() 
 {
-    InitializeComponent();
-
-    authContext = new AuthenticationContext(authority, new FileCache());
-
     // As the application starts, try to get an access token without prompting the user.  If one exists, show the user as signed in.
     AuthenticationResult result = null;
     try
     {
-        result = authContext.AcquireToken(graphResourceId, clientId, redirectUri, PromptBehavior.Never);
+        result = await authContext.AcquireTokenAsync(graphResourceId, clientId, redirectUri, new PlatformParameters(PromptBehavior.Never));
     }
     catch (AdalException ex)
     {
@@ -156,7 +159,7 @@ public MainWindow()
 
 恭喜！ 您現在有一個可運作的 .NET WPF 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。執行 DirectorySearcher 應用程式，並使用其中一個使用者登入。根據 UPN 搜尋其他使用者。關閉並重新執行應用程式。請注意，使用者工作階段會維持不變。登出，再以另一個使用者身分重新登入。
 
-ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應用程式。它會為您處理一切麻煩的事，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI、重新整理過期權杖等等。您唯一需要知道的就是單一 API 呼叫，`authContext.AcquireToken(...)`。
+ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應用程式。它會為您處理一切麻煩的事，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI、重新整理過期權杖等等。您唯一需要知道的就是單一 API 呼叫，`authContext.AcquireTokenAsync(...)`。
 
 [這裡](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip)提供完成的範例供您參考 (不含您的設定值)。您現在可以繼續探索其他案例。您可以嘗試：
 
@@ -164,4 +167,4 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

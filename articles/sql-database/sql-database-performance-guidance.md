@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="04/20/2016"
+	ms.date="04/29/2016"
 	ms.author="carlrab" />
 
 # 單一資料庫的 Azure SQL Database 效能指引
@@ -62,6 +62,8 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 
 如需服務層、效能等級和 DTU 的詳細資訊，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
 
+
+
 ## 使用服務層的原因
 
 雖然每個工作負載各有不同，服務層的目的是要在各種不同的效能等級提供高效能可預測性。它們可讓對其資料庫有大規模資源需求的客戶在更加專用的運算環境中工作。
@@ -84,6 +86,20 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 您需要的確切等級取決於每個資源維度的尖峰負載需求。有些應用程式可能會使用微量資源，但卻對另一個資源有大量需求。
 
 如需服務層的詳細資訊，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
+
+## 計費和定價資訊
+
+彈性資料庫集區會依據下列特性計費：
+
+- 彈性集區在建立時就會開始計費，即使集區中沒有資料庫也一樣。
+- 彈性集區會以每小時計費。這和單一資料庫效能等級的計量頻率相同。
+- 如果彈性集區調整為新的 eDTU 量，則在調整作業完成之前，不會根據新的 eDTU 量來計算集區費用。這會遵循與變更獨立資料庫的效能等級相同的模式。
+
+
+- 彈性集區的價格是以集區的 eDTU 數為計算基礎。彈性集區的價格與其中所使用的彈性資料庫無關。
+- 價格的計算方式為 (集區的 eDTU 數) x (每 eDTU 的單價)。
+
+在同一個服務層中，彈性集區的 eDTU 單價大於獨立資料庫的 DTU 單價。如需詳細資訊，請參閱 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)。
 
 ## 服務層的功能和限制
 每個服務層和效能層級都關聯到不同的限制和效能特性。下表描述單一資料庫的這些特性。
@@ -110,7 +126,7 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 
 *異地還原*會提供給所有服務層使用，且不須額外付費。在發生中斷時，您可以使用最新的異地備援備份將資料庫還原到任何 Azure 區域。
 
-生效的標準異地複寫會提供類似災害復原的功能，但復原點目標 (RPO) 會低很多。例如，若使用異地還原，RPO 會少於一小時 (換句話說，所備份的內容最舊不會超過一小時)。但對於異地複寫來說，RPO 少於 5 秒。
+[作用中異地複寫](sql-database-geo-replication-overview.md)會提供類似災害復原的功能，但復原點目標 (RPO) 會低很多。例如，若使用異地還原，RPO 會少於一小時 (換句話說，所備份的內容最舊不會超過一小時)。但對於作用中異地複寫來說，RPO 少於 5 秒。
 
 如需詳細資訊，請參閱[業務續航力概觀](sql-database-business-continuity.md)。
 
@@ -291,11 +307,11 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 ## 微調技術
 本節將說明一些技術，您可以用來微調 Azure SQL Database 以獲取應用程式的最佳效能，並且盡可能在最小的效能等級中執行。許多技術符合傳統的 SQL Server 微調最佳做法，但是有些技術則是專屬於 Azure SQL Database。在某些情況下，傳統的 SQL Server 技術都可以藉由檢查資料庫已耗用的資源來尋找要進一步微調的區域，以擴充成也適用於 Azure SQL Database。
 
-### 查詢效能深入解析與索引顧問
-SQL Database 在 Azure 傳統入口網站中提供兩種工具來分析及修正資料庫的效能問題：
+### 查詢效能深入解析與 SQL Database Advisor
+SQL Database 在 Azure 入口網站中提供兩種工具來分析及修正資料庫的效能問題：
 
 - [查詢效能深入解析](sql-database-query-performance.md)
-- [索引顧問](sql-database-index-advisor.md)
+- [SQL Database 建議程式](sql-database-index-advisor.md)
 
 請參閱前面的連結，以取得關於這些工具及其使用方式的詳細資訊。接下來關於遺漏索引和查詢微調的兩節將會提供其他方式來手動找出並更正類似的效能問題。我們建議您先嘗試入口網站中的工具，以便更有效率地診斷並更正問題。若是特殊情況，請使用手動微調方法。
 
@@ -324,7 +340,7 @@ OLTP 資料庫效能中常見的問題與實體資料庫設計相關。資料庫
 
 Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常見遺漏索引狀況的功能。Azure SQL Database 內建的動態管理檢視 (DMV) 會查看查詢編譯，其中的索引會大幅減少執行查詢的估計成本。執行查詢期間，它會追蹤每個查詢計劃的執行頻率，以及執行查詢計劃和其中存在該索引之假設查詢計劃之間的落差。這樣可讓資料庫管理員快速推測哪些實體資料庫設計變更可能會改善指定資料庫和其實際工作負載的整體工作負載成本。
 
->[AZURE.NOTE] 在使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與索引顧問](#query-performance-insight-and-index-advisor)一節。
+>[AZURE.NOTE] 在使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與 SQL Database Advisor](#query-performance-insight-and-index-advisor) 一節。
 
 下列查詢可用來評估潛在的遺漏索引。
 
@@ -491,4 +507,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0518_2016-->

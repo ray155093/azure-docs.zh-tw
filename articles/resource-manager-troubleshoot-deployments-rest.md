@@ -27,9 +27,7 @@
 
 如果您在將資源部署至 Azure 時發生錯誤，您需要針對出錯的地方進行疑難排解。REST API 提供作業，可讓您找出錯誤並判斷可能的修正方法。
 
-您可以藉由查看稽核記錄檔或部署作業來疑難排解您的部署。本主題說明這兩種方法。
-
-部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。如需詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+[AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
 ## REST API 疑難排解
 
@@ -111,7 +109,8 @@
 
 ## 後續步驟
 
+- 如需解決特定部署錯誤的說明，請參閱[解決以 Azure Resource Manager 部署資源至 Azure 時的常見錯誤](resource-manager-common-deployment-errors.md)。
 - 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用資源管理員來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

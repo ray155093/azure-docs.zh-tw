@@ -56,4 +56,6 @@ App Service API Apps 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼�
 
 如需逐步解說的教學課程來引導您建立、部署及使用 API 應用程式，請參閱[開始使用 Azure App Service 中的 API Apps](app-service-api-dotnet-get-started.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+如果您搭配使用 Azure API 管理與 API Apps，您可以使用 Swagger 元資料將 API 匯入 API 管理。如需詳細資訊，請參閱[如何在 Azure API 管理中連同操作一起匯入 API 的定義](../api-management/api-management-howto-import-api.md)。
+
+<!---HONumber=AcomDC_0518_2016-->

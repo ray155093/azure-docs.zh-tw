@@ -73,7 +73,7 @@
 2. 在 [混合式連線] 分頁上，按一下 [新增]。
 	
 	<!-- ![Add a hybrid connnection][CreateHCAddHC]
--->
+	-->
 	
 3. [新增混合式連線] 分頁隨即開啟。由於這是您的第一個混合式連線，因此會預先選取 [新增混合式連線] 選項，並為您開啟 [建立混合式連線] 分頁。
 	
@@ -98,8 +98,8 @@
 	
 6. 當程序完成時，入口網站中的通知區域會通知您已成功建立連線。
 	<!--- TODO
-
-    Everything fails at this step. I can't create a BizTalk service in the dogfood portal. I switch to the classic portal
+	
+	Everything fails at this step. I can't create a BizTalk service in the dogfood portal. I switch to the classic portal
 	(full portal) and created the BizTalk service but it doesn't seem to let you connnect them - When you finish the
 	Create hybrid conn step, you get the following error
 	Failed to create hybrid connection RelecIoudHC. The 
@@ -168,7 +168,7 @@
 
 針對 Mobile Apps，您也需要定義內部部署資料庫的連接字串與修改後端，以使用此連線。
 
-1. 在 [Visual Studio 方案總管] 中開啟您的行動應用程式 .NET 後端的 Web.config 檔案，找出 **connectionStrings** 區段，新增會指向內部部署 SQL Server 資料庫的 SqlClient 項目，如下所示：
+1. 在 [Visual Studio 方案總管] 中開啟您的行動應用程式 .NET 後端的 Web.config 檔案，並找出 **connectionStrings** 區段，然後新增會指向內部部署 SQL Server 資料庫的 SqlClient 項目，如下所示：
 
 	    <add name="OnPremisesDBConnection"
          connectionString="Data Source=OnPremisesServer,1433;
@@ -227,7 +227,7 @@
 
 [混合式連線網站](https://azure.microsoft.com/services/biztalk-services/)
 
-[BizTalk 服務：儀表板、監視器、調整、設定和混合式連線索引標籤](../biztalk-dashboard-monitor-scale-tabs/)
+[BizTalk 服務：儀表板、監視器、調整、設定和混合式連線索引標籤](../biztalk-services/biztalk-dashboard-monitor-scale-tabs.md)
 
 [透過絕佳的應用程式可攜性建置真實的混合式雲端 (第 9 頻道視訊)](http://channel9.msdn.com/events/TechEd/NorthAmerica/2014/DCIM-B323#fbid=)
 
@@ -262,4 +262,4 @@
 [HCStatusConnected]: ./media/web-sites-hybrid-connection-get-started/D10HCStatusConnected.png
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

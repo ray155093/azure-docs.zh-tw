@@ -18,7 +18,7 @@ ms.author="larryfr"/>
 
 #如何刪除 HDInsight 叢集
 
-HDInsight 叢集是以小時計費，因此不再使用時，應該一律刪除您的叢集。在本文件中，您將了解如何使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 來刪除叢集。
+HDInsight 叢集的費用是從建立叢集時開始計算，而於刪除叢集時停止，並以每分鐘按比例計費，因此不再使用您的叢集時應該一律刪除。在本文件中，您將了解如何使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 來刪除叢集。
 
 > [AZURE.IMPORTANT] 刪除 HDInsight 叢集並不會刪除與叢集相關聯的 Azure 儲存體帳戶。這可讓您保留及重複使用叢集所儲存的任何資料。
 
@@ -34,7 +34,7 @@ HDInsight 叢集是以小時計費，因此不再使用時，應該一律刪除�
 
 ##Azure PowerShell
 
-> [AZURE.NOTE] 如果您尚未安裝和設定 Azure PowerShell，可使用[安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文件中的步驟。
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 在 PowerShell 提示中，使用下列命令來刪除叢集︰
 
@@ -52,4 +52,4 @@ HDInsight 叢集是以小時計費，因此不再使用時，應該一律刪除�
     
 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

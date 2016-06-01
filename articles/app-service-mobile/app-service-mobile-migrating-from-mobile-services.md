@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="04/26/2016"
 	ms.author="adrianhall"/>
 
 # <a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
@@ -248,7 +248,7 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 您的通知中樞將透過 [Azure 入口網站]受到管理。請記下通知中樞名稱 (您可以使用 [應用程式設定] 找到此項目)：
 
   1. 登入 [Azure 入口網站]。
-  2. 選取 [瀏覽>]，然後選取 \[通知中樞]
+  2. 選取 [瀏覽>]，然後選取 [通知中樞]
   3. 按一下與行動服務相關聯的通知中樞名稱。
 
 > [AZURE.NOTE] 您的通知中樞如果是「混合」類型，則不會顯示。「混合」類型的通知中樞會同時使用「通知中樞」和舊版的「服務匯流排」功能。您將必須[轉換混合式命名空間]。轉換完成後，您的通知中樞會出現在 [Azure 入口網站]中。
@@ -332,6 +332,33 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 
 解決方案：我們正在處理這個問題。如果您想要複製網站，請透過入口網站執行作業。
 
+### 變更 web.config 並未發生作用
+
+如果您有 ASP.NET 網站，`Web.config` 檔案的變更將沒有作用。Azure App Service 會在啟動期間建置適合的 `Web.config` 檔案，以支援行動服務執行階段。您可以使用 XML 轉換檔案來覆寫特定設定 (例如自訂標頭)。建立名稱為 `applicationHost.xdt` 的檔案 - 這個檔案必須在 Azure 服務上的 `D:\home\site` 目錄中結束。透過自訂部署指令碼或直接使用 Kudu 即可做到這一點。範例文件如下所示：
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <system.webServer>
+    <httpProtocol>
+      <customHeaders>
+        <add name="X-Frame-Options" value="DENY" xdt:Transform="Replace" />
+        <remove name="X-Powered-By" xdt:Transform="Insert" />
+      </customHeaders>
+    </httpProtocol>
+    <security>
+      <requestFiltering removeServerHeader="true" xdt:Transform="SetAttributes(removeServerHeader)" />
+    </security>
+  </system.webServer>
+</configuration>
+```
+
+如需詳細資訊，請參閱 GitHub 上的 [XDT 轉換範例]文件。
+
+### 移轉的行動服務無法新增至流量管理員
+
+當您建立流量管理員設定檔時，您無法直接選擇設定檔的移轉行動服務。您需要使用「外部端點」。外部端點只能透過 PowerShell 來新增。如需詳細資訊，請參閱[流量管理員教學課程](https://azure.microsoft.com/blog/azure-traffic-manager-external-endpoints-and-weighted-round-robin-via-powershell/)。
+
 ## <a name="next-steps"></a>後續步驟
 
 除了您的應用程式會移轉至 App Service 以外，還有更多功能可供您使用：
@@ -380,5 +407,6 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [預備位置]: ../app-service-web/web-sites-staged-publishing.md
 [VNet]: ../app-service-web/web-sites-integrate-with-vnet.md
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
+[XDT 轉換範例]: https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

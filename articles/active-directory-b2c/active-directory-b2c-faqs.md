@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/21/2016"
+	ms.date="05/16/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：常見問題集
@@ -98,6 +98,20 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 目前不支援。但這項功能已在我們的規劃中。另請注意，在 Azure 傳統入口網站上租用戶的 [網域] 索引標籤中驗證您的網域，將不會執行此動作。
 
+### 如何刪除 Azure AD B2C 租用戶？
+
+請遵循下列步驟來刪除 Azure AD B2C 租用戶︰
+
+- 以訂用帳戶管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。(此為您註冊 Azure 時所用的相同工作或學校帳戶，或是相同的 Microsoft 帳戶)。
+- 瀏覽至左側的 Active Directory 擴充，然後按一下 B2C 租用戶。
+- 按一下 [**應用程式**] 索引標籤。
+- 選取 [顯示] 下拉式欄位中的 [我公司所擁有的應用程式]，然後按一下核取記號。
+- 您會看到下面列出名稱為 **b2c-extensions-app** 的應用程式。按一下頁面底部的 [刪除]，然後在出現提示時按一下 [是]。
+- 再次瀏覽至 Active Directory 擴充，然後選取 B2C 租用戶。
+- 按一下頁面底部的 [**刪除**]。依照畫面上的指示完成程序。
+
+如果您已在 B2C 租用中建立**使用者**、**應用程式**或其他物件，您必須先刪除這些物件，再執行上述步驟。
+
 ### 我可以從 Enterprise Mobility Suite 中取得 Azure AD B2C 嗎？
 
 否，Azure AD B2C 是隨用隨付的 Azure 服務，並不是 Enterprise Mobility Suite 的一部分。
@@ -114,4 +128,4 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 您也可能想要檢閱目前的[預覽限制和條件約束](active-directory-b2c-limitations.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0518_2016-->

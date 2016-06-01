@@ -31,9 +31,11 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
-##安裝 Azure PowerShell 1.0 或更新版本
+##安裝 Azure PowerShell
 
-首先，您必須先解除安裝 0.9x 版本。
+[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+
+如果您已安裝 Azure PowerShell 0.9 x 版，必須先解除安裝然後再安裝較新版本。
 
 檢查已安裝的 PowerShell 版本：
 
@@ -41,22 +43,6 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 	
 若要解除安裝較舊的版本，請在控制台中執行 [程式和功能]。
 
-共有兩個安裝 Azure PowerShell 的主要選項。
-
-- [PowerShell 資源庫](https://www.powershellgallery.com/)。從提高權限的 PowerShell ISE 或提高權限的 Windows PowerShell 主控台執行下列命令：
-
-		# Install the Azure Resource Manager modules from PowerShell Gallery
-		Install-Module AzureRM
-		Install-AzureRM
-		
-		# Import AzureRM modules for the given version manifest in the AzureRM module
-		Import-AzureRM
-
-	如需詳細資訊，請參閱 [PowerShell 資源庫](https://www.powershellgallery.com/)。
-
-- [Microsoft Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。如果您已安裝 Azure PowerShell 0.9.x，系統將提示您解除安裝 0.9.x。如果您是從 PowerShell 資源庫安裝 Azure PowerShell 模組，必須在安裝安裝程式之前先移除模組，以確保 Azure PowerShell 環境保持一致。如需指示，請參閱[透過 WebPI 安裝 Azure PowerShell 1.0](https://azure.microsoft.com/blog/azps-1-0/)。
-
-WebPI 每個月都會更新。PowerShell 資源庫將持續更新。若您想要透過 PowerShell 資源庫安裝，則此為取得最新最優異 Azure PowerShell 的首要管道。
 
 ##建立叢集
 
@@ -81,7 +67,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。若您想要
 ##調整叢集
 叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的背景工作節點數目，而不需要重新建立叢集。
 
->[AZURE.NOTE] 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。請參閱[熟悉叢集入口網站介面](hdinsight-adminster-use-management-portal/#Get-familiar-with-the-cluster-portal-interface)。
+>[AZURE.NOTE] 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
 
 變更 HDInsight 支援的每一種叢集所用的資料節點數目會有何影響：
 
@@ -99,7 +85,6 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。若您想要
 		>hbase shell
 		>balancer
 
-	如需使用 HBase 殼層的詳細資訊，請參閱
 - Storm
 
 	您可以順暢地在 Storm 叢集運作時對其新增或移除資料節點。但在調整作業順利完成後，您需要重新平衡拓撲。
@@ -249,4 +234,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 [image-hdi-ps-provision]: ./media/hdinsight-administer-use-powershell/HDI.PS.Provision.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0518_2016-->

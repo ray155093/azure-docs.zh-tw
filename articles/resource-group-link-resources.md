@@ -1,11 +1,11 @@
 <properties 
-	pageTitle="在「Azure 資源管理員」中連結資源" 
-	description="在「Azure 資源管理員」中建立不同資源群組中的資源之間的連結。" 
+	pageTitle="在 Azure Resource Manager 中連結資源 | Microsoft Azure" 
+	description="在 Azure Resource Manager 中建立不同資源群組中相關資源之間的連結。" 
 	services="azure-resource-manager" 
 	documentationCenter="" 
 	authors="tfitzmac" 
-	manager="wpickett" 
-	editor=""/>
+	manager="timlt" 
+	editor="tysonn"/>
 
 <tags 
 	ms.service="azure-resource-manager" 
@@ -13,22 +13,34 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="05/16/2016" 
 	ms.author="tomfitz"/>
 
 # 在「Azure 資源管理員」中連結資源
 
-部署後，您可能想要查詢資源之間的關聯性或連結。相依性會通知部署，但生命週期在部署時結束。一旦部署完成，相依資源之間就沒有可識別的關聯性。
+在部署期間，您可以將某個資源標示為依存於另一個資源，但在部署時結束該生命週期。部署之後，相依資源之間就沒有可識別的關聯性。Resource Manager 提供稱為「資源連結」的功能，來建立資源之間的永續性關聯性。
 
-不過，「Azure 資源管理員」提供稱為「資源連結」的新功能，可用來建立及查詢資源之間的關聯性。您可以判斷哪些資源連結至某資源，或哪些資源是連結自某資源。
+運用資源連結，您可以記錄跨多個資源群組的關聯性。例如，下列情況很常見：具有自己的生命週期的資料庫存在於一個資源群組中，而具有不同生命週期的應用程式存在於不同的資源群組中。應用程式會連接到資料庫，因此您想要標示應用程式與資料庫之間的連結。
 
-資源連結的領域可以是訂用帳戶、資源群組或特定資源。這表示資源連結可以記錄跨越多個資源群組的關聯性。當您開始將您的方案分解成多個範本和多個資源群組時，能以一種機制識別這些資源連結已證實非常有幫助。例如，下列情況很常見：具有自己的生命週期的資料庫存在於一個資源群組中，而具有不同生命週期的應用程式存在於不同的資源群組中。應用程式會連線到資料庫，因此在不同資源群組中的資源之間有連結。
-
-所有已連結的資源都必須屬於同一個訂用帳戶。每個資源都可以連結至其他 50 個資源。如果任何已連結的資源被刪除或移動，連結擁有者必須清除剩餘的連結。
+所有已連結的資源都必須屬於同一個訂用帳戶。每個資源都可以連結至其他 50 個資源。查詢相關資源的唯一方法是透過 REST API。如果任何已連結的資源被刪除或移動，連結擁有者必須清除剩餘的連結。刪除連結到其他資源的資源時，您「不」會收到警告。
 
 ## 範本中的連結
 
-若要在範本中定義資源間的連結，請參閱[資源連結 - 範本結構描述](resource-manager-template-links.md)。
+若要在範本中定義連結，請包括資源類型，這個資源類型合併資源提供者命名空間和來源資源類型與 **/providers/links**。此名稱必須包含來源資源的名稱。您可以提供目標資源的資源識別碼。下列範例會建立網站與儲存體帳戶之間的連結。
+
+    {
+      "type": "Microsoft.Web/sites/providers/links",
+      "apiVersion": "2015-01-01",
+      "name": "[concat(variables('siteName'),'/Microsoft.Resources/SiteToStorage')]",
+      "dependsOn": [ "[variables('siteName')]" ],
+      "properties": {
+        "targetId": "[resourceId('Microsoft.Storage/storageAccounts','storagecontoso')]",
+        "notes": "This web site uses the storage account to store user information."
+      }
+    }
+
+
+如需範本格式的完整說明，請參閱[資源連結 - 範本結構描述](resource-manager-template-links.md)。
 
 ## 使用 REST API 連結
 
@@ -50,6 +62,10 @@
 
 properties 元素包含第二個資源的識別碼。
 
+您可以使用下列項目，查詢訂用帳戶中的連結︰
+
+    https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Resources/links?api-version={api-version}
+
 如需其他範例，包括如何抓取連結的相關資訊，請參閱[連結的資源](https://msdn.microsoft.com/library/azure/mt238499.aspx)。
 
 ## 後續步驟
@@ -57,4 +73,4 @@ properties 元素包含第二個資源的識別碼。
 - 您也可以使用標記來組織您的資源。若要了解如何標記資源，請參閱[使用標記來組織資源](resource-group-using-tags.md)。
 - 如需如何建立範本並定義要部署之資源的說明，請參閱[撰寫範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0518_2016-->

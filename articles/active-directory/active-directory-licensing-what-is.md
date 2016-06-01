@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="02/01/2016"
+    ms.date="05/16/2016"
     ms.author="curtand"/>
 
 # 什麼是 Microsoft Azure Active Directory 授權？
@@ -45,7 +45,11 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 > 透過大量授權購買 Azure AD 或 Enterprise Mobility Suite 時，如果協議包含其他 Microsoft Online Services (例如 Office 365)，將會自動啟用訂用帳戶。
 
-付費 Azure AD 功能可以擴展目錄的範圍。範例包括：- 以群組為基礎的應用程式指派，可在您管理的特定應用程式下啟用。- 進階和自助式群組管理功能可在目錄組態下或特定群組內使用。- Premium 安全性報告位於 [報告] 索引標籤上。- 雲端應用程式探索會出現在 Azure 入口網站的 [身分識別] 下。
+付費 Azure AD 功能可以擴展目錄的範圍。範例包括：
+- 對應用程式進行群組式指派，其可在您管理的特定應用程式下啟用。
+- 進階和自助式群組管理功能可在目錄組態下或特定群組內使用。
+- 進階安全性報告位於 [報告] 索引標籤上
+- 雲端應用程式探索會顯示在 Azure 入口網站的 [身分識別] 底下。
 
 ###指派授權
 取得訂用帳戶之後，您只需要設定付費功能，但是要使用 Azure AD 的付費功能，就必須將授權分配給適當的人員。一般而言，應存取 Azure AD 付費功能或者透過 Azure AD 付費功能管理的人員，都必須被指派授權。授權指派是一種使用者與購買的服務 (例如 Azure AD Premium、Basic 或 Enterprise Mobility Suite) 之間的對應。
@@ -58,7 +62,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 要開始使用 Azure AD 很簡單。您註冊免費的 Azure 試用版之後，就可以建立您的目錄。[深入了解以組織身分註冊](sign-up-organization.md)。以下可協助您確定您的目錄最適合您可能會使用或打算使用的其他 Microsoft 服務，以及您取得服務的目標。
 
-以下是幾種最佳作法：- 如果您已經在使用任何 Microsoft 的組織服務，您就已經有 Azure AD 目錄。在此情況下，您應該為其他服務繼續使用相同的目錄，以便可以跨服務使用核心身分識別管理 (包括佈建和混合式 SSO)。您的使用者將會擁有單一登入經驗，而且將從跨服務更豐富的功能受益。因此，如果您決定為員工購買 Azure AD 付費服務，我們建議您使用相同的目錄來進行。- 如果您打算為不同一組使用者 (夥伴、客戶等等) 使用 Azure AD，或如果您想要評估 Azure AD 服務，且想要隔離實際執行服務進行，或如果您想要為您的服務設定沙箱環境，我們建議您先透過 Azure 傳統入口網站建立新的目錄。[深入了解在 Azure 傳統入口網站中建立新的 Azure AD 目錄](active-directory-licensing-directory-independence.md)。您的帳戶將會建立新的目錄，成為具有全域系統管理員權限的外部使用者。當您使用此帳戶登入 Azure 傳統入口網站時，您將會看到這個目錄，並且能夠存取所有的目錄管理工作。我們建議您建立一個具有適當權限的本機帳戶，來管理其他 Microsoft 服務 (即無法透過 Azure 傳統入口網站存取的服務)。[深入了解在 Azure AD 中建立使用者帳戶](active-directory-create-users.md)。
+以下是幾種最佳作法︰
+- 如果您已經在使用任何 Microsoft 的組織服務，您就已經有 Azure AD 目錄。在此情況下，您應該為其他服務繼續使用相同的目錄，以便可以跨服務使用核心身分識別管理 (包括佈建和混合式 SSO)。您的使用者將會擁有單一登入經驗，而且將從跨服務更豐富的功能受益。因此，如果您決定為員工購買 Azure AD 付費服務，我們建議您使用相同的目錄來進行。
+- 如果您打算為不同一組使用者 (夥伴、客戶等等) 使用 Azure AD，或如果您想要評估 Azure AD 服務，且想要隔離實際執行服務進行，或如果您想要為您的服務設定沙箱環境，我們建議您先透過 Azure 傳統入口網站建立新的目錄。[深入了解在 Azure 傳統入口網站中建立新的 Azure AD 目錄](active-directory-licensing-directory-independence.md)。您的帳戶將會建立新的目錄，成為具有全域系統管理員權限的外部使用者。當您使用此帳戶登入 Azure 傳統入口網站時，您將會看到這個目錄，並且能夠存取所有的目錄管理工作。我們建議您建立一個具有適當權限的本機帳戶，來管理其他 Microsoft 服務 (即無法透過 Azure 傳統入口網站存取的服務)。[深入了解在 Azure AD 中建立使用者帳戶](active-directory-create-users.md)。
 
 > [AZURE.NOTE] Azure AD 支援「外部使用者」，這是在 Azure AD 執行個體中，使用 Microsoft 帳戶 (MSA) 或另一個目錄中的 Azure AD 身分識別所建立的使用者帳戶。雖然我們忙著將此功能擴充到所有 Microsoft 的組織服務，但是目前在某些服務體驗中不支援這些帳戶。例如，Office 365 系統管理入口網站目前不支援這些使用者。因此，使用 Microsoft 帳戶的外部使用者將無法存取 Office 365 系統管理入口網站，而來自其他 Azure AD 目錄的外部使用者將會被忽略。在後者的情況中，只有使用者的本機帳戶，最初建立使用者的 Azure AD 或 Office 365 目錄，才能透過這些體驗存取。
 
@@ -97,7 +103,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 當群組被指派時，其成員會在 30 分鐘內繼承授權，但通常會在 1-2 分鐘內。
 
-在 Azure AD 授權指派期間，可能會發生指派錯誤，但通常很少見。可能發生的指派錯誤僅限於：- 指派衝突 - 使用者先前已被指派一個與最新授權不相容的授權。在此情況下，若要指派新的授權，必須先移除前一個授權。- 超過可用的授權數目 - 當指派群組中的使用者數目超過可用的授權數目時，使用者的指派狀態將會反映因缺少授權的指派失敗。
+在 Azure AD 授權指派期間，可能會發生指派錯誤，但通常很少見。可能發生的指派錯誤僅限於：
+- 指派衝突 - 使用者先前已被指派一個與最新授權不相容的授權。在此情況下，若要指派新的授權，必須先移除前一個授權。
+- 超過可用的授權數目 - 當指派群組中的使用者數目超過可用的授權數目時，使用者的指派狀態將會反映因缺少授權的指派失敗。
 
 ###檢視已指派的授權
 
@@ -132,4 +140,4 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 - [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 - [直接購買 Azure AD Premium 授權](http://aka.ms/buyaadp)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0518_2016-->

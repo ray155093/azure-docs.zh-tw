@@ -13,16 +13,15 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/10/2016" 
 	ms.author="fashah;garye;bradsev" />
 
 #在 Azure 上瀏覽 SQL Server 虛擬機器中的資料
 
-##簡介
 
 本文件涵蓋如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
 
-以下**功能表**會連結至說明如何從各種不同儲存體環境使用工具來瀏覽資料的主題。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
+以下**功能表**連結至其他主題，說明如何使用工具來瀏覽各種儲存體環境中的資料。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
@@ -76,4 +75,4 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/)提供一組豐富的
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0518_2016-->

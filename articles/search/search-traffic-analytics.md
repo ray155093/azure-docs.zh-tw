@@ -14,59 +14,50 @@
 	ms.workload="na" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="01/26/2016" 
+	ms.date="04/21/2016" 
 	ms.author="betorres"
 />
 
 
 # 啟用和使用搜尋流量分析
 
-搜尋流量分析是一項 Azure 搜尋服務功能，可讓您掌握您的搜尋服務，並深入分析您的使用者及其行為。當您啟用此功能時，您的搜尋服務資料會複製到您選擇的儲存體帳戶。此資料包括您的搜尋服務記錄檔和彙總的作業度量。之後，您就能利用任何方式來處理和管理使用方式資料。
-
+搜尋流量分析是一項 Azure 搜尋服務功能，可讓您掌握您的搜尋服務，並深入分析您的使用者及其行為。當您啟用此功能時，您的搜尋服務資料會複製到您選擇的儲存體帳戶。此資料包括您可處理和操作的搜尋服務記錄檔和彙總作業度量，來進行進一步的分析。
 
 ## 如何啟用搜尋流量分析
+
+您將需要儲存體帳戶與您的搜尋服務位於相同的區域和訂用帳戶中。
+
+> [AZURE.IMPORTANT] 標準收費適用此儲存體帳戶
+
+啟用之後，資料將會在 5-10 分鐘內開始傳送至您的儲存體帳戶，再傳送至這 2 個 Blob 容器：
+
+    insights-logs-operationlogs: search traffic logs
+    insights-metrics-pt1m: aggregated metrics
+
 
 ### 1\.使用入口網站
 在 [Azure 入口網站](http://portal.azure.com)中開啟 Azure 搜尋服務。您可以在 [設定] 下方找到 [搜尋流量分析] 選項。
 
 ![][1]
 
-選取此選項，即會開啟新的刀鋒視窗。將 [狀態] 變更為 [開啟]、選取您的資料將複製到其中的 Azure 儲存體帳戶，然後選擇要複製的資料：記錄檔、度量或兩者。建議您複製記錄檔和度量。
+選取此選項，即會開啟新的刀鋒視窗。將 [狀態] 變更為 [開啟]、選取您的資料將複製到其中的 Azure 儲存體帳戶，然後選擇要複製的資料：記錄檔、度量或兩者。建議您複製記錄檔和度量。您選擇將資料的保留原則設定為 1 到 365 天。如果您不想要套用任何保留原則，並永久保留資料，請將保留天數設定為 0。
 
 ![][2]
 
-
-> [AZURE.IMPORTANT] 儲存體帳戶必須與您的搜尋服務位於相同的區域和訂用帳戶中。
-> 
-> 標準收費適用此儲存體帳戶
-
 ### 2\.使用 PowerShell
 
-您也可以執行下列 PowerShell Cmdlet 來啟用此功能。
+首先，請確定您已安裝最新的 [Azure PowerShell Cmdlet](https://github.com/Azure/azure-powershell/releases)。
+
+然後，取得您搜尋服務和儲存體帳戶的資源識別碼。瀏覽至 [設定] -> [屬性] -> [ResourceId]，即可在入口網站中找到它。
+
+![][3]
 
 ```PowerShell
 Login-AzureRmAccount
-Set-AzureRmDiagnosticSetting -ResourceId <SearchService ResourceId> StorageAccountId <StorageAccount ResourceId> -Enabled $true
+$SearchServiceResourceId = "Your Search service resource id"
+$StorageAccountResourceId = "Your Storage account resource id"
+Set-AzureRmDiagnosticSetting -ResourceId $SearchServiceResourceId StorageAccountId $StorageAccountResourceId -Enabled $true
 ```
-
--   **SearchService ResourceId**：```
-/subscriptions/<subscriptionID>/resourceGroups/<resourceGroupName>/providers/Microsoft.Search/searchServices/<searchServiceName>
-```
-
- 
--  **StorageAccount ResourceId**：您可以在入口網站的 [設定]-> [屬性]-> [ResourceId] 中找到它 ```
-New: /subscriptions/<subscriptionID>/resourcegroups/<resourceGroupName>/providers/Microsoft.Storage/storageAccounts/<storageAccountName>
-OR
-Classic: /subscriptions/<subscriptionID>/resourceGroups/<resourceGroupName>/providers/Microsoft.ClassicStorage/storageAccounts/<storageAccountName>
-```
-
-----------
-
-啟用之後，資料將會在 5-10 分鐘內開始傳送至您的儲存體帳戶。您將可在 Blob 儲存體中找到 2 個新容器：
-
-    insights-logs-operationlogs: search traffic logs
-    insights-metrics-pt1m: aggregated metrics
-
 
 ## 了解資料
 
@@ -112,6 +103,7 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 可用的度量：
 
 - 延遲
+- SearchQueriesPerSecond
 
 ####度量結構描述
 
@@ -135,28 +127,28 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 
 #### Power BI 線上版
 
-[Power BI 內容套件](https://app.powerbi.com/getdata/services/azure-search)：建立 Power BI 儀表板，及一組 Power BI 報表，且該報表會自動顯示您資料，並以視覺化的方式提供您搜尋服務相關的深入分析。請參閱[內容套件的說明網頁](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-search/)。
+[Power BI 內容套件](https://app.powerbi.com/getdata/services/azure-search)：建立 Power BI 儀表板，及一組 Power BI 報告，且該報告會自動顯示您資料，並以視覺化的方式提供您搜尋服務相關的深入分析。請參閱[內容套件說明網頁](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-search/)。
 
-![][3]
+![][4]
 
 #### Power BI Desktop
 
-[Power BI Desktop](https://powerbi.microsoft.com/en-us/desktop)：探索您的資料，並將您的資料視覺化。我們提供下列的入門查詢來協助您。
+[Power BI Desktop](https://powerbi.microsoft.com/zh-TW/desktop)：探索您的資料，並將您的資料視覺化。我們提供下列的入門查詢來協助您。
 
 1. 開啟新的 PowerBI Desktop 報表
 2. 選取 [取得資料] -> [更多...]
 
-	![][4]
+	![][5]
 
 3. 依序選取 [Microsoft Azure Blob 儲存體] 和 [連接]
 
-	![][5]
+	![][6]
 
 4. 輸入您儲存體帳戶的名稱和帳戶金鑰
 5. 選取 [insight-logs-operationlogs] 和 [insights-metrics-pt1m]，接著按一下 [編輯]
 6. 隨即會開啟 [查詢編輯器]，請確定已選取左方的 [insight-logs-operationlogs]。現在依序選取 [檢視]-> [進階編輯器] 來開啟 [進階編輯器]
 
-	![][6]
+	![][7]
 
 7. 保留前 2 行，並使用下列查詢來取代其餘部分：
 
@@ -211,21 +203,22 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 
 10. 按一下 [完成]，然後選取 [常用] 索引標籤中的 [關閉並套用]。
 
-11. 您過去 30 天的資料現在已準備好提供取用。請繼續進行，並建立一些[視覺效果](https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-report-view/)。
+11. 您過去 30 天的資料現在已準備好提供取用。請繼續進行，並建立一些[視覺效果](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-desktop-report-view/)。
 
 ## 後續步驟
 
 深入了解搜尋語法和查詢參數。如需詳細資訊，請參閱[搜尋文件 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798927.aspx)。
 
-深入了解如何建立令人讚嘆的報告。如需詳細資訊，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-getting-started/)
+深入了解如何建立令人讚嘆的報告。如需詳細資訊，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-desktop-getting-started/)
 
 <!--Image references-->
 
 [1]: ./media/search-traffic-analytics/SettingsBlade.png
 [2]: ./media/search-traffic-analytics/DiagnosticsBlade.png
-[3]: ./media/search-traffic-analytics/Dashboard.png
-[4]: ./media/search-traffic-analytics/GetData.png
-[5]: ./media/search-traffic-analytics/BlobStorage.png
-[6]: ./media/search-traffic-analytics/QueryEditor.png
+[3]: ./media/search-traffic-analytics/ResourceId.png
+[4]: ./media/search-traffic-analytics/Dashboard.png
+[5]: ./media/search-traffic-analytics/GetData.png
+[6]: ./media/search-traffic-analytics/BlobStorage.png
+[7]: ./media/search-traffic-analytics/QueryEditor.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0518_2016-->

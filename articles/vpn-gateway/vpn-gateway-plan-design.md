@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/20/2016"
+   ms.date="05/16/2016"
    ms.author="cherylmc"/>
 
 # 規劃與設計 VPN 閘道
@@ -23,7 +23,7 @@
 ## 規劃
 
 
-### <a name="compare"></a>1.比較跨單位連線的選項
+### <a name="compare"></a>跨單位連線選項
 
 如果您決定要安全地將內部部署網站連接到虛擬網路，可使用下列三種不同方法：站對站、點對站和 ExpressRoute。比較可使用的不同跨單位連線。您選擇的選項可能取決於各種不同的考量，例如：
 
@@ -44,7 +44,7 @@
 
 
 
-### <a name="gwrequire"></a>2.請依據 VPN 類型和 SKU 來考慮閘道需求
+### <a name="gwrequire"></a>依據 VPN 類型和 SKU 的閘道需求
 
 
 在建立 VPN 閘道時，您必須指定想要使用的閘道 SKU。有 3 種 VPN 閘道 SKU：
@@ -57,7 +57,7 @@
 
 
 
-### 3\.閘道類型和彙總輸送量估計值
+### <a name="aggthroughput"></a>閘道類型和彙總輸送量估計值
 
 下方資料表顯示閘道類型，以及估計的彙總輸送量。估計的彙總輸送量可能是您的設計決定因素。閘道 SKU 之間的定價並不相同。如需定價資訊，請參閱＜[VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。此資料表適用於資源管理員與傳統部署模型。
 
@@ -65,7 +65,7 @@
 
 
 
-### <a name="wf"></a>4.工作流程
+### <a name="wf"></a>工作流程
 
 下列清單列出常見的雲端連線工作流程：
 
@@ -78,13 +78,13 @@
 
 ## 設計
 
-### 1\.選取連線拓撲
+### <a name="topologies"></a>連線拓撲
 
-先來看看[連線拓撲](vpn-gateway-topology.md)文章。本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。
+先來看看[連線拓撲](vpn-gateway-topology.md)文章中的圖表。本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。
 
-### 2\.了解設計基本概念
+### <a name="designbasics"></a>設計基本概念
 
-下列各節將討論 VPN 閘道的基本概念。此外，您也需要將[網路服務限制](../articles/azure-subscription-service-limits.md#networking-limits)納入考量。
+下列各節將討論 VPN 閘道的基本概念。此外，建議您將[網路服務限制](../articles/azure-subscription-service-limits.md#networking-limits)納入考量。
 
 
 #### <a name="subnets"></a>關於子網路
@@ -104,7 +104,7 @@
 區域網路閘道通常是指您的內部部署位置。在傳統部署模型中，區域網路閘道被稱為本機站台。您需指定區域網路閘道的名稱 (即內部部署 VPN 裝置的公用 IP 位址)，並指定位於內部部署位置的位址首碼。Azure 會查看網路流量的目的地位址首碼、查閱您為區域網路閘道指定的組態，並據以路由傳送封包。您可以視需要修改這些位址首碼。如需區域網路閘道的詳細資訊，請參閱＜關於 VPN 閘道＞文章中的[區域網路閘道](vpn-gateway-about-vpngateways.md#lng)一節。
 
 
-#### <a name="gwtype"></a>關於 VPN 閘道類型
+#### <a name="gwtype"></a>關於閘道類型
 
 為拓撲選取正確的閘道類型相當重要。如果您選取錯誤的類型，您的閘道將無法正常運作。閘道類型會指定閘道本身如何連接以及為何它是 Resource Manager 部署模型的必要組態設定。
 
@@ -113,7 +113,7 @@
 - Vpn
 - ExpressRoute
 
-#### 關於連線類型
+#### <a name="connectiontype"></a>關於連線類型
 
 每個組態皆需要特定的連線類型。連線類型如下：
 
@@ -134,27 +134,28 @@
 
 [AZURE.INCLUDE [vpn-gateway-table-vpntype](../../includes/vpn-gateway-table-vpntype-include.md)]
 
-### <a name="devices"></a>3.選取站對站連線的 VPN 裝置
+### <a name="devices"></a>站對站連線的 VPN 裝置
 
 不論部署模型為何，在設定站對站連線時，您都需要下列項目︰
 
 - 與 Azure VPN 閘道相容的 VPN 裝置
 - 不在 NAT 後方的公開 IPv4 IP 位址
 
-您應具備設定 VPN 裝置的經驗，才能建立站對站組態。如需 VPN 裝置的詳細資訊，請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。VPN 裝置文章包含已驗證的裝置、尚未驗證的裝置需求，以及每個裝置的裝置設定文件連結的相關資訊 (如果有的話)。
+您需要具備設定 VPN 裝置的經驗。如需 VPN 裝置的詳細資訊，請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。VPN 裝置文章包含已驗證的裝置、尚未驗證的裝置需求，以及每個裝置的裝置設定文件連結的相關資訊 (如果有的話)。
 
-### <a name="forcedtunnel"></a>4.請考慮強制通道路由
+### <a name="forcedtunnel"></a>請考慮強制通道路由
 
 對於多數組態，您可以設定強制通道。強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。這是多數企業 IT 原則的重要安全性需求。
 
-若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性漏洞。如需設定強制通道的詳細資訊，請參閱[有關傳統部署模型的強制通道](vpn-gateway-about-forced-tunneling.md)和[有關 Resource Manager 部署模型的強制通道](vpn-gateway-about-forced-tunneling.md)。
+若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性漏洞。
+
+如需設定強制通道的詳細資訊，請參閱[有關傳統部署模型的強制通道](vpn-gateway-about-forced-tunneling.md)和[有關 Resource Manager 部署模型的強制通道](vpn-gateway-about-forced-tunneling.md)。
 
 **強制通道圖表**
 
 ![強制通道連線](./media/vpn-gateway-plan-design/forced-tunnel.png "強制通道")
 
-
-此表格列出強制通道適用的部署模型、可用來設定強制通道的部署工具，以及相關文章的直接連結 (如果有的話)。當有新文章可供您使用時，我們會頻繁更新這些資料表。
+可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。如需詳細資訊，請參閱以下的資料表。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
 
 [AZURE.INCLUDE [vpn-gateway-table-forcedtunnel](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
 
@@ -162,6 +163,8 @@
 
 ## 後續步驟
 
-如需有助您進行設計的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)和[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。如需連線拓撲的詳細資訊，請參閱[連線拓撲](vpn-gateway-topology.md)。
+如需有助您進行設計的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)和[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)等文章。
 
-<!---HONumber=AcomDC_0504_2016-->
+如需連線拓撲的詳細資訊，請參閱[連線拓撲](vpn-gateway-topology.md)。
+
+<!---HONumber=AcomDC_0518_2016-->

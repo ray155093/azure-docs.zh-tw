@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/13/2016" 
+	ms.date="05/12/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中診斷相依性問題
@@ -57,6 +57,16 @@ Java Web 伺服器 | [Java Web 應用程式](app-insights-java-agent.md)
 Azure 雲端服務 | [使用啟動工作](app-insights-cloudservices.md#dependencies)或[安裝 .NET Framework 4.6+](../cloud-services/cloud-services-dotnet-install-dotnet.md)  
 
 IIS 伺服器的狀態監視器不需要您使用 Application Insights SDK 重新建置來源專案。
+
+## 應用程式對應
+
+應用程式對應可做為探索應用程式元件之間相依性的視覺輔助工具。
+
+![按一下 [設定] > [應用程式對應]](./media/app-insights-dependencies/08.png)
+
+從方塊中，您可以瀏覽至相關的相依性和其他圖表。
+
+按一下小型 [x] 以摺疊樹狀子目錄。
 
 ## <a name="diagnosis"></a> 診斷 Web 伺服器中的相依性效能問題
 
@@ -140,4 +150,4 @@ IIS 伺服器的狀態監視器不需要您使用 Application Insights SDK 重�
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

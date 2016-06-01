@@ -60,7 +60,7 @@
 複製活動提供下列功能：
 
 ### <a name="global"></a>全域可用的資料移動
-即使 Azure Data Factory 本身只能在美國西部和北歐地區使用，但是服務支援的複製活動可供下列區域和地理位置全域使用。全域可用性的拓撲可確保有效資料移動，避免大部分情況下的跨區域躍點。
+即使 Azure Data Factory 本身只能在美國西部、美國東部和北歐地區使用，但是服務支援的複製活動可供下列區域和地理位置全域使用。全域可用性的拓撲可確保有效資料移動，避免大部分情況下的跨區域躍點。
 
 在複製作業中，**資料管理閘道器**或 **Azure Data Factory** 會根據來源的位置和目的地資料存放區執行資料移動。請參閱下表以取得詳細資料：
 
@@ -195,4 +195,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->

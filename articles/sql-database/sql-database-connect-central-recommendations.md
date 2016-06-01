@@ -130,8 +130,7 @@ Azure 系統能夠在 SQL Database 服務出現繁重的工作負載時動態重
 
 如需說明重試邏輯的程式碼範例，請參閱：
 
-- [SQL Database 的用戶端快速入門程式碼範例](sql-database-develop-quick-start-client-code-samples.md)
-
+- 程式碼範例：[SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 
 ### 暫時性錯誤的錯誤號碼
 
@@ -161,10 +160,12 @@ Azure 系統能夠在 SQL Database 服務出現繁重的工作負載時動態重
 下列主題包含數個語言和驅動程式技術的程式碼範例連結，可讓您從用戶端程式連接到 Azure SQL Database。
 
 
-會針對在 Windows、Linux 和 Mac OS X 上執行的用戶端提供各種程式碼範例。
+會針對在 Windows、Linux 和 Mac 平台上執行的用戶端提供各種程式碼範例。
 
 
-**一般範例：**有各種不同的程式設計語言 (包括 PHP、Python、Node.js 和 .NET CSharp) 的[程式碼範例](sql-database-develop-quick-start-client-code-samples.md)。此外，也提供在 Windows、Linux 和 Mac OS X 上執行的用戶端範例。
+**一般範例：**有各種不同的程式設計語言 (包括 PHP、Python、Node.js 和 .NET CSharp) 的程式碼範例。您可以在下列位置找到程式碼範例的連結：
+
+- [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 
 
 **Elastic Scale：**如需 Elastic Scale 資料庫連接的相關資訊，請參閱：
@@ -172,9 +173,4 @@ Azure 系統能夠在 SQL Database 服務出現繁重的工作負載時動態重
 - [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 - [資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)
 
-
-**驅動程式庫：**如需連接驅動程式庫的相關資訊 (包括建議的版本)，請參閱：
-
-- [SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
-
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0518_2016-->
