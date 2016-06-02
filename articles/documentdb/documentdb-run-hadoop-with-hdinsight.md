@@ -76,7 +76,8 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
 
 1. 登入 [Azure 傳統入口網站][azure-classic-portal]。
 
-2. 按一下左下角的 [+ 新增]，並指向 [資料服務]，接著指向 [儲存體]，然後按一下 [快速建立]。![Azure 傳統入口網站，您可以在此使用「快速建立」來設定新的儲存體帳戶。][image-storageaccount-quickcreate]
+2. 按一下左下角的 [+ 新增]，並指向 [資料服務]，接著指向 [儲存體]，然後按一下 [快速建立]。
+	![Azure 傳統入口網站，您可以在此使用「快速建立」來設定新的儲存體帳戶。][image-storageaccount-quickcreate]
 
 3. 輸入 [**URL**]，並依序選取 [**位置**] 和 [**複寫**] 值，然後按一下 [**建立儲存體帳戶**]。不支援同質群組。
 	
@@ -221,7 +222,7 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
     <p>首先，我們要在 DocumentDB 集合中建立 Hive 資料表。將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。請確定包含選擇性的 DocumentDB.query 參數，將文件整理成只有 _ts 和 _rid。</p>
 
     > [AZURE.NOTE] **命名 DocumentDB.inputCollections 是正確的選擇。** 沒錯，我們允許在一筆輸入中加入多個集合：</br> 
-    '*DocumentDB.inputCollections*' = '*<DocumentDB Input Collection Name 1>*,*<DocumentDB Input Collection Name 2>*'</br> 不使用空格，只使用單一逗點分隔的集合名稱。
+    '*DocumentDB.inputCollections*' = '*\<DocumentDB Input Collection Name 1\>*,*\<DocumentDB Input Collection Name 2\>*'</br> 不使用空格，只使用單一逗點分隔的集合名稱。
 
 
 		# Create a Hive table using data from DocumentDB. Pass DocumentDB the query to filter transferred data to _rid and _ts.
@@ -237,7 +238,8 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
  
 3.  接下來，我們將建立輸出集合的 Hive 資料表。輸出文件屬性包括月、日、小時、分鐘和總發生次數。
 
-	> [AZURE.NOTE] **再重申一次，命名 DocumentDB.outputCollections 是正確的選擇。** 沒錯，我們允許在一筆輸出中加入多個集合：</br> '*DocumentDB.outputCollections*' = '*<DocumentDB Output Collection Name 1>*,*<DocumentDB Output Collection Name 2>*'</br> 不使用空格，只使用單一逗點分隔的集合名稱。</br></br>文件將會是跨多個集合的分散式循環配置資源。第一批文件會儲存在一個集合中，然後第二批文件會儲存在下一個集合中，以此類推。
+	> [AZURE.NOTE] **再重申一次，命名 DocumentDB.outputCollections 是正確的選擇。** 沒錯，我們允許在一筆輸出中加入多個集合：</br> 
+    '*DocumentDB.outputCollections*' = '*\<DocumentDB Output Collection Name 1\>*,*\<DocumentDB Output Collection Name 2\>*'</br> 不使用空格，只使用單一逗點分隔的集合名稱。</br></br>文件將會是跨多個集合的分散式循環配置資源。第一批文件會儲存在一個集合中，然後第二批文件會儲存在下一個集合中，以此類推。
 
 		# Create a Hive table for the output data to DocumentDB.
 	    $queryStringPart2 = "drop table DocumentDB_analytics; " +
@@ -315,7 +317,8 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
 2. <p>首先我們要建構查詢字串。我們將撰寫執行下列動作的 Pig 查詢：接受所有文件從 DocumentDB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 DocumentDB 集合。</p>
     <p>首先，將文件從 DocumentDB 載入 HDInsight。將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。請務必將 DocumentDB 查詢加入選擇性的 DocumentDB 查詢參數，以將文件整理成只有 _ts 和 _rid。</p>
 
-    > [AZURE.NOTE] 沒錯，我們允許在一筆輸入中加入多個集合：</br> '*<DocumentDB Input Collection Name 1>*,*<DocumentDB Input Collection Name 2>*'</br>不使用空格，只使用單一逗點分隔的集合名稱。</b>
+    > [AZURE.NOTE] 沒錯，我們允許在一筆輸入中加入多個集合：</br> 
+    '*\<DocumentDB Input Collection Name 1\>*,*\<DocumentDB Input Collection Name 2\>*'</br>不使用空格，只使用單一逗點分隔的集合名稱。</b>
 
 	文件將會是跨多個集合的分散式循環配置資源。第一批文件會儲存在一個集合中，然後第二批文件會儲存在下一個集合中，以此類推。
 
@@ -336,7 +339,7 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
 4. 最後，將結果存回新的輸出集合。
 
     > [AZURE.NOTE] 沒錯，我們允許在一筆輸出中加入多個集合：</br> 
-    '<DocumentDB Output Collection Name 1>,<DocumentDB Output Collection Name 2>'</br>不使用空格，只使用單一逗點分隔的集合名稱。</br> 
+    '\<DocumentDB Output Collection Name 1\>,\<DocumentDB Output Collection Name 2\>'</br>不使用空格，只使用單一逗點分隔的集合名稱。</br> 
     文件將會是跨多個集合的分散式循環配置資源。第一批文件會儲存在一個集合中，然後第二批文件會儲存在下一個集合中，以此類推。
 
 		# Store output data to DocumentDB.
@@ -484,3 +487,4 @@ Azure HDInsight 會使用 Azure Blob 儲存體來儲存資料。我們稱之為 
  
 
 <!---HONumber=AcomDC_0518_2016-->
+
