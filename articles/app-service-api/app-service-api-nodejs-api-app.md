@@ -318,4 +318,4 @@ Azure App Service 內建的持續傳遞功能，讓您只要將認可推送至�
 
 此時您已使用 Node.js 成功建立並部署第一個 API 應用程式。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。本系列的教學課程稍後會顯示如何實作驗證與授權。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0518_2016--->
