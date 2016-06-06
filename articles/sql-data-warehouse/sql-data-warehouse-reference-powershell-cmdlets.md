@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/14/2016"
+   ms.date="05/18/2016"
    ms.author="sonyama;barbkess;mausher"/>
 
 # 適用於 SQL 資料倉儲的 PowerShell Cmdlet 和 REST API
 
-您可使用 Azure PowerShell Cmdlet 或 REST API 管理許多 SQL 資料倉儲系統管理工作。下列為一些在 SQL 資料倉儲中使用 PowerShell 命令來自動化一般工作的範例。或者，如需可用來自動化相同工作的 REST API 清單，請參閱 [Azure SQL 資料庫的作業][]。
+您可使用 Azure PowerShell Cmdlet 或 REST API 管理許多 SQL 資料倉儲系統管理工作。下列為一些在 SQL 資料倉儲中使用 PowerShell 命令來自動化一般工作的範例。如需一些良好的 REST 範例，請參閱[使用 REST 管理延展性][]一文。
 
 > [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0.3 版或更高版本。您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
@@ -87,26 +87,27 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 - [從快照集還原][]
 - [從快照集異地還原][]
 
-如需可以使用 PowerShell 自動化的完整工作清單，請參閱 [Azure SQL Database Cmdlet][]。
+如需可以使用 PowerShell 自動化的完整工作清單，請參閱 [Azure SQL Database Cmdlet][]。如需可以使用 REST 自動化的工作清單，請參閱 [Azure SQL Database 的作業][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
-[使用 PowerShell 建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision-powershell.md
-[從快照集還原]: sql-data-warehouse-backup-and-restore-from-snapshot.md
-[從快照集異地還原]: sql-data-warehouse-backup-and-restore-from-geo-restore-snapshot.md
+[如何安裝和設定 Azure PowerShell]: ./powershell-install-configure.md
+[使用 PowerShell 建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision-powershell.md
+[從快照集還原]: ./sql-data-warehouse-backup-and-restore-from-snapshot.md
+[從快照集異地還原]: ./sql-data-warehouse-backup-and-restore-from-geo-restore-snapshot.md
+[使用 REST 管理延展性]: ./sql-data-warehouse-manage-scale-out-tasks-rest-api.md
 
 <!--MSDN references-->
 [Azure SQL Database Cmdlet]: https://msdn.microsoft.com/library/mt574084.aspx
-[Azure SQL 資料庫的作業]: https://msdn.microsoft.com/library/azure/dn505719.aspx
+[Azure SQL Database 的作業]: https://msdn.microsoft.com/library/azure/dn505719.aspx
 [Get-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt603648.aspx
 [Get-AzureRmSqlDeletedDatabaseBackup]: https://msdn.microsoft.com/library/mt693387.aspx
 [Get-AzureRmSqlDatabaseRestorePoints]: https://msdn.microsoft.com/library/mt603642.aspx
 [New-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619339.aspx
 [Remove-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619368.aspx
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
-[Resume-AzureRmSqlDatabase]: http://msdn.microsoft.com/library/mt619347.aspx
+[Resume-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619347.aspx
 <!-- It appears that Select-AzureRmSubscription isn't documented, so this points to Select-AzureSubscription -->
 [Select-AzureRmSubscription]: https://msdn.microsoft.com/library/dn722499.aspx
 [Set-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619433.aspx
@@ -115,4 +116,4 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 <!--Other Web references-->
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,10 +1,13 @@
-### 必要條件 ###
+### 必要條件
 
 Azure Toolkit for Eclipse 需要下列軟體元件：
 
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
-* Java Developer Kit (JDK) 1.7 版或更新版本。 
+
+* Java Developer Kit (JDK) 1.7 版或更新版本。
+
 * 作業系統 - Azure Toolkit for Eclipse 已在下列作業系統上測試：
+
     * Windows 10、Windows 8 和 8.1 和 Windows 7。
     * Windows Server 2012 與 2012 R2、Windows Server 2008 與 2008 R2
     * [Mac OS X](http://www.apple.com/osx) Yosemite 和 El Captain 版
@@ -19,4 +22,4 @@ Azure Toolkit for Eclipse 需要下列軟體元件：
 > 
 > 請注意，只有 Windows 才需要 Azure SDK。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -43,6 +43,9 @@ Dx 4cff491e-9359-4454-bd7c-fb72c4c452ca
 
 ### 最常見的資料庫連線錯誤和暫時性錯誤
 
+Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動態重新設定伺服器。此動態行為可能會導致您的用戶端程式遺失其 SQL Database 連接。此類錯誤情況稱為暫時錯誤。
+
+如果您的用戶端程式具有重試邏輯，在給予暫時性錯誤一些時間自行修正後，可以嘗試重新建立連接。我們建議您在您第一次重試前延遲 5 秒鐘。在少於 5 秒的延遲後重試，雲端服務會有超過負荷的風險。對於後續每次重試，延遲應以指數方式成長，最大值為 60 秒。
 
 暫時性錯誤通常是資訊清單，在您用戶端程式中的下列錯誤訊息之一：
 
@@ -54,13 +57,13 @@ Dx 4cff491e-9359-4454-bd7c-fb72c4c452ca
 
 - System.Data.Entity.Core.EntityCommandExecutionException: 執行命令定義時發生錯誤。詳細資訊請參閱內部例外狀況。---> System.Data.SqlClient.SqlException: 從伺服器接收結果時發生傳輸層級錯誤。(提供者: 工作階段提供者, 錯誤: 19 - 無法使用實際連線)
 
-暫時性錯誤應該會提示您的用戶端應用程式，執行設計用來重試操作的 *重試邏輯* 。如需重試邏輯的程式碼範例，請參閱：
-
+如需重試邏輯的程式碼範例，請參閱：
 
 - [SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 
 - [修正 SQL Database 中連線錯誤和暫時性錯誤的動作](sql-database-connectivity-issues.md)
 
+在 [SQL Server 連接集區 (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx) 中可找使用 ADO.NET 之用戶端的封鎖期間討論。
 
 ### 暫時性錯誤錯誤碼
 
@@ -243,8 +246,8 @@ Dx 4cff491e-9359-4454-bd7c-fb72c4c452ca
 |40651|16|無法建立伺服器，因為訂用帳戶 <subscription-id> 已停用。|
 |40652|16|無法移動或建立伺服器。訂用帳戶 <subscription-id> 會超出伺服器配額。|
 |40671|17|閘道器與管理服務之間的通訊失敗。請稍後重試。|
-|40852|16|無法開啟登入所要求的資料庫 '%.*ls' (在伺服器 '%.*ls' 上)。只允許使用已啟用安全性的連接字串存取資料庫。若要存取此資料庫，將連接字串修改成在伺服器 FQDN 中包含 'secure'。也就是說，'server name'.database.windows.net 應修改為 'server name'.database.`secure`.windows.net.|
-|45168|16|SQL Azure 系統未達負載，並正在對單一伺服器的並行 DB CRUD 作業 (例如，建立資料庫) 放置上限。錯誤訊息中指定的伺服器已超過最大並行連接數目。請稍後再試。|
+|40852|16|無法開啟登入所要求的資料庫 '%.*ls' (在伺服器 '%.*ls' 上)。只允許使用已啟用安全性的連接字串存取資料庫。若要存取此資料庫，將連接字串修改成在伺服器 FQDN 中包含 'secure'。也就是說，'server name'.database.windows.net 應修改為 'server name'.database.`secure`.windows.net.| 
+|45168|16|SQL Azure 系統未達負載，並正在對單一伺服器的並行 DB CRUD 作業 (例如，建立資料庫) 放置上限。錯誤訊息中指定的伺服器已超過最大並行連接數目。請稍後再試。| 
 |45169|16|SQL Azure 系統未達負載，並正在對單一訂用帳戶的並行伺服器 CRUD 作業 (例如，建立資料庫) 的數量放置上限。錯誤訊息中指定的訂用帳戶已超出最大並行連接數目，因此要求已遭到拒絕。請稍後再試。|
 
 
@@ -253,4 +256,4 @@ Dx 4cff491e-9359-4454-bd7c-fb72c4c452ca
 - [Azure SQL Database 一般限制與方針](sql-database-general-limitations.md)
 - [Azure SQL Database 資源限制](sql-database-resource-limits.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

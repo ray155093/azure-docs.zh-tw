@@ -58,19 +58,21 @@
 
 ## 下載程式碼
 
+[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-devquickstarts-bug-fix.md)]
+
 本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet) 上。如要遵循指示建置範例，請[下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet.git
 ```
 
-完整的應用程式也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet/archive/complete.zip)，或是放在相同存放庫的 `complete` 子目錄中。
+完整的應用程式也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet/archive/complete.zip)，或從相同存放庫的 `complete` 分支取得。
 
 下載範例程式碼之後，請開啟 Visual Studio .sln 檔案開始進行。您會看到方案中有兩個專案：`TaskWebApp` 專案和 `TaskService` 專案。`TaskWebApp` 是使用者會互動的 Windows Presentation Foundation (WPF) Web 應用程式。`TaskService` 是應用程式的後端 Web API，會儲存每位使用者的待辦事項清單。
 
 ## 設定工作服務
 
-當 `TaskService` 收到 `TaskWebApp` 的要求時，它會尋找有效的存取權杖來驗證要求。如要驗證存取權杖，您必須提供有您應用程相關資訊的 `TaskService`。請在 `TaskService` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：
+當 `TaskService` 收到 `TaskWebApp` 的要求時，它會尋找有效的存取權杖來驗證要求。如要驗證存取權杖，您必須提將應用程式的相關資訊提供給 `TaskService`。在 `TaskService` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：
 
 ```
 <appSettings>
@@ -92,7 +94,7 @@ git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-Web
 
 ## 設定工作 Web 應用程式
 
-如要讓 `TaskWebApp` 與 Azure AD B2C 通訊，您必須提供部分常用的參數。在 `TaskWebApp` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：這些值將用於整個 Web 應用程式。
+如要讓 `TaskWebApp` 與 Azure AD B2C 通訊，您必須提供部分常用的參數。在 `TaskWebApp` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值。這些值將用於整個 Web 應用程式。
 
 ```
 <appSettings>
@@ -284,11 +286,11 @@ public async Task<ActionResult> Index()
 }
 ```
 
-ADAL 會快取權杖、在權杖過期時重新整理權杖，以及透過擲回例外狀況來讓您知道使用者何時必須重新登入。每當應用程式需要權杖時，您就只需要呼叫 `AuthenticationContext.AcquireTokenSilentAsync(...)` 即可。
+ADAL 會快取權杖、在權杖過期時重新整理權杖，以及透過擲回例外狀況來讓您知道使用者何時必須重新登入。每當應用程式需要權杖時，您只需要呼叫 `AuthenticationContext.AcquireTokenSilentAsync(...)` 即可。
 
 ### 從 Web API 讀取工作
 
-當您擁有權杖之後，就可以把權杖附加 HTTP `GET` 要求的 `Authorization` 標頭中，以便安全地呼叫 `TaskService`：
+當您擁有權杖之後，就可以把權杖附加 HTTP `GET` 要求的 `Authorization` 標頭中，以安全地呼叫 `TaskService`：
 
 ```C#
 // Controllers\TasksController.cs
@@ -339,7 +341,7 @@ public async Task<ActionResult> Index()
 
 ### 在 Web API 上建立及刪除工作
 
-當您傳送 `POST` 及 `DELETE` 要求給 `TaskService` 時，請依照相同的模式來進行。只要呼叫 `AuthenticationContext.AcquireTokenSilentAsync(...)`，然後把收到的權杖附加到要求的 `Authorization`標頭即可。我們已經為您實作了建立動作，您可以嘗試在 `TasksController.cs` 中完成刪除動作。
+當您傳送 `POST` 及 `DELETE` 要求給 `TaskService` 時，請依照相同的模式來進行。呼叫 `AuthenticationContext.AcquireTokenSilentAsync(...)`，然後把收到的權杖附加到要求的 `Authorization` 標頭。我們已經為您實作了建立動作，您可以嘗試在 `TasksController.cs` 中完成刪除動作。
 
 ## 登出使用者
 
@@ -372,7 +374,7 @@ public void SignOut()
 
 最後，請建置並執行 `TaskClient` 和 `TaskService`。請註冊並登入應用程式，然後為已登入使用者建立工作。請登出應用程式，再以不同的使用者身分登入，然後為該使用者建立工作。您會發現，這些工作在 API 上是依照使用者來儲存的 ，因為 API 會從自己收到的存取權杖中擷取使用者的身分識別。
 
-為供您參考，我們提供 [.zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet/archive/complete.zip)的完整範例。您也可以從 Github 複製它：
+為供您參考，我們提供完整範例的 [.zip 檔案](https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet/archive/complete.zip)。您也可以從 Github 複製它：
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebApp-WebAPI-OpenIDConnect-DotNet.git```
 
@@ -388,4 +390,4 @@ You can now move on to more advanced B2C topics. You might try:
 
 -->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

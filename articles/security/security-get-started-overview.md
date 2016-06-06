@@ -1,5 +1,5 @@
 <properties
-   pageTitle="開始使用 Azure 安全性 | Microsoft Azure"
+   pageTitle="Azure 安全性概觀 | Microsoft Azure"
    description="Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。"
    services="security"
    documentationCenter="na"
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="05/22/2016"
    ms.author="terrylan"/>
 
-# 開始使用 - 概觀
+# Azure 安全性概觀
 
 Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。
 
@@ -30,6 +30,7 @@ Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問�
 每個類別都會有一篇＜概觀＞文章。＜概觀＞文章的目標是提供 Azure 必須針對該類別安全性所提供的摘要。＜概觀＞文章將協助您了解 Azure 中可用來增強部署安全性的產品、服務和功能。這些＜概觀＞文章包含數個技術內容連結，讓您可以深入了解這些主題和其實作方式。
 
 Azure 安全性資訊網站目前處理下列類別︰
+
 - 資源
 - 網路安全性
 - 儲存體安全性
@@ -45,4 +46,4 @@ Azure 安全性資訊網站目前處理下列類別︰
 
 我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果有您想要新增至現有類別的文章，也請讓我們知道！ 您可以使用下面的 [註解] 區段，或寫信給我們：[azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com)，我們會將您的建議加入我們的計畫中。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

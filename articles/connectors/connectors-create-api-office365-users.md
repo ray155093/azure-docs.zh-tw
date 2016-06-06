@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在 PowerApps Enterprise 或邏輯應用程式中加入 Office 365 Users API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Office 365 使用者 API 的概觀"
-	services=""	
-	documentationCenter="" 	
-	authors="msftman"	
-	manager="erikre"	
-	editor="" 
-	tags="connectors" />
+    pageTitle="在 PowerApps Enterprise 或 Logic Apps 中新增 Office 365 使用者連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Office 365 使用者連接器的概觀"
+    services=""    
+    documentationCenter=""     
+    authors="msftman"    
+    manager="erikre"    
+    editor="" 
+    tags="connectors" />
 
 <tags
 ms.service="multiple"
@@ -14,12 +14,12 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="03/16/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Office 365 使用者 API
+# 開始使用 Office 365 使用者連接器
 
-連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。Office 365 使用者 API 可以從下列位置使用：
+連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。您可以從下列應用程式使用 Office 365 使用者連接器︰
 
 - 邏輯應用程式 
 - PowerApps
@@ -37,29 +37,28 @@ ms.author="deonhe"/>
 
 - 根據您從 Office 365 使用者所取得的資料，來建置您的商務流程。 
 - 使用可取得直屬員工、取得管理員的使用者設定檔等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，取得某人的直屬員工，然後利用此資訊更新 SQL Azure 資料庫。 
-- 新增 Office 365 使用者 API 至 PowerApps Enterprise。接著，您的使用者便能夠在自己的應用程式中使用這個 API。 
+- 將 Office 365 使用者連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中新增 API 的資訊，請移至[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
-Office 365 使用者 API 提供下列動作。無觸發程序。
+Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 | 觸發程序 | 動作|
 | --- | --- |
 |None | <ul><li>取得管理員</li><li>取得我的設定檔</li><li>取得直屬員工</li><li>取得使用者設定檔</li><li>搜尋使用者</li></ul>|
 
-所有 API 皆支援 JSON 與 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
 ## 建立至 Office 365 使用者的連線
 
-當您將這個 API 新增到邏輯應用程式時，您必須登入您的 Office 365 使用者帳戶，並允許邏輯應用程式連線到您的帳戶。
+當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 使用者帳戶，並允許邏輯應用程式連線到您的帳戶。
 
-1. 登入您的 Office 365 使用者帳戶。
-2. 允許您的邏輯應用程式連線並使用您的 Office 365 帳戶。 
+>[AZURE.INCLUDE [建立至 Office 365 使用者連線的步驟](../../includes/connectors-create-api-office365users.md)]
 
 連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -204,4 +203,4 @@ Office 365 使用者 API 提供下列動作。無觸發程序。
 [10]: ./media/connectors-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/connectors-create-api-office365-users/contoso-aad-app-configure.PNG
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

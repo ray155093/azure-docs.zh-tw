@@ -220,3 +220,18 @@ JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的�
 - 如果相同層級中有重複的名稱，複製活動將會挑選最後一個。
 - 屬性名稱會區分大小寫。名稱相同但大小寫不同的兩個屬性會被視為兩個不同的屬性。 
 
+### 指定 OrcFormat
+如果格式設為 OrcFormat，您不需要在 typeProperties 區段內的 Format 區段中指定任何屬性。範例：
+
+	"format":
+	{
+	    "type": "OrcFormat",
+	}
+
+請注意：
+ 
+-	如果您要在內部部署和雲端資料儲存區之間使用 ORC 格式複製資料，並且不要依原樣從來源複製 ORC 檔案到接收，則需要在閘道機器上安裝 JRE (Java 執行階段環境)。 
+-	不支援複雜資料類型 (STRUCT、MAP、LIST、UNION)
+-	ORC 檔案有 3 種[壓縮相關選項](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)︰NONE、ZLIB、SNAPPY。Data Factory 支援以任何上述壓縮格式從 ORC 檔案讀取資料。它會使用中繼資料裡的壓縮轉碼器來讀取資料。不過，寫入 ORC 檔案時，Data Factory 會選擇 ZLIB，這是 ORC 的預設值。此時沒有任何選項可覆寫這個行為。 
+
+<!---HONumber=AcomDC_0525_2016-->

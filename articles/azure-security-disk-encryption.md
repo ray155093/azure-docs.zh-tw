@@ -1,19 +1,19 @@
 <properties
    pageTitle="Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密 | Microsoft Azure"
    description="本文件提供 Windows 和 Linux IaaS VM 適用的 Microsoft Azure 磁碟加密的概觀。"
-   services="virtual-machines, cloud-services, storage"
+   services="security"
    documentationCenter="na"
    authors="YuriDio"
    manager="swadhwa"
    editor="TomSh"/>
 
 <tags
-   ms.service="azure-security"
+   ms.service="security"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/15/2016"
+   ms.date="05/23/2016"
    ms.author="devtiw"/>
 
 
@@ -36,7 +36,7 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 - 對透過加密的 VHD 和加密金鑰建立的新 IaaS VM 啟用加密
 - 對透過 Azure 資源庫映像建立的新 IaaS VM 啟用加密 
 - 在 Azure 中已執行的現有 IaaS VM 上啟用加密 
-- 在 Windows IaaS VM 上停用加密  
+- 在 Windows IaaS VM 上停用加密 
 
 在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列各項：
 
@@ -78,7 +78,7 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 - 加密作業系統磁碟區以輕鬆保護客戶儲存體中的開機磁碟區
 
 	- 已在 Azure 中執行的 Linux IaaS VM 上目前不支援 OS 磁碟區加密。僅針對預先加密的 VHD 案例支援 Linux IaaS VM 的 OS 磁碟區加密
-	
+
 - 加密資料磁碟區以輕鬆保護客戶儲存體中的資料磁碟區
 
 - 在 Windows IaaS VM 上停用加密
@@ -91,7 +91,7 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 
 Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含 Windows 適用的磁碟加密擴充、Linux 適用的磁碟加密擴充、磁碟加密 PowerShell Cmdlet、磁碟加密 CLI Cmdlet 和磁碟加密 Azure 資源管理員範本。在執行 Windows 或 Linux OS 的 IaaS VM 上支援 Azure 磁碟加密解決方案。如需支援的作業系統的詳細資訊，請參閱以下的必要條件一節。
 
-**注意：** 使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
+**注意：**使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
 
 ### 價值主張
 
@@ -845,4 +845,4 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

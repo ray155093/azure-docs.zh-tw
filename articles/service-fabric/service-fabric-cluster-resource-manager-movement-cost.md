@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 # 影響資源管理員選擇的服務移動成本
@@ -36,7 +36,7 @@ MoveCost 有四個層級：零、低、中和高。再次提醒 – 這些只是
 
 ![移動成本做為選取複本的因素來移動][Image1]
 
-移動成本可協助我們在達成對等的平衡時，尋找整體導致最少中斷的解決方案。服務的成本概念可相對於許多事項，但最常見的事項如下︰
+移動成本可協助我們在達成對等的平衡時，尋找整體導致最少中斷的解決方案。服務的成本概念可相對於許多事項，但計算您的移動成本最常見的因素如下︰
 
 1.	服務必須移動的狀態或資料量
 2.	用戶端中斷連線的成本 (因此，移動主要複本的成本高於移動次要複本的成本)
@@ -44,8 +44,8 @@ MoveCost 有四個層級：零、低、中和高。再次提醒 – 這些只是
 
 ## 後續步驟
 - 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。若要深入了解度量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-movement-cost/service-most-cost-example.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

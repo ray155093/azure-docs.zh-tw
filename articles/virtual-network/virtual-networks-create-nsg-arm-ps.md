@@ -136,7 +136,7 @@
 		}
 
 ## 如何建立後端子網路的 NSG
-若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請依照下列步驟執行。
+若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請遵循下列步驟執行。
 
 1. 建立允許從前端子網路存取連接埠 1433 (SQL Server 所使用的預設連接埠) 的安全性規則。
 
@@ -154,7 +154,7 @@
 
 5. 將於上方建立的規則加入名為 **NSG-BackEnd** 的新 NSG。
 
-		$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus `-Name "NSG-BackEnd" `
+		$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus -Name "NSG-BackEnd" `
 			-SecurityRules $rule1,$rule2
 
 6. 將於上方建立的 NSG 與 *BackEnd* 子網路建立關聯。
@@ -182,4 +182,4 @@
 
 		Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0525_2016-->

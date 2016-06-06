@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/24/2016" 
 	ms.author="sdanie"/>
 
 # 使用範本建立 Web 應用程式和 Redis 快取
@@ -43,7 +43,7 @@
 
 ## 名稱的變數
 
-這個範本會使用變數來建構資源的名稱。它會使用 [uniqueString](../resource-group-template-functions/#uniquestring) 函式，根據資源群組識別碼來建構值。
+這個範本會使用變數來建構資源的名稱。它會使用 [uniqueString](../resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -132,4 +132,4 @@
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的邏輯應用程式中新增 Yammer API | Microsoft Azure"
-description="搭配 REST API 參數來使用 Yammer API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的 Logic Apps 中新增 Yammer 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Yammer 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,10 +14,10 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/16/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Yammer API
+# 開始使用 Yammer 連接器
 
 連線到 Yammer 來存取您企業網路中的交談。
 
@@ -38,10 +38,10 @@ Yammer 包含下列觸發程序及動作。
 --- | ---
 <ul><li>當群組有新訊息時</li><li>當我正在追蹤的摘要有新訊息時</li></ul>| <ul><li>取得所有訊息</li><li>取得群組中的訊息</li><li>取得我正在追蹤的摘要中的訊息</li><li>張貼訊息</li><li>當群組有新訊息時</li><li>當我正在追蹤的摘要有新訊息時</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Yammer 的連線
-如要使用 Yammer API，您必須先建立**連接**，再提供下列屬性的詳細資料：
+如要使用 Yammer 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
@@ -195,4 +195,4 @@ Yammer 包含下列觸發程序及動作。
 [4]: ./media/connectors-create-api-yammer/connectionconfig4.png
 [5]: ./media/connectors-create-api-yammer/connectionconfig5.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

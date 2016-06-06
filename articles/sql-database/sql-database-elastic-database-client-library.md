@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/26/2016"
-    ms.author="ddove;sidneyh"/>
+    ms.date="05/24/2016"
+    ms.author="ddove"/>
 
 # 建置可調整的雲端資料庫
 
@@ -37,6 +37,7 @@
 * [搭配使用彈性資料庫用戶端程式庫與 Entity Framework](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md)
 * [彈性資料庫用戶端程式庫與 Dapper](sql-database-elastic-scale-working-with-dapper.md)
 * [分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)
+* [分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md) 
 * [彈性資料庫工具常見問題集](sql-database-elastic-scale-faq.md)
 
 ## 用戶端功能
@@ -72,4 +73,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-database-client-library/glossary.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

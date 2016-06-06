@@ -180,6 +180,14 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 如需使用 Entity Framework 存取 Azure SQL Database 資料之資料表控制器的範例，請參閱從 Azure 入口網站下載之快速入門伺服器專案中的 **TodoItemController** 類別。
 
+### 做法：調整資料表分頁大小
+
+根據預設，Azure Mobile Apps 針對每個要求會傳回 50 個記錄。這可確保用戶端不會佔用其 UI 執行緒或伺服器太久，以確保有良好的使用者體驗。您必須增加伺服器端「允許的查詢大小」以及用戶端頁面大小，以使資料表分頁大小中的變更生效。若要增加分頁大小，可使用下列這一行來調整您的資料表控制器︰
+
+    [EnableQuery(PageSize = 500)]
+
+確定 PageSize 等於或大於用戶端將要求的大小。如需變更用戶端頁面大小的詳細資料，請參閱特定用戶端的做法文件。
+
 ## 做法：定義自訂 API 控制器
 
 自訂 API 控制器透過公開端點，提供最基本的功能給您的行動應用程式後端。您可以使用屬性 [MobileAppController] 來註冊行動裝置特定 API 控制器。這個屬性會註冊路由，也會設定 Mobile Apps JSON 序列化程式。
@@ -275,11 +283,11 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
 			}
 		}
 
-`AppServiceLoginHandler.CreateToken()` 方法包含 _audience_ 和 _issuer_ 參數。這兩個參數通常會使用 HTTPS 配置設定為應用程式根目錄的 URL。同樣地，您應該將 secretKey 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。您可以藉由參考 WEBSITE\_AUTH\_SIGNING\_KEY 環境變數，在裝載於 App Service 時取得這個值。如果在本機偵錯內容中有需要，請依照[使用驗證進行本機偵錯](#local-debug)一節中的指示以擷取金鑰，並將它儲存為應用程式設定。
+`AppServiceLoginHandler.CreateToken()` 方法包含 _audience_ 和 _issuer_ 參數。這兩個參數通常會使用 HTTPS 配置設定為應用程式根目錄的 URL。同樣地，您應該將 _secretKey_ 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。您可以藉由參考 _WEBSITE\_AUTH\_SIGNING\_KEY_ 環境變數，在裝載於 App Service 時取得這個值。如果在本機偵錯內容中有需要，請依照[使用驗證進行本機偵錯](#local-debug)一節中的指示以擷取金鑰，並將它儲存為應用程式設定。
 
 您也必須提供已發行權杖的存留期，以及您想要包含的任何宣告。您必須提供主體宣告，如範例程式碼所示。
 
-您也可以將用戶端程式碼簡化成使用 `loginAsync()` 方法 (命名方式可能因平台而異)，而不使用手動 HTTP POST。您也可以使用接受額外權杖參數 (與您要 POST 的判斷提示物件關聯) 的多載。此案例中的提供者應該為您選擇的自定名稱。接著，在伺服器上，您的登入動作應該作用於包含此自訂名稱的 /.auth/login/{customProviderName} 路徑。若要將控制器置於此路徑，請在套用 MobileAppConfiguration 之前新增指向 HttpConfiguration 的路由。
+您也可以將用戶端程式碼簡化成使用 `loginAsync()` 方法 (命名方式可能因平台而異)，而不使用手動 HTTP POST。您也可以使用接受額外權杖參數 (與您要 POST 的判斷提示物件關聯) 的多載。此案例中的提供者應該為您選擇的自定名稱。接著，在伺服器上，您的登入動作應該作用於包含此自訂名稱的 _/.auth/login/{customProviderName}_ 路徑上。若要將控制器置於此路徑，請在套用 MobileAppConfiguration 之前新增指向 HttpConfiguration 的路由。
 
 		config.Routes.MapHttpRoute("CustomAuth", ".auth/login/CustomAuth", new { controller = "CustomAuth" });
 
@@ -324,10 +332,6 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
     }
 
 請注意，您必須新增 `System.Security.Principal` 的 using 陳述式，**GetAppServiceIdentityAsync** 擴充方法才能運作。
-
-###<a name="authorize"></a>做法︰限制授權使用者的資料存取
-
-通常會想要限制傳回給已驗證的特定使用者的資料。這種資料分割是藉由在資料表上包括 userId 資料行，並且在插入資料時排序使用者的 SID 來完成。
 
 ## 做法：將推播通知新增至伺服器專案
 
@@ -461,4 +465,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Login]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Login/
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

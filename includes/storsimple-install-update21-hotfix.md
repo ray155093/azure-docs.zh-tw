@@ -1,4 +1,4 @@
-<!--author=alkohli last changed: 05/18/16-->
+<!--author=alkohli last changed: 05/19/16-->
 
 #### 下載 Hofix
 
@@ -95,9 +95,9 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
 
     您應該會看見下列版本：
 
-    - HcsSoftwareVersion：6.3.9600.17704
-    - CisAgentVersion：1.0.9299.0
-    - MdsAgentVersion：330.0.4698.13
+    - `HcsSoftwareVersion: 6.3.9600.17705`
+    - `CisAgentVersion: 1.0.9299.0`
+    - `MdsAgentVersion: 30.0.4698.16` 
 
 	如果在套用更新後版本號碼並未變更，則表示此 Hotfix 未成功套用。若您看到這種情況，請連絡 [Microsoft 支援](storsimple-contact-microsoft-support.md)以取得進一步的協助。
 
@@ -184,7 +184,7 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
         -----------------------MAINTENANCE MODE------------------------
     	Microsoft Azure StorSimple Appliance Model 8100
     	Name: Update2-8100-SHG0997879L76YD
-    	Software Version: 6.3.9600.17704
+    	Software Version: 6.3.9600.17705
     	Copyright (C) 2014 Microsoft Corporation. All rights reserved.
     	You are connected to Controller1
     	---------------------------------------------------------------
@@ -238,3 +238,5 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
     `Exit-HcsMaintenanceMode`
 
 1. 當您離開維護模式時，控制器便會重新啟動。在磁碟韌體更新已成功套用且裝置已結束維護模式後，返回 Azure 傳統入口網站。請注意，入口網站可能有 24 小時的時間不會顯示您已安裝維護模式更新。
+
+<!---HONumber=AcomDC_0525_2016-->

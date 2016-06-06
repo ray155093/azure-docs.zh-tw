@@ -108,12 +108,14 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions '2.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json**。
 
 
-###   案例 4.停用 Linux 監視器延伸模組
+###   案例 4.停止擴充收集任何記錄檔
+本節說明如何停止擴充收集任何記錄檔。請注意，即使使用這項重新設定，監視代理程式處理序仍會啟動並執行。因此，如果您想要完全停止監視代理程式處理序，目前需要解除安裝擴充。未來可以新增只停用擴充的組態屬性 (也完全停止監視代理程式處理序)，不需要解除安裝整個擴充。
+
 步驟 1.使用「案例 1」的內容建立名為 PrivateConfig.json 的檔案。使用下列內容建立另一個名為 PublicConfig.json 的檔案。
 
 	{
      	"perfCfg":[],
-     	"enableSyslog":”False”
+     	"enableSyslog":"false"
 	}
 
 
@@ -137,4 +139,4 @@ Linux 診斷延伸模組可利用下列功能協助使用者監視在 Microsoft 
 ## 已知問題
 - 若為 2.0 版，只能透過指令碼存取 Rsyslog 資訊和客戶指定記錄檔。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

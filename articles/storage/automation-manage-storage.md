@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/23/2016"
 	ms.author="jolevy"/>
 
 
@@ -50,4 +50,4 @@ Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，�
 請參閱 Azure 自動化教學課程：[在 Azure 自動化中建立或匯入 Runbook](../automation/automation-creating-importing-runbook.md)。
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0525_2016-->

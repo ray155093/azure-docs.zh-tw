@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/16/2016" 
+	ms.date="05/23/2016" 
 	ms.author="xueshzha"/>
 
 #預測 - ETS + STL  
@@ -137,4 +137,4 @@ Azure Machine Learning 中已建立新的空白實驗，並已使用預先定義
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0525_2016-->

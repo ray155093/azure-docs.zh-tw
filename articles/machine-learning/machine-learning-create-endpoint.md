@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="tbd" 
-	ms.date="02/10/2016"
+	ms.date="05/16/2016"
 	ms.author="himad"/>
 
 
@@ -42,4 +42,4 @@ Azure Machine Learning 可讓您為已發行的 Web 服務建立多個端點。�
  
  請注意，如果您已在預設端點中新增端點，就無法從 Studio 或從此處將它刪除。它將會擲回錯誤。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

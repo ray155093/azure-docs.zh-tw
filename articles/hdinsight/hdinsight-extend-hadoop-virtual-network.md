@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/04/2016"
+   ms.date="05/19/2016"
    ms.author="larryfr"/>
 
 
@@ -77,6 +77,12 @@ Azure HDInsight 僅支援以位置為基礎的虛擬網路，目前無法使用�
 以 Windows 為基礎的叢集需要 v1 (傳統) 虛擬網路，而以 Linux 為基礎的叢集需要 v2 (Azure 資源管理員) 虛擬網路。如果您沒有正確的網路類型，當您建立叢集時就無法使用。
 
 如果虛擬網路上的資源不能為您計劃要建立的叢集所用，您可以建立可為叢集使用的新虛擬網路，並連接到不相容的虛擬網路。然後在叢集需要的網路版本中建立叢集，因為兩個網路聯結在一起，所以它就可以存取其他網路中的資源。如需連接傳統和新虛擬網路的詳細資訊，請參閱[連接傳統 VNet 和新的 VNet](../virtual-network/virtual-networks-arm-asm-s2s.md)。
+
+###自訂 DNS
+
+建立虛擬網路時，Azure 會為網路中安裝的 Azure 服務 (例如 HDInsight) 提供預設名稱解析。不過，針對跨網路網域名稱解析之類的情況，您可能就需要使用您自己的「網域名稱系統」(DNS)。例如，在位於兩個結合的虛擬網路中的服務之間通訊時。與「Azure 虛擬網路」搭配使用時，HDInsight 同時支援預設 Azure 名稱解析和自訂 DNS。
+
+如需有關搭配「Azure 虛擬網路」使用您自己 DNS 伺服器的詳細資訊，請參閱 [VM 與角色執行個體的名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)文件中的__使用專屬 DNS 伺服器的名稱解析__一節。
 
 ###受保護的虛擬網路
 
@@ -167,22 +173,22 @@ __使用 Azure PowerShell__
 
 __使用 Azure CLI__
 
-1. 使用下列命令建立名為 `hdisecure` 的新網路安全性群組。將 __RESOURCEGROUPNAME__ 和 __LOCATION__ 取代為包含 Azure 虛擬網路的資源群組以及在其中建立群組的位置 (地區)。
+1. 使用下列命令來建立名為 `hdisecure` 的新網路安全性群組。將 __RESOURCEGROUPNAME__ 和 __LOCATION__ 取代為包含「Azure 虛擬網路」的資源群組以及在其中建立群組的位置 (區域)。
 
         azure network nsg create RESOURCEGROUPNAME hdisecure LOCATION
     
-    建立群組之後，您會收到新群組的相關資訊。尋找與下列類似的一行，並儲存 `/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure` 資訊。後續步驟將會使用該資訊。
+    建立群組之後，您會收到新群組的相關資訊。尋找與以下類似的一行，然後儲存 `/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure` 資訊。後續步驟將會使用該資訊。
     
         data:    Id                              : /subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure
 
-2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。
+2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。將 __RESOURCEGROUPNAME__ 取代為包含「Azure 虛擬網路」之資源群組的名稱。
 
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule1 -p "*" -o "*" -u "443" -f "168.61.49.99" -e "VirtualNetwork" -c "Allow" -y 300 -r "Inbound"
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule2 -p "*" -o "*" -u "443" -f "23.99.5.239" -e "VirtualNetwork" -c "Allow" -y 301 -r "Inbound"
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule3 -p "*" -o "*" -u "443" -f "168.61.48.131" -e "VirtualNetwork" -c "Allow" -y 302 -r "Inbound"
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule4 -p "*" -o "*" -u "443" -f "138.91.141.162" -e "VirtualNetwork" -c "Allow" -y 303 -r "Inbound"
 
-3. 建立規則之後，請使用下列將新的網路安全性群組套用至子網路。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。將 __VNETNAME__ 和 __SUBNETNAME__ 取代為 Azure 虛擬網路的名稱以及將在安裝 HDInsight 時使用的子網路。
+3. 建立規則之後，請使用下列將新的網路安全性群組套用至子網路。將 __RESOURCEGROUPNAME__ 取代為包含「Azure 虛擬網路」之資源群組的名稱。將 __VNETNAME__ 和 __SUBNETNAME__ 取代為「Azure 虛擬網路」的名稱及安裝 HDInsight 時將使用之子網路的名稱。
 
         azure network vnet subnet set RESOURCEGROUPNAME VNETNAME SUBNETNAME -w "/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
     
@@ -195,7 +201,7 @@ __使用 Azure CLI__
 > * Azure PowerShell - ```Add-AzureRmNetworkSecurityRuleConfig -Name "SSSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 304 -Direction Inbound```
 > * Azure CLI - ```azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule4 -p "*" -o "*" -u "22" -f "*" -e "VirtualNetwork" -c "Allow" -y 304 -r "Inbound"```
 
-如需網路安全性群組的詳細資訊，請參閱[網路安全性群組概觀](../virtual-network/virtual-networks-nsg.md)。如需在 Azure 虛擬網路中控制路由的資訊，請參閱[使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
+如需有關「網路安全性群組」的詳細資訊，請參閱[網路安全性群組概觀](../virtual-network/virtual-networks-nsg.md)。如需有關在「Azure 虛擬網路」中控制路由的資訊，請參閱[使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
 
 ##<a id="tasks"></a>工作和資訊
 
@@ -303,4 +309,4 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 若要深入了解 Azure 虛擬網路，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

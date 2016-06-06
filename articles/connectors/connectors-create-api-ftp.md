@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 FTP API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 FTP API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 FTP 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 FTP 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 FTP API
-連線到 FTP 伺服器來管理您的檔案，包括上傳檔案、刪除檔案等等。您可以從下列應用程式使用 FTP API：
+# 開始使用 FTP 連接器
+連線到 FTP 伺服器來管理您的檔案，包括上傳檔案、刪除檔案等等。您可以從下列應用程式使用 FTP 連接器︰
 
 - 邏輯應用程式 (如本主題所述)
 - PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
@@ -41,16 +41,12 @@ FTP 提供下列觸發程序及動作。
 --- | ---
 <ul><li>取得已更新的檔案</li></ul> | <ul><li>建立檔案</li><li>複製檔案</li><li>刪除檔案</li><li>解壓縮到資料夾</li><li>取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>取得檔案元資料</li><li>使用路徑來取得檔案元資料</li><li>取得已更新的檔案</li><li>更新檔案</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 FTP 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的值：
 
-|屬性| 必要|說明|
-| ---|---|---|
-|伺服器位址| 是 | 輸入 FTP 伺服器的完整網域 (FQDN) 或 IP 位址。|
-|使用者名稱| 是 | 輸入要連線到 FTP 伺服器的使用者名稱。|
-|密碼 | 是 | 輸入使用者名稱的密碼。|
+
+>[AZURE.INCLUDE [建立 FTP 連線的步驟](../../includes/connectors-create-api-ftp.md)]
 
 當您建立連線之後，請輸入 FTP 的屬性，例如來源檔案或目的資料夾。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -60,7 +56,7 @@ FTP 提供下列觸發程序及動作。
 適用的版本：1.0。
 
 ### 建立檔案
-把檔案上傳到 FTP 伺服器。```POST: /datasets/default/files```
+將檔案上傳到 FTP 伺服器。```POST: /datasets/default/files```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -75,7 +71,7 @@ FTP 提供下列觸發程序及動作。
 |預設值|作業失敗。|
 
 ### 複製檔案
-把檔案複製到 FTP 伺服器。```POST: /datasets/default/copyFile```
+將檔案複製到 FTP 伺服器。```POST: /datasets/default/copyFile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -146,7 +142,7 @@ FTP 提供下列觸發程序及動作。
 
 
 ### 取得檔案中繼資料 
-使用檔案識別碼來擷取 FTP 伺服器中的檔案元資料。```GET: /datasets/default/files/{id}```
+使用檔案識別碼來擷取 FTP 伺服器中的檔案中繼資料。```GET: /datasets/default/files/{id}```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -160,7 +156,7 @@ FTP 提供下列觸發程序及動作。
 
 
 ### 使用路徑來取得檔案中繼資料
-使用路徑來擷取 FTP 伺服器中的檔案元資料。```GET: /datasets/default/GetFileByPath```
+使用路徑來擷取 FTP 伺服器中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -248,4 +244,4 @@ FTP 提供下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

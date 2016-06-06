@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/29/2016"
+   ms.date="05/24/2016"
    ms.author="jeffstok"/>
 
 
@@ -27,7 +27,7 @@
 
 ## 必要條件
 
-* 具有 R 伺服器的 Azure HDInsight 叢集已安裝。如需相關指示，請參閱[開始使用 HDInsight 中的 R Server](hdinsight-hadoop-r-server-get-started.mdulet)。
+* 具有 R 伺服器的 Azure HDInsight 叢集已安裝。如需相關指示，請參閱[開始在 HDInsight 叢集上使用 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。
 * SSH 用戶端。若為 Linux 和 Unix 發佈或 Macintosh OS X，`ssh` 命令會隨作業系統提供。若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。 
 
 
@@ -36,7 +36,7 @@
 1. 識別叢集的邊緣節點。若為具有 R 伺服器的 HDInsight 叢集，以下是前端節點和邊緣節點的命名慣例。
 
 	* 前端節點 - `CLUSTERNAME-ssh.azurehdinsight.net`
-	* 邊緣節點 - `rserver.CLUSTERNAME.ssh.azurehdinsight.net` 
+	* 邊緣節點 - `r-server.CLUSTERNAME-ssh.azurehdinsight.net` 
 
 3. 使用上述的命名模式將 SSH 連接至叢集的邊緣節點。
  
@@ -75,7 +75,7 @@
 
 	* 在 Linux 用戶端或 Windows 用戶端上 (使用 [Cygwin](http://www.redhat.com/services/custom/cygwin/))，開啟終端機工作階段並且使用下列命令。
 
-			ssh -L localhost:8787:localhost:8787 USERNAME@rserver.CLUSTERNAME.ssh.azurehdinsight.net
+			ssh -L localhost:8787:localhost:8787 USERNAME@r-server.CLUSTERNAME-ssh.azurehdinsight.net
 			
 		以您 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您 HDInsight 叢集的名稱取代 **CLUSTERNAME**。
 
@@ -124,4 +124,4 @@
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

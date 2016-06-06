@@ -1,13 +1,13 @@
 <properties
-	pageTitle="在 PowerApps Enterprise 或邏輯應用程式中新增 Microsoft Translator | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Microsoft Translator API 的概觀"
-	services=""
+    pageTitle="在 PowerApps Enterprise 或邏輯應用程式中新增 Microsoft Translator | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Microsoft Translator 連接器的概觀"
+    services=""
     suite=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -15,11 +15,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Microsoft Translator API
-連線到 Microsoft Translator 來翻譯文字、偵測語言種類等等。您可以從下列應用程式使用 Microsoft Translator API：
+# 開始使用 Microsoft Translator 連接器
+連線到 Microsoft Translator 來翻譯文字、偵測語言種類等等。您可以從下列應用程式使用 Microsoft Translator 連接器：
 
 - 邏輯應用程式 
 - PowerApps
@@ -32,9 +32,9 @@
 
 - 根據您從 Microsoft Translator 所取得的資料，來建置您的商務流程。 
 - 使用動作來翻譯文字、偵測語言種類等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Dropbox 中有新檔案建立時，您可以利用 Microsoft Translator 把該檔案中的文字翻譯成另一種語言。
-- 將 Microsoft Translator API 新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 Microsoft Translator 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需有關如何在 PowerApps Enterprise 中新增 API 的資訊，請移至[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -45,7 +45,12 @@ Microsoft Translator 包含下列動作，但不包含觸發程序。
 --- | ---
 None | <ul><li>偵測語言種類</li><li>將文字轉換成語音</li><li>翻譯文字</li><li>取得語言種類</li><li>取得語音的語言種類</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
+
+
+## 建立至 Microsoft Translator 的連線
+
+>[AZURE.INCLUDE [建立至 Microsoft Translator 連線的步驟](../../includes/connectors-create-api-microsofttranslator.md)]
 
 
 ## Swagger REST API 參考
@@ -141,4 +146,4 @@ None | <ul><li>偵測語言種類</li><li>將文字轉換成語音</li><li>翻�
 [5]: https://datamarket.azure.com/developer/applications/
 [6]: ./media/connectors-create-api-microsofttranslator/register-your-application.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

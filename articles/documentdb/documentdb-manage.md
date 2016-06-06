@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="05/24/2016" 
 	ms.author="mimig"/>
 
 # 了解儲存體和 DocumentDB 中佈建的可預測效能
-DocumentDB 是適用於 JSON 文件且受到完整管理、可調整的文件導向 NoSQL 資料庫服務。有了 DocumentDB，您就不需要租用虛擬機器、部署軟體、監視資料庫或擔心災害復原。Microsoft 工程師會負責操作並持續監視 DocumentDB，提供世界級的可用性、效能和資料保護能力。
+DocumentDB 是適用於 JSON 文件且受到完整管理、可調整的文件導向 NoSQL 資料庫服務。有了 DocumentDB，您就不需要租用虛擬機器、部署軟體或監視資料庫。Microsoft 工程師會負責操作並持續監視 DocumentDB，提供世界級的可用性、效能和資料保護能力。
 
 若要開始使用 DocumentDB，請先透過 [Azure 入口網站](https://portal.azure.com/)[建立資料庫帳戶](documentdb-create-account.md)。DocumentDB 是以固態硬碟 (SSD) 型儲存體和輸送量的單位來提供，這些單位是透過在您的資料庫帳戶內建立資料庫集合來佈建的。每個集合具有保留的輸送量。如果您的應用程式輸送量需求變更，您可以藉由為每個集合設定[效能層級](documentdb-performance-levels.md)來動態變更。
 
@@ -132,4 +132,4 @@ DocumentDB 支援建立單一分割和分割的集合。DocumentDB 中的每個�
 如需為集合選擇效能層級的詳細資訊，請參閱 [DocumentDB 中的效能層級](documentdb-performance-levels.md)。
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

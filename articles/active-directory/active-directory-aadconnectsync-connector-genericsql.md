@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/16/2016"
+   ms.date="05/24/2016"
    ms.author="andkjell"/>
 
 # 一般 SQL 連接器技術參考
@@ -34,12 +34,12 @@
 
 目前的連接器版本大致支援下列功能：
 
-| 功能 | 支援 |
-| --- | --- |
-| 連接的資料來源 | 此連接器支援所有 64 位元的 ODBC 驅動程式。此連接器已進行下列各項的測試：<li>Microsoft SQL Server & SQL Azure</li><li>IBM DB2 10.x</li><li>IBM DB2 9.x</li><li>Oracle 10 & 11g</li><li>MySQL 5.x</li>
-| 案例 | <li>物件生命週期管理</li><li>密碼管理</li> |
-| 作業 | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新增、更新、刪除和取代</li><li>設定密碼、變更密碼</li>
-| 結構描述 | <li>動態探索物件和屬性</li>
+功能 | 支援
+--- | ---
+連接的資料來源 | 此連接器支援所有 64 位元的 ODBC 驅動程式。此連接器已進行下列各項的測試：<li>Microsoft SQL Server & SQL Azure</li><li>IBM DB2 10.x</li><li>IBM DB2 9.x</li><li>Oracle 10 & 11g</li><li>MySQL 5.x</li>
+案例 | <li>物件生命週期管理</li><li>密碼管理</li>
+作業 | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新增、更新、刪除和取代</li><li>設定密碼、變更密碼</li>
+結構描述 | <li>動態探索物件和屬性</li>
 
 ### 必要條件
 
@@ -297,4 +297,4 @@
 
 -	如需如何啟用記錄來疑難排解連接器的資訊，請參閱[如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,10 +1,10 @@
 <properties
-pageTitle="在 PowerApps Enterprise 及邏輯應用程式中新增 OneDrive API | Microsoft Azure"
-description="搭配 REST API 參數來使用 OneDrive API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在 PowerApps Enterprise 及 Logic Apps 中新增 OneDrive 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 OneDrive 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,12 +14,12 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="05/12/2016"
+ms.date="05/18/2016"
 ms.author="mandia"/>
 
-# 開始使用 OneDrive API
+# 開始使用 OneDrive 連接器
 
-連線到 OneDrive 來管理您的檔案，包括上傳檔案、取得、刪除檔案等等。您可以從下列應用程式使用 OneDrive API：
+連線到 OneDrive 來管理您的檔案，包括上傳檔案、取得、刪除檔案等等。您可以從下列應用程式使用 OneDrive 連接器：
 
 - 邏輯應用程式 
 - PowerApps
@@ -37,24 +37,24 @@ ms.author="mandia"/>
 - 根據您從 OneDrive 所取得的資料，來建置您的商務流程。 
 - 在檔案建立或更新時使用觸發程序。
 - 使用動作來建立檔案、刪除檔案等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 OneDrive 中有新檔案建立時，您可以利用 Office 365 來傳送已附加該檔案的電子郵件。
-- 將 OneDrive API 新增到 PowerApps Enterprise讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 OneDrive 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
-OneDrive API 包含下列觸發程序及動作。
+OneDrive 連接器包含下列觸發程序及動作。
 
 | 觸發程序 | 動作|
 | --- | --- |
 |<ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>列出某個資料夾中的檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>解壓縮資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>使用識別碼來取得檔案中繼資</li><li>使用路徑來取得檔案中繼資料</li><li>列出根資料夾</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 OneDrive 的連線
 
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 OneDrive。
+當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 OneDrive。
 
 1. 登入您的 OneDrive 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 OneDrive。 
@@ -312,4 +312,4 @@ OneDrive API 包含下列觸發程序及動作。
 [6]: ./media/connectors-create-api-onedrive/onedrive-new-app.png
 [7]: ./media/connectors-create-api-onedrive/onedrive-app-api-settings.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

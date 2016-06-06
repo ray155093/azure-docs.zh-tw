@@ -8,6 +8,6 @@
 - 如需了解 Azure 中的其他資料儲存選項，請檢視更多功能指南。
   - 若要使用 Azure 儲存體資料表，請參閱[以 .NET 開始使用 Azure 資料表儲存體](../articles/storage/storage-dotnet-how-to-use-tables.md)。
   - 若要使用 Azure 儲存體 Blob，請參閱[以 .NET 開始使用 Azure Blob 儲存體](../articles/storage/storage-dotnet-how-to-use-blobs.md)。
-  - 若要儲存關聯式資料，請參閱[如何在 .NET 應用程式中使用 Azure SQL Database](../articles/sql-database/sql-database-dotnet-how-to-use.md)。
+  - 若要儲存關聯式資料，請參閱[使用 .NET (C#) 連接到 SQL Database](../articles/sql-database/sql-database-develop-dotnet-simple.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0525_2016-->

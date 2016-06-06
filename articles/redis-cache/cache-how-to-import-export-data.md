@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="05/23/2016" 
 	ms.author="sdanie"/>
 
 # 在 Azure Redis 快取中匯入與匯出資料
@@ -94,6 +94,7 @@
 -	[我是否可以從任何 Redis 伺服器匯入資料？](#can-i-import-data-from-any-redis-server)
 -	[我的快取在匯入/匯出作業期間可供使用嗎？](#will-my-cache-be-available-during-an-importexport-operation)
 -	[我可以使用匯入/匯出搭配 Redis 叢集嗎？](#can-i-use-importexport-with-redis-cluster)
+-	[匯入/匯出如何對自訂資料庫設定運作？](#how-does-importexport-work-with-a-custom-databases-setting)
 -	[匯入/匯出和 Redis 永續性有何不同？](#how-is-importexport-different-from-redis-persistence)
 -	[我可以使用 PowerShell、CLI 或其他管理用戶端自動化匯入/匯出嗎？](#can-i-automate-importexport-using-powershell-cli-or-other-management-clients)
 -	[我在匯入/匯出作業期間收到逾時錯誤。這代表什麼意思？](#i-received-a-timeout-error-during-my-importexport-operation.-what-does-it-mean)
@@ -116,7 +117,16 @@
 
 ### 我可以使用匯入/匯出搭配 Redis 叢集嗎？
 
-可以，您可以在叢集快取和非叢集快取之間匯入/匯出。由於 Redis 叢集僅支援資料庫 0，您無法匯入儲存在 0 以外之資料庫中的資料。匯入叢集快取資料時，金鑰會在叢集的分區之間重新分配。
+可以，您可以在叢集快取和非叢集快取之間匯入/匯出。因為 Redis 叢集[僅支援資料庫 0](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)，將不會匯入 0 以外的資料庫中的任何資料。匯入叢集快取資料時，金鑰會在叢集的分區之間重新分配。
+
+### 匯入/匯出如何對自訂資料庫設定運作？
+
+某些定價層具有不同的[資料庫限制](cache-configure.md#databases)，因此，在匯入時，如果您在快取建立期間為 `databases` 設定設定了自訂值，則有一些考量。
+
+-	匯入到與您從中匯出的階層具有較低 `databases` 限制的定價層時：
+	-	如果您使用預設數字 `databases`，即所有定價層為 16，則不會遺失資料。
+	-	如果您要使用的自訂數字 `databases`，落在您要匯入之階層限制範圍內，則不會遺失資料。
+	-	如果您的匯出資料包含位於超出新階層限制之資料庫中的資料，則不會匯入來自這些較高階層資料庫中的資料。
 
 ### 匯入/匯出和 Redis 永續性有何不同？
 
@@ -158,4 +168,4 @@ Azure Redis 快取永續性讓您將儲存在 Redis 快取中的資料存留至 
 [cache-import-blobs]: ./media/cache-how-to-import-export-data/cache-import-blobs.png
 [cache-import-data-import-complete]: ./media/cache-how-to-import-export-data/cache-import-data-import-complete.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

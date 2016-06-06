@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016"
+	ms.date="05/19/2016"
 	ms.author="kgremban"/>
 
 # Azure AD 特殊權限身分識別管理
@@ -54,9 +54,9 @@ Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角
 5. 選取 [Azure AD Privileged Identity Management]。
 6. 選取 [釘選到儀表板] 選項，然後按一下 [建立] 按鈕。[特殊權限身分識別管理] 儀表板隨即開啟。
 
-如果您是在目錄中使用 Azure AD Privileged Identity Management 的第一個人，則[安全性精靈](active-directory-privileged-identity-management-security-wizard.md)會引導您完成初始指派體驗。之後，您就會自動成為目錄的第一個**安全性系統管理員**。
+如果您是在目錄中使用 Azure AD Privileged Identity Management 的第一個人，則[安全性精靈](active-directory-privileged-identity-management-security-wizard.md)會引導您完成初始指派體驗。之後，您就會自動成為目錄的第一個**安全性系統管理員**和**特殊權限角色管理員**。
 
-只有安全性系統管理員可以使用 PIM 應用程式管理其他系統管理員的存取權。請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何提供管理 PIM 的存取權)](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
+只有特殊權限角色管理員可以使用 PIM 應用程式來管理其他系統管理員的存取權。您可以[在 PIM 中為其他使用者提供管理能力](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
 
 ## 特殊權限身分識別管理儀表板
 
@@ -113,4 +113,4 @@ Azure AD 特殊權限身分識別管理員有一個儀表板可提供重要資�
 [5]: ./media/active-directory-privileged-identity-management-configure/PIM_RequestActivation.png
 [6]: ./media/active-directory-privileged-identity-management-configure/PIM_ActivationHistory.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

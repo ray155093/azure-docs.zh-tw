@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/18/2016"
+	ms.date="05/25/2016"
 	ms.author="jroth"/>
 
 # Azure 虛擬機器上的 SQL Server 概觀
@@ -47,7 +47,7 @@
 請務必注意，建立及管理 Azure 虛擬機器的模型有兩種：傳統及 Resource Manager。Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。每個主題應該清楚描述其目標模型，除非它和本文一樣同時適用於傳統和 Resource Manager 模型。
 
 ## 選擇 SQL VM 映像
-下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。按一下表格中任何一個連結即可建立該版本與作業系統的 VM。
+下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。按一下版本與作業系統表格中任何一個連結。然後按一下 Marketplace 頁面上的 [建立虛擬機器] 按鈕。
 
 |SQL Server 版本|作業系統|SQL Server 版本|
 |---|---|---|
@@ -59,11 +59,13 @@
 |**SQL Server 2008 R2 SP3**|Windows Server 2008 R2|[Enterprise](https://azure.microsoft.com//marketplace/partners/microsoft/sqlserver2008r2sp3enterprisewindowsserver2008r2/)、[Standard](https://azure.microsoft.com//marketplace/partners/microsoft/sqlserver2008r2sp3standardwindowsserver2008r2/)、[Web](https://azure.microsoft.com//marketplace/partners/microsoft/sqlserver2008r2sp3webwindowsserver2008r2/)|
 |**SQL Server 2008 R2 SP3**|Windows Server 2012|[Express](https://azure.microsoft.com//marketplace/partners/microsoft/sqlserver2008r2sp3expresswindowsserver2012/)|
 
->[AZURE.NOTE] 預設會啟用「客戶經驗改進計畫」(CEIP)。如有必要，佈建虛擬機器之後可以自訂或停用 CEIP。以遠端桌面連線至 VM，並執行 **SQL Server 錯誤和使用方式報告**公用程式。
+>[AZURE.NOTE] 預設會啟用「客戶經驗改進計畫」(CEIP)。如有必要，佈建虛擬機器之後可以自訂或停用 CEIP。以遠端桌面連接至 VM，並執行 **SQL Server 錯誤和使用方式報告**公用程式。
+
+需要建立新 SQL VM 的詳細說明嗎？ 請參閱[佈建教學課程](virtual-machines-windows-portal-sql-server-provision.md)中的詳細逐步解說。
 
 除了這些預先設定的映像之外，您也可以在不預先安裝 SQL Server 的狀況下，[建立 Azure 虛擬機器](virtual-machines-windows-hero-tutorial.md)。您可以安裝任何您擁有授權的 SQL Server 執行個體。將您的授權移轉至 Azure，以使用 [Azure 上透過軟體保證的授權流動性](https://azure.microsoft.com/pricing/license-mobility/)，在 Azure 虛擬機器中執行 SQL Server。在此案例中，您只需支付與虛擬機器相關聯的 Azure 計算和儲存體[成本](https://azure.microsoft.com/pricing/details/virtual-machines/)。
 
-為判斷 SQL Server 映像的最佳虛擬機器組態設定，請檢閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。針對生產環境的工作負載，建議的 SQL Server Enterprise Edition 的虛擬機器大小至少為 **DS3**，Standard Edition 的虛擬機器大小至少為 **DS2**。
+為判斷 SQL Server 映像的最佳虛擬機器組態設定，請檢閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。針對生產工作負載，SQL Server Enterprise 版本需要的虛擬機器大小至少是 **DS3**。Standard 版本生產工作負載的虛擬機器大小至少需要 **DS2**。
 
 ## 遷移資料
 
@@ -88,6 +90,6 @@
 
 然後，當您考慮將您的 SQL Server 工作負載移至 Azure VM 時，請檢閱[效能最佳做法](virtual-machines-windows-sql-performance.md)和[移轉技術](virtual-machines-windows-migrate-sql.md)。
 
-如果您有關於 Azure 虛擬機器上 SQL Server 的問題，請參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。或是將您的意見加入任何 SQL VM 主題的底部，與 Microsoft 和社群互動。
+您對 Azure 虛擬機器的 SQL Server 還有很多疑問嗎？ 請先參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。也請將您的問題或意見加入任何 SQL VM 主題的底部來與 Microsoft 和社群互動。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

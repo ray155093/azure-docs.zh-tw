@@ -20,17 +20,17 @@
 
 # 可下載的資訊圖︰機器學習服務基本概念和演算法範例
 
-下載這個機器學習服務基本概念的簡易資訊圖概觀，以識別用來回答機器學習服務常見問題的常用演算法。演算法範例連結可協助機器學習服務初學者了解適用的演算法及其用途。
+下載這份易於瞭解的機器學習基本概念的概觀資訊圖。深入了解可用來回答一般機器學習服務問題的常見演算法。演算法範例可協助機器學習服務初學者了解適用的演算法及其用途。
 
-## Machine Learning Studio 中提供常用的演算法
+## Machine Learning Studio 中的常見演算法
 
-[Azure Machine Learning Studio](https://studio.azureml.net/) 隨附大量機器學習服務演算法，供您用來解決預測性分析問題。以下可下載的資訊圖示範如何使用四種機器學習服務演算法 (**迴歸**、**異常偵測**、**叢集**和**分類**)，以回答機器學習服務問題。
+[Azure Machine Learning Studio](https://studio.azureml.net/) 隨附用於預測性分析的大型演算法程式庫。資訊圖會顯示受歡迎的演算法系列：**迴歸**、**異常偵測**、**叢集**和**分類**。
 
-[Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/) 包含許多範例，示範如何在實際方案中運用這些演算法。資訊圖中的內嵌連結可讓您取得每一個演算法的實用範例。
+[Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/) 示範如何在許多實際解決方案中運用這些演算法。遵循資訊圖中的連結以查看工作範例。
 
-## 下載機器學習服務基本概念資訊圖
+## 下載具有演算法範例的資訊圖
 
-**[下載：機器學習服務基本概念和演算法範例連結的資訊圖](http://download.microsoft.com/download/0/5/A/05AE6B94-E688-403E-90A5-6035DBE9EEC5/machine-learning-basics-infographic-with-algorithm-examples.pdf)**
+**[下載：機器學習服務基本概念和演算法範例連結的資訊圖 (PDF)](http://download.microsoft.com/download/0/5/A/05AE6B94-E688-403E-90A5-6035DBE9EEC5/machine-learning-basics-infographic-with-algorithm-examples.pdf)**
 
 
 ![Infographic: Machine learning basics with algorithm examples.Popular algorithms.Machine learning for beginners.](./media/machine-learning-basics-infographic-with-algorithm-examples/machine-learning-basics-infographic-with-algorithm-examples.png)
@@ -52,4 +52,4 @@
 [k-means-clustering]: https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/
 [one-vs-all-multiclass]: https://msdn.microsoft.com/library/azure/7191efae-b4b1-4d03-a6f8-7205f87be664/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

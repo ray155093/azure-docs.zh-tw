@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="如何設定高階 Azure Redis 快取的 Redis 叢集 | Microsoft Azure" 
-	description="了解如何建立和管理高階層 Azure Redis 快取執行個體的 Redis 叢集" 
+	pageTitle="如何設定進階 Azure Redis 快取的 Redis 叢集 | Microsoft Azure" 
+	description="了解如何建立和管理進階層 Azure Redis 快取執行個體的 Redis 叢集" 
 	services="redis-cache" 
 	documentationCenter="" 
 	authors="steved0x" 
@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="05/23/2016" 
 	ms.author="sdanie"/>
 
-# 如何設定高階 Azure Redis 快取的 Redis 叢集
-Azure Redis 快取有不同的快取服務，在快取大小和功能 (包括新的高階層) 的選擇上提供了彈性。
+# 如何設定進階 Azure Redis 快取的 Redis 叢集
+Azure Redis 快取有不同的快取服務，在快取大小和功能 (包括新的進階層) 的選擇上提供了彈性。
 
-Azure Redis 快取高階層包括叢集、永續性及虛擬網路支援。本文說明如何在高階 Azure Redis 快取執行個體中設定叢集。
+Azure Redis 快取進階層包括叢集、永續性及虛擬網路支援。本文說明如何在進階 Azure Redis 快取執行個體中設定叢集。
 
-如需其他高階快取功能的資訊，請參閱[如何設定高階 Azure Redis 快取的永續性](cache-how-to-premium-persistence.md)和[如何設定高階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
+如需其他進階快取功能的資訊，請參閱[如何設定進階 Azure Redis 快取的永續性](cache-how-to-premium-persistence.md)和[如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
 ## Redis 叢集是什麼？
 Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://redis.io/topics/cluster-tutorial) 一樣。使用 Redis 叢集可以獲得下列好處：
@@ -31,7 +31,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 -	更多輸送量：當您增加分區數目時，輸送量會呈線性增加。 
 -	更多記憶體大小：當您增加分區數目時，會呈線性增加。  
 
-如需高階快取的大小、輸送量和頻寬等方面的詳細資訊，請參閱 [Azure Redis Cache 常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
+如需進階快取的大小、輸送量和頻寬等方面的詳細資訊，請參閱 [Azure Redis Cache 常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
 
 在 Azure 中，Redis 叢集以主要/複本模型方式提供，其中的每個分區都有一個具複寫功能的主要/複本組，而複寫是由 Azure Redis 快取服務管理。
 
@@ -40,7 +40,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 ![建立 Redis 快取][redis-cache-new-cache-menu]
 
-若要設定叢集，請先在 [選擇定價層] 刀鋒視窗中選取其中一個**高階**快取。
+若要設定叢集，請先在 [選擇定價層] 刀鋒視窗中選取其中一個**進階**快取。
 
 ![選擇價格層][redis-cache-premium-pricing-tier]
 
@@ -111,6 +111,9 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 ### 我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？
 
 -	啟用叢集時，只可以使用資料庫 0。如果用戶端應用程式使用多個資料庫，並嘗試讀取或寫入至 0 以外的資料庫，就會擲回下列例外狀況。`Unhandled Exception: StackExchange.Redis.RedisConnectionException: ProtocolFailure on GET --->` `StackExchange.Redis.RedisCommandException: Multiple databases are not supported on this server; cannot switch to database: 6`
+
+    如需詳細資訊，請參閱 [Redis 叢集規格 - 實作的子集](http://redis.io/topics/cluster-spec#implemented-subset)。
+
 -	如果您使用 [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/)，則必須使用 1.0.481 或更新版本。您可以使用與連接未啟用叢集的快取時所用的相同[端點、連接埠和金鑰](cache-configure.md#properties)來連接快取。唯一的差別在於必須在資料庫 0 上完成所有的讀取和寫入。
 	-	其他用戶端可能有不同的需求。請參閱[所有 Redis 用戶端都支援叢集嗎？](#do-all-redis-clients-support-clustering)。
 -	如果您的應用程式使用分成單一命令的多個索引鍵作業，則所有索引鍵都必須位於相同的分區。若要完成此動作，請參閱[如何在叢集中散發金鑰？](#how-are-keys-distributed-in-a-cluster)。
@@ -131,7 +134,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 ### 我可以建立的最大快取大小為何？
 
-最大的高階快取大小為 53 GB。您最多可以建立 10 個分區，等於最大大小為 530 GB。如果您需要較大的大小，可以[要求更多](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase)。如需詳細資訊，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
+最大的進階快取大小為 53 GB。您最多可以建立 10 個分區，等於最大大小為 530 GB。如果您需要較大的大小，可以[要求更多](mailto:wapteams@microsoft.com?subject=Redis%20Cache%20quota%20increase)。如需詳細資訊，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
 
 ### 所有 Redis 用戶端都支援叢集嗎？
 
@@ -159,11 +162,11 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 ### 我可以為先前建立的快取設定叢集嗎？
 
-目前您只能在建立快取時啟用叢集。您可以在建立快取之後變更叢集大小，但無法在建立快取之後將叢集新增至進階快取，或從進階快取中移除叢集。已啟用叢集且只有一個分區的高階快取，與相同大小且沒有叢集的高階快取不同。
+目前您只能在建立快取時啟用叢集。您可以在建立快取之後變更叢集大小，但無法在建立快取之後將叢集新增至進階快取，或從進階快取中移除叢集。已啟用叢集且只有一個分區的進階快取，與相同大小且沒有叢集的進階快取不同。
 
 ### 我可以設定基本或標準快取的叢集嗎？
 
-叢集僅適用於高階快取。
+叢集僅適用於進階快取。
 
 ### 我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？
 
@@ -171,10 +174,10 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 -	**Redis 工作階段狀態提供者** - 若要使用叢集，您必須使用 [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 或更高版本，否則會擲回例外狀況。這是一項重大變更。如需詳細資訊，請參閱 [v2.0.0 重大變更詳細資料](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details)。
 
 ## 後續步驟
-了解如何使用更多高階快取功能。
+了解如何使用更多進階快取功能。
 
--	[如何設定高階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
--	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
+-	[如何設定進階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
+-	[如何設定進階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
   
 <!-- IMAGES -->
 
@@ -196,4 +199,4 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 [redis-cache-redis-cluster-size]: ./media/cache-how-to-premium-clustering/redis-cache-redis-cluster-size.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

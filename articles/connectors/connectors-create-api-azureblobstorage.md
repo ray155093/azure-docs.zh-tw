@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 Azure Blob 儲存體 API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Azure Blob 儲存體 API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 Azure Blob 儲存體連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Azure Blob 儲存體連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Azure Blob 儲存體 API
-連線到 Azure Blob 來管理 Blob 容器中的檔案，例如建立檔案、刪除檔案等等。您可以從下列應用程式使用 Azure Blob 儲存體 API：
+# 開始使用 Azure Blob 儲存體連接器
+連線到 Azure Blob 來管理 Blob 容器中的檔案，例如建立檔案、刪除檔案等等。您可以從下列應用程式使用 Azure Blob 儲存體連接器：
 
 - 邏輯應用程式 
 
@@ -38,17 +38,13 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 | --- | --- |
 | 無。 | <ul><li>建立檔案</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li></ul> |
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Azure Blob 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的儲存體帳戶值：
 
-|屬性| 必要|說明|
-| ---|---|---|
-|Azure 儲存體帳戶名稱 | yes | 您的 Blob 儲存體帳戶的名稱|
-|Azure 儲存體帳戶存取金鑰 | yes | 您的 Blob 儲存體帳戶的存取金鑰|
+>[AZURE.INCLUDE [建立至 Azure Blob 儲存體連線的步驟](../../includes/connectors-create-api-azureblobstorage.md)]
 
-當您建立連線之後，請輸入 Blob 的屬性，例如資料夾路徑或檔案名稱。本主題的＜REST API 參考＞一節會說明這些屬性。
+當您建立連線之後，請輸入 Blob 的屬性，例如資料夾路徑或檔案名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Blob 連線。
  
@@ -57,7 +53,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 適用的版本：1.0。
 
 ### 建立檔案
-把檔案上傳到 Azure Blob 儲存體。```POST: /datasets/default/files```
+將檔案上傳到 Azure Blob 儲存體。```POST: /datasets/default/files```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -72,7 +68,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 |預設值|作業失敗。|
 
 ### 複製檔案
-把檔案複製到 Azure Blob 儲存體。```POST: /datasets/default/copyFile```
+將檔案複製到 Azure Blob 儲存體。```POST: /datasets/default/copyFile```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -118,7 +114,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 
 
 ### 取得檔案內容
-使用識別碼來擷取 Azure Blob 儲存體中檔案的內容。```GET: /datasets/default/files/{id}/content```
+使用識別碼來擷取 Azure Blob 儲存體中的檔案內容。```GET: /datasets/default/files/{id}/content```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -132,7 +128,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 
 
 ### 使用路徑來取得檔案內容
-使用路徑來擷取 Azure Blob 儲存體中檔案的內容。```GET: /datasets/default/GetFileContentByPath```
+使用路徑來擷取 Azure Blob 儲存體中的檔案內容。```GET: /datasets/default/GetFileContentByPath```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -146,7 +142,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 
 
 ### 取得檔案中繼資料
-使用檔案識別碼來擷取 Azure Blob 儲存體中檔案的中繼資料。```GET: /datasets/default/files/{id}```
+使用檔案識別碼來擷取 Azure Blob 儲存體中的檔案中繼資料。```GET: /datasets/default/files/{id}```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -160,7 +156,7 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 
 
 ### 使用路徑來取得檔案中繼資料
-使用路徑來擷取 Azure Blob 儲存體中檔案的中繼資料。```GET: /datasets/default/GetFileByPath```
+使用路徑來擷取 Azure Blob 儲存體中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -234,4 +230,4 @@ Azure Blob 包含下列動作，但不包含觸發程序。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

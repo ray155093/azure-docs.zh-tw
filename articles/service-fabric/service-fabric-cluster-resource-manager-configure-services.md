@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 
@@ -27,7 +27,7 @@ Service Fabric 叢集資源管理員讓您能夠非常細微地控制可管控�
 讓我們依序討論每一個工作︰
 
 ## 放置條件約束
-放置條件約束可用來控制服務實際可在叢集中的哪些節點上執行。通常您會看到特定的具名服務執行個體或受限於在特定類型節點上執行之類型的所有服務，但放置條件約束是可擴充的 - 您可以根據節點類型定義任意的屬性組合，接著在建立服務時，利用條件約束來選取它們。放置條件約束也會在服務存留時間內動態更新，讓您能夠回應叢集中的變更。
+放置條件約束可用來控制服務實際可在叢集中的哪些節點上執行。通常您會看到特定的具名服務執行個體或受限於在特定類型節點上執行之類型的所有服務，但放置條件約束是可擴充的 - 您可以根據節點類型定義任意的屬性組合，接著在建立服務時，利用條件約束來選取它們。放置條件約束也會在服務存留時間內動態更新，讓您能夠回應叢集中的變更。可以在[這篇文章](service-fabric-cluster-resource-manager-cluster-description.md#placement-constraints-and-node-properties)中找到放置條件約束以及如何設定它們的詳細資訊
 
 ## 度量
 計量是此服務應在其上取得平衡的資源清單，包括該服務的每個複本或執行個體預設耗用該資源的數量相關資訊。計量也會包含一個權數，表示該計量對於服務的重要程度 (以防需要取捨)。
@@ -39,8 +39,8 @@ Service Fabric 叢集資源管理員讓您能夠非常細微地控制可管控�
 - 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。若要深入了解度量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
 - 親和性是您可以針對服務設定的一種模式。它並不常見，但如果您需要，可以參閱[這裡](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md)
 - 有許多不同的放置規則可以在您的服務上設定以處理其他案例。您可以在[這裡](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)了解這些不同的放置原則
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+- 從頭開始，並[取得 Service Fabric 叢集 Resource Manager 的簡介](service-fabric-cluster-resource-manager-introduction.md)
+- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 - 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

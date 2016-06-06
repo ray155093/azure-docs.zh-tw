@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的 Logic Apps 或 Power Apps 中使用 SharePoint Online API | Microsoft Azure"
-description="開始在邏輯應用程式及 PowerApps 中使用 Azure App Service SharePoint Online API。"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的 Logic Apps 或 Power Apps 中使用 SharePoint Online 連接器 | Microsoft Azure"
+description="開始在 Logic Apps 及 PowerApps 中使用 Azure App Service SharePoint Online 連接器。"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,12 +14,12 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="02/26/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 SharePoint Online API
+# 開始使用 SharePoint Online 連接器 
 
-SharePoint 連線提供者提供 API 來讓您使用 Sharepoint 上的清單。
+SharePoint 連接器提供一種方式，讓您能夠使用 SharePoint 上的清單。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -32,9 +32,9 @@ SharePoint 連線提供者提供 API 來讓您使用 Sharepoint 上的清單。
 
 ## 我們來談談觸發程序及動作。
 
-SharePoint API 可當做動作來使用；它擁有觸發程序。所有 API 都支援 JSON 和 XML 格式的資料。
+SharePoint 連接器可當做動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
 
-SharePoint API 提供下列動作及/或觸發程序：
+SharePoint 連接器提供下列動作及/或觸發程序：
 
 ### SharePoint 的動作
 您可以採取下列動作：
@@ -66,13 +66,13 @@ SharePoint API 提供下列動作及/或觸發程序：
 
 
 ## 建立至 SharePoint 的連線
-如要使用 SharePoint API，您必須先建立**連接**，再提供下列屬性的詳細資料：
+如要使用 SharePoint 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
 |權杖|是|提供 SharePoint 的認證|
 
-若要連接到 **SharePoint Online**，您需要向 SharePoint online 提供您的身分識別 (使用者名稱和密碼、智慧卡認證等)。通過驗證之後，您就可以在邏輯應用程式中使用 SharePoint Online API。
+若要連接到 **SharePoint Online**，您需要向 SharePoint online 提供您的身分識別 (使用者名稱和密碼、智慧卡認證等)。通過驗證之後，您就可以在邏輯應用程式中使用 SharePoint Online 連接器。
 
 在邏輯應用程式的設計工具中，請遵循下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線。
 
@@ -701,4 +701,4 @@ TablesList 的必要屬性：
 [4]: ./media/connectors-create-api-sharepointonline/connectionconfig4.png
 [5]: ./media/connectors-create-api-sharepointonline/connectionconfig5.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

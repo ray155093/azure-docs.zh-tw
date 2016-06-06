@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/07/2016"
+   ms.date="05/20/2016"
    ms.author="larryfr"/>
 
 
@@ -43,15 +43,15 @@ Storm on HDInsight 使用 Azure Blob 儲存體來儲存提交給叢集的記錄�
 
 	![在 Azure 入口網站中建立新的叢集](./media/hdinsight-apache-storm-tutorial-get-started/new-cluster.png)
 
-3. 輸入 [叢集名稱]，然後在 [叢集類型] 選取 [Storm]。如果該 [叢集名稱] 可用，它旁邊就會出現綠色核取記號。
-
-	![叢集名稱、叢集類型及 OS 類型](./media/hdinsight-apache-storm-tutorial-get-started/clustername.png)
+3. 輸入 [叢集名稱]。如果該 [叢集名稱] 可用，它旁邊就會出現綠色核取記號。
 
 4. 如果您有多個訂用帳戶，請選取 [訂用帳戶] 項目，以選取將用於該叢集的 Azure 訂用帳戶。
 
-5. 針對 [資源群組]，您可以選取此項目以查看現有資源群組的清單，然後選取其中一個用來建立叢集。或者選取 [建立新群組]，然後輸入新資源群組的名稱。出現綠色勾號即表示新群組的名稱可供使用。
+5.  使用 [選取叢集類型] 來選取 __Storm__ 叢集。針對 [作業系統]，選取 [Windows]。針對 [叢集層]，選取 [標準]。最後，使用 [選取] 按鈕來儲存這些設定。
 
-	> [AZURE.NOTE] 如果有任何可用的資源群組，此項目即會預設為現有資源群組的其中一個群組。
+	![叢集名稱、叢集類型及 OS 類型](./media/hdinsight-apache-storm-tutorial-get-started/clustertype.png)
+
+5. 針對 [資源群組]，您可以使用下拉式清單來查看現有資源群組的清單，然後選取一個來建立叢集。或者，您可以選取 [新增]，然後輸入新資源群組的名稱。出現綠色勾號即表示新群組的名稱可供使用。
 
 6. 選取 [認證]，然後輸入 [叢集登入使用者名稱] 和 [叢集登入密碼]。最後，使用 [選取] 按鈕來設定認證。本文件中不會使用遠端桌面，所以您可以將其停用。
 
@@ -245,4 +245,4 @@ Storm on HDInsight 使用 Azure Blob 儲存體來儲存提交給叢集的記錄�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

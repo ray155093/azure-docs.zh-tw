@@ -14,7 +14,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="02/28/2016"
+	ms.date="05/19/2016"
 	ms.author="heidist"/>
 
 # Azure 搜尋中的服務限制
@@ -59,4 +59,4 @@ API 金鑰可用於服務驗證。有兩種類型。系統管理金鑰是在要�
 
 在標準層級中，由於可控制較多的參數，所以能更準確地估計 QPS。請參閱[管理搜尋解決方案](search-manage.md)中的最佳做法一節，取得如何計算工作負載 QPS 的指引。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

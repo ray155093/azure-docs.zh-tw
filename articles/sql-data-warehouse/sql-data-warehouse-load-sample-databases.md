@@ -87,9 +87,9 @@ SQL 資料倉儲幾乎支援所有 SQL Server 支援的 T-SQL 建構。所有的
 [程式碼移轉]: ./sql-data-warehouse-migrate-code.md
 [create a SQL Data Warehouse database instance]: ./sql-data-warehouse-get-started-provision.md
 [安裝 bcp]: ./sql-data-warehouse-load-with-bcp.md
-[安裝 sqlcmd]: ./sql-data-warehouse-get-started-connect-query-sqlcmd.md
+[安裝 sqlcmd]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other Web references-->
 [適用於 SQL 資料倉儲的 Adventure Works 範例指令碼]: https://migrhoststorage.blob.core.windows.net/sqldwsample/AdventureWorksSQLDW2012.zip
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

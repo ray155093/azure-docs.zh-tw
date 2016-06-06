@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/15/2016" 
+	ms.date="05/17/2016" 
 	ms.author="awills"/>
 
 # Application Insights 中的資料收集、保留和儲存 
@@ -27,7 +27,7 @@
 * 「現成可用」的標準遙測模組不太可能將敏感資料傳送至服務。遙測會考量負載、效能和使用度量、例外狀況報告和其他診斷資料。診斷報告中顯示的主要使用者資料的 URL；但是，您的應用程式在任何情況下都應該不會將敏感資料以純文字形式放在 URL 中。
 * 您可以撰寫會傳送其他自訂遙測的程式碼，以利診斷與監視使用情形。(此擴充性是 Application Insights 的絕佳功能之一)。 在撰寫使程式碼時有可能會不慎包含個人資料和其他敏感資料。如果您的應用程式會使用這類資料，您應對您撰寫的程式碼採用嚴密的檢閱程序。
 * 在開發及測試您的應用程式時，可以輕易地檢查由 SDK 傳送的內容。資料會出現在 IDE 和瀏覽器的偵錯輸出視窗中。 
-* 資料會保存在美國的 [Microsoft Azure](http://azure.com) 伺服器中。Azure 有[嚴密的安全性程序，並符合各種法規標準](https://azure.microsoft.com/support/trust-center/)。只有您和您指定的小組可以存取您的資料。Microsoft 工作人員只有在您知情的特定有限情況下，才具有其限定存取權。它在傳輸時會加密，但在伺服器中不會加密。
+* 資料會保存在美國的 [Microsoft Azure](http://azure.com) 伺服器中。(但是您的 App 可以在任何地方執行)。 Azure 有[嚴密的安全性程序，並符合各種法規標準](https://azure.microsoft.com/support/trust-center/)。只有您和您指定的小組可以存取您的資料。Microsoft 工作人員只有在您知情的特定有限情況下，才具有其限定存取權。它在傳輸時會加密，但在伺服器中不會加密。
 
 本文的其餘部分將詳細說明上述問題的答案。本文設計為自助式，以便您可以將其顯示給不屬於您直屬小組的同事。
 
@@ -94,9 +94,7 @@ Application Insights SDK 可用於多種應用程式類型：裝載於您自己�
 
 ## 資料保留多久？ 
 
-這取決於您的[定價方案](https://azure.microsoft.com/pricing/details/application-insights/)。
-
-未經處理的資料點 (也就是您可以在 [診斷搜尋] 中檢查的項目)：7 天。如果您需要保留資料的時間超過該範圍，您可以使用[連續匯出](app-insights-export-telemetry.md)，將它複製到儲存體帳戶。
+未經處理資料點 (即您可以在 [診斷搜尋] 中檢查的項目) 會保留 7 天。如果您需要保留資料的時間超過該範圍，您可以使用[連續匯出](app-insights-export-telemetry.md)，將它複製到儲存體帳戶。
 
 彙總的資料 (也就是您在計量瀏覽器中看到的計數、平均和其他統計資料) 在 1 分鐘的資料粒度中保存 30 天，而 1 小時或 1 天 (視類型而定) 則保存至少 90 天。
 
@@ -119,6 +117,10 @@ Microsoft 只會使用這項資料，以將服務提供給您。
 #### 可以儲存在其他某個地方 (例如歐洲) 嗎？ 
 
 * 目前尚未。 
+
+#### 這表示我的 App 必須裝載於美國嗎？
+
+* 否。您的應用程式可以在任何地方執行，在您自己的內部部署主機上或雲端中皆可。
 
 ## 我的資料有多安全？  
 
@@ -191,7 +193,7 @@ Application Insights 不會篩選或刪除資料。您應該適當地管理資�
 您的動作 | 收集的資料類別 (請參閱下一個資料表)
 ---|---
 [將 Application Insights SDK 新增至 .NET Web 專案][greenbrown] | ServerContext<br/>推斷<br/>效能計數器<br/>要求<br/>**例外狀況**<br/>工作階段<br/>使用者
-[在 IIS 上安裝狀態監視器][redfield]<br/>[將 AI 延伸模組新增至 Azure VM 或 Web 應用程式][azure]|相依性<br/>ServerContext<br/>推斷<br/>效能計數器
+[在 IIS 上安裝狀態監視器][redfield]|相依性<br/>ServerContext<br/>推斷<br/>效能計數器
 [將 Application Insights SDK 新增至 Java Web 應用程式][java]|ServerContext<br/>推斷<br/>要求<br/>工作階段<br/>使用者
 [將 JavaScript SDK 新增至網頁][client]|ClientContext <br/>推斷<br/>頁面<br/>ClientPerf<br/>Ajax
 [將 SDK 新增至 Windows 市集應用程式][windows]|DeviceContext<br/>使用者<br/>損毀資料
@@ -254,7 +256,6 @@ SDK 診斷 | 追蹤訊息或例外狀況
 
 [api]: app-insights-api-custom-events-metrics.md
 [apiproperties]: app-insights-api-custom-events-metrics.md#properties
-[azure]: ../insights-perf-analytics.md
 [client]: app-insights-javascript.md
 [config]: app-insights-configuration-with-applicationinsights-config.md
 [greenbrown]: app-insights-asp-net.md
@@ -267,4 +268,4 @@ SDK 診斷 | 追蹤訊息或例外狀況
 
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

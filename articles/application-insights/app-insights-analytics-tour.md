@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/04/2016" 
+	ms.date="05/20/2016" 
 	ms.author="awills"/>
 
 
@@ -103,21 +103,21 @@
 
     requests 
     | top 10 by timestamp desc 
-    | project timestamp, 
-               timeOfDay = floor(timestamp % 1d, 1s), 
-               name, 
-               response = resultCode
+    | project  
+            name, 
+            response = resultCode,
+            timestamp, 
+            ['time of day'] = floor(timestamp % 1d, 1s)
 ```
 
 ![結果](./media/app-insights-analytics-tour/270.png)
 
-在純量運算式中︰
-
+* 如果[資料行名稱](app-insights-analytics-reference.md#names)是以括號括起來 (如下所示)，就可以包含空格或符號︰`['...']` 或 `["..."]`
 * `%` 是很常見的模數運算子。 
-* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s``0.01s`。
-* `floor` (別名 `bin`) 會將一個值無條件捨去為您提供的基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
+* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
+* `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
-[運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一些實用的函式。
+[運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函數。
 
     
 
@@ -175,12 +175,12 @@
 
 ``` 
 
-> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加至任何遙測類型的所有自訂測量，會連同使用 `TrackMetric()` 傳送的度量一起出現在 [度量] 刀鋒視窗中。但在分析中，自訂測量仍會附加至其所執行的任何一種類型的遙測，而且度量會出現在自己的 `metrics` 串流中。
+> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加到任何遙測類型的所有自訂測量，會連同使用 `TrackMetric()` 傳送的度量一起出現在 [度量] 刀鋒視窗中。但在分析中，自訂測量仍會附加到其所執行的任何一種遙測類型，而且度量會出現在自己的 `metrics` 串流中。
 
 
 ## [Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
 
-`Summarize` 會對資料列群組套用指定的彙總函式。
+`Summarize` 會對資料列群組套用指定的彙總函數。
 
 例如，Web 應用程式回應要求所花的時間會在 `duration` 欄位中報告。我們來看看所有要求的平均回應時間︰
 
@@ -191,13 +191,13 @@
 
 ![](./media/app-insights-analytics-tour/420.png)
 
-`Summarize` 會將串流中的資料點收集到 `by` 子句評估為相同的群組中。`by` 運算式中的每個值 (即上述範例中的各作業名稱) 各會在結果資料表中產生一個資料列。
+`Summarize` 會將串流中的資料點收集到 `by` 子句評估為相同的群組中。`by` 運算式中的每個值 (即上述範例中的各個運算名稱) 會在結果資料表中各產生一個資料列。
 
 或者，我們可以依一天當中的時間將結果分組︰
 
 ![](./media/app-insights-analytics-tour/430.png)
 
-請注意我們如何使用 `bin` 函式 (也稱為 `floor`)。如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函式) 是最簡單的作業方式。
+請注意我們如何使用 `bin` 函數 (也稱為 `floor`)。如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函數) 是最簡單的作業方式。
 
 我們可以使用相同的技巧來減少字串的範圍︰
 
@@ -208,15 +208,15 @@
 
 ## 計算取樣的資料
 
-`sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是當[取樣](app-insights-sampling.md)進行時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。因此，加總 itemCount 可正確估算事件的原始數目。
+`sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是在運算中進行[取樣](app-insights-sampling.md)時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。因此，加總 itemCount 可正確估算事件的原始數目。
 
 
 ![](./media/app-insights-analytics-tour/510.png)
 
-另外還有 `count()` 彙總 (以及計數作業)，適用於您確實想要計算群組中的資料列數目時。
+另外還有 `count()` 彙總 (以及計數運算)，適用於您確實想要計算群組中的資料列數目時。
 
 
-[彙總函式](app-insights-analytics-reference.md#aggregations)有範圍。
+目前提供一系列的[彙總函數](app-insights-analytics-reference.md#aggregations)。
 
 
 ## 製作結果圖表
@@ -378,7 +378,7 @@
 
 需要最後一行才能轉換成日期時間 - 折線圖的 x 軸目前只能是日期時間。
 
-`where` 子句會排除單次發生的工作階段 (sessionDuration==0) 及設定 x 軸的長度。
+`where` 子句會排除單次發生的工作階段 (sessionDuration==0)，並設定 x 軸的長度。
 
 
 ![](./media/app-insights-analytics-tour/290.png)
@@ -469,4 +469,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -104,7 +104,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 4. 將會顯示反惡意程式碼解決方案的其他相關資訊。選取 [**建立**]。
 5. 在 [加入擴充功能] 刀鋒視窗上輸入必要的組態設定，然後選取 [確定]。![][6]
 
-[Microsoft Antimalware](../azure-security-antimalware.md) 現在已在選取的虛擬機器上使用。
+[Microsoft Antimalware](../security/azure-security-antimalware.md) 現在已在選取的虛擬機器上使用。
 
 
 ## 後續步驟
@@ -124,4 +124,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 [5]: ./media/security-center-recommendations/select-enable-antimalware.png
 [6]: ./media/security-center-recommendations/install-antimalware.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

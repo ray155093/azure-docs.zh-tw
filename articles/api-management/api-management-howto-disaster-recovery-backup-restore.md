@@ -4,7 +4,7 @@
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="douge" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016" 
+	ms.date="05/24/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -40,7 +40,7 @@
 
 第一個步驟是建立 Azure Active Directory 應用程式。使用含 API 管理服務執行個體的訂用帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)，並瀏覽至預設 Azure Active Directory 的 [應用程式] 索引標籤。
 
->[AZURE.NOTE] 如果您的帳戶看不到 Azure Active Directory 預設目錄，請連絡 Azure 訂用帳戶的系統管理員，以授與您的帳戶必要權限。如需尋找您預設目錄的資訊，請參閱[找出您的預設目錄](../virtual-machines/resource-group-create-work-id-from-persona.md/#locate-your-default-directory-in-the-azure-portal)。
+>[AZURE.NOTE] 如果您的帳戶看不到 Azure Active Directory 預設目錄，請連絡 Azure 訂用帳戶的系統管理員，以授與您的帳戶必要權限。如需尋找您預設目錄的資訊，請參閱[找出您的預設目錄](../virtual-machines/resource-group-create-work-id-from-persona.md#locate-your-default-directory-in-the-azure-portal)。
 
 ![建立 Azure Active Directory 應用程式][api-management-add-aad-application]
 
@@ -130,12 +130,12 @@
 
 **注意**：
 
-- 於要求本文中指定的**容器****必須存在**。
+- 於要求本文中指定的**容器** **必須存在**。
 * 備份進行時，請「避免嘗試任何服務管理作業」，如提升或降低 SKU、變更網域名稱等。 
 * 備份還原的**保證僅限建立後的 7 天內**。 
 * 備份**不包括**用來建立分析報表的**流量資料**。請使用 [Azure API 管理 REST API][] 來定期擷取分析報告，以利妥善保存。
 * 執行服務備份的頻率會影響您的復原點目標。為了盡可能縮小，建議您實施定期備份，以及在針對 API 管理服務做出重要變更後執行隨選備份。
-* 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能不會納入備份中，因此可能會遺失**。
+* 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更** **可能不會納入備份中，因此可能會遺失**。
 
 ## <a name="step2"> </a>還原 API 管理服務
 若要從先前建立的備份還原 API 管理服務，請發出以下 HTTP 要求：
@@ -164,7 +164,7 @@
 
 >[AZURE.IMPORTANT] 用於還原之目標服務的 **SKU**「必須符合」即將還原之已備份服務的階層。
 >
->在還原作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能會遭到覆寫**。
+>在還原作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更** **可能會遭到覆寫**。
 
 ## 後續步驟
 請參閱下列 Microsoft 部落格中，兩個不同的備份/還原程序逐步解說。
@@ -191,4 +191,4 @@
 [api-management-endpoint]: ./media/api-management-howto-disaster-recovery-backup-restore/api-management-endpoint.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

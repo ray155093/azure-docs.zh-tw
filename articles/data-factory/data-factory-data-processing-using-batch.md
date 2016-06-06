@@ -449,7 +449,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 ## 建立 Data Factory
 
-在 [建立自訂活動](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
+在 [建立自訂活動][](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
 
 自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (mycontainer\\inputfolder) 的 blob (檔案)。活動的輸出資料集代表 blob 儲存體中輸出資料夾 (mycontainer\\outputfolder) 的輸出 blob。
 
@@ -834,7 +834,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     **注意：**如果您未先刪除輸出檔案 2015-11-16-01.txt 即以 5 個輸入檔案來嘗試，您將會看到先前的配量執行有一行，而目前的配量執行有五行。根據預設，內容會附加至已存在的輸出檔案。
 
-### 偵錯管線
+## 偵錯管線
 
 偵錯包含一些基本技術：
 
@@ -877,6 +877,9 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
     ![](./media/data-factory-data-processing-using-batch/image21.png)
 
     **注意：** 您會在 Azure Blob 儲存體中看到一個**容器**，名為：**adfjobs**。此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：**adf-<pool ID/name>:job-0000000001**。您可以在完成解決方案的測試之後刪除此作業 (如果您要的話)。
+7. 自訂活動不會使用來自您套件的 **app.config** 檔案，因此如果您的程式碼會從組態檔讀取任何連接字串，在執行階段將沒有作用。最佳做法是使用 Azure Batch 將所有密碼存放 **Azure KeyVault** 中、使用以憑證為基礎的服務主體來保護 keyvault，然後將憑證發佈至 Azure Batch 集區。接著，.NET 自訂活動便可以在執行階段從 KeyVault 存取密碼。這是一般解決方案，而且可以擴展至任何類型的密碼，不僅限於連接字串。
+
+	此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的新「Azure SQL 連結服務」、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。
 
 ### 擴充範例
 
@@ -892,9 +895,9 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
  
 		pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);$TargetDedicated = max(pendingTaskSampleVector);
 
-	如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](../batch/batch-automatic-scaling.md)。
+	如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的計算節點](../batch/batch-automatic-scaling.md)。
 
-	如果集區使用預設 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)，Batch 服務在執行自訂活動之前，可能需要 15-30 分鐘的時間準備 VM。如果集區使用不同的 autoScaleEvaluationInterval，Batch 服務可能需要 autoScaleEvaluationInterval + 10 分鐘。
+	如果集區使用預設的 [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx)，Batch 服務在執行自訂活動之前，可能需要 15-30 分鐘的時間準備 VM。如果集區使用不同的 autoScaleEvaluationInterval，Batch 服務可能需要 autoScaleEvaluationInterval + 10 分鐘。
 	 
 5. 在範例解決方案中，**Execute** 方法會叫用可處理輸入資料配量以產生輸出資料配量的 **Calculate** 方法。您可以自行撰寫方法來處理輸入資料，然後呼叫您自己的方法，而取代 Execute 方法中的 Calculate 方法呼叫。
 
@@ -937,4 +940,4 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -27,13 +27,13 @@
 
 搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。
 
-Azure 驅動程式需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https:/portal.azure.com)擷取您的 Azure 訂用帳戶。
+Azure 驅動程式將需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https:/portal.azure.com)來擷取您的「Azure 訂用帳戶」。
 
 **使用 Azure 入口網站**
-- 從左導覽頁面中選取 [訂用帳戶]，並複製到訂用帳戶識別碼。
+- 從左導覽頁面中選取 [訂用帳戶]，然後複製到訂用帳戶識別碼。
 
 **使用 Azure CLI**
-- 輸入 ```azure account list```，並複製訂用帳戶識別碼。
+- 輸入 ```azure account list```，然後複製訂用帳戶識別碼。
 
 
 輸入 `docker-machine create --driver azure` 以查看選項和其預設值。您也可以查看 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)，以取得詳細資訊。
@@ -65,7 +65,7 @@ docker info
 
 ## 執行容器
 
-設定主機之後，您現在可以執行簡單 Web 伺服器，來測試是否已正確地設定您的主機。我們在此使用標準 nginx 映像，指定它應該接聽連接埠 80，而且如果主機 VM 重新啟動，則容器也會重新啟動 (`--restart=always`)。
+設定主機之後，您現在可以執行簡單的 Web 伺服器，來測試是否已正確設定主機。我們在此使用標準 nginx 映像，指定它應該接聽連接埠 80，而且如果主機 VM 重新啟動，則容器也會重新啟動 (`--restart=always`)。
 
 ```bash
 docker run -d -p 80:80 --restart=always nginx
@@ -107,4 +107,4 @@ PS C:\> docker-machine ip MyDockerHost
 
 若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

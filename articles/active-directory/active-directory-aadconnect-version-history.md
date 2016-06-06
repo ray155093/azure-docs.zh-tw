@@ -24,11 +24,11 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 下列為相關主題的清單︰
 
-| 主題 | |
-| --------- | --------- |
-| 從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。 |
-| 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#upgrade) |
-| 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) |
+主題 |  
+--------- | --------- |
+從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。
+所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#upgrade)
+下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
 
 ## 1\.1.180.0
 發行日期：2016 年 5 月
@@ -36,8 +36,8 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 **新功能︰**
 
 - 如果您未先驗證網域就執行 Azure AD Connect，系統將會發出警告並協助您驗證網域。
-- 新增對於 [Microsoft Cloud Germany](active-directory-aadconnect-instances.md#microsoft-cloud-germany) 的支援。
-- 新增對於最新的 [Microsoft Azure Government 雲端](active-directory-aadconnect-instances.md#microsoft-azure-government-cloud)基礎結構與新的 URL 需求的支援。
+- 新增對 [Microsoft Cloud Germany](active-directory-aadconnect-instances.md#microsoft-cloud-germany) 的支援。
+- 新增對最新的 [Microsoft Azure Government 雲端](active-directory-aadconnect-instances.md#microsoft-azure-government-cloud)基礎結構與新的 URL 需求的支援。
 
 **已修正的問題和改進︰**
 
@@ -89,12 +89,12 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 **從預覽版升級到 GA 的功能：**
 
-- [裝置回寫](active-directory-aadconnect-feature-device-writeback.md)。
-- [目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)。
+- [裝置回寫](active-directory-aadconnect-feature-device-writeback.md)
+- [目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)
 
 **新的預覽功能：**
 
-- 新的預設同步處理循環間隔為 30 分鐘。過去所有舊版本都是 3 小時。已新增變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
+- 新的預設同步處理循環間隔為 30 分鐘。過去所有舊版本都是 3 小時。已新增對變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
 
 **已修正的問題：**
 
@@ -284,4 +284,4 @@ AD 帳戶必須獲得其他權限，才能讀取來自 AD 的密碼雜湊。要�
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

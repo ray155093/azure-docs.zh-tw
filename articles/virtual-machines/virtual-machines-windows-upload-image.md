@@ -3,7 +3,7 @@
 	description="了解如何上傳以 Windows 為基礎的虛擬機器映像，以搭配 Resource Manager 部署模型一起使用。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="dsk-2015"
+	authors="cynthn"
 	manager="timlt"
 	editor="tysonn"
 	tags="azure-resource-manager"/>
@@ -15,7 +15,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/06/2016"
-	ms.author="dkshir"/>
+	ms.author="cynthn"/>
 
 # 將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用
 
@@ -261,4 +261,4 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

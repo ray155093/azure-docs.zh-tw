@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在 PowerApps Enterprise 或邏輯應用程式中加入 Office 365 Outlook API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Office 365 Outlook API 的概觀"
-	services=""	
-	documentationCenter="" 	
-	authors="msftman"	
-	manager="erikre"	
-	editor="" 
-	tags="connectors" />
+    pageTitle="在 PowerApps Enterprise 或 Logic Apps 中新增 Office 365 Outlook 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Office 365 Outlook 連接器的概觀"
+    services=""    
+    documentationCenter=""     
+    authors="msftman"    
+    manager="erikre"    
+    editor="" 
+    tags="connectors" />
 
 <tags
 ms.service="multiple"
@@ -14,12 +14,12 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="03/16/2016"
+ms.date="05/18/2016"
 ms.author="mandia"/>
 
-# 開始使用 Office 365 Outlook API 
+# 開始使用 Office 365 Outlook 連接器 
 
-連接至 Office 365 Outlook 以取得電子郵件、回覆電子郵件、更新您的行事曆和連絡人等等。Office 365 Outlook API 可以從下列位置使用：
+連接至 Office 365 Outlook 以取得電子郵件、回覆電子郵件、更新您的行事曆和連絡人等等。您可以從下列應用程式使用 Office 365 Outlook 連接器︰
 
 - 邏輯應用程式 
 - PowerApps
@@ -37,26 +37,26 @@ ms.author="mandia"/>
 - 根據您從 Office 365 Outlook 所取得的資料，來建置您的商務流程。 
 - 可在有新的電子郵件、建立新的連絡人等等時，使用觸發程序。
 - 可使用回覆電子郵件、建立新的行事曆事件等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，當在 Salesforce 中有新的物件時，您可接受該物件，並更新您的 Office 365 Outlook 連絡人。 
-- 新增 Office 365 Outlook API 至 PowerApps Enterprise。接著，您的使用者便能夠在自己的應用程式中使用這個 API。 
+- 將 Office 365 Outlook 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
-Office 365 Outlook API 提供下列觸發程序和動作。
+Office 365 Outlook 連接器提供下列觸發程序和動作。
 
 | 觸發程序 | 動作|
 | --- | --- |
 |<ul><li>即將開始的事件</li><li>新的電子郵件</li><li>新的項目</li><li>更新的項目</li></ul>| <ul><li>建立連絡人</li><li>建立事件</li><li>傳送核准電子郵件</li><li>傳送電子郵件</li><li>刪除連絡人</li><li>刪除電子郵件</li><li>刪除事件</li><li>取得附件</li><li>取得行事曆</li><li>取得連絡人</li><li>取得連絡人資料夾</li><li>取得連絡人</li><li>取得電子郵件</li><li>取得事件</li><li>取得事件</li><li>標記為已讀取</li><li>即將開始的事件</li><li>新的電子郵件</li><li>新的項目</li><li>更新的項目</li><li>回覆訊息</li><li>傳送電子郵件選項</li><li>更新連絡人</li><li>更新事件</li></ul> |
 
-所有 API 皆支援 JSON 與 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
 ## 建立 Office365 的連接
 
-當您將這個 API 新增到邏輯應用程式時，您必須登入您的 Office 365 Outlook 帳戶，並允許邏輯應用程式連線到您的帳戶。
+當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 Outlook 帳戶，並允許邏輯應用程式連線到您的帳戶。
 
 1. 登入您的 Office 365 Outlook 帳戶。
 2. 允許您的邏輯應用程式連線並使用您的 Office 365 帳戶。 
@@ -768,4 +768,4 @@ Office 365 Outlook API 提供下列觸發程序和動作。
 [12]: ./media/connectors-create-api-office365-outlook/contoso-aad-app-delegate-office365-outlook.png
 [13]: ./media/connectors-create-api-office365-outlook/contoso-aad-app-delegate-office365-outlook-permissions.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

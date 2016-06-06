@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="03/08/2016"
+   	ms.date="05/20/2016"
    	ms.author="larryfr"/>
 
 #使用 Azure CLI 建立 HDInsight 上的 Linux 型叢集
@@ -58,60 +58,57 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
         azure config mode arm
 
-4. 建立 HDInsight 叢集的範本。以下是一些基本範例範本：
+4. 建立新的資源群組。這將會包含 HDInsight 叢集和關聯的儲存體帳戶。
 
-    * [以 Linux 為基礎的叢集 (使用 SSH 公開金鑰)](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-publickey)
-    * [以 Linux 為基礎的叢集 (使用 SSH 帳戶的密碼)](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password)
+        azure group create groupname location
+        
+    * 以群組的唯一名稱取代 __groupname__。 
+    * 以您想要在其中建立群組的地理區域取代 __location__。 
+    
+        如需有效位置的清單，請使用 `azure locations list` 命令，然後使用 [名稱] 欄中的其中一個位置。
 
-    這兩個範本也會建立 HDInsight 所使用的預設 Azure 儲存體帳戶。
+5. 建立新的儲存體帳戶。這將用來做為 HDInsight 叢集的預設儲存體。
 
-    您需要的檔案是 __azuredeploy.json__ 和 __azuredeploy.parameters.json__。在繼續之前，請在本機複製這些檔案。
+        azure storage account create -g groupname --sku-name RAGRS -l location --kind Storage --access-tier hot storagename
+        
+     * 以上一個步驟中建立的群組名稱取代 __groupname__。
+     * 以與上一個步驟中使用的相同位置取代 __location__。 
+     * 以儲存體帳戶的唯一名稱取代 __storagename__。
+     
+     > [AZURE.NOTE] 如需有關此命令中所使用參數的詳細資訊，請使用 `azure storage account create -h` 來檢視此命令的說明。
 
-5. 在編輯器中開啟 __azuredeploy.parameters.json__ 檔案，並在 `parameters` 區段中提供項目的值：
+5. 擷取用來存取儲存體帳戶的金鑰。
 
-    * __location__︰將在其中建立資源的資料中心。您可以檢視 __azuredeploy.json__ 檔案中的 `location` 區段，以取得允許的位置清單。
-    * __clusterName__︰HDInsight 叢集的名稱。這個名稱必須是唯一的，否則部署將會失敗。
-    * __clusterStorageAccountName__︰要為 HDInsight 叢集建立的 Azure 儲存體帳戶名稱。這個名稱必須是唯一的，否則部署將會失敗。
-    * __clusterLoginPassword__︰叢集系統管理員使用者的密碼。這應該是安全的密碼，因為它是用來存取網站和叢集上的 REST 服務。
-    * __sshUserName__︰要為此叢集建立的第一個 SSH 使用者名稱。SSH 將利用此帳戶用來從遠端存取此叢集。
-    * __sshPublicKey__︰如果您使用的範本需要 SSH 公開金鑰，您就必須在下面這行上新增您的公開金鑰。如需產生和使用公開金鑰的詳細資訊，請參閱下列文章：
+        azure storage account keys list -g groupname storagename
+        
+    * 以資源群組名稱取代 __groupname__。
+    * 以儲存體帳戶的名稱取代 __storagename__。
+    
+    在傳回的資料中，儲存 __key1__ 的「金鑰」值。
 
-        * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-        * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+6. 建立新的 HDInsight 叢集
 
-    * __sshPassword__︰如果您使用的範本需要 SSH 密碼，您就必須在下面這行上新增密碼。
+        azure hdinsight cluster create -g groupname -l location -y Linux --clusterType Hadoop --defaultStorageAccountName storagename --defaultStorageAccountKey storagekey --defaultStorageContainer clustername --workerNodeCount 2 --userName admin --password httppassword --sshUserName sshuser --sshPassword sshuserpassword clustername
 
-    完成後，請儲存並關閉檔案。
+    * 以資源群組名稱取代 __groupname__。
+    * 以與先前步驟中使用的相同位置取代 __location__。
+    * 以儲存體帳戶名稱取代 __storagename__。
+    * 以在上一個步驟中取得的金鑰取代 __storagekey__。 
+    * 針對 `--defaultStorageContainer` 參數，使用與您用於叢集的相同名稱。
+    * 以當您透過 HTTPS 存取叢集時所要使用的名稱和密碼取代 __admin__ 和 __httppassword__。
+    * 以當您透過 SSH 存取叢集時所要使用的使用者名稱和密碼取代 __sshuser__ 和 __sshuserpassword__。
 
-5. 使用下列來建立空的資源群組。以您要用於此群組的名稱取代 __RESOURCEGROUPNAME__。以您要在其中建立 HDInsight 叢集的資料中心取代 __LOCATION__︰
-
-        azure group create RESOURCEGROUPNAME LOCATION
-
-    > [AZURE.NOTE] 如果位置名稱包含空格，請將它放在引號中。例如 "South Central US"。
-
-6. 使用下列命令來建立此資源群組的初始部署。以 __azuredeploy.json__ 範本檔案的路徑取代 __PATHTOTEMPLATE__。以 __azuredeploy.parameters.json__ 檔案的路徑取代 __PATHTOPARAMETERSFILE__。以您在上一個步驟中建立的群組名稱取代 __RESOURCEGROUPNAME__︰
-
-        azure group deployment create -f PATHTOTEMPLATE -e PATHTOPARAMETERSFILE -g RESOURCEGROUPNAME -n InitialDeployment
-
-    一旦接受部署，您應該會看到類似 `group deployment create command ok` 的訊息。
-
-7. 可能需要一些時間 (大約 15 分鐘) 才能完成部署。您可以使用下列命令檢視有關部署的資訊。以上一個步驟中使用的資源群組名稱取代 __RESOURCEGROUPNAME__︰
-
-        azure group log show -l RESOURCEGROUPNAME
-
-    一旦部署完成，[狀態] 欄位會包含 [成功] 這個值。如果在部署期間發生失敗，您可以使用下列命令取得更多有關失敗的資訊
-
-        azure group log show -l -v RESOURCEGROUPNAME
+    可能需要數分鐘的時間，才能完成叢集建立程序。通常大約 15 分鐘。
 
 ##後續步驟
 
-既然您已成功建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集：
+既然您已使用 Azure CLI 順利建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集：
 
 ###Hadoop 叢集
 
-* [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
+* [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
-* [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
+* [搭配 HDInsight 使用 MapReduce](hdinsight-use-mapreduce.md)
 
 ###HBase 叢集
 
@@ -124,4 +121,4 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

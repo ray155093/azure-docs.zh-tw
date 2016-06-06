@@ -34,7 +34,7 @@
 **附註：**如果您使用以下指令碼，這個新增的防火牆規則是第一個陳述式。
 
 ## IIS01 - Web 應用程式安裝指令碼
-此指令碼將：
+此指令碼會：
 
 1.	在本機伺服器 Windows 防火牆開啟 IMCPv4 (Ping) 以方便測試
 2.	安裝 IIS 和 .Net Framework v4.5
@@ -140,7 +140,7 @@
 
 
 ## AppVM01 - 檔案伺服器安裝指令碼
-此指令碼會設定這個簡單應用程式的後端。此指令碼將：
+此指令碼會設定這個簡單應用程式的後端。此指令碼會：
 
 1.	在防火牆開啟 IMCPv4 (Ping) 以方便測試
 2.	建立新目錄
@@ -188,4 +188,4 @@
 <!--Link References-->
 [HOME]: ../best-practices-network-security.md
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0525_2016-->

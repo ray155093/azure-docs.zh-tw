@@ -1,13 +1,13 @@
 <properties
-	pageTitle="在 PowerApps 或邏輯應用程式中新增 Bing 搜尋 API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Bing 搜尋 API 的概觀"
-	services=""
+    pageTitle="在 PowerApps 或邏輯應用程式中新增 Bing 搜尋連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Bing 搜尋連接器的概觀"
+    services=""
     suite=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -15,11 +15,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Bing 搜尋 API 
-連線到 Bing 搜尋來搜尋新聞、搜尋影片等等。您可以從下列應用程式使用 Bing 搜尋 API：
+# 開始使用 Bing 搜尋連接器 
+連線到 Bing 搜尋來搜尋新聞、搜尋影片等等。您可以從下列應用程式使用 Bing 搜尋連接器：
 
 - 邏輯應用程式 
 - PowerApps
@@ -33,9 +33,9 @@
 
 - 根據您透過搜尋所取得的資料，來建置您的商務流程。 
 - 使用動作來搜尋圖像、搜尋新聞等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以搜尋某支影片，然後利用 Twitter 把該影片張貼在某個 Twitter 摘要上。
-- 將 Bing 搜尋 API 新增至 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 Bing 搜尋連接器新增至 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需有關如何在 PowerApps Enterprise 中新增 API 的資訊，請移至[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -46,7 +46,7 @@ Bing 搜尋包含下列動作，但不包含觸發程序。
 --- | ---
 None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>搜尋新聞</li><li>搜尋相關結果</li><li>搜尋拼字</li><li>搜尋所有結果</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
 ## Swagger REST API 參考
@@ -298,4 +298,4 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 
 返回 [API 清單](apis-list.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

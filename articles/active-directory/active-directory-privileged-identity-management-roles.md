@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/15/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management 中的角色
@@ -33,6 +33,7 @@ Privileged Identity Management 可讓您將使用者指派給常見的系統管�
 
 
 - **全域管理員** (也稱為公司系統管理員) 可以存取所有系統管理功能。您可以在組織中擁有多個全域管理員。註冊購買 Office 365 的人員會自動成為全域管理員。
+- **特殊權限角色管理員**可以管理 Azure AD PIM，以及更新其他使用者的角色指派。  
 - **計費管理員**可進行採購、管理訂用帳戶、管理支援票證，以及監控服務健全狀況。
 - **密碼管理員**可重設密碼、管理服務要求，以及監控服務健全狀況。密碼管理員只能重設使用者的密碼。
 - **服務管理員**可管理服務要求，以及監控服務健全狀況。
@@ -44,21 +45,21 @@ Privileged Identity Management 可讓您將使用者指派給常見的系統管�
 - **SharePoint 管理員**具有透過 SharePoint Online 系統管理中心存取 SharePoint Online 的系統管理權限，並可在 SharePoint Online 執行幾乎所有工作。
 - **商務用 Skype 管理員**具有透過商務用 Skype 系統管理中心存取商務用 Skype 的系統管理權限，並可在商務用 Skype Online 執行幾乎所有工作。
 
-如需[在 Azure AD 中指派管理員角色](active-directory-assign-admin-roles.md)和[在 Office 365 中指派管理員角色](https://support.office.com/article/Assigning-admin-roles-in-Office-365-eac4d046-1afd-4f1a-85fc-8219c79e1504)的詳細資訊，請閱讀這些文件。
+如需[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)和[在 Office 365 中指派管理員角色](https://support.office.com/article/Assigning-admin-roles-in-Office-365-eac4d046-1afd-4f1a-85fc-8219c79e1504)的詳細資訊，請閱讀這些文件。
 
 <!--**PLACEHOLDER: The above article may not be the one we want since PIM gets roles from places other that Office 365**-->
 
 
-透過 PIM，您可以[暫時指派這些角色給使用者](active-directory-privileged-identity-management-how-to-add-role-to-user.md)，以便使用者可以[在需要時啟用角色](active-directory-privileged-identity-management-how-to-activate-role.md)。
+透過 PIM，您可以[暫時指派這些角色給使用者](active-directory-privileged-identity-management-how-to-add-role-to-user.md)，讓使用者可以[在需要時啟用角色](active-directory-privileged-identity-management-how-to-activate-role.md)。
 
-如果您想要授與存取權給其他使用者使其在 PIM 本身中進行管理，[如何授與 PIM 存取權](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)中會進一步說明 PIM 要求使用者具有哪些角色。
+如果您想要授與存取權給其他使用者，使其可在 PIM 本身中進行管理，[如何授與 PIM 存取權](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)中會進一步說明 PIM 要求使用者具有哪些角色。
 
 
 <!-- ## The PIM Security Administrator Role **PLACEHOLDER: Need description of the Security Administrator role.**-->
 
 ## PIM 中未管理的角色
 
-Exchange Online 或 SharePoint Online 內的角色 (除了前面提及的角色外) 並不會出現在 Azure AD 中，因此您不會在 PIM 中看到。如需在這些 Office 365 服務中變更精細角色指派的詳細資訊，請參閱 [Office 365 中的權限](https://support.office.com/article/Permissions-in-Office-365-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+Exchange Online 或 SharePoint Online 內的角色 (除了前面提及的角色外) 並不會出現在 Azure AD 中，因此您不會在 PIM 中看到。如需在這些 Office 365 服務中變更細部角色指派的詳細資訊，請參閱 [Office 365 中的權限](https://support.office.com/article/Permissions-in-Office-365-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
 Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。若要管理 Azure 訂用帳戶，請參閱[如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)，如需 Azure RBAC 的詳細資訊，則請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
@@ -87,4 +88,4 @@ Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。若要管理 
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

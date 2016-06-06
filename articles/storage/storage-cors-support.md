@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/19/2016"
+	ms.date="05/23/2016"
 	ms.author="tamram"/>
 
 # Azure 儲存體服務的跨原始資源共用 (CORS) 支援
@@ -195,4 +195,4 @@ CORS 規則的評估，如下所示：
 
 [W3C 跨原始資源共用規格](http://www.w3.org/TR/cors/)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0525_2016-->

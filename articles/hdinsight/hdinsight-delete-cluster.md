@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="03/07/2016"
+ms.date="05/20/2016"
 ms.author="larryfr"/>
 
 #如何刪除 HDInsight 叢集
@@ -34,8 +34,6 @@ HDInsight 叢集的費用是從建立叢集時開始計算，而於刪除叢集�
 
 ##Azure PowerShell
 
-[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
-
 在 PowerShell 提示中，使用下列命令來刪除叢集︰
 
     Remove-AzureRmHDInsightCluster -ClusterName CLUSTERNAME
@@ -44,12 +42,10 @@ HDInsight 叢集的費用是從建立叢集時開始計算，而於刪除叢集�
 
 ##Azure CLI
 
-[AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
-
 在提示中，使用下列命令來刪除叢集︰
 
     azure hdinsight cluster delete CLUSTERNAME
     
 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

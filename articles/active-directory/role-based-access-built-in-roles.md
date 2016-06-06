@@ -13,16 +13,16 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="05/16/2016"
+	ms.date="05/20/2016"
 	ms.author="kgremban"/>
 
 #RBAC：內建角色
 
-## 內建角色
-
 Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派給使用者、群組與服務。您無法修改內建角色定義。不過，您可以建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)以符合您組織的特定需求。
 
-下表提供內建角色的簡短描述。按一下角色名稱，以查看詳細角色的**動作**和**非動作**詳細清單。[動作] 屬性會指定 Azure 資源上允許的動作。動作字串可以使用萬用字元。非動作屬性可指定從允許的動作中排除的動作。
+## Azure 中的角色
+
+下表提供內建角色的簡短描述。按一下角色名稱，即可查看該角色的詳細 **actions** 和 **notactions** 清單。**actions** 屬性指定了 Azure 資源上允許的動作。動作字串可以使用萬用字元。**notactions** 屬性指定了從允許的動作中排除的動作。
 
 >[AZURE.NOTE] Azure 角色定義不斷地演變。本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。適用時，請使用 Cmdlet `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions`。
 
@@ -57,6 +57,9 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [傳統網路參與者](#classic-network-contributor) | 可以管理傳統虛擬網路和保留 IP |
 | [Web 方案參與者](#web-plan-contributor) | 可以管理 Web 方案 |
 | [網站參與者](#website-contributor) | 可以管理網站，但是不能管理它們連接的 Web 方案 |
+
+## 角色權限
+下表描述賦予每個角色的特定權限。這可以包括授與權限的 **Actions** 和限制權限的 **NotActions**。
 
 ### API 管理服務參與者
 可以管理 API 管理服務
@@ -142,7 +145,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | ------- | ------ |
 | * | 建立和管理所有類型的資源 |
 
-| **非動作** ||
+| **NotActions** ||
 | ------- | ------ |
 | Microsoft.Authorization/*/Write | 無法建立角色和角色指派 |
 | Microsoft.Authorization/*/Delete | 無法刪除角色和角色指派 |
@@ -153,7 +156,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | **動作** ||
 | ------- | ------ |
 | Microsoft.Authorization/*/read | 讀取角色和角色指派 |
-| Microsoft.DataFactory/dataFactories/* | 建立和管理資料處理站 |
+| Microsoft.DataFactory/dataFactories/* | 管理 Data Factory |
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
@@ -324,7 +327,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Sql/servers/read | 讀取 SQL Server |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
-| **非動作** ||
+| **NotActions** ||
 | ------- | ------ |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 無法編輯稽核原則 |
 | Microsoft.Sql/servers/databases/auditingSettings/* | 無法編輯稽核設定 |
@@ -370,7 +373,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Sql/servers/* | 建立和管理 SQL Server |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
-| **非動作** ||
+| **NotActions** ||
 | ------- | ------ |
 | Microsoft.Sql/servers/auditingPolicies/* | 無法編輯 SQL Server 稽核原則 |
 | Microsoft.Sql/servers/auditingSettings/* | 無法編輯 SQL Server 稽核設定 |
@@ -412,8 +415,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取密碼以外的所有類型資源。 |
-| Microsoft.Authorization/* | 讀取授權 |
+| */read | 讀取密碼以外的所有類型資源。 | | Microsoft.Authorization/* | 讀取授權 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 傳統虛擬機器參與者
@@ -511,8 +513,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 ## 另請參閱
 - [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
-- [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
-- [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
-- [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得解決常見問題的建議。
+- [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色以符合您的存取需求。
+- [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰記錄 RBAC 中的角色指派變更。
+- [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="search"
-   ms.date="03/08/2016"
+   ms.date="05/18/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務 REST API：版本 2015-02-28-Preview
 
 本文是 `api-version=2015-02-28-Preview` 的參考文件。這個預覽版本可藉由提供下列實驗性功能，來擴充公開上市版本 [api-version=2015-02-28](https://msdn.microsoft.com/library/dn798935.aspx)：
 
-- `moreLikeThis` [查詢文件](#SearchDocs) API 中的查詢參數。它會尋找與另一個特定文件相關的其他文件。
+- [查詢文件](#SearchDocs) API 中的 `moreLikeThis` 查詢參數。它會尋找與另一個特定文件相關的其他文件。
 
 `2015-02-28-Preview` REST API 有些其他的部分會另外記載。其中包含：
 
@@ -816,7 +816,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 要求成功：「204 沒有內容」。
 
-根據預設，回應本文將是空白。但是，如果將 `Prefer` 要求標頭設為 `return=representation`，回應本文將包含適用於已更新之索引定義的 JSON。在此情況下，成功狀態碼將是「200 確定」。
+根據預設，回應本文將是空白。但是，如果將 `Prefer` 要求標頭設為 `return=representation`，回應本文將包含適用於已更新之索引定義的 JSON。在此情況下，成功狀態碼將是 "200 OK"。
 
 <a name="ListIndexes"></a>
 ## 列出索引
@@ -846,7 +846,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
 下列為回應本文的範例：
 
@@ -913,7 +913,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
 如需回應承載的範例，請參閱[建立和更新索引](#CreateUpdateIndexExample)中的範例 JSON。
 
@@ -980,7 +980,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
 回應本文的格式如下：
 
@@ -1056,35 +1056,112 @@ ________________________________________
 
 **回應**
 
-成功回應時所傳回的「狀態碼：200 確定」，表示所有項目都已成功編製索引 (如同針對所有項目將 'status' 欄位設為 true 所表示的一樣)：
+成功回應時會傳回的狀態碼 200 (OK)，表示所有項目都已成功編製索引。這會由 `status` 屬性設為 true 的所有項目，以及 `statusCode` 屬性設為 201 (針對新上傳的文件) 或 200 (針對合併或刪除的文件) 指出：
 
     {
       "value": [
         {
-          "key": "unique_key_of_document",
+          "key": "unique_key_of_new_document",
           "status": true,
-          "errorMessage": null
+          "errorMessage": null,
+          "statusCode": 201
+        },
+        {
+          "key": "unique_key_of_merged_document",
+          "status": true,
+          "errorMessage": null,
+          "statusCode": 200
+        },
+        {
+          "key": "unique_key_of_deleted_document",
+          "status": true,
+          "errorMessage": null,
+          "statusCode": 200
         }
       ]
     }  
 
-至少有一個項目編製索引失敗時，會傳回「狀態碼：207」(如同針對尚未編製索引的項目，將 'status' 欄位設為 true 所表示的一樣)：
+至少有一個項目未成功建立索引時會傳回狀態碼 207 (多狀態)。尚未編製索引的項目，其 `status` 欄位會設為 false。`errorMessage` 和 `statusCode` 屬性將指出發生編製索引錯誤的原因：
 
     {
       "value": [
         {
-          "key": "unique_key_of_document",
+          "key": "unique_key_of_document_1",
           "status": false,
-          "errorMessage": "The search service is too busy to process this document. Please try again later."
+          "errorMessage": "The search service is too busy to process this document. Please try again later.",
+          "statusCode": 503
+        },
+        {
+          "key": "unique_key_of_document_2",
+          "status": false,
+          "errorMessage": "Document not found.",
+          "statusCode": 404
+        },
+        {
+          "key": "unique_key_of_document_3",
+          "status": false,
+          "errorMessage": "Index is temporarily unavailable because it was updated with the 'allowIndexDowntime' flag set to 'true'. Please try again later.",
+          "statusCode": 422
         }
       ]
     }  
 
-`errorMessage` 屬性將指出發生編製索引錯誤的原因 (如果可能)。
+下表說明可在回應中傳回的各種每一文件狀態碼。請注意，其中一些表示要求本身的問題，而其他則表示暫時性錯誤狀況。對於後者，您應在延遲之後重試。
 
-**注意**：如果您的用戶端經常遇到 207 回應，有一個可能的原因是系統負載過低。您可以檢查 `errorMessage` 屬性來確認這一點。如果是發生這種情況，建議您***為編製索引要求設定節流***。否則，如果編製索引流量並未減緩，系統可能會開始拒絕所有要求並產生 503 錯誤。
+<table style="font-size:12">
+    <tr>
+		<th>狀態碼</th>
+		<th>意義</th>
+		<th>可重試</th>
+		<th>注意事項</th>
+	</tr>
+    <tr>
+		<td>200</td>
+		<td>已成功修改或刪除文件。</td>
+		<td>n/a</td>
+		<td>刪除作業為<a href="https://en.wikipedia.org/wiki/Idempotence">等冪</a>。也就是說，即使文件索引鍵不存在於索引中，使用該索引鍵嘗試進行刪除作業會導致 200 狀態碼。</td>
+	</tr>
+    <tr>
+		<td>201</td>
+		<td>已成功建立文件。</td>
+		<td>n/a</td>
+		<td></td>
+	</tr>
+    <tr>
+		<td>400</td>
+		<td>文件中發生錯誤，使得無法對它編製索引。</td>
+		<td>否</td>
+		<td>回應中的錯誤訊息將指出文件發生的錯誤。</td>
+	</tr>
+    <tr>
+		<td>404</td>
+		<td>無法合併文件，因為指定的索引鍵不存在於索引中。</td>
+		<td>否</td>
+		<td>此錯誤不會發生於上傳，因為它們會建立新文件，並且不會發生於刪除，因為它們是<a href="https://en.wikipedia.org/wiki/Idempotence">等冪</a>。</td>
+	</tr>
+    <tr>
+		<td>409</td>
+		<td>當您嘗試編製文件的索引時偵測到版本衝突。</td>
+		<td>是</td>
+		<td>當您嘗試並行對相同的文件編製索引時，也可能會發生此情況。</td>
+	</tr>
+    <tr>
+		<td>422</td>
+		<td>索引暫時無法使用，因為已藉由將 'allowIndexDowntime' 旗標設定為 'true' 來更新它。</td>
+		<td>是</td>
+		<td></td>
+	</tr>
+    <tr>
+		<td>503</td>
+		<td>您的搜尋服務暫時無法使用，可能是因為負載過重。</td>
+		<td>是</td>
+		<td>在此情況下，您的程式碼在重試之前應等待，否則可能會導致服務長時間無法使用。</td>
+	</tr>
+</table> 
 
-「狀態碼：429」表示每個索引的文件數量上已經超過您的配額。您必須建立新的索引，或進行升級以取得更高的容量限制。
+**注意**：如果您的用戶端經常遇到 207 回應，有一個可能的原因是系統負載過低。您可以檢查 `statusCode` 屬性 503 來確認這一點。如果是發生這種情況，建議您***為編製索引要求設定節流***。否則，如果編製索引流量並未減緩，系統可能會開始拒絕所有要求並產生 503 錯誤。
+
+狀態碼 429 表示每個索引的文件數量上已經超過您的配額。您必須建立新的索引，或進行升級以取得更高的容量限制。
 
 **範例：**
 
@@ -1222,7 +1299,7 @@ ________________________________________
   - 例如：`facet=baseRate,interval:100` 會根據大小為 100 的基本匯率範圍來產生值區。舉例來說，如果基本匯率全都介於 60 美元到 600 美元之間，則會有下列值區：0-100、100-200、200-300、300-400、400-500 及 500-600。
   - 例如：`facet=lastRenovationDate,interval:year` 會在旅館重新整修期間，每一年產生一個值區。
 - `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至類型 `Edm.DateTimeOffset` 的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
-  - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限。
+  - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限
 - **注意**：`count` 和 `sort` 可以在相同面向規格中組合在一起，但它們無法與 `interval` 或 `values` 結合，而且 `interval` 和 `values` 無法組合在一起。
 - **注意**：如果未指定 `timeoffset`，日期時間間隔 Facet 就會依據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。 
 
@@ -1244,9 +1321,13 @@ ________________________________________
 
 `scoringProfile=[string]` (選用) - 評分設定檔的名稱，可用來評估比對文件的相符分數以排序結果。
 
-`scoringParameter=[string]` (零或多個) - 使用「名稱：值」格式來指出評分函式中定義的每個參數值 (例如 `referencePointParameter`)。舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函式，則查詢字串選項會是 &scoringParameter=mylocation:-122.2,44.8
+`scoringParameter=[string]` (零或多個) - 使用 `name-value1,value2,...` 格式來指出評分函式中定義的每個參數值 (例如 `referencePointParameter`)。
 
-> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `scoringParameters` 而不是 `scoringParameter`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的名稱:值組。
+- 舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函式，則查詢字串選項會是 `&scoringParameter=mylocation--122.2,44.8`。第一個破折號將名稱與值清單隔開，而第二個破折號是第一個值的一部分 (在此範例中的 longitude)。
+- 針對評分參數，例如可包含逗號的標籤提升，您可以使用單引號在清單中逸出任何這類值。如果值本身包含單引號，您可以使用兩個單引號加以逸出。
+  - 例如，如果您有名為 "mytag" 參數的標籤提升，且您想要在標記值 "Hello, O'Brien" 和 "Smith" 上提升，查詢字串選項會是 `&scoringParameter=mytag-'Hello, O''Brien',Smith`。請注意，只有包含逗號的值需要引號。
+
+> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `scoringParameters` 而不是 `scoringParameter`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 `name-values` 組。
 
 `minimumCoverage` (選擇性，預設值為 100) - 介於 0 和 100 的數字，指出搜尋查詢要報告為成功查詢，必須涵蓋的索引的百分比。根據預設，整個索引必須可供使用，否則 `Search` 會傳回 HTTP 狀態碼 503。如果您成功設定 `minimumCoverage` 和 `Search`，它會傳回 HTTP 200，並在回應中包含 `@search.coverage` 值，指出查詢中包含的索引的百分比。
 
@@ -1298,7 +1379,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 <a name="SearchResponse"></a> **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
     {
       "@odata.count": # (if $count=true was provided in the query),
@@ -1492,13 +1573,13 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 13) 搜尋索引，但前提假設有一個名為 "geo" 的評分設定檔並含有兩個完全相同的評分函式，一個會定義名為 "currentLocation" 的參數，另一個則會定義名為 "lastLocation" 的參數
 
 
-    GET /indexes/hotels/docs?search=something&scoringProfile=geo&scoringParameter=currentLocation:-122.123,44.77233&scoringParameter=lastLocation:-121.499,44.2113&api-version=2015-02-28-Preview
+    GET /indexes/hotels/docs?search=something&scoringProfile=geo&scoringParameter=currentLocation--122.123,44.77233&scoringParameter=lastLocation--121.499,44.2113&api-version=2015-02-28-Preview
 
     POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "something",
       "scoringProfile": "geo",
-      "scoringParameters": [ "currentLocation:-122.123,44.77233", "lastLocation:-121.499,44.2113" ]
+      "scoringParameters": [ "currentLocation--122.123,44.77233", "lastLocation--121.499,44.2113" ]
     }
 
 14) 使用[簡單查詢語法](https://msdn.microsoft.com/library/dn798920.aspx)，在索引中尋找文件。此查詢會傳回可搜尋欄位包含字詞 "comfort" 和 "location"，但未包含 "motel" 的旅館：
@@ -1567,7 +1648,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
     {
       field_name: field_value (fields matching the default or specified projection)
@@ -1615,7 +1696,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
 回應本文包含的計數值是已格式化為純文字的整數。
 
@@ -1732,7 +1813,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 **回應**
 
-回應成功時會傳回「狀態碼：200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
     {
       "@search.coverage": # (if minimumCoverage was provided in the query),
@@ -1772,4 +1853,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

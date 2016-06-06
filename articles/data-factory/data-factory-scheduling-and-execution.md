@@ -33,9 +33,11 @@
 
 如上所示，為活動指定排程將會建立一系列輪轉視窗。輪轉視窗是一系列的固定大小、非重疊和連續的時間間隔。活動的這些邏輯輪轉視窗稱為**活動視窗**。
  
-對於目前正在執行的活動視窗，其相關聯的時間間隔可以使用活動 JSON 中的 **WindowStart** 和 **WindowEnd** 系統變數來存取。您可以在您的活動 JSON 和與活動 (包括從輸入選取資料、輸出代表時間序列資料的資料集) 相關聯的指令碼中針對不同用途使用這些變數。
+針對目前正在執行的活動時段，只要使用活動 JSON 中的 [WindowStart](data-factory-functions-variables.md#data-factory-system-variables) 和 [WindowEnd](data-factory-functions-variables.md#data-factory-system-variables) 系統變數，即可存取與該活動時段關聯的時間間隔 。您可以在您的活動 JSON 和與活動 (包括從輸入選取資料、輸出代表時間序列資料的資料集) 相關聯的指令碼中針對不同用途使用這些變數。
 
-在資料集中，**scheduler** 屬性支援和 **availability** 屬性相同的子屬性。如需可用於排程器 (包括在特定時間位移排程、設定模式以針對活動視窗在間隔的開始或結束對齊處理) 之不同屬性的詳細資訊，請參閱[資料集可用性](data-factory-create-datasets.md#Availability)文章。
+在資料集中，**scheduler** 屬性支援的子屬性與 **availability** 屬性所支援的相同。如需有關排程器可用之各種不同屬性 (包括在特定時間位移進行排程、設定模式以在活動時段的間隔開始或結束時讓處理一致) 的詳細資訊，請參閱[資料集可用性](data-factory-create-datasets.md#Availability)一文。
+
+目前為活動指定排程器屬性為選擇性。如果您指定此屬性，它就必須符合您在輸出資料集定義中指定的頻率。這時，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。
 
 ## 時間序列資料集和資料配量
 
@@ -52,9 +54,11 @@
 
 ![可用性排程器](./media/data-factory-scheduling-and-execution/availability-scheduler.png)
 
-輸入和輸出資料集的每小時資料配量會顯示在上圖中。下圖顯示 3 個輸入配量，已就緒可以進行處理，且進行中的 10-11AM 活動執行會產生 10-11AM 輸出配量。
+輸入和輸出資料集的每小時資料配量會顯示在上圖中。下圖顯示 3 個已經可供處理的輸入配量，以及產生 10-11 AM 輸出配量的進行中 10-11 AM 活動執行。
 
-與產生之目前配量相關聯的時間間隔可以在資料集 JSON 中使用 **SliceStart** 和 **SliceEnd** 變數存取。
+與產生之目前配量相關聯的時間間隔可以在資料集 JSON 中使用 [SliceStart](data-factory-functions-variables.md#data-factory-system-variables) 和 [SliceEnd](data-factory-functions-variables.md#data-factory-system-variables) 變數存取。
+
+目前 Data Factory 需要活動中指定的排程與輸出資料集之可用性中指定的排程完全相符。這表示 WindowStart、WindowEnd 和 SliceStart 與 SliceEnd 一律對應到相同的時間期間和單一輸出配量。
 
 如需適用於可用性區段之不同屬性的詳細資訊，請參閱[建立資料集](data-factory-create-datasets.md)文章。
 
@@ -220,11 +224,11 @@
  
 您可以設定過去日期的管線使用中週期的開始日期，Data Factory 會自動計算 (回補) 過去的所有資料配量，並且開始處理。
 
-回補資料配量之後，就可以設定它們以平行執行。您可以在活動 JSON 的 [**原則**] 區段中設定並行屬性來執行此作業，如[建立管線](data-factory-create-pipelines.md)文章所示。
+回補資料配量之後，就可以設定它們以平行執行。您可以在活動 JSON 的 **policy** 區段中設定 **concurrency** 屬性來執行此作業，如[建立管線](data-factory-create-pipelines.md)文章所示。
 
 ## 重新執行失敗的資料配量和自動資料相依性追蹤
 
-您可以使用豐富的視覺化方式監視配量的執行。如需詳細資訊，請參閱[監視及管理管線](data-factory-monitor-manage-pipelines.md)文章。
+您可以使用豐富的視覺化方式監視配量的執行。如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗](data-factory-monitor-manage-pipelines.md)來＜監視和管理管線＞或[監視和管理應用程式](data-factory-monitor-manage-app.md)。
 
 請思考一下會顯示兩個活動的下列範例。Activity1 會產生時間序列資料集，具有由 Activity2 做為輸入取用的輸出配量，以產生最終輸出時間序列資料集。
 
@@ -235,9 +239,9 @@
 上圖顯示 3 個最近的配量當中有失敗，針對 **Dataset2** 產生 9-10 AM 配量。Data Factory 會自動追蹤時間序列資料集的相依性，並且因而暫緩開始 9-10 AM 下游配量的活動執行。
 
 
-Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的配量，輕鬆地找出問題的根本原因並加以修正。一旦您修正問題之後，也可以輕易地開始活動執行以產生失敗的配量。如需如何開始重新執行的詳細資訊、了解資料配量的狀態轉換，請參閱[監視和管理](data-factory-monitor-manage-pipelines.md)文章。
+Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的配量，輕鬆地找出問題的根本原因並加以修正。一旦您修正問題之後，也可以輕易地開始活動執行以產生失敗的配量。如需有關如何開始重新執行、了解資料配量的狀態轉換等其他詳細資料，請參閱[使用 Azure 入口網站刀鋒視窗](data-factory-monitor-manage-pipelines.md)來＜監視和管理管線＞或[監視和管理應用程式](data-factory-monitor-manage-app.md)。
 
-一旦開始重新執行且 dataset2 的 9-10AM 配量已就緒之後，Data Factory 就會開始最終資料集的 9-10 AM 相依配量的執行，如下圖所示。
+一旦開始重新執行且 dataset2 的 9-10 AM 配量已準備就緒之後，Data Factory 就會開始最終資料集上 9-10 AM 相依配量的執行，如下圖所示。
 
 ![重新執行失敗的配量](./media/data-factory-scheduling-and-execution/rerun-failed-slice.png)
 
@@ -248,8 +252,8 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 
 例如，請考慮下列情況：
  
-1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並產生**輸出**資料集 **D2**。
-2.	管線 P2 具有需要資料集 **D2** 的 **輸入**的活動 A2，並產生輸出資料集 D3。
+1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生「輸出」資料集 **D2**。
+2.	管線 P2 具有需要來自資料集 **D2** 之「輸入」的活動 A2，並且會產生輸出資料集 D3。
  
 在此案例中，活動 A1 會在外部資料提供使用時執行，且達到排程的可用性頻率。活動 A2 會在 D2 的排定的分割可供使用時執行，且達到排程的可用性頻率。如果資料集 D2 中的其中一個分割發生錯誤，則不會針對該分割執行 A2，直到該分割可供使用為止。
 
@@ -553,7 +557,7 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。您可以針對
 
 ## Data Factory 函式與系統變數   
 
-請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md)文章，以取得 Azure Data Factory 支援的函式與系統變數清單。
+如需 Azure Data Factory 所支援的函數與系統變數清單，請參閱 [Data Factory 函數與系統變數](data-factory-functions-variables.md)一文。
 
 ## 資料相依性的深入探討
 
@@ -622,7 +626,7 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
 
 ## Onetime 管線
-您可以建立和排程管線，以在管線定義中指定的開始和結束時間內定期執行 (每小時、每日等)。如需詳細資訊，請參閱[排程活動](#scheduling-and-execution)。您也可以建立只執行一次的管線。若要這樣做，請將管線定義中的 **pipelineMode** 屬性設定為 **onetime** (如下列 JSON 範例所示)。這個屬性的預設值是 **scheduled**。
+您可以建立和排程管線，以在管線定義中指定的開始和結束時間內定期執行 (每小時、每日等)。如需詳細資訊，請參閱[排程活動](#scheduling-and-execution)。您也可以建立只執行一次的管線。若要這樣做，您需將管線定義中的 **pipelineMode** 屬性設定為 **onetime** (如下列 JSON 範例所示)。這個屬性的預設值是 **scheduled**。
 
 	{
 	    "name": "CopyPipeline",
@@ -660,7 +664,7 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
 請注意：
  
-- 您不需要指定管線的**開始**和**結束**時間。 
+- 您不需要指定管線的「開始」和「結束」時間。 
 - 您目前需要指定輸入和輸出資料集的可用性 (頻率和間隔)，即使 Data Factory 未使用這些值也是一樣。  
 - 圖表檢視不會顯示一次性管線。原先的設計就是如此。 
 - 一次性管線無法更新。您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。 
@@ -698,4 +702,4 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
   
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

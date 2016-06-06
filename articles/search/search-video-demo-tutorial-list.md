@@ -55,7 +55,9 @@
 
 連結|已發行|詳細資料
 ----|------------|-----------
-[Channel9 Data Exposed：Custom Analyzers, Search Analytics, & Portal Querying in Azure Search (Azure 搜尋服務中的自訂分析器、搜尋分析及入口網站查詢)](https://channel9.msdn.com/Shows/Data-Exposed/Custom-Analyzers-Search-Analytics--Portal-Querying-in-Azure-Search)|2016 年 1 月|21 分鐘。自訂分析器可讓您設定 Tokenizer 及權杖篩選器。搜尋分析可讓您深入解析使用者所輸入的搜尋字詞，以及您搜尋索引的效率。[搜尋總管] 是內建的查詢工具，可讓您嘗試從入口網站中查詢。 
+[Channel9 組建 2016：「會學習並適應的應用程式：Azure Machine Learning + 搜尋服務」](https://channel9.msdn.com/Events/Build/2016/P458)|2016 年 5 月|17 分鐘。Liam Cavanagh 說明將「為您建議」的功能新增至您的 Azure 搜尋服務應用程式的優點，以及如何從機器學習衍生關於使用者喜好設定的洞察。 
+[Channel 9 建置 2016：「會學習並適應的智慧型資料導向應用程式」](https://channel9.msdn.com/Events/Build/2016/B857)|2016 年 5 月|1 小時。了解 Machine Learning 和 Azure 搜尋服務如何可以一起使用以建立複雜的資料導向應用程式。
+[Channel9 Data Exposed：Custom Analyzers, Search Analytics, & Portal Querying in Azure Search (Azure 搜尋服務中的自訂分析器、搜尋分析及入口網站查詢)](https://channel9.msdn.com/Shows/Data-Exposed/Custom-Analyzers-Search-Analytics--Portal-Querying-in-Azure-Search)|2016 年 1 月|15 分鐘。自訂分析器可讓您設定 Tokenizer 及權杖篩選器。搜尋分析可讓您深入解析使用者所輸入的搜尋字詞，以及您搜尋索引的效率。[搜尋總管] 是內建的查詢工具，可讓您嘗試從入口網站中查詢。 
 [Channel9 Data Exposed：Azure Search Enhancements (Azure 搜尋服務的增強功能)](http://channel9.msdn.com/Shows/Data-Exposed/Azure-Search-Enhancements)|2015 年 11 月|17 分鐘。StackExchange 資料的資料擷取。在 Azure 入口網站中建置索引。了解目前索引子會搜耙支援的資料來源，以便把資料提取到 Azure 搜尋服務索引中。語言分析器。Lucene 查詢運算式。
 [何謂 Azure 搜尋服務？](https://azure.microsoft.com/documentation/videos/what-is-azure-search/)|2015 年 10 月|有幾分鐘空閒時間嗎？ 請觀賞這個一分半鐘的 Azure 搜尋服務簡介影片 。
 [AzureCon 2015：Azure 搜尋服務的最佳作法](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-search-best-practices-for-web-and-mobile-applications/)|2015 年 9 月|在建置 Web 或行動應用程式時，如何相應放大、讓效能最佳化，以及達到高編碼效率的實際建議。主講者：Pablo Castro。 
@@ -88,4 +90,4 @@
 [評分設定檔教學課程](search-get-started-scoring-profiles.md)|使用主控台應用程式來試用評分設定檔。
 [Azure 搜尋管理 REST API 教學課程](search-get-started-management-api.md)|如何使用管理 REST API 來佈建服務和管理系統管理員或查詢 API 金鑰。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

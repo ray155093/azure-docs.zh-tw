@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/18/2016"
+   ms.date="05/25/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 2.1
@@ -42,7 +42,7 @@ Update 2.1 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以
 
 [AZURE.INCLUDE [storsimple-install-update2-via-portal](../../includes/storsimple-install-update2-via-portal.md)]
 
-12. 確認您的裝置是否正在執行 **StorSimple 8000 Series Update 2.1 (6.3.9600.17704)**。[**上次更新日期**] 應該也已修改。 
+12. 確認您的裝置是否正在執行 **StorSimple 8000 Series Update 2.1 (6.3.9600.17705)**。[**上次更新日期**] 應該也已修改。 
 
 	如果您是從 Update 2 之前的版本更新，您也會看到有可用的維護模式更新 (此訊息可能會在您安裝更新之後繼續顯示長達 24 小時)。
 
@@ -78,25 +78,27 @@ Hotfix 方法涉及下列三個步驟：
 
 #### 下載適用於執行 Update 2 軟體的裝置的更新
 
-如果您的裝置是執行 Update 2，您必須以指定順序下載並安裝下列 Hotfix：
+**如果您的裝置是執行 Update 2**，您必須以指定順序下載並安裝下列 Hotfix：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 1\. | KB3162954 | 軟體更新 | 定期 | ~ 45 分鐘 |
+| 1\. | KB3162954 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
 | 2\. | KB3146621 | iSCSI 封裝 | 定期 | ~ 20 分鐘 |
 | 3\. | KB3103616 | WMI 封裝 | 定期 | ~ 12 分鐘 |
 
 
+ &#42; *請注意，軟體更新是由兩個二進位檔組成︰`all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe` 和 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。必須先安裝裝置軟體更新 `all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe`，再安裝 Cis 和 Mds 代理程式 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。*
+
 #### 下載適用於執行 Update 2 之前版本軟體的裝置的更新
 
-如果您的裝置是執行 0.2、0.3、1.0 及 1.1 版，您必須下載並安裝 LSI 驅動程式與韌體更新。如果您是執行 Update 1.2 或 2，則已經安裝此更新。
+**如果您的裝置是執行 0.2、0.3、1.0 及 1.1 版**，您必須下載並安裝 LSI 驅動程式與韌體更新。如果您是執行 Update 1.2 或 2，則已經安裝此更新。
  
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
 | 4\. | KB3121900 | LSI 驅動程式與韌體 | 定期 | ~ 20 分鐘 |
 
 
-<br></br>如果您的裝置是執行 0.2、0.3、1.0、1.1 及 1.2 版，您必須下載並安裝 Spaceport 和 Storport 修正程式。如果您是執行 Update 2，則已經安裝這些修正程式。
+<br></br> **如果您的裝置是執行 0.2、0.3、1.0、1.1 及 1.2 版**，您必須下載並安裝 Spaceport 和 Storport 修正程式。如果您是執行 Update 2，則已經安裝這些修正程式。
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
@@ -130,4 +132,4 @@ Hotfix 方法涉及下列三個步驟：
 
 深入了解 [Update 2.1 版](storsimple-update21-release-notes.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

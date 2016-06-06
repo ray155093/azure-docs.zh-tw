@@ -52,11 +52,8 @@ RSS 連接器可當做動作使用，它有觸發程序。所有連接器都支�
 
 
 ## 建立 RSS 的連線
-若要使用 RSS 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
 
-|屬性| 必要|說明|
-| ---|---|---|
-建立連接後，您就可以用它執行動作，並接聽本文所述的觸發程序。
+>[AZURE.INCLUDE [建立至 RSS 摘要連線的步驟](../../includes/connectors-create-api-rss.md)]
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
@@ -135,4 +132,4 @@ RSS 連接器可當做動作使用，它有觸發程序。所有連接器都支�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

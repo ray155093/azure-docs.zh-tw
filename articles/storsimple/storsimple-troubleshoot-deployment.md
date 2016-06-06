@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="12/02/2015"
+   ms.date="05/24/2016"
    ms.author="alkohli" />
 
 # StorSimple 裝置部署問題的疑難排解
@@ -21,7 +21,7 @@
 
 本文提供對於 Microsoft Azure StorSimple 部署很有幫助的疑難排解指引。文中將說明常見問題、可能原因和建議的步驟，可協助您解決在設定 StorSimple 時可能遇到的問題。此資訊適用於 StorSimple 內部部署實體裝置和 StorSimple 虛擬裝置。
 
-> [AZURE.NOTE]您可能會在第一次部署裝置時面臨裝置設定的相關問題，或者它們可能在裝置處於運作狀態時發生。本文著重於第一次部署問題的疑難排解。若要進行可運作裝置的疑難排解，請瀏覽[可運作裝置問題的疑難排解](storsimple-troubleshoot-operational-device.md)。
+> [AZURE.NOTE] 您可能會在第一次部署裝置時面臨裝置設定的相關問題，或者它們可能在裝置處於運作狀態時發生。本文著重於第一次部署問題的疑難排解。若要進行可運作裝置的疑難排解，請瀏覽[可運作裝置問題的疑難排解](storsimple-troubleshoot-operational-device.md)。
 
 本文也會說明適用於疑難排解 StorSimple 部署的工具，並提供疑難排解的逐步範例。
 
@@ -51,7 +51,7 @@
   - 裝置系統管理員密碼可用來登入您的裝置。預設裝置密碼是 **Password1**。
   - 當您設定裝置來使用 StorSimple Snapshot Manager 時，需要有 StorSimple Snapshot Manager 密碼。您需要先在安裝精靈中設定密碼，然後才能從 StorSimple Manager 服務設定和變更密碼。此密碼可使用 StorSimple Snapshot Manager 驗證裝置。
  
-    > [AZURE.IMPORTANT]密碼是在註冊之前收集，但只有在您成功註冊裝置之後才會套用。如果套用密碼失敗，系統將提示您再次提供密碼，直到收集到所需的密碼 (符合複雜性需求) 為止。
+    > [AZURE.IMPORTANT] 密碼是在註冊之前收集，但只有在您成功註冊裝置之後才會套用。如果套用密碼失敗，系統將提示您再次提供密碼，直到收集到所需的密碼 (符合複雜性需求) 為止。
 
 4. 註冊裝置：最後一個步驟是使用在 Microsoft Azure 中執行的 StorSimple Manager 服務來註冊裝置。註冊會要求您從 Azure 傳統入口網站[取得服務註冊金鑰](storsimple-manage-service.md#get-the-service-registration-key)，並在安裝精靈中提供該金鑰。成功註冊裝置之後，即會為您提供服務資料加密金鑰。請務必將此加密金鑰保留在安全的位置，因為在向服務註冊所有後續裝置時都需用到它。
 
@@ -117,7 +117,7 @@
 
 密碼是在裝置註冊之前收集，但只有在您成功註冊之後才會套用。密碼復原工作流程需要註冊裝置。
 
-> [AZURE.IMPORTANT]一般而言，如果嘗試套用密碼失敗，則此軟體會重複嘗試收集密碼，直到成功為止。有時會無法套用密碼，但很罕見。在此情況下，您可以註冊裝置並繼續進行，但密碼將不會變更。您將不會收到哪一個密碼未變更的指示：裝置系統管理員密碼或 StorSimple Snapshot Manager 密碼。如果發生這種情況，建議您變更這兩個密碼。
+> [AZURE.IMPORTANT] 一般而言，如果嘗試套用密碼失敗，則此軟體會重複嘗試收集密碼，直到成功為止。有時會無法套用密碼，但很罕見。在此情況下，您可以註冊裝置並繼續進行，但密碼將不會變更。您將不會收到哪一個密碼未變更的指示：裝置系統管理員密碼或 StorSimple Snapshot Manager 密碼。如果發生這種情況，建議您變更這兩個密碼。
 
 您可以透過 StorSimple Manager 服務重設 Azure 傳統入口網站的密碼。如需詳細資訊，請移至：
 
@@ -163,7 +163,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
   1. 在 Windows 用戶端上執行 **eventvwr** 命令。這將會啟動事件檢視器。
   2. 在 [動作] 窗格中，按一下 [開啟已儲存的記錄]，然後指向 etvx/etw 格式的記錄檔 (支援封裝)。您現在可以檢視該檔案。開啟檔案之後，您可以使用滑鼠右鍵按一下並將該檔案儲存為文字。
    
-    > [AZURE.IMPORTANT]您也可以使用 **Get-WinEvent** Cmdlet，在 Windows PowerShell 中開啟這些檔案。如需詳細資訊，請參閱 Windows PowerShell Cmdlet 參考文件中的 [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx)。
+    > [AZURE.IMPORTANT] 您也可以使用 **Get-WinEvent** Cmdlet，在 Windows PowerShell 中開啟這些檔案。如需詳細資訊，請參閱 Windows PowerShell Cmdlet 參考文件中的 [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx)。
 
 5. 在事件檢視器中開啟記錄時，尋找下列包含裝置設定相關問題的記錄：
 
@@ -261,7 +261,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 
 請參閱下列來自 `Test-Connection` Cmdlet 的輸出範例。
 
-> [AZURE.NOTE]在第一個範例中，會以不正確的 DNS 設定裝置。在第二個範例中，DNS 是正確的。
+> [AZURE.NOTE] 在第一個範例中，會以不正確的 DNS 設定裝置。在第二個範例中，DNS 是正確的。
  
 **範例輸出 - 不正確的 DNS**
 
@@ -328,7 +328,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 
 如需如何使用 Cmdlet 的詳細資訊，請參閱 Windows PowerShell 參考說明文件中的 [Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx)。
 
-> [AZURE.IMPORTANT]您可以針對主動和被動控制器執行這個 Cmdlet。
+> [AZURE.IMPORTANT] 您可以針對主動和被動控制器執行這個 Cmdlet。
  
 請參閱下列來自 `Test-HcsmConnection` Cmdlet 的輸出範例。
 
@@ -537,11 +537,11 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 
 1. 檢查裝置組態：在主動控制器上執行 `Invoke-HcsSetupWizard`。
 
-     >[AZURE.NOTE]安裝精靈必須在主動控制器上執行。若要確認您已連接到主動控制器，請查看序列主控台中顯示的橫幅。該橫幅會指出您是連接到控制器 0 或控制器 1，而且該控制器是主動或被動。如需詳細資訊，請參閱[識別裝置上的主動控制器](storsimple-controller-replacement.md#identify-the-active-controller-on-your-device)。
+     > [AZURE.NOTE] 安裝精靈必須在主動控制器上執行。若要確認您已連接到主動控制器，請查看序列主控台中顯示的橫幅。該橫幅會指出您是連接到控制器 0 或控制器 1，而且該控制器是主動或被動。如需詳細資訊，請參閱[識別裝置上的主動控制器](storsimple-controller-replacement.md#identify-the-active-controller-on-your-device)。
  
 2. 確定裝置纜線已正確連接：檢查裝置背板的網路纜線。纜線是裝置型號專用的。如需詳細資訊，請參閱[安裝您的 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
 
-     >[AZURE.NOTE]如果您使用的是 10 GbE 網路連接埠，就必須使用隨附的 QSFP-SFP 配接器和 SFP 纜線。如需詳細資訊，請參閱 [OEM 供應商建議針對 Mellanox 連接埠使用的纜線、交換器及收發器清單](http://www.mellanox.com/page/cables?mtag=cable_overview)。
+     > [AZURE.NOTE] 如果您使用的是 10 GbE 網路連接埠，就必須使用隨附的 QSFP-SFP 配接器和 SFP 纜線。如需詳細資訊，請參閱 [OEM 供應商建議針對 Mellanox 連接埠使用的纜線、交換器及收發器清單](http://www.mellanox.com/page/cables?mtag=cable_overview)。
  
 3. 確認網路介面的健康情況：
 
@@ -559,7 +559,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
   - 重新執行安裝精靈 (執行 **Invoke-HcsSetupWizard**)，並再次輸入值，以確定沒有任何錯誤。 
   - 確認已使用註冊金鑰。相同的註冊金鑰可用來將多個裝置連接到 StorSimple Manager 服務。使用[取得服務註冊金鑰](storsimple-manage-service.md#get-the-service-registration-key)中的程序，以確保您使用的是正確的註冊金鑰。
 
-    > [AZURE.IMPORTANT]如果您有多個服務正在執行中，就必須確保會使用適當服務的註冊金鑰來註冊裝置。如果您向錯誤的 StorSimple Manager 服務註冊了裝置，就必須[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)以進行後續步驟。您可能必須執行裝置的原廠重設 (這可能導致資料遺失)，然後將它連接到所需的服務。
+    > [AZURE.IMPORTANT] 如果您有多個服務正在執行中，就必須確保會使用適當服務的註冊金鑰來註冊裝置。如果您向錯誤的 StorSimple Manager 服務註冊了裝置，就必須[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)以進行後續步驟。您可能必須執行裝置的原廠重設 (這可能導致資料遺失)，然後將它連接到所需的服務。
 
 6. 使用 Test-Connection Cmdlet 來確認您擁有外部網路的連線能力。如需詳細資訊，請參閱 [Test-Connection Cmdlet 的疑難排解](#troubleshoot-with-the-test-connection-cmdlet)。
 
@@ -577,4 +577,4 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 [1]: https://technet.microsoft.com/library/dd379547(v=ws.10).aspx
 [2]: https://technet.microsoft.com/library/dd392266(v=ws.10).aspx
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0525_2016-->

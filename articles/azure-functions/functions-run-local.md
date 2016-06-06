@@ -142,6 +142,8 @@ Azure Functions 的執行階段為 WebJobs.Script 開放原始碼專案的實作
 		Host.Functions.TimerTrigger-CSharp
 		Job host started
 
+	如果您正在開始 WebHost 專案，您會得到一個空白瀏覽器頁面，因為在專案的基底 URL 並無內容可提供。如需有關用於 HTTP 觸發程序函數之 URL 的資訊，請參閱 [API 金鑰](#apikeys)一節。
+
 ## 檢視函式輸出
 
 請移至函式應用程式的儀表板，查看函式引動過程，並為其記錄輸出。
@@ -150,29 +152,29 @@ Azure Functions 的執行階段為 WebJobs.Script 開放原始碼專案的實作
 
 	https://{function app name}.scm.azurewebsites.net/azurejobs/#/functions
 
-「函式」頁面會顯示已執行的函式清單和函式引動過程清單。
+「函數」頁面會顯示已執行函數的清單，以及函數叫用清單。
 
 ![引動過程詳細資料](./media/functions-run-local/invocationdetail.png)
 
-按一下引動過程來檢視「引動過程詳細資料」頁面，其指出函式觸發的時間、估計的執行階段，以及成功的完成項目。按一下 [切換輸出] 按鈕，查看函式程式碼所寫入的記錄檔。
+按一下某個叫用可查看「叫用詳細資料」頁面，當中會指出函數觸發時間、大約執行時間，以及成功完成狀態。按一下 [切換輸出] 按鈕，即可查看函數程式碼所寫入的記錄檔。
 
 ![引動過程詳細資料](./media/functions-run-local/invocationdetail.png)
 
-## <a id="apikeys"></a> HTTP 觸發程序的 API 金鑰
+## <a id="apikeys"></a>HTTP 觸發程序的 API 金鑰
 
-若要執行 HTTP 或 WebHook 函式，您會需要 API 金鑰，除非 function.json 檔案中包含 `"authLevel": "anonymous"`。
+若要執行 HTTP 或 WebHook 函數，您將需要 API 金鑰，除非您將 `"authLevel": "anonymous"` 納入 *function.json* 檔案中。
 
-例如：如果 API 金鑰為 `12345`，當WebJobs.Script.WebHost 專案正在執行時，您可以下列 URL 觸發 HttpTrigger 函式。
+例如，如果 API 金鑰為 `12345`，當 WebJobs.Script.WebHost 專案正在執行時，您可以使用下列 URL 來觸發 *HttpTrigger* 函數。
 
 	http://localhost:28549/api/httptrigger?code=12345
 
-(或者，您可以將 API 金鑰放在 `x-functions-key` HTTP 標頭。)
+(或者，您也可以將 API 金鑰放在 `x-functions-key` HTTP 標頭中。)
 
-API 金鑰會儲存在 WebJobs.Script.WebHost 專案中 [App\_Data/密碼](https://github.com/Azure/azure-webjobs-sdk-script/tree/master/src/WebJobs.Script.WebHost/App_Data/secrets) 資料夾的 `.json` 檔案中。
+API 金鑰儲存在 WebJobs.Script.WebHost 專案之 [App\_Data/secrets](https://github.com/Azure/azure-webjobs-sdk-script/tree/master/src/WebJobs.Script.WebHost/App_Data/secrets) 資料夾的 `.json` 檔案中。
 
 ### 適用於所有 HTTP 和 WebHook 函式的 API 金鑰
 
-「App\_Data/密碼」資料夾的 Host.json 檔案中有兩組金鑰︰
+*App\_Data/secrets* 資料夾中的 *host.json* 檔案有兩組金鑰︰
 
 ```json
 {
@@ -181,17 +183,17 @@ API 金鑰會儲存在 WebJobs.Script.WebHost 專案中 [App\_Data/密碼](https
 }
 ```
 
-`functionKey` 屬性會儲存一組金鑰，若未定義該特定函式的覆寫，該金鑰便可用於任何 HTTP 或 WebHook 函式。這項功能可讓您無需為您所建立的每個函式定義新 API 金鑰。
+`functionKey` 屬性儲存一組金鑰，若未針對該特定函數定義任何覆寫的情況下，該組金鑰可用於任何 HTTP 或 WebHook 函數。這項功能可讓您無需為您所建立的每個函式定義新 API 金鑰。
 
-`masterKey` 屬性會儲存一組在某些測試狀況下非常有用的金鑰︰
+`masterKey` 屬性儲存一組金鑰，該組金鑰在某些測試案例中相當有用︰
 
-* 如果您呼叫具有主要金鑰的 WebHook 函式，WebJobs SDK 會略過 WebHook 提供者的簽章驗證。
+* 如果您以主要金鑰呼叫 WebHook 函數，WebJobs SDK 就會略過 WebHook 提供者的簽章驗證。
 
-* 如果您呼叫具有主要金鑰的 HTTP 或 WebHook 函式，即便已在 function.json 案中停用，仍然會觸發函式。這是用於 Azure 入口網站來讓 [執行] 按鈕可以運作，即便函式已停用。
+* 如果您以主要金鑰呼叫 HTTP 或 WebHook 函數，則即使函數在 *function.json* 檔案中已停用，仍然會觸發該函數。這是在 Azure 入口網站中用來讓 [執行] 按鈕即使在函數已停用的情況下，仍然可以運作。
  
 ### 套用於個別函式的 API 金鑰
 
-命名為 {函式名稱}.json 的檔案包含特定函式的 API 金鑰。例如：在 App\_Data/secrets/HttpTrigger.json 中的下列範例 JSON 內容會針對 `HttpTrigger` 函式設定 API 金鑰。
+名稱為 *{function name}.json* 的檔案包含特定函數的 API 金鑰。例如，下列在 *App\_Data/secrets/HttpTrigger.json* 中的範例 JSON 內容會設定 `HttpTrigger` 函數的 API 金鑰。
 
 ```json
 {
@@ -199,13 +201,17 @@ API 金鑰會儲存在 WebJobs.Script.WebHost 專案中 [App\_Data/密碼](https
 }
 ```
 
+## 在函數中使用 NuGet 套件參考  
+
+基於目前處理 NuGet 參考的方式，請確定您在主機處於執行狀態時，會「存取」*project.json* 檔案。主機會監看是否發生檔案修改，並在偵測到變更時，起始還原作業。此外，*NuGet.exe* (建議使用 3.3.0) 必須位於您的路徑中，或是您必須設定一個名為 AzureWebJobs\_NuGetPath 且含有 *NuGet.exe* 路徑的環境變數。
+
 ## 疑難排解
 
 在執行 Visual Studio 時，不會自動挑選已完成變更的環境變數。如果您在啟動 Visual Studio 後新增或變更環境變數，請關閉 Visual Studio，然後重新啟動 Visual Studio，以確保其可挑出目前的值。
 
-偵錯時，您可以取得更多關於在「例外狀況設定」視窗中 (按 CTRL-ALT-E 開啟視窗) 選取 [通用語言執行階段例外狀況] 的詳細資訊。
+偵錯時，您可以透過在 [例外狀況設定] 視窗中 (按 CTRL-ALT-E 來開啟視窗) 選取 [通用語言執行平台例外狀況]，取得例外狀況的更多相關資訊。
 
-另一種您可以在偵錯時取得更多例外狀況資訊的方法是，在 `catch` 指令碼主機的主迴圈區塊中設定中斷點。您會在 WebJobs.Script 專案中、Host/ScriptHostManager.cs 中以及 `RunAndBlock` 方法中找到。
+還有另一種您可以在偵錯時取得更多例外狀況資訊的方法，就是在指令碼裝載的主迴圈 `catch` 區塊中設定中斷點。您可以在 WebJobs.Script 專案中、*Host/ScriptHostManager.cs* 中以及 `RunAndBlock` 方法中找到此區塊。
 
 ## 後續步驟
 
@@ -216,4 +222,4 @@ API 金鑰會儲存在 WebJobs.Script.WebHost 專案中 [App\_Data/密碼](https
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

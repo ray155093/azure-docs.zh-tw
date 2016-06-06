@@ -1,10 +1,10 @@
 <properties
-pageTitle="在 PowerApps Enterprise 中新增 Dynamics CRM Online API，或是新增到您的邏輯應用程式 | Microsoft Azure"
-description="搭配 REST API 參數來使用 CRM Online API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在 PowerApps Enterprise 中新增 Dynamics CRM Online 連接器，或是新增到您的 Logic Apps | Microsoft Azure"
+description="搭配 REST API 參數來使用 CRM Online 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor="" tags="connectors" />
 
 <tags
@@ -13,11 +13,11 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="03/16/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 CRM API
-連線到 Dynamics CRM Online 來建立新的記錄、更新項目等等。CRM Online API 可從以下位置使用：
+# 開始使用 CRM 連接器
+連線到 Dynamics CRM Online 來建立新的記錄、更新項目等等。您可以從下列應用程式使用 CRM 連接器︰
 
 - 邏輯應用程式
 - PowerApps
@@ -32,22 +32,22 @@ ms.author="deonhe"/>
 - 使用會刪除檔案、取得實體等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 CRM 中有項目更新時，您可以利用 Office 365 來傳送電子郵件。
 
 
-如需有關如何在 PowerApps Enterprise 中新增 API 的資訊，請移至[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
-CRM API 包含下列動作，但不包含觸發程序。
+CRM 連接器包含下列動作，但不包含觸發程序。
 
 | 觸發程序 | 動作|
 | --- | --- |
 |None| <ul><li>建立新的記錄</li><li>取得記錄</li><li>刪除記錄</li><li>取得記錄</li><li>取得實體</li><li>更新項目</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 CRM Online 的連線
 
-當您將這個 API 新增到邏輯應用程式時，您必須登入 Dynamics CRM Online。請依照下列步驟在線上登入 CRM，並在邏輯應用程式中完成連線設定：
+當您將這個連接器新增到邏輯應用程式時，您必須登入 Dynamics CRM Online。請依照下列步驟在線上登入 CRM，並在邏輯應用程式中完成連線設定：
 
 1. 在您的邏輯應用程式中選取 [加入動作]：![線上設定 CRM][13]
 4. 在搜尋方塊中輸入 CRM，並等候搜尋傳回所有名稱中有 CRM 的項目。
@@ -268,4 +268,4 @@ CRM API 包含下列動作，但不包含觸發程序。
 [14]: ./media/connectors-create-api-crmonline/crmconfig2.png
 [15]: ./media/connectors-create-api-crmonline/crmconfig3.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

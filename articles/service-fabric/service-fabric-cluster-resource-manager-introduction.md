@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 # Service Fabric 叢集資源管理員簡介
@@ -23,12 +23,14 @@
 
 突然間，管理您的環境並不像管理一些專屬於單一類型工作負載的電腦一樣簡單。您的伺服器是虛擬且不再擁有名稱 (畢竟您的心態已從[寵物到牛群](http://www.slideshare.net/randybias/architectures-for-open-and-scalable-clouds/20)進行完全轉換)，而電腦不會專屬於單一類型的工作負載。關於電腦的設定會變少，而關於服務本身的設定會增加。
 
-由於這會解構您先前的單體式分層 app 並分解到個別服務，因此，您現在有許多更高程度的組合需要處理。誰要決定什麼類型的工作負載可在特定的硬體上，或彼此相鄰？ 當電腦當機時...哪些功能還能在其上執行？ 誰負責確保它會再次啟動來執行？ 您要等待 (虛擬) 電腦正常運作，或者您的工作負載會持續執行？ 需要人為介入才能再次執行工作嗎？ 此外，如何在這種環境中升級呢？ 我們需要一些協助，而您要有一個概念：招募潮以及嘗試使用人員來掩飾複雜度並非正確解答。
+由於這會解構您先前的單體式分層 app 並分解到個別服務，因此，您現在有許多更高程度的組合需要處理。誰要決定什麼類型的工作負載可在特定的硬體上，或彼此相鄰？ 當電腦當機時...哪些功能還能在其上執行？ 誰負責確保它會再次啟動來執行？ 您要等待 (虛擬) 電腦正常運作，或者您的工作負載會自動容錯移轉至其他機器並且持續執行？ 是否需要使用者介入？ 在這種環境中升級？ 身為此類環境的開發人員和操作員，我們需要一些協助來管理此複雜度，而您要有一個概念：招募潮以及嘗試使用人員來掩飾複雜度並非正確解答。
 
 怎麼辦？
 
 ## Orchestrator 簡介
-「Orchestrator」是一種軟體的一般用詞，可協助系統管理員管理這些類型的部署。Orchestrator 是在像是「我想要在環境中執行此服務的 5 個複本」的要求中取得的元件，可使其成真，並 (嘗試) 以該方式來保留它。Orchestrator (不是人類) 是當電腦失敗或工作負載基於某些意外因素而終止時，要迅速採取動作的事物。大部分的 Orchestrator 除了處理失敗還能執行更多動作，例如，協助新的部署、處理升級，以及處理資源耗用，但基本上全部都與在環境中維護組態的一些期望狀態有關。您想要能夠告知 Orchestrator 您的期望，並讓它能夠執行繁重的工作。Mesosphere 頂端的 Chronos、Fleet、Swarm、Kubernetes 和 Service Fabric 全都是 Orchestrator 或內建它們。由於在不同類型的環境中管理真實世界部署的複雜度和條件與日俱增且產生變化，因此會持續建立更多。
+「Orchestrator」是一種軟體的一般用詞，可協助系統管理員管理這些類型的部署。Orchestrator 是在像是「我想要在環境中執行此服務的 5 個複本」的要求中取得的元件，可使其成真，並 (嘗試) 以該方式來保留它。
+
+Orchestrator (不是人類) 是當電腦失敗或工作負載基於某些意外因素而終止時，要迅速採取動作的事物。大部分的 Orchestrator 除了處理失敗還能執行更多動作，例如，協助新的部署、處理升級，以及處理資源耗用，但基本上全部都與在環境中維護組態的一些期望狀態有關。您想要能夠告知 Orchestrator 您的期望，並讓它能夠執行繁重的工作。Mesos 頂端的 Chronos 或 Marathon、Fleet、Swarm、Kubernetes 和 Service Fabric 全都是 Orchestrator 的類型或內建它們。由於在不同類型的環境中管理真實世界部署的複雜度和條件與日俱增且產生變化，因此會持續建立更多。
 
 ## 協調流程即服務
 在 Service Fabric 叢集內，Orchestrator 的工作主要是由供叢集資源管理員來處理。Service Fabric 叢集資源管理員是 Service Fabric 內的其中一個系統服務，並會在每個叢集內自動啟動。一般而言，資源管理員的工作可分成三個部分︰
@@ -47,14 +49,14 @@
 
 請注意，這是確保 Web 層大致保持平衡的最佳機制。平衡資料層的策略則完全不同，而且根據資料儲存機制而定，通常集中於資料分區化、快取、資料庫管理的檢視及預存程序等。
 
-雖然這其中有些策略很有趣，但 Service Fabric 叢集資源管理員並非任何像是網路負載平衡器或快取的功能。儘管 NLB 可確保前端能夠藉由將流量移至服務執行所在的位置來達成平衡，但 Service Fabric 資源管理員會採取一個完全不同的方針 – 基本上，Service Fabric 會將服務移至對它們最具意義的地方。例如，這可以是目前比較冷的節點，因為服務現在並未執行很多工作。它也可能遠離即將升級的節點，或者因為在其上執行的服務耗用量突然增加而導致超載的節點。因為它負責四處移動服務 (不會將網路流量傳遞到服務已經存在的位置)，所以 Service Fabric 資源管理員會更加靈活，也會包含其他功能來控制移動服務的位置與方式。
+雖然這其中有些策略很有趣，但 Service Fabric 叢集資源管理員並非任何像是網路負載平衡器或快取的功能。儘管網路負載平衡器可確保前端能夠藉由將流量移至服務執行所在的位置來達成平衡，但 Service Fabric 叢集 Resource Manager 會採取一個完全不同的策略 – 基本上，Service Fabric 會將服務移至對它們最具意義的地方 (並且預期要遵循的流量或負載)。例如，這可以是目前比較冷的節點，因為服務現在並未執行很多工作。它也可能遠離即將升級的節點，或者因為在其上執行的服務耗用量突然增加而導致超載的節點。因為它負責四處移動服務 (不會將網路流量傳遞到服務已經存在的位置)，所以 Service Fabric 資源管理員會更加靈活，也會包含其他功能來控制移動服務的位置與方式。
 
 ## 後續步驟
-- 如需叢集資源管理員內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
+- 如需叢集 Resource Manager 內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
 - 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
+- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集 Resource Manager 組態的相關主題
 - 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。若要深入了解度量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
 - 叢集資源管理員會搭配 Service Fabric 的管理功能使用。若要深入了解該整合，請閱讀[這篇文章](service-fabric-cluster-resource-manager-management-integration.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

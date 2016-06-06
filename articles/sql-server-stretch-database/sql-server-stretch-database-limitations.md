@@ -30,7 +30,7 @@
 
 ### DML 作業
 
--   在啟用 Stretch 的資料表中，或是包含啟用 Stretch 的資料表之檢視中，您無法 UPDATE (更新) 或 DELETE (刪除) 資料列。
+-   在啟用 Stretch 的資料表中，或是包含啟用 Stretch 的資料表之檢視中，您無法 UPDATE (更新) 或 DELETE (刪除) 已移轉的資料列或有資格移轉的資料列。
 
 -   您無法將資料列 INSERT (插入) 連結伺服器上啟用 Stretch 的資料表。
 
@@ -96,4 +96,4 @@
 
 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->
