@@ -40,7 +40,7 @@
 
         ![Azure portal](./media/resource-manager-deployment-model/preview-portal.png)
 
-        針對計算、儲存體及網路資源，您可以選擇使用資源管理員或傳統部署。 選擇**資源管理員**。
+        For Compute, Storage, and Networking resources, you have the option of using either Resource Manager or Classic deployment. Select **Resource Manager**.
 
         ![Resource Manager deployment](./media/resource-manager-deployment-model/select-resource-manager.png)
 
@@ -109,7 +109,7 @@
 
 ## 使用資源管理員及資源群組的優點
 
-資源管理員加入資源群組的概念。透過資源管理員建立的每個資源都會存在於資源群組內。資源管理員部署模型可提供數個優點：
+資源管理員加入資源群組的概念。透過資源管理員建立的每個資源都會存在於資源群組內。「資源管理員」部署模型提供數個優點：
 
 - 您可以以群組形式部署、管理及監視方案的所有服務，而不是個別處理這些服務。
 - 您可以在整個應用程式週期重複部署應用程式，並確信您的資源會部署在一致的狀態中。
@@ -175,4 +175,4 @@
 - 若要了解 Resource Manager 範本的結構，請參閱[製作 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看部署範本的命令，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

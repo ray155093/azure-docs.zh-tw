@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 # 描述 Service Fabric 叢集
@@ -157,6 +157,8 @@ Update-ServiceFabricService -Stateful -ServiceName $serviceName -PlacementConstr
 
 放置條件約束 (以及我們即將討論的許多其他屬性) 是針對每個不同的服務執行個體指定。更新一律會取代 (覆寫) 先前指定的項目。
 
+另外值得注意的是，目前節點上的屬性是透過叢集定義而定義的，因此無法在未升級至叢集的情況下更新。
+
 ## 容量
 任何 Orchestrator 的其中一個最重要的作業是協助管理叢集中的資源耗用量。如果您想要有效率地執行服務，最不想遇到的情形是許多節點是熱的 (導致資源爭用和效能不佳)，而其他是冷的 (浪費資源)。但是試著想想比平衡還要基本的事情 (在一分鐘內) – 只要確保節點不會在第一時間執行用完資源？
 
@@ -202,13 +204,14 @@ ClusterManifest.xml
 
 此外，服務的負載也會動態變更。在此情況下，目前放置複本或執行個體的位置可能會變成無效，因為該節點上所有複本和執行個體的結合使用量超出該節點的容量。我們稍後會更詳細討論負載可以動態變更的案例，但是只要還有容量，就會以相同的方式處理 - Service Fabric 資源管理會自動執行，並取回低於容量的節點，方法是將該節點上的一或多個複本或執行個體移至不同的節點。執行這項操作時，資源管理員會嘗試將所有移動的成本降到最低 (我們稍後再回頭討論「成本」的概念)。
 
-##叢集容量
+## 叢集容量
 那麼，我們要如何防止整體叢集太滿？ 使用動態負載，實際上我們並沒有太多可以執行的作業 (因為服務有自己的負載尖峰，獨立於資源管理員所執行的動作 – 今天您的叢集具有許多空餘空間，但是明天當您成名之後空間就會不足)，但是有一些內建控制項可以防止基本錯誤。我們可以做的第一件事是防止建立新的工作負載，該工作負載會導致叢集空間變滿。
 
 假設您要建立簡單的無狀態服務，而且它具有某些與其相關聯的負載 (比預設值還多且動態負載稍後才報告)。對於此服務，讓我們假設它關心某些資源 (例如磁碟空間)，依預設它會針對服務的每個執行個體使用 5 個單位的磁碟空間。您想要建立服務的 3 個執行個體。太棒了！ 因此表示我們需要叢集中有 15 個單位的磁碟空間，才能建立這些服務執行個體。Service Fabric 持續計算整體容量和每個度量的耗用量，因此我們可以輕鬆地進行決定並且在空間不足時拒絕建立服務呼叫。
 
 請注意，由於需求僅是 15 個可用單位，此空間可以使用不同的方式配置；例如，可能是在 15 個不同節點上各一個剩餘單位，或是在 5 個不同節點上各三個剩餘單位等等。如果三個不同節點上沒有足夠的容量，Service Fabric 將會重新組織已在叢集中的服務，以便在三個必要的節點上挪出空間。這類的重新排列幾乎一律可行，除非整個叢集幾乎已滿。
 
+## 緩衝處理的容量
 我們為了協助使用者管理整體叢集容量所做的另一件事是，對每個節點的指定容量加入一些保留緩衝區的概念。此設定是選擇性的，但是可以讓使用者保留整體節點容量的某些部分，讓它只會用來在升級和失敗期間放置服務 - 叢集的容量降低的情況。現在緩衝區是透過 ClusterManifest 針對所有節點全域指定。您針對保留容量挑選的值會是您的服務更受到條件約束的資源的函數，以及您在叢集中具有的容錯和升級網域的數目。通常較多的容錯和升級網域表示您可以挑選較少數目的緩衝處理容量，因為您會預期在升級和失敗期間有較少量的叢集無法使用。請注意，指定緩衝區百分比只有在您也指定了度量的節點容量時才具有意義。
 
 ClusterManifest.xml
@@ -249,10 +252,10 @@ LoadMetricInformation     :
 ```
 
 ## 後續步驟
-- 如需叢集資源管理員內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
+- 如需叢集 Resource Manager 內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
 - 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+- 從頭開始，並[取得 Service Fabric 叢集 Resource Manager 的簡介](service-fabric-cluster-resource-manager-introduction.md)
+- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-fault-domains.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-uneven-fault-domain-layout.png
@@ -262,4 +265,4 @@ LoadMetricInformation     :
 [Image6]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-placement-constraints-node-properties.png
 [Image7]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-nodes-and-capacity.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="如何設定 Azure Redis 快取"
+	pageTitle="如何設定 Azure Redis 快取 | Microsoft Azure"
 	description="了解 Azure Redis 快取的預設 Redis 組態，以及了解如何設定您的 Azure Redis 快取執行個體"
 	services="redis-cache"
 	documentationCenter="na"
 	authors="steved0x"
-	manager="erikre"
+	manager="douge"
 	editor="tysonn" />
 <tags 
 	ms.service="cache"
@@ -12,34 +12,24 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="03/10/2016"
+	ms.date="05/25/2016"
 	ms.author="sdanie" />
 
 # 如何設定 Azure Redis 快取
 
 本主題描述如何檢視並更新您的 Azure Redis 快取執行個體的組態，並涵蓋 Azure Redis 快取執行個體的預設 Redis 伺服器組態。
 
->[AZURE.NOTE] 如需設定及使用高階快取功能的詳細資訊，請參閱[如何設定高階 Azure Redis Cache 的持續性](cache-how-to-premium-persistence.md)、[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)，以及[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
+>[AZURE.NOTE] 如需設定及使用進階快取功能的詳細資訊，請參閱[如何設定進階 Azure Redis Cache 的持續性](cache-how-to-premium-persistence.md)、[如何設定進階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)，以及[如何設定進階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
 ## 設定 Redis 快取設定
 
-您可在 [Azure 入口網站](https://portal.azure.com)中使用 [瀏覽] 刀鋒視窗來存取快取。
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
 
-![Azure Redis 快取瀏覽刀鋒視窗](./media/cache-configure/redis-cache-browse.png)
-
-按一下 [Redis 快取] 來檢視您的快取。如果您最近曾瀏覽至 Redis 快取，您可以直接從清單中按一下 [Redis 快取]，而不需按一下 [瀏覽]。
-
-![Azure Redis 快取瀏覽快取清單](./media/cache-configure/redis-caches.png)
-
-選取所需的快取，來檢視該快取的屬性。
-
-![Redis 快取所有設定](./media/cache-configure/redis-cache-blade.png)
-
-按一下 [設定] 或 [所有設定] 以檢視並設定您的快取。
+Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![Redis 快取設定](./media/cache-configure/redis-cache-settings.png)
 
-Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
+
 
 -	[支援和疑難排解設定](#support-amp-troubleshooting-settings)
 -	[一般設定](#general-settings)
@@ -48,9 +38,10 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 	-	[存取連接埠](#access-ports)
 	-	[Maxmemory 原則](#maxmemory-policy-and-maxmemory-reserved)
 	-	[進階設定 (Keyspace 通知)](#keyspace-notifications-advanced-settings)
-	-	[建議](#recommendations)
+	-	[Redis 快取顧問](#redis-cache-advisor)
 -	[資料管理設定](#data-management-settings)
 	-	[Redis 資料永續性](#redis-data-persistence)
+	-	[匯入/匯出](#importexport)
 -	[網路設定](#network-settings)
 -	[診斷設定](#diagnostics-settings)
 -	[擴充設定](#scale-settings)
@@ -60,13 +51,30 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ## 支援和疑難排解設定
 
-按一下 [稽核記錄檔]，以檢視在您的快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用資源管理員來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+**支援 + 疑難排解**區段中的設定提供選項，讓您解決快取的問題。
+
+![支援與疑難排解](./media/cache-configure/redis-cache-support-troubleshooting.png)
+
+按一下 [疑難排解] 將提供您解決這些常見問題和解決問題的策略。
+
+按一下 [稽核記錄檔]，以檢視在您的快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+
+**資源健全狀況**是整個 Azure 入口網站的設定，目前不支援 Azure Redis 快取。如需監視您的 Azure Redis 快取執行個體的健全狀況的資訊及指示，請參閱本主題稍後的[如何監視 Azure Redis 快取](cache-how-to-monitor.md)和 [Redis 快取建議程式](#redis-cache-advisor)小節。
+
+按一下 [新增支援要求] 可開立快取的支援要求。
 
 ## 一般設定
 
 [一般] 區段中的設定可讓您存取和設定快取的下列設定。
 
 ![一般設定](./media/cache-configure/redis-cache-general-settings.png)
+
+-	[屬性](#properties)
+-	[存取金鑰](#access-keys)
+-	[存取連接埠](#access-ports)
+-	[Maxmemory 原則](#maxmemory-policy-and-maxmemory-reserved)
+-	[進階設定 (Keyspace 通知)](#keyspace-notifications-advanced-settings)
+-	[Redis 快取顧問](#redis-cache-advisor)
 
 ### 屬性
 
@@ -105,7 +113,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 **maxmemory-reserved** 設定會設定保留給非快取作業 (例如容錯移轉期間的複寫) 的記憶體量 (MB)。當具有高片段比率時，也可使用它。設定此值可讓您在負載變動時具有更一致的 Redis 伺服器體驗。對於頻繁寫入的工作負載，此值應該設定為更高的值。當記憶體保留給這類作業時，無法用於儲存快取的資料。
 
->[AZURE.IMPORTANT] **maxmemory-reserved** 設定只適用於標準和高階快取。
+>[AZURE.IMPORTANT] **maxmemory-reserved** 設定只適用於標準和進階快取。
 
 ### Keyspace 通知 (進階設定)
 
@@ -113,11 +121,12 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![Redis 快取進階設定](./media/cache-configure/redis-cache-advanced-settings.png)
 
->[AZURE.IMPORTANT] Keyspace 通知和 **notify-keyspace-events** 設定只適用於標準和高階快取。
+>[AZURE.IMPORTANT] Keyspace 通知和 **notify-keyspace-events** 設定只適用於標準和進階快取。
 
 如需詳細資訊，請參閱 [Redis Keyspace 通知](http://redis.io/topics/notifications) (英文)。如需範例程式碼，請參閱 [Hello world](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) 範例中的 [KeySpaceNotifications.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/KeySpaceNotifications.cs) 檔案。
 
-### 建議
+<a name="recommendations"></a>
+## Redis 快取顧問
 
 [建議] 刀鋒視窗會顯示適用於快取的建議。在一般作業期間，不會顯示任何建議。
 
@@ -133,7 +142,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 您可以在 [Redis 快取] 刀鋒視窗的[監視圖表](cache-how-to-monitor.md#monitoring-charts)和[使用量圖表](cache-how-to-monitor.md#usage-charts)區段上監視這些計量。
 
-每個定價層都有不同的用戶端連線、記憶體和頻寬的限制。如果您的快取持續一段時間接近這些計量的最大容量，即會提供建議。如需透過**建議** 工具檢閱的計量和限制詳細資訊，請參閱下表。
+每個定價層都有不同的用戶端連線、記憶體和頻寬的限制。如果您的快取持續一段時間接近這些計量的最大容量，即會提供建議。如需透過**建議**工具檢閱的計量和限制詳細資訊，請參閱下表。
 
 | Redis 快取計量 | 如需詳細資訊，請參閱 |
 |-------------------------|---------------------------------------------------------------------------|
@@ -150,9 +159,12 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![資料管理](./media/cache-configure/redis-cache-data-management.png)
 
+-	[Redis 資料永續性](#redis-data-persistence)
+-	[匯入/匯出](#importexport)
+
 ### Redis 資料永續性
 
-按一下 [Redis 資料持續性] 可加以啟用、停用，或設定高階快取的資料持續性。
+按一下 [Redis 資料持續性] 可加以啟用、停用，或設定進階快取的資料持續性。
 
 ![Redis 資料永續性](./media/cache-configure/redis-cache-persistence-settings.png)
 
@@ -164,7 +176,17 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 按一下 [確定] 以儲存持續性組態。
 
->[AZURE.IMPORTANT] Redis 資料持續性僅適用於高階快取。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取的永續性](cache-how-to-premium-persistence.md)。
+>[AZURE.IMPORTANT] Redis 資料持續性僅適用於進階快取。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取的永續性](cache-how-to-premium-persistence.md)。
+
+### 匯入/匯出
+
+匯入/匯出是 Azure Redis 快取資料管理作業，可讓您將資料匯入 Azure Redis 快取或將資料從 Azure Redis 快取匯出，方法是從進階快取將 Redis 快取資料庫 (RDB) 快照匯入和匯出至 Azure 儲存體帳戶中的分頁 blob。這可讓您在不同的 Azure Redis 快取執行個體之間移轉，或在使用前將資料填入快取。
+
+匯入可以用來從執行雲端或環境的任何 Redis 伺服器 (包含在 Linux、Windows 上執行的 Redis，或任何雲端提供者，例如 Amazon Web Services 等) 引入 Redis 相容 RDB 檔案。匯入資料是使用預先填入資料建立快取的輕鬆方式。在匯入程序期間，Azure Redis 快取會從 Azure 儲存體將 RDB 檔案載入記憶體，然後將金鑰插入快取。
+
+匯出可讓您將儲存在 Azure Redis 快取中的資料匯出至 Redis 相容 RDB 檔案。您可以使用這項功能，將資料從一個 Azure Redis 快取執行個體移到另一個或其他 Redis 伺服器。在匯出程序期間，會在裝載 Azure Redis 快取伺服器執行個體的 VM 上建立站存檔案，並將檔案上傳至指定的儲存體帳戶。當匯出作業完成時的狀態為成功或失敗時，都會刪除暫存檔案。
+
+>[AZURE.IMPORTANT] 匯入/匯出僅供進階層快取使用。如需詳細資訊和指示，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 
 ## 網路設定
 
@@ -172,7 +194,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![網路](./media/cache-configure/redis-cache-network.png)
 
->[AZURE.IMPORTANT] 虛擬網路設定只適用於快取建立期間利用 VNET 支援設定的高階快取。如需使用 VNET 支援建立高階快取並更新其設定的相關資訊，請參閱[如何設定高階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
+>[AZURE.IMPORTANT] 虛擬網路設定只適用於快取建立期間利用 VNET 支援設定的進階快取。如需使用 VNET 支援建立進階快取並更新其設定的相關資訊，請參閱[如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
 ## 診斷設定
 
@@ -180,17 +202,22 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![診斷](./media/cache-configure/redis-cache-diagnostics.png)
 
-按一下 [診斷] 以設定用來儲存快取診斷的儲存體帳戶。
+按一下 [診斷] 以[設定用來儲存快取診斷的儲存體帳戶](cache-how-to-monitor.md#enable-cache-diagnostics)。
 
 ![Redis 快取診斷](./media/cache-configure/redis-cache-diagnostics-settings.png)
 
-如需詳細資訊，請參閱[如何監視 Azure Redis Cache](cache-how-to-monitor.md)。
+按一下 [Redis 度量] 可[檢視快取的度量](cache-how-to-monitor.md#how-to-view-metrics-and-customize-charts)，而 [警示規則] 可[設定警示規則](cache-how-to-monitor.md#operations-and-alerts)。
+
+如需有關 Azure Redis 快取診斷的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)。
 
 ## 擴充設定
 
 [級別] 區段中的設定可讓您存取和設定快取的下列設定。
 
 ![網路](./media/cache-configure/redis-cache-scale.png)
+
+-	[定價層](#pricing-tier)
+-	[Redis 叢集大小](#cluster-size)
 
 ### 定價層
 
@@ -214,11 +241,15 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ## 資源管理設定
 
-![Redis 快取使用者和標記](./media/cache-configure/redis-cache-resource-management.png)
-
-[使用者] 區段會在 Azure 入口網站中提供角色型存取控制 (RBAC) 支援，協助組織輕鬆且準確地滿足其存取管理需求。如需詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制](http://go.microsoft.com/fwlink/?LinkId=512803)。
+![資源管理](./media/cache-configure/redis-cache-resource-management.png)
 
 [標記] 區段有助於您組織資源。如需詳細資訊，請參閱[使用標記組織您的 Azure 資源](../resource-group-using-tags.md)。
+
+**鎖定**區段可讓您鎖定訂用帳戶、資源群組或資源，以防止組織中的其他使用者不小心刪除或修改重要資源。如需詳細資訊，請參閱[使用 Azure 資源管理員來鎖定資源](../resource-group-lock-resources.md)。
+
+[使用者] 區段會在 Azure 入口網站中提供角色型存取控制 (RBAC) 支援，協助組織輕鬆且準確地滿足其存取管理需求。如需詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+
+按一下 [匯出範本] 可建置並匯出您所部署資源的範本，供未來部署使用。如需使用範本的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源](../resource-group-template-deploy.md)。
 
 ## 預設 Redis 伺服器組態
 
@@ -232,15 +263,36 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 |設定|預設值|說明|
 |---|---|---|
-|資料庫|16|預設資料庫為 DB 0。您可以根據每個連線使用 connection.GetDataBase(dbid) 選取一個不同的資料庫，其中 dbid 是介於 0 與 15 之間的數字。|
-|maxclients|取決於定價層 <sup>1</sup>|這是允許同時連線的用戶端數目上限。一旦達到限制，Redis 將關閉所有新的連接，同時傳送「達到用戶端的數目上限」錯誤。|
+|資料庫|16|資料庫的預設數目為 16，但是您可以根據定價層設定不同的數字。<sup>1</sup> 預設資料庫為 DB 0，您可以根據每個連線使用 `connection.GetDatabase(dbid)` 選取一個不同的資料庫，其中 dbid 是介於 `0` 與 `databases - 1` 之間的數字。|
+|maxclients|取決於定價層 <sup>2</sup>|這是允許同時連線的用戶端數目上限。一旦達到限制，Redis 將關閉所有新的連接，同時傳送「達到用戶端的數目上限」錯誤。|
 |maxmemory-policy|volatile-lru|Maxmemory 原則可設定當達到 maxmemory (建立快取時所選取之快取提供項目的大小) 時 Redis 將如何選取要移除的具目。Azure Redis 快取的預設設定為 volatile-lru，其會移除使用 LRU 演算法設定到期日的金鑰。此設定可以在 Azure 入口網站中設定。如需詳細資訊，請參閱 [Maxmemory-policy 與 maxmemory-reserved](#maxmemory-policy-and-maxmemory-reserved)。|
 |maxmemory-samples|3|LRU 和最小 TTL 演算法不是精確的演算法，而是近似的演算法 (為了節省記憶體)，因此您也可以選取要檢查的範例大小。例如，預設為 Redis 將檢查三個金鑰，並挑選最近較少使用的金鑰。|
 |lua-time-limit|5,000|Lua 指令碼的最大執行時間 (以毫秒為單位)。如果已到達最大執行時間，Redis 會記錄指令碼在最大允許的時間之後仍在執行中，並開始回覆查詢發生錯誤。|
 |lua-event-limit|500|這是指令碼事件佇列的最大大小。|
 |client-output-buffer-limit normalclient-output-buffer-limit pubsub|0 0 032mb 8mb 60|用戶端輸出緩衝區限制可用來強制中斷基於某些原因而無法足夠快地從伺服器讀取資料之用戶端的連線 (常見的原因是 Pub/Sub 用戶端使用訊息的速度無法與發佈者產生這些訊息的速度一樣快)。如需詳細資訊，請參閱 [http://redis.io/topics/clients](http://redis.io/topics/clients)。|
 
-每個 Azure Redis 快取定價層的 <a name="maxclients"></a> <sup>1</sup>`maxclients` 皆不相同。
+<a name="databases"></a> <sup>1</sup> 每個 Azure Redis 快取定價層和可在快取建立時設定的 `databases` 皆不相同。如果快取建立期間未指定 `databases` 設定，則預設值為 16。
+
+-	基本和標準的快取
+	-	C0 (250 MB) 快取 - 最多 16 個資料庫
+	-	C1 (1 GB) 快取 - 最多 16 個資料庫
+	-	C2 (2.5 GB) 快取 - 最多 16 個資料庫
+	-	C3 (6 GB) 快取 - 最多 16 個資料庫
+	-	C4 (13 GB) 快取 - 最多 32 個資料庫
+	-	C5 (26 GB) 快取 - 最多 48 個資料庫
+	-	C6 (53 GB) 快取 - 最多 64 個資料庫
+-	進階快取
+	-	P1 (6 GB - 60 GB) - 最多 16 個資料庫
+	-	P2 (13 GB - 130 GB) - 最多 32 個資料庫
+	-	P3 (26 GB - 260 GB) - 最多 48 個資料庫
+	-	P4 (53 GB - 530 GB) - 最多 64 個資料庫
+	-   所有進階版快取均已啟用 Redis 叢集 - Redis 叢集僅支援使用資料庫 0，使得 `databases` 限制已啟用 Redis 叢集的任何進階快取實際上是 1，並且不允許[選取](http://redis.io/commands/select)命令。如需詳細資訊，請參閱[我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+
+
+>[AZURE.NOTE] `databases` 設定只能在快取建立期間，而且只能使用 PowerShell、CLI 或其他管理用戶端設定。如需在快取建立期間使用 PowerShell 設定 `databases` 的範例，請參閱 [New-AzureRmRedisCache](cache-howto-manage-redis-cache-powershell.md#databases)。
+
+
+<a name="maxclients"></a> <sup>2</sup> 每個 Azure Redis 快取定價層的 `maxclients` 皆不相同。
 
 -	基本和標準的快取
 	-	C0 (250 MB) 快取 - 最多 256 個連接
@@ -250,7 +302,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 	-	C4 (13 GB) 快取 - 最多 10,000 個連接
 	-	C5 (26 GB) 快取 - 最多 15,000 個連接
 	-	C6 (53 GB) 快取 - 最多 20,000 個連接
--	高階快取
+-	進階快取
 	-	P1 (6 GB - 60 GB) - 最多 7,500 個連接
 	-	P2 (13 GB - 130 GB) - 最多 15,000 個連接
 	-	P3 (26 GB - 260 GB) - 最多 30,000 個連接
@@ -268,12 +320,13 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 >-	SAVE
 >-	SHUTDOWN
 >-	SLAVEOF
+>-	CLUSTER - 叢集寫入命令已停用，但允許唯讀的叢集命令。
 
 如需 Redis 命令的詳細資訊，請參閱 [http://redis.io/commands](http://redis.io/commands)。
 
 ## Redis 主控台
 
-您可以使用 [Redis 主控台] \(可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
+您可以使用 [Redis 主控台] (可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
 
 >[AZURE.IMPORTANT] Redis 主控台無法使用 VNET 或叢集。
 >
@@ -301,4 +354,4 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 ## 後續步驟
 -	如需使用 Redis 命令的詳細資訊，請參閱[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

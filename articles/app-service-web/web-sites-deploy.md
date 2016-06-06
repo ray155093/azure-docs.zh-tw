@@ -126,9 +126,9 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 * [從任何 git/hg 儲存機制發行至 Web Apps](http://blog.davidebbo.com/2013/04/publishing-to-azure-web-sites-from-any.html)。  
 
 ## 使用整合式開發環境 (IDE) 部署
-如果您已使用 [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) 搭配 [Azure SDK](https://azure.microsoft.com/downloads/) 或其他 IDE 套件，例如 [Xcode](https://developer.apple.com/xcode/) 和 [Eclipse](https://www.eclipse.org)，您可以直接從您的 IDE 部署至 Azure。此選項適用於個別的開發人員。
+如果您已經將 [Visual Studio](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) 與 [Azure SDK](https://azure.microsoft.com/downloads/) 或其他整合式開發環境 (IDE) 套件 (例如 [Xcode](https://developer.apple.com/xcode/)、[Eclipse](https://www.eclipse.org) 及 [IntelliJ IDEA](https://www.jetbrains.com/idea/)) 搭配使用，您就可以直接從您的整合式開發環境 (IDE) 內部署到 Azure。此選項適用於個別的開發人員。
 
-取決於您的喜好設定，Visual Studio 支援所有三個部署程序 (FTP、Git 和 Web Deploy)，而其他 IDE 若有 FTP 或 Git 整合，便可以部署至 App Service (請參閱 [部署程序概觀](#overview))。
+視您的喜好設定而定，Visual Studio 支援所有三種部署程序 (FTP、Git 及 Web Deploy)，而其他 IDE 若有 FTP 或 Git 整合，便可以部署至 App Service (請參閱[部署程序概觀](#overview))。
 
 使用整合式開發環境 (IDE) 部署的優點如下：
 
@@ -155,7 +155,15 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 * [使用 Visual Studio 的 ASP.NET Web 部署](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/introduction)。這是分成 12 個單元的教學課程系列，其中討論的部署工作比此處所列的其他資源更為詳盡。本教學課程撰寫後已新增某些 Azure 部署功能，但稍後的附註會說明遺漏的功能。
 * [在 Visual Studio 2012 中直接從 Git 儲存機制將 ASP.NET 網站部署至 Azure](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881)。說明如何使用 Git 外掛程式將程式碼認可至 Git，以及將 Azure 連接到 Git 儲存機制，以在 Visual Studio 中部署 ASP.NET Web 專案。自 Visual Studio 2013 起，Git 支援已是內建的功能，不需安裝外掛程式。
 
-## <a name="automate"></a>使用命令列工具自動化部署
+###<a name="aztk"></a>如何使用適用於 Eclipse 和 IntelliJ IDEA 的 Azure 工具組來進行部署
+
+Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)和[適用於 IntelliJ 的 Azure 工具組](../azure-toolkit-for-intellij.md)，將 Web Apps 直接從 Eclipse 和 IntelliJ 部署到 Azure。下列教學課程說明使用上述任一整合式開發環境 (IDE)，將簡單的 "Hello" World Web 應用程式部署到 Azure 所涉及的步驟：
+
+*  [在 Eclipse 中建立 Azure 的 Hello World Web 應用程式](./app-service-web-eclipse-create-hello-world-web-app.md)。本教學課程示範如何使用「適用於 Eclipse 的 Azure 工具組」來建立與部署 Azure 的 Hello World Web 應用程式。
+*  [在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式](./app-service-web-intellij-create-hello-world-web-app.md)。本教學課程示範如何使用「適用於 IntelliJ 的 Azure 工具組」來建立與部署 Azure 的 Hello World Web 應用程式。
+
+
+## <a name="automate"></a>使用命令列工具進行自動化部署
 
 * [使用 MSBuild 自動化部署](#msbuild)
 * [使用 FTP 工具和指令碼複製檔案](#ftp)
@@ -219,11 +227,11 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 
 在某些情況中，您可能想要輕鬆地在預備版本和生產版本的應用程式之間來回切換。[如需詳細資訊，請參閱 Web Apps 上的預備部署](web-sites-staged-publishing.md)。
 
-具有備份及還原計劃是部署工作流程中相當重要的環節。如需 App Service 備份和還原功能的資訊，請參閱 [Web Apps 備份](web-sites-backup.md)。
+具有備份及還原計劃是部署工作流程中相當重要的環節。如需有關 App Service 備份和還原功能的資訊，請參閱 [Web Apps 備份](web-sites-backup.md)。
 
-如需如何使用 Azure 角色型存取控制來管理 App Service 部署存取的資訊，請參閱 [RBAC 和 Web 應用程式發行](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/)。
+如需了解如何使用 Azure「角色型存取控制」來管理對 App Service 部署的存取，請參閱 [RBAC 和 Web 應用程式發行](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/)。
 
 
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

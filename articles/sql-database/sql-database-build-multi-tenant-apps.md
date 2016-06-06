@@ -21,7 +21,7 @@
 
 ## 利用彈性集區及建置更有效率的多租用戶應用程式
 
-如果您是負責撰寫多租用戶應用程式並處理多位客戶的 SaaS 開發人員，通常會面臨在客戶效能、管理與安全性方面的取捨。但有了 Azure SQL Database 的彈性資料庫集區之後，您再也不必面對這樣的兩難情況了。這些集區可協助您管理及監視多租用戶應用程式，並獲得一位客戶一個資料庫的隔離優點。
+如果您是負責撰寫多租用戶應用程式並處理多位客戶的 SaaS 開發人員，通常會面臨在客戶效能、管理與安全性方面的取捨。但有了 Azure SQL Database 的彈性資料庫集區之後，您再也不必面對這樣的兩難情況了。這些集區可協助您管理及監視多租用戶應用程式，並獲得一位客戶一個資料庫的隔離優點。請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 ![build-multi-tenant-apps](./media/sql-database-build-multi-tenant-apps/sql-database-build-multi-tenant-apps.png)
 
@@ -51,7 +51,7 @@
 
 ** 執行跨資料庫的交易。** [彈性資料庫交易](sql-database-elastic-transactions-overview.md)可讓您在 SQL Database 中執行跨多個資料庫的交易以及執行作業 (也就是在處理跨資料庫的財務交易時，或在更新一個資料庫中的庫存及訂單時)。
 
-** 執行多個資料庫相同的作業。** [彈性資料庫工作](sql-database-elastic-jobs-overview.md)會執行系統管理作業，例如重建索引或更新彈性集區中跨越每個資料庫的結構描述。
+** 執行多個資料庫相同的作業。** [彈性資料庫作業](sql-database-elastic-jobs-overview.md)會執行系統管理作業，例如重建索引或更新彈性集區中跨越每個資料庫的結構描述。
 
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
@@ -65,4 +65,4 @@
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

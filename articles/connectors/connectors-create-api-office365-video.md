@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的邏輯應用程式中新增 Office 365 影片 API | Microsoft Azure"
-description="開始在您的 Microsoft Azure App service Logic apps 中使用 Office 365 影片 API (連接器)"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的邏輯應用程式中新增 Office 365 影片連接器 | Microsoft Azure"
+description="開始在您的 Microsoft Azure App Service Logic Apps 中使用 Office 365 影片連接器"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,38 +14,37 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/23/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Office 365 影片 API
-連接至 Office 365 影片，以取得 Office 365 影片的相關資訊、影片清單等。可從以下位置使用 Office 365 影片 API：
+# 開始使用 Office 365 影片連接器
+連接至 Office 365 影片，以取得 Office 365 影片的相關資訊、影片清單等。您可以從下列應用程式使用 Office 365 影片連接器︰
 
 - 邏輯應用程式 
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。此 API 不受任何舊版結構描述支援。
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。所有的舊版結構描述均不支援此連接器。
 
 有了 Office 365 影片，您可以：
 
 - 根據您從 Office 365 影片所取得的資料，來建置您的商務流程。 
-- 檢查影片入口網站狀態、取得頻道影片清單等動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，您可以使用 Bing 搜尋 API 來搜尋 Office 365 影片，然後使用 Office 365 影片 API 取得該影片的相關資訊。如果影片符合您的需求，您可以將該影片張貼在 Facebook 上。 
+- 檢查影片入口網站狀態、取得頻道影片清單等動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，您可以使用 Bing 搜尋連接器來搜尋 Office 365 影片，然後使用 Office 365 影片連接器取得該影片的相關資訊。如果影片符合您的需求，您可以將該影片張貼在 Facebook 上。 
 
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
-Office 365 影片 API 提供下列動作。但不包含觸發程序。
+Office 365 影片連接器提供下列動作。但不包含觸發程序。
 
 | 觸發程序 | 動作|
 | --- | --- |
 | None | <ul><li>檢查影片入口網站狀態</li><li>取得所有可檢視的頻道</li><li>取得某支影片之 Azure 媒體服務資訊清單的播放 URL</li><li>取得權限為影片解密的持有人權杖</li><li>取得特定 office365 影片的相關資訊</li><li>列出某個頻道中的所有 office365 影片</li></ul>
 
-所有 API 皆支援 JSON 與 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
-## 建立 Office365 影片 API 的連接
-當您將此 API 新增到邏輯應用程式時，您必須登入您的 Office 365 影片帳戶，並允許邏輯應用程式連線到您的帳戶。
+## 建立至 Office365 影片連接器的連線
+當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 影片帳戶，並允許邏輯應用程式連線到您的帳戶。
 
-1. 登入 Office 365 影片帳戶。
-2. 允許您的邏輯應用程式連線並使用您的 Office 365 帳戶。 
+>[AZURE.INCLUDE [建立至 Office 365 影片連線的步驟](../../includes/connectors-create-api-office365video.md)]
 
 當您建立連線之後，請輸入 Office 365 影片的屬性，例租用戶名稱或頻道識別碼。本主題的＜REST API 參考＞一節會說明這些屬性。
 
@@ -221,4 +220,4 @@ Office 365 影片 API 提供下列動作。但不包含觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

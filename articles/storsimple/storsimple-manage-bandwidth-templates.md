@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/10/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 頻寬範本
@@ -64,7 +64,7 @@
    3. 從下拉式清單中，選取 [**開始時間**]。這就是排程開始的時間。
    4. 從下拉式清單中，選取 [**結束時間**]。這就是排程結束的時間。
 
-         > [AZURE.NOTE] 不允許重疊的排程。如果開始和結束時間會產生重疊排程，您會看到錯誤訊息。
+         > [AZURE.NOTE] Overlapping schedules are not allowed. If the start and end times will result in an overlapping schedule, you will see an error message to that effect.
 
    5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中 (上傳與下載) 的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
 
@@ -172,4 +172,4 @@
 
 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

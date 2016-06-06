@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 SQL Azure API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 SQL Azure API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 SQL Azure 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 SQL Azure 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,14 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/16/2016"
+   ms.date="05/19/2016"
    ms.author="mandia"/>
 
 
-# 開始使用 SQL Azure API
+# 開始使用 SQL Azure 連接器
 連線到 Azure SQL Database 來管理資料表和資料列，例如插入資料列、取得資料表等等。
 
-您可以從下列應用程式使用 Azure SQL Database API：
+您可以從下列應用程式使用 Azure SQL Database 連接器：
 
 - 邏輯應用程式 (如本主題所述)
 - PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
@@ -43,14 +43,12 @@ SQL 包含下列動作，但不包含觸發程序。
 --- | ---
 None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插入資料列</li><li>刪除資料列</li><li>取得資料表</li><li>更新資料列</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 SQL 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的值：
 
-|屬性| 必要|說明|
-| ---|---|---|
-|SQL 連接字串|是|輸入您的 Azure SQL Database 連接字串|
+>[AZURE.INCLUDE [建立至 SQL 連線的步驟](../../includes/connectors-create-api-sqlazure.md)]
+
 
 當您建立連線之後，請輸入 SQL 的屬性，例如資料表名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -60,7 +58,7 @@ None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插�
 適用的版本：1.0。
 
 ### 取得單一資料列 
-擷取 SQL 資料表中的單一資料列。```GET: /datasets/default/tables/{table}/items/{id}```
+從 SQL 資料表擷取單一資料列。```GET: /datasets/default/tables/{table}/items/{id}```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -75,7 +73,7 @@ None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插�
 
 
 ### 取得多個資料列 
-擷取 SQL 資料表中的多個資料列。```GET: /datasets/default/tables/{table}/items```
+從 SQL 資料表擷取多個資料列。```GET: /datasets/default/tables/{table}/items```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -228,4 +226,4 @@ None | <ul><li>取得單一資料列</li><li>取得多個資料列</li><li>插�
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

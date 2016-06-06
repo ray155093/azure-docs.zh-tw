@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="04/20/2016"
+   ms.date="05/24/2016"
    ms.author="andkjell"/>
 
 # Lotus Domino 連接器技術參考
@@ -32,12 +32,12 @@ Lotus Domino 連接器可讓您整合同步處理服務與 IBM 的 Lotus Domino 
 
 目前的連接器版本大致支援下列功能：
 
-| 功能 | 支援 |
-| --- | --- |
-| 連接的資料來源 | 伺服器：<li>Lotus Domino 8.5.x</li><li>Lotus Domino 9.x</li>用戶端：<li>Lotus Notes 9.x</li> |
-| 案例 | <li>物件生命週期管理</li><li>群組管理</li><li>密碼管理</li> |
-| 作業 | <li>完整和差異匯入</li><li>匯出</li><li>設定和變更 HTTP 密碼</li> |
-| 結構描述 | <li>人員 (漫遊使用者、連絡人 (沒有憑證的人員))</li><li>群組</li><li>資源 (資源、會議室、線上會議)</li><li>郵寄資料庫</li><li>動態探索支援物件的屬性</li> |
+功能 | 支援
+--- | ---
+連接的資料來源 | 伺服器：<li>Lotus Domino 8.5.x</li><li>Lotus Domino 9.x</li>用戶端：<li>Lotus Notes 9.x</li>
+案例 | <li>物件生命週期管理</li><li>群組管理</li><li>密碼管理</li>
+作業 | <li>完整和差異匯入</li><li>匯出</li><li>設定和變更 HTTP 密碼</li>
+結構描述 | <li>人員 (漫遊使用者、連絡人 (沒有憑證的人員))</li><li>群組</li><li>資源 (資源、會議室、線上會議)</li><li>郵寄資料庫</li><li>動態探索支援物件的屬性</li>
 
 Lotus Domino 連接器利用 Lotus Notes 用戶端與 Lotus Domino 伺服器進行通訊。因此，同步處理伺服器上必須安裝支援的 Lotus Notes 用戶端。用戶端與伺服器之間的通訊是透過 Lotus Notes .NET Interop (Interop.domino.dll) 介面來實作。此介面可協助 Microsoft.NET 平台和 Lotus Notes 用戶端之間的通訊，並支援 Lotus Domino 文件和檢視的存取。在執行差異匯入時，也可以使用 C++ 原生介面 (取決於所選的差異匯入方法)。
 
@@ -59,10 +59,10 @@ Lotus Domino 連接器利用 Lotus Notes 用戶端與 Lotus Domino 伺服器進�
 
 下表列出每個作業所需的權限：
 
-| 作業 | 存取權限 |
-| --- | --- |
-| Import | <li>讀取公用文件</li><li>完整存取系統管理員 (如果您是完整存取權系統管理員群組的成員，將自動擁有有效的 ACL 存取權)。</li> |
-| 匯出和設定密碼 | 有效的存取權：<li>建立文件</li><li>刪除文件</li><li>讀取公用文件</li><li>寫入公用文件</li><li>複寫或複製文件</li>除了上述存取權，還必須獲派下列角色才能進行匯出作業：<li>CreateResource</li><li>GroupCreator</li><li>GroupModifier</li><li>UserCreator</li><li>UserModifier</li> |
+作業 | 存取權限
+--- | ---
+Import | <li>讀取公用文件</li><li>完整存取系統管理員 (如果您是完整存取權系統管理員群組的成員，將自動擁有有效的 ACL 存取權)。</li>
+匯出和設定密碼 | 有效的存取權：<li>建立文件</li><li>刪除文件</li><li>讀取公用文件</li><li>寫入公用文件</li><li>複寫或複製文件</li>除了上述存取權，還必須獲派下列角色才能進行匯出作業：<li>CreateResource</li><li>GroupCreator</li><li>GroupModifier</li><li>UserCreator</li><li>UserModifier</li>
 
 ### 直接作業和 AdminP
 
@@ -70,21 +70,21 @@ Lotus Domino 連接器利用 Lotus Notes 用戶端與 Lotus Domino 伺服器進�
 
 **主要通訊錄**
 
-| Object | 建立 | 更新 | 刪除 |
-| --- | --- | --- | --- |
-| Person | AdminP | 直接 | AdminP |
-| 群組 | AdminP | 直接 | AdminP |
-| MailInDB | 直接 | 直接 | 直接 |
-| 資源 | AdminP | 直接 | AdminP |
+Object | 建立 | 更新 | 刪除
+--- | --- | --- | ---
+Person | AdminP | 直接 | AdminP
+群組 | AdminP | 直接 | AdminP
+MailInDB | 直接 | 直接 | 直接
+資源 | AdminP | 直接 | AdminP
 
 **次要通訊錄**
 
-| Object | 建立 | 更新 | 刪除 |
-| --- | --- | --- | --- |
-| Person | N/A | 直接 | 直接 |
-| 群組 | 直接 | 直接 | 直接 |
-| MailInDB | 直接 | 直接 | 直接 |
-| 資源 | N/A | N/A | N/A |
+Object | 建立 | 更新 | 刪除
+--- | --- | --- | ---
+Person | N/A | 直接 | 直接
+群組 | 直接 | 直接 | 直接
+MailInDB | 直接 | 直接 | 直接
+資源 | N/A | N/A | N/A
 
 建立資源時會建立 Notes 文件。同樣地，刪除資源時也會刪除 Notes 文件。
 
@@ -327,11 +327,11 @@ Person 物件代表組織和組織單位中的使用者。除了預設屬性，D
 
 資源是 Lotus Domino 中的另一種資料庫。資源可以是備有各種設備的會議室，例如投影機。Lotus Domino 連接器也支援子類型資源，其定義是以資源類型屬性為基礎：
 
-| 資源類型 | 資源類型屬性 |
-| --- | --- |
-| 會議室 | 1 |
-| 資源 (其他) | 2 |
-| 線上會議 | 3 |
+資源類型 | 資源類型屬性
+--- | ---
+會議室 | 1
+資源 (其他) | 2
+線上會議 | 3
 
 要讓資源物件類型運作，必須具備下列項目：
 
@@ -409,21 +409,21 @@ Lotus Domino 連接器支援下列關於網際網路密碼的作業：
 
 下表列出這些屬性，並提供其描述。
 
-| 屬性 | 說明 |
-| --- | --- |
-| \_MMS\_AltFullName | 使用者的替代完整名稱。 |
-| \_MMS\_AltFullNameLanguage | 要用來指定使用者替代完整名稱的語言。 |
-| \_MMS\_CertDaysToExpire | 從當日起算的憑證到期前天數。若未指定，則預設日期是當日起算兩年後。 |
-| \_MMS\_Certifier | 包含認證者組織階層名稱的屬性。例如：OU=OrganizationUnit,O=Org,C=Country。 |
-| \_MMS\_IDPath | 如果屬性是空的，則不會在同步處理伺服器本機上建立使用者識別碼檔案。如果屬性包含檔案名稱，則會在 madata 資料夾中建立使用者識別碼檔案。屬性也可以包含使用者識別碼檔案建立所在位置的完整路徑。 |
-| \_MMS\_IDRegType | 人員可以分類為連絡人。美國使用者和國際使用者。下表列出可能的值：<li>0 - 連絡人</li><li>1 - 美國使用者</li><li>2 - 國際使用者</li> |
-| \_MMS\_IDStoreType | 適用於美國和國際使用者的必要屬性。此屬性包含整數值，可指定要將使用者識別碼儲存為 Notes 通訊錄中的附件，還是儲存在人員的郵件檔案中。如果使用者識別碼檔案是通訊錄中的附件，則可以選擇性地將其建立為具有 \_MMS\_IDPath 的檔案。<li>空白 - 將識別碼檔案儲存在識別碼保存庫中，沒有識別碼檔案 (用於「連絡人」)。</li><li> 1 - Notes 通訊錄中的附件。屬於附件的使用者識別碼檔案必須設定 \_MMS\_Password 屬性</li><li>2 - 將識別碼儲存在人員的郵件檔案中。\_MMS\_UseAdminP 必須設定為 false，以在人員註冊期間建立郵件檔案。必須為使用者識別碼檔案設定 \_MMS\_Password 屬性。</li>
-| \_MMS\_MailQuotaSizeLimit | 電子郵件檔案資料庫允許使用的 MB 數。 |
-| \_MMS\_MailQuotaWarningThreshold | 電子郵件檔案資料庫允許使用的 MB 數，超過之後就會發出警告。 |
-| \_MMS\_MailTemplateName | 用來建立使用者的電子郵件檔案的電子郵件範本檔案。如果有指定範本，則會使用指定的範本建立郵件檔案。如果未指定範本，則會使用預設範本檔案來建立檔案。 |
-| \_MMS\_OU | 選擇性屬性，此為認證者底下的 OU 名稱。連絡人的這個屬性應該是空的。 |
-| \_MMS\_Password | 使用者的必要屬性。此屬性包含物件識別碼檔案的密碼。 |
-| \_MMS\_UseAdminP | 如果應該要由 AdminP 程序在 Domino 伺服器上建立郵件檔案 (與匯出程序不同步)，則此屬性應該設定為 true。如果此屬性設定為 false，則會為 Domino 使用者建立郵件檔案 (在匯出程序中同步進行)。 |
+屬性 | 說明
+--- | ---
+\_MMS\_AltFullName | 使用者的替代完整名稱。
+\_MMS\_AltFullNameLanguage | 要用來指定使用者替代完整名稱的語言。
+\_MMS\_CertDaysToExpire | 從當日起算的憑證到期前天數。若未指定，則預設日期是當日起算兩年後。
+\_MMS\_Certifier | 包含認證者組織階層名稱的屬性。例如：OU=OrganizationUnit,O=Org,C=Country。
+\_MMS\_IDPath | 如果屬性是空的，則不會在同步處理伺服器本機上建立使用者識別碼檔案。如果屬性包含檔案名稱，則會在 madata 資料夾中建立使用者識別碼檔案。屬性也可以包含使用者識別碼檔案建立所在位置的完整路徑。
+\_MMS\_IDRegType | 人員可以分類為連絡人。美國使用者和國際使用者。下表列出可能的值：<li>0 - 連絡人</li><li>1 - 美國使用者</li><li>2 - 國際使用者</li>
+\_MMS\_IDStoreType | 適用於美國和國際使用者的必要屬性。此屬性包含整數值，可指定要將使用者識別碼儲存為 Notes 通訊錄中的附件，還是儲存在人員的郵件檔案中。如果使用者識別碼檔案是通訊錄中的附件，則可以選擇性地將其建立為具有 \_MMS\_IDPath 的檔案。<li>空白 - 將識別碼檔案儲存在識別碼保存庫中，沒有識別碼檔案 (用於「連絡人」)。</li><li> 1 - Notes 通訊錄中的附件。屬於附件的使用者識別碼檔案必須設定 \_MMS\_Password 屬性</li><li>2 - 將識別碼儲存在人員的郵件檔案中。\_MMS\_UseAdminP 必須設定為 false，以在人員註冊期間建立郵件檔案。必須為使用者識別碼檔案設定 \_MMS\_Password 屬性。</li>
+\_MMS\_MailQuotaSizeLimit | 電子郵件檔案資料庫允許使用的 MB 數。
+\_MMS\_MailQuotaWarningThreshold | 電子郵件檔案資料庫允許使用的 MB 數，超過之後就會發出警告。
+\_MMS\_MailTemplateName | 用來建立使用者的電子郵件檔案的電子郵件範本檔案。如果有指定範本，則會使用指定的範本建立郵件檔案。如果未指定範本，則會使用預設範本檔案來建立檔案。
+\_MMS\_OU | 選擇性屬性，此為認證者底下的 OU 名稱。連絡人的這個屬性應該是空的。
+\_MMS\_Password | 使用者的必要屬性。此屬性包含物件識別碼檔案的密碼。
+\_MMS\_UseAdminP | 如果應該要由 AdminP 程序在 Domino 伺服器上建立郵件檔案 (與匯出程序不同步)，則此屬性應該設定為 true。如果此屬性設定為 false，則會為 Domino 使用者建立郵件檔案 (在匯出程序中同步進行)。
 
 對於具有相關聯識別碼檔案的使用者，\_MMS\_Password 屬性必須包含值。若透過 Lotus Notes 用戶端存取電子郵件，使用者的 MailServer 和 MailFile 屬性必須包含值。
 
@@ -449,13 +449,13 @@ Lotus Domino 連接器在同步處理服務中主要支援四種類型的物件 
 
 本節列出要將物件匯出至 Domino 伺服器時，每個支援物件類型的必要屬性。
 
-| 物件類型 | 必要屬性 |
-| --- | --- |
-| 群組 | <li>ListName</li> |
-| 郵寄資料庫 | <li>FullName</li><li>MailFile</li><li>MailServer</li><li>MailDomain</li> |
-| Person | <li>LastName</li><li>MailFile</li><li>ShortName</li><li>\_MMS\_Password</li><li>\_MMS\_IDStoreType</li><li>\_MMS\_Certifier</li><li>\_MMS\_IDRegType</li><li>\_MMS\_UseAdminP</li> |
-| 連絡人 (沒有認證者的人員) | <li>\_MMS\_IDRegType</li> |
-| 資源 | <li>FullName</li><li>ResourceType</li><li>ConfDB</li><li>ResourceCapacity</li><li>Site</li><li>DisplayName</li><li>MailFile</li><li>MailServer</li><li>MailDomain</li> |
+物件類型 | 必要屬性
+--- | ---
+群組 | <li>ListName</li>
+郵寄資料庫 | <li>FullName</li><li>MailFile</li><li>MailServer</li><li>MailDomain</li>
+Person | <li>LastName</li><li>MailFile</li><li>ShortName</li><li>\_MMS\_Password</li><li>\_MMS\_IDStoreType</li><li>\_MMS\_Certifier</li><li>\_MMS\_IDRegType</li><li>\_MMS\_UseAdminP</li>
+連絡人 (沒有認證者的人員) | <li>\_MMS\_IDRegType</li>
+資源 | <li>FullName</li><li>ResourceType</li><li>ConfDB</li><li>ResourceCapacity</li><li>Site</li><li>DisplayName</li><li>MailFile</li><li>MailServer</li><li>MailDomain</li>
 
 ## 常見問題
 
@@ -539,4 +539,4 @@ Domino 中有數種方式可延伸結構描述，使其顯示為連接器可使�
 
 -	如需如何啟用記錄來疑難排解連接器的資訊，請參閱[如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

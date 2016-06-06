@@ -1,12 +1,12 @@
 <properties
-   pageTitle="使用入口網站疑難排解部署 | Microsoft Azure"
-   description="描述如何使用 Azure 入口網站來偵測並修正源自資源管理員部署的問題。"
+   pageTitle="使用入口網站來檢視部署作業 | Microsoft Azure"
+   description="描述如何使用 Azure 入口網站來偵測源自「資源管理員」部署的錯誤。"
    services="azure-resource-manager,virtual-machines"
    documentationCenter=""
    tags="top-support-issue"
    authors="tfitzmac"
    manager="timlt"
-   editor=""/>
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -14,10 +14,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-multiple"
    ms.workload="infrastructure"
-   ms.date="03/21/2016"
+   ms.date="05/19/2016"
    ms.author="tomfitz"/>
 
-# 使用 Azure 入口網站疑難排解資源群組部署
+# 使用 Azure 入口網站來檢視部署作業
 
 > [AZURE.SELECTOR]
 - [入口網站](resource-manager-troubleshoot-deployments-portal.md)
@@ -25,7 +25,7 @@
 - [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
 - [REST API](resource-manager-troubleshoot-deployments-rest.md)
 
-如果您在將資源部署至 Azure 時發生錯誤，您需要針對出錯的地方進行疑難排解。Azure 入口網站提供介面，可讓您輕鬆地找到錯誤並判斷可能的修正方法。
+如果您在將資源部署到 Azure 時收到錯誤，您可能會想要查看有關所執行之部署作業的更多詳細資料。Azure 入口網站提供介面，可讓您輕鬆地找到錯誤並判斷可能的修正方法。
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
@@ -101,4 +101,4 @@
 - 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

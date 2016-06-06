@@ -1,5 +1,5 @@
 <properties
-	pageTitle="如何使用拼音的 Blob 儲存體 | Microsoft Azure"
+	pageTitle="如何使用拼音的 Blob 儲存體 (物件儲存體) | Microsoft Azure"
 	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	services="storage"
 	documentationCenter="ruby"
@@ -23,6 +23,8 @@
 
 ## 概觀
 
+Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
+
 本指南將示範如何使用 Blob 儲存體執行一般案例。這些範例使用 Ruby API 撰寫。所涵蓋的案例包括**上傳、列出、下載**及**刪除** Blob。
 
 [AZURE.INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
@@ -31,7 +33,7 @@
 
 ## 建立 Ruby 應用程式
 
-建立 Ruby 應用程式。如需指示，請參閱 [Azure VM 上的 Ruby on Rails Web 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)
+建立 Ruby 應用程式。如需指示，請參閱 [Azure VM 上的 Ruby on Rails Web 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
 ## 設定您的應用程式以存取儲存體
 
@@ -155,4 +157,4 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 - GitHub 上的 [Azure SDK for Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) 存放庫
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

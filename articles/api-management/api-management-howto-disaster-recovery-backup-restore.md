@@ -4,7 +4,7 @@
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="douge" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016" 
+	ms.date="05/24/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -40,7 +40,7 @@
 
 第一個步驟是建立 Azure Active Directory 應用程式。使用含 API 管理服務執行個體的訂用帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)，並瀏覽至預設 Azure Active Directory 的 [應用程式] 索引標籤。
 
->[AZURE.NOTE] 如果您的帳戶看不到 Azure Active Directory 預設目錄，請連絡 Azure 訂用帳戶的系統管理員，以授與您的帳戶必要權限。如需尋找您預設目錄的資訊，請參閱[找出您的預設目錄](../virtual-machines/resource-group-create-work-id-from-persona.md/#locate-your-default-directory-in-the-azure-portal)。
+>[AZURE.NOTE] 如果您的帳戶看不到 Azure Active Directory 預設目錄，請連絡 Azure 訂用帳戶的系統管理員，以授與您的帳戶必要權限。如需尋找您預設目錄的資訊，請參閱[找出您的預設目錄](../virtual-machines/resource-group-create-work-id-from-persona.md#locate-your-default-directory-in-the-azure-portal)。
 
 ![建立 Azure Active Directory 應用程式][api-management-add-aad-application]
 
@@ -191,4 +191,4 @@
 [api-management-endpoint]: ./media/api-management-howto-disaster-recovery-backup-restore/api-management-endpoint.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

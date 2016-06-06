@@ -13,18 +13,20 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/13/2016"
+   ms.date="05/18/2016"
    ms.author="SubramaR"/>
 
 # Linux 上的 Service Fabric
 
 Service Fabric 目前在 Linux 上可供有限預覽，讓您如同在 Windows 上一樣，在該環境中建置、部署和管理高可用性、高可調整性應用程式。此外，高階的 Service Fabric 架構 (Reliable Services 和 Reliable Actors) 現在可在 Java 中建置。
 
+> [AZURE.VIDEO service-fabric-linux-preview]
+
 ## 支援的作業系統和程式設計語言
 
 有限預覽支援建立一整體開發叢集，以及在 Azure 中支援執行 Ubuntu Server 15.10 的多部電腦的叢集。
 
-您可以使用任何語言或架構來建置[客體可執行服務](service-fabric-deploy-existing-app.md)。您也可以使用 Java 來建置以 Reliable Services 和 Reliable Actor 架構為基礎的服務。
+您可以使用任何語言或架構來建置[來賓可執行服務](service-fabric-deploy-existing-app.md)。您也可以使用 Java 來建置以 Reliable Services 和 Reliable Actor 架構為基礎的服務。
 
 >[AZURE.NOTE] Java 尚未支援可靠的集合。
 
@@ -38,4 +40,4 @@ Service Fabric 目前在 Linux 上可供有限預覽，讓您如同在 Windows �
 
 請熟悉 [Reliable Actors](service-fabric-reliable-actors-introduction.md) 和 [Reliable Services](service-fabric-reliable-services-introduction.md) 程式設計架構。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

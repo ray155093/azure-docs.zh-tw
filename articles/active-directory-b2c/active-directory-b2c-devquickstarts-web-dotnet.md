@@ -40,12 +40,16 @@ Azure Active Directory (Azure AD) B2C 可讓您將強大的自助式身分識別
 
 ## 建立您的原則
 
-在 Azure AD B2C 中，每個使用者經驗皆由[原則](active-directory-b2c-reference-policies.md)所定義。此程式碼範例包含三種身分識別體驗：註冊、登入和編輯設定檔。您必須為每個類型建立一個原則，如[原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)所述。建立這三個原則時，請務必：
+在 Azure AD B2C 中，每個使用者經驗皆由[原則](active-directory-b2c-reference-policies.md)所定義。此程式碼範例包含三種身分識別體驗：註冊、登入和編輯設定檔。您必須為每個類型建立一個原則，如[原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)所述。
+
+>[AZURE.NOTE] Azure AD B2C 也支援合併的註冊或登入原則 (此教學課程中未說明)。註冊或登入原則是在[此對等教學課程](active-directory-b2c-devquickstarts-web-dotnet-susi.md)中說明。
+
+建立這三個原則時，請務必：
 
 - 在身分識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
 - 在註冊原則中，選擇 [顯示名稱] 和其他註冊屬性。
 - 在每個原則中，選擇 [顯示名稱] 宣告做為應用程式宣告。您也可以選擇其他宣告。
-- 建立每個原則後，請複製原則的 [名稱]。稍後您將需要這些原則名稱。
+- 在您建立每個原則之後，請複製原則的 [名稱]。稍後您將需要這些原則名稱。
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
@@ -53,13 +57,15 @@ Azure Active Directory (Azure AD) B2C 可讓您將強大的自助式身分識別
 
 ## 下載程式碼和設定驗證
 
-此範例的程式碼[保留在 GitHub 上](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet)。若要遵循指示建立範例，您可以[下載基本架構專案的 .zip 檔案](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
+[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-devquickstarts-bug-fix.md)]
+
+此範例的程式碼[保留在 GitHub 上](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet)。如要遵循指示建置範例，請[下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet.git
 ```
 
-完整應用程式也[提供 .zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/complete.zip)，或放在相同儲存機制的 `complete` 分支中。
+完整的範例也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/complete.zip)，或從相同存放庫的 `complete` 分支取得。
 
 下載範例程式碼後，請開啟 Visual Studio .sln 檔案開始進行。
 
@@ -95,7 +101,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 [AZURE.INCLUDE [active-directory-b2c-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-接下來，將 OWIN 啟動類別加入名為 `Startup.cs` 的專案。以滑鼠右鍵按一下專案，選取 [新增] 和 [新增項目]，然後搜尋 "OWIN"。 將類別宣告變更為 `public partial class Startup`。我們已為您在另一個檔案中實作了此類別的一部分。OWIN 中介軟體將會在應用程式啟動時叫用 `Configuration(...)` 方法。在此方法中，請呼叫 `ConfigureAuth(...)`，為您的應用程式設定驗證。
+接下來，將 OWIN 啟動類別加入名為 `Startup.cs` 的專案。以滑鼠右鍵按一下專案、依序選取 [新增] 和 [新增項目]，然後搜尋 OWIN。 將類別宣告變更為 `public partial class Startup`。我們已為您在另一個檔案中實作了此類別的一部分。OWIN 中介軟體將會在應用程式啟動時叫用 `Configuration(...)` 方法。在此方法中，請呼叫 `ConfigureAuth(...)`，為您的應用程式設定驗證。
 
 ```C#
 // Startup.cs
@@ -109,7 +115,7 @@ public partial class Startup
 }
 ```
 
-開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法。您在 `OpenIdConnectAuthenticationOptions` 中所提供的參數會做座標，讓您的應用程式與 Azure AD 進行通訊。您還必須設定 Cookie 驗證。OpenID Connect 中介軟體會使用 Cookie 維護使用者工作階段，此外還有其他用途。
+開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法。您在 `OpenIdConnectAuthenticationOptions` 中所提供的參數會做為座標，讓您的應用程式與 Azure AD 進行通訊。您還必須設定 Cookie 驗證。OpenID Connect 中介軟體會使用 Cookie 維護使用者工作階段，此外還有其他用途。
 
 ```C#
 // App_Start\Startup.Auth.cs
@@ -310,7 +316,7 @@ public ActionResult Claims()
 
 ## 新增社交 IDP
 
-目前，應用程式僅支援使用者以**本機帳戶**來註冊和登入。這些是儲存在 B2C 目錄中使用使用者名稱和密碼的帳戶。Azure AD B2C 可讓您進一步支援其他**身分識別提供者** (IDP)，而不需變更任何程式碼。
+目前，應用程式僅支援使用者以**本機帳戶**來註冊和登入。這些是儲存在 B2C 目錄中使用使用者名稱和密碼的帳戶。藉由使用 Azure AD B2C，您可以新增對其他**身分識別提供者** (IDP) 的支援，但不需變更任何程式碼。
 
 若要將社交 IDP 加入至應用程式，請依照下列文章中的詳細指示開始。針對您想要支援的每個 IDP，您必須在該系統中註冊應用程式並取得用戶端識別碼。
 
@@ -319,11 +325,11 @@ public ActionResult Claims()
 - [將 Amazon 設定為 IDP](active-directory-b2c-setup-amzn-app.md)
 - [將 LinkedIn 設定為 IDP](active-directory-b2c-setup-li-app.md)
 
-將身分識別提供者加入 B2C 目錄之後，您必須編輯您的所有三個原則以包含新的 IDP，如[原則參考文章](active-directory-b2c-reference-policies.md)所述。儲存您的原則之後，重新執行應用程式。在每一次的身分識別體驗中，您應該會看到新的 IDP 已加入成為登入和註冊選項。
+當您將身分識別提供者新增到 B2C 目錄之後，就必須分別編輯您的三個原則來包含新的 IDP，如[原則參考文章](active-directory-b2c-reference-policies.md)中所述。儲存您的原則之後，重新執行應用程式。在每一次的身分識別體驗中，您應該會看到新的 IDP 已加入成為登入和註冊選項。
 
 您可以在範例應用程式上試驗原則並觀察其效果。新增或移除 IDP、管理應用程式宣告，或變更註冊屬性。試驗到您能夠了解原則、驗證要求和 OWIN 如何結合在一起為止。
 
-[這裡以 .zip 檔案提供](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/complete.zip)完整範例供您參考 (不含您的組態值)。您也可以從 Github 複製它：
+[這裡以 .zip 檔案提供](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet/archive/complete.zip)完整範例 (不含您的組態值) 供您參考。您也可以從 Github 複製它：
 
 ```
 git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIdConnect-DotNet.git
@@ -341,4 +347,4 @@ You can now move on to more advanced B2C topics. You might try:
 
 -->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

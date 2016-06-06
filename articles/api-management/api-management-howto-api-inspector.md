@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/25/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫
@@ -261,4 +261,4 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

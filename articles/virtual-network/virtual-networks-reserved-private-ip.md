@@ -92,11 +92,11 @@
 
 ## 後續步驟
 
-[保留的 IP](virtual-networks-reserved-public-ip)
+[保留的 IP](virtual-networks-reserved-public-ip.md)
 
-[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip)
+[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md)
 
 [保留的 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

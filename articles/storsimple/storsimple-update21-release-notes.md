@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/18/2016"
+   ms.date="05/19/2016"
    ms.author="alkohli" />
 
 # StorSimple 8000 系列 Update 2.1 版本資訊  
@@ -21,7 +21,7 @@
 
 下列版本資訊說明 StorSimple 8000 系列 Update 2.1 的新功能，並識別未決的重要問題。當中也包含此版本中隨附之 StorSimple 軟體更新的清單。
 
-Update 2.1 可以套用至任何執行 Release (GA)、Update 0.1 到 Update 2 的 StorSimple 裝置。與 Update 2.1 相關聯的裝置版本為 6.3.9600.17704。
+Update 2.1 可以套用至任何執行 Release (GA)、Update 0.1 到 Update 2 的 StorSimple 裝置。與 Update 2.1 相關聯的裝置版本為 6.3.9600.17705。
 
 在 StorSimple 方案中部署更新之前，請檢閱版本資訊中所包含的資訊。
 
@@ -111,4 +111,4 @@ Update 2.1 包含以下重要改良功能。
 
 了解如何在 StorSimple 裝置上[安裝 Update 2.1](storsimple-install-update-21.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

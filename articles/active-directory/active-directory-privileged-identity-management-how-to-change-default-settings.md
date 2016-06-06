@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/15/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # 如何管理 Azure AD Privileged Identity Management 的角色啟用設定
 
-安全性系統管理員可以自訂其組織中的 Azure AD Privileged Identity Management (PIM)，包括變更啟用暫時性角色指派之使用者的體驗。
+特殊權限角色管理員可以自訂其組織中的 Azure AD Privileged Identity Management (PIM)，包括變更啟用暫時性角色指派之使用者的體驗。
 
 ## 管理角色啟用設定
 
@@ -32,7 +32,8 @@
 8. 按一下 [儲存]。
 
 您無法針對 Azure AD 和 Office365 中具有極高權限的角色停用 MFA，包括︰
-- 全域管理員  
+- 全域管理員
+- 特殊權限角色管理員   
 - 使用者帳戶管理員  
 - 目錄寫入器  
 - 合作夥伴第 1 層支援  
@@ -53,4 +54,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -36,7 +36,7 @@ Azure Container Service 會使用 Docker 容器格式，確保您的應用程式
 使用 Azure Container Service 建立 Docker 叢集
 -------------------------------------------------------
 
-若要開始使用 Azure Container Service，您要使用 Azure Resource Manager 範本來部署 Azure Container Service 叢集。您可以使用 DC/OS 或 Docker Swarm，透過不同的大小與可用性選項來設定此部署。您可以使用 Azure CLI 或 PowerShell，透過 Azure 入口網站來部署 Azure Resource Manager 範本。範本也可以修改來包含其他或進階的 Azure 組態。如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱[部署 Azure Container Service 叢集](./container-service-deployment.md)。
+若要開始使用 Azure Container Service，您要使用 Azure Resource Manager 範本來部署 Azure Container Service 叢集。您可以使用 DC/OS 或 Docker Swarm，透過不同的大小與可用性選項來設定此部署。您可以使用 Azure CLI 或 PowerShell，透過 Azure 入口網站來部署 Azure Resource Manager 範本。範本也可以修改來包含其他或進階的 Azure 組態。如需有關部署「Azure 容器服務」叢集的詳細資訊，請參閱[部署 Azure 容器服務叢集](container-service-deployment.md)。
 
 部署應用程式
 ------------------------
@@ -71,9 +71,9 @@ DC/OS 可支援大量的[架構](http://mesos.apache.org/documentation/latest/fr
 
 在 cgroups 中，Marathon 是服務的全叢集初始化和控制系統--或者，若是 Azure Container Service，則為 Docker 格式的容器。它是 Chronos (DC/OS 的容錯作業排程器) 的理想合作夥伴，其可處理相依性和以時間為基礎的排程。
 
-Marathon 和 Chronos 提供 Web UI，您可以用它來部署您的應用程式。您可以在 `http://DNS\_PREFIX.REGION.cloudapp.azure.com` 這樣的 URL 存取此程式：其中 DNS\_PREFIX 及 REGION 兩者都在部署時定義。當然，您也可以提供您自己的 DNS 名稱。如需有關如何使用 Marathon Web UI 來執行容器的詳細資訊，請參閱 [Container management through the web UI (透過 Web UI 來管理容器)](./container-service-mesos-marathon-ui.md)。
+Marathon 和 Chronos 提供 Web UI，您可以用它來部署您的應用程式。您可以在 `http://DNS\_PREFIX.REGION.cloudapp.azure.com` 這樣的 URL 存取此程式：其中 DNS\_PREFIX 及 REGION 兩者都在部署時定義。當然，您也可以提供您自己的 DNS 名稱。如需有關使用 Marathon Web UI 來執行容器的詳細資訊，請參閱[透過 Web UI 來管理容器](container-service-mesos-marathon-ui.md)。
 
-您也可以使用 REST API 來與 Marathon 和 Chronos 通訊。有許多可用於每個工具的用戶端程式庫。這些程式庫涵蓋各種不同語言--當然，您可以使用任何語言的 HTTP 通訊協定。此外，許多受歡迎的 DevOps 工具都提供這些排程器的支援。當您使用 Azure Container Service 叢集時，這為作業小組提供了最大的彈性。如需有關如何使用 Marathon REST API 來執行容器的詳細資訊，請參閱[使用 REST UI 來管理容器](./container-service-mesos-marathon-rest.md)。
+您也可以使用 REST API 來與 Marathon 和 Chronos 通訊。有許多可用於每個工具的用戶端程式庫。這些程式庫涵蓋各種不同語言--當然，您可以使用任何語言的 HTTP 通訊協定。此外，許多受歡迎的 DevOps 工具都提供這些排程器的支援。當您使用 Azure Container Service 叢集時，這為作業小組提供了最大的彈性。如需有關使用 Marathon REST API 來執行容器的詳細資訊，請參閱[透過 REST API 進行容器管理](container-service-mesos-marathon-rest.md)。
 
 ### 使用 Docker Swarm
 
@@ -101,4 +101,4 @@ AzureCon 通知：
 
 > [AZURE.VIDEO connect-2015-getting-started-developing-with-docker-and-azure-container-service]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,33 +13,35 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="02/19/2016"
+	ms.date="05/20/2016"
 	ms.author="marsma" />
 
 # 在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
 
 多重執行個體工作可讓您在多個計算節點上同時執行 Azure Batch 工作，以實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。在本文中，您將了解如何使用 [Batch .NET][api_net] 程式庫來執行多重執行個體工作。
 
+> [AZURE.IMPORTANT] 目前只有使用 **CloudServiceConfiguration** 建立的集區支援多重執行個體工作。您無法在集區中使用 VirtualMachineConfiguration 映像建立的節點上使用多重執行個體。如需這兩種不同組態的詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 運算節點](batch-linux-nodes.md)的[虛擬機器組態](batch-linux-nodes.md#virtual-machine-configuration)一節。
+
 ## 多重執行個體工作概觀
 
-在 Batch 中，每個工作通常是在單一計算節點上執行 -- 您將多個工作提交給作業，而 Batch 服務會將每個工作排定在節點上執行。不過，藉由設定工作的**多重執行個體設定**，您可以指示 Batch 將該工作分割成子工作，以便在多個節點上執行。
+在 Batch 中，每個工作通常是在單一計算節點上執行 -- 您將多個工作提交給作業，而 Batch 服務會將每個工作排定在節點上執行。不過，藉由設定工作的「多重執行個體設定」，您可以指示 Batch 將該工作分割成子工作，以便在多個節點上執行。
 
 ![多重執行個體工作概觀][1]
 
 將具有多重執行個體設定的工作提交給作業時，Batch 會執行多重執行個體工作特有的幾個步驟：
 
-1. Batch 服務自動將工作分割成一個**主要工作**和許多**子工作**。Batch 接著將主要工作和子工作排定在集區的計算節點上執行。
-2. 這些工作 (主要工作和子工作) 會下載您在多重執行個體設定中指定的任何**一般資源檔**。
-3. 下載一般資源檔之後，主要工作和子工作會執行您在多重執行個體設計中指定的**協調命令**。此協調命令通常用來啟動背景服務 (例如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`)，也可能會確認節點已準備好處理節點間的訊息。
-4. 主要工作及所有子工作順利完成協調命令之後，*只有***主要工作**會執行多重執行個體工作的**命令列** (「應用程式命令」)。例如，在 [MS-MPI][msmpi_msdn] 架構的方案中，您會在這裡使用 `mpiexec.exe` 執行已啟用 MPI 的應用程式。
+1. Batch 服務自動將工作分割成一個「主要工作」和多個「子工作」。Batch 接著將主要工作和子工作排定在集區的計算節點上執行。
+2. 這些工作 (主要工作和子工作) 會下載您在多重執行個體設定中指定的任何「一般資源檔」。
+3. 下載一般資源檔之後，主要工作和子工作會執行您在多重執行個體設計中指定的「協調命令」。此協調命令通常是用來啟動背景服務 (例如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`)，同時也可以確認節點已準備好處理節點間的訊息。
+4. 主要工作及所有子工作順利完成協調命令之後，*只有*「主要工作」會執行多重執行個體工作的「命令列」(應用程式命令)。例如，在 [MS-MPI][msmpi_msdn] 架構的方案中，您會在這裡使用 `mpiexec.exe` 執行支援 MPI 的應用程式。
 
-> [AZURE.NOTE] 雖然「多重執行個體工作」在功能上不同，但不是特殊的工作類型，例如 [StartTask][net_starttask] 或 [JobPreparationTask][net_jobprep]。多重執行個體工作只是已設定多重執行個體設定的 Standard Batch 工作 (Batch .NET 中的 [CloudTask][net_task])。在本文中，我們將它稱為**多重執行個體工作**。
+> [AZURE.NOTE] 雖然功能不同，但「多重執行個體工作」並不是特殊的工作類型，例如 [StartTask][net_starttask] 或 [JobPreparationTask][net_jobprep]。多重執行個體工作只是已設定多重執行個體設定的標準 Batch 工作 (Batch .NET 中的 [CloudTask][net_task])。在本文中，我們將它稱為「多重執行個體工作」。
 
 ## 多重執行個體工作的需求
 
-多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。如果您嘗試在已停用節點間通訊，或 *maxTasksPerNode* 值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作 -- 它會無限期停留在「作用中」狀態。此程式碼片段顯示如何使用 Batch .NET 程式庫建立這種集區。
+多重執行個體工作需要有「已啟用節點間通訊」且「已停用並行工作執行」的集區。如果您嘗試在已停用節點間通訊的集區，或 *maxTasksPerNode* 值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作 – 它會無限期停留在「作用中」狀態。此程式碼片段顯示如何使用 Batch .NET 程式庫建立這種集區。
 
-```
+```csharp
 CloudPool myCloudPool =
 	myBatchClient.PoolOperations.CreatePool(
 		poolId: "MultiInstanceSamplePool",
@@ -53,15 +55,15 @@ myCloudPool.InterComputeNodeCommunicationEnabled = true;
 myCloudPool.MaxTasksPerComputeNode = 1;
 ```
 
-此外，多重執行個體工作*只會*在 **2015 年 12 月 14 日之後建立的集區**中的節點上執行。
+此外，多重執行個體工作*只會*在「2015 年 12 月 14 日之後建立的集區」中的節點上執行。
 
-> [AZURE.TIP] 當您在 Batch 集區中使用大小 [A8 或 A9 計算節點](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)時，MPI 應用程式可以利用 Azure 的高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)提供 Batch 集區中可用的計算節點大小的完整清單。
+> [AZURE.TIP] 當您在 Batch 集區中使用大小為 [A8 或 A9 的計算節點](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)時，MPI 應用程式可以利用 Azure 的高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)中提供可供 Batch 集區使用之計算節點大小的完整清單。
 
 ### 使用 StartTask 來安裝 MPI 應用程式
 
-若要使用多重執行個體工作來執行 MPI 應用程式，您首先需要將 MPI 軟體安裝到集區中的計算節點。這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。此程式碼片段會建立 StartTask 將 MS-MPI 安裝套件指定為[資源檔][net_resourcefile]，並指定將於資源檔下載至節點之後執行的命令列。
+若要使用多重執行個體工作來執行 MPI 應用程式，您首先需要將 MPI 軟體安裝到集區中的計算節點。這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。此程式碼片段會建立 StartTask，它會將 MS-MPI 安裝套件指定為[資源檔][net_resourcefile]，以及指定資源檔下載到節點之後將執行的命令列。
 
-```
+```csharp
 // Create a StartTask for the pool which we use for installing MS-MPI on
 // the nodes as they join the pool (or when they are restarted).
 StartTask startTask = new StartTask
@@ -82,9 +84,9 @@ await myCloudPool.CommitAsync();
 
 ## 使用 Batch .NET 建立多個執行個體工作
 
-既然我們已討論過集區需求和 MPI 套件安裝，現在讓我們建立多重執行個體工作。在此片段中，我們會建立標準 [CloudTask][net_task]，然後設定其 [MultiInstanceSettings][net_multiinstance_prop] 屬性。如上所述，多重執行個體工作不是獨特的工作類型，而只是已設定多重執行個體設定的 Standard Batch 工作。
+既然我們已討論過集區需求和 MPI 套件安裝，現在讓我們建立多重執行個體工作。在此片段中，我們會建立標準 [CloudTask][net_task]，然後設定其 [MultiInstanceSettings][net_multiinstance_prop] 屬性。如上所述，多重執行個體工作不是獨特的工作類型，而只是已設定多重執行個體設定的標準 Batch 工作。
 
-```
+```csharp
 // Create the multi-instance task. Its command line is the "application command"
 // and will be executed *only* by the primary, and only after the primary and
 // subtasks execute the CoordinationCommandLine.
@@ -109,18 +111,18 @@ await myBatchClient.JobOperations.AddTaskAsync("mybatchjob", myMultiInstanceTask
 
 ## 主要工作和子工作
 
-當您建立工作的多重執行個體設定時，您需要指定用來執行工作的計算節點數目。當您將工作提交給作業時，Batch 服務會建立一個**主要工作**和足夠的**子工作**，而且合計符合您指定的節點數。
+當您建立工作的多重執行個體設定時，您需要指定用來執行工作的計算節點數目。當您將工作提交給作業時，Batch 服務會建立一個「主要工作」和足夠的「子工作」，二者的合計數目會符合您指定的節點數。
 
 系統會指派範圍介於 0 到 *numberOfInstances-1* 的整數識別碼給這些工作。識別碼 0 的工作是主要工作，其他所有識別碼都是子工作。比方說，如果您為工作建立下列多重執行個體設定，則主要工作的識別碼為 0，而子工作的識別碼為 1 到 9。
 
-```
+```csharp
 int numberOfNodes = 10;
 myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNodes);
 ```
 
 ## 協調命令和應用程式命令
 
-主要工作和子工作都會執行**協調命令**。主要工作及所有子工作完成執行協調命令之後，*只有*主要工作會執行多重執行個體工作的命令列。我們將此命令列稱為**應用程式命令**，以便與協調命令有所區別。
+主要工作和子工作都會執行「協調命令」。主要工作及所有子工作完成執行協調命令之後，*只有* 主要工作會執行多重執行個體工作的命令列。我們將此命令列稱為「應用程式命令」，以便與協調命令有所區別。
 
 阻止叫用協調命令 -- 在所有子工作的協調命令順利傳回之前，Batch 不會執行應用程式命令。因此，協調命令應該啟動任何所需的背景服務，確認它們已準備好可供使用，然後結束。比方說，在使用 MS-MPI 第 7 版的方案中，此協調命令會在節點上啟動 SMPD 服務，然後結束：
 
@@ -128,9 +130,9 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d
 ```
 
-請注意此協調命令中使用 `start`。這是必要的，因為 `smpd.exe` 應用程式不會在執行後立即傳回。如果不使用 [start][cmd_start] 命令，此協調命令就不會傳回，因此將阻止執行應用程式命令。
+請注意，此協調命令中使用 `start`。這是必要的，因為 `smpd.exe` 應用程式不會在執行後立即傳回。如果不使用 [start][cmd_start] 命令，此協調命令就不會傳回，因此將阻止應用程式命令執行。
 
-*只有*主要工作會執行**應用程式命令** (為多重執行個體工作執行的命令列)。就 MS MPI 應用程式而言，這是使用 `mpiexec.exe` 來執行已啟用 MPI 的應用程式。例如，以下是使用 MS-MPI 第 7 版的方案所執行的應用程式命令：
+*只有*主要工作會執行「應用程式命令」(為多重執行個體工作執行的命令列)。就 MS MPI 應用程式而言，這是使用 `mpiexec.exe` 來執行已啟用 MPI 的應用程式。例如，以下是使用 MS-MPI 第 7 版的方案所執行的應用程式命令：
 
 ```
 cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe
@@ -138,15 +140,15 @@ cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIAp
 
 ## 資源檔
 
-多重執行個體工作需要考量兩組資源檔：*所有*工作 (主要工作和子工作) 下載的**一般資源檔**，以及為多重執行個體工作本身指定的**資源檔** (*只有主要*工作會下載)。
+多重執行個體工作需要考量兩組資源檔：*所有* 工作 (主要工作和子工作) 下載的「一般資源檔」，以及為多重執行個體工作本身指定的「資源檔」 (*只有* 主要工作會下載)。
 
-您可以在工作的多重執行個體設定中指定一或多個**一般資源檔**。主要工作及所有子工作會從 [Azure 儲存體](./../storage/storage-introduction.md)，將這些一般資源檔下載到每個節點的工作共用目錄。您可以使用 `AZ_BATCH_TASK_SHARED_DIR` 環境變數從應用程式命令和協調命令列存取工作共用目錄。
+您可以在工作的多重執行個體設定中指定一或多個「一般資源檔」。主要工作及所有子工作會從 [Azure 儲存體](./../storage/storage-introduction.md)，將這些一般資源檔下載到每個節點的工作共用目錄。您可以使用 `AZ_BATCH_TASK_SHARED_DIR` 環境變數從應用程式命令和協調命令列存取工作共用目錄。
 
-*只有*主要工作會將您為多重執行個體工作本身指定的資源檔，下載到工作的工作目錄 `AZ_BATCH_TASK_WORKING_DIR`-- 子工作不會下載為多重執行個體工作指定的資源檔。
+*只有* 主要工作會將您為多重執行個體工作本身指定的資源檔，下載到工作的工作目錄 `AZ_BATCH_TASK_WORKING_DIR` – 子工作不會下載為多重執行個體工作指定的資源檔。
 
 節點上執行的主要工作及所有子工作可存取 `AZ_BATCH_TASK_SHARED_DIR` 的內容。`tasks/mybatchjob/job-1/mymultiinstancetask/` 是工作共用目錄的一個例子。主要工作和每項子工作也有一個只有該工作才能存取的工作目錄，而且可使用環境變數 `AZ_BATCH_TASK_WORKING_DIR` 來存取。
 
-請注意，在本文的程式碼範例中，我們未指定多重執行個體工作本身的資源檔，只有為集區的 StartTask 和多重執行個體設定的 [CommonResourceFiles][net_multiinsance_commonresfiles] 指定資源檔。
+請注意，在本文的程式碼範例中，我們並未替多重執行個體工作本身指定資源檔，只有為集區的 StartTask 和多重執行個體設定的 [CommonResourceFiles][net_multiinsance_commonresfiles] 指定資源檔。
 
 > [AZURE.IMPORTANT] 在命令列中，請一律使用環境變數 `AZ_BATCH_TASK_SHARED_DIR` 和 `AZ_BATCH_TASK_WORKING_DIR` 來參考這些目錄。請勿嘗試以手動方式建構路徑。
 
@@ -158,19 +160,19 @@ cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIAp
 
 當您刪除多重執行個體工作時，Batch 服務也會刪除主要工作和所有子工作。所有子工作目錄及其檔案會從計算節點中刪除，如同在標準工作中一樣。
 
-多重執行個體工作的 [TaskConstraints][net_taskconstraints] (例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock] 和 [RetentionTime][net_taskconstraint_retention] 屬性) 都視為用於標準工作，並套用至主要工作和所有子工作。不過，如果您在多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要工作。所有的子工作將會繼續使用原始 [RetentionTime][net_taskconstraint_retention]。
+多重執行個體工作的 [TaskConstraints][net_taskconstraints] (例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock] 和 [RetentionTime][net_taskconstraint_retention] 屬性) 已被接受，因為它們是用於標準工作，並且會套用至主要工作和所有子工作。不過，如果您在將多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要工作。所有的子工作將會繼續使用原始的 [RetentionTime][net_taskconstraint_retention]。
 
 如果最近的工作是多重執行個體工作的一部分，計算節點的最近工作清單會反映子工作的識別碼。
 
 ## 取得子工作的相關資訊
 
-若要使用 Batch .NET 程式庫取得子工作的詳細資訊，請呼叫 [CloudTask.ListSubtasks][net_task_listsubtasks] 方法。這個方法會傳回所有子工作的相關資訊，以及已執行工作的計算節點的相關資訊。您可以根據這項資訊判斷每項子工作的根目錄、集區識別碼、其目前狀態、結束代碼等等。您可以使用這項資訊結合 [PoolOperations.GetNodeFile][poolops_getnodefile] 方法，以取得子工作的檔案。請注意，這個方法不會傳回主要工作 (識別碼 0) 的相關資訊。
+若要使用 Batch .NET 程式庫取得子工作的資訊，請呼叫 [CloudTask.ListSubtasks][net_task_listsubtasks] 方法。這個方法會傳回所有子工作的相關資訊，以及已執行工作的計算節點的相關資訊。您可以根據這項資訊判斷每項子工作的根目錄、集區識別碼、其目前狀態、結束代碼等等。您可以使用這項資訊結合 [PoolOperations.GetNodeFile][poolops_getnodefile] 方法，以取得子工作的檔案。請注意，這個方法不會傳回主要工作 (識別碼 0) 的相關資訊。
 
-> [AZURE.NOTE] 除非另有指明，否則在多重執行個體 [CloudTask][net_task] 本身執行的 Batch .NET 方法*只會*套用到主要工作。例如，當您在多重執行個體工作上呼叫 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法時，只會傳回主要工作的檔案。
+> [AZURE.NOTE] 除非另有指明，否則在多重執行個體 [CloudTask][net_task] 本身執行的 Batch .NET 方法「只會」套用到主要工作。例如，當您在多重執行個體工作上呼叫 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法時，只會傳回主要工作的檔案。
 
 下列程式碼片段示範如何取得子工作資訊，以及從它們執行所在的節點要求檔案的內容。
 
-```
+```csharp
 // Obtain the job and the multi-instance task from the Batch service
 CloudJob boundJob = batchClient.JobOperations.GetJob("mybatchjob");
 CloudTask myMultiInstanceTask = boundJob.GetTask("mymultiinstancetask");
@@ -209,7 +211,7 @@ await subtasks.ForEachAsync(async (subtask) =>
 
 ## 後續步驟
 
-- 您可以建置簡單的 MS-MPI 應用程式，供 Batch 中測試多重執行個體工作時使用。Microsoft HPC 和 Azure Batch 小組部落格文章[如何編譯及執行簡單的 MS-MPI 程式][msmpi_howto]中，包含使用 MS-MPI 建立簡單的 MPI 應用程式的逐步解說。
+- 您可以建置簡單的 MS-MPI 應用程式，供 Batch 中測試多重執行個體工作時使用。Microsoft HPC 和 Azure Batch 小組部落格文章：[如何編譯及執行簡單的 MS-MPI 程式][msmpi_howto]中，包含使用 MS-MPI 建立簡單的 MPI 應用程式的逐步解說。
 
 - 如需 MS-MPI 的最新資訊，請參閱 MSDN 上的 [Microsoft MPI][msmpi_msdn] 頁面。
 
@@ -247,4 +249,4 @@ await subtasks.ForEachAsync(async (subtask) =>
 
 [1]: ./media/batch-mpi/batch_mpi_01.png "多重執行個體概觀"
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="01/12/2016"
-	ms.author="erikre"/>
+	ms.author="cephalin"/>
 
 # 在 Azure App Service 中設定自訂網域名稱 (直接向 GoDaddy 購買)
 
@@ -56,7 +56,7 @@
 
 	![選取記錄類型](./media/web-sites-godaddy-custom-domain-name/godaddy-selectrecordtype.png)
 
-	接下來，您必須提供 [主機] \(自訂網域或子網域) 及其 [指向] 位置。
+	接下來，您必須提供 [主機] (自訂網域或子網域) 及其 [指向] 位置。
 
 	![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
 
@@ -81,4 +81,4 @@
 ## 變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0525_2016-->

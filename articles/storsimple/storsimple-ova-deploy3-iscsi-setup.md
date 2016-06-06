@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/01/2016"
+   ms.date="05/20/2016"
    ms.author="alkohli" />
 
 
@@ -87,7 +87,7 @@
 
     3. 指定您是否想讓此裝置加入網域。如果您的裝置是 iSCSI 伺服器，您可以省略加入網域這個步驟。如果您決定不將 iSCSI 伺服器加入網域，請按一下 [套用] 並等待設定套用完畢，然後前往下一個的步驟。
 
-        如果您想要讓裝置加入網域，請輸入 [網域名稱] \(如下所示)。
+        如果您想要讓裝置加入網域，請輸入 [網域名稱] (如下所示)。
 
     4. 按一下 [Apply (套用)]。
 
@@ -108,11 +108,11 @@
 
     1. 以下列格式提供 Web Proxy URL：*http://host-IP 位址*或 FDQN:連接埠號碼。請注意，此處不支援 HTTPS URL。
 
-    2. 將 [驗證] 指定為 [基本]、[NTLM] 或 [無]。
+    2. 將 [驗證] 指定為 [基本] 或 [無]。
 
     3. 如果您要使用驗證功能，您也必須提供 [使用者名稱] 和 [密碼]。
 
-    4. 按一下 [Apply (套用)]。這將會驗證並套用您設定的 Web Proxy 設定。
+    4. 按一下 [套用]。這將會驗證並套用您設定的 Web Proxy 設定。
  
 8. (可省略) 設定裝置的時間設定，例如時區，以及主要和次要 NTP 伺服器。NTP 伺服器是必要的，因為您的裝置必須讓時間同步，才能與您的雲端服務提供者進行驗證。
 
@@ -124,7 +124,7 @@
 
     2. 指定裝置的 [主要 NTP 伺服器]，或是接受 time.windows.com 的預設值。請確定您的網路允許 NTP 流量從您的資料中心通過網際網路。
 
-    3. (選擇性) 指定裝置的 [次要 NTP 伺服器]。
+    3. (選用) 指定裝置的 [次要 NTP 伺服器]。
 
     4. 按一下 [Apply (套用)]。這將會驗證並套用您設定的時間設定。
 
@@ -132,7 +132,7 @@
 
     1. 輸入您在[部署 StorSimple Virtual Array：準備入口網站](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key)一文的＜步驟 2：取得服務註冊金鑰＞中取得的服務註冊金鑰。
 
-    2. 如果這不是您向此服務註冊的第一個裝置，您必須提供服務資料加密金鑰。您必須將此金鑰與服務註冊金鑰搭配使用，才能向 StorSimple Manager 服務註冊額外的裝置。如需詳細資訊，請參閱使用本機 Web UI 上的[取得服務資料加密金鑰](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
+    2. 如果這不是您向此服務註冊的第一個裝置，您必須提供**服務資料加密金鑰**。您必須將此金鑰與服務註冊金鑰搭配使用，才能向 StorSimple Manager 服務註冊額外的裝置。如需詳細資訊，請參閱本機 Web UI 上的[取得服務資料加密金鑰](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
 
     3. 按一下 [註冊]。這將讓裝置重新啟動。您可能需要等待 2 至 3 分鐘，裝置才會註冊成功。裝置重新啟動之後，您將會看到登入頁面。
 
@@ -162,9 +162,9 @@
 
     ![[設定裝置] 精靈](./media/storsimple-ova-deploy3-iscsi-setup/image14.png)
 
-3. 在 [設定裝置] 精靈的 [基本設定] 頁面中，執行下列步驟：
+3. 在 [設定裝置精靈] 的 [基本設定] 頁面中，執行下列步驟：
 
-   1. 指定要與裝置搭配使用的儲存體帳戶。在這個訂用帳戶中，您可以從下拉式清單選取現有的儲存體帳戶，或是指定 [新增其他] 來選擇不同訂用帳戶中的儲存體帳戶。
+   1. 指定要與裝置搭配使用的儲存體帳戶。在這個訂用帳戶中，您可以從下拉式清單選取現有的儲存體帳戶，或是指定 [Add more] (新增其他) 來選擇不同訂用帳戶中的儲存體帳戶。
 
    2. 為所有將會傳送至雲端之待用資料的加密設定下定義。(StorSimple 使用 AES-256 加密。) 若要為資料加密，請選取 [啟用雲端儲存體加密] 核取方塊。請輸入包含 32 個字元的雲端儲存體加密金鑰，然後重新輸入金鑰來加以確認。
 
@@ -274,7 +274,7 @@
 
     ![新增磁碟區精靈 3](./media/storsimple-ova-deploy3-iscsi-setup/image31.png)
 
-14. 查看您磁碟區的各種設定值，然後按一下 [完成]。
+14. 查看您磁碟區的各個值，然後按一下 [完成]。
 
     ![新增磁碟區精靈 4](./media/storsimple-ova-deploy3-iscsi-setup/image32.png)
 
@@ -284,7 +284,7 @@
 
 ## 後續步驟
 
-了解如何[使用本機 Web UI 來管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
+了解如何使用本機 Web UI 來[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
 ## 附錄 A：取得 Windows Server 主機的 IQN
 
@@ -303,4 +303,4 @@
 <!--Reference link-->
 [1]: https://technet.microsoft.com/library/ee338480(WS.10).aspx
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

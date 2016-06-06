@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="03/03/2016"
+	ms.date="05/23/2016"
 	ms.author="spelluru"/>
 
 # 教學課程︰建立您的第一個 Data Factory (概觀)
@@ -222,4 +222,4 @@
 - Visual Studio
 - Azure 資源管理員範本 
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="05/20/2016"
 	ms.author="maheshu"/>
 
 # 針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
@@ -30,7 +30,7 @@
 
 4. **用來啟用安全 LDAP 的憑證**。
     - **建議** - 從您的企業 CA 或公共憑證授權單位取得憑證。這是更安全的組態選項。
-	- 或者，您也可以選擇如本文稍後所示[建立自我簽署憑證](./active-directory-ds-admin-guide-configure-secure-ldap.md/#task-1---obtain-a-certificate-for-secure-ldap)。
+	- 或者，您也可以選擇[建立自我簽署憑證](#task-1---obtain-a-certificate-for-secure-ldap)，如本文稍後所示。
 
 <br>
 
@@ -60,7 +60,7 @@
 ### 選項 A (建議選項) - 從憑證授權單位取得安全的 LDAP 憑證
 如果您的組織部署企業公開金鑰基礎結構 (PKI)，您必須從組織的企業憑證授權單位 (CA) 取得憑證。如果您的組織從公共憑證授權單位取得其憑證，您必須從該公共憑證授權單位取得安全的 LDAP 憑證。
 
-在要求憑證時，請務必遵循[安全 LDAP 憑證的需求](./active-directory-ds-admin-guide-configure-secure-ldap.md/#requirements-for-the-secure-ldap-certificate)中所述的需求。
+在要求憑證時，請務必遵循[安全 LDAP 憑證的需求](#requirements-for-the-secure-ldap-certificate)中所述的需求。
 
 請注意，需要使用安全的 LDAP 連線到受管理網域的用戶端電腦必須信任 LDAPS 憑證的簽發者。
 
@@ -147,7 +147,7 @@
 
     ![匯出憑證指定密碼](./media/active-directory-domain-services-admin-guide/secure-ldap-export-select-password.png)
 
-	> [AZURE.NOTE] 記下此密碼。在[工作 3 - 為受管理的網域啟用安全 LDAP](./active-directory-ds-admin-guide-configure-secure-ldap.md/#task-3---enable-secure-ldap-for-the-managed-domain) 中，為此受管理網域啟用安全 LDAP 時，會需要此密碼。
+	> [AZURE.NOTE] 記下此密碼。在[工作 3 - 為受管理的網域啟用安全 LDAP](#task-3---enable-secure-ldap-for-the-managed-domain) 中，為此受管理網域啟用安全 LDAP 時，會需要此密碼。
 
 15. 在 [要匯出的檔案] 頁面上，指定檔案名稱及接收匯出憑證的位置。
 
@@ -201,7 +201,7 @@
 ## 工作 4 - 透過網際網路啟用安全 LDAP 存取
 **選擇性工作** - 如果您不打算使用 LDAPS 來透過網際網路存取受管理的網域，請略過這項工作。
 
-開始這項工作之前，請先確定您已完成[工作 3](./active-directory-ds-admin-guide-configure-secure-ldap.md/#task-3---enable-secure-ldap-for-the-managed-domain) 中所述的步驟。
+開始這項工作之前，請先確定您已完成[工作 3](#task-3---enable-secure-ldap-for-the-managed-domain) 中所述的步驟。
 
 1. 您應該會在 [設定] 頁面的 [網域服務] 區段中看到 [透過網際網路啟用安全 LDAP 存取] 的選項。此選項預設會設定為 [否]，因為依預設會停用透過安全 LDAP 對受管理網域的網際網路存取。
 
@@ -224,7 +224,7 @@
 ## 工作 5 - 設定 DNS 以從網際網路存取受管理的網域
 **選擇性工作** - 如果您不打算使用 LDAPS 來透過網際網路存取受管理的網域，請略過這項工作。
 
-開始這項工作之前，請先確定您已完成[工作 4](./active-directory-ds-admin-guide-configure-secure-ldap.md/#task-4---enable-secure-ldap-access-over-the-internet) 中所述的步驟。
+開始這項工作之前，請先確定您已完成[工作 4](#task-4---enable-secure-ldap-access-over-the-internet) 中所述的步驟。
 
 為受管理的網域啟用了透過網際網路的安全 LDAP 存取後，您需要更新 DNS 以便用戶端電腦可以找到此受管理網域。在工作 4 的最後階段，[設定] 索引標籤的 [LDAPS 存取的外部 IP 位址] 中會顯示外部 IP 位址。
 
@@ -242,4 +242,4 @@
 
 - [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域) ](active-directory-ds-admin-guide-administer-domain.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

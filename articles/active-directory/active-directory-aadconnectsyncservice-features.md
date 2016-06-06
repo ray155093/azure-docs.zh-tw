@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="05/19/2016"
 	ms.author="andkjell;markvi"/>
 
 # Azure AD Connect 同步處理服務功能
@@ -33,23 +33,23 @@ Azure AD connect 同步處理功能有兩個元件：
 
 以下是可在 `Set-MsolDirSyncFeature` 中配置的設定：
 
-| DirSyncFeature | 註解 |
-| --- | --- |
-| [DuplicateProxyAddressResiliency<br/>DuplicateUPNResiliency](#duplicate-attribute-resiliency) | 如果屬性是另一個物件的複本，即會將該屬性隔離，而不會在匯出期間導致整個物件失敗。 |
-| [EnableSoftMatchOnUpn](#userprincipalname-soft-match) | 不只主要 SMTP 位址，還允許物件加入 userPrincipalName。 |
-| [SynchronizeUpnForManagedUsers](#synchronize-userprincipalname-updates) | 可讓同步處理引擎更新受管理/授權 (非同盟) 使用者的 userPrincipalName 屬性。 |
+DirSyncFeature | 註解
+--- | ---
+ [DuplicateProxyAddressResiliency<br/>DuplicateUPNResiliency](#duplicate-attribute-resiliency) | 如果屬性是另一個物件的複本，即會將該屬性隔離，而不會在匯出期間導致整個物件失敗。
+[EnableSoftMatchOnUpn](#userprincipalname-soft-match) | 不只主要 SMTP 位址，還允許物件加入 userPrincipalName。
+[SynchronizeUpnForManagedUsers](#synchronize-userprincipalname-updates) | 可讓同步處理引擎更新受管理/授權 (非同盟) 使用者的 userPrincipalName 屬性。
 
 啟用功能後，即無法將其停用。
 
 下列設定是由 Azure AD Connect 所設定，而且無法由 `Set-MsolDirSyncFeature` 修改：
 
-| DirSyncFeature | 註解 |
-| --- | --- |
-| DeviceWriteback | [Azure AD Connect：啟用裝置回寫](active-directory-aadconnect-feature-device-writeback.md) |
-| DirectoryExtensions | [Azure AD Connect 同步處理：目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md) |
-| PasswordSync | [使用 Azure AD Connect 同步處理實作密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md) |
-| UnifiedGroupWriteback | [預覽：群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback) |
-| UserWriteback | 目前不支援。 |
+DirSyncFeature | 註解
+--- | ---
+DeviceWriteback | [Azure AD Connect：啟用裝置回寫](active-directory-aadconnect-feature-device-writeback.md)
+DirectoryExtensions | [Azure AD Connect 同步處理：目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)
+PasswordSync | [使用 Azure AD Connect 同步處理實作密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)
+UnifiedGroupWriteback | [預覽：群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback)
+UserWriteback | 目前不支援。
 
 ## 重複屬性恢復功能
 含重複 UPNs / proxyAddresses 的物件，會將該屬性「隔離」，並視需要指派暫時的值，而不會讓佈建物件失敗。解決衝突時，會自動將暫時 UPN 修正為適當的值。您可以分別啟用 UPN 和 proxyAddress 的這項行為。如需詳細資訊，請參閱[身分識別同步處理和重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)。
@@ -100,4 +100,4 @@ Set-MsolDirSyncFeature -Feature SynchronizeUpnForManagedUsers -Enable $true
 
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

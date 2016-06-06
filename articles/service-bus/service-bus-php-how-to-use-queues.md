@@ -151,7 +151,7 @@ catch(ServiceException $e){
 
 傳送至 (和擷取自) 服務匯流排佇列的訊息是 **BrokeredMessage** 類別的執行個體。**BrokeredMessage** 物件具有一組標準方法 (例如 **getLabel**、**getTimeToLive**、**setLabel** 和 **setTimeToLive**)、用來保存自訂應用程式特定屬性的屬性，以及一組任意的應用程式資料。
 
-服務匯流排佇列最多可支援 256 KB 的訊息大小 (包含標準和自訂應用程式屬性的標頭可以容納 64 KB 的大小上限)。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。佇列大小的這項上限為 5 GB。
+服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。佇列大小的這項上限為 5 GB。
 
 ## 如何從佇列接收訊息
 
@@ -220,4 +220,4 @@ catch(ServiceException $e){
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

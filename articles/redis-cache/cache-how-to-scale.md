@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="05/23/2016" 
 	ms.author="sdanie"/>
 
 # 如何調整 Azure Redis 快取
@@ -115,6 +115,7 @@ Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大�
 -	[調整之後，是否必須變更我的快取名稱或存取金鑰？](#after-scaling-do-i-have-to-change-my-cache-name-or-access-keys)
 -	[調整運作方式如何？](#how-does-scaling-work)
 -	[我是否會在調整期間遺失快取中的資料？](#will-i-lose-data-from-my-cache-during-scaling)
+-	[我的自訂資料庫設定在調整期間會受到影響嗎？](#is-my-custom-databases-setting-affected-during-scaling)
 -	[是否可以在調整期間使用我的快取？](#will-my-cache-be-available-during-scaling)
 -	[不支援的作業](#operations-that-are-not-supported)
 -	[調整需要多長的時間？](#how-long-does-scaling-take)
@@ -146,6 +147,15 @@ Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大�
 -	**基本**快取調整為**標準**快取時，通常會保留快取中的資料。
 -	當**標準**快取調整為較大的大小或層，或者**進階**快取調整為較大的大小時，通常會保留所有資料。當**標準**或**進階**快取向下調整為較小大小時，根據調整時快取中與新大小相關的資料量，資料可能會遺失。如果縮小時遺失資料，則會使用 [allkeys-lru](http://redis.io/topics/lru-cache) 收回原則來收回金鑰。 
 
+### 我的自訂資料庫設定在調整期間會受到影響嗎？
+
+某些定價層具有不同的[資料庫限制](cache-configure.md#databases)，因此，在向下調整時，如果您在快取建立期間為 `databases` 設定設定了自訂值，則有一些考量。
+
+-	調整為較現有階層具有較低 `databases` 限制的定價層時：
+	-	如果您使用預設數字 `databases`，即所有定價層為 16，則不會遺失資料。
+	-	如果您要使用的自訂數字 `databases`，落在您要調整之階層限制範圍內，則會保留此 `databases` 設定，並且不會遺失資料。
+	-	如果您要使用的自訂數字 `databases`，超出新階層的限制，則會將 `databases` 設定降低至新階層的限制，而且在已移除的資料庫中的所有資料都會遺失。
+-	調整為較現有階層具有具有相同或更高 `databases` 限制的定價層時，會保留您的 `databases` 設定，而且不會遺失資料。
 
 請注意，標準和進階快取有 99.9% SLA 的可用性時，則資料遺失沒有 SLA。
 
@@ -189,4 +199,4 @@ Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大�
 
 [redis-cache-scaling]: ./media/cache-how-to-scale/redis-cache-scaling.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

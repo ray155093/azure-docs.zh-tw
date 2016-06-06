@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/15/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何開始安全性檢閱
 
-當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。為了降低與這些過時的角色指派相關聯的風險，安全性系統管理員應該定期檢閱使用者獲授與的角色。本文件涵蓋在 Azure AD Privileged Identity Management (PIM) 中開始安全性檢閱的步驟。
+當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。為了降低與這些過時的角色指派相關聯的風險，特殊權限角色管理員應該定期檢閱使用者獲授與的角色。本文件涵蓋在 Azure AD Privileged Identity Management (PIM) 中開始安全性檢閱的步驟。
 
 ## 開始安全性檢閱
 > [AZURE.NOTE] 如果您尚未在 Azure 入口網站的儀表板中加入 PIM 應用程式，請參閱[開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md) 中的步驟。
@@ -34,8 +34,8 @@
 ### 選取要檢閱的角色
 
 1. 在 [選取要檢閱的角色] 刀鋒視窗中，從角色清單中選取角色。您一次只能選擇一個角色。[選取要檢閱的角色] 刀鋒視窗將會以 [選取檢閱者] 刀鋒視窗來取代。您在選取檢閱者時有下列兩個選項：
-  - [Me] \(我) - 如果您想要預覽安全性檢閱的運作方式，但不牽涉到其他系統管理員，請使用這個選項。
-  - [Self review by role members] \(由角色成員自行檢閱) - 使用這個選項讓使用者檢閱自己的角色指派。
+  - [Me] (我) - 如果您想要預覽安全性檢閱的運作方式，但不牽涉到其他系統管理員，請使用這個選項。
+  - [Self review by role members] (由角色成員自行檢閱) - 使用這個選項讓使用者檢閱自己的角色指派。
 2. 選取這其中一個，開始著手檢閱詳細資料。隨即會出現 [變更預設值] 刀鋒視窗。
 
 ### 透過 [我] 來檢閱
@@ -64,4 +64,4 @@
 ## PIM 目錄
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -67,7 +67,7 @@ Azure DNS PowerShell 在區域與記錄集上支援使用選項 `-Tag` 參數來
 
 使用下列範例來協助您連接：
 
-	Login-AzureRmAccountt
+	Login-AzureRmAccount
 
 檢查帳戶的訂用帳戶。
 
@@ -174,4 +174,4 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="05/10/2016"
+   ms.date="05/24/2016"
    ms.author="andkjell;billmath"/>
 
 # Azure AD Connect 的必要條件
@@ -42,7 +42,11 @@
 - 如果部署的是 Active Directory 同盟服務，則將安裝 AD FS 或 Web 應用程式 Proxy 的伺服器必須是 Windows Server 2012 R2 或更新版本。必須在這些伺服器上啟用 [Windows 遠端管理](#windows-remote-management)，才能執行遠端安裝。
 - 如果部署的是 Active Directory 同盟服務，則您需要 [SSL 憑證](#ssl-certificate-requirements)。
 - 如果部署的是 Active Directory 同盟服務，您就需要設定[名稱解析](#name-resolution-for-federation-servers)。
-- Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。預設會安裝 SQL Server 2012 Express LocalDB (輕量版的 SQL Server Express)，並且在本機電腦上建立服務的服務帳戶。SQL Server Express 有 10 GB 的大小限制，可讓您管理大約 100,000 個物件。如果您需要管理更多數量的目錄物件，則必須將安裝精靈指向不同的 SQL Server 安裝。Azure AD Connect 支援從 SQL Server 2008 (含 SP4) 至 SQL Server 2014 的各種 Microsoft SQL Server。**不支援**使用 Microsoft Azure SQL Database 作為資料庫。
+- Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。預設會安裝 SQL Server 2012 Express LocalDB (輕量版的 SQL Server Express)，並且在本機電腦上建立服務的服務帳戶。SQL Server Express 有 10 GB 的大小限制，可讓您管理大約 100,000 個物件。如果您需要管理更多數量的目錄物件，則必須將安裝精靈指向不同的 SQL Server 安裝。
+- 如果您使用個別的 SQL Server，這些需求適用於：
+    - Azure AD Connect 支援從 SQL Server 2008 (含 SP4) 至 SQL Server 2014 的各種 Microsoft SQL Server。**不支援**使用 Microsoft Azure SQL Database 作為資料庫。
+    - 您必須使用不區分大小寫的 SQL 定序。這些定序是在其名稱中使用 a \_CI\_ 來識別。**不支援**使用區分大小寫的定序 (在其名稱中以 \_CS\_ 來識別)。
+    - 您在每個資料庫執行個體中只能有一個同步引擎。**不支援**使用 FIM/MIM Sync、DirSync 或 Azure AD Sync 來共用資料庫執行個體。
 
 ### 帳戶
 - 想要與其整合之 Azure AD 目錄的 Azure AD 全域管理員帳戶必須是**學校或組織帳戶**，不能是 **Microsoft 帳戶**。
@@ -50,13 +54,14 @@
 - 如果您使用自訂設定的安裝路徑，[則帳戶是 Active Directory](active-directory-aadconnect-accounts-permissions.md)。
 
 ### Azure AD Connect 伺服器組態
-- 如果全域系統管理員已啟用 MFA，URL **https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。在顯示 MFA 挑戰提示之前，系統會先提示您將此 URL 新增到信任的網站清單中 (如果它尚未新增到清單中)。您可以使用 Internet Explorer 將它新增到信任的網站。
+- 如果全域系統管理員已啟用 MFA，URL ****https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。在顯示 MFA 挑戰提示之前，系統會先提示您將此 URL 新增到信任的網站清單中 (如果它尚未新增到清單中)。您可以使用 Internet Explorer 將它新增到信任的網站。
 
 ### 連線能力
 - Azure AD Connect 伺服器需要內部網路和網際網路的 DNS 解析。DNS 伺服器必須能夠將名稱解析成您的內部部署 Active Directory 以及 Azure AD 端點。
 - 如果您的內部網路有防火牆，而您需要開放 Azure AD Connect 伺服器與網域控制站之間的連接埠，請參閱 [Azure AD Connect 連接埠](active-directory-aadconnect-ports.md)以了解詳細資訊。
 - 如果您的 Proxy 會限制哪些 URL 可供存取，則必須在 Proxy 中開啟 [Office 365 URL 和 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)中記載的 URL。
-    - 如果您使用 Microsoft Cloud Germany 或 Microsoft Azure Government 雲端，則參閱 [Azure AD Connect 同步處理服務執行個體考量](active-directory-aadconnect-instances.md)中的 URL。
+    - 如果您是使用 Microsoft Cloud Germany，或是使用 Microsoft Azure Government 雲端，則參閱 [Azure AD Connect：執行個體的特殊考量](active-directory-aadconnect-instances.md)中的 URL。
+- Azure AD Connect 預設使用 TLS 1.0 來和 Azure AD 通訊。您可以依照[啟用 Azure AD Connect 的 TLS 1.2](#enable-tls-12-for-azure-ad-connect) 中的步驟變更為使用 TLS 1.2。
 - 如果您使用連出 Proxy 來連線到網際網路，就必須在 **C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config** 檔案中加入下列設定，安裝精靈和 Azure AD Connect 同步處理才能夠連線到網際網路和 Azure AD。必須在檔案底部輸入此文字。在此程式碼中，&lt;PROXYADRESS&gt; 代表實際的 Proxy IP 位址或主機名稱。
 
 ```
@@ -93,7 +98,9 @@
 - 選用：測試使用者帳戶來驗證同步處理。
 
 ## 元件的必要條件
-Azure AD Connect 需要 Microsoft PowerShell 和 .NET Framework 4.5.1。依您的 Windows Server 版本來執行下列作業：
+
+### PowerShell 和 .Net Framework
+Azure AD Connect 需要 Microsoft PowerShell 和 .NET Framework 4.5.1。您需要在伺服器上安裝此版本或更新版本。依您的 Windows Server 版本來執行下列作業：
 
 - Windows Server 2012R2
   - 預設會安裝 Microsoft PowerShell，不需採取任何動作。
@@ -104,6 +111,23 @@ Azure AD Connect 需要 Microsoft PowerShell 和 .NET Framework 4.5.1。依您�
 - Windows Server 2008
   - **Windows Management Framework 3.0** 中包含最新支援的 PowerShell 版本，可從 [Microsoft 下載中心](http://www.microsoft.com/downloads)取得。
  - .NET Framework 4.5.1 和更新版本可從 [Microsoft 下載中心](http://www.microsoft.com/downloads)取得。
+
+### 啟用 Azure AD Connect 的 TLS 1.2
+Azure AD Connect 預設使用 TLS 1.0 將同步引擎伺服器和 Azure AD 之間的通訊加密。您可以在伺服器上將 .Net 應用程式設定變更為預設使用 TLS 1.2。您可以在 [Microsoft 資訊安全摘要報告 2960358](https://technet.microsoft.com/security/advisory/2960358) 中找到 TLS 1.2 的相關詳細資訊。
+
+1. TLS 1.2 無法在 Windows Server 2008 上啟用。您需要 Windows Server 2008R2 或更新版本。請確定您已經為您的作業系統安裝 .Net 4.5.1 Hotfix，請參閱 [Microsoft 資訊安全摘要報告 2960358](https://technet.microsoft.com/security/advisory/2960358)。您的伺服器上可能已經安裝此版本或更新版本。
+2. 如果您使用 Windows Server 2008R2，請確定已啟用 TLS 1.2。在 Windows Server 2012 伺服器和更新版本的伺服器作業系統上，TLS 1.2 應該已經啟用。
+```
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client] "DisabledByDefault"=dword:00000000 "Enabled"=dword:00000001
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server] "DisabledByDefault"=dword:00000000 "Enabled"=dword:00000001
+```
+3. 請針對所有作業系統設定此登錄機碼並重新啟動伺服器。
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+"SchUseStrongCrypto"=dword:00000001
+```
+4. 如果您也想要在同步引擎伺服器和遠端 SQL Server 之間啟用 TLS 1.2，請確定您已經安裝必要版本以獲得 [TLS 1.2 support for Microsoft SQL Server (Microsoft SQL Server 的 TLS 1.2 支援)](https://support.microsoft.com/kb/3135244)。
 
 ## 同盟安裝和組態的必要條件
 
@@ -173,4 +197,4 @@ Azure AD Connect 需要 Microsoft PowerShell 和 .NET Framework 4.5.1。依您�
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

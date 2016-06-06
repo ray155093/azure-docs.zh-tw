@@ -86,7 +86,7 @@
 
 ![單一租用戶與多租用戶][4]
 
-其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。這就是一般的**多租用戶分區化模式** – 可能是因為應用程式管理大量非常小的租用戶。在多租用戶分區化中，資料庫資料表中的資料列都設計成具有索引鍵 (識別租用戶識別碼) 或分區化索引鍵。同樣地，應用程式層負責將租用戶的要求遞送至適當的資料庫，而彈性資料庫用戶端程式庫支援此功能。此外，資料列層級安全性可用於篩選每個租用戶可以存取的資料列 – 如需詳細資訊，請參閱[使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。多租用戶分區化模式可能需要在資料庫之間重新分配資料，而彈性資料庫分割合併工具可協助達成此工作。
+其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。這就是一般的**多租用戶分區化模式** – 可能是因為應用程式管理大量非常小的租用戶。在多租用戶分區化中，資料庫資料表中的資料列都設計成具有索引鍵 (識別租用戶識別碼) 或分區化索引鍵。同樣地，應用程式層負責將租用戶的要求遞送至適當的資料庫，而彈性資料庫用戶端程式庫支援此功能。此外，資料列層級安全性可用於篩選每個租用戶可以存取的資料列 – 如需詳細資訊，請參閱[使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。多租用戶分區化模式可能需要在資料庫之間重新分配資料，而彈性資料庫分割合併工具可協助達成此工作。若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 ### 將資料從多租用戶資料庫移到單一租用戶資料庫
 
@@ -96,7 +96,7 @@
 
 如需示範用戶端程式庫的範例應用程式，請參閱[開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
 
-若要將現有的資料庫轉換為使用該工具，請參閱[將現有資料庫移轉以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
+若要將現有的資料庫轉換為使用該工具，請參閱[移轉現有的資料庫以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
 
 若要查看彈性資料庫集區的細節，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)，或透過[教學課程](sql-database-elastic-pool-create-portal.md)建立新的集區。
 
@@ -109,4 +109,4 @@
 [3]: ./media/sql-database-elastic-scale-introduction/overview.png
 [4]: ./media/sql-database-elastic-scale-introduction/single_v_multi_tenant.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="05/12/2016"
+	ms.date="05/20/2016"
 	ms.author="marsma" />
 
 # 使用 Azure Batch 應用程式封裝部署應用程式
@@ -30,9 +30,11 @@ Azure Batch 的應用程式封裝功能可為集區中的計算節點提供簡�
 
 [Batch REST API][api_rest] 2015-12-01.2.2 版和對應的 [Batch .NET][api_net] 程式庫 3.1.0 版引進這項功能。使用 Batch 時，我們建議您一律使用最新的 API 版本。
 
+> [AZURE.IMPORTANT] 目前只有使用 **CloudServiceConfiguration** 建立的集區支援應用程式封裝。您無法在使用 VirtualMachineConfiguration 映像建立之集區的節點上使用應用程式封裝。如需這兩種不同組態的詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 運算節點](batch-linux-nodes.md)的[虛擬機器組態](batch-linux-nodes.md#virtual-machine-configuration)一節。
+
 ## 關於應用程式和應用程式封裝
 
-在 Azure Batch 中，**應用程式**是指一組已建立版本的二進位檔，這些檔案可自動下載到集區中的計算節點。**應用程式封裝**指的是這些二進位檔中的一組特定組合，其代表應用程式的特定版本。
+在 Azure Batch 中，「應用程式」是指一組已建立版本的二進位檔，這些檔案可自動下載到集區中的計算節點。「應用程式封裝」指的是這些二進位檔中的一組特定組合，其代表應用程式的特定版本。
 
 ![應用程式和應用程式封裝的高階圖表][1]
 
@@ -64,7 +66,7 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝儲存及部�
 
 若要使用應用程式封裝，您必須先連結 Azure 儲存體帳戶與 Batch 帳戶。如果您還沒有為 Batch 帳戶設定儲存體帳戶，Azure 入口網站會在您第一次按一下 Batch 帳戶刀鋒視窗中的 [應用程式] 圖格時顯示警告。
 
-> [AZURE.IMPORTANT] Batch 目前「只」支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。當您將 Azure 儲存體帳戶連結至 Batch 帳戶時，請「只」連結**一般用途**的儲存體帳戶。
+> [AZURE.IMPORTANT] Batch 目前僅支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。當您將 Azure 儲存體帳戶連結至 Batch 帳戶時，請只連結**一般用途**的儲存體帳戶。
 
 ![Azure 入口網站中的未設定儲存體帳戶警告][9]
 
@@ -72,7 +74,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 ![Azure 入口網站中的選擇儲存體帳戶刀鋒視窗][10]
 
-我們建議您建立「專門」用來與 Batch 帳戶搭配使用的儲存體帳戶，並在此處加以選取。如需建立儲存體帳戶的詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的「建立儲存體帳戶」。建立儲存體帳戶之後，您可以使用 [儲存體帳戶] 刀鋒視窗，將它連結到 Batch 帳戶。
+我們建議您建立「專門」用來與 Batch 帳戶搭配使用的儲存體帳戶，並在此處選取它。如需建立儲存體帳戶的詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的＜建立儲存體帳戶＞。建立儲存體帳戶之後，您可以使用 [儲存體帳戶] 刀鋒視窗，將它連結到 Batch 帳戶。
 
 > [AZURE.WARNING] 由於 Batch 會使用 Azure 儲存體來儲存應用程式封裝，所以我們會針對區塊 Blob 資料向您收取[標準費用][storage_pricing]。請務必考量應用程式封裝的大小和數目，並定期移除過時的封裝以降低成本。
 
@@ -94,13 +96,13 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 ### 檢視應用程式詳細資料
 
-在 [應用程式] 刀鋒視窗中按一下應用程式時，該應用程式的詳細資料刀鋒視窗隨即會出現。
+在 [應用程式] 刀鋒視窗中按一下應用程式時，就會顯示該應用程式的詳細資料刀鋒視窗。
 
 ![應用程式詳細資料][4]
 
 在應用程式詳細資料刀鋒視窗中，您可以配置應用程式的以下設定。
 
-* **允許更新** - 指定是否可更新或刪除應用程式的應用程式封裝 (請參閱下文的「更新或刪除應用程式封裝」)。
+* **允許更新** - 指定是否可更新或刪除應用程式的應用程式封裝 (請參閱下文的＜更新或刪除應用程式封裝＞)。
 * **預設版本** - 指定要部署至計算節點的預設應用程式封裝。
 * **顯示名稱** - 這是在顯示應用程式相關資訊時 (例如，透過 Batch 提供給客戶之服務的 UI 中)，Batch 解決方案可以使用的「易記」名稱。
 
@@ -138,7 +140,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 一旦選取檔案後，請按一下 [確定] 以開始上傳到 Azure 儲存體。當上傳作業完成時，系統會通知您且刀鋒視窗會關閉。請注意，因上傳之檔案的大小和網路連線速度不盡相同，這項作業可能需要花費一些時間。
 
-> [AZURE.WARNING] 上傳作業完成之前，請勿關閉 [新增應用程式] 刀鋒視窗，否則上傳程序將會中止。
+> [AZURE.WARNING] 上傳作業完成之前，請勿關閉 [新增應用程式] 刀鋒視窗。否則上傳程序將會中止。
 
 ### 加入新應用程式封裝
 
@@ -146,7 +148,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 ![Azure 入口網站中的加入應用程式封裝刀鋒視窗][8]
 
-如您所見，除了 [應用程式識別碼] 文字方塊已停用之外，欄位與 [新增應用程式] 刀鋒視窗中的欄位相符。依照上述方式，指定新封裝的 [版本]，瀏覽至 [應用程式封裝] ZIP 檔案，然後按一下 [確定] 以上傳封裝。
+如您所見，除了 [應用程式識別碼] 文字方塊已停用之外，欄位與 [新增應用程式] 刀鋒視窗中的欄位相符。依照上述方式，指定新封裝的 [版本]，瀏覽至您的**應用程式封裝** ZIP 檔案，然後按一下 [確定] 以上傳封裝。
 
 ### 更新或刪除應用程式封裝
 
@@ -156,7 +158,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 
 **更新**
 
-當您按一下 [更新] 時，[更新封裝] 刀鋒視窗隨即出現。此刀鋒視窗與 [新增應用程式封裝] 刀鋒視窗相似，只不過封裝選取欄位已啟用，因此您可以指定要上傳的新 ZIP 檔案。
+當您按一下 [更新] 時，[更新封裝] 刀鋒視窗隨即出現。此刀鋒視窗與 [新增應用程式封裝] 刀鋒視窗相似，只不過已啟用封裝選取欄位，因此您可以指定要上傳的新 ZIP 檔案。
 
 ![Azure 入口網站中的更新封裝刀鋒視窗][11]
 
@@ -218,11 +220,15 @@ string commandLine = @"cmd /c %AZ_BATCH_APP_PACKAGE_BLENDER%\blender.exe -my -co
 CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
-> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的「工作的環境設定」。
+> [AZURE.TIP] 如需計算節點環境設定的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的＜工作的環境設定＞。
 
 ## 更新集區的應用程式封裝
 
-如果您已設定現有集區的應用程式封裝，可以指定集區的新封裝。加入集區的所有新節點都會安裝新指定的封裝，任何重新啟動或重新安裝映像的現有節點也是如此。在更新封裝參考時已存在集區中的計算節點不會自動安裝新應用程式封裝。
+如果您已設定現有集區的應用程式封裝，可以指定集區的新封裝。如果您為集區指定新的封裝參考，則會適用下列情況：
+
+* 加入集區的所有新節點都會安裝新指定的封裝，任何重新啟動或重新安裝映像的現有節點也是如此。
+* 在更新封裝參考時已存在集區中的計算節點不會自動安裝新應用程式封裝，必須將它們重新啟動或重新安裝映像，才會接收新的封裝。
+* 部署新的封裝之後，所建立的環境變數會反映新的應用程式封裝參考。
 
 在此範例中，現有集區已將應用程式 blender 的 2.7 版設定為其中一個 [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]。若要將集區的節點更新為 2.76b 版，請將新的 [ApplicationPackageReference][net_pkgref] 指定為新版本並認可變更。
 
@@ -264,7 +270,7 @@ foreach (ApplicationSummary app in applications)
 
 ## 後續步驟
 
-* [Batch REST API][api_rest] 也提供使用應用程式封裝的支援。例如，請參閱[將集區加入至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 項目，以了解如何使用 REST API 來指定要安裝的封裝。如需使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
+* [Batch REST API][api_rest] 也提供使用應用程式封裝的支援。例如，請參閱[將集區加入至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 元素，以了解如何使用 REST API 來指定要安裝的封裝。如需使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
 
 * 了解如何以程式設計方式[使用 Batch Management .NET 管理 Azure Batch 帳戶和配額](batch-management-dotnet.md)。[Batch Management .NET][api_net_mgmt] 程式庫可以啟用 Batch 應用程式或服務的帳戶建立和刪除功能。
 
@@ -295,4 +301,4 @@ foreach (ApplicationSummary app in applications)
 [11]: ./media/batch-application-packages/app_pkg_11.png "Azure 入口網站中的更新封裝刀鋒視窗"
 [12]: ./media/batch-application-packages/app_pkg_12.png "Azure 入口網站中的刪除封裝確認對話方塊"
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

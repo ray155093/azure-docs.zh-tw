@@ -153,11 +153,11 @@
 
 為了在還原至磁碟後，完全重新建立虛擬機器，請依照以下步驟執行：
 
-1. 使用 [PowerShell](backup-azure-vms-automation.md/#restore-an-azure-vm) 從復原服務保存庫還原磁碟
+1. 使用 [PowerShell](../backup-azure-vms-automation.md#restore-an-azure-vm) 從復原服務保存庫還原磁碟
 
 2. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態，並使用該組態建立具備想要之組態的 VM。
 	- 使用[內部負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internal-getstarted/)在雲端服務中建立 VM
-	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internet-getstarted/)
+	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/zh-TW/documentation/articles/load-balancer-internet-getstarted/)
 	- 建立具有[多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/) 的 VM
 	- 建立具有[多個保留的 IP](https://azure.microsoft.com/documentation/articles/virtual-networks-reserved-public-ip/) 的 VM
 
@@ -167,4 +167,4 @@
 - [針對錯誤進行疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

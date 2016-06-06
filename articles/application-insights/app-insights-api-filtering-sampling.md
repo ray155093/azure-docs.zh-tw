@@ -3,7 +3,7 @@
 	description="撰寫 SDK 的外掛程式來篩選、取樣或將屬性加入資料，再將遙測傳送至 Application Insights 入口網站。" 
 	services="application-insights"
     documentationCenter="" 
-	authors="alancameronwills" 
+	authors="beckylino" 
 	manager="douge"/>
  
 <tags 
@@ -12,8 +12,8 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="04/27/2016" 
-	ms.author="awills"/>
+	ms.date="05/19/2016" 
+	ms.author="borooji"/>
 
 # 在 Application Insights SDK 中取樣、篩選及前置處理遙測
 
@@ -30,13 +30,10 @@
 
 開始之前：
 
-* 在應用程式中安裝 [Application Insights SDK](app-insights-asp-net.md)。手動安裝 NuGet 封裝並選取最新的*發行前版本*。
-* 試用 [Application Insights API](app-insights-api-custom-events-metrics.md)。 
+* 在應用程式中安裝 [ASP.NET v2 的 Application Insights SDK](app-insights-asp-net.md)。 
 
 
 ## 取樣
-
-*這項功能處於 Beta 版。*
 
 [取樣](app-insights-sampling.md)是減少流量同時保留準確的統計資料所建議的方式。篩選器會選取相關的項目，使得您可以瀏覽診斷中的項目。事件計數會在計量瀏覽器中調整，以補償所篩選的項目。
 
@@ -92,7 +89,7 @@
 
 ### 建立遙測處理器
 
-1. 將 Application Insights SDK 更新為最新版本 (2.0.0-beta2 或更新版本)。在 Visual Studio 方案總管中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。在 [NuGet 套件管理員] 中，選取 [包含發行前版本] 核取方塊，然後搜尋 Microsoft.ApplicationInsights.Web。
+1. 確認專案中的 Application Insights SDK 為 2.0.0 版或更新版本。在 Visual Studio 方案總管中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。檢查 NuGet 封裝管理員中的 Microsoft.ApplicationInsights.Web。
 
 1. 若要建立篩選器，請實作 ITelemetryProcessor。這是遙測模組、遙測初始設定式和遙測通道之類的另一個擴充點。
 
@@ -239,6 +236,11 @@ public void Process(ITelemetry item)
 }
 
 ```
+
+#### 診斷相依性問題
+
+[這篇部落格文章](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/)描述可自動傳送定期的 Ping 給相依項目，藉以診斷相依性問題的專案。
+
 
 <a name="add-properties"></a>
 ## 新增屬性︰ITelemetryInitializer
@@ -419,4 +421,4 @@ public void Process(ITelemetry item)
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/08/2016"
+   ms.date="05/20/2016"
    ms.author="toddabel"/>
 
 
@@ -59,11 +59,11 @@ Azure 支援團隊**需要**支援記錄檔才能牽涉您所建立的任何支�
 ### 使用 Azure Resource Manager 在建立叢集時部署診斷延伸模組
 若要使用資源管理員建立叢集，您需要在建立叢集之前，將診斷設定 JSON 加入至完整的資源管理員範本。我們在資源管理員範本範例中提供一個五 VM 叢集資源管理員範本，且已在其中加入診斷設定。您可以在 Azure 資源庫中的這個位置看到它：[具有診斷資源管理員範本範例的五節點叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)。若要查看資源管理員範本中的診斷設定，請開啟 **azuredeploy.json** 檔案，並搜尋 **IaaSDiagnostics**。若要使用這個範本建立叢集，只要按上面連結所提供的 [部署到 Azure] 按鈕即可。
 
-或者，您也可以下載資源管理員範例，加以變更，然後在 Azure PowerShell 視窗中使用 `New-AzureResourceGroupDeployment` 命令，使用修改過的範本建立叢集。請參閱以下資訊，以取得您需要傳給命令的參數。如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../resource-group-template-deploy.md)一文
+或者，您也可以下載資源管理員範例，加以變更，然後在 Azure PowerShell 視窗中使用 `New-AzureRmResourceGroupDeployment` 命令，使用修改過的範本建立叢集。請參閱以下資訊，以取得您需要傳給命令的參數。如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../resource-group-template-deploy.md)一文
 
 ```powershell
 
-New-AzureResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $pathToARMConfigJsonFile -TemplateParameterFile $pathToParameterFile –Verbose
+New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $pathToARMConfigJsonFile -TemplateParameterFile $pathToParameterFile –Verbose
 ```
 
 ### 將診斷延伸模組部署到現有的叢集
@@ -173,10 +173,10 @@ New-AzureResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $de
 
 
 ## 更新診斷從新的 EventSource 通道收集並上傳記錄檔
-若要更新診斷從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，您只需要執行[上述小節](#deploywadarm)中相同的步驟即可，其中描述現有叢集的診斷設定。在使用 *New-AzureResourceGroupDeployment* PowerShell 命令套用組態更新之前，您必須更新 **template.json** 中的 [EtwEventSourceProviderConfiguration] 區段，以新增項目至新的 EventSources。
+若要更新診斷從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，您只需要執行[上述小節](#deploywadarm)中相同的步驟即可，其中描述現有叢集的診斷設定。在使用 New-AzureRmResourceGroupDeployment PowerShell 命令套用組態更新之前，您必須更新 **template.json** 中的 [EtwEventSourceProviderConfiguration] 區段，以新增項目至新的 EventSources。
 
 
 ## 後續步驟
 查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件，以更詳細了解進行問題移難排解時應該調查哪些事件。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

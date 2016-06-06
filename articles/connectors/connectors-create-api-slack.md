@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的邏輯應用程式中使用 Slack API | Microsoft Azure"
-description="開始在您的 Microsoft Azure App service Logic apps 中使用 Slack API (連接器)"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的邏輯應用程式中使用 Slack 連接器 | Microsoft Azure"
+description="開始在您的 Microsoft Azure App Service Logic Apps 中使用 Slack 連接器"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,10 +14,10 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/16/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Slack API
+# 開始使用 Slack 連接器
 
 Slack 是團隊通訊工具，能把您團隊的通訊都集中在一個地方，讓您不但在何處都可使用，還能搜尋各項記錄。
 
@@ -42,7 +42,7 @@ Slack 連接器可當做動作來使用；它沒有觸發程序。所有連接�
 |--- | ---|
 |PostMessage|將訊息張貼到指定通道。|
 ## 建立至 Slack 的連線
-如要使用 Slack API，您必須先建立**連接**，再提供下列屬性的詳細資料：
+如要使用 Slack 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
 
 |屬性| 必要|說明|
 | ---|---|---|
@@ -481,4 +481,4 @@ MessageItem 的必要屬性：
 [5]: ./media/connectors-create-api-slack/connectionconfig5.png
 [6]: ./media/connectors-create-api-slack/connectionconfig6.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -4,7 +4,7 @@
 	services="api-management" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="douge" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/11/2016" 
+	ms.date="05/25/2016" 
 	ms.author="sdanie"/>
 
 
@@ -23,7 +23,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ## 開發人員入口網站範本概觀
 
-API 管理服務執行個體的系統管理員是在開發人員入口網站中管理開發人員入口網站範本。若要管理開發人員範本，請瀏覽至 Azure 傳統入口網站的 API 管理服務執行個體，然後按一下 [瀏覽]。
+開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。若要管理開發人員範本，請瀏覽至 Azure 傳統入口網站的 API 管理服務執行個體，然後按一下 [瀏覽]。
 
 ![開發人員入口網站][api-management-browse]
 
@@ -39,7 +39,7 @@ API 管理服務執行個體的系統管理員是在開發人員入口網站中�
 
 ![開發人員入口網站範本][api-management-templates-menu]
 
-按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。這個範例會顯示**產品清單**範本。 **產品清單**範本控制的畫面區域會以紅色矩形表示。
+按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。這個範例會顯示**產品清單**範本。**產品清單**範本控制的畫面區域會以紅色矩形表示。
 
 ![產品清單範本][api-management-developer-portal-templates-overview]
 
@@ -53,7 +53,7 @@ API 管理服務執行個體的系統管理員是在開發人員入口網站中�
 
 ![範本標記][api-management-template]
 
-[範本資料] 窗格提供可在特定範本中使用之實體資料模型的指南。它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。您可以按一下 [範本資料] 窗格右上角的矩形，展開範本窗格。
+[範本資料] 窗格可為能在特定範本中使用的實體，提供有關資料模型的指南。它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。您可以按一下 [範本資料] 窗格右上角的矩形，展開範本窗格。
 
 ![範本資料模型][api-management-template-data]
 
@@ -207,4 +207,4 @@ API 管理服務執行個體的系統管理員是在開發人員入口網站中�
 [api-management-reset-template-confirm]: ./media/api-management-developer-portal-templates/api-management-reset-template-confirm.png
 [api-management-restore-templates]: ./media/api-management-developer-portal-templates/api-management-restore-templates.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

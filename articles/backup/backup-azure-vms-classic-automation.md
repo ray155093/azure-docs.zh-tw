@@ -20,8 +20,8 @@
 # 使用 PowerShell 部署和管理 Azure VM 的備份
 
 > [AZURE.SELECTOR]
-- [ARM VM PowerShell](backup-azure-vms-automation.md)
-- [傳統 VM PowerShell](backup-azure-vms-classic-automation.md)
+- [ARM](backup-azure-vms-automation.md)
+- [傳統](backup-azure-vms-classic-automation.md)
 
 本文說明如何使用 Azure PowerShell 來備份和復原 Azure IaaS VM。
 
@@ -342,4 +342,4 @@ $DAILYBACKUPSTATS | Out-GridView
 
 如果想要將製作圖表的功能加入這個報表輸出，請在 TechNet 部落格上了解[使用 PowerShell 製作圖表](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

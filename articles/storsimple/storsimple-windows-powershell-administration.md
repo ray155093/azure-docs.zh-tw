@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/29/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli@microsoft.com" />
 
 # 使用 Windows PowerShell for StorSimple 管理您的裝置
@@ -197,4 +197,4 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 ## 後續步驟
 如果您在執行上述任何工作流程時遇到任何 StorSimple 裝置的問題，請參閱[適用於疑難排解 StorSimple 部署的工具](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments)。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0525_2016-->

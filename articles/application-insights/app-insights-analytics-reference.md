@@ -22,28 +22,31 @@
 
 [AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
 
-
 | | | | | 
 |---|---|---|---|---
-|[ago](#ago)|[dayofweek](#dayofweek)|[let 子句](#let-clause)|[rand](#rand)|[sum](#sum)
-|[any](#any)|[dcount](#dcount)|[limit 運算子](#limit-operator)|[range](#range)|[summarize 運算子](#summarize-operator)
-|[argmax](#argmax)|[let 子句中的動態物件](#dynamic-objects-in-let-clauses)|[log](#log)|[range 運算子](#range-operator)|[take 運算子](#take-operator)
-|[argmin](#argmin)|[exp](#exp)|[makelist](#makelist)|[reduce 運算子](#reduce-operator)|[todatetime](#todatetime)
-|[算術運算子](#arithmetic-operators)|[extend 運算子](#extend-operator)|[makeset](#makeset)|[Render 指示詞](#render-directive)|[todouble](#todouble)
-|[陣列和物件常值](#array-and-object-literals)|[extract](#extract)|[max](#max)|[replace](#replace)|[todynamic](#todynamic)
-|[arraylength](#arraylength)|[extractjson](#extractjson)|[min](#min)|[restrict 子句](#restrict-clause)|[toint](#toint)
-|[avg](#avg)|[floor](#floor)|[mvexpand 運算子](#mvexpand-operator)|[純量比較](#scalar-comparisons)|[tolong](#tolong)
-|[bin](#bin)|[getmonth](#getmonth)|[notempty](#notempty)|[sort 運算子](#sort-operator)|[tolower](#tolower)
-|[布林常值](#boolean-literals)|[gettype](#gettype)|[notnull](#notnull)|[分割](#split)|[top 運算子](#top-operator)
-|[布林運算子](#boolean-operators)|[getyear](#getyear)|[now](#now)|[sqrt](#sqrt)|[totimespan](#totimespan)
-|[buildschema](#buildschema)|[雜湊](#hash)|[數值常值](#numeric-literals)|[startofmonth](#startofmonth)|[toupper](#toupper)
-|[轉換](#casts)|[iff](#iff)|[模糊字串常值](#obfuscated-string-literals)|[startofyear](#startofyear)|[treepath](#treepath)
-|[計數](#count)|[isempty](#isempty)|[parse 運算子](#parse-operator)|[stdev](#stdev)|[union 運算子](#union-operator)
-|[count 運算子](#count-operator)|[isnotempty](#isnotempty)|[parsejson](#parsejson)|[strcat](#strcat)|[variance](#variance)
-|[countif](#countif)|[isnotnull](#isnotnull)|[percentile](#percentile)|[字串比較](#string-comparisons)|[where 運算子](#where-operator)
-|[countof](#countof)|[isnull](#isnull)|[percentiles](#percentiles)|[字串常值](#string-literals)
-|[日期和時間運算式](#date-and-time-expressions)|[join 運算子](#join-operator)|[project 運算子](#project-operator)|[strlen](#strlen)
-|[日期和時間常值](#date-and-time-literals)|[JSON 路徑運算式](#json-path-expressions)|[project-away op](#project-away-operator)|[substring](#substring)
+|[abs](#abs)|[dayofweek](#dayofweek)|[isnull](#isnull)|[rand](#rand)|[summarize 運算子](#summarize-operator)
+|[ago](#ago)|[dayofyear](#dayofyear)|[join 運算子](#join-operator)|[range](#range)|[take 運算子](#take-operator)
+|[any](#any)|[dcount](#dcount)|[JSON 路徑運算式](#json-path-expressions)|[range 運算子](#range-operator)|[todatetime](#todatetime)
+|[argmax](#argmax)|[dcountif](#dcountif)|[let 子句](#let-clause)|[reduce 運算子](#reduce-operator)|[todouble](#todouble)
+|[argmin](#argmin)|[let 子句中的動態物件](#dynamic-objects-in-let-clauses)|[limit 運算子](#limit-operator)|[Render 指示詞](#render-directive)|[todynamic](#todynamic)
+|[算術運算子](#arithmetic-operators)|[endofday](#endofday)|[log](#log)|[replace](#replace)|[toint](#toint)
+|[陣列和物件常值](#array-and-object-literals)|[endofmonth](#endofmonth)|[makelist](#makelist)|[restrict 子句](#restrict-clause)|[tolong](#tolong)
+|[arraylength](#arraylength)|[endofweek](#endofweek)|[makeset](#makeset)|[純量比較](#scalar-comparisons)|[tolower](#tolower)
+|[avg](#avg)|[endofyear](#endofyear)|[max](#max)|[sort 運算子](#sort-operator)|[top 運算子](#top-operator)
+|[bin](#bin)|[exp](#exp)|[min](#min)|[分割](#split)|[top-nested op](#top-nested-operator)
+|[布林常值](#boolean-literals)|[extend 運算子](#extend-operator)|[mvexpand 運算子](#mvexpand-operator)|[sqrt](#sqrt)|[toscalar](#toscalar)
+|[布林運算子](#boolean-operators)|[extract](#extract)|[notempty](#notempty)|[startofday](#startofday)|[totimespan](#totimespan)
+|[buildschema](#buildschema)|[extractjson](#extractjson)|[notnull](#notnull)|[startofmonth](#startofmonth)|[toupper](#toupper)
+|[轉換](#casts)|[floor](#floor)|[now](#now)|[startofweek](#startofweek)|[treepath](#treepath)
+|[計數](#count)|[getmonth](#getmonth)|[數值常值](#numeric-literals)|[startofyear](#startofyear)|[union 運算子](#union-operator)
+|[count 運算子](#count-operator)|[gettype](#gettype)|[模糊字串常值](#obfuscated-string-literals)|[stdev](#stdev)|[variance](#variance)
+|[countif](#countif)|[getyear](#getyear)|[parse 運算子](#parse-operator)|[strcat](#strcat)|[weekofyear](#weekofyear)
+|[countof](#countof)|[雜湊](#hash)|[parsejson](#parsejson)|[字串比較](#string-comparisons)|[where 運算子](#where-operator)
+|[日期和時間運算式](#date-and-time-expressions)|[iff](#iff)|[percentile](#percentile)|[字串常值](#string-literals)
+|[日期和時間常值](#date-and-time-literals)|[isempty](#isempty)|[percentiles](#percentiles)|[strlen](#strlen)
+|[datepart](#datepart)|[isnotempty](#isnotempty)|[project 運算子](#project-operator)|[substring](#substring)
+|[dayofmonth](#dayofmonth)|[isnotnull](#isnotnull)|[project-away op](#project-away-operator)|[sum](#sum)
+
 
 
 ## 查詢和運算子
@@ -125,7 +128,7 @@ requests | count
 **秘訣**
 
 * 如果您也想要捨棄或重新命名某些資料行，請改用 [`project`](#project-operator)。
-* 請不要為了讓名稱縮短以方便用於長運算式中而使用 `extend`。`...| extend x = anonymous_user_id_from_client | ... func(x) ...` 
+* 不要為了讓名稱縮短以方便用於長運算式中而使用 `extend`。`...| extend x = anonymous_user_id_from_client | ... func(x) ...` 
 
     資料表原本的資料行已編制索引，但縮短後的新名稱會另外定義尚未編製索引的資料行，而可能導致查詢的執行速度變慢。
 
@@ -258,7 +261,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 
      T | limit 5
 
-傳回輸入資料表中的資料列，最多可傳回所指定的數目。此運算子無法保證會傳回哪些記錄 (若要傳回特定記錄，請使用 [`top`](#top-operator)。)
+傳回輸入資料表中的資料列，最多可傳回所指定的數目。此運算子無法保證會傳回哪些記錄 (若要傳回特定記錄，請使用 [`top`](#top-operator))。
 
 **別名** `take`
 
@@ -269,7 +272,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 
 **秘訣**
 
-當您在進行互動工作時，`Take` 可讓您輕鬆、有效率地查看結果的樣本。但請注意，它無法保證一定會產生任何特定資料列，或以任何特定順序產生資料列。
+當您以互動方式工作時，`Take` 可讓您輕鬆、有效率地查看結果的樣本。但請注意，它無法保證一定會產生任何特定資料列，或以任何特定順序產生資料列。
 
 即使您不使用 `take`，傳回給用戶端的資料列數目還是會受到隱含限制。若要提高此限制，請使用 `notruncation` 用戶端要求選項。
 
@@ -281,7 +284,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 
 從動態類型 (JSON) 的資料格展開清單，讓每個項目各自佔據一個資料列。所展開資料列中的其他所有資料格則會重複。
 
-(請參閱會執行相反函數的 [`summarize makelist`](#summarize-operator)。)
+(請參閱會執行相反函數的 [`summarize makelist`](#summarize-operator))。
 
 **範例**
 
@@ -328,7 +331,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 有兩種屬性包展開模式可受到支援︰
 
 * `bagexpansion=bag`︰屬性包會展開為單一項目屬性包。這是預設展開模式。
-* `bagexpansion=array`︰屬性包會展開為有兩個元素的 `[`*索引鍵*`,`*值*`]` 陣列結構，以便能夠統一存取索引鍵和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。 
+* `bagexpansion=array`︰屬性包會展開為有兩個項目 `[`*索引鍵*`,`*值*`]` 陣列結構，以便能夠統一存取索引鍵和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。 
 
 **範例**
 
@@ -375,7 +378,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 
 **範例**
 
-`parse` 運算子透過在相同的 `string` 運算式上使用多個 `extract` 應用程式來簡化資料表的 `extend`。當資料表的 `string` 資料行有好幾個值，而您想要將這些值個別分割到一個資料行時，最適合使用此運算子，開發人員追蹤 ("`printf`"/"`Console.WriteLine`") 陳述式所產生的資料行便是一例。
+`parse` 運算子透過在相同的 `string` 運算式上使用多個 `extract` 應用程式來簡化資料表的 `extend`。當資料表的 `string` 資料行有好幾個值，而您想要將這些值分割到個別的資料行時，最適合使用此運算子，開發人員追蹤 ("`printf`"/"`Console.WriteLine`") 陳述式所產生的資料行便是一例。
 
 在下列範例中，假設資料表 `StormEvents` 的資料行 `EventNarrative` 包含 `{0} at {1} crested at {2} feet around {3} on {4} {5}` 格式的字串。下列運算會為資料表擴充兩個資料行︰`SwathSize` 和 `FellLocation`。
 
@@ -436,7 +439,7 @@ StormEvents
 
     T | project cost=price*quantity, price
 
-選取要納入、重新命名或捨棄的資料行，以及插入新的計算資料行。結果中的資料行順序是由引數順序來指定。只有引數中指定的資料行才會包含在結果中︰輸入中的其他任何資料行則會遭到捨棄。(另請參閱 `extend`。)
+選取要納入、重新命名或捨棄的資料行，以及插入新的計算資料行。結果中的資料行順序是由引數順序來指定。只有引數中指定的資料行才會包含在結果中︰輸入中的其他任何資料行則會遭到捨棄。(另請參閱 `extend`)。
 
 
 **語法**
@@ -446,7 +449,7 @@ StormEvents
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何運算式，則該名稱的資料行必須出現在輸入中。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
 * Expression︰參考輸入資料行的選擇性純量運算式。 
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
@@ -501,7 +504,7 @@ T
 * Stop︰輸出中產生的最大值 (或最大值界限，如果 step 跨越此值)。
 * Step︰兩個連續值之間的差異。 
 
-引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函數](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator)。)
+引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函數](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator))。
 
 **傳回**
 
@@ -540,7 +543,7 @@ range timestamp from ago(4h) to now() step 1m
 
     exceptions | reduce by outerMessage
 
-嘗試將相似的記錄群組在一起。對於每個群組，運算子會輸出其認定最能描述該群組的 `Pattern`，以及該群組中的記錄 `Count`。
+嘗試將相似的記錄群組在一起。對於每個群組，運算子會輸出它認定最能描述該群組的 `Pattern`，以及該群組中的記錄 `Count`。
 
 
 ![](./media/app-insights-analytics-reference/reduce.png)
@@ -625,7 +628,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
     T | summarize count() by price_range=bin(price, 10.0)
 
-顯示有多少項目的價格落在 [0,10.0]、[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
+顯示有多少項目的價格落在 [0,10.0]、 [10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
 
 
 **語法**
@@ -649,9 +652,9 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **傳回**
 
-輸入資料列會各自分組到具有相同 `by` 運算式值的群組。然後指定的彙總函式會針對每個群組進行計算，以便為每個群組產生資料列。結果會包含 `by` 資料行，而且每個經過計算的彙總至少會佔有一個資料行 (某些彙總函式會傳回多個資料行)。
+輸入資料列會各自分組到具有相同 `by` 運算式值的群組。然後指定的彙總函式會針對每個群組進行計算，以便為每個群組產生資料列。結果會包含 `by` 資料行，而且每個經過計算的彙總至少會佔有一個資料行。(某些彙總函式會傳回多個資料行)。
 
-`by` 值有多少個不同組合，結果就會有多少個資料列。如果您想要彙總數值範圍，請使用 `bin()` 將範圍減少為離散值。
+`by` 值有多少個不同組合，結果就會有多少個資料列。如果您想要彙總數值範圍，請使用 `bin()` 來將範圍減少為離散值。
 
 **注意**
 
@@ -685,6 +688,26 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 **秘訣**
 
 `top 5 by name` 表面上相當於 `sort by name | take 5`。不過，前者的執行速度較快且一定會傳回排序後的結果，而 `take` 則不一定如此。
+
+### top-nested 運算子
+
+    requests 
+    | top-nested 5 of name by count()  
+    , top-nested 3 of performanceBucket by count() 
+    , top-nested 3 of client_CountryOrRegion by count()
+    | render barchart 
+
+產生階層式結果，其中每個層級都是從上一層向下切入。這很適合用來回答如下的問題：「前 5 個要求是什麼；對這其中每一個來說，前 3 個效能值區是什麼；以及對這其中每一個來說，要求的前 3 個來源國家或地區為何？」
+
+**語法**
+
+   T | top-nested N of COLUMN by AGGREGATION [, ...]
+
+**引數**
+
+* N:int - 傳回或傳遞到下一層的資料列數目。在有三個層級的查詢 (其中 N 為 5、3 及 3) 中，資料列總數將會是 45。
+* COLUMN - 可據以群組來進行彙總的資料行。 
+* AGGREGATION - 要套用到每個資料列群組的[彙總函數](#aggregations)。這些彙總的結果將決定要顯示的最上層群組。
 
 
 ### union 運算子
@@ -770,7 +793,7 @@ Predicate 是 `true` 之 T 中的資料列。
 
 若要取得最快效能︰
 
-* 在資料行名稱和常數之間**使用簡單比較** ('Constant' 表示資料表常數，因此 `now()` 和 `ago()` 都沒問題，並且是使用 [`let` 子句](#let-clause)指派的純量值)。
+* 在資料行名稱和常數之間**使用簡單比較** ('Constant' 表示資料表上的常數，因此 `now()` 和 `ago()` 都沒問題，並且是使用 [`let` 子句](#let-clause)指派的純量值)。
 
     例如，`where Timestamp >= ago(1d)` 比 `where floor(Timestamp, 1d) == ago(1d)` 更好。
 
@@ -794,7 +817,7 @@ Traces
 
 ## 彙總
 
-彙總是用來將[彙總作業](#summarize-operator)中建立的群組中的值結合的函數。例如，在此查詢中，dcount() 是彙總函數︰
+彙總是用來將[彙總運算](#summarize-operator)中建立的群組中之值結合的函數。例如，在此查詢中，dcount() 是彙總函數︰
 
     requests | summarize dcount(name) by success
 
@@ -950,7 +973,7 @@ traces
 
 **效能秘訣**︰使用 `summarize count(filter)` 而非 `where filter | summarize count()`
 
-> [AZURE.NOTE] 避免使用 count() 來找出已發生的要求、例外狀況或其他事件的數目。在[取樣](app-insights-sampling.md)時，資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
+> [AZURE.NOTE] 避免使用 count() 來找出已發生的要求、例外狀況或其他事件的數目。在運算中[取樣](app-insights-sampling.md)時，資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
 
 ### countif
 
@@ -960,13 +983,13 @@ traces
 
 **效能秘訣**︰使用 `summarize countif(filter)` 而非 `where filter | summarize count()`
 
-> [AZURE.NOTE] 避免使用 countif() 來找出已發生的要求、例外狀況或其他事件的數目。在作業中[取樣](app-insights-sampling.md)時，資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
+> [AZURE.NOTE] 避免使用 countif() 來找出已發生的要求、例外狀況或其他事件的數目。在運算中[取樣](app-insights-sampling.md)時，資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
 
 ### dcount
 
     dcount( Expression [ ,  Accuracy ])
 
-傳回群組中 Expr 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
+傳回群組中 Expr 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset))。
 
 Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
@@ -982,13 +1005,33 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 ![](./media/app-insights-analytics-reference/dcount.png)
 
+
+### dcountif
+
+    dcountif( Expression, Predicate [ ,  Accuracy ])
+
+傳回 Predicate 為 true 之群組中，資料列的 Expr 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset))。
+
+Accuracy (若已指定) 會控制速度和精確度之間的平衡。
+
+ * `0` = 最不精確但最快速的計算。
+ * `1` 預設值，會平衡精確度和計算時間；大約 0.8% 的誤差。
+ * `2` = 最精確但最慢的計算；大約 0.4% 的誤差。
+
+**範例**
+
+    pageViews 
+    | summarize cities=dcountif(client_City, client_City startswith "St") 
+      by client_CountryOrRegion
+
+
 ### makelist
 
     makelist(Expr [ ,  MaxListSize ] )
 
 傳回群組中 Expr 所有值的 `dynamic` (JSON) 陣列。
 
-* MaxListSize 是所傳回元素數目最大值的選擇性整數限制 (預設值是 128)。
+* MaxListSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
 
 ### makeset
 
@@ -996,7 +1039,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 傳回 Expr 在群組中取得之一組相異值的 `dynamic` (JSON) 陣列。(秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount)。)
   
-*  MaxSetSize 是所傳回元素數目最大值的選擇性整數限制 (預設值是 128)。
+*  MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
 
 **範例**
 
@@ -1096,7 +1139,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 ## 純量
 
-[casts](#casts) | [comparisons](#scalar-comparisons) <br/> [gettype](#gettype) | [hash](#hash) | [iff](#iff)| [isnull](#isnull) | [isnotnull](#isnotnull) | [notnull](#notnull)
+[casts](#casts) | [comparisons](#scalar-comparisons) <br/> [gettype](#gettype) | [hash](#hash) | [iff](#iff) | [isnull](#isnull) | [isnotnull](#isnotnull) | [notnull](#notnull) | [toscalar](#toscalar)
 
 支援的類型包括︰
 
@@ -1126,6 +1169,11 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
     tostring(42.5)
     todynamic("{a:10, b:20}")
 
+檢查字串是否可以轉換為特定的類型︰
+
+    iff(notnull(todouble(customDimensions.myValue)),
+       ..., ...)
+
 ### 純量比較
 
 ||
@@ -1154,7 +1202,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 ---|---
 `gettype("a")` |`"string" `
 `gettype(111)` |`"long" `
-`gettype(1==1)` |`"int8" (*) `
+`gettype(1==1)` |`"int8"`
 `gettype(now())` |`"datetime" `
 `gettype(1s)` |`"timespan" `
 `gettype(parsejson('1'))` |`"int" `
@@ -1164,8 +1212,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 `gettype(123.45)` |`"real" `
 `gettype(guid(12e8b78d-55b4-46ae-b068-26d7a0080254))` |`"guid"` 
 `gettype(parsejson(''))` |`"null"`
-
-
+`gettype(1.2)==real` | `true`
 
 ### 雜湊
 
@@ -1253,6 +1300,30 @@ true 或 false，取決於值是 null 或不是 null。
 
     T | summarize count(PossiblyNull)
 
+### toscalar
+
+評估查詢或運算式，並以單一值形式傳回結果。此函數適用於分段計算；例如，計算事件總數，然後使用該總數做為基準。
+
+**語法**
+
+    toscalar(query)
+    toscalar(scalar)
+
+**傳回**
+
+評估的引數。如果引數是資料表，即會傳回第一個資料列的第一個資料行。(最好是安排引數只有一個資料行和資料列)。
+
+**範例**
+
+```AIQL
+
+    // Get the count of requests 5 days ago:
+    let baseline = toscalar(requests  
+        | where floor(timestamp, 1d) == floor(ago(5d),1d) | count);
+    // List the counts relative to that baseline:
+    requests | summarize daycount = count() by floor(timestamp, 1d)  
+    | extend relative = daycount - baseline
+```
 
 
 
@@ -1274,7 +1345,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 ## 數字
 
-[bin](#bin) | [floor](#floor) | [rand](#rand) | [range](#range) | [sqrt](#sqrt) | [todouble](#todouble) | [toint](#toint) | [tolong](#tolong)
+[abs](#abs) | [bin](#bin) | [exp](#exp) | [floor](#floor) |[log](#log) | [rand](#rand) | [range](#range) | [sqrt](#sqrt) | [todouble](#todouble) | [toint](#toint) | [tolong](#tolong)
 
 ### 數值常值
 
@@ -1288,22 +1359,25 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 |
-| * | 乘 |
-| / | 除 |
-| % | 模數 |
-||
-|`<` |小於 
-|`<=`|小於或等於 
-|`>` |大於 
-|`>=`|大於或等於 
-|`<>`|不等於 
-|`!=`|不等於
+| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
 
 
+### abs
 
+**語法**
 
-### bin
+	abs(x)
+
+**引數**
+
+* x - 整數、實數或時間範圍
+
+**傳回**
+
+    iff(x>0, x, -x)
+
+<a name="bin"></a><a name="floor"></a>
+### bin、floor
 
 將值捨入為指定 bin 大小的整數倍數。常用於 [`summarize by`](#summarize-operator) 查詢。如果您有一組零散值，這些值會分組為一組較小的特定值。
 
@@ -1312,6 +1386,7 @@ true 或 false，取決於值是 null 或不是 null。
 **語法**
 
      bin(value, roundTo)
+     floor(value, roundTo)
 
 **引數**
 
@@ -1339,6 +1414,7 @@ true 或 false，取決於值是 null 或不是 null。
 
     T | summarize Hits=count() by bin(Duration, 1s)
 ```
+
 ### exp
 
     exp(v)   // e raised to the power v
@@ -1385,7 +1461,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 **傳回**
 
-* `sqrt(x) * sqrt(x) == x` 的正數
+* 像是 `sqrt(x) * sqrt(x) == x` 的正數
 * 如果引數為負數或無法轉換為 `real` 值，則為 `null`。 
 
 
@@ -1421,7 +1497,7 @@ true 或 false，取決於值是 null 或不是 null。
 ## 日期和時間
 
 
-[ago](#ago) | [dayofweek](#dayofweek) | [getmonth](#getmonth)| [getyear](#getyear) | [now](#now) | [startofmonth](#startofmonth) | [startofyear](#startofyear) | [todatetime](#todatetime) | [totimespan](#totimespan)
+[ago](#ago) | [dayofmonth](#dayofmonth) | [dayofweek](#dayofweek) | [dayofyear](#dayofyear) |[datepart](#datepart) | [endofday](#endofday) | [endofmonth](#endofmonth) | [endofweek](#endofweek) | [endofyear](#endofyear) | [getmonth](#getmonth)| [getyear](#getyear) | [now](#now) | [startofday](#startofday) | [startofmonth](#startofmonth) | [startofweek](#startofweek) | [startofyear](#startofyear) | [todatetime](#todatetime) | [totimespan](#totimespan) | [weekofyear](#weekofyear)
 
 ### 日期和時間常值
 
@@ -1430,7 +1506,7 @@ true 或 false，取決於值是 null 或不是 null。
 **datetime**|
 `datetime("2015-12-31 23:59:59.9")`<br/>`datetime("2015-12-31")`|時間一律是 UTC 格式。省略日期則會提供今天的時間。
 `now()`|目前的時間。
-`now(`-timespan`)`|`now()-`*timespan*
+`now(`-*timespan*`)`|`now()-`*timespan*
 `ago(`*timespan*`)`|`now()-`*timespan*
 **timespan**|
 `2d`|2 天
@@ -1469,7 +1545,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 ### ago
 
-從目前的 UTC 時鐘時間減去指定的時間範圍。和 `now()` 一樣，此函數可在陳述式中多次使用，而且所參考的 UTC 時鐘時間在所有具現化皆相同。
+從目前的 UTC 時鐘時間減去指定的時間範圍。和 `now()` 一樣，此函數可在陳述式中多次使用，而且所參考的 UTC 時鐘時間在所有具現化中皆相同。
 
 **語法**
 
@@ -1492,6 +1568,39 @@ true 或 false，取決於值是 null 或不是 null。
     T | where timestamp > ago(1h)
 ```
 
+### datepart
+
+    datepart("Day", datetime(2015-12-14)) == 14
+
+以整數形式擷取指定的日期部分。
+
+**語法**
+
+    datepart(part, datetime)
+
+**引數**
+
+* `part:String` - {"Year", "Month", "Day", "Hour", "Minute", "Second", "Millisecond", "Microsecond", "Nanosecond"}
+* `datetime`
+
+**傳回**
+
+長整數，代表指定的部分。
+
+
+### dayofmonth
+
+    dayofmonth(datetime("2016-05-15")) == 15 
+
+該日期在當月的序數。
+
+**語法**
+
+    dayofmonth(a_date)
+
+**引數**
+
+* `a_date`：`datetime`。
 
 
 ### dayofweek
@@ -1518,6 +1627,32 @@ true 或 false，取決於值是 null 或不是 null。
 dayofweek(1947-11-29 10:00:05)  // time(6.00:00:00), indicating Saturday
 dayofweek(1970-05-11)           // time(1.00:00:00), indicating Monday
 ```
+
+### dayofyear
+
+    dayofyear(datetime("2016-05-31")) == 152 
+    dayofyear(datetime("2016-01-01")) == 1 
+
+該日期在當年的序數。
+
+**語法**
+
+    dayofyear(a_date)
+
+**引數**
+
+* `a_date`：`datetime`。
+
+<a name="endofday"></a><a name="endofweek"></a><a name="endofmonth"></a><a name="endofyear"></a>
+### endofday、endofweek、endofmonth、endofyear
+
+    dt = datetime("2016-05-23 12:34")
+
+    endofday(dt) == 2016-05-23T23:59:59.999
+    endofweek(dt) == 2016-05-28T23:59:59.999 // Saturday
+    endofmonth(dt) == 2016-05-31T23:59:59.999 
+    endofyear(dt) == 2016-12-31T23:59:59.999 
+
 
 ### getmonth
 
@@ -1568,17 +1703,16 @@ dayofweek(1970-05-11)           // time(1.00:00:00), indicating Monday
 T | where ... | extend Elapsed=now() - timestamp
 ```
 
-### startofmonth
+<a name="startofday"></a><a name="startofweek"></a><a name="startofmonth"></a><a name="startofyear"></a>
+### startofday、startofweek、startofmonth、startofyear
 
-    startofmonth(date)
+    date=datetime("2016-05-23 12:34:56")
 
-包含日期的月份開始。
+    startofday(date) == datetime("2016-05-23")
+    startofweek(date) == datetime("2016-05-22") // Sunday
+    startofmonth(date) == datetime("2016-05-01")
+    startofyear(date) == datetime("2016-01-01")
 
-### startofyear
-
-    startofyear(date)
-
-包含日期的年度開始。
 
 
 ### todatetime
@@ -1587,11 +1721,17 @@ T | where ... | extend Elapsed=now() - timestamp
 
      todatetime("2016-03-28")
      todatetime("03/28/2016")
-     todatetime("2016-03-28 14:34")
+     todatetime("2016-03-28 14:34:00")
      todatetime("03/28/2016 2:34pm")
      todatetime("2016-03-28T14:34.5Z")
-     todatetime(a[0])  // cast a dynamic type
-     todatetime(b.c)   // cast a dynamic type
+     todatetime(a[0]) 
+     todatetime(b.c) 
+
+檢查字串是否為有效的日期︰
+
+     iff(notnull(todatetime(customDimensions.myDate)),
+         ..., ...)
+
 
 ### totimespan
 
@@ -1600,6 +1740,14 @@ T | where ... | extend Elapsed=now() - timestamp
     totimespan("21d")
     totimespan("21h")
     totimespan(request.duration)
+
+### weekofyear
+
+    weekofyear(datetime("2016-05-14")) == 21
+    weekofyear(datetime("2016-01-03")) == 1
+    weekofyear(datetime("2016-12-31")) == 53
+
+整數結果是依 ISO 8601 標準表示的週數。一週的第一天是星期日，而該年度的第一週是包含該年度第一個星期四的那一週。(因此，一年的最後幾天可以包含下一年度第 1 週的某些天數，或者前幾天可以包含上一年度第 52 或 53 週的某些天數)。
 
 
 ## String
@@ -1906,23 +2054,23 @@ substring("ABCD", 0, 2)       // AB
 
 ## 陣列、物件和動態
 
-[literals](#dynamic-literals) | [casting](#casting-dynamic-objects) | [operators](#operators) | [let clauses](#dynamic-objects-in-let-clauses) <br/> [arraylength](#arraylength) | [extractjson](#extractjson) | [parsejson](#parsejson) | [range](#range) | [treepath](#treepath) | [todynamic](#todynamic)
+[常值](#dynamic-literals) | [轉換](#casting-dynamic-objects) | [運算子](#operators) | [let 子句](#dynamic-objects-in-let-clauses) <br/> [arraylength](#arraylength) | [extractjson](#extractjson) | [parsejson](#parsejson) | [range](#range) | [treepath](#treepath) | [todynamic](#todynamic)
 
 
 以下是 Application Insights 例外狀況的查詢結果。`details` 中的值是陣列。
 
 ![](./media/app-insights-analytics-reference/310.png)
 
-編製索引︰和在 JavaScript 一樣編製陣列和物件的索引︰
+**編製索引︰**和在 JavaScript 一樣編製陣列和物件的索引︰
 
     exceptions | take 1
     | extend 
         line = details[0].parsedStack[0].line,
         stackdepth = arraylength(details[0].parsedStack)
 
-* 但使用 `arraylength` 和其他 Analytics 函數 (不是 ".length"！)
+* 但使用 `arraylength` 和其他分析函數 (不是 ".length"！)
 
-**轉換** 有時您必須轉換從物件擷取到的項目，因為其類型可能不同。例如，`summarize...to` 就需要特定類型︰
+**轉換** 有時您必須將擷取自物件的項目進行轉換，因為其類型可能不同。例如，`summarize...to` 就需要特定類型︰
 
     exceptions 
     | summarize count() 
@@ -1937,7 +2085,7 @@ substring("ABCD", 0, 2)       // AB
     todynamic('[{"x":"1", "y":"32"}, {"x":"6", "y":"44"}]')
 
 
-**mvexpand：**若要分開物件的屬性使這些屬性各自佔有一個資料列，請使用 mvexpand：
+**mvexpand：**若要分開物件的屬性以使這些屬性各自佔有一個資料列，請使用 mvexpand：
 
     exceptions | take 1 
     | mvexpand details[0].parsedStack[0]
@@ -2011,11 +2159,11 @@ T
 
 |||
 |---|---|
-| value `in` array| 如果有 array 項目 == value，則為 true<br/>`where City in ('London', 'Paris', 'Rome')`
-| value `!in` array| 如果沒有 array 項目 == value，則為 true
+| *value* `in` *array*| 如果有 array 項目 == value，則為 true<br/>`where City in ('London', 'Paris', 'Rome')`
+| *value* `!in` *array*| 如果沒有 array 項目 == value，則為 true
 |[`arraylength(`array`)`](#arraylength)| 如果不是陣列則為 null
 |[`extractjson(`path,object`)`](#extractjson)|使用路徑來瀏覽至物件。
-|[`parsejson(`來源`)`](#parsejson)| 將 JSON 字串變成動態物件。
+|[`parsejson(`source`)`](#parsejson)| 將 JSON 字串變成動態物件。
 |[`range(`from,to,step`)`](#range)| 值的陣列
 |[`mvexpand` listColumn](#mvexpand-operator) | 在指定資料格中複寫清單中每個值的資料列。
 |[`summarize buildschema(`column`)`](#buildschema) |從資料行內容推斷類型結構描述
@@ -2233,4 +2381,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

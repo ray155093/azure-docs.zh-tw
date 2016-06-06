@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/13/2016"
+   ms.date="05/18/2016"
    ms.author="subramar"/>
 
 # 在服務資訊清單中指定資源
@@ -137,4 +137,4 @@ HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器�
 </ApplicationManifest>
 ```
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -24,7 +24,7 @@
 - [PowerShell](sql-database-export-powershell.md)
 
 
-本文提供的指示，說明如何使用 PowerShell，將 Azure Blob 儲存體中儲存的 Azure SQL Database 封存到 BACPAC 檔案。
+本文提供指示，說明如何使用 PowerShell，將 Azure SQL Database 封存到 Azure Blob 儲存體中儲存的 BACPAC 檔案。
 
 當您需要建立 Azure SQL Database 的封存檔時，可以將資料庫結構描述和資料匯出到 BACPAC 檔案。BACPAC 檔案就是副檔名為 BACPAC 的 ZIP 檔案。BACPAC 檔案可以稍後儲存在 Azure Blob 儲存體，或在內部部署位置的本機儲存體中，之後再匯入至 Azure SQL Database 或 SQL Server 內部部署安裝。
 
@@ -151,4 +151,4 @@
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

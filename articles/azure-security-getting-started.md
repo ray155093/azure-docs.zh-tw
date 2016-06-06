@@ -1,19 +1,19 @@
 <properties
    pageTitle="開始使用 Microsoft Azure 安全性 | Microsoft Azure"
    description="本文提供 Microsoft Azure 安全性功能的概觀，和將資產移轉至雲端提供者的組織所需的一般考量。"
-   services="virtual-machines, cloud-services, storage"
+   services="security"
    documentationCenter="na"
    authors="YuriDio"
    manager="swadhwa"
    editor="TomSh"/>
 
 <tags
-   ms.service="azure-security"
+   ms.service="security"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/04/2016"
+   ms.date="05/23/2016"
    ms.author="yuridio"/>
 
 #開始使用 Microsoft Azure 安全性
@@ -241,4 +241,4 @@ Azure 有安全性控制可實作威脅防護功能，並協助客戶降低其�
 
 [Active Directory 部落格](http://blogs.technet.com/b/ad/)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0525_2016-->

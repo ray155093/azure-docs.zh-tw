@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 # Service Fabric 服務的放置原則
-有許多其他不同的規則，讓您最終可能關心 Service Fabric 叢集是否會跨越地理距離 (例如多個資料中心或 Azure 區域)，或者您的環境是否會跨越多個地緣政治控制區域 (或一些其他涵蓋您所關心之法律或政策範圍的情況)。這其中大部分規則都能透過節點屬性和放置條件約束來設定 (如同我們先前所討論)，但有一些規則比較複雜。在任何情況下，我們都會提供這些捷徑 (例如放置條件約束)，放置原則可以根據個別服務來設定。
+有許多其他不同的規則，讓您最終可能關心 Service Fabric 叢集是否會跨越地理距離 (例如多個資料中心或 Azure 區域)，或者您的環境是否會跨越多個地緣政治控制區域 (或一些其他涵蓋您所關心之法律或政策範圍的情況，或實際效能/延遲影響所牽涉到的距離)。這其中大部分規則都能透過節點屬性和放置條件約束來設定，但有一些規則比較複雜。在任何情況下，我們都會提供這些捷徑 (例如放置條件約束)，放置原則可以根據個別具名服務執行個體來設定。
 
 ## 指定無效的網域
 InvalidDomain 放置原則可讓您指定特定的容錯網域對此工作負載是無效的。此原則可確保特定的服務絕對不會在特定的區域中執行，例如，基於地緣政治或公司政策的緣故。您可以指定多個無效的網域
@@ -98,4 +98,4 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 [Image2]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies/cluster-required-placement-domain.png
 [Image3]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies/cluster-preferred-primary-domain.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/09/2016"
+	ms.date="05/24/2016"
 	ms.author="larryfr"/>
 
 #在 HDInsight 上將 Sqoop 與 Hadoop 搭配使用 (SSH)
@@ -29,20 +29,76 @@
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-
-- **HDInsight 中的 Hadoop 叢集**。請參閱[建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
+- **HDInsight 中的 Hadoop 叢集**和__Azure SQL Database__︰本文件中的步驟是以使用[建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database) 文件來建立的叢集和資料庫為基礎。如果您已經有 HDInsight 叢集和 SQL Database，就可以將這些用來替代本文件中使用的值。
 - **工作站**：具有 SSH 用戶端的電腦。
-- **Azure CLI**：如需詳細資訊，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)
 
-    [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+##安裝 FreeTDS
+
+1. 使用 SSH 來連線至 Linux 架構的 HDInsight 叢集。連接時要使用的位址為 `CLUSTERNAME-ssh.azurehdinsight.net`，而連接埠為 `22`。
+
+	如需有關使用 SSH 連線至 HDInsight 的詳細資訊，請參閱下列文件：
+
+    * **Linux、Unix 或 OS X 用戶端**：請參閱[從 Linux、OS X 或 Unix 連接至 Linux 架構的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster)
+
+    * **Windows 用戶端**：請參閱[從 Windows 連接至 Linux 架構的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)
+
+3. 使用下列命令來安裝 FreeTDS：
+
+        sudo apt-get --assume-yes install freetds-dev freetds-bin
+
+    在數個步驟中將使用 FreeTDS 來連接到 SQL Database。
+
+##在 SQL Database 中建立資料表
+
+> [AZURE.IMPORTANT] 如果您使用的 HDInsight 叢集和 SQL Database 是使用[建立叢集與 SQL Database](hdinsight-use-sqoop.md) 中的步驟所建立，請忽略本節中的步驟，因為在該文件的步驟中已建立資料庫和資料表。
+
+1. 從對 HDInsight 的 SSH 連線中，使用下列命令來連接到 SQL Database 伺服器，並建立將在這些步驟的其餘部分使用的資料表 ︰
+
+        TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D sqooptest
+
+    您將收到類似以下的輸出：
+
+        locale is "en_US.UTF-8"
+        locale charset is "UTF-8"
+        using default charset "UTF-8"
+        Default database being set to sqooptest
+        1>
+
+5. 在 `1>` 提示字元輸入下列幾行：
+
+        CREATE TABLE [dbo].[mobiledata](
+        [clientid] [nvarchar](50),
+        [querytime] [nvarchar](50),
+        [market] [nvarchar](50),
+        [deviceplatform] [nvarchar](50),
+        [devicemake] [nvarchar](50),
+        [devicemodel] [nvarchar](50),
+        [state] [nvarchar](50),
+        [country] [nvarchar](50),
+        [querydwelltime] [float],
+        [sessionid] [bigint],
+        [sessionpagevieworder] [bigint])
+        GO
+        CREATE CLUSTERED INDEX mobiledata_clustered_index on mobiledata(clientid)
+        GO
+
+    輸入 `GO` 陳述式後，將評估先前的陳述式。首先，建立 **mobiledata** 資料表，然後將叢集索引加入至該資料表 (SQL Database 所需)。
+
+    使用下列命令來確認已建立資料表：
+
+        SELECT * FROM information_schema.tables
+        GO
+
+    您應該會看到如下所示的輸出：
+
+        TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
+        sqooptest       dbo     mobiledata      BASE TABLE
+
+8. 在 `1>` 提示字元輸入 `exit` 以結束 tsql 公用程式。
 
 ##Sqoop export
 
-2. 使用下列命令來建立從 Sqoop lib 目錄到 SQL Server JDBC 驅動程式的連結。這可讓 Sqoop 使用此驅動程式來聯繫 SQL Database：
-
-        sudo ln /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /usr/hdp/current/sqoop-client/lib/sqljdbc41.jar
-
-3. 使用下列命令以確認 Sqoop 看得見您的 SQL Database：
+3. 從對 HDInsight 的 SSH 連線中，使用下列命令來確認 Sqoop 看得見您的 SQL Database：
 
         sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
 
@@ -52,7 +108,7 @@
 
         sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --export-dir 'wasb:///hive/warehouse/hivesampletable' --fields-terminated-by '\t' -m 1
 
-    這會指示 Sqoop 連接至 SQL Database、**sqooptest** 資料庫，然後將資料從 **wasb:///hive/warehouse/hivesampletable** (*hivesampletable* 的實體檔案) 匯出至 **mobiledata** 資料表。
+    這會指示 Sqoop 連接至 SQL Database、**sqooptest** 資料庫，然後將資料從 ****wasb:///hive/warehouse/hivesampletable** (*hivesampletable* 的實體檔案) 匯出至 **mobiledata** 資料表。
 
 5. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
 
@@ -67,7 +123,7 @@
 
 ##Sqoop import
 
-1. 使用下列程式碼將資料從 SQL Database 中的 **mobiledata** 資料表匯入至 HDInsight 上的 **wasb:///tutorials/usesqoop/importeddata** 目錄：
+1. 使用下列程式碼將資料從 SQL Database 中的 **mobiledata** 資料表匯入至 HDInsight 上的 ****wasb:///tutorials/usesqoop/importeddata** 目錄：
 
         sqoop import --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
 
@@ -144,4 +200,4 @@
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

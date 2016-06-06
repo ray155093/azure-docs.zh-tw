@@ -24,14 +24,14 @@
 
 [Azure 虛擬機器調整集](https://azure.microsoft.com/blog/azure-vm-scale-sets-public-preview/)是 Azure 計算資源，可以使用針對自動調整和負載平衡輕易整合的選項，部署和管理類似虛擬機器的集合。您可以使用 [Azure 資源管理員 (ARM) 範本](https://github.com/Azure/azure-quickstart-templates)佈建和部署 VM 調整集。可以使用 Azure CLI、PowerShell、REST 部署 ARM 範本，也可以直接從 Visual Studio 部署。Visual Studio 會提供一組範例範本，可以部署為 Azure 資源群組部署專案的一部分。
 
-Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組在一起，並且在單一部署作業中發佈。您可以在以下位置深入了解：[透過 Visual Studio 建立與部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy/)。
+Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組在一起，並且在單一部署作業中發佈。您可以在以下位置深入了解：[透過 Visual Studio 建立與部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
 ## 必要條件
 
 若要開始在 Visual Studio 中部署 VM 調整集，您需要下列項目：
 
 - Visual Studio 2013 或 2015
-- Azure SDK 2.7 或 2.8
+- Azure SDK 2.7、2.8 或 2.9
 
 注意：這些指示假設您使用 Visual Studio 2015 與 [Azure SDK 2.8](https://azure.microsoft.com/blog/announcing-the-azure-sdk-2-8-for-net/)。
 
@@ -85,7 +85,7 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 
 ## 探索 VM 調整集
 
-部署完成之後，您可以在 Visual Studio **雲端總管** 中檢視 VM 調整集 (重新整理清單)。雲端總管可讓您在開發應用程式的同時，於 Visual Studio 中管理 Azure 資源。您也可以在 Azure 入口網站和 Azure 資源總管中檢視 VM 調整集。
+部署完成之後，您可以在 Visual Studio **雲端總管** 中檢視 VM 調整集 (重新整理清單)。雲端總管可讓您在開發應用程式的同時，於 Visual Studio 中管理 Azure 資源。您也可以在 [Azure 入口網站](https://portal.azure.com)和 [Azure 資源總管](https://resources.azure.com/)中檢視 VM 擴展集。
 
 ![雲端總管][cloud_explorer]
 
@@ -107,4 +107,4 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 [output_window]: ./media/virtual-machine-scale-sets-vs-create/9-Output.png
 [cloud_explorer]: ./media/virtual-machine-scale-sets-vs-create/12-CloudExplorer.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

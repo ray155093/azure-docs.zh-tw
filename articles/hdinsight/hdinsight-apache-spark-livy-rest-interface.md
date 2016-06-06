@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="05/24/2016"
 	ms.author="nitinme"/>
 
 
 # 使用 Livy 將 Spark 工作遠端提交至 Linux 上的 HDInsight Spark 叢集 (預覽)
 
-Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面，可讓您從任何地方將作業遠端提交到 Spark 叢集。如需詳細文件，請參閱 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)。
+Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面，可讓您從遠端將作業提交給 Spark 叢集。如需詳細文件，請參閱 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)。
 
 您可以使用 Livy 執行互動式 Spark 殼層，或提交要在 Spark 上執行的批次作業。本文將討論如何使用 Livy 提交批次作業。下列語法會使用 Curl 對 Livy 端點發出 REST 呼叫。
 
@@ -69,6 +69,14 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 **範例**：
 
 	curl -k --user "admin:mypassword1!" -v -X DELETE "https://mysparkcluster.azurehdinsight.net/livy/batches/{batchId}"
+
+## Livy 與高可用性
+
+Livy 可為在叢集上執行的 Spark 作業提供高可用性。以下是一些範例。
+
+* 如果在您從遠端將作業提交給 Spark 叢集之後，Livy 服務當機，作業將會繼續在背景執行。當 Livy 恢復運作時，它會還原作業的狀態並回報。
+
+* 適用於 HDInsight 的 Jupyter Notebook 是由 Livy 在後端提供技術支援。如果在 Notebook 執行 Spark 作業時，Livy 服務重新啟動，Notebook 將會繼續執行程式碼單元。
 
 ## 請舉例說明
 
@@ -189,4 +197,4 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

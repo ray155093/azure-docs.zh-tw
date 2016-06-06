@@ -41,7 +41,7 @@
 
 [加密 Azure 虛擬機器](security-center-disk-encryption.md)將逐步引導您完成這些步驟。本主題假設您使用 Windows 10 做為用戶端電腦，並從中設定磁碟加密。
 
-若要設定先決條件以及設定 Azure 虛擬機器的加密功能，可以使用的方法很多。如果您已經很熟悉 Azure PowerShell 或 Azure CLI，可能會想要使用其他方法。若要深入了解其他這些方法，請參閱 [Azure 磁碟加密](../azure-security-disk-encryption.md)。
+若要設定先決條件以及設定 Azure 虛擬機器的加密功能，可以使用的方法很多。如果您已經很熟悉 Azure PowerShell 或 Azure CLI，可能會想要使用其他方法。若要深入了解其他這些方法，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
 
 
@@ -51,7 +51,7 @@
 
 - [Azure 金鑰保存庫的加密和金鑰管理](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/) (影片，36 分 39 秒) -- 了解如何使用 IaaS VM 和 Azure 金鑰保存庫的磁碟加密管理功能，協助保護您的資料。
 - [加密 Azure 虛擬機器](security-center-disk-encryption.md) (文件) - 了解如何加密 Azure 虛擬機器。
-- [Azure 磁碟加密](../azure-security-disk-encryption.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
+- [Azure 磁碟加密](../security/azure-security-disk-encryption.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
 
 如要深入了解資訊安全中心，請參閱下列主題：
 
@@ -67,4 +67,4 @@
 <!--Image references-->
 [1]: ./media/security-center-apply-disk-encryption/apply-disk-encryption.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

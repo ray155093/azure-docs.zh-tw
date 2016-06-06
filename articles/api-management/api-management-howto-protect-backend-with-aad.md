@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/04/2016"
+	ms.date="05/24/2016"
 	ms.author="sdanie"/>
 
 # 如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
@@ -362,7 +362,7 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ## 後續步驟
 -	查看更多有關 API 管理的[視訊](https://azure.microsoft.com/documentation/videos/index/?services=api-management)。
--	如需其他保護後端服務的方式，請參閱[相互憑證驗證](api-management-howto-mutual-certificates.md)和[透過 VPN 或 ExpressRoute 連線](api-management-howto-setup-vpn)。
+-	如需其他保護後端服務的方式，請參閱[相互憑證驗證](api-management-howto-mutual-certificates.md)和[透過 VPN 或 ExpressRoute 連線](api-management-howto-setup-vpn.md)。
 
 [api-management-management-console]: ./media/api-management-howto-protect-backend-with-aad/api-management-management-console.png
 
@@ -413,4 +413,4 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 [建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
 [管理您的第一個 API]: api-management-get-started.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

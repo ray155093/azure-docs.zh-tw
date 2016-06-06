@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/17/2016"
+   ms.date="05/18/2016"
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 保護 SQL 資料倉儲中的資料庫
@@ -33,7 +33,7 @@
 
 「驗證」是指連線到資料庫時如何證明身分識別。SQL 資料倉儲目前支援使用使用者名稱和密碼的 SQL Server 驗證，以及 Azure Active Directory 的預覽。
 
-當您為資料庫建立邏輯伺服器時，採取使用者名稱和密碼指定了「伺服器管理員」登入。使用這些認證，您就可以使用資料庫擁有者或 "dbo" 的身分驗證該伺服器上的任何資料庫。
+當您為資料庫建立邏輯伺服器時，採取使用者名稱和密碼指定了「伺服器管理員」登入。使用這些認證，您就可以透過 SQL Server 驗證，使用資料庫擁有者或 "dbo" 的身分驗證該伺服器上的任何資料庫。
 
 不過，最佳作法是，貴組織的使用者應該使用不同的帳戶來驗證。因為萬一應用程式的程式碼容易受到 SQL 插入式攻擊，您就可以限制授與應用程式的權限，並降低惡意活動的風險。
 
@@ -53,7 +53,7 @@ CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 
 ```
 
-如需針對 SQL Database 進行驗證的詳細資訊，請參閱[管理資料庫和 Azure SQL Database 的登入][]和 [Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication (使用 Azure Active Directory 驗證來連接到 SQL 資料倉儲)][]。
+如需有關驗證 SQL Database 的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。如需將 Azure AD 預覽使用於 SQL 資料倉儲的詳細資訊，請參閱 [使用 Azure Active Directory 驗證連接到 SQL 資料倉儲][]。
 
 
 ## Authorization
@@ -101,12 +101,12 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 [連線到 SQL 資料倉儲]: ./sql-data-warehouse-develop-connections.md
 [開始使用 Azure Database 稽核]: ./sql-data-warehouse-overview-auditing.md
 [開始使用透明資料加密 (TDE)]: ./sql-data-warehouse-encryption-tde.md
-[Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication (使用 Azure Active Directory 驗證來連接到 SQL 資料倉儲)]: ./sql-data-warehouse-aad-authentication.md
+[使用 Azure Active Directory 驗證連接到 SQL 資料倉儲]: ./sql-data-warehouse-aad-authentication.md
 
 <!--MSDN references-->
 [Azure SQL Database 防火牆]: https://msdn.microsoft.com/library/ee621782.aspx
 [資料庫角色]: https://msdn.microsoft.com/library/ms189121.aspx
-[管理資料庫和 Azure SQL Database 的登入]: https://msdn.microsoft.com/library/ee336235.aspx
+[管理 Azure SQL Database 中的資料庫和登入]: https://msdn.microsoft.com/library/ee336235.aspx
 [權限]: https://msdn.microsoft.com/library/ms191291.aspx
 [預存程序]: https://msdn.microsoft.com/library/ms190782.aspx
 [透明資料加密]: https://go.microsoft.com/fwlink/?LinkId=526242
@@ -115,4 +115,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: https://azure.microsoft.com/documentation/articles/role-based-access-control-configure
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

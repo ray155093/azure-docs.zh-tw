@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="05/19/2016"
 	ms.author="andkjell"/>
 
-# 使用 Azure AD Connect 疑難排解連線問題
+# 對 Azure AD Connect 的連線問題進行疑難排解
 這篇文章說明 Azure AD Connect 與 Azure AD 之間的連線的運作方式，以及如何疑難排解連線問題。這些問題最有可能出現在具有 Proxy 伺服器的環境中。
 
 ## 在安裝精靈中疑難排解連線問題
@@ -33,14 +33,14 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 
 其中，下表是能夠連接到 Azure AD 的最基本項目。這份清單並未包含任何選用的功能，例如密碼回寫或 Azure AD Connect Health。在此記錄以便協助疑難排解初始設定。
 
-| URL | 連接埠 | 說明 |
-| ---- | ---- | ---- |
-| mscrl.microsoft.com | HTTP/80 | 用來下載 CRL 清單。 |
-| *.verisign.com | HTTP/80 | 用來下載 CRL 清單。|
-| *.entrust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。|
-| *.windows.net | HTTPS/443 | 用來登入 Azure AD。|
-| secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。|
-| *.microsoftonline.com | HTTPS/443 | 用來設定您的 Azure AD 目錄及匯入/匯出資料。|
+URL | 連接埠 | 說明
+---- | ---- | ----
+mscrl.microsoft.com | HTTP/80 | 用來下載 CRL 清單。
+*.verisign.com | HTTP/80 | 用來下載 CRL 清單。
+*.entrust.com | HTTP/80 | 用來下載 MFA 的 CRL 清單。
+*.windows.net | HTTPS/443 | 用來登入 Azure AD。
+secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。
+*.microsoftonline.com | HTTPS/443 | 用來設定您的 Azure AD 目錄及匯入/匯出資料。
 
 ## 精靈中的錯誤
 安裝精靈會使用兩種不同的安全性內容。在 [連線到 Azure AD] 頁面上，使用的是目前登入的使用者。在 [設定] 頁面上，它會變更為[執行同步處理引擎服務的帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-accounts)。我們進行的是電腦全域的 Proxy 設定，因此如果發生問題，問題將最有可能已經出現在精靈中的 [連線到 Azure AD] 頁面。
@@ -54,8 +54,7 @@ Proxy 伺服器也必須開啟必要的 URL。官方清單記載於 [Office 365 
 - 如果看起來正確，請依照[確認 Proxy 連線](#verify-proxy-connectivity)中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ### 無法連線 MFA 端點
-如果無法連線端點 **https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。
-![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
+如果無法連線端點 ****https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
 
 - 如果您看到此錯誤，請確認是否已將 secure.aadcdn.microsoftonline-p.com 端點新增到 Proxy。
 
@@ -75,10 +74,10 @@ PowerShell 會使用 machine.config 中的組態來連絡 Proxy。winhttp/netsh 
 
 如果 Proxy 設定不正確，我們將會收到錯誤：![proxy200](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest403.png) ![proxy407](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest407.png)
 
-| 錯誤 | 錯誤文字 | 註解 |
-| ---- | ---- | ---- |
-| 403 | 禁止 | Proxy 尚未對要求的 URL 開放。重新瀏覽 Proxy 組態，並確定 [URL](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2) 已經開啟。 |
-| 407 | 需要 Proxy 驗證 | Proxy 伺服器要求提供登入資訊，但並未提供任何登入資訊。如果您的 Proxy 伺服器需要驗證，請務必在 machine.config 中設定驗證。也請確定您對執行精靈以及服務帳戶的使用者使用網域帳戶。 |
+錯誤 | 錯誤文字 | 註解
+---- | ---- | ---- |
+403 | 禁止 | Proxy 尚未對要求的 URL 開放。重新瀏覽 Proxy 組態，並確定 [URL](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2) 已經開啟。
+407 | 需要 Proxy 驗證 | Proxy 伺服器要求提供登入資訊，但並未提供任何登入資訊。如果您的 Proxy 伺服器需要驗證，請務必在 machine.config 中設定驗證。也請確定您對執行精靈以及服務帳戶的使用者使用網域帳戶。
 
 ## Azure AD Connect 與 Azure AD 之間的通訊模式
 如果您已遵循上述這些步驟仍無法連接，可以在此時查看網路記錄檔。本節說明正常和成功的連線模式。它也會列出常見的誤解，如果您正在閱讀網路記錄檔則可以略過。
@@ -88,7 +87,7 @@ PowerShell 會使用 machine.config 中的組態來連絡 Proxy。winhttp/netsh 
 - 端點 adminwebservice 和 provisioningapi (請參閱以下的記錄檔) 是探索端點，用來找出要使用的實際端點，並且會根據您的區域有所不同。
 
 ### 參考 Proxy 記錄檔
-以下是實際 Proxy 記錄檔的傾印及取得它的安裝精靈頁面 (已移除至相同端點的重複項目)。這可以做為您自己的 Proxy 和網路記錄檔的參考。您環境中實際的端點可能會有不同 (特別是以「斜體字」表示的部分)。
+以下是實際 Proxy 記錄檔的傾印及取得它的安裝精靈頁面 (已移除至相同端點的重複項目)。這可以做為您自己的 Proxy 和網路記錄檔的參考。您環境中實際的端點可能會有不同 (特別是以「斜體字」表示的部分)。」
 
 **連接至 Azure AD**
 
@@ -170,10 +169,10 @@ Azure AD 目錄找不到或無法解析。可能是您嘗試以未驗證網域�
 ### 登入小幫手未正確設定
 當登入小幫手無法連線 Proxy 或 Proxy 不允許該要求時，就會出現此錯誤。![nonetsh](./media/active-directory-aadconnect-troubleshoot-connectivity/nonetsh.png)
 
-- 如果您看到此錯誤，請在 [netsh](active-directory-aadconnect-prerequisites.md#connectivity) 中查看 Proxy 組態，並確認它是否正確。![netshshow](./media/active-directory-aadconnect-troubleshoot-connectivity/netshshow.png)
+- 如果您看到此錯誤，請查看 [netsh](active-directory-aadconnect-prerequisites.md#connectivity) 中的 Proxy 組態，並確認它是否正確。![netshshow](./media/active-directory-aadconnect-troubleshoot-connectivity/netshshow.png)
 - 如果看起來正確，請依照[確認 Proxy 連線](#verify-proxy-connectivity)中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

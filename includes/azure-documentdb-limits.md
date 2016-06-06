@@ -7,8 +7,6 @@
 每個集合的每秒要求[單位上限](../articles/documentdb/documentdb-request-units.md)*|250,000 RU/s (或依要求來提高)
 文件的要求大小上限 |512 KB
 預存程序和觸發程序的執行時間上限|5 seconds
-每個查詢的 AND 子句數目上限* |200		
-每個查詢的 OR 子句數目上限* |200
 回應大小上限|1 MB
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

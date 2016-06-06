@@ -163,6 +163,27 @@ module.exports = function(context) {
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
 
+## 環境變數
+
+若要取得環境變數或應用程式設定值，請使用 `process.env`，如以下程式碼範例所示︰
+
+```javascript
+module.exports = function (context, myTimer) {
+    var timeStamp = new Date().toISOString();
+    
+    context.log('Node.js timer trigger function ran!', timeStamp);   
+    context.log(GetEnvironmentVariable("AzureWebJobsStorage"));
+    context.log(GetEnvironmentVariable("WEBSITE_SITE_NAME"));
+    
+    context.done();
+};
+
+function GetEnvironmentVariable(name)
+{
+    return name + ": " + process.env[name];
+}
+```
+
 ## TypeScript/CoffeeScript 支援
 
 目前仍沒有對於透過執行階段自動編譯 TypeScript/CoffeeScript 的任何支援，因此全都需要在部署時期的執行階段之外處理。
@@ -175,4 +196,4 @@ module.exports = function(context) {
 * [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

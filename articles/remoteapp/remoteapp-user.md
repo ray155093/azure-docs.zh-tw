@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/02/2016"
+    ms.date="05/18/2016"
     ms.author="elizapo" />
 
 # 如何將使用者新增至您的 Azure RemoteApp 集合
@@ -52,4 +52,4 @@ Office 365 使用者為 Azure Active Directory 使用者。如果這些使用者
 ## Office 365 ProPlus 使用者帳戶資訊
 如果您的收藏中使用 Office 365 ProPlus 範本映像，*或者*如果您建立了使用 Office 365 的自訂映像，則您只能新增在您的訂用帳戶的預設網域中擁有 Office 365 訂用帳戶的 Azure Active Directory 使用者。如需詳細資訊，請參閱[透過 Azure RemoteApp 使用 Office 365](remoteapp-o365.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

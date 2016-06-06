@@ -13,7 +13,7 @@
    ms.workload="search"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.date="03/08/2016"
+   ms.date="05/23/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務中的 API 版本
@@ -69,4 +69,4 @@ Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然�
 
 正式推出意指 Azure 搜尋服務已受到服務等級協定 (SLA) 約束。SLA 可以在 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)中找到。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

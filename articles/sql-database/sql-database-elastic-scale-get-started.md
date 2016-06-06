@@ -3,7 +3,7 @@
 	description="Azure SQL Database 彈性資料庫工具功能的基本解說，包括易於執行的範例應用程式。" 
 	services="sql-database" 
 	documentationCenter="" 
-	manager="jeffreyg" 
+	manager="jhubbard" 
 	authors="ddove" 
 	editor="sidneyh"/>
 
@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/22/2016" 
-	ms.author="ddove;sidneyh"/>
+	ms.date="05/24/2016" 
+	ms.author="sidneyh"/>
 
 # 開始使用彈性資料庫工具
 
 本文件將執行範例應用程式介紹開發人員使用經驗。範例會建立簡易的分區化應用程式，並探討彈性資料庫工具的主要功能。此範例會示範[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)的功能
 
-## 先決條件
+若要安裝程式庫，請移至 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。請注意，安裝的程式庫隨附如下所述的範例應用程式。
+
+## 必要條件
 
 1. 需要具有 C# 的 Visual Studio 2012 或更新版本。請在 [Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)上下載免費版本。
 2. Nuget 2.7 或更新版本。若要取得最新版本，請參閱[安裝 NuGet](http://docs.nuget.org/docs/start-here/installing-nuget)
@@ -83,6 +85,7 @@
 -    部落格：[Elastic Scale 公告](https://azure.microsoft.com/blog/2014/10/02/introducing-elastic-scale-preview-for-azure-sql-database/)
 -    第 9 頻道：[Elastic Scale 概觀影片](http://channel9.msdn.com/Shows/Data-Exposed/Azure-SQL-Database-Elastic-Scale)
 -    論壇：[Azure SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)
+-    若要測量效能︰[分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md)
 
 
 <!--Anchors-->
@@ -98,4 +101,4 @@
 [4]: ./media/sql-database-elastic-scale-get-started/output2.png
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/21/2016"
+	ms.date="05/19/2016"
 	ms.author="genemi"/>
 
 
@@ -54,6 +54,23 @@ SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的
 - [ALTER DATABASE SCOPED CONFIGURATION (Transact-SQL)](http://msdn.microsoft.com/library/mt629158.aspx)
 
 如需了解 SQL Database 中尚未支援的少部分功能，請參閱[這裡](sql-database-transact-sql-information.md)。
+
+
+### 相容性層級 130
+
+
+> [AZURE.IMPORTANT] 從 **2016 年 6 月**起，Azure SQL Database V12 中*新*建立的資料庫至少都有 130 以上的相容性層級，符合 Microsoft SQL Server 2016 GA。
+> 
+> 當然，喜歡的話，您還是可以使用 `ALTER DATABASE YourDatabase SET COMPATIBILITY_LEVEL = 120`。
+> 
+> 2016 年 6 月之前建立的資料庫，不會隨這項預設值變更而改變相容性層級。資料庫就算從 V11 升級至 V12 也不會變更層級。
+
+
+
+關於如何在最新版與舊版相容性層級之間比較您最重要的查詢，相關說明請參閱︰
+
+- [在 Azure SQL Database 中以相容性層級 130 改善查詢效能](sql-database-compatibility-level-query-performance-130.md)
+
 
 
 ## 更多高階效能，新的效能層級
@@ -166,4 +183,4 @@ V12 資料庫只能裝載在 V12 邏輯伺服器上。而 V12 只可以裝載 V1
 
 [Microsoft Azure 預覽專用的使用補充條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

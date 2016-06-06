@@ -148,7 +148,10 @@ Windows 版本的 **iothub\_client\_sample\_ampq** 應用程式包含下列 Visu
 
 此解決方案內含單一專案：值得注意的是，此解決方案中安裝了四個 NuGet 套件：
 
-  ![](media/iot-hub-device-sdk-c-intro/17-iothub-client-sample-amqp-githubpackages.PNG)
+- Microsoft.Azure.C.SharedUtility
+- Microsoft.Azure.IoTHub.AmqpTransport
+- Microsoft.Azure.IoTHub.IoTHubClient
+- Microsoft.Azure.uamqp
 
 使用 SDK 時，您永遠需要 **Microsoft.Azure.C.SharedUtility** 封裝。由於此範例依賴 AMQP，因此您也必須納入 **Microsoft.Azure.uamqp** 和 **Microsoft.Azure.IoTHub.AmqpTransport** 套件 (HTTP 和 MQTT 有對等套件)。由於此範例使用 **IoTHubClient** 程式庫，因此您也必須在方案中納入 **Microsoft.Azure.IoTHub.IoTHubClient** 套件。
 
@@ -260,7 +263,11 @@ IoTHubClient_Destroy(iotHubClientHandle);
 
 如同先前的範例，此範例也包含數個 NuGet 套件：
 
-  ![](media/iot-hub-device-sdk-c-intro/18-simplesample_amqp-githubpackages.PNG)
+- Microsoft.Azure.C.SharedUtility
+- Microsoft.Azure.IoTHub.AmqpTransport
+- Microsoft.Azure.IoTHub.IoTHubClient
+- Microsoft.Azure.IoTHub.Serializer
+- Microsoft.Azure.uamqp
 
 這些我們在先前範例中大多都已看過，但 **Microsoft.Azure.IoTHub.Serializer** 是新的。我們在使用 **serializer** 程式庫時將會用到。
 
@@ -464,4 +471,4 @@ serializer_deinit();
 
 若要在 **Azure IoT 裝置 SDK (適用於 C)** 中深入了解如何使用裝置管理功能，請參閱 [Azure IoT 中樞裝置管理程式庫 (適用於 C) 簡介](iot-hub-device-management-library.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

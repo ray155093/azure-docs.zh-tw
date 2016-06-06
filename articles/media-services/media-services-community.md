@@ -1,0 +1,66 @@
+<properties
+	pageTitle="Azure 媒體服務社群概觀"
+	description="Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、查看新的影片和播客、提出問題並提供意見反應的不同方式。"
+	services="media-services"
+	documentationCenter=""
+	authors="juliako"
+	manager="erikre"
+	editor=""/>
+
+<tags
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="05/24/2016"   
+	ms.author="juliako"/>
+
+# Azure 媒體服務社群  
+
+Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、檢視新的影片和播客、提出問題並提供意見反應的不同方式。
+
+##影片和播客
+
+劇集|主講人|日期
+---|---|---
+[使用 DRM 保護媒體內容](https://azure.microsoft.com/documentation/videos/azurefridayprotectingyourmediacontentdrm/)|Mingfei Yang|02/19/2016
+[使用 AES 加密保護媒體內容](https://azure.microsoft.com/documentation/videos/azure-media-services-protecting-your-media-content-with-aes-encryption/)|Mingfei Yang|2/19/2016
+[Azure 媒體服務開發人員深入探討](https://azure.microsoft.com/documentation/videos/build-2015-azure-media-services-developer-deep-dive/)|Mingfei Yang|04/27/2015
+[Azure 媒體索引器會自動建立您的媒體的文字記錄](https://azure.microsoft.com/documentation/videos/azure-media-indexer-autoatically-creates-transcripts-for-your-media-with-adarsh-solanki/)|Adarsh Solanki|07/09/2015
+[Azure 媒體服務中的 Microsoft Hyperlapse - Adarsh Solanki](https://azure.microsoft.com/documentation/videos/microsoft-hyperlapse-in-azure-media-services-with-adarsh-solanki/)|Adarsh Solanki|10/07/2015
+
+##提供意見反應並提出建議
+
+[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+##討論區
+
+###Twitter
+
+使用 [@MSFTAzureMedia](https://twitter.com/MSFTAzureMedia) twitter 控制代碼，在 Twitter 上追蹤 AMS 消息和更新。您可以使用 [@AzureSupport](https://twitter.com/azuresupport) twitter 控制代碼，以在 Twitter 上要求支援。
+ 
+### 線上論壇
+
+下列其中一個論壇可以用於詢問有關目前的產品和功能的問題。
+
+目前，MSDN 是 AMS 的主要論壇。
+
+[![MSDN](./media/media-services-community/msdn.png)](https://social.msdn.microsoft.com/forums/azure/home?forum=MediaServices)
+
+[![StackOverflow](./media/media-services-community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-media-services)
+
+## 連絡小組
+
+Azure 媒體服務的主要電子郵件是：****mediaservices@microsoft.com**。
+
+下表列出功能子小組的電子郵件：
+
+功能|電子郵件
+---|---
+Azure 媒體分析|amsanalytics@microsoft.com
+Azure Media Player|ampinfo@microsoft.com 
+Azure 媒體瀏覽器|amse@microsoft.com
+工作流程設計工具|mepd@microsoft.com
+
+<!---HONumber=AcomDC_0525_2016-->

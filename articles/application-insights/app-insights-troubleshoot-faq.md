@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
+	ms.date="05/13/2016" 
 	ms.author="awills"/>
  
 # 問題 - ASP.NET 的 Application Insights
@@ -39,7 +39,7 @@
 * 您必須提供信用卡資料以向 Microsoft Azure 註冊，但我們不會收取任何費用，除非您使用其他付費 Azure 服務，或明確地升級至付費層。
 * 如果您的應用程式傳送的資料超過免費層的每月配額，它會停止記錄。如果發生這種情況，您可以選擇開始付費，或等到月底重設配額。
 * 基本的使用情況和工作階段資料不受配額限制。
-* 另外也有 30 天的免費試用，在這 30 天內您可以得到免費的高階功能。
+* 另外也有 30 天的免費試用，在這 30 天內您可以免費得到付費的功能。
 * 每個應用程式資源都有個別的配額，其定價層的設定與其他任何資源無關。
 
 #### 付費能得到什麼？
@@ -126,7 +126,6 @@
 <tr><td>伺服器自訂度量</td><td><a href="../app-insights-api-custom-events-metrics/">追蹤伺服器程式碼中的呼叫</a></td><td>商業智慧</td></tr>
 </table>
 
-如果您的 Web 服務在 Azure VM 中執行，您也可以從該處[取得診斷][azurediagnostic]。
 
 ## 自動化
 
@@ -139,7 +138,6 @@
 
 <!--Link references-->
 
-[azurediagnostic]: ../insights-how-to-use-diagnostics.md
 [data]: app-insights-data-retention-privacy.md
 [platforms]: app-insights-platforms.md
 [start]: app-insights-overview.md
@@ -147,4 +145,4 @@
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

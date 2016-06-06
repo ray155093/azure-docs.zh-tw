@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/15/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何啟用或停用角色
@@ -22,7 +22,7 @@ Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理
 
 本文適用對象是必須在 Azure AD Privileged Identity Management (PIM) 中啟用其角色的系統管理員。它會逐步引導您，在需要權限時啟用角色，並在完成時停用角色。
 
-如果您已獲指派系統管理角色，您可以在必須執行需要該角色的工作時啟用該角色。例如，如果您有時只需要管理 Office 365，貴組織的安全性系統管理員就不會想讓您成為永久的系統管理員。他們反倒會讓您成為 Azure AD 的全域管理員或 Exchange Online 系統管理員角色的候選人員。這表示，當您需要這些權限時，您可以要求暫時的角色指派，擁有預定時段內的 Office 365 管理控制權。
+如果您已獲指派系統管理角色，您可以在必須執行需要該角色的工作時啟用該角色。例如，如果您有時只需要管理 Office 365，貴組織的特殊權限角色管理員就不會想讓您成為永久的系統管理員。他們反倒會讓您成為 Azure AD 的全域管理員或 Exchange Online 系統管理員角色的候選人員。這表示，當您需要這些權限時，您可以要求暫時的角色指派，擁有預定時段內的 Office 365 管理控制權。
 
 
 ## 加入 Privileged Identity Management 應用程式
@@ -46,7 +46,7 @@ Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理
 3. 選取您想要啟用的角色。
 4. 選取 [**啟用**]。[要求啟用角色] 刀鋒視窗隨即出現。
 5. 如全域管理員之類的某些角色，需要有 Multi-Factor Authentication (MFA) 才能啟用角色。如果登入時並未執行 MFA，您可能必須先執行它才能啟用角色。
-6. 在啟用要求的文字欄位中輸入啟用原因。安全性系統管理員可能也會要求您提供問題票證號碼。
+6. 在啟用要求的文字欄位中輸入啟用原因。特殊權限角色管理員可能也會要求您提供問題票證號碼。
 7. 選取 [確定]。角色現已啟用，角色變更也會出現在 Microsoft Online Services 中。
 
 ## 停用角色
@@ -63,4 +63,4 @@ Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理
 
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

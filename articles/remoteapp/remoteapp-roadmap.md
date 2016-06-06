@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="NA"
     ms.devlang="NA"
     ms.topic="article"
-    ms.date="04/05/2016"
+    ms.date="05/20/2016"
     ms.author="elizapo" />
 
 # Azure RemoteApp 中的新內容
@@ -21,11 +21,9 @@
 
 |功能|2016 年 4-6 月|2016 年 7 - 9 月|
 |-----------|-------|-------|
-|Azure Remote App 可在 [Azure 傳統入口網站](http://manage.windowsazure.com)和[Azure 入口網站](https://portal.azure.com)中取得。 |X | |
-|Windows 10 Universal Application with Continuum for Azure RemoteApp：預覽版|X| |
-|能夠將個別應用程式發佈給特定使用者：**私人預覽版** ([意見反應](https://feedback.azure.com/forums/247748-azure-remoteapp/suggestions/6067043-allow-the-ability-to-publish-specific-apps-to-spec/))|X | |
-|Windows 用戶端可轉散發 MSI 封裝 ([意見反應](https://feedback.azure.com/forums/247748-azure-remoteapp/suggestions/6627191-client-deployment-provide-an-msi-package-to-allo/))| X| |
-|Azure RemoteApp 適用且以 HTML5 為基礎的用戶端| |X|
+|Azure Remote App 可在 [Azure 傳統入口網站](http://manage.windowsazure.com)和[Azure 入口網站](https://portal.azure.com)中取得 - 私人預覽|X | |
+|能夠將個別應用程式發佈給特定使用者 - 私人預覽 ([意見反應](https://feedback.azure.com/forums/247748-azure-remoteapp/suggestions/6067043-allow-the-ability-to-publish-specific-apps-to-spec/))|X | |
+|Windows 用戶端可轉散發 MSI 封裝 ([意見反應](https://feedback.azure.com/forums/247748-azure-remoteapp/suggestions/6627191-client-deployment-provide-an-msi-package-to-allo/)) - 私人預覽| X| |
 |Azure 資源管理員 (ARM) 支援||X|
 |Azure v2 資源支援| |X|
 |雲端解決方案提供者 (CSP)||X|
@@ -35,6 +33,8 @@
 
 其他已在今年初加入的改進功能：
 
+- Azure RemoteApp 適用且以 HTML5 為基礎的用戶端
+- Windows 10 Universal Application with Continuum for Azure RemoteApp：預覽版
 - 部署至 VNET，而不加入網域 (與 Azure VM 的雲端集合連線)
 - 重複使用 RemoteApp 混合式集合的現有虛擬網路 (也會啟用 ExpressRoute)
 - ExpressRoute
@@ -47,4 +47,4 @@
 - 澳大利亞資料中心的可用性
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0525_2016-->

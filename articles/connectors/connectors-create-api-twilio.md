@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的邏輯應用程式中新增 Twilio API | Microsoft Azure"
-description="搭配 REST API 參數來使用 Twilio API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的邏輯應用程式中新增 Twilio 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Twilio 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,10 +14,10 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="05/12/2016"
+ms.date="05/18/2016"
 ms.author="mandia"/>
 
-# 開始使用 Twilio API
+# 開始使用 Twilio 連接器
 
 連線到 Twilio 來傳送及接收全域 SMS、多媒體及 IP 訊息。
 
@@ -31,16 +31,16 @@ ms.author="mandia"/>
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
-Twilio API 包含下列動作，但不包含觸發程序。
+Twilio 連接器包含下列動作，但不包含觸發程序。
 
 | 觸發程序 | 動作|
 | --- | --- |
 |None| <ul><li>取得訊息</li><li>列出訊息</li><li>傳送訊息</li></ul>|
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Twilio 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的 Twilio 值：
+當您將這個連接器新增到邏輯應用程式時，請輸入下列的 Twilio 值：
 
 |屬性| 必要|說明|
 | ---|---|---|
@@ -248,4 +248,4 @@ Twilio API 包含下列動作，但不包含觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

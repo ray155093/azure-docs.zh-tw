@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="05/20/2016"
 	ms.author="jeffstok" />
 
 
@@ -45,7 +45,7 @@
 
 建立事件中樞：
 
-1.	在 [Azure 入門網站](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。  
+1.	在 [Azure 入門網站][](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。  
 2.	每個串流分析工作都應該從單一事件中樞取用者群組讀取資料，這才是最佳作法。我們會帶您逐步進行下方建立取用者群組的程序，您可以[深入了解取用者群組](https://msdn.microsoft.com/library/azure/dn836025.aspx)。若要建立取用者群組，請瀏覽至剛剛建立的事件中樞，然後依序按一下 [取用者群組] 索引標籤、頁面最下方的 [建立]，然後提供取用者群組的名稱。
 3.	為了授權存取事件中樞，我們需要建立一個共用存取原則。按一下事件中樞的 [設定] 索引標籤。
 4.	在 [共用存取原則] 下方，建立一個擁有[管理]權限的新原則。
@@ -59,8 +59,14 @@
 
 我們提供的用戶端應用程式將產生範例來電中繼資料，然後推播至事件中樞。請依照下列步驟來設定此應用程式。
 
-1.	下載 [TelcoGenerator.zip 檔案](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)
+1.	下載 [TelcoGenerator.zip 檔案](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)然後解壓縮至目錄。
+
+    **注意**：Windows 可能會封鎖下載的 ZIP 檔案。請以滑鼠右鍵按一下檔案，然後選取 [內容]。如果顯示「這個檔案來自另一部電腦，可能會封鎖以協助保護您的電腦。」訊息，則勾選 [解除封鎖] 方塊，並在 ZIP 檔案上按一下 [套用]。
+
 2.	將 **telcodatagen.exe.config** 中的 Microsoft.ServiceBus.ConnectionString 與 EventHubName 值換成事件中樞連接字串與名稱。
+
+    **注意**︰從 Azure 入口網站複製的連接字串會將連接名稱放在結尾。請務必移除 add key= field 的 ";EntityPath=<value>"。
+
 3.	啟動應用程式。使用方式如下：
 
    telcodatagen.exe [#NumCDRsPerHour] [SIM Card Fraud Probability] [#DurationHours]
@@ -107,7 +113,7 @@
 3.	選取 [事件中樞]，然後按一下右鍵。
 4.	在第三頁上輸入或選取下列值：
 
-	* **輸入別名**：輸入此工作輸入的易記名稱，例如 *CallStream* 。請注意，此名稱將用於後續的查詢。
+	* **輸入別名**：輸入此工作輸入的易記名稱，例如 *CallStream*。請注意，此名稱將用於後續的查詢。
 	* **事件中樞**：如果您建立的事件中樞與串流分析工作位於相同的訂用帳戶中，請選取事件中樞所在的命名空間。
 
 	如果事件中樞位於不同的訂閱中，請選取 [使用其他訂閱中的事件中樞]，並手動輸入 [服務匯流排命名空間]、[事件中樞名稱]、[事件中樞原則名稱]、[事件中樞原則索引鍵] 和 [事件中樞資料分割計數] 的資訊。
@@ -129,7 +135,7 @@
 資料流分析支援用來說明轉換的簡單、宣告式查詢模型，以供即時處理。若要深入了解語言，請參閱 [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/dn834998.aspx)。本教學課程將協助您撰寫和測試數個呼叫資料的即時串流查詢。
 
 #### 選擇性：範例輸入資料
-若要驗證對實際工作資料的查詢結果，您可以使用「範例資料」功能，從資料流擷取事件並為這些事件建立 JSON 檔案進行測試。下列步驟說明執行方式，同時我們也提供範例 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/telco.json) 檔案以供測試之用。
+若要驗證對實際工作資料的查詢結果，您可以使用「範例資料」功能，從資料流擷取事件並為這些事件建立 JSON 檔案進行測試。下列步驟說明執行方式，同時我們也提供 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/telco.json) 範例檔案以供測試之用。
 
 1.	選取事件中樞輸入，然後按一下頁面最下方的 [範例資料] 。
 2.	在出現的對話方塊中，指定開始收集資料的 [開始時間] 以及表示要取用多少其他的資料 [持續時間]。
@@ -259,4 +265,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

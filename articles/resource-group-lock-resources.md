@@ -22,7 +22,7 @@
 
 不同於角色型存取控制，您可以使用管理鎖定來對所有使用者和角色套用限制。如要了解使用者和角色的設定權限，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-當您在父範圍套用鎖定時，所有子系資源都會都繼承相同的鎖定。
+當您在父範圍套用鎖定時，所有子系資源都會都繼承相同的鎖定。繼承中限制最嚴格的鎖定優先順序最高。
 
 ## 誰可以建立或刪除您的組織中的鎖定
 
@@ -30,21 +30,21 @@
 
 ## 透過入口網站建立鎖定
 
-在您想要鎖定之資源、資源群組或訂用帳戶的 [設定] 刀鋒視窗中，選取 [鎖定]。
+1. 在您想要鎖定之資源、資源群組或訂用帳戶的 [設定] 刀鋒視窗中，選取 [鎖定]。
 
-![選取鎖定](./media/resource-group-lock-resources/select-lock.png)
+      ![選取鎖定](./media/resource-group-lock-resources/select-lock.png)
 
-若要新增鎖定，請選取 [新增]。如果您想要改為在目前所選資源將繼承的父層級建立鎖定，請選取父系 (例如下面顯示的訂用帳戶)。
+2. 若要新增鎖定，請選取 [新增]。如果您想要改為在目前所選資源將繼承的父層級建立鎖定，請選取父系 (例如下面顯示的訂用帳戶)。
 
-![新增鎖定](./media/resource-group-lock-resources/add-lock.png)
+      ![新增鎖定](./media/resource-group-lock-resources/add-lock.png)
 
-提供鎖定的名稱和鎖定層級。您可以選擇性新增說明為何需要鎖定的附註。
+3. 提供鎖定的名稱和鎖定層級。您可以選擇性新增說明為何需要鎖定的附註。
 
-![設定鎖定](./media/resource-group-lock-resources/set-lock.png)
+      ![設定鎖定](./media/resource-group-lock-resources/set-lock.png)
 
-若要刪除鎖定，請從可用的選項中選取省略符號和 [刪除]。
+4. 若要刪除鎖定，請從可用的選項中選取省略符號和 [刪除]。
 
-![刪除鎖定](./media/resource-group-lock-resources/delete-lock.png)
+      ![刪除鎖定](./media/resource-group-lock-resources/delete-lock.png)
 
 ## 在範本中建立鎖定
 
@@ -108,4 +108,4 @@ Azure PowerShell 為使用中的鎖定提供其他命令，例如可更新鎖定
 - 若要變更資源所在的資源群組，請參閱[將資源移動到新的資源群組](resource-group-move-resources.md)
 - 您可以使用自訂原則，在訂用帳戶內套用限制和慣例。如需詳細資訊，請參閱[使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

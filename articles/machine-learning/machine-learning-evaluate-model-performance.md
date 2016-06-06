@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="05/22/2016" 
 	ms.author="bradsev;garye" />
 
 
@@ -133,14 +133,14 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 圖 9.二進位分類器的交叉驗證結果。
 
 ##評估多元分類模型##
-在這個實驗中，我們將使用熱門的[鳶尾](http://archive.ics.uci.edu/ml/datasets/Iris "鳶尾")資料集，其中包含 3 種不同類型 (類別) 鳶尾屬植物的案例。每個案例有 4 個特性值 (萼片長度/寬度和花瓣長度/寬度)。在上一個實驗中，我們使用相同的資料集訓練並測試模型。在此，我們將使用[分割][split]模組建立 2 個資料子集，將第一個子集定型，然後計分和評估第二個子集。鳶尾資料集可以在 [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html) 中公開取得，而且可以使用[讀取器][reader]模組下載。
+在這個實驗中，我們將使用熱門的[鳶尾](http://archive.ics.uci.edu/ml/datasets/Iris "鳶尾")資料集，其中包含 3 種不同類型 (類別) 鳶尾屬植物的案例。每個案例有 4 個特性值 (萼片長度/寬度和花瓣長度/寬度)。在上一個實驗中，我們使用相同的資料集訓練並測試模型。在此，我們將使用[分割資料][split]模組建立 2 個資料子集，將第一個子集定型，然後計分和評估第二個子集。鳶尾資料集可以在 [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html) 中公開取得，而且可以使用[匯入資料][reader]模組下載。
 
 ###建立實驗###
 將下列模組加入至您在 Azure Machine Learning Studio 中的工作區：
 
-- [讀取者][reader]
+- [匯入資料][reader]
 - [多元決策樹系][multiclass-decision-forest]
-- [分割][split]
+- [資料分割][split]
 - [定型模型][train-model]
 - [計分模型][score-model]
 - [評估模型][evaluate-model]
@@ -149,9 +149,9 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 
 將[定型模型][train-model]模組的 [標籤] 資料行索引設定為 5。此資料集沒有標頭資料列，但是我們知道類別標籤位於第五個資料行中。
 
-按一下[讀取器][reader]模組，然後將 [*資料來源*] 屬性設定為 [*透過 HTTP 的 Web URL*]，並將 [*URL*] 設定為 http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data。
+按一下 [匯入資料][][reader] 模組，然後將 [資料來源] 屬性設定為 [透過 HTTP 的 Web URL]，並將 [URL] 設定為 http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data。
 
-在[分割][split]模組中，設定用於定型的執行個體分數 (例如 0.7)。
+在[分割資料][split]模組中，設定用於定型的執行個體分數 (例如 0.7)。
  
 ![評估多元分類器](media/machine-learning-evaluate-model-performance/10.png)
 
@@ -189,4 +189,4 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 [two-class-logistic-regression]: https://msdn.microsoft.com/library/azure/b0fd7660-eeed-43c5-9487-20d9cc79ed5d/
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0525_2016-->

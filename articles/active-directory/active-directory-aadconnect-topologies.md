@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.workload="identity"
 	ms.topic="article"
-    ms.date="04/21/2016"
+    ms.date="05/19/2016"
     ms.author="andkjell"/>
 
 # Azure AD Connect 的拓撲
@@ -21,16 +21,16 @@
 
 文件中的圖片圖例：
 
-| 說明 | 圖示 |
-|-----|-----|
-| 內部部署 Active Directory 樹系 | ![AD](./media/active-directory-aadconnect-topologies/LegendAD1.png)|
-| 內含篩選匯入的 Active Directory | ![AD](./media/active-directory-aadconnect-topologies/LegendAD2.png)|
-| Azure AD Connect 同步處理伺服器 | ![Sync](./media/active-directory-aadconnect-topologies/LegendSync1.png)|
-| Azure AD Connect 同步處理伺服器「預備模式」 | ![Sync](./media/active-directory-aadconnect-topologies/LegendSync2.png)|
-| 內含 FIM2010 或 MIM2016 的 GALSync | ![Sync](./media/active-directory-aadconnect-topologies/LegendSync3.png)|
-| Azure AD Connect 同步處理伺服器，詳細說明 |![Sync](./media/active-directory-aadconnect-topologies/LegendSync4.png)|
-| Azure AD 目錄 |![AAD](./media/active-directory-aadconnect-topologies/LegendAAD.png)|
-| 不受支援的案例 | ![不支援](./media/active-directory-aadconnect-topologies/LegendUnsupported.png)
+說明 | 圖示
+-----|-----
+內部部署 Active Directory 樹系| ![AD](./media/active-directory-aadconnect-topologies/LegendAD1.png)
+內含篩選匯入的 Active Directory| ![AD](./media/active-directory-aadconnect-topologies/LegendAD2.png)
+Azure AD Connect 同步處理伺服器| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync1.png)
+Azure AD Connect 同步處理伺服器「預備模式」| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync2.png)
+內含 FIM2010 或 MIM2016 的 GALSync| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync3.png)
+Azure AD Connect 同步處理伺服器，詳細說明| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync4.png)
+Azure AD 目錄 |![AAD](./media/active-directory-aadconnect-topologies/LegendAAD.png)
+不受支援的案例 | ![不支援](./media/active-directory-aadconnect-topologies/LegendUnsupported.png)
 
 
 ## 單一樹系、單一 Azure AD 目錄
@@ -116,10 +116,10 @@ FSP 可在 ADDS 中用來代表安全性群組中來自其他樹系的成員。�
 ## Office 365 和拓撲考量
 有些 Office 365 工作負載對受支援的拓撲有某些限制。如果您打算使用其中任何一項，請參閱工作負載的受支援拓撲主題。
 
-| 工作負載 | |
-| --------- | --------- |
-| Exchange Online |	如果有一個以上的 Exchange 組織內部部署 (也就是 Exchange 已部署至一個以上的樹系)，則您必須使用 Exchange 2013 SP1 或更新版本。您可以在此找到詳細資料：[內含多個 Active Directory 樹系的混合式部署](https://technet.microsoft.com/zh-TW/library/jj873754.aspx) |
-| 商務用 Skype | 使用多個樹系內部部署時，只會支援帳戶資源樹系拓撲。您可以在此找到所支援拓撲的詳細資料：[商務用 Skype Server 2015 的環境需求](https://technet.microsoft.com/zh-TW/library/dn933910.aspx) |
+工作負載 |  
+--------- | ---------
+Exchange Online | 如果有一個以上的 Exchange 組織內部部署 (也就是 Exchange 已部署至一個以上的樹系)，則您必須使用 Exchange 2013 SP1 或更新版本。您可以在此找到詳細資料：[內含多個 Active Directory 樹系的混合式部署](https://technet.microsoft.com/library/jj873754.aspx)
+商務用 Skype | 使用多個樹系內部部署時，只會支援帳戶資源樹系拓撲。您可以在此找到所支援拓撲的詳細資料：[商務用 Skype Server 2015 的環境需求](https://technet.microsoft.com/library/dn933910.aspx)
 
 ## 預備伺服器
 ![預備伺服器](./media/active-directory-aadconnect-topologies/MultiForestStaging.png)
@@ -135,9 +135,9 @@ Azure AD Connect 支援以「預備模式」安裝第二部伺服器。在此模
 ## 多個 Azure AD 目錄
 Microsoft 建議一個組織在 Azure AD 中有單一的目錄。在您打算使用多個 Azure AD 目錄之前，這些主題涵蓋了常見的案例，可讓您使用單一目錄。
 
-| 主題 | |
-| --------- | --------- |
-| 使用管理單位的委派 | [在 Azure AD 中的管理單位管理](active-directory-administrative-units-management.md)
+主題 |  
+--------- | ---------
+使用管理單位的委派 | [在 Azure AD 中的管理單位管理](active-directory-administrative-units-management.md)
 
 ![多樹系多個目錄](./media/active-directory-aadconnect-topologies/MultiForestMultiDirectory.png)
 
@@ -187,4 +187,4 @@ Azure AD 目錄在設計上是隔離的。
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->
