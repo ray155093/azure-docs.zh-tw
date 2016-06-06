@@ -61,7 +61,7 @@
 	![][4]
 
 	接下來，按一下 [部署 Web 服務] 按鈕，然後按一下 [是]。這樣就會將訓練實驗部署為可產生訓練模型與模型評估結果的 Web 服務。隨即顯示的 Web 服務儀表板包含可用於批次執行的 API 索引鍵與 API 說明頁面。請注意，只有批次執行方法能夠用來建立定型模型。  
-4. 新增端點：我們在上述步驟 2 發佈的預測性 Web 服務為預設評分端點。預設端點會與原始定型和計分實驗保持同步，因此無法取代預設端點的定型模型。若要使用可更新模型來建立新的評分端點，請造訪 Azure 傳統入口網站，然後按一下 [新增端點] (如需詳細資訊，請參閱[這裡](machine-learning-create-endpoint.md))。您也可以使用[這裡](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs)提供的程式碼範例來新增評分端點。
+4. 新增端點：我們在上述步驟 2 發佈的預測性 Web 服務為預設評分端點。預設端點會與原始定型和計分實驗保持同步，因此無法取代預設端點的定型模型。若要使用可更新模型來建立新的評分端點，請造訪 Azure 傳統入口網站，然後按一下 [新增端點]\(如需詳細資訊，請參閱[這裡](machine-learning-create-endpoint.md))。您也可以使用[這裡](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs)提供的程式碼範例來新增評分端點。
 
 5. *以新資料與 BES 重新定型模型* 為了呼叫重新定型 API，我們建立在 Visual Studio 中建立新的 C# 主控台應用程式 ([新增]->[專案]->[Windows 桌面]->[主控台應用程式])。
 

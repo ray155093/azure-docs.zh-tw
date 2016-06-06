@@ -254,7 +254,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 1. 在 [快速啟動] 頁面中，將已整合的安裝檔案下載至伺服器。
 2. 執行安裝檔案以在 Site Recovery 整合安裝精靈啟動安裝程式。
-3. 在 [開始之前] 中，選取 [Install the configuration server and process server] (安裝組態伺服器和處理序伺服器)。根據您部署的大小，稍後可能需要額外的處理序伺服器，但是第一次設定此部署時不需要。
+3. 在 [開始之前] 中，選取 [Install the configuration server and process server] \(安裝組態伺服器和處理序伺服器)。根據您部署的大小，稍後可能需要額外的處理序伺服器，但是第一次設定此部署時不需要。
 
 	![開始之前](./media/site-recovery-vmware-to-azure-classic/combined-wiz1.png)
 
@@ -264,9 +264,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 5. 在 [網際網路設定] 中，指定將安裝在伺服器上的提供者，會如何透過網際網路連線到 Azure Site Recovery。
 
-	- 如果您要讓提供者直接連線，請選取 [Connect directly without a proxy] (不使用 Proxy 直接連線)。
-	- 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [Connect with existing proxy settings] (以現有的 Proxy 設定連線)。
-	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [Connect with custom proxy settings] (以自訂 Proxy 設定連線)。
+	- 如果您要讓提供者直接連線，請選取 [Connect directly without a proxy] \(不使用 Proxy 直接連線)。
+	- 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [Connect with existing proxy settings] \(以現有的 Proxy 設定連線)。
+	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [Connect with custom proxy settings] \(以自訂 Proxy 設定連線)。
 	- 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證
 	- 如果您使用 proxy，則應該可以透過它存取下列 URL：
 
@@ -280,7 +280,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 ![TimeSyncIssue](./media/site-recovery-vmware-to-azure-classic/time-sync-issue.png)
 
-8. 在 [MySQL Configuration] (MySQL 組態) 中，建立認證來登入 MySQL 伺服器執行個體。您可以指定這些特殊字元：'\_'、'!'、'@'、'$'、'\\'、'%'。
+8. 在 [MySQL Configuration] \(MySQL 組態) 中，建立認證來登入 MySQL 伺服器執行個體。您可以指定這些特殊字元：'\_'、'!'、'@'、'$'、'\\'、'%'。
 
 	![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz5.png)
 
@@ -304,9 +304,14 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 13.  在 [摘要] 中檢閱資訊。
 
 	![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
->[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
+>[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。
+安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
 >
-	$pwd = ConvertTo-SecureString -String ProxyUserPassword Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd net stop obengine net start obengine
+	$pwd = ConvertTo-SecureString -String ProxyUserPassword
+	Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd 
+	net stop obengine 
+	net start obengine
+	 
 
 
 
@@ -420,7 +425,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	>[AZURE.NOTE] 如果您未使用網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要執行此動作，請在 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入值為 1 的 LocalAccountTokenFilterPolicy DWORD 登錄項目。若要透過 CLI 開啟命令或使用 PowerShell 新增登錄項目，請輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
 
-2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall] (允許應用程式或功能通過防火牆)，並啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
+2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall] \(允許應用程式或功能通過防火牆)，並啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
 
 	![防火牆設定](./media/site-recovery-vmware-to-azure-classic/mobility1.png)
 
@@ -461,7 +466,8 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 來源作業系統 | 行動服務安裝檔案
 --- | ---
 Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
 
@@ -703,7 +709,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 ### 安裝處理序伺服器
 
 1. 在 [快速啟動] 頁面下載整合安裝檔案以進行 Site Recovery 元件安裝。執行安裝程式。
-2. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment] (新增額外處理序伺服器以相應放大部署)。
+2. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment] \(新增額外處理序伺服器以相應放大部署)。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure-classic/add-ps1.png)
 

@@ -36,7 +36,7 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 
     ![安裝 Azure Toolkit for Eclipse][01]
 
-1. 在 [可用軟體] 對話方塊的 [使用] 文字方塊中，輸入 ****http://dl.microsoft.com/eclipse**，然後按 **Enter** 鍵。
+1. 在 [可用軟體] 對話方塊的 [使用] 文字方塊中，輸入 **http://dl.microsoft.com/eclipse**，然後按 **Enter** 鍵。
 
 1. 在 [名稱] 窗格中，核取 [Azure Toolkit for Eclipse]，然後取消核取 [在安裝期間連絡所有更新網站來尋找必要軟體]。您的畫面看起來應該像下面這樣：
 

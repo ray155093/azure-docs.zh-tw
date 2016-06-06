@@ -20,7 +20,7 @@
 
 1. 如果您尚未登入 Azure 入口網站，請先登入。
 
-2. 在 [中樞] 功能表上按一下 [+ New] (+ 新增)，然後按一下 [虛擬機器]。
+2. 在 [中樞] 功能表上按一下 [+ New] \(+ 新增)，然後按一下 [虛擬機器]。
     
     ![替代映像文字](./media/virtual-machines-common-classic-configure-availability/ChooseVMImage.png)
 

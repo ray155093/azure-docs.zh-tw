@@ -96,7 +96,7 @@
 
   1. 為您的 Web 應用程式容器輸入 **DNS 標籤**，這會為您在 Azure 中的 Web 應用程式構成主機 URL 的分葉 DNS 標籤。注意：名稱必須可用，且符合 Azure Web 應用程式命名需求。
 
-  1. 在 [Web Container] (Web 容器) 下拉式功能表中，為您的應用程式選取適當的軟體。
+  1. 在 [Web Container]\(Web 容器) 下拉式功能表中，為您的應用程式選取適當的軟體。
 
         Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
 
@@ -110,7 +110,7 @@
 
       * 按一下 [新增...]
 
-      * [New Resource Group] (新增資源群組) 對話方塊會隨即顯示：
+      * [New Resource Group]\(新增資源群組) 對話方塊會隨即顯示：
 
             ![][12]
 
@@ -128,7 +128,7 @@
 
       * 按一下 [新增...]
 
-      * [New App Service Plan] (新增 App Service 方案) 對話方塊會隨即顯示：
+      * [New App Service Plan]\(新增 App Service 方案) 對話方塊會隨即顯示：
 
             ![][13]
 
@@ -140,7 +140,7 @@
 
       * 在 [執行個體大小] 下拉式功能表中，為方案選取適當的執行個體大小。若為測試用途，您可以選擇 [小型]。
 
-  1. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+  1. 一旦您完成所有上述步驟之後，[New Web App Container]\(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
 
         ![][14]
 

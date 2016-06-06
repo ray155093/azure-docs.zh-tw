@@ -54,7 +54,7 @@
 - 如果您使用自訂設定的安裝路徑，[則帳戶是 Active Directory](active-directory-aadconnect-accounts-permissions.md)。
 
 ### Azure AD Connect 伺服器組態
-- 如果全域系統管理員已啟用 MFA，URL ****https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。在顯示 MFA 挑戰提示之前，系統會先提示您將此 URL 新增到信任的網站清單中 (如果它尚未新增到清單中)。您可以使用 Internet Explorer 將它新增到信任的網站。
+- 如果全域系統管理員已啟用 MFA，URL **https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。在顯示 MFA 挑戰提示之前，系統會先提示您將此 URL 新增到信任的網站清單中 (如果它尚未新增到清單中)。您可以使用 Internet Explorer 將它新增到信任的網站。
 
 ### 連線能力
 - Azure AD Connect 伺服器需要內部網路和網際網路的 DNS 解析。DNS 伺服器必須能夠將名稱解析成您的內部部署 Active Directory 以及 Azure AD 端點。

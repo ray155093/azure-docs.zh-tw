@@ -52,7 +52,7 @@ Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、�
 
 ## 連絡小組
 
-Azure 媒體服務的主要電子郵件是：****mediaservices@microsoft.com**。
+Azure 媒體服務的主要電子郵件是：**mediaservices@microsoft.com**。
 
 下表列出功能子小組的電子郵件：
 

@@ -54,7 +54,8 @@ secure.aadcdn.microsoftonline-p.com | HTTPS/443 | 用於 MFA。
 - 如果看起來正確，請依照[確認 Proxy 連線](#verify-proxy-connectivity)中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ### 無法連線 MFA 端點
-如果無法連線端點 ****https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
+如果無法連線端點 **https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員又已啟用 MFA，就會出現此錯誤。
+![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
 
 - 如果您看到此錯誤，請確認是否已將 secure.aadcdn.microsoftonline-p.com 端點新增到 Proxy。
 

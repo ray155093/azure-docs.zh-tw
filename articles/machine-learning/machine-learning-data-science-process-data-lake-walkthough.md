@@ -153,7 +153,7 @@ Data Lake Analytics 也是 Cortana Analytics 套件的重要組成部分，可�
 
 ### <a name="ingest"></a>資料擷取：從公用 blob 讀取資料
 
-Azure blob 中的資料位置是以 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱是相同格式，我們可以使用 **trip\_data\_{*}.csv** 讀取全部 12 個車程檔案。
+Azure blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱是相同格式，我們可以使用 **trip\_data\_{*}.csv** 讀取全部 12 個車程檔案。
 
 	///Read in Trip data
 	@trip0 =
@@ -176,7 +176,7 @@ Azure blob 中的資料位置是以 ****wasb://container_name@blob_storage_accou
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 ****swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
+由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
 
 	// change data types
 	@trip =
@@ -646,7 +646,7 @@ Azure blob 中的資料位置是以 ****wasb://container_name@blob_storage_accou
  ![22](./media/machine-learning-data-science-process-data-lake-walkthough/Hive_Query_Editor_v2.PNG)
 
 
-貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：****adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
+貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：**adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
 
 	CREATE EXTERNAL TABLE nyc_stratified_sample
 	(

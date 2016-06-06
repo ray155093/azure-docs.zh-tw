@@ -51,7 +51,7 @@
 
 ## <a name="hdinsight-sample-wordcount"></a>字數統計 - Java 
 
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 ****wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
+如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
 
 原始程式碼可以在[附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java) 中找到。
 

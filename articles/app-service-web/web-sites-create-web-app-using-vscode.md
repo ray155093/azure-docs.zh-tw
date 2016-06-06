@@ -93,7 +93,7 @@ ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X�
 
 	![Yeoman-ASP.NET 5 產生器](./media/web-sites-create-web-app-using-vscode/01-yo-aspnet.png)
 
-5. 將新的 ASP.NET web 應用程式的名稱設定為 **SampleWebApp**。因為整個教學課程會使用此名稱，所以如果您選取不同的名稱，您需要取代每次出現的 **SampleWebApp**。按下 ** &lt;Enter>** 時，Yeoman 將會建立名為 **SampleWebApp** 的新資料夾，以及新應用程式必要的檔案。
+5. 將新的 ASP.NET web 應用程式的名稱設定為 **SampleWebApp**。因為整個教學課程會使用此名稱，所以如果您選取不同的名稱，您需要取代每次出現的 **SampleWebApp**。按下 **&lt;Enter>** 時，Yeoman 將會建立名為 **SampleWebApp** 的新資料夾，以及新應用程式必要的檔案。
 
 6. 在命令提示字元，將目錄切換到您的新專案資料夾：
 
@@ -127,7 +127,7 @@ ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X�
 
 2. 開啟瀏覽器並瀏覽至下列 URL。
 
-	****http://localhost:5000**
+	**http://localhost:5000**
 
 	Web 應用程式的預設頁面將出現，如下所示。
 
