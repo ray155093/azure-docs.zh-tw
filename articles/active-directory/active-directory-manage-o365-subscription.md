@@ -64,7 +64,7 @@
 
 1.	使用 Azure 訂用帳戶的服務管理員帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) (在此範例中為 msmith@hotmail.com)。
 2.	將訂用帳戶移轉至 Contoso 目錄：按一下 [設定] > [訂用帳戶] > 選取訂用帳戶 > [編輯目錄] > 選取 [Contoso (Contoso.com)]。在移轉過程中，如果有工作或學校帳戶是訂用帳戶的共同管理員，則將移除這類帳戶。
-3.	新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定] > [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 ****JohnDoe@Contoso.com**。
+3.	新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定] > [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 **JohnDoe@Contoso.com**。
 
 ##後續步驟
 如需訂用帳戶與目錄間的關聯性詳細資訊，請參閱[如何將訂用帳戶如何關聯至目錄](active-directory-how-subscriptions-associated-directory.md)。

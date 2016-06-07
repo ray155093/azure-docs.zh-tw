@@ -54,7 +54,10 @@
 連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 
-[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md) [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md) [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md)
+[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
+[立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
+[立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
+[將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"

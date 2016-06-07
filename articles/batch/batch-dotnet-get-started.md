@@ -367,7 +367,7 @@ private static async Task CreateJobAsync(
 
 ![將工作加入至作業][5]<br/> (1) 工作已加入至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案
 
-若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][net_task] 都是使用命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][net_task_resourcefiles] (如同集區的 StartTask) 進行設定。在 DotNetTutorial 範例專案中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
+若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][net_task] 都是使用命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][net_task_resourcefiles] \(如同集區的 StartTask) 進行設定。在 DotNetTutorial 範例專案中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
 
 ```
 private static async Task<List<CloudTask>> AddTasksAsync(

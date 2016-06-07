@@ -123,7 +123,7 @@
 
 4.  按一下 [確定] 以建立 **ProductsServer** 專案。
 
-7.  如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] (英文)，然後按一下 [[安裝 NuGet]](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
+7.  如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] \(英文)，然後按一下 [[安裝 NuGet]](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
 
 7.  在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsServer** 專案，然後按一下 [管理 NuGet 封裝]。
 
