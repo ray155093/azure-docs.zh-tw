@@ -14,7 +14,7 @@
    	ms.topic="hero-article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="05/16/2016"
+   	ms.date="06/01/2016"
    	ms.author="jgao"/>
 
 # 將 HDInsight 應用程式發佈到 Azure Marketplace
@@ -63,6 +63,19 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 
 - [createUiDefinition.json](#define-application)。
 - mainTemplate.json。請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)中的範例。
+
+	>[AZURE.IMPORTANT] 應用程式安裝指令碼的名稱必須是特定叢集中唯一的名稱 (採用以下的格式)。
+	
+	>	name": "[concat('hue-install-v0','-' ,uniquestring(‘applicationName’)]"
+		
+	>請注意，指令碼名稱有三個部分︰
+		
+	>	1. A script name prefix, which shall include either the application name or a name relevant to the application.
+	>	2. A "-" for readability.
+	>	3. A unique string function with the application name as the parameter.
+
+	>	An example is the above ends up becoming: hue-install-v0-4wkahss55hlas in the persisted script action list. For a sample JSON payload, see [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
+
 - 所有必要的指令碼。
 
 > [AZURE.NOTE] 應用程式檔案 (包括 Web 應用程式檔案 (若有的話)) 可以位於任何可公開存取的端點上。
@@ -85,4 +98,4 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 - [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 - [使用 ARM 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 ARM 範本來建立 HDInsight 叢集。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

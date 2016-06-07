@@ -99,16 +99,15 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 ### 驗證通訊協定
 
-- [SAML 2.0 通訊協定參考](https://msdn.microsoft.com/library/azure/dn195591.aspx)：SAML 2.0 通訊協定可讓應用程式能為使用者提供單一登入體驗。
+- [Azure Active Directory 驗證通訊協定](active-directory-protocols.md)︰了解 Azure Active Directory 支援的不同驗證和授權通訊協定。
 
+- [SAML 2.0 通訊協定參考](active-directory-saml-protocol-reference.md)：SAML 2.0 通訊協定可讓應用程式能為使用者提供單一登入體驗。
 
-- [OAuth 2.0 通訊協定參考](https://msdn.microsoft.com/library/azure/dn645545.aspx)：您可以使用 OAuth 2.0 通訊協定，來授權存取您 Azure Active Directory 租用戶中的 Web 應用程式及 Web API。
+- [OAuth 2.0 通訊協定參考](active-directory-protocols-oauth-code.md)：您可以使用 OAuth 2.0 通訊協定，來授權存取您 Azure Active Directory 租用戶中的 Web 應用程式及 Web API。
 
+- [OpenID Connect 1.0 通訊協定參考](active-directory-protocols-openid-connect-code.md)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。
 
-- [OpenID Connect 1.0 通訊協定參考](https://msdn.microsoft.com/library/azure/dn645541.aspx)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。
-
-
-- [WS-同盟 1.2 通訊協定參考](https://msdn.microsoft.com/library/azure/dn903702.aspx)：WS-同盟 1.2 通訊協定已在 Web 服務同盟 1.2 版規格中指定。
+- [WS-同盟 1.2 通訊協定](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html)：根據 Web 服務同盟 1.2 版規格，Azure Active Directory 支援 WS-同盟 1.2。
 
 - [支援的權杖與宣告類型](active-directory-token-and-claims.md)：您可以使用此指南來了解及評估 SAML 2.0 與 JSON Web Token (JWT) 權杖中的宣告。
 
@@ -140,4 +139,4 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 - [Twitter 上的 Azure Active Directory](https://twitter.com/azuread)：140 個字元以內的 Azure Active Directory 公告。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

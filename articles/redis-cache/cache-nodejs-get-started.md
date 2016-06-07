@@ -4,7 +4,7 @@
 	services="redis-cache"
 	documentationCenter=""
 	authors="steved0x"
-	manager="erikre"
+	manager="douge"
 	editor="v-lincan"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="05/24/2016"
+	ms.date="05/31/2016"
 	ms.author="sdanie"/>
 
 # 如何搭配使用 Azure Redis 快取與 Node.js
@@ -80,4 +80,4 @@ Output:
 - [啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。
 - 閱讀官方 [Redis 文件](http://redis.io/documentation)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -3,7 +3,7 @@
     description="了解如何藉由建立可調整的彈性資料庫集區來管理多個資料庫，進而使用 PowerShell 來相應放大Azure SQL Database 資源。"
 	services="sql-database"
     documentationCenter=""
-    authors="sidneyh"
+    authors="srinia"
     manager="jhubbard"
     editor=""/>
 
@@ -13,8 +13,8 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management"
-    ms.date="04/28/2016"
-    ms.author="sidneyh"/>
+    ms.date="05/27/2016"
+    ms.author="srinia"/>
 
 # 使用 PowerShell 建立新的彈性資料庫集區
 
@@ -80,4 +80,4 @@
 - [建立彈性工作](sql-database-elastic-jobs-overview.md) 彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 - [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具來相應放大。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

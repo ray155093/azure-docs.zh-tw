@@ -3,7 +3,7 @@
     description="使用 C# 資料庫開發技術在 Azure SQL Database 中建立可調整的彈性資料庫集區，讓您可以跨多個資料庫共用資源。"
     services="sql-database"
     documentationCenter=""
-    authors="sidneyh"
+    authors="srinia"
     manager="jhubbard"
     editor=""/>
 
@@ -13,8 +13,8 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="04/28/2016"
-    ms.author="sidneyh"/>
+    ms.date="05/27/2016"
+    ms.author="srinia"/>
 
 # 使用 C&#x23; 建立新的彈性資料庫集區
 
@@ -251,4 +251,4 @@
 - [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

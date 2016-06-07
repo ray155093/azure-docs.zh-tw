@@ -76,7 +76,7 @@
 
 	>[AZURE.IMPORTANT] 本教學課程使用 C# 命名空間 **Microsoft.ServiceBus.Samples**，也就是在[設定 WCF 用戶端](#configure-the-wcf-client)步驟的組態檔中使用之合約 Managed 型別的命名空間。您可以在建置此範例時指定您要的任何命名空間；不過，除非您後來在應用程式組態檔中相應地修改合約的命名空和服務，否則本教學課程將無法運作。在 App.config 檔案中指定的命名空間必須與在 C# 檔案中指定的命名空間相同。
 
-1. 緊接著 `Microsoft.ServiceBus.Samples` 命名空間宣告後面 (但在命名空間內)，定義名為 `IEchoContract` 的新介面，並將 `ServiceContractAttribute` 屬性套用至命名空間值為 **http://samples.microsoft.com/ServiceModel/Relay/** 的介面。命名空間值與您的整個程式碼範圍中使用的命名空間不同。然而，命名空間值會作為此合約的唯一識別碼。明確指定命名空間可避免將預設命名空間值新增至合約名稱。
+1. 緊接著 `Microsoft.ServiceBus.Samples` 命名空間宣告後面 (但在命名空間內)，定義名為 `IEchoContract` 的新介面，並將 `ServiceContractAttribute` 屬性套用至命名空間值為 ****http://samples.microsoft.com/ServiceModel/Relay/** 的介面。命名空間值與您的整個程式碼範圍中使用的命名空間不同。然而，命名空間值會作為此合約的唯一識別碼。明確指定命名空間可避免將預設命名空間值新增至合約名稱。
 
 	```
 	[ServiceContract(Name = "IEchoContract", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
@@ -94,7 +94,7 @@
 	string Echo(string text);
 	```
 
-1. 直接在 `IEchoContract` 介面定義之後，宣告同時繼承自 `IEchoChannel` 與 `IClientChannel` 介面的通道，如下所示：
+1. 直接在 `IEchoContract` 介面定義之後，宣告同時繼承自 `IEchoContract` 與 `IClientChannel` 介面的通道，如下所示：
 
 	```
     public interface IEchoChannel : IEchoContract, IClientChannel { }
@@ -783,4 +783,4 @@ namespace Microsoft.ServiceBus.Samples
 [5]: ./media/service-bus-relay-tutorial/set-projects.png
 [6]: ./media/service-bus-relay-tutorial/set-depend.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

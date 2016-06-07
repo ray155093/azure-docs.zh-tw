@@ -19,8 +19,10 @@
 # 使用 SQLCMD 連接及查詢
 
 > [AZURE.SELECTOR]
-- [Visual Studio][]
-- [SQLCMD][]
+- [Visual Studio](sql-data-warehouse-get-started-connect.md)
+- [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
+- [AAD](sql-data-warehouse-get-started-connect-aad-authentication.md)
+
 
 本逐步解說將示範使用 sqlcmd.exe 公用程式在短時間內連接和查詢 Azure SQL 資料倉儲資料庫的方式。在本逐步解說中，您將：
 
@@ -80,17 +82,17 @@ C:\>sqlcmd -S <Server Name>.database.windows.net -d <Database> -U <User> -P <Pas
 若要針對 Windows 驗證設定您的環境，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲][]。
 
 <!--Articles-->
-[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲]: ../sql-database/sql-database-aad-authentication.md
+[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲]: ../sql-data-warehouse/sql-data-warehouse-get-started-connect-aad-authentication.md
 [使用 PowerBI 連接]: ./sql-data-warehouse-integrate-power-bi.md
 [Visual Studio]: ./sql-data-warehouse-get-started-connect.md
 [SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other-->
-[sqlcmd.exe]: https://msdn.microsoft.com/zh-TW/library/ms162773.aspx
+[sqlcmd.exe]: https://msdn.microsoft.com/en-us/library/ms162773.aspx
 [適用於 SQL Server 的 Microsoft 命令列公用程式 11]: http://go.microsoft.com/fwlink/?LinkId=321501
 [Azure 入口網站]: https://portal.azure.com
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-get-started-connect/get-server-name.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

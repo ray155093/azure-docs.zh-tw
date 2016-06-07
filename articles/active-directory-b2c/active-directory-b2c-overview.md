@@ -63,4 +63,8 @@ Azure Active Directory B2C 處於預覽版狀態。我們冀望在此期間能�
 - 閱讀 [Azure Active Directory B2C 常見問題集](active-directory-b2c-faqs.md)。
 - [提出 Azure Active Directory B2C 的支援要求](active-directory-b2c-support.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以收到安全性事件發生時間的通知。
+
+<!---HONumber=AcomDC_0601_2016-->

@@ -14,7 +14,7 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="03/02/2016"
+ ms.date="05/25/2016"
  ms.author="dobett"/>
 
 # 什麼是 Azure IoT 套件預先設定的解決方案？
@@ -34,8 +34,7 @@ Azure IoT 套件預先設定的解決方案是常見 IoT 解決方案模式的�
 
 | 方案 | 資料擷取 | 裝置身分識別 | 命令和控制 | 規則和動作 | 預測性分析 |
 |------------------------|-----|-----|-----|-----|-----|
-| [遠端監視][lnk-remote-monitoring] | 是 | 是 | 是 | 是 | - | 
-| [預測性維護][lnk-predictive-maintenance] | 是 | 是 | 是 | 是 | 是 |
+| [遠端監視][lnk-preconf-get-started] | 是 | 是 | 是 | 是 | - | | [預測性維護][lnk-predictive-maintenance] | 是 | 是 | 是 | 是 | 是 |
 
 - *資料擷取*：雲端規模的資料輸入。
 - *裝置身分識別*：管理每個連接裝置的唯一身分識別。
@@ -66,7 +65,7 @@ Azure IoT 套件預先設定的解決方案是常見 IoT 解決方案模式的�
 
 您可以將更多模擬裝置新增至解決方案，以便發出相同的遙測資料並回應相同的命令。
 
-## IoT 中心
+## IoT 中樞
 
 在此預先設定解決方案中，IoT 中樞執行個體會對應至典型 [IoT 解決方案架構][lnk-what-is-azure-iot]中的「雲端閘道器」。
 
@@ -124,17 +123,16 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 
 [img-remote-monitoring-arch]: ./media/iot-suite-what-are-preconfigured-solutions/remote-monitoring-arch1.png
 [img-dashboard]: ./media/iot-suite-what-are-preconfigured-solutions/dashboard.png
-[lnk-remote-monitoring]: iot-suite-remote-monitoring-sample-walkthrough.md
 [lnk-what-is-azure-iot]: iot-suite-what-is-azure-iot.md
 [lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
-[lnk-event-processor]: event-hubs-programming-guide.md#event-processor-host
-[lnk-web-job]: web-sites-create-web-jobs.md
+[lnk-event-processor]: ../event-hubs/event-hubs-programming-guide.md#event-processor-host
+[lnk-web-job]: ../app-service-web/web-sites-create-web-jobs.md
 [lnk-document-db]: https://azure.microsoft.com/documentation/services/documentdb/
-[lnk-identity-registry]: iot-hub-devguide.md#device-identity-registry
+[lnk-identity-registry]: ../iot-hub/iot-hub-devguide.md#device-identity-registry
 [lnk-suite-overview]: iot-suite-overview.md
 [lnk-preconf-get-started]: iot-suite-getstarted-preconfigured-solutions.md
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0601_2016-->
