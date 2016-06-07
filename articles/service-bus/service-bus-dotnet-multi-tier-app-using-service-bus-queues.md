@@ -475,22 +475,9 @@
 * [服務匯流排服務頁面][sbwacom]  
 * [如何使用服務匯流排佇列][sbwacomqhowto]  
 
-若要深入了解多層式案例，或了解如何將應用程式部署至雲端服務，請參閱：
+若要深入了解多層式案例，請參閱︰
 
 * [使用儲存體資料表、佇列與 Blob 的 .NET 多層式應用程式][mutitierstorage]  
-
-您可能想要在 Azure 網站而非 Azure 雲端服務中實作多層應用程式的前端。
-
-若要以標準 Web 專案而非雲端服務 Web 角色的形式實作您在本教學課程中建立的應用程式，請在遵循本教學課程中的步驟時注意下列差異：
-
-1. 建立專案時，請選擇 [**Web**] 類別中的 **ASP.NET MVC Web Application** 專案範本，而不是 [**雲端**] 類別中的 [**雲端服務**] 範本。然後，遵循建立 MVC 應用程式的相同指示，直到**雲端組態管理員**一節。
-
-2. 建立背景工作角色時，請在新的個別方案中建立，類似於 Web 角色的原始指示。不過，您現在只在雲端服務專案中建立背景工作角色。然後，遵循建立背景工作角色的相同指示。
-
-3. 您可以個別測試前端與後端，也可以同時在不同 Visual Studio 執行個體中執行這兩者。
-
-若要了解如何將前端部署至 Azure 網站，請參閱[在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。若要了解如何將後端部署至 Azure 雲端服務，請參閱[使用儲存體資料表、佇列與 Blob 的 .NET 多層應用程式][mutitierstorage]。
-
 
   [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
   [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
@@ -544,4 +531,4 @@
   [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
   
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

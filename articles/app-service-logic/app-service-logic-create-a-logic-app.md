@@ -20,9 +20,9 @@
 
 | 快速參考 |
 | --------------- |
-| [Logic Apps 定義語言](https://msdn.microsoft.com/library/azure/dn948512.aspx?f=255&MSPPError=-2147217396) |
-| [Logic Apps 連接器文件](https://azure.microsoft.com/documentation/articles/app-service-logic-connectors-list/) |
-| [Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=azurelogicapps) |
+| [Logic Apps 定義語言](https://msdn.microsoft.com/library/azure/mt643789.aspx) |
+| [Logic Apps 連接器文件](../connectors/apis-list.md) |
+| [Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps) |
 
 本主題只花幾分鐘就能示範如何開始使用 [App Services Logic Apps](app-service-logic-what-are-logic-apps.md)。我們將逐步解說可讓您將一組您感興趣的推文傳送到信箱的工作流程。
 
@@ -67,4 +67,4 @@
 [Azure portal]: https://portal.azure.com
 [使用邏輯應用程式功能]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0323_2016--->
+<!---HONumber=AcomDC_0601_2016-->

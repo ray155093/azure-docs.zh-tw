@@ -94,7 +94,7 @@
 	string Echo(string text);
 	```
 
-1. 直接在 `IEchoContract` 介面定義之後，宣告同時繼承自 `IEchoChannel` 與 `IClientChannel` 介面的通道，如下所示：
+1. 直接在 `IEchoContract` 介面定義之後，宣告同時繼承自 `IEchoContract` 與 `IClientChannel` 介面的通道，如下所示：
 
 	```
     public interface IEchoChannel : IEchoContract, IClientChannel { }
@@ -783,4 +783,4 @@ namespace Microsoft.ServiceBus.Samples
 [5]: ./media/service-bus-relay-tutorial/set-projects.png
 [6]: ./media/service-bus-relay-tutorial/set-depend.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

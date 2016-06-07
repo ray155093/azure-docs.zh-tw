@@ -1,14 +1,14 @@
 若要建立快取，請先登入 [Azure 入口網站](https://portal.azure.com)，然後依序按一下 [新增]、[資料 + 儲存體] 和 [Redis 快取]。
 
+>[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
+
+![New cache](media/redis-cache-create/redis-cache-new-cache-menu.png)
+
 >[AZURE.NOTE] 除了在 Azure 入口網站中建立快取，您也可以使用 ARM 範本、PowerShell 或 Azure CLI 來建立。
 >
 >-	若要使用 ARM 範本建立快取，請參閱[使用範本建立 Redis 快取](../articles/redis-cache/cache-redis-cache-arm-provision.md)。
 >-	若要使用 Azure PowerShell 建立快取，請參閱[使用 Azure PowerShell 管理 Azure Redis 快取](../articles/redis-cache/cache-howto-manage-redis-cache-powershell.md)。
 >-	若要使用 Azure CLI 建立快取，請參閱[如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取](../articles/redis-cache/cache-manage-cli.md)。
-
-![New cache](media/redis-cache-create/redis-cache-new-cache-menu.png)
-
->[AZURE.NOTE] 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
 
 在 [新增 Redis 快取] 分頁中，指定所需的快取組態。
 
@@ -27,3 +27,4 @@
 
 ![Cache created](media/redis-cache-create/redis-cache-cache-created.png)
 
+<!---HONumber=AcomDC_0601_2016-->

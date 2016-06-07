@@ -12,7 +12,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="03/10/2016"
+    ms.date="05/31/2016"
     ms.author="ashmaka"/>
 
 # 使用 REST API 查詢 Azure 搜尋服務索引
@@ -159,4 +159,4 @@ api-key: [query key]
 
 若要深入了解，請瀏覽[搜尋文件](https://msdn.microsoft.com/library/azure/dn798927.aspx)的＜回應＞一節。如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://msdn.microsoft.com/library/azure/dn798925.aspx)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

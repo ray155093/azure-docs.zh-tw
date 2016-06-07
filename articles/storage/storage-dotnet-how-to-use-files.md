@@ -258,11 +258,36 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 ## 使用檔案儲存體開發
 
-若要以程式設計方式使用檔案儲存體，您可以使用 .NET 和 Java 適用的儲存體用戶端程式庫或 Azure 儲存體 REST API。本節的範例將透過桌面上執行的簡單主控台應用程式，使用[適用於 .NET 的 Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/mt347887.aspx)來示範如何使用檔案共用。
+若要撰寫可呼叫檔案儲存體的程式碼，您可以使用 .NET 和 Java 適用的儲存體用戶端程式庫或 Azure 儲存體 REST API。本節的範例將透過桌面上執行的簡單主控台應用程式，使用[適用於 .NET 的 Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/mt347887.aspx)來示範如何使用檔案共用。
 
-[AZURE.INCLUDE [storage-dotnet-install-library-include](../../includes/storage-dotnet-install-library-include.md)]
+### 建立主控台應用程式並取得組件
 
-[AZURE.INCLUDE [storage-dotnet-save-connection-string-include](../../includes/storage-dotnet-save-connection-string-include.md)]
+若要在 Visual Studio 中建立新的主控台應用程式，並安裝包含 Azure 儲存體用戶端程式庫的 NuGet 封裝：
+
+1. 在 Visual Studio 中，依序選擇 [檔案] -> [新增專案]，然後從 Visual C# 範本清單中選擇 [Windows] -> [主控台應用程式]。
+2. 提供主控台應用程式的名稱，然後按一下 [確定]。
+3. 建立專案後，在 [方案總管] 中以滑鼠右鍵按一下該專案，然後選擇 [管理 NuGet 封裝]。在線上搜尋 "WindowsAzure.Storage"，再按一下 [安裝] 以安裝適用於 .NET 封裝與相依性的 Azure 儲存體用戶端程式庫。
+
+本文中的程式碼範例也使用 [Microsoft Azure Configuration Manager 程式庫](https://msdn.microsoft.com/library/azure/mt634646.aspx)以從主控台應用程式中的 app.config 檔案擷取儲存體連接字串。透過 Azure Configuration Manager，無論應用程式是在 Microsoft Azure 中執行還是從桌面、行動或 Web 應用程式執行，您都可以在執行階段擷取連接字串。
+
+若要安裝 Azure Configuration Manager 封裝，請以滑鼠右鍵按一下 [方案總管] 中的專案，然後選擇 [管理 NuGet 封裝]。在線上搜尋 "ConfigurationManager"，再按一下 [安裝] 以安裝封裝。
+
+是否使用 Azure Configuration Manager 可由您選擇。您也可以使用 API，例如 .NET Framework 的 [ConfigurationManager 類別](https://msdn.microsoft.com/library/system.configuration.configurationmanager.aspx)。
+
+### 將您的儲存體帳戶認證儲存到 app.config 檔案
+
+接著，將您的認證儲存到專案的 app.config 檔案。編輯 app.config 檔案，使其看起來類似下列範例，並使用您的儲存體帳戶名稱來取代 `myaccount`，以及使用您的儲存體帳戶金鑰來取代 `mykey`。
+
+	<?xml version="1.0" encoding="utf-8" ?>
+	<configuration>
+	    <startup>
+	        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+	    </startup>
+	    <appSettings>
+	        <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=StorageAccountKeyEndingIn==" />
+	    </appSettings>
+	</configuration>
+
 
 > [AZURE.NOTE] 最新版本的 Azure 儲存體模擬器不支援檔案儲存體。您的連接字串必須以雲端中的 Azure 儲存體帳戶為目標，才能與檔案儲存體搭配使用。
 
@@ -609,7 +634,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 
 13. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
 
-	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/zh-TW/kb/3114025)。
+	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/en-us/kb/3114025)。
 
 14. **搭配 IBM MQ 使用 Azure 檔案儲存體**
 
@@ -642,4 +667,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0601_2016-->

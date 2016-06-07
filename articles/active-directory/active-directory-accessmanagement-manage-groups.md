@@ -1,7 +1,7 @@
 <properties
 
 	pageTitle="Managing groups in Azure Active Directory | Microsoft Azure"
-	description="How to create and manage groups to manage Azure resource access using Azure Active Directory."
+	description="How to create and manage groups to manage Azure users using Azure Active Directory."
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
@@ -14,19 +14,22 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/18/2016"
+	ms.date="05/26/2016"
 	ms.author="curtand"/>
 
 
 # 在 Azure Active Directory 中管理群組
 
-Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的存取權。這些資源可以是目錄中的物件，或是目錄外部的資源 (例如 SaaS 應用程式、Azure 服務、SharePoint 網站或內部部署資源)。此外，資源擁有者可以指派 Azure AD 群組資源的存取權。這會將資源的存取權授與該群組的成員。然後，群組擁有者負責管理群組中的成員資格。實際上，資源擁有者是將指派使用者至其資源的權限委派給群組擁有者。
+Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠建立使用者群組。接著您可以使用群組將授權指派給某個類別的使用者。您也可以使用群組來指派存取權限給
+
+- 資源，例如目錄中的物件
+- 目錄外部的資源，例如 SaaS 應用程式、Azure 服務、SharePoint 網站或內部部署資源。
+
+此外，資源擁有者可以指派 Azure AD 群組資源的存取權。這會將資源的存取權授與該群組的成員。然後，群組擁有者負責管理群組中的成員資格。實際上，資源擁有者是將指派使用者至其資源的權限委派給群組擁有者。
 
 ## 如何建立群組？
 
-**建立群組**
-
-您可以使用 Office 365 帳戶入口網站、Windows Intune 帳戶入口網站或 Azure 入口網站完成這項工作 (視貴組織所訂閱的服務而定)。如需使用入口網站管理 Azure Active Directory 的詳細資訊，請參閱[管理 Azure AD 目錄](active-directory-administer.md)。
+您可以使用 Office 365 帳戶入口網站、Windows Intune 帳戶入口網站或 Azure 傳統入口網站完成這項工作 (視貴組織所訂閱的服務而定)。如需使用非 Azure 入口網站管理 Azure Active Directory 的詳細資訊，請參閱[管理 Azure AD 目錄](active-directory-administer.md)。
 
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中選取 [Active Directory]，然後選取您組織的目錄名稱。
 
@@ -34,7 +37,7 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 
 3. 選取 [新增群組]。
 
-4. 在 [新增群組] 視窗中，指定群組的名稱與描述。
+4. 在 [加入群組] 視窗中，指定群組的名稱與描述。
 
 
 ## 如何新增或移除安全性群組中的個別使用者？
@@ -72,7 +75,7 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 > [AZURE.NOTE] 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。目前對應用程式的群組式指派並不支援巢狀群組成員資格。
 >
 > 群組的動態成員資格需要將 Azure AD Premium 授權指派給：
-> 
+>
 > - 負責管理群組規則的系統管理員
 > - 已由規則選取要成為群組成員的所有使用者。
 
@@ -84,7 +87,7 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 
 3. 選取 [設定] 索引標籤，然後將 [啟用動態成員資格] 設定為 [是]。
 
-4. 為將要控制此群組的動態成員資格如何運作的群組，設定一個簡單的規則。請確定已選取 [新增使用者位置] 選項，然後從清單 (例如，department、jobTitle 等) 中選取一個使用者屬性。
+4. 為將要控制此群組的動態成員資格如何運作的群組，設定一個簡單的規則。請確定已選取 [**新增使用者位置**] 選項，然後從清單 (例如，department、jobTitle 等) 中選取一個使用者屬性。
 
 5. 接著，選取一個條件 (不等於、等於、開頭不是、開頭為、不包含、包含、不符合、符合)，最後指定所選使用者屬性的值。
 
@@ -102,4 +105,4 @@ Azure Active Directory (Azure AD) 的其中一項主要功能是管理資源的�
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

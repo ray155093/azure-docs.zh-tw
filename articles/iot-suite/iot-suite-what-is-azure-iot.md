@@ -14,7 +14,7 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="03/02/2016"
+ ms.date="05/25/2016"
  ms.author="dobett"/>
 
 [AZURE.INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
@@ -34,17 +34,16 @@ Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的
 - [Azure IoT 套件的概觀][lnk-suite-overview]。
 - [開始使用 IoT 預先設定解決方案][lnk-preconfigured-solutions]。
 - [將裝置連接至 IoT Suite 遠端監視解決方案][lnk-connecting]。
-- [Azure IoT 中心]
+- [Azure IoT 中樞]
 
 [lnk-suite-overview]: iot-suite-overview.md
 [lnk-connecting]: iot-suite-connecting-devices.md
 [lnk-preconfigured-solutions]: iot-suite-getstarted-preconfigured-solutions.md
-[Azure IoT 中心]: https://azure.microsoft.com/services/iot-hub/
-[Azure IoT 中樞]: https://azure.microsoft.com/services/iot-hub/
-[Azure 事件中樞]: https://azure.microsoft.com/services/event-hubs/
-[Azure 串流分析]: https://azure.microsoft.com/services/stream-analytics/
-[Azure Machine Learning]: https://azure.microsoft.com/services/machine-learning/
-[Azure 儲存體]: https://azure.microsoft.com/services/storage/
+[Azure IoT 中樞]: https://azure.microsoft.com/documentation/services/iot-hub/
+[Azure 事件中樞]: https://azure.microsoft.com/documentation/services/event-hubs/
+[Azure 串流分析]: https://azure.microsoft.com/documentation/services/stream-analytics/
+[Azure Machine Learning]: https://azure.microsoft.com/documentation/services/machine-learning/
+[Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

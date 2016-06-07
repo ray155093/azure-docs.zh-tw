@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="05/16/2016"
+    ms.date="06/01/2016"
     ms.author="magoedte"/>
 
 # 使用 Azure 執行身分帳戶驗證 Runbook
@@ -68,13 +68,10 @@ AzureRunAsConnection|如果您選取在建立自動化帳戶期間建立執行�
 
 在繼續之前，請確認下列事項︰
 
-1. 您已下載並安裝[適用於 Windows PowerShell 的 Azure Active Directory 模組 (64 位元版本)](http://go.microsoft.com/fwlink/p/?linkid=236297)。
-2. 您已建立自動化帳戶。此帳戶會被參照做為以下指令碼所含參數 (–AutomationAccountName 和 -ApplicationDisplayName) 的值。
-3. 您已安裝 [Azure 自動化撰寫工具組](https://www.powershellgallery.com/packages/AzureAutomationAuthoringToolkit/0.2.3.2)
+1. 您已下載並安裝 [Windows Management Framework (WMF) 4.0](https://www.microsoft.com/download/details.aspx?id=40855) (如果您執行 Windows 7)。如果您執行的是 Windows Server 2012 R2、Windows Server 2012、Windows 2008 R2、Windows 8.1 和 Windows 7 SP1，則 [Windows Management Framework 5.0](https://www.microsoft.com/download/details.aspx?id=50395) 可供安裝。
+2. Azure PowerShell 1.0。如需有關此版本以及如何安裝的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 
+3. 您已建立自動化帳戶。此帳戶會被參照做為以下指令碼所含參數 (–AutomationAccountName 和 -ApplicationDisplayName) 的值。
 
-```
-Install-Module AzureAutomationAuthoringToolkit -Scope CurrentUser
-```
 
 PowerShell 指令碼會設定下列項目︰
 
@@ -246,4 +243,4 @@ PowerShell 指令碼會設定下列項目︰
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->
