@@ -32,7 +32,7 @@
 在移動資源之前，要執行的重要步驟如下︰藉由驗證這些條件，您可以避免錯誤。
 
 1. 服務必須支援移動資源的功能。請參閱下方的清單，以取得哪些[服務支援移動資源](#services-that-support-move)的相關資訊。
-2. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。否則，您會收到錯誤，指出**未針對資源類型註冊訂用帳戶**。將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。若要了解如何檢查登錄狀態，並註冊資源提供者，請參閱[資源提供者和類型](../resource-manager-supported-services/#resource-providers-and-types)。
+2. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。否則，您會收到錯誤，指出**未針對資源類型註冊訂用帳戶**。將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。若要了解如何檢查註冊狀態及註冊資源提供者，請參閱[資源提供者和類型](../resource-manager-supported-services.md#resource-providers-and-types)。
 3. 如果您使用 Azure PowerShell 或 Azure CLI，請使用最新版本。若要更新您的版本，執行 Microsoft Web Platform Installer 並檢查是否有新的版本可用如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)，以及[安裝 Azure CLI](xplat-cli-install.md)。
 4. 如果您正在移動 App Service 應用程式，則已檢閱 [App Service 限制](#app-service-limitations)。
 5. 如果您正在移動透過傳統模型所部署的資源，則已檢閱[傳統部署限制](#classic-deployment-limitations)。
@@ -48,6 +48,7 @@
 - CDN
 - 雲端服務 - 請參閱[傳統部署限制](#classic-deployment-limitations)
 - Data Factory
+- DNS
 - DocumentDB
 - HDInsight 叢集
 - 金鑰保存庫
@@ -88,12 +89,12 @@
 
 例如，如果您的資源群組包含︰
 
-- **web-a**，其與 **plan-a** 和 **app-insights-a** 相關聯
-- **web-b**，其與 **plan-b** 和 **app-insights-b** 相關聯
+- 與 **plan-a** 和 **app-insights-a** 關聯的 **web-a**
+- 與 **plan-b** 和 **app-insights-b** 關聯的 **web-b**
 
 您的選項如下：
 
-- 移動 **web-a**、**plan-a**、**web-b** 和 **plan-b**
+- 移動 **web-a**、**plan-a**、**web-b** 及 **plan-b**
 - 移動 **web-a** 和 **web-b**
 - 移動 **web-a**
 - 移動 **web-b**
@@ -102,9 +103,9 @@
 
 如果 Web 應用程式與其 App Service 方案位於不同的資源群組，但您想要將兩者移到新的資源群組，則必須使用兩個步驟來執行移動。例如：
 
-- **web-a** 位於 **web-group**
-- **plan-a** 位於 **plan-group**
-- 您想要 **web-a** 和 **plan-a** 位於 **combined-group**
+- **web-a** 位於 **web-group** 中
+- **plan-a** 位於 **plan-group** 中
+- 您想要讓 **web-a** 和 **plan-a** 位於 **combined-group** 中
 
 若要完成這項移動，請依下列序列執行兩個不同的移動作業︰
 
@@ -115,7 +116,7 @@
 
 移動透過傳統模型所部署之資源的選項，會根據移動訂用帳戶內的資源還是將資源移到新的訂用帳戶而有所不同。
 
-將**相同訂用帳戶內**的資源從某個資源群組移到另一個資源群組時，適用下列限制︰
+將資源從一個資源群組移到「相同訂用帳戶內」的另一個資源群組時，適用下列限制︰
 
 - 無法移動虛擬網路 (傳統)。
 - 虛擬機器 (傳統) 必須與雲端服務一起移動。 
@@ -124,7 +125,7 @@
 - 一次只能移動一個儲存體帳戶 (傳統)。
 - 透過相同的作業，儲存體帳戶 (傳統) 不能與虛擬機器或雲端服務一起移動。
 
-將資源移到**新的訂用帳戶**時，適用下列限制︰
+將資源移到「新訂用帳戶」時，適用下列限制︰
 
 - 必須透過相同的作業移動訂用帳戶中的所有傳統資源。
 - 只能透過入口網站或透過傳統移動的個別 REST API，來要求這項移動。將傳統資源移到新的訂用帳戶時，標準 Resource Manager 移動命令無法運作。下列各節會顯示入口網站或 REST API 的使用步驟。
@@ -169,7 +170,7 @@
 
 ![移動傳統資源](./media/resource-group-move-resources/edit-rg-icon.png)
 
-選取要移動的資源，同時記住[傳統部署限制](#classic-deployment-limitations)。選取 [確定] 開始移動。
+選取要移動的資源，同時記著[傳統部署限制](#classic-deployment-limitations)。選取 [確定] 來開始移動。
 
  ![選取傳統資源](./media/resource-group-move-resources/select-classic-resources.png)
  
@@ -266,9 +267,9 @@
 
 
 ## 後續步驟
-- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Resource Manager](powershell-azure-resource-manager.md)。
-- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與 Resource Manager](xplat-cli-azure-resource-manager.md)。
-- 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站管理資源](./azure-portal/resource-group-portal.md)。
+- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與資源管理員](powershell-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與資源管理員](xplat-cli-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

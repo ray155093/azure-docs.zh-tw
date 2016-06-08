@@ -1,7 +1,7 @@
 <properties
    pageTitle="Microsoft Azure IaaS 上軟體更新的最佳作法 | Microsoft Azure"
    description="本文針對 Microsoft Azure IaaS 環境中的軟體更新提供最佳作法集合。它的適用對象為 IT 專業人員和安全性分析師，他們每天都在處理變更控制、軟體更新和資產管理，包括那些負責其組織安全性和法規工作的人員。"
-   services="virtual-machines, cloud-services, storage"
+   services="security"
    documentationCenter="na"
    authors="YuriD"
    manager="swadhwa"
@@ -9,12 +9,12 @@
    tags="azure-service-management,azure-resource-manager"/>
 
 <tags
-   ms.service="azure-security"
+   ms.service="security"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/11/2016"
+   ms.date="05/23/2016"
    ms.author="yurid"/>
 
 #Microsoft Azure IaaS 上軟體更新的最佳作法
@@ -119,4 +119,4 @@ Azure IaaS 的某些備份選項包括：
 
 使用本文所述的指導方針，可協助您判斷適用於 Azure IaaS 中虛擬機器軟體更新的最佳選項。傳統資料中心與 Azure IaaS 之間的軟體更新最佳作法有許多相似之處，因此建議您評估目前的軟體更新原則，以包含 Azure VM 並將本文中的相關最佳作法章納入整體軟體更新程序中。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

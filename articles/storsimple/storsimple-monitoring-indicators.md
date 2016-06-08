@@ -4,7 +4,7 @@
     services="storsimple"
     documentationCenter="NA"
     authors="alkohli"
-    manager="carolz"
+    manager="carmonm"
     editor="" />
  <tags 
     ms.service="storsimple"
@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="TBD"
-    ms.date="03/21/2016"
+    ms.date="05/24/2016"
     ms.author="alkohli" />
 
 # 使用 StorSimple 監視指示器來管理您的裝置   
@@ -163,11 +163,11 @@ StorSimple 裝置包含主要控制器的 LED 與 EBOD 控制器模組的 LED。
 
 |狀態 | I/O 模組正常 (綠色) | I/O 模組故障 (琥珀色) | 主機連接埠活動 (綠色) |
 |-------|----------------------|-------------------------------|----------------------------|
-|控制器模組正常 | 開 | 關 | - | 
-|控制器模組錯誤 | 關 | 開 | - | 
-|沒有外部主機連接埠連線 | - | - | 關 | 
-| 外部主機連接埠連線 - 沒有活動 | - | - | 開 | 
-| 外部主機連接埠連線 - 有活動 | - | - | 不停閃爍 | 
+|控制器模組正常 | 開 | 關 | - |
+|控制器模組錯誤 | 關 | 開 | - |
+|沒有外部主機連接埠連線 | - | - | 關 |
+| 外部主機連接埠連線 - 沒有活動 | - | - | 開 |
+| 外部主機連接埠連線 - 有活動 | - | - | 不停閃爍 |
 | 控制器模組中繼資料錯誤 | 不停閃爍 | - | - |
 
 ## 主要機箱與 EBOD 機箱的磁碟機 LED 指示燈
@@ -262,4 +262,4 @@ StorSimple 裝置包含和主要機箱與 EBOD 機箱相關聯的有聲警報器
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

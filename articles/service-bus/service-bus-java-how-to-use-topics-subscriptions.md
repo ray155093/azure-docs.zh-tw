@@ -22,7 +22,51 @@
 
 本指南說明如何使用服務匯流排主題和訂用帳戶。相關範例是以 Java 撰寫並使用 [Azure SDK for Java][]。所涵蓋的案例包括**建立主題和訂閱**、**建立訂閱篩選器**、**傳送訊息至主題**、**接收訂閱的訊息**，及**刪除主題和訂閱**。
 
-[AZURE.INCLUDE [service-bus-java-how-to-create-topic](../../includes/service-bus-java-how-to-create-topic.md)]
+## 什麼是服務匯流排主題和訂用帳戶？
+
+服務匯流排主題和訂用帳戶支援*發佈/訂用帳戶*訊息通訊模型。使用主題和訂用帳戶時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色的主題來交換訊息。
+
+![主題概念](./media/service-bus-java-how-to-use-topics-subscriptions/sb-topics-01.png)
+
+有別於服務匯流排佇列，服務匯流排佇列中的每個訊息只會由單一取用者處理，主題和訂用帳戶採用發佈/訂用帳戶模式，提供一對多的通訊形式。一個主題可以登錄多個訂用帳戶。當訊息傳送至主題時，每個訂用帳戶都可取得訊息來個別處理。
+
+主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。您可以選擇為個別訂用帳戶來登錄主題的篩選規則，以篩選/限制主題的哪些訊息由哪些主題訂用帳戶接收。
+
+服務匯流排主題和訂用帳戶可讓您擴大處理非常多使用者和應用程式上非常大量的訊息。
+
+## 建立服務命名空間
+
+若要開始在 Azure 中使用服務匯流排主題和訂用帳戶，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+
+若要建立命名空間：
+
+1.  登入 [Azure 傳統入口網站][]。
+
+2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
+
+3.  在入口網站的下方窗格中，按一下 [建立]。![][0]
+
+4.  在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。![][2]
+
+5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
+
+	重要事項：請挑選您想要選擇來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
+
+6. 	讓對話方塊中的其他欄位保留其預設值 ([**傳訊**] 和 [**標準層**])，然後按一下核取記號。此時系統會建立並啟用服務命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
+
+## 取得命名空間的預設管理認證
+
+若要在新的命名空間上執行管理作業，例如建立主題或訂用帳戶，您必須取得命名空間的管理認證。您可以從入口網站取得這些認證。
+
+### 從入口網站取得管理認證
+
+1.  在左方瀏覽窗格中，按一下 [**服務匯流排**] 節點，以顯示可用的命名空間清單：![][0]
+
+2.  從顯示的清單中，選取您剛建立的命名空間：![][3]
+
+3.  按一下 [**設定**]，檢視您的命名空間的共用存取原則。![](./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-14.png)
+
+4.  記下主要金鑰，或將它複製到剪貼簿。
 
 ## 設定應用程式以使用服務匯流排
 
@@ -146,7 +190,7 @@ service.sendTopicMessage("TestTopic", message);
 }
 ```
 
-服務匯流排主題支援 256 Kb 的訊息大小上限 (包含標準和自訂應用程式屬性的標頭可以容納 64 Kb 的大小上限)。主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。此主題大小會在建立時定義，上限是 5 GB。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。此主題大小會在建立時定義，上限是 5 GB。
 
 ## 如何自訂用帳戶接收訊息
 
@@ -239,10 +283,14 @@ service.deleteTopic("TestTopic");
 
   [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
   [Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh694271.aspx
-  [Azure classic portal]: http://manage.windowsazure.com/
+  [Azure 傳統入口網站]: http://manage.windowsazure.com/
   [服務匯流排佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
   [SqlFilter]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx
   [SqlFilter.SqlExpression]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
   [BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
+  
+  [0]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-13.png
+  [2]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-04.png
+  [3]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-09.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

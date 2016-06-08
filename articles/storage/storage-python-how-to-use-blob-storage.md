@@ -1,5 +1,5 @@
 <properties
-	pageTitle="如何使用 Python 中的 Azure Blob 儲存體 | Microsoft Azure"
+	pageTitle="如何使用 Python 中的 Azure Blob 儲存體 (物件儲存體) | Microsoft Azure"
 	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	services="storage"
 	documentationCenter="python"
@@ -22,6 +22,8 @@
 
 ## 概觀
 
+Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
+
 本文將示範如何使用 Blob 儲存體執行一般案例。這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python]。所涵蓋的案例包括「上傳、列出、下載」及「刪除」Blob。
 
 [AZURE.INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
@@ -30,7 +32,7 @@
 
 ## 建立容器
 
-根據您想要使用的 blob 類型，建立 **BlockBlobService**、**AppendBlobService** 或 **PageBlobService** 物件。下列程式碼會使用 **BlockBlobService** 物件。將下列內容新增至您想要在其中以程式設計方式存取 Azure 區塊 Blob 儲存體之任何 Python 檔案內的頂端附近。
+根據您想要使用的 Blob 類型，建立 **BlockBlobService**、**AppendBlobService** 或 **PageBlobService** 物件。下列程式碼會使用 **BlockBlobService** 物件。將下列內容新增至您想要在其中以程式設計方式存取 Azure 區塊 Blob 儲存體之任何 Python 檔案內的頂端附近。
 
 	from azure.storage.blob import BlockBlobService
 
@@ -125,4 +127,4 @@
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

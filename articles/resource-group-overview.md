@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/20/2016"
+   ms.date="05/27/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員概觀
@@ -127,13 +127,13 @@ Azure 資源管理員支援跨原始資源共用 (CORS)。利用 CORS，您可�
 
 ## 後續步驟
 
-- 若要了解如何建立範本，請參閱[撰寫範本](resource-group-authoring-templates.md)。
-- 若要部署您所建立的範本，請參閱[部署範本](resource-group-template-deploy.md)
+- 若要深入了解如何使用匯出的範本，[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
+- 如需建立範本的逐步解說，請參閱 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。
 - 若要了解您可以在範本中使用的函式，請參閱[範本函式](resource-group-template-functions.md)
-- 如需設計範本的指引，請參閱[設計 Azure 資源管理員範本的最佳做法](best-practices-resource-manager-design-templates.md)
+- 如需有關如何搭配使用 Visual Studio 與 Resource Manager 的詳細資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
 以下是此概觀的示範影片。
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

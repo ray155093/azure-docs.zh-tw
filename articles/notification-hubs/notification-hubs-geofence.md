@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/16/2016"
+	ms.date="05/31/2016"
 	ms.author="dendeli"/>
     
 # 使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄
@@ -26,7 +26,7 @@
 ##必要條件
 首先，您必須確定您擁有所有必要的軟體和服務︰
 
-* [Visual Studio 2015 Update 1](https://www.visualstudio.com/zh-TW/downloads/download-visual-studio-vs.aspx) 或更新版本 ([Community Edition](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x409) 也行)。 
+* [Visual Studio 2015 Update 1](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx) 或更新版本 ([Community Edition](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x409) 也行)。 
 * 最新版的 [Azure SDK](https://azure.microsoft.com/downloads/)。 
 * [Bing 地圖服務開發人員中心帳戶](https://www.bingmapsportal.com/) (您可以免費建立帳戶並將此帳戶關聯到您的 Microsoft 帳戶)。 
 
@@ -378,8 +378,8 @@
 
 接著，由於您要確保會對正確的參與者進行傳遞，因此您可以透過[標記](notification-hubs-routing-tag-expressions.md)功能鎖定這些人。
 
-在上述方案所說明的案例中，您可能會有各種不同目標平台，因此我們並未限制只有系統特有功能才能使用地理柵欄。也就是說，通用 Windows 平台內建提供了相關功能來[偵測地理柵欄](msdn.microsoft.com/zh-TW/windows/uwp/maps-and-location/set-up-a-geofence)。
+在上述方案所說明的案例中，您可能會有各種不同目標平台，因此我們並未限制只有系統特有功能才能使用地理柵欄。也就是說，通用 Windows 平台內建提供了相關功能來[偵測地理柵欄](https://msdn.microsoft.com/windows/uwp/maps-and-location/set-up-a-geofence)。
 
 如需有關通知中樞功能的詳細資訊，請查看我們的[說明文件入口網站](https://azure.microsoft.com/documentation/services/notification-hubs/)。
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

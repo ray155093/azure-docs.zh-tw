@@ -44,19 +44,19 @@
 
 	- [允許的 VM 大小](#set-allowed-vm-sizes) - 選取實驗室中允許的 VM 大小清單。使用者只能從此清單中建立 VM。
 
-	- [每位使用者的 VM 數目上限](#set-maximum-vms-per-user) - 指定實驗室可以建立的 VM 數目上限，以及一位使用者可以建立的 VM 數目上限。
+	- [每位使用者的 VM 數目上限](#set-maximum-vms-per-user) - 指定一位使用者可以建立的 VM 數目上限。
 
-	- [允許的 VM 總數](#set-total-vms-allowed) - 指定實驗室可以建立的 VM 數目上限，以及一位使用者可以建立的 VM 數目上限。
+	- [允許的 VM 總數](#set-total-vms-allowed) - 指定可以為一個實驗室建立的 VM 數目上限。
 
-	- [自動關機](#set-auto-shutdown) - 指定目前實驗室的 VM 必須關機的時間。
+	- [自動關機](#set-auto-shutdown) - 指定目前實驗室的 VM 自動關機的時間。
 
-	- [自動啟動](#set-auto-start) - 指定目前實驗室 VM 必須關機的時間。
+	- [自動啟動](#set-auto-start) - 指定目前實驗室的 VM 自動啟動的時間。
 
 ## 設定允許的 VM 大小
 
 設定允許的 VM 大小的原則有助於將實驗室的成本浪費降至最低，方式是讓您指定實驗室中允許的 VM 大小。如果啟用此原則，就只能使用此清單中的 VM 大小來建立 VM。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，點選 [Allowed VM Sizes]\(允許的 VM 大小)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies]\(VM 原則) 下，點選 [Allowed VM Sizes]\(允許的 VM 大小)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
  
@@ -135,4 +135,4 @@
 - [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - 研測實驗室支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何使用 VM 中的構件。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

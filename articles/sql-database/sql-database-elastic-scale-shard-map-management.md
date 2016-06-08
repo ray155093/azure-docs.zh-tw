@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/26/2016" 
-	ms.author="ddove;sidneyh"/>
+	ms.date="05/25/2016" 
+	ms.author="ddove"/>
 
 # 使用分區對應管理員相應放大資料庫
 
@@ -339,4 +339,4 @@ Elastic Scale 支援下列 .Net Framework 型別作為分區化索引鍵：
 [2]: ./media/sql-database-elastic-scale-shard-map-management/rangemapping.png
 [3]: ./media/sql-database-elastic-scale-shard-map-management/multipleonsingledb.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

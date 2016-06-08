@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/01/2016"
+   ms.date="05/18/2016"
    ms.author="larryfr"/>
 
 # 使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
@@ -26,13 +26,15 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
 * Apache Storm on HDInsight 叢集。使用下列其中一個使用者入門文章以建立叢集：
 
-    - [以 Linux 為基礎的叢集](hdinsight-apache-storm-tutorial-get-started-linux.md)：若您想要使用 SSH 搭配 Linux、Unix、OS X 或 Windows 用戶端的叢集，則選取此選項
+    - [HDInsight 叢集上以 Linux 為基礎的 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)：如果您想要使用 SSH 與來自 Linux、Unix、OS X 或 Windows 用戶端的叢集搭配運作，請選取此選項
 
-    - [以 Windows 為基礎的叢集](hdinsight-apache-storm-tutorial-get-started.md)：若您想要使用 PowerShell 搭配 Windows 用戶端的叢集，則選取此選項
+    - [HDInsight 叢集上以 Windows 為基礎的 Storm](hdinsight-apache-storm-tutorial-get-started.md)：如果您想要使用 PowerShell 與來自 Windows 用戶端的叢集搭配運作，請選取此選項
 
-    > [AZURE.NOTE] 兩個叢集類型之間唯一的差異是您是否使用 SSH 將拓撲提交至叢集或 Web 表單。
+    > [AZURE.NOTE] 本文件中的步驟是以在 HDInsight 叢集 3.3 或更新版本上使用 Storm 為基礎。這些叢集提供 Storm 0.10.0 和 Hadoop 2.7，可減少為了讓此範例運作所需進行的步驟數目。
+    >
+    > 如需能在 HDInsight 3.2 上與 Storm 0.9.3 搭配運作的此範例版本，請參閱範例儲存機制的 [Storm v0.9.3](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub/tree/Storm_v0.9.3) 分支。
 
-* [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)。
+* [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
 * [Oracle Java Developer Kit (JDK) 第 7版](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)或同等版本，例如 [OpenJDK](http://openjdk.java.net/)
 
@@ -71,77 +73,64 @@ __com.microsoft.example.EventHubReader__ 從事件中樞讀取資料 (EventHubWr
 ####EventHubs Storm Spout 相依性
 
     <dependency>
-      <groupId>com.microsoft.eventhubs</groupId>
-      <artifactId>eventhubs-storm-spout</artifactId>
-      <version>0.9.3</version>
+      <groupId>org.apache.storm</groupId>
+      <artifactId>storm-eventhubs</artifactId>
+      <version>0.10.0</version>
     </dependency>
 
-這樣會加入 eventhubs-storm-spout 封裝的相依性，包含用以從事件中樞讀取的 Spout 和寫入事件中樞的 Bolt。
+這會新增 storm-eventhubs 套件的相依性，當中包含用以從「事件中樞」讀取的 Spout 和寫入「事件中樞」的 Bolt。
 
-> [AZURE.NOTE] 此封裝並不適用於 Maven，並且會在稍後的步驟中手動安裝在您的本機 Maven 儲存機制。
+> [AZURE.NOTE] 此套件僅適用於 Storm 0.10.0 和更新版本。使用 Storm 0.9.3 時，您必須手動安裝 Microsoft 所提供的 Spout 套件。如需與 Storm 0.9.3 搭配運作的範例，請參閱範例儲存機制的 [Storm v0.9.3](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub/tree/Storm_v0.9.3) 分支。
 
 ####HdfsBolt 和 WASB 元件
 
 HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。不過，HDInsight 叢集會使用 Azure 儲存體 (WASB) 做為預設的資料存放區，所以我們必須載入數個元件，讓 HdfsBolt 了解 WASB 檔案系統。
 
       <!--HdfsBolt stuff -->
-      <dependency>
+        <dependency>
         <groupId>org.apache.storm</groupId>
         <artifactId>storm-hdfs</artifactId>
         <exclusions>
-          <exclusion>
+            <exclusion>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
-          </exclusion>
-          <exclusion>
+            </exclusion>
+            <exclusion>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-          </exclusion>
+            </exclusion>
         </exclusions>
-        <version>0.9.3</version>
-      </dependency>
-      <!--
-     This is a temporary workaround to make HdfsBolt work with WASB through hadoop-azure project.
-     For now, we have to build hadoop-client, hadoop-hdfs and hadoop-azure from Hadoop trunk
-     (which defaults to 3.0.0-SNAPSHOT version). And push those jars and dependencies to local
-     mvn repo (take a look at push_lib_mvn.ps1).
+        <version>0.10.0</version>
+        </dependency>
+    <!--So HdfsBolt knows how to talk to WASB -->
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-client</artifactId>
+        <version>2.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-hdfs</artifactId>
+        <version>2.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-azure</artifactId>
+        <version>2.7.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-common</artifactId>
+        <version>2.7.1</version>
+        <exclusions>
+        <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        </exclusions>
+    </dependency>
 
-     Once Hadoop 2.7 is released, we can just switch to that version.
-     Note that hadoop-azure is added to Hadoop on Hadoop 2.7.
-     -->
-     <dependency>
-       <groupId>org.apache.hadoop</groupId>
-       <artifactId>hadoop-client</artifactId>
-       <version>3.0.0-SNAPSHOT</version>
-     </dependency>
-     <dependency>
-       <groupId>org.apache.hadoop</groupId>
-       <artifactId>hadoop-hdfs</artifactId>
-       <version>3.0.0-SNAPSHOT</version>
-     </dependency>
-     <dependency>
-       <groupId>org.apache.hadoop</groupId>
-       <artifactId>hadoop-azure</artifactId>
-       <version>3.0.0-SNAPSHOT</version>
-     </dependency>
-     <dependency>
-       <groupId>org.apache.hadoop</groupId>
-       <artifactId>hadoop-common</artifactId>
-       <version>3.0.0-SNAPSHOT</version>
-       <exclusions>
-         <exclusion>
-           <groupId>org.slf4j</groupId>
-           <artifactId>slf4j-log4j12</artifactId>
-         </exclusion>
-       </exclusions>
-     </dependency>
-     <dependency>
-       <groupId>com.microsoft.windowsazure.storage</groupId>
-       <artifactId>microsoft-windowsazure-storage-sdk</artifactId>
-       <version>0.6.0</version>
-     </dependency>
-
-> [AZURE.NOTE] 用於啟用 WASB 的封裝不適用於 Maven 儲存機制，將會在稍後的步驟中手動安裝。
+> [AZURE.NOTE] 與舊版 HDInsight 搭配運作 (例如 3.2 版) 時，您必須手動註冊這些元件。如需相關範例以及舊版 HDInsight 叢集所需的自訂位元，請參閱範例儲存機制的 [Storm v0.9.3](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub/tree/Storm_v0.9.3) 分支。
 
 ####maven-compiler-plugin
 
@@ -159,15 +148,17 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
 
 ####maven-shade-plugin
 
+      <!-- build an uber jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.3</version>
         <configuration>
-          <!-- Keep us from getting a can't overwrite file error -->
           <transformers>
-            <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
-            </transformer>
+            <!-- Keep us from getting a can't overwrite file error -->
+            <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
+            <!-- Keep us from getting errors when trying to use WASB from the storm-hdfs bolt -->
+            <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
           </transformers>
           <!-- Keep us from getting a bad signature error -->
           <filters>
@@ -179,7 +170,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
                     <exclude>META-INF/*.RSA</exclude>
                 </excludes>
             </filter>
-        </filters>
+          </filters>
         </configuration>
         <executions>
           <execution>
@@ -195,7 +186,9 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
 
 * 重新命名相依性的授權檔案：若尚未完成，則會在以 Windows 為基礎的 HDInsight 叢集上的執行階段造成錯誤。
 
-* 排除安全性/簽章：若尚未完成，則會在 HDInsight 叢集上的執行階段造成錯誤。
+* 排除安全性/簽章：如果沒有這麼做，則會在執行階段於 HDInsight 叢集上造成錯誤。
+
+* 請確定介面相同的多個實作會合併成一個項目。如果沒有這麼做，您將會收到 Storm-HDFS bolt 不知道如何與 WASB 檔案系統進行通訊的錯誤。
 
 ####exec-maven-plugin
 
@@ -295,29 +288,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
 
 1. 從 GitHub 下載專案：[hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub)。您可以將封裝下載為 zip 封存，或使用 [git](https://git-scm.com/) 以在本機複製專案。
 
-2. 使用下列命令以將專案中包含的封裝安裝至本機 Maven 儲存機制。這樣會啟用事件中樞 Spout 和 Bolt，以及使用 HdfsBolt 寫入 Azure 儲存體 (WASB) 的能力。
-
-		mvn -q install:install-file -Dfile=lib/eventhubs/eventhubs-storm-spout-0.9.3-jar-with-dependencies.jar -DgroupId=com.microsoft.eventhubs -DartifactId=eventhubs-storm-spout -Dversion=0.9.3 -Dpackaging=jar
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-azure-3.0.0-SNAPSHOT.jar
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-client-3.0.0-SNAPSHOT.jar
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-hdfs-3.0.0-SNAPSHOT.jar
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-common-3.0.0-SNAPSHOT.jar -DpomFile=lib/hadoop/hadoop-common-3.0.0-SNAPSHOT.pom
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-project-dist-3.0.0-SNAPSHOT.pom -DpomFile=lib/hadoop/hadoop-project-dist-3.0.0-SNAPSHOT.pom
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-project-3.0.0-SNAPSHOT.pom -DpomFile=lib/hadoop/hadoop-project-3.0.0-SNAPSHOT.pom
-
-		mvn -q org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=lib/hadoop/hadoop-main-3.0.0-SNAPSHOT.pom -DpomFile=lib/hadoop/hadoop-main-3.0.0-SNAPSHOT.pom
-
-	> [AZURE.NOTE] 如果您使用 Powershell，您必須以引號括住 `-D` 參數。例如，`"-Dfile=lib/hadoop/hadoop-main-3.0.0-SNAPSHOT.pom"`。
-
-	這些檔案也是來自 https://github.com/hdinsight/hdinsight-storm-examples，因此可以在那裡找到最新版本。
-
-3. 使用下列項目建置和封裝專案：
+2. 使用下列項目建置和封裝專案：
 
         mvn package
 
@@ -415,7 +386,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
 
     按一下 [提交] 以啟動 EventHubReader 拓撲。
 
-6. 等候幾分鐘讓拓撲產生事件然後儲存至 Azure 儲存體，然後選取 [Storm 儀表板] 頁面頂端的 [查詢主控台] 索引標籤。
+6. 等候幾分鐘讓拓撲產生事件，然後儲存至「Azure 儲存體」，接著選取「Storm 儀表板」頁面頂端的 [Hadoop 查詢主控台] 索引標籤。
 
 7. 在 [查詢主控台] 上，選取 [Hive 編輯器] 並且將預設 `select * from hivesampletable` 取代為下列項目：
 
@@ -482,4 +453,4 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

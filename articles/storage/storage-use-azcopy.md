@@ -374,7 +374,7 @@ AzCopy 將會使用下列命令慣例，在 Blob 容器中產生 JSON 資料檔�
 
 ### 只複製目的地中沒有的資料
 
-`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。如果您只想複製目的地中沒有的來源資源，則可以在 AzCopy 命令中同時指定這兩個參數：
+`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。來源或目的地是資料表時不受支援。如果您只想複製目的地中沒有的來源資源，則可以在 AzCopy 命令中同時指定這兩個參數：
 
 	/Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /XO /XN
 
@@ -864,4 +864,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

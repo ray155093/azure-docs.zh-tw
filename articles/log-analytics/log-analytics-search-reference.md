@@ -259,7 +259,7 @@ SampleValue:[0..2]
 
 ### 邏輯運算子
 
-查詢語言分別支援邏輯運算子 (*AND*、*OR* 和 *NOT*) 和它們的 C 樣式別名 (*&&*、*||* 和 *!*)。您可以使用括號來分組這些運算子。
+查詢語言分別支援邏輯運算子 (*AND* 、 *OR* 和 *NOT*) 和它們的 C 樣式別名 (*&&* 、 *||* 和 *!*)。您可以使用括號來分組這些運算子。
 
 範例：
 
@@ -292,7 +292,7 @@ system "Windows Server" OR Severity:1|system AND ("Windows Server" OR Severity:1
 Type=Event Computer=*SQL*
 ```
 
->[AZURE.NOTE] 目前無法在引號內使用萬用字元。訊息=`"*This text*"` 將考慮使用 (*) 做為常值 (*) 字元。
+>[AZURE.NOTE] 目前無法在引號內使用萬用字元。訊息=`"*This text*"` 將考慮使用 (\*) 做為常值 (\*) 字元。
 
 ## 命令
 
@@ -350,11 +350,11 @@ Type=Event Computer=*SQL*
 
 	Type:Alert errors detected | select Name, Severity
 
-將傳回的結果欄位限制為 *Name** 和 *Severity*。
+將傳回的結果欄位限制為 *Name* 和 *Severity* 。
 
 ### Measure
 
-*measure* 命令可用來將統計函數套用至未經處理的搜尋結果。需要取得資料的*群組依據*檢視時，這非常有用。當您使用 *measure* 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
+*measure* 命令可用來將統計函數套用至未經處理的搜尋結果。需要取得資料的 *群組依據* 檢視時，這非常有用。當您使用 *measure* 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
 
 語法：
 
@@ -447,7 +447,7 @@ Type=Event Computer=*SQL*
 
 *說明*
 
-如同上述範例，但使用 *Sum*。
+如同上述範例，但使用 *Sum* 。
 
 **範例 9**
 
@@ -455,7 +455,7 @@ Type=Event Computer=*SQL*
 
 *說明*
 
-如同上述範例，但使用 *STDDEV*。
+如同上述範例，但使用 *STDDEV* 。
 
 **範例 10**
 
@@ -463,7 +463,7 @@ Type=Event Computer=*SQL*
 
 *說明*
 
-如同上述範例，但使用 *PERCENTILE70*。
+如同上述範例，但使用 *PERCENTILE70* 。
 
 **範例 11**
 
@@ -471,7 +471,7 @@ Type=Event Computer=*SQL*
 
 *說明*
 
-如同上述範例，但使用 *PCT70*。請注意，*PCT##* 只是 *PERCENTILE##* 函數的別名。
+如同上述範例，但使用 *PCT70* 。請注意， *PCT##* 只是 *PERCENTILE##* 函數的別名。
 
 **範例 12**
 
@@ -551,7 +551,7 @@ Type:Perf CounterName=”% Processor Time” InstanceName=”_Total”  | measur
 
 說明：此語法可讓您建立彙總，並將值清單從該彙總提供到另一個外部 (主要) 搜尋，這個搜尋將尋找具有那些值的事件。若要這麼做，您必須以大括號括住內部搜尋，並使用 IN 運算子將其結果提供做為外部搜尋中欄位的可能值。
 
-內部查詢範例︰*目前遺漏安全性更新的電腦*，並使用下列彙總查詢：
+內部查詢範例︰ *目前遺漏安全性更新的電腦* ，並使用下列彙總查詢：
 
 ```
 Type:Update Classification="Security Updates"  UpdateState=needed TimeGenerated>NOW-25HOURS | measure count() by Computer
@@ -599,40 +599,42 @@ Type=Event Computer IN {Type:Update Classification="Security Updates"  UpdateSta
 
 **範例 4**
 
-	Type=Perf CounterName="% Processor Time" | EXTEND if(map(CounterValue,0,50,0,1),"HIGH","LOW") as UTILIZATION
+```
+Type=Perf CounterName="% Processor Time" | EXTEND if(map(CounterValue,0,50,0,1),"HIGH","LOW") as UTILIZATION
 將小於 50% 的效能計數器值標記為 LOW，而將其他值標記為 HIGH
+```
 
 **支援的函數**
 
 
-|函式 |說明 |語法範例|  
+| 函式 |說明 |語法範例|  
 |---------|---------|---------|
-|abs | 傳回所指定數值或函數的絕對值。|<p>abs(x)</p> <p>abs(-5)</p>|
-|和 | 只有在其所有運算元都評估為 true 時，才會傳回 true 值。 | and(not(exists(**popularity**)),exists(**price**)):|
-|def | def 是 default 的縮寫。傳回欄位 "field" 的值，或者，如果欄位不存在，則會傳回所指定的預設值，並產生第一個值，其中：exists()==true。 |<p>div(1,y)</p><p>div(sum(x,100),max(y,1))</p>|
-| div | div(x,y) 會將 x 除以 y。 | div(1,y),div(sum(x,100),max(y,1)) |
-| dist | 傳回 n 維度空間中兩個向量之間的距離 (點)。在次方中，使用 ValueSource 執行個體加上二以上的值，並計算兩個向量之間的距離。每個 ValueSource 都必須是數字。必須傳入偶數的 ValueSource 執行個體，而且此方法假設前半部分代表第一個向量，而後半部分代表第二個向量。 | <p>dist(2, x, y, 0, 0)︰針對每個文件，計算 (0,0) 與 (x,y) 之間的歐幾里得距離</p><p>dist(1, x, y, 0, 0)：針對每個文件，計算 (0,0) 與 (x,y) 之間的 Manhattan (taxicab) 距離</p><p>dist(2,,x,y,z,0,0,0)：每個文件在 (0,0,0) 與 (x,y,z) 之間的歐幾里得距離。</p><p>dist(1,x,y,z,e,f,g)：每個文件在 (x,y,z) 與 (e,f,g) 之間的 Manhattan (taxicab) 距離，其中每個字母都是欄位名稱。</p> |
-| exists | 如果有欄位的任何成員，請傳回 TRUE。 | <p>exists(author) 會傳回 TRUE (如果任何文件在 "author" 欄位中有值)。</p><p>exists(query(price:5.00)) 會傳回 TRUE (如果 "price" 符合 "5.00"。</p> |
-| hsin | Haversine 距離會計算沿著球體流動時，球體上兩點之間的距離。值必須是以弧度為單位。hsinalso 採用 Boolean 引數來指定函數是否應該將其輸出轉換為弧度。 | hsin(2, true, x, y, 0, 0) |
-| if | 啟用條件式函數查詢。在 if(test,value1,value2) 中：test 是或參照可傳回邏輯值 (TRUE 或 FALSE) 的邏輯值或運算式。value1 是函數在 test 產生 TRUE 時所傳回的值。value2 是函數在 test 產生 FALSE 時所傳回的值。運算式可以是輸出布林值的任何函數，或甚至傳回數值的函數，在此情況下，值 0 將會解譯為 false 或字串，在此情況下，空字串會解譯為 false。 | if(termfreq(cat,'electronics'),popularity,42)：這個函數會檢查每個文件，確認 cat 欄位中是否包含 "electronics" 這個字。如果是的話，則會傳回 popularity 欄位的值，否則會傳回值 42。 |
-| linear | 實作 m*x+c，其中 m 和 c 是常數，而 x 是任意函數。這相當於 sum(product(m,x),c)，但較具效率，因為它實作為單一函數。 | linear(x,m,c) linear(x,2,4) 傳回 2*x+4</font? |
-| log | 傳回所指定函數的對數底數 10。 | log(x) log(sum(x,100)) |
-| map | 將輸入函數 x 的任何落在 min 與 max (含) 之間的值對應到指定的目標。min 和 max 引數必須是常數。target 和 default 引數可以是常數或函數。如果值 x 未落在 min 與 max 之間，則會傳回值 x，或者，如果指定為第 5 個引數，則會傳回預設值。 | <p>map(x,min,max,target) map(x,0,0,1) - 將任何值 0 變更為 1。這適用於處理預設 0 值。</p> <p> map(x,min,max,target,default) map(x,0,100,1,-1) - 將 0 與 100 之間的任何值變更為 1，並將所有其他值都變更為 -1。</p> </p> map(x,0,100,sum(x,599),docfreq(text,solr)) - 將 0 與 100 之間的任何值變更為 x+599，並將所有其他值都變更為 text 欄位中 'solr' 這個字的次數。</p> |
-| max | 傳回多個巢狀函數或常數的最大數值 (指定為引數：max(x,y,...))。max 函數也適用於將某個指定常數上的另一個函數或欄位「降到最小值」(使用 field(myfield,max) 語法來選取單一多值欄位的最大值)。 | max(myfield,myotherfield,0) |
-| min | 傳回常數之多個巢狀函數的最小數值 (指定為引數︰min(x,y,...))。min 函數也適用於使用常數提供函數的「上限」(使用 field(myfield,min) 語法來選取單一多值欄位的最小值)。 | min(myfield,myotherfield,0) |
-| ms | 傳回其引數之間差異的毫秒。日期相對於 Unix 或 POSIX 時間新紀元：1970 年 1 月 1 日午夜 UTC。引數可以是索引 TrieDateField 的名稱，或根據常數日期或 NOW 的日期算術。ms()︰相當於 ms(NOW)，新紀元後的毫秒數。ms(a)：傳回引數所代表之新紀元後的毫秒數。ms(a,b)：傳回 b 出現在 a 前面的毫秒數 (即 a - b) | <p> </p><p> ms(NOW/DAY) </p> <p> ms(2000-01-01T00:00:00Z)</p> <p> ms(mydatefield)</p> <p> ms(NOW,mydatefield)</p> <p> ms(mydatefield,2000-01-01T00:00:00Z)</p> <p> ms(datefield1,datefield2)</p> |
-| 否 | 所包裝函數的邏輯負值。 | not(exists(author))：只有在 exists(author) 為 false 時才為 TRUE。 |
-| 或 | 邏輯分離。 | or(value1,value2)：在 value1 或 value2 為 true 時為 TRUE。 |
-| pow | 將指定的基底提升為指定的次方。pow(x,y)</font 將 x 提升為次方 y。 | <p> pow(x,y)</p> <p>pow(x,log(y))</p> <p> pow(x,0.5)</p>：與 sqrt 相同 |
-| product | 傳回多個數值或函數 (指定為逗號分隔的清單) 的乘積。mul(...) 也可以做為這個函數的別名。 | <p> product(x,y,...)</p> <p>product(x,2)</p> <p> product(x,y)</p> <p>mul(x,y)</p> |
-| recip | 執行 `recip(x,m,a,b)` 實作 `<a/(m*x+b)` 的倒數函數，其中 m、a、b 是常數，而 x 是任何任意複雜函數。a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。同時增加 a 和 b 的值，可將整個函數移到曲線最平緩的部分。x 為 `rord(datefield)` 時，這些屬性可以將這個設為提高較新文件的理想函數。 | <p>recip(myfield,m,a,b)<p> <p> recip(rord(creationDate),1,1000,1000)</p> |
-| 級別 | 調整函數 x 的值，讓它們落在指定的 minTarget 與 maxTarget (含) 之間。目前的實作會周遊所有函數值以取得最小值和最大值，讓它可以取得正確的小數位數。目前的實作無法區別何時刪除文件或文件是否沒有值。在這些情況下，它會使用 0.0 值。這表示，如果值通常都大於 0.0，其中一個還是可以將 0.0 當成要對應來源的最小值。在這些情況下，適當的 map() 函數可以用做將 0.0 變更為實際範圍內之值的因應措施，如這裡所示：scale(map(x,0,0,5),1,2) | <p>scale(x,minTarget,maxTarget)</p> <p>scale(x,1,2)：調整 x 值，讓所有值都在 1 與 2 (含) 之間。</p> |
-| sqedist | 平方歐幾里得距離會計算 2 基準 (歐幾里得距離)，但不會採用平方根，因此節省相當耗費資源的作業。這通常是下列情況：關心歐幾里得距離的應用程式不需要實際距離，但可以使用距離平方。必須傳入偶數的 ValueSource 執行個體，而且此方法假設前半部分代表第一個向量，而後半部分代表第二個向量。 | sqedist(x\_td, y\_td, 0, 0) |
-| sqrt | 傳回所指定數值或函數的平方根。 | <p>sqrt(x)</p><p>sqrt(100)</p><p>sqrt(sum(x,100))</p> |
-| strdist | 計算兩個字串之間的距離。使用 Lucene 拼字檢查程式 StringDistance 介面並支援該封裝中可用的所有實作，而且允許應用程式透過 Solr 的資源載入功能插入專屬的實作。strdist 採用 (string1, string2, distance measure)。距離量值的可能為：jw：Jaro-Winkler edit：Levenstein 或編輯距離 ngram：NGramDistance (指定時) 也可以選擇性地傳入 ngram 大小。預設值為 2。FQN：StringDistance 介面實作的完整類別名稱。必須要有無引數建構函式。 | strdist("SOLR",id,edit) |
-| sub | 從 sub(x,y) 傳回 x-y。 | <p>sub(myfield,myfield2)</p> <p> sub(100,sqrt(myfield))</p> |
-| sum | 傳回多個數值或函數 (指定為逗號分隔的清單) 的總和。add(...) 可以做為這個函數的別名。 | <p>sum(x,y,...)</p> <p>sum(x,1)</p> <p> sum(x,y)</p> <p> sum(sqrt(x),log(y),z,0.5)</p> <p> add(x,y)</p> |
-| xor | 其他，而非兩者。 | xor(field1,field2)：如果 field1 或 field2 為 true，則傳回 TRUE；如果兩者都為 true，則傳回 FALSE。 |
+| abs | 傳回所指定數值或函數的絕對值。| `abs(x)` <br> `abs(-5)` |
+| 和 | 只有在其所有運算元都評估為 true 時，才會傳回 true 值。 | `and(not(exists(**popularity**)),exists(**price**))` |
+| def | def 是 default 的縮寫。傳回欄位 "field" 的值，或者，如果欄位不存在，則會傳回所指定的預設值，並產生第一個值，其中： `exists()==true`。 | `div(1,y)` <br> `div(sum(x,100),max(y,1))` |
+| div | `div(x,y)` 會將 x 除以 y。 | `div(1,y),div(sum(x,100),max(y,1))` |
+| dist | 傳回 n 維度空間中兩個向量之間的距離 (點)。在次方中，使用 ValueSource 執行個體加上二以上的值，並計算兩個向量之間的距離。每個 ValueSource 都必須是數字。必須傳入偶數的 ValueSource 執行個體，而且此方法假設前半部分代表第一個向量，而後半部分代表第二個向量。 | `dist(2, x, y, 0, 0)` - 針對每個文件，計算 (0,0) 與 (x,y) 之間的歐幾里得距離</p><p>dist(1, x, y, 0, 0)：針對每個文件，計算 (0,0) 與 (x,y) 之間的 Manhattan (taxicab) 距離 <br> `dist(2,,x,y,z,0,0,0)` - 每個文件在 (0,0,0) 與 (x,y,z) 之間的歐幾里得距離。<br>`dist(1,x,y,z,e,f,g)` - 每個文件在 (x,y,z) 與 (e,f,g) 之間的 Manhattan (taxicab) 距離，其中每個字母都是欄位名稱。 |
+| exists | 如果有欄位的任何成員，請傳回 TRUE。 | `exists(author)` - 會傳回 TRUE (如果任何文件在 "author" 欄位中有值)。<br>`exists(query(price:5.00))` - 會傳回 TRUE (如果 "price" 符合 "5.00"。 |
+| hsin | Haversine 距離會計算沿著球體流動時，球體上兩點之間的距離。值必須是以弧度為單位。hsinalso 採用 Boolean 引數來指定函數是否應該將其輸出轉換為弧度。 | `hsin(2, true, x, y, 0, 0)` |
+| if | 啟用條件式函數查詢。在 `if(test,value1,value2)` 中：test 是或參照可傳回邏輯值 (TRUE 或 FALSE) 的邏輯值或運算式。 `value1` 是函數在 test 產生 TRUE 時所傳回的值。 `value2` 是函數在 test 產生 FALSE 時所傳回的值。運算式可以是輸出布林值的任何函數，或甚至傳回數值的函數，在此情況下，值 0 將會解譯為 false 或字串，在此情況下，空字串會解譯為 false。 | `if(termfreq(cat,'electronics'),popularity,42)`：這個函數會檢查每個文件，確認 cat 欄位中是否包含 "electronics" 這個字。如果是的話，則會傳回 popularity 欄位的值，否則會傳回值 42。 |
+| linear | 實作 `m*x+c` ，其中 m 和 c 是常數，而 x 是任意函數。這相當於 `sum(product(m,x),c)` ，但較具效率，因為它實作為單一函數。 | `linear(x,m,c) linear(x,2,4)` 傳回 `2*x+4` |
+| log | 傳回所指定函數的對數底數 10。 | `log(x)   log(sum(x,100))` |
+| map | 將輸入函數 x 的任何落在 min 與 max (含) 之間的值對應到指定的目標。min 和 max 引數必須是常數。target 和 default 引數可以是常數或函數。如果值 x 未落在 min 與 max 之間，則會傳回值 x，或者，如果指定為第 5 個引數，則會傳回預設值。 |  `map(x,min,max,target) map(x,0,0,1)` - 將任何值 0 變更為 1。這適用於處理預設 0 值。<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)` - 將 0 與 100 之間的任何值變更為 1，並將所有其他值都變更為 -1。<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))` - 將 0 與 100 之間的任何值變更為 x+599，並將所有其他值都變更為 text 欄位中 'solr' 這個字的次數。 |
+| max | 傳回多個巢狀函數或常數的最大數值 指定為引數：`max(x,y,...)`。max 函數也適用於將某個指定常數上的另一個函數或欄位「降到最小值」 使用 `field(myfield,max)` 語法來選取單一多值欄位的最大值。 | `max(myfield,myotherfield,0)` |
+| min | 傳回常數之多個巢狀函數的最小數值 指定為引數︰`min(x,y,...)`。min 函數也適用於使用常數提供函數的「上限」 使用 `field(myfield,min)` 語法來選取單一多值欄位的最小值。 | `min(myfield,myotherfield,0)` |
+| ms | 傳回其引數之間差異的毫秒。日期相對於 Unix 或 POSIX 時間新紀元：1970 年 1 月 1 日午夜 UTC。引數可以是索引 TrieDateField 的名稱，或根據常數日期或 NOW 的日期算術。`ms()`︰相當於 `ms(NOW)`，新紀元後的毫秒數。`ms(a)`：傳回引數所代表之新紀元後的毫秒數。`ms(a,b)`：傳回 b 出現在 a 前面的毫秒數 (即 `a - b`) | `ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
+| 否 | 所包裝函數的邏輯負值。 | `not(exists(author))`：只有在 `exists(author)` 為 false 時才為 TRUE。 |
+| 或 | 邏輯分離。 | `or(value1,value2)` - ：在 value1 或 value2 為 true 時為 TRUE。 |
+| pow | 將指定的基底提升為指定的次方。`pow(x,y)` 將 x 提升為次方 y。 | `pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)` - 與 sqrt 相同 |
+| product | 傳回多個數值或函數 (指定為逗號分隔的清單) 的乘積。`mul(...)` 也可以做為這個函數的別名。 | `product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
+| recip | 執行 `recip(x,m,a,b)` 實作 `a/(m*x+b)` 的倒數函數，其中 m、a、b 是常數，而 x 是任何任意複雜函數。a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。同時增加 a 和 b 的值，可將整個函數移到曲線最平緩的部分。x 為 `rord(datefield)` 時，這些屬性可以將這個設為提高較新文件的理想函數。 | `recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
+| 級別 | 調整函數 x 的值，讓它們落在指定的 minTarget 與 maxTarget (含) 之間。目前的實作會周遊所有函數值以取得最小值和最大值，讓它可以取得正確的小數位數。目前的實作無法區別何時刪除文件或文件是否沒有值。在這些情況下，它會使用 0.0 值。這表示，如果值通常都大於 0.0，其中一個還是可以將 0.0 當成要對應來源的最小值。在這些情況下，適當的 `map()` 函數可以用做將 0.0 變更為實際範圍內之值的因應措施，如這裡所示：`scale(map(x,0,0,5),1,2)` | `scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)` - 調整 x 值，讓所有值都在 1 與 2 (含) 之間。 |
+| sqedist | 平方歐幾里得距離會計算 2 基準 (歐幾里得距離)，但不會採用平方根，因此節省相當耗費資源的作業。這通常是下列情況：關心歐幾里得距離的應用程式不需要實際距離，但可以使用距離平方。必須傳入偶數的 ValueSource 執行個體，而且此方法假設前半部分代表第一個向量，而後半部分代表第二個向量。 | `sqedist(x_td, y_td, 0, 0)` |
+| sqrt | 傳回所指定數值或函數的平方根。 | `sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
+| strdist | 計算兩個字串之間的距離。使用 Lucene 拼字檢查程式 StringDistance 介面並支援該封裝中可用的所有實作，而且允許應用程式透過 Solr 的資源載入功能插入專屬的實作。strdist 採用 `(string1, string2, distance measure)`。距離量值的可能為：jw：Jaro-Winkler edit：Levenstein 或編輯距離 ngram：NGramDistance (指定時) 也可以選擇性地傳入 ngram 大小。預設值為 2。FQN：StringDistance 介面實作的完整類別名稱。必須要有無引數建構函式。 | `strdist("SOLR",id,edit)` |
+| sub | 從 `sub(x,y)` 傳回 x-y。 | `sub(myfield,myfield2)`<br>`sub(100,sqrt(myfield))` |
+| sum | 傳回多個數值或函數 (指定為逗號分隔的清單) 的總和。`add(...)` 可以做為這個函數的別名。 | `sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
+| xor | 其他，而非兩者。 | `xor(field1,field2)` - 如果 field1 或 field2 為 true，則傳回 TRUE；如果兩者都為 true，則傳回 FALSE。 |
 
 
 

@@ -1,13 +1,13 @@
 <properties
-	pageTitle="在 PowerApps Enterprise 或邏輯應用程式中新增 Dropbox API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Dropbox API 的概觀"
-	services=""
+    pageTitle="在 PowerApps Enterprise 或邏輯應用程式中新增 Dropbox 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Dropbox 連接器的概觀"
+    services=""
     suite=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -15,11 +15,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="03/16/2016"
+   ms.date="05/20/2016"
    ms.author="mandia"/>
 
-# 開始使用 Dropbox API 
-連線到 Dropbox 來管理檔案，例如建立檔案、取得檔案等等。您可以從下列應用程式使用 Dropbox API：
+# 開始使用 Dropbox 連接器 
+連線到 Dropbox 來管理檔案，例如建立檔案、取得檔案等等。您可以從下列應用程式使用 Dropbox 連接器︰
 
 - 邏輯應用程式 
 - PowerApps
@@ -38,9 +38,9 @@
 - 根據您從 Dropbox 所取得的資料，來建置您的商務流程。 
 - 在檔案建立或更新時使用觸發程序。
 - 使用動作來建立檔案、刪除檔案等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Dropbox 中有新檔案建立時，您可以利用 Office 365 來傳送已附加該檔案的電子郵件。
-- 將 Dropbox API 新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 Dropbox 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -51,16 +51,15 @@ Dropbox 包含下列觸發程序及動作。
 --- | ---
 <ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案</li><li>使用識別碼來取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Dropbox 的連線
 
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Dropbox。
+當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Dropbox。
 
-1. 登入您的 Dropbox 帳戶。
-2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Dropbox。 
+>[AZURE.INCLUDE [建立至 Dropbox 連線的步驟](../../includes/connectors-create-api-dropbox.md)]
 
-當您建立連線之後，請輸入 Dropbox 的屬性，例如資料夾路徑或檔案名稱。本主題的＜REST API 參考＞一節說明這些屬性。
+當您建立連線之後，請輸入 Dropbox 的屬性，例如資料夾路徑或檔案名稱。本主題的 REST API 參考會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Dropbox 連線。
 
@@ -68,7 +67,7 @@ Dropbox 包含下列觸發程序及動作。
 適用的版本：1.0。
 
 ### 建立檔案    
-把檔案上傳到 Dropbox。```POST: /datasets/default/files```
+將檔案上傳到 Dropbox。```POST: /datasets/default/files```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -84,7 +83,7 @@ Dropbox 包含下列觸發程序及動作。
 
 
 ### 當檔案建立時    
-當某個 Dropbox 資料夾中有新檔案建立時，就會觸發某個流程。```GET: /datasets/default/triggers/onnewfile```
+當某個 Dropbox 資料夾中建立新的檔案時，就會觸發某個流程。```GET: /datasets/default/triggers/onnewfile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -98,7 +97,7 @@ Dropbox 包含下列觸發程序及動作。
 
 
 ### 複製檔案    
-把檔案複製到 Dropbox。```POST: /datasets/default/copyFile```
+將檔案複製到 Dropbox。```POST: /datasets/default/copyFile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -215,7 +214,7 @@ Dropbox 包含下列觸發程序及動作。
 
 
 ### 當檔案遭到修改時    
-當某個 Dropbox 資料夾中有檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
+當某個 Dropbox 資料夾中的檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -286,4 +285,4 @@ Dropbox 包含下列觸發程序及動作。
 [10]: ./media/connectors-create-api-dropbox/dropbox-create-app-page1.png
 [11]: ./media/connectors-create-api-dropbox/dropbox-create-app-page2.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

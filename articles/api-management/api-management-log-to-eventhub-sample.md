@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="dotnet"
     ms.topic="article"
-    ms.date="02/19/2016"
+    ms.date="05/25/2016"
     ms.author="v-darmi"/>
 
 # 利用 Azure API 管理、事件中樞及 Runscope 監視您的 API
@@ -268,4 +268,4 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
 	-	[log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
 	
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0525_2016-->

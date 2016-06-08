@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/15/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何執行安全性檢閱
 
 Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理特殊權限身分識別的方式，和存取 Azure AD 以及如 Office 365 或 Microsoft Intune 等其他 Microsoft 線上服務資源的方式。
 
-如果您已獲指派系統管理角色，貴組織的安全性系統管理員可能會要求您定期檢閱，並確認您仍需要該角色來執行工作。您可能會收到包含連結的電子郵件，或請直接移至 [Azure 入口網站](https://portal.azure.com)。請遵循本文中的步驟，執行獲指派角色的自我檢閱。
+如果您已獲指派系統管理角色，貴組織的特殊權限角色管理員可能會要求您定期檢閱，並確認您仍需要該角色來執行工作。您可能會收到包含連結的電子郵件，或請直接移至 [Azure 入口網站](https://portal.azure.com)。請遵循本文中的步驟，執行獲指派角色的自我檢閱。
 
-如果您是對安全性檢閱感興趣的安全性系統管理員，請在 [Azure AD Privileged Identity Management：如何開始安全性檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)取得更多詳細資訊。
+如果您是對安全性檢閱感興趣的特殊權限角色管理員，請在[如何開始安全性檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)中取得更多詳細資訊。
 
 ## 加入 Privileged Identity Management 應用程式
 
@@ -49,4 +49,4 @@ Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

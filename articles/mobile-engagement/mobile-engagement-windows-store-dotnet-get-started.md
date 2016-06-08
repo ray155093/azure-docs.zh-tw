@@ -210,4 +210,4 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 [12]: ./media/mobile-engagement-windows-store-dotnet-get-started/dashboard_services_push_1.png
 [13]: ./media/mobile-engagement-windows-store-dotnet-get-started/dashboard_services_push_creds.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0504_2016--->

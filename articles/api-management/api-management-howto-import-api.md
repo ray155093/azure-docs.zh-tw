@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/25/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中連同操作一起匯入 API 的定義
@@ -95,4 +95,4 @@ API 是在發行者入口網站中建立和設定。若要存取發佈者入口�
 [如何建立 API]: api-management-howto-create-apis.md
 [如何設定 API 設定]: api-management-howto-create-apis.md#configure-api-settings
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

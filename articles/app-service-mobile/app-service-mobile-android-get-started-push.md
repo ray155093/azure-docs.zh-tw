@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="03/04/2016"
+	ms.date="05/24/2016"
 	ms.author="yuaxu;ricksal"/>
 
 # 將推播通知新增至 Android 應用程式
@@ -80,4 +80,4 @@
 
 [設定 Google Play 服務 SDK]: https://developers.google.com/android/guides/setup
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

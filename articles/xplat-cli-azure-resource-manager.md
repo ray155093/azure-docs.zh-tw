@@ -13,7 +13,7 @@
 	ms.workload="multiple"
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
-	ms.topic="get-started-article"
+	ms.topic="article"
 	ms.date="04/20/2016"
 	ms.author="danlep"/>
 
@@ -234,4 +234,4 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 * 如需透過 Azure PowerShell 來使用 Azure 資源管理員的相關資訊，請參閱[搭配使用 Azure PowerShell 與 Azure 資源管理員](powershell-azure-resource-manager.md)。
 * 如需從 Azure 入口網站使用 Azure Resource Manager 的相關資訊，請參閱[使用 Azure 入口網站部署及管理 Azure 資源](./azure-portal/resource-group-portal.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

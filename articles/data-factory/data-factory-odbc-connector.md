@@ -352,9 +352,20 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 如需在複製作業中將 ODBC 資料存放區用做來源資料存放區的詳細概觀，請從頭閱讀本文。
 
-[AZURE.INCLUDE [資料處理站的疑難排解](../../includes/data-factory-troubleshoot-connectivity.md)]
+## 疑難排解連線問題
+使用「資料管理閘道組態管理員」的 [診斷] 索引標籤針對連線問題進行疑難排解。
+
+1. 啟動「資料管理閘道組態管理員」。您可以直接執行 "C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\ConfigManager.exe" (或) 搜尋**閘道**，以尋找「Microsoft 資料管理閘道」應用程式的連結，如下圖所示。 
+
+	![搜尋閘道器](./media/data-factory-odbc-connector/search-gateway.png)
+2. 切換至 [診斷] 索引標籤。
+
+	![閘道診斷](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png) 
+3. 選取資料存放區 (連結的服務) 的「類型」 。 
+4. 指定「驗證」並輸入「認證」 (或) 輸入「連接字串」，以連接到資料存放區。 
+5. 按一下 [測試連線] 以測試資料存放區連線。 
 
 ## 效能和微調  
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

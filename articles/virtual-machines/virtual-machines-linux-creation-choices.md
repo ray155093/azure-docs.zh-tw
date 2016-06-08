@@ -21,8 +21,6 @@
 
 Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以供不同的使用者和用途使用。本文章將摘要說明這些差異，以及您建立 Linux 虛擬機器 (VM) 時可做的選擇。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 ## 工具選項
 
 ### 命令殼層︰Azure CLI 
@@ -67,4 +65,4 @@ Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以�
 
 * [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md)的快速步驟
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -4,7 +4,7 @@
 	services="backup"
 	documentationCenter=""
 	authors="AnuragMehrotra"
-	manager="jwhit"
+	manager=""
 	editor=""/>
 
 <tags
@@ -13,11 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="05/23/2016"
 	ms.author="jimpark; aashishr; anuragm"/>
 
 
 # 使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
+
+> [AZURE.SELECTOR]
+- [ARM](backup-dpm-automation.md)
+- [傳統](backup-dpm-automation-classic.md)
 
 本文說明如何使用 PowerShell 來設定 DPM 伺服器上的 Azure 備份以及管理備份和復原。
 
@@ -52,28 +56,64 @@ PS C:\> Switch-AzureMode AzureResourceManager
 
 PowerShell 可以自動化下列設定和註冊工作：
 
-- 建立備份保存庫
+- 建立復原服務保存庫
 - 安裝 Azure 備份代理程式
 - 向 Azure 備份服務進行註冊
 - 網路設定
 - 加密設定
 
-### 建立備份保存庫
+## 建立復原服務保存庫。
 
-> [AZURE.WARNING] 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。這可以透過執行下列命令來完成：Register-AzureProvider -ProviderNamespace "Microsoft.Backup"
+下列步驟將引導您完成建立復原服務保存庫。復原服務保存庫不同於備份保存庫。
 
-您可以使用 **New-AzureRMBackupVault** Cmdlet 建立新的備份保存庫。備份保存庫是 ARM 資源，因此您必須將它放在資源群組內。在提高權限的 Azure PowerShell 主控台中，執行下列命令：
+1. 如果您是第一次使用 Azure 備份，您必須使用 **Register-AzureRMResourceProvider** Cmdlet 利用您的訂用帳戶來註冊 Azure 復原服務提供者。
+
+    ```
+    PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
+    ```
+
+2. 復原服務保存庫是 ARM 資源，因此您必須將它放在資源群組內。您可以使用現有的資源群組，或建立一個新的群組。建立新的資源群組時，請指定資源群組的名稱和位置。
+
+    ```
+    PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
+    ```
+
+3. 使用 **New-AzureRmRecoveryServicesVault** Cmdlet 來建立新的保存庫。請務必為保存庫指定與用於資源群組相同的位置。
+
+    ```
+    PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
+    ```
+
+4. 請指定要使用之儲存體備援的類型；您可以使用[本地備援儲存體 (LRS)](../storage/storage-redundancy.md#locally-redundant-storage) 或[異地備援儲存體 (GRS)](../storage/storage-redundancy.md#geo-redundant-storage)。以下範例示範 testVault 設定為 GeoRedundant 的 BackupStorageRedundancy 選項。
+
+    > [AZURE.TIP] 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
+
+    ```
+    PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testVault"
+    PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
+    ```
+
+
+
+## 在訂用帳戶中檢視保存庫
+使用 **Get-AzureRmRecoveryServicesVault** 來檢視目前訂用帳戶中所有保存庫的清單。您可以使用此命令來檢查是否已建立新的保存庫，或查看訂用帳戶中有哪些保存庫可用。
+
+執行命令時，會列出 Get-AzureRmRecoveryServicesVault 以及訂用帳戶中的所有保存庫。
 
 ```
-PS C:\> New-AzureResourceGroup –Name “test-rg” -Region “West US”
-PS C:\> $backupvault = New-AzureRMBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GRS
+PS C:\> Get-AzureRmRecoveryServicesVault
+Name              : Contoso-vault
+ID                : /subscriptions/1234
+Type              : Microsoft.RecoveryServices/vaults
+Location          : WestUS
+ResourceGroupName : Contoso-docs-rg
+SubscriptionId    : 1234-567f-8910-abc
+Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 ```
 
-您可以使用 **Get-AzureRMBackupVault** Cmdlet 取得特定訂用帳戶中所有備份保存庫的清單。
 
-
-### 在 DPM 伺服器上安裝 Azure 備份代理程式
-在安裝 Azure 備份代理程式之前，您必須在 Windows Server 上下載並提供安裝程式。您可以從 [Microsoft 下載中心](http://aka.ms/azurebackup_agent)或從備份保存庫的 [儀表板] 頁面取得最新版的安裝程式。請將安裝程式儲存至容易存取的位置，例如 *C:\\Downloads*。
+## 在 DPM 伺服器上安裝 Azure 備份代理程式
+在安裝 Azure 備份代理程式之前，您必須在 Windows Server 上下載並提供安裝程式。您可以從 [Microsoft 下載中心](http://aka.ms/azurebackup_agent)或從復原服務保存庫的 [儀表板] 頁面取得最新版的安裝程式。請將安裝程式儲存至容易存取的位置，例如 *C:\\Downloads*。
 
 若要安裝代理程式，請在 **DPM 伺服器**上已提升權限的 PowerShell 主控台中執行下列命令：
 
@@ -87,7 +127,7 @@ PS C:\> MARSAgentInstaller.exe /q
 
 ![已安裝代理程式](./media/backup-dpm-automation/installed-agent-listing.png)
 
-#### 安裝選項
+### 安裝選項
 若要查看所有可透過命令列執行的選項，請使用下列命令：
 
 ```
@@ -109,34 +149,31 @@ PS C:\> MARSAgentInstaller.exe /?
 | /pu | Proxy 主機使用者名稱 | - |
 | /pw | Proxy 密碼 | - |
 
-### 向 Azure 備份服務進行註冊
-在可註冊 Azure 備份服務之前，您必須確定已符合[先決條件](backup-azure-dpm-introduction.md)。您必須：
+## 向復原服務保存庫註冊 DPM
 
-- 具備有效的 Azure 訂用帳戶
-- 具備備份保存庫
-
-若要下載保存庫認證，請在 Azure PowerShell 主控台中執行 **Get-AzureBackupVaultCredentials**，並將其儲存在方便的位置，例如 *C:\\Downloads*。
+建立復原服務保存庫之後，請下載最新版本的代理程式和保存庫認證，並將它們儲存在方便的位置 (如 C:\\Downloads)。
 
 ```
-PS C:\> $credspath = "C:"
-PS C:\> $credsfilename = Get-AzureRMBackupVaultCredentials -Vault $backupvault -TargetLocation $credspath
+PS C:\> $credspath = "C:\downloads"
+PS C:\> $credsfilename = Get-AzureRmRecoveryServicesVaultSettingsFile -Backup -Vault $vault1 -Path  $credspath
 PS C:\> $credsfilename
-f5303a0b-fae4-4cdb-b44d-0e4c032dde26_backuprg_backuprn_2015-08-11--06-22-35.VaultCredentials
+C:\downloads\testvault\_Sun Apr 10 2016.VaultCredentials
 ```
 
-使用 [Start-DPMCloudRegistration](https://technet.microsoft.com/library/jj612787) Cmdlet 即可向保存庫註冊電腦：
+在 DPM 伺服器上，執行 [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) Cmdlet 以向保存庫註冊電腦。
 
 ```
 PS C:\> $cred = $credspath + $credsfilename
-PS C:\> Start-DPMCloudRegistration -DPMServerName "TestingServer" -VaultCredentialsFilePath $cred
+PS C:\> Start-OBRegistration-VaultCredentials $cred -Confirm:$false
+CertThumbprint      :7a2ef2caa2e74b6ed1222a5e89288ddad438df2
+SubscriptionID      : ef4ab577-c2c0-43e4-af80-af49f485f3d1
+ServiceResourceName: testvault
+Region              :West US
+Machine registration succeeded.
 ```
 
-此命令會使用指定的保存庫認證向 Microsoft Azure 保存庫註冊名為 “TestingServer” 的 DPM 伺服器。
-
-> [AZURE.IMPORTANT] 請勿使用相對路徑來指定保存庫認證檔。您必須提供絕對路徑做為 Cmdlet 的輸入。
-
 ### 初始組態設定
-一旦向 Azure 備份保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。這些訂閱設定包括網路、加密和臨時區域。若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
+一旦向復原服務保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。這些訂閱設定包括網路、加密和臨時區域。若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
 
 ```
 $setting = Get-DPMCloudSubscriptionSetting -DPMServerName "TestingServer"
@@ -148,7 +185,7 @@ $setting = Get-DPMCloudSubscriptionSetting -DPMServerName "TestingServer"
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -Commit
 ```
 
-### 網路
+## 網路
 如果 DPM 機器對在網際網路上的 Azure 備份服務的連線是透過 Proxy 伺服器，則應該提供 Proxy 伺服器設定，備份才能成功。這是使用 ```-ProxyServer```、```-ProxyPort```、```-ProxyUsername``` 和 ```ProxyPassword``` 參數搭配 [Set-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) Cmdlet 完成。本範例未使用 Proxy 伺服器，因此會明確地清除任何 Proxy 相關資訊。
 
 ```
@@ -161,7 +198,7 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -NoThrottle
 ```
 
-### 設定臨時區域
+## 設定臨時區域
 在 DPM 伺服器上執行的 Azure 備份代理程式需要暫存儲存體，以供存放從雲端還原的資料 (本機臨時區域)。使用 [Set-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612791) Cmdlet 和 ```-StagingAreaPath``` 參數來設定臨時區域。
 
 ```
@@ -301,7 +338,7 @@ PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 ## 檢視備份點
 您可以使用 [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) Cmdlet 來取得資料來源所有復原點的清單。在此範例中，我們將會：
-- 擷取 DPM 伺服器上的所有的 PG 並儲存在陣列中 ```$PG```
+- 擷取 DPM 伺服器上將儲存在 ```$PG``` 陣列中的所有 PG
 - 取得與 ```$PG[0]``` 對應的資料來源
 - 取得資料來源的所有復原點。
 
@@ -336,4 +373,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

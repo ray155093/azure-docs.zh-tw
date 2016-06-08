@@ -264,8 +264,8 @@ folderPath | 資料夾的路徑。範例：myfolder<br/><br/>使用逸出字元 
 fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。如果您未指定此屬性的任何值，資料表會指向資料夾中的所有檔案。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：<br/><br/>Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否
 partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
 fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：* (多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**請注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，目前不支援 **AvroFormat** 的資料壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
-| format | 支援三種格式類型：**TextFormat**、**AvroFormat** 及 **JsonFormat**。您需要將格式底下的 **type** 屬性設定為這些值。如果格式為 TextFormat，您可以指定格式的其他選擇性屬性。如需詳細資訊，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat) 和 [指定 JsonFormat](#specifying-jsonformat) 各節。 | 否 
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：「最佳」和「最快」。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如果格式為 TextFormat，您可以指定格式的其他選擇性屬性。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。 | 否 
 
 
 > [AZURE.NOTE] 無法同時使用檔名和 fileFilter。
@@ -310,7 +310,7 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
 
-在複製活動的案例中，如果來源的類型為 **FileSystemSource**，則 typeProperties 區段有下列可用屬性：
+在「複製活動」案例中，如果來源的類型為 **FileSystemSource**，則 typeProperties 區段會有下列可用屬性：
 
 **FileSystemSource** 支援下列屬性：
 
@@ -323,6 +323,6 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## 效能和微調  
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

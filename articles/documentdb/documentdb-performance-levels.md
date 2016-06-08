@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="05/16/2016" 
 	ms.author="johnmac"/>
 
 # DocumentDB 中的效能等級
@@ -173,7 +173,9 @@ Azure 入口網站是您在管理集合的效能層級的其中一個選項。�
 
 若要深入了解 DocumentDB，請參閱 Azure DocumentDB [文件](https://azure.microsoft.com/documentation/services/documentdb/)。
 
+若要開始使用 DocumentDB 的相關規模和效能測試，請參閱 [Azure DocumentDB 的相關效能和規模測試](documentdb-performance-testing.md)。
+
 [1]: ./media/documentdb-performance-levels/documentdb-change-collection-performance7-9.png
 [2]: ./media/documentdb-performance-levels/documentdb-change-collection-performance10-11.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

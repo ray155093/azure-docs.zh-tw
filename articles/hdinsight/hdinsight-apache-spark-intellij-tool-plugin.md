@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016" 
+	ms.date="05/18/2016"
 	ms.author="nitinme"/>
 
 
@@ -216,6 +216,34 @@
 
 4. 儲存變更。您的應用程式現在應該與 HDInsight 工具外掛程式相容。您可以滑鼠右鍵按一下 [專案總管] 中的專案名稱，來測試此情況。快顯功能表現在應該具有 [將 Spark 應用程式提交給 HDInsight] 的選項。
 
+
+## 疑難排解
+
+### 本機執行發生「請使用較大的堆積大小」錯誤
+
+在 Spark 1.6 中，如果您在本機執行期間使用 32 位元的 Java SDK，您可能會遇到下列錯誤︰
+
+    Exception in thread "main" java.lang.IllegalArgumentException: System memory 259522560 must be at least 4.718592E8. Please use a larger heap size.
+    	at org.apache.spark.memory.UnifiedMemoryManager$.getMaxMemory(UnifiedMemoryManager.scala:193)
+    	at org.apache.spark.memory.UnifiedMemoryManager$.apply(UnifiedMemoryManager.scala:175)
+    	at org.apache.spark.SparkEnv$.create(SparkEnv.scala:354)
+    	at org.apache.spark.SparkEnv$.createDriverEnv(SparkEnv.scala:193)
+    	at org.apache.spark.SparkContext.createSparkEnv(SparkContext.scala:288)
+    	at org.apache.spark.SparkContext.<init>(SparkContext.scala:457)
+    	at LogQuery$.main(LogQuery.scala:53)
+    	at LogQuery.main(LogQuery.scala)
+    	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    	at java.lang.reflect.Method.invoke(Method.java:606)
+    	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
+
+這只是因為堆積大小不足，導致 Spark 無法執行，因為 Spark 至少需要 471 MB (如果您想要的話，可以從 [SPARK-12081](https://issues.apache.org/jira/browse/SPARK-12081) 取得更多詳細資料)。其中一個簡單的解決方案就是使用 64 位元的 Java SDK。您也可以新增下列選項來變更 IntelliJ 中的 JVM 設定：
+
+    -Xms128m -Xmx512m -XX:MaxPermSize=300m -ea
+
+![Spark 應用程式本機執行結果](./media/hdinsight-apache-spark-intellij-tool-plugin/change-heap-size.png)
+
 ## 意見反應和已知問題
 
 目前不支援直接檢視 Spark 輸出，我們正在處理此問題。
@@ -253,4 +281,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

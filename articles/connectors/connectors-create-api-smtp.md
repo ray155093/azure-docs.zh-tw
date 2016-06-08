@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 SMTP API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 SMTP API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 SMTP 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 SMTP 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/16/2016"
+   ms.date="05/19/2016"
    ms.author="mandia"/>
 
-# 開始使用 SMTP API
-連線到 SMTP 伺服器來傳送電子郵件。您可以從下列應用程式使用 SMTP API：
+# 開始使用 SMTP 連接器
+連線到 SMTP 伺服器來傳送電子郵件。您可以從下列應用程式使用 SMTP 連接器︰
 
 - 邏輯應用程式 (如本主題所述)
 - PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
@@ -33,22 +33,17 @@
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
-SMTP API 提供下列動作，但不包含觸發程序。
+SMTP 連接器提供下列動作，但不包含觸發程序。
 
 |觸發程序 | 動作|
 |--- | ---|
 |None | 傳送電子郵件|
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 SMTP 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的值：
 
-|屬性| 必要|說明|
-| ---|---|---|
-| SMTP 伺服器名稱 | 是 | 輸入 SMTP 伺服器的完整網域 (FQDN) 或 IP 位址。|
-| 使用者名稱 |是 |輸入要連線到 SMTP 伺服器的使用者名稱。 |
-| 密碼 | 是|輸入使用者名稱的密碼。 |
+>[AZURE.INCLUDE [建立 SMTP 連線的步驟](../../includes/connectors-create-api-smtp.md)]
 
 當您建立連線之後，請輸入 SMTP 的屬性，例如收件者或副本值。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -95,4 +90,4 @@ SMTP API 提供下列動作，但不包含觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

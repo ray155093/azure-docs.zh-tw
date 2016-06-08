@@ -1,6 +1,6 @@
 <properties
 	pageTitle="設定傳統 VM 的可用性設定組 | Microsoft Azure"
-	description="使用 Azure 傳統入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有虛擬機器的可用性設定組。"
+	description="使用 Azure 入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有虛擬機器的可用性設定組。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="cynthn"
@@ -23,4 +23,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-classic-configure-availability](../../includes/virtual-machines-common-classic-configure-availability.md)]
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

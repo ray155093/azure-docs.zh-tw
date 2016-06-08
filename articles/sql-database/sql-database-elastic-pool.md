@@ -11,7 +11,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="04/28/2016"
+	ms.date="05/23/2016"
 	ms.author="sidneyh"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -26,7 +26,7 @@
 
 ## 運作方式
 
-單一租用戶資料庫模型的常見 SaaS 應用程式模式是︰每個客戶被授與一個資料庫。每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。由於需求有高有低，您要如何配置資源？ 您通常有兩個選項：(1) 根據尖峰使用量額外佈建資源並額外付款，或是 (2) 少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。彈性資料庫集區會確保資料庫在必要時取得所需的效能資源，同時在可預測的預算之內，提供簡單的資源配置機制，藉此解決這個問題。
+單一租用戶資料庫模型的常見 SaaS 應用程式模式是︰每個客戶被授與一個資料庫。每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。由於需求有高有低，您要如何配置資源？ 您通常有兩個選項：(1) 根據尖峰使用量額外佈建資源並額外付款，或是 (2) 少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。彈性資料庫集區會確保資料庫在必要時取得所需的效能資源，同時在可預測的預算之內，提供簡單的資源配置機制，藉此解決這個問題。若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱[採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 > [AZURE.VIDEO elastic-databases-helps-saas-developers-tame-explosive-growth]
 
@@ -79,7 +79,7 @@
 
 ## 彈性資料庫工作
 
-使用集區，只要在**[彈性工作](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。若要開始，請參閱[開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
+使用集區，只要在**[彈性作業](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理作業。彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。若要開始，請參閱[開始使用彈性資料庫作業](sql-database-elastic-jobs-getting-started.md)。
 
 如需其他工具的詳細資訊，請參閱[彈性資料庫工具學習圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
 
@@ -104,4 +104,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

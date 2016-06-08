@@ -203,7 +203,7 @@ Certreq.exe 是一項用來建立憑證要求的 Windows 公用程式。自 Wind
 
 	> [AZURE.NOTE] 在匯出程序期間，請務必選取 [<strong>是，匯出私密金鑰</strong>] 選項。這樣會在匯出的憑證中納入私密金鑰。
 
-	> [AZURE.NOTE] 在匯出程序期間，請務必選取 [**包含憑證路徑中的所有憑證**] 和 [**匯出所有延伸內容**] 選項。這樣會在匯出的憑證中納入所有中繼憑證。
+	> 在匯出程序期間，請務必選取 [**包含憑證路徑中的所有憑證**] 和 [**匯出所有延伸內容**] 選項。這樣會在匯出的憑證中納入所有中繼憑證。
 
 <a name="bkmk_subjectaltname"></a>
 ### 使用 OpenSSL 取得 SubjectAltName 憑證
@@ -455,7 +455,9 @@ OpenSSL 可以用來建立憑證要求 (並讓該要求使用 SubjectAltName 延
 >
 > 2. 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
 
-> [AZURE.NOTE] 如果您將**以 IP 為主的 SSL** 加入已經有不同憑證之 **SNI 繫結**的 Web 應用程式中，只要 Web 應用程式啟用 IP SSL，我們就會重新將網站的主機名稱對應至該 IP 位址；因此如果其他的主機名稱是該網站主機名稱的 CNAME，它也會取得 IP SSL 位址上的流量。在這種情況下，我們會再建立一個 DNS 項目：sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net，其中 &lt;您的 Web 應用程式名稱&gt; 是 Azure App Service Web 應用程式的名稱。因此，您應該將 DNS 記錄變更為指向 SNI 繫結所用的名稱，以便將它改為指向 sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net。
+<br>如果您將**以 IP 為主的 SSL** 加入已經有不同憑證之 **SNI 繫結**的 Web 應用程式中，只要 Web 應用程式啟用 IP SSL，我們就會重新將網站的主機名稱對應至該 IP 位址；因此如果其他的主機名稱是該網站主機名稱的 CNAME，它也會取得 IP SSL 位址上的流量。
+
+在這種情況下，我們會再建立一個 DNS 項目：sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net，其中 &lt;您的 Web 應用程式名稱&gt; 是 Azure App Service Web 應用程式的名稱。因此，您應該將 DNS 記錄變更為指向 SNI 繫結所用的名稱，以便將它改為指向 sni.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net。
 
 此時您應該可以使用 `HTTPS://` (而非 `HTTP://`) 來造訪您的應用程式，以確認憑證設定正確。
 
@@ -523,7 +525,7 @@ Azure App Service「*不會*」強制使用 HTTPS。訪客可能仍會使用 HTT
 
 		在使用 Apache Tomcat 的 Java 應用程式中，其 web.config 檔案不包含 **&lt;rewrite>** 區段，因此您必須將範例中的 **&lt;rewrite>** 區段新增至 **&lt;system.webServer>** 區段。
 
-4. 將專案 (包含更新的 web.config) 重新部署至 Azure
+4. 將它放回 /site/wwwroot 資料夾
 
 一旦部署包含重寫規則以強制使用 HTTPS 的 web.config 後，它應會立即生效並將所有要求重新導向至 HTTPS。
 
@@ -564,3 +566,5 @@ Azure App Service「*不會*」強制使用 HTTPS。訪客可能仍會使用 HTT
 [certwiz2]: ./media/configure-ssl-web-site/waws-certwiz2.png
 [certwiz3]: ./media/configure-ssl-web-site/waws-certwiz3.png
 [certwiz4]: ./media/configure-ssl-web-site/waws-certwiz4.png
+
+<!---HONumber=AcomDC_0525_2016-->

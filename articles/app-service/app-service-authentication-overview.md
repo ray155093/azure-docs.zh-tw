@@ -102,7 +102,7 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 
 以任何語言或架構撰寫的程式碼可以從這些標頭中取得所需的資訊。針對 ASP.NET 4.6 應用程式，**ClaimsPrincipal** 會自動設定適當的值。
 
-您的應用程式也可透過應用程式的 `/.auth/me` 端點上的 HTTP GET，取得使用者的其他詳細資料。要求隨附的有效權杖會傳回 JSON 承載，其中包含有關所使用的提供者、基礎提供者權杖的詳細資料，以及其他一些使用者資訊。Mobile Apps 伺服器 SDK 提供 Helper 方法來處理此資料。如需詳細資訊，請參閱[如何使用 Azure Mobile Apps Node.js SDK](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md/#howto-tables-getidentity) 和[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md/#user-info)。
+您的應用程式也可透過應用程式的 `/.auth/me` 端點上的 HTTP GET，取得使用者的其他詳細資料。要求隨附的有效權杖會傳回 JSON 承載，其中包含有關所使用的提供者、基礎提供者權杖的詳細資料，以及其他一些使用者資訊。Mobile Apps 伺服器 SDK 提供 Helper 方法來處理此資料。如需詳細資訊，請參閱[如何使用 Azure Mobile Apps Node.js SDK](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#howto-tables-getidentity) 和[使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#user-info)。
 
 ## 文件和其他資源
 
@@ -174,8 +174,8 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 
 [custom-auth]: ../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth
 
-[ADAL-Android]: ../app-service-mobile/app-service-mobile-android-how-to-use-client-library.md/#adal
-[ADAL-iOS]: ../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md/#adal
-[ADAL-dotnet]: ../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md/#adal
+[ADAL-Android]: ../app-service-mobile/app-service-mobile-android-how-to-use-client-library.md#adal
+[ADAL-iOS]: ../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#adal
+[ADAL-dotnet]: ../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md#adal
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

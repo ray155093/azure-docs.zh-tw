@@ -1,21 +1,23 @@
-|Primary            |Secondary          |
+|主要 |次要 |
 |:-----------------:|:-----------------:|
-|North Central US   |South Central US   |
-|South Central US   |North Central US   |
-|East US            |West US            |
-|West US            |East US            |
-|US East 2          |Central US         |
-|Central US         |US East 2          |
-|North Europe       |West Europe        |
-|West Europe        |North Europe       |
-|South East Asia    |East Asia          |
-|East Asia          |South East Asia    |
-|East China         |North China        |
-|North China        |East China         |
-|Japan East         |Japan West         |
-|Japan West         |Japan East         |
-|Brazil South       |South Central US   |
-|Australia East     |Australia Southeast|
-|Australia Southeast|Australia East     |
-|Canada East        |Canada Central     |
-|Canada Central     |Canada East        |
+|美國中北部 |美國中南部 |
+|美國中南部 |美國中北部 |
+|美國東部 |美國西部 |
+|美國西部 |美國東部 |
+|美國東部 2 |美國中部 |
+|美國中部 |美國東部 2 |
+|北歐 |西歐 |
+|西歐 |北歐 |
+|東南亞 |東亞 |
+|東亞 |東南亞 |
+|中國東部 |中國北部 |
+|中國北部 |中國東部 |
+|日本東部 |日本西部 |
+|日本西部 |日本東部 |
+|巴西南部 |美國中南部 |
+|澳洲東部 |澳大利亞東南部|
+|澳大利亞東南部|澳洲東部 |
+|加拿大東部 |加拿大中部 |
+|加拿大中部 |加拿大東部 |
+
+<!---HONumber=AcomDC_0525_2016-->

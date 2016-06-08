@@ -12,7 +12,7 @@ authors="ashmaka"
 	ms.workload="search"
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/10/2016"
+	ms.date="05/31/2016"
 	ms.author="ashmaka"/>
 
 # 建立 Azure Search 索引
@@ -70,4 +70,4 @@ authors="ashmaka"
 
 如果資料儲存體需求在之後有所改變，您可以藉由新增或移除資料分割來增加或減少容量。如需詳細資料，請參閱[在 Azure 中管理您的搜尋服務](search-manage.md)或[服務限制](search-limits-quotas-capacity.md)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

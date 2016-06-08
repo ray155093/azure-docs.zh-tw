@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/21/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 1.2
@@ -125,4 +125,4 @@ Update 1.2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更�
 
 深入了解 [Update 1.2 版](storsimple-update1-release-notes.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

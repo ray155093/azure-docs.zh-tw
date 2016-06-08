@@ -4,7 +4,7 @@
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
-   manager="carolz"
+   manager="carmonm"
    editor="" />
 <tags 
    ms.service="storsimple"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/27/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 裝置
@@ -57,11 +57,11 @@ StorSimple Manager 服務 UI 的瀏覽階層顯示於下表。
 |登陸頁面|服務層級頁面|裝置層級頁面|裝置層級頁面|
 |---|---|---|---|
 |StorSimple Manager 服務|服務儀表板|裝置儀表板||
-|裝置 →|監視|
-|備份類別目錄|磁碟區容器 →|磁碟區|
-|設定 (服務)|備份原則||
-|作業|設定 (裝置)|
-|Alerts|維護|
+||裝置 →|監視|
+||備份類別目錄|磁碟區容器 →|磁碟區|
+||設定 (服務)|備份原則||
+||作業|設定 (裝置)|
+||Alerts|維護|
 
 ![提供的影片](./media/storsimple-manager-service-administration/Video_icon.png)**提供的影片**
 
@@ -114,4 +114,4 @@ StorSimple Manager 服務 UI 的瀏覽階層顯示於下表。
 
 如果您不能解決問題，且您必須建立服務要求，請參閱：[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0525_2016-->

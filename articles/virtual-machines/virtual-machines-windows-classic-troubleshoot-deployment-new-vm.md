@@ -13,7 +13,7 @@
   ms.workload="na"
   ms.tgt_pltfrm="vm-windows"
   ms.devlang="na"
-  ms.topic="article"
+  ms.topic="support-article"
   ms.date="05/06/2016"
   ms.author="cjiang"/>
 
@@ -81,4 +81,4 @@
 - 在新的虛擬網路中建立新 VM。
 - [連接您現有的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)到新的虛擬網路。深入了解[區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。此外，也可以[將同質群組式虛擬網路移轉至區域虛擬網路](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後建立新 VM。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

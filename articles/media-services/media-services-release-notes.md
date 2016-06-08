@@ -206,29 +206,29 @@ Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。此版本中加入了下�
 
 ##<a id="april_changes_15"></a>2015 年 4 月版本
 
-###一般媒體服務更新
+        ###一般媒體服務更新
 
-- [發表 Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)。
-- 從媒體服務 REST 2.10 開始，設定為擷取 RTMP 通訊協定的通道，會和主要與次要擷取 URL 一起建立。如需詳細資訊，請參閱[通道擷取組態](media-services-manage-channels-overview.md#channel_input)
-- Azure 媒體索引器更新
-	- 支援西班牙文語言
-	- 新的組態 xml 格式
-	
-	如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/)。
-###媒體服務 .NET SDK 更新
+        - [發表 Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)。
+        - 從媒體服務 REST 2.10 開始，設定為擷取 RTMP 通訊協定的通道，會和主要與次要擷取 URL 一起建立。如需詳細資訊，請參閱[通道擷取組態](media-services-manage-channels-overview.md#channel_input)
+        - Azure 媒體索引器更新
+        - 支援西班牙文語言
+        - 新的組態 xml 格式
 
-Azure 媒體服務 .NET SDK 現在是版本 3.2.0.0。
+        如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/)。
+        ###媒體服務 .NET SDK 更新
 
-以下是一些屬於客戶面向的更新：
- 
-- **重大變更**：已將 **TokenRestrictionTemplate.Issuer** 和 **TokenRestrictionTemplate.Audience** 變更為字串類型。 
-- 與建立自訂重試原則相關的更新。 
-- 與上傳/下載檔案相關的錯誤修正。 
-- **MediaServicesCredentials** 類別現在接受主要和次要存取控制端點做為驗證對象。
+        Azure 媒體服務 .NET SDK 現在是版本 3.2.0.0。
+
+        以下是一些屬於客戶面向的更新：
+
+        - **重大變更**：已將 **TokenRestrictionTemplate.Issuer** 和 **TokenRestrictionTemplate.Audience** 變更為字串類型。 
+        - 與建立自訂重試原則相關的更新。 
+        - 與上傳/下載檔案相關的錯誤修正。 
+        - **MediaServicesCredentials** 類別現在接受主要和次要存取控制端點做為驗證對象。
 
 
 
-##<a id="march_changes_15"></a>2015 年 3 月版本
+        ##<a id="march_changes_15"></a>2015 年 3 月版本
 
 ### 一般媒體服務更新
 

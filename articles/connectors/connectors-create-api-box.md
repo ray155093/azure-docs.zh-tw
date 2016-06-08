@@ -1,12 +1,12 @@
 <properties
-	pageTitle="將 Box API 新增到邏輯應用程式 | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Box API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="將 Box 連接器新增到 Logic Apps | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Box 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Box API
-連線到 Box 來建立檔案、刪除檔案等等。您可以從下列應用程式使用 Box API：
+# 開始使用 Box 連接器
+連線到 Box 來建立檔案、刪除檔案等等。您可以從下列應用程式使用 Box 連接器︰
 
 - 邏輯應用程式 (如本主題所述)
 - PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
@@ -40,13 +40,12 @@ Box 包含下列觸發程序及動作。
 | --- | --- |
 |<ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>使用識別碼來取得檔案元資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Box 的連線
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Box。
+當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Box。
 
-1. 登入您的 Box 帳戶。
-2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Box。 
+>[AZURE.INCLUDE [建立至 Box 連線的步驟](../../includes/connectors-create-api-box.md)]
 
 當您建立連線之後，請輸入 Box 的屬性。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -56,7 +55,7 @@ Box 包含下列觸發程序及動作。
 適用的版本：1.0。
 
 ### 建立檔案
-把檔案上傳到 Box。```POST: /datasets/default/files```
+將檔案上傳到 Box。```POST: /datasets/default/files```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -72,7 +71,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 當檔案建立時
-當某個 Box 資料夾中有新檔案建立時，就會觸發某個流程。```GET: /datasets/default/triggers/onnewfile```
+當某個 Box 資料夾中建立新的檔案時，就會觸發某個流程。```GET: /datasets/default/triggers/onnewfile```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -86,7 +85,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 複製檔案
-把檔案複製到 Box。```POST: /datasets/default/copyFile```
+將檔案複製到 Box。```POST: /datasets/default/copyFile```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -161,7 +160,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 使用識別碼來取得檔案中繼資料
-使用檔案識別碼來擷取 Box 中的檔案元資料。```GET: /datasets/default/files/{id}```
+使用檔案識別碼來擷取 Box 中的檔案中繼資料。```GET: /datasets/default/files/{id}```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -175,7 +174,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 使用路徑來取得檔案中繼資料
-使用路徑來擷取 Box 中的檔案元資料。```GET: /datasets/default/GetFileByPath```
+使用路徑來擷取 Box 中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -204,7 +203,7 @@ Box 包含下列觸發程序及動作。
 
 
 ### 當檔案遭到修改時
-當某個 Box 資料夾中有檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
+當某個 Box 資料夾中的檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -263,4 +262,4 @@ Box 包含下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

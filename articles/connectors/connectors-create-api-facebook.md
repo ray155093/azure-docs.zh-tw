@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 Facebook API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 Facebook API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 Facebook 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Facebook 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/16/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 Facebook API
-連線到 Facebook 並張貼在動態時報上、取得頁面摘要等等。您可以從下列應用程式使用 Facebook API：
+# 開始使用 Facebook 連接器
+連線到 Facebook 並張貼在動態時報上、取得頁面摘要等等。您可以從下列應用程式使用 Facebook 連接器︰
 
 - 邏輯應用程式 (如本主題所述)
 - PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
@@ -35,16 +35,16 @@
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
-Facebook API 包含下列觸發程序及動作。
+Facebook 連接器包含下列觸發程序及動作。
 
 | 觸發程序 | 動作|
 | --- | --- |
 | <ul><li>當我的動態時報上有新貼文時</li></ul> |<ul><li>取得我動態時報的摘要</li><li>張貼到我的動態時報上</li><li>當我的動態時報上有新貼文時</li><li>取得頁面摘要</li><li>取得使用者的動態時報</li><li>張貼到頁面上</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Facebook 的連線
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Facebook。
+當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Facebook。
 
 1. 登入您的 Facebook 帳戶。
 2. 選取 [授權]，然後允許您的邏輯應用程式連線並使用您的 Facebook。 
@@ -436,4 +436,4 @@ Facebook API 包含下列觸發程序及動作。
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

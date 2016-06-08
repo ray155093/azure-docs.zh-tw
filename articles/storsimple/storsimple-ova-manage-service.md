@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/05/2016"
+   ms.date="05/19/2016"
    ms.author="alkohli" />
 
 # 部署 StorSimple Virtual Array 的 StorSimple Manager 服務
@@ -38,7 +38,7 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 - 取得服務註冊金鑰。
 - 重新產生服務註冊金鑰
 
-本教學課程說明如何執行這些工作。
+本教學課程說明如何執行這些工作。本文所含資訊僅適用於 StorSimple Virtual Array。如需 StorSimple 8000 系列的詳細資訊，請移至[部署 StorSimple Manager 服務](storsimple-manage-service.md)。
 
 ## 建立服務
 
@@ -51,6 +51,8 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 您也可以選擇在建立服務時產生預設儲存體帳戶。
 
 單一服務可以管理多個裝置。不過，裝置不能跨越多個服務。大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。
+
+> [AZURE.NOTE] 您需要個別的 StorSimple Manager 服務執行個體來管理 StorSimple 8000 系列裝置和 StorSimple Virtual Array。
 
 執行下列步驟來建立服務。
 
@@ -111,4 +113,4 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0525_2016-->

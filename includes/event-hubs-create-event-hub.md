@@ -10,7 +10,7 @@
 
 	![][2]
 
-4. 如果您未明確選取指定區域中現有的命名空間，入口網站會為您建立命名空間 (通常是**事件中樞名稱-ns**)。按一下該命名空間 (在此範例中為 **eventhub-ns**)。
+4. 如果您未明確選取指定區域中現有的命名空間，入口網站會為您建立命名空間 (通常是 **事件中樞名稱-ns**)。按一下該命名空間 (在此範例中為 **eventhub-ns**)。
 
 	![][3]
 
@@ -24,3 +24,5 @@
 [2]: ./media/event-hubs-create-event-hub/create-event-hub2.png
 [3]: ./media/event-hubs-create-event-hub/create-event-hub3.png
 [4]: ./media/event-hubs-create-event-hub/create-conn-str1.png
+
+

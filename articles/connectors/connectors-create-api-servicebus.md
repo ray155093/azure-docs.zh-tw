@@ -1,10 +1,10 @@
 <properties
-pageTitle="在您的邏輯應用程式中新增 Azure 服務匯流排 API | Microsoft Azure"
-description="開始在您的 Microsoft Azure App service Logic apps 中使用 Azure 服務匯流排 API (連接器)"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在您的 Logic Apps 中使用 Azure 服務匯流排連接器 | Microsoft Azure"
+description="開始在您的 Microsoft Azure App Service Logic Apps 中使用 Azure 服務匯流排連接器"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,10 +14,10 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/16/2016"
+ms.date="05/23/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Azure 服務匯流排 API
+# 開始使用 Azure 服務匯流排連接器 
 
 連線到 Azure 服務匯流排來傳送及接收訊息。您可以執行動作，例如傳送至佇列、傳送至主題、從佇列接收、從訂用帳戶接收等等。
 
@@ -31,9 +31,9 @@ ms.author="deonhe"/>
 
 ## 我們來談談觸發程序及動作。
 
-Azure 服務匯流排可當做動作來使用；它擁有觸發程序。所有 API 都支援 JSON 和 XML 格式的資料。
+Azure 服務匯流排連接器可當做動作來使用；它擁有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
 
- Azure 服務匯流排提供下列動作及/或觸發程序：
+ Azure 服務匯流排連接器提供下列動作及/或觸發程序：
 
 ### Azure 服務匯流排的動作
 您可以採取下列動作：
@@ -51,22 +51,9 @@ Azure 服務匯流排可當做動作來使用；它擁有觸發程序。所有 A
 
 
 ## 建立至 Azure 服務匯流排的連線
-如要使用 Azure 服務匯流排 API，您必須先建立**連接**，再提供下列屬性的詳細資料：
+如要使用 Azure 服務匯流排連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
 
-|屬性| 必要|說明|
-| ---|---|---|
-|ConnectionString|是|提供 Azure 服務匯流排連接字串|  
-
-請遵循下列步驟來建立可在您的邏輯應用程式中使用的服務匯流排**連接**：
-
-1. 選取 [週期]
-2. 選取 [頻率] 並輸入 [間隔] ![設定服務匯流排][1] 
-3. 選取 [加入動作] ![設定服務匯流排][2]   
-4. 在搜尋方塊中輸入**服務匯流排**，等候搜尋傳回名稱中有服務匯流排的所有項目。
-5. 選取 [服務匯流排 - 傳送訊息] ![設定服務匯流排][3]
-7. 輸入**連接名稱**和**連接字串**，然後選取 [建立連接]：![設定服務匯流排][4]
-7. 建立連線後，您將會看到 [傳送訊息] 對話方塊。輸入用於傳送訊息的所有必要資訊。![設定服務匯流排][5]
-8. 選取上方功能表的 [儲存] 按鈕來儲存您的工作。    
+>[AZURE.INCLUDE [建立至 ServiceBus 連線的步驟](../../includes/connectors-create-api-servicebus.md)]
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
@@ -158,11 +145,4 @@ ContentTransferEncoding
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-[1]: ./media/connectors-create-api-servicebus/connectionconfig1.png
-[2]: ./media/connectors-create-api-servicebus/connectionconfig2.png
-[3]: ./media/connectors-create-api-servicebus/connectionconfig3.png
-[4]: ./media/connectors-create-api-servicebus/connectionconfig4.png
-[5]: ./media/connectors-create-api-servicebus/connectionconfig5.png
-[6]: ./media/connectors-create-api-servicebus/connectionconfig6.png
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

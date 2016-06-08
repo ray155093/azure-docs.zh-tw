@@ -32,7 +32,7 @@ Azure PowerShell 是一套模組，提供各種 Cmdlet，讓您透過 Windows Po
 
 從 WebPI 安裝 Azure PowerShell 1.0 或更新版本如同於安裝 0.9.x。下載 [Azure Powershell](http://aka.ms/webpi-azps) 並開始安裝。如果您已安裝 Azure PowerShell 0.9.x，升級將解除安裝 0.9.x 版。如果您是從 PowerShell 資源庫安裝 Azure PowerShell 模組，安裝程式會在安裝前自動移除模組，以確保 Azure PowerShell 環境保持一致。
 
-> [AZURE.NOTE] 如果您已從 PowerShell 資源庫安裝 Azure PowerShell 模組，安裝程式會自動移除這些模組。這是為了防止混淆您已安裝的模組版本與其所在的位置。PowerShell 資源庫模組通常會安裝在 **%ProgramFiles%\\WindowsPowerShell\\Modules**。相反地，WebPI 安裝程式會將 Azure 模組安裝在 **%ProgramFiles(x86)%\\Microsoft SDKs\\Azure\\PowerShell**。如果安裝期間發生錯誤，請手動移除 **%ProgramFiles%\\WindowsPowerShell\\Modules** 資料來中的 Azure* 資料夾，再重試安裝。
+> [AZURE.NOTE] 如果您已從 PowerShell 資源庫安裝 Azure PowerShell 模組，安裝程式會自動移除這些模組。這是為了防止混淆您已安裝的模組版本與其所在的位置。PowerShell 資源庫模組通常會安裝在 **%ProgramFiles%\WindowsPowerShell\Modules**。相反地，WebPI 安裝程式會將 Azure 模組安裝在 **%ProgramFiles(x86)%\Microsoft SDKs\Azure\PowerShell**。如果安裝期間發生錯誤，請手動移除 **%ProgramFiles%\WindowsPowerShell\Modules** 資料來中的 Azure* 資料夾，再重試安裝。
 
 一旦完成安裝，您的 ```$env:PSModulePath``` 設定中應會有包含 Azure PowerShell Cmdlet 的目錄。
 
@@ -52,9 +52,11 @@ Azure PowerShell 是一套模組，提供各種 Cmdlet，讓您透過 Windows Po
         + FullyQualifiedErrorId : CommandNotFoundException
 ```
 
-This can be corrected by restarting the machine or importing the cmdlets from C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\ as following (where XXXX is the version of PowerShell installed:
+重新啟動機器或從 C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\ 的路徑匯入 Cmdlet (其中 XXXX 是安裝的 PowerShell 版本：
 ```
-import-module "C:\\Program Files\\WindowsPowerShell\\Modules\\Azure\\XXXX\\azure.psd1" import-module "C:\\Program Files\\WindowsPowerShell\\Modules\\Azure\\XXXX\\expressroute\\expressroute.psd1" ```
+import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\azure.psd1"
+import-module "C:\Program Files\WindowsPowerShell\Modules\Azure\XXXX\expressroute\expressroute.psd1"
+```
 
 ###從 PowerShell 資源庫安裝 Azure PowerShell
 

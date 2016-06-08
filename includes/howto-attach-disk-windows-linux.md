@@ -1,7 +1,7 @@
 
-如需有關磁碟的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md)。
 
-##<a id="attachempty"></a>做法：連接空的磁碟
+
+## 連接空的磁碟
 
 連結空磁碟是一個新增資料磁碟的簡易方式，因為 Azure 會為您建立 .vhd 檔案並將它儲存在儲存體帳戶中。
 
@@ -33,7 +33,7 @@
 > [AZURE.NOTE] 新增新的資料磁碟之後，您將必須登入 VM 並將磁碟初始化，才能使用該磁碟。
 
 
-##<a id="attachexisting"></a>做法：連接現有磁碟
+## 做法：連接現有磁碟
 
 連接現有磁碟要求您在儲存體帳戶中需要有可用的 .vhd。請使用 [Add-AzureVhd](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet，將 .vhd 檔案上傳至儲存體帳戶。在建立並上傳 .vhd 檔案之後，您就可將它連結至 VM。
 
@@ -54,4 +54,4 @@
 
 	![成功連接資料磁碟](./media/howto-attach-disk-windows-linux/AttachExistingSuccess.png)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/24/2016"    
+	ms.date="05/19/2016"    
 	ms.author="juliako"/>
 
 
@@ -236,6 +236,20 @@
 		}
 
 
+##支援相對大小
+
+產生它的縮圖時，您不需要永遠指定輸出的寬度和高度 (以像素單位)。您可以以百分比指定它們，範圍為 [1%、…、100%]。
+
+###JSON 預設值 
+	
+	"Width": "100%",
+	"Height": "100%"
+
+###XML 預設值
+	
+	<Width>100%</Width>
+	<Height>100%</Height>
+	
 ##<a id="thumbnails"></a>產生縮圖
 
 本節說明如何自訂產生縮圖的預設值。下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並加入可產生縮圖的程式碼。
@@ -444,7 +458,7 @@
 
 ##<a id="trim_video"></a>修剪視訊 (裁剪)
 
-本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 – [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
+本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 - [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
 若要修剪您的視訊，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應該位於預設值開頭。
  
@@ -1072,4 +1086,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Service Fabric 叢集資源管理員簡介 | Microsoft Azure"
-   description="Service Fabric 叢集資源管理員簡介。"
+   pageTitle="Service Fabric 叢集資源管理員中的節流 | Microsoft Azure"
+   description="了解如何設定 Service Fabric 叢集 Resource Manager 提供的節流。"
    services="service-fabric"
    documentationCenter=".net"
    authors="masnider"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 
@@ -43,4 +43,4 @@
 - 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 - 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->

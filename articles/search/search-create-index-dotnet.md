@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="03/10/2016"
+    ms.date="05/31/2016"
     ms.author="brjohnst"/>
 
 # 使用 .NET SDK 建立 Azure 搜尋服務索引
@@ -123,4 +123,4 @@ serviceClient.Indexes.Delete("hotels");
 ## 下一步
 建立 Azure 搜尋服務索引後，您就可以[將內容上傳到索引](search-what-is-data-import.md)，以便開始搜尋資料。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

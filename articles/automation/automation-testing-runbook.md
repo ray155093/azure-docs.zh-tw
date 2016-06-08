@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="在 Azure 自動化中測試 Runbook"
+	pageTitle="在 Azure 自動化中測試 Runbook | Microsoft Azure"
 	description="在 Azure 自動化中發佈 Runbook 之前，您可以先加以測試，以確保 Runbook 能夠如預期般運作。本文說明如何測試 Runbook 及檢視其輸出。"
 	services="automation"
 	documentationCenter=""
 	authors="mgoedtel"
-	manager="stevenka"
+	manager="jwhit"
 	editor="tysonn" />
 <tags 
 	ms.service="automation"
@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="02/23/2016"
+	ms.date="05/24/2016"
 	ms.author="magoedte;bwren" />
 
 # 在 Azure 自動化中測試 Runbook
@@ -27,32 +27,20 @@
 
 您可以在 Azure 入口網站中使用任何 [Runbook 類型](automation-runbook-types.md)。
 
-1. 您可以在[文字編輯器](automation-editing-a-runbook#Portal)或[圖形化編輯器](automation-graphical-authoring-intro.md)中開啟 Runbook 的草稿版本。
+1. 您可以在[文字編輯器](automation-editing-a-runbook.md#Portal)或[圖形化編輯器](automation-graphical-authoring-intro.md)中開啟 Runbook 的草稿版本。
 2. 按一下 [測試] 按鈕以開啟 [測試] 刀鋒視窗。
 3. 如果 Runbook 含有參數，這些參數會列在左窗格中，您可以在此提供值，以供測試使用。
-4. 如果您想要在[混合式 Runbook 背景工作](automation-hybrid)上執行測試，則需將 [執行設定] 變更為 [混合式背景工作]，然後選取目標群組的名稱。否則請保留預設值 **Azure**，在雲端中執行測試。
+4. 如果您想要在[混合式 Runbook 背景工作](automation-hybrid-runbook-worker.md)上執行測試，則需將 [執行設定] 變更為 [混合式背景工作]，然後選取目標群組的名稱。否則請保留預設值 **Azure**，在雲端中執行測試。
 5. 按一下 [啟動] 按鈕以啟動測試。
 6. 如果 Runbook 是 [PowerShell 工作流程](automation-runbook-types.md#powershell-workflow-runbooks)或[圖形化](automation-runbook-types.md#graphical-runbooks) Runbook，那麼在測試過程中，您可以使用 [輸出] 窗格下方的按鈕來停止或暫停 Runbook。暫停 Runbook 時，它會先完成目前的活動後才暫停。Runbook 一旦暫停，您可以選擇停止或重新啟動。
 7. 您可以在 [輸出] 窗格中檢查 Runbook 的輸出。
 
 
+## 後續步驟
 
-## 在 Azure 入口網站中測試 Runbook
+- 若要了解如何建立或匯入 Runbook，請參閱[建立或匯入 Azure 自動化中的 Runbook](automation-creating-importing-runbook.md)
+- 若要深入了解圖形化編寫，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
+- 若要深入了解設定 Runbok 以傳回狀態訊息和錯誤，包括建議的作法，請參閱[Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
 
-在 Azure 入口網站中，您只能使用 [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)。
-
-
-1. [開啟 Runbook 的草稿版本](automation-edit-textual-runbook.md#to-edit-a-runbook-with-the-azure-portal)。
-2. 按一下 [測試] 按鈕以啟動測試。如果 Runbook 含有參數，您會看到一個對話方塊，要求您提供測試所需的值。
-6. 測試過程中，您可以使用 [輸出] 窗格下方的按鈕來停止或暫停 Runbook。暫停 Runbook 時，它會先完成目前的活動後才暫停。Runbook 一旦暫停，您可以選擇停止或重新啟動。
-7. 您可以在 [輸出] 窗格中檢查 Runbook 的輸出。
-
-
-## 相關文章
-
-- [在 Azure 自動化中建立或匯入 Runbook](automation-creating-importing-runbook.md)
-- [Azure 自動化中的圖形化 Runbook](automation-graphical-authoring-intro.md)
-- [在 Azure 自動化中編輯文字式 Runbook](automation-edit-textual-runbook.md)
-- [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
-
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0525_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/03/2016"
+   ms.date="05/25/2016"
    ms.author="seanmck"/>
 
 # Azure Service Fabric 中的災害復原
@@ -38,7 +38,7 @@
 
 ### 地理分佈
 
-全世界目前有 22 個 Azure 區域 (已宣佈 5 個以上)。視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
+[全世界目前有 25 個 Azure 區域][azure-regions]，已宣佈更多個。視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
 
 ## 處理失敗
 
@@ -56,7 +56,7 @@
 
 #### 仲裁遺失
 
-如果具狀態服務的資料分割的大多數複本關閉，則該資料分割會進入所謂的「仲裁遺失」狀態。此時，Service Fabric 會停止允許寫入該資料分割，以確保其狀態保持一致且可靠。實際上，我們會選擇接受一段無法使用的期間，以確保用戶端不會被告知其資料已儲存 (但事實並非如此)。請注意，如果您選擇允許從該具狀態服務的次要複本讀取，您可以在此狀態中繼續執行讀取作業。資料分割會保持仲裁遺失的狀態，直到恢復足量的複本，或直到叢集系統管理員強迫系統繼續使用 [Repair-ServiceFabricPartition API](repair-partition-ps) 為止。在主要複本關閉時執行這個動作，將會導致資料遺失。
+如果具狀態服務的資料分割的大多數複本關閉，則該資料分割會進入所謂的「仲裁遺失」狀態。此時，Service Fabric 會停止允許寫入該資料分割，以確保其狀態保持一致且可靠。實際上，我們會選擇接受一段無法使用的期間，以確保用戶端不會被告知其資料已儲存 (但事實並非如此)。請注意，如果您選擇允許從該具狀態服務的次要複本讀取，您可以在此狀態中繼續執行讀取作業。資料分割會保持仲裁遺失的狀態，直到恢復足量的複本，或直到叢集系統管理員強迫系統繼續使用 [Repair-ServiceFabricPartition API][repair-partition-ps] 為止。在主要複本關閉時執行這個動作，將會導致資料遺失。
 
 系統服務也會遭受遺失仲裁，而且會對有問題的服務造成特定影響。比方說，具名服務的仲裁遺失將會影響名稱解析，而容錯移轉管理員服務的仲裁遺失會封鎖新服務的建立與容錯移轉。請注意，不同於您自己的服務，並不建議嘗試修復系統服務。相反地，最好是單純地等候，直到關閉的複本恢復為止。
 
@@ -68,7 +68,7 @@
 
 ### 資料中心中斷服務或毀損
 
-在少數情況下，實體資料中心可能會因為電源或網路連線中斷而暫時無法使用。在這些情況下，Service Fabric 叢集和應用程式同樣會無法使用，但會保留您的資料。對於在 Azure 中執行的叢集，您可以在 [Azure 狀態頁面](azure-status-dashboard)上檢視中斷的更新。
+在少數情況下，實體資料中心可能會因為電源或網路連線中斷而暫時無法使用。在這些情況下，Service Fabric 叢集和應用程式同樣會無法使用，但會保留您的資料。對於在 Azure 中執行的叢集，您可以在 [Azure 狀態頁面][azure-status-dashboard]上檢視中斷的更新。
 
 在不太可能發生的整個實體資料中心毀損事件中，將會遺失其裝載的所有 Service Fabric 叢集以及其狀態。
 
@@ -82,7 +82,6 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 }
 ```
 
->[AZURE.NOTE] 備份與還原目前只適用於 Reliable Services API。即將推出的版本將會提供 Reliable Actors 的備份和還原。
 
 ### 軟體失敗和資料遺失的其他來源
 
@@ -92,20 +91,21 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 
 - 了解如何使用 [Testability 架構](service-fabric-testability-overview.md)模擬各種失敗狀況
 - 閱讀其他災害復原和高可用性的資源。Microsoft 已發佈大量有關這些主題的指引。雖然其中有些文件提到其他產品中使用的特定技術，但還是包含許多您可在 Service Fabric 內容中應用的一般最佳作法︰
- - [可用性檢查清單](azure-availability-checklist)
- - [執行災害復原演練](disaster-recovery-drill)
- - [Azure 應用程式的災害復原和高可用性](dr-ha-guide)
+ - [可用性檢查清單](../best-practices-availability-checklist.md)
+ - [執行災害復原演練](../sql-database/sql-database-disaster-recovery-drills.md)
+ - [Azure 應用程式的災害復原和高可用性][dr-ha-guide]
 
 
 <!-- External links -->
 
-[repair-partition-ps]: https://msdn.microsoft.com/zh-TW/library/mt163522.aspx
-[azure-status-dashboard]: https://azure.microsoft.com/zh-TW/status/
-[azure-availability-checklist]: https://azure.microsoft.com/zh-TW/documentation/articles/best-practices-availability-checklist/
-[disaster-recovery-drill]: https://azure.microsoft.com/zh-TW/documentation/articles/sql-database-disaster-recovery-drills/
+[repair-partition-ps]: https://msdn.microsoft.com/library/mt163522.aspx
+[azure-status-dashboard]: https://azure.microsoft.com/status/
+[azure-regions]: https://azure.microsoft.com/regions/
+[dr-ha-guide]: https://msdn.microsoft.com/library/azure/dn251004.aspx
+
 
 <!-- Images -->
 
 [sfx-cluster-map]: ./media/service-fabric-disaster-recovery/sfx-clustermap.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

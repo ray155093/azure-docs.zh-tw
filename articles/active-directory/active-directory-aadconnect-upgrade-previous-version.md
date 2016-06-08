@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="Identity"
-   ms.date="05/12/2016"
+   ms.date="05/19/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：從舊版升級到最新版本
@@ -23,11 +23,11 @@
 
 您可以採用幾種不同的策略來升級 Azure AD Connect。
 
-| 方法 | 說明 |
-| --- | --- |
-| [自動升級](active-directory-aadconnect-feature-automatic-upgrade.md) | 對於使用快速安裝的客戶，這是最簡單的方法。 |
-| [就地升級](#in-place-upgrade) | 如果您只有一台伺服器，請在該伺服器上就地升級安裝。 |
-| [變換移轉](#swing-migration) | 如果您有兩台伺服器，可以把其中一台升級成最新版本，然後在您準備好時變更作用中的伺服器。
+方法 | 說明
+--- | ---
+[自動升級](active-directory-aadconnect-feature-automatic-upgrade.md) | 對於使用快速安裝的客戶，這是最簡單的方法。
+[就地升級](#in-place-upgrade) | 如果您只有一台伺服器，請在該伺服器上就地升級安裝。
+[變換移轉](#swing-migration) | 如果您有兩台伺服器，可以把其中一台升級成最新版本，然後在您準備好時變更作用中的伺服器。
 
 如需必要權限的相關資訊，請參閱[升級所需的權限](active-directory-aadconnect-accounts-permissions.md#upgrade)。
 
@@ -85,4 +85,4 @@
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

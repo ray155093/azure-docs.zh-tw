@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="04/14/2016"
+   ms.date="05/19/2016"
    ms.author="andkjell;billmath"/>
 
 
@@ -28,18 +28,18 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 ## 相關文件
 如果您尚未閱讀有關[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md) 的文件，下表提供相關主題的連結。
 
-| 主題 | |
-| --------- | --------- |
-| 使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md) |
-| 使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md) |
-| 從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) |
+主題 |  
+--------- | ---------
+使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
+使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
+從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
 
 
 ## 快速設定安裝
 在「快速設定」中，安裝精靈會要求提供「AD DS 企業系統管理員」認證，以便設定您的內部部署 Active Directory，使其具備必要的 Azure AD Connect 權限。如果您是從 DirSync 升級，「AD DS 企業系統管理員」認證可用來重設 DirSync 所使用帳戶的密碼。您也會需要「Azure AD 全域管理員」認證。
 
 精靈頁面 | 收集的認證 | 所需的權限| 用於
-------------- | ------------- |------------- |------------- |
+------------- | ------------- |------------- |-------------
 N/A|執行安裝精靈的使用者| 本機伺服器的系統管理員| <li>建立用來作為[同步引擎服務帳戶](#azure-ad-connect-sync-service-account)的本機帳戶。
 連接至 Azure AD| Azure AD 目錄認證 | Azure AD 中的全域管理員角色 | <li>啟用 Azure AD 目錄中的同步處理。</li> <li>建立將在 Azure AD 中用於持續同步處理作業的 [Azure AD 帳戶](#azure-ad-service-account)。</li>
 連線到 AD DS | 內部部署 Active Directory 認證 | Active Directory 中 Enterprise Admins (EA) 群組成員| <li>在 Active Directory 中建立[帳戶](#active-directory-account)並授與權限。這個建立的帳戶是在同步處理期間用來讀取和寫入目錄資訊。</li>
@@ -53,14 +53,14 @@ N/A|執行安裝精靈的使用者| 本機伺服器的系統管理員| <li>建�
 ### 所建立之快速設定 AD DS 帳戶的權限
 為了讀取和寫入 AD DS 而建立的[帳戶](#active-directory-account)如果是由快速設定所建立，將會具備下列權限：
 
-| 權限 | 用於 |
-| ---- | ---- |
-| <li>複寫目錄變更</li><li>複寫目錄變更 (全部) | 密碼同步處理 |
-| 讀取/寫入所有屬性 (使用者) | 匯入和 Exchange 混合 |
-| 讀取/寫入所有屬性 (iNetOrgPerson) | 匯入和 Exchange 混合 |
-| 讀取/寫入所有屬性 (群組) | 匯入和 Exchange 混合 |
-| 讀取/寫入所有屬性 (連絡人) | 匯入和 Exchange 混合 |
-| 重設密碼 | 啟用密碼回寫的準備工作 |
+權限 | 用於
+---- | ----
+<li>複寫目錄變更</li><li>複寫目錄變更 (全部) | 密碼同步處理
+讀取/寫入所有屬性 (使用者) | 匯入和 Exchange 混合
+讀取/寫入所有屬性 (iNetOrgPerson) | 匯入和 Exchange 混合
+讀取/寫入所有屬性 (群組) | 匯入和 Exchange 混合
+讀取/寫入所有屬性 (連絡人) | 匯入和 Exchange 混合
+重設密碼 | 啟用密碼回寫的準備工作
 
 ## 自訂設定安裝
 使用自訂設定時，必須在安裝之前建立用來連接到 Active Directory 的帳戶。您可以在[建立 AD DS 帳戶](#create-the-ad-ds-account)中找到必須授與此帳戶的權限。
@@ -81,22 +81,22 @@ AD FS 服務帳戶頁面，「使用網域使用者帳戶選項」|AD 使用者�
 
 您需要的權限取決於您啟用的選用功能。如果您有多個網域，則必須對樹系中的所有網域授與權限。如果您未啟用任何一項功能，預設的**網域使用者**權限就已足夠。
 
-| 功能 | 權限 |
-| ------ | ------ |
-| 密碼同步處理 | <li>複寫目錄變更</li> <li>複寫所有目錄變更 |
-| Exchange 混合式部署 | [Exchange 混合回寫](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)中記載了使用者、群組和連絡人適用的屬性的寫入權限。 |
-| 密碼回寫 | [開始使用密碼管理](active-directory-passwords-getting-started.md#step-4-set-up-the-appropriate-active-directory-permissions)中記載了使用者適用的屬性的寫入權限。 |
-| 裝置回寫 | [裝置回寫](active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。|
-| 群組回寫 | 讀取、建立、更新和刪除散發群組所在 OU 中的群組物件。|
+功能 | 權限
+------ | ------
+密碼同步處理 | <li>複寫目錄變更</li> <li>複寫所有目錄變更
+Exchange 混合式部署 | [Exchange 混合回寫](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)中記載了使用者、群組和連絡人適用的屬性的寫入權限。
+密碼回寫 | [開始使用密碼管理](active-directory-passwords-getting-started.md#step-4-set-up-the-appropriate-active-directory-permissions)中記載了使用者適用的屬性的寫入權限。
+裝置回寫 | [裝置回寫](active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。
+群組回寫 | 讀取、建立、更新和刪除散發群組所在 OU 中的群組物件。
 
 ## 升級
 當您從一個版本的 Azure AD Connect 升級到新的版本時，您需要下列權限：
 
-| 主體 | 所需的權限 | 用於 |
-| ---- | ---- | ---- |
-| 執行安裝精靈的使用者 | 本機伺服器的系統管理員 | 更新二進位檔案。 |
-| 執行安裝精靈的使用者 | ADSyncAdmins 的成員 | 對同步處理規則和其他組態進行變更。 |
-| 執行安裝精靈的使用者 | 如果使用同步處理引擎資料庫的完整 SQL Server: DBO (或類似選項) | 變更資料庫層級，例如更新含有新資料行的資料表。 |
+主體 | 所需的權限 | 用於
+---- | ---- | ----
+執行安裝精靈的使用者 | 本機伺服器的系統管理員 | 更新二進位檔案。
+執行安裝精靈的使用者 | ADSyncAdmins 的成員 | 對同步處理規則和其他組態進行變更。
+執行安裝精靈的使用者 | 如果使用同步處理引擎資料庫的完整 SQL Server: DBO (或類似選項) | 變更資料庫層級，例如更新含有新資料行的資料表。
 
 ## 已建立帳戶的相關資訊
 
@@ -134,4 +134,4 @@ AD FS 服務帳戶頁面，「使用網域使用者帳戶選項」|AD 使用者�
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

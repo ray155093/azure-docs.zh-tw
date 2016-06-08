@@ -57,10 +57,15 @@ Azure 所使用的憑證可以包含私密或公開金鑰。憑證具有指紋�
 
 ### Makecert.exe
 
-此公用程式會與 Visual Studio 2013/2015 一起安裝。它是一個主控台公用程式，可讓您建立並安裝憑證。如果您啟動安裝 Visual Studio 時所建立的 **VS2015 的開發人員命令提示字元**捷徑，在路徑中將會出現一個包含此工具的命令提示字元。
+此公用程式已被取代，此處不再說明。如需詳細資訊，請參閱[這篇 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa386968)。
 
-    makecert -sky exchange -r -n "CN=[CertificateName]" -pe -a sha1 -len 2048 -ss My -sv [CertificateName].pvk [CertificateName].cer
+### PowerShell
 
+```
+$cert = New-SelfSignedCertificate -DnsName yourdomain.cloudapp.net -CertStoreLocation "cert:\LocalMachine\My"
+$password = ConvertTo-SecureString -String "your-password" -Force -AsPlainText
+Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $password
+```
 
 ### 網際網路資訊服務 (IIS)
 
@@ -80,4 +85,4 @@ Azure 所使用的憑證可以包含私密或公開金鑰。憑證具有指紋�
 
 >[AZURE.NOTE] Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0525_2016-->

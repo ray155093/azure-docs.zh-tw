@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用 Azure 傳統入口網站管理 Azure SQL Database"
-	description="了解如何使用 Azure 傳統入口網站來管理雲端中的關聯式資料庫。"
+	pageTitle="使用 Azure 入口網站管理 Azure SQL Database"
+	description="了解如何在 Azure 傳統入口網站中使用 Azure 入口網站管理雲端中的關聯式資料庫。"
 	services="sql-database"
 	documentationCenter=""
 	authors="stevestein"
@@ -13,7 +13,7 @@
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"
-	ms.date="05/10/2016"
+	ms.date="05/20/2016"
 	ms.author="sstein"/>
 
 
@@ -74,4 +74,4 @@ Azure SQL Database 可以設定為以非同步方式，將已認可的交易複�
 
 - [SQL Database](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

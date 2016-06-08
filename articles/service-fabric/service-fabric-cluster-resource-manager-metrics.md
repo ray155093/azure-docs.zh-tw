@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/20/2016"
    ms.author="masnider"/>
 
 # 在 Service Fabric 中使用度量管理資源耗用量和負載
 度量是 Service Fabric 中您的服務所關切的資源的通用詞彙。一般而言，度量就是任何您想要從資源觀點進行管理，以便處理您的服務效能的項目。
 
-在上述所有範例中，我們一直以隱含方式提到度量；諸如記憶體、磁碟、CPU 使用率 – 這些全部都是度量的範例。這些是實體度量，也就是對應至節點上需要管理之實體資源的資源。度量也可以是邏輯度量，例如應用程式定義的 “MyWorkQueueDepth”，其對應於某個層級的資源耗用量 (但應用程式並沒有真正了解或不知道如何測量它）。
+在上述所有範例中，我們一直以隱含方式提到度量；諸如記憶體、磁碟、CPU 使用率 – 這些全部都是度量的範例。這些是實體度量，也就是對應至節點上需要管理之實體資源的資源。度量也可以是邏輯度量，例如應用程式定義的 “MyWorkQueueDepth”，其對應於某個層級的資源耗用量 (但應用程式並沒有真正了解或不知道如何測量它）。事實上，我們看到使用者使用的大部分度量是邏輯度量。這有各種原因，但是最常見的原因是現今我們的許多客戶會使用受管理的程式碼撰寫他們的服務，很難從指定的無狀態服務執行個體或具狀態服務複本物件測量和報告實際實體資源的耗用量。報告您自己的度量的複雜度也是為什麼我們要提供現成的一些預設度量。
 
 ## 預設度量
-假設您只想要開始使用，但不知道您即將取用哪些資源，或甚至哪些資源對您很重要。所以您進行實作，然後建立您的服務，但未指定任何度量。沒關係！ 我們將為您挑選一些度量。如果您未指定任何自己的度量，我們今天為您使用的預設度量就稱為 PrimaryCount、ReplicaCount 和 (我們知道有點模糊) Count。下表顯示我們預設追蹤的這些度量各有多少負載︰
+假設您只想要開始使用，但不知道您即將取用哪些資源，或甚至哪些資源對您很重要。所以您進行實作，然後建立您的服務，但未指定任何度量。沒關係！ 我們將為您挑選一些度量。如果您未指定任何自己的度量，我們今天為您使用的預設度量就稱為 PrimaryCount、ReplicaCount 和 (我們知道有點模糊) Count。下表顯示這些度量各有多少負載與每個服務物件有關聯︰
 
 | 度量 | 無狀態執行個體負載 |	具狀態次要負載 |	具狀態主要負載 |
 |--------|--------------------------|-------------------------|-----------------------|
@@ -42,14 +42,16 @@
 
 相當不錯！
 
-在您開始思考下面問題之前，這是很適合的方法︰不同服務的所有主要複本竟然立即展現相同的負載，真正的可能性為何？ 此外，指定服務的負載在一段時間內保持不變的機率為何？ 結果是，對任何嚴重的工作負載而言，可能性實際上很低。
+這非常適合，直到您開始思考︰您選擇的資料分割配置導致經過一段時間讓所有資料分割完全平均使用的可能性？ 此外，指定服務的負載在一段時間內保持不變的機率為何，或只是現在相同？ 結果，對於任何嚴重的工作負載，它實際上相當低，因此如果您對於獲得叢集最大使用量感興趣，可能會想要開始考慮自訂度量。
 
-實際上，您絕對可以搭配預設度量執行，或至少搭配靜態自訂度量執行，但這麼做通常意味著您的叢集使用率低於您的期望 (因為報告不具調適性)；在最糟的情況下，也可能導致過度排程的節點，因而造成效能問題。使用自訂度量和動態負載報告，我們可以處理得比較好。我們一起來看看後續的章節 – 自訂度量和動態負載。
+實際上，您絕對可以搭配預設度量執行，或至少搭配靜態自訂度量執行，但這麼做通常意味著您的叢集使用率低於您的期望 (因為報告不具調適性)；在最糟的情況下，也可能導致過度排程的節點，因而造成效能問題。使用自訂度量和動態負載報告，我們可以處理得比較好。
+
+我們一起來看看後續的章節 – 自訂度量和動態負載。
 
 ## 自訂度量
-我們已經討論過可以有實體和邏輯度量，而且使用者可以定義自己的度量。要如何處理這些度量？ 真的很簡單！ 只要在建立服務時設定度量和預設初始負載，就大功告成！ 當您建立服務時，可以為每個服務執行個體設定任何一組度量和預設值。
+我們已經討論過可以有實體和邏輯度量，而且使用者可以定義自己的度量。但是怎麼做？ 其實很簡單！ 只要在建立服務時設定度量和預設初始負載，就大功告成！ 當您建立服務時，可以為每個具名服務執行個體設定任何一組度量和預設值。
 
-請注意，當您開始定義自訂度量時，如果您希望我們也將預設度量用於平衡您的服務，則必須明確地加回預設度量。這是因為我們希望您能清楚了解預設度量與自訂度量之間的關聯性 – 您或許比較在意記憶體耗用量 (相較於主要分配)，或者您也許有數個想要與預設度量「混合」的度量。
+請注意，當您開始定義自訂度量時，如果您希望我們也將預設度量用於平衡您的服務，則必須明確地加回預設度量。這是因為我們希望您能清楚了解預設度量與自訂度量之間的關聯性 – 相較於主要分配，您或許比較在意記憶體耗用量或 WorkQueueDepth。
 
 假設您想要設定一項服務，該服務會報告名為「記憶體」的度量 (除了預設度量以外)。對於記憶體，我們假設您已完成一些基本測量，並且知道該服務的主要複本通常佔用 20Mb 的記憶體，而該相同服務的次要複本則佔用 5Mb。您知道就管理這項特定服務的效能而論，記憶體是最重要的度量，但您仍希望主要複本達到平衡，某個節點或容錯網域的遺失才不會取用過多的主要複本。除此之外，您將採用預設值。
 
@@ -59,25 +61,25 @@
 
 ```csharp
 StatefulServiceDescription serviceDescription = new StatefulServiceDescription();
-ServiceLoadMetricDescription memoryMetric = new ServiceLoadMetricDescription();
+StatefulServiceLoadMetricDescription memoryMetric = new StatefulServiceLoadMetricDescription();
 memoryMetric.Name = "MemoryInMb";
 memoryMetric.PrimaryDefaultLoad = 20;
 memoryMetric.SecondaryDefaultLoad = 5;
 memoryMetric.Weight = ServiceLoadMetricWeight.High;
 
-ServiceLoadMetricDescription primaryCountMetric = new ServiceLoadMetricDescription();
+StatefulServiceLoadMetricDescription primaryCountMetric = new StatefulServiceLoadMetricDescription();
 primaryCountMetric.Name = "PrimaryCount";
 primaryCountMetric.PrimaryDefaultLoad = 1;
 primaryCountMetric.SecondaryDefaultLoad = 0;
 primaryCountMetric.Weight = ServiceLoadMetricWeight.Medium;
 
-ServiceLoadMetricDescription replicaCountMetric = new ServiceLoadMetricDescription();
+StatefulServiceLoadMetricDescription replicaCountMetric = new StatefulServiceLoadMetricDescription();
 replicaCountMetric.Name = "ReplicaCount";
 replicaCountMetric.PrimaryDefaultLoad = 1;
 replicaCountMetric.SecondaryDefaultLoad = 1;
 replicaCountMetric.Weight = ServiceLoadMetricWeight.Low;
 
-ServiceLoadMetricDescription totalCountMetric = new ServiceLoadMetricDescription();
+StatefulServiceLoadMetricDescription totalCountMetric = new StatefulServiceLoadMetricDescription();
 totalCountMetric.Name = "Count";
 totalCountMetric.PrimaryDefaultLoad = 1;
 totalCountMetric.SecondaryDefaultLoad = 1;
@@ -110,7 +112,7 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 負載是特定節點上的某個服務執行個體或複本取用多少特定度量的一般概念。
 
 ## 預設負載
-預設負載是資源管理員從實際的服務執行個體或複本收到任何更新之前，應假設每個服務執行個體或複本將取用多少負載。對於較簡單的服務，這就是永遠不會動態更新的靜態定義，因此將用於服務的存留期。這很適合用於簡單的容量規劃，因為這正好是我們習慣的做法 – 將某些資源投注於某些工作負載，好處是至少我們現在是以微服務的心態運作，其中的資源實際上不會靜態指派給特定工作負載，而其中的人員也不在决策圈內。
+預設負載是叢集 Resource Manager 從實際的服務執行個體或複本收到任何更新之前，應假設每個服務執行個體或複本將取用多少負載。對於較簡單的服務，這就是永遠不會動態更新的靜態定義，因此將用於服務的存留期。這很適合用於簡單的容量規劃，因為這正好是我們習慣的做法 – 將某些資源投注於某些工作負載，好處是至少我們現在是以微服務的心態運作，其中的資源實際上不會靜態指派給特定工作負載，而其中的人員也不在决策圈內。
 
 我們允許具狀態服務指定其主要複本和次要複本的預設負載 – 實際上對許多服務而言，這些數字都不同，因為主要複本和次要複本會執行不同的工作負載，而且主要複本通常可用於讀取和寫入 (以及大部分的運算負荷)，而主要複本的預設負載會大於次要複本。
 
@@ -185,10 +187,10 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 將度量權數納入考量，全域平衡會根據度量權數的平均值計算。我們會平衡服務與其自己的已定義度量權數。
 
 ## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
+- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集 Resource Manager 組態的相關主題
 - 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
+- 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+- 從頭開始，並[取得 Service Fabric 叢集 Resource Manager 的簡介](service-fabric-cluster-resource-manager-introduction.md)
 - 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。若要深入了解移動成本，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-metrics/cluster-resource-manager-cluster-layout-with-default-metrics.png
@@ -196,4 +198,4 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 [Image3]: ./media/service-fabric-cluster-resource-manager-metrics/cluster-resource-manager-metric-weights-impact.png
 [Image4]: ./media/service-fabric-cluster-resource-manager-metrics/cluster-resource-manager-global-vs-local-balancing.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0525_2016-->

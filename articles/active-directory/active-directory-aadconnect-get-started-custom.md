@@ -4,7 +4,7 @@
 	services="active-directory"
     keywords="何謂 Azure AD Connect、安裝 Active Directory、Azure AD 的必要元件"
 	documentationCenter=""
-	authors="billmath"
+	authors="andkjell"
 	manager="stevenpo"
 	editor="curtand"/>
 
@@ -14,25 +14,22 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/19/2016"
+	ms.date="05/31/2016"
 	ms.author="billmath;andkjell"/>
 
 # 自訂 Azure AD Connect 安裝
-以下文件提供有關使用 Azure AD Connect 自訂安裝選項的資訊。若要取得其他組態選項或如果需要未涵蓋在快速安裝中的選用功能，您可以使用此選項。
+當您想要更多安裝選項時，可使用 Azure AD Connect **自訂設定**。如果您有多個樹系，或如果您想要設定未涵蓋在快速安裝中的選用功能，可使用它。只要是[**快速安裝**](active-directory-aadconnect-get-started-express.md)選項不能滿足部署或拓撲的情況，就可使用它。
 
-## 相關文件
-如果您尚未閱讀[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)上的文件，下表提供相關主題的連結。在開始安裝之前，您需要閱讀以粗體顯示的前三個主題。
+在開始安裝 Azure AD Connect 之前，請務必要[下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) 並完成 [Azure AD Connect：硬體和必要條件](active-directory-aadconnect-prerequisites.md)中的必要條件步驟。另外，也請確定您具有 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md)中所述的必要帳戶。
 
-主題 |  
---------- | ---------
-**下載 Azure AD Connect** | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
-**硬體和必要條件** | [Azure AD Connect：硬體和必要條件](active-directory-aadconnect-prerequisites.md#hardware-requirements-for-azure-ad-connect)
-**用於安裝的帳戶** | [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md)
-使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
-從 DirSync 升級 | [從 Azure AD Sync 工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
-安裝之後 | [驗證安裝和指派授權](active-directory-aadconnect-whats-next.md)
+如果自訂的設定不符合拓撲，例如若要升級 DirSync，請參閱[相關文件](#related-documentation)中的其他案例。
 
-## 安裝必要的元件
+## Azure AD Connect 的自訂設定安裝
+
+### 快速設定
+在此頁面上，按一下 [自訂] 以啟動自訂設定安裝。
+
+### 安裝必要的元件
 安裝同步處理服務時，您可以將選用組態區段保持未核取狀態，Azure AD Connect 會自動設定所有項目。它會設定 SQL Server 2012 Express LocalDB 執行個體、建立適當的群組，以及指派權限。如果您想要變更預設值，則可以使用下表了解可用的選用組態選項。
 
 ![必要的元件](./media/active-directory-aadconnect-get-started-custom/requiredcomponents.png)
@@ -43,7 +40,7 @@
 使用現有的服務帳戶 | Azure AD Connect 預設會建立本機服務帳戶，以供同步處理服務使用。密碼是自動產生的，但安裝 Azure AD Connect 的人員並不知道。如果您使用遠端 SQL Server 或使用需要驗證的 Proxy，您需要在網域中有一個服務帳戶並知道密碼。在這類情況下，請輸入要使用的服務帳戶。請確定執行安裝的使用者為 SQL 中的 SA，才可建立服務帳戶的登入。請參閱 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md#custom-settings-installation)
 指定自訂同步群組 | Azure AD Connect 預設會在安裝同步處理服務時，建立四個伺服器的本機群組。這些群組如下：[系統管理員] 群組、[操作員] 群組、[瀏覽] 群組和 [密碼重設群組]。您可以在此指定自己的群組。群組必須位於伺服器本機上，不能位於網域中。
 
-## 使用者登入
+### 使用者登入
 在安裝必要元件後，系統會要求您選取使用者的單一登入方法。下表提供可用選項的簡短說明。如需登入方法的完整說明，請參閱[使用者登入](active-directory-aadconnect-user-signin.md)。
 
 ![使用者登入](./media/active-directory-aadconnect-get-started-custom/usersignin.png)
@@ -54,7 +51,7 @@
 與 AD FS 同盟 | 使用者可使用他們在內部部署網路中使用的相同密碼登入 Microsoft Cloud 服務，例如 Office 365。系統會將使用者重新導向至他們的內部部署 AD FS 執行個體以進行登入，並在內部部署中進行驗證。
 請勿設定 | 不會安裝和設定任何功能。如果您已經有第三方的同盟伺服器或另一個現有的適當方案，請選擇此選項。
 
-## 連接至 Azure AD
+### 連接至 Azure AD
 在 [連接至 Azure AD] 畫面中，輸入全域系統管理員的帳戶和密碼。如果您在前一個頁面選取 [與 AD FS 同盟]，請勿以您打算啟用同盟的網域中的帳戶登入。建議使用隨附於 Azure AD 目錄的預設 **onmicrosoft.com** 網域中的帳戶。
 
 此帳戶只會用來在 Azure AD 中建立服務帳戶，而且在精靈完成後便不會使用。![使用者登入](./media/active-directory-aadconnect-get-started-custom/connectaad.png)
@@ -246,6 +243,19 @@ AD Connect 會嘗試在設定階段驗證網域。如果您繼續進行設定，
 
 安裝了 Azure AD Connect 之後，您可以[驗證安裝和指派授權](active-directory-aadconnect-whats-next.md)。
 
+深入了解這些在安裝時啟用的功能︰[防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)和 [Azure AD Connect Health](active-directory-aadconnect-health-sync.md)。
+
+深入了解這些常見主題︰[排程器和如何觸發同步處理](active-directory-aadconnectsync-feature-scheduler.md)。
+
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+## 相關文件
+
+主題 |  
+--------- | ---------
+Azure AD Connect 概觀 | [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
+從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
+用於安裝的帳戶 | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
+
+<!---HONumber=AcomDC_0601_2016-->

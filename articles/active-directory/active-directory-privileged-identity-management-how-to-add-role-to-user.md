@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/18/2016"
+   ms.date="05/19/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何新增或移除使用者角色
 
 使用 Azure Active Directory (AD)，全域系統管理員 (或公司系統管理員) 可以更新哪些使用者獲**永久**指派 Azure AD 的角色。做法是使用 PowerShell Cmdlet，如 `Add-MsolRoleMember` 和 `Remove-MsolRoleMember`。或者可以依[在 Azure Active Directory (Azure AD) 中指派系統管理員角色](active-directory-assign-admin-roles.md)中所述，使用 Azure 傳統入口網站。
 
-Azure AD Privileged Identity Management 應用程式也允許安全性系統管理員指派永久的角色。不過，它也讓系統管理員新增或移除**暫時**指派給這些角色的候選人員。候選人員可以在有需要時啟用角色，一等他們完成工作，權限即到期。
+Azure AD Privileged Identity Management 應用程式也允許特殊權限角色管理員指派永久的角色。不過，它也讓系統管理員新增或移除**暫時**指派給這些角色的候選人員。候選人員可以在有需要時啟用角色，一等他們完成工作，權限即到期。
 
 ## 在 Azure 入口網站管理使用 PIM 的角色
 
@@ -64,4 +64,4 @@ Azure AD Privileged Identity Management 應用程式也允許安全性系統管�
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0525_2016-->

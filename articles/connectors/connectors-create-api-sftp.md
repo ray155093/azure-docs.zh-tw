@@ -1,12 +1,12 @@
 <properties
-	pageTitle="在您的邏輯應用程式中新增 SFTP API | Microsoft Azure"
-	description="搭配 REST API 參數來使用 SFTP API 的概觀"
-	services=""
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""
-	tags="connectors"/>
+    pageTitle="在您的 Logic Apps 中新增 SFTP 連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 SFTP 連接器的概觀"
+    services=""
+    documentationCenter="" 
+    authors="MandiOhlinger"
+    manager="erikre"
+    editor=""
+    tags="connectors"/>
 
 <tags
    ms.service="multiple"
@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="02/25/2016"
+   ms.date="05/18/2016"
    ms.author="mandia"/>
 
-# 開始使用 SFTP API
-連線到 SFTP 伺服器來管理您的檔案。您可以在 SFTP 伺服器上進行各種不同的工作，例如上傳檔案、刪除檔案等等。您可以從下列應用程式使用 SFTP API：
+# 開始使用 SFTP 連接器 
+連線到 SFTP 伺服器來管理您的檔案。您可以在 SFTP 伺服器上進行各種不同的工作，例如上傳檔案、刪除檔案等等。您可以從下列應用程式使用 SFTP 連接器︰
 
 - 邏輯應用程式
 
@@ -34,17 +34,17 @@
 
 
 ## 觸發程序及動作
-SFTP API 提供下列觸發程序及動作。
+SFTP 連接器提供下列觸發程序和動作。
 
 觸發程序 | 動作
 --- | ---
 <ul><li>當檔案建立或遭到修改時</li></ul> | <ul><li>建立檔案</li><li>複製檔案</li><li>刪除檔案</li><li>解壓縮到資料夾</li><li>取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案建立或遭到修改時</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
 ## 建立至 SFTP 的連線
-當您將這個 API 新增到邏輯應用程式時，請輸入下列的值：
+當您將這個連接器新增到邏輯應用程式時，請輸入下列的值：
 
 |屬性| 必要|說明|
 | ---|---|---|
@@ -53,7 +53,11 @@ SFTP API 提供下列觸發程序及動作。
 |密碼 | 是 | 輸入使用者名稱的密碼。|
 |SSH 伺服器主機金鑰指紋 | 是 | 輸入 SSH 伺服器的公開主機主機金鑰指紋。<br/><br/>一般來說，伺服器的系統管理員可以提供您這個金鑰。但您也可以使用 ```WinSCP``` 或 ```ssh-keygen-g3 -F``` 工具來取得金鑰指紋。 | 
 
-當您建立連線之後，請輸入 SFTP 的屬性，例如資料夾路徑或檔案。本主題的＜REST API 參考＞一節會說明這些屬性。
+以下是逐步執行來建立連線的步驟︰
+
+>[AZURE.INCLUDE [建立至 SFTP 連線的步驟](../../includes/connectors-create-api-sftp.md)]
+
+當您建立連線之後，請輸入 SFTP 的屬性，例如資料夾路徑或檔案。本主題的 **REST API 參考**一節會說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 SFTP 連線。
 
@@ -62,7 +66,7 @@ SFTP API 提供下列觸發程序及動作。
 適用的版本：1.0。
 
 ### 建立檔案
-把檔案上傳到 SFTP。```POST: /datasets/default/files```
+將檔案上傳到 SFTP。```POST: /datasets/default/files```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -77,7 +81,7 @@ SFTP API 提供下列觸發程序及動作。
 |預設值|作業失敗。|
 
 ### 複製檔案
-把檔案複製到 SFTP。```POST: /datasets/default/copyFile```
+將檔案複製到 SFTP。```POST: /datasets/default/copyFile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -191,7 +195,7 @@ SFTP API 提供下列觸發程序及動作。
 
 
 ### 當檔案建立或遭到修改時 
-當 SFTP 中有檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
+當 SFTP 中的檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
@@ -250,4 +254,4 @@ SFTP API 提供下列觸發程序及動作。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

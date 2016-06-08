@@ -1,0 +1,101 @@
+<properties
+   pageTitle="操作 Azure SQL Database 中的查詢存放區"
+   description="了解如何操作 Azure SQL Database 中的查詢存放區"
+   keywords=""
+   services="sql-database"
+   documentationCenter=""
+   authors="carlrabeler"
+   manager="jhubbard"
+   editor=""/>
+
+<tags
+   ms.service="sql-database"
+   ms.devlang="NA"
+   ms.topic="article"
+   ms.tgt_pltfrm="performance"
+   ms.workload="data-management"
+   ms.date="05/25/2016"
+   ms.author="carlrab"/>
+
+# 操作 Azure SQL Database 中的查詢存放區 
+
+Azure 中的查詢存放區是完全受管理的資料庫功能，可持續收集及呈現有關所有查詢的詳細歷程記錄資訊。您可以將查詢存放區視為類似於飛航資料記錄器，可大幅簡化雲端選項與內部部署客戶的查詢效能疑難排解。這篇文章說明在 Azure 中操作查詢存放區的特定層面。使用此預先收集的查詢資料，使用者可以快速地診斷並解決效能問題，因此花更多時間專注於業務上。
+
+查詢存放區已自 2015 年 11 月在 Azure SQL Database 中[通用版本上市](https://azure.microsoft.com/updates/general-availability-azure-sql-database-query-store/)。查詢存放區是效能分析及調整功能的基礎，例如 [SQL Database 建議程式和效能儀表板](https://azure.microsoft.com/updates/sqldatabaseadvisorga/)。在本文發行時，查詢存放區正於 Azure 中執行 200,000 個以上的使用者資料庫，不間斷地收集數個月的查詢相關資訊。
+
+> [AZURE.IMPORTANT] Microsoft 正在為所有 Azure SQL Database (現有和新的) 啟動查詢存放區。此啟動程序目前包括只有單一資料庫，但在不久的將來會擴大為彈性集區資料庫。使用彈性集區時，僅對小部分的資料庫啟用查詢存放區。對彈性集區中的所有資料庫啟用查詢存放區，可能會導致過多的資源使用，並可能導致讓您的系統沒有回應。
+
+## 查詢存放區作為 Azure SQL Database 中的受管理功能
+
+Azure SQL Database 中運作的存放區查詢根據兩個基本原則：
+
+- 原因對客戶工作負載的影響不可見
+- 除非客戶工作負載受影響，否則會持續監視查詢
+
+對客戶工作負載的影響有兩個維度：
+
+- ***可用性***：查詢存放區正在執行時，不會減少 SQL Database 的 SLA。
+- ***效能***：查詢存放區導致的平均負擔通常是在 1-2% 的範圍
+
+Azure 中查詢存放區的運作會使用有限的資源 (CPU、記憶體、磁碟 I/O、磁碟大小等)。它會遵守各種系統限制，以對一般工作負載有最低限度的影響。一般情況下，查詢存放區會在兩個層面採用資源限制：
+
+- ***靜態限制：***指定服務層 (基本、標準、進階、彈性集區) 的資源容量所加諸的限制。
+- ***動態限制：***目前的工作負載耗用 (即可用資源) 所加諸的限制。
+
+為了確保連續且可靠的作業，Azure SQL Database 已對會收集來自每個資料庫重要作業資料的查詢存放區，建置了永久監視基礎結構。因此，正不斷地監視數個技術 KPI 以確保可靠性：
+
+- 例外狀況和自動風險降低的數目
+- READ\_ONLY 狀態的資料庫數目和 READ\_ONLY 狀態的持續時間
+- 每個自動清除頻率和持續期間的前幾大資料庫
+- 每個載入資料至記憶體持續期間 (初始化期間) 前幾大資料庫
+- 每個排清資料到磁碟持續期間的前幾大資料庫
+
+Azure SQL Database 會使用收集到的資料，以便：
+
+- ***解決或減輕查詢存放區所造成的問題：***Azure SQL Database 可以偵測並減輕對客戶工作負載有實質上影響、具有低延遲 (少於一小時) 的問題。通常，問題會由查詢存放區暫時設定為 ***OFF***。
+- ***了解大量的資料庫的使用模式，並因此改善功能的可靠性及品質：***查詢存放區已隨著 Azure SQL Database 的每個更新獲得改善。 
+
+有時候，查詢存放區更新會造成套用至內部和極少外部 (面對客戶) 組態預設值的變更。因此，Azure SQL Database 上的查詢存放區的客戶體驗可能因為查詢存放區平台自動執行的動作內部部署環境間而不同：
+
+- 可以將查詢存放區狀態變更為 ***OFF*** 以減輕問題，並問題解決時回到 ***ON***。
+- 可以變更查詢存放區組態，以確保可靠的工作。執行方式可以是：
+    - 可解決不穩定或不可靠問題的個別資料庫變更。
+    - 全域推出最佳組態變更可為使用查詢存放區的所有資料庫提供優點。
+
+將查詢存放區 ***OFF*** 是範圍限於個別資料庫的自動動作。它會發生在有產品行為會對使用者資料庫造成負面影響，而偵測機制會引發警示時。針對該特定資料庫，查詢存放區會保持 ***OFF*** 直到具有改善查詢存放區實作的新版本可供使用為止。當發生轉換至 ***OFF*** 狀態時，客戶會透過電子郵件收到通知，並被建議避免重新啟用查詢存放區，直到新版本推出為止。在新推出之後，Azure SQL Database 基礎結構會為已設定為 ***OFF*** 的任何資料庫自動啟動查詢存放區。
+
+有時，Azure SQL Database 可能會對所有使用者資料庫強制執行新的組態預設值，針對可靠的工作與持續收集資料最佳化。
+
+## 最佳查詢存放區組態
+
+本小節描述最佳的組態預設值，其設計是用來確保查詢存放區以及相依功能 (例如：[SQL Database 建議程式和效能儀表板](https://azure.microsoft.com/updates/sqldatabaseadvisorga/)) 能夠可靠地作業。預設組態已針對持續收集資料最佳化，也就是在 OFF/READ\_ONLY 狀態花費最少的時間。
+
+| 組態 | 說明 | 預設值 | 註解 |
+| ------------- | ----------- | ------- | ------- |
+| MAX\_STORAGE\_SIZE\_MB | 指定查詢存放區會在客戶資料庫內佔用的資料空間的限制 | 100 | 對新資料庫強制執行 |
+| INTERVAL\_LENGTH\_MINUTES | 定義彙總和保存查詢計畫所收集到的執行階段統計資料的時段大小。對於此組態定義的一段時間，每個使用中的查詢計畫將會有最多一個資料列 | 60 | 對新資料庫強制執行 |
+| STALE\_QUERY\_THRESHOLD\_DAYS | 以時間為基礎的清理原則，可控制保存執行階段統計資料和非使用中查詢的保留期限 | 30 | 對新資料庫和具有先前的預設值 (367) 的資料庫強制執行 |
+| SIZE\_BASED\_CLEANUP\_MODE | 指定當查詢存放區資料大小接近限制時，是否進行自動資料清理 | AUTO | 對所有資料庫強制執行 |
+| QUERY\_CAPTURE\_MODE | 指定是否會追蹤所有查詢或只有查詢的子集 | AUTO | 對所有資料庫強制執行 |
+| FLUSH\_INTERVAL\_SECONDS | 指定擷取的執行階段統計資料在排清到磁碟之前，會保留在記憶體中的最大期間 | 900 | 對新資料庫強制執行 |
+||||||
+
+上述的預設值將會在所有的 Azure SQL Database 中查詢存放區啟動的最後階段自動套用。在這次推出之後，Azure SQL Database 不會變更客戶所設定的組態值，除非該組態值會對主要工作負載或查詢存放區的可靠操作造成負面影響。
+
+如果您想要繼續使用您的自訂設定，請使用 [使用查詢存放區選項修改資料庫](https://msdn.microsoft.com/library/bb522682.aspx)，以將組態還原為先前的狀態。查看[查詢存放區的最佳作法](https://msdn.microsoft.com/library/mt604821.aspx)以了解如何選擇最佳的組態參數。
+
+## 後續步驟
+
+[SQL Database 效能深入解析](sql-database-performance.md)
+
+## 詳細資訊
+
+如需詳細資訊，請參閱下列文章：
+
+- [您的資料庫的航班資料錄製器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database) 
+
+- [查詢存放區使用案例](https://msdn.microsoft.com/library/mt614796.aspx)
+
+- [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
+
+<!---HONumber=AcomDC_0525_2016-->

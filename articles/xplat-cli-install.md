@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="command-line-interface"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="05/23/2016"
 	ms.author="danlep"/>
     
 # 安裝 Azure CLI
@@ -23,30 +23,31 @@
 - [PowerShell](powershell-install-configure.md)
 - [Azure CLI](xplat-cli-install.md)
 
-快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。您有數個安裝選擇：針對不同的作業系統使用提供的其中一個安裝程式封裝、從 npm 封裝中進行安裝，或將 Azure CLI 安裝為 Docker 主機中的容器。如需詳細的選項和背景，請參閱 [GitHub](https://github.com/azure/azure-xplat-cli) 上的專案儲存機制。
+快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。您有數個安裝選擇：從 npm 套件進行安裝 (需要 Node.js 和 npm)、針對不同作業系統使用其中一個提供的安裝程式套件，或是將 Azure CLI 安裝成 Docker 主機中的容器。如需詳細的選項和背景，請參閱 [GitHub](https://github.com/azure/azure-xplat-cli) 上的專案儲存機制。
 
 
 安裝好 Azure CLI 之後，您就能[使用 Azure 訂用帳戶將其連接](xplat-cli-connect.md)，並從命令列介面 (Bash、終端機及命令提示字元等) 中執行 **azure** 命令以使用 Azure 資源。
 
 
-## 使用安裝程式
-
-我們提供以下安裝程式套件：
-
-* [Windows 安裝程式][windows-installer]
-
-* [OS X 安裝程式][mac-installer]
-
-* [Linux 安裝程式][linux-installer]
-
 
 ## 安裝 npm 封裝
 
-或者，如果您的系統已經安裝最新的 Node.js 和 npm，請執行下列命令來安裝 Azure CLI 封裝(在 Linux 散發套件中，您可能需要使用 **sudo**，才能順利執行 __npm__ 命令)。
+若要從 npm 套件安裝 CLI，您的系統上將需要安裝最新的 Node.js 和 npm。接著，請執行下列命令來安裝 Azure CLI 套件。(在 Linux 散發套件上，您可能需要使用 **sudo**，才能順利執行 __npm__ 命令)。
 
 	npm install azure-cli -g
 
 > [AZURE.NOTE]如果您需要安裝或更新您作業系統的 Node.js 和 npm，請參閱 [Nodejs.org](https://nodejs.org/en/download/package-manager/) 上的文件。建議您安裝最新的 Node.js LTS 版本 (4.x)。如果您使用較舊的版本，可能會發生安裝錯誤。
+
+## 使用安裝程式
+
+下列安裝程式套件也可供下載：
+
+
+* [OS X 安裝程式][mac-installer]
+
+* [Windows 安裝程式][windows-installer]
+
+* [Linux tar 檔案][linux-installer] \(需要 Node.js 和 npm) - 透過執行 `sudo npm install -g <path to downloaded tar file>` 來安裝
 
 
 ## 使用 Docker 容器
@@ -75,18 +76,36 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 azure --version
 ```
 
-您現在已經準備就緒！ 若要存取所有 CLI 命令以搭配您的資源使用，請[從 Azure CLI 連接到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
+您現在已經準備就緒！ 若要存取所有 CLI 命令以與您自己的資源搭配使用，請[從 Azure CLI 連接到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
 
->[AZURE.NOTE] 當您第一次使用 Azure CLI 版本 0.9.20 或更新版本時，會看到一則訊息，詢問您是否要允許 Microsoft 收集您如何使用 CLI 的相關資訊。參與為自願性質。如果您選擇參與，則執行 `azure telemetry --disable` 隨時都可以停止。若要隨時啟用參與，請執行 `azure telemetry --enable`。
+>[AZURE.NOTE] 當您第一次使用 Azure CLI 版本 0.9.20 或更新版本時，會看到一則訊息，詢問您是否要允許 Microsoft 收集您如何使用 CLI 的相關資訊。參與為自願性質。如果您選擇參與，只要執行 `azure telemetry --disable` 即可隨時停止參與。若要隨時啟用參與，請執行 `azure telemetry --enable`。
 
 
 ## 更新 CLI
 
-Microsoft 經常發行 Azure CLI 的更新版本。使用適用於您作業系統的安裝程式重新安裝 CLI，或者，如果您已安裝最新的 Node.js 和 npm，請輸入下列命令進行更新 (您可能需要在 Linux 散發套件上使用 **sudo**)。
+Microsoft 經常發行 Azure CLI 的更新版本。使用適用於您作業系統的安裝程式來重新安裝 CLI，或者，如果您已安裝最新的 Node.js 和 npm，請輸入下列命令來進行更新 (在 Linux 散發套件上，您可能需要使用 **sudo**)。
 
 ```
 npm update -g azure-cli
 ```
+
+## 啟用 TAB 鍵自動完成
+
+針對 Mac 和 Linux 提供 CLI 命令 TAB 鍵自動完成支援。
+
+若要在 zsh 中啟用它，請執行︰
+
+```
+echo '. <(azure --completion)' >> .zshrc
+```
+
+若要在 bash 中啟用它，請執行︰
+
+```
+azure --completion >> ~/azure.completion.sh
+echo 'source ~/azure.completion.sh' >> ~/.bash_profile
+```
+
 
 ## 後續步驟 
 
@@ -104,4 +123,4 @@ npm update -g azure-cli
 [cliasm]: virtual-machines-command-line-tools.md
 [cliarm]: ./virtual-machines/azure-cli-arm-commands.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

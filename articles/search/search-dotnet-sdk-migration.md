@@ -13,7 +13,7 @@
    ms.workload="search"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.date="03/09/2016"
+   ms.date="05/18/2016"
    ms.author="brjohnst"/>
 
 # 升級至 Azure 搜尋服務 .NET SDK 版本 1.1
@@ -181,7 +181,7 @@ Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫�
 
     var sp = new SearchParameters();
     sp.ScoringProfile = "jobsScoringFeatured";      // Use a scoring profile
-    sp.ScoringParameters = new[] { "featuredParam:featured", "mapCenterParam:" + lon + "," + lat };
+    sp.ScoringParameters = new[] { "featuredParam-featured", "mapCenterParam-" + lon + "," + lat };
 
 您可以將其變更如下以修正任何建置錯誤：
 
@@ -190,7 +190,7 @@ Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫�
     sp.ScoringParameters =
         new[]
         {
-            new ScoringParameter("featuredParam", "featured"),
+            new ScoringParameter("featuredParam", new[] { "featured" }),
             new ScoringParameter("mapCenterParam", GeographyPoint.Create(lat, lon))
         };
 
@@ -391,4 +391,4 @@ Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫�
 
 感謝您使用 Azure 搜尋服務！
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0525_2016-->

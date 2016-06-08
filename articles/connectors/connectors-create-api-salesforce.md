@@ -1,10 +1,10 @@
 <properties
-pageTitle="在 PowerApps Enterprise 及邏輯應用程式中新增 Salesforce API | Microsoft Azure"
-description="搭配 REST API 參數來使用 Salesforce API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在 PowerApps Enterprise 及 Logic Apps 中新增 Salesforce 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Salesforce 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,11 +14,11 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="03/16/2016"
+ms.date="05/19/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Salesforce API
-連線到 Salesforce 並建立物件、取得物件等等。您可以從下列應用程式使用 Salesforce API：
+# 開始使用 Salesforce 連接器 
+連線到 Salesforce 並建立物件、取得物件等等。您可以從下列應用程式使用 Salesforce 連接器：
 
 - 邏輯應用程式 
 - PowerApps
@@ -36,9 +36,9 @@ ms.author="deonhe"/>
 - 根據您從 SalesForce 所取得的資料，來建置您的商務流程。 
 - 在物件建立或更新時使用觸發程序。
 - 使用動作來建立物件、刪除物件等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Salesforce 中有新物件建立時，您可以利用 Office 365 來傳送電子郵件。
-- 將 Salesforce API 新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個 AP。 
+- 將 Salesforce 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中加入 API 的資訊，請移至[在 PowerApps 中註冊 API](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -49,14 +49,13 @@ Salesforce API 包含下列觸發程序及動作。
 | --- | --- |
 |<ul><li>當建立物件時</li><li>當物件遭到修改時</li></ul> | <ul><li>建立物件</li><li>取得物件</li><li>當建立物件時</li><li>當物件遭到修改時</li><li>刪除物件</li><li>取得物件</li><li>取得物件類型 (SObjects)</li><li>更新物件</li></ul>
 
-所有 API 都支援 JSON 和 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## 建立至 Salesforce 的連線 
 
-當您將這個 API 新增到邏輯應用程式時，您必須授權，讓邏輯應用程式能夠連線到您的 Salesforce。
+當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Salesforce。
 
-1. 登入您的 Salesforce 帳戶。
-2. 允許您的邏輯應用程式連線並使用您的 Salesforce 帳戶。 
+>[AZURE.INCLUDE [建立至 Salesforce 連線的步驟](../../includes/connectors-create-api-salesforce.md)]
 
 當您建立連線之後，請輸入 Salesforce 的屬性，例如資料表名稱。本主題的 **REST API 參考**一節會說明這些屬性。
 
@@ -266,4 +265,4 @@ Salesforce API 包含下列觸發程序及動作。
 [7]: ./media/connectors-create-api-salesforce/salesforce-create-app.png
 [8]: ./media/connectors-create-api-salesforce/salesforce-new-app.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0525_2016-->

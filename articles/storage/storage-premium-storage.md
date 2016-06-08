@@ -37,7 +37,7 @@ Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例
 
 進階儲存體磁碟：Azure 進階儲存體支援可連接到 DS、DSv2 或 GS 系列 Azure VM 的 VM 磁碟。使用進階儲存體時，您可以選擇三種磁碟大小 (也就是 P10 (128GiB)、P20 (512GiB) 及 P30 (1024GiB))，每種都有自己的效能規格。端視您的應用程式需求而定，您可以將一或多個這類磁碟連接到 DS、DSv2 或 GS 系列 VM。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，我們會更詳細地說明規格。
 
-進階儲存體 Blob：進階儲存體可支援 Azure 分頁 Blob，其用於保存適用於 Azure 虛擬機器 (VM) 的永續性磁碟。進階儲存體目前不支援 Azure 區塊 Blob、Azure 附加 Blob、Azure 檔案、Azure 資料表或 Azure 佇列。
+進階儲存體 Blob：進階儲存體可支援 Azure 分頁 Blob，其用於保存適用於 Azure 虛擬機器 (VM) 的永續性磁碟。進階儲存體目前不支援 Azure 區塊 Blob、Azure 附加 Blob、Azure 檔案、Azure 資料表或 Azure 佇列。放在進階儲存體帳戶中的任何其他物件都會是分頁 Blob，並且貼齊其中一個支援的佈建大小。Heance 進階儲存體帳戶不是用於儲存小型 Blob。
 
 **進階儲存體帳戶**︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。如果您想要使用 [Azure 入口網站](https://portal.azure.com)，則可以指定「進階」效能層和「本地備援儲存體 (LRS)」作為複寫選項來建立進階儲存體帳戶。使用[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 2014-02-14 版或更新版本將類型指定為 “Premium\_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (ARM 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
 
@@ -63,7 +63,7 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。�
 
 **雲端服務**：可以將 DS 系列 VM 加入至僅包含 DS 系列 VM 的雲端服務。請勿將 DS 系列 VM 加入至包含非 DS 系列 VM 的現有雲端服務。您可以將現有的 VHD 移轉到僅執行 DS 系列 VM 的新雲端服務。如果您想要為裝載 DS 系列 VM 的新雲端服務保留相同的虛擬 IP 位址 (VIP)，請使用[保留的 IP 位址](../virtual-network/virtual-networks-instance-level-public-ip.md)。可將 GS 系列 VM 加入至僅執行 G 系列 VM 的現有雲端服務。
 
-**作業系統磁碟**：DS 系列、DSv2 系列和 GS 系列的 Azure 虛擬機器可以設定為使用裝載在標準儲存體帳戶或進階儲存體帳戶上的作業系統 (OS) 磁碟。如果您使用的作業系統磁碟僅供開機，您可以考慮使用標準儲存體的作業系統磁碟。在開機之後，它提供類似於進階儲存體的成本效益和效能結果。如果您在作業系統磁碟上執行除了開機以外的任何其他工作，請使用 Premium 儲存體，因為它提供更好的效能結果。例如，如果您的應用程式從作業系統磁碟讀取或寫入至作業系統磁碟，使用 Premium 儲存體的作業系統磁碟可為您的 VM 提供更佳的效能。
+**作業系統磁碟**：DS 系列、DSv2 系列和 GS 系列的 Azure 虛擬機器可以設定為使用裝載在標準儲存體帳戶或進階儲存體帳戶上的作業系統 (OS) 磁碟。我們建議使用進階儲存體型的 OS 磁碟以獲得最佳體驗。
 
 **資料磁碟**：您可在 DS 系列 VM、DSv2 系列 VM 或 GS 系列 VM 中同時使用進階和標準儲存體磁碟。使用進階儲存體，您可以佈建 DS、DSv2 或 GS 系列 VM 並將幾個永續性資料磁碟連接到此 VM。如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。
 
@@ -335,11 +335,11 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 ## 價格和計費
 使用 Premium 儲存體時，需考量下列計費資訊：
-- 進階儲存體磁碟大小
+- 進階儲存體磁碟/Blob 大小
 - 進階儲存體快照
 - 輸出資料傳輸
 
-**進階儲存體磁碟大小**：進階儲存體磁碟的計費依據是磁碟的佈建大小。Azure 會將磁碟大小 (無條件進位) 對應至[使用 Premium 儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)一節的表格中最接近的 Premium 儲存體磁碟選項。任何已佈建的磁碟都是按每月的 Premium 儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
+**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶，以儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
 
 **進階儲存體快照**：進階儲存體上的快照會因為使用的額外容量而產生費用。如需有關快照的資訊，請參閱[建立 Blob 的快照](http://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
@@ -550,4 +550,4 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 [Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0525_2016-->

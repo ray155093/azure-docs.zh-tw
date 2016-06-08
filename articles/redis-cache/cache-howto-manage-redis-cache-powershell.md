@@ -4,7 +4,7 @@
 	services="redis-cache"
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/27/2016" 
+	ms.date="05/23/2016" 
 	ms.author="sdanie"/>
 
 # 使用 Azure PowerShell 管理 Azure Redis 快取
@@ -110,9 +110,9 @@
 | 位置 | 快取的位置 | |
 | resourceGroupName | 資源群組名稱，將在其中建立快取 | |
 | 大小 | 快取的大小。有效值為：P1、P2、P3、P4、C0、C1、C2、C3、C4、C5、C6、250MB、1GB、2.5GB、6GB、13GB、26GB、53GB | 1GB |
-| ShardCount | 在啟用叢集的情況下建立高階快取時要建立的分區數目。有效值為：1、2、3、4、5、6、7、8、9、10 | |
+| ShardCount | 在啟用叢集的情況下建立進階快取時要建立的分區數目。有效值為：1、2、3、4、5、6、7、8、9、10 | |
 | SKU | 指定快取的 SKU。有效值為：Basic、Standard、Premium | 標準 |
-| RedisConfiguration | 指定 maxmemory-delta、maxmemory-policy 和 notify-keyspace-events 的 Redis 組態設定。請注意，maxmemory-delta 和 notify-keyspace-events 只能用於 Standard (標準) 和 Premium (高階) 快取。 | |
+| RedisConfiguration | 指定 Redis 組態設定。如需每個設定的詳細資訊，請參閱以下的 [RedisConfiguration 屬性](#redisconfiguration-properties) 表格。 | |
 | EnableNonSslPort | 指出是否已啟用非 SSL 連接埠。 | False |
 | MaxMemoryPolicy | 這個參數已被取代，請改用 RedisConfiguration。 | |
 | StaticIP | 當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。如果未提供，則會從子網路中為您選擇一個。 | |
@@ -120,6 +120,23 @@
 | VirtualNetwork | 當快取是裝載在 VNET 中，指定要在其中部署快取的 VNET 之資源識別碼。 | |
 | KeyType | 指定更新存取金鑰時要重新產生哪一個存取金鑰。有效值為：Primary、Secondary | | | |
 
+
+### RedisConfiguration 屬性
+
+| 屬性 | 說明 | 定價層 |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------------|
+| rdb-backup-enabled | 是否已啟用 [Redis 資料持續性](cache-how-to-premium-persistence.md) | 僅限進階版 |
+| rdb-storage-connection-string | [Redis 資料持續性](cache-how-to-premium-persistence.md)儲存體帳戶的連接字串 | 僅限進階版 |
+| rdb-backup-frequency | [Redis 資料持續性](cache-how-to-premium-persistence.md)的備份頻率 | 僅限進階版 |
+| maxmemory-reserved | 設定非快取程序的[保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) | 標準和進階 |
+| maxmemory-policy | 設定快取的[收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) | 所有定價層 |
+| notify-keyspace-events | 設定 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) | 標準和進階 |
+| hash-max-ziplist-entries | 設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) | 標準和進階 |
+| hash-max-ziplist-value | 設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) | 標準和進階 |
+| set-max-intset-entries | 設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) | 標準和進階 |
+| zset-max-ziplist-entries | 設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) | 標準和進階 |
+| zset-max-ziplist-value | 設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) | 標準和進階 |
+| 資料庫 | 設定資料庫數目。這個屬性僅可以在建立快取時設定。 | 標準和進階 |
 
 ## 建立 Redis 快取
 
@@ -131,7 +148,7 @@
 
 若要查看 `New-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
 
-	PS C:\> Get-Help New-AzureRmRedisCache -detailed
+	PS SQLSERVER:> Get-Help New-AzureRmRedisCache -detailed
 	
 	NAME
 	    New-AzureRmRedisCache
@@ -139,14 +156,17 @@
 	SYNOPSIS
 	    Creates a new redis cache.
 	
+	
 	SYNTAX
 	    New-AzureRmRedisCache -Name <String> -ResourceGroupName <String> -Location <String> [-RedisVersion <String>]
 	    [-Size <String>] [-Sku <String>] [-MaxMemoryPolicy <String>] [-RedisConfiguration <Hashtable>] [-EnableNonSslPort
 	    <Boolean>] [-ShardCount <Integer>] [-VirtualNetwork <String>] [-Subnet <String>] [-StaticIP <String>]
 	    [<CommonParameters>]
 	
+	
 	DESCRIPTION
 	    The New-AzureRmRedisCache cmdlet creates a new redis cache.
+	
 	
 	PARAMETERS
 	    -Name <String>
@@ -174,21 +194,19 @@
 	
 	    -RedisConfiguration <Hashtable>
 	        All Redis Configuration Settings. Few possible keys: rdb-backup-enabled, rdb-storage-connection-string,
-	        rdb-backup-frequency, maxmemory-delta, maxmemory-policy, notify-keyspace-events, maxmemory-samples,
-	        slowlog-log-slower-than, slowlog-max-len, list-max-ziplist-entries, list-max-ziplist-value,
-	        hash-max-ziplist-entries, hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries,
-	        zset-max-ziplist-value etc.
+	        rdb-backup-frequency, maxmemory-reserved, maxmemory-policy, notify-keyspace-events, hash-max-ziplist-entries,
+	        hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value, databases.
 	
 	    -EnableNonSslPort <Boolean>
 	        EnableNonSslPort is used by Azure Redis Cache. If no value is provided, the default value is false and the
 	        non-SSL port will be disabled. Possible values are true and false.
-
+	
 	    -ShardCount <Integer>
 	        The number of shards to create on a Premium Cluster Cache.
 	
 	    -VirtualNetwork <String>
-	        The exact ARM resource ID of the virtual network to deploy the redis cache in. Example format:
-	        /subscriptions/{subid}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicNetwork/VirtualNetworks/{vnetName}
+	        The exact ARM resource ID of the virtual network to deploy the redis cache in. Example format: /subscriptions/{
+	        subid}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicNetwork/VirtualNetworks/{vnetName}
 	
 	    -Subnet <String>
 	        Required when deploying a redis cache inside an existing Azure Virtual Network.
@@ -208,13 +226,22 @@
 
 `ResourceGroupName`、`Name` 和 `Location` 是必要參數，其餘則為選擇性的而且有預設值。執行先前的命令會建立標準 SKU Azure Redis 快取執行個體，具有指定的名稱、位置和資源群組，大小為 1 GB，且停用非 SSL 連接埠。
 
-若要建立高階的快取，請指定大小為 P1 (6 GB - 60 GB)、P2 (13 GB - 130 GB)、P3 (26 GB - 260 GB) 或 P4 (53 GB - 530 GB)。若要啟用叢集，使用 `ShardCount` 參數指定分區計數。下列範例會建立具有 3 個分區的 P1 高階快取。P1 高階快取的大小為 6 GB，因為我們指定三個分區，大小總計為 18 GB (3 x 6 GB)。
+若要建立進階快取，請指定大小為 P1 (6 GB - 60 GB)、P2 (13 GB - 130 GB)、P3 (26 GB - 260 GB) 或 P4 (53 GB - 530 GB)。若要啟用叢集，使用 `ShardCount` 參數指定分區計數。下列範例會建立具有 3 個分區的 P1 進階快取。P1 進階快取的大小為 6 GB，因為我們指定三個分區，大小總計為 18 GB (3 x 6 GB)。
 
 	New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P1 -ShardCount 3
 
-若要指定 `RedisConfiuration` 參數的值，以索引鍵/值組的方式將值括在 `{}` 內，例如 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。下列範例會建立標準 1 GB 快取，具有 `allkeys-random` maxmemory 原則，且 keyspace 通知設為 `KEA`。如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和 [Maxmemory-policy 與 maxmemory-reserved](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)。
+若要指定 `RedisConfiguration` 參數的值，以索引鍵/值組的方式將值括在 `{}` 內，例如 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。下列範例會建立標準 1 GB 快取，具有 `allkeys-random` maxmemory 原則，且 keyspace 通知設為 `KEA`。如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和 [Maxmemory-policy 與 maxmemory-reserved](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)。
 
 	New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}
+
+<a name="databases"></a>
+## 在快取建立期間設定資料庫設定
+
+`databases` 設定僅可以在快取建立期間設定。下列範例會使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立具有 48 個資料庫的進階 P3 (26 GB) 快取。
+
+	New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P3 -RedisConfiguration @{"databases" = "48"}
+
+如需 `databases` 屬性的詳細資訊，請參閱[預設的 Azure Redis 快取伺服器組態](cache-configure.md#default-redis-server-configuration)。如需使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立快取的詳細資訊，請參閱先前的[建立 Redis 快取](#to-create-a-redis-cache)一節。
 
 ## 更新 Redis 快取
 
@@ -257,11 +284,9 @@
 	        MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 	
 	    -RedisConfiguration <Hashtable>
-	        All Redis Configuration Settings. Few possible keys: rdb-backup-enabled, rdb-storage-connection-string,
-	        rdb-backup-frequency, maxmemory-delta, maxmemory-policy, notify-keyspace-events, maxmemory-samples,
-	        slowlog-log-slower-than, slowlog-max-len, list-max-ziplist-entries, list-max-ziplist-value,
-	        hash-max-ziplist-entries, hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries,
-	        zset-max-ziplist-value etc.
+			All Redis Configuration Settings. Few possible keys: rdb-backup-enabled, rdb-storage-connection-string,
+			rdb-backup-frequency, maxmemory-reserved, maxmemory-policy, notify-keyspace-events, hash-max-ziplist-entries,
+			hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value.
 	
 	    -EnableNonSslPort <Boolean>
 	        EnableNonSslPort is used by Azure Redis Cache. The default value is null and no change will be made to the
@@ -289,9 +314,11 @@
 
 >[AZURE.NOTE]使用 PowerShell 調整快取，和從 Azure 入口網站調整快取有相同的限制和準則。您可以調整具有下列限制的不同定價層。
 >
->-	您無法向上調整為**進階**快取，或由此向下調整。
->-	您無法從**標準**快取調整到**基本**快取。
+>-	您無法從較高的定價層調整至較低的定價層。
+>    -    您無法從**進階**快取向下調整至**基本**或**標準**快取。
+>    -    您無法從**標準**快取向下調整到**基本**快取。
 >-	您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
+>-	您無法直接從**基本**快取調整至**進階**快取。您必須在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
 >-	您無法從較大的大小向下調整至 **C0 (250 MB)** 的大小。
 >
 >如需詳細資訊，請參閱[如何調整 Azure Redis 快取](cache-how-to-scale.md)。
@@ -609,4 +636,4 @@
 - [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
 - ["Hey, Scripting Guy!" 部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0525_2016-->

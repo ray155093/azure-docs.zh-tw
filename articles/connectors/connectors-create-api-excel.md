@@ -1,10 +1,10 @@
 <properties
-pageTitle="在 PowerApps Enterprise 中新增 Excel API | Microsoft Azure"
-description="搭配 REST API 參數使用 Excel API 的概觀"
-services=""	
-documentationCenter="" 	
-authors="msftman"	
-manager="erikre"	
+pageTitle="在 PowerApps Enterprise 中新增 Excel 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Excel 連接器的概觀"
+services=""    
+documentationCenter=""     
+authors="msftman"    
+manager="erikre"    
 editor=""
 tags="connectors"/>
 
@@ -14,20 +14,20 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="02/25/2016"
+ms.date="05/18/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Excel API
+# 開始使用 Excel 連接器
 
-連接至 Excel 以插入資料列、刪除資料列等。您可以從下列應用程式使用 Excel API：
+連接至 Excel 以插入資料列、刪除資料列等。您可以從下列應用程式使用 Excel 連接器︰
 
 - PowerApps
 
 Excel 可讓您：
 
-- 將 Excel API 新增至 PowerApps Enterprise。接著，您的使用者便能夠在自己的應用程式中使用這個 API。 
+- 將 Excel 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中新增 API 的資訊，請前往[在 PowerApps 中為 API 註冊](../power-apps/powerapps-register-from-available-apis.md)。
+如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
 ## 觸發程序及動作
 Excel 包含下列動作。無觸發程序。
@@ -36,7 +36,7 @@ Excel 包含下列動作。無觸發程序。
 |--- | ---|
 |None | <ul><li>取得資料列</li><li>插入資料列</li><li>刪除資料列</li><li>取得資料列</li><li>取得資料表</li><li>更新資料列</li></ul>
 
-所有 API 皆支援 JSON 與 XML 格式的資料。
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 ## Swagger REST API 參考
 適用的版本：1.0。
@@ -208,4 +208,4 @@ Excel 包含下列動作。無觸發程序。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [建立 Power 應用程式](../power-apps/powerapps-get-started-azure-portal.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0525_2016-->

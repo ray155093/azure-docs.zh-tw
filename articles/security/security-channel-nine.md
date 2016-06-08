@@ -1,5 +1,5 @@
 <properties
-   pageTitle="Channel 9 上的 Azure 安全性 | Microsoft Azure"
+   pageTitle="Channel 9 上的 Azure 安全性影片 | Microsoft Azure"
    description="本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。"
    services="security"
    documentationCenter="na"
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="05/19/2016"
    ms.author="terrylan"/>
 
-# Channel 9 上的 Azure 安全性
+# Channel 9 上的 Azure 安全性影片
 
 [Channel 9](https://channel9.msdn.com/) 是一個社群。他們讓我們產品的工作人員到幕前，並將他們與使用我們產品的人員連繫。
 
@@ -45,6 +45,7 @@
 Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕鬆地加密他在 Azure 虛擬機器執行個體上的 SQL Server 資料庫。它比您想地還要簡單！
 
 本影片涵蓋的區域：
+
 - 了解加密和 SQL Server
 - 了解 Data Protection API、主要金鑰和憑證
 - 使用 SQL 命令來建立主要金鑰和憑證，並加密資料庫
@@ -67,4 +68,4 @@ Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕�
 
 Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。有了 Azure 金鑰保存庫，您即可加密金鑰和小型密碼，例如存放在硬體安全性模組 (HSM) 中且使用金鑰的密碼。它是 Microsoft Azure 的雲端型、硬體型密碼管理！
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

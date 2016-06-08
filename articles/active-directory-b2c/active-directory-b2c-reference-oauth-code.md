@@ -124,15 +124,10 @@ error=access_denied
 ```
 POST fabrikamb2c.onmicrosoft.com/v2.0/oauth2/token?p=b2c_1_sign_in HTTP/1.1
 Host: https://login.microsoftonline.com
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-	"grant_type": "authorization_code",
-	"client_id": "90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6",
-	"scope": "openid offline_access",
-	"code": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...",
-	"redirect_uri": "urn:ietf:wg:oauth:2.0:oob"
-}
+grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=openid offline_access&code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...&redirect_uri=urn:ietf:wg:oauth:2.0:oob
+
 ```
 
 | 參數 | 必要？ | 說明 |
@@ -201,15 +196,9 @@ Id\_tokens 只會短暫存在。因此在該權杖過期之後，您必須重新
 ```
 POST fabrikamb2c.onmicrosoft.com/v2.0/oauth2/token?p=b2c_1_sign_in HTTP/1.1
 Host: https://login.microsoftonline.com
-Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-	"grant_type": "refresh_token",
-	"client_id": "90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6",
-	"scope": "openid offline_access",
-	"refresh_token": "AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...",
-	"redirect_uri": "urn:ietf:wg:oauth:2.0:oob"
-}
+grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=openid offline_access&refresh_token=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...&redirect_uri=urn:ietf:wg:oauth:2.0:oob
 ```
 
 | 參數 | 必要？ | 說明 |
@@ -277,4 +266,4 @@ Here is the entire flow for a native app; each request is detailed in the sectio
 - [建立應用程式](active-directory-b2c-app-registration.md)來取得應用程式識別碼和 redirect\_uri。您可以在應用程式中加入**原生用戶端**。
 - [建立您的原則](active-directory-b2c-reference-policies.md)來取得原則名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0525_2016-->

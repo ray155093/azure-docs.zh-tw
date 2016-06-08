@@ -29,19 +29,19 @@ DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體�
 
 ## 探索 DC/OS UI
 
-在建立安全殼層 (SSH) 通道之後，瀏覽至 http://localhost/。這會載入 DC/OS Web UI 並顯示叢集的相關資訊，例如可以看到使用的資源、作用中代理程式和執行中的服務。
+在建立安全殼層 (SSH) 通道之後，瀏覽至 http://localhost/。這會載入 DC/OS Web UI 並顯示叢集的相關資訊，例如使用的資源、作用中代理程式和執行中的服務。
 
-![](media/dcos/dcos2.png)
+![DC/OS UI](media/dcos/dcos2.png)
 
 ## 瀏覽 Marathon UI
 
 若要查看 Marathon UI，請瀏覽至 http://localhost/Marathon。在此畫面中，您可以啟動 Azure 容器服務 DC/OS 叢集上的新容器或其他應用程式。您也可以看到有關執行容器和應用程式的資訊。
 
-![](media/dcos/dcos3.png)
+![Marathon UI](media/dcos/dcos3.png)
 
 ## 部署 Docker 格式化容器
 
-若要使用 Marathon 部署新容器，請按一下 [建立應用程式] 按鈕，並在表單中輸入下列資訊。準備好時按一下 [建立應用程式]。
+若要使用 Marathon 部署新容器，請按一下 [建立應用程式] 按鈕，並在表單中輸入下列資訊：
 
 欄位 | 值
 ----------------|-----------
@@ -51,50 +51,50 @@ ID | nginx
 主機連接埠 | 80
 通訊協定 | TCP
 
-![](media/dcos/dcos4.png)
+![新增應用程式 UI--一般](media/dcos/dcos4.png)
 
-![](media/dcos/dcos5.png)
+![新增應用程式 UI--Docker 容器](media/dcos/dcos5.png)
 
-![](media/dcos/dcos6.png)
+![新增應用程式 UI--連接埠和服務探索](media/dcos/dcos6.png)
 
-如果您想要以靜態方式將容器連接埠對應至代理程式上的連接埠，這必須使用「JSON 模式」來完成。若要這樣做，請使用切換功能將新增應用程式精靈切換為 JSON 模式，然後在應用程式定義的 ‘portMappings’ 區段底下輸入下列程式行。此範例會將容器的連接埠 80 繫結至 DC/OS 代理程式的連接埠 80。完成這項變更之後，即可將此精靈從 JSON 模式切換出來。
+如果您想要以靜態方式將容器的連接埠對應至代理程式上的連接埠，您需要使用 JSON 模式。若要這樣做，請使用切換功能將「新增應用程式」精靈切換為 **JSON 模式**。然後在應用程式定義的 `portMappings` 區段底下輸入下列內容。此範例會將容器的連接埠 80 繫結至 DC/OS 代理程式的連接埠 80。在進行這項變更之後，您可以將此精靈切換離開 JSON 模式。
 
 ```none
 “hostPort”: 80,
 ```
 
-![](media/dcos/dcos13.png)
+![新增應用程式 UI--連接埠 80 範例](media/dcos/dcos13.png)
 
-DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要從網際網路存取應用程式，它們必須部署到公用代理程式。若要這樣做，請選取新增應用程式精靈的 [選擇性] 索引標籤並在 [接受的資源角色] 中輸入「slave\_public」。
+DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要讓叢集能夠從網際網路存取應用程式，您需要將應用程式部署至公用代理程式。若要這樣做，請選取「新增應用程式」精靈的 [選擇性] 索引標籤，並在 [接受的資源角色] 中輸入 **slave\_public**。
 
-![](media/dcos/dcos14.png)
+![新增應用程式 UI--公用代理程式設定](media/dcos/dcos14.png)
 
 回到 Marathon 主頁面，您可以看到容器的部署狀態。
 
-![](media/dcos/dcos7.png)
+![Marathon 主頁面 UI--容器部署狀態](media/dcos/dcos7.png)
 
-如果您切換回 DC/OS 應用程式 (http://localhost/))，您將會看到 DC/OS 叢集上正在執行一項工作，在此例子中是 Docker 格式化容器。
+當您切換回 DC/OS Web UI (http://localhost/))，您將會看到 DC/OS 叢集上正在執行一項工作 (在此案例中是 Docker 格式化容器)。
 
-![](media/dcos/dcos8.png)
+![DC/OS Web UI--在叢集上執行的工作](media/dcos/dcos8.png)
 
 您也可以看到正在執行工作的叢集節點。
 
-![](media/dcos/dcos9.png)
+![DC/OS Web UI--工作叢集節點](media/dcos/dcos9.png)
 
 ## 調整容器的大小
 
-Marathon UI 可用來調整容器的執行個體計數。若要這樣做，請瀏覽至 Marathon 頁面，選取您想要調整的容器，然後按一下 [調整] 按鈕。在 [調整應用程式] 對話方塊中，輸入您想要的容器執行個體數目，然後選取 [調整應用程式]。
+您可以使用 Marathon UI 來調整容器的執行個體計數。若要這樣做，請瀏覽至 [Marathon] 頁面，選取您想要調整的容器，然後按一下 [調整] 按鈕。在 [調整應用程式] 對話方塊中，輸入您想要的容器執行個體數目，然後選取 [調整應用程式]。
 
-![](media/dcos/dcos10.png)
+![Marathon UI--調整應用程式對話方塊](media/dcos/dcos10.png)
 
 調整作業完成後，您會看到相同工作的多個執行個體分散到各 DC/OS 代理程式。
 
-![](media/dcos/dcos11.png)
+![DC/OS Web UI 儀表板--分散於代理程式的工作](media/dcos/dcos11.png)
 
-![](media/dcos/dcos12.png)
+![DC/OS Web UI--節點](media/dcos/dcos12.png)
 
 ## 後續步驟
 
-[使用 DC/OS 和 Marathon API](container-service-mesos-marathon-rest.md)
+- [使用 DC/OS 和 Marathon API](container-service-mesos-marathon-rest.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

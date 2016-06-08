@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/14/2016"
+	ms.date="05/25/2016"
 	ms.author="antonba"/>
 
 # 如何在 Azure API 管理中設定 VPN 連線
@@ -82,4 +82,4 @@
 [使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路]: ../vpn-gateway/vpn-gateway-site-to-site-create.md
 [如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫]: api-management-howto-api-inspector.md
 
-<!----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0525_2016-->
