@@ -44,7 +44,6 @@
 
 ### 刪除
 刪除動作適用於兩個不同的用途。
-
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectordelete.png)
 
 [僅刪除連接器空間] 選項將移除所有資料，但會保留所有組態。
@@ -81,7 +80,8 @@
 [錯誤]：
 出現有問題的物件時才會顯示 [錯誤] 頁面。如需如何[對同步處理錯誤進行疑難排解](active-directory-aadconnectsync-service-manager-ui-operations.md#troubleshoot-errors-in-operations-tab)的詳細資訊，請參閱 [作業] 頁面上的詳細資訊。
 
-[歷程]：[歷程] 索引標籤會顯示連接器空間物件與 Metaverse 物件關聯的方式。我們可以看到上次從連接的系統匯入變更的時間，以及套用哪些規則以便在 metaverse 中填入資料。
+[歷程]：
+[歷程] 索引標籤會顯示連接器空間物件與 Metaverse 物件關聯的方式。我們可以看到上次從連接的系統匯入變更的時間，以及套用哪些規則以便在 metaverse 中填入資料。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineage.png) 
 在 [動作]資料行中，我們可以看到有一個動作為 [佈建] 的 [輸入] 同步處理規則。這表示，只要此連接器空間物件存在，metaverse 物件將會保留。如果同步處理規則清單顯示的同步處理規則方向為 [輸出] 和 [佈建]，這表示刪除 Metaverse 物件時，將會刪除此物件。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineageout.png) 
