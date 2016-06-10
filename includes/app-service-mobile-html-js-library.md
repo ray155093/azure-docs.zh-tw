@@ -56,7 +56,7 @@ table
 
 搭配 results 呼叫 success 函式。請勿在 success 函式中使用 `for (var i in results)`，因為當使用其他查詢函式時 (例如 `.includeTotalCount()`)，這樣會反覆檢查結果中包含的資訊。
 
-如需 Query 語法的詳細資訊，請參閱 [Query 物件文件]。
+如需 Query 語法的詳細資訊，請參閱 [Query 物件文件](https://msdn.microsoft.com/library/azure/jj613353.aspx)。
 
 ####<a name="table-filter"></a>篩選伺服器的資料
 
@@ -123,7 +123,7 @@ table
     .then(success, failure);
 ```
 
-如需 Query 物件的詳細資訊，請參閱 [Query 物件文件]。
+如需 Query 物件的詳細資訊，請參閱 [Query 物件文件](https://msdn.microsoft.com/library/azure/jj613353.aspx)。
 
 ###<a name="inserting"></a>作法：插入資料
 
