@@ -249,4 +249,4 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 如需 Azure 虛擬機器上 SQL Server 的影片概觀，請觀看 [Azure VM is the best platform for SQL Server 2016 (Azure VM 是 SQL Server 2016 的最佳平台)](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0601_2016--->
