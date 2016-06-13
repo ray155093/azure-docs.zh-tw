@@ -70,11 +70,11 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 		
 	>請注意，指令碼名稱有三個部分︰
 		
-	>	1. A script name prefix, which shall include either the application name or a name relevant to the application.
-	>	2. A "-" for readability.
-	>	3. A unique string function with the application name as the parameter.
+	>	1. 指令碼名稱前置應該包含應用程式名稱或與該應用程式相關的名稱。
+	>	2. "-" 以方便閱讀。
+	>	3. 唯一的字串函數，並以應用程式名稱做為參數。
 
-	>	An example is the above ends up becoming: hue-install-v0-4wkahss55hlas in the persisted script action list. For a sample JSON payload, see [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
+	>	範例如上，結果為在保存的指令碼動作清單中的 hue-install-v0-4wkahss55hlas。如需 JSON 承載的範例，請參閱 [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json)。
 
 - 所有必要的指令碼。
 
