@@ -2,7 +2,8 @@
 	pageTitle="在 VM 中設定 Oracle GoldenGate | Microsoft Azure"
 	description="在 Azure Windows Server VM 上逐步執行設定和實作高可用性和嚴重損壞修復之 Oracle GoldenGate 的教學課程。"
 	services="virtual-machines-windows"
-	authors="bbenz"
+	authors="rickstercdn"
+	manager="timlt"
 	documentationCenter=""
 	tags="azure-service-management"/>
 <tags
@@ -11,13 +12,11 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="infrastructure-services"
-	ms.date="06/22/2015"
-	ms.author="bbenz" />
+	ms.date="05/17/2016"
+	ms.author="rclaus" />
 
 
 #設定適用於 Azure 的 Oracle GoldenGate
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
 
 本教學課程示範如何設定適用於 Azure 虛擬機器環境的 Oracle GoldenGate，以取得高可用性並進行嚴重損壞修復 。本教學課程著重於非 RAC Oracle 資料庫的[雙向複寫](http://docs.oracle.com/goldengate/1212/gg-winux/GWUAD/wu_about_gg.htm)，而且要求這兩個站台必須是作用中的站台。
@@ -34,7 +33,7 @@ Oracle GoldenGate 包含下列主要元件：擷取、資料幫浦、複寫、�
 
 - 您已經從 [Oracle 下載](http://www.oracle.com/us/downloads/index.html)網站下載 Oracle GoldenGate 軟體。您已選取 Oracle Fusion Middleware 產品套件 - 資料整合。然後，您針對 Oracle 11g 資料庫，在適用於 Microsoft Windows x64 (64 位元) 的 Oracle v11.2.1 媒體套件上選取了 Oracle GoldenGate。接著，在 Windows 2008 (64 位元) 上下載適用於 Oracle 11g (64 位元) 的 Oracle GoldenGate V11.2.1.0.3。
 
-- 您已經使用 Windows Server 上提供 Oracle Enterprise Edition 映像的平台，在 Azure 中建立兩部虛擬機器 (VM)。如需相關資訊，請參閱[在 Azure 中建立 Oracle Database 12c 虛擬機器](#z3dc8d3c097cf414e9048f7a89c026f80)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-linux-load-balance.md)和相同的[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。
+- 您已經使用 Windows Server 上的 Oracle Enterprise Edition，在 Azure 中建立兩部「虛擬機器」(VM)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-linux-load-balance.md)和相同的[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。
 
 - 您已經在 Azure 傳統入口網站上，針對站台 A 將虛擬機器名稱設定為 “MachineGG1”，並針對站台 B 將虛擬機器名稱設定為 “MachineGG2”。
 
@@ -602,4 +601,4 @@ Oracle GoldenGate 管理員會執行一些像是啟動其他 GoldenGate 程序�
 ##其他資源
 [適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

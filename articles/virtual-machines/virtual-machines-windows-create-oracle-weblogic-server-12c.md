@@ -2,7 +2,8 @@
 	pageTitle="建立 Oracle WebLogic Server 12c VM | Microsoft Azure"
 	description="在 Microsoft Azure 中使用資源管理員部署模型建立執行 Windows Server 2012 的 Oracle WebLogic Server 12c 虛擬機器。"
 	services="virtual-machines-windows"
-	authors="bbenz"
+	authors="rickstercdn"
+	manager="timlt"
 	documentationCenter=""
 	tags="azure-resource-manager"/>
 
@@ -12,43 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="06/22/2015"
-	ms.author="bbenz" />
+	ms.date="05/17/2016"
+	ms.author="rclaus" />
 
 #在 Azure 中建立 Oracle WebLogic Server 12c 虛擬機器
-以下範例會向您說明如何在 Azure 中以由 Microsoft 所提供並在 Windows Server 2012 上執行的 Oracle WebLogic Server 12c 映像為基礎，建立虛擬機器。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [virtual-machines-common-oracle-support](../../includes/virtual-machines-common-oracle-support.md)]
 
-
-
-##在 Azure 中建立 Oracle WebLogic Server 12c 虛擬機器
-
-1. 登入 [Azure 入口網站](https://ms.portal.azure.com/)。
-
-2. 按一下 [Marketplace]，按一下 [計算]，然後在搜尋方塊中輸入 Oracle。
-
-3.	選取 [Windows Server 2012 上的 Oracle WebLogic Server 12c Standard Edition] 或 [Windows Server 2012 上的 Oracle WebLogic Server 12c Enterprise Edition] 映像。檢閱與此映像有關的資訊 (例如建議的大小)，然後按 [下一步]。
-
-4.	指定 VM 的 [主機名稱]。
-
-5.	指定 VM 的 [使用者名稱]。注意，此使用者是用於從遠端登入 VM，這不是 Oracle 資料庫使用者名稱。
-
-6.	指定並確認 VM 的密碼，或提供 SSH 公用金鑰。
-
-7.	選擇一個 [定價層]。請注意，預設會顯示建議的定價層，以查看所有設定選項，請按一下右上方的 [檢視全部]。
-
-8.	考量下列因素，並依照需要設定選用設定：
-	1. 讓 [儲存體帳戶] 保持不變，以使用 VM 名稱建立新的儲存體帳戶。
-	2. 維持 [可用性集合] 為 [未設定]。
-	3. 此時請勿新增任何 [端點]。
-
-9.	選擇或建立[資源群組](../azure-portal/resource-group-portal.md)
-
-10. 選擇 [訂用帳戶]。
-
-11. 選擇 [位置]
-
+下列範例示範如何在 Azure 中建立在 VM 上執行的 WebLogic Server 12c，而您先前已在此 VM 上建立並安裝在 Windows Server 2012 上執行的 WebLogic Server 12c。
 
 ##若要在 Azure 中設定您的 Oracle WebLogic Server 12c 虛擬機器
 
@@ -161,7 +133,7 @@
 
 	2.	按一下 [Windows 開始]，輸入「具有進階安全性的 Windows 防火牆」，然後按一下 [具有進階安全性的 Windows 防火牆] 圖示。這會開啟 [具有進階安全性的 Windows 防火牆] 管理主控台。
 
-	3.	在防火牆管理主控台中，按一下左邊窗格內的 [輸入規則] \(如果您沒有看到 [輸入規則]，請展開左邊窗格內的最上層節點)，然後按一下右邊窗格內的 [新增規則]。
+	3.	在防火牆管理主控台中，按一下左邊窗格內的 [輸入規則] (如果您沒有看到 [輸入規則]，請展開左邊窗格內的最上層節點)，然後按一下右邊窗格內的 [新增規則]。
 
 	4.	對於 [規則類型]，請選取 [連接埠]，然後按 [下一步]。
 
@@ -187,4 +159,4 @@
 
 -	[適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

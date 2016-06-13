@@ -1,5 +1,5 @@
 <properties
-   pageTitle="在Microsoft Azure App Service 中使用 DB2 連接器 | Microsoft Azure"
+   pageTitle="在 Microsoft Azure App Service 中使用 DB2 連接器 | Microsoft Azure"
    description="如何使用 DB2 連接器搭配邏輯應用程式觸發程序和動作"
    services="app-service\logic"
    documentationCenter=".net,nodejs,java"
@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/10/2016"
+   ms.date="05/31/2016"
    ms.author="plarsen"/>
 
 # DB2 連接器
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
-Microsoft Connector for DB2 是一個 API 應用程式，可透過 Azure App Service 將應用程式連接至儲存在 IBM DB2 資料庫中的資源。連接器含有一個 Microsoft 用戶端，可透過 TCP/IP 網路連線 (包括使用 Azure 服務匯流排轉送對內部部署 DB2 伺服器進行的 Azure 混合式連線) 連接至遠端 DB2 伺服器電腦。連接器支援下列資料庫作業：
+Microsoft connector for DB2 是一個 API 應用程式，可透過 Azure App Service 將應用程式連接至儲存在 IBM DB2 資料庫中的資源。連接器含有一個 Microsoft 用戶端，可透過 TCP/IP 網路連線 (包括使用 Azure 服務匯流排轉送對內部部署 DB2 伺服器進行的 Azure 混合式連線) 連接至遠端 DB2 伺服器電腦。連接器支援下列資料庫作業：
 
 - 使用 SELECT 讀取資料列
 - 使用後接 SELECT 的 SELECT COUNT 輪詢以讀取資料列
@@ -46,7 +46,7 @@ Microsoft Connector for DB2 是一個 API 應用程式，可透過 Azure App Ser
 2. 在 [所有項目] 刀鋒視窗的 [搜尋所有項目] 方塊中輸入 **db2**，然後按一下 Enter 鍵。
 3. 在 [搜尋所有項目的結果] 窗格中，選取 [DB2 連接器]。
 4. 在 [DB2 連接器描述] 刀鋒視窗中，選取 [建立]。
-5. 在 [DB2 連接器封裝] 刀鋒視窗中，輸入 [名稱] \(例如："Db2ConnectorNewOrders")、[App Service 方案] 和其他屬性。
+5. 在 [DB2 連接器封裝] 刀鋒視窗中，輸入 [名稱] (例如："Db2ConnectorNewOrders")、[App Service 方案] 和其他屬性。
 6. 選取 [封裝設定]，然後輸入下列封裝設定：  
 
 	名稱 | 必要 | 說明
@@ -74,7 +74,7 @@ PollToAlterData | 否 | 要搭配邏輯應用程式觸發程序使用的 UPDATE 
 3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
-6. 在 API Apps 面板中，選取 [DB2 連接器]，展開作業清單以選取 [插入 NEWORDER]。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [插入 NEWORDER]。
 7. 展開參數清單以輸入下列值：  
 
 	名稱 | 值
@@ -110,7 +110,7 @@ SHIPZIP | 99362
 3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
-6. 在 API Apps 面板中，選取 [DB2 連接器]，展開作業清單以選取 [大量插入 NEW]。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [大量插入 NEW]。
 7. 輸入**資料列**值做為陣列。例如，複製並貼上下列程式碼：
 
 	```
@@ -164,8 +164,8 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 2. 輸入名稱 (例如"ShipOrdersDb2")、App Service 方案、其他屬性，然後選取 [建立]。
 3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
-5. 在 API Apps 面板中，選取 [DB2 連接器]，設定頻率和間隔，然後選取**核取記號**。
-6. 在 API Apps 面板中，選取 [DB2 連接器]，展開作業清單以選取 [從 NEWORDERS 選取]。
+5. 在 [API Apps] 面板中，選取 [DB2 連接器]，設定頻率和間隔，然後選取**核取記號**。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [從 NEWORDERS 選取]。
 7. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。設定應如下所示：![][10]  
 8. 按一下以關閉 [觸發程序和動作] 刀鋒視窗，然後按一下以關閉 [設定] 刀鋒視窗。
 9. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
@@ -179,7 +179,7 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 ## 建立使用 DB2 連接器來移除資料的邏輯應用程式 ##
 您可以從 Azure Marketplace 建立新的邏輯應用程式，然後使用 DB2 連接器動作來移除客戶訂單。例如，您可以使用 DB2 連接器條件式刪除作業來處理 SQL DELETE 陳述式 (DELETE FROM NEWORDERS WHERE ORDID >= 10000)。
 
-1. 在 Azure **開始面板**的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。 
+1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。 
 2. 在 [建立邏輯應用程式] 刀鋒視窗中，輸入 [名稱]，例如 **RemoveOrdersDb2**。
 3. 選取或定義其他設定 (例如服務計劃、資源群組) 的值。
 4. 設定應如下所示。按一下 [建立]：![][12]  
@@ -248,7 +248,7 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 
 
 ## 進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是邏輯應用程式？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
 使用 REST API 建立 API Apps。請參閱[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)。
 
@@ -271,4 +271,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [13]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_TriggersActions.png
 [14]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_Outputs.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

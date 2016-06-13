@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="05/31/2016"
 	ms.author="sameerch"/>
 
 
 # 與內部部署 SAP 伺服器整合
 
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
 透過 [SAP 連接器](app-service-logic-connector-sap.md)，您可以將 Azure App Service 的 Web、行動及邏輯應用程式連接至您現有的 SAP 伺服器。這可讓您叫用 RFC、BAPI、tRFC 以及傳送 IDoc 至 SAP 伺服器，即使它位於內部部署的防火牆後面也一樣。
 
@@ -103,9 +103,9 @@
 
 
 ## 在邏輯應用程式中使用 SAP 連接器
-建立 SAP 連接器之後，它便可以用於邏輯應用程式工作流程中。要這樣做，請透過 [新增] > [Logic Apps] > [建立] 來建立新的邏輯應用程式。輸入邏輯應用程式的中繼資料，包括資源群組。
+建立 SAP 連接器之後，它便可以用於邏輯應用程式工作流程中。若要這樣做，請透過 [新增] > [Logic Apps] > [建立] 來建立新的邏輯應用程式。輸入邏輯應用程式的中繼資料，包括資源群組。
 
-選取 [觸發程序和動作]。[邏輯應用程式工作流程] 設計工具便會隨即開啟。
+選取 [觸發程序和動作]。[邏輯應用程式工作流程設計工具] 隨即開啟。
 
 從右側窗格中選取 SAP 連接器，然後從 [動作] 索引標籤中選取動作。
 
@@ -124,4 +124,4 @@
 [8]: ./media/app-service-logic-integrate-with-an-on-premise-SAP-server/SAPConnector.HybridConnection.Connected.PNG
 [9]: http://www.microsoft.com/download/details.aspx?id=35552
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

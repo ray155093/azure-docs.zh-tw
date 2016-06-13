@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/16/2016"
-	ms.author="markusvi;andkjell"/>
+	ms.date="06/01/2016"
+	ms.author="markvi;andkjell"/>
 
 
 # Azure AD Connect 同步處理：將屬性同步處理至 Azure Active Directory
@@ -469,4 +469,4 @@ Windows 10 已加入網域的電腦 (裝置) 會將某些屬性同步處理至 A
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

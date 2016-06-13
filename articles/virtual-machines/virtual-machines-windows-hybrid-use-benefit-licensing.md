@@ -23,10 +23,10 @@
 > [AZURE.NOTE] 如果要採用 Azure Hybrid Use Benefit，您就不能使用 Azure Marketplace 映像來部署 Windows Server VM。您必須使用 PowerShell 或 Resource Manager 範本部署您的 VM，以將 VM 正確註冊為符合基本計算費率折扣的資格。
 
 ## 必要條件
-若要讓 Azure 中的 Windows Server VM 採用 Azure Hybrid Use Benefit，有下列幾項必要條件：
+若要將 Azure Hybrid Use Benefit 運用在 Azure 中的 Windows Server VM，有下列幾項必要條件：
 
 - 安裝 Azure PowerShell 模組
-- 將 Windows Server VHD 上傳到 Azure 儲存體
+- 將 Windows Server VHD 上傳到「Azure 儲存體」
 
 ### 安裝 Azure PowerShell
 如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。即使您要使用 Resource Manager 範本部署 VM，仍需要安裝 Azure PowerShell 才能上傳 Windows Server VHD (請參閱下方的下一個步驟)。
@@ -164,4 +164,4 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 
 深入了解[使用 Resource Manager 範本](../resource-group-overview.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

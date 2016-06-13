@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/26/2016"
-   ms.author="spyros;spyrossak" />
+   ms.date="05/31/2016"
+   ms.author="spyros;sethm" />
 
 # 將資料從 SQL 提取到 Azure 事件中樞
 
@@ -42,4 +42,4 @@
 
 若要部署解決方案，請複製或下載 SqlToEventHub 應用程式、編輯 App.config 檔案、加以建置並發佈。一旦您發佈該應用程式，便可以在雲端服務底下的 Azure 傳統入口網站中查看它的執行情況，並監視傳入您事件中樞的事件。請注意，頻率將取決於兩件事：SQL 資料表的更新頻率，以及您在應用程式組態檔中指定的睡眠間隔。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0601_2016-->

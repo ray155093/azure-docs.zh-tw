@@ -19,8 +19,6 @@
 
 # 企業營運應用程式工作負載第 5 階段：建立可用性群組並新增應用程式資料庫
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 在 Azure 基礎結構服務部署高可用性企業營運應用程式的最終階段中，您將建立 AlwaysOn 可用性群組並新增應用程式的資料庫。
 
 如需所有階段的相關資訊，請參閱[在 Azure 中部署高可用性的企業營運應用程式](virtual-machines-windows-lob-overview.md)。
@@ -80,7 +78,7 @@
 準備好至少一個資料庫 (使用備份和還原方法) 之後，則可建立可用性群組。
 
 1.	回到主要資料庫伺服器的遠端桌面工作階段。
-2.	在 [SQL Server Management Studio] 的左側窗格中，以滑鼠右鍵按一下 [Always On 高可用性]，然後按一下 [新增可用性群組精靈]。
+2.	在 **SQL Server Management Studio** 的左側窗格中，於 [Always On 高可用性] 上按一下滑鼠右鍵，然後按一下 [新增可用性群組精靈]。
 3.	在 [簡介] 頁面上，按 [下一步]。 
 4.	在 [指定可用性群組名稱] 頁面的 [可用性群組名稱] 中鍵入您的可用性群組名稱 (例如：AG1)，然後按 [下一步]。
 5.	在 [選取資料庫] 頁面中選取已備份的應用程式資料庫，然後按 [下一步]。這些資料庫符合可用性群組的必要條件，因為您為預定主要複本建立了至少一份完整備份。
@@ -119,4 +117,4 @@
 
 - 如果您要在 Azure 中部署自己的 IT 工作負載，請參閱這些[指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -14,11 +14,13 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/02/2016"
+	ms.date="05/26/2016"
 	ms.author="cjiang"/>
 
 # Azure 註冊問題疑難排解
 本文針對註冊 Azure 時可能發生的問題，協助您對常見的原因進行疑難排解。
+
+[AZURE.INCLUDE [支援免責聲明](../includes/support-disclaimer.md)]
 
 ## 我在輸入註冊資訊時出現錯誤。
 帳戶個人檔案資訊正確嗎？ 您的個人檔案詳細資料會用來產生帳單，因此請務必輸入正確的資訊。不正確的欄位範例如下︰
@@ -43,7 +45,7 @@
 - 如果使用簡訊和 [撥號給我] 方法的電話驗證步驟均失敗，請使用另一個電話號碼。
 - 您無法使用 VOIP 電話號碼進行電話驗證程序。
 
-附註：您可以在稍後更新[個人檔案資訊](https://account.windowsazure.com/Profile)，以變更您的慣用電話號碼。
+**附註：**您可以在稍後更新[個人檔案資訊](https://account.windowsazure.com/Profile)，以變更您的慣用電話號碼。
 
 ## 我的信用卡不被接受。
 請確定註冊時使用的付款方法是 Azure 啟用或付款所支援的方法。
@@ -79,7 +81,4 @@
 建議：
 - 如果您以前已啟用過 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮購買「隨用隨付」訂用帳戶。您也可能有資格獲得權益優惠。請在 [Microsoft Azure 優惠詳細資料頁面](https://azure.microsoft.com/support/legal/offer-details/)深入了解，而非 Azure 免費試用方案。請注意，權益方案需要特定的必要條件。
 
-## 仍然無法註冊？
-如果仍然發生註冊問題，或您的問題已超出本文的範圍，請[連絡 Azure 支援](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以取得支援。
-
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

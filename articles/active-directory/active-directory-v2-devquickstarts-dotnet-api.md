@@ -21,7 +21,7 @@
 Azure Active Directory 的 v2.0 端點可讓您使用 [OAuth 2.0](active-directory-v2-protocols.md#oauth2-authorization-code-flow) 存取權杖保護 Web API，具有個人 Microsoft 帳戶以及公司或學校帳戶的使用者，也能夠安全地存取您的 Web API。
 
 > [AZURE.NOTE]
-	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+	v2.0 端點並未支援 Azure Active Directory 的所有案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
 
 在 ASP.NET Web API 中，您可以使用隨附於 .NET Framework 4.5 的 Microsoft OWIN 中介軟體來完成此項作業。在這裡，我們將使用 OWIN 組建可讓用戶端透過使用者待辦事項清單建立和讀取工作的「待辦事項清單」MVC Web API。Web API 會驗證傳入的要求是否包含有效的存取權杖，以及拒絕所有受保護路由上未通過驗證的要求。
 
@@ -32,7 +32,7 @@ Azure Active Directory 的 v2.0 端點可讓您使用 [OAuth 2.0](active-directo
 git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git
 ```
 
-基本架構應用程式包含簡易 API 的所有未定案程式碼，但是不包含所有身分識別相關的部分。如果您不想要跟著步驟自行至作，您可以改為複製或[下載完成的範例](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip)。
+基本架構應用程式包含簡易 API 的所有未定案程式碼，但是不包含所有身分識別相關的部分。如果您不想要跟著步驟自行製作，您可以改為複製或[下載完成的範例](https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet/archive/skeleton.zip)。
 
 ```
 git clone https://github.com/AzureADQuickStarts/AppModelv2-WebAPI-DotNet.git
@@ -159,6 +159,12 @@ public IEnumerable<TodoItem> Get()
 
 [從 Web 應用程式呼叫 Web API >>](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md)
 
-如需其他資源，請查看： - [《v2.0 開發人員指南》>>](active-directory-appmodel-v2-overview.md) - [StackOverflow「azure-active-directory」標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+如需其他資源，請參閱：
+- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
+- [StackOverflow "azure-active-directory" 標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
-<!---HONumber=AcomDC_0224_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

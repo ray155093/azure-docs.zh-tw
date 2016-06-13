@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/24/2016"
+   ms.date="05/26/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple Virtual Array 上安裝 Update 0.1
@@ -87,7 +87,7 @@
 
 3. 在 Microsoft Update Catalog 的 [搜尋] 方塊中，輸入您要下載的 Hotfix 知識庫 (KB) 編號 (例如 **3160441**)，然後按一下 [搜尋]。
 
-    隨即顯示 Hotfix 清單，例如 **Microsoft Azure StorSimple Virtual Array Update 0.1**。
+    隨即顯示 Hotfix 清單，例如 **StorSimple Virtual Array Update 0.1**。
 
     ![搜尋目錄](./media/storsimple-ova-install-update-01/download1.png)
 
@@ -128,4 +128,4 @@
 
 深入了解[使用 Web UI 來管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/06/2016"
+	ms.date="05/31/2016"
 	ms.author="cabailey"/>
 #如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰
 
@@ -60,8 +60,8 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。這些增強內容可
 
 |需求|詳細資訊|
 |---|---|
-|Azure 訂用帳戶|若要建立 Azure 金鑰保存庫，您需要 Azure 訂用帳戶：[註冊免費試用](../../../../pricing/free-trial)|
-|支援 HSM 的 Azure 金鑰保存庫|如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](../../../../pricing/details/key-vault/)網站。|
+|Azure 訂用帳戶|若要建立 Azure 金鑰保存庫，您需要 Azure 訂用帳戶：[註冊免費試用](https://azure.microsoft.com/pricing/free-trial/)|
+|支援 HSM 的 Azure 金鑰保存庫|如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](https://azure.microsoft.com/pricing/details/key-vault/)網站。|
 |Thales HSM、智慧卡和支援軟體|您必須存取 Thales 硬體安全模組和 Thales HSM 的基本操作知識。請參閱 [Thales 硬體安全模組](https://www.thales-esecurity.com/msrms/buy)以取得相容模型的清單，或者如果您沒有 HSM，請購買 HSM。|
 |下列硬體和軟體：<ol><li>離線 x64 工作站，最低 Windows 作業系統為 Windows 7，Thales nShield 軟體至少為 11.50 版。<br/><br/>若此工作站執行 Windows 7，您必須[安裝 Microsoft.NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>連線到網際網路且具有最低 Windows 作業系統 Windows 7 的工作站。</li><li>擁有至少 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol>|基於安全性理由，建議第一個工作站不要連線到網路。不過，這不會以程式設計的方式強制執行。<br/><br/>請注意，在接下來的指示中，此工作站稱為中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路，建議您使用第二個個別的工作站下載工具組並上傳租用戶金鑰。但是為了測試目的，您可以使用和第一個工作站相同的工作站。<br/><br/>請注意，在接下來的指示中，此第二個工作站稱為網際網路連線的工作站。</p></blockquote><br/>|
 
@@ -107,7 +107,7 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。這些增強內容可
 
 KeyVault-BYOK-Tools-UnitedStates.zip
 
-D9FDA9F5A34E1388CD6C9138E5B75B7051FB7D6B11F087AFE0553DC85CCF0E36
+305F44A78FEB750D1D478F6A0C345B097CD5551003302FA465C73D9497AB4A03
 
 ---
 
@@ -115,7 +115,7 @@ D9FDA9F5A34E1388CD6C9138E5B75B7051FB7D6B11F087AFE0553DC85CCF0E36
 
 KeyVault-BYOK-Tools-Europe.zip
 
-81DCA798305B8408C06BAE7B3EFBC1E9EA6113A8D6EC443464F3744896F32C3
+C73BB0628B91471CA7F9ADFCE247561C6016A5103EF1A315D49C3EA23AFC0B9C
 
 ---
 
@@ -123,7 +123,7 @@ KeyVault-BYOK-Tools-Europe.zip
 
 KeyVault-BYOK-Tools-AsiaPacific.zip
 
-0C76967B3AC76687E4EA47EB96174EE6B25AB24E3114E28A90D9B93A2E6ABF6E
+BE9A84B6C76661929F9FDAD627005D892B3B8F9F19F351220BB4F9C356694192
 
 ---
 
@@ -131,7 +131,7 @@ KeyVault-BYOK-Tools-AsiaPacific.zip
 
 KeyVault-BYOK-Tools-LatinAmerica.zip
 	
-B38015990D4D1E522B8367FF78E78E0234BF9592663470426088C44C3CAAAF48
+9E8EE11972DECE8F05CD898AF64C070C375B387CED716FDCB788544AE27D3D23
 
 ---
 
@@ -139,7 +139,7 @@ B38015990D4D1E522B8367FF78E78E0234BF9592663470426088C44C3CAAAF48
 
 KeyVault-BYOK-Tools-Japan.zip
 
-DB512CD9472FDE2FD610522847DF05E4D7CD49A296EE4A2DD74D43626624A113
+E6B88C111D972A02ABA3325F8969C4E36FD7565C467E9D7107635E3DDA11A8B2
 
 ---
 
@@ -147,7 +147,7 @@ DB512CD9472FDE2FD610522847DF05E4D7CD49A296EE4A2DD74D43626624A113
 
 KeyVault-BYOK-Tools-Australia.zip
 
-8EBC69E58E809A67C036B50BB4F1130411AD87A7464E0D61A9E993C797915967
+7660D7A675506737857B14F527232BE51DC269746590A4E5AB7D50EDD220675D
 
 ---
 
@@ -155,7 +155,30 @@ KeyVault-BYOK-Tools-Australia.zip
 
 KeyVault-BYOK-Tools-USGovCloud.zip
 
-4DE9B33990099E4197ED67D786316F628E5218FC1EB0C24DCAD8A1851FD345B8
+53801A3043B0F8B4A50E8DC01A935C2BFE61F94EE027445B65C52C1ACC2B5E80
+
+---
+
+**加拿大：**
+
+KeyVault-BYOK-Tools-Canada.zip
+
+A42D9407B490E97693F8A5FA6B60DC1B06B1D1516EDAE7C9A71AA13E12CF1345
+
+---
+
+**德國：**
+
+KeyVault-BYOK-Tools-Germany.zip
+
+4795DA855E027B2CA8A2FF1E7AE6F03F772836C7255AFC68E576410BDD28B48E
+
+---
+**印度：**
+
+KeyVault-BYOK-Tools-India.zip
+
+26853511EB767A33CF6CD880E78588E9BBE04E619B17FBC77A6B00A5111E800C
 
 ---
 
@@ -182,7 +205,7 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 在 Windows 電腦上安裝 nCipher (Thales) 支援軟體，然後將 Thales HSM 附加至該電腦。
 
-確定 Thales 工具位於您的路徑 (**%nfast\_home%\\bin** 和 **%nfast\_home%\\python\\bin**)。例如，輸入下列內容：
+確定 Thales 工具位於您的路徑 (**%nfast\_home%\\bin** 和 ** %nfast\_home%\\python\\bin**)。例如，輸入下列內容：
 
 		set PATH=%PATH%;”%nfast_home%\bin”;”%nfast_home%\python\bin”
 
@@ -194,7 +217,7 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 1. 將檔案從下載的封裝解壓縮至任何資料夾。
 2. 從該資料夾執行 vcredist\_x64.exe。
-3. 遵循指示以安裝 Visual Studio 2012 的 Visual C++ 執行階段元件。
+3. 遵循指示以安裝 Visual Studio 2013 的 Visual C++ 執行階段元件。
 
 ##步驟 3：產生您的金鑰
 
@@ -243,10 +266,18 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 	- 澳大利亞：
 
 			python verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
-	- 對於 [Azure Government](../../../../features/gov/)，它會使用美國政府的 Azure 執行個體：
+	- 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
 
 			python verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
+	- 針對加拿大：
 
+			python verifykeypackage.py -k BYOK-KEK-pkg-CANADA-1 -w BYOK-SecurityWorld-pkg-CANADA-1
+	- 針對德國：
+
+			python verifykeypackage.py -k BYOK-KEK-pkg-GERMANY-1 -w BYOK-SecurityWorld-pkg-GERMANY-1
+	- 針對印度︰
+
+			python verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
 	>[AZURE.TIP]Thales 軟體包含 %NFAST\_HOME%\\python\\bin 中的 python
 
 2.	確認您看到下列訊息，表示驗證成功：**Result: SUCCESS**。
@@ -265,7 +296,7 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 當您執行此命令時，請使用下列指示：
 
-- 參數 *protect* 必須如所示設定為值 **module**。這會建立受模組保護的金鑰。BYOK 工具組不支援受 OCS 保護的金鑰。
+- 參數 *protect* 必須如所示般設定為值 **module**。這會建立受模組保護的金鑰。BYOK 工具組不支援受 OCS 保護的金鑰。
 
 - 以任意字串值取代 **ident** 和 **plainname** 的 *contosokey* 值。若要將系統管理負擔降至最低並減少錯誤的風險，建議您同時對兩者使用相同的值。**Ident** 值只能包含數字、連字號和小寫字母。
 
@@ -305,9 +336,19 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 - 澳大利亞：
 
 		KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1
-- 對於 [Azure Government](../../../../features/gov/)，它會使用美國政府的 Azure 執行個體：
+- 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
 
 		KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1
+- 針對加拿大：
+
+		KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-CANADA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-CANADA-1
+- 針對德國：
+
+		KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-GERMANY-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-GERMANY-1
+- 針對印度︰
+
+		KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-INDIA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-INDIA-1
+
 
 當您執行此命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.3：建立新的金鑰**中指定的相同值取代 *contosokey*。
 
@@ -349,9 +390,19 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 - 澳大利亞：
 
 		KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
-- 對於 [Azure Government](../../../../features/gov/)，它會使用美國政府的 Azure 執行個體：
+- 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
 
 		KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+- 針對加拿大：
+
+		KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-CANADA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-CANADA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+- 針對德國：
+
+		KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-GERMANY-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-GERMANY-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+- 針對印度︰
+
+		KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-INDIA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-INDIA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+
 
 當您執行此命令時，請使用下列指示：
 
@@ -380,4 +431,4 @@ KeyVault-BYOK-Tools-USGovCloud.zip
 
 您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。如需詳細資訊，請參閱[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)教學課程中的**如果您想要使用硬體安全模組 (HSM)** 一節。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

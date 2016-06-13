@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/14/2016" 
+	ms.date="05/31/2016" 
 	ms.author="nitinme"/>
 
 
 # 在 HDInsight Linux (預覽) 上管理 Apache Spark 叢集的資源
 
-Azure HDInsight (Linux) 上的 Spark 提供 Ambari Web UI 來管理叢集資源及監視叢集的健康狀態。您也可以使用 Spark 歷程記錄伺服器來追蹤已在叢集上完成執行的應用程式。您可以使用 YARN UI 來監視目前在叢集上執行的應用程式。本文說明如何存取這些 UI，以及如何使用這些介面執行一些基本資源管理工作。
+在這篇文章中，您將學習如何存取介面，例如 Ambari UI，YARN UI 以及與您的 Spark 叢集相關聯的 Spark 歷程記錄伺服器。您也將了解如何調整叢集組態，以獲得最佳效能。
 
 **必要條件：**
 
@@ -54,38 +54,102 @@ Azure HDInsight (Linux) 上的 Spark 提供 Ambari Web UI 來管理叢集資源�
 
 ## 如何啟動 Yarn UI？
 
-您可以使用 YARN UI 來監視目前在 Spark 叢集上執行的應用程式。存取 YARN UI 之前，您應該要啟用叢集的 SSH 通道。如需指示，請參閱[使用 SSH 通道存取 Ambari Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
+您可以使用 YARN UI 來監視目前在 Spark 叢集上執行的應用程式。
 
-1. 如上一節所示啟動 Ambari Web UI。
+1. 從叢集刀鋒視窗按一下 [叢集儀表板]，然後按一下 [YARN]。
 
-2. 在 Ambari Web UI 中，選取頁面左邊清單中的 YARN。
+	![啟動 YARN UI](./media/hdinsight-apache-spark-resource-manager/launch-yarn-ui.png)
 
-3. 3\. 當 YARN 服務資訊顯示時，請選取 [快速連結]。叢集前端節點的清單隨即出現。選取其中一個前端節點，然後選取 [ResourceManager UI]。
+	>[AZURE.TIP] 或者，您也可以從 Ambari UI 啟動 YARN UI。若要啟動 Ambari UI，請從叢集刀鋒視窗中按一下 [叢集儀表板]，然後按一下 [HDInsight 叢集儀表板]。從 Ambari UI 按一下 [YARN]、按一下 [快速連結]、按一下作用中的資源管理員，然後按一下 [ResourceManager UI]。
 
-	![啟動 YARN UI](./media/hdinsight-apache-spark-resource-manager/launch-yarn-ui.png "啟動 YARN UI")
+## 什麼是執行 Spark 應用程式的最佳叢集組態？
 
-4. 這應會啟動 YARN UI，而且您應會看到如下所示的頁面：
+根據應用程式需求，可用於 Spark 組態的三個主要參數為 `spark.executor.instances`、`spark.executor.cores` 和 `spark.executor.memory`。執行程式是針對 Spark 應用程式啟動的程序。它會在背景工作角色節點上執行，並負責執行應用程式的工作。執行程式的預設數目和每個叢集的執行程式大小，是根據背景工作角色節點數目和背景工作角色節點大小計算。它們儲存在叢集前端節點上的 `spark-defaults.conf`。
 
-	![YARN UI](./media/hdinsight-apache-spark-resource-manager/yarn-ui.png "YARN UI")
+這三個組態參數可以在叢集層級設定 (適用於在叢集執行的所有應用程式)，或者也可以針對每個個別應用程式指定。
 
-##<a name="scenariosrm"></a>如何使用 Ambari Web UI 管理資源？
+### 使用 Ambari UI 變更參數
 
-以下是一些可能會發生在 Spark 叢集上的常見案例，以及如何使用 Ambari Web UI 因應的指示。
+1. 從 Ambari UI 按一下 [Spark]、按一下 [設定]，然後展開 [自訂 spark-defaults]。
 
-### 我沒有搭配使用 BI 和 Spark 叢集。如何回收資源？
+	![使用 Ambari UI 設定參數](./media/hdinsight-apache-spark-resource-manager/set-parameters-using-ambari.png)
 
-1. 如上所示啟動 Ambari Web UI。從左側導覽窗格，按一下 [Spark]，然後按一下 [設定]。
+2. 在叢集上有 4 個 Spark 應用程式同時執行的預設值是良好的。您可以從使用者介面變更這些值，如下所示。
 
-2. 在可用的設定清單，尋找 [自訂 spark-thrift-sparkconf] 並將 **spark.executor.memory** 和 **spark.drivers.core** 的值變更為 **0**。
+	![使用 Ambari UI 設定參數](./media/hdinsight-apache-spark-resource-manager/set-executor-parameters.png)
 
-	![BI 的資源](./media/hdinsight-apache-spark-resource-manager/spark-bi-resources.png "BI 的資源")
+3. 按一下 [儲存] 以儲存組態變更。在頁面頂端，系統會提示您重新啟動所有受影響的服務。按一下 [重新啟動]。
 
-3. 按一下 [儲存]。輸入您所做變更的描述，然後再按一下 [儲存]。
-
-4. 在頁面頂端，您應會看到重新啟動 Spark 服務的提示。按一下 [重新啟動]，變更才會生效。
+	![重新啟動服務](./media/hdinsight-apache-spark-resource-manager/restart-services.png)
 
 
-### 我的 Jupyter Notebook 並未如預期般執行。如何重新啟動服務？
+### 變更在 Jupyter Notebook 中執行的應用程式的參數
+
+對於在 Jupyter Notebook 中執行的應用程式，您可以使用 `%%configure` magic 進行組態變更。在理想情況下，您必須在應用程式開頭進行此類變更，才能執行您的第一個程式碼儲存格。這可確保組態會在 Livy 工作階段建立時套用至其中。如果您想要變更應用程式中稍後的階段的組態，您必須使用 `-f` 參數。不過，這麼做會讓應用程式中的所有進度遺失。
+
+下列程式碼片段顯示如何變更在 Jupyter 中執行的應用程式的組態。
+
+	%%configure 
+	{"executorMemory": "3072M", "executorCores": 4, “numExecutors”:10}
+
+組態參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。
+
+### 使用 spark-submit 變更已提交應用程式的參數
+
+下列命令是如何針對使用 `spark-submit` 提交的批次應用程式變更組態參數的範例。
+
+	spark-submit --class <the application class to execute> --executor-memory 3072M --executor-cores 4 –-num-executors 10 <location of application jar file> <application parameters>
+
+### 使用 cURL 變更已提交應用程式的參數
+
+下列命令是如何針對使用 cURL 提交的批次應用程式變更組態參數的範例。
+
+	curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<the application class to execute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
+
+### 如何在 Spark Thrift 伺服器變更這些參數？
+
+Spark Thrift 伺服器提供對 Spark 叢集的 JDBC/ODBC 存取，並且用來服務 Spark SQL 查詢。像是 Power BI、Tableau 等等的工具，會使用 ODBC 通訊協定與 Spark Thrift 伺服器通訊，將 Spark SQL 查詢當作 Spark 應用程式執行。建立 Spark 叢集時，會啟動 Spark Thrift 伺服器的兩個執行個體，每個前端節點上一個執行個體。每個 Spark Thrift 伺服器會顯示為 YARN UI 中的 Spark 應用程式。
+
+Spark Thrift 伺服器會使用 Spark 動態執行程式配置，因此不會使用 `spark.executor.instances`。而是 Spark Thrift 伺服器會使用 `spark.dynamicAllocation.minExecutors` 和 `spark.dynamicAllocation.maxExecutors` 來指定執行程式計數。會使用組態參數 `spark.executor.cores` 和 `spark.executor.memory` 以修改執行程式大小。您可以變更這些參數，如下所示。
+
+* 展開**進階 spark-thrift-sparkconf** 類別以更新參數 `spark.dynamicAllocation.minExecutors`、`spark.dynamicAllocation.maxExecutors` 和 `spark.executor.memory`。
+
+	![設定 Spark Thrift 伺服器](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-1.png)
+
+* 展開**自訂 spark-thrift-sparkconf** 類別以更新參數 `spark.executor.cores`。
+
+	![設定 Spark Thrift 伺服器](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-2.png)
+
+### 如何變更 Spark Thrift 伺服器的驅動程式記憶體？
+
+Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小的 25%，假設前端節點 RAM 的大小總計大於 14 GB。您可以使用 Ambari UI 變更驅動程式記憶體組態，如下所示。
+
+* 從 Ambari UI 按一下 [Spark]、按一下 [設定]、展開 [進階 spark-env]，然後提供 [spark\_thrift\_cmd\_opts] 的值。
+
+	![設定 Spark Thrift 伺服器 RAM](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-ram.png)
+
+## 我沒有搭配使用 BI 和 Spark 叢集。如何回收資源？
+
+因為我們會使用 Spark 動態配置，Thrift 伺服器所使用的唯一資源是兩個應用程式主機的資源。若要回收這些資源，您必須停止叢集上執行的 Thrift 伺服器服務。
+
+1. 從 Ambari UI 的左窗格中，按一下 [Spark]。
+
+2. 在下一個頁面上，按一下 [Spark Thrift 伺服器]。
+
+	![重新啟動 Thrift 伺服器](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-1.png)
+
+3. 您應該會看到 Spark Thrift 伺服器正在上面執行的兩個前端節點。按一下其中一個前端節點。
+
+	![重新啟動 Thrift 伺服器](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-2.png)
+
+4. 下一個頁面列出在該前端節點上執行的所有服務。從清單中，按一下 Spark Thrift 伺服器旁邊的下拉式按鈕，然後按一下 [停止]。
+
+	![重新啟動 Thrift 伺服器](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-3.png)
+
+5. 對其他前端節點重複這些步驟。
+
+
+## 我的 Jupyter Notebook 並未如預期般執行。如何重新啟動服務？
 
 1. 如上所示啟動 Ambari Web UI。從左側導覽窗格，依序按一下 [Jupyter]、[服務動作] 和 [全部重新啟動]。這會在所有前端節點上啟動 Jupyter 服務。
 
@@ -138,4 +202,4 @@ Azure HDInsight (Linux) 上的 Spark 提供 Ambari Web UI 來管理叢集資源�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

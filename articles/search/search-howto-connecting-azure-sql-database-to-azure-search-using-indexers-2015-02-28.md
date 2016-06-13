@@ -13,7 +13,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="05/06/2016" 
+	ms.date="05/26/2016" 
 	ms.author="eugenesh"/>
 
 #使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務
@@ -68,23 +68,7 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 您可以從 [Azure 傳統入口網站](https://portal.azure.com)取得連接字串；使用 `ADO.NET connection string` 選項。
 
-然後，建立目標 Azure 搜尋服務索引 (如果您尚未建立)。您可以從 [Azure 入口網站 UI](https://portal.azure.com) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。確保您的目標索引結構敘述與來源資料表結構敘述相容。請參閱下列資料表，對應 SQL 及 Azure 搜尋服務間的資料類型。
-
-## SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
-
-|SQL 資料類型 | 允許的目標索引欄位類型 |注意事項 
-|------|-----|----|
-|bit|Edm.Boolean、Edm.String| |
-|int、smallint、tinyint |Edm.Int32、Edm.Int64、Edm.String| |
-| bigint | Edm.Int64、Edm.String | |
-| real、float |Edm.Double、Edm.String | |
-| smallmoney、money 十進位數值 | Edm.String| Azure 搜尋服務不支援將十進位類型轉換為 Edm.Double，因為這麼做會降低準確度。 |
-| char、nchar、varchar、nvarchar | Edm.String<br/>Collection(Edm.String)|將字串資料行轉換成 Collection(Edm.String) 需要使用預覽 API 2015-02-28-Preview 版本。如需詳細資訊，請參閱[本文](search-api-indexers-2015-02-28-Preview.md#create-indexer)| 
-|smalldatetime、datetime、datetime2、date、datetimeoffset |Edm.DateTimeOffset、Edm.String| |
-|uniqueidentifer | Edm.String | |
-|geography | Edm.GeographyPoint | 僅支援使用 SRID 4326 (預設) 之 POINT 類型的 geography 執行個體。 | | 
-|rowversion| N/A |資料列版本的資料行無法儲存在搜尋索引中，但可用於追蹤變更。 | |
-| time、timespan、binary、varbinary、image、xml、geometry、CLR 類型 | N/A |不支援 |
+然後，建立目標 Azure 搜尋服務索引 (如果您尚未建立)。您可以從 [Azure 入口網站 UI](https://portal.azure.com) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。請確定目標索引的結構描述可與來源資料表的結構描述相容 - 如需詳細資訊，請參閱 [SQL 和 Azure 搜尋服務資料類型之間的對應](#TypeMapping)。
 
 最後，利用命名及參考資料來源和目標索引建立索引子。
 
@@ -102,6 +86,8 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 	POST https://myservice.search.windows.net/indexers/myindexer/run?api-version=2015-02-28 
 	api-key: admin-key
+
+您可以自訂數個層面的索引子行為，例如，批次處理大小，以及在索引子執行失敗前可略過多少份文件。如需詳細資訊，請參閱[建立索引子 API](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
  
 在您可能需要允許 Azure 服務以連線您的資料庫的時候。如需瞭解如何執行連線的指示，請參閱 [從 Azure連線](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) 。
 
@@ -249,15 +235,32 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 請注意， **softDeleteMarkerValue** 必須為一個字串 (使用代表實際值的字串)。例如，若您擁有一個整數的資料行，且刪除的資料列標記為 1 值，請使用 `"1"`；若您擁有一個 BIT 資料行，且刪除的資料列標記為布林真值，請使用 `"True"`。
 
-## 自訂 Azure SQL 索引子
- 
-您可以自訂某些方面的索引子行為 (例如，批次大小、在索引子執行失敗前跳過多少文件等)。如需詳細資訊，請參閱 [Azure 搜尋服務索引子自訂](search-indexers-customization.md)。
+<a name="TypeMapping"></a>
+## SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
+
+|SQL 資料類型 | 允許的目標索引欄位類型 |注意事項 
+|------|-----|----|
+|bit|Edm.Boolean、Edm.String| |
+|int、smallint、tinyint |Edm.Int32、Edm.Int64、Edm.String| |
+| bigint | Edm.Int64、Edm.String | |
+| real、float |Edm.Double、Edm.String | |
+| smallmoney、money 十進位數值 | Edm.String| Azure 搜尋服務不支援將十進位類型轉換為 Edm.Double，因為這麼做會降低準確度。 |
+| char、nchar、varchar、nvarchar | Edm.String<br/>Collection(Edm.String)|將字串資料行轉換成 Collection(Edm.String) 需要使用預覽 API 2015-02-28-Preview 版本。如需詳細資訊，請參閱[本文](search-api-indexers-2015-02-28-Preview.md#create-indexer)| 
+|smalldatetime、datetime、datetime2、date、datetimeoffset |Edm.DateTimeOffset、Edm.String| |
+|uniqueidentifer | Edm.String | |
+|geography | Edm.GeographyPoint | 僅支援使用 SRID 4326 (預設) 之 POINT 類型的 geography 執行個體。 | | 
+|rowversion| N/A |資料列版本的資料行無法儲存在搜尋索引中，但可用於追蹤變更。 | |
+| time、timespan、binary、varbinary、image、xml、geometry、CLR 類型 | N/A |不支援 |
+
 
 ## 常見問題集
 
 **問：** 在 Azure 服務的 IaaS 模擬器上執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
 
-答：可以。只要您允許 Azure 服務開啟適當的連接埠連線至您的資料庫。
+答： 可以。不過，您需要允許搜尋服務連接到資料庫︰
+
+1. 設定防火牆，以允許存取您搜尋服務的 IP 位址。 
+2. 您可能也需要使用信任的憑證來設定資料庫，以便搜尋服務可以開啟與資料庫的 SSL 連線。
 
 **問：** 在內部部署執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
 
@@ -275,4 +278,4 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 答： 會。索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮調整您的搜尋服務。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

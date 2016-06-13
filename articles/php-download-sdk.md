@@ -3,8 +3,8 @@
 	description="了解如何下載和安裝 Azure SDK for PHP。"
 	documentationCenter="php"
 	services="app-service\web"
-	authors="rmcmurray"
-	manager="wpickett"
+	authors="allclark"
+	manager="douge"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="12/16/2015"
-	ms.author="robmcm"/>
+	ms.date="06/01/2016"
+	ms.author="allclark;yaqiyang"/>
 
 #下載 Azure SDK for PHP
 
@@ -31,11 +31,11 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 
 本主題中的指示假設您已安裝 [PHP][install-php]。
 
-> [AZURE.NOTE] 您必須有 PHP 5.3 或更新版本，才能使用適用於 Azure 的 PHP 用戶端程式庫。
+> [AZURE.NOTE] 您必須有 PHP 5.5 或更新版本，才能使用適用於 Azure 的 PHP 用戶端程式庫。
 
 ##適用於 Azure 的 PHP 用戶端程式庫
 
-適用於 Azure 的 PHP 用戶端程式庫提供了一個介面，以便從任何作業系統存取 Azure 功能，例如資料管理服務和雲端服務。您可以透過編輯器或 PEAR 封裝管理員或以手動方式安裝這些程式庫。
+適用於 Azure 的 PHP 用戶端程式庫提供了一個介面，以便從任何作業系統存取 Azure 功能，例如資料管理服務和雲端服務。您可以透過編輯器安裝這些程式庫。
 
 如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何從 PHP 使用 Blob 服務][blob-service] (英文)、[如何從 PHP 使用資料表服務][table-service] (英文) 及 [如何從 PHP 使用佇列服務][queue-service] (英文)。
 
@@ -49,18 +49,9 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 2. 在專案的根目錄中建立名為 **composer.json** 的檔案，並新增下列程式碼：
 
         {
-            "repositories": [
-                {
-                    "type": "pear",
-                    "url": "http://pear.php.net"
-                }
-            ],
-            "require": {
-                "pear-pear.php.net/mail_mime" : "*",
-                "pear-pear.php.net/http_request2" : "*",
-                "pear-pear.php.net/mail_mimedecode" : "*",
-                "microsoft/windowsazure": "*"
-            }
+			"require": {
+				"microsoft/windowsazure": "^0.4"
+			}
         }
 
 3. 將 **[composer.phar][composer-phar]** 下載到專案根目錄中。
@@ -68,30 +59,6 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 4. 開啟命令提示字元，在專案根目錄中執行此命令
 
 		php composer.phar install
-
-###當作 PEAR 封裝安裝
-
-若要將適用於 Azure 的 PHP 用戶端程式庫當作 PEAR 封裝安裝，請遵循下列步驟：
-
-1. [安裝 PEAR][install-pear]。
-2. 設定 Azure PEAR 通道：
-
-		pear channel-discover pear.windowsazure.com
-3. 安裝 PEAR 封裝：
-
-		pear install pear.windowsazure.com/WindowsAzure-0.4.1
-
-安裝完成後，您即可從您的應用程式參考類別庫。
-
-###手動安裝
-
-若要手動下載和安裝 PHP Client Libraries for Azure，請依照下列步驟進行：
-
-1. 從 [GitHub][php-sdk-github] 下載含有程式庫的 .zip 封存檔。或者，分岔儲存機制並複製到本機電腦(後面這個選項需要有 GitHub 帳戶並在本機安裝 Git)。
-
-	> [AZURE.NOTE] PHP Client Libraries for Azure 相依於 [HTTP\_Request2](http://pear.php.net/package/HTTP_Request2)、[Mail\_mime](http://pear.php.net/package/Mail_mime) 和 [Mail\_mimeDecode](http://pear.php.net/package/Mail_mimeDecode) PEAR 封裝。建議使用 [PEAR 封裝管理員](http://pear.php.net/manual/en/installation.php)來安裝這些封裝，以解決這些相依性。
-
-2. 將下載之封存檔的 `WindowsAzure` 目錄複製到應用程式目錄結構中，並從您的應用程式參考類別。
 
 ##Azure PowerShell 和 Azure 模擬器
 
@@ -113,11 +80,6 @@ Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure
 [install-php]: http://www.php.net/manual/en/install.php
 [composer-github]: https://github.com/composer/composer
 [composer-phar]: http://getcomposer.org/composer.phar
-[pear-net]: http://pear.php.net/
-[http-request2-package]: http://pear.php.net/package/HTTP_Request2
-[mail-mimedecode-package]: http://pear.php.net/package/Mail_mimeDecode
-[mail-mime-package]: http://pear.php.net/package/Mail_mime
-[install-pear]: http://pear.php.net/manual/en/installation.getting.php
 [nodejs-org]: http://nodejs.org/
 [install-node-linux]: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 [download-wpi]: http://go.microsoft.com/fwlink/?LinkId=253447
@@ -130,4 +92,4 @@ Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure
 [php-sdk-github]: http://go.microsoft.com/fwlink/?LinkId=252719
 [install-git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

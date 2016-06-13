@@ -4,7 +4,7 @@
 	services="sql-database"
 	documentationCenter=""
 	authors="stevestein"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -46,29 +46,9 @@
 
 
 
-## 設定您的認證並選取您的訂用帳戶
+## 複製您的 SQL Database
 
-您必須先建立 Azure 帳戶的存取權，因此請啟動 PowerShell 並執行下列 Cmdlet。在登入畫面中，請輸入與登入 Azure 傳統入口網站相同的電子郵件和密碼。
-
-	Add-AzureAccount
-
-成功登入後，您將會在畫面中看到一些資訊，包括用於登入的 ID 與可以存取的 Azure 訂用帳戶。
-
-
-### 選取您的 Azure 訂用帳戶
-
-若要選取所需的訂用帳戶，您必須提供訂用帳戶 ID 或訂用帳戶名稱 (**-SubscriptionName**)。您可以複製上一個步驟中顯示資訊的訂用帳戶 ID，或者，如果您有多個訂用帳戶，則可以執行 **Get-AzureSubscription** Cmdlet，然後複製結果集中所需的訂用帳戶資訊，以取得詳細資訊。當您的訂用帳戶執行了以下 Cmdlet 之後：
-
-	Select-AzureSubscription -SubscriptionId 4cac86b0-1e56-bbbb-aaaa-000000000000
-
-成功執行 **Select-AzureSubscription** 之後，您會返回 PowerShell 提示字元。如果您有一個以上的訂用帳戶，您可以執行 **Get-AzureSubscription** 並確認您要使用的訂用帳戶顯示 **IsCurrent: True**。
-
-
-## 為您的特定環境設定變數
-
-在下列幾個變數中，您要將範例值取代為您的資料庫和伺服器的特定值。
-
-以您的環境的值取代預留位置值：
+在下列幾個變數中，您要將範例值取代為您的資料庫和伺服器的特定值。以您的環境的值取代預留位置值：
 
     # The name of the server on which the source database resides.
     $ServerName = "sourceServerName"
@@ -86,14 +66,14 @@
 
 
 
-## 將 SQL Database 複製到相同伺服器
+### 將 SQL Database 複製到相同伺服器
 
 這個命令會將複製資料庫要求提交給服務。視資料庫大小而定，複製作業可能需要一些時間才能完成。
 
     # Copy a database to the same server
     Start-AzureSqlDatabaseCopy -ServerName $ServerName -DatabaseName $DatabaseName -PartnerDatabase $PartnerDatabaseName
 
-## 將 SQL Database 複製到不同伺服器
+### 將 SQL Database 複製到不同伺服器
 
 這個命令會將複製資料庫要求提交給服務。視資料庫大小而定，複製作業可能需要一些時間才能完成。
 
@@ -109,7 +89,7 @@
     Get-AzureSqlDatabaseOperation -ServerName $ServerName -DatabaseName $DatabaseName
 
 
-## 複製 SQL Database PowerShell 指令碼
+## PowerShell 指令碼範例
 
     # The name of the server where the source database resides
     $ServerName = "sourceServerName"
@@ -146,4 +126,4 @@
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

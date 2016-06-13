@@ -2,7 +2,8 @@
 	pageTitle="使用 Azure 傳統入口網站建立 Oracle 資料庫 VM |Microsoft Azure"
 	description="了解如何使用傳統部署模型和 Azure 入口網站建立內含 Oracle 資料庫的虛擬機器"
 	services="virtual-machines-windows"
-	authors="bbenz"
+	authors="rickstercdn"
+	manager="timlt"
 	documentationCenter=""
 	tags="azure-service-management"/>
 
@@ -12,47 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="Windows"
 	ms.workload="infrastructure-services"
-	ms.date="06/22/2015"
-	ms.author="bbenz" />
+	ms.date="05/17/2016"
+	ms.author="rclaus" />
 
 #在 Azure 中建立 Oracle 資料庫虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [virtual-machines-common-oracle-support](../../includes/virtual-machines-common-oracle-support.md)]
 
-
-以下範例說明如何在 Azure 中，根據 Microsoft 提供且在 Windows Server 2012 上執行的 Oracle 資料庫映像來建立虛擬機器 (VM)。有兩個步驟。首先，建立 VM，然後在 VM 內建立 Oracle 資料庫。顯示的範例是 Oracle 資料庫版本 12c，但步驟幾乎與版本 11g 相同。
-
-##在 Azure 中建立 Oracle 資料庫 VM
-
-1.	登入 [Azure 入口網站](https://ms.portal.azure.com/)。
-
-2.	按一下 [Marketplace]，接著按一下 [運算]，然後在搜尋方塊中輸入 **Oracle**。
-
-3.	選取一個可用的 Oracle 資料庫映像，包括**版本 11g、版本 12c、標準版、企業版，或是常用選項或進階選項套件組合之一。** 檢閱您選取的映像相關資訊 (例如，建議的最小大小)，然後按 [下一步]。
-
-4.	指定 VM 的 [主機名稱]。
-
-5.	指定 VM 的 [使用者名稱]。請注意，此使用者是用於從遠端登入 VM，這不是 Oracle 資料庫使用者名稱。
-
-6.	指定並確認 VM 的密碼，或提供 SSH 公用金鑰。
-
-7.	選擇一個 [定價層]。請注意，預設會顯示建議的定價層，以查看所有設定選項，請按一下右上方的 [檢視全部]。
-
-8.	考量下列因素，並依照需要設定選用設定：
-
-	a.讓 [儲存體帳戶] 保持不變，以使用 VM 名稱建立新的儲存體帳戶。
-
-	b.維持 [可用性集合] 為 [未設定]。
-
-	c.此時請勿新增任何 [端點]。
-
-9.	選擇或建立資源群組。
-
-10. 選擇 [訂用帳戶]。
-
-11. 選擇 [位置]。
-
-12. 按一下 [建立]，即會開始建立 VM 的程序。VM 的狀態為 [執行中]之後，請繼續進行下一個程序。
+下列範例示範如何在您已預先建立並安裝 Oracle Database 版本 12c 的 Windows Server VM 上建立 Oracle 資料庫。有兩個步驟。首先，連接 VM，然後在 VM 內建立 Oracle 資料庫。顯示的範例是 Oracle 資料庫版本 12c，但步驟幾乎與版本 11g 相同。
 
 
 ##在 Azure 中使用 Oracle 資料庫 VM 建立您的資料庫
@@ -135,7 +103,7 @@
 
 1.	在已登入虛擬機器的情況下，在 Windows 中按一下 [開始]，輸入「具有進階安全性的 Windows 防火牆」，然後按一下 [具有進階安全性的 Windows 防火牆] 圖示。這會開啟 [具有進階安全性的 Windows 防火牆] 管理主控台。
 
-2.	在防火牆管理主控台中，按一下左邊窗格內的 [輸入規則] \(如果您沒有看到 [輸入規則]，請展開左邊窗格內的最上層節點)，然後按一下右邊窗格內的 [新增規則]。
+2.	在防火牆管理主控台中，按一下左邊窗格內的 [輸入規則] (如果您沒有看到 [輸入規則]，請展開左邊窗格內的最上層節點)，然後按一下右邊窗格內的 [新增規則]。
 
 3.	針對 [規則類型]，選取 [連接埠]，然後按一下 [下一步]。
 
@@ -200,4 +168,4 @@
 
 -	[Oracle Database 2 Day DBA 12c Release 1](http://docs.oracle.com/cd/E16655_01/server.121/e17643/toc.htm)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

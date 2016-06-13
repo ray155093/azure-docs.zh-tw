@@ -105,9 +105,9 @@ public void ConfigureAuth(IAppBuilder app)
 ```
 
 ## 傳送驗證要求
-您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 v2.0 端點通訊。  OWIN 已經處理所有製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的瑣碎詳細資料。  剩餘的工作就是提供使用者一個登入和登出的方式。
+您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 v2.0 端點通訊。OWIN 已經處理所有製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的瑣碎詳細資料。剩餘的工作就是提供使用者一個登入和登出的方式。
 
-- 您可以在控制器中使用授權標記，要求使用者在存取特定頁面時登入。  開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標記。
+- 您可以在控制器中使用授權標記，要求使用者在存取特定頁面時登入。開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標記。
 
 ```C#
 [Authorize]
@@ -207,4 +207,8 @@ public ActionResult About()
 - [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
 - [StackOverflow "azure-active-directory" 標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
-<!---HONumber=AcomDC_0323_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="search"
-   ms.date="05/18/2016"
+   ms.date="05/27/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務 REST API：版本 2015-02-28-Preview
@@ -1442,7 +1442,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
     POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "*",
-      "orderby": [ "lastRenovationDate desc" ]
+      "orderby": "lastRenovationDate desc"
     }
 
 2) 在多面向搜尋中搜尋索引，並抓取特定範圍中類別、評等、標記以及含有 baseRate 之項目的多面向：
@@ -1487,7 +1487,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
     POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "hôtel",
-      "searchFields": [ "description_fr" ]
+      "searchFields": "description_fr"
     }
 
 6) 跨多個欄位搜尋索引。例如，您可以使用多種語言來儲存和查詢可搜尋的欄位，全部都使用相同的索引。如果英文和法文說明同時存在於同一份文件中，您就可以在查詢結果中傳回任一個或兩者：
@@ -1498,7 +1498,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 	POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "hotel",
-      "searchFields": [ "description", "description_fr" ]
+      "searchFields": "description, description_fr"
     }
 
 請注意，您一次只能查詢一個索引。除非您打算一次查詢一個，否則請勿為每個語言建立多個索引。
@@ -1535,7 +1535,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
     POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "*",
-      "select": [ "hotelName", "description" ]
+      "select": "hotelName, description"
     }
 
 10) 抓取符合特定篩選運算式的文件
@@ -1567,7 +1567,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
     POST /indexes/hotels/docs/search?api-version=2015-02-28-Preview
     {
       "search": "something",
-      "orderby": [ "geo.distance(location, geography'POINT(-122.12315 47.88121)')" ]
+      "orderby": "geo.distance(location, geography'POINT(-122.12315 47.88121)')"
     }
 
 13) 搜尋索引，但前提假設有一個名為 "geo" 的評分設定檔並含有兩個完全相同的評分函式，一個會定義名為 "currentLocation" 的參數，另一個則會定義名為 "lastLocation" 的參數
@@ -1853,4 +1853,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

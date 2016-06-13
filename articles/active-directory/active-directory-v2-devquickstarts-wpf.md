@@ -214,7 +214,12 @@ private async void GetTodoList()
 - When the user is done managing their To-Do List, they may finally sign out of the app by clicking the "Clear Cache" button.
 
 ```C#
-private async void SignIn(object sender = null, RoutedEventArgs args = null) { // 如果使用者按下了 [清除快取] 按鈕，// 請清除 ADAL 權杖快取並顯示使用者已登出。// 同時也必須清除來自瀏覽器控制項的 Cookie，// 讓下一位使用者有機會登入。
+private async void SignIn(object sender = null, RoutedEventArgs args = null)
+{
+		// If the user clicked the 'clear cache' button,
+		// clear the ADAL token cache and show the user as signed out.
+		// It's also necessary to clear the cookies from the browser
+		// control so the next user has a chance to sign in.
 
 		if (SignInButton.Content.ToString() == "Clear Cache")
 		{
@@ -244,6 +249,12 @@ ADAL 可使用個人和工作帳戶，輕鬆地將通用的身分識別功能納
 
 - [透過 v2.0 端點保護 TodoListService Web API >>](active-directory-v2-devquickstarts-dotnet-api.md)
 
-如需其他資源，請查看：- [《v2.0 開發人員指南》>>](active-directory-appmodel-v2-overview.md) - [StackOverflow「adal」標記 >>](http://stackoverflow.com/questions/tagged/adal)
+如需其他資源，請參閱：
+- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
+- [StackOverflow "adal" 標籤 >>](http://stackoverflow.com/questions/tagged/adal)
 
-<!---HONumber=AcomDC_0224_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

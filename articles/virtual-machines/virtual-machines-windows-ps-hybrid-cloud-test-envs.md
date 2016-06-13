@@ -19,8 +19,6 @@
 
 # Azure 混合式雲端測試環境
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 開發/測試或概念證明，混合式雲端測試環境會使用本機的網際網路連線，以及其中一個公用 IP 位址，並引導您逐步設定正常運作，跨單位 Azure 虛擬網路 (VNet)。完成後，您可以開發和測試應用程式、試驗簡化的 IT 工作負載，以及根據您在網際網路上的位置，評估相對的站對站虛擬私人網路 (VPN) 連線效率。
 
 ## 混合式雲端基本設定
@@ -50,6 +48,6 @@
 
 ## 後續步驟
 
-- 了解在 Azure 基礎架構服務中設計自訂的開發/測試或生產環境部署的[實作指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)。
+- 了解[實作指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)，以在 Azure 基礎架構服務中，設計自訂的開發/測試或生產環境部署。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

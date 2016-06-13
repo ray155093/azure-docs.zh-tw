@@ -7,5 +7,7 @@
 * [保護傳入的流量](../articles/app-service-web/app-service-app-service-environment-control-inbound-traffic.md)
 * [連接到後端資源](../articles/app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md)
 * [ExpressRoute 及 App Service 環境](../articles/app-service-web/app-service-app-service-environment-network-configuration-expressroute.md)
+* [App Service 環境的自訂組態設定](../articles/app-service-web/app-service-app-service-environment-custom-settings.md)
+* [使用 App Service 環境裝載的高密度應用程式](../articles/app-service/app-service-high-density-hosting.md#recommended-configuration-for-high-density-hosting)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

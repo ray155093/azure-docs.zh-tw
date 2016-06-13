@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/29/2016"
+   ms.date="05/31/2016"
    ms.author="deonhe"/>
 
 # 教學課程：使用 Azure BizTalk 服務處理 EDIFACT 發票
@@ -40,7 +40,7 @@
 
 *   接收到發票之後，Northwind 回傳 CONTRL 訊息給部署為協議一部分的 EDI 接收橋接器。
 
-> [AZURE.NOTE]\(選擇性) 此方案也會示範如何使用批次功能來批次傳送發票，而不是個別傳送每張發票。
+> [AZURE.NOTE] (選擇性) 此方案也會示範如何使用批次功能來批次傳送發票，而不是個別傳送每張發票。
 
 為了完成案例，我們使用服務匯流排佇列將發票從 Contoso 傳送至 Northwind，或從 Northwind 接收通知。這些佇列可以透過用戶端應用程式 (可經由下載取得) 來予以建立，並且會包含在本教學課程所提供的範例封裝中。
 
@@ -134,7 +134,7 @@
 
         2.  按一下 [儲存]。
 
-    5.  再次在 [路由] 索引標籤中，指定要將擱置的通知 (在處理期間失敗的通知) 傳送到哪裡。將傳輸類型設為 [Azure 服務匯流排]，將路由目的地類型設為 [佇列]，將驗證類型設為 \[共用存取簽章] (SAS)，提供服務匯流排命名空間的 SAS 連接字串，然後將佇列名稱輸入為 **suspended**。
+    5.  再次在 [路由] 索引標籤中，指定要將擱置的通知 (在處理期間失敗的通知) 傳送到哪裡。將傳輸類型設為 [Azure 服務匯流排]，將路由目的地類型設為 [佇列]，將驗證類型設為 [共用存取簽章] (SAS)，提供服務匯流排命名空間的 SAS 連接字串，然後將佇列名稱輸入為 **suspended**。
 
 5.  最後，按一下 [部署] 來部署協議。請記下傳送和接收協議部署所在的端點。
 
@@ -313,4 +313,4 @@ BizTalk 服務 EDI 橋接器也支援批次處理傳出訊息。對於想要接�
 [17]: ./media/biztalk-process-edifact-invoice/process-edifact-invoices-with-auzure-bts-17.PNG
 [18]: ./media/biztalk-process-edifact-invoice/process-edifact-invoices-with-auzure-bts-18.PNG
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0601_2016-->

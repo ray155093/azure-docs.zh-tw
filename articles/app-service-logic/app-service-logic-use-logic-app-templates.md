@@ -1,5 +1,5 @@
 <properties
- pageTitle="在 Azure App Service 中使用 Logic Apps 範本 | Microsoft Azure"
+ pageTitle="在 Azure App Service 中使用邏輯應用程式範本 | Microsoft Azure"
  description="了解如何使用預先建立的邏輯應用程式範本來協助您開始著手"
  authors="kevinlam1"
  manager="dwrede"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="05/31/2016"
 	ms.author="klam"/>
 
 # 使用邏輯應用程式範本
@@ -46,4 +46,4 @@ BizTalk VETR (驗證、擷取、轉換、路由) 管線的組態，以及處理 
 選取其中一個範本之後，依照您建立自己的邏輯應用程式的方法完成部署。詳細步驟請參閱[建立邏輯應用程式](app-service-logic-create-a-logic-app.md)。
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

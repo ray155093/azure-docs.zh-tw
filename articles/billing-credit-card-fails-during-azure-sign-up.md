@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="06/01/2016"
 	ms.author="cjiang"/>
 
 # 當我嘗試註冊 Azure 時，我的信用卡不被接受
@@ -31,7 +31,7 @@
 - 您輸入的 CVV 代碼必須完全符合信用卡/轉帳卡背面或正面的代碼。
 
 ## 您正在嘗試啟動 Azure 免費試用嗎？
-每位使用者只能啟動一次 Azure 免費試用優惠。如果您先前曾啟動免費試用，或曾擁有 Azure 訂用帳戶，但現在要嘗試啟動免費試用，系統將不會允許您繼續進行。請改為前往 [Microsoft Azure 優惠詳細資料](https://azure.microsoft.com/support/legal/offer-details/)頁面，在列示的可用 Azure 計劃中使用其中一項。
+每位使用者只能啟動一次 Azure 免費試用優惠。如果您先前曾利用此信用卡啟動免費試用，或曾擁有連結至此信用卡的 Azure 訂用帳戶，系統將不會允許您立即啟動免費試用。請改為前往 [Microsoft Azure 優惠詳細資料](https://azure.microsoft.com/support/legal/offer-details/)頁面，在列示的可用 Azure 計劃中使用其中一項。
 
 ## 您需要信用卡或轉帳卡之外的其他付款選項嗎？
 您也可以透過開立發票的付款方法來支付 Azure 訂用帳戶費用，如支票、隔夜支票及電匯。
@@ -40,4 +40,4 @@
 
 若要啟動發票的設定程序，請參閱[如何開立 Azure 帳單的發票](https://azure.microsoft.com/pricing/invoicing/)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

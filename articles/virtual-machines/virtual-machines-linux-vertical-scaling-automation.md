@@ -19,8 +19,6 @@
 
 # 使用 Azure 自動化垂直調整 Azure 虛擬機器大小
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型
-
 垂直調整大小是指為回應工作負載而增加或減少電腦資源的程序。在 Azure 中，可以透過變更虛擬機器的大小來完成。在下列情況中這種方式很有幫助
 
 - 如果不常使用虛擬機器，可以將其調整成較小的規模，以降低每月成本
@@ -90,4 +88,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

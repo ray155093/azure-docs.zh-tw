@@ -12,7 +12,7 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="05/12/2016"
+ms.date="05/28/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
@@ -21,7 +21,7 @@ ms.author="eugenesh" />
 
 > [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 
-## 設定資料表編制索引
+## 設定 Azure 資料表編制索引
 
 若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。在未來，對資料表編製索引的支援將會新增至 Azure 搜尋服務 .NET SDK 和 Azure 入口網站。
 
@@ -31,7 +31,8 @@ ms.author="eugenesh" />
 
 設定資料表編製索引：
 
-1. 建立類型 `azuretable` 的資料來源，它會參考 Azure 儲存體帳戶中的資料表 (和選擇性參考「查詢」)
+1. 建立資料來源
+	- 將 `type` 參數設定為 `azuretable`
 	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
 	- 使用 `container.name` 參數指定資料表名稱
 	- (選擇性) 使用 `container.query` 參數指定查詢。可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
@@ -67,7 +68,7 @@ ms.author="eugenesh" />
   		]
 	}
 
-如需建立索引 API 的詳細資訊，請參閱[建立索引](https://msdn.microsoft.com/library/dn798941.aspx)
+如需建立索引 API 的詳細資訊，請參閱[建立索引](https://msdn.microsoft.com/library/dn798941.aspx)。
 
 ### 建立索引子 
 
@@ -98,7 +99,7 @@ ms.author="eugenesh" />
 
 由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，則 `Key` 欄位的值是 `PK1RK1`。
 
-> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
+> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函數](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
 
 ## 增量編製索引和刪除偵測
  
@@ -123,4 +124,4 @@ ms.author="eugenesh" />
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

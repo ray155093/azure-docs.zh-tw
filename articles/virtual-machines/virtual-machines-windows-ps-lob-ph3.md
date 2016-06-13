@@ -19,8 +19,6 @@
 
 # 企業營運應用程式工作負載第 3 階段：設定 SQL Server 基礎結構
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 在 Azure 基礎結構服務部署高可用性企業營運系統應用程式的這個階段中，您將設定兩部執行 SQL Server 的電腦和叢集多數節點電腦，然後再將他們併入 Windows Server 叢集。
 
 您必須先完成這個階段才能前往[第 4 階段](virtual-machines-windows-ps-lob-ph4.md)。如需所有階段的相關資訊，請參閱[在 Azure 中部署高可用性的企業營運系統應用程式](virtual-machines-windows-lob-overview.md)。
@@ -135,7 +133,7 @@
 ### 若要初始化空磁碟和新增資料夾
 
 1. 在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2. 在 [內容] 窗格的 [**磁碟**] 群組中，按一下 [磁碟 **2**] \([**磁碟分割**] 設為 [**未知**])。
+2. 在 [內容] 窗格的 [**磁碟**] 群組中，按一下 [磁碟 **2**] ([**磁碟分割**] 設為 [**未知**])。
 3. 按一下 [工作]，然後按一下 [新增磁碟區]。
 4. 在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5. 在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -259,4 +257,4 @@ SQL Server AlwaysOn 可用性群組依賴 Windows Server 的容錯移轉叢集 (
 
 - 依照[第 4 階段](virtual-machines-windows-ps-lob-ph4.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

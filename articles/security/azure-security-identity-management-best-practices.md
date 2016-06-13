@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="05/26/2016"
    ms.author="yurid"/>
 
 # Azure 身分識別管理和存取控制安全性最佳作法
@@ -38,7 +38,7 @@
 - 啟用單一登入 (SSO)
 - 部署密碼管理
 - 對使用者強制執行 Multi-Factor Authentication (MFA)
-- 使用角色型存取控制 (RBAC) 
+- 使用角色型存取控制 (RBAC)
 - 使用資源管理員來控制資源的建立位置
 - 引導開發人員運用 SaaS 應用程式的身分識別功能
 - 主動監視可疑的活動
@@ -91,25 +91,25 @@
 如需 Azure MFA 的詳細資訊，請參閱[開始在雲端中使用 Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)。
 
 ## 使用角色型存取控制 (RBAC)
- 
+
 對於想要強制執行資料存取安全性原則的組織，根據[需要知道](https://en.wikipedia.org/wiki/Need_to_know)和[最低權限](https://en.wikipedia.org/wiki/Principle_of_least_privilege)安全性原則限制存取權限是必須做的事。Azure 角色型存取控制 (RBAC) 可用來指派權限給特定範圍的使用者、群組和應用程式。角色指派的範圍可以是訂用帳戶、資源群組或單一資源。
- 
+
 您可以利用 Azure 中[內建的 RBAC](../active-directory/role-based-access-built-in-roles.md) 角色指派權限給使用者。請考慮將「儲存體帳戶參與者」用於需要管理儲存體帳戶的雲端操作者，以及使用「傳統儲存體帳戶參與者」角色來管理傳統儲存體帳戶。對於需要管理 VM 和儲存體帳戶的雲端操作者，請考慮將他們加入至「虛擬機器參與者」角色。
 
 未利用諸如 RBAC 等功能來強制執行資料存取控制的組織，可能會對其使用者提供超過所需的權限。一開始就讓有些使用者存取他們不應具備的資料類型 (例如，高度業務衝擊)，可能會導致資料洩漏。
- 
+
 若要深入了解 Azure RBAC，請閱讀 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)一文。
 
 ## 使用資源管理員來控制資源的建立位置
 
 讓雲端操作者能夠執行工作，同時防止他們違反管理組織資源所需的慣例極為重要。想要控制資源建立位置的組織應將這些位置硬式編碼。
- 
+
 若要達成此目標，組織可以建立安全性原則，其定義會描述明確拒絕的動作或資源。在所需範圍內指派那些原則定義，例如訂用帳戶、資源群組或是個別的資源。
 
 > [AZURE.NOTE] 這與 RBAC 不同，其實際利用 RBAC 來驗證使用者是否有建立這些資源的權限。
 
 利用 [Azure Resource Manager](../resource-group-overview.md) 來建立適用於以下案例的自訂原則：組織只想在有相關聯的適當成本中心時允許作業，否則將拒絕要求。
- 
+
 不控制資源建立方式的組織比較容易遇到使用者因建立超過所需的資源而濫用服務。強化資源建立程序是保護多租用戶案例的重要步驟。
 
 您可以閱讀[使用原則來管理資源和控制存取](../resource-manager-policy.md)，進一步了解如何使用 Azure Resource Manager 建立原則。
@@ -134,4 +134,4 @@
 
 未主動監視其身分識別系統的組織有洩漏使用者認證的風險。若不知道有使用這些認證進行的可疑活動，組織將無法減輕這類型的威脅。您可以閱讀 [Azure Active Directory 身分識別保護](../active-directory/active-directory-identityprotection.md)，進一步了解 Azure 身分識別保護。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

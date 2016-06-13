@@ -52,7 +52,7 @@
 ## 系列 4 版次
 **Windows Server 2012 R2**
 
-支援 .NET 4.0、4.5、4.5.1、4.5.2 (備註 2)
+支援 .NET 4.0、4.5、4.5.1、4.5.2
 
 >[AZURE.NOTE] 具有 * 的日期可能會變更
 
@@ -182,7 +182,7 @@ Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的�
 ## 客體作業系統可支援性和淘汰原則
 [這裡][retirepolicy]說明客體作業系統可支援性和淘汰原則。
 
-[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
+[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/zh-TW/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure 客體 OS 更新設定]: cloud-services-how-to-configure.md
 [rss]: http://sxp.microsoft.com/feeds/3.0/msdntn/WindowsAzureOSUpdates
 [ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
@@ -203,4 +203,4 @@ Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的�
 [fam1retire]: cloud-services-guestos-family1-retirement.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

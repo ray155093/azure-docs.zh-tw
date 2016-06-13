@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="05/26/2016"
 	ms.author="markusvi"/>
 
 
@@ -118,20 +118,15 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -MaxResults 5`
 
-## Office365 系統管理入口網站
-O365 入口網站中的報告只會顯示有這些錯誤的 **User** 物件。並不會顯示 **Groups**、**Contacts** 或 **PublicFolders** 之間衝突的相關資訊。
+## Office 365 系統管理入口網站
 
-**若要在 Office365 系統管理入口網站中查看這些錯誤**：
+您可以在 Office 365 系統管理中心檢視目錄同步處理錯誤。Office 365 入口網站中的報告只會顯示有這些錯誤的 **User** 物件。並不會顯示 **Groups**、**Contacts** 或 **PublicFolders** 之間衝突的相關資訊。
 
-1.	以租用戶系統管理員的身分登入 **portal.office.com**
 
-2.	按一下 [使用者] > [作用中使用者] ![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/2.png "作用中使用者")
+![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1234.png "作用中使用者")
 
-3.	如果租用戶中任何物件有重複屬性錯誤，則頁面頂端將會顯示警告︰![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/3.png "作用中使用者")
+如需有關如何在 Office 365 系統管理中心檢視目錄同步處理錯誤的指示，請參閱[找出在 Office 365 中的目錄同步處理錯誤](https://support.office.com/zh-TW/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)。
 
-4.	若要查看特定物件的詳細資訊，請從 [選取檢視] 下拉式清單中選擇 [有錯誤的使用者]：![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/4.png "作用中使用者")
-
-5.	按一下物件可查看更多衝突詳細資訊，此資訊將會顯示在螢幕右下角︰![作用中使用者](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/5.png "作用中使用者")
 
 ### 身分識別同步處理錯誤報告
 當利用這個新行為處理具有重複屬性衝突的物件時，通知會包含在標準身分識別同步處理錯誤報告電子郵件中，而該電子郵件回傳送給租用戶的技術通知連絡人。不過，此行為有一項重大變更。在過去，重複屬性衝突的相關資訊會包含在每個後續的錯誤報告中，直到解決衝突為止。利用這個新行為，給定衝突的錯誤通知只會出現一次 - 在衝突的屬性遭到隔離時。
@@ -168,7 +163,7 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 3. 如果在內部部署上建立兩個具有相同 SMTP 位址的群組，則會在第一次嘗試時佈建失敗並發生標準的重複 **ProxyAddress** 錯誤。不過，重複值會在下一個同步處理週期時被適當隔離。
 
-**PowerShell Cmdlet**：
+**PowerShell cmdlets**：
 
 1. 不會對 User 物件類別顯示 **ImmutableId** / **LastDirSyncTime**。
 
@@ -198,6 +193,8 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 - [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+- [找出在 Office 365 中的目錄同步處理錯誤](https://support.office.com/zh-TW/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)
+
+<!---HONumber=AcomDC_0601_2016-->

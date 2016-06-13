@@ -19,8 +19,6 @@
 
 # 在混合式雲端中設定用於測試的 SharePoint 內部網路伺服器陣列
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本主題將逐步引導您建立混合式雲端環境測試 Microsoft Azure 代管的內部網路 SharePoint 伺服器陣列。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sp/virtual-machines-windows-ps-hybrid-cloud-test-env-sp-ph3.png)
@@ -104,7 +102,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -125,9 +123,9 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-重新啟動之後，請使用 Azure 入口網站，利用本機系統管理員帳戶連線到 SQL1。
+重新啟動之後，請使用 Azure 入口網站，利用「本機系統管理員帳戶」連線到 SQL1。
 
 接著，對於新資料庫和使用者帳戶權限設定 SQL Server 2014 使用 F: 磁碟機。
 
@@ -190,7 +188,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
 重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 SP1。
 
@@ -209,10 +207,10 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 11.	針對**要用什麼方式設定 SharePoint 伺服器陣列？**，按一下 [啟動精靈]。
 12.	在 [設定您的 SharePoint 伺服器陣列] 頁面的 [服務帳戶] 中，按一下 [使用現有受管理帳戶]。
 13.	在 [服務] 中，取消選取所有核取方塊 ([狀態服務] 旁的方塊除外)，然後按一下 [下一步]。在其網頁上的 [工作] 可能顯示一段時間才會完成。
-14.	在 [建立網站集合] 頁面的 [標題和描述] 中，於 [標題] 鍵入 **Contoso Corporation**，指定 URL **http://sp1**/，然後按一下 [確定]。在其網頁上的 [工作] 可能顯示一段時間才會完成。這個步驟會針對團隊網站使用 URL http://sp1。
+14.	在 [建立網站集合] 頁面的 [標題和描述] 中，於 [標題] 鍵入 **Contoso Corporation**，指定 URL ****http://sp1**/，然後按一下 [確定]。在其網頁上的 [工作] 可能顯示一段時間才會完成。這個步驟會針對團隊網站使用 URL http://sp1。
 15.	在 [這將完成伺服器陣列組態精靈] 頁面中，按一下 [完成]。[Internet Explorer] 索引標籤將顯示 SharePoint 2013 管理中心網站。
 16.	以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
-17.	在網址列中，鍵入 **http://sp1/**，然後按 ENTER。您應該會看見 Contoso Corporation 的 SharePoint 團隊網站。網站可能需要一些時間才會呈現。
+17.	在網址列中，鍵入 ****http://sp1/**，然後按 ENTER。您應該會看見 Contoso Corporation 的 SharePoint 團隊網站。網站可能需要一些時間才會呈現。
 
 這是您目前的組態。
 
@@ -224,4 +222,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - [設定](https://technet.microsoft.com/library/ee836142.aspx) SharePoint 伺服器陣列。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -19,8 +19,6 @@
 
 # 設定用於測試的模擬混合式雲端環境
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本文會引導您使用兩個不同的 Azure 虛擬網路逐步建立 Microsoft Azure 的模擬混合式雲端環境進行測試。當您沒有直接的網際網路連線和可用的公用 IP 位址時，使用此組態做為[設定用於測試的混合式雲端環境](virtual-machines-windows-ps-hybrid-cloud-test-env-base.md)的替代方案。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph4.png)
@@ -131,7 +129,7 @@
  
 ##第 3 階段：建立 VNet 對 VNet 連線
 
-首先，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊取得預先共用金鑰。
+首先，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊來取得預先共用金鑰。
 
 接下來，使用這些命令來建立站對站 VPN 連線，這可能需要一些時間來完成。
 
@@ -181,7 +179,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -200,7 +198,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 由於 TestVNET 虛擬網路有自己的 DNS 伺服器 (DC2)，因此您必須設定 TestVNET 的虛擬網路使用這個 DNS 伺服器。
 
-1.	在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
+1.	在「Azure 入口網站」的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
 2.	在 [設定] 索引標籤上，按一下 [DNS 伺服器]。
 3.	在 [主要 DNS 伺服器] 中，輸入 **192.168.0.4** 以取代 10.0.0.4。
 4.	按一下 [儲存]。
@@ -213,6 +211,6 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 ## 後續步驟
 
-- 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)，或 [Office 365 Directory 同步處理 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
+- 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)或 [Office 365 目錄同步作業 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

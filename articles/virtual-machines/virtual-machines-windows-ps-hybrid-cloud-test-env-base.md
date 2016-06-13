@@ -18,8 +18,6 @@
 	ms.author="josephd"/>
 
 # 設定用於測試的混合式雲端環境
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
  
 本主題會引導您逐步建立 Microsoft Azure 的混合式雲端環境進行測試。以下是產生的組態。
 
@@ -45,7 +43,7 @@
 4.	建立站對站 VPN 連線。
 5.	設定 DC2。 
 
-如果您還沒有 Azure 訂用帳戶，則可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 註冊免費帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
+如果您還沒有 Azure 訂用帳戶，您可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 註冊免費帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
 >[AZURE.NOTE] Azure 中的虛擬機器和虛擬網路閘道會在執行時持續耗用成本。Azure VPN 閘道會實作為一組兩個的 Azure 虛擬機器。如需詳細資訊，請參閱[定價 - 虛擬網路](https://azure.microsoft.com/pricing/details/virtual-network/)。為了減少 VPN 閘道的執行成本，請建立測試環境，並盡快執行所需的測試和示範。
 
@@ -189,7 +187,7 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 
 請記下顯示之 **IPAddress** 欄位中的 IP 位址。在第 4 階段中，您需要用到此資訊。
 
-接下來，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊取得預先共用金鑰。
+接下來，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊來取得預先共用金鑰。
 
 使用這些命令，在 Azure 中建立站對站 VPN 連線。
 
@@ -287,12 +285,12 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 	Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
 	ping dc1.corp.contoso.com
 
-Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如果您是使用模擬混合式雲端組態，則應該會看到來自 IP 位址 10.0.0.4 的四個成功回覆。這是站對站 VPN 或 VNET 對 VNET 連線的流量測試。
+Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如果您使用的是「模擬混合式雲端組態」，您應該會看到來自 IP 位址 10.0.0.4 的四個成功回覆。這是站對站 VPN 或 VNET 對 VNET 連線的流量測試。
 
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -311,7 +309,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如�
 
 由於 TestVNET 虛擬網路有自己的 DNS 伺服器 (DC2)，因此您必須設定 TestVNET 的虛擬網路使用這個 DNS 伺服器。
 
-1.	在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
+1.	在「Azure 入口網站」的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
 2.	在 [設定] 索引標籤上，按一下 [DNS 伺服器]。
 3.	在 [主要 DNS 伺服器] 中，輸入 **192.168.0.4** 以取代 10.0.0.4。
 4.	按一下 [儲存]。
@@ -329,6 +327,6 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如�
  
 ## 後續步驟
 
-- 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)，或 [Office 365 Directory 同步處理 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
+- 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)或 [Office 365 目錄同步作業 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

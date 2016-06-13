@@ -18,8 +18,6 @@
 	ms.author="josephd"/>
 
 # 在混合式雲端中設定 Office 365 Directory 同步處理 (DirSync) 進行測試
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
  
 本主題將逐步引導您使用 Microsoft Azure 代管的密碼同步處理建立混合式雲端環境來測試 Office 365 Directory 同步處理 (DirSync)。以下是產生的組態。
 
@@ -44,7 +42,7 @@
 2.	設定 Office 365 FastTrack 試用。
 3.	設定 DirSync 伺服器 (DS1)。
 
-如果您還沒有 Azure 訂用帳戶，則可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 註冊免費帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
+如果您還沒有 Azure 訂用帳戶，您可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 註冊免費帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
 ## 第 1 階段：設定混合式雲端環境
 
@@ -60,12 +58,12 @@
 
 若要開始 Office 365 FastTrack 試用，您需要虛構的公司名稱和 Microsoft 帳戶。雖然非必要，但建議您使用 Contoso (這是 Microsoft 範例內容中使用的虛構公司名稱) 以外公司名稱作為公司名稱。
 
-接著，註冊新的 Microsoft 帳戶。移至 **http://outlook.com** 並透過類似 user123@outlook.com 的電子郵件地址建立一個帳戶。您將使用這個帳戶註冊 Office 365 FastTrack 試用。
+接著，註冊新的 Microsoft 帳戶。移至 ****http://outlook.com** 並透過類似 user123@outlook.com 的電子郵件地址建立一個帳戶。您將使用這個帳戶註冊 Office 365 FastTrack 試用。
 
 接著，註冊新的 Office 365 企業 E3 試用版。
 
 1.	以 CORP\\User1 帳戶認證登入 CLIENT1。
-2.	開啟 Internet Explorer 並移至 **https://go.microsoft.com/fwlink/p/?LinkID=403802**。
+2.	開啟 Internet Explorer 並移至 ****https://go.microsoft.com/fwlink/p/?LinkID=403802**。
 3.	進行註冊 Office 365 企業 E3 試用版的程序。
 
 當系統提示輸入**公司電子郵件地址**時，請指定您新的 Microsoft 帳戶。
@@ -116,7 +114,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
 重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 DS1。
 
@@ -132,7 +130,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 4.	出現 [您要啟用 Active Directory 同步處理嗎?] 的提示時，按一下 [啟用]。執行此動作後，步驟 3 將顯示 [Active Directory 同步處理已啟動]。
 5.	在 CLIENT1 上保持開啟 [設定及管理 Active Directory 同步處理] 頁面。
 
-接下來，從 DC1 的 Windows PowerShell 提示字元中，**逐一**執行這些命令，以建立名為 contoso\_users 的新組織單位以及 Marci Kaufman 和 Lynda Meyer 兩個新的使用者帳戶。
+接下來，從 DC1 的 Windows PowerShell 提示字元中，「逐一」執行這些命令，以建立名為 contoso\_users 的新組織單位，以及為 Marci Kaufman 和 Lynda Meyer 新增兩個使用者帳戶。
 
 	New-ADOrganizationalUnit -Name contoso_users -Path "DC=corp,DC=contoso,DC=com"
 	New-ADUser -SamAccountName marcik -AccountPassword (Read-Host "Set user password" -AsSecureString) -name "Marci Kaufman" -enabled $true -PasswordNeverExpires $true -ChangePasswordAtLogon $false -Path "OU=contoso_users,DC=corp,DC=contoso,DC=com"
@@ -142,7 +140,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 接下來，在 DS1 上安裝及設定 Azure AD Connect 工具。
 
-1.	執行 Internet Explorer，在網址列中輸入 **https://www.microsoft.com/download/details.aspx?id=47594**，然後按 ENTER 鍵。
+1.	執行 Internet Explorer，在網址列中輸入 ****https://www.microsoft.com/download/details.aspx?id=47594**，然後按 ENTER 鍵。
 2.	執行 Microsoft Azure AD Connect 安裝程式。
 3.	從桌面上，按兩下 [Azure AD Connect]。
 4.	在 [歡迎] 頁面上，選取 [我同意授權合約及隱私權注意事項]，然後按一下 [繼續]。
@@ -167,7 +165,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 3.	在 [指派授權] 索引標籤上，選取 [設定使用者位置] 中的位置 (例如美國)。
 4.	選取 [Microsoft Office 365 方案 E3]，然後按一下 [儲存]。
 5.	關閉 Internet Explorer。
-6.	執行 Internet Explorer 並移至 **http://portal.microsoftonline.com**。
+6.	執行 Internet Explorer 並移至 ****http://portal.microsoftonline.com**。
 7.	使用 Lynda Meyer 的 Office 365 認證登入。她的使用者名稱將是 lyndam@<*虛構名稱*>.onmicrosoft.com。密碼是 Lynda Meyer Active Directory 使用者帳戶密碼。
 8.	成功登入後，您將看見 Office 365 入口網站的主要首頁顯示「讓今天有所不同」。
 
@@ -179,6 +177,6 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 ## 後續步驟
 
-- 在[生產](http://technet.microsoft.com/library/dn635310.aspx)中部署此工作負載。
+- 在[生產環境](http://technet.microsoft.com/library/dn635310.aspx)中部署此工作負載。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Azure App Service、雲端服務、虛擬機器及 Service Fabric 的比較"
-	description="了解何時使用 Azure App Service、雲端服務、虛擬機器和 Service Fabric 主控 Web 應用程式。"
+	pageTitle="Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較 | Microsoft Azure"
+	description="了解如何在 Azure App Service、虛擬機器、Service Fabric 及雲端服務之間做選擇以供裝載 Web 應用程式。"
 	services="app-service\web, virtual-machines, cloud-services"
 	documentationCenter=""
 	authors="tdykstra"
@@ -16,21 +16,17 @@
 	ms.date="02/22/2016"
 	ms.author="tdykstra"/>
 
-# Azure App Service、雲端服務、虛擬機器及 Service Fabric 的比較
+# Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
 
 ## 概觀
 
-Azure 提供數種託管網站的方式：[Azure App Service][]、[雲端服務][]、[虛擬機器][]及 [Service Fabric][]。本文協助您了解這些選項，為您的 Web 應用程式做出正確的選擇。
+Azure 提供數種託管網站的方式：[Azure App Service][]、[虛擬機器][]、[Service Fabric][] 及[雲端服務][]。本文協助您了解這些選項，為您的 Web 應用程式做出正確的選擇。
 
 Azure App Service 是大多數 Web 應用程式的最佳選擇。部署和管理都已整合到平台，網站可以迅速調整規模以因應過高的流量負載，而內建的負載平衡和流量管理員提供高可用性。您可以使用[線上移轉工具](https://www.migratetoazure.net/)輕鬆地將現有網站移至 Azure App Service、使用 Web 應用程式庫中的開放原始碼應用程式，或使用您選擇的架構和工具來建立新網站。[WebJobs][] 功能可讓您輕鬆地將背景工作處理加入至 App Service Web 應用程式中。
 
-如果您需要加強控制 Web 伺服器環境，例如想要從遠端登入伺服器或設定伺服器啟動工作，Azure 雲端服務通常是最佳選項。
+如果您在建立新的應用程式或重新撰寫現有的應用程式以使用微服務架構，Service Fabric 是不錯的選擇。在共用機器集區上執行的應用程式可以從小規模著手，然後擴充為包含成千上萬部機器的大規模服務。具狀態服務可輕鬆地以一致且可靠的方式儲存應用程式狀態，而 Service Fabric 會自動為您管理服務資料分割、調整及可用性。Service Fabric 也支援具有 Open Web Interface for .NET (OWIN) 和 ASP.NET Core 的 WebAPI。相較於 App Service，Service Fabric 也能更充分掌控或直接存取基礎結構。您可以從遠端進入您的伺服器，或設定伺服器啟動工作。雲端服務的控制和易用程度類似於 Service Fabric，但是它現在是舊版服務，建議將 Service Fabric 用於新的開發。
 
-如果現有應用程式需要進行大幅修改才能在 Azure App Service 或 Azure 雲端服務中執行，您可以選擇 Azure 虛擬機器來簡化移轉至雲端的工作。不過，相較於 Azure App Service 和雲端服務，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
-
-下圖針對 Azure 的每一個 Web 裝載選項，說明控制能力與簡易使用性之間的相對關係。
-
-![ChoicesDiagram][ChoicesDiagram]
+如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 [虛擬機器] 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
 
 ##<a name="scenarios"></a>案例和建議
 
@@ -50,7 +46,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。部署和管理
 
 ### <a id="onprem"></a>我需要一個具有背景處理和資料庫後端的 Web 前端，以執行與內部部署資源整合的商業應用程式。
 
-Azure App Service 是複雜商業應用程式的絕佳解決方案。您開發的應用程式將能夠在負載平衡平台上自動調整、採用 Active Directory 來保護，以及連接到內部部署資源。它可讓您透過世界級的入口網站和 API 來輕鬆管理應用程式，並利用應用程式洞察工具來深入了解客戶如何使用應用程式。[Webjobs][] 功能可讓您將 背景程序和工作作為 Web 層的一部分執行，同時混合式連線和 VNET 功能還可讓您輕鬆地連回內部部署資源。Azure App Service 為 Web 應用程式提供三個 9 的 SLA，可讓您：
+Azure App Service 是複雜商業應用程式的絕佳解決方案。您開發的應用程式將能夠在負載平衡平台上自動調整、採用 Active Directory 來保護，以及連接到內部部署資源。它可讓您透過世界級的入口網站和 API 來輕鬆管理應用程式，並利用應用程式洞察工具來深入了解客戶如何使用應用程式。[Webjobs][] 功能可讓您將背景程序和工作作為 Web 層的一部分執行，同時混合式連線和 VNET 功能還可讓您輕鬆地連回內部部署資源。Azure App Service 為 Web 應用程式提供三個 9 的 SLA，可讓您：
 
 * 在自我修復、自動修補的雲端平台上可靠地執行應用程式。
 * 在全球的資料中心網路上自動調整。
@@ -100,9 +96,9 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 
 如果您執行多層式應用程式，例如連接到資料庫的 Web 伺服器，則 Azure App Service 是適合的選項，能夠與 Azure SQL Database 密切整合。而您可以使用 WebJobs 功能來執行背景程序。
 
-如果您需要加強控制伺服器環境，例如想要從遠端登入伺服器或設定伺服器啟動工作，請為您的一個或多個層選擇雲端服務。
+如果您需要加強控制伺服器環境，例如想要從遠端登入伺服器或設定伺服器啟動工作，請為您的一個或多個層選擇 Service Fabric。
 
-如果您要使用自己的機器映像，或執行無法在雲端服務上設定的軟體或服務，請為您的一個或多個層選擇虛擬機器。
+如果您要使用自己的機器映像，或執行無法在 Service Fabric 上設定的軟體或服務，請為您的一個或多個層選擇虛擬機器。
 
 ### <a id="custom"></a>我的應用程式需要在高度自訂的 Windows 或 Linux 環境中才能運作，我想要將它移轉至雲端。
 
@@ -119,22 +115,20 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 - 設定 WordPress、Drupal、Umbraco、DNN 及其他許多協力廠商 Web 應用程式。
 - 移轉現有的應用程式，或從應用程式庫建立新的應用程式。
 
-如果 App Service 上不支援您的開放原始碼架構，您可以在其他兩個 Azure Web 裝載選項上執行它。「雲端服務」需要您使用啟動工作，以安裝並設定任何在 Windows 上執行的必要開放原始碼軟體。「虛擬機器」則需要您在機器映像 (可以是 Windows 或 Linux 型) 上安裝並設定軟體。
+如果 App Service 上不支援您的開放原始碼架構，您可以在其中一個其他 Azure Web 裝載選項上執行它。「虛擬機器」則需要您在機器映像 (可以是 Windows 或 Linux 型) 上安裝並設定軟體。
 
 ### <a id="lob"></a>我有個主要商務應用程式需要連線至公司網路。
 
-若要建立企業營運系統應用程式，您的網站可能需要直接存取公司網路上的服務或資料。在 App Service、雲端服務和虛擬機器上利用 [Azure 虛擬網路服務](/services/virtual-network/)即可達成。在 App Service 上，您可以使用 [VNET 整合功能](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/)，讓您的 Azure 應用程式彷彿就像在公司網路上執行一樣。
+若要建立企業營運系統應用程式，您的網站可能需要直接存取公司網路上的服務或資料。在 App Service、Service Fabric和虛擬機器上利用 [Azure 虛擬網路服務](/services/virtual-network/)即可達成。在 App Service 上，您可以使用 [VNET 整合功能](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/)，讓您的 Azure 應用程式彷彿就像在公司網路上執行一樣。
 
 ### <a id="mobile"></a>我想要裝載 REST API 或 Web 服務供行動用戶端使用
 
 HTTP 型 Web 服務可讓您支援各種用戶端，包括行動用戶端。ASP.NET Web API 等架構會與 Visual Studio 整合，讓您更容易建立及取用 REST 服務。這些服務是透過 Web 端點公開，因此在 Azure 上可以使用任何 Web 裝載技術來支援此案例。不過，App Service 是裝載 REST API 的絕佳選擇。使用 App Service，您可以：
 
-- 迅速建立一個 Web 應用程式，以將 HTTP Web 服務裝載於 Azure 全球各地的其中一個資料中心內。
+- 迅速建立一個[行動應用程式](../app-service-mobile/app-service-mobile-value-prop.md)或 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)，以將 HTTP Web 服務裝載於 Azure 全球各地的其中一個資料中心內。
 - 移轉現有的服務或建立新服務。
 - 以單一執行個體達到可用性 SLA，或向外延展至多部專用機器。
 - 使用已發佈的網站來提供 REST API 給任何 HTTP 用戶端，包括行動用戶端。
-
-此外，Azure App Service 有 REST API 的新預覽功能：API 應用程式。如需 API 應用程式的詳細資訊，請參閱[什麼是 API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
 
 ##<a name="features"></a>功能比較
 
@@ -203,4 +197,4 @@ Web 伺服器執行個體會共用內容和組態，這表示您在調整規模�
   [sqldatabase]: http://www.windowsazure.com/documentation/services/sql-database/
   [儲存體]: http://www.windowsazure.com/documentation/services/storage/
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

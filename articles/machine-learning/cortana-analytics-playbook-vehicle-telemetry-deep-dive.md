@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/28/2016" 
+	ms.date="05/27/2016" 
 	ms.author="bradsev" />
 
 
@@ -387,7 +387,7 @@ XUF99EW9OIQOMV7Q7 | 家庭房車
 
 按一下 [RealtimeDashboardApp 下載](http://go.microsoft.com/fwlink/?LinkId=717078)下載 RealtimeDashboardApp Visual Studio 方案來自訂。
 
-**執行即時儀表板應用程式**
+****執行即時儀表板應用程式 **
 
 1.	按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17-vehicle-telematics-powerbi-dashboard-setup.png) *圖 17 – PowerBI 儀表板安裝指示*
 2.	擷取並儲存在本機 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig18-vehicle-telematics-realtimedashboardapp-folder.png) *圖 18 – RealtimeDashboardApp 資料夾*
@@ -706,4 +706,4 @@ Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性�
 
 本文件包含車輛遙測資料分析方案的詳細探討。這以預測和動作示範即時和批次分析的 Lambda 架構模式。此模式適用於需要最忙碌路徑 (即時) 和不忙碌路徑 (批次) 分析的各種使用案例。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

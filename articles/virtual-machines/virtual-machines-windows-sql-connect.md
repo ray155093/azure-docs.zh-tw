@@ -30,8 +30,6 @@
 
 本文著重於如何使用資源管理員模型連接到 SQL Server VM。如需有關佈建和連線能力的完整逐步解說，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 ## 連接案例
 
 用戶端連接在虛擬機器上執行的 SQL Server 方式，取決於用戶端的位置與電腦/網路組態。這些案例包括：
@@ -43,7 +41,7 @@
 
 如果您想要從網際網路連線到您的 SQL Server 資料庫引擎，將需要執行數個步驟，例如設定防火牆、啟用「SQL 驗證」，以及設定您的網路安全性群組。您必須要有一個「網路安全性群組」規則來允許連接埠 1433 上的 TCP 流量。
 
-如果您使用入口網站以資源管理員佈建 SQL Server 虛擬機器映像，則當您在 SQL 連線選項選取 [公用] 時，即已為您完成這些步驟。
+如果您使用入口網站以資源管理員佈建 SQL Server 虛擬機器映像，則當您在 SQL 連線選項選取 [公用] 時，就會為您完成這些步驟。
 
 ![](./media/virtual-machines-windows-sql-connect/sql-vm-portal-connectivity.png)
 
@@ -100,4 +98,4 @@
 
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

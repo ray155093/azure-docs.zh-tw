@@ -3,8 +3,8 @@
 	description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 	documentationCenter="php"
 	services="storage"
-	authors="rmcmurray"
-	manager="wpickett"
+	authors="allclark"
+	manager="douge"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-    ms.date="04/29/2016"
-	ms.author="robmcm"/>
+    	ms.date="06/01/2016"
+	ms.author="allclark;yaqiyang"/>
 
 # 如何使用 PHP 的 Blob 儲存體
 
@@ -24,7 +24,7 @@
 
 Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
 
-本指南會示範如何使用 Azure Blob 服務執行一般案例。這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download] \(英文)。所涵蓋的案例包括「上傳」、「列出」、「下載」及「刪除」Blob。如需 Blob 的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本指南會示範如何使用 Azure Blob 服務執行一般案例。這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download] (英文)。所涵蓋的案例包括「上傳」、「列出」、「下載」及「刪除」Blob。如需 Blob 的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
 [AZURE.INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
@@ -49,9 +49,9 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 下列範例顯示如何納入自動載入器檔案及參考 **ServicesBuilder** 類別。
 
-> [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過 Composer 安裝 PHP Client Libraries for Azure。如果您手動或透過 PEAR 封裝安裝程式庫，則必須參考 `WindowsAzure.php` 自動換片器檔案。
+> [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過 Composer 安裝 PHP Client Libraries for Azure。如果您是以手動方式安裝程式庫，則必須參考 `WindowsAzure.php` 自動載入器檔案。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 	use WindowsAzure\Common\ServicesBuilder;
 
 
@@ -79,7 +79,7 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 在本文的各範例中，將會直接傳遞連接字串。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
 
@@ -94,9 +94,9 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 	require_once 'vendor\autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Blob\Models\CreateContainerOptions;
-	use WindowsAzure\Blob\Models\PublicAccessType;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+	use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -139,18 +139,18 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 		echo $code.": ".$error_message."<br />";
 	}
 
-呼叫 **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** 可讓容器和 Blob 資料開放透過匿名要求來存取。呼叫 **setPublicAccess(PublicAccessType::BLOBS\_ONLY)** 可讓 Blob 資料開放透過匿名要求來存取。如需容器 ACL 的詳細資訊，請參閱[設定容器 ACL (REST API)][container-acl] \(英文)。
+呼叫 **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** 可讓容器和 Blob 資料開放透過匿名要求來存取。呼叫 **setPublicAccess(PublicAccessType::BLOBS\_ONLY)** 可讓 Blob 資料開放透過匿名要求來存取。如需容器 ACL 的詳細資訊，請參閱[設定容器 ACL (REST API)][container-acl] (英文)。
 
-如需 Blob 服務錯誤碼的詳細資訊，請參閱 [Blob 服務錯誤碼][error-codes] \(英文)。
+如需 Blob 服務錯誤碼的詳細資訊，請參閱 [Blob 服務錯誤碼][error-codes] (英文)。
 
 ## 將 Blob 上傳至容器
 
-若要將檔案當作 Blob 上傳，請使用 **BlobRestProxy->createBlockBlob** 方法。如果 Blob 不存在，此作業會予以建立，若已存在，則予以覆寫。下列程式碼範例假設已建立容器，並使用 [fopen][fopen] \(英文) 將檔案當作串流開啟。
+若要將檔案當作 Blob 上傳，請使用 **BlobRestProxy->createBlockBlob** 方法。如果 Blob 不存在，此作業會予以建立，若已存在，則予以覆寫。下列程式碼範例假設已建立容器，並使用 [fopen][fopen] (英文) 將檔案當作串流開啟。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -178,10 +178,10 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 若要列出容器中的 Blob，請搭配使用 **BlobRestProxy->listBlobs** 方法與 **foreach** 迴圈，對結果進行迴圈。下列程式碼會將容器中每個 Blob 的名稱作為輸出顯示，並將 URI 顯示於瀏覽器。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -211,10 +211,10 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 若要下載 Blob，請呼叫 **BlobRestProxy->getBlob** 方法，然後在結果產生的 **GetBlobResult** 物件上呼叫 **getContentStream** 方法。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -240,10 +240,10 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 若要刪除 Blob，請將容器名稱和 Blob 名稱傳遞至 **BlobRestProxy->deleteBlob**。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -266,10 +266,10 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 最後，若要刪除 Blob 容器，請將容器名稱傳遞至 **BlobRestProxy->deleteContainer**。
 
-	require_once 'vendor\autoload.php';
+	require_once 'vendor/autoload.php';
 
 	use WindowsAzure\Common\ServicesBuilder;
-	use WindowsAzure\Common\ServiceException;
+	use MicrosoftAzure\Storage\Common\ServiceException;
 
 	// Create blob REST proxy.
 	$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
@@ -308,4 +308,4 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 [fopen]: http://www.php.net/fopen
 [stream-get-contents]: http://www.php.net/stream_get_contents
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->
