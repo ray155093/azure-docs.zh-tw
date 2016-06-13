@@ -19,8 +19,6 @@
 
 # 基本設定測試環境
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本文將逐步解說如何利用在 Resource Manager 中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
 
 產生的測試環境可以用於：
@@ -138,11 +136,11 @@ DC1 是 corp.contoso.com Active Directory 網域服務 (AD DS) 網域的網域�
 接著，連接到 DC1 虛擬機器。
 
 1.	在 Azure 入口網站中，按一下 [**虛擬機器**]，然後按一下 [**DC1**] 虛擬機器。  
-2.	在 [DC1] 窗格中按一下 [連接]。
+2.	在 [DC1] 窗格中，按一下 [連接]。
 3.	出現提示時，開啟下載的 DC1.rdp 檔案。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用下列：
-- 名稱：**DC1\**[本機系統管理員帳戶名稱]
+- 名稱：**DC1**[本機系統管理員帳戶名稱]
 - 密碼：[本機系統管理員帳戶密碼]
 6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
 
@@ -173,7 +171,7 @@ DC1 重新啟動之後，重新連接到 DC1 的虛擬機器。
 3.	提示開啟 DC1.rdp 時，按一下 [開啟]。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用下列：
-- 名稱：**CORP\**[本機系統管理員帳戶名稱]
+- 名稱：**CORP**[本機系統管理員帳戶名稱]
 - 密碼：[本機系統管理員帳戶密碼]
 6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
 
@@ -181,7 +179,7 @@ DC1 重新啟動之後，重新連接到 DC1 的虛擬機器。
 
 	New-ADUser -SamAccountName User1 -AccountPassword (read-host "Set user password" -assecurestring) -name "User1" -enabled $true -PasswordNeverExpires $true -ChangePasswordAtLogon $false
 
-請注意，此命令會提示您提供 User1 帳戶密碼。因為這個帳戶會用於所有 CORP 網域成員電腦的遠端桌面連線，所以請選取強式密碼。要檢查密碼強度，請參閱[密碼檢查程式：使用強式密碼](https://www.microsoft.com/security/pc-security/password-checker.aspx)。記錄 User1 帳戶的密碼，然後儲存在安全的位置。
+請注意，此命令會提示您提供 User1 帳戶密碼。因為這個帳戶會用於所有 CORP 網域成員電腦的遠端桌面連線，所以請「選擇強式密碼」。要檢查密碼強度，請參閱[密碼檢查程式：使用強式密碼](https://www.microsoft.com/security/pc-security/password-checker.aspx)。記錄 User1 帳戶的密碼，然後儲存在安全的位置。
 
 接著，將新的 User1 帳戶設為企業系統管理員。於系統管理員層級 Windows PowerShell 命令提示字元下執行下列命令。
 
@@ -250,7 +248,7 @@ APP1 提供網頁和檔案共用服務。
 
 CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或桌上型電腦。
 
-> [AZURE.NOTE] 下列命令集能建立執行 Windows Server 2012 R2 Datacenter 的 CLIENT1。這適用於所有類型的 Azure 訂用帳戶。如果您有以 MSDN 為基礎的 Azure 訂用帳戶，您可以使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)建立執行 Windows 10、Windows 8 或 Windows 7 的 CLIENT1。
+> [AZURE.NOTE] 下列命令集能建立執行 Windows Server 2012 R2 Datacenter 的 CLIENT1。這適用於所有類型的 Azure 訂用帳戶。如果您有以 MSDN 為基礎的 Azure 訂用帳戶，您可以使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來建立執行 Windows 10、Windows 8 或 Windows 7 的 CLIENT1。
 
 首先，填寫資源群組的名稱、Azure 位置以及儲存體帳戶名稱，然後在本機電腦的 Azure PowerShell 命令提示字元執行下列命令，為 CLIENT1 建立 Azure 虛擬機器。
 
@@ -304,7 +302,7 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 
 ## 後續步驟
 
-- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)新增虛擬機器。
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來新增虛擬機器。
 - 建置[模擬混合式雲端測試環境](virtual-machines-setup-simulated-hybrid-cloud-environment-testing.md)。
 
 
@@ -335,4 +333,4 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "APP1"
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "CLIENT1"
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -3,7 +3,7 @@
  description="將雲端服務部署至 Azure 時，可能會發生幾個常見的問題。本文章提供其中部分問題的解決方案。"
    services="cloud-services"
    documentationCenter=""
-   authors="dalechen"
+   authors="simonxjx"
    manager="felixwu"
    editor=""
    tags="top-support-issue"/>
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="04/20/2016"
-   ms.author="daleche" />
+   ms.date="05/26/2016"
+   ms.author="v-six" />
 
 # 對雲端服務部署問題進行疑難排解
 
@@ -86,4 +86,4 @@
 
 若要了解如何利用 Azure PaaS 電腦的診斷資料來對雲端服務角色的問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

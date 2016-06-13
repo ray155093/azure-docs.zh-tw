@@ -160,7 +160,10 @@ Azure Functions 裝載環境會自動加入下列組件︰
 }
 ```
 
+只有 .NET Framework 4.6 受到支援，因此請確認您的 *project.json* 檔案會指定 `net46`，如下所示。
+
 當您上傳 *project.json* 檔案時，執行階段會取得封裝並自動新增封裝組件的參考。您不需要新增 `#r "AssemblyName"` 指示詞。只要將所需的 `using` 陳述式新增至 *run.csx* 檔案，即可使用 NuGet 封裝中定義的類型。
+
 
 ### 如何上傳 project.json 檔案
 
@@ -168,7 +171,7 @@ Azure Functions 裝載環境會自動加入下列組件︰
 
 	這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
 
-2. 若要上傳 project.json 檔案，請使用 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函式應用程式檔案**一節所述的其中一個方法。
+2. 若要上傳 project.json 檔案，請使用 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函數應用程式檔案**一節所述的其中一個方法。
 
 3. 上傳 *project.json* 檔案之後，您會在函數的串流記錄檔中看到如下列範例所示的輸出：
 
@@ -191,7 +194,7 @@ Azure Functions 裝載環境會自動加入下列組件︰
 
 ## 環境變數
 
-若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如下列程式碼範例所示︰
+若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如以下程式碼範例所示︰
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -251,4 +254,4 @@ public static void MyLogger(TraceWriter log, string logtext)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

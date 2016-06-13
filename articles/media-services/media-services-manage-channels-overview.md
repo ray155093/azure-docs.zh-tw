@@ -166,4 +166,4 @@ ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最
 
 [媒體服務概念](media-services-concepts.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

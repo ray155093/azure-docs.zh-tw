@@ -12,7 +12,7 @@
 
 ### 建立含有單一記錄的 MX 記錄集
 
-此範例會使用記錄集名稱 "@"，在區域頂點 (例如 "contoso.com") 建立 MX 記錄。對於 MX 記錄而言，這很常見。
+此範例會使用記錄集名稱 "@"，在區域頂點 (在此案例中，"contoso.com") 建立 MX 記錄。對於 MX 記錄而言，這很常見。
 
 	$rs = New-AzureRmDnsRecordSet -Name "@" -RecordType MX -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 	Add-AzureRmDnsRecordConfig -RecordSet $rs -Exchange "mail.contoso.com" -Preference 5
@@ -26,7 +26,7 @@
 
 ### 建立含有單一記錄的 SRV 記錄集
 
-如果您要在區域的根目錄內建立 SRV 記錄，只需在記錄名稱中指定 *\_service* 和 *\_protocol* 即可。記錄名稱中不需要同時包含 ‘.@’。
+如果您要在區域的根內建立 SRV 記錄，您只要在記錄名稱中指定 *\_service* 和 *\_protocol*。記錄名稱中不需要包含 "@"。
 
 	$rs = New-AzureRmDnsRecordSet -Name "_sip._tls" -RecordType SRV -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 	Add-AzureRmDnsRecordConfig -RecordSet $rs –Priority 0 –Weight 5 –Port 8080 –Target "sip.contoso.com"
@@ -37,3 +37,5 @@
 	$rs = New-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -Ttl 60 -ZoneName contoso.com -ResourceGroupName MyAzureResourceGroup
 	Add-AzureRmDnsRecordConfig -RecordSet $rs -Value "This is a TXT record"
 	Set-AzureRmDnsRecordSet -RecordSet $rs
+
+<!---HONumber=AcomDC_0601_2016-->

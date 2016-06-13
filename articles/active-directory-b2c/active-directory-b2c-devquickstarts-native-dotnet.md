@@ -18,9 +18,6 @@
 
 # Azure AD B2C 預覽版：建置 Windows 桌面應用程式
 
-
-<!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-native-switcher](../../includes/active-directory-b2c-devquickstarts-native-switcher.md)]-->
-
 如果您利用 Azure Active Directory (Azure AD) B2C，只要幾個簡短的步驟，就在您的桌面應用程式中新增功能強大的自助式身分識別管理功能。本文章說明如何建立 .NET Windows Presentation Foundation (WPF)「待辦事項清單」應用程式，其中包含使用者註冊、登入和設定檔管理的功能。該應用程式將支援以使用者名稱或電子郵件來註冊及登入的功能。它也會支援以社交帳戶 (例如 Facebook 和 Google) 來註冊及登入。
 
 [AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
@@ -45,8 +42,8 @@
 
 - 在身分識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
 - 在註冊原則中，選擇 [顯示名稱] 和其他註冊屬性。
-- 針對每個原則選擇 [顯示名稱] 和 [物件識別碼] 宣告來做為應用程式宣告。您也可以選擇其他宣告。
-- 在您建立每個原則之後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
+- 針對每個原則選擇 [顯示名稱] 和 [物件識別碼] 宣告做為應用程式宣告。您也可以選擇其他宣告。
+- 建立每個原則後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
@@ -60,13 +57,13 @@
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet.git
 ```
 
-完整的應用程式也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet/archive/complete.zip)，或是放在相同存放庫的 `complete` 子目錄中。
+完整的應用程式也[以 .zip 檔案格式提供](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet/archive/complete.zip)，或從相同存放庫的 `complete` 分支取得。
 
 下載範例程式碼之後，請開啟 Visual Studio .sln 檔案開始進行。方案中有兩個專案：`TaskClient` 專案和 `TaskService` 專案。`TaskClient` 是使用者會互動的 WPF 桌面應用程式。`TaskService` 是應用程式的後端 Web API，會儲存每位使用者的待辦事項清單。在此案例中，由於 `TaskClient` 及 `TaskService` 會構成一個邏輯應用程式，因此兩者都是由單一應用程式識別碼來表示。
 
 ## 設定工作服務
 
-當 `TaskService` 收到 `TaskClient` 的要求時，它會尋找有效的存取權杖來驗證要求。如要驗證存取權杖，您必須提供有您應用程相關資訊的 `TaskService`。請在 `TaskService` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：
+當 `TaskService` 收到 `TaskClient` 的要求時，它會尋找有效的存取權杖來驗證要求。如要驗證存取權杖，您必須提將應用程式的相關資訊提供給 `TaskService`。在 `TaskService` 專案中，開啟專案根目錄中的 `web.config` 檔案，然後取代 `<appSettings>` 區段中的值：
 
 ```
 <appSettings>
@@ -273,7 +270,7 @@ private async void GetTodoList()
 	...
 ```
 
-當您成功呼叫 `AcquireTokenAsync(...)`，且在快取中找到權杖之後，便可以將該權杖加入 HTTP 要求的 `Authorization` 標頭中。如此一來， `TaskService` 就能驗證要求，以便讀取使用者的待辦事項清單：
+當您成功呼叫 `AcquireTokenAsync(...)`，且在快取中找到權杖之後，便可以將該權杖加入 HTTP 要求的 `Authorization` 標頭中。如此一來，`TaskService` 就能驗證要求，以便讀取使用者的待辦事項清單：
 
 ```C#
 	...
@@ -285,7 +282,7 @@ private async void GetTodoList()
 	...
 ```
 
-每當您想要查看權杖快取中的權杖時，但不想要提示使用者登入時，就可以採用這種模式。舉例來說，當應用程式啟動時，您可能想要查看 `FileCache` 來尋找現有的權杖。如此一來，應用程式每次執行時，使用者的登入工作階段就會持續下去。您可以在 `MainWindow` 的 `OnInitialized` 事件中看到相同的程式碼。`OnInitialized` 會處理這個初次執行的案例。
+每當您想要查看權杖快取中的權杖時，但不想要提示使用者登入時，就可以採用這種模式。舉例來說，當應用程式啟動時，建議您查看 `FileCache` 來尋找現有的權杖。如此一來，應用程式每次執行時，使用者的登入工作階段就會持續下去。您可以在 `MainWindow` 的 `OnInitialized` 事件中看到相同的程式碼。`OnInitialized` 會處理這個初次執行的案例。
 
 ## 登出使用者
 您可以在使用者選取 [登出] 時，使用 ADAL 來結束使用者的應用程式工作階段。藉由使用 ADAL，您只要清除權杖快取中的所有權杖即可：
@@ -328,11 +325,9 @@ private void SignOut(object sender, RoutedEventArgs e)
 
 您可以在範例應用程式上對原則進行試驗，並觀察試驗結果。新增或移除 IDP、管理應用程式宣告，或變更註冊屬性。請一直試驗，直到您了解原則、驗證要求及 ADAL 之間的緊密關係為止。
 
-為供您參考，我們提供 [.zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet/archive/complete.zip)的完整範例。您也可以從 Github 複製它：
+為供您參考，我們提供完整範例的 [.zip 檔案](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet/archive/complete.zip)。您也可以從 Github 複製它：
 
-```
-git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet.git
-```
+```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet.git```
 
 <!--
 
@@ -346,4 +341,4 @@ You can now move on to more advanced B2C topics. You may try:
 
 -->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

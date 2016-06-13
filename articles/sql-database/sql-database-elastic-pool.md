@@ -4,15 +4,15 @@
 	keywords="彈性資料庫、sql 資料庫"
 	services="sql-database"
 	documentationCenter=""
-	authors="sidneyh"
+	authors="srinia"
 	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/23/2016"
-	ms.author="sidneyh"
+	ms.date="05/27/2016"
+	ms.author="srinia"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
@@ -22,7 +22,7 @@
 
 彈性集區提供符合成本效益的簡單解決方案，以管理多個不同且具備無法預測的使用模式資料庫的效能目標。
 
-> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中公開上市 (GA)，但美國中北部、巴西南部、印度西部、印度南部和中國北方除外，其在這些區域目前為預覽狀態。我們將儘速在這些區域提供彈性集區的 GA。
+> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部、巴西南部、印度西部及中國北方除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。
 
 ## 運作方式
 
@@ -104,4 +104,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

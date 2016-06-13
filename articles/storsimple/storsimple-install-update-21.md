@@ -87,18 +87,18 @@ Hotfix 方法涉及下列三個步驟：
 | 3\. | KB3103616 | WMI 封裝 | 定期 | ~ 12 分鐘 |
 
 
- &#42; *請注意，軟體更新是由兩個二進位檔組成︰`all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe` 和 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。必須先安裝裝置軟體更新 `all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe`，再安裝 Cis 和 Mds 代理程式 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。*
+ &#42; *請注意，軟體更新是由兩個二進位檔組成︰`all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe` 和 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。必須先安裝裝置軟體更新 `all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe`，再安裝 Cis 和 Mds 代理程式 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。您還必須在套用 Cis 和 MDS 代理程式更新之後，先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制器，然後再套用剩餘的更新。*
 
 #### 下載適用於執行 Update 2 之前版本軟體的裝置的更新
 
-**如果您的裝置是執行 0.2、0.3、1.0 及 1.1 版**，您必須下載並安裝 LSI 驅動程式與韌體更新。如果您是執行 Update 1.2 或 2，則已經安裝此更新。
+**如果您裝置執行的版本是 0.2、0.3、1.0 及 1.1**，則除了軟體、iSCSI 及 WMI 更新之外，您還必須下載並安裝 LSI 驅動程式和韌體更新。如果您是執行 Update 1.2 或 2，則已經安裝此更新。
  
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
 | 4\. | KB3121900 | LSI 驅動程式與韌體 | 定期 | ~ 20 分鐘 |
 
 
-<br></br> **如果您的裝置是執行 0.2、0.3、1.0、1.1 及 1.2 版**，您必須下載並安裝 Spaceport 和 Storport 修正程式。如果您是執行 Update 2，則已經安裝這些修正程式。
+<br></br> **如果您裝置執行的版本是 0.2、0.3、1.0、1.1 及 1.2**，您就必須下載並安裝 Spaceport 和 Storport 修正程式。如果您是執行 Update 2，則已經安裝這些修正程式。
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
@@ -107,7 +107,7 @@ Hotfix 方法涉及下列三個步驟：
 
 
 
-<br></br>您也需要安裝磁碟韌體更新。您可以執行 `Get-HcsFirmwareVersion` Cmdlet 來確認是否需要磁碟韌體更新。如果您是執行這些韌體版本：`XMGG`、`XGEG`、`KZ50`、`F6C2`、`VR08`，您就不需要安裝這些更新。
+<br></br>您可能也需要安裝磁碟韌體更新。您可以執行 `Get-HcsFirmwareVersion` Cmdlet 來確認是否需要磁碟韌體更新。如果您執行的是這些韌體版本：`XMGG`、`XGEG`、`KZ50`、`F6C2`、`VR08`，您就不需要安裝這些更新。
 
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
@@ -132,4 +132,4 @@ Hotfix 方法涉及下列三個步驟：
 
 深入了解 [Update 2.1 版](storsimple-update21-release-notes.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

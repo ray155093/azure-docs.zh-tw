@@ -13,10 +13,21 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/22/2016"
+   ms.date="05/31/2016"
    ms.author="carlrab"/>
 
-# 使用 SQL Server Data Tools for Visual Studio 將 SQL Server 資料庫移轉至 Azure SQL Database
+# 使用適用於 Visual Studio 的 SQL Server Data Tools 將 SQL Server 資料庫移轉至 Azure SQL Database 
+
+> [AZURE.SELECTOR]
+- [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
+- [SqlPackage](sql-database-cloud-migrate-determine-compatibility-sqlpackage.md)
+- [SSMS](sql-database-cloud-migrate-determine-compatibility-ssms.md)
+- [Upgrade Advisor](http://www.microsoft.com/download/details.aspx?id=48119)
+- [SAMW](sql-database-cloud-migrate-fix-compatibility-issues.md)
+
+在這篇文章中，您將了解如何在移轉至 Azure SQL Database 之前，先使用「適用於 Visual Studio 的 SQL Server Data Tools」來偵測並修正 SQL Server 資料庫相容性問題。
+
+## 使用 Visual Studio 的 SQL Server Data Tools
 
 您可以使用 Visual Studio 的 SQL Server Data Tools ("SSDT") 將資料庫結構描述匯入 Visual Studio 資料庫專案以進行分析。若要進行分析，請將專案的目標平台指定為 SQL Database V12，然後再建置專案。如果建置成功，則資料庫為相容。如果建置失敗，您可以在 SSDT (或本主題中討論的其他工具之一) 中解析錯誤。一旦專案成功建置，您可以將該專案發佈回來做為來源資料庫的複本，然後使用 SSDT 中的資料比較功能，將資料從來源資料庫複製到 Azure SQL V12 相容資料庫。然後，您可以移轉此更新的資料庫。若要使用此選項，請下載[最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)。
 
@@ -73,6 +84,17 @@
     
 	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/14MigrateSSDT.png)
     
-6.	選擇部署方法。請參閱[將相容 SQL Server 資料庫移轉到 SQL Database](sql-database-cloud-migrate.md)。
+6.	選擇部署方法。請參閱[將相容的 SQL Server 資料庫移轉至 SQL Database](sql-database-cloud-migrate.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+## 後續步驟
+
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+
+## 詳細資訊
+
+- [SQL Database V12](sql-database-v12-whats-new.md)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+
+<!---HONumber=AcomDC_0601_2016-->

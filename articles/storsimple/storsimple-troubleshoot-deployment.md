@@ -137,7 +137,7 @@
 | 5 | 錯誤 350031：裝置已經註冊。 | | 不需採取任何動作。 |
 | 6 | 錯誤 350016：裝置註冊失敗。 | |請確定註冊金鑰正確。 |
 | 7 | Invoke-HcsSetupWizard：註冊裝置時發生錯誤。這可能是因為 IP 位址或 DNS 名稱不正確所引發。請檢查您的網路設定，然後再試一次。如果問題持續發生，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。(錯誤 350050) | 確定裝置可以 Ping 外部網路。如果您沒有外部網路的連線能力，註冊可能會失敗並產生這個錯誤。這個錯誤可能是下列一或多個項目的組合：<ul><li>不正確的 IP</li><li>不正確的子網路</li><li>不正確的閘道</li><li>不正確的 DNS 設定</li></ul> | 請參閱[逐步疑難排解範例](#step-by-step-storsimple-troubleshooting-example)中的步驟。 |
-| 8 | Invoke-HcsSetupWizard：由於發生內部服務錯誤 [0x1FBE2]，導致目前的作業失敗。請稍後再重試操作。如果問題持續發生， 請連絡 Microsoft 支援服務。 | 這是從服務或代理程式針對所有使用者看不見的錯誤所擲回的一般錯誤。最常見的原因可能是 ACS 驗證失敗。失敗的原因可能是發生 NTP 伺服器設定問題，而且未正確設定裝置上的時間。 | 更正時間 (如果有問題)，然後重試註冊操作。如果問題持續發生，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)以進行後續步驟。 |
+| 8 | Invoke-HcsSetupWizard：由於發生內部服務錯誤 [0x1FBE2]，導致目前的作業失敗。請稍後再重試操作。如果問題持續發生， 請連絡 Microsoft 支援服務。 | 這是從服務或代理程式針對所有使用者看不見的錯誤所擲回的一般錯誤。最常見的原因可能是 ACS 驗證失敗。失敗的原因可能是發生 NTP 伺服器設定問題，而且未正確設定裝置上的時間。 | 更正時間 (如果有問題)，然後重試註冊操作。如果您使用 Set-HcsSystem -Timezone 命令來調整時區，請將時區中的每個字大寫 (例如 "Pacific Standard Time")。如果問題持續發生，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)以進行後續步驟。 |
 | 9 | 警告：無法啟動裝置。您的設定裝置系統管理員和 StorSimple Snapshot Manager 密碼尚未變更。 | 如果註冊失敗，裝置系統管理員和 StorSimple Snapshot Manager 密碼就不會變更。 |
 
 ## 適用於疑難排解 StorSimple 部署的工具
@@ -577,4 +577,4 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 [1]: https://technet.microsoft.com/library/dd379547(v=ws.10).aspx
 [2]: https://technet.microsoft.com/library/dd392266(v=ws.10).aspx
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

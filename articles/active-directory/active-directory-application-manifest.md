@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/16/2016"
+   ms.date="05/26/2016"
    ms.author="dkershaw;bryanla"/>
 
 # 了解 Azure Active Directory 應用程式資訊清單
@@ -33,12 +33,13 @@
 
 因此，若要了解應用程式資訊清單的格式和屬性，您必須參考圖形 API [應用程式實體][APPLICATION-ENTITY] 文件。可透過應用程式資訊清單上傳執行的更新範例包括：
 
-- 宣告您的 web API 所公開的權限範圍 (oauth2Permissions)。如需使用 oauth2Permissions 委派權限範圍實作使用者模擬的相關資訊，請參閱[整合應用程式與 Azure Active Directory][INTEGRATING-APPLICATIONS-AAD] 中的「公開 Web API 至其他應用程式」主題。如先前所述，所有應用程式實體屬性都記錄在圖形 API [實體和複雜類型參考][APPLICATION-ENTITY]參考文章中，包括屬於 [OAuth2Permission][APPLICATION-ENTITY-OAUTH2-PERMISSION] 類型之集合的 oauth2Permissions 屬性。
-- 宣告您的應用程式所公開的應用程式角色 (appRoles)。應用程式實體的 appRole 屬性是 [AppRole][APPLICATION-ENTITY-APP-ROLE] 類型的集合。請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][RBAC-CLOUD-APPS-AZUREAD]一文以取得實作範例。
-- 宣告已知的用戶端應用程式 (knownClientApplications)，可讓您以邏輯方式將指定用戶端應用程式的同意繫結至資源/Web API。
-- 要求 Azure AD 對登入使用者發出群組成員資格宣告 (groupMembershipClaims)。注意：可設定為額外發出有關使用者目錄角色成員資格的宣告。請參閱[雲端應用程式中使用 AD 群組的授權][AAD-GROUPS-FOR-AUTHORIZATION]一文以取得實作範例。
-- 可讓您的應用程式支援 OAuth 2.0 隱含授權流程 (oauth2AllowImplicitFlow)。此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。
-- 啟用 X509 憑證做為秘密金鑰 (keyCredentials)。如需實作範例，請參閱[在 Office 365 中建置服務與精靈應用程式][O365-SERVICE-DAEMON-APPS]和[利用 Azure 資源管理員 API 進行驗證開發人員指南][DEV-GUIDE-TO-AUTH-WITH-ARM]等文章。
+- **宣告您的 Web API 所公開的權限範圍 (oauth2Permissions)**。如需使用 oauth2Permissions 委派權限範圍實作使用者模擬的相關資訊，請參閱[整合應用程式與 Azure Active Directory][INTEGRATING-APPLICATIONS-AAD] 中的「公開 Web API 至其他應用程式」主題。如先前所述，所有應用程式實體屬性都記錄在圖形 API [實體和複雜類型參考][APPLICATION-ENTITY]參考文章中，包括屬於 [OAuth2Permission][APPLICATION-ENTITY-OAUTH2-PERMISSION] 類型之集合的 oauth2Permissions 屬性。
+- **宣告您的應用程式所公開的應用程式角色 (appRoles)**。應用程式實體的 appRole 屬性是 [AppRole][APPLICATION-ENTITY-APP-ROLE] 類型的集合。請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][RBAC-CLOUD-APPS-AZUREAD]一文以取得實作範例。
+- **宣告已知的用戶端應用程式 (knownClientApplications)**，可讓您以邏輯方式將指定用戶端應用程式的同意繫結至資源/Web API。
+- **要求 Azure AD 對登入使用者發出群組成員資格宣告 (groupMembershipClaims)**。注意：可設定為額外發出有關使用者目錄角色成員資格的宣告。請參閱[雲端應用程式中使用 AD 群組的授權][AAD-GROUPS-FOR-AUTHORIZATION]一文以取得實作範例。
+- **可讓您的應用程式支援 OAuth 2.0 隱含授權**流程 (oauth2AllowImplicitFlow)。此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。
+- **啟用 X509 憑證做為秘密金鑰** (keyCredentials)。如需實作範例，請參閱[在 Office 365 中建置服務與精靈應用程式][O365-SERVICE-DAEMON-APPS]和[利用 Azure 資源管理員 API 進行驗證開發人員指南][DEV-GUIDE-TO-AUTH-WITH-ARM]等文章。
+- **為應用程式新增應用程式識別碼 URI** (identifierURIs)。應用程式識別碼 URI 可用來唯一識別其 Azure AD 租用戶 (或跨多個 Azure AD 租用戶，若為透過已驗證的自訂網域而符合資格的多租用戶案例) 內的應用程式。在要求資源應用程式的權限或取得資源應用程式的存取權杖時，就會使用這些 URI。當您更新此項目時，相同的更新也會套用到對應服務主體的 servicePrincipalNames 集合 (位於應用程式的主要租用戶中)。
 
 應用程式資訊清單也會提供追蹤應用程式註冊狀態的好方法。因為它可供 JSON 格式使用，所以檔案表示法可以簽入您的原始檔控制，以及應用程式的原始程式碼。
 
@@ -145,4 +146,4 @@
 [O365-SERVICE-DAEMON-APPS]: https://msdn.microsoft.com/office/office365/howto/building-service-apps-in-office-365
 [RBAC-CLOUD-APPS-AZUREAD]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

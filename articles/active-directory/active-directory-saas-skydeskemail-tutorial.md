@@ -25,7 +25,7 @@ Skydesk Email 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Skydesk Email 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Skydesk Email (單一登入)
-- 您可以在 Azure Active 傳統入口網站中集中管理您的帳戶
+- 您可以在 Azure Active Directory 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -176,7 +176,7 @@ Skydesk Email 與 Azure AD 整合提供下列優點：
 
     c.[變更密碼 URL] 是選擇性的，將它保留為空白。
 
-    d.按一下 [Get Key From File]\(從檔案取得金鑰) 來選取下載的 Skydesk Email 憑證，然後按一下 [開啟] 以上傳憑證。
+    d.按一下 [Get Key From File] \(從檔案取得金鑰) 來選取下載的 Skydesk Email 憑證，然後按一下 [開啟] 以上傳憑證。
 
     e.選取 [RSA] 做為 [演算法]。
 
@@ -325,4 +325,4 @@ a.在 Skydesk Email 中按一下左方面板的 [使用者存取]，然後輸入
 [204]: ./media/active-directory-saas-skydeskemail-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-skydeskemail-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

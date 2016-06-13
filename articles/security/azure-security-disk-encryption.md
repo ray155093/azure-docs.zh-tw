@@ -262,23 +262,23 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 
 1\. 按一下 [Active Directory] 索引標籤，如下圖所示：
 
-![Azure 磁碟加密](./media/azure-security-disk-encryption\disk-encryption-fig3.JPG)
+![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig3.JPG)
 
 2\. 按一下 [加入應用程式]，並輸入如下所示的應用程式名稱：
 
-![Azure 磁碟加密](./media/azure-security-disk-encryption\disk-encryption-fig4.JPG)
+![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig4.JPG)
 
 3\. 按一下箭號按鈕並設定應用程式的屬性，如下所示：
 
-![Azure 磁碟加密](./media/azure-security-disk-encryption\disk-encryption-fig5.JPG)
+![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig5.JPG)
 
 4\. 按一下左下角的核取記號來完成。應用程式的組態頁面隨即出現。注意 Azure AD 用戶端識別碼位於頁面底部，如下圖所示。
 
-![Azure 磁碟加密](./media/azure-security-disk-encryption\disk-encryption-fig6.JPG)
+![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig6.JPG)
 
 5\. 按一下 [儲存] 按鈕來儲存 Azure AD 用戶端密碼。按一下 [儲存] 按鈕並記下 [金鑰] 文字方塊中的密碼，這是 Azure AD 用戶端密碼。您應該適當地保護 Azure AD 用戶端密碼。
 
-![Azure 磁碟加密](./media/azure-security-disk-encryption\disk-encryption-fig7.JPG)
+![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig7.JPG)
 
 
 **注意：**入口網站不支援上述的流程。
@@ -845,4 +845,4 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

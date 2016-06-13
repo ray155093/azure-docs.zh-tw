@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/27/2016"
+   ms.date="05/27/2016"
    ms.author="nitinme"/>
 
 # 適用於 Azure 資料湖存放區的開放原始碼巨量資料應用程式
@@ -23,21 +23,21 @@
 
 | 開放原始碼軟體 | 配送映像 |
 |----------------------|---------------------------------|
-| [Apache Sqoop](http://sqoop.apache.org/) | HDInsight 3.2 |
-| [MapReduce](http://hadoop.apache.org/docs/r1.0.4/mapred_tutorial.html)| HDInsight 3.2 |
-| [Apache Storm](https://storm.apache.org/) | HDInsight 3.2 |
-| [Apache Hive](http://hive.apache.org/) | HDInsight 3.2 |
-| [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog) | HDInsight 3.2 |
-| [Apache Mahout](http://mahout.apache.org/) | HDInsight 3.2 |
-| [Apache Pig/Pig Latin](http://pig.apache.org/) | HDInsight 3.2 |
-| [Apache Oozie](http://oozie.apache.org/) | HDInsight 3.2 |
-| [Apache Zookeeper](http://zookeeper.apache.org/) | HDInsight 3.2 |
-| [Apache HBase](http://hbase.apache.org/) | HDInsight 3.2 |
-| [Apache Tez](http://tez.apache.org/) | HDInsight 3.2 |
+| [Apache Sqoop](http://sqoop.apache.org/) | HDInsight 3.2 和 3.4 |
+| [MapReduce](http://hadoop.apache.org/docs/r1.0.4/mapred_tutorial.html)| HDInsight 3.2 和 3.4 |
+| [Apache Storm](https://storm.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache Hive](http://hive.apache.org/) | HDInsight 3.2 和 3.4 |
+| [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog) | HDInsight 3.2 和 3.4 |
+| [Apache Mahout](http://mahout.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache Pig/Pig Latin](http://pig.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache Oozie](http://oozie.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache Zookeeper](http://zookeeper.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache HBase](http://hbase.apache.org/) | HDInsight 3.2 和 3.4 |
+| [Apache Tez](http://tez.apache.org/) | HDInsight 3.2 和 3.4 |
 
 
 ## 另請參閱
 
 - [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

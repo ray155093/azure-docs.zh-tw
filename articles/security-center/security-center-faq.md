@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/02/2016"
+   ms.date="05/31/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
@@ -108,12 +108,25 @@ Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的�
 
 若要編輯安全性原則，您必須是該訂用帳戶的「擁有者」或「參與者」。
 
+## 虛擬機器
+
 ### 將會支援哪些類型的虛擬機器？
 支援使用[傳統與資源管理員部署模型](../azure-classic-rm.md)建立的虛擬機器，包括 Azure Service Fabric 叢集所含的虛擬機器。
 
 存取控制清單建議目前適用於虛擬機器 (傳統)。網路安全性群組目前僅適用於虛擬機器 (資源管理員)。
 
-### 支援 Linux 虛擬機器嗎？
-「Azure 資訊安全中心」提供適用於 Linux 虛擬機器 (僅限 Ubuntu 12.04、14.04、14.10 與 15.04 版本) 的基準監視。未來將會提供其他安全性健康情況監視與資料收集/分析，以及對其他 Linux 散發套件的支援。
+支援的 Windows 虛擬機器：
 
-<!---HONumber=AcomDC_0504_2016-->
+- Windows Server 2008 R2
+- Windows Server 2012
+- Windows Server 2012 R2
+
+支援的 Linux 虛擬機器：
+
+- Ubuntu 版本 12.04、14.04、15.10、16.04
+- Debian 版本 7.0、8.0
+- CentOS 版本 6.0、7.0
+- Red Hat Enterprise Linux (RHEL) 版本 6、7
+- SUSE Linux Enterprise Server (SLES) 版本 11、12
+
+<!---HONumber=AcomDC_0601_2016-->

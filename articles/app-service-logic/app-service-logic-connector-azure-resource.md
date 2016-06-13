@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/10/2016"
+   ms.date="05/31/2016"
    ms.author="stepsic"/>
 
 # 開始使用 Azure 資源連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
 使用 Azure 資源連接器可輕鬆管理邏輯應用程式內的 Azure 資源。
 
@@ -89,13 +89,13 @@ David Ebbo 寫了[一篇很棒的部落格文章](http://blog.davidebbo.com/2014
 ## 進一步運用您的連接器
 現在已建立連接器，您可以使用邏輯應用程式將它加入商務流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
 
-檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
+檢視位於[連接器和 API 應用程式參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
 <!--References -->
 
 <!--Links -->
-[Creating a Logic App]: app-service-logic-create-a-logic-app.md
+[Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

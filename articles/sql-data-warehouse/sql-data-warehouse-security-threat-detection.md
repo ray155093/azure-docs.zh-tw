@@ -1,6 +1,6 @@
 <properties
    pageTitle="開始使用 SQL 資料倉儲威脅偵測"
-   description="如何開始使用 SQL 資料倉儲威脅偵測"
+   description="如何開始使用威脅偵測"
    services="sql-data-warehouse"
    documentationCenter=""
    authors="lodipalm"
@@ -13,17 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
+   ms.date="05/31/2016"
    ms.author="lodipalm;sonyama;barbkess"/>
 
 
-# 開始使用 SQL 資料倉儲威脅偵測
+# 開始使用威脅偵測
 
 ## 概觀
 
 威脅偵測會偵測異常資料庫活動，指出資料庫有潛在的安全性威脅。威脅偵測處於預覽階段，SQL 資料倉儲支援此功能。
 
-威脅偵測提供新的一層安全性，在發生異常活動時會提供安全性警示，讓客戶偵測並回應潛在威脅。使用者可以使用 [Azure SQL 資料倉儲稽核]sql-data-warehouse-auditing-get-started.md)，來探查可疑的事件，判斷是否有人嘗試存取、破壞或利用資料倉儲中的資料。您不必是安全性專家，也不需要管理進階的安全性監視系統，威脅偵測讓您輕鬆解決資料倉儲的潛在威脅。
+威脅偵測提供新的一層安全性，在發生異常活動時會提供安全性警示，讓客戶偵測並回應潛在威脅。使用者可以使用 [Azure SQL 資料倉儲稽核](sql-data-warehouse-auditing-overview.md)來探查可疑的事件，以判斷這些事件是否是因為有人嘗試存取、破壞或利用資料倉儲中的資料而造成。您不必是安全性專家，也不需要管理進階的安全性監視系統，威脅偵測讓您輕鬆解決資料倉儲的潛在威脅。
 
 威脅偵測會偵測異常資料庫活動，指出潛在的 SQL 插入式攻擊。SQL 插入式攻擊是網際網路上常見的 Web 應用程式安全性問題之一，用於攻擊資料導向應用程式。攻擊者利用應用程式弱點將惡意的 SQL 陳述式插入應用程式輸入欄位，以破壞或修改資料庫中的資料。
 
@@ -89,4 +89,4 @@
 [8]: ./media/sql-data-warehouse-security-threat-detection/8_td_excel_fast_combine.png
 [9]: ./media/sql-data-warehouse-security-threat-detection/9_td_excel_parameters.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -400,6 +400,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。這
 ##<a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
 
 ###<a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
+
     public enum ContentKeyRestrictionType
     {
         Open = 0,
@@ -442,4 +443,4 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。這
 現在，您已設定內容金鑰授權原則，請移至[如何設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)主題。
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

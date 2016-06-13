@@ -110,8 +110,8 @@ public void ConfigureAuth(IAppBuilder app)
 - 首先，安裝 ADAL 預覽版本：
 
 ```PM> Install-Package Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory -ProjectName TodoList-WebApp -IncludePrerelease```
- - 將另一個 `using` 陳述式新增至 ADAL 的 `App_Start\Startup.Auth.cs`。
- - 現在加入新的方法 (`OnAuthorizationCodeReceived` 事件處理常式)。此處理常式會使用 ADAL 取得待辦事項清單 API 的存取權杖，並將 ADAL 權杖中的權杖儲存起來以供日後使用：
+- 並針對 ADAL，將另一個 `using` 陳述式新增到 `App_Start\Startup.Auth.cs` 檔案中。
+- 現在，新增一個名為 `OnAuthorizationCodeReceived` 的事件處理常式方法。此處理常式會使用 ADAL 取得待辦事項清單 API 的存取權杖，並將 ADAL 權杖中的權杖儲存起來以供日後使用：
 
 ```C#
 private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification notification)
@@ -193,6 +193,12 @@ catch (AdalException ee)
 
 ## 後續步驟
 
-如需其他資源，請查看：- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md) - [StackOverflow "adal" 標記 >>](http://stackoverflow.com/questions/tagged/adal)
+如需其他資源，請參閱：
+- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
+- [StackOverflow "adal" 標籤 >>](http://stackoverflow.com/questions/tagged/adal)
 
-<!---HONumber=AcomDC_0224_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

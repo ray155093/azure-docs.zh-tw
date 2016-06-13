@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/17/2016"
+	ms.date="05/31/2016"
 	ms.author="stepsic"/>
 	
 # 新結構描述版本 2015-08-01 預覽
@@ -27,13 +27,15 @@
 
 ## 1\.移轉至 API 連接
 
-最大的改變是您不再需要將 API 應用程式部署至您的 Azure 訂用帳戶，也能使用 API。您有 2 種方式可以使用 API：* Managed API * 您自訂的 Web API
+最大的改變是您不再需要將 API 應用程式部署至您的 Azure 訂用帳戶，也能使用 API。有 2 種方式可以使用 API：
+* Managed API
+* 您自訂的 Web API
 
 每一種都因為其管理和裝載模型不同，而有稍微不同的處理方式。此模型的優點之一是您不再受限於只能存取部署在資源群組中的資源。
 
 ### Managed API
 
-有許多由 Microsoft 替您管理的 API，例如 Office 365、Salesforce、Twitter、FTP 等...其中有些 Managed API 可直接使用，例如 Bing 翻譯，而有些則需要設定。此設定稱為*連接*。
+有許多由 Microsoft 替您管理的 API，例如 Office 365、Salesforce、Twitter、FTP 等...其中有些 Managed API 可直接使用，例如 Bing 翻譯，而有些則需要設定。此組態稱為「連接」。
 
 例如，當您使用 Office 365 時，您需要建立包含 Office 365 登入權杖的連接。此權杖會安全地儲存並重新整理，讓您的邏輯應用程式隨時都可以呼叫 Office 365 API。或者，如果您想要連線到 SQL 或 FTP 伺服器，您需要建立具有連接字串的連接。
 
@@ -192,7 +194,8 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 
 如果您使用您自己的 API (明確地說，不是 Microsoft 管理的 API)，則應該使用內建 **HTTP** 動作來呼叫它們。為了獲得理想的體驗，您應該公開您的 API 的 swagger 端點。這樣可讓邏輯應用程式設計工具呈現您的 API 的輸入和輸出。如果沒有 swagger，設計工具只能將輸入和輸出顯示成不透明的 JSON 物件。
 
-下列範例顯示新的 `metadata.apiDefinitionUrl` 屬性：```
+下列範例顯示新的 `metadata.apiDefinitionUrl` 屬性：
+```
 {
    "actions": {
         "mycustomAPI": {
@@ -215,7 +218,8 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 
 如果您先前已部署 API 應用程式，您可以透過 **HTTP** 動作呼叫它。
 
-例如，如果您使用 Dropbox 列出檔案，您的 **2014-12-01-preview** 結構描述版本定義中可能會有類似下面的內容：```
+例如，如果您使用 Dropbox 列出檔案，您的 **2014-12-01-preview** 結構描述版本定義中可能會有類似下面的內容：
+```
 {
     "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2014-12-01-preview/workflowdefinition.json#",
     "contentVersion": "1.0.0.0",
@@ -459,4 +463,4 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 ## 敬請期待：企業整合 API
 目前，我們尚未提供 Managed 版本的企業整合 API (例如 AS2)。這些都已納入[藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)中，敬請期待。在此期間，您可以透過 HTTP 動作來使用現有已部署的 BizTalk API，如以上的「使用您已部署的 API 應用程式」所述。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

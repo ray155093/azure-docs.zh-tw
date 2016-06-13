@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/04/2016"
+   ms.date="05/27/2016"
    ms.author="jgao"/>
 
 # 使用 HDInsight Getting Started Gallery 了解 Hadoop
@@ -64,8 +64,8 @@ HDInsight Getting Started Gallery 在 HDInsight 中執行範例應用程式，�
 [hdinsight.twitter.sample]: ./media/hdinsight-learn-hadoop-use-sample-gallery/HDInsight-Twitter-Trend-Analysis-sample.png
 
 <!--Link references-->
-[hdinsight.learn.map]: hdinsight-learn-map.md
+[hdinsight.learn.map]: https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/
 [hdinsight.infographic]: http://go.microsoft.com/fwlink/?linkid=523960
 [azure.portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

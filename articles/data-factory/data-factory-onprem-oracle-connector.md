@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="從 Oracle 移動資料 | Azure Data Factory" 
+	pageTitle="使用 Data Factory 對 Oracle 往返移動資料 | Microsoft Azure" 
 	description="了解如何使用 Azure Data Factory 從內部部署 Oracle 資料庫來回移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
@@ -16,15 +16,15 @@
 	ms.date="04/18/2016" 
 	ms.author="spelluru"/>
 
-# 使用 Azure Data Factory 從內部部署的 Oracle 移動資料 
+# 使用 Azure Data Factory 對內部部署的 Oracle 往返移動資料 
 
-本文概述如何使用資料處理站複製活動將資料從 Oracle 移動到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文概述如何使用 Data Factory 複製活動將資料從 Oracle 移動與資料存放區之間往返移動。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 ## 安裝 
 如果是能夠連接到您內部部署 Oracle 資料庫的 Azure Data Factory 服務，您就必須安裝下列項目：
 
 - 位於裝載資料庫的同一部電腦上或個別電腦上的資料管理閘道，可避免與資料庫競用資源。資料管理閘道是一套透過安全且可管理的方式，將內部部署資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。 
-- .NET 的 Oracle 資料提供者。這包含於[適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/index.html) 中。在安裝閘道的主機電腦上安裝適當版本 (32/64 位元)。[Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
+- .NET 的 Oracle 資料提供者。這包含於[適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。在安裝閘道的主機電腦上安裝適當版本 (32/64 位元)。[Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
 
 > [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
 
@@ -159,7 +159,7 @@
 
 **具有複製活動的管線：**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，已將 **source** 類型設為 **RelationalSource**，並將 **sink** 類型設為 **BlobSink**。利用 **oracleReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
+此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **OracleSource**，而 **sink** 類型設為 **BlobSink**。利用 **oracleReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
 	
 	{  
@@ -170,7 +170,7 @@
 	    "description":"pipeline for copy activity",
 	    "activities":[  
 	      {
-	        "name": "AzureSQLtoBlob",
+	        "name": "OracletoBlob",
 	        "description": "copy activity",
 	        "type": "Copy",
 	        "inputs": [
@@ -216,6 +216,180 @@
 
 	"oracleReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= to_date(\\'{0:MM-dd-yyyy HH:mm}\\',\\'MM/DD/YYYY HH24:MI\\')  AND timestampcolumn < to_date(\\'{1:MM-dd-yyyy HH:mm}\\',\\'MM/DD/YYYY HH24:MI\\') ', WindowStart, WindowEnd)"
 
+## 範例：從 Azure Blob 複製資料到 Oracle
+此範例示範如何將資料從 Azure Blob 儲存體複製到內部部署 Oracle 資料庫。不過，您可以在 Azure Data Factory 中使用複製活動，**直接**從[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何來源複製資料。
+ 
+此範例具有下列 Data Factory 實體：
+
+1.	[OnPremisesOracle](data-factory-onprem-oracle-connector.md#oracle-linked-service-properties) 類型的連結服務。
+2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
+3.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
+4.	[OracleTable](data-factory-onprem-oracle-connector.md#oracle-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
+5.	具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 做為來源和 [OracleSink](data-factory-onprem-oracle-connector.md#oracle-copy-activity-type-properties) 做為接收之複製活動的[管線](data-factory-create-pipelines.md)。
+
+此範例會每小時將資料從 Blob移動到內部部署 Oracle 資料庫中的資料表。如需下列範例中所使用之各種屬性的詳細資訊，請參閱範例後章節中不同屬性的文件。
+
+**Oracle 連結服務：**
+
+	{
+	  "name": "OnPremisesOracleLinkedService",
+	  "properties": {
+	    "type": "OnPremisesOracle",
+	    "typeProperties": {
+	      "ConnectionString": "data source=<data source>;User Id=<User Id>;Password=<Password>;",
+	      "gatewayName": "<gateway name>"
+	    }
+	  }
+	}
+
+**Azure Blob 儲存體連結服務：**
+
+	{
+	  "name": "StorageLinkedService",
+	  "properties": {
+	    "type": "AzureStorage",
+	    "typeProperties": {
+	      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<Account key>"
+	    }
+	  }
+	}
+
+**Azure Blob 輸入資料集**
+
+每小時從新的 Blob 挑選資料 (頻率：小時，間隔：1)。根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑和檔案名稱。資料夾路徑使用開始時間的年、月、日部分，而檔案名稱使用開始時間的小時部分。“external”: “true” 設定會通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
+
+	{
+	  "name": "AzureBlobInput",
+	  "properties": {
+	    "type": "AzureBlob",
+	    "linkedServiceName": "StorageLinkedService",
+	    "typeProperties": {
+	      "folderPath": "mycontainer/myfolder/yearno={Year}/monthno={Month}/dayno={Day}",
+	      "fileName": "{Hour}.csv",
+	      "partitionedBy": [
+	        {
+	          "name": "Year",
+	          "value": {
+	            "type": "DateTime",
+	            "date": "SliceStart",
+	            "format": "yyyy"
+	          }
+	        },
+	        {
+	          "name": "Month",
+	          "value": {
+	            "type": "DateTime",
+	            "date": "SliceStart",
+	            "format": "%M"
+	          }
+	        },
+	        {
+	          "name": "Day",
+	          "value": {
+	            "type": "DateTime",
+	            "date": "SliceStart",
+	            "format": "%d"
+	          }
+	        },
+	        {
+	          "name": "Hour",
+	          "value": {
+	            "type": "DateTime",
+	            "date": "SliceStart",
+	            "format": "%H"
+	          }
+	        }
+	      ],
+	      "format": {
+	        "type": "TextFormat",
+	        "columnDelimiter": ",",
+	        "rowDelimiter": "\n"
+	      }
+	    },
+	    "external": true,
+	    "availability": {
+	      "frequency": "Hour",
+	      "interval": 1
+	    },
+	    "policy": {
+	      "externalData": {
+	        "retryInterval": "00:01:00",
+	        "retryTimeout": "00:10:00",
+	        "maximumRetry": 3
+	      }
+	    }
+	  }
+	}
+
+**Oracle 輸出資料集：**
+
+此範例假設您已在 Oracle 資料表中建立資料表 "MyTable"。您應該在 Oracle 中建立此資料表，其資料行的數目如您預期 Blob CSV 檔案要包含的數目。此資料表會每小時加入新的資料列。
+
+	{
+	    "name": "OracleOutput",
+	    "properties": {
+	        "type": "OracleTable",
+	        "linkedServiceName": "OnPremisesOracleLinkedService",
+	        "typeProperties": {
+	            "tableName": "MyTable"
+	        },
+	        "availability": {
+	            "frequency": "Hour",
+	            "interval": "1"
+	        }
+	    }
+	}
+
+
+**具有複製活動的管線：**
+
+此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **BlobSource**，而 **sink** 類型設為 **OracleSink**。
+
+	
+	{  
+	    "name":"SamplePipeline",
+	    "properties":{  
+	    "start":"2014-06-01T18:00:00",
+	    "end":"2014-06-01T19:00:00",
+	    "description":"pipeline with copy activity",
+	    "activities":[  
+	      {
+	        "name": "AzureBlobtoOracle",
+	        "description": "Copy Activity",
+	        "type": "Copy",
+	        "inputs": [
+	          {
+	            "name": "AzureBlobInput"
+	          }
+	        ],
+	        "outputs": [
+	          {
+	            "name": "OracleOutput"
+	          }
+	        ],
+	        "typeProperties": {
+	          "source": {
+	            "type": "BlobSource"
+	          },
+	          "sink": {
+	            "type": "OracleSink"
+	          }
+	        },
+	       "scheduler": {
+	          "frequency": "Hour",
+	          "interval": 1
+	        },
+	        "policy": {
+	          "concurrency": 1,
+	          "executionPriorityOrder": "OldestFirst",
+	          "retry": 0,
+	          "timeout": "01:00:00"
+	        }
+	      }
+	      ]
+	   }
+	}
+
 
 ## Oracle 連結服務屬性
 
@@ -236,7 +410,7 @@ gatewayName | 將用來連接到內部部署 Oracle 伺服器的閘道器名稱 
 
 屬性 | 說明 | 必要
 -------- | ----------- | --------
-tableName | Oracle 資料庫中連結服務所參照的資料表名稱。 | 否 (如果已指定 **SqlSource** 的 **oracleReaderQuery**)
+tableName | Oracle 資料庫中連結服務所參照的資料表名稱。 | 否 (如果已指定 **OracleSource** 的 **oracleReaderQuery**)
 
 ## Oracle 複製活動類型屬性
 
@@ -246,12 +420,23 @@ tableName | Oracle 資料庫中連結服務所參照的資料表名稱。 | 否 
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
 
+### OracleSource
 在複製活動的案例中，如果來源的類型為 **OracleSource**，則 **typeProperties **區段有下列可用屬性：
 
 屬性 | 說明 |允許的值 | 必要
 -------- | ----------- | ------------- | --------
-oracleReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。 
-例如：select * from MyTable<br/><br/>若未指定，執行的 SQL 陳述式即為 select * from MyTable | 否 (如果已指定 **dataset** 的 **tableName**)
+oracleReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select * from MyTable<br/><br/>若未指定，執行的 SQL 陳述式即為 select * from MyTable | 否 (如果已指定 **dataset** 的 **tableName**)
+
+### OracleSink
+**OracleSink** 支援下列屬性：
+
+屬性 | 說明 | 允許的值 | 必要
+-------- | ----------- | -------------- | --------
+writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：00:30:00 (30 分鐘)。 | 否
+writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中整數。 | (單位 = 資料列計數) | 否 (預設值 = 10000)  
+sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。 | 查詢陳述式。 | 否
+sliceIdentifierColumnName | 使用者指定了可供複製活動使用自動產生的配量識別碼填入的資料行名稱，在重新執行時將用來清除特定配量的資料。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否
+
 
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
@@ -292,7 +477,7 @@ XML | String
 
 ## 疑難排解秘訣
 
-****問題：**您會看見下列**錯誤訊息**：複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
+**問題：**您會看見下列**錯誤訊息**：複製活動遇到無效的參數：'UnknownParameterName'，詳細的訊息：找不到要求的 .Net Framework Data Provider。可能尚未安裝」。
 
 **可能的原因**
 
@@ -301,7 +486,7 @@ XML | String
 
 **解析/因應措施**
 
-1. 如果您尚未安裝 .NET Provider for Oracle，請[安裝它](http://www.oracle.com/technetwork/topics/dotnet/downloads/index.html)，然後重試此案例。 
+1. 如果您尚未安裝 .NET Provider for Oracle，請[安裝它](http://www.oracle.com/technetwork/topics/dotnet/downloads/)，然後重試此案例。 
 2. 如果您即使在安裝提供者之後還是會收到錯誤訊息，請執行下列作業： 
 	1. 從資料夾開啟 .NET 2.0 的電腦組態：<system disk>:\\Windows\\Microsoft.NET\\Framework64\\v2.0.50727\\CONFIG\\machine.config。
 	2. 搜尋 **Oracle Data Provider for .NET**，而您應該能夠在 **system.data** -> **DbProviderFactories** 下方找到類似下列內容的項目：“<add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description="Oracle Data Provider for .NET" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />"
@@ -314,6 +499,6 @@ XML | String
 
 
 ## 效能和微調  
-請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="05/26/2016"
 	ms.author="guybo"/>
 
 # 虛擬機器調整集概觀
@@ -91,7 +91,7 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 - 規劃每個儲存體帳戶不超過 20 個 VM (除非您將 _overprovision_ 屬性設定為 "false"，在這種情況下，最多可以有 40 個)。
 - 盡可能分散儲存體帳戶名稱的第一個字母。[Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/)中的範例 VMSS 範本提供如何執行這項操作的範例。
 - 如果使用自訂 VM，在單一儲存體帳戶中，請勿為每個 VM 調整集規劃超過 40 個 VM。您必須將映像預先複製到儲存體帳戶中，才能開始進行 VM 調整集部署。如需詳細資訊，請參閱常見問題集。
-- 請勿為每個 VNET 規劃超過 2048 個 VM。此限制在未來將會放寬。
+- 請勿為每個 VNET 規劃超過 4096 個 VM。
 - 您可以建立的 VM 數目受限於您正在部署之區域中的核心配額。您可能需要連絡客戶支援人員，以提高您的計算配額限制，即使您目前用於雲端服務或 IaaS v1 的核心已具有較高的上限亦然。若要查詢您的配額，您可以執行下列 Azure CLI 命令：`azure vm list-usage` 和下列 PowerShell 命令：`Get-AzureRmVMUsage` (如果使用 1.0 以下的 PowerShell 版本，請使用 `Get-AzureVMUsage`)。
 
 ## VM 調整集常見問題集
@@ -155,4 +155,4 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 **答：** 是。VM 調整集是隱含的可用性設定組，具有 5 個 FD 和 5 個 UD。您不需要在 virtualMachineProfile 下進行任何設定。在未來的版本中，VM 調整集有可能跨越多個租用戶，但目前調整集只是單一可用性設定組。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

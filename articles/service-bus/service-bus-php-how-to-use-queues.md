@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
 	ms.topic="article" 
-	ms.date="05/06/2016" 
+	ms.date="06/01/2016" 
 	ms.author="sethm"/>
 
 # 如何使用服務匯流排佇列
@@ -48,7 +48,7 @@
 > [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過編輯器安裝 PHP Client Libraries for Azure。如果您以手動方式或以 PEAR 套件方式安裝程式庫，則必須參考 **WindowsAzure.php** 自動換片器檔案。
 
 ```
-require_once 'vendor\autoload.php';
+require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
@@ -74,7 +74,7 @@ Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[D
 在本文的各範例中，將會直接傳遞連接字串。
 
 ```
-require_once 'vendor\autoload.php';
+require_once 'vendor/autoload.php';
 
 use WindowsAzure\Common\ServicesBuilder;
 
@@ -90,7 +90,7 @@ $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($
 下列範例將說明如何具現化 **ServiceBusRestProxy** 並呼叫 **ServiceBusRestProxy->createQueue**，以在 `MySBNamespace` 服務命名空間內建立名為 `myqueue` 的佇列：
 
 ```
-require_once 'vendor\autoload.php';
+require_once 'vendor/autoload.php';
 
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\ServiceException;
@@ -122,7 +122,7 @@ catch(ServiceException $e){
 若要傳送訊息至服務匯流排佇列，應用程式會呼叫 **ServiceBusRestProxy->sendQueueMessage** 方法。下列程式碼示範如何將訊息傳送至先前在 `MySBNamespace` 服務命名空間中建立的 `myqueue` 佇列。
 
 ```
-require_once 'vendor\autoload.php';
+require_once 'vendor/autoload.php';
 
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\ServiceException;
@@ -164,7 +164,7 @@ catch(ServiceException $e){
 下列範例說明如何使用 **PeekLock** 模式 (這不是預設模式) 來接收與處理訊息。
 
 ```
-require_once 'vendor\autoload.php';
+require_once 'vendor/autoload.php';
 
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\ServiceException;
@@ -220,4 +220,4 @@ catch(ServiceException $e){
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

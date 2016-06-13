@@ -3,7 +3,7 @@
    description="使用 Visual Studio 來建立、開發、封裝、部署和偵錯 Service Fabric 應用程式和服務。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="jessebenson"
+   authors="seanmck"
    manager="timlt"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="02/02/2016"
-   ms.author="jesseb"/>
+   ms.author="seanmck"/>
 
 # 使用 Visual Studio 簡化撰寫及管理 Service Fabric 應用程式。
 
@@ -97,4 +97,4 @@
 [preservedata]: ./media/service-fabric-manage-application-in-visual-studio/preservedata.png
 [preservedate]: ./media/service-fabric-manage-application-in-visual-studio/preservedate.png
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0601_2016-->

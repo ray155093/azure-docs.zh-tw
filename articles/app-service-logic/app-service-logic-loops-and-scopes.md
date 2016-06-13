@@ -16,46 +16,46 @@
    ms.date="05/14/2016"
    ms.author="jehollan"/>
    
-  # Logic Apps 迴圈、範圍和解除批次處理
+# Logic Apps 迴圈、範圍和解除批次處理
   
-  >[AZURE.NOTE] 這一版的文章適用於 Logic Apps 2016-04-01-preview 結構描述和更新版本。概念與較舊的結構描述很類似，但範圍僅適用於這個結構描述和更新版本。
+>[AZURE.NOTE] 這一版的文章適用於 Logic Apps 2016-04-01-preview 結構描述和更新版本。概念與較舊的結構描述很類似，但範圍僅適用於這個結構描述和更新版本。
   
-  ## ForEach 迴圈和陣列
+## ForEach 迴圈和陣列
   
-  Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動作。這可透過 `foreach` 動作來達成。在設計工具中，您可以指定要新增一個 for each 迴圈。在選取您希望反覆查看的陣列之後，就可以新增動作。目前您受限於每個 foreach 迴圈只能有一個動作，但在未來幾週內，將會提高此限制。一旦進入迴圈之後，您就可以開始指定應針對陣列的每個值執行哪些動作。
-  
-  如果使用程式碼檢視，您就可以指定 for each 迴圈，如下所示。這是 for each 迴圈的範例，可針對每個包含「microsoft.com」的電子郵件地址傳送傳送電子郵件︰
-  
-  ```
-  {
-      "forEach_email": {
-          "type": "foreach",
-          "foreach": "@triggerBody()['emails']",
-          "expression": "@contains(item(), 'microsoft.com')",
-          "actions": {
-              "send_email": {
-                  "type": "ApiConnection",
-                  "inputs": {
-                    "body": {
-                        "to": "@item()",
-                        "from": "me@contoso.com",
-                        "message": "Hello, thank you for ordering"
+Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動作。這可透過 `foreach` 動作來達成。在設計工具中，您可以指定要新增一個 for each 迴圈。在選取您希望反覆查看的陣列之後，就可以新增動作。目前您受限於每個 foreach 迴圈只能有一個動作，但在未來幾週內，將會提高此限制。一旦進入迴圈之後，您就可以開始指定應針對陣列的每個值執行哪些動作。
+
+如果使用程式碼檢視，您就可以指定 for each 迴圈，如下所示。這是 for each 迴圈的範例，可針對每個包含「microsoft.com」的電子郵件地址傳送傳送電子郵件︰
+
+```
+{
+    "forEach_email": {
+        "type": "foreach",
+        "foreach": "@triggerBody()['emails']",
+        "expression": "@contains(item(), 'microsoft.com')",
+        "actions": {
+            "send_email": {
+                "type": "ApiConnection",
+                "inputs": {
+                "body": {
+                    "to": "@item()",
+                    "from": "me@contoso.com",
+                    "message": "Hello, thank you for ordering"
+                }
+                "host": {
+                    "connection": {
+                        "id": "@parameters('$connections')['office365']['connection']['id']"
                     }
-                    "host": {
-                        "connection": {
-                            "id": "@parameters('$connections')['office365']['connection']['id']"
-                        }
-                    }
-                  }
-              }
-          }
-      }
-  }
-  ```
+                }
+                }
+            }
+        }
+    }
+}
+```
   
   `foreach` 動作可以反覆查看陣列，最多 5,000 個資料列。每個反覆項目都可平行執行，因此可能需要視流量控制來將訊息新增至佇列。
   
-  ## Until 迴圈
+## Until 迴圈
   
   您可以執行某個動作或一系列動作，直到符合某個條件為止。對於此迴圈的最常見案例是呼叫端點，直到您取得所需的回應為止。在設計工具中，您可以指定要新增一個 until 迴圈。在迴圈中新增動作之後，您就可以設定結束條件以及迴圈限制。迴圈循環之間有 1 分鐘的延遲。
   
@@ -132,4 +132,4 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
 }
 ```
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

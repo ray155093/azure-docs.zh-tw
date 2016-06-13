@@ -17,7 +17,7 @@
 
 # Azure 自動化中的排程
 
-自動化排程是用來排程 Runbook 以自動執行。這可以是在單一日期和時間執行一次 Runbook。或也可以是每日或每小時重複執行的排程，以啟動 Runbook 多次。排程通常不會從 Runbook 存取。
+自動化排程是用來排程 Runbook 以自動執行。這可以是在單一日期和時間執行一次 Runbook。或者，可以是每小時、每日、每週、或每個月重複執行的排程，以啟動 Runbook 多次。排程通常不會從 Runbook 存取。
 
 >[AZURE.NOTE]  排程目前不支援 Azure Automation DSC 組態。
 
@@ -67,4 +67,4 @@
 ## 另請參閱
 - [在 Azure 自動化中排程 Runbook](automation-scheduling-a-runbook.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

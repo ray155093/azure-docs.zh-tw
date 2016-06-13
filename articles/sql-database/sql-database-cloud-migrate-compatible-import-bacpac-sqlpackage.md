@@ -4,7 +4,7 @@
    services="sql-database"
    documentationCenter=""
    authors="carlrabeler"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/14/2016"
+   ms.date="05/31/2016"
    ms.author="carlrab"/>
 
 # 使用 SqlPackage 從 BACPAC 檔案匯入 SQL Database
@@ -49,4 +49,15 @@
 
 	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01c.png)
 
-<!---HONumber=AcomDC_0316_2016-->
+## 後續步驟
+
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+
+## 詳細資訊
+
+- [SQL Database V12](sql-database-v12-whats-new.md)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+
+<!---HONumber=AcomDC_0601_2016-->

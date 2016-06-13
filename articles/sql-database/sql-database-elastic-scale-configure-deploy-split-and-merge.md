@@ -3,7 +3,7 @@
 	description="使用彈性資料庫工具來分割及合併"
 	services="sql-database"  
 	documentationCenter=""
-	authors="sidneyh"
+	authors="ddove"
 	manager="jhubbard"
 	editor=""/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="05/27/2016"
 	ms.author="ddove" />
 
 # 部署分割合併服務 
@@ -68,7 +68,7 @@
 
 ### 建立自我簽署憑證
 
-使用 [Visual Studio 開發人員命令提示字元](http://msdn.microsoft.com/library/ms229859.aspx) 視窗建立新的目錄，並從這個目錄中執行下列命令：
+使用 [Visual Studio 開發人員命令提示字元][](http://msdn.microsoft.com/library/ms229859.aspx) 視窗建立新的目錄，並從這個目錄中執行下列命令：
 
     makecert ^
     -n "CN=*.cloudapp.net" ^
@@ -339,4 +339,4 @@ Web 角色：
 [5]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/storage.png
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

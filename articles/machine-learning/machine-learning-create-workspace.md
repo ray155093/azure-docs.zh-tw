@@ -85,7 +85,7 @@
 | 存取 [Machine Learning Studio] | 否 * | 是 |
 
 
-> [AZURE.NOTE] * 建立工作區時，Azure 訂用帳戶管理員會自動成為工作區擁有者，不過，授與存取權只是因為他是工作區擁有者。
+> [AZURE.NOTE] * Azure 訂用帳戶管理員會自動加入至其以工作區擁有者身分建立的工作區中。不過，僅成為 Azure 訂用帳戶管理員，將不會為其授與存取該訂用帳戶下方任何工作區的權限。
 
 <!-- ![List of Machine Learning workspaces][2] -->
 
@@ -105,4 +105,4 @@
 [Machine Learning Studio]: https://studio.azureml.net/
 [Microsoft Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/14/2016"
+    ms.date="05/31/2016"
     ms.author="larryfr"/>
 
 # 使用 HDInsight 開發指令碼動作
@@ -59,7 +59,7 @@
 
 ### <a name="bPS2"></a>提供穩定的指令碼資源連結
 
-使用者應該確定在叢集的整個存留期間，由指令碼使用的所有指令碼及資源都保持可用，並且這些檔案的版本在此持續時間內不會變更。如果已在調整作業期間將新節點加入至叢集，則需要這些資源。
+您應該確定在叢集的整個存留期間，由指令碼使用的指令碼及資源都保持可用，並且這些檔案的版本在此持續時間內不會變更。如果已在調整作業期間將新節點加入至叢集，則需要這些資源。
 
 最佳做法是下載並封存您的訂用帳戶上 Azure 儲存體帳戶中的所有項目。
 
@@ -69,7 +69,7 @@
 
 ### <a name="bPS4"></a>使用預先編譯的資源
 
-若要讓執行指令碼所花費的時間降到最低，請避免這類從原始程式碼直接編譯的作業。相反地，請預先編譯相關資源並將二進位版本儲存在 Azure Blob 儲存體中，這樣可讓其能夠快速地從您指令碼下載到叢集。
+若要減少執行指令碼所花費的時間，請避免這類從原始程式碼直接編譯的作業。相反地，請預先編譯相關資源並將二進位版本儲存在 Azure Blob 儲存體中，這樣可讓其能夠快速地從您指令碼下載到叢集。
 
 ### <a name="bPS3"></a>確保叢集自訂指令碼具有等冪性
 
@@ -227,10 +227,10 @@ _解決方式_：將檔案儲存為 ASCII，或不具有 BOM 的 UTF-8。您也�
 
 ## <a name="seeAlso"></a>接續步驟
 
-* 深入了解[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+* 深入了解[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
 
 * 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)，深入了解如何建立 .NET 應用程式來管理 HDInsight。
 
 * 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx)，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0601_2016-->

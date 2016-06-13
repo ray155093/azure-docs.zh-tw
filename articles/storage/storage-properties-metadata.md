@@ -39,8 +39,8 @@
 下列程式碼範例會建立一個容器，並將其部分屬性值寫入主控台視窗：
 
     //Parse the connection string for the storage account.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
+	const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 	
 	//Create the service client object for credentialed access to the Blob service.
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -62,7 +62,7 @@
 
 您可以針對 Blob 或容器資源，將中繼資料指定為一個或多個名稱/值組。若要設定中繼資料，將名稱/值組加入至資源的**中繼資料**集合，然後呼叫 **SetMetadata** 方法，將這些值儲存至服務。
 
-> [AZURE.NOTE]：您的中繼資料名稱必須符合 C# 識別碼的命名慣例。
+> [AZURE.NOTE] 您的中繼資料名稱必須符合 C# 識別碼的命名慣例。
  
 下列程式碼範例會在容器上設定中繼資料。其中一個值是使用集合的 **Add** 方法設定。其他值是使用隱含的索引鍵/值語法來設定。兩者都有效。
 
@@ -97,4 +97,4 @@
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx)
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/) 
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

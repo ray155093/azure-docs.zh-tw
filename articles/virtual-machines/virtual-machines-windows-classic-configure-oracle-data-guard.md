@@ -2,7 +2,8 @@
 	pageTitle="在 VM 中設定 Oracle Data Guard |Microsoft Azure"
 	description="在 Azure 虛擬機器上逐步執行設定和實作高可用性和嚴重損壞修復之 Oracle Data Guard 的教學課程。"
 	services="virtual-machines-windows"
-	authors="bbenz"
+	authors="rickstercdn"
+	manager="timlt"
 	documentationCenter=""
 	tags="azure-service-management"/>
 <tags
@@ -11,12 +12,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="infrastructure-services"
-	ms.date="06/22/2015"
-	ms.author="bbenz" />
+	ms.date="05/17/2016"
+	ms.author="rclaus" />
 
 #設定適用於 Azure 的 Oracle Data Guard
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 資源管理員模型。
 
 
 本教學課程示範如何在 Azure 虛擬機器環境中設定和實作 Oracle Data Guard，以取得高可用性並進行嚴重損壞修復 。本教學課程著重於非 RAC Oracle 資料庫的單向複寫。
@@ -30,7 +29,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 - 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和嚴重損壞修復考量＞一節。請注意，Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
 
 
-- 您已經使用 Windows Server 上提供 Oracle Enterprise Edition 映像的相同平台，在 Azure 中建立兩部虛擬機器 (VM)。如需相關資訊，請參閱[在 Azure 中建立 Oracle Database 12c 虛擬機器](virtual-machines-windows-create-oracle-weblogic-server-12c.md)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的[虛擬網路](azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。請注意，Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
+- 您已經使用相同的平台提供 Oracle Enterprise Edition 映像，在 Azure 中建立兩部「虛擬機器」(VM)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的[虛擬網路](azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。請注意，Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
 
 
 
@@ -266,9 +265,9 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 
 先前的陳述式區塊包含三個重要的設定項目：
--	**LOG\_ARCHIVE\_CONFIG...:** 使用這個陳述式定義唯一的資料庫識別碼。
--	**LOG\_ARCHIVE\_DEST\_1...:** 使用這個陳述式定義本機封存資料夾位置。我們建議您針對資料庫封存需求建立新的目錄，並使用這個陳述式明確指定本機封存位置，而不是使用 Oracle 的預設資料夾 %ORACLE\_HOME%\\database\\archive。
--	**LOG\_ARCHIVE\_DEST\_2...LGWR ASYNC...：**您可以定義非同步的記錄寫入器程序 (LGWR)，來收集交易重做資料，並將它傳輸到待命目的地。DB\_UNIQUE\_NAME 會在此處指定目的地待命伺服器上資料庫的唯一名稱。
+-	**LOG\_ARCHIVE\_CONFIG...：**您可以使用這個陳述式來定義唯一的資料庫識別碼。
+-	**LOG\_ARCHIVE\_DEST\_1...：**您可以使用這個陳述式來定義本機封存資料夾位置。我們建議您針對資料庫封存需求建立新的目錄，並使用這個陳述式明確指定本機封存位置，而不是使用 Oracle 的預設資料夾 %ORACLE\_HOME%\\database\\archive。
+-	**LOG\_ARCHIVE\_DEST\_2 ....LGWR ASYNC...：**您可以定義非同步的記錄寫入器程序 (LGWR)，來收集交易重做資料，並將它傳輸到待命目的地。DB\_UNIQUE\_NAME 會在此處指定目的地待命伺服器上資料庫的唯一名稱。
 
 當新的參數檔案就緒之後，您需要從中建立 spfile。
 
@@ -631,4 +630,4 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 ##其他資源
 [適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-windows-classic-oracle-images.md)
 
-<!-----HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

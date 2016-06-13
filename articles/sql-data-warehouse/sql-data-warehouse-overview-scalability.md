@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/28/2016"
+   ms.date="05/26/2016"
    ms.author="barbkess;sonyama"/>
 
 # Azure SQL 資料倉儲的效能延展性
@@ -56,7 +56,7 @@ DWU 是以載入速率和掃描速率為基礎。當您增加 DWU 時，會增�
 
 ### 如何調整效能？
 
-若要彈性增加或減少計算能力，只要變更您的資料庫的資料倉儲單位 (DWU)。在幕後，SQL 資料倉儲會變更 CPU 和記憶體配置，方法是使用 SQL 資料庫快速又簡單的部署功能。
+若要彈性增加或減少計算能力，只要變更您的資料庫的資料倉儲單位 (DWU)。在幕後，「SQL 資料倉儲」會停止您的執行個體、變更 CPU 和記憶體配置，然後重新啟動您的執行個體。
 
 DWU 配置在 100 個區塊中，但並非所有區塊都可以使用。當 DWU 增加時，效能呈線性增加。在更高的 DWU 層級，您需要加入超過 100 個 DWU，才能注意到顯著的效能改善。為了協助您在 DWU 中選取有意義的跳躍點，我們提供的 DWU 層級可提供最佳的結果。
  
@@ -142,13 +142,11 @@ DWU 調整時機的建議︰
 [使用 PowerShell 繼續計算]: ./sql-data-warehouse-manage-scale-out-tasks-powershell.md#task-3-resume-compute
 [使用 REST API 繼續計算]: ./sql-data-warehouse-manage-scale-out-tasks-rest-api.md#task-3-resume-compute
 
-[並行模型]: sql-data-warehouse-develop-concurrency.md
-[設計資料表]: sql-data-warehouse-develop-table-design.md
-[為資料表選擇雜湊散發索引鍵]: sql-data-warehouse-develop-hash-distribution-key.md
-[用來改善效能的統計資料]: sql-data-warehouse-develop-statistics.md
-[development overview]: sql-data-warehouse-overview-develop.md
-
-
+[並行模型]: ./sql-data-warehouse-develop-concurrency.md
+[設計資料表]: ./sql-data-warehouse-develop-table-design.md
+[為資料表選擇雜湊散發索引鍵]: ./sql-data-warehouse-develop-hash-distribution-key.md
+[用來改善效能的統計資料]: ./sql-data-warehouse-develop-statistics.md
+[development overview]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 
@@ -157,4 +155,4 @@ DWU 調整時機的建議︰
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

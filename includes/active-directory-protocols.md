@@ -1,1 +1,3 @@
-> This article is part of the [Azure Active Directory Protocols Reference](../articles/active-directory/active-directory-protocols.md).
+> 本文是 [Azure Active Directory 通訊協定參考資料](../articles/active-directory/active-directory-protocols.md)的一部分。
+
+<!---HONumber=AcomDC_0601_2016-->

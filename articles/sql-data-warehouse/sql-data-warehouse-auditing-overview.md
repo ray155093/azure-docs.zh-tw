@@ -1,6 +1,6 @@
 <properties
-   pageTitle="開始使用 SQL 資料倉儲資料庫稽核 | Microsoft Azure"
-   description="開始使用 SQL 資料倉儲資料庫稽核"
+   pageTitle="Azure SQL 資料倉儲中的稽核 | Microsoft Azure"
+   description="開始使用 Azure SQL 資料倉儲中的稽核"
    services="sql-data-warehouse"
    documentationCenter=""
    authors="ronortloff"
@@ -13,11 +13,11 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/03/2016" 
+   ms.date="05/31/2016" 
    ms.author="rortloff;barbkess;sonyama"/>
 
-# 開始使用 SQL 資料倉儲資料庫稽核
-Azure SQL 資料倉儲稽核會追蹤資料庫事件，並將稽核事件寫入 Azure 儲存體帳戶中的稽核記錄。
+# Azure SQL 資料倉儲中的稽核
+「Azure SQL 資料倉儲」稽核會追蹤資料庫事件，並將所稽核的事件寫入「Azure 儲存體」帳戶中的稽核記錄。
 
 稽核可協助您保持法規遵循、了解資料庫活動，以及深入了解可指出商務考量或疑似安全違規的不一致和異常。
 
@@ -132,13 +132,13 @@ SQL 資料倉儲資料庫稽核可讓您：
 
 
 <!--Image references-->
-[1]: ./media/sql-data-warehouse-auditing-get-started/sql-data-warehouse-auditing.png
-[2]: ./media/sql-data-warehouse-auditing-get-started/sql-data-warehouse-auditing-inherit.png
-[3]: ./media/sql-data-warehouse-auditing-get-started/sql-data-warehouse-auditing-enable.png
-[4]: ./media/sql-data-warehouse-auditing-get-started/sql-data-warehouse-auditing-storage-account.png
-[5]: ./media/sql-data-warehouse-auditing-get-started/sql-data-warehouse-auditing-dashboard.png
+[1]: ./media/sql-data-warehouse-auditing-overview/sql-data-warehouse-auditing.png
+[2]: ./media/sql-data-warehouse-auditing-overview/sql-data-warehouse-auditing-inherit.png
+[3]: ./media/sql-data-warehouse-auditing-overview/sql-data-warehouse-auditing-enable.png
+[4]: ./media/sql-data-warehouse-auditing-overview/sql-data-warehouse-auditing-storage-account.png
+[5]: ./media/sql-data-warehouse-auditing-overview/sql-data-warehouse-auditing-dashboard.png
 
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

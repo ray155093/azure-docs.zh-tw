@@ -3,8 +3,8 @@
    description="了解如何使用 Azure Active Directory 驗證連接到 SQL 資料倉儲。"
    services="sql-data-warehouse"
    documentationCenter=""
-   authors="BYHAM"
-   manager="jhubbard"
+   authors="byham"
+   manager="barbkess"
    editor=""
    tags=""/>
 
@@ -14,10 +14,15 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/11/2016"
-   ms.author="rick.byham@microsoft.com"/>
+   ms.date="05/31/2016"
+   ms.author="rickbyh;barbkess;sonyama"/>
 
 # 使用 Azure Active Directory 驗證連線到 SQL 資料倉儲
+
+> [AZURE.SELECTOR]
+- [Visual Studio](sql-data-warehouse-get-started-connect.md)
+- [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
+- [AAD](sql-data-warehouse-get-started-connect-aad-authentication.md)
 
 
 Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身分識別連接到 Microsoft Azure SQL 資料倉儲的機制。您可以使用 Azure Active Directory 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。中央識別碼管理提供單一位置以管理 SQL 資料倉儲使用者並簡化權限管理。
@@ -50,7 +55,7 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 搭配 Azure SQL Database 及搭配 Azure SQL 資料倉儲使用 Azure Active Directory 驗證的主要差異，是您必須使用 SQL Server Data Tools (而非 SQL Server Management Studio) 來連接到 SQL 資料倉儲。SQL 資料倉儲至少需要 2016 年 4 月 (版本 14.0.60311.1) 的 SQL Server Data Tools for Visual Studio 2015。Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解決方法是在 [sys.database\_principals](https://msdn.microsoft.com/library/ms187328.aspx) 中檢視使用者。
   
 ## 後續步驟 
-- 完成詳細的步驟。針對 Azure SQL Database 及針對 Azure SQL 資料倉儲設定並使用 Azure Active Directory 驗證的詳細步驟幾乎完全相同。請遵循[使用 Azure Active Directory 驗證連接到 SQL Database 或 SQL 資料倉儲](../sql-database/sql-database-aad-authentication.md)主題中的詳細步驟。
-- 建立自訂資料庫角色，並加入使用者至角色。然後授與角色細微的權限。如需詳細資訊，請參閱[開始使用資料庫引擎權限](https://msdn.microsoft.com/library/mt667986.aspx)。
+- 完成詳細的步驟。針對 Azure SQL Database 及針對 Azure SQL 資料倉儲設定並使用 Azure Active Directory 驗證的詳細步驟幾乎完全相同。請依照[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](../sql-database/sql-database-aad-authentication.md)主題中的詳細步驟操作。
+- 建立自訂資料庫角色，並加入使用者至角色。然後授與角色細微的權限。如需詳細資訊，請參閱[資料庫引擎權限使用者入門](https://msdn.microsoft.com/library/mt667986.aspx)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

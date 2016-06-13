@@ -1,10 +1,10 @@
 <properties 
    pageTitle="應用程式升級期間的 SQL Database 業務續航力" 
-   description="本節提供避免在應用程式升級期間停機之業務續航力的指引。" 
+   description="本節提供避免在應用程式升級期間停機的指引。" 
    services="sql-database"
    documentationCenter="" 
    authors="elfisher" 
-   manager="jeffreyg" 
+   manager="jhubbard" 
    editor="monicar"/>
 
 <tags
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
-   ms.date="02/09/2016"
+   ms.date="05/27/2016"
    ms.author="elfish"/>
 
-#應用程式升級而不需要停機
+#在不停機的情況下升級應用程式
 
 在 Microsoft Azure 的內容中，「應用程式」一詞指的是前端、部署在雲端服務中的服務，以及用來保存應用程式資料或中繼資料的資料層等元件。雲端應用程式通常會設計成提供全天候不中斷的服務。推出新版應用程式時，在即時網站中套用資料層中的變更可能會造成一些中斷情況，例如減少可用的功能或甚至完全停機。
 
@@ -27,8 +27,9 @@
 3.	升級期間發生任何錯誤時的回復能力。
 4.	所涉及的總金額成本，其中包括建立暫存複本所需的額外應用程式元件成本 (例如用於作用中異地複寫的額外高階資料庫)，以及升級程序所使用之暫時部署的累加成本。 
 
-如果應用程式可以暫時在唯讀模式下運作，則可以設計升級工作流程，有效地完全避免停機時間。若要了解如何實作特定應用程式拓撲的升級工作流程，請參閱[使 Azure SQL Database 在應用程式輪流升級期間的中斷時間最短的最佳作法](https://msdn.microsoft.com/library/azure/dn790385.aspx)
+如果應用程式可以暫時在唯讀模式下運作，則可以設計升級工作流程，有效地完全避免停機時間。若要了解如何實作特定應用程式拓撲的升級工作流程，請參閱[使用 SQL Database 作用中異地複寫管理雲端應用程式的輪流升級](sql-database-manage-application-rolling-upgrade.md)。
+ 
  
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0601_2016-->

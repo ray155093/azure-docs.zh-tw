@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="05/26/2016"
    ms.author="terrylan"/>
 
 # Azure 安全性管理和監視概觀
@@ -28,7 +28,7 @@ Microsoft 雲端服務的安全性是您與 Microsoft 之間的合作關係和�
 
 ![共同責任][1]
 
-若要深入了解安全性管理，請參閱 [Azure 中的安全性管理](../azure-security-management.md)。
+若要深入了解安全性管理，請參閱 [Azure 的安全性管理](azure-security-management.md)。
 
 以下是本文所涵蓋的核心功能：
 
@@ -134,4 +134,4 @@ Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強�
 <!--Image references-->
 [1]: ./media/security-management-and-monitoring-overview/shared-responsibility.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

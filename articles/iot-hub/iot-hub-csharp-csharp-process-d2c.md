@@ -20,34 +20,34 @@
 
 ## 簡介
 
-Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
+Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
 
 本教學課程是以 [IoT 中樞入門]中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
 
-- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。極常見的情況是「冷路徑」分析，因為您會將 Blob 中作為輸入的遙測資料儲存到 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊這類由工具所驅動的分析程序中。
+- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。有一個很常見的案例是「冷路徑」分析，您可將遙測資料儲存於 Blob，以用來做為分析程序的輸入。這些程序是衍生自 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊等工具。
 
-- 「互動式」裝置到雲端訊息的可靠處理。當裝置到雲端訊息因為應用程式後端中的一組動作而立即觸發 (相較於送入分析引擎的「資料點」訊息) 時，此訊息會是互動式的。例如，由必須觸發在 CRM 系統中插入票證的裝置所發出的警示是互動式訊息，要儲存供稍後分析的溫度遙測則是資料點訊息。
+- 「互動式」裝置到雲端訊息的可靠處理。當裝置到雲端訊息因為應用程式後端的一組動作而立即觸發時，這類訊息會是互動式的。例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。相較之下，「資料點」訊息只會饋送至分析引擎。例如，來自裝置且儲存來以供日後分析使用的溫度遙測就是資料點訊息。
 
-由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程使用 [EventProcessorHost] 執行個體，它會：
+由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程會使用 [EventProcessorHost] 執行個體。這個執行個體：
 
 * 在 Azure Blob 儲存體中可靠地儲存「資料點」訊息。
-* 將「互動式」裝置到雲端訊息轉寄到[服務匯流排佇列]，以立即處理。
+* 將「互動式」裝置到雲端訊息轉寄到 [Azure 服務匯流排佇列]，以立即處理。
 
-服務匯流排是用來確保能可靠地處理互動式訊息的絕佳方式，因為它提供了各訊息的檢查點，以及以時間範圍為基礎的重複資料刪除。
+服務匯流排有助於確保能可靠地處理互動式訊息，因為它提供了各個訊息的檢查點，以及以時間範圍為基礎的重複資料刪除。
 
-> [AZURE.NOTE] **EventProcessorHost** 執行個體是處理互動式訊息的唯一方式，其他選項包括 [Azure Service Fabric][lnk-service-fabric] 和 [Azure 串流分析][lnk-stream-analytics]。
+> [AZURE.NOTE] **EventProcessorHost** 執行個體是用來處理互動式訊息的唯一方式。其他選項包括 [Azure Service Fabric][lnk-service-fabric] 和 [Azure 串流分析][lnk-stream-analytics]。
 
 在本教學課程結尾處，您將會執行三個 Windows 主控台應用程式：
 
-* **SimulatedDevice**，這是 [IoT 中樞入門]教學課程中建立之應用程式的已修改版本、每秒可傳送資料點裝置到雲端訊息，而且每 10 秒可傳送互動式裝置到雲端訊息。此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
-* **ProcessDeviceToCloudMessages** 使用 [EventProcessorHost] 類別從事件中樞相容端點擷取訊息，然後將資料點訊息可靠地儲存在 Azure Blob 儲存體中，並將互動式訊息轉送至服務匯流排佇列。
+* **SimulatedDevice**，這是在 [IoT 中樞入門]教學課程中建立之應用程式的已修改版本、每秒可傳送資料點裝置到雲端訊息，而且每 10 秒可傳送互動式裝置到雲端訊息。此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
+* **ProcessDeviceToCloudMessages** 會使用 [EventProcessorHost] 類別來擷取事件中樞相容端點的訊息。接著，可靠地將資料點訊息儲存於 Azure Blob 儲存體，並將互動式訊息轉送到服務匯流排佇列。
 * **ProcessD2CInteractiveMessages** 可將互動式訊息從服務匯流排佇列中清除。
 
 > [AZURE.NOTE] IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。如需如何以實體裝置取代本教學課程中模擬的裝置，以及通常如何將裝置連接到 IoT 中樞的逐步指示，請參閱 [Azure IoT 開發人員中心]。
 
 本教學課程可直接套用至事件中樞相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。如需詳細資訊，請參閱 [Azure IoT 中樞開發人員指南 - 裝置到雲端]。
 
-若要完成本教學課程，您需要下列項目：
+若要完成此教學課程，您需要下列項目：
 
 + Microsoft Visual Studio 2015。
 
@@ -69,15 +69,15 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 2.	按 **F5** 啟動三個主控台應用程式。**ProcessD2CInteractiveMessages** 應用程式應處理從 **SimulatedDevice** 應用程式傳送的每則互動式訊息。
 
-  ![][50]
+  ![三個主控台應用程式][50]
 
 > [AZURE.NOTE] 若要查看您的 Blob 檔案中的更新，您需要將 **StoreEventProcessor** 類別中的 **MAX\_BLOCK\_SIZE** 常數降低為較小的值，例如 **1024**。這是因為達到模擬裝置所傳送之資料的區塊大小限制需要一些時間。區塊大小比較小，您就不需要等待這麼久才來查看所建立和更新的 Blob。不過，使用比較大的區塊大小可讓應用程式更有彈性。
 
 ## 後續步驟
 
-在本教學課程中，您學到如何使用 [EventProcessorHost] 類別可靠地處理資料點與互動式裝置到雲端訊息。
+在本教學課程中，您學到如何使用 [EventProcessorHost] 類別，可靠地處理資料點與互動式裝置到雲端訊息。
 
-[從裝置上傳檔案]教學課程是以採用類似訊息處理邏輯的本教學課程為基礎，說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
+[從裝置上傳檔案]教學課程是根據本教學課程，使用類似的訊息處理邏輯來建置。其中也會說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
 
 有關 IoT 中心的其他資訊：
 
@@ -96,7 +96,7 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [Azure Blob 儲存體]: ../storage/storage-dotnet-how-to-use-blobs.md
 [Azure Data Factory]: https://azure.microsoft.com/documentation/services/data-factory/
 [HDInsight (Hadoop)]: https://azure.microsoft.com/documentation/services/hdinsight/
-[服務匯流排佇列]: ../service-bus/service-bus-dotnet-how-to-use-queues/
+[Service Bus Queue]: ../service-bus/service-bus-dotnet-how-to-use-queues/
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
 
 
@@ -121,4 +121,4 @@ Azure IoT 中心是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-hubs]: https://azure.microsoft.com/documentation/services/event-hubs/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->
