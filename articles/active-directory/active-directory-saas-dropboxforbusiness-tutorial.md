@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 Dropbox for Business 整合
   
-本教學課程的目的是要示範 Azure 與 Dropbox for Business 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Dropbox for Business 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   Dropbox for Business 中的測試租用戶
@@ -203,7 +204,8 @@
 ![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769523.png "指派使用者")
 
 
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如
+需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 
 

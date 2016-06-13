@@ -168,8 +168,8 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 選取您要複寫的項目以及您要複寫到的位置。
 
 1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，並按一下 [設定]。
-2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [Step 1: Prepare Infrastructure] (步驟 1︰準備基礎結構) > [Protection goal] (保護目標)。
-3. 在 [Protection goal] (保護目標) 中，選取 [To recovery site] (至復原站台)，然後選取 [Yes, with Hyper-V] (是，利用 Hyper-V)。 
+2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [Step 1: Prepare Infrastructure] \(步驟 1︰準備基礎結構) > [Protection goal] \(保護目標)。
+3. 在 [Protection goal] \(保護目標) 中，選取 [To recovery site] \(至復原站台)，然後選取 [Yes, with Hyper-V] \(是，利用 Hyper-V)。 
 4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，然後如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，就按一下 [否]。然後按一下 [確定]。 
 
 	![選擇目標](./media/site-recovery-vmm-to-vmm/choose-goals.png)
@@ -179,7 +179,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 在 VMM 伺服器上安裝 Azure Site Recovery Provider，並在保存庫中註冊伺服器。
 
-1. 按一下 [Step 2: Prepare Infrastructure] (步驟 2：準備基礎結構) > [來源]。 
+1. 按一下 [Step 2: Prepare Infrastructure] \(步驟 2：準備基礎結構) > [來源]。 
 
 	![設定來源](./media/site-recovery-vmm-to-vmm/goals-source.png)
 
@@ -214,9 +214,9 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 4. 在 [Proxy 設定] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連接到 Site Recovery 的方式。
 
-	- 如果您要讓 Provider 直接連線，選取 [Connect directly without a proxy] (不使用 Proxy 直接連線)。
-	- - 如果您要使用目前在伺服器上設定的 Proxy 來連線，選取 [Connect with existing proxy settings] (以現有的 Proxy 設定連線)。
-	- 如果現有的 Proxy 需要驗證，或是您要讓 Provider 使用自訂 Proxy 來連線，選取 [Connect with custom proxy settings] (以自訂 Proxy 設定連線)。
+	- 如果您要讓 Provider 直接連線，選取 [Connect directly without a proxy] \(不使用 Proxy 直接連線)。
+	- - 如果您要使用目前在伺服器上設定的 Proxy 來連線，選取 [Connect with existing proxy settings] \(以現有的 Proxy 設定連線)。
+	- 如果現有的 Proxy 需要驗證，或是您要讓 Provider 使用自訂 Proxy 來連線，選取 [Connect with custom proxy settings] \(以自訂 Proxy 設定連線)。
 	- 如果您使用自訂 proxy，您必須指定位址、連接埠及認證。
 	- 如果您使用 Proxy，您應該已經允許[必要條件](#provider-and-agent-prerequisites)中所述的 URL。
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。在 [設定] 中，展開 [安全性] > [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
@@ -278,11 +278,11 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 ## 步驟 4：設定複寫設定
 
-1. 若要建立新的複寫原則，按一下 [準備基礎結構] > [複寫設定] > [+Create and Associate] (+建立及關聯)。
+1. 若要建立新的複寫原則，按一下 [準備基礎結構] > [複寫設定] > [+Create and Associate] \(+建立及關聯)。
 
 	![網路](./media/site-recovery-vmm-to-vmm/gs-replication.png)
 
-2. 在 [Create and associate policy] (建立及關聯原則) 中指定原則名稱。來源和目標類型應該是 **Hyper-V**。
+2. 在 [Create and associate policy] \(建立及關聯原則) 中指定原則名稱。來源和目標類型應該是 **Hyper-V**。
 3. 在 [Hyper-V 主機版本] 中，選取主機上執行的作業系統。
 
 	> [AZURE.NOTE] VMM 雲端可以包含執行不同 (支援) 版本之 Windows Server 的 Hyper-V 主機，但一個複寫原則適用於執行相同作業系統的主機。如果您的主機會執行多個作業系統版本，請建立不同的複寫原則。
@@ -380,7 +380,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 立即啟用複寫，如下所示︰
 
-1. 按一下 [Step 2: Replicate application] (步驟 2︰複寫應用程式) > [來源]。第一次啟用複寫之後，按一下保存庫中的 [+Replicate] (+複寫)，以針對其他電腦啟用複寫。
+1. 按一下 [Step 2: Replicate application] (步驟 2︰複寫應用程式) > [來源]。第一次啟用複寫之後，按一下保存庫中的 [+Replicate] \(+複寫)，以針對其他電腦啟用複寫。
 
 	![啟用複寫](./media/site-recovery-vmm-to-vmm/enable-replication1.png)
 
@@ -393,7 +393,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 	![啟用虛擬機器保護](./media/site-recovery-vmm-to-vmm/enable-replication5.png)
 
-您可以在 [設定] > [作業] > [Site Recovery Jobs] (Site Recovery 作業) 中，追蹤 [啟用保護] 動作的進度。執行**完成保護**作業之後，虛擬機器即準備好進行容錯移轉。
+您可以在 [設定] > [作業] > [Site Recovery Jobs] \(Site Recovery 作業) 中，追蹤 [啟用保護] 動作的進度。執行**完成保護**作業之後，虛擬機器即準備好進行容錯移轉。
 
 
 >[AZURE.NOTE] 您也可以在 VMM 主控台中啟用虛擬機器的保護。在虛擬機器屬性 > [Azure Site Recovery] 索引標籤中的工具列上按一下 [啟用保護]。

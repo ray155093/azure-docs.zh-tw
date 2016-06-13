@@ -387,7 +387,7 @@ XUF99EW9OIQOMV7Q7 | 家庭房車
 
 按一下 [RealtimeDashboardApp 下載](http://go.microsoft.com/fwlink/?LinkId=717078)下載 RealtimeDashboardApp Visual Studio 方案來自訂。
 
-****執行即時儀表板應用程式 **
+**執行即時儀表板應用程式**
 
 1.	按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17-vehicle-telematics-powerbi-dashboard-setup.png) *圖 17 – PowerBI 儀表板安裝指示*
 2.	擷取並儲存在本機 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig18-vehicle-telematics-realtimedashboardapp-folder.png) *圖 18 – RealtimeDashboardApp 資料夾*

@@ -37,7 +37,7 @@
 
     按一下 [執行查詢] 以檢視結果。
 
-	![在 [查詢總管] (SQL 查詢編輯器) 中撰寫 SQL 查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
+	![在 [查詢總管] \(SQL 查詢編輯器) 中撰寫 SQL 查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerinitial.png)
 
 4. [結果] 刀鋒視窗會顯示查詢的輸出。
 
@@ -57,7 +57,7 @@
 
 如果您使用多個查詢，而且想要在其間快速切換，您可以在 [查詢總管] 刀鋒視窗的查詢文字方塊中輸入所有查詢，將您要執行的查詢反白，然後按一下 [執行查詢] 以檢視結果。
 
-![在 [查詢總管] (SQL 查詢編輯器) 中撰寫多個 SQL 查詢，然後反白顯示並執行個別查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
+![在 [查詢總管] \(SQL 查詢編輯器) 中撰寫多個 SQL 查詢，然後反白顯示並執行個別查詢的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorerhighlightandrun.png)
 
 ## 將查詢從檔案加入至 SQL 查詢編輯器
 

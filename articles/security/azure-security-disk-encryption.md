@@ -91,7 +91,7 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 
 Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含 Windows 適用的磁碟加密擴充、Linux 適用的磁碟加密擴充、磁碟加密 PowerShell Cmdlet、磁碟加密 CLI Cmdlet 和磁碟加密 Azure 資源管理員範本。在執行 Windows 或 Linux OS 的 IaaS VM 上支援 Azure 磁碟加密解決方案。如需支援的作業系統的詳細資訊，請參閱以下的必要條件一節。
 
-****注意：**使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
+**注意：**使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
 
 ### 價值主張
 

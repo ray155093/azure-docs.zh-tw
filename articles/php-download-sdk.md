@@ -37,7 +37,7 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 
 適用於 Azure 的 PHP 用戶端程式庫提供了一個介面，以便從任何作業系統存取 Azure 功能，例如資料管理服務和雲端服務。您可以透過編輯器安裝這些程式庫。
 
-如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何從 PHP 使用 Blob 服務][blob-service] (英文)、[如何從 PHP 使用資料表服務][table-service] (英文) 及 [如何從 PHP 使用佇列服務][queue-service] (英文)。
+如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何從 PHP 使用 Blob 服務][blob-service] \(英文)、[如何從 PHP 使用資料表服務][table-service] \(英文) 及 [如何從 PHP 使用佇列服務][queue-service] \(英文)。
 
 ###透過編輯器安裝
 
@@ -66,7 +66,7 @@ Azure PowerShell 是一組 PowerShell Cmdlet，可用於部署和管理 Azure �
 
 安裝 Azure PowerShell 和 Azure 模擬器的建議方式就是使用 [Microsoft Web Platform Installer][download-wpi]。請注意，您也可以選擇安裝其他開發元件，例如 PHP、SQL Server、適用於 SQL Server for PHP 的 Microsoft 驅動程式和 WebMatrix。
 
-如需有關如何使用 Azure PowerShell 的詳細資訊，請參閱[如何安裝及設定 Azure PowerShell][powershell-tools] (英文)。
+如需有關如何使用 Azure PowerShell 的詳細資訊，請參閱[如何安裝及設定 Azure PowerShell][powershell-tools] \(英文)。
 
 ##Azure CLI
 

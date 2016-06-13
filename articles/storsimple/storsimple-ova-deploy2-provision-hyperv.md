@@ -160,7 +160,7 @@
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image15.png)
 
-1.  在「選擇磁碟類型」頁面上，將虛擬硬碟類型設定為 [動態擴充] (建議選項)。您也可以選擇 [固定大小] 磁碟，但可能需要等待很長一段時間。建議您不要使用 [差異] 選項。按 [下一步]。請注意，在 Windows Server 2012 R2 和 Windows Server 2012 中，預設值是 [動態擴充]。在 Windows Server 2008 R2 中，預設值是 [固定大小]。
+1.  在「選擇磁碟類型」頁面上，將虛擬硬碟類型設定為 [動態擴充] \(建議選項)。您也可以選擇 [固定大小] 磁碟，但可能需要等待很長一段時間。建議您不要使用 [差異] 選項。按 [下一步]。請注意，在 Windows Server 2012 R2 和 Windows Server 2012 中，預設值是 [動態擴充]。在 Windows Server 2008 R2 中，預設值是 [固定大小]。
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image16.png)
 

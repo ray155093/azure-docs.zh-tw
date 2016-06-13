@@ -207,7 +207,7 @@
 
 ### 在您的 IoT 中樞上設定兩個範例裝置
 
-- [建立 IoT 中樞][lnk-create-hub] (於 Azure 訂用帳戶中) 時，您需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- [建立 IoT 中樞][lnk-create-hub] \(於 Azure 訂用帳戶中) 時，您需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
 - 在您的 IoT 中樞新增一個名為 **SensorTag\_01** 的裝置，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將這個裝置新增到您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。當您設定閘道時，您會將此裝置對應到 SensorTag 裝置。
 
 ### 在 Edison 裝置上建置閘道 SDK

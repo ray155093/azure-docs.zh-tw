@@ -44,9 +44,9 @@
 
 <a name="backup-on-demand"></a>
 ## 視需求備份應用程式
-若要立即備份應用程式，請將 **POST** 要求傳送到 ****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
+若要立即備份應用程式，請將 **POST** 要求傳送到 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
 
-使用範例網站後的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
+使用範例網站後的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
 
 您必須在要求本文中提供 JSON 物件，以指定要用來儲存備份的儲存體帳戶。JSON 物件必須有名為 **storageAccountUrl** 的屬性以保存 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md)，此 URL 會授與保有備份 blob 之 Azure 儲存體容器的寫入權限。如果您想要備份資料庫，則還必須提供包含所要備份之資料庫的名稱、類型和連接字串的清單。
 
@@ -103,9 +103,9 @@
 除了視需要備份應用程式，您也可以建立排程來自動備份。
 
 ### 設定新的自動備份排程
-若要設定備份排程，請傳送 **PUT** 要求給 ****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup**。
+若要設定備份排程，請傳送 **PUT** 要求給 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup**。
 
-範例網站的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
 
 要求本文必須有指定備份組態的 JSON 物件。以下是具有所有必要參數的範例。
 
@@ -132,17 +132,17 @@
 系統會自動移除儲存體帳戶中的舊有備份。您可以藉由設定 **retentionPeriodInDays** 參數來控制舊有備份的保留期。如果您想要永遠儲存至少一個備份，不論它已存在多久，請將 **keepAtLeastOneBackup** 設為 true。
 
 ### 取得自動備份排程
-若要取得應用程式的備份組態，請傳送 **POST** 要求到以下 URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup/list**。
+若要取得應用程式的備份組態，請傳送 **POST** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup/list**。
 
-範例網站的 URL 是 ****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**。
+範例網站的 URL 是 **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**。
 
 <a name="get-backup-status"></a>
 ## 取得備份狀態
-視應用程式的大小而定，備份程序可能需要一些時間才能完成。備份程序也可能失敗、逾時或是部分成功。若要查看所有應用程式的備份狀態，請傳送 **GET** 要求到以下 URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**。
+視應用程式的大小而定，備份程序可能需要一些時間才能完成。備份程序也可能失敗、逾時或是部分成功。若要查看所有應用程式的備份狀態，請傳送 **GET** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**。
 
-若要查看特定備份的狀態，請傳送 GET 要求到以下 URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
+若要查看特定備份的狀態，請傳送 GET 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
 
-範例網站的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
 回應本文會包含類似此範例的 JSON 物件。
 
@@ -180,9 +180,9 @@
 
 <a name="restore-app"></a>
 ## 從備份還原應用程式
-如果應用程式遭到刪除，或是當您想要把應用程式還原為較舊的版本時，您可以從備份還原應用程式。若要叫用還原，請傳送 **POST** 要求到以下 URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**。
+如果應用程式遭到刪除，或是當您想要把應用程式還原為較舊的版本時，您可以從備份還原應用程式。若要叫用還原，請傳送 **POST** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**。
 
-範例網站的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
 
 在要求本文中，傳送包含還原作業屬性的 JSON 物件。以下是包含所有必要屬性的範例：
 
@@ -208,15 +208,15 @@
 
 <a name="delete-app-backup"></a>
 ## 刪除應用程式備份
-如果您想要刪除備份，請傳送 **DELETE** 要求給以下 URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
+如果您想要刪除備份，請傳送 **DELETE** 要求給以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
 
-範例網站的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
 <a name="manage-sas-url"></a>
 ## 管理備份的 SAS URL
-Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除 Azure 儲存體中的備份。如果此 SAS URL 不再有效，就無法透過 REST API 刪除備份。不過，您可以傳送 **POST** 要求給以下 URL 來更新與備份相關聯的 SAS URL：****https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**。
+Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除 Azure 儲存體中的備份。如果此 SAS URL 不再有效，就無法透過 REST API 刪除備份。不過，您可以傳送 **POST** 要求給以下 URL 來更新與備份相關聯的 SAS URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**。
 
-範例網站的 URL 看起來就像這樣：****https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
 
 在要求本文中，傳送包含新的 SAS URL 的 JSON 物件。範例如下。
 
