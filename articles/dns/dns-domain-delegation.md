@@ -69,26 +69,50 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 例如，假設您購買網域 'contoso.com'，並在 Azure DNS 中建立名稱為 'contoso.com' 的區域。身為網域的擁有者，註冊機構會提供選項，讓您設定網域的名稱伺服器位址 (亦即 NS 記錄)。註冊機構會將這些 NS 記錄儲存在父系網域中，在此例子中為 '.com'。然後，當世界各地的用戶端嘗試解析 'contoso.com' 中的 DNS 記錄時，將會導向至您在 Azure DNS 區域中的網域。
 
-### 設定委派
+### 尋找名稱伺服器的名稱
 
-若要設定委派，您需要知道您的區域的名稱伺服器名稱。Azure DNS 會在每次建立區域時從集區配置名稱伺服器，並儲存在您的區域內自動建立的授權 NS 記錄中。您只需要抓取這些記錄，就能查看名稱伺服器名稱。
+在委派 DNS 區域給 Azure DNS 之前，您必須先知道區域的名稱伺服器名稱。每次建立區域時，Azure DNS 都會配置某個集區中的名稱伺服器。
 
-使用 Azure PowerShell，就能如下所示擷取授權 NS 記錄。請注意，記錄名稱 "@" 是用來指出區域頂點的記錄。在此範例引，區域 ‘contoso.com’ 已被指派名稱伺服器 ‘ns1-04.azure-dns.com’、‘ns2-04.azure-dns.net’、‘ns3-04.azure-dns.org’ 和 ‘ns4-04.azure-dns.info’。
+若要查看指派給區域的名稱伺服器，最簡單的方式是透過 Azure 入口網站。在此範例引，區域 ‘contoso.net’ 已被指派名稱伺服器 ‘ns1-01.azure-dns.com’、‘ns2-01.azure-dns.net’、‘ns3-01.azure-dns.org’ 和 ‘ns4-01.azure-dns.info’：
 
+ ![Dns-nameserver](./media/dns-domain-delegation/viewzonens500.png)
 
-	$zone = Get-AzureRmDnsZone –Name contoso.com –ResourceGroupName MyAzureResourceGroup
-	Get-AzureRmDnsRecordSet –Name “@” –RecordType NS –Zone $zone
+Azure DNS 會自動在包含指派的名稱伺服器的區域中，建立權威 NS 記錄。您只需要擷取這些記錄，就能透過 Azure PowerShell 或 Azure CLI 查看名稱伺服器的名稱。
+
+使用 Azure PowerShell，就能如下所示擷取授權 NS 記錄。請注意，記錄名稱 "@" 是用來指出區域頂點的記錄。
+
+	PS> $zone = Get-AzureRmDnsZone –Name contoso.net –ResourceGroupName MyResourceGroup
+	PS> Get-AzureRmDnsRecordSet –Name “@” –RecordType NS –Zone $zone
 
 	Name              : @
-	ZoneName          : contoso.com
+	ZoneName          : contoso.net
 	ResourceGroupName : MyResourceGroup
 	Ttl               : 3600
 	Etag              : 5fe92e48-cc76-4912-a78c-7652d362ca18
 	RecordType        : NS
-	Records           : {ns1-04.azure-dns.com, ns2-04.azure-dns.net, ns3-04.azure-dns.org,
-                     ns4-04.azure-dns.info}
+	Records           : {ns1-01.azure-dns.com, ns2-01.azure-dns.net, ns3-01.azure-dns.org,
+                        ns4-01.azure-dns.info}
 	Tags              : {}
 
+您也可以使用跨平台 Azure CLI 來擷取權威 NS 記錄，進而了解指派給區域的名稱伺服器︰
+
+	C:\> azure network dns record-set show MyResourceGroup contoso.net @ NS
+	info:    Executing command network dns record-set show
+		+ Looking up the DNS Record Set "@" of type "NS"
+	data:    Id                              : /subscriptions/.../resourceGroups/MyResourceGroup/providers/Microsoft.Network/dnszones/contoso.net/NS/@
+	data:    Name                            : @
+	data:    Type                            : Microsoft.Network/dnszones/NS
+	data:    Location                        : global
+	data:    TTL                             : 172800
+	data:    NS records
+	data:        Name server domain name     : ns1-01.azure-dns.com.
+	data:        Name server domain name     : ns2-01.azure-dns.net.
+	data:        Name server domain name     : ns3-01.azure-dns.org.
+	data:        Name server domain name     : ns4-01.azure-dns.info.
+	data:
+	info:    network dns record-set show command OK
+
+### 設定委派
 
 每個註冊機構都有自己的 DNS 管理工具，可變更網域的名稱伺服器記錄。在註冊機構的 DNS 管理頁面中，請編輯 NS 記錄，並將 NS 記錄取代為 Azure DNS 建立的記錄。
 
@@ -126,10 +150,9 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 3. 在指向子區域的上層區域中設定 NS 記錄，以委派子區域。
 
 
-
 ### 委派子網域
 
-下列 PowerShell 範例將示範其運作方式。
+下列 PowerShell 範例將示範其運作方式。透過 Azure 入口網站或跨平台 Azure CLI 也可執行相同的步驟。
 
 #### 步驟 1.建立上層區域和子區域
 
@@ -140,7 +163,7 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 #### 步驟 2.擷取 NS 記錄
 
-接著，從子區域抓取權威 NS 記錄，如下一個範例所示。
+接著，從子區域抓取權威 NS 記錄，如下一個範例所示。這包含指派給子區域的名稱伺服器。
 
 	$child_ns_recordset = Get-AzureRmDnsRecordSet -Zone $child -Name "@" -RecordType NS
 
@@ -176,4 +199,4 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 [管理 DNS 記錄](dns-operations-recordsets.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

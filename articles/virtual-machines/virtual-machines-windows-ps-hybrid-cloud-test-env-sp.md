@@ -19,8 +19,6 @@
 
 # 在混合式雲端中設定用於測試的 SharePoint 內部網路伺服器陣列
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本主題將逐步引導您建立混合式雲端環境測試 Microsoft Azure 代管的內部網路 SharePoint 伺服器陣列。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sp/virtual-machines-windows-ps-hybrid-cloud-test-env-sp-ph3.png)
@@ -125,9 +123,9 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-重新啟動之後，請使用 Azure 入口網站，利用本機系統管理員帳戶連線到 SQL1。
+重新啟動之後，請使用 Azure 入口網站，利用「本機系統管理員帳戶」連線到 SQL1。
 
 接著，對於新資料庫和使用者帳戶權限設定 SQL Server 2014 使用 F: 磁碟機。
 
@@ -190,7 +188,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
 重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 SP1。
 
@@ -201,7 +199,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 3.	在通知可能需要在組態期間重新啟動某些服務的對話方塊中，按一下 [是]。
 4.	在 [連接到伺服器陣列] 頁面上，按一下 [建立新的伺服器陣列]，然後按 [下一步]。
 5.	在 [指定組態資料庫設定] 頁面上，於 [資料庫伺服器] 中輸入 **sql1.corp.contoso.com**，於 [使用者名稱] 中輸入**CORP\\SPFarmAdmin**，於 [密碼] 中輸入 SPFarmAdmin 帳戶密碼，然後按 [下一步]。
-6.	在 [指定伺服器陣列安全性設定] 頁面上，於 [複雜密碼] 和 [確認複雜密碼] 中，鍵入 ****P@ssphrase**，然後按一下 [下一步]。
+6.	在 [指定伺服器陣列安全性設定] 頁面上，於 [複雜密碼] 和 [確認複雜密碼] 中，鍵入 **P@ssphrase**，然後按一下 [下一步]。
 7.	在 [設定 SharePoint 管理中心 Web 應用程式] 頁面中，按 [**下一步**]。
 8.	在 [完成 SharePoint 產品組態精靈] 頁面上，按一下 [下一步]。SharePoint 產品組態精靈可能需要幾分鐘才能完成。
 9.	在 [組態成功] 頁面中，按一下 [**完成**]。完成之後，Internet Explorer 會啟動，並顯示名稱為「初始伺服器陣列組態精靈」的索引標籤。
@@ -224,4 +222,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - [設定](https://technet.microsoft.com/library/ee836142.aspx) SharePoint 伺服器陣列。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

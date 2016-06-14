@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="05/27/2016" 
 	ms.author="bradsev" />
 
 
@@ -393,4 +393,4 @@ Power BI 中將會產生新的資料集。按一下 **ConnectedCarsRealtime** �
 
 恭喜！ 您已成功建立報報和儀表板，可取得車輛健全狀況和駕駛習慣的即時、預測和批次深入分析。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0601_2016-->

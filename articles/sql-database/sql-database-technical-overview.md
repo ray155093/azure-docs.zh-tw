@@ -59,4 +59,4 @@ SQL Server 的資料安全性向來是一項可靠的傳統，而 SQL Database �
 - 以 C#、Java、Node.js、PHP、Python 或 Ruby 建置您的第一個應用程式：[SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 - 請參閱 [Azure SQL Database 服務的所有主題](sql-database-index-all-articles.md)中的標題索引和描述。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

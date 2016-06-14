@@ -52,7 +52,7 @@
 ## 系列 4 版次
 **Windows Server 2012 R2**
 
-支援 .NET 4.0、4.5、4.5.1、4.5.2 (備註 2)
+支援 .NET 4.0、4.5、4.5.1、4.5.2
 
 >[AZURE.NOTE] 具有 * 的日期可能會變更
 
@@ -203,4 +203,4 @@ Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的�
 [fam1retire]: cloud-services-guestos-family1-retirement.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

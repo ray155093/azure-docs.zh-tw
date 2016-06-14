@@ -19,6 +19,10 @@
   # 使用 v2.0 端點將登入新增至 Windows 通用應用程式 Windows 通用用程式快速入門教學課程尚未就緒…盡快返回查看並從 Twitter 上的 @AzureAD 尋找更新。
 
 > [AZURE.NOTE]
-	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+	v2.0 端點並未支援 Azure Active Directory 的所有案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+	
+	## Get security updates for our products
 
-<!---HONumber=AcomDC_0224_2016-->
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

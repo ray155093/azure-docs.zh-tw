@@ -47,9 +47,7 @@
 
 ## 排程運算式的格式
 
-排程運算式可以是包含 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)：{秒} {分鐘} {小時} {日} {月} {星期幾}。許多在線上找到的 cron 運算式都會省略 {秒} 欄位，因此如果您複製了這類運算式，就必須調整出額外的欄位。
-
-排程運算式格式也可以採用 *hh:mm:ss* 格式，以指定每次觸發函數之間的延遲。
+排程運算式是包含 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)：{秒} {分鐘} {小時} {日} {月} {星期幾}。許多在線上找到的 cron 運算式都會省略 {秒} 欄位，因此如果您複製了這類運算式，就必須調整出額外的欄位。
 
 以下是一些排程運算式範例。
 
@@ -67,13 +65,6 @@
 "runOnStartup": true,
 ```
 
-若要每隔 15 秒觸發一次︰
-
-```json
-"schedule": "00:00:15",
-"runOnStartup": false,
-```
-
 ## 計時器觸發程序 C# 程式碼範例
 
 每次觸發函式時，此 C# 程式碼範例會寫入單一記錄檔。
@@ -89,4 +80,4 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

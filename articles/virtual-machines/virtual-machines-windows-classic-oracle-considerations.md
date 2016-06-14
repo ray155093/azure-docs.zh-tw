@@ -3,8 +3,8 @@ pageTitle="使用 Oracle VM 映像的考量事項 | Microsoft Azure"
 description="部署前，請先了解 Azure 中 Windows Server 上 Oracle VM 的支援組態和限制。"
 services="virtual-machines-windows"
 documentationCenter=""
-manager=""
-authors="bbenz"
+manager="timlt"
+authors="rickstercdn"
 tags="azure-service-management"/>
 
 <tags
@@ -13,16 +13,14 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="vm-windows"
 ms.workload="infrastructure-services"
-ms.date="06/22/2015"
-ms.author="bbenz" />
+ms.date="05/17/2016"
+ms.author="rclaus" />
 
 #針對 Oracle 虛擬機器映像的其他考量
 
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
-
-本文章涵蓋針對 Azure 上 Oracle 虛擬機器的考量，此虛擬機器以 Microsoft 提供的 Oracle 軟體映像為基礎，且作業系統為 Windows Server。
+這篇文章涵蓋針對 Azure 中 Oracle 虛擬機器的考量，這些虛擬機器是以 Oracle 所提供的 Oracle 軟體映像為基礎。
 
 -  Oracle 資料庫虛擬機器映像
 -  Oracle WebLogic Server 虛擬機器映像
@@ -47,13 +45,9 @@ Azure 會指派每部虛擬機器各一個內部 IP 位址。除非虛擬機器�
 
 請根據您希望最佳化資料庫讀取作業或寫入作業的效能，考慮兩種連接多個磁碟的方法：
 
-- 相較於使用 Windows Server 2012 儲存體集區的方法，**獨立的 Oracle ASM** 可能會有較佳的寫入作業效能，但讀取作業的 IOPS 較差。下圖以邏輯方式說明這種排列方式。![](media/virtual-machines-windows-classic-oracle-considerations/image2.png)
+- 相較於使用磁碟陣列的方法，**獨立的 Oracle ASM** 可能會有較佳的寫入作業效能，但讀取作業的 IOPS 較差。下圖以邏輯方式說明這種排列方式。![](media/virtual-machines-windows-classic-oracle-considerations/image2.png)
 
-- 如果您的資料庫主要執行讀取作業，或者您對讀取作業效能的重視勝於寫入作業，那麼**搭配 Windows Server 2012 儲存體集區使用 Oracle ASM** 可能會有較佳的讀取作業 IOPS 效能。需要以 Windows Server 2012 作業系統為基礎的映像。如需關於儲存空間集區的詳細資訊，請參閱[在獨立伺服器上部署儲存空間](http://technet.microsoft.com/library/jj822938.aspx)。在這種排列方式下，兩個相等之連接的磁碟子集，會先在兩個儲存體集區磁碟區中一併視為實體磁碟進行等量，然後磁碟區會加入到 ASM 磁碟群組。下圖以邏輯方式說明這種排列方式。
-
-	![](media/virtual-machines-windows-classic-oracle-considerations/image3.png)
-
->[AZURE.IMPORTANT] 依個別情況評估寫入效能與讀取效能之間的取捨。您的實際結果可能因您使用這些方法而有所不同。
+>[AZURE.IMPORTANT] 依個別情況評估寫入效能與讀取效能之間的取捨。您的實際結果可能因使用此方法而有所不同。
 
 ### 高可用性和災害復原考量
 
@@ -65,7 +59,7 @@ Azure 上的 Oracle Database Enterprise Edition (不含 RAC) 可以使用 [Data 
 
 ##Oracle WebLogic Server 虛擬機器映像
 
--  **只有 Enterprise Edition 支援叢集。** 如果您使用 Microsoft 授權的 WebLogic Server 映像 (尤其作業系統是 Windows Server)，則只在使用 Enterprise Edition 的 WebLogic Server 時，您才有權使用 WebLogic 叢集。請勿在使用 WebLogic Server Standard Edition 時使用叢集。
+-  **只有在 Enterprise Edition 上才支援叢集。** 只有當您使用的是 WebLogic Server Enterprise Edition 時，才會獲授權使用 WebLogic 叢集。請勿在使用 WebLogic Server Standard Edition 時使用叢集。
 
 -  **連線逾時：**如果您的應用程式需要仰賴其他 Azure 雲端服務 (例如資料庫層服務) 的公用端點連線，請注意 Azure 會在閒置 4 分鐘後關閉這些開放連線。這可能會影響依賴連接集區的功能和應用程式，因為無活動時間超過該限制的連接將不再有效。如果這樣會影響您的應用程式，請考慮在您的連接集區上啟用「Keep-Alive」邏輯。
 
@@ -108,4 +102,4 @@ Azure 上的 Oracle Database Enterprise Edition (不含 RAC) 可以使用 [Data 
 ##其他資源
 [Azure 的 Oracle 虛擬機器影像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

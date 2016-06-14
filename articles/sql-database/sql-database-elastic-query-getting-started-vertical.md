@@ -4,7 +4,7 @@
 	services="sql-database"
 	documentationCenter=""  
 	manager="jhubbard"
-	authors="sidneyh"/>
+	authors="torsteng"/>
 
 <tags
 	ms.service="sql-database"
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="05/23/2016"
 	ms.author="torsteng" />
 
 # 開始使用跨資料庫查詢 (垂直資料分割) (預覽)
@@ -106,4 +106,4 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 
 <!--anchors-->
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

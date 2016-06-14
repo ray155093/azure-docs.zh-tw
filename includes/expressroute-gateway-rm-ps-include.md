@@ -53,11 +53,10 @@
 7. 要求公用 IP 位址。建立閘道之前需要有 IP 位址。您無法指定想要使用的 IP 位址；該 IP 位址會以動態方式進行配置。下一個組態章節將使用此 IP 位址。AllocationMethod 必須是動態的。
 
 		$pip = New-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
-		$ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
 
 8. 建立適用於閘道的組態。閘道器組態定義要使用的子網路和公用 IP 位址。在此步驟中，您要指定在建立閘道將使用的組態。這個步驟不會實際建立閘道物件。使用以下的範例來建立閘道器組態。
 
-		$gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -SubnetId $subnet.Id -PublicIpAddressId $pip.Id 
+		$ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
 
 9. 建立閘道。在這個步驟中，**-GatewayType** 特別重要。您必須使用值 **ExpressRoute**。請注意，執行這些 Cmdlet 之後，閘道需要花費 20 分鐘或更久時間來建立。
 
@@ -82,4 +81,4 @@
 
 	Remove-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -35,8 +35,8 @@
      ![新增伺服器層級防火牆](./media/sql-database-sql-server-management-studio-connect-server-principal/connect-server-principal-5.png)
  
      
- ## 疑難排解連接失敗
+## 針對連接失敗進行疑難排解
 
 最常見的連接失敗原因是伺服器名稱 (請記得，<servername> 是邏輯伺服器而非資料庫的名稱)、使用者名稱或密碼錯誤，以及基於安全性理由不允許連接伺服器。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -52,8 +52,8 @@ Azure 服務匯流排傳訊服務是可靠的資訊傳遞服務。此服務的�
 - [服務匯流排佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 - [服務匯流排架構](service-bus-architecture.md)
-- [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 - [如何使用服務匯流排主題](service-bus-dotnet-how-to-use-topics-subscriptions.md)
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

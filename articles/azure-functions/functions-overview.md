@@ -44,7 +44,7 @@ Azure Functions 是處理資料、整合系統、使用物聯網 (IoT)，以及�
 Functions 提供範本，可讓您開始使用重要的案例，包括下列案例︰
 
 * **BlobTrigger** - 在新增至容器時，處理 Azure 儲存體 blob。您可以針對調整映像大小使用。
-* **EventHubTrigger** - 回應您的 IoT 裝置中發生的事件。
+* **EventHubTrigger** - 回應傳送到 Azure 事件中樞的事件。特別適合用於應用程式檢測、使用者經驗或工作流程處理及物聯網 (IoT) 案例。
 * **泛型 webhook** - 處理來自支援 webhook 的任何服務的 webhook HTTP 要求。
 * **GitHub webhook** - 回應您的 GitHub 儲存機制中發生的事件。如需範例，請參閱[建立 Webhook 或 API 函數](functions-create-a-web-hook-or-api-function.md)。
 * **HTTPTrigger** - 使用 HTTP 要求觸發程式碼的執行。
@@ -87,4 +87,4 @@ Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方�
 + [如何調整 Azure Functions](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。 
 + [深入了解 Azure App Service](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -14,16 +14,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="05/27/2016" 
 	ms.author="nitinme"/>
 
 
 # 在電腦上安裝 Jupyter Notebook 並連接到 Azure HDInsight (預覽) 上的 Apache Spark 叢集
 
-在這篇文章中，您將了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter Notebook，然後將 Notebook 連接到 HDInsight 叢集。
-
-雖然 Azure HDInsight 的 Spark 叢集上已經有 Jupyter Notebook 可用，但在電腦上安裝 Jupyter 可讓您選擇在本機建立 Notebook、針對正在執行的叢集測試您的應用程式，然後將 Notebook 上傳到叢集。若要將 Notebook 上傳到叢集，您可以使用在叢集上執行的 Jupyter Notebook 來上傳它們，或將它們儲存到與叢集關聯之儲存體帳戶的 [/HdiNotebooks] 資料夾中。如需有關 Notebook 在叢集上的儲存方式詳細資訊，請參閱 [Jupyter Notebook 會儲存在哪裡](hdinsight-apache-spark-jupyter-notebook-kernels.md#where-are-the-notebooks-stored)？
-
+在這篇文章中，您將了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter Notebook，然後將 Notebook 連接到 HDInsight 叢集。在您的本機電腦上安裝 Jupyter 可以有數種原因，而且也會面臨數種挑戰。如需原因和挑戰的清單，請參閱這篇文章結尾的[為什麼我應該在我的電腦上安裝 Jupyter](#why-should-i-install-jupyter-on-my-computer)。
 
 在電腦上安裝 Jupyter 和 Spark magic 涉及三個主要步驟。
 
@@ -33,7 +30,7 @@
 
 如需有關可供 HDInsight 叢集之相關 Jupyter Notebook 使用的自訂核心和 Spark magic 的詳細資訊，請參閱 [HDInsight 上的 Apache Spark Linux 叢集可供 Jupyter Notebook 使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
-**必要條件：**
+##必要條件
 
 此處所列的必要條件不是針對安裝 Jupyter。這些是用來在安裝 Notebook 之後將 Jupyter Notebook 連接到 HDInsight 叢集。
 
@@ -132,6 +129,18 @@
 
 	>[AZURE.TIP] 如果您想要更新 Notebook 組態以連接到不同的叢集，請將 config.json 更新成一組新的值，如上述的步驟 3 所示。
 
+## 為什麼我應該在我的電腦上安裝 Jupyter？
+
+您想要在您的電腦上安裝 Jupyter，然後將其連接至 HDInsight 上的 Spark 叢集有數種原因。
+
+* 雖然 Azure HDInsight 的 Spark 叢集上已經有 Jupyter Notebook 可用，但在電腦上安裝 Jupyter 可讓您選擇在本機建立 Notebook、針對正在執行的叢集測試您的應用程式，然後將 Notebook 上傳到叢集。若要將 Notebook 上傳到叢集，您可以使用在叢集上執行的 Jupyter Notebook 來上傳它們，或將它們儲存到與叢集關聯之儲存體帳戶的 [/HdiNotebooks] 資料夾中。如需有關 Notebook 在叢集上的儲存方式詳細資訊，請參閱 [Jupyter Notebook 會儲存在哪裡](hdinsight-apache-spark-jupyter-notebook-kernels.md#where-are-the-notebooks-stored)？
+* 使用本機可用的 Notebook，您可以根據您的應用程式需求，連接至不同的 Spark 叢集。
+* 您可以使用 GitHub 實作來源控制系統，並且具有 Notebook 的版本控制。您也可以有共同作業環境，其中多個使用者可以使用相同的 Notebook。
+* 您甚至不需要啟用叢集，即可在本機使用 Notebook。您只需要叢集針對 Notebook 進行測試，不必以手動方式管理您的 Notebook 或開發環境。
+* 設定自己的本機開發環境比設定叢集的 Jupyter 安裝更容易。您可以利用您在本機安裝的所有軟體，而不需要設定一或多個遠端叢集。
+
+>[AZURE.WARNING] 將 Jupyter 安裝在本機電腦上，多個使用者可以同時在相同的 Spark 叢集上執行相同的 Notebook。在這種情況下，會建立多個 Livy 工作階段。如果您遇到問題，而且想要偵錯，則追蹤哪個 Livy 工作階段屬於哪個使用者會是複雜的工作。
+
 
 
 
@@ -168,4 +177,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -115,7 +115,7 @@ Windows 應用程式可以利用 Windows Communication Foundation (WCF) 來使�
 
 現在，您已了解 Azure 服務匯流排的基礎，請參考下列連結以取得更多資訊。
 
-- 如何使用[服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- 如何使用[服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 - 如何使用[服務匯流排主題](service-bus-dotnet-how-to-use-topics-subscriptions.md)
 - 如何使用[服務匯流排轉送](service-bus-dotnet-how-to-use-relay.md)
 - [服務匯流排範例](service-bus-samples.md)
@@ -125,4 +125,4 @@ Windows 應用程式可以利用 Windows Communication Foundation (WCF) 來使�
 [3]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_03_topicsandsubscriptions.png
 [4]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_04_relay.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

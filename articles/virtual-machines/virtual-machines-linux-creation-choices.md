@@ -37,7 +37,7 @@ Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以�
 
 [Azure 入口網站](https://portal.azure.com)的圖形化使用者介面是試用 VM 的簡單方法，特別是在您剛開始使用 Azure 時，因為您的系統上沒有要安裝的項目。使用 Azure 入口網站來建立 VM：
 
-* [使用 Azure 入口網站建立執行 Linux 的虛擬機器](virtual-machines-linux-portal-create.md) 
+* [使用 Azure 入口網站建立執行 Linux 的虛擬機器](virtual-machines-linux-quick-create-portal.md) 
 
 ## 作業系統和映像選項
 
@@ -59,10 +59,10 @@ Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以�
 
 ## 後續步驟
 
-* 嘗試其中一個教學課程，以透過[入口網站](virtual-machines-linux-portal-create.md)、[CLI](virtual-machines-linux-quick-create-cli.md) 或 Azure Resource Manager [範本](virtual-machines-linux-cli-deploy-templates.md)建立 Linux VM。
+* 嘗試其中一個教學課程，以透過[入口網站](virtual-machines-linux-quick-create-portal.md)、[CLI](virtual-machines-linux-quick-create-cli.md) 或 Azure Resource Manager [範本](virtual-machines-linux-cli-deploy-templates.md)建立 Linux VM。
 
 * 在建立 Linux VM 後，您可以輕鬆地[新增資料磁碟](virtual-machines-linux-add-disk.md)。
 
 * [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md)的快速步驟
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

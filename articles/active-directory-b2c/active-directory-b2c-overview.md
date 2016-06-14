@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="03/22/2016"
+	ms.date="06/06/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：在您的應用程式中註冊與登入取用者
@@ -67,4 +67,4 @@ Azure Active Directory B2C 處於預覽版狀態。我們冀望在此期間能�
 
 我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以收到安全性事件發生時間的通知。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

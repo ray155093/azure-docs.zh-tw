@@ -342,4 +342,4 @@ AzureSqlLinkedService 定義如下︰
 	    }
 	}
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

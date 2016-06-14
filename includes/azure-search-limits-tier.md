@@ -1,12 +1,10 @@
-Resource|Free|Basic (Preview)|S1|S2
+資源|免費|基本 (預覽)|S1|S2
 ---|---|---|---|----
-Maximum services at each tier per subscription <sup>1</sup>|1 |12 |12  |1
-Maximum scale per tier <sup>2</sup>|N/A|3 SU (up to 3 replicas and 1 partition)|36 SU|36 SU  
+每個訂用帳戶的每一層的服務上限 <sup>1</sup>|1 |12 |12 |1
+每一層的最大級別 <sup>2</sup>|N/A|3 SU (最多 3 個複本和 1 個分割區)|36 SU|36 SU  
 
-<sup>1</sup> Each service is provisioned at a given pricing tier, with limits on the number of services you can provision at each tier within a single Azure subscription. During the Preview period, tiers are available at an introductory rate of 50% off the full price.
+<sup>1</sup> 每個服務會佈建於指定的定價層，而您可以在單一 Azure 訂用帳戶內的每一層佈建的服務數目有所限制。在預覽期間，各層的價格為完整價格的 50% 來作為介紹費率。
 
-<sup>2</sup> Scale out limits are defined in terms of Search Units (SU) per tier. Search units are the billable unit for either a **replica** or a **partition**. You need both for storage, indexing, and query operations. Visit [Scale resource levels for query and index workloads](../articles/search/search-capacity-planning.md) for valid combinations of replicas and partitions that stay under the maximum limit of 3 or 36 units, for **Basic** and **Standard** respectively. Because **Free** is based on shared resources used by multiple subscribers, scale out is not provided at this level.
+<sup>2</sup> 依據每一層的搜尋單位 (SU) 定義相應放大限制。搜尋單位是**複本**或**分割區**的可計費單位。您同時需要複本及分割區來儲存、建立索引及查詢作業。請瀏覽[調整查詢和索引工作負載的資源層級](../articles/search/search-capacity-planning.md)，以取得維持不超過 3 或 36 個單位的上限 (分別針對**基本**和**標準**) 的有效複本和分割區組合。因為**免費**是以多個訂閱者所使用的共用資源為基礎，此層級並未提供相應放大。
 
-
-
-
+<!---HONumber=AcomDC_0601_2016-->

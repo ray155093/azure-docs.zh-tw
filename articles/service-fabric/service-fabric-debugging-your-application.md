@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="03/31/2016"
-   ms.author="jesseb; mikhegn; vturecek"/>
+   ms.author="vturecek;mikhegn"/>
 
 # 使用 Visual Studio 偵錯 Service Fabric 應用程式
 
@@ -70,7 +70,7 @@
 1. 在 [雲端總管] 中瀏覽至您的叢集，以滑鼠右鍵按一下並選擇 [啟用偵錯]
 
     ![啟用遠端偵錯][enableremotedebugging]
-    
+
     這麼做會開始在您的叢集節點上啟用遠端偵錯延伸模組的程序，以及所需的網路組態。
 
 2. 在 [雲端總管] 中的叢集節點上按一下滑鼠右鍵，然後選擇 [附加偵錯工具]
@@ -80,20 +80,20 @@
 3. 在 [附加至處理序] 對話方塊中，選擇您要偵錯的處理序，然後按一下 [附加]
 
     ![選擇程序][chooseprocess]
-    
+
     您想要附加至的處理序名稱等於您的服務專案組件名稱。
 
     偵錯工具將會複製至執行處理序的所有節點。
     - 在偵錯無狀態服務的情況下，所有節點上此服務的所有執行個體都是偵錯工作階段的一部分。
     - 如果您正在偵錯具狀態服務，任何分割區都只有主要複本會是作用中，因而遭到偵錯工具攔截。如果在偵錯工作階段期間移動主要複本，仍會在偵錯工作階段內處理該複本。
     - 若只要攔截特定服務的相關分割區或執行個體，您可以使用條件式中斷點只中斷特定的分割區或執行個體。
-        
+
     ![條件式中斷點][conditionalbreakpoint]
-    
+
     > [AZURE.NOTE] 我們目前不支援對多個執行個體具有相同服務可執行檔名稱的 Service Fabric 叢集進行。
-    
+
 4. 一旦完成應用程式的偵錯，在 [雲端總管] 中以滑鼠右鍵按一下叢集，然後選擇 [停用偵錯]，即可停用遠端偵錯延伸模組
-    
+
     ![停用遠端偵錯][disableremotedebugging]
 
 ## 從遠端叢集節點串流追蹤
@@ -108,17 +108,17 @@
 1. 在 [雲端總管] 中瀏覽至您的叢集，以滑鼠右鍵按一下並選擇 [啟用串流追蹤]
 
     ![啟用遠端串流追蹤][enablestreamingtraces]
-    
+
     這麼做會開始在您的叢集節點上啟用串流追蹤延伸模組的程序，以及所需的網路組態。
 
 2. 展開 [雲端總管] 中的 [節點] 元素，以滑鼠右鍵按一下您要串流追蹤的節點，然後選擇 [檢視串流追蹤]
 
     ![檢視遠端串流追蹤][viewremotestreamingtraces]
-    
+
     對您想要查看其追蹤的任意數目的節點，重複執行步驟 2。每個節點串流會顯示在專用視窗中。
-    
+
     您現在可以查看 Service Fabric 所發出的追蹤，以及您的服務。如果您想要篩選事件，只顯示特定的應用程式，只要在篩選器中輸入應用程式的名稱即可。
-    
+
     ![檢視串流追蹤][viewingstreamingtraces]
 
 4. 完成從您的叢集串流追蹤後，在 [雲端總管] 中以滑鼠右鍵按一下此叢集，選擇 [停用串流追蹤]，即可停用遠端串流追蹤
@@ -146,4 +146,4 @@
 [viewremotestreamingtraces]: ./media/service-fabric-debugging-your-application/viewremotestreamingtraces.png
 [disablestreamingtraces]: ./media/service-fabric-debugging-your-application/disablestreamingtraces.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0601_2016-->

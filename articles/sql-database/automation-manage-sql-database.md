@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="05/26/2016"
 	ms.author="jolevy"/>
 
 
@@ -34,7 +34,7 @@ Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，�
 
 ## Azure 自動化為何有助於管理 Azure SQL 資料庫？
 
-Azure SQL 資料庫可透過 [Azure PowerShell 工具](https://msdn.microsoft.com/library/azure/jj156055.aspx)中提供的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/dn546726.aspx)，在 Azure 自動化中受到管理。Azure 自動化的這些 Azure SQL 資料庫 PowerShell Cmdlet 都是內建的，以便您在服務內執行所有的 SQL 資料庫管理工作。您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
+Azure SQL 資料庫可透過 [Azure PowerShell 工具](https://msdn.microsoft.com/library/azure/jj156055.aspx)中提供的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/dn546723.aspx)，在 Azure 自動化中受到管理。Azure 自動化的這些 Azure SQL 資料庫 PowerShell Cmdlet 都是內建的，以便您在服務內執行所有的 SQL 資料庫管理工作。您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
 Azure 自動化也可直接與 SQL 伺服器通訊，只要使用 PowerShell 發出 SQL 命令即可。
 
@@ -55,4 +55,4 @@ Azure 自動化也可直接與 SQL 伺服器通訊，只要使用 PowerShell 發
 - [Azure Automation: Your SQL Agent in the Cloud (Azure 自動化：雲端中的 SQL 代理程式)](https://azure.microsoft.com/blog/2014/06/26/azure-automation-your-sql-agent-in-the-cloud/) 
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

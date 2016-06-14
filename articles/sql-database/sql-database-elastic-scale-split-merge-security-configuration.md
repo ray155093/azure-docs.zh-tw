@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="04/26/2016" 
-    ms.author="torsteng;sidneyh" />
+    ms.date="05/27/2016" 
+    ms.author="torsteng" />
 
 
 # 分割合併安全性設定  
@@ -357,7 +357,9 @@
 * 在開啟的 [憑證] 對話方塊中，選取 [詳細資料] 索引標籤
 * 請確定 [顯示] 是顯示 [全部]
 * 在清單中選取名為 [憑證指紋] 的欄位
-* 複製憑證指紋值 **刪除第一個數字前面不可見的 Unicode 字元** 刪除所有的空格
+* 複製憑證指紋值
+**刪除第一個數字前面不可見的 Unicode 字元
+** 刪除所有的空格
 
 ## 在服務組態檔中設定允許的用戶端
 
@@ -487,4 +489,4 @@
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

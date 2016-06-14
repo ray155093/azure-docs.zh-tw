@@ -11,7 +11,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/10/2016"
+	ms.date="05/31/2016"
 	ms.author="ashmaka"/>
 
 # 使用 Azure 入口網站建立 Azure 搜尋服務索引
@@ -27,7 +27,7 @@
 
 
 ## I.前往 Azure 搜尋服務刀鋒視窗
-1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側功能表中的「所有資源」
+1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側功能表中的 [所有資源]
 2. 選取您的 Azure 搜尋服務
 
 ## II.新增索引並為其命名
@@ -61,4 +61,4 @@
 ## 下一步
 建立 Azure 搜尋服務索引後，您就可以[將內容上傳到索引](search-what-is-data-import.md)，以便開始搜尋資料。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

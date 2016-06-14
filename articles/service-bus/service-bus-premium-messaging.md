@@ -56,6 +56,6 @@
 - [Azure 服務匯流排進階傳訊簡介 (Channel9)](https://channel9.msdn.com/Blogs/Subscribe/Introducing-Azure-Service-Bus-Premium-Messaging)
 - [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 - [Azure 服務匯流排架構概觀](service-bus-fundamentals-hybrid-solutions.md)
-- [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

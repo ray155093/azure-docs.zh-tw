@@ -25,7 +25,6 @@
 - 使用新的應用程式權杖驗證模型，可以將 Power BI Desktop 中編寫的完整互動式報表內嵌在您自己的應用程式內。
 - 建置客戶面向應用程式的獨立軟體廠商和客戶，可以使用 **Power BI Embedded** 服務和 Power BI SDK 來內嵌互動式報表。若要了解做法，請參閱[開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)。
 - 身為開發人員，您可以使用 Power BI 視覺化架構來建立可在專屬應用程式中使用的自訂視覺化。請參閱[使用自訂視覺效果擴充 Power BI](https://powerbi.microsoft.com/custom-visuals/)。
-- 一律在應用程式內保持最新互動式報告。使用 **Power BI Embedded**，您可以建立具有互動式 Power BI 報表的專屬即時儀表板。身為 ISV，這可讓您的客戶透過裝置、感應器和應用程式獲得最新見解。
 
 ## 另請參閱
 
@@ -33,4 +32,4 @@
 - [開始使用範例](power-bi-embedded-get-started.md)
 - [使用自訂視覺效果擴充 Power BI](https://powerbi.microsoft.com/custom-visuals/)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

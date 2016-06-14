@@ -32,15 +32,17 @@ App Service API Apps 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼�
 
 ![](./media/app-service-api-metadata/apidefblade.png)
 
-### Azure 資源管理員屬性
+### Azure Resource Manager 屬性
 
-您也可以使用 Azure PowerShell、CLI 或[資源總管](https://resources.azure.com/)等 Azure 資源管理員工具，來設定 API 應用程式的 API 定義 URL。
+您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的[資源總管](https://resources.azure.com/)或 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)，設定 API 應用程式的 API 定義。
 
-在您的 <site name>/web 資源的 Microsoft.Web/sites/config 資源類型上設定 `apiDefinition` 屬性。例如，在 [資源總管] 中移至 [訂用帳戶] > {您的訂用帳戶} > [resourceGroups] > {您的資源群組} > [提供者] > [Microsoft.Web] > [網站] > {您的網站} > [組態] > [web]，您就會看到 cors 屬性：
+例如，在**資源總管**中移至 **訂用帳戶 > {您的訂用帳戶} > resourceGroups > {您的資源群組} > 提供者 > [Microsoft.Web] > 網站 > {您的網站} > 組態 > web**，您就會看到 `apiDefinition` 屬性：
 
 		"apiDefinition": {
 		  "url": "https://contactslistapi.azurewebsites.net/swagger/docs/v1"
 		}
+
+如需可設定 `apiDefinition` 屬性之 Azure Resource Manager 範本的範例，請開啟[待辦事項清單範例應用程式中的 azuredeploy.json 檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/azuredeploy.json)。尋找看起來如以上 JSON 範例的範本區段。
 
 ### 預設值
 
@@ -58,4 +60,4 @@ App Service API Apps 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼�
 
 如果您搭配使用 Azure API 管理與 API Apps，您可以使用 Swagger 元資料將 API 匯入 API 管理。如需詳細資訊，請參閱[如何在 Azure API 管理中連同操作一起匯入 API 的定義](../api-management/api-management-howto-import-api.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

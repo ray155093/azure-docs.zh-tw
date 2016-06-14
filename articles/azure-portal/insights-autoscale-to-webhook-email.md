@@ -41,8 +41,8 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 ## Webhook 中的驗證
 有兩種驗證 URI 形式︰
 
-	1. Token-base authentication, where you save the webhook URI with a token ID as a query parameter. For example, https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
-	2. Basic authentication, where you use a user ID and password. For example, https://userid:password@mysamplealert/webcallback?someparamater=somevalue&parameter=value
+1. 權杖型驗證，在其中儲存 webhook URI 和權杖識別碼做為查詢參數。例如，https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
+2. 基本驗證，在其中使用使用者識別碼和密碼。例如，https://userid:password@mysamplealert/webcallback?someparamater=somevalue&parameter=value
 
 ## 自動調整通知 Webhook 承載結構描述
 產生自動調整通知時，Webhook 承載會包含下列中繼資料︰
@@ -93,4 +93,4 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |newCapacity|	是 |自動調整要將資源調整為此數目的新執行個體計數|
 |屬性|	否|	選用。<Key  Value> 對組 (例如 Dictionary <String  String>)。properties 欄位是選擇性的。在自訂 UI 或邏輯應用程式的工作流程中，您可以輸入可使用承載傳遞的索引鍵和值。另一個將自訂屬性傳回給連出 Webhook 呼叫的替代做法，是使用 Webhook URI 本身 (做為查詢參數)|
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0601_2016-->

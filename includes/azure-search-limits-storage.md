@@ -1,9 +1,11 @@
-Storage is constrained by disk space or the number of indexes or documents per service, whichever comes first.
+儲存體受限於磁碟空間或每個服務的索引或文件數目，取決於何者較早出現。
 
-Resource|Free|Basic (Preview)|S1|S2
+資源|免費|基本 (預覽)|S1|S2
 ---|---|---|---|----
-Disk space|50 MB |2 GB per service|25 GB per partition |100 GB per partition (up to a maximum of 1.2 TB per service)
-Document count|10,000 total|1 million per service|15 million per partition (up to 180 million documents per service)|60 million per partition (up to 720 million documents per service)
-Index count|3|5|50|200
-Indexer count|3|5|50|200
-Indexer Data Source count|3|5|50|200
+磁碟空間|50 MB |每項服務 2 GB|每一分割 25 GB |每個分割區 100 GB (每項服務最多 1.2 TB)
+文件計數|總計 10,000|每項服務 100 萬|每個分割區 1500 萬 (每項服務最多 18,000 萬份文件)|每個分割區 6000 萬 (每項服務最多 72,000 萬份文件)
+索引計數|3|5|50|200
+索引子計數|3|5|50|200
+索引子資料來源計數|3|5|50|200
+
+<!---HONumber=AcomDC_0601_2016-->

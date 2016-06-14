@@ -4,7 +4,7 @@
    services="sql-database"
    documentationCenter=""
    authors="carlrabeler"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/14/2016"
+   ms.date="05/31/2016"
    ms.author="carlrab"/>
 
 # 使用 SqlPackage 將的 SQL Server Database 匯出到 BACPAC 檔案
@@ -37,11 +37,19 @@
 
 	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01b.png)
 
-## 下一步：從 BACPAC 檔案匯入 SQL Database
+## 後續步驟
 
-- [SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-- [SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
-- [Azure 入口網站](sql-database-import.md)
-- [PowerShell](sql-database-import-powershell.md)
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [使用 SSMS 將 BACPAC 匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
+- [使用 SqlPackage 將 BACPAC 匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
+- [使用 Azure 入口網站將 BACPAC 匯入 Azure SQL Database](sql-database-import.md)
+- [使用 PowerShell 將 BACPAC 匯入 Azure SQL Database](sql-database-import-powershell.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+## 詳細資訊
+
+- [SQL Database V12](sql-database-v12-whats-new.md)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+
+<!---HONumber=AcomDC_0601_2016-->

@@ -24,10 +24,11 @@
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
+若要了解如何使用 Azure Resource Manager 架構 Azure PowerShell Cmdlet 來管理您的 Web Apps，請查看[適用於 Azure Web App 的 Azure Resource Manager 架構 PowerShell 命令](app-service-web-app-azure-resource-manager-powershell.md)
 
 ## 複製現有的應用程式 ##
 
-案例：使用者想要將位在美國中南部區域的現有 Web 應用程式內容複製到位在美國中北部區域的新 Web 應用程式中。使用 ARM 版本 PowerShell Cmdlet 利用 -SourceWebApp 選項來建立新的 Web 應用程式，即可實現此目的。
+案例：使用者想要將位在美國中南部區域的現有 Web 應用程式內容複製到位在美國中北部區域的新 Web 應用程式中。使用 Azure Resource Manager 版本 PowerShell Cmdlet 利用 -SourceWebApp 選項來建立新的 Web 應用程式，即可實現此目的。
 
 了解包含來源 Web 應用程式的資源群組名稱，我們可以使用下列 PowerShell 命令來取得來源 Web 應用程式的資訊 (在此情況下名為 source-webapp)：
 
@@ -77,17 +78,17 @@
 
 ## 設定流量管理員同時複製應用程式 ##
 
-建立多重區域 Web 應用程式，並設定 Azure 流量管理員，將流量路由到這些 Web 應用程式，重要的案例是確保客戶的應用程式為高可用性，當複製現有的 Web 應用程式時，您可以選擇將兩個 Web 應用程式連接到新的流量管理員設定檔或現有的設定檔 - 請注意，僅支援 ARM 版本的流量管理員。
+建立多重區域 Web 應用程式，並設定 Azure 流量管理員，將流量路由到這些 Web 應用程式，重要的案例是確保客戶的應用程式為高可用性，當複製現有的 Web 應用程式時，您可以選擇將兩個 Web 應用程式連接到新的流量管理員設定檔或現有的設定檔 - 請注意，僅支援 Azure Resource Manager 版本的流量管理員。
 
 ### 建立新流量管理員設定檔同時複製應用程式 ###
 
-案例：使用者想要將 Web 應用程式複製到另一個區域中，同時設定包含兩個 Web 應用程式的 ARM 流量管理員設定檔。以下示範建立來源 Web 應用程式的複製到新的 Web 應用程式，同時設定新流量管理員設定檔：
+案例：使用者想要將 Web 應用程式複製到另一個區域中，同時設定包含兩個 Web 應用程式的 Azure Resource Manager 流量管理員設定檔。以下示範建立來源 Web 應用程式的複製到新的 Web 應用程式，同時設定新流量管理員設定檔：
 
     $destapp = New-AzureRmWebApp -ResourceGroupName DestinationAzureResourceGroup -Name dest-webapp -Location "South Central US" -AppServicePlan DestinationAppServicePlan -SourceWebApp $srcapp -TrafficManagerProfileName newTrafficManagerProfile
 
 ### 加入新複製的 Web 應用程式至現有的流量管理員設定檔 ###
 
-案例：使用者已經有他想要將兩個 Web 應用程式加入為端點的 ARM 流量管理員設定檔。若要這樣做，我們必須先組合將現有的流量管理員設定檔的識別碼，我們需要訂用帳戶訂用帳戶識別碼、資源群組名稱和現有的流量管理員設定檔名稱。
+案例：使用者已經有他想要將兩個 Web 應用程式加入為端點的 Azure Resource Manager 流量管理員設定檔。若要這樣做，我們必須先組合將現有的流量管理員設定檔的識別碼，我們需要訂用帳戶訂用帳戶識別碼、資源群組名稱和現有的流量管理員設定檔名稱。
 
     $TMProfileID = "/subscriptions/<Your subscription ID goes here>/resourceGroups/<Your resource group name goes here>/providers/Microsoft.TrafficManagerProfiles/ExistingTrafficManagerProfileName"
 
@@ -106,13 +107,15 @@
 - 不會複製簡單驗證設定
 - 不會複製 Kudu 延伸模組
 - 不會複製 TiP 規則
+- 不會複製資料庫內容
 
 
 ### 參考 ###
+- [適用於 Azure Web 應用程式的 Azure Resource Manager 架構 PowerShell 命令](app-service-web-app-azure-resource-manager-powershell.md)
 - [使用 Azure 入口網站複製 Web 應用程式](app-service-web-app-cloning-portal.md)
 - [在 Azure App Service 中備份 Web 應用程式](web-sites-backup.md)
 - [Azure 資源管理員的 Azure 流量管理員支援預覽](../../articles/traffic-manager/traffic-manager-powershell-arm.md)
 - [App Service 環境簡介](app-service-app-service-environment-intro.md)
 - [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

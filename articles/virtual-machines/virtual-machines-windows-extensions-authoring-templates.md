@@ -19,8 +19,6 @@
 
 # 使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 [AZURE.INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
 從 Azure PowerShell，執行下列 Azure PowerShell Cmdlet：
@@ -52,4 +50,4 @@
 
 編寫範本之後，您可以使用 Azure PowerShell 部署它。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

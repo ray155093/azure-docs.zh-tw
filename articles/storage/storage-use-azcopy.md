@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/06/2016"
+	ms.date="05/26/2016"
 	ms.author="micurd"/>
 
 # 使用 AzCopy 命令列公用程式傳輸資料
@@ -374,13 +374,15 @@ AzCopy 將會使用下列命令慣例，在 Blob 容器中產生 JSON 資料檔�
 
 ### 只複製目的地中沒有的資料
 
-`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。來源或目的地是資料表時不受支援。如果您只想複製目的地中沒有的來源資源，則可以在 AzCopy 命令中同時指定這兩個參數：
+`/XO` 和 `/XN` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。如果您只想複製目的地中沒有的來源資源，則可以在 AzCopy 命令中同時指定這兩個參數：
 
 	/Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:C:\myfolder /SourceKey:<sourcekey> /S /XO /XN
 
 	/Source:C:\myfolder /Dest:http://myaccount.file.core.windows.net/myfileshare /DestKey:<destkey> /S /XO /XN
 
 	/Source:http://myaccount.blob.core.windows.net/mycontainer /Dest:http://myaccount.blob.core.windows.net/mycontainer1 /SourceKey:<sourcekey> /DestKey:<destkey> /S /XO /XN
+
+注意：當來源或目的地其中之一是資料表時，不支援此做法。
 
 ### 使用回應檔案指定命令列參數
 
@@ -481,11 +483,11 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 ### 針對 Azure 儲存體模擬器執行 AzCopy
 
-您可以針對 Blob 的 [Azure 儲存體模擬器](storage-use-emulator.md)執行 AzCopy：
+您可以針對 Blob，對 [Azure 儲存體模擬器](storage-use-emulator.md)執行 AzCopy：
 
 	AzCopy /Source:https://127.0.0.1:10000/myaccount/mycontainer/ /Dest:C:\myfolder /SourceKey:key /SourceType:Blob /S
 
-以及針對資料表的模擬器來執行：
+以及針對資料表來執行：
 
 	AzCopy /Source:https://127.0.0.1:10002/myaccount/mytable/ /Dest:C:\myfolder /SourceKey:key /SourceType:Table
 
@@ -521,7 +523,7 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 當 /Source 是 Blob 容器或 Blob 的虛擬目錄時，AzCopy 會使用區分大小寫比對，並在所有其他情況下使用不區分大小寫比對。
 
-未指定檔案模式時所使用的預設檔案模式如下：若是檔案系統位置，則是 *.*，若是 Azure 儲存體位置，則是空白首碼。不支援指定多個檔案模式。
+未指定檔案模式時，使用的預設檔案模式如下：針對檔案系統位置，會使用 *.*，針對「Azure 儲存體」位置，則是使用空白首碼。不支援指定多個檔案模式。
 
 **適用於：**Blob、檔案
 
@@ -593,7 +595,7 @@ AzCopy 處理此命令，就好像您在命令列上包含所有個別參數一�
 
 將詳細資訊狀態訊息輸出至記錄檔。
 
-依預設，在 `%LocalAppData%\Microsoft\Azure\AzCopy` 中詳細資訊記錄檔會被命名為 AzCopyVerbose.log。如果您在此選項中指定現有檔案位置，則詳細資訊記錄將會被附加到該檔案。
+根據預設，在 `%LocalAppData%\Microsoft\Azure\AzCopy` 中詳細資訊記錄檔會被命名為 AzCopyVerbose.log。如果您在此選項中指定現有檔案位置，則詳細資訊記錄將會被附加到該檔案。
 
 **適用於：**Blob、檔案、資料表
 
@@ -729,13 +731,13 @@ AzCopy 依預設會啟動特定數量的並行作業，以提高資料傳輸的�
 
 ### /SourceType:"Blob" | "Table"
 
-指定 `source` 資源是可在本機開發環境中使用，並在儲存體模擬器中執行的 Blob。
+指定 `source` 資源是本機開發環境中可用、於儲存體模擬器中執行的 Blob。
 
 **適用於：**Blob、資料表
 
 ### /DestType:"Blob" | "Table"
 
-指定 `destination` 資源是可在本機開發環境中使用，並在儲存體模擬器中執行的 Blob。
+指定 `destination` 資源是本機開發環境中可用、於儲存體模擬器中執行的 Blob。
 
 **適用於：**Blob、資料表
 
@@ -864,4 +866,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

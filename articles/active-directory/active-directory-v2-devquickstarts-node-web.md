@@ -416,6 +416,12 @@ exports.list = function(req, res){
 
 [使用 v2.0 端點保護 node.js Web API >>](active-directory-v2-devquickstarts-node-api.md)
 
-如需其他資源，請查看： - [《v2.0 開發人員指南》>>](active-directory-appmodel-v2-overview.md) - [StackOverflow「azure-active-directory」標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+如需其他資源，請參閱：
+- [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
+- [StackOverflow "azure-active-directory" 標記 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
-<!---HONumber=AcomDC_0224_2016-->
+## 取得產品的安全性更新
+
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
+
+<!---HONumber=AcomDC_0601_2016-->

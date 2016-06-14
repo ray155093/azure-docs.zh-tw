@@ -407,4 +407,4 @@ Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處�
 <!--Link references-->
 [Media Playbook link]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0330_2016--->

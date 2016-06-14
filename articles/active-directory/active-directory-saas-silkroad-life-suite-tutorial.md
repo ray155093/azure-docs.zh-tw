@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/14/2016"
+	ms.date="04/06/2016"
 	ms.author="jeedes"/>
 
 
@@ -34,7 +34,7 @@
 - 已啟用 SilkRoad Life Suite 單一登入的訂用帳戶
 
 
-> [AZURE.NOTE]若要測試本教學課程中的步驟，我們不建議使用生產環境。
+> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
@@ -61,7 +61,7 @@
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。<br><br> ![應用程式][2]<br>
 4. 按一下頁面底部的 [加入]。<br><br> ![應用程式][3]<br>
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。<br><br> ![應用程式][4]<br>
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。<br><br> ![應用程式][4]<br>
 6. 在 [搜尋] 方塊中，輸入 **SilkRoad Life Suite**。<br><br> ![應用程式][5]<br>
 7. 在結果窗格中，選取 [SilkRoad Life Suite]，然後按一下 [完成] 以加入應用程式。<br><br>![應用程式][50]<br>
 
@@ -88,7 +88,7 @@
 5. 以系統管理員身分登入您的 SilkRoad 公司網站。 
 
 
-    > [AZURE.NOTE]若要取得用於設定與 Microsoft Azure AD 的同盟存取的 SilkRoad Life Suite 驗證應用程式，請連絡 SilkRoad 支援人員或您的 SilkRoad 服務代表。
+    > [AZURE.NOTE] 若要取得用於設定與 Microsoft Azure AD 的同盟存取的 SilkRoad Life Suite 驗證應用程式，請連絡 SilkRoad 支援人員或您的 SilkRoad 服務代表。
 
 
 6. 移至 [服務提供者]，然後按一下 [同盟詳細資料]。<br><br>![Azure AD 單一登入][10] <br>
@@ -133,7 +133,7 @@
 
     a.在 [選項 2 - 中繼資料檔案] 下，按一下 [瀏覽] 來上傳下載的中繼資料檔案。
 
-    b.按一下 [使用檔案資料建立身分識別提供者]。
+    b.按一下 [使用檔案資料建立識別提供者]。
 
 
 
@@ -144,9 +144,9 @@
 
     a.對 [已啟用] 選取 [是]。
 
-    b.在 [IdP 描述] 文字方塊中，輸入您的組態描述 (例如：Azure AD SSO)。
+    b.在 [IdP 描述] 文字方塊中，輸入您的組態描述 (例如：*Azure AD SSO*)。
 
-    c.在 [IdP 名稱] 文字方塊中，輸入組態特定的名稱 (例如：Azure SP)。
+    c.在 [IdP 名稱] 文字方塊中，輸入組態特定的名稱 (例如：*Azure SP*)。
 
     d.按一下 [儲存]。
 
@@ -201,7 +201,7 @@
  
 ### 建立 SilkRoad Life Suite 測試使用者
 
-本節目標是在 SilkRoad Life Suite 中建立名為 Britta Simon 的使用者。Britta 必須具備符合 Britta 在 Azure AD 中**電子郵件位址**的 SSO 識別碼 (有時稱為 AuthParam)。
+本節目標是在 SilkRoad Life Suite 中建立名為 Britta Simon 的使用者。Britta 必須具備符合 Britta 在 Azure AD 中**電子郵件位址**的 SSO 識別碼 (有時稱為 *AuthParam*)。
 
 **若要在 SilkRoad Life Suite 中建立名為 Britta Simon 的使用者，請執行以下步驟：**
 
@@ -271,4 +271,4 @@
 [204]: ./media/active-directory-saas-silkroad-life-suite-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-silkroad-life-suite-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="04/25/2016" 
-    ms.author="ddove;sidneyh"/>
+    ms.date="05/27/2016" 
+    ms.author="ddove"/>
 
 # 彈性資料庫工具字彙
 下列詞彙是針對[彈性資料庫工具](sql-database-elastic-scale-introduction.md) (Azure SQL Database的一項功能) 所定義的。這些工具是用來管理[分區對應](sql-database-elastic-scale-shard-map-management.md)，並且包含[用戶端程式庫](sql-database-elastic-database-client-library.md)、[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)、[彈性集區](sql-database-elastic-pool.md)及[查詢](sql-database-elastic-query-overview.md)。
@@ -90,4 +90,4 @@
 [3]: ./media/sql-database-elastic-scale-glossary/h_versus_vert.png
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0601_2016-->

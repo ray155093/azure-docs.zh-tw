@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/18/2016"
+   ms.date="06/06/2016"
    ms.author="larryfr"/>
 
 #Apache Storm on HDInsight 簡介：Hadoop 的即時分析
@@ -145,7 +145,7 @@ Apache Storm 會執行**拓撲**，而不是您在 HDInsight 或 Hadoop 中可�
 
 	* **Nimbus** 是一種 Thrift 服務，而**拓撲**是 Thrift 定義，因此可利用各種程式設計語言來開發拓撲。
 
-如需關於 Storm 元件的詳細資訊，請參閱 apache.org 上的 [Storm 教學課程][apachetutorial] (英文)。
+如需關於 Storm 元件的詳細資訊，請參閱 apache.org 上的 [Storm 教學課程][apachetutorial] \(英文)。
 
 
 ##我可以使用哪些程式設計語言？
@@ -219,4 +219,4 @@ Storm 可以提供不同程度的訊息處理保證。例如，基本的 Storm �
 [apachetutorial]: https://storm.incubator.apache.org/documentation/Tutorial.html
 [gettingstarted]: hdinsight-apache-storm-tutorial-get-started-linux.md
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -63,11 +63,11 @@ Stretch Database 的目標是擁有大量歷史資料，且通常儲存在少量
 
 如果您使用 SQL Server 2016 的時態表功能，請使用 Stretch Database 將相關聯的全部或部分歷史資料表移轉至符合成本效益的 Azure 儲存體。如需詳細資訊，請參閱 [Manage Retention of Historical Data in System-Versioned Temporal Tables (管理已設定系統版本之時態表中歷史資料的保留期)](https://msdn.microsoft.com/library/mt637341.aspx)。
 
-使用 SQL Server 2016 Upgrade Advisor 的 Stretch Database Advisor 功能來識別適用於 Stretch Database 的資料庫和資料表。如需詳細資訊，請參閱 [Identify databases and tables for Stretch Database (識別 Stretch Database 的資料庫和資料表)](sql-server-stretch-database-identify-databases.md)。若要深入了解潛在的阻礙問題，請參閱 [Surface area limitations and blocking issues for Stretch Database (Stretch Database 的介面區限制和阻礙問題)](sql-server-stretch-database-limitations.md)。
+使用 SQL Server 2016 Upgrade Advisor 的 Stretch Database Advisor 功能來識別適用於 Stretch Database 的資料庫和資料表。如需詳細資訊，請參閱 [Identify databases and tables for Stretch Database (識別 Stretch Database 的資料庫和資料表)](sql-server-stretch-database-identify-databases.md)。若要深入了解潛在的阻礙問題，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
 
 ## <a name="FAQ"></a>Stretch Database 的常見問題集
 **Stretch Database 是否能與 &lt;SQL Server 功能名稱&gt; 搭配運作？**
--   如需會讓資料表不適用於 Stretch 的 SQL Server 功能清單，請參閱 [Stretch Database 的介面區限制和阻礙問題](sql-server-stretch-database-limitations.md)。
+-   如需會讓資料表不適用於 Stretch 的 SQL Server 功能清單，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
 
 -   (選擇性) 下載 SQL Server 2016 Upgrade Advisor 並執行 Stretch Database Advisor 以識別可做為 Stretch Database 適用對象的資料庫和資料表。如需詳細資訊，請參閱 [Identify databases and tables for Stretch Database (識別 Stretch Database 的資料庫和資料表)](sql-server-stretch-database-identify-databases.md)。
 
@@ -123,4 +123,4 @@ Stretch Database 不會變更現有資料庫的權限模型。使用者登入可
 [StretchOverviewImage2]: ./media/sql-server-stretch-database-overview/StretchDBOverview1.png
 [StretchOverviewImage3]: ./media/sql-server-stretch-database-overview/StretchDBOverview2.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

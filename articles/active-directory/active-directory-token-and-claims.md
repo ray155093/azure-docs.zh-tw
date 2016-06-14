@@ -18,6 +18,8 @@
 
 # 支援的權杖和宣告類型
 
+[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
+
 本主題旨在幫助您了解和評估 Azure Active Directory (Azure AD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告。
 
 本主題的開頭是各權杖宣告的說明，並顯示 SAML 權杖和 JWT 權杖中的適當宣告範例。處於預覽狀態的宣告分開列出。結尾是範例權杖，以便您看到內容中的宣告。
@@ -78,7 +80,7 @@ Azure AD 不支援 SAML 權杖中的應用程式識別碼宣告。
 
 ### 驗證方法
 
-驗證方法宣告指出如何驗證權杖的主體。在此範例中，身分識別提供者會使用密碼來驗證使用者。http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password
+驗證方法宣告指出如何驗證權杖的主體。在此範例中，識別提供者會使用密碼來驗證使用者。http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password
 
 在 SAML 權杖中，驗證方法值會出現在 AuthnContextClassRef 元素中。
 
@@ -114,16 +116,16 @@ Azure AD 不支援 SAML 權杖中的應用程式識別碼宣告。
 
     “groups”: ["0e129f5b-6b0a-4944-982d-f776045632af", … ]
 
-### 身分識別提供者
+### 識別提供者
 
-身分識別提供者宣告記錄驗證權杖主體的身分識別提供者。除非使用者帳戶位於與簽發者不同的租用戶中，否則這個值與 Issuer 宣告值相同。
+識別提供者宣告記錄驗證權杖主體的識別提供者。除非使用者帳戶位於與簽發者不同的租用戶中，否則這個值與 Issuer 宣告值相同。
 
-在 SAML 權杖中，身分識別提供者會出現在 identityprovider SAML Attribute 元素的宣告中。
+在 SAML 權杖中，識別提供者會出現在 identityprovider SAML Attribute 元素的宣告中。
 
     <Attribute Name=” http://schemas.microsoft.com/identity/claims/identityprovider”>
     <AttributeValue>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/<AttributeValue>
 
-在 JWT 權杖中，身分識別提供者會出現在 idp 宣告中。
+在 JWT 權杖中，識別提供者會出現在 idp 宣告中。
 
     "idp":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”
 
@@ -412,4 +414,4 @@ Version 宣告儲存權杖的版本號碼。在 JWT 權杖中，使用者主體�
 
 [Azure Active Directory 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn151124.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

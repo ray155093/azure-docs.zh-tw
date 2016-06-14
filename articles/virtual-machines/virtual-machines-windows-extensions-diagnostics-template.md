@@ -19,8 +19,6 @@
 
 # 使用 Azure 資源管理員範本建立具有監視和診斷的 Windows 虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的監視和診斷功能。您可以將延伸模組納入為 Azure 資源管理員範本的一部分，在虛擬機器上啟用這些功能。請參閱[使用 VM 延伸模組編寫 Azure 資源管理員範本](virtual-machines-windows-extensions-authoring-templates.md)，以取得將任何延伸模組納入為虛擬機器範本一部分的詳細資訊。本文描述如何將 Azure 診斷延伸模組新增至 Windows 虛擬機器範本。
   
 
@@ -168,4 +166,4 @@ Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的�
 - 使用 [Azure PowerShell](virtual-machines-windows-ps-manage.md) 或 [Azure 命令列](virtual-machines-linux-cli-deploy-templates.md)部署資源管理員範本
 - 深入了解[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

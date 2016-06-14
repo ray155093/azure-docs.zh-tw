@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/19/2016"
+	ms.date="05/27/2016"
 	ms.author="tamram"/>
 
 # 建立 Blob 快照集
@@ -66,7 +66,9 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 這個 C# 程式碼範例會建立新的快照集，並寫出主要位置的絕對 URI。
 
     //Create the blob service client object.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+    const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
+
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
     //Get a reference to a container.
@@ -80,6 +82,8 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
     //Create a snapshot of the blob and write out its primary URI.
     CloudBlockBlob blobSnapshot = blob.CreateSnapshot();
     Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
+
+
 
 ## 了解快照集產生費用的方式
 
@@ -125,4 +129,4 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 ![Azure 儲存體資源](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-4.png)
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

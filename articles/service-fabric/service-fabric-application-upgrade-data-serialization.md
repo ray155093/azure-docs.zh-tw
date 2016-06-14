@@ -3,7 +3,7 @@
    description="資料序列化的最佳作法，以及它如何影響應用程式輪流升級。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="jessebenson"
+   authors="vturecek"
    manager="timlt"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="04/14/2016"
-   ms.author="jesseb"/>
+   ms.author="vturecek"/>
 
 
 # 資料序列化如何影響應用程式升級
@@ -65,6 +65,5 @@
 參考[進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
 參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
- 
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

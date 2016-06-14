@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/11/2016"
+	ms.date="05/31/2016"
 	ms.author="spelluru"/>
 
 # 計算連結服務
@@ -339,4 +339,4 @@ sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階�
 
 您可建立 Azure SQL 連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties)一文。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

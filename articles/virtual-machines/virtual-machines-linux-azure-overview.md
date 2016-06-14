@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="02/01/2016"
+   ms.date="05/24/2016"
    ms.author="rclaus"/>
 
 # Azure 和 Linux
@@ -60,4 +60,4 @@ Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 
 
 免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶而想要試用看看，請**[安裝 Azure CLI](../xplat-cli-install.md)**。如果您已安裝，請[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -226,7 +226,7 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 [Data Factory]: sql-data-warehouse-get-started-load-with-azure-data-factory.md
 [開始使用 Azure Data Factory (Data Factory 編輯器)]: ../data-factory/data-factory-build-your-first-pipeline-using-editor.md
 [Azure Data Factory 簡介]: ../data-factory/data-factory-introduction.md
-[Load sample data into SQL Data Warehouse]: sql-data-warehouse-get-started-manually-load-samples.md
+[Load sample data into SQL Data Warehouse]: sql-data-warehouse-load-sample-databases.md
 [Move data to and from Azure SQL Data Warehouse using Azure Data Factory]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
 [PolyBase]: sql-data-warehouse-get-started-load-with-polybase.md
 [真實案例教學課程]: ../data-factory/data-factory-tutorial.md
@@ -240,4 +240,4 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 [Azure 入口網站]: https://portal.azure.com
 [載入範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

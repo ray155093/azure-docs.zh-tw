@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/10/2016"
+   ms.date="05/31/2016"
    ms.author="sameerch"/>
 
 
 # 開始使用 Oracle Database 連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
 連接到內部部署 Oracle 資料庫伺服器來建立和變更資訊或資料。在 Logic Apps 中，連接器可以在「工作流程」中用來擷取、處理或推送資料。在工作流程中使用 Oracle 連接器時，您可以達到各種案例的目的。例如，您可以：
 
@@ -27,7 +27,7 @@
 - 從 Oracle 取得資料，以供商務程序使用。例如，您可以取得客戶記錄，並將這些客戶記錄放在 SalesForce 中。
 
 
-## 觸發程序和動作
+## 觸發程序及動作
 *觸發程序*是發生的事件。例如，訂單更新時或加入新客戶時。*動作*是觸發程序的結果。例如，當訂單更新時，傳送警示給銷售人員。或者，當加入新客戶時，傳送歡迎電子郵件給新客戶。
 
 Oracle 資料庫連接器可以在邏輯應用程式中做為觸發程序或動作，且支援 JSON 和 XML 格式的資料。對於封裝設定中包含的每個資料表 (本主題稍後詳細說明)，都有一組 JSON 動作和一組 XML 動作。如果您使用 XML 觸發程序或動作，您可以使用[轉換 API 應用程式](app-service-logic-transform-xml-documents.md)，將資料轉換成令一種 XML 資料格式。
@@ -44,7 +44,7 @@ Oracle 資料庫連接器提供下列觸發程序和動作：
 連接器可以在邏輯應用程式內建立，或直接從 Azure Marketplace 建立。從 Marketplace 建立連接器：
 
 1. 在 Azure 開始面板中，選取 [**Marketplace**]。
-2. 選取 [**API Apps**]，並搜尋「Oracle 資料庫連接器」。
+2. 選取 [API Apps]，並搜尋「Oracle 資料庫連接器」。
 3. 輸入名稱、App Service 方案和其他屬性。
 4. 輸入下列封裝設定：
 
@@ -100,9 +100,9 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 請參閱[使用混合式連線管理員](app-service-logic-hybrid-connection-manager.md)。
 
 ## 進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是邏輯應用程式？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -120,4 +120,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [11]: ./media/app-service-logic-connector-oracle/LogicApp7.png
 [12]: ./media/app-service-logic-connector-oracle/LogicApp8.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

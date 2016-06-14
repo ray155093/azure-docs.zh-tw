@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="10/07/2015"
+	ms.date="05/27/2016"
 	ms.author="sethm"/>
 
 # 使用 Azure 服務匯流排佇列的 .NET 多層應用程式
 
 ## 簡介
 
-使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。如果您還沒有 Visual Studio，則 SDK 將自動安裝完全免費的 Visual Studio Express，供您開始進行 Azure 相關開發。這篇文章假設您從未使用過 Azure。完成本教學課程後，您將有個使用多個 Azure 資源的應用程式，這些資源在您本機環境中執行，且會示範多層應用程式如何運作。
+使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。本教學課程將逐步引導您完成相關步驟，以建立在本機環境中執行、使用多個 Azure 資源的應用程式。這些步驟假設您從未使用過 Azure。
 
-您將了解：
+您將了解下列內容：
 
 -   如何透過單一下載和安裝，讓電腦適合用於進行 Azure 開發。
 -   如何使用 Visual Studio 進行 Azure 相關開發。
@@ -31,13 +31,11 @@
 
 [AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。前端將為 ASP.NET MVC Web 角色，而後端將為背景工作角色。您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。如需在 Azure 網站前端上進行不同作法的指示，請參閱[後續步驟](#nextsteps)一節。
+在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。前端將為 ASP.NET MVC Web 角色，而後端將為使用服務匯流排佇列的背景工作角色。您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。如需在 Azure 網站前端上進行不同作法的指示，請參閱[後續步驟](#nextsteps)一節。您也可以試試 [.NET 內部部署/雲端混合式應用程式](service-bus-dotnet-hybrid-app-using-service-bus-relay.md)教學課程。
 
 下列螢幕擷取畫面顯示完成的應用程式：
 
 ![][0]
-
-> [AZURE.NOTE] Azure 也會提供儲存體佇列功能。如需 Azure 儲存體佇列和服務匯流排佇列的詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比][sbqueuecomparison]。
 
 ## 案例概觀：內部角色通訊
 
@@ -63,27 +61,19 @@
 
 ## 設定開發環境
 
-在開始開發 Azure 應用程式之前，請先下載工具並設定您的開發環境。
+在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
-1.  若要安裝 Azure SDK for .NET，請按一下底下連結。
+1.  安裝位於[取得工具和 SDK][] 的 Azure SDK for .NET。
 
-    [取得工具和 SDK (英文)][]
+2. 	按一下您所使用 Visual Studio 版本的 [安裝 SDK]。本教學課程中的步驟使用 Visual Studio 2015。
 
-2. 	按一下您要使用的 Visual Studio 版本的連結。本教學課程中的步驟使用 Visual Studio 2013。
+4.  當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 
-	![][32]
+5.  在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
 
-4. 	當系統提示您執行或儲存安裝檔案時，按一下 [執行]。
+6.  完成安裝後，您將具有開始進行開發所需的一切。SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
 
-    ![][3]
-
-5.  在 Web Platform Installer 中，按一下 [安裝] 並繼續進行安裝。
-
-    ![][33]
-
-6.  安裝完成之後，您即做好萬全準備，可開始開發應用程式。SDK 包括可讓您在 Visual Studio 中開發 Azure 應用程式的工具。如果您未安裝 Visual Studio，它也會安裝免費的 Visual Studio Express for Web。
-
-## 設定服務匯流排命名空間
+## 建立服務匯流排命名空間
 
 下一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。建立服務命名空間時，系統會產生 SAS 金鑰。命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
 
@@ -107,15 +97,9 @@
 
 6.  按一下 [確定] 核取記號。此時系統會建立並啟用服務命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
 
-	![][27]
-
 7.  在主視窗中，按一下服務命名空間的名稱。
 
-	![][30]
-
 8. 按一下 [連線資訊]。
-
-	![][31]
 
 9.  在 [**存取連線資訊**] 窗格中，尋找包含 SAS 金鑰和金鑰名稱的連接字串。
 
@@ -123,17 +107,21 @@
 
 10.  記下這些認證，或將它們複製到剪貼簿。
 
+11. 在相同的入口網站頁面中，按一下頁面頂端的 [設定] 索引標籤。
+
+12. 請將 **RootManageSharedAccessKey** 原則的主索引鍵複製到剪貼簿，或將它貼到 [記事本] 中。您稍後會在本教學課程中使用此值。
+
+	![][36]
+
 ## 建立 Web 角色
 
-在本節中，您會建置應用程式的前端。首先，您會建立應用程式顯示的各個頁面。之後，您會新增程式碼，以提交項目給服務匯流排佇列，並顯示佇列的狀態資訊。
+在本節中，您會建置應用程式的前端。首先，您會建立應用程式顯示的頁面。之後，新增程式碼以提交項目給服務匯流排佇列，並顯示佇列的狀態資訊。
 
 ### 建立專案
 
-1.  使用系統管理員權限，啟動 Microsoft Visual Studio 2013 或 Microsoft Visual Studio Express。若要以系統管理員權限啟動 Visual Studio，請在 [Microsoft Visual Studio 2013] \(或 [Microsoft Visual Studio Express]) 上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
+1.  使用系統管理員權限，啟動 Microsoft Visual Studio。若要以系統管理員權限啟動 Visual Studio，請在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
 
     在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
-
-    ![][8]
 
 2.  從 [已安裝的範本] 的 [Visual C#] 下，按一下 [雲端]，然後按一下 [Azure 雲端服務]。將專案命名為 **MultiTierApp**。然後按一下 [確定]。
 
@@ -147,17 +135,23 @@
 
     ![][11]
 
-5.  從 [新增 ASP.NET 專案] 對話方塊的 [選取範本] 清單中，按一下 [MVC]，然後按一下 [確定]。
+5.  在 [新增 ASP.NET 專案] 對話方塊的 [選取範本] 清單中，按一下 [MVC]。
 
     ![][12]
 
-6.  在 [方案總管] 中，於 [參考] 上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝] 或 [加入程式庫套件參考]。
+6. 還是在 [新增 ASP.NET 專案] 對話方塊中，按一下 [變更驗證] 按鈕。在 [變更驗證] 對話方塊中，按一下 [不需要驗證]，然後按一下 [確定]。在本教學課程中，您會部署不需要使用者登入的應用程式。
 
-7.  選取對話方塊左邊的 [線上]。搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。然後完成安裝並關閉此對話方塊。
+	![][16]
+
+7. 回到 [新增 ASP.NET 專案] 對話方塊中，按一下 [確定] 以建立專案。
+
+6.  在 [方案總管] 的 [FrontendWebRole] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [管理 NuGet 封裝]。
+
+7.  按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。按一下 [安裝] 並接受使用條款。
 
     ![][13]
 
-8.  請注意，現在已參考必要的用戶端組件，並已新增一些新的程式碼檔案。
+	請注意，現在已參考必要的用戶端組件，並已新增一些新的程式碼檔案。
 
 9.  在 [方案總管] 中，於 [模型] 上按一下滑鼠右鍵、按一下 [新增]，再按一下 [類別]。在 [**名稱**] 方塊中，輸入名稱 **OnlineOrder.cs**。然後按一下 [新增]。
 
@@ -167,75 +161,81 @@
 
 1.  在 Visual Studio 的 OnlineOrder.cs 檔案中，將現有的命名空間定義取代為下列程式碼：
 
-        namespace FrontendWebRole.Models
-        {
-            public class OnlineOrder
-            {
-                public string Customer { get; set; }
-                public string Product { get; set; }
-            }
-        }
+	```
+	namespace FrontendWebRole.Models
+	{
+	    public class OnlineOrder
+	    {
+	        public string Customer { get; set; }
+	        public string Product { get; set; }
+	    }
+	}
+	```
 
 2.  在 [方案總管] 中，按兩下 [Controllers\\HomeController.cs]。在檔案頂端新增下列 **using** 陳述式，以納入您剛建立之模型的命名空間，以及服務匯流排。
 
-        using FrontendWebRole.Models;
-        using Microsoft.ServiceBus.Messaging;
-        using Microsoft.ServiceBus;
+	```
+	using FrontendWebRole.Models;
+	using Microsoft.ServiceBus.Messaging;
+	using Microsoft.ServiceBus;
+	```
 
 3.  同時在 Visual Studio 的 HomeController.cs 檔案中，也將現有的命名空間定義取代為下列程式碼。此程式碼包含將項目提交給佇列的處理方法。
 
-        namespace FrontendWebRole.Controllers
-        {
-            public class HomeController : Controller
-            {
-                public ActionResult Index()
-                {
-                    // Simply redirect to Submit, since Submit will serve as the
-                    // front page of this application.
-                    return RedirectToAction("Submit");
-                }
-
-                public ActionResult About()
-                {
-                    return View();
-                }
-
-                // GET: /Home/Submit.
-                // Controller method for a view you will create for the submission
-                // form.
-                public ActionResult Submit()
-                {
-                    // Will put code for displaying queue message count here.
-
-                    return View();
-                }
-
-                // POST: /Home/Submit.
-                // Controller method for handling submissions from the submission
-                // form.
-                [HttpPost]
-				// Attribute to help prevent cross-site scripting attacks and
-				// cross-site request forgery.  
-    			[ValidateAntiForgeryToken]
-                public ActionResult Submit(OnlineOrder order)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        // Will put code for submitting to queue here.
-
-                        return RedirectToAction("Submit");
-                    }
-                    else
-                    {
-                        return View(order);
-                    }
-                }
-            }
-        }
+	```
+	namespace FrontendWebRole.Controllers
+	{
+	    public class HomeController : Controller
+	    {
+	        public ActionResult Index()
+	        {
+	            // Simply redirect to Submit, since Submit will serve as the
+	            // front page of this application.
+	            return RedirectToAction("Submit");
+	        }
+	
+	        public ActionResult About()
+	        {
+	            return View();
+	        }
+	
+	        // GET: /Home/Submit.
+	        // Controller method for a view you will create for the submission
+	        // form.
+	        public ActionResult Submit()
+	        {
+	            // Will put code for displaying queue message count here.
+	
+	            return View();
+	        }
+	
+	        // POST: /Home/Submit.
+	        // Controller method for handling submissions from the submission
+	        // form.
+	        [HttpPost]
+			// Attribute to help prevent cross-site scripting attacks and
+			// cross-site request forgery.  
+			[ValidateAntiForgeryToken]
+	        public ActionResult Submit(OnlineOrder order)
+	        {
+	            if (ModelState.IsValid)
+	            {
+	                // Will put code for submitting to queue here.
+	
+	                return RedirectToAction("Submit");
+	            }
+	            else
+	            {
+	                return View(order);
+	            }
+	        }
+	    }
+	}
+	```
 
 4.  從 [建置] 功能表中，按一下 [建置方案] 來測試您的工作到目前為止是否正確無誤。
 
-5.  現在，為先前建立的 **Submit()** 方法建立檢視。在 **Submit()** 方法內按一下滑鼠右鍵，然後選擇 [加入檢視]。
+5.  現在，為先前建立的 `Submit()` 方法建立檢視。在 `Submit()` 方法 (未採用任何參數的 `Submit()` 的多載) 內按一下滑鼠右鍵，然後選擇 [新增檢視]。
 
     ![][14]
 
@@ -253,9 +253,11 @@
 
 	![][28]
 
-11. 最後，修改提交頁面，以納入佇列的一些相關資訊。在 [方案總管] 中，按兩下 [Views\\Home\\Submit.cshtml] 檔案以在 Visual Studio 編輯器中開啟。在 **&lt;h2>Submit&lt;/h2>** 後面新增下列一行。**ViewBag.MessageCount** 現在暫時是空的。稍後您將在其中填入資料。
+11. 最後，修改提交頁面，以納入佇列的一些相關資訊。在 [方案總管] 中，按兩下 [Views\\Home\\Submit.cshtml] 檔案以在 Visual Studio 編輯器中開啟。在 `<h2>Submit</h2>` 後面新增下列一行。目前 `ViewBag.MessageCount` 是空的。稍後您將在其中填入資料。
 
-        <p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
+	```
+	<p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
+	```
 
 12. 您現在已實作 UI。您可以按 **F5** 執行應用程式，確認它的外觀與預期一樣。
 
@@ -267,154 +269,125 @@
 
 1.  在 [方案總管] 中，於 [FrontendWebRole] 上按一下滑鼠右鍵 (在專案而非角色上按一下滑鼠右鍵)。按一下 [加入]，然後按一下 [類別]。
 
-2.  將類別命名為 QueueConnector.cs。按一下 [加入] 以建立類別。
+2.  將類別命名為 **QueueConnector.cs**。按一下 [加入] 以建立類別。
 
-3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。在 QueueConnector.cs 中，加入下列程式碼，並在 [命名空間] \(您的服務命名空間) 和 [yourKey] \(也就是您稍早從) [Azure 傳統入口網站][]中取得的 SAS 金鑰) 中輸入值。
+3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前在＜建立服務匯流排命名空間＞一節的步驟 12 中，取自 [Azure 傳統入口網站][]的**主要金鑰**。
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using Microsoft.ServiceBus.Messaging;
-        using Microsoft.ServiceBus;
-
-        namespace FrontendWebRole
-        {
-            public static class QueueConnector
-            {
-                // Thread-safe. Recommended that you cache rather than recreating it
-                // on every request.
-                public static QueueClient OrdersQueueClient;
-
-                // Obtain these values from the portal.
-                public const string Namespace = "your service bus namespace";
-
-                // The name of your queue.
-                public const string QueueName = "OrdersQueue";
-
-                public static NamespaceManager CreateNamespaceManager()
-                {
-                    // Create the namespace manager which gives you access to
-                    // management operations.
-                    var uri = ServiceBusEnvironment.CreateServiceUri(
-                        "sb", Namespace, String.Empty);
-                    var tP = TokenProvider.CreateSharedAccessSignatureTokenProvider(
-                        "RootManageSharedAccessKey", "yourKey");
-                    return new NamespaceManager(uri, tP);
-                }
-
-                public static void Initialize()
-                {
-                    // Using Http to be friendly with outbound firewalls.
-                    ServiceBusEnvironment.SystemConnectivity.Mode =
-                        ConnectivityMode.Http;
-
-                    // Create the namespace manager which gives you access to
-                    // management operations.
-                    var namespaceManager = CreateNamespaceManager();
-
-                    // Create the queue if it does not exist already.
-                    if (!namespaceManager.QueueExists(QueueName))
-                    {
-                        namespaceManager.CreateQueue(QueueName);
-                    }
-
-                    // Get a client to the queue.
-                    var messagingFactory = MessagingFactory.Create(
-                        namespaceManager.Address,
-                        namespaceManager.Settings.TokenProvider);
-                    OrdersQueueClient = messagingFactory.CreateQueueClient(
-                        "OrdersQueue");
-                }
-            }
-        }
-
-    稍後在本教學課程中，您將學會如何將您的**命名空間**名稱和您的 SAS 金鑰值儲存在組態檔中。
+	```
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Web;
+	using Microsoft.ServiceBus.Messaging;
+	using Microsoft.ServiceBus;
+	
+	namespace FrontendWebRole
+	{
+	    public static class QueueConnector
+	    {
+	        // Thread-safe. Recommended that you cache rather than recreating it
+	        // on every request.
+	        public static QueueClient OrdersQueueClient;
+	
+	        // Obtain these values from the portal.
+	        public const string Namespace = "your Service Bus namespace";
+	
+	        // The name of your queue.
+	        public const string QueueName = "OrdersQueue";
+	
+	        public static NamespaceManager CreateNamespaceManager()
+	        {
+	            // Create the namespace manager which gives you access to
+	            // management operations.
+	            var uri = ServiceBusEnvironment.CreateServiceUri(
+	                "sb", Namespace, String.Empty);
+	            var tP = TokenProvider.CreateSharedAccessSignatureTokenProvider(
+	                "RootManageSharedAccessKey", "yourKey");
+	            return new NamespaceManager(uri, tP);
+	        }
+	
+	        public static void Initialize()
+	        {
+	            // Using Http to be friendly with outbound firewalls.
+	            ServiceBusEnvironment.SystemConnectivity.Mode =
+	                ConnectivityMode.Http;
+	
+	            // Create the namespace manager which gives you access to
+	            // management operations.
+	            var namespaceManager = CreateNamespaceManager();
+	
+	            // Create the queue if it does not exist already.
+	            if (!namespaceManager.QueueExists(QueueName))
+	            {
+	                namespaceManager.CreateQueue(QueueName);
+	            }
+	
+	            // Get a client to the queue.
+	            var messagingFactory = MessagingFactory.Create(
+	                namespaceManager.Address,
+	                namespaceManager.Settings.TokenProvider);
+	            OrdersQueueClient = messagingFactory.CreateQueueClient(
+	                "OrdersQueue");
+	        }
+	    }
+	}
+	```
 
 4.  現在，請確定會呼叫您的 **Initialize** 方法。在 [方案總管] 中，按兩下 [Global.asax\\Global.asax.cs]。
 
-5.  將下列一行新增至 **Application\_Start** 方法底部。
+5.  在 **Application\_Start** 方法的結尾新增下列程式碼行。
 
-        FrontendWebRole.QueueConnector.Initialize();
+	```
+	FrontendWebRole.QueueConnector.Initialize();
+	```
 
 6.  最後，更新稍早建立的 Web 程式碼，以提交項目給佇列。在 [方案總管] 中，按兩下 [Controllers\\HomeController.cs]。
 
-7.  將 **Submit()** 方法更新如下，以取得佇列的訊息計數。
+7.  如下所示更新 `Submit()` 方法 (未採用任何參數的多載)，以取得佇列的訊息計數。
 
-        public ActionResult Submit()
-        {
-            // Get a NamespaceManager which allows you to perform management and
-            // diagnostic operations on your Service Bus queues.
-            var namespaceManager = QueueConnector.CreateNamespaceManager();
+	```
+	public ActionResult Submit()
+	{
+	    // Get a NamespaceManager which allows you to perform management and
+	    // diagnostic operations on your Service Bus queues.
+	    var namespaceManager = QueueConnector.CreateNamespaceManager();
+	
+	    // Get the queue, and obtain the message count.
+	    var queue = namespaceManager.GetQueue(QueueConnector.QueueName);
+	    ViewBag.MessageCount = queue.MessageCount;
+	
+	    return View();
+	}
+	```
 
-            // Get the queue, and obtain the message count.
-            var queue = namespaceManager.GetQueue(QueueConnector.QueueName);
-            ViewBag.MessageCount = queue.MessageCount;
+8.  如下所示更新 `Submit(OnlineOrder order)` 方法 (採用一個參數的多載)，以提交訂單資訊給佇列。
 
-            return View();
-        }
-
-8.  將 **Submit(OnlineOrder order)** 方法更新如下，以將訂單資訊提交給佇列。
-
-        public ActionResult Submit(OnlineOrder order)
-        {
-            if (ModelState.IsValid)
-            {
-                // Create a message from the order.
-                var message = new BrokeredMessage(order);
-
-                // Submit the order.
-                QueueConnector.OrdersQueueClient.Send(message);
-                return RedirectToAction("Submit");
-            }
-            else
-            {
-                return View(order);
-            }
-        }
+	```
+	public ActionResult Submit(OnlineOrder order)
+	{
+	    if (ModelState.IsValid)
+	    {
+	        // Create a message from the order.
+	        var message = new BrokeredMessage(order);
+	
+	        // Submit the order.
+	        QueueConnector.OrdersQueueClient.Send(message);
+	        return RedirectToAction("Submit");
+	    }
+	    else
+	    {
+	        return View(order);
+	    }
+	}
+	```
 
 9.  現在您可以重新執行應用程式。每次您一提交訂單，訊息計數便會增加。
 
     ![][18]
 
-## 雲端組態管理員
-
-[Microsoft.WindowsAzure.Configuration.CloudConfigurationManager][] 類別中的 [GetSettings][] 方法可讓您從平台的組態存放區中讀取組態設定。例如，如果您的程式碼是在 Web 或背景工作角色中執行，則 [GetSettings][] 方法會讀取 ServiceConfiguration.cscfg 檔案，如果您的程式碼是在標準的主控台應用程式中執行，則 [GetSettings][] 方法會讀取 app.config 檔案。
-
-如果您將服務匯流排命名空間的連接字串儲存在組態檔中，則您可以使用 [GetSettings][] 方法來讀取可用來具現化 [NamespaceMananger][] 物件的連接字串。您可以使用 [NamespaceMananger][] 執行個體，以程式設計的方式來設定服務匯流排命名空間。您可以使用相同的連接字串來具現化可用來執行執行階段作業 (例如傳送和接收訊息) 的用戶端物件 (例如 [QueueClient][]、[TopicClient][]，和 [EventHubClient][] 物件)。
-
-### Connection string
-
-若要具現化用戶端 (例如，服務匯流排 [QueueClient][])，您可以以連接字串代表組態資訊。在用戶端中，`CreateFromConnectionString()` 方法可以使用該連接字串來具現化該用戶端類型。例如，假設有下列組態區段
-
-	<ConfigurationSettings>
-    ...
-    	<Setting name="Microsoft.ServiceBus.ConnectionString" value="Endpoint=sb://[yourServiceNamespace].servicebus.windows.net/;SharedSecretIssuer=RootManageSharedAccessKey;SharedSecretValue=[yourKey]" />
-	</ConfigurationSettings>
-
-下列程式碼會擷取連接字串、建立佇列，以及初始化對佇列的連線。
-
-	QueueClient Client;
-
-	string connectionString =
-     CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
-
-    var namespaceManager =
-     NamespaceManager.CreateFromConnectionString(connectionString);
-
-	if (!namespaceManager.QueueExists(QueueName))
-    {
-        namespaceManager.CreateQueue(QueueName);
-    }
-
-	// Initialize the connection to Service Bus queue.
-	Client = QueueClient.CreateFromConnectionString(connectionString, QueueName);
-
-下節中的程式碼會使用 [CloudConfigurationManager][Microsoft.WindowsAzure.Configuration.CloudConfigurationManager] 類別。
-
 ## 建立背景工作角色
 
-您現在將建立背景工作角色來處理所提交的訂單。本範例使用 **Worker Role with Service Bus Queue** Visual Studio 專案範本。首先，使用 Visual Studio 中的 [伺服器總管] 取得必要認證。
+您現在將建立背景工作角色來處理所提交的訂單。本範例使用 **Worker Role with Service Bus Queue** Visual Studio 專案範本。您已經從入口網站取得必要的認證。
 
 1. 請確定您已將 Visual Studio 連接到您的 Azure 帳戶。
 
@@ -430,9 +403,7 @@
 
 5.  在 [名稱] 方塊中，將專案命名為 **OrderProcessingRole**。然後按一下 [新增]。
 
-6.  在 [伺服器總管] 中，於您的服務命名空間的名稱上按一下滑鼠右鍵，再按一下 [屬性]。在 Visual Studio [**屬性**] 窗格中，第一個項目會包含已填入命名空間端點 (其含必要的授權認證) 的連接字串。如需範例，請參閱下列螢幕擷取畫面。按兩下 [ConnectionString]，再按 **Ctrl+C**，將此字串複製到剪貼簿。
-
-	![][24]
+6.  將您在＜建立服務匯流排命名空間＞一節的步驟 9 中取得的連接字串複製到剪貼簿。
 
 7.  在 [方案總管] 中，請以滑鼠右鍵按一下您在步驟 5 中所建立的 **OrderProcessingRole** (請確定您是在 [角色] 下而不是類別下的 **OrderProcessingRole** 按一下滑鼠右鍵)。然後按一下 [屬性]。
 
@@ -440,26 +411,32 @@
 
 	![][25]
 
-9.  建立 **OnlineOrder**，以代表您從佇列處理它們時的順序。您可以重複使用已建立的類別。在 [方案總管] 中，以滑鼠右鍵按一下 **OrderProcessingRole** 專案 (在專案而不是角色上按一下滑鼠右鍵)。按一下 [加入]，然後按一下 [現有項目]。
+9.  建立 **OnlineOrder**，以代表您從佇列處理它們時的順序。您可以重複使用已建立的類別。在 [方案總管] 中，以滑鼠右鍵按一下 **OrderProcessingRole** 類別 (在類別圖示而不是角色上按一下滑鼠右鍵)。按一下 [加入]，然後按一下 [現有項目]。
 
 10. 瀏覽至 **FrontendWebRole\\Models** 的子資料夾，並按兩下 [OnlineOrder.cs]，以將其新增至此專案。
 
-11. 在 **WorkerRole.cs** 中，將 **WorkerRole.cs** 中的 **QueueName** 變數值從 `"ProcessingQueue"` 取代為 `"OrdersQueue"`，如下列程式碼所示。
+11. 在 **WorkerRole.cs** 中，將 **QueueName** 變數值從 `"ProcessingQueue"` 變更為 `"OrdersQueue"`，如下列程式碼所示。
 
-		// The name of your queue.
-		const string QueueName = "OrdersQueue";
+	```
+	// The name of your queue.
+	const string QueueName = "OrdersQueue";
+	```
 
 12. 在 WorkerRole.cs 檔案頂端新增下列 using 陳述式。
 
-		using FrontendWebRole.Models;
+	```
+	using FrontendWebRole.Models;
+	```
 
-13. 在 `Run()` 函式的 `OnMessage` 呼叫內，於 `try` 子句內加入下列程式碼。
+13. 在 `Run()` 函式的 `OnMessage()` 呼叫內，以下列程式碼取代 `try` 子句的內容。
 
-		Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
-		// View the message as an OnlineOrder.
-		OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
-		Trace.WriteLine(order.Customer + ": " + order.Product, "ProcessingMessage");
-		receivedMessage.Complete();
+	```
+	Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
+	// View the message as an OnlineOrder.
+	OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
+	Trace.WriteLine(order.Customer + ": " + order.Product, "ProcessingMessage");
+	receivedMessage.Complete();
+	```
 
 14. 您已完成應用程式。您可以測試完整的應用程式，方法是以滑鼠右鍵按一下 [方案總管] 中的 MultiTierApp 專案、選取 [**設定為啟始專案**]，然後按下 F5。請注意，訊息計數不會增加，因為背景工作角色會處理佇列中的項目，並將它們標示為完成。您可以檢視 Azure 計算模擬器 UI，來查看背景工作角色的追蹤輸出。作法為在工作列的通知區中的計算模擬器圖示上按一下滑鼠右鍵，並選取 [Show Compute Emulator UI]。
 
@@ -481,13 +458,11 @@
 
   [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
   [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
-  [sbqueuecomparison]: service-bus-azure-and-service-bus-queues-compared-contrasted.md
   [2]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-101.png
-  [取得工具和 SDK (英文)]: http://go.microsoft.com/fwlink/?LinkId=271920
-  [3]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-3.png
+  [取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
 
 
-  [GetSettings]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.getsetting.aspx
+  [GetSetting]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.getsetting.aspx
   [Microsoft.WindowsAzure.Configuration.CloudConfigurationManager]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.aspx
   [NamespaceMananger]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx
 
@@ -500,7 +475,6 @@
   [Azure 傳統入口網站]: http://manage.windowsazure.com
   [6]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-03.png
   [7]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-04.png
-  [8]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-09.png
   [9]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-10.png
   [10]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-11.png
   [11]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-02.png
@@ -508,27 +482,23 @@
   [13]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-13.png
   [14]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-33.png
   [15]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-34.png
-  [16]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-35.png
+  [16]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-14.png
   [17]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-36.png
   [18]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-37.png
 
   [19]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-38.png
   [20]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-39.png
   [23]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBWorkerRole1.png
-  [24]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBExplorerProperties.png
   [25]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBWorkerRoleProperties.png
   [26]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBNewWorkerRole.png
-  [27]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-27.png
   [28]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-40.png
-  [30]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-09.png
-  [31]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-06.png
-  [32]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-41.png
-  [33]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-42-webpi.png
   [35]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/multi-web-45.png
+  [36]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/service-bus-policies.png
+
   [sbmsdn]: http://msdn.microsoft.com/library/azure/ee732537.aspx
   [sbwacom]: /documentation/services/service-bus/
-  [sbwacomqhowto]: service-bus-dotnet-how-to-use-queues.md
+  [sbwacomqhowto]: service-bus-dotnet-get-started-with-queues.md
   [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
   
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

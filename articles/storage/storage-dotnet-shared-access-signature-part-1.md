@@ -158,8 +158,8 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
     static string GetAccountSASToken()
     {
         // To create the account SAS, you need to use your shared key credentials. Modify for your account.
-        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-            Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
+	    const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
+	    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 
         // Create a new access policy for the account.
         SharedAccessAccountPolicy policy = new SharedAccessAccountPolicy()
@@ -181,8 +181,8 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
     {
         // In this case, we have access to the shared key credentials, so we'll use them
         // to get the Blob service endpoint.
-        CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-            Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
+	    const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
+	    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
         // Create new storage credentials using the SAS token.
@@ -226,8 +226,8 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
 下列程式碼範例會在容器上建立預存的存取原則，然後為容器產生服務 SAS。然後可以將此 SAS 提供給用戶端，以取得容器上的讀寫權限。變更程式碼以使用您自己的帳戶名稱：
 
     // Parse the connection string for the storage account.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
+    const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 
     // Create the storage account with the connection string.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
@@ -318,4 +318,4 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
 [sas-storage-fe-proxy-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-fe-proxy-service.png
 [sas-storage-provider-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-provider-service.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

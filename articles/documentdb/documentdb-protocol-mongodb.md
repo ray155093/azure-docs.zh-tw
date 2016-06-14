@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="MongoDB 的 DocumentDB 通訊協定支援 | Microsoft Azure" 
-	description="了解現已可供預覽的 MongoDB 的 DocumentDB 通訊協定支援。" 
-	keywords="mongodb 通訊協定, mongodb, mongo 資料庫"
+	description="了解現已可供公開預覽的 MongoDB 的 DocumentDB 通訊協定支援。" 
+	keywords="mongodb"
 	services="documentdb" 
 	authors="stephbaron" 
 	manager="jhubbard" 
@@ -14,46 +14,28 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/31/2016" 
+	ms.date="05/31/2016" 
 	ms.author="stbaro"/>
 
 # MongoDB 的 DocumentDB 通訊協定支援
 
-Microsoft Azure DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。使用 MongoDB 的現有驅動程式和這項預覽功能，針對 MongoDB 所撰寫的應用程式就可以輕鬆且自動地與 DocumentDB 通訊。開發人員可以使用其目前針對 MongoDB 所設定的工具及技術來建置應用程式，以利用 DocumentDB 完全管理且可調整的 NoSQL 資料庫。
+## 什麼是 Azure DocumentDB？
+Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的是為了獲得快速且可預測的效能、高可用性、自動調整以及方便開發。其擁有彈性的資料模型、一致的低延遲和豐富的查詢功能，因此非常適合用於需要能夠順暢調整的 Web、行動、遊戲、IoT 和許多應用程式。深入了解 [DocumentDB 簡介](documentdb-introduction.md)。
 
-我們目前正在邀請客戶預覽這項新功能。如果您也想要預覽，請按照下列指示來要求存取預覽程式，我們會在您通過核准之後立即與您連絡。
+## MongoDB 的 DocumentDB 通訊協定支援是什麼？
+DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。使用 MongoDB 的現有[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)，應用程式可以輕易且無障礙地與 DocumentDB 通訊，在許多情況下只要變更連接字串即可。使用這項預覽功能，客戶可以輕鬆地在 Azure 雲端建置及執行應用程式 - 利用 DocumentDB 的完全受管理且可調整的 NoSQL 資料庫 - 同時繼續使用 MongoDB 的熟悉技能和工具。
 
-## 必要條件
-
-在要求存取預覽程式之前，您必須具備下列項目。
-
-- **Azure 訂用帳戶**。請參閱[立即建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。
-
-## 要求存取 MongoDB 的 DocumentDB 通訊協定支援 (預覽)  
-
-若要要求存取預覽版，請執行下列步驟。
-
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 依序按一下 [新增]、[資料 + 儲存體]、[檢視全部]、[更多] 和 [DocumentDB - MongoDB 的通訊協定支援]。
-
-	![[Marketplace] 和 [資料 + 儲存體] 刀鋒視窗的螢幕擷取畫面 (醒目顯示 [DocumentDB - MongoDB (Mongo 資料庫) 的通訊協定支援])](./media/documentdb-protocol-mongodb/marketplacegallery1.png)
-
-3. 或者，在 [資料 + 儲存體] 類別中搜尋「DocumentDB 通訊協定」。
-
-	![[Marketplace] 和 [資料 + 儲存體] 搜尋刀鋒視窗的螢幕擷取畫面 (醒目顯示 [DocumentDB - MongoDB (Mongo 資料庫) 的通訊協定支援])](./media/documentdb-protocol-mongodb/marketplacegallery2.png)
-
-4. 按一下 [建立] 以啟動預覽註冊程序。
-
-	![Azure 入口網站中的 [DocumentDB - MongoDB 的通訊協定支援] 刀鋒視窗](./media/documentdb-protocol-mongodb/marketplacegallery3.png)
-
-5. 在 [新增 DocumentDB 帳戶] 刀鋒視窗中，按一下 [註冊使用預覽版]。閱讀資訊，然後按一下 [確定]。您的訂用帳戶已啟用公開預覽版之後，您會收到一封電子郵件。
-
-	![Azure 入口網站中 [DocumentDB - MongoDB 的通訊協定支援] 的 [立即註冊使用預覽版] 刀鋒視窗](./media/documentdb-protocol-mongodb/registerforpreview.png)
-
+MongoDB 的 DocumentDB 通訊協定支援可以啟用核心 MongoDB API 函式以建立、讀取、更新和刪除 (CRUD) 資料，以及查詢資料庫。目前實作的功能已根據常見的平台、架構、工具和針對其雲端平台評估 Azure 的大型 MongoDB 客戶的需求，設定優先順序。
+  
 
 ## 後續步驟
-- 一旦核准您預覽，您將會收到歡迎電子郵件，裡面會有如何建立帳戶和開始使用的指示。
+
+
+- 了解如何[建立](documentdb-create-mongodb-account.md)具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
+- 了解如何[連接](documentdb-connect-mongodb-account.md)到具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
+- 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
+- 探索具有 MongoDB 通訊協定支援的 DocumentDB 的[範例](documentdb-mongodb-samples.md)。
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="05/31/2016"
 	ms.author="emgerner"/>
 
 # 如何使用 Python 的佇列儲存體
@@ -54,7 +54,7 @@
 
 	messages = queue_service.peek_messages('taskqueue')
 	for message in messages:
-		print(message.message_text)
+		print(message.content)
 
 
 ## 做法：清除佇列訊息
@@ -68,7 +68,7 @@
 
 自訂從佇列中擷取訊息的方法有兩種。首先，您可以取得一批訊息 (最多 32 個)。其次，您可以設定較長或較短的可見度逾時，讓您的程式碼有較長或較短的時間可以完全處理每個訊息。下列程式碼範例將使用 **get\_messages** 方法，在一次呼叫中取得 16 個訊息。接著它會使用 for 迴圈處理每個訊息。它也會將可見度逾時設定為每個訊息五分鐘。
 
-	messages = queue_service.get_messages('taskqueue', numofmessages=16, visibilitytimeout=5*60)
+	messages = queue_service.get_messages('taskqueue', num_messages=16, visibility_timeout=5*60)
 	for message in messages:
 		print(message.content)
 		queue_service.delete_message('taskqueue', message.message_id, message.pop_receipt)		
@@ -107,4 +107,4 @@
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

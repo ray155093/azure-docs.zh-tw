@@ -19,8 +19,6 @@
 
 # 在混合式雲端中設定 Web 型 LOB 應用程式進行測試
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本主題將逐步引導您建立混合式雲端環境測試 Microsoft Azure 代管的 Web 型企業營運 (LOB) 應用程式。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph3.png)
@@ -92,7 +90,7 @@
 3.	提示開啟 SQL1.rdp 時，按一下 [開啟]。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用這些：
-	- 名稱：**SQL1\**[本機系統管理員帳戶名稱]
+	- 名稱：**SQL1** [本機系統管理員帳戶名稱]
 	- 密碼：[本機系統管理員帳戶密碼]
 6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
 
@@ -128,9 +126,9 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-重新啟動之後，請使用 Azure 入口網站，利用本機系統管理員帳戶連線到 SQL1。
+重新啟動之後，請使用 Azure 入口網站，利用「本機系統管理員帳戶」連線到 SQL1。
 
 接著，對於新資料庫和使用者帳戶權限設定 SQL Server 2014 使用 F: 磁碟機。
 
@@ -190,7 +188,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示提供 **Add-Computer** 命令的網域帳戶認證時，請使用 CORP\\User1 帳戶。
+系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
 重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 LOB1。
 
@@ -220,4 +218,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - 部署[生產環境](virtual-machines-windows-lob-overview.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

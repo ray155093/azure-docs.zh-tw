@@ -19,8 +19,6 @@
 
 # 企業營運應用程式工作負載第 4 階段：設定 Web 伺服器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 在 Azure 基礎結構服務部署高可用性企業營運應用程式的這個階段中，您將建置 Web 伺服器，並在其中載入企業營運應用程式。
 
 您必須先完成這個階段才能前往[第 5 階段](virtual-machines-windows-ps-lob-ph5.md)。如需所有階段的相關資訊，請參閱[在 Azure 中部署高可用性的企業營運應用程式](virtual-machines-windows-lob-overview.md)。
@@ -151,4 +149,4 @@ Web 伺服器虛擬機器共有兩部，您可以在其中部署 ASP.NET 應用�
 
 - 依照[第 5 階段](virtual-machines-windows-ps-lob-ph5.md)指示完成此工作負載的設定。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

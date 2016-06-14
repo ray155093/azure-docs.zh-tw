@@ -11,8 +11,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
-	ms.author="ddove;sidneyh" />
+	ms.date="05/27/2016" 
+	ms.author="ddove" />
 
 # 使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)
 
@@ -694,4 +694,4 @@
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

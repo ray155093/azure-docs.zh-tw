@@ -19,8 +19,6 @@
 
 # 將原則套用至 Azure Resource Manager 虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型
-
 藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。強制執行所要的行為有助於降低風險，同時促進組織的成功。在本文中，我們將說明如何使用 Azure Resource Manager 原則來定義您組織虛擬機器所要的行為。
 
 完成此作業的步驟大致如下
@@ -108,4 +106,4 @@
 
 * [建立原則](../resource-manager-policy.md#applying-a-policy)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

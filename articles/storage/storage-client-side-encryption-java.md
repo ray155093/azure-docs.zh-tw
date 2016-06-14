@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/24/2016"
+	ms.date="05/24/2016"
 	ms.author="dineshm"/>
 
 
@@ -247,4 +247,4 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 	- [用戶端](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)封裝
 - 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

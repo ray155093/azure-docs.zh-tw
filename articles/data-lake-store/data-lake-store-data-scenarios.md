@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="03/09/2016"
+   ms.date="05/27/2016"
    ms.author="nitinme"/>
 
 # 有關 Azure Data Lake 存放區的資料案例
@@ -132,6 +132,6 @@
 ![將 Data Lake 存放區中的資料視覺化](./media/data-lake-store-data-scenarios/visualize-data.png "將 Data Lake 存放區中的資料視覺化")
 
 * 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移動到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores)開始
-* 之後，您可以[整合 Power BI 與 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi)，利用視覺化的方式呈現資料。
+* 之後，您可以[整合 Power BI 與 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，利用視覺化的方式呈現資料。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

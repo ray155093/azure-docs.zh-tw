@@ -11,7 +11,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/10/2016"
+	ms.date="05/31/2016"
 	ms.author="ashmaka"/>
 
 # 使用 Azure 入口網站建立 Azure 搜尋服務
@@ -74,4 +74,4 @@
 ## 下一步
 佈建 Azure 搜尋服務之後，您就可以[定義 Azure 搜尋服務索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

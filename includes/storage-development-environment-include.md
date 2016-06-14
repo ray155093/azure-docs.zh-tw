@@ -26,6 +26,9 @@
 3. 在線上搜尋 "ConfigurationManager"，然後按一下 [安裝] 以安裝 Azure Configuration Manager。
 
 >[AZURE.NOTE] Storage Client Library 封裝也包含在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/) 中。不過，我們建議您也從 NuGet 安裝 Storage Client Library，以確保永遠有最新版的用戶端程式庫。
+>
+>Storage Client Library for .NET 中的 ODataLib 相依性現已透過 ODataLib (5.0.2 版和更新版本) 封裝解決，該封裝是由 NuGet 而非透過 WCF Data Services 提供。您可以直接下載 ODataLib 程式庫，或是由您的程式碼專案透過 NuGet 參照這些程式庫。Storage Client Library 使用的特定 ODataLib 封裝有 [OData](http://nuget.org/packages/Microsoft.Data.OData/5.0.2)、[Edm](http://nuget.org/packages/Microsoft.Data.Edm/5.0.2)，以及 [Spatial](http://nuget.org/packages/System.Spatial/5.0.2)。這些程式庫雖由 Azure 資料表儲存體類別使用，它們同時也是使用 Storage Client Library 進行程式設計的必要相依項目。
+
 
 ### 決定您的目標環境
 
@@ -65,4 +68,4 @@ Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來
 
 	<add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

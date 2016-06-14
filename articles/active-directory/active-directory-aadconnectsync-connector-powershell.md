@@ -16,7 +16,7 @@
    ms.date="05/24/2016"
    ms.author="andkjell"/>
 
-# WIndows PowerShell 連接器技術參考
+# Windows PowerShell 連接器技術參考
 
 本文說明 Windows PowerShell 連接器。本文適用於下列產品：
 
@@ -370,4 +370,4 @@ $account.Translate([System.Security.Principal.SecurityIdentifier]).Value
 [pwdex3]: https://msdn.microsoft.com/library/windows/desktop/microsoft.metadirectoryservices.passwordextensionexception.aspx
 [samp]: http://go.microsoft.com/fwlink/?LinkId=394291
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

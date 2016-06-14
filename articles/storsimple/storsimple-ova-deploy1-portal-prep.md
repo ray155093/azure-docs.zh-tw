@@ -13,21 +13,21 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/10/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli"/>
 
 # 部署 StorSimple Virtual Array：準備入口網站
 
 ![](./media/storsimple-ova-deploy1-portal-prep/getstarted4.png)
 
-## 概觀 
+## 概觀
 
 本文章適用於執行 2016 年 3 月公開上市 (GA) 版的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。我們提供一系列如何將虛擬陣列完全部署為檔案伺服器或 iSCSI 伺服器的佈署教學課程，而這是該系列的第一篇文章。本文章說明在佈建虛擬陣列之前，要建立並設定 StorSimple Manager 服務所需的準備工作。本文章也會提供能前往部署設定檢查清單及設定必要條件的連結。
 
 您必須需要有系統管理員權限，才能完成安裝和設定程序。我們建議您在開始之前，先檢閱部署設定檢查清單。入口網站的準備工作不到 10 分鐘就能完成。
 
 本文中發佈的資訊適用於 StorSimple Virtual Arrays 在 Azure 傳統入口網站的部署，以及 Microsoft Azure 政府服務雲端。
- 
+
 ### 開始使用
 
 部署的工作流程包括準備入口網站、在您的虛擬環境中佈建虛擬陣列，以及完成安裝程序。若要開始將 StorSimple Virtual Array 部署為檔案伺服器和 iSCSI 伺服器，您必須參閱下列表格中的資源 (文章和影片)。
@@ -39,7 +39,7 @@
 | **#** | **在此步驟中** | **您將會進行...** | **請使用這些文件。**|
 |------|-------------------------------------------|--------------------------------------------------------------------------------|------------------------|
 |1\. | **設定 Azure 傳統入口網站** | 請在佈建 StorSimple 虛擬裝置之前，先建立並設定 StorSimple Manager 服務。 |[Prepare the portal (準備入口網站)](storsimple-ova-deploy1-portal-prep.md)|
-|2\. | **佈建 Virtual Array** | 對於 Hyper-V，請佈建及連線到執行 Hyper-V 2008 R2、Hyper-V 2012 或 Hyper-V 2012 R2 之主機系統上的 StorSimple 虛擬裝置。<br></br> <br></br>對於 VMware，請佈建及連線到執行 VMware ESXi 5.5 及更新版本之主機系統上的 StorSimple 內部部署虛擬裝置。<br></br>| [在 Hyper-V 中佈建虛擬陣列](storsimple-ova-deploy2-provision-hyperv.md) <br></br> <br></br> [在 VMware 中佈建虛擬陣列](storsimple-ova-deploy2-provision-vmware.md)|
+|2\. | **佈建 Virtual Array** | 針對 Hyper-V，在於 Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 執行 Hyper-V 的主機系統上，佈建 StorSimple 虛擬裝置並連接到此虛擬裝置。<br></br> <br></br>對於 VMware，請佈建及連線到執行 VMware ESXi 5.5 及更新版本之主機系統上的 StorSimple 內部部署虛擬裝置。<br></br>| [在 Hyper-V 中佈建虛擬陣列](storsimple-ova-deploy2-provision-hyperv.md) <br></br> <br></br> [在 VMware 中佈建虛擬陣列](storsimple-ova-deploy2-provision-vmware.md)|
 |3\. | **設定 Virtual Array** | 對於檔案伺服器，請執行初始安裝程序、註冊 StorSimple 檔案伺服器，以及完成裝置安裝程序。接下來，您可以佈建 SMB 共用。<br></br> <br></br>對於 iSCSI 伺服器，請執行初始安裝、註冊 StorSimple iSCSI 伺服器，並完成裝置安裝程序。接下來，您可以佈建 iSCSI 磁碟區。| [將虛擬陣列設定為檔案伺服器](storsimple-ova-deploy3-fs-setup.md)<br></br> <br></br>[將虛擬陣列設定為 iSCSI 伺服器](storsimple-ova-deploy3-iscsi-setup.md)|
 
 #### 部署相關影片
@@ -76,23 +76,23 @@
 
 -   您 Microsoft Azure 訂用帳戶的 StorSimple Manager 服務應該已經啟用。
 
-### 對於 StorSimple 虛擬裝置 
+### 對於 StorSimple 虛擬裝置
 
 在您部署虛擬裝置之前，請確定：
 
--   您可以存取執行 Hyper-V (2008 R2 或更新版本) 或 VMware (ESXi 5.5 或更新版本)，且可用來佈建裝置的主機系統。
+-   您可以存取可用來佈建裝置、在 Windows Server 2008 R2 或更新版本或 VMware (ESXi 5.5 或更新版本) 上執行 Hyper-V 的主機系統。
 
 -   主機系統能夠把下列資源專門用來佈建虛擬裝置：
-	
+
 	-   至少 4 顆核心。
-	
+
 	-   至少 8 GB 的 RAM。
-	
+
 	-   一個網路介面。
-	
+
 	-   供系統資料使用的 500 GB 虛擬磁碟。
 
-### 對於資料中心的網路 
+### 對於資料中心的網路
 
 在您開始前，請確定：
 
@@ -111,12 +111,12 @@
 [AZURE.INCLUDE [storsimple-ova-create-new-service](../../includes/storsimple-ova-create-new-service.md)]
 
 > [AZURE.IMPORTANT]
-> 
+>
 > 如果您並未啟用服務自動建立儲存體帳戶，您將必須在成功建立服務後，至少建立一個儲存體帳戶。
-> 
+>
 
 > - 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#optional-step-configure-a-new-storage-account-for-the-service)以取得詳細指示。
-> 
+>
 
 > - 如果您已啟用自動建立儲存體帳戶，請移至[步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key)。
 
@@ -132,7 +132,7 @@
 [AZURE.INCLUDE [storsimple-ova-get-service-registration-key](../../includes/storsimple-ova-get-service-registration-key.md)]
 
 > [AZURE.NOTE]
-> 
+>
 > 服務註冊金鑰可用來為所有必須向 StorSimple Manager 服務註冊的 StorSimple Manager 裝置註冊。
 
 ## 步驟 3：下載虛擬裝置映像
@@ -148,23 +148,15 @@
 
 1.  在 [StorSimple Manager 服務] 頁面上，按一下您建立的服務。這會將您帶領到 [快速入門] 頁面(您隨時都可按一下快速入門圖示 ![](./media/storsimple-ova-deploy1-portal-prep/image8.png) 來存取 [快速入門] 頁面)。
 
+1.  按一下與您想要從「Microsoft 下載中心」下載的映像對應的連結。映像檔大約是 4.8 GB。
 
-1.  在資料中心的網路共用中，下載適當的 VHD 或 VHDX。有幾個不同映像可供選擇：
+	-   VHDX (適用於 Windows Server 2012 及更新版本上的 Hyper-V)
 
-	-   Hyper-V 2012 和更新版本
-	
-	-   Hyper-V 2008 R2 及更新版本
+	-   VHD (適用於 Windows Server 2008 R2 及更新版本上的 Hyper-V)
 
-	-   VMWare ESXi 5.5 及更新版本
+	-   VMDK (適用於 VMWare ESXi 5.5 及更新版本)
 
-	> [AZURE.IMPORTANT] StorSimple Virtual Array 上執行的軟體只能搭配 Storsimple Manager 服務。
-
-
-1.  按一下適用於您將用來佈建虛擬裝置之主機作業系統的映像。此時系統將會帶您前往 Microsoft 下載中心。
-
-1.  如果您使用的是 Hyper-V，請下載適用於 Hyper-V 2012 的 VHDX，或適用於 Hyper-V 2008 R2 及更新版本的 VHD。如果您使用的是 VMware，請下載 VMDK。VHDX 為 4.77 GB 的壓縮檔，VHD 為 4.77 GB 的壓縮檔，而 VMDK 為 4.75 GB 的壓縮檔。檔案的下載時間將視您的網際網路連線速度而定。
-
-2.  將檔案解壓縮，並記下已解壓縮的檔案在您本機磁碟機上的位置。
+2.  下載檔案並將檔案解壓縮至本機磁碟機，記下解壓縮檔案的所在位置。
 
 ![影片圖示](./media/storsimple-ova-deploy1-portal-prep/video_icon.png)**提供的影片**
 
@@ -180,7 +172,7 @@
 
 如果您需要在不同區域建立 Azure 儲存體帳戶，請參閱[如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)來取得逐步指示。
 
-請執行 [Azure 傳統入口網站](https://manage.windowsazure.com/)中 [StorSimple Manager 服務] 頁面上的步驟，來新增現有的 Microsoft Azure 儲存體帳戶。
+請在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中的「StorSimple Manager 服務」頁面上執行下列步驟，以新增現有的 Microsoft Azure 儲存體帳戶。
 
 #### 若要新增儲存體帳戶
 
@@ -194,7 +186,7 @@
 
 	1.  提供 Microsoft Azure 儲存體帳戶的主要**存取金鑰**。
 
-	1.  選取 [啟用 SSL 模式] 來建立裝置與雲端之間網路通訊的安全通道。只有當您在私人雲端內進行操作時，才需清除 [啟用 SSL 模式] 核取方塊。
+	1.  選取 [啟用 SSL 模式] 來為裝置與雲端之間的網路通訊建立一個安全通道。只有當您在私人雲端內進行操作時，才需清除 [啟用 SSL 模式] 核取方塊。
 
 	1.  按一下核取圖示 ![](./media/storsimple-ova-deploy1-portal-prep/image7.png)。成功建立儲存體帳戶之後，系統將會通知您。
 
@@ -211,4 +203,4 @@
 
 -   [Provision a Virtual Array in VMware (在 VMware 中佈建 Virtual Array)](storsimple-ova-deploy2-provision-vmware.md)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

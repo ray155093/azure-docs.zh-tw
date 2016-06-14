@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="02/17/2016"
+    ms.date="05/27/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的佇列儲存體  
@@ -236,4 +236,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 -	[Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!----HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

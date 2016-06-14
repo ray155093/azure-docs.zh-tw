@@ -4,7 +4,7 @@
    services="sql-database"
    documentationCenter=""
    authors="carlrabeler"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,10 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/14/2016"
+   ms.date="05/31/2016"
    ms.author="carlrab"/>
 
 # 使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database
+
+
+> [AZURE.SELECTOR]
+- [SSMS 移轉精靈](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
+- [匯出至 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
+- [從 BACPAC 檔案匯入](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
+- [異動複寫](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
 
 SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Database 精靈」會直接將[相容](sql-database-cloud-migrate.md) SQL Server 移轉到 Azure SQL Database 伺服器。
 
@@ -50,8 +57,15 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 7.	使用 [物件總管] 時，請連接到 Azure SQL Database 伺服器中已移轉的資料庫。
 8.	使用 Azure 入口網站時，請檢視您的資料庫和它的屬性。
 
-## 下一步：修正相容性問題 (如果有)
+## 後續步驟
 
-[修正資料庫相容性問題](sql-database-cloud-migrate-fix-compatibility-issues.md) (如果有)。
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
 
-<!---HONumber=AcomDC_0316_2016-->
+## 詳細資訊
+
+- [SQL Database V12](sql-database-v12-whats-new.md)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+
+<!---HONumber=AcomDC_0601_2016-->

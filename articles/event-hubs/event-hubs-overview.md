@@ -168,4 +168,4 @@ Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用�
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0420_2016--->

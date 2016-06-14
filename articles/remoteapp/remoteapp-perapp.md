@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="03/01/2016"
+   ms.date="05/31/2016"
    ms.author="piotrci"/>
 
 # 在 Azure RemoteApp 集合中發佈應用程式給個別使用者 (預覽)
@@ -102,4 +102,4 @@ AclLevel 屬性的可能值如下：
 ## 還沒有機會試用預覽功能嗎？
 如果您還未參與使用預覽功能，請使用本[問卷](http://www.instant.ly/s/AY83p)來要求存取權。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

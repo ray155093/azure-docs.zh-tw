@@ -3,18 +3,18 @@
     description="使用 T-SQL 在彈性集區中建立 Azure SQL Database。或使用 T-SQL 將資料庫移入和移出集區。" 
 	services="sql-database" 
     documentationCenter="" 
-    authors="sidneyh" 
+    authors="srinia" 
     manager="jhubbard" 
     editor=""/>
 
 <tags
     ms.service="sql-database"
     ms.devlang="NA"
-    ms.topic="get-started-article"
+    ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="data-management" 
-    ms.date="04/28/2016"
-    ms.author="sidneyh"/>
+    ms.date="05/27/2016"
+    ms.author="srinia"/>
 
 # 使用 Transact-SQL 監視和管理彈性資料庫集區  
 
@@ -84,4 +84,4 @@
 
 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="05/26/2016"
    ms.author="terrylan"/>
 
 # Azure 儲存體安全性概觀
@@ -28,7 +28,7 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 本文將提供這其中每個可搭配 Azure 儲存體使用的核心安全性功能概觀。所提供的文章連結將提供每項功能的詳細資料，以讓您深入了解。
 
-若要深入了解 Azure 儲存體中的安全性，請參閱 [Azure 儲存體安全性指南](https://azure.microsoft.com/documentation/articles../storage/storage-security-guide.md)。
+若要深入了解 Azure 儲存體中的安全性，請參閱 [Azure 儲存體安全性指南](../storage/storage-security-guide.md)。
 
 以下是本文所涵蓋的核心功能：
 
@@ -160,4 +160,4 @@ Azure 檔案共用可以與 Linux 虛擬機器搭配使用。Linux SMB 用戶端
 - [在 Azure 入口網站中監視儲存體帳戶](../storage/storage-monitor-storage-account.md)
 - [使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解](../storage/storage-e2e-troubleshooting.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->
