@@ -380,7 +380,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 立即啟用複寫，如下所示︰
 
-1. 按一下 [Step 2: Replicate application] (步驟 2︰複寫應用程式) > [來源]。第一次啟用複寫之後，按一下保存庫中的 [+Replicate] \(+複寫)，以針對其他電腦啟用複寫。
+1. 按一下 [Step 2: Replicate application] \(步驟 2︰複寫應用程式) > [來源]。第一次啟用複寫之後，按一下保存庫中的 [+Replicate] \(+複寫)，以針對其他電腦啟用複寫。
 
 	![啟用複寫](./media/site-recovery-vmm-to-vmm/enable-replication1.png)
 
