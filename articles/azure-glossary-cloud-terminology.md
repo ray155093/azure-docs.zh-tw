@@ -57,7 +57,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 您可以使用兩個[部署模型](resource-manager-deployment-model.md)之一來部署 Microsoft Azure 中的資源 (另一個是傳統部署模型)。您可以將部分 Azure 資源部署於這其中一個模型中，而將其他資源部署於這兩個模型中。適用於個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。
 
 
-### <a name="faultdomain"></a>容錯網域  
+### <a name="fault-domain"></a>容錯網域  
 可用性設定組中可能會同時失敗的虛擬機器集合。範例之一是位於一個機架中的電腦群組，這組電腦會共用通用電源和網路開關。在 Azure 中，可用性設定組中的虛擬機器會自動分散於多個容錯網域中。另請參閱[管理 Windows 虛擬機器的可用性](./virtual-machines/virtual-machines-windows-manage-availability.md)或[管理 Linux 虛擬機器的可用性](./virtual-machines/virtual-machines-linux-manage-availability.md)
 
 
@@ -142,7 +142,7 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 
 
 ### <a name="vnet"></a>虛擬網路  
-一種網路，可提供與所有其他 Azure 租用戶隔離之 Azure 資源間的連線能力。它可以透過 [Azure VPN 閘道](vpn-gateway-about-vpngateways/)連接到其他 Azure 虛擬網路，以及使用[多個選項](vpn-gateway-cross-premises-options/)連接到內部部署網路。您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。另請參閱[虛擬網路概觀](./virtual-network/virtual-networks-overview.md)
+一種網路，可提供與所有其他 Azure 租用戶隔離之 Azure 資源間的連線能力。它可以透過 [Azure VPN 閘道](./vpn-gateway/vpn-gateway-about-vpngateways.md)連接到其他 Azure 虛擬網路，以及使用[多個選項](./vpn-gateway/vpn-gateway-cross-premises-options.md)連接到內部部署網路。您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。另請參閱[虛擬網路概觀](./virtual-network/virtual-networks-overview.md)
 
 ###**另請參閱**  
 - [開始使用 Azure](https://azure.microsoft.com/get-started/)
@@ -150,4 +150,4 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 - [讓 Azure 助您擴展商務應用程式](https://azure.microsoft.com/overview/business-apps-on-azure/)
 - [Azure 之於您的資料中心](https://azure.microsoft.com/overview/business-apps-on-azure/) 
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

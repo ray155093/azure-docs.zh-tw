@@ -3,7 +3,7 @@
     description="使用 C# 資料庫開發技術管理 Azure SQL Database 彈性資料庫集區。"
     services="sql-database"
     documentationCenter=""
-    authors="sidneyh"
+    authors="srinia"
     manager="jhubbard"
     editor=""/>
 
@@ -13,8 +13,8 @@
     ms.topic="article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="04/28/2016"
-    ms.author="sidneyh"/>
+    ms.date="05/27/2016"
+    ms.author="srinia"/>
 
 # 透過 C&#x23; 監視和管理彈性資料庫集區 
 
@@ -432,4 +432,4 @@
 - [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
 - 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

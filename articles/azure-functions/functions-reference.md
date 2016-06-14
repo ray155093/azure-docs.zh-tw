@@ -129,7 +129,7 @@ Azure 入口網站內建的函數編輯器可讓您更新 *function.json* 檔案
 
 3. 瀏覽至 `D:\home\site\wwwroot` 更新 *host.json*，或瀏覽至 `D:\home\site\wwwroot<function_name>` 更新函式的檔案。
 
-4. 將您要上傳的檔案拖放至檔案方格中適當資料夾。
+4. 將您要上傳的檔案拖放至檔案方格中適當資料夾。在檔案方格上您有兩個區域可以拖放檔案。對於 .zip 檔案，方塊顯示且具有標籤「拖曳到這裡以上傳和解壓縮」。 對於其他檔案類型，在檔案方格上但是在「解壓縮」方塊外拖放。
 
 #### 使用 FTP
 
@@ -174,4 +174,4 @@ Azure Functions 的程式碼是開放原始碼，儲存於 GitHub 儲存機制�
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 * [Azure Functions︰Azure App Service 團隊部落格上的旅程](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/)。Azure Functions 的開發歷史。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

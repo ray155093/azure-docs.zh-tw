@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/06/2016" 
+	ms.date="05/26/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
@@ -41,7 +41,7 @@ App Service 環境必須一律建立於子網路中，因為子網路可提供�
 - 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。
 - 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。
 - 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。
-- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠 (**注意：**FTP 資料通道可能會在預覽期間變更。)
+- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠   
 - 4016：用於 Visual Studio 2012 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
 - 4018：用於 Visual Studio 2013 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
 - 4020：用於 Visual Studio 2015 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
@@ -149,4 +149,4 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0601_2016-->

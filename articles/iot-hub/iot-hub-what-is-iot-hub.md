@@ -13,7 +13,7 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="04/29/2016"
+ ms.date="06/06/2016"
  ms.author="dobett"/>
 
 # 何謂 Azure IoT 中心？
@@ -70,7 +70,7 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
 -   **可靠的雲端到裝置傳訊 (或「命令」)。** 解決方案後端可以使用 IoT 中樞傳送訊息給個別裝置 (含至少一次的傳遞保證)。每個訊息都有個別的存留時間設定，且後端可以要求傳遞和到期的回條。這可確保雲端到裝置訊息之生命週期的完整可見度。您就可以實作包含在裝置上執行之作業的商務邏輯。
 
-利用 IoT 中樞裡的 IoT 特定功能，您也可以實作其他常見的模式，像是上傳和下載檔案。這些功能包括一致的裝置身分識別管理、連線能力監視和調整。
+-   **將檔案和快取的感應器資料上傳至雲端。** 裝置可以使用 IoT 中樞為您管理的 SAS URI 將檔案上傳至 Azure 儲存體。IoT 中樞可在檔案到達雲端時產生通知，以讓後端處理這些檔案。
 
 ## 閘道
 
@@ -121,4 +121,4 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

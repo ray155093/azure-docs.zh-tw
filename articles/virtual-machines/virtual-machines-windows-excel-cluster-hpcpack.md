@@ -1,6 +1,6 @@
 <properties
  pageTitle="Excel 和 SOA 適用的 HPC Pack 叢集 | Microsoft Azure"
- description="開始使用 Azure 中的 HPC Pack 叢集執行大規模 Excel 和 SOA 工作負載"
+ description="開始在 Azure 中的 HPC Pack 叢集上執行大規模 Excel 和 SOA 工作負載"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="vm-windows"
  ms.workload="big-compute"
- ms.date="02/19/2016"
+ ms.date="05/25/2016"
  ms.author="danlep"/>
 
 # 開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載
@@ -382,4 +382,4 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [endpoint]: ./media/virtual-machines-windows-excel-cluster-hpcpack/endpoint.png
 [udf]: ./media/virtual-machines-windows-excel-cluster-hpcpack/udf.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

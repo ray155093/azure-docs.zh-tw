@@ -11,7 +11,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/02/2016"
+	ms.date="05/31/2016"
 	ms.author="ashmaka"/>
 
 # 何謂 Azure 搜尋服務？
@@ -83,4 +83,4 @@ Azure 搜尋服務會當作端對端解決方案**受到完整管理**，所以�
 
 如果您沒有 Azure 帳戶，您可以免費試用 60 分鐘的工作階段 (不需要註冊)。移至[試用 Azure App Service](http://go.microsoft.com/fwlink/p/?LinkId=618214)並選取 [Web 應用程式]。 然後選取「ASP.NET + Azure 搜尋」範本開始進行。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0601_2016-->

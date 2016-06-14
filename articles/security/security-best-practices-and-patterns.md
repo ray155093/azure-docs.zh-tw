@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/22/2016"
+   ms.date="05/25/2016"
    ms.author="terrylan"/>
 
 # Azure 安全性最佳作法與模式
@@ -34,11 +34,11 @@ Azure 提供安全的平台，您可以在其中建立您的解決方案。我�
 
 我們目前有下列的 Azure 安全性最佳作法和模式文章。請務必定期瀏覽此網站，以查看日益增加的 Azure 安全性最佳作法和模式的清單是否有更新︰
 
-- [Azure 網路安全性最佳作法](../azure-security-network-security-best-practices.md)
+- [Azure 網路安全性最佳作法](azure-security-network-security-best-practices.md)
 - [Azure 資料安全性和加密最佳作法](azure-security-data-encryption-best-practices.md)
 - [身分識別管理和存取控制安全性最佳作法](azure-security-identity-management-best-practices.md)
 - [物聯網安全性最佳作法](azure-security-iot-best-practices.md)
 - [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)
 - [Azure 界限安全性最佳作法](../best-practices-network-security.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

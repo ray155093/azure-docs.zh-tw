@@ -99,7 +99,7 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 
 <!--Article references-->
 [連接到 SQL 資料倉儲]: sql-data-warehouse-develop-connections.md
-[開始使用 Azure Database 稽核]: sql-database-auditing-get-started.md
+[開始使用 Azure Database 稽核]: sql-database-auditing-overview.md
 
 <!--MSDN references-->
 [Azure SQL Database 防火牆]: https://msdn.microsoft.com/library/ee621782.aspx
@@ -113,4 +113,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: http://azure.microsoft.com/documentation/articles/role-based-access-control-configure.aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="TBD"
-   ms.date="02/12/2016"
+   ms.date="05/25/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定 CHAP
@@ -54,6 +54,7 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。它是伺服器用來驗證
 	3. 確認密碼。
 
 4. 按一下 [儲存]。將顯示確認訊息。按一下 [確定] 儲存變更。
+
 #### 在 Windows 主機伺服器上設定單向驗證
 
 1. 在 Windows 主機伺服器上啟動 iSCSI 啟動器。
@@ -157,7 +158,7 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。它是伺服器用來驗證
 
 		![進階設定 - 相互驗證](./media/storsimple-configure-chap/IC740950.png)
 
-	5. 按一下 [確定] 完成 CHAP 設定。
+	5. 按一下 [確定] 以完成 CHAP 設定。
 	 
 如需在 Windows 主機伺服器上設定 CHAP 的詳細資訊，請移至[其他考量](#additional-considerations)。
 
@@ -197,4 +198,4 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。它是伺服器用來驗證
 
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0601_2016-->

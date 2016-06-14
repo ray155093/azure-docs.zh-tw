@@ -3,7 +3,7 @@
 	description="Azure Machine Learning Recommendations - 快速入門手冊"
 	services="cognitive-services"
 	documentationCenter=""
-	authors="luisca"
+	authors="luiscabrer"
 	manager="paulettm"
 	editor="cgronlun"/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/14/2016"
+	ms.date="05/26/2016"
 	ms.author="luisca"/>
 
 # Cognitive Services Recommendations API 的快速入門指南
@@ -129,6 +129,8 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 
 1. 建立模型時，請記下**模型識別碼**，因為當您在生產環境中要求建議時需要用到它。
 
+>  在[這裡](cognitive-services-recommendations-buildtypes.md)了解組建類型，以及如何評估組建的品質。
+
 <a name="Ex1Task4"></a>
 ### 將您的模型放入生產環境中！ ###
 
@@ -166,4 +168,4 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 ### 後續步驟
 如果您已進展至此，恭喜您！ 若要深入了解，您可以瀏覽完整的 [Recommendations API 參考](http://go.microsoft.com/fwlink/?LinkId=759348) 如果您有任何疑問，請隨時與我們連絡：mlapi@microsoft.com
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0601_2016-->

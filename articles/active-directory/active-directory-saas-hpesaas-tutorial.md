@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="05/26/2016"
 	ms.author="jeedes"/>
 
 
@@ -71,17 +71,17 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
 6. 在搜尋方塊中，輸入 **HPE SaaS**。
-	
+
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_01.png)
 
 7. 在結果窗格中，選取 [HPE SaaS]，然後按一下 [完成] 以新增應用程式。
 
-![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_02.png)
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_02.png)
 
 ##  設定並測試 Azure AD 單一登入
 本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 HPE SaaS 搭配運作的 Azure AD 單一登入。
@@ -117,11 +117,9 @@
 	![設定單一登入](./media/active-directory-saas-hpesaas-tutorial/tutorial_hpesaas_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 HPE SaaS 應用程式時所使用的 URL：`https://<tenant name>.saas.hpe.com`
+    a.在 [登入 URL] 文字方塊中，輸入使用者登入您的 HPE SaaS 應用程式時所使用的 URL：**“https://login.saas.hpe.com/msg”**。客戶也可以將它變更為應用程式特定的 URL。
 
-    b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<tenant name>.saas.hpe.com/sp/ACS.saml2`
-
-    c.按 [下一步]。
+    b.按 [下一步]。
 
 
 4. 在 [設定在 HPE SaaS 單一登入] 頁面上，執行下列步驟：
@@ -147,8 +145,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。在 [使用者] 清單中，選取 [Britta Simon]。
+本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -156,7 +153,7 @@
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_09.png)
+![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_09.png)
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
@@ -164,9 +161,11 @@
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_04.png)
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_04.png)
+
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_05.png)
 
@@ -176,7 +175,7 @@
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hpesaas-tutorial/create_aaduser_06.png)
 
@@ -270,4 +269,4 @@
 [204]: ./media/active-directory-saas-hpesaas-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hpesaas-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

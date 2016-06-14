@@ -13,13 +13,13 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/03/2016" 
+   ms.date="05/31/2016" 
    ms.author="rortloff;barbkess;sonyama"/>
 
 # SQL 資料倉儲 - 下層用戶端對稽核和動態資料遮罩的支援
 
 
-[稽核](sql-data-warehouse-auditing-get-started.md)可與支援 TDS 重新導向的 SQL 用戶端搭配使用。
+[稽核](sql-data-warehouse-auditing-overview.md)可與支援 TDS 重新導向的 SQL 用戶端搭配使用。
 
 實作 TDS 7.4 的任何用戶端應該也支援重新導向。例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
 
@@ -38,4 +38,4 @@
 
 **備註：**上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

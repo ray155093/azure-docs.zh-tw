@@ -3,8 +3,8 @@
    description="本文旨在做為熟悉 PowerShell 的作者的快速課程，以了解 PowerShell 和 PowerShell 工作流程的特定差異。"
    services="automation"
    documentationCenter=""
-   authors="bwren"
-   manager="stevenka"
+   authors="mgoedtel"
+   manager="jwhit"
    editor="tysonn" />
 <tags 
    ms.service="automation"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/03/2016"
+   ms.date="05/26/2016"
    ms.author="bwren" />
 
 # 了解 Windows PowerShell 工作流程
@@ -211,7 +211,7 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
 ## 檢查點
 
-*檢查點*是包含變數的目前值和在該點產生的任何輸出的工作流程的目前狀態的快照。如果工作流程結束時發生錯誤，或是[擱置](suspending-a-workflow)，則下次執行時就會從其最後一個檢查點開始，而不是工作流程的開頭開始。您可以使用 **Checkpoint-Workflow** 活動來設定工作流程中的檢查點。
+*檢查點*是包含變數的目前值和在該點產生的任何輸出的工作流程的目前狀態的快照。如果工作流程結束時發生錯誤或是擱置，則下次執行時就會從其最後一個檢查點開始，而不是工作流程的開頭開始。您可以使用 **Checkpoint-Workflow** 活動來設定工作流程中的檢查點。
 
 在下列範例程式碼中，Activity2 之後發生的例外狀況造成工作流程結束。工作流程再次執行時，它會先執行 Activity2，因為這是緊接在設定的最後一個檢查點之後。
 
@@ -240,13 +240,11 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 	}
 
 
-
 如需有關檢查點的詳細資訊，請參閱 [加入檢查點至指令碼工作流程](http://technet.microsoft.com/library/jj574114.aspx)。
 
 
+## 後續步驟
 
-## 相關文章
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md) 
 
-- [開始使用 Windows PowerShell 工作流程](http://technet.microsoft.com/library/jj134242.aspx) 
-
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0601_2016-->

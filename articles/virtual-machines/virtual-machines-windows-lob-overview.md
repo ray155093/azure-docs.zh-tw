@@ -19,8 +19,6 @@
 
 # 在 Azure 中部署高可用性的企業營運應用程式
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 本文包含的逐步指示連結，可在 Azure 基礎結構服務中部署具有 SQL Server Always On 可用性群組之高可用性、內部網路專屬 Web 型企業營運應用程式。應用程式會裝載於這些電腦上：
 
 - 兩部 Web 伺服器
@@ -93,4 +91,4 @@
 
 - 依照[第 1 階段](virtual-machines-windows-ps-lob-ph1.md)指示開始設定此工作負載。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

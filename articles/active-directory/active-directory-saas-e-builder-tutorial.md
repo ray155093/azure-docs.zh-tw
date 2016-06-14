@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="04/06/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 e-Builder 整合
@@ -21,7 +21,7 @@
 -   有效的 Azure 訂閱
 -   e-Builder 租用戶
   
-完成本教學課程之後，您指派給 E-Builder 的 Azure AD 使用者就能夠單一登入您 e-Builder 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+完成本教學課程之後，您指派給 e-Builder 的 Azure AD 使用者就能夠單一登入您 e-Builder 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
 本教學課程中說明的案例由下列建置組塊組成：
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-e-builder-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-e-builder-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -64,7 +64,7 @@
     ![e-Builder](./media/active-directory-saas-e-builder-tutorial/IC777380.png "e-Builder")
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 E-Builder。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 e-Builder。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -72,15 +72,15 @@
 
     ![設定單一登入](./media/active-directory-saas-e-builder-tutorial/IC777381.png "設定單一登入")
 
-2.  在 [要如何讓使用者登入 E-Builder] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  在 [要如何讓使用者登入 e-Builder] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
     ![設定單一登入](./media/active-directory-saas-e-builder-tutorial/IC777382.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [e-Builder 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："https://\<租用戶名稱>.e-Builder.com"，然後按一下 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [e-Builder 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.e-Builder.com*"，然後按一下 [下一步]。
 
     ![設定應用程式 URL](./media/active-directory-saas-e-builder-tutorial/IC777383.png "設定應用程式 URL")
 
-4.  在 [設定在 E-Builder 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後在您的本機電腦上將資料檔儲存為 **c:\\E-BuilderMetaData.xml**。
+4.  在 [設定在 e-Builder 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後在您的本機電腦上將資料檔儲存為 **c:\\e-BuilderMetaData.xml**。
 
     ![設定單一登入](./media/active-directory-saas-e-builder-tutorial/IC777384.png "設定單一登入")
 
@@ -110,4 +110,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0601_2016-->

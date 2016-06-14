@@ -13,18 +13,18 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/23/2016"
+	ms.date="05/31/2016"
 	ms.author="stepsic"/>
 
 # 將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用
 
-雖然 Logic Apps 有一系列 40 餘個各式各樣的連接器，但您可能會想要呼叫自訂的 API 以執行自己的程式碼。是裝載您自己的自訂 Web API，最簡單且最具擴充性的方法之一是使用 App Service。本文說明如何呼叫裝載在 App Service API 應用程式、Web 應用程式或行動應用程式中的任何 Web API。
+雖然邏輯應用程式有一系列 40 餘個各式各樣的連接器，但您可能會想要呼叫自訂的 API 以執行自己的程式碼。是裝載您自己的自訂 Web API，最簡單且最具擴充性的方法之一是使用 App Service。本文說明如何呼叫裝載在 App Service API 應用程式、Web 應用程式或行動應用程式中的任何 Web API。
 
 如需將 API 建置為觸發程序或邏輯應用程式中的動作，請參閱[這篇文章](app-service-logic-create-api-app.md)。
 
 ## 部署 Web 應用程式
 
-首先，您必須將 API 部署為 App Service 中的 Web 應用程式。此處的指示說明的是基本部署：[建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。雖然您可以從邏輯應用程式呼叫任何 API，但是為了取得最佳體驗，我們建議您加入 Swagger 中繼資料，以便輕易地與邏輯應用程式動作整合。您可以在[加入 Swagger](../app-service-api/app-service-api-dotnet-get-started.md/#use-swagger-metadata-and-ui)中取得詳細資訊。
+首先，您必須將 API 部署為 App Service 中的 Web 應用程式。此處的指示說明的是基本部署：[建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。雖然您可以從邏輯應用程式呼叫任何 API，但是為了取得最佳體驗，我們建議您加入 Swagger 中繼資料，以便輕易地與邏輯應用程式動作整合。您可以在[加入 Swagger](../app-service-api/app-service-api-dotnet-get-started.md#use-swagger-api-metadata-and-ui)中取得詳細資訊。
 
 ### API 設定
 
@@ -169,4 +169,4 @@
 
 您仍然必須遵循前述步驟建立邏輯應用程式的應用程式身分識別碼，並用它來呼叫 API。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

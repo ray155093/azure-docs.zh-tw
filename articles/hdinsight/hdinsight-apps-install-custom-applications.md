@@ -14,7 +14,7 @@
    	ms.topic="hero-article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="05/24/2016"
+   	ms.date="06/07/2016"
    	ms.author="jgao"/>
 
 # 安裝自訂 HDInsight 應用程式
@@ -71,6 +71,8 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 
 2. 請依照指示來建立叢集和安裝 Hue。如需建立 HDInsight 叢集的詳細資訊，請參閱[在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
+除了 Azure 入口網站，您也可以使用 [Azure PowerShell](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-powershell) 和 [Azure CLI](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-azure-cli) 來呼叫 ARM 範本。
+
 ## 驗證安裝
 
 您可以在 Azure 入口網站上檢查應用程式狀態以驗證應用程式安裝。此外，您也可以驗證所有如預期般出現的 HTTP 端點及網頁 (如果有的話)︰
@@ -80,13 +82,14 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左側功能表中的 [HDInsight 叢集]。如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
 3. 按一下您已安裝應用程式的叢集。
-4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。您應該會看到 **Hue** 列在 [已安裝的應用程式] 刀鋒視窗中。
-5. 按一下清單中的 **Hue** 以列出相關屬性。  
+4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。您應該會看到 **hue** 列在 [已安裝的應用程式] 刀鋒視窗中。
+5. 按一下清單中的 **hue** 以列出相關屬性。  
 6. 按一下 [網頁] 連結來驗證網站；在瀏覽器中開啟 HTTP 端點以驗證 Hue Web UI，使用 [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md) 或其他 [SSH 用戶端](hdinsight-hadoop-linux-use-ssh-unix.md)開啟 SSH 端點。
  
 ## 安裝疑難排解
 
 您可以從入口網站通知檢查應用程式安裝狀態 (按一下入口網站頂端的鈴鐺圖示)。
+
 
 如果應用程式安裝失敗，您可以從 3 個地方查看錯誤訊息和偵錯資訊︰
 
@@ -106,6 +109,32 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 
     如需詳細資訊，請參閱[疑難排解](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)。
 
+## 移除 HDInsight 應用程式
+
+有幾種方式可以刪除 HDInsight 應用程式。
+
+### 使用入口網站
+
+**使用入口網站移除應用程式**
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 按一下左側功能表中的 [HDInsight 叢集]。如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
+3. 按一下您已安裝應用程式的叢集。
+4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。您應該會看到已安裝的應用程式清單。在此教學課程中，**hue** 列在 [已安裝的應用程式] 刀鋒視窗中。
+5. 以滑鼠右鍵按一下您想要移除的應用程式，然後按一下 [刪除]。
+6. 按一下 [**是**] 以確認。
+
+在入口網站中，您也可以刪除叢集，或刪除包含應用程式的資源群組。
+
+### 使用 Azure PowerShell
+
+使用 Azure PowerShell，您就可以刪除叢集或刪除資源群組。請參閱[使用 Azure PowerShell 刪除叢集](hdinsight-administer-use-powershell.md#delete-clusters)。
+
+### 使用 Azure CLI
+
+使用 Azure CLI，您就可以刪除叢集或刪除資源群組。請參閱[使用 Azure CLI 刪除叢集](hdinsight-administer-use-command-line.md#delete-clusters)。
+
+
 ## 後續步驟
 
 - [MSDN：安裝 HDInsight 應用程式](https://msdn.microsoft.com/library/mt706515.aspx)︰了解如何開發 ARM 範本以供部署 HDInsight 應用程式。
@@ -113,4 +142,4 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 - [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 - [使用 ARM 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 ARM 範本來建立 HDInsight 叢集。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

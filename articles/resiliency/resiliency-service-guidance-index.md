@@ -23,18 +23,19 @@ Microsoft Azure 的設計目的是要提供您所需的資源 (需要時)。作�
 下列的災害復原指引連結可以提供您所需的資訊，以便在您受到 Azure 服務中斷影響時，協助您快速讓應用程式恢復上線。建立這些連結的目的是要協助您回答這個問題，「我正受到 Azure 服務中斷的影響，我該怎麼辦？」
 
 ##設計指引
-以下的設計指引連結為設計和架構指引，其建立目的是要協助您了解如何以能夠充分發揮您的應用程式執行時間的方式，來使用每個 Azure 服務。建立這些連結的目的是要協助您回答這個問題，「我如何確定錯誤、硬體故障、服務中斷或其他故障不會影響我的應用程式整體的可用性？」
+以下的設計指引連結為設計和架構指引，其建立目的是要協助您了解如何以能夠充分發揮您的應用程式執行時間的方式，來使用每個 Azure 服務。建立這些連結的目的是要協助您回答這個問題，「我如何確定錯誤、硬體故障、服務中斷或其他故障不會影響我的應用程式整體的可用性？」 如果沒有適用於您目前正在尋找之服務的專用指引，則[建置在 Microsoft Azure 上之應用程式的高可用性](./resiliency-high-availability-azure-applications.md)一文可能含有其他可協助您進行設計的資訊。
 
 ##服務指引
 | 服務 | 災害復原指引 | 設計指引 |
 |:---------|:--------------------------:|:------------------:|
-| [雲端服務](https://azure.microsoft.com/services/cloud-services/ "Azure 雲端服務") | [link](../cloud-services/cloud-services-disaster-recovery-guidance.md "Azure 雲端服務災害復原指引") | 敬請期待 |
-| [金鑰保存庫](https://azure.microsoft.com/services/key-vault/ "Azure 金鑰保存庫") | [link](../key-vault/key-vault-disaster-recovery-guidance.md "Azure 金鑰保存庫災害復原指引") | 敬請期待 |
-| [儲存體](https://azure.microsoft.com/services/storage/ "Azure 儲存體") | [link](../storage/storage-disaster-recovery-guidance.md "Azure 儲存體災害復原指引") | 敬請期待 |
+| [雲端服務](https://azure.microsoft.com/services/cloud-services/ "Azure 雲端服務") | [link](../cloud-services/cloud-services-disaster-recovery-guidance.md "Azure 雲端服務災害復原指引") | 無法使用 |
+| [金鑰保存庫](https://azure.microsoft.com/services/key-vault/ "Azure 金鑰保存庫") | [link](../key-vault/key-vault-disaster-recovery-guidance.md "Azure 金鑰保存庫災害復原指引") | 無法使用 |
+| [儲存體](https://azure.microsoft.com/services/storage/ "Azure 儲存體") | [link](../storage/storage-disaster-recovery-guidance.md "Azure 儲存體災害復原指引") | 無法使用 |
 | [SQL Database](https://azure.microsoft.com/services/sql-database/ "Azure SQL Database") | [link](../sql-database/sql-database-disaster-recovery.md "Azure SQL Database 災害復原指引") | [link](../sql-database/sql-database-business-continuity-design.md "Azure SQL Database 設計指引") |
-| [虛擬機器](https://azure.microsoft.com/services/virtual-machines/ "Azure 虛擬機器") | [link](../virtual-machines/virtual-machines-disaster-recovery-guidance.md "Azure 虛擬機器災害復原指引") | 敬請期待 |
+| [虛擬機器](https://azure.microsoft.com/services/virtual-machines/ "Azure 虛擬機器") | [link](../virtual-machines/virtual-machines-disaster-recovery-guidance.md "Azure 虛擬機器災害復原指引") | 無法使用 |
+| [虛擬網路](https://azure.microsoft.com/services/virtual-network/ "Azure 虛擬網路") | [link](../virtual-network/virtual-network-disaster-recovery-guidance.md "Azure 虛擬網路災害復原指引") | 無法使用 |
 
 ##後續步驟
-如果您要尋找著重在更廣泛的系統與解決方案的指引，請參閱[建置在 Microsoft Azure 上之應用程式的災害復原和高可用性](https://aka.ms/drtechguide)。
+如果您正在尋找著重在更廣泛的系統與解決方案的指引，請參閱[建置在 Microsoft Azure 上之應用程式的災害復原和高可用性](https://aka.ms/drtechguide)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

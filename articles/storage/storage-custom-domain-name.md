@@ -1,6 +1,6 @@
 <properties
 	pageTitle="針對 Blob 儲存體端點設定網域名稱 | Microsoft Azure"
-	description="了解如何將自訂使用者網域對應至 Azure 儲存體帳戶的 Blob 儲存體端點。"
+	description="了解如何在「Azure 傳統入口網站」中，將自訂使用者網域對應至 Azure 儲存體帳戶的 Blob 儲存體端點。"
 	services="storage"
 	documentationCenter=""
 	authors="tamram"
@@ -22,9 +22,6 @@
 ## 概觀
 
 您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 Blob 資料。Blob 儲存體的預設端點是 https://<*mystorageaccount*>.blob.core.windows.net。如果您將自訂網域和子網域 (如 **www.contoso.com**) 對應至儲存體帳戶的 Blob 端點，使用者也能使用該網域存取儲存體帳戶中的 Blob 資料。
-
-
-> [AZURE.NOTE]	此工作的程序適用於 Azure 儲存體帳戶。若是雲端服務，請參閱<a href = "/develop/net/common-tasks/custom-dns/">設定 Azure 雲端服務的自訂網域名稱</a>；若是網站，請參閱<a href="/develop/net/common-tasks/custom-dns-web-site/">設定 Azure App Service 的自訂網域名稱</a>。
 
 將自訂網域指向儲存體帳戶之 Blob 端點的方法有兩種。最簡單的方法是建立 CNAME 記錄，以將自訂網域和子網域對應至 Blob 端點。CNAME 記錄是將來源網域對應至目的地網域的 DNS 功能。在這種情況下，來源網域是您的自訂網域和子網域 (請注意，子網域一律是必要的項目)。目的地網域是 Blob 服務端點。
 
@@ -112,8 +109,23 @@ asverify 子網域是 Azure 認可的特殊子網域。在自己的子網域前�
 
 -   http://photos.contoso.com/myforms/applicationform.htm
 
+## 將自訂網域從您的儲存體帳戶中取消註冊
+
+若要將自訂網域取消註冊，請依照下列步驟︰
+
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。 
+
+2. 在導覽窗格中，按一下 [儲存體]。
+
+3. 在「儲存體」頁面上，按一下儲存體帳戶名稱以顯示儀表板。
+
+5. 在功能區上，按一下 [管理網域]。
+
+6. 在 [管理自訂網域] 對話方塊中，按一下 [取消註冊]。
+
+
 ## 其他資源
 
 -   [如何將自訂網域對應至內容傳遞網路 (CDN) 端點](../cdn/cdn-map-content-to-custom-domain.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

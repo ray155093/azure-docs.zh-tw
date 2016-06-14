@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/26/2016"
+   ms.date="06/01/2016"
    ms.author="cherylmc"/>
 
 
@@ -103,7 +103,7 @@ ExpressRoute 不能設定為傳輸路由器。您必須依賴連線提供者的�
 
 **注意︰**公告預設路由會中斷 Windows 和其他 VM 授權啟用。請依照[這裡](http://blogs.msdn.com/b/mast/archive/2015/05/20/use-azure-custom-routes-to-enable-kms-activation-with-forced-tunneling.aspx)的指示來解決這個問題。
 
-## BGP 社群支援
+## BGP 社群支援 (預覽)
 
 
 本節提供 BGP 社群如何搭配 ExpressRoute 使用的概觀。Microsoft 將會公告公用和 Microsoft 對等互連路徑中的路由並為路由標記適當的社群值。這麼做的基本原理和社群值的詳細資料如下所述。不過，Microsoft 不接受任何標記至向 Microsoft 公告之路由的社群值。
@@ -173,4 +173,4 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 	- [設定傳統部署模型的路由](expressroute-howto-routing-classic.md)或[設定 Resource Manager 部署模型的路由](expressroute-howto-routing-arm.md)
 	- [將傳統 VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)或[將 Resource Manager VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

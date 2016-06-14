@@ -19,8 +19,6 @@
 
 # Resource Manager 模式中的 Azure CLI 命令
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](../virtual-machines-command-line-tools.md)。
-
 本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
 
 若要開始，首先[安裝 Azure CLI](../xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
@@ -29,7 +27,7 @@
 
 選用參數會以方括弧括住 (例如，`[parameter]`)。其他所有參數皆為必要參數。
 
-除了本文所述的命令特定選用參數，還有三個選用參數可用來顯示詳細輸出，例如要求選項和狀態碼。`-v` 參數提供詳細資訊輸出，而 `-vv` 參數提供更詳細的詳細資訊輸出。`--json` 選項將以原始 JSON 格式輸出結果。
+除了本文所述的命令特定選用參數，還有三個選用參數可用來顯示詳細輸出，例如要求選項和狀態碼。`-v` 參數提供詳細資訊輸出，而 `-vv` 參數提供更詳細的詳細資訊輸出。`--json` 選項將以原始 json 格式輸出結果。
 
 ## 設定 Resource Manager 模式
 
@@ -1798,7 +1796,7 @@
 
     vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password
     
->[AZURE.TIP]從 CLI 0.10 版開始，對於某些受歡迎的 Marketplace 映像，您可以在 `image-urn` 中提供簡短的別名，例如 "UbuntuLTS" 或 "Win2012R2Datacenter"。執行 `azure help vm quick-create` 以取得選項。此外，從 0.10 版開始，`azure vm quick-create` 依預設會使用進階儲存體 (如果在所選區域中可用)。
+>[AZURE.TIP]從 CLI 0.10 版開始，對於某些受歡迎的 Marketplace 映像，您可以在 `image-urn` 中提供簡短的別名，例如 "UbuntuLTS" 或 "Win2012R2Datacenter"。執行 `azure help vm quick-create` 以取得選項。此外，從 0.10 版開始，`azure vm quick-create` 依預設會使用進階儲存體 (如果可在所選區域中使用)。
 
 **列出帳戶內的虛擬機器**
 
@@ -1874,4 +1872,4 @@
 	vm image list-skus [options] <location> <publisher> <offer>
 	vm image list [options] <location> <publisher> [offer] [sku]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

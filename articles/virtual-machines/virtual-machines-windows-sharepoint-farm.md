@@ -19,11 +19,9 @@
 
 # 建立 SharePoint 伺服器陣列
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統模型。
-
 透過 Microsoft Azure 入口網站的 Marketplace，您可以快速建立預先設定的 SharePoint Server 2013 伺服器陣列。當您在開發和測試環境中需要基本或高可用性 SharePoint 伺服器陣列時，或是您要評估將 SharePoint Server 2013 做為組織的共同作業方案時，這將可為您省下許多時間。
 
-> [AZURE.NOTE] Azure 入口網站的 Azure Marketplace 中的 **SharePoint 伺服器陣列**項目已移除。已由 **SharePoint 2013 non-HA Farm** 及 **SharePoint 2013 HA Farm** 項目取代。
+> [AZURE.NOTE] Azure 入口網站的 Azure Marketplace 中的 **SharePoint 伺服器陣列**項目已移除。已由「SharePoint 2013 非 HA 伺服器陣列」和「SharePoint 2013 HA 伺服器陣列」項目將其取代。
 
 基本的 SharePoint 伺服器陣列由這個組態中的三部虛擬機器所組成。
 
@@ -36,7 +34,7 @@
 1. 按一下 [[這裡](https://azure.microsoft.com/marketplace/partners/sharepoint2013/sharepoint2013farmsharepoint2013-nonha/)]。
 2. 按一下 [**部署**]。
 3. 在 [**SharePoint 2013 非 HA 伺服器陣列**] 窗格中，按一下 [**建立**]。
-4. 在 [建立 SharePoint 2013 非 HA 伺服器陣列] 窗格中，指定七個步驟的設定，然後按一下 [建立]。
+4. 在 [建立 SharePoint 2013 非 HA 伺服器陣列] 窗格的七個步驟中指定設定，然後按一下 [建立]。
 
 高可用性 SharePoint 伺服器陣列由下列組態中的九個虛擬機器組成。
 
@@ -49,9 +47,9 @@
 1. 按一下 [[這裡](https://azure.microsoft.com/marketplace/partners/sharepoint2013/sharepoint2013farmsharepoint2013-ha/)]。
 2. 按一下 [**部署**]。
 3. 在 [**SharePoint 2013 HA 伺服器陣列**] 窗格中，按一下 [**建立**]。
-4. 在 [建立 SharePoint 2013 HA 伺服器陣列] 窗格中，指定七個步驟的設定，然後按一下 [建立]。
+4. 在 [建立 SharePoint 2013 HA 伺服器陣列] 窗格的七個步驟中指定設定，然後按一下 [建立]。
 
-> [AZURE.NOTE] 您無法使用 Azure 免費試用版建立 **SharePoint 2013 非 HA 伺服器陣列**或 **SharePoint 2013 HA 伺服器陣列**。
+> [AZURE.NOTE] 您無法使用「Azure 免費試用版」來建立「SharePoint 2013 非 HA 伺服器陣列」或「SharePoint 2013 HA 伺服器陣列」。
 
 Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬網路中，同時建立這兩種伺服器陣列。沒有任何站對站 VPN 或 ExpressRoute 連線會連回您的組織網路。
 
@@ -61,10 +59,10 @@ Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬�
 
 在「管理中心 SharePoint」網站中，您可以設定「我的網站」、SharePoint 應用程式和其他功能。如需詳細資訊，請參閱[設定 SharePoint 2013](http://technet.microsoft.com/library/ee836142.aspx)。
 
-> [AZURE.NOTE] 使用 [SharePoint Server 2016 試用版映像](https://azure.microsoft.com/blog/test-sharepoint-server-2016/)，您可以建立執行 SharePoint Server 2016 的虛擬機器。
+> [AZURE.NOTE] 使用 [SharePoint Server 2016 試用版映像](https://azure.microsoft.com/blog/test-sharepoint-server-2016/)時，您可以建立執行 SharePoint Server 2016 的虛擬機器。
 
 ## 後續步驟
 
-- 探索 Azure 基礎結構服務中其他的 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 組態。
+- 探索 Azure 基礎結構服務中的其他 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 組態。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

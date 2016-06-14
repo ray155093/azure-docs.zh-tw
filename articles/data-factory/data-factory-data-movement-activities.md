@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/11/2016" 
+	ms.date="05/31/2016" 
 	ms.author="spelluru"/>
 
 # 資料移動活動
@@ -44,12 +44,12 @@
 
 | 來源| 接收 |
 |:------- | :---- |
-| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL 資料庫](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li></ul> |
+| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[Oracle 資料庫內部部署/Azure IaaS](data-factory-onprem-oracle-connector.md)</li></ul> |
 
 
 > [AZURE.NOTE] 您只可在 Azure DocumentDB 和其他 Azure 服務 (例如 Azure Blob、Azure 資料表、Azure SQL Database、Azure SQL 資料倉儲、Azure DocumentDB 和 Azure 資料湖存放區) 之間來回移動。短期內也會支援 Azure Document DB 的完整矩陣。
 
-如果您需要以**複製活動**不支援的資料存放區為目標來回移動資料，可以在 Data Factory 中使用**自訂活動**並搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
+如果您需要將資料移至**複製活動**不支援的資料存放區，或從該資料存放區移動資料，則您可以在 Data Factory 中使用**自訂活動**搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
 
 ## 教學課程
 如需使用複製活動的快速教學課程，請參閱[教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-get-started.md)。在教學課程中，您會使用複製活動將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。
@@ -62,13 +62,13 @@
 ### <a name="global"></a>全域可用的資料移動
 即使 Azure Data Factory 本身只能在美國西部、美國東部和北歐地區使用，但是服務支援的複製活動可供下列區域和地理位置全域使用。全域可用性的拓撲可確保有效資料移動，避免大部分情況下的跨區域躍點。
 
-在複製作業中，**資料管理閘道器**或 **Azure Data Factory** 會根據來源的位置和目的地資料存放區執行資料移動。請參閱下表以取得詳細資料：
+在複製作業中，**資料管理閘道**或 **Azure Data Factory** 會根據來源的位置和目的地資料存放區執行資料移動。請參閱下表以取得詳細資料：
 
 來源資料存放區位置 | 目的地資料存放區位置 | 資料移動的執行者  
 -------------------------- | ------------------------------- | ----------------------------- 
-內部部署/Azure VM (IaaS) | 雲端 | 內部部署電腦/Azure VM 上的**資料管理閘道器**。資料不流經雲端服務。<br/><br/>注意：資料管理閘道器可位於資料存放區所處的內部部署電腦/Azure VM，也可以位於另一個內部部署電腦/Azure VM，只要它可連接至這兩個資料存放區即可。
+內部部署/Azure VM (IaaS) | 雲端 | 內部部署電腦/Azure VM 上的**資料管理閘道**。資料不流經雲端服務。<br/><br/>注意：資料管理閘道可位於資料存放區所處的內部部署電腦/Azure VM，也可以位於另一個內部部署電腦/Azure VM，只要它可連接至這兩個資料存放區即可。
 雲端 | 內部部署/Azure VM (IaaS) | 同上。 
-內部部署/Azure VM (IaaS) | 內部部署/Azure VM | 與來源相關聯的**資料管理閘道器**。資料不流經雲端服務。請參閱上面的注意事項。   
+內部部署/Azure VM (IaaS) | 內部部署/Azure VM | **與來源相關聯的資料管理閘道**。資料不流經雲端服務。請參閱上面的注意事項。   
 雲端 | 雲端 | **支援複製活動的雲端服務**。Azure Data Factory 會在最接近相同地理位置之接收位置的區域中使用此服務部署。請參閱下表以了解對應：<br/><br/><table><tr><th>目的地資料存放區的區域</th> <th>用於資料移動的區域</th></tr><tr><td>美國東部</td><td>美國東部</td></tr><tr><td>美國東部 2</td><td>美國東部 2</td><tr/><tr><td>美國中部</td><td>美國中部</td><tr/><tr><td>美國西部</td><td>美國西部</td></tr><tr><td>美國中北部</td><td>美國中北部</td></tr><tr><td>美國中南部</td><td>美國中南部</td></tr><tr><td>北歐</td><td>北歐</td></tr><tr><td>西歐</td><td>西歐</td></tr><tr><td>東南亞</td><td>東南亞</td></tr><tr><td>東亞</td><td>東南亞</td></tr><tr><td>日本東部</td><td>日本東部</td></tr><tr><td>日本西部</td><td>日本東部</td></tr><tr><td>巴西南部</td><td>巴西南部</td></tr><tr><td>澳大利亞東部</td><td>澳大利亞東部</td></tr><tr><td>澳大利亞東南部</td><td>澳大利亞東南部</td></tr></table>
 
 
@@ -195,4 +195,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -59,6 +59,7 @@ Web 應用程式必須在 [進階] 模式中執行，您才能為 Web 應用程�
 - 不會複製簡單驗證設定
 - 不會複製 Kudu 延伸模組
 - 不會複製 TiP 規則
+- 不會複製資料庫內容
 
 
 ### 參考 ###
@@ -72,4 +73,4 @@ Web 應用程式必須在 [進階] 模式中執行，您才能為 Web 應用程�
 [1]: ./media/app-service-web-app-cloning-portal/CloningBlade.png
 [2]: ./media/app-service-web-app-cloning-portal/CloneSettings.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0601_2016-->

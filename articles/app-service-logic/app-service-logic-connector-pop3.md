@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/10/2016"
+   ms.date="05/31/2016"
    ms.author="sameerch"/>
 
 
 # 開始使用 POP3 連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
 連接到 POP3 伺服器擷取電子郵件，包括帶有附件的電子郵件。
 
@@ -32,19 +32,19 @@
 2.	在 [全部內容] 下搜尋「POP3 連接器」。
 3.	設定 POP3 連接器，如下所示：
 
-	![][1] 
-	- **位置** - 選擇您要部署連接器的地理位置 
-	- **訂用帳戶** - 選擇您要在其中建立此連接器的訂用帳戶 
-	- **資源群組** - 選取或建立連接器所在的資源群組 
-	- **Web 主控方案** - 選取或建立 Web 主控方案 
-	- **定價層** - 選擇用於連接器的定價層 
-	- **名稱** - 提供 POP3 連接器的名稱 
-	- **封裝設定** 
-		- **使用者名稱** 指定用來連線到 POP3 伺服器的使用者名稱 
-		- **密碼** 指定用來連線到 POP3 伺服器的密碼 
-		- **伺服器位址** 指定 POP3 伺服器名稱或 IP 位址 
-		- **伺服器連接埠** 指定 POP3 伺服器連接埠號碼 
-		- **啟用 SSL** 指定 true 以透過 SSL/TLS 安全通道使用 POP3
+	![][1]
+	- **位置** - 選擇您要部署連接器的地理位置
+	- **訂閱** - 選擇您要建立此連接器的訂閱
+	- **資源群組** - 選取或建立連接器所在的資源群組
+	- **Web 裝載方**案 - 選取或建立 Web 裝載方案
+	- **定價層** - 選擇連接器的定價層
+	- **名稱** - 提供 POP3 連接器的名稱
+	- **套裝設定**
+		- **使用者名稱** - 指定要連接到 POP3 伺服器的使用者名稱
+		- **密碼** - 指定要連接到 POP3 伺服器的密碼
+		- **伺服器位址** - 指定 POP3 伺服器名稱或 IP 位址
+		- **伺服器連接埠** - 指定 POP3 伺服器連接埠號碼
+		- **啟用 SSL**：指定 true 以透過 SSL/TLS 安全通道使用 POP3
 4.	按一下 [建立]。將建立新的 POP3 連接器。
 5.	建立 API 應用程式執行個體後，您可以在相同的資源群組中建立邏輯應用程式，以便使用 POP3 連接器。
 
@@ -57,7 +57,7 @@
 2.	開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，並設定您的流程。
 
 	![][3]
-3.	POP3 接器就會出現在右側程式庫中的 [此資源群組中的 API 應用程式] 區段。選取該項目。
+3.	POP3 連接器就會出現在右側資源庫中的 [此資源群組中的 API 應用程式] 區段。選取該項目。
 
 	![][4]
 4.	您可以在 [POP3 連接器] 上按一下來將 POP3 連接器 API 應用程式置入編輯器。
@@ -69,9 +69,9 @@
 	![][6]
 
 ## 進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是邏輯應用程式？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -86,4 +86,4 @@
 [5]: ./media/app-service-logic-connector-pop3/img5.PNG
 [6]: ./media/app-service-logic-connector-pop3/img6.PNG
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

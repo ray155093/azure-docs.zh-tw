@@ -23,8 +23,6 @@
 
 [AZURE.INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 [AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 收集稽核記錄檔
@@ -39,40 +37,40 @@
 
 [AZURE.INCLUDE [virtual-machines-windows-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-table.md)]
 
-**Y：**如果作業系統是一般化的 Windows，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣的，如果作業系統是特殊化的 Windows，且帶著特殊化設定被上傳及/或擷取，則不會有任何錯誤。
+**Y：**如果作業系統是一般化的 Windows，且上傳和 (或) 擷取它時使用的是一般化設定，就不會有任何錯誤。同樣地，如果作業系統是特殊化的 Windows，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
 
 **上傳錯誤：**
 
-**N<sup>1</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被上傳，就會發生佈建逾時錯誤，VM 會卡在 OOBE 畫面。
+**N<sup>1</sup>：**如果作業系統是一般化的 Windows，但是上傳它時是以特殊化形式上傳，就會發生佈建逾時錯誤，VM 會卡在 OOBE 畫面。
 
-**N<sup>2</sup>：**如果作業系統是特殊化的 Windows，但是以一般化被上傳，就會發生佈建失敗錯誤，VM 會卡在 OOBE 畫面，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
+**N<sup>2</sup>：**如果作業系統是特殊化的 Windows，但是上傳它時是以一般化形式上傳，就會發生佈建失敗錯誤，VM 會卡在 OOBE 畫面，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
 
 **解決方案**
 
-若要解決這兩個錯誤，使用[Add-AzureRMVhd](https://msdn.microsoft.com/library/mt603554.aspx) 上傳原始 VHD、可用的內部部署、以及與該作業系統 (一般化/特殊化) 相同的設定。若要以一般化上傳，請務必先執行 sysprep。
+若要解決這兩個錯誤，請使用 [Add-AzureRMVhd](https://msdn.microsoft.com/library/mt603554.aspx) 搭配與作業系統相同的設定 (一般化/特殊化) 來上傳原始 VHD (可從內部部署環境取得)。若要以一般化形式上傳，請務必先執行 sysprep。
 
 **擷取錯誤：**
 
-**N<sup>3</sup>：**如果作業系統是一般化的 Windows，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
+**N<sup>3</sup>：**如果作業系統是一般化的 Windows，但是擷取它時是以特殊化形式擷取，就會發生佈建逾時錯誤，因為原始 VM 會因被標示為一般化而無法供使用。
 
-**N<sup>4</sup>：**如果作業系統是特殊化的 Windows，但是以一般化被擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會被標示為特殊化而無法加以使用。
+**N<sup>4</sup>：**如果作業系統是特殊化的 Windows，但是擷取它時是以一般化形式擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會因被標示為特殊化而無法供使用。
 
 **解決方案**
 
-若要解決這兩個錯誤，請刪除入口網站中目前的映像，[從目前的 VHD 重新擷取映像](virtual-machines-windows-capture-image.md)，此映像將帶有與該 OS (一般化/特殊化) 相同的設定。
+若要解決這兩個錯誤，請從入口網站中刪除目前的映像，然後使用與作業系統相同的設定 (一般化/特殊化) [從目前的 VHD 重新擷取映像](virtual-machines-windows-capture-image.md)。
 
 ## 問題︰自訂/資源庫/Marketplace 映像；配置失敗
 當新的 VM 要求被釘選到不支援所要求的 VM 大小、或沒有可用空間可處理要求的叢集，便會發生此錯誤。
 
-**原因 1：**叢集不支援要求的 VM 大小。
+**原因 1：**叢集無法支援要求的 VM 大小。
 
 **解決方式 1：**
 
 - 以較小的 VM 大小重試要求。
 - 如果無法變更要求的 VM 的大小︰
-  - 停止可用性設定組中的所有 VM。按一下 [資源群組] > [您的資源群組] > [資源] > [您的可用性設定組] > [虛擬機器] > [您的虛擬機器] > [停止]。
+  - 停止可用性設定組中的所有 VM。按一下 [資源群組] >「您的資源群組」 > [資源] >「您的可用性設定組」 > [虛擬機器] >「您的虛擬機器」 > [停止]。
   - 所有 VM 都停止後，建立所需大小的新 VM。
-  - 先啟動新 VM，選取每個已停止的 VM，然後按一下 [開始]。
+  - 先啟動新 VM，然後選取每個已停止的 VM 並按一下 [啟動]。
 
 **原因 2：**叢集沒有可用的資源。
 
@@ -83,4 +81,4 @@
   - 在不同的可用性設定組 (位於相同區域) 中建立新的 VM。
   - 將新的 VM 加入相同的虛擬網路。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

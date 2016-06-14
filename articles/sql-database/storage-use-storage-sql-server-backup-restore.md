@@ -1,75 +1,83 @@
 <properties
 	pageTitle="如何使用 Azure 儲存體進行 SQL Server 備份與還原 | Microsoft Azure"
-	description="將 SQL Server 和 SQL Database 備份到 Azure 儲存體。說明將 SQL 資料庫備份到 Azure 儲存體的優點，以及需要哪些 SQL Server 和 Azure 儲存體元件"
-	services="sql-database, virtual-machines"
+	description="了解如何將 SQL Server 備份到「Azure 儲存體」。說明將 SQL 資料庫備份到「Azure 儲存體」的好處。"
+	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="carlrabeler"
-	manager="jeffreyg"
-	editor="tysonn"/>
+	authors="rothja"
+	manager="jhubbard"
+	tags="azure-service-management"/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="vm-windows-sql-server"
+	ms.service="virtual-machines-windows"
+	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
-	ms.author="carlrab"/>
+	ms.tgt_pltfrm="vm-windows-sql-server"
+	ms.workload="infrastructure-services"
+	ms.date="05/26/2016"
+	ms.author="jroth"/>
 
 
 
-# 如何使用 Azure 儲存體進行 SQL Server 備份與還原
+# 使用 Azure 儲存體進行 SQL Server 備份與還原
 
 ## 概觀
 
-在 SQL Server 2012 SP1 CU2 中發表了能夠將 SQL Server 備份寫入 Azure Blob 儲存體服務的功能。您可以使用此功能，搭配內部部署 SQL Server 資料庫或 Azure 虛擬機器中的 SQL Server 資料庫，從 Azure Blob 服務備份或還原。備份至雲端提供的好處包括可用性、無限制的地理區域備援異地儲存體，以及輕鬆地與雲端之間來回移轉資料。您可以使用 Transact-SQL 或 SMO 發出 BACKUP 或 RESTORE 陳述式。此外，當資料庫檔案儲存在 Azure Blob 且您使用 SQL Server 2016 時，您可以使用[檔案快照集備份](http://msdn.microsoft.com/library/mt169363.aspx)執行幾乎即時的備份與非常快速的還原。
+從 SQL Server 2012 SP1 CU2 開始，您現在已可以將 SQL Server 備份直接寫入 Azure Blob 儲存體服務中。您可以使用此功能，搭配內部部署 SQL Server 資料庫或 Azure 虛擬機器中的 SQL Server 資料庫，從 Azure Blob 服務備份或還原。備份至雲端提供的好處包括可用性、無限制的地理區域備援異地儲存體，以及輕鬆地與雲端之間來回移轉資料。您可以使用 Transact-SQL 或 SMO 發出 BACKUP 或 RESTORE 陳述式。
+
+SQL Server 2016 導入了新功能；您可以使用[檔案快照集備份](http://msdn.microsoft.com/library/mt169363.aspx)來執行幾乎即時的備份與非常快速的還原。
+
+本主題說明為何您可能選擇使用 Azure 儲存體來進行 SQL 備份，然後說明相關的元件。您可以使用本文章結尾所提供的資源來存取逐步解說和其他資訊，以開始搭配 SQL Server 備份來使用此服務。
 
 ## 使用 Azure Blob 服務進行 SQL Server 備份的好處
 
-儲存體管理、儲存體故障的風險、異地儲存體的存取，以及設定裝置等，是一些一般性的備份挑戰。這些挑戰存在於內部部署資料庫執行個體和 Azure 虛擬機器資料庫執行個體。以下列出使用 Azure Blob 儲存體服務的儲存體進行 SQL Server 備份的部分重要好處：
+備份 SQL Server 時，您會面臨數個挑戰。這些挑戰包括儲存體管理、儲存體故障風險、異地儲存體存取以及硬體組態。這些挑戰當中有許多都是透過使用 Azure Blob 存放區服務進行 SQL Server 備份來因應。請考量下列好處：
 
-* 有彈性、可靠且無限制的異地儲存體：將您的備份存放在 Azure Blob 上可能是方便、有彈性而且容易存取的異地選項。為您的 SQL Server 備份建立異地儲存體只需要修改現有的指令碼/工作以使用 **BACKUP TO URL** 語法。異地儲存體應該通常要離生產資料庫位置夠遠，以避免單一災害同時影響異地和生產資料庫位置。藉由選擇[異地複寫 Azure Blob](../storage/storage-redundancy.md)，在發生可能影響整個區域的災害時，您會有額外的一層保護。 
-* 備份封存：Azure Blob 儲存體服務提供比常用的磁帶選項更好的替代選項來封存備份。磁帶儲存體可能需要實體運輸到異地設施，以及保護媒體的措施。將備份存放在 Azure Blob 儲存體提供了立即、高度可用且持久的封存選項。
-* 沒有硬體管理的額外負荷：Azure 服務沒有硬體管理的額外負荷。Azure 服務會管理硬體，並提供地埋區域備援複寫，以提供備援及硬體故障的防護。
-* 目前對於在 Azure 虛擬機器中執行的 SQL Server 執行個體，可以藉由建立連結的磁碟來備份至 Azure Blob 儲存體服務。不過，您可以連結到 Azure 虛擬機器以進行備份的磁碟數是有限制的。超大型執行個體的限制為 16 個磁碟，較小的執行個體則更少。藉由啟用到 Azure Blob 的直接備份，您可以存取幾乎不受限制的儲存體。
-* 存放在 Azure Blob 的備份檔，可以讓內部部署 SQL Server 或在 Azure 虛擬機器中執行的另一個 SQL Server 隨時隨地輕易存取以進行還原，而不需要資料庫連結/中斷連結或下載並連結 VHD。
-* 成本效益：只需為使用的服務付費。可以作為具成本效益的異地及備份封存選項。如需詳細資訊，請參閱 [Azure 價格計算機](http://go.microsoft.com/fwlink/?LinkId=277060 "定價計算機")和 [Azure 價格文章](http://go.microsoft.com/fwlink/?LinkId=277059 "定價文章")。
-* 利用儲存體快照集：當資料庫檔案儲存在 Azure Blob 且您使用 SQL Server 2016 時，您可以使用[檔案快照集備份](http://msdn.microsoft.com/library/mt169363.aspx)執行幾乎即時的備份與非常快速的還原。
+- **容易使用**：將您的備份存放在 Azure Blob 中可以是一個既方便、有彈性又容易存取的異地選項。為您的 SQL Server 備份建立異地儲存體相當簡單，只需將現有的指令碼/工作修改成使用 **BACKUP TO URL** 語法即可。異地儲存體應該通常要離生產資料庫位置夠遠，以避免單一災害同時影響異地和生產資料庫位置。藉由選擇[異地複寫 Azure Blob](../storage/storage-redundancy.md)，在發生可能影響整個區域的災害時，您會有額外的一層保護。
+- **備份封存**：「Azure Blob 儲存體」服務提供比常用的磁帶選項更好的替代方案來封存備份。磁帶儲存體可能需要實體運輸到異地設施，以及保護媒體的措施。將備份存放在 Azure Blob 儲存體提供了立即、高度可用且持久的封存選項。 
+- **受管理的硬體**：使用 Azure 服務時，沒有硬體管理的額外負荷。Azure 服務會管理硬體，並提供地埋區域備援複寫，以提供備援及硬體故障的防護。
+- **無限制的儲存體**：藉由啟用直接備份到 Azure Blob 的功能，您可以存取幾乎無限制的儲存體。或者，您也可以選擇備份到 Azure 虛擬機器磁碟，所受的限制會取決於機器大小。您可以連結到 Azure 虛擬機器以進行備份的磁碟數是有限制的。超大型執行個體的限制為 16 個磁碟，較小的執行個體則更少。 
+- **備份可用性**：存放在 Azure Blob 中的備份可供隨時隨地使用，並且可供輕鬆存取來還原到內部部署的 SQL Server 或在「Azure 虛擬機器」中執行的另一個 SQL Server，而不需要進行資料庫連結/中斷連結或是下載並連結 VHD。
+- **成本**：只需針對使用的服務付費。可以作為具成本效益的異地及備份封存選項。如需詳細資訊，請參閱 [Azure 價格計算機](http://go.microsoft.com/fwlink/?LinkId=277060 "定價計算機")和 [Azure 價格文章](http://go.microsoft.com/fwlink/?LinkId=277059 "定價文章")。
+- **儲存體快照集**：當資料庫檔案是存放在 Azure Blob 中且您使用的是 SQL Server 2016 時，您可以使用[檔案快照集備份](http://msdn.microsoft.com/library/mt169363.aspx)來執行幾乎即時的備份與非常快速的還原。
 
 如需詳細資訊，請參閱 [SQL Server 備份及還原與 Azure Blob 儲存體服務](http://go.microsoft.com/fwlink/?LinkId=271617)。
 
-以下兩節介紹 Azure Blob 儲存體服務，以及在與 Azure Blob 儲存體服務之間備份或還原時使用的 SQL Server 元件。了解元件及其彼此間的互動，對於在與 Azure Blob 儲存體服務之間備份或還原很重要。
-
-此程序的第一步是建立 Azure 帳戶。如需有關使用 SQL Server 2014 建立儲存體帳戶及執行簡單還原的完整逐步解說，請參閱[開始使用 Azure 儲存體服務進行 SQL Server 備份與還原](https://msdn.microsoft.com/library/jj720558(v=sql.120).aspx)。如需有關使用 SQL Server 2014 建立儲存體帳戶及執行簡單還原的完整逐步解說，請參閱[教學課程：搭配 SQL Server 2016 資料庫使用 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/dn466438.aspx)。
+接下來兩節將介紹 Azure Blob 儲存體服務，包括必要的 SQL Server 元件。了解元件及其互動，對於順利從 Azure Blob 儲存體服務使用備份與還原來說相當重要。
 
 ## Azure Blob 儲存體服務元件
 
-* 儲存體帳戶：儲存體帳戶是所有儲存體服務的起點。若要存取 Azure Blob 儲存體服務，請先建立 Azure 儲存體帳戶。如需 Azure Blob 儲存體服務的詳細資訊，請參閱[如何使用 Azure Blob 儲存體服務](https://azure.microsoft.com/develop/net/how-to-guides/blob-storage/)。
+備份到 Azure Blob 儲存體服務時，會使用下列 Azure 元件。
 
-* 容器：容器提供一組 Blob 的分組，且可以存放無限數目的 Blob。若要將 SQL Server 備份寫入 Azure Blob 服務，您必須至少建立根容器。
-
-* Blob：任何類型和大小的檔案。可利用下列 URL 格式來定址 Blob：`https://<storage account>.blob.core.windows.net/<container>/<blob>` 如需分頁 Blob 的詳細資訊，請參閱[了解區塊 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)
+| 元件 | 說明 |
+|---------------------|-------------------------------|
+| **儲存體帳戶** | 儲存體帳戶是所有儲存體服務的起點。若要存取 Azure Blob 儲存體服務，請先建立 Azure 儲存體帳戶。如需 Azure Blob 儲存體服務的詳細資訊，請參閱[如何使用 Azure Blob 儲存體服務](https://azure.microsoft.com/develop/net/how-to-guides/blob-storage/) (英文) |
+| **容器** | 容器可提供一組 Blob 的分組，並可存放不限數目的 Blob。若要將 SQL Server 備份寫入 Azure Blob 服務，您必須至少建立根容器。 |
+| **Blob** | 任何類型和大小的檔案。可使用下列 URL 格式來定址 Blob：**https://[storage account].blob.core.windows.net/[container]/[blob]**。如需有關分頁 Blob 的詳細資訊，請參閱[了解區塊 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。 |
 
 ## SQL Server 元件
 
-* URL：URL 指定唯一備份檔案的統一資源識別碼 (URI)。URL 用來提供 SQL Server 備份檔的位置和名稱。URL 必須指向實際的 Blob，而不只是指向容器。如果 Blob 不存在，便會建立它。如果指定現有的 Blob，則 BACKUP 會失敗，除非指定了 > WITH FORMAT 選項。以下是您會在 BACKUP 命令中指定的 URL 範例：****`http[s]://ACCOUNTNAME.Blob.core.windows.net/<CONTAINER>/<FILENAME.bak>`
+備份到 Azure Blob 儲存體服務時，會使用下列 SQL Server 元件。
 
-<b>注意：</b>HTTPS 不是必要，但建議使用。<b>重要事項</b> 如果您選擇複製及上傳備份檔到 Azure Blob 儲存體服務，則必須使用分頁 Blob 類型作為儲存體選項 (如果您計劃使用此檔案進行還原作業的話)。從區塊 Blob 類型進行 RESTORE 會失敗並發生錯誤。
+| 元件 | 說明 |
+|---------------------|-------------------------------|
+| **URL** | URL 指定唯一備份檔的統一資源識別元 (URI)。URL 用來提供 SQL Server 備份檔的位置和名稱。URL 必須指向實際的 Blob，而不只是指向容器。如果 Blob 不存在，便會建立它。如果指定現有的 Blob，則 BACKUP 會失敗，除非指定了 > WITH FORMAT 選項。以下是您會在 BACKUP 命令中指定的 URL 範例：**http[s]://[storageaccount].blob.core.windows.net/[container]/[FILENAME.bak]**。建議使用 HTTPS，但並非必要。 |
+| **認證** | 連接 Azure Blob 儲存體服務及向其進行驗證所需的資訊會存放為認證。為了讓 SQL Server 將備份寫入 Azure Blob 或從 Azure Blob 還原，必須建立 SQL Server 認證。如需詳細資訊，請參閱 [SQL Server 認證](https://msdn.microsoft.com/library/ms189522.aspx)。 |
 
-* 認證：連接到 Azure Blob 儲存體服務進行驗證所需的資訊會儲存為認證。為了讓 SQL Server 將備份寫入 Azure Blob 或從 Azure Blob 還原，必須建立 SQL Server 認證。如需詳細資訊，請參閱 [SQL Server 認證](https://msdn.microsoft.com/library/ms189522.aspx)。
+> [AZURE.NOTE] 如果您選擇複製及上傳備份檔到 Azure Blob 儲存體服務，則必須使用分頁 Blob 類型作為儲存體選項 (如果您計劃使用此檔案進行還原作業的話)。從區塊 Blob 類型進行 RESTORE 會失敗並發生錯誤。
 
-## 使用 Azure Blob 進行 SQL Server 資料庫備份與還原 - 概念與工作：
+## 後續步驟
 
-**概念、考量及程式碼範例：**
+1. 建立 Azure 訂用帳戶 (如果您還沒有帳戶的話)。如果您正在評估 Azure，請考慮使用[免費試用版](https://azure.microsoft.com/free/)。
 
-[SQL Server 備份及還原與 Azure Blob 儲存體服務](http://go.microsoft.com/fwlink/?LinkId=271617)
+1. 接著，完成下列其中一個教學課程，這些教學課程會逐步引導您建立儲存體帳戶及執行還原。
 
-**使用者入門教學課程：**
+	- **SQL Server 2014**：[教學課程：SQL Server 2014 備份及還原至 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj720558(v=sql.120).aspx)。
+	- **SQL Server 2016**：[教學課程：搭配 SQL Server 2016 資料庫使用 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/dn466438.aspx)。
 
-[教學課程：搭配 SQL Server 2016 資料庫使用 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/dn466438.aspx)
+1. 檢閱其他文件，從[使用 Microsoft Azure Blob 儲存體服務進行 SQL Server 備份及還原](https://msdn.microsoft.com/library/jj919148.aspx)開始。
 
-**最佳作法、疑難排解：**
+如果您有任何問題，請檢閱 [SQL Server 備份至 URL 的最佳做法和疑難排解](https://msdn.microsoft.com/library/jj919149.aspx)主題。
 
-[備份與還原最佳作法 (Azure Blob 儲存體服務)](http://go.microsoft.com/fwlink/?LinkId=272394)
+如需其他 SQL Server 備份與還原選項，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](../virtual-machines/virtual-machines-windows-sql-backup-recovery.md)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0601_2016-->

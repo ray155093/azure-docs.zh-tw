@@ -36,6 +36,7 @@
 -	[可以設定具有 ADFS 安全性的 OAUth 2.0 授權伺服器嗎？](#can-i-configure-an-oauth-20-authorization-server-with-adfs-security)
 -	[API 管理在部署到多個地理位置時使用什麼路由方法？](#what-routing-method-does-api-management-use-when-deployed-to-multiple-geographic-locations)
 -	[可以使用 ARM 範本建立 API 管理服務執行個體嗎？](#can-i-create-an-api-management-service-instance-using-an-arm-template)
+-	[是否可以對後端使用自我簽署 SSL 憑證？](#can-i-use-a-self-signed-ssl-certificate-for-a-backend)
 
 
 
@@ -47,7 +48,7 @@
 
 ### 功能「預覽中」是什麼意思？
 
-「預覽中的功能」具備完整功能，但處於預覽狀態，因為我們正積極徵求關於此功能的意見反應。我們可能會進行中斷變更來回應客戶意見反應，因此建議不要根據要在生產環境中執行的功能來決定。如果您對預覽功能有任何意見反應，請使用[如何向 API 管理小組詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中說明的其中一種機制讓我們知道。
+「預覽中的功能」具備完整功能，但處於預覽狀態，因為我們正積極徵求關於此功能的意見反應。我們可能會進行中斷變更來回應客戶意見反應，因此建議不要根據要在生產環境中執行的功能來決定。如果您對預覽功能有任何意見反應，請使用[如何向 API 管理團隊詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中說明的其中一種機制讓我們知道。
 
 ### 保護 API 管理閘道和後端服務之間連線安全的支援選項有哪些？
 
@@ -88,7 +89,7 @@
 
 ### 為什麼原則編輯器中我想要加入的原則沒有啟用？
 
-如果您想要加入的原則沒有啟用，請確定您是在該原則的正確範圍內。每個原則陳述式都是針對在特定範圍和原則區段中使用所設計。若要檢視原則區段和原則的範圍，請檢查[原則參考](https://msdn.microsoft.com/library/azure/dn894080.aspx)中該原則的＜使用方式＞一節。
+如果您想要加入的原則沒有啟用，請確定您是在該原則的正確範圍內。每個原則陳述式都是針對在特定範圍和原則區段中使用所設計。若要檢閱原則的原則區段和範圍，請檢查[原則參考](https://msdn.microsoft.com/library/azure/dn894080.aspx)中該原則的**使用方式**一節。
 
 
 ### 如何使用 API 管理達到 API 版本設定？
@@ -106,9 +107,9 @@
 
 ### API 管理中支援 SOAP 嗎？
 
-目前，我們對於 Azure API 管理內的 SOAP 提供有限的支援，們目前正在調查此功能。我們很有興趣從您的客戶得到任何範例 WSDL，以及他們所需功能的一些描述，這可以協助我們形成我們的想法。請使用[如何向 API 管理小組詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中參考的連絡人資訊與我們連絡
+目前，我們對於 Azure API 管理內的 SOAP 提供有限的支援，們目前正在調查此功能。我們很有興趣從您的客戶得到任何範例 WSDL，以及他們所需功能的一些描述，這可以協助我們形成我們的想法。請使用[如何向 API 管理團隊詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中參考的連絡人資訊與我們連絡
 
-如果您需要讓它運作，我們有一些社群中有些建議的解決方案，請參閱 [Azure API Management - APIM, consuming a SOAP WCF service over HTTP](http://mostlydotnetdev.blogspot.com/2015/03/azure-api-management-apim-consuming.html) (Azure API 管理 -APIM，透過 HTTP 使用 SOAP WCF 服務)。
+如果您需要讓它運作，我們有一些社群中有些建議的解決方案，請參閱 [Azure API 管理 - APIM，透過 HTTP 使用 SOAP WCF 服務](http://mostlydotnetdev.blogspot.com/2015/03/azure-api-management-apim-consuming.html)。
 
 以此方式實作解決方案需要對原則進行一些手動設定，不支援 WSDL 匯入/匯出，且使用者必須形成使用開發人員入口網站中的測試主控台所做的要求主體。
 
@@ -127,7 +128,7 @@ IP 位址 (或是多重區域部署情況下的位址) 可以在 Azure 傳統入
 
 ### 可以設定具有 ADFS 安全性的 OAUth 2.0 授權伺服器嗎？
 
-如需設定此案例的資訊，請參閱 [Using ADFS in API Management](https://phvbaars.wordpress.com/2016/02/06/using-adfs-in-api-management/) (在 API 管理中使用 ADFS)。
+如需設定此案例的資訊，請參閱[在 API 管理中使用 ADFS](https://phvbaars.wordpress.com/2016/02/06/using-adfs-in-api-management/)。
 
 ### API 管理在部署到多個地理位置時使用什麼路由方法？ 
 
@@ -137,4 +138,12 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 是，請參閱 [Azure API 管理服務](http://aka.ms/apimtemplate)快速入門範本。
 
-<!---HONumber=AcomDC_0525_2016-->
+### 是否可以對後端使用自我簽署 SSL 憑證
+
+是。請遵循下列步驟：
+
+1. 使用管理 API 建立 [Backend](https://msdn.microsoft.com/library/azure/dn935030.aspx) 實體
+2. 將 skipCertificateChainValidation 屬性設定為 true
+3. 一旦您不再想要允許自我簽署的憑證，您可以刪除 Backend 實體或將 skipCertificateChainValidation 屬性設定為 false
+
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
+   ms.date="05/31/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 移轉資料
-移轉資料時的主要目標是填入 SQLDW 資料庫。此程序可以透過數種方式來達成。ADF 複製、SSIS 和 bcp 都可用來達成此目標。不過，隨著資料量增加，您應該考慮將資料移轉程序細分成步驟。這樣讓您有機會來最佳化每個步驟的效能和彈性，以確保順暢移轉資料。
+資料可以藉由各種工具，從不同的來源移到您的「SQL 資料倉儲」中。ADF 複製、SSIS 和 bcp 都可用來達成此目標。不過，隨著資料量增加，您應該考慮將資料移轉程序細分成步驟。這樣讓您有機會來最佳化每個步驟的效能和彈性，以確保順暢移轉資料。
 
 本文首先討論 ADF 複製、SSIS 和 bcp 的簡單移轉案例。接著稍微深入討論如何將移轉最佳化。
 
@@ -30,7 +30,7 @@ PolyBase 還提供極高效能選項來載入資料。不過，這表示要使�
 
 > [AZURE.NOTE] PolyBase 規定資料檔案必須為 UTF-8。這是 ADF 複製的預設編碼，無可變更之處。這是提醒您不要變更 ADF 複製的預設行為。
 
-請閱讀下文，內有一些很好的 [ADF 複製範例]。
+請閱讀下文，內有一些很好的 [ADF 複製範例][]。
 
 ## Integration Services ##
 Integration Services (SSIS) 是一個功能強大且靈活的擷取轉換和載入 (ETL) 工具，支援複雜的工作流程、資料轉換，以及數個資料載入選項。使用 SSIS 來單純將資料傳輸至 Azure，或做為更廣泛移轉的一部分。
@@ -104,7 +104,7 @@ SQL 資料倉儲只使用 PolyBase 從 Azure Blob 儲存體載入資料。因此
 所幸您有數個選項可以提升此程序的速度及恢復力：
 
 ### [ExpressRoute][]
-您可以考慮使用 [ExpressRoute][] 加速傳輸。[ExpressRoute][] 為您提供確立的 Azure 私人連線，連接不經過公用網際網路。這絕不是必要的步驟。不過，從內部部署或共置設備推送資料到 Azure 時，將會改善輸送量。
+您可以考慮使用 [ExpressRoute][] 加速傳輸。[ExpressRoute][] 會為您提供已建立的 Azure 私人連線，如此連線就不會經過公用網際網路。這絕不是必要的步驟。不過，從內部部署或共置設備推送資料到 Azure 時，將會改善輸送量。
 
 使用 [ExpressRoute][] 的優點包括：
 
@@ -194,4 +194,4 @@ PolyBase 也支援一項稱為「遞迴資料夾周遊」的功能。您可以�
 [ADO.NET 目的地配接器]: https://msdn.microsoft.com/library/bb934041.aspx
 [SSIS 文件]: https://msdn.microsoft.com/library/ms141026.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

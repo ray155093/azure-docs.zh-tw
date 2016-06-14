@@ -13,17 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="03/23/2016"
+   ms.date="05/31/2016"
    ms.author="carlrab"/>
 
-# 在移轉至 SQL Database 之前，使用 SQL Azure 移轉精靈修正 SQL Server 資料庫相容性問題
-
-如果您判斷來源 SQL Server 資料庫不相容，您有許多選項可修正已識別的資料庫相容性問題。
+# 在移轉至 Azure SQL Database 之前，先使用「SQL Azure 移轉精靈」來修正 SQL Server 資料庫相容性問題
 
 > [AZURE.SELECTOR]
 - 使用 [SQL Azure 移轉精靈](sql-database-cloud-migrate-fix-compatibility-issues.md)
 - 使用 [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
 - 使用 [SSMS](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
+
+在這篇文章中，您將了解如何在移轉至 Azure SQL Database 之前，先使用「SQL Azure 移轉精靈」來偵測並修正 SQL Server 資料庫相容性問題。
 
 ## 使用 SQL Azure 移轉精靈
 
@@ -33,8 +33,16 @@
 
   > [AZURE.NOTE] 請注意，並非精靈可偵測到之所有不相容的結構描述都可由內建轉換加以修正。無法處理的不相容指令碼將會報告為錯誤，並在產生的指令碼中插入註解。如果偵測到許多錯誤，請使用 Visual Studio 或 SQL Server Management Studio 來逐步執行和修正無法使用 SQL Server 移轉精靈修正的每個錯誤。
 
-## 下一步：選取移轉方法，並執行移轉
+## 後續步驟
 
-[選取移轉方法](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)。
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [將相容 SQL Server 資料庫移轉到 SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
 
-<!---HONumber=AcomDC_0330_2016-->
+## 詳細資訊
+
+- [SQL Database V12](sql-database-v12-whats-new.md)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
+
+<!---HONumber=AcomDC_0601_2016-->

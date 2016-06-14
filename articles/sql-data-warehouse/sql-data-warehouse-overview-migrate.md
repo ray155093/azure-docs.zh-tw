@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/14/2016"
+   ms.date="05/31/2016"
    ms.author="barbkess;jrj;sonyama"/>
 
 # 將您的解決方案移轉至 SQL 資料倉儲
@@ -52,4 +52,4 @@ SQL 資料倉儲是一個能夠彈性調整以符合您需求的分散式資料�
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0601_2016-->

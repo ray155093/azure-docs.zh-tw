@@ -18,9 +18,6 @@
 
 # Azure AD B2C 預覽：使用圖形 API
 
-
-<!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-graph-switcher](../../includes/active-directory-b2c-devquickstarts-graph-switcher.md)]-->
-
 Azure Active Directory (Azure AD) B2C 租用戶通常會很龐大。這表示許多常見的租用戶管理工作需要以程式設計方式執行。使用者管理是主要範例。您可能需要將現有的使用者存放區移轉到 B2C 租用戶。您希望在自己的頁面上裝載使用者註冊，並在幕後的 Azure AD 中建立使用者帳戶。這類工作需要能夠建立、讀取、更新和刪除使用者帳戶。這些工作都可以透過 Azure AD 圖形 API 達成
 
 [AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
@@ -367,4 +364,4 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsIng1dCI6IjdkRC1nZWNOZ1gxWmY3R0xrT3ZwT0
 
 對於您想要使用圖形 API 在 B2C 租用戶上執行的動作，如有任何問題或要求，請在本文上留言，或在 GitHub 程式碼範例儲存機制中提出問題。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0601_2016-->

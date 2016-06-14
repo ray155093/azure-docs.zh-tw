@@ -19,9 +19,6 @@
 
 # 企業營運應用程式工作負載第 2 階段：設定網域控制站
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
- 
-
 在 Azure 基礎結構服務部署高可用性企業營運應用程式的這個階段中，您需要在 Azure 虛擬網路中設定兩個複本網域控制站，才能在 Azure 虛擬網路中本機驗證 Web 資源的用戶端 Web 要求，而不需跨越連接將驗證流量傳送至您的內部部署網路。
 
 您必須先完成這個階段才能前往[第 3 階段](virtual-machines-windows-ps-lob-ph3.md)。如需所有階段的相關資訊，請參閱[在 Azure 中部署高可用性的企業營運系統應用程式](virtual-machines-windows-lob-overview.md)。
@@ -197,4 +194,4 @@
 
 - 依照[第 3 階段](virtual-machines-windows-ps-lob-ph3.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

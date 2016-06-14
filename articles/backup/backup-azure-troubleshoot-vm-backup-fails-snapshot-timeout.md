@@ -14,7 +14,7 @@
     ms.devlang="na"
     ms.topic="article"
     ms.date="04/27/2016"
-    ms.author="jimpark; markgal"/>
+    ms.author="jimpark; markgal;genli"/>
 
 # Azure VM 備份失敗︰無法與 VM 代理程式通訊來取得快照集狀態 - 快照集 VM 子工作已逾時
 
@@ -132,4 +132,4 @@ VM 備份仰賴發給底層儲存體的快照命令。備份可能會失敗，�
 | VM 正在以高 CPU 或記憶體使用量執行。 | 如果 VM 正在以高 CPU 使用量 (超過 90%) 或高記憶體使用量執行，快照集工作會排入佇列並延遲，而最終會逾時。在此情況下，請嘗試隨選備份。 |
 |VM 無法從 DHCP 取得主機/網狀架構位址。|必須在來賓內啟用 DHCP，IaaS VM 備份才能運作。如果 VM 無法從 DHCP 回應 245 取得主機/網狀架構位址，則無法下載或執行任何擴充功能。如果您需要靜態私人 IP 位址，您應該透過平台來進行設定。VM 內的 DHCP 選項應保持啟用。請參閱有關[設定靜態內部私人 IP 位址](../virtual-network/virtual-networks-reserved-private-ip.md)的詳細資訊。|
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -1,10 +1,10 @@
 <properties
-	pageTitle="使用 Azure 備份保護 ARM VM | Microsoft Azure"
-	description="使用 Azure 備份服務保護 ARM VM。使用 ARM VM 和進階儲存體 VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
+	pageTitle="使用 Azure 備份保護 Resource Manager 部署的 VM | Microsoft Azure"
+	description="使用 Azure 備份服務保護 Resource Manager 部署的 VM。使用 Resource Manager 部署的 VM 和進階儲存體 VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""
 	keyword="backups; vm backup"/>
 
@@ -14,26 +14,26 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="03/31/2016"
+	ms.date="06/03/2016"
 	ms.author="markgal; jimpark"/>
 
 
-# 初步了解：將 ARM VM 備份到復原服務保存庫
+# 初步了解：將 Resource Manager 部署的 VM 備份到復原服務保存庫
 
 > [AZURE.SELECTOR]
-- [備份 ARM VM](backup-azure-vms-first-look-arm.md)
+- [備份 Resource Manager 部署的 VM](backup-azure-vms-first-look-arm.md)
 - [備份傳統模式 VM](backup-azure-vms-first-look.md)
 
 本教學課程會帶領您完成步驟以建立復原服務保存庫和備份 Azure 虛擬機器 (VM)。復原服務保存庫可保護︰
 
-- Azure Resource Manager (ARM) VM
+- Azure Resource Manager 部署的 VM
 - 傳統 VM
 - 標準儲存體 VM
 - 進階儲存體 VM
 
 如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#back-up-and-restore-premium-storage-vms)
 
->[AZURE.NOTE] 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文適用於 Resource Manager VM 和以 ARM 為基礎的 VM。
+>[AZURE.NOTE] 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文適用於 Resource Manager VM 和 Resource Manager 部署的 VM。
 
 概括而言，您會完成以下這些步驟。
 
@@ -189,35 +189,7 @@
 
     當備份作業完成時，狀態會是 [完成]。
 
-## 定義備份原則
-
-備份原則會定義由資料快照擷取時間和這些快照的保留時間長度所構成的矩陣。在定義 VM 的備份原則時，您可以「一天一次」地觸發備份作業。當您建立新原則時，該原則將會套用至保存庫。備份原則介面的外觀如下︰
-
-![備份原則](./media/backup-azure-vms-first-look-arm/backup-policy-daily-raw.png)
-
-若要建立原則︰
-
-1. 在 [原則名稱] 中提供原則的名稱。
-
-2. 資料快照可依 [每日] 或 [每週] 間隔來擷取。使用 [備份頻率] 下拉式功能表來選擇要 [每日] 或 [每週] 擷取資料快照。
-
-    - 如果您選擇 [每日] 間隔，可使用醒目提示的控制項來選取要在一天當中的什麼時間擷取快照。若要變更小時，請取消選取小時，然後選取新的小時。
-
-    ![每日備份原則](./media/backup-azure-vms-first-look-arm/backup-policy-daily.png) <br/>
-
-    - 如果您選擇 [每週] 間隔，可使用醒目提示的控制項來選取要在星期幾的什麼時間擷取快照。在 [天] 功能表中選取某天或多天。在 [小時] 功能表中選取某個小時。若要變更小時，請取消選取所選的小時，然後選取新的小時。
-
-    ![每週備份原則](./media/backup-azure-vms-first-look-arm/backup-policy-weekly.png)
-
-3. 根據預設，會選取所有 [保留範圍] 選項。請取消勾選任何您不想使用的保留範圍限制。
-
-    >[AZURE.NOTE] 在保護 VM 時，備份作業會每天執行一次。每個保留範圍的備份執行時間都相同。
-
-    在對應的控制項中指定要使用的間隔。[每月] 和 [每年] 保留範圍可讓您根據每週或每日增量指定快照。
-
-4. 設定原則的所有選項後，在刀鋒視窗底部按一下 [確定]。
-
-    一旦完成復原服務保存庫設定，新的原則就會設定為套用到保存庫。返回[選取案例設定原則並定義要保護的項目](backup-azure-vms-first-look-arm.md#step-2---select-scenario-set-policy-and-define-items-to-protect)一節的步驟 6
+[AZURE.INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
 ## 在虛擬機器中安裝 VM 代理程式
 
@@ -247,4 +219,4 @@
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

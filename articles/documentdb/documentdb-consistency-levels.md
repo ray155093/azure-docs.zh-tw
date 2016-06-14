@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/24/2016"
+	ms.date="05/27/2016"
 	ms.author="mimig"/>
 
 # 使用一致性層級以最大化 DocumentDB 中的可用性和效能
@@ -66,9 +66,9 @@
 
 	![此螢幕擷取畫面反白顯示 [設定] 圖示和 [預設一致性] 項目](./media/documentdb-consistency-levels/database-consistency-level-1.png)
 
-5. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [儲存]。
+5. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [確定]。
 
-	![此螢幕擷取畫面反白顯示 [一致性] 層次和 [儲存] 按鈕](./media/documentdb-consistency-levels/database-consistency-level-2.png)
+	![此螢幕擷取畫面反白顯示 [一致性] 層次和 [確定] 按鈕](./media/documentdb-consistency-levels/database-consistency-level-2.png)
 
 ## 查詢的一致性層級
 
@@ -91,4 +91,4 @@
 -	Peter Bailis、Shivaram Venkataraman、Michael J. Franklin、Joseph M. Hellerstein、Ion Stoica。實際局部仲裁的可能界限-陳舊 (PBS)。[http://vldb.org/pvldb/vol5/p776\_peterbailis\_vldb2012.pdf](http://vldb.org/pvldb/vol5/p776_peterbailis_vldb2012.pdf)
 -	Werner Vogels。再論最終一致。[http://allthingsdistributed.com/2008/12/eventually\_consistent.html](http://allthingsdistributed.com/2008/12/eventually_consistent.html)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0601_2016-->

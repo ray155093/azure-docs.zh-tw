@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/14/2016"
+   ms.date="05/31/2016"
    ms.author="alkohli" />
 
 # 更換 StorSimple 裝置上的控制器模組
@@ -69,7 +69,7 @@
 
 ### 單一控制器更換步驟
 
-如果 Microsoft Azure StorSimple 裝置的其中一個控制器故障，請完成下列步驟。(另一個控制器必須作用中並執行中。如果兩個控制器故障或無法運作，請移至[雙重控制器更換步驟](#dual-controller-replacement-steps))。
+如果 Microsoft Azure StorSimple 裝置的其中一個控制器故障，請完成下列步驟。(另一個控制器必須作用中並執行中。如果兩個控制器都故障或無法運作，請移至[雙重控制器更換步驟](#dual-controller-replacement-steps))。
 
 >[AZURE.NOTE] 可能需要 30 – 45 分鐘，控制器才會重新啟動，並從單一控制器更換程序完全復原。整個程序的時間總計 (包括接上纜線) 大約 2 小時。
 
@@ -77,7 +77,7 @@
 
 1. 在 Azure 傳統入口網站中，移至 StorSimple Manager 服務，按一下 [裝置] 索引標籤，然後按一下您想要監視的裝置名稱。
 
-2. 按一下 [維護] 索引標籤，然後瀏覽至 [硬體狀態]。控制器 0 或控制器 1 的狀態應該是紅色，表示故障。
+2. 移至 [維護] > [硬體狀態]。控制器 0 或控制器 1 的狀態應該是紅色，表示故障。
 
     >[AZURE.NOTE] 單一控制器更換中的故障控制器一律為待命控制器。
 
@@ -96,7 +96,7 @@
 
 4. 在故障的控制器上，從資料連接埠取下所有已連接的網路纜線。如果您是使用 8600 機型，也請取下將控制器連接至 EBOD 控制器的SAS 纜線。
 
-5. 請依照[取下控制器](#remove-a-controller)中的步驟，取下故障的控制器。
+5. 依照[取下控制器](#remove-a-controller)中的步驟，取下故障的控制器。
 
 6. 在取下故障控制器的同一插槽中安裝原廠更換品。這樣會觸發單一控制器更換邏輯。如需詳細資訊，請參閱[單一控制器更換邏輯](#single-controller-replacement-logic)。
 
@@ -154,7 +154,7 @@
 
 4. 首先插入控制器 0 的原廠更換品，再插入控制器 1。如需詳細資訊，請參閱[插入控制器](#insert-a-controller)。這樣會觸發雙重控制器更換邏輯。如需詳細資訊，請參閱[雙重控制器更換邏輯](#dual-controller-replacement-logic)。
 
-5. 當雙重控制器更換邏輯在背景中進行時，請重新連接纜線。請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。請在[安裝 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)的＜將您的裝置接上纜線＞一節中，參閱您的機型適用的詳細指示。
+5. 當雙重控制器更換邏輯在背景中進行時，請重新連接纜線。請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。請參閱[安裝 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)的＜佈線您的裝置＞一節中，您機型適用的詳細指示。
 
 6. 開啟 StorSimple 裝置。如果您是使用 8600 機型：
 
@@ -214,7 +214,7 @@
 
     >[AZURE.NOTE] 最多可能需要 5 分鐘，控制器和 LED 即會啟動。
 
-5. 若要確認更換成功，請在 Azure 傳統入口網站中，瀏覽至 [**裝置**] > [**維護**] > [**硬體狀態**]，並確定控制器 0 及控制器 1 兩者的狀況良好 (狀態為綠色)。
+5. 若要確認更換成功，請在 Azure 傳統入口網站中，瀏覽至 [裝置] > [維護] > [硬體狀態]，並確定控制器 0 及控制器 1 兩者都狀況良好 (狀態為綠色)。
 
 ## 識別您裝置上的作用中控制器
 
@@ -230,7 +230,7 @@
 
 ### 使用 Azure 傳統入口網站來識別作用中控制器
 
-在 Azure 傳統入口網站中，導覽至 [裝置] > [維護]，然後捲動至 [控制器] 區段。在這裡您可以確認哪一個控制站作用中。
+在 Azure 傳統入口網站中，瀏覽至 [裝置] > [維護]，然後捲動至 [控制器] 區段。在這裡您可以確認哪一個控制站作用中。
 
 ![識別 Azure 傳統入口網站中的作用中控制器](./media/storsimple-controller-replacement/IC752072.png)
 
@@ -266,4 +266,4 @@
 
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

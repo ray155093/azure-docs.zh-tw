@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/08/2016" 
+	ms.date="05/31/2016" 
 	ms.author="bradsev;gopitk" />
 
 
@@ -87,8 +87,13 @@ Cortana 分析程序的分析環境包含數個元件：
 
 雖然 CAP 並未指定特定類型的**文件**成品，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
 
-此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。請參閱[作用中的 Cortana 分析程序：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md) 和[作用中的 Cortana 分析程序：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
+此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。例如，請參閱︰
+
+- [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+- [Cortana Analytics 程序實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
+- [在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)
+- [Azure Data Lake 中的可調整資料科學︰端對端逐步解說](machine-learning-data-science-process-data-lake-walkthrough.md)
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

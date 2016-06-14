@@ -20,9 +20,6 @@
 
 # 如何擷取 Linux 虛擬機器作為資源管理員範本使用
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-machines-linux-classic-capture-image.md)。
-
-
 使用 Azure 命令列介面 (CLI) 擷取執行 Linux 的 Azure 虛擬機器，以便用它作為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
 
 ## 開始之前
@@ -178,7 +175,7 @@
 
 ## 使用 azure vm create 命令
 
-您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以搭配使用 **azure vm create** 命令與 **-Q** (**--image-urn**) 參數，以命令方式來建立 VM。您也會傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案的位置。這必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。此命令會自動將新 VM 的 VHD 複製到 vhds 容器。
+您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以使用 **azure vm create** 命令搭配 **-Q** (**--image-urn**) 參數，以「命令方式」建立 VM。您也將傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案位置。這必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。此命令會自動將新 VM 的 VHD 複製到 vhds 容器。
 
 對映像執行 **azure vm create** 之前，請執行下列動作：
 
@@ -197,4 +194,4 @@
 
 若要使用 CIL 管理 VM，請參閱[使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)中的工作。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

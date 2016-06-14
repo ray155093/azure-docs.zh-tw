@@ -19,8 +19,6 @@
 
 # 企業營運應用程式工作負載第 1 階段：設定 Azure
  
-[AZURE.INCLUDE [learn-about-deployment-models-rm-include](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
- 
 這個階段會在 Azure 基礎結構服務中，部署內部網路專屬、高可用性的企業營運應用程式，而您將在這個階段中建置 Azure 網路功能與儲存體基礎結構。您必須先完成這個階段才能前往[第 2 階段](virtual-machines-windows-ps-lob-ph2.md)。如需所有階段的相關資訊，請參閱[在 Azure 中部署高可用性的企業營運應用程式](virtual-machines-windows-lob-overview.md)。
 
 您必須使用下列基本網路元件來佈建 Azure：
@@ -220,4 +218,4 @@
 
 - 依照[第 2 階段](virtual-machines-windows-ps-lob-ph2.md)指示繼續此工作負載的設定。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0601_2016-->

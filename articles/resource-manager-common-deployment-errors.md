@@ -19,7 +19,7 @@
 
 # 針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解
 
-本主題說明如何解決將資源部署至 Azure 時一些可能會遇到的常見錯誤。本主題假設您已看到描述錯誤的訊息。如果您需要尋找更多有關部署失敗原因的詳細資料，請參閱[檢視部署作業](resource-manager-troubleshoot-deployments-portal.md)。
+本主題說明如何解決將資源部署至 Azure 時一些可能會遇到的常見錯誤。希望您已經看過有用的錯誤訊息。如果您還沒看過好的錯誤訊息，或者您需要更多有關您的部署為何失敗的詳細資料，首先請參閱[檢視部署作業](resource-manager-troubleshoot-deployments-portal.md)，然後再回來本文章以取得解決錯誤的協助。
 
 ## 範本或資源無效
 
@@ -33,7 +33,7 @@
 
 ## 資源名稱已經存在。
 
-對於某些資源 (最顯著的儲存體帳戶、資料庫伺服器和網站)，您必須提供在整個 Azure 中是唯一的資源名稱。您可以將您的命名慣例與 [uniqueString](./resource-group-template-functions/#uniquestring) 函數的結果串連，以建立一個唯一名稱。
+對於某些資源 (最顯著的儲存體帳戶、資料庫伺服器和網站)，您必須提供在整個 Azure 中是唯一的資源名稱。您可以將您的命名慣例與 [uniqueString](resource-group-template-functions.md#uniquestring) 函數的結果串連，以建立一個唯一名稱。
  
     "name": "[concat('contosostorage', uniqueString(resourceGroup().id))]", 
     "type": "Microsoft.Storage/storageAccounts", 
@@ -240,4 +240,4 @@ Azure Resource Manager 會部署成功傳回所有提供者時，報告部署成
 - 若要針對以 Windows 為基礎之虛擬機器的「遠端桌面通訊協定」錯誤進行疑難排解，請參閱[針對遠端桌面連線問題進行疑難排解](./virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md)。
 - 若要針對以 Linux 為基礎之虛擬機器的「安全殼層」錯誤進行疑難排解，請參閱[針對安全殼層問題進行疑難排解](./virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->

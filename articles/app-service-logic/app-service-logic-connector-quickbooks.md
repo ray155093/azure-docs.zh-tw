@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="02/10/2016"
+   ms.date="05/31/2016"
    ms.author="sameerch"/>
 
 
 # 開始使用 QuickBooks 連接器並將它加入您的邏輯應用程式
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
 使用 QuickBooks 連接器可建立和修改不同的 QuickBooks 實體。下表列出受支援的實體：
 
@@ -76,7 +76,7 @@ SalesReceipt|此實體代表提供給客戶的銷售收據。
 5.	展開資源庫中的 [此資源群組中的 API 應用程式] 來查看所有可用的 API 應用程式。從資源庫選取 [QuickBooks 連接器]，[QuickBooks 連接器] 就會加入至流程。
 
 
-6.	如果 QuickBooks 在線上，您必須驗證和授權邏輯應用程式以代表您執行作業。若要開始授權，請按一下 QuickBooks 連接器上的 [授權]。
+6.	如果 QuickBooks 在線上，您必須驗證和授權 Logic Apps 以代表您執行作業。若要開始授權，請按一下 QuickBooks 連接器上的 [授權]。
 
 	![][4]
 
@@ -84,7 +84,7 @@ SalesReceipt|此實體代表提供給客戶的銷售收據。
 
 	![][5]
 
-8. 按一下同意對話方塊中的 [授權]，來授與邏輯應用程式存取您帳戶的權限，以代表您執行作業。
+8. 按一下同意對話方塊中的 [授權]，來授與 Logic Apps 存取您帳戶的權限，以代表您執行作業。
 
 	![][6]
 
@@ -121,9 +121,9 @@ SalesReceipt|此實體代表提供給客戶的銷售收據。
 18. 您可以在 QuickBooks 帳戶中查看是否已建立名為 'Contoso' 的新帳戶。
 
 ## 進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是邏輯應用程式？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -144,4 +144,4 @@ SalesReceipt|此實體代表提供給客戶的銷售收據。
 [12]: ./media/app-service-logic-connector-quickbooks/12_Update_Account_Address.png
 [13]: ./media/app-service-logic-connector-quickbooks/13_Create_new_quickbooks_connector.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0601_2016-->

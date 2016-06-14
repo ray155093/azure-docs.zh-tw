@@ -139,4 +139,4 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Other web references-->
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0601_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="05/31/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -26,6 +26,8 @@
 當移動資源時，會在作業期間鎖定來源群組和目標群組。群組上的寫入和刪除作業將會封鎖，直到移動完成。
 
 您無法變更資源的位置。移動資源只會將它移動到新的資源群組。新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
+
+> [AZURE.NOTE] 本文說明如何在現有的 Azure 帳戶提供項目內移動資源。如果您真的想要變更您的 Azure 帳戶提供項目 (例如，從隨用隨付升級為預付)，同時繼續使用您現有的資源，請參閱[切換至不同的 Azure 優惠](billing-how-to-switch-azure-offer.md)。
 
 ## 移動資源前的檢查清單
 
@@ -267,9 +269,9 @@
 
 
 ## 後續步驟
-- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與資源管理員](powershell-azure-resource-manager.md)。
-- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與資源管理員](xplat-cli-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Resource Manager](powershell-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與 Resource Manager](xplat-cli-azure-resource-manager.md)。
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0601_2016-->
