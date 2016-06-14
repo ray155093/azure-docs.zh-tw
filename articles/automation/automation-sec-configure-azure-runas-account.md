@@ -13,15 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/01/2016"
+    ms.date="06/07/2016"
     ms.author="magoedte"/>
 
 # 使用 Azure 執行身分帳戶驗證 Runbook
-本主題將示範如何從 Azure 入口網站使用新的執行身分帳戶功能 (也稱為服務主體) 設定自動化帳戶，以使用自動化 Runbook 存取訂用帳戶中的 Azure Resource Manager (ARM) 資源。當您在 Azure 入口網站中建立新的自動化帳戶時，依預設它會自動建立新的服務主體，並指派給訂用帳戶中的參與者角色型存取控制 (RBAC) 角色。這個帳戶可為您簡化程序，協助您快速開始建置和部署 Runbook 以支援您的自動化需求。
+本主題將示範如何從 Azure 入口網站使用新的執行身分帳戶功能 (也稱為服務主體) 設定自動化帳戶，以使用自動化 Runbook 存取訂用帳戶中的 Azure Resource Manager 資源。當您在 Azure 入口網站中建立新的自動化帳戶時，依預設它會自動建立新的服務主體，並指派給訂用帳戶中的參與者角色型存取控制 (RBAC) 角色。這個帳戶可為您簡化程序，協助您快速開始建置和部署 Runbook 以支援您的自動化需求。
 
 透過服務主體，您可以：
 
-* 在使用 Runbook 管理 Azure ARM 資源時，提供標準化的 Azure 驗證方式
+* 在使用 Runbook 管理 Azure Resource Manager 資源時，提供標準化的 Azure 驗證方式
 * 自動使用 Azure 警示中設定的全域 Runbook
 
 
@@ -45,7 +45,7 @@
 
     ![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/add-account-decline-create-runas-msg.png)
 
-    >[AZURE.NOTE] 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [加入自動化帳戶] 刀鋒視窗中看到一則警告訊息。雖然會建立帳戶並將其指派給訂用帳戶中的 [參與者] 角色，但帳戶在訂用帳戶的目錄服務內不會有對應的驗證身分識別，因此在訂用帳戶中沒有存取資源。這將導致參考此帳戶的任何 Runbook 無法進行驗證並針對 ARM 資源執行工作。
+    >[AZURE.NOTE] 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [加入自動化帳戶] 刀鋒視窗中看到一則警告訊息。雖然會建立帳戶並將其指派給訂用帳戶中的 [參與者] 角色，但帳戶在訂用帳戶的目錄服務內不會有對應的驗證身分識別，因此在訂用帳戶中沒有存取資源。這將導致參考此帳戶的任何 Runbook 無法進行驗證並針對 Azure Resource Manager 資源執行工作。
 
     ![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/add-automation-acct-properties-error.png)
 
@@ -85,7 +85,7 @@ PowerShell 指令碼會設定下列項目︰
 1. 將下列指令碼儲存到電腦。在此範例中，請將它儲存為檔案名稱 **New-AzureServicePrincipal.ps1**。  
 
     ```
-    #Requires - RunAsAdministrator
+    #Requires -RunAsAdministrator
     Param (
     [Parameter(Mandatory=$true)]
     [String] $ResourceGroup,
@@ -97,7 +97,7 @@ PowerShell 指令碼會設定下列項目︰
     [String] $ApplicationDisplayName,
 
     [Parameter(Mandatory=$true)]
-    [String] $SubscriptionName,
+    [String] $SubscriptionId,
 
     [Parameter(Mandatory=$true)]
     [String] $CertPlainPassword,
@@ -108,7 +108,7 @@ PowerShell 指令碼會設定下列項目︰
 
     Login-AzureRmAccount
     Import-Module AzureRM.Resources
-    Select-AzureRmSubscription -SubscriptionName $SubscriptionName
+    Select-AzureRmSubscription -SubscriptionId $SubscriptionId
 
     $CurrentDate = Get-Date
     $EndDate = $CurrentDate.AddMonths($NoOfMonthsUntilExpired)
@@ -143,14 +143,14 @@ PowerShell 指令碼會設定下列項目︰
     {
       # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
       Sleep 5
-      New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId | Write-Verbose
+      New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId | Write-Verbose -ErrorAction SilentlyContinue
       Sleep 5
       $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
       $Retries++;
     }
 
     # Get the tenant id for this subscription
-    $SubscriptionInfo = Get-AzureRmSubscription
+    $SubscriptionInfo = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
     $TenantID = $SubscriptionInfo | Select TenantId -First 1
 
     # Create the automation resources
@@ -158,20 +158,19 @@ PowerShell 指令碼會設定下列項目︰
 
     # Create a Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
     $ConnectionAssetName = "AzureRunAsConnection"
-    $SubscriptionId = $SubscriptionInfo | Select SubscriptionId -First 1
     Remove-AzureRmAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Name $ConnectionAssetName -Force -ErrorAction SilentlyContinue
     $ConnectionFieldValues = @{"ApplicationId" = $Application.ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Cert.Thumbprint; "SubscriptionId" = $SubscriptionId.SubscriptionId}
     New-AzureRmAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Name $ConnectionAssetName -ConnectionTypeName AzureServicePrincipal -ConnectionFieldValues $ConnectionFieldValues
     ```
 <br>
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。
-3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更「–ResourceGroup」、「-AutomationAccountName」、「-ApplicationDisplayName」、「-SubscriptionName」和「-CertPlainPassword」參數的值。<br>
+3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更「–ResourceGroup」、「-AutomationAccountName」、「-ApplicationDisplayName」、「-SubscriptionId」和「-CertPlainPassword」參數的值。<br>
 
     ```
-    .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> `
+    .\New-AzureServicePrincipal.ps1 -ResourceGroup <ResourceGroupName> 
      -AutomationAccountName <NameofAutomationAccount> `
      -ApplicationDisplayName <DisplayNameofAutomationAccount> `
-     -SubscriptionName <SubscriptionName> `
+     -SubscriptionId <SubscriptionId> `
      -CertPlainPassword "<StrongPassword>"
     ```   
 <br>
@@ -204,9 +203,9 @@ PowerShell 指令碼會設定下列項目︰
 13. 關閉 [編輯 PowerShell Runbook] 刀鋒視窗。
 14. 關閉 [Test-SecPrin-Runbook] 刀鋒視窗。
 
-## 用來向 ARM 資源進行驗證的範例程式碼
+## 用來向 Resource Manager 資源進行驗證的範例程式碼
 
-您可以使用下列已更新的範例程式碼 (取自 AzureAutomationTutorial 範例 Runbook)，以執行身分帳戶進行驗證來使用 Runbook 管理 ARM 資源。
+您可以使用下列已更新的範例程式碼 (取自 AzureAutomationTutorial 範例 Runbook)，以執行身分帳戶進行驗證來使用 Runbook 管理 Resource Manager 資源。
 
    ```
    $connectionName = "AzureRunAsConnection"
@@ -243,4 +242,4 @@ PowerShell 指令碼會設定下列項目︰
 - 如需服務主體的詳細資訊，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

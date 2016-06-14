@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/24/2016"
+	ms.date="06/06/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
@@ -56,6 +56,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | HTTPS 支援 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | 負載平衡 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | DDoS 保護 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| IPv4/IPv6 雙重堆疊 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [自訂網域名稱支援](cdn-map-content-to-custom-domain.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [查詢字串快取](cdn-query-string.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [國家 (地區) 篩選](cdn-restrict-access-by-country.md) | | **&#x2713;** | **&#x2713;** |
@@ -78,4 +79,6 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需定價資訊，請參閱 [CDN 定價](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0525_2016-->
+您是否有想要在 Azure CDN 中看到的功能？ [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！
+
+<!---HONumber=AcomDC_0608_2016-->

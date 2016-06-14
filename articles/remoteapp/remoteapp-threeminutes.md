@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="hero-article"
-    ms.date="02/25/2016"
+    ms.date="05/31/2016"
     ms.author="mbaldwin" />
 
 
@@ -35,4 +35,4 @@
 
 >[AZURE.NOTE] 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。因此，您無法存取如 OneDrive 的服務。此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0608_2016-->

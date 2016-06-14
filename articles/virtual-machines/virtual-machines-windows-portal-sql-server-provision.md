@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/24/2016"
+	ms.date="06/08/2016"
 	ms.author="jroth" />
 
 # 在 Azure 入口網站中佈建 SQL Server 虛擬機器
@@ -53,7 +53,9 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 
 1. 每個範本皆識別一個 SQL Server 版本和一個作業系統。從清單中選取其中一個映像。然後檢閱詳細資料刀鋒視窗，其中提供虛擬機器映像的描述。
 
-1. 在 [選取部署模型] 底下，確認已選取 [Resource Manager]，然後按一下 [建立]。
+	>[AZURE.NOTE] SQL VM 映像在您所建立 VM 的每分鐘定價中包含 SQL Server 的授權成本。另一個選項是自備授權 (BYOL)，並只針對 VM 付費。這些映像的名稱前面會有 {BYOL}。如需此選項的詳細資訊，請參閱[在 Azure 虛擬機器上開始使用 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+
+1. 在 [選取部署模型] 底下，確認已選取 [Resource Manager]。Resource Manager 是新的虛擬機器建議採用的部署模型。按一下 [建立]。
 
 	![使用 Resource Manager 建立 SQL VM](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-sql-deployment-model.png)
 
@@ -85,7 +87,7 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 	![SQL 基本概念刀鋒視窗](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-basic.png)
 
 ## 2\.選擇虛擬機器大小
-在 [大小] 步驟，請在 [選擇大小] 刀鋒視窗中選擇虛擬機器大小。此刀鋒視窗一開始會顯示以您選取的範本為基礎的建議機器大小。也可預估執行 VM 的每月成本。
+在 [大小] 步驟上，請在 [選擇大小] 刀鋒視窗中選擇虛擬機器大小。此刀鋒視窗一開始會顯示以您選取的範本為基礎的建議機器大小。也可預估執行 VM 的每月成本。
 
 ![SQL VM 大小選項](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-choose-a-size.png)
 
@@ -131,7 +133,7 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 
 若要透過網際網路連接到 SQL Server，您也必須啟用下一節所述的「SQL Server 驗證」。
 
->[AZURE.NOTE] 很可能對您的 SQL Server VM 的網路通訊帶來更多限制。在 VM 建立後，編輯網路安全性群組即可達成此目的。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)。
+>[AZURE.NOTE] 很可能對您的 SQL Server VM 的網路通訊帶來更多限制。在 VM 建立後，編輯網路安全性群組即可達成此目的。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
 
 如果您偏好不要啟用透過網際網路連線到 Database Engine 的功能，請選擇下列其中一個選項：
 
@@ -249,4 +251,4 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 如需 Azure 虛擬機器上 SQL Server 的影片概觀，請觀看 [Azure VM is the best platform for SQL Server 2016 (Azure VM 是 SQL Server 2016 的最佳平台)](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016)。
 
-<!---HONumber=AcomDC_0601_2016--->
+<!---HONumber=AcomDC_0608_2016-->

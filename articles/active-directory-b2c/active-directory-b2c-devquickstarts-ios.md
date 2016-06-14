@@ -7,13 +7,9 @@
 	manager="mbaldwin"
 	editor=""/>
 
-<tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="objectivec"
-	ms.topic="hero-article"
-	ms.date="02/17/2016"
+<tags ms.service="active-directory-b2c" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="objectivec" ms.topic="hero-article"
+
+	ms.date="05/31/2016"
 	ms.author="brandwe"/>
 
 # Azure AD B2C 預覽：從 iOS 應用程式呼叫 Web API
@@ -630,4 +626,4 @@ completionBlock:(void (^) (bool, NSError* error)) completionBlock
 
 [自訂 B2C 應用程式的 UX]()
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

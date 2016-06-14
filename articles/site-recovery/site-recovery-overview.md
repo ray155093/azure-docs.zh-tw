@@ -61,7 +61,7 @@ Hyper-V VM 上執行的工作負載 | 內部部署 Hyper-V 站台 (無 VMM) | Az
 Site Recovery 有助於應用程式感知 BCDR，讓工作負載和應用程式在中斷發生時繼續以一致的方式執行。Site Recovery 提供：
 
 - 應用程式一致快照 - 使用單一或多層式架構應用程式的應用程式一致快照進行複寫。近乎同步複寫 - Hyper-V 的複寫頻率最低可為 30 秒，VMware 則可連續複寫。與 SQL Server AlwaysOn 整合 - 您可以在 Site Recovery 復原計畫中管理可用性群組的容錯移轉。 
-- 彈性復原計畫 - 您可以使用外部指令碼、手動動作和 Azure 自動化 Runbook 建立並自訂復原計畫，讓您只要按一下就能復原整個應用程式堆疊。
+- **彈性復原計畫** - 您可以使用外部指令碼、手動動作和 Azure 自動化 Runbook 建立並自訂復原計畫，讓您只要按一下就能復原整個應用程式堆疊。
 - 自動化程式庫 - 豐富的 Azure 自動化程式庫提供了已可供生產環境使用的應用程式特定指令碼供您下載，並可整合到 Site Recovery。-**簡易網路管理**- Site Recovery 和 Azure 中的進階網路管理簡化了應用程式網路需求，包括保留 IP 位址、設定負載平衡器，以及整合 Azure 流量管理員以進行有效率的網路交換動作。
 
 
@@ -71,4 +71,4 @@ Site Recovery 有助於應用程式感知 BCDR，讓工作負載和應用程式�
 - 若要深入了解 Site Recovery 架構，請閱讀 [Site Recovery 如何運作？](site-recovery-components.md)
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

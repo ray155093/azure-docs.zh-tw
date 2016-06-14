@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/10/2016"
+   ms.date="06/03/2016"
    ms.author="yurid"/>
 
 # 在 Azure 資訊安全中心設定安全性原則
@@ -69,8 +69,8 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 | 原則 | 當狀態為開啟時 |
 |----- |-----|
-| 系統更新 | 根據為該虛擬機器設定的服務，每隔 12 小時從 Windows Update 或 WSUS 抓取可用的更新清單，並建議在您的 Windows 虛擬機器上安裝遺漏的安全性和重要更新。 |
-| 基準規則 | 分析所有支援的虛擬機器，以識別任何可能造成虛擬機器更容易受到攻擊的作業系統組態，並建議進行組態變更來處理這些弱點。如需受監視之特定設定的詳細資訊，請參閱[建議的基準清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 |
+| 系統更新 | 根據為該虛擬機器設定的服務，每天會從 Windows Update 或 WSUS 抓取可用的安全性和重大更新清單，並建議套用遺漏的更新。 |
+| 基準規則 | 每天分析可能造成虛擬機器更容易受到攻擊的作業系統組態，並建議進行組態變更來處理這些弱點。如需受監視之特定設定的詳細資訊，請參閱[建議的基準清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 |
 | 端點保護 | 建議為所有 Windows 虛擬機器佈建端點保護，以協助識別和移除病毒、間諜軟體及其他惡意軟體。 
 | 網路安全性群組 | 建議設定[網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG) 來控制子網路與網路介面的輸入與輸出流量。除非另有指定，否則所有虛擬機器網路介面都會繼承為子網路設定的 NSG。除了檢查是否已設定 NSG 之外，此選項還會評估輸入安全性規則來識別是否有任何允許連入流量的規則。 |
 | Web 應用程式防火牆 | 建議於下列情況下，在虛擬機器上佈建 Web 應用程式防火牆：使用[執行個體層級公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) 並設定相關聯的「NSG 輸入安全性規則」來允許存取連接埠 80/443。使用負載平衡 IP (VIP) 並設定相關聯的負載平衡與輸入 NAT 規則，來允許存取連接埠 80/443 (如需詳細資訊，請參閱 [Azure 資源管理員的負載平衡器支援](../load-balancer/load-balancer-arm.md))。 |
@@ -100,8 +100,8 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
 - [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) – 了解如何監視 Azure 資源的健康狀態
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

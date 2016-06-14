@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/10/2016"
+   ms.date="06/06/2016"
    ms.author="yurid"/>
 
 #Azure 資訊安全中心的安全性健康情況監視
@@ -34,7 +34,7 @@
 
 您可在 [資源健全狀況] 磚上監視資源的安全性狀態。在以下範例中，您會看到一些需要注意的高度或中度嚴重性問題。已啟用的安全性原則將會影響受監督的控制項類型。
 
-![資源健康情況](./media/security-center-monitoring/security-center-monitoring-fig1-new2.png)
+![資源健康情況](./media/security-center-monitoring/security-center-monitoring-fig1-new3.png)
 
 如果資訊安全中心找出必須處理的弱點 (例如遺漏安全性更新的 VM 或沒有[網路安全性群組](../virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
@@ -100,20 +100,19 @@
 ###監視虛擬網路
 當您按一下 [資源健全狀況] 磚中的 [網路] 時，將會開啟含有更多詳細資訊的 [網路] 刀鋒視窗，如下所示：
 
-![網路](./media/security-center-monitoring/security-center-monitoring-fig9-new.png)
+![網路](./media/security-center-monitoring/security-center-monitoring-fig9-new3.png)
 
 ####網路功能的建議
 
 類似於虛擬機器資源健康情況資訊，這個刀鋒視窗也在刀鋒視窗上半部提供問題的摘要清單，在下半部提供受監督的網路清單。
 
-![網路刀鋒視窗](./media/security-center-monitoring/security-center-monitoring-fig9-new2.png)
-
 網路狀態明細區段會列出網路功能的狀態分解區段列出潛在的安全性問題，並提供建議。可能的問題包括：
 
+- 未安裝新一代防火牆 (NGFW)
 - 未啟用子網路上的網路安全性群組 (NSG)
 - 未啟用 VM 上的 NSG
 - 限制透過公用外部端點的外部存取
-- 子網路狀況良好
+- 狀況良好的網際網路面向端點
 
 當您按一下這些建議的其中之一時，會開啟新的刀鋒視窗，其中包含與建議相關的更多詳細資料，如下列範例所示。
 
@@ -123,18 +122,29 @@
 
 在 [選擇網路安全性群組] 刀鋒視窗中，您可為子網路選取最適當的網路安全性群組，也可以建立新的網路安全性群組。
 
-####網路區段
+####網際網路面向端點區段
 
-在 [網路] 區段中，資源的階層式檢視如下所示：
+在 [網際網路面向端點] 區段中，您將能夠看到目前使用網際網路面向端點所設定的 VM 和其目前的狀態。
 
-![網路樹狀結構](./media/security-center-monitoring/security-center-monitoring-fig121-new2.png)
+![網際網路面向端點](./media/security-center-monitoring/security-center-monitoring-fig121-new5.png)
+
+此資料表有代表 VM 的端點名稱、網際網路面向的 IP 位址、NSG 和 NGFW 目前的嚴重性狀態。此資料表是依嚴重性排序，如下所述︰
+- 紅色 (在頂端)：高優先順序，應立即處理 
+- 橘色︰中等優先順序，應儘速處理
+- 綠色 (最後一個)︰健康狀態
+
+####網路拓撲區段
+
+在 [網路拓撲] 區段中，資源的階層式檢視如下所示：
+
+![網路拓撲](./media/security-center-monitoring/security-center-monitoring-fig121-new4.png)
 
 此資料表是依重要性排序 (VM 和子網路)，如下所述︰
 - 紅色 (在頂端)：高優先順序，應立即處理 
 - 橘色︰中等優先順序，應儘速處理
 - 綠色 (最後一個)︰健康狀態
 
-在此階層中，第一層有[虛擬網路](../virtual-network/virtual-networks-overview.md)、[虛擬網路閘道](../vpn-gateway/vpn-gateway-site-to-site-create.md)和[虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。第二層有子網路，第三層有屬於這些子網路的 VM。右側資料行有這些資源的網路安全性群組 (NSG) 的目前狀態。以下範例是選取 VM VM-CL-W1 的結果︰
+在此拓撲檢視中，第一層有[虛擬網路](../virtual-network/virtual-networks-overview.md)、[虛擬網路閘道](../vpn-gateway/vpn-gateway-site-to-site-create.md)和[虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。第二層有子網路，第三層有屬於這些子網路的 VM。右側資料行有這些資源的網路安全性群組 (NSG) 的目前狀態。以下範例是選取 VM VM-CL-W1 的結果︰
 
 ![網路樹狀結構](./media/security-center-monitoring/security-center-monitoring-fig13-new2.png)
 
@@ -181,8 +191,8 @@
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何在 Azure 資訊安全中心設定安全性設定
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->
