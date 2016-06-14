@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="05/27/2016"
+	ms.date="06/08/2016"
 	ms.author="marsma"/>
 
 # 開始使用 Azure Batch Python 用戶端
@@ -24,7 +24,7 @@
 
 在我們討論以 Python 撰寫的小型 Batch 應用程式時，了解 [Azure Batch][azure_batch] 和 [Batch Python][py_azure_sdk] 用戶端的基本概念。我們將看看這兩個範例指令碼如何利用 Batch 服務來處理雲端中 Linux 虛擬機器上的平行工作負載，以及如何與 [Azure 儲存體](./../storage/storage-introduction.md)互動來預備和擷取檔案。您將了解常見的 Batch 應用程式工作流程，並取得 Batch 的主要元件，例如作業、工作、集區和計算節點。
 
-> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。在公開上市之前，此處所討論功能的某些層面可能會變更。[應用程式封裝](batch-application-packages.md)和[多重執行個體工作](batch-mpi.md)目前在Linux 計算節點上**不支援**。
+> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。在公開上市之前，此處所討論功能的某些層面可能會變更。Linux 計算節點上**目前不支援**[應用程式封裝](batch-application-packages.md)。
 
 ![Batch 方案工作流程 (基本)][11]<br/>
 
@@ -40,7 +40,7 @@
 
 ### 程式碼範例
 
-Python 教學課程程式碼範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多 Batch 程式碼範例之一。按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。解壓縮 ZIP 檔案的內容後，在 `article_samples` 目錄中可找到本教學課程的兩個指令碼︰
+Python 教學課程程式碼範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多 Batch 程式碼範例之一。按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。解壓縮 ZIP 檔案的內容後，在 `article_samples` 目錄中可找到本教學課程的兩個指令碼：
 
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/> `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
 
@@ -48,11 +48,11 @@ Python 教學課程程式碼範例是在 GitHub 上 [azure-batch-samples][github
 
 若要在本機工作站上執行 *python\_tutorial\_client.py* 範例指令碼，您需要與版本 **2.7** 或 **3.3 3.5** 相容的 **Python 解譯器**。此指令碼已在 Linux 和 Windows 上測試。
 
-您還必須安裝 **Azure Batch** 和 **Azure 儲存體** Python 封裝。使用此處找到的 *requirements.txt* 即可完成此作業︰
+您還必須安裝 **Azure Batch** 和 **Azure 儲存體** Python 封裝。使用此處找到的 *requirements.txt* 即可完成此作業：
 
 `/azure-batch-samples/Python/Batch/requirements.txt`
 
-發出下列 **pip** 命令以安裝 Batch 和儲存體封裝︰
+發出下列 **pip** 命令以安裝 Batch 和儲存體封裝：
 
 `pip install -r requirements.txt`
 
@@ -62,7 +62,7 @@ Python 教學課程程式碼範例是在 GitHub 上 [azure-batch-samples][github
 
 ### Azure Batch 總管 (選用)
 
-[Azure Batch 總管][github_batchexplorer]是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
+[Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
 
 ## Batch Python 教學課程程式碼範例
 
@@ -176,7 +176,7 @@ Batch 包含與 Azure 儲存體進行互動的內建支援。儲存體帳戶內�
      for file_path in input_file_paths]
 ```
 
-使用清單理解功能，針對集合中的每個檔案呼叫 `upload_file_to_container` 函式並填入兩個 [ResourceFile][py_resource_file] 集合。`upload_file_to_container` 函式會如下所示︰
+使用清單理解功能，針對集合中的每個檔案呼叫 `upload_file_to_container` 函式並填入兩個 [ResourceFile][py_resource_file] 集合。`upload_file_to_container` 函式會如下所示：
 
 ```
 def upload_file_to_container(block_blob_client, container_name, file_path):
@@ -231,7 +231,7 @@ def upload_file_to_container(block_blob_client, container_name, file_path):
 
 - **Blob 共用存取簽章**：集區的 StartTask 會在從儲存體下載工作指令碼和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面[步驟 3](#step-3-create-batch-pool))。python\_tutorial\_client.py 中的 `upload_file_to_container` 函式包含可取得各 Blob 共用存取簽章的程式碼。在儲存體模組中呼叫 [BlockBlobService.make\_blob\_url][py_make_blob_url] 即可完成。
 
-- **容器共用存取簽章**：每個工作在計算節點上完成其工作時，便會將其輸出檔案上傳至 Azure 儲存體中的「輸出」容器。若要這樣做，python\_tutorial\_task.py 會使用容器共用存取簽章，其可提供容器的寫入存取權。python\_tutorial\_client.py 中的 `get_container_sas_token` 函式會取得容器的共用的存取簽章，然後該簽章會以命令列引數的形式傳遞至工作。步驟 5 [將工作新增至作業](#step-5-add-tasks-to-job)討論容器 SAS 的使用方式。
+- **容器共用存取簽章**：每個工作在計算節點上完成其工作時，便會將其輸出檔案上傳至 Azure 儲存體中的「輸出」容器。若要這樣做，python\_tutorial\_task.py 會使用容器共用存取簽章，其可提供容器的寫入存取權。python\_tutorial\_client.py 中的 `get_container_sas_token` 函式會取得容器的共用存取簽章，然後該簽章會以命令列引數的形式傳遞至工作。步驟 5 [將工作新增至作業](#step-5-add-tasks-to-job)討論容器 SAS 的使用方式。
 
 > [AZURE.TIP] 查看有關共用存取簽章的兩部分系列[第 1 部分：了解 SAS 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分：建立和使用 SAS 與 Blob 服務](../storage/storage-dotnet-shared-access-signature-part-2.md)，進一步了解如何提供您儲存體帳戶中資料的安全存取。
 
@@ -250,9 +250,8 @@ Batch **集區** 是 Batch 執行作業工作所在的計算節點 (虛擬機器
                                               _BATCH_ACCOUNT_KEY)
 
  batch_client = batch.BatchServiceClient(
-     batch.BatchServiceClientConfiguration(
-         credentials,
-         base_url=_BATCH_ACCOUNT_URL))
+     credentials,
+     base_url=_BATCH_ACCOUNT_URL)
 ```
 
 接下來，呼叫 `create_pool` 以在 Batch 帳戶中建立計算節點的集區。
@@ -318,9 +317,9 @@ def create_pool(batch_service_client, pool_id,
 }
 ```
 
-當您建立集區時，您會定義 [PoolAddParameter][py_pooladdparam] 以指定集區的數個屬性︰
+當您建立集區時，您會定義 [PoolAddParameter][py_pooladdparam] 以指定集區的數個屬性：
 
-- 集區的 [識別碼] \(id - 必要)<p/>如同 Batch 中的大部分實體，新的集區必須具有 Batch 帳戶內的唯一識別碼。您的程式碼會使用其識別碼參考此集區，而這就是您在 Azure [入口網站][azure_portal]中識別集區的方式。
+- 集區的 [識別碼] (id - 必要)<p/>如同 Batch 中的大部分實體，新的集區必須具有 Batch 帳戶內的唯一識別碼。您的程式碼會使用其識別碼參考此集區，而這就是您在 Azure [入口網站][azure_portal]中識別集區的方式。
 
 - **計算節點數目** (*target\_dedicated* - 必要)<p/>這會指定應在集區中部署多少 VM。請務必注意，所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。您會在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的指示。如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？」，此核心配額可能是原因。
 
@@ -328,7 +327,7 @@ def create_pool(batch_service_client, pool_id,
 
 - **計算節點的大小** (vm\_size - 必要)<p/>因為我們要針對 [VirtualMachineConfiguration][py_vm_config] 指定 Linux 節點，所以我們會從 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md)指定 VM 大小 (在此範例中為 `STANDARD_A1`)。同樣地，如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
-- **啟動工作** (start\_task - 非必要)<p/>透過上述實體節點屬性，您也可以指定集區的 [StartTask][py_starttask] \(非必要)。StartTask 將在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。StartTask 特別適合用於準備計算節點以便執行工作，例如安裝您的工作將會執行的應用程式。<p/>在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 StartTask 的 **resource\_files** 屬性所指定)，從 StartTask「工作目錄」複製到在節點上執行的所有工作可以存取的「共用」目錄。基本上，這會在節點加入集區時將 `python_tutorial_task.py` 複製到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
+- **啟動工作** (start\_task - 非必要)<p/>透過上述實體節點屬性，您也可以指定集區的 [StartTask][py_starttask] (非必要)。StartTask 將在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。StartTask 特別適合用於準備計算節點以便執行工作，例如安裝您的工作將會執行的應用程式。<p/>在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 StartTask 的 **resource\_files** 屬性所指定)，從 StartTask「工作目錄」複製到在節點上執行的所有工作可以存取的「共用」目錄。基本上，這會在節點加入集區時將 `python_tutorial_task.py` 複製到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
 
 您可能會注意到對 `wrap_commands_in_shell` 協助程式函式的呼叫。此函式會採用不同命令的集合，並針對工作的命令列屬性建立合適的單一命令列。
 
@@ -377,7 +376,7 @@ def create_job(batch_service_client, job_id, pool_id):
 
 Batch **工作**是在計算節點上執行的個別工作單位。工作有一個命令列，可執行您在該命令列中指定的指令碼或可執行檔。
 
-若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][py_task] 都是透過命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][py_resource_file] \(如同集區的 StartTask) 進行設定。在此範例中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
+若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][py_task] 都是透過命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][py_resource_file] (如同集區的 StartTask) 進行設定。在此範例中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
 
 ```python
 def add_tasks(batch_service_client, job_id, input_files,
@@ -559,7 +558,7 @@ if query_yes_no('Delete pool?') == 'yes':
 
 ## 執行範例指令碼
 
-當您執行 python\_tutorial\_client.py 時，主控台輸出大致如下。您會在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 看到暫停，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。在執行期間和之後，使用 [Azure 入口網站][azure_portal]或 [Batch 總管][github_batchexplorer]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體總管][storage_explorer]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
+當您執行 python\_tutorial\_client.py 時，主控台輸出大致如下。您會在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 看到暫停，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。在執行期間和之後，使用 [Azure 入口網站][azure_portal]或 [Batch Explorer][github_batchexplorer] 來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體 Explorer][storage_explorer] 來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
 以預設組態執行應用程式時，一般的執行時間**大約 5-7 分鐘**。
 
@@ -593,7 +592,7 @@ Press ENTER to exit...
 
 ## 後續步驟
 
-您可隨意變更 python\_tutorial\_client.py 和 python\_tutorial\_task.py，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 python\_tutorial\_task.py，以模擬長時間執行的工作並以 Batch 總管的「熱圖」功能監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
+您可隨意變更 python\_tutorial\_client.py 和 python\_tutorial\_task.py，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 python\_tutorial\_task.py，以模擬長時間執行的工作並以 Batch Explorer 的「熱圖」功能監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
 
 既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。
 
@@ -665,4 +664,4 @@ Press ENTER to exit...
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

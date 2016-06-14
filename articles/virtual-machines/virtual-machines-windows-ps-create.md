@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/02/2016"
+	ms.date="06/07/2016"
 	ms.author="davidmu"/>
 
 # 使用 Resource Manager 和 PowerShell 建立 Windows VM
@@ -120,7 +120,7 @@
 
         $cred = Get-Credential -Message "Type the name and password of the local administrator account."
         
-    密碼長度必須介於 8-123 個字元，並且具有至少 3 個下列項目：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
+    密碼長度必須介於 12-123 個字元，並且具有至少 1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
         
 2. 使用虛擬機器的名稱取代 **$vmName** 的值。建立變數和虛擬機器組態。
 
@@ -170,4 +170,4 @@
 - 請檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 - 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

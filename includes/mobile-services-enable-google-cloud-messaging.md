@@ -12,7 +12,11 @@
    	![](./media/mobile-services-enable-google-cloud-messaging/notification-hubs-utilities-and-more.png)
 
 
-4. 在專案儀表板中，按一下 [行動 API] 之下的 [Google 雲端通訊]，接著在下一頁按一下 [啟用]。
+4. 在專案儀表板中，按一下 [行動 API] 之下的 [Google 雲端通訊]，接著在下一頁按一下 [啟用 API] 並接受服務條款。
+
+	![啟用 GCM](./media/mobile-services-enable-google-cloud-messaging/enable-GCM.png)
+
+	![啟用 GCM](./media/mobile-services-enable-google-cloud-messaging/enable-gcm-2.png)
 
 5. 在專案儀表板中，按一下 [憑證] > [建立憑證] > [API 金鑰]。
 
@@ -24,4 +28,4 @@
 
 	您將使用此 API 金鑰值，讓 Azure 能夠使用 GCM 進行驗證，並代表您的應用程式傳送推播通知。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -85,7 +85,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 - SMOTE 模組
 - 指令碼模組：R、Python SQL
 - 輸出資料大小可以大於輸入資料大小的模組，例如聯結或功能雜湊。
-- 當數字的反覆項目非常大時的交叉驗證、掃掠參數、序數迴歸和一對多的多類別。
+- 當反覆運算數目非常大時的交叉驗證、微調模型超參數、序數迴歸和一對多的多類別。
 
 針對大於幾 GB 的資料集，您應該將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 HDInsight，而不要直接從本機檔案上傳。
 
@@ -95,7 +95,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 
 **可以從 Amazon S3 讀取資料嗎？**
 
-如果您有少量的資料，而且想要透過 HTTP URL 公開，則您可以使用[讀取器][reader]模組。若為任何較大量的資料，請先傳送至 Azure 儲存體，然後使用[讀取器][reader]模組將它帶入實驗中。
+如果您有少量的資料，而且想要透過 HTTP URL 公開，則您可以使用[匯入資料][import-data]模組。若為任何較大量的資料，請先傳送至 Azure 儲存體，然後使用[匯入資料][import-data]模組將它帶入實驗中。
 <!--
 <SEE CLOUD DS PROCESS>
 -->
@@ -227,7 +227,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN R 封裝，以下是�
 
 **是否有哪個位置，可讓我查看我的 RRS/BES 輸出？**
 
-針對 RRS，通常您可在 Web 服務回應查看此結果。您可以也將結果寫入至 Azure Blob 儲存體。BES 的輸出預設會寫入至 Blob。您也可以使用[匯出資料][writer]模組將輸出寫入資料庫或資料表。
+針對 RRS，通常您可在 Web 服務回應查看此結果。您可以也將結果寫入至 Azure Blob 儲存體。BES 的輸出預設會寫入至 Blob。您也可以使用[匯出資料][export-data]模組將輸出寫入資料庫或資料表。
 
 **只能從 Machine Learning Studio 中建立的模型來建立 Web 服務嗎？**
 
@@ -326,10 +326,10 @@ Azure Machine Learning 在 MSDN 上也設有社群論壇，可供您詢問 Azure
 [join]: https://msdn.microsoft.com/library/azure/124865f7-e901-4656-adac-f4cb08248099/
 [machine-learning-modules]: https://msdn.microsoft.com/library/azure/6d9e2516-1343-4859-a3dc-9673ccec9edc/
 [partition-and-sample]: https://msdn.microsoft.com/library/azure/a8726e34-1b3e-4515-b59a-3e4a475654b8/
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-[writer]: https://msdn.microsoft.com/library/azure/7A391181-B6A7-4AD4-B82D-E419C0D6522C
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[export-data]: https://msdn.microsoft.com/library/azure/7A391181-B6A7-4AD4-B82D-E419C0D6522C
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 [python]: https://msdn.microsoft.com/library/azure/CDB56F95-7F4C-404D-BDE7-5BB972E6F232
 [counts]: https://msdn.microsoft.com/library/azure/dn913056.aspx
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

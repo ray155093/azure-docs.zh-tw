@@ -13,7 +13,7 @@
      ms.topic="hero-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="03/22/2016"
+     ms.date="06/06/2016"
      ms.author="dobett"/>
 
 # 開始使用適用於 Java 的 Azure IoT 中樞
@@ -163,10 +163,10 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 3. 使用文字編輯器，在 read-d2c-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性] 節點新增下列相依性。這可讓您在應用程式中使用 eventhubs-client 封裝，以從事件中樞相容端點進行讀取：
 
     ```
-    <dependency>
-      <groupId>com.microsoft.eventhubs.client</groupId>
-      <artifactId>eventhubs-client</artifactId>
-      <version>1.0</version>
+    <dependency> 
+        <groupId>com.microsoft.azure</groupId> 
+        <artifactId>azure-eventhubs</artifactId> 
+        <version>0.7.1</version> 
     </dependency>
     ```
 
@@ -178,104 +178,119 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
     ```
     import java.io.IOException;
-    import com.microsoft.eventhubs.client.Constants;
-    import com.microsoft.eventhubs.client.EventHubClient;
-    import com.microsoft.eventhubs.client.EventHubEnqueueTimeFilter;
-    import com.microsoft.eventhubs.client.EventHubException;
-    import com.microsoft.eventhubs.client.EventHubMessage;
-    import com.microsoft.eventhubs.client.EventHubReceiver;
-    import com.microsoft.eventhubs.client.ConnectionStringBuilder;
+    import com.microsoft.azure.eventhubs.*;
+    import com.microsoft.azure.servicebus.*;
+    
+    import java.io.IOException;
+    import java.nio.charset.Charset;
+    import java.time.*;
+    import java.util.Collection;
+    import java.util.concurrent.ExecutionException;
+    import java.util.function.*;
+    import java.util.logging.*;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別：
+7. 將下列類別層級變數新增至 **App** 類別。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自**事件中樞相容端點**，其形式為 **xyznamespace** (也就是，從入口網站的事件中樞相容端點值移除 ****sb://** 前置詞和 **.servicebus.windows.net** 尾碼)：
 
     ```
-    private static EventHubClient client;
+    private static String namespaceName = "{youreventhubcompatiblenamespace}";
+    private static String eventHubName = "{youreventhubcompatiblename}";
+    private static String sasKeyName = "iothubowner";
+    private static String sasKey = "{youriothubkey}";
     private static long now = System.currentTimeMillis();
     ```
 
-8. 將下列類別層級變數新增至 **App** 類別。應用程式會建立兩個執行緒來執行 **MessageReceiver**，以從事件中樞讀取兩個資料分割內的訊息：
+8. 在 **App** 類別中新增下列 **receiveMessages** 方法。這個方法會建立 **EventHubClient** 執行個體以連線至事件中樞相容的端點，然後以非同步方式建立 **PartitionReceiver** 執行個體以讀取事件中樞資料分割。它會不斷地重複，並列印訊息的詳細資料，直到應用程式終至為止。
 
     ```
-    private static class MessageReceiver implements Runnable
+    private static EventHubClient receiveMessages(final String partitionId)
     {
-        public volatile boolean stopThread = false;
-        private String partitionId;
-    }
-    ```
-
-9. 將下列建構函數新增到 **MessageReceiver** 類別：
-
-    ```
-    public MessageReceiver(String partitionId) {
-        this.partitionId = partitionId;
-    }
-    ```
-
-10. 將下列 **run** 方法新增到 **MessageReceiver** 類別。這個方法會建立 **EventHubReceiver** 執行個體以從事件中樞資料分割進行讀取。它會不斷重複，並列印訊息詳細資料到主控台，直到 **stopThread** 為 true。
-
-    ```
-    public void run() {
+      EventHubClient client = null;
       try {
-        EventHubReceiver receiver = client.getConsumerGroup(null).createReceiver(partitionId, new EventHubEnqueueTimeFilter(now), Constants.DefaultAmqpCredits);
-        System.out.println("** Created receiver on partition " + partitionId);
-        while (!stopThread) {
-          EventHubMessage message = EventHubMessage.parseAmqpMessage(receiver.receive(5000));
-          if(message != null) {
-            System.out.println("Received: (" + message.getOffset() + " | "
-                + message.getSequence() + " | " + message.getEnqueuedTimestamp()
-                + ") => " + message.getDataAsString());
+        ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
+        client = EventHubClient.createFromConnectionString(connStr.toString()).get();
+      }
+      catch(Exception e) {
+        System.out.println("Failed to create client: " + e.getMessage());
+        System.exit(1);
+      }
+      try {
+        client.createReceiver( 
+          EventHubClient.DEFAULT_CONSUMER_GROUP_NAME,  
+          partitionId,  
+          Instant.now()).thenAccept(new Consumer<PartitionReceiver>()
+        {
+          public void accept(PartitionReceiver receiver)
+          {
+            System.out.println("** Created receiver on partition " + partitionId);
+            try {
+              while (true) {
+                Iterable<EventData> receivedEvents = receiver.receive().get();
+                int batchSize = 0;
+                if (receivedEvents != null)
+                {
+                  for(EventData receivedEvent: receivedEvents)
+                  {
+                    System.out.println(String.format("Offset: %s, SeqNo: %s, EnqueueTime: %s", 
+                      receivedEvent.getSystemProperties().getOffset(), 
+                      receivedEvent.getSystemProperties().getSequenceNumber(), 
+                      receivedEvent.getSystemProperties().getEnqueuedTime()));
+                    System.out.println(String.format("| Device ID: %s", receivedEvent.getProperties().get("iothub-connection-device-id")));
+                    System.out.println(String.format("| Message Payload: %s", new String(receivedEvent.getBody(),
+                      Charset.defaultCharset())));
+                    batchSize++;
+                  }
+                }
+                System.out.println(String.format("Partition: %s, ReceivedBatch Size: %s", partitionId,batchSize));
+              }
+            }
+            catch (Exception e)
+            {
+              System.out.println("Failed to receive messages: " + e.getMessage());
+            }
           }
-        }
-        receiver.close();
+        });
       }
-      catch(EventHubException e) {
-        System.out.println("Exception: " + e.getMessage());
+      catch (Exception e)
+      {
+        System.out.println("Failed to create receiver: " + e.getMessage());
       }
+      return client;
     }
     ```
 
     > [AZURE.NOTE] 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。這很適合測試環境，因為如此一來您就可以看到目前的訊息集，但在生產環境中，您的程式碼應該要確定它能處理所有訊息，如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
 
-11. 修改 **main** 方法的簽章以加入如下所示的例外狀況：
+9. 修改 **main** 方法的簽章以加入如下所示的例外狀況：
 
     ```
     public static void main( String[] args ) throws IOException
     ```
 
-12. 在 **App** 類別中對 **main** 方法新增下列程式碼。此程式碼會建立 **EventHubClient** 執行個體以連線到 IoT 中樞上的事件中樞相容端點。然後，它會建立兩個執行緒以從兩個資料分割進行讀取。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自 **事件中樞相容端點**，其形式為 **xxxxnamespace** (也就是，從入口網站的事件中樞相容端點值移除 **sb://** 前置詞和 **.servicebus.windows.net** 尾碼)。
+10. 在 **App** 類別中對 **main** 方法新增下列程式碼。此程式碼會建立兩個 **EventHubClient** 和 **PartitionReceiver** 執行個體，並可讓您在訊息處理完成時關閉應用程式︰
 
     ```
-    String policyName = "iothubowner";
-    String policyKey = "{youriothubkey}";
-    String namespace = "{youreventhubcompatiblenamespace}";
-    String name = "{youreventhubcompatiblename}";
-    try {
-      ConnectionStringBuilder csb = new ConnectionStringBuilder(policyName, policyKey, namespace);
-      client = EventHubClient.create(csb.getConnectionString(), name);
-    }
-    catch(EventHubException e) {
-        System.out.println("Exception: " + e.getMessage());
-    }
-    
-    MessageReceiver mr0 = new MessageReceiver("0");
-    MessageReceiver mr1 = new MessageReceiver("1");
-    Thread t0 = new Thread(mr0);
-    Thread t1 = new Thread(mr1);
-    t0.start(); t1.start();
-
+    EventHubClient client0 = receiveMessages("0");
+    EventHubClient client1 = receiveMessages("1");
     System.out.println("Press ENTER to exit.");
     System.in.read();
-    mr0.stopThread = true;
-    mr1.stopThread = true;
-    client.close();
+    try
+    {
+      client0.closeSync();
+      client1.closeSync();
+      System.exit(0);
+    }
+    catch (ServiceBusException sbe)
+    {
+      System.exit(1);
+    }
     ```
 
-    > [AZURE.NOTE] 此程式碼假設您已在 F1 (免費) 層建立 IoT 中樞。免費 IoT 中樞有 "0" 和 "1" 這兩個資料分割。如果您使用另一種定價層建立 IoT 中樞，則應調整程式碼來為每個資料分割建立 **MessageReceiver**。
+    > [AZURE.NOTE] 此程式碼假設您已在 F1 (免費) 層建立 IoT 中樞。免費 IoT 中樞有 "0" 和 "1" 這兩個資料分割。
 
-13. 儲存並關閉 App.java 檔案。
+11. 儲存並關閉 App.java 檔案。
 
-14. 若要使用 Maven 建置 **read-d2c-messages** 應用程式，請在命令提示字元中於 read-d2c-messages 資料夾內執行下列命令：
+12. 若要使用 Maven 建置 **read-d2c-messages** 應用程式，請在命令提示字元中於 read-d2c-messages 資料夾內執行下列命令：
 
     ```
     mvn clean package -DskipTests
@@ -285,7 +300,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的新 Maven 專案。請注意，這是一個非常長的命令：
+1. 在＜建立裝置識別＞一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的新 Maven 專案。請注意，這是一個非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -329,7 +344,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     import com.google.gson.Gson;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdeviceid}** 和 **{yourdevicekey}** 取代為您在*建立裝置識別*一節中產生的裝置值：
+7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdeviceid}** 和 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置值：
 
     ```
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}";
@@ -442,10 +457,18 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 現在您已經準備好執行應用程式。
 
-1. 在 read-d2c 資料夾的命令提示字元中，執行下列命令以開始監視 IoT 中樞：
+1. 在 read-d2c 資料夾的命令提示字元中，執行下列命令以開始監視 IoT 中樞內的第一個資料分割：
 
     ```
-    mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
+    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"  -Dexec.args="0"
+    ```
+
+    ![][7]
+
+1. 在 read-d2c 資料夾的命令提示字元中，執行下列命令以開始監視 IoT 中樞內的第二個資料分割：
+
+    ```
+    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"  -Dexec.args="1"
     ```
 
     ![][7]
@@ -492,4 +515,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

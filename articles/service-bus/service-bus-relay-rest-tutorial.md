@@ -1,19 +1,19 @@
 <properties
-   pageTitle="使用轉送訊息的服務匯流排 REST 教學課程 |Microsoft Azure"
-   description="建置簡單的服務匯流排轉送主機應用程式來公開 REST 架構介面。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="使用轉送訊息的服務匯流排 REST 教學課程 |Microsoft Azure"
+    description="建置簡單的服務匯流排轉送主機應用程式來公開 REST 架構介面。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="10/14/2015"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/03/2016"
+    ms.author="sethm" />
 
 # 服務匯流排 REST 教學課程
 
@@ -21,19 +21,17 @@
 
 本教學課程會使用 Windows Communication Foundation (WCF) REST 程式設計模型，在服務匯流排上建構 REST 服務。如需詳細資訊，請參閱 WCF 文件中的 [WCF REST 程式設計模型](https://msdn.microsoft.com/library/bb412169.aspx)和[設計與實作服務](https://msdn.microsoft.com/library/ms729746.aspx)。
 
-## 步驟 1：註冊 Azure 帳戶
+## 步驟 1︰建立服務命名空間
 
-第一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。建立服務命名空間時，系統會自動產生 SAS 金鑰。服務命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
+第一步是建立命名空間，並取得共用存取簽章 (SAS) 金鑰。命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。建立服務命名空間時，系統會自動產生 SAS 金鑰。服務命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
 
-### 建立服務命名空間並取得 SAS 金鑰
+1. 若要建立服務命名空間，請造訪 [Azure 傳統入口網站][]。按一下左側的 [服務匯流排]，再按一下 [建立]。輸入命名空間的名稱，再按一下核取記號。
 
-1. 要建立服務命名空間，請造訪 [Azure 傳統入口網站][]。按一下左側的 [服務匯流排]，再按一下 [建立]。輸入命名空間的名稱，再按一下核取記號。
+2. 在 [Azure 傳統入口網站][]的主視窗中，按一下您在上一個步驟中建立的命名空間名稱。
 
-2. 在入口網站的主視窗中，按一下您在上一個步驟中建立的服務命名空間的名稱。
+3. 按一下 [設定] 索引標籤。
 
-3. 按一下 [設定]，檢視命名空間的共用存取原則。
-
-4. 請記下 **RootManageSharedAccessKey** 原則的主索引鍵，或是將它複製到剪貼簿。您稍後在教學課程中會使用此值。
+4. 在 [**共用存取金鑰產生器**] 區段中，記下與 **RootManageSharedAccessKey** 原則相關聯的 [**主要金鑰**]，或是將它複製到剪貼簿。您稍後會在本教學課程中使用此值。
 
 ## 步驟 2：定義 REST 架構 WCF 服務合約以使用服務匯流排
 
@@ -45,30 +43,30 @@
 
 1. 以系統管理員身分開啟 Visual Studio：以滑鼠右鍵按一下 [開始] 功能表中的程式，然後按一下 [以系統管理員身分執行]。
 
-2. 這會建立新的主控台應用程式專案。按一下 [檔案] 功能表，再依序選取 [新增] 及 [專案]。在 [新增專案] 對話方塊中，按一下 **Visual C#** (如果 **Visual C#** 未出現，請在 [其他語言] 中尋找)，選取 [主控台應用程式] 範本，並將它命名為 **ImageListener**。使用預設 [位置]。按一下 [確定] 以建立專案。
+2. 這會建立新的主控台應用程式專案。按一下 [檔案] 功能表，再依序選取 [新增] 及 [專案]。在 [新增專案] 對話方塊中，按一下 [Visual C#]，選取 [主控台應用程式] 範本，並將它命名為 **ImageListener**。使用預設 [位置]。按一下 [確定] 以建立專案。
 
 3. 若為 C# 專案，Visual Studio 會建立 `Program.cs` 檔案。這個類別包含空的 `Main()` 方法，即正確建置主控台應用程式專案所需的方法。
 
-4. 將 **System.ServiceModel.dll** 的參考加入專案：
+4. 安裝服務匯流排 NuGet 封裝，以新增服務匯流排和 **System.ServiceModel.dll** 的參考。此封裝會自動將加入服務匯流排程式庫的參考，以及 WCF **System.ServiceModel**。在 [方案總管] 中，以滑鼠右鍵按一下 **ImageListener** 專案，然後按一下 [管理 NuGet 封裝]。按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。按一下 [安裝] 並接受使用條款。
+
+5. 您必須明確地將 **System.ServiceModel.dll** 的參考新增至專案：
 
 	a.在 [方案總管] 中，以滑鼠右鍵按一下專案資料夾下的**參考**資料夾，然後按一下 [加入參考]。
 
-	b.按一下 [加入參考] 對話方塊的 **.NET** 索引標籤，並向下捲動直到您看到 **System.ServiceModel**。選取它，然後按一下 [確定]。
+	b.在 [新增參考] 對話方塊中，按一下左側的 [架構] 索引標籤，然後在 [搜尋] 方塊中輸入 **System.ServiceModel.Web**。選取 [System.ServiceModel.Web] 核取方塊，然後按一下 [確定]。
 
-5. 重複上述步驟，將參考加入至 **System.ServiceModel.Web.dll** 組件。
+6. 在 Program.cs 檔案開頭處新增下列 `using` 陳述式。
 
-6. 為 **System.ServiceModel**、**System.ServiceModel.Channels**、**System.ServiceModel.Web** 和 **System.IO** 命名空間加入 `using` 陳述式。
-
-	```c
-  	using System.ServiceModel;
-  	using System.ServiceModel.Channels;
-  	using System.ServiceModel.Web;
-  	using System.IO;
+	```
+	using System.ServiceModel;
+	using System.ServiceModel.Channels;
+	using System.ServiceModel.Web;
+	using System.IO;
 	```
 
 	[System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) 是可讓您以程式設計方式存取 WCF 基本功能的命名空間。服務匯流排會使用 WCF 的許多物件和屬性來定義服務合約。您將在大部分服務匯流排轉送應用程式中使用此命名空間。同樣地，[System.ServiceModel.Channels](https://msdn.microsoft.com/library/system.servicemodel.channels.aspx) 可協助定義通道，您可透過此物件與服務匯流排和用戶端 Web 瀏覽器通訊。最後，[System.ServiceModel.Web](https://msdn.microsoft.com/library/system.servicemodel.web.aspx) 包含可讓您建立 Web 架構應用程式的類型。
 
-7. 將程式的命名空間從 Visual Studio 預設值重新命名為 **Microsoft.ServiceBus.Samples**。
+7. 將 `ImageListener` 命名空間重新命名為 **Microsoft.ServiceBus.Samples**。
 
  	```
 	namespace Microsoft.ServiceBus.Samples
@@ -76,7 +74,7 @@
 		...
 	```
 
-8. 緊接著命名空間宣告後面定義名為 **IImageContract** 的新介面，並將 **ServiceContractAttribute** 屬性套用至包含 `http://samples.microsoft.com/ServiceModel/Relay/`值的介面。命名空間值與您的整個程式碼範圍中使用的命名空間不同。命名空間值作為此合約的唯一識別碼，且應該具有版本資訊。如需詳細資訊，請參閱[服務版本控制](http://go.microsoft.com/fwlink/?LinkID=180498)。明確指定命名空間可避免將預設命名空間值新增至合約名稱。
+8. 直接在命名空間宣告的左大括號後面定義名為 **IImageContract** 的新介面，並將 **ServiceContractAttribute** 屬性套用至包含 `http://samples.microsoft.com/ServiceModel/Relay/` 值的介面。命名空間值與您的整個程式碼範圍中使用的命名空間不同。命名空間值作為此合約的唯一識別碼，且應該具有版本資訊。如需詳細資訊，請參閱[服務版本控制](http://go.microsoft.com/fwlink/?LinkID=180498)。明確指定命名空間可避免將預設命名空間值新增至合約名稱。
 
 	```
 	[ServiceContract(Name = "ImageContract", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/RESTTutorial1")]
@@ -95,7 +93,7 @@
 	}
 	```
 
-10. 在 **OperationContract** 屬性旁，套用 **WebGet** 屬性。
+10. 在 **OperationContract** 屬性中，新增 **WebGet** 值。
 
 	```
 	public interface IImageContract
@@ -105,18 +103,11 @@
 	}
 	```
 
-	這樣可讓服務匯流排將 HTTP GET 要求傳送至 **GetImage**，以及將 **GetImage** 的傳回值轉譯成 HTTP GETRESPONSE 回覆。稍後在教學課程中，您將使用 Web 瀏覽器來存取此方法，並可在瀏覽器中顯示映像。
+	這樣可讓服務匯流排將 HTTP GET 要求傳送至 `GetImage`，以及將 `GetImage` 的傳回值轉譯成 HTTP GETRESPONSE 回覆。稍後在教學課程中，您將使用 Web 瀏覽器來存取此方法，並可在瀏覽器中顯示映像。
 
 11. 緊接著 `IImageContract` 定義後面，宣告從 `IImageContract` 和 `IClientChannel` 介面繼承的通道。
 
 	```
-	[ServiceContract(Name = "IImageContract", Namespace = "http://samples.microsoft.com/ServiceModel/Relay/")]
-	public interface IImageContract
-	{
-		[OperationContract, WebGet]
-		Stream GetImage();
-	}
-
 	public interface IImageChannel : IImageContract, IClientChannel { }
 	```
 
@@ -193,9 +184,9 @@ namespace Microsoft.ServiceBus.Samples
 
 	加入檔案時，請確定選取 [檔案名稱:] 欄位旁下拉式清單中的 [所有檔案]。本教學課程的其餘部分假設映像的名稱為 "image.jpg"。如果您有不同的檔案，您必須重新命名映像，或變更您的程式碼來彌補。
 
-4. 為確定執行中的服務能夠找到此影像檔，請在 [方案總管] 中以滑鼠右鍵按一下該影像檔。在 [**屬性**] 窗格中，將 [**複製到輸出目錄**] 設為 [**有更新時才複製**]。
+4. 為確定執行中的服務能夠找到此影像檔，請在 [方案總管] 中以滑鼠右鍵按一下該影像檔，然後按一下 [屬性]。在 [**屬性**] 窗格中，將 [**複製到輸出目錄**] 設為 [**有更新時才複製**]。
 
-5. 將 **System.Drawing.dll**、**System.Runtime.Serialization.dll** 和 **Microsoft.ServiceBus.dll** 組件的參考加入專案，另外加入下列關聯的 `using` 陳述式。
+5. 將 **System.Drawing.dll** 組件的參考新增至專案，並新增下列關聯的 `using` 陳述式。
 
 	```
 	using System.Drawing;
@@ -241,32 +232,11 @@ namespace Microsoft.ServiceBus.Samples
 
 ### 為服務匯流排上執行的 Web 服務定義組態
 
-1. 以滑鼠右鍵按一下 [**ImageListener**] 專案。然後按一下 [**新增**]，再按 [**新增項目**]。
+1. 在 [方案總管] 中按兩下 **App.config**，以在 Visual Studio 編輯器中開啟它。
 
-2. 在 [方案總管] 中，按兩下目前包含下列 XML 元素的 **App.config**。
+	**App.config** 檔類似於 WCF 組態檔，並包含服務名稱、端點 (也就是公開的位置服務匯流排，讓用戶端與主機彼此通訊) 和繫結 (用於通訊的通訊協定類型)。此處的主要差異是設定的服務端點會參考 [WebHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.webhttprelaybinding.aspx) 繫結，這不是 .NET Framework 的一部分。
 
-	```
-	<?xml version="1.0" encoding="utf-8" ?>
-	<configuration>
-	</configuration>
-	```
-
-	組態檔類似於 WCF 組態檔，並包含服務名稱、端點 (也就是公開的位置服務匯流排，讓用戶端與主機彼此通訊) 和繫結 (用於通訊的通訊協定類型)。此處的主要差異是設定的服務端點會參考 [WebHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.webhttprelaybinding.aspx) 繫結，這不是 .NET Framework 的一部分。如需有關如何設定服務匯流排應用程式的詳細資訊，請參閱[設定要向服務匯流排登錄的 WCF 服務](https://msdn.microsoft.com/library/ee173579.aspx)。
-
-
-3. 將 `<system.serviceModel>` XML 元素新增至 App.config 檔案。這是定義一或多個服務的 WCF 元素。在這裡，它用來定義服務名稱和端點。
-
-	```
-	<?xml version="1.0" encoding="utf-8" ?>
-	<configuration>
-		<system.serviceModel>
-
-		</system.serviceModel>
-
-	</configuration>
-	```
-
-4. 在 `system.serviceModel` 元素中，加入有以下內容的 `<bindings>` 元素。這會定義應用程式中使用的繫結。您可以定義多個繫結，但在本教學課程中您只會定義一個。
+2. `<system.serviceModel>` XML 元素是定義一或多個服務的 WCF 元素。在這裡，它用來定義服務名稱和端點。在 `<system.serviceModel>` 元素底部 (但仍在 `<system.serviceModel>` 內)，新增具有以下內容的 `<bindings>` 元素。這會定義應用程式中使用的繫結。您可以定義多個繫結，但在本教學課程中您只會定義一個。
 
 	```
 	<bindings>
@@ -281,7 +251,7 @@ namespace Microsoft.ServiceBus.Samples
 
 	此步驟會將 **relayClientAuthenticationType** 設為 **None** 來定義服務匯流排 [WebHttpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.webhttprelaybinding.aspx) 繫結。這個設定表示使用此繫結的端點不需要用戶端認證。
 
-5. 在 `<bindings>` 元素後方加入 `<services>` 元素。類似於繫結，您可以在單一組態檔中定義多個服務。不過，您在本教學課程中只會定義一個。
+3. 在 `<bindings>` 元素後方加入 `<services>` 元素。類似於繫結，您可以在單一組態檔中定義多個服務。不過，您在本教學課程中只會定義一個。
 
 	```
 	<services>
@@ -300,7 +270,7 @@ namespace Microsoft.ServiceBus.Samples
 
 	這個步驟會設定服務，該服務會使用先前定義的預設 **webHttpRelayBinding**。它也會使用在下一個步驟中定義的預設 **sbTokenProvider**。
 
-6. 在 `<services>` 元素後，建立具有下列內容的 `<behaviors>` 元素，以步驟 1 中的 [Azure 傳統入口網站][]所取得的*共用存取簽章* (SAS) 金鑰來取代 "SAS\_KEY"。
+4. 在 `<services>` 元素後，建立具有下列內容的 `<behaviors>` 元素，以步驟 1 中的 [Azure 傳統入口網站][]所取得的*共用存取簽章* (SAS) 金鑰來取代 "SAS\_KEY"。
 
 	```
 	<behaviors>
@@ -321,7 +291,17 @@ namespace Microsoft.ServiceBus.Samples
 	</behaviors>
 	```
 
-7. 從 [建置] 功能表中，按一下 [建置方案] 以建置整個方案。
+5. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串，取代 `<appSettings>` 元素中的整個連接字串值。
+
+	```
+	<appSettings>
+   	<!-- Service Bus specific app settings for messaging connections -->
+   	<add key="Microsoft.ServiceBus.ConnectionString"
+	       value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
+	</appSettings>
+	```
+
+6. 從 [建置] 功能表中，按一下 [建置方案] 以建置整個方案。
 
 ### 範例
 
@@ -390,50 +370,93 @@ namespace Microsoft.ServiceBus.Samples
 下列範例會顯示與服務相關聯的 App.config 檔案。
 
 ```
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <system.serviceModel>
-    <bindings>
-      <!-- Application Binding -->
-      <webHttpRelayBinding>
-        <binding name="default">
-          <!-- Turn off client authentication so that client does not need to present credential through browser or fiddler -->
-          <security relayClientAuthenticationType="None" />
-        </binding>
-      </webHttpRelayBinding>
-    </bindings>
-
-    <services>
-      <!-- Application Service -->
-      <service name="Microsoft.ServiceBus.Samples.ImageService"
-               behaviorConfiguration="default">
-        <endpoint name="RelayEndpoint"
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2"/>
+    </startup>
+    <system.serviceModel>
+        <extensions>
+            <!-- In this extension section we are introducing all known service bus extensions. User can remove the ones they don't need. -->
+            <behaviorExtensions>
+                <add name="connectionStatusBehavior"
+                    type="Microsoft.ServiceBus.Configuration.ConnectionStatusElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="transportClientEndpointBehavior"
+                    type="Microsoft.ServiceBus.Configuration.TransportClientEndpointBehaviorElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="serviceRegistrySettings"
+                    type="Microsoft.ServiceBus.Configuration.ServiceRegistrySettingsElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+            </behaviorExtensions>
+            <bindingElementExtensions>
+                <add name="netMessagingTransport"
+                    type="Microsoft.ServiceBus.Messaging.Configuration.NetMessagingTransportExtensionElement, Microsoft.ServiceBus,  Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="tcpRelayTransport"
+                    type="Microsoft.ServiceBus.Configuration.TcpRelayTransportElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="httpRelayTransport"
+                    type="Microsoft.ServiceBus.Configuration.HttpRelayTransportElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="httpsRelayTransport"
+                    type="Microsoft.ServiceBus.Configuration.HttpsRelayTransportElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="onewayRelayTransport"
+                    type="Microsoft.ServiceBus.Configuration.RelayedOnewayTransportElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+            </bindingElementExtensions>
+            <bindingExtensions>
+                <add name="basicHttpRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.BasicHttpRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="webHttpRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.WebHttpRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="ws2007HttpRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.WS2007HttpRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="netTcpRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.NetTcpRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="netOnewayRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.NetOnewayRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="netEventRelayBinding"
+                    type="Microsoft.ServiceBus.Configuration.NetEventRelayBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+                <add name="netMessagingBinding"
+                    type="Microsoft.ServiceBus.Messaging.Configuration.NetMessagingBindingCollectionElement, Microsoft.ServiceBus, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+            </bindingExtensions>
+        </extensions>
+      <bindings>
+        <!-- Application Binding -->
+        <webHttpRelayBinding>
+          <binding name="default">
+            <security relayClientAuthenticationType="None" />
+          </binding>
+        </webHttpRelayBinding>
+      </bindings>
+      <services>
+        <!-- Application Service -->
+        <service name="Microsoft.ServiceBus.Samples.ImageService"
+             behaviorConfiguration="default">
+          <endpoint name="RelayEndpoint"
                   contract="Microsoft.ServiceBus.Samples.IImageContract"
                   binding="webHttpRelayBinding"
                   bindingConfiguration="default"
                   behaviorConfiguration="sbTokenProvider"
                   address="" />
-      </service>
-    </services>
-
-    <behaviors>
-      <endpointBehaviors>
-        <behavior name="sbTokenProvider">
-          <transportClientEndpointBehavior>
-            <tokenProvider>
-              <sharedAccessSignature keyName="RootManageSharedAccessKey" key="SAS_KEY" />
-            </tokenProvider>
-          <transportClientEndpointBehavior>
-        </behavior>
-      </endpointBehaviors>
-      <serviceBehaviors>
-        <behavior name="default">
-          <serviceDebug httpHelpPageEnabled="false" httpsHelpPageEnabled="false" />
-        </behavior>
-      </serviceBehaviors>
-    </behaviors>
-
-  </system.serviceModel>
+        </service>
+      </services>
+      <behaviors>
+        <endpointBehaviors>
+          <behavior name="sbTokenProvider">
+            <transportClientEndpointBehavior>
+              <tokenProvider>
+                <sharedAccessSignature keyName="RootManageSharedAccessKey" key="[SAS_KEY]" />
+              </tokenProvider>
+            </transportClientEndpointBehavior>
+          </behavior>
+        </endpointBehaviors>
+        <serviceBehaviors>
+          <behavior name="default">
+            <serviceDebug httpHelpPageEnabled="false" httpsHelpPageEnabled="false" />
+          </behavior>
+        </serviceBehaviors>
+      </behaviors>
+    </system.serviceModel>
+    <appSettings>
+        <!-- Service Bus specific app setings for messaging connections -->
+        <add key="Microsoft.ServiceBus.ConnectionString"
+            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
+    </appSettings>
 </configuration>
 ```
 
@@ -443,10 +466,10 @@ namespace Microsoft.ServiceBus.Samples
 
 ### 建立服務的基底位址
 
-1. 在 `Main()` 函數宣告中，建立變數來儲存服務匯流排專案的命名空間。
+1. 在 `Main()` 函數宣告中，建立變數來儲存服務匯流排專案的命名空間。務必以您先前建立的服務命名空間名稱取代 `yourNamespace`。
 
 	```
-	string serviceNamespace = "InsertServiceNamespaceHere";
+	string serviceNamespace = "yourNamespace";
 	```
 	服務匯流排會使用您的命名空間名稱來建立唯一 URI。
 
@@ -486,7 +509,7 @@ namespace Microsoft.ServiceBus.Samples
 
 3. 完成時，關閉服務主機。
 
-	```c
+	```
 	host.Close();
 	```
 
@@ -570,9 +593,11 @@ namespace Microsoft.ServiceBus.Samples
 
 建置解決方案後，請執行下列命令以執行應用程式：
 
-1. 從命令提示字元中執行服務 (ImageListener\\bin\\Debug\\ImageListener.exe)。
+1. 按 **F5**，或瀏覽至可執行檔的位置 (ImageListener\\bin\\Debug\\ImageListener.exe) 來執行服務。讓應用程式保持執行狀態，因為需要它來執行下一個步驟。
 
 2. 將位址從命令提示字元複製並貼到瀏覽器以查看映像。
+
+3. 當您完成時，請按 [命令提示字元] 視窗中的 **Enter** 來關閉應用程式。
 
 ## 後續步驟
 
@@ -584,4 +609,4 @@ namespace Microsoft.ServiceBus.Samples
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0608_2016-->

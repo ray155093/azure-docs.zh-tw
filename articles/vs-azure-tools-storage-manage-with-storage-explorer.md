@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用儲存體總管管理 Azure 儲存體資源 (預覽) | Microsoft Azure"
-	description="描述如何使用 Microsoft Azure 儲存體總管 (預覽) 來建立和管理 Azure 儲存體資源。"
+	pageTitle="開始使用儲存體 Explorer (預覽) | Microsoft Azure"
+	description="使用儲存體總管管理 Azure 儲存體資源 (預覽)"
 	services="visual-studio-online"
 	documentationCenter="na"
 	authors="TomArcher"
@@ -10,176 +10,284 @@
  <tags
 	ms.service="visual-studio-online"
 	ms.devlang="multiple"
-	ms.topic="article"
+	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="05/08/2016"
+	ms.date="06/05/2016"
 	ms.author="tarcher" />
 
-# 使用儲存體總管管理 Azure 儲存體資源 (預覽)
+# 開始使用儲存體 Explorer (預覽)
 
-Microsoft Azure 儲存體總管 (預覽) 是獨立的工具，可協助您輕鬆地管理 Azure 儲存體帳戶。它在您想要快速地管理 Azure 入口網站外部的儲存體的情況下，相當有用，例如當您正在 Visual Studio 中開發應用程式時。此預覽版本可讓您輕鬆地使用 Blob 儲存體。您可以建立和刪除容器、上傳、下載及刪除 blob，並搜尋所有容器和 blob。進階的功能可讓開發人員和操作員使用 SAS 金鑰和原則。Windows 開發人員也可以使用 Azure 儲存體模擬器，利用本機開發儲存體帳戶來測試程式碼。
+## 概觀 
 
-若要檢視或管理儲存體總管中的儲存體資源，您必須能夠以您的訂用帳戶或外部儲存體帳戶存取 Azure 儲存體帳戶。如果沒有儲存體帳戶，只需要幾分鐘的時間就可以建立帳戶。如果您有 MSDN 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。否則，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
+Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓您在 Windows、OSX 和 Linux 上輕鬆使用 Azure 儲存體資料。在本文中，您將學習連接及管理 Azure 儲存體帳戶的各種方式。
 
-## 管理 Azure 帳戶和訂用帳戶
+## 必要條件
 
-若要在 [儲存體總管] 中查看您的 Azure 儲存體資源，您需要登入具有一或多個作用中訂用帳戶的 Azure 帳戶。如果您有一個以上的 Azure 帳戶，您可以將它們加入 [儲存體總管] 中，然後選擇您想要包含在 [儲存體總管] 資源檢視中的訂用帳戶。如果您未曾使用過 Azure，或尚未將必要的帳戶加入至 Visual Studio，將會提示您登入 Azure 帳戶。
+- [下載並安裝儲存體 Explorer (預覽)](http://go.microsoft.com/fwlink/?LinkId=708343)
 
-### 將 Azure 帳戶新增至儲存體總管
+## 連接到儲存體帳戶或服務
 
-1.	在 [儲存體總管] 工具列上選擇 [設定]\(齒輪) 圖示。
-1.	選擇 [新增帳戶] 連結。登入您想要瀏覽儲存體資源的 Azure 帳戶。帳戶選擇器下拉式清單中應該已選取您剛才加入的帳戶。該帳戶的所有訂用帳戶會出現在帳戶項目下。
+儲存體 Explorer (預覽) 提供無數種方式來連接至儲存體帳戶。其中包括連接到與您的 Azure 訂用帳戶相關聯的儲存體帳戶、連接到從其他 Azure 訂用帳戶共用的儲存體帳戶和服務，甚至是使用 Azure 儲存體模擬器連接及管理本機儲存體：
+
+- [連接到 Azure 訂用帳戶](#connect-to-an-azure-subscription) - 管理屬於您的 Azure 訂用帳戶的儲存體資源。
+- [連接到本機儲存體](#connect-to-local-storage) - 使用 Azure 儲存體模擬器管理本機儲存體。 
+- [附加到外部儲存體](#attach-or-detach-an-external-storage-account) - 使用儲存體帳戶的帳戶名稱與金鑰，管理屬於另一個 Azure 訂用帳戶的儲存體資源。
+- [使用 SAS 附加帳戶](#attach-account-using-sas) - 使用 SAS，管理屬於另一個 Azure 訂用帳戶的儲存體資源。
+- [使用 SAS 附加服務](#attach-service-using-sas) - 使用 SAS，管理屬於另一個 Azure 訂用帳戶的特定儲存體服務 (Blob 容器、佇列或資料表)。
+
+## 連線到 Azure 訂用帳戶
+
+> [AZURE.NOTE] 如果您沒有 Azure 帳戶，可以[申請免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+
+1. 啟動儲存體 Explorer (預覽)。 
+
+1. 如果您第一次執行儲存體 Explorer (預覽)，或如果您已執行儲存體 Explorer (預覽)，但尚未連接到 Azure 帳戶，您會看到可讓您連接到 Azure 帳戶的資訊列。
 
 	![][0]
+	
+1. 選取 [連接到 Microsoft Azure]，並依照對話方塊使用與至少一個作用中 Azure 訂用帳戶相關聯的 Microsoft 帳戶進行登入。
 
-1.	選取您想要瀏覽之訂用帳戶的核取方塊，然後選擇 [套用] 按鈕。
+成功使用 Microsoft 帳戶登入後，儲存體 Explorer (預覽) 的左窗格會填入與 Microsoft 帳戶相關聯之所有 Azure 訂用帳戶的所有相關聯儲存體帳戶。
+
+### 篩選 Azure 訂用帳戶
+
+儲存體 Explorer (預覽) 可讓您篩選哪一個與已登入 Microsoft 帳戶相關聯的 Azure 訂用帳戶將使其儲存體帳戶列在左窗格中。
+
+1. 選取 [設定] (齒輪) 圖示。
 
 	![][1]
 
-	選取的訂用帳戶的 Azure 儲存體資源會出現在 [儲存體總管] 中。
-
-### 附加外部儲存體
-
-1. 取得您想要附加的儲存體帳戶的帳戶名稱和金鑰。
-	1.	在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中，選擇想要附加的儲存體帳戶。
-	1.	在 [設定] 窗格的 [管理] 區段，選擇 [金鑰] 按鈕。
-	1.	複製 [儲存體帳戶名稱] 和 [主要存取金鑰] 值。
-
-		![][2]
-
-1.	在 [儲存體總管] 的 [儲存體帳戶] 節點的捷徑功能表上，選擇 [附加外部儲存體] 命令。
+1. 	在左窗格頂端，您會看到一個下拉式清單，其中包含所有您已登入的 Microsoft 帳戶的。
 
 	![][3]
-
-1. 在 [帳戶名稱] 方塊中輸入儲存體帳戶名稱，在 [帳戶金鑰] 方塊中輸入主要存取金鑰。選擇 [確定] 按鈕以繼續。
+	 
+1.	選取下拉式清單旁邊的向下箭號，以查看所有已登入的 Microsoft 帳戶，以及用於新增 (登入) 其他 Microsoft 帳戶的連結。
 
 	![][4]
 
-	外部儲存體會出現在儲存體總管中。
+1.	從下拉式清單中選取想要的 Microsoft 帳戶。
+
+1. 	左窗格會顯示與所選 Microsoft 帳戶相關聯的所有 Azure 訂用帳戶。每個 Azure 訂用帳戶左邊的核取方塊可讓您指定是否要儲存體 Explorer (預覽) 列出與該 Azure 訂用帳戶相關聯的所有儲存體帳戶。核取/取消核取 [所有訂用帳戶] 切換方塊，可選取全部或不選取任何列出的 Azure 訂用帳戶。
+
+	![][2]
+
+1.	當您選好您要管理的 Azure 訂用帳戶，，請選取 [套用]。左窗格會更新以列出目前 Microsoft 帳戶的每個已選取 Azure 訂用帳戶的所有儲存體帳戶。
+
+### 新增其他 Microsoft 帳戶
+
+下列步驟會引導您連接到其他 Microsoft 帳戶，以檢視每個帳戶的 Azure 訂用帳戶和儲存體帳戶。
+
+1.	選取 [設定] (齒輪) 圖示。
+
+	![][1]
+
+1. 	在左窗格頂端，您會看到一個下拉式清單，其中包含目前連接的所有 Microsoft 帳戶。
+
+	![][3]
+	 
+1.	選取下拉式清單旁邊的向下箭號，以查看所有已登入的 Microsoft 帳戶，以及用於新增 (登入) 其他 Microsoft 帳戶的連結。
+
+	![][4]
+
+1.	選取 [新增帳戶]，並依照對話方塊來登入與至少一個作用中 Azure 訂用帳戶相關聯的帳戶。
+
+1.	選取您想要瀏覽之 Azure 訂用帳戶的核取方塊。
+
+	![][2]
+
+1.	選取 [套用]。
+
+### 在 Microsoft 帳戶之間切換
+
+雖然您可以連接到多個 Microsoft 帳戶，左窗格只會顯示與單一 (目前) Microsoft 帳戶的訂用帳戶相關聯的儲存體帳戶。如果您連接到多個 Microsoft 帳戶，您可以執行下列步驟以在帳戶之間切換：
+
+1.	選取 [設定] (齒輪) 圖示。
+
+	![][1]
+
+1. 	在左窗格頂端，您會看到一個下拉式清單，其中包含目前連接的所有 Microsoft 帳戶。
+
+	![][3]
+	 
+1.	選取下拉式清單旁邊的向下箭號，以查看所有已登入的 Microsoft 帳戶，以及用於新增 (登入) 其他 Microsoft 帳戶的連結。
+
+	![][4]
+
+1.	選取想要的 Microsoft 帳戶。
+
+1.	選取您想要瀏覽之 Azure 訂用帳戶的核取方塊。
+
+	![][2]
+
+1.	選取 [套用]。
+  
+## 連接到本機儲存體
+
+儲存體 Explorer (預覽) 可讓您使用 Azure 儲存體模擬器處理本機儲存體。這可讓您撰寫程式碼並測試儲存體，而不需在 Azure 上部署儲存體帳戶 (因為 Azure 儲存體模擬器正在模擬儲存體帳戶)。
+
+>[AZURE.NOTE] Azure 儲存體模擬器目前只適用於 Windows。
+
+1. 啟動儲存體 Explorer (預覽)。 
+
+1. 在左側窗格中展開 [(開發)] 節點。
+
+	![][21]
+
+1. 如果您尚未安裝 Azure 儲存體模擬器，系統將透過資訊列提示您這麼做。若已顯示資訊列，請選取 [下載最新版本]，並安裝模擬器。
+
+	![][22]
+
+1. 安裝模擬器後，您就能夠建立並使用本機 Blob、佇列和資料表。若要了解如何使用每個儲存體帳戶類型，請選取以下適當的連結：
+
+	- [管理 Azure Blob 儲存體資源](./vs-azure-tools-storage-explorer-blobs.md)
+	- 管理 Azure 佇列儲存體資源 - 敬請期待
+	- 管理 Azure 表格儲存體資源 - 敬請期待
+
+## 附加或卸離外部儲存體帳戶
+
+儲存體 Explorer (預覽) 提供附加到外部儲存體帳戶的能力，因此可以輕鬆地共用儲存體帳戶。本節說明如何附加至 (及卸離) 外部儲存體帳戶。
+
+### 取得儲存體帳戶認證
+
+若要共用外部儲存體帳戶，該帳戶的擁有者必須先取得帳戶的認證 (帳戶名稱和金鑰)，然後與想要附加至該 (外部) 帳戶的人員分享該資訊。遵循下列步驟，即可透過 Azure 入口網站取得儲存體帳戶認證：
+
+1.	登入 [Azure 入口網站](https://portal.azure.com)。
+1.	選取 [瀏覽]。
+1.	讀取 [儲存體帳戶]。
+1.	在 [儲存體帳戶] 刀鋒視窗中，選取所需的儲存體帳戶。
+1.	在所選儲存體帳戶的 [設定] 刀鋒視窗中，選取 [存取金鑰]。
 
 	![][5]
-
-1. 若要移除外部儲存體，在外部儲存體的捷徑功能表上選擇 [卸離] 命令。
+	
+1.	在 [存取金鑰] 刀鋒視窗中，複製 [儲存體帳戶名稱] 和 [金鑰 1] 值，以便在附加至儲存體帳戶時使用。
 
 	![][6]
 
-## 檢視和瀏覽儲存體資源
+### 附加至外部儲存體帳戶
 
-若要在 [儲存體總管] 中瀏覽至 Azure 儲存體資源並檢視其資訊，請展開儲存體類型，然後選擇資源。所選取資源的相關資訊會出現在 [儲存體總管] 底部的 [動作] 和 [屬性] 索引標籤上。
+1.	在儲存體 Explorer (預覽) 中，以滑鼠右鍵按一下 [儲存體帳戶]，並從內容功能表中選取 [附加外部儲存體]。
 
-![][7]
+	![][7]
+	
+1.	「取得儲存體帳戶認證」一節說明如何取得儲存體帳戶名稱和金鑰 1 值。這些值將用於這個步驟。在 [附加外部儲存體] 對話方塊中，請在 [帳戶金鑰] 方塊中輸入儲存體帳戶名稱，並在 [帳戶金鑰] 方塊中輸入金鑰 1 值。完成時選取 [確定]。
 
--	[動作] 索引標籤會顯示您在 [儲存體總管] 中可針對選取的儲存體資源採取的動作，例如開啟、複製或刪除。[動作] 也會顯示在資源的捷徑功能表上。
+	![][8]
 
--	[屬性] 索引標籤會顯示儲存體資源的屬性，例如其類型、地區設定、相關聯的資源群組和 URL。
+	附加後，外部儲存體帳戶將會與附加至儲存體帳戶名稱的文字 **(外部)** 一起顯示。
 
-所有儲存體帳戶都有 [在入口網站中開啟] 這個動作。當您選擇此動作時，[儲存體總管] 會在 Azure Preview 入口網站中顯示選取的儲存體帳戶。
+	![][9]
 
-根據選取的資源而定，也會出現其他動作和屬性值。例如，Blob 容器、佇列和資料表節點都有 [建立] 動作。個別項目 (例如 blob 容器) 具有下列動作：[開啟]、[刪除] 和 [取得共用存取簽章]。當您選擇儲存體帳戶 blob 時，將會出現開啟 blob 編輯器的動作。
+### 從外部儲存體帳戶卸離
 
-## 搜尋儲存體帳戶和 blob 容器
-
-若要在 Azure 訂用帳戶中尋找具有特定名稱的儲存體帳戶和 blob 容器，請在 [儲存體總管] 的 [搜尋] 方塊中輸入名稱。
-
-![][8]
-
-當您在 [搜尋] 方塊中輸入字元時，只有符合這些字元的儲存體帳戶和 blob 容器才會出現在資源樹狀目錄中。若要清除搜尋，請在 [搜尋] 方塊中選擇 [x] 按鈕。
-
-## 編輯儲存體帳戶
-
-若要新增或變更儲存體帳戶的內容，請針對該儲存體類型選擇 [開啟編輯器] 命令。您可以選擇所選取項目的捷徑功能表上的動作，或者選擇 [儲存體總管] 底部的 [動作] 索引標籤上的動作。
-
-![][9]
-
-您可以建立或刪除 Blob 容器、佇列和資料表。您也可以選擇 [開啟 Blob 容器編輯器] 動作，編輯 [儲存體總管] 中的 blob。
-
-### 編輯 Blob 容器
-
-1.	選擇 [開啟 Blob 容器編輯器] 動作。[Blob 容器編輯器] 會出現在右窗格中。
+1. 	以滑鼠右鍵按一下您要卸離的外部儲存體帳戶，並從內容功能表中選取 [卸離]。
 
 	![][10]
 
-1.	選擇 [上傳] 按鈕，然後選擇 [上傳檔案] 命令。
-
-	![][11]
-
-	如果您想要上傳的檔案是在單一資料夾中，您可以改為選擇 [上傳資料夾] 命令。
-
-1. 在 [上傳檔案] 對話方塊中，選擇 [檔案] 方塊右側的省略符號 (**...**) 按鈕，以選取您想要上傳的檔案。然後，選擇您想要上傳的 blob 類型 (區塊、頁面或附加)。如果您想要的話，可以選擇將檔案上傳至 blob 容器中的資料夾。在 [上傳到資料夾 (選擇性)] 方塊中輸入資料夾的名稱。如果資料夾不存在，系統就會加以建立。
+1.	當確認訊息方塊出現時，請選取 [是] 已確認從外部儲存體帳戶卸離。
 
 	![][12]
 
-	在下列螢幕擷取畫面中，三個映像檔案已上傳到 [映像] blob 容器中名為 [我的新檔案] 的新資料夾。
+## 使用 SAS 附加帳戶
+
+SAS (共用存取簽章) 讓 Azure 共用存取簽章的系統管理員能夠暫時授與儲存體帳戶的存取權，而不需提供其 Azure 訂用帳戶認證。
+
+為了說明這點，我們假設 UserA 是 Azure 訂用帳戶的系統管理員，而且 UserA 想要允許 UserB 在有限的時間內使用特定權限存取儲存體帳戶：
+
+1. UserA 可在特定期間內使用所需的權限產生 SAS (由儲存體帳戶的連接字串所組成)。
+1. UserA 可與想要存取儲存體帳戶的人員共用 SAS - 在本例中為 UserB。  
+1. UserB 可透過儲存體 Explorer (預覽)，使用所提供的 SAS 來附加至屬於 UserA 的帳戶。 
+
+### 針對您要共用的帳戶取得 SAS
+
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，以滑鼠右鍵按一下您要共用的儲存體帳戶，並從內容功能表中選取 [取得共用存取簽章]。
 
 	![][13]
 
-	Blob 編輯器工具列上的按鈕可讓您選取、下載、開啟、複製和刪除檔案等等。對話方塊底部的 [活動] 窗格會顯示您的作業是否成功，並可讓您從檢視中僅移除成功的活動，或完全清除窗格。選擇已上傳檔案旁邊的 [+] 圖示，以檢視已上傳檔案的詳細清單。
-
-## 建立共用存取簽章 (SAS)
-
-對於某些作業而言，您可能需要 SAS 才能存取儲存體資源。您可以使用 [儲存體總管] 建立。
-
-1.	選取您要為其建立 SAS 的項目，然後在 [動作] 窗格或項目的捷徑功能表上，選擇 [取得共用存取簽章] 命令。
+1. 在 [共用存取簽章] 對話方塊中，指定您要用於此帳戶的時間範圍和權限，再選取 [建立]。
 
 	![][14]
+ 
+1. 第二個 [共用存取簽章] 對話方塊將會顯示，其中顯示 SAS。選取 [連接字串] 旁的 [複製]，將它複製到剪貼簿。選取 [關閉] 以關閉對話方塊。
 
-1.	在 [共用存取簽章] 對話方塊中，選擇原則、開始和到期日期及時區。此外，選取您想要的資源的存取層級核取方塊，例如唯讀、讀寫等等。完成時，選擇 [建立] 按鈕以建立 SAS。
+### 使用 SAS 附加至共用帳戶
 
-	![][15]
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，以滑鼠右鍵按一下 [儲存體帳戶]，並從內容功能表中選取 [使用 SAS 附加帳戶]。![][15]
 
-1.	[共用存取簽章] 對話方塊會列出您可以用來存取儲存體資源的容器及 URL 和 QueryStrings。選擇 [複製] 按鈕以複製字串。
+1. 在 [使用 SAS 附加帳戶] 對話方塊上：
 
+	- **帳戶名稱** - 輸入您想要與此帳戶產生關聯的名稱。**附註︰**帳戶名稱不必符合用於產生 SAS 的原始儲存體帳戶名稱。 
+ 	- **連接字串** - 貼上您先前複製的連接字串。
+ 	- 完成時選取 [確定]。
+	
 	![][16]
 
-## 管理 SAS 和權限
+附加後，儲存體帳戶將會與附加至您提供之帳戶名稱的文字 (SAS) 一起顯示。
 
-若要控制對 blob 容器的存取權，您可以選擇 [管理存取控制清單] 和 [設定公用存取層級] 命令。
+![][17]
 
--	[管理存取控制清單] 可讓您對選取的 blob 容器新增、編輯和移除原則 (使用者是否可以讀取、寫入等等)。
--	[設定公用存取層級] 可讓您決定多少存取公用使用者可以取得資源。  
+## 使用 SAS 附加服務
 
--
+[使用 SAS 附加帳戶](#attach-account-using-sas)一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
 
-1.	選擇 blob 容器，然後在捷徑功能表上或 [動作] 窗格中選擇 [管理存取控制清單] 命令。
+### 針對您要共用的服務產生 SAS
 
-	![][17]
+在此情況下，服務可以是 Blob 容器、佇列或資料表。下列各節說明如何針對所列的服務產生 SAS：
 
-1.	在 [存取控制清單] 對話方塊中，選擇 [新增] 按鈕以新增存取原則。選擇存取原則，然後為它選取權限。完成時，請選擇 [儲存] 按鈕。
+- [取得 Blob 容器的 SAS](./vs-azure-tools-storage-explorer-blobs.md#get-the-sas-for-a-blob-container)
+- 取得佇列的 SAS - 敬請期待
+- 取得資料表的 SAS - 敬請期待
 
-	![][18]
+### 使用 SAS 附加至共用帳戶服務
 
-1.	若要設定 blob 容器的存取層級，在 [儲存體總管] 中選擇它，然後在捷徑功能表上或 [動作] 窗格中選擇 [設定公用存取層級] 命令。
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，以滑鼠右鍵按一下 [儲存體帳戶]，並從內容功能表中選取 [使用 SAS 附加服務]。![][18]
+
+1. 在 [使用 SAS 附加帳戶] 對話方塊上，貼上您先前複製的 SAS URI，然後選取 [確定]。
 
 	![][19]
 
-1.	在 [設定容器公用存取層級] 對話方塊中，選取您想要提供給公用使用者的存取層級的選項按鈕，然後選擇 [套用] 按鈕。
+附加後，新附加的服務會顯示在 [(服務 SAS)] 節點之下。
 
-	![][20]
+![][20]
+
+## 搜尋儲存體帳戶
+
+如果您有一長串的儲存體帳戶，使用左窗格頂端的 [搜尋] 方塊，可讓您快速尋找特定的儲存體帳戶。
+
+當您在搜尋方塊中輸入資料時，左窗格只會顯示與您當時輸入的搜尋值相符的儲存體帳戶。以下螢幕擷取畫面說明當我搜尋到儲存體帳戶名稱包含 "tarcher" 文字的所有儲存體帳戶時的範例。
+
+![][11]
+	
+若要清除搜尋，請在 [搜尋] 方塊中選取 **x** 按鈕。
 
 ## 後續步驟
-深入了解 Azure 儲存體服務中的功能，方法是閱讀 [Microsoft Azure 儲存體簡介](./storage/storage-introduction.md)中的文章。
+- [使用儲存體 Explorer 來管理 Azure Blob 儲存體資源 (預覽)](./vs-azure-tools-storage-explorer-blobs.md)
 
-[0]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/AddAccount1c.png
-[1]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/AddAccount2c.png
-[2]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/External1c.png
-[3]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/External2c.png
-[4]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/External3c.png
-[5]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/External4c.png
-[6]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/External5c.png
-[7]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Navigatec.png
-[8]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Searchc.png
-[9]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Edit1c.png
-[10]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Edit2c.png
-[11]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Edit3c.png
-[12]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Edit4c.png
-[13]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Edit5c.png
-[14]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/SAS1c.png
-[15]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/SAS2c.png
-[16]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/SAS3c.png
-[17]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS1c.png
-[18]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS2c.png
-[19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS3c.png
-[20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageSAS4c.png
+[0]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure.png
+[1]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/settings-gear.png
+[2]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/filter-subscriptions.png
+[3]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/filter-accounts.png
+[4]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/accounts-drop-down.png
+[5]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/access-keys.png
+[6]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/access-keys-copy.png
+[7]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-external-storage.png
+[8]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-external-storage-dlg.png
+[9]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/external-storage-account.png
+[10]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/detach-external-storage.png
+[11]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/storage-account-search.png
+[12]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/detach-external-storage-confirmation.png
+[13]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/get-sas-context-menu.png
+[14]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/get-sas-dlg1.png
+[15]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-account-using-sas-context-menu.png
+[16]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-account-using-sas-dlg.png
+[17]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-account-using-sas-finished.png
+[18]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-service-using-sas-context-menu.png
+[19]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-service-using-sas-dlg.png
+[20]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/attach-service-using-sas-finished.png
+[21]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/local-storage-drop-down.png
+[22]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/download-storage-emulator.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

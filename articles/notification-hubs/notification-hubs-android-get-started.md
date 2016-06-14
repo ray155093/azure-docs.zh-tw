@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="hero-article"
-	ms.date="05/05/2016"
+	ms.date="05/27/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Android
@@ -74,13 +74,13 @@
 
 ###新增 Azure 通知中樞程式庫
 
-1. 從 [Bintray 上之 Notification-Hubs-Android-SDK](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4) 的 [檔案] 索引標籤下載 `notification-hubs-0.4.jar` 檔案。將此檔案拖曳至專案目錄的 **libs** 資料夾。
 
-2. 在應用程式的 `Build.Gradle` 檔案中，在 dependencies 區段中加入以下這行。
+1. 在**應用程式**的 `Build.Gradle` 檔案中，於 **dependencies** 區段中加入以下幾行。
 
-	    compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
+		compile 'com.microsoft.azure:notification-hubs-android-sdk:0.4@aar'
+		compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
 
-	加入下列儲存機制到 **dependencies** 一節之後。
+2. 加入下列儲存機制到 **dependencies** 一節之後。
 
 		repositories {
 		    maven {
@@ -93,7 +93,7 @@
 
 1. 若要支援 GCM，我們必須在程式碼中實作執行個體識別碼接聽程式服務，以便使用 [Google 的執行個體識別碼 API](https://developers.google.com/instance-id/) 來[取得註冊權杖](https://developers.google.com/cloud-messaging/android/client#sample-register)。在本教學課程中，我們將此類別命名為 `MyInstanceIDService`。 
  
-	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
+	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
 
 		<service android:name="<your package>.MyInstanceIDService" android:exported="false">
 		    <intent-filter>
@@ -104,7 +104,7 @@
 
 2. 一旦從執行個體識別碼 API 收到 GCM 註冊權杖，我們會將它用來[向 Azure 通知中樞註冊](notification-hubs-registration-management.md)。我們將使用名為 `RegistrationIntentService` 的 `IntentService` 在背景支援此註冊。此服務也會負責[重新整理我們的 GCM 註冊權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
  
-	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
+	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
 
         <service
             android:name="<your package>.RegistrationIntentService"
@@ -113,7 +113,7 @@
 
 
 
-3. 我們也會定義要接收通知的接收者。將下列接收者定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
+3. 我們也會定義要接收通知的接收者。將下列接收者定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
 
 		<receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
 		    android:permission="com.google.android.c2dm.permission.SEND">
@@ -125,7 +125,7 @@
 
 
 
-4. 在 `</application>` 標記下面新增下列必要的 GCM 相關權限。請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱取代 `<your package>`。
+4. 在 `</application>` 標籤下面新增下列必要的 GCM 相關權限。請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱取代 `<your package>`。
 
 	如需這些權限的詳細資訊，請參閱[設定適用於 Android 的 GCM 用戶端應用程式](https://developers.google.com/cloud-messaging/android/client#manifest)。
 
@@ -150,7 +150,7 @@
 	* **HubListenConnectionString**：您的中樞的 **DefaultListenAccessSignature** 連接字串。在 [Azure 入口網站]中按一下您的中樞的 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
 	* **HubName**︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
 
-	`NotificationSettings`代碼：
+	`NotificationSettings` 程式碼︰
 
 		public class NotificationSettings {
 		    public static String SenderId = "<Your project number>";
@@ -229,7 +229,7 @@
 		                regID = hub.register(token).getRegistrationId();
 
 		                // If you want to use tags...
-						// Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
+						// Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
 		                // regID = hub.register(token, "tag1,tag2").getRegistrationId();
 
 		                resultString = "Registered Successfully - RegId : " + regID;
@@ -360,7 +360,7 @@
 	    }
 
 
-10. `ToastNotify` 方法會使用 "Hello World" `TextView` 控制項持續在應用程式中報告狀態和通知。在 activity\_main.xml 配置中，為該控制項加入下列識別碼。
+10. `ToastNotify` 方法會使用「"Hello World"」`TextView` 控制項持續在應用程式中報告狀態和通知。在 activity\_main.xml 配置中，為該控制項加入下列識別碼。
 
         android:id="@+id/text_hello"
 
@@ -619,7 +619,7 @@
 	
 	                        // Include any tags
 	                        // Example below targets 3 specific tags
-	                        // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
+	                        // Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
 	                        // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
 							//		"tag1 || tag2 || tag3");
 	
@@ -724,4 +724,4 @@
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

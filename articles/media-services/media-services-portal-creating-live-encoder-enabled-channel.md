@@ -71,7 +71,7 @@
 ##必要條件
 需要有下列項目，才能完成教學課程。
 
-- 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](azure.microsoft.com)。
+- 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - 媒體服務帳戶。若要建立媒體服務帳戶，請參閱[建立帳戶](media-services-create-account.md)。
 - 網路攝影機以及可以傳送單一位元速率即時串流的編碼器。
 
@@ -173,7 +173,7 @@
 
 通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。這可讓您視需要發佈和封存事件的不同部分。例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。為了達成此目的，您必須建立兩個同時執行的程式。其中一個程式設定為封存 6 小時的事件，但是未發行該程式。另一個程式則設定為封存 10 分鐘，並發行程式。
 
-您不應該將現有程式重複用於新的事件。而是為每個事件建立並啟動新的程式 (如＜程式設計即時串流應用程式＞一節中所述)。
+您不應該將現有程式重複用於新的事件。而是針對每個事件建立並啟動新的程式。
 
 當您準備好開始串流和封存時，請啟動程式。每當您想要停止串流處理和封存事件時，請停止程式。
 
@@ -276,4 +276,4 @@
 [standard4]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard4.png
 [standard5]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard_encode.png
 
-<!----HONumber=AcomDC_0511_2016--->
+<!---HONumber=AcomDC_0608_2016-->

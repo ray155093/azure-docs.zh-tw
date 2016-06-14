@@ -17,7 +17,7 @@
    ms.date="05/05/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
-# 建立 SQL 資料倉儲
+# 建立 Azure SQL 資料倉儲
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
@@ -44,7 +44,7 @@
 
 	- **資料庫名稱**︰將用來參考 SQL 資料倉儲的名稱。對伺服器而言，它必須是唯一的。
 	
-    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-overview-scalability.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。
+    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-manage-compute-overview.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/zh-TW/pricing/details/sql-data-warehouse/)。
 
     - **訂用帳戶**：選取此 SQL 資料倉儲將會計費的訂用帳戶。
 
@@ -68,4 +68,4 @@
 
 如果您嘗試將現有的資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](./sql-data-warehouse-overview-migrate.md)或使用[移轉公用程式](./sql-data-warehouse-migrate-migration-utility.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

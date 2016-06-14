@@ -13,13 +13,13 @@
 	ms.workload="search"
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
-	ms.date="02/18/2016"
+	ms.date="06/08/2016"
 	ms.author="heidist"/>
 
 # 使用 Fiddler 評估及測試 Azure 搜尋 REST API
 > [AZURE.SELECTOR]
-- [Overview](search-query-overview.md)
-- [Search Explorer](search-explorer.md)
+- [概觀](search-query-overview.md)
+- [搜尋總管](search-explorer.md)
 - [Fiddler](search-fiddler.md)
 - [.NET](search-query-dotnet.md)
 - [REST](search-query-rest-api.md)
@@ -47,33 +47,33 @@
 
     完整 URL 應該會類似下列範例。
 
-         https://my-app.search.windows.net/indexes/hotels?api-version=2015-02-28
+         	https://my-app.search.windows.net/indexes/hotels?api-version=2015-02-28
 
 4.	指定要求標頭，使用服務的有效值取代主機和 API 金鑰。
 
-        User-Agent: Fiddler
-        host: my-app.search.windows.net
-        content-type: application/json
-        api-key: 1111222233334444
+	        User-Agent: Fiddler
+	        host: my-app.search.windows.net
+	        content-type: application/json
+	        api-key: 1111222233334444
 
 5.	在 [Request Body (要求本文)] 中，貼上構成索引定義的欄位。
-
-         {
-        "name": "hotels",  
-        "fields": [
-          {"name": "hotelId", "type": "Edm.String", "key":true, "searchable": false},
-          {"name": "baseRate", "type": "Edm.Double"},
-          {"name": "description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false},
-          {"name": "hotelName", "type": "Edm.String"},
-          {"name": "category", "type": "Edm.String"},
-          {"name": "tags", "type": "Collection(Edm.String)"},
-          {"name": "parkingIncluded", "type": "Edm.Boolean"},
-          {"name": "smokingAllowed", "type": "Edm.Boolean"},
-          {"name": "lastRenovationDate", "type": "Edm.DateTimeOffset"},
-          {"name": "rating", "type": "Edm.Int32"},
-          {"name": "location", "type": "Edm.GeographyPoint"}
-         ]
-        }
+		    
+		     {
+		    "name": "hotels",  
+		    "fields": [
+		      {"name": "hotelId", "type": "Edm.String", "key":true, "searchable": false},
+		      {"name": "baseRate", "type": "Edm.Double"},
+		      {"name": "description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false},
+		      {"name": "hotelName", "type": "Edm.String"},
+		      {"name": "category", "type": "Edm.String"},
+		      {"name": "tags", "type": "Collection(Edm.String)"},
+		      {"name": "parkingIncluded", "type": "Edm.Boolean"},
+		      {"name": "smokingAllowed", "type": "Edm.Boolean"},
+		      {"name": "lastRenovationDate", "type": "Edm.DateTimeOffset"},
+		      {"name": "rating", "type": "Edm.Int32"},
+		      {"name": "location", "type": "Edm.GeographyPoint"}
+		     ]
+		    }
 
 6.	按一下 [Execute (執行)]。
 
@@ -91,77 +91,77 @@
 
 2.	輸入以 HTTPS 開頭的 URL，並於後面依序加上服務 URL 和 "/indexes/<'indexname'>/docs/index?api-version=2015-02-28"。完整 URL 應該會類似下列範例。
 
-        https://my-app.search.windows.net/indexes/hotels/docs/index?api-version=2015-02-28
+        	https://my-app.search.windows.net/indexes/hotels/docs/index?api-version=2015-02-28
 
 3.	要求標頭應與之前的相同。請記住，您已使用您服務的有效值取代主機和 API 金鑰。
 
-        User-Agent: Fiddler
-        host: my-app.search.windows.net
-        content-type: application/json
-        api-key: 1111222233334444
+	        User-Agent: Fiddler
+	        host: my-app.search.windows.net
+	        content-type: application/json
+	        api-key: 1111222233334444
 
 4.	[Request Body (要求本文)] 包含 4 個要新增到飯店索引的文件。
 
-        {
-        "value": [
-        {
-        	"@search.action": "upload",
-        	"hotelId": "1",
-        	"baseRate": 199.0,
-        	"description": "Best hotel in town",
-        	"hotelName": "Fancy Stay",
-        	"category": "Luxury",
-        	"tags": ["pool", "view", "wifi", "concierge"],
-        	"parkingIncluded": false,
-        	"smokingAllowed": false,
-        	"lastRenovationDate": "2010-06-27T00:00:00Z",
-        	"rating": 5,
-        	"location": { "type": "Point", "coordinates": [-122.131577, 47.678581] }
-          },
-          {
-        	"@search.action": "upload",
-        	"hotelId": "2",
-        	"baseRate": 79.99,
-        	"description": "Cheapest hotel in town",
-        	"hotelName": "Roach Motel",
-        	"category": "Budget",
-        	"tags": ["motel", "budget"],
-        	"parkingIncluded": true,
-        	"smokingAllowed": true,
-        	"lastRenovationDate": "1982-04-28T00:00:00Z",
-        	"rating": 1,
-        	"location": { "type": "Point", "coordinates": [-122.131577, 49.678581] }
-          },
-          {
-        	"@search.action": "upload",
-        	"hotelId": "3",
-        	"baseRate": 279.99,
-        	"description": "Surprisingly expensive",
-        	"hotelName": "Dew Drop Inn",
-        	"category": "Bed and Breakfast",
-        	"tags": ["charming", "quaint"],
-        	"parkingIncluded": true,
-        	"smokingAllowed": false,
-        	"lastRenovationDate": null,
-        	"rating": 4,
-        	"location": { "type": "Point", "coordinates": [-122.33207, 47.60621] }
-          },
-          {
-        	"@search.action": "upload",
-        	"hotelId": "4",
-        	"baseRate": 220.00,
-        	"description": "This could be the one",
-        	"hotelName": "A Hotel for Everyone",
-        	"category": "Basic hotel",
-        	"tags": ["pool", "wifi"],
-        	"parkingIncluded": true,
-        	"smokingAllowed": false,
-        	"lastRenovationDate": null,
-        	"rating": 4,
-        	"location": { "type": "Point", "coordinates": [-122.12151, 47.67399] }
-          }
-         ]
-        }
+	        {
+	        "value": [
+	        {
+	        	"@search.action": "upload",
+	        	"hotelId": "1",
+	        	"baseRate": 199.0,
+	        	"description": "Best hotel in town",
+	        	"hotelName": "Fancy Stay",
+	        	"category": "Luxury",
+	        	"tags": ["pool", "view", "wifi", "concierge"],
+	        	"parkingIncluded": false,
+	        	"smokingAllowed": false,
+	        	"lastRenovationDate": "2010-06-27T00:00:00Z",
+	        	"rating": 5,
+	        	"location": { "type": "Point", "coordinates": [-122.131577, 47.678581] }
+	          },
+	          {
+	        	"@search.action": "upload",
+	        	"hotelId": "2",
+	        	"baseRate": 79.99,
+	        	"description": "Cheapest hotel in town",
+	        	"hotelName": "Roach Motel",
+	        	"category": "Budget",
+	        	"tags": ["motel", "budget"],
+	        	"parkingIncluded": true,
+	        	"smokingAllowed": true,
+	        	"lastRenovationDate": "1982-04-28T00:00:00Z",
+	        	"rating": 1,
+	        	"location": { "type": "Point", "coordinates": [-122.131577, 49.678581] }
+	          },
+	          {
+	        	"@search.action": "upload",
+	        	"hotelId": "3",
+	        	"baseRate": 279.99,
+	        	"description": "Surprisingly expensive",
+	        	"hotelName": "Dew Drop Inn",
+	        	"category": "Bed and Breakfast",
+	        	"tags": ["charming", "quaint"],
+	        	"parkingIncluded": true,
+	        	"smokingAllowed": false,
+	        	"lastRenovationDate": null,
+	        	"rating": 4,
+	        	"location": { "type": "Point", "coordinates": [-122.33207, 47.60621] }
+	          },
+	          {
+	        	"@search.action": "upload",
+	        	"hotelId": "4",
+	        	"baseRate": 220.00,
+	        	"description": "This could be the one",
+	        	"hotelName": "A Hotel for Everyone",
+	        	"category": "Basic hotel",
+	        	"tags": ["pool", "wifi"],
+	        	"parkingIncluded": true,
+	        	"smokingAllowed": false,
+	        	"lastRenovationDate": null,
+	        	"rating": 4,
+	        	"location": { "type": "Point", "coordinates": [-122.12151, 47.67399] }
+	          }
+	         ]
+	        }
 
 8.	按一下 [Execute (執行)]。
 
@@ -176,17 +176,17 @@
 1.	選取 [GET]。
 
 2.	輸入以 HTTPS 開頭，並於後面依序加上服務 URL、"/indexes/<'indexname'>/docs?" 和查詢參數的完整 URL。舉例來說，使用下列 URL，並以服務的有效值取代範例主機名稱。
-
-        https://my-app.search.windows.net/indexes/hotels/docs?search=motel&facet=category&facet=rating,values:1|2|3|4|5&api-version=2015-02-28
+	
+	        https://my-app.search.windows.net/indexes/hotels/docs?search=motel&facet=category&facet=rating,values:1|2|3|4|5&api-version=2015-02-28
 
     此查詢會搜尋「motel」一字，並擷取評等的 Facet 類別。
 
 3.	要求標頭應與之前的相同。請記住，您已使用您服務的有效值取代主機和 API 金鑰。
 
-        User-Agent: Fiddler
-        host: my-app.search.windows.net
-        content-type: application/json
-        api-key: 1111222233334444
+	        User-Agent: Fiddler
+	        host: my-app.search.windows.net
+	        content-type: application/json
+	        api-key: 1111222233334444
 
 回應碼應為 200，而回應輸出應該會類似下列螢幕擷取畫面。
 
@@ -212,14 +212,14 @@
 
 2.	輸入含有服務 URL 的 URL，並於後面加上 "/indexes/hotels/stats?api-version=2015-02-28"：
 
-        https://my-app.search.windows.net/indexes/hotels/stats?api-version=2015-02-28
+        	https://my-app.search.windows.net/indexes/hotels/stats?api-version=2015-02-28
 
 3.	指定要求標頭，使用服務的有效值取代主機和 API 金鑰。
 
-        User-Agent: Fiddler
-        host: my-app.search.windows.net
-        content-type: application/json
-        api-key: 1111222233334444
+	        User-Agent: Fiddler
+	        host: my-app.search.windows.net
+	        content-type: application/json
+	        api-key: 1111222233334444
 
 4.	讓要求本文保持空白。
 
@@ -239,4 +239,4 @@
 [4]: ./media/search-fiddler/AzureSearch_Fiddler4_QueryResults.png
 [5]: ./media/search-fiddler/AzureSearch_Fiddler5_QueryStats.png
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

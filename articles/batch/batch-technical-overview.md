@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/20/2016"
+	ms.date="06/02/2016"
 	ms.author="marsma"/>
 
 # Azure Batch 的基本概念
@@ -69,7 +69,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 | **Batch REST** | [MSDN][batch_rest] | N/A | [MSDN][batch_rest] |
 | **Batch .NET** | [MSDN][api_net] | [NuGet][api_net_nuget] | [GitHub][api_sample_net] |
 | **Batch Python** | [readthedocs.io][api_python] | [PyPI][api_python_pypi] |[GitHub][api_sample_python] |
-| **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - |
+| **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - | | **Batch Java** (預覽) | [github.io][api_java] | [Maven snapshot repo][api_java_jar] | - |
 
 ### Batch 資源管理
 
@@ -85,9 +85,9 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 
 雖然不一定要使用 Batch 建置解決方案，但這些工具可視為建置和偵錯 Batch 應用程式和服務時的必要項目。
 
-- [Azure Batch 總管][batch_explorer]：Batch 總管是可[透過 GitHub 取得][github_samples]的其中一個 Batch .NET 範例應用程式。使用 Visual Studio 2013 或 2015 建置此 Windows Presentation Foundation (WPF) 應用程式，在您開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。在 Batch 總管介面中只需按幾下滑鼠，就可以檢視作業、集區和工作詳細資訊、從計算節點下載檔案，甚至使用您取得的遠端桌面 (RDP) 檔案從遠端連接到節點。
+- [Azure Batch Explorer][batch_explorer]：Batch Explorer 是可[透過 GitHub 取得][github_samples]的其中一個 Batch .NET 範例應用程式。使用 Visual Studio 2013 或 2015 建置此 Windows Presentation Foundation (WPF) 應用程式，在您開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。在 Batch 總管介面中只需按幾下滑鼠，就可以檢視作業、集區和工作詳細資訊、從計算節點下載檔案，甚至使用您取得的遠端桌面 (RDP) 檔案從遠端連接到節點。
 
-- [Microsoft Azure 儲存體總管][storage_explorer]：嚴格來說，雖然儲存體總管不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
+- [Microsoft Azure 儲存體 Explorer][storage_explorer]：嚴格來說，雖然儲存體 Explorer 不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
 
 ## 案例：相應放大平行工作負載
 
@@ -125,11 +125,13 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 
 - 查看 [Batch 功能概觀](batch-api-basics.md)，深入了解 Batch 提供來處理計算密集型工作負載的 API 功能。
 
-- 除了 Batch 總管，其他在 [GitHub 上的程式碼範例][github_samples]也示範如何使用 Batch .NET 程式庫中的許多 Batch 功能。
+- 除了 Batch Explorer，其他在 [GitHub 上的程式碼範例][github_samples]也示範如何使用 Batch .NET 程式庫中的許多 Batch 功能。
 
 - 查看 [Batch 學習路徑][learning_path]，了解您在學習使用 Batch 時可用的資源。
 
 [azure_storage]: https://azure.microsoft.com/services/storage/
+[api_java]: http://azure.github.io/azure-sdk-for-java/
+[api_java_jar]: http://adxsnapshots.azurewebsites.net/?dir=com%5cmicrosoft%5cazure%5cazure-batch
 [api_net]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_nuget]: https://www.nuget.org/packages/Azure.Batch/
 [api_net_mgmt]: https://msdn.microsoft.com/library/azure/mt463120.aspx
@@ -153,4 +155,4 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

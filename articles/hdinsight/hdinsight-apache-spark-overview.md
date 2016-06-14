@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="04/14/2016" 
+	ms.date="06/06/2016" 
 	ms.author="nitinme"/>
 
-# 概觀：HDInsight Linux 上的 Apache Spark (預覽)
+# 概觀：HDInsight Linux 上的 Apache Spark
  
 <a href="http://spark.apache.org/" target="_blank">Apache Spark</a> 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。Spark 處理引擎是專為速度、易用性及精密分析打造的產品。Spark 的記憶體內計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇 。Spark 也能與 Azure Blob 儲存體 (WASB) 相容，因此您可以輕鬆地透過 Spark 處理儲存在 Azure 中的現有資料。
 
@@ -37,13 +37,16 @@ Azure HDInsight 提供完全受管理的 Spark 服務。在 HDInsight 上使用 
 
 | 功能 | 說明 |
 |-------------------------------------|-------------------|
-| 容易建立 | 您可以使用 Azure 管理入口網站、Azure PowerShell 或 HDInsight .NET SDK，在幾分鐘之內於 HDInsight 上建立新的 Spark 叢集。請參閱[開始使用 HDInsight 中的 Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md) |
+| 容易建立叢集 | 您可以使用 Azure 管理入口網站、Azure PowerShell 或 HDInsight .NET SDK，在幾分鐘之內於 HDInsight 上建立新的 Spark 叢集。請參閱[開始使用 HDInsight 中的 Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md) |
 | 容易使用 | HDInsight 叢集中的 Spark 包含預先設定的 Jupyter Notebook。您可以使用它們來進行互動式的資料處理和視覺化。URL 是 https://CLUSTERNAME.azurehdinsight.net/jupyter。請用您 Spark HDInsight 叢集的名稱取代 __CLUSTERNAME__。|
 | REST API | HDInsight 中的 Spark 包含 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)，它是 REST-API 式 Spark 作業伺服器，能用來遠端提交及監視執行中的工作。 |
+| 支援 Azure Data Lake Store | HDInsight 上的 Spark 可以設定為使用 Azure Data Lake Store 做為額外的儲存體。如需有關 Data Lake Store 的詳細資訊，請參閱 [Azure Data Lake Store 概觀](../data-lake-store/data-lake-store-overview.md)。
+| Azure 服務整合 | HDInsight 上的 Spark 附有連接 Azure 事件中樞的連接器。除了 Spark 已經提供的 [Kafka](http://kafka.apache.org/) 之外，客戶還可以使用事件中樞來建置串流應用程式。 |
+| 支援 R 伺服器 | 您可以在 HDInsight Spark 叢集上設定 R 伺服器，以 Spark 叢集所承諾的速度執行分散式 R 計算。如需詳細資訊，請參閱[開始使用 HDInsight 中的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。 |
+| 與 IntelliJ IDEA 整合 | 您可以使用 IntelliJ 的 HDInsight 外掛程式來建立應用程式，並將應用程式提交至 HDInsight Spark 叢集。如需詳細資訊，請參閱[使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)。 |
 | 並行查詢 | HDInsight 中的 Spark 支援並行查詢。它能讓一位使用者執行多個查詢，或讓不同的使用者執行多個查詢，以及讓應用程式共用相同的叢集資源。 |
 | SSD 快取 | 您可以選擇將資料快取在記憶體中，或快取在連接叢集節點的 SSD 中。記憶體快取能提供最高的查詢效能，但可能所費不疵。SSD 快取是改善查詢效能的絕佳選項，而且您不需要根據記憶體中的整個資料集建立滿足其需求的叢集規模。|
-| Azure 服務整合 | HDInsight 上的 Spark 附有連接 Azure 事件中樞的連接器。除了 Spark 已經提供的 [Kafka](http://kafka.apache.org/) 之外，客戶還可以使用事件中樞來建置串流應用程式。 |
-| BI 工具整合 | HDInsight 的 Spark 會為常用的 BI 工具 (例如 [Power BI](http://www.powerbi.com/) 和 [Tableau](http://www.tableau.com/products/desktop)) 提供資料分析所需的連接器。|
+| BI 工具整合 | HDInsight 的 Spark 會為 BI 工具 (例如 [Power BI](http://www.powerbi.com/) 和 [Tableau](http://www.tableau.com/products/desktop)) 提供資料分析所需的連接器。|
 | 預先載入的 Anaconda 程式庫 | HDInsight 上的 Spark 叢集附有預先安裝的 Anaconda 程式庫。[Anaconda](http://docs.continuum.io/anaconda/) 為機器學習、資料分析、視覺化等主題提供將近 200 個程式庫。|
 | 延展性 | 雖然您可以在建立時指定叢集的節點數，但您可以擴大或縮小叢集以配合工作負載。所有 HDInsight 叢集都允許您變更叢集中的節點數目。此外，由於所有資料都儲存在 Azure Blob 儲存體內，因此您可以在不遺失資料的情況下卸除 Spark 叢集。 |
 | 全天候支援 | HDInsight 上的 Spark 附有企業級的全天候支援和保證正常運作時間達 99.9% 的 SLA。|
@@ -113,15 +116,23 @@ HDInsight 中的 Spark 也提供 [ODBC 驅動程式](http://go.microsoft.com/fwl
 
 * [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
 
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
+
+* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+
+* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### 管理資源
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
+* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
+
 
 [hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

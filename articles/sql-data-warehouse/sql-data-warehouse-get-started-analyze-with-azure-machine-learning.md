@@ -132,9 +132,9 @@ FROM [dbo].[vTargetMail]
 <!--Article references-->
 [Azure Machine Learning studio]: https://studio.azureml.net/
 [Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
-[手動載入範例資料]: sql-data-warehouse-get-started-manually-load-samples.md
+[手動載入範例資料]: sql-data-warehouse-get-started-load-sample-databases.md
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 [Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
 [Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

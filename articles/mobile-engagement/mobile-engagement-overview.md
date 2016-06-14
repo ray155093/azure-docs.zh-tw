@@ -45,12 +45,10 @@ Microsoft 長期以來一直都非常重視隱私權的問題，這是我們的�
 
 ###後續步驟：
 
-[建立 Azure Mobile Engagement 應用程式](mobile-engagement-create.md)
-
 [建立 Mobile Engagement 的最佳做法和程序](mobile-engagement-getting-started-best-practices.md)
 
-[開始使用 (行銷人員)](mobile-engagement-define-your-mobile-engagement-strategy.md)
+[開始使用](/documentation/services/mobile-engagement/)
 
-[開始使用 (開發人員)](/documentation/services/mobile-engagement/)
+[下載示範應用程式和原始程式碼](https://aka.ms/azmedemoapps)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

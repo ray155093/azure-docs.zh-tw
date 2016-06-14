@@ -13,7 +13,7 @@
   	ms.tgt_pltfrm="na"
 	ms.devlang="javascript"
 	ms.topic="hero-article"
-	ms.date="02/17/2016"
+	ms.date="05/31/2016"
 	ms.author="brandwe"/>
 
 # B2C 預覽：使用 Node.js 保護 Web API 安全
@@ -881,4 +881,4 @@ Transfer-Encoding: chunked
 
 [使用 iOS 搭配 B2C 連線至 Web API](active-directory-b2c-devquickstarts-ios.md)
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0608_2016-->
