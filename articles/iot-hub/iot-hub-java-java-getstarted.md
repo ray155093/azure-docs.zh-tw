@@ -190,7 +190,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     import java.util.logging.*;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自**事件中樞相容端點**，其形式為 **xyznamespace** (也就是，從入口網站的事件中樞相容端點值移除 ****sb://** 前置詞和 **.servicebus.windows.net** 尾碼)：
+7. 將下列類別層級變數新增至 **App** 類別。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自**事件中樞相容端點**，其形式為 **xyznamespace** (也就是，從入口網站的事件中樞相容端點值移除 **sb://** 前置詞和 **.servicebus.windows.net** 尾碼)：
 
     ```
     private static String namespaceName = "{youreventhubcompatiblenamespace}";

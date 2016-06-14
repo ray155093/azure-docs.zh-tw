@@ -24,7 +24,7 @@
 
 ## 必要條件
 
-1. [Java Developer Kit 8] (或更新版本)
+1. [Java Developer Kit 8] \(或更新版本)
 1. 安裝在您開發電腦上的 [Maven]
 1. 安裝在您開發電腦上的 [Git]
 1. 付費或[免費試用]的 [Microsoft Azure] 訂用帳戶
@@ -131,7 +131,7 @@
             }
         }
 
-1. 瀏覽至[線上 Swagger 編輯器]。抵達之後，依序按一下 [File] (檔案) -> [Paste JSON] (貼上 JSON) 功能表項目 。
+1. 瀏覽至[線上 Swagger 編輯器]。抵達之後，依序按一下 [File] \(檔案) -> [Paste JSON] \(貼上 JSON) 功能表項目 。
 
     ![貼上 JSON 功能表項目][paste-json]
 
@@ -143,7 +143,7 @@
 
     ![檢視 Swagger 產生的文件][view-swagger-generated-docs]
 
-1. 依序選取 [Generate Server] (產生伺服器) -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
+1. 依序選取 [Generate Server] \(產生伺服器) -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
 
     ![產生程式碼功能表項目][generate-code-menu-item]
 

@@ -161,7 +161,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 ### 監視編碼作業進度
 
-若要監視編碼作業的進度，請按一下 [設定] (位於頁面頂端)，然後選取 [作業]。
+若要監視編碼作業的進度，請按一下 [設定] \(位於頁面頂端)，然後選取 [作業]。
 
 ![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
