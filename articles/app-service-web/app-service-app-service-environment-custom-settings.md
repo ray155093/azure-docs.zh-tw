@@ -76,7 +76,7 @@
         ],
 
 ## 變更 TLS 加密套件順序 ##
-來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。可用的加密套件清單，可以從 [此 MSDN 文章] 擷取 (https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85).aspx))。
+來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。可用的加密套件清單，可以從 [此 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85).aspx) 擷取。
 
         "clusterSettings": [
             {
