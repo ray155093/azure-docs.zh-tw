@@ -43,7 +43,7 @@
 [搜尋連接器空間](#search-connector-space) | 用來尋找物件，以及[在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。
 
 ### 刪除
-刪除動作適用於兩個不同的用途。
+刪除動作適用於兩個不同的用途。  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectordelete.png)
 
 [僅刪除連接器空間] 選項將移除所有資料，但會保留所有組態。
@@ -114,4 +114,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!----HONumber=AcomDC_0525_2016-->
