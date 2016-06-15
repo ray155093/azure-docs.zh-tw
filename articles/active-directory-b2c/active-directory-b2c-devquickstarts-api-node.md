@@ -36,9 +36,7 @@
 
 本教學課程的程式碼[保留在 GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs)。若要遵循執行，您可以[下載應用程式基本架構的 .zip 檔](https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs/archive/skeleton.zip)，或複製基本架構：
 
-```
-git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs.git
-```
+```git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs.git```
 
 本教學課程最後會提供完整的應用程式。
 
@@ -874,9 +872,7 @@ Transfer-Encoding: chunked
 
 [這裡以 .zip 檔案提供](https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs/archive/complete.zip)完整範例供您參考 (不含您的組態值)。您也可以從 Github 複製它：
 
-```
-git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs.git
-```
+```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebAPI-nodejs.git```
 
 
 ## 後續步驟
