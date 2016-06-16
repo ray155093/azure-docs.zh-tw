@@ -142,4 +142,4 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 - [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 - [使用 ARM 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 ARM 範本來建立 HDInsight 叢集。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0608_2016--->
