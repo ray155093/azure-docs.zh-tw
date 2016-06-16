@@ -19,7 +19,7 @@
 
 # Azure 服務管理 (asm) 模式中的 Azure CLI 命令
 
-[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines/azure-cli-arm-commands.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines/azure-cli-arm-commands.md)。
 
 本文提供傳統部署模型中您通常用來建立和管理 Azure 資源的 Azure CLI 命令的語法和選項。您可以在 Azure 服務管理 (asm) 模式下執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
 
@@ -2350,4 +2350,4 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 	+ Deleting the DNS server entry dns-4 ( 77.88.99.11 )
 	info:    network dnsserver unregister command OK
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0518_2016--->
