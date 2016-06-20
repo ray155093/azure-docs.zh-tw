@@ -3,7 +3,7 @@
 	description="了解如何在 Azure Functions 中使用「Azure 通知中樞」繫結。"
 	services="functions"
 	documentationCenter="na"
-	authors="christopheranderson"
+	authors="wesmc7777"
 	manager="erikre"
 	editor=""
 	tags=""
@@ -16,7 +16,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
 	ms.date="05/16/2016"
-	ms.author="chrande"/>
+	ms.author="wesmc"/>
 
 # Azure Functions 通知中樞輸出繫結
 
@@ -24,7 +24,7 @@
 
 [AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
 
-您的函式可使用設定的 Azure 通知中樞與極少的程式碼行以傳送推播通知。不過，也必須為您要使用的平台通知服務 (PNS) 設定通知中樞。如需有關設定「Azure 通知中樞」和開發註冊通知之用戶端應用程式的詳細資訊，請參閱[開始使用通知中樞](../notification-hubs/notification-hubs-windows-store-dotnet-get-started.md)並按一下頂端的目標用戶端平台。
+您的函式可使用設定的 Azure 通知中樞與極少的程式碼行以傳送推播通知。不過，也必須為您要使用的平台通知服務 (PNS) 設定通知中樞。如需設定 Azure 通知中樞以及開發註冊來接收通知之用戶端應用程式的詳細資訊，請參閱[開始使用通知中樞](../notification-hubs/notification-hubs-windows-store-dotnet-get-started.md)並按一下頂端的目標用戶端平台。
 
 ## Azure 通知中樞輸出繫結的 function.json
 
@@ -155,4 +155,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

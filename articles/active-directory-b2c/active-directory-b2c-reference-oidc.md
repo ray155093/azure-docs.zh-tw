@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/18/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # Azure Active Directory B2C 預覽版：利用 OpenID Connect 的 Web 登入
@@ -30,7 +30,7 @@ OpenID Connect 是驗證通訊協定，可用來讓使用者安全地登入 Web 
 
 Azure AD B2C 擴充標準的 OpenID Connect 通訊協定，功能更強大，而不僅止於簡單的驗證和授權。它採用[**原則參數**](active-directory-b2c-reference-policies.md)，讓您能利用 OpenID Connect 來為應用程式新增更多使用者體驗，例如註冊、登入和設定檔管理。以下我們將示範如何利用 OpenID Connect 和原則，在您的 Web 應用程式中實作上述每一種體驗。我們也會示範如何取得用來存取 Web API 的 access\_token。
 
-下面的範例 HTTP 要求將使用我們的範例 B2C 目錄 **fabrikamb2c.onmicrosoft.com**，以及我們的範例應用程式 **https://aadb2cplayground.azurewebsites.net** 和原則。您可以隨意使用這些值來自行試驗要求，也可以把它們換成您自己的值。了解如何[取得您自己的 B2C 租用戶、應用程式和原則](#use-your-own-b2c-directory)。
+下面的範例 HTTP 要求將使用我們的範例 B2C 目錄 **fabrikamb2c.onmicrosoft.com**，以及我們的範例應用程式 ****https://aadb2cplayground.azurewebsites.net** 和原則。您可以隨意使用這些值來自行試驗要求，也可以把它們換成您自己的值。了解如何[取得您自己的 B2C 租用戶、應用程式和原則](#use-your-own-b2c-directory)。
 
 ## 傳送驗證要求
 當 Web 應用程式需要驗證使用者和執行原則時，它可以將使用者導向至 `/authorize` 端點。這是流程中互動式的部分，能讓使用者根據原則來實際採取行動。
@@ -342,4 +342,4 @@ image goes here
 
 -->
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

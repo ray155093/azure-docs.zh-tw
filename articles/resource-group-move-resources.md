@@ -60,8 +60,10 @@
 - Redis 快取
 - 排程器
 - 搜尋
+- 儲存體
 - 儲存體 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
 - SQL Database 伺服器 - 資料庫和伺服器必須位於相同的資源群組。當您移動 SQL 伺服器時，其所有資料庫也會跟著移動。
+- 虛擬機器
 - 虛擬機器 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
 
 ## 部分支援移動的服務
@@ -76,8 +78,6 @@
 
 - Application Insights
 - ExpressRoute
-- 儲存體
-- 虛擬機器
 - 虛擬網路 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
 
 ## App Service 限制
@@ -274,4 +274,4 @@
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

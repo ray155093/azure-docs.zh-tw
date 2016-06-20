@@ -185,12 +185,12 @@
 [dbms-guide-2.1]: virtual-machines-linux-sap-dbms-guide.md#c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f "VM 和 VHD 的快取"
 [dbms-guide-2.2]: virtual-machines-linux-sap-dbms-guide.md#c8e566f9-21b7-4457-9f7f-126036971a91 "軟體 RAID"
 [dbms-guide-2.3]: virtual-machines-linux-sap-dbms-guide.md#10b041ef-c177-498a-93ed-44b3441ab152 "Microsoft Azure 儲存體"
-[dbms-guide-3]: virtual-machines-linux-sap-dbms-guide.md#871dfc27-e509-4222-9370-ab1de77021c3 "Azure VM 的高可用性和災害復原"
-[dbms-guide-5]: virtual-machines-linux-sap-dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 "SQL Server RDBMS 的特性"
+[dbms-guide-3]: virtual-machines-linux-sap-dbms-guide.md#871dfc27-e509-4222-9370-ab1de77021c3 "使用 Azure VM 的高可用性和災害復原"
+[dbms-guide-5]: virtual-machines-linux-sap-dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 "SQL Server RDBMS 專屬的詳細資料"
 [dbms-guide-5.5.1]: virtual-machines-linux-sap-dbms-guide.md#0fef0e79-d3fe-4ae2-85af-73666a6f7268 "SQL Server 2012 SP1 CU4 和更新版本"
 [dbms-guide-5.5.2]: virtual-machines-linux-sap-dbms-guide.md#f9071eff-9d72-4f47-9da4-1852d782087b "SQL Server 2012 SP1 CU3 和舊版"
-[dbms-guide-5.6]: virtual-machines-linux-sap-dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 "使用 Microsoft Azure Marketplace 中的 SQL Server 映像"
-[dbms-guide-5.8]: virtual-machines-linux-sap-dbms-guide.md#9053f720-6f3b-4483-904d-15dc54141e30 "Azure 上 SAP 的一般 SQL Server 摘要"
+[dbms-guide-5.6]: virtual-machines-linux-sap-dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 "從 Microsoft Azure Marketplace 使用 SQL Server 映像"
+[dbms-guide-5.8]: virtual-machines-linux-sap-dbms-guide.md#9053f720-6f3b-4483-904d-15dc54141e30 "Azure 上適用於 SAP 的一般 SQL Server 摘要"
 [dbms-guide-8.4.1]: virtual-machines-linux-sap-dbms-guide.md#b48cfe3b-48e9-4f5b-a783-1d29155bd573 "儲存體組態"
 [dbms-guide-8.4.2]: virtual-machines-linux-sap-dbms-guide.md#23c78d3b-ca5a-4e72-8a24-645d141a3f5d "備份與還原"
 [dbms-guide-8.4.3]: virtual-machines-linux-sap-dbms-guide.md#77cd2fbb-307e-4cbf-a65f-745553f72d2c "備份與還原的效能考量"
@@ -276,7 +276,7 @@
 [virtual-machines-azure-resource-manager-architecture]: virtual-machines-azure-resource-manager-architecture.md
 [virtual-machines-windows-tutorial]: virtual-machines-windows-hero-tutorial.md
 [virtual-networks-create-vnet-arm-pportal]: virtual-networks-create-vnet-arm-pportal.md
-[virtual-machines-ps-create-preconfigure-windows-resource-manager-vms]: virtual-machines-windows-create-powershell.md
+[virtual-machines-ps-create-preconfigure-windows-resource-manager-vms]: virtual-machines-windows-ps-create.md
 [virtual-machines-linux-tutorial]: virtual-machines-linux-quick-create-cli.md
 
 [msdn-set-azurermvmaemextension]: https://msdn.microsoft.com/library/azure/mt670598.aspx
@@ -370,7 +370,7 @@ Azure 帳戶已存在，並且已知相應的登入認證。
 
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南 (本文件)][deployment-guide]
-* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] \(Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
 
 ## <a name="b3253ee3-d63b-4d74-a49b-185e76c4088e"></a>Microsoft Azure 上適用於 SAP 的 VM 部署案例
 在本章中，您將了解不同的部署方式以及每種部署類型的單一步驟。
@@ -442,7 +442,7 @@ Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azur
 完成精靈之後，您的虛擬機器將會部署在您選取的資源群組中。
 
 #### 使用範本建立虛擬機器。
-您也可以使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]中所發佈的其中一個 SAP 範本，來建立部署。或者，您可以使用 [Azure 入口網站][virtual-machines-windows-tutorial]、[PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 或 [Azure CLI][virtual-machines-linux-tutorial] 手動建立虛擬機器。
+您也可以使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]中所發佈的其中一個 SAP 範本，來建立部署。或者，您可以使用 [Azure 入口網站][virtual-machines-windows-tutorial]、[PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 或 [Azure CLI][virtual-machines-linux-tutorial] 來手動建立虛擬機器。
 
 * [2 層組態 (僅一部虛擬機器) 範本][sap-templates-2-tier-marketplace-image]：如果您想要建立僅使用一部虛擬機器的 2 層系統，請使用此範本。
 * [3 層組態 (多部虛擬機器) 範本][sap-templates-3-tier-marketplace-image]：如果您想要建立使用多部虛擬機器的 3 層系統，請使用此範本。
@@ -554,7 +554,7 @@ ___
 >
 > ![Linux][Logo_Linux] Linux
 >
-> <https://azure.microsoft.com/documentation/articles/virtual-machines-linux-agent-user-guide/>
+> <https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-agent-user-guide/>
 
 ___
 
@@ -938,4 +938,4 @@ Deamon 會收集 Azure 上的效能度量。如果未執行 Deamon，則根本�
 
 如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension (如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述)。因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

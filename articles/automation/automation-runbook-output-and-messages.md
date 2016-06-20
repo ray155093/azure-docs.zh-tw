@@ -4,7 +4,7 @@
    services="automation"
    documentationCenter=""
    authors="mgoedtel"
-   manager="stevenka"
+   manager="jwhit"
    editor="tysonn" />
 <tags
    ms.service="automation"
@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/03/2016"
+   ms.date="06/08/2016"
    ms.author="magoedte;bwren" />
 
 # Azure 自動化中的 Runbook 輸出與訊息
 
 大部分的 Azure 自動化 Runbook 會有某種形式的輸出，例如向使用者提供錯誤訊息，或供其他工作流程使用的複雜物件。Windows PowerShell 提供[多個資料流](http://blogs.technet.com/heyscriptingguy/archive/2014/03/30/understanding-streams-redirection-and-write-host-in-powershell.aspx)從指令碼或工作流程傳送輸出。Azure 自動化會以不同的方式使用這些資料流，而在您建立 Runbook 時，應遵循使用每個資料流的最佳作法。
 
-下表提供每個資料流的簡短描述，以及它們在 Azure 管理入口網站中，執行已發佈的 Runbook 和[測試 Runbook](http://msdn.microsoft.com/library/azure/dn879147.aspx) 時的行為。後續各節將提供每個資料流的進一步詳細資料。
+下表提供每個資料流的簡短描述，以及它們在 Azure 管理入口網站中，執行已發佈的 Runbook 和[測試 Runbook](automation-testing-runbook.md) 時的行為。後續各節將提供每個資料流的進一步詳細資料。
 
 | Stream | 說明 | 已發佈 | 測試|
 |:---|:---|:---|:---|
@@ -32,7 +32,7 @@
 
 ## 輸出資料流
 
-「輸出資料流」適用於指令碼或工作流程正確執行時所建立之物件的輸出。在 Azure 自動化中，此資料流主要用於由[呼叫目前 Runbook 的父 Runbook](automation-child-runbooks.md) 所使用的物件。當您從父 Runbook [呼叫 Runbook 內嵌](automation-child-runbooks.md/#InlineExecution)時，它會將輸出資料流的資料傳回給父代。如果您知道 Runbook 絕對不會被另一個 Runbook 呼叫時，您應該只使用輸出資料流將一般資訊傳達給使用者。但最佳的作法一般是使用[詳細資訊資料流](#Verbose)將一般資訊傳達給使用者。
+「輸出資料流」適用於指令碼或工作流程正確執行時所建立之物件的輸出。在 Azure 自動化中，此資料流主要用於由[呼叫目前 Runbook 的父 Runbook](automation-child-runbooks.md) 所使用的物件。當您從父 Runbook [呼叫 Runbook 內嵌](automation-child-runbooks.md#InlineExecution)時，它會將輸出資料流的資料傳回給父代。如果您知道 Runbook 絕對不會被另一個 Runbook 呼叫時，您應該只使用輸出資料流將一般資訊傳達給使用者。但最佳的作法一般是使用[詳細資訊資料流](#Verbose)將一般資訊傳達給使用者。
 
 您可以使用 [Write-Output](http://technet.microsoft.com/library/hh849921.aspx)，或將物件放在 Runbook 中它自己所屬的那一行，來將資料寫入到輸出資料流。
 
@@ -102,7 +102,7 @@ Runbook 工作的詳細資訊資料流會是：
 
 詳細資訊訊息流是 Runbook 作業的一般相關資訊。由於[偵錯資料流](#Debug)無法在 Runbook 中使用，因此詳細資訊資料流應用於偵錯資訊。根據預設，已發佈 Runbook 的詳細訊息不會儲存在工作歷程記錄中。若要儲存詳細訊息，請在 Azure 管理入口網站中 Runbook 的 [設定] 索引標籤上，將 已發佈的 Runbook 設為 [記錄詳細記錄]。在大部分情況下，您應該保留預設設定，亦即基於效能考量，不記錄 Runbook 的詳細資訊記錄。只有在疑難排解或偵錯 Runbook 時才開啟此選項。
 
-[測試 Runbook](http://msdn.microsoft.com/library/azure/dn879147.aspx) 時，即使 Runbook 設為記錄詳細記錄，也不會顯示詳細訊息。若要在[測試 Runbook](http://msdn.microsoft.com/library/azure/dn879147.aspx) 時顯示詳細訊息，您必須將 $VerbosePreference 設為 Continue。設定該變數後，詳細訊息會顯示在 Azure 管理入口網站的 [測試輸出] 窗格中。
+[測試 Runbook](automation-testing-runbook.md) 時，即使 Runbook 設為記錄詳細記錄，也不會顯示詳細訊息。若要在[測試 Runbook](automation-testing-runbook.md) 時顯示詳細訊息，您必須將 $VerbosePreference 設為 Continue。設定該變數後，詳細訊息會顯示在 Azure 入口網站的 [測試輸出] 窗格中。
 
 使用 [Write-Verbose](http://technet.microsoft.com/library/hh849951.aspx) Cmdlet 建立詳細訊息。
 
@@ -116,7 +116,7 @@ Runbook 工作的詳細資訊資料流會是：
 
 ## 進度記錄
 
-如果您設定 Runbook 來記錄進度記錄 (在 Azure 管理入口網站中 Runbook 的 [設定] 索引標籤)，則會在執行每一個活動之前和之後，將記錄寫入到工作歷程記錄。在大部分情況下，您應該保留預設設定，亦即不記錄 Runbook 的進度記錄以獲得最高效能。只有在疑難排解或偵錯 Runbook 時才開啟此選項。測試 Runbook 時，即使 Runbook 設為記錄進度記錄，也不會顯示進度訊息。
+如果您設定 Runbook 來記錄進度記錄 (在 Azure 入口網站中 Runbook 的 [設定] 索引標籤上)，則會在執行每一個活動之前和之後，將記錄寫入到工作歷程記錄。在大部分情況下，您應該保留預設設定，亦即不記錄 Runbook 的進度記錄以獲得最高效能。只有在疑難排解或偵錯 Runbook 時才開啟此選項。測試 Runbook 時，即使 Runbook 設為記錄進度記錄，也不會顯示進度訊息。
 
 [Write-Progress](http://technet.microsoft.com/library/hh849902.aspx) Cmdlet 在 Runbook 中無效，因為它是用來和互動式使用者搭配使用。
 
@@ -142,26 +142,29 @@ Windows PowerShell 使用[喜好設定變數](http://technet.microsoft.com/libra
 
 ## 擷取 Runbook 輸出和訊息
 
-### Azure 管理入口網站
+### Azure 入口網站
 
-您可以從 Runbook 的 [工作] 索引標籤，在 Azure 管理入口網站中檢視 Runbook 工作詳細資料。除了工作和任何例外狀況 (如果發生) 的一般資訊，工作的 [摘要] 也會顯示輸入參數和[輸出資料流](#Output)。除了[詳細資料流](#Verbose)和[進度記錄](#Progress)之外 (如果設定 Runbook 來記錄詳細資訊和進度記錄)，「歷程記錄」還包含來自[輸出資料流](#Output)和[警告和錯誤資料流](#WarningError)的訊息。
+您可以從 Runbook 的 [工作] 索引標籤，在 Azure 入口網站中檢視 Runbook 工作詳細資料。除了工作和任何例外狀況 (如果發生) 的一般資訊，工作的 [摘要] 也會顯示輸入參數和[輸出資料流](#Output)。除了[詳細資料流](#Verbose)和[進度記錄](#Progress)之外 (如果設定 Runbook 來記錄詳細資訊和進度記錄)，「歷程記錄」還包含來自[輸出資料流](#Output)和[警告和錯誤資料流](#WarningError)的訊息。
 
 ### Windows PowerShell
 
-在 Windows PowerShell中，您可以使用 [Get-AzureAutomationJobOutput](http://msdn.microsoft.com/library/dn690268.aspx) Cmdlet 從 Runbook 擷取輸出與訊息。這個 Cmdlet 需要工作的識別碼，而且具有稱為 Stream 的參數，可讓您指定要傳回的資料流。您可以指定「Any」來傳回工作的所有資料流。
+在 Windows PowerShell中，您可以使用 [Get-AzureAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) Cmdlet 從 Runbook 擷取輸出與訊息。這個 Cmdlet 需要工作的識別碼，而且具有稱為 Stream 的參數，可讓您指定要傳回的資料流。您可以指定「Any」來傳回工作的所有資料流。
 
 下列範例會啟動 Runbook 範例，然後等候它完成。完成後，將會從工作收集其輸出資料流。
 
-	$job = Start-AzureAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook"
+	$job = Start-AzureRmAutomationRunbook -ResourceGroupName "ResourceGroup01" `
+    –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook"
 
 	$doLoop = $true
 	While ($doLoop) {
-	   $job = Get-AzureAutomationJob –AutomationAccountName "MyAutomationAccount" -Id $job.Id
+	   $job = Get-AzureRmAutomationJob -ResourceGroupName "ResourceGroup01" `
+       –AutomationAccountName "MyAutomationAccount" -Id $job.JobId
 	   $status = $job.Status
 	   $doLoop = (($status -ne "Completed") -and ($status -ne "Failed") -and ($status -ne "Suspended") -and ($status -ne "Stopped")
 	}
 
-	Get-AzureAutomationJobOutput –AutomationAccountName "MyAutomationAccount" -Id $job.Id –Stream Output
+	Get-AzureRmAutomationJobOutput -ResourceGroupName "ResourceGroup01" `
+    –AutomationAccountName "MyAutomationAccount" -Id $job.JobId –Stream Output
 
 ### 圖形化編寫
 
@@ -185,9 +188,9 @@ Windows PowerShell 使用[喜好設定變數](http://technet.microsoft.com/libra
 
     ![圖形化編寫的 [記錄和追蹤] 刀鋒視窗](media/automation-runbook-output-and-messages/logging-and-tracing-settings-blade.png)
 
-## 相關文章
+## 後續步驟
 
-- [追蹤 Runbook 工作](automation-runbook-execution.md)
-- [子 Runbook](http://msdn.microsoft.com/library/azure/dn857355.aspx)
+- 若要深入了解 Runbook 執行方式、如何監視 Runbook 工作，以及其他技術性詳細資訊，請參閱[追蹤 Runbook 工作](automation-runbook-execution.md)
+- 若要了解如何設計和使用子 Runbook，請參閱 [Azure 自動化中的子 Runbook](automation-child-runbooks.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0608_2016-->

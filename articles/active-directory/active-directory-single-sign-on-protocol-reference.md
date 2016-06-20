@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 # 單一登入 SAML 通訊協定
@@ -303,4 +303,4 @@ Azure AD 會簽署判斷提示以回應成功的登入。`Signature` 元素包�
 </AuthnStatement>
 ```
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -12,14 +12,14 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="06/03/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中使用診斷搜尋
 
-「診斷搜尋」是 [Application Insights][start] 中的分頁，您會用來尋找及探索個別遙測項目，例如頁面檢視、例外狀況或 Web 要求。而您可以檢視所編寫的記錄追蹤和事件。
+診斷搜尋是 [Application Insights][start] 的一項功能，您可用來尋找及探索個別遙測項目，例如頁面檢視、例外狀況或 Web 要求。而您可以檢視所編寫的記錄追蹤和事件。
 
-## 何時會看到「診斷搜尋」？
+## 您可以在何處看到診斷搜尋？
 
 
 ### 在 Azure 入口網站
@@ -52,10 +52,11 @@
 ![](./media/app-insights-diagnostic-search/34.png)
 
 
-### 取樣
+## 取樣
 
 如果您的應用程式會產生大量遙測 (且您使用的是 ASP.NET SDK 版本 2.0.0-beta3 或較新)，調適性取樣模型會自動藉由僅傳送事件代表性片段，以減少傳送到入口網站的量。不過，與同一個要求相關的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。
-> [了解取樣](app-insights-sampling.md)。
+
+[了解取樣](app-insights-sampling.md)。
 
 
 ## 檢查個別項目
@@ -157,8 +158,8 @@ New Delay|w d|new<br/>delay<br/>n* AND d*
 範例查詢 | 效果 
 ---|---
 slow|在日期範圍中尋找欄位含有詞彙 "slow" 的所有事件
-database??|比對 database01、databaseAB、...<br/>不允許 ? 出現在搜尋詞彙的開頭。
-database*|比對 database、database01、databaseNNNN<br/>* 不允許出現在搜尋詞彙的開頭
+database|比對 database01、databaseAB、...<br/>? 不允許出現在搜尋詞彙的開頭。
+database* |比對 database、database01、databaseNNNN<br/>* 不允許出現在搜尋詞彙的開頭
 apple AND banana|尋找同時含有這些詞彙的事件。請使用大寫 "AND"，而不是 "and"。
 apple OR banana<br/>apple banana|尋找含有任一詞彙的事件。請使用 "OR"，而不是 "or"。</br/>簡短格式。
 apple NOT banana<br/>apple -banana|尋找含有一個詞彙但不含另一個詞彙的事件。<br/>簡短格式。
@@ -216,8 +217,8 @@ app* AND banana -(grape pear)|邏輯運算子和括號。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 [trace]: app-insights-search-diagnostic-logs.md
-[track]: app-insights-spi-custom-events-metrics.md
+[track]: app-insights-api-custom-events-metrics.md
 
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0608_2016-->

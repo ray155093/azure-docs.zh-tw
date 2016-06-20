@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # V2.0 端點有哪些差異？
@@ -132,4 +132,4 @@ V2.0 端點所簽發的權杖中的宣告與公開上市 Azure AD 端點所簽�
 ## 限制
 使用 v2.0 端點時有一些要注意的限制。請參閱 [v2.0 限制文件](active-directory-v2-limitations.md)，以了解是否有任何限制適用於您特定的案例。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

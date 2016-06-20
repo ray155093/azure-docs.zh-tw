@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/01/2016"
+	ms.date="05/27/2016"
 	ms.author="szark"/>
 
 #Azure 上的 Linux 簡介
@@ -64,12 +64,12 @@ Azure Linux 代理程式包括可自動偵測此名稱變更、適當地設定�
  - [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md)
 
 ### Cloud-Init
-**Ubuntu** 和 **CoreOS** 映像會在 Azure 上利用 Cloud-Init，提供用來啟動虛擬機器的額外功能。
+**Ubuntu** 和 **CoreOS** 映像會在 Azure 上利用 Cloud-Init，這可提供用來啟動虛擬機器的額外功能。
 
  - [如何插入自訂資料](virtual-machines-windows-classic-inject-custom-data.md)
  - [Microsoft Azure 上的自訂資料和 Cloud-Init](https://azure.microsoft.com/blog/2014/04/21/custom-data-and-cloud-init-on-windows-azure/)
  - [使用 Cloud-Init 建立 Azure Swap 磁碟分割](https://wiki.ubuntu.com/AzureSwapPartitions)
- - [如何在 Azure 上使用 CoreOS](virtual-machines-linux-classic-coreos-howto.md)
+ - [如何在 Azure 上使用 CoreOS](https://coreos.com/os/docs/latest/booting-on-azure.html)
 
 
 ## 擷取虛擬機器映像
@@ -98,4 +98,4 @@ Azure 可將現有虛擬機器的狀態擷取到映像中，供以後用來部�
 
  - **另請參閱：** [在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

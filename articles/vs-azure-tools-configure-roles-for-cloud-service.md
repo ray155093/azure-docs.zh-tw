@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="06/01/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 設定 Azure 雲端服務的角色
@@ -235,7 +235,7 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。您必
 
 1. (選用) 若要檢視您在本機執行雲端服務時所建立的這個檔案，請使用下列步驟：
 
-  1. 執行 web 角色，然後按一下 [Button1] 以確定呼叫 `Button1_Click` 內的程式碼。
+  1. 執行 Web 角色，然後選取 [Button1] 以確定會呼叫 `Button1_Click` 內的程式碼。
 
   1. 在通知區域中，開啟 Azure 圖示的捷徑功能表並選擇 [顯示計算模擬器 UI]。[Azure 計算模擬器] 對話方塊隨即出現。
 
@@ -376,4 +376,4 @@ Azure 雲端服務可以有一或多個背景工作角色或 web 角色。您必
 ## 後續步驟
 藉由參閱[設定 Azure 專案](vs-azure-tools-configuring-an-azure-project.md)深入了解 Visual Studio 中的 Azure 專案。藉由參閱[結構描述參考](https://msdn.microsoft.com/library/azure/dd179398)深入了解雲端服務結構描述。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

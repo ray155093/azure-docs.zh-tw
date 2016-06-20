@@ -43,13 +43,13 @@
 
 [作用中異地複寫](sql-database-geo-replication-overview.md)可讓您在與主要資料庫不同的區域中建立可讀取的 (次要) 資料庫。它會確保資料庫具有可在復原後支援應用程式工作負載的必要資料和計算資源。請參閱[從中斷復原](sql-database-disaster-recovery.md)一節，以使用容錯移轉來復原您的應用程式。
 
-如果您的應用程式符合下列準則，則應該使用異地複寫：
+如果您的應用程式符合下列準則，則應該使用「異地複寫」：
 
 1. 是關鍵性應用程式。具有主動式 RPO 和 RTO 的繫結 SLA。遺失資料和可用性會衍生財務責任。 
 2. 資料變更率很高 (例如每分鐘或每秒便有幾筆交易)。與預設保護相關的 RPO 為 1 小時，因此可能會導致無法接受的資料遺失。
 3. 與潛在的財務責任和相關企業損失相較下，使用異地複寫的相關成本明顯較低。
 
-若要啟用「作用中異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
+若要啟用「作用中異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)
 
 > [AZURE.NOTE] 主動式異地複寫也支援對次要資料庫的唯讀存取，因此可提供唯讀工作負載額外的容量。
 
@@ -60,4 +60,4 @@
 
 設計應用程式的業務續航力時，您應該考慮幾個組態選項。您的選擇會視應用程式部署拓撲，以及應用程式的哪些部分最容易受到中斷的影響而定。如需指引，請參閱[使用異地複寫設計災害復原的雲端解決方案](sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

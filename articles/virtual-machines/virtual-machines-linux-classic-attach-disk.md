@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/04/2016"
+	ms.date="06/07/2016"
 	ms.author="iainfou"/>
 
 # 如何將資料磁碟連接至 Linux 虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。參閱如何[使用 Resource Manager 部署模型連接資料磁碟](virtual-machines-linux-add-disk.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。您也可以[使用 Resource Manager 部署模型來連結資料磁碟](virtual-machines-linux-add-disk.md)。
 
 您可以將空的磁碟和含有資料的磁碟連接到 Azure VM。這兩種類型的磁碟都是位於 Azure 儲存體帳戶中的 .vhd 檔案。就像將任何磁碟新增到 Linux 機器一樣，連接之後您需要將它初始化和格式化才可供使用。本文將會詳細說明連接空的磁碟和連接含有資料的磁碟到 VM，以及初始化和格式化新磁碟的方法。
 
@@ -160,15 +160,17 @@
 
 >[AZURE.NOTE] 後續移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。如果這是常見情況，那麼多數散發套件會提供 `nofail` 和/或 `nobootwait` fstab 選項，即使磁碟在開機時無法掛接，也能讓系統開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
 
-## 其他資源
-[如何登入執行 Linux 的虛擬機器][Logon]
+## 後續步驟
+您可以閱讀下列文章來進一步了解如何使用 Linux VM：
 
-[如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md)
+- [如何登入執行 Linux 的虛擬機器][Logon]
 
-[搭配服務管理 API 使用 Azure CLI](../virtual-machines-command-line-tools.md)
+- [如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md)
+
+- [搭配傳統部署模型使用 Azuer CLI](../virtual-machines-command-line-tools.md)
 
 <!--Link references-->
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-classic-log-on.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

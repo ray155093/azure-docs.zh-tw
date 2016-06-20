@@ -126,7 +126,7 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 
 *異地還原*會提供給所有服務層使用，且不須額外付費。在發生中斷時，您可以使用最新的異地備援備份將資料庫還原到任何 Azure 區域。
 
-[作用中異地複寫](sql-database-geo-replication-overview.md)會提供類似災害復原的功能，但復原點目標 (RPO) 會低很多。例如，若使用異地還原，RPO 會少於一小時 (換句話說，所備份的內容最舊不會超過一小時)。但對於作用中異地複寫來說，RPO 少於 5 秒。
+[作用中異地複寫](sql-database-geo-replication-overview.md)會提供類似災害復原的功能，但復原點目標 (RPO) 會低很多。例如，若使用異地還原，RPO 會少於一小時 (換句話說，所備份的內容最舊不會超過一小時)。但如果是「作用中異地複寫」，RPO 則會少於 5 秒。
 
 如需詳細資訊，請參閱[業務續航力概觀](sql-database-business-continuity.md)。
 
@@ -189,7 +189,7 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 ### 使用 sys.dm\_db\_resource\_stats
 每一個 SQL Database 都有 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 檢視，其可提供相對於服務層的最新資源使用量資料。每隔 15 秒鐘就會記錄一次 CPU、資料 IO、記錄檔寫入和記憶體的平均百分比，並且會維持一個小時。
 
-因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
+因為此檢視會提供更細微的資源使用量資訊，您應該先使用 **sys.dm\_db\_resource\_stats ** 來進行任何現狀分析或疑難排解。例如，下列查詢會顯示目前的資料庫在上一小時的平均和最大資源使用量：
 
 	SELECT  
 	    AVG(avg_cpu_percent) AS 'Average CPU Utilization In Percent',
@@ -507,4 +507,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

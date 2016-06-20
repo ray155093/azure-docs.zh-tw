@@ -32,13 +32,15 @@ Microsoft 身分識別平台以及我們的 Microsoft 身分識別 SDK 會為您
 
 * Azure Active Directory
 * Azure Active Directory B2C
-* Azure Active Directory B2B 請注意，下列文件假設您已了解如何[在 Azure Active directory 的舊版入口網站中佈建應用程式](active-directory-how-to-integrate.md)，並且已整合應用程式和 [Microsoft Identity Android SDK](https://github.com/AzureAD/azure-activedirectory-library-for-android)。
+* Azure Active Directory B2B
+
+請注意，下列文件假設您已了解如何[在 Azure Active directory 的舊版入口網站中佈建應用程式](active-directory-how-to-integrate.md)，並且已整合應用程式和 [Microsoft Identity Android SDK](https://github.com/AzureAD/azure-activedirectory-library-for-android)。
 
 ## Microsoft 身分識別平台中的 SSO 概念
 
 ### Microsoft 身分識別代理人
 
-Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用程式橋接認證，並且允許需要單一安全地方來驗證認證的特殊增強功能。**我們稱它們為訊息代理程式**。在 iOS 和 Android 上，會透過可下載的應用程式提供訊息代理程式，這些應用程式由客戶獨立安裝，或由為員工管理部分或全部裝置的公司推送至裝置。這些訊息代理程式支援只管理某些應用程式或整個裝置的安全性，取決於 IT 系統管理員的需求。在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。
+Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用程式橋接認證，並且允許需要單一安全地方來驗證認證的特殊增強功能。我們稱它們為**訊息代理程式**。在 iOS 和 Android 上，會透過可下載的應用程式提供訊息代理程式，這些應用程式由客戶獨立安裝，或由為員工管理部分或全部裝置的公司推送至裝置。這些訊息代理程式支援只管理某些應用程式或整個裝置的安全性，取決於 IT 系統管理員的需求。在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。
 
 若要了解我們如何使用這些訊息代理程式，以及客戶可能如何在其 Microsoft 身分識別平台的登入流程中看見它們，請參閱詳細資訊。
 
@@ -161,7 +163,7 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 
 為了讓 Microsoft 身分識別平台知道它可以跨應用程式共用權杖，您的每個應用程式必須共用相同的用戶端識別碼或應用程式識別碼。這是您在入口網站中註冊第一個應用程式時提供給您的唯一識別碼。
 
-如果 Microsoft 識別服務使用相同的應用程式識別碼，您可能想知道如何識別它的不同應用程式。**答案是使用重新導向 URI**。每個應用程式可以在上架的入口網站中註冊多個重新導向 URI。組件中的每個應用程式將會有不同的重新導向 URI。其外觀的範例如下：
+如果 Microsoft 識別服務使用相同的應用程式識別碼，您可能想知道如何識別它的不同應用程式。答案是使用**重新導向 URI**。每個應用程式可以在上架的入口網站中註冊多個重新導向 URI。組件中的每個應用程式將會有不同的重新導向 URI。其外觀的範例如下：
 
 App1 重新導向 URI：`msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D`
 
@@ -240,12 +242,12 @@ AuthenticationSettings.Instance.setUseBroker(true);
 
 例如：**msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D*
 
-此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。如需 Azure AD 應用程式註冊的詳細資訊，請參閱[整合 Azure Active Directory](active-directory-how-to-integrate.md)。
+此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。如需 Azure AD 應用程式註冊的詳細資訊，請參閱[與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
 
 
 #### 步驟 3：在您的應用程式中設定正確的權限
 
-我們的 Android 訊息代理程式應用程式會使用 Android 作業系統的 Accounts Manager 功能來管理所有應用程式的認證。若要在 Android 中使用此訊息代理程式，您的應用程式資訊清單必須有使用 AccountManager 帳戶的權限。在[帳戶管理員的 Google 文件](http://developer.android.com/reference/android/accounts/AccountManager.html)中有詳細的討論。
+我們的 Android 訊息代理程式應用程式會使用 Android 作業系統的 Accounts Manager 功能來管理所有應用程式的認證。若要在 Android 中使用此訊息代理程式，您的應用程式資訊清單必須有使用 AccountManager 帳戶的權限。在[此處適用於帳戶管理員的 Google 文件](http://developer.android.com/reference/android/accounts/AccountManager.html)中有詳細的討論。
 
 特別是以下這些權限︰
 
@@ -259,4 +261,4 @@ MANAGE_ACCOUNTS
 
 現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

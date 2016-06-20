@@ -4,7 +4,7 @@
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""
 	keywords="備份；備份；"/>
 
@@ -14,15 +14,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="06/03/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
 # 準備環境以備份 Azure 虛擬機器
 
 > [AZURE.SELECTOR]
-- [準備備份 ARM VM](backup-azure-arm-vms-prepare.md)
-- [準備備份 Azure VM](backup-azure-vms-prepare.md)
+- [資源管理員模型](backup-azure-arm-vms-prepare.md)
+- [傳統模型](backup-azure-vms-prepare.md)
 
 在您可以備份 Azure 虛擬機器 (VM) 之前，有三個條件必須存在。
 
@@ -65,7 +65,7 @@
 
     ![Ibiza 入口網站](./media/backup-azure-vms-prepare/Ibiza-portal-backup01.png)
 
-    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立]\(請參閱下圖)。
+    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] (請參閱下圖)。
 
     ![建立備份保存庫](./media/backup-azure-vms-prepare/backup_vaultcreate.png)
 
@@ -133,11 +133,11 @@
      ```
     它會開啟 Internet Explorer 視窗。
 3. 移至 [工具]-> [網際網路選項]-> [連線]-> [區域網路設定]。
-4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。 
+4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。
 5. 關閉 Internet Explorer。
 
 這會設定一個整部機器的 Proxy 設定，並用於任何連出 HTTP/HTTPS 流量。
-   
+
 如果您已在目前的使用者帳戶 (非本機系統帳戶) 上設定 Proxy 伺服器，請使用下列指令碼將它們套用至 SYSTEMACCOUNT︰
 
 ```
@@ -151,7 +151,7 @@
 
 >[AZURE.NOTE] 如果您在 Proxy 伺服器記錄檔中發現「(407) 需要 Proxy 驗證」，請檢查驗證設定是否正確。
 
-######Linux 電腦 
+######Linux 電腦
 
 在 ```/etc/environment``` 檔案中新增以下文字行：
 
@@ -160,7 +160,7 @@ http_proxy=http://<proxy IP>:<proxy port>
 ```
 
 將下列幾行新增至 ```/etc/waagent.conf``` 檔案：
-   
+
 ```
 HttpProxy.Host=<proxy IP>
 HttpProxy.Port=<proxy port>
@@ -238,4 +238,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

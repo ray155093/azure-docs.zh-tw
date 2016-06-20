@@ -120,7 +120,7 @@
 
 ###<a name="sql-aml"></a>連接到 Azure Machine Learning
 
-新產生的功能可當成資料行新增至現有資料表或儲存於新的資料表中，並與原始資料表加以聯結以進行機器學習服務。您可以使用 Azure Machine Learning 中的[匯入資料][reader]模組來產生或存取特徵 (若已建立)，如下所示：
+新產生的功能可當成資料行新增至現有資料表或儲存於新的資料表中，並與原始資料表加以聯結以進行機器學習服務。您可以使用 Azure Machine Learning 中的[匯入資料][import-data]模組來產生或存取特徵 (若已建立)，如下所示：
 
 ![azureml 讀取器][1]
 
@@ -149,7 +149,7 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/)提供一組豐富的
 
 
 <!-- Module References -->
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

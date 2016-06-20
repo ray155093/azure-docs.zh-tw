@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # v2.0 驗證通訊協定的重要更新
@@ -67,7 +67,8 @@ V2.0 端點大量使用 JWT 權杖，其中包含標頭參數區段與權杖的�
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-回應看起來將類似下列 JSON 物件：```
+回應看起來類似下列 JSON 物件：
+```
 { 
 	"token_type": "Bearer",
 	"expires_in": 3599,
@@ -216,4 +217,4 @@ https://login.microsoftonline.com/{some-guid}/v2.0
 
 Microsoft 身分識別部門
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

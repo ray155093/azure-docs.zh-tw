@@ -20,8 +20,7 @@
 
 本文件說明如何使用 [Pandas](http://pandas.pydata.org/) Python 封裝，對儲存在 Azure blob 容器的資料建立特徵。概述如何將資料載入 Panda 資料框架後，接著會示範如何使用 Python 指令碼，搭配指標值和分類收納特徵，以產生分類特徵。
 
-[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
 ## 必要條件
@@ -130,11 +129,11 @@
 	    except:	        
 		    print ("Something went wrong with uploading blob:"+BLOBNAME)
 
-3. 現在您可以使用 Azure Machine Learning [讀取器](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組讀取 Blob 中的資料，如下列畫面所示：
+3. 現在您可以使用 Azure Machine Learning [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組從 Blob 讀取資料，如以下畫面所示：
  
 ![讀取器 Blob](./media/machine-learning-data-science-process-data-blob/reader_blob.png)
 
 
  
 
-<!----HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

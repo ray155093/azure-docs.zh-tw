@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/29/2016"
+   ms.date="06/01/2016"
    ms.author="jeffstok"/>
 
 
@@ -31,9 +31,11 @@ HDInsight 上的 R 伺服器能為在載入 Azure Blob (WASB) 的大型資料集
 
 ## 資料儲存體選項
 
-HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Blob 容器相對應的 HDFS 檔案系統。如此可確保在分析的過程中，任何上傳至叢集儲存體或寫入叢集儲存體的資料，皆保有永續性。使用 [AzCopy](../storage/storage-use-azcopy/) 公用程式，即可在 Blob 之間輕鬆複製資料。
+HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Blob 容器相對應的 HDFS 檔案系統。如此可確保在分析的過程中，任何上傳至叢集儲存體或寫入叢集儲存體的資料，皆保有永續性。使用 [AzCopy](../storage/storage-use-azcopy.md) 公用程式，即可在 Blob 之間輕鬆複製資料。
 
-您也可以將 [Azure 檔案服務](../storage/storage-how-to-use-files-linux.md)作為在邊緣節點上使用的儲存體選項。Azure 檔案服務可讓您將建立於 Azure 儲存體帳戶的檔案共用，掛接至 Linux 檔案系統。如需適用於 HDInsight 叢集 R 伺服器的資料儲存體選項詳細資訊，請參閱[適用於 HDInsight 叢集 R 伺服器的儲存體選項](hdinsight-hadoop-r-server-storage.md)。
+除了 Blob，還有在您的叢集中新增使用 [Azure Data Lake 儲存體](https://azure.microsoft.com/services/data-lake-store/) (ADLS) 的選項。如果您新增 ADLS 的使用，則可針對 HDFS 儲存體同時使用 Blob 和 ADLS。
+
+您也可以將 [Azure 檔案](../storage/storage-how-to-use-files-linux.md)做為在邊緣節點上使用的儲存體選項。Azure 檔案服務可讓您將建立於 Azure 儲存體帳戶的檔案共用，掛接至 Linux 檔案系統。如需適用於 HDInsight 叢集中 R 伺服器的資料儲存體選項詳細資訊，請參閱[適用於 HDInsight 叢集中的 R 伺服器的儲存體選項](hdinsight-hadoop-r-server-storage.md)。
   
 ## 存取叢集上的 R 伺服器
 
@@ -41,7 +43,7 @@ HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Bl
 
 ## 開發及執行 R 指令碼
 
-您所建立與執行的 R 指令碼，可以任意運用 8000 多種開放原始碼封裝，以及 ScaleR 程式庫中的平行與分散式常式。在邊緣節點的 R 伺服器中執行指令碼時，會使用 R 解譯器在該位置執行，但以 Hadoop Map Reduce (RxHadoopMR) 或 Spark (RxSpark) 設定的計算內容呼叫其中一個 ScaleR 數式的步驟除外。在這種情況下，函數會以分散方式，跨已與參考資料相關聯之叢集的資料 (工作) 節點執行。如需不同計算內容選項的詳細資訊，請參閱[適用於 HDInsight Premium R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
+您所建立與執行的 R 指令碼，可以任意運用 8000 多種開放原始碼封裝，以及 ScaleR 程式庫中的平行與分散式常式。在邊緣節點的 R 伺服器中執行指令碼時，會使用 R 解譯器在該位置執行，但以 Hadoop Map Reduce (RxHadoopMR) 或 Spark (RxSpark) 設定的計算內容呼叫其中一個 ScaleR 數式的步驟除外。在這種情況下，函數會以分散方式，跨已與參考資料相關聯之叢集的資料 (工作) 節點執行。如需不同計算內容選項的詳細資訊，請參閱[適用於 HDInsight Premium 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
 
 ## 模型運作
 
@@ -53,7 +55,7 @@ HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Bl
 
 ### 在 Azure Machine Learning 中評分 
 
-若要使用 Azure Machine Learning Web 服務進行評分，可以使用[開放原始碼 Azure Machine Learning R 封裝](http://www.inside-r.org/blogs/2015/11/18/enhancements-azureml-package-connect-r-azureml-studio)以[將模型發佈為 Azure Web 服務](http://www.r-bloggers.com/deploying-a-car-price-model-using-r-and-azureml/)，再使用 Azure Machine Learning 中的設施，建立 Web 服務的使用者介面，然後視需要呼叫 Web 服務以進行評分。如果您選擇這個選項，就必須將所有 ScaleR 模型物件轉換成對等的開放原始碼模型物件，才可搭配 Web 服務使用。這可以透過使用 ScaleR 強制型轉函數完成，例如 `as.randomForest()`，其適用於集成模型。
+若要使用 Azure Machine Learning Web 服務進行評分，可以使用[開放原始碼 Azure Machine Learning R 封裝](http://www.inside-r.org/blogs/2015/11/18/enhancements-azureml-package-connect-r-azureml-studio)以[將模型發佈為 Azure Web 服務](http://www.r-bloggers.com/deploying-a-car-price-model-using-r-and-azureml/)，再使用 Azure Machine Learning 中的設施，建立 Web 服務的使用者介面，然後視需要呼叫 Web 服務以進行評分。如果您選擇這個選項，就必須將所有 ScaleR 模型物件轉換成對等的開放原始碼模型物件，才可搭配 Web 服務使用。這可以透過使用 ScaleR 強制型轉函數來完成，例如 `as.randomForest()`，其適用於集成模型。
   
 ### 內部部署評分
 
@@ -65,7 +67,7 @@ HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Bl
 
 由於邊緣節點是執行 R 指令碼的主要位置，因此在邊緣節點上需要有大多數您所使用的 R 封裝。若要在邊緣節點上安裝其他 R 封裝，可以在 R 中使用一般 `install.packages()` 方法。
   
-在大部分的情況下，如果您只要從 ScaleR 程式庫使用常式以跨叢集執行，就不需要在資料節點上安裝其他 R 封裝。但您可能需要其他封裝才可支援在資料節點上使用 **rxExec** 或 **RxDataStep** 執行。在這種情況下，必須在建立叢集之後，使用指令碼動作來指定其他封裝。如需詳細資訊，請參閱[建立含 R 伺服器的 HDInsight 叢集](hdinsight-hadoop-r-server-get-started.md)。
+在大部分的情況下，如果您只要從 ScaleR 程式庫使用常式以跨叢集執行，就不需要在資料節點上安裝其他 R 封裝。但您可能需要其他封裝，才可支援在資料節點上使用 **rxExec** 或 **RxDataStep** 執行。在這種情況下，必須在建立叢集之後，使用指令碼動作來指定其他封裝。如需詳細資訊，請參閱[建立含 R 伺服器的 HDInsight 叢集](hdinsight-hadoop-r-server-get-started.md)。
   
 ### 變更 Hadoop Map Reduce 記憶體設定 
 
@@ -87,13 +89,13 @@ HDInsight 叢集的預設儲存體位於 Azure Blob (WASB) 中，並含有與 Bl
 
 HDInsight Premium 叢集的 Linux 邊緣節點，是 R 型分析的登陸區域。連線到叢集之後，即可在 Linux 命令提示字元處輸入 'R'，啟動 R 伺服器的主控台介面。如果您在另一個視窗中執行 R 指令碼開發的文字編輯器，可視需要將您的指令碼區段剪下並貼入 R 主控台，以使用增強的主控台介面。
   
-用於 R 指令碼開發的簡易型文字編輯器也有升級用法，亦即在桌面上使用 R 型 IDE，例如，Microsoft 最近推出的 [R Tools for Visual Studio](https://www.visualstudio.com/zh-TW/features/rtvs-vs.aspx) (RTVS)、[RStudio](https://www.rstudio.com/products/rstudio-server/) 的桌面與伺服器工具系列，或 Walware 的 Eclipse 型 [StatET](http://www.walware.de/goto/statet)。
+用於 R 指令碼開發的簡易型文字編輯器也有升級用法，亦即在桌面上使用 R 型整合式開發環境 (IDE)，例如，Microsoft 最近推出的 [R Tools for Visual Studio](https://www.visualstudio.com/zh-TW/features/rtvs-vs.aspx) (RTVS)、[RStudio](https://www.rstudio.com/products/rstudio-server/) 的桌面與伺服器工具系列，或 Walware 的 Eclipse 型 [StatET](http://www.walware.de/goto/statet)。
   
-另一個選項是在 Linux 邊緣節點上安裝 IDE。在此情況下，比較常用的選擇是 [RStudio 伺服器](https://www.rstudio.com/products/rstudio-server/)，其提供可讓遠端用戶端使用的瀏覽器型 IDE。在 HDInsight Premium 叢集的邊緣節點上安裝 RStudio 伺服器時，可提供完整的 IDE 體驗供透過叢集上的 R 伺服器來開發及執行 R 指令碼；和預設使用 R 主控台相比，可以大幅提高生產力。如果您想要使用 RStudio 伺服器，請參閱[在 HDInsight 叢集上安裝 RStudio 伺服器](hdinsight-hadoop-r-server-install-r-studio.md)。
+另一個選項是在 Linux 邊緣節點上安裝 IDE。在此情況下，比較常用的選擇是 [RStudio 伺服器](https://www.rstudio.com/products/rstudio-server/)，其提供可讓遠端用戶端使用的瀏覽器型整合式開發環境 (IDE)。在 HDInsight Premium 叢集的邊緣節點上安裝 RStudio 伺服器時，可提供完整的 IDE 體驗供透過叢集上的 R 伺服器來開發及執行 R 指令碼；和預設使用 R 主控台相比，可以大幅提高生產力。如果您想要使用 RStudio 伺服器，請參閱[在 HDInsight 叢集上安裝 RStudio 伺服器](hdinsight-hadoop-r-server-install-r-studio.md)。
 
 ## 定價
  
-含 R 伺服器的 HDInsight Premium 叢集，其相關聯的費用結構與標準 HDInsight 叢集類似，以各種名稱、資料和邊緣節點的基礎 VM 大小為基準，再加上 Premium 的彈性工時加費。如需 HDInsight Premium 定價，包括公開預覽期間定價及 30 天免費試用的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
+含 R 伺服器的 HDInsight Premium 叢集，其相關聯的費用結構與標準 HDInsight 叢集類似，以各種名稱、資料和邊緣節點的基礎 VM 大小為基準，再加上 Premium 的彈性工時加費。如需 HDInsight Premium 定價 (包括公開預覽期間定價) 及 30 天免費試用的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
 ## 後續步驟
 
@@ -109,4 +111,4 @@ HDInsight Premium 叢集的 Linux 邊緣節點，是 R 型分析的登陸區域�
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

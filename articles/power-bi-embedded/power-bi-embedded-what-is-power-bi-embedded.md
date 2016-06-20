@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="03/29/2016"
+   ms.date="06/01/2016"
    ms.author="jocaplan"/>
 
 
@@ -23,7 +23,7 @@
 
 ![](media\powerbi-embedded-whats-is\what-is.png)
 
-**Microsoft Power BI Embedded** 是一項 Azure 服務，將可讓獨立軟體廠商 (ISV) 在其應用程式中額外提供 Power BI 資料體驗。身為 ISV，表示您已經有建立應用程式的經驗。這些應用程式有它們自己的使用者和個別的功能集。這些應用程式也可能已經內建一些資料元素，例如現在可以由 **Microsoft Power BI Embedded** 提供的圖表和報表。應用程式的使用者不需要 Power BI 帳戶就可以使用您的應用程式。他們可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄與磚體驗並與它們互動。
+**Microsoft Power BI Embedded** 是一項 Azure 服務，可讓「獨立軟體廠商」(ISV) 在其應用程式中呈現 Power BI 資料體驗。身為 ISV，表示您已經有建立應用程式的經驗。這些應用程式有它們自己的使用者和個別的功能集。這些應用程式也可能已經內建一些資料元素，例如現在可以由 **Microsoft Power BI Embedded** 提供的圖表和報表。應用程式的使用者不需要 Power BI 帳戶就可以使用您的應用程式。他們可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄與磚體驗並與它們互動。
 
 ## Microsoft Power BI Embedded 授權
 
@@ -99,4 +99,4 @@
 - [Power BI REST API](http://docs.powerbi.apiary.io/reference)
 - [Azure 區域](https://azure.microsoft.com/regions/)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

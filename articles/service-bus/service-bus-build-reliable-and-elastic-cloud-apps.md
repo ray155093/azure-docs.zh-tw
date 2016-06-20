@@ -29,7 +29,7 @@
  
 ## 建置
 
-- [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md) 
+- [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md) 
 - [服務匯流排代理傳訊中寄不出的信件 (2011 年 10 月 21 日部落格文章) (英文)](http://geekswithblogs.net/asmith/articles/147398.aspx) 
 - [將服務匯流排應用程式與服務匯流排中斷和災難隔絕的最佳作法 (英文)](service-bus-outages-disasters.md)
 - [代理傳訊：要求回應範例 (英文)](https://code.msdn.microsoft.com/Brokered-Messaging-Request-0ce8fcaf) 
@@ -46,4 +46,4 @@
 - [雲端服務](https://azure.microsoft.com/services/cloud-services/) 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

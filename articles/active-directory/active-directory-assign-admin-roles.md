@@ -28,7 +28,11 @@
 
 - **全域管理員**：可以存取所有系統管理功能。註冊 Azure 帳戶的人員會變成全域管理員。只有全域管理員才能指派其他系統管理員角色。您的公司可以有多位全域管理員。
 
+	> [AZURE.NOTE] 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「公司系統管理員」。
+
 - **密碼管理員**：重設密碼、管理服務要求，以及監控服務健全狀況。密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
+
+	> [AZURE.NOTE] 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。
 
 - **服務管理員**：管理服務要求，以及監控服務健全狀況。
 
@@ -78,7 +82,7 @@
 
 2. 在 [**使用者**] 頁面上，按一下您想要編輯之使用者的顯示名稱。
 
-3. 在 [組織角色] 清單中，選取您想要指派給這位使用者的系統管理員角色，或選取 [使用者] \(如果您想要移除現有系統管理員角色)。
+3. 在 [組織角色] 清單中，選取您想要指派給這位使用者的系統管理員角色，或選取 [使用者] (如果您想要移除現有系統管理員角色)。
 
 4. 在 [**替代電子郵件地址**] 方塊中，輸入電子郵件地址。此電子郵件地址用於重要通知 (包括密碼自行重設)，因此，不論使用者是否可以存取 Azure，使用者都必須可以存取電子郵件帳戶。
 
@@ -94,7 +98,7 @@
 
 - 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 
-- 如需進一步資訊，以了解 Azure Active Directory 如何與您的 Azure 訂用帳戶產生關聯，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
+- 如需 Azure Active Directory 如何與您的 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 
 - [管理使用者](active-directory-create-users.md)
 
@@ -102,4 +106,4 @@
 
 - [管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -15,12 +15,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="06/07/2016"
 	ms.author="genemi"/>
 
 
 # SQL Database 中的擴充事件
 
+[AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
 本主題說明 Azure SQL Database 中的擴充事件的實作方式與 Microsoft SQL server 中的擴充事件相較之下，有如何的些微不同。
 
@@ -36,6 +37,12 @@
 > [AZURE.NOTE] 從 2015 年 10 月起，擴充事件工作階段功能會在 Azure SQL Database 的預覽層級中啟動。尚未設定公開上市 (GA) 日期。
 >
 > Azure [服務更新](https://azure.microsoft.com/updates/?service=sql-database)頁面在進行 GA 宣告時會有文章發佈。
+
+
+如需有關 Azure SQL Database 和 Microsoft SQL Server 之擴充事件的其他資訊，請參閱：
+
+- [Quick Start: Extended events in SQL Server (快速入門：SQL Server 中的擴充事件)](http://msdn.microsoft.com/library/mt733217.aspx)
+- [擴充事件](http://msdn.microsoft.com/library/bb630282.aspx)
 
 
 ## 必要條件
@@ -269,4 +276,4 @@ SELECT
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -42,7 +42,7 @@
 
 ## 建立及設定 Azure 虛擬機器以裝載 Django
 
-1. 按照[此處](virtual-machines-linux-portal-create.md) (英文) 所提供的指示，建立 *Ubuntu Server 14.04 LTS* 散發套件的 Azure 虛擬機器。您也可以選擇以密碼驗證取代 SSH 公開金鑰。
+1. 按照[此處](virtual-machines-linux-quick-create-portal.md) (英文) 所提供的指示，建立 *Ubuntu Server 14.04 LTS* 散發套件的 Azure 虛擬機器。您也可以選擇以密碼驗證取代 SSH 公開金鑰。
 
 1. 參考[這裡](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)的指示，編輯網路安全性群組以允許連接埠 80 的傳入 http 流量。
 
@@ -101,7 +101,7 @@ Ubuntu Linux VM 已經預先安裝 Python 2.7，但是並未安裝 Apache 或 Dj
 
 ## 設定 Apache
 
-1.  建立 Apache 虛擬主機組態檔 **/etc/apache2/sites-available/helloworld.conf**。設定成以下內容，並以您使用之機器的實際名稱取代 [*yourVmName*] \(例如 *pyubuntu*)。
+1.  建立 Apache 虛擬主機組態檔 **/etc/apache2/sites-available/helloworld.conf**。設定成以下內容，並以您使用之機器的實際名稱取代 [*yourVmName*] (例如 *pyubuntu*)。
 
 		<VirtualHost *:80>
 		ServerName yourVmName
@@ -126,4 +126,4 @@ Ubuntu Linux VM 已經預先安裝 Python 2.7，但是並未安裝 Apache 或 Dj
 
 完成本教學課程時，請關閉並/或移除新建立的 Azure 虛擬機器釋出資源供其他教學課程使用，並避免產生 Azure 使用的費用。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

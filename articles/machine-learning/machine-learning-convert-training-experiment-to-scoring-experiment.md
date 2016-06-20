@@ -54,7 +54,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 - **準備** - 根據要提交用於評分的資料而定，這些模組不一定需要處理傳入的資料。
 
-	例如，在此範例中，範例資料集可能會有遺漏的值，而且它包含培訓模型不需要的資料行。因此，[清除遺漏的資料][clean-missing-data]模組會用於處理遺漏的值，而[專案資料行][project-columns]模組則用於排除資料流程中的那些額外資料行。如果您知道透過 Web 服務提交用於評分的資料不會有遺漏的值，則您可以移除[清除遺漏的資料][clean-missing-data]模組。不過，由於[專案資料行][project-columns]模組有助於定義一組要評分的功能，因此必須保留該模組。
+	例如，在此範例中，範例資料集可能會有遺漏的值，而且它包含培訓模型不需要的資料行。因此，範例中包含[清除遺漏的資料][clean-missing-data]模組來處理遺漏的值，並包含[選取資料集中的資料行][select-columns]模組以將那些額外的資料行從資料流程中排除。如果您知道透過 Web 服務提交用於評分的資料不會有遺漏的值，則您可以移除[清除遺漏的資料][clean-missing-data]模組。不過，由於[選取資料集中的資料行][select-columns]模組有助於定義一組要評分的功能，因此必須保留此模組。
 
 - **訓練** - 一旦成功訓練模型之後，您就可以將它儲存為單一定型模型模組。接著，您要將這些個別的模組取代為所儲存的定型模型。
 
@@ -78,7 +78,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 同樣地，**設定 Web 服務**會將 Web 服務輸出模組放在資料流程的底部。在此範例中，Web 服務會將[評分模型][score-model]模組的輸出傳回給使用者，其中包括完整的輸入資料向量以及評分結果。
 
-不過，如果您想傳回其他內容，例如，僅傳回評分結果但不傳回輸入資料的整個向量，則您可以插入[專案資料行][project-columns]模組，以排除評分結果以外的所有資料行。接著，您要將 **Web 服務輸出**模組移到[專案資料行][project-columns]模組的輸出：
+不過，如果您偏好傳回其他內容 (例如，只傳回評分結果，而不傳回整個輸入資料向量)，則您可以插入[選取資料集中的資料行][select-columns]模組，以排除評分結果以外的所有資料行。接著，您要將「Web 服務輸出」模組移到[選取資料集中的資料行][select-columns]模組的輸出：
 
 ![移動 Web 服務輸出][figure5]
 
@@ -94,7 +94,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 在某些情況下，您可能需要讓 Web 服務的使用者變更存取服務時的模組行為。*Web 服務參數*可讓您執行這項操作。
 
-常見的範例是設定[讀取者][reader]模組，讓已部署 Web 服務的使用者可以在存取服務時，指定不同的資料來源。或者，設定[寫入者][writer]模組，以便指定不同的目的地。
+常見的範例是設定[匯入資料][import-data]模組，讓已部署之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。或者，設定[匯出資料][export-data]模組，以便能夠指定不同的目的地。
 
 您可以定義 Web 服務參數，並使其與一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。接著，Web 服務的使用者可以在服務遭到存取時，提供這些參數的值，並據此修改模組動作。
 
@@ -124,11 +124,11 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 <!-- Module References -->
 [clean-missing-data]: https://msdn.microsoft.com/library/azure/d2c5ca2f-7323-41a3-9b7e-da917c99f0c4/
 [evaluate-model]: https://msdn.microsoft.com/library/azure/927d65ac-3b50-4694-9903-20f6c1672089/
-[project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
-[writer]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
+[export-data]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

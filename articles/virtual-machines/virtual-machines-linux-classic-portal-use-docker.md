@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="infrastructure-services"
-	ms.date="09/22/2015"
+	ms.date="05/27/2016"
 	ms.author="rasquill"/>
 
 
@@ -45,12 +45,12 @@
 在命令列中，使用 **`base64`** 或其他慣用的編碼工具來建立 base64 編碼的主題。使用一組簡單的憑證和金鑰檔案來執行此作業，看起來會如下所示：
 
 ```
- ~/.docker$ l
+ ~/.docker$ ls
  ca-key.pem  ca.pem  cert.pem  key.pem  server-cert.pem  server-key.pem
  ~/.docker$ base64 ca.pem > ca64.pem
  ~/.docker$ base64 server-cert.pem > server-cert64.pem
  ~/.docker$ base64 server-key.pem > server-key64.pem
- ~/.docker$ l
+ ~/.docker$ ls
  ca64.pem    ca.pem    key.pem            server-cert.pem   server-key.pem
  ca-key.pem  cert.pem  server-cert64.pem  server-key64.pem
 ```
@@ -79,11 +79,11 @@
 > [AZURE.NOTE] 請注意，(如上圖所示) 依預設已填入 2376。您可以在此輸入任何端點，但下一個步驟會是開啟相符的端點。如果您變更預設值，請確定在下一個步驟中開啟相符的端點。
 
 ## 新增 Docker 通訊端點
-當在您所建立的資源群組中檢視 VM 時，您可以向下捲動並按一下 [端點] 以檢視 VM 上的端點，如下所示。
+檢視您已建立的資源群組時，請選取與您 VM 關聯的「網路安全性群組」，然後按一下 [輸入安全性規則] 來檢視規則，如以下所示。
 
 ![](./media/virtual-machines-linux-classic-portal-use-docker/AddingEndpoint.png)
 
-按一下 [**+新增**] 以新增其他端點，在預設情況下，輸入端點的名稱 (在此範例中為 **docker**)，且私用和公用連接埠都輸入 2376。保留顯示 **TCP** 的通訊協定值，並按一下 [確定] 以建立端點。
+按一下 [+ 新增] 以新增其他規則，在預設情況下，請輸入端點的名稱 (在此範例中為 **Docker**)，以及在 [目的地連接埠範圍] 輸入 2376。將通訊協定值設定為顯示 **TCP**，然後按一下 [確定] 以建立規則。
 
 ![](./media/virtual-machines-linux-classic-portal-use-docker/AddEndpointFormFilledOut.png)
 
@@ -148,4 +148,4 @@ WARNING: No swap limit support
 [使用 https 執行 Docker]: http://docs.docker.com/articles/https/
 [Docker 使用者指南]: https://docs.docker.com/userguide/
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

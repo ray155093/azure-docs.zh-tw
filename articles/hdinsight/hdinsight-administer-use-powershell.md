@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="05/24/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure PowerShell 管理 HDInsight 上的 Hadoop 叢集
@@ -60,10 +60,15 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 	Get-AzureRmHDInsightCluster -ClusterName <Cluster Name>
 
 ##刪除叢集
+
 使用下列命令刪除叢集：
 
 	Remove-AzureRmHDInsightCluster -ClusterName <Cluster Name>
 
+您也可以移除包含叢集的資源群組來刪除叢集。請注意，這將會刪除群組中的所有資源 (包括預設儲存體帳戶)。
+
+	Remove-AzureRmResourceGroup -Name <Resource Group Name>
+			
 ##調整叢集
 叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的背景工作節點數目，而不需要重新建立叢集。
 
@@ -234,4 +239,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 [image-hdi-ps-provision]: ./media/hdinsight-administer-use-powershell/HDI.PS.Provision.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

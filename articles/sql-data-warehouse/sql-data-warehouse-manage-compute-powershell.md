@@ -19,7 +19,7 @@
 # 管理 Azure SQL 資料倉儲中的計算能力 (PowerShell)
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-overview-manage-compute.md)
+- [概觀](sql-data-warehouse-manage-compute-overview.md)
 - [入口網站](sql-data-warehouse-manage-compute-portal.md)
 - [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 - [REST](sql-data-warehouse-manage-compute-rest-api.md)
@@ -34,7 +34,7 @@
 - 暫停計算
 - 繼續計算
 
-若要深入了解，請參閱[管理計算能力概觀][]。
+若要深入了解，請參閱 [管理計算概觀][]。
 
 
 ## 開始之前
@@ -124,7 +124,7 @@ $resultDatabase
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
-[Performance scalability overview]: ./sql-data-warehouse-overview-scalability.md
+
 
 <!--MSDN references-->
 [Resume-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619347.aspx
@@ -136,4 +136,4 @@ $resultDatabase
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

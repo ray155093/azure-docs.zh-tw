@@ -18,8 +18,6 @@
 
 # Azure App Service 中的 API Apps 驗證與授權
 
-[AZURE.INCLUDE [選取器](../../includes/app-service-api-auth-selector.md)]
-
 ## 概觀 
 
 > [AZURE.NOTE] 本主題將移轉至合併的 [App Service 驗證/授權](../app-service/app-service-authentication-overview.md)主題，其中涵蓋 Web、Mobile 和 API Apps。
@@ -83,7 +81,7 @@ App Service 驗證適用於從某個 API 應用程式呼叫另一個 API 應用�
 
 若為服務對服務案例，則請使用 Azure Active Directory 保護所呼叫的 API 應用程式，並在呼叫 API 應用程式時提供 AAD 服務主體授權權杖。透過提供用戶端識別碼和用戶端密碼，您就可以從 AAD 應用程式取得此權杖。不需要特殊的僅 Azure 適用的程式碼，例如在處理行動服務 Zumo 權杖時為 true。[API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)教學課程中有講述這個使用 ASP.NET API 應用程式之案例的範例。
 
-如果您想要處理服務對服務案例，但不要使用 App Service 驗證，請使用用戶端憑證或基本驗證。如需 Azure 中用戶端憑證的詳細資訊，請參閱[如何設定 Web Apps 的 TLS 相互驗證](../app-service-web/app-service-web-configure-tls-mutual-auth.md)。如需 ASP.NET 中基本驗證的詳細資訊，請參閱[ASP.NET Web API 2 中的驗證篩選](http://www.asp.net/web-api/overview/security/authentication-filters)。
+如果您想要處理服務對服務案例，但不要使用 App Service 驗證，請使用用戶端憑證或基本驗證。如需 Azure 中用戶端憑證的詳細資訊，請參閱[如何設定 Web Apps 的 TLS 相互驗證](../app-service-web/app-service-web-configure-tls-mutual-auth.md)。如需 ASP.NET 中的基本驗證相關資訊，請參閱 [ASP.NET Web API 2 中的驗證篩選](http://www.asp.net/web-api/overview/security/authentication-filters)。
 
 App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例，[將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../app-service-logic/app-service-logic-custom-hosted-api.md)中有關於此案例的說明。
 
@@ -114,4 +112,4 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 本文說明了可用於 API 應用程式之 App Service 的驗證和授權功能。在下一個快速入門系列教學課程中，會說明如何實作 [App Service API Apps 中的使用者驗證](app-service-api-dotnet-user-principal-auth.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

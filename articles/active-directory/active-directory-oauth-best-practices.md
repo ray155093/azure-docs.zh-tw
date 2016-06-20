@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 
@@ -78,4 +78,4 @@ Active Directory 存取控制服務 (ACS) 傳回 HTTP 500 系列錯誤時，強�
 
 [Active Directory 驗證程式庫 (ADAL)](active-directory-authentication-libraries.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

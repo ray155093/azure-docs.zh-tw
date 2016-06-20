@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="03/24/2016"
-   ms.author="msfussell"/>
+   ms.author="mfussell"/>
 
 # 為何要用微服務方式建置應用程式？
 身為軟體開發人員，已熟悉思考如何將應用程式分解成元件部分。它是物件導向、軟體抽象化和元件化的中心範型。現在，這種分解經常以共用程式庫和技術層之間的類別與介面呈現，通常是透過一種分層方法，有後端存放區、中間層商務邏輯和前端 UI。過去幾年來的變化是身為開發人員的我們，開始為商業驅動的雲端建置分散式應用程式。
@@ -143,9 +143,9 @@ Service Fabric 的目標是將使用微服務方法建置應用程式時的複�
 
 * 其他資訊：
 	* [Service Fabric 概觀](service-fabric-overview.md)
-    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/zh-TW/blog/microservices-an-application-revolution-powered-by-the-cloud/)
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="02/04/2016" 
+	ms.date="06/04/2016" 
 	ms.author="heidist"/>
 
 # 如何使用 Azure Search 中的評分設定檔
@@ -47,7 +47,7 @@
 
 1. 將檔案解壓縮之後，請在 Visual Studio 中開啟解決方案以編輯組態檔。
 1. 在 [方案總管] 中，按兩下 **app.config**。此檔案會指定服務端點以及用來驗證要求的 `api-key`。您可以從傳統入口網站取得這些值。
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 1. 移至 Azure Search 的服務儀表板。
 1. 按一下 [**屬性**] 磚來複製服務 URL
 1. 按一下 [**金鑰**] 磚來複製服務 `api-key`。
@@ -126,4 +126,4 @@
 [10]: ./media/search-get-started-scoring-profiles/AzureSearch_XLSX1.PNG
 [9]: ./media/search-get-started-scoring-profiles/AzureSearch_XLSX2.PNG
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

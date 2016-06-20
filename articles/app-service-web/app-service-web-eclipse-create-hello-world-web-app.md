@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="05/19/2016" 
+	ms.date="06/07/2016" 
 	ms.author="robmcm"/>
 
 # 在 Eclipse 中建立 Azure Hello World Web 應用程式
@@ -36,7 +36,7 @@
 
 首先，我們將從建立 Java 專案開始。
 
-1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] \(如果在按一下 [File] \(檔案)、[New] \(新增) 後沒有看到 [Dynamic Web Project] \(動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] \(檔案)、[New] \(新增)、\[Project...] \(專案)，展開 [Web]，按一下 [Dynamic Web Project] \(動態 Web 專案)，然後按一下 [Next] \(下一步)。)
+1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] (如果在按一下 [File] (檔案)、[New] (新增) 後沒有看到 [Dynamic Web Project] (動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] (檔案)、[New] (新增)、[Project...] (專案)，展開 [Web]，按一下 [Dynamic Web Project] (動態 Web 專案)，然後按一下 [Next] (下一步)。)
 
 1. 基於本教學課程的目的，將專案命名為 **MyHelloWorld** 您的畫面將出現，如下所示：
 
@@ -107,7 +107,7 @@
 
         You can select an existing Resource Group (if you have any) and skip to step g below, or use the following these steps to create a new Resource Group:
 
-      * 按一下 [New...]\(新增)
+      * 按一下 [New...] (新增)
 
       * [新增資源群組] 對話方塊會隨即顯示：
 
@@ -139,7 +139,7 @@
 
       * 在 [執行個體大小] 下拉式功能表中，為方案選取適當的執行個體大小。針對測試用途，您可以選擇 [小型]。
 
-  1. 一旦您完成所有上述步驟之後，[New Web App Container]\(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+  1. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
 
         ![][10]
 
@@ -193,19 +193,33 @@
 
 ## 後續步驟
 
-如需詳細資訊，請參閱下列連結：
+如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
-* [Java 開發人員中心]
-* [Web Apps 概觀]
+- [適用於 Eclipse 的 Azure 工具組]
+  - [安裝 Azure Toolkit for Eclipse]
+  - 在 Eclipse 中建立 Azure Hello World Web 應用程式 (本文)
+  - [適用於 Eclipse 的 Azure 工具組的新功能]
+- [Azure Toolkit for IntelliJ]
+  - [安裝 Azure Toolkit for IntelliJ]
+  - [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
+
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+
+如需建立 Azure Web Apps 的詳細資訊，請參閱 [Web 應用程式概觀]。
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 
 [適用於 Eclipse 的 Azure 工具組]: ../azure-toolkit-for-eclipse.md
+[Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
+[在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
-[Java 開發人員中心]: https://azure.microsoft.com/develop/java/
-[Web Apps 概觀]: ./app-service-web-overview.md
+[安裝 Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
+[適用於 Eclipse 的 Azure 工具組的新功能]: ../azure-toolkit-for-eclipse-whats-new.md
+
+[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[Web 應用程式概觀]: ./app-service-web-overview.md
 
 <!-- IMG List -->
 
@@ -225,4 +239,4 @@
 [14]: ./media/app-service-web-eclipse-create-hello-world-web-app/14-publishDropdownButton.png
 [15]: ./media/app-service-web-eclipse-create-hello-world-web-app/15-New-Azure-Web-Container.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

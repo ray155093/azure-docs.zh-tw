@@ -336,7 +336,12 @@ sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階�
  
 
 ## Azure SQL 連結服務
-
 您可建立 Azure SQL 連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties)一文。
 
-<!---HONumber=AcomDC_0601_2016-->
+## Azure SQL 資料倉儲連結服務
+您可以建立 Azure SQL 資料倉儲連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#azure-sql-data-warehouse-linked-service-properties)一文。
+
+## SQL Server 連結服務
+您可以建立 SQL Server 連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#sql-server-linked-service-properties)一文。
+
+<!---HONumber=AcomDC_0608_2016-->

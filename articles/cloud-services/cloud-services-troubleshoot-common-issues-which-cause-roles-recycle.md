@@ -13,18 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="05/26/2016"
+   ms.date="06/03/2016"
    ms.author="v-six" />
 
 # 導致角色回收的常見問題
 
 本文討論部署問題的常見原因，和可協助您解決這些問題的疑難排解秘訣。應用程式出現問題的徵候之一，是角色執行個體無法啟動，或是在初始化中、忙碌和停止中狀態之間循環。
 
-## 連絡 Azure 客戶支援
-
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。
-
-或者，您可以提出 Azure 支援事件。請移至 [Azure 支援網站](http://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。如需關於使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](http://azure.microsoft.com/support/faq/)。
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 遺失執行階段相依性
 
@@ -70,7 +66,7 @@ Azure 是 64 位元環境。因此，針對 32 位元目標編譯的 .NET 組件
 
 ## 後續步驟
 
-檢視更多雲端服務的[疑難排解文章](..\?tag=top-support-issue&service=cloud-services)。
+檢視更多雲端服務的[疑難排解文章](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services)。
 
 在以下位置檢視多個角色回收案例：[Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
@@ -82,4 +78,4 @@ Azure 是 64 位元環境。因此，針對 32 位元目標編譯的 .NET 組件
 [OnStop]: https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx
 [Run]: https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

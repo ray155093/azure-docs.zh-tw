@@ -22,8 +22,7 @@
 
 本文件說明如何針對儲存在 Azure 上的 SQL Server VM 中資料產生特徵，以協助演算法更有效率地從資料學習。使用 SQL 或使用類似 Python 的程式設計語言都可以達到此目的，以下示範這兩者。
 
-[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]此選單連結的主題，說明如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 > [AZURE.NOTE] 如需實用範例，您可以參考 [NYC 計程車資料集](http://www.andresmh.com/nyctaxitrips/)，並參考標題為[使用 IPython Notebook 和 SQL Server 來處理有爭議的 NYC 資料](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb)的 IPNB，以進行端對端逐步解說。
 
@@ -102,7 +101,7 @@
 
 ###<a name="sql-aml"></a>連接到 Azure Machine Learning
 
-新產生的功能可當成資料行新增至現有資料表或儲存於新的資料表中，並與原始資料表加以聯結以進行機器學習服務。如果已經建立功能，就可以使用 Azure ML 中的[讀取器](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組來產生或存取功能，如下所示：
+新產生的功能可當成資料行新增至現有資料表或儲存於新的資料表中，並與原始資料表加以聯結以進行機器學習服務。如果已經建立功能，就可以使用 Azure ML 中的[匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組來產生或存取功能，如以下所示：
 
 ![azureml 讀取器](./media/machine-learning-data-science-process-sql-server-virtual-machine/reader_db_featurizedinput.png)
 
@@ -125,4 +124,4 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/)提供一組豐富的
 
  
 
-<!---HONumber=AcomDC_0518_2016---->
+<!---HONumber=AcomDC_0608_2016-->

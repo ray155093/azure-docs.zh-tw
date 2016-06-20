@@ -1,5 +1,5 @@
 <properties
-   pageTitle="使用 SSMS 判斷 SQL Database 相容性"
+   pageTitle="在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來判斷 SQL Database 相容性 | Microsoft Azure"
    description="Microsoft Azure SQL Database, 資料庫移轉, SQL Database 相容性, 匯出資料層應用程式精靈"
    services="sql-database"
    documentationCenter=""
@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="03/14/2016"
+   ms.workload="sqldb-migrate"
+   ms.date="06/07/2016"
    ms.author="carlrab"/>
 
 # 在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來判斷 SQL Database 相容性
@@ -67,4 +67,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

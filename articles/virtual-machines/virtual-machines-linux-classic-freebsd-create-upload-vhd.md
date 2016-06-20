@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="01/12/2016"
+   ms.date="06/07/2016"
    ms.author="kyliel"/>
 
 # 建立並上傳 FreeBSD VHD 到 Azure
@@ -68,39 +68,57 @@
 
 		# pkg install sudo
 
-5. Azure 代理程式的必要條件
+5. **Azure 代理程式的必要條件**
 
-    5\.1 **安裝 python**
-
-		# pkg install python27
-		# ln -s /usr/local/bin/python2.7 /usr/bin/python
-
-    5\.2 **安裝 wget**
-
-		# pkg install wget
+		# pkg install python27  
+		# pkg install Py27-setuptools27   
+		# ln -s /usr/local/bin/python2.7 /usr/bin/python   
+		# pkg install git 
 
 6. **安裝 Azure 代理程式**
 
-    最新版的 Azure 代理程式一律可以在 [github](https://github.com/Azure/WALinuxAgent/releases) 上找到。2.0.10 版和更新版本正式支援 FreeBSD 10 和更新的版本。FreeBSD 最新的 Azure 代理程式版本是 2.0.16。
+    最新版的 Azure 代理程式一律可以在 [github](https://github.com/Azure/WALinuxAgent/releases) 上找到。2.0.10 + 版正式支援 FreeBSD 10 和 10.1，2.1.4 版正式支援 FreeBSD 10.2 和更新版本。
 
-		# wget https://raw.githubusercontent.com/Azure/WALinuxAgent/WALinuxAgent-2.0.10/waagent --no-check-certificate
-		# mv waagent /usr/sbin
-		# chmod 755 /usr/sbin/waagent
-		# /usr/sbin/waagent -install
+		# git clone https://github.com/Azure/WALinuxAgent.git  
+		# cd WALinuxAgent  
+		# git tag  
+		…
+		WALinuxAgent-2.0.16
+		…
+		v2.1.4
+		v2.1.4.rc0
+		v2.1.4.rc1
+   
+    針對 2.0，以下使用 2.0.16 做為範例。
+    
+		# git checkout WALinuxAgent-2.0.16
+		# python setup.py install  
+		# ln -sf /usr/local/sbin/waagent /usr/sbin/waagent  
 
-    **重要**：安裝之後，請再次確認它正在執行。
+    針對 2.1，以下使用 2.1.4 做為範例。
+    
+		# git checkout v2.1.4
+		# python setup.py install  
+		# ln -sf /usr/local/sbin/waagent /usr/sbin/waagent  
+		# ln -sf /usr/local/sbin/waagent2.0 /usr/sbin/waagent2.0
+   
+    **重要**：安裝之後，您可以仔細檢查版本及它是否正在執行。
 
+		# waagent -version
+		WALinuxAgent-2.1.4 running on freebsd 10.3
+		Python: 2.7.11
 		# service –e | grep waagent
 		/etc/rc.d/waagent
 		# cat /var/log/waagent.log
 
-    現在您可以**關閉**您的 VM。您也可以在關機之前執行步驟 7，但這是選擇性的。
+7. **取消佈建**
 
-7. 取消佈建是選擇性的。它會嘗試清理系統，使其適合重新佈建。
+    它會嘗試清理系統，使其適合重新佈建。下列命令也會刪除最後佈建的使用者帳戶和相關聯的資料。
 
-    下列命令也會刪除最後佈建的使用者帳戶和相關聯的資料。
-
-		# waagent –deprovision+user
+		# echo "y" |  /usr/local/sbin/waagent -deprovision+user  
+		# echo  'waagent_enable="YES"' >> /etc/rc.conf
+    
+    現在您可以**關閉**您的 VM。
 
 ## 步驟 2：在 Azure 中建立儲存體帳戶 ##
 
@@ -177,7 +195,7 @@
 
    如需詳細資訊，請參閱[開始使用 Microsoft Azure Cmdlet](http://msdn.microsoft.com/library/windowsazure/jj554332.aspx)
 
-   如需有關安裝及設定 PowerShell 的詳細資訊，請參閱[如何安裝及設定 Microsoft Azure PowerShell](../install-configure-powershell.md)。
+   如需有關安裝及設定 PowerShell 的詳細資訊，請參閱[如何安裝及設定 Microsoft Azure PowerShell](../powershell-install-configure.md)。
 
 ## 步驟 4：上傳 .vhd 檔案 ##
 
@@ -209,4 +227,4 @@
 
 	![azure 中的 freebsd 映像](./media/virtual-machines-linux-classic-freebsd-create-upload-vhd/freebsdimageinazure.png)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="03/18/2016"
+ms.date="06/06/2016"
 ms.author="larryfr"/>
 
 #在 HDInsight 上搭配使用 DataFu 與 Pig
@@ -107,4 +107,4 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

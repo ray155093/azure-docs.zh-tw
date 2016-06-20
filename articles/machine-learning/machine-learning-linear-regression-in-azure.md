@@ -51,7 +51,7 @@
 我們遵循下列步驟在 Azure ML 中建立我們的實驗：
 
 1.	將資料集以 csv 檔案 (非常小的檔案) 的形式上傳到 Azure ML
-2.	建立新的實驗並使用[專案資料行][project-columns]模組來選取 Excel 中所使用的相同資料功能   
+2.	建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料功能   
 3.	使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分成完全相同的訓練集，正如同在 Excel 中完成的動作  
 4.	使用[線性迴歸][linear-regression]模組實驗 (只有使用預設選項)、記載，並將結果與我們 Excel 迴歸模型比較
 
@@ -155,8 +155,8 @@
 [boosted-decision-tree-regression]: https://msdn.microsoft.com/library/azure/0207d252-6c41-4c77-84c3-73bdf1ac5960/
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [linear-regression]: https://msdn.microsoft.com/library/azure/31960a6f-789b-4cf7-88d6-2e1152c0bd1a/
-[project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

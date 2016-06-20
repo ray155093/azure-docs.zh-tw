@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/18/2016"
+   ms.date="06/06/2016"
    ms.author="larryfr"/>
 
 # 搭配使用 MapReduce 與 HDInsight 上的 Hadoop 和 SSH
@@ -41,7 +41,7 @@
 
 **如果您提供憑證金鑰進行 SSH 驗證** (在建立 HDInsight 叢集時)，可能需要指定用戶端系統上私密金鑰的位置，例如：
 
-	ssh admin@myhdinsight-ssh.azurehdinsight.net -i ~/mykey.key
+	ssh -i ~/mykey.key admin@myhdinsight-ssh.azurehdinsight.net
 
 **如果您提供密碼進行 SSH 驗證** (在建立 HDInsight 叢集時)，則需要在出現提示時提供密碼。
 
@@ -108,4 +108,4 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

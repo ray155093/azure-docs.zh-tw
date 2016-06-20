@@ -154,7 +154,7 @@ Site Recovery 處理序伺服器可以自動探索 vSphere 主機或管理主機
 ## 建立復原服務保存庫
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [新增] > [混合式整合] > [復原服務]。或者，您可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
+2. 按一下 [新增] > [管理] > [備份和 Site Recovery (OMS)]。或者，您也可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
 
 	![新增保存庫](./media/site-recovery-vmware-to-azure/new-vault3.png)
 
@@ -184,7 +184,7 @@ Site Recovery 提供的「快速入門」經驗，其設計是要協助您盡快
 
 	![選擇目標](./media/site-recovery-vmware-to-azure/choose-goals.png)
 
-3. 在 [Protection goal] \(保護目標) 中選取 [To Azure] \(至 Azure)，然後選取 [Yes, with VMware vSphere Hypervisor] \(是，使用 VMware vSphere Hypervisor)。然後按一下 [確定]。
+3. 在 [Protection goal] (保護目標) 中選取 [To Azure] (至 Azure)，然後選取 [Yes, with VMware vSphere Hypervisor] (是，使用 VMware vSphere Hypervisor)。然後按一下 [確定]。
 
 	![選擇目標](./media/site-recovery-vmware-to-azure/choose-goals2.png)
 
@@ -193,7 +193,7 @@ Site Recovery 提供的「快速入門」經驗，其設計是要協助您盡快
 
 設定組態伺服器，並在復原服務保存庫中註冊它。如果您要複寫 VMware VM，請指定您用於自動探索的 VMware 帳戶。
 
-1. 按一下 [Step 1: Prepare Infrastructure] [步驟 1：準備基礎結構] > [來源]。在 [Prepare source] \(準備來源) 中，如果您沒有組態伺服器，請按一下 [+Configuration server] \(+組態伺服器) 來加入一部。
+1. 按一下 [Step 1: Prepare Infrastructure] [步驟 1：準備基礎結構] > [來源]。在 [Prepare source] (準備來源) 中，如果您沒有組態伺服器，請按一下 [+Configuration server] (+組態伺服器) 來加入一部。
 
 	![設定來源](./media/site-recovery-vmware-to-azure/set-source1.png)
 
@@ -210,19 +210,19 @@ Site Recovery 提供的「快速入門」經驗，其設計是要協助您盡快
 ### 執行 Site Recovery 統一安裝
 
 1.	執行統一安裝的安裝檔案。
-2.	在 [開始之前] 中，選取 [Install the configuration server and process server] \(安裝組態伺服器和處理序伺服器)。
+2.	在 [開始之前] 中，選取 [Install the configuration server and process server] (安裝組態伺服器和處理序伺服器)。
 
 	![開始之前](./media/site-recovery-vmware-to-azure/combined-wiz1.png)
 
-3. 在 [Third-Party Software License] \(協力廠商軟體授權) 中，按一下 [I Accept] \(我接受) 來下載並安裝 MySQL。
+3. 在 [Third-Party Software License] (協力廠商軟體授權) 中，按一下 [I Accept] (我接受) 來下載並安裝 MySQL。
 
 	![第三方=廠商軟體](./media/site-recovery-vmware-to-azure/combined-wiz2.png)
 
 4. 在 [網際網路設定] 中，指定在組態伺服器上執行的 Provider 會如何透過網際網路連接到 Azure Site Recovery。
 
-	- 如果您要使用目前在機器上設定的 Proxy 來連線，請選取 [Connect with existing proxy settings] \(以現有的 Proxy 設定連線)。
-	- 如果您要讓提供者直接連線，請選取 [Connect directly without a proxy] \(不使用 Proxy 直接連線)。
-	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [Connect with custom proxy settings] \(以自訂 Proxy 設定連線)。
+	- 如果您要使用目前在機器上設定的 Proxy 來連線，請選取 [Connect with existing proxy settings] (以現有的 Proxy 設定連線)。
+	- 如果您要讓提供者直接連線，請選取 [Connect directly without a proxy] (不使用 Proxy 直接連線)。
+	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [Connect with custom proxy settings] (以自訂 Proxy 設定連線)。
 		- 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證
 		- 如果您使用 Proxy，您應該已經允許[必要條件](#configuration-server-prerequisites)中所述的 URL。
 
@@ -232,7 +232,7 @@ Site Recovery 提供的「快速入門」經驗，其設計是要協助您盡快
 
 	![必要條件](./media/site-recovery-vmware-to-azure/combined-wiz4.png)
 
-6. 在 [MySQL Configuration] \(MySQL 組態) 中，建立認證來登入將要安裝的 MySQL 伺服器執行個體。
+6. 在 [MySQL Configuration] (MySQL 組態) 中，建立認證來登入將要安裝的 MySQL 伺服器執行個體。
 
 	![MySQL](./media/site-recovery-vmware-to-azure/combined-wiz5.png)
 
@@ -320,7 +320,7 @@ Site Recovery 提供的「快速入門」經驗，其設計是要協助您盡快
 
 1. 驗證組態伺服器具有 vSphere 主機和 vCenter 伺服器的網路存取。
 2. 按一下 [準備基礎結構] > [來源]。在 [準備來源] 中選取組態伺服器，然後按一下 [+ vCenter] 加入 vSphere 主機或 vCenter 伺服器。
-3. 在 [Add vCenter] \(加入 vCenter) 中指定 vSphere 主機或 vCenter 伺服器的易記名稱，並指定伺服器的 IP 位址或 FQDN。保留連接埠為 443，除非您的 VMware 伺服器設定為在不同連接埠上接聽要求。然後選取將用於連線至 VMware 伺服器的帳戶。按一下 [確定]。
+3. 在 [Add vCenter] (加入 vCenter) 中指定 vSphere 主機或 vCenter 伺服器的易記名稱，並指定伺服器的 IP 位址或 FQDN。保留連接埠為 443，除非您的 VMware 伺服器設定為在不同連接埠上接聽要求。然後選取將用於連線至 VMware 伺服器的帳戶。按一下 [確定]。
 
 	![VMware](./media/site-recovery-vmware-to-azure/vmware-server.png)
 
@@ -338,7 +338,7 @@ Site Recovery 會使用您指定的設定連線到 VMware 伺服器並探索 VM�
 
 	![目標](./media/site-recovery-vmware-to-azure/gs-target.png)
 
-4.	如果您尚未建立儲存體帳戶，而且想要使用 ARM 建立一個，請按一下 [+Storage account] \(+儲存體帳戶) 以內嵌方式執行該作業。在 [建立儲存體帳戶] 刀鋒視窗中，指定帳戶名稱、類型、訂用帳戶和位置。此帳戶應位於與復原服務保存庫相同的區域。
+4.	如果您尚未建立儲存體帳戶，而且想要使用 ARM 建立一個，請按一下 [+Storage account] (+儲存體帳戶) 以內嵌方式執行該作業。在 [建立儲存體帳戶] 刀鋒視窗中，指定帳戶名稱、類型、訂用帳戶和位置。此帳戶應位於與復原服務保存庫相同的區域。
 
 	![儲存體](./media/site-recovery-vmware-to-azure/gs-createstorage.png)
 
@@ -347,7 +347,7 @@ Site Recovery 會使用您指定的設定連線到 VMware 伺服器並探索 VM�
 	- 如果您想要使用傳統模型建立儲存體帳戶，請在 Azure 入口網站中執行該作業。[深入了解](../storage/storage-create-storage-account-classic-portal.md)
 	- 如果您將進階儲存體帳戶使用於複寫的資料，則必須設定其他標準儲存體帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
 
-4.	選取 Azure 網路。如果您尚未建立網路，而且想要使用 ARM 建立一個，請按一下 [+Network] \(+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
+4.	選取 Azure 網路。如果您尚未建立網路，而且想要使用 ARM 建立一個，請按一下 [+Network] (+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
 
 	![網路](./media/site-recovery-vmware-to-azure/gs-createnetwork.png)
 
@@ -355,11 +355,11 @@ Site Recovery 會使用您指定的設定連線到 VMware 伺服器並探索 VM�
 
 ## 步驟 4：設定複寫設定
 
-1. 若要建立新的複寫原則，請按一下 [準備基礎結構] > [複寫設定] > [+Create and Associate] \(+建立及關聯)。
-2. 在 [Create and associate policy] \(建立及關聯原則) 中指定原則名稱。
+1. 若要建立新的複寫原則，請按一下 [準備基礎結構] > [複寫設定] > [+Create and Associate] (+建立及關聯)。
+2. 在 [Create and associate policy] (建立及關聯原則) 中指定原則名稱。
 3. 在 [RPO 臨界值] 中指定 RPO 限制。連續複寫超過此限制時，會產生警示。
 5. 在 [復原點保留] 中，針對每個復原點指定保留週期的長度 (以小時為單位)。受保護的機器可以復原到週期內的任意點。針對複寫到進階儲存體的機器支援最多 24 小時的保留。
-6. 在 [App-consistent snapshot frequency] \(應用程式一致快照頻率) 中，指定建立包含應用程式一致快照的復原點的頻率 (以分鐘為單位)。
+6. 在 [App-consistent snapshot frequency] (應用程式一致快照頻率) 中，指定建立包含應用程式一致快照的復原點的頻率 (以分鐘為單位)。
 7. 當您建立複寫原則時，依預設會針對容錯回復自動建立比對原則。例如，如果複寫原則是 **rep-policy**，則容錯回復原則便會是 **rep-policy-failback**。在您起始容錯回復之前，不會使用此原則。  
 8. 按一下 [確定] 以建立原則。
 
@@ -380,7 +380,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 - 估計複寫資料的每日變更 (流失) 率。您可以使用 [vSphere capacity planning appliance (vSphere 容量規劃應用裝置)](https://labs.vmware.com/flings/vsphere-replication-capacity-planning-appliance) 來協助您執行這項操作。
 
 1.	按一下 [下載] 來下載此工具並加以執行。[閱讀本文](site-recovery-capacity-planner.md) (工具隨附)。
-2.	當您完成時，請在 [Have you completed capacity planning?]\(是否已完成容量規劃?) 中選取 [是]
+2.	當您完成時，請在 [Have you completed capacity planning?] (是否已完成容量規劃?) 中選取 [是]
 
 	![容量規劃](./media/site-recovery-vmware-to-azure/gs-capacity-planning.png)
 
@@ -492,7 +492,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 	>[AZURE.NOTE] 如果您未使用網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要這樣做，請在登錄的 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入 DWORD 項目 LocalAccountTokenFilterPolicy，其值為 1。若要從 CLI 加入登錄項目，請輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
 
-2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall]\(允許應用程式或功能通過防火牆)。啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。對於隸屬於網域的機器，您可以使用 GPO 設定防火牆設定。
+2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall] (允許應用程式或功能通過防火牆)。啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。對於隸屬於網域的機器，您可以使用 GPO 設定防火牆設定。
 
 	![防火牆設定](./media/site-recovery-vmware-to-azure/mobility1.png)
 
@@ -533,8 +533,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 來源作業系統 | 行動服務安裝檔案
 --- | ---
 Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz 
-SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
 
@@ -595,7 +594,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 - 系統會每隔 15 分鐘探索 VMware VM 一次，而且在探索之後，可能需要 15 分鐘以上，VMware VM 才會出現在入口網站中。同樣地，當您加入新的 vCenter 伺服器或 vSphere 主機時，探索可能需要 15 分鐘以上。
 - 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要 15 分鐘以上的時間，才會在入口網站更新。
-- 您可以透過 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [Last Contact At]\(上次連絡時間) 欄位，查看 VMware VM 的上次探索時間。
+- 您可以透過 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [Last Contact At] (上次連絡時間) 欄位，查看 VMware VM 的上次探索時間。
 - 若要加入複寫的機器，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
 - 當您啟用複寫時，如果機器已準備好，處理序伺服器會自動在其上安裝行動服務。
 
@@ -611,7 +610,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 **立即啟用複寫，如下所示**︰
 
-1. 按一下 [Step 2: Replicate application] [步驟 2︰複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+Replicate]\(+複寫)，以對其他機器啟用複寫。
+1. 按一下 [Step 2: Replicate application] [步驟 2︰複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+Replicate] (+複寫)，以對其他機器啟用複寫。
 2. 在 [來源] 刀鋒視窗 > [來源] 中，選取組態伺服器。
 3. 在 [機器類型] 中，選取 [虛擬機器] 或 [實體機器]。
 4. 在 [vCenter/vSphere Hypervisor] 中，選取管理 vSphere 主機的 vCenter 伺服器，或選取主機。如果您是複寫實體機器，則這個設定不相關。
@@ -619,13 +618,13 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication2.png)
 
-6. 在 [目標] 中，選取保存庫訂用帳戶，並在 [Post-failover deployment model]\(容錯移轉後部署模型) 中，選取您要在容錯移轉後使用於 Azure 中的模型 (傳統或資源管理)。
+6. 在 [目標] 中，選取保存庫訂用帳戶，並在 [Post-failover deployment model] (容錯移轉後部署模型) 中，選取您要在容錯移轉後使用於 Azure 中的模型 (傳統或資源管理)。
 7. 選取您要用來複寫資料的 Azure 儲存體帳戶。請注意：
 
 	- 您可以選取進階或標準儲存體帳戶。如果選取進階帳戶，您需要針對進行中的複寫記錄檔，額外指定一個標準儲存體帳戶。帳戶必須位於與復原服務保存庫相同的區域中。
 	- 如果您想使用與現有不同的儲存體帳戶，您可以[建立一個](#set-up-an-azure-storage-account)。若要使用 ARM 模型來建立儲存體帳戶，請按一下 [新建]。如果您想要使用傳統模型建立儲存體帳戶，請[在 Azure 入口網站中](../storage/storage-create-storage-account-classic-portal.md)執行該作業。
 
-8. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。此網路必須位於與復原服務保存庫相同的區域中。選取 [Configure now for selected machines] \(立即針對選取的機器進行設定)，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您沒有網路，則必須[建立一個](#set-up-an-azure-network)。若要使用 ARM 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
+8. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。此網路必須位於與復原服務保存庫相同的區域中。選取 [Configure now for selected machines] (立即針對選取的機器進行設定)，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您沒有網路，則必須[建立一個](#set-up-an-azure-network)。若要使用 ARM 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication3.png)
 
@@ -633,7 +632,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication5.png)
 
-10. 在 [屬性] > [設定屬性] 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。依預設會複寫所有磁碟。按一下 [All Disks]\(所有磁碟) 並清除您不想要複寫的所有磁碟。然後按一下 [確定]。您可以稍後再設定其他屬性。
+10. 在 [屬性] > [設定屬性] 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。依預設會複寫所有磁碟。按一下 [All Disks] (所有磁碟) 並清除您不想要複寫的所有磁碟。然後按一下 [確定]。您可以稍後再設定其他屬性。
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication6.png)
 
@@ -646,7 +645,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication7.png)
 
-13. 按一下 [啟用複寫]。您可以在 [設定] > [作業] > [Site Recovery Jobs]\(Site Recovery 作業) 中，追蹤 [啟用保護] 作業的進度。執行 [Finalize Protection] \(完成保護) 作業之後，機器便可以進行容錯移轉。
+13. 按一下 [啟用複寫]。您可以在 [設定] > [作業] > [Site Recovery Jobs] (Site Recovery 作業) 中，追蹤 [啟用保護] 作業的進度。執行 [Finalize Protection] (完成保護) 作業之後，機器便可以進行容錯移轉。
 
 > [AZURE.NOTE] 如果機器已準備好進行推送安裝，則當啟用保護時，將會安裝行動服務元件。在機器上安裝元件之後，保護工作會啟動並失敗。在失敗之後，您需要手動重新啟動每一部機器。重新啟動之後，保護作業再次開始，並且會發生初始複寫。
 
@@ -729,14 +728,14 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ## 執行測試容錯移轉
 
-1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+Test Failover]\(+測試容錯移轉) 圖示。
+1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+Test Failover] (+測試容錯移轉) 圖示。
 
 	![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover1.png)
 
 2. 若要容錯移轉復原方案，請在 [設定] > [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。若要建立復原方案，[請遵循這些指示](site-recovery-create-recovery-plans.md)。
 
 3. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
-4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery jobs]\(Site Recovery 作業) 中的 [測試容錯移轉] 按一下，以便追蹤進度。
+4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery jobs] (Site Recovery 作業) 中的 [測試容錯移轉] 按一下，以便追蹤進度。
 5. 當容錯移轉到達**完成測試**狀態時，請執行下列作業：
 
 	1. 在 Azure 入口網站中檢視複本虛擬機器。確認虛擬機器成功啟動。
@@ -765,7 +764,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 ![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
 
 2. 在 [健全狀況] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
-3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery Jobs]\(Site Recovery 作業) 中向下鑽研作業。
+3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery Jobs] (Site Recovery 作業) 中向下鑽研作業。
 
 
 ## 部署額外處理序伺服器
@@ -776,16 +775,16 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ### 安裝額外的處理序伺服器
 
-1. 在 [設定] > [Site Recovery servers]\(Site Recovery 伺服器) 中，按一下組態伺服器 > [處理序伺服器]。
+1. 在 [設定] > [Site Recovery servers] (Site Recovery 伺服器) 中，按一下組態伺服器 > [處理序伺服器]。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
 
-2. 在 [伺服器類型] 中，按一下 [Process server (on-premises)] \(處理序伺服器 (內部部署))。
+2. 在 [伺服器類型] 中，按一下 [Process server (on-premises)] (處理序伺服器 (內部部署))。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
 3. 下載 Site Recovery 統一安裝檔案，然後執行它以安裝處理序伺服器，並在保存庫中註冊。
-4. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment]\(新增額外處理序伺服器以相應放大部署)。
+4. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment] (新增額外處理序伺服器以相應放大部署)。
 5. 以您[設定](#step-2-set-up-the-source-environment)組態伺服器時的相同方式完成精靈。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/add-ps1.png)
@@ -796,7 +795,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ### 移轉機器以使用新的處理序伺服器
 
-1. 在 [設定] > [Site Recovery servers] \(Site Recovery 伺服器) 中，按一下組態伺服器，然後展開 [處理序伺服器]。
+1. 在 [設定] > [Site Recovery servers] (Site Recovery 伺服器) 中，按一下組態伺服器，然後展開 [處理序伺服器]。
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
@@ -804,7 +803,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps3.png)
 
-3. 在 [Select target process server] \(選取目標處理序伺服器) 中，選取您要使用的新處理序伺服器，然後選取新的處理序伺服器將處理的虛擬機器。按一下資訊圖示以取得伺服器的相關資訊。為了協助您進行負載的判斷，會顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間。按一下核取記號以開始複寫到新處理序伺服器。
+3. 在 [Select target process server] (選取目標處理序伺服器) 中，選取您要使用的新處理序伺服器，然後選取新的處理序伺服器將處理的虛擬機器。按一下資訊圖示以取得伺服器的相關資訊。為了協助您進行負載的判斷，會顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間。按一下核取記號以開始複寫到新處理序伺服器。
 
 ## VMware 帳戶權限
 
@@ -813,8 +812,8 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 **角色** | **詳細資料** | **權限**
 --- | --- | ---
 Azure\_Site\_Recovery 角色 | VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區 -> 配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路 -> 網路指派<br/><br/>資源 -> 指派虛擬機器至資源集區、移轉已關閉電源的虛擬機器、移轉已開啟電源的虛擬機器<br/><br/>工作 -> 建立工作、更新工作<br/><br/>虛擬機器 -> 組態<br/><br/>虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟機媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 -> 清查 -> 建立、註冊、取消註冊<br/><br/>虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 -> 快照 -> 移除快照
-vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child]\(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。
-vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] \(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。 
+vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] (傳播至子物件) 的 [No access] (沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。
+vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] (傳播至子物件) 的 [No access] (沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。 
 ## 後續步驟
 
 - [深入了解](site-recovery-failover.md)不同類型的容錯移轉。
@@ -832,4 +831,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

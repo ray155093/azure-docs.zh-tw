@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="na"
-	ms.date="04/19/2016"
+	ms.date="06/03/2016"
 	ms.author="marsma" />
 
 # 在 Azure Batch 集區中佈建 Linux 計算節點
 
 Azure Batch 可讓您同時在 Linux 和 Windows 虛擬機器上執行平行計算工作負載。本文將詳細說明如何同時使用 [Batch Python][py_batch_package] 和 [Batch .NET][api_net] 用戶端程式庫，在 Batch 服務中建立 Linux 計算節點的集區。
 
-> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。在公開上市之前，此處所討論功能的某些層面可能會變更。[應用程式封裝](batch-application-packages.md)和[多重執行個體工作](batch-mpi.md)目前在Linux 計算節點上**不支援**。
+> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。在公開上市之前，此處所討論功能的某些層面可能會變更。Linux 計算節點上**目前不支援**[應用程式封裝](batch-application-packages.md)。
 
 ## 虛擬機器組態
 
@@ -28,7 +28,7 @@ Azure Batch 可讓您同時在 Linux 和 Windows 虛擬機器上執行平行計�
 
 **雲端服務組態**只提供 Windows 計算節點。可用的計算節點大小列於[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)，而可用的作業系統則列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。建立包含雲端服務節點的集區時，您僅必須指定可以在這些文章中找到的節點大小以及其「OS 系列」。建立 Windows 計算節點的集區時，最常使用的是雲端服務。
 
-**虛擬機器組態**可同時提供 Linux 和 Windows 映像計算節點。可用的計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md) (Windows)。建立包含虛擬機器組態節點的集區時，您不僅需指定節點的大小，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。
+**虛擬機器組態**可提供適用於計算節點的 Linux 和 Windows 映像。可用的計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md) (Windows)。建立包含虛擬機器組態節點的集區時，您不僅需指定節點的大小，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。
 
 ### 虛擬機器映像參考
 
@@ -55,9 +55,9 @@ Batch 節點代理程式是一項程式，會在集區中的每個節點上執�
 
 ## 建立 Linux 集區︰Batch Python
 
-下列程式碼片段顯示如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到：[azure.batch package ][py_batch_docs] 閱讀文件。
+下列程式碼片段示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到：[azure.batch package ][py_batch_docs] (位於＜Read the Docs (閱讀文件)＞上)。
 
-在此程式碼片段中，我們會明確建立 [ImageReference][py_imagereference]，指定每一個屬性 (發行者、服務、SKU、版本)。不過，我們建議您在實際執行程式碼中使用 [list\_node\_agent\_skus][py_list_skus] 方法來判斷並在執行階段從可用映像和節點代理程式 SKU 組合中選擇。
+在此程式碼片段中，我們會明確建立 [ImageReference][py_imagereference]，指定每一個屬性 (發行者、服務、SKU、版本)。不過，我們建議您在實際執行程式碼中使用 [list\_node\_agent\_skus][py_list_skus] 方法來判斷，並在執行階段從可用映像和節點代理程式 SKU 組合中選擇。
 
 ```python
 # Import the required modules from the
@@ -113,7 +113,7 @@ new_pool.virtual_machine_configuration = vmc
 client.pool.add(new_pool)
 ```
 
-如上所述，我們建議不要明確建立 [ImageReference][py_imagereference]，您可以使用 [list\_node\_agent\_skus][py_list_skus] 方法從目前支援的節點代理程式/Marketplace 映像組合中動態選取。下列 Python 程式碼片段說明這個方法的使用方式。
+如上所述，我們建議不要明確建立 [ImageReference][py_imagereference]，您可以改用 [list\_node\_agent\_skus][py_list_skus] 方法，從目前支援的節點代理程式/Marketplace 映像組合中動態選取。下列 Python 程式碼片段說明這個方法的使用方式。
 
 ```python
 # Get the list of node agents from the Batch service
@@ -134,9 +134,9 @@ vmc = batchmodels.VirtualMachineConfiguration(
 
 ## 建立 Linux 集區︰Batch .NET
 
-下列程式碼片段顯示如何使用 [Batch .NET][nuget_batch_net] 用戶端程式庫來建立 Ubuntu Server 計算節點集區。您可以在 MSDN 上找到 [Batch .NET 參考文件][api_net]。
+下列程式碼片段示範如何使用 [Batch .NET][nuget_batch_net] 用戶端程式庫來建立 Ubuntu Server 計算節點集區。您可以在 MSDN 上找到 [Batch .NET 參考文件][api_net]。
 
-下列程式碼片段使用 [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] 方法來從目前支援的 Marketplace 映像和節點代理程式 SKU 組合清單中選取。這項技術最理想，因為支援的組合清單可能會隨著時間變更 (最常見的是新增支援的組合)。
+下列程式碼片段使用 [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] 方法，來從目前支援的 Marketplace 映像和節點代理程式 SKU 組合清單中選取。這項技術最理想，因為支援的組合清單可能會隨著時間變更 (最常見的是新增支援的組合)。
 
 ```csharp
 // Pool settings
@@ -186,7 +186,7 @@ CloudPool pool = batchClient.PoolOperations.CreatePool(
 pool.Commit();
 ```
 
-雖然上述程式碼片段使用 [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] 方法，以動態列出並從支援的映像和節點代理程式 SKU 組合 (建議) 中選取，您也可以明確設定 [ImageReference][net_imagereference]︰
+雖然上述程式碼片段使用 [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] 方法，以動態列出並從支援的映像和節點代理程式 SKU 組合 (建議) 中選取，您也可以明確設定 [ImageReference][net_imagereference]：
 
 ```csharp
 ImageReference imageReference = new ImageReference(
@@ -198,9 +198,9 @@ ImageReference imageReference = new ImageReference(
 
 ## 虛擬機器映像的清單
 
-下表列出**在撰寫本文時**與可用的 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] \(Python) 和 [ListNodeAgentSkus][net_list_skus] \(Batch .NET)，以判斷並從目前可用的 SKU 中選取。
+下表列出**撰寫本文時**，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
 
-> [AZURE.WARNING] 下列清單可能隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，並在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
+> [AZURE.WARNING] 下列清單可能隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，然後在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
 
 | **發行者** | **提供項目** | **映像 SKU** | **版本** | **節點代理程式 SKU 識別碼** |
 | ------- | ------- | ------- | ------- | ------- |
@@ -210,11 +210,13 @@ ImageReference imageReference = new ImageReference(
 | Canonical | UbuntuServer | 14\.04.3-LTS | 最新 | batch.node.ubuntu 14.04 |
 | Canonical | UbuntuServer | 14\.04.4-LTS | 最新 | batch.node.ubuntu 14.04 |
 | Canonical | UbuntuServer | 15\.10 | 最新 | batch.node.debian 8 |
+| Canonical | UbuntuServer | 16\.04.0-LTS | 最新 | batch.node.ubuntu 16.04 |
 | Credativ | Debian | 8 | 最新 | batch.node.debian 8 |
 | OpenLogic | CentOS | 7\.0 | 最新 | batch.node.centos 7 |
 | OpenLogic | CentOS | 7\.1 | 最新 | batch.node.centos 7 |
 | OpenLogic | CentOS | 7\.2 | 最新 | batch.node.centos 7 |
-| Oracle | Oracle-Linux-7 | OL70 | 最新 | batch.node.centos 7 |
+| OpenLogic | CentOS-HPC | 7\.1 | 最新 | batch.node.centos 7 |
+| Oracle | Oracle-Linux | 7\.0 | 最新 | batch.node.centos 7 |
 | SUSE | SLES | 12 | 最新 | batch.node.opensuse 42.1 |
 | SUSE | SLES | 12-SP1 | 最新 | batch.node.opensuse 42.1 |
 | SUSE | SLES-HPC | 12 | 最新 | batch.node.opensuse 42.1 |
@@ -275,7 +277,7 @@ tvm-1219235766_3-20160414t192511z | ComputeNodeState.idle | 13.91.7.57 | 50002
 tvm-1219235766_4-20160414t192511z | ComputeNodeState.idle | 13.91.7.57 | 50001
 ```
 
-請注意，在節點上建立使用者時，不要使用密碼，而是可以指定 SSH 公開金鑰。在 Python SDK 中，這是在 [ComputeNodeUser][py_computenodeuser] 上使用 **ssh\_public\_key** 參數完成，而在 .NET 中，這是使用 [ComputeNodeUser][net_computenodeuser].[SshPublicKey][net_ssh_key] 屬性完成。
+請注意，在節點上建立使用者時，不要使用密碼，而是可以指定 SSH 公開金鑰。在 Python SDK 中，這是在 [ComputeNodeUser][py_computenodeuser] 上使用 **ssh\_public\_key** 參數來完成，而在 .NET 中，這是使用 [ComputeNodeUser][net_computenodeuser].[SshPublicKey][net_ssh_key] 屬性來完成。
 
 ## 定價
 
@@ -283,9 +285,13 @@ Azure Batch 採用 Azure 雲端服務和 Azure 虛擬機器技術。Batch 服務
 
 ## 後續步驟
 
+### Batch Python 教學課程
+
+如需透過 Python 使用 Batch 的深入教學課程，請參閱[開始使用 Azure Batch Python 用戶端](batch-python-tutorial.md)。其隨附[程式碼範例][github_samples_pyclient]包含 Helper 函數`get_vm_config_for_distro`，其會顯示另一種技術來取得虛擬機器組態。
+
 ### Batch Python 程式碼範例
 
-查看 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中的 [Python 程式碼範例][github_samples_py]，以取得為您示範如何執行一般 Batch 作業 (例如建立集區、作業和工作) 的數個指令碼。Python 範例隨附的[讀我檔案][github_py_readme]具有安裝所需套件的詳細資訊。
+查看 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中的另一個 [Python 程式碼範例][github_samples_py]，以取得為您示範如何執行一般 Batch 作業 (例如建立集區、作業和工作) 的數個指令碼。Python 範例隨附的[讀我檔案][github_py_readme]具有安裝所需套件的詳細資訊。
 
 ### Batch 論壇
 
@@ -299,6 +305,7 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [github_py_readme]: https://github.com/Azure/azure-batch-samples/blob/master/Python/Batch/README.md
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_py]: https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch
+[github_samples_pyclient]: https://github.com/Azure/azure-batch-samples/blob/master/Python/Batch/article_samples/python_tutorial_client.py
 [portal]: https://portal.azure.com
 [net_cloudpool]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.aspx
 [net_computenodeuser]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.computenodeuser.aspx
@@ -320,4 +327,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 
 [1]: ./media/batch-application-packages/app_pkg_01.png "應用程式封裝高階圖表"
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

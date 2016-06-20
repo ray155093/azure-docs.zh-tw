@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="06/01/2016" 
 	ms.author="tarcher"/>
 
 # 使用 Visual Studio 分析工具，在 Azure 計算模擬器中本機測試雲端服務的效能
@@ -186,4 +186,4 @@
 [17]: ./media/cloud-services-performance-testing-visual-studio-profiler/ProfilingLocally08.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

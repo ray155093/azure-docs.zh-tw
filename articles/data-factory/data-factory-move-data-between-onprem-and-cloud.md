@@ -292,7 +292,7 @@ Azure Data Factory 可讓您在[支援的內部部署資料存放區和雲端資
 1.	在 **DATA FACTORY** 刀鋒視窗中，按一下 [**製作和部署**] 磚來啟動 Data Factory 的 [**編輯器**]。
 
 	![[製作和部署] 磚](./media/data-factory-move-data-between-onprem-and-cloud/author-deploy-tile.png) 
-2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] \(省略符號) 展開命令列。
+2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] (省略符號) 展開命令列。
 2.	使用下列文字取代右窗格中的 JSON：   
 
 
@@ -344,7 +344,7 @@ Azure Data Factory 可讓您在[支援的內部部署資料存放區和雲端資
 	- 在 activities 區段中，只會有 **type** 設定為 **Copy** 的活動。
 	- 活動的**輸入**設定為 **EmpOnPremSQLTable**，活動的**輸出**則設定為 **OutputBlobTable**。
 	- 在 **transformation** 區段中，將 **SqlSource** 指定為**來源類型**，並將 **BlobSink** 指定為**接收類型**。
-	- **SqlSource** 的 **sqlReaderQuery** 屬性指定 SQL 查詢 **select * from emp**。
+- **SqlSource** 的 **sqlReaderQuery** 屬性指定 SQL 查詢 **select * from emp**。
 
 	將 **start** 屬性的值取代為目前日期，並將 **end** 值取代為隔天的日期。開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。例如：2014-10-14T16:32:41Z。**end** 時間為選擇性項目，但在本教學課程中會用到。
 	
@@ -497,12 +497,7 @@ MSI 也可用來將現有的資料管理閘道升級至最新的版本，並保�
 
 | 網域名稱 | 連接埠 | 說明 |
 | ------ | --------- | ------------ |
-| *.servicebus.windows.net | 443、80 | 透過 TCP 之服務匯流排轉送上的接聽程式 (需要 443 才能取得「存取控制」權杖) | 
-| *.servicebus.windows.net | 9350 至 9354、5671 | 透過 TCP 的選擇性服務匯流排轉送 | 
-| *.core.windows.net | 443 | HTTPS | 
-| *.clouddatahub.net | 443 | HTTPS | 
-| graph.windows.net | 443 | HTTPS | 
-| login.windows.net | 443 | HTTPS | 
+| **.servicebus.windows.net | 443、80 | 透過 TCP 之服務匯流排轉送上的接聽程式 (需要 443 才能取得「存取控制」權杖) | | *.servicebus.windows.net | 9350 至 9354、5671 | 透過 TCP 的選擇性服務匯流排轉送 | | *.core.windows.net | 443 | HTTPS | | *.clouddatahub.net | 443 | HTTPS | | graph.windows.net | 443 | HTTPS | | login.windows.net | 443 | HTTPS | 
 
 Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您可以在閘道電腦上相應地設定網域和連接埠。
 
@@ -521,8 +516,10 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 例如，若要**從內部部署資料存放區複製到 Azure SQL Database 接收器或「Azure SQL 資料倉儲」接收器**，您必須在 Windows 防火牆與公司防火牆的連接埠 **1433** 上都允許輸出 **TCP** 通訊，且必須設定 Azure SQL Server 的防火牆設定，將閘道機器的 IP 位址新增至允許的 IP 位址清單。
 
+請注意，當資料載入 SQL 資料倉儲時，您可以使用[分段複製](data-factory-copy-activity-performance.md#staged-copy)功能，以避免在公司防火牆上開啟其他連接埠。
+
 ### Proxy 伺服器考量
-根據預設，資料管理閘道會採用 Internet Explorer 中的 Proxy 設定，並使用預設認證來存取它。如果這不符合您的需求，您可以依照下列方式進一步設定「Proxy 伺服器設定」，以確保閘道能夠連接到 Azure Data Factory：
+根據預設，資料管理閘道會採用 Internet Explorer 中的 Proxy 設定，並使用預設認證來存取它。如果這不符合您的需求，您可以依照下列方式進一步設定 **Proxy 伺服器設定**，以確保閘道能夠連接到 Azure Data Factory：
 
 1.	安裝資料管理閘道後，請在 [檔案總管] 中安全地複製 “C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config”，以備份原始檔案。
 2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 “C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config”。您會看見 system.net 的預設標記，如下所示：
@@ -539,11 +536,11 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 			      </defaultProxy>
 			</system.net>
 
-	在 Proxy 標記內可以有其他屬性，用以指定必要的設定，例如 scriptLocation。請參閱 [Proxy 元素 (網路設定)](https://msdn.microsoft.com/library/sa91de1e.aspx) 以了解語法。
+	在 Proxy 標記內可以有其他屬性，用以指定必要的設定，例如 scriptLocation。請參閱 [Proxy 項目 (網路設定)](https://msdn.microsoft.com/library/sa91de1e.aspx) 以了解語法。
 
 			<proxy autoDetect="true|false|unspecified" bypassonlocal="true|false|unspecified" proxyaddress="uriString" scriptLocation="uriString" usesystemdefault="true|false|unspecified "/>
 
-3. 將組態檔儲存到原始位置中，然後重新啟動資料管理閘道服務，以取得變更。您可以從 [開始] > [Services.msc]，或是從 [資料管理閘道組態管理員] > 按一下 [停止服務] 按鈕，然後按一下 [啟動服務]，來執行這項操作。如果服務未啟動，可能因為在已編輯的應用程式組態檔中加入了不正確的 XML 標記語法。
+3. 將組態檔儲存到原始位置中，然後重新啟動資料管理閘道服務，以取得變更。您可以從 [開始] > [Services.msc]，或是從 [資料管理閘道器組態管理員] > 按一下 [停止服務] 按鈕，然後按一下 [啟動服務]，來執行這項操作。如果服務未啟動，可能因為在已編輯的應用程式組態檔中加入了不正確的 XML 標記語法。
 
 除了以上幾點以外，您也必須確定 Microsoft Azure 包含在公司的白名單中。如需有效的 Microsoft Azure IP 位址清單，可從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=41653)下載。
 
@@ -557,8 +554,8 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 
 - 您可以在 Windows 事件記錄檔的閘道器記錄檔中找到詳細資訊。您可以使用 **應用程式及服務記錄檔** > **資料管理閘道**下的 Windows **事件檢視器** 找到它們，而疑難排解閘道器的相關問題會在事件檢視器中尋找錯誤層級事件。
-- 如果在您**變更憑證**之後閘道停止運作，請使用「Microsoft 資料管理閘道組態管理員」工具或「服務」控制台小程式來重新啟動 (停止後再啟動) **資料管理閘道服務**。如果您仍然看到錯誤，您可能必須提供資料管理閘道器服務使用者的明確權限，以存取憑證管理員 (certmgr.msc) 中的憑證。該服務的預設使用者帳戶為：**NT Service\\DIAHostService**。 
-- 如果您看到與資料存放區連接或驅動程式相關的錯誤，請在閘道機器上啟動**資料管理閘道組態管理員**，切換到 [診斷] 索引標籤，為 [使用此閘道來測試與內部部署資料來源的連接] 群組中的欄位選取或輸入適當的值，然後按一下 [測試連接]，以確認您是否可以使用連接資訊和認證從閘道機器連接到內部部署資料來源。如果在安裝驅動程式後測試連接仍然失敗，請重新啟動閘道器以讓它取得最新的變更。  
+- 如果閘道器在您**變更憑證**之後停止運作，請使用「Microsoft 資料管理閘道器組態管理員」工具或「服務」控制台小程式來重新啟動 (停止後再啟動) **資料管理閘道器服務**。如果您仍然看到錯誤，您可能必須提供資料管理閘道器服務使用者的明確權限，以存取憑證管理員 (certmgr.msc) 中的憑證。該服務的預設使用者帳戶為：**NT Service\\DIAHostService**。 
+- 如果您看到與資料存放區連接或驅動程式相關的錯誤，請在閘道機器上啟動**資料管理閘道器組態管理員**，切換到 [診斷] 索引標籤，為 [使用此閘道來測試與內部部署資料來源的連接] 群組中的欄位選取或輸入適當的值，然後按一下 [測試連接]，以確認您是否可以使用連接資訊和認證從閘道機器連接到內部部署資料來源。如果在安裝驅動程式後測試連接仍然失敗，請重新啟動閘道器以讓它取得最新的變更。  
 
 	![測試連接](./media/data-factory-move-data-between-onprem-and-cloud/TestConnection.png)
 		
@@ -625,9 +622,9 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 如果您從閘道器電腦以外的另一台電腦存取入口網站，您必須確定「認證管理員」應用程式可以連接到閘道器電腦。如果應用程式無法連接閘道器電腦，它將不允許您設定資料來源的認證，以及測試資料來源的連接。
 
-當您使用從「Azure 入口網站」啟動的**設定認證**應用程式來設定內部部署資料來源的認證時，入口網站會使用您在閘道機器上**資料管理閘道組態管理員**的 [憑證] 索引標籤中指定的憑證來加密認證。
+當您使用從 Azure 入口網站啟動的**設定認證**應用程式來設定內部部署資料來源的認證時，入口網站會使用您在閘道機器上**資料管理閘道器組態管理員**的 [憑證] 索引標籤中指定的憑證來加密認證。
 
-如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您可以加密這個 Cmdlet 傳回的認證，並將其新增至 JSON 檔案的 **connectionString** 的 **EncryptedCredential** 元素中，此 JSON 檔案是您將搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 使用或在入口網站之「Data Factory 編輯器」的 JSON 程式碼片段中使用的檔案。
+如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您可以加密這個 Cmdlet 傳回的認證，並將其新增至 JSON 檔案的 **connectionString** 的 **EncryptedCredential** 項目中，此 JSON 檔案是您將搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 使用或在入口網站之 Data Factory 編輯器的 JSON 程式碼片段中使用的檔案。
 
 	"connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
 
@@ -687,4 +684,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 	
 	Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName ADF_ResourceGroup -DataFactoryName jasoncopyusingstoredprocedure -Force 
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

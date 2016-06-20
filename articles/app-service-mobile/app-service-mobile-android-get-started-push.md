@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure 行動應用程式將推播通知傳送至 Android 應用程式。"
 	services="app-service\mobile"
 	documentationCenter="android"
-	manager="dwrede"
+	manager="erikre"
 	editor=""
 	authors="ysxu"/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="06/07/2016"
 	ms.author="yuaxu;ricksal"/>
 
 # 將推播通知新增至 Android 應用程式
@@ -37,7 +37,7 @@
 
 ## 啟用 Google 雲端通訊
 
-[AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
+[AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
 
 ##設定行動應用程式後端以傳送推送要求
 
@@ -80,4 +80,4 @@
 
 [設定 Google Play 服務 SDK]: https://developers.google.com/android/guides/setup
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

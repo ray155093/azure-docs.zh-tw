@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/22/2016"
+   ms.date="06/07/2016"
    ms.author="joaoma" />
 
 # 使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
@@ -110,7 +110,8 @@
             <Timeout>15</Timeout>
             <UnhealthyThreshold>5</UnhealthyThreshold>
         </Probe>
-    <BackendAddressPools>
+      </Probes>
+     <BackendAddressPools>
         <BackendAddressPool>
             <Name>pool1</Name>
             <IPAddresses>
@@ -222,4 +223,4 @@
 
 如果您想要將應用程式閘道設為與內部負載平衡器搭配使用，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="03/15/2016"
+   ms.date="06/06/2016"
    ms.author="sstein"/>
 
 # 取得從程式碼連接到 SQL Database 所使用的用戶端識別碼和金鑰
@@ -50,7 +50,7 @@
 
     ![新增應用程式][8]
 
-7. 建立應用程式完畢之後，按一下 [設定]，然後複製 [用戶端識別碼] \(這是您在程式碼中需要的值)。
+7. 建立應用程式完畢之後，按一下 [設定]，然後複製 [用戶端識別碼] (這是您在程式碼中需要的值)。
 
     ![取得用戶端識別碼][9]
 
@@ -250,4 +250,4 @@
 [13]: ./media/sql-database-client-id-keys/key-duration.png
 [14]: ./media/sql-database-client-id-keys/web-secrets.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

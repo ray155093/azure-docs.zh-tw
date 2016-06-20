@@ -19,7 +19,7 @@
 # 管理 Azure SQL 資料倉儲中的計算能力 (T-SQL)
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-overview-manage-compute.md)
+- [概觀](sql-data-warehouse-manage-compute-overview.md)
 - [入口網站](sql-data-warehouse-manage-compute-portal.md)
 - [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 - [REST](sql-data-warehouse-manage-compute-rest-api.md)
@@ -86,7 +86,7 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
-[管理計算能力概觀]: ./sql-data-warehouse-overview-manage-compute-power.md
+[管理計算能力概觀]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 
@@ -97,4 +97,4 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

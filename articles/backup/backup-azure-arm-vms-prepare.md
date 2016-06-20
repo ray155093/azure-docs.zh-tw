@@ -1,10 +1,10 @@
 <properties
-	pageTitle="準備環境以備份 ARM 虛擬機器 | Microsoft Azure"
+	pageTitle="準備環境以備份 Resource Manager 部署的虛擬機器 | Microsoft Azure"
 	description="確認在 Azure 中備份虛擬機器的環境已準備就緒"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""
 	keywords="備份；備份；"/>
 
@@ -14,23 +14,23 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="06/03/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
-# 準備環境以備份 ARM 虛擬機器
+# 準備環境以備份 Resource Manager 部署的虛擬機器
 
 > [AZURE.SELECTOR]
 - [資源管理員模型](backup-azure-arm-vms-prepare.md)
 - [傳統模型](backup-azure-vms-prepare.md)
 
-本文章提供讓環境做好備份 Azure Resource Manager (ARM) 虛擬機器 (VM) 之準備的步驟。程序中展示的步驟使用 Azure 入口網站。
+本文提供的步驟可讓環境做好備份 Resource Manager 部署之虛擬機器 (VM) 的準備。程序中展示的步驟使用 Azure 入口網站。
 
-Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護 **傳統部署或 ARM 部署等兩種 VM**。您必須使用復原服務保存庫來保護 ARM 部署 VM。
+Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護 ** 傳統部署或 Resource Manager 部署的 VM**。您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
 
 >[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。如需使用傳統部署模型 VM 的詳細資料，請參閱[準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md)。
 
-在保護或備份 ARM 虛擬機器 (VM) 之前，請確認以下必要條件是否存在︰
+在保護或備份 Resource Manager 部署的虛擬機器 (VM) 之前，請確認以下必要條件是否存在：
 
 - 在與 VM 相同的位置中建立復原服務保存庫 (或識別現有的復原服務保存庫)。
 - 選取案例、定義備份原則及定義要保護的項目。
@@ -238,11 +238,11 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
      ```
     它會開啟 Internet Explorer 視窗。
 3. 移至 [工具]-> [網際網路選項]-> [連線]-> [區域網路設定]。
-4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。 
+4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。
 5. 關閉 Internet Explorer。
 
 這會設定一個整部機器的 Proxy 設定，並用於任何連出 HTTP/HTTPS 流量。
-   
+
 如果您已在目前的使用者帳戶 (非本機系統帳戶) 上設定 Proxy 伺服器，請使用下列指令碼將它們套用至 SYSTEMACCOUNT︰
 
 ```
@@ -256,7 +256,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 >[AZURE.NOTE] 如果您在 Proxy 伺服器記錄檔中發現「(407) 需要 Proxy 驗證」，請檢查驗證設定是否正確。
 
-######Linux 電腦 
+######Linux 電腦
 
 在 ```/etc/environment``` 檔案中新增以下文字行：
 
@@ -265,7 +265,7 @@ http_proxy=http://<proxy IP>:<proxy port>
 ```
 
 將下列幾行新增至 ```/etc/waagent.conf``` 檔案：
-   
+
 ```
 HttpProxy.Host=<proxy IP>
 HttpProxy.Port=<proxy port>
@@ -309,7 +309,7 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 這些步驟使用範例中的特定名稱和值。在輸入或在將詳細資料剪下貼入程式碼時，請使用您部署的名稱和值。
 
 
-既然您知道自己已獲得網路連線，現在可以開始備份 VM 了。請參閱[備份 Azure Resource Manager (ARM) VM](backup-azure-arm-vms.md)。
+既然您知道自己已獲得網路連線，現在可以開始備份 VM 了。請參閱[備份 Resource Manager 部署的 VM](backup-azure-arm-vms.md)。
 
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
@@ -321,4 +321,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

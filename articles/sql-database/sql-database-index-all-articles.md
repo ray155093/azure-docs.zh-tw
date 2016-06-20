@@ -211,7 +211,7 @@
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
 | 105 | [業務續航力常見問題集](sql-database-bcdr-faq.md) | 客戶經常詢問的問題和解答，與 Azure SQL Database 業務續航力和嚴重損壞修復的內建和選擇性功能相關。 |
-| 106 | [使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md) | 了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。 |
+| 106 | [使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md) | 了解如何使用「異地複寫」搭配 Azure SQL Database 進行應用程式資料備份，為商務持續性計劃設計雲端災害復原解決方案。 |
 | 107 | [業務續航力的設計](sql-database-business-continuity-design.md) | 選擇指引：本節提供如何選擇應使用之 BCDR 功能及何時使用的指引。其中包括使用 SQL DB 會自動取得之功能的說明。 |
 | 108 | [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md) | 還原時間點, Microsoft Azure SQL Database, 還原資料庫, 復原資料庫, Azure 傳統入口網站, Azure 傳統入口網站 |
 | 109 | [如何從 Azure SQL Database 備份還原單一資料表](sql-database-cloud-migrate-restore-single-table-azure-backup.md) | 了解如何從 Azure SQL Database 備份還原單一資料表。 |
@@ -351,7 +351,7 @@
 | 180 | [Azure SQL Database 資源限制](sql-database-resource-limits.md) | 此頁面描述一些 Azure SQL Database 常見的資源限制。 |
 | 181 | [Azure SQL Database Transact-SQL 差異](sql-database-transact-sql-information.md) | 在 Azure SQL Database 中未完整支援 Transact-SQL 陳述式 |
 | 182 | [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md) | 列出用戶端程式可用來連接到 Azure SQL Database 或 Microsoft SQL Server 之每個驅動程式的最低版本號碼。連結所提供的驅動程式版本資訊，是由社群 (而不是由 Microsoft) 所發行。 |
-| 183 | [使用篩選器搜尋](https://azure.microsoft.com/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
+| 183 | [使用篩選器搜尋](https://azure.microsoft.com/zh-TW/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
 
 
 ## 其他資訊
@@ -378,4 +378,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

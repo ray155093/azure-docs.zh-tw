@@ -204,8 +204,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |比較準則|Azure 佇列|服務匯流排佇列|
 |---|---|---|
 |管理通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**|
-|執行階段通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**<br/><br/>**AMQP 1.0 標準 (TCP 和 TLS)**|
-|.NET Managed API|**是**<br/><br/>(.NET 受管理的儲存體用戶端 API)|**是**<br/><br/>(.NET Managed 代理傳訊 API)|
+|執行階段通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**<br/><br/>**AMQP 1.0 標準 (TCP 和 TLS)**| |.NET Managed API|**是**<br/><br/>(.NET 受管理的儲存體用戶端 API)|**是**<br/><br/>(.NET Managed 代理傳訊 API)|
 |Native C++|**是**|**否**|
 |Java API|**是**|**是**|
 |PHP API|**是**|**是**|
@@ -301,7 +300,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 下列文章提供有關使用 Azure 佇列或服務匯流排佇列的更多指引和資訊。
 
-- [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 - [如何使用佇列儲存體服務](../storage/storage-dotnet-how-to-use-queues.md)
 - [使用服務匯流排代理傳訊的效能改進最佳作法](service-bus-performance-improvements.md)
 - [Azure 服務匯流排的佇列和主題簡介](http://www.code-magazine.com/article.aspx?quickid=1112041)
@@ -314,4 +313,4 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 [Azure 傳統入口網站]: http://manage.windowsazure.com
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

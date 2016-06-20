@@ -25,14 +25,14 @@
 - [Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-本文說明如何使用 [Azure 入口網站](http://portal.azure.com)起始容錯移轉至次要 SQL Database。若要設定異地複寫，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
+本文說明如何使用 [Azure 入口網站](http://portal.azure.com)起始容錯移轉至次要 SQL Database。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
 
 
 ## 起始容錯移轉
 
 次要資料庫可被切換成為主要資料庫。
 
-1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至異地複寫合作關係中的主要資料庫。
+1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至「異地複寫」合作關係中的主要資料庫。
 2. 在 [SQL Database] 刀鋒視窗上，選取 [所有設定] > [異地複寫]。
 3. 在 [次要] 清單中，選取要做為新主要資料庫的資料庫，然後按一下 [容錯移轉]。
 
@@ -61,4 +61,4 @@
 [1]: ./media/sql-database-geo-replication-failover-portal/failover.png
 [2]: ./media/sql-database-geo-replication-failover-portal/secondaries.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

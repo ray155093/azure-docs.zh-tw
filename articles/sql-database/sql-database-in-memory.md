@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/17/2016"
+	ms.date="06/08/2016"
 	ms.author="jodebrui"/>
 
 
@@ -537,4 +537,4 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 - 適用於 In-Memory OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

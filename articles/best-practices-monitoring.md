@@ -659,9 +659,9 @@ _圖 6.根據分析和儲存體需求分割資料_
 - [Azure︰遙測基本概念和疑難排解](http://social.technet.microsoft.com/wiki/contents/articles/18146.windows-azure-telemetry-basics-and-troubleshooting.aspx)
 - [在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)
 - [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 和 [HDInsight](https://azure.microsoft.com/services/hdinsight/)
-- [如何使用服務匯流排佇列](./service-bus/service-bus-dotnet-how-to-use-queues.md)
+- [如何使用服務匯流排佇列](./service-bus/service-bus-dotnet-get-started-with-queues.md)
 - [Azure 虛擬機器中的 SQL Server Business Intelligence](./virtual-machines/virtual-machines-windows-classic-ps-sql-bi.md)
 - [接收警示通知](./azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](./azure-portal/insights-service-health.md)
 - [Application Insights](./application-insights/app-insights-get-started.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

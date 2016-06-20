@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/02/2016"
+   ms.date="06/02/2016"
    ms.author="sonyama;barbkess"/>
 
-# SQL 資料倉儲最佳作法
+# Azure SQL 資料倉儲最佳做法
 
 這篇文章集合許多可讓您從 Azure SQL 資料倉儲獲得最佳價格/效能比的最佳做法。文章中有些概念非常基本很容易說明，有些概念則更進階，我們在文中只略述表面。這篇文章的目的是要提供您一些基本指引，以及讓您對建立資料倉儲時的一些重要考量有所認知。每一節都會介紹一個概念，並提供您哪裡可以閱讀深度討論的詳細文章。
 
@@ -25,7 +25,7 @@
 ## 利用暫停和調整來降低成本
 SQL 資料倉儲的一個重要功能，是能夠在您不使用它時予以暫停，這會停止計算資源的計費。另一個重要功能是能夠調整資源。暫停和調整可以透過 Azure 入口網站或透過 PowerShell 命令。請熟悉這些功能，因為這些功能可以在資料倉儲不使用時大幅降低成本。如果您希望隨時可存取資料倉儲，建議您將其調整到最小的大小 (DW100)，而不是暫停。
 
-另請參閱[暫停計算資源][]、[繼續計算資源][]、[調整計算資源][]。
+另請參閱[暫停計算資源][]、[繼續計算資源][]、[調整計算資源][]
 
 
 ## 暫停或調整之前先清空交易 
@@ -43,7 +43,7 @@ SQL 資料倉儲的一個重要功能，是能夠在您不使用它時予以暫�
 
 另請參閱 [INSERT (Transact-SQL)][]
  
-## 使用 PolyBase 快速地載入及將資料匯出
+## 使用 PolyBase 將資料快速載入及匯出
 SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase、BCP) 來載入及匯出資料。若是小量的資料，效能不是那麼重要，任何工具都可以滿足您的需求。不過，當您要載入或匯出大量資料，或者需要快速的效能時，PolyBase 是最佳選擇。PolyBase 利用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此載入及匯出巨量資料的速度比其他任何工具更快。您可使用 CTAS 或 INSERT INTO 來執行 PolyBase 載入。**使用 CTAS 可以減少交易記錄，是載入資料最快的方法。** Azure Data Factory 也支援 PolyBase 載入。PolyBase 支援各種不同的檔案格式，包括 Gzip 檔案。**若要在使用 gzip 文字檔案時獲得最大的輸送量，將檔案分成 60 個以上的檔案讓載入有最大化的平行處理。** 如需更快的總輸送量，請考慮同時載入資料。
 
 另請參閱[資料載入 SQL 資料倉儲][]、[在 SQL 資料倉儲中使用 PolyBase 指南][]、[Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料][]、[CREATE EXTERNAL FILE FORMAT (Transact-SQL) (建立外部檔案格式 (Transact-SQL))][]、[在 SQL 資料倉儲中的 Create Table As Select (CTAS)][]
@@ -53,30 +53,30 @@ SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase�
 
 另請參閱[雜湊分散及其對 SQL 資料倉儲中的查詢效能的影響][]、[選擇雜湊分散式資料表與循環配置資源分散式資料表][]、[CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]、[CREATE TABLE AS SELECT (Azure SQL 資料倉儲)][]
 
-## 不要過度資料分割
+## 不要過度執行資料分割
 雖然資料分割可以讓資料維護變得有效率 (透過分割切換或最佳化掃描將分割消除)，太多的資料分割會讓查詢變慢。通常在 SQL Server 上運作良好的高資料粒度分割策略，可能無法在 SQL 資料倉儲上運作良好。如果每個資料分割的資料列少於 1 百萬，太多個資料分割也會減少叢集資料行存放區索引的效率。請記住，SQL 資料倉儲資料在幕後為您將資料分割成 60 的資料庫，因此如果您建立有 100 個分割的資料表，實際上會導致 6000 個分割。每個工作負載都不同，因此最佳建議是嘗試不同的分割，找出最適合您工作負載的分割。請考慮比您的 SQL Server 上運作良好的資料粒度更低的粒度。例如，考慮使用每週或每月資料分割，而不是每日資料分割。
 
 另請參閱 [SQL 資料倉儲中的資料表分割][]
 
-## 最小的交易大小
+## 將交易大小最小化
 在交易中執行的 INSERT、UPDATE、DELETE 陳述式，失敗時必須回復。為了將長時間回復的可能性降到最低，請盡可能將交易大小最小化。這可以透過將 INSERT、UPDATE、DELETE 陳述式分成小部分來達成。例如，如果您預期您的 INSERT 需要 1 小時，可能的話，將 INSERT 分成 4 個部分，每個執行 15 分鐘。利用特殊的最低限度記錄案例，像是 CTAS、TRUNCATE、DROP TABLE 或 INSERT 空資料表，來降低回復的風險。另一個消除回復的作法是使用「僅中繼資料」作業 (像是資料分割切換) 進行資料管理。例如，不要執行 DELETE 陳述式來刪除資料表中所有 order\_date 為 2001 年 10 月的資料列，而是將資料每月分割後，再從另一個資料表將有空分割之資料的分割調動出來 (請參閱 ALTER TABLE 範例)。針對未分割的資料表，請考慮使用 CTAS 將您想要保留的資料寫入資料表中，而不是使用 DELETE。如果 CTAS 需要的時間一樣長，則較安全的作業，是在它具有極小交易記錄的條件下執行它，且必要時可以快速地取消。
 
 另請參閱 [SQL 資料倉儲中的交易][]、[最佳化 SQL 資料倉儲的交易][]、[SQL 資料倉儲中的資料表分割][]、[TRUNCATE TABLE (Transact-SQL)][]、[ALTER TABLE (Transact-SQL)][]、[SQL 資料倉儲中的 Create Table As Select (CTAS)][]
 
-## 使用最小可能的資料行大小
+## 使用最小的可能資料行大小
 在定義 DDL 時，使用可支援您的資料的最小資料類型，將能夠改善查詢效能。這對 CHAR 和 VARCHAR 資料行尤其重要。如果資料行中最長的值是 25 個字元，請將您的資料行定義為 VARCHAR(25)。避免將所有字元資料行定義為較大的預設長度。此外，將資料行定義為 VARCHAR (當它只需要這樣的大小時) 而非 NVARCHAR。
 
 另請參閱 [CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]。
 
-## 暫時性資料請使用暫存堆積資料表
+## 針對暫時性資料使用暫存堆積資料表
 當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。此外，將資料載入暫存資料表也會比將資料表載入永久儲存體更快速。暫存資料表會以 "#" 開頭，且只有建立它的工作階段才能夠存取它，因此在某些情況下可能無法運作。堆積資料表是在 CREATE TABLE 的 WITH 子句中定義。如果您使用暫存資料表，請記得也在該暫存資料表上建立統計資料。
 
 另請參閱 [SQL 資料倉儲中的暫存資料表][]、[CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]、[CREATE TABLE AS SELECT (Azure SQL 資料倉儲)][]
 
-## 最佳化叢集資料行存放區資料表
+## 將叢集資料行存放區資料表最佳化
 叢集資料行存放區索引是將資料儲存在 Azure SQL 資料倉儲中最有效率的方式之一。根據預設，SQL 資料倉儲中的資料表會建立為「叢集資料行存放區」。為了讓資料行存放區資料表的查詢獲得最佳效能，良好的區段品質很重要。當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。壓縮的資料列群組中的資料列數目可以測量區段品質。如需偵測和改善叢集資料行存放區資料表區段品質的逐步指示，請參閱[疑難排解][]中的**叢集資料行存放區區段品質**一節。因為取得高品質的資料行存放區區段相當重要，建立只用於載入中型或大型資源類別的特殊使用者識別碼，通常是個不錯的主意。使用的 DWU 愈較，要指派給載入使用者的資源類別愈多。
 
-由於資料行存放區資料表通常要等到每個資料表有超過 1 百萬個資料列之後才會將資料推送到壓縮的資料行存放區區段，而且每個 SQL 資料倉儲資料表分割成 60 個資料表，根據經驗法則，資料行存放區資料表對於查詢沒有好處，除非資料表有超過 6 千萬個資料列。小於 6 千萬列的資料表使用資料行存放區索引似乎不太合理，但也無傷大雅。此外，如果您將資料分割，則您要考慮的是每個資料分割必須有 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果資料表有 100 個分割，則它至少必須擁有 60 億個資料列才會受益於叢集資料行存放區 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果您的資料表在此範例中並沒有 60 億個資料列，請減少分割數目，或考慮改用堆積資料表。使用次要索引搭配堆積資料表而不是資料行存放區資料表，也可能是值得進行的實驗，看看是否可以獲得較佳的效能。資料行存放區資料表尚不支援次要索引。
+由於資料行存放區資料表通常要等到每個資料表有超過 1 百萬個資料列之後才會將資料推送到壓縮的資料行存放區區段，而且每個 SQL 資料倉儲資料表分割成 60 個資料表，根據經驗法則，資料行存放區資料表對於查詢沒有好處，除非資料表有超過 6 千萬個資料列。小於 6 千萬列的資料表使用資料行存放區索引似乎不太合理，但也無傷大雅。此外，如果您將資料分割，則您要考慮的是每個資料分割必須有 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果資料表有 100 個分割，則它至少必須擁有 60 億個資料列才會受益於叢集資料行存放區 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果在此範例中，您的資料表並沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。使用次要索引搭配堆積資料表而不是資料行存放區資料表，也可能是值得進行的實驗，看看是否可以獲得較佳的效能。資料行存放區資料表尚不支援次要索引。
 
 查詢資料行存放區資料表時，如果您只選取您需要的資料行，查詢執行會更快速。
 
@@ -92,7 +92,7 @@ SQL 資料倉儲會使用資源群組，做為將記憶體配置給查詢的一�
 
 另請參閱 [SQL 資料倉儲中的並行存取和工作負載管理][]、[sys.dm\_pdw\_waits (Transact-SQL)][]
 
-## 使用 DMV 來監視和最佳化查詢
+## 使用 DMV 對查詢進行監視和最佳化
 SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視相關文章會逐步解說如何查看執行中查詢的詳細資料。若要在這些 DMV 中快速找到查詢，可在您的查詢中使用 LABEL 選項。
 
 另請參閱[使用 DMV 監視工作負載][]、[使用標籤檢測 SQL 資料倉儲中的查詢][]、[OPTION 子句 (Transact-SQL)][]、[sys.dm\_exec\_sessions (Transact-SQL)][]、[sys.dm\_pdw\_exec\_requests (Transact-SQL)][]、[sys.dm\_pdw\_request\_steps (Transact-SQL)][]、[sys.dm\_pdw\_sql\_requests (Transact-SQL)][]、[sys.dm\_pdw\_dms\_workers (Transact-SQL)]、[DBCC PDW\_SHOWEXECUTIONPLAN (Transact-SQL)][]、[sys.dm\_pdw\_waits (Transact-SQL)][]
@@ -122,9 +122,9 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [使用 DMV 監視工作負載]: sql-data-warehouse-manage-monitor.md
 [使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
 [最佳化 SQL 資料倉儲的交易]: sql-data-warehouse-develop-best-practices-transactions.md
-[暫停計算資源]: sql-data-warehouse-overview-scalability.md#pause-compute-bk
-[繼續計算資源]: sql-data-warehouse-overview-scalability.md#resume-compute-bk
-[調整計算資源]: sql-data-warehouse-overview-scalability.md#scale-performance-bk
+[暫停計算資源]: sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
+[繼續計算資源]: sql-data-warehouse-manage-compute-overview.md#resume-compute-bk
+[調整計算資源]: sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
 [Table design in SQL Data Warehouse]: sql-data-warehouse-develop-table-design.md
 [SQL 資料倉儲中的資料表分割]: sql-data-warehouse-develop-table-partitions.md
 [SQL 資料倉儲中的暫存資料表]: sql-data-warehouse-develop-temporary-tables.md
@@ -158,4 +158,4 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

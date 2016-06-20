@@ -25,13 +25,13 @@
 - [Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-本文說明如何使用 Transact-SQL 起始容錯移轉至次要 SQL Database。若要設定異地複寫，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)。
+本文說明如何使用 Transact-SQL 起始容錯移轉至次要 SQL Database。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)。
 
 
 
 若要起始容錯移轉，您需要下列各項︰
 
-- 主要複本上 DBManager 的登入資訊，具備您將異地複寫的本機資料庫的 db\_ownership，以及在您設定異地複寫的夥伴伺服器上的 DBManager。
+- 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
 - 最新版本的 SQL Server Management Studio - 若要取得最新版本的 SQL Server Management Studio (SSMS)，請移至[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。如需使用 SQL Server Management Studio 來管理 Azure SQL Database 邏輯伺服器和資料庫的詳細資訊，請參閱[使用 SQL Server Management Studio 管理 Azure SQL Database](sql-database-manage-azure-ssms.md)
 
 
@@ -44,7 +44,7 @@
 
 1. 暫時切換複寫為同步模式，造成所有未完成的交易被排清至次要複本並封鎖所有新交易；
 
-2. 切換異地複寫關係中兩個資料庫的角色。
+2. 切換「異地複寫」合作關係中兩個資料庫的角色。
 
 此順序可保證在角色切換之前兩個資料庫經過同步處理，因此不會發生資料遺失。切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。在正常情況下，完成整個作業所需的時間應該少於一分鐘。如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
 
@@ -98,4 +98,4 @@
 - [SQL Database 文件](https://azure.microsoft.com/services/sql-database/)
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -45,7 +45,7 @@
 
 	Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
 
-其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] \(英文)。
+其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] (英文)。
 
 使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。此標記法會通知用戶端程式庫使用 AMQP 1.0 連線到服務匯流排。
 
@@ -171,7 +171,7 @@
 - [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]
 - [Windows Server 服務匯流排中的 AMQP]
 
-  [如何使用服務匯流排佇列]: service-bus-dotnet-how-to-use-queues.md
+  [如何使用服務匯流排佇列]: service-bus-dotnet-get-started-with-queues.md
   [DataContractSerializer]: https://msdn.microsoft.com/library/azure/system.runtime.serialization.datacontractserializer.aspx
   [BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
   [Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession]: https://msdn.microsoft.com/library/azure/jj657638.aspx
@@ -203,4 +203,4 @@
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

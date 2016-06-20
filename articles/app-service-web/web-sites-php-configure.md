@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="06/03/2016"
 	ms.author="robmcm"/>
 
 #在 Azure App Service Web Apps 中設定 PHP
@@ -160,14 +160,34 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 
 	![儲存組態設定。][save-button]
 
+<a name="composer" />
+## 做法︰在 Azure 中啟用編輯器自動化
+
+App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執行任何操作。如果您使用 [Git 部署](app-service-web-php-get-started.md)，您可以透過啟用「編輯器」擴充功能，在 `git push` 期間啟用 composer.json 處理。
+
+>[AZURE.NOTE] 您可以[在這裡投票選擇 App Service 中的頂級編輯器支援](https://feedback.azure.com/forums/169385-web-apps-formerly-websites/suggestions/6477437-first-class-support-for-composer-and-pip)！
+
+1. 在 [Azure 入口網站](https://portal.azure.com)的 PHP Web 應用程式刀鋒視窗中，按一下 [工具] > [擴充功能]。
+
+    ![可在 Azure 中啟用「編輯器」自動化的「Azure 入口網站」設定刀鋒視窗](./media/web-sites-php-configure/composer-extension-settings.png)
+
+2. 按一下 [新增]，然後按一下 [編輯器]。
+
+    ![新增「編輯器」擴充功能以在 Azure 中啟用「編輯器」自動化](./media/web-sites-php-configure/composer-extension-add.png)
+    
+3. 按一下 [確定] 以接受法律條款。再按一次 [確定] 以新增擴充功能。
+
+    [已安裝的擴充功能] 刀鋒視窗現在將顯示編輯器擴充功能。![接受法律條款以在 Azure 中啟用「編輯器」自動化](./media/web-sites-php-configure/composer-extension-view.png)
+    
+4. 現在，和上一節一樣執行 `git add`、`git commit` 和 `git push`。您就會立即看到編輯器正在安裝 composer.json 中定義的相依性。
+
+    ![使用 Azure 中的「編輯器」自動化來進行 Git 部署](./media/web-sites-php-configure/composer-extension-success.png)
+
 ## 後續步驟
 
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
-
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [免費試用]: https://www.windowsazure.com/pricing/free-trial/
 [phpinfo()]: http://php.net/manual/en/function.phpinfo.php
@@ -188,4 +208,4 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 [GETPHPVERPS]: ./media/web-sites-php-configure/ShowPHPVersion-PS.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

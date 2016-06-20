@@ -15,12 +15,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/28/2016" 
+	ms.date="06/03/2016" 
 	ms.author="genemi"/>
 
 
 # SQL Database 中擴充事件的事件檔案目標程式碼
 
+[AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
 您想要完整的程式碼範例以穩健方式擷取和報告擴充事件的資訊。
 
@@ -597,4 +598,4 @@ Image references.
 
 [30_powershell_ise]: ./media/sql-database-xevent-code-event-file/event-file-powershell-ise-b30.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="05/31/2016"
 	ms.author="tamram"/>
 
 
@@ -38,7 +38,7 @@
 
 在 Visual Studio 中，建立新的 Windows 主控台應用程式，並將它命名為 **GenerateSharedAccessSignatures**。使用下列任一種方法，新增對 **Microsoft.WindowsAzure.Configuration.dll** 及 **Microsoft.WindowsAzure.Storage.dll** 的參照：
 
-- 	如果要安裝 NuGet 封裝，請先安裝 [NuGet Package Manager Extension for Visual Studio](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)。在 Visual Studio 中，選取 [Project | Manage NuGet Packages]、在線上搜尋 [Azure 儲存體]，並遵循安裝指示。
+- 	如果要安裝 NuGet 封裝，請先安裝 [NuGet 用戶端](https://docs.nuget.org/consume/installing-nuget)。在 Visual Studio 中，選取 [Project | Manage NuGet Packages]、在線上搜尋 [Azure 儲存體]，並遵循安裝指示。
 - 	或者，在您的 Azure SDK 安裝中找到組件，並新增對它們的參照。
 
 在 Program.cs 檔的頂端，新增下列 **using** 陳述式：
@@ -554,4 +554,4 @@
 [sas-console-output-1]: ./media/storage-dotnet-shared-access-signature-part-2/sas-console-output-1.PNG
 [sas-console-output-2]: ./media/storage-dotnet-shared-access-signature-part-2/sas-console-output-2.PNG
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

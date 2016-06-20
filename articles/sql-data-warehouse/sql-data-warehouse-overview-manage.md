@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/04/2016"
+   ms.date="06/05/2016"
    ms.author="barbkess;sonyama;"/>
 
 # 管理 Azure SQL 資料倉儲中的資料庫
@@ -42,7 +42,7 @@ SQL 資料倉儲會自動化管理您的資料庫的各個層面。例如，若�
 若要開始使用 Azure 入口網站，請參閱[建立 SQL 資料倉儲 (Azure 入口網站)][]。
 
 ### Visual Studio 中的 SQL Server Data Tools
-Visual Studio 中的 [SQL Server Data Tools][] \(SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
+Visual Studio 中的 [SQL Server Data Tools][] (SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
 
 SSDT 包含的 SQL Server 物件總管，可讓您針對 SQL 資料倉儲資料庫視覺化、連接和執行指令碼。若要快速連線至 SQL 資料倉儲，只需在 Azure 傳統入口網站檢視資料庫的詳細資料時，按一下命令列中的 [在 Visual Studio 中開啟] 按鈕即可。
 
@@ -61,7 +61,7 @@ DMV 是管理 SQL 資料倉儲的要素。入口網站上幾乎所有的資訊�
 
 在 SQL 資料倉儲中，您可以快速地將效能相應放大或調整回來，方法是增加或減少 CPU、記憶體和 I/O 頻寬的計算資源。若要調整效能，您只需要調整 SQL 資料倉儲配置到您的資料庫的資料倉儲單位 (DWU) 的數目。SQL 資料倉儲會快速進行變更，並處理硬體或軟體的所有基礎變更。
 
-若要深入了解調整 DWU，請參閱[調整效能][]。
+若要深入了解如何調整 DWU，請參閱[調整效能][]。
 
 ##  暫停與繼續
 
@@ -89,25 +89,7 @@ DMV 是管理 SQL 資料倉儲的要素。入口網站上幾乎所有的資訊�
 
 ## 備份與還原
 
-有兩種方式可以復原資料庫。如果您在資料庫中已損毀某些資料或者發生錯誤，您可以還原資料庫快照集。如果有區域性停電或災害，造成其中一個區域無法使用，您可以在另一個區域中重新建立資料庫。
-
-SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程和保留原則的詳細資訊，請參閱[高可靠性][]。
-
-### 異地備援儲存體
-
-由於 SQL 資料倉儲隔開計算和儲存體，您的資料會直接寫入異地備援的 Azure 儲存體 (RA-GRS)。異地備援儲存體會將資料複寫到與主要區域距離數百英哩的次要區域。在主要和次要區域中，您的資料都會複寫三次，且跨越不同的容錯網域和升級網域。即使是全面的區域性停電或災害，造成其中一個區域無法使用，這仍可確保資料的持久性。若要深入了解讀取存取異地備援儲存體，請參閱 [Azure 儲存體備援選項][]。
-
-### 資料庫還原
-
-資料庫還原的設計是為了將您的資料庫還原到較早的時間點。SQL 資料倉儲服務至少每 8 小時會以自動儲存體快照集來保護所有資料庫，並保留 7 天，為您提供一組獨立的還原點。這些備份儲存在 RA-GRS Azure 儲存體，因此，依預設為異地備援。自動備份和還原功能不需額外費用，並提供零成本和免管理的方式，避免資料庫遭到意外損毀或刪除。
-
-若要深入了解資料庫還原，請前往[從快照集還原][]。
-
-### 異地還原
-
-異地還原的設計是為了在資料庫因為干擾性事件而變成無法使用時復原資料庫。您可以連絡支援服務，從異地備援的備份還原資料庫，在任何 Azure 區域中建立新的資料庫。因為備份是異地備援，即使因為停電而無法存取資料庫，也能用來復原資料庫。異地還原功能不需要額外費用。
-
-若要使用異地還原，請前往[從快照集異地還原][]。
+對生產環境資料庫來說，擁有可靠的資料備份是不可或缺的一部分。「SQL 資料倉儲」會自動定期備份您的作用中資料庫來維護您的資料安全。這些備份可讓您從已損毀資料或不小心卸除資料或資料庫的情況下復原。如需了解資料備份排程和保留原則，請參閱[高可靠性][]。若要深入了解如何還原資料庫，請參閱[從快照還原][]。
 
 ## 後續步驟
 使用良好的資料庫設計原則，會讓在 SQL 資料倉儲中管理您的資料庫更容易。若要深入了解，請前往[開發概觀][]。
@@ -115,20 +97,18 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Image references-->
 
 <!--Article references-->
-[Azure 儲存體備援選項]: ../storage/storage-redundancy.md#read-access-geo-redundant-storage
 [建立 SQL 資料倉儲 (Azure 入口網站)]: sql-data-warehouse-get-started-provision.md
 [建立資料庫 (PowerShell)]: sql-data-warehouse-get-started-provision-powershell
 [connection]: sql-data-warehouse-develop-connections.md
 [使用 Visual Studio 連接到 Azure SQL 資料倉儲]: sql-data-warehouse-get-started-connect.md
 [使用 sqlcmd 連接和查詢]: sql-data-warehouse-get-started-connect-sqlcmd.md
 [開發概觀]: sql-data-warehouse-overview-development.md
-[從快照集異地還原]: sql-data-warehouse-backup-and-geo-restore-from-snapshot.md
 [高可靠性]: sql-data-warehouse-overview-expectations.md#high-reliability
 [使用 DMV 監視工作負載]: sql-data-warehouse-manage-monitor.md
-[暫停計算]: sql-data-warehouse-overview-scalability.md#pause-compute-bk
-[從快照集還原]: sql-data-warehouse-backup-and-restore-from-snapshot.md
-[繼續計算]: sql-data-warehouse-overview-scalability.md#resume-compute-performance-bk
-[調整效能]: sql-data-warehouse-overview-scalability.md#scale-performance-bk
+[暫停計算]: sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
+[從快照還原]: sql-data-warehouse-backup-and-restore-from-snapshot.md
+[繼續計算]: sql-data-warehouse-manage-compute-overview.md#resume-compute-performance-bk
+[調整效能]: sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
 [安全性概觀]: sql-data-warehouse-overview-security.md
 [SQL 資料倉儲最佳作法]: sql-data-warehouse-best-practices.md
 [SQL 資料倉儲系統檢視]: sql-data-warehouse-reference-tsql-system-views.md
@@ -139,4 +119,4 @@ SQL 資料倉儲會定期自動備份您的資料庫。如需資料備份排程�
 <!--Other web references-->
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

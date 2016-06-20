@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="06/07/2016"
 	ms.author="markvi"/>
 
 # Azure Active Directory 版本
@@ -163,7 +163,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 | 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| 每個使用者 10 個應用程式 [1]\(預先整合的 SaaS 和開發人員整合的應用程式)| 每個使用者 10 個應用程式 [1]\(免費層 + 應用程式 Proxy 應用程式) | 沒有限制 [2]\(免費層、基本層 + 自助式應用程式整合範本)| 每個使用者 10 個應用程式 [1]\(預先整合的 SaaS 和開發人員整合的應用程式)|
+| 每個使用者 10 個應用程式 [1] (預先整合的 SaaS 和開發人員整合的應用程式)| 每個使用者 10 個應用程式 [1] (免費層 + 應用程式 Proxy 應用程式) | 沒有限制 [2] (免費層、基本層 + 自助式應用程式整合範本)| 每個使用者 10 個應用程式 [1] (預先整合的 SaaS 和開發人員整合的應用程式)|
 
 [1] 使用 Azure AD Free 和 Azure AD Basic 時，使用者如果已獲指派 SaaS 應用程式的存取權，便可在其 [存取面板] 最多看見 10 個應用程式，並取得這些應用程式的 SSO 存取權。使用 Free 和 Basic 版本時，系統管理員可以設定 SSO 並指派任意數量的 SaaS 應用程式存取權給使用者，不過使用者在其 [存取面板] 中一次只能看到 10 個應用程式。
 
@@ -454,6 +454,20 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 | | | ![勾選][12]| |
 
 
+#### 企業狀態漫遊
+
+**類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| :-: | :-: | :-: | :-: |
+| | | ![勾選][12]| |
+
+**其他詳細資訊：**
+
+- [企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
 
 
 ## Azure AD 預覽功能
@@ -465,7 +479,6 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 - [管理單位](active-directory-administrative-units-management.md)
 - Privileged Identity Management
 - [HR 應用程式整合](active-directory-saas-workday-inbound-tutorial.md)
-- [企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
 - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
 
@@ -482,4 +495,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

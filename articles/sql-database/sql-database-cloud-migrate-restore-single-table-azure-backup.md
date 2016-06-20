@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/11/2016"
+	ms.date="06/02/2016"
 	ms.author="daleche"/>
 
 
@@ -67,4 +67,4 @@
 ## 驗證步驟
 1. 查詢並測試剛才複製的資料表，以確認資料完整。經過確認之後，您就可以從 [準備步驟] 區段卸除已重新命名的資料表。(例如，& l t;資料表名稱& gt;\_old)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

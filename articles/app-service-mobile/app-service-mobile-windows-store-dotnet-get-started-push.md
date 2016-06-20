@@ -16,7 +16,7 @@
 	ms.date="05/15/2016"
 	ms.author="glenga"/>
 
-# 新增推播通知至 Windows 執行階段 8.1 通用 app
+# 將推播通知加入至 Windows 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
@@ -213,4 +213,4 @@
 <!-- Images. -->
 ))) )
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用入口網站建立 HDInsight Hadoop 叢集與 Azure 資料湖存放區 |Azure"
-   description="使用 Azure 入口網站建立和使用 HDInsight Hadoop 叢集與 Azure 資料湖存放區"
+   pageTitle="使用入口網站建立 HDInsight 叢集與 Azure Data Lake Store |Azure"
+   description="使用 Azure 入口網站建立和使用 HDInsight Hadoop 叢集與 Azure Data Lake Store"
    services="data-lake-store,hdinsight" 
    documentationCenter=""
    authors="nitinme"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/11/2016"
+   ms.date="06/03/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
@@ -23,15 +23,15 @@
 - [使用 PowerShell](data-lake-store-hdinsight-hadoop-use-powershell.md)
 
 
-了解如何使用 Azure 入口網站建立可存取 Azure 資料湖存放區的 HDInsight 叢集 (Hadoop、HBase 或 Storm)。此版本的一些重要考量：
+了解如何使用 Azure 入口網站建立可存取 Azure Data Lake Store 的 HDInsight 叢集 (Hadoop、HBase、Spark 或 Storm)。此版本的一些重要考量：
 
-* **對於 Hadoop 叢集 (Windows 和 Linux)**，Data Lake Store 只能做為額外的儲存體帳戶。這類叢集的預設儲存體帳戶仍是 Azure 儲存體 Blob (WASB)。
+* **對於 Spark 叢集 (Linux) 和 Hadoop 叢集 (Windows 和 Linux)**，Data Lake Store 只能用來做為額外的儲存體帳戶。這類叢集的預設儲存體帳戶仍是 Azure 儲存體 Blob (WASB)。
 
 * **對於 Storm 叢集 (Windows 和 Linux)**，Data Lake Store 可以用來從 Storm 拓撲寫入資料。資料湖存放區也可以用來儲存參考資料，該資料稍後可以由 Storm 拓撲讀取。如需詳細資訊，請參閱[在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
 
 * **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
 
-> [AZURE.NOTE] 只有 HDInsight 3.2 版 (適用於 Windows 及 Linux) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。
+> [AZURE.NOTE] 只有 HDInsight 3.2 版和 3.4 版 (適用於 Windows 及 Linux 上的 Hadoop、HBase 及 Storm 叢集) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。針對 Linux 上的 Spark 叢集，此選項僅適用於 HDInsight 3.4 版的叢集。
 
 
 ## 必要條件
@@ -258,4 +258,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

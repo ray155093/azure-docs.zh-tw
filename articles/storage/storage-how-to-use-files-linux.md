@@ -40,10 +40,11 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 在 Azure 中建立 Linux 虛擬機器時，您可以從 Azure 映像庫指定支援 SMB 2.1 或更高版本的 Linux 映像。以下是建議的 Linux 映像清單：
 
-- Ubuntu Server 14.04
-- Ubuntu Server 15.04
-- CentOS 7.1
-- Open SUSE 13.2
+- Ubuntu Server 14.04+
+- RHEL 7+
+- CentOS 7+
+- Debian 8
+- openSUSE 13.2+
 - SUSE Linux Enterprise Server 12
 - SUSE Linux Enterprise Server 12 (Premium 映像)
 
@@ -139,4 +140,4 @@ Linux 使用者群組的 Azure 檔案儲存體提供論壇，讓您在 Linux 上
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0608_2016-->

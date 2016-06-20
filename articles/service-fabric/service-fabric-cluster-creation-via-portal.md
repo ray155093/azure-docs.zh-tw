@@ -100,24 +100,20 @@
 
 15. 選擇性：設定 [Service Fabric 叢集設定]。您可以利用這個進階選項，來變更 Service Fabric 叢集的預設設定。我們建議您不要變更該預設設定，除非您確定自己的應用程式或叢集有這個需要。
 
-
-
 ## 步驟 3 - 設定安全性
 
-目前，Service Fabric 只支透過 X509 憑證援來保護叢集。在這個程序開始之前，您必須先把憑證上傳至金鑰保存庫。如需有關做法的詳細資訊，請參閱 [Service Fabric 叢集安全性](service-fabric-cluster-security.md)。
+安全性案例與概念記載於 [Service Fabric 叢集安全性](service-fabric-cluster-security.md)。目前，Service Fabric 只支援透過 X509 憑證來保護叢集，如需相關做法步驟，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)。
 
-您可選擇是否保護您的叢集，但強烈建議您這麼做。如果您選擇不要保護叢集，請將 [安全性模式] 切換至 [不安全]。請注意 - 之後您**無法**將不安全的叢集更新為安全的叢集。
-
-如需安全性考量及指示的文件，請參閱 [Service Fabric 叢集安全性](service-fabric-cluster-security.md)。
+您可選擇是否保護您的叢集，但強烈建議您這麼做。如果您選擇不要保護叢集，請將 [安全性模式] 切換至 [不安全]。請注意 - 您「無法」在稍後將不安全的叢集更新為安全的叢集。
 
 ![Azure 入口網站中安全性組態的螢幕擷取畫面。][SecurityConfigs]
 
 
 ## 步驟 4 - 完成叢集建立程序
 
-如要完成叢集建立程序，按一下 [摘要] 查看您提供的組態，或是下載您將用來部署叢集的 Azure Resource Manager 範本。當您提供所有必要的設定之後，系統會啟用 [確定] 按鈕，您只要按一下就能啟動叢集建立程序。
+若要完成叢集建立程序，請按一下 [摘要] 來查看您提供的組態，或是下載將用來部署叢集的 Azure Resource Manager 範本。在您提供必要的設定之後，系統會啟用 [確定] 按鈕，您只要按一下該按鈕就可以啟動叢集建立程序。
 
-您可以在通知功能中看到叢集的建立進度。(請按一下畫面右上角狀態列附近的鈴噹圖示)。 如果您在建立叢集時曾經按一下 [釘選到「開始面板」]，現在您就會看到 [部署 Service Fabric 叢集] 已釘選到[開始] 面板。
+您可以在通知功能中看到叢集的建立進度。(請按一下畫面右上角狀態列附近的鈴噹圖示)。 如果您在建立叢集時按了 [釘選到「開始面板」]，您將會看到 [部署 Service Fabric 叢集] 已釘選到 [開始] 面板。
 
 ![顯示 [部署 Service Fabric 叢集] 的開始面板的螢幕擷取畫面。][Notifications]
 
@@ -125,13 +121,13 @@
 
 建立叢集之後，您就可以在入口網站檢查您的叢集：
 
-1. 前往 [瀏覽]，然後按一下 [Service Fabric 叢集]。
+1. 移至 [瀏覽]，然後按一下 [Service Fabric 叢集]。
 
-2. 找到您的叢集，然後按一下它。![在入口網站尋找叢集的螢幕擷取畫面。][BrowseCluster]
+2. 找出您的叢集，然後按一下它。![在入口網站尋找叢集的螢幕擷取畫面。][BrowseCluster]
 
-3. 現在儀表板會顯示叢集的詳細資料，包括叢集的公用 IP 位址。只要把滑鼠游標移動到 [叢集公用 IP 位址] 上，畫面就會出現剪貼簿，您只要按一下剪貼簿就能複製該 IP 位址。![顯示叢集詳細資料的儀表板螢幕擷取畫面。][ClusterDashboard]
+3. 現在儀表板會顯示叢集的詳細資料，包括叢集的公用 IP 位址。將滑鼠游標暫留在 [叢集公用 IP 位址] 上將會顯示剪貼簿，您只要按一下剪貼簿就能複製該位址。![顯示叢集詳細資料的儀表板螢幕擷取畫面。][ClusterDashboard]
 
-  叢集的儀表板刀鋒視窗上的 [節點監視器] 區段，會顯示健康狀態良好和不良的 VM 數目。如需進一步了解叢集健康狀態，請參閱 [Service Fabric 健康狀態模型簡介](service-fabric-health-introduction.md)。
+  叢集之儀表板刀鋒視窗上的 [節點監視器] 區段會指出健康狀態良好和不良的 VM 數目。如需進一步了解叢集健康狀態，請參閱 [Service Fabric 健康狀態模型簡介](service-fabric-health-introduction.md)。
 
 >[AZURE.NOTE] Service Fabric 叢集需要有一定數量的節點可隨時啟動，以維護可用性並維持狀態 - 稱為「維持仲裁」。因此，除非您已先執行[狀態的完整備份](service-fabric-reliable-services-backup-restore.md)，否則關閉叢集中的所有電腦通常並不安全。
 
@@ -207,7 +203,7 @@ Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAlive
 
 ## 遠端連接到虛擬機器擴展集執行個體或叢集節點
 
-您在叢集中指定的每個 NodeTypes 都會進行 VM 擴展集設定。如需詳細資訊，請參閱[遠端連接到 VM 擴展集執行個體](service-fabric-cluster-nodetypes.md#remote-connect-to-a-vm-scale-set-instance-or-a-cluster-node)。
+您在叢集中指定的每個 NodeTypes 都會進行 VM 擴展集設定。如需詳細資料，請參閱[遠端連線到 VM 調整集執行個體](service-fabric-cluster-nodetypes.md#remote-connect-to-a-vm-scale-set-instance-or-a-cluster-node)。
 
 ## 後續步驟
 
@@ -229,4 +225,4 @@ Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAlive
 [ClusterDashboard]: ./media/service-fabric-cluster-creation-via-portal/ClusterDashboard.png
 [SecureConnection]: ./media/service-fabric-cluster-creation-via-portal/SecureConnection.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

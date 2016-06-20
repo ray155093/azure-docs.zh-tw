@@ -102,7 +102,7 @@
 您可以在各自的資料存放區連接器文章中的資料存放區找到指定原生類型系統到 .NET 的對應。您可以在建立資料表時使用這些對應來判斷適當的類型，如此就能在複製活動期間執行正確的轉換。
 
 ### 使用不同的檔案格式。
-複製活動支援各種不同的檔案格式，包括二進位、文字、Avro 及 JSON 格式，以用於檔案式存放區。您可以使用複製活動，將資料從某種格式轉換為另一種。範例：文字 (CSV) 轉 Avro。如果是非結構化的資料，您可以省略 [資料集](data-factory-create-datasets.md) JSON 定義中的 **Structure** 屬性。
+複製活動支援各種不同的檔案格式，包括二進位、文字、Avro、ORC 及 JSON 格式，以用於檔案式存放區。您可以使用複製活動，將資料從某種格式轉換為另一種。範例：文字 (CSV) 轉 Avro。如果是非結構化的資料，您可以省略 [資料集](data-factory-create-datasets.md) JSON 定義中的 **Structure** 屬性。
 
 ### 複製活動屬性
 名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。
@@ -195,4 +195,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->
