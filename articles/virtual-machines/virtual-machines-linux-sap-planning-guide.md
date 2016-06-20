@@ -339,7 +339,7 @@ Microsoft Azure 是 Microsoft 所推出的雲端服務平台，可提供各式�
 
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南 (本文)][planning-guide]
 * [SAP NetWeaver on Azure virtual machines (VMs) - Deployment Guide (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南)][deployment-guide]
-* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] \(Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
 
 > [AZURE.IMPORTANT] 請盡可能地使用參考的 SAP 安裝指南連結 (如需參考 InstGuide-01，請參閱 <http://service.sap.com/instguides>)。由於本文只涵蓋 Microsoft Azure 虛擬機器中所安裝之 SAP NetWeaver 系統的特定工作，因此如需必要條件和安裝程序，請務必仔細閱讀 SAP NetWeaver 安裝指南。
 
@@ -683,7 +683,8 @@ Azure 中的每個虛擬機器都必須連線到虛擬網路。
 #### 多網站 VPN
 Azure 現在也可讓您為一個 Azure 訂用帳戶建立多網站 VPN 連線能力。之前，單一訂用帳戶僅限於一個站對站 VPN 連線。此限制在單一訂用帳戶可以有多網站 VPN 連線之後已不存在。您可以透過跨單位組態，針對特定訂用帳戶使用多個 Azure 區域。
 
-如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell] [註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
+如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell]
+[註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
 
 #### VNet 對 VNet 連線
 使用多網站 VPN 時，您必須在每個區域中設定不同的 Azure 虛擬網路。不過，您通常必須讓不同區域中的軟體元件能夠彼此通訊。在理想情況下，此通訊應該從一個 Azure 區域路由傳送至內部部署，再由此路由傳送至其他 Azure 區域。簡而言之，Azure 可讓您設定從某個區域中的一個 Azure 虛擬網路到裝載於另一個區域中之另一個 Azure 虛擬網路的連線。此功能稱為 VNet 對 VNet 連線。如需此功能的詳細資訊，請參閱：<https://azure.microsoft.com/documentation/articles/vpn-gateway-vnet-vnet-rm-ps/>。
@@ -777,9 +778,11 @@ Windows PowerShell 是強大且可擴充的架構，客戶已廣泛採用此架�
 
 根據客戶到目前為止的體驗，PowerShell (PS) 確實是可部署 VM 及建立 VM 部署之自訂步驟的更強大工具。在 Azure 中執行 SAP 執行個體的所有客戶使用 PS Cmdlet 來支援他們在 Azure 入口網站中執行的管理工作，或甚至單獨使用 PS Cmdlet 來管理他們在 Azure 中的部署。由於 Azure 特定的 Cmdlet 與超過 2000 個 Windows 相關 Cmdlet 共用相同的命名慣例，因此 Windows 系統管理員可輕鬆地利用這些 Cmdlet。
 
-請參閱下列範例︰<http://blogs.technet.com/b/keithmayer/archive/2015/07/07/18-steps-for-end-to-end-iaas-provisioning-in-the-cloud-with-azure-resource-manager-arm-powershell-and-desired-state-configuration-dsc.aspx>
+請參閱下列範例︰
+<http://blogs.technet.com/b/keithmayer/archive/2015/07/07/18-steps-for-end-to-end-iaas-provisioning-in-the-cloud-with-azure-resource-manager-arm-powershell-and-desired-state-configuration-dsc.aspx>
 
-[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 ) 您只能透過 PowerShell 或 CLI 部署 Azure Monitoring Extension for SAP (請參閱本文中的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
+[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 )
+您只能透過 PowerShell 或 CLI 部署 Azure Monitoring Extension for SAP (請參閱本文中的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
 
 隨著 Azure 提供更多功能，也會新增 PS Cmdlet，而需要更新 Cmdlet。因此，您每個月至少要檢查一次 Azure 下載網站 <https://azure.microsoft.com/downloads/> 是否有新的 Cmdlet 版本。新版本將會直接覆蓋舊版本進行安裝。
 
@@ -813,7 +816,11 @@ ___
 
 > ![Windows][Logo_Windows] Windows
 >
-> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：) [註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章) [註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>) [註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
+> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。
+[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：)
+[註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章)
+[註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>)
+[註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
 >
 > ![Linux][Logo_Linux] Linux
 >
@@ -834,7 +841,8 @@ ___
 
 準備您自己的 Azure VM 磁碟時的需求如下︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 使用系統管理員權限新增另一個本機帳戶，此帳戶可供 Microsoft 支援服務使用，或指派為服務和應用程式執行所在的內容，直到部署 VM 並可使用更適當的使用者為止。
@@ -859,7 +867,8 @@ ___
 
 準備您自己的 Azure VM 映像時的需求包括︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 由於僅限雲端案例中沒有註冊為 VM 使用者的所有網域使用者 (請參閱本文件中的[僅限雲端 - 將虛擬機器部署到 Azure，而不需要相依於內部部署客戶網路][planning-guide-2.1]一章)，因此一旦在 Azure 中部署映像，使用這類網域帳戶的服務可能無法運作。特別是使用帳戶來執行 DBMS 或 SAP 應用程式等的服務時。因此，您必須以 VM 本機帳戶取代這類網域帳戶，並刪除 VM 中的內部部署網域帳戶。在跨單位案例中部署 VM 時，在 VM 映像中保留內部部署網域使用者可能不構成問題，如本文中的[跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路][planning-guide-2.2]一章所述。
@@ -939,7 +948,7 @@ __範本__
 #### VM 映像的部署
 若要從內部部署網路上傳現有的 VM 或 VHD 以便用作 Azure VM 映像，這類 VM 或 VHD 必須符合本文的[準備使用客戶特定的映像為 SAP 部署 VM][planning-guide-5.2.2] 一章中所列的需求。
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] \(適用於 Linux)
 * 使用 _Login-AzureRmAccount_ 登入您的訂用帳戶
 * 使用 _Set-AzureRmContext_ 和參數 SubscriptionId 或 SubscriptionName 設定您的訂用帳戶內容 - 請參閱 <https://msdn.microsoft.com/library/mt619263.aspx>
 * 使用 _Add-AzureRmVhd_ 將 VHD 上傳至 Azure 儲存體帳戶 - 請參閱 <https://msdn.microsoft.com/library/mt603554.aspx>
@@ -948,7 +957,7 @@ __範本__
 
 __Azure CLI__
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture]\(適用於 Linux)
 * 使用 _azure config mode arm_ 切換至 Azure Resource Manager 模式
 * 使用 _azure login_ 登入您的訂用帳戶
 * 使用 _azure account set `<subscription name or id`>_ 選取您的訂用帳戶
@@ -957,7 +966,7 @@ __Azure CLI__
 
 __範本__
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture]\(適用於 Linux)
 * 使用 Powershell 或 Azure CLI 上傳 VHD
 * 使用參考映像 VHD 的 JSON 範本部署 VM，如[此 JSON 範本範例](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json)所示。
 
@@ -1591,8 +1600,8 @@ ___
 
 作法：
 
-* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain] (設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
-* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] (ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details] (詳細資料) -> [Utilities(M)] (公用程式(M)) -> [Authorization Test] (授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
+* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain]\(設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
+* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection]\(ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details] \(詳細資料) -> [Utilities(M)] \(公用程式(M)) -> [Authorization Test] \(授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
  
 ![網域控制站上的交易 STMS 初始畫面][planning-guide-figure-2300]
 
@@ -1600,7 +1609,7 @@ ___
 
 將 SAP 系統加入傳輸網域的順序如下所示︰
 
-* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration] (其他組態)，並繼續進行 [Include System in Domain] (將系統加入網域)。將網域控制站指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
+* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration]\(其他組態)，並繼續進行 [Include System in Domain] \(將系統加入網域)。將網域控制站指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
 * 基於安全性理由，您必須接著回到網域控制站確認您的要求。針對等候中系統，選擇 [系統概觀] 和 [核准]。然後確認提示，設定會隨即發佈。
 
 此 SAP 系統現在包含有關傳輸網域中所有其他 SAP 系統的必要資訊。同時會將新 SAP 系統的位址資料傳送至所有其他 SAP 系統，並在傳輸控制程式的傳輸設定檔中輸入 SAP 系統。檢查網域之傳輸目錄的 RFC 和存取是否運作正常。
@@ -1611,7 +1620,7 @@ ___
 
 * 確定您在內部部署的 STMS 已正確設定。
 * 確定您在 Azure 上的虛擬機器可解析傳輸網域控制站的主機名稱，反之亦然。
-* 呼叫交易 STMS -> [Other Configuration] (其他組態) -> [Include System in Domain] (將系統加入網域)。
+* 呼叫交易 STMS -> [Other Configuration] \(其他組態) -> [Include System in Domain] \(將系統加入網域)。
 * 確認內部部署 TMS 系統已連線。
 * 像往常一樣，設定傳輸路由、群組和層級。
 

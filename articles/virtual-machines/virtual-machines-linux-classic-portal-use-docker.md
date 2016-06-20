@@ -38,7 +38,7 @@
 
 在建立 VM 之後，請確定您的用戶端電腦已安裝 Docker。(如需詳細資訊，請參閱 [Docker 安裝指示](https://docs.docker.com/installation/#installation) (英文)。)
 
-根據[使用 https 執行 Docker] (英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
+根據[使用 https 執行 Docker] \(英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
 
 > [AZURE.NOTE] 入口網站中的 Docker VM 延伸模組目前需要 base64 編碼的認證。
 

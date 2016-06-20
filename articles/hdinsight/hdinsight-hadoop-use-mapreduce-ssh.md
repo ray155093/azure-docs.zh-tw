@@ -59,7 +59,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 		hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
 
-	這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 ****wasb://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 ****wasb:///example/data/WordCountOutput**。
+	這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 **wasb://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 **wasb:///example/data/WordCountOutput**。
 
 	> [AZURE.NOTE] 如需關於此 MapReduce 工作和範例資料的詳細資訊，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
 
@@ -70,7 +70,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 		File Output Format Counters
         Bytes Written=337623
 
-3. 工作完成時，使用下列命令列出儲存在 ****wasb://example/data/WordCountOutput** 的輸出檔案：
+3. 工作完成時，使用下列命令列出儲存在 **wasb://example/data/WordCountOutput** 的輸出檔案：
 
 		hdfs dfs -ls wasb:///example/data/WordCountOutput
 
@@ -82,7 +82,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 		hdfs dfs -cat wasb:///example/data/WordCountOutput/part-r-00000
 
-	這會顯示 ****wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
+	這會顯示 **wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
 
 		wreathed        3
 		wreathing       1

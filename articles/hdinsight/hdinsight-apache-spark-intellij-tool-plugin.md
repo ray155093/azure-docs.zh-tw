@@ -137,7 +137,7 @@
 
 		* 按一下 [提交]。
 
-	3. 視窗底部的 [Spark Submission] (提交 Spark) 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] (提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+	3. 視窗底部的 [Spark Submission] \(提交 Spark) 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
 
         ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
 
@@ -170,7 +170,7 @@
 
 3. 適用於 [錯誤訊息]、[作業輸出]、[Livy 作業記錄] 及 [Spark 驅動程式記錄] 的方塊都會根據您選取的應用程式來填入。
 
-4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] (應用程式層級)。
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] \(應用程式層級)。
 
 ### 存取 Spark 歷程記錄伺服器
 
@@ -180,7 +180,7 @@
 
 ### 啟動 Ambari 入口網站
 
-從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [Open Cluster Management Portal (Ambari)] (開啟叢集管理入口網站 (Ambari))。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
+從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [Open Cluster Management Portal (Ambari)] \(開啟叢集管理入口網站 (Ambari))。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
 
 ### 管理 Azure 訂用帳戶
 
@@ -202,7 +202,7 @@
 	![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-run.png)
 
 	* 從左窗格中，選取 [HDInsight]。
-	* 從右窗格中，選取 [Spark on HDInsight Local Run Sample (Scala)] (HDInsight 上的 Spark 本機執行範例 (Scala))。
+	* 從右窗格中，選取 [Spark on HDInsight Local Run Sample (Scala)] \(HDInsight 上的 Spark 本機執行範例 (Scala))。
 	* 按 [下一步]。
 
 2. 在下一個視窗中，提供專案詳細資料。
@@ -223,7 +223,7 @@
 
 	![本機 Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/local-app.png)
 
-4.  以滑鼠右鍵按一下 **LogQuery** 應用程式，然後按一下 [Run 'LogQuery'] (執行 'LogQuery')。您將在底部的 [執行] 索引標籤上看到如下的輸出。
+4.  以滑鼠右鍵按一下 **LogQuery** 應用程式，然後按一下 [Run 'LogQuery'] \(執行 'LogQuery')。您將在底部的 [執行] 索引標籤上看到如下的輸出。
 
 	![Spark 應用程式本機執行結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-run-result.png)
 

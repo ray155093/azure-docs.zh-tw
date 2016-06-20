@@ -32,11 +32,11 @@
 
 1. 從實驗室清單中，選取所需的實驗室。
 
-1. 選取 [Settings] (設定)。
+1. 選取 [Settings] \(設定)。
 
 	![設定](./media/devtest-lab-set-lab-policy/lab-blade-settings.png)
 
-1. 在 [設定] 刀鋒視窗上，有一組設定名為 [VM Policies] (VM 原則)。
+1. 在 [設定] 刀鋒視窗上，有一組設定名為 [VM Policies] \(VM 原則)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/policies.png)
 
@@ -56,7 +56,7 @@
 
 設定允許的 VM 大小的原則有助於將實驗室的成本浪費降至最低，方式是讓您指定實驗室中允許的 VM 大小。如果啟用此原則，就只能使用此清單中的 VM 大小來建立 VM。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，選取 [Allowed VM Sizes] (允許的 VM 大小)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，選取 [Allowed VM Sizes] \(允許的 VM 大小)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/allowed-vm-sizes.png)
  
@@ -70,13 +70,13 @@
 
 **每位使用者的 VM 數目上限**原則可讓您指定個別使用者可以建立的 VM 數目上限。達到使用者限制時，如果使用者嘗試建立新的 VM，就會顯示錯誤訊息，指出無法建立 VM。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，選取 [Maximum VMs per user] (每位使用者的 VM 數目上限)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，選取 [Maximum VMs per user] \(每位使用者的 VM 數目上限)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/max-vms-per-user.png)
 
 1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
 
-1. 如果啟用這個原則，可在 [Maximum VMs allowed per User] (每位使用者所允許的 VM 數目上限) 文字方塊中輸入數值，指出使用者可建立的 VM 數目上限。如果您輸入的數字無效，UI 將會顯示此欄位允許的最大數目。
+1. 如果啟用這個原則，可在 [Maximum VMs allowed per User] \(每位使用者所允許的 VM 數目上限) 文字方塊中輸入數值，指出使用者可建立的 VM 數目上限。如果您輸入的數字無效，UI 將會顯示此欄位允許的最大數目。
 
 1. 選取 [**儲存**]。
 
@@ -84,13 +84,13 @@
 
 **允許的 VM 總數**原則可讓您指定目前實驗室可以建立的 VM 數目上限。達到實驗室限制時，如果使用者嘗試建立新的 VM，就會顯示錯誤訊息，指出無法建立 VM。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，選取 [Total VMs allowed] (允許的 VM 總數)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，選取 [Total VMs allowed] \(允許的 VM 總數)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/total-vms-allowed.png)
 
 1. 選取 [開啟] 來啟用此原則，以及選取 [關閉] 來停用它。
 
-1. 如果啟用這個原則，可在 [Total VMs allowed in this lab] (這個實驗室允許的 VM 總數) 文字方塊中輸入數值，指出目前實驗室可以建立的 VM 數目上限。如果您輸入的數字無效，UI 將會顯示此欄位允許的最大數目。
+1. 如果啟用這個原則，可在 [Total VMs allowed in this lab] \(這個實驗室允許的 VM 總數) 文字方塊中輸入數值，指出目前實驗室可以建立的 VM 數目上限。如果您輸入的數字無效，UI 將會顯示此欄位允許的最大數目。
 
 1. 選取 [**儲存**]。
 
@@ -98,7 +98,7 @@
 
 自動關機原則有助於將實驗室的成本浪費降至最低，方式是讓您指定這個實驗室中 VM 的關機時間。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，選取 [Auto shutdown] (自動關機)。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，選取 [Auto shutdown] \(自動關機)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/auto-shutdown.png)
 
@@ -108,13 +108,13 @@
 
 1. 選取 [**儲存**]。
 
-1. 根據預設，這個原則一經啟用，就會套用到目前實驗室的所有 VM。若要移除特定 VM 的這項設定，請開啟 VM 的刀鋒視窗並變更其 [Auto Shutdown] (自動關機) 設定。
+1. 根據預設，這個原則一經啟用，就會套用到目前實驗室的所有 VM。若要移除特定 VM 的這項設定，請開啟 VM 的刀鋒視窗並變更其 [Auto Shutdown] \(自動關機) 設定。
 
 ## 設定自動啟動
 
 自動啟動原則可讓您指定目前實驗室 VM 應該啟動的時間。
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] (VM 原則) 下，選取 [自動啟動]。
+1. 在實驗室的 [設定] 刀鋒視窗的 [VM Policies] \(VM 原則) 下，選取 [自動啟動]。
 
 	![Settings](./media/devtest-lab-set-lab-policy/auto-start.png)
 

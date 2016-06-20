@@ -169,7 +169,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 5. 若要為您的應用程式設定 SSO，請透過 [servicedesk@merces.nl](emailTo:servicedesk@merces.nl) 連絡您的 HR2day by Merces 支援小組，並在電子郵件中附加所下載的憑證檔案。也請務必提供「SAML SSO URL」、「登出 URL」及「簽發者 URL」，以便為 SSO 整合設定這些項目。
 
 
-> [AZURE.NOTE] 請向 Merces 小組表明這項整合需要以此模式 ****https://hr2day.force.com/INSTANCENAME** 設定「實體 ID」
+> [AZURE.NOTE] 請向 Merces 小組表明這項整合需要以此模式 **https://hr2day.force.com/INSTANCENAME** 設定「實體 ID」
 
 
 

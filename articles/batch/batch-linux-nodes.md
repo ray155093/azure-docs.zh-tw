@@ -55,7 +55,7 @@ Batch 節點代理程式是一項程式，會在集區中的每個節點上執�
 
 ## 建立 Linux 集區︰Batch Python
 
-下列程式碼片段示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到：[azure.batch package ][py_batch_docs] (位於＜Read the Docs (閱讀文件)＞上)。
+下列程式碼片段示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到：[azure.batch package ][py_batch_docs] \(位於＜Read the Docs (閱讀文件)＞上)。
 
 在此程式碼片段中，我們會明確建立 [ImageReference][py_imagereference]，指定每一個屬性 (發行者、服務、SKU、版本)。不過，我們建議您在實際執行程式碼中使用 [list\_node\_agent\_skus][py_list_skus] 方法來判斷，並在執行階段從可用映像和節點代理程式 SKU 組合中選擇。
 
@@ -198,7 +198,7 @@ ImageReference imageReference = new ImageReference(
 
 ## 虛擬機器映像的清單
 
-下表列出**撰寫本文時**，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
+下表列出**撰寫本文時**，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] \(Python) 和 [ListNodeAgentSkus][net_list_skus] \(Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
 
 > [AZURE.WARNING] 下列清單可能隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，然後在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
 

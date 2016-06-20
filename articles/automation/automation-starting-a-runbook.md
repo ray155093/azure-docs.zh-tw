@@ -127,7 +127,7 @@ Smith
 
 ### 陣列
 
-如果參數是陣列，例如 [array] 或 [string]，則您可以使用下列 JSON 格式對其傳送值清單：*[Value1,Value2,Value3]*。這些值必須是簡單型別。
+如果參數是陣列，例如 [array] 或 [string]，則您可以使用下列 JSON 格式對其傳送值清單：*[Value1,Value2,Value3]* 。這些值必須是簡單型別。
 
 請考慮可接受稱為 *user* 的參數的下列測試 Runbook。
 
@@ -183,7 +183,7 @@ Workflow Test-Parameters
 My Credential
 ```
 
-假設在認證中的使用者名稱是 *jsmith*，這會導致下列輸出。
+假設在認證中的使用者名稱是 *jsmith* ，這會導致下列輸出。
 
 ```
 jsmith

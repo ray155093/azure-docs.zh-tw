@@ -32,7 +32,7 @@
 
 此程序說明如何在 OS X 上使用 SSH 用戶端來存取虛擬機器。
 
-1. 在**管理入口網站**中尋找 [主機名稱] 和 [連接埠資訊][](http://manage.windowsazure.com)。您可以從虛擬機器的儀表板中找到您需要的資訊。請按一下虛擬機器名稱，然後在儀表板的 [Quick Glance] 區段中尋找 [SSH Details]。
+1. 在**管理入口網站**中尋找 [主機名稱] 和 [連接埠資訊](http://manage.windowsazure.com)。您可以從虛擬機器的儀表板中找到您需要的資訊。請按一下虛擬機器名稱，然後在儀表板的 [Quick Glance] 區段中尋找 [SSH Details]。
 
 	![取得 SSH 詳細資料](./media/virtual-machines-linux-classic-log-on/portalsshdetails.png)
 

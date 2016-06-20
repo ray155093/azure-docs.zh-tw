@@ -286,12 +286,12 @@ app.get('/logout', function(req, res){
 
 ```JavaScript
 
-// Simple route middleware to ensure user is authenticated. (Section 4)
+// 簡單的路由中介軟體可用來確保使用者已驗證。(第 4 區段)
 
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
+//   在任何需要保護的資源上使用此路由中介軟體。  如果
+//   此要求已驗證 (通常是透過持續登入工作階段)，
+//   此要求會繼續執行。否則使用者將重新導向至
+//   登入頁面。
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')

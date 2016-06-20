@@ -113,7 +113,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 **重要事項**：**請從上述的 Hive bin/ 目錄提示執行此逐步解說中的所有 Hive 命令。如此可自動處理路徑相關問題。我們將使用交替使用詞彙「Hive 目錄提示」、「Hive bin/ 目錄提示」和「Hadoop 命令列」。**
 
-**重要事項 2**：**若要執行任何 Hive 查詢，使用者一律可以執行下列 ** cd %hive\_home%\\bin hive
+**重要事項 2**： **若要執行任何 Hive 查詢，使用者一律可以執行下列** cd %hive\_home%\\bin hive
 
 Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
@@ -471,7 +471,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 ![](./media/machine-learning-data-science-process-hive-criteo-walkthrough/cl5tpGw.png)
 
-***重要注意事項：*****為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
+***重要注意事項：*** **為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
 
 ### <a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
 

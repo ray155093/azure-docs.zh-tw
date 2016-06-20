@@ -194,7 +194,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 
 ## 註冊裝置的 X.509 用戶端憑證
 
-[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] (版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
+[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] \(版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
 
 ### C# 支援
 
@@ -221,7 +221,7 @@ await registryManager.AddDeviceAsync(device);
 
 ## 在執行階段作業期間使用 X.509 用戶端憑證
 
-[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] (版本 1.0.11+) 支援使用 X.509 用戶端憑證。
+[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] \(版本 1.0.11+) 支援使用 X.509 用戶端憑證。
 
 ### C# 支援
 

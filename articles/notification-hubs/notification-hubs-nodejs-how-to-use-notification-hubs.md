@@ -41,7 +41,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 ##建立 Node.js 應用程式
 
-本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、[Node.js 雲端服務][Node.js Cloud Service] (使用 Windows PowerShell) 或[使用 WebMatrix 的網站]。
+本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、[Node.js 雲端服務][Node.js Cloud Service] \(使用 Windows PowerShell) 或[使用 WebMatrix 的網站]。
 
 ##將應用程式設為使用通知中樞
 
@@ -75,7 +75,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 2. 選取 [通知中樞]，然後尋找您要用於範例的中樞。如果您需要建立新「通知中樞」方面的協助，您可以參考 [Windows 市集開始使用教學課程](notification-hubs-windows-store-dotnet-get-started.md)。
 
-3. 選取 [Settings] (設定)。
+3. 選取 [Settings] \(設定)。
 
 4. 按一下 [存取原則]。您會看到兩個共用和完整存取連接字串。
 

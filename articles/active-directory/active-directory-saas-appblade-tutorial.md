@@ -133,7 +133,7 @@
     b.按 [下一步]。
 
 
-5. 若要為您的應用程式設定 SSO，請透過 ****support@appblade.com** 連絡您的 AppBlade 支援小組，並在電子郵件中附加您下載的中繼資料檔。此外，請要求他們將 [SSO 簽發者 URL] 設定為 ****https://appblade.com/saml**。單一登入必須要有這項設定才能運作。
+5. 若要為您的應用程式設定 SSO，請透過 **support@appblade.com** 連絡您的 AppBlade 支援小組，並在電子郵件中附加您下載的中繼資料檔。此外，請要求他們將 [SSO 簽發者 URL] 設定為 **https://appblade.com/saml**。單一登入必須要有這項設定才能運作。
 
 
 6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。

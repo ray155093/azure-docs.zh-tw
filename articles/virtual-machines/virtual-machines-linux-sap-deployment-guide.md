@@ -370,7 +370,7 @@ Azure 帳戶已存在，並且已知相應的登入認證。
 
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南 (本文件)][deployment-guide]
-* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] \(Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
 
 ## <a name="b3253ee3-d63b-4d74-a49b-185e76c4088e"></a>Microsoft Azure 上適用於 SAP 的 VM 部署案例
 在本章中，您將了解不同的部署方式以及每種部署類型的單一步驟。
@@ -554,7 +554,7 @@ ___
 >
 > ![Linux][Logo_Linux] Linux
 >
-> <https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-agent-user-guide/>
+> <https://azure.microsoft.com/documentation/articles/virtual-machines-linux-agent-user-guide/>
 
 ___
 

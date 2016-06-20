@@ -224,7 +224,7 @@
 
 	![設定單一登入][24]
 
-    a.在 [屬性名稱] 文字方塊中，輸入 ****https://aws.amazon.com/SAML/Attributes/Role**。
+    a.在 [屬性名稱] 文字方塊中，輸入 **https://aws.amazon.com/SAML/Attributes/Role**。
 
     b.在 [屬性值] 文字方塊中，輸入 **[角色 ARN 值], [受信任實體 ARN 值]**。
 
@@ -242,7 +242,7 @@
 	![設定單一登入][25]
 
 
-     a.在 [屬性名稱] 文字方塊中，輸入 ****https://aws.amazon.com/SAML/Attributes/RoleSessionName**。
+     a.在 [屬性名稱] 文字方塊中，輸入 **https://aws.amazon.com/SAML/Attributes/RoleSessionName**。
 
      b.在 [屬性值] 文字方塊中，輸入 **userprincipalname**。
 

@@ -36,9 +36,9 @@
 
 * **任何圖表或圖格**，以查看更多關於圖表上所顯示內容的詳細資訊。
 * **設定**，以取得其他計量預先定義的刀鋒視窗以及組態頁面。
-* [計量瀏覽器][](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
-* [搜尋][](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
-* [分析][](app-insights-analytics.md) 來取得針對遙測的強大查詢。
+* [計量瀏覽器](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
+* [搜尋](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
+* [分析](app-insights-analytics.md) 來取得針對遙測的強大查詢。
 * [**即時資料流**](app-insights-metrics-explorer.md#live-stream)，適用於一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 
 

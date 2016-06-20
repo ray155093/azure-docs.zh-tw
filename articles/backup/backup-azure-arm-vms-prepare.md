@@ -26,7 +26,7 @@
 
 本文提供的步驟可讓環境做好備份 Resource Manager 部署之虛擬機器 (VM) 的準備。程序中展示的步驟使用 Azure 入口網站。
 
-Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護 ** 傳統部署或 Resource Manager 部署的 VM**。您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
+Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護 **傳統部署或 Resource Manager 部署的 VM**。您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
 
 >[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。如需使用傳統部署模型 VM 的詳細資料，請參閱[準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md)。
 
