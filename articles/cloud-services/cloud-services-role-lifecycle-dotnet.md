@@ -12,12 +12,12 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="05/02/2016" 
+ms.date="06/07/2016" 
 ms.author="adegeo"/>
 
 # 在 .NET 中自訂 Web 或背景工作角色的生命週期
 
-當您建立背景工作角色時，擴充可為您提供覆寫方法並讓您回應生命週期事件的 [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) 類別。若是 Web 角色，此類別是選擇性的，因此您可以使用它來回應生命週期事件。
+當您建立背景工作角色時，擴充可為您提供覆寫方法並讓您回應生命週期事件的 [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) 類別。若是 Web 角色，此類別是選擇性的，因此您必須使用它來回應生命週期事件。
 
 ## 擴充 RoleEntryPoint 類別
 
@@ -80,4 +80,4 @@ public override bool OnStart()
 ## 後續步驟
 了解如何[建立雲端服務封裝](cloud-services-model-and-package.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

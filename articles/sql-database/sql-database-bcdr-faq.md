@@ -50,8 +50,8 @@
 
 沒有可執行大量還原的內建功能。[Azure SQL Database: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) 指令碼是其中一種完成這項工作的範例。
 
-## 8\.使用作用中異地複寫時，什麼是複寫延遲？
+## 8\.使用「異地複寫」時，什麼是複寫延遲？
 
 使用 [sys.dm\_geo\_replication\_link\_status](https://msdn.microsoft.com/library/mt575504.aspx) 動態管理檢視 (DMV) 可取得上次複寫時間、上次複寫延遲和其他複寫連結的相關資訊。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

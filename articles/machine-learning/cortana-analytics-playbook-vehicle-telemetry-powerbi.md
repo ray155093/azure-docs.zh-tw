@@ -302,13 +302,16 @@ Power BI 中將會產生新的資料集。按一下 **ConnectedCarsRealtime** �
 
 注意：端對端批次處理管線大約需要 2 小時 (從成功完成部署開始算起) 的時間才能完成執行並處理一年份的已產生資料。請稍候再進行後續步驟。
 
-**下載 PowerBI 設計工具檔案** • 預先設定的 PowerBI 設計工具檔案包含在部署中 • 按一下圖表檢視上的 PowerBI 節點，然後在屬性窗格上按一下 [下載 PowerBI 設計工具檔案] 連結 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9.5-download-powerbi-designer.png)
+**下載 PowerBI 設計工具檔案**
+-	預先設定的 PowerBI 設計工具檔案會包含於部署中
+-	按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載 PowerBI 設計工具] 檔案連結 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9.5-download-powerbi-designer.png)
 
-• 儲存在本機
+-	儲存在本機
 
-**設定 PowerBI 報告** • 使用 PowerBI Desktop 開啟設計工具檔案 ‘VehicleTelemetryAnalytics - Desktop Report.pbix’。如果您還沒有安裝 PowerBI Desktop，請從 [PowerBI Desktop 安裝](http://www.microsoft.com/download/details.aspx?id=45331)進行安裝。
+**設定 PowerBI 報告**
+-	使用 PowerBI Desktop 開啟設計工具檔案 ‘VehicleTelemetryAnalytics - Desktop Report.pbix’。如果您還沒有安裝 PowerBI Desktop，請從 [PowerBI Desktop 安裝](http://www.microsoft.com/download/details.aspx?id=45331)進行安裝。 
 
-• 按一下 [編輯查詢]。
+-	按一下 [編輯查詢]。
 
 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/10-edit-powerbi-query.png)
 
@@ -342,7 +345,7 @@ Power BI 中將會產生新的資料集。按一下 **ConnectedCarsRealtime** �
 您現在已設定對應至解決方案中的批次處理路徑的所有報告。
 
 
-## 上傳至 powerbi.com
+## 上傳至 *powerbi.com*
  
 1.	瀏覽至 PowerBI Web 入口網站 (http://powerbi.com) 並且登入。
 2.	按一下 [取得資料]  
@@ -393,4 +396,4 @@ Power BI 中將會產生新的資料集。按一下 **ConnectedCarsRealtime** �
 
 恭喜！ 您已成功建立報報和儀表板，可取得車輛健全狀況和駕駛習慣的即時、預測和批次深入分析。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

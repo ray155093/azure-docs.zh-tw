@@ -113,7 +113,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 **重要事項**：**請從上述的 Hive bin/ 目錄提示執行此逐步解說中的所有 Hive 命令。如此可自動處理路徑相關問題。我們將使用交替使用詞彙「Hive 目錄提示」、「Hive bin/ 目錄提示」和「Hadoop 命令列」。**
 
-**重要事項 2**：**若要執行任何 Hive 查詢，使用者一律可以執行下列** cd %hive\_home%\\bin hive
+**重要事項 2**： **若要執行任何 Hive 查詢，使用者一律可以執行下列** cd %hive\_home%\\bin hive
 
 Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
@@ -438,17 +438,17 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 5. [評估模型](#step5)
 6. [將模型發佈為 Web 服務以供使用](#step6)
 
-現在我們已經準備好在 Azure Machine Learning Studio 中建置模型。我們縮減取樣的資料會在叢集中儲存為 Hive 資料表。我們將使用 Azure Machine Learning **讀取器**模組讀取此資料。可存取此叢集之儲存體帳戶的認證如下。
+現在我們已經準備好在 Azure Machine Learning Studio 中建置模型。我們縮減取樣的資料會在叢集中儲存為 Hive 資料表。我們將使用 Azure Machine Learning「匯入資料」模組來讀取此資料。可存取此叢集之儲存體帳戶的認證如下。
 
-### <a name="step1"></a> 步驟 1：使用讀取器模組從 Hive 資料表取得資料到 Azure Machine Learning，並選取它進行機器學習實驗
+### <a name="step1"></a> 步驟 1：使用「匯入資料」模組從 Hive 資料表取得資料並匯入到 Azure Machine Learning，然後選取它來進行機器學習實驗
 
-藉由選取 [**+ 新增**] -> [**實驗**] -> [**空白實驗**] 開始。然後，從左上角的 [**搜尋**] 方塊，搜尋「讀取器」。將**讀取器**模組拖放至實驗畫布 (螢幕的中間部分) 以將模組用於資料存取。
+藉由選取 [**+ 新增**] -> [**實驗**] -> [**空白實驗**] 開始。接著，從左上方的 [搜尋] 方塊，搜尋「匯入資料」。將 [匯入資料] 模組拖放到實驗畫布 (螢幕的中間部分) 上，以將模組用於資料存取。
 
-這是從 Hive 資料表取得資料時**讀取器**看起來的樣子：
+這是從 Hive 資料表取得資料時「匯入資料」看起來的樣子：
 
-![讀取器取得資料](./media/machine-learning-data-science-process-hive-criteo-walkthrough/i3zRaoj.png)
+![「匯入資料」取得資料](./media/machine-learning-data-science-process-hive-criteo-walkthrough/i3zRaoj.png)
 
-針對**讀取器**模組，在圖形中提供的參數值都只是您必須提供之該類值的範例。以下是如何填寫**讀取器**模組之參數集的一些一般指引。
+針對「匯入資料」模組，圖形中提供的參數值都只是您將需要提供之該類值的範例。以下是一些有關如何填寫「匯入資料」模組之參數集的一般指引。
 
 1. 對**資料來源**選擇「Hive 查詢」
 2. 在 [**Hive 資料庫查詢**] 方塊中，簡單的 SELECT * FROM <your\_database\_name.your\_table\_name> - 就已經足夠。
@@ -461,17 +461,17 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 9. **Azure 容器名稱**：如果叢集名稱是 "abc"，則通常就是 "abc"。
 
 
-一旦**讀取器**完成取得的資料 (您將在模組上看到綠色勾號)，將此資料儲存為資料集 (以您選擇的名稱)。看起來像這樣：
+在「匯入資料」完成資料取得後 (您會在模組上看到綠色勾號)，請將此資料儲存為「資料集」(使用您選擇的名稱)。看起來像這樣：
 
-![讀取器儲存資料](./media/machine-learning-data-science-process-hive-criteo-walkthrough/oxM73Np.png)
+![「匯入資料」儲存資料](./media/machine-learning-data-science-process-hive-criteo-walkthrough/oxM73Np.png)
 
-以滑鼠右鍵按一下**讀取器**模組的輸出連接埠。這會顯示**另存為資料集**選項和**視覺化**選項。**視覺化**選項，如果按下，會顯示資料 100 個資料列，以及在右側面板顯示某些實用的摘要統計資料。若要儲存資料，只要選取 [**另存為資料集**] 並遵循指示。
+在「匯入資料」模組的輸出連接埠上按一下滑鼠右鍵。這會顯示**另存為資料集**選項和**視覺化**選項。**視覺化**選項，如果按下，會顯示資料 100 個資料列，以及在右側面板顯示某些實用的摘要統計資料。若要儲存資料，只要選取 [**另存為資料集**] 並遵循指示。
 
 若要選取已儲存的資料集，以用於機器學習實驗，請使用 [**搜尋**] 方塊找出資料集，如下所示。然後只要輸入您提供給資料集的部分名稱即可存取它，並拖曳至主面板中。將它拖放到主面板中，選取它來用於機器學習模型建構。
 
 ![](./media/machine-learning-data-science-process-hive-criteo-walkthrough/cl5tpGw.png)
 
-***重要注意事項：*****為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
+***重要注意事項：*** **為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
 
 ### <a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
 
@@ -624,13 +624,13 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 #### 發佈 Web 服務的評分實驗
 
-首先，我們顯示其外觀。基本結構是**評分模型模組**，其會接受我們的訓練模型物件和我們在先前步驟中使用**計數 Featurizer** 模組產生的一些輸入資料行。我們使用「專案資料行」來投射出評分標籤和評分的機率。
+首先，我們顯示其外觀。基本結構是**評分模型模組**，其會接受我們的訓練模型物件和我們在先前步驟中使用**計數 Featurizer** 模組產生的一些輸入資料行。我們使用「選取資料集中的資料行」來投射出評分標籤和評分機率。
 
-![專案資料行](./media/machine-learning-data-science-process-hive-criteo-walkthrough/kRHrIbe.png)
+![選取資料集中的資料行](./media/machine-learning-data-science-process-hive-criteo-walkthrough/kRHrIbe.png)
 
-請注意，如何將**專案資料行**模組用於「篩選」掉資料集中的資料。我們顯示以下的內容：
+請注意如何使用「選取資料集中的資料行」模組來「篩選」掉資料集中的資料。我們顯示以下的內容：
 
-![使用專案資料行模組篩選](./media/machine-learning-data-science-process-hive-criteo-walkthrough/oVUJC9K.png)
+![使用「選取資料集中的資料行」模組來進行的篩選](./media/machine-learning-data-science-process-hive-criteo-walkthrough/oVUJC9K.png)
 
 若要取得藍色的輸入和輸出連接埠，您只要按一下位於右下方的 [**準備 Web 服務**]。執行這項實驗也可讓我們發佈 Web 服務，方法是按一下右下方的 [**發佈 Web 服務**] 圖示，如下所示。
 
@@ -663,4 +663,4 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 這包含我們的端對端逐步解說，示範如何使用 Azure Machine Learning 處理大型資料集。我們開始使用 1 TB 的資料、建構預測模型，並將其部署為雲端中的 Web 服務。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

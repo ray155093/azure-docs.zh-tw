@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用篩選述詞選取要移轉的資料列 (Stretch Database) | Microsoft Azure"
-	description="了解如何使用篩選述詞選取要移轉的資料列。"
+	pageTitle="使用篩選述詞來選取要移轉的資料列 (Stretch Database) | Microsoft Azure"
+	description="了解如何使用篩選述詞來選取要移轉的資料列。"
 	services="sql-server-stretch-database"
 	documentationCenter=""
 	authors="douglaslMS"
@@ -16,7 +16,7 @@
 	ms.date="05/17/2016"
 	ms.author="douglasl"/>
 
-# 使用篩選述詞選取要移轉的資料列 (Stretch Database)
+# 使用篩選述詞來選取要移轉的資料列 (Stretch Database)
 
 如果您將歷程資料儲存在個別的資料表上，您可以設定 Stretch Database 以移轉整個資料表。相反地，如果您的資料表同時包含目前和歷程資料，您可以指定篩選述詞以選取要移轉的資料列。篩選述詞是嵌入資料表值函式。本主題說明如何撰寫嵌入資料表值函式以選取要移轉的資料列。
 
@@ -24,7 +24,7 @@
 
 如果您不指定篩選述詞，便會移轉整個資料表。
 
-當您執行 [Enable Database for Stretch Wizard]\(為資料庫啟用延伸功能精靈) 時，可以移轉整個資料表，也可以在精靈中指定以簡單日期為基礎的篩選述詞。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行下列其中一項作業。
+當您執行「為資料庫啟用延展功能精靈」時，可以移轉整個資料表，也可以在精靈中指定簡單的述詞。如果您想要使用不同類型的篩選述詞來選取要移轉的資料列，請執行下列其中一項操作。
 
 -   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定述詞。
 
@@ -32,7 +32,7 @@
 
 本主題後面會說明用於加入述詞的 ALTER TABLE 語法。
 
-## 嵌入資料表值函式的基本需求
+## 篩選述詞的基本需求
 Stretch Database 篩選述詞所需的嵌入資料表值函式看起來如下列範例所示。
 
 ```tsql
@@ -156,8 +156,60 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 只要有資料表將該函式做為其篩選述詞使用，您便無法卸除嵌入資料表值函式。
 
+>   [AZURE.NOTE] 若要改善篩選函數的效能，請在函數使用的資料行上建立索引。
+
+### 將資料行名稱傳遞給篩選述詞
+當您指派篩選函數給資料表時，請使用一段式名稱來指定傳遞給篩選函數的資料行名稱。如果您在傳遞資料行名稱時指定的是三段式名稱，後續針對已啟用延展功能之資料表的查詢將會失敗。
+
+例如，如果您指定三段式資料行名稱 (如以下範例所示)，陳述式將會執行成功，但後續針對資料表的查詢將會失敗。
+
+```tsql
+ALTER TABLE SensorTelemetry
+  SET ( REMOTE_DATA_ARCHIVE = ON (
+    FILTER_PREDICATE=dbo.fn_stretchpredicate(dbo.SensorTelemetry.ScanDate),
+    MIGRATION_STATE = OUTBOUND )
+  )
+```
+
+請改為使用一段式資料行名稱來指定篩選函數，如以下範例所示。
+
+```tsql
+ALTER TABLE SensorTelemetry
+  SET ( REMOTE_DATA_ARCHIVE = ON  (
+    FILTER_PREDICATE=dbo.fn_stretchpredicate(ScanDate),
+    MIGRATION_STATE = OUTBOUND )
+  )
+```
+
+## <a name="addafterwiz"></a>在執行精靈後新增篩選述詞  
+
+如果您想要使用無法在「為資料庫啟用延展功能」精靈中建立的述詞，您可以在結束精靈後，執行 ALTER TABLE 陳述式來指定述詞。不過，您必須先停止已經在進行中的資料移轉並回復已移轉的資料，才能套用述詞。(如需有關為什麼必須這麼做的詳細資訊，請參閱[取代現有的篩選述詞](#replacePredicate)。
+
+1. 反轉移轉方向並回復已經移轉的資料。開始這項作業之後，即無法將其取消。您也會因輸出資料傳輸 (輸出) 而在 Azure 上產生費用。如需詳細資訊請參閱 [Azure 定價機制](https://azure.microsoft.com/pricing/details/data-transfers/)。  
+
+    ```tsql  
+    ALTER TABLE <table name>  
+         SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = INBOUND ) ) ;   
+    ```  
+
+2. 等待移轉完成。您可以在 SQL Server Management Studio 的 [Stretch Database 監視] 中或查詢 **sys.dm\_db\_rda\_migration\_status** 檢視，來查看狀態。如需詳細資訊，請參閱[資料移轉的監視及疑難排解](sql-server-stretch-database-monitor.md)或 [sys.dm\_db\_rda\_migration\_status](https://msdn.microsoft.com/library/dn935017.aspx)。
+
+3. 建立您想要套用到資料表的篩選述詞。
+
+4. 將述詞新增到資料表，然後重新啟動資料移轉來移轉到 Azure。
+
+    ```tsql  
+    ALTER TABLE <table name>  
+        SET ( REMOTE_DATA_ARCHIVE  
+            (           
+                FILTER_PREDICATE = <predicate>,  
+                MIGRATION_STATE = OUTBOUND  
+            )  
+        );   
+    ```  
+
 ## 依日期篩選資料列
-下列範例會移轉 **date** 資料行包含 2016 年 1 月 1 日之前值的資料列。
+下列範例會移轉 **date** 資料行所含的值在 2016 年 1 月 1 日之前的資料列。
 
 ```tsql
 -- Filter by date
@@ -171,7 +223,7 @@ GO
 ```
 
 ## 依狀態資料行中的值篩選資料列
-下列範例會移轉 **status** 資料行包含其中一個指定值的資料列。
+下列範例會移轉 **status** 資料行所含的值是其中一個指定值的資料列。
 
 ```tsql
 -- Filter by status column
@@ -191,7 +243,7 @@ GO
 
 -   此函式會使用結構描述繫結。因此，呼叫 ALTER FUNCTION 來移動滑動視窗，並無法每天僅「就地」更新函式。
 
-開始使用與下列範例類似的篩選述詞，而此篩選述詞會移轉 **systemEndTime** 資料行包含 2016 年 1 月 1 日之前值的資料列。
+請從類似下列範例的篩選述詞著手，此篩選述詞會移轉 **systemEndTime** 資料行所含的值在 2016 年 1 月 1 日之前的資料列。
 
 ```tsql
 CREATE FUNCTION dbo.fn_StretchBySystemEndTime20160101(@systemEndTime datetime2)
@@ -405,7 +457,7 @@ SELECT * FROM stretch_table_name CROSS APPLY fn_stretchpredicate(column1, column
 ```
 如果函式針對資料列傳回非空白結果，便代表該資料列符合移轉資格。
 
-## 取代現有的篩選述詞
+## <a name="replacePredicate"></a>取代現有的篩選述詞
 您可以透過再次執行 ALTER TABLE 陳述式並為 FILTER\_PREDICATE 參數指定新的值，來取代先前指定的篩選述詞。例如：
 
 ```tsql
@@ -419,11 +471,11 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 -   所有舊函式中的運算子皆必須存在於新函式中。
 
--   新函式不能包含不存在於舊函式中的運算子。
+-   新函數不能包含舊函數中沒有的運算子。
 
 -   不能變更運算子引數的順序。
 
--   只有 `<, <=, >, >=` 比較之一部分的常數值，能以使述詞含有較少限制的方式受到變更。
+-   只能變更 `<, <=, >, >=` 比較中所含的常數值來讓述詞限制變得較不嚴格。
 
 ### 有效取代的範例
 假設下列函式為目前的篩選述詞。
@@ -504,8 +556,15 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 ## 查看套用至資料表的篩選述詞
 若要檢查套用至資料表的篩選述詞，請開啟目錄檢視 **sys.remote\_data\_archive\_tables** 並查看 **filter\_predicate** 資料行的值。如果值為 Null，便代表整個資料表皆符合封存資格。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
 
+## 篩選述詞的安全性注意事項  
+遭入侵的帳戶若具備 db\_owner 權限，便能夠執行下列操作。
+
+-   建立並套用耗用大量伺服器資源或長期等待而導致阻斷服務的資料表值函數。  
+
+-   建立並套用可能推斷出已明確拒絕使用者讀取之資料表內容的資料表值函數。
+
 ## 另請參閱
 
 [ALTER TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

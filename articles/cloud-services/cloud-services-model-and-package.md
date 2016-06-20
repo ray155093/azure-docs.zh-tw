@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/11/2016"
+    ms.date="06/07/2016"
     ms.author="adegeo"/>
 
 # 什麼是雲端服務模型？如何封裝？
@@ -201,7 +201,7 @@ Azure 對於 Web 角色，僅允許一個進入點。這表示所有流量都是
 ## ServicePackage.cspkg
 若要將應用程式部署為 Azure 中的雲端服務，您必須先使用適當的格式封裝應用程式。您可以使用 **CSPack** 命令列工具 (隨 [Azure SDK](https://azure.microsoft.com/downloads/) 安裝) 做為 Visual Studio 的替代方案，以建立封裝檔案。
 
-**CSPack** 會使用服務定義檔和服務組態檔的內容，定義封裝的內容。**CSPack** 會產生應用程式封裝檔案 (.cspkg)，您可以使用 [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md/#create-and-deploy)，將其上傳至 Azure。根據預設，封裝的名稱為 `[ServiceDefinitionFileName].cspkg`，但是您可以使用 **CSPack** 的 `/out` 選項指定不同的名稱。
+**CSPack** 會使用服務定義檔和服務組態檔的內容，定義封裝的內容。**CSPack** 會產生應用程式封裝檔案 (.cspkg)，您可以使用 [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md#create-and-deploy)，將其上傳至 Azure。根據預設，封裝的名稱為 `[ServiceDefinitionFileName].cspkg`，但是您可以使用 **CSPack** 的 `/out` 選項指定不同的名稱。
 
 **CSPack** 通常位於 `C:\Program Files\Microsoft SDKs\Azure\.NET SDK[sdk-version]\bin`
 
@@ -267,4 +267,4 @@ CSPack.exe (在 Windows 上) 可以透過執行隨 SDK 一起安裝的 **Microso
 [vs_reconfigure]: ../vs-azure-tools-configure-roles-for-cloud-service.md
 [vs_create]: ../vs-azure-tools-azure-project-create.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

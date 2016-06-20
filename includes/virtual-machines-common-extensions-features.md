@@ -45,7 +45,7 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 |**McAfeeEndpointSecurity**|保護您的 VM 防禦惡意軟體。|[McAfee](https://www.mcafeeasap.com/MarketingContent/default.aspx)|
 |**TrendMicroDSA**|可讓 TrendMicro 的深層安全性平台支援提供入侵偵測和防止、防火牆、反惡意程式碼、Web 信譽、記錄檢查和完整性監視。|[如何在 Azure VM 上安裝和設定 Trend Micro Deep Security as a Service](../articles/virtual-machines/virtual-machines-windows-classic-install-trend.md)|
 |**PortalProtectExtension**|抵禦對您 Microsoft SharePoint 環境的威脅。|[在 Azure 上保護 SharePoint 部署](http://blog.trendmicro.com/securing-sharepoint-deployment-azure/)|
-|**IaaSAntimalware**|Azure 雲端服務和虛擬機器的 Microsoft 反惡意程式碼是一項即時防護功能，能幫助識別及移除病毒、間諜軟體及其他惡意軟體，具有可設定的警示，當已知惡意或垃圾軟體嘗試在您的系統上安裝或執行時發出警示。|[下載反惡意程式碼文件](http://go.microsoft.com/fwlink/?linkid=398023&clcid=0x409)|
+|**IaaSAntimalware**|Azure 雲端服務和虛擬機器的 Microsoft 反惡意程式碼是一項即時防護功能，能幫助識別及移除病毒、間諜軟體及其他惡意軟體，具有可設定的警示，當已知惡意或垃圾軟體嘗試在您的系統上安裝或執行時發出警示。|[適用於 Azure 雲端服務和虛擬機器的反惡意程式碼軟體](../articles/azure-security-antimalware.md)|
 |**SymantecEndpointProtection**|Symantec Endpoint Protection 12.1.4 可跨越實體和虛擬系統達成安全性和效能。|[如何在 Azure VM 上安裝和設定 Symantec Endpoint Protection](../articles/virtual-machines/virtual-machines-windows-classic-install-symantec.md)
 
 ##VM 作業和管理
@@ -78,7 +78,7 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 
 |VM 擴充功能名稱|功能描述|相關資訊|
 |---|---|---|
-|**BGInfo**|呈現使用 RDP 時，桌面上實用伺服器資訊的整合圖形。|[BGInfo 擴充功能](https://msdn.microsoft.com/library/dn606289.aspx)|
+|**BGInfo**|呈現使用 RDP 時，桌面上實用伺服器資訊的整合圖形。|[BGInfo 擴充功能](https://msdn.microsoft.com/library/mt589195.aspx)|
 |**HpcVmDrivers**|在執行 Windows Server 2012 R2 或 Windows Server 2012，且大小為 A8 或 A9 的 VM 上安裝、設定及維護遠端直接記憶體存取 (RDMA) 網路裝置驅動程式。啟用安裝叢集的 A8 或 A9 VM，以便在執行平行 MPI 應用程式時使用 RDMA 網路。|[關於 A8、A9、A10 和 A11 密集運算執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/26/2016"
+	ms.date="05/31/2016"
 	ms.author="hawong"/>
 
 # DocumentDB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
@@ -194,4 +194,4 @@
 - 若要深入了解 Power BI，請按一下 [這裡](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
 - 若要深入了解 DocumentDB，請按一下[這裡](https://azure.microsoft.com/documentation/services/documentdb/)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0608_2016-->

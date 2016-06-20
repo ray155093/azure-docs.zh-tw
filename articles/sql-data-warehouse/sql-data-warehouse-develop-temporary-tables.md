@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
-   ms.author="mausher;jrj;barbkess;sonyama"/>
+   ms.date="06/06/2016"
+   ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲中的暫存資料表
 暫存資料表在處理資料時非常有用 - 尤其是具有暫時性中繼結果的轉換期間。在 SQL 資料倉儲中，暫存資料表存在於工作階段層級。不過，這類資料表仍會定義為本機暫存資料表，但與 SQL Server 資料表不同的是，它們可以從工作階段內的任何位置存取。
@@ -248,10 +248,10 @@ SQL 資料倉儲在實作暫存資料表時的確有一些限制。
 <!--Image references-->
 
 <!--Article references-->
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[開發概觀]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

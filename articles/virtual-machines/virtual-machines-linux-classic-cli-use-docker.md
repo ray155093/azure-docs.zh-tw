@@ -23,11 +23,11 @@
 
 
 
-本主題說明如何透過 Azure CLI 中的服務管理 (asm) 模式，在任何平台上建立包含 Docker VM 延伸模組的 VM。[Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 [Linux 容器](http://en.wikipedia.org/wiki/LXC)作為在共用資源上獨立資料和執行計算的方法。您可以將 Docker VM 擴充程式應用在 [Azure Linux 代理程式](virtual-machines-linux-agent-user-guide.md)上，如此可在 Azure 上建立 Docker VM 來託管任何數量的應用程式容器。若要查看容器及其優點的高層級討論，請參閱 [Docker 高層級白板](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard) (英文)。
+本主題說明如何透過 Azure CLI 中的服務管理 (asm) 模式，在任何平台上建立包含 Docker VM 延伸模組的 VM。[Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 [Linux 容器](http://en.wikipedia.org/wiki/LXC)作為在共用資源上獨立資料和執行計算的方法。您可以使用 Docker VM 擴充功能和 [Azure Linux 代理程式](virtual-machines-linux-agent-user-guide.md)，在 Azure 上建立 Docker VM 來裝載任何數目的應用程式容器。若要查看容器及其優點的高層級討論，請參閱 [Docker 高層級白板](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard) (英文)。
 
 
 ##如何搭配使用 Docker VM 擴充程式與 Azure
-若要將 Docker VM 延伸模組與 Azure 搭配使用，您必須安裝 0.8.6 版本以上的 [Azure 命令列介面](https://github.com/Azure/azure-sdk-tools-xplat) (Azure CLI) (本文截稿當時的最新版本為 0.8.10)。您可以在 Mac、Linux 及 Windows 上安裝 Azure CLI。
+若要將 Docker VM 擴充功能與 Azure 搭配使用，您必須安裝 0.8.6 版本以上的 [Azure 命令列介面](https://github.com/Azure/azure-sdk-tools-xplat) (Azure CLI) (本文截稿當時的最新版本為 0.10.0)。您可以在 Mac、Linux 及 Windows 上安裝 Azure CLI。
 
 
 在 Azure 上使用 Docker 的完整程序相當簡單：
@@ -41,7 +41,7 @@
 
 若要安裝和設定 Azure CLI，請參閱[如何安裝 Azure 命令列介面](../xplat-cli-install.md)。若要確認安裝狀況，請在命令提示字元中輸入 `azure`，您應該很快就能看到 Azure CLI ASCII 作品，其中會列出您可以使用的基本命令。如果安裝正確執行，您應該可以輸入 `azure help vm` 並且可以看到列出的其中一個命令是 "docker"。
 
-> [AZURE.NOTE] Docker 具備適用於 Windows 的安裝程式 [Boot2Docker](https://docs.docker.com/installation/windows/)，您也可以使用該安裝程式，自動建立您可以使用的 docker 用戶端，以便搭配做為 docker 主機的 Azure VM 使用。
+> [AZURE.NOTE] Docker 具有適用於 Windows 的工具 [Docker Machine](https://docs.docker.com/installation/windows/)，您也可以使用這些工具來自動建立 Docker 用戶端，以便用來與做為 Docker 主機的 Azure VM 搭配運作。
 
 ### 將 Azure CLI 連接至您的 Azure 帳戶
 在使用 Azure CLI 前，必須讓您的 Azure 帳戶認證與您平台上的 Azure CLI 產生關聯。[如何連接到您的 Azure 訂用帳戶](../xplat-cli-connect.md)一節說明如何下載及匯入您的 **.publishsettings** 檔案，或為 Azure CLI 與組織識別碼建立關聯。
@@ -63,10 +63,10 @@
 
 `azure vm image list | grep Ubuntu-14_04`
 
-並選取其中一個映像名稱 (例如 `b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-zh-TW-30GB`)，然後使用下列命令建立使用該映像的新 VM。
+並選取其中一個映像名稱 (例如 `b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160516-zh-TW-30GB`)，然後使用下列命令建立使用該映像的新 VM。
 
 ```
-azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04-LTS-amd64-server-20140724-zh-TW-30GB" <username> <password>
+azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160516-zh-TW-30GB" <username> <password>
 ```
 
 其中：
@@ -173,4 +173,4 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
 [Docker 使用者指南]: https://docs.docker.com/userguide/
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

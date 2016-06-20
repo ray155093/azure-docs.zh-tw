@@ -1,6 +1,6 @@
 
 <properties
-   pageTitle="使用 SSMS 將 SQL Server Database 匯出到 BACPAC 檔案"
+   pageTitle="使用 SQL Server Management Studio 將 SQL Server 資料庫匯出到 BACPAC 檔案 | Microsoft Azure"
    description="Microsoft Azure SQL Database, 資料庫移轉, 匯出資料庫, 匯出 BACPAC 檔案, 匯出資料層應用程式精靈"
    services="sql-database"
    documentationCenter=""
@@ -17,7 +17,7 @@
    ms.date="05/31/2016"
    ms.author="carlrab"/>
 
-# 使用 SSMS 將 SQL Server Database 匯出到 BACPAC 檔案
+# 使用 SQL Server Management Studio 將 SQL Server 資料庫匯出到 BACPAC 檔案
 
 > [AZURE.SELECTOR]
 - [SSMS](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
@@ -60,4 +60,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -89,7 +89,7 @@ Microsoft Azure SQL Database 提供資料庫即服務，可讓應用程式快速
 >[AZURE.NOTE]Azure SQL Database 不提供與 SQL Server 的 1 對 1 功能對應，其目的是要滿足一組唯一適用於雲端應用程式的不同需求 (彈性調整、資料庫即服務以降低維護成本等等)。如需詳細資訊，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/data-management-azure-sql-database-and-sql-server-iaas.md)。
 
 ####複寫
-Azure SQL Database 針對節點層級失敗提供內建的復原功能。所有對資料庫的寫入，都會使用仲裁認可技術自動複寫到兩個以上的背景節點中 (主要節點和至少一個次要節點必須先確認活動已寫入交易記錄內，交易才會被視為成功並傳回)。萬一發生節點失敗，資料庫會自動容錯移轉至其中一個次要複本。這會導致用戶端應用程式暫時中斷連線。有鑑於此，所有 Microsoft Azure SQL Database 用戶端都必須實作某種形式的暫時性連線處理。如需詳細資訊，請參閱[將暫時性錯誤處理應用程式區塊搭配 SQL Azure 使用](https://msdn.microsoft.com/library/hh680899.aspx)。
+Azure SQL Database 針對節點層級失敗提供內建的復原功能。所有對資料庫的寫入，都會使用仲裁認可技術自動複寫到兩個以上的背景節點中 (主要節點和至少一個次要節點必須先確認活動已寫入交易記錄內，交易才會被視為成功並傳回)。萬一發生節點失敗，資料庫會自動容錯移轉至其中一個次要複本。這會導致用戶端應用程式暫時中斷連線。有鑑於此，所有 Microsoft Azure SQL Database 用戶端都必須實作某種形式的暫時性連線處理。如需詳細資訊，請參閱[重試服務的特定指引](../best-practices-retry-service-specific.md)。
 
 ####資源管理
 每個資料庫在建立時都會設定大小上限。目前提供的大小上限為 150 GB。當資料庫達到大小上限，就會拒絕其他 INSERT 或 UPDATE 命令 (但仍可查詢和刪除資料)。
@@ -177,4 +177,4 @@ Azure 行動服務有兩個可用性考量。首先，定期備份與行動服�
 ##後續步驟
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇著重於[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

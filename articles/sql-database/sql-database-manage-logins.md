@@ -1,5 +1,5 @@
 <properties
-   pageTitle="SQL Database 安全性管理 - 登入安全性 | Microsoft Azure"
+   pageTitle="SQL Database 驗證和授權：授與存取 | Microsoft Azure"
    description="深入了解 SQL Database 安全性管理，特別是如何透過伺服器層級主體帳戶管理資料庫存取與登入安全性。"
    keywords="sql 資料庫安全性, 資料庫安全性管理, 登入安全性, 資料庫安全性, 資料庫存取權"
    services="sql-database"
@@ -15,165 +15,146 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/12/2016"
+   ms.date="06/06/2016"
    ms.author="rickbyh"/>
 
-# SQL Database 安全性：管理資料庫存取與登入安全性  
+# SQL Database 驗證和授權：授與存取 
 
-深入了解 SQL Database 安全性管理，特別是如何透過伺服器層級主體帳戶管理資料庫存取與登入安全性。了解一些 SQL Database 與內部部署 SQL Server 登入安全性選項之間的異同。如需快速教學課程，請參閱 [Azure SQL Database 教學課程︰開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md)。
 
-## 資料庫佈建和伺服器層級主體登入
+> [AZURE.SELECTOR]
+- [開始使用安全性](sql-database-get-started-security.md)
+- [授與存取權](sql-database-manage-logins.md)
 
-在 Microsoft Azure SQL Database 中，當您登入服務時，佈建程序會建立 Azure SQL Database 伺服器、名為 **master** 的資料庫，以及 Azure SQL Database 伺服器之伺服器層級主體的登入。該登入類似於 SQL Server 內部部署執行個體的伺服器層級主體 (**sa**)。本主題所描述的概念也適用於 Azure SQL 資料倉儲。
 
-Azure SQL Database 伺服器層級主體帳戶一律擁有管理所有伺服器層級和資料庫層級安全性的權限。本主題描述如何使用伺服器層級主體和其他帳戶來管理 SQL Database 的登入和資料庫。
+從這裡開始系統管理員、非系統管理員和角色的 SQL Database 存取概念。
 
-透過 Azure 角色型存取控制 (RBAC) 及 Azure Resource Manager REST API 來存取 SQL Database 的 Azure 使用者，會接收來自自己 Azure 角色的權限。這些角色提供管理平面作業但不是資料平面作業的存取權。這些管理平面作業包括可在 SQL 資料庫中讀取各種屬性和結構描述元素的能力。同時允許建立、刪除及設定某些與 SQL Database 相關的伺服器層級功能。其中許多管理平面作業都是您在使用 Azure 入口網站時可以看到並設定的項目。使用 RBAC 角色時，資料庫內 Azure 角色成員的動作 (例如列出資料表) 是 Database Engine 針對它們執行的，以便它們不受 GRANT/REVOKE/DENY 陳述式的標準 SQL Server 權限系統影響。RBAC 角色不包括讀取或變更資料的能力，因為這些是資料平面作業。如需詳細資訊，請參閱 [RBAC：內建角色](../active-directory/role-based-access-built-in-roles.md)。
+## 不受限制的系統管理帳戶
 
-> [AZURE.IMPORTANT] SQL Database V12 可讓使用者使用自主資料庫使用者在資料庫進行驗證。自主資料庫使用者不需要登入。這可讓資料庫更具可攜性，但會降低伺服器層級主體控制資料庫存取權的能力。啟用自主資料庫使用者會有重大的安全性影響。如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)、[自主資料庫](https://technet.microsoft.com/library/ff929071.aspx)、[CREATE USER (Transact-SQL)](https://technet.microsoft.com/library/ms173463.aspx) 和[使用 Azure Active Directory 驗證連線到 SQL Database](sql-database-aad-authentication.md)。
+有兩個可能的系統管理帳戶具有不受限制的權限，可以存取虛擬 master 資料庫和所有使用者資料庫。這些帳戶稱為伺服器層級主體帳戶。
 
-## SQL Database 安全性管理的概觀
+### Azure SQL Database 訂戶帳戶 
 
-SQL Database 安全性管理與 SQL Server 內部部署執行個體的安全性管理類似。管理資料庫層級的安全性幾乎一模一樣，差別只在於使用的參數。由於 SQL Databases 可以擴充至一或多部實體電腦，因此 Azure SQL Database 會針對伺服器層級管理使用不同的策略。下表摘要說明內部部署 SQL Server 與 Azure SQL Database 的資料庫安全性管理有何不同。
+建立名為 SQL Database 訂戶帳戶的邏輯 SQL 執行個體時，會建立單一登入帳戶。此帳戶會使用 SQL Server 驗證 (使用者名稱和密碼) 連接。此帳戶是邏輯伺服器執行個體和附加至該執行個體之所有使用者資料庫的系統管理員。無法限制訂戶帳戶的權限。只有其中一個帳戶可以存在。
 
-| 不同之處 | 內部部署 SQL Server | Azure SQL Database |
-|------------------------------------------------|-----------------------------------------------------------------------------|--------------------------------------------------|
-| 管理伺服器層級安全性的地方 | SQL Server Management Studio [物件總管] 中的 [安全性] 資料夾 | **master** 資料庫以及透過 Azure 入口網站 |
-| Windows 驗證 | Active Directory 識別 | Azure Active Directory 識別 |
-| 建立登入的伺服器層級安全性角色 | **securityadmin** 固定伺服器角色 | **master** 資料庫中的 **loginmanager** 資料庫角色 |
-| 管理登入的命令 | CREATE LOGIN、ALTER LOGIN、DROP LOGIN | CREATE LOGIN、ALTER LOGIN、DROP LOGIN (有一些參數限制，而且您必須連接到 **master** 資料庫。) |
-| 顯示所有登入的檢視 | sys.server\_principals | sys.sql\_logins (您必須連接到 **master** 資料庫。)|
-| 建立資料庫的伺服器層級角色 | **dbcreator** 固定資料庫角色 | **master** 資料庫中的 **dbmanager** 資料庫角色 |
-| 建立資料庫的命令 | CREATE DATABASE | CREATE DATABASE (有一些參數限制，而且您必須連接到 **master** 資料庫。) |
-| 列出所有資料庫的檢視 | sys.databases | sys.databases (您必須連接到 **master** 資料庫。) |
+### Azure Active Directory 系統管理員
+一個 Azure Active Directory 帳戶也可以設定為系統管理員。此帳戶可以是個別的 Azure AD 使用者，或可以是包含數個 Azure AD 使用者的 Azure AD 群組。選擇性地設定 Azure AD 系統管理員，但是如果您想要使用 Azure AD 帳戶的 Windows 驗證來連接到 SQL Database，則必須設定 Azure AD 系統管理員。如需設定 Azure Active Directory 存取的詳細資訊，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](sql-database-aad-authentication.md)。
 
-## 伺服器層級管理和 master 資料庫
+### 設定防火牆
+當設定伺服器層級防火牆時，Azure SQL Database 訂戶帳戶和 Azure Active Directory 帳戶能夠連接到虛擬 master 資料庫和所有使用者資料庫。伺服器層級防火牆可以透過入口網站來設定。一旦建立連接，其他伺服器層級防火牆規則也可以藉由使用 [sp\_set\_firewall\_rule](https://msdn.microsoft.com/library/dn270017.aspx) Transact-SQL 陳述式來設定。如需設定防火牆的詳細資訊，請參閱 [如何：使用 Azure 入口網站設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)。
 
-Azure SQL Database 伺服器是定義資料庫群組的抽象概念。與 Azure SQL Database 伺服器相關聯的資料庫可能位於 Microsoft 資料中心的不同實體電腦上。使用名為 **master** 的單一資料庫針對所有資料庫執行伺服器層級管理。
+### 系統管理員存取路徑
 
-**master** 資料庫會持續追蹤登入，以及哪些登入具有可建立資料庫或其他登入的權限。無論您要建立、更改或卸除登入或資料庫，都必須連接到 **master** 資料庫。**master** 資料庫也有 ``sys.sql_logins`` 和 ``sys.databases`` 檢視，可讓您用來檢視登入和資料庫。
+伺服器層級防火牆設定正確時，SQL Database 訂戶帳戶和 Azure Active Directory SQL Server 系統管理員可以使用用戶端工具 (例如 SQL Server Management Studio 或 SQL Server Data Tools) 來連接。只有最新的工具會提供所有的功能。下圖顯示兩個系統管理員帳戶的一般組態。![系統管理員存取路徑](./media/sql-database-manage-logins/1sql-db-administrator-access.png)
 
-> [AZURE.NOTE] ``USE`` 命令不支援在資料庫之間進行切換。建立直接連到目標資料庫的連接。
+在伺服器層級防火牆中使用開啟的連接埠時，系統管理員可以連接到任何 SQL Database。
 
-您可以透過您在 SQL Server 內部部署執行個體所使用的相同方式，來管理 Azure SQL Database 中的使用者和物件的資料庫層級安全性。差別只在於相對應的命令所使用的參數。如需詳細資訊，請參閱 [Azure SQL Database 安全性方針和限制](sql-database-security-guidelines.md)。
+### 使用 SQL Server Management Studio 連接到資料庫
+如需使用 SQL Server Management Studio 連接的逐步解說，請參閱 [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
 
-## 管理自主資料庫使用者
 
-藉由利用伺服器層級主體連接至資料庫，在資料庫中建立第一個自主資料庫使用者。使用 ``CREATE USER``、``ALTER USER`` 或 ``DROP USER`` 陳述式。下列範例會建立名為 user1 的使用者。
+## 其他的特殊帳戶
+SQL Database 在虛擬 master 資料庫中提供兩個限制的系統管理角色，可以將使用者帳戶新增至該資料庫。
 
-```
-CREATE USER user1 WITH password='<Strong_Password>';
-```
+### 資料庫建立者
+系統管理帳戶可以建立新的資料庫。若要建立可以建立資料庫的其他帳戶，您必須在 master 中建立使用者，並且將使用者新增至特殊的 **dbmanager** 資料庫角色。使用者可以是自主資料庫使用者，或依據虛擬 master 資料庫中的 SQL Server 登入的使用者。
 
-> [AZURE.NOTE] 建立自主資料庫使用者時必須使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
+1.	使用系統管理員帳戶，連接至虛擬 master 資料庫。
+2.	選擇性步驟︰建立 SQL Server 驗證登入，使用 [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) 陳述式。範例陳述式︰
 
-任何具有 **ALTER ANY USER** 權限的使用者都可以建立其他自主資料庫使用者。
+     ```
+     CREATE LOGIN Mary WITH PASSWORD = '<strong_password>';
+     ```
 
-SQL Database V12 支援將 Azure Active Directory 識別為自主資料庫使用者 (預覽版功能)。如需詳細資訊，請參閱[使用 Azure Active Directory 驗證連接到 SQL Database](sql-database-aad-authentication.md)。
+     > [AZURE.NOTE] 建立登入或自主資料庫使用者時必須使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
 
-Microsoft 建議使用自主資料庫使用者搭配 SQL Database。如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
+3.	在虛擬 master 資料庫中，藉由使用 [CREATE USER](https://msdn.microsoft.com/library/ms173463.aspx) 陳述式來建立使用者。使用者可以是 Azure Active Directory 驗證自主資料庫使用者 (如果您已針對 Azure AD 驗證設定您的環境)，或 SQL Server 驗證自主資料庫使用者，或根據 SQL Server 驗證登入 (在上一個步驟中建立) 的 SQL Server 驗證使用者。 範例陳述式︰
 
-## 管理登入
+     ```
+     CREATE USER [mike@contoso.com] FROM EXTERNAL PROVIDER;
+     CREATE USER Tran WITH PASSWORD = '<strong_password>';
+     CREATE USER Mary FROM LOGIN Mary; 
+     ```
 
-藉由連接到 master 資料庫，管理以伺服器層級主體登入的登入。您可以使用 ``CREATE LOGIN``、``ALTER LOGIN`` 或 ``DROP LOGIN`` 陳述式。下列範例會建立名為 **login1** 的登入：
+4.	將新的使用者新增至 **dbmanager** 資料庫角色，方法是使用 [ALTER ROLE](https://msdn.microsoft.com/library/ms189775.aspx) 陳述式。範例陳述式︰
 
-```
--- first, connect to the master database
-CREATE LOGIN login1 WITH password='<ProvidePassword>';
-```
+     ```
+     ALTER ROLE dbmanager ADD MEMBER Mary; 
+     ALTER ROLE dbmanager ADD MEMBER [mike@contoso.com];
+     ```
 
-> [AZURE.NOTE] 建立登入時必須使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
+     > [AZURE.NOTE] dbmanager 是虛擬 master 資料庫中的資料庫角色，因此您只可以將使用者新增至 dbmanager 角色。您無法將伺服器層級登入新增至資料庫層級角色。
 
-#### 使用新的登入
+5.	必要時，設定伺服器層級防火牆以允許新的使用者連接。
 
-若要使用您所建立的登入連接到 Microsoft Azure SQL Database，您必須先使用 ``CREATE USER`` 命令授與每個登入資料庫層級權限。如需詳細資訊，請參閱下面**授與登入資料庫存取權**一節。
+現在使用者可以連接至虛擬 master 資料庫，而且可以建立新的資料庫。建立資料庫的帳戶會成為資料庫的擁有者。
 
-由於部分工具以不同的方式實作表格式資料流 (TDS)，您可能需要以 ``<login>@<server>`` 標記法，將 Azure SQL Database 伺服器名稱附加至登入中的連接字串。在這些案例中，請使用 ``@`` 符號分隔登入和 Azure SQL Database 伺服器名稱。例如，如果您的登入名為 **login1** 且 Azure SQL Database 伺服器的完整的名稱是 **servername.database.windows.net**，則您的連接字串使用者名稱參數應該是：****login1@servername**。這項限制會限制您針對登入名稱可選用的文字。如需詳細資訊，請參閱 [CREATE LOGIN (Transact-SQL)](https://msdn.microsoft.com/library/ms189751.aspx)。
+### 登入管理員
 
-## 授與登入伺服器層級權限
+如果您希望，您可以完成相同的步驟 (建立登入和使用者，並將使用者新增至 **loginmanager** 角色)，讓使用者在虛擬 master 中建立新的登入。在大部分情況下不需要，因為 Microsoft 建議使用自主資料庫使用者，在資料庫層級驗證，而不是使用根據登入的使用者。如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
 
-若要讓伺服器層級主體以外的登入來管理伺服器層級安全性，Azure SQL Database 提供兩個安全性角色：用來建立登入的 **loginmanager** 和用來建立資料庫的 **dbmanager**。只有 **master** 資料庫中的使用者可以加入至這些資料庫角色。
+## 非系統管理員的使用者
 
-> [AZURE.NOTE] 若要建立登入或資料庫，您必須連接到 **master** 資料庫 (即 **master** 的邏輯表示法)。
+一般而言，非系統管理員帳戶不需要虛擬 master 資料庫的存取權。使用 [CREATE USER (Transact-SQL)](https://msdn.microsoft.com/library/ms173463.aspx) 陳述式，在資料庫層級建立自主資料庫使用者。使用者可以是 Azure Active Directory 驗證自主資料庫使用者 (如果您已針對 Azure AD 驗證設定您的環境)，或 SQL Server 驗證自主資料庫使用者，或根據 SQL Server 驗證登入 (在上一個步驟中建立) 的 SQL Server 驗證使用者。 如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
 
-### loginmanager 角色
-
-就像 SQL Server 內部部署執行個體的 **securityadmin** 固定伺服器角色一樣，Azure SQL Database 中的 **loginmanager** 資料庫角色具有建立登入的權限。只有伺服器層級主體登入 (透過佈建程序所建立) 或 **loginmanager** 資料庫角色的成員可以建立新的登入。
-
-### dbmanager 角色
-
-Azure SQL Database 的 **dbmanager** 資料庫角色類似 SQL Server 內部部署執行個體的 **dbcreator** 固定伺服器角色。只有伺服器層級主體登入 (透過佈建程序所建立) 或 **dbmanager** 資料庫角色的成員可以建立資料庫。只要使用者是 **dbmanager** 資料庫角色的成員，就可以使用 Azure SQL Database ``CREATE DATABASE`` 命令建立資料庫，但該命令必須在 master 資料庫中執行。如需詳細資訊，請參閱 [CREATE DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/dn268335.aspx)。
-
-### 如何指派 SQL Database 伺服器層級角色
-
-若要建立能夠建立資料庫或其他登入的登入及相關聯使用者，請執行下列步驟：
-
-1. 使用伺服器層級主體登入 (透過佈建程序所建立)，或使用 **loginmanager** 資料庫角色現有成員的認證，連接到 **master** 資料庫。
-2. 使用 ``CREATE LOGIN`` 命令建立登入。如需詳細資訊，請參閱 [CREATE LOGIN (Transact-SQL)](https://msdn.microsoft.com/library/ms189751.aspx)。
-3. 使用 ``CREATE USER`` 命令在 master 資料庫中為該登入建立新的使用者。如需詳細資訊，請參閱 [CREATE USER (Transact-SQL)](https://msdn.microsoft.com/library/ms173463.aspx)。
-4. 使用預存程序 ``sp_addrolememeber`` 將新使用者加入 **dbmanager** 資料庫角色、loginmanager 資料庫角色或兩者。
-
-下列程式碼範例示範如何建立名為 **login1** 的登入，和名為 **login1User** 的相對應資料庫使用者，此使用者在連接到 **master** 資料庫時能夠建立資料庫或其他登入：
+若要建立使用者，連接到資料庫，並執行類似下面的陳述式︰
 
 ```
--- first, connect to the master database
-CREATE LOGIN login1 WITH password='<ProvidePassword>';
-CREATE USER login1User FROM LOGIN login1;
-EXEC sp_addrolemember 'dbmanager', 'login1User';
-EXEC sp_addrolemember 'loginmanager', 'login1User';
+CREATE USER Mary FROM LOGIN Mary; 
+CREATE USER [mike@contoso.com] FROM EXTERNAL PROVIDER;
 ```
 
-> [AZURE.NOTE] 建立登入時必須使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
-
-## 授與登入資料庫存取權
-
-所有登入都必須在 **master** 資料庫中建立。建立登入之後，您可以在另一個資料庫中為該登入建立使用者帳戶。Azure SQL Database 也會以 SQL Server 內部部署執行個體的相同方式，支援資料庫角色。
-
-假設您尚未建立登入或資料庫，請執行下列步驟以便在另一個資料庫建立使用者帳戶：
-
-1. 連接到 **master** 資料庫 (使用具有 **loginmanager** 和 **dbmanager** 角色的登入)。
-2. 使用 ``CREATE LOGIN`` 命令建立新的登入。如需詳細資訊，請參閱 [CREATE LOGIN (Transact-SQL)](https://msdn.microsoft.com/library/ms189751.aspx)。不支援 Windows 驗證。
-3. 使用 ``CREATE DATABASE`` 命令建立新的資料庫。如需詳細資訊，請參閱 [CREATE DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/dn268335.aspx)。
-4. 建立新資料庫的連接 (使用建立資料庫的登入)。
-5. 使用 ``CREATE USER`` 命令在新的資料庫上建立新使用者。如需詳細資訊，請參閱 [CREATE USER (Transact-SQL)](https://msdn.microsoft.com/library/ms173463.aspx)。
-
-下列程式碼範例示範如何建立名為 **login1** 的登入和名為 **database1** 的資料庫：
+一開始，只有其中一個系統管理員或資料庫擁有者可以建立使用者。若要授權讓其他使用者建立新的使用者，授與該選取的使用者 `ALTER ANY USER` 權限，例如使用下列陳述式︰
 
 ```
--- first, connect to the master database
-CREATE LOGIN login1 WITH password='<ProvidePassword>';
-CREATE DATABASE database1;
+GRANT ALTER ANY USER TO Mary;
 ```
 
-> [AZURE.NOTE] 建立登入時必須使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
+若要將資料庫的完整控制權給予其他使用者，使用 `ALTER ROLE` 陳述式，讓他們成為 **db\_owner** 固定資料庫角色的成員。
 
-下一個範例示範如何在對應至登入 **login1** 的 **database1** 資料庫中，建立名為 **login1User** 的資料庫使用者。若要執行下列範例，您必須先建立對 database1 的新連線，使用有該資料庫**改變任何使用者**的權限登入。任何以 **db\_owner** 角色成員身分連線的使用者，都會有該權限，例如建立資料庫的登入。
+> [AZURE.NOTE] 根據登入建立資料庫使用者的主要原因，是當您有需要多個資料庫存取權的 SQL Server 驗證使用者時。根據登入的使用者會繫結至登入，只會針對該登入維護一個密碼。在個別資料庫中的自主資料庫使用者是個別的實體，而且各個都會維護它自己的密碼。如果它們不會維護各自的密碼相同，會造成自主資料庫使用者的混淆。
 
-```
--- Establish a new connection to the database1 database
-CREATE USER login1User FROM LOGIN login1;
-```
+### 設定資料庫層級防火牆規則
 
-Azure SQL Database 中的這個資料庫層級權限模型，與 SQL Server 內部部署執行個體上的相同。如需相關資訊，請參閱《SQL Server Books 線上叢書》參考中的下列主題。
+最佳做法，非系統管理員的使用者應該只有透過防火牆擁有所使用的資料庫的存取權。不是透過伺服器層級防火牆授權其 IP 位址，然後讓他們存取所有資料庫，而是使用 [sp\_set\_database\_firewall\_rule](https://msdn.microsoft.com/library/dn270010.aspx) 陳述式來設定資料庫層級防火牆。無法藉由使用入口網站設定資料庫層級防火牆。
 
-- [管理登入、使用者和結構描述的使用說明主題](https://msdn.microsoft.com/library/aa337552.aspx)
-- [第 2 課：在資料庫物件上設定權限](https://msdn.microsoft.com/library/ms365345.aspx)
+### 非系統管理員存取路徑
 
-> [AZURE.NOTE] Azure SQL Database 中與安全性相關的 Transact-SQL 陳述式，可能與所提供的參數稍有不同。如需詳細資訊，請參閱線上叢書特定陳述式的語法。
+當資料庫層級防火牆設定正確時，資料庫使用者可以使用如 SQL Server Management Studio 或 SQL Server Data Tools 之類的用戶端工具來連接。只有最新的工具會提供所有的功能。下圖顯示一般非系統管理員存取路徑。![非系統管理員存取路徑](./media/sql-database-manage-logins/2sql-db-nonadmin-access.png)
+ 
+## 群組和角色
+有效率存取管理會使用指派給群組和角色的權限，而不是指派給個別使用者的權限。例如，當使用 Azure Active Directory 驗證時：
 
-## 檢視登入和資料庫
+- 將 Azure Active Directory 使用者放入 Azure Active Directory 群組。建立群組的自主資料庫使用者。將一或多個資料庫使用者放入資料庫角色。然後將權限指派給資料庫角色。
+
+當使用 SQL Server 驗證時：
+
+- 在資料庫中建立自主資料庫使用者。將一或多個資料庫使用者放入資料庫角色。然後將權限指派給資料庫角色。
+
+資料庫角色可以是內建的角色，例如 **db\_owner**、**db\_ddladmin**、**db\_datawriter**、**db\_datareader**、**db\_denydatawriter** 和 **db\_denydatareader**。**db\_owner** 通常用來授與完整的權限給少數的使用者。其他固定的資料庫角色適用於快速在開發過程中取得簡單的資料庫，但不建議用於大部分的實際執行資料庫。例如，**db\_datareader** 固定的資料庫角色授與讀取存取權給資料庫中的每個資料表，通常並非絕對必要。最好是使用 [CREATE ROLE](https://msdn.microsoft.com/library/ms187936.aspx) 陳述式來建立您自己的使用者定義資料庫角色，並仔細授與每個角色對於商務需求所需的最小權限。當使用者是多個角色的成員時，它們會彙總所有的權限。
+
+## 權限
+
+有超過 100 個權限可在 SQL Database 中分別授與或拒絕。這些權限有許多為巢狀。例如，結構描述上的 `UPDATE` 權限包括該結構描述中每個資料表的 `UPDATE` 權限。如同大多數的權限系統，拒絕權限會覆寫授與權限。因為權限的巢狀本質和數目，可能需要仔細研究，設計適當的權限系統以便適當地保護您的資料庫。從[權限 (資料庫引擎)](https://msdn.microsoft.com/library/ms191291.aspx) 的權限清單開始，並且檢閱權限的[海報大小圖形](http://go.microsoft.com/fwlink/?LinkId=229142)。
 
 
-若要檢視您的 Azure SQL Database 伺服器的登入和資料庫，請分別使用 master 資料庫的 ``sys.sql_logins`` 和 ``sys.databases`` 檢視。下列範例示範如何在 Azure SQL Database 伺服器上顯示所有登入和資料庫的清單。
+### 詳細資訊
 
-```
--- first, connect to the master database
-SELECT * FROM sys.sql_logins;
-SELECT * FROM sys.databases;
-```
+[保護您的 SQL Database](sql-database-security.md)
 
-## 另請參閱
+[SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
 
-[Azure SQL Database 教學課程︰開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md) [Azure SQL Database 安全性方針和限制](sql-database-security-guidelines.md) [使用 Azure Active Directory 驗證連接到 SQL Database](sql-database-aad-authentication.md)
+## 後續步驟
 
-<!---HONumber=AcomDC_0518_2016-->
+[保護您的 SQL Database](sql-database-security.md)
+
+[建立資料表 (教學課程)](https://msdn.microsoft.com/library/ms365315.aspx)
+
+[在資料表中插入和更新資料 (教學課程)](https://msdn.microsoft.com/library/ms365309.aspx)
+
+[在資料表中讀取資料 (教學課程)](https://msdn.microsoft.com/library/ms365310.aspx)
+
+[建立檢視和預存程序](https://msdn.microsoft.com/library/ms365311.aspx)
+
+[授與資料庫物件的存取權](https://msdn.microsoft.com/library/ms365327.aspx)
+
+<!---HONumber=AcomDC_0608_2016-->

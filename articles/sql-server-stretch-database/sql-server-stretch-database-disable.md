@@ -24,9 +24,9 @@
 
 -   [停用 | 將資料留在 Azure]。停用資料表的 Stretch Database。放棄 Azure 中的資料表遠端資料。
 
-當您停用資料表的 Stretch Database 之後，資料移轉將會停止，而查詢結果將不再包含來自遠端資料表的結果。
-
 您也可以使用 Transact-SQL 以停用資料表或資料庫的 Stretch Database。
+
+當您停用資料表的 Stretch Database 之後，資料移轉將會停止，而查詢結果將不再包含來自遠端資料表的結果。
 
 如果您只是想要暫停資料移轉，請參閱 [Pause and resume data migration (暫停和繼續 Stretch Database)](sql-server-stretch-database-pause.md)。
 
@@ -98,4 +98,4 @@ ALTER DATABASE <database name>
 
 [Pause and resume Stretch Database (暫停和繼續 Stretch Database)](sql-server-stretch-database-pause.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -18,8 +18,6 @@
 # 使用 Application Insights 監視 SharePoint 網站
 
 
-[AZURE.INCLUDE [app-insights-selector-get-started](../../includes/app-insights-selector-get-started.md)]
-
 Visual Studio Application Insights 會監視應用程式的可用性、效能和使用情形。您將在這裡深入了解如何針對 SharePoint 網站進行設定。
 
 
@@ -175,4 +173,4 @@ function onRequestFail(sender, args) {
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

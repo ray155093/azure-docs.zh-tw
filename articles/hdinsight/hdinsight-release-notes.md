@@ -14,11 +14,28 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/13/2016"
+	ms.date="06/06/2016"
 	ms.author="nitinme"/>
 
 
 # Azure HDInsight 上 Hadoop 元件的版本資訊
+
+## HDInsight 2016/06/06 版本的注意事項
+
+使用此版本部署的 HDInsight 叢集的完整版本號碼：
+
+|HDP |HDI 版本 |Spark 版本 |Ambari 組建編號 |HDP 組建編號|
+|-------|---------------|---------------|-----------------------|----------------|
+|2\.3 |3\.3.1000.0.7702215|	1\.5.2|	2\.2.1.8-2|	2\.3.3.1-18|
+|2\.4 |3\.4.1000.0.7702224|	1\.6.1|	2\.2.1.8-2|	2\.4.2.0|
+
+
+此版本包含下列更新。
+
+| 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
+|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
+| HDInsight 上的 Spark 已正式推出 | 此版本會針對 HDInsight 上 Apache Spark 的開放原始碼提供改良的可用性、延展性和產能。<ul><li>業界領先的 99.9% 可用性 SLA，讓它適合用於龐大的企業工作負載。</li><li>使用 Azure Data Lake Store 的可調整儲存層。</li><li>適用於每個資料探索和開發階段的產能工具。含自訂 Spark 核心的 Jupyter 筆記本會啟用互動式資料探索、與 BI 儀表板 (例如 Power BI、Tableau 及 Qlik) 整合非常適合快速共用資料共用和連續報告、IntelliJ 外掛程式是適用於長期程式碼構件開發和偵錯的可靠方式。</li></ul>| 服務 | Spark| N/A|
+| HDInsight Tools for IntelliJ | 這是適用於 HDInsight Spark 叢集的 IntelliJ IDEA 外掛程式。它會啟用下列功能。<ul><li>在 Scala 和 Java 中，利用對於 IntelliSense、自動格式化、錯誤檢查等絕佳撰寫支援，輕鬆地建立和編寫 Spark 應用程式。</li><li>在本機測試 Spark 應用程式。</li><li>將作業提交至 HDInsight Spark 叢集，並擷取結果。</li><li>登入 Azure，並存取與您的 Azure 訂用帳戶相關聯的所有 Spark 叢集。</li><li>瀏覽您 HDInsight Spark 叢集的所有相關聯儲存體資源。</li><li>瀏覽您 HDInsight Spark 叢集的所有作業歷程記錄和作業資訊。</li><li>從您的桌上型電腦遠端為 Spark 作業進行偵錯。</li></ul>| 工具 | Spark| N/A
 
 ## HDInsight 2016/05/13 版本的注意事項
 
@@ -59,8 +76,8 @@
 |-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
 | HDI 3.4 的自訂中繼存放區升級問題 | 如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。這是因為升級指令碼時發生的錯誤現在已修正| 叢集建立 | 全部 | N/A
 | Livy Crash 復原 | 為所有已透過 Livy 提交的作業提供工作狀態復原 | 可靠性 | Spark on Linux| N/A
-| Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
-| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` 魔術，而非 `%%hive` 魔術。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
+| Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
+| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` Magic，而非 `%%hive` Magic。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
 | 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Windows 上的 Spark 叢集 | N/A
 
 ## HDInsight 03/29/2016 版本的注意事項
@@ -81,11 +98,11 @@
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
 |-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本資訊可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 所有 Linux 叢集| N/A
+| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本附註可以在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 所有 Linux 叢集| N/A
 | HDInsight Premium | HDInsight 現在有兩種類別：Standard 和 Premium。HDInsight Premium 目前為預覽版，僅適用於 Linux 上的 Hadoop 和 Spark 叢集。如需詳細資訊，請參閱[這裡](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
-| Microsoft R 伺服器 | HDInsight Premium 提供 Microsoft R 伺服器，它可以隨附於 Linux 上的 Hadoop 與 Spark 叢集。如需詳細資訊，請參閱 [HDInsight 上的 R 伺服器的概觀](hdinsight-hadoop-r-server-overview.md)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
+| Microsoft R 伺服器 | HDInsight Premium 提供 Microsoft R 伺服器，它可以隨附於 Linux 上的 Hadoop 與 Spark 叢集。如需詳細資訊，請參閱 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
 | Spark 1.6.0 | HDInsight 3.4 叢集現在包含 Spark 1.6.0| 服務 | Linux 上的 Spark 叢集| N/A
-| Jupyter Notebook 增強功能 | 可用於 Spark 叢集的 Jupyter Nnotebook 現在提供額外的 Spark 核心。其中也包括增強功能，例如使用 %%magic、自動視覺化，以及與 Python 視覺化程式庫 (例如 matplotlib) 整合。如需詳細資訊，請參閱[適用於 Jupyter Notebook 的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 | 服務 | Linux 上的 Spark 叢集 | N/A
+| Jupyter Notebook 增強功能 | 可用於 Spark 叢集的 Jupyter Nnotebook 現在提供額外的 Spark 核心。其中也包括增強功能，例如使用 %%magic、自動視覺化，以及與 Python 視覺化程式庫 (例如 matplotlib) 整合。如需詳細資訊，請參閱[適用於 Jupyter 筆記本的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 | 服務 | Linux 上的 Spark 叢集 | N/A
 
 ## HDInsight 03/22/2016 版本的注意事項
 
@@ -1312,7 +1329,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PoweShell 版本和叢集版本的差異。在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。結果造成某些工作提交作業失敗。如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集<clustername>未設定 HTTP 服務存取。」 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
 
-* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](../powershell-install-configure/) 取得 Azure PowerShell 工具。
+* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 取得 Azure PowerShell 工具。
 
 
 
@@ -1353,7 +1370,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 	* 東亞
 	* 美國中北部
 	* 美國中南部
-* 正在將 HDInsight 1.6 版 (HDP 1.1 和 Hadoop 1.0.3) 和 HDInsight 2.1 版 (HDP1.3 和 Hadoop 1.2) 從 Azure 入口網站移除。您可以繼續使用 Azure PowerShell Cmdlet、[New-AzureRmHDInsightCluster](http://msdn.microsoft.com/library/dn593744.aspx) 或使用 [HDInsight SDK](http://msdn.microsoft.com/library/azure/dn469975.aspx) 來建立這些版本的 Hadoop 叢集。如需詳細資訊，請參閱 [HDInsight 所提供叢集版本的新功能](../hdinsight-component-versioning/)頁面。
+* 正在將 HDInsight 1.6 版 (HDP 1.1 和 Hadoop 1.0.3) 和 HDInsight 2.1 版 (HDP1.3 和 Hadoop 1.2) 從 Azure 入口網站移除。您可以繼續使用 Azure PowerShell Cmdlet、[New-AzureRmHDInsightCluster](http://msdn.microsoft.com/library/dn593744.aspx) 或使用 [HDInsight SDK](http://msdn.microsoft.com/library/azure/dn469975.aspx) 來建立這些版本的 Hadoop 叢集。如需詳細資訊，請參閱 [HDInsight 所提供叢集版本的新功能](hdinsight-component-versioning.md)頁面。
 * 此版本中的 Hortonworks Data Platform (HDP) 變更：
 
 <table border="1">
@@ -1584,4 +1601,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

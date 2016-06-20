@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 # Active Directory 驗證通訊協定
@@ -37,4 +37,4 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 - [針對驗證通訊協定進行疑難排解](active-directory-error-handling.md)：了解如何解譯和解決使用 OAuth 2.0 和 Azure AD 時最常見的錯誤。
 - [Azure AD 中 OAuth 2.0 的最佳作法](active-directory-oauth-best-practices.md)：了解在 Azure AD 中使用 OAuth 2.0 時的最佳作法，並避免常見的陷阱。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -48,7 +48,7 @@
 
 - [二元支援向量機器][two-class-support-vector-machine]
 - 連接到這個模組的[定型模型][train-model]和[計分模型][score-model]模組
-- [標準化資料][normalize-data] (兩者)
+- [標準化資料][normalize-data] \(兩者)
 - [評估模型][evaluate-model]
 
 只要選取模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。
@@ -78,7 +78,7 @@
 
 > [AZURE.NOTE] 實驗已儲存在已加入實驗畫布頂端之索引標籤下的兩個部分：原始的訓練實驗位於 [訓練實驗] 索引標籤底下，新建立的預測實驗位於 [預測實驗] 底下。
 
-我們需要對這項特別的實驗採取一個額外步驟。我們新增了兩個[執行 R 指令碼][execute-r-script]模組來提供加權函數以進行訓練和測試。在最終模型中不需這麼做。當 Machine Learning Studio 移除[分割][split]模組時，它會移除一個[執行 R 指令碼][execute-r-script]模組，如此我們現在就可以移除其他的，並將[中繼資料編輯器][metadata-editor]直接連接到[分數模型][score-model]。
+我們需要對這項特別的實驗採取一個額外步驟。我們新增了兩個[執行 R 指令碼][execute-r-script]模組來提供加權函數以進行訓練和測試。在最終模型中不需這麼做。Machine Learning Studio 在移除[分割][split]模組時，已移除一個[執行 R 指令碼][execute-r-script]模組，因此我們現在可以將另一個模組移除，然後將[編輯中繼資料][edit-metadata]直接連接到[分數模型][score-model]。
 
 實驗現在看起來如下：
 
@@ -108,9 +108,9 @@
 
 輸入一組資料，然後按一下 [確定]。
 
-在 Web 服務中，資料透過 **Web 服務輸入**模組輸入，經由[中繼資料編輯器][metadata-editor]模組，然後到計分所在的[分數模型][score-model]。接著會透過 **Web 服務輸出**從 Web 服務輸出結果。
+在 Web 服務中，資料會透過「Web 服務輸入」模組、透過[編輯中繼資料][edit-metadata]模組進入，然後再到對它進行計分的[分數模型][score-model]模組。接著會透過 **Web 服務輸出**從 Web 服務輸出結果。
 
-> [AZURE.TIP] 我們設定預測實驗的方式，會傳回[分數模型][score-model]模組的整個結果。這包括所有輸入的資料以及信用風險值和評分機率。如果您想傳回其他內容 (例如只要信用風險值)，那麼您可以在[分數模型][score-model]和 **Web 服務輸出**之間插入[專案資料行][project-columns]模組，來排除不想讓 Web 服務傳回的資料行。
+> [AZURE.TIP] 我們設定預測實驗的方式，會傳回[分數模型][score-model]模組的整個結果。這包括所有輸入的資料以及信用風險值和評分機率。如果您想要傳回其他內容 (例如只傳回信用風險值)，那麼您可以在[分數模型][score-model]和「Web 服務輸出」之間插入[選取資料集中的資料行][select-columns]模組，來排除您不希望 Web 服務傳回的資料行。
 
 ## 管理 Web 服務
 一旦部署 Web 服務之後，您就可以從 [Azure 傳統入口網站](https://manage.windowsazure.com)管理它。
@@ -145,13 +145,13 @@
 <!-- Module References -->
 [evaluate-model]: https://msdn.microsoft.com/library/azure/927d65ac-3b50-4694-9903-20f6c1672089/
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
-[metadata-editor]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
+[edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [normalize-data]: https://msdn.microsoft.com/library/azure/986df333-6748-4b85-923d-871df70d6aaf/
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
 [two-class-boosted-decision-tree]: https://msdn.microsoft.com/library/azure/e3c522f8-53d9-4829-8ea4-5c6a6b75330c/
 [two-class-support-vector-machine]: https://msdn.microsoft.com/library/azure/12d8479b-74b4-4e67-b8de-d32867380e20/
-[project-columns]: https://msdn.microsoft.com/zh-TW/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[select-columns]: https://msdn.microsoft.com/zh-TW/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

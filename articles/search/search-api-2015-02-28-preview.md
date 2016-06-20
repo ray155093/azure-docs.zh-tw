@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="search"
-   ms.date="05/27/2016"
+   ms.date="06/01/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務 REST API：版本 2015-02-28-Preview
@@ -52,6 +52,10 @@ Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (
 [取得索引統計資料](#GetIndexStats)
 
     GET /indexes/[index name]/stats?api-version=2015-02-28-Preview
+
+[測試分析器](#TestAnalyzer)
+
+    GET /indexes/[index name]/analyze?api-version=2015-02-28-Preview
 
 [删除索引](#DeleteIndex)
 
@@ -168,6 +172,7 @@ ________________________________________
 - `fields` 將提供給此索引，包括名稱、資料類型及屬性，以用來定義該欄位上允許的動作。
 - `suggesters` 可用於自動完成或自動提示查詢。
 - `scoringProfiles` 可用於自訂搜尋分數評等。如需詳細資訊，請參閱[新增評分記錄檔](https://msdn.microsoft.com/library/azure/dn798928.aspx)。
+- 用來定義如何將您的文件/查詢分解成可編製索引/可搜尋之語彙基元的 `analyzers`、`charFilters`、`tokenizers`、`tokenFilters`。如需詳細資料，請參閱 [Azure 搜尋服務中的分析](https://aka.ms//azsanalysis)。
 - `defaultScoringProfile` 可用來覆寫預設的評分行為。
 - `corsOptions` 允許在您的索引上進行跨原始來源查詢。
 
@@ -233,6 +238,10 @@ ________________________________________
             "sum (default) | average | minimum | maximum | firstMatching"
         }
       ],
+	  "analyzers":(optional)[ ... ],
+	  "charFilters":(optional)[ ... ],
+	  "tokenizers":(optional)[ ... ],
+	  "tokenFilters":(optional)[ ... ],
       "defaultScoringProfile": (optional) "...",
       "corsOptions": (optional) {
         "allowedOrigins": ["*"] | ["origin_1", "origin_2", ...],
@@ -804,6 +813,10 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
             "sum (default) | average | minimum | maximum | firstMatching"
         }
       ],
+	  "analyzers":(optional)[ ... ],
+	  "charFilters":(optional)[ ... ],
+	  "tokenizers":(optional)[ ... ],
+	  "tokenFilters":(optional)[ ... ],
       "defaultScoringProfile": (optional) "...",
       "corsOptions": (optional) {
         "allowedOrigins": ["*"] | ["origin_1", "origin_2", ...],
@@ -817,6 +830,14 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 要求成功：「204 沒有內容」。
 
 根據預設，回應本文將是空白。但是，如果將 `Prefer` 要求標頭設為 `return=representation`，回應本文將包含適用於已更新之索引定義的 JSON。在此情況下，成功狀態碼將是 "200 OK"。
+
+**使用自訂分析器來更新索引定義**
+
+定義分析器、權杖化工具、語彙基元篩選或字元篩選之後，即無法進行修改。只有當索引更新要求中的 `allowIndexDowntime` 旗標設定為 true 時，才能將新分析器新增到現有的索引中：
+
+`PUT https://[search service name].search.windows.net/indexes/[index name]?api-version=[api-version]&allowIndexDowntime=true`
+
+請注意，這項作業至少會讓您的索引離線幾秒鐘，而會導致您的索引編製和查詢要求失敗。在索引更新後，索引的效能和寫入可用性可能會降低數分鐘，如果是非常大的索引，則可能持續更久。
 
 <a name="ListIndexes"></a>
 ## 列出索引
@@ -989,6 +1010,100 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 	  "storageSize": number (size of the index in bytes)
     }
 
+<a name="TestAnalyzer"></a>
+## 測試分析器
+
+「分析 API」會顯示分析器如何將文字分解成語彙基元。
+
+    POST https://[service name].search.windows.net/indexes/[index name]/analyze?api-version=[api-version]
+    Content-Type: application/json
+    api-key: [admin key]
+
+**要求**
+
+所有服務要求都需要使用 HTTPS。「分析 API」要求可以使用 POST 方法來建構。
+
+`api-version=[string]` (必要)。預覽版本為 `api-version=2015-02-28-Preview`。如需詳細資訊和替代版本，請參閱[搜尋服務版本設定](http://msdn.microsoft.com/library/azure/dn864560.aspx)。
+
+
+**要求標頭**
+
+下列清單說明必要及選用的要求標頭。
+
+- `api-key`：`api-key` 可用來驗證搜尋服務的要求。它是服務專屬的唯一字串值。「分析 API」要求必須包含已設定為系統管理金鑰 (相對於查詢金鑰) 的 `api-key`。
+
+您還需要索引名稱和服務名稱，才能建構要求 URL。您可以透過 Azure 入口網站的服務儀表板取得服務名稱和 `api-key`。如需頁面導覽說明，請參閱[在入口網站中建立 Azure 搜尋服務](search-create-service-portal.md)。
+
+**要求本文**
+
+    {
+      "text": "Text to analyze",
+      "analyzer": "analyzer_name"
+    }
+
+或
+
+    {
+      "text": "Text to analyze",
+      "tokenizer": "tokenizer_name",
+      "tokenFilters": (optional) [ "token_filter_name" ],
+      "charFilters": (optional) [ "char_filter_name" ]
+    }
+
+`analyzer_name`、`tokenizer_name`、`token_filter_name` 及 `char_filter_name` 必須是索引之預先定義或自訂分析器、權杖化工具、權杖篩選及字元篩選的有效名稱。若要深入了解語彙分析的程序，請參閱 [Azure 搜尋服務中的分析](https://aka.ms/azsanalysis)。
+
+**回應**
+
+回應成功時會傳回狀態碼：200 OK。
+
+回應本文的格式如下：
+
+    {
+      "tokens": [
+        {
+          "token": string (token),
+          "startOffset": number (index of the first character of the token),
+          "endOffset": number (index of the last character of the token),
+          "position": number (position of the token in the input text)
+        },
+        ...
+      ]
+    }
+
+**分析 API 範例**
+
+**要求**
+
+    {
+      "text": "Text to analyze",
+      "analyzer": "standard"
+    }
+
+**回應**
+
+    {
+      "tokens": [
+        {
+          "token": "text",
+          "startOffset": 0,
+          "endOffset": 4,
+          "position": 0
+        },
+        {
+          "token": "to",
+          "startOffset": 5,
+          "endOffset": 7,
+          "position": 1
+        },
+        {
+          "token": "analyze",
+          "startOffset": 8,
+          "endOffset": 15,
+          "position": 2
+        }
+      ]
+    }
+
 ________________________________________
 <a name="DocOps"></a>
 ## 文件操作
@@ -1052,11 +1167,11 @@ ________________________________________
 - `upload`：上傳動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。請注意，在更新案例中，會取代所有欄位。
 - `merge`：使用指定的欄位，將更新與現有的文件合併。如果文件不存在，合併就會失敗。您在合併中指定的任何欄位將取代文件中現有的欄位。這包括類型 `Collection(Edm.String)` 的欄位。例如，如果文件包含欄位 "tags" 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 "tags" 執行合併，則 "tags" 欄位最後的值是 `["economy", "pool"]`。它**不會**是 `["budget", "economy", "pool"]`。
 - `mergeOrUpload`：如果含有指定索引鍵的文件已經存在於索引中，則行為會類似 `merge`。如果文件不存在，則其行為會類似含有新文件的 `upload`。
-- `delete`：刪除會從索引中移除指定的文件。請注意，所有您在 `delete` 作業中指定的欄位 (索引鍵欄位除外) 將會遭到忽略。如果您想要從文件中移除個別欄位，請改用 `merge`，而且只需明確地將該欄位設為 `null`。
+- `delete`：刪除會從索引中移除指定的文件。請注意，您在 `delete` 作業中指定的所有欄位 (索引鍵欄位除外) 都將被忽略。如果您想要從文件中移除個別欄位，請改用 `merge`，而且只需明確地將該欄位設為 `null`。
 
 **回應**
 
-成功回應時會傳回的狀態碼 200 (OK)，表示所有項目都已成功編製索引。這會由 `status` 屬性設為 true 的所有項目，以及 `statusCode` 屬性設為 201 (針對新上傳的文件) 或 200 (針對合併或刪除的文件) 指出：
+成功回應時會傳回的狀態碼 200 (OK)，表示所有項目都已成功編製索引。這會藉由將所有項目的 `status` 屬性設定為 true，以及將 `statusCode` 屬性設定為 201 (針對新上傳的文件) 或 200 (針對合併或刪除的文件) 來表示：
 
     {
       "value": [
@@ -1081,7 +1196,7 @@ ________________________________________
       ]
     }  
 
-至少有一個項目未成功建立索引時會傳回狀態碼 207 (多狀態)。尚未編製索引的項目，其 `status` 欄位會設為 false。`errorMessage` 和 `statusCode` 屬性將指出發生編製索引錯誤的原因：
+至少有一個項目未成功建立索引時會傳回狀態碼 207 (多狀態)。項目如果尚未編製索引，其 `status` 欄位會設定為 false。`errorMessage` 和 `statusCode` 屬性會指出發生編製索引錯誤的原因：
 
     {
       "value": [
@@ -1159,7 +1274,7 @@ ________________________________________
 	</tr>
 </table> 
 
-**注意**：如果您的用戶端經常遇到 207 回應，有一個可能的原因是系統負載過低。您可以檢查 `statusCode` 屬性 503 來確認這一點。如果是發生這種情況，建議您***為編製索引要求設定節流***。否則，如果編製索引流量並未減緩，系統可能會開始拒絕所有要求並產生 503 錯誤。
+**注意**：如果您的用戶端經常遇到 207 回應，有一個可能的原因是系統負載過低。您可以檢查 `statusCode` 屬性是否為 503 來確認這一點。如果是發生這種情況，建議您***為編製索引要求設定節流***。否則，如果編製索引流量並未減緩，系統可能會開始拒絕所有要求並產生 503 錯誤。
 
 狀態碼 429 表示每個索引的文件數量上已經超過您的配額。您必須建立新的索引，或進行升級以取得更高的容量限制。
 
@@ -1227,7 +1342,7 @@ ________________________________________
 
 使用 HTTP GET 呼叫**搜尋** API 時，您需要留意要求 URL 的長度不能超過 8 KB。這對大部分的應用程式通常已足夠。不過，有些應用程式會產生非常大型的查詢或 OData 篩選條件運算式。對於這些應用程式而言，使用 HTTP POST 是較好的選擇，因為它允許比 GET 更大型的篩選與查詢。使用 POST 時，限制因素為查詢中的字詞或子句數目，而不是原始查詢的大小，因為 POST 的要求大小限制約為 16 MB。
 
-> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解搜尋查詢和篩選複雜性限制的詳細資訊。**要求**
+> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。如需有關搜尋查詢和篩選複雜性限制的詳細資訊，請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)。**要求**
 
 服務要求需要使用 HTTPS。**搜尋**要求可以使用 GET 或 POST 方法來建構。
 
@@ -1298,10 +1413,10 @@ ________________________________________
 - `interval` (如果是數字，整數間隔大於 0，如果是日期時間值，則為 `minute`、`hour`、`day`、`week`、`month`、`quarter` 或 `year`)
   - 例如：`facet=baseRate,interval:100` 會根據大小為 100 的基本匯率範圍來產生值區。舉例來說，如果基本匯率全都介於 60 美元到 600 美元之間，則會有下列值區：0-100、100-200、200-300、300-400、400-500 及 500-600。
   - 例如：`facet=lastRenovationDate,interval:year` 會在旅館重新整修期間，每一年產生一個值區。
-- `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至類型 `Edm.DateTimeOffset` 的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
+- `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至 `Edm.DateTimeOffset` 類型的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
   - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限
 - **注意**：`count` 和 `sort` 可以在相同面向規格中組合在一起，但它們無法與 `interval` 或 `values` 結合，而且 `interval` 和 `values` 無法組合在一起。
-- **注意**：如果未指定 `timeoffset`，日期時間間隔 Facet 就會依據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。 
+- **注意**：如果未指定 `timeoffset`，日期時間上的間隔 Facet 就會根據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。 
 
 > [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `facets` 而不是 `facet`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 facet 運算式。
 
@@ -1321,13 +1436,13 @@ ________________________________________
 
 `scoringProfile=[string]` (選用) - 評分設定檔的名稱，可用來評估比對文件的相符分數以排序結果。
 
-`scoringParameter=[string]` (零或多個) - 使用 `name-value1,value2,...` 格式來指出評分函式中定義的每個參數值 (例如 `referencePointParameter`)。
+`scoringParameter=[string]` (零個或零個以上) - 使用 `name-value1,value2,...` 格式來指出評分函數 (例如 `referencePointParameter`) 中所定義每個參數的值。
 
-- 舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函式，則查詢字串選項會是 `&scoringParameter=mylocation--122.2,44.8`。第一個破折號將名稱與值清單隔開，而第二個破折號是第一個值的一部分 (在此範例中的 longitude)。
+- 舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函數，則查詢字串選項會是 `&scoringParameter=mylocation--122.2,44.8`。第一個破折號將名稱與值清單隔開，而第二個破折號是第一個值的一部分 (在此範例中的 longitude)。
 - 針對評分參數，例如可包含逗號的標籤提升，您可以使用單引號在清單中逸出任何這類值。如果值本身包含單引號，您可以使用兩個單引號加以逸出。
-  - 例如，如果您有名為 "mytag" 參數的標籤提升，且您想要在標記值 "Hello, O'Brien" 和 "Smith" 上提升，查詢字串選項會是 `&scoringParameter=mytag-'Hello, O''Brien',Smith`。請注意，只有包含逗號的值需要引號。
+  - 舉例來說，如果您有名為 "mytag" 的標籤提升參數，而您想要針對標記值 "Hello, O'Brien" 和 "Smith" 進行提升，則查詢字串選項會是 `&scoringParameter=mytag-'Hello, O''Brien',Smith`。請注意，只有包含逗號的值需要引號。
 
-> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `scoringParameters` 而不是 `scoringParameter`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 `name-values` 組。
+> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `scoringParameters` 而不是 `scoringParameter`。此外，您需將它指定為 JSON 字串陣列，其中每個字串都是個別的 `name-values` 組。
 
 `minimumCoverage` (選擇性，預設值為 100) - 介於 0 和 100 的數字，指出搜尋查詢要報告為成功查詢，必須涵蓋的索引的百分比。根據預設，整個索引必須可供使用，否則 `Search` 會傳回 HTTP 狀態碼 503。如果您成功設定 `minimumCoverage` 和 `Search`，它會傳回 HTTP 200，並在回應中包含 `@search.coverage` 值，指出查詢中包含的索引的百分比。
 
@@ -1720,7 +1835,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
 
 使用 HTTP GET 呼叫**建議** API 時，需要留意要求 URL 的長度不能超過 8 KB。這對大部分的應用程式通常已足夠。不過，有些應用程式會產生非常大型的查詢，特別是 OData 篩選條件運算式。對於這些應用程式而言，使用 HTTP POST 是較好的選擇，因為它允許比 GET 更大型的篩選。使用 POST 時，限制因素為篩選中的子句數目，而不是原始篩選字串的大小，因為 POST 的要求大小限制約為 16 MB。
 
-> [AZURE.NOTE] 即使 POST 要求大小限制很大，篩選運算式也不能任意複雜化。請參閱 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)，以了解篩選複雜性限制的詳細資訊。
+> [AZURE.NOTE] 即使 POST 要求大小限制很大，篩選運算式也不能任意複雜化。如需有關篩選複雜性限制的詳細資訊，請參閱 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)。
 
 **要求**
 
@@ -1853,4 +1968,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

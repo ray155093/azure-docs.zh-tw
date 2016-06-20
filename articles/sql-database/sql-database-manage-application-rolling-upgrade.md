@@ -22,7 +22,7 @@
 > [AZURE.NOTE] [Active Geo-Replication](sql-database-geo-replication-overview.md) 現在可供所有層中的所有資料庫使用。
 
 
-了解如何使用 SQL Database 中的[異地複寫](sql-database-geo-replication-overview.md)以啟用雲端應用程式的輪流升級。因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。基於本文的目的，我們將使用簡單的應用程式，它是由連線到單一資料庫作為其資料層的網站所組成。我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。
+了解如何使用 SQL Database 中的[異地複寫](sql-database-geo-replication-overview.md)來啟用雲端應用程式的輪流升級。因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。基於本文的目的，我們將使用簡單的應用程式，它是由連線到單一資料庫作為其資料層的網站所組成。我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。
 
 評估升級選項時，您應該考慮下列因素：
 
@@ -40,7 +40,7 @@
 
 > [AZURE.NOTE] 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-1.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-1.png)
 
 一旦準備步驟完成後，應用程式就已準備好實際升級。下圖說明升級程序相關的步驟。
 
@@ -48,14 +48,14 @@
 2. 使用規劃的終止模式 (4) 中斷次要資料庫的連線。它會建立完整同步的主要資料庫獨立複本。此資料庫將會升級。
 3. 在預備位置 (5) 中將主要資料庫切換為讀寫模式，然後執行升級指令碼。     
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-2.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-2.png)
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的預備複本。它現在將會成為應用程式的生產位置。這涉及一些步驟，如下圖所示。
 
 1. 將 WATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。  
 2. 如果您不再需要 V1 應用程式元件，您可以安全地移除它們 (7)。   
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-3.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-3.png)
 
 如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。若要將應用程式復原到升級前狀態，您只需將生產位置中的應用程式還原至完整存取。下圖顯示相關的步驟。
 
@@ -66,13 +66,13 @@
 
 > [AZURE.NOTE] 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-4.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-4.png)
 
 這個選項的重要**優點**是您可以使用一組簡單步驟升級單一區域中的應用程式。升級的金額成本相對較低。主要的**取捨**是如果在升級期間發生嚴重失敗，復原到升級前狀態會需要將不同區域的應用程式重新部署，並使用異地復原從備份還原資料庫。此程序將產生顯著的停機時間。
 
-## 升級依賴資料庫異地複寫以進行災害復原的應用程式
+## 升級依賴資料庫異地複寫來進行災害復原的應用程式
 
-如果您的應用程式利用異地複寫以提供商務持續性，則它會部署到至少兩個不同區域，在主要區域中的作用中部署，以及備份區域中的待命部署。除了先前提到的因素之外，升級程序也必須保證：
+如果您的應用程式利用「異地複寫」來提供商務持續性，則它至少會部署到兩個不同區域，其中作用中部署會在「主要」區域，而待命部署則會在「備份」區域。除了先前提到的因素之外，升級程序也必須保證：
 
 + 升級程序期間，應用程式隨時受到保護以防嚴重失敗。
 + 應用程式的異地備援元件會與作用中元件以平行方式升級
@@ -86,7 +86,7 @@
 
 > [AZURE.NOTE] 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-1.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-1.png)
 
 一旦準備步驟完成後，預備位置就準備好升級。下圖說明升級步驟。
 
@@ -94,14 +94,14 @@
 2. 使用規劃的終止模式 (7) 中斷相同區域內次要資料庫的連線。它會建立主要資料庫完整同步的獨立複本，它會在終止後自動成為主要資料庫。此資料庫將會升級。
 3. 將預備位置中的主要資料庫切換為讀寫模式，然後執行升級指令碼 (8)。    
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-2.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-2.png)
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的 V2 版本。下圖說明相關步驟。
 
 1. 將 WATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。 
 2. 如果您不再需要 V1 應用程式，您可以安全地移除它 (10 和 11)。  
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-3.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-3.png)
 
 如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。若要將應用程式復原到升級前狀態，您只需以完整存取使用生產位置中的應用程式即可復原。下圖顯示相關的步驟。
 
@@ -112,7 +112,7 @@
 
 > [AZURE.NOTE] 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 
-![SQL Database 異地複寫組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-4.png)
+![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-4.png)
 
 這個選項的重要**優點**是您可以以平行方式升級應用程式及其異地備援複本，而不會在升級期間危及商務持續性。主要的**取捨**是它需要每個應用程式元件的雙重備援，因此會產生較高的金額成本。它也涉及更複雜的工作流程。
 
@@ -125,10 +125,10 @@
 
 - [加入次要資料庫](https://msdn.microsoft.com/library/azure/mt603689.aspx) 
 - [將資料庫容錯移轉到次要](https://msdn.microsoft.com/library/azure/mt619393.aspx)
-- [中斷連線異地複寫次要資料庫](https://msdn.microsoft.com/library/azure/mt603457.aspx)
+- [中斷異地複寫次要資料庫連線](https://msdn.microsoft.com/library/azure/mt603457.aspx)
 - [異地還原資料庫](https://msdn.microsoft.com/library/azure/mt693390.aspx) 
 - [卸除資料庫](https://msdn.microsoft.com/library/azure/mt619368.aspx)
 - [複製資料庫](https://msdn.microsoft.com/library/azure/mt603644.aspx)
 - [將資料庫設定為唯讀或讀寫模式](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

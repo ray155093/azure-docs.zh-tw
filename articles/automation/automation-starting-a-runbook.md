@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/23/2016"
+   ms.date="06/06/2016"
    ms.author="magoedte;bwren"/>
 
 # 在 Azure 自動化中啟動 Runbook
@@ -25,7 +25,7 @@
 | [Windows PowerShell](https://msdn.microsoft.com/library/dn690259.aspx) | <li>透過 Windows PowerShell Cmdlet 從命令列呼叫。<br> <li>可以包含在具有多個步驟的自動化解決方案中。<br> <li>要求會透過憑證或 OAuth 使用者主體/服務主體進行驗證。<br> <li>提供簡單和複雜的參數值。<br> <li>可追蹤作業狀態。<br> <li>提供支援 PowerShell Cmdlet 所需的用戶端。 |
 | [Azure 自動化 API](https://msdn.microsoft.com/library/azure/mt662285.aspx) | <li>提供最有彈性但也最複雜的方法。<br> <li>可從任何能發出 HTTP 要求的自訂程式碼呼叫。<br> <li>透過憑證或 OAuth 使用者主體/服務主體驗證要求。<br> <li>提供簡單和複雜的參數值。<br> <li>追蹤作業狀態。 |
 | [Webhook](automation-webhooks.md) | <li>從單一 HTTP 要求啟動 Runbook。<br> <li>透過 URL 中的安全性權杖進行驗證。<br> <li>用戶端無法在建立 Webhook 時覆寫指定的參數值。Runbook 可以定義已填入 HTTP 要求詳細資料的單一參數。<br> <li>無法透過 Webhook URL 追蹤作業狀態。 |
-| [回應 Azure 警示](automation-webhooks.md) | <li>可啟動 Runbook 以回應 Azure 警示。<br> <li>針對 Runbook 和警示的連結設定 Webhook。<br> <li>透過 URL 中的安全性權杖進行驗證。<br> <li>目前僅支援計量的警示。 |
+| [回應 Azure 警示](../log-analytics/log-analytics-alerts.md) | <li>可啟動 Runbook 以回應 Azure 警示。<br> <li>針對 Runbook 和警示的連結設定 Webhook。<br> <li>透過 URL 中的安全性權杖進行驗證。<br> <li>目前僅支援計量的警示。 |
 | [排程](automation-scheduling-a-runbook.md) | <li>以每小時、每日或每週排程，自動啟動 Runbook。<br> <li>可透過 Azure 入口網站、PowerShell Cmdlet 或 Azure API 操控排程。<br> <li>提供可用於排程的參數值。 |
 | [另一個 Runbook](automation-child-runbooks.md) | <li>可在另一個 Runbook 中將 Runbook 作為活動<br> <li>對多個 Runbook 使用的功能來說很有用。<br> <li>可提供參數值給子 Runbook，並在父 Runbook 中使用輸出內容。 |
 
@@ -127,7 +127,7 @@ Smith
 
 ### 陣列
 
-如果參數是陣列，例如 [array] 或 [string]，則您可以使用下列 JSON 格式對其傳送值清單：*[Value1,Value2,Value3]*。這些值必須是簡單型別。
+如果參數是陣列，例如 [array] 或 [string]，則您可以使用下列 JSON 格式對其傳送值清單：*[Value1,Value2,Value3]* 。這些值必須是簡單型別。
 
 請考慮可接受稱為 *user* 的參數的下列測試 Runbook。
 
@@ -183,7 +183,7 @@ Workflow Test-Parameters
 My Credential
 ```
 
-假設在認證中的使用者名稱是 *jsmith*，這會導致下列輸出。
+假設在認證中的使用者名稱是 *jsmith* ，這會導致下列輸出。
 
 ```
 jsmith
@@ -193,4 +193,4 @@ jsmith
 
 -	目前文章中的 Runbook 架構會提供有關 Hybrid Runbook 的高層級描述。若要深入了解，請參閱 [Azure 自動化中的子系 Runbook](automation-child-runbooks.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

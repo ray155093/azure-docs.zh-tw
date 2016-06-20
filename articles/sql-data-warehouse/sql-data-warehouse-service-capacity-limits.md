@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/13/2016"
+   ms.date="06/01/2016"
    ms.author="sonyama;barbkess;jrj"/>
 
 # SQL 資料倉儲容量限制
@@ -35,7 +35,7 @@
 
 | 類別 | 說明 | 最大值 |
 | :---------------- | :------------------------------------------- | :----------------- |
-| 資料庫 | 大小上限 | 磁碟上壓縮後 60 TB<br/><br/>SQL 資料倉儲可允許每個資料庫的磁碟上有多達 60 TB 的原始空間。磁碟上的空間是永久資料表的壓縮大小。此空間與 tempdb 或記錄檔空間無關，因此此空間為永久資料表專用。叢集資料行存放區壓縮估計為 5 倍，這表示當所有資料表都是叢集資料行存放區 (預設的資料表類型) 時，未壓縮的資料庫大小可能成長到大約 300 TB。在公用預覽結尾，60 TB 限制就會增加為 240 TB，這將允許大部分的資料庫成長到超過 1 PB 的未壓縮資料。|
+| 資料庫 | 大小上限 | 磁碟上壓縮後 240 TB<br/><br/>此空間與 tempdb 或記錄檔空間無關，因此此空間為永久資料表專用。叢集資料行存放區壓縮估計為 5 倍，這表示當所有資料表都是叢集資料行存放區 (預設的資料表類型) 時，未壓縮的資料庫大小可能成長到大約 1 PB。|
 | 資料表 | 大小上限 | 磁碟上壓縮後 60 TB |
 | 資料表 | 每個資料庫的資料表 | 20 億 |
 | 資料表 | 每個資料表的資料行 | 1024 個資料行 |
@@ -109,4 +109,4 @@
 [CREATE TABLE (Azure SQL Data Warehouse) (CREATE TABLE (Azure SQL 資料倉儲))]: https://msdn.microsoft.com/library/mt203953.aspx
 [Internal error: An expression services limit has been reached (內部錯誤：到達運算式服務限制)]: https://support.microsoft.com/kb/913050
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

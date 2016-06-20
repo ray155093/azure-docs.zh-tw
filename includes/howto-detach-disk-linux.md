@@ -1,26 +1,26 @@
-當不再需要某個連接至虛擬機器的資料磁碟時，卸離此資料磁碟很簡單。這會將磁碟從虛擬機器中卸離，但這不會將它從儲存體中移除。如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連接至相同或其他虛擬機器。
+當您不再需要某個連結至虛擬機器 (VM) 的資料磁碟時，可以輕鬆將它中斷連結。這會將磁碟與 VM 中斷連結，但這不會將它從儲存體中移除。如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連結至相同 VM 或其他 VM。
 
-> [AZURE.NOTE] Azure 中的虛擬機器使用不同類型的磁碟，例如作業系統磁碟、本機暫存磁碟和選擇性資料磁碟。如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md)。您無法卸離作業系統磁碟，除非您同時刪除虛擬機器。
+> [AZURE.NOTE] Azure 中的 VM 使用不同類型的磁碟 - 作業系統磁碟、本機暫存磁碟，以及選擇性的資料磁碟。如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md)。您無法將作業系統磁碟中斷連結，除非您同時刪除 VM。
 
 ## 尋找磁碟
 
-可以從虛擬機器卸離磁碟之前，您需要找出 LUN 編號，這是要卸離之磁碟的識別碼。若要這樣做，請遵循下列步驟：
+您必須先找出 LUN 編號 (要中斷連結之磁碟的識別碼)，才能將磁碟與 VM 中斷連結。若要這樣做，請遵循下列步驟：
 
 1. 	開啟 Azure CLI 並[連接至您的 Azure 訂用帳戶](../articles/xplat-cli-connect.md)。確定處於 Azure 服務管理模式中 (`azure config mode asm`)。
 
 2. 	使用 `azure vm disk list
-	<virtual-machine-name>`，找出哪些磁碟已連接至您的虛擬機器：
+	<virtual-machine-name>` 來找出哪些磁碟已連結至您的 VM：
 
-		$azure vm disk list ubuntuVMasm
+		$azure vm disk list UbuntuVM
 		info:    Executing command vm disk list
 		+ Fetching disk images
 		+ Getting virtual machines
 		+ Getting VM disks
 		data:    Lun  Size(GB)  Blob-Name                         OS
 		data:    ---  --------  --------------------------------  -----
-		data:         30        ubuntuVMasm-2645b8030676c8f8.vhd  Linux
+		data:         30        ubuntuVM-2645b8030676c8f8.vhd  Linux
 		data:    1    10        test.VHD
-		data:    0    30        ubuntuVMasm-76f7ee1ef0f6dddc.vhd
+		data:    0    30        ubuntuVM-76f7ee1ef0f6dddc.vhd
 		info:    vm disk list command OK
 
 3. 	請記下您要卸離之磁碟的 LUN 或**邏輯單元編號**。
@@ -33,7 +33,7 @@
 1. 	執行命令 `azure vm disk detach
  	<virtual-machine-name> <LUN>`，從虛擬機器卸離選取的磁碟：
 
-		$azure vm disk detach ubuntuVMasm 0
+		$azure vm disk detach UbuntuVM 0
 		info:    Executing command vm disk detach
 		+ Getting virtual machines
 		+ Removing Data-Disk
@@ -41,17 +41,17 @@
 
 2. 	您可以執行此命令，檢查是否已卸離磁碟：
 
-		$azure vm disk list ubuntuVMasm
+		$azure vm disk list UbuntuVM
 		info:    Executing command vm disk list
 		+ Fetching disk images
 		+ Getting virtual machines
 		+ Getting VM disks
 		data:    Lun  Size(GB)  Blob-Name                         OS
 		data:    ---  --------  --------------------------------  -----
-		data:         30        ubuntuVMasm-2645b8030676c8f8.vhd  Linux
+		data:         30        ubuntuVM-2645b8030676c8f8.vhd  Linux
 		data:    1    10        test.VHD
 		info:    vm disk list command OK
 
 卸離的磁碟仍留在儲存體中，但不再連接至虛擬機器。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="03/29/2016"
+   ms.date="06/01/2016"
    ms.author="derrickv"/>
 
 # Power BI Embedded 常見問題集
@@ -50,7 +50,7 @@
 
     北美地區或我們在 BUILD 2016 (於 US South Central Data Center 舉行) 中宣布的地區可以使用 Power BI Embedded 服務。您可以預期我們很快就會在其他 Azure 資料中心推出這項服務。
 
-9.	**此服務可用的 SLA 是？**
+9. **此服務可用的 SLA 是？**
 
     Power BI Embedded 現在是以預覽的 Azure 服務方式提供使用，並沒有正式的 SLA。當服務從預覽版本變成正式推出版本時就會提供 SLA。
 
@@ -61,7 +61,8 @@
 
     您可以在自己開發的應用程式中使用 Power BI Embedded 服務，唯該應用程式 (1) 將主要或重要功能加入我們的服務中，且其主要目的非取代任何 Power BI 服務，及 (2) 僅供外部使用者使用。您不得在內部商務應用程式內使用 Power BI Embedded 服務。
 
-    ![](media\power-bi-embedded-faq\price.png)
+
+   ![](media\power-bi-embedded-faq\price.png)
 
 11.	**什麼是轉譯？如何計費？**
 
@@ -71,11 +72,11 @@
 
     轉譯按每 1,000 次轉譯計費。轉譯數量低於 1,000 則按比例攤派費用。客戶每月可獲得 1,000 次免費轉譯。透過大量授權合約購買服務的客戶，應向其 Microsoft 合作夥伴或銷售商洽詢定價資訊。
 
-12.	**是否有提供任何工具或指導方針以協助評估我應該預期會有多少轉譯？ 如何知道已經完成多少轉譯？**
+12.	**是否有提供任何工具或指導方針以協助我預估應該預期會有多少轉譯？ 如何知道已經完成多少轉譯？**
 
     Azure 入口網站將針對您的訂用帳戶提供已經執行多少轉譯的相關計費詳細資料。
 
-13.	**是否需要有 Power BI 訂用帳戶才能使用 Power BI Embedded 開發應用程式？ 如何開始使用？**
+13.	**是否需要有 Power BI 訂用帳戶，才能使用 Power BI Embedded 來開發應用程式？ 如何開始使用？**
 
     身為應用程式開發人員，您不需要有 Power BI 訂用帳戶就能夠建立您想要在應用程式中使用的報表與視覺效果。您將需要 Microsoft Azure 訂用帳戶和免費的 Power BI Desktop 應用程式
 
@@ -91,7 +92,7 @@
 
 16.	**如何使用 Power BI Embedded 執行使用者驗證工作？**
 
-    Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而不是使用明確的使用者驗證。在應用程式權杖模型中，您的應用程式會管理您的使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報表。雖然您可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。如需應用程式權杖的詳細資訊，請參閱[應用程式權杖](https://azure.microsoft.com/documentation/articles/power-bi-embedded-get-started-sample/#key-flow)文件頁面。
+    Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而不是使用明確的使用者驗證。在應用程式權杖模型中，您的應用程式會管理您的使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報表。雖然您可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。如需有關「應用程式權杖」的詳細資訊，請參閱[應用程式權杖](https://azure.microsoft.com/documentation/articles/power-bi-embedded-get-started-sample/#key-flow)文件頁面。
 
 17.	**Power BI Embedded 目前支援哪些資料來源？**
 
@@ -101,19 +102,19 @@
 
     在 Power BI Embedded 模型中，沒有明確要求您的客戶必須是 Azure Active Directory (Azure AD) 租用戶。您可以選擇是否要為您的客戶要求 Azure AD。因此，您應用程式和基礎結構的架構將決定 Power BI Embedded 所需的租用模型。
 
-    建置您應用程式的開發人員/員工將需要有 Azure AD 使用者帳戶，他們才能透過 Azure 入口網站管理您的 Azure 訂用帳戶和工作區集合。可讓開發人員匯入報表、修改連接字串，以及讓內嵌 URL 改為使用應用程式權杖進行驗證，因此不需要 Azure AD 的程式設計 API。您可以在 [Azure.com 的 Power BI Embedded 文件頁面](https://azure.microsoft.com/documentation/services/power-bi-embedded/)找到如何使用我們的 API 和 Azure 入口網站的詳細資料。
+    建置您應用程式的開發人員/員工將需要有 Azure AD 使用者帳戶，他們才能透過 Azure 入口網站管理您的 Azure 訂用帳戶和工作區集合。可讓開發人員匯入報表、修改連接字串，以及讓內嵌 URL 改為使用應用程式權杖進行驗證，因此不需要 Azure AD 的程式設計 API。您可以在 [Azure.com 的 Power BI Embedded 文件頁面](https://azure.microsoft.com/documentation/services/power-bi-embedded/)，找到有關如何使用我們 API 和「Azure 入口網站」的詳細資料。
 
 19.	**哪裡可以深入了解？**
 
-    您可以造訪 [Power BI Embedded 文件頁面](http://go.microsoft.com/fwlink/?LinkId=760526)。您可以透過造訪 [Power BI 開發人員部落格](http://blogs.msdn.com/powerbidev)或造訪位於 dev.powerbi.com 的 Power BI 開發人員中心，來取得此服務的相關最新資訊。您也可以在 [Stackoverflow](http://stackoverflow.com/questions/tagged/powerbi) 提出問題。
+    您可以造訪 [Power BI Embedded 文件頁面](http://go.microsoft.com/fwlink/?LinkId=760526)。您可以透過造訪 [Power BI 開發人員部落格](http://blogs.msdn.com/powerbidev)或造訪 Power BI 開發人員中心 (dev.powerbi.com)，來取得此服務的相關最新資訊。您也可以在 [Stackoverflow](http://stackoverflow.com/questions/tagged/powerbi) 提出問題。
 
 20.	**如何開始使用？**
 
-    您現在就可以免費開始使用！ 如果您有 Azure 訂用帳戶，您現在就可以直接從 Azure 入口網站佈建 Power BI Embedded。您也可以建立您的[免費 Azure 帳戶](https://azure.microsoft.com/free/)。在您佈建 Power BI Embedded 服務之後，就能夠且很容易地直接使用 Power BI REST API，或使用 [GitHub](http://go.microsoft.com/fwlink/?LinkID=746472) 上提供的開發人員 SDK。也有提供範例說明如何使用開發人員 SDK。
+    您現在就可以免費開始使用！ 如果您有 Azure 訂用帳戶，您現在就可以直接從 Azure 入口網站佈建 Power BI Embedded。您也可以建立您的[免費 Azure 帳戶](https://azure.microsoft.com/free/)。在您佈建 Power BI Embedded 服務之後，就能夠輕鬆地直接使用 Power BI REST API，或使用 [GitHub](http://go.microsoft.com/fwlink/?LinkID=746472) 上提供的開發人員 SDK。也有提供範例說明如何使用開發人員 SDK。
 
 ## 另請參閱
 
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

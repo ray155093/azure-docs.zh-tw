@@ -97,7 +97,7 @@ Windows 容器對於任何在 Windows 執行的應用程式提供與 Linux 容�
 
 到目前為止，任何架構師、開發人員或 IT 作業專家可能會想：「我如果可以自動化所有這些事物，這就真的是「資料中心即服務！」。
 
-沒錯，它的確可以，而且有任意數目的系統，您可能已經使用其中一些系統。您可以使用指令碼 (通常使用 [CustomScriptingExtension for Windows](https://msdn.microsoft.com/library/azure/dn781373.aspx) 或 [CustomScriptingExtension for Linux](https://azure.microsoft.com/blog/2014/08/20/automate-linux-vm-customization-tasks-using-customscript-extension/)) 管理 Azure VM 的群組並插入自訂程式碼。您可以 (而且可能已經) 使用 PowerShell 或 Azure CLI 指令碼自動化您的 Azure 部署，[像是這樣](../articles/virtual-machines/virtual-machines-windows-create-powershell.md)。
+沒錯，它的確可以，而且有任意數目的系統，您可能已經使用其中一些系統。您可以使用指令碼 (通常使用 [CustomScriptingExtension for Windows](https://msdn.microsoft.com/library/azure/dn781373.aspx) 或 [CustomScriptingExtension for Linux](https://azure.microsoft.com/blog/2014/08/20/automate-linux-vm-customization-tasks-using-customscript-extension/)) 管理 Azure VM 的群組並插入自訂程式碼。您可以 (而且可能已經) 使用 PowerShell 或 Azure CLI 指令碼自動化您的 Azure 部署，[像是這樣](../articles/virtual-machines/virtual-machines-windows-ps-create.md)。
 
 這些功能通常會移轉到如 [Puppet](https://puppetlabs.com/) 和 [Chef](https://www.chef.io/) 等工具，大量自動化建立和設定 VM。([這裡](#tools-for-working-with-containers)有許多搭配 Azure 使用這些工具的連結)。
 
@@ -122,7 +122,7 @@ Docker 有自己的 VM 建立工具 ([docker-machine](../articles/virtual-machin
 
 [Deis](http://deis.io/overview/) 是一個開放原始碼的「平台即服務」(PaaS)，可以輕鬆部署和管理您自己伺服器上的應用程式。Deis 建立在 Docker 和 CoreOS 上，提供輕量級 PaaS 以及以 Heroku 為靈感來源的工作流程。您可以輕鬆[建立 3 個節點的 Azure VM 群組，並且在 Azure 上安裝 Deis](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md)，然後[安裝 Hello World Go 應用程式](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md#deploy-and-scale-a-hello-world-application)。
 
-[CoreOS](../articles/virtual-machines/virtual-machines-linux-classic-coreos-howto.md) 是一個 Linux 散發套件，有最佳化的使用量、Docker 支援以及稱為 [rkt](https://github.com/coreos/rkt) 的自有容器系統，也有一個稱為 [fleet](../articles/virtual-machines/virtual-machines-linux-classic-coreos-fleet-get-started.md) 的容器群組管理工具。
+[CoreOS](https://coreos.com/os/docs/latest/booting-on-azure.html) 是一個 Linux 散發套件，有最佳化的使用量、Docker 支援以及稱為 [rkt](https://github.com/coreos/rkt) 的自有容器系統，也有一個稱為 [fleet](https://coreos.com/using-coreos/clustering/) 的容器群組管理工具。
 
 Ubuntu 是另一個非常受歡迎的 Linux 散發套件，能完整支援 Docker，也支援 [Linux (LXC 式) 叢集](https://help.ubuntu.com/lts/serverguide/lxc.html)。
 
@@ -174,11 +174,11 @@ Microsoft Azure 上的 Docker：
 
 Linux 散發套件和 Azure 範例：
 
-- [CoreOS](../articles/virtual-machines/virtual-machines-linux-classic-coreos-howto.md)
+- [CoreOS](https://coreos.com/os/docs/latest/booting-on-azure.html)
 
 組態、叢集管理以及容器協調流程：
 
-- [CoreOS 上的 Fleet](../articles/virtual-machines/virtual-machines-linux-classic-coreos-fleet-get-started.md)
+- [CoreOS 上的 Fleet](https://coreos.com/using-coreos/clustering/)
 
 -	Deis
 	- [建立一個 3 個節點的 Azure VM 群組、安裝 Deis，然後啟動 Hello World Go 應用程式](../articles/virtual-machines/virtual-machines-linux-deis-cluster.md)
@@ -216,4 +216,4 @@ Linux 散發套件和 Azure 範例：
 [微服務]: http://martinfowler.com/articles/microservices.html
 <!--Image references-->
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0608_2016-->

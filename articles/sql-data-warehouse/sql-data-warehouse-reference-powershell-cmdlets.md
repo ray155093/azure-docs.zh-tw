@@ -84,19 +84,17 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 如需更多 PowerShell 範例，請參閱：
 
 - [使用 PowerShell 建立 SQL 資料倉儲][]
-- [從快照集還原][]
-- [從快照集異地還原][]
+- [資料庫還原][]
 
-如需可以使用 PowerShell 自動化的完整工作清單，請參閱 [Azure SQL Database Cmdlet][]。如需可以使用 REST 自動化的工作清單，請參閱 [Azure SQL Database 的作業][]。
+如需可以使用 PowerShell 來自動化的完整工作清單，請參閱 [Azure SQL Database Cmdlet][]。如需可以使用 REST 來自動化的工作清單，請參閱 [Azure SQL Database 的作業][]。
 
 <!--Image references-->
 
 <!--Article references-->
 [如何安裝和設定 Azure PowerShell]: ./powershell-install-configure.md
 [使用 PowerShell 建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision-powershell.md
-[從快照集還原]: ./sql-data-warehouse-backup-and-restore-from-snapshot.md
-[從快照集異地還原]: ./sql-data-warehouse-backup-and-restore-from-geo-restore-snapshot.md
-[使用 REST 管理延展性]: ./sql-data-warehouse-manage-scale-out-tasks-rest-api.md
+[資料庫還原]: ./sql-data-warehouse-manage-database-restore-powershell.md
+[使用 REST 管理延展性]: ./sql-data-warehouse-manage-compute-rest-api.md
 
 <!--MSDN references-->
 [Azure SQL Database Cmdlet]: https://msdn.microsoft.com/library/mt574084.aspx
@@ -116,4 +114,4 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 <!--Other Web references-->
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

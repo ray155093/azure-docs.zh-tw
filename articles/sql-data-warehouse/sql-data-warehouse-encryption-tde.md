@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="03/03/2016" 
+   ms.date="06/07/2016" 
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 開始使用 SQL 資料倉儲中的透明資料加密 (TDE)
@@ -23,7 +23,7 @@
 
 Azure SQL 資料倉儲透明資料加密 (TDE) 可在不需變更應用程式的情況下，對靜止的資料庫、相關聯的備份和交易記錄檔執行即時加密和解密，協助防止惡意活動的威脅。
 
-TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫的儲存體。在 SQL Database 中，資料庫加密金鑰是由內建伺服器憑證保護。內建伺服器憑證對每個 SQL Database 伺服器都是唯一的。Microsoft 至少每 90 天會自動替換這些憑證。如需 TDE 的一般描述，請參閱[透明資料加密 (TDE)]。
+TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫的儲存體。在 SQL Database 中，資料庫加密金鑰是由內建伺服器憑證保護。內建伺服器憑證對每個 SQL Database 伺服器都是唯一的。Microsoft 至少每 90 天會自動替換這些憑證。「SQL 資料倉儲」使用的加密演算法是 AES-256。如需 TDE 的一般描述，請參閱[透明資料加密 (TDE)]。
 
 ##啟用加密
 
@@ -45,12 +45,17 @@ TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫�
 4. 選取 [關閉] 設定 ![][4]
 5. 選取 [儲存] ![][5]  
 
+##加密 DMV
 
+可以使用下列 DMW 來確認加密：
 
+- [sys.databases]
+- [sys.dm\_pdw\_nodes\_database\_encryption\_keys]
 
-<!--Anchors-->
+<!--MSDN references-->
 [透明資料加密 (TDE)]: https://msdn.microsoft.com/library/bb934049.aspx
-
+[sys.databases]: http://msdn.microsoft.com/library/ms178534.aspx
+[sys.dm\_pdw\_nodes\_database\_encryption\_keys]: https://msdn.microsoft.com/library/mt203922.aspx
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-security-tde/sql-data-warehouse-security-tde-portal-settings.png
@@ -61,4 +66,4 @@ TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫�
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

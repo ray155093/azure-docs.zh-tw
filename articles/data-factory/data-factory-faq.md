@@ -64,6 +64,11 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 ### 我是否可以重新命名資料處理站？
 否。和其他 Azure 資源一樣，您無法變更 Azure Data Factory 的名稱。
 
+### 我可以將 Data Factory 從某一個 Azure 訂用帳戶移至另一個嗎？ 
+是。請使用您 Data Factory 刀鋒視窗上的 [移動] 按鈕，如下所示：
+
+![移動 Data Factory](media/data-factory-faq/move-data-factory.png)
+
 ## 活動 - 常見問題集
 ### 您可以在 Data Factory 管線中使用的不同類型活動有哪些？ 
 
@@ -71,7 +76,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 - [資料轉換活動](data-factory-data-transformation-activities.md)以處理/轉換資料。 
 
 ### 何時執行活動？
-輸出資料表中的**可用性**組態設定決定何時執行活動。如果已指定輸入資料集，活動會在開始執行之前，檢查是否滿足所有輸入資料相依性 (即 [就緒] 狀態)。
+輸出資料表中的**可用性**組態設定決定何時執行活動。如果已指定輸入資料集，活動會在開始執行之前，檢查是否滿足所有輸入資料相依性 (即**就緒**狀態)。
 
 ## 複製活動 - 常見問題集
 ### 最好是一個管線有多個活動，還是每個活動都有不同的管線？ 
@@ -137,7 +142,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 	    "offset": "06:00:00"
 	}
 
-每日配量於「上午 6 點」(而非預設的午夜) 開始。
+每日配量於**上午 6 點** (而非預設的午夜) 開始。
 
 ### 如何重新執行配量？
 您可以利用下列方式之一來重新執行配量：
@@ -182,4 +187,4 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 [hdinsight-alternate-storage-2]: http://blogs.msdn.com/b/cindygross/archive/2014/05/05/use-additional-storage-accounts-with-hdinsight-hive.aspx
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

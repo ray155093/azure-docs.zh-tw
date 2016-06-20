@@ -452,7 +452,7 @@
 	GO
 
 	-- User-defined function to calculate the direct distance  in mile between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -499,7 +499,7 @@
 	GO
 
 	-- User-defined function calculate the direct distance between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -544,7 +544,7 @@
 
 ### 準備資料以進行模型建置
 
-下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取樣本。根據上車時間擷取車程子集即可完成取樣。複製此查詢，並直接貼至 [Azure Machine Learning Studio](https://studio.azureml.net) 的[讀取器][reader]模組，即可從 Azure 的 SQL 資料庫執行個體中直接擷取資料。查詢會排除含有不正確 (0, 0) 座標的記錄。
+下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取樣本。根據上車時間擷取車程子集即可完成取樣。您可以複製此查詢並直接貼到 [Azure Machine Learning Studio](https://studio.azureml.net) 的[匯入資料][import-data]模組，以便從 Azure 中的 SQL 資料庫執行個體直接擷取資料。查詢會排除含有不正確 (0, 0) 座標的記錄。
 
 	SELECT t.*, f.payment_type, f.fare_amount, f.surcharge, f.mta_tax, f.tolls_amount, 	f.total_amount, f.tip_amount,
 	    CASE WHEN (tip_amount > 0) THEN 1 ELSE 0 END AS tipped,
@@ -563,8 +563,8 @@
 
 當您準備好繼續進行 Azure Machine Learning，您可以：
 
-1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢，直接貼至 Azure Machine Learning 中的「[讀取器][reader]」模組，或者
-2. 保存您計畫用來在新的 SQL DW 資料表中建置模型的取樣和工程設計資料，並在 Azure Machine Learning 的[讀取器][reader]模組中使用新的資料表。先前步驟中的 PowerShell 指令碼已為您完成此作業。您可以直接在讀取器模組中讀取此資料表。
+1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組，或者
+2. 將您計畫用來建置模型的取樣和工程設計資料保存在新 SQL DW 資料表中，然後在 Azure Machine Learning 的[匯入資料][import-data]模組中使用該新資料表。先前步驟中的 PowerShell 指令碼已為您完成此作業。您可以在「匯入資料」模組中直接讀取此資料表。
 
 
 ## <a name="ipnb"></a>IPython Notebook 中的資料探索和特徵工程設計
@@ -869,9 +869,9 @@
 
 在這個練習中，我們已經探索了 SQL 資料倉儲中的資料並進行處理，並且決定了要在 Azure ML 中擷取的取樣大小。以下是建置一或多個預測模型的程序：
 
-1. 利用＜Data Input and Output (資料輸入和輸出)＞一節中提供的[讀取器][reader]模組將資料匯入 Azure ML。如需詳細資訊，請參閱「[讀取器][reader]」模組的參考頁面。
+1. 使用[匯入資料][import-data]模組 (可從＜資料輸入和輸出＞一節取得) 將資料匯入 Azure ML 中。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
 
-	![Azure ML 讀取器][17]
+	![Azure ML 匯入資料][17]
 
 2. 在 [**屬性**] 面板中，選取 [**Azure SQL Database**] 做為**資料來源**。
 
@@ -891,7 +891,7 @@
 
 > [AZURE.IMPORTANT] 在前幾節中提供的模型化資料擷取和取樣查詢範例中，**這三個模型化練習的所有標籤都包含於此查詢中**。每一個模型化練習的重要 (必要) 步驟都是針對其他兩個問題**排除**不需要的標籤，以及任何其他的**目標流失**。例如，使用二元分類時，請用 **tipped** 標籤，並排除 [tip\_class]、[tip\_amount] 和 [total\_amount] 欄位。後者為目標流失，因為它們意指支付的小費。
 >
-> 若要排除不必要的資料行或目標流失，您可以使用[專案資料行][project-columns]模組或[中繼資料編輯器][metadata-editor]。如需詳細資訊，請參閱「[專案資料行][project-columns]」和「[中繼資料編輯器][metadata-editor]」的參考頁面。
+> 若要排除任何不必要的資料行或目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。如需詳細資訊，請參閱[選取資料集中的資料行][select-columns]和[編輯中繼資料][edit-metadata]參考頁面。
 
 ## <a name="mldeploy"></a>在 Azure Machine Learning 中部署模型
 
@@ -912,7 +912,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 2. 識別邏輯**輸入連接埠**，表示預期的輸入資料結構描述。
 3. 識別邏輯**輸出連接埠**，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用「[專案資料行][project-columns]」模組排除所有輸入欄位，而且只會在輸出中包含「**計分標籤**」和「**計分機率**」。
+建立計分實驗時，請檢閱它並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，而只包含「計分標籤」和「計分機率」。
 
 下圖提供評分實驗範例。準備部署時，請按下方動作列中的 [發佈 Web 服務] 按鈕。
 
@@ -960,8 +960,8 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 
 
 <!-- Module References -->
-[metadata-editor]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
-[project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
+[select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

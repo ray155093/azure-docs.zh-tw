@@ -19,7 +19,7 @@
 
 # Azure 服務管理 (asm) 模式中的 Azure CLI 命令
 
-[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines/azure-cli-arm-commands.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines/azure-cli-arm-commands.md)。
 
 本文提供傳統部署模型中您通常用來建立和管理 Azure 資源的 Azure CLI 命令的語法和選項。您可以在 Azure 服務管理 (asm) 模式下執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
 
@@ -791,7 +791,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 
 此命令還支援下列其他選項：
 
-****-q 或 **--quiet**：不顯示確認提示。請在自動化指令碼中使用此選項。
+**-q 或 **--quiet**：不顯示確認提示。請在自動化指令碼中使用此選項。
 
 
 **site start [options] [name]**
@@ -814,7 +814,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 	info:   Site mysite has been stopped
 	info:   site stop command OK
 
-****site restart [options] [name]
+**site restart [options] [name]**
 
 這個命令會停止再啟動指定的 Web 應用程式。
 
@@ -1880,13 +1880,15 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 + **-d** 或 **--description** &lt;description>：儲存體帳戶的描述。
 + **-l** 或 **--location** &lt;name>：要建立儲存體帳戶所在的區域。
 + **-a** 或 **--affinity-group** &lt;name>：要與儲存體帳戶相關聯的同質群組。
-+ **--type**：指出要建立的帳戶類型：包含備援選項 (LRS/ZRS/GRS/RAGRS) 的「Standard 儲存體」或「Premium 儲存體 (PLRS)」。
++ **--kind**︰帳戶類型︰「儲存體」或「儲存體 Blob」其中之一 
++ **--sku-name**：指出要建立的帳戶類型：附帶備援選項的「標準儲存體」(LRS/ZRS/GRS/RAGRS) 或「進階儲存體」(PLRS) 其中之一。
++ **--access-tier**︰指定儲存層︰「熱」或「冷」其中之一
 
 **storage account set [options] <name>**
 
 這個命令會更新指定的儲存體帳戶。
 
-	~$ azure storage account set mybasestorage --type GRS
+	~$ azure storage account set mybasestorage --kind Storage --sku-name GRS
 	info:    Executing command storage account set
 	+ Updating storage account
 	info:    storage account set command OK
@@ -1896,7 +1898,8 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 + **-e** 或 **--label** &lt;label>：儲存體帳戶的標籤。
 + **-d** 或 **--description** &lt;description>：儲存體帳戶的描述。
 + **-l** 或 **--location** &lt;name>：要建立儲存體帳戶所在的區域。
-+ **--type**: 指出新的帳戶類型：包含備援選項 (LRS/ZRS/GRS/RAGRS) 的「Standard 儲存體」或「Premium 儲存體 (PLRS)」。
++ **--sku-name**：指出新的帳戶類型：附帶備援選項的「標準儲存體」(LRS/ZRS/GRS/RAGRS) 或「進階儲存體」(PLRS) 其中之一。
++ **--access-tier**︰指定儲存層︰「熱」或「冷」其中之一
 
 **storage account delete [options] <name>**
 
@@ -2350,4 +2353,4 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 	+ Deleting the DNS server entry dns-4 ( 77.88.99.11 )
 	info:    network dnsserver unregister command OK
 
-<!---HONumber=AcomDC_0518_2016--->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/25/2016"
+	ms.date="06/03/2016"
 	ms.author="jroth"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
@@ -188,18 +188,18 @@
 定價層會決定搜尋服務的容量和限制。層級包括：
 
 - 「免費」多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
-- 「基本 (預覽)」會針對生產工作負載提供規模較小的專用計算資源。此層級目前為預覽狀態，以較低的費率提供。
-- 「標準 (S1 和 S2)」 適用於生產工作負載。有更大容量的版本 (*S2*) 可供索取 (請連絡支援人員或 azuresearch_contact@microsoft.com 取得協助)。
+- 「基本」可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
+- 「標準 (S1、S2、S3、S3 高密度)」適用於較大型生產工作負載。標準層內具有多個層級，如此就能讓您針對特定案例選擇資源組態。
 
-**層級限制**
+**每一訂用帳戶的限制**
 
-[AZURE.INCLUDE [azure-search-limits-all](../includes/azure-search-limits-tier.md)]
+[AZURE.INCLUDE [azure-search-limits-per-subscription](../includes/azure-search-limits-per-subscription.md)]
 
-**儲存體限制**
+**每個搜尋服務的限制**
 
-[AZURE.INCLUDE [azure-search-limits-all](../includes/azure-search-limits-storage.md)]
+[AZURE.INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-如需其他限制的相關資訊，例如文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
+如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
 
 ### 媒體服務限制
 
@@ -300,4 +300,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

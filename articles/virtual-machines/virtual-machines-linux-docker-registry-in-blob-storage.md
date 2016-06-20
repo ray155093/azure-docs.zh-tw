@@ -61,6 +61,7 @@
 為了簡單起見，本主題會遵循選項 2，使用環境變數。
 
 若要執行下列情形的 Docker Registry 執行個體︰
+
 * 使用您的 Azure 儲存體帳戶儲存映像
 * 在虛擬機器的連接埠 5000 上接聽
 * 未設定驗證 (不建議，請參閱下列注意事項)
@@ -99,4 +100,4 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 [registry-config]: http://docs.docker.com/registry/configuration/
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

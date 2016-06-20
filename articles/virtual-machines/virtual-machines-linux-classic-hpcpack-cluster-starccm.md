@@ -156,9 +156,6 @@ HPC Pack 隨附的一個實用工具是 clusrun 工具。您可以使用此命�
     clusrun /nodegroup:LinuxNodes "echo //<saname>.file.core.windows.net/<sharename> /hpcdata cifs vers=2.1,username=<saname>,password='<sakey>',dir_mode=0777,file_mode=0777 >> /etc/fstab"
 ```
 
-## 更新 Linux 驅動程式
-您可能最終必須更新 Linux 計算節點的 InfiniBand 驅動程式。如需詳細資訊，請閱讀文章：[更新 Linux RDMA for SLES 12 驅動程式](virtual-machines-linux-classic-rdma-cluster.md/#update-the-linux-rdma-drivers-for-sles-12)。
-
 ## 安裝 STAR-CCM+
 Azure VM 執行個體 A8 和 A9 提供 InfiniBand 支援與 RDMA 功能。啟用這些功能的核心驅動程式都適用於 Azure Marketplace 中的 Windows Server 2012 R2、SUSE 12、CentOS 6.5 和 CentOS 7.1 映像。Microsoft MPI 和 Intel MPI (5.x 版) 是 Azure 中可支援這些驅動程式的兩個 MPI 程式庫。
 
@@ -212,9 +209,9 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 
 會對節點配置專用的作業，而且不能與其他作業共用。作業未直接啟動為 MPI 作業。**runstarccm.sh** 殼層指令碼會啟動 MPI 啟動器。
 
-輸入模型和 **runstarccm.sh** 指令碼儲存在先前裝載的 **/hpcdata** 共用中。
+輸入模型和 **runstarccm.sh** 指令碼會儲存在先前掛接的 **/hpcdata** 共用中。
 
-記錄檔會以作業識別碼來命名，並儲存在 **/hpcdata 共用** 以及 STAR-CCM+ 輸出檔案中。
+記錄檔會以工作識別碼來命名，並與 STAR-CCM+ 輸出檔案一起儲存在 **/hpcdata 共用**中。
 
 
 #### 範例 SubmitStarccmJob.ps1 指令碼
@@ -241,7 +238,7 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 
     Submit-HpcJob -Job $job -Scheduler $scheduler
 ```
-將 **runner.java** 取代為您偏好的 STAR-CCM+ Java 模型啟動程式與記錄程式碼。
+將 **runner.java** 取代成您偏好的 STAR-CCM+ Java 模型啟動程式與記錄程式碼。
 
 #### 範例 runstarccm.sh 指令碼
 ```
@@ -289,9 +286,9 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
     exit ${RTNSTS}
 ```
 
-在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。對於該權杖，您必須對其將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及在命令列的 **-podkey** 選項中設定索引鍵。
+在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。針對該權杖，您必須將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及在命令列的 **-podkey** 選項中設定索引鍵。
 
-在進行某些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP\_NODES\_CORES** 環境變數中擷取要建置 hostfile 的節點清單，供 MPI 啟動程式使用。此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
+在進行一些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP\_NODES\_CORES** 環境變數中，擷取節點清單來建置 MPI 啟動器使用的 hostfile。此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
 
 **$CCP\_NODES\_CORES** 的格式會遵循下列模式：
 
@@ -301,25 +298,25 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 
 其中：
 
-* `<Number of nodes>` 是配置給此作業的節點數目。
+* `<Number of nodes>` 是配置給此工作的節點數目。
 
-* `<Name of node_n_...>` 是配置給此作業的各節點名稱。
+* `<Name of node_n_...>` 是配置給此工作的每個節點名稱。
 
-* `<Cores of node_n_...>` 是配置給此作業的節點核心數目。
+* `<Cores of node_n_...>` 是配置給此工作的節點上核心數目。
 
-核心數目 (**$NBCORES**) 也是根據節點的數目 (**$NBNODES**) 和每個節點的核心數目 (提供做為參數 **$NBCORESPERNODE**) 來計算。
+核心數目 (**$NBCORES**) 也是根據節點的數目 (**$NBNODES**) 和每個節點的核心數目 (以 **$NBCORESPERNODE** 參數提供) 來計算。
 
 針對 MPI 選項，在 Azure 上與 Intel MPI 搭配使用的選項如下︰
 
-*   `-mpi intel` 指定 Intel MPI。
+*   `-mpi intel` 可指定 Intel MPI。
 
-*   `-fabric UDAPL` 使用 Azure InfiniBand 動詞。
+*   `-fabric UDAPL` 可使用 Azure InfiniBand 動詞。
 
-*   `-cpubind bandwidth,v` 使用 STAR-CCM+ 最佳化 MPI 的頻寬。
+*   `-cpubind bandwidth,v` 可使用 STAR-CCM+ 將 MPI 的頻寬最佳化。
 
-*   `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"` 讓 Intel MPI 與 Azure InfiniBand 搭配使用，以及設定每個節點的必要核心數目。
+*   `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"` 可讓 Intel MPI 與 Azure InfiniBand 搭配運作，並可設定每個節點的必要核心數目。
 
-*   `-batch` 在 Batch 模式下 (無使用者介面) 啟動 STAR-CCM+。
+*   `-batch` 可以用批次模式 (無使用者介面) 啟動 STAR-CCM+。
 
 
 最後，若要開始作業，請確定您的節點啟動並執行，並且在叢集管理員中處於線上狀態。然後從 PowerShell 命令提示字元中，執行此作業︰
@@ -348,4 +345,4 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 [hndeploy]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/hndeploy.png
 [clustermanager]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/ClusterManager.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

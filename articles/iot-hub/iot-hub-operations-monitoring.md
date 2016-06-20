@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="04/18/2016"
+ ms.date="06/06/2016"
  ms.author="nberdy"/>
 
 # 作業監視簡介
@@ -122,6 +122,25 @@ IoT 中樞會監視四個類別的事件：
          "deviceId": "device-ID"
     }
 
+### 檔案上傳
+
+檔案上傳類別會追蹤在 IoT 中樞發生且與檔案上傳功能相關的錯誤。這包括因 SAS URI 而發生的錯誤 (例如當它在裝置通知中樞上傳完成之前即已到期時)、因裝置回報上傳失敗而發生的錯誤，以及在「IoT 中樞」通知訊息建立期間於儲存體中找不到檔案時發生的錯誤。請注意，此類別無法捕捉直接發生在裝置將檔案上傳到儲存體時的錯誤。
+
+    {
+         "authType": "{"scope":"hub","type":"sas","issuer":"iothub"}",
+         "protocol": "HTTP",
+         "time": " UTC timestamp",
+         "operationName": "ingress",
+         "category": "fileUpload",
+         "level": "Error",
+         "statusCode": 4XX,
+         "statusType": 4XX001,
+         "statusDescription": "MessageDescription",
+         "deviceId": "device-ID",
+         "blobUri": "http//bloburi.com",
+         "durationMs": 1234
+    }
+
 ## 後續步驟
 
 您現已了解作業監視的概觀，接下來請遵循下列連結來深入了解：
@@ -139,4 +158,4 @@ IoT 中樞會監視四個類別的事件：
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

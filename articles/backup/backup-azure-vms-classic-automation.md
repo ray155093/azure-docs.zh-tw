@@ -342,4 +342,8 @@ $DAILYBACKUPSTATS | Out-GridView
 
 如果想要將製作圖表的功能加入這個報表輸出，請在 TechNet 部落格上了解[使用 PowerShell 製作圖表](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
 
-<!---HONumber=AcomDC_0525_2016-->
+## 後續步驟
+
+如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation-classic.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](./backup-dpm-automation-classic.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
+
+<!---HONumber=AcomDC_0608_2016-->

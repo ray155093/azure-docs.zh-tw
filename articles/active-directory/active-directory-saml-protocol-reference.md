@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 
@@ -38,4 +38,4 @@ Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單�
 
 如需 Azure AD 發佈的同盟中繼資料文件的相關資訊，請參閱[同盟中繼資料](active-directory-federation-metadata.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

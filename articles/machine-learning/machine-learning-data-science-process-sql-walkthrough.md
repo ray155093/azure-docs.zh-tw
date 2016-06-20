@@ -175,8 +175,8 @@
 
 當您準備好繼續進行 Azure Machine Learning，您可以：
 
-1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢，直接貼至 Azure Machine Learning 中的「[讀取器][reader]」模組，或者
-2. 保存您計畫用來在新資料庫資料表中建置模型的取樣和工程設計資料，並在 Azure Machine Learning 的「[讀取器][reader]」模組中使用新的資料表。
+1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組，或者
+2. 將您計畫用來建置模型的取樣和工程設計資料保存在新資料庫資料表中，然後在 Azure Machine Learning 的[匯入資料][import-data]模組中使用該新資料表。
 
 在本節中，我們會儲存最後一個查詢，以擷取資料並對資料進行取樣。＜[IPython Notebook 中的資料探索和功能工程](#ipnb)＞一節中示範了第二個方法的執行方式。
 
@@ -266,7 +266,7 @@
 
 #### 準備資料以進行模型建置
 
-下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取 1% 的隨機取樣。複製此查詢，並直接貼至 [Azure Machine Learning Studio](https://studio.azureml.net) 的「[讀取器][reader]」模組，即可從 Azure 的 SQL Server 資料庫執行個體中直接擷取資料。查詢會排除含有不正確 (0, 0) 座標的記錄。
+下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取 1% 的隨機取樣。您可以複製此查詢並直接貼到 [Azure Machine Learning Studio](https://studio.azureml.net) 的[匯入資料][import-data]模組，以便從 Azure 中的 SQL Server 資料庫執行個體直接擷取資料。查詢會排除含有不正確 (0, 0) 座標的記錄。
 
 	SELECT t.*, f.payment_type, f.fare_amount, f.surcharge, f.mta_tax, f.tolls_amount, 	f.total_amount, f.tip_amount,
 	    CASE WHEN (tip_amount > 0) THEN 1 ELSE 0 END AS tipped,
@@ -298,8 +298,8 @@
 
 準備好繼續進行 Azure Machine Learning 時，您可以：
 
-1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢，直接貼至 Azure Machine Learning 中的「[讀取器][reader]」模組。＜[在 Azure Machine Learning 中建置模型](#mlmodel)＞一節中示範了此方法的執行方式。    
-2. 保存您計畫用來在新資料庫資料表中建置模型的取樣和工程設計資料，然後在「[讀取器][reader]」模組中使用新的資料表。
+1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組。＜[在 Azure Machine Learning 中建置模型](#mlmodel)＞一節中示範了此方法的執行方式。    
+2. 將您計畫用來建置模型的取樣和工程設計資料保存在新資料庫資料表中，然後在[匯入資料][import-data]模組中使用該新資料表。
 
 以下是數個資料探索、資料視覺化及功能工程範例。如需其他範例，請參考 [**IPython Notebooks 範例**] 資料夾中的 SQL IPython Notebook 範例。
 
@@ -419,7 +419,7 @@
 
 ### 針對 SQL 中的資料進行次取樣
 
-在準備於 [Azure Machine Learning Studio](https://studio.azureml.net) 中建置模型所需的資料時，您可能會決定**在「讀取器」模組中直接使用的 SQL 查詢**，或者將工程設計和取樣資料保存在新的資料表中，只需要利用簡單的 **SELECT * FROM <your\_new\_table\_name>** 即可在「[讀取器][reader]」模組中使用。
+當準備在 [Azure Machine Learning Studio](https://studio.azureml.net) 中建置模型所需的資料時，您可以決定**要直接在「匯入資料」模組中使用的 SQL 查詢**，或將工程設計和取樣資料保存在新的資料表中，您只要利用簡單的 **SELECT * FROM <your\_new\_table\_name>**，即可在[匯入資料][import-data]模組中使用此資料表。
 
 在本節中，我們將建立新的資料表來保留取樣與工程資料。＜[SQL Server 中的資料探索和功能工程](#dbexplore)＞一節中提供了可用來建置模型的直接 SQL 查詢範例。
 
@@ -631,9 +631,9 @@
 
 在這個練習中，我們已經探索了 SQL Server 中的資料並進行工程 (步驟 1-4)，並且決定了要在 Azure ML 中擷取的取樣大小。建置一或多個我們所決定的預測模型：
 
-1. ＜**資料輸入和輸出**＞一節中說明了利用「[讀取器][reader]」模型取得 Azure ML 的資料的方法。如需詳細資訊，請參閱「[讀取器][reader]」模組的參考頁面。
+1. 使用[匯入資料][import-data]模組 (可從＜資料輸入和輸出＞一節取得) 將資料匯入 Azure ML 中。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
 
-	![Azure ML 讀取器][17]
+	![Azure ML 匯入資料][17]
 
 2. 在 [**屬性**] 面板中，選取 [**Azure SQL Database**] 做為**資料來源**。
 
@@ -653,7 +653,7 @@
 
 > [AZURE.IMPORTANT] 在前幾節中提供的模型化資料擷取和取樣查詢範例中，**這三個模型化練習的所有標籤都包含於此查詢中**。每一個模型化練習的重要 (必要) 步驟都是針對其他兩個問題**排除**不需要的標籤，以及任何其他的**目標流失**。例如，使用二進位分類時，請用 **tipped** 標籤，並排除 [**tip\_class**]、[**tip\_amount**] 和 [**total\_amount**] 欄位。後者為目標流失，因為它們意指支付的小費。
 >
-> 若要排除不必要的資料行和/或目標流失，您可以使用「[專案資料行][project-columns]」模組或「[中繼資料編輯器][metadata-editor]」。如需詳細資訊，請參閱「[專案資料行][project-columns]」和「[中繼資料編輯器][metadata-editor]」的參考頁面。
+> 若要排除不必要的資料行和 (或) 目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。如需詳細資訊，請參閱[選取資料集中的資料行][select-columns]和[編輯中繼資料][edit-metadata]參考頁面。
 
 ## <a name="mldeploy"></a>在 Azure Machine Learning 中部署模型
 
@@ -674,7 +674,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 2. 識別邏輯**輸入連接埠**，表示預期的輸入資料結構描述。
 3. 識別邏輯**輸出連接埠**，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它，並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用「[專案資料行][project-columns]」模組排除所有輸入欄位，而且只會在輸出中包含「**計分標籤**」和「**計分機率**」。
+建立計分實驗時，請檢閱它，並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，而只包含「計分標籤」和「計分機率」。
 
 下圖為計分實驗範例。準備部署時，請按下方動作列中的 [發佈 Web 服務] 按鈕。
 
@@ -712,8 +712,8 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 
 
 <!-- Module References -->
-[metadata-editor]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
-[project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
+[select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

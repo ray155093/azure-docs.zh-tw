@@ -36,10 +36,10 @@
 
 	ShardMapManagerFactory.CreatePerformanceCategoryAndCounters()  
 
-這個方法會建立下列效能計數器︰
+您也可以使用[這個](https://gallery.technet.microsoft.com/scriptcenter/Elastic-DB-Tools-for-Azure-17e3d283) PowerShell 指令碼來執行方法。這個方法會建立下列效能計數器︰
 
 * **快取對應**︰針對分區對應快取的對應數目。
-*  **DDR 作業數/秒**︰分區對應的資料相依路由作業速率。對 [OpenConnectionForKey()](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) 的呼叫導致到目的地分區的成功連接時，此計數器會更新。 
+*  **DDR 作業數/秒**︰分區對應的資料相依路由作業速率。對 [OpenConnectionForKey()](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) 的呼叫導致順利連接到目的地分區時，就會更新此計數器。 
 *  **對應查閱快取點擊/秒**︰分區對應中對應的成功快取查閱作業的速率。 
 *  **對應查閱快取遺失/秒**︰分區對應中對應的失敗快取查閱作業的速率。
 *  **快取中的對應新增或更新/秒**︰分區對應的快取中新增或更新對應的速率。 
@@ -51,7 +51,7 @@
 ## 注意事項
 下列事件會觸發效能計數器的建立︰
 
-* 如果 ShardMapManager 包含任何分區對應，使用 [積極式載入](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerloadpolicy.aspx)初始化 [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)。包括 [GetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx?f=255&MSPPError=-2147217396#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerFactory.GetSqlShardMapManager%28System.String,Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerLoadPolicy%29) 和 [TryGetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx) 方法。
+* 在 ShardMapManager 包含任何分區對應的情況下，使用[積極式載入](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerloadpolicy.aspx)將 [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) 初始化。這些包括 [GetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx?f=255&MSPPError=-2147217396#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerFactory.GetSqlShardMapManager%28System.String,Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerLoadPolicy%29) 和 [TryGetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx) 方法。
 * 成功查閱分區對應 (使用 [GetShardMap()](https://msdn.microsoft.com/library/azure/dn824215.aspx)、[GetListShardMap()](https://msdn.microsoft.com/library/azure/dn824212.aspx) 或 [GetRangeShardMap()](https://msdn.microsoft.com/library/azure/dn824173.aspx))。 
 
 * 使用 CreateShardMap() 成功建立分區對應。
@@ -73,4 +73,4 @@
 <!--Anchors-->
 <!--Image references-->
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

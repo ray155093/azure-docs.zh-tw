@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/14/2016"
+   ms.date="06/02/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect 同步處理：作業工作和考量
@@ -30,7 +30,9 @@
 
 您可以在安裝期間選取狀態為**預備模式**的伺服器。這樣會讓伺服器匯入和同步處理，但它不會執行任何匯出。預備模式的伺服器無法執行密碼同步處理或啟用密碼回寫，即使您選取這些功能也一樣。當您停用預備模式時，伺服器會開始匯出並啟用密碼同步處理和密碼回寫 (如果已啟用)。
 
-預備模式的伺服器將繼續收到來自 Active Directory 和 Azure AD 的變更。這樣會永遠有最新的變更複本，並且可以非常快速地接取代另一部伺服器的責任。如果您對您的主要伺服器進行組態變更，則您有責任對預備模式的伺服器進行相同的變更。
+您仍然可以使用 Synchronization Service Manager 來強制執行匯出。
+
+預備模式的伺服器將繼續收到來自 Active Directory 和 Azure AD 的變更。這樣永遠都有最新的變更複本，並且可以非常快速地接取代另一部伺服器的責任。如果您對您的主要伺服器進行組態變更，則您有責任對預備模式的伺服器進行相同的變更。
 
 對於具備較舊同步處理技術知識的人員，預備模式是不同的，因為伺服器有它自己的 SQL 資料庫。這樣可讓預備模式伺服器位於不同的資料中心。
 
@@ -45,21 +47,21 @@
 **準備**
 
 1. 安裝 Azure AD Connect、選取 [**預備模式**]，然後取消選取安裝精靈中最後一個頁面上的 [**啟動同步處理**]。這可讓我們手動執行同步處理引擎。![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/readytoconfigure.png)
-2. 登出/登入並從 [開始] 功能表中選取 [同步處理服務]。
+2. 登出/登入，並從 [開始] 功能表中選取 [同步處理服務]。
 
 **匯入和同步處理**
 
 1. 選取 [連接器]，並選取第一個類型為 [Active Directory 網域服務] 的連接器。按一下 [執行]，選取 [完整匯入] 和 [確定]。對這種類型的所有連接器執行此動作。
 2. 選取 [Azure Active Directory (Microsoft)] 類型的連接器。按一下 [執行]，選取 [完整匯入] 和 [確定]。
-4. 確定仍然選取連接器，並針對每一個 [Active Directory 網域服務] 類型的連接器按一下 [執行]、選取 [差異同步處理] 和 [確定]。
-5. 選取 **Azure Active Directory (Microsoft)** 類型的連接器。按一下 [執行]，選取 [差異同步處理]，然後選取 [確定]。
+3. 確定仍然選取連接器，並針對每一個 [Active Directory 網域服務] 類型的連接器按一下 [執行]、選取 [差異同步處理] 和 [確定]。
+4. 選取 **Azure Active Directory (Microsoft)** 類型的連接器。按一下 [執行]，選取 [差異同步處理]，然後選取 [確定]。
 
 您現在已預備匯出變更至 Azure AD 和內部部署 AD (如果您正在使用 Exchange 混合部署)。接下來的步驟可讓您在實際開始匯出至目錄之前，檢查將要變更的項目。
 
 **Verify**
 
-1. 啟動 CMD 命令提示字元並移至 `%Program Files%\Microsoft Azure AD Sync\bin`
-2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x`<BR/> 連接器名稱可以在同步處理服務中找到。它的名稱類似 Azure AD 的 "contoso.com – AAD"。
+1. 啟動 CMD 命令提示字元並移至 `%ProgramFiles%\Microsoft Azure AD Sync\bin`
+2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。它的名稱類似 Azure AD 的 "contoso.com – AAD"。
 3. 執行：`CSExportAnalyzer %temp%\export.xml > %temp%\export.csv`
 4. 現在您在 %temp% 中已經有名稱為 export.csv 的檔案，可在 Microsoft Excel 中加以檢查。此檔案包含將要匯出的所有變更。
 5. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入和同步處理和驗證)，直到要匯出的變更皆如預期進行。
@@ -96,7 +98,7 @@
 ### 必要時重建
 必要時規劃伺服器重建為可行的策略。在許多情況下，安裝同步處理引擎並執行初始匯入，同步處理可以在幾個小時內完成。如果沒有可用的備用伺服器，則可以暫時使用網域控制站裝載同步處理引擎。
 
-同步處理引擎伺服器不會儲存有關物件的任何狀態，因此可以從 Active Directory 與 Azure AD 中的資料重建資料庫。**sourceAnchor** 屬性可用來聯結來自內部部署和雲端的物件。如果您重建具有現有物件內部部署與雲端的伺服器，同步處理引擎的重新安裝會符合這些項目。您需要記錄和儲存的項目是對伺服器進行的組態變更，例如篩選和同步處理規則。這些項目必須在您開始同步處理之前重新套用。
+同步處理引擎伺服器不會儲存有關物件的任何狀態，因此可以從 Active Directory 與 Azure AD 中的資料重建資料庫。**sourceAnchor** 屬性可用來聯結來自內部部署和雲端的物件。如果您重建具有現有物件內部部署與雲端的伺服器，則同步處理引擎的重新安裝會符合這些項目。您需要記錄和儲存的項目是對伺服器進行的組態變更，例如篩選和同步處理規則。這些項目必須在您開始同步處理之前重新套用。
 
 ### 具有備用的待命伺服器 - 預備模式
 如果您有更複雜的環境，則建議使用一或多個待命伺服器。您可以在安裝期間啟用狀態為「預備模式」的伺服器。
@@ -114,4 +116,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

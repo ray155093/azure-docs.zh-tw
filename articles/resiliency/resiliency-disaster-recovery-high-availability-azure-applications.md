@@ -76,7 +76,7 @@
 復原點目標 (RPO) 是因為復原程序所遺失之資料的可接受時間範圍。例如，如果 RPO 是一小時，您必須至少每個小時完整備份或複寫資料一次。一旦您在替代區域中啟動應用程式，備份資料可能遺失長達一小時的資料。和 RTO 一樣，關鍵應用程式的目標是較小的 RPO。
 
 ##檢查清單
-以下歸納本文 (和它關於 Azure 應用程式[高可用性](./resiliency-high-availability-azure-applications.md)和[災害復原](./resiliency-disaster-recovery-azure-applications.md)的相關文章) 所涵蓋的重點。此摘要將做為您應該為自己的可用性和災害復原計劃考慮之項目的檢查清單。對於想要認真實作成功解決方案的客戶來說，這些是非常實用的最佳作法。這種類型的解決方案真的有效，可在遇到系統失敗時及時且成功地復原。
+以下歸納本文 (及其在 Azure 應用程式[高可用性](resiliency-high-availability-azure-applications.md)和[災害復原](resiliency-disaster-recovery-azure-applications.md)方面的相關文章) 所涵蓋的重點。此摘要將做為您應該為自己的可用性和災害復原計劃考慮之項目的檢查清單。對於想要認真實作成功解決方案的客戶來說，這些是非常實用的最佳作法。這種類型的解決方案真的有效，可在遇到系統失敗時及時且成功地復原。
 
 1. 請為每個應用程式進行風險評估，因為其各有不同的需求。有些應用程式比其他應用程式更重要，因此值得付出額外成本為其建構災害復原。
 1. 使用此資訊來定義每個應用程式的 RTO 和 RPO。
@@ -99,11 +99,11 @@ Azure 會偵測及處理許多失敗，但有許多類型的失敗需要應用�
 在建立應用程式的可用性和災害復原計劃時，請考慮應用程式失敗的商業後果。定義處理程序、原則和程序以在遇到災難事故後還原關鍵系統，需要時間、計劃和承諾。在建立計劃之後，也不能停下腳步。您必須根據應用程式組合、業務需求以及所能取得的技術，定期分析、測試和持續改進計劃。Azure 針對建立能夠承受失敗的穩固應用程式，提供了新功能和新的挑戰。
 
 ##其他資源
-[建置在 Microsoft Azure 上之應用程式的高可用性](./resiliency-high-availability-azure-applications.md)
+[建置在 Microsoft Azure 上之應用程式的高可用性](resiliency-high-availability-azure-applications.md)
 
-[在 Microsoft Azure 上建置的應用程式的災害復原](./resiliency-disaster-recovery-azure-applications.md)
+[在 Microsoft Azure 上建置的應用程式的災害復原](resiliency-disaster-recovery-azure-applications.md)
 
-[Azure 復原技術指導](./resiliency-technical-guidance.md)
+[Azure 復原技術指導](resiliency-technical-guidance.md)
 
 [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](../sql-database/sql-database-business-continuity.md)
 
@@ -114,6 +114,6 @@ Azure 會偵測及處理許多失敗，但有許多類型的失敗需要應用�
 [Azure 雲端服務上大規模服務設計的最佳做法](https://azure.microsoft.com/blog/best-practices-for-designing-large-scale-services-on-windows-azure/)
 
 ##後續步驟
-本文屬於著重在 Azure 應用程式的災害復原和高可用性的系列文章。這一系列中的下一篇文章是[在 Microsoft Azure 上建置的應用程式的高可用性](./resiliency-high-availability-azure-applications.md)。
+本文屬於著重在 Azure 應用程式的災害復原和高可用性的系列文章。這一系列中的下一篇文章是[建置在 Microsoft Azure 上之應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

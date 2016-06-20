@@ -13,7 +13,7 @@
 	ms.topic="reference" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="multiple" 
-	ms.date="03/07/2016" 
+	ms.date="06/01/2016" 
 	ms.author="pingf"/>
 
 
@@ -89,4 +89,4 @@ API 會對您的時間序列資料執行這些偵測器，然後傳回每個時�
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0608_2016-->

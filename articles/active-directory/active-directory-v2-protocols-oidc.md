@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # v2.0 通訊協定 - OpenID Connect
@@ -202,4 +202,4 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。若要將使用者登入，您必須完整地如[上方](#validating-the-id-token)所述驗證 `id_token`。若要取得存取權杖，您可以遵循我們的 [OAuth 通訊協定文件](active-directory-v2-protocols-oauth-code.md#request-an-access-token)中所述的步驟。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

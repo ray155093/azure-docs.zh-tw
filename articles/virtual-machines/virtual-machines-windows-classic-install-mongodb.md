@@ -14,15 +14,14 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/25/2016"
+	ms.date="06/07/2016"
 	ms.author="iainfou"/>
 
 #在 Windows VM 上安裝 MongoDB
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
 
-
-[MongoDB][MongoDB] 是受歡迎的高效能開放原始碼 NoSQL 資料庫。您可以使用 [Azure 傳統入口網站][AzurePortal]，利用傳統部署模型從映像庫建立一個執行 Windows Server 的虛擬機器。然後在虛擬機器上安裝及設定 MongoDB 資料庫。
+[MongoDB][MongoDB] 是受歡迎的高效能開放原始碼 NoSQL 資料庫。本文將引導您完成下列程序：使用 [Azure 傳統入口網站][AzurePortal]來建立新 Windows Server 虛擬機器 (VM)、建立資料磁碟並連結到 VM，然後安裝並設定 MongoDB。如果您想要使用 Azure 中現有的 VM，您可以直接跳到[安裝並設定 MongoDB](#install-and-run-mongo-on-win2k8-vm)。
 
 
 ## 建立執行 Windows Server 的虛擬機器
@@ -44,11 +43,11 @@
 
 [AZURE.INCLUDE [install-and-run-mongo-on-win2k8-vm](../../includes/install-and-run-mongo-on-win2k8-vm.md)]
 
-##摘要
+## 摘要
 在本教學課程中，您已了解如何建立執行 Windows Server 的虛擬機器、從遠端連線至此虛擬機器，以及連接資料磁碟。同時也已了解如何在 Windows 虛擬機器上安裝及設定 MongoDB。您現在可以存取 Windows 虛擬機器上 MongoDB，方法是遵循 [MongoDB 文件][MongoDocs]中的進階主題。
 
 [MongoDocs]: http://docs.mongodb.org/manual/
 [MongoDB]: http://www.mongodb.org/
 [AzurePortal]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

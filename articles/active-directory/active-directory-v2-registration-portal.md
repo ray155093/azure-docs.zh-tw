@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # App 註冊參考
@@ -42,4 +42,4 @@ App 註冊入口網站的設定檔區段可以用來自訂您應用程式的登�
 
 如果您只打算使用 Azure AD v2.0 端點，您可以安全地停用 Live SDK 支援。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # 如何使用 v2.0 端點註冊 App
@@ -30,7 +30,8 @@
 
 完成了嗎？ 您現在應該看一下您的 Microsoft 應用程式清單，該清單有可能空白。讓我們改變這點。
 
-按一下 [新增應用程式]，並為它命名。入口網站將會指派全域唯一的應用程式識別碼給您的應用程式，以便稍後在您的程式碼中使用。如果您的 app 包含的伺服器端元件需要用來呼叫 API (例如：Office、Azure 或您自己的 Web API) 的存取權杖，您也會想在此處建立**應用程式密碼**。<!-- TODO: Link for app secrets -->
+按一下 [新增應用程式]，並為它命名。入口網站將會指派全域唯一的應用程式識別碼給您的應用程式，以便稍後在您的程式碼中使用。如果您的應用程式包含的伺服器端元件需要用來呼叫 API (例如：Office、Azure 或您自己的 Web API) 的存取權杖，您也會想在此處建立**應用程式密碼**。
+<!-- TODO: Link for app secrets -->
 
 接下來，加入您的 app 將使用的平台。
 
@@ -46,4 +47,4 @@
 
 [AZURE.INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-v2-quickstart-table.md)]
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

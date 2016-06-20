@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/04/2016" 
+	ms.date="06/03/2016" 
 	ms.author="mimig"/>
 
 # 使用 Azure 資源管理員範本和 Azure CLI 自動建立 DocumentDB 帳戶
@@ -37,7 +37,7 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
 
 ### 更新 Azure CLI 版本
 
-在命令提示字元中輸入 `azure --version`，即可以查看您是否已經安裝 0.9.11 版或更新版本。
+在命令提示字元中輸入 `azure --version`，即可以查看您是否已經安裝 0.9.11 版或更新版本。系統可能會在此步驟中提示您參與 Microsoft Azure CLI 資料收集，您可以選取 y 或 n 來選擇加入或退出。
 
 	azure --version
     0.9.11 (node: 0.12.7)
@@ -56,8 +56,7 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
 
     info:    Executing command login
     |info:    To sign in, use a web browser to open the page https://aka.ms/devicelogin. 
-    Enter the code E1A2B3C4D to authenticate. If you're signing in as an Azure
-    AD application, use the --username and --password parameters.
+    Enter the code E1A2B3C4D to authenticate.
 
 > [AZURE.NOTE] 如果您沒有 Azure 帳戶，就會看到錯誤訊息，指出您需要不同類型的帳戶。若要從目前的 Azure 帳戶建立一個帳戶，請參閱[在 Azure Active Directory 中建立工作或學校身分識別](../virtual-machines/virtual-machines-windows-create-aad-work-id.md)。
 
@@ -78,7 +77,7 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
     /info:    Added subscription Visual Studio Ultimate with MSDN
     info:    Setting subscription "Visual Studio Ultimate with MSDN" as default
     +
-    info:    login command OKK
+    info:    login command OK
 
 除了此處所述的互動式登入方法之外，還有一些其他的 Azure CLI 登入方法可供使用。如需其他方法的詳細資訊以及處理多個訂用帳戶的相關資訊，請參閱[從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
@@ -94,7 +93,7 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
     info:    New mode is arm
     info:    config mode command OK
 
-要切換回預設的命令，可以輸入 `azure config mode asm`。
+您可以藉由輸入 `azure config mode asm`，視需要切換回預設的命令集。
 
 ## <a id="quick-create-documentdb-account"></a>工作：使用 Azure CLI 建立 DocumentDB 帳戶
 
@@ -226,7 +225,7 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
         }
     }
 
-在 azuredeploy.parameters.json 檔案中，將值 "samplearmacct" 更新為您想要使用的資料庫名稱，然後儲存檔案。`<databaseAccountName>` 只能使用小寫字母、數字及 '-' 字元，且長度必須為 3 到 50 個字元。
+在 azuredeploy.parameters.json 檔案中，將值 "samplearmacct" 更新為您想要使用的資料庫名稱，然後儲存檔案。`"databaseAccountName"` 只能使用小寫字母、數字及 '-' 字元，且長度必須為 3 到 50 個字元。
 
 ### 步驟 2：建立或擷取您的資源群組
 
@@ -298,15 +297,21 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
     + Creating a deployment
     info:    Created template deployment "azuredeploy"
     + Waiting for deployment to complete
+    + 
+    + 
+    info:    Resource 'new_res_group' of type 'Microsoft.DocumentDb/databaseAccounts' provisioning status is Running
+    + 
+    info:    Resource 'new_res_group' of type 'Microsoft.DocumentDb/databaseAccounts' provisioning status is Succeeded
     data:    DeploymentName     : azuredeploy
     data:    ResourceGroupName  : new_res_group
     data:    ProvisioningState  : Succeeded
     data:    Timestamp          : 2015-11-30T18:50:23.6300288Z
     data:    Mode               : Incremental
+    data:    CorrelationId      : 4a5d4049-c494-4053-bad4-cc804d454700
+    data:    DeploymentParameters :
     data:    Name                 Type    Value
     data:    -------------------  ------  ------------------
     data:    databaseAccountName  String  samplearmacct
-    data:    location             String  West US
     info:    group deployment create command OK
 
 如果您遇到錯誤，請參閱[疑難排解](#troubleshooting)。
@@ -349,9 +354,9 @@ DocumentDB 資料庫帳戶是目前唯一可以使用 ARM 範本和 Azure CLI �
 
 若要深入了解 DocumentDB，請探索以下資源：
 
--	[DocumentDB 的學習途徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
+-	[DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 -	[DocumentDB 資源模型和概念](documentdb-resources.md)
 
 如需您可以使用的其他範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

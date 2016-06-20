@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="powershell"
    ms.workload="na" 
-   ms.date="05/05/2016"
-   ms.author="eslesar"/>
+   ms.date="06/06/2016"
+   ms.author="magoedte;eslesar"/>
    
 
 # 開始使用 Azure 自動化 DSC
@@ -27,7 +27,7 @@
 
 若要完成本主題中的範例，需要有下列項目：
 
-- Azure 自動化帳戶。如需建立 Azure 自動化帳戶的指示，請參閱[設定 Azure 自動化](automation-configuring.md)。
+- Azure 自動化帳戶。如需建立 Azure 自動化執行身分帳戶的指示，請參閱 [Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)。
 - 執行 Windows Server 2008 R2 或更新版本的 Azure Resource Manager VM (不是傳統)。如需建立 VM 的指示，請參閱[在 Azure 入口網站中建立第一個 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
 ## 建立 DSC 組態
@@ -266,4 +266,4 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
 * [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 * [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

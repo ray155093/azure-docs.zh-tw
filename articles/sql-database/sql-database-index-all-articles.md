@@ -211,7 +211,7 @@
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
 | 105 | [業務續航力常見問題集](sql-database-bcdr-faq.md) | 客戶經常詢問的問題和解答，與 Azure SQL Database 業務續航力和嚴重損壞修復的內建和選擇性功能相關。 |
-| 106 | [使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md) | 了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。 |
+| 106 | [使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md) | 了解如何使用「異地複寫」搭配 Azure SQL Database 進行應用程式資料備份，為商務持續性計劃設計雲端災害復原解決方案。 |
 | 107 | [業務續航力的設計](sql-database-business-continuity-design.md) | 選擇指引：本節提供如何選擇應使用之 BCDR 功能及何時使用的指引。其中包括使用 SQL DB 會自動取得之功能的說明。 |
 | 108 | [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md) | 還原時間點, Microsoft Azure SQL Database, 還原資料庫, 復原資料庫, Azure 傳統入口網站, Azure 傳統入口網站 |
 | 109 | [如何從 Azure SQL Database 備份還原單一資料表](sql-database-cloud-migrate-restore-single-table-azure-backup.md) | 了解如何從 Azure SQL Database 備份還原單一資料表。 |
@@ -378,4 +378,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

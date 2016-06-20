@@ -13,7 +13,7 @@
 	 ms.topic="article"
 	 ms.tgt_pltfrm="na"
 	 ms.workload="na"
-	 ms.date="03/14/2016"
+	 ms.date="06/06/2016"
 	 ms.author="nasing"/>
 
 # 透過 Azure 入口網站管理 IoT 中樞
@@ -120,6 +120,24 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
 
 ![][11]
 
+## 檔案上傳
+
+為了使用「IoT 中樞」中的檔案上傳功能，您必須先將「Azure 儲存體」帳戶與您的中樞建立關聯。選取 [檔案上傳] 設定，即可顯示正在修改之 IoT 中樞的檔案上傳屬性清單。
+
+**儲存體帳戶**︰使用入口網站來選取您目前訂用帳戶中的儲存體帳戶，來與您的「IoT 中樞」建立關聯。「IoT 中樞」將會從此儲存體帳戶產生 SAS URI，以供裝置在上傳檔案時使用。
+
+![][14]
+
+**接收已上傳檔案的通知**︰透過切換來啟用或停用檔案上傳通知。
+
+**SAS TTL**︰這個設定是「IoT 中樞」傳回給裝置之 SAS URI 的存留時間。預設為 1 小時，但可以使用滑桿來自訂成其他值。
+
+**檔案通知設定預設 TTL**：檔案上傳通知到期前的存留時間。預設為 1 天，但可以使用滑桿來自訂成其他值。
+
+**檔案通知最大傳遞計數**︰「IoT 中樞」將嘗試傳遞檔案上傳通知的次數。預設為 10，但可以使用滑桿來自訂成其他值。
+
+![][13]
+
 ## 價格和調整
 
 現有 IoT 中樞的價格可透過 [價格] 設定變更，但是有下列例外狀況：
@@ -149,8 +167,10 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
   [10]: ./media/iot-hub-manage-through-portal/shared-access-policies.png
   [11]: ./media/iot-hub-manage-through-portal/messaging-settings.png
   [12]: ./media/iot-hub-manage-through-portal/pricing-error.png
+  [13]: ./media/iot-hub-manage-through-portal/file-upload-settings.png
+  [14]: ./media/iot-hub-manage-through-portal/file-upload-container-selection.png
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
 [何謂 Azure IoT 中樞？]: iot-hub-what-is-iot-hub.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

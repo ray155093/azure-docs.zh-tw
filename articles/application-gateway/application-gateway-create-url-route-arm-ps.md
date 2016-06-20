@@ -22,7 +22,7 @@ URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。�
 
 URL 型路由會將新的規則類型引進應用程式閘道。應用程式閘道具有 2 種規則類型：基本和 PathBasedRouting。基本規則類型會針對後端集區提供循環配置資源服務，而 PathBasedRouting 除了循環配置資源發佈之外也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
 
->[AZURE.IMPORTANT] PathPattern：要比對的路徑模式清單。每個都必須以 / 開始，而且唯一允許出現 * 的地方是緊接在 '/' 之後的結尾處。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元是不允許的。
+>[AZURE.IMPORTANT] PathPattern：要比對的路徑模式清單。每個都必須以 / 開始，而且唯一允許出現 * 的地方是結尾處。有效範例包括 /xyz、/xyz* 或 /xyz/*。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元是不允許的。
 
 ## 案例
 在下列範例中，應用程式閘道會利用兩個後端伺服器集區來為 contoso.com 提供流量：視訊伺服器集區和映像伺服器集區。
@@ -194,6 +194,6 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 	$appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG -Location "West US" -BackendAddressPools $pool1,$pool2 -BackendHttpSettingsCollection $poolSetting01, $poolSetting02 -FrontendIpConfigurations $fipconfig01 -GatewayIpConfigurations $gipconfig -FrontendPorts $fp01 -HttpListeners $listener -UrlPathMaps $urlPathMap -RequestRoutingRules $rule01 -Sku $sku
 
 ## 取得應用程式閘道
-	$getgw =  Get-AzureRmApplicationGateway -Name $appgwName -ResourceGroupName $rgname
+	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

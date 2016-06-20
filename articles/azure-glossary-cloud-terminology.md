@@ -37,11 +37,11 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 工作或學校帳戶，或是個人 Microsoft 帳戶，可用來存取和管理 Azure 訂用帳戶。另請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)
 
 
-### <a name="availabilityset"></a>可用性設定組  
+### <a name="availability-set"></a>可用性設定組  
 可一起管理的虛擬機器集合，以提供應用程式備援能力和可靠性。可用性設定組的用法可確保在預定進行或未預定進行的維護事件期間，至少有一部虛擬機器可以使用。另請參閱[管理 Windows 虛擬機器的可用性](./virtual-machines/virtual-machines-windows-manage-availability.md)或[管理 Linux 虛擬機器的可用性](./virtual-machines/virtual-machines-linux-manage-availability.md)
 
 
-### <a name="classicmodel"></a>Azure 傳統部署模型  
+### <a name="classic-model"></a>Azure 傳統部署模型  
 您可以使用兩個[部署模型](resource-manager-deployment-model.md)之一來部署 Azure 中的資源 (新模型是 Azure Resource Manager)。您可以將部分 Azure 資源部署於這其中一個模型中，而將其他資源部署於這兩個模型中。適用於個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。
 
 
@@ -53,7 +53,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 [命令列介面](powershell-install-configure.md)，可透過命令列從 Windows 電腦管理 Azure 服務。某些服務或服務功能可以只透過 PowerShell 或 CLI 進行管理。適用於每個個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。另請參閱[如何安裝和設定 Azure PowerShell](powershell-install-configure.md)
 
 
-### <a name="armmodel"></a>Azure Resource Manager 部署模型  
+### <a name="arm-model"></a>Azure Resource Manager 部署模型  
 您可以使用兩個[部署模型](resource-manager-deployment-model.md)之一來部署 Microsoft Azure 中的資源 (另一個是傳統部署模型)。您可以將部分 Azure 資源部署於這其中一個模型中，而將其他資源部署於這兩個模型中。適用於個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。
 
 
@@ -65,7 +65,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 針對資料常駐定義且通常包含兩個以上區域的界限。界限可能是在國界內或超出國界，並受到稅法所影響。每個地理區域至少擁有一個區域。地理區域的範例為亞太地區和日本。也稱為*地理位置*。另請參閱 [Azure 區域](best-practices-availability-paired-regions.md)
 
 
-### <a name="georeplication"></a>異地複寫  
+### <a name="geo-replication"></a>異地複寫  
 自動複寫內容的程序，例如區域配對中的 Blob、資料表和佇列。另請參閱 [Azure SQL Database 的主動式異地複寫](./sql-database/sql-database-geo-replication-overview.md)
 
 
@@ -77,7 +77,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 您可以建立的資源數目或可達到的效能評定。限制通常會與訂用帳戶、服務和供應項目相關聯。另請參閱 [Azure 訂用帳戶和服務限制、配額與限制](azure-subscription-service-limits.md)
 
 
-### <a name="loadbalancer"></a>負載平衡器  
+### <a name="load-balancer"></a>負載平衡器  
 網路上電腦之間分散連入流量的資源。在 Azure 中，負載平衡器會將流量分散到定義於內部負載平衡器集中的虛擬機器。[負載平衡器](./load-balancer/load-balancer-overview.md)可以是面向網際網路的，也可以是內部的。
 
 
@@ -97,15 +97,15 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型的資源，例如資料庫或虛擬機器。另請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)
 
 
-### <a name="resourcegroup"></a>資源群組  
+### <a name="resource-group"></a>資源群組  
 資源管理員中的容器，可保留應用程式的相關資源。資源群組可以包含應用程式的所有資源，或只保留以邏輯方式分組在一起的資源。您可以決定如何根據對組織最有利的方式，將資源配置到資源群組。另請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)
 
 
-### <a name="rmtemplate"></a>Resource Manager 範本  
+### <a name="arm-template"></a>Resource Manager 範本  
 一個 JSON 檔案，可以宣告方式定義一或多個 Azure 資源，並定義所部署資源之間的相依性。範本可用來以一致性方式重複部署資源。另請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)
 
 
-### <a name="resourceprovider"></a>資源提供者  
+### <a name="resource-provider"></a>資源提供者  
 提供資源的服務，讓您可透過資源管理員進行部署及管理。每個資源提供者都會提供作業，以便能運用所部署的資源。資源提供者可以透過 Azure 入口網站、Azure PowerShell 和數個程式設計的 SDK 來存取。另請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)
 
 
@@ -117,7 +117,7 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 此協定會描述 Microsoft 對執行時間與連線能力的承諾。每個 Azure 服務都有特定的 SLA。另請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)
 
 
-### <a name="storageaccount"></a>儲存體帳戶  
+### <a name="storage-account"></a>儲存體帳戶  
 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列、資料表和檔案服務。您的儲存體帳戶提供您 Azure 儲存體資料物件的唯一命名空間。另請參閱[深入了解 Azure 儲存體帳戶](./storage/storage-create-storage-account.md)
 
 
@@ -129,7 +129,7 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 一個編製索引的詞彙，可讓您根據管理或計費需求將資源分類。當您有複雜的資源群組和資源集合，而且必須以最有利的方式視覺化資產時，您可以使用標記。例如，您可以標記在組織中具有類似角色，或屬於相同部門的資源。另請參閱[使用標記來組織 Azure 資源](resource-group-using-tags.md)
 
 
-### <a name="updatedomain"></a>更新網域  
+### <a name="update-domain"></a>更新網域  
 可用性設定組中會同時更新的虛擬機器集合。同一個更新網域中的虛擬機器會在預定進行的維護期間一起重新啟動。Azure 永遠不會一次重新啟動多個更新網域。也稱為升級網域。另請參閱[管理 Windows 虛擬機器的可用性](./virtual-machines/virtual-machines-windows-manage-availability.md)或[管理 Linux 虛擬機器的可用性](./virtual-machines/virtual-machines-linux-manage-availability.md)
 
 
@@ -137,7 +137,7 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 執行作業系統的實體電腦軟體實作。同一個硬碟上可同時執行多部虛擬機器。在 Azure 中，虛擬機器適用於各種大小。另請參閱[虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)
 
 
-### <a name="vmextension"></a>虛擬機器擴充功能  
+### <a name="vm-extension"></a>虛擬機器擴充功能  
 一個實作行為或功能的資源，可協助其他程式運作，或提供與執行中電腦互動的能力。例如，您可以使用 VM 存取擴充功能，來重設或修改 Azure 虛擬機器上的遠端存取值。另請參閱[有關虛擬機器擴充功能和功能 (Windows)](./virtual-machines/virtual-machines-windows-extensions-features.md) 或[有關虛擬機器擴充功能和功能 (Linux)](./virtual-machines/virtual-machines-linux-extensions-features.md)
 
 
@@ -150,4 +150,4 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 - [讓 Azure 助您擴展商務應用程式](https://azure.microsoft.com/overview/business-apps-on-azure/)
 - [Azure 之於您的資料中心](https://azure.microsoft.com/overview/business-apps-on-azure/) 
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

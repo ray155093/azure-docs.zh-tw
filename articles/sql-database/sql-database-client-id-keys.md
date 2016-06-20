@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="03/15/2016"
+   ms.date="06/06/2016"
    ms.author="sstein"/>
 
 # 取得從程式碼連接到 SQL Database 所使用的用戶端識別碼和金鑰
@@ -57,8 +57,8 @@
 
 1. 向下捲動頁面，並按一下 [新增應用程式]。
 1. 選取 [Microsoft 應用程式]。
-1. 選取 [Windows Azure 服務管理 API]，然後完成精靈。
-2. 在**其他應用程式的權限**區段中找出 [Windows Azure 服務管理 API]，然後按一下 [委派的權限]。
+1. 選取 [Microsoft Azure 服務管理 API]，然後完成精靈。
+2. 在**其他應用程式的權限**區段中找出 [Microsoft Azure 服務管理 API]，然後按一下 [委派的權限]。
 3. 選取 [存取 Azure 服務管理...]。
 
     ![權限][2]
@@ -108,8 +108,8 @@
 
 1. 向下捲動頁面，並按一下 [新增應用程式]。
 1. 選取 [Microsoft 應用程式]。
-1. 找出並選取 [Windows Azure 服務管理 API]，然後完成精靈。
-2. 在**其他應用程式的權限**區段中找出 [Windows Azure 服務管理 API]，然後按一下 [委派的權限]。
+1. 找出並選取 [Microsoft Azure 服務管理 API]，然後完成精靈。
+2. 在**其他應用程式的權限**區段中找出 [Microsoft Azure 服務管理 API]，然後按一下 [委派的權限]。
 3. 選取 [存取 Azure 服務管理...]。
 
     ![權限][2]
@@ -250,4 +250,4 @@
 [13]: ./media/sql-database-client-id-keys/key-duration.png
 [14]: ./media/sql-database-client-id-keys/web-secrets.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="在入口網站中自動調整雲端服務 | Microsoft Azure"
-	description="了解如何使用入口網站在 Azure 中設定雲端服務 web 角色或背景工作角色的自動調整規則。"
+	description="(傳統) 了解如何使用傳統入口網站，在 Azure 中設定雲端服務 Web 角色或背景工作角色的自動調整規則。"
 	services="cloud-services"
 	documentationCenter=""
 	authors="Thraka"
@@ -19,9 +19,13 @@
 
 # 如何自動調整雲端服務
 
+> [AZURE.SELECTOR]
+- [Azure 入口網站](cloud-services-how-to-scale-portal.md)
+- [Azure 傳統入口網站](cloud-services-how-to-scale.md)
+
 在 Azure 傳統入口網站的 [調整] 頁面中，您可以手動調整您的 web 角色或背景工作角色，或者您可以根據 CPU 負載或訊息佇列啟用自動調整。
 
->[AZURE.NOTE] 本文著重於雲端服務 web 和背景工作角色。當您直接建立虛擬機器，它會裝載於雲端服務中。其中有些資訊適用於這些類型的虛擬機器。調整虛擬機器的可用性設定組其實只是根據您設定的調整規則將其關閉或開啟。如需虛擬機器和可用性設定組的詳細資訊，請參閱[管理虛擬機器的可用性](../virtual-machines/virtual-machines-windows-classic-configure-availability.md)
+>[AZURE.NOTE] 本文著重於雲端服務 web 和背景工作角色。當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。其中有些資訊適用於這些類型的虛擬機器。調整虛擬機器的可用性設定組其實只是根據您設定的調整規則將其關閉或開啟。如需虛擬機器和可用性設定組的詳細資訊，請參閱[管理虛擬機器的可用性](../virtual-machines/virtual-machines-windows-classic-configure-availability.md)
 
 在設定應用程式的調整之前，您應該先考量下列資訊：
 
@@ -66,7 +70,7 @@
 
 3. 選取您想要變更其調整選項的排程。如果您尚未定義排程，則預設為 [無排程時間]。
 
-4. 尋找 [依照度量調整] 區段，然後選取 [NONE]。這是所有角色的預設設定。
+4. 尋找 [依度量調整規模] 區段，然後選取 [無]。這是所有角色的預設設定。
 
 5. 雲端服務中的每個角色都有個滑桿可變更要使用的執行個體數目。
 
@@ -91,7 +95,7 @@
 
 3. 選取您想要變更其調整選項的排程。如果您尚未定義排程，則預設為 [無排程時間]。
 
-4. 尋找 [依照度量調整] 區段，然後選取 [CPU]。
+4. 尋找 [依度量調整規模] 區段，然後選取 [CPU]。
 
 5. 現在您可以設定角色執行個體的最小和最大範圍、目標 CPU 使用量 (以觸發相應增加)，以及向上和向下調整的執行個體數目。
 
@@ -113,7 +117,7 @@
 
 2. 按一下 [調整]。
 
-3. 尋找 [依照度量調整] 區段，然後選取 [CPU]。
+3. 尋找 [依度量調整規模] 區段，然後選取 [CPU]。
 
 4. 現在您可以設定角色執行個體的最小和最大範圍、每個執行個體要處理的佇列和佇列訊息數量，以及相應增加和減少的執行個體數目。
 
@@ -132,7 +136,7 @@
 
 2. 按一下 [調整]。
 
-3. 尋找 [連結的資源] 區段，然後按一下 [管理此資料庫的規模]。
+3. 尋找 [連結的資源] 區段，然後按一下 [管理這個資料庫的調整規模]。
 
     > [AZURE.NOTE] 如果您沒有看到 [連結的資源] 區段，您可能沒有任何連結的資源。
 
@@ -147,4 +151,4 @@
 [scale_popup]: ./media/cloud-services-how-to-scale/schedules-dialog.png
 [linked_resource]: ./media/cloud-services-how-to-scale/linked-resources.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0608_2016-->

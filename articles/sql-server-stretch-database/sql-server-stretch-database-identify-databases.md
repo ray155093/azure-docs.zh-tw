@@ -47,7 +47,7 @@
 
 2.  在 [分析結果] 刀鋒視窗上的建議資料表清單中，選取其中一個建議資料表以顯示 [資料表結果] 刀鋒視窗。
 
-    [資料表結果] 刀鋒視窗會列出選取資料表的封鎖問題。如需由 Stretch Database Advisor 偵測到之封鎖問題的資訊，請參閱 [Surface area limitations and blocking issues for Stretch Database (Stretch Database 的介面區域限制和封鎖問題)](sql-server-stretch-database-limitations.md)。
+    [資料表結果] 刀鋒視窗會列出選取資料表的封鎖問題。如需有關 Stretch Database Advisor 所偵測到之封鎖問題的資訊，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
 
 3.  在 [資料表結果] 刀鋒視窗上的封鎖問題清單中，選取其中一個問題以顯示 [規則結果] 刀鋒視窗。
 
@@ -62,10 +62,10 @@
 
 ## 另請參閱
 
-[Stretch Database 的介面區域限制和封鎖問題](sql-server-stretch-database-limitations.md)
+[Stretch Database 的限制](sql-server-stretch-database-limitations.md)
 
 [為資料庫啟用 Stretch Database](sql-server-stretch-database-enable-database.md)
 
 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

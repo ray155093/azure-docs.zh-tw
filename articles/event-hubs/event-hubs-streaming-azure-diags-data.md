@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="06/01/2016"
    ms.author="tarcher" />
 
 # 使用事件中樞串流最忙碌路徑中的 Azure 診斷資料
@@ -64,7 +64,7 @@ Azure 診斷會提供彈性的方法，用來收集來自計算 VM 的度量和�
 	    <EventHub Url="https://diags-mycompany-ns.servicebus.windows.net/diageventhub" SharedAccessKeyName="SendRule" SharedAccessKey="9B3SwghJOGEUvXigc6zHPInl2iYxrgsKHZoy4nm9CUI=" />
 	  </PrivateConfig>
 
-**SharedAccessKeyName** 必須符合已在 **ServiceBus/EventHub** 命名空間中定義的 SAS 金鑰和原則。這個動作可以藉由下列方式完成，瀏覽至[傳統 Azure 入口網站](https://manage.windowsazure.com)中的事件中樞儀表板、按一下 [設定] 索引標籤，然後設定具名原則 (例如，“SendRule”)，具有「傳送」權限。**StorageAccount** 也已經在 **PrivateConfig** 中宣告。不需要在這裡變更值，特別是當他們可以運作時。在此範例中，我們將值保留空白，這是下游資產將會設定值的符號，例如 *ServiceConfiguration.Cloud.cscfg* 環境組態檔將設定環境的適當名稱和金鑰。
+**SharedAccessKeyName** 必須符合已在 **ServiceBus/EventHub** 命名空間中定義的 SAS 金鑰和原則。這個動作可以藉由下列方式完成，瀏覽至[傳統 Azure 入口網站](https://manage.windowsazure.com)中的事件中樞儀表板、選取 [設定] 索引標籤，然後設定具名原則 (例如，“SendRule”)，具有「傳送」權限。**StorageAccount** 也已經在 **PrivateConfig** 中宣告。不需要在這裡變更值，特別是當他們可以運作時。在此範例中，我們將值保留空白，這是下游資產將會設定值的符號，例如 *ServiceConfiguration.Cloud.cscfg* 環境組態檔將設定環境的適當名稱和金鑰。
 
 >[AZURE.WARNING] 請注意，事件中樞 SAS 金鑰會以純文字儲存在 .wadcfgx 檔案。有時候這會簽入原始程式碼控制，或做為組建伺服器中的資產，因此您應該適當地保護。建議在這裡使用具有「僅傳送」權限的 SAS 金鑰，讓任何惡意使用者頂多只能寫入至事件中樞，而永遠無法接聽，或加以管理。
 
@@ -295,4 +295,4 @@ Azure 診斷會提供彈性的方法，用來收集來自計算 VM 的度量和�
 <!-- Images. -->
 [0]: ./media/event-hubs-streaming-azure-diags-data/dashboard.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

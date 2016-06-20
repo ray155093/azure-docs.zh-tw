@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 設定適用於實驗室的虛擬網路
@@ -27,23 +27,23 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
 1. 所選實驗室的 [設定] 刀鋒視窗隨即顯示。
 
-1. 點選 [虛擬網路]。
+1. 選取 [虛擬網路]。
 
 	![虛擬網路可以從實驗室的 [設定] 刀鋒視窗中加以設定](./media/devtest-lab-configure-vnet/lab-settings-vnet.png)
 	
 1. 在 [虛擬網路] 刀鋒視窗中，您會看到您已針對目前的實驗室設定虛擬網路清單，以及為實驗室所建立的預設虛擬網路。
 
-1. 點選 [+ 加入]。
+1. 選取 [+ 新增]。
 
 	![將現有的虛擬網路加入至您的實驗室](./media/devtest-lab-configure-vnet/lab-settings-vnet-add.png)
 	
-1. 在 [虛擬網路] 刀鋒視窗中，點選 [選取虛擬網路]。
+1. 在 [虛擬網路] 刀鋒視窗中，選取 [選取虛擬網路]。
 
 	![選取現有的虛擬網路](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet1.png)
 	
@@ -61,7 +61,7 @@
 
 1. 在 [每位使用者的最大 VM 數] 欄位中，針對每個子網路指定每位使用者的最大 VM 數。如果您想要不限數目的 VM 數，請將此欄位保留空白。
 
-1. 點選 [儲存]。
+1. 選取 [**儲存**]。
 
 1. 現在已設定虛擬網路，您可以在建立新的 VM 時加以選取。這將會在[將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)文章中加以說明。
 
@@ -69,4 +69,4 @@
 
 一旦您在實驗室中加入所需的虛擬網路之後，下一個步驟就是[將 VM 加入至實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

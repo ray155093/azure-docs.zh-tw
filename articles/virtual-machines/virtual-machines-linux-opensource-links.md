@@ -68,8 +68,7 @@
 - [做法：安裝和執行 MySQL](virtual-machines-linux-classic-mysql-on-opensuse.md)
 
 ### CoreOS
-- [做法：在 Azure 上使用 CoreOS](virtual-machines-linux-classic-coreos-howto.md)
-- [做法：開始在 Azure 上的 CoreOS 使用 Fleet 和 Docker](virtual-machines-linux-classic-coreos-fleet-get-started.md)
+- [做法：在 Azure 上使用 CoreOS](https://coreos.com/os/docs/latest/booting-on-azure.html)
 
 
 ## 規劃
@@ -127,7 +126,7 @@
 
 
 ## 一般連結
-下列連結是上述 Azure.com 文件之外的 Microsoft 部落格、Technet 頁面和外部網站。由於 Azure 和開放原始碼運算的世界變動非常迅速，「儘管」在事實上我們應該盡全力持續加入較新的主題並移除過期的主題，但是幾乎可以肯定下列連結已過時。如果我們遺漏了什麼，請在註解中讓我們知道，或將提取要求提交至我們的 [Github 儲存機制](https://github.com/Azure/azure-content/)。
+下列連結是上述 Azure.com 文件之外的 Microsoft 部落格、Technet 頁面和外部網站。由於 Azure 和開放原始碼運算的世界都是變動迅速的目標，因此「儘管」我們應該盡全力持續加入較新的主題並移除過期的主題，但是幾乎可以肯定的是下列連結已過時。如果我們遺漏了什麼，請在註解中讓我們知道，或將提取要求提交至我們的 [Github 儲存機制](https://github.com/Azure/azure-content/)。
 
 - [在 Linux 上使用 Docker 容器執行 ASP.NET 5](http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx)
 - [如何部署 OpenLogic 提供的 CentOS VM 映像](https://azure.microsoft.com/blog/2013/01/11/deploying-openlogic-centos-images-on-windows-azure-virtual-machines/)
@@ -193,4 +192,4 @@
 
 - [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

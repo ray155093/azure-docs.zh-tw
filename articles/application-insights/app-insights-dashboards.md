@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Application Insights 入口網站中的儀表板"
-	description="在儀表板中顯示來自多個應用程式元件的遙測。"
+	pageTitle="使用 Application Insights 入口網站"
+	description="Application Insights 入口網站中的計量、搜尋、儀表板與設定。"
 	services="application-insights"
     documentationCenter=""
 	authors="alancameronwills"
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="multiple"
 	ms.topic="article" 
-	ms.date="04/25/2016"
+	ms.date="06/03/2016"
 	ms.author="awills"/>
 
 # Application Insights 入口網站中的導覽與儀表板
@@ -34,11 +34,12 @@
 
 按一下：
 
-* 任何圖表或磚來檢視詳細資料。
-* [設定] 來取得其他計量的預先定義頁面。
-* [計量瀏覽器][](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
-* [搜尋][](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
-* [分析][](app-insights-analytics.md) 來取得針對遙測的強大查詢。
+* **任何圖表或圖格**，以查看更多關於圖表上所顯示內容的詳細資訊。
+* **設定**，以取得其他計量預先定義的刀鋒視窗以及組態頁面。
+* [計量瀏覽器](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
+* [搜尋](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
+* [分析](app-insights-analytics.md) 來取得針對遙測的強大查詢。
+* [**即時資料流**](app-insights-metrics-explorer.md#live-stream)，適用於一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 
 
 ![檢視您的遙測的主要路由](./media/app-insights-dashboards/010-oview.png)
@@ -52,7 +53,7 @@
 
 ## 儀表板
 
-您登入 [Microsoft Azure 入口網站](https://portal.azure.com)後最先看到的是儀表板。在這裡，您可以結合對您而言最重要的所有 Azure 資源的圖表，包括來自 [Visual Studio Application Insights](app-insights-overview.md) 的遙測。
+您登入 [Microsoft Azure 入口網站](https://portal.azure.com)之後最先看到的是儀表板。您可以在這裡結合對您而言最重要的所有 Azure 資源的圖表，包括來自 [Visual Studio Application Insights](app-insights-overview.md) 的遙測。
  
 
 ![自訂的儀表板。](./media/app-insights-dashboards/30.png)
@@ -109,4 +110,4 @@
 
 深入了解[角色和存取控制](app-insights-resources-roles-access-control.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

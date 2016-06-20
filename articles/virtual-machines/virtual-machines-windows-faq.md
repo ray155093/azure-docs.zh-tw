@@ -31,17 +31,17 @@
 
 ## 我可以使用多少的儲存體搭配虛擬機器？
 
-每個資料磁碟最多可達 1 TB。可使用的資料磁碟數量取決於虛擬機器的大小。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-windows-sizes)。
+每個資料磁碟最多可達 1 TB。可使用的資料磁碟數量取決於虛擬機器的大小。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md)。
 
 Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空間。每個磁碟是以分頁 Blob 方式儲存的 .vhd 檔案。如需定價的詳細資料，請參閱[儲存體定價詳細資料](https://azure.microsoft.com/pricing/details/storage/)。
 
 
 ## 如何存取我的虛擬機器？
 
-您必須使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon)。最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。
+您必須使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。
 
 
-如果您在使用遠端桌面時遇到問題，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection)。
+如果您在使用「遠端桌面」時遇到問題，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)。
 
 如果您熟悉 Hyper-V，您可能正在尋找類似 VMConnect 的工具。Azure 沒有提供類似的工具，因為並不支援主控台存取虛擬機器。
 
@@ -55,7 +55,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 在 Windows 虛擬機器上，您可以透過移動分頁檔並重新指派磁碟機代號來變更磁碟機代號，但您必須確定以特定的順序執行這些步驟。如需相關指示，請參閱[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
 
-## 我可以將現有的 VM 加入可用性群組嗎？
+## 我是否可以將現有的 VM 新增到可用性設定組？
 
 不可以。如果您希望 VM 屬於可用性設定組的一部分，就必須在設定組當中建立 VM。目前不支援在建立 VM 之後，再將其加入可用性設定組。
 
@@ -73,10 +73,10 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 為什麼我在 Azure Resource Manager 中沒看到加拿大中部和加拿大東部區域？
 
-針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動登錄加拿大中部和加拿大東部這兩個新的區域。當透過 Azure 入口網站使用 Azure Resource Manager 將虛擬機器部署到任何其他區域時，才會自動完成登錄。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
+針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動登錄加拿大中部和加拿大東部這兩個新的區域。當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
 
 ## Azure 是否支援 Linux VM？
 
 是。若要快速建立 Linux VM 以試用，請參閱[使用入口網站在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-portal.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

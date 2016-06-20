@@ -4,7 +4,7 @@
 	services="automation"
 	documentationCenter=""
 	authors="mgoedtel"
-	manager="stevenka"
+	manager="jwhit"
 	editor="tysonn" />
 <tags
 	ms.service="automation"
@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="02/29/2016"
+	ms.date="05/31/2016"
 	ms.author="magoedte;bwren" />
 
 # 在 Azure 自動化中建立或匯入 Runbook
@@ -44,13 +44,12 @@
 
 ### 使用 Windows PowerShell 建立新的 Azure 自動化 Runbook
 
-您可以使用 [New-AzureAutomationRunbook](https://msdn.microsoft.com/library/dn690272.aspx) Cmdlet 建立空的 [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)。您可以指定 **Name** 參數來建立空白 Runbook，您稍後可加以編輯，或者您可以指定 **Path** 參數以匯入指令碼檔案。
+您可以使用 [New-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt619376.aspx) Cmdlet 建立空的 [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks)。您可以指定 **Name** 參數來建立空白 Runbook，您稍後可加以編輯，或者您可以指定 **Path** 參數以匯入 Runbook 檔案。您也應該包含 **Type** 參數來指定這四個 Runbook 類型其中之一。
 
 下列範例命令顯示如何建立新的空白 Runbook。
 
-    $automationAccountName = "MyAutomationAccount"
-    $runbookName = "Sample-TestRunbook"
-    New-AzureAutomationRunbook –AutomationAccountName $automationAccountName –Name $runbookName
+    New-AzureRmAutomationRunbook -AutomationAccountName MyAccount `
+    -Name NewRunbook -ResourceGroupName MyResourceGroup -Type PowerShell
 
 ## 將 Runbook 從檔案匯入 Azure 自動化
 
@@ -72,34 +71,40 @@
 
 
 ### 使用 Azure 入口網站從檔案匯入 Runbook
-您可以使用下列程序，將指令碼檔案匯入到 Azure 自動化。請注意，您可以使用此入口網站，將 .ps1 檔案匯入 PowerShell Runbook 或 PowerShell 工作流程 Runbook。
+您可以使用下列程序，將指令碼檔案匯入到 Azure 自動化。
+
+>[AZURE.NOTE] 請注意，您只能使用入口網站，將 .ps1 檔案匯入 PowerShell 工作流程 Runbook。
 
 1. 在 Azure 入口網站中，開啟您的自動化帳戶。
 2. 按一下 [Runbook] 磚以開啟 Runbook 的清單。
 3. 按一下 [加入 Runbook] 按鈕，然後按一下 [匯入]。
 4. 按一下 [Runbook 檔案] 以選取要匯入的檔案
 2. 如果 [名稱] 欄位已啟用，則您可以選擇變更它。Runbook 名稱必須以字母開頭，可以具有字母、數字、底線和連字號。
-3. 選取 [Runbook 類型](automation-runbook-types.md)以將上列的限制列入考量。
+3. [Runbook 類型](automation-runbook-types.md)將會自動選取，但您可以在將適用限制納入考量之後變更此類型。 
 3. 新的 Runbook 會出現在 [自動化帳戶] 的 Runbook 清單中。
 4. 您必須[發佈 Runbook](#publishing-a-runbook)，才能執行。
 
+>[AZURE.NOTE] 當您匯入圖形化 Runbook 或圖形化 PowerShell 工作流程 Runbook 之後，您可以視需要選擇轉換成另一種類型。您無法轉換為文字。
+
 ### 使用 Windows PowerShell 從指令碼檔案匯入 Runbook
 
-您可以使用 [Set-AzureAutomationRunbookDefinition](https://msdn.microsoft.com/library/dn690267.aspx) Cmdlet，將指令碼檔案匯入現有 Runbook 的草稿版本。指令碼檔案必須包含單一 Windows PowerShell 工作流程。如果 Runbook 已經有草稿版本，則除非您使用 Overwrite 參數，否則匯入作業將會失敗。在匯入 Runbook 之後，您可以使用 [Publish-AzureAutomationRunbook](https://msdn.microsoft.com/library/dn690266.aspx) 發佈。
+您可以使用 [Import-AzureRMAutomationRunbook](https://msdn.microsoft.com/library/mt603735.aspx) Cmdlet，來匯入為指令碼檔案以做為草稿 PowerShell 工作流程 Runbook。如果 Runbook 已經存在，除非您使用 *-Force* 參數，否則匯入將會失敗。
 
-以下範例命令顯示如何將指令碼檔案匯入現有 Runbook，然後發佈。
+以下範例命令示範如何將指令碼檔案匯入 Runbook。
 
-    $automationAccountName = "MyAutomationAccount"
-    $runbookName = "Sample-TestRunbook"
-    $scriptPath = "c:\runbooks\Sample-TestRunbook.ps1"
+    $automationAccountName =  AutomationAccount"
+    $runbookName = "Sample_TestRunbook"
+    $scriptPath = "C:\Runbooks\Sample_TestRunbook.ps1"
+    $RGName = "ResourceGroup"
 
-    Set-AzureAutomationRunbookDefinition –AutomationAccountName $automationAccountName –Name $runbookName –Path $ scriptPath -Overwrite
-    Publish-AzureAutomationRunbook –AutomationAccountName $automationAccountName –Name $runbookName
+    Import-AzureRMAutomationRunbook -Name $runbookName -Path $scriptPath `
+    -ResourceGroupName $RGName -AutomationAccountName $automationAccountName `
+    -Type PowerShellWorkflow 
 
 
 ## 發佈 Runbook
 
-當您建立或匯入新的 Runbook 時，您必須發佈才能執行它。Azure 自動化中的每個 Runbook 有草稿和已發行的版本。只可執行已發行版本，而且只可編輯草稿版本。已發行版本不會受到草稿版本的任何變更影響。草稿版本應該已可供使用時，您會將它發佈，以草稿版本覆寫已發佈版本。
+當您建立或匯入新的 Runbook 時，您必須發佈才能執行它。自動化中的每個 Runbook 都有草稿和已發行的版本。只可執行已發行版本，而且只可編輯草稿版本。已發行版本不會受到草稿版本的任何變更影響。草稿版本應該已可供使用時，您會將它發佈，以草稿版本覆寫已發佈版本。
 
 ## 使用 Azure 傳統入口網站發佈 Runbook
 
@@ -116,19 +121,19 @@
 
 ## 使用 Windows PowerShell 發佈 Runbook
 
-您可以使用 [Publish-AzureAutomationRunbook](https://msdn.microsoft.com/library/dn690266.aspx) Cmdlet，利用 Windows PowerShell 發佈 Runbook。下列範例命令顯示如何發佈範例 Runbook。
+您可以使用 [Publish-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603705.aspx) Cmdlet，利用 Windows PowerShell 發佈 Runbook。下列範例命令顯示如何發佈範例 Runbook。
 
-	$automationAccountName = "MyAutomationAccount"
-	$runbookName = "Sample-TestRunbook"
+	$automationAccountName =  AutomationAccount"
+    $runbookName = "Sample_TestRunbook"
+    $RGName = "ResourceGroup"
 
-	Publish-AzureAutomationRunbook –AutomationAccountName $automationAccountName –Name $runbookName
+	Publish-AzureRmAutomationRunbook -AutomationAccountName $automationAccountName `
+    -Name $runbookName -ResourceGroupName $RGName
 
 
+## 後續步驟
+- 若要了解如何從 Runbook 和 PowerShell 模組資源庫中受益，請參閱 [Azure 自動化的 Runbook 和模組資源庫](automation-runbook-gallery.md)
+- 若要深入了解使用文字編輯器編輯 PowerShell 和 PowerShell 工作流程 Runbook，請參閱[在 Azure 自動化中編輯文字式 Runbook](automation-edit-textual-runbook.md)
+- 若要深入了解如何編寫圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
 
-## 相關文章
-
-- [Azure 自動化的 Runbook 和模組資源庫](automation-runbook-gallery.md)
-- [在 Azure 自動化中編輯文字式 Runbook](automation-edit-textual-runbook.md)
-- [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
-
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->
