@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="01/29/2016"
+   ms.date="05/24/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務監視 StorSimple 裝置 
@@ -27,11 +27,11 @@
 
 **I/O 效能**會追蹤與主機伺服器與裝置上的 iSCSI 啟動器介面之間，或裝置與雲端之間的讀取與寫入作業數目相關的計量。這項效能可以針對特定磁碟區、特定磁碟區容器，或所有磁碟區容器來測量。
 
-下表顯示生產裝置所有磁碟區中的裝置啟動器 IO。繪製的計量為每秒讀寫位元組大小、每秒讀寫 IO 作業，與讀寫延遲。
+下表顯示生產環境裝置之所有磁碟區中的裝置啟動器 I/O。繪製的計量為每秒讀寫位元組大小、每秒讀寫 IO 作業，與讀寫延遲。
 
 ![從啟動器到裝置的 IO 效能](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_InitiatorTODevice_For_AllVolumesM.png)
 
-針對相同的裝置，IO 專為所有磁碟區容器從裝置到雲端的資料所繪製。在此裝置上，資料僅位於線性層內且並未溢出至雲端。從裝置到雲端並未發生讀寫作業。因此，圖表內的尖峰代表 5 分鐘間隔，並與裝置與服務之間檢查活動訊號的頻率對應。
+就相同裝置而言，所繪製的 IO 是所有磁碟區容器從裝置到雲端的資料 IO。在此裝置上，資料僅位於線性層內且並未溢出至雲端。從裝置到雲端並未發生讀寫作業。因此，圖表內的尖峰代表 5 分鐘間隔，並與裝置與服務之間檢查活動訊號的頻率對應。
 
 ![從裝置至雲端的 IO 效能](./media/storsimple-monitor-device/StorSimple_IO_Performance_For_DeviceTOCloud_For_AllVolumeContainersM.png)
 
@@ -76,9 +76,9 @@
 
 ![建立雲端快照集後的主要容量使用率](./media/storsimple-monitor-device/StorSimple_PrimaryCapacityUtil_For_AllVolumes1M.png)
 
-如果您在執行 Update 2 或更新版本，就能夠以個別磁碟區、所有磁碟區、所有分層磁碟區，及所有本機磁碟區來切割主要儲存體容量使用率，如下所示。如果您以所有本機磁碟區來切割，就能讓您快速地確認已用完多少本機層。
+如果您執行的是 Update 2 或更新版本，就能夠依個別磁碟區、所有磁碟區、所有階層式磁碟區以及所有固定在本機的磁碟區，細分主要儲存體容量使用率，如以下所示。如果依所有固定在本機的磁碟區來細分，您將能快速地確認已用完多少本機層。
 
-![所有本機磁碟區的主要容量使用率](./media/storsimple-monitor-device/localvolumes.png)
+![所有固定在本機之磁碟區的主要容量使用率](./media/storsimple-monitor-device/localvolumes.png)
 
 
 ###雲端儲存體容量使用率
@@ -126,4 +126,4 @@
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0608_2016-->

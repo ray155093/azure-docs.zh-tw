@@ -89,6 +89,6 @@ while(true)
 如需服務匯流排佇列的詳細資訊，請參閱下列文章。
 
 - [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
-- 如何使用[服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- 如何使用[服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

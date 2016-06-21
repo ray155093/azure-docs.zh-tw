@@ -79,7 +79,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 圖 3 鳶尾花雙類別分類問題的評分實驗
 
-現在我們必須設定 Web 服務的輸入和輸出。很顯然的，輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。輸出的選擇取決於我們是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。這裡假設我們對兩者都感到興趣。若要選取想要的輸出資料行，我們必須使用[專案資料行][project-columns]模組。按一下[專案資料行][project-columns]模組、按一下右窗格的 [**啟動資料行選取器**]，然後選取 [**評分標籤**] 和 [**評分機率**]。設定[專案資料行][project-columns]模組的輸出連接埠並且再次執行之後，應該就可以將評分實驗發佈為 Web 服務，方法是按一下底端的 [**發佈 WEB 服務**] 按鈕。最終實驗如「圖 4」所示。
+現在我們必須設定 Web 服務的輸入和輸出。很顯然的，輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。輸出的選擇取決於我們是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。這裡假設我們對兩者都感到興趣。若要選取想要的輸出資料行，我們必須使用[選取資料集中的資料行][select-columns]模組。我們將按一下 [[選取資料集中的資料行][select-columns]] 模組、按一下右窗格中的 [啟動資料行選取器]，然後選取 [評分標籤] 和 [評分機率]。設定[選取資料集中的資料行][select-columns]模組的輸出連接埠並再次執行之後，應該就可以按一下底部的 [發佈 WEB 服務] 按鈕，將評分實驗發佈為 Web 服務。最終實驗如「圖 4」所示。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/4.png)
 
@@ -116,7 +116,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 **Web 服務發佈**
 
-目前並非使用[專案資料行][project-columns]以選取一些資料行做為我們的 Web 服務的輸出，而是對每個項目取得評分標籤和評分標籤的機率。基本邏輯是尋找所有評分機率當中最大的機率。若要執行此操作，我們必須使用[執行 R 指令碼][execute-r-script]模組。R 程式碼如「圖 8」所示，實驗如「圖 9」所示。
+這次並不使用[選取資料集中的資料行][select-columns]來選取一些資料行做為 Web 服務的輸出，而是改為取得每個項目的評分標籤和評分標籤的機率。基本邏輯是尋找所有評分機率當中最大的機率。若要執行此操作，我們必須使用[執行 R 指令碼][execute-r-script]模組。R 程式碼如「圖 8」所示，實驗如「圖 9」所示。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/8.png)
 
@@ -302,11 +302,11 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 <!-- Module References -->
 [assign-to-clusters]: https://msdn.microsoft.com/library/azure/eed3ee76-e8aa-46e6-907c-9ca767f5c114/
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
-[project-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
+[select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [score-matchbox-recommender]: https://msdn.microsoft.com/library/azure/55544522-9a10-44bd-884f-9a91a9cec2cd/
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/
 [train-clustering-model]: https://msdn.microsoft.com/library/azure/bb43c744-f7fa-41d0-ae67-74ae75da3ffd/
 [train-matchbox-recommender]: https://msdn.microsoft.com/library/azure/fa4aa69d-2f1c-4ba4-ad5f-90ea3a515b4c/
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

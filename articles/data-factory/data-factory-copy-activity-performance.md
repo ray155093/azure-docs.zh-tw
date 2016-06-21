@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="06/03/2016"
 	ms.author="spelluru"/>
 
 
@@ -168,6 +168,68 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
  
 請**務必**要記住，您將必須根據複製作業的總時間付費。因此，若過去某複製作業使用 1 個雲端單位花費 1 小時，現在使用 4 個雲端單位花費 15 分鐘，兩種的整體費用幾乎相同。再以另一個案例為例：假設您在某複製活動回合中使用 4 個雲端單位：第 1 個雲端單位費時 10 分鐘、第 2 個單位費時 10 分鐘、第 3 個單位費時 5 分鐘、第 4 個單位費時 5 分鐘。整個複製 (資料移動) 作業以複製的時間總計計費，等於 10 + 10 + 5 + 5 = 30 分鐘。是否使用 **parallelCopies** 對計費沒有任何影響。
 
+## 分段複製
+從來源資料存放區將資料複製到接收資料存放區時，您可能會使用 Azure Blob 儲存體做為過渡暫存存放區。暫存功能在下列情況下特別有用︰
+
+1.	**有時需要一段時間，以透過慢速網路連接執行混合式資料移動 (也就是在內部部署資料存放區至雲端資料存放區，反之亦然)。** 為了提升這類資料移動的效能，您可以壓縮內部部署資料，透過寫入至雲端中的暫存資料存放區，然後在將其載入至目的地資料存放區之前在暫存存放區中解壓縮資料，減少移動資料的時間。 
+2.	**由於 IT 原則，您不想要在您的防火牆中開啟 80 和 443 以外的連接埠。** 例如，從內部部署資料存放區將資料複製到 Azure SQL Database 接收或 Azure SQL 資料倉儲接收時，必須針對 Windows 防火牆和公司防火牆啟用連接埠 1433 上的輸出 TCP 通訊。在這類案例中，您可以利用資料管理閘道器先將資料複製到暫存 Azure Blob 儲存體，這會透過 Http(s) 也就是透過連接埠 443 進行，並接著將資料從暫存 Blob 儲存體載入到 SQL Database 或 SQL 資料倉儲。在這種流程中，連接埠 1433 並不需要啟用。 
+3.	**從各種資料存放區透過 PolyBase 將資料擷取至 Azure SQL 資料倉儲。** Azure SQL 資料倉儲提供 PolyBase 做為高輸送量機制，將大量資料載入 SQL 資料倉儲。不過，這需要來源資料位於 Azure Blob 儲存體，而且符合其他額外的條件。從 Azure Blob 儲存體以外的資料存放區載入資料時，您可以透過過渡暫存 Azure Blob 儲存體複製資料，在這種情況下，Azure Data Factory 會對資料執行必要的轉換，以確保它符合 PolyBase 的需求，然後使用 PolyBase 將資料載入 SQL 資料倉儲。如需詳細資訊和範例，請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse)。
+
+### 分段複製的運作方式
+當您啟用暫存功能時，資料會先從來源資料存放區複製到暫存資料存放區 (自備)，接著再從暫存資料存放區複製到接收資料存放區。Azure Data Factory 會自動管理您的 2 階段流程，也會在資料移動完成之後，清除暫存儲存體的暫存資料。
+
+在來源和接收資料存放區都在雲端中且不是利用資料管理閘道器的**雲端複製案例**中，複製作業是由 **Azure Data Factory 服務**執行。
+
+![分段複製 - 雲端案例](media/data-factory-copy-activity-performance/staged-copy-cloud-scenario.png)
+
+而在**混合式複製案例**中，其中來源是內部部署，而接收在雲端中，從來源資料存放區至暫存資料存放區的資料移動是由**資料管理閘道器**執行，而從暫存資料存放區至接收資料存放區的資料移動是由 **Azure Data Factory 服務**執行。
+
+![分段複製 - 混合式案例](media/data-factory-copy-activity-performance/staged-copy-hybrid-scenario.png)
+
+當您使用暫存存放區啟用資料移動時，您可以指定是否要在從來源資料存放區將資料移動至過渡/暫存資料存放區之前壓縮資料，並且在從過渡/暫存資料存放區將資料移動至接收資料存放區之前解壓縮資料。
+
+從雲端資料存放區將資料複製到內部部署資料存放區，或在具有暫存存放區的兩個內部部署資料存放區之間複製，目前不受支援，將會在近期之內啟用。
+
+### 組態
+您可以在複製活動上設定 **enableStaging** 設定，指定您是否想要讓資料在載入至目的地資料存放區之前，暫存在 Azure Blob 儲存體中。當您將 enableStaging 設定為 true 時，您需要指定下列資料表所列的其他屬性。而且您需要建立 Azure 儲存體或 Azure 儲存體 SAS 連結服務，做為暫存 (如果您還沒有)。
+
+屬性 | 說明 | 預設值 | 必要
+--------- | ----------- | ------------ | --------
+enableStaging | 指定您是否要透過過渡暫存存放區複製資料。 | False | 否
+linkedServiceName | 指定 [AzureStoage](data-factory-azure-blob-connector.md#azure-storage-linked-service) 或 [AzureStorageSas](data-factory-azure-blob-connector.md#azure-storage-sas-linked-service) 連結服務的名稱，代表您將用來做為過渡暫存存放區的 Azure 儲存體。<br/><br/> 請注意，具有 SAS (共用存取簽章) 的 Azure 儲存體不能用於透過 PolyBase 將資料載入至 Azure SQL 資料倉儲。它可以用於其他所有案例。 | N/A | 是，當 enableStaging 設為 true。 
+路徑 | 指定 Azure Blob 儲存體中的路徑，該儲存體包含分段資料。如果未提供路徑，服務會建立容器來儲存暫存資料。<br/><br/> 您不需要指定路徑，除非您使用具有 SAS 的 Azure 儲存體，或有暫存資料必須存在的強烈需求。 | N/A | 否
+enableCompression | 指定資料在從來源資料存放區移至接收資料存放區時，是否應該壓縮，以減少在網路上傳輸的資料量。 | False | 否
+
+以下是具有上述屬性的「複製活動」的範例定義︰
+
+	"activities":[  
+	{
+		"name": "Sample copy activity",
+		"type": "Copy",
+		"inputs": [{ "name": "OnpremisesSQLServerInput" }],
+		"outputs": [{ "name": "AzureSQLDBOutput" }],
+		"typeProperties": {
+			"source": {
+				"type": "SqlSource",
+			},
+			"sink": {
+				"type": "SqlSink"
+			},
+	    	"enableStaging": true,
+			"stagingSettings": {
+				"linkedServiceName": "MyStagingBlob",
+				"path": "stagingcontainer/path",
+				"enableCompression": true
+			}
+		}
+	}
+	]
+
+### 計費影響
+請注意，將會根據複製持續時間的兩個階段和其複製類型，分別向您計費，這表示︰
+
+- 在雲端複製期間使用暫存時 (從雲端資料存放區將資料複製到其他雲端資料存放區，例如，Azure Data Lake 至 Azure SQL 資料倉儲)，計費為 [步驟 1 和步驟 2 的複製持續時間的總和] x [雲端複製單位價格]
+- 在混合式複製期間使用暫存時 (從內部部署資料存放區將資料複製到雲端資料存放區，例如，內部部署 SQL Server 資料庫至 Azure SQL 資料倉儲)，計費為 [混合式複製持續時間] x [混合式複製單位價格] + [雲端複製持續時間] x [雲端複製單位價格]
 
 
 ## 來源的考量
@@ -180,14 +242,14 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 
 
 ### 以檔案為基礎的資料存放區
-(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)
+*(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)*
 
 - **平均檔案大小和檔案計數**：複製活動會依檔案傳送資料檔案。在要移動的資料量相同的前提下，如果資料包含大量的小型檔案，其整體輸送量將會低於少量的大型檔案，因為每個檔案都需要啟動程序階段。因此，可能的話，請將小型檔案合併為較大的檔案，以提高輸送量。
 - **檔案格式和壓縮**：請參閱[序列化/還原序列化的考量](#considerations-on-serializationdeserialization)和[壓縮的考量](#considerations-on-compression)小節，以了解可改善效能的其他方法。
 - 此外，對於必須使用**資料管理閘道器**的**內部部署檔案系統**案例，請參閱[閘道器的考量](#considerations-on-data-management-gateway)一節。
 
 ### 關聯式資料存放區
-(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database、Oracle 資料庫、MySQL 資料庫、DB2 資料庫、Teradata 資料庫、Sybase 資料庫、PostgreSQL 資料庫)
+*(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database、Oracle 資料庫、MySQL 資料庫、DB2 資料庫、Teradata 資料庫、Sybase 資料庫、PostgreSQL 資料庫)*
 
 - **資料模式**：資料表結構描述對複製輸送量會有影響。若要複製相同的資料量，較大的資料列大小將會有優於較小資料列大小的效能，因為資料庫可以更有效率地擷取包含較少資料列數的較少資料批次。
 - **查詢或預存程序**：最佳化您在複製活動來源中指定的查詢或預存程序邏輯，以更有效率地擷取資料。
@@ -204,7 +266,7 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 
 
 ### 以檔案為基礎的資料存放區
-(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)
+*(包括 Azure Blob、Azure 資料湖、內部部署檔案系統)*
 
 - **複製行為**：如果您從另一個以檔案為基礎的資料存放區複製資料，複製活動會透過 "copyBehavior" 屬性提供三種類型的行為：保留階層、扁平化階層，以及合併檔案。保留或扁平化階層只會造成些微甚至沒有效能負荷，而合併檔案則會導致額外的效能負荷。
 - **檔案格式和壓縮**：請參閱[序列化/還原序列化的考量](#considerations-on-serializationdeserialization)和[壓縮的考量](#considerations-on-compression)小節，以了解可改善效能的其他方法。
@@ -212,7 +274,7 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 - 此外，對於必須使用**資料管理閘道器**的**內部部署檔案系統**案例，請參閱[閘道器的考量](#considerations-on-data-management-gateway)一節。
 
 ### 關聯式資料存放區
-(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database)
+*(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database)*
 
 - **複製行為**：根據為 "sqlSink" 設定的屬性，複製活動會以不同的方式將資料寫入目的地資料庫中：
 	- 根據預設，資料移動服務會使用大量複製 API 以附加模式插入資料，而提供最佳效能。
@@ -225,7 +287,7 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 
 
 ### NoSQL 存放區
-(包括 Azure 資料表、Azure DocumentDB)
+*(包括 Azure 資料表、Azure DocumentDB)*
 
 - 針對 **Azure 資料表**：
 	- **資料分割**：將資料寫入至交錯的資料分割，會大幅降低效能。您可以選擇依資料分割索引鍵來排序您的來源資料，使資料能在分割後有效率地插入資料分割中，或者，您可以調整邏輯，將資料寫入單一資料分割中。
@@ -324,9 +386,9 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 
 - Azure 儲存體 (包括 Azure Blob 和 Azure 資料表)：[Azure 儲存體的擴充性目標](../storage/storage-scalability-targets.md)和 [Azure 儲存體效能和擴充性檢查清單](../storage//storage-performance-checklist.md)
 - Azure SQL Database：您可以[監視效能](../sql-database/sql-database-service-tiers.md#monitoring-performance)，並檢查資料庫交易單位 (DTU) 百分比。
-- Azure SQL 資料倉儲：其能力會以資料倉儲單位 (DWU) 來測量。請參閱 [SQL 資料倉儲的彈性效能和調整功能](../sql-data-warehouse/sql-data-warehouse-overview-scalability.md)。
+- Azure SQL 資料倉儲：其能力會以資料倉儲單位 (DWU) 來測量。請參閱 [SQL 資料倉儲的彈性效能和調整功能](../sql-data-warehouse/sql-data-warehouse-manage-compute-overview.md)。
 - Azure DocumentDB：[DocumentDB 中的效能層級](../documentdb/documentdb-performance-levels.md)。
 - 內部部署 SQL Server：[效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)。
 - 內部部署檔案伺服器：[檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

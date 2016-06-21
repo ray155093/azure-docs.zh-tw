@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="05/26/2016"
+   ms.date="06/03/2016"
    ms.author="v-six" />
 
 # 對雲端服務部署問題進行疑難排解
@@ -27,11 +27,7 @@
 
 > [AZURE.NOTE] 您可以按一下窗格右上角的圖示，將 [屬性] 窗格的內容複製到剪貼簿。
 
-## 連絡 Azure 客戶支援
-
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。
-
-或者，您可以提出 Azure 支援事件。請移至 [Azure 支援網站](http://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。如需關於使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](http://azure.microsoft.com/support/faq/)。
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 問題：我無法存取我的網站，但是我已啟動部署且所有角色執行個體皆已就緒
 
@@ -66,9 +62,9 @@
 
 ## 問題：角色執行個體在 [已啟動]、[初始化中]、[忙碌] 和 [已停止] 之間循環
 
-這種情況可能表示應用程式的程式碼、封裝或組態檔發生問題。在此情況下，您應該會看見狀態每隔幾分鐘就變更，且 Azure 入口網站可能會顯示 [回收中]、[忙碌] 或 [初始化中] 之類的訊息。這表示應用程式發生了某些錯誤，導致角色執行個體無法執行。
+這種情況可能表示應用程式的程式碼、封裝或組態檔發生問題。在此情況下，您應該能夠看見狀態每隔幾分鐘就會變更，且 Azure 入口網站可能顯示 [回收中]、[忙碌] 或 [正在初始化] 之類的訊息。這表示應用程式發生了某些錯誤，導致角色執行個體無法執行。
 
-如需關於如何對此問題進行疑難排解的詳細資訊，請參閱部落格文章 [Azure PaaS 計算診斷資料](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)和[導致角色回收的常見問題](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)。
+如需如何對此問題進行疑難排解的詳細資訊，請參閱部落格文章 [Azure PaaS 計算診斷資料](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)和[導致角色回收的常見問題](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)。
 
 ## 問題：我的應用程式停止運作
 
@@ -82,8 +78,8 @@
 
 ## 後續步驟
 
-檢視更多雲端服務的[疑難排解文章](..\?tag=top-support-issue&service=cloud-services)。
+檢視更多雲端服務的[疑難排解文章](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services)。
 
-若要了解如何利用 Azure PaaS 電腦的診斷資料來對雲端服務角色的問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
+若要了解如何利用 Azure PaaS 電腦診斷資料對雲端服務角色問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

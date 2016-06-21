@@ -23,7 +23,7 @@
 
 本文將說明如何使用 [Azure 入口網站](https://portal.azure.com/)快速建立 Linux 虛擬機器。僅有的需求是 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)和 [SSH 公開和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)。
 
-[AZURE.NOTE] 如果您選擇使用密碼來保護 VM 的存取，則密碼必須大於 12 個字元，並且有至少一個大寫字元、至少一個小寫字元、至少一個特殊字元和至少一個數字。
+> [AZURE.NOTE] 如果您選擇使用密碼來保護 VM 的存取，則密碼必須大於 12 個字元，並且有至少一個大寫字元、至少一個小寫字元、至少一個特殊字元和至少一個數字。
 
 
 1. 以您的 Azure 帳戶身分識別登入 Azure 入口網站，按一下左上角的 [+ 新增]︰
@@ -34,7 +34,7 @@
 
     ![screen2](../media/virtual-machines-linux-quick-create-portal/screen2.png)
 
-3. 在 [基本概念] 頁面上，輸入︰
+3. 在**基本概念**頁面上，輸入︰
     - VM 的名稱
     - 系統管理員的使用者名稱
     - 要設定為 [SSH 公開金鑰] 的驗證類型
@@ -81,4 +81,4 @@ ssh -i ~/.ssh/azure_id_rsa ubuntu@13.91.99.206
 
 這些文章可幫您開始建置 Azure 基礎結構，以及多種專屬和開放原始碼基礎結構部署、組態和協調流程工具。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

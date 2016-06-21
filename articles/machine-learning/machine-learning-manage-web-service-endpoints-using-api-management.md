@@ -162,15 +162,15 @@ API 是透過您經由 Azure 傳統入口網站存取的 API 發行者入口網�
 
 ![簡單的特徵雜湊實驗](./media/machine-learning-manage-web-service-endpoints-using-api-management/simple-feature-hashing-experiment.png)
 
-展開 [資料轉換] 和 [操作]，將 [專案資料行] 拖曳到您的實驗。將 [來自 Amazon 的書籍評論] 連接到 [專案資料行]。
+展開 [資料轉換] 和 [操作]，將 [選取資料集中的資料行] 拖曳到您的實驗。將 [來自 Amazon 的書籍評論] 連接到 [選取資料集中的資料行]。
 
-![專案資料行](./media/machine-learning-manage-web-service-endpoints-using-api-management/project-columns.png)
+![選取資料行](./media/machine-learning-manage-web-service-endpoints-using-api-management/project-columns.png)
 
-按一下 [專案資料行]，然後按一下 [啟動資料行選取器]，再選取 [Col2]。按一下核取記號以套用這些變更。
+按一下 [選取資料集中的資料行]，然後按一下 [啟動資料行選取器] 並選取 [Col2]。按一下核取記號以套用這些變更。
 
 ![選取資料行](./media/machine-learning-manage-web-service-endpoints-using-api-management/select-columns.png)
 
-展開 [文字分析]，將 [特徵雜湊] 拖曳到實驗。將 [專案資料行] 連接到 [特徵雜湊]。
+展開 [文字分析]，將 [特徵雜湊] 拖曳到實驗。將 [選取資料集中的資料行] 連接到 [特徵雜湊]。
 
 ![連接專案資料行](./media/machine-learning-manage-web-service-endpoints-using-api-management/connect-project-columns.png)
 
@@ -384,4 +384,4 @@ AzureML Web 服務是由 RSS (要求/回應服務) 和 BES (批次執行服務) 
 	return
 	invokeBatchExecutionService()
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

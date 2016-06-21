@@ -26,7 +26,7 @@
 - [Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-本文將說明如何使用 PowerShell 為 SQL Database 起始計劃性或非計劃性容錯移轉。若要設定異地複寫，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)。
+本文將說明如何使用 PowerShell 為 SQL Database 起始計劃性或非計劃性容錯移轉。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)。
 
 
 
@@ -38,7 +38,7 @@
 
 1. 暫時將複寫切換到同步模式。這會導致將所有未處理的交易排清至次要資料庫。
 
-2. 切換異地複寫關係中兩個資料庫的角色。
+2. 切換「異地複寫」合作關係中兩個資料庫的角色。
 
 此順序可保證在角色切換之前兩個資料庫經過同步處理，因此不會發生資料遺失。切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。在正常情況下，完成整個作業所需的時間應該少於一分鐘。如需詳細資訊，請參閱 [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx)。
 
@@ -87,4 +87,4 @@
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

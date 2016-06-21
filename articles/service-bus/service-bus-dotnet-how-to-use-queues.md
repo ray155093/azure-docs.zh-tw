@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="dotnet"
     ms.topic="get-started-article"
-    ms.date="05/09/2016"
+    ms.date="06/10/2016"
     ms.author="sethm"/>
 
 # 如何使用服務匯流排佇列
@@ -32,8 +32,6 @@
 
 1.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
 2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉此對話方塊。
-
-    ![][7]
 
 您現在可以開始對服務匯流排撰寫程式碼。
 
@@ -158,7 +156,7 @@ QueueClient Client =
 Client.Send(new BrokeredMessage());
 ```
 
-傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 物件的建構函數，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。此外，您也可以提供 **System.IO.Stream** 物件。
+傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 物件的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。此外，您也可以提供 **System.IO.Stream** 物件。
 
 下列範例將示範如何傳送五則測試訊息至上述程式碼範例中所取得的 `TestQueue` [QueueClient][] 物件。
 
@@ -241,7 +239,6 @@ Client.OnMessage((message) =>
 -   從 [Azure 範例][]下載服務匯流排範例，或參閱[服務匯流排範例概觀][]。
 
   [Azure 傳統入口網站]: http://manage.windowsazure.com
-  [7]: ./media/service-bus-dotnet-how-to-use-queues/getting-started-multi-tier-13.png
   [佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
   [服務匯流排代理傳訊 .NET 教學課程]: service-bus-brokered-tutorial-dotnet.md
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
@@ -253,4 +250,4 @@ Client.OnMessage((message) =>
   [QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
   [Complete]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

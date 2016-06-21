@@ -33,11 +33,8 @@
 開啟動態管理檢視 **sys.dm\_db\_rda\_migration\_status**，查看已移轉的批次和資料列數量。如需詳細資訊，請參閱 [sys.dm\_db\_rda\_migration\_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx)。
 
 ## <a name="Firewall"></a>資料移轉的疑難排解
-**Azure 防火牆正在封鎖來自本機伺服器的連線。**
 
-您可能必須在 Azure 伺服器的 Azure 防火牆設定中新增一個規則，讓 SQL Server 與遠端 Azure 伺服器進行通訊。
-
-**啟用 Stretch 的資料表中的資料列未移轉至 Azure。問題出在哪裡？**
+**已啟用延展功能之資料表中的資料列未移轉到 Azure。問題出在哪裡？**
 
 有幾個問題可能會影響移轉。請檢查下列項目。
 
@@ -45,11 +42,15 @@
 
 -   檢查 Azure 防火牆沒有阻擋您的 SQL Server 連線到遠端端點。
 
--   檢查動態管理檢視 **sys.dm\_db\_rda\_migration\_status** 的最新批次狀態。如果發生錯誤，請檢查批次的 error\_number、error\_state 和 error\_severity 值。
+-   檢查動態管理檢視 **sys.dm\_db\_rda\_migration\_status** 以取得最新批次的狀態。如果發生錯誤，請檢查批次的 error\_number、error\_state 和 error\_severity 值。
 
-    -   如需檢視的詳細資訊，請參閱 [sys.dm\_db\_rda\_migration\_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx)。
+    -   如需有關檢視的詳細資訊，請參閱 [sys.dm\_db\_rda\_migration\_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx)。
 
     -   如需 SQL Server 錯誤訊息內容的詳細資訊，請參閱 [sys.messages (Transact-SQL)](https://msdn.microsoft.com/library/ms187382.aspx)。
+
+**Azure 防火牆正在封鎖來自本機伺服器的連線。**
+
+您可能必須在 Azure 伺服器的 Azure 防火牆設定中新增一個規則，讓 SQL Server 與遠端 Azure 伺服器進行通訊。
 
 ## 另請參閱
 
@@ -58,4 +59,4 @@
 <!--Image references-->
 [StretchMonitorImage1]: ./media/sql-server-stretch-database-monitor/StretchDBMonitor.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -355,7 +355,7 @@ RRS 範例驗證應用程式的真確性。您可以將絕大多數應用程式�
 
 [BES SDK Nuget 封裝](http://www.nuget.org/packages/Microsoft.Azure.MachineLearning/)提供可以批次模式簡化呼叫 BES 來進行評分的功能。若要安裝 Nuget 套件，請在 Visual Studio 的 [工具] 功能表中，選取 [Nuget 套件管理員]，然後按一下 [套件管理器主控台]。
 
-Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web 服務。這表示它們預期輸入是以 Blob 位置參考的形式透過 Web 服務來呼叫。另外還有不使用 Web 服務輸入模組的選項，那就是改為使用「讀取器」模組。在此情況下，「讀取器」模組通常會在執行階段使用查詢，從 SQL DB 讀取以取得資料。Web 服務參數可用來動態指向其他伺服器或資料表等。SDK 支援以上兩種模式。
+Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web 服務。這表示它們預期輸入是以 Blob 位置參考的形式透過 Web 服務來呼叫。您也可以選擇不使用 Web 服務輸入模組，而改用「匯入資料」模組。在此情況下，「匯入資料」模組通常會在執行階段使用查詢從 SQL DB 讀取，來取得資料。Web 服務參數可用來動態指向其他伺服器或資料表等。SDK 支援以上兩種模式。
 
 下列程式碼範例示範如何使用 BES SDK，針對 Azure Machine Learning 服務端點提交和監視批次工作。請注意有關設定和呼叫的註解。
 
@@ -685,4 +685,4 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 	        "operationId": "getSwaggerDocument",
 	        
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

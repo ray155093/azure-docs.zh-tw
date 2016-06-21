@@ -19,7 +19,7 @@
 # 管理 Azure SQL 資料倉儲中的計算能力 (REST)
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-overview-manage-compute.md)
+- [概觀](sql-data-warehouse-manage-compute-overview.md)
 - [入口網站](sql-data-warehouse-manage-compute-portal.md)
 - [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 - [REST](sql-data-warehouse-manage-compute-rest-api.md)
@@ -34,7 +34,7 @@
 - 暫停計算
 - 繼續計算
 
-若要深入了解，請參閱[管理計算能力概觀][]。
+若要深入了解，請參閱[管理計算概觀][]。
 
 <a name="scale-performance-bk"></a> <a name="scale-compute-bk"></a>
 
@@ -89,8 +89,7 @@ POST https://management.azure.com/subscriptions{subscription-id}/resourceGroups/
 
 <!--Article references-->
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
-[Performance scalability overview]: ./sql-data-warehouse-overview-scalability.md
-[管理計算能力概觀]: ./sql-data-warehouse-overview-manage-compute.md
+[管理計算概觀]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 [Pause Database (暫停資料庫)]: https://msdn.microsoft.com/library/azure/mt718817.aspx
@@ -101,4 +100,4 @@ POST https://management.azure.com/subscriptions{subscription-id}/resourceGroups/
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="12/04/2015"
+   ms.date="05/31/2016"
    ms.author="mbaldwin"/>
 
 # 疑難排解：'Active Directory' 項目遺失或無法使用
@@ -40,7 +40,7 @@
 
     或
 
-* Azure 租用戶至少具有一個 Azure Multi-Factor Authentication 提供者。如需詳細資訊，請參閱[管理 Azure Multi-Factor Authentication 提供者](multi-factor-authentication-get-started-cloud.md/creating-an-azure-multi-factor-auth-provider)。
+* Azure 租用戶至少具有一個 Azure Multi-Factor Authentication 提供者。如需詳細資訊，請參閱[管理 Azure Multi-Factor Authentication 提供者](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)。
 
 若要建立存取控制命名空間或 Multi-Factor Authentication 提供者，請按一下 [+新增] > [應用程式服務] > [Active Directory]。
 
@@ -54,4 +54,4 @@
 
 ![螢幕擷取畫面：Active Directory 無法使用](./media/active-directory-troubleshooting/not-available.png)
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0608_2016-->

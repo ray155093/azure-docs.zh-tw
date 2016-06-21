@@ -32,14 +32,18 @@
 4. 建立 Data Factory，以及部署連結的服務、資料表和管線。    
 
 ## 必要條件
-請檢閱[教學課程概觀](data-factory-get-started.md)文章，並在執行本教學課程之前完成必要的步驟。
 
-您必須已在電腦上安裝下列項目：
-- Visual Studio 2013
-- 下載 Azure SDK for Visual Studio 2013。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)並按一下 **.NET** 區段中的 [VS 2013 安裝]。
+1. 您**必須**詳讀[教學課程概觀](data-factory-get-started.md)一文，並完成必要的步驟，再進一步繼續。
+2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。這是目前的限制。這項需求變更時，我們會通知您。 
+3. 您必須已在電腦上安裝下列項目： 
+	- Visual Studio 2013 或 Visual Studio 2015
+	- 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
+	- 下載適用於 Visual Studio 的最新 Azure Data Factory 外掛程式：[VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) 或 [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005)。如果您使用的是 Visual Studio 2013，也可以執行下列動作來更新外掛程式：在功能表中按一下 [工具] -> [擴充功能和更新] -> [線上] -> [Visual Studio 組件庫] -> [Microsoft Azure Data Factory Tools for Visual Studio] -> [更新]。 
+ 
+
 
 ## 建立 Visual Studio 專案 
-1. 啟動 **Visual Studio 2013**。按一下 [檔案]，指向 [新增]，然後按一下 [專案]。您應該會看到 [新增專案] 對話方塊。  
+1. 啟動 **Visual Studio 2013**。按一下 [**檔案**]，指向 [**新增**]，然後按一下 [**專案**]。您應該會看到 [新增專案] 對話方塊。  
 2. 在 [新增專案] 對話方塊中，選取 **DataFactory** 範本，然後按一下 [空白 Data Factory 專案]。如果您沒有看到 DataFactory 範本，請關閉 Visual Studio、安裝 Azure SDK for Visual Studio 2013，並重新開啟 Visual Studio。  
 
 	![[新增專案] 對話方塊](./media/data-factory-get-started-using-vs/new-project-dialog.png)
@@ -115,7 +119,7 @@
 
 ### 建立輸出資料集
 
-11. 再次以滑鼠右鍵按一下 [方案總管] 中的 [資料表]，指向 [新增]，然後按一下 [新增項目]。
+11. 再次以滑鼠右鍵按一下 [**方案總管**] 中的 [**資料表**]，指向 [**新增**]，然後按一下 [**新增項目**]。
 12. 在 [加入新項目] 對話方塊中，選取 [Azure SQL]，然後按一下 [加入]。 
 13. 將 JSON 文字取代成下列 JSON 並儲存 **AzureSqlTableLocation1.json** 檔案。
 
@@ -221,7 +225,7 @@
 
 請注意：
 
-- 如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰ 
+- 如果您收到錯誤：**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**，請執行下列其中一項，然後嘗試再次發佈︰ 
 
 	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
 		
@@ -269,4 +273,4 @@
 | [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

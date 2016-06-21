@@ -44,7 +44,7 @@
 ## 主動式異地複寫功能
 主動式異地覆寫功能提供下列基本功能：
 
-- **自動非同步複寫**︰您只能藉由加入至現有資料庫來建立次要資料庫。次要資料庫只能建立在不同的 Azure SQL Database 伺服器。一旦建立之後，次要資料庫就要填入從主要資料庫複製的資料。這個程序稱為植入。建立並植入次要資料庫之後，主要資料庫的更新會以非同步方式自動複製到次要資料庫。這表示交易會先在主要資料庫上受到認可，才會複製到次要資料庫。SQL Database 保證在植入完成之後，次要資料庫會一直維持交易一致性。如需有關建立次要資料庫的詳細資訊，請參閱[使用 Transact-SQL 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-transact-sql.md)和[使用 PowerShell 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-powershell.md)。如需使用 Azure 入口網站建立次要資料庫的詳細資訊，請參閱[使用 Azure 入口網站為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
+- **自動非同步複寫**︰您只能藉由加入至現有資料庫來建立次要資料庫。次要資料庫只能建立在不同的 Azure SQL Database 伺服器。一旦建立之後，次要資料庫就要填入從主要資料庫複製的資料。這個程序稱為植入。建立並植入次要資料庫之後，主要資料庫的更新會以非同步方式自動複製到次要資料庫。這表示交易會先在主要資料庫上受到認可，才會複製到次要資料庫。SQL Database 保證在植入完成之後，次要資料庫會一直維持交易一致性。如需有關建立次要資料庫的詳細資訊，請參閱[使用 Transact-SQL 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-transact-sql.md)和[使用 PowerShell 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-powershell.md)。如需使用「Azure 入口網站」來建立次要資料庫的詳細資訊，請參閱[使用 Azure 入口網站為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
 
 - **多個次要資料庫**：兩個或以上的次要資料庫可增加主要資料庫和應用程式的備援和保護層級。如果有多個次要資料庫存在，即使其中一個次要資料庫失敗，應用程式仍會受到保護。如果只有一個次要資料庫卻失敗了，應用程式會暴露在更高的風險中，直到建立新的次要資料庫。
 
@@ -52,7 +52,7 @@
 
 >[AZURE.NOTE] 如果有從主要資料庫接收的結構描述更新，則記錄重播將會延遲，因為它需要次要資料庫上的結構描述鎖定。
 
-- **彈性集區資料庫的作用中異地複寫**：作用中異地複寫可以針對進階彈性資料庫集區中的任何資料庫進行設定。次要資料庫可以在其他彈性資料庫集區中。對於一般資料庫，只要服務層相同，次要資料庫可以是彈性資料庫集區，反之亦然。如需有關如何針對彈性集區資料庫進行異地複寫的詳細資訊，請參閱[使用 Transact-SQL 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-transact-sql.md)和[使用 PowerShell 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-powershell.md)。  
+- **彈性集區資料庫的作用中異地複寫**：您可以為任何彈性資料庫集區中的任何資料庫設定「作用中異地複寫」。次要資料庫可以在其他彈性資料庫集區中。對於一般資料庫，只要服務層相同，次要資料庫可以是彈性資料庫集區，反之亦然。如需有關如何為彈性集區資料庫設定「異地複寫」的詳細資訊，請參閱[使用 Transact-SQL 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-transact-sql.md)和[使用 PowerShell 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-powershell.md)。  
 
 - **次要資料庫的可設定效能層級**︰可以使用比主要資料庫低的效能層級建立次要資料庫。主要和次要資料庫必須有相同的服務層。對於具有高資料庫寫入活動的應用程式不建議使用這個選項，因為它可能會導致增加的複寫延遲，進而造成容錯移轉之後高度資料遺失的風險。此外，在容錯移轉之後應用程式的效能將會受到影響，直到新的主要資料庫升級至較高的效能層級。在 Azure 入口網站上的記錄 IO 百分比圖表，提供預估次要資料庫承受複寫負載所需的最少效能層級的好方法。例如，如果您的主要資料庫是 P6 (1000 DTU) 和其記錄 IO 百分比為 50%，則次要資料庫必須至少是 P4 (500 DTU)。您也可以使用 [sys.resource\_stats](https://msdn.microsoft.com/library/dn269979.aspx) 或 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 資料庫檢視，擷取記錄 IO 資料。如需 SQL Database 效能層級的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。如需有關如何設定次要資料庫效能層級範例的詳細資訊，請參閱[使用 Transact-SQL 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-transact-sql.md)和[使用 PowerShell 為 Azure SQL Database 進行異地複寫](sql-database-geo-replication-powershell.md)。
 
@@ -60,9 +60,9 @@
 
 - 保持認證和防火牆規則同步︰我們建議針對異地複寫資料庫使用[資料庫防火牆規則](sql-database-firewall-configure.md)，這樣這些規則可以與資料庫複寫，以確保所有次要資料庫具有與主要資料庫相同的防火牆組態。這樣就不需要客戶手動設定及維護同時裝載主要和次要資料庫之伺服器上的防火牆規則。同樣地，針對資料存取使用[自主資料庫使用者](sql-database-manage-logins.md)，確保主要與次要資料庫永遠具有相同的使用者認證，在容錯移轉時不會因為登入和密碼不相符而有任何中斷。使用額外的 [Azure Active Directory](../active-directory/active-directory-whatis.md)，客戶可以管理主要和次要資料庫的使用者存取，並且排除在資料庫中管理認證的需求。
 
-- **Azure Resource Manager API 和以角色為基礎的安全性**︰作用中異地複寫包含一組 [Azure Resource Manager (ARM) API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 以進行管理，包括[以 ARM 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+- **Azure Resource Manager API 和以角色為基礎的安全性**︰「作用中異地複寫」包含一組可進行管理的 [Azure Resource Manager (ARM) API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 ARM 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
->[AZURE.NOTE] 許多作用中異地複寫的新功能只在使用以 [Azure Resource Manager (ARM)](../resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 中受到支援。現有 [Azure SQL 服務管理 (傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 ARM 為基礎的 API。
+>[AZURE.NOTE] 許多「作用中異地複寫」的新功能只有在使用以 [Azure Resource Manager (ARM)](../resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才有支援。現有 [Azure SQL 服務管理 (傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 ARM 為基礎的 API。
 
 ## 防止重要資料遺失
 由於廣域網路的高度延遲，連續複製採用非同步複寫機制。這使得發生失敗時部分資料遺失是無法避免的。不過，有些應用程式可能會要求資料不能遺失。若要保護這些重大更新，應用程式開發人員可以在認可交易後立即呼叫 [sp\_wait\_for\_database\_copy\_sync](https://msdn.microsoft.com/library/dn467644.aspx) 系統程序。呼叫 **sp\_wait\_for\_database\_copy\_sync** 會封鎖呼叫執行緒，直到最後認可的交易複寫到次要資料庫。此程序會等候直到次要資料庫認可所有加入佇列的交易。**sp\_wait\_for\_database\_copy\_sync** 以特定的連續複製連結為範圍。任何具備主要資料庫連接權限的使用者都可以呼叫此程序。
@@ -76,4 +76,4 @@
 - [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

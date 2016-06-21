@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="06/01/2016"
 	ms.author="tamram"/>
 
 # Azure 儲存體複寫
@@ -36,6 +36,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 | 可從次要位置及主要位置讀取資料。 | 否 | 否 | 否 | 是 |
 | 可在不同的節點上維護的資料副本數量。 | 3 | 3 | 6 | 6 |
 
+如需不同備援選項的定價資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
 
 ## 本地備援儲存體
 
@@ -67,32 +68,8 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 > [AZURE.NOTE] 使用 GRS 時，寫入資料的要求會以非同步方式複寫到次要區域。請務必注意，選擇 GRS 並不會影響對主要區域提出要求的延遲。不過，由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要區域的變更。
  
-建立儲存體帳戶時，您可以為帳戶選取主要區域。次要區域會視主要區域而定，且無法變更。下表顯示主要和次要區域配對：
+建立儲存體帳戶時，您可以為帳戶選取主要區域。次要區域會視主要區域而定，且無法變更。如需主要和次要地區配對的最新資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
  
-| 主要 | 次要 |
-|---------------------|---------------------|
-| 美國中北部 | 美國中南部 |
-| 美國中南部 | 美國中北部 |
-| 美國東部 | 美國西部 |
-| 美國西部 | 美國東部 |
-| 美國東部 2 | 美國中部 |
-| 美國中部 | 美國東部 2 |
-| 北歐 | 西歐 |
-| 西歐 | 北歐 |
-| 東南亞 | 東亞 |
-| 東亞 | 東南亞 |
-| 中國東部 | 中國北部 |
-| 中國北部 | 中國東部 |
-| 日本東部 | 日本西部 |
-| 日本西部 | 日本東部 |
-| 巴西南部 | 美國中南部 |
-| 澳洲東部 | 澳大利亞東南部 |
-| 澳大利亞東南部 | 澳洲東部 |
-| 印度南部 | 印度中部 |
-| 印度中部 | 印度南部 |
-| 美國政府愛荷華州 | 美國政府維吉尼亞州 |
-| 美國政府維吉尼亞州 | 美國政府愛荷華州 |
-
 ## 讀取權限異地備援儲存體
 
 除了 GRS 所提供的跨兩個區域複寫之外，讀取權限異地備援儲存體 (RA-GRS) 會透過提供次要位置資料的唯讀權限，最大化儲存體帳戶的可用性。如果發生在主要區域中無法使用資料的情況，您的應用程式可以從次要區域讀取資料。
@@ -101,10 +78,10 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 ## 後續步驟
 
+- [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
 - [關於 Azure 儲存體帳戶](storage-create-storage-account.md)
 - [Azure 儲存體的延展性與效能目標](storage-scalability-targets.md)
 - [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)  
-- [使用 RA-GRS 的 Microsoft Azure 儲存體模擬器 3.1](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/08/microsoft-azure-storage-emulator-3-1-with-ra-grs.aspx)
 - [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

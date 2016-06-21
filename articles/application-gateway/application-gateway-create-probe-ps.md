@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/22/2016"
+   ms.date="06/07/2016"
    ms.author="joaoma" />
 
 # 使用 Azure 資源管理員的 PowerShell 建立 Azure 應用程式閘道的自訂探查
@@ -190,7 +190,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 將探查新增至現有閘道組態。
 
-	$probe = Add-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/custompath.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
+	$getgw = Add-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/custompath.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
 
 範例中會將自訂探查設定為每 30 秒檢查一次 URL 路徑 contoso.com/path/custompath.htm。所設定的逾時臨界值是 120 秒，最多只能有 8 個失敗的探查要求。
@@ -238,4 +238,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 	Set-AzureRmApplicationGateway -ApplicationGateway $getgw -verbose
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0608_2016-->

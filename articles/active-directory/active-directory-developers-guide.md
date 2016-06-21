@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/02/2016"
+   ms.date="06/06/2016"
    ms.author="mbaldwin"/>
 
 
@@ -97,15 +97,17 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 - [圖形 API 權限範圍](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)：用以控制應用程式對租用戶中目錄資料取權的 OAuth 2.0 權限範圍。
 
-### 驗證通訊協定
+### 驗證和授權通訊協定
 
-- [Azure Active Directory 驗證通訊協定](active-directory-protocols.md)︰了解 Azure Active Directory 支援的不同驗證和授權通訊協定。
+- [Azure Active Directory 驗證和授權通訊協定](active-directory-protocols.md)︰了解 Azure Active Directory 支援的不同驗證和授權通訊協定。
+
+- [OAuth 2.0 通訊協定：使用授權碼授與](active-directory-protocols-oauth-code.md)：您可以使用 OAuth 2.0 通訊協定的授權碼授與，來授權存取您 Azure Active Directory 租用戶中的 Web 應用程式及 Web API。
+
+- [OAuth 2.0 通訊協定︰了解隱含授權](active-directory-dev-understanding-oauth2-implicit-grant.md)︰深入了解隱含授權授與，以及它是否適合您的應用程式。
+
+- [OpenID Connect 1.0 通訊協定：登入和驗證](active-directory-protocols-openid-connect-code.md)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。用戶端應用程式可以接收 id\_token 以管理登入程序，或增加授權碼流程以接收 id\_token 和授權碼。
 
 - [SAML 2.0 通訊協定參考](active-directory-saml-protocol-reference.md)：SAML 2.0 通訊協定可讓應用程式能為使用者提供單一登入體驗。
-
-- [OAuth 2.0 通訊協定參考](active-directory-protocols-oauth-code.md)：您可以使用 OAuth 2.0 通訊協定，來授權存取您 Azure Active Directory 租用戶中的 Web 應用程式及 Web API。
-
-- [OpenID Connect 1.0 通訊協定參考](active-directory-protocols-openid-connect-code.md)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。
 
 - [WS-同盟 1.2 通訊協定](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html)：根據 Web 服務同盟 1.2 版規格，Azure Active Directory 支援 WS-同盟 1.2。
 
@@ -139,4 +141,4 @@ Azure Active Directory 是身分識別管理即服務 (IDMaaS) 平台，提供�
 
 - [Twitter 上的 Azure Active Directory](https://twitter.com/azuread)：140 個字元以內的 Azure Active Directory 公告。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

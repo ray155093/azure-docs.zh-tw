@@ -1,5 +1,5 @@
 <properties
-   pageTitle="探索 SQL Database 教學課程"
+   pageTitle="探索 Azure SQL Database 教學課程 | Microsoft Azure"
    description="了解 SQL Database 特性與功能"
    keywords=""
    services="sql-database"
@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="05/04/2016"
+   ms.date="06/01/2016"
    ms.author="carlrab"/>
    
-# 探索 SQL Database 教學課程
+# 探索 Azure SQL Database 教學課程
 
-下列連結會帶您了解每個列出之功能區域的概觀，以及前往每個區域的快速入門教學課程。
+下列連結會帶您前往每個所列功能區域的概觀，以及每個區域的簡單逐步教學課程。如需以解決方案為範圍、根據真實世界案例示範在完整解決方案中如何使用 SQL Database 的快速入門，請參閱 [Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)。
 
 ## 使用 SQL Server Management Studio
 
@@ -33,7 +33,7 @@
 
 ## 彈性集區
 
-在下列教學課程中，您將了解如何使用[彈性集區](sql-database-elastic-pool.md)以管理多個不同且具備無法預測之使用模式資料庫的效能目標。
+在下列教學課程中，您將了解如何使用[彈性集區](sql-database-elastic-pool.md)，針對使用模式顯著不同且無法預測的多個資料庫，管理其效能目標。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -68,7 +68,7 @@
 
 ## 效能最佳化
 
-在下列教學課程中，您將了解如何最佳化[單一資料庫的效能](sql-database-performance-guidance.md)。如需最佳化多個資料庫的效能，請參閱[彈性集區](#elastic-pools)。
+在下列教學課程中，您將了解如何將[單一資料庫的效能](sql-database-performance-guidance.md)最佳化。如需了解如何將多個資料庫的效能最佳化，請參閱[彈性集區](#elastic-pools)。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -92,12 +92,12 @@
 | [使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md#use-the-deploy-database-to-microsoft-azure-database-wizard) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「部署資料庫到 Microsoft Azure Database 精靈」來將相容的 SQL Server 資料庫移轉到 Azure SQL Database。
 | [使用 SSMS 將 SQL Server Database 匯出到 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」將相容的 SQL Server 資料庫匯出成 BACPAC 檔案。|
 | [使用 SqlPackage 將的 SQL Server Database 匯出到 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-sqlpackage.md) | 在本教學課程中，您將了解如何使用 SQLPackage.exe 命令列公用程式將相容的 SQL Server 資料庫匯出成 BACPAC 檔案。|
-| [使用 PowerShell 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」從 BACPAC 檔案將資料庫匯入 Azure SQL Database。 |
+| [使用 SSMS 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」從 BACPAC 檔案將資料庫匯入 Azure SQL Database。 |
 | [使用 SqlPackage 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md#import-from-a-bacpac-file-into-azure-sql-database-using-sqlpackage) | 在本教學課程中，您將了解如何使用 SQLPackage.exe 命令列公用程式從 BACPAC 檔案將資料庫匯入 Azure SQL Database。 |
 | [使用 Azure 入口網站將 BACPAC 檔案匯入 Azure SQL Database](sql-database-import.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站從儲存在 Azure Blob 中的 BACPAC 檔案將資料庫匯入 Azure SQL Database。|
 | [使用 PowerShell 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-import-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 從 BACPAC 檔案將資料庫匯入 Azure SQL Database。|
 | [使用 Azure 入口網站封存 Azure SQL Database](sql-database-export.md#export-your-database) | 在本教學課程中，您將了解如何使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案。 |
-| [使用 PowerShell 封存 Azure SQL Database](sql-database-export-powershell.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案。 |
+| [使用 PowerShell 封存 Azure SQL Database](sql-database-export-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 將 Azure SQL Database 封存到 BACPAC 檔案。 |
 | [使用 Azure 入口網站複製 Azure SQL Database](sql-database-copy.md#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 Azure 入口網站複製 Azure SQL Database。 |
 | [使用 PowerShell 複製 Azure SQL Database](sql-database-copy-powershell#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 PowerShell 複製 Azure SQL Database。 |
 | [使用 Transact-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 Transact-SQL 複製 Azure SQL Database。 |
@@ -105,7 +105,7 @@
 
 ##開發
 
-在下列教學課程中您將了解 [對 Azure SQL Database 的用戶端連線](sql-database-connect-central-recommendations.md)和如何使用[連線庫](sql-database-libraries.md)。
+在下列教學課程中，您將了解[對 Azure SQL Database 的用戶端連線](sql-database-connect-central-recommendations.md)和如何使用[連線程式庫](sql-database-libraries.md)。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -151,7 +151,7 @@
 
 ## 商務持續性和向外延展查詢
 
-在下列教學課程中，您將了解如何使用[異地復原和作用中異地複寫](sql-database-business-continuity.md)以從錯誤復原，提供商務持續性及向外延展查詢。
+在下列教學課程中，您將了解如何使用[異地復原和作用中異地複寫](sql-database-business-continuity.md)來從錯誤復原，以提供商務持續性及向外延展查詢。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -159,9 +159,9 @@
 | [使用 PowerShell 將 Azure SQL Database 還原至先前的時間點](sql-database-point-in-time-restore-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 將資料庫還原至先前的時間點。|
 | [還原使用 Azure 入口網站的已刪除 Azure SQL Database](sql-database-restore-deleted-database-portal.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站還原已刪除的資料庫。|
 | [使用 PowerShell 還原已刪除的 Azure SQL Database](sql-database-restore-deleted-database-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 還原已刪除的資料庫。|
-| [使用 Azure 入口網站為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)| 在本教學課程中，您將了解如何使用 Azure 入口網站設定作用中異地複寫。|
-| [使用 PowerShell 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)| 在本教學課程中，您將了解如何使用 Transact-SQL 設定作用中異地複寫。|
-| [使用 Transact-SQL 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)| 在本教學課程中，您將了解如何使用 Transact-SQL 設定作用中異地複寫。|
+| [使用 Azure 入口網站為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)| 在本教學課程中，您將了解如何使用 Azure 入口網站來設定「作用中異地複寫」。|
+| [使用 PowerShell 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)| 在本教學課程中，您將了解如何使用 PowerShell 來設定「作用中異地複寫」。|
+| [使用 Transact-SQL 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)| 在本教學課程中，您將了解如何使用 Transact-SQL 來設定「作用中異地複寫」。|
 | [使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站容錯移轉至異地複寫的次要複本。|
 | [使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 容錯移轉至異地複寫的次要複本。|
 | [使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md) | 在本教學課程中，您將了解如何使用 Transact-SQL 容錯移轉至異地複寫的次要複本。|
@@ -176,4 +176,8 @@
 | [開始使用 Azure SQL 資料同步 (預覽)](sql-database-get-started-sql-data-sync.md) | 在本教學課程中，您將了解使用 Azure 傳統入口網站的 Azure SQL 資料同步基本概念。 |
 ||||
 
-<!---HONumber=AcomDC_0518_2016-->
+## 後續步驟
+
+[探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
+
+<!---HONumber=AcomDC_0608_2016-->

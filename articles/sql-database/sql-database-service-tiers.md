@@ -59,9 +59,13 @@
 [AZURE.INCLUDE [SQL DB DTU 說明](../../includes/sql-database-understanding-dtus.md)]
 
 ## 後續步驟
-- 請在 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)進一步了解這些層的定價。
+- 請在 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)進一步了解這些層的價格。
 - 了解[彈性資料庫集區](sql-database-elastic-pool-guidance.md)和[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 - 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
 - 如果您認識了 SQL Database 各個層，可以[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+## 其他資源
+
+如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+
+<!---HONumber=AcomDC_0615_2016-->

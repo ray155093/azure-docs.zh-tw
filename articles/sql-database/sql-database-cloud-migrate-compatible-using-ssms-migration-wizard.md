@@ -1,5 +1,5 @@
 <properties
-   pageTitle="使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database"
+   pageTitle="使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Server 資料庫移轉到 SQL Database | Microsoft Azure"
    description="Microsoft Azure SQL Database, 資料庫移轉, Microsoft Azure 資料庫精靈"
    services="sql-database"
    documentationCenter=""
@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="05/31/2016"
+   ms.workload="sqldb-migrate"
+   ms.date="06/07/2016"
    ms.author="carlrab"/>
 
 # 使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database
@@ -68,4 +68,4 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

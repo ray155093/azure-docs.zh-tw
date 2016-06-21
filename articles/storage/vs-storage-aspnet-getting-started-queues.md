@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/21/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 佇列儲存體和 Visual Studio 連線的服務
@@ -82,7 +82,9 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 ## 讀取並移除佇列中的訊息
 
-您的程式碼可以使用兩個步驟將訊息從佇列中移除 (清除佇列)。1.呼叫 GetMessage() 取得佇列中的下一個訊息。對於從此佇列讀取訊息的任何其他程式碼而言，將無法看到從 GetMessage() 傳回的訊息。依預設，此訊息會維持 30 秒的不可見狀態。2.若要完成從佇列中移除訊息，請呼叫 **DeleteMessage**。
+您的程式碼可以使用兩個步驟將訊息從佇列中移除 (清除佇列)。
+1. 呼叫 GetMessage() 取得佇列中的下一個訊息。對於從此佇列讀取訊息的任何其他程式碼而言，將無法看到從 GetMessage() 傳回的訊息。依預設，此訊息會維持 30 秒的不可見狀態。
+2.	若要完成從佇列中移除訊息，請呼叫 **DeleteMessage**。
 
 這個移除訊息的兩步驟程序可確保您的程式碼因為硬體或軟體故障而無法處理訊息時，另一個程式碼的執行個體可以取得相同訊息並再試一次。下列程式碼會在處理完訊息之後立即呼叫 **DeleteMessage**。
 
@@ -154,4 +156,4 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 [AZURE.INCLUDE [vs-storage-dotnet-queues-next-steps](../../includes/vs-storage-dotnet-queues-next-steps.md)]
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

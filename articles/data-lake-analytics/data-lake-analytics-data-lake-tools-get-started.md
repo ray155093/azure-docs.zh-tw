@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼
@@ -174,7 +174,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 	* 工作摘要。顯示目前工作的摘要資訊，例如：狀態、進度、執行時間、執行階段名稱、傳送者等。   
 	* 工作詳細資料。提供這項工作的詳細資訊，包括指令碼、資源、頂點執行檢視。
-	* 工作圖形。提供四個圖形以視覺化呈現工作的資訊：進度、資料讀取、資料寫入、執行時間、每個節點平均執行時間、輸入輸送量、輸出輸送量。
+	* 工作圖形。提供四個圖形以視覺化呈現作業的資訊：進度、資料讀取、資料寫入、執行時間、每個節點平均執行時間、輸入輸送量、輸出輸送量。
 	* 中繼資料作業。它會顯示所有中繼資料作業。
 	* 狀態記錄。
 	* 診斷。適用於 Visual Studio 的資料湖工具會自動診斷工作執行。當他們的工作中有一些錯誤或效能問題時您會收到警示。如需詳細資訊，請參閱「工作診斷」(連結 TBD)。
@@ -235,7 +235,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     - 在指令碼輸入 (EXTRACT * FROM “/path/abc”) 中：將同時搜尋 DataRoot 路徑和指令碼路徑。
     - 在指令碼輸出 (OUTPUT TO “path/abc”) 中：將使用 DataRoot 路徑做為輸出資料夾。
-    - 在組件註冊 (CRREATE ASSEMBLY xyz FROM “/path/abc”) 中：將搜尋指令碼路徑，但不會搜尋 DataRoot。
+    - 在組件註冊 (CREATE ASSEMBLY xyz FROM “/path/abc”) 中：將搜尋指令碼路徑，但不會搜尋 DataRoot。
     - 在註冊的 TVF/檢視或其他中繼資料項目中：將搜尋 DataRoot 路徑，但不會搜尋指令碼路徑。
 
     針對在資料湖服務上執行的指令碼，預設儲存體帳戶將用來做為根資料夾，並據以進行搜尋。
@@ -291,7 +291,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 ##附錄 A：準備教學課程所需的 PowerShell 範例
 
-下列 PowerShell 指令碼會為您準備 Azure 資料湖分析帳戶和來源資料，讓您可以跳到＜[開發 U SQL scipts](data-lake-analytics-data-lake-tools-get-started.md#develop-u-sql-scripts)＞一節。
+下列 PowerShell 指令碼會為您準備 Azure Data Lake Analytics 帳戶和來源資料，讓您可以跳到＜[開發 U SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md#develop-u-sql-scripts)＞一節。
 
     #region - used for creating Azure service names
     $nameToken = "<Enter an alias>"
@@ -361,4 +361,4 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     Get-AzureRmDataLakeStoreChildItem -Account $dataLakeStoreName -Path  "/Samples/Data/"
     #endregion
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

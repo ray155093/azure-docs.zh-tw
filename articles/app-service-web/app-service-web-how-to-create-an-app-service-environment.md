@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/06/2016" 
+	ms.date="06/08/2016" 
 	ms.author="ccompy"/>
 
 # 如何建立 App Service 環境 #
@@ -36,7 +36,7 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 - ASE 中建立的所有應用程式將位於 ASE 本身的相同訂用帳戶中
 - 如果您無法存取用來建立 ASE 的訂用帳戶，則無法使用 ASE 來建立應用程式
 - 用來裝載 ASE 的 VNET 必須是區域傳統 "v1" VNET 
-- 用來裝載 ASE 的子網路不得包含任何其他計算資源
+- **用來裝載 ASE 的子網路不得包含任何其他計算資源**
 - 子網路中只能存在一個 ASE
 - 目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
 
@@ -165,4 +165,4 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 [AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

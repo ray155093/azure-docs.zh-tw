@@ -3,7 +3,7 @@
    description="使用適用於流量管理員的 PowerShell 與 Azure Resource Manager (ARM)"
    services="traffic-manager"
    documentationCenter="na"
-   authors="joaoma"
+   authors="jtuliani"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="joaoma" />
+   ms.author="jtuliani" />
 
 # Azure Resource Manager 的 Azure 流量管理員支援
 Azure 資源管理員 (ARM) 是 Azure 中新的服務管理架構。Azure 流量管理員設定檔現在可使用以 Azure 資源管理員為基礎的 API 和工具來管理 。
@@ -129,9 +129,9 @@ Cmdlet 在 Azure 流量管理員中建立流量管理員設定檔，並傳回對
 
 例如，若要變更 TTL 設定檔：
 
-	PS C:\> $profile = Get-AzureTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG
+	PS C:\> $profile = Get-AzureRmTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG
 	PS C:\> $profile.Ttl = 300
-	PS C:\> Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
+	PS C:\> Set-AzureRmTrafficManagerProfile –TrafficManagerProfile $profile
 
 ## 新增流量管理員端點
 流量管理員端點有三種類型：
@@ -295,12 +295,12 @@ Disable-AzureRmTrafficManagerProfile Cmdlet 會顯示確認提示，但使用 '-
 
 這個 Cmdlet 會提示進行確認。選擇性的 ’-Force’ 參數可用來隱藏這個提示。要刪除的設定檔也可以使用設定檔物件來指定：
 
-	PS C:\> $profile = Get-AzureTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG
-	PS C:\> Remove-AzureTrafficManagerProfile –TrafficManagerProfile $profile [-Force]
+	PS C:\> $profile = Get-AzureRmTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG
+	PS C:\> Remove-AzureRmTrafficManagerProfile –TrafficManagerProfile $profile [-Force]
 
 也可輸送以下順序：
 
-	PS C:\> Get-AzureTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG | Remove-AzureTrafficManagerProfile [-Force]
+	PS C:\> Get-AzureRmTrafficManagerProfile –Name MyProfile -ResourceGroupName MyRG | Remove-AzureRmTrafficManagerProfile [-Force]
 
 ## 後續步驟
 
@@ -309,4 +309,4 @@ Disable-AzureRmTrafficManagerProfile Cmdlet 會顯示確認提示，但使用 '-
 [流量管理員的效能考量](traffic-manager-performance-considerations.md)
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

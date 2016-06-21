@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/27/2016"
+   ms.date="06/09/2016"
    ms.author="ryanwi"/>
 
 # 在 Visual Studio 中建立第一個 Azure Service Fabric 應用程式
@@ -46,7 +46,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 	![Visual Studio 中的新增服務對話方塊][2]
 
-	>[AZURE.NOTE] 如需選項的詳細資訊，請參閱[選擇架構](service-fabric-choose-framework.md)。
+	>[AZURE.NOTE] 如需選項的詳細資訊，請參閱 [Service Fabric 程式設計模型概觀](service-fabric-choose-framework.md)。
 
 	Visual Studio 會建立應用程式專案和具狀態服務專案，並在 [方案總管] 中加以顯示。
 
@@ -96,7 +96,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
     ![從本機叢集管理員啟動 Service Fabric 總管][systray-launch-sfx]
 
-    Service Fabric 總管提供了叢集的視覺表示法，包括部署至叢集合的應用程式集以及構成叢集的實體節點集合。若要了解 Service Fabric 總管，請參閱[視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+    Service Fabric 總管提供了叢集的視覺表示法，包括部署至叢集合的應用程式集以及構成叢集的實體節點集合。若要了解 Service Fabric Explorer，請參閱[視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 6. 在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。
 
@@ -110,31 +110,19 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
-### 清除
+## 清除
 
-  在我們做結論之前，請務必記得本機叢集非常真實。即使在停止偵錯工具並關閉 Visual Studio 之後，您的應用程式將會繼續在背景執行。視您的應用程式的本質而言，此背景活動可能會佔用您電腦上的大量資源。您有數個選項可管理此項目：
+  在我們做結論之前，請務必記得本機叢集非常真實。停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。但叢集會繼續在背景中執行。您有數個選項可管理此項目：
 
-  1. 若要移除個別的應用程式及其所有資料，請使用 Service Fabric 總管中的 [刪除應用程式] 動作，搭配左窗格中應用程式清單檢視的 [動作] 功能表或內容功能表。
+  1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
 
-    ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
-
-  2. 從叢集中刪除應用程式之後，您可以接著對移除應用程式封裝 (包括其程式碼和組態) 的應用程式，從叢集的映像存放區選擇 [解除佈建類型]。
-  3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
-
-  4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您有時候不打算使用本機叢集或您需要回收資源時，才能使用此選項。
-
-
+  2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您有時候不打算使用本機叢集或您需要回收資源時，才能使用此選項。
 
 ## 後續步驟
 
-<!--
-Temporarily removing this link because we have removed the ASP.NET template.
-
- - [See how you can expose your services to the Internet with a web service front end](service-fabric-add-a-web-frontend.md)
--->
-- [了解如何在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)
-- [深入了解 Reliable Services](service-fabric-reliable-services-quick-start.md)
-- [嘗試使用 Reliable Actors 程式設計模型建立服務](service-fabric-reliable-actors-get-started.md)
+- 了解如何[在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)或[在 Windows 上建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)。
+- 嘗試使用 [Reliable Services](service-fabric-reliable-services-quick-start.md) 或 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型來建立服務。
+- 了解如何透過 [Web 服務前端](service-fabric-add-a-web-frontend.md)在網際網路公開服務。
 
 <!-- Image References -->
 
@@ -150,4 +138,4 @@ Temporarily removing this link because we have removed the ASP.NET template.
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

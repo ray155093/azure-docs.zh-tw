@@ -14,14 +14,13 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/28/2016"
+	ms.date="06/07/2016"
 	ms.author="iainfou"/>
 
 
 # 如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
-
 
 本文說明如何在執行 Windows Server 的新或現有虛擬機器 (VM) 上，安裝和設定 Trend Micro Deep Security as a Service。Deep Security as a Service 包括反惡意程式碼防護、防火牆、入侵防禦系統及完整監視。
 
@@ -87,4 +86,4 @@
 [如何登入執行 Windows Server 的虛擬機器]: virtual-machines-windows-classic-connect-logon.md
 [Azure VM 延伸模組與功能]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

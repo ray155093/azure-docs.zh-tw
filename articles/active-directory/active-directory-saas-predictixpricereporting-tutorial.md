@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="06/06/2016"
 	ms.author="jeedes"/>
 
 
@@ -62,7 +62,7 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
-	![Active Directory][1]
+	![應用程式][1]
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
@@ -73,16 +73,17 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
 6. 在 [搜尋] 方塊中，輸入 **Predictix Price Reporting**。
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_predictixpricereporting_01.png)
+	![應用程式](./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_predictixpricereporting_01.png)
+
 7. 在結果窗格中，選取 [Predictix Price Reporting]，然後按一下 [完成] 來加入應用程式。
 
-
+	![應用程式](./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_predictixpricereporting_02.png)
 
 ##  設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Predictix Price Reporting 設定及測試 Azure AD 單一登入。
@@ -110,7 +111,7 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 	 
 	![設定單一登入][6]
 
-2. 在 [希望使用者如何登入 Predictix Price Reporting] 頁面，選取 [Azure AD 單一登入]，然後按下 [下一步]。
+2. 在 [要如何讓使用者登入 Predictix Price Reporting] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
 
 	![設定單一登入](./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_predictixpricereporting_03.png)
 
@@ -118,9 +119,9 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_predictixpricereporting_04.png)
 
-    a.在 [登入 URL] 文字方塊中，使用以下模式輸入您使用者用以登入 Predictix Price Reporting 應用程式的 URL：**https://\<公司名稱定價>.predictix.com/sso/request**。
+    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Predictix Price Reporting 應用程式時所使用的 URL：`https://<company name-pricing>.predictix.com/sso/request`
 	
-	b. 按一下 [下一步]。
+	b. 按 [下一步]
  
 4. 在 [設定在 Predictix Price Reporting 單一登入] 頁面上，執行下列步驟：
 
@@ -141,7 +142,7 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
 	• **單一登出服務 URL**
 
-6. 在傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
 	
 	![Azure AD 單一登入][10]
 
@@ -168,7 +169,7 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictixpricereporting-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictixpricereporting-tutorial/create_aaduser_04.png)
 
@@ -180,7 +181,7 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-predictixpricereporting-tutorial/create_aaduser_06.png)
+6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-predictixpricereporting-tutorial/create_aaduser_06.png)
 
     a.在 [名字] 文字方塊中，輸入 **Britta**。
 
@@ -269,4 +270,4 @@ Predictix Price Reporting 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-predictixpricereporting-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0608_2016-->

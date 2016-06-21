@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="mobile"
-   ms.date="05/08/2016"
+   ms.date="06/01/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 的已連接服務加入 Azure 儲存體
@@ -48,7 +48,7 @@
 
     ![加入已連接服務對話方塊 - 儲存體](./media/vs-azure-tools-connected-services-storage/IC796703.png)
 
-1. 在 [Azure 儲存體] 對話方塊方塊中，選擇現有的儲存體帳戶，然後按一下 [新增]。
+1. 在 [Azure 儲存體] 對話方塊方塊中，選取現有的儲存體帳戶，然後選取 [新增]。
 
     如果您需要建立新的儲存體帳戶，請移至下一個步驟。否則，跳到步驟 6。
 
@@ -64,7 +64,7 @@
 
         當您回到 [Azure 儲存體] 對話方塊時，新的儲存體會出現在清單中。
 
-    1. 選取清單中的新儲存體，然後按一下 [新增]。
+    1. 選取清單中的新儲存體，然後選取 [新增]。
 
 1. 儲存體的已連接服務會出現在 WebJob 專案的 [服務參考] 節點之下。
 
@@ -94,4 +94,4 @@
 
      - [azure.microsoft.com 上的儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

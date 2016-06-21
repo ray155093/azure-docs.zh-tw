@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/22/2016"
+	ms.date="06/06/2016"
 	ms.author="tdykstra"/>
 
 # Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
@@ -87,7 +87,7 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 對於 Web 開發人員和設計人員，Azure App Service 可輕鬆整合各種架構和工具、提供 Git 和 FTP 的部署支援，並與 Visual Studio 和 SQL Database 等工具和服務密切整合。使用 App Service，您可以：
 
 - 使用命令列工具執行[自動化工作][scripting] \(英文)。
-- 使用熱門語言，例如 [.Net][dotnet] (英文)、[PHP][] \(英文)、[Node.js][nodejs] (英文) 及 [Python][] \(英文)。
+- 使用熱門語言，例如 [.Net][dotnet] \(英文)、[PHP][] \(英文)、[Node.js][nodejs] \(英文) 及 [Python][] \(英文)。
 - 有三種不同的調整層級可選，以向上調整至非常高的容量。
 - 與其他 Azure 服務 (如 [SQL Database][sqldatabase]、[服務匯流排][servicebus]及[儲存體][])，或 [Azure 市集][azurestore]上的合作夥伴供應項目 (如 MySQL 和 MongoDB) 整合。
 - 與 Visual Studio、Git、WebMatrix、WebDeploy、TFS 和 FTP 等工具整合。
@@ -197,4 +197,4 @@ Web 伺服器執行個體會共用內容和組態，這表示您在調整規模�
   [sqldatabase]: http://www.windowsazure.com/documentation/services/sql-database/
   [儲存體]: http://www.windowsazure.com/documentation/services/storage/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

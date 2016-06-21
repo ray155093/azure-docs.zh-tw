@@ -3,7 +3,7 @@
    description="了解如何使用 Visual Studio Tools for Docker，將 ASP.NET 5 Web 應用程式發佈到 Azure Docker 主機電腦上執行的 Docker 容器"   
    services="visual-studio-online"
    documentationCenter=".net"
-   authors="tomarcher"
+   authors="allclark"
    manager="douge"
    editor=""/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/08/2016"
-   ms.author="tarcher"/>
+   ms.date="06/08/2016"
+   ms.author="allclark"/>
 
 # 將 ASP.NET 容器部署到遠端 Docker 主機
 
@@ -57,13 +57,13 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 
     1.  瀏覽到 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 
     
-    1.  點選 [虛擬機器]。
+    1.  選取 [虛擬機器]。
     
     1.  選取您的 Docker 主機虛擬機器。
     
-    1.  點選 [端點] 索引標籤。
+    1.  選取 [端點] 索引標籤。
     
-    1.  按一下頁面底部的 [新增]。
+    1.  選取 [新增] \(在頁面底部)。
     
     1.  遵循指示來公開連接埠 80，此連接埠依預設由部署指令碼使用。
 
@@ -83,7 +83,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 
 1.  將啟動目標變更為 [Docker]。
 
-1.  點選 **Docker** 圖示，以建置並執行應用程式。
+1.  選取 [Docker] 圖示，以建置並執行應用程式。
 
 ![啟動應用程式][2]
 
@@ -96,4 +96,4 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 [2]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
 [3]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

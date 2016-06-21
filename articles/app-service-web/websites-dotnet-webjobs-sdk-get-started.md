@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="06/01/2016"
 	ms.author="tdykstra"/>
 
 # 在 Azure App Service 中建立 .NET WebJob
@@ -36,7 +36,13 @@
 
 本教學課程可以搭配 Visual Studio 2015 使用，但在本機執行應用程式之前，您必須將 Web.config 和 App.config 檔案中 SQL Server LocalDB 連接字串的 `Data Source` 部分，從 `Data Source=(localdb)\v11.0` 變更為 `Data Source=(LocalDb)\MSSQLLocalDB`。
 
-[AZURE.INCLUDE [free-trial-note](../../includes/free-trial-note2.md)]
+> [AZURE.NOTE] <a name="note"></a>您必須有 Azure 帳戶，才能完成本教學課程：
+  >
+  > + 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+  >
+  > + 您可以[啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
+  >
+  >如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
 ## <a id="learn"></a>您將學到什麼
 
@@ -397,7 +403,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 11. 在 [新增專案] 對話方塊中，依序選擇 [Visual C#] > [Windows Desktop] > [類別庫] 範本。
 
-10. 將專案命名為 *ContosoAdsCommon*，然後按一下 [確定]。
+10. 將專案命名為 *ContosoAdsCommon* ，然後按一下 [確定]。
 
 	此專案將包含由前端與後端使用的 Entity Framework 內容和資料模型。作為替代方式，您可以在 Web 專案中定義 EF 相關的類別，並從 WebJob 專案參考該專案。但之後您的 WebJob 專案會有不需要的 Web 組件參考。
 
@@ -470,7 +476,7 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
 	- *Global.asax.cs*  
 	- 在 *Controllers* 資料夾中，新增檔案︰*AdController.cs*
 	- *Views\\Shared* 資料夾中的 *\_Layout.cshtml* 檔案
-- 在 *Views\\Home* 資料夾中：*Index.cshtml*
+	- 在 *Views\\Home* 資料夾中：*Index.cshtml*
 	- 在 *Views\\Ad* 資料夾中 (請先建立此資料夾)：五個 *.cshtml* 檔案<br/><br/>
 
 3. 在 ContosoAdsWebJob 專案中，從所下載的專案加入下列檔案。
@@ -817,4 +823,4 @@ https://{webappname}.scm.azurewebsites.net/azurejobs/#/functions
 
 如需詳細資訊，請參閱 [Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?LinkId=390226)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

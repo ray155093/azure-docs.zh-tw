@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="05/31/2016" 
+	ms.date="06/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Azure Redis 快取
@@ -33,7 +33,7 @@ Microsoft Azure Redis 快取有下列階層：
 -	**標準** – 兩個節點 (主要/從屬)。多種大小，最高為 53 GB。99.9% SLA。
 -	**進階** – 兩個節點的主要/從屬，最多具有 10 個分區。從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。99.9% SLA。
 
-每一個階層都有不同的功能和定價。如需價格的相關資訊，請參閱[快取價格詳細資料][]。
+每一個階層都有不同的功能和價格。如需價格的相關資訊，請參閱[快取價格詳細資料][]。
 
 本指南說明如何使用採用 C# 程式碼的 [StackExchange.Redis][] 用戶端。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**加入和移除快取中的物件**。如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][]一節。如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱[如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
 
@@ -59,21 +59,7 @@ Microsoft Azure Redis 快取有下列階層：
 <a name="NuGet"></a>
 ## 設定快取用戶端
 
-您可以從任何 Azure 應用程式存取使用 Azure Redis 快取所建立的快取。Visual Studio 中開發的 .NET 應用程式可以使用 **StackExchange.Redis** 快取用戶端，該用戶端可使用能簡化快取用戶端應用程式組態的 NuGet 套件來加以設定。
-
->[AZURE.NOTE] 如需詳細資訊，請參閱 [StackExchange.Redis][] github 頁面和 [StackExchange.Redis 快取用戶端文件][]。
-
-若要在 Visual Studio 中使用 StackExchange.Redis NuGet 封裝來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。
-
-![Manage NuGet packages][NuGetMenu]
-
-在搜尋文字方塊中輸入 **StackExchange.Redis** 或 **StackExchange.Redis.StrongName**、從結果選取需要的版本，然後按一下 [安裝]。
-
->[AZURE.NOTE] 如果您偏好使用強式名稱版本的 **StackExchange.Redis** 用戶端程式庫，請選取 **StackExchange.Redis.StrongName**；否則選取 **StackExchange.Redis**。
-
-![StackExchange.Redis NuGet package][StackExchangeNuget]
-
-NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參考，以利用 StackExchange.Redis 快取用戶端來存取 Azure Redis 快取。
+[AZURE.INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
 
 一旦設定用戶端專案的快取功能，您就可以使用下列幾節中描述的技術來使用快取。
 
@@ -298,4 +284,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

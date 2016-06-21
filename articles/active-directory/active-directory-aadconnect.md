@@ -161,4 +161,4 @@ Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-d
 
 >[AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0525_2016--->

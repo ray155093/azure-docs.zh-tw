@@ -131,7 +131,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。�
 
 ##<a name="SSMS"></a>連接到 SQL Server Management Studio 並啟用混合模式驗證
 
-SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若要從另一部電腦連接 Database Engine，請設定 SQL Server 以進行混合模式驗證。混合模式驗證可允許 SQL Server 驗證和 Windows 驗證。需要 SQL 驗證模式，才能在 [Azure Machine Learning Studio](https://studio.azureml.net) 中透過「讀取器」模組，從您的 SQL Server VM 資料庫直接擷取資料。
+SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若要從另一部電腦連接 Database Engine，請設定 SQL Server 以進行混合模式驗證。混合模式驗證可允許 SQL Server 驗證和 Windows 驗證。需要使用 SQL 驗證模式，才能在 [Azure Machine Learning Studio](https://studio.azureml.net) 中透過「匯入資料」模組，從您的 SQL Server VM 資料庫直接擷取資料。
 
 1.  使用遠端桌面連接到虛擬機器時，請在 Windows [**Search**] 窗格中鍵入 **SQL Server Management Studio** (SMSS)。按一下以啟動 SQL Server Management Studio (SSMS)。您可能想要將捷徑新增到桌面上的 SSMS，以供日後使用。
 
@@ -205,11 +205,11 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 5.  在 [密碼] 方塊中，輸入新使用者的密碼。在 [確認密碼] 方塊中再次輸入密碼。
 
-6.  若要強制執行複雜性和強制性密碼原則選項，請選取 [強制執行密碼原則]\(建議)。此為選取 SQL Server 驗證時的預設選項。
+6.  若要強制執行複雜性和強制性密碼原則選項，請選取 [強制執行密碼原則] \(建議)。此為選取 SQL Server 驗證時的預設選項。
 
-7.  若要強制執行逾期密碼原則選項，請選取 [強制執行密碼逾期]\(建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+7.  若要強制執行逾期密碼原則選項，請選取 [強制執行密碼逾期] \(建議)。您必須選取強制執行密碼原則才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
-8.  若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼]\(如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
+8.  若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼] \(如果此登入是供其他使用者使用，建議您選取此選項。如果此登入是供您自己使用，請勿選取此選項。) 您必須選取強制執行密碼逾期才能啟用此核取方塊。此為選取 SQL Server 驗證時的預設選項。
 
 9.  在 [預設資料庫] 清單中，選取登入的預設資料庫。**master** 是此選項的預設值。如果您尚未建立使用者資料庫，請保留 [master] 的設定。
 
@@ -251,9 +251,9 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 ##<a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
 
-在 Cortana Analytics 程序的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將從 SQL Server VM 資料庫擷取的資料直接匯入 Azure Machine Learning 供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用**讀取器**模組。《Cortana Analytics 程序》指南中的連結提供更多與本主題相關的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
+在 Cortana Analytics 程序的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。《Cortana Analytics 程序》指南中的連結提供更多與本主題相關的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
 
-2.	在「[讀取器](https://msdn.microsoft.com/library/azure/dn905997.aspx)」模組的 [**屬性**] 窗格中，從 [**資料來源**] 下拉式清單中選取 [**Azure SQL Database**]。
+2.	在[匯入資料模組](https://msdn.microsoft.com/library/azure/dn905997.aspx)的 [屬性] 窗格中，從 [資料來源] 下拉式清單中選取 [Azure SQL Database]。
 
 3.	在 [**資料庫伺服器名稱**] 文字方塊中，輸入 `tcp:<DNS name of your virtual machine>,1433`
 
@@ -261,7 +261,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 5.	在 [**伺服器使用者帳戶密碼**] 文字方塊中輸入 SQL 使用者的密碼。
 
-	![Azure ML 讀取器][13]
+	![Azure ML 匯入資料][13]
 
 ##<a name="shutdown"></a>關閉並解除配置非使用中的虛擬機器
 
@@ -306,4 +306,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

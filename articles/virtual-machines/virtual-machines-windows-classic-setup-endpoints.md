@@ -22,7 +22,7 @@
 
 在 Azure 中使用傳統部署模型建立的所有 Windows 虛擬機器，都可以自動透過私人網路通道與同一雲端服務或虛擬網路中的其他虛擬機器通訊。不過，網際網路或其他虛擬網路上的電腦需要端點，才能將傳入網路流量導向至虛擬機器。本文也適用於 [Linux 虛擬機器](virtual-machines-linux-classic-setup-endpoints.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines-windows-nsg-quickstart-portal.md)。在 **Resource Manager** 部署模型中，是使用「網路安全性群組」(NSG) 來設定端點。如需詳細資訊，請參閱[允許使用 Azure 入口網站從外部存取您的 VM](virtual-machines-windows-nsg-quickstart-portal.md)。
 
 當您在 Azure 傳統入口網站建立 Windows 虛擬機器時，通常也會自動為您建立像是遠端桌面和 Windows PowerShell 遠端等的通用端點。建立虛擬機器或日後有需要時，您可以設定其他端點。
 
@@ -36,6 +36,6 @@
 
 * 若要使用 Azure PowerShell Cmdlet 來管理端點上的 ACL，請參閱[使用 PowerShell 管理端點的存取控制清單 (ACL)](../virtual-network/virtual-networks-acl-powershell.md)。
 
-* 如果您已在 Resource Manager 部署模型中建立虛擬機器，可以使用 Azure PowerShell [建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-ps.md)來控制 VM 的流量。
+* 如果您已在 Resource Manager 部署模型中建立虛擬機器，則可以使用 Azure PowerShell 來[建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-ps.md)以控制對 VM 的流量。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

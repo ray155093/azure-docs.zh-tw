@@ -3,7 +3,7 @@
    description="了解如何透過「編輯和重新整理」來修改在本機 Docker 容器中執行的應用程式、重新整理容器，以及設定偵錯中斷點"
    services="visual-studio-online"
    documentationCenter="na"
-   authors="AllenClark"
+   authors="allclark"
    manager="douge"
    editor="" />
 <tags
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/13/2016"
+   ms.date="06/08/2016"
    ms.author="allclark" />
 
 # 偵錯本機 Docker 容器中的應用程式
@@ -29,7 +29,7 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 - [Microsoft ASP .NET Core RC 2](http://go.microsoft.com/fwlink/?LinkId=798481)
 - [Visual Studio 2015 Tools for Docker](https://aka.ms/DockerToolsForVS)
 
-若要在本機執行 Docker 容器，您需要本機 Docker 用戶端。您可以使用需要停用 Hyper-V 的已發行 [Docker 工具箱](https://www.docker.com/products/overview#/docker_toolbox)，也可以使用利用 Hyper-V 並需要 Windows 10 的 [Docker for Windows Beta](https://beta.docker.com)。
+若要在本機執行 Docker 容器，您需要本機 Docker 用戶端。您可以使用需要停用 Hyper-V 的已發行 [Docker 工具箱](https://www.docker.com/products/overview#/docker_toolbox)，或是使用利用 Hyper-V 並需要 Windows 10 的 [Docker for Windows Beta](https://beta.docker.com)。
 
 如果使用 Docker 工具箱，您將需要[設定 Docker 用戶端](./vs-azure-tools-docker-setup.md)
 
@@ -56,26 +56,35 @@ Visual Studio 2015 Tools for Docker 可讓 ASP .NET Core RC2 Web 應用程式開
 
 	![][1]
 
-> [AZURE.NOTE] 如果使用 [Docker for Windows Beta](https://beta.docker.com)，請開啟 [屬性\\Docker.props]，並移除預設值，然後重新啟動 Visaul Studio，這樣值才會生效。![][2]
+> [AZURE.NOTE] 如果使用 [Docker for Windows Beta](https://beta.docker.com)，請開啟 [屬性\\Docker.props] 並移除預設值，然後重新啟動 Visaul Studio，這樣值才會生效。
+>
+> ![][2]
 
 ##編輯和重新整理
 若要快速反覆查看變更，您可以啟動容器內的應用程式，並繼續進行變更，而檢視變更的方式與使用 IIS Express 相同。
 
-1. 將 [方案組態] 設定為 `Debug`，然後按 **&lt;CTRL + F5>** 建置 Docker 映像，並在本機予以執行。查看輸出視窗，使用組建或
+1. 將 [方案組態] 設定為 `Debug`，然後按 **&lt;CTRL + F5>** 來建置 Docker 映像，然後在本機執行此映像。
 
-1. 當容器映像已建置且正在 Docker 容器中執行之後，Visual Studio 會嘗試在您的預設瀏覽器中啟動 Web 應用程式。如果您是使用 Microsoft Edge 瀏覽器或者發生錯誤，請參閱[疑難排解](vs-azure-tools-docker-troubleshooting-docker-errors.md)一節。
+    建置好容器映像並正在 Docker 容器中執行之後，Visual Studio 會在您的預設瀏覽器中啟動 Web 應用程式。如果您是使用 Microsoft Edge 瀏覽器或者發生錯誤，請參閱[疑難排解](vs-azure-tools-docker-troubleshooting-docker-errors.md)一節。
+
+1. 前往「關於」頁面，這是我們要在其中進行變更的頁面。
 
 1. 返回 Visual Studio，然後開啟 `Views\Home\About.cshtml`。
 
-1. 將下列 HTML 內容附加至檔案尾端，然後儲存變更。
+1. 將下列 HTML 內容新增到檔案結尾，然後儲存變更。
 
 	```
 	<h1>Hello from a Docker Container!</h1>
 	```
 
-1.	檢視輸出視窗，.NET 組建完成並看到 `Application started. Press Ctrl+C to shut down` 時，請切換回您的瀏覽器，然後重新整理頁面。
+1.	檢視輸出視窗，當 .NET 組建完成且您看到這些行時，切換回您的瀏覽器，然後重新整理「關於」頁面。
 
-1.	您應該會看到變更已經套用！
+    ```
+    Now listening on: http://*:80
+    Application started. Press Ctrl+C to shut down
+    ```
+
+1.	您的變更已經套用！
 
 ##中斷點偵錯
 通常，需要運用 Visual Studio 的偵錯功能進一步檢查變更。
@@ -91,7 +100,7 @@ Visual Studio 2015 Tools for Docker 可讓 ASP .NET Core RC2 Web 應用程式開
 
 1.  在 `string message`... 行的左側設定中斷點。
 
-1.  按 **&lt;F5>** 開始偵錯。
+1.  按 **&lt;F5>** 來開始偵錯。
 
 1.  瀏覽至 [關於] 頁面，來叫用中斷點。
 
@@ -100,7 +109,7 @@ Visual Studio 2015 Tools for Docker 可讓 ASP .NET Core RC2 Web 應用程式開
 	![][3]
 
 ##摘要
-運用 [Visual Studio 2015 Tools for Docker](https://aka.ms/DockerToolsForVS)，您可以獲得在本機運作的生產力，以及在 Docker 容器內開發的生產真實性。
+運用 [Visual Studio 2015 Tools for Docker](https://aka.ms/DockerToolsForVS)，您將可獲得在本機運作的生產力，以及在 Docker 容器內開發的生產環境真實性。
 
 ## 疑難排解
 [疑難排解 Visual Studio Docker 開發](vs-azure-tools-docker-troubleshooting-docker-errors.md)
@@ -109,7 +118,7 @@ Visual Studio 2015 Tools for Docker 可讓 ASP .NET Core RC2 Web 應用程式開
 
 - [Docker Tools for Visual Studio](http://aka.ms/dockertoolsforvs) - 在容器中開發 .NET Core 程式碼
 - [Docker Tools for Visual Studio Team Services](http://aka.ms/dockertoolsforvsts) - 建置和部署 Docker 容器
-- [Docker Tools for Visual Studio Code](http://aka.ms/dockertoolsforvscode) - 用於編輯 Docker 檔案的語言服務，以及其他 e2e 案例
+- [Docker Tools for Visual Studio Code](http://aka.ms/dockertoolsforvscode) - 用於編輯 Docker 檔案的語言服務，將推出更多其他 e2e 案例
 - [Windows 容器資訊](http://aka.ms/containers) - Windows Server 和 Nano Server 資訊
 - [Azure 容器服務](https://azure.microsoft.com/services/container-service/) - [Azure 容器服務內容](http://aka.ms/AzureContainerService)
 
@@ -132,4 +141,4 @@ Visual Studio 2015 Tools for Docker 可讓 ASP .NET Core RC2 Web 應用程式開
 [2]: ./media/vs-azure-tools-docker-edit-and-refresh/docker-props.png
 [3]: ./media/vs-azure-tools-docker-edit-and-refresh/breakpoint.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

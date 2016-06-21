@@ -43,7 +43,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 增強部署是一項重大更新。以下是我們所做的改良功能的摘要：
 
-- **Azure 中沒有基礎結構 VM**：資料會直接複寫到 Azure 儲存體帳戶。除了複寫和容錯移轉之外，未如同在舊版部署中所需一般，設定任何基礎結構 VM (組態伺服器、主要目標伺服器)。  
+- **Azure 中沒有基礎結構 VM**：資料會直接複寫到 Azure 儲存體帳戶。除了複寫和容錯移轉之外，並不需要如舊版部署中所需，設定任何基礎結構 VM (組態伺服器、主要目標伺服器)。  
 - **整合安裝**：單一安裝可提供內部部署元件的簡單設定及延展性。
 - **安全部署**：所有流量都會加密，且複寫管理通訊會透過 HTTPS 443 傳送。
 - **復原點**：支援 Windows 和 Linux 環境中的當機和應用程式一致復原點，並同時支援單一 VM 和多個 VM 一致組態。
@@ -239,11 +239,11 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 ## 步驟 5：安裝管理伺服器
 > [AZURE.TIP] 確定可以從管理伺服器存取這些 URL：
 >
-- **.hypervrecoverymanager.windowsazure.com
-- **.accesscontrol.windows.net
-- **.backup.windowsazure.com
-- **.blob.core.windows.net
-- **.store.core.windows.net
+- *.hypervrecoverymanager.windowsazure.com
+- *.accesscontrol.windows.net
+- *.backup.windowsazure.com
+- *.blob.core.windows.net
+- *.store.core.windows.net
 - https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi
 - https://www.msftncsi.com/ncsi.txt
 
@@ -304,14 +304,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 13.  在 [摘要] 中檢閱資訊。
 
 	![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
->[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。
-安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
+>[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
 >
-	$pwd = ConvertTo-SecureString -String ProxyUserPassword
+	$pwd = ConvertTo-SecureString -String ProxyUserPassword 
 	Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd 
 	net stop obengine 
 	net start obengine
-	 
 
 
 
@@ -466,7 +464,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 來源作業系統 | 行動服務安裝檔案
 --- | ---
 Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz 
 SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
@@ -763,4 +761,4 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 [深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將 Azure 中執行失敗的機器還原到您的內部部署環境。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+   ms.date="06/03/2016"
+   ms.author="lodipalm;barbkess;sonyama;jrj"/>
 
 # 將您的 SQL 程式碼移轉至 SQL 資料倉儲
 
@@ -80,7 +80,7 @@ SQL 資料倉儲針對通用資料表運算式 (CTE) 提供部分支援。目前
 
 SQL 資料倉儲並不支援遞迴 CTE。針對遞迴 CTE 的移轉可以取得某種程度的完成度，而最佳做法便是細分成多個步驟。一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。類似的方法已被用來解決在[由含有 rollup / cube / grouping sets options 的子句組成的群組][]文章中的 `GROUP BY WITH CUBE`。
 
-### 系統函數
+## 系統函數
 
 另外還有一些不支援的系統函式。您通常可能會發現資料倉儲中使用的主要函式包括：
 
@@ -103,34 +103,35 @@ AND     request_id IN
                     (   SELECT TOP 1    request_id
                         FROM            sys.dm_pdw_exec_requests
                         WHERE           session_id = SESSION_ID()
+                        AND             resource_class IS NOT NULL
                         ORDER BY end_time DESC
                     )
 ;
 ```
 
 ## 後續步驟
-如需有關開發程式碼的建議，請參閱[開發概觀][]。
+如需所有支援的 T-SQL 陳述式完整清單，請參閱 [Transact-SQL 主題][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[更新時的 ANSI 聯結]: sql-data-warehouse-develop-ctas.md
-[刪除時的 ANSI 聯結]: sql-data-warehouse-develop-ctas.md
-[merge 陳述式]: sql-data-warehouse-develop-ctas.md
-[INSERT..EXEC]: sql-data-warehouse-develop-temporary-tables.md
+[更新時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md
+[刪除時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md
+[merge 陳述式]: ./sql-data-warehouse-develop-ctas.md
+[INSERT..EXEC]: ./sql-data-warehouse-develop-temporary-tables.md
+[Transact-SQL 主題]: ./sql-data-warehouse-reference-tsql-statements.md
 
-[資料指標]: sql-data-warehouse-develop-loops.md
-[SELECT..INTO]: sql-data-warehouse-develop-ctas.md
-[group by 子句搭配 rollup / cube / grouping sets 選項]: sql-data-warehouse-develop-group-by-options.md
-[由含有 rollup / cube / grouping sets options 的子句組成的群組]: sql-data-warehouse-develop-group-by-options.md
-[巢狀層級超過 8]: sql-data-warehouse-develop-transactions.md
-[透過檢視表更新]: sql-data-warehouse-develop-views.md
-[使用 select 進行變數指派]: sql-data-warehouse-develop-variable-assignment.md
-[動態 SQL 字串沒有 MAX 資料類型]: sql-data-warehouse-develop-dynamic-sql.md
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[資料指標]: ./sql-data-warehouse-develop-loops.md
+[SELECT..INTO]: ./sql-data-warehouse-develop-ctas.md
+[group by 子句搭配 rollup / cube / grouping sets 選項]: ./sql-data-warehouse-develop-group-by-options.md
+[由含有 rollup / cube / grouping sets options 的子句組成的群組]: ./sql-data-warehouse-develop-group-by-options.md
+[巢狀層級超過 8]: ./sql-data-warehouse-develop-transactions.md
+[透過檢視表更新]: ./sql-data-warehouse-develop-views.md
+[使用 select 進行變數指派]: ./sql-data-warehouse-develop-variable-assignment.md
+[動態 SQL 字串沒有 MAX 資料類型]: ./sql-data-warehouse-develop-dynamic-sql.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

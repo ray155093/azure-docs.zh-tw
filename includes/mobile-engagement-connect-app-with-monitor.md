@@ -8,8 +8,8 @@
 
 3. 監視器可以即時顯示將會啟動您 App 的任何裝置。
 	 
-4. 在模擬器 (Emulator/Simulator) 或連接的裝置啟動您的 App。如果您的整合正確，應該會在監視器中看到一個工作階段，這表示您的 App 現在已連線到 Mobile Engagement 後端，並對其傳送資料。
+4. 立即啟動您的 App。如果您的整合正確，應該會在監視器中看到一個工作階段，這表示您的 App 現在已連線到 Mobile Engagement 後端，並對其傳送資料。
 	
 	 ![](./media/mobile-engagement-connect-app-with-monitor/monitor.png)
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0615_2016-->

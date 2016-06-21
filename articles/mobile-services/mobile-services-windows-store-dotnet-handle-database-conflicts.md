@@ -128,9 +128,9 @@
 	> [AZURE.NOTE] 使用不具型別的資料表時，開放式並行存取的啟用方式，是在資料表的 SystemProperties 中新增 Version 旗標。
 	>
 	>`````
-	//Enable optimistic concurrency by retrieving __version
-todoTable.SystemProperties |= MobileServiceSystemProperties.Version;
-`````
+	>//Enable optimistic concurrency by retrieving __version
+	>todoTable.SystemProperties |= MobileServiceSystemProperties.Version;
+	>`````
 
 
 2. 將 `Version` 屬性新增至 `TodoItem` 類別後，如果在更新期間發現自前次查詢後有所變更的記錄，系統將會以 `MobileServicePreconditionFailedException` 例外狀況通知應用程式。此例外狀況會包含來自伺服器的最新版項目。在共用專案的 MainPage.cs 中新增下列程式碼，以處理 `UpdateToDoItem()` 方法中的例外狀況。
@@ -369,4 +369,4 @@ todoTable.SystemProperties |= MobileServiceSystemProperties.Version;
 [Developer Code Samples site]: http://go.microsoft.com/fwlink/p/?LinkId=271146
 [系統屬性]: http://go.microsoft.com/fwlink/?LinkId=331143
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0608_2016-->

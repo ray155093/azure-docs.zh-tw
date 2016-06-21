@@ -15,28 +15,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure"
-   ms.date="12/08/2015"
+   ms.date="06/06/2016"
    ms.author="rasquill"/>
 
 # 使用 PowerShell 或 CLI 在 Azure 中瀏覽並選取 Windows 虛擬機器映像
 
-本主題描述如何為可能會進行部署的每個位置，找到發行者、訂閱詳情、SKU 和版本。例如，一些常用的 Windows VM 映像包括︰
+本主題描述如何為您可能在其中進行部署的每個位置，尋找 VM 映像發行者、優惠、SKU 及版本。例如，一些常用的 Windows VM 映像包括︰
 
 ## 常用 Windows 映像表
 
 
 | PublisherName | 提供項目 | SKU |
 |:---------------------------------|:-------------------------------------------|:---------------------------------|:--------------------|
-| CoreOS | CoreOS | Beta |
-| CoreOS | CoreOS | Stable |
 | MicrosoftDynamicsNAV | DynamicsNAV | 2015 |
 | MicrosoftSharePoint | MicrosoftSharePointServer | 2013 |
-| Microsoft | Oracle-Database-12c-Weblogic-Server-12c | 標準 |
-| Microsoft | Oracle-Database-12c-Weblogic-Server-12c | Enterprise |
 | MicrosoftSQLServer | SQL2014-WS2012R2 | Enterprise-Optimized-for-DW |
 | MicrosoftSQLServer | SQL2014-WS2012R2 | Enterprise-Optimized-for-OLTP |
-| MicrosoftWindowsServer | WindowsServer | 2012-Datacenter |
 | MicrosoftWindowsServer | WindowsServer | 2012-R2-Datacenter |
+| MicrosoftWindowsServer | WindowsServer | 2012-Datacenter |
 | MicrosoftWindowsServer | WindowsServer | 2008-R2-SP1 |
 | MicrosoftWindowsServer | WindowsServer | Windows-Server-Technical-Preview |
 | MicrosoftWindowsServerEssentials | WindowsServerEssentials | WindowsServerEssentials |
@@ -45,4 +41,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-ps-findimage](../../includes/virtual-machines-common-cli-ps-findimage.md)]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

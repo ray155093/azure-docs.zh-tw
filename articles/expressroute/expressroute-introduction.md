@@ -12,7 +12,7 @@
    ms.topic="get-started-article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="05/02/2016"
+   ms.date="06/13/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 技術概觀
@@ -68,6 +68,8 @@ Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部�
 每個 ExpressRoute 線路有兩條連線，從連線提供者 / 您的網路邊緣連接到兩個 Microsoft Enterprise 邊緣路由器 (MSEE) 。Microsoft 需要有來自連線提供者 / 您這端的雙重 BGP 連線 – 各連接到每個 MSEE。您可以選擇不要在您這端部署備援裝置 / 乙太網路路線。不過，連線提供者會使用備援裝置，確保以備援方式將您的連線交給 Microsoft。備援第 3 層連線組態是我們的 [SLA](https://azure.microsoft.com/support/legal/sla/) 生效的條件。
 
 ### 連線到 Microsoft 雲端服務
+
+[AZURE.INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
 透過 ExpressRoute 連線可存取下列服務：
 
@@ -134,4 +136,4 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

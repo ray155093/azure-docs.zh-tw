@@ -1,6 +1,6 @@
 <properties
    pageTitle="使用 PowerShell 建立 HDInsight 叢集與 Azure 資料湖存放區 |Azure"
-   description="使用 Azure PowerShell 建立和使用 HDInsight Hadoop 叢集與 Azure 資料湖"
+   description="使用 Azure PowerShell 建立和使用 HDInsight 叢集與 Azure Data Lake"
    services="data-lake-store,hdinsight" 
    documentationCenter=""
    authors="nitinme"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/27/2016"
+   ms.date="06/03/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure PowerShell 建立 HDInsight 叢集與資料湖存放區
@@ -25,7 +25,7 @@
 
 了解如何使用 Azure PowerShell 設定可存取 Azure 資料湖存放區的 HDInsight 叢集 (Hadoop、HBase 或 Storm)。此版本的一些重要考量：
 
-* **對於 Hadoop 和 Storm 叢集 (Windows 和 Linux)**，資料湖存放區只能做為額外的儲存體帳戶。這類叢集的預設儲存體帳戶仍是 Azure 儲存體 Blob (WASB)。
+* **對於 Spark 叢集 (Linux) 和 Hadoop/Storm 叢集 (Windows 和 Linux)**，Data Lake Store 只能用來做為額外的儲存體帳戶。這類叢集的預設儲存體帳戶仍是 Azure 儲存體 Blob (WASB)。
 
 * **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。
 
@@ -380,4 +380,4 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

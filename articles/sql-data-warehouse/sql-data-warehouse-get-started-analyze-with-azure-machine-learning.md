@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/18/2016"
+   ms.date="06/09/2016"
    ms.author="shigu;barbkess;sonyama"/>
 
 # 使用 Azure Machine Learning 分析資料
@@ -21,6 +21,7 @@
 > [AZURE.SELECTOR]
 - [Power BI][]
 - [Azure Machine Learning][]
+- [SQLCMD][]
 
 本教學課程將說明如何透過使用 Azure SQL 資料倉儲資料的 Azure Machine Learning 建置預測性機器學習模型。在本教學課程中，我們將為 Adventure Work 建置鎖定目標的行銷活動，預測客戶是否可能購買自行車。
 
@@ -136,5 +137,6 @@ FROM [dbo].[vTargetMail]
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 [Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
 [Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
+[SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

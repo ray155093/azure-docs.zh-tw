@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # v2.0 通訊協定 - OAuth 2.0 授權碼流程
@@ -259,4 +259,4 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | trace\_id | 有助於診斷的要求唯一識別碼。 |
 | correlation\_id | 有助於跨元件診斷的要求唯一識別碼。 |
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

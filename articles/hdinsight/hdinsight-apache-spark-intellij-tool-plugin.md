@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="06/06/2016"
 	ms.author="nitinme"/>
 
 
-# 使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集 (預覽) 的 Spark Scala 應用程式
+# 使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式
 
 本文章逐步指引您開發以 Scala 撰寫的 Spark 應用程式，以及使用 IntelliJ IDEA 的 HDInsight 外掛程式，將它提交給 HDInsight spark 叢集。您可以幾個不同的方式使用此外掛程式：
 
@@ -31,22 +31,22 @@
 >[AZURE.IMPORTANT] 此工具可用來只對 Linux 上的 HDInsight Spark 叢集建立並提交應用程式。
 
 
-**必要條件**
+##必要條件
 
-* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂閱。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development Kit。您可以從[這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
 ## 安裝 IntelliJ IDEA 的 HDInsight Tools 外掛程式
 
-1. 如果您回到 IntelliJ IDEA 的 [歡迎使用] 畫面，請按一下 [設定]，然後按一下 [外掛程式]。
+1. 如果您位於 IntelliJ IDEA 的 [歡迎使用] 畫面，請按一下 [設定]，然後按一下 [外掛程式]。
 
-2. 在下一個畫面中，按一下左下角的 [瀏覽儲存機制]。在開啟的 [瀏覽儲存機制] 對話方塊中，搜尋 [HDInsight]、選取 [Microsoft Azure HDInsight Tools for IntelliJ (Preview)]，然後按一下 [安裝]。此外掛程式會依賴 Scala 外掛程式，因此，如果未安裝 Scala 外掛程式，將會提示您同時安裝 Scala 外掛程式。
+2. 在下一個畫面中，按一下左下角的 [瀏覽儲存機制]。在開啟的 [瀏覽儲存機制] 對話方塊中，搜尋 [HDInsight]、選取 [Microsoft Azure HDInsight Tools for IntelliJ]，然後按一下 [安裝]。此外掛程式會依賴 Scala 外掛程式，因此，如果未安裝 Scala 外掛程式，將會提示您同時安裝 Scala 外掛程式。
 
 	![安裝 HDInsight 外掛程式](./media/hdinsight-apache-spark-intellij-tool-plugin/install-hdinsight-plugin.png)
 
-3. 出現提示時，請按一下 [重新啟動 IntelliJ IDEA] 按鈕，以重新啟動 IDE。
+3. 出現提示時，按一下 [重新啟動 IntelliJ IDEA] 按鈕，以重新啟動整合式開發環境 (IDE)。
 
 
 ## 在 HDInsight Spark 叢集上執行 Spark Scala 應用程式
@@ -62,33 +62,29 @@
 2. 在下一個視窗中，提供專案詳細資料。
 
 	* 提供專案名稱和專案位置。
-	* 對於 [專案 SDK]，請確定您提供的 Java 版本大於 7。
-	* 對於 [Scala SDK]，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**確定您未使用 2.11.x 版**。此範例使用 **2.10.6** 版。
+	* 對於**專案 SDK**，確定您提供的 Java 版本大於 7。
+	* 對於 **Scala SDK**，依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**確定您未使用 2.11.x 版**。此範例使用 **2.10.6** 版。
 
 		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-version.png)
 
-	* 對於 [Spark SDK]，請從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。(例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
+	* 對於 **Spark SDK**，從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。(例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
 
 		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-project-details.png)
 
 	* 按一下 [完成]。
 
-3. Spark 專案會自動為您建立構件。您也可以遵循下列步驟，自己建立一個︰
+3. Spark 專案會自動為您建立構件。若要查看構件，請遵循下列步驟。
 
 	1. 在 [檔案] 功能表中，按一下 [專案結構]。
-	2. 在 [專案結構] 對話方塊中，按一下 [構件]，然後按一下加號。從快顯對話方塊中按一下 [JAR]，然後按一下 [空白]。
+	2. 在 [專案結構] 對話方塊中，按一下 [構件]，以查看建立的預設構件。
 
-		![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin/create-jar-1.png)
+		![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin/default-artifact.png)
 
-	3. 輸入 JAR 檔案的名稱 (例如 MyClusterApp)。從 [可用的元素] 窗格中，以滑鼠右鍵按一下 ['MyClusterApp' 編譯輸出]，然後按一下 [放入輸出根目錄中]。
-
-		![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin/create-jar-2.png)
-
-	4. 按一下 [套用]，然後按一下 [確定]。
+	您也可以建立您自己的構件，方法是按一下上圖中強調顯示的 [+] 圖示。
 
 4. 新增應用程式的原始程式碼。
 
-	1. 從專案總管中，以滑鼠右鍵按一下 [src]、指向 [新增]，然後按一下 [Scala 類別]。
+	1. 從 [專案總管]中，以滑鼠右鍵按一下 [src]、指向 [新增]，然後按一下 [Scala 類別]。
 
 		![新增原始程式碼](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-scala-code.png)
 
@@ -119,13 +115,11 @@
 
 5. 在 HDInsight Spark 叢集上執行應用程式。
 
-	1. 從專案總管中，以滑鼠右鍵按一下專案名稱，然後選取 [將 Spark 應用程式提交給 HDInsight]。
+	1. 從 [專案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [將 Spark 應用程式提交給 HDInsight]。
 
 		![提交 Spark 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-submit-spark-app-1.png)
 
 	2. 系統將提示您輸入 Azure 訂用帳戶認證。在 [提交 Spark] 對話方塊中，提供下列值。
-
-		![提交 Spark 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-submit-spark-app-2.png)
 
 		* 針對 [Spark 叢集 (僅限 Linux)]，選取您要在其上執行應用程式的 HDInsight Spark 叢集。
 
@@ -137,9 +131,13 @@
 
 		* 因為此範例中的應用程式程式碼不需要任何命令列引數或參考 JAR 或檔案，所以您可以將其餘的文字方塊保留空白。
 
+		* 提供所有輸入之後，對話方塊應該如下所示。
+
+			![提交 Spark 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-submit-spark-app-2.png)
+
 		* 按一下 [提交]。
 
-	3. 視窗底部的 [Spark Submission] \(提交 Spark) 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submissio] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+	3. 視窗底部的 [Spark Submission] \(提交 Spark) 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
 
         ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
 
@@ -160,21 +158,33 @@
 
 	![存取叢集儲存體](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-access-storage.png)
 
-4. 按一下與叢集相關聯的儲存體容器名稱。在右窗格中，您應該會看到名稱為 **HVACOut** 的資料夾。按兩下開啟資料夾，即可看到 **part-*** 檔案。開啟其中一個檔案以查看應用程式的輸出。
+4. 按一下與叢集相關聯的儲存體容器名稱。在右窗格中，您應該會看到名稱為 **HVACOut** 的資料夾。按兩下以開啟資料夾，即可看到 **part-*** 檔案。開啟其中一個檔案以查看應用程式的輸出。
+
+### 直接在外掛程式中存取作業檢視
+
+1. 從 [HDInsight 總管] 中，展開 Spark 叢集名稱，然後按一下 [作業]。
+
+2. 在右窗格中，[Spark 作業檢視] 索引標籤會顯示已在叢集上執行的所有應用程式。按一下您想要查看更多詳細資料的應用程式名稱。
+
+	![存取作業檢視](./media/hdinsight-apache-spark-intellij-tool-plugin/view-job-logs.png)
+
+3. 適用於 [錯誤訊息]、[作業輸出]、[Livy 作業記錄] 及 [Spark 驅動程式記錄] 的方塊都會根據您選取的應用程式來填入。
+
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] \(應用程式層級)。
 
 ### 存取 Spark 歷程記錄伺服器
 
-1. 從 HDInsight 總管中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
+1. 從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
 
-2. 在 [Spark 歷程記錄伺服器] 儀表板中，您可以使用應用程式名稱，尋找您剛完成執行的應用程式。在上述程式碼中，您使用 `val conf = new SparkConf().setAppName("MyClusterApp")` 設定應用程式名稱。因此，Spark 應用程式名稱為 **MyClusterApp**。
+2. 在 [Spark 歷程記錄伺服器] 儀表板中，您可以使用應用程式名稱，尋找您剛完成執行的應用程式。在上述程式碼中，您使用 `val conf = new SparkConf().setAppName("MyClusterApp")` 來設定應用程式名稱。因此，Spark 應用程式名稱為 **MyClusterApp**。
 
 ### 啟動 Ambari 入口網站
 
-從 HDInsight 總管中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [Open Cluster Management Portal (Ambari)] \(開啟叢集管理入口網站 (Ambari))。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
+從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [Open Cluster Management Portal (Ambari)] \(開啟叢集管理入口網站 (Ambari))。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
 
 ### 管理 Azure 訂用帳戶
 
-根據預設，HDInsight 外掛程式會列出所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定您要存取其叢集的訂用帳戶。從 HDInsight 總管中，以滑鼠右鍵按一下 [HDInsight] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想要存取之訂用帳戶的核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
+根據預設，HDInsight 外掛程式會列出所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定您要存取其叢集的訂用帳戶。從 [HDInsight 總管] 中，以滑鼠右鍵按一下 [HDInsight] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想要存取之訂用帳戶的核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
 
 
 ## 在本機執行 Spark Scala 應用程式
@@ -195,9 +205,25 @@
 	* 從右窗格中，選取 [Spark on HDInsight Local Run Sample (Scala)] \(HDInsight 上的 Spark 本機執行範例 (Scala))。
 	* 按 [下一步]。
 
-2. 請遵循＜在 HDInsight Spark 叢集上執行 Spark Scala 應用程式＞一節的步驟來設定必要的設定。
+2. 在下一個視窗中，提供專案詳細資料。
 
-3. 在本機工作站上執行應用程式。以滑鼠右鍵按一下 Scala 應用程式，然後按一下 [Run 'LogQuery'] \(執行 'LogQuery')。您將在底部的 [執行] 索引標籤上看到如下的輸出。
+	* 提供專案名稱和專案位置。
+	* 對於**專案 SDK**，確定您提供的 Java 版本大於 7。
+	* 對於 **Scala SDK**，依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**確定您未使用 2.11.x 版**。此範例使用 **2.10.6** 版。
+
+		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-version.png)
+
+	* 對於 **Spark SDK**，從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。(例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
+
+		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-create-project.png)
+
+	* 按一下 [完成]。
+
+3. 範本會在 **src** 資料夾下方安裝您可於電腦上本機執行的程式碼範例 (**LogQuery**)。
+
+	![本機 Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/local-app.png)
+
+4.  以滑鼠右鍵按一下 **LogQuery** 應用程式，然後按一下 [Run 'LogQuery'] \(執行 'LogQuery')。您將在底部的 [執行] 索引標籤上看到如下的輸出。
 
 	![Spark 應用程式本機執行結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-run-result.png)
 
@@ -206,11 +232,11 @@
 您也可以將 IntelliJ IDEA 中建立的 Spark Scala 應用程式轉換為與 HDInsight 工具外掛程式相容。這可讓您使用工具，將應用程式提交給 HDInsight Spark 叢集。您可以執行下列步驟來這麼做：
 
 1. 對於使用 IntelliJ IDEA 建立的現有 Spark Scala 應用程式，開啟相關聯的.iml 檔案。
-2. 在根層級中，您會看到如下的 [模組] 元素：
+2. 在根層級中，您會看到如下的 **module** 元素：
 
 		<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
 
-3. 編輯該元素加入 `UniqueKey="HDInsightTool"`，使 [模組] 元素看起來如下所示：
+3. 編輯該元素以加入 `UniqueKey="HDInsightTool"`，使 **module** 元素看起來如下所示：
 
 		<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4" UniqueKey="HDInsightTool">
 
@@ -238,7 +264,7 @@
     	at java.lang.reflect.Method.invoke(Method.java:606)
     	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
 
-這只是因為堆積大小不足，導致 Spark 無法執行，因為 Spark 至少需要 471 MB (如果您想要的話，可以從 [SPARK-12081](https://issues.apache.org/jira/browse/SPARK-12081) 取得更多詳細資料)。其中一個簡單的解決方案就是使用 64 位元的 Java SDK。您也可以新增下列選項來變更 IntelliJ 中的 JVM 設定：
+這是因為堆積大小不足，導致 Spark 無法執行，因為 Spark 至少需要 471 MB (如有需要，您可以從 [SPARK-12081](https://issues.apache.org/jira/browse/SPARK-12081) 取得更多詳細資料)。其中一個簡單的解決方案就是使用 64 位元的 Java SDK。您也可以新增下列選項來變更 IntelliJ 中的 JVM 設定：
 
     -Xms128m -Xmx512m -XX:MaxPermSize=300m -ea
 
@@ -269,16 +295,26 @@
 
 ### 建立及執行應用程式
 
+* [使用 Scala 建立獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
+
 * [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### 工具和擴充功能
+
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 
+* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+
+* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+
 ### 管理資源
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
+
+<!---HONumber=AcomDC_0608_2016-->

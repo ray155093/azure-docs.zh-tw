@@ -27,7 +27,7 @@
 
 ## 開始使用服務匯流排
 
-本指南假設您已經有服務匯流排命名空間，其中包含名稱為「queue1」的佇列。 如果沒有，您可以使用 [Azure 傳統入口網站](http://manage.windowsazure.com)建立命名空間和佇列。如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)。
+本指南假設您已經有服務匯流排命名空間，其中包含名稱為「queue1」的佇列。 如果沒有，您可以使用 [Azure 傳統入口網站](http://manage.windowsazure.com)建立命名空間和佇列。如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
 
 > [AZURE.NOTE] 資料分割的佇列和主題也支援 AMQP。如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)及[服務匯流排分割佇列和主題的 AMQP 1.0 支援](service-bus-partitioned-queues-and-topics-amqp-overview.md)。
 
@@ -332,11 +332,11 @@ exit
 * [Azure 服務匯流排中的 AMQP 1.0 支援](service-bus-amqp-overview.md)
 * [如何透過服務匯流排 .NET API 使用 AMQP 1.0](service-bus-dotnet-advanced-message-queuing.md)
 * [服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)
-* [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+* [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 * [Java 開發人員中心](/develop/java/)。
 
 
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -23,7 +23,7 @@
 若要在 Machine Learning Studio 中使用您自己的資料來開發和訓練預測性分析方案，您可以：
 
 - 事先從硬碟從**本機檔案**上傳資料，在工作區中建立資料集模組。  
-- 透過[讀取器][reader]模組，在實驗進行時存取數個**線上資料來源**中的其中一個來源的資料。 
+- 使用[匯入資料][import-data]模組，在實驗進行時，從數個「線上資料來源」其中之一存取資料。 
 - 使用來自另一個 Azure Machine Learning 實驗並儲存為 **dataset** 的資料。 
 
 [AZURE.INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
@@ -65,7 +65,7 @@ Machine Learning Studio 是專為與矩形或表格式資料搭配使用而設�
 
 如果您以 TSV 或 CSV 格式匯入不包含此中繼資料的資料，Machine Learning Studio 會透過取樣資料來推斷每個資料行的資料類型。如果資料也沒有資料行標題，Machine Learning Studio 會提供預設名稱。
 
-您可以使用[中繼資料編輯器][metadata-editor]，明確指定或變更資料行的標題和資料類型。
+您可以使用[編輯中繼資料][edit-metadata]，明確指定或變更資料行的標題和資料類型。
 
 Machine Learning Studio 可辨識下列**資料類型**：
 
@@ -86,7 +86,7 @@ Machine Learning Studio 使用名為***資料表格***的內部資料類型以�
 
 <!-- Module References -->
 [convert-to-dataset]: https://msdn.microsoft.com/library/azure/72bf58e0-fc87-4bb1-9704-f1805003b975/
-[metadata-editor]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

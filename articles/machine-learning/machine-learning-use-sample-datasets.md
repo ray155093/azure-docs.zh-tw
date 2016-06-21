@@ -23,7 +23,7 @@
 
 在 Azure Machine Learning 中建立新的工作區時，預設會包含一些範例資料集和實驗。其中的許多範例資料集會由 [Azure Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的範例模型所使用，其他則是包含做為機器學習中經常會使用的各種類型資料的範例。
 
-其中的部分資料集可在 Azure Blob 儲存體中使用。下表提供這些資料集的直接連結。您也可以透過[讀取器][reader]模組在實驗中使用這些資料集。
+其中的部分資料集可在 Azure Blob 儲存體中使用。下表提供這些資料集的直接連結。您也可以透過[匯入資料][import-data]模組在實驗中使用這些資料集。
 
 在 ML Studio 中開啟或建立新實驗時，實驗畫布左側的模組調色盤中**儲存的資料集**底下會列出其餘的範例資料集。您可以將資料集拖曳到您的實驗畫布上，在自己的實驗中使用任一資料集。
 
@@ -314,6 +314,6 @@ For a list of sample experiments available in ML Studio, see [Machine Learning S
 
 
 <!-- Module References -->
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0608_2016-->

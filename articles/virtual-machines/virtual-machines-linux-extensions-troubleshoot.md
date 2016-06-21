@@ -19,8 +19,6 @@
 
 # 針對 Azure Linux VM 擴充功能的失敗進行疑難排解
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
-
 [AZURE.INCLUDE [virtual-machines-common-extensions-troubleshoot](../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## 檢視擴充功能狀態
@@ -72,4 +70,4 @@ Azure CLI：
 
 一旦移除了延伸模組，範本就可以重新執行並在 VM 上執行指令碼。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

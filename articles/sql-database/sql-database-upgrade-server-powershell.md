@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="06/06/2016"
 	ms.author="sstein"/>
 
 # 使用 PowerShell 升級至 Azure SQL Database V12
@@ -47,7 +47,7 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 ## 準備升級
 
 - **升級所有 Web 和商務資料庫**：請參閱下面的[升級所有 Web 和商務資料庫](sql-database-v12-upgrade.md#upgrade-all-web-and-business-databases)一節，或使用 [PowerShell 來升級資料庫和伺服器](sql-database-upgrade-server-powershell.md)。
-- **檢閱和暫停異地複寫**：如果您的 Azure SQL Database 已針對異地複寫做設定，您應該記錄其目前的設定並[停止異地複寫](sql-database-geo-replication-portal.md#remove-secondary-database)。在升級完成之後，請重新設定資料庫的異地複寫。
+- **檢閱和暫停異地複寫**：如果您的 Azure SQL Database 已針對「異地複寫」做設定，您應該記錄其目前的設定並[停止異地複寫](sql-database-geo-replication-portal.md#remove-secondary-database)。在升級完成後，請針對「異地複寫」重新設定您的資料庫。
 - **如果您的用戶端位於 Azure VM 上，請開啟這些連接埠**：如果在您的用戶端於 Azure 虛擬機器 (VM) 上執行時，用戶端程式連接至 SQL Database V12，您就必須開啟此 VM 上 11000-11999 和 14000-14999 範圍的連接埠。如需詳細資訊，請參閱 [SQL Database V12 的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
 
 
@@ -201,4 +201,4 @@ ElasticPoolCollection 和 DatabaseCollection 參數都是選擇性項目：
 - [Start-AzureRmSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt619403.aspx)
 - [Stop-AzureRmSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt603589.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

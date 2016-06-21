@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 管理研發/測試實驗室公式來建立 VM
@@ -42,21 +42,21 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
 1. 所選實驗室的 [設定] 刀鋒視窗隨即顯示。
 
-1. 在實驗室的 [設定] 刀鋒視窗上，點選 [公式]。
+1. 在實驗室的 [設定] 刀鋒視窗上，選取 [公式]。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，點選 [+ 加入]。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，選取 [+ 加入]。
 
     ![加入新的公式](./media/devtest-lab-manage-formulas/add-formula.png)
 
-1. 在 [選擇基底] 刀鋒視窗上，點選您想要用來建立公式的 [自訂映像] 或 [Marketplace 映像]。
+1. 在 [選擇基底] 刀鋒視窗上，選取您想要用來建立公式的自訂映像或 Marketplace 映像。
 
     ![基本清單](./media/devtest-lab-manage-formulas/base-list.png)
 
@@ -65,15 +65,15 @@
 	- **公式名稱** - 輸入公式的名稱。這個值將會在建立 VM 時顯示於基本映像清單中。名稱會在您加以輸入時進行驗證，如果無效，則會出現訊息表示有效名稱的需求。
 	- **描述** - 輸入公式的有意義描述。當您建立 VM 時，可以從公式的操作功能表使用這個值。
 	- **映像** - 這個欄位會顯示您在前一個刀鋒視窗上選取的基本映像名稱。 
-	- **VM 大小** - 點選其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及所要建立 VM 的硬碟大小。
-	- **虛擬網路** - 點選並選取所需的虛擬網路。
-	- **子網路** - 點選並選取所需的子網路。
+	- **VM 大小** - 選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及所要建立 VM 的硬碟大小。
+	- **虛擬網路** - 選取，然後選取所需的虛擬網路。
+	- **子網路** - 選取，然後選取所需的子網路。
 	- **公用 IP 位址** - 如果將實驗室原則設定為允許所選子網路的公用 IP 位址，請選取 [是] 或 [否]，來指定您是否想要讓 IP 位址成為公用的位址。否則，這個選項會停用並選取為 [否]。
-	- **構件** - 點選並從構件清單中選取和設定您想要加入基本映像中的構件。請注意，不會顯示作為安全字串的構件參數，因為公式不會儲存任何安全字串值。 
+	- **構件** - 選取，然後從構件清單中 - 選取並設定您想要加入基本映像的構件。請注意，不會顯示作為安全字串的構件參數，因為公式不會儲存任何安全字串值。 
 
     	![建立公式](./media/devtest-lab-manage-formulas/create-formula.png)
 
-1. 點選 [建立] 建立公式。成功建立公式之後，該公式會列在 [Lab formulas]\(實驗室公式) 刀鋒視窗上。
+1. 選取 [建立] 以建立公式。成功建立公式之後，該公式會列在 [Lab formulas] \(實驗室公式) 刀鋒視窗上。
 
 	![新建的公式](./media/devtest-lab-manage-formulas/newly-created-formula.png)
 
@@ -84,19 +84,19 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
-1. 在實驗室刀鋒視窗上，找出標題為 [我的 VM] 的區段，然後按一下您想要用來建立新公式的 VM。
+1. 在實驗室刀鋒視窗上，找出標題為**我的 VM** 的區段，然後選取您想要用來建立新公式的 VM。
 
 	![實驗室 VM](./media/devtest-lab-manage-formulas/my-vms.png)
 
-1. 在 VM 的 [設定] 刀鋒視窗上，點選 [建立公式]。
+1. 在 VM 的 [設定] 刀鋒視窗上，選取 [建立公式]。
 
 	![建立公式](./media/devtest-lab-manage-formulas/create-formula-menu.png)
 
-1. 在 [建立公式] 刀鋒視窗上，輸入新公式的 [名稱] 和 [描述]，或點選 [確定]。成功建立公式之後，該公式會列在 [Lab formulas]\(實驗室公式) 刀鋒視窗上。
+1. 在 [建立公式] 刀鋒視窗上，輸入新公式的 [名稱] 和 [描述]，然後選取 [確定]。成功建立公式之後，該公式會列在 [Lab formulas] \(實驗室公式) 刀鋒視窗上。
 
 	![建立公式刀鋒視窗](./media/devtest-lab-manage-formulas/create-formula-blade.png)
 
@@ -105,32 +105,32 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
-1. 在實驗室的 [設定] 刀鋒視窗上，點選 [公式]。
+1. 在實驗室的 [設定] 刀鋒視窗上，選取 [公式]。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，點選您想要修改的公式。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，選取您想要修改的公式。
 
-1. 在 [Update formula]\(更新公式) 刀鋒視窗上，進行所需的編輯，然後點選 [更新]。
+1. 在 [Update formula] \(更新公式) 刀鋒視窗上，進行所需的編輯，然後選取 [更新]。
 
 ## 刪除公式 
 若要刪除公式，請遵循下列步驟︰
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
-1. 在實驗室的 [設定] 刀鋒視窗上，點選 [公式]。
+1. 在實驗室的 [設定] 刀鋒視窗上，選取 [公式]。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，按一下您想要刪除之公式右邊的省略符號。
+1. 在 [Lab formulas] \(實驗室公式) 刀鋒視窗上，選取您想要刪除之公式右邊的省略符號。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
 
@@ -138,11 +138,11 @@
 
     ![公式操作功能表](./media/devtest-lab-manage-formulas/formula-delete-context-menu.png)
 
-1. 在刪除確認對話方塊上點選 [是]。
+1. 在刪除確認對話方塊上，選取 [是]。
 
     ![公式操作功能表](./media/devtest-lab-manage-formulas/formula-delete-confirmation.png)
 
 ## 後續步驟
 建立要在建立 VM 時使用的公式之後，下一個步驟就是[將 VM 加入實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

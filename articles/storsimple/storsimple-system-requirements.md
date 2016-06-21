@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/10/2016"
+   ms.date="05/25/2016"
    ms.author="alkohli"/>
 
 # StorSimple 軟體、高可用性和網路需求
@@ -85,7 +85,7 @@
 | URL 模式 | 元件/功能 | 裝置 IP |
 |------------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------|
 | `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排| 啟用雲端功能的網路介面 |
-|`http://*.backup.windowsazure.com`|裝置註冊| 僅限資料 0|
+|`https://*.backup.windowsazure.com`|裝置註冊| 僅限資料 0|
 |`http://crl.microsoft.com/pki/*` |憑證撤銷 |啟用雲端功能的網路介面 |
 | `https://*.core.windows.net/*` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> | 僅限控制站的固定 IP |
@@ -127,11 +127,11 @@ Update 2 有幾項網路相關的改進且路由度量已變更。行為可以�
 
 	| 網路介面 | 已啟用雲端 | 已停用雲端且具有閘道器 |
 	|-----|---------------|---------------------------|
-	| Data 0 | 1 | - | 
-	| Data 1 | 2 | 20 | 
-	| Data 2 | 3 | 30 | 
-	| Data 3 | 4 | 40 | 
-	| Data 4 | 5 | 50 | 
+	| Data 0 | 1 | - |
+	| Data 1 | 2 | 20 |
+	| Data 2 | 3 | 30 |
+	| Data 3 | 4 | 40 |
+	| Data 4 | 5 | 50 |
 	| Data 5 | 6 | 60 |
 
 
@@ -280,4 +280,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

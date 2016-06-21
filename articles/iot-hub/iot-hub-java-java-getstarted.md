@@ -95,10 +95,10 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     import java.net.URISyntaxException;
     ```
 
-7. 將下列類別層級變數新增至 [應用程式] 類別，並以您稍早記下的值取代 **{yourhubname}** 和 **{yourhubkey}**。
+7. 將下列類別層級變數新增至 [應用程式] 類別，並以您稍早記下的值取代 **{yourhostname}** 和 **{yourhubkey}**：
 
     ```
-    private static final String connectionString = "HostName={yourhubname}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={yourhubkey}";
+    private static final String connectionString = "HostName={yourhostname};SharedAccessKeyName=iothubowner;SharedAccessKey={yourhubkey}";
     private static final String deviceId = "javadevice";
     
     ```
@@ -190,14 +190,10 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     import java.util.logging.*;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatiblenamespace}** 和 **{youreventhubcompatiblename}**。**{youreventhubcompatiblenamespace}** 預留位置的值來自**事件中樞相容端點**，其形式為 **xyznamespace** (也就是，從入口網站的事件中樞相容端點值移除 **sb://** 前置詞和 **.servicebus.windows.net** 尾碼)：
+7. 將下列類別層級變數新增至 **App** 類別。以先前記下的值取代 **{youriothubkey}**、**{youreventhubcompatibleendpoint}** 和 **{youreventhubcompatiblename}**：
 
     ```
-    private static String namespaceName = "{youreventhubcompatiblenamespace}";
-    private static String eventHubName = "{youreventhubcompatiblename}";
-    private static String sasKeyName = "iothubowner";
-    private static String sasKey = "{youriothubkey}";
-    private static long now = System.currentTimeMillis();
+    private static String connStr = "Endpoint={youreventhubcompatibleendpoint};EntityPath={youreventhubcompatiblename};SharedAccessKeyName=iothubowner;SharedAccessKey={youriothubkey}";
     ```
 
 8. 在 **App** 類別中新增下列 **receiveMessages** 方法。這個方法會建立 **EventHubClient** 執行個體以連線至事件中樞相容的端點，然後以非同步方式建立 **PartitionReceiver** 執行個體以讀取事件中樞資料分割。它會不斷地重複，並列印訊息的詳細資料，直到應用程式終至為止。
@@ -207,8 +203,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     {
       EventHubClient client = null;
       try {
-        ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
-        client = EventHubClient.createFromConnectionString(connStr.toString()).get();
+        client = EventHubClient.createFromConnectionStringSync(connStr);
       }
       catch(Exception e) {
         System.out.println("Failed to create client: " + e.getMessage());
@@ -225,7 +220,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
             System.out.println("** Created receiver on partition " + partitionId);
             try {
               while (true) {
-                Iterable<EventData> receivedEvents = receiver.receive().get();
+                Iterable<EventData> receivedEvents = receiver.receive(100).get();
                 int batchSize = 0;
                 if (receivedEvents != null)
                 {
@@ -515,4 +510,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

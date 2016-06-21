@@ -3,8 +3,8 @@
    description="了解如何從您的服務程式碼傳送健全狀況報告，以及如何使用 Azure Service Fabric 所提供的健全狀況監視工具檢查您服務的健全狀況。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="punewa"
-   manager="timlt"
+   authors="toddabel"
+   manager="mfussell"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/18/2016"
+   ms.date="06/07/2016"
    ms.author="toddabel"/>
 
 # 回報和檢查服務健康情況
@@ -75,7 +75,7 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
     using System.Fabric.Health;
     ```
 
-    b.在 `myDictionary.TryGetValueAsync` 呼叫之後新增下列程式碼。
+    b.在 `myDictionary.TryGetValueAsync` 呼叫之後新增下列程式碼
 
     ```csharp
     if (!result.HasValue)
@@ -86,7 +86,7 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。以下�
     ```
     我們會回報複本健全狀況，因為它是從具狀態服務回報的。`HealthInformation` 參數會儲存所要回報之健全狀況問題的相關資訊。
 
-    針對無狀態服務，請使用下列程式碼。
+    如果您已建立無狀態服務，請使用下列程式碼
 
     ```csharp
     if (!result.HasValue)
@@ -156,4 +156,4 @@ activationContext.ReportApplicationHealth(healthInformation);
 ## 後續步驟
 [深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

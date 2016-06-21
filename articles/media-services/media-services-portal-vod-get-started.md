@@ -17,7 +17,7 @@
 	ms.author="juliako"/>
 
 
-# 使用 Azure 入口網站傳遞點播內容入門 (預覽)
+# 使用 Azure 入口網站傳遞點播內容入門
 
 本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。
 
@@ -229,4 +229,4 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

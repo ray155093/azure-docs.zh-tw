@@ -1,6 +1,6 @@
 <properties
 	pageTitle="以 .NET 開始使用 Azure 佇列儲存體 | Microsoft Azure"
-	description="使用 Azure 佇列儲存體在應用程式元件之間以非同步方式傳送和接收訊息。從簡單的佇列儲存體作業來開始，包括建立和刪除佇列以及新增、讀取和刪除佇列訊息。"
+	description="Azure 佇列可在應用程式元件之間提供可靠的非同步傳訊。雲端傳訊可讓您的應用程式元件獨立擴充。"
 	services="storage"
 	documentationCenter=".net"
 	authors="robinsh"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="04/07/2016"
+	ms.date="06/09/2016"
 	ms.author="gusapost"/>
 
 # 以 .NET 開始使用 Azure 佇列儲存體
@@ -22,7 +22,7 @@
 
 ## 概觀
 
-Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充性的應用程式時，會經常分離應用程式元件，以便進行個別擴充。佇列儲存體針對應用程式元件間的非同步通訊，提供可靠的訊息服務解決方案，無論應用程式元件是在雲端、桌面、內部部署伺服器或行動裝置上執行。佇列儲存體也支援管理非同步工作並建置處理工作流程。
+Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。設計擴充性的應用程式時，會經常分離應用程式元件，以便進行個別擴充。佇列儲存體可針對應用程式元件間的通訊，提供非同步傳訊，無論應用程式元件是在雲端、桌面、內部部署伺服器或行動裝置上執行。佇列儲存體也支援管理非同步工作並建置處理工作流程。
 
 ### 關於本教學課程
 
@@ -275,4 +275,4 @@ Azure 佇列儲存體是在雲端中提供訊息佇列的服務。設計擴充�
   [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->
