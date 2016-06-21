@@ -12,7 +12,7 @@
 <tags
    ms.service="functions"
    ms.devlang="multiple"
-   ms.topic="article"
+   ms.topic="get-started-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
    ms.date="05/07/2016"
@@ -20,7 +20,7 @@
    
 # 建立 Webhook 或 API Azure 函式
 
-Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
+Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
 
 本主題說明如何建立由 GitHub Webhook 叫用的新 Node.js 函式。新的函式是根據 Azure Functions 入口網站中的預先定義範本所建立。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
 
@@ -36,9 +36,9 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin)，然後以您的 Azure 帳戶登入。
 
-2. 如果您要使用現有的函式應用程式，請從 [Your function apps] \(函式應用程式) 中選取，然後按一下 [開啟]。若要建立新的函式應用程式，請輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱，選取您偏好的 [區域]，然後按一下 [Create + get started] \(建立 + 開始)。
+2. 如果您要使用現有的函式應用程式，請從 [Your function apps] (函式應用程式) 中選取，然後按一下 [開啟]。若要建立新的函式應用程式，請輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱，選取您偏好的 [區域]，然後按一下 [Create + get started] (建立 + 開始)。
 
-3. 在函式應用程式中，依序按一下 [+ New Function] \(+ 新增函式) > [GitHub Webhook - Node] \(GitHub Webhook - 節點) > [建立]。這會根據指定的範本以預設名稱建立函式。
+3. 在函式應用程式中，依序按一下 [+ New Function] (+ 新增函式) > [GitHub Webhook - Node] (GitHub Webhook - 節點) > [建立]。這會根據指定的範本以預設名稱建立函式。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook.png)
 
@@ -59,22 +59,21 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 1. 在 GitHub 中，瀏覽至您擁有的儲存機制，這包括您分岔的任何儲存機制。
  
-2. 按一下 [設定] > [Webhooks & services] \(Webhooks 和服務) > [Add Webhook] \(加入 Webhook)。
+2. 按一下 [設定] > [Webhooks & services] (Webhooks 和服務) > [Add Webhook] (加入 Webhook)。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-2.png)
 
-3. 將您的函式 URL 和密碼貼入 [Payload URL] \(承載 URL) 和 [密碼]，然後按一下 [Let me select individual events] \(讓我選擇個別事件)，選取 [問題註解] 並按一下 [Add Webhook] \(加入 Webhook)。
+3. 將您的函式 URL 和密碼貼入 [Payload URL] (承載 URL) 和 [密碼]，然後按一下 [Let me select individual events] (讓我選擇個別事件)，選取 [問題註解] 並按一下 [Add Webhook] (加入 Webhook)。
 
 	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-3.png)
 
-此時，GitHub Webhook 會設定成在加入新的問題註解時觸發您的函式。 
-現在，請測試它。
+此時，GitHub Webhook 會設定成在加入新的問題註解時觸發您的函式。現在，請測試它。
 
 ##測試函式
 
-1. 在 GitHub 儲存機制中的新瀏覽器視窗中開啟 [問題] 索引標籤，按一下 [新增問題]，輸入標題，然後按一下 [Submit new issue] \(提交新問題)。您也可以開啟現有的問題。
+1. 在 GitHub 儲存機制中的新瀏覽器視窗中開啟 [問題] 索引標籤，按一下 [新增問題]，輸入標題，然後按一下 [Submit new issue] (提交新問題)。您也可以開啟現有的問題。
 
-2. 在問題中輸入註解，然後按一下 [註解]。此時，您可以回到 GitHub 的新 Webhook，在 [Recent Deliveries] \(最近的傳遞) 下查看已傳送的 Webhook 要求及 `New GitHub comment: <Your issue comment text>` 回應本文。
+2. 在問題中輸入註解，然後按一下 [註解]。此時，您可以回到 GitHub 的新 Webhook，在 [Recent Deliveries] (最近的傳遞) 下查看已傳送的 Webhook 要求及 `New GitHub comment: <Your issue comment text>` 回應本文。
 
 3. 回到 Functions 入口網站，向下捲動至記錄檔，查看已觸發的函式和已寫入資料流記錄檔的值 `New GitHub comment: <Your issue comment text>`。
 
@@ -83,14 +82,11 @@ Azure Functions 的事件驅動、依需求計算的體驗，可讓您建立以�
 
 如需 Azure Functions 的詳細資訊，請參閱下列主題。
 
-+ [Azure Functions 開發人員參考](functions-reference.md)  
-可供程式設計人員撰寫函式程式碼及定義觸發程序和繫結時參考。
-+ [測試 Azure Functions](functions-test-a-function.md)  
-說明可用於測試函式的各種工具和技巧。
-+ [如何調整 Azure 函式](functions-scale.md)  
-討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。  
++ [Azure Functions 開發人員參考](functions-reference.md) 可供程式設計人員撰寫函式程式碼時參考。
++ [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
++ [如何調整 Azure 函式](functions-scale.md)討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。  
 
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!----HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

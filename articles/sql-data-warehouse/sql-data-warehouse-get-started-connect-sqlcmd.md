@@ -1,6 +1,6 @@
 <properties
-   pageTitle="入門：連接到 Azure SQL 資料倉儲 | Microsoft Azure"
-   description="開始連線到 SQL 資料倉儲並執行一些查詢。"
+   pageTitle="使用 SQLCMD 進行查詢 | Microsoft Azure"
+   description="使用 SQLCMD 查詢資料倉儲。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="sonyam"
@@ -13,41 +13,25 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/16/2016"
+   ms.date="06/09/2016"
    ms.author="mausher;barbkess;sonyama"/>
 
-# 使用 SQLCMD 連接及查詢
+# 使用 SQLCMD 進行查詢
 
 > [AZURE.SELECTOR]
-- [Visual Studio](sql-data-warehouse-get-started-connect.md)
-- [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
-- [AAD](sql-data-warehouse-get-started-connect-aad-authentication.md)
+- [Power BI][]
+- [Azure Machine Learning][]
+- [SQLCMD][]
 
-
-本逐步解說將示範使用 sqlcmd.exe 公用程式在短時間內連接和查詢 Azure SQL 資料倉儲資料庫的方式。在本逐步解說中，您將：
-
-+ 安裝必要軟體
-+ 連接到包含 AdventureWorksDW 範例資料庫的資料庫
-+ 針對範例資料庫執行查詢  
+本逐步解說會說明如何使用 sqlcmd.exe 公用程式查詢 Azure SQL 資料倉儲。
 
 ## 必要條件
 
 + 若要下載 [sqlcmd.exe][]，請參閱[適用於 SQL Server 的 Microsoft 命令列公用程式 11][]。
 
-## 取得您的完整 Azure SQL 伺服器名稱
+## 連線
 
-若要連接至您的資料庫，需要包含您想連接之資料庫的伺服器完整名稱 (**servername**.database.windows.net*)。
-
-1. 移至 [Azure 入口網站][]。
-2. 瀏覽至您想連接的資料庫。
-3. 找出完整的伺服器名稱 (我們將在下列步驟中使用此名稱)：
-
-![][1]
-
-
-## 使用 sqlcmd 連接到 SQL 資料倉儲
-
-若要在使用 sqlcmd 時連接到 SQL 資料倉儲的特定執行個體，您必須開啟命令提示字元並輸入 **sqlcmd**，後面接著 SQL 資料倉儲資料庫的連接字串。連接字串需要下列必要參數：
+若要開始使用 sqlcmd，請開啟命令提示字元，然後輸入 **sqlcmd** 並在後面加上 SQL 資料倉儲資料庫的連接字串。連接字串需要下列必要參數：
 
 + **伺服器 (-S)：** 採用 `<`Server Name`>`.database.windows.net 格式的伺服器
 + **資料庫 (-d)：**資料庫名稱。
@@ -55,44 +39,51 @@
 + **密碼 (-P)：**與使用者相關聯的密碼。
 + **啟用引號識別碼 (-I)：**必須啟用引號識別碼，才能連接到 SQL 資料倉儲執行個體。
 
-因此，若要連接到 SQL 資料倉儲執行個體，您需輸入下列資訊：
+例如，您的連接字串看起來可能如下所示︰
 
 ```sql
-C:\>sqlcmd -S <Server Name>.database.windows.net -d <Database> -U <User> -P <Password> -I
+C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I
 ```
 
-## 執行範例查詢
+> [AZURE.NOTE] 目前需要可啟用引號識別碼的 -I 選項，才能連線到 SQL 資料倉儲。
 
-連線之後，您可以對執行個體發出任何支援的 Transact-SQL 陳述式。
+## 查詢
+
+連線之後，您可以對執行個體發出任何支援的 Transact-SQL 陳述式。此範例會在互動模式中提交查詢。
 
 ```sql
-C:\>sqlcmd -S <Server Name>.database.windows.net -d <Database> -U <User> -P <Password> -I
+C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I
 1> SELECT name FROM sys.tables;
 2> GO
 3> QUIT
 ```
 
-如需 sqlcmd 的其他資訊，請參閱 [sqlcmd 文件][sqlcmd.exe]。
+後續的這些範例會說明如何使用 -Q 選項或以管線將 SQL 傳送到 sqlcmd，來執行批次模式查詢。
 
+```sql
+C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I -Q "SELECT name FROM sys.tables;"
+```
+
+```sql
+C:\>"SELECT name FROM sys.tables;" | sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I > .\tables.out
+```
 
 ## 後續步驟
 
-您現在可以連接並查詢，請嘗試[使用 PowerBI 連接][]。
-
-若要針對 Windows 驗證設定您的環境，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲][]。
+若要了解所有 sqlcmd 選項，請參閱 [sqlcmd 文件][sqlcmd.exe]。
 
 <!--Articles-->
-[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲]: ../sql-data-warehouse/sql-data-warehouse-get-started-connect-aad-authentication.md
-[使用 PowerBI 連接]: ./sql-data-warehouse-integrate-power-bi.md
+[connecting with PowerBI]: ./sql-data-warehouse-integrate-power-bi.md
 [Visual Studio]: ./sql-data-warehouse-get-started-connect.md
+[Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
+[Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
 [SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other-->
-[sqlcmd.exe]: https://msdn.microsoft.com/en-us/library/ms162773.aspx
+[sqlcmd.exe]: https://msdn.microsoft.com/zh-TW/library/ms162773.aspx
 [適用於 SQL Server 的 Microsoft 命令列公用程式 11]: http://go.microsoft.com/fwlink/?LinkId=321501
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
 <!--Image references-->
-[1]: ./media/sql-data-warehouse-get-started-connect/get-server-name.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

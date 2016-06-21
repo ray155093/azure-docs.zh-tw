@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/18/2016"
+   ms.date="06/11/2016"
    ms.author="lodipalm;barbkess;sonyama" />
 
 # 使用 Power BI 視覺化資料
@@ -21,16 +21,18 @@
 > [AZURE.SELECTOR]
 - [Power BI][]
 - [Azure Machine Learning][]
+- [SQLCMD][] 
 
 本教學課程會示範如何使用 Power BI 來連接到 SQL 資料倉儲，並建立一些基本的視覺效果。
 
-> [AZURE.NOTE] 若要完成本教學課程，您需要隨著 AdventureWorksDW 範例資料庫預先載入的 SQL 資料倉儲資料庫。[建立 SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)示範如何建立一個資料倉儲。
->
-> 如果您已經有 SQL 資料倉儲資料庫但沒有範例資料，您可以[手動載入範例資料][]。
-
 > [AZURE.VIDEO azure-sql-data-warehouse-sample-data-and-powerbi]
 
-## 連接到 AdventureWorksDW
+## 必要條件
+
+若要完成本教學課程，您需要隨著 AdventureWorksDW 範例資料庫預先載入的 SQL 資料倉儲。當您建立新的 SQL 資料倉儲時，您可以建立空白資料庫 (包含 AdventureWorks 範例資料的資料庫) 或還原其他資料庫的備份。如需如何使用已為您載入的範例資料來建立 SQL 資料倉儲的詳細資訊，請參閱[建立 SQL 資料倉儲][]。如果您已經有想要使用的 SQL 資料倉儲，但沒有範例資料，請依照[手動載入範例資料][]中的指示來進行。
+
+
+## 連接到資料庫
 
 若要開啟 Power BI 並連接到您的 AdventureWorksDW 資料庫：
 
@@ -51,13 +53,13 @@
 
     ![Power BI 登入][4]
 
-1. 一旦登入了 Power BI，請在左刀鋒視窗上按一下 AdventureWorksDW 資料集。這會開啟資料庫。
+7. 一旦登入了 Power BI，請在左刀鋒視窗上按一下 AdventureWorksDW 資料集。這會開啟資料庫。
 
     ![Power BI 開啟 AdventureWorksDW][5]
 
 
 
-## 建立 Power BI 報表來分析範例資料
+## 建立報告
 
 您現在已準備好使用 Power BI 來分析 AdventureWorksDW 範例資料。為了執行分析，AdventureWorksDW 有一個稱為 AggregateSales 的檢視。這個檢視包含用來分析公司銷售的一些重要指標。
 
@@ -108,14 +110,16 @@
 [移轉]: ./sql-data-warehouse-overview-migrate.md
 [開發]: ./sql-data-warehouse-overview-develop.md
 [載入]: ./sql-data-warehouse-overview-load.md
-[手動載入範例資料]: ./sql-data-warehouse-get-started-load-sample-databases.md
+[手動載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
 [connecting to SQL Data Warehouse]: ./sql-data-warehouse-integrate-power-bi.md
 [Create a SQL Data Warehouse]: ./sql-data-warehouse-get-started-provision.md
 [Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
 [Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
+[SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
+[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
 
 <!--Other-->
 [Azure 入口網站]: https://portal.azure.com/
 [Power BI 網站]: http://www.powerbi.com/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

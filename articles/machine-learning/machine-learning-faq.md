@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/18/2016"
+	ms.date="06/13/2016"
 	ms.author="garye"/>
 
 # Azure Machine Learning 常見問題集 (FAQ)：計費、功能、限制及支援
@@ -47,11 +47,13 @@ Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Stu
 
 **機器學習服務如何計費？**
 
-如需計費和定價資訊，請參閱[機器學習服務定價](https://azure.microsoft.com/pricing/details/machine-learning/)。
+如需計費和價格資訊，請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)。
 
 **機器學習服務是否有免費試用版？**
 
- 註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
+ Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
+ 
+ 此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
 
 ## Machine Learning Studio 問題
 
@@ -113,7 +115,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 
 **是否可將我現有的程式碼放入 Machine Learning Studio 中？**
 
-是的，您可以在 Machine Learning Studio 中放入現有的 R 或 Python 程式碼，使用 Azure Machine Learning 學習模組在相同的實驗中加以執行，然後透過 Azure Machine Learning 將解決方案部署為 Web 服務。如需詳細資訊，請參閱[透過 R 擴展您的經驗](machine-learning-extend-your-experiment-with-r.md)和[在 Azure Machine Learning Studio 中執行 Python 機器學習服務指令碼](machine-learning-execute-python-scripts.md)。
+是的，您可以在 Machine Learning Studio 中放入現有的 R 或 Python 程式碼，使用 Azure Machine Learning 學習模組在相同的實驗中加以執行，然後透過 Azure Machine Learning 將解決方案部署為 Web 服務。如需詳細資訊，請參閱[透過 R 擴展您的實驗](machine-learning-extend-your-experiment-with-r.md)和[在 Azure Machine Learning Studio 中執行 Python 機器學習服務指令碼](machine-learning-execute-python-scripts.md)。
 
 **可使用 [PMML](http://en.wikipedia.org/wiki/Predictive_Model_Markup_Language) 之類來定義模型嗎？**
 
@@ -223,7 +225,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN R 封裝，以下是�
 
 **如何監控部署在實際執行環境中的 Web 服務？**
 
-部署預測模型之後，您可以從 Azure 傳統入口網站進行監控。每個已部署的服務都有其本身的儀表板，您可以在此處檢視該服務的監控資訊。
+部署預測模型之後，您可以從 Azure 傳統入口網站進行監控。每個已部署的服務都有其本身的儀表板，您可以在此處檢視該服務的監控資訊。如需管理所部署 Web 服務的詳細資訊，請參閱[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
 
 **是否有哪個位置，可讓我查看我的 RRS/BES 輸出？**
 
@@ -241,7 +243,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN R 封裝，以下是�
 
 **什麼是 Web 服務的延展性？**
 
-目前的預設端點是每個端點上佈建 20 個並行 RRS 要求。您可以將每個端點的並行要求調整為 200 個，您也可以將每個 Web 服務的端點調整為 10,000 個，如[調整 API 端點](machine-learning-scaling-endpoints.md)所述。針對 BES，每個端點可一次處理 40 個要求，超過 40 個的其他要求則會排入佇列。這些排入佇列的要求會在佇列清空後自動執行。
+目前的預設端點是每個端點上佈建 20 個並行 RRS 要求。您可以將每個端點的並行要求調整為 200 個，也可以將每個 Web 服務的端點調整為 10,000 個，如[調整 API 端點](machine-learning-scaling-endpoints.md)所述。針對 BES，每個端點可一次處理 40 個要求，超過 40 個的其他要求則會排入佇列。這些排入佇列的要求會在佇列清空後自動執行。
 
 
 **R 作業會分散於節點嗎？**
@@ -332,4 +334,4 @@ Azure Machine Learning 在 MSDN 上也設有社群論壇，可供您詢問 Azure
 [python]: https://msdn.microsoft.com/library/azure/CDB56F95-7F4C-404D-BDE7-5BB972E6F232
 [counts]: https://msdn.microsoft.com/library/azure/dn913056.aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

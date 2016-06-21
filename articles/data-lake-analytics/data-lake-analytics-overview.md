@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # Microsoft Azure 資料湖分析概觀
@@ -77,4 +77,4 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
     - [提交要求功能](http://aka.ms/adlafeedback)
     - [在論壇上取得協助](http://aka.ms/adlaforums)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

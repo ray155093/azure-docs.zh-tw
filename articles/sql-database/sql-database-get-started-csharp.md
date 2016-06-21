@@ -79,7 +79,7 @@ Azure SQL Database Library for .NET 提供 [Azure 資源管理員](../resource-g
 
     ![新增 SQL C# 應用程式的重新導向 URL。][8]
 
-7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] \(稍後在程式碼中需要用戶端識別碼)。
+7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] (稍後在程式碼中需要用戶端識別碼)。
 
     ![取得 SQL C# 應用程式的用戶端識別碼。][9]
 
@@ -456,4 +456,4 @@ SQL Database 包含在伺服器中。伺服器名稱在全域的所有 Azure SQL
 [8]: ./media/sql-database-get-started-csharp/add-application2.png
 [9]: ./media/sql-database-get-started-csharp/clientid.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

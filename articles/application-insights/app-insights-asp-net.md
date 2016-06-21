@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/25/2016" 
+	ms.date="06/08/2016" 
 	ms.author="awills"/>
 
 
@@ -31,7 +31,6 @@
 如果您對下列內容感興趣，請查看其他文章︰
 
 * [在執行階段檢測 Web 應用程式](app-insights-monitor-performance-live-website-now.md)
-* [ASP.NET Core](app-insights-asp-net-core.md)
 * [Azure 雲端服務](app-insights-cloudservices.md)
 
 ## <a name="ide"></a> 1.加入 Application Insights SDK
@@ -47,10 +46,11 @@
 
 ### ... 對於現有專案
 
-在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [新增 Application Insights 遙測]] 或 [設定 Application Insights]。
+在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [新增 Application Insights 遙測] 或 [設定 Application Insights]。
 
 ![Choose Add Application Insights](./media/app-insights-asp-net/appinsights-03-addExisting.png)
 
+* ASP.NET Core 專案嗎？- [遵循這些指示來修正幾行程式碼](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started#add-application-insights-instrumentation-code-to-startupcs)。 
 
 
 
@@ -88,7 +88,7 @@
 
 入口網站會開啟應用程式的遙測檢視︰![](./media/app-insights-asp-net/66.png)
 
-* 個別事件會出現在 [搜尋] \(1)。資料會先出現在這裡 (和即時串流中)。按一下任何事件以查看其屬性。 
+* 個別事件會出現在 [搜尋] (1)。資料會先出現在這裡 (和[即時度量串流](app-insights-metrics-explorer.md#live-metrics-stream)中)。按一下任何事件以查看其屬性。 
 * 彙總度量會出現在圖表 (2)。資料可能需要一兩分鐘的時間才會出現在這裡。按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。
 
 [深入了解在 Azure 入口網站中使用 Application Insights](app-insights-dashboards.md)。
@@ -105,7 +105,7 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 2. 在 [Azure 入口網站](https://portal.azure.com/) 中建立 Application Insights 資源。這是您會看到您的資料的位置。它會擷取可識別資源的「檢測金鑰」。
 3. 在 `ApplicationInsights.config` 中插入檢測金鑰，讓 SDK 可以將遙測傳送至入口網站。
 
-如果您想要的話，可以[手動進行這些步驟](app-insights-asp-net-manual.md)。
+如果您想要的話，可以為 [ASP.NET 4](app-insights-asp-net-manual.md) 或 [ASP.NET 核心](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)手動進行這些步驟。
 
 
 ## 後續步驟
@@ -116,4 +116,4 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 |**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出。 |![Visual studio](./media/app-insights-asp-net/62.png)
 |**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual studio](./media/app-insights-asp-net/64.png)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->
