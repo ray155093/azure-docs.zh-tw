@@ -1,6 +1,6 @@
 <properties
 	pageTitle="關於 Windows 虛擬機器 | Microsoft Azure"
-	description="使用兩種部署模型深入了解 Windows Azure 虛擬機器的基本概念。"
+	description="使用兩種部署模型深入了解 Microsoft Azure 虛擬機器的基本概念。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="cynthn"

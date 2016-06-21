@@ -40,7 +40,7 @@
 
 - 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - [Visual Studio 2013](http://www.visualstudio.com/) Update 4 或更新版本。
-- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] (英文) 取得。
+- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] \(英文) 取得。
 
 本文中的所有螢幕擷取畫面都是使用已套用 Update 4 的 Visual Studio 2013 以及 Azure SDK for .NET 2.5.1 版所取得。如果您的系統是設定使用不同的版本，則您的畫面和選項可能不會完全相符，但只要您符合上述必要條件，本方案應該還是有效。
 
