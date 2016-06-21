@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/23/2016"
+	ms.date="06/08/2016"
 	ms.author="tamram"/>
 
 # Microsoft Azure 儲存體簡介
@@ -132,7 +132,11 @@ Azure 檔案儲存體提供雲端架構的 SMB 檔案共用，可讓您快速地
 
 ## 持久性和高可用性的複寫
 
-Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久性及高可用性，即使在面對暫時性的硬體故障時，仍可滿足[儲存體的 SLA](https://azure.microsoft.com/support/legal/sla/storage/)。建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
+Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久性及高可用性，即使在面對暫時性的硬體故障時，仍可滿足[儲存體的 SLA](https://azure.microsoft.com/support/legal/sla/storage/)。
+
+如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
+
+建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
 
 - **本地備援儲存體 (LRS)。** 本地備援儲存體可維護三個資料複本。LRS 會在單一區域的單一設備內複寫三次。LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一設備的故障。  
   
@@ -149,6 +153,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 - **異地備援儲存體 (GRS)**。建立儲存體帳戶時，依預設會啟用異地備援儲存體。GRS 可維護六個資料複本。有了 GRS，您的資料會在主要區域內複寫三次，並在與主要區域相距甚遠的次要區域內複寫三次，提供最高等級的持久性。在主要區域發生問題時，Azure 儲存體將會容錯移轉至次要區域。GRS 可確保兩個不同區域中的資料持續性。
 
+	如需主要和次要配對的相關資訊 (依區域)，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
 
 - **讀取權限異地備援儲存體 (RA-GRS)**。讀取權限異地備援儲存體會將您的資料複寫到次要地理位置，並同時提供次要位置中資料的讀取權限。讀取權限異地備援儲存體可讓您在主要或次要任一位置無法使用的情況下，從另外一個位置存取資料。
 
@@ -169,7 +174,7 @@ AzCopy 建置於 [Azure 資料移動程式庫](https://www.nuget.org/packages/Mi
 
 Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提供將 Blob 資料匯入儲存體帳戶或加以從中匯出的方式。如需匯入/匯出服務的詳細資訊，請參閱[使用 Microsoft Azure 匯入/匯出服務將資料傳輸至 Blob 儲存體](storage-import-export-service.md)。
 
-## 定價
+## 價格
 
 [AZURE.INCLUDE [儲存體-帳戶-計費-包括](../../includes/storage-account-billing-include.md)]
 
@@ -260,4 +265,4 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 - [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

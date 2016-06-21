@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/20/2016"
+	ms.date="06/10/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
@@ -238,10 +238,19 @@ Web 測試外掛程式提供這種作法。
 
 當您在服務上進行維護時，您可能會想要停用 Web 測試。
 
+## 效能測試
+
+您可以在網站上執行負載測試。例如可用性測試，您可以從我們在全球各地的點傳送簡單要求或多個步驟的要求。不同於可用性測試，許多要求傳送時會同時模擬多位使用者。
+
+從 [概觀] 刀鋒視窗，開啟 [設定]、[效能測試]。當建立測試時，您會受邀連接或建立 Visual Studio Team 服務帳戶。
+
+測試完成時，會為您顯示回應時間和成功率。
+
+
 ## 自動化
 
 * [使用 PowerShell 指令碼自動設定 Web 測試](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/)。 
-* 設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。
+* 設定會在產生警示時呼叫的 [webhook](../azure-portal/insights-webhooks-alerts.md)。
 
 ## 有疑問嗎？ 有問題嗎？
 
@@ -261,7 +270,7 @@ Web 測試外掛程式提供這種作法。
 
     設定防火牆以允許來自本文結尾之清單中的 IP 位址所發出的要求。
 
-* 上傳多步驟 Web 測試失敗
+* *上傳多步驟 Web 測試失敗*
 
     有 300k 的大小限制。
 
@@ -272,13 +281,13 @@ Web 測試外掛程式提供這種作法。
     不支援資料來源。
 
     
-* 多步驟測試未完成
+* *多步驟測試未完成*
 
     每個測試有 100 個要求的限制。
 
     如果執行時間超過兩分鐘，就會停止測試。
 
-* 如何使用用戶端憑證執行測試？
+* *如何使用用戶端憑證執行測試？*
 
     很抱歉，我們不支援此功能。
 
@@ -421,4 +430,4 @@ Web 測試外掛程式提供這種作法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

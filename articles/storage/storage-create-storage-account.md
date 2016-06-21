@@ -81,7 +81,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
 
-9. 選取儲存體帳戶的地理位置。
+9. 選取儲存體帳戶的地理位置。如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
 
 10. 按一下 [建立] 建立儲存體帳戶。
 
@@ -93,9 +93,9 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 > [AZURE.NOTE] 視您在建立儲存體帳戶時選擇的效能層而定，可能無法使用某些複寫選項。
 
-變更複寫選項，將會變更您的價格。如需詳細資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)頁面。
+變更複寫選項，將會變更您的價格。如需詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)頁面。
 
-針對 Blob 儲存體帳戶，變更存取層除了會變更您的定價之外，可能還會產生費用的變更。如需詳細資訊，請參閱 [Blob 儲存體帳戶 - 定價和計費](storage-blob-storage-tiers.md#pricing-and-billing)。
+針對 Blob 儲存體帳戶，變更存取層除了會變更您的價格之外，可能還會產生費用的變更。如需詳細資訊，請參閱 [Blob 儲存體帳戶 - 價格和計費](storage-blob-storage-tiers.md#pricing-and-billing)。
 
 ### 管理儲存體存取金鑰
 
@@ -117,7 +117,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 **應用程式** - 如果您有 Web 應用程式或雲端服務使用儲存體帳戶，除非您變換金鑰，否則會在重新產生金鑰後失去連線。
 
-**儲存體總管** - 如果您使用任何[儲存體總管應用程式](storage-explorers.md)，可能需要更新這些應用程式所使用的儲存體金鑰。
+**儲存體 Explorer** - 如果您使用任何[儲存體總管應用程式](storage-explorers.md)，可能需要更新這些應用程式所使用的儲存體金鑰。
 
 以下是替換儲存體存取金鑰的程序：
 
@@ -157,4 +157,4 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/) (英文)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

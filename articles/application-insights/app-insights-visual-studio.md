@@ -65,7 +65,11 @@
 按一下例外狀況以取得堆疊追蹤。如果應用程式的程式碼在 Visual Studio 中開啟，您可以從堆疊追蹤點選至程式碼的相關程式碼行。
 
 
-![](./media/app-insights-visual-studio/17.png)
+![例外狀況堆疊追蹤](./media/app-insights-visual-studio/17.png)
+
+此外，在每個方法上的程式碼功能濾鏡一行中，您會看到在過去 24 小時由 Application Insights 記錄的例外狀況計數。
+
+![例外狀況堆疊追蹤](./media/app-insights-visual-studio/21.png)
 
 
 ## 本機監視
@@ -83,8 +87,6 @@
 
  * 在 [搜尋] 視窗的 [設定] 中，即使您的應用程式將遙測傳送至入口網站，也有選項可搜尋本機診斷。
  * 若要停止將遙測傳送至入口網站，請將 ApplicationInsights.config 中的 `<instrumentationkey>...` 程式行註解化。當您準備再次將遙測傳送至入口網站時，請取消註解。
-
-
 
 
 
@@ -106,4 +108,4 @@
 
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

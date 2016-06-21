@@ -29,33 +29,7 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 > [AZURE.NOTE]  如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
 
-## 佈建遠端監視預先設定的解決方案
-
-1.  使用您的 Azure 帳戶認證登入 [azureiotsuite.com][lnk-azureiotsuite]，然後按一下 **+** 建立新的解決方案。
-
-    > [AZURE.NOTE] 如果您在取得佈建解決方案所需的權限時遇到問題，請參閱 [azureiotsuite.com 網站的權限][lnk-permissions]以取得指導方針。
-
-2.  按一下 [遠端監視] 磚上的 [選取]。
-
-3.  輸入遠端監視預先設定的解決方案的 [解決方案名稱]。
-
-4.  驗證您要用來佈建此解決方案的 [區域] 和 [訂用帳戶]。
-
-5.  按一下 [建立解決方案] 開始佈建程序。這通常需要數分鐘的執行時間。
-
-## 等候佈建程序完成
-
-1. 按一下您狀態為 [佈建中] 之解決方案的磚。
- 
-2. 請注意，[佈建狀態] 說明您的 Azure 訂用帳戶中已經佈建 Azure 服務。
-
-3. 佈建完成之後，狀態會變更為 [就緒]。
-
-4. 按一下磚，就會在右邊窗格中看到解決方案的詳細資料。
-
-> [AZURE.NOTE] 如果您在佈建預先設定的解決方案時遇到問題，請參閱 [azureiotsuite.com 網站的權限][lnk-permissions]和[常見問題集][lnk-faq]。如果問題持續發生，請在[入口網站][lnk-portal]建立服務票證。
-
-是否有您預期會看到但沒有列出的解決方案詳細資料？ 請在[使用者心聲](https://feedback.azure.com/forums/321918-azure-iot)中提供功能建議給我們。
+[AZURE.INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 ## 檢視遠端監視解決方案儀表板
 
@@ -89,11 +63,11 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
     ![][img-devicedetails]
 
-[裝置詳細資料] 面板包含三個區段：
+**裝置詳細資料**面板包含三個區段：
 
-- [動作] 區段會列出您可以在裝置執行的動作。如果您停用裝置，精緻不再能夠傳送遙測或接收命令。如果您停用裝置，您可以接著再次啟用它。您可以新增與裝置相關聯的規則，以便在遙測值超出臨界值時觸發警示。您也可以傳送命令至裝置。當裝置第一次連接時，它告訴解決方案可以回應的命令。
-- [裝置屬性] 區段會列出裝置中繼資料。此中繼資料某些來自裝置本身 (例如製造商)，而有些是由解決方案所產生 (例如建立時間)。您可以從這裡編輯裝置中繼資料。
-- [驗證金鑰] 區段會列出裝置可用來向解決方案進行驗證的金鑰清單。
+- **動作**區段會列出您可以在裝置執行的動作。如果您停用裝置，精緻不再能夠傳送遙測或接收命令。如果您停用裝置，您可以接著再次啟用它。您可以新增與裝置相關聯的規則，以便在遙測值超出臨界值時觸發警示。您也可以傳送命令至裝置。當裝置第一次連接時，它告訴解決方案可以回應的命令。
+- **裝置屬性**區段會列出裝置中繼資料。此中繼資料某些來自裝置本身 (例如製造商)，而有些是由解決方案所產生 (例如建立時間)。您可以從這裡編輯裝置中繼資料。
+- **驗證金鑰**區段會列出裝置可用來向解決方案進行驗證的金鑰清單。
 
 ## 傳送命令至裝置
 
@@ -111,7 +85,7 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
     ![][img-pingcommand]
 
-解決方案會追蹤其傳送的每個命令的狀態。結果最初是 [暫止]。當裝置報告它已執行命令時，結果會設定為 [成功]。
+解決方案會追蹤其傳送的每個命令的狀態。結果最初是**處理中**。當裝置報告它已執行命令時，結果會設定為**成功**。
 
 ## 新增模擬裝置
 
@@ -125,7 +99,7 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
     ![][img-addnew]
     
-    如果您選擇建立 [自訂裝置]，則除了建立新的模擬裝置，也可以新增實體裝置。若要深入了解，請參閱[將裝置連接至 IoT 套件遠端監視預先設定方解決案][lnk-connecting-devices]。
+    如果您選擇建立**自訂裝置**，則除了建立新的模擬裝置，也可以新增實體裝置。若要深入了解，請參閱[將裝置連接至 IoT 套件遠端監視預先設定方解決案][lnk-connecting-devices]。
 
 4.  選取 [自行定義裝置識別碼]，然後輸入唯一的裝置識別碼名稱，例如 **mydevice\_01**。
 
@@ -167,7 +141,7 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 2.  在 [裝置清單] 中選取您的新裝置，然後按一下 [新增規則] 以加入裝置的新規則。
 
-3. 建立規則，其使用 [溫度] 做資料欄位，以及使用 [AlarmTemp] 做為溫度超過 47 度時的輸出︰
+3. 建立規則，其使用**溫度**做資料欄位，以及使用 **AlarmTemp** 做為溫度超過 47 度時的輸出︰
 
     ![][img-adddevicerule]
 
@@ -177,7 +151,7 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
     ![][img-adddevicerule2]
 
-6.  從命令清單中選取 [ChangeSetPointTemp] 並將 [SetPointTemp] 設定為 45。然後按一下 [傳送命令]：
+6.  從命令清單中選取 **ChangeSetPointTemp** 並將 **SetPointTemp** 設定為 45。然後按一下 [傳送命令]：
 
     ![][img-adddevicerule3]
 
@@ -185,11 +159,11 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 
     ![][img-adddevicerule4]
 
-8. 您可以在儀表板的 [規則] 頁面上檢閱和編輯所有規則：
+8. 您可以在儀表板的**規則**頁面上檢閱和編輯所有規則：
 
     ![][img-rules]
 
-9. 您可以在儀表板的 [動作] 頁面上檢閱和編輯為了回應規則而可採取的所有動作︰
+9. 您可以在儀表板的**動作**頁面上檢閱和編輯為了回應規則而可採取的所有動作︰
 
     ![][img-actions]
 
@@ -254,4 +228,4 @@ Azure IoT Suite [預先設定的解決方案][lnk-preconfigured-solutions]結合
 [lnk-rmgithub]: https://github.com/Azure/azure-iot-remote-monitoring
 [lnk-faq]: iot-suite-faq.md
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

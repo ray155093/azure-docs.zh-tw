@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 教學課程：運用 Azure 命令列介面 (CLI) 開始使用 Azure 資料湖分析
@@ -156,10 +156,10 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 ## 另請參閱
 
 - 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-- 若要了解更複雜的查詢，請參閱[使用 Azure 資料湖分析分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+- 若要了解更複雜的查詢，請參閱[使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
 - 若要開始開發 U-SQL 應用程式，請參閱[使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 - 若要了解 U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 - 針對管理工作，請參閱[使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

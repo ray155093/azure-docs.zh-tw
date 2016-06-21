@@ -3,7 +3,7 @@
 	description="採用 C# 的 Azure IoT 中樞裝置管理快速入門教學課程。使用 Azure IoT 中樞與 C# 搭配 Microsoft Azure IoT SDK 來實作裝置管理。"
 	services="iot-hub"
 	documentationCenter=".net"
-	authors="ellenfosborne"
+	authors="juanjperez"
 	manager="timlt"
 	editor=""/>
 
@@ -14,27 +14,32 @@
  ms.tgt_pltfrm="na"
  ms.workload="na"
  ms.date="04/29/2016"
- ms.author="elfarber"/>
+ ms.author="juanpere"/>
 
 # 利用 C# 開始使用 Azure IoT 中樞裝置管理 (預覽)
 
 [AZURE.INCLUDE [iot-hub-device-management-get-started-selector](../../includes/iot-hub-device-management-get-started-selector.md)]
 
 ## 簡介
-若要開始使用 Azure IoT 中樞裝置管理，您必須建立 Azure IoT 中樞、在 IoT 中樞佈建裝置，並啟動多個模擬的裝置。本教學課程將逐步引導您完成下列步驟。
+若要開始使用 Azure IoT 中樞裝置管理，您必須建立 Azure IoT 中樞、在 IoT 中樞佈建裝置、啟動多個模擬的裝置，並在裝置管理範例 UI 中檢視這些裝置。本教學課程將逐步引導您完成下列步驟。
 
 > [AZURE.NOTE]  即使您有現有的 IoT 中樞，還是需要建立新的 IoT 中樞，才能啟用裝置管理功能，因為現有的 IoT 中樞尚未有裝置管理功能。裝置管理公開上市後，所有現有的 IoT 中樞都會升級以取得裝置管理功能。
 
 ## 必要條件
 
+本教學課程假設您使用 Windows 開發電腦。
+
 您必須先安裝下列項目才能完成步驟︰
 
 - Microsoft Visual Studio 2015
-- Git
-- CMake (2.8 版或更新版本)。從 <https://cmake.org/download/> 安裝 CMake。若為 Windows 電腦，請選擇 [Windows Installer (.msi)] 選項。務必勾選此方塊，將 CMake 新增至目前的使用者 PATH 變數。
-- 有效的 Azure 訂用帳戶。
 
-	如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
+- Git
+
+- CMake (2.8 版或更新版本)。從 <https://cmake.org/download/> 安裝 CMake。若為 Windows 電腦，請選擇 [Windows Installer (.msi)] 選項。務必勾選此方塊，將 CMake 新增至目前的使用者 PATH 變數。
+
+- Node.js 6.1.0 或更新版本。從 <https://nodejs.org/> 為平台安裝 Node.js。
+
+- 有效的 Azure 訂用帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
 
 ## 建立已啟用裝置管理的 IoT 中樞
 
@@ -57,11 +62,11 @@
 
     > [AZURE.NOTE]  如果您未勾選 [啟用裝置管理] 方塊，則範例無法運作。
 
-4.  選擇 IoT 中樞組態選項時，請按一下 [建立]。Azure 可能需要幾分鐘的時間來建立您的 IoT 中樞。若要檢查狀態，您可以在「開始面板」或 [通知] 面板中監視進度。
+4.  選擇好 IoT 中樞組態選項時，按一下 [建立]。Azure 可能需要幾分鐘的時間來建立您的 IoT 中樞。若要檢查狀態，您可以在 [開始面板] 或 [通知] 面板中監視進度。
 
 	![][img-monitor]
 
-5.  成功建立 IoT 中樞時，請開啟新 IoT 中樞的刀鋒視窗，記下 **Hostname**，然後按一下 [金鑰] 圖示。
+5.  成功建立 IoT 中樞時，請開啟新 IoT 中樞的刀鋒視窗，記下 [主機名稱]，然後按一下 [金鑰] 圖示。
 
 	![][img-keys]
 
@@ -125,17 +130,54 @@
 
 ![][img-output]
 
-確定在您完成教學課程的「後續步驟」時，所有的模擬裝置都在執行中。
+在完成以下幾節時，請務必讓所有模擬裝置保持執行狀態。
+
+## 執行裝置管理範例 UI
+
+現在您已佈建了 IoT 中樞，並已執行和註冊數個模擬裝置以便管理，接下來您可以部署裝置管理範例 UI。裝置管理範例 UI 會提供您實用範例，說明如何使用裝置管理 API 來建置互動式 UI 體驗。如需裝置管理範例 UI 的詳細資訊 (包括[已知問題](https://github.com/Azure/azure-iot-device-management#knownissues))，請參閱 [Azure IoT 裝置管理 UI][lnk-dm-github] GitHub 儲存機制。
+
+若要擷取、建置和執行裝置管理範例 UI，請遵循下列步驟︰
+
+1. 開啟 [命令提示字元]。
+
+2. 輸入 `node --version`，確認您已依據＜必要條件＞一節安裝 Node.js 6.1.0 或更新版本。
+
+3. 執行下列命令，複製 Azure IoT 裝置管理 UI GitHub 儲存機制︰
+
+	```
+	git clone https://github.com/Azure/azure-iot-device-management.git
+	```
+	
+4. 在 Azure IoT 裝置管理 UI 儲存機制複製版本的根資料夾中，執行下列命令來擷取相依封裝︰
+
+	```
+	npm install
+	```
+
+5. 在完成 npm install 命令時，執行下列命令來建置程式碼︰
+
+	```
+	npm run build
+	```
+
+6. 使用文字編輯器，開啟所複製資料夾根目錄中的 user-config.json 檔案。將「&lt;在此輸入您的連接字串&gt;」文字取代為上一節的 IoT 中樞連接字串，並儲存檔案。
+
+7. 在命令提示字元中執行下列命令，啟動裝置管理 UX 應用程式︰
+
+	```
+	npm run start
+	```
+
+8. 當命令提示字元報告「服務已啟動」時，開啟網頁瀏覽器 (目前支援 Edge/IE 11+/Safari/Chrome)，並瀏覽至位於下列 URL 的裝置管理應用程式，以檢視模擬的裝置︰<http://127.0.0.1:3003>。
+
+	![][img-dm-ui]
+
+讓模擬的裝置和裝置管理應用程式保持執行狀態，並繼續進行下一個裝置管理教學課程。
+
 
 ## 後續步驟
 
-若要深入了解 Azure IoT 中樞裝置管理功能，您可以瀏覽下列教學課程︰
-
-- [如何使用裝置對應項][lnk-tutorial-twin]
-
-- [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
-
-- [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
+若要繼續了解 Azure IoT 中樞裝置管理功能，請參閱[使用範例 UI 探索 Azure IoT 中樞裝置管理][lnk-sample-ui]教學課程。
 
 <!-- images and links -->
 [img-new-hub]: media/iot-hub-device-management-get-started/image1.png
@@ -144,12 +186,12 @@
 [img-keys]: media/iot-hub-device-management-get-started/image4.png
 [img-connection]: media/iot-hub-device-management-get-started/image5.png
 [img-output]: media/iot-hub-device-management-get-started/image6.png
+[img-dm-ui]: media/iot-hub-device-management-get-started/dmui.png
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure 入口網站]: https://portal.azure.com/
 [使用資源群組來管理您的 Azure 資源]: ../azure-portal/resource-group-portal.md
-[lnk-tutorial-twin]: iot-hub-device-management-device-twin.md
-[lnk-tutorial-queries]: iot-hub-device-management-device-query.md
-[lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
+[lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
+[lnk-sample-ui]: iot-hub-device-management-ui-sample.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -85,7 +85,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於
 ## 限制
 訂用帳戶中允許的虛擬網路數目有受到限制，如需詳細資訊，請參閱 [Azure 網路限制](../azure-subscription-service-limits.md#networking-limits)。
 
-## 定價
+## 價格
 在 Azure 中使用虛擬網路並沒有其他費用。至於在 Vnet 中啟動的計算執行個體，則會依 [Azure VM 價格](https://azure.microsoft.com/pricing/details/virtual-machines/)中所述的標準費率進行收費。VNet 中所使用的 [VPN 閘道](https://azure.microsoft.com/pricing/details/vpn-gateway/)和[公用 IP 位址](https://azure.microsoft.com/pricing/details/ip-addresses/)也會依標準費率進行收費。
 
 ## 後續步驟
@@ -95,4 +95,4 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於
 - 了解 [NSG](virtual-networks-nsg.md)。
 - 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

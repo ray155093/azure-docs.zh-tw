@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/12/2016"
+   ms.date="06/09/2016"
    ms.author="ryanwi"/>
 
 # 在您的本機叢集上開始部署和升級應用程式
@@ -66,7 +66,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
     cd c:\ServiceFabric\
     ```
 
-4. [將 WordCount 應用程式下載](http://aka.ms/servicefabric-wordcountapp)至您建立的位置。
+4. [將 WordCount 應用程式下載](http://aka.ms/servicefabric-wordcountapp)至您建立的位置。注意︰Microsoft Edge 瀏覽器會使用 .zip 副檔名來儲存檔案。您必須將副檔名變更為 .sfpkg。
 
 5. 連接到本機叢集：
 
@@ -88,7 +88,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![部署應用程式 UI][deployed-app-ui]
 
-    WordCount 應用程式非常簡單。它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。具狀態服務會追蹤已計算的字數。這些單字會根據單字的第一個字元進行分割。
+    WordCount 應用程式非常簡單。它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。具狀態服務會追蹤已計算的字數。這些單字會根據單字的第一個字元進行分割。您可以在[快速入門範例](https://azure.microsoft.com/documentation/samples/service-fabric-dotnet-getting-started/)中找到 WordCount 應用程式的原始程式碼。
 
     我們所部署的應用程式包含四個資料分割。所以開頭為 A 到 G 的單字會儲存在第一個磁碟分割中，而開頭為 N 到 H 的單字會儲存在第二個資料分割中，依此類推。
 
@@ -129,7 +129,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![在 Service Fabric 總管中檢視應用程式詳細資料][sfx-service-overview]
 
-    > [AZURE.NOTE] 若要深入了解 Service Fabric 總管，請參閱[使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+    > [AZURE.NOTE] 若要深入了解 Service Fabric Explorer，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 ## 升級應用程式
 Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進而提供不需停機的升級。讓我們執行 WordCount 應用程式的簡單升級。
@@ -168,6 +168,33 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
     ![在瀏覽器中檢視新版的應用程式][deployed-app-ui-v2]
 
+## 清除
+
+在我們做結論之前，請務必記得本機叢集非常真實。應用程式會繼續在背景中執行，直到您將它們移除。視應用程式的本質而定，執行中應用程式可能會佔用您電腦上的大量資源。您有數個選項可管理此項目：
+
+1. 若要移除個別應用程式和其所有資料，請執行下列命令︰
+
+    ```powershell
+    Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
+    ```
+
+    或者，請使用 Service Fabric Explorer 中的 [刪除應用程式] 動作，搭配左窗格中應用程式清單檢視的 [動作] 功能表或內容功能表。
+
+    ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
+
+2. 在叢集中刪除應用程式之後，您接著可以取消註冊 WordCount 應用程式類型的 1.0.0 和 2.0.0 版。這會從叢集的映像存放區中移除應用程式封裝，包括程式碼和組態。
+
+    ```powershell
+    Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
+    Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 1.0.0
+    ```
+
+    或者，在 Service Fabric Explorer 中為應用程式選擇 [解除佈建類型]。
+
+3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
+
+4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您有時候不打算使用本機叢集或您需要回收資源時，才能使用此選項。
+
 ## 後續步驟
 - 您現在已部署並升級某些預先建置的應用程式，您可以[嘗試在 Visual Studio 中建立自己的應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
 - 本文中在本機叢集上執行的所有動作也可以在 [Azure 叢集](service-fabric-cluster-creation-via-portal.md)上執行。
@@ -189,5 +216,6 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 [ps-getsfsvc-postupgrade]: ./media/service-fabric-get-started-with-a-local-cluster/PS-GetSFSvc-PostUpgrade.png
 [sfx-upgradeprogress]: ./media/service-fabric-get-started-with-a-local-cluster/SfxUpgradeOverview.png
 [sfx-service-overview]: ./media/service-fabric-get-started-with-a-local-cluster/sfx-service-overview.png
+[sfe-delete-application]: ./media/service-fabric-get-started-with-a-local-cluster/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

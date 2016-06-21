@@ -12,13 +12,15 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/19/2016"
+   ms.date="06/13/2016"
    ms.author="cherylmc"/>
 
 
 # ExpressRoute 必要條件和檢查清單  
 
 若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須確認是否符合以下各節中所列的下列需求。
+
+[AZURE.INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
 ## Azure 帳戶
 
@@ -63,4 +65,4 @@
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

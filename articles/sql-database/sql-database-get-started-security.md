@@ -20,6 +20,11 @@
 
 # SQL Database 教學課程：使用 Azure 入口網站建立 SQL Database 使用者帳戶來存取和管理資料庫。
 
+
+> [AZURE.SELECTOR]
+- [開始使用教學課程](sql-database-get-started-security.md)
+- [授與存取權](sql-database-manage-logins.md)
+
 在本教學課程裡，您將學習如何使用 Azure 入口網站來：
 
 - 使用伺服器層級主體登入來登入 SQL Database
@@ -45,4 +50,4 @@
 ## 後續步驟
 您現在已完成本 SQL Database 教學課程，而且建立使用者帳戶並授予 dbo 權限，即可開始深入了解 [SQL Database 安全性](sql-database-manage-logins.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->
