@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 佇列儲存體和 Visual Studio 已連接服務 (WebJob 專案)
@@ -515,15 +515,15 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 		    logger.WriteLine("TextWriter - " + logMessage);
 		}
 
-當您移至頁面以進行特定函數叫用，並按一下 [切換輸出] 時，WebJobs SDK 儀表板中會出現 **TextWriter** 物件的輸出：
+在「WebJobs SDK 儀表板」中，當您移至頁面以進行特定函數叫用並選取 [切換輸出] 時，會顯示來自 **TextWriter** 物件的輸出：
 
-![按一下函式引動過程連結](./media/vs-storage-webjobs-getting-started-queues/dashboardinvocations.png)
+![叫用連結](./media/vs-storage-webjobs-getting-started-queues/dashboardinvocations.png)
 
 ![函式引動過程頁面中的記錄檔](./media/vs-storage-webjobs-getting-started-queues/dashboardlogs.png)
 
-在 WebJobs SDK 儀表板中，當您移到 WebJob (而非函式引動過程) 的頁面並按一下 [切換輸出] 時，則會顯示主控台輸出最近的 100 行。
+在「WebJobs SDK 儀表板」中，當您移至 WebJob (而非函數叫用) 的頁面並選取 [切換輸出] 時，會顯示最近 100 行的「主控台」輸出。
 
-![按一下切換輸出](./media/vs-storage-webjobs-getting-started-queues/dashboardapplogs.png)
+![切換輸出](./media/vs-storage-webjobs-getting-started-queues/dashboardapplogs.png)
 
 在連續的 WebJob 中，應用程式記錄檔顯示在 Web 應用程式檔案系統中的 /data/jobs/continuous/*{webjobname}*/job\_log.txt。
 
@@ -543,4 +543,4 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 
 本文提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0608_2016-->

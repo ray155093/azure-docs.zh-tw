@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/11/2016"
+   ms.date="06/07/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -248,4 +248,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 可以透過 ExpressRoute 連線存取 Dynamics AX 嗎？
 不，不支援此做法。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

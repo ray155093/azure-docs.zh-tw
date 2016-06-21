@@ -13,14 +13,13 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/13/2016"
+   ms.date="06/09/2016"
    ms.author="sonyama;barbkess"/>
 
 # 使用 Visual Studio 連接到 SQL 資料倉儲
 
 > [AZURE.SELECTOR]
 - [Visual Studio](sql-data-warehouse-get-started-connect.md)
-- [SQLCMD](sql-data-warehouse-get-started-connect-sqlcmd.md)
 - [AAD](sql-data-warehouse-get-started-connect-aad-authentication.md)
 
 本逐步解說示範如何使用 Visual Studio 的 SQL Server Data Tools (SSDT) 擴充功能在短時間內連接到 Azure SQL 資料倉儲。一旦連線，您將執行簡單的查詢。
@@ -116,4 +115,4 @@
 [7]: ./media/sql-data-warehouse-get-started-connect/run-query.png
 [8]: ./media/sql-data-warehouse-get-started-connect/query-results.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

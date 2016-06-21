@@ -13,7 +13,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="03/15/2016" 
+	ms.date="06/08/2016" 
 	ms.author="heidist"/>
 
 #如何在 Azure 搜尋服務中實作多面向導覽
@@ -369,4 +369,4 @@ Azure Search 中有兩種地理空間函式，**geo.distance** 與 **geo.interse
 
  
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

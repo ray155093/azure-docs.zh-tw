@@ -15,12 +15,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/15/2016" 
+	ms.date="06/03/2016" 
 	ms.author="genemi"/>
 
 
 # SQL Database 中擴充事件的環形緩衝區目標程式碼
 
+[AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
 您想要完整的程式碼範例以最簡單快速的方式在測試期間擷取和報告擴充事件的資訊。擴充事件資料最簡單的目標是[環形緩衝區目標](http://msdn.microsoft.com/library/ff878182.aspx)。
 
@@ -385,4 +386,4 @@ Azure SQL Database 上擴充事件的主要主題是：
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

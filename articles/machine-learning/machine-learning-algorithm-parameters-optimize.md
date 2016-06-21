@@ -48,12 +48,12 @@
 
 
 ## 定義計量
-[掃描參數][sweep-parameters]模組支援對指定的演算法和資料集根據經驗選擇一組最佳的參數集。此模組的屬性窗格除了有關訓練模型的其他資訊之外，還包括用來判斷最佳參數集的計量。分類和迴歸演算法分別有兩個不同的下拉式清單。如果考慮使用分類演算法，則會忽略迴歸計量，反之亦然。在此特定範例中，我們選擇 [**正確度**] 做為計量。
+[微調模型超參數][tune-model-hyperparameters]模組支援依據經驗為指定的演算法和資料集選擇一組最佳參數。此模組的屬性窗格除了有關訓練模型的其他資訊之外，還包括用來判斷最佳參數集的計量。分類和迴歸演算法分別有兩個不同的下拉式清單。如果考慮使用分類演算法，則會忽略迴歸計量，反之亦然。在此特定範例中，我們選擇 [**正確度**] 做為計量。
  
 ![image5](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
 
 ## 訓練、評估和比較  
-相同的[掃描參數][sweep-parameters]模組會訓練對應到參數集的所有模型、評估各種計量，然後根據使用者選擇的計量輸出訓練得最好的模型。此模組有兩個必要的輸入項目
+相同的[微調模型超參數][tune-model-hyperparameters]模組會訓練與參數集對應的所有模型、評估各種計量，然後根據使用者選擇的計量輸出訓練得最好的模型。此模組有兩個必要的輸入項目
 
 * 未訓練過的學習者 
 * 資料集 
@@ -67,7 +67,7 @@
 
 <!-- Module References -->
 [partition-and-sample]: https://msdn.microsoft.com/library/azure/a8726e34-1b3e-4515-b59a-3e4a475654b8/
-[sweep-parameters]: https://msdn.microsoft.com/library/azure/038d91b6-c2f2-42a1-9215-1f2c20ed1b40/
+[tune-model-hyperparameters]: https://msdn.microsoft.com/library/azure/038d91b6-c2f2-42a1-9215-1f2c20ed1b40/
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

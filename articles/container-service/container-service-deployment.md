@@ -28,55 +28,55 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 
 登入 Azure 入口網站、選取[新增]，並在 Azure Marketplace 中搜尋 [Azure 容器服務]。
 
-![建立部署](media/acs-portal1.png) <br />
+![建立部署 1](media/acs-portal1.png) <br />
 
 選取 [Azure 容器服務]，然後按一下 [建立]。
 
-![建立部署](media/acs-portal2.png) <br />
+![建立部署 2](media/acs-portal2.png) <br />
 
 輸入以下資訊：
 
-- 使用者名稱 - 這是在 Azure 容器服務叢集中的每一個虛擬機器和虛擬機器擴展集上，將用於帳戶的使用者名稱。
-- 訂用帳戶 - 選取 Azure 訂用帳戶。
-- 資源群組 - 選取現有資源群組或建立新的群組。
-- 位置 - 選取 Azure 容器服務部署的 Azure 區域。
-- SSH 公開金鑰 - 新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。它看起來應該像下面這樣：「**ssh-rsa AAAAB3Nz...SNIPPEDCONTENT...UcyupgH azureuser@linuxvm**」。如需建立 SSH 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文章。
+- **使用者名稱**：這是在 Azure 容器服務叢集中的每一個虛擬機器和虛擬機器擴展集上，將用於帳戶的使用者名稱。
+- **訂用帳戶**：選取 Azure 訂用帳戶。
+- **資源群組**：選取現有資源群組或建立新的群組。
+- **位置**：選取 Azure 容器服務部署的 Azure 區域。
+- **SSH 公開金鑰**：新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。看起來應該類似於下列：**ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**。如需建立安全殼層 (SSH) 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文件。
 
 準備好繼續時請按一下 [確定]。
 
-![建立部署](media/acs-portal3.png) <br />
+![建立部署 3](media/acs-portal3.png) <br />
 
 選取 [協調流程] 類型。可用選項包括：
 
-- DC/OS - 部署 DC/OS 叢集。
-- Swarm - 部署 Docker Swarm 叢集。
+- **DC/OS**：部署 DC/OS 叢集。
+- **Swarm**：部署 Docker Swarm 叢集。
 
 準備好繼續時請按一下 [確定]。
 
-![建立部署](media/acs-portal4.png) <br />
+![建立部署 4](media/acs-portal4.png) <br />
 
 輸入以下資訊：
 
-- 主要主機計數 - 叢集中主要主機的數目。
-- 代理程式計數 - 若為 Docker Swarm，這會是代理程式調整集內的初始代理程式數目。若為 DC/OS，這會是私人調整集內的初始代理程式數目。此外，也會建立包含預先決定的代理程式數目的公用調整集。此公用調整集內的代理程式數目是由叢集中已建立的主要主機數目來決定：1 個主要主機需要 1 個公用代理程式， 3 或 5 個主要主機則需要 2 個公用代理程式。
-- 代理程式虛擬機器大小 - 代理程式虛擬機器的大小。
-- DNS 前置詞 - 全球唯一的名稱，將用來做為服務之完整網域名稱的主要前置部分。 
+- **主要主機計數**：叢集中主要主機的數目。
+- **代理程式計數**：若為 Docker Swarm，這會是代理程式調整集內的初始代理程式數目。若為 DC/OS，這會是私人調整集內的初始代理程式數目。此外，也會建立包含預先決定的代理程式數目的公用調整集。此公用調整集內的代理程式數目是由叢集中已建立的主要主機數目來決定：一個主要主機需要一個公用代理程式，三或五個主要主機則需要兩個公用代理程式。
+- **代理程式虛擬機器大小**：代理程式虛擬機器的大小。
+- **DNS 前置詞**：全球唯一的名稱，將用來做為服務之完整網域名稱的主要前置部分。
 
 準備好繼續時請按一下 [確定]。
 
-![建立部署](media/acs-portal5.png) <br />
+![建立部署 5](media/acs-portal5.png) <br />
 
-服務驗證完成時請按一下 [確定]。
+服務驗證完成後請按一下 [確定]。
 
-![建立部署](media/acs-portal6.png) <br />
+![建立部署 6](media/acs-portal6.png) <br />
 
 按一下 [建立] 以啟動部署程序。
 
-![建立部署](media/acs-portal7.png) <br />
+![建立部署 7](media/acs-portal7.png) <br />
 
 如果您已選擇將部署釘選到 Azure 入口網站，您就可以看到部署狀態。
 
-![建立部署](media/acs-portal8.png) <br />
+![建立部署 8](media/acs-portal8.png) <br />
 
 當部署完成時，Azure 容器服務叢集便可供使用。
 
@@ -110,10 +110,10 @@ azure config mode arm
 
 - **RESOURCE\_GROUP** 是您想要用於此服務的資源群組名稱。
 - **LOCATION** 是要建立資源群組和 Azure 容器服務部署的 Azure 區域。
-- **TEMPLATE\_URI** 是部署檔案的位置。**注意** - 這必須是 RAW 檔案，而不是 GitHub UI 的指標。若要尋找這個 URL，請在 GitHub 中選取 azuredeploy.json 檔案，並按一下 [RAW] 按鈕：
+- **TEMPLATE\_URI** 是部署檔案的位置。請注意，這必須是 RAW 檔案，而不是 GitHub UI 的指標。若要尋找這個 URL，請在 GitHub 中選取 azuredeploy.json 檔案，並按一下 [RAW] 按鈕。
 
-> 請注意，當執行此命令時，殼層會提示您輸入部署參數值。
- 
+> [AZURE.NOTE] 當您執行此命令時，殼層會提示您輸入部署參數值。
+
 ```bash
 # sample deployment
 
@@ -188,9 +188,11 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 ```
 
 ## 後續步驟
- 
-既然您有一個可運作的叢集，請瀏覽這些文件來了解連接和管理的詳細資料。
- 
-[連接到 Azure 容器服務叢集](container-service-connect.md) [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md) [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+既然您有一個可運作的叢集，請參閱這些文件來了解連接和管理的詳細資料：
+
+- [連接到 Azure 容器服務叢集](container-service-connect.md)
+- [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
+- [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
+
+<!---HONumber=AcomDC_0615_2016-->

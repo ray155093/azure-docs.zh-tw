@@ -10,7 +10,7 @@
 
 <tags
    ms.service="virtual-machines-linux"
-   ms.topic="article"
+   ms.topic="support-article"
    ms.tgt_pltfrm="vm-linux"
    ms.devlang="na"
    ms.workload="required"
@@ -53,7 +53,7 @@
 
 *	稍後再重試重新啟動要求。
 
-## 問題：重新啟動現有 VM 時發生錯誤
+## 問題：調整現有 VM 的大小時發生錯誤
 
 您嘗試調整現有 VM 的大小，但是發現配置失敗。
 
@@ -74,4 +74,4 @@
   2. 所有 VM 都停止後，將所需 VM 調整為較大的大小。
   3. 選取已調整大小的 VM，按一下 [啟動]，然後啟動每個已停止的 VM。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

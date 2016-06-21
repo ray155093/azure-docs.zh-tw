@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="06/03/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中探索度量
@@ -176,6 +176,16 @@
 
 ![在 [計量瀏覽器] 上方的按鈕中](./media/app-insights-metrics-explorer/17-reset.png)
 
+## 即時資料流：適用於嚴密監視的即時計量
+
+即時資料流說明您的應用程式計量正處於這個非常時刻，接近即時的延遲為 1 秒。當您發行了新的組建且想要確定一切都如預期般運作，或者要即時調查某個事件時，這是非常有用的。
+
+![在 [概觀] 刀鋒視窗中，按一下 [即時資料流]](./media/app-insights-metrics-explorer/live-stream.png)
+
+不同於計量瀏覽器，即時資料流會顯示一組固定的計量。只要資料仍在圖表上就會保存，之後便會捨棄該資料。
+
+即時資料流適用於 Application Insights SDK for ASP.NET 版本 2.1.0 或更新版本。
+
 ## 設定警示
 
 若要在任何度量有不尋常的值時收到電子郵件通知，請加入警示。您可以選擇將電子郵件傳送給帳戶管理員，或傳送給特定的電子郵件地址。
@@ -197,9 +207,9 @@
 
 *匯出動作目前僅適用於 Internet Explorer 和 Chrome。我們正努力新增其他瀏覽器的支援。*
 
-### 連續匯出
+## 連續匯出
 
-如果您想要連續匯出資料以在外部處理，請考慮使用[連續匯出](app-insights-export-telemetry.md)。
+如果您想要連續匯出資料，讓您能夠在外部加以處理，請考慮使用[連續匯出](app-insights-export-telemetry.md)。
 
 ### Power BI
 
@@ -211,14 +221,14 @@
 
 ## 疑難排解
 
-我看不到我的圖表上的任何資料。
+*我看不到我的圖表上的任何資料。*
 
 * 篩選會套用至刀鋒視窗上的所有圖表。請確定，當您將焦點放在某個圖表時，您未在其他圖表上設定會排除所有資料的篩選。 
 
     如果您想要在不同的圖表上設定不同的篩選，請在不同的刀鋒視窗中建立圖表，將它們儲存為個別的最愛圖表。如果想要，您可以將這些圖表釘選到儀表板，以便並排查看兩者。
 
 * 如果您依據計量上未定義的屬性將圖表分組，則圖表上不會有任何資料。請嘗試清除 [分組依據]，或選擇不同的群組屬性。
-* 效能資料 (CPU、IO 速率等等) 適用於 Java Web 服務、Windows 桌面應用程式、[IIS Web 應用程式和服務 (若您安裝狀態監視器)](app-insights-monitor-performance-live-website-now.md) 和 [Azure 雲端服務](app-insights-azure.md)。它不適用於 Azure 網站。
+* 效能資料 (CPU、IO 速率等等) 適用於 Java Web 服務、Windows 傳統型應用程式、[IIS Web 應用程式和服務 (若您安裝狀態監視器)](app-insights-monitor-performance-live-website-now.md) 和 [Azure 雲端服務](app-insights-azure.md)。它不適用於 Azure 網站。
 
 
 
@@ -236,4 +246,4 @@
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0608_2016-->

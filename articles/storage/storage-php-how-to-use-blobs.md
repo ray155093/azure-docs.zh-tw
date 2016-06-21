@@ -145,7 +145,7 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 ## 將 Blob 上傳至容器
 
-若要將檔案當作 Blob 上傳，請使用 **BlobRestProxy->createBlockBlob** 方法。如果 Blob 不存在，此作業會予以建立，若已存在，則予以覆寫。下列程式碼範例假設已建立容器，並使用 [fopen](fopen) \(英文) 將檔案當作串流開啟。
+若要將檔案當作 Blob 上傳，請使用 **BlobRestProxy->createBlockBlob** 方法。如果 Blob 不存在，此作業會予以建立，若已存在，則予以覆寫。下列程式碼範例假設已建立容器，並使用 [fopen][fopen] \(英文) 將檔案當作串流開啟。
 
 	require_once 'vendor/autoload.php';
 
@@ -250,7 +250,7 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 
 	try	{
-		// Delete container.
+		// Delete blob.
 		$blobRestProxy->deleteBlob("mycontainer", "myblob");
 	}
 	catch(ServiceException $e){
@@ -308,4 +308,4 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 [fopen]: http://www.php.net/fopen
 [stream-get-contents]: http://www.php.net/stream_get_contents
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

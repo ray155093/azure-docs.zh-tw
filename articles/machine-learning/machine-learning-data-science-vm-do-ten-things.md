@@ -198,7 +198,7 @@ Azure Machine Learning R 程式庫的詳細資訊可以在[這裡](https://cran.
 
 DSVM 不僅可讓您在虛擬機器本機建置分析解決方案，也可讓您存取 Microsoft Azure 雲端上的服務。Azure 提供數個可從 DSVM 管理和存取的計算、儲存、資料分析服務和其他服務。
 
-若要管理 Azure 訂用帳戶和雲端資源，您可以使用瀏覽器並指向 [Azure 入口網站](portal.azure.com)。您也可以使用 Azure Powershell 並透過指令碼管理 Azure 訂用帳戶和資源。您可以從桌面上的捷徑或從標題為 "Microsoft Azure Powershell" 的 [開始] 功能表執行 Azure Powershell。如需如何使用 Windows Powershell 指令碼管理 Azure 訂用帳戶和資源的詳細資訊，請參閱 [Microsoft Azure Powershell 文件](../powershell-azure-resource-manager.md)。
+若要管理 Azure 訂用帳戶和雲端資源，您可以使用瀏覽器並指向 [Azure 入口網站](https://portal.azure.com)。您也可以使用 Azure Powershell 並透過指令碼管理 Azure 訂用帳戶和資源。您可以從桌面上的捷徑或從標題為 "Microsoft Azure Powershell" 的 [開始] 功能表執行 Azure Powershell。如需如何使用 Windows Powershell 指令碼管理 Azure 訂用帳戶和資源的詳細資訊，請參閱 [Microsoft Azure Powershell 文件](../powershell-azure-resource-manager.md)。
 
 
 ## 5\.使用共用的檔案系統來擴充您的儲存空間
@@ -268,7 +268,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 **必要條件**
 
-- **從 [Azure 入口網站](http://portal.azure.com)建立 Azure Blob 儲存體帳戶。**
+- **從 [Azure 入口網站](https://portal.azure.com)建立 Azure Blob 儲存體帳戶。**
 
 ![Create\_Azure\_Blob](./media/machine-learning-data-science-vm-do-ten-things/Create_Azure_Blob.PNG)
 
@@ -287,7 +287,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 	AzCopy /Source:C:\myfolder /Dest:https://<mystorageaccount>.blob.core.windows.net/<mycontainer> /DestKey:<storage account key> /Pattern:abc.txt
 
-以您的檔案儲存路徑取代 **C:\\myfolder**，以您的 Blob 儲存體帳戶名稱取代 **mystorageaccount**、以容器名稱取代 **mycontainer**，並以您的 Blob 儲存體存取金鑰取代 **storage account key**。您可以在 [Azure 入口網站](http://portal.azure.com)中尋找您的儲存體帳戶認證。
+以您的檔案儲存路徑取代 **C:\\myfolder**，以您的 Blob 儲存體帳戶名稱取代 **mystorageaccount**、以容器名稱取代 **mycontainer**，並以您的 Blob 儲存體存取金鑰取代 **storage account key**。您可以在 [Azure 入口網站](https://portal.azure.com)中尋找您的儲存體帳戶認證。
 
 ![StorageAccountCredential\_v2](./media/machine-learning-data-science-vm-do-ten-things/StorageAccountCredential_v2.png)
 
@@ -318,7 +318,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 **從 Azure Blob 讀取資料：AML 讀取器模組**
 
-您可以在 Azure Machine Learning Studio 中，使用**讀取器模組**來讀取 Blob 中的資料。
+您可以在 Azure Machine Learning Studio 中，使用「匯入資料模組」從 Blob 讀取資料。
 
 
 ![AML\_ReaderBlob\_Module\_v3](./media/machine-learning-data-science-vm-do-ten-things/AML_ReaderBlob_Module_v3.png)
@@ -379,7 +379,7 @@ Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存�
 
 **必要條件**
 
-- 在 [Azure 入口網站](http://portal.azure.com)中建立 Azure Data Lake Analytics。
+- 在 [Azure 入口網站](https://portal.azure.com)中建立 Azure Data Lake Analytics。
 
 ![Azure\_Data\_Lake\_Create\_v2](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_Create_v2.png)
 
@@ -474,7 +474,7 @@ Azure HDInsight 是在雲端上的受管理 Apache Hadoop、Spark、HBase 和 St
 
 **必要條件**
 
-- 從 [Azure 入口網站](http://portal.azure.com)建立 Azure Blob 儲存體帳戶。此儲存體帳戶用來儲存 HDInsight 叢集的資料。
+- 從 [Azure 入口網站](https://portal.azure.com)建立 Azure Blob 儲存體帳戶。此儲存體帳戶用來儲存 HDInsight 叢集的資料。
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/Create_Azure_Blob.PNG)
 
@@ -910,4 +910,4 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。它可讓您使用 JSON 等�
 ## 摘要
 這些只是您可以在 Microsoft Data Science Virtual Machine 上可做的一些事情。您還可以做更多事情，讓它成為有效的分析環境。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -124,9 +124,8 @@ public IEnumerable<TodoItem> Get()
 - 在 Azure AD 租用戶中建立新的應用程式，然後在產生的提示中選取 [**原生用戶端應用程式**]。
     -	應用程式的 [**名稱**] 將對使用者說明您的應用程式
     -	請為 [**重新導向 Uri**] 值輸入 `http://TodoListClient/`。
-- 完成註冊後，AAD 會為您的應用程式指派一個唯一 [**應用程式識別碼**]。您在後續步驟中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
--	完成註冊後，請瀏覽至 [**設定**] 索引標籤，並找到 [**應用程式識別碼 URI**] 欄位。為此值輸入租用戶特定識別碼，例如 `https://contoso.onmicrosoft.com/TodoListService`
-- 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。按一下 [新增應用程式]。 在 [顯示] 下拉式清單中選取 [其他]，然後按一下上方的核取記號。找到並按一下您的待辦事項清單服務，然後按一下底部的核取記號以加入應用程式。從 [委派的權限] 下拉式清單中選取 [存取待辦事項清單服務]，並儲存設定。
+- 完成註冊後，AAD 會為您的應用程式指派一個唯一的**用戶端識別碼**。您在後續步驟中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
+- 此外，在 [**設定**] 索引標籤上找到 [其他應用程式的權限] 區段。按一下 [新增應用程式]。 在 [顯示] 下拉式清單中選取 [所有應用程式]，然後按一下上方的核取記號。找到並按一下您的待辦事項清單服務，然後按一下底部的核取記號以加入應用程式。從 [委派的權限] 下拉式清單中選取 [存取待辦事項清單服務]，並儲存設定。
 
 
 - 在 Visual Studio 中，請開啟 TodoListClient 專案中的 `App.config`，並在 [`<appSettings>`] 區段中輸入您的設定值。
@@ -140,4 +139,4 @@ public IEnumerable<TodoItem> Get()
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

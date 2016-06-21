@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 
@@ -86,4 +86,4 @@ Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`�
 
 Azure AD 使用 `Status` 元素中的 `StatusCode` 元素，來指出登出成功或失敗。登出嘗試失敗時，`StatusCode` 元素也可包含自訂錯誤訊息。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

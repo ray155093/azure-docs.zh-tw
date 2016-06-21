@@ -5,7 +5,7 @@
     keywords="什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor="curtand"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="06/07/2016"
 	ms.author="femila"/>
 
 # 群組原則和 MDM 設定
@@ -24,20 +24,20 @@
 要管理個人 (未受管理) 裝置的漫遊的企業可以使用 Azure 入口網站啟用或停用漫遊，而不是使用群組原則或 MDM下表描述可用的原則設定。
 
 ## MDM 設定
-MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。
+MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。Windows 10 行動裝置版支援僅適用於以 Microsoft 帳戶為基礎且透過使用者的 OneDrive 帳戶進行的漫遊。如需哪些裝置支援以 Azure AD 為基礎的同步處理的詳細資訊，請參閱＜裝置與端點＞一節。
 
 | 名稱 | 說明 |
 |------------------------------------|----------------------------------------------------------------------|
 | 允許 Microsoft 帳戶連接 | 允許使用者在裝置上使用 Microsoft 帳戶進行驗證 |
-| 允許同步處理我的設定 | 允許使用者漫遊 Windows 設定和應用程式資料 |
- 
+| 允許同步處理我的設定 | 讓使用者能夠漫遊 Windows 設定和應用程式資料。停用此原則，將停用行動裝置上的同步處理及備份 |
+
 ## 群組原則設定
-群組原則設定會套用至加入 Active Directory 網域的 Windows 10 裝置上。資料表包含管理同步處理設定的舊版設定，但不適用於 Windows 10 的企業狀態漫遊。
+群組原則設定會套用至加入 Active Directory 網域的 Windows 10 裝置上。資料表也包含看似可管理同步處理設定的舊版設定，但不適用於 Windows 10 的企業狀態漫遊 (已在其說明中註明「不要使用」)。
 
 | 名稱 | 說明 |
 |-------------------------------------|-------------|
 | 帳戶：封鎖 Microsoft 帳戶 |此原則設定會防止使用者在這部電腦上新增新的 Microsoft 帳戶|
-| 不要同步處理 |允許使用者漫遊 Windows 設定和應用程式資料|
+| 不要同步處理 |防止使用者漫遊 Windows 設定和應用程式資料|
 | 不要同步處理個人化 |停用主題群組的同步處理|
 | 不要同步處理瀏覽器設定 |停用 Internet Explorer 群組的同步處理|
 | 不要同步處理密碼 |停用密碼群組的同步處理|
@@ -55,4 +55,4 @@ MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。
 - [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0608_2016-->

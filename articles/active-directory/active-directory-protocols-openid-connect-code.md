@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 
@@ -197,4 +197,4 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。若要將使用者登入，您必須完整地如上方所述驗證 `id_token`。若要取得存取權杖，您可以遵循我們的 [OAuth 通訊協定文件](active-directory-protocols-oauth-code.md#Use-the-Authorization-Code-to-Request-an-Access-Token)中所述的步驟。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

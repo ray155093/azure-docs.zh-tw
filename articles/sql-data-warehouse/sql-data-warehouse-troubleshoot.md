@@ -1,6 +1,6 @@
 <properties
-   pageTitle="疑難排解 |Microsoft Azure"
-   description="疑難排解 SQL 資料倉儲的問題。"
+   pageTitle="針對 Azure SQL 資料倉儲問題進行疑難排解 | Microsoft Azure"
+   description="針對 Azure SQL 資料倉儲問題進行疑難排解。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="sonyam"
@@ -16,8 +16,8 @@
    ms.date="05/15/2016"
    ms.author="mausher;sonyama;barbkess"/>
 
-# 疑難排解
-下列主題列出一些客戶在使用 SQL 資料倉儲時常見的問題。
+# 針對 Azure SQL 資料倉儲問題進行疑難排解
+本主題列出一些您在使用「Azure SQL 資料倉儲」時可能遇到的較常見問題。
 
 ## 連線能力
 其他常見連線能力問題包括：
@@ -33,13 +33,13 @@ SQL 資料倉儲建議使用 [Visual Studio 2013 或 2015][] 以查詢您的資�
 
 ## 查詢效能
 
-針對資料庫設計，有幾個您可以執行的簡單動作，以確保您可以從 SQL 資料倉儲取得最佳化的查詢效能。一個開始了解查詢效能的好地方，是這篇針對[了解如何監視您的查詢][]所撰寫的文章。有時候，使查詢可以執行更快的解決方案，便是直接透過[調整您的 SQL 資料倉儲][]來加入更多計算能力。如果您想在單一位置找到這些最佳化方式，請查看 [SQL 資料倉儲最佳作法][]一文。
+針對資料庫設計，有幾個您可以執行的簡單動作，以確保您可以從 SQL 資料倉儲取得最佳化的查詢效能。[了解如何監視您的查詢][]一文是了解您查詢效能的絕佳起點。有時，只要[調整您的 SQL 資料倉儲][]來提升計算能力，即可改善查詢的執行速度。若想在一處就找到許多這些最佳化方式，請查看 [SQL 資料倉儲最佳做法][]一文。
 
 以下是一些造成查詢效能問題的最常見原因。
 
 ### 統計資料
 
-您資料表上的[統計資料][]包含資料庫資料行或資料行組合中值之範圍與頻率的相關資訊。查詢引擎會使用這些統計資料最佳化查詢執行，以及改善查詢效能。不像 SQL Server 或 SQL DB，SQL 資料倉儲不會自動建立或更新統計資料。所有資料表的統計資料都必須以手動方式維護。若要了解管理統計資料及識別需要統計資料之資料表的方式，請查看[管理 SQL 資料倉儲中的統計資料][]一文。
+您資料表上的[統計資料][]包含資料庫資料行或資料行組合中值之範圍與頻率的相關資訊。查詢引擎會使用這些統計資料最佳化查詢執行，以及改善查詢效能。與 SQL Server 或 SQL Database 不同，「SQL 資料倉儲」並不會自動建立或更新統計資料。所有資料表的統計資料都必須以手動方式維護。若要了解管理統計資料及識別需要統計資料之資料表的方式，請查看[管理 SQL 資料倉儲中的統計資料][]一文。
 
 ### 資料表設計
 
@@ -109,7 +109,7 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 <!--Image references-->
 
 <!--Article references-->
-[調整您的 SQL 資料倉儲]: ./sql-data-warehouse-overview-scalability.md
+[調整您的 SQL 資料倉儲]: ./sql-data-warehouse-manage-compute-overview.md
 [資料表設計]: ./sql-data-warehouse-develop-table-design.md
 [為您的資料表選擇正確的雜湊散發金鑰]: ./sql-data-warehouse-develop-hash-distribution-key
 [development overview]: ./sql-data-warehouse-overview-develop.md
@@ -119,6 +119,7 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 [設定您用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md/#create-a-new-azure-sql-server-level-firewall
 [Visual Studio 2013 或 2015]: ./sql-data-warehouse-get-started-connect.md
 [SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
+[SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 [統計資料]: ./sql-data-warehouse-develop-statistics.md
 
 <!--MSDN references-->
@@ -126,4 +127,4 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 
 <!--Other web references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

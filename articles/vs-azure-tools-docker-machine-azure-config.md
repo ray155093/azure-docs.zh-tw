@@ -3,7 +3,7 @@
    description="說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
    services="visual-studio-online"
    documentationCenter="na"
-   authors="SteveLas"
+   authors="allclark"
    manager="douge"
    editor="" />
 <tags
@@ -12,8 +12,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/16/2016"
-   ms.author="stevelas" />
+   ms.date="06/08/2016"
+   ms.author="allclark;stevelas" />
 
 # 使用 Docker-Machine 在 Azure 中建立 Docker 主機
 
@@ -27,14 +27,13 @@
 
 搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。
 
-Azure 驅動程式將需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https:/portal.azure.com)來擷取您的「Azure 訂用帳戶」。
+Azure 驅動程式將需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。
 
 **使用 Azure 入口網站**
 - 從左導覽頁面中選取 [訂用帳戶]，然後複製到訂用帳戶識別碼。
 
 **使用 Azure CLI**
 - 輸入 ```azure account list```，然後複製訂用帳戶識別碼。
-
 
 輸入 `docker-machine create --driver azure` 以查看選項和其預設值。您也可以查看 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)，以取得詳細資訊。
 
@@ -47,11 +46,13 @@ docker-machine create -d azure --azure-subscription-id <Your AZURE_SUBSCRIPTION_
 ## 使用 docker-machine 選擇 Docker 主機
 docker-machine 中有您主機的項目之後，即可在執行 docker 命令時設定預設主機。
 ##使用 PowerShell
+
 ```powershell
 docker-machine env MyDockerHost | Invoke-Expression 
 ```
 
 ##使用 Bash
+
 ```bash
 eval $(docker-machine env MyDockerHost)
 ```
@@ -95,6 +96,7 @@ d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago  
 ```
 
 查看執行中容器，並輸入 `docker-machine ip <VM name>` 以尋找要在瀏覽器中輸入的 IP 位址：
+
 ```
 PS C:\> docker-machine ip MyDockerHost
 191.237.46.90
@@ -107,4 +109,4 @@ PS C:\> docker-machine ip MyDockerHost
 
 若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

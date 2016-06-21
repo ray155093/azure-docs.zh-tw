@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 # Azure Active Directory 中的簽署金鑰變換
@@ -228,4 +228,4 @@ namespace JWTValidation
 
 您剛剛建立了 X509 憑證以做為 Azure AD 的公開金鑰。透過使用憑證的詳細資料，例如其指紋和到期日，您可以使用手動方式或以程式設計方式檢查應用程式目前使用的憑證和指紋是否有效。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

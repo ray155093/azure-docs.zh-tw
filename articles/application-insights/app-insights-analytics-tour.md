@@ -208,19 +208,24 @@
 
 ## 計算取樣的資料
 
-`sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是在運算中進行[取樣](app-insights-sampling.md)時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。因此，加總 itemCount 可正確估算事件的原始數目。
+`sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是在運算中進行[取樣](app-insights-sampling.md)時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。
+
+例如，如果取樣捨棄了 75%的原始事件，則在保留的記錄中 itemCount==4 - 也就是，針對每筆保留的記錄，會有四筆原始記錄。
+
+調適性取樣在您的應用程式大量使用期間會導致 itemCount 變得更高。
+
+因此，加總 itemCount 可正確估算事件的原始數目。
 
 
 ![](./media/app-insights-analytics-tour/510.png)
 
-另外還有 `count()` 彙總 (以及計數運算)，適用於您確實想要計算群組中的資料列數目時。
+另外還有 `count()` 彙總 (以及計數運算)，適用於您確實想要計算群組中的資料列數目的情況。
 
 
 目前提供一系列的[彙總函數](app-insights-analytics-reference.md#aggregations)。
 
 
 ## 製作結果圖表
-
 
 
 ```AIQL
@@ -307,7 +312,7 @@
 
 ## 多個系列 
 
-在 `summarize by` 子句中使用多個值，為每組值建立個別的資料列︰
+在 `summarize by` 子句中使用多個值，為每組值建立個別的資料列：
 
 ```AIQL
 
@@ -469,4 +474,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

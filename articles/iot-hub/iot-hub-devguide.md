@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="04/29/2016"
+ ms.date="05/29/2016" 
  ms.author="dobett"/>
 
 # Azure IoT 中樞開發人員指南
@@ -47,11 +47,13 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 * **裝置端點**。針對裝置身分識別登錄中所佈建的各個裝置，IoT 中樞會公開裝置可用來傳送並接收訊息的一組端點：
     - 傳送裝置到雲端的訊息。使用這個端點傳送裝置到雲端的訊息。如需詳細資訊，請參閱[裝置到雲端傳訊](#d2c)。
     - 接收雲端到裝置的訊息。使用此端點來接收目標雲端到裝置訊息的裝置。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
+    - *起始檔案上傳*。裝置會使用這個端點從 IoT 中樞接收 Azure 儲存體 SAS URI，以上傳檔案。如需詳細資訊，請參閱[檔案上傳](#fileupload)。 
 
     這些端點會使用 HTTP 1.1、[MQTT v3.1.1][lnk-mqtt] 和 [AMQP 1.0][lnk-amqp] 通訊協定加以公開。請注意，AMQP 也可透過連接埠 443 上的 [WebSockets][lnk-websockets] 來取得。
 * **服務端點**。各個 IoT 中樞會公開您的應用程式後端可用來與您的裝置通訊的一組端點。目前僅使用 [AMQP][lnk-amqp] 通訊協定公開這些端點。
-    - 接收裝置到雲端的訊息。此端點與 [Azure 事件中樞][lnk-event-hubs]相容。後端服務可用它來讀取由您的裝置所傳送的所有裝置到雲端訊息。如需詳細資訊，請參閱[裝置到雲端傳訊](#d2c)。
-    - 傳送雲端到裝置的訊息及接收傳遞通知。這些端點可讓您的應用程式後端傳送可靠的雲端到裝置訊息，以及接收相對應的傳遞或到期通知。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
+    - *接收裝置到雲端的訊息*。此端點與 [Azure 事件中樞][lnk-event-hubs]相容。後端服務可用它來讀取由您的裝置所傳送的所有裝置到雲端訊息。如需詳細資訊，請參閱[裝置到雲端傳訊](#d2c)。
+    - *傳送雲端到裝置的訊息及接收傳遞通知*。這些端點可讓您的應用程式後端傳送可靠的雲端到裝置訊息，以及接收相對應的傳遞或到期通知。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
+    - *接收檔案通知*。此訊息的端點可讓您接收您的裝置已成功上傳檔案的通知。 
 
 [IoT 中樞 API 和 SDK][lnk-apis-sdks] 一文說明您可用來存取這些端點的各種方式。
 
@@ -70,7 +72,7 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 
 > [AZURE.NOTE] 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。比方說，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
 
-然後，您可以使用具有 ServiceConnect 權限的任何共用存取安全性原則，連接至指定的事件中樞。
+然後，您可以使用具有 **ServiceConnect** 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 
 如果您需要使用先前資訊來建置事件中樞連接字串，請使用下列模式：
 
@@ -181,9 +183,9 @@ IoT 中樞使用下列「權限」組，授與每個 IoT 中樞端點的存取�
 * **各裝置的安全性認證**。每個 IoT 中樞都包含[裝置身分識別登錄](#device-identity-registry)。對於此登錄中的每個裝置，您可以設定安全性認證，以對應的裝置端點為範圍來授與 **DeviceConnect** 權限。
 
 例如，在典型的 IoT 解決方案中︰
-- 裝置管理元件使用 *registryReadWrite* 原則。
-- 事件處理器元件使用 *service* 原則。
-- 執行階段裝置商務邏輯元件使用 *service* 原則。
+- 裝置管理元件使用 registryReadWrite 原則。
+- 事件處理器元件使用 service 原則。
+- 執行階段裝置商務邏輯元件使用 service 原則。
 - 個別裝置會使用 IoT 中樞身分識別登錄內儲存的認證進行連接。
 
 如需 IoT 中樞安全性主題的指引，請參閱[設計您的解決方案][lnk-guidance-security]中的安全性一節。
@@ -244,8 +246,9 @@ HTTP 會透過在 **Authorization** 要求標頭中包含有效的權杖來實�
 
 IoT 中樞提供通訊的傳訊基礎︰
 
-- [雲端到裝置](#c2d)：來自應用程式後端 (*service* 或 *cloud*)。
+- [雲端到裝置](#c2d)︰從應用程式後端 (服務或雲端)。
 - [裝置到雲端](#d2c)︰從裝置到應用程式後端。
+- [檔案上傳](#fileupload)：從裝置到相關聯的 Azure 儲存體帳戶。 
 
 IoT 中樞傳訊功能的核心屬性是訊息的可靠性和持久性。這可在裝置端上恢復間歇性連線，以及在雲端恢復事件處理的負載尖峰。IoT 中樞會針對裝置到雲端和雲端到裝置訊息，實作「至少一次」傳遞保證。
 
@@ -322,7 +325,7 @@ IoT 中樞實作裝置到雲端訊息的方式類似於[事件中樞][lnk-event-
 * IoT 中樞不允許使用 **PartitionKey** 任意進行資料分割。裝置到雲端訊息會根據其原始的 **deviceId** 進行分割。
 * IoT 中樞的調整方式與事件中樞有些微不同。如需詳細資訊，請參閱[調整 IoT 中樞][lnk-guidance-scale]。
 
-請注意，這不表示您在所有情況下都能替代事件中樞的 IoT 中樞。例如，在某些事件處理運算中，有可能需要在分析資料串流之前，根據不同屬性或欄位而重新分割事件。在此案例中，您可以使用事件中樞來減少串流處理管線的兩個部分。如需詳細資訊，請參閱 [Azure 事件中樞概觀][lnk-eventhub-partitions]中的＜分割數＞。
+請注意，這不表示您在所有情況下都能替代事件中樞的 IoT 中樞。例如，在某些事件處理運算中，有可能需要在分析資料串流之前，根據不同屬性或欄位而重新分割事件。在此案例中，您可以使用事件中樞來減少串流處理管線的兩個部分。如需詳細資訊，請參閱 [Azure 事件中樞概觀][lnk-eventhub-partitions]中的「分割數」。
 
 如需如何使用裝置到雲端傳訊的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-apis-sdks]。
 
@@ -470,6 +473,67 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 
 如需詳細資訊，請參閱[管理 IoT 中樞][lnk-manage]。
 
+### 檔案上傳 <a id="fileupload"></a>
+
+如[端點](#endpoints)一節所詳述，裝置可以藉由透過裝置面向端點 (**/devices/{deviceId}/messages/events**) 傳送通知，來起始檔案上傳。當裝置通知 IoT 中樞已完成上傳時，IoT 中樞會產生檔案上傳通知，您可以透過服務面向端點 (**/messages/servicebound/filenotifications**) 利用訊息收到。
+
+不是透過 IoT 中樞本身的代理訊息，IoT 中樞會做為相關聯 Azure 儲存體帳戶的發送器。裝置會向 IoT 中樞要求儲存體權杖，這是裝置想要上傳的檔案的特定權杖。裝置會使用 SAS URI，將檔案上傳至儲存體，上傳完成時，裝置會將完成的通知傳送到 IoT 中樞。IoT 中樞會確認檔案已上傳，然後將檔案上傳通知新增至新服務面向檔案通知訊息端點。
+
+#### 讓 Azure 儲存體帳戶與 IoT 中樞產生關聯
+
+若要使用檔案上傳功能，您必須先將 Azure 儲存體帳戶連結至 IoT 中樞。您可以透過 [Azure 入口網站][lnk-management-portal]來完成，或透過 [Azure IoT 中樞 - 資源提供者 API][lnk-resource-provider-apis] 以程式設計方式來完成。一旦您將儲存體帳戶與 IoT 中樞產生關聯，服務會在裝置起始檔案上傳要求時，將 SAS URI 傳回至裝置。
+
+> [AZURE.NOTE] [Azure IoT 中樞 SDK][lnk-apis-sdks] 會自動處理擷取 SAS URI、上傳檔案，並且通知 IoT 中樞已完成上傳。
+
+#### 初始化檔案上傳
+
+IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲存體的 SAS URI，另一個用來通知 IoT 中樞已完成上傳。裝置會起始檔案上傳程序，方法是將 GET 傳送至 IoT 中樞的 `{iot hub}.azure-devices.net/devices/{deviceId}/files/{filename}` 。中樞會傳回要上傳之檔案的特定 SAS URI，以及上傳完成後要使用的相互關聯識別碼。
+
+#### 通知 IoT 中樞已完成檔案上傳
+
+裝置會負責使用 Azure 儲存體 SDK 將檔案上傳至儲存體。上傳完成後，裝置會將 POST 傳送至 IoT 中樞的 `{iot hub}.azure-devices.net/devices/{deviceId}/messages/files/notifications/{correlationId}`，使用從初始 GET 收到的相互關聯識別碼。
+
+#### 檔案上傳通知
+
+當裝置上傳檔案並通知 IoT 中樞上傳完成時，服務會選擇性地產生通知訊息，其中包含檔案的名稱和儲存體位置。
+
+如[端點](#endpoints)中所述，IoT 中樞會透過服務面向端點 (**/messages/servicebound/fileuploadnotifications**) 利用訊息來傳遞檔案上傳通知。檔案上傳通知的接收語意與雲端到裝置訊息的接收語意相同，並且具有相同的 [訊息生命週期](#訊息生命週期)。從檔案上傳通知端點擷取的每則訊息是具有下列屬性的 JSON 記錄：
+
+| 屬性 | 說明 |
+| -------- | ----------- |
+| EnqueuedTimeUtc | 指出通知建立時間的時間戳記。 |
+| DeviceId | 上傳檔案的裝置的 **DeviceId**。 |
+| BlobUri | 上傳檔案的 URI。 |
+| BlobName | 上傳檔案的名稱。 |
+| LastUpdatedTime | 指出上次更新檔案的時間戳記。 |
+| BlobSizeInBytes | 上傳檔案的大小。 |
+
+**範例**。以下是檔案上傳通知訊息的主體範例。
+
+```
+{
+	"deviceId":"mydevice",
+	"blobUri":"https://{storage account}.blob.core.windows.net/{container name}/mydevice/myfile.jpg",
+	"blobName":"mydevice/myfile.jpg",
+	"lastUpdatedTime":"2016-06-01T21:22:41+00:00",
+	"blobSizeInBytes":1234,
+	"enqueuedTimeUtc":"2016-06-01T21:22:43.7996883Z"
+}
+```
+
+#### 檔案上傳通知組態選項 <a id="c2dconfiguration"></a>
+
+每個 IoT 中樞都會針對檔案上傳通知公開下列組態選項：
+
+| 屬性 | 說明 | 範圍和預設值 |
+| -------- | ----------- | ----------------- |
+| **enableFileUploadNotifications** | 控制是否將檔案上傳通知寫入檔案通知端點。 | 布林預設值：True。 |
+| **fileNotifications.ttlAsIso8601** | 檔案上傳通知的預設 TTL。 | ISO\_8601 間隔高達 48H (最小為 1 分鐘)。預設值︰1 小時。 |
+| **fileNotifications.lockDuration** | 檔案上傳通知佇列的鎖定持續時間。 | 5 到 300 秒 (最小值 5 秒)。預設值：60 秒。 |
+| **fileNotifications.maxDeliveryCount** | 檔案上傳通知佇列的傳遞計數上限。 | 1 到 100。預設值 = 100。 |
+
+如需進一步資訊，請參閱[管理 IoT 中樞][lnk-manage]。
+
 ## 配額和節流 <a id="throttling"></a>
 
 每個 Azure 訂用帳戶最多可以有 10 個 IoT 中樞。
@@ -491,6 +555,7 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 | 裝置到雲端傳送 | 120/秒/單位 (適用於 S2), 12/秒/單位 (適用於 S1)。<br/>最小值為 100/秒。<br/> 例如，兩個 S1 單位是 2*12 = 24/秒，但是您在所有單位上將至少擁有 100/秒。如果有九個 S1 單位，您的全部單位就會擁有 108/秒 (9*12)。 |
 | 雲端到裝置的傳送 | 100/分鐘/單位。 |
 | 雲端到裝置的接收 | 1000/分鐘/單位。 |
+| 檔案上傳作業 | 100 個檔案上傳通知/最小值/單位 <br/> 10000 個 SAS URI 可以針對儲存體帳戶一次用盡 <br/> 10 個 SAS URI/裝置可以一次用盡 | 
 
 鄭重說明，「裝置連線」節流是控制 IoT 中樞建立新裝置連線的速率，而不是同時可連線的裝置數目上限。節流受制於為 Hub 佈建的單位數。
 
@@ -559,4 +624,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-mqtt-support]: iot-hub-mqtt-support.md
 [lnk-throttle-blog]: https://azure.microsoft.com/blog/iot-hub-throttling-and-you/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

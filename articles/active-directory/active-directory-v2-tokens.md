@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/20/2016"
+	ms.date="05/31/2016"
 	ms.author="dastrock"/>
 
 # v2.0 權杖參考
@@ -154,4 +154,4 @@ https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration
 | 授權碼 (公司或學校帳戶) | 10 分鐘 | 授權碼的存留期特意較短，且應在收到時立即兌換 access\_token 和 refresh\_token。 |
 | 授權碼 (個人帳戶) | 5 分鐘 | 授權碼的存留期特意較短，且應在收到時立即兌換 access\_token 和 refresh\_token。代表個人帳戶簽發的授權碼也是單次使用。 |
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0608_2016-->

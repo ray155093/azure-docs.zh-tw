@@ -26,7 +26,7 @@
 開始之前，您必須：
 
 - [設定開發環境][lnk-setupdevbox]以在 Windows 上使用 SDK。
-- [建立 IoT 中樞][lnk-create-hub] (於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- [建立 IoT 中樞][lnk-create-hub] \(於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
 - 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具將您的裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
 
 建置範例：
@@ -51,7 +51,7 @@
     [ 
         {
             "module name" : "IoTHub",
-            "module path" : "C:\\azure-iot-gateway-sdk\\modules\\iothub_http\\Debug\\iothub_http_hl.dll",
+            "module path" : "C:\\azure-iot-gateway-sdk\\modules\\iothubhttp\\Debug\\iothubhttp_hl.dll",
             "args" : 
             {
                 "IoTHubName" : "{Your IoT hub name}",
@@ -60,7 +60,7 @@
         },
         {
             "module name" : "mapping",
-            "module path" : "C:\\azure-iot-gateway-sdk\\modules\\mac_iothub_id_map\\Debug\\mac_iothub_id_map_hl.dll",
+            "module path" : "C:\\azure-iot-gateway-sdk\\modules\\identitymap\\Debug\\identitymap_hl.dll",
             "args" : 
             [
                 {
@@ -128,4 +128,4 @@
 [lnk-explorer-tools]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

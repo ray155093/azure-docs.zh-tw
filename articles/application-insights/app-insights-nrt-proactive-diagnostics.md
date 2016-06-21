@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/15/2016" 
+	ms.date="05/05/2016" 
 	ms.author="awills"/>
  
 # 接近即時主動診斷
@@ -23,9 +23,11 @@
 
 設定[專案的 Application Insights](app-insights-get-started.md) 之後，且若您的應用程式產生特定最少量的遙測，則 NRT 主動診斷需要 24 小時來了解您應用程式的正常行為，然後它才會啟動且可以傳送警示。
 
-以下是警示的範例：
+以下是警示範例。
 
 ![顯示失敗之相關叢集分析的智慧警示範例](./media/app-insights-nrt-proactive-diagnostics/010.png)
+
+> [AZURE.NOTE] 根據預設，您所取得的郵件格式會比這個範例還簡短。不過，您也可以[切換到這個詳細格式](#configure-alerts)。
 
 請注意，它會告訴您︰
 
@@ -35,11 +37,13 @@
 * 看起來似乎與特色失敗要求相關聯的例外狀況、記錄追蹤和相依性失敗 (資料庫或其他外部元件)。
 * 直接連結到 Application Insights 的遙測上相關搜尋。
 
-一般的[度量警示](app-insights-alerts.md)告訴您可能有問題。但是 NRT 主動診斷會啟動診斷工作，為您執行許多您原本必須自行進行的分析。您達到幾近封裝完成的結果，幫助您快速取得問題的根源。
+## 主動警示的優點
+
+一般的[度量警示](app-insights-alerts.md)會告訴您可能有問題。但是 NRT 主動診斷會啟動診斷工作，為您執行許多您原本必須自行進行的分析。您達到幾近封裝完成的結果，幫助您快速取得問題的根源。
 
 ## 運作方式
 
-接近即時主動診斷會監視從應用程式收到的遙測，特別是要求失敗率的遙測。此標準計算 `Successful request` 屬性為 false 的要求數目。根據預設，`Successful request== (resultCode < 400)` (除非您撰寫自訂程式碼來[篩選](app-insights-api-filtering-sampling.md#filtering)或產生自己的 [TrackRequest](app-insights-api-custom-events-metrics.md#track-request) 呼叫)。
+接近即時主動診斷會監視從應用程式收到的遙測，特別是要求失敗率的遙測。這個度量會計算 `Successful request` 屬性為 false 的要求數目。根據預設，`Successful request== (resultCode < 400)` (除非您撰寫自訂程式碼來[篩選](app-insights-api-filtering-sampling.md#filtering)或產生自己的 [TrackRequest](app-insights-api-custom-events-metrics.md#track-request) 呼叫)。
 
 您的應用程式效能具有一般的行為模式。某些要求會比其他要求更容易失敗；且整體失敗率可能會隨著負載增加而上移。NRT 主動診斷會使用機器學習服務來尋找這些異常狀況。
 
@@ -53,17 +57,40 @@
 
 如同[您手動設定的警示](app-insights-alerts.md)，您可以檢查警示的狀態，並在 Application Insights 資源的 [警示] 刀鋒視窗中進行設定。但不同於其他警示，您不需要設定 NRT 主動診斷。若有需要，您可以將它停用或變更其目標電子郵件地址。
 
+
+## 設定警示 
+
+您可以停用主動診斷、變更電子郵件收件者、建立 Webhook，或選擇更詳細的警示訊息。
+
+開啟 [警示] 頁面。主動診斷已包含於任何您已手動設定的警示中，且您可以查看其目前是否處於警示狀態。
+
+![在 [概觀] 頁面中，按一下 [警示] 圖格。或在任何 [度量] 頁面上，按一下 [警示] 按鈕。](./media/app-insights-nrt-proactive-diagnostics/021.png)
+
+按一下警示來進行設定。
+
+![組態](./media/app-insights-nrt-proactive-diagnostics/031.png)
+
+
+請注意，您可以停用主動診斷，但無法將它刪除 (或建立另一個)。
+
+#### 詳細的警示
+
+如果您選取 [Receive detailed analysis] \(接收詳細分析)，則電子郵件會包含詳細的診斷資訊。有時候您從電子郵件中的資料就能夠診斷問題。
+
+因為更詳細的警示包含例外狀況和追蹤訊息，所以不太可能包含機密資訊。不過，只有當您的程式碼允許機密資訊進入這些訊息時，才會發生。
+
+
 ## 分級和診斷警示
 
 發出警示表示系統偵測到要求失敗率異常上升。原因可能是您的應用程式或其環境有問題。
 
-您可以根據要求的百分比及受影響的使用者數目來決定此問題的緊急程度。在上述範例中，15% 的失敗率會與正常比率 1.3% 相比，表示有問題。22 個不同使用者受特定作業失敗影響。如果是您的應用程式，您可以評估嚴重程度。
+您可以根據要求的百分比及受影響的使用者數目來決定此問題的緊急程度。在上述範例中，22.5% 的失敗率與正常比率 1% 相比，表示有問題。從另一方面來看，只有 11 位使用者受到影響。如果是您的應用程式，您可以評估嚴重程度。
 
 在多數情況下，您可以根據要求名稱、例外狀況、相依性失敗及提供的追蹤資料來快速診斷問題。
 
 另有一些線索。例如，此範例中的相依性失敗率與例外狀況率 (89.3%) 相同。這可能表示例外狀況直接從相依性失敗產生，讓您清楚瞭解從何處開始查看程式碼。
 
-若要進一步調查，每個區段中的連結將直接連結到已針對相關要求、例外狀況、相依性或追蹤篩選的[搜尋頁面](app-insights-diagnostic-search.md)。或者，您可以開啟 [Azure 入口網站](https://portal.azure.com)，瀏覽至您應用程式的 Application Insights 資源，並開啟 [失敗] 刀鋒視窗。
+若要進一步調查，每個區段中的連結將直接連結到已針對相關要求、例外狀況、相依性或追蹤篩選的[搜尋頁面](app-insights-diagnostic-search.md)。或者，您可以開啟 [Azure 入口網站](https://portal.azure.com)，瀏覽至應用程式的 Application Insights 資源，並開啟 [失敗] 刀鋒視窗。
 
 在此範例中，按一下 [檢視相依性失敗詳細資料] 連結會在 Application Insights 搜尋刀鋒視窗中開啟含根本原因的 SQL 陳述式：必要欄位上提供的 NULL，且未在儲存作業期間通過驗證。
 
@@ -74,22 +101,16 @@
 
 若要在入口網站中檢閱警示，請依序開啟 [設定]、[稽核記錄檔]。
 
-![警示摘要](./media/app-insights-nrt-proactive-diagnostics/040.png)
+![警示摘要](./media/app-insights-nrt-proactive-diagnostics/041.png)
+
 
 點選任何一個警示來查看其完整詳細資料。
 
+或者，按一下 [主動式偵測]，直接取得最新的警示：
 
-## 設定警示 
+![警示摘要](./media/app-insights-nrt-proactive-diagnostics/070.png)
 
-開啟 [警示] 頁面。主動診斷已包含於任何您已手動設定的警示中，且您可以查看其目前是否處於警示狀態。
 
-![在 [概觀] 頁面中，按一下 [警示] 圖格。或在任何 [度量] 頁面上，按一下 [警示] 按鈕。](./media/app-insights-nrt-proactive-diagnostics/021.png)
-
-按一下警示來進行設定。
-
-![組態](./media/app-insights-nrt-proactive-diagnostics/031.png)
-
-請注意，您可以停用主動診斷，但無法將它刪除 (或建立另一個)。
 
 
 ## 不同之處在於...
@@ -101,7 +122,7 @@ NRT 主動診斷與其他相似但不同的 Application Insights 功能互補。
     NRT 主動診斷會自動調整其臨界值以回應主要條件。
 
     NRT 主動診斷會為您啟動診斷。 
-* [主動偵測](app-insights-proactive-detection.md)也會使用電腦智慧在您的度量中探索不尋常的模式，且您不需進行設定。但不同於 NRT 主動診斷，主動偵測的目的是要尋找各種使用方式中可能無法正常作用的片段，例如特定頁面在特定的瀏覽器上。此分析會每日執行，且如果發現任何結果，它可能不像警示那麼緊急。相較之下，NRT 主動診斷的分析是對傳入的遙測持續執行，且如果伺服器失敗率超出預期，您會在幾分鐘內收到通知。
+* [主動式偵測](app-insights-proactive-detection.md)也會使用電腦智慧在您的度量中探索不尋常的模式，且您不需進行設定。但不同於 NRT 主動診斷，主動偵測的目的是要尋找各種使用方式中可能無法正常作用的片段，例如特定頁面在特定的瀏覽器上。此分析會每日執行，且如果發現任何結果，它可能不像警示那麼緊急。相較之下，NRT 主動診斷的分析是對傳入的遙測持續執行，且如果伺服器失敗率超出預期，您會在幾分鐘內收到通知。
 
 ## 如果您收到 NRT 主動診斷警示
 
@@ -136,6 +157,6 @@ NRT 主動診斷與其他相似但不同的 Application Insights 功能互補。
 
 ## 懇請給予意見反應
 
-*我們也很想要知道您的想法。請傳送意見反應至：*[ainrtpd@microsoft.com](mailto:ainrtpd@microsoft.com)。
+我們也很想要知道您的想法。請將意見反應傳送到：[ainrtpd@microsoft.com](mailto:ainrtpd@microsoft.com)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

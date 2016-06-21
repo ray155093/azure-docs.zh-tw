@@ -12,8 +12,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/29/2016"
-   ms.author="v-sharos" />
+   ms.date="06/01/2016"
+   ms.author="anoobbacker" />
 
 # 停用及刪除 StorSimple 裝置
 
@@ -105,4 +105,4 @@
 
 - 若要了解如何使用 StorSimple Manager，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0608_2016-->

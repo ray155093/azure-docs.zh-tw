@@ -64,7 +64,7 @@
 
 以下 SDK 適用於操作金鑰保存庫︰
 
-|[![.NET](./media/key-vault-developers-guide/net.png)](https://msdn.microsoft.com/library/azure/dn903301.aspx)|[![Node.js](./media/key-vault-developers-guide/nodejs.png)](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)
+|[![.NET](./media/key-vault-developers-guide/msft.netlogo_purple.png)](https://msdn.microsoft.com/library/azure/dn903301.aspx)|[![Node.js](./media/key-vault-developers-guide/nodejs.png)](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)
 |:--:|:--:|
 |[.NET SDK 文件](https://msdn.microsoft.com/library/azure/dn903301.aspx)|[Node.js SDK 文件](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)|
 |[.NET SDK 封裝](https://azure.microsoft.com/documentation/api/)|[Node.js SDK 封裝](https://www.npmjs.com/package/azure-keyvault)|
@@ -97,4 +97,4 @@
 - [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 - [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

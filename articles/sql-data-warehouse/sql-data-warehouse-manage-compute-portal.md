@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/06/2016"
+   ms.date="06/01/2016"
    ms.author="barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的計算能力 (Azure 入口網站)
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-overview-manage-compute.md)
+- [概觀](sql-data-warehouse-manage-compute-overview.md)
 - [入口網站](sql-data-warehouse-manage-compute-portal.md)
 - [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 - [REST](sql-data-warehouse-manage-compute-rest-api.md)
@@ -34,7 +34,7 @@
 - 暫停計算
 - 繼續計算
 
-若要深入了解，請參閱[管理計算能力概觀][]。
+若要深入了解，請參閱[管理計算概觀][]。
 
 <a name="scale-performance-bk"></a> <a name="scale-compute-bk"></a>
 
@@ -112,7 +112,7 @@
 
 <!--Article references-->
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
-[管理計算能力概觀]: ./sql-data-warehouse-overview-manage-compute.md
+[管理計算概觀]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 
@@ -121,4 +121,4 @@
 
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

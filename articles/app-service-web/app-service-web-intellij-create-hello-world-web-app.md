@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="05/19/2016" 
+	ms.date="06/07/2016" 
 	ms.author="asirveda;robmcm"/>
 
 # 在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式
@@ -96,51 +96,51 @@
 
   1. 為您的 Web 應用程式容器輸入 **DNS 標籤**，這會為您在 Azure 中的 Web 應用程式構成主機 URL 的分葉 DNS 標籤。注意：名稱必須可用，且符合 Azure Web 應用程式命名需求。
 
-  1. 在 [Web Container]\(Web 容器) 下拉式功能表中，為您的應用程式選取適當的軟體。
+  1. 在 [Web Container] \(Web 容器) 下拉式功能表中，為您的應用程式選取適當的軟體。
 
         Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
 
-  1. 在 [訂用帳戶] 下拉式選單中，選取您希望此部署使用的訂用帳戶。
+  1. 在 [Subscription] \(訂用帳戶) 下拉式選單中，選取您希望此部署使用的訂用帳戶。
 
-  1. 在 [資源群組] 下拉式功能表中，選取您要與 Web 應用程式相關聯的資源群組。
+  1. 在 [Resource Group] \(資源群組) 下拉式功能表中，選取您要與 Web 應用程式相關聯的資源群組。
 
         Note: Azure Resource Groups allow you to group related resources together so that, for example, they can be deleted together.
 
         You can select an existing Resource Group (if you have any) and skip to step g below, or use the following these steps to create a new Resource Group:
 
-      * 按一下 [新增...]
+      * 按一下 [New...] \(新增...)
 
-      * [New Resource Group]\(新增資源群組) 對話方塊會隨即顯示：
+      * [New Resource Group] \(新增資源群組) 對話方塊會隨即顯示：
 
             ![][12]
 
-      * 在 [名稱] 文字方塊中，為新的資源群組指定名稱。
+      * 在 [Name] \(名稱) 文字方塊中，為新的資源群組指定名稱。
 
-      * 在 [區域] 下拉式功能表中，為資源群組選取適當的 Azure 資料中心位置。
+      * 在 [Region] \(區域) 下拉式功能表中，為資源群組選取適當的 Azure 資料中心位置。
 
       * 按一下 [確定]。
 
-  1. [App Service 方案] 下拉式功能表會列出與您選取之資源群組相關聯的應用程式服務方案。
+  1. [App Service Plan] \(App Service 方案) 下拉式功能表會列出與您選取之資源群組相關聯的應用程式服務方案。
 
         Note: An App Service Plan specifies information such as the location of your Web App, the pricing tier and the compute instance size. A single App Service Plan can be used for multiple Web Apps, which is why it is maintained separately from a specific Web App deployment.
 
         You can select an existing App Service Plan (if you have any) and skip to step h below, or use the following these steps to create a new App Service Plan:
 
-      * 按一下 [新增...]
+      * 按一下 [New...] \(新增...)
 
-      * [New App Service Plan]\(新增 App Service 方案) 對話方塊會隨即顯示：
+      * [New App Service Plan] \(新增 App Service 方案) 對話方塊會隨即顯示：
 
             ![][13]
 
-      * 在 [名稱] 文字方塊中，為新的 App Service 方案指定名稱。
+      * 在 [Name] \(名稱) 文字方塊中，為新的 App Service 方案指定名稱。
 
-      * 在 [位置] 下拉式功能表中，為該方案選取適當的 Azure 資料中心位置。
+      * 在 [Location] \(位置) 下拉式功能表中，為該方案選取適當的 Azure 資料中心位置。
 
-      * 在 [定價層] 下拉式功能表中，為方案選取適當的價格。若為測試用途，您可以選擇 [免費]。
+      * 在 [Pricing Tier] \(定價層) 下拉式功能表中，為方案選取適當的價格。若為測試用途，您可以選擇 [Free] \(免費)。
 
-      * 在 [執行個體大小] 下拉式功能表中，為方案選取適當的執行個體大小。若為測試用途，您可以選擇 [小型]。
+      * 在 [Instance Size] \(執行個體大小) 下拉式功能表中，為方案選取適當的執行個體大小。若為測試用途，您可以選擇 [Small] \(小型)。
 
-  1. 一旦您完成所有上述步驟之後，[New Web App Container]\(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+  1. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
 
         ![][14]
 
@@ -215,19 +215,35 @@
 
 ## 後續步驟
 
-如需詳細資訊，請參閱下列連結：
+如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
-* [Java 開發人員中心]
-* [Web Apps 概觀]
+- [適用於 Eclipse 的 Azure 工具組]
+  - [安裝 Azure Toolkit for Eclipse]
+  - [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
+  - [適用於 Eclipse 的 Azure 工具組的新功能]
+- [Azure Toolkit for IntelliJ]
+  - [安裝 Azure Toolkit for IntelliJ]
+  - 在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式 (本文)
+
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+
+如需建立 Azure Web Apps 的詳細資訊，請參閱 [Web 應用程式概觀]。
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 
+[適用於 Eclipse 的 Azure 工具組]: ../azure-toolkit-for-eclipse.md
+[Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
 [Azure Toolkit for IntelliJ (適用於 IntelliJ 的 Azure 工具組)]: ../azure-toolkit-for-intellij.md
+[Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web-eclipse-create-hello-world-web-app.md
+[安裝 Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
 [Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]: ../azure-toolkit-for-intellij-installation.md
-[Java 開發人員中心]: https://azure.microsoft.com/develop/java/
-[Web Apps 概觀]: ./app-service-web-overview.md
+[安裝 Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
+[適用於 Eclipse 的 Azure 工具組的新功能]: ../azure-toolkit-for-eclipse-whats-new.md
+
+[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[Web 應用程式概觀]: ./app-service-web-overview.md
 
 <!-- IMG List -->
 
@@ -251,4 +267,4 @@
 [17]: ./media/app-service-web-intellij-create-hello-world-web-app/17-Browse-Web-App.png
 [18]: ./media/app-service-web-intellij-create-hello-world-web-app/18-Stop-Web-App.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="php" 
 	ms.devlang="php" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="06/07/2016" 
 	ms.author="wesmc"/>
 
 # 如何從 PHP 使用通知中樞
@@ -38,7 +38,7 @@
 若要傳送 iOS 原生通知：
 	
 	$notification = new Notification("apple", '{"aps":{"alert": "Hello!"}}');
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 ## 實作
 如果您尚未執行此作業，請遵循[開始使用教學課程]的指示，進行到您必須實作後端的最後一節。另外，若有需要，您可以使用 [PHP REST 包裝函式範例]的程式碼，並直接移至[完成教學課程](#complete-tutorial)一節。
@@ -206,18 +206,18 @@
 	$toast = '<toast><visual><binding template="ToastText01"><text id="1">Hello from PHP!</text></binding></visual></toast>';
 	$notification = new Notification("windows", $toast);
 	$notification->headers[] = 'X-WNS-Type: wns/toast';
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 ### iOS
 
 	$alert = '{"aps":{"alert":"Hello from PHP!"}}';
 	$notification = new Notification("apple", $alert);
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 ### Android
 	$message = '{"data":{"msg":"Hello from PHP!"}}';
 	$notification = new Notification("gcm", $message);
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 ### Windows Phone 8.0 和 8.1 Silverlight
 
@@ -230,13 +230,13 @@
 	$notification = new Notification("windowsphone", $toast);
 	$notification->headers[] = 'X-WindowsPhone-Target : toast';
 	$notification->headers[] = 'X-NotificationClass : 2';
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 
 ### Kindle Fire
 	$message = '{"data":{"msg":"Hello from PHP!"}}';
 	$notification = new Notification("adm", $message);
-	$hub->sendNotification($notification);
+	$hub->sendNotification($notification, null);
 
 執行 PHP 程式碼現在應會產生一則顯示於目標裝置的通知。
 
@@ -254,4 +254,4 @@
 [開始使用教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0608_2016-->

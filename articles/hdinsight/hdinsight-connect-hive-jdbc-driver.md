@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="04/20/2016"
+ ms.date="06/03/2016"
  ms.author="larryfr"/>
 
 #使用 Hive JDBC 驅動程式連接到 Azure HDInsight 上的 Hive
@@ -161,15 +161,15 @@ __徵狀__︰連接到 HDInsight 叢集版本 3.3 或 3.4 時，您可能會收�
     at java.util.concurrent.FutureTas...(FutureTask.java:122)
     at java.util.concurrent.FutureTask.get(FutureTask.java:206)
 
-__原因__︰這個錯誤起因於 SQuirreL 使用的 common-codec.jar 檔案版本與從 HDInsight 叢集下載之 Hive JDBC 元件要求的不相符。
+__原因__︰這個錯誤起因於 SQuirreL 使用的 commons-codec.jar 檔案版本與從 HDInsight 叢集下載之 Hive JDBC 元件要求的不相符。
 
 __解決方案__︰若要修正此錯誤，請使用下列步驟。
 
-1. 從您的 HDInsight 叢集下載 common-codec jar 檔案。
+1. 從您的 HDInsight 叢集下載 commons-codec jar 檔案。
 
-        scp USERNAME@CLUSTERNAME:/usr/hdp/current/hive-client/lib/common-codec*.jar ./common-codec.jar
+        scp USERNAME@CLUSTERNAME:/usr/hdp/current/hive-client/lib/commons-codec*.jar ./commons-codec.jar
 
-2. 結束 SQuirreL，然後前往系統上安裝 SQuirreL 的目錄。在 SquirreL 目錄的 `lib` 目錄下，將現有的 common-codec.jar 取代為從 HDInsight 叢集下載的版本。
+2. 結束 SQuirreL，然後前往系統上安裝 SQuirreL 的目錄。在 SquirreL 目錄的 `lib` 目錄下，使用從 HDInsight 叢集下載的版本來取代現有的 commons-codec.jar。
 
 3. 重新啟動 SQuirreL。連接到 HDInsight 上的 Hive 時應該不會再出現此錯誤。
 
@@ -182,4 +182,4 @@ __解決方案__︰若要修正此錯誤，請使用下列步驟。
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

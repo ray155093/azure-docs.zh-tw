@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/24/2016"
+   ms.date="06/03/2016"
    ms.author="telmos" />
 
 # VM 與角色執行個體的名稱解析
@@ -101,7 +101,7 @@
 	- 將 “prepend domain-name-servers 127.0.0.1;” 新增至 “/etc/dhclient-eth0.conf”
 	- 重新啟動網路服務 (「服務網路重新啟動」) 來設定快取做為本機 DNS 解析程式
 
-> [AZURE.NOTE]：'dnsmasq' 封裝只是許多適用於 Linux 之 DNS 快取的其中一個。使用它之前，請檢查特定需求的適用性，而且沒有安裝其他快取。
+> [AZURE.NOTE] 'dnsmasq' 封裝只是適用於 Linux 的眾多 DNS 快取其中之一。使用它之前，請檢查特定需求的適用性，而且沒有安裝其他快取。
 
 用戶端重試：
 
@@ -131,14 +131,16 @@ resolv.conf 檔案通常是自動產生的，且不可編輯。新增 [選項] �
 
 虛擬網路內的 DNS 可以將要求轉送到 Azure 內的遞迴解析程式，以解析該虛擬網路內的主機名稱。例如，在 Azure 中執行的網域控制站 (DC) 可以回應其網域的 DNS 要求，並將所有其他要求轉送到 Azure。這樣可讓 VM 查看您的內部部署資源 (透過 DC) 以及 Azure 提供的主機名稱 (透過轉送)。存取 Azure 的遞迴解析程式是透過所提供的虛擬 IP 168.63.129.16。
 
-DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠解析 Azure 提供的主機名稱。為了解析 VM的主機名稱，DNS 伺服器 VM 必須位於同一個虛擬網路中，且設定為將主機名稱要求轉送到 Azure。因為每個 vnet 的 DNS 尾碼都不同，所以您可以使用條件性轉送規則來將 DNS 要求傳送到正確的 vnet 進行解析。下圖顯示兩個 vnet 及一個內部部署網路使用此方法進行 vnet 之間的 DNS 解析：
+DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠解析 Azure 提供的主機名稱。為了解析 VM的主機名稱，DNS 伺服器 VM 必須位於同一個虛擬網路中，且設定為將主機名稱要求轉送到 Azure。因為每個 vnet 的 DNS 尾碼都不同，所以您可以使用條件性轉送規則來將 DNS 要求傳送到正確的 vnet 進行解析。下圖顯示使用此方法進行虛擬網路間 DNS 解析的兩個 vnet 及一個內部部署網路。如需 DNS 轉寄站的範例，請參閱 [Azure 快速入門範本庫](https://azure.microsoft.com/documentation/templates/301-dns-forwarder/) 和 [GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/301-dns-forwarder)。
 
 ![虛擬網路之間的 DNS](./media/virtual-networks-name-resolution-for-vms-and-role-instances/inter-vnet-dns.png)
 
-使用 Azure 提供的名稱解析時，會提供內部 DNS 尾碼給每部使用 DHCP 的 VM。使用您自己的名稱解析解決方案時，不會提供 VM 此尾碼，因為它會干擾其他 DNS 架構。若要透過 FQDN 參照電腦，或要設定 VM 上的尾碼，可使用 PowerShell 或 API 來決定尾碼：
+使用 Azure 提供的名稱解析時，會提供一個內部 DNS 尾碼 (*.internal.cloudapp.net) 給每部使用 DHCP 的 VM。這會啟用主機名稱解析，因為主機名稱記錄是在 internal.cloudapp.net 區域中。使用您自己的名稱解析解決方案時，則不會提供 IDNS 尾碼給 VM，因為它會干擾其他 DNS 架構 (例如在已加入網域的案例中)。我們會改為提供一個沒有作用的預留位置 (reddog.microsoft.com)。
 
--  對於資源管理員部署模型中的虛擬網路，可透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源或 [Get-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619434.aspx) Cmdlet 來取得尾碼。    
--  對於傳統部署模型，可透過[取得部署 API](https://msdn.microsoft.com/library/azure/ee460804.aspx) 呼叫，或透過 [Get-AzureVM -Debug](https://msdn.microsoft.com/library/azure/dn495236.aspx) Cmdlet 來取得尾碼。
+如有需要，可以使用 PowerShell 或 API 來確定內部 DNS 尾碼︰
+
+-  針對 Resource Manager 部署模型中的虛擬網路，您可以透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源或 [Get-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619434.aspx) Cmdlet 來取得尾碼。    
+-  在傳統部署模型中，可以透過[取得部署 API](https://msdn.microsoft.com/library/azure/ee460804.aspx) 呼叫或 [Get-AzureVM -Debug](https://msdn.microsoft.com/library/azure/dn495236.aspx) Cmdlet 來取得尾碼。
 
 
 如果將查詢轉送到 Azure 不符合您的需求，您會需要提供專屬的 DNS 解決方案。您的 DNS 解決方案將需要：
@@ -148,7 +150,7 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 -  可從其服務的用戶端存取 (連接埠 53 上的 TCP 和 UDP)，且能夠存取網際網路。
 -  受保護以防止來自網際網路的存取，降低外部代理程式的威脅。
 
-> [AZURE.NOTE] 為了達到最佳效能，使用 Azure VM 做為 DNS 伺服器時，應該停用 IPv6 且 [執行個體層級公用 IP](virtual-networks-instance-level-public-ip.mp) 應該指派給每個 DNS 伺服器 VM。如果您選擇以 Windows Server 做為 DNS 伺服器，[這篇文章](http://blogs.technet.com/b/networking/archive/2015/08/19/name-resolution-performance-of-a-recursive-windows-dns-server-2012-r2.aspx)提供了其他的效能分析和最佳化方法。
+> [AZURE.NOTE] 為了達到最佳效能，使用 Azure VM 做為 DNS 伺服器時，應該停用 IPv6 且 [執行個體層級公用 IP](virtual-networks-instance-level-public-ip.md) 應該指派給每個 DNS 伺服器 VM。如果您選擇使用 Windows Server 做為 DNS 伺服器，[這篇文章](http://blogs.technet.com/b/networking/archive/2015/08/19/name-resolution-performance-of-a-recursive-windows-dns-server-2012-r2.aspx)提供了其他的效能分析和最佳化方法。
 
 
 ### 指定 DNS 伺服器
@@ -158,9 +160,9 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 > [AZURE.NOTE] 網路連接屬性，例如 DNS 伺服器 IP，不應該直接在 Windows VM 內編輯，因為當替換虛擬網路介面卡時，它們可能會在服務修復期間被清除。
 
 
-使用資源管理員部署模型時，DNS 伺服器可以在入口網站、API/範本 ([vnet](https://msdn.microsoft.com/library/azure/mt163661.aspx)、[nic](https://msdn.microsoft.com/library/azure/mt163668.aspx)) 或 PowerShell ([vnet](https://msdn.microsoft.com/library/mt603657.aspx)、[nic](https://msdn.microsoft.com/library/mt619370.aspx)) 中指定。
+使用 Resource Manager 部署模型時，可以在入口網站、API/範本 ([vnet](https://msdn.microsoft.com/library/azure/mt163661.aspx)、[nic](https://msdn.microsoft.com/library/azure/mt163668.aspx)) 或 PowerShell ([vnet](https://msdn.microsoft.com/library/mt603657.aspx)、[nic](https://msdn.microsoft.com/library/mt619370.aspx)) 中指定 DNS 伺服器。
 
-使用傳統部署模型時，虛擬網路的 DNS 伺服器可以在入口網站或[網路組態檔案](https://msdn.microsoft.com/library/azure/jj157100)中指定。對於雲端服務，DNS 伺服器是透過[服務組態檔案](https://msdn.microsoft.com/library/azure/ee758710)或在 PowerShell ([New-AzureVM](https://msdn.microsoft.com/library/azure/dn495254.aspx)) 中指定。
+使用傳統部署模型時，可以在入口網站或[網路組態檔案](https://msdn.microsoft.com/library/azure/jj157100)中指定虛擬網路的 DNS 伺服器。針對雲端服務，則是透過[服務組態檔案](https://msdn.microsoft.com/library/azure/ee758710)或在 PowerShell ([New-AzureVM](https://msdn.microsoft.com/library/azure/dn495254.aspx)) 中指定 DNS 伺服器。
 
 > [AZURE.NOTE] 如果您變更已部署好之虛擬網路/虛擬機器的 DNS 設定，您必須重新啟動每個受影響的 VM，變更才會生效。
 
@@ -181,4 +183,4 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 - [虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100)
 - [使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md) 
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0608_2016-->

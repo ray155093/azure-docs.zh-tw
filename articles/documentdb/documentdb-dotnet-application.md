@@ -40,7 +40,7 @@
 
 - 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - [Visual Studio 2013](http://www.visualstudio.com/) Update 4 或更新版本。
-- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] (英文) 取得。
+- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] \(英文) 取得。
 
 本文中的所有螢幕擷取畫面都是使用已套用 Update 4 的 Visual Studio 2013 以及 Azure SDK for .NET 2.5.1 版所取得。如果您的系統是設定使用不同的版本，則您的畫面和選項可能不會完全相符，但只要您符合上述必要條件，本方案應該還是有效。
 
@@ -581,7 +581,7 @@
 
 恭喜！ 您剛剛使用 Azure DocumentDB 建置您的第一個 ASP.NET MVC Web 應用程式，並將它發佈至 Azure 網站。您可以從 [GitHub][] 下載或複製完整應用程式 (包括不包含在本教學課程中的詳細資料和刪除功能) 的原始程式碼。所以如果您想要將程式碼加入您的應用程式，請抓取程式碼，並將它加入這個應用程式。
 
-若要將其他功能加入至您的應用程式，請檢閱[文件 DB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][] 上的 DocumentDB .NET 程式庫。
+若要將其他功能加入至您的應用程式，請檢閱[DocumentDB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][] 上的 DocumentDB .NET 程式庫。
 
 
 [*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
@@ -591,4 +591,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -64,7 +64,7 @@
 
 6.  登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-7.  使用[讀取器][reader]模組讀取 Azure Blob 的資料。
+7.  使用[匯入資料][import-data]模組從 Azure Blob 讀取資料。
 
 8. 建置從內嵌的資料集開始的 Azure 機器學習實驗流程。
 
@@ -90,7 +90,7 @@
 
 8. 登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-9. 使用[讀取器][reader]模組讀取 Azure Blob 的資料。
+9. 使用[匯入資料][import-data]模組從 Azure Blob 讀取資料。
 
 10. 建置從內嵌的資料集開始的 Azure ML 實驗流程。
 
@@ -132,7 +132,7 @@
 
 9. 登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-10. 使用[讀取器][reader]模組，直接從 SQL Server 讀取資料。若有需要，將可擷取欄位、建立功能和取樣資料的必要查詢，直接貼入[讀取器][reader]查詢。
+10. 使用[匯入資料][import-data]模組直接從 SQL Server 讀取資料。視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 
 11. 建置從內嵌的資料集開始的 Azure ML 實驗流程。
 
@@ -176,7 +176,7 @@
 
 7.  登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-8. 使用[讀取器][reader]模組，直接從 SQL Server 讀取資料。若有需要，將可擷取欄位、建立功能和取樣資料的必要查詢，直接貼入[讀取器][reader]查詢。
+8. 使用[匯入資料][import-data]模組直接從 SQL Server 讀取資料。視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 
 9. 從上傳的資料集開始的簡易 Azure ML 實驗流程
 
@@ -216,7 +216,7 @@
 
 7.  登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-8. 使用[讀取器][reader]模組，直接從 SQL Server 讀取資料。若有需要，將可擷取欄位、建立功能和取樣資料的必要查詢，直接貼入[讀取器][reader]查詢。
+8. 使用[匯入資料][import-data]模組直接從 SQL Server 讀取資料。視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 
 9. 從上傳的資料集開始的簡易 Azure ML 實驗流程。
 
@@ -280,7 +280,7 @@
 
 8.  登入 [Azure 機器學習 Studio](https://studio.azureml.net/)。
 
-9. 使用[讀取器][reader]模組，直接從 `Hive Queries` 讀取資料。若有需要，將可擷取欄位、建立功能和取樣資料的必要查詢，直接貼入[讀取器][reader]查詢。
+9. 使用[匯入資料][import-data]模組直接從 `Hive Queries` 讀取資料。視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 
 10. 從上傳的資料集開始的簡易 Azure ML 實驗流程。
 
@@ -312,6 +312,6 @@
 
 
 <!-- Module References -->
-[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

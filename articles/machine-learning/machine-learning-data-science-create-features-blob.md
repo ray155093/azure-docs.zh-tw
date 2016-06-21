@@ -130,11 +130,11 @@
 	    except:	        
 		    print ("Something went wrong with uploading blob:"+BLOBNAME)
 
-3. 現在您可以使用 Azure Machine Learning [讀取器](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組讀取 Blob 中的資料，如下列畫面所示：
+3. 現在您可以使用 Azure Machine Learning [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組從 Blob 讀取資料，如以下畫面所示：
  
 ![讀取器 Blob](./media/machine-learning-data-science-process-data-blob/reader_blob.png)
 
 
  
 
-<!----HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016---->

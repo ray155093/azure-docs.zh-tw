@@ -5,7 +5,7 @@
     keywords="企業狀態漫遊, windows 雲端"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor="curtand"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="06/07/2016"
 	ms.author="femila"/>
 
 # Windows 10 漫遊設定參考
@@ -33,7 +33,7 @@
 
 
 ##什麼是備份？
-根據預設，Windows 設定一般會同步處理，但是某些設定只能備份，例如裝置上已安裝應用程式的清單。如果使用者使用 [設定] 應用程式在裝置上停用同步處理，通常可以同步處理的應用程式資料會變成只能備份。備份資料在新裝置第一次執行期間，只能透過還原作業存取。備份可以透過裝置設定停用，並且能透過使用者的 OneDrive 帳戶管理及刪除。
+根據預設，Windows 設定一般會同步處理，但是某些設定只能備份，例如裝置上已安裝應用程式的清單。備份僅適用於行動裝置，目前不適用企業狀態漫遊使用者。備份會使用 Microsoft 帳戶，並將設定和應用程式資料儲存到 OneDrive。如果使用者使用 [設定] 應用程式在裝置上停用同步處理，通常可以同步處理的應用程式資料會變成只能備份。備份資料在新裝置第一次執行期間，只能透過還原作業存取。備份可以透過裝置設定停用，並且能透過使用者的 OneDrive 帳戶管理及刪除。
 
 ## Windows 設定概觀
 下列設定群組可供使用者啟用/停用 Windows 10 裝置上的設定同步處理。
@@ -46,6 +46,10 @@
 - 其他 Windows 設定：請參閱 Windows 設定詳細資料
 
 ![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-individual-sync-settings.png)
+
+使用者可以透過 Edge 瀏覽器 [設定] 功能表選項，啟用或停用 Edge 瀏覽器設定群組同步處理 (我的最愛，讀取清單)。
+
+![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-sync-content.png)
  
 ## Windows 設定詳細資料
 在下表中，[設定群組] 資料行中的 [其他] 項目是指您可以移至 [設定] > [帳戶] > [同步處理您的設定] > [其他 Windows 設定] 停用的設定。
@@ -57,25 +61,25 @@
 |----------------------------------|---------|---------|-------|
 | **帳戶**：帳戶圖片 | sync |X |佈景主題 |
 | **帳戶**：其他帳戶設定 |X |X | |
-| **進階行動寬頻**：網際網路連接共用網路名稱 (透過藍牙啟用行動 Wi-Fi 作用區的自動探索)|sync |sync |密碼 |
+| **進階行動寬頻**：網際網路連接共用網路名稱 (透過藍牙啟用行動 Wi-Fi 作用區的自動探索)|X |X |密碼 |
 |**應用程式資料**：個別應用程式可以同步處理資料|同步處理備份 | 同步處理備份|內部 |
 |**應用程式清單**：已安裝應用程式的清單 |X |backup |其他 |
 |**藍牙**：所有藍牙設定 |X |X | |
-|**命令提示字元**：所有命令提示字元設定 |sync| |X |其他
+|**命令提示字元**：所有命令提示字元設定 |sync |X | |
 |**Cortana**：開啟或關閉 |X |X | |
 |**Cortana**：在鎖定畫面上啟用 Cortana |X |X | |
 |**Cortana**：使用者名稱 |sync |sync |內部|
-|**Cortana**: 大聲閱讀 SMS |X |sync |內部|
-|**Cortana**：安全的搜尋 |X |sync |內部|
+|**Cortana**：大聲說出 SMS |X |sync |內部|
+|**Cortana**：安全搜尋 |X |sync |內部|
 |**Cortana**：尋找班機及其他資訊|X |sync |內部|
 |**認證**：認證保險箱 |sync |sync |password|
 |**日期、時間和區域**：自動時間 (網際網路時間同步處理) |sync |sync |語言|
-|**日期、時間和區域**：24 小時制時鐘|sync |sync |語言|
+|**日期、時間和區域**：24 小時制時鐘|sync |X |語言|
 |**日期、時間和區域**：日期和時間|sync |X |語言|
 |**日期、時間和區域**：時區 | |X |語言|
 |**日期、時間和區域**：日光節約時間|sync |X |語言|
-|**日期、時間和區域**：國家/區域 |sync |X |語言|
-|**日期、時間和區域**：週的第一天 |sync |X |語言|
+|**日期、時間和區域**：國家/地區 |sync |X |語言|
+|**日期、時間和區域**：一週的第一天 |sync |X |語言|
 |**日期、時間和區域**：區域格式 (地區設定) |sync |X |語言|
 |**日期、時間和區域**：簡短日期 |sync |X |語言|
 |**日期、時間和區域**：完整日期 |sync |X |語言|
@@ -84,8 +88,8 @@
 |**桌面個人化**：桌面主題 (背景、系統色彩、預設系統音效、螢幕保護裝置) |sync |X |佈景主題|
 |**桌面個人化**：投影片放映底色圖案 |sync |X |佈景主題|
 |**桌面個人化**：工作列設定 (位置、自動隱藏等) |sync |X |佈景主題|
-|**桌面個人化**：開始畫面版面配置 |sync |backup ||
-|**裝置**：您已連接的共用印表機 |sync | X |其他 |
+|**桌面個人化**：開始畫面版面配置 |X |backup ||
+|**裝置**：您已連接的共用印表機 |X | X |其他 |
 |**Edge 瀏覽器**：閱讀清單 |sync |sync |內部|
 |**Edge 瀏覽器**：我的最愛 |sync |sync |內部|
 |**Edge 瀏覽器**：所有其他 Edge 設定|X |X ||
@@ -104,18 +108,18 @@
 |**鍵盤**：開啟篩選鍵 (預設為關閉)|sync |X |輕鬆存取|
 |**鍵盤**：開啟切換鍵 (預設為關閉)|sync |X |輕鬆存取|
 |**Internet Explorer**：網域語言：中文 (CHS) QWERTY - 啟用自我學習|sync |X |語言|
-|**語言**：CHS QWERTY - 啟用動態 c&idate 排名|sync |X |語言|
+|**語言**：CHS QWERTY - 啟用動態候選項目排名|sync |X |語言|
 |**語言**：CHS QWERTY - 字元集簡體中文|sync |X |語言|
 |**語言**：CHS QWERTY - 字元集繁體中文|sync |X |語言|
 |**語言**：CHS QWERTY - 模糊拼音|sync |sync |語言|
 |**語言**：CHS QWERTY - 模糊配對|sync |sync |語言|
-|**語言**：CHS QWERTY - 完整拼音||sync |X |語言|
+|**語言**：CHS QWERTY - 完整拼音|sync |X |語言|
 |**語言**：CHS QWERTY - 雙拼音|sync |X |語言|
 |**語言**：CHS QWERTY - 閱讀自動更正|sync |X |語言|
 |**語言**：CHS QWERTY - C/E 切換鍵，shift 鍵|sync |X |語言|
 |**語言**：CHS QWERTY - C/E 切換鍵，Ctrl 鍵|sync |X |語言|
 |**語言**：CHS WUBI - 單一字元輸入模式 |sync |X |語言|
-|**語言**：CHS WUBI - 顯示 c&idate 的剩餘編碼 |sync |X |語言|
+|**語言**：CHS WUBI - 顯示候選項目的剩餘編碼 |sync |X |語言|
 |**語言**：CHS WUBI - 4-coding 無效時發出嗶聲|sync |X |語言|
 |**語言**：CHS 注音符號 - 包括 CJK Ext-A|sync |X |語言|
 |**語言**：日文輸入法 - 預測輸入和自訂文字|sync |sync |語言|
@@ -125,7 +129,7 @@
 |**語言**：拼字檢查 - 自動校正和反白顯示拼字錯誤|sync |backup |語言|
 |**語言**：鍵盤的清單|sync |backup |語言|
 |**鎖定畫面**：所有鎖定畫面設定|X |X ||
-|**放大鏡**：開啟或關閉 (主切換)|X |backup |輕鬆存取|
+|**放大鏡**：開啟或關閉 (主切換)|X |X |輕鬆存取|
 |**放大鏡**：開啟或關閉反轉色彩 (預設為關閉)|sync |X |輕鬆存取|
 |**放大鏡**：追蹤 - 跟隨鍵盤焦點|sync |X |輕鬆存取|
 |**放大鏡**：追蹤 - 跟隨滑鼠游標|sync |X |輕鬆存取|
@@ -172,4 +176,4 @@
 
   
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0608_2016-->

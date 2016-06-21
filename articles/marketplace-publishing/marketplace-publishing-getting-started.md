@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/29/2016"
+   ms.date="06/01/2016"
    ms.author="hascipio" />
 
 # 如何將優惠發佈至 Azure Marketplace
@@ -44,11 +44,12 @@
 | **步驟 4：將您的優惠部署至 Marketplace** | [將您的優惠部署至 Marketplace][link-pushprod] | 私人預覽 | [將您的優惠部署至 Marketplace][link-pushprod] | [將您的優惠部署至 Marketplace][link-pushprod] |
 
 ## 支援
-- [以發佈者身分取得支援][suppt-general]
+- [虛擬機器優惠的後期製作指南](marketplace-publishing-vm-image-post-publishing.md)
 - [了解賣方 Insights 報告][suppt-rpt-insights]
 - [了解付款報告][suppt-rpt-payouts]
 - [如何變更雲端解決方案提供者轉售商獎勵](marketplace-publishing-csp-incentive.md)
 - [疑難排解 Marketplace 中常見的發佈問題][suppt-common]
+- [以發佈者身分取得支援][suppt-general]
 
 ## 其他資源
 - 若要深入了解使用的入口網站，請參閱[您需要的入口網站](marketplace-publishing-portals.md)
@@ -82,4 +83,4 @@
 [link-pushstaging]: marketplace-publishing-push-to-staging.md
 [link-pushprod]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

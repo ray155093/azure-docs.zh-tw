@@ -15,7 +15,7 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/16/2016"
+	ms.date="05/27/2016"
 	ms.author="chrande"/>
 
 # Azure Functions 觸發程序和繫結開發人員參考
@@ -29,6 +29,7 @@
 * [Azure 儲存體 (佇列、blob、資料表) 觸發程序和繫結](functions-bindings-storage.md)
 * [Azure 服務匯流排 (佇列、主題) 觸發程序和繫結](functions-bindings-service-bus.md)
 * [Azure DocumentDB 繫結](functions-bindings-documentdb.md)
+* [Azure 事件中樞繫結](functions-bindings-event-hubs.md)
 * [Azure Mobile Apps 繫結](functions-bindings-mobile-apps.md)
 * [Azure 通知中樞輸出繫結](functions-bindings-notification-hubs.md)
 
@@ -39,4 +40,4 @@
 * [測試函數](functions-test-a-function.md)
 * [調整函數](functions-scale.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

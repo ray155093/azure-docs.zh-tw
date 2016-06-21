@@ -13,17 +13,22 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="06/08/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 中的資料集
 Azure Data Factory 中的資料集是具名的參考/指標，指向您要用來當做管線中的活動輸入或輸出的資料。資料集會在包括資料表、檔案、資料夾和文件在內的各種資料存放區中，識別資料。
 
-建立 Data Factory 時，您會建立將資料存放區連結到 Data Factory 的連結服務。**連結的服務**會定義 Azure Data Factory **連接**到資料存放區所需的資訊，例如 Azure 儲存體帳戶和 Azure SQL Database。連結的服務會定義存取資料存放區的機制 (位址、通訊協定、驗證結構描述等等)。
+**連結的服務**會定義 Azure Data Factory **連接**到**資料存放區** (例如 Azure 儲存體帳戶和 Azure SQL Database) 或**電腦** (例如 Azure HDInsight 和 Azure Batch) 所需的資訊。連結的服務會定義存取資料存放區或電腦的機制 (位址、通訊協定、驗證結構描述等等)。
 
-Data Factory 中的**資料集**代表此資料存放區內的資料結構 (例如︰blob 容器、SQL 資料表)，可用來當做管線中活動的輸入或輸出資料。建立資料集之後，您可以將其與管線中的活動搭配使用。例如，您可以將資料集當作複製活動/HDInsightHive 活動的輸入/輸出資料集。
+如需支援的資料存放區連結服務清單，請參閱[支援的資料來源](data-factory-data-movement-activities.md#supported-data-stores)。按一下表格中的資料來源以取得相關主題，來提供如何針對該資料存放區建立/設定已連結服務的詳細說明。
+
+如需支援的計算連結服務清單，請參閱[計算連結服務](data-factory-compute-linked-services.md)。若要了解使用這些連結服務的活動，請參閱[資料轉換活動](data-factory-data-transformation-activities.md)。
+
+Data Factory 中的**資料集**代表由**資料存放區連結服務**來表示之資料存放區內的資料結構，例如 Azure 儲存體帳戶中的 Blob 容器、Azure SQL Database 中的資料表)。它可用來當做管線中活動的輸入或輸出。建立資料集之後，您可以將其與管線中的活動搭配使用。例如，您可以將資料集當作複製活動/HDInsightHive 活動的輸入/輸出資料集。
 
 > [AZURE.NOTE] 如果您不熟悉 Azure Data Factory，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)以取得 Azure Data Factory 服務的概觀，以及參閱[建置您的第一個 Data Factory](data-factory-build-your-first-pipeline.md) 以取得建立您的第一個 Data Factor 的教學課程。這兩篇文章提供您進一步了解這篇文章所需的背景資訊。
+
 
 ## 定義資料集
 Azure Data Factory 中的資料集定義如下：
@@ -69,7 +74,7 @@ Azure Data Factory 中的資料集定義如下：
 
 ### 範例
 
-以下的資料集範例表示 Azure SQL Database 中名為 MyTable 的資料表。
+以下的資料集範例表示 **Azure SQL Database** 中名為 **MyTable** 的資料表。
 
 	{
 	    "name": "DatasetSample",
@@ -117,13 +122,13 @@ AzureSqlLinkedService 定義如下︰
 如您所見，連結的服務會定義如何連接到 Azure SQL Database，資料集會定義使用哪個資料表做為您的 Data Factory 的輸入/輸出。您的[管線](data-factory-create-pipelines.md) JSON 中的 [活動] 區段會指定使用資料集做為輸入或輸出資料集。
 
 
-> [AZURE.IMPORTANT] 除非資料集是由 Azure Data Factory 產生，否則應該標示為 [外部]。這通常會套用至管線中第一個活動的輸入。
+> [AZURE.IMPORTANT] 除非資料集是由 Azure Data Factory 產生，否則應該標示為**外部**。這通常會套用至管線中第一個活動的輸入。
 
 ## <a name="Type"></a> 資料集類型
 支援的資料來源和資料集類型會對應。如需資料集的類型和組態資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md#supported-data-stores)一文中參照的主題。例如，如果您使用 Azure SQL Database 中的資料，在支援的資料存放區清單中按一下 Azure SQL Database，以查看如何使用 Azure SQL Database 做為來源或接收資料存放區的詳細資訊。
 
 ## <a name="Structure"></a>資料集結構
-[結構] 區段會定義資料集的結構描述。它包含資料行的名稱和資料類型的集合。在下列範例中，資料集有三個資料行 slicetimestamp、projectname 和 pageviews，它們的類型分別是：String、String 和 Decimal。
+**Structure** 區段會定義資料集的結構描述。它包含資料行的名稱和資料類型的集合。在下列範例中，資料集有三個資料行 slicetimestamp、projectname 和 pageviews，它們的類型分別是：String、String 和 Decimal。
 
 	structure:  
 	[ 
@@ -133,7 +138,7 @@ AzureSqlLinkedService 定義如下︰
 	]
 
 ## <a name="Availability"></a> 資料集可用性
-資料集中的 [可用性] 區段定義處理時間 (每小時、每天、每週等) 或資料集的切割模型。如需資料集切割和相依性模型的詳細資訊，請參閱[排程和執行](data-factory-scheduling-and-execution.md)。
+資料集中的 **availability** 區段定義處理時間 (每小時、每天、每週等) 或資料集的切割模型。如需資料集切割和相依性模型的詳細資訊，請參閱[排程和執行](data-factory-scheduling-and-execution.md)。
 
 以下的 [可用性] 區段指定資料集是每小時產生 (如果是輸出資料集)，或是每小時可用 (如果是輸入資料集)。
 
@@ -148,9 +153,9 @@ AzureSqlLinkedService 定義如下︰
 | 屬性 | 說明 | 必要 | 預設值 |
 | -------- | ----------- | -------- | ------- |
 | frequency | 指定資料集配量生產的時間單位。<br/><br/>**支援的頻率**：分鐘、小時、日、週、月 | 是 | NA |
-| interval | 指定頻率的倍數<br/><br/>「頻率 x 間隔」可決定產生配量的頻率。<br/><br/>如果您需要每小時切割資料集，請將 [頻率] 設為 [小時]，將 [間隔] 設為 [1]。<br/><br/>**注意：** 如果您將 [頻率] 指定為 [分鐘]，建議您將間隔設為不小於 [15] | 是 | NA |
-| style | 指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 [頻率] 設為 [月] 且 style 設為 EndOfInterval，則會在月份的最後一天產生配量。如果 style 設為 StartOfInterval，則會在月份的第一天產生配量。<br/><br/>如果 [頻率] 設為 [天] 且 style 設為 EndOfInterval，則會在一天的最後一個小時產生配量。<br/><br/>如果 [頻率] 設為 [小時] 且 style 設為 EndOfInterval，則會在一小時結束時產生配量。例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 | 否 | EndOfInterval |
-| anchorDateTime | 定義排程器用來計算資料集配量界限的時間絕對位置。<br/><br/>**注意：** 如果 AnchorDateTime 有比頻率更細微的日期部分，則會忽略更細微的部分。<br/><br/>例如，如果 [間隔] 為 [每小時] \(頻率：小時，間隔：1) 而且 AnchorDateTime 包含分鐘和秒鐘，則會忽略 AnchorDateTime 的分鐘和秒鐘部分。 | 否 | 01/01/0001 |
+| interval | 指定頻率的倍數<br/><br/>「頻率 x 間隔」可決定產生配量的頻率。<br/><br/>如果您需要每小時切割資料集，請將 **Frequency** 設為 **Hour**，將 **interval** 設為 **1**。<br/><br/>**注意：** 如果您將 Frequency 指定為 Minute，建議您將間隔設為不小於 15 | 是 | NA |
+| style | 指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 Frequency 設為 Month 且 style 設為 EndOfInterval，則會在月份的最後一天產生配量。如果 style 設為 StartOfInterval，則會在月份的第一天產生配量。<br/><br/>如果 Frequency 設為 Day 且 style 設為 EndOfInterval，則會在一天的最後一個小時產生配量。<br/><br/>如果 Frequency 設為 Hour 且 style 設為 EndOfInterval，則會在一小時結束時產生配量。例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 | 否 | EndOfInterval |
+| anchorDateTime | 定義排程器用來計算資料集配量界限的時間絕對位置。<br/><br/>**注意：** 如果 AnchorDateTime 有比頻率更細微的日期部分，則會忽略更細微的部分。<br/><br/>例如，如果 **interval** 為**每小時** (frequency: hour 且 interval: 1) 而且 **AnchorDateTime** 包含**分鐘和秒鐘**，則會忽略 **AnchorDateTime** 的分鐘和秒鐘部分。 | 否 | 01/01/0001 |
 | Offset | 所有資料集配量的開始和結束移位所依據的時間範圍。<br/><br/>**附註：** 如果已指定 anchorDateTime 和 offset，結果會是合併的移位。 | 否 | NA |
 
 ### 位移範例
@@ -164,7 +169,7 @@ AzureSqlLinkedService 定義如下︰
 		"offset": "06:00:00"
 	}
 
-[頻率] 設定為 [月] 且 [間隔] 設定為 [1] \(一個月一次)：如果您希望在每個月第 9 天的早上 6 點產生配量，請將位移設定為 "09.06:00:00"。請記住，這是 UTC 時間。
+**Frequency** 設定為 **Month** 且 **interval** 設定為 **1** (一個月一次)：如果您希望在每個月第 9 天的早上 6 點產生配量，請將位移設定為 "09.06:00:00"。請記住，這是 UTC 時間。
 
 在 12 個月 (頻率 = 月；間隔 = 12) 的排程中，offset: 60.00:00:00 表示每年的 3 月 1 日或 2 日 (如果樣式 = StartOfInterval，則為從年初算起的 60 天)，這取決於該年度是否為閏年。
 
@@ -181,7 +186,7 @@ AzureSqlLinkedService 定義如下︰
 
 ### 位移/樣式範例
 
-如果您需要在特定日期和時間 (假設在每月三號上午 8:00) 執行以每月為基礎的資料集，您可以使用 [位移] 標記，以設定其應該要執行的日期和時間。
+如果您需要在特定日期和時間 (假設在每月 3 日上午 8:00) 執行以每月為基礎的資料集，您可以使用**位移**標記，以設定其應該要執行的日期和時間。
 
 	{
 	  "name": "MyDataset",
@@ -203,7 +208,7 @@ AzureSqlLinkedService 定義如下︰
 
 ## <a name="Policy"></a>資料集原則
 
-資料集中的 [原則] 區段定義資料集配量必須符合的準則或條件。
+資料集中的 **policy** 區段定義資料集配量必須符合的準則或條件。
 
 ### 驗證原則
 
@@ -237,9 +242,9 @@ AzureSqlLinkedService 定義如下︰
 
 ### 外部資料集
 
-外部資料集是並非由 Data Factory 中的執行中管線所產生的資料集。如果資料集標示為 [外部]，則可定義 **ExternalData** 原則來影響資料集配量可用性的行為。
+外部資料集是並非由 Data Factory 中的執行中管線所產生的資料集。如果資料集標示為**外部**，則可定義 **ExternalData** 原則來影響資料集配量可用性的行為。
 
-除非資料集是由 Azure Data Factory 產生，否則應該標示為 [外部]。除非會採用活動或管線鏈結，否則這通常會套用到管線中第一個活動的輸入。
+除非資料集是由 Azure Data Factory 產生，否則應該標示為**外部**。除非會採用活動或管線鏈結，否則這通常會套用到管線中第一個活動的輸入。
 
 | 名稱 | 說明 | 必要 | 預設值 |
 | ---- | ----------- | -------- | -------------- |
@@ -249,7 +254,7 @@ AzureSqlLinkedService 定義如下︰
 | maximumRetry | 檢查外部資料可用性的次數。允許的最大值為 10。 | 否 | 3 | 
 
 ## 範圍資料集
-您可以使用 [資料集] 屬性建立範圍設定為管線的資料集。這些資料集只能由此管線中的活動使用，不能由其他管線中的活動使用。下列範例會定義具有兩個資料集 (InputDataset-rdc 和 OutputDataset-rdc) 的管線，以在管線內使用。
+您可以使用 **datasets** 屬性來建立範圍設定為管線的資料集。這些資料集只能由此管線中的活動使用，不能由其他管線中的活動使用。下列範例會定義具有兩個資料集 (InputDataset-rdc 和 OutputDataset-rdc) 的管線，以在管線內使用。
 
 > [AZURE.IMPORTANT] 只有一次性管線 (**pipelineMode** 設為 **OneTime**) 支援範圍資料集。如需詳細資訊，請參閱[一次性管線](data-factory-scheduling-and-execution.md#onetime-pipeline)。
 
@@ -342,4 +347,4 @@ AzureSqlLinkedService 定義如下︰
 	    }
 	}
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

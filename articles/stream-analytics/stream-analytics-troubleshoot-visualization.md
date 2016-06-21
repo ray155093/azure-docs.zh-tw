@@ -30,7 +30,7 @@
 
 若要存取這個視覺化檢視，只要按一下「串流分析」工作之 [設定] 刀鋒視窗中的 [診斷圖表] 按鈕即可。
 
-![stream-analytics-troubleshoot-visualization-diagnosis-diagram](./media/stream-analytics-troubleshoot-visualization/stream-analytics-troubleshoot-visualization-diagnosis-diagram.png)
+![stream-analytics-troubleshoot-visualization-diagnosis-diagram](./media/stream-analytics-troubleshoot-visualization/stream-analytics-troubleshoot-visualization-diagnosis-diagram1.png)
 
 每個輸入項和輸出項都會以色彩標示，以指出該元件目前的狀態，如以下所示。
 
@@ -51,4 +51,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

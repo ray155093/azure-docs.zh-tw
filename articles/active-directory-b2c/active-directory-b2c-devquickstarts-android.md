@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="02/17/2016"
+	ms.date="05/31/2016"
 	ms.author="brandwe"/>
 
 # Azure AD B2C 預覽：從 Android 應用程式呼叫 Web API
@@ -977,4 +977,4 @@ CookieSyncManager.getInstance().sync();
 ```
 [深入了解 Cookie](http://developer.android.com/reference/android/webkit/CookieSyncManager.html)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

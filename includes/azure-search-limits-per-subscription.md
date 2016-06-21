@@ -1,22 +1,20 @@
-You can create multiple services within a subscription, each one provisioned at a specific tier, limited only by the number of services allowed at each tier within a single Azure subscription. Maximum services per tier are noted below. As indicated, you could create up to 12 services at the Basic tier and another 12 services at the S1 tier within the same subscription. 
+您可以在訂用帳戶內建立多個服務，每個服務都會佈建於特定層上，僅受限於單一 Azure 訂用帳戶內每一層上所允許的服務個數。以下說明每一層的服務數目上限。誠如所述，您最多可在基本層建立 12 個服務，並在同一個訂用帳戶內的 S1 層另外建立 12 個服務。
 
-Other tiers are one per subscription. You can contact Azure Support if you need more than one S2, S3, or S3 HD per subscription.
+其他各層是每個訂用帳戶一個。如果您在每個訂用帳戶中需要一個以上的 S2、S3 或 S3 HD，您可以連絡 Azure 支援服務。
 
-Resource|Free|Basic|S1|S2|S3 <sup>1</sup> <br/>(Preview) |S3 HD <sup>1</sup> <br/>(Preview) 
+資源|免費|基本|S1|S2|S3 <sup>1</sup> <br/>(預覽) |S3 HD <sup>1</sup> <br/>(預覽) 
 ---|---|---|---|----|---|----
-Maximum services |1 |12 |12  |1 |1 |1 
-Maximum scale in SU <sup>2</sup>|N/A <sup>3</sup>|3 SU <sup>4</sup> |36 SU|36 SU|36 SU|12 SU <sup>5</sup>
+服務數目上限 |1 |12 |12 |1 |1 |1 
+SU 中的最大調整規模 <sup>2</sup>|N/A <sup>3</sup>|3 SU <sup>4</sup> |36 SU|36 SU|36 SU|12 SU <sup>5</sup>
 
-<sup>1</sup> **Preview** tiers are billed at an introductory rate of 50% off the full price. Prior to general availability (GA) tiers are introduced as a Preview feature. During Preview, there is no service level agreement (SLA). See [Choose a SKU or tier for Azure Search](../articles/search/search-sku-tier.md) for more information about tiers.
+<sup>1</sup> **預覽**階層的價格是以完整價格的 50% 做為促銷優惠費率。在公開上市 (GA) 之前，引進階層做為預覽功能。在預覽期間，沒有任何服務等級協定 (SLA)。如需階層的詳細資訊，請參閱 [Choose a SKU or tier for Azure Search (選擇 Azure 搜尋服務的 SKU 或階層)](../articles/search/search-sku-tier.md)。
 
-<sup>2</sup> **Search units (SU)** are billable units per service, allocated as either a **replica** or a **partition**. You need both resource types for storage, indexing, and query operations. See [Scale resource levels for query and index workloads](../articles/search/search-capacity-planning.md) for valid combinations that stay under the maximum limits. 
+<sup>2</sup> **搜尋單位 (SU)** 是每個服務的可計費單位，會以**複本**或**資料分割**形式來配置。您需要這兩種資源類型來儲存、編製索引及查詢作業。請參閱[針對查詢和索引工作負載調整資源層級](../articles/search/search-capacity-planning.md)，以取得保持在最大限制內的有效組合。
 
-<sup>3</sup> **Free** is based on shared resources used by multiple subscribers. At this tier, there are no dedicated resources for an individual subscriber. For this reason, scalability is not supported.
+<sup>3</sup> **免費**是以多個訂閱者所使用的共用資源為依據。在這一層，沒有個別訂閱者專用的資源。基於這個理由，不支援延展性。
 
-<sup>4</sup> **Basic** has one fixed partition. SUs are used to allocate replicas for scaling query workloads.
+<sup>4</sup> **基本**具有一個固定的磁碟分割。SU 是用來配置複本以便調整查詢工作負載。
 
-<sup>5</sup> **S3 HD** is based on the same hardware as S3, but in a configuration that's optimized for a large number of smaller indexes. It has 1 very large partition instead of 12 smaller partitions, and it has a maximum of 12 replicas, similar to S3.
+<sup>5</sup> **S3 HD** 是以與 S3 相同的硬體為基礎，但是會在已針對大量的較小型索引進行最佳化的組態中。它具有 1 個非常大型的資料分割而不是 12 個較小型的磁碟分割，而且最多可以有 12 個複本 (與 S3 類似)。
 
-
-
-
+<!---HONumber=AcomDC_0608_2016-->

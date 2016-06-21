@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 在實驗室中設定 Azure Marketplace 映像設定
@@ -26,13 +26,13 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
 1. 所選實驗室的 [設定] 刀鋒視窗隨即顯示。
 
-1. 在 [設定] 刀鋒視窗中，點選 [Marketplace 映像]
+1. 在 [設定] 刀鋒視窗中，選取 [Marketplace 映像]
 
 	![設定如何使用 Azure Marketplace 映像](./media/devtest-lab-configure-marketplace-images/lab-settings-marketplace-images.png)
 
@@ -54,4 +54,4 @@
 
 一旦您設定在建立 VM 時允許使用 Azure Marketplace 映像的方式之後，下一個步驟就是[將 VM 加入您的實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

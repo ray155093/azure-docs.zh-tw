@@ -60,7 +60,7 @@ Tablesample 可用來進行取樣及示範，如下所示。如果資料大小�
 
 ###<a name="sql-aml"></a>連接到 Azure Machine Learning
 
-您可以在 Azure ML 讀取程式模組中直接使用上述的取樣查詢，對運作中的資料進行向下取樣，並將它帶入 Azure ML 實驗中。使用讀取程式模組讀取取樣資料的螢幕擷取畫面如下所示：
+您可以在 Azure ML「匯入資料」模組中直接使用上述取樣查詢，來進行即時資料縮小取樣，然後帶入 Azure ML 實驗中。使用讀取程式模組讀取取樣資料的螢幕擷取畫面如下所示：
    
 ![讀取器 SQL][1]
 
@@ -83,7 +83,7 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 
 ###<a name="python-aml"></a>連接到 Azure Machine Learning
 
-您可以使用下列程式碼範例，將向下取樣的資料儲存至檔案，並將它上傳至 Azure Blob。Blob 中的資料可使用讀取器模組直接讀取至 Azure ML 實驗。步驟如下：
+您可以使用下列程式碼範例，將向下取樣的資料儲存至檔案，並將它上傳至 Azure Blob。使用「匯入資料模組」即可將 Blob 中的資料直接讀取到「Azure ML 實驗」中。步驟如下：
 
 1. 將 Pandas 資料框架寫入本機檔案
 
@@ -111,7 +111,7 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 	    except:	        
 		    print ("Something went wrong with uploading blob:"+BLOBNAME)
 
-3. 使用 Azure ML 讀取器模組讀取 Azure Blob 的資料，如下列螢幕擷取畫面所示：
+3. 使用 Azure ML「匯入資料模組」從 Azure Blob 讀取資料，如以下螢幕擷取畫面所示：
  
 ![讀取器 Blob][2]
 
@@ -124,4 +124,4 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

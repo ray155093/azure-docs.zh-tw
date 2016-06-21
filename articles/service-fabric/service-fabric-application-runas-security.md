@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
    ms.date="03/24/2016"
-   ms.author="msfussell"/>
+   ms.author="mfussell"/>
 
 # RunAs：使用不同的安全性權限執行 Service Fabric 應用程式
 Azure Service Fabric 能夠保護叢集中以不同使用者帳戶 (稱為 **RunAs**) 執行的應用程式。Service Fabric 也會利用此使用者帳戶來保護應用程式所使用的資源，例如檔案、目錄和憑證。
@@ -155,14 +155,14 @@ powershell.exe -ExecutionPolicy Bypass -Command ".\MySetup.ps1"
 ~~~
 
 **注意：**當批次檔執行時，預設會查看稱為 **work** 的應用程式資料夾中的檔案。在此情況下，當 MySetup.bat 執行時，我們希望這個檔案會尋找相同資料夾 (也就是應用程式的 **code package** 資料夾) 中的 MySetup.ps1。若要變更此資料夾，請設定工作資料夾，如下所示。
-    
+
 ~~~
 <SetupEntryPoint>
     <ExeHost>
     <Program>MySetup.bat</Program>
     <WorkingFolder>CodePackage</WorkingFolder>
     </ExeHost>
-</SetupEntryPoint> 
+</SetupEntryPoint>
 ~~~
 
 ## 使用主控台重新導向原則，在本機為進入點偵錯
@@ -179,13 +179,13 @@ powershell.exe -ExecutionPolicy Bypass -Command ".\MySetup.ps1"
     <WorkingFolder>CodePackage</WorkingFolder>
     <ConsoleRedirection FileRetentionCount="10"/>
     </ExeHost>
-</SetupEntryPoint> 
+</SetupEntryPoint>
 ~~~
 
 如果您現在變更 MySetup.ps1 檔案來撰寫 **Echo** 命令，這將會寫入至輸出檔案以進行偵錯。
 
 ~~~
-Echo "Test console redirection which writes to the application log folder on the node that the application is deployed to" 
+Echo "Test console redirection which writes to the application log folder on the node that the application is deployed to"
 ~~~
 
 **一旦您已經為您的指令碼偵錯之後，請立即移除這個主控台重新導向原則**
@@ -351,4 +351,4 @@ Echo "Test console redirection which writes to the application log folder on the
 
 [image1]: ./media/service-fabric-application-runas-security/copy-to-output.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

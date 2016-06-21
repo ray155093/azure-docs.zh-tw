@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/26/2016" 
+	ms.date="06/07/2016" 
 	ms.author="awills"/>
 
 # 適用於分析的參考
@@ -22,30 +22,32 @@
 
 [AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
 
-| | | | | 
-|---|---|---|---|---
-|[abs](#abs)|[dayofweek](#dayofweek)|[isnull](#isnull)|[rand](#rand)|[summarize 運算子](#summarize-operator)
-|[ago](#ago)|[dayofyear](#dayofyear)|[join 運算子](#join-operator)|[range](#range)|[take 運算子](#take-operator)
-|[any](#any)|[dcount](#dcount)|[JSON 路徑運算式](#json-path-expressions)|[range 運算子](#range-operator)|[todatetime](#todatetime)
-|[argmax](#argmax)|[dcountif](#dcountif)|[let 子句](#let-clause)|[reduce 運算子](#reduce-operator)|[todouble](#todouble)
-|[argmin](#argmin)|[let 子句中的動態物件](#dynamic-objects-in-let-clauses)|[limit 運算子](#limit-operator)|[Render 指示詞](#render-directive)|[todynamic](#todynamic)
-|[算術運算子](#arithmetic-operators)|[endofday](#endofday)|[log](#log)|[replace](#replace)|[toint](#toint)
-|[陣列和物件常值](#array-and-object-literals)|[endofmonth](#endofmonth)|[makelist](#makelist)|[restrict 子句](#restrict-clause)|[tolong](#tolong)
-|[arraylength](#arraylength)|[endofweek](#endofweek)|[makeset](#makeset)|[純量比較](#scalar-comparisons)|[tolower](#tolower)
-|[avg](#avg)|[endofyear](#endofyear)|[max](#max)|[sort 運算子](#sort-operator)|[top 運算子](#top-operator)
-|[bin](#bin)|[exp](#exp)|[min](#min)|[分割](#split)|[top-nested op](#top-nested-operator)
-|[布林常值](#boolean-literals)|[extend 運算子](#extend-operator)|[mvexpand 運算子](#mvexpand-operator)|[sqrt](#sqrt)|[toscalar](#toscalar)
-|[布林運算子](#boolean-operators)|[extract](#extract)|[notempty](#notempty)|[startofday](#startofday)|[totimespan](#totimespan)
-|[buildschema](#buildschema)|[extractjson](#extractjson)|[notnull](#notnull)|[startofmonth](#startofmonth)|[toupper](#toupper)
-|[轉換](#casts)|[floor](#floor)|[now](#now)|[startofweek](#startofweek)|[treepath](#treepath)
-|[計數](#count)|[getmonth](#getmonth)|[數值常值](#numeric-literals)|[startofyear](#startofyear)|[union 運算子](#union-operator)
-|[count 運算子](#count-operator)|[gettype](#gettype)|[模糊字串常值](#obfuscated-string-literals)|[stdev](#stdev)|[variance](#variance)
-|[countif](#countif)|[getyear](#getyear)|[parse 運算子](#parse-operator)|[strcat](#strcat)|[weekofyear](#weekofyear)
-|[countof](#countof)|[雜湊](#hash)|[parsejson](#parsejson)|[字串比較](#string-comparisons)|[where 運算子](#where-operator)
-|[日期和時間運算式](#date-and-time-expressions)|[iff](#iff)|[percentile](#percentile)|[字串常值](#string-literals)
-|[日期和時間常值](#date-and-time-literals)|[isempty](#isempty)|[percentiles](#percentiles)|[strlen](#strlen)
-|[datepart](#datepart)|[isnotempty](#isnotempty)|[project 運算子](#project-operator)|[substring](#substring)
-|[dayofmonth](#dayofmonth)|[isnotnull](#isnotnull)|[project-away op](#project-away-operator)|[sum](#sum)
+## 索引
+
+|查詢和運算子|彙總|純量|數字|日期和時間|String|陣列、物件和動態
+|---|---|---|---|---|---|---
+|[計數](#count-operator)|[any](#any)|[布林常值](#boolean-literals)|[算術運算子](#arithmetic-operators)|[日期和時間運算式](#date-and-time-expressions)|[GUID](#guids)|[陣列和物件常值](#array-and-object-literals)
+|[extend](#extend-operator)|[argmax](#argmax)|[布林運算子](#boolean-operators)|[數值常值](#numeric-literals)|[日期和時間常值](#date-and-time-literals)|[模糊字串常值](#obfuscated-string-literals)|[動態物件函式](#dynamic-object-functions)
+|[Join](#join-operator)|[argmin](#argmin)|[轉換](#casts)|[abs](#abs)|[ago](#ago)|[字串常值](#string-literals)|[let 子句中的動態物件](#dynamic-objects-in-let-clauses)
+|[let 子句](#let-clause)|[avg](#avg)|[純量比較](#scalar-comparisons)|[bin](#bin)|[datepart](#datepart)|[字串比較](#string-comparisons)|[JSON 路徑運算式](#json-path-expressions)
+|[limit](#limit-operator)|[buildschema](#buildschema)|[gettype](#gettype)|[exp](#exp)|[dayofmonth](#dayofmonth)|[countof](#countof)|[名稱](#names)
+|[mvexpand](#mvexpand-operator)|[計數](#count)|[雜湊](#hash)|[floor](#floor)|[dayofweek](#dayofweek)|[extract](#extract)|[arraylength](#arraylength)
+|[parse](#parse-operator)|[countif](#countif)|[iff](#iff)|[log](#log)|[dayofyear](#dayofyear)|[isempty](#isempty)|[extractjson](#extractjson)
+|[project](#project-operator)|[dcount](#dcount)|[isnotnull](#isnotnull)|[rand](#rand)|[endofday](#endofday)|[isnotempty](#isnotempty)|[parsejson](#parsejson)
+|[project-away](#project-away-operator)|[dcountif](#dcountif)|[isnull](#isnull)|[sqrt](#sqrt)|[endofmonth](#endofmonth)|[notempty](#notempty)|[range](#range)
+|[range](#range-operator)|[makelist](#makelist)|[notnull](#notnull)|[todouble](#todouble)|[endofweek](#endofweek)|[replace](#replace)|[todynamic](#todynamic)
+|[reduce](#reduce-operator)|[makeset](#makeset)|[toscalar](#toscalar)|[toint](#toint)|[endofyear](#endofyear)|[分割](#split)|[treepath](#treepath)
+|[Render 指示詞](#render-directive)|[max](#max)||[tolong](#tolong)|[getmonth](#getmonth)|[strcat](#strcat)|
+|[restrict 子句](#restrict-clause)|[min](#min)|||[getyear](#getyear)|[strlen](#strlen)|
+|[sort](#sort-operator)|[percentile](#percentile)|||[now](#now)|[substring](#substring)|
+|[summarize](#summarize-operator)|[percentiles](#percentiles)|||[startofday](#startofday)|[tolower](#tolower)|
+|[take](#take-operator)|[stdev](#stdev)|||[startofmonth](#startofmonth)|[toupper](#toupper)|
+|[top](#top-operator)|[sum](#sum)|||[startofweek](#startofweek)||
+|[top-nested](#top-nested-operator)|[variance](#variance)|||[startofyear](#startofyear)||
+|[union](#union-operator)||||[todatetime](#todatetime)||
+|[其中](#where-operator)||||[totimespan](#totimespan)||
+|||||[weekofyear](#weekofyear)||
+
 
 
 
@@ -61,7 +63,7 @@ requests // The request table starts this pipeline.
 | count 
 ```
     
-每個以縱線字元 `|` 做為前置詞的篩選條件即為含有一些參數的運算子執行個體。前面管線所得到的結果會以資料表的形式做為運算子的輸入。大部分情況下，任何參數皆是輸入資料行的[純量運算式](##scalars)。但在某些情況下，參數是輸入資料行的名稱或是第二個資料表。查詢的結果永遠是資料表，即使它只有一個資料行和一個資料列。
+每個以縱線字元 `|` 做為前置詞的篩選條件即為含有一些參數的運算子執行個體。前面管線所得到的結果會以資料表的形式做為運算子的輸入。大部分情況下，任何參數皆是輸入資料行的[純量運算式](#scalars)。但在某些情況下，參數是輸入資料行的名稱或是第二個資料表。查詢的結果永遠是資料表，即使它只有一個資料行和一個資料列。
 
 查詢可能包含單一分行符號，但會使用空白行來結束。它們可能在 `//` 和行尾之間包含註解。
 
@@ -150,7 +152,7 @@ traces
 
 **語法**
 
-    Table1 | join [kind=Kind] (Table2) on CommonColumn [, ...]
+    Table1 | join [kind=Kind] \(Table2) on CommonColumn [, ...]
 
 **引數**
 
@@ -371,9 +373,9 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
  * `relaxed`：如果文字不會剖析成資料行的類型，資料行會設為 null，而剖析會繼續 
  * `regex`：`Match` 字串是規則運算式。
 * `Text`：評估為屬於字串或可以轉換為字串的資料行或其他運算式。
-* *比對：*比對字串的下一個部分，並捨棄它。
-* *資料行：*將字串的下一個部分指派給這個資料行。如果資料行不存在，將會建立資料行。
-* *類型：*將字串的下一個部分剖析為指定的類型，例如 int、date、double。 
+* 比對：比對字串的下一個部分，並捨棄它。
+* 資料行：將字串的下一個部分指派給這個資料行。如果資料行不存在，將會建立資料行。
+* 類型：將字串的下一個部分剖析為指定的類型，例如 int、date、double。 
 
 
 **傳回**
@@ -482,9 +484,9 @@ resource | slice | lock | release | previous
 
 **引數**
 
-* *T：*輸入資料表。
-* *ColumnName：*要出現在輸出中的資料行名稱。如果沒有任何 *Expression*，則該名稱的資料行必須出現在輸入中。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
-* *Expression︰*參考輸入資料行的選擇性純量運算式。 
+* T：輸入資料表。
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
+* Expression︰參考輸入資料行的選擇性純量運算式。 
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
 
@@ -533,10 +535,10 @@ T
 
 **引數**
 
-* *ColumnName：*輸出資料表中的單一資料行名稱。
-* *Start︰*輸出中的最小值。
-* *Stop︰*輸出中產生的最大值 (或最大值界限，如果 *step* 跨越此值)。
-* *Step︰*兩個連續值之間的差異。 
+* ColumnName：輸出資料表中的單一資料行名稱。
+* Start︰輸出中的最小值。
+* Stop︰輸出中產生的最大值 (或最大值界限，如果 step 跨越此值)。
+* Step︰兩個連續值之間的差異。 
 
 引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函數](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator)。)
 
@@ -588,8 +590,8 @@ range timestamp from ago(4h) to now() step 1m
 
 **引數**
 
-* *ColumnName：*要檢查的資料行。它必須是字串類型。
-* *Threshold：*範圍 {0..1} 內的值。預設值為 0.001。若為大型輸入，臨界值應該小一點。 
+* ColumnName：要檢查的資料行。它必須是字串類型。
+* Threshold：範圍 {0..1} 內的值。預設值為 0.001。若為大型輸入，臨界值應該小一點。 
 
 **傳回**
 
@@ -636,8 +638,8 @@ Render 會指示展示層顯示資料表的方式。它應該是管道的最後�
 
 **引數**
 
-* *T：*要排序的資料表輸入。
-* *Column︰*做為排序依據之 *T* 的資料行。值的類型必須是數值、日期、時間或字串。
+* T：要排序的資料表輸入。
+* Column︰做為排序依據之 T 的資料行。值的類型必須是數值、日期、時間或字串。
 * `asc` 按照遞增順序由低至高排序。預設值是 `desc`，由高遞減至低。
 
 **範例**
@@ -662,7 +664,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
     T | summarize count() by price_range=bin(price, 10.0)
 
-顯示有多少項目的價格落在 [0,10.0]、[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
+顯示有多少項目的價格落在 [0,10.0]、\[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
 
 
 **語法**
@@ -674,9 +676,9 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* *Column：*結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
-* *Aggregation︰*`count()` 或 `avg()` 等彙總函數的呼叫，以資料行名稱做為引數。請參閱[彙總](#aggregations)。
-* *GroupExpression：*可提供一組相異值的資料行運算式。它通常是已提供一組受限值的資料行名稱，或是以數值或時間資料行做為引數的 `bin()`。 
+* Column：結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]` 來使用其他字元括住關鍵字或名稱。
+* Aggregation︰`count()` 或 `avg()` 等彙總函數的呼叫，以資料行名稱做為引數。請參閱[彙總](#aggregations)。
+* GroupExpression：可提供一組相異值的資料行運算式。它通常是已提供一組受限值的資料行名稱，或是以數值或時間資料行做為引數的 `bin()`。 
 
 如果您提供數值或時間運算式而不使用 `bin()`，「分析」就會自動為它套用 `1h` 間隔的時間，或 `1.0` 的數字。
 
@@ -705,7 +707,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
     T | top 5 by Name desc
 
-傳回按指定資料行排序的前 *N* 個記錄。
+傳回按指定資料行排序的前 N 個記錄。
 
 
 **語法**
@@ -714,8 +716,8 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* *NumberOfRows：*要傳回之 *T* 的資料列數目。
-* *Sort\_expression：*用來排序資料列的運算式。它通常只是資料行名稱。您可以指定多個 sort\_expression。
+* NumberOfRows：要傳回之 T 的資料列數目。
+* Sort\_expression：用來排序資料列的運算式。它通常只是資料行名稱。您可以指定多個 sort\_expression。
 * `asc` 或 `desc` (預設值) 可能會出現，以控制實際上是從範圍的「下限」或「上限」進行選取。
 
 
@@ -758,14 +760,14 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* *Table1*、*Table2* ...
+* Table1、Table2 ...
  *  資料表的名稱，例如 `requests`，或 [let 子句](#let-clause)中定義的資料表；或
  *  查詢運算式，例如 `(requests | where success=="True")`
  *  使用萬用字元指定的一組資料表。例如，`e*` 會形成先前的 let 子句中定義的所有資料表的聯集，其名稱開頭為 'e'，並具有 'exceptions' 資料表。
 * `kind`： 
  * `inner` - 結果中會有所有輸入資料表共有之資料行的子集。
  * `outer` - 結果中會有任何輸入中出現的所有資料行。輸入資料列未定義的資料格會設為 `null`。
-* `withsource=`*ColumnName：*如果指定，輸出中會包含名為 *ColumnName* 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
+* `withsource=`*ColumnName：*如果指定，輸出中會包含名為 ColumnName 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
 
 **傳回**
 
@@ -816,12 +818,12 @@ exceptions
 
 **引數**
 
-* *T︰*要篩選記錄的表格式輸入。
-* *Predicate︰**T* 之資料行的 `boolean` [運算式](#boolean)。它會針對 *T* 中的每個資料列進行評估。
+* T︰要篩選記錄的表格式輸入。
+* Predicate︰T 之資料行的 `boolean` [運算式](#boolean)。它會針對 T 中的每個資料列進行評估。
 
 **傳回**
 
-*Predicate* 是 `true` 之 *T* 中的資料列。
+Predicate 是 `true` 之 T 中的資料列。
 
 **秘訣**
 
@@ -909,13 +911,13 @@ traces
 
     avg(Expression)
 
-計算整個群組的 *Expression* 平均值。
+計算整個群組的 Expression 平均值。
 
 ### buildschema
 
     buildschema(DynamicExpression)
 
-傳回容許 *DynamicExpression* 所有值的最小結構描述。
+傳回容許 DynamicExpression 所有值的最小結構描述。
 
 參數資料行類型應該是 `dynamic` - 陣列或屬性包。
 
@@ -1003,17 +1005,17 @@ traces
 
     count([ Predicate ])
 
-傳回 *Predicate* 評估為 `true` 的資料列計數。如果未指定 *Predicate*，則傳回群組中的記錄總數。
+傳回 *Predicate* 評估為 `true` 的資料列計數。如果未指定 Predicate，則傳回群組中的記錄總數。
 
 **效能秘訣**︰使用 `summarize count(filter)` 而非 `where filter | summarize count()`
 
-> [AZURE.NOTE] 避免使用 count() 來找出已發生的要求、例外狀況或其他事件的數目。在運算中[取樣](app-insights-sampling.md)時，資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
+> [AZURE.NOTE] 避免使用 count() 來找出已發生的要求、例外狀況或其他事件的數目。在運算中[取樣](app-insights-sampling.md)時，Application Insights 中保留的資料點的數目將少於實際的事件數。請改用 `summarize sum(itemCount)...`。itemCount 屬性會反映由每個保留的資料點所呈現的原始事件數目。
 
 ### countif
 
     countif(Predicate)
 
-傳回 *Predicate* 評估為 `true` 的資料列計數。
+傳回 Predicate 評估為 `true` 的資料列計數。
 
 **效能秘訣**︰使用 `summarize countif(filter)` 而非 `where filter | summarize count()`
 
@@ -1023,9 +1025,9 @@ traces
 
     dcount( Expression [ ,  Accuracy ])
 
-傳回群組中 *Expr* 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
+傳回群組中 Expr 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
 
-*Accuracy* (若已指定) 會控制速度和精確度之間的平衡。
+Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
  * `0` = 最不精確但最快速的計算。
  * `1` 預設值，會平衡精確度和計算時間；大約 0.8% 的誤差。
@@ -1044,9 +1046,9 @@ traces
 
     dcountif( Expression, Predicate [ ,  Accuracy ])
 
-傳回 *Predicate* 為 true 之群組中，資料列的 *Expr* 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
+傳回 Predicate 為 true 之群組中，資料列的 Expr 之相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
 
-*Accuracy* (若已指定) 會控制速度和精確度之間的平衡。
+Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
  * `0` = 最不精確但最快速的計算。
  * `1` 預設值，會平衡精確度和計算時間；大約 0.8% 的誤差。
@@ -1063,17 +1065,17 @@ traces
 
     makelist(Expr [ ,  MaxListSize ] )
 
-傳回群組中 *Expr* 所有值的 `dynamic` (JSON) 陣列。
+傳回群組中 Expr 所有值的 `dynamic` (JSON) 陣列。
 
-* *MaxListSize* 是所傳回項目數目最大值的選擇性整數限制 (預設值是 *128*)。
+* MaxListSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
 
 ### makeset
 
     makeset(Expression [ , MaxSetSize ] )
 
-傳回 *Expr* 在群組中取得之一組相異值的 `dynamic` (JSON) 陣列。(秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount)。)
+傳回 Expr 在群組中取得之一組相異值的 `dynamic` (JSON) 陣列。(秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount)。)
   
-*  *MaxSetSize* 是所傳回項目數目最大值的選擇性整數限制 (預設值是 *128*)。
+*  MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
 
 **範例**
 
@@ -1090,11 +1092,11 @@ traces
 
     max(Expr)
 
-計算 *Expr* 的最大值。
+計算 Expr 的最大值。
     
     min(Expr)
 
-計算 *Expr* 的最小值。
+計算 Expr 的最小值。
 
 **秘訣**︰這可為您提供其本身的最小值或最大值，例如最高或最低單價。但是如果您想要資料列中的其他資料行 (例如，最低價供應商的名稱)，請使用 [argmin 或 argmax](#argmin-argmax)。
 
@@ -1104,7 +1106,7 @@ traces
 
     percentile(Expression, Percentile)
 
-傳回群組中指定百分位數的 *Expression* 估計值。其精確度取決於百分位數區域中的母體密度。
+傳回群組中指定百分位數的 Expression 估計值。其精確度取決於百分位數區域中的母體密度。
     
     percentiles(Expression, Percentile1 [ , Percentile2 ] )
 
@@ -1156,19 +1158,19 @@ traces
 
      stdev(Expr)
 
-傳回 *Expr* 對群組的標準差。
+傳回 Expr 對群組的標準差。
 
 ### variance
 
     variance(Expr)
 
-傳回 *Expr* 對群組的變異數。
+傳回 Expr 對群組的變異數。
 
 ### sum
 
     sum(Expr)
 
-傳回 *Expr* 對群組的總和。
+傳回 Expr 對群組的總和。
 
 
 ## 純量
@@ -1182,7 +1184,7 @@ traces
 | `bool` | `boolean` | `System.Boolean` |
 | `datetime`| `date` | `System.DateTime` |
 | `dynamic` | | `System.Object` |
-| `guid` | `uuid`, `uniqueid` | `System.Guid` |
+| `guid` | `uuid`、`uniqueid` | `System.Guid` |
 | `int` | | `System.Int32` |
 | `long` | | `System.Int64` |
 | `double` | `real` | `System.Double` |
@@ -1256,8 +1258,8 @@ traces
 
 **引數**
 
-* *source︰*用來計算雜湊的來源純量。
-* *mod：*要套用在雜湊結果的模數值。
+* source︰用來計算雜湊的來源純量。
+* mod：要套用在雜湊結果的模數值。
 
 **傳回**
 
@@ -1281,13 +1283,13 @@ hash(datetime("2015-01-01"))    // 1380966698541616202
 
 **引數**
 
-* *predicate︰*評估為 `boolean` 值的運算式。
-* *ifTrue：*如果 *predicate* 評估為 `true`，會接受評估並從函數傳回其值的運算式。
-* *ifFalse：*如果 *predicate* 評估為 `false`，會接受評估並從函數傳回其值的運算式。
+* predicate︰評估為 `boolean` 值的運算式。
+* ifTrue：如果 predicate 評估為 `true`，會接受評估並從函數傳回其值的運算式。
+* ifFalse：如果 predicate 評估為 `false`，會接受評估並從函數傳回其值的運算式。
 
 **傳回**
 
-如果 *predicate* 評估為 `true`，此函數會傳回 *ifTrue* 的值，否則會傳回 *ifFalse* 的值。
+如果 predicate 評估為 `true`，此函數會傳回 ifTrue 的值，否則會傳回 ifFalse 的值。
 
 **範例**
 
@@ -1361,7 +1363,6 @@ true 或 false，取決於值是 null 或不是 null。
 
 
 
-## Boolean 
 
 ### 布林常值
 
@@ -1434,12 +1435,12 @@ true 或 false，取決於值是 null 或不是 null。
 
 **引數**
 
-* *value︰*數字、日期或時間範圍。 
-* *roundTo：*「bin 的大小」。用來分割 *value* 的數字、日期或時間範圍。 
+* value︰數字、日期或時間範圍。 
+* roundTo：「bin 的大小」。用來分割 value 的數字、日期或時間範圍。 
 
 **傳回**
 
-低於 *value* 的 *roundTo* 最接近倍數。
+低於 value 的 roundTo 最接近倍數。
  
     (toint((value/roundTo)-0.5)) * roundTo
 
@@ -1501,7 +1502,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 **引數**
 
-* *x：*>= 0 的實數。
+* x：>= 0 的實數。
 
 **傳回**
 
@@ -1550,7 +1551,7 @@ true 或 false，取決於值是 null 或不是 null。
 **datetime**|
 `datetime("2015-12-31 23:59:59.9")`<br/>`datetime("2015-12-31")`|時間一律是 UTC 格式。省略日期則會提供今天的時間。
 `now()`|目前的時間。
-`now(`-*timespan*`)`|`now()-`*timespan*
+`now(`-timespan`)`|`now()-`*timespan*
 `ago(`*timespan*`)`|`now()-`*timespan*
 **timespan**|
 `2d`|2 天
@@ -1581,7 +1582,7 @@ true 或 false，取決於值是 null 或不是 null。
 `<=`|小於或等於
 `>` |大於
 `>=`|大於或等於
-`<>`|不等於
+`<>`|Not Equals
 `!=`|不等於 
 
 
@@ -1597,7 +1598,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 **引數**
 
-* *a\_timespan*︰要從目前的 UTC 時鐘時間 (`now()`) 減去的間隔。
+* a\_timespan︰要從目前的 UTC 時鐘時間 (`now()`) 減去的間隔。
 
 **傳回**
 
@@ -1731,7 +1732,7 @@ dayofweek(1970-05-11)           // time(1.00:00:00), indicating Monday
 
 **引數**
 
-* *offset︰*新增至目前的 UTC 時鐘時間的 `timespan`。預設值︰0。
+* offset︰新增至目前的 UTC 時鐘時間的 `timespan`。預設值︰0。
 
 **傳回**
 
@@ -1863,9 +1864,9 @@ h"hello"
 
 **引數**
 
-* *text：*字串。
-* *search︰*用來在 *text* 中進行比對的純文字字串或規則運算式。
-* *kind：*`"normal"|"regex"` 預設值 `normal`。 
+* text：字串。
+* search︰用來在 text 中進行比對的純文字字串或規則運算式。
+* kind：`"normal"|"regex"`。預設值 `normal`。 
 
 **傳回**
 
@@ -1897,14 +1898,14 @@ h"hello"
 
 **引數**
 
-* *regex：*[規則運算式](#regular-expressions)。
-* *captureGroup：*指出要擷取之擷取群組的正 `int` 常數。0 代表整個相符項目、1 代表規則運算式中第一個 '('括號')' 所相符的值，2 或以上的數字代表後續的括號。
-* *text：*要搜尋的 `string`。
-* *typeLiteral：*選擇性的類型常值 (例如 `typeof(long)`)。如果提供，所擷取的子字串會轉換為此類型。 
+* regex：[規則運算式](#regular-expressions)。
+* captureGroup：指出要擷取之擷取群組的正 `int` 常數。0 代表整個相符項目、1 代表規則運算式中第一個 '('括號')' 所相符的值，2 或以上的數字代表後續的括號。
+* text：要搜尋的 `string`。
+* typeLiteral：選擇性的類型常值 (例如 `typeof(long)`)。如果提供，所擷取的子字串會轉換為此類型。 
 
 **傳回**
 
-如果 *regex* 在 *text* 中找到相符項目︰針對指定的擷取群組 *captureGroup* 進行比對的子字串，可選擇性地轉換為 *typeLiteral*。
+如果 regex 在 text 中找到相符項目︰針對指定的擷取群組 captureGroup 進行比對的子字串，可選擇性地轉換為 typeLiteral。
 
 如果沒有相符項目或類型轉換失敗︰`null`。
 
@@ -1973,13 +1974,13 @@ extract("^.{2,2}(.{4,4})", 1, Text)
 
 **引數**
 
-* *regex：*用來搜尋 *text* 的[規則運算式](https://github.com/google/re2/wiki/Syntax)。它可以在 '('括號')' 中包含擷取群組。 
-* *rewrite：**matchingRegex* 所找到之任何相符項目的取代 regex。使用 `\0` 來代表整個相符項目、`\1` 來代表第一個擷取群組，`\2` 和以上的數字來代表後續的擷取群組。
-* *text：*字串。
+* regex：用來搜尋 text 的[規則運算式](https://github.com/google/re2/wiki/Syntax)。它可以在 '('括號')' 中包含擷取群組。 
+* rewrite：matchingRegex 所找到之任何相符項目的取代 regex。使用 `\0` 來代表整個相符項目、`\1` 來代表第一個擷取群組，`\2` 和以上的數字來代表後續的擷取群組。
+* text：字串。
 
 **傳回**
 
-以 *rewrite* 的評估更換 *regex* 的所有相符項目後的 *text*。相符項目不會重疊。
+以 rewrite 的評估更換 regex 的所有相符項目後的 text。相符項目不會重疊。
 
 **範例**
 
@@ -2016,9 +2017,9 @@ range x from 1 to 5 step 1
 
 **引數**
 
-* *source：*將根據指定的分隔符號分割的來源字串。
-* *delimiter︰*將用來分割來源字串的分隔符號。
-* *requestedIndex︰*以零為基礎的選擇性索引 `int`。如果提供，當要求的子字串存在時，傳回的字串陣列將會包含該子字串。 
+* source：將根據指定的分隔符號分割的來源字串。
+* delimiter︰將用來分割來源字串的分隔符號。
+* requestedIndex︰以零為基礎的選擇性索引 `int`。如果提供，當要求的子字串存在時，傳回的字串陣列將會包含該子字串。 
 
 **傳回**
 
@@ -2061,9 +2062,9 @@ split("aabbcc", "bb")         // ["aa","cc"]
 
 **引數**
 
-* *source︰*要從中擷取子字串的來源字串。
-* *startingIndex：*所要求子字串的以零為基礎的起始字元位置。
-* *length：*可用來指定子字串中要求之字元數目的選擇性參數。 
+* source︰要從中擷取子字串的來源字串。
+* startingIndex：所要求子字串的以零為基礎的起始字元位置。
+* length：可用來指定子字串中要求之字元數目的選擇性參數。 
 
 **傳回**
 
@@ -2091,7 +2092,7 @@ substring("ABCD", 0, 2)       // AB
 
 
 
-## GUID
+### GUID
 
     guid(00000000-1111-2222-3333-055567f333de)
 
@@ -2199,12 +2200,12 @@ T
 ```
 
 
-## 動態物件函式
+### 動態物件函式
 
 |||
 |---|---|
-| *value* `in` *array*| 如果有 *array* 項目 == *value*<br/>`where City in ('London', 'Paris', 'Rome')`，則為 true
-| *value* `!in` *array*| 如果沒有 *array* 項目 == *value*，則為 true
+| value `in` array| 如果有 array 項目 == value，則為 true<br/>`where City in ('London', 'Paris', 'Rome')`
+| value `!in` array| 如果沒有 array 項目 == value，則為 true
 |[`arraylength(`array`)`](#arraylength)| 如果不是陣列則為 null
 |[`extractjson(`path,object`)`](#extractjson)|使用路徑來瀏覽至物件。
 |[`parsejson(`source`)`](#parsejson)| 將 JSON 字串變成動態物件。
@@ -2237,11 +2238,11 @@ T
 
 **引數**
 
-* *array*：`dynamic` 值。
+* array：`dynamic` 值。
 
 **傳回**
 
-*array* 中的項目數，如果 *array* 不是陣列，則為 `null`。
+array 中的項目數，如果 array 不是陣列，則為 `null`。
 
 **範例**
 
@@ -2319,7 +2320,7 @@ arraylength(parsejson('21')) == null
 
 **引數**
 
-* *json：*JSON 文件。
+* json：JSON 文件。
 
 **傳回**
 
@@ -2354,9 +2355,9 @@ T
 
 **引數**
 
-* *start：*所產生陣列中第一個項目的值。 
-* *stop︰*所產生陣列中最後一個項目的值，或所產生陣列中大於最後一個項目，且位於從 *start* 算起整數倍數的 *step* 內的最小值。
-* *step︰*陣列的兩個連續項目之間的差異。
+* start：所產生陣列中第一個項目的值。 
+* stop︰所產生陣列中最後一個項目的值，或所產生陣列中大於最後一個項目，且位於從 start 算起整數倍數的 step 內的最小值。
+* step︰陣列的兩個連續項目之間的差異。
 
 **範例**
 
@@ -2400,7 +2401,7 @@ range(1, 8, 3)
 
 請注意，"[0]" 表示陣列存在，但未指定特定路徑所用的索引。
 
-## 名稱
+### 名稱
 
 名稱的長度上限為 1024 個字元。它們會區分大小寫，且可能會包含字母、數字和底線 (`_`)。
 
@@ -2425,4 +2426,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

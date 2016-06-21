@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/15/2016"
+	ms.date="06/06/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：可延伸的原則架構
@@ -161,4 +161,4 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 - [權杖、工作階段及單一登入組態](active-directory-b2c-token-session-sso.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

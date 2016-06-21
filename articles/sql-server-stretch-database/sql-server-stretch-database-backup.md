@@ -1,6 +1,6 @@
 <properties
-	pageTitle="備份與還原已啟用 Stretch 的資料庫 |Microsoft Azure"
-	description="了解如何備份與還原已啟用 Stretch 的資料庫。"
+	pageTitle="備份已啟用延展功能的資料庫 |Microsoft Azure"
+	description="了解如何備份已啟用延展功能的資料庫。"
 	services="sql-server-stretch-database"
 	documentationCenter=""
 	authors="douglaslMS"
@@ -13,42 +13,48 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="06/03/2016"
 	ms.author="douglasl"/>
 
+# 備份已啟用延展功能的資料庫
 
-# 備份與還原已啟用 Stretch 的資料庫
+資料庫備份可協助您從眾多類型的失敗、錯誤及災害進行復原。
 
-如要備份與還原已啟用 Stretch 的資料庫，您可以繼續使用您目前正在使用的方法。如需 SQL Server 備份與還原的詳細資訊，請參閱 [SQL Server 資料庫的備份與還原](https://msdn.microsoft.com/library/ms187048.aspx)。
+-   您必須備份已啟用延展功能的 SQL Server 資料庫。  
 
-已啟用 Stretch 資料庫的備份為淺層備份，不包含移轉至遠端伺服器的資料。
+-   Microsoft Azure 會自動備份 Stretch Database 已從 SQL Server 移轉到 Azure 的遠端資料。
 
-Stretch Database 能完全支援還原時間點。在您將您的 SQL Server 資料庫還原至某個時間點，並重新授權 Azure 的連線之後，Stretch Database 會將遠端資料協調至相同的時間點。如需 SQL Server 還原時間點的詳細資訊，請參閱[將 SQL Server 資料庫還原至某個時間點 (完整復原模式)](https://msdn.microsoft.com/library/ms179451.aspx)。如需在還原後需執行以重新授權 Azure 連線之預存程序的資訊，請參閱 [sys.sp\_rda\_reauthorize\_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx)。
+>    [AZURE.NOTE] 備份只是完整的高可用性及商務持續性解決方案的一部分。如需有關高可用性的詳細資訊，請參閱[高可用性解決方案](https://msdn.microsoft.com/library/ms190202.aspx)。
 
-## <a name="Reconnect"></a>從備份還原已啟用 Stretch 的資料庫
+## 備份您的 SQL Server 資料  
 
-1.  從備份還原資料庫。
+若要備份已啟用延展功能的 SQL Server 資料庫，您可以繼續使用您目前使用的 SQL Server 備份方法。如需詳細資訊，請參閱 [SQL Server 資料庫的備份與還原](https://msdn.microsoft.com/library/ms187048.aspx)。
 
-2.  執行預存程序 [sys.sp\_rda\_reauthorize\_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx) 以將本機已啟用 Stretch 的資料庫重新連線至 Azure。
+已啟用延展功能之 SQL Server 資料庫的備份只包含執行備份時，該時間點的本機資料及符合移轉資格的資料。(合格資料是尚未移轉但將根據資料表的移轉設定移轉到 Azure 的資料)。 這稱為「淺層」備份，其中不包括已經移轉到 Azure 的資料。
 
-    -   請以 sysname 或 varchar(128) 值提供現有資料庫範圍認證。(請勿使用 varchar(max))。 您可以查看 **sys.database\_scoped\_credentials** 檢視中的認證名稱。
+## 備份您的遠端 Azure 資料   
 
-	-   指定是否要建立遠端資料的複本，並連接到複本。
+Microsoft Azure 會自動備份 Stretch Database 已從 SQL Server 移轉到 Azure 的遠端資料。
 
-    ```tsql
-    Declare @credentialName nvarchar(128);
-    SET @credentialName = N'<database_scoped_credential_name_created_previously>';
-    EXEC sp_rda_reauthorize_db @credential = @credentialName, @with_copy = 0;
-    ```
+### Azure 藉由自動備份降低資料遺失風險  
+Azure 上的 SQL Server Stretch Database 服務會至少每 8 小時自動建立一次儲存體快照，來保護您的遠端資料庫。每個快照會保留 7 天，為您提供一系列可能的還原點。
 
-## <a name="MoreInfo"></a>備份與還原的詳細資訊
-已啟用 Stretch Database 之資料庫上的備份，僅包含該備份執行之時間點的本機資料與合格資料。這些備份也會包含資料庫遠端資料所在之遠端端點的相關資訊。這就是所謂的「淺層備份」。不支援包含本機及遠端之資料庫中所有資料的深層備份。
+### Azure 藉由異地備援降低資料遺失風險  
+Azure 資料庫備份儲存在異地備援「Azure 儲存體」(RA-GRS) 上，因此預設為異地備援資料庫。異地備援儲存體會將資料複寫到與主要區域距離數百英哩的次要區域。在主要和次要區域中，您的資料都會複寫三次，且跨越不同的容錯網域和升級網域。這可確保在即使發生全區中斷或災害而造成其中一個 Azure 區域無法供使用的情況下，仍可持續提供資料。
 
-當您還原已啟用 Stretch Database 之資料庫的備份時，此操作將會如預期般地將本機資料與合格資料還原至資料庫。(合格資料為尚未被移動，但將會根據 Stretch Database 的資料表設定移至 Azure 的資料)。 執行還原操作之後，資料庫將會包含執行備份之時間點的本機與合格資料，但該資料庫並不會有連接至遠端端點的必要認證及構件。
+### <a name="stretchRPO"></a>Stretch Database 透過暫時保留已移轉的資料，降低 Azure 資料遺失風險
+在 Stretch Database 將合格資料列從 SQL Server 移轉到 Azure 之後，它會將這些資料列保留在暫存資料表中至少 8 小時。如果您還原 Azure 資料庫的備份，Stretch Database 將會使用暫存資料表中儲存的資料列，將 SQL Server 與 Azure 資料庫重新同步化。
 
-您必須執行預存程序 **sys.sp\_rda\_reauthorize\_db** 以重新建立本機資料庫與其遠端端點之間的連線。只有 db\_owner 才能執行此操作。這個預存程序也需要目標 Azure 伺服器的系統管理員登入和密碼。
+還原 Azure 資料的備份之後，您必須執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序將已啟用延展功能的 SQL Server 資料庫重新連接到遠端 Azure 資料庫。當您執行 **sys.sp\_rda\_reauthorize\_db** 時，Stretch Database 會自動將 SQL Server 與 Azure 資料庫重新同步化。
 
-當您重新建立連線之後，Stretch Database 會透過在遠端端點上建立遠端資料的複本，並將之與本機資料庫連結，來嘗試對本機資料庫中的合格資料與遠端資料進行協調。這個程序會自動執行，不需要使用者介入。此重新調整執行完畢後，本機資料庫和遠端端點將會處於一致的狀態。
+若要增加 Stretch Database 在暫存資料表中暫時保留已移轉之資料的時數，請執行 [sys.sp\_rda\_set\_rpo\_duration](https://msdn.microsoft.com/library/mt707766.aspx) 預存程序並指定大於 8 的時數。若要決定所要保留的資料多寡，請考量下列因素︰
+-   自動 Azure 備份的頻率 (至少每 8 小時一次)。
+-   問題發生後辨識問題及決定還原備份所需的時間。
+-   Azure 還原作業的持續時間。
+
+> [AZURE.NOTE] 增加 Stretch Database 在暫存資料表中暫時保留的資料數量會增加 SQL Server 上所需的空間大小。
+
+若要檢查 Stretch Database 目前在暫存資料表中暫時保留資料的時數，請執行 [sys.sp\_rda\_get\_rpo\_duration](https://msdn.microsoft.com/library/mt707767.aspx) 預存程序。
 
 ## 另請參閱
 
@@ -58,4 +64,4 @@ Stretch Database 能完全支援還原時間點。在您將您的 SQL Server 資
 
 [備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="06/06/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 HDInsight Linux (預覽) 上管理 Apache Spark 叢集的資源
+# 在 HDInsight Linux 上管理 Apache Spark 叢集的資源
 
 在這篇文章中，您將學習如何存取介面，例如 Ambari UI，YARN UI 以及與您的 Spark 叢集相關聯的 Spark 歷程記錄伺服器。您也將了解如何調整叢集組態，以獲得最佳效能。
 
@@ -185,9 +185,19 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 
 * [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
 
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
+
+* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+
+* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+
+### 管理資源
+
+* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
 
 
@@ -202,4 +212,4 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

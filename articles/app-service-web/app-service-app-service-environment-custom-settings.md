@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="06/01/2016"
 	ms.author="stefsch"/>
 
 # App Service 環境的自訂組態設定
@@ -76,7 +76,7 @@
         ],
 
 ## 變更 TLS 加密套件順序 ##
-來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。可用的加密套件清單，可以從 [此 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85).aspx) 擷取。
+來自客戶的另一個問題是，他們是否可以修改由其伺服器交涉的加密的清單，而這可透過修改 **clusterSettings** 來達成，如下所示。可用的加密套件清單，可以從 [此 MSDN 文章] 擷取 (https://msdn.microsoft.com/library/windows/desktop/aa374757(v=vs.85).aspx))。
 
         "clusterSettings": [
             {
@@ -85,7 +85,7 @@
             }
         ],
 
-> 附註：如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。在這種情況下，您必須重新部署 App Service 環境，造成顯著的停機時間和可能的資料遺失。請謹慎使用這項功能。
+> [AZURE.WARNING]  如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。在這種情況下，您必須從 **clusterSettings** 移除 *FrontEndSSLCipherSuiteOrder* 項目，並提交更新的 ARM 範本以還原回預設的加密套件設定。請謹慎使用這項功能。
 
 ## 開始使用
 Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 環境](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/)基本定義的範本。
@@ -95,4 +95,4 @@ Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/21/2016"
+   ms.date="05/31/2016"
    ms.author="magoedte;bwren" />
 
 # Azure 自動化中的子 Runbook
@@ -30,9 +30,19 @@ Azure 自動化中的最佳作法是撰寫可重複使用、模組化的 Runbook
 
 以內嵌方式呼叫之子 Runbook 的參數可以是任何資料類型 (包括複雜物件)，而且沒有您使用 Azure 管理入口網站或使用 Start-AzureRmAutomationRunbook Cmdlet 啟動 Runbook 時的 [JSON 序列化](automation-starting-a-runbook.md#runbook-parameters)。
 
+
 ### Runbook 類型
 
-在使用內嵌執行的 [PowerShell Runbook](automation-runbook-types.md#powershell-runbooks) 中，您無法使用 [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks) 或 [圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 做為子 Runbook。同樣地，在使用內嵌執行的 PowerShell 工作流程 Runbook 或圖形 icalrunbook 中，您也無法使用 PowerShell Runbook 做為子 Runbook。PowerShell Runbook 只能使用另一個 PowerShell 做為子 Runbook。圖形化和 PowerShell 工作流程 Runbook 可互為彼此的子 Runbook。
+哪些類型可以彼此呼叫：
+
+- [PowerShell Runbook](automation-runbook-types.md#powershell-runbooks) 和[圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 可以內嵌方式呼叫彼此 (這兩者都是 PowerShell)。
+- [PowerShell 工作流程 Runbook](automation-runbook-types.md#powershell-workflow-runbooks) 和圖形化 PowerShell 工作流程 Runbook 可以內嵌方式呼叫彼此 (這兩者都是 PowerShell 工作流程)。
+- PowerShell 類型與 PowerShell 工作流程類型無法以內嵌方式彼此呼叫，而且必須使用 Start-AzureRmAutomationRunbook。
+	
+何時會與發行順序有關：
+
+- Runbook 的發行順序只對 PowerShell 工作流程和圖形化 PowerShell 工作流程 Runbook 有關係。
+
 
 叫用使用內嵌執行的圖形化或 PowerShell 工作流程子 Runbook 時，只要使用 Runbook 名稱即可。叫用 PowerShell 子 Runbook 時，則必須在名稱前面加上 *. \*，以指明指令碼位於本機目錄。
 
@@ -84,4 +94,4 @@ Azure 自動化中的最佳作法是撰寫可重複使用、模組化的 Runbook
 - [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
 - [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

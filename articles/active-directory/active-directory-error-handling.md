@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/21/2016"
+	ms.date="05/31/2016"
 	ms.author="priyamo"/>
 
 # OAuth 2.0 中的錯誤處理
@@ -137,4 +137,4 @@ RFC 6750 規格會針對在回應中使用 WWW 驗證標頭和持有人配置的
 | 403 | insufficient\_scope | 存取權杖不包含存取資源所需的模擬權限。 | 將新的授權要求傳送至授權端點。如果回應包含範圍參數，則在資源的要求中使用範圍值。 |
 | 403 | insufficient\_access | 權杖的主體沒有存取資源所需的權限。 | 提示使用者使用不同的帳戶，或要求所指定資源的權限。 |
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

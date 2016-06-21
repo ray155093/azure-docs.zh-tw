@@ -81,6 +81,6 @@ using (scope = new TransactionScope())
 - [自動轉寄範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AutoForward)
 - [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions)
 - [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
-- [如何使用服務匯流排佇列](service-bus-dotnet-how-to-use-queues.md)
+- [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

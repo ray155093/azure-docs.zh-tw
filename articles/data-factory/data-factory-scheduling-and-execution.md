@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/11/2016" 
+	ms.date="06/06/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Data Factory 進行排程和執行
@@ -282,7 +282,7 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。CopyActivity2 只會符合下列條件時開始執行︰
 
-- CopyActivity2 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。   
+- CopyActivity1 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。   
 - Dataset3 可供使用。此資料集代表已複製到目的地的資料。  
 
 
@@ -702,4 +702,4 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
   
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

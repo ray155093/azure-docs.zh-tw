@@ -38,7 +38,7 @@ azure group show TestRG --json | jq '.'
 建立儲存體帳戶
 
 ```bash
-azure storage account create -g TestRG -l westeurope --type GRS computeteststore
+azure storage account create -g TestRG -l westeurope --kind Storage --sku-name GRS computeteststore
 ```
 
 使用 JSON 剖析器確認儲存體
@@ -259,7 +259,7 @@ info:    group create command OK
 azure storage account create \  
 --location westeurope \
 --resource-group TestRG \
---type GRS \
+--kind Storage --sku-name GRS \
 computeteststore
 ```
 
@@ -1234,4 +1234,4 @@ info:    vm show command OK
 
 現在您已準備好開始處理多個網路元件和 VM。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

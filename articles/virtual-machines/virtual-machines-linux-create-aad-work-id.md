@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="12/08/2015"
+   ms.date="06/06/2016"
    ms.author="rasquill"/>
 
 # 在 Azure Active Directory 中建立用於 Linux VM 的工作或學校身分識別
@@ -27,4 +27,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-create-aad-work-id](../../includes/virtual-machines-common-create-aad-work-id.md)]
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0608_2016-->

@@ -1,6 +1,6 @@
 <properties 
     pageTitle="使用 PowerShell 為 Azure SQL Database 設定作用中異地複寫 | Microsoft Azure" 
-    description="使用 PowerShell 為 Azure SQL Database 進行異地複寫" 
+    description="使用 PowerShell 為 Azure SQL Database 設定作用中異地複寫" 
     services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
@@ -26,7 +26,7 @@
 - [Transact-SQL](sql-database-geo-replication-transact-sql.md)
 
 
-本文說明如何使用 PowerShell 為 Azure SQL Database 設定異地複寫。
+本文說明如何使用 PowerShell 為 SQL Database 設定異地複寫。
 
 若要起始容錯移轉，請參閱[為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-powershell.md)。
 
@@ -34,9 +34,9 @@
 
 您可以在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫。
 
-若要設定異地複寫，您需要下列項目：
+若要設定「異地複寫」，您需要下列項目：
 
-- Azure 訂用帳戶。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]，然後再回來完成這篇文章。
+- Azure 訂閱。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]，然後再回來完成這篇文章。
 - Azure SQL Database - 您想要複寫到不同地理區域的主要資料庫。
 - Azure PowerShell 1.0 或更新版本。依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，即可以下載並安裝 Azure PowerShell 模組。
 
@@ -63,7 +63,7 @@
 ## 加入次要資料庫
 
 
-下列步驟會在異地複寫合作關係中建立新的次要資料庫。
+下列步驟會在「異地複寫」合作關係中建立新的次要資料庫。
   
 若要啟用次要複本，您必須是訂用帳戶擁有者或共同擁有者。
 
@@ -73,7 +73,7 @@
 
 次要伺服器上的複寫資料庫會具備與主要伺服器上的資料庫相同的名稱，並且預設具有相同的服務層級。次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。如需詳細資訊，請參閱 [New-AzureRMSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603689.aspx) 和[服務層](sql-database-service-tiers.md)。建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。下列步驟說明如何使用 PowerShell 完成這項工作，以使用單一資料庫或彈性資料庫來建立不可讀取和可讀取次要複本。
 
-如果夥伴資料庫已經存在 (例如，因為終止先前的異地複寫關聯性的緣故)，命令將會失敗。
+如果夥伴資料庫已經存在 (例如，因終止先前的「異地複寫」關聯性所導致)，命令將會失敗。
 
 
 
@@ -165,4 +165,4 @@
 - [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

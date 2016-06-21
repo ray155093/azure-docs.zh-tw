@@ -303,7 +303,7 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-SID 衍生自提供者特定的使用者識別碼，且對指定的使用者和登入提供者而言都是靜態的。
+SID 衍生自提供者特定的使用者識別碼，且對指定的使用者和登入提供者而言都是靜態的。當使用者以匿名方式存取端點時，User 屬性會傳回 null。
 
 App Service 也可讓您向登入提供者要求特定宣告。這可讓您向提供者要求更多資訊，例如藉由使用 Facebook 圖形 API。您可以在入口網站的提供者刀鋒視窗中指定宣告。某些宣告需要搭配提供者的額外設定。
 
@@ -332,6 +332,19 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
     }
 
 請注意，您必須新增 `System.Security.Principal` 的 using 陳述式，**GetAppServiceIdentityAsync** 擴充方法才能運作。
+
+### <a name="authorize"></a>做法︰限制授權使用者的資料存取
+
+在上一節中，我們已說明如何擷取已驗證使用者的使用者識別碼。您可以根據此值限制存取資料和其他資源。例如，將 userId 資料行新增到資料表，以及依使用者識別碼篩選使用者的查詢結果，是一種簡單方式，可將傳回的資料限制為只有授權的使用者。下列程式碼只有在目前使用者的識別碼符合 TodoItem 資料表上 UserId 資料行中的值時才會傳回資料：
+
+    // Get the SID of the current user.
+    var claimsPrincipal = this.User as ClaimsPrincipal;
+    string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
+    
+    // Only return data rows that belong to the current user.
+    return Query().Where(t => t.UserId == sid);
+
+根據特定案例，您也可能也會想要建立使用者或角色資料表，以便追蹤更詳細的使用者授權資訊，例如使用者可以存取哪些端點。
 
 ## 做法：將推播通知新增至伺服器專案
 
@@ -389,7 +402,7 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
 	    }
 	});
 
-請注意，建立安裝時，後端會忽略用戶端在推播通知註冊期間提供的任何標記。若要讓用戶端將標記加入安裝，您必須建立使用上述模式加入標記的自訂 API。如需讓用戶端將標記加入安裝的自訂 API 控制器範例，請參閱適用於 .NET 後端之 App Service Mobile Apps 完整快速入門範例中的[用戶端加入的推播通知標記](https://github.com/Azure-Samples/app-service-mobile-dotnet-backend-quickstart/blob/master/README.md#client-added-push-notification-tags)。
+請注意，建立安裝時，後端會忽略用戶端在推播通知註冊期間提供的任何標記。若要讓用戶端將標記加入安裝，您必須建立使用上述模式加入標記的自訂 API。如需讓用戶端將標記加入安裝的自訂 API 控制器範例，請參閱適用於 .NET 後端之 App Service Mobile Apps 完整快速入門範例中的 [Client-added push notification tags (用戶端加入的推播通知標記)](https://github.com/Azure-Samples/app-service-mobile-dotnet-backend-quickstart/blob/master/README.md#client-added-push-notification-tags)。
 
 ##<a name="push-user"></a>做法：將推播通知傳送給已驗證的使用者
 
@@ -406,7 +419,7 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
     // Send a template notification to the user ID.
     await hub.SendTemplateNotificationAsync(notification, userTag);
 
-在註冊來自已驗證用戶端的推播通知時，請確定驗證已完成，然後再嘗試註冊。如需詳細資訊，請參閱適用於 .NET 後端之 App Service Mobile Apps 完整快速入門範例中的[推播給使用者](https://github.com/Azure-Samples/app-service-mobile-dotnet-backend-quickstart/blob/master/README.md#push-to-users)。
+在註冊來自已驗證用戶端的推播通知時，請確定驗證已完成，然後再嘗試註冊。如需詳細資訊，請參閱適用於 .NET 後端之 App Service Mobile Apps 完整快速入門範例中的 [Push to users (推播給使用者)](https://github.com/Azure-Samples/app-service-mobile-dotnet-backend-quickstart/blob/master/README.md#push-to-users)。
 
 ## 做法：針對 .NET 伺服器 SDK 進行偵錯和疑難排解
 
@@ -435,11 +448,11 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 
 4. 重新發佈您的伺服器專案，並存取行動應用程式後端，以執行記錄的程式碼路徑。
 
-5. 下載記錄並進行評估，如[做法：下載記錄](../app-service-web/web-sites-enable-diagnostic-log.md#download)中所述。
+5. 下載記錄並進行評估，如[作法：下載記錄](../app-service-web/web-sites-enable-diagnostic-log.md#download)中所述。
 
 ### <a name="local-debug"></a>使用驗證進行本機偵錯
 
-您可以在將變更發佈至雲端之前，在本機執行您的應用程式以測試變更。對於許多應用程式，在 Visual Studio 中時只需要按 F5 即可。不過，使用驗證時有一些其他考量。
+您可以在將變更發佈至雲端之前，在本機執行您的應用程式以測試變更。對於許多應用程式，在 Visual Studio 中時只需要按 *F5* 即可。不過，使用驗證時有一些其他考量。
 
 您必須擁有雲端式行動應用程式並且已設定 App Service 驗證/授權，而且您的用戶端必須有指定的雲端端點做為替代登入主機。請參閱您所選擇的用戶端平台的文件 ([iOS](app-service-mobile-ios-how-to-use-client-library.md)、[Windows/Xamarin](app-service-mobile-dotnet-how-to-use-client-library.md)) 以取得所需的特定步驟。
 
@@ -453,7 +466,7 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 			TokenHandler = config.GetMobileAppTokenHandler()
 		});
 
-在上述範例中，您應該使用 HTTPS 配置，將 Web.config 檔案中的 authAudience 和 authIssuer 應用程式設定，設定為每個應用程式根目錄的 URL。同樣地，您應該將 authSigningKey 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。若要取得該值，請在 [Azure 入口網站]中巡覽至您的應用程式，然後按一下 [工具]。然後選取 [Kudu]，再按一下 [移至]。這樣會帶您前往您的網站的 Kudu 管理端點。按一下 [環境] 並且在 WEBSITE\_AUTH\_SIGNING\_KEY 底下尋找值。這是您應該在本機應用程式設定中用於 authSigningKey 的值。
+在上述範例中，您應該使用 HTTPS 配置，將 Web.config 檔案中的 _authAudience_ 和 _authIssuer_ 應用程式設定，設定為每個應用程式根目錄的 URL。同樣地，您應該將 _authSigningKey_ 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。若要取得該值，請在 [Azure 入口網站]中巡覽至您的應用程式，然後按一下 [工具]。然後選取 [Kudu]，再按一下 [移至]。這樣會帶您前往您的網站的 Kudu 管理端點。按一下 [環境] 並且在 _WEBSITE\_AUTH\_SIGNING\_KEY_ 底下尋找值。這是您應該在本機應用程式設定中用於 _authSigningKey_ 的值。
 
 您的本機執行伺服器現在已裝備，可以驗證用戶端從雲端式端點取得的權杖。
 
@@ -465,4 +478,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Login]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Login/
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

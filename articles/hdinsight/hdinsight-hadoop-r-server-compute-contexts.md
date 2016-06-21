@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="03/28/2016"
+   ms.date="05/31/2016"
    ms.author="jeffstok"
 />
 
@@ -79,4 +79,4 @@ HDInsight (預覽) 中的 R 伺服器提供最新功能，讓以 R 為基礎的�
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight Premium 上的 R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0608_2016-->

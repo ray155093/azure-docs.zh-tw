@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/25/2016"
+	ms.date="06/01/2016"
 	ms.author="tarcher"/>
 
 # 每月估計成本趨勢
@@ -28,15 +28,15 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 點選 [瀏覽]，然後從清單中點選 [研發/測試實驗室]。
+1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，點選所需的實驗室。
+1. 從實驗室清單中，選取所需的實驗室。
 
-1. 點選 [設定]。
+1. 選取 [Settings] \(設定)。
 
 	![Settings](./media/devtest-lab-configure-cost-management/lab-blade-settings.png)
 
-1. 在實驗室的 [設定] 刀鋒視窗的 [成本管理] 底下，點選 [臨界值]。
+1. 在實驗室的 [設定] 刀鋒視窗的 [成本管理] 底下，選取 [臨界值]。
 
 	![功能表](./media/devtest-lab-configure-cost-management/menu.png)
  
@@ -69,4 +69,4 @@
 - [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何在 VM 中與構件搭配運作。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

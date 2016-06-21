@@ -154,7 +154,7 @@ Site Recovery 處理序伺服器可以自動探索 vSphere 主機或管理主機
 ## 建立復原服務保存庫
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [新增] > [混合式整合] > [復原服務]。或者，您可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
+2. 按一下 [新增] > [管理] > [備份和 Site Recovery (OMS)]。或者，您也可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
 
 	![新增保存庫](./media/site-recovery-vmware-to-azure/new-vault3.png)
 
@@ -380,7 +380,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 - 估計複寫資料的每日變更 (流失) 率。您可以使用 [vSphere capacity planning appliance (vSphere 容量規劃應用裝置)](https://labs.vmware.com/flings/vsphere-replication-capacity-planning-appliance) 來協助您執行這項操作。
 
 1.	按一下 [下載] 來下載此工具並加以執行。[閱讀本文](site-recovery-capacity-planner.md) (工具隨附)。
-2.	當您完成時，請在 [Have you completed capacity planning?]\(是否已完成容量規劃?) 中選取 [是]
+2.	當您完成時，請在 [Have you completed capacity planning?] \(是否已完成容量規劃?) 中選取 [是]
 
 	![容量規劃](./media/site-recovery-vmware-to-azure/gs-capacity-planning.png)
 
@@ -492,7 +492,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 	>[AZURE.NOTE] 如果您未使用網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要這樣做，請在登錄的 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入 DWORD 項目 LocalAccountTokenFilterPolicy，其值為 1。若要從 CLI 加入登錄項目，請輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
 
-2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall]\(允許應用程式或功能通過防火牆)。啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。對於隸屬於網域的機器，您可以使用 GPO 設定防火牆設定。
+2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall] \(允許應用程式或功能通過防火牆)。啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。對於隸屬於網域的機器，您可以使用 GPO 設定防火牆設定。
 
 	![防火牆設定](./media/site-recovery-vmware-to-azure/mobility1.png)
 
@@ -595,7 +595,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 - 系統會每隔 15 分鐘探索 VMware VM 一次，而且在探索之後，可能需要 15 分鐘以上，VMware VM 才會出現在入口網站中。同樣地，當您加入新的 vCenter 伺服器或 vSphere 主機時，探索可能需要 15 分鐘以上。
 - 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要 15 分鐘以上的時間，才會在入口網站更新。
-- 您可以透過 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [Last Contact At]\(上次連絡時間) 欄位，查看 VMware VM 的上次探索時間。
+- 您可以透過 [組態伺服器] 刀鋒視窗上 vCenter 伺服器/vSphere 主機的 [Last Contact At] \(上次連絡時間) 欄位，查看 VMware VM 的上次探索時間。
 - 若要加入複寫的機器，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
 - 當您啟用複寫時，如果機器已準備好，處理序伺服器會自動在其上安裝行動服務。
 
@@ -611,7 +611,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 **立即啟用複寫，如下所示**︰
 
-1. 按一下 [Step 2: Replicate application] [步驟 2︰複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+Replicate]\(+複寫)，以對其他機器啟用複寫。
+1. 按一下 [Step 2: Replicate application] [步驟 2︰複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+Replicate] \(+複寫)，以對其他機器啟用複寫。
 2. 在 [來源] 刀鋒視窗 > [來源] 中，選取組態伺服器。
 3. 在 [機器類型] 中，選取 [虛擬機器] 或 [實體機器]。
 4. 在 [vCenter/vSphere Hypervisor] 中，選取管理 vSphere 主機的 vCenter 伺服器，或選取主機。如果您是複寫實體機器，則這個設定不相關。
@@ -619,7 +619,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication2.png)
 
-6. 在 [目標] 中，選取保存庫訂用帳戶，並在 [Post-failover deployment model]\(容錯移轉後部署模型) 中，選取您要在容錯移轉後使用於 Azure 中的模型 (傳統或資源管理)。
+6. 在 [目標] 中，選取保存庫訂用帳戶，並在 [Post-failover deployment model] \(容錯移轉後部署模型) 中，選取您要在容錯移轉後使用於 Azure 中的模型 (傳統或資源管理)。
 7. 選取您要用來複寫資料的 Azure 儲存體帳戶。請注意：
 
 	- 您可以選取進階或標準儲存體帳戶。如果選取進階帳戶，您需要針對進行中的複寫記錄檔，額外指定一個標準儲存體帳戶。帳戶必須位於與復原服務保存庫相同的區域中。
@@ -633,7 +633,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication5.png)
 
-10. 在 [屬性] > [設定屬性] 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。依預設會複寫所有磁碟。按一下 [All Disks]\(所有磁碟) 並清除您不想要複寫的所有磁碟。然後按一下 [確定]。您可以稍後再設定其他屬性。
+10. 在 [屬性] > [設定屬性] 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。依預設會複寫所有磁碟。按一下 [All Disks] \(所有磁碟) 並清除您不想要複寫的所有磁碟。然後按一下 [確定]。您可以稍後再設定其他屬性。
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication6.png)
 
@@ -646,7 +646,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication7.png)
 
-13. 按一下 [啟用複寫]。您可以在 [設定] > [作業] > [Site Recovery Jobs]\(Site Recovery 作業) 中，追蹤 [啟用保護] 作業的進度。執行 [Finalize Protection] \(完成保護) 作業之後，機器便可以進行容錯移轉。
+13. 按一下 [啟用複寫]。您可以在 [設定] > [作業] > [Site Recovery Jobs] \(Site Recovery 作業) 中，追蹤 [啟用保護] 作業的進度。執行 [Finalize Protection] \(完成保護) 作業之後，機器便可以進行容錯移轉。
 
 > [AZURE.NOTE] 如果機器已準備好進行推送安裝，則當啟用保護時，將會安裝行動服務元件。在機器上安裝元件之後，保護工作會啟動並失敗。在失敗之後，您需要手動重新啟動每一部機器。重新啟動之後，保護作業再次開始，並且會發生初始複寫。
 
@@ -729,14 +729,14 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ## 執行測試容錯移轉
 
-1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+Test Failover]\(+測試容錯移轉) 圖示。
+1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+Test Failover] \(+測試容錯移轉) 圖示。
 
 	![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover1.png)
 
 2. 若要容錯移轉復原方案，請在 [設定] > [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。若要建立復原方案，[請遵循這些指示](site-recovery-create-recovery-plans.md)。
 
 3. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
-4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery jobs]\(Site Recovery 作業) 中的 [測試容錯移轉] 按一下，以便追蹤進度。
+4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery jobs] \(Site Recovery 作業) 中的 [測試容錯移轉] 按一下，以便追蹤進度。
 5. 當容錯移轉到達**完成測試**狀態時，請執行下列作業：
 
 	1. 在 Azure 入口網站中檢視複本虛擬機器。確認虛擬機器成功啟動。
@@ -765,7 +765,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 ![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
 
 2. 在 [健全狀況] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
-3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery Jobs]\(Site Recovery 作業) 中向下鑽研作業。
+3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery Jobs] \(Site Recovery 作業) 中向下鑽研作業。
 
 
 ## 部署額外處理序伺服器
@@ -776,7 +776,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ### 安裝額外的處理序伺服器
 
-1. 在 [設定] > [Site Recovery servers]\(Site Recovery 伺服器) 中，按一下組態伺服器 > [處理序伺服器]。
+1. 在 [設定] > [Site Recovery servers] \(Site Recovery 伺服器) 中，按一下組態伺服器 > [處理序伺服器]。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
 
@@ -785,7 +785,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
 3. 下載 Site Recovery 統一安裝檔案，然後執行它以安裝處理序伺服器，並在保存庫中註冊。
-4. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment]\(新增額外處理序伺服器以相應放大部署)。
+4. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment] \(新增額外處理序伺服器以相應放大部署)。
 5. 以您[設定](#step-2-set-up-the-source-environment)組態伺服器時的相同方式完成精靈。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/add-ps1.png)
@@ -813,7 +813,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 **角色** | **詳細資料** | **權限**
 --- | --- | ---
 Azure\_Site\_Recovery 角色 | VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區 -> 配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路 -> 網路指派<br/><br/>資源 -> 指派虛擬機器至資源集區、移轉已關閉電源的虛擬機器、移轉已開啟電源的虛擬機器<br/><br/>工作 -> 建立工作、更新工作<br/><br/>虛擬機器 -> 組態<br/><br/>虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟機媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 -> 清查 -> 建立、註冊、取消註冊<br/><br/>虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 -> 快照 -> 移除快照
-vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child]\(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。
+vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] \(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。
 vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] \(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。 
 ## 後續步驟
 
@@ -832,4 +832,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->

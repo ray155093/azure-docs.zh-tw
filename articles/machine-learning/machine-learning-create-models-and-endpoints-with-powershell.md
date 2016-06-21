@@ -36,13 +36,13 @@ ms.author="garye;haining"/>
 
 >[AZURE.NOTE] 為了依照此範例進行，建議您使用標準工作區，而不是免費工作區。我們將為每個客戶建立一個端點 (總共 10 個端點)，而這需要標準工作區，因為免費工作區只能有 3 個端點。如果您只有免費工作區，請修改下列指令碼，只允許有 3 個地點。
 
-此實驗使用**讀取器**模組，從 Azure 儲存體帳戶匯入訓練資料集 *customer001.csv*。假設我們已從所有自行車出租地點收集訓練資料集，並儲存在相同的 Blob 儲存體位置中，檔名範圍從 *rentalloc001.csv* 至 *rentalloc10.csv*。
+此實驗使用「匯入資料」模組，從 Azure 儲存體帳戶匯入訓練資料集 *customer001.csv*。假設我們已從所有自行車出租地點收集訓練資料集，並儲存在相同的 Blob 儲存體位置中，檔名範圍從 *rentalloc001.csv* 至 *rentalloc10.csv*。
 
 ![image](./media/machine-learning-create-models-and-endpoints-with-powershell/reader-module.png)
 
 請注意，**Web 服務輸出**模組已加入至**訓練模型**模組。當此實驗部署為 Web 服務時，與該輸出相關聯的端點會傳回訓練模型，格式為 .ilearner 檔案。
 
-另外也請注意，我們已設定 URL 的 Web 服務參數，供**讀取器**模組使用。這可讓我們使用參數來指定個別的訓練資料集，以針對每個地點來訓練模型。還有其他方法可以這樣做，例如，使用 SQL 查詢加上 Web 服務參數，以從 SQL Azure 資料庫取得資料，或只是使用 **Web 服務輸入**模組，將資料集傳給 Web 服務。
+另請注意，我們為「匯入資料」模組使用的 URL 設定了 Web 服務參數。這可讓我們使用參數來指定個別的訓練資料集，以針對每個地點來訓練模型。還有其他方法可以這樣做，例如，使用 SQL 查詢加上 Web 服務參數，以從 SQL Azure 資料庫取得資料，或只是使用 **Web 服務輸入**模組，將資料集傳給 Web 服務。
 
 ![image](./media/machine-learning-create-models-and-endpoints-with-powershell/web-service-output.png)
 
@@ -159,4 +159,4 @@ ms.author="garye;haining"/>
 	    Patch-AmlWebServiceEndpoint -WebServiceId $scoringSvc.Id -EndpointName $endpointName -ResourceName 'Bike Rental [trained model]' -BaseLocation $baseLoc -RelativeLocation $relativeLoc -SasBlobToken $sasToken
 	}
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

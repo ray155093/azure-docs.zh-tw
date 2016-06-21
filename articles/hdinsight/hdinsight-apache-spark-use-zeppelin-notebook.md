@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016" 
+	ms.date="06/06/2016" 
 	ms.author="nitinme"/>
 
 
-# 在 HDInsight Linux (預覽) 上搭配使用 Zeppelin Notebook 和 Spark 叢集
+# 在 HDInsight Linux 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集
 
-了解如何在 Spark 叢集上安裝 Zeppelin Notebook 以及如何使用 Zeppelin Notebook。
+了解如何在 Apache Spark 叢集上安裝 Zeppelin Notebook，以及如何使用 Zeppelin Notebook 來執行 Spark 作業。
 
 > [AZURE.IMPORTANT] Zeppelin Notebook for HDInsight Spark 叢集是一個供應項目，僅是為了展示如何在 Azure HDInsight Spark 環境中使用 Zeppelin。如果您想要使用 Notebook 來使用 HDInsight Spark，我們建議您改為使用 Jupyter Notebook。Jupyter Notebook 也會提供不同的核心選項，例如 Scala，並將繼續改良功能。如需有關如何使用 Jupyter Notebook 和 HDInsight Spark 的指示，請參閱[使用 Jupyter Notebook 執行 Spark SQL 查詢](hdinsight-apache-spark-jupyter-spark-sql.md#jupyter)。
 
 **必要條件：**
 
 * 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+* Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * SSH 用戶端。若為 Linux 和 Unix 發佈或 Macintosh OS X，`ssh` 命令會隨作業系統提供。若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 	> [AZURE.NOTE] 如果您想要使用 `ssh` 或 PuTTY 以外的 SSH 用戶端，請參考您用戶端的說明文件，了解如何建立 SSH 通道。
@@ -37,9 +37,9 @@
 
 	> [AZURE.WARNING] 若無 FoxyProxy 之類的外掛程式，所有透過瀏覽器建立的要求可能都會透過通道進行路由傳送。這會導致瀏覽器中的網頁載入速度較慢。
 
-## 在建立叢集時安裝 Zeppelin
+## 在 Spark 叢集上安裝 Zeppelin
 
-您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。您可以使用自訂指令碼從 Azure 入口網站安裝 Zeppelin，使用 HDInsight.NET SDK 或 Azure PowerShell 都可以。
+您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。您可以使用自訂指令碼從 Azure 入口網站安裝 Zeppelin，使用 HDInsight.NET SDK 或 Azure PowerShell 都可以。您可以使用指令碼，在叢集建立期間安裝 Zeppelin，或在叢集已啟動並執行之後加以安裝。下列各節中的連結提供如何執行這項操作的指示。
 
 ### 使用 Azure 入口網站
 
@@ -325,11 +325,19 @@
 
 * [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
 
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
+
+* [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+
+* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### 管理資源
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
+
+* [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
 
 [hdinsight-versions]: hdinsight-component-versioning.md
@@ -342,4 +350,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0608_2016-->

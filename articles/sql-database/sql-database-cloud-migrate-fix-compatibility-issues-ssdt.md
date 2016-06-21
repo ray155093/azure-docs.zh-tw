@@ -1,5 +1,5 @@
 <properties
-   pageTitle="在移轉至 SQL 資料庫之前修正 SQL Server 資料庫相容性問題"
+   pageTitle="在移轉至 SQL Database 之前修正 SQL Server 資料庫相容性問題 | Microsoft Azure"
    description="Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈, SSDT"
    services="sql-database"
    documentationCenter=""
@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="05/31/2016"
+   ms.workload="sqldb-migrate"
+   ms.date="06/07/2016"
    ms.author="carlrab"/>
 
 # 使用適用於 Visual Studio 的 SQL Server Data Tools 將 SQL Server 資料庫移轉至 Azure SQL Database 
@@ -97,4 +97,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

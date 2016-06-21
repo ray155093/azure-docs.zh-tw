@@ -211,6 +211,6 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 ## 後續步驟
 
-- [新增虛擬機器](virtual-machines-windows-create-powershell.md)到 TestVNET 子網路，例如執行 Microsoft SQL Server 的虛擬機器。
+- [新增虛擬機器](virtual-machines-windows-ps-create.md)到 TestVNET 子網路，例如執行 Microsoft SQL Server 的虛擬機器。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

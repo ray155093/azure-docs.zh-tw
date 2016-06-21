@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="06/03/2016"
 	ms.author="robmcm"/>
 
 #在 Azure App Service Web Apps 中設定 PHP
@@ -76,7 +76,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。若要更
 
 ## 作法：變更內建 PHP 組態
 
-對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。(如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單] (英文))。
+對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。(如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單] \(英文))。
 
 ### 變更 PHP\_INI\_USER、PHP\_INI\_PERDIR、PHP\_INI\_ALL 組態設定
 
@@ -144,7 +144,7 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 除了預設的 PHP 執行階段之外，App Service Web Apps 也可以使用您提供的 PHP 執行階段來執行 PHP 指令碼。您提供的執行階段可以由也是您提供的 `php.ini` 檔案加以設定。若要使用自訂 PHP 執行階段搭配 Web Apps，請依照下列步驟執行。
 
 1. 取得 PHP for Windows 的非安全執行緒 VC9 或 VC11 相容版本。可以在下列網址找到最新版 PHP for Windows：[http://windows.php.net/download/]。在下列封存中可以找到舊版：[http://windows.php.net/downloads/releases/archives/]。
-2. 為您的執行階段修改 `php.ini` 檔案。請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定(如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單] (英文))。
+2. 為您的執行階段修改 `php.ini` 檔案。請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定(如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單] \(英文))。
 3. 或者，將擴充功能新增至 PHP 執行階段，並且在 `php.ini` 檔案中啟用這些擴充功能。
 4. 將 `bin` 目錄新增至根目錄，並在其中放入包含 PHP 執行階段的目錄 (例如，`bin\php`)。
 5. 部署 Web 應用程式。
@@ -160,14 +160,34 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 
 	![儲存組態設定。][save-button]
 
+<a name="composer" />
+## 做法︰在 Azure 中啟用編輯器自動化
+
+App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執行任何操作。如果您使用 [Git 部署](app-service-web-php-get-started.md)，您可以透過啟用「編輯器」擴充功能，在 `git push` 期間啟用 composer.json 處理。
+
+>[AZURE.NOTE] 您可以[在這裡投票選擇 App Service 中的頂級編輯器支援](https://feedback.azure.com/forums/169385-web-apps-formerly-websites/suggestions/6477437-first-class-support-for-composer-and-pip)！
+
+1. 在 [Azure 入口網站](https://portal.azure.com)的 PHP Web 應用程式刀鋒視窗中，按一下 [工具] > [擴充功能]。
+
+    ![可在 Azure 中啟用「編輯器」自動化的「Azure 入口網站」設定刀鋒視窗](./media/web-sites-php-configure/composer-extension-settings.png)
+
+2. 按一下 [新增]，然後按一下 [編輯器]。
+
+    ![新增「編輯器」擴充功能以在 Azure 中啟用「編輯器」自動化](./media/web-sites-php-configure/composer-extension-add.png)
+    
+3. 按一下 [確定] 以接受法律條款。再按一次 [確定] 以新增擴充功能。
+
+    [已安裝的擴充功能] 刀鋒視窗現在將顯示編輯器擴充功能。![接受法律條款以在 Azure 中啟用「編輯器」自動化](./media/web-sites-php-configure/composer-extension-view.png)
+    
+4. 現在，和上一節一樣執行 `git add`、`git commit` 和 `git push`。您就會立即看到編輯器正在安裝 composer.json 中定義的相依性。
+
+    ![使用 Azure 中的「編輯器」自動化來進行 Git 部署](./media/web-sites-php-configure/composer-extension-success.png)
+
 ## 後續步驟
 
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
-
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [免費試用]: https://www.windowsazure.com/pricing/free-trial/
 [phpinfo()]: http://php.net/manual/en/function.phpinfo.php
@@ -188,4 +208,4 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 [GETPHPVERPS]: ./media/web-sites-php-configure/ShowPHPVersion-PS.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0608_2016-->

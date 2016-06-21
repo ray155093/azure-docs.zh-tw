@@ -13,27 +13,23 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="05/26/2016"
+   ms.date="06/03/2016"
    ms.author="v-six" />
 
 # 對無法啟動的雲端服務角色進行疑難排解
 
 以下是與無法啟動的 Azure 雲端服務角色相關的一些常見問題和解決方案。
 
-## 連絡 Azure 客戶支援
-
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。
-
-或者，您可以提出 Azure 支援事件。請移至 [Azure 支援網站](http://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。如需關於使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](http://azure.microsoft.com/support/faq/)。
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 遺失 Dll 或相依性
 
-角色沒有回應，和角色在 [初始化中]、[忙碌] 和 [停止中] 狀態之間循環，有可能是因為遺失 Dll 或組件所致。
+角色沒有回應，以及角色在 [正在初始化]、[忙碌] 和 [正在停止] 狀態之間循環，有可能是因為遺失 DLL 或組件所致。
 
 遺失 DLL 或組件的徵狀可能是：
 
-- 您的角色執行個體在 [初始化中]、[忙碌] 及 [停止中] 狀態之間循環。
-- 您的角色執行個體已進入 [就緒] 狀態，但瀏覽至您的 Web 應用程式時，發現頁面並未顯示。
+- 您的角色執行個體在 [正在初始化]、[忙碌] 及 [正在停止] 狀態之間循環。
+- 您的角色執行個體已進入 [就緒] 狀態，但當您瀏覽至 Web 應用程式時，發現頁面並未顯示。
 
 有數個建議的方法可調查這些問題。
 
@@ -73,9 +69,9 @@
 
 2. 在使用 Visual Studio 部署解決方案期間，選擇「設定遠端桌面連線...」。如需設定遠端桌面連線的詳細資訊，請參閱[搭配使用遠端桌面與 Azure 角色](../vs-azure-tools-remote-desktop-roles.md)。
 
-3. 在 Microsoft Azure 傳統入口網站中，執行個體的顯示狀態為 [就緒] 時，按一下其中一個角色執行個體。
+3. 在 Microsoft Azure 傳統入口網站中，當執行個體的顯示狀態為 [就緒] 時，按一下其中一個角色執行個體。
 
-4. 在功能區的 [遠端存取] 區域中，按一下 [連接] 圖示
+4. 在功能區的 [遠端存取] 區域中，按一下 [連接] 圖示。
 
 5. 使用在遠端桌面設定期間指定的認證登入虛擬機器。
 
@@ -155,7 +151,7 @@
 
 3. 按一下錯誤中識別的組件。
 
-4. 在 [屬性] 窗格中找出 [複製到本機] 屬性，並將值設為 **True**。
+4. 在 [屬性] 窗格中找出 [複製本機] 屬性，並將值設為 **True**。
 
 5. 重新部署雲端服務。
 
@@ -163,8 +159,8 @@
 
 ## 後續步驟
 
-檢視更多雲端服務的[疑難排解文章](..\?tag=top-support-issue&service=cloud-services)。
+檢視更多雲端服務的[疑難排解文章](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services)。
 
-若要了解如何利用 Azure PaaS 電腦的診斷資料對雲端服務角色的問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
+若要了解如何利用 Azure PaaS 電腦診斷資料對雲端服務角色問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0608_2016-->

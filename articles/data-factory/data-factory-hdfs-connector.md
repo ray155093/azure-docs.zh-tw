@@ -265,7 +265,7 @@ fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定
 partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
 fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：* (多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**請注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
 | compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：「最佳」和「最快」。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
-| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如果格式為 TextFormat，您可以指定格式的其他選擇性屬性。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。 | 否 
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否 
 
 
 > [AZURE.NOTE] 無法同時使用檔名和 fileFilter。
@@ -325,4 +325,4 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0608_2016-->
