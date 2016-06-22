@@ -48,7 +48,7 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 根目錄中的文章會發佈至 Azure.Microsoft.com 的 *http://azure.microsoft.com/documentation/articles/{article-name-without-md}/* 路徑中。
 
-* **文章的檔名：**請參閱[檔案命名指引](https://github.com/Azure/azure-content/blob/master/contributor-guide/file-names-and-locations.md)。
+* **文章的檔名：**請參閱 [檔案命名指引](https://github.com/Azure/azure-content/blob/master/contributor-guide/file-names-and-locations.md)。
 
 自有服務資料夾內的文章會發佈至 Azure.Microsoft.com 的 
 *http://azure.microsoft.com/documentation/articles/service-folder/{article-name-without-md}/* 路徑中
@@ -99,4 +99,4 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 如需所有指引主題，請參閱[參與者指南索引](https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md)。
 
-<!---HONumber=AcomDC_0307_2016-->
+<!----HONumber=AcomDC_0307_2016-->
