@@ -26,7 +26,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。部署和管理
 
 如果您在建立新的應用程式或重新撰寫現有的應用程式以使用微服務架構，Service Fabric 是不錯的選擇。在共用機器集區上執行的應用程式可以從小規模著手，然後擴充為包含成千上萬部機器的大規模服務。具狀態服務可輕鬆地以一致且可靠的方式儲存應用程式狀態，而 Service Fabric 會自動為您管理服務資料分割、調整及可用性。Service Fabric 也支援具有 Open Web Interface for .NET (OWIN) 和 ASP.NET Core 的 WebAPI。相較於 App Service，Service Fabric 也能更充分掌控或直接存取基礎結構。您可以從遠端進入您的伺服器，或設定伺服器啟動工作。雲端服務的控制和易用程度類似於 Service Fabric，但是它現在是舊版服務，建議將 Service Fabric 用於新的開發。
 
-如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 [虛擬機器] 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
+如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 虛擬機器 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
 
 ##<a name="scenarios"></a>案例和建議
 
