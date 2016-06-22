@@ -27,14 +27,14 @@ Service Fabric 叢集是您所擁有的資源。為了防止未經授權的資�
 ## 節點對節點安全性
 保護叢集中 VM 與電腦之間的通訊。這可確保只有獲得授權加入叢集的電腦可以參與裝載應用程式和叢集中的服務。
 
-	![節點對節點通訊的圖表][Node-to-Node]
+![節點對節點通訊的圖表][Node-to-Node]
 
 在 Azure 上執行的叢集或在 Windows 上執行的獨立叢集可以使用[憑證安全性](https://msdn.microsoft.com/library/ff649801.aspx)或 [Windows 安全性](https://msdn.microsoft.com/library/ff649396.aspx)。憑證安全性是在建立叢集 (透過「Azure 入口網站」或 ARM 範本) 時，藉由指定主要憑證及視需要指定次要憑證來設定的。您指定的主要和次要憑證，應該不同於您為[用戶端對節點安全性](#client-to-node-security)指定的系統管理用戶端憑證和唯讀用戶端憑證。若要了解如何在於 Azure 上執行的叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 ARM 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
 ## 用戶端對節點安全性
 驗證用戶端並保護用戶端與叢集中個別節點之間的通訊。這個類型的安全性會驗證並保護用戶端通訊，確保只有獲得授權的使用者可以存取叢集與叢集上部署的應用程式。用戶端是透過其 Windows 安全性認證或其憑證安全性認證唯一識別。
 
-	![用戶端對節點通訊的圖表][Client-to-Node]
+![用戶端對節點通訊的圖表][Client-to-Node]
 
 在 Azure 上執行的叢集或在 Windows 上執行的獨立叢集可以使用[憑證安全性](https://msdn.microsoft.com/library/ff649801.aspx)或 [Windows 安全性](https://msdn.microsoft.com/library/ff649396.aspx)。用戶端對節點憑證安全性是在建立叢集 (透過「Azure 入口網站」或 ARM 範本) 時，藉由指定系統管理用戶端憑證和 (或) 唯讀用戶端憑證來設定的。您指定的系統管理用戶端憑證和唯讀用戶端憑證，應該不同於您為[節點對節點安全性](#node-to-node-security)指定的主要和次要憑證。用戶端如果是使用系統管理憑證或主要憑證來連接到叢集，就會擁有管理功能的完整存取權。用戶端如果是使用唯讀用戶端憑證來連接到叢集，則只會擁有管理功能的唯讀存取權。若要了解如何在於 Azure 上執行的叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 ARM 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
@@ -89,4 +89,4 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 [Node-to-Node]: ./media/service-fabric-cluster-security/node-to-node.png
 [Client-to-Node]: ./media/service-fabric-cluster-security/client-to-node.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!----HONumber=AcomDC_0608_2016-->
