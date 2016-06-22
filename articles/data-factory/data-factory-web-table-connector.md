@@ -256,7 +256,7 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 2. 按一下工具列上的 [開新查詢]、指向 [從其他來源]，然後按一下 [從 Web]。
 	
 	![Power Query 功能表](./media/data-factory-web-table-connector/PowerQuery-Menu.png) 
-3. 在 [從 Web] 對話方塊方塊中，輸入您會在連結服務 JSON 中使用的 [URL] (例如：https://en.wikipedia.org/wiki/)，以及您會為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。 
+3. 在 [從 Web] 對話方塊方塊中，輸入您會在連結服務 JSON 中使用的 [URL] \(例如：https://en.wikipedia.org/wiki/)，以及您會為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。 
 
 	![[從 Web] 對話方塊](./media/data-factory-web-table-connector/FromWeb-DialogBox.png)
 
@@ -286,4 +286,4 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!----HONumber=AcomDC_0608_2016-->
