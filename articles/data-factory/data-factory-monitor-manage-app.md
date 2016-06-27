@@ -23,7 +23,8 @@
 
 本文說明如何使用**監視及管理應用程式**監視管線、管理管線以及為管線偵錯；以及建立警示以在失敗時收到通知。您也可以觀看下列影片以了解如何使用監視及管理應用程式。
    
-> [AZURE.VIDEO how-to-monitor--manage-big-data-pipelines-with-azure-data-factory]
+
+> [AZURE.VIDEO azure-data-factory-monitoring-and-managing-big-data-piplines]
       
 ## 啟動監視及管理應用程式
 若要啟動監視及管理應用程式，請按一下您資料處理站的 [DATA FACTORY] 刀鋒視窗上的 [監視及管理] 磚。
@@ -114,7 +115,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![活動時段總管的向左/向右箭號](./media/data-factory-monitor-manage-app/ActivityWindowExplorerLeftRightArrows.png)
 
-在 [圖表檢視] 的底部，您會看到 [放大]、[縮小]、[縮放至適當比例]、[顯示比例 100%]、[鎖定配置] \(防止您在圖表檢視中不小心移動了資料表和管線) 按鈕。[鎖定配置] 按鈕預設為開啟，但您可以關閉該設定，以便移動圖表中的實體。當您關閉該設定，您可以使用上一個按鈕來自動把資料表和管線移動到適當的地方。您也可以使用滑鼠滾輪來放大/縮小。
+在 [圖表檢視] 的底部，您會看到 [放大]、[縮小]、[縮放至適當比例]、[顯示比例 100%]、[鎖定配置] (防止您在圖表檢視中不小心移動了資料表和管線) 按鈕。[鎖定配置] 按鈕預設為開啟，但您可以關閉該設定，以便移動圖表中的實體。當您關閉該設定，您可以使用上一個按鈕來自動把資料表和管線移動到適當的地方。您也可以使用滑鼠滾輪來放大/縮小。
 
 ![圖表檢視的縮放命令](./media/data-factory-monitor-manage-app/DiagramViewZoomCommands.png)
 
@@ -200,7 +201,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![[屬性] 視窗](./media/data-factory-monitor-manage-app/PropertiesWindow.png)
 
-它會顯示您在 [資源總管] \(樹狀檢視) (或) 圖表檢視 (或) [活動時段清單] 中所選取項目的屬性。
+它會顯示您在 [資源總管] (樹狀檢視) (或) 圖表檢視 (或) [活動時段清單] 中所選取項目的屬性。
 
 ### 活動時段總管
 
@@ -224,7 +225,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![[監視檢視] 索引標籤](./media/data-factory-monitor-manage-app/MonitoringViewsTab.png)
 
-目前我們支援三種系統檢視。請選取某個選項，以便在 [活動時段清單] \(位於中間窗格底部) 中查看最近的活動時段 (或) 失敗的活動時段 (或) 進行中的活動時段。
+目前我們支援三種系統檢視。請選取某個選項，以便在 [活動時段清單] (位於中間窗格底部) 中查看最近的活動時段 (或) 失敗的活動時段 (或) 進行中的活動時段。
 
 當您選取 [最近的活動時段] 選項時，您會看到以 [上次嘗試時間] 的遞減順序排列之所有最近的活動時段。
 
@@ -260,9 +261,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 ## 執行批次動作
 
 ### 重新執行已選取的活動時段
-選取某個活動時段、按一下第一個命令列按鈕旁的向下箭號，然後選取 [重新執行]/[Rerun with upstream in pipeline] \(搭配管線上游來重新執行)。當您選取 [Rerun with upstream in pipeline] \(搭配管線上游來重新執行) 時，系統也會傳回所有上游的活動時段。
-
-![重新執行某個活動時段](./media/data-factory-monitor-manage-app/ReRunSlice.png)
+選取某個活動時段、按一下第一個命令列按鈕旁的向下箭號，然後選取 [重新執行]/[Rerun with upstream in pipeline] (搭配管線上游來重新執行)。當您選取 [Rerun with upstream in pipeline] (搭配管線上游來重新執行) 時，系統也會傳回所有上游的活動時段。![重新執行某個活動時段](./media/data-factory-monitor-manage-app/ReRunSlice.png)
 
 您也可以選取清單中的數個活動時段，然後同時重新執行這些活動時段。您可能會想要根據狀態 (例如 [失敗]) 來篩選活動時段，然後在修正導致活動時段執行失敗的問題之後，重新執行失敗的活動時段。請參閱下一節來取得如何篩選清單中活動時段的詳細資料。
 
@@ -315,4 +314,4 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
     
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0615_2016-->

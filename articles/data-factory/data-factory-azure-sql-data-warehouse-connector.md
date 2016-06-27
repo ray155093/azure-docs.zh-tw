@@ -485,7 +485,7 @@
     }
 
 ## 使用 PolyBase 將資料載入 Azure SQL 資料倉儲
-**PolyBase** 是以高輸送量將大量資料從 Azure Blob 儲存體載入 Azure SQL 資料倉儲的有效方法。使用 PolyBase 而不是預設的 BULKINSERT 機制，即可看到輸送量大幅提升。
+使用 **PolyBase** 是以高輸送量將大量資料載入 Azure SQL 資料倉儲的有效方法。使用 PolyBase 而不是預設的 BULKINSERT 機制，即可看到輸送量大幅提升。
 
 將 **allowPolyBase** 屬性設定為 **true** (如下列範例所示)，以便 Azure Data Factory 使用 PolyBase，將資料複製到 Azure SQL 資料倉儲。當您將 allowPolyBase 設定為 true 時，您可以使用 **polyBaseSettings** 屬性群組來指定 PolyBase 特定屬性。如需您可搭配 polyBaseSettings 使用之屬性的詳細資訊，請參閱上面的 [SqlDWSink](#SqlDWSink) 一節。
 
@@ -504,18 +504,17 @@
     }
 
 ### 使用 PolyBase 直接複製
-如果您的來源資料符合下列準則，您就可以使用 PolyBase，從來源資料存放區直接複製到 Azure SQL 資料倉儲。否則，您可以將資料從來源資料存放區複製到符合下列準則的暫存 Azure Blob 儲存體，然後使用 PolyBase 將資料載入 Azure SQL 資料倉儲。如需分段複製的詳細資訊，請參閱[使用 PolyBase 分段複製](#staged-copy-using-polybase)。
+如果您的來源資料符合下列準則，您就可以使用參考上述範例組態的 PolyBase，從來源資料存放區直接複製到 Azure SQL 資料倉儲。否則，您可以運用[使用 PolyBase 分段複製](#staged-copy-using-polybase)。
 
 請注意，Azure Data Factory 會檢查設定，如果不符合需求，即會自動切換回適用於資料移動的 BULKINSERT 機制。
 
 1.	**來源連結服務**的類型為 **Azure 儲存體**，而且不會設定為使用 SAS (共用存取簽章) 驗證。如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。  
-2. **輸入資料集**的類型為 **Azure Blob**，而資料集的類型屬性符合下列準則： 
-	1. **Type** 必須是 **TextFormat** 或 **OrcFormat**。 
-	2. **rowDelimiter** 必須是 **\\n**。 
-	3. **nullValue** 設定為**空字串** ("")。 
-	4. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。 
-	5. 未指定 **escapeChar** 和 **quoteChar**。 
-	6. **Compression** 不是 **BZIP2**。
+2. **輸入資料集**的類型為 **Azure Blob**，而類型屬性下方的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
+	1. **rowDelimiter** 必須是 **\\n**。 
+	2. **nullValue** 設定為**空字串** ("")。 
+	3. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。 
+	4. 未指定 **escapeChar** 和 **quoteChar**。 
+	5. **Compression** 不是 **BZIP2**。
 	 
 			"typeProperties": {
 				"folderPath": "<blobpath>",
@@ -536,7 +535,9 @@
 5.	目前沒有任何 **columnMapping** 使用於相關聯的複製活動。 
 
 ### 使用 PolyBase 分段複製
-PolyBase 機制要求資料來源位於 Azure Blob 儲存體中且為下列其中一個支援的格式 (有限制的 DELIMITEDTEXT、RCFILE、ORC、PARQUET)。當您的資料來源不符合上一節所介紹的準則時，您可以透過過渡暫存 Azure Blob 儲存體複製資料，在這種情況下，Azure Data Factory 會對資料執行轉換以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入 SQL 資料倉儲。如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
+當您的資料來源不符合上一節所介紹的準則時，您可以透過過渡暫存 Azure Blob 儲存體複製資料，在這種情況下，Azure Data Factory 會對資料執行轉換以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入 SQL 資料倉儲。如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
+
+> [AZURE.IMPORTANT] 如果您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲，您需要在閘道電腦上安裝 JRE (Java Runtime Environment)，您可以使用此電腦將來源資料轉換為適當的格式。請注意，64 位元閘道需要 64 位元 JRE，而 32 位元閘道需要 32 位元 JRE。您可以從[這裡](http://go.microsoft.com/fwlink/?LinkId=808605)找到這兩個版本，請進行正確選擇。
 
 若要使用此功能，請建立 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)，這是指具有過渡 Blob 儲存體的 Azure 儲存體帳戶，然後針對複製活動指定 **enableStaging** 和 **stagingSettings** 屬性，如下所示：
 
@@ -555,16 +556,12 @@ PolyBase 機制要求資料來源位於 Azure Blob 儲存體中且為下列其�
 				"allowPolyBase": true
 			},
     		"enableStaging": true,
-				"stagingSettings": {
+			"stagingSettings": {
 				"linkedServiceName": "MyStagingBlob"
 			}
 		}
 	}
 	]
-
-
-附註︰如果您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲，您需要在閘道電腦上安裝 JRE (Java Runtime Environment)，您可以使用此電腦將來源資料轉換為適當的格式。
-
 
 
 ### 使用 PolyBase 時的最佳作法
@@ -655,6 +652,6 @@ NULL 值是一種特殊形式的預設值。如果資料行可為 null，該資�
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

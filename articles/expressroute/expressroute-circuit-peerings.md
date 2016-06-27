@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="03/21/2016"
+   ms.date="06/13/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 線路和路由網域
@@ -61,6 +61,8 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
  
 ### Microsoft 對等互連
 
+[AZURE.INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
+
 與所有其他 Microsoft 線上服務 (例如 Office 365 服務) 的連線將會透過 Microsoft 對等互連進行。我們會透過 Microsoft 對等路由網域啟用 WAN 與 Microsoft 雲端服務之間的雙向連線。您只能透過您或連線提供者所擁有的公用 IP 位址連線到 Microsoft 雲端服務，且必須遵守所有已定義的規則。如需詳細資訊，請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
 
 如需支援的服務、費用和組態的詳細資訊，請參閱[常見問題集頁面](expressroute-faqs.md)。如需有關提供 Microsoft 對等支援的連線提供者清單的詳細資訊，請參閱 [ExpressRoute 位置](expressroute-locations.md)頁面。
@@ -90,4 +92,4 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 	- [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

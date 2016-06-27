@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/24/2016"
+	ms.date="05/16/2016"
 	ms.author="inqiu;yijichen;ilanr9"/>
 
 # 能源需求預測之 Cortana Intelligence 解決方案範本的技術指南
@@ -198,11 +198,11 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 
 1.  在 Azure 串流分析 (ASA) 中加入 Power BI 輸出。
 
-    -  您必須依照 [Azure 串流分析及 Power BI：適用於串流資料即時可見度的即時分析儀表板](stream-analytics\stream-analytics-power-bi-dashboard.md)中的指示來將 Azure 串流分析作業的輸出設定為 Power BI 儀表板。
+    -  您必須依照 [Azure 串流分析及 Power BI：適用於串流資料即時可見度的即時分析儀表板](stream-analytics-power-bi-dashboard.md)中的指示來將 Azure 串流分析作業的輸出設定為 Power BI 儀表板。
 
 	- 找出 [Azure 管理入口網站](https://manage.windowsazure.com)中的串流分析作業。作業名稱應該是︰您的解決方案名稱+"streamingjob"+隨機數字+"asapbi" (也就是 demostreamingjob123456asapbi)。
 
-	- 設定 ASA 查詢的輸出 PBIoutput。確定輸出別名與查詢中的相同。您可以將資料集名稱和資料表名稱命名為 'EnergyStreamData'。新增了輸出之後，按一下頁面底部的 [啟動] 以啟動串流分析作業。您應該會收到確認訊息 (例如，「串流分析作業 myteststreamingjob12345asablob 啟動成功」)。
+	- 針對 ASA 工作加入 PowerBI 輸出。將 [輸出別名]設定為 **‘PBIoutput’**。將 [資料集名稱]和 [資料表名稱]命名為 **‘EnergyStreamData’**。新增了輸出之後，按一下頁面底部的 [啟動] 以啟動串流分析作業。您應該會收到確認訊息 (例如，「串流分析作業 myteststreamingjob12345asablob 啟動成功」)。
 
 2. 登入 [Power BI 線上版](http://www.powerbi.com)
 
@@ -225,7 +225,7 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 
 	-	在儀表板上將滑鼠停留在此磚中，按一下右上角的 [編輯] 圖示可將其標題變更為「依時間戳記的需求」
 
-4.	根據適當的資料集建立其他儀表板圖格。最終的儀表板檢視如下所示。![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic5.png)
+4.	根據適當的資料集建立其他儀表板圖格。最終的儀表板檢視如下所示。![](media\cortana-analytics-technical-guide-demand-forecast\PBIFullScreen.png)
 
 
 ### 設定冷路徑儀表板
@@ -280,6 +280,9 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 	-   根據您的需求排程重新整理。若要尋找詳細資訊，請參閱 [Power BI 中的資料重新整理](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/)。
 
 
+## **如何刪除解決方案**
+請確定您在未積極使用解決方案時有停止資料產生器，因為執行資料產生器將會產生較高的成本。如果不使用解決方案，請將其刪除。刪除解決方案時，將會刪除您在部署解決方案時於訂用帳戶中佈建的所有元件。如果要刪除解決方案，請在解決方案範本左側面板中按一下該解決方案的名稱，然後按一下 [刪除]。
+
 ## **成本估計工具**
 
 下列兩項工具可協助您進一步了解在您的訂用帳戶中執行能源需求預測解決方案範本所牽涉的總成本：
@@ -288,4 +291,7 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 
 -   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-<!---HONumber=AcomDC_0413_2016-->
+## **通知**
+本文是 Microsoft 的資料科學家 Yijing Chen 與軟體工程師 Qiu Min 所撰寫。
+
+<!---HONumber=AcomDC_0615_2016-->

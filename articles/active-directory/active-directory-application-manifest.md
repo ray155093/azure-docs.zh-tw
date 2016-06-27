@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/26/2016"
+   ms.date="06/06/2016"
    ms.author="dkershaw;bryanla"/>
 
 # 了解 Azure Active Directory 應用程式資訊清單
@@ -37,7 +37,7 @@
 - **宣告您的應用程式所公開的應用程式角色 (appRoles)**。應用程式實體的 appRole 屬性是 [AppRole][APPLICATION-ENTITY-APP-ROLE] 類型的集合。請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][RBAC-CLOUD-APPS-AZUREAD]一文以取得實作範例。
 - **宣告已知的用戶端應用程式 (knownClientApplications)**，可讓您以邏輯方式將指定用戶端應用程式的同意繫結至資源/Web API。
 - **要求 Azure AD 對登入使用者發出群組成員資格宣告 (groupMembershipClaims)**。注意：可設定為額外發出有關使用者目錄角色成員資格的宣告。請參閱[雲端應用程式中使用 AD 群組的授權][AAD-GROUPS-FOR-AUTHORIZATION]一文以取得實作範例。
-- **可讓您的應用程式支援 OAuth 2.0 隱含授權**流程 (oauth2AllowImplicitFlow)。此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。
+- **可讓您的應用程式支援 OAuth 2.0 隱含授權**流程 (oauth2AllowImplicitFlow)。此類型的授權流程可用於內嵌的 JavaScript 網頁或單一頁面應用程式 (SPA)。如需隱含授權授與的詳細資訊，請參閱[了解 Azure Active Directory 中的 OAuth2 隱含授與流程][IMPLICIT-GRANT]。
 - **啟用 X509 憑證做為秘密金鑰** (keyCredentials)。如需實作範例，請參閱[在 Office 365 中建置服務與精靈應用程式][O365-SERVICE-DAEMON-APPS]和[利用 Azure 資源管理員 API 進行驗證開發人員指南][DEV-GUIDE-TO-AUTH-WITH-ARM]等文章。
 - **為應用程式新增應用程式識別碼 URI** (identifierURIs)。應用程式識別碼 URI 可用來唯一識別其 Azure AD 租用戶 (或跨多個 Azure AD 租用戶，若為透過已驗證的自訂網域而符合資格的多租用戶案例) 內的應用程式。在要求資源應用程式的權限或取得資源應用程式的存取權杖時，就會使用這些 URI。當您更新此項目時，相同的更新也會套用到對應服務主體的 servicePrincipalNames 集合 (位於應用程式的主要租用戶中)。
 
@@ -52,11 +52,11 @@
 
     ![選取 Azure AD 租用戶][SELECT-AZURE-AD-TENANT]
 
-3. 出現 [目錄] 頁面時，按一下頁面頂端的 [應用程式] \(1) 以查看在租用戶中註冊的應用程式清單。然後找到您要在清單中更新的應用程式並按一下它 (2)。
+3. 出現 [目錄] 頁面時，按一下頁面頂端的 [應用程式] (1) 以查看在租用戶中註冊的應用程式清單。然後找到您要在清單中更新的應用程式並按一下它 (2)。
 
     ![選取 Azure AD 租用戶][SELECT-AZURE-AD-APP]
 
-4. 既然您已選取應用程式的主頁面，請注意頁面底部的「管理資訊清單」功能 (1)。如果您按一下此連結，系統將提示您下載或上傳 JSON 資訊清單檔案。按一下 [下載資訊清單] \(2)，其後會立即出現下載確認對話方塊，提示您按一下 [下載資訊清單] \(3) 加以確認，然後在本機開啟或儲存檔案 (4)。
+4. 既然您已選取應用程式的主頁面，請注意頁面底部的「管理資訊清單」功能 (1)。如果您按一下此連結，系統將提示您下載或上傳 JSON 資訊清單檔案。按一下 [下載資訊清單] (2)，其後會立即出現下載確認對話方塊，提示您按一下 [下載資訊清單] (3) 加以確認，然後在本機開啟或儲存檔案 (4)。
 
     ![管理資訊清單、下載選項][MANAGE-MANIFEST-DOWNLOAD]
 
@@ -93,7 +93,7 @@
 
     項目必須是唯一的，因此您必須為 `"id"` 屬性產生新的全域唯一識別碼 (GUID)。在此情況下，由於我們已指定 `"type": "User"`，此權限可以由資源/API 應用程式註冊所在的 Azure AD 租用戶所驗證的任何帳戶進行同意，授與代表帳戶加以存取的用戶端應用程式權限。在同意期間會使用說明和顯示名稱字串，並且顯示在 Azure 傳統入口網站中。
 
-6. 當您完成更新資訊清單，請返回 Azure 傳統入口網站中的 Azure AD 應用程式頁面，再次按一下 [管理資訊清單] 功能 (1)，但是這次請選取 [上傳資訊清單] 選項 (2)。類似於下載，您將會看見第二個對話方塊，提示您 JSON 檔案的位置。按一下 [瀏覽檔案...] \(3)，然後使用 [選擇要上傳的檔案] 對話方塊來選取 JSON 檔案 (4) 並按下 [開啟]。一旦對話方塊消失，請選取 [確定] 核取記號 (5)，隨即會上傳您的資訊清單。
+6. 當您完成更新資訊清單，請返回 Azure 傳統入口網站中的 Azure AD 應用程式頁面，再次按一下 [管理資訊清單] 功能 (1)，但是這次請選取 [上傳資訊清單] 選項 (2)。類似於下載，您將會看見第二個對話方塊，提示您 JSON 檔案的位置。按一下 [瀏覽檔案...] (3)，然後使用 [選擇要上傳的檔案] 對話方塊來選取 JSON 檔案 (4) 並按下 [開啟]。一旦對話方塊消失，請選取 [確定] 核取記號 (5)，隨即會上傳您的資訊清單。
 
     ![管理資訊清單、上傳選項][MANAGE-MANIFEST-UPLOAD]
 
@@ -141,9 +141,10 @@
 [AZURE-CLASSIC-PORTAL]: https://manage.windowsazure.com
 [DEV-GUIDE-TO-AUTH-WITH-ARM]: http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/
 [GRAPH-API]: active-directory-graph-api.md
+[IMPLICIT-GRANT]: active-directory-dev-understanding-oauth2-implicit-grant.md
 [INTEGRATING-APPLICATIONS-AAD]: https://azure.microsoft.com/documentation/articles/active-directory-integrating-applications/
 [O365-PERM-DETAILS]: https://msdn.microsoft.com/office/office365/HowTo/application-manifest
 [O365-SERVICE-DAEMON-APPS]: https://msdn.microsoft.com/office/office365/howto/building-service-apps-in-office-365
 [RBAC-CLOUD-APPS-AZUREAD]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -35,6 +35,7 @@
 2. 將您的資料移到 Azure Blob 儲存體，並將它儲存於文字檔中。
 3. 設定 SQL 資料倉儲中的外部物件，以定義資料的位置和格式
 4. 執行 T-SQL 命令以將資料平行載入新的資料庫資料表。
+
 <!-- 5. Schedule and run a loading job. --> 
 
 如需教學課程，請參閱 [Load data from Azure blob storage to SQL Data Warehouse (PolyBase) (從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase))][]。
@@ -133,4 +134,4 @@
 <!--Other Web references-->
 [匯入/匯出]: https://azure.microsoft.com/documentation/articles/storage-import-export-service/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

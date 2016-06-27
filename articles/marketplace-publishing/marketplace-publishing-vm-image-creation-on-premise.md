@@ -25,7 +25,7 @@
 ### 找出 Blob URL
 若要下載 VHD，請先找出作業系統磁碟的 Blob URL。
 
-從新的 [Microsoft Azure 入口網站](https://ms.portal.azure.com)找出 Blob URL：
+從新的 [Microsoft Azure 入口網站](https://portal.azure.com)找出 Blob URL：
 
 1.	移至 [瀏覽] > [VM]，然後選取已部署的 VM。
 2.	在 [設定] 之下，選取 [磁碟] 磚，以開啟 [磁碟] 刀鋒視窗。
@@ -132,11 +132,10 @@
         Add-AzureVhd –Destination “http://mystorageaccount.blob.core.windows.net/containername/vmsku.vhd” -LocalFilePath “C:\Users\Administrator\Desktop\vmsku.vhd”
 
 ### 使用適用於 Mac 和 Linux 的命令列工具上傳 VHD
-透過 [Linux 命令列工具](../virtual-machines/command-line-tools/)，使用下列語法：
-azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
+透過 [Linux 命令列工具](../virtual-machines/command-line-tools/)，使用下列語法：azure vm image create <image name> --location <Location of the data center> --OS Linux <LocationOfLocalVHD>
 
 ## 另請參閱
 - [建立 Marketplace 的虛擬機器映像](marketplace-publishing-vm-image-creation.md)
 - [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

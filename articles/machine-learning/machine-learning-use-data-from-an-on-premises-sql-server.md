@@ -13,7 +13,7 @@ ms.workload="data-services"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="05/25/2016"
+ms.date="06/14/2016"
 ms.author="garye;krishnan"/>
 
 # 使用來自內部部署 SQL Server 資料庫的資料，利用 Azure Machine Learning 執行進階分析
@@ -57,14 +57,14 @@ ms.author="garye;krishnan"/>
 
 - 即使您針對其他資料使用 Azure ExpressRoute，還是需要針對 Azure Machine Learning 使用資料管理閘道器。即使您使用 ExpressRoute，也應該將資料來源視為內部部署資料來源 (其位於防火牆後面)，並使用資料管理閘道來建立 Machine Learning 與資料來源之間的連接。
 
-您可以在[利用資料管理閘道在內部部署來源和雲端之間移動](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)一文的前幾節中，找到有關安裝必要條件、安裝步驟及疑難排解秘訣的詳細資訊。
+您可以在[利用資料管理閘道在內部部署來源和雲端之間移動資料](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#considerations-for-using-data-management-gateway)一文中，從[使用資料管理閘道的考量](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#considerations-for-using-data-management-gateway)一節開始找到有關安裝必要條件、安裝步驟及疑難排解秘訣的詳細資訊。
 
 ## <span id="using-the-data-gateway-step-by-step-walk" class="anchor"><span id="_Toc450838866" class="anchor"></span></span>將內部部署 SQL Server 資料庫的資料輸入至 Azure Machine Learning
 
 
 在本逐步解說中，您將會在 Azure Machine Learning 工作區中設定資料管理閘道器、設定該閘道器，然後讀取來自內部部署 SQL Server 資料庫的資料。
 
-> [AZURE.TIP] 開始之前，先針對 `studio.azureml.net` 停用瀏覽器的快顯封鎖程式。如果您使用 Google Chrome 瀏覽器，請下載並安裝數個可在 Google Chrome 線上應用程式商店 [Click Once 應用程式擴充功能](https://chrome.google.com/webstore/search/clickonce?_category=extensions)上取得的外掛程式之一。
+> [AZURE.TIP] 開始之前，請先針對 `studio.azureml.net` 停用瀏覽器的快顯封鎖程式。如果您使用 Google Chrome 瀏覽器，請下載並安裝數個可在 Google Chrome 線上應用程式商店 [Click Once 應用程式擴充功能](https://chrome.google.com/webstore/search/clickonce?_category=extensions)上取得的外掛程式之一。
 
 ### 步驟 1：建立閘道器
 
@@ -72,13 +72,13 @@ ms.author="garye;krishnan"/>
 
 1.  登入 [Azure Machine Learning Studio](https://studio.azureml.net/Home/)，然後選取您想要使用的工作區。
 
-2.  按一下左側的 [設定] 刀鋒視窗，然後按一下頂端的 [資料閘道器] 索引標籤。
+2.  按一下左側的 [設定] 刀鋒視窗，然後按一下頂端的 [資料閘道] 索引標籤。
 
-3.  按一下螢幕底部的 [新增資料閘道器]。
+3.  按一下螢幕底部的 [新增資料閘道]。
 
     ![](media/machine-learning-use-data-from-an-on-premises-sql-server/new-data-gateway-button.png)
 
-4.  在 [新增資料閘道器] 對話方塊中，輸入**閘道名稱**並選擇性地新增**描述**。按一下右下角的箭號，以移至組態的下一個步驟。
+4.  在 [新增資料閘道] 對話方塊中，輸入**閘道名稱**並選擇性地新增**描述**。按一下右下角的箭號，以移至組態的下一個步驟。
 
     ![](media/machine-learning-use-data-from-an-on-premises-sql-server/new-data-gateway-dialog-enter-name.png)
 
@@ -86,17 +86,17 @@ ms.author="garye;krishnan"/>
 
     ![](media/machine-learning-use-data-from-an-on-premises-sql-server/download-and-register-data-gateway.png)
 
-6.  <span id="note-1" class="anchor"></span>如果您還沒有下載並安裝 Microsoft 資料管理閘道器，則可按一下 [下載資料管理閘道器]。這會帶您前往 Microsoft 下載中心，您可以在其中選取所需的閘道器版本，然後下載並安裝它。您可以在[利用資料管理閘道在內部部署來源和雲端之間移動](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)一文的前幾節中，找到有關安裝必要條件、安裝步驟及疑難排解秘訣的詳細資訊。
+6.  <span id="note-1" class="anchor"></span>如果您還沒有下載並安裝 Microsoft 資料管理閘道，則可按一下 [下載資料管理閘道]。這會帶您前往 Microsoft 下載中心，您可以在其中選取所需的閘道器版本，然後下載並安裝它。您可以在[利用資料管理閘道在內部部署來源和雲端之間移動資料](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)一文的前幾節中，找到有關安裝必要條件、安裝步驟及疑難排解秘訣的詳細資訊。
 
-7.  安裝閘道器之後，隨即開啟 [資料管理閘道器組態管理員] 並顯示 [註冊閘道器] 對話方塊。貼上您複製到剪貼簿的**閘道器註冊金鑰**，然後按一下 [註冊]。
+7.  安裝閘道之後，「資料管理閘道組態管理員」便會隨即開啟，並顯示 [註冊閘道] 對話方塊。貼上您複製到剪貼簿的**閘道註冊金鑰**，然後按一下 [註冊]。
 
-8.  如果您已經安裝閘道器，請執行 [資料管理閘道器組態管理員]、按一下 [變更金鑰]、貼上您複製到剪貼簿的**閘道器註冊金鑰**，然後按一下 [確定]。
+8.  如果您已經安裝閘道，請執行「資料管理閘道組態管理員」，按一下 [變更金鑰]，貼上您複製到剪貼簿的**閘道註冊金鑰**，然後按一下 [確定]。
 
-9.  安裝完成時，隨即顯示 [Microsoft 資料管理閘道組態管理員] 的 [註冊閘道器] 對話方塊。貼上您先前複製到剪貼簿的閘道器註冊金鑰，然後按一下 [註冊]。
+9.  安裝完成時，便會隨即顯示「Microsoft 資料管理閘道組態管理員」的 [註冊閘道] 對話方塊。貼上您複製到剪貼簿的閘道註冊金鑰，然後按一下 [註冊]。
 
     ![](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-register-gateway.png)
 
-10.  當 [Microsoft 資料管理閘道器組態管理員] 中的 [常用] 索引標籤中設定了下列值時，閘道器組態即已完成︰
+10.  當「Microsoft 資料管理閘道組態管理員」中的 [常用] 索引標籤中設定了下列值時，閘道組態即已完成︰
 
     -   [閘道名稱] 和 [執行個體名稱] 設定為閘道的名稱。
 
@@ -104,7 +104,7 @@ ms.author="garye;krishnan"/>
 
     -   [狀態] 設定為 [已啟動]。
 
-    -   底部的狀態列顯示 [已連接到資料管理閘道器雲端服務] 和一個綠色的核取記號。
+    -   底部的狀態列會顯示 [已連接到資料管理閘道雲端服務] 和一個綠色的核取記號。
 
     ![](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-registered.png)
 
@@ -112,41 +112,41 @@ ms.author="garye;krishnan"/>
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\gateway-registered.png)
 
-11.  在 [下載並註冊資料閘道器] 對話方塊中，按一下核取記號以完成安裝。[設定] 頁面會將閘道器狀態顯示為「線上」。在右側窗格中，您將會發現狀態和其他有用的資訊。
+11.  在 [下載並註冊資料閘道] 對話方塊中，按一下核取記號以完成安裝。[設定] 頁面會將閘道狀態顯示為「線上」。在右側窗格中，您將會發現狀態和其他有用的資訊。
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\gateway-status.png)
 
-12. 在 [Microsoft 資料管理閘道器組態管理員] 中，切換到 [憑證] 索引標籤。此索引標籤上指定的憑證可用來加密/解密您在入口網站指定之內部部署資料存放區的認證。這是產生的預設憑證。Microsoft 建議將此憑證變更為您自己在憑證管理系統中備份的憑證。按一下 [變更] 改為使用您自己的憑證。
+12. 在 [Microsoft 資料管理閘道組態管理員] 中，切換到 [憑證] 索引標籤。此索引標籤上指定的憑證可用來加密/解密您在入口網站指定之內部部署資料存放區的認證。這是產生的預設憑證。Microsoft 建議將此憑證變更為您自己在憑證管理系統中備份的憑證。按一下 [變更] 改為使用您自己的憑證。
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\data-gateway-configuration-manager-certificate.png)
 
-13. (選擇性) 如果您想啟用詳細資訊記錄功能來疑難排解閘道器的問題，請在 [Microsoft 資料管理閘道器組態管理員] 中切換到 [診斷] 索引標籤，然後勾選 [啟用詳細資訊記錄以進行疑難排解] 選項。您可以在 [Windows 事件檢視器] 中，於 [應用程式及服務記錄檔] -&gt; [資料管理閘道器] 節點下方找到記錄資訊。您也可以使用 [診斷] 索引標籤，使用閘道器來測試與內部部署資料來源的連線。
+13. (選擇性) 如果您想啟用詳細資訊記錄功能來疑難排解閘道的問題，請在 [Microsoft 資料管理閘道組態管理員] 中切換到 [診斷] 索引標籤，然後選取 [啟用詳細資訊記錄以進行疑難排解] 選項。您可以在 [Windows 事件檢視器] 中，於 [應用程式及服務記錄檔] -&gt; [資料管理閘道] 節點下方找到記錄資訊。您也可以使用 [診斷] 索引標籤，使用閘道來測試與內部部署資料來源的連線。
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\data-gateway-configuration-manager-verbose-logging.png)
 
 如此即可完成 Azure Machine Learning 中的閘道器設定程序。您現在可以開始使用內部部署資料。
 
-您可以在 Studio 中針對每個工作區建立和設定多個閘道器。例如，您可能想要有一個可在開發期間連接到測試資料來源的閘道器，以及另一個適用於生產資料來源的閘道器。根據貴公司的環境而定，Azure Machine Learning 可讓您彈性地設定多個閘道器。目前您無法在工作區之間共用一個閘道器，而且單一電腦上只能安裝一個閘道器。如需安裝閘道器時的其他考量，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)一文中的[使用資料管理閘道的考量](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#considerations-for-using-data-management-gateway)。
+您可以在 Studio 中針對每個工作區建立和設定多個閘道器。例如，您可能想要有一個可在開發期間連接到測試資料來源的閘道器，以及另一個適用於生產資料來源的閘道器。根據貴公司的環境而定，Azure Machine Learning 可讓您彈性地設定多個閘道器。目前您無法在工作區之間共用一個閘道器，而且單一電腦上只能安裝一個閘道器。如需安裝閘道時的其他考量，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](../data-factory/data-factory-move-data-between-onprem-and-cloud.md)一文中的[使用資料管理閘道的考量](../data-factory/data-factory-move-data-between-onprem-and-cloud.md#considerations-for-using-data-management-gateway)。
 
 ### 步驟 2︰使用閘道器讀取來自內部部署資料來源的資料
 
-設定閘道器之後，您可以將**匯入資料**模組新增到會輸入來自內部部署 SQL Server 資料庫之資料的實驗。
+設定閘道之後，您可以將**匯入資料**模組新增到會輸入來自內部部署 SQL Server 資料庫之資料的實驗。
 
-1.  在 Machine Learning Studio 中，選取 [實驗] 索引標籤、按一下左下角的 [+新增]，然後選取 [空白實驗] \(或從數個可用的範例實驗中選取其中一個)。
+1.  在 Machine Learning Studio 中，選取 [實驗] 索引標籤，按一下左下角的 [+新增]，然後選取 [空白實驗] (或從數個可用的範例實驗中選取其中一個)。
 
-2.  找出**匯入模型**模組，並將其拖曳到實驗畫布。
+2.  找出**匯入模型**模組，並將它拖曳到實驗畫布。
 
-3.  按一下畫布下方的 [另存新檔]。輸入「Azure Machine Learning 內部部署 SQL Server 教學課程」做為實驗名稱、選取工作區，然後按一下 [確定] 核取記號。
+3.  按一下畫布下方的 [另存新檔]。輸入「Azure Machine Learning 內部部署 SQL Server 教學課程」做為實驗名稱，選取工作區，然後按一下 [確定] 核取記號。
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\experiment-save-as.png)
 
-4.  按一下 [匯入資料] 模組來選取它，然後在畫布右邊的 [屬性] 窗格中，選取 [資料來源] 下拉式清單中的 [內部部署 SQL 資料庫]。
+4.  按一下 [匯入資料] 模組來選取它，然後在畫布右邊的 [屬性] 窗格中，選取 [資料來源] 下拉式清單中的 [內部部署 SQL Database]。
 
-5.  選取您安裝並註冊的**資料閘道器**。您可以藉由選取 [(新增資料閘道...)] 來設定其他閘道器。
+5.  選取您安裝並註冊的**資料閘道**。您可以藉由選取 [(新增資料閘道...)] 來設定其他閘道器。
 
     ![](media\machine-learning-use-data-from-an-on-premises-sql-server\import-data-select-on-premises-data-source.png)
 
-6.  輸入 SQL **資料庫伺服器名稱**和**資料庫名稱**，以及您想要執行的 SQL **資料庫查詢**。
+6.  輸入 SQL **Database 伺服器名稱**和**資料庫名稱**，以及您想要執行的 SQL **Database 查詢**。
 
 7.  按一下 [使用者名稱和密碼] 下方的 [輸入值]，然後輸入資料庫認證。根據您內部部署 SQL Server 的設定方式而定，您可以使用 Windows 整合式驗證或 SQL Server 驗證。
 
@@ -160,6 +160,6 @@ ms.author="garye;krishnan"/>
 
 實驗完成執行之後，就可以將您從資料庫匯入的資料視覺化，方法是按一下**匯入資料**模組的輸出連接埠，然後選取 [視覺化]。
 
-當實驗完成開發之後，您就能部署和操作您的模型。使用批次執行服務時，將會讀取來自**匯入資料**模組中所設定之內部部署 SQL Server 資料庫的資料並用於計分。雖然您可以使用要求回應服務來對內部部署資料進行評分，但是 Microsoft 建議改用 [Excel 增益集](machine-learning-excel-add-in-for-web-services.md)。不論是在您的實驗或已發行的 Web 服務中，目前都不支援透過**匯出資料**寫入內部部署 SQL Server 資料庫。
+當實驗完成開發之後，您就能部署和操作您的模型。使用批次執行服務時，將會讀取來自**匯入資料**模組中所設定之內部部署 SQL Server 資料庫的資料並用於計分。雖然您可以使用要求回應服務來對內部部署資料進行評分，但是 Microsoft 建議改用 [Excel 增益集](machine-learning-excel-add-in-for-web-services.md)。目前不論是在您的實驗或是已發行的 Web 服務中，都不支援透過**匯出資料**寫入內部部署 SQL Server 資料庫。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sql-database"
-   ms.date="03/28/2016"
+   ms.date="06/15/2016"
    ms.author="carlrab"/>
 
 #開始使用 Azure SQL Database 中的時態表
@@ -36,7 +36,7 @@
 
 ###建立新資料表
 
-在 SSMS 的 [物件總管] 中使用內容功能表項目 [新系統設定版本的資料表] 開啟查詢編輯器與時態表範本指令碼，然後使用 [指定範本參數的值] \(Ctrl + Shift + M) 填入範本：
+在 SSMS 的 [物件總管] 中使用內容功能表項目 [新系統設定版本的資料表] 開啟查詢編輯器與時態表範本指令碼，然後使用 [指定範本參數的值] (Ctrl + Shift + M) 填入範本：
 
 ![SSMSNewTable](./media/sql-database-temporal-tables/AzureTemporal2.png)
 
@@ -195,4 +195,4 @@ ALTER TABLE dbo.WebsiteUserInfo
 
 如需有關時態表的詳細資訊，請參閱 [MSDN 文件](https://msdn.microsoft.com/library/dn935015.aspx)。瀏覽 Channel 9，聽聽[真實客戶的時態表實作成功案例](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions)，並觀看[時態表的即時示範](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

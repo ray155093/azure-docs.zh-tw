@@ -30,7 +30,7 @@
 
 ## 必要條件
 
-1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://ms.portal.azure.com)。建立新的 **SQL Database**。提供資料庫名稱，並建立新的系統管理員和密碼。請務必記錄名稱和密碼，以供稍後使用。
+1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://portal.azure.com)。建立新的 **SQL Database**。提供資料庫名稱，並建立新的系統管理員和密碼。請務必記錄名稱和密碼，以供稍後使用。
 
 2. 請確定您的 Azure SQL DB 伺服器允許 Azure 服務進行連接。在**防火牆設定**的入口網站中，確定 [**允許存取 Azure 服務**] 設定設為 [**開啟**]。按一下儲存圖示。
 
@@ -151,14 +151,14 @@ Web 角色：
 
         "Server=myservername.database.windows.net; Database=mydatabasename;User ID=myuserID; Password=mypassword; Encrypt=True; Connection Timeout=30" .
 
-* 請確定伺服器名稱並不是以 **https://** 開頭。
+* 請確定伺服器名稱並不是以 ****https://** 開頭。
 * 請確定您的 Azure SQL DB 伺服器允許 Azure 服務進行連接。若要這樣做，請開啟 https://manage.windowsazure.com，按一下左邊的 [SQL Database]，按一下頂端的 [伺服器]，然後選取您的伺服器。按一下頂端的 [設定]，並確定 [Azure 服務] 設定已設為 [是]。(請參閱本文開頭的＜必要條件＞一節)。
 
 ## 測試服務部署
 
 ### 使用網頁瀏覽器連接
 
-決定分割合併服務的 Web 端點。您可以在 Azure 傳統入口網站中找到此端點，請移至雲端服務的 [儀表板]，查看右邊的 [網站 URL]。將 **http://** 取代為 **https://**，因為預設安全性設定會停用 HTTP 端點。在瀏覽器中載入此 URL 的網頁。
+決定分割合併服務的 Web 端點。您可以在 Azure 傳統入口網站中找到此端點，請移至雲端服務的 [儀表板]，查看右邊的 [網站 URL]。將 ****http://** 取代為 ****https://**，因為預設安全性設定會停用 HTTP 端點。在瀏覽器中載入此 URL 的網頁。
 
 ### 使用 PowerShell 指令碼進行測試
 
@@ -339,4 +339,4 @@ Web 角色：
 [5]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/storage.png
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

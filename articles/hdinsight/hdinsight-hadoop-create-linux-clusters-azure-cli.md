@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="05/20/2016"
+   	ms.date="06/13/2016"
    	ms.author="larryfr"/>
 
 #使用 Azure CLI 建立 HDInsight 上的 Linux 型叢集
@@ -36,7 +36,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- __Azure CLI__。
+- __Azure CLI__。這份文件中的步驟最近一次是以 Azure CLI 版本 0.10.1 來測試。
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
@@ -69,7 +69,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
 5. 建立新的儲存體帳戶。這將用來做為 HDInsight 叢集的預設儲存體。
 
-        azure storage account create -g groupname --sku-name RAGRS -l location --kind Storage --access-tier hot storagename
+        azure storage account create -g groupname --sku-name RAGRS -l location --kind Storage storagename
         
      * 以上一個步驟中建立的群組名稱取代 __groupname__。
      * 以與上一個步驟中使用的相同位置取代 __location__。 
@@ -88,7 +88,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
 6. 建立新的 HDInsight 叢集
 
-        azure hdinsight cluster create -g groupname -l location -y Linux --clusterType Hadoop --defaultStorageAccountName storagename --defaultStorageAccountKey storagekey --defaultStorageContainer clustername --workerNodeCount 2 --userName admin --password httppassword --sshUserName sshuser --sshPassword sshuserpassword clustername
+        azure hdinsight cluster create -g groupname -l location -y Linux --clusterType Hadoop --defaultStorageAccountName storagename.blob.core.windows.net --defaultStorageAccountKey storagekey --defaultStorageContainer clustername --workerNodeCount 2 --userName admin --password httppassword --sshUserName sshuser --sshPassword sshuserpassword clustername
 
     * 以資源群組名稱取代 __groupname__。
     * 以與先前步驟中使用的相同位置取代 __location__。
@@ -121,4 +121,4 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

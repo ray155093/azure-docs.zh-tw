@@ -1,0 +1,129 @@
+<properties
+   pageTitle="Azure 資源健康狀態概觀 | Microsoft Azure"
+   description="Azure 資源健康狀態的概觀"
+   services="Resource health"
+   documentationCenter="dev-center-name"
+   authors="bernardm"
+   manager=""
+   editor=""/>
+
+<tags
+   ms.service="resource-health"
+   ms.devlang="na"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="Supportability"
+   ms.date="06/01/2016"
+   ms.author="bernardm"/>
+
+# Azure 資源健康狀態概觀
+
+Azure 資源健康狀態是一項服務，會揭露個別 Azure 資源的健康狀態，並提供可採取動作的指導以針對問題進行疑難排解。在無法直接存取伺服器或基礎結構元素的雲端環境中，資源健康狀態旨在減少客戶在疑難排解上所花費的時間，尤其是花在判斷問題根源是出自應用程式本身還是 Azure 平台內事件的時間。
+
+## 何謂資源，以及資源健康狀態如何決定資源健康與否？ 
+資源是使用者針對服務提供的資源類型所建立的執行個體，例如︰虛擬機器、Web 應用程式或 SQL Database。
+
+資源健康狀態依賴資源和/或服務所發出的訊號，來決定資源健康與否。請務必注意，資源健康狀態目前只會考慮一種特定資源類型的健康狀態，並不會考慮其他可能構成整體健康狀態的項目。例如，在報告虛擬機器的狀態時，只會考慮基礎結構的計算部分，也就是說，除非有宣告服務中斷，否則網路中發生的問題不會顯示在資源健康狀態中；若已宣告服務中斷，則會透過刀鋒視窗頂端的橫幅顯示此問題。本文稍後會提供關於服務中斷的詳細資訊。
+
+## 資源健康狀態和服務健康狀態儀表板有何不同？
+
+資源健康狀態可提供比服務健康狀態儀表板更細部的資訊。SHD 會傳達影響區域中服務可用性的事件，資源健康狀態則會揭露與特定資源有關的資訊，例如，它會揭露影響虛擬機器、Web 應用程式或 SQL Database 可用性的事件。例如，如果有節點意外重新啟動，則手上有虛擬機器在該節點執行的客戶，將能夠取得其 VM 之所以有一段時間無法使用的原因。
+
+## 如何存取資源健康狀態
+如需可透過資源健康狀態取得的服務，您有 2 種方式可存取資源健康狀態。
+
+### Azure 入口網站
+Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健康狀態的詳細資訊以及建議採取的動作 (依據資源目前的健康狀態而定，會提供不同的建議)。此刀鋒視窗可在查詢資源健康狀態時提供最佳體驗，因為它能讓使用者便利地存取入口網站內的其他資源。如先前所述，[資源健康狀態] 刀鋒視窗中所建議的一組動作，會隨著目前的健康狀態而有所不同︰
+
+* 健康狀態良好的資源︰由於未偵測到任何可能影響資源健康狀態的問題，所建議的動作會著重在協助疑難排解程序。例如，它可供直接存取 [疑難排解] 刀鋒視窗，裡面會指導您如何解決客戶最常面臨的問題。
+* 健康狀態不良的資源︰若為 Azure 所造成的問題，刀鋒視窗中會顯示 Microsoft 將會採取 (或已採取) 以便復原資源的動作。若為使用者起始的動作所造成的問題，刀鋒視窗中會顯示客戶可以採取以便解決問題並復原資源的動作清單。  
+
+在登入 Azure 入口網站之後，有兩種方式可以存取 [資源健康狀態] 刀鋒視窗︰
+
+####開啟資源刀鋒視窗
+開啟指定資源的 [資源] 刀鋒視窗。在 [資源] 刀鋒視窗旁邊所開啟的 [設定] 刀鋒視窗中，按一下 [資源健康狀態] 以開啟 [資源健康狀態] 刀鋒視窗。
+
+![資源健康狀態刀鋒視窗](./media/resource-health-overview/resourceBladeAndResourceHealth.png)
+
+### 說明及支援刀鋒視窗
+按一下右上角的問號，然後選取 [說明 + 支援]，即可開啟 [說明及支援] 刀鋒視窗。
+
+**從頂端導覽列**
+
+![說明 + 支援](./media/resource-health-overview/HelpAndSupport.png)
+
+按一下圖格會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。每個資源旁邊各有一個圖示會指出其健康狀態。按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
+
+**資源健康狀態圖格**
+
+![資源健康狀態圖格](./media/resource-health-overview/resourceHealthTile.png)
+
+### 資源健康狀態 API
+除了 Azure 入口網站體驗，也可以使用 API 來查詢資源健康狀態。API 可支援呼叫，以便取得訂用帳戶中所有資源和資源群組中所有資源的健康狀態，或是特定資源的健康狀態。
+
+在使用 API 來查詢資源健康狀態之前，必須對下列 URL 提交 POST 要求，以便向服務註冊訂用帳戶︰
+
+        https://management.azure.com/subscriptions/<SubID>/providers/Microsoft.ResourceHealth/register?api-version=2015-01-01
+        
+以下是如何呼叫資源健康狀態 API 的範例
+
+        // GET health of all resources in a subscription:
+        https://management.azure.com/subscriptions/<SubID>/providers/Microsoft.ResourceHealth/availabilityStatuses?api-version=2015-01-01
+        
+        //GET health of all resources in a resource group:
+        https://management.azure.com/subscriptions/<SubID>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ResourceHealth/availabilityStatuses?api-version=2015-01-01
+        
+        //GET the health of a single resource:
+        https://management.azure.com/subscriptions/<SubID>/resourceGroups/<ResourceGroupName>/providers/<ResourceProvider>/<ResourceType>/<ResourceName>/providers/Microsoft.ResourceHealth/availabilityStatuses/current?api-version=2015-01-01
+
+
+## 資源健康狀態所代表的意義為何？
+您可能會看到 4 種不同的資源健康狀態。
+
+### 可用
+服務未偵測到平台中有任何可能影響資源可用性的問題。其代表圖示為綠色核取記號。
+
+![資源可用](./media/resource-health-overview/Available.png)
+
+### 無法使用
+
+在此情況下，表示服務已偵測到平台中正有問題在影響這項資源的可用性，例如，VM 執行所在的節點正在執行非預期的重新啟動。其代表圖示為紅色警告圖示。刀鋒視窗中段會提供問題的其他相關資訊，包括︰
+
+1.	Microsoft 將會採取以便復原資源的動作 
+2.	問題的詳細時間表，包括預期的解決時間
+3.	建議使用者採取的動作清單 
+
+![資源無法使用](./media/resource-health-overview/Unavailable.png)
+
+### 無法使用 - 客戶起始
+資源因為客戶要求 (例如停止資源或要求重新啟動) 而無法使用。其代表圖示為藍色資訊圖示。
+
+![資源因為使用者起始的動作而無法使用](./media/resource-health-overview/userInitiated.png)
+
+### 不明
+服務已超過 5 分鐘未收到此資源的相關資訊。其代表圖示為灰色問號。
+
+請務必注意，這並非明確表示資源發生問題，因此客戶應遵循下列建議︰
+
+* 如果資源如預期般執行，但其健康狀態在資源健康狀態中設定為 [未知]，表示並未發生任何問題，幾分鐘之後，資源的狀態應該就會更新為健康狀態良好。
+* 如果在存取資源時發生問題，而且其健康狀態在資源健康狀態中設定為 [未知]，這可能是一項預警，表示可能有問題發生，因此您應該進行其他調查，直到健康狀態更新為健康狀態良好或健康狀態不良
+
+![資源健康狀態不明](./media/resource-health-overview/unknown.png)
+
+## 服務影響事件
+如果資源可能受到發生中的服務影響事件所影響，[資源健康狀態] 刀鋒視窗的頂端就會顯示橫幅。按一下橫幅便會開啟 [稽核事件] 刀鋒視窗，您可以在其中取得中斷的詳細資訊。
+
+![資源健康狀態可能會受 SIE 所影響](./media/resource-health-overview/serviceImpactingEvent.png)
+
+## 資源健康狀態還有其他須知事項嗎？
+
+### 訊號延遲
+提供資源健康狀態的訊號最長可能會延遲 15 分鐘，因而造成資源目前的健康狀態與實際可用性不一致。請務必牢記這一點，因為這能讓您避免浪費時間調查可能的問題。
+
+### SQL 的特例 
+資源健康狀態會報告 SQL Database 而非 SQL Server 的狀態。雖然這種方式可提供更詳實的資源健康資訊，但必須考慮多個元件和服務才能決定資料庫的健康狀態。目前的訊號仰賴資料庫登入，這表示如果資料庫定期收到登入 (此外也包括收到查詢執行要求)，則會定期顯示健康狀態。如果超過 10 分鐘以上的時間未存取資料庫，資料庫就會變成未知狀態。這並非表示資料庫無法使用，而只是表示因為未執行登入而未發出訊號。連線到資料庫並執行查詢，就會發出用來決定和更新資料庫健康狀態所需的訊號。
+
+## 意見反應
+我們歡迎意見反應和建議！ 請將您的[建議](https://feedback.azure.com/forums/266794-support-feedback)傳送給我們。此外，您可以透過 [Twitter](https://twitter.com/azuresupport) 或 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure)與我們連絡。
+
+<!---HONumber=AcomDC_0615_2016-->

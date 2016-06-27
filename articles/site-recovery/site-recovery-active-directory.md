@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="05/10/2016"
+	ms.date="06/13/2016"
 	ms.author="pratshar"/>
 
 # 以 Azure Site Recovery 保護 Active Directory 和 DNS
@@ -121,4 +121,4 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 閱讀[我可以保護哪些工作負載?](../site-recovery/site-recovery-workload.md) 深入了解如何以 Azure Site Recovery 保護企業工作負載。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

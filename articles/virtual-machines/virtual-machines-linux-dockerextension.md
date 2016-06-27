@@ -22,6 +22,7 @@ Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上
 
 - 若要迅速地建立應用程式原型，或如果您已知道 Docker Machine 並已在使用中，可以[使用 Docker Machine Azure 驅動程式](./virtual-machines-linux-docker-machine.md)來部署 Azure 中的 Docker 主機。
 - 如需依範本部署，可以使用 Azure 虛擬機器適用的 Docker VM 擴充功能。這種做法可以與 Azure Resource Manager 範本部署整合，包含所有相關的優點，例如角色型存取、診斷與後置部署組態。
+- Docker VM 延伸模組也支援 Docker Compose，其使用宣告式 YAML 檔案來取得任何環境的開發人員模型化應用程式並產生一致的部署。  
 - 對於實際執行備妥的可調整部署，您也可以[在 Azure 容器服務上部署完整的 Docker Swarm 叢集](../container-service/container-service-deployment.md)，以利用 Swarm 所提供的其他排程和管理工具。
 
 本文著重於使用 Resource Manager 範本，在您定義的自訂實際執行備妥環境中部署 Docker VM 擴充功能。
@@ -101,7 +102,7 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 
 ![執行 ngnix 容器](./media/virtual-machines-linux-dockerextension/nginxrunning.png)
 
-如需有關 Docker VM 擴充功能的詳細資訊，例如設定 Docker 精靈 TCP 連接埠、設定安全性、使用 Docker Compose 部署容器等議題，請參閱 [適用於 Docker GitHub 專案的 Azure 虛擬機器擴充功能案](https://github.com/Azure/azure-docker-extension/)。
+如需有關 Docker VM 延伸模組的詳細資訊，例如設定 Docker 精靈 TCP 連接埠、設定安全性、使用 Docker Compose 部署容器等議題，請參閱 [適用於 Docker GitHub 專案的 Azure 虛擬機器擴充功能](https://github.com/Azure/azure-docker-extension/)。
 
 ## Docker VM 擴充功能 JSON 範本參考
 
@@ -135,6 +136,7 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 
 1. [使用 Docker 電腦搭配 Azure 驅動程式](./virtual-machines-linux-docker-machine.md)  
 2. [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](./virtual-machines-linux-classic-cli-use-docker.md)  
+3. [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md)。
 3. [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

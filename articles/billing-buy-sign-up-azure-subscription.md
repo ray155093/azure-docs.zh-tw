@@ -61,11 +61,11 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
  ![cardverify](./media/billing-buy-sign-up-azure-subscription/VardVerify.png)</br>
 6. 在 [合約] 區段中，核取您是否同意訂用帳戶合約、優惠詳細資料和隱私權聲明的方塊。然後選取 [註冊]。範例螢幕擷取畫面是英文版的合約。合約表單可能隨國家/地區而不同。
 
- ![註冊](./media/billing-buy-sign-up-azure-subscription/Signup.png)</br></br> 系統可能會花幾分鐘的時間來設定您的訂用帳戶。如果訂用帳戶沒有在 15 分鐘內完成設定，請連絡 [Azure 支援服務](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br> 如果您看到錯誤訊息，請依照訊息中的步驟來解決問題。常見的錯誤訊息為：
+ ![註冊](./media/billing-buy-sign-up-azure-subscription/Signup.png)</br></br> 系統可能會花幾分鐘的時間來設定您的訂用帳戶。如果訂用帳戶沒有在 15 分鐘內完成設定，請連絡 [Azure 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br> 如果您看到錯誤訊息，請依照訊息中的步驟來解決問題。常見的錯誤訊息為：
 
  **很抱歉，我們無法完成作業。請稍後再試一次或重新載入網頁** </br>
 
- 在此情況下，請嘗試使用其他瀏覽器完成註冊程序。如果問題沒有解決，請連絡 [Azure 支援服務](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br>
+ 在此情況下，請嘗試使用其他瀏覽器完成註冊程序。如果問題沒有解決，請連絡 [Azure 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br>
 7. 當訂用帳戶就緒時，選取 [開始管理我的服務]。</br> ![startservice](./media/billing-buy-sign-up-azure-subscription/startservice.png)
 
 <a name="UpgradeFreeToPYG"></a>
@@ -84,8 +84,8 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 前往 azure.com 的[訂用帳戶摘要頁面](https://account.windowsazure.com/subscriptions)。
 
-2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
+2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰][](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
 
 3. 輸入產品金鑰，然後查看合約選項。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0615_2016-->

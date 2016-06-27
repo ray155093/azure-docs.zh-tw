@@ -268,7 +268,7 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 有一些常用的選項：
 
--   **SetBatching** (bool) - 如果為 **true**，則傳送到 IoT 中樞的資料會以批次傳送。如果為 **false**，就表示訊息會個別傳送。預設值為 **false**。
+-   **SetBatching** (bool) - 如果為 **true**，則傳送到 IoT 中樞的資料會以批次傳送。如果為 **false**，就表示訊息會個別傳送。預設值為 **false**。請注意，**SetBatching** 選項僅適用於 HTTP 通訊協定，不適用於 AMQP 或 MQTT 通訊協定。
 
 -   **Timeout** (unsigned int) - 這個值會以毫秒為單位表示。如果傳送 HTTP 要求或接收回應所花費的時間超過這個時間，即表示連接逾時。
 
@@ -278,4 +278,4 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 本文深入探討**適用於 C 的 Azure IoT 裝置 SDK** 中發現之 **IoTHubClient** 程式庫的行為。利用這項資訊，您就可以充分了解 **IoTHubClient** 程式庫的功能。[下一篇文章](iot-hub-device-sdk-c-serializer.md)將提供**序列化程式**庫的類似詳細資料。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

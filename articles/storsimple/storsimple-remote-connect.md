@@ -112,9 +112,9 @@
 
 7. 輸入以下命令在裝置上啟動 Windows PowerShell 工作階段：
 
-     `Enter-pssession -Credential $cred -ConfigurationName SSAdminConsole -ComputerName <device_ip>`
+     `Enter-PSSession -Credential $cred -ConfigurationName SSAdminConsole -ComputerName <device_ip>`
 
-     >[AZURE.NOTE] 若要建立與 StorSimple 虛擬裝置搭配使用的 Windows PowerShell 工作階段，請附加 `–port` 參數，並指定您在 StorSimple 虛擬設備遠端處理中設定的公用連接埠。
+     >[AZURE.NOTE] 若要建立與 StorSimple 虛擬裝置搭配使用的 Windows PowerShell 工作階段，請附加 `–Port` 參數，並指定您在 StorSimple 虛擬設備遠端處理中設定的公用連接埠。
 
      此時，您應該有個連線到裝置的使用中遠端 Windows PowerShell 工作階段。
 
@@ -172,7 +172,7 @@
 
      `Get-HcsSystem`
 
-    確定 [**RemoteManagementMode**] 欄位顯示 **HttpsEnabled**。下圖顯示 PuTTY 中的這些設定。
+    確定 [RemoteManagementMode] 欄位顯示 **HttpsEnabled**。下圖顯示 PuTTY 中的這些設定。
 
      ![序列 HTTPS 已啟用](./media/storsimple-remote-connect/HCS_SerialHttpsEnabled.png)
 
@@ -250,15 +250,15 @@
 
 3. 建立新認證，做法是：
 
-     `$cred = new-object pscredential @("<IP of target device>\SSAdmin", (convertto-securestring -force -asplaintext "<Device Administrator Password>"))`
+     `$cred = New-Object pscredential @("<IP of target device>\SSAdmin", (ConvertTo-SecureString -Force -AsPlainText "<Device Administrator Password>"))`
 
     其中 <*IP of target device*> 是您的裝置的 DATA 0 的 IP 位址，例如之前影像中的主機檔案的 **10.126.173.90**。此外，提供您的裝置的管理員密碼。
 
 4. 建立工作階段，做法是輸入：
 
-     `$session = new-pssession -usessl -CN <Serial number of target device> -credential $cred -configurationname "SSAdminConsole"`
+     `$session = New-PSSession -UseSSL -ComputerName <Serial number of target device> -Credential $cred -ConfigurationName "SSAdminConsole"`
 
-    請為 Cmdlet 中的 CN 名稱提供 <*目標裝置的序號*>。此序號已對應至您的遠端主機上主機檔案中 DATA 0 的 IP 位址，如下圖所示的 **SHX0991003G44MT**。
+    請為 Cmdlet 中的 -ComputerName 參數提供 <目標裝置的序號>。此序號已對應至您的遠端主機上主機檔案中 DATA 0 的 IP 位址，如下圖所示的 **SHX0991003G44MT**。
 
 5. 輸入：
 
@@ -274,4 +274,4 @@
 
 - 深入了解[使用 StorSimple Manager 服務來管理您的 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0615_2016-->

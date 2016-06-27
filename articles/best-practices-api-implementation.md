@@ -640,7 +640,7 @@
 
 	```HTTP
 	PUT http://adventure-works.com/orders/1 HTTP/1.1
-	If-None-Match: "2282343857"
+	If-Match: "2282343857"
 	Content-Type: application/x-www-form-urlencoded
 	...
 	Date: Fri, 12 Sep 2014 09:18:37 GMT
@@ -958,7 +958,7 @@
 
 	如果您偏向實作通知，可用的選項包括：
 
-	- 使用 Azure 通知中樞，將非同步回應推送至用戶端應用程式。Microsoft 網站上的 [Azure 通知中樞通知使用者](notification-hubs-aspnet-backend-windows-dotnet-notify-users.md)頁面提供了進一步的詳細資訊。
+	- 使用 Azure 通知中樞，將非同步回應推送至用戶端應用程式。Microsoft 網站上的 [Azure 通知中樞通知使用者](notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-notify-users.md)頁面提供了進一步的詳細資訊。
 
 	- 使用 Comet 模型來保持用戶端與裝載 Web API 的伺服器之間的持續性網路連線，並使用此連線將訊息從伺服器推送回到用戶端。MSDN 雜誌文章[在 Microsoft .NET Framework 中建置簡單的 Comet 應用程式](https://msdn.microsoft.com/magazine/jj891053.aspx)會舉例說明解決方案。
 
@@ -1143,7 +1143,7 @@ Microsoft 網站上的 [Application Insights - 開始監控應用程式的健全
 - 如需使用 ASP.NET Web API 處理 HTTP 例外狀況的詳細資訊，請瀏覽 Microsoft 網站上的 [ASP.NET Web API 中的例外狀況處理](http://www.asp.net/web-api/overview/error-handling/exception-handling)頁面。
 - Microsoft 網站上的 [Web API 全域錯誤處理](http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling)一文說明如何實作 Web API 的全域錯誤處理和記錄策略。
 - Microsoft 網站上的[使用 WebJob 執行背景工作](../articles/app-service-web/web-sites-create-web-jobs.md)頁面提供有關使用 WebJob 在 Azure 網站上執行背景作業的資訊和範例。
-- Microsoft 網站上的 [Azure 通知中樞通知使用者](notification-hubs-aspnet-backend-windows-dotnet-notify-users/)頁面會顯示如何使用 Azure 通知中樞將非同步回應推送至用戶端應用程式。
+- Microsoft 網站上的 [Azure 通知中樞通知使用者](notification-hubs-aspnet-backend-windows-dotnet-notify-users.md)頁面會顯示如何使用 Azure 通知中樞將非同步回應推送至用戶端應用程式。
 - Microsoft 網站上的 [API 管理](https://azure.microsoft.com/services/api-management/)頁面說明如何發佈產品，以提供受控制且安全的 Web API 存取。
 - Microsoft 網站上的 [Azure API 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn776326.aspx)頁面說明如何使用 API 管理 REST API 來建置自訂管理應用程式。
 - Microsoft 網站上的[流量管理員路由方法](../articles/traffic-manager/traffic-manager-routing-methods.md)頁面摘要說明 Azure 流量管理員如何用來平衡裝載 Web API 的網站上多個執行個體的要求負載。
@@ -1151,4 +1151,4 @@ Microsoft 網站上的 [Application Insights - 開始監控應用程式的健全
 - Microsoft 網站上的[驗證使用單位測試的程式碼](https://msdn.microsoft.com/library/dd264975.aspx)頁面提供有關使用 Visual Studio 建立和管理單位測試的詳細資訊。
 - Microsoft 網站上的[在發行前執行應用程式的效能測試](https://msdn.microsoft.com/library/dn250793.aspx)頁面說明如何使用 Visual Studio Ultimate 建立 Web 效能和負載測試專案。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

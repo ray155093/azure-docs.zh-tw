@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/22/2016"
+	ms.date="06/13/2016"
 	ms.author="guybo"/>
 
 # 使用 Visual Studio 部署虛擬機器調整集
@@ -22,7 +22,7 @@
 本文說明如何使用 Visual Studio 資源群組部署，部署 Azure 虛擬機器調整集。
 
 
-[Azure 虛擬機器調整集](https://azure.microsoft.com/blog/azure-vm-scale-sets-public-preview/)是 Azure 計算資源，可以使用針對自動調整和負載平衡輕易整合的選項，部署和管理類似虛擬機器的集合。您可以使用 [Azure 資源管理員 (ARM) 範本](https://github.com/Azure/azure-quickstart-templates)佈建和部署 VM 調整集。可以使用 Azure CLI、PowerShell、REST 部署 ARM 範本，也可以直接從 Visual Studio 部署。Visual Studio 會提供一組範例範本，可以部署為 Azure 資源群組部署專案的一部分。
+[Azure 虛擬機器調整集](https://azure.microsoft.com/blog/azure-vm-scale-sets-public-preview/)是 Azure 計算資源，可以使用針對自動調整和負載平衡輕易整合的選項，部署和管理類似虛擬機器的集合。您可以使用 [Azure Resource Manager (ARM) 範本](https://github.com/Azure/azure-quickstart-templates)佈建和部署 VM 調整集。可以使用 Azure CLI、PowerShell、REST 部署 ARM 範本，也可以直接從 Visual Studio 部署。Visual Studio 會提供一組範例範本，可以部署為 Azure 資源群組部署專案的一部分。
 
 Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組在一起，並且在單一部署作業中發佈。您可以在以下位置深入了解：[透過 Visual Studio 建立與部署 Azure 資源群組](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
 
@@ -41,7 +41,7 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 
 	![新增檔案][file_new]
 
-2. 在 [Visual C# | 雲端] 底下，選擇 [Azure 資源管理員]，建立專案以部署 ARM 範本。
+2. 在 [Visual C# | 雲端] 底下，選擇 [Azure Resource Manager]，建立專案以部署 ARM 範本。
 
 	![建立專案][create_project]
 
@@ -49,7 +49,7 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 
 	![選取範本][select_Template]
 
-4. 您的專案建立之後，您會看到 PowerShell 部署指令碼、Azure 資源管理員範本和虛擬機器調整集的參數檔案。
+4. 您的專案建立之後，您會看到 PowerShell 部署指令碼、Azure Resource Manager 範本和虛擬機器調整集的參數檔案。
 
 	![Solution Explorer][solution_explorer]
 
@@ -75,7 +75,7 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 
 	![新增資源群組][new_resource]
 
-9. 接下來，選取 [編輯參數] 按鈕以輸入參數，這些參數會傳遞至您的範本。需要特定值 (例如，OS 的使用者名稱和密碼) 才能建立部署。
+9. 接下來，選取 [編輯參數] 按鈕以輸入參數，這些參數會傳遞至您的範本。需要特定值 (例如，OS 的使用者名稱和密碼) 才能建立部署。如果尚未安裝 PowerShell Tools for Visual Studio，建議核取 [儲存密碼] 以避免隱藏的 PowerShell 命令列提示字元，或使用[金鑰保存庫支援](https://azure.microsoft.com/blog/keyvault-support-for-arm-templates/)。
 
 	![編輯參數][edit_parameters]
 
@@ -107,4 +107,4 @@ Azure 資源群組部署是一種方式，可以將相關 Azure 資源集群組�
 [output_window]: ./media/virtual-machine-scale-sets-vs-create/9-Output.png
 [cloud_explorer]: ./media/virtual-machine-scale-sets-vs-create/12-CloudExplorer.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

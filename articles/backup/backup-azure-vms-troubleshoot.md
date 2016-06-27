@@ -31,7 +31,7 @@
 | -------- | -------- | -------|
 | 備份 | 從備份保存庫複製 VHD 已逾時 - 請在幾分鐘內重試此作業。如果問題持續發生，請連絡 Microsoft 支援服務。 | 要複製的資料太多時會發生此問題。請檢查您的資料磁碟是否少於 16 個。 |
 | 備份 | 無法與 VM 代理程式通訊來取得快照集狀態。快照集 VM 子工作已逾時。請參閱疑難排解指南中的解決之道。 | 如果 VM 代理程式發生問題，或以某種方式封鎖對 Azure 基礎結構的網路存取，則會擲回這個錯誤。深入了解[偵錯 VM 快照集問題](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)。<br> 如果 VM 代理程式並未造成任何問題，請重新啟動 VM。有時，不正確的 VM 狀態可能會導致問題，重新啟動 VM 可清除此「錯誤狀態」 |
-| 備份 | 備份因為內部錯誤而失敗 - 請在幾分鐘內重試此作業。如果問題持續發生，請連絡 Microsoft 支援服務。 | 這個錯誤的發生原因有 2 個：<ol><li> 存取 VM 儲存體時發生暫時性問題。請檢查 [Azure 狀態](https://azure.microsoft.com/status/)，了解該區域目前是否有與計算/儲存體/網路相關的問題。當備份後續問題緩和後，請重試一次。<li>已刪除原始的 VM，因此無法進行備份。若要保留已刪除 VM 的備份資料但阻止備份錯誤，請取消保護 VM 並選擇保留資料。這樣會停止備份排程以及週期性的錯誤訊息。 |
+| 備份 | 備份因為內部錯誤而失敗 - 請在幾分鐘內重試此作業。如果問題持續發生，請連絡 Microsoft 支援服務。 | 這個錯誤的發生原因有 2 個：<ol><li> 存取 VM 儲存體時發生暫時性問題。請檢查 [Azure 狀態](https://azure.microsoft.com/zh-TW/status/)，了解該區域目前是否有與計算/儲存體/網路相關的問題。當備份後續問題緩和後，請重試一次。<li>已刪除原始的 VM，因此無法進行備份。若要保留已刪除 VM 的備份資料但阻止備份錯誤，請取消保護 VM 並選擇保留資料。這樣會停止備份排程以及週期性的錯誤訊息。 |
 | 備份 | 無法在選取的項目上安裝 Azure 復原服務延伸模組 - VM 代理程式是 Azure 復原服務延伸模組的必要條件。請安裝 Azure VM 代理程式並重新啟動註冊作業 | <ol> <li>檢查是否已正確安裝 VM 代理程式。<li>確定已正確設定 VM 組態中的旗標。</ol> [深入了解](#validating-vm-agent-installation) VM 代理程式安裝，以及如何驗證 VM 代理程式安裝。 |
 | 備份 | 命令執行失敗 - 另一項作業目前正在此項目上進行。請等到前一項作業完成，然後重試 | VM 的現有備份或還原作業正在執行中，而當現有作業正在執行時，無法啟動新的作業。 |
 | 備份 | 擴充功能安裝失敗，發生錯誤「COM+ 無法與 Microsoft Distributed Transaction Coordinator 通話」 | 這通常表示 COM+ 服務未執行。請連絡 Microsoft 支援服務來協助解決此問題。 |
@@ -53,7 +53,7 @@
 ## 還原
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | -------- | -------- | -------|
-| 還原 | 還原失敗並發生雲端內部錯誤 | <ol><li>您嘗試還原的雲端服務已設定為 DNS 設定。您可以檢查 <br>$deployment = Get-AzureDeployment -ServiceName "ServiceName" -Slot "Production" Get-AzureDns -DnsSettings $deployment.DnsSettings<br>如果有設定位址，這表示已設定為 DNS 設定。<br> <li>您嘗試還原的雲端服務利用 ReservedIP 設定，且雲端服務中現有的 VM 皆處於停止狀態。<br>您可以使用下列 PowerShell Cmdlet 來檢查雲端服務是否有保留的 IP：<br>$deployment = Get-AzureDeployment -ServiceName "servicename" -Slot "Production" $dep.ReservedIPName <br><li>您正在嘗試還原相同雲端服務中具有以下特殊網路設定的虛擬機器。<br>- 負載平衡器設定下的虛擬機器 (內部與外部)<br>- 具有多個保留 IP 的虛擬機器<br>- 具有多個 NIC 的虛擬機器<br>請在 UI 中選取新的雲端服務，或參閱[還原考量](backup-azure-restore-vms.md/#restoring-vms-with-special-network-configurations)以取得具有特殊網路設定之 VM 的相關資訊</ol> |
+| 還原 | 還原失敗並發生雲端內部錯誤 | <ol><li>您嘗試還原的雲端服務已設定為 DNS 設定。您可以檢查 <br>$deployment = Get-AzureDeployment -ServiceName "ServiceName" -Slot "Production" Get-AzureDns -DnsSettings $deployment.DnsSettings<br>如果有設定位址，這表示已設定為 DNS 設定。<br> <li>您嘗試還原的雲端服務利用 ReservedIP 設定，且雲端服務中現有的 VM 皆處於停止狀態。<br>您可以使用下列 PowerShell Cmdlet 來檢查雲端服務是否有保留的 IP：<br>$deployment = Get-AzureDeployment -ServiceName "servicename" -Slot "Production" $dep.ReservedIPName <br><li>您正在嘗試還原相同雲端服務中具有以下特殊網路設定的虛擬機器。<br>- 負載平衡器設定下的虛擬機器 (內部與外部)<br>- 具有多個保留 IP 的虛擬機器<br>- 具有多個 NIC 的虛擬機器<br>請在 UI 中選取新的雲端服務，或參閱[還原考量](./backup-azure-arm-restore-vms.md/#restoring-vms-with-special-network-configurations)以取得具有特殊網路設定之 VM 的相關資訊</ol> |
 | 還原 | 所選取的 DNS 名稱已被使用：請指定不同的 DNS 名稱，然後再試一次。 | 此處的 DNS 名稱是指雲端服務名稱 (結尾通常是 .cloudapp.net)。這必須是唯一的。如果您遇到這個錯誤，您需要在還原期間選擇不同的 VM 名稱。<br><br> 請注意，只有 Azure 入口網站的使用者才會看到這個錯誤。透過 PowerShell 執行還原作業將會成功，因為它只會還原磁碟，並不會建立 VM。當您在磁碟還原作業之後明確建立 VM 時，將會遇到此錯誤。 |
 | 還原 | 指定的虛擬網路組態不正確：請指定不同的虛擬網路組態，然後再試一次。 | None |
 | 還原 | 指定的雲端服務使用保留的 IP，但不符合所要還原的虛擬機器組態：請指定另一個不使用保留 IP 的雲端服務，或選擇從另一個復原點還原。 | None |
@@ -140,4 +140,4 @@ VM 備份仰賴發給底層儲存體的快照命令。無法存取儲存體或�
 
 >[AZURE.NOTE] 必須在來賓內啟用 DHCP，IaaS VM 備份才能運作。如果您需要靜態私人 IP 位址，您應該透過平台來進行設定。VM 內的 DHCP 選項應保持啟用。請參閱有關[設定靜態內部私人 IP 位址](../virtual-network/virtual-networks-reserved-private-ip.md)的詳細資訊。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

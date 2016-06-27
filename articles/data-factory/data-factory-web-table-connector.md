@@ -171,10 +171,9 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 | -------- | ----------- | -------- | 
 | 類型 | 類型屬性必須設為：**Web** | 是 | 
 | Url | Web 來源的 URL | 是 |
+| authenticationType | 匿名或基本。 | 是 |
 | userName | 基本驗證用的使用者名稱 | 是 (用於基本驗證)
 | password | 基本驗證用的密碼 | 是 (用於基本驗證)
-| authenticationType | 匿名、基本或 WebApi。 | 是 |
-| apiKey | WebApi 驗證用的 ApiKey。 | 是 (用於 WebApi 驗證)|   
 
 ### 使用匿名驗證
 
@@ -220,7 +219,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 :-------- | :----------- | :--------
 類型 | 資料集的類型，必須設定為 **WebTable** | 是
 路徑 | 包含資料表之資源的相對 URL。 | 否。當路徑未指定時，則只會使用在連結服務定義中指定的 URL。 
-index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表索引的步驟，請參閱＜[取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page)＞一節。 | 是
+index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表索引的步驟，請參閱[取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page)一節。 | 是
 
 
 **範例：**
@@ -248,7 +247,7 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
 
-在複製活動的案例中，當來源類型為 **WebSource** 時，目前沒有其他的屬性受到支援。
+在複製活動的案例中，當來源類型為 **WebSource** 時，目前並未支援任何其他屬性。
 
 ## 取得 HTML 網頁中資料表的索引
 
@@ -256,7 +255,7 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 2. 按一下工具列上的 [開新查詢]、指向 [從其他來源]，然後按一下 [從 Web]。
 	
 	![Power Query 功能表](./media/data-factory-web-table-connector/PowerQuery-Menu.png) 
-3. 在 [從 Web] 對話方塊方塊中，輸入您會在連結服務 JSON 中使用的 [URL] \(例如：https://en.wikipedia.org/wiki/)，以及您會為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。 
+3. 在 [從 Web] 對話方塊中，輸入您要在連結服務 JSON 中使用的**URL** (例如：https://en.wikipedia.org/wiki/)，以及您為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。 
 
 	![[從 Web] 對話方塊](./media/data-factory-web-table-connector/FromWeb-DialogBox.png)
 
@@ -277,13 +276,13 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 	![進階編輯器及索引](./media/data-factory-web-table-connector/AdvancedEditor-Index.png)
 
 
-如果您使用的是 Excel 2013，請使用 [Microsoft Power Query for Excel](https://www.microsoft.com/download/details.aspx?id=39379) 來取得索引。請參閱[連線到網頁](https://support.office.com/article/Connect-to-a-web-page-Power-Query-b2725d67-c9e8-43e6-a590-c0a175bd64d8)一文來取得詳細資料。如果您使用 [Microsoft Power BI for Desktop](https://powerbi.microsoft.com/desktop/)，步驟將會很類似。
+如果您使用的是 Excel 2013，請使用 [Microsoft Power Query for Excel](https://www.microsoft.com/download/details.aspx?id=39379) 來取得索引。如需詳細資訊，請參閱[連線至網頁](https://support.office.com/article/Connect-to-a-web-page-Power-Query-b2725d67-c9e8-43e6-a590-c0a175bd64d8)一文。如果您使用 [Microsoft Power BI for Desktop](https://powerbi.microsoft.com/desktop/)，步驟就很類似。
 
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## 效能和微調  
-請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!----HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

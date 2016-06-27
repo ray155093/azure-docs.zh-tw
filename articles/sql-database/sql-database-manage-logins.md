@@ -22,7 +22,7 @@
 
 
 > [AZURE.SELECTOR]
-- [開始使用安全性](sql-database-get-started-security.md)
+- [開始使用教學課程](sql-database-get-started-security.md)
 - [授與存取權](sql-database-manage-logins.md)
 
 
@@ -137,12 +137,6 @@ GRANT ALTER ANY USER TO Mary;
 有超過 100 個權限可在 SQL Database 中分別授與或拒絕。這些權限有許多為巢狀。例如，結構描述上的 `UPDATE` 權限包括該結構描述中每個資料表的 `UPDATE` 權限。如同大多數的權限系統，拒絕權限會覆寫授與權限。因為權限的巢狀本質和數目，可能需要仔細研究，設計適當的權限系統以便適當地保護您的資料庫。從[權限 (資料庫引擎)](https://msdn.microsoft.com/library/ms191291.aspx) 的權限清單開始，並且檢閱權限的[海報大小圖形](http://go.microsoft.com/fwlink/?LinkId=229142)。
 
 
-### 詳細資訊
-
-[保護您的 SQL Database](sql-database-security.md)
-
-[SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
-
 ## 後續步驟
 
 [保護您的 SQL Database](sql-database-security.md)
@@ -157,4 +151,11 @@ GRANT ALTER ANY USER TO Mary;
 
 [授與資料庫物件的存取權](https://msdn.microsoft.com/library/ms365327.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+
+## 其他資源
+
+[保護您的 SQL Database](sql-database-security.md)
+
+[SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
+
+<!---HONumber=AcomDC_0615_2016-->

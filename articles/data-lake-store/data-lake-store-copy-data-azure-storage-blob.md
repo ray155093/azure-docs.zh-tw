@@ -110,7 +110,7 @@ AdlCopy 工具有兩種使用方式：
 
 ## 使用 AdlCopy 的考量
 
-* AdlCopy 不支援從總計有 1000 個以上的檔案和資料夾的來源複製資料。替代方法是將檔案/資料夾分散到不同的子資料夾，並改用這些子資料夾的路徑做為來源。
+* AdlCopy (適用於 1.0.4 版) 支援從共同擁有超過數千個檔案和資料夾的來源複製資料。但是，如果您在複製大型資料集時發生問題，可將檔案/資料夾分散到不同的子資料夾，並改用這些子資料夾的路徑做為來源。
 
 ## 後續步驟
 
@@ -118,4 +118,4 @@ AdlCopy 工具有兩種使用方式：
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -4,7 +4,7 @@
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/02/2016"
+   ms.date="06/13/2016"
    ms.author="terrylan"/>
 
 # 管理 Azure 資訊安全中心的安全性建議
@@ -38,10 +38,10 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 - 開啟資料收集。
 - 選擇要在您的安全性原則中看見的建議。
 
-目前的原則建議是以系統更新、基準規則、反惡意程式碼程式、[端點的 ACL](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)、子網路與網路介面上的[網路安全性群組](../virtual-network/virtual-networks-nsg.md)、SQL Database 稽核、SQL Database 透明資料加密及 Web 應用程式防火牆為中心。[設定安全性原則](security-center-policies.md)提供每個建議選項的描述。
+目前的原則建議是以系統更新、基準規則、反惡意程式碼程式、子網路與網路介面上的[網路安全性群組](../virtual-network/virtual-networks-nsg.md)、SQL Database 稽核、SQL Database 透明資料加密及 Web 應用程式防火牆為中心。[設定安全性原則](security-center-policies.md)提供每個建議選項的描述。
 
 ### 監視建議
-設定安全性原則之後，「資訊安全中心」會分析您資源的安全性狀態，以識別潛在的弱點。[資訊安全中心] 刀鋒視窗上的 [建議] 磚可讓您知道資訊安全中心所識別出的建議總數量。
+設定安全性原則之後，「資訊安全中心」會分析您資源的安全性狀態，以識別潛在的弱點。[資訊安全中心] 刀鋒視窗上的 [建議] 圖格可讓您知道資訊安全中心所識別出的建議總數量。
 
 ![][2]
 
@@ -64,18 +64,17 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 請使用下表做為參考，以協助您了解可用的建議，以及如果套用建議，每一個建議將產生的作用。
 
-> [AZURE.NOTE] 您會想要了解 Azure 資源的[傳統和資源管理員部署模型](../azure-classic-rm.md)。
+> [AZURE.NOTE] 您會想要了解 Azure 資源的[傳統和 Resource Manager 部署模型](../azure-classic-rm.md)。
 
 |建議|說明|
 |-----|-----|
-|啟用訂用帳戶/虛擬機器的資料收集|建議您為每個訂用帳戶或特定 VM 開啟安全性原則中的 [資料收集]。|
+|[啟用訂用帳戶的資料收集](security-center-enable-data-collection.md)|建議您為每個訂用帳戶和訂用帳戶中的所有虛擬機器 (VM) 開啟安全性原則中的 [資料收集]。|
 |解決不相符基準規則|建議您讓作業系統組態符合建議的基準，例如不允許儲存密碼。|
-|套用系統更新|建議您將遺漏的系統安全性與重大更新部署到 VM (僅適用於 Windows VM)。|
-|設定端點的 ACL|建議您設定存取控制清單來限制對 VM 的輸入存取 (僅適用於傳統)。|
-|[新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)|建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用資源管理員部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。|
+|套用系統更新|建議您將遺漏的系統安全性與重大更新部署到 VM。|
+|[新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)|建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。|
 |完成 Web 應用程式防火牆設定|若要完成 WAF 組態，必須將流量重新路由至 WAF 設備。遵循這項建議會完成必要的設定變更。|
 |[啟用反惡意程式碼](security-center-enable-antimalware.md)|建議您將反惡意程式碼程式佈建到 VM (僅適用於 Windows VM)。|
-|啟用子網路/網路介面上的網路安全性群組|建議您啟用子網路和網路介面上的網路安全性群組 (NSG) (僅適用於「資源管理員 VM」)。|
+|啟用子網路/網路介面上的網路安全性群組|建議您啟用子網路和網路介面上的網路安全性群組 (NSG)。|
 |限制透過公用外部端點的存取|建議您為 NSG 設定輸入流量規則。|
 |啟用伺服器 SQL 稽核|建議您針對 Azure SQL 伺服器開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。|
 |啟用資料庫 SQL 稽核|建議您針對 Azure SQL 資料庫開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。|
@@ -110,12 +109,12 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 ## 後續步驟
 在本文件中，已向您介紹「資訊安全中心」的安全性建議。如要深入了解資訊安全中心，請參閱下列主題：
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) - 了解如何監視 Azure 資源的健全狀況。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示。
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 - [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章。
+- [Azure 安全性中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
 <!--Image references-->
 [2]: ./media/security-center-recommendations/recommendations-tile.png
@@ -124,4 +123,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 [5]: ./media/security-center-recommendations/select-enable-antimalware.png
 [6]: ./media/security-center-recommendations/install-antimalware.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

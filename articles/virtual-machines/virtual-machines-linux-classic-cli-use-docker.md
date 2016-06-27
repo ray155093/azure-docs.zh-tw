@@ -1,6 +1,6 @@
 <properties
 	pageTitle="在 Azure 上使用 Linux 的 Docker VM 擴充程式"
-	description="說明 Docker 和 Azure 虛擬機器延伸模組，並示範如何以程式設計方式使用 Azure CLI，從命令列在 Azure 上建立 Docker 主機的虛擬機器。"
+	description="說明 Docker 和 Azure 虛擬機器擴充功能，並示範如何以程式設計方式使用 Azure CLI，從命令列在 Azure 上建立 Docker 主機的虛擬機器。"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="squillace"
@@ -19,7 +19,7 @@
 
 # 透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
 
 
 
@@ -150,7 +150,9 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
 
 ## 後續步驟
 
-您已準備好開始移至 [Docker 使用者指南]，並使用 Docker VM。若要在新入口網站中建立具有 Docker 功能的 VM，請參閱[如何搭配使用 Docker VM 擴充程式與入口網站]。
+* 您已準備好開始移至 [Docker 使用者指南]，並使用 Docker VM。若要在新入口網站中建立具有 Docker 功能的 VM，請參閱[如何搭配使用 Docker VM 擴充程式與入口網站]。
+
+* Azure Docker VM 延伸模組也支援 Docker Compose，其使用宣告式 YAML 檔案來取得任何環境的開發人員模型化應用程式並產生一致的部署。請參閱[在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式]。
 
 <!--Anchors-->
 [Subheading 1]: #subheading-1
@@ -172,5 +174,6 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
 
 [Docker 使用者指南]: https://docs.docker.com/userguide/
  
+[在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式]: virtual-machines-linux-docker-compose-quickstart.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

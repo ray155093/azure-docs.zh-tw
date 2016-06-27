@@ -29,7 +29,7 @@
 
 選擇資料庫時，您應該不用學習新語言。SQL Database 有許多程式碼範例，可協助您針對正在使用的平台開始使用 (也就是 Linux、Mac OS 或 Windows)。此外，Azure 管理入口網站、PowerShell 和 REST API 可協助您在開發時獲得額外生產力。
 
-[閱讀文件](https://msdn.microsoft.com/library/mt654049%28v=sql.1%29.aspx)
+[閱讀文件](sql-database-develop-overview.md)
 
 ## 適用於作業的正確工具
 
@@ -39,7 +39,7 @@
 
 透過保證的資源、建立第一個 SQL Database 的教學課程、疑難排解查詢，以及快速入門程式碼範例，您可以隨時輕鬆取得資料庫問題的正確答案。
 
-[閱讀文件](sql-database-connect-central-recommendations.md)
+[閱讀文件](sql-database-technical-overview.md)
 
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
@@ -47,10 +47,10 @@
 
 取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
-## 詳細資訊
+## 其他資源
 
 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

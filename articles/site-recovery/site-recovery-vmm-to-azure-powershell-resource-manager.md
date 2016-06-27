@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure Site Recovery 及 PowerShell (資源管理員) 複寫 VMM 雲端中的 HYPER-V 虛擬機器 | Microsoft Azure"
+	pageTitle="使用 Azure Site Recovery 及 PowerShell (Resource Manager) 複寫 VMM 雲端中的 HYPER-V 虛擬機器 | Microsoft Azure"
 	description="使用 Azure Site Recovery 及 PowerShell 複寫 VMM 雲端中的 HYPER-V 虛擬機器"
 	services="site-recovery"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/15/2016"
+	ms.date="06/13/2016"
 	ms.author="rajanaki"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
@@ -44,7 +44,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 您在設定此案例如有任何問題，可將問題張貼到 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
-> [AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../resource-manager-deployment-model.md)。本文涵蓋內容包括如何使用資源管理員部署模型。
+> [AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文涵蓋內容包括如何使用 Resource Manager 部署模型。
 
 ## 開始之前
 
@@ -186,7 +186,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 ## 步驟 6：安裝 Azure 復原服務代理程式
 
-1. 在 [http:/aka.ms/latestmarsagent](http:/aka.ms/latestmarsagent "http:/aka.ms/latestmarsagent") 下載 Azure 復原服務代理程式，並在 VMM 雲端中您要保護的每一個 Hyper-V 主機伺服器上將其安裝。
+1. 在 [http:/aka.ms/latestmarsagent](http://aka.ms/latestmarsagent) 下載 Azure 復原服務代理程式，並在 VMM 雲端中您要保護的每一個 Hyper-V 主機伺服器上將其安裝。
 
 2. 在所有 VMM 主機上執行下列命令：
 
@@ -238,7 +238,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 開始網路對應之前，請確認來源 VMM 伺服器上的虛擬機器已連線到 VM 網路。此外，請建立一或多個 Azure 虛擬網路。
 
-在[使用 Azure Resource Manager 和 PowerShell 建立具有站對站 VPN 連線的虛擬網路](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell/)中，深入了解如何使用 Azure Resource Manager 和 PowerShell 建立虛擬網路
+在[使用 Azure Resource Manager 和 PowerShell 建立具有站對站 VPN 連線的虛擬網路](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)中，深入了解如何使用 Azure Resource Manager 和 PowerShell 建立虛擬網路
 
 請注意，多個虛擬機器網路可對應至單一 Azure 網路。如果目標網路具有多個子網路，且其中一個子網路的名稱和來源虛擬機器所在之子網路名稱相同，複本虛擬機器將會在容錯移轉之後連線到該目標子網路。如果沒有目標子網路具有相符的名稱，虛擬機器將會連線到網路中的第一個子網路。
 
@@ -266,7 +266,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
  請注意：
 
- - 虛擬機器必須符合 Azure 需求。請在《規劃指南》的[必要條件和支援](../site-recovery-best-practices)中查看這些需求。
+ - 虛擬機器必須符合 Azure 需求。請在《規劃指南》的[必要條件和支援](site-recovery-best-practices.md)中查看這些需求。
 
  - 若要啟用保護功能，您必須為虛擬機器設定作業系統和作業系統磁碟屬性。當您使用虛擬機器範本在 VMM 中建立虛擬機器時，您可以設定屬性。您也可以在虛擬機器屬性的 [一般] 及 [硬體設定] 索引標籤上，為現有的虛擬機器設定這些屬性。若未在 VMM 中設定這些屬性，您將可在 Azure 站台復原入口網站中加以設定。
 
@@ -343,6 +343,6 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 ## 後續步驟
 
-[閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊</a>。
+[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

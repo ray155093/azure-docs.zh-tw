@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="06/10/2016"
 	ms.author="piyushjo" />
 
 # Azure Mobile Engagement 示範應用程式
@@ -37,7 +37,7 @@
 - **Windows Universal 示範應用程式**
 
 	- 在 [Windows 應用程式市集](https://www.microsoft.com/zh-TW/store/apps/azure-mobile-engagement/9nblggh4qmh2)中下載應用程式。
-	- 應用程式已開發為 Windows 10 通用應用程式。原始程式碼位於 [GitHub](https://github.com/Azure/azure-mobile-engagement-app-ios)。
+	- 應用程式已開發為 Windows 10 通用應用程式。原始程式碼位於 [GitHub](https://github.com/Azure/azure-mobile-engagement-app-windows)。
 
 - **iOS 示範應用程式**：
 
@@ -78,7 +78,7 @@
 	- 您也必須設定應用程式的推播通知平台。
 - 您會注意到應用程式本身會搭配 Mobile Engagement 進行檢測。因此當您在將它連接到後端並開啟應用程式時，就能在 [監視] 索引標籤上看到使用者工作階段、活動、事件及其他項目。
 - 您也能從自己的 Mobile Engagement 執行個體傳送通知給此應用程式，而不是使用本機通知。
-	- 這裡使用應用程式的 [Get the Device ID]\(取得裝置識別碼) 功能表項目將裝置加入作為測試裝置。此能提供您裝置識別碼，接著您會向平台後端執行個體註冊為測試裝置。
+	- 這裡使用應用程式的 [Get the Device ID] (取得裝置識別碼) 功能表項目將裝置加入作為測試裝置。此能提供您裝置識別碼，接著您會向平台後端執行個體註冊為測試裝置。
 
 	![Windows 上的裝置識別碼][7]
 
@@ -185,4 +185,4 @@
 [32]: ./media/mobile-engagement-demo-apps/notification-poll.png
 [33]: ./media/mobile-engagement-demo-apps/notification-data-push.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

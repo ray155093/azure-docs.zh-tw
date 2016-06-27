@@ -42,7 +42,7 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 
 - 您將需要 Azure 訂用帳戶。您可以[在這裡](https://azure.microsoft.com/free/)註冊免費試用。
 
-- 如需在 Azure 入口網站上佈建 Data Science Virtual Machine 的指示，請參閱[建立虛擬機器](https://ms.portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm)。
+- 如需在 Azure 入口網站上佈建資料科學虛擬機器的指示，請參閱[建立虛擬機器](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm)。
 
 ## 1\.使用 Microsoft R Server 或 Python 探索資料和開發模型
 
@@ -404,7 +404,7 @@ Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存�
 ![](./media/machine-learning-data-science-vm-do-ten-things/Link_Blob_to_ADLA_v2.PNG)
 
 
-您可以在 Visual Studio 中，從 Blob 儲存體讀取資料、進行一些資料操作、功能工程，以及將結果資料輸出至 Azure 資料湖或 Azure Blob 儲存體。當您參考 Blob 儲存體中的資料時，請使用 **wasb://**；當您參考 Azure Data Lake 中的資料時，請使用 **swbhdfs://**
+您可以在 Visual Studio 中，從 Blob 儲存體讀取資料、進行一些資料操作、功能工程，以及將結果資料輸出至 Azure 資料湖或 Azure Blob 儲存體。當您參考 Blob 儲存體中的資料時，請使用 ****wasb://**；當您參考 Azure Data Lake 中的資料時，請使用 ****swbhdfs://**
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/USQL_Read_Blob_v2.PNG)
 
@@ -910,4 +910,4 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。它可讓您使用 JSON 等�
 ## 摘要
 這些只是您可以在 Microsoft Data Science Virtual Machine 上可做的一些事情。您還可以做更多事情，讓它成為有效的分析環境。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -61,10 +61,10 @@
 - [修正資料庫移轉相容性問題](sql-database-cloud-migrate.md#fix-database-migration-compatibility-issues)
 - [將相容 SQL Server 資料庫移轉到 SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
 
-## 詳細資訊
+## 其他資源
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -3,8 +3,8 @@
    description="還原時間點, Microsoft Azure SQL Database, 還原資料庫, 復原資料庫, Azure 傳統入口網站, Azure 傳統入口網站"
    services="sql-database"
    documentationCenter=""
-   authors="elfisher"
-   manager="jeffreyg"
+   authors="carlrabeler"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="storage-backup-recovery"
    ms.date="02/09/2016"
-   ms.author="elfish"/>
+   ms.author="carlrab"/>
 
 # 完成復原的 Azure SQL Database
 
@@ -29,7 +29,7 @@
   + 復原的資料庫使用的名稱與來源資料庫不同
   + 復原的資料庫和來源伺服器位於不同的伺服器
 
-如需關於變更連接字串的詳細資訊，請參閱[以程式設計方式連接至 Azure SQL Database 的指導方針](https://msdn.microsoft.com/library/azure/ee336282.aspx)和[連接至 Azure SQL Database：重要的建議](sql-database-connect-central-recommendations.md)。
+如需關於變更連接字串的詳細資訊，請參閱[以程式設計方式連接至 Azure SQL Database 的指導方針](https://msdn.microsoft.com/library/azure/ee336282.aspx)和 [SQL Database 開發概觀](sql-database-develop-overview.md)。
  
 ## 修改防火牆規則
 請確認伺服器層級和資料庫層級的防火牆規則，並確定已啟用您用戶端電腦或 Azure 與伺服器以及剛復原之資料庫的連接。如需詳細資訊，請參閱 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx)和[作法：進行防火牆設定 (Azure SQL Database)](https://msdn.microsoft.com/library/azure/jj553530.aspx)。
@@ -56,4 +56,4 @@
 如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。用戶端應用程式必須在 *.database.secure.windows.net 的模式中使用安全連接字串，才能有良好的稽核指標。如需詳細資訊，請參閱[開始使用 Azure Database 稽核](sql-database-auditing-get-started.md)。
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0615_2016-->

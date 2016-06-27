@@ -112,7 +112,7 @@ SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點�
 - [TDS 通訊協定版本清單](http://www.freetds.org/userguide/tdshistory.htm)
 
 
-- [連接到 SQL Database：連結、最佳作法和設計方針](sql-database-connect-central-recommendations.md)
+- [SQL Database 開發概觀](sql-database-develop-overview.md)
 
 
 - [Azure SQL Database 防火牆](sql-database-firewall-configure.md)
@@ -120,4 +120,4 @@ SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點�
 
 - [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0615_2016-->

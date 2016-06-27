@@ -26,14 +26,13 @@
 
 ## 計時器觸發程序的 function.json
 
-*function.json* 檔案提供一個排程運算式，以及一個指出是否應立即觸發函數的參數。
+Function.json 檔案提供排程運算式。
 
 ```json
 {
   "bindings": [
     {
       "schedule": "0 * * * * *",
-      "runOnStartup": true,
       "name": "myTimer",
       "type": "timerTrigger",
       "direction": "in"
@@ -54,15 +53,13 @@
 若要每隔 5 分鐘觸發一次︰
 
 ```json
-"schedule": "0 */5 * * * *",
-"runOnStartup": false,
+"schedule": "0 */5 * * * *"
 ```
 
-若要立即觸發程序，然後每隔兩小時觸發一次︰
+若要每隔 2 小時觸發一次：
 
 ```json
 "schedule": "0 0 */2 * * *",
-"runOnStartup": true,
 ```
 
 ## 計時器觸發程序 C# 程式碼範例
@@ -80,4 +77,4 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

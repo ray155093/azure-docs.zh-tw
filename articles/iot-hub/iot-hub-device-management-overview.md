@@ -3,7 +3,7 @@
  description="Azure IoT 中樞裝置管理概觀：裝置對應項、裝置查詢、裝置工作"
  services="iot-hub"
  documentationCenter=""
- authors="ellenfosborne"
+ authors="juanjperez"
  manager="timlt"
  editor=""/>
 
@@ -14,7 +14,7 @@
  ms.tgt_pltfrm="na"
  ms.workload="na"
  ms.date="04/29/2016"
- ms.author="elfarber"/>
+ ms.author="juanpere"/>
 
 # Azure IoT 中樞裝置管理概觀 (預覽)
 
@@ -24,7 +24,7 @@ Azure IoT 裝置管理有三個主要概念：
 
 1.  **裝置對應項：**IoT 中樞內實體裝置的呈現。
 
-2.  **裝置查詢**：可讓您找到裝置對應項，以及產生裝置對應項的彙總了解。例如，您找不到韌體版本為 1.0 的所有裝置對應項。
+2.  **裝置查詢**：可讓您找到裝置對應項，並產生對多個裝置對應項的彙總了解。例如，您可以執行查詢來尋找所有韌體版本為 1.0 的裝置對應項。
 
 3.  **裝置作業**︰要在一或多個實體裝置上執行的動作 (例如韌體更新、重新啟動和恢復出廠預設值)。
 
@@ -105,15 +105,7 @@ DM 用戶端程式庫在裝置管理中擔負兩項重責大任︰
 
 ## 後續步驟
 
-若要深入了解 Azure IoT 中樞裝置管理功能，您可以瀏覽下列教學課程︰
-
-- [開始使用 Azure IoT 中樞裝置管理][lnk-get-started]
-
-- [如何使用裝置對應項][lnk-tutorial-twin]
-
-- [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
-
-- [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
+若要繼續了解 Azure IoT 中樞裝置管理功能，請參閱[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程。
 
 <!-- Images and links -->
 [img-twin]: media/iot-hub-device-management-overview/image1.png
@@ -124,9 +116,7 @@ DM 用戶端程式庫在裝置管理中擔負兩項重責大任︰
 [lnk-library-c]: iot-hub-device-management-library.md
 [lnk-get-started]: iot-hub-device-management-get-started.md
 [lnk-tutorial-twin]: iot-hub-device-management-device-twin.md
-[lnk-tutorial-queries]: iot-hub-device-management-device-query.md
-[lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
 [lnk-apidocs]: http://azure.github.io/azure-iot-sdks/
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

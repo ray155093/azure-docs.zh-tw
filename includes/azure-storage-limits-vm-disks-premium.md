@@ -15,6 +15,15 @@ Premium 儲存體磁碟類型 | P10 | P20 | P30
 磁碟大小 | 128 GB | 512 GB | 1024 GB (1 TB)
 每一磁碟的 IOPS 上限 | 500 | 2300 | 5000
 每一磁碟的輸送量上限 | 每秒 100 MB | 每秒 150 MB | 每秒 200 MB
-每個儲存體帳戶的磁碟數量上限 | 280 | 140 | 35
+每個儲存體帳戶的磁碟數量上限 | 280 | 70 | 35
 
-<!---HONumber=AcomDC_0413_2016-->
+**虛擬機器磁碟︰每個 VM 限制**
+
+資源|預設限制
+---|---
+每個 VM 的最大 IOPS|80,000 IOPS (使用 GS5 VM<sup>1</sup>)
+每一 VM 輸送量上限|2,000 MB/秒 (使用 GS5 VM<sup>1</sup>)
+
+<sup>1</sup>如需其他 VM 大小的限制，請參考 [VM 大小](../articles/virtual-machines/virtual-machines-linux-sizes.md)。
+
+<!---HONumber=AcomDC_0615_2016-->

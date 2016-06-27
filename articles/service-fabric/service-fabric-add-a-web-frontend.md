@@ -1,6 +1,6 @@
 <properties
    pageTitle="建立應用程式的 Web 前端 | Microsoft Azure"
-   description="使用 ASP.NET 5 Web API 專案對 Web 公開 Service Fabric 應用程式，以及透過 ServiceProxy 進行服務間通訊。"
+   description="使用 ASP.NET Core Web API 專案對 Web 公開 Service Fabric 應用程式，以及透過 ServiceProxy 進行服務間通訊。"
    services="service-fabric"
    documentationCenter=".net"
    authors="seanmck"
@@ -13,50 +13,49 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/05/2016"
+   ms.date="06/10/2016"
    ms.author="seanmck"/>
 
 
 # 建置應用程式的 Web 服務前端
 
->[AZURE.WARNING] 由於 ASP.NET Core RC2 持續變更，以致本文暫時不正確，因為已從 SDK 移除參考的專案範本。ASP.NET Core RC2 發行時，本文將隨之更新。在過渡時期，您可以使用[開始使用︰ Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md)中所述的無狀態 Web API 範本。
-
 根據預設，Azure Service Fabric 服務不提供 Web 的公用介面。若要對 HTTP 用戶端公開應用程式的功能，您必須建立 Web 專案來做為進入點，然後從該處與個別服務進行通訊。
 
-在本教學課程中，我們將逐步解說如何將 ASP.NET 5 Web API 前端新增至已依據具狀態服務專案範本包含可靠的服務的應用程式。如果您尚未這麼做，請考慮在開始本教學課程之前，先逐步進行[在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
+在本教學課程中，我們將從[在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)教學課程中斷處來開始講起，並在具狀態計數器服務前面新增 Web 服務。如果您尚未這麼做，請返回並先逐步進行該教學課程。
 
+## 將 ASP.NET Core 服務新增至您的應用程式
 
-## 將 ASP.NET 5 服務新增至您的應用程式
+ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。讓我們將 ASP.NET Web API 專案新增至現有的應用程式。
 
-ASP.NET 5 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。讓我們將 ASP.NET Web API 專案新增至現有的應用程式。
+>[AZURE.NOTE] 若要完成本教學課程，您需要[安裝 .NET Core RC2][dotnetcore-install]。
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下應用程式專案中的 [服務]，然後選擇 [新增 Fabric Service]。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下應用程式專案中的 [服務]，然後選擇 [新增] > [新增 Service Fabric Explorer]。
 
 	![將新服務加入至現有的應用程式][vs-add-new-service]
 
-2. 在 [建立服務] 頁面上，選擇 [ASP.NET 5] 並予以命名。
+2. 在 [建立服務] 頁面上，選擇 [ASP.NET Core] 並予以命名。
 
 	![在新服務對話方塊中選擇 ASP.NET Web 服務][vs-new-service-dialog]
 
-3. 下一頁會提供一組 ASP.NET 5 專案範本。請注意，這些都是您在 Service Fabric 應用程式外部建立 ASP.NET 5 專案時所會看到的相同範本。在本教學課程中，我們會選擇 [Web API]。但您可以將相同的概念套用於建置完整的 Web 應用程式。
+3. 下一頁會提供一組 ASP.NET Core 專案範本。請注意，這些都是您在 Service Fabric 應用程式外部建立 ASP.NET Core 專案時所會看到的相同範本。在本教學課程中，我們會選擇 [Web API]。但您可以將相同的概念套用於建置完整的 Web 應用程式。
 
 	![選擇 ASP.NET 專案類型][vs-new-aspnet-project-dialog]
 
     建立 Web API 專案後，您的應用程式中會有兩個服務。隨著您繼續建置應用程式，您將以完全相同的方式加入更多服務。每個服務都可以獨立設定版本和升級。
 
->[AZURE.NOTE] 自 Service Fabric 11 月公用預覽版本開始，便已知在處理 ASP.NET 專案時會有長路徑方面的問題。在建立這類專案時，最好是為應用程式和服務類型，以及程式碼和組態封裝名稱選擇簡短名稱，以避免發生任何問題。
+>[AZURE.TIP] 若要深入了解如何建置 ASP.NET Core 服務，請參閱 [ASP.NET Core 文件](https://docs.asp.net)。
 
 ## 執行應用程式
 
-若要了解我們所做的事情，就讓我們部署新的應用程式並看看 ASP.NET 5 Web API 範本所提供的預設行為。
+若要了解我們所做的事情，就讓我們部署新的應用程式並看看 ASP.NET Core Web API 範本所提供的預設行為。
 
 1. 在 Visual Studio 按 F5 以進行應用程式偵錯。
 
-2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄，類似 http://localhost:33003。連接埠號碼會隨機進行指派，因此可能與您電腦上的連接埠號碼不同。ASP.NET 5 Web API 範本不根提供根目錄的預設行為，因此您將在瀏覽器中收到錯誤。
+2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄，類似 http://localhost:33003。連接埠號碼會隨機進行指派，因此可能與您電腦上的連接埠號碼不同。ASP.NET Core Web API 範本不根提供根目錄的預設行為，因此您將在瀏覽器中收到錯誤。
 
 3. 將 `/api/values` 新增至瀏覽器中的位置。這將會叫用 Web API 範本中 ValuesController 上的 `Get` 方法。它會傳回範本所提供的預設回應，也就是包含兩個字串的 JSON 陣列：
 
-    ![從 ASP.NET 5 Web API 範本傳回的預設值][browser-aspnet-template-values]
+    ![從 ASP.NET Core Web API 範本傳回的預設值][browser-aspnet-template-values]
 
     在本教學課程結束前，我們會以具狀態服務的最新計數器值取代這些預設值。
 
@@ -70,17 +69,17 @@ ASP.NET 5 是輕量型、跨平台的 Web 開發架構，可供您用來建立�
 
 ### 建立介面
 
-我們會先建立做為具狀態服務與其用戶端之間合約的介面，包括 ASP.NET 5 專案。
+我們會先建立做為具狀態服務與其用戶端之間合約的介面，包括 ASP.NET Core 專案。
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下您的方案並選擇 [加入] > [新專案]。
 
-2. 在左側導覽窗格中選擇 [Visual C#] 項目，然後選取 [類別庫] 範本。確定 .NET Framework 版本已設定為 **4.5.1**。
+2. 在左側導覽窗格中選擇 [Visual C#] 項目，然後選取 [類別庫] 範本。確定 .NET Framework 版本已設定為 **4.5.2**。
 
     ![為具狀態服務建立介面專案][vs-add-class-library-project]
 
 3. 為了讓介面可供 `ServiceProxy` 使用，它必須衍生自 IService 介面。這個介面會包含在其中一個 Service Fabric NuGet 封裝中。若要新增封裝，請以滑鼠右鍵按一下新的類別庫專案，然後選擇 [管理 NuGet 封裝]。
 
-4. 確定已選取 [包含發行前版本] 核取方塊，然後搜尋 **Microsoft.ServiceFabric.Services** 封裝並加以安裝。
+4. 搜尋 **Microsoft.ServiceFabric.Services** 封裝並加以安裝。
 
     ![新增服務 NuGet 封裝][vs-services-nuget-package]
 
@@ -130,14 +129,14 @@ ASP.NET 5 是輕量型、跨平台的 Web 開發架構，可供您用來建立�
 
         using (var tx = this.StateManager.CreateTransaction())
         {          
-            var result = await myDictionary.TryGetValueAsync(tx, "Counter-1");
+            var result = await myDictionary.TryGetValueAsync(tx, "Counter");
             return result.HasValue ? result.Value : 0;
         }
     }
     ```
 
 
-### 使用 ServiceRemotingListener 公開具狀態服務
+### 使用服務遠端處理接聽程式公開具狀態服務
 
 實作 `ICounter` 介面後，讓具狀態服務可從其他服務呼叫的最後一個步驟是開啟通訊通道。對於具狀態服務，Service Fabric 會提供稱為 `CreateServiceReplicaListeners` 的可覆寫方法。透過此方法，您可以根據想要為服務啟用的通訊類型，指定一或多個通訊接聽程式。
 
@@ -155,8 +154,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     return new List<ServiceReplicaListener>()
     {
         new ServiceReplicaListener(
-            (initParams) =>
-                new ServiceRemotingListener<ICounter>(initParams, this))
+            (context) =>
+                this.CreateServiceRemotingListener(context))
     };
 }
 ```
@@ -181,7 +180,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     public async Task<IEnumerable<string>> Get()
     {
         ICounter counter =
-            ServiceProxy.Create<ICounter>(0, new Uri("fabric:/MyApp/MyStatefulService"));
+            ServiceProxy.Create<ICounter>(0, new Uri("fabric:/MyApplication/MyStatefulService"));
 
         long count = await counter.GetCountAsync();
 
@@ -239,4 +238,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 [vs-services-nuget-package]: ./media/service-fabric-add-a-web-frontend/vs-services-nuget-package.png
 [browser-aspnet-counter-value]: ./media/service-fabric-add-a-web-frontend/browser-aspnet-counter-value.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!-- external links -->
+[dotnetcore-install]: https://www.microsoft.com/net/core#windows
+
+<!---HONumber=AcomDC_0615_2016-->

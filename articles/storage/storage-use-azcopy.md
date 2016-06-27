@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="06/14/2016"
 	ms.author="micurd"/>
 
 # 使用 AzCopy 命令列公用程式傳輸資料
@@ -357,7 +357,7 @@ AzCopy 將會使用下列命令慣例，在 Blob 容器中產生 JSON 資料檔�
 
 請注意，您無法在匯入案例中指定 `/PKRS` 選項。不同於必須指定 `/PKRS` 選項以啟動並行作業的匯出案例，AzCopy 依預設會在您匯入資料表時啟動並行作業。依預設啟動的並行作業數目等於核心處理器的數目；但您可以使用 `/NC` 選項指定不同的並行數目。如需詳細資訊，請在命令列上輸入 `AzCopy /?:NC`。
 
-請注意，AzCopy 只支援匯入 JSON 而不支援匯入 CSV。
+請注意，AzCopy 只支援匯入 JSON 而不支援匯入 CSV。AzCopy 不支援從使用者建立的 JSON 和資訊清單檔案匯入資料表。這兩種檔案都必須來自 AzCopy 資料表匯出。若要避免錯誤，請勿修改匯出的 JSON 或資訊清單檔案。
 
 ### 使用 Blob 將實體匯入至資料表
 
@@ -866,4 +866,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

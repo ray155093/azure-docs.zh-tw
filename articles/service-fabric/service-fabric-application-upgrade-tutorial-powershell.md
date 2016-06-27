@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/18/2016"
+   ms.date="06/13/2016"
    ms.author="subramar"/>
 
 
@@ -29,15 +29,14 @@
 
 ## 步驟 1：建置和部署視覺物件範例
 
-若要執行這些步驟，請從 GitHub 下載應用程式，然後依範例的讀我檔案所述，將 **webgl-utils.js** 和 **gl-matrix-min.js** 檔案新增至專案。否則，應用程式將無法運作。
 
-將這些檔案新增至專案之後，在應用程式專案 **VisualObjectsApplication** 上按一下滑鼠右鍵，然後選取 Service Fabric 功能表項目中的 [發佈] 命令來建置和發佈應用程式，如以下所示。如需詳細資訊，請參閱 [Service Fabric 應用程式升級教學課程](service-fabric-application-upgrade-tutorial.md)。或者，您可以使用 PowerShell 來部署您的應用程式。
+在應用程式專案 **VisualObjectsApplication** 上按一下滑鼠右鍵，然後選取 Service Fabric 功能表項目中的 [發佈] 命令來建置和發佈應用程式，如以下所示。如需詳細資訊，請參閱 [Service Fabric 應用程式升級教學課程](service-fabric-application-upgrade-tutorial.md)。或者，您可以使用 PowerShell 來部署您的應用程式。
 
 > [AZURE.NOTE] 在 PowerShell 中使用任何 Service Fabric 命令之前，您必須先使用 `Connect-ServiceFabricCluster` Cmdlet 連接到叢集。同樣地，它會假設已經在本機電腦上設定叢集。請參閱[設定 Service Fabric 開發環境](service-fabric-get-started.md)上的文章
 
 在 Visual Studio 中建置專案後，您可以使用 PowerShell 命令 **Copy-ServiceFabricApplicationPackage** 將應用程式封裝複製到 ImageStore。在此步驟後，接著使用 **Register-ServiceFabricApplicationPackage** Cmdlet 將應用程式註冊至 Service Fabric 執行階段。最後一個步驟是使用 **New-ServiceFabricApplication** Cmdlet 來啟動應用程式的執行個體。這三個步驟類似於在 Visual Studio 中使用 [部署] 功能表項目。
 
-現在，您可以使用 [Service Fabric 總管來檢視叢集與應用程式](service-fabric-visualizing-your-cluster.md)。該應用程式有一個 Web 服務，透過在 Internet Explorer 的網址列中輸入 [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects)，即可瀏覽至該服務。您應該會在畫面上看到一些浮動視覺物件四處移動。此外，您可以使用 **Get-ServiceFabricApplication** 檢查應用程式狀態。
+現在，您可以使用 [Service Fabric Explorer 來檢視叢集與應用程式](service-fabric-visualizing-your-cluster.md)。該應用程式有一個 Web 服務，透過在 Internet Explorer 的網址列中輸入 [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects)，即可瀏覽至該服務。您應該會在畫面上看到一些浮動視覺物件四處移動。此外，您可以使用 **Get-ServiceFabricApplication** 檢查應用程式狀態。
 
 ## 步驟 2：更新視覺物件範例
 
@@ -56,7 +55,7 @@
 <CodePackageName="Code" Version="2.0">
 ```
 
-現在，我們需要更新 *ApplicationManifest.xml* 檔案 (可以在 **VisualObjects** 解決方案底下的 **VisualObjects** 專案底下找到)，以使用版本 2.0 的 **VisualObjects.ActorService** 專案，並且將應用程式版本一併從 1.0.0.0 更新成 2.0.0.0。現在，*ApplicationManifest.xml* 中的對應程式碼行應該會如下所示：
+現在，我們需要更新「ApplicationManifest.xml」檔案 (可以在 **VisualObjects** 解決方案底下的 **VisualObjects** 專案底下找到)，以使用版本 2.0 的 **VisualObjects.ActorService** 專案，並且將應用程式版本一併從 1.0.0.0 更新成 2.0.0.0。現在，「ApplicationManifest.xml」中的對應程式碼行應該會如下所示：
 
 ```xml
 <ApplicationManifestxmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VisualObjects" ApplicationTypeVersion="2.0.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -65,16 +64,16 @@
 ```
 
 
-現在建置專案，方法是只選取 **ActorService** 專案，然後以滑鼠右鍵按一下並選取 Visual Studio 中的 [組建]\(如果您選取 [全部重新建置]，您可能必須在其 *ServiceManifest.xml* 和 *ApplicationManifest.xml* 中更新其他專案的版本，因為程式碼已變更)。接下來，讓我們在 [VisualObjectsApplication] 上按一下滑鼠右鍵，選取 [Service Fabric] 功能表，然後選擇 [封裝]，來封裝已更新的應用程式。這應該會建立可部署的應用程式封裝。更新的應用程式已準備好進行部署。
+現在建置專案，方法是只選取 **ActorService** 專案，然後以滑鼠右鍵按一下並選取 Visual Studio 中的 [組建] (如果您選取 [全部重新建置]，您可能必須在其「ServiceManifest.xml」和「ApplicationManifest.xml」中更新其他專案的版本，因為程式碼已變更)。接下來，讓我們在 [VisualObjectsApplication] 上按一下滑鼠右鍵，選取 [Service Fabric] 功能表，然後選擇 [封裝]，來封裝已更新的應用程式。這應該會建立可部署的應用程式封裝。更新的應用程式已準備好進行部署。
 
 
 ## 步驟 3：決定健康狀態原則並升級參數
 
-請您熟悉[應用程式升級參數](service-fabric-application-upgrade-parameters.md)和[升級程序](service-fabric-application-upgrade.md)，以了解套用的各種升級參數、逾時和健康狀態準則。對於此逐步解說，我們會將服務健康狀態評估準則保留為預設值 (和建議值)，這表示升級之後，所有服務和執行個體應該是_健康狀態良好_。
+請您熟悉[應用程式升級參數](service-fabric-application-upgrade-parameters.md)和[升級程序](service-fabric-application-upgrade.md)，以了解套用的各種升級參數、逾時和健康狀態準則。對於此逐步解說，我們會將服務健康狀態評估準則保留為預設值 (和建議值)，這表示升級之後，所有服務和執行個體應該是「健康狀態良好」。
 
-但是，讓我們將 *HealthCheckStableDuration* 增加為 60 秒 (如此一來，在升級繼續至下一個更新網域之前，至少有 20 秒的時間服務是健康狀態良好的)。同時也要將 *UpgradeDomainTimeout* 設為 1200 秒，將 *UpgradeTimeout* 設為 3000 秒。
+但是，讓我們將「HealthCheckStableDuration」增加為 60 秒 (如此一來，在升級繼續至下一個更新網域之前，至少有 20 秒的時間服務是健康狀態良好的)。同時也要將 *UpgradeDomainTimeout* 設為 1200 秒，將 *UpgradeTimeout* 設為 3000 秒。
 
-最後，我們也要將 *UpgradeFailureAction* 設為回復，以要求 Service Fabric 在升級期間遇到任何問題時，將應用程式回復為舊版。因此，開始升級時我們指定的升級參數 (在步驟 4) 如下所示：
+最後，我們也要將「UpgradeFailureAction」設為回復，以要求 Service Fabric 在升級期間遇到任何問題時，將應用程式回復為舊版。因此，開始升級時我們指定的升級參數 (在步驟 4) 如下所示：
 
 FailureAction = Rollback
 
@@ -115,9 +114,9 @@ Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -Ap
 ```
 
 
-請注意，應用程式名稱如 *ApplicationManifest.xml* 檔案中所述。Service Fabric 會使用這個名稱來識別要升級哪一個應用程式。如果您設定的逾時太短，您可能會遇到失敗訊息，指出此問題。請參閱疑難排解章節，或增加逾時。
+請注意，應用程式名稱如「ApplicationManifest.xml」檔案中所述。Service Fabric 會使用這個名稱來識別要升級哪一個應用程式。如果您設定的逾時太短，您可能會遇到失敗訊息，指出此問題。請參閱疑難排解章節，或增加逾時。
 
-現在，應用程式升級會繼續，您可以使用 Service Fabric 總管，或使用下列 PowerShell 命令進行監視：**Get-ServiceFabricApplicationUpgrade fabric:/VisualObjects**。
+現在，應用程式升級會繼續，您可以使用 Service Fabric Explorer，或使用下列 PowerShell 命令進行監視：**Get-ServiceFabricApplicationUpgrade fabric:/VisualObjects**。
 
 幾分鐘後，使用上述 PowerShell 命令所取得的狀態應該會顯示已升級所有更新網域 (完成)。而且，您應該會在瀏覽器視窗中發現該視覺物件現在已經開始旋轉！
 
@@ -134,6 +133,6 @@ Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -Ap
 
 參考[進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
-參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
+參考[針對應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟進行疑難排解，以修正應用程式升級中常見的問題。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

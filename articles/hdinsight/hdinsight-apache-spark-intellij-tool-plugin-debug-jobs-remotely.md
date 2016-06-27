@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="06/09/2016"
 	ms.author="nitinme"/>
 
 
@@ -130,11 +130,15 @@
 
 	您也可以建立自己的構件，方法是按一下 [+] 圖示，在上方映像中反白顯示。
 
-4. 將程式庫新增至專案。若要新增程式庫，以滑鼠右鍵按一下專案樹狀結構中的專案名稱，然後按一下 [開啟模組設定]。在 [專案結構] 對話方塊中，從左窗格中按一下 [程式庫]，按一下 (+) 符號，然後按一下 [從 Maven]。
+4. 在 [Project Structure (專案結構)] 對話方塊中，按一下 [Project (專案)]。如果 [Project SDK (專案 SDK)] 設定為 1.8，請確定 [Project language level (專案語言層級)]設為 [7 - Diamonds, ARM, multi-catch, etc (7 - Diamonds、ARM、Multi-Catch 等)]。
+
+	![設定專案語言層級](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/set-project-language-level.png)
+
+4. 將程式庫新增至專案。若要新增程式庫，以滑鼠右鍵按一下專案樹狀結構中的專案名稱，然後按一下 [Open Module Settings (開啟模組設定)]。在 [Project Structure (專案結構)] 對話方塊中，從左窗格中按一下 [Libraries (程式庫)]，按一下 (+) 符號，然後按一下 [From Maven (從 Maven)]。
 
 	![新增程式庫](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/add-library.png)
 
-	在 [從 Maven 儲存機制下載程式庫] 對話方塊中，搜尋並新增下列程式庫。
+	在 [Download Library from Maven Repository (從 Maven 儲存機制下載程式庫)] 對話方塊中，搜尋並新增下列程式庫。
 
 	* `org.scalatest:scalatest_2.10:2.2.1`
 	* `org.apache.hadoop:hadoop-azure:2.7.1`
@@ -178,11 +182,11 @@
 
 	3. 儲存檔案。
 
-7. 新增您應用程式的主要類別。從專案總管中，以滑鼠右鍵按一下 [src]、指向 [新增]，然後按一下 [Scala 類別]。
+7. 新增您應用程式的主要類別。從 [Project Explorer (專案總管)] 中，以滑鼠右鍵按一下 [src]、指向 [New (新增)]，然後按一下 [Scala class (Scala 類別)]。
 
 	![新增原始程式碼](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code.png)
 
-8. 在 [建立新的 Scala 類別] 對話方塊中，提供一個名稱，並針對 [種類] 選取 [物件]，然後按一下 [確定]。
+8. 在 [Create New Scala Class (建立新的 Scala 類別)] 對話方塊中，提供一個名稱，並針對 [Kind (種類)] 選取 [Object (物件)]，然後按一下 [確定]。
 
 	![新增原始程式碼](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code-object.png)
 
@@ -203,7 +207,7 @@
 		  }
 		}
 
-10. 重複上述的步驟 7 和 8，以新增稱為 `SparkSample` 的新 Scala 物件。對這個類別新增下列程式碼。此程式碼會從 HVAC.csv (所有 HDInsight Spark 叢集上均有提供) 讀取資料、擷取在 CSV 的第七個資料行中只有個位數的資料列，並將輸出寫入到叢集預設儲存體容器下的 **/HVACOut**。
+10. 重複上述的步驟 8 和 9，以新增稱為 `SparkSample` 的新 Scala 物件。對這個類別新增下列程式碼。此程式碼會從 HVAC.csv (所有 HDInsight Spark 叢集上均有提供) 讀取資料、擷取在 CSV 的第七個資料行中只有個位數的資料列，並將輸出寫入到叢集預設儲存體容器下的 **/HVACOut**。
 
 		import org.apache.spark.SparkContext
 	
@@ -223,7 +227,7 @@
 		
 		}
 
-11. 重複上述的步驟 7 和 8，以新增稱為 `RemoteClusterDebugging` 的新類別。這個類別會實作 Spark 測試架構，用於偵錯應用程式。將下列程式碼新增至 `RemoteClusterDebugging` 類別。
+11. 重複上述的步驟 8 和 9，以新增稱為 `RemoteClusterDebugging` 的新類別。這個類別會實作 Spark 測試架構，用於偵錯應用程式。將下列程式碼新增至 `RemoteClusterDebugging` 類別。
 
 		import org.apache.spark.{SparkConf, SparkContext}
 		import org.scalatest.FunSuite
@@ -251,31 +255,31 @@
 	* 對於 `setJars`，指定將會建立構件 jar 的位置。通常是 `<Your IntelliJ project directory>\out<project name>_DefaultArtifact\default_artifact.jar`。 
 
 
-11. 在 `RemoteClusterDebugging` 類別中，以滑鼠右鍵按一下 `test` 關鍵字，然後選取 [建立 RemoteClusterDebugging 組態]。
+11. 在 `RemoteClusterDebugging` 類別中，以滑鼠右鍵按一下 `test` 關鍵字，然後選取 [Create RemoteClusterDebugging Configuration (建立 RemoteClusterDebugging 組態)]。
 
 	![建立遠端組態](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/create-remote-config.png)
 
-12. 在對話方塊中，提供組態的名稱，然後選取 [測試種類] 做為 [測試名稱]。對於所有其他值保留預設值，按一下 [套用]，然後按一下 [確定]。
+12. 在對話方塊中，提供組態的名稱，然後選取 [Test kind (測試種類)] 做為 [Test name (測試名稱)]。對於所有其他值保留預設值，按一下 [Apply (套用)]，然後按一下 [確定]。
 
 	![建立遠端組態](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/provide-config-value.png)
 
 
 
-13. 您現在應該會在功能表列中看到 [遠端執行] 組態下拉式清單。
+13. 您現在應該會在功能表列中看到 [Remote Run (遠端執行)] 組態下拉式清單。
 
 	![建立遠端組態](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/config-run.png)
 
 ## 步驟 5：在偵錯模式中執行應用程式
 
-1. 在您的 IntelliJ IDEA 專案中，開啟 `SparkSample.scala` 並且在 'val rdd1' 旁邊建立中斷點。在建立中斷點的快顯功能表中，選取 **executeJob 函式中的一行**。
+1. 在您的 IntelliJ IDEA 專案中，開啟 `SparkSample.scala` 並且在 'val rdd1' 旁邊建立中斷點。在建立中斷點的快顯功能表中，選取 **executeJob 函數中的一行**。
 
 	![新增中斷點](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/create-breakpoint.png)
 
-2. 按一下 [遠端執行] 組態下拉式清單旁的 [偵錯執行] 按鈕，開始執行應用程式。
+2. 按一下 [Remote Run (遠端執行)] 組態下拉式清單旁的 [Debug Run (偵錯執行)] 按鈕，開始執行應用程式。
 
 	![在偵錯模式中執行程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-run-mode.png)
 
-3. 當程式執行觸達中斷點時，您應該會在下方窗格中看到 [偵錯工具] 索引標籤。
+3. 當程式執行觸達中斷點時，您應該會在下方窗格中看到 [Debugger (偵錯工具)] 索引標籤。
 
 	![在偵錯模式中執行程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-add-watch.png)
 
@@ -289,7 +293,7 @@
 
 	您在上述映像中看到的內容是在執行階段，您可以查詢 terrabytes 的資料，並且針對應用程式的進度進行偵錯。例如，您可以在上述映像中顯示的輸出，看見輸出的第一個資料列是標頭。有鑑於此，您可以修改應用程式程式碼，視需要略過標頭資料列。
 
-5. 您現在可以按一下 [繼續程式] 圖示，以繼續執行應用程式。
+5. 您現在可以按一下 [Resume Program (繼續程式)] 圖示，以繼續執行應用程式。
 
 	![在偵錯模式中執行程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-continue-run.png)
 
@@ -340,4 +344,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

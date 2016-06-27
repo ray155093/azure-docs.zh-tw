@@ -48,7 +48,7 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 
 	![從 [工作] 功能表部署至 Azure](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard00.png)
 
-5.	提供資料庫名稱的 [新資料庫名稱]，設定 [Microsoft Azure SQL Database 的版本] \([服務層](sql-database-service-tiers.md))、[資料庫大小上限]、[服務目標] \(效能等級) 和精靈在移轉程序期間建立之 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案的 [暫存檔名稱]。
+5.	提供資料庫名稱的 [新資料庫名稱]，設定 [Microsoft Azure SQL Database 的版本] ([服務層](sql-database-service-tiers.md))、[資料庫大小上限]、[服務目標] (效能等級) 和精靈在移轉程序期間建立之 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案的 [暫存檔名稱]。
 
 	![匯出設定](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard02.png)
 
@@ -62,10 +62,10 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 - [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
 - [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
 
-## 詳細資訊
+## 其他資源
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

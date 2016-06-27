@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/09/2016"
+	ms.date="06/10/2016"
 	ms.author="garye"/>
 
 
@@ -48,7 +48,7 @@
 
 - [二元支援向量機器][two-class-support-vector-machine]
 - 連接到這個模組的[定型模型][train-model]和[計分模型][score-model]模組
-- [標準化資料][normalize-data] \(兩者)
+- [標準化資料][normalize-data] (兩者)
 - [評估模型][evaluate-model]
 
 只要選取模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。
@@ -63,7 +63,7 @@
 2. 精簡實驗，移除只有定型才需要的模組
 3. 定義 Web 服務接受輸入的位置和產生輸出的位置
 
-幸好上述三個步驟只要按一下實驗畫布底部的 [部署 Web 服務] \(選取 [預測 Web 服務] 選項)，即可完成。
+幸好上述三個步驟只要按一下實驗畫布底部的 [部署 Web 服務] (選取 [預測 Web 服務] 選項)，即可完成。
 
 當您按一下 [部署 Web 服務]，會發生幾件事：
 
@@ -104,19 +104,23 @@
 ![設定 Web 服務][5]
 
 ## 測試 Web 服務
-在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。即會顯示對話方塊，要求您提供服務的輸入資料。這些就是在原始的德國信用風險資料集中出現的資料行。
+在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。
+
+![測試 Web 服務][7]
+
+即會顯示對話方塊，要求您提供服務的輸入資料。這些就是在原始的德國信用風險資料集中出現的資料行。
 
 輸入一組資料，然後按一下 [確定]。
 
-在 Web 服務中，資料會透過「Web 服務輸入」模組、透過[編輯中繼資料][edit-metadata]模組進入，然後再到對它進行計分的[分數模型][score-model]模組。接著會透過 **Web 服務輸出**從 Web 服務輸出結果。
+在 Web 服務中，資料會透過 **Web 服務輸入**模組及[編輯中繼資料][edit-metadata]模組進入，然後再到對它進行計分的[分數模型][score-model]模組。接著會透過 **Web 服務輸出**從 Web 服務輸出結果。
 
-> [AZURE.TIP] 我們設定預測實驗的方式，會傳回[分數模型][score-model]模組的整個結果。這包括所有輸入的資料以及信用風險值和評分機率。如果您想要傳回其他內容 (例如只傳回信用風險值)，那麼您可以在[分數模型][score-model]和「Web 服務輸出」之間插入[選取資料集中的資料行][select-columns]模組，來排除您不希望 Web 服務傳回的資料行。
+> [AZURE.TIP] 我們設定預測實驗的方式，會傳回[分數模型][score-model]模組的整個結果。這包括所有輸入的資料以及信用風險值和評分機率。如果您想要傳回其他內容 (例如只傳回信用風險值)，那麼您可以在[分數模型][score-model]和 **Web 服務輸出**之間插入[選取資料集中的資料行][select-columns]模組，來排除您不希望 Web 服務傳回的資料行。
 
 ## 管理 Web 服務
 一旦部署 Web 服務之後，您就可以從 [Azure 傳統入口網站](https://manage.windowsazure.com)管理它。
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 在 Microsoft Azure 服務面板中，按一下 [機器學習服務]。
+2. 在 Microsoft Azure 服務面板中，按一下 [機器學習]。
 3. 按一下您的工作區。
 4. 按一下 [**Web 服務**] 索引標籤。
 5. 按一下剛建立的 Web 服務。
@@ -140,6 +144,7 @@
 [4]: ./media/machine-learning-walkthrough-5-publish-web-service/publish4.png
 [5]: ./media/machine-learning-walkthrough-5-publish-web-service/publish5.png
 [6]: ./media/machine-learning-walkthrough-5-publish-web-service/publish6.png
+[7]: ./media/machine-learning-walkthrough-5-publish-web-service/publish7.png
 
 
 <!-- Module References -->
@@ -154,4 +159,4 @@
 [two-class-support-vector-machine]: https://msdn.microsoft.com/library/azure/12d8479b-74b4-4e67-b8de-d32867380e20/
 [select-columns]: https://msdn.microsoft.com/zh-TW/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

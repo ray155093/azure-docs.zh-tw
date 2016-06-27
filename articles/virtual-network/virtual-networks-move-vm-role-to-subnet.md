@@ -31,7 +31,7 @@
 	| Set-AzureSubnet –SubnetNames Subnet-2 `
 	| Update-AzureVM
 
-如果您針對 VM 指定靜態 DIP，您必須清除該設定，才能將 VM 移至新的子網路。在此案例中，請使用下列方法：
+如果您針對 VM 指定靜態內部私人 DIP，您必須清除該設定，才能將 VM 移至新的子網路。在此案例中，請使用下列方法：
 
 	Get-AzureVM -ServiceName TestVMCloud -Name TestVM `
 	| Remove-AzureStaticVNetIP `
@@ -53,4 +53,4 @@
 	    </AddressAssignments>
 	</NetworkConfiguration> 
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

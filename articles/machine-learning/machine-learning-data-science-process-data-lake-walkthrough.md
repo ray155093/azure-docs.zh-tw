@@ -82,19 +82,19 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 
 ### 建立 Azure 資料湖存放區
 
-從 [Azure 入口網站](http://ms.portal.azure.com)建立 ADLS。如需詳細資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。請務必依該文件所述，在 [選擇性組態] 刀鋒視窗的 [資料來源] 刀鋒視窗中設定 [叢集 AAD 身分識別]。
+從 [Azure 入口網站](http://portal.azure.com)建立 ADLS。如需詳細資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。請務必依該文件所述，在 [選擇性組態] 刀鋒視窗的 [資料來源] 刀鋒視窗中設定 [叢集 AAD 身分識別]。
 
  ![3](./media/machine-learning-data-science-process-data-lake-walkthrough/3-create-ADLS.PNG)
 
 
 ### 建立 Azure Data Lake Analytics 帳戶
-從 [Azure 入口網站](http://ms.portal.azure.com)建立 ADLA 帳戶。如需詳細資訊，請參閱[教學課程：使用 Azure 入口網站開始使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)。
+從 [Azure 入口網站](http://portal.azure.com)建立 ADLA 帳戶。如需詳細資訊，請參閱[教學課程：使用 Azure 入口網站開始使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)。
 
  ![4](./media/machine-learning-data-science-process-data-lake-walkthrough/4-create-ADLA-new.PNG)
 
 
 ### 建立 Azure Blob 儲存體帳戶
-從 [Azure 入口網站](http://ms.portal.azure.com)建立 Azure Blob 儲存體帳戶。如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的＜建立儲存體帳戶＞一節。
+從 [Azure 入口網站](http://portal.azure.com)建立 Azure Blob 儲存體帳戶。如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的＜建立儲存體帳戶＞一節。
 	
  ![5](./media/machine-learning-data-science-process-data-lake-walkthrough/5-Create-Azure-Blob.PNG)
 
@@ -158,7 +158,7 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 
 ### <a name="ingest"></a>資料擷取：從公用 Blob 讀取資料
 
-Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
+Azure Blob 中的資料位置是以 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
 
 	///Read in Trip data
 	@trip0 =
@@ -181,7 +181,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
+由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 ****swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
 
 	// change data types
 	@trip =
@@ -640,7 +640,7 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 
 ### 建立 HDInsight Linux 叢集
 
-從 [Azure 入口網站](http://ms.portal.azure.com)建立 HDInsight 叢集 (Linux)。如需詳細資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 中的**建立可存取 Azure Data Lake Store 的 HDInsight 叢集**一節。
+從 [Azure 入口網站](http://portal.azure.com)建立 HDInsight 叢集 (Linux)。如需詳細資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 中的**建立可存取 Azure Data Lake Store 的 HDInsight 叢集**一節。
 
  ![18](./media/machine-learning-data-science-process-data-lake-walkthrough/18-create_HDI_cluster.PNG)
 
@@ -658,7 +658,7 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
  ![21](./media/machine-learning-data-science-process-data-lake-walkthrough/21-Hive-Query-Editor-v2.PNG)
 
 
-貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：**adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
+貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：****adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
 
 	CREATE EXTERNAL TABLE nyc_stratified_sample
 	(
@@ -741,4 +741,4 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 - [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
 - [在 Azure HDInsight 上使用 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

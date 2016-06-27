@@ -19,9 +19,9 @@
 
 # Microsoft Azure 新支援要求檔案上傳公用程式指導方針
 
-[建立新支援要求](https://ms.portal.azure.com/#create/Microsoft.Support)時，「檔案上傳」公用程式可協助您輕鬆上傳診斷檔案或您認為與事件相關的任何其他檔案。
+[建立新支援要求](https://portal.azure.com/#create/Microsoft.Support)時，「檔案上傳」公用程式可協助您輕鬆上傳診斷檔案或您認為與事件相關的任何其他檔案。
 
->[AZURE.NOTE]若要保護您的隱私權，請勿在您的上傳中包含任何個人資訊。
+>[AZURE.NOTE] 若要保護您的隱私權，請勿在您的上傳中包含任何個人資訊。
 
 使用檔案上傳公用程式時，請遵循下列方針：
 
@@ -63,4 +63,4 @@
 | | | | | | | .zix |
 | | | | | | | .zzz |
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="web"
-   ms.date="02/26/2016"
+   ms.date="05/31/2016"
    ms.author="sumuth"/>
 
 # 為 Web 應用程式有效地使用 DevOps 環境
@@ -442,4 +442,4 @@
 
 [封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0615_2016-->

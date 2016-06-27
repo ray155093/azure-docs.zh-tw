@@ -21,7 +21,7 @@
 本主題列出當連接到 Azure SQL Database 或 Microsoft SQL Server 時，用戶端程式可使用之每個程式庫/驅動程式。
 
 
-| 語言 | 平台 | 詳細資訊 | 下載 |
+| 語言 | 平台 | 其他資源 | 下載 |
 | :-- | :-- | :-- | :-- |
 | ADO.NET | Windows、Linux、Mac | [使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md) | [下載](https://msdn.microsoft.com/vstudio/aa496123.aspx) |
 | Java | Windows | [在 Windows 上搭配 JDBC 使用 Java 連接到 SQL Database](sql-database-develop-java-simple-windows.md) | [下載](http://go.microsoft.com/fwlink/?LinkId=245496) |
@@ -30,4 +30,4 @@
 | Python | Windows、Linux、Mac | [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md) | [安裝](https://msdn.microsoft.com/library/mt694094.aspx) |
 | Ruby | Windows、Linux、Mac | [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md) | [安裝](https://msdn.microsoft.com/library/mt711041.aspx) |
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

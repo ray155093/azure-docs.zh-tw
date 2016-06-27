@@ -34,7 +34,7 @@
 
 ## 還原復原點
 
-1. 登入 [Azure 入口網站](http://ms.portal.azure.com/)。
+1. 登入 [Azure 入口網站](http://portal.azure.com/)。
 
 2. 在 Azure 功能表上按一下 [瀏覽]，然後在服務清單中輸入**還原服務**。服務清單會調整成您輸入的內容。當您看到 [復原服務保存庫] 時，請選取它。
 
@@ -157,7 +157,7 @@
 
 2. 使用 PowerShell Cmdlet 建立負載平衡器/多個 NIC/多個保留的 IP 所需的 VM 組態，並使用該組態建立具備想要之組態的 VM。
 	- 使用[內部負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internal-getstarted/)在雲端服務中建立 VM
-	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/documentation/articles/load-balancer-internet-getstarted/)
+	- 建立 VM 來連線至[網際網路對向負載平衡器](https://azure.microsoft.com/zh-TW/documentation/articles/load-balancer-internet-getstarted/)
 	- 建立具有[多個 NIC](https://azure.microsoft.com/documentation/articles/virtual-networks-multiple-nics/) 的 VM
 	- 建立具有[多個保留的 IP](https://azure.microsoft.com/documentation/articles/virtual-networks-reserved-public-ip/) 的 VM
 
@@ -167,4 +167,4 @@
 - [針對錯誤進行疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

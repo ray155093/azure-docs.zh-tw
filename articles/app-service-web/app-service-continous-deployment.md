@@ -3,7 +3,7 @@
 	description="了解如何啟用持續部署至 Azure App Service。"
 	services="app-service"
 	documentationCenter=""
-	authors="dariac"
+	authors="dariagrigoriu"
 	manager="wpickett"
 	editor="mollybos"/>
 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/15/2016"
-	ms.author="dariac"/>
+	ms.date="06/13/2016"
+	ms.author="dariagrigoriu"/>
     
 # 持續部署至 Azure App Service
 
-[Azure App Service] 與 BitBucket、GitHub 及 Visual Studio Team Services (VSTS) 整合，可啟用持續部署工作流程，其中 Azure 會從您已發佈至這其中一個服務的專案中提取最新更新。持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。
+本教學課程將示範如何為您的 [Azure App Service] 應用程式設定連續部署工作流程。App Service 與 BitBucket、GitHub 及 Visual Studio Team Services (VSTS) 整合，可啟用持續部署工作流程，其中 Azure 會從您已發佈至這其中一個服務的專案中提取最新更新。持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。
 
 ## <a name="overview"></a>啟用持續部署
 
@@ -30,6 +30,8 @@
 
 	![](./media/app-service-continous-deployment/cd_options.png)
 	
+    > [AZURE.NOTE] 若要設定適用於 App Service 部署的 VSTS 帳戶，請參閱這個[教學課程](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)。
+    
 3. 完成授權工作流程。
 
 4. 在 [部署來源] 刀鋒視窗中，選擇專案以及要從中部署的分支。完成後，按一下 [**確定**]。
@@ -58,7 +60,7 @@
 
 一旦您設定儲存機制 (如前所述) 並在 Azure 中設定應用程式，以便從其中一個線上 Git 儲存機制持續發佈之後，就能夠在 Visual Studio 中本機開發 ASP.NET 應用程式，並且只需將變更推送至線上 Git 儲存機制，就能持續部署您的程式碼。
 
-## <a name="disableCD"></a>停用持續部署
+## <a name="disableCD"></a>停用連續部署
 
 若要停用持續部署，
 
@@ -66,7 +68,7 @@
 
     ![](./media/app-service-continous-deployment/cd_disconnect.png)
 
-2. 在確認訊息中回答 [是] 之後，如果您要從其他來源設定發佈，您可以返回應用程式的刀鋒視窗，然後按一下 [設定] > [部署來源]。
+2. 在確認訊息中回答 [是] 之後，如果您要設定從其他來源發佈，您可以返回應用程式的刀鋒視窗，然後按一下 [設定] > [部署來源]。
 
 ## 其他資源
 
@@ -81,7 +83,7 @@
 [Azure 入口網站]: https://portal.azure.com
 [VSTS Portal]: https://www.visualstudio.com/zh-TW/products/visual-studio-team-services-vs.aspx
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-[如何使用適用於 Azure 的 PowerShell]: ../articles/install-configure-powershell.md
+[如何使用適用於 Azure 的 PowerShell]: ../articles/powershell-install-configure.md
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]: ../articles/xplat-cli-install.md
 [Git 文件]: http://git-scm.com/documentation
 
@@ -90,4 +92,4 @@
 [開始使用 VSTS]: https://www.visualstudio.com/get-started/overview-of-get-started-tasks-vs
 [Continuous delivery to Azure using Visual Studio Team Services]: ../articles/cloud-services/cloud-services-continuous-delivery-use-vso.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -14,5 +14,6 @@
  - 使用分析。
 - [語言參考](../articles/application-insights/app-insights-analytics-reference.md)
  - 一頁的參考。
+- [疑難排解](../articles/application-insights/app-insights-analytics-troubleshooting.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

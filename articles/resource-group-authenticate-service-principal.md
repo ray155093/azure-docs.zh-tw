@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="05/26/2016"
+   ms.date="06/13/2016"
    ms.author="tomfitz"/>
 
 # 使用 Azure PowerShell 來建立可存取資源的 Active Directory 應用程式
@@ -115,7 +115,7 @@
 
 在本節中，您將執行步驟來建立具有憑證的 AD 應用程式。
 
-1. 建立自我簽署憑證。
+1. 建立自我簽署憑證。如果您是執行 Windows 10 或 Windows Server 2016 Technical Preview，請執行下列命令： 
 
         $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleapp" -KeySpec KeyExchange
        
@@ -126,6 +126,12 @@
         Thumbprint                                Subject
         ----------                                -------
         724213129BD2B950BB3F64FAB0C877E9348B16E9  CN=exampleapp
+
+     如果您不是執行 Windows 10 或 Windows Server 2016 Technical Preview，請下載 [Self-signed certificate generator (自我簽署憑證產生器)](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6) PowerShell 指令瑪。執行下列命令來產生憑證：
+     
+        Import-Module -Name c:\New-SelfSignedCertificateEx.ps1
+        New-SelfSignedCertificateEx -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
+        $cert = Get-ChildItem -Path cert:\CurrentUser\My* -DnsName exampleapp
 
 2. 從憑證擷取金鑰值。
 
@@ -209,4 +215,4 @@
 - 如需 REST 驗證範例，請參閱 [Resource Manager REST API](resource-manager-rest-api.md)。
 - 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱[利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

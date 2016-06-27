@@ -37,7 +37,7 @@ Azure 中的 Service Fabric 平台適用於下列應用程式和服務的類別�
 ## 設計由無狀態與具狀態的微服務組成的應用程式
 使用 Azure 雲端服務背景工作角色建置應用程式，即為一個無狀態服務的範例。相較之下，具狀態的微服務會維護要求及其回應以外的授權狀態。這可透過簡單的 API 提供高可用性和狀態的一致性，其提供受複寫支援的交易式保證。Service Fabric 的具狀態服務會將高可用性普及至所有類型的應用程式，而不會侷限於資料庫和其他資料存放區。這是自然的進展。針對高可用性，應用程式已經從使用單純的關聯式資料庫進展到 NoSQL 資料庫的境界。現在應用程式就能在其本身內管理它們的「熱門」狀態和資料，以便進一步提高效能，而不需犧牲可靠性、一致性或可用性。
 
-建置由微服務組成的應用程式時，您通常會擁有無狀態 Web Apps (ASP.NET、node.js 等等) 的組合，呼叫無狀態和具狀態的商務中間層服務，使用 Service Fabric 部署命令，全部部署到相同的 Service Fabric 叢集。這其中的每個服務都擁有各自的可調整、可靠性和資源使用量，可大幅提升開發和生命週期管理的靈活性。
+建置由微服務組成的應用程式時，您通常會擁有無狀態 Web Apps (ASP.NET、Node.js 等等) 的組合，呼叫無狀態和具狀態的商務中間層服務，使用 Service Fabric 部署命令，全部部署到相同的 Service Fabric 叢集。這其中的每個服務都擁有各自的可調整、可靠性和資源使用量，可大幅提升開發和生命週期管理的靈活性。
 
 具狀態的微服務簡化了應用程式設計，因此不需要傳統上為滿足純無狀態應用程式的可用性與延遲需求時所需的其他佇列與快取。由於具狀態服務具有高可用性、低延遲的特性，這表示應用程式中需管理的移動組件整體上減少了。下列圖表說明設計無狀態與具狀態之應用程式間的差異。藉由運用 [Reliable Services](service-fabric-reliable-services-introduction.md) 和 [Reliable Actors](service-fabric-reliable-actors-introduction.md) 程式設計模型，具狀態服務會減少應用程式的複雜度，同時達到高輸送量和低延遲。
 
@@ -50,22 +50,15 @@ Azure 中的 Service Fabric 平台適用於下列應用程式和服務的類別�
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
 
-
-開始使用 Service Fabric [Reliable Services](service-fabric-reliable-services-quick-start.md) 和 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型，來建置無狀態與具狀態的服務。
-
-另請參閱下列主題：
-
-[Microservices 詳細說明](service-fabric-overview-microservices.md)
-
-[定義及管理服務狀態](service-fabric-concepts-state.md)
-
-[Service Fabric 服務的可用性](service-fabric-availability-services.md)
-
-[調整 Service Fabric 服務](service-fabric-concepts-scalability.md)
-
-[分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
+* 開始使用 Service Fabric [Reliable Services](service-fabric-reliable-services-quick-start.md) 和 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型，來建置無狀態與具狀態的服務。
+* 另請參閱下列主題：
+    * [Microservices 詳細說明](service-fabric-overview-microservices.md)
+    * [定義及管理服務狀態](service-fabric-concepts-state.md)
+    * [Service Fabric 服務的可用性](service-fabric-availability-services.md)
+    * [調整 Service Fabric 服務](service-fabric-concepts-scalability.md)
+    * [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
 
 [Image1]: media/service-fabric-application-scenarios/AppwithStatelessServices.jpg
 [Image2]: media/service-fabric-application-scenarios/AppwithStatefulServices.jpg
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0615_2016-->

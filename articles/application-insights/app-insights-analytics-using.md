@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用分析 - 強大的 Application Insights 搜尋工具" 
+	pageTitle="使用分析 - 強大的 Application Insights 搜尋工具 | Microsoft Azure" 
 	description="使用分析，這是強大的 Application Insights 診斷搜尋工具。" 
 	services="application-insights" 
     documentationCenter=""
@@ -23,7 +23,6 @@
 
 [分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
-[AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
 
 ## 開啟分析
 
@@ -60,9 +59,9 @@
 
 ![](./media/app-insights-analytics-using/030.png)
 
-> [AZURE.NOTE] 按一下資料行的標頭，即可快速重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。所以，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用[top](app-insights-analytics-reference.md#top-operator) 或 [sort](app-insights-analytics-reference.md#sort-operator) 運算子。
+> [AZURE.NOTE] 按一下資料行的標頭，即可快速重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。所以，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用 [top](app-insights-analytics-reference.md#top-operator) 或 [sort](app-insights-analytics-reference.md#sort-operator) 運算子。
 
-但使用 [take](app-insights-analytics-reference.md#take-operator)、[top](app-insights-analytics-reference.md#top-operator) 或 [summarize](app-insights-analytics-reference.md#summarize-operator) 運算子，避免從伺服器下載大型資料表是相當好的做法。無論如何都自動限制每個查詢 10000 個資料列。
+但是使用 [take](app-insights-analytics-reference.md#take-operator)、[top](app-insights-analytics-reference.md#top-operator) 或 [summarize](app-insights-analytics-reference.md#summarize-operator) 運算子，避免從伺服器下載大型資料表是相當好的做法。無論如何都自動限制每個查詢 10000 個資料列。
 
 
 ## 圖表
@@ -104,4 +103,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

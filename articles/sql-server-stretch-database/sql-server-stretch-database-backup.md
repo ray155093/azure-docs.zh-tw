@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/03/2016"
+	ms.date="06/14/2016"
 	ms.author="douglasl"/>
 
 # 備份已啟用延展功能的資料庫
@@ -64,4 +64,4 @@ Azure 資料庫備份儲存在異地備援「Azure 儲存體」(RA-GRS) 上，�
 
 [備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->
