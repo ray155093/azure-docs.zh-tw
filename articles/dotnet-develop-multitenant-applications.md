@@ -38,7 +38,7 @@
 
 簡言之，要提供具有高度延展性的服務，的確需要考量許多事項，但也有不少目標和需求是許多多租用戶應用程式所共有的。有些可能與特定案例無關，且個別目標和需求的重要性也可能隨著案例而不同。如果您是多租用戶應用程式的提供者，您也會有目標和需求，例如：達到租用戶的目標和需求、利潤、收費、多重服務層級、佈建、可維護性監視和自動化等。
 
-若想進一步了解多租用戶應用程式的其他設計注意事項，請參閱[在 Azure 上代管多租用戶應用程式][] (英文)。如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](./sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+若想進一步了解多租用戶應用程式的其他設計注意事項，請參閱[在 Azure 上代管多租用戶應用程式][] \(英文)。如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](./sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 Azure 有多項功能可讓您處理在設計多租用戶系統時遇到的重大問題。
 

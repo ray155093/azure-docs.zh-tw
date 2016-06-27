@@ -141,7 +141,7 @@
 
 		* 按一下 [提交]。
 
-	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] (提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
 
         ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
 
@@ -174,7 +174,7 @@
 
 3. [Error Message (錯誤訊息)]、[Job Output (作業輸出)]、[Livy Job Logs (Livy 作業記錄)] 及 [Spark Driver Logs (Spark 驅動程式記錄)] 的方塊都會根據您選取的應用程式來填入。
 
-4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark History UI (Spark 歷程記錄 UI)] 和 [YARN UI] (應用程式層級)。
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark History UI (Spark 歷程記錄 UI)] 和 [YARN UI] \(應用程式層級)。
 
 ### 存取 Spark 歷程記錄伺服器
 

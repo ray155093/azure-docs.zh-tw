@@ -109,7 +109,7 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 
 或者，如果您要保持最新狀態或貢獻程式碼，請如下所示複製儲存機制︰
 
-****git clone https://github.com/Azure-Samples/MyDriving.git**
+**git clone https://github.com/Azure-Samples/MyDriving.git**
 
 ## 取得 Bing 地圖 API 金鑰
 

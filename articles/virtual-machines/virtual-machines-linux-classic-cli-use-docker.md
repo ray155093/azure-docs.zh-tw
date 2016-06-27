@@ -19,7 +19,7 @@
 
 # 透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
 
 
 

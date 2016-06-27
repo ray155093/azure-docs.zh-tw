@@ -194,7 +194,7 @@
 
 1.	下載 agent.zip。作法：
 
-    a.登入您的小組專案，例如 ****https://[your-VSTS-account-name].visualstudio.com**。
+    a.登入您的小組專案，例如 **https://[your-VSTS-account-name].visualstudio.com**。
 
     b.選取畫面右上角的齒輪圖示。
 
@@ -401,7 +401,7 @@
     |指令碼檔名|按一下 [...] 按鈕，然後瀏覽至應用程式專案內的 [指令碼] 目錄。選取 `Deploy-FabricApplication.ps1`。|
     |引數|`-PublishProfileFile path/to/MySolution/MyApplicationProject/PublishProfiles/MyPublishProfile.xml -ApplicationPackagePath path/to/MySolution/MyApplicationProject/pkg/$(BuildConfiguration)`|
 
->[AZURE.NOTE] 若要輕鬆地建立有效的發佈設定檔 xml 檔案，請在 Visual Studio 中建立，如此處所示︰https://azure.microsoft.com/zh-TW/documentation/articles/service-fabric-publish-app-remote-cluster
+>[AZURE.NOTE] 若要輕鬆地建立有效的發佈設定檔 xml 檔案，請在 Visual Studio 中建立，如此處所示︰https://azure.microsoft.com/documentation/articles/service-fabric-publish-app-remote-cluster
 
 >[AZURE.NOTE] 如果您想要藉由覆寫現有應用程式而非予以升級來支援將應用程式部署至叢集，請新增此 Powershell 引數：'-OverwriteBehavior SameAppTypeAndVersion'。此外，請確定選取的發佈設定檔未設定為啟用升級。這會先移除任何現有的 ApplicationType 再安裝較新的組建。
 

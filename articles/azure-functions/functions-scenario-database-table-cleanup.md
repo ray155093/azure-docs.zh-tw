@@ -38,7 +38,7 @@
 
 1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin)，然後以您的 Azure 帳戶登入。
 
-2. 如果您要使用現有的函數應用程式，可從 [Your function apps] (您的函數應用程式) 中加以選取，然後按一下 [開啟]。若要建立新的函數應用程式，可輸入新函數應用程式的唯一**名稱**或接受所產生的名稱、選取您偏好的**區域**，然後按一下 [Create + get started] (建立 + 開始)。
+2. 如果您要使用現有的函數應用程式，可從 [Your function apps] \(您的函數應用程式) 中加以選取，然後按一下 [開啟]。若要建立新的函數應用程式，可輸入新函數應用程式的唯一**名稱**或接受所產生的名稱、選取您偏好的**區域**，然後按一下 [Create + get started] \(建立 + 開始)。
 
 3. 在您的函數應用程式中，按一下 [函數應用程式設定] > [移至 App Service 設定]。
 
@@ -52,7 +52,7 @@
 
 ## 從範本建立計時器觸發函數
 
-1. 在函數應用程式中，按一下 [+ New Function] (+ 新增函數) > [TimerTrigger - C#] > [建立]。這會以預設名稱建立函數，此函數會以每分鐘一次的預設排程來執行。 
+1. 在函數應用程式中，按一下 [+ New Function] \(+ 新增函數) > [TimerTrigger - C#] > [建立]。這會以預設名稱建立函數，此函數會以每分鐘一次的預設排程來執行。 
 
 	![建立新的計時器觸發函數](./media/functions-create-an-event-processing-function/functions-create-new-timer-trigger.png)
 

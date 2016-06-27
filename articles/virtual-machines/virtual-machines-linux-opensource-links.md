@@ -23,7 +23,7 @@
 
 尋找在傳統部署模型中建立和管理以 Linux 為基礎的虛擬機器所需的所有說明文件。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
 
 ## 開始使用
 - [Azure 上的 Linux 簡介](virtual-machines-linux-intro-on-azure.md)

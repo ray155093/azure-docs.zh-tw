@@ -88,7 +88,9 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。 
 2. 在 [基本功能] 列中，從 [DocumentDB 帳戶] 刀鋒視窗按一下 [金鑰]。
-3. 在 [金鑰] 刀鋒視窗中，按一下要複製的金鑰右邊的 [複製] 按鈕。![在 Azure 入口網站 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/documentdb-manage-account/copykeys.png)
+3. 在 [金鑰] 刀鋒視窗中，按一下要複製的金鑰右邊的 [複製] 按鈕。
+
+	![在 Azure 入口網站 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/documentdb-manage-account/copykeys.png)
 
 ### 重新產生存取金鑰
 
@@ -136,7 +138,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
-[azureregions]: https://azure.microsoft.com/zh-TW/regions/#services
-[offers]: https://azure.microsoft.com/zh-TW/pricing/details/documentdb/
+[azureregions]: https://azure.microsoft.com/regions/#services
+[offers]: https://azure.microsoft.com/pricing/details/documentdb/
 
 <!---HONumber=AcomDC_0615_2016-->
