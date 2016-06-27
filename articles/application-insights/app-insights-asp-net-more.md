@@ -40,7 +40,7 @@
 |[**適用於搜尋執行個體的診斷資料**](app-insights-visual-studio.md)<br/>搜尋和篩選事件，例如要求、例外狀況、相依性呼叫、記錄追蹤，以及頁面檢視。在 Visual Studio 中，從堆疊追蹤移至程式碼。|![Visual Studio](./media/app-insights-asp-net/61.png)
 |[**彙總資料的計量瀏覽器**](app-insights-metrics-explorer.md)<br/>瀏覽、篩選和分割彙總的資料，例如，要求、錯誤和例外狀況的比率；回應時間、頁面載入時間。|![Visual Studio](./media/app-insights-asp-net-more/060.png)
 |[**儀表板**](app-insights-dashboards.md#dashboards)<br/>來自多個資源的交互式資料並與其他人員共用。非常適用於多元件的應用程式，以及小組聊天室中的連續顯示。 |![儀表板範例](./media/app-insights-asp-net/62.png)
-|[**即時資料流**](app-insights-metrics-explorer.md#live-stream)<br/>當您部署新的組建時，請觀看這些近乎即時的效能指標，以確定一切如預期運作。|![分析範例](./media/app-insights-asp-net-more/050.png)
+|[**即時計量串流**](app-insights-metrics-explorer.md#live-metrics-stream)<br/>當您部署新的組建時，請觀看這些近乎即時的效能指標，以確定一切如預期運作。|![分析範例](./media/app-insights-asp-net-more/050.png)
 |[**分析**](app-insights-analytics.md)<br/>使用這個功能強大的查詢語言，回答有關您應用程式效能和使用方式的艱難問題。|![分析範例](./media/app-insights-asp-net-more/010.png)
 |[**自動和手動警示**](app-insights-alerts.md)<br/>如果在常見模式之外發生一些狀況，則自動警示會適應您應用程式的一般遙測和觸發程式模式。您也可以在自訂或標準計量的特定層級上設定警示。|![警示範例](./media/app-insights-asp-net-more/020.png)
 
@@ -52,4 +52,4 @@
 |**資料存取 API**<br/>即將推出。|
 |[**取樣**](app-insights-sampling.md)<br/>縮短資料速率，並協助您維持在您定價層的限制內。|![取樣圖格](./media/app-insights-asp-net-more/030.png)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

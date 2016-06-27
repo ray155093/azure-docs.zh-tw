@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何從 Application Insights 開發團隊取得技術支援" 
+	pageTitle="如何從 Application Insights 開發團隊取得技術支援 | Microsoft Azure" 
 	description="當您需要有來自 Application Insights 開發團隊的特殊支援的案例，這便是您提交詳細資料以取得支援的方式。" 
 	services="application-insights" 
     documentationCenter=""
@@ -42,7 +42,7 @@
 
 1. 在 [Application Insights 入口網站](https://portal.azure.com)中，按一下位於右上角的笑臉：  
 
-    ![image](./media/app-insights-get-dev-support/01.png)
+    ![[意見反應] 按鈕](./media/app-insights-get-dev-support/01.png)
 
 2. 在註解方塊中，請務必在第一行指定 **AppInsights**，然後加入下列資訊：
 
@@ -51,17 +51,16 @@
     AppInsights   
     ikey: <instrumentation key>   
     sdk: <SDK that you are using, including name and version>  
-    email: <email address that we should use to contact you. This is the most important field>  
     issue: <please describe the problem you are having>
 
     ```   
 
-    ![image](./media/app-insights-get-dev-support/02.png)
+    ![[意見反應] 對話方塊](./media/app-insights-get-dev-support/02.png)
 
 3. 勾選 [是，可以寄送電子郵件給您]。
 
-    ![image](./media/app-insights-get-dev-support/03.png)
+    ![[提交] 區段](./media/app-insights-get-dev-support/03.png)
 
 Application Insights 團隊工程師會立即與您連絡。由於我們盡最大努力提供這項服務，此時不會提供正式的 SLA。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

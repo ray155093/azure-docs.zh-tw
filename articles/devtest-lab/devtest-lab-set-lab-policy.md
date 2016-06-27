@@ -36,7 +36,7 @@
 
 	![設定](./media/devtest-lab-set-lab-policy/lab-blade-settings.png)
 
-1. 在 [設定] 刀鋒視窗上，有一組設定名為 [VM Policies] \(VM 原則)。
+1. 在 [設定] 刀鋒視窗上，有一組名為 **VM Policies (VM 原則)** 的設定。
 
 	![Settings](./media/devtest-lab-set-lab-policy/policies.png)
 
@@ -135,4 +135,4 @@
 - [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - 研測實驗室支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何使用 VM 中的構件。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

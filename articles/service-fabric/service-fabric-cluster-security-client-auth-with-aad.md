@@ -14,14 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/22/2016"
+   ms.date="06/13/2016"
    ms.author="seanmck"/>
 
-# 預覽︰建立使用 Azure Active Directory 進行用戶端驗證的 Service Fabric 叢集
+# 建立使用 Azure Active Directory 進行用戶端驗證的 Service Fabric 叢集
 
 您可以為使用 Azure Active Directory (AAD) 的 Service Fabric 叢集，保護其管理端點的存取。本文涵蓋如何建立必要 AAD 構件、如何在叢集建立期間填入它們，以及之後如何連線到這些叢集。
-
->[AZURE.IMPORTANT] 與 Service Fabric 叢集的 AAD 整合目前為預覽版本。Service Fabric 5.0 執行階段中提供本文中所述的所有內容，但是目前建議您不要將它用於生產叢集。
 
 ## 在 AAD 中建立 Service Fabric 叢集的模型
 
@@ -31,7 +29,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
 為了簡化與設定 AAD 與 Service Fabric 叢集相關的一些步驟，我們建立了一組 Windows PowerShell 指令碼。
 
->[AZURE.NOTE] 您必須在建立叢集之前執行這些步驟；因此，在指令碼預期叢集名稱和端點的情況下，這些應該是計劃的值，而不是您所建立的值。
+>[AZURE.NOTE] 您必須在建立叢集「之前」執行這些步驟；因此，在指令碼預期叢集名稱和端點的情況下，這些應該是計劃的值，而不是您所建立的值。
 
 1. [下載指令碼][sf-aad-ps-script-download]到您的電腦。
 
@@ -57,8 +55,8 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
     系統會提示您登入具有 AAD 租用戶系統管理權限的帳戶。這樣做之後，指令碼將繼續建立 Web 和原生應用程式來代表 Service Fabric 叢集。如果您在 [Azure 傳統入口網站][azure-classic-portal]中查看租用戶的應用程式，則應該會看到兩個新項目︰
 
-    - *ClusterName*\_Cluster
-    - *ClusterName*\_Client
+    - ClusterName\_Cluster
+    - ClusterName\_Client
 
     此指令碼將會列印下節建立叢集時 Azure Resource Manager (ARM) 範本所需的 Json，因此請讓 PowerShell 視窗持續開啟。
 
@@ -139,7 +137,7 @@ Connect-ServiceFabricCluster -AzureActiveDirectory -ConnectionEndpoint <cluster_
 
 從原生用戶端 (例如 Visual Studio 或 PowerShell) 驗證時，可能會看到如下的錯誤訊息︰
 
-回覆地址*http://localhost/不符合針對應用程式 &lt;叢集用戶端應用程式 GUID&gt; 所設定的回覆位址*
+回覆位址 http://localhost/ 不符合針對應用程式 &lt;叢集用戶端應用程式 GUID&gt; 所設定的回覆位址
 
 若要解決這個問題，除了已經存在的位址 'urn:ietf:wg:oauth:2.0:oob' 之外，也請將 **http://<i></i>localhost** 當成重新導向 URI 來加入 AAD 的叢集用戶端應用程式定義中。
 
@@ -160,4 +158,4 @@ Connect-ServiceFabricCluster -AzureActiveDirectory -ConnectionEndpoint <cluster_
 [setupapp-script-output]: ./media/service-fabric-cluster-security-client-auth-with-aad/setupapp-script-arm-json-output.png
 [vs-publish-aad-login]: ./media/service-fabric-cluster-security-client-auth-with-aad/vs-login-prompt.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

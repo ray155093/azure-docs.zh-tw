@@ -37,6 +37,7 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
 
+<a id="connectsecurecluster"></a>
 ## 使用 PowerShell 來連線到安全的叢集
 
 執行下列 PowerShell 命令來連線到安全的叢集。憑證詳細資料必須與叢集節點上的憑證相符。
@@ -108,4 +109,4 @@ static X509Credentials GetCredentials(string thumb, string name)
 - [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
 - [應用程式安全性及 RunAs](service-fabric-application-runas-security.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -60,4 +60,4 @@ Visual Studio Application Insights 可讓您監視 Web 應用程式的可用性�
 
 [讀取和貢獻程式碼](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

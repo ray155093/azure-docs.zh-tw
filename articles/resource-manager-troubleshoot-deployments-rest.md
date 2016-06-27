@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-multiple"
    ms.workload="infrastructure"
-   ms.date="05/19/2016"
+   ms.date="06/13/2016"
    ms.author="tomfitz"/>
 
 # 使用 Azure Resource Manager REST API 來檢視部署作業
@@ -28,6 +28,8 @@
 如果您在將資源部署到 Azure 時收到錯誤，您可能會想要查看有關所執行之部署作業的更多詳細資料。REST API 提供作業，可讓您找出錯誤並判斷可能的修正方法。
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
+
+部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy-rest.md)。
 
 ## REST API 疑難排解
 
@@ -52,13 +54,13 @@
             }
           }
 
-    根據預設，**debugSetting** 值會設定為 **none**。指定 **debugSetting** 值，請仔細考慮您在部署期間傳遞的資訊類型。透過記錄要求或回應的相關資訊，您可能會公開透過部署作業擷取的機密資料。
+    根據預設，**debugSetting** 值會設定為 **none**。指定 **debugSetting** 值時，請仔細考慮您在部署期間傳遞的資訊類型。如果記錄要求或回應的相關資訊，您可能會公開透過部署作業擷取的機密資料。
 
 2. 利用[取得範本部署的相關資訊](https://msdn.microsoft.com/library/azure/dn790565.aspx)作業，來取得部署相關資訊。
 
         GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
 
-    在回應中，請特別注意 **provisioningState**、**correlationId** 和 **error** 項目。**correlationId** 可用來追蹤相關的事件，並在與技術支援人員合作來疑難排解問題時非常有用。
+    在回應中，請特別注意 **provisioningState**、**correlationId** 和 **error** 元素。**correlationId** 可用來追蹤相關的事件，並在與技術支援人員合作來疑難排解問題時非常有用。
     
         { 
           ...
@@ -109,8 +111,8 @@
 
 ## 後續步驟
 
-- 如需解決特定部署錯誤的說明，請參閱[解決以 Azure Resource Manager 部署資源至 Azure 時的常見錯誤](resource-manager-common-deployment-errors.md)。
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用資源管理員來稽核作業](resource-group-audit.md)。
+- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
+- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

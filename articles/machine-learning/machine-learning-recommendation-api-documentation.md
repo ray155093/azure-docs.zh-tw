@@ -48,7 +48,6 @@ Azure Machine Learning 建議 API 可分成下列邏輯群組：
 - 一個目錄可以保留的項目數上限是 100,000。
 - 保留的使用點數上限是 ~5,000,000。如果將上傳或回報新的點，就會將最舊的點刪除。
 - POST 中可以傳送的資料大小上限 (例如：匯入目錄資料、匯入使用資料) 是 200 MB。
-- 非作用中建議模型組建的每秒交易數目是 ~ 2TPS。作用中建議模型組建可以保留高達 20TPS。
 - 取得建議時可以要求的項目數目上限為 150 個。
 
 ##3\.API – 一般資訊
@@ -806,13 +805,13 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 以下是支援的規則類型：
 - <strong>BlockList</strong> -封鎖清單可讓您提供您不想在建議結果中傳回的項目清單。 
 
-- <strong>FeatureBlockList</strong> - 功能封鎖清單可讓您依據項目功能的值封鎖項目。
+- <strong>FeatureBlockList</strong> - 功能封鎖清單可讓您依據項目之功能的值封鎖項目。
 
 *請勿在單一封鎖清單規則中傳送超過 1000 個項目，否則您的呼叫可能會逾時。如果您需要封鎖超過 1000 個項目，可以呼叫幾個封鎖清單。*
 
 - <strong>Upsale</strong> - Upsale 可讓您強制在建議結果中傳回項目。
 
-- <strong>WhiteList</strong> - 允許清單可讓您只從項目的清單中建議項目。
+- <strong>WhiteList</strong> - 允許清單可讓您只從項目的清單中建議建議項目。
 
 - <strong>FeatureWhiteList</strong> - 功能允許清單可讓您只建議具有特定功能值的項目。
 
@@ -891,16 +890,16 @@ OData XML
 |	apiVersion | 1\.0 |
 |||
 | 要求本文 | 
-<ins>在提供商務規則的項目識別碼時，請務必使用項目的外部識別碼 (您用於目錄檔案的相同識別碼)</ins><br> 
-<ins>若要新增 BlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins> 
-<ins>若要新增 FeatureBlockList 規則：</ins><br> 
-<br> 
+<ins>在提供商務規則的項目識別碼時，請務必使用項目的外部識別碼 (您用於目錄檔案的相同識別碼)</ins><br>
+<ins>若要新增 BlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>BlockList</Type><Value>{"ItemsToExclude":["2406E770-769C-4189-89DE-1C9283F93A96","3906E110-769C-4189-89DE-1C9283F98888"]}</Value></ApiFilter>`<br><br><ins>
+<ins>若要新增 FeatureBlockList 規則：</ins><br>
+<br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureBlockList</Type><Value>{"Name":"Movie_category","Values":["Adult","Drama"]}</Value></ApiFilter>`<br><br><ins>
 若要新增 Upsale 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>Upsale</Type><Value>{"ItemsToUpsale":["2406E770-769C-4189-89DE-1C9283F93A96"],"NumberOfItemsToUpsale":5}</Value></ApiFilter>`<br><br>
-<ins>若要新增 WhiteList 規則：</ins><br> 
-`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins> 
-<ins>若要新增 FeatureWhiteList 規則：</ins><br> 
-<br> 
+<ins>若要新增 WhiteList 規則：</ins><br>
+`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>WhiteList</Type><Value>{"ItemsToInclude":["2406E770-769C-4189-89DE-1C9283F93A96","1116E770-769C-4189-89DE-1C9283F88888"]}</Value></ApiFilter>`<br><br><ins>
+<ins>若要新增 FeatureWhiteList 規則：</ins><br>
+<br>
 `<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>FeatureWhiteList</Type><Value>{"Name":"Movie_rating","Values":["PG13"]}</Value></ApiFilter>`<br><br><ins>
 若要新增 PerSeedBlockList 規則：</ins><br>`<ApiFilter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ModelId>24024f7e-b45c-419e-bfa2-dfd947e0d253</ModelId><Type>PerSeedBlockList</Type><Value>{"SeedItems":["9949"],"ItemsToExclude":["9862","8158","8244"]}</Value></ApiFilter>`|
 
@@ -1650,9 +1649,7 @@ HTTP 狀態碼：200
 HTTP 狀態碼：200
 
 ##10\.特性
-本節示範如何擷取功能資訊，例如匯入的功能和其值、其排名，以及此排名的配置時機。匯入功能做為目錄資料的一部分，然後在排名組建完成時建立和其排名的關聯。
-功能排名可根據使用狀況資料和項目類型而變更。但是對於一致的使用量/項目，排名只能有小幅的起伏。
-功能的排名為非負數的數字。編號 0 表示未排名功能 (如果您在第一個排名組建完成之前叫用這個 API，就會發生這個情形)。配置排名的日期稱為分數有效時間。
+本節示範如何擷取功能資訊，例如匯入的功能和其值、其排名，以及此排名的配置時機。匯入功能做為目錄資料的一部分，然後在排名組建完成時建立和其排名的關聯。功能排名可根據使用狀況資料和項目類型而變更。但是對於一致的使用量/項目，排名只能有小幅的起伏。功能的排名為非負數的數字。編號 0 表示未排名功能 (如果您在第一個排名組建完成之前叫用這個 API，就會發生這個情形)。配置排名的日期稱為分數有效時間。
 
 ###10\.1.取得功能資訊 (適用於上一個排名組建)
 擷取最後一次成功排名組建的功能資訊，包括排名。
@@ -1831,7 +1828,7 @@ OData
 - 藉由呼叫[取得功能資訊](#101-get-features-info-for-last-rank-build) API 來擷取功能的排名。
 - 以下列參數設定建議組建：
 	- `useFeatureInModel` - 設定為 True。
-	- `ModelingFeatureList` - 設定為分數 2.0 以上的逗號分隔功能清單 (根據您在上一個步驟中擷取到的排名)。
+	- `ModelingFeatureList` - 設定為分數 2.0 或以上的逗號分隔功能清單 (以您在上一個步驟中擷取到的排名為根據)。
 	- `AllowColdItemPlacement` - 設定為 True。
 	- 您可以選擇性地將 `EnableFeatureCorrelation` 設定為 True，並將 `ReasoningFeatureList` 設定為您想要用於說明的功能清單 (通常是使用於模型化的相同功能清單或子清單)。
 - 以設定的參數觸發建議組建。
@@ -1912,7 +1909,7 @@ FBT (通常會一起購買) 組建也是另一種建議運算法，有時稱為�
 | userDescription | 目錄的文字識別碼。請注意，如果您使用空格，必須將其編碼改成 %20。請參閱上面的範例。<br>最大長度：50 |
 | apiVersion | 1\.0 |
 |||
-| 要求本文 | 如果保留空白，則組建會以預設的組建參數執行。<br><br>如果您想要設定組建參數，請將參數以 XML 傳送至本文，如下列範例所示。(如需參數的說明，請參閱＜組建參數＞一節。)`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
+| 要求本文 | 如果保留空白，則組建會以預設的組建參數執行。<br><br>如果您想要設定組建參數，請將參數以 XML 傳送至本文，如下列範例所示。(如需參數的說明，請參閱＜組建參數＞一節)。`<NumberOfModelIterations>40</NumberOfModelIterations><NumberOfModelDimensions>20</NumberOfModelDimensions><MinItemAppearance>5</MinItemAppearance><MinUserAppearance>5</MinUserAppearance><EnableModelingInsights>true</EnableModelingInsights><UseFeaturesInModel>false</UseFeaturesInModel><ModelingFeatureList>feature_name_1,feature_name_2,...</ModelingFeatureList><AllowColdItemPlacement>false</AllowColdItemPlacement><EnableFeatureCorrelation>false</EnableFeatureCorrelation><ReasoningFeatureList>feature_name_a,feature_name_b,...</ReasoningFeatureList></BuildParametersList>` |
 
 **回應**：
 
@@ -3106,4 +3103,4 @@ HTTP 狀態碼：200
 © 2015 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

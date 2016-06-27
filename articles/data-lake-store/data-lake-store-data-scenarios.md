@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="05/27/2016"
+   ms.date="06/14/2016"
    ms.author="nitinme"/>
 
-# 有關 Azure Data Lake 存放區的資料案例
+# 使用 Azure Data Lake Store 處理巨量資料需求
 
 巨量資料處理有四個主要階段︰
 
@@ -24,7 +24,6 @@
 * 處理資料
 * 下載資料
 * 將資料視覺化
-
 
 在本文中，我們探討這些與 Azure Data Lake 存放區有關的階段，以了解可用來滿足您巨量資料需求的選項與工具。
 
@@ -81,11 +80,21 @@
 * [AdlCopy 服務](data-lake-store-copy-data-azure-storage-blob.md)
 * [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store)
 
+### 儲存於內部部署或 IaaS Hadoop 叢集中的資料
+
+您可能會使用 HDFS，在本機電腦上將大量資料儲存於現有的 Hadoop 叢集中。Hadoop 叢集可能會在內部部署或 Azure 上的 IaaS 叢集中。可能有一些需求，要以一次性方法或週期性方式來將這類資料複製到 Azure Data Lake Store。有各種不同的選項可用來達到此目的。以下是替代項目和相關考量的清單。
+
+| 方法 | 詳細資料 | 優點 | 考量 |
+|-----------|---------|--------------|-----------------|
+| 使用 Azure Data Factory (ADF)，將資料從 Hadoop 叢集直接複製到 Azure Data Lake Store | [ADF 支援 HDFS 做為資料來源](../data-factory/data-factory-hdfs-connector.md) | ADF 針對 HDFS 提供全新支援，以及一流的端對端管理與監視 | 需要將資料管理閘道部署於內部部署或 IaaS 叢集中 |
+| 從 Hadoop 將資料匯出為檔案。然後使用適當的機制，將檔案複製到 Azure Data Lake Store。 | 您可以使用下列方法，將檔案複製到 Azure Data Lake Store︰<ul><li>[適用於 Windows 作業系統的 Azure PowerShell](data-lake-store-get-started-powershell.md)</li><li>[適用於非 Windows 作業系統的 Azure 跨平台 CLI](data-lake-store-get-started-cli.md)</li><li>使用任何 Data Lake Store SDK 的自訂應用程式</li></ul> | 快速開始使用。可以執行自訂的上傳 | 牽涉到多種技術的多步驟程序。考慮到自訂的工具性質，管理和監視會在經過一段時間之後逐漸變成是一項挑戰 |
+| 使用 Distcp，將資料從 Hadoop 複製到 Azure 儲存體。然後使用適當的機制，將資料從 Azure 儲存體複製到 Data Lake Store。 | 您也可以使用下列方法，將資料從 Azure 儲存體複製到 Data Lake Store︰<ul><li>[Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)</li><li>[AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[在 HDInsight 叢集上執行的 Apache DistCp](data-lake-store-copy-data-wasb-distcp.md)</li></ul>| 您可以使用開放原始碼工具。 | 牽涉到多種技術的多步驟程序 |
+
 ### 大型資料集
 
 若要上傳動輒數 TB 的資料集，使用上述方法有時候可能會過於緩慢且昂貴。此時，您可以使用下列選項。
 
-* **「離線」上傳資料**。您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)將容納資料的硬碟運送到 Azure 資料中心，之後再上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)將資料從 Azure 儲存體 Blob 移動到 Data Lake Store。
+* **「離線」上傳資料**。您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)來將容納資料的硬碟運送到 Azure 資料中心，之後再上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從 Azure 儲存體 Blob 移到 Data Lake Store。
 
 	>[AZURE.NOTE] 在使用匯入/匯出服務時，運送到 Azure 資料中心之磁碟上的檔案大小不得大於 200 GB。
 
@@ -131,7 +140,7 @@
 
 ![將 Data Lake 存放區中的資料視覺化](./media/data-lake-store-data-scenarios/visualize-data.png "將 Data Lake 存放區中的資料視覺化")
 
-* 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移動到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores)開始
-* 之後，您可以[整合 Power BI 與 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，利用視覺化的方式呈現資料。
+* 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores)開始
+* 之後，您可以[整合 Power BI 與 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，以視覺化方式呈現資料。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

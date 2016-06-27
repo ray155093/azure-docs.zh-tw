@@ -1,4 +1,3 @@
-
 <properties
    pageTitle="開始在 Azure 上搭配 swarm 使用 docker"
    description="描述如何使用 Docker VM 延伸模組建立一組 VM，以及使用 swarm 來建立 Docker 叢集。"
@@ -20,12 +19,12 @@
 
 # 如何搭配swarm 使用 docker
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 資源管理員模型。
 
 
 本主題將示範一個非常簡單的方式來搭配使用 [docker](https://www.docker.com/) 和 [swarm](https://github.com/docker/swarm)，以便在 Azure 上建立由 swarm 管理的叢集。它會在 Azure 中建立四個虛擬機器，一個用來做為 swarm 管理員，其餘三個則做為 docker 主機叢集的一部分。當您完成時，可以使用 swarm 查看叢集，然後開始在其上使用 docker。此外，本主題中的 Azure CLI 呼叫會使用服務管理 (asm) 模式。
 
-> [AZURE.NOTE] 本主題將 docker 與 swarm 和 Azure CLI 搭配使用，而「不」使用 **docker-machine**，以示範不同工具如何共同運作但仍保持獨立。**docker-machine** 具有 **--swarm** 參數，可讓您使用 **docker-machine** 直接將節點新增到 swarm。如需範例，請參閱 [docker-machine](https://github.com/docker/machine) 文件。如果您錯過了在 Azure VM 上執行的 **docker-machine**，請參閱[如何搭配 Azure 使用 docker-machine](virtual-machines-linux-classic-docker-machine.md)。
+> [AZURE.NOTE] 本主題將 docker 與 swarm 和 Azure CLI 搭配使用，而「不」使用 **docker-machine**，以示範不同工具如何共同運作但仍保持獨立。**docker-machine** 具有 **--swarm** 參數，可讓您使用 **docker-machine** 直接將節點新增到 swarm。如需範例，請參閱 [docker-machine](https://github.com/docker/machine) 文件。如果您錯過了在 Azure VM 上執行的 **docker-machine**，請參閱[如何搭配 Azure 使用 docker-machine](virtual-machines-linux-docker-machine.md)。
 
 ## 使用 Azure 虛擬機器建立 docker 主機
 
@@ -135,7 +134,7 @@
 
 <!-- links -->
 
-[docker-machine-azure]: virtual-machines-linux-classic-docker-machine.md
+[docker-machine-azure]: virtual-machines-linux-docker-machine.md
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/03/2016"
+   ms.date="06/10/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
@@ -229,6 +229,91 @@
 
 	您也可以使用 `hdfs dfs -put` 命令來將一些檔案上傳至資料湖存放區，然後使用 `hdfs dfs -ls` 以確認是否成功上傳檔案。
 
+## 使用 Data Lake Store 搭配 Spark 叢集
+
+在本節中，您會使用可與 HDInsight Spark 叢集搭配使用的 Jupyter Notebook 來執行工作，從您關聯至 HDInsight Spark 叢集的 Data Lake Store 帳戶讀取資料，而不是從預設的 Azure 儲存體 Blob 帳戶讀取。
+
+1. 將一些範例資料從與 Spark 叢集相關聯的預設儲存體帳戶 (WASB) 複製到與該叢集相關聯的 Azure Data Lake Store 帳戶。您可以使用 [AdlCopy 工具](http://aka.ms/downloadadlcopy)來執行此動作。從連結下載並安裝此工具。
+
+2. 開啟命令提示字元，並瀏覽至安裝 AdlCopy 的目錄，通常是 `%HOMEPATH%\Documents\adlcopy`。
+
+3. 執行下列命令，將特定的 Blob 從來源容器複製到資料湖存放區：
+
+		AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/<blob name> /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container>
+
+	針對本教學課程，將 **/HdiSamples/HdiSamples/SensorSampleData/hvac/** 上的 **HVAC.csv** 範例資料檔案複製到 Azure Data Lake Store 帳戶。程式碼片段看起來應該如下：
+
+		AdlCopy /Source https://mydatastore.blob.core.windows.net/mysparkcluster/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv /dest swebhdfs://mydatalakestore.azuredatalakestore.net/hvac/ /sourcekey uJUfvD6cEvhfLoBae2yyQf8t9/BpbWZ4XoYj4kAS5Jf40pZaMNf0q6a8yqTxktwVgRED4vPHeh/50iS9atS5LQ==
+
+	>[AZURE.WARNING] 確定檔案和路徑名稱的大小寫正確。
+
+4. 系統將提示您輸入 Azure 訂用帳戶的認證，該帳戶為您的資料湖存放區帳戶所在之處。您將看到類似以下的輸出：
+
+		Initializing Copy.
+		Copy Started.
+		100% data copied.
+		Copy Completed. 1 file copied.
+
+	資料檔案 (**HVAC.csv**) 將會複製到 Data Lake Store 帳戶中的 **/hvac** 資料夾下方。
+
+4. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
+
+2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結] ，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
+
+	> [AZURE.NOTE] 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。使用您叢集的名稱取代 __CLUSTERNAME__：
+	>
+	> `https://CLUSTERNAME.azurehdinsight.net/jupyter`
+
+2. 建立新的 Notebook。按一下 [新建]，然後按一下 [PySpark]。
+
+	![建立新的 Jupyter Notebook](./media/data-lake-store-hdinsight-hadoop-use-portal/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
+
+3. 系統隨即會建立新的 Notebook，並以 **Untitled.pynb** 的名稱開啟。
+
+4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。方法是將下列程式碼片段貼到儲存格，然後按下 **SHIFT + ENTER**。
+
+		from pyspark.sql.types import *
+		
+	每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。您也會在右上角的 **PySpark** 文字旁看到一個實心圓。工作完成後，實心圓將變成空心圓。
+
+	 ![Jupyter Notebook 工作的狀態](./media/data-lake-store-hdinsight-hadoop-use-portal/hdispark.jupyter.job.status.png "Jupyter Notebook 工作的狀態")
+
+4. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入暫存資料表。您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
+
+		adl://<data_lake_store_name>.azuredatalakestore.net/<path_to_file>
+
+	在空白儲存格中，貼上下列程式碼範例、使用您的 Data Lake Store 帳戶名稱取代 **MYDATALAKESTORE**，然後按下 **SHIFT + ENTER**。此程式碼範例會將資料註冊到名為 **hvac** 的暫存資料表。
+
+		# Load the data
+		hvacText = sc.textFile("adl://MYDATALAKESTORE.azuredatalakestore.net/hvac/HVAC.csv")
+		
+		# Create the schema
+		hvacSchema = StructType([StructField("date", StringType(), False),StructField("time", StringType(), False),StructField("targettemp", IntegerType(), False),StructField("actualtemp", IntegerType(), False),StructField("buildingID", StringType(), False)])
+		
+		# Parse the data in hvacText
+		hvac = hvacText.map(lambda s: s.split(",")).filter(lambda s: s[0] != "Date").map(lambda s:(str(s[0]), str(s[1]), int(s[2]), int(s[3]), str(s[6]) ))
+		
+		# Create a data frame
+		hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
+		
+		# Register the data fram as a table to run queries against
+		hvacdf.registerTempTable("hvac")
+
+5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [HDInsight Spark 叢集可供 Jupyter Notebook 使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+		
+		%%sql
+		SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = "6/1/13"
+
+5. 一旦工作順利完成後，預設會顯示下列表格式輸出。
+
+ 	![查詢結果的資料表輸出](./media/data-lake-store-hdinsight-hadoop-use-portal/tabular.output.png "查詢結果的資料表輸出")
+
+	您也可以查看其他視覺效果中的結果。例如，相同輸出的區域圖看起來會如下所示。
+
+	![查詢結果的區域圖](./media/data-lake-store-hdinsight-hadoop-use-portal/area.output.png "查詢結果的區域圖")
+
+
+6. 應用程式執行完畢之後，您應該要關閉 Notebook 來釋放資源。方法是從 Notebook 的 [檔案] 功能表上，按一下 [關閉並停止]。這樣就能夠結束並關閉 Notebook。
 
 ## 在 Storm 拓撲中使用資料湖存放區
 
@@ -240,7 +325,7 @@
 
 1.  在 [資料來源] 刀鋒視窗中，針對 [HBase 資料位置] 選取 [Data Lake Store]。
 2.  選取您要使用的 Data Lake Store 名稱，或建立一個新的。
-3.  最後，指定 Data Lake Store 內的 **HBase 根資料夾** 。如果 Data Lake Store 帳戶沒有根資料夾，請建立一個新的。
+3.  最後，指定 Data Lake Store 內的 **HBase 根資料夾**。如果 Data Lake Store 帳戶沒有根資料夾，請建立一個新的。
 
 	![HBase 與 Data Lake Store](./media/data-lake-store-hdinsight-hadoop-use-portal/hbase-data-lake-store.png "建立 Azure 資源群組")
 
@@ -258,4 +343,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

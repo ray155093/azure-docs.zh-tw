@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/15/2016"
+   ms.date="06/13/2016"
    ms.author="mausher;sonyama;barbkess"/>
 
 # 針對 Azure SQL 資料倉儲問題進行疑難排解
@@ -116,7 +116,7 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 [了解如何監視您的查詢]: ./sql-data-warehouse-manage-monitor.md
 [管理 SQL 資料倉儲中的統計資料]: ./sql-data-warehouse-develop-statistics.md
 [佈建指示]: ./sql-data-warehouse-get-started-provision.md
-[設定您用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md/#create-a-new-azure-sql-server-level-firewall
+[設定您用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
 [Visual Studio 2013 或 2015]: ./sql-data-warehouse-get-started-connect.md
 [SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
 [SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
@@ -127,4 +127,4 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 
 <!--Other web references-->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

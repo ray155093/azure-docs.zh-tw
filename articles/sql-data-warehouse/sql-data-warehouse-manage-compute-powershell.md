@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/06/2016"
+   ms.date="06/13/2016"
    ms.author="barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的計算能力 (PowerShell)
@@ -41,7 +41,7 @@
 
 ### 安裝最新版的 Azure PowerShell
 
-> [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，需要有 Azure PowerShell 1.0.3 版或更高版本。若要確認目前的版本，請執行命令 **Get-Module -ListAvailable -Name Azure**。您可以從 [Microsoft Web Platform Installer][] 安裝最新的版本。如需詳細資訊，請參閱＜如何安裝及設定 Azure PowerShell＞。
+> [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，需要有 Azure PowerShell 1.0.3 版或更高版本。若要確認目前的版本，請執行命令 **Get-Module -ListAvailable -Name Azure**。您可以從 [Microsoft Web Platform Installer][] 安裝最新的版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
 ### 開始使用 Azure PowerShell Cmdlet
 
@@ -124,16 +124,15 @@ $resultDatabase
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
-
+[如何安裝和設定 Azure PowerShell]: ./powershell-install-configure.md
 
 <!--MSDN references-->
 [Resume-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619347.aspx
 [Suspend-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619337.aspx
 [Set-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619433.aspx
 
-
 <!--Other Web references-->
-
+[Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

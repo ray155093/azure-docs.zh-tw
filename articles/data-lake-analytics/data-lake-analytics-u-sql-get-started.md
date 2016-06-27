@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
@@ -247,7 +247,7 @@ U-SQL 只支援 ANSI 相容聯結語法：Rowset1 JOIN Rowset2 ON 述詞。不�
 
 U-SQL 可讓您在資料庫和結構描述的內容中使用資料。因此您不必一直對檔案進行讀取或寫入。
 
-每個 U-SQL 指令碼在執行時，都會有預設資料庫 (主要) 與預設結構描述 (dbo) 做為其預設內容。您可以建立自己的資料庫和 (或) 結構描述。若要變更內容，請使用 **USE** 陳述式來變更內容。
+每個 U-SQL 指令碼在執行時，都會有預設資料庫 (主要) 與預設結構描述 (DBO) 做為其預設內容。您可以建立自己的資料庫和 (或) 結構描述。若要變更內容，請使用 **USE** 陳述式來變更內容。
 
 
 ### 建立資料表值函式 (TVF)
@@ -419,4 +419,4 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 - [在論壇上取得協助](http://aka.ms/adlaforums)
 - [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

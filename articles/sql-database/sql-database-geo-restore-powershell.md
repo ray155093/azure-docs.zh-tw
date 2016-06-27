@@ -19,12 +19,12 @@
 # 從異地備援備份使用 PowerShell 異地還原 Azure SQL Database
 
 > [AZURE.SELECTOR]
+- [概觀](sql-database-geo-restore.md)
 - [Azure 入口網站](sql-database-geo-restore-portal.md)
 - [PowerShell](sql-database-geo-restore-powershell.md)
 
-本文說明如何使用 PowerShell，將資料庫還原至使用異地還原的新伺服器。
 
-[異地還原](sql-database-geo-restore.md)可從異地備援備份還原資料庫，進而建立新的資料庫。您可以在任何 Azure 區域中的任何伺服器上建立資料庫。異地還原使用異地備援備份做為其來源，因此即使因為中斷而無法存取資料庫，也能用來復原資料庫。異地還原會對所有服務層自動啟用，且不須額外付費。
+本文說明如何使用 PowerShell，將資料庫還原至使用異地還原的新伺服器。
 
 [AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
 
@@ -60,4 +60,4 @@
 - [業務續航力概觀](sql-database-business-continuity.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

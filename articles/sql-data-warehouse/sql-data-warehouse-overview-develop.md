@@ -62,7 +62,6 @@
 [標籤]: sql-data-warehouse-develop-label.md
 [迴圈]: sql-data-warehouse-develop-loops.md
 [樞紐分析資料]: sql-data-warehouse-develop-pivot-unpivot.md
-[重新命名物件]: sql-data-warehouse-develop-rename.md
 [統計資料]: sql-data-warehouse-develop-statistics.md
 [預存程序]: sql-data-warehouse-develop-stored-procedures.md
 [資料表設計]: sql-data-warehouse-develop-table-design.md
@@ -76,7 +75,8 @@
 [Transact-SQL 參考資料]: sql-data-warehouse-overview-reference.md
 
 <!--MSDN references-->
+[重新命名物件]: https://msdn.microsoft.com/library/mt631611.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="backup-recovery"
-	ms.date="03/16/2016"
+	ms.date="06/13/2016"
 	ms.author="bsiva"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫
@@ -47,7 +47,7 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
 確認您已備妥這些必要條件：
 
-- [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](pricing/free-trial/)開始。此外，您可以參閱 [Azure Site Recovery 管理員價格](https://azure.microsoft.com/pricing/details/site-recovery/)。
+- [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。此外，您可以參閱 [Azure Site Recovery 管理員價格](https://azure.microsoft.com/pricing/details/site-recovery/)。
 - Azure PowerShell 1.0。如需有關此版本以及如何安裝的資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com/)。
 - [AzureRM.SiteRecovery](https://www.powershellgallery.com/packages/AzureRM.SiteRecovery/) 和 [AzureRM.RecoveryServices](https://www.powershellgallery.com/packages/AzureRM.RecoveryServices/) 模組。您可以從 [PowerShell](https://www.powershellgallery.com/) 資源庫取得這些模組的最新版本
 
@@ -261,4 +261,9 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
     	$TFjob = Resume-AzureRmSiteRecoveryJob -Job $TFjob
 
-<!---HONumber=AcomDC_0518_2016-->
+
+##後續步驟
+
+[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。
+
+<!---HONumber=AcomDC_0615_2016-->

@@ -3,7 +3,7 @@
 	description="了解如何從雲端資料夾透過內容同步處理，將您的應用程式部署至 Azure App Service。"
 	services="app-service"
 	documentationCenter=""
-	authors="dariac"
+	authors="dariagrigoriu"
 	manager="wpickett"
 	editor="mollybos"/>
 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
-	ms.author="dariac"/>
+	ms.date="06/13/2016"
+	ms.author="dariagrigoriu"/>
     
 # 將雲端資料夾的內容同步處理到 Azure App Service
 
-部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 的其中一個選項，就是從受歡迎的雲端儲存體服務 (例如 Dropbox 與 OneDrive) 同步處理內容。
+本教學課程將示範如何從受歡迎的雲端儲存體服務 (例如 Dropbox 與 OneDrive) 同步處理內容，以部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)。
 
 ## <a name="overview"></a>內容同步處理部署概觀
 
@@ -41,4 +41,4 @@
  
 [從 Dropbox 部署](http://blogs.msdn.com/b/windowsazure/archive/2013/03/19/new-deploy-to-windows-azure-web-sites-from-dropbox.aspx)下有 Dropbox 部署的詳細資訊。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

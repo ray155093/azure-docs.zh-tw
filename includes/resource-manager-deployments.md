@@ -1,17 +1,19 @@
-Your template can be either a local file or an external file that is available through a URI. When your template resides in a storage account, you can restrict access to the template and provide a shared access signature (SAS) token during deployment.
+您的範本可以是本機檔案，或者是透過 URI 提供使用的外部檔案。當您的範本位於儲存體帳戶中時，您可以限制範本的存取權，並在部署期間提供共用存取簽章 (SAS) Token
 
-## Incremental and complete deployments
+## 累加部署與完整部署
 
-By default, Resource Manager handles deployments as incremental updates to the resource group. With incremental deployment, Resource Manager:
+資源管理員預設會將部署處理為資源群組的累加式更新。使用累加部署，資源管理員將：
 
-- **leaves unchanged** resources that exist in the resource group but are not specified in the template
-- **adds** resources that are specified in the template but do not exist in the resource group 
-- **does not re-provision** resources that exist in the resource group in the same condition defined in the template
+- **保留且不變更**現存於資源群組中但未在範本中指定的資源
+- **加入**在範本中指定但未存在於資源群組中的資源 
+- **不重新佈建**現存於資源群組，並在範本中以相同條件定義的資源
 
-With complete deployment, Resource Manager:
+使用完整部署，資源管理員將：
 
-- **deletes** resources that exist in the resource group but are not specified in the template
-- **adds** resources that are specified in the template but do not exist in the resource group 
-- **does not re-provision** resources that exist in the resource group in the same condition defined in the template
+- **刪除**現存於資源群組中但未在範本中指定的資源
+- **加入**在範本中指定但未存在於資源群組中的資源 
+- **不重新佈建**現存於資源群組，並在範本中以相同條件定義的資源
  
-You specify the type of deployment through the **Mode** property.
+您可以透過 **Mode** 屬性指定部署類型。
+
+<!---HONumber=AcomDC_0615_2016-->

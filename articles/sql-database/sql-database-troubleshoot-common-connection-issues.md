@@ -27,7 +27,7 @@
 
 連線問題可能由下列任何一個原因所造成：
 
-- 在設計應用程式的過程中，無法套用[最佳做法和設計指導方針](sql-database-connect-central-recommendations.md)。
+- 在設計應用程式的過程中，無法套用最佳作法和設計指南。請參閱 [SQL Database 開發概觀](sql-database-develop-overview.md)以便開始使用。
 - SQL Azure 資料庫重新設定
 - 防火牆設定
 - 連線逾時
@@ -80,7 +80,7 @@
 | 5 | [疑難排解「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接」錯誤](sql-database-troubleshoot-connection.md) | 說明如何識別並解決 40613 錯誤：「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接。」 |
 | 6 | [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) | 提供 SQL Database 用戶端應用程式的 SQL 錯誤碼相關資訊，例如常見的資料庫連線錯誤、資料庫複製問題，以及一般錯誤。 |
 | 7 | [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) | 提供可協助您判斷哪個服務層是最適合您應用程式的指引。同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
-| 8 | [連接到 SQL Database：最佳做法和設計指導方針](sql-database-connect-central-recommendations.md) | 提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
+| 8 | [SQL Database 開發概觀](sql-database-develop-overview.md) | 提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
 | 9 | 升級到 Azure SQL Database v12 頁面 ([Azure 入口網站](sql-database-upgrade-server-portal.md)、[PowerShell](sql-database-upgrade-server-powershell.md)) | 提供使用 Azure 入口網站或 PowerShell 將現有 Azure SQL Database V11 伺服器和資料庫升級到 Azure SQL Database V12 的指示。 |
 
 
@@ -93,12 +93,12 @@
 - [檢視 Azure SQL Database 服務的最新更新](http://azure.microsoft.com/updates/?service=sql-database)
 
 
-## 詳細資訊
+## 其他資源
 
-- [連接到 SQL Database：最佳做法和設計指導方針](sql-database-connect-central-recommendations.md)
+- [SQL Database 開發概觀](sql-database-develop-overview.md)
 - [一般暫時性錯誤處理指引](../best-practices-retry-general.md)
 - [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 - [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
 - [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale) 
 
-<!-}---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

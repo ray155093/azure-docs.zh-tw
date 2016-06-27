@@ -5,7 +5,7 @@
     services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="03/30/2016"
+	ms.date="06/15/2016"
 	ms.author="femila"/>
 
 # 技術參考：Azure AD 應用程式的條件式存取
@@ -28,30 +28,41 @@
 - 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
 - Visual Studio Online
 - Azure 遠端應用程式
+- 	Dynamics CRM
+- Microsoft Office 365 Yammer
+- Microsoft Office 365 Exchange Online
+- Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
+
 
 ## 啟用存取規則
 
 您可以依據個別應用程式來啟用或停用每個規則。當規則為 **ON** 時，系統將會針對存取應用程式的使用者啟用並強制執行這些規則。當規則為 **OFF** 時，系統就不會使用這些規則，也就不會影響使用者的登入體驗。
 
 ## 將規則套用到特定的使用者
-您可以透過設定 [套用對象]，根據安全性群組，將規則套用到特定的幾組使用者。[套用對象] 可以設定為 [所有使用者] 或 [群組]。當設定為 [所有使用者] 時，會將規則套用到任何可以存取應用程式的使用者。[群組] 選項可允許選取特定的安全性和通訊群組，系統將只會針對這些群組強制執行規則。
+您可以透過設定 [套用對象]，根據安全性群組，將規則套用到特定的幾組使用者。[套用對象] 可以設定為 [所有使用者] 或 [群組]。設定為 [所有使用者] 時，會將規則套用到任何可以存取應用程式的使用者。[群組] 選項可允許選取特定的安全性和通訊群組，系統將只會針對這些群組強制執行規則。
 
-  部署規則時，通常會先將它套用到一組有限的使用者，即試驗群組的成員。完成後，規則就可以套用至 [所有使用者]。這會造成規則對組織中的所有使用者強制執行。
+部署規則時，通常會先將它套用到一組有限的使用者，即試驗群組的成員。完成後，規則就可以套用至 [所有使用者]。這會造成規則對組織中的所有使用者強制執行。
 
 您也可以使用 [例外] 選項來免除對選取的群組套用原則。這些群組的任何成員即使出現在包含群組中，也不必套用原則。
 
 ## 「工作時」網路
 
 
-使用「工作時」網路的條件式存取規則會依賴 Azure AD 中已設定的可信任 IP 範圍。這些規則包含：
+使用「工作時」網路的條件式存取規則會依賴 Azure AD 中已設定的可信任 IP 位址範圍，或者從 AD FS 中使用「公司網路內部」宣告。這些規則包含：
 
 - 不在工作時需要多重要素驗證
 - 不工作時封鎖存取
 
-若要設定可信任 IP 範圍，可以在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)上設定。「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。不會使用公司網路內部的宣告，因為它無法用於存留期較長的工作階段，例如行動應用程式中的重新整理權杖。
+用於指定「工作時」網路的選項
+
+1. 在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)中設定可信任的 IP位址範圍。「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。 
+2. 設定使用公司網路內部的宣告，您可以使用 AD FS，將此選項與同盟目錄搭配使用。[深入了解公司網路內部宣告](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
+3. 設定公用 IP 位址範圍。您可以在 [設定] 索引標籤中，為您的目錄設定公用 IP 位址。條件式存取將使用這些 IP 位址做為「工作中」IP 位址，這樣就能在 MFA 設定頁面強制執行的 50 個 IP 位址限制以外設定其他的範圍。
+
+
 
 ## 以個別應用程式為基礎的規則
-規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。若要設定條件式存取規則，可以在應用程式的 [設定] 索引標籤上設定。
+規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。條件式存取規則可以在應用程式的 [設定] 索引標籤上設定。
 
 目前提供的規則︰
 
@@ -70,4 +81,4 @@
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0615_2016-->

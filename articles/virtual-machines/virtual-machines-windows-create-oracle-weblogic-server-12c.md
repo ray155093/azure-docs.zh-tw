@@ -24,7 +24,7 @@
 
 ##若要在 Azure 中設定您的 Oracle WebLogic Server 12c 虛擬機器
 
-1. 登入 [Azure 入口網站](https://ms.portal.azure.com/)。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
 2.	按一下 [虛擬機器]。
 
@@ -101,7 +101,7 @@
 
 10.	為虛擬機器建立端點：
 
-	1. 登入 [Azure 入口網站](https://ms.portal.azure.com/)。
+	1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
 	2.	按一下 [瀏覽]
 
@@ -145,7 +145,7 @@
 
 	8.	指定規則的名稱並選擇性指定描述，然後按一下 [完成]。
 
-12.	若要查看在網際網路上執行的購物車應用程式，請開啟瀏覽器並連線至格式為 `http://<<unique_domain_name>>/shoppingcart` 的 URL。(您可以在 [Azure 入口網站](https://ms.portal.azure.com/)中按一下 [虛擬機器]，然後選取用來執行 Oracle WebLogic Server 的虛擬機器，以決定 <<unique\_domain\_name>> 的值。)
+12.	若要查看在網際網路上執行的購物車應用程式，請開啟瀏覽器並連線至格式為 `http://<<unique_domain_name>>/shoppingcart` 的 URL。(您可以在 [Azure 入口網站](https://portal.azure.com/)中按一下 [虛擬機器]，然後選取用來執行 Oracle WebLogic Server 的虛擬機器，以決定 <<unique\_domain\_name>> 的值。)
 
 
 ##其他資源
@@ -159,4 +159,4 @@
 
 -	[適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

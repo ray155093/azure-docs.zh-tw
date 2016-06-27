@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/03/2016"
+	ms.date="06/08/2016"
 	ms.author="jroth"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
@@ -53,6 +53,7 @@
 - [資料湖分析](#data-lake-analytics-limits)
 - [DNS](#dns-limits)
 - [DocumentDB](#documentdb-limits)
+- [事件中樞](#event-hubs-limits)
 - [IoT 中心](#iot-hub-limits)
 - [金鑰保存庫](#key-vault-limits)
 - [媒體服務](#media-services-limits)
@@ -177,6 +178,7 @@
 
 [AZURE.INCLUDE [azure-documentdb-limits](../includes/azure-documentdb-limits.md)]
 
+以星號 (*) 列出的配額[可以透過聯絡 Azure 支援人員來進行調整](./documentdb/documentdb-increase-limits.md)。
 
 ### Mobile Engagement 限制
 
@@ -199,7 +201,7 @@
 
 [AZURE.INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
+如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱[Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
 
 ### 媒體服務限制
 
@@ -217,6 +219,9 @@
 
 [AZURE.INCLUDE [notification-hub-limits](../includes/notification-hub-limits.md)]
 
+### 事件中樞限制
+
+[AZURE.INCLUDE [azure-servicebus-limits](../includes/event-hubs-limits.md)]
 
 ### 服務匯流排限制
 
@@ -300,4 +305,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

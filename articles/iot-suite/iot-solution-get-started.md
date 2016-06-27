@@ -2,16 +2,16 @@
 	pageTitle="MyDriving Azure IoT 範例：快速入門 | Microsoft Azure"
 	description="應用程式快速入門，以完整示範如何使用 Microsoft Azure 建立 IoT 系統的架構，包括串流分析、機器學習服務和事件中樞。"
 	services=""
-    documentationCenter=""
-    suite="iot-suite"
+    documentationCenter=".net"
+    suite=""
 	authors="alancameronwills"
 	manager="douge"/>
 
 <tags
-	ms.service="iot-suite"
+	ms.service="multiple"
 	ms.workload="tbd"
 	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
+	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="03/25/2016"
 	ms.author="awills"/>
@@ -170,4 +170,4 @@ MyDriving 的真正用途是讓您開始建立您自己的 IoT 解決方案。�
   [HockeyApp portal (HockeyApp 入口網站)]: https://rink.hockeyapp.org
   [在 GitHub 上提出問題]: https://github.com/Azure-Samples/MyDriving/issues
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -86,7 +86,7 @@
 |------------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------|
 | `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排| 啟用雲端功能的網路介面 |
 |`https://*.backup.windowsazure.com`|裝置註冊| 僅限資料 0|
-|`http://crl.microsoft.com/pki/*` |憑證撤銷 |啟用雲端功能的網路介面 |
+|`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |啟用雲端功能的網路介面 |
 | `https://*.core.windows.net/*` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> | 僅限控制站的固定 IP |
 | `http://*.deploy.akamaitechnologies.com` |Akamai CDN |僅限控制站的固定 IP |
@@ -96,7 +96,7 @@
 
 路由度量與介面和閘道器 (將資料路由到指定的網路) 相關聯。路由度量用於路由通訊協定，如果它知道到相同目的地有多個路徑存在，則會計算到指定目的地的最佳路徑。路由計量的值越低，建議採用的指數越高。
 
-在 StorSimple 內容中，如果多個網路介面和閘道器設定為通道流量，路由度量會派上用場，判斷使用介面的相對順序。使用者無法變更路由度量。不過您可以使用 `Get-HcsRoutingTable` Cmdlet 列印您的 StorSimple 裝置上的路由資料表 (和度量)。如需 Get-HcsRoutingTable Cmdlet 的詳細資訊，請參閱 [StorSimple 部署疑難排解](storsimple-troubleshoot-deployment.md)。
+在 StorSimple 內容中，如果多個網路介面和閘道器設定為通道流量，路由度量會派上用場，判斷使用介面的相對順序。使用者無法變更路由度量。不過您可以使用 `Get-HcsRoutingTable` Cmdlet 列印您的 StorSimple 裝置上的路由資料表 (和度量)。如需 Get-HcsRoutingTable Cmdlet 的詳細資訊，請參閱[針對 StorSimple 部署進行疑難排解](storsimple-troubleshoot-deployment.md)。
 
 路由度量演算法會根據 StorSimple 裝置上執行的軟體版本而有所不同。
 
@@ -280,4 +280,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

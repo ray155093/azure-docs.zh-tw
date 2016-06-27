@@ -17,7 +17,7 @@
    ms.author="jrj;barbkess;sonyama"/>
 
 # 連線到 SQL 資料倉儲
-若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，您也會看到特定連線設定都設定為建立查詢工作階段的一部分。如需安全性以及如何啟用您的 SQL 資料倉儲連線的相關資訊，您也可以檢閱文章[保護 SQL 資料倉儲中的資料庫][]。
+若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，您也會看到特定連線設定都設定為建立查詢工作階段的一部分。如需安全性以及如何啟用您的 SQL 資料倉儲連線的相關資訊，建議您檢閱文章[保護 SQL 資料倉儲中的資料庫][]。
 
 本文詳細說明連線到 SQL 資料倉儲的下列層面：
 
@@ -155,10 +155,10 @@ WHERE   s.[session_id] <> SESSION_ID()
 <!--Azure.com references-->
 [連線及查詢]: ./sql-data-warehouse-get-started-connect.md
 [表格設計]: ./sql-data-warehouse-develop-table-design.md
-[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-security.md
+[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->
 
 <!--Other references-->
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

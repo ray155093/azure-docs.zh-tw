@@ -130,8 +130,8 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 您可以透過 Windows PowerShell 遠端使用 HTTP 或 HTTPS 進行連線。使用下列教學課程中的指示：
 
-- [使用 http 遠端連線](storsimple-remote-connect.md#connect-through-http)
-- [使用 https 遠端連線](storsimple-remote-connect.md#connect-through-https)
+- [使用 HTTP 遠端連線](storsimple-remote-connect.md#connect-through-http)
+- [使用 HTTPS 遠端連線](storsimple-remote-connect.md#connect-through-https)
 
 ## 連線安全性考量
 
@@ -175,7 +175,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 - 若要取得任何 Cmdlet 的線上說明，請使用前述 Cmdlet 搭配 `-Online` 參數：`Get-Help <cmdlet-name> -Online`
 
-- 如需完整說明，可以使用 –Full 參數以及例如使用 `–Examples` 參數。
+- 如需完整說明，可以使用 `–Full` 參數以及使用 `–Examples` 參數。
 
 #### 更新說明
 
@@ -197,4 +197,4 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 ## 後續步驟
 如果您在執行上述任何工作流程時遇到任何 StorSimple 裝置的問題，請參閱[適用於疑難排解 StorSimple 部署的工具](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -38,7 +38,7 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 
 只要遵循本文的步驟，您就可以輕鬆地將資料庫從 V11 伺服器直接自動移轉至彈性資料庫集區。
 
-請注意，您的資料庫會維持在線上，並且在整個升級作業中都會繼續保持運作。在實際轉換到新的效能等級時，資料庫連線可能會暫時中斷一段非常短的時間，通常約 90 秒，但最長可達 5 分鐘。如果您的應用程式[對於連線終止有暫時性的錯誤處理方式](sql-database-connect-central-recommendations.md)，就足以在升級結束時防止連線中斷。
+請注意，您的資料庫會維持在線上，並且在整個升級作業中都會繼續保持運作。在實際轉換到新的效能等級時，資料庫連線可能會暫時中斷一段非常短的時間，通常約 90 秒，但最長可達 5 分鐘。如果您的應用程式[對於連線終止有暫時性的錯誤處理方式](sql-database-connectivity-issues.md)，就足以在升級結束時防止連線中斷。
 
 升級至 SQL Database V12 後即無法復原。在升級之後，即無法將伺服器還原至 V11。
 
@@ -201,4 +201,4 @@ ElasticPoolCollection 和 DatabaseCollection 參數都是選擇性項目：
 - [Start-AzureRmSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt619403.aspx)
 - [Stop-AzureRmSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt603589.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

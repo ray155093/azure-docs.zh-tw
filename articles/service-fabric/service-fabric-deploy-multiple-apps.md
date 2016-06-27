@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/17/2016"
-   ms.author="bscholl"/>
+   ms.date="06/06/2016"
+   ms.author="bscholl;mikhegn"/>
 
 
 # 部署多個來賓可執行檔
@@ -66,6 +66,8 @@
 - **/exe** 定義 Service Fabric 應啟動的可執行檔，在此例中為 `node.exe`。
 - **/ma** 定義要用來啟動可執行檔的引數。由於未安裝 Node.js，因此 Service Fabric 需要執行 `node.exe bin/www` 來啟動 Node.js Web 伺服器。`/ma:'bin/www'` 會告訴封裝工具使用 `bin/ma` 做為 node.exe 的引數。
 - **/AppType** 定義 Service Fabric 應用程式類型名稱。
+
+>[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。
 
 如果您瀏覽至 /target 參數中指定的目錄，您可以看到工具已建立可完整運作的 Service Fabric 封裝，如以下所示：
 
@@ -135,6 +137,8 @@ mongod.exe --dbpath [path to data]
 
 為了將 MongoDB 新增至您的 Service Fabric 應用程式封裝，您必須確定 /target 參數指向已經包含應用程式資訊清單及 Node.js 應用程式的同一個目錄。您也需要確定您是使用相同的 ApplicationType 名稱。
 
+>[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。
+
 讓我們瀏覽至該目錄並檢查已建立的工具。
 
 ```
@@ -190,6 +194,8 @@ Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'NodeAppType'
 New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationTypeName 'NodeAppType' -ApplicationTypeVersion 1.0  
 ```
 
+>[AZURE.NOTE] 使用 Visual Studio，您就可以透過偵錯 (F5) 或使用發佈精靈在本機上發佈應用程式。
+
 將應用程式順利發佈至本機叢集之後，您便可以透過我們在 Node.js 應用程式的服務資訊清單中輸入的連接埠 (例如 http://localhost:3000) 存取 Node.js 應用程式。
 
 在本教學課程中，您已看到如何輕鬆地將兩個現有應用程式封裝成一個 Service Fabric 應用程式。您也會了解如何將其部署到 Service Fabric，以便讓它能夠從一些 Service Fabric 功能 (例如高可用性和健康情況系統整合) 獲益。
@@ -198,4 +204,4 @@ New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationType
 
 - 了解如何[手動封裝來賓應用程式](service-fabric-deploy-existing-app.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

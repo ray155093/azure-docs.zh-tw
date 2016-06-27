@@ -89,7 +89,7 @@ Azure SQL Database 會使用收集到的資料，以便：
 
 [SQL Database 效能深入解析](sql-database-performance.md)
 
-## 詳細資訊
+## 其他資源
 
 如需詳細資訊，請參閱下列文章：
 
@@ -101,4 +101,4 @@ Azure SQL Database 會使用收集到的資料，以便：
 
 - [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

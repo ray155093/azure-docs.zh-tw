@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="Application Insights 中分析的完整教學課程" 
+	pageTitle="Application Insights 中分析的完整教學課程 | Microsoft Azure" 
 	description="分析 (Application Insights 的強大搜尋工具) 中所有主要查詢的簡短範例。" 
 	services="application-insights" 
     documentationCenter=""
@@ -22,14 +22,12 @@
 
 [分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
-
-[AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
  
 讓我們逐步解說可讓您快速入門的一些基本查詢。
 
 ## 連接到您的 Application Insights 資料
 
-在 Application Insights 中，從 app 的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
+在 Application Insights 中，從應用程式的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
 
 ![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-tour/001.png)
 
@@ -86,7 +84,7 @@
 
 ## [Project](app-insights-analytics-reference.md#project-operator)：選取、重新命名和計算資料行
 
-使用 [`project`](app-insights-analytics-reference.md#project-operator)，只挑出您想要的資料行︰
+使用 [`project`](app-insights-analytics-reference.md#project-operator)，只挑出您想要的資料行：
 
 ```AIQL
 
@@ -151,7 +149,7 @@
 
 ## 自訂屬性和測量
 
-如果您的應用程式附加[自訂維度 (屬性) 和自訂測量](app-insights-api-custom-events-metrics.md#properties)到事件，則您會在 `customDimensions` 和 `customMeasurements` 物件看到它們。
+如果您的應用程式要將[自訂維度 (屬性) 和自訂測量](app-insights-api-custom-events-metrics.md#properties)附加到事件，則您會在 `customDimensions` 和 `customMeasurements` 物件看到它們。
 
 
 例如，如果您的應用程式包括︰
@@ -175,12 +173,12 @@
 
 ``` 
 
-> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加到任何遙測類型的所有自訂測量，會連同使用 `TrackMetric()` 傳送的度量一起出現在 [度量] 刀鋒視窗中。但在分析中，自訂測量仍會附加到其所執行的任何一種遙測類型，而且度量會出現在自己的 `metrics` 串流中。
+> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加到任何遙測類型的所有自訂度量，會連同使用 `TrackMetric()` 傳送的計量一起出現在 [計量] 刀鋒視窗中。但在分析中，自訂度量仍會附加到其所執行的任何一種遙測類型，而且計量會出現在自己的 `metrics` 串流中。
 
 
 ## [Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
 
-`Summarize` 會對資料列群組套用指定的彙總函數。
+`Summarize` 會對資料列群組套用指定的「彙總函數」。
 
 例如，Web 應用程式回應要求所花的時間會在 `duration` 欄位中報告。我們來看看所有要求的平均回應時間︰
 
@@ -474,4 +472,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

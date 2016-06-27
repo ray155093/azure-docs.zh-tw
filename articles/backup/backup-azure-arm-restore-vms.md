@@ -34,7 +34,7 @@
 
 ## 還原復原點
 
-1. 登入 [Azure 入口網站](http://ms.portal.azure.com/)。
+1. 登入 [Azure 入口網站](http://portal.azure.com/)。
 
 2. 在 Azure 功能表上按一下 [瀏覽]，然後在服務清單中輸入**還原服務**。服務清單會調整成您輸入的內容。當您看到 [復原服務保存庫] 時，請選取它。
 
@@ -167,4 +167,4 @@
 - [針對錯誤進行疑難排解](backup-azure-vms-troubleshoot.md#restore)
 - [管理虛擬機器](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -38,6 +38,8 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 ![GetSyncScheduler](./media/active-directory-aadconnectsync-feature-scheduler/getsynccyclesettings.png)
 
+如果您在執行這個 Cmdlet 時看到**無法使用同步命令或 Cmdlet**，則表示 PowerShell 模組並未載入。如果您在網域控制站或 PowerShell 限制層級高於預設設定的伺服器上，即會發生此情況。如果您看到此錯誤，則請執行 `Import-Module ADSync`，以使 Cmdlet 可供使用。
+
 - **AllowedSyncCycleInterval**。Azure AD 將允許發生同步處理的最高頻率。同步處理頻率一旦超過此值，即不受支援。
 - **CurrentlyEffectiveSyncCycleInterval**。目前作用中的排程。如果頻率未高於 AllowedSyncInterval，其值就會與 CustomizedSyncInterval (如果已設定) 相同。如果變更 CustomizedSyncCycleInterval，將會在下一個同步處理循環後才生效。
 - **CustomizedSyncCycleInterval**。如果您想要讓排程器以預設值 30 分鐘以外的任何其他頻率執行，您將會設定此設定。在上圖中，已將排程器改為設定成每小時執行一次。如果您將此值設定成低於 AllowedSyncInterval 的值，則會使用後者。
@@ -67,7 +69,7 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 - 在所有的連接器上執行差異同步處理
 - 在所有的連接器上執行匯出
 
-您可能因為有一個必須立即同步處理的緊急變更，而需要手動執行循環。如果您需要手動執行循環，請從 PowerShell 執行 `Start-ADSyncSyncCycle -PolicyType Delta`。
+您可能因為有一個必須立即同步處理的緊急變更，而需要手動執行循環。如果您需要手動執行循環，則可從 PowerShell 執行 `Start-ADSyncSyncCycle -PolicyType Delta`。
 
 **完整同步處理循環**：如果您已進行下列其中一項組態變更，就需要執行完整同步處理循環 (也稱為Initial (初始))：
 
@@ -90,7 +92,7 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 
 當同步處理循環正在執行時，您會無法進行組態變更。您可以等到排程器完成程序，也可以停止它，以便立即進行變更。停止目前的循環並無任何損害，所有尚未處理的變更都將在下一次執行時進行處理。
 
-1. 首先請使用 PowerShell Cmdlet `Stop-ADSyncSyncCycle` 以通知排程器停止其目前的循環。
+1. 首先請使用 PowerShell Cmdlet `Stop-ADSyncSyncCycle`，來通知排程器停止其目前的循環。
 2. 停止排程器並不會阻止目前的連接器進行其目前的工作。若要強制停止連接器，請採取下列動作：![StopAConnector](./media/active-directory-aadconnectsync-feature-scheduler/stopaconnector.png)
     - 從 [開始] 功能表啟動 [同步處理服務]。移至 [連接器]，反白選取狀態為 [正在執行] 的連接器，然後從 [動作] 中選取 [停止]。
 
@@ -142,4 +144,4 @@ Get-ADSyncConnectorRunStatus
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

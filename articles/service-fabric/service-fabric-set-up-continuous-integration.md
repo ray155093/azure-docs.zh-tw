@@ -261,6 +261,8 @@
 
 3. 將新檔案新增至原始檔控制，並推送到 VSTS。
 
+>[AZURE.NOTE] 如果您使用不同的憑證來管理 Service Fabric 叢集，請使用該憑證重複「匯入自動化憑證」中的步驟。
+
 ### 建立組建定義
 
 1.	建立空白組建定義。作法：
@@ -341,7 +343,9 @@
 
 如果前一個組建未在本身之後清除 (例如，如果組建已在可以清除之前取消)，可能會留下現有的資源群組而與新的資源群組發生衝突。若要避免衝突，在建立新的資源群組之前，清除任何剩餘的資源群組 (和其相關聯的資源)。
 
-1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
+>[AZURE.NOTE] 如果您想要為每個組建建立及重複使用相同的叢集，請略過此步驟。
+
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
 2.	選取 [部署] > [Azure 資源群組部署]。
 
@@ -361,7 +365,7 @@
 
 ### 新增「佈建安全叢集」步驟
 
-1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
 2.	選取 [部署] > [Azure 資源群組部署]。
 
@@ -376,26 +380,30 @@
     |動作|**建立或更新資源群組**|
     |資源群組|必須符合您在前一個步驟中使用的名稱。|
     |位置|必須符合您的金鑰保存庫的位置。|
-    |範本|按一下 [...] 按鈕，然後選取 `azuredeploy.json`。|
-    |範本參數|按一下 [...] 按鈕，然後選取 `azuredeploy.parameters.json`。|
+    |範本|按一下 [...] 按鈕，然後選取 `azuredeploy.json`|
+    |範本參數|按一下 [...] 按鈕，然後選取 `azuredeploy.parameters.json`|
 
 5.	儲存組建定義。
 
 ### 新增「部署」步驟
 
-1.	在 [組建] 索引標籤上，選取 [加入建置步驟...] 命令。
+1.	在 [組建] 索引標籤上，選取 [新增組建步驟] 命令。
 
 2.	選取 [公用程式] > [PowerShell]。
 
 3.	選取組建步驟名稱旁的鉛筆圖示，然後將其重新命名為 [部署]。
 
-4. 選取下列值：
+4. 選取這些值 (以實際路徑取代 -PublishProfile 和 -ApplicationPackagePath 的值)：
 
     |設定名稱|值|
     |---|---|
     |類型|**檔案路徑**|
     |指令碼檔名|按一下 [...] 按鈕，然後瀏覽至應用程式專案內的 [指令碼] 目錄。選取 `Deploy-FabricApplication.ps1`。|
     |引數|`-PublishProfileFile path/to/MySolution/MyApplicationProject/PublishProfiles/MyPublishProfile.xml -ApplicationPackagePath path/to/MySolution/MyApplicationProject/pkg/$(BuildConfiguration)`|
+
+>[AZURE.NOTE] 若要輕鬆地建立有效的發佈設定檔 xml 檔案，請在 Visual Studio 中建立，如此處所示︰https://azure.microsoft.com/documentation/articles/service-fabric-publish-app-remote-cluster
+
+>[AZURE.NOTE] 如果您想要藉由覆寫現有應用程式而非予以升級來支援將應用程式部署至叢集，請新增此 Powershell 引數：'-OverwriteBehavior SameAppTypeAndVersion'。此外，請確定選取的發佈設定檔未設定為啟用升級。這會先移除任何現有的 ApplicationType 再安裝較新的組建。
 
 5.	儲存組建定義。
 
@@ -429,4 +437,4 @@
  - [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
  - [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

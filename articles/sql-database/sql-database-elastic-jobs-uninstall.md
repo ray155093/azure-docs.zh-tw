@@ -21,7 +21,7 @@
 
 ##使用 Azure 入口網站解除安裝彈性資料庫工作元件
 
-1. 開啟 [Azure 入口網站](https://ms.portal.azure.com/)。
+1. 開啟 [Azure 入口網站](https://portal.azure.com/)。
 2. 瀏覽至包含**彈性資料庫工作**元件的訂用帳戶，也就是彈性資料庫工作元件安裝所在的訂用帳戶。
 3. 按一下 [瀏覽]，然後按一下 [資源群組]。
 4. 選取名為 "\_\_ElasticDatabaseJob" 的資源群組。
@@ -64,4 +64,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

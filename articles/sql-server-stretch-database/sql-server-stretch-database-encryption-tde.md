@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="05/17/2016"
+   ms.date="06/14/2016"
    ms.author="douglaslMS"/>
 
 # 為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)
@@ -58,4 +58,4 @@ TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫�
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

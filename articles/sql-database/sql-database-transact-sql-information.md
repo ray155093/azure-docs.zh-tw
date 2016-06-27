@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/12/2016"
+   ms.date="06/13/2016"
    ms.author="rick.byham@microsoft.com"/>
 
 # Azure SQL Database Transact-SQL 差異
@@ -36,7 +36,7 @@ Microsoft SQL Server 和 Azure SQL Database 都支援應用程式相依的大部
 
 ## 在 SQL Database V12 中部分支援的功能
 
-SQL Database V12 支援部分而非全部的引數，這些引數存在於對應的 SQL Server 2016 Transact-SQL 陳述式中。例如，CREATE PROCEDURE 陳述式可以使用，但是 CREATE PROCEDURE 的 WITH ENCRYPTION 選項無法使用。請參閱連結的語法主題，以了解每個陳述式支援區域的詳細資訊。
+SQL Database V12 支援部分而非全部的引數，這些引數存在於對應的 SQL Server 2016 Transact-SQL 陳述式中。例如，可以使用 CREATE PROCEDURE 陳述式，但無法使用 CREATE PROCEDURE 的所有選項。請參閱連結的語法主題，以了解每個陳述式支援區域的詳細資訊。
 
 - 資料庫：[CREATE](https://msdn.microsoft.com/library/dn268335.aspx)/[ALTER](https://msdn.microsoft.com/library/ms174269.aspx)
 - DMV 通常可用於已公開推出的功能
@@ -64,7 +64,7 @@ SQL Database V12 支援部分而非全部的引數，這些引數存在於對應
 - 事件服務：事件、事件通知、查詢通知
 - 與資料庫檔案位置、大小和資料庫檔案 (由 Microsoft Azure 自動管理) 相關的功能。
 - 與高可用性相關的功能，高可用性是透過您的 Microsoft Azure 帳戶管理：備份、還原、AlwaysOn、資料庫鏡像、記錄傳送、復原模式。如需詳細資訊，請參閱「Azure SQL Database 備份和還原」。
-- 依賴記錄讀取器的功能：複寫、異動資料擷取。
+- 依賴在 SQL Database 上執行之記錄讀取器的功能：複寫、異動資料擷取。
 - 依賴 SQL Server Agent 或 MSDB 資料庫的功能：工作、警示、運算子、以原則為基礎的管理、Database Mail、中央管理伺服器。
 - FILESTREAM
 - 函式：fn\_get\_sql、fn\_virtualfilestats、fn\_virtualservernodes
@@ -108,4 +108,4 @@ Transact-SQL 參考包括從 SQL Server 版本 2008 到目前版本的相關主�
 
 在某些情況下，一般主題的主旨可用於產品中，但產品之間會有些微的差異。依適當情況會在主題的中間點指出差異。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

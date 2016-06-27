@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="06/14/2016" 
 	ms.author="stefsch"/>
 
 # 實作具有 App Service 環境的多層式安全性架構。
@@ -89,7 +89,9 @@ NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含
 
 
 ## 其他連結和資訊 ##
-傳統虛擬網路上的[網路安全性群組][NetworkSecurityGroupsClassic]組態。
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+
+在傳統虛擬網路上設定[網路安全性群組][NetworkSecurityGroupsClassic]。
 
 了解[輸出 IP 位址][NetworkArchitecture]和 App Service 環境。
 
@@ -103,10 +105,10 @@ App Service 環境所使用的[網路連接埠][InboundTraffic]
 [NetworkSecurityGroups]: https://azure.microsoft.com/documentation/articles/virtual-networks-nsg/
 [NetworkArchitecture]: https://azure.microsoft.com/documentation/articles/app-service-app-service-environment-network-architecture-overview/
 [NetworkSecurityGroupsClassic]: https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-ps/
-[InboundTraffic]: https://azure.microsoft.com/zh-TW/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
+[InboundTraffic]: https://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
 
 <!-- IMAGES -->
 [ConceptualArchitecture]: ./media/app-service-app-service-environment-layered-security/ConceptualArchitecture-1.png
 [NSGConfiguration]: ./media/app-service-app-service-environment-layered-security/NSGConfiguration-1.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->
