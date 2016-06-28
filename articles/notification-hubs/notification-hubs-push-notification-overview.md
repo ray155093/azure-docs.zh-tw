@@ -166,7 +166,7 @@ Mobile Apps 開發人員可以使用下列流程來利用通知中樞：
   [Xamarin.Android]: http://azure.microsoft.com/documentation/articles/partner-xamarin-notification-hubs-android-get-started
   [Microsoft.WindowsAzure.Messaging.NotificationHub]: http://msdn.microsoft.com/library/microsoft.windowsazure.messaging.notificationhub.aspx
   [Microsoft.ServiceBus.Notifications]: http://msdn.microsoft.com/library/microsoft.servicebus.notifications.aspx
-  [App Service Mobile Apps]: https://azure.microsoft.com/zh-TW/documentation/articles/app-service-mobile-value-prop/
+  [App Service Mobile Apps]: https://azure.microsoft.com/documentation/articles/app-service-mobile-value-prop/
   [範本]: notification-hubs-templates.md
   [Azure 入口網站]: https://portal.azure.com
   [標記]: (http://msdn.microsoft.com/library/azure/dn530749.aspx)
