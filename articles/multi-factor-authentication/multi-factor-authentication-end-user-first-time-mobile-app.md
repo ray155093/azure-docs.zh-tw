@@ -31,7 +31,7 @@
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/mobileapp.png)
 
 - 選取 [通知] 或 [單次密碼]，然後按一下 [設定]。
-- 在已安裝 Azure Authenticator 應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱[手動新增帳戶](#adding-an-account-manually)。
+- 在已安裝 Azure Authenticator 應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱[手動新增帳戶](#手動新增帳戶)。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan.png)
 
