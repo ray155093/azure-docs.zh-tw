@@ -44,9 +44,9 @@
 
 如何使用多因素驗證|說明
 :------------- | :------------- | 
-[搭配 Office 365 使用](#creating-and-deleting-app-passwords-with-office-365)| 這表示您想要透過 Office 365 入口網站建立應用程式密碼。
+[搭配 Office 365 使用](#使用 Office 365 建立和刪除應用程式密碼)| 這表示您想要透過 Office 365 入口網站建立應用程式密碼。
 [](#creating-and-deleting-app-passwords-with-myapps-portal)|這表示您想要透過 [https://myapps.microsoft.com](https://myapps.microsoft.com) 建立應用程式密碼。
-[搭配 Microsoft Azure 使用](#create-app-passwords-in-the-azure-portal)| 這表示您想要透過 Azure 入口網站建立應用程式密碼。
+[搭配 Microsoft Azure 使用](#在 Azure 入口網站中建立應用程式密碼)| 這表示您想要透過 Azure 入口網站建立應用程式密碼。
 
 ## 使用 Office 365 建立和刪除應用程式密碼 
 
