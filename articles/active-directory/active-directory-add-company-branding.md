@@ -46,9 +46,7 @@
 
 > [AZURE.NOTE]
 >
-
 - 在已設定商標之 Azure 傳統入口網站的 [Active Directory] > [目錄] > [網域] 區段中，您的網域名稱必須為 [作用中]。
-
 - 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。如果您使用個人 Microsoft 帳戶進行登入，可能會看到 Azure AD 所呈現並加上商標的使用者圖格清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
 
 
@@ -221,4 +219,4 @@ Azure AD 中的部分可自訂元素有多個使用案例。您可以在每個�
 [7]: ./media/active-directory-add-company-branding/SignInPage_aftercustomization_croppedtop.png
 [8]: ./media/active-directory-add-company-branding/APBranding.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0622_2016-->

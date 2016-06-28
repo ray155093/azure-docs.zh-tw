@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/10/2016"
+	ms.date="06/21/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
@@ -69,7 +69,7 @@ Web 測試可分為兩種：
 
 - 如果五分鐘內有三個位置發生失敗，則依預設會將 [警示]傳送給您。某個位置的失敗很可能是網路問題，而不是您的網站發生問題。但您可以將臨界值變更為更敏感或更不敏感，也可以變更應該將電子郵件傳送給哪一個人。
 
-    您可以設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。
+    您可以設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。(不過請注意，查詢參數目前不會當作屬性傳遞)。
 
 #### 測試更多 URL
 
@@ -430,4 +430,4 @@ Web 測試外掛程式提供這種作法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

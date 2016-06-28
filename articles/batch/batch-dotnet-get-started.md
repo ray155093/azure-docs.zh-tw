@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="05/27/2016"
+	ms.date="06/16/2016"
 	ms.author="marsma"/>
 
 # 開始使用適用於 .NET 的 Azure Batch 程式庫
@@ -40,7 +40,7 @@
 
 ### Visual Studio
 
-您必須擁有 **Visual Studio 2013** 或 **Visual Studio 2015** 才能建置範例專案。您可以在 [Visual Studio 2015 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
+您必須擁有 **Visual Studio 2015** 才能建置範例專案。您可以在 [Visual Studio 2015 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
 
 ### DotNetTutorial 程式碼範例
 
@@ -48,13 +48,9 @@
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
 
-### Azure Batch 總管 (選用)
-
-[Azure Batch 總管][github_batchexplorer]是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
-
 ## DotNetTutorial 範例專案概觀
 
-DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 2013 方案：**DotNetTutorial** 和 **TaskApplication**。
+DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 2015 方案：**DotNetTutorial** 和 **TaskApplication**。
 
 - **DotNetTutorial** 是與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。DotNetTutorial 會在本機工作站上執行。
 
@@ -66,7 +62,7 @@ DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 2013 
 
 [**步驟 1.**](#step-1-create-storage-containers) 在 Azure Blob 儲存體中建立**容器**。<br/> [**步驟 2.**](#step-2-upload-task-application-and-data-files) 將工作應用程式和輸入檔案上傳至容器。<br/> [**步驟 3.**](#step-3-create-batch-pool) 建立 Batch **集區**。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**3a.** 集區 **StartTask** 會在節點加入集區時將工作二進位檔 (TaskApplication) 下載至這些節點。<br/> [**步驟 4.**](#step-4-create-batch-job) 建立 Batch **作業**。<br/> [**步驟 5.**](#step-5-add-tasks-to-job) 將**工作**新增至作業。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**5a.** 工作會排程在節點上執行。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**5b.** 每項工作會從 Azure 儲存體下載其輸入資料，然後開始執行。<br/> [**步驟 6.**](#step-6-monitor-tasks) 監視工作。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**6a.** 當工作完成時，它們會將其輸出資料上傳至 Azure 儲存體。<br/> [**步驟 7.**](#step-7-download-task-output) 從儲存體下載工作輸出。
 
-如上所述，並非每個 Batch 方案都會執行這些確切步驟，並且可能包含更多步驟，但 DotNetTutorial 範例應用程式會示範在 Batch 方案中找到的一般程序。
+如上所述，並非每個 Batch 方案都會執行這些確切步驟，也有可能包含更多步驟，但 DotNetTutorial 範例應用程式會示範在 Batch 方案中找到的一般程序。
 
 ## 建置 DotNetTutorial 範例專案
 
@@ -89,19 +85,19 @@ private const string StorageAccountName = "";
 private const string StorageAccountKey  = "";
 ```
 
-> [AZURE.IMPORTANT] 如上所述，您目前必須在 Azure 儲存體中指定**一般用途**的儲存體帳戶的認證。Batch 應用程式將使用**一般用途**的儲存體帳戶中的 Blob 儲存體。請未指定透過選取「Blob 儲存體」帳戶類型所建立的儲存體帳戶的認證。
+> [AZURE.IMPORTANT] 如上所述，目前您必須在 Azure 儲存體中指定**一般用途**的儲存體帳戶的認證。Batch 應用程式會使用**一般用途**儲存體帳戶中的 Blob 儲存體。請勿指定透過選取「Blob 儲存體」帳戶類型所建立的儲存體帳戶認證。
 
 您可以在 [Azure 入口網站][azure_portal]中每項服務的帳戶刀鋒視窗中尋找您的 Batch 和儲存體帳戶認證：
 
 ![入口網站中的 Batch 認證][9] ![入口網站中的 Storage 認證][10]<br/>
 
-您現已使用您的認證更新專案，以滑鼠右鍵按一下 [方案總管] 中的方案，然後按一下 [建置方案]。出現提示時，請確認任何 NuGet 封裝的還原。
+您現已使用認證更新專案，以滑鼠右鍵按一下 [方案總管] 中的方案，然後按一下 [建置方案]。出現提示時，請確認任何 NuGet 封裝的還原。
 
-> [AZURE.TIP] 如果未自動還原 NuGet 封裝，或您看到有關封裝還原失敗的錯誤，請確定您已安裝 [NuGet 封裝管理員][nuget_packagemgr]。然後啟用遺失封裝的下載。若要啟用封裝下載，請參閱[在建置期間啟用封裝還原][nuget_restore]。
+> [AZURE.TIP] 如果未自動還原 NuGet 封裝，或看到有關封裝還原失敗的錯誤，請確定您已安裝 [NuGet 封裝管理員][nuget_packagemgr]。然後啟用遺失封裝的下載。若要啟用封裝下載，請參閱[在建置期間啟用封裝還原][nuget_restore]。
 
 在下列各節中，我們會將範例應用程式細分為用來處理 Batch 服務中工作負載的數個步驟，並詳細討論這些步驟。建議您在進行本文的其餘部分時參閱 Visual Studio 中開啟的方案，因為並不會討論範例中的每一行程式碼。
 
-瀏覽至 DotNetTutorial 專案的 `Program.cs` 檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。以下每個步驟大致會追隨 `MainAsync` 中方法呼叫的進展。
+瀏覽至 DotNetTutorial 專案的 `Program.cs` 檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。以下每個步驟大致會依 `MainAsync` 中的方法呼叫進展而定。
 
 ## 步驟 1：建立儲存體容器
 
@@ -255,7 +251,7 @@ DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseT
 
 ### 共用存取簽章 (SAS)
 
-共用存取簽章納入為 URL 的一部分時，便是可供安全存取 Azure 儲存體中容器和 Blob 的字串。DotNetTutorial 應用程式會使用 Blob 和容器共用存取簽章 URL，並示範如何從儲存體服務取得這些共用存取簽章字串。
+共用存取簽章納入為 URL 的一部分時，便可安全存取 Azure 儲存體中容器和 Blob 的字串。DotNetTutorial 應用程式會使用 Blob 和容器共用存取簽章 URL，並示範如何從儲存體服務取得這些共用存取簽章字串。
 
 - **Blob 共用存取簽章**：DotNetTutorial 中集區的 StartTask 會在從儲存體下載應用程式二進位檔和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面步驟 3)。DotNetTutorial 的 `Program.cs` 中的 `UploadFileToContainerAsync` 方法包含可取得各 Blob 共用存取簽章的程式碼。呼叫 [CloudBlob.GetSharedAccessSignature][net_sas_blob] 即可完成。
 
@@ -335,13 +331,13 @@ private static async Task CreatePoolAsync(
 
 此外，在上述程式碼片段中值得注意的是在 StartTask 的 CommandLine 屬性中使用的兩個環境變數：`%AZ_BATCH_TASK_WORKING_DIR%` 和 `%AZ_BATCH_NODE_SHARED_DIR%`。Batch 集區中的每個計算節點都會自動以 Batch 特有的數個環境變數進行設定。工作所執行的任何程序都可以存取這些環境變數。
 
-> [AZURE.TIP] 若要深入了解 Batch 集區中計算節點上可用的環境變數，以及有關工作的工作目錄資訊，請參閱 [Azure Batch 功能概觀](batch-api-basics.md)中的「工作的環境設定」和「檔案和目錄」章節。
+> [AZURE.TIP] 若要深入了解 Batch 集區中計算節點上可用的環境變數，以及有關工作的工作目錄資訊，請參閱[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)中的[工作的環境設定](batch-api-basics.md#environment-settings-for-tasks)和[檔案和目錄](batch-api-basics.md#files-and-directories)章節。
 
 ## 步驟 4：建立 Batch 作業
 
 ![建立 Batch 作業][4]<br/>
 
-Batch 作業基本上是與計算節點集區相關聯的工作集合。您不僅可用來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束，例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。不會設定任何其他屬性。
+Batch 作業基本上是與計算節點集區相關聯的工作集合。您不僅可用來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束 — 例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。不會設定任何其他屬性。
 
 所有 Batch 作業都會與特定集區相關聯。此關聯表示將會在哪些節點上執行作業的工作。您可使用 [CloudJob.PoolInformation][net_job_poolinfo] 屬性來指定此關聯，如下列程式碼片段所示。
 
@@ -655,7 +651,7 @@ if (response != "n" && response != "no")
 
 ## 執行 DotNetTutorial 範例
 
-當您執行範例應用程式時，主控台輸出大致如下。在執行期間，啟動集區的計算節點時，您將在 `Awaiting task completion, timeout in 00:30:00...` 遇到暫停。在執行期間和之後，使用 [Batch 總管][github_batchexplorer]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或其中一個[可用的 Azure 儲存體總管][storage_explorers]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
+當您執行範例應用程式時，主控台輸出大致如下。在執行期間，啟動集區的計算節點時，您將在 `Awaiting task completion, timeout in 00:30:00...` 遇到暫停。在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Azure 儲存體總管][storage_explorers]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
 以預設組態執行應用程式時，一般的執行時間**大約 5 分鐘**。
 
@@ -692,21 +688,18 @@ Sample complete, hit ENTER to exit...
 
 ## 後續步驟
 
-您可隨意變更 DotNetTutorial 和 TaskApplication，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 TaskApplication (例如使用 [Thread.Sleep][net_thread_sleep])，以模擬長時間執行的工作並以 Batch 總管的「熱圖」功能監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區加速執行時間 (提示：簽出 [azure-batch-samples][github_samples] 中 [Microsoft.Azure.Batch.Samples.Common][github_samples_common] 專案的 `ArticleHelpers.cs`)。
+您可隨意變更 DotNetTutorial 和 TaskApplication，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 TaskApplication (例如使用 [Thread.Sleep][net_thread_sleep])，以模擬長時間執行的工作並在入口網站中監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區加速執行時間 (提示：簽出 [azure-batch-samples][github_samples] 中 [Microsoft.Azure.Batch.Samples.Common][github_samples_common] 專案的 `ArticleHelpers.cs`)。
 
 既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。
 
-- 如果您不熟悉這項服務，我們建議檢閱 [Azure Batch 功能概觀](batch-api-basics.md)一文。
+- 我們建議所有新的 Batch 使用者都要閱讀[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)。
 - 從 [Batch 學習路徑][batch_learning_path]中的**深入開發**之下的其他 Batch 開發文章著手。
 - 使用 [TopNWords][github_topnwords] 範例，查看處理「前 N 個單字」工作負載的不同實作方式。
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
-[batch_explorer_blog]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 [batch_learning_path]: https://azure.microsoft.com/documentation/learning-paths/batch/
-[blog_linux]: http://blogs.technet.com/b/windowshpc/archive/2016/03/30/introducing-linux-support-on-azure-batch.aspx
-[github_batchexplorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [github_dotnettutorial]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/DotNetTutorial
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_common]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/Common
@@ -744,9 +737,9 @@ Sample complete, hit ENTER to exit...
 [net_taskstatemonitor]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskstatemonitor.aspx
 [net_thread_sleep]: https://msdn.microsoft.com/library/274eh01d(v=vs.110).aspx
 [net_virtualmachineconfiguration]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.virtualmachineconfiguration.aspx
-[nuget_packagemgr]: https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c
+[nuget_packagemgr]: https://docs.nuget.org/consume/installing-nuget
 [nuget_restore]: https://docs.nuget.org/consume/package-restore/msbuild-integrated#enabling-package-restore-during-build
-[storage_explorers]: http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx
+[storage_explorers]: http://storageexplorer.com/
 [visual_studio]: https://www.visualstudio.com/products/vs-2015-product-editions
 
 [1]: ./media/batch-dotnet-get-started/batch_workflow_01_sm.png "在 Azure 儲存體中建立容器"
@@ -761,4 +754,4 @@ Sample complete, hit ENTER to exit...
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Stretch Database 概觀 | Microsoft Azure"
-	description="了解 Stretch Database 如何以無訊息方式安全地將歷史資料移轉到 Microsoft Azure 雲端。"
+	description="了解 Stretch Database 能以無訊息方式安全地將冷資料移轉到 Microsoft Azure 雲端。"
 	services="sql-server-stretch-database"
 	documentationCenter=""
 	authors="douglaslMS"
@@ -18,7 +18,7 @@
 
 # Stretch Database 概觀
 
-Stretch Database 能以無訊息方式安全地將歷史資料移轉到 Microsoft Azure 雲端。
+Stretch Database 能以無訊息方式安全地將冷資料移轉到 Microsoft Azure 雲端。
 
 如果您只想立即開始使用 Stretch Database，請參閱 [Get started by running the Enable Database for Stretch Wizard (開始執行為資料庫啟用延伸功能精靈)](sql-server-stretch-database-wizard.md)。
 
@@ -34,17 +34,17 @@ Stretch Database 提供下列優點：
 **即使在移轉期間也能確保資料安全**：放心地將最重要的應用程式安全延伸到雲端。SQL Server 的永遠加密功能可為傳輸中的資料加密。資料列層級安全性 (RLS) 和其他進階的 SQL Server 安全性功能也可與 Stretch Database 搭配運作來保護資料。
 
 ## Stretch Database 有何作用？
-為 SQL Server 執行個體、資料庫和至少一個資料表啟用 Stretch Database 後，Stretch Database 便會以無訊息模式開始將歷史資料移轉至 Azure。
+為 SQL Server 執行個體、資料庫和至少一個資料表啟用 Stretch Database 後，Stretch Database 便會以無訊息模式開始將冷資料移轉至 Azure。
 
--   如果您將歷史資料儲存在個別資料表上，則可以移轉整個資料表。
+-   如果您將冷資料儲存在個別的資料表上，您可以移轉整個資料表。
 
--   如果資料表同時包含歷史資料及目前的資料，您可以指定篩選述詞以選取要移轉的資料列。
+-   如果您的資料表同時包含熱和冷資料，您可以指定篩選述詞以選取要移轉的資料列。
 
 Stretch Database 可確保資料不會在移轉失敗時遺失。此外，它還有重試邏輯可處理移轉期間可能發生的連線問題。動態管理檢視則能提供移轉的狀態。
 
 您可以暫停資料移轉，以便針對本機伺服器問題進行疑難排解或讓可用網路頻寬達到最大。
 
-您不必變更現有查詢和用戶端應用程式。即使正在移轉資料，也能繼續順暢存取本機和遠端的資料。進行遠端查詢時會有些許延遲，但在查詢歷史資料時也只會遇到這方面的延遲。
+您不必變更現有查詢和用戶端應用程式。即使正在移轉資料，也能繼續順暢存取本機和遠端的資料。進行遠端查詢時會有些許延遲，但在查詢冷資料時也只會遇到這方面的延遲。
 
 ![Stretch Database 概觀][StretchOverviewImage1]
 
@@ -54,12 +54,12 @@ Stretch Database 可確保資料不會在移轉失敗時遺失。此外，它還
 |如果您是決策人員|如果您是資料庫管理員|
 |------------------------------|-------------------|
 |我必須長時間保存交易資料。|我的資料表大小逐漸失控。|
-|我有時必須查詢歷史資料。|使用者表示他們需要存取歷史資料，但實際上卻很少使用。|
+|我有時必須查詢冷資料。|使用者表示他們需要存取冷資料，但實際上卻很少使用。|
 |我有不想更新的應用程式，包括較舊版的應用程式。|我必須不斷購買和增加更多儲存體。|
 |我想要設法節省儲存體成本。|我無法在 SLA 內備份或還原如此大型的資料表。|
 
 ## 何種資料庫和資料表是 Stretch Database 的適用對象？
-Stretch Database 的目標是擁有大量歷史資料，且通常儲存在少量資料表中的交易資料庫。這些資料表所包含的資料列數目可能超過 10 億個。
+Stretch Database 的目標是擁有大量冷資料，且通常儲存在少量資料表中的交易資料庫。這些資料表所包含的資料列數目可能超過 10 億個。
 
 如果您使用 SQL Server 2016 的時態表功能，請使用 Stretch Database 將相關聯的全部或部分歷史資料表移轉至符合成本效益的 Azure 儲存體。如需詳細資訊，請參閱 [Manage Retention of Historical Data in System-Versioned Temporal Tables (管理已設定系統版本之時態表中歷史資料的保留期)](https://msdn.microsoft.com/library/mt637341.aspx)。
 
@@ -123,4 +123,4 @@ Stretch Database 不會變更現有資料庫的權限模型。使用者登入可
 [StretchOverviewImage2]: ./media/sql-server-stretch-database-overview/StretchDBOverview1.png
 [StretchOverviewImage3]: ./media/sql-server-stretch-database-overview/StretchDBOverview2.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

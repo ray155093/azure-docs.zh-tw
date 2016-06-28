@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/05/2016"
+   ms.date="06/20/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 建立 Azure SQL 資料倉儲
@@ -62,10 +62,10 @@
 
 ## 後續步驟
 
-既然您已建立 SQL 資料倉儲，您已準備好[連接](./sql-data-warehouse-get-started-connect.md)和開始查詢。
+既然您已建立 SQL 資料倉儲，您已準備好[連接](./sql-data-warehouse-connect-overview.md)和開始查詢。
 
 若要將資料載入 SQL 資料倉儲，請參閱[載入概觀](./sql-data-warehouse-overview-load.md)。
 
 如果您嘗試將現有的資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](./sql-data-warehouse-overview-migrate.md)或使用[移轉公用程式](./sql-data-warehouse-migrate-migration-utility.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

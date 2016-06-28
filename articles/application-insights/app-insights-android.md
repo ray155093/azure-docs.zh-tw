@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="mobile-android"
     ms.devlang="na"
     ms.topic="get-started-article"
-	ms.date="03/17/2016"
+	ms.date="06/20/2016"
     ms.author="awills"/>
 
 # Android 應用程式的分析
@@ -30,8 +30,8 @@ Microsoft 為裝置 devOps 提供兩個解決方案：適用於用戶端分析�
 
 如果您的應用程式有伺服器端，請使用 [Application Insights](app-insights-overview.md) 在 [ASP.NET](app-insights-asp-net.md) 或 [J2EE](app-insights-java-get-started.md) 上監視您的應用程式的 Web 伺服器端。
 
-> [AZURE.NOTE] Application Insights for iOS、Android、Windows 市集和 Windows Phone 應用程式將於 2016 年 6 月 15 日停止顯示資料。
+> [AZURE.NOTE] 您很快就能夠使用 [Application Insights 分析](app-insights-analytics.md)和[連續匯出](app-insights-export-telemetry.md)搭配從 HockeyApp SDK 傳送的遙測。
 >
-> [這項變更的詳細資訊](https://azure.microsoft.com/blog/transitioning-mobile-apps-from-application-insights-to-hockeyapp/)。
+> [這項變更的詳細資訊。](https://azure.microsoft.com/blog/update-on-transitioning-mobile-apps-from-application-insights-to-hockeyapp/)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->
