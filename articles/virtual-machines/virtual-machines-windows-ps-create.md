@@ -33,34 +33,36 @@
 
 1. 取得可以建立資源的可用位置清單。
 
-	    Get-AzureLocation | sort Name | Select Name
+	    Get-AzureRmLocation | sort Location | Select Location
         
     您應該會看到如下的結果：
     
-        Name
-        ----
-        Australia East
-        Australia Southeast
-        Brazil South
-        Central India
-        Central US
-        East Asia
-        East US
-        East US 2
-        Japan East
-        Japan West
-        North Central US
-        North Europe
-        South Central US
-        South India
-        Southeast Asia
-        West Europe
-        West India
-        West US
+        Location
+        --------
+        australiaeast
+        australiasoutheast
+        brazilsouth
+        canadacentral
+        canadaeast
+        centralindia
+        centralus
+        eastasia
+        eastus
+        eastus2
+        japaneast
+        japanwest
+        northcentralus
+        northeurope
+        southcentralus
+        southeastasia
+        southindia
+        westeurope
+        westindia
+        westus
 
 2. 使用清單中的位置取代 **$locName** 的值。建立變數。
 
-        $locName = "Central US"
+        $locName = "centralus"
         
 3. 使用新資源群組的名稱取代 **$rgName** 的值。建立變數和資源群組。
 
@@ -74,13 +76,13 @@
 1. 使用儲存體帳戶的名稱取代 **$stName** 的值。測試名稱的唯一性。
 
         $stName = "mystorage1"
-        Test-AzureName -Storage $stName
+        Get-AzureRmStorageAccountNameAvailability $stName
 
-    如果這個命令傳回 **False**，表示您提出的名稱是 Azure 內唯一的。儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
+    如果這個命令傳回 **True**，表示您提出的名稱是 Azure 內唯一的。儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
     
 2. 現在，請執行以下命令來建立儲存體帳戶。
     
-        $storageAcc = New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -Type "Standard_LRS" -Location $locName
+        $storageAcc = New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -SkuName "Standard_LRS" -Kind "Storage" -Location $locName
         
 ## 步驟 4：建立虛擬網路
 
@@ -170,4 +172,4 @@
 - 請檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 - 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

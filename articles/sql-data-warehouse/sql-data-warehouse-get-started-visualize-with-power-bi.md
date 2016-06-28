@@ -13,15 +13,16 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/11/2016"
+   ms.date="06/16/2016"
    ms.author="lodipalm;barbkess;sonyama" />
 
 # 使用 Power BI 視覺化資料
 
 > [AZURE.SELECTOR]
-- [Power BI][]
-- [Azure Machine Learning][]
-- [SQLCMD][] 
+- [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
+- [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
+- [Visual Studio](sql-data-warehouse-query-visual-studio.md)
+- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md) 
 
 本教學課程會示範如何使用 Power BI 來連接到 SQL 資料倉儲，並建立一些基本的視覺效果。
 
@@ -29,10 +30,12 @@
 
 ## 必要條件
 
-若要完成本教學課程，您需要隨著 AdventureWorksDW 範例資料庫預先載入的 SQL 資料倉儲。當您建立新的 SQL 資料倉儲時，您可以建立空白資料庫 (包含 AdventureWorks 範例資料的資料庫) 或還原其他資料庫的備份。如需如何使用已為您載入的範例資料來建立 SQL 資料倉儲的詳細資訊，請參閱[建立 SQL 資料倉儲][]。如果您已經有想要使用的 SQL 資料倉儲，但沒有範例資料，請依照[手動載入範例資料][]中的指示來進行。
+若要逐步執行本教學課程，您需要：
+
+- 預先載入 AdventureWorksDW 資料庫的 SQL 資料倉儲。若要進行佈建，請參閱[建立 SQL 資料倉儲][]並選擇載入範例資料。如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][]。
 
 
-## 連接到資料庫
+## 1\.連接到您的資料庫
 
 若要開啟 Power BI 並連接到您的 AdventureWorksDW 資料庫：
 
@@ -59,7 +62,7 @@
 
 
 
-## 建立報告
+## 2\.建立報表
 
 您現在已準備好使用 Power BI 來分析 AdventureWorksDW 範例資料。為了執行分析，AdventureWorksDW 有一個稱為 AggregateSales 的檢視。這個檢視包含用來分析公司銷售的一些重要指標。
 
@@ -93,33 +96,29 @@
 既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][]、[載入][]或[移轉][]。或者，看一下 [Power BI 網站][]。
 
 <!--Image references-->
-[1]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
-[2]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-button.png
-[3]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-connect-to-azure.png
-[4]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-sign-in.png
-[5]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-open-adventureworks.png
-[6]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-aggregatesales.png
-[7]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-map.png
-[8]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-chooseaxis.png
-[9]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-bar.png
-[10]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-prepare-line.png
-[11]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-line.png
-[12]: ./media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-save.png
+[1]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
+[2]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-button.png
+[3]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-connect-to-azure.png
+[4]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-sign-in.png
+[5]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-open-adventureworks.png
+[6]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-aggregatesales.png
+[7]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-map.png
+[8]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-chooseaxis.png
+[9]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-bar.png
+[10]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-prepare-line.png
+[11]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-line.png
+[12]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-save.png
 
 <!--Article references-->
-[移轉]: ./sql-data-warehouse-overview-migrate.md
-[開發]: ./sql-data-warehouse-overview-develop.md
-[載入]: ./sql-data-warehouse-overview-load.md
-[手動載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
-[connecting to SQL Data Warehouse]: ./sql-data-warehouse-integrate-power-bi.md
-[Create a SQL Data Warehouse]: ./sql-data-warehouse-get-started-provision.md
-[Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
-[Azure Machine Learning]: ./sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md
-[SQLCMD]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
-[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
+[移轉]: sql-data-warehouse-overview-migrate.md
+[開發]: sql-data-warehouse-overview-develop.md
+[載入]: sql-data-warehouse-overview-load.md
+[手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
+[connecting to SQL Data Warehouse]: sql-data-warehouse-integrate-power-bi.md
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
 <!--Other-->
 [Azure 入口網站]: https://portal.azure.com/
 [Power BI 網站]: http://www.powerbi.com/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

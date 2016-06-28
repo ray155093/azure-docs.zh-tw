@@ -56,13 +56,13 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 
 下列影片將提供適用於同步處理的 Azure AD Connect Health 概觀
 
-[Azure Active Directory Connect Health︰監視同步處理引擎](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-Active-Directory-Connect-Health-Monitoring-the-sync-engine)
+>[AZURE.VIDEO azure-active-directory-connect-health-monitoring-the-sync-engine]
 
 
 ## 開始使用 Azure AD Connect Health
 很容易就可以開始使用 Azure AD Connect Health。請依照下列步驟執行：
 
-1. [取得 Azure AD Premium](active-directory-get-started-premium) 或[開始試用](https://azure.microsoft.com/trial/get-started-active-directory/)
+1. [取得 Azure AD Premium](active-directory-get-started-premium.md) 或[開始試用](https://azure.microsoft.com/trial/get-started-active-directory/)
 
 2. 在身分識別伺服器上[下載和安裝 Azure AD Connect Health 代理程式](#download-and-install-azure-ad-connect-health-agent)。
 
@@ -80,7 +80,7 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 
 
 ## Azure AD Connect Health 入口網站
-Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使用情況分析。https://aka.ms/aadconnecthealth 會帶您前往 Azure AD Connect Health 的主要刀鋒視窗。您可以將刀鋒視窗視為視窗。在 [主要] 刀鋒視窗上，您會看到 [快速啟動]、Azure AD Connect Health 中的服務以及其他設定選項。以下螢幕擷取畫面是各自的簡短說明。部署代理程式之後，Azure AD Connect Health 所監視之服務的服務識別碼。
+Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使用情況分析。https://aka.ms/aadconnecthealth 會帶您前往 Azure AD Connect Health 的主要刀鋒視窗。您可以將刀鋒視窗視為視窗。在 [主要] 刀鋒視窗上，您會看到 [快速啟動]、Azure AD Connect Health 中的服務以及其他設定選項。以下螢幕擷取畫面是各自的簡短說明。部署代理程式之後，健康狀態服務會自動識別 Azure AD Connect Health 所監視的服務。
 
 ![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/portal2.png)
 
@@ -106,4 +106,4 @@ Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使�
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0622_2016-->

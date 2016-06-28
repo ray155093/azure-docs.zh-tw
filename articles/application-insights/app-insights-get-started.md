@@ -63,6 +63,7 @@ Application Insights 的運作方式是將 SDK 加入至您的應用程式，並
 
 ## <a name="video"></a>影片
 
+[![動畫簡介](./media/app-insights-get-started/video-front-1.png)](https://www.youtube.com/watch?v=fX2NtGrh-Y0)
 
 > [AZURE.VIDEO 218]
 
@@ -76,4 +77,4 @@ Application Insights 的運作方式是將 SDK 加入至您的應用程式，並
 
 [qna]: app-insights-troubleshoot-faq.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

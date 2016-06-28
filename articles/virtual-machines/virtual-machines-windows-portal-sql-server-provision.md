@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/08/2016"
+	ms.date="06/21/2016"
 	ms.author="jroth" />
 
 # 在 Azure 入口網站中佈建 SQL Server 虛擬機器
@@ -251,4 +251,6 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 如需 Azure 虛擬機器上 SQL Server 的影片概觀，請觀看 [Azure VM is the best platform for SQL Server 2016 (Azure VM 是 SQL Server 2016 的最佳平台)](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/Azure-VM-is-the-best-platform-for-SQL-Server-2016)。
 
-<!---HONumber=AcomDC_0608_2016-->
+[探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)：Azure 虛擬機器上的 SQL Server。
+
+<!---HONumber=AcomDC_0622_2016-->
