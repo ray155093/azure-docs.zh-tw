@@ -145,7 +145,7 @@ Site Recovery 處理序伺服器可以自動探索 vSphere 主機或管理主機
 1.	請確定您用於組態伺服器的機器符合[必要條件](#configuration-server-prerequisites)。尤其是請確定機器已使用下列設定連接到網際網路︰
 
 	- 允許存取這些 URL： *.hypervrecoverymanager.windowsazure.com; *.accesscontrol.windows.net; *.backup.windowsazure.com; *.blob.core.windows.net; *.store.core.windows.net
-- 允許存取 [http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi](http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi) 以下載 MySQL。
+	- 允許存取 [http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi](http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi) 以下載 MySQL。
 	- 允許使用 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (433) 通訊協定的 Azure 防火牆通訊。
 
 2.	在組態伺服器上下載並安裝 [VMware vSphere PowerCLI 6.0](https://developercenter.vmware.com/tool/vsphere_powercli/6.0)。
