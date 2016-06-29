@@ -30,7 +30,7 @@
 
 ## 必要條件
 
-1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://ms.portal.azure.com)。建立新的 **SQL Database**。提供資料庫名稱，並建立新的系統管理員和密碼。請務必記錄名稱和密碼，以供稍後使用。
+1. 建立用來作為分割合併狀態資料庫的 Azure SQL DB 資料庫。移至 [Azure 入口網站](https://portal.azure.com)。建立新的 **SQL Database**。提供資料庫名稱，並建立新的系統管理員和密碼。請務必記錄名稱和密碼，以供稍後使用。
 
 2. 請確定您的 Azure SQL DB 伺服器允許 Azure 服務進行連接。在**防火牆設定**的入口網站中，確定 [**允許存取 Azure 服務**] 設定設為 [**開啟**]。按一下儲存圖示。
 
@@ -339,4 +339,4 @@ Web 角色：
 [5]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/storage.png
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

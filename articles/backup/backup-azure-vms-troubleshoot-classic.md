@@ -69,7 +69,7 @@
 ## 還原
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | -------- | -------- | -------|
-| 還原 | 還原失敗並發生雲端內部錯誤 | <ol><li>您嘗試還原的雲端服務已設定為 DNS 設定。您可以檢查 <br>$deployment = Get-AzureDeployment -ServiceName "ServiceName" -Slot "Production" Get-AzureDns -DnsSettings $deployment.DnsSettings<br>如果有設定位址，這表示已設定為 DNS 設定。<br> <li>您嘗試還原的雲端服務利用 ReservedIP 設定，且雲端服務中現有的 VM 皆處於停止狀態。<br>您可以使用下列 PowerShell Cmdlet 來檢查雲端服務是否有保留的 IP：<br>$deployment = Get-AzureDeployment -ServiceName "servicename" -Slot "Production" $dep.ReservedIPName <br><li>您正在嘗試還原相同雲端服務中具有以下特殊網路設定的虛擬機器。<br>- 負載平衡器設定下的虛擬機器 (內部與外部)<br>- 具有多個保留 IP 的虛擬機器<br>- 具有多個 NIC 的虛擬機器<br>請在 UI 中選取新的雲端服務，或參閱[還原考量](backup-azure-restore-vms.md/#restoring-vms-with-special-network-configurations)以取得具有特殊網路設定之 VM 的相關資訊</ol> |
+| 還原 | 還原失敗並發生雲端內部錯誤 | <ol><li>您嘗試還原的雲端服務已設定為 DNS 設定。您可以檢查 <br>$deployment = Get-AzureDeployment -ServiceName "ServiceName" -Slot "Production" Get-AzureDns -DnsSettings $deployment.DnsSettings<br>如果有設定位址，這表示已設定為 DNS 設定。<br> <li>您嘗試還原的雲端服務利用 ReservedIP 設定，且雲端服務中現有的 VM 皆處於停止狀態。<br>您可以使用下列 PowerShell Cmdlet 來檢查雲端服務是否有保留的 IP：<br>$deployment = Get-AzureDeployment -ServiceName "servicename" -Slot "Production" $dep.ReservedIPName <br><li>您正在嘗試還原相同雲端服務中具有以下特殊網路設定的虛擬機器。<br>- 負載平衡器設定下的虛擬機器 (內部與外部)<br>- 具有多個保留 IP 的虛擬機器<br>- 具有多個 NIC 的虛擬機器<br>請在 UI 中選取新的雲端服務，或參閱[還原考量](./backup-azure-restore-vms.md/#restoring-vms-with-special-network-configurations)以取得具有特殊網路設定之 VM 的相關資訊</ol> |
 | 還原 | 所選取的 DNS 名稱已被使用：請指定不同的 DNS 名稱，然後再試一次。 | 此處的 DNS 名稱是指雲端服務名稱 (結尾通常是 .cloudapp.net)。這必須是唯一的。如果您遇到這個錯誤，您需要在還原期間選擇不同的 VM 名稱。<br><br> 請注意，只有 Azure 入口網站的使用者才會看到這個錯誤。透過 PowerShell 執行還原作業將會成功，因為它只會還原磁碟，並不會建立 VM。當您在磁碟還原作業之後明確建立 VM 時，將會遇到此錯誤。 |
 | 還原 | 指定的虛擬網路組態不正確：請指定不同的虛擬網路組態，然後再試一次。 | None |
 | 還原 | 指定的雲端服務使用保留的 IP，但不符合所要還原的虛擬機器組態：請指定另一個不使用保留 IP 的雲端服務，或選擇從另一個復原點還原。 | None |
@@ -119,4 +119,4 @@
 1. 登入 Azure 虛擬機器，然後瀏覽至 *C:\\WindowsAzure\\Packages* 資料夾。您應該會發現 WaAppAgent.exe 檔案已存在。
 2. 在該檔案上按一下滑鼠右鍵，前往 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

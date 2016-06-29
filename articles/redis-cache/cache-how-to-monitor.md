@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/13/2016" 
 	ms.author="sdanie"/>
 
 # 如何監視 Azure Redis 快取
@@ -54,7 +54,7 @@ Azure Redis 快取可讓您將診斷資料儲存在儲存體帳戶中，因此�
 
 設定診斷設定之後，請按一下 [儲存] 儲存組態。請注意，可能需要幾分鐘的時間，變更才會生效。
 
->[AZURE.IMPORTANT] 相同區域和訂用帳戶中的快取會共用相同的診斷儲存體帳戶，在組態變更時，會套用至訂用帳戶中所有位於該區域的快取。
+>[AZURE.IMPORTANT] 相同區域和訂用帳戶中的快取會共用相同的診斷儲存體設定，在組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。
 
 若要檢視預存度量，請檢查儲存體帳戶中名稱開頭為 `WADMetrics` 的資料表。如需在 Azure 入口網站外部存取預存度量的詳細資訊，請參閱[存取 Redis 快取監視資料](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)範例。
 
@@ -259,4 +259,4 @@ Azure Redis 快取可讓您將診斷資料儲存在儲存體帳戶中，因此�
 
 [redis-cache-premium-point-shard]: ./media/cache-how-to-monitor/redis-cache-premium-point-shard.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="storage-backup-recovery"
-   ms.date="05/03/2016"
+   ms.date="06/08/2016"
    ms.author="jimpark;"/>
 
 # 使用 Azure 備份來取代您的磁帶基礎結構
@@ -71,4 +71,4 @@
 - [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 - [試用 Azure 備份](backup-try-azure-backup-in-10-mins.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

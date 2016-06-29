@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/23/2016"
+	ms.date="06/13/2016"
 	ms.author="jgao"/>
 
 # 建立非互動式驗證 .NET HDInsight 應用程式
@@ -89,7 +89,7 @@
 
 ##開發 HDInsight 用戶端應用程式
 
-遵循[在 HDInsight 中提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically/#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk)中的指示，建立 C# .net 主控台應用程式。以下列項目取代 GetTokenCloudCredentials 方法：
+遵循[在 HDInsight 中提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk)中的指示，建立 C# .net 主控台應用程式。以下列項目取代 GetTokenCloudCredentials 方法：
 
     public static TokenCloudCredentials GetTokenCloudCredentials(string tenantId, string clientId, SecureString secretKey)
     {
@@ -122,4 +122,4 @@
 - [使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)
 - [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

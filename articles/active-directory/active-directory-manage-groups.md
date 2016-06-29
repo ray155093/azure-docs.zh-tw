@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/17/2016"
+	ms.date="06/14/2016"
 	ms.author="curtand"/>
 
 
@@ -89,4 +89,6 @@ Azure AD 存取管理解決方案的重點是安全性群組。使用安全性�
 
 * [群組的圖形 API 參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#GroupFunctions)
 
-<!---HONumber=AcomDC_0330_2016-->
+* [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
+
+<!---HONumber=AcomDC_0615_2016-->

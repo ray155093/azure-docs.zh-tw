@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="06/08/2016"
 	ms.author="tamram"/>
 
 # 設定 Azure 儲存體連接字串
@@ -80,13 +80,11 @@
 
 以下範例是包含服務 SAS for Blob 儲存體的連接字串：
 
-	BlobEndpoint=https://storagesample.blob.core.windows.net;
-	SharedAccessSignature=sv=2015-04-05&sr=b&si=tutorial-policy-635959936145100803&sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
+	BlobEndpoint=https://storagesample.blob.core.windows.net;SharedAccessSignature=sv=2015-04-05&sr=b&si=tutorial-policy-635959936145100803&sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
 
-而以下範例是具有 URL 編碼的相同連接字串︰
+而以下範例是具有特殊字元編碼的相同連接字串︰
 
-	BlobEndpoint=https://storagesample.blob.core.windows.net;
-	SharedAccessSignature=sv=2015-04-05&amp;sr=b&amp;si=tutorial-policy-635959936145100803&amp;sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
+	BlobEndpoint=https://storagesample.blob.core.windows.net;SharedAccessSignature=sv=2015-04-05&amp;sr=b&amp;si=tutorial-policy-635959936145100803&amp;sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
 
 ### 帳戶 SAS 範例
 
@@ -165,4 +163,4 @@
 - [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
 - [Azure 儲存體總管](storage-explorers.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

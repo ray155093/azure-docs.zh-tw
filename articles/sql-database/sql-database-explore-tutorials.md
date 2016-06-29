@@ -105,7 +105,7 @@
 
 ##開發
 
-在下列教學課程中，您將了解[對 Azure SQL Database 的用戶端連線](sql-database-connect-central-recommendations.md)和如何使用[連線程式庫](sql-database-libraries.md)。
+在下列教學課程中，您將了解[SQL Database 開發](sql-database-develop-overview.md)和如何使用[連線庫](sql-database-libraries.md)。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -180,4 +180,4 @@
 
 [探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

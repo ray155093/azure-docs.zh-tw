@@ -1,6 +1,6 @@
-## Parameter file
+## 參數檔案
 
-If you use a parameter file to pass the parameter values to your template during deployment, you'll need to create a JSON file with a format similar to the following example.
+如果您在部署期間，使用參數檔案傳遞參數值到您的範本，您需要建立格式類似以下範例的 JSON 檔案。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
@@ -26,4 +26,6 @@ If you use a parameter file to pass the parameter values to your template during
        }
     }
 
-The size of the parameter file cannot be more than 64 KB.
+參數檔的大小不得超過 64 KB。
+
+<!---HONumber=AcomDC_0615_2016-->

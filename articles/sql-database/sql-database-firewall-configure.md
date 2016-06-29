@@ -1,5 +1,5 @@
 <properties
-   pageTitle="設定 SQL Database 防火牆 | Microsoft Azure"
+   pageTitle="設定 SQL Server 防火牆概觀 | Microsoft Azure"
    description="了解如何以伺服器層級和資料庫層級防火牆規則設定 SQL Database 防火牆，以管理存取權。"
    keywords="資料庫防火牆"
    services="sql-database"
@@ -15,28 +15,37 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/12/2016"
+   ms.date="06/10/2016"
    ms.author="rickbyh"/>
 
-# 如何設定 Azure SQL Database 防火牆
-
-Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。為了協助保護您的資料，SQL Database 防火牆會防止對您的 SQL Database 伺服器的所有存取，直到您指定哪些電腦擁有權限。此防火牆會根據每一個要求的來源 IP 位址來授與資料庫存取權。
-
-若要設定您的資料庫防火牆，您可以建立防火牆規則，指定可接受的 IP 位址範圍。您可以在伺服器和資料庫層級建立防火牆規則。
-
-- **伺服器層級防火牆規則：**這些規則可讓用戶端存取整個 Azure SQL Database 伺服器，也就是相同邏輯伺服器內的所有資料庫。這些規則會儲存在 **master** 資料庫。
-- **資料庫層級防火牆規則：**這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。這些規則會針對每個資料庫建立，並且儲存在個別的資料庫 (包括 **master**)。這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。
-
-**建議：**Microsoft 建議在可行時使用資料庫層級防火牆規則，讓您的資料庫更具有可攜性。當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，使用伺服器層級防火牆規則。
+# 如何設定 Azure SQL Server 防火牆 - 概觀
 
 
-## SQL Database 防火牆概觀
+> [AZURE.SELECTOR]
+- [概觀](sql-database-firewall-configure.md)
+- [Azure 入口網站](sql-database-configure-firewall-settings.md)
+- [TSQL](sql-database-configure-firewall-settings-tsql.md)
+- [PowerShell](sql-database-configure-firewall-settings-powershell.md)
+- [REST API](sql-database-configure-firewall-settings-rest.md)
 
-一開始，防火牆會封鎖對您的 Azure SQL Database 伺服器的所有存取。若要開始使用 Azure SQL Database 伺服器，您必須移至 Azure 入口網站並指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Database 伺服器的存取。使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Database 伺服器。
 
-不過，如果您想要選擇性地只將存取權授與您的 Azure SQL Database 伺服器的其中一個資料庫，您必須使用伺服器層級防火牆規則中指定的 IP 位址範圍以外的 IP 位址範圍，為必要的資料庫建立資料庫層級規則，並且確保用戶端的 IP 位址落在資料庫層級規則中指定的範圍內。
+Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。為了協助保護您的資料，防火牆會防止對您的資料庫伺服器的所有存取，直到您指定哪些電腦擁有權限。此防火牆會根據每一個要求的來源 IP 位址來授與資料庫存取權。
 
-來自網際網路和 Azure 的連線嘗試必須先通過防火牆，才能到達您的 Azure SQL Database 伺服器或資料庫，如下圖所示。
+若要設定您的防火牆，您可以建立防火牆規則，指定可接受的 IP 位址範圍。您可以在伺服器和資料庫層級建立防火牆規則。
+
+- **伺服器層級防火牆規則：**這些規則可讓用戶端存取整個 Azure SQL Server，也就是相同邏輯伺服器內的所有資料庫。這些規則會儲存在 **master** 資料庫。使用入口網站或使用 Transact-SQL 陳述式即可設定伺服器層級防火牆規則。
+- **資料庫層級防火牆規則：**這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。這些規則會針對每個資料庫建立，並且儲存在個別的資料庫 (包括 **master**)。這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。僅可使用 Transact-SQL 陳述式來設定資料庫層級防火牆規則。
+
+**建議：**Microsoft 建議在可行時使用資料庫層級防火牆規則來增強安全性，並且讓您的資料庫更具有可攜性。當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，請對系統管理員使用伺服器層級的防火牆規則。
+
+
+## 防火牆概觀
+
+一開始，防火牆會封鎖對您的 Azure SQL Server 的所有 Transact-SQL 存取。若要開始使用 Azure SQL Server，您必須移至 Azure 入口網站並指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Server 的存取。使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Server。
+
+不過，如果您想要選擇性地只將存取權授與您的 Azure SQL Server 的其中一個資料庫，您必須使用伺服器層級防火牆規則中指定的 IP 位址範圍以外的 IP 位址範圍，為必要的資料庫建立資料庫層級規則，並且確保用戶端的 IP 位址落在資料庫層級規則中指定的範圍內。
+
+來自網際網路和 Azure 的連線嘗試必須先通過防火牆，才能到達您的 Azure SQL Server 或 SQL Database，如下圖所示。
 
    ![圖解防火牆設定。][1]
 
@@ -65,7 +74,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 ## 建立第一個伺服器層級防火牆規則
 
-可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。如需伺服器層級防火牆規則的詳細資訊，請參閱[如何：進行防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)。
+可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。如需伺服器層級防火牆規則的詳細資訊，請參閱[如何：使用 Azure 入口網站設定 Azure SQL Server 防火牆](sql-database-configure-firewall-settings.md)。
 
 ## 建立資料庫層級防火牆規則
 
@@ -128,11 +137,11 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 ## 另請參閱
 
-[作法：進行資料庫防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)
+[如何：使用 Azure 入口網站設定 Azure SQL Server 防火牆](sql-database-configure-firewall-settings.md)
 
 [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

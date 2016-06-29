@@ -114,7 +114,7 @@ Windows 容器對於任何在 Windows 執行的應用程式提供與 Linux 容�
 
 有幾個很受歡迎的系統可以部署整個 VM 群組，並且在系統上面安裝 Docker (或其他 Linux 容器主機系統) 做為可自動化的群組。如需直接連結，請參閱下面的[容器和工具](#containers-and-vm-technologies)一節。有幾個系統可以做到更大或更小的程度，只是這份清單並不詳盡。這要視您的技能和案例而定，可能不一定有用。
 
-Docker 有自己的 VM 建立工具 ([docker-machine](../articles/virtual-machines/virtual-machines-linux-classic-docker-machine.md)) 以及一個負載平衡、docker-container 叢集管理工具 ([swarm](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md))。此外，[Azure Docker VM 延伸模組](https://github.com/Azure/azure-docker-extension/blob/master/README.md)預設會支援 [`docker-compose`](https://docs.docker.com/compose/)，它可以跨越多個容器部署設定好的應用程式容器。
+Docker 有自己的 VM 建立工具 ([docker-machine](../articles/virtual-machines/virtual-machines-linux-docker-machine.md)) 以及一個負載平衡、docker-container 叢集管理工具 ([swarm](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md))。此外，[Azure Docker VM 延伸模組](https://github.com/Azure/azure-docker-extension/blob/master/README.md)預設會支援 [`docker-compose`](https://docs.docker.com/compose/)，它可以跨越多個容器部署設定好的應用程式容器。
 
 此外，您可以試試 [Mesosphere 的資料中心作業系統 (DCOS)](http://docs.mesosphere.com/install/azurecluster/)。DCOS 是根據開放原始碼 [Mesos](http://mesos.apache.org/) 的「分散式系統核心」，可讓您將您的資料中心視為一個可定址的服務。DCOS 擁有幾個重要系統的內建套件，例如 [Spark](http://spark.apache.org/) 和 [Kafka](http://kafka.apache.org/) (以及其他)，以及例如 [Marathon](https://mesosphere.github.io/marathon/) (容器控制系統) 和 [Chronos](https://mesosphere.github.io/chronos/) (分散式排程器) 的內建服務。Mesos 衍生自在 Twitter、AirBnb 和其他 Web 規模的企業學習到的工作。
 
@@ -165,7 +165,7 @@ Microsoft Azure 上的 Docker：
 - [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md)
 - [使用 Azure 入口網站中的Docker VM 擴充程式](../articles/virtual-machines/virtual-machines-linux-classic-portal-use-docker.md)
 - [在 Azure Marketplace 中快速開始使用 Docker](../articles/virtual-machines/virtual-machines-linux-classic-docker-quickstart.md)
-- [如何在 Azure 上使用 docker-machine](../articles/virtual-machines/virtual-machines-linux-classic-docker-machine.md)
+- [如何在 Azure 上使用 docker-machine](../articles/virtual-machines/virtual-machines-linux-docker-machine.md)
 - [如何在 Azure 上搭配 swarm 使用 docker](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md)
 - [在 Azure 上開始使用 Docker 和 Compose](../articles/virtual-machines/virtual-machines-linux-docker-compose-quickstart.md)
 - [使用 Azure 資源群組範本在 Azure 上快速建立 Docker 主機](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)
@@ -216,4 +216,4 @@ Linux 散發套件和 Azure 範例：
 [微服務]: http://martinfowler.com/articles/microservices.html
 <!--Image references-->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

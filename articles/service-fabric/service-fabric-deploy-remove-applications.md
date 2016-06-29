@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/03/2016"
+   ms.date="06/14/2016"
    ms.author="ryanwi"/>
 
 # 部署應用程式
@@ -30,7 +30,9 @@
 
 上傳應用程式封裝會將它放在一個可由內部 Service Fabric 元件存取的位置。您可以使用 PowerShell 執行上傳。執行本文中的任何 PowerShell 命令之前，請一律透過使用 **Connect-ServiceFabricCluster** 連接至 Service Fabric 叢集的方式啟動。
 
-假設您有一個名為 [*MyApplicationType*] 的資料夾，其中包含必要的應用程式資訊清單、服務資訊清單，以及程式碼/組態/資料封裝。**Copy-ServiceFabricApplicationPackage** 命令會上傳封裝。例如：
+假設您有一個名為 [*MyApplicationType*] 的資料夾，其中包含必要的應用程式資訊清單、服務資訊清單，以及程式碼/組態/資料封裝。**Copy-ServiceFabricApplicationPackage** 命令會將封裝上傳到叢集映像存放區。**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。若要匯入 SDK 模組，請執行「Import-Module "$ENV:ProgramFiles\\Microsoft SDKs\\Service Fabric\\Tools\\PSModule\\ServiceFabricSDK\\ServiceFabricSDK.psm1"」。
+
+下列範例會上傳封裝︰
 
 ~~~
 PS D:\temp> dir
@@ -175,12 +177,6 @@ DefaultParameters      : {}
 PS D:\temp>
 ~~~
 
-<!--
-## Next steps
-
-TODO [Upgrade applications][11]
--->
-
 ## 疑難排解
 
 ### Copy-ServiceFabricApplicationPackage 要求 ImageStoreConnectionString
@@ -225,4 +221,4 @@ PS D:\temp>
 [10]: service-fabric-application-model.md
 [11]: service-fabric-application-upgrade.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

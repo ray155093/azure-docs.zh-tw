@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="05/31/2016"
+    ms.date="06/21/2016"
     ms.author="magoedte;bwren"/>
 
 # 我的第一個圖形化 Runbook
@@ -110,10 +110,10 @@
 10.  [Add-AzureRmAccount] 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。按一下 [參數集]，然後選取 [ServicePrincipalCertificate] 參數集。 
 11.  一旦您選取參數集，參數會在 [活動參數組態] 刀鋒視窗中顯示。按一下 [APPLICATIONID]。<br> ![加入 Azure RM 帳戶參數](media/automation-first-runbook-graphical/add-azurermaccount-parameterset.png)
 12.  在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出] 並從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **ApplicationId**，然後按一下 [確定]。我們會指定欄位路徑之屬性的名稱，因為活動會輸出具有多個屬性的物件。
-13.  按一下 [CERTIFICATETHUMBPRINT]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **CertificateThumbrprint**，然後按一下 [確定]。 
+13.  按一下 [CERTIFICATETHUMBPRINT]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **CertificateThumbprint**，然後按一下 [確定]。 
 14.  按一下 [SERVICEPRINCIPAL] 並在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [ConstantValue]，按一下選項 [True]，然後按一下 [確定]。
 15.  按一下 [TENANTID]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **TenantId**，然後按兩次 [確定]。  
-16.  在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Set-AzureRmContext**。
+16.  在 [程式庫] 控制項的搜尋文字方塊中輸入 **Get-AzureRmContext**。
 17.	 將 [Set-AzureRmContext] 加入至畫布。
 18.	 在畫布上選取 [Set-AzureRmContext]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [指定訂用帳戶識別碼]。
 19.	 按一下 [參數]，隨即會顯示 [活動參數組態] 刀鋒視窗。 
@@ -130,7 +130,7 @@
 現在我們要加入 **Start-AzureRmVM** 活動，以啟動虛擬機器。您可以在您的 Azure 訂用帳戶中挑選任何虛擬機器，而現在我們會將該名稱硬式編碼成 Cmdlet。
 
 1. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Start-AzureRm**。
-2. 將 [Start-AzureRmVM] 加入至畫布，然後對它按一下並拖曳到 [指定訂用帳戶識別碼] 底下。
+2. 將 **Start-AzureRmVM** 加入至畫布，然後按一下並拖曳到 [連接到 Azure] 下方。
 3. 將滑鼠停留在 [指定訂用帳戶識別碼]，直到圖形的底端出現圓形。按一下圓形，並將箭頭拖曳到 [Start-AzureRmVM]。 
 4.	選取 [Start-AzureRmVM]。按一下 [參數] 然後按一下 [參數集] 以檢視 [Start-AzureRmVM] 的參數集。選取 [ResourceGroupNameParameterSetName] 參數集。請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。這表示它們是必要的參數。也請注意這兩者應該是字串值。
 5.	選取 [**名稱**]。在 [資料來源] 中選取 [PowerShell 運算式]，並輸入用雙引號括住的虛擬機器名稱，此為我們要用此 Runbook 啟動的虛擬機器。按一下 [確定]。<br>![Start-AzureRmVM 名稱參數值](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
@@ -193,15 +193,15 @@
 17. 在 [條件運算式] 中輸入「$ActivityOutput['Get Status'] -eq "Stopped"」。**Start-AzureRmVM** 現在只會在虛擬機器停止時執行。
 18.	在 [程式庫] 控制項中，展開 **Cmdlet**，然後展開 **Microsoft.PowerShell.Utility**。
 19.	將 [Write-Output] 加入至畫布兩次。<br> ![Write-Output 的 Runbook](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
-20. 在第一個 [Write-Output] 控制項上，將 [標籤] 值變更為 [通知 VM 已啟動]。
-21. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式「$VMName successfully started.」。
-22. 在第二個 [Write-Output] 控制項上，將 [標籤] 值變更為 [通知 VM 啟動失敗]
-23. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式「$VMName could not start.」。
+20. 在第一個 [Write-Output] 控制項中按一下 [參數]，然後將 [標籤] 值變更為 [通知 VM 已啟動]。
+21. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式 "$VMName successfully started"。
+22. 在第二個 [Write-Output] 控制項中按一下 [參數]，然後將 [標籤] 值變更為 [通知 VM 啟動失敗]
+23. 在 [InputObject] 中將 [資料來源] 變更為 [PowerShell 運算式]，然後輸入運算式 "$VMName could not start"。
 24. 建立從 [Start-AzureRmVM] 至 [通知 VM 已啟動] 和 [通知 VM 啟動失敗] 的連結。
 25. 選取連往 [通知 VM 已啟動] 的連結並將 [套用條件] 變更為 [True]。
-26. 在 [條件運算式] 中輸入「$ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true」。此 Write-Output 控制項現在只會在虛擬機器已成功啟動時執行。
+26. 在 [條件運算式] 中輸入 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true。此 Write-Output 控制項現在只會在虛擬機器已成功啟動時執行。
 27. 選取連往 [通知 VM 啟動失敗] 的連結並將 [套用條件] 變更為 [True]。
-28. 在 [條件運算式] 中輸入「$ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true」。此 Write-Output 控制項現在只會在虛擬機器未成功啟動時執行。 
+28. 在 [條件運算式] 中輸入 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true。此 Write-Output 控制項現在只會在虛擬機器未成功啟動時執行。
 29.	儲存 Runbook 並開啟 [測試] 窗格。
 30.	在虛擬機器停止下啟動 Runbook，它應該會啟動。
 
@@ -211,4 +211,4 @@
 -	若要開始使用 PowerShell Runbook，請參閱[我的第一個 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
 -	若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

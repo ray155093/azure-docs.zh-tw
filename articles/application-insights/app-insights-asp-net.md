@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="06/08/2016" 
+	ms.date="06/21/2016" 
 	ms.author="awills"/>
 
 
@@ -107,6 +107,13 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 
 如果您想要的話，可以為 [ASP.NET 4](app-insights-asp-net-manual.md) 或 [ASP.NET 核心](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)手動進行這些步驟。
 
+## 若要升級至未來的 SDK 版本
+
+若要升級至[新版的 SDK](app-insights-release-notes-dotnet.md)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。選取 Microsoft.ApplicationInsights.Web 然後選擇 [升級]。
+
+如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
+
+
 
 ## 後續步驟
 
@@ -116,4 +123,4 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 |**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出。 |![Visual studio](./media/app-insights-asp-net/62.png)
 |**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual studio](./media/app-insights-asp-net/64.png)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

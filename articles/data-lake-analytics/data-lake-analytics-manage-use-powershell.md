@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="01/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 使用 Azure PowerShell 管理 Azure 資料湖分析
@@ -335,7 +335,7 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 - [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-##附錄 A - 資料湖分析 ARM 範本
+##附錄 A - Data Lake Analytics ARM 範本
 
 下列 ARM 範本可用於部署資料湖分析帳戶及其相依資料湖存放區帳戶。另存成 json 檔案，然後使用 PowerShell 指令碼呼叫該範本。如需詳細資訊，請參閱[使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md#deploy-with-powershell)和[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
 
@@ -392,4 +392,4 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 	  }
 	}
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

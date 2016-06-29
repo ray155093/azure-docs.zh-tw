@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="06/15/2016"
 	ms.author="jeffstok"/>
 
 # 資料連線：了解資料從事件到串流分析的資料流輸入
@@ -40,7 +40,7 @@
 
 每一個串流分析事件中樞輸入都應該設定為有自己的用戶群組。當工作包含自我聯結或多個輸入時，某些輸入就有可能供多個讀取器下游使用，這樣會影響單個用戶群組中的讀取器數目。若要避免超出每個資料分割的每個用戶群組 5 個讀取器的事件中樞限制，最好指定每個串流分析工作的用戶群組。請注意，每一個事件中樞另外還有 20 個用戶群組的限制。如需詳細資訊，請參閱[事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)。
 
-## 將事件中樞設定為輸入資料流
+### 將事件中樞設定為輸入資料流
 
 下表說明事件中樞輸入索引標籤中的每一個屬性及其描述：
 
@@ -77,11 +77,13 @@ FROM Input
 
 Azure IoT 中樞是已針對 IoT 案例最佳化的高延展性發佈/訂閱事件擷取器。請務必注意，來自資料流分析之 IoT 中心的事件預設時間戳記，即為事件抵達 IoT 中心的時間戳記，也就是 EventEnqueuedUtcTime。若要使用事件承載中的時間戳記，將資料當作資料流處理，必須使用 [TIMESTAMP BY](https://msdn.microsoft.com/library/azure/dn834998.aspx) 關鍵字。
 
+> [AZURE.NOTE] 只可以處理與 DeviceClient 屬性一起傳送的訊息。
+
 ### 用戶群組
 
 每一個資料流分析 IoT 中心輸入都應該設定為有自己的取用者群組。當工作包含自我聯結或多個輸入時，某些輸入就有可能供多個讀取器下游使用，這樣會影響單個用戶群組中的讀取器數目。若要避免超出每個資料分割的每個取用者群組 5 個讀取器的 IoT 中心限制，最好為每個資料流分析工作指定取用者群組。
 
-## 將 IoT 中樞設定為輸入資料流
+### 將 IoT 中樞設定為輸入資料流
 
 下表說明 IoT 中心輸入索引標籤中的每一個屬性及其描述：
 
@@ -209,4 +211,4 @@ FROM Input
 [stream.analytics.query.language.reference]: http://go.microsoft.com/fwlink/?LinkID=513299
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

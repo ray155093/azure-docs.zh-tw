@@ -3,7 +3,7 @@
 	description="適用於 Developer Analytics 之 Visual Studio 工具的最新更新。"
 	services="application-insights"
     documentationCenter=""
-	authors="aruna"
+	authors="acearun"
 	manager="douge"/>
 <tags
 	ms.service="application-insights"
@@ -11,11 +11,26 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/28/2016"
+	ms.date="06/09/2016"
 	ms.author="acearun"/>
 
 # 版本資訊 - Developer Analytics 工具
 ##### Visual Studio 中的 Application Insights 和 HockeyApp 分析
+## 版本 7.0.1
+Application Insights 現在支援 Visual Studio 中的 ASP.NET Core RC2 專案。您可以從 [新增專案] 對話方塊中將 Application Insights 加入至新的 ASP.NET Core RC2 專案，或在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [加入 Application Insights 遙測] 來加入至現有的專案。
+
+![.NET Core 支援](./media/app-insights-release-notes-vsix/NetCoreSupport.PNG)
+
+ASP.NET 5 RC1 和 ASP.NET Core RC2 專案也會在 [診斷工具] 視窗中提供新的支援。當您在電腦上本機偵錯時，將可看見來自您 ASP.NET 應用程式的 Application Insights 事件 (例如要求和例外狀況)。從每個事件，您可以按一下 [搜尋] 來向下切入，以取得更多詳細資訊。
+
+![診斷工具支援](./media/app-insights-release-notes-vsix/DiagnosticTools.PNG)
+
+其他的新功能：
+
+* 我們已經藉由在您選取時自動套用時間範圍和詳細資料篩選條件，來讓 Application Insights 搜尋體驗變得更快速且更直覺化
+* 在 Application Insights 搜尋中，現在會在要求遙測中提供 [移至程式碼] 的選項
+* 我們已經改善的 HockeyApp 登入體驗。
+
 ## 5\.2 版
 很高興為您宣布，我們已推出 Visual Studio 中的 HockeyApp 案例。我們啟用的第一個整合是 VS 內的通用 Windows 應用程式和 Windows Forms 應用程式的 Beta 版散發套件。
 
@@ -45,7 +60,7 @@ HockeyApp 入口網站可讓您以各種方式管理應用程式 (邀請使用�
 
 ![HockeyApp 入口網站](./media/app-insights-release-notes-vsix/HockeyAppPortal.png)
 
-如需關於應用程式管理的詳細資訊，請參閱 [HockeyApp 知識庫](http://support.hockeyapp.net/kb/app-management-2)。
+如需應用程式管理的詳細資訊，請參閱 [HockeyApp 知識庫](http://support.hockeyapp.net/kb/app-management-2)。
 
 ### Windows Forms 應用程式
 Windows Forms 專案節點的內容功能表包含將組建上傳至 HockeyApp 的選項。
@@ -145,8 +160,8 @@ Windows Forms 專案節點的內容功能表包含將組建上傳至 HockeyApp �
 
 ###裝置支援
 
-我們在 Connect(); 2015 中[宣布了](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/)裝置行動 DevOps 體驗為 HockeyApp。HockeyApp 可協助您發佈 Beta 組建發佈給測試人員、從您的應用程式收集和分析所有的損毀，並直接收集客戶的意見反應。HockeyApp 可讓您在任何平台上建置行動應用程式，無論是 iOS、Android 或 Windows，或是 Xamarin、Cordova 或 Unity 之類的跨平台解決方案上。
+我們在 Connect(); 2015 中[宣布了](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/)裝置的行動 DevOps 體驗為 HockeyApp。HockeyApp 可協助您發佈 Beta 組建發佈給測試人員、從您的應用程式收集和分析所有的損毀，並直接收集客戶的意見反應。HockeyApp 可讓您在任何平台上建置行動應用程式，無論是 iOS、Android 或 Windows，或是 Xamarin、Cordova 或 Unity 之類的跨平台解決方案上。
 
 我們會在未來版本的 Application Insights 延伸模組中推出新功能，可在 HockeyApp 和 Visual Studio 之間提供更為整合的體驗。現在您只要新增 NuGet 參考，即可開始使用 HockeyApp：如需詳細資訊，請參閱[文件](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

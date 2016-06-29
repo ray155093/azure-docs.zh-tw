@@ -65,15 +65,6 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 以下是 Jupyter Notebook 的已知問題。
 
-### 無法下載 .ipynb 格式的 Jupyter Notebook
-
-如果您執行最新版 HDInsight Spark 的 Jupyter Notebook，而且您從 Jupyter notebook 使用者介面中，嘗試以 **.ipynb** 檔案下載一份 Notebook，可能會看到內部伺服器錯誤。
-
-**緩和：**
-
-1.	以 .ipynb 之外的另一種格式 (例如.txt) 下載 Notebook 會成功。  
-2.	如果您需要 .ipynb 檔案，可以從您儲存體帳戶中叢集容器的 **/HdiNotebooks** 下載它。這只適用於最新版 HDInsight 的 Jupyter Notebook，它支援在儲存體帳戶中備份 Notebook。話雖如此，舊版 HDInsight Spark 的 Jupyter Notebook 不會發生此問題。
-
 
 ### Notebook 在檔名中有非 ASCII 字元
 
@@ -112,10 +103,6 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
     - 從 YARN 停止其他 Spark 應用程式。
 
 2. 重新啟動您先前嘗試啟動的 Notebook。此時您應有足夠的資源可建立工作階段。
-
-### 還原至檢查點可能會失敗
-
-如果需要還原至較早版本的 Notebook，您可以在 Jupyter Notebook 中建立檢查點。不過，如果 Notebook 的目前狀態具有含自動視覺效果的 SQL 查詢，還原至先前儲存的檢查點可能會造成錯誤。
 
 ##另請參閱
 
@@ -159,4 +146,4 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -1,10 +1,10 @@
 <properties
    pageTitle="Azure 安全性最佳作法與模式 | Microsoft Azure"
-   description="這篇文章討論幫助改善 Azure 部署的安全性的最佳作法和有用的模式。"
-   services="security"
+   description="本文提供有關 Azure 安全性最佳作法和模式，以及策劃好的不同 Azure 資源安全性最佳作法清單的簡介。"
+   services="azure-security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,10 +13,20 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/25/2016"
+   ms.date="06/14/2016"
    ms.author="terrylan"/>
 
 # Azure 安全性最佳作法與模式
+
+我們目前有下列的 Azure 安全性最佳作法和模式文章。請務必定期瀏覽此網站，以查看日益增加的 Azure 安全性最佳作法和模式的清單是否有更新︰
+
+- [Azure 網路安全性最佳作法](azure-security-network-security-best-practices.md)
+- [Azure 資料安全性和加密最佳作法](azure-security-data-encryption-best-practices.md)
+- [身分識別管理和存取控制安全性最佳作法](azure-security-identity-management-best-practices.md)
+- [物聯網安全性最佳做法](azure-security-iot-best-practices.md)
+- [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)
+- [Azure 界限安全性最佳作法](../best-practices-network-security.md)
+- [在 Azure 中實作安全的混合式網路架構](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
 
 Azure 提供安全的平台，您可以在其中建立您的解決方案。我們也提供許多服務和技術，可以讓您在 Azure 上建置的服務更安全。因為您可以使用許多選項，所以許多人對於 Microsoft 建議做為改善其 Azure 部署的安全性的最佳作法和模式的項目感到興趣。
 
@@ -32,13 +42,6 @@ Azure 提供安全的平台，您可以在其中建立您的解決方案。我�
 - 最佳作法的可能替代方案
 - 如何學習啟用最佳作法
 
-我們目前有下列的 Azure 安全性最佳作法和模式文章。請務必定期瀏覽此網站，以查看日益增加的 Azure 安全性最佳作法和模式的清單是否有更新︰
+我們希望在 Azure 安全性架構和最佳作法中納入更多文章。如果您有希望我們納入的主題，請在本頁面底部的討論區中讓我們知道。
 
-- [Azure 網路安全性最佳作法](azure-security-network-security-best-practices.md)
-- [Azure 資料安全性和加密最佳作法](azure-security-data-encryption-best-practices.md)
-- [身分識別管理和存取控制安全性最佳作法](azure-security-identity-management-best-practices.md)
-- [物聯網安全性最佳作法](azure-security-iot-best-practices.md)
-- [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)
-- [Azure 界限安全性最佳作法](../best-practices-network-security.md)
-
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

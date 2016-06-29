@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/10/2016"
+	ms.date="06/09/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -19,17 +19,10 @@
 
 # 使用 PowerShell 還原已刪除的 Azure SQL Database
 
-
 > [AZURE.SELECTOR]
+- [概觀](sql-database-restore-deleted-database.md)
 - [Azure 入口網站](sql-database-restore-deleted-database-portal.md)
 - [PowerShell](sql-database-restore-deleted-database-powershell.md)
-
-本文會向您示範如何還原已刪除的 Azure SQL Database。
-
-若資料庫被刪除，Azure SQL Database 可讓您將已刪除的資料庫還原至刪除的時間點。Azure SQL Database 會將已刪除的資料庫備份，儲存一段資料庫保留期間的時間。
-
-已刪除資料庫的保留期間取決於資料庫所在的服務層，或是資料庫存在的天數，兩者中較少的天數。若要深入了解資料庫保留，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
-
 
 [AZURE.INCLUDE [啟動 PowerShell 工作階段](../../includes/sql-database-powershell.md)]
 
@@ -57,13 +50,17 @@
 ## 後續步驟
 
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-
-
+- [還原已刪除的資料庫](sql-database-restore-deleted-database.md)
+- [使用 Azure 入口網站還原已刪除的資料庫](sql-database-restore-deleted-database-portal.md)
+- [使用 REST API 還原已刪除的資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)
+- [SQL Database 自動備份](sql-database-automated-backups.md)
 
 ## 其他資源
 
+- [時間點還原](sql-database-point-in-time-restore.md)
 - [業務續航力概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
+- [異地還原](sql-database-geo-restore.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

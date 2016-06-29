@@ -57,7 +57,7 @@
 
 **如何建立 Hadoop 叢集**
 
-1. 登入 [Azure 入口網站](https://ms.portal.azure.com/)。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 依序按一下 [新增]、[資料分析] 及 [HDInsight]。此時入口網站會開啟 [新的 HDInsight 叢集] 刀鋒視窗。
 
     ![在 Azure 入口網站中建立新的叢集](./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.CreateCluster.1.png "在 Azure 入口網站中建立新的叢集")
@@ -97,7 +97,7 @@
 
 **從叢集儀表板執行 Hive 工作**
 
-1. 登入 [Azure 入口網站](https://ms.portal.azure.com/)。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [瀏覽全部]，然後按一下 [HDInsight 叢集] 以檢視叢集清單，包括您在上一節中建立的叢集。
 3. 按一下您要用來執行 Hive 工作的叢集名稱，然後按一下刀鋒視窗頂端的 [儀表板]。
 4. 網頁會在不同瀏覽器索引標籤中開啟。輸入 Hadoop 使用者帳戶和密碼。預設使用者名稱為 **admin**，而密碼是您在建立叢集時所輸入的密碼。
@@ -222,7 +222,7 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[azure-management-portal]: https://ms.portal.azure.com/
+[azure-management-portal]: https://portal.azure.com/
 [azure-create-storageaccount]: ../storage-create-storage-account.md
 
 [apache-hadoop]: http://go.microsoft.com/fwlink/?LinkId=510084
@@ -255,4 +255,4 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 [image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

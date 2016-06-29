@@ -27,7 +27,7 @@
 
 下列步驟說明如何利用 [Azure 入口網站](https://portal.azure.com)複製 SQL database。資料庫複製作業會建立新的 SQL Database。副本是您在同一部伺服器或不同伺服器上建立的資料庫快照備份。
 
-> [AZURE.NOTE] Azure SQL Database 會自動為每個使用者資料庫建立並維護可供還原的備份。如需詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
+> [AZURE.NOTE] Azure SQL Database 會自動為您可還原的每個使用者資料庫[建立並維護備份](sql-database-automated-backups.md)。
 
 複製程序完成時，新的資料庫是功能完整的資料庫，獨立於來源資料庫。複製完成時，新資料庫與來源資料庫在交易上一致。資料庫副本與來源資料庫的服務層和效能層級 (定價層) 相同。複製完成之後，副本會變成功能完整的獨立資料庫。可以個別管理登入、使用者和權限。
 
@@ -90,7 +90,7 @@
 
 ## 其他資源
 
-- [業務續航力概觀](sql-database-business-continuity.md)
+- [商務持續性概觀](sql-database-business-continuity.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
 
@@ -100,4 +100,4 @@
 [3]: ./media/sql-database-copy/copy-notification.png
 [4]: ./media/sql-database-copy/monitor-copy.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -131,7 +131,7 @@ function.json 範例：
 	  }
 	}
 
-如需有關上傳 project.json 檔案的詳細資訊，請參閱[上傳 project.json 檔案](http://stackoverflow.com/questions/36411536/how-can-i-use-nuget-packages-in-my-azure-functions)。
+如需有關上傳 project.json 檔案的詳細資訊，請參閱[上傳 project.json 檔案](functions-reference.md#fileupdate)。
 
 程式碼範例：
 
@@ -155,4 +155,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

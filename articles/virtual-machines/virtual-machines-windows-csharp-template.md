@@ -454,8 +454,8 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
           credential,
           groupName",
           storageName,
-          deploymentName}",
-          subscriptionId}");
+          deploymentName,
+          subscriptionId);
         Console.ReadLine();
 
 ##步驟 7：加入程式碼以刪除資源
@@ -497,4 +497,4 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 - 如果部署有問題，下一個步驟是查看[透過 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
 - 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

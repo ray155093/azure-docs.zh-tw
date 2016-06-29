@@ -28,6 +28,7 @@ Azure Service Fabric 叢集是您擁有的資源。為了防止資源遭到未�
 2. 將憑證上傳至 Azure 金鑰保存庫。
 3. 將憑證的位置和詳細資料提供給 Service Fabric 叢集建立程序。
 
+<a id="acquirecerts"></a>
 ## 步驟 1：取得 X.509 憑證
 
 對於執行生產環境工作負載的叢集，您必須使用[憑證授權單位 (CA)](https://en.wikipedia.org/wiki/Certificate_authority) 簽署的 X.509 憑證來保護叢集。如需有關如何取得這些憑證的詳細資訊，請移至[做法：取得憑證](http://msdn.microsoft.com/library/aa702761.aspx)。
@@ -97,13 +98,13 @@ Login-AzureRmAccount
 Set-AzureRmKeyVaultAccessPolicy -VaultName <Name of the Vault> -ResourceGroupName <string> -EnabledForDeployment
 ```
 
-下列指令碼會建立新的資源群組和 (或) 金鑰保存庫 (如果它們尚未存在)、建立自我簽署憑證並上傳到金鑰保存庫，然後將新憑證輸出到 *OutputPath*。
+下列指令碼會建立新的資源群組和 (或) 金鑰保存庫 (如果它們尚未存在)、建立自我簽署憑證並上傳到金鑰保存庫，然後將新憑證輸出到「OutputPath」。
 
 ```powershell
 Login-AzureRmAccount
 Invoke-AddCertToKeyVault -SubscriptionId <you subscription id> -ResourceGroupName <string> -Location <region> -VaultName <Name of the Vault> -CertificateName <Name of the Certificate> -Password <Certificate password> -CreateSelfSignedCertificate -DnsName <string- see note below.> -OutputPath <Full path to the .pfx file>
 ```
-*DnsName* 字串會指定一或多個 DNS 名稱，以在 CloneCert 參數中未指定要複製的憑證時，放到憑證的 subject-alternative-name 延伸中。第一個 DNS 名稱也會儲存為主體名稱。如果未指定任何簽署憑證，則第一個 DNS 名稱也會儲存為簽發者名稱。*Invoke AddCertToKeyVault* Cmdlet 會使用 [New-SelfSignedCertificate Cmdlet](https://technet.microsoft.com/library/hh848633.aspx) 來建立自我簽署憑證。
+「DnsName」字串會指定一或多個 DNS 名稱，以在 CloneCert 參數中未指定要複製的憑證時，放到憑證的 subject-alternative-name 延伸中。第一個 DNS 名稱也會儲存為主體名稱。如果未指定任何簽署憑證，則第一個 DNS 名稱也會儲存為簽發者名稱。「Invoke-AddCertToKeyVault」Cmdlet 會使用 [New-SelfSignedCertificate Cmdlet](https://technet.microsoft.com/library/hh848633.aspx) 來建立自我簽署憑證。
 
 以下是已填入指令碼的範例。
 
@@ -127,7 +128,7 @@ Certificate URL /URL to the certificate location in the key vault: https://chack
 將您的憑證上傳到 Azure 金鑰保存庫之後，您便可以建立以這些憑證保護的叢集。此步驟與叢集建立程序的[步驟 3︰設定安全性](service-fabric-cluster-creation-via-portal.md#step-3--configure-security)對應，並說明如何設定您的安全性組態。
 
 >[AZURE.NOTE]
-需要的憑證會於 [安全性組態] 下的 [節點類型] 層級指定。您必須為您的叢集中的每個節點類型指定此項目。雖然本文件會逐步解說如何使用入口網站執行這項作業，但您可以使用 Azure 資源管理員範本來執行相同的作業。
+需要的憑證會於 [安全性組態] 下的 [節點類型] 層級指定。您必須為您的叢集中的每個節點類型指定此項目。雖然本文件會逐步解說如何使用入口網站執行這項作業，但您可以使用 Azure Resource Manager 範本來執行相同的作業。
 
 ![Azure 入口網站中的安全性組態螢幕擷取畫面][SecurityConfigurations_01]
 
@@ -178,4 +179,4 @@ Certificate URL /URL to the certificate location in the key vault: https://chack
 [SecurityConfigurations_01]: ./media/service-fabric-cluster-azure-secure-with-certs/SecurityConfigurations_01.png
 [SecurityConfigurations_02]: ./media/service-fabric-cluster-azure-secure-with-certs/SecurityConfigurations_02.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

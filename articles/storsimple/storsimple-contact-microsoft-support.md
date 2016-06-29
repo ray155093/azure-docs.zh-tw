@@ -34,7 +34,7 @@
 
 	![透過 ManagementPortal 連絡 MS 支援服務](./media/storsimple-contact-microsoft-support/Ibiza1.png)
 
-2. 系統便會將您重新導向至新的 Azure 入口網站 (ms.portal.azure.com)。按一下 [新的支援要求] 磚。
+2. 系統便會將您重新導向至新的 Azure 入口網站 (portal.azure.com)。按一下 [新的支援要求] 磚。
 
 	![透過新的入口網站連絡 MS 支援服務](./media/storsimple-contact-microsoft-support/Ibiza2.png)
 
@@ -102,4 +102,4 @@
 
 > [AZURE.IMPORTANT] 您可以執行 `Disable-HcsSupportAccess` 來停用支援存取。在起始工作階段之後 8 小時，StorSimple 裝置也會嘗試停用支援存取。最好在起始支援工作階段之後變更 StorSimple 裝置認證。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0615_2016-->

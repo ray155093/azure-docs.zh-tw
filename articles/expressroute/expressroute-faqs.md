@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/07/2016"
+   ms.date="06/13/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -61,6 +61,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 	- CDN
 	- Visual Studio Team Services 負載測試
 	- 多因素驗證
+	- 流量管理員
 
 ## 資料與連線
 
@@ -125,7 +126,7 @@ ExpressRoute 支援大多數的 Azure 雲端服務。
 否。從路由的觀點來看，所有連結至相同 ExpressRoute 電路的虛擬網路會屬於相同的路由網域，且不會相互隔離。如果需要路由隔離，您必須建立個別的 ExpressRoute 電路。
 
 ### 我可以將一個虛擬網路連結至多個 ExpressRoute 電路嗎？
-是。您最多可以將單一虛擬網路連結至 4 個 ExpressRoute 電路。其必須透過 4 個不同的 [ExpressRoute 位置](expressroute-locations.md)來排序。
+是。您最多可以將單一虛擬網路連結至 4 個 ExpressRoute 電路。它們必須透過 4 個不同的 [ExpressRoute 位置](expressroute-locations.md)來排序。
 
 ### 我可以從連線至 ExpressRoute 電路的虛擬網路來存取網際網路嗎？
 是。如果您尚未透過 BGP 工作階段通告預設路由 (0.0.0.0/0) 或網際網路路由首碼，您將能夠從連結至 ExpressRoute 電路的虛擬網路連線到網際網路。
@@ -177,7 +178,7 @@ BGP 工作階段將會被刪除。當首碼計數降至限制以下時，系統�
 ### 什麼是 ExpressRoute Premium？
 ExpressRoute Premium 是下面所列功能的集合。
 
- - 將公用對等互連和私人對等互連的路由表限制，從 4000 個路由提高到 10,000 個路由。
+ - 將私用對等互連的路由表限制，從 4000 個路由提高到 10,000 個路由。
  - 提高可連線到 ExpressRoute 電路的 VNet 數目 (預設值為 10)。如需詳細資訊，請參閱下表。
  - 透過 Microsoft 核心網路的全球連線。您現在能夠將某一個地緣政治區域中的 VNet 與另一個區域中的 ExpressRoute 電路連結。**範例：**您可以將在歐洲西部建立的 VNet created 連結至在矽谷建立的 ExpressRoute 電路。
  - 可連線至 Office 365 服務和 CRM Online。
@@ -217,12 +218,14 @@ ExpressRoute Premium 是下面所列功能的集合。
 
 ## ExpressRoute 與 Office 365 服務和 CRM Online
 
+[AZURE.INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
+
 ### 我要如何建立可連線到 Office 365 服務和 CRM Online 的ExpressRoute 電路？
 
 1. 請檢閱 [ExpressRoute 必要條件頁面](expressroute-prerequisites.md)，以確定您符合需求。
 2. 請檢閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md)中的服務提供者和位置清單，以確定符合您的連線需求。
 3. 透過檢閱 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/)來計劃您的容量需求。
-4. 遵循以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程循環佈建和循環狀態](expressroute-workflows.md)。
+4. 遵循以下工作流程中所列的步驟來設定連線：[ExpressRoute 工作流程線路佈建和線路狀態](expressroute-workflows.md)。
 
 >[AZURE.IMPORTANT] 設定與 Office 365 服務和 CRM Online 的連線時，請確定您已啟用 ExpressRoute 進階附加元件。
 
@@ -248,4 +251,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 可以透過 ExpressRoute 連線存取 Dynamics AX 嗎？
 不，不支援此做法。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

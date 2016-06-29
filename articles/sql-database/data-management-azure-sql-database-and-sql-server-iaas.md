@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/14/2016"
+	ms.date="06/21/2016"
 	ms.author="carlrab"/>
 
 # 選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)
@@ -154,5 +154,6 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 - 請參閱 [SQL Database 教學課程：使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md) 以開始使用 SQL Database。
 - 請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 - 請參閱[在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-portal-sql-server-provision.md)以開始使用 Azure VM 上的 SQL Server。
+- 請參閱 [Azure 虛擬機器上的 SQL Server：學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

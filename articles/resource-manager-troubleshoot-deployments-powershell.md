@@ -29,6 +29,8 @@
 
 [AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
+部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+
 ## 使用稽核記錄檔進行疑難排解
 
 [AZURE.INCLUDE [resource-manager-audit-limitations](../includes/resource-manager-audit-limitations.md)]
@@ -47,7 +49,7 @@
 
         Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00 -Status Failed
 
-2. 如果這個命令傳回太多項目和屬性，您可以擷取 **Properties** 屬性，專注於進行稽核。我們也將加入 **DetailedOutput** 參數，以顯示錯誤訊息。
+2. 如果這個命令傳回太多項目和屬性，您可以擷取 **Properties** 屬性以專注於進行稽核。我們也將加入 **DetailedOutput** 參數，以顯示錯誤訊息。
 
         (Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties
         
@@ -99,7 +101,7 @@
 
 2. 每個部署通常由多個作業所組成，而每個作業代表部署程序中的一個步驟。若要探索部署有何問題，您通常需要查看有關部署作業的詳細資訊。您可以利用 **Get-AzureRmResourceGroupDeploymentOperation** 查看作業的狀態。
 
-        Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName ExampleDeployment | Format-List
+        Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName ExampleDeployment
         
     以下列格式傳回作業︰
         
@@ -140,8 +142,8 @@
 
 ## 後續步驟
 
-- 如需解決特定部署錯誤的說明，請參閱[解決以 Azure Resource Manager 部署資源至 Azure 時的常見錯誤](resource-manager-common-deployment-errors.md)。
+- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
 - 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

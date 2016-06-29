@@ -4,7 +4,7 @@
    services="traffic-manager"
    documentationCenter=""
    authors="kwill-MSFT"
-   manager="adinah"
+   manager="carmonm"
    editor="joaoma" />
 
 <tags 
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/09/2016"
+   ms.date="06/10/2016"
    ms.author="joaoma" />
 
 
@@ -84,4 +84,4 @@ http://www.digwebinterface.com – 與 watchmouse 站台類似，但此站台會
 [Azure 流量管理員 Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=400769)
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

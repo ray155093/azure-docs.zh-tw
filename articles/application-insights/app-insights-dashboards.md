@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="multiple"
 	ms.topic="article" 
-	ms.date="06/03/2016"
+	ms.date="06/14/2016"
 	ms.author="awills"/>
 
 # Application Insights 入口網站中的導覽與儀表板
@@ -36,9 +36,9 @@
 
 * **任何圖表或圖格**，以查看更多關於圖表上所顯示內容的詳細資訊。
 * **設定**，以取得其他計量預先定義的刀鋒視窗以及組態頁面。
-* [計量瀏覽器](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
-* [搜尋](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
-* [分析](app-insights-analytics.md) 來取得針對遙測的強大查詢。
+* [計量瀏覽器][](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
+* [搜尋][](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
+* [分析][](app-insights-analytics.md) 來取得針對遙測的強大查詢。
 * [**即時資料流**](app-insights-metrics-explorer.md#live-stream)，適用於一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 
 
@@ -79,7 +79,7 @@
 
 1. 將圖表加入圖格中。 
 2. 設定度量、分組依據的維度，和圖表的樣式 (資料表、圖形)。
-3. 針對圖格上的圖表設定時間範圍和篩選屬性。
+3. 針對圖格上的圖表設定時間範圍和篩選屬性。您可以設定圖表自己的時間範圍，或繼承自儀表板的時間範圍。
 4. 設定圖格的標題。
 
 從計量瀏覽器刀鋒釘選的圖格，編輯選項會比從 [概觀] 刀鋒視窗釘選的圖格多。
@@ -110,4 +110,40 @@
 
 深入了解[角色和存取控制](app-insights-resources-roles-access-control.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+## Settings
+
+[概觀] 刀鋒視窗上的 [設定] 按鈕不只與組態有關，也提供一種方式來轉換為數種圖表類型。
+
+* **稽核記錄檔** - 檢閱已在您的應用程式資源上執行的警示和動作。
+* [新增支援要求](app-insights-get-dev-support.md) - 適用於 Azure 各方面的協助選項。針對 Application Insights，您也可以使用視窗右上方的笑臉按鈕來取得說明。
+* [應用程式對應](app-insights-dependencies.md#application-map) - 顯示應用程式元件的使用中對應，其衍生自相依性資訊。
+* [即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream) - 約有 1 秒延遲的關鍵計量，可用來監視新版本。
+* **失敗** - 失敗的要求、失敗的相依性呼叫和例外狀況。[可編輯的計量刀鋒視窗](app-insights-metrics-explorer.md)。
+* **效能** - 回應時間、相依性回應時間。[可編輯的計量刀鋒視窗](app-insights-metrics-explorer.md)。
+* [伺服器](app-insights-web-monitor-performance.md) - 效能計數器。當您[安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)時適用。
+* **瀏覽器** - 頁面檢視和 AJAX 效能。當您[檢測網頁](app-insights-javascript.md)時適用。
+* **使用量** - 頁面檢視、使用者和工作階段計數。當您[檢測網頁](app-insights-javascript.md)時適用。
+* **開始使用** - 內嵌教學課程。
+* **屬性** - 檢測金鑰、訂用帳戶和資源識別碼。
+* [可用性](app-insights-monitor-web-app-availability.md) - Web 測試組態和結果。
+* [警示](app-insights-alerts.md) - 計量警示組態。
+* [連續匯出](app-insights-export-telemetry.md) - 設定將遙測匯出至 Azure 儲存體。
+* [效能測試](app-insights-monitor-web-app-availability.md#performance-tests) - 設定您的網站上的模擬負載。
+* [配額和定價](app-insights-pricing.md)和[擷取取樣](app-insights-sampling.md)。
+* **API 存取** - 目前用來建立 [版本註解](app-insights-annotations.md)以及資料存取 API。
+* [**工作項目**](app-insights-diagnostic-search.md#create-work-item) - 連線到工作追蹤系統，讓您可以在檢查遙測時建立 Bug。
+* [**使用者**](app-insights-resources-roles-access-control.md) - 管理可存取您應用程式資源的人員。
+* [**角色**](app-insights-resources-roles-access-control.md) - 管理使用者可以執行的動作。
+* [**標記**](..\resource-group-using-tags.md) - 組織 Azure 資源。
+* [**鎖定**](..\resource-group-lock-resources.md) - 鎖定 Azure 資源
+* [**匯出範本**](app-insights-powershell.md) - 匯出 Azure 資源的定義，如此您就能用其做為範本來建立新資源。
+
+## 後續步驟
+
+||
+|---|---
+|[計量瀏覽器](app-insights-metrics-explorer.md)<br/>篩選與分割計量|![搜尋範例](./media/app-insights-dashboards/64.png)
+|[診斷搜尋](app-insights-diagnostic-search.md)<br/>尋找和檢查事件、相關的事件，並建立 Bug |![搜尋範例](./media/app-insights-dashboards/61.png)
+|[分析](app-insights-analytics.md)<br/>功能強大的查詢語言| ![搜尋範例](./media/app-insights-dashboards/63.png)
+
+<!---HONumber=AcomDC_0615_2016-->

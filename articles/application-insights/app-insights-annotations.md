@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="ibiza"
     ms.devlang="na"
     ms.topic="article"
-	ms.date="03/03/2016"
+	ms.date="06/09/2016"
     ms.author="awills"/>
 
 # Application Insights 中的發行註解
@@ -96,4 +96,4 @@
 
 ![按一下任一版本註解標記。](./media/app-insights-annotations/60.png)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0615_2016-->

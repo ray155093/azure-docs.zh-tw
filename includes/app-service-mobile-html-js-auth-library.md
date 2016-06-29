@@ -58,11 +58,13 @@ WL.login({ scope: "wl.basic"}).then(function (result) {
 
 ###<a name="auth-getinfo"></a>作法：取得已驗證使用者的相關資訊
 
-您可以使用任何 AJAX 方法從 `/.auth/me` 端點擷取目前使用者的驗證資訊。例如，若要使用提取 API：
+您可以使用任何 AJAX 方法從 `/.auth/me` 端點擷取目前使用者的驗證資訊。請確定您設定 `X-ZUMO-AUTH` 標頭至您的驗證 Token。驗證 Token 儲存於 `client.currentUser.mobileServiceAuthenticationToken`。例如，若要使用提取 API：
 
 ```
 var url = client.applicationUrl + '/.auth/me';
-fetch(url)
+var headers = new Headers();
+headers.append('X-ZUMO-AUTH', client.currentUser.mobileServiceAuthenticationToken);
+fetch(url, { headers: headers })
     .then(function (data) {
         return data.json()
     }).then(function (user) {
@@ -70,6 +72,6 @@ fetch(url)
     });
 ```
 
-您也可以使用 jQuery 或另一個 AJAX API 擷取資訊。將會以 JSON 物件形式接收資料。
+Fetch 可以 npm 套件的形式提供使用或從 CDNJS 使用瀏覽器下載。您也可以使用 jQuery 或另一個 AJAX API 擷取資訊。將會以 JSON 物件形式接收資料。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -49,7 +49,7 @@ Microsoft 資料科學虛擬機器可快速啟動分析專案。它能讓您處�
 
 建立 Microsoft 資料科學虛擬機器執行個體的步驟如下：
 
-1.	瀏覽至 [Azure 入口網站](https://ms.portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm)上的虛擬機器清單。
+1.	瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm)上的虛擬機器清單。
 2.	 按一下底部的 [建立] 按鈕以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-provision-vm/configure-data-science-virtual-machine.png)
 3.	 下列各節提供用來建立 Microsoft 資料科學虛擬機器的精靈中每個步驟 (共有 **5 個步驟**列舉在上圖的右邊) 的**輸入**。以下是設定每個步驟所需的輸入：
 
@@ -147,4 +147,4 @@ VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱�
 * 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)，以取得使用 Cortana Intelligence Suite 的機器學習服務和資料分析範例。我們也已經在虛擬機器的開始功能表與桌面上提供圖示以方便存取 
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

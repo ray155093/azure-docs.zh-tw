@@ -40,6 +40,6 @@
 
 如果您設定信用卡或金融卡作為付款方法，系統將會自動扣款。如要在任何時候變更信用卡，請參閱 [如何變更用來支付 Azure 訂用帳戶的付款方法或信用卡](billing-how-to-change-credit-card.md)。
 
-如果您使用發票付款方法，請將您的付款交付至您發票底部所列的位置。如需其他協助，請聯絡 [Microsoft 支援服務](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+如果您使用發票付款方法，請將您的付款交付至您發票底部所列的位置。如需其他協助，請聯絡 [Microsoft 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0615_2016-->

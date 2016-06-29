@@ -31,7 +31,7 @@
 
 ## 如何啟動 Ambari Web UI？
 
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以在 [瀏覽全部] > [HDInsight 叢集] 下巡覽至您的叢集。 
+1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以在 [瀏覽全部] > [HDInsight 叢集] 下巡覽至您的叢集。 
  
 2. 從 Spark 叢集刀鋒視窗中，按一下 [儀表板]。出現提示時，輸入 Spark 叢集的系統管理員認證。
 
@@ -43,7 +43,7 @@
 
 ## 如何啟動 Spark 歷程記錄伺服器？
 
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。
+1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。
 
 2. 從叢集刀鋒視窗的 [快速連結] 下，按一下 [叢集儀表板]。在 [叢集儀表板] 刀鋒視窗中，按一下 [Spark 歷程記錄伺服器]。
 
@@ -212,4 +212,4 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

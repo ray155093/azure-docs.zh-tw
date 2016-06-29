@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/10/2016"
+	ms.date="06/09/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -21,12 +21,11 @@
 
 
 > [AZURE.SELECTOR]
+- [概觀](sql-database-point-in-time-restore.md)
 - [Azure 入口網站](sql-database-point-in-time-restore-portal.md)
 - [PowerShell](sql-database-point-in-time-restore-powershell.md)
 
-本文將說明如何使用 Azure 入口網站將資料庫還原至先前的時間點。
-
-[**還原時間點**](sql-database-point-in-time-restore.md)是自助功能，可讓您將資料庫從我們擷取自所有資料庫的自動備份還原至資料庫保留期間內的任何時間點。若要深入了解自動備份和資料庫保留期限，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
+本文將說明如何使用 Azure 入口網站，從 [SQL Database 自動備份](sql-database-automated-backups.md)將資料庫還原至先前的時間點。
 
 ## 選取要還原至先前時間點的資料庫
 
@@ -47,13 +46,16 @@
 ## 後續步驟
 
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-
-
+- [時間點還原](sql-database-point-in-time-restore.md)
+- [使用 REST API 進行時間點還原](https://msdn.microsoft.com/library/azure/mt163685.aspx)
+- [SQL Database 自動備份](sql-database-automated-backups.md)
 
 ## 其他資源
 
+- [還原已刪除的資料庫](sql-database-restore-deleted-database.md)
 - [業務續航力概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
+- [異地還原](sql-database-geo-restore.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

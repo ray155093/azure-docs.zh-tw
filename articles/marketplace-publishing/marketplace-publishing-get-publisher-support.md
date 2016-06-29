@@ -23,7 +23,7 @@ Microsoft 提供各式各樣的產品和服務支援。務必讓您的查詢能�
 
 - 如果您是 Azure Marketplace 中的發佈者且仍在開發您的 VM，您應該與您的 Microsoft 上線或計算團隊交流。
 
-- 如果您是 Marketplace 中的發佈者並有來自客戶的問題，請告訴您的客戶透過支援連結 (https://ms.portal.azure.com/) 要求支援。
+- 如果您是 Marketplace 中的發佈者並有來自客戶的問題，請告訴您的客戶透過支援連結 (https://portal.azure.com/) 要求支援。
 
 - 如果您是 Marketplace 中的發佈者並有與您的應用程式或服務相關的問題，請繼續閱讀以下內容。
 
@@ -79,7 +79,9 @@ Microsoft 提供各式各樣的產品和服務支援。務必讓您的查詢能�
 
 一旦您提交問題後，我們將在 24 小時內確認接收，並指派問題的優先順序和嚴重性。我們專屬的支援工程師團隊會根據我們的服務層級協定回應時間，協助解決問題。
 
-![確認][6] + 如果您需要與我們談談您的問題，請在所有的通信聯繫中使用 [確認號碼] + 您可以隨時檢視您的問題進度
+![確認][6]
++ 如果您需要與我們談談您的問題，請在所有的通信聯繫中包括該確認號碼。
++ 您可以隨時檢視您的問題進度。
 
 ## 後續步驟
 
@@ -92,4 +94,4 @@ Microsoft 提供各式各樣的產品和服務支援。務必讓您的查詢能�
 [5]: ./media/marketplace-publishing-get-publisher-support/step5.png
 [6]: ./media/marketplace-publishing-get-publisher-support/step6.png
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0615_2016-->

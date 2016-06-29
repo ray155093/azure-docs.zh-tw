@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="03/21/2016"
+   ms.date="06/09/2016"
    ms.author="jgao"/>
 
 # 在 HDInsight 中建立 Windows 型 Hadoop 叢集
@@ -110,7 +110,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
 	如需使用次要 Blob 存放區的詳細資訊，請參閱[搭配使用 Azure Blob 儲存體與 HDInsight](hdinsight-hadoop-use-blob-storage.md)。
 
-    除了 Azure Blob 儲存體，您也可以使用 [Azure Data Lake Store](data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部 4 種 HDInsight 叢集類型的連結儲存體。如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
+    除了 Azure Blob 儲存體，您也可以使用 [Azure Data Lake Store](data-lake-store-overview.md) 當作 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部 4 種 HDInsight 叢集類型的連結儲存體。如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
     
 - **位置 (區域)**
 
@@ -145,7 +145,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
         <br>
 
-        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大的資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
+        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
         |---|---|---|---|---|---|---|
         |Standard\_A3\\大型|4|7 GB|2|暫存 = 285 GB |8|8x500|
         |Standard\_A4\\特大型|8|14 GB|4|暫存 = 605 GB |16|16x500|
@@ -155,7 +155,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
     - 標準層級：D 系列
 
-        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大的資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
+        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
         |---|---|---|---|---|---|---|
         |標準\_D3 |4|14 GB|4|暫存 (SSD) = 200 GB |8|8x500|
         |標準\_D4 |8|28 GB|8|暫存 (SSD) = 400 GB |16|16x500|
@@ -165,7 +165,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
     - 標準層級：Dv2 系列
 
-        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大的資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
+        |大小 |CPU 核心|記憶體|NIC (最大)|最大磁碟大小|最大資料磁碟 (每個 1023 GB)|最大IOPS (每個磁碟 500)|
         |---|---|---|---|---|---|---|
         |Standard\_D3\_v2 |4|14 GB|4|暫存 (SSD) = 200 GB |8|8x500|
         |Standard\_D4\_v2 |8|28 GB|8|暫存 (SSD) = 400 GB |16|16x500|
@@ -207,18 +207,29 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
     | -------------------------- | --------------------------- |
     | 站對站組態可讓您使用硬體 VPN 或路由及遠端存取服務，從資料中心將多項資源連接至 Azure 虛擬網路。<br />![diagram of site-to-site configuration](./media/hdinsight-hadoop-provision-linux-clusters/hdinsight-vnet-site-to-site.png) | 點對站組態可讓您使用軟體 VPN，將特定資源連接到 Azure 虛擬網路。<br />![diagram of point-to-site configuration](./media/hdinsight-hadoop-provision-linux-clusters/hdinsight-vnet-point-to-site.png) |
 
-如需搭配虛擬網路使用 HDInsight 的詳細資訊 (包含虛擬網路的特定設定需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
+以 Windows 為基礎的叢集需要 v1 (傳統) 虛擬網路，而以 Linux 為基礎的叢集需要 v2 (Azure 資源管理員) 虛擬網路。如果您沒有正確的網路類型，當您建立叢集時就無法使用。
+
+如需搭配虛擬網路使用 HDInsight 的詳細資訊 (包含虛擬網路的特定組態需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
 ## 使用 HDInsight 叢集自訂功能 (Bootstrap) 來自訂叢集
 
 有時候，您可能需要設定組態檔：
 
+- clusterIdentity.xml
 - core-site.xml
+- gateway.xml
+- hbase-env.xml
+- hbase-site.xml
 - hdfs-site.xml
-- mapred-site.xml
-- yarn-site.xml
+- hive-env.xml
 - hive-site.xml
+- mapred-site
 - oozie-site.xml
+- oozie-env.xml
+- storm-site.xml
+- tez-site.xml
+- webhcat-site.xml
+- yarn-site.xml
 
 若要在叢集存留期間保留變更，您可以在建立程序期間使用 HDInsight 叢集自訂，或在 Linux 型叢集中安全使用 Ambari。如需詳細資訊，請參閱[使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)。
 
@@ -243,4 +254,4 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 | [.NET SDK](hdinsight-hadoop-create-windows-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [ARM 範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

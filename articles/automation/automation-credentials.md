@@ -3,8 +3,8 @@
    description="Azure 自動化中的認證資產包含可用來驗證由 Runbook 或 DSC 設定存取資源的安全性認證。本文說明如何建立認證資產和在 Runbook 或 DSC 設定中使用它們。"
    services="automation"
    documentationCenter=""
-   authors="bwren"
-   manager="stevenka"
+   authors="mgoedtel"
+   manager="jwhit"
    editor="tysonn" />
 <tags 
    ms.service="automation"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="01/27/2016"
+   ms.date="06/09/2016"
    ms.author="bwren" />
 
 # Azure 自動化中的認證資產
@@ -27,7 +27,7 @@
 
 |Cmdlet|說明|
 |:---|:---|
-|[Get-AzureAutomationCredential](http://msdn.microsoft.com/library/dn913781.aspx)|擷取認證資產的相關資訊。您只能從 **Get-AutomationCredential** 活動擷取認證本身。|
+|[Get-AzureAutomationCredential](http://msdn.microsoft.com/library/dn913781.aspx)|擷取認證資產的相關資訊。您只能從 **Get-AutomationPSCredential** 活動擷取認證本身。|
 |[New-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx)|建立新的自動化認證。|
 |[Remove-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx)|移除自動化認證。|
 |[Set-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx)|設定現有自動化認證的屬性。|
@@ -42,10 +42,10 @@
 
 >[AZURE.NOTE] 您應該避免在 Get-AutomationPSCredential 的 -Name 參數中使用變數，因為這可能會使在設計階段中探索 Runbook 或 DSC 設定與認證資產之間的相依性變得複雜。
 
-## 建立新認證
+## 建立新的認證資產
 
 
-### 使用 Azure 傳統入口網站網站建立新變數
+### 使用 Azure 傳統入口網站建立新的認證資產
 
 1. 從您的自動化帳戶，在視窗的頂端按一下 [**資產**]。
 1. 在視窗的底端按一下 [**加入設定**]。
@@ -54,7 +54,7 @@
 1. 完成精靈，然後按一下核取方塊以儲存新認證。
 
 
-### 使用 Azure 入口網站建立新認證
+### 使用 Azure 入口網站建立新的認證資產
 
 1. 從您的自動化帳戶，按一下 [**資產**] 部分，以開啟 [**資產**] 分頁。
 1. 按一下 [**認證**] 部分，以開啟 [**認證**] 分頁。
@@ -62,7 +62,7 @@
 1. 完成表單，然後按一下 [**建立**] 以儲存新認證。
 
 
-### 使用 Windows PowerShell 建立新的 PowerShell 認證
+### 使用 Windows PowerShell 建立新的認證資產
 
 下列範例命令顯示如何建立新的自動化認證。PSCredential 物件是先建立了名稱和密碼，然後用來建立認證資產。您也可以使用 **Get-Credential** Cmdlet 來提示您輸入名稱和密碼。
 
@@ -92,17 +92,20 @@
 
 ![加入認證至畫布](media/automation-credentials/credential-add-canvas.png)
 
-下圖顯示在圖形化 Runbook 中使用認證的範例。在此情況下，它是用來向 Azure 資源提供 Runbook 的驗證，如[設定對 Azure 資源的驗證](automation-configuring.md)中所述。第一個活動會擷取可存取 Azure 訂用帳戶的認證。然後 **Add-AzureAccount** 活動會使用這個認證來為隨後的任何活動提供驗證。因為 **Get-AutomationPSCredential** 需要單一物件，因此推出了[管線連結](automation-graphical-authoring-intro.md#links-and-workflow)。
+下圖顯示在圖形化 Runbook 中使用認證的範例。在此情況下，它是用來向 Azure 資源提供 Runbook 的驗證，如[使用 Azure AD 使用者帳戶驗證 Runbook](automation-sec-configure-aduser-account.md) 中所述。第一個活動會擷取可存取 Azure 訂用帳戶的認證。然後 **Add-AzureAccount** 活動會使用這個認證來為隨後的任何活動提供驗證。因為 **Get-AutomationPSCredential** 需要單一物件，因此推出了[管線連結](automation-graphical-authoring-intro.md#links-and-workflow)。
 
 ![加入認證至畫布](media/automation-credentials/get-credential.png)
 
 ## 在 DSC 中使用 PowerShell 認證
 雖然 Azure 自動化中的 DSC 組態可以使用 **Get-AutomationPSCredential** 參考認證資產，但如有需要，也可以透過參數傳入認證資產。如需詳細資訊，請參閱[編譯 Azure Automation DSC 中的設定](automation-dsc-compile.md#credential-assets)。
 
-## 相關文章
+## 後續步驟
 
-- [圖形化編寫中的連結](automation-graphical-authoring-intro.md#links-and-workflow)
+- 若要深入了解圖形化編寫中的連結，請參閱[圖形化編寫中的連結](automation-graphical-authoring-intro.md#links-and-workflow)
+- 若要了解使用自動化的不同驗證方法，請參閱 [Azure 自動化安全性](automation-security-overview.md)
+- 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md) 
 
  
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0615_2016-->

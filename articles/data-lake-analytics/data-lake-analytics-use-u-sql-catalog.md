@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # 使用 U-SQL 目錄
@@ -73,7 +73,7 @@ U-SQL 資料庫包含：
 - U-SQL 和開發
     - [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
     - [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
-    - [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analtyics-u-sql-user-defined-operators.md)
+    - [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-Analytics-u-sql-user-defined-operators.md)
 
 - 管理
     - [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-use-portal.md)
@@ -84,4 +84,4 @@ U-SQL 資料庫包含：
     - [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
     - [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="06/08/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -65,20 +65,18 @@
 - SQL Database 伺服器 - 資料庫和伺服器必須位於相同的資源群組。當您移動 SQL 伺服器時，其所有資料庫也會跟著移動。
 - 虛擬機器
 - 虛擬機器 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
-
-## 部分支援移動的服務
-
-支援移動到新資源群組，但不支援移動到新訂用帳戶的服務有：
-
 - 虛擬網路
 
 ## 不支援移動的服務
 
 目前不支援移動資源的服務有：
 
+- 應用程式閘道
 - Application Insights
 - ExpressRoute
+- 虛擬機器擴展集
 - 虛擬網路 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
+- VPN 閘道
 
 ## App Service 限制
 
@@ -172,7 +170,7 @@
 
 ![移動傳統資源](./media/resource-group-move-resources/edit-rg-icon.png)
 
-選取要移動的資源，同時記著[傳統部署限制](#classic-deployment-limitations)。選取 [確定] 來開始移動。
+選取要移動的資源，同時留意[傳統部署限制](#classic-deployment-limitations)。選取 [確定] 來開始移動。
 
  ![選取傳統資源](./media/resource-group-move-resources/select-classic-resources.png)
  
@@ -269,9 +267,9 @@
 
 
 ## 後續步驟
-- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Resource Manager](powershell-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
 - 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與 Resource Manager](xplat-cli-azure-resource-manager.md)。
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

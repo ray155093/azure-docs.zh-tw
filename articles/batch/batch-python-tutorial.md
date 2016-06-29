@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="06/08/2016"
+	ms.date="06/17/2016"
 	ms.author="marsma"/>
 
 # 開始使用 Azure Batch Python 用戶端
@@ -59,10 +59,6 @@ Python 教學課程程式碼範例是在 GitHub 上 [azure-batch-samples][github
 或者，您可以手動方式安裝 [azure-batch][pypi_batch] 和 [azure-storage][pypi_storage] Python 封裝。
 
 > [AZURE.TIP] 如果您使用無特殊權限的帳戶 (建議選項)，則可能需要在您的命令前面加上 `sudo`，例如 `sudo pip install -r requirements.txt`。如需有關如何安裝 Python 封裝的詳細資訊，請參閱 readthedocs.io 上的[安裝封裝][pypi_install]。
-
-### Azure Batch 總管 (選用)
-
-[Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
 
 ## Batch Python 教學課程程式碼範例
 
@@ -216,7 +212,7 @@ def upload_file_to_container(block_blob_client, container_name, file_path):
 
 ### ResourceFiles
 
-[ResourceFile][py_resource_file] 提供 Batch 中的工作，以及 Azure 儲存體中將在工作執行前下載到計算節點之檔案的 URL。[ResourceFile][py_resource_file].**blob\_source** 屬性會指定 Azure 儲存體中現有檔案的完整 URL。此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。Batch 中的大部分工作類型都包含 [ResourceFiles] 屬性，包括：
+[ResourceFile][py_resource_file] 提供 Batch 中的工作，以及 Azure 儲存體中將在工作執行前下載到計算節點之檔案的 URL。[ResourceFile][py_resource_file].**blob\_source** 屬性會指定 Azure 儲存體中現有檔案的完整 URL。此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。Batch 中的大部分工作類型都包含 ResourceFiles 屬性，包括：
 
 - [CloudTask][py_task]
 - [StartTask][py_starttask]
@@ -420,7 +416,7 @@ def add_tasks(batch_service_client, job_id, input_files,
     batch_service_client.task.add_collection(job_id, tasks)
 ```
 
-> [AZURE.IMPORTANT] 當工作存取環境變數 (例如 `$AZ_BATCH_NODE_SHARED_DIR`) 或執行在節點的 `PATH` 中找不到的應用程式時，工作命令列的前面必須加上 `/bin/bash` (Linux) 或 `cmd /c` (Windows)。這麼做可明確地執行命令殼層，並指示它在執行命令之後終止。如果您的工作在節點的 `PATH` 中執行應用程式 (例如上述程式碼片段中的 python)，這就不是必要條件。
+> [AZURE.IMPORTANT] 當工作存取環境變數 (例如 `$AZ_BATCH_NODE_SHARED_DIR`) 或執行在節點的 `PATH` 中找不到的應用程式時，工作命令列必須明確地叫用 Shell，例如透過 `/bin/sh -c MyTaskApplication $MY_ENV_VAR`。如果您的工作在節點的 `PATH` 中執行應用程式且未參考任何環境變數，這就不是必要條件。
 
 在上述程式碼片段中的 `for` 迴圈內，您可以看到已建構工作的命令列，其中有五個命令列引數傳遞至 python\_tutorial\_task.py：
 
@@ -558,7 +554,7 @@ if query_yes_no('Delete pool?') == 'yes':
 
 ## 執行範例指令碼
 
-當您執行 python\_tutorial\_client.py 時，主控台輸出大致如下。您會在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 看到暫停，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。在執行期間和之後，使用 [Azure 入口網站][azure_portal]或 [Batch Explorer][github_batchexplorer] 來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體 Explorer][storage_explorer] 來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
+當您執行 python\_tutorial\_client.py 時，主控台輸出大致如下。您會在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 看到暫停，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體總管][storage_explorer]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
 以預設組態執行應用程式時，一般的執行時間**大約 5-7 分鐘**。
 
@@ -592,7 +588,7 @@ Press ENTER to exit...
 
 ## 後續步驟
 
-您可隨意變更 python\_tutorial\_client.py 和 python\_tutorial\_task.py，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 python\_tutorial\_task.py，以模擬長時間執行的工作並以 Batch Explorer 的「熱圖」功能監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
+您可隨意變更 python\_tutorial\_client.py 和 python\_tutorial\_task.py，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 python\_tutorial\_task.py，以模擬長時間執行的工作並在入口網站中監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
 
 既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。
 
@@ -603,10 +599,8 @@ Press ENTER to exit...
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
-[batch_explorer_blog]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 [batch_learning_path]: https://azure.microsoft.com/documentation/learning-paths/batch/
 [blog_linux]: http://blogs.technet.com/b/windowshpc/archive/2016/03/30/introducing-linux-support-on-azure-batch.aspx
-[github_batchexplorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_common]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/Common
 [github_samples_zip]: https://github.com/Azure/azure-batch-samples/archive/master.zip
@@ -664,4 +658,4 @@ Press ENTER to exit...
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

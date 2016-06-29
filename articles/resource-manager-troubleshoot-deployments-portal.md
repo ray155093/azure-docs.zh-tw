@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-multiple"
    ms.workload="infrastructure"
-   ms.date="05/19/2016"
+   ms.date="06/13/2016"
    ms.author="tomfitz"/>
 
 # 使用 Azure 入口網站來檢視部署作業
@@ -101,4 +101,4 @@
 - 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

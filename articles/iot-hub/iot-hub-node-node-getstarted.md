@@ -13,26 +13,12 @@
      ms.topic="hero-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="03/22/2016"
+     ms.date="06/16/2016"
      ms.author="dobett"/>
 
 # 開始使用適用於 Node.js 的 Azure IoT 中樞
 
 [AZURE.INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
-
-## 簡介
-
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 (IoT) 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地將裝置連線至解決方案後端。若要解決這個問題，IoT 中樞：
-
-- 提供可靠的裝置到雲端和雲端到裝置的超大規模傳訊。
-- 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
-- 包括適用於最受歡迎的語言和平台的裝置程式庫。
-
-本教學課程說明如何：
-
-- 使用 Azure 入口網站來建立 IoT 中樞。
-- 在您的 IoT 中樞中建立裝置身分識別。
-- 建立將遙測傳送到雲端後端的模擬裝置。
 
 在本教學課程結尾處，您將會有三個 Node.js 主控台應用程式：
 
@@ -46,15 +32,11 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 + Node.js 0.12.x 版或更新版本。<br/> [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
++ 使用中的 Azure 帳戶。(如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
 
 [AZURE.INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-最後，按一下 [IoT 中樞] 刀鋒視窗上的 [設定]，然後按一下 [設定] 刀鋒視窗上的 [傳訊]。記下 [傳訊] 刀鋒視窗上的**事件中樞相容名稱**和**事件中樞相容端點**。在建立 **read-d2c-messages** 應用程式時需要用到這些值。
-
-![][6]
-
-您現在已經建立 IoT 中樞，並擁有完成本教學課程其餘部分所需的 IoT 中樞主機名稱、IoT 中樞連接字串、事件中樞相容名稱和事件中樞相容端點值。
+您現在已經建立 IoT 中樞。您具有完成本教學課程的其餘部分所需的 IoT 中樞主機名稱和連接字串。
 
 ## 建立裝置識別
 
@@ -122,7 +104,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 9. 記下**裝置識別碼**和**裝置金鑰**。稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，會需要這些資料。
 
-> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰，來做為安全性認證，以及啟用或停用旗標，讓您停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 
 ## 接收裝置到雲端的訊息
 
@@ -136,10 +118,10 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     npm init
     ```
 
-2. 在 **readdevicetocloudmessages** 資料夾的命令提示字元中，執行下列命令以安裝 **amqp10** 和 **bluebird** 封裝：
+2. 在 **readdevicetocloudmessages** 資料夾的命令提示字元中，執行下列命令以安裝 **azure-event-hubs** 封裝：
 
     ```
-    npm install amqp10 bluebird --save
+    npm install azure-event-hubs --save
     ```
 
 3. 使用文字編輯器，在 **readdevicetocloudmessages** 資料夾中建立新的 **ReadDeviceToCloudMessages.js** 檔案。
@@ -149,91 +131,48 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
     ```
     'use strict';
 
-    var AMQPClient = require('amqp10').Client;
-    var Policy = require('amqp10').Policy;
-    var translator = require('amqp10').translator;
-    var Promise = require('bluebird');
+    var EventHubClient = require('azure-event-hubs').Client;
     ```
 
-5. 新增下列變數宣告，將預留位置取代為您先前記下的值。**{您的事件中樞相容命名空間}** 預留位置的值來自入口網站中的 [事件中樞相容端點] 欄位，其形式為 **namespace.servicebus.windows.net** (沒有 **sb://* 首碼)。
+5. 新增下列變數宣告，並將預留位置值替換為您的 IoT 中樞的連接字串：
 
     ```
-    var protocol = 'amqps';
-    var eventHubHost = '{your event hub-compatible namespace}';
-    var sasName = 'iothubowner';
-    var sasKey = '{your iot hub key}';
-    var eventHubName = '{your event hub-compatible name}';
-    var numPartitions = 2;
+    var connectionString = '{iothub connection string}';
     ```
 
-    > [AZURE.NOTE] 此程式碼假設您已在 F1 (免費) 層建立 IoT 中樞。免費 IoT 中樞有 "0" 和 "1" 這兩個資料分割。如果您使用另一種定價層建立 IoT 中樞，則應調整程式碼來為每個資料分割建立 **MessageReceiver**。
-
-6. 新增下列篩選器定義。在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。這很適合測試環境，因為如此一來您就可以看到目前的訊息集，但在生產環境中，您的程式碼應該要確定它能處理所有訊息，如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+6. 新增下列兩個會將輸出列印到主控台的函數：
 
     ```
-    var filterOffset = new Date().getTime();
-    var filterOption;
-    if (filterOffset) {
-      filterOption = {
-      attach: { source: { filter: {
-      'apache.org:selector-filter:string': translator(
-        ['described', ['symbol', 'apache.org:selector-filter:string'], ['string', "amqp.annotation.x-opt-enqueuedtimeutc > " + filterOffset + ""]])
-        } } }
-      };
-    }
-    ```
-
-7. 新增下列程式碼來建立接收位址和 AMQP 用戶端：
-
-    ```
-    var uri = protocol + '://' + encodeURIComponent(sasName) + ':' + encodeURIComponent(sasKey) + '@' + eventHubHost;
-    var recvAddr = eventHubName + '/ConsumerGroups/$default/Partitions/';
-    
-    var client = new AMQPClient(Policy.EventHub);
-    ```
-
-8. 新增下列兩個會將輸出列印到主控台的函數：
-
-    ```
-    var messageHandler = function (partitionId, message) {
-      console.log('Received(' + partitionId + '): ', message.body);
+    var printError = function (err) {
+      console.log(err.message);
     };
-    
-    var errorHandler = function(partitionId, err) {
-      console.warn('** Receive error: ', err);
+
+    var printMessage = function (message) {
+      console.log('Message received: ');
+      console.log(JSON.stringify(message.body));
+      console.log('');
     };
     ```
 
-9. 新增下列函數，以做為使用篩選器的給定資料分割接收者：
+7. 加入下列程式碼以建立 **EventHubClient**、開啟您的 IoT 中樞的連線，並建立每個資料分割的接收者。在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。這很適合測試環境，因此您就可以看到目前的訊息集，但在生產環境中，您的程式碼應該要確定它能處理所有訊息，如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程：
 
     ```
-    var createPartitionReceiver = function(partitionId, receiveAddress, filterOption) {
-      return client.createReceiver(receiveAddress, filterOption)
-        .then(function (receiver) {
-          console.log('Listening on partition: ' + partitionId);
-          receiver.on('message', messageHandler.bind(null, partitionId));
-          receiver.on('errorReceived', errorHandler.bind(null, partitionId));
-        });
-    };
+    var client = EventHubClient.fromConnectionString(connectionString);
+    client.open()
+        .then(client.getPartitionIds.bind(client))
+        .then(function (partitionIds) {
+            return partitionIds.map(function (partitionId) {
+                return client.createReceiver('$Default', partitionId, { 'startAfterTime' : Date.now()}).then(function(receiver) {
+                    console.log('Created partition receiver: ' + partitionId)
+                    receiver.on('errorReceived', printError);
+                    receiver.on('message', printMessage);
+                });
+            });
+        })
+        .catch(printError);
     ```
 
-10. 新增下列程式碼，以連接到事件中樞相容端點並啟動接收者：
-
-    ```
-    client.connect(uri)
-      .then(function () {
-        var partitions = [];
-        for (var i = 0; i < numPartitions; ++i) {
-          partitions.push(createPartitionReceiver(i, recvAddr + i, filterOption));
-        }
-        return Promise.all(partitions);
-    })
-    .error(function (e) {
-        console.warn('Connection error: ', e);
-    });
-    ```
-
-11. 儲存並關閉 **ReadDeviceToCloudMessages.js** 檔案。
+8. 儲存並關閉 **ReadDeviceToCloudMessages.js** 檔案。
 
 ## 建立模擬裝置應用程式
 
@@ -367,4 +306,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -3,7 +3,7 @@
 	description="使用這篇文章以使用 Azure Site Recovery，將 VMware VM 或 Windows/Linux 實體伺服器複寫至次要網站。"
 	services="site-recovery"
 	documentationCenter=""
-	authors="rayne-wiselman"
+	authors="nsoneji"
 	manager="jwhit"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/16/2016"
-	ms.author="raynew"/>
+	ms.date="06/14/2016"
+	ms.author="nisoneji"/>
 
 
 # 將內部部署 VMware 虛擬機器或實體伺服器複寫至次要網站
@@ -57,52 +57,86 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 3. 處理序伺服器
 3. 主要目標伺服器。
 4. vContinuum 伺服器。
+5. 來源伺服器 (僅適用於 Windows Server)
 
 按照以下方式安裝：
 
-1. 下載[更新](http://aka.ms/scoutupdates) zip 檔案。此 zip 檔案包含下列檔案：
+1. 下載[更新](https://aka.ms/asr-scout-update3) zip 檔案。此 zip 檔案包含下列檔案：
 
-	-  RX\_8.0.1.0\_GA\_Update\_1\_3279231\_23Jun15.tar.gz
-	-  CX\_Windows\_8.0.2.0\_GA\_Update\_2\_4306954\_21Aug15.exe
-	-  UA\_Windows\_8.0.1.0\_GA\_Update\_1\_3259401\_23Jun15.exe
-	-  UA\_RHEL6-64\_8.0.1.0\_GA\_Update\_1\_3259401\_23Jun15.tar.gz
-	-  vCon\_Windows\_8.0.1.0\_GA\_Update\_1\_3259523\_23Jun15.exe
+	-  RX\_8.0.3.0\_GA\_Update\_3\_6684045\_17Mar16.tar.gz
+	-  CX\_Windows\_8.0.3.0\_GA\_Update\_3\_5048668\_16Mar16.exe
+	-  UA\_Windows\_8.0.3.0\_GA\_Update\_3\_7101745\_04Apr16.exe
+	-  UA\_RHEL6-64\_8.0.3.0\_GA\_Update\_3\_7101745\_04Apr16.zip
+	-  vCon\_Windows\_8.0.3.0\_GA\_Update\_3\_6873369\_16Mar16.exe
+
 2. 解壓縮 zip 檔案。
-2. **RX 伺服器**：將 **RX\_8.0.1.0\_GA\_Update\_1\_3279231\_23Jun15.tar.gz** 複製到 RX 伺服器並將其解壓縮。在解壓縮的資料夾中執行 **/Install**。
-2. **設定伺服器/處理序伺服器**：將 **CX\_Windows\_8.0.2.0\_GA\_Update\_2\_4306954\_21Aug15.exe** 複製設定伺服器和處理序伺服器。連按兩下加以執行。
-3. **Windows 主要目標伺服器**：若要更新整合代理程式，請將 **UA\_Windows\_8.0.1.0\_GA\_Update\_1\_3259401\_23Jun15.exe** 複製到主要目標伺服器。連按兩下加以執行。請注意，適用於 Windows 的整合代理程式不適用於來源伺服器。它應該只安裝在 Windows 主要目標伺服器上。
-4. **Linux 主要目標伺服器**：若要更新整合代理程式，請將 **UA\_RHEL6-64\_8.0.1.0\_GA\_Update\_1\_3259401\_23Jun15.tar.gz** 複製到主要目標伺服器並將它解壓縮。在解壓縮的資料夾中執行 **/Install**。
-5. **vContinuum 伺服器**：將 **vCon\_Windows\_8.0.1.0\_GA\_Update\_1\_3259523\_23Jun15.exe** 複製到 vContinuum 伺服器。確定您已經關閉 vContinuum 精靈。連按兩下檔案加以執行。
+3. **RX 伺服器**：將 **RX\_8.0.3.0\_GA\_Update\_3\_6684045\_17Mar16.tar.gz** 複製到 RX 伺服器並將其解壓縮。在解壓縮的資料夾中執行 **/Install**。
+4. **設定伺服器/處理序伺服器**：將 **CX\_Windows\_8.0.3.0\_GA\_Update\_3\_5048668\_16Mar16.exe** 複製設定伺服器和處理序伺服器。連按兩下加以執行。
+5. **Windows 主要目標伺服器**：若要更新整合代理程式，請將 **UA\_Windows\_8.0.3.0\_GA\_Update\_3\_7101745\_04Apr16.exe** 複製到主要目標伺服器。連按兩下加以執行。請注意，整合代理程式也適用於來源伺服器。它應該安裝在來源伺服器以及下面所述的伺服器上。
+6. **Linux 主要目標伺服器**：若要更新整合代理程式，請將 **UA\_RHEL6-64\_8.0.3.0\_GA\_Update\_3\_7101745\_04Apr16.zip** 複製到主要目標伺服器並將它解壓縮。在解壓縮的資料夾中執行 **/Install**。
+7. **vContinuum 伺服器**：將 **vCon\_Windows\_8.0.3.0\_GA\_Update\_3\_6873369\_16Mar16.exe** 複製到 vContinuum 伺服器。確定您已經關閉 vContinuum 精靈。連按兩下檔案加以執行。
+8. **Windows 來源伺服器**：若要更新整合代理程式，請將 **UA\_Windows\_8.0.3.0\_GA\_Update\_3\_7101745\_04Apr16.exe** 複製到來源伺服器。連按兩下加以執行。 
 
 ## 步驟 4：設定複寫
-5. 設定來源與目標 VMware 網站之間的複寫。
-6. 如需指引，請使用隨產品下載的 InMage Scout 文件。或者，您可以存取下列文件：
+1. 設定來源與目標 VMware 網站之間的複寫。
+2. 如需指引，請使用隨產品下載的 InMage Scout 文件。或者，您可以存取下列文件：
 
-	- [版本資訊](http://download.microsoft.com/download/4/5/0/45008861-4994-4708-BFCD-867736D5621A/InMage_Scout_Standard_Release_Notes.pdf)
-	- [相容性矩陣](http://download.microsoft.com/download/C/D/A/CDA1221B-74E4-4CCF-8F77-F785E71423C0/InMage_Scout_Standard_Compatibility_Matrix.pdf)
-	- [使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf)
-	- [RX 使用者指南](http://download.microsoft.com/download/A/7/7/A77504C5-D49F-4799-BBC4-4E92158AFBA4/InMage_ScoutCloud_RX_User_Guide_8.0.1.pdf)
-	- [快速安裝指南](http://download.microsoft.com/download/6/8/5/685E761C-8493-42EB-854F-FE24B5A6D74B/InMage_Scout_Standard_Quick_Install_Guide.pdf)
+	- [版本資訊](https://aka.ms/asr-scout-release-notes)
+	- [相容性矩陣](https://aka.ms/asr-scout-cm)
+	- [使用者指南](https://aka.ms/asr-scout-user-guide)
+	- [RX 使用者指南](https://aka.ms/asr-scout-rx-user-guide)
+	- [快速安裝指南](https://aka.ms/asr-scout-quick-install-guide)
 
 
 ## 更新
 
-### ASR Scout 8.0.1 更新 03Dec15
+### ASR Scout 8.0.1 Update 3
+Update 3 包含下列錯誤修正和增強功能：
 
-更新 03-Dec-15 中的修正包括：
+1. 組態伺服器和 RX 位於 Proxy 後方時無法向 ASR 保存庫註冊。
+2. 健康狀態報告並未更新不符合 RPO 的時數。
+3. 當 ESX 硬體詳細資料或網路詳細資料包含任何UTF-8 字元時，組態伺服器不會與 RX 同步處理。
+4. Windows 2008 Server R2 DC 電腦無法在復原後開機。
+5. 離線同步處理未如預期般運作。 
+6. 在 VM 容錯移轉後，複寫配對刪除因為時間太長而在 CX UI 中停滯，且使用者無法進行容錯回復繼續作業。
+7. 一致性作業已進行最佳化的整體快照作業，協助減少應用程式中斷連接 SQL 用戶端等。
+8. 降低在 Windows 上建立快照所需的記憶體使用量，進而改善 VACP 效能。
+9. 推入安裝服務會在密碼大於 16 個字元時損毀
+10. vContinuum 不會在認證變更時檢查和提示輸入新的 vCenter 認證。
+11. 在 Linux 主要目標上，快取管理員 (cachemgr) 並未從處理序伺服器下載檔案，以致發生複寫配對節流。
+12. 當所有節點上的實體 MSCS 叢集磁碟順序不同時，則不會針對某些叢集磁碟區設定複寫。<br/>注意︰若要讓此修正可供使用，必須重新保護叢集。  
+13. 在 RX 從 Scout 7.1 升級至 Scout 8.0.1 之後，SMTP 功能並未如預期般運作。
+14. 已在記錄檔中加入更多統計資料，以便復原作業追蹤完成此作業所需的時間。
+15. 已加入來源伺服器上 Linux 作業系統的支援 
+	- RHEL 6 Update 7
+	- CentOS 6 Update 7 
+16. CX 和 RX UI 現在可以針對進入點陣圖模式的配對顯示通知。
+17. 下列安全性修正已加入 RX 中。
+
+**#**|**問題描述**|**實作程序**
+---|---|---
+1\. |透過竄改參數略過授權|限制不適用使用者的存取權
+2\. |跨網站偽造要求|實作針對每一頁隨機產生的頁面權杖概念。<br/>藉此，您會看見 <br/>1) 相同使用者只有單一登入執行個體，2) 頁面重新整理無法運作，而重新導向至儀表板。<br/>
+3\. |惡意檔案上傳|將檔案限制於特定副檔名。允許的副檔名︰7z、aiff、asf、avi、bmp、csv、doc、docx、fla、flv、gif、gz、gzip、jpeg、jpg、log、mid、mov、mp3、mp4、mpc、mpeg、mpg、ods、odt、pdf、png、ppt、pptx、pxd、qt、ram、rar、rm、rmi、rmvb、rtf、sdc、sitd、swf、sxc、sxw、tar、tgz、tif、tiff、txt、vsd、wav、wma、wmv、xls、xlsx、xml、zip
+4\. | 持續性跨網站指令碼 | 加入輸入驗證
+
+
+>[AZURE.NOTE]
+>
+>-	所有的 ASR 更新都是累計的。Update3 具有 Update1 和 Update2 的所有修正。Update 3 可以直接套用於 8.0.1 GA。
+>-	一旦在系統上套用 CS 和 RX 更新便無法回復。
+
+### ASR Scout 8.0.1 Update 03Dec15 (Update2)
+
+Update 2 中的修正包括：
 
 - **組態伺服器** — 修正當組態伺服器登錄在 Site Recovery 時，會阻止 31 天免費計量功能正常運作的問題。
 - **整合代理程式** — 修正更新 1 中導致 8.0 版升級至 8.0.1 版之後，主要目標未安裝在主要目標伺服器上升的問題。
 
->[AZURE.NOTE]
->
->-	所有的 ASR 更新都是累計的。
->-	一旦在系統上套用 CS 和 RX 更新便無法回復。
-
 
 ### ASR Scout 8.0.1 Update 1
 
-這個最新的更新包含錯誤修正和新功能：
+Update 1 包含錯誤修正和新功能：
 
 - 每個伺服器執行個體享有 31 天的免費保護。這可讓您測試功能或設定概念證明。
 	- 從使用 ASR Scout 第一次保護伺服器的時間開始計算的前 31 天，伺服器上的所有作業 (包括容錯移轉和容錯回復) 都是免費的。
@@ -130,4 +164,4 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 
 若有任何問題，請造訪 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) (英文)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -533,8 +533,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 來源作業系統 | 行動服務安裝檔案
 --- | ---
 Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz 
-SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
 
@@ -725,18 +724,20 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 - 應建立公用端點，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。
 - 如果透過 VPN 連線 (Express Route 或站對站 VPN) 存取 VM，則用戶端可用來透過 SSH 直接連接到 VM。
 
+**在容錯移轉後的 Windows/Linux VM 上**：
 
+如果您有與虛擬機器或機器所屬子網路相關聯的網路安全性群組，請確定網路安全性群組具有 輸出規則可允許 HTTP/HTTPS。也請確定虛擬機器要容錯移轉至的網路 DNS 設定正確。否則容錯移轉可能逾時，並發生錯誤 -「PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時」。若要詳細了解這點，請參閱[監視和疑難排解指南](site-recovery-monitoring-and-troubleshooting.md#recovery)中＜復原＞一節。
 
 ## 執行測試容錯移轉
 
-1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+Test Failover] \(+測試容錯移轉) 圖示。
+1. 若要容錯移轉單一機器，請在 [設定] > [複寫的項目] 中，按一下 VM > [+測試容錯移轉] 圖示。
 
 	![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover1.png)
 
 2. 若要容錯移轉復原方案，請在 [設定] > [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。若要建立復原方案，[請遵循這些指示](site-recovery-create-recovery-plans.md)。
 
 3. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
-4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery jobs] \(Site Recovery 作業) 中的 [測試容錯移轉] 按一下，以便追蹤進度。
+4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery 作業] 中的 [測試容錯移轉] 按一下，以便追蹤進度。
 5. 當容錯移轉到達**完成測試**狀態時，請執行下列作業：
 
 	1. 在 Azure 入口網站中檢視複本虛擬機器。確認虛擬機器成功啟動。
@@ -764,8 +765,8 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
 
-2. 在 [健全狀況] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
-3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery Jobs] \(Site Recovery 作業) 中向下鑽研作業。
+2. 在 [健康狀態] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
+3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery 作業] 中向下鑽研作業。
 
 
 ## 部署額外處理序伺服器
@@ -776,16 +777,16 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ### 安裝額外的處理序伺服器
 
-1. 在 [設定] > [Site Recovery servers] \(Site Recovery 伺服器) 中，按一下組態伺服器 > [處理序伺服器]。
+1. 在 [設定] > [Site Recovery 伺服器] 中，按一下組態伺服器 > [處理序伺服器]。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
 
-2. 在 [伺服器類型] 中，按一下 [Process server (on-premises)] \(處理序伺服器 (內部部署))。
+2. 在 [伺服器類型] 中，按一下 [處理序伺服器 (內部部署)]。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
 3. 下載 Site Recovery 統一安裝檔案，然後執行它以安裝處理序伺服器，並在保存庫中註冊。
-4. 在 [開始之前] 中，選取 [Add additional process servers to scale out deployment] \(新增額外處理序伺服器以相應放大部署)。
+4. 在 [開始之前] 中，選取 [新增額外處理序伺服器以相應放大部署]。
 5. 以您[設定](#step-2-set-up-the-source-environment)組態伺服器時的相同方式完成精靈。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure/add-ps1.png)
@@ -796,7 +797,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ### 移轉機器以使用新的處理序伺服器
 
-1. 在 [設定] > [Site Recovery servers] \(Site Recovery 伺服器) 中，按一下組態伺服器，然後展開 [處理序伺服器]。
+1. 在 [設定] > [Site Recovery 伺服器] 中，按一下組態伺服器，然後展開 [處理序伺服器]。
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
@@ -804,7 +805,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps3.png)
 
-3. 在 [Select target process server] \(選取目標處理序伺服器) 中，選取您要使用的新處理序伺服器，然後選取新的處理序伺服器將處理的虛擬機器。按一下資訊圖示以取得伺服器的相關資訊。為了協助您進行負載的判斷，會顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間。按一下核取記號以開始複寫到新處理序伺服器。
+3. 在 [選取目標處理序伺服器] 中，選取您要使用的新處理序伺服器，然後選取新的處理序伺服器將處理的虛擬機器。按一下資訊圖示以取得伺服器的相關資訊。為了協助您進行負載的判斷，會顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間。按一下核取記號以開始複寫到新處理序伺服器。
 
 ## VMware 帳戶權限
 
@@ -814,7 +815,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 --- | --- | ---
 Azure\_Site\_Recovery 角色 | VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區 -> 配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路 -> 網路指派<br/><br/>資源 -> 指派虛擬機器至資源集區、移轉已關閉電源的虛擬機器、移轉已開啟電源的虛擬機器<br/><br/>工作 -> 建立工作、更新工作<br/><br/>虛擬機器 -> 組態<br/><br/>虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟機媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 -> 清查 -> 建立、註冊、取消註冊<br/><br/>虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 -> 快照 -> 移除快照
 vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] \(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。
-vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [Propagate to child] \(傳播至子物件) 的 [No access] \(沒有存取權) 角色指派給子物件 (vSphere 主機、資料存放區、VM 及網路)。 
+vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [傳播至子物件] 的 [沒有存取權] 角色指派給子物件 \(vSphere 主機、資料存放區、VM 及網路)。 
 ## 後續步驟
 
 - [深入了解](site-recovery-failover.md)不同類型的容錯移轉。
@@ -832,4 +833,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

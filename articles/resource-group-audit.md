@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/21/2016"
+	ms.date="06/13/2016"
 	ms.author="tomfitz"/>
 
 # 使用資源管理員來稽核作業
@@ -125,4 +125,4 @@
 - 若要了解針對部署進行疑難排解的命令，請參閱[在 Azure 中針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 - 若要了解如何防止刪除所有使用者的資源，請參閱[使用 Azure Resource Manager 鎖定資源](resource-group-lock-resources.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0615_2016-->

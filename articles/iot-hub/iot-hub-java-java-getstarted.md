@@ -13,26 +13,12 @@
      ms.topic="hero-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="06/06/2016"
+     ms.date="06/16/2016"
      ms.author="dobett"/>
 
 # 開始使用適用於 Java 的 Azure IoT 中樞
 
 [AZURE.INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
-
-## 簡介
-
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 (IoT) 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地將裝置連線至解決方案後端。若要解決這個問題，IoT 中樞：
-
-- 提供可靠的裝置到雲端和雲端到裝置的超大規模傳訊。
-- 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
-- 包括適用於最受歡迎的語言和平台的裝置程式庫。
-
-本教學課程說明如何：
-
-- 使用 Azure 入口網站來建立 IoT 中樞。
-- 在您的 IoT 中樞中建立裝置身分識別。
-- 建立將遙測傳送到雲端後端的模擬裝置。
 
 在本教學課程結尾處，您將會有三個 Java 主控台應用程式：
 
@@ -48,7 +34,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 + Maven 3。<br/> [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Maven。
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
++ 使用中的 Azure 帳戶。(如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
 
 [AZURE.INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -144,7 +130,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 13. 記下**裝置識別碼**和**裝置金鑰**。稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，會需要這些資料。
 
-> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰，來做為安全性認證，以及啟用或停用旗標，讓您停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 
 ## 接收裝置到雲端的訊息
 
@@ -486,7 +472,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 - [使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d-tutorial]，示範如何將訊息傳送到裝置，並處理 IoT 中樞所產生的傳送意見反應。
 - [處理裝置到雲端訊息][lnk-process-d2c-tutorial]，示範如何可靠地處理來自裝置的遙測和互動式訊息。
-- [從裝置上傳檔案][lnk-upload-tutorial]說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
+- [從裝置上傳檔案][lnk-upload-tutorial]視費如何從裝置上傳檔案。
 
 <!-- Images. -->
 [6]: ./media/iot-hub-java-java-getstarted/create-iot-hub6.png
@@ -501,7 +487,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-devguide-identity]: iot-hub-devguide.md#identityregistry
 [lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/java/device/doc/devbox_setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/java-devbox-setup.md
 [lnk-c2d-tutorial]: iot-hub-csharp-csharp-c2d.md
 [lnk-process-d2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
 [lnk-upload-tutorial]: iot-hub-csharp-csharp-file-upload.md
@@ -510,4 +496,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

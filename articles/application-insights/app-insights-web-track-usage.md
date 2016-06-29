@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="06/12/2016" 
 	ms.author="awills"/>
  
 # 使用 Application Insights 進行 Web 應用程式的使用量分析
@@ -119,7 +119,7 @@ Visual Studio Application Insights 提供兩種使用情況追蹤層級：
 使用者及帳戶識別碼不得包含空格或字元 `,;=|`
 
 
-在 [計量瀏覽器](app-insights-metrics-explorer.md) 中，您可以建立 [驗證的使用者] 和 [帳戶] 的圖表。
+在 [計量瀏覽器][](app-insights-metrics-explorer.md) 中，您可以建立 [驗證的使用者] 和 [帳戶] 的圖表。
 
 ## 綜合流量
 
@@ -152,32 +152,22 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 ## 自訂事件
 
-使用自訂事件可以進行作業。您可以從裝置應用程式、網頁或 Web 伺服器傳送事件：
-
-*JavaScript*
+撰寫自訂遙測來記錄特定事件。特別是在單一頁面應用程式中，您會想要知道使用者執行特定動作或達成特定目標的頻率：
 
     appInsights.trackEvent("GameEnd");
 
-*C#*
+例如，若要記錄按一下連結：
 
-    var tc = new Microsoft.ApplicationInsights.TelemetryClient(); 
-    tc.TrackEvent("GameEnd");
-
-*VB*
-
-    Dim tc = New Microsoft.ApplicationInsights.TelemetryClient()
-    tc.TrackEvent("GameEnd")
+    <a href="target.htm" onclick="appInsights.trackEvent('linkClick');return true;">my link</a>
 
 
-最常見的自訂事件會列在 [概觀] 刀鋒視窗上。
+## 檢視自訂事件的計數
 
-![在 [概觀] 刀鋒視窗上，向下捲動並按一下 [自訂事件]。](./media/app-insights-web-track-usage/04-events.png)
-
-按一下資料表標題來查看事件數的總計。您可以依各種屬性 (例如事件名稱) 來分段圖表：
+開啟 [計量瀏覽器]，並新增圖表以顯示事件。依名稱分割：
 
 ![選取僅顯示一個度量的圖表。將分組切換成開啟。選擇屬性。並非所有屬性都可供使用。](./media/app-insights-web-track-usage/06-eventsSegment.png)
 
-時間軸特別實用的功能是您可以將變更與其他度量和事件相互關聯。例如，在玩很多遊戲的時候，您會預期看到被放棄的遊戲也有上升。但是，被放棄的遊戲上升不成比例，您會想要知道高負載是否造成問題，使得使用者覺得無法接受。
+
 
 ## 深入特定事件
 
@@ -376,4 +366,4 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

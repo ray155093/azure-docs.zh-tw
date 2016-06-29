@@ -24,7 +24,7 @@ Service Fabric 可讓您建置並管理由微服務組成的應用程式，這�
 
 為什麼微服務方式如此重要？ 兩個主要原因如下：
 
-1. 微服務可讓您根據其需求，調整應用程式的不同部分
+1. 微服務可讓您根據其需求，調整應用程式的不同部分。
 
 2. 開發團隊能夠更敏捷地推出更動，藉以更快速且更頻繁地為您的客戶提供新功能。
 
@@ -71,7 +71,7 @@ Service Fabric ALM 功能讓應用程式管理員/IT 操作員能夠使用簡單
 
 - 開發可大幅調整且自我修復的應用程式。
 
-- 使用 Service Fabric 程式設計模型，開發由微服務，或僅主機來賓可執行檔，以及您所選擇的其他應用程式架構 (例如 ASP.NET Core 1、node.js 等) 組成的應用程式。
+- 使用 Service Fabric 程式設計模型，開發由微服務，或僅主機來賓可執行檔，以及您所選擇的其他應用程式架構 (例如 ASP.NET Core 1、Node.js 等) 組成的應用程式。
 
 - 開發無狀態與可設定狀態的微服務，並使其高度可靠。
 
@@ -103,11 +103,11 @@ Service Fabric ALM 功能讓應用程式管理員/IT 操作員能夠使用簡單
 ## 後續步驟
 
 * 其他資訊：
-	* [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
-	* [術語概觀](service-fabric-technical-overview.md)
+    * [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
+    * [術語概觀](service-fabric-technical-overview.md)
 * 設定 Service Fabric [開發環境](service-fabric-get-started.md)  
 * 為您的服務[選擇程式設計模型架構](service-fabric-choose-framework.md)
 
 [Image1]: media/service-fabric-overview/Service-Fabric-Overview.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="04/19/2015"
+   ms.date="06/10/2016"
    ms.author="yuemlu"/>
 
 
@@ -81,4 +81,4 @@ foreach($subscription in Get-AzureSubscription) {
 ## 後續步驟
 檢閱最新的[客體作業系統版本](cloud-services-guestos-update-matrix.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0615_2016-->

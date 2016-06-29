@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="03/14/2016" 
+	ms.date="06/10/2016" 
 	ms.author="raynew"/>
 
 # Site Recovery 中的容錯移轉
@@ -49,8 +49,8 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 從 Azure 到 VMM 站台 | 不支援 | 支援 | 不支援 
 從 Hyper-V 站台到 Azure | 支援 | 支援 | 支援
 從 Azure 到 Hyper-V 站台 | 不支援 | 支援 | 不支援
-從 VMware 站台到 Azure | 支援 (增強版案例)<br/><br/> 不支援 (舊版案例) |這種情況會使用連續複寫，因此計劃性與非計劃性容錯移轉之間並無差別。您選取 [容錯移轉] | NA
-從實體伺服器到 Azure | 不支援 | 這種情況會使用連續複寫，因此計劃性與非計劃性容錯移轉之間並無差別。您選取 [容錯移轉] | NA
+從 VMware 站台到 Azure | 支援 (增強版案例)<br/><br/> 不支援 (舊版案例) |不支援 | 支援
+從實體伺服器到 Azure | 支援 (增強版案例)<br/><br/> 不支援 (舊版案例) | 不支援 | 支援
 
 ## 容錯移轉和容錯回復
 
@@ -256,4 +256,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 	>[AZURE.NOTE] 如果您在資料同步處理步驟中取消容錯回復作業，內部部署 VM 會進入損毀狀態。這是因為資料同步處理會將 Azure VM 磁碟中最新的資料複製到內部部署資料磁碟，而在同步處理完成之前，資料可能會處於不一致狀態。如果內部部署 VM 在取消資料同步處理後開機，則可能無法開機。重新觸發容錯移轉以完成資料同步處理。
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -103,7 +103,7 @@
 | 44 | [使用 Node.js 連接到 SQL Database](sql-database-develop-nodejs-simple.md) | 提供可用來連接到 Azure SQL Database 的 Node.js 程式碼範例。 |
 | 45 | [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md) | 提供可用來連接到 Azure SQL Database 的 Python 程式碼範例。 |
 | 46 | [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md) | 提供您可執行以連接到 Azure SQL Database 的 Ruby 程式碼範例。 |
-| 47 | [連接到 SQL Database：最佳做法和設計方針](sql-database-connect-central-recommendations.md) | 針對從 ADO.NET 和 PHP 之類的技術連接到 Azure SQL Database 的用戶端程式，統合收集連結和最佳做法建議的入門主題。 |
+| 47 | [SQL Database 開發概觀](sql-database-develop-overview.md) | 針對從 ADO.NET 和 PHP 之類的技術連接到 Azure SQL Database 的用戶端程式，統合收集連結和最佳做法建議的入門主題。 |
 | 48 | [使用成員資格、OAuth 和 SQL Database，建立安全的 ASP.NET Web Forms 應用程式並部署至 Azure App Service。 ](web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database.md) | 本教學課程說明如何建置包含 SQL Database 的安全 ASP.NET 4.5 Web Forms Web 應用程式，並將應用程式部署至 Azure。 |
 | 49 | [取得從程式碼連接到 SQL Database 所使用的用戶端識別碼和金鑰](sql-database-client-id-keys.md) | 取得從程式碼存取 SQL Database 所使用的用戶端識別碼和金鑰。 |
 | 50 | [開始使用 Azure SQL Database 中的時態表](sql-database-temporal-tables.md) | 了解如何開始使用 Azure SQL Database 中的時態表。 |
@@ -378,4 +378,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

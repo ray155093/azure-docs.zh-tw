@@ -33,7 +33,7 @@
 
 *   **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-*   **核心配額** - 您可能需要增加核心的配額，特別是如果您部署多核心 VM 大小的數個叢集節點。如果您使用 Azure 快速入門範本，請注意資源管理員中的核心配額為每個 Azure 區域，您可能需要增加特定區域中的配額。請參閱 [Azure 訂用帳戶限制、配額與限制](../azure-subscription-service-limits.md)。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
+*   **核心配額** - 您可能需要增加核心的配額，特別是如果您部署多核心 VM 大小的數個叢集節點。如果您使用 Azure 快速入門範本，請注意 Resource Manager 中的核心配額為每個 Azure 區域，您可能需要增加特定區域中的配額。請參閱 [Azure 訂用帳戶限制、配額與限制](../azure-subscription-service-limits.md)。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
 
 *   **Microsoft Office 授權** - 如果您使用包含 Microsoft Excel 的 Marketplace HPC Pack VM 映像部署計算節點，會在計算節點上安裝 Microsoft Excel Professional Plus 2013 的 30 天評估版。評估期結束後，您將需要提供有效的 Microsoft Office 授權來啟用 Excel，才能繼續執行工作負載。請參閱在本文章稍候的[啟用 Excel](#excel-activation)。
 
@@ -46,7 +46,7 @@
 ### 使用快速入門範本
 使用 Azure 快速入門範本在 Azure 入口網站中快速、輕鬆地部署 HPC Pack 叢集。在 Preview 入口網站中開啟範本時，您會看到一個可供您輸入叢集設定的簡單 UI。步驟如下：
 
->[AZURE.TIP]如果您願意的話，可以使用 [Azure Markeplace 範本](https://ms.portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn)來專為 Excel 工作負載建立類似的叢集。其步驟與下文中的內容稍有不同。
+>[AZURE.TIP]如果您願意的話，可以使用 [Azure Markeplace 範本](https://portal.azure.com/?feature.relex=*%2CHubsExtension#create/microsofthpc.newclusterexcelcn)來專為 Excel 工作負載建立類似的叢集。其步驟與下文中的內容稍有不同。
 
 1.  造訪 [在 GitHub 上建立 HPC 叢集範本頁面](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster)。您可根據意願檢視範本和原始碼的相關資訊。
 
@@ -382,4 +382,4 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [endpoint]: ./media/virtual-machines-windows-excel-cluster-hpcpack/endpoint.png
 [udf]: ./media/virtual-machines-windows-excel-cluster-hpcpack/udf.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

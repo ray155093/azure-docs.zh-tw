@@ -24,7 +24,7 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 
 在本教學課程中，您將學習如何建立 Azure 事件中樞、使用以 Java 撰寫的主控台應用程式將訊息擷取到事件中樞，以及使用以 Scala 撰寫的 Spark 應用程式平行擷取它們。此應用程式會取用透過事件中樞串流處理的資料，並將其路由傳送至不同的輸出 (Azure 儲存體 Blob、Hive 資料表和 SQL 資料表)。
 
-> [AZURE.NOTE] 若要遵循這篇文章中的指示，您必須使用兩種版本的 Azure 入口網站。若要建立事件中樞，您會用到 [Azure 傳統入口網站](https://manage.windowsazure.com)。若要使用 HDInsight Spark 叢集，您會用到 [Azure 入口網站](https://ms.portal.azure.com/)。
+> [AZURE.NOTE] 若要遵循這篇文章中的指示，您必須使用兩種版本的 Azure 入口網站。若要建立事件中樞，您會用到 [Azure 傳統入口網站](https://manage.windowsazure.com)。若要使用 HDInsight Spark 叢集，您會用到 [Azure 入口網站](https://portal.azure.com/)。
 
 **必要條件：**
 
@@ -391,4 +391,4 @@ Spark Streaming 能擴充核心的 Spark API，建置可調整、高輸送量、
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: ../storage-create-storage-account/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

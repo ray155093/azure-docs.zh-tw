@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 
@@ -23,7 +23,7 @@
 
 視窗函式可用來進行名為*視窗*之資料列集內的計算。視窗由 OVER 子句所定義。視窗函式可高效率地解決一些重要的案例。
 
-本教學課程/學習指南將使用兩個範例資料集，引導您了解可套用視窗函式的部分範例案例。如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
+本學習指南將使用兩個範例資料集，引導您了解可套用視窗函數的部分範例案例。如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 視窗函式可分類為：
 
@@ -743,4 +743,4 @@ PERCENTILE\_DISC 不會插補值，因此 Web 的中間值是 200 - 也就是在
 - [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->
