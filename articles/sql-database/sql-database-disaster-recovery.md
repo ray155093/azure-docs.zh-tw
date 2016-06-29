@@ -3,7 +3,7 @@
    description="了解如何使用 Azure SQL Database 的作用中異地複寫和異地還原功能，從區域資料中心中斷或失敗情況復原資料庫。" 
    services="sql-database" 
    documentationCenter="" 
-   authors="elfisher" 
+   authors="carlrabeler" 
    manager="jhubbard" 
    editor="monicar"/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
    ms.date="05/10/2016"
-   ms.author="elfish"/>
+   ms.author="carlrab"/>
 
 # 還原 Azure SQL Database 或容錯移轉到次要資料庫
 
@@ -72,7 +72,7 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 
 因為復原的資料庫將位於不同的伺服器，所以您必須更新您應用程式的連接字串以指向該伺服器。
 
-如需變更連接字串的詳細資訊，請參閱[連接至 Azure SQL Database：重要的建議](sql-database-connect-central-recommendations.md)。
+如需變更連接字串的詳細資訊，請參閱[連線庫](sql-database-libraries.md)的適當開發語言。
 
 ### 設定防火牆規則
 
@@ -110,4 +110,4 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 - [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
 - [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

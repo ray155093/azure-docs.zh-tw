@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="06/13/2016"
    ms.author="tomfitz"/>
 
 # 編寫 Azure 資源管理員範本
@@ -86,8 +86,6 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 
 您可以在整個範本中使用這些參數值，為所部署的資源設定值。只有在參數區段中宣告的參數可以用於範本的其他區段中。
 
-在參數區段內，您無法使用參數值來建構另一個參數值。您可以在 variables 區段中建構新值。
-
 您會定義結構如下的參數：
 
     "parameters": {
@@ -125,49 +123,49 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 - object 或 secureObject - 任何有效的 JSON 物件
 - array - 任何有效的 JSON 陣列
 
-若要將參數指定為選用，請將其預設值設定為空字串。
+若要將參數指定為選用，請提供 defaultValue (可為空字串)。
 
-如果您指定的參數名稱與範本部署命令中的某個參數相同 (例如在範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，系統會提示您為後置詞為 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+如果您指定的參數名稱與範本部署命令中的某個參數相同 (例如範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，則系統會提示您為後置詞是 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供一個值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 >[AZURE.NOTE] 所有密碼、金鑰和其他密碼都應該使用 **secureString** 類型。部署資源後，無法讀取類型為 secureString 的範本參數。
 
 下列範例示範如何定義參數：
 
     "parameters": {
-       "siteName": {
-          "type": "string",
-          "minLength": 2,
-          "maxLength": 60
-       },
-       "siteLocation": {
-          "type": "string",
-          "minLength": 2
-       },
-       "hostingPlanName": {
-          "type": "string"
-       },  
-       "hostingPlanSku": {
-          "type": "string",
-          "allowedValues": [
-            "Free",
-            "Shared",
-            "Basic",
-            "Standard",
-            "Premium"
-          ],
-          "defaultValue": "Free"
-       },
-       "instancesCount": {
-          "type": "int",
-          "maxValue": 10
-       },
-       "numberOfWorkers": {
-          "type": "int",
-          "minValue": 1
-       }
+      "siteName": {
+        "type": "string",
+        "defaultValue": "[concat('site', uniqueString(resourceGroup().id))]"
+      },
+      "hostingPlanName": {
+        "type": "string",
+        "defaultValue": "[concat(parameters('siteName'),'-plan')]"
+      },
+      "skuName": {
+        "type": "string",
+        "defaultValue": "F1",
+        "allowedValues": [
+          "F1",
+          "D1",
+          "B1",
+          "B2",
+          "B3",
+          "S1",
+          "S2",
+          "S3",
+          "P1",
+          "P2",
+          "P3",
+          "P4"
+        ]
+      },
+      "skuCapacity": {
+        "type": "int",
+        "defaultValue": 1,
+        "minValue": 1
+      }
     }
 
-如需如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md#parameter-file)。
+如需如何在部署期間輸入參數值的資訊，請參閱[使用 Azure Resource Manager 範本部署資源](resource-group-template-deploy.md#parameter-file)。
 
 ## 變數
 
@@ -217,7 +215,7 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 
 ## 資源
 
-在資源區段中，您會定義要部署或更新資源。這是您的範本可以變得更複雜的地方，因為您必須了解您要部署的類型才能提供正確的值。如果要進一步了解資源提供者，請參閱[資源管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
+在資源區段中，您會定義要部署或更新資源。這是您的範本可以變得更複雜的地方，因為您必須了解您要部署的類型才能提供正確的值。如果要進一步了解資源提供者，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
 您會定義結構如下的資源：
 
@@ -243,12 +241,12 @@ Visual Studio 提供工具來協助您建立範本。如需有關如何以您的
 | :----------------------: | :------: | :----------
 | apiVersion | 是 | 要用來建立資源的 REST API 版本。如要為特定資源類型判斷可用的版本號碼，請參閱[支援的 API 版本](resource-manager-supported-services.md#supported-api-versions)。
 | 類型 | 是 | 資源類型。這個值是資源提供者的命名空間與資源提供者所支援資源類型的組合。
-| 名稱 | 是 | 資源名稱。此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。此外，將資源名稱公開到外部合作對象的 Azure 服務會驗證該名稱，確定不是有人嘗試詐騙其他身分識別。請參閱[檢查資源名稱](https://msdn.microsoft.com/library/azure/mt219035.aspx)。
+| 名稱 | 是 | 資源名稱。此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。此外，將資源名稱公開到外部合作對象的 Azure 服務會驗證該名稱，確定不是有人嘗試詐騙其他身分識別。請參閱[請檢查資源名稱](https://msdn.microsoft.com/library/azure/mt219035.aspx)。
 | location | 視情況而異 | 所提供資源的支援地理位置。若要判斷可用的位置，請參閱[支援的區域](resource-manager-supported-services.md#supported-regions)。大部分的資源類型都需要有位置，但某些類型 (例如角色指派) 不需要位置。
 | tags | 否 | 與資源相關聯的標記。
 | 註解 | 否 | 您在範本中記錄資源的註解
 | dependsOn | 否 | 正在定義的資源所相依的資源。評估資源與依相依順序部署資源之間的相依性。資源若不互相依賴，則會嘗試平行部署資源。值可以是以逗號分隔的資源名稱或資源唯一識別碼清單。
-| 屬性 | 否 | 資源特定的組態設定。properties 的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是完全一樣的。如需資源結構描述文件或 REST API 的連結，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
+| 屬性 | 否 | 資源特定的組態設定。properties 的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是完全一樣的。如需資源結構描述文件或 REST API 的連結，請參閱[資訊管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 | 資源 | 否 | 與正在定義的資源相依的下層資源。您只能提供父資源的結構描述所允許的資源類型。子資源類型的完整名稱包含父資源的名稱，例如 **Microsoft.Web/sites/extensions**。父資源的相依性不是隱含的；您必須明確定義該相依性。 
 
 
@@ -283,7 +281,7 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 
 
 
-下列範例示範 **Microsoft.Web/serverfarms** 資源，以及含子系 **Extensions** 資源的 **Microsoft.Web/sites** 資源。請注意，網站會標示為依存於伺服器陣列，因為伺服器陣列必須存在，才能部署網站。同時請注意，**Extensions** 資源是網站的子系。
+下列範例顯示 **Microsoft.Web/serverfarms** 資源，以及含子系 **Extensions** 資源的 **Microsoft.Web/sites** 資源。請注意，網站會標示為依存於伺服器陣列，因為伺服器陣列必須存在，才能部署網站。也請注意，**Extensions** 資源是網站的子系。
 
     "resources": [
       {
@@ -372,9 +370,9 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 
 ## 後續步驟
 - 若要檢視許多不同類型的解決方案的完整範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
-- 如需您可以在範本內使用之函式的詳細資訊，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
+- 如需您可以在範本內使用之函數的詳細資訊，請參閱 [Azure Resource Manager 範本函數](resource-group-template-functions.md)。
 - 若要在部署期間合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
 - 若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -32,8 +32,24 @@ GitHub SQL Server 範例儲存機制中的[使用 PowerShell 和 Power BI 來管
 
 GitHub SQL Server 範例儲存機制中的 [Saas-scenario-with-elastic-pools](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) 提供一個負載產生器和監視 Web 應用程式，以及其用途和使用方式的相關文件。
 
+## 使用 Entity Framework 和 Code First 開發建立 Azure SQL Database
+
+此視訊和範例提供以新資料庫為目標的 Code First 開發介紹。此案例包含以不存在而 Code First 將建立的資料庫為目標，或以 Code First 將加入新資料表的空白資料庫為目標。Code First 可讓您使用 C# 或 VB.Net 類別定義您的模型。使用您的類別或內容 (Property) 的屬性 (Attribute) 可選擇性地執行其他設定，或可使用 Fluent API 來執行。請參閱[新資料庫的 Code First](https://msdn.microsoft.com/data/jj193542.aspx)。
+
+## 將彈性資料庫工具整合到 Entity Framework 應用程式中
+
+此範例說明 Entity Framework 應用程式為了要與[彈性資料庫工具](sql-database-elastic-scale-get-started.md)整合所需做的變更。重點在於使用 Entity Framework Code First 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。這整個範例中以 EF 的 [Code First – EF 的新資料庫範例](http://msdn.microsoft.com/data/jj193542.aspx)作為執行範例。本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。請參閱[採用 Entity Framework 的彈性資料庫用戶端程式庫](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md)。
+
+## 使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式
+
+此範例說明 Entity Framework 應用程式為了整合[彈性資料庫工具](sql-database-elastic-scale-get-started.md)與[資料列層級安全性](https://msdn.microsoft.com/library/dn765131)所需做的變更。此範例說明如何運用這些技術，透過 ADO.NET SqlClient 和/或 Entity Framework 建置應用程式，且讓此應用程式具有可支援多租用戶分區的高度可擴充資料層。此範例會新增對多租用戶分區資料庫的支援，藉此擴充[採用 Entity Framework 的彈性資料庫用戶端程式庫](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md)。這麼做可以建立具有四個租用戶與兩個多租用戶分區資料庫的簡單主控台應用程式，以用於建立部落格和文章。請參閱[使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。
+
+## Tailspin Surveys 應用程式
+
+此範例是可讓使用者建立線上問卷的多租用戶 Web 應用程式 (稱為 Surveys)。此範例示範管理多租用戶應用程式中的使用者識別時的一些重要考量，包括註冊、驗證、授權和應用程式角色。若要執行這個範例，請參閱[如何執行 Tailspin Surveys 範例應用程式](https://github.com/Azure-Samples/guidance-identity-management-for-multitenant-apps/blob/master/docs/running-the-app.md)。
+
 ## 後續步驟
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

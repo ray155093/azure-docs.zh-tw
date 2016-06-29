@@ -1,5 +1,5 @@
 <properties
-	pageTitle="設定 Always On 可用性群組 (GUI) | Microsoft Azure"
+	pageTitle="在 Azure VM 中設定 Always On 可用性群組 - 傳統"
 	description="使用 Azure 虛擬機器建立 Always On 可用性群組。本教學課程主要是透過使用者介面作業，而非編寫指令碼。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
@@ -13,23 +13,23 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/04/2016"
+	ms.date="06/09/2016"
 	ms.author="mikeray" />
 
-# 在 Azure VM 中設定 Always On 可用性群組 (GUI)
+# 在 Azure VM 中設定 Always On 可用性群組 - 傳統
 
 > [AZURE.SELECTOR]
-- [入口網站](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-- [PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
+- [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+- [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 
 <br/>
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
 
 
 本端對端教學課程將示範如何透過在 Azure 虛擬機器上執行的 SQL Server Always On 實作可用性群組。
-
->[AZURE.NOTE] 在 Azure 管理入口網站中，提供具有接聽程式的 Always On 可用性群組專用的新資源庫設定。這可自動設定 Always On 可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server Always On](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。若要使用 PowerShell，請參閱[使用 PowerShell 設定 Azure 中的 Always On 可用性群組](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)中，相同案例的教學課程。
 
 在本教學課程結束時，您 Azure 中的 SQL Server Always On 解決方案將包含下列項目：
 
@@ -163,8 +163,8 @@
 |---|---|
 |**名字**|安裝|
 |**使用者 SamAccountName**|安裝|
-|**密碼**|Contoso! 000|
-|**確認密碼**|Contoso! 000|
+|**密碼**|Contoso!000|
+|**確認密碼**|Contoso!000|
 |**其他密碼選項**|已選取|
 |**密碼永久有效**|已檢查|
 
@@ -347,7 +347,7 @@
 
 1. 在 [新增節點精靈] 中，按 [下一步]。在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **ContosoSQL2** 和 **ContosoWSFCNode** 新增至清單。完成之後，按 [下一步]。
 
-1. 在 [驗證警告] 頁面上，按一下 [否]\(實際操作時，請執行驗證測試)。然後按 [下一步]。
+1. 在 [驗證警告] 頁面上，按一下 [否] \(實際操作時，請執行驗證測試)。然後按 [下一步]。
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
@@ -548,4 +548,4 @@
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

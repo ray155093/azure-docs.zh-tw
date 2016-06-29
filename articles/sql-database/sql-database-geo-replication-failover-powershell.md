@@ -23,7 +23,7 @@
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
 - [PowerShell](sql-database-geo-replication-failover-powershell.md)
-- [Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)
+- [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
 本文將說明如何使用 PowerShell 為 SQL Database 起始計劃性或非計劃性容錯移轉。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)。
@@ -87,4 +87,4 @@
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

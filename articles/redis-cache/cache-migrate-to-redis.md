@@ -1,10 +1,10 @@
 <properties 
-    pageTitle="快取移轉至 Redis"
+    pageTitle="快取移轉至 Redis | Microsoft Azure"
     description="了解如何將受管理的快取服務應用程式移轉至 Azure Redis 快取"
     services="redis-cache"
     documentationCenter="na"
     authors="steved0x"
-    manager="erikre"
+    manager="douge"
     editor="tysonn" />
 <tags 
     ms.service="cache"
@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="cache-redis"
     ms.workload="tbd"
-    ms.date="03/17/2016"
+    ms.date="06/09/2016"
     ms.author="sdanie" />
 
 # 從受管理的快取服務移轉至 Azure Redis 快取
@@ -41,7 +41,7 @@ Azure 受管理的快取服務與 Azure Redis 快取類似，但兩者在實作�
 
 |受管理的快取服務功能|受管理的快取服務支援|Azure Redis 快取支援|
 |---|---|---|
-|具名快取|會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達 9 個具名快取。|Azure Redis 快取具有 16 個可供用來對具名快取實作類似功能的資料庫。如需詳細資訊，請參閱[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。|
+|具名快取|會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達 9 個具名快取。|Azure Redis 快取具有可供用來對具名快取實作類似功能的可設定數目資料庫 (預設值為 16 個)。如需詳細資訊，請參閱[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。|
 |高可用性|在標準版和進階版快取服務中，會針對快取中的項目提供高可用性。如果因為失敗而導致項目遺失，快取中的項目仍有備份複本可供使用。次要快取的寫入作業是以同步方式進行。|標準版和進階版快取服務有提供高可用性，其具有雙節點的主要/複本設定 (進階版快取的每個分區都有主要/複本配對)。複本的寫入作業是以非同步方式進行。如需詳細資訊，請參閱 [Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。|
 |通知|當具名快取上發生各種快取作業時，允許用戶端接收非同步通知。|用戶端應用程式可以使用 Redis 發行/訂閱或 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings)來達成和通知類似的功能。|
 |本機快取|在用戶端本機上儲存快取物件的複本，以利快速存取。|用戶端應用程式必須使用字典或類似的資料結構來實作這項功能。|
@@ -65,14 +65,7 @@ Microsoft Azure Redis 快取有下列階層：
 
 ## 建立快取
 
-Azure Redis 快取中的快取可以透過 [Azure 入口網站](https://portal.azure.com)、ARM 範本、PowerShell 或 Azure CLI 來建立。
-
--	若要在 Azure 入口網站中建立快取，請參閱[建立快取](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)。
--	若要使用 ARM 範本建立快取，請參閱[使用範本建立 Redis 快取](cache-redis-cache-arm-provision.md)。
--	若要使用 Azure PowerShell 建立快取，請參閱[使用 Azure PowerShell 管理 Azure Redis 快取](cache-howto-manage-redis-cache-powershell.md)。
--	若要使用 Azure CLI 建立快取，請參閱[如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取](cache-manage-cli.md)。
-
->[AZURE.NOTE] 若要使用 Azure Redis 快取，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
 ## 設定快取用戶端
 
@@ -118,17 +111,7 @@ Azure Redis 快取中的快取可以透過 [Azure 入口網站](https://portal.a
 
 ### 設定使用 StackExchange.Redis NuGet 封裝的快取用戶端
 
-在 Visual Studio 中開發的 .NET 應用程式可以使用 StackExchange.Redis 快取用戶端來存取其快取。若要在 Visual Studio 中使用 StackExchange.Redis NuGet 封裝來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。
-
-![Azure Redis 快取管理 NuGet 封裝](./media/cache-migrate-to-redis/IC729541.png)
-
-在 [線上搜尋] 文字方塊中輸入 **StackExchange.Redis**，於結果中進行選取，然後按一下 [安裝]。
-
-![Azure Redis 快取 StackExchange.Redis NuGet 封裝](./media/cache-migrate-to-redis/IC746253.png)
-
-NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參考，以利用 StackExchange.Redis 快取用戶端來存取 Azure Redis 快取。
-
-如需詳細資訊，請參閱[設定快取用戶端](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)。
+[AZURE.INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
 
 ## 移轉受管理的快取服務程式碼
 
@@ -196,4 +179,4 @@ Azure Redis 快取有適用於 ASP.NET 工作階段狀態和頁面輸出快取�
 
 瀏覽 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/)中的教學課程、範例、影片及其他資訊。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0615_2016-->

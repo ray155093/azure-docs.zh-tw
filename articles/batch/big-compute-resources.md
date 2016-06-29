@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="big-compute"
-   ms.date="04/29/2016"
+   ms.date="06/08/2016"
    ms.author="danlep"/>
 
 # Azure 中的大量運算：批次和高效能運算 (HPC) 的技術資源
@@ -34,11 +34,11 @@
 
 * [說明文件](https://azure.microsoft.com/documentation/services/batch/)
 
-* [.NET](https://msdn.microsoft.com/library/azure/mt348682.aspx)、[Python](http://azure-sdk-for-python.readthedocs.io/latest/)、[Node.js](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) 和 [REST](https://msdn.microsoft.com/library/azure/dn820158.aspx) API 參考。
+* [.NET](https://msdn.microsoft.com/library/azure/mt348682.aspx)、[Python](http://azure-sdk-for-python.readthedocs.io/latest/)、[Node.js](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/)、[Java](http://azure.github.io/azure-sdk-for-java/) 和 [REST](https://msdn.microsoft.com/library/azure/dn820158.aspx) API 參考
 
 * [Batch 管理 .NET 程式庫](https://msdn.microsoft.com/library/mt463120.aspx)參考
 
-* [教學課程：開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)
+* 教學課程：開始使用[適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)和 [Batch Python 用戶端](batch-python-tutorial.md)
 
 * [批次論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=azurebatch)
 
@@ -89,7 +89,7 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 
 ## 計算密集型執行個體
 
-Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md) (包括能夠連接到後端 RDMA 網路的計算密集型 [A8 和 A9](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) 執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。
+Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md) \(包括能夠連接到後端 RDMA 網路的計算密集型 [A8 和 A9](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) 執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。
 
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](../virtual-machines/virtual-machines-linux-classic-rdma-cluster.md)
@@ -157,4 +157,4 @@ Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md
 * 最新宣告請參閱 [Microsoft HPC 和批次的小組部落格](http://blogs.technet.com/b/windowshpc/)以及[Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
 * 另請參閱[批次的新功能](https://azure.microsoft.com/updates/?service=batch)或訂閱 [RSS 摘要](https://azure.microsoft.com/updates/feed/?service=batch)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

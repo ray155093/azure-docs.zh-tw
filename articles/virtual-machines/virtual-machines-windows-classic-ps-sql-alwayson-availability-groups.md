@@ -1,5 +1,5 @@
 <properties
-	pageTitle="在 Azure VM 中設定 Always On 可用性群組 | Microsoft Azure"
+	pageTitle="在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組"
 	description="本教學課程使用隨傳統部署模型建立的資源，並使用 PowerShell 在 Azure 中建立 Always On 可用性群組。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
@@ -13,18 +13,20 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/04/2016"
+	ms.date="06/09/2016"
 	ms.author="mikeray" />
 
-# 在 Azure VM 中設定 Always On 可用性群組 (PowerShell)
+# 在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組
 
 > [AZURE.SELECTOR]
-- [入口網站](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-- [PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
+- [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+- [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 
 <br/>
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
 
 
 Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高可用性 SQL Server 系統。本教學課程將示範如何使用 Azure 環境中的 SQL Server Always On 端對端實作可用性群組。在本教學課程結束時，您 Azure 中的 SQL Server Always On 解決方案將包含下列項目：
@@ -629,4 +631,4 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

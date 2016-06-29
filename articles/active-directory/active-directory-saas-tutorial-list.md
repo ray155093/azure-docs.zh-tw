@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="06/08/2016"
+    ms.date="06/15/2016"
     ms.author="markvi"/>
 
 #如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單
@@ -60,6 +60,7 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Canvas.jpg)| [Canvas LMS](https://go.microsoft.com/fwLink/?LinkID=510249&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Capriza.jpg)| [Capriza](https://go.microsoft.com/fwLink/?LinkID=708671&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Central_Desktop.jpg)| [Central Desktop](https://go.microsoft.com/fwLink/?LinkID=403249&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Ceridian.jpg)| [Ceridian Dayforce HCM](https://go.microsoft.com/fwLink/?LinkID=733445&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Certify.jpg)| [Certify](http://go.microsoft.com/fwlink/?LinkID=708681&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Cherwell.jpg)| [Cherwell](https://go.microsoft.com/fwLink/?LinkID=530225&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Chromeriver.png)| [Chromeriver](https://go.microsoft.com/fwLink/?LinkID=530233&clcid=0x409)|
@@ -234,12 +235,9 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Zscaler.jpg)| [Zscaler](https://go.microsoft.com/fwLink/?LinkID=510254&clcid=0x409)|
 
 
-
-
-
 ##相關文章
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

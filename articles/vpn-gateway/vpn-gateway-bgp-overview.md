@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/26/2016"
+   ms.date="06/16/2016"
    ms.author="yushwang"/>
 
 # BGP 與 Azure VPN 閘道概觀
@@ -35,7 +35,9 @@ BGP 具有數個優點和新功能：
 
 利用 BGP，您只需要透過 IPsec S2S VPN 通道宣告特定 BGP 對等互連的最小前置詞。它也可以小至內部部署 VPN 裝置的 BGP 對等互連 IP 位址的主機前置詞 (/ 32)。您可以控制您要公告至 Azure 以允許 Azure 虛擬網路存取的內部部署網路首碼。
 	
-您也可以公告可能包含一些您的 VNet 位址首碼的較大首碼，例如預設路由 (0.0.0.0/0) 或大型私人 IP 位址空間 (例如 10.0.0.0/8)。可是請注意，首碼無法與您的任何一個 VNet 首碼相同。與您的 VNet 首碼相同的路由將會遭到拒絕。
+您也可以公告可能包含一些您的 VNet 位址首碼的較大首碼，例如預大型私人 IP 位址空間 (例如 10.0.0.0/8)。可是請注意，首碼無法與您的任何一個 VNet 首碼相同。與您的 VNet 首碼相同的路由將會遭到拒絕。
+
+>[AZURE.IMPORTANT] 目前，公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 將會遭到封鎖。一旦這項功能，將會提供進一步的更新。
 
 #### 根據 BGP 使用自動容錯移轉，在 VNet 和內部部署站台之間支援多個通道
 
@@ -65,4 +67,4 @@ BGP 可讓多個閘道識別及傳播來自不同網路的首碼，無論這些�
 
 請參閱 [開始使用 Azure VPN 閘道上的 BGP](./vpn-gateway-bgp-resource-manager-ps.md)，以了解設定跨單位與 VNet 對 VNet 連線 BGP 的步驟。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

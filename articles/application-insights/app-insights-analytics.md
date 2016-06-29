@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="Analytics - 強大的 Application Insights 搜尋工具" 
+	pageTitle="強大的 Application Insights 搜尋工具 | Microsoft Azure" 
 	description="Analytics 概觀，強大的 Application Insights 診斷搜尋工具。" 
 	services="application-insights" 
     documentationCenter=""
@@ -21,10 +21,9 @@
 
 [分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
-[AZURE.INCLUDE [app-insights-analytics-top-index](../../includes/app-insights-analytics-top-index.md)]
 
  
-標準的查詢是來源資料表，後面接著一系列由 `|` 隔開的運算子。
+標準的查詢是一個「來源」資料表，後面接著一系列由 `|` 隔開的「運算子」。
 
 例如，讓我們來了解海德拉巴的市民在一天當中的哪些時間試用我們的 Web 應用程式。同時我們要看看針對他們的 HTTP 要求傳回哪些結果碼。
 
@@ -53,7 +52,7 @@
 
 這個語言具有許多吸引人的功能︰
 
-* 依任何欄位[篩選](app-insights-analytics-reference.md#where-operator)未經處理的 app 遙測，包括您的自訂屬性和計量。
+* 依任何欄位[篩選](app-insights-analytics-reference.md#where-operator)未經處理的應用程式遙測，包括您的自訂屬性和計量。
 * [加入](app-insights-analytics-reference.md#join-operator)多個資料表 – 將要求與頁面檢視、相依性呼叫、例外狀況和記錄追蹤相互關聯。
 * 功能強大的統計[彙總](app-insights-analytics-reference.md#aggregations)。
 * 功能如同 SQL 一般強大，但更容易用來進行複雜的查詢︰您可以使用管線將資料從某一個基本運算傳送到下一個運算，而不需使用巢串陳述式。
@@ -69,7 +68,7 @@
 ## 連接到您的 Application Insights 資料
 
 
-在 Application Insights 中，從 app 的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
+在 Application Insights 中，從應用程式的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
 
 ![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics/001.png)
 
@@ -82,4 +81,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

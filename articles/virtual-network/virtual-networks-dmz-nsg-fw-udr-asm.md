@@ -36,7 +36,7 @@
 
 在下面的＜參考＞一節中有提供 PowerShell 指令碼，其可建置上述的大部分環境。至於 VM 和虛擬網路的建置，雖然也是由此範例指令碼來完成，但本文不會詳加敘述。
 
-建置環境：
+若要建置環境：
 
   1.	儲存＜參考＞一節中所包含的網路組態 xml 檔 (更新名稱、位置和 IP 位址以符合給定的案例)
   2.	更新指令碼中的使用者變數，以符合要用來執行指令碼的環境 (訂用帳戶、服務名稱等)
@@ -110,22 +110,22 @@ VNETLocal 一律是該特定網路之 VNet 的定義位址前置詞 (也就是�
 
 2.	一旦建立路由表，就可以新增特定的使用者定義路由。在此程式碼片段中，會透過虛擬應用裝置路由傳送所有流量 (0.0.0.0/0) (指令碼稍早建立虛擬應用裝置時，是使用變數 $VMIP[0] 來傳入指派的 IP 位址)。指令碼也會在 Frontend 路由表中建立對應的規則。
 
-		Get-AzureRouteTable $BERouteTableName |`
+		Get-AzureRouteTable $BERouteTableName | `
 		    Set-AzureRoute -RouteName "All traffic to FW" -AddressPrefix 0.0.0.0/0 `
 		    -NextHopType VirtualAppliance `
 		    -NextHopIpAddress $VMIP[0]
 
 3. 上述路由項目會覆寫預設的 "0.0.0.0/0" 路由，但預設的 10.0.0.0/16 規則仍會存在，以允許 VNet 內的流量直接路由傳送到目的地，而非傳送到網路虛擬應用裝置。若要修正此行為，您必須新增下列規則。
 
-	    Get-AzureRouteTable $BERouteTableName `
-	        |Set-AzureRoute -RouteName "Internal traffic to FW" -AddressPrefix $VNetPrefix `
+	    Get-AzureRouteTable $BERouteTableName | `
+	        Set-AzureRoute -RouteName "Internal traffic to FW" -AddressPrefix $VNetPrefix `
 	        -NextHopType VirtualAppliance `
 	        -NextHopIpAddress $VMIP[0]
 
 4. 此時要做一項選擇。在上述兩個路由中，所有流量都會路由傳送至防火牆進行評估，甚至單一子網路內的流量也是如此。這可能是您想要的結果，但若要允許子網路內的流量直接在本機路由傳送，而不要防火牆介入，則可以新增第三個特定規則。此路由會指出，目的地為本機子網路的位址可以直接路由傳送至該處 (NextHopType = VNETLocal)。
 
-	    Get-AzureRouteTable $BERouteTableName `
-	        |Set-AzureRoute -RouteName "Allow Intra-Subnet Traffic" -AddressPrefix $BEPrefix `
+	    Get-AzureRouteTable $BERouteTableName | `
+	        Set-AzureRoute -RouteName "Allow Intra-Subnet Traffic" -AddressPrefix $BEPrefix `
 	        -NextHopType VNETLocal
 
 5.	最後，在建立好路由表並填入使用者定義的路由後，路由表必須立即繫結至子網路。在此指令碼中，Frontend 路由表也會繫結到 Frontend 子網路。以下是 Backend 子網路的繫結指令碼。
@@ -145,8 +145,8 @@ UDR 隨附 IP 轉送功能。這是虛擬應用裝置的一項設定，以允許
 
 1.	呼叫代表您的虛擬應用裝置的 VM 執行個體 (在此案例中是防火牆)，並啟用 IP 轉送 (注意：以貨幣符號開頭的紅色項目 (例如 $VMName[0]) 皆為來自本文＜參考＞一節之指令碼的使用者定義變數。以方括弧括住的零 ([0]) 代表 VM 陣列中的第一個 VM，為了讓範例指令碼無須修改即可運作，第一個 VM (VM 0) 必須是防火牆)：
 
-		Get-AzureVM -Name $VMName[0] -ServiceName $ServiceName[0] `
-		   |Set-AzureIPForwarding -Enable
+		Get-AzureVM -Name $VMName[0] -ServiceName $ServiceName[0] | `
+		   Set-AzureIPForwarding -Enable
 
 ## 網路安全性群組 (NSG)
 此範例會建置 NSG 群組，然後在其中載入單一規則。此群組接著只會繫結到 Frontend 和 Backend 子網路 (不會繫結到 SecNet)。指令碼會以宣告方式建置下列規則：
@@ -941,4 +941,4 @@ Barracuda 網站可以找到這些規則的詳細資訊。
 [HOME]: ../best-practices-network-security.md
 [SampleApp]: ./virtual-networks-sample-app.md
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016"
+	ms.date="06/14/2016"
 	ms.author="stefsch"/>
 
 # App Service 環境簡介
@@ -29,6 +29,8 @@ App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選�
 客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
 
 App Service 環境已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到虛擬網路。客戶對於輸入和輸出的應用程式網路流量都有更細微的控制，且應用程式可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
+
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 如需 App Service 環境如何提供高延展性和安全的網路存取的概觀，請參閱關於 App Service 環境的 [AzureCon 深入探討][AzureConDeepDive]！
 
@@ -106,4 +108,4 @@ App Service 環境是由前端計算資源集區，以及一到三個背景工�
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0615_2016-->

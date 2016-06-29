@@ -99,4 +99,4 @@ Azure 內容儲存機制中的內容會遵循 [Azure.Microsoft.com](http://azure
 
 如需所有指引主題，請參閱[參與者指南索引](https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md)。
 
-<!---HONumber=AcomDC_0307_2016-->
+<!----HONumber=AcomDC_0307_2016-->

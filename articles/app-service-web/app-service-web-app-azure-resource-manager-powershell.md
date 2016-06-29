@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="06/14/2016"
 	ms.author="aelnably"/>
 
 # 使用 Azure Resource Manager 架構 PowerShell 來管理 Azure Web Apps#
@@ -42,11 +42,22 @@ Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠�
 
     New-AzureRmAppServicePlan -Name ContosoAppServicePlan -Location "South Central US" -ResourceGroupName ContosoAzureResourceGroup -Tier Premium -WorkerSize Large -NumberofWorkers 10
 
+### 在 App Service 環境中建立 App Service 方案 ###
+若要在 App Service 環境中建立新的 App Service 方案，可以使用相同的 **New-AzureRmAppServicePlan** 命令搭配額外的參數，來指定 ASE 名稱和 ASE 所屬的資源群組名稱。
+
+使用此 Cmdlet 的範例︰
+
+    New-AzureRmAppServicePlan -Name ContosoAppServicePlan -Location "South Central US" -ResourceGroupName ContosoAzureResourceGroup -AseName constosoASE -AseResourceGroupName contosoASERG -Tier Premium -WorkerSize Large -NumberofWorkers 10
+
+若要深入了解 App Service 環境，請查看 [App Service 環境簡介](app-service-app-service-environment-intro.md)。
+
 ### 列出現有的 App Service 方案 ###
 
 若要列出現有的 App Service 方案，請使用 **Get-AzureRmAppServicePlan** Cmdlet。
 
-若要列出您的訂用帳戶之下的所有 App Service 方案，請使用︰**Get-AzureRmAppServicePlan**
+若要列出您訂用帳戶下方的所有 App Service 方案，請使用：
+
+    Get-AzureRmAppServicePlan
 
 若要列出特定資源群組之下的所有 App Service 方案，請使用︰
 
@@ -83,7 +94,7 @@ Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠�
 
 ### 刪除現有的 App Service 方案 ###
 
-若要刪除現有的 App Service 方案，則必須先移動或刪除所有指派的 Web 應用程式，然後使用 **Remove-AzureRmAppServicePlan** Cmdlet，即可刪除 App Service 方案。
+若要刪除現有的 App Service 方案，必須先移動或刪除所有指派的 Web 應用程式，然後使用 **Remove-AzureRmAppServicePlan** Cmdlet，即可刪除 App Service 方案。
 
     Remove-AzureRmAppServicePlan -Name ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup
 
@@ -106,7 +117,7 @@ Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠�
 
 ### 在 App Service 環境中建立新的 Web 應用程式 ###
 
-若要在 App Service 環境 (ASE) 中建立新的 Web 應用程式，可以使用相同的 **New-AzureRmWebApp** 命令搭配額外的參數用，指定 ASE 名稱和 ASE 所屬的資源群組名稱。
+若要在 App Service 環境 (ASE) 中建立新的 Web 應用程式，可以使用相同的 **New-AzureRmWebApp** 命令搭配額外的參數，來指定 ASE 名稱和 ASE 所屬的資源群組名稱。
 
     New-AzureRmWebApp -Name ContosoWebApp -AppServicePlan ContosoAppServicePlan -ResourceGroupName ContosoAzureResourceGroup -Location "South Central US"  -ASEName ContosoASEName -ASEResourceGroupName ContosoASEResourceGroupName
 
@@ -194,14 +205,14 @@ Microsoft Azure PowerShell 1.0.0 版已加入新的命令，讓使用者能夠�
 
 ### 管理 Web 應用程式憑證 ###
 
-若要深入了解如何管理 Web 應用程式憑證，請參閱[使用 PowerShell 繫結 SSL 憑證](app-service-web-app-powershell-ssl-binding.md)。
+若要深入了解如何管理 Web 應用程式憑證，請參閱[使用 PowerShell 的 SSL 憑證繫結](app-service-web-app-powershell-ssl-binding.md)。
 
 
 
 ### 後續步驟 ###
 - 若要深入了解 Azure Resource Manager PowerShell 支援，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
 - 若要深入了解 App Service 環境，請參閱 [App Service 環境簡介](app-service-app-service-environment-intro.md)。
-- 若要深入了解如何使用 PowerShell 來管理 App Service SSL 憑證，請參閱[使用 PowerShell 繫結 SSL 憑證](app-service-web-app-powershell-ssl-binding.md)。
+- 若要深入了解如何使用 PowerShell 來管理 App Service SSL 憑證，請參閱[使用 PowerShell 的 SSL 憑證繫結](app-service-web-app-powershell-ssl-binding.md)。
 - 若要了解適用於 Azure Web Apps 的 Azure Resource Manager 架構 PowerShell Cmdlet，請參閱[Web Apps Azure Resource Manager PowerShell Cmdlet 的 Azure Cmdlet 參考](https://msdn.microsoft.com/library/mt619237.aspx)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

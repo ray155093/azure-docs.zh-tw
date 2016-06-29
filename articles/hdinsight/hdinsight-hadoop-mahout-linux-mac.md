@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/14/2016"
 	ms.author="larryfr"/>
 
 #在 HDInsight 上搭配使用 Apache Mahout 和以 Linux 為基礎的 Hadoop 來產生電影推薦
@@ -246,4 +246,4 @@ Mahout 工作不會移除處理工作時所建立的暫存資料。範例工作�
 [tools]: https://github.com/Blackmist/hdinsight-tools
  
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用診斷搜尋" 
+	pageTitle="使用診斷搜尋 | Microsoft Azure" 
 	description="搜尋和篩選個別事件、要求和記錄追蹤。" 
 	services="application-insights" 
     documentationCenter=""
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/03/2016" 
+	ms.date="06/09/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中使用診斷搜尋
@@ -63,9 +63,22 @@
 
 選取任何遙測項目來查看重要欄位和相關項目。如果您想要查看完整的欄位集合，請按一下 "..."。
 
-![Open diagnostic search](./media/app-insights-diagnostic-search/10-detail.png)
+
+![按一下 [新增工作項目]、編輯欄位，然後按一下 [確定]。](./media/app-insights-diagnostic-search/10-detail.png)
 
 若要尋找欄位的完整集合，請使用純文字字串 (不含萬用字元)。可用的欄位因遙測類型而定。
+
+## 建立工作項目
+
+您可以利用來自任何遙測項目的詳細資料，在 Visual Studio Team Services 中建立 Bug。
+
+![按一下 [新增工作項目]、編輯欄位，然後按一下 [確定]。](./media/app-insights-diagnostic-search/42.png)
+
+當您第一次執行此動作時，系統會要求您設定與您 Team Services 帳戶和專案的連結。
+
+![填入 Team Services 伺服器的 URL 和專案名稱，然後按一下 [授權]](./media/app-insights-diagnostic-search/41.png)
+
+(您也可以從 [設定] > [工作項目] 取得組態刀鋒視窗。)
 
 ## 篩選事件類型
 
@@ -221,4 +234,4 @@ app* AND banana -(grape pear)|邏輯運算子和括號。
 
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

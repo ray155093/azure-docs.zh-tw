@@ -1,10 +1,10 @@
 <properties
-   pageTitle="雲端商務持續性 - 資料庫復原 | Microsoft Azure"
+   pageTitle="雲端商務持續性 - 資料庫復原 - SQL Database | Microsoft Azure"
    description="了解 Azure SQL Database 如何支援雲端商務持續性和資料庫復原，以及如何協助維持任務關鍵性雲端應用程式持續執行。"
    keywords="business continuity,cloud business continuity,database disaster recovery,database recovery,商務持續性,雲端商務持續性,資料庫災害復原,資料庫復原"
    services="sql-database"
    documentationCenter=""
-   authors="elfisher"
+   authors="carlrabeler"
    manager="jhubbard"
    editor="monicar"/>
 
@@ -13,15 +13,15 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="05/10/2016"
-   ms.author="elfish"/>
+   ms.workload="sqldb-business-continuity"
+   ms.date="06/09/2016"
+   ms.author="carlrab"/>
 
-# 概觀：雲端商務持續性和 SQL Database 的資料庫災害復原
+# 概觀：Azure SQL Database 的雲端商務持續性和資料庫災害復原
 
-商務持續性是指設計、部署及執行應用程式的方式，必須能夠彈性地回應規劃或未規劃的中斷事件，這些中斷事件會導致應用程式永久或暫時無法執行其商務功能。未規劃的事件範圍從人為疏失，到為了回應區域性嚴重損壞情況的永久或暫時中斷，這些區域性嚴重損壞情況可能會在特定 Azure 區域造成大規模功能遺失。規劃的事件包括應用程式重新部署至不同的區域和應用程式升級。業務續航力的目標是要讓您的應用程式在這些事件期間繼續運作，並將對商務功能的影響降到最低。
+Azure SQL Database 提供數個商務持續性解決方案。商務持續性是指設計、部署及執行應用程式的方式，必須能夠彈性地回應規劃或未規劃的中斷事件，這些中斷事件會導致應用程式永久或暫時無法執行其商務功能。未規劃的事件範圍從人為疏失，到為了回應區域性嚴重損壞情況的永久或暫時中斷，這些區域性嚴重損壞情況可能會在特定 Azure 區域造成大規模功能遺失。規劃的事件包括應用程式重新部署至不同的區域和應用程式升級。業務續航力的目標是要讓您的應用程式在這些事件期間繼續運作，並將對商務功能的影響降到最低。
 
-您必須先熟悉幾個概念，再開始討論雲端商務持續性案例：
+您必須先熟悉幾個概念，再開始討論 SQL Database 雲端商務持續性解決方案。它們是：
 
 * **嚴重損壞修復 (DR)**：還原應用程式之一般商務功能的程序
 
@@ -32,33 +32,33 @@
 * **復原點目標 (RPO)**：應用程式在發生中斷事件之後到完全復原可遺失之上次更新 (時間間隔) 的最大數量。RPO 測量失敗期間可遺失的資料量上限。
 
 
-## 雲端商務持續性案例
+## SQL Database 雲端商務持續性案例
 
-以下是規劃商務持續性和資料庫復原時需考量的重要案例。
+以下討論規劃商務持續性和資料庫復原時需考量的重要案例。
 
-###針對商務持續性設計應用程式
+### 針對商務持續性設計應用程式
 
 我想要建置的應用程式對業務很重要。我想要將應用程式設計並設定成可安然度過服務因災難性失敗所致的區域性嚴重損壞情況。我知道應用程式的 RPO 和 RTO 需求，並將選擇符合這些需求的組態。
 
-###從人為疏失復原
+### 從人為疏失復原
 
 我具有存取應用程式之生產環境版本的管理權限。我在定期維護過程中錯誤刪除了生產環境中的一些重要資料。我想要快速還原資料，以減輕這個錯誤的影響。
 
-###從中斷復原
+### 從中斷復原
 
 我在生產環境中執行應用程式，並收到警示，指出在部署應用程式的區域發生重大中斷情況。我想要起始復原程序，將應用程式復原至其他區域，以減輕對業務的影響。
 
-###執行嚴重損壞修復演練
+### 執行嚴重損壞修復演練
 
 由於從中斷復原會將應用程式的資料層重新配置到不同的區域，因此我想要定期測試復原程序，並評估該程序對應用程式的影響，以做足準備。
 
-###應用程式升級而不需要停機
+### 應用程式升級而不需要停機
 
 我想要發行應用程式的重大升級。其中包含資料庫結構描述變更、部署其他預存程序等。這個程序需要防止使用者存取資料庫。同時，我想要確保該升級不會對營運造成明顯的中斷。
 
-##業務續航力功能
+## SQL Database 商務持續性功能
 
-下表顯示不同服務層之雲端商務持續性功能的差異：
+下表列出 SQL Database 商務持續性功能，並顯示不同[服務層](sql-database-service-tiers.md)的差異：
 
 | 功能 | 基本層 | 標準層 |高階層
 | --- |--- | --- | ---
@@ -75,12 +75,25 @@
 
 [還原時間點](sql-database-point-in-time-restore.md)的設計是為了將您的資料庫還原到較早的時間點。它使用服務為每個使用者資料庫自動維護的資料庫備份、增量備份和交易記錄備份。這項功能適用於所有服務層。基本層可還原 7 天，標準層可還原 14 天，而高階層可還原 35 天。如需如何使用時間點還原的詳細資訊，請參閱[從人為疏失復原](sql-database-user-error-recovery.md)。
 
-###異地還原
+### 異地還原
 
 [異地還原](sql-database-geo-restore.md)也適用於基本、標準和高階資料庫。它會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。異地還原與時間點還原類似，需要使用 Azure 異地備援儲存體中的資料庫備份。它會從異地複寫的備份複本還原，因此可彈性地回應主要區域的儲存體中斷情況。如需如何使用異地還原的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。
 
-###主動式異地複寫
+### 主動式異地複寫
 
-所有資料庫層均提供[作用中異地複寫](sql-database-geo-replication-overview.md)。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需如何[設定異地複寫](sql-database-business-continuity-design.md)和[容錯移轉至次要資料庫](sql-database-geo-replication-portal.md)的詳細資訊，請參閱[業務續航力的設計](sql-database-geo-replication-failover-portal.md)。如需如何實作應用程式升級而不需要停機的詳細資訊，請參閱[升級應用程式而不需要停機](sql-database-business-continuity-application-upgrade.md)。
+[作用中異地複寫](sql-database-geo-replication-overview.md)適用於所有資料庫層。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需如何[設定異地複寫](sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](sql-database-geo-replication-failover-portal.md)的詳細資訊，請參閱[商務持續性的設計](sql-database-business-continuity-design.md)。如需如何實作應用程式升級而不需要停機的詳細資訊，請參閱[升級應用程式而不需要停機](sql-database-business-continuity-application-upgrade.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+## 後續步驟
+
+- [業務續航力的設計](sql-database-business-continuity-design.md)
+- [還原時間點](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
+- [主動式異地複寫](sql-database-geo-replication-overview.md)
+
+
+## 其他資源
+
+- [SQL Database 自動備份](sql-database-automated-backups.md)
+- [應用程式升級而不需要停機](sql-database-business-continuity-application-upgrade.md)
+
+<!---HONumber=AcomDC_0615_2016-->

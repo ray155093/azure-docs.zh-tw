@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
 	ms.topic="article" 
-	ms.date="01/12/2016" 
+	ms.date="04/08/2016" 
 	ms.author="robmcm"/>
 
 
@@ -24,13 +24,13 @@
 
 *作者：[Ben Lobaugh][ben-lobaugh]，[Microsoft Open Technologies Inc.][ms-open-tech]*
 
-在本教學課程中，您將了解如何將透過 Azure 的組件庫所建立的現有 WordPress Web 應用程式轉換成 WordPress 多網站安裝。此外，您也將了解如何將自訂網域指派給安裝內的每一個子網站。
+在本教學課程中，您將了解如何將透過 Azure 的資源庫所建立的現有 WordPress Web 應用程式轉換成 WordPress 多網站安裝。此外，您也將了解如何將自訂網域指派給安裝內的每一個子網站。
 
 本文假設您目前已安裝 WordPress。如果沒有，請依照＜[從 Azure 中的組件庫建立 WordPress 網站][website-from-gallery]＞所提供的指引進行。
 
 將現有的 WordPress 單一網站安裝轉換成多網站通常相當簡單，以下許多初始步驟都直接取材自 [WordPress Codex][wordpress-codex-create-a-network] 的＜[建立網站](http://codex.wordpress.org)＞頁面 (英文)。
 
-讓我們開始吧！
+現在就開始吧。
 
 ## 允許多網站
 
@@ -83,7 +83,7 @@
 * 在 [一般] 下，選取 [共用] 或 [標準]
 * 按一下 [儲存]
 
-視使用量和您設定的其他設定而定，可能會出現訊息要求您確認變更，並認可 Web 應用程式現在可能會引發成本。
+視使用量和您設定的其他組態而定，可能會出現訊息要求您確認變更，並認可 Web 應用程式現在可能會引發成本。
 
 需要一些時間來處理新的設定，這段時間剛好可拿來開始設定您的網域。
 
@@ -153,4 +153,4 @@ Azure Web Apps 可讓您將不限數量的網域加入至 Web 應用程式。若
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/20/2016"
+   ms.date="06/08/2016"
    ms.author="terrylan"/>
 
 # Azure 安全性與法規遵循部落格
@@ -28,6 +28,14 @@
 
 **近期文章** (這一區段將會每週更新新文章的連結)︰
 
+[Azure 基礎結構安全性書籍即將推出](https://blogs.msdn.microsoft.com/azuresecurity/2016/06/06/azure-infrastructure-security-book-coming-soon/) (2016 年 6 月 6 日)
+
+[Azure 容器服務 (ACS) 的容器安全性見解](https://blogs.msdn.microsoft.com/azuresecurity/2016/05/26/insights-on-container-security-with-azure-container-service-acs/) (2016 年 5 月 26 日)
+
+[Azure.com 上的 Azure 安全性資訊網站](https://blogs.msdn.microsoft.com/azuresecurity/2016/05/24/azure-security-information-site-on-azure-com/) (2016 年 5 月 24 日)
+
+[從 Azure 服務管理移轉至 Azure 資源管理以提升安全性](https://blogs.msdn.microsoft.com/azuresecurity/2016/05/24/improve-security-by-migrating-from-azure-service-management-to-azure-resource-management/) (2016 年 5 月 24 日)
+
 [適用於 Windows 虛擬機器的 Azure 磁碟加密已經可以正式運作](https://blogs.msdn.microsoft.com/azuresecurity/2016/05/20/azure-disk-encryption-for-windows-virtual-machines-reaches-general-availability/) (2016 年 5 月 20 日)
 
 [Azure 資訊安全中心威脅偵測的進階功能](https://blogs.msdn.microsoft.com/azuresecurity/2016/05/17/advances-in-azure-security-center-threat-detection/) (2016 年 5 月 17 日)
@@ -40,4 +48,4 @@
 
 [雲端中共同負擔的責任有哪些？](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/18/what-does-shared-responsibility-in-the-cloud-mean/) (2016 年 4 月 18 日)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

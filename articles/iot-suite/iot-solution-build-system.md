@@ -2,16 +2,16 @@
 	pageTitle="MyDriving Azure IoT 範例 - 建置 | Microsoft Azure"
 	description="建置應用程式，以完整示範如何使用 Microsoft Azure 建立 IoT 系統的架構，包括串流分析、機器學習服務和事件中樞。"
 	services=""
-    documentationCenter=""
-    suite="iot-suite"
+    documentationCenter=".net"
+    suite=""
 	authors="alancameronwills"
 	manager="douge"/>
 
 <tags
-	ms.service="iot-suite"
+	ms.service="multiple"
 	ms.workload="tbd"
 	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
+	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="03/25/2016"
 	ms.author="awills"/>
@@ -109,7 +109,7 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 
 或者，如果您要保持最新狀態或貢獻程式碼，請如下所示複製儲存機制︰
 
-****git clone https://github.com/Azure-Samples/MyDriving.git**
+**git clone https://github.com/Azure-Samples/MyDriving.git**
 
 ## 取得 Bing 地圖 API 金鑰
 
@@ -438,7 +438,7 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 如需詳細資訊，請參閱：
 
--   [Azure 服務配額與限制](../azure-subscription-service-limits/#iot-hub-limits)的摘要
+-   [Azure 服務配額與限制](../azure-subscription-service-limits.md#iot-hub-limits)的摘要
 
 -   [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)
 
@@ -462,4 +462,4 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 我們所建議的 [MyDriving 參考指南](http://aka.ms/mydrivingdocs)完整說明系統及其元件的設計。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/26/2016"
+   ms.date="05/16/2016"
    ms.author="edmaca"/>
 
 # Azure 資料湖分析文件待處理項目
@@ -62,4 +62,4 @@ U-SQL | REDUCE 和 COMBINE 的參考文件更新 | 1 | Pending | [@edmacauley](h
 * 在 [Azure 內容儲存機制](https://github.com/Azure/azure-content/blob/master/articles/data-lake-analytics/data-lake-analytics-documentation-backlog.md) 中提交這份文件的提取要求
 * 傳送電子郵件到 microsoft.com 的 [adlafeedback](mailto:adlafeedback@microsoft.com?subject=DocBacklog)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

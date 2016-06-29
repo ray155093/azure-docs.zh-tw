@@ -59,7 +59,9 @@ Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資�
 ## 使用 Elastic Scale 的資料分區化
 Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 
+[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式]
+* (./sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)
 * [資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)
 * [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

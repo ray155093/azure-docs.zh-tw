@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="04/25/2016"
+   ms.date="06/09/2016"
    ms.author="thmullan;jackr"/>
 
 
@@ -85,10 +85,6 @@ ALTER ROLE db_datawriter ADD MEMBER ApplicationUser; -- allows ApplicationUser t
 Azure SQL Database 可以使用[透明資料加密](http://go.microsoft.com/fwlink/?LinkId=526242)，透過資料在「靜止」時或儲存在資料庫檔案和備份中時加密資料，來協助保護您的資料。若要加密您的資料庫，請以資料庫擁有者的身分連線，然後執行：
 
 ```
-CREATE DATABASE ENCRYPTION KEY
-   WITH ALGORITHM = AES_256
-   ENCRYPTION BY SERVER CERTIFICATE ##MS_TdeCertificate##;
-
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ```
 
@@ -108,4 +104,4 @@ SQL Database 威脅偵測提供除了稽核之外另一層的安全性。它可�
 
 除了上述可協助您的應用程式符合各種安全法規需求的特色和功能之外，Azure SQL Database 也定期參與稽核，並且經過認證符合許多法規標準。如需詳細資訊，請參閱 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)，您可以在當中找到 [SQL Database 法規認證](https://azure.microsoft.com/support/trust-center/services/)的最新清單。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

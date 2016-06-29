@@ -23,7 +23,7 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 ## 基礎結構概念
 **叢集**：由虛擬或實體機器連結組成的網路，微服務可於其中部署和管理。叢集可擴充至數千部機器。
 
-**節點**：屬於叢集一部分的電腦或 VM 都稱為節點。需為每個節點指派節點名稱 (字串)。節點具有各種特性，如 placement 屬性。每個電腦或 VM 皆有自動啟動 Windows 服務 `FabricHost.exe`，會在開機時啟動執行，然後此服務會啟動兩個執行檔：`Fabric.exe` 和 `FabricGateway.exe`。這兩個執行檔構成節點。在測試案例中，您可以藉由執行 `Fabric.exe` 和 `FabricGateway.exe` 的多個執行個體，在單一電腦、VM 上裝載多個節點。
+**節點**：屬於叢集一部分的電腦或 VM 都稱為節點。需為每個節點指派節點名稱 (字串)。節點具有各種特性，如 placement 屬性。每個電腦或 VM 皆有自動啟動的 Windows 服務 `FabricHost.exe`，該服務會在開機時開始執行，然後啟動兩個執行檔：`Fabric.exe` 和 `FabricGateway.exe`。這兩個執行檔構成節點。在測試案例中，您可以藉由執行 `Fabric.exe` 和 `FabricGateway.exe` 的多個執行個體，在單一電腦或 VM 上裝載多個節點。
 
 ## 應用程式概念
 **應用程式類型**：指派給服務類型的集合名稱/版本。這項資訊會定義在 `ApplicationManifest.xml` 檔中，內嵌在應用程式封裝目錄，之後會複製到 Service Fabric 叢集的映像存放區中。然後，您可以從這個應用程式類型，在叢集內建立具名的應用程式。
@@ -84,10 +84,10 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
-深入了解 Service Fabric
+若要深入了解 Service Fabric：
 
 - [Service Fabric 概觀](service-fabric-overview.md)
 - [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
 - [應用程式案例](service-fabric-application-scenarios.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

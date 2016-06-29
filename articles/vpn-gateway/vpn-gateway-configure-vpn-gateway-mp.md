@@ -29,7 +29,7 @@
 
 **本文內容**
 
-本文章是針對使用[傳統入口網站](https://manage.windowsazure.com) (而非 Azure 入口網站) 的傳統部署模型所撰寫。當有資源管理員部署模型的文章時，我們會在此提供其連結。
+本文章是針對使用[傳統入口網站](https://manage.windowsazure.com) (而非 Azure 入口網站) 的傳統部署模型所撰寫。當有 Resource Manager 部署模型的文章時，我們會在此提供其連結。
 
 **關於 Azure 部署模型**
 
@@ -37,7 +37,7 @@
 
 ## 組態概觀
 
-以下程序將逐步引導您在 Azure 傳統入口網站中設定 VPN 閘道。這些步驟適用於使用服務管理模式建立並且會顯示在 Azure 傳統入口網站中的 VNet 閘道。這些不是 Preview 入口網站或使用資源管理員模式設定 VNet 的使用步驟。在[使用 Azure 資源管理員和 PowerShell 建立具有站對站連線的虛擬網路](vpn-gateway-create-site-to-site-rm-powershell.md)中，您可以找到為使用資源管理員模式建立之虛擬網路建立 VNet 閘道的相關資訊。
+以下程序將逐步引導您在 Azure 傳統入口網站中設定 VPN 閘道。這些步驟適用於使用服務管理模式建立並且會顯示在 Azure 傳統入口網站中的 VNet 閘道。這些不是 Preview 入口網站或使用 Resource Manager 模式設定 VNet 的使用步驟。在[使用 Azure Resource Manager 和 PowerShell 建立具有站對站連線的虛擬網路](vpn-gateway-create-site-to-site-rm-powershell.md)中，您可以找到為使用 Resource Manager 模式建立之虛擬網路建立 VNet 閘道的相關資訊。
 
 
 1. [為您的 VNet 建立 VPN 閘道](#create-a-vpn-gateway)
@@ -52,7 +52,7 @@
 
 設定您的閘道之前，您必須先建立虛擬網路。如需針對跨單位連線建立虛擬網路的步驟，請參閱[設定虛擬網路與站對站 VPN 連線](vpn-gateway-site-to-site-create.md)，或[設定虛擬網路與點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。然後，使用下方步驟來設定 VPN 閘道，並收集您設定 VPN 裝置所需的資訊。
 
-如果您已擁有 VPN 閘道，且想要變更路由類型，請參閱＜[如何變更您的 VPN 閘道路由類型](#how-to-change-your-vpn-gateway-type)＞。
+如果您已擁有 VPN 閘道，且想要變更路由類型，請參閱[如何變更您的閘道的 VPN 路由類型](#how-to-change-the-vpn-routing-type-for-your-gateway)。
 
 ## 建立 VPN 閘道
 
@@ -168,4 +168,4 @@
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -56,6 +56,6 @@
 - 將服務層升級至具有足夠記憶體內部記憶體的服務層，以便儲存您需要保留在記憶體最佳化資料表中的資料。
 
 ## 後續步驟
-深入了解[使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)
+有關[使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)的其他資源
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

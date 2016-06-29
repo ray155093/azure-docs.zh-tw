@@ -12,14 +12,14 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="03/16/2016"
+    ms.date="06/13/2016"
     ms.author="sethm" />
 
 # 服務匯流排定價與計費
 
 服務匯流排提供基本、標準和[高階](service-bus-premium-messaging.md)層。您可以針對建立的每個服務匯流排服務命名空間選擇一個服務層，此選取層會套用至該命名空間內建立的所有佇列、主題/訂用帳戶、轉送及事件中樞。
 
->[AZURE.NOTE] 如需目前服務匯流排的價格詳細資訊，請參閱 [Azure 服務匯流排價格頁面](https://azure.microsoft.com/pricing/details/service-bus/)和[服務匯流排常見問題集](service-bus-pricing-faq.md)。
+>[AZURE.NOTE] 如需目前服務匯流排的價格詳細資訊，請參閱 [Azure 服務匯流排價格頁面](https://azure.microsoft.com/pricing/details/service-bus/)和[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)。
 
 服務匯流排會在佇列和主題/訂用帳戶中使用下列兩種計量：
 
@@ -106,7 +106,7 @@
 |---|
 |在高階層中，不對代理連線收費。|
 
-如需關於代理連線的詳細資訊，請參閱本主題稍後的[常見問題集](#FAQ)一節。
+如需關於代理連線的詳細資訊，請參閱本主題稍後的[常見問題集](#faq)一節。
 
 ## 轉送
 
@@ -121,7 +121,7 @@
 
 ### 如何計算轉送時數計量？
 
-請參閱[此主題](service-bus-pricing-faq.md#How-is-the-Relay-Hours-meter-calculated?)。
+請參閱[此主題](service-bus-faq.md#how-is-the-relay-hours-meter-calculated)。
 
 ### 什麼是代理連線，以及如何支付它們的費用？
 
@@ -147,8 +147,8 @@
 
 - 如需更多有關服務匯流排定價的詳細資訊，請參閱 [Azure 服務匯流排定價頁面](https://azure.microsoft.com/pricing/details/service-bus/)。
 
-- 請參閱[服務匯流排價格常見問題集](service-bus-pricing-faq.md)，以了解關於服務匯流排價格與計費的常見問題集。
+- 請參閱[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)，以了解關於服務匯流排價格與計費的常見問題集。
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

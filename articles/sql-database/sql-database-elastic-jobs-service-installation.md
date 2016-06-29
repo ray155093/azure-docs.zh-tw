@@ -85,7 +85,7 @@
 </tr>
 	<tr>
 	<td>ServiceVmSize</td>
-	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價] (sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
+	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價](sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
 </tr>
 
 </tr>
@@ -156,7 +156,7 @@
 
 **預估完成時間：**10 分鐘。
 
-1. 從彈性資料庫集區的儀表板檢視，透過 [Azure 入口網站](https://ms.portal.azure.com/#)，按一下 [建立工作]。
+1. 從彈性資料庫集區的儀表板檢視，透過 [Azure 入口網站](https://portal.azure.com/#)，按一下 [建立工作]。
 2. 如果您是第一次建立工作，則必須安裝**彈性資料庫工作**，方法是按一下 [預覽條款]，
 3. 然後按一下核取方塊接受條款。
 4. 在 [安裝服務] 檢視中，按一下 [工作認證]。
@@ -187,4 +187,4 @@
 [3]: ./media/sql-database-elastic-jobs-service-installation/start-board.png
 [4]: ./media/sql-database-elastic-jobs-service-installation/not-done.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -127,7 +127,7 @@
 
 返回 Azure 入口網站中的應用程式分頁。
 
-第一個事件會出現在 [即時串流] 視窗。
+第一個事件會出現在[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)中。
 
 
 ## 持續性通道 
@@ -256,4 +256,4 @@ namespace ConsoleApplication1
 [CoreNuGet]: https://www.nuget.org/packages/Microsoft.ApplicationInsights
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

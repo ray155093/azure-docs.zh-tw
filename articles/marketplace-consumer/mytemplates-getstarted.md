@@ -113,7 +113,7 @@
 
 ![共用範本](media/share-template-portal1a.png) <br />
 
- 您現在可以選擇角色及使用者或群組，以提供特定**範本**的存取權。可用的角色為 [擁有者]、[讀取者] 和 [參與者]。如需詳細資料，請參閱下面的[存取控制](#access-control-for-a-tenant-resource-provider)一節。
+ 您現在可以選擇角色及使用者或群組，以提供特定**範本**的存取權。可用的角色為 [擁有者]、[讀取者] 和 [參與者]。如需詳細資料，請參閱上面的[存取控制](#access-control-for-a-tenant-resource-provider)一節。
 
 ![共用範本](media/share-template-portal2b.png) <br />
 
@@ -131,4 +131,4 @@
 - 若要了解您可用於 Resource Manager 範本中的函數，請參閱[範本函式](../resource-group-template-functions.md)
 - 如需設計範本的指引，請參閱[設計 Azure 資源管理員範本的最佳做法](../best-practices-resource-manager-design-templates.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

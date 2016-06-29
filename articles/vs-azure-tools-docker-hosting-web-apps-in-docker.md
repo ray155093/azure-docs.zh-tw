@@ -24,7 +24,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 ## 1\.必要條件
 需要下列項目，才能完成本教學課程：
 
-- 依[如何搭配 Azure 使用 docker-machine](./virtual-machines/virtual-machines-linux-classic-docker-machine.md) 中所述，建立 Azure Docker 主機 VM
+- 按照[如何使用 Docker 電腦搭配 Azure](./virtual-machines/virtual-machines-linux-docker-machine.md) 中所述，建立 Azure Docker 主機 VM
 - 安裝 [Visual Studio 2015](https://www.visualstudio.com/zh-TW/downloads/download-visual-studio-vs.aspx)
 - [Visual Studio 2015 RC Tools for Docker - 預覽](http://aka.ms/DockerToolsForVS)
 
@@ -63,7 +63,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
     
     1.  選取 [端點] 索引標籤。
     
-    1.  選取 [新增] \(在頁面底部)。
+    1.  選取 [新增]\(在頁面底部)。
     
     1.  遵循指示來公開連接埠 80，此連接埠依預設由部署指令碼使用。
 
@@ -96,4 +96,4 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 [2]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
 [3]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

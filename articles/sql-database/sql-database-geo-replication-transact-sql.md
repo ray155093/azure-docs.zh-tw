@@ -13,32 +13,27 @@
     ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="data-management"
-    ms.date="04/27/2016"
+    ms.date="06/14/2016"
     ms.author="carlrab"/>
 
 # 使用 Transact-SQL 為 Azure SQL Database 設定異地複寫
 
-
-
 > [AZURE.SELECTOR]
+- [概觀](sql-database-geo-replication-overview.md)
 - [Azure 入口網站](sql-database-geo-replication-portal.md)
 - [PowerShell](sql-database-geo-replication-powershell.md)
-- [Transact-SQL](sql-database-geo-replication-transact-sql.md)
+- [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-
-本文說明如何使用 Transact-SQL 為 Azure SQL Database 設定異地複寫。
+本文說明如何使用 Transact-SQL 為 Azure SQL Database 設定作用中異地複寫。
 
 若要起始容錯移轉，請參閱[為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
 
 >[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
-您可以在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫。
+若要使用 Transact-SQL 設定作用中異地複寫，您需要下列項目：
 
-
-若要設定「異地複寫」，您需要下列項目：
-
-- Azure 訂用帳戶 - 如果您沒有 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來這篇文章。
-- 邏輯 Azure SQL Database 伺服器 <MyLocalServer> 和 SQL Database <MyDB> - 您想要複寫到不同地理區域的主要資料庫。
+- Azure 訂用帳戶。
+- 邏輯 Azure SQL Database 伺服器 <MyLocalServer> 和 SQL Database <MyDB> - 您想要複寫的主要資料庫。
 - 一或多個邏輯 Azure SQL Database 伺服器 <MySecondaryServer(n)> - 您將在其中建立次要資料庫的夥伴伺服器的邏輯伺服器。
 - 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
 - 最新版本的 SQL Server Management Studio - 若要取得最新版本的 SQL Server Management Studio (SSMS)，請移至[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。如需使用 SQL Server Management Studio 來管理 Azure SQL Database 邏輯伺服器和資料庫的詳細資訊，請參閱[使用 SQL Server Management Studio 管理 Azure SQL Database](sql-database-manage-azure-ssms.md)
@@ -183,4 +178,4 @@
 - [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

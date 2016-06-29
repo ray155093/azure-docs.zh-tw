@@ -1,5 +1,5 @@
 <properties
-	pageTitle="從異地備援備份 (Azure 入口網站) 異地還原 Azure SQL Database。| Microsoft Azure"
+	pageTitle="從異地備援備份 (Azure 入口網站) 異地還原 Azure SQL Database | Microsoft Azure"
 	description="從異地備援備份 (Azure 入口網站) 異地還原 Azure SQL Database。"
 	services="sql-database"
 	documentationCenter=""
@@ -21,12 +21,11 @@
 
 
 > [AZURE.SELECTOR]
+- [概觀](sql-database-geo-restore.md)
 - [Azure 入口網站](sql-database-geo-restore-portal.md)
 - [PowerShell](sql-database-geo-restore-powershell.md)
 
 本文說明如何使用 Azure 入口網站，將資料庫還原至使用異地還原的新伺服器。
-
-[異地還原](sql-database-geo-restore.md)可從異地備援備份還原資料庫，進而建立新的資料庫。您可以在任何 Azure 區域中的任何伺服器上建立資料庫。異地還原使用異地備援備份做為其來源，因此即使因為中斷而無法存取資料庫，也能用來復原資料庫。異地還原會對所有服務層自動啟用，且不須額外付費。
 
 ## 選取要還原的資料庫
 
@@ -34,7 +33,7 @@
 
 1.	開啟 [Azure 入口網站](https://portal.azure.com)。
 2.  在畫面左側選取 [新增] > [資料和儲存體] > [SQL Database]。
-3.  選取 [備份] 做為來源，然後選取您要從中復原的異地備援備份。
+3.  選取 [備份] 做為來源，然後選取您想要從中復原的異地備援備份。
 
     ![還原 Azure SQL Database](./media/sql-database-geo-restore-portal/geo-restore.png)
 
@@ -52,4 +51,4 @@
 - [業務續航力概觀](sql-database-business-continuity.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0615_2016-->

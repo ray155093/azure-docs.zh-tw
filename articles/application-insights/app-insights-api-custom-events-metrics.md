@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="自訂事件和度量的 Application Insights API" 
+	pageTitle="自訂事件和度量的 Application Insights API | Microsoft Azure" 
 	description="在您的裝置或桌面應用程式、網頁或服務中插入幾行程式碼，來追蹤使用狀況及診斷問題。" 
 	services="application-insights"
     documentationCenter="" 
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/07/2016" 
 	ms.author="awills"/>
 
 # 自訂事件和度量的 Application Insights API 
@@ -366,7 +366,9 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
         @if (Request.IsAuthenticated)
         {
             <script>
-                appInsights.setAuthenticatedUserContext("@User.Identity.Name".replace(/[,;=| ]+/g, "_"));
+                appInsights.setAuthenticatedUserContext("@User.Identity.Name
+                   .Replace("\", "\\")"
+                   .replace(/[,;=| ]+/g, "_"));
             </script>
         }
 
@@ -748,4 +750,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0615_2016-->

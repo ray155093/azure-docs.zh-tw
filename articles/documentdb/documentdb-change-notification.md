@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="rest-api" 
     ms.topic="article" 
-    ms.date="03/17/2016" 
+    ms.date="06/14/2016" 
     ms.author="b-hoedid"/>
 
 # 使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
@@ -1156,4 +1156,4 @@ EmailTo | 將會收到電子郵件通知的電子郵件地址
 
 若要深入了解 DocumentDB，請瀏覽[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0615_2016-->

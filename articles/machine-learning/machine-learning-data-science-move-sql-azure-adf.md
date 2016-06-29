@@ -53,7 +53,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 * 存取 **Azure SQL Database**。如果您必須設定 Azure SQL Database，[開始使用 Microsoft Azure SQL Database](../sql-database/sql-database-get-started.md) 一文中提供如何佈建 Azure SQL Database 之新執行個體的相關資訊。
 * 已在本機上安裝和設定 **Azure PowerShell**。如需指示，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-> [AZURE.NOTE] 此程序會使用 [Azure 入口網站](https://ms.portal.azure.com/)。
+> [AZURE.NOTE] 此程序會使用 [Azure 入口網站](https://portal.azure.com/)。
 
 
 ##<a name="upload-data"></a>將資料上傳至您的內部部署 SQL Server
@@ -66,7 +66,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 
 ##<a name="create-adf"></a> 建立 Azure Data Factory
 
-用於建立新 Azure Data Factory 的指示及 [Azure 入口網站](https://ms.portal.azure.com/)中的資源群組，已在[建立 Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#step-1-creating-the-data-factory) 提供。將新的 ADF 執行個體命名為 *adfdsp*，並將建立的資源群組命名為 *adfdsprg*。
+用於建立新 Azure Data Factory 的指示及 [Azure 入口網站](https://portal.azure.com/)中的資源群組，已在[建立 Azure Data Factory](../data-factory/data-factory-build-your-first-pipeline-using-editor.md#step-1-creating-the-data-factory) 提供。將新的 ADF 執行個體命名為 *adfdsp*，並將建立的資源群組命名為 *adfdsprg*。
 
 
 ## 安裝和設定資料管理閘道
@@ -310,4 +310,4 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
 
 請注意，我們尚未運用 ADF 提供的功能，以遞增方式輸送資料。如需關於如何執行此功能和 ADF 提供之其他功能的詳細資料，請參閱 [ADF 文件](https://azure.microsoft.com/services/data-factory/)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

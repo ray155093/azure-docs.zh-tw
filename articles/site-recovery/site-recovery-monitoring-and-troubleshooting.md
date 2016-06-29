@@ -192,11 +192,14 @@ ASR 中的每個作業都會被稽核，並且在 [工作] 索引標籤底下追
 -   [虛擬機器上發生頻外作業且認可容錯移轉失敗](http://social.technet.microsoft.com/wiki/contents/articles/25507.the-virtual-machine-isn-t-ready-for-planned-failover.aspx)
 -   Test Failover
     -   [無法起始容錯移轉，因為正在進行測試容錯移轉](http://social.technet.microsoft.com/wiki/contents/articles/31111.failover-could-not-be-initiated-since-test-failover-is-in-progress.aspx)
+-   <span style="color:green;">NEW</span> 容錯移轉因為與虛擬機器或機器所屬子網路相關聯的網路安全性群組的組態設定而逾時：「PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時」。如需詳細資訊，請參閱「[PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時](https://aka.ms/troubleshoot-nsg-issue-azure-site-recovery)」。
+
 
 ### 設定伺服器、處理序伺服器、主要目標
-設定伺服器 (CS)、處理序伺服器 (PS)、主要目標 (MT) - [將 PS/CS 做為 VM 加以管理的 ESXi 主機失敗，並且出現紫色的當機畫面。](http://social.technet.microsoft.com/wiki/contents/articles/31107.vmware-esxi-host-experiences-a-purple-screen-of-death.aspx)
+設定伺服器 (CS)、處理序伺服器 (PS)、主要目標 (MT)
+-   [將 PS/CS 做為 VM 加以管理的 ESXi 主機失敗，並且出現紫色的當機螢幕。](http://social.technet.microsoft.com/wiki/contents/articles/31107.vmware-esxi-host-experiences-a-purple-screen-of-death.aspx)
 
 ### 容錯移轉之後的遠端桌面疑難排解
 -   許多客戶面臨在 Azure 中連接到容錯移轉的 VM 的問題。[使用疑難排解文件 RDP 至 VM](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)
 
-<!---HONumber=AcomDC_1217_2015---->
+<!---HONumber=AcomDC_0615_2016-->

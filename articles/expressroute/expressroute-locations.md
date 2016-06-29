@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/09/2016"
+   ms.date="06/17/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -31,7 +31,7 @@
 |---|---|---|
 |**北美洲**|美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部|亞特蘭大、芝加哥、達拉斯、拉斯維加斯+、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多|
 |**南美洲**|巴西南部|聖保羅|
-|**歐洲**|北歐、西歐|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎+|
+|**歐洲**|北歐、西歐|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
 |**亞洲**|東亞、東南亞|香港特別行政區、新加坡|
 |**日本**|日本西部、日本東部|大阪、東京|
 |**澳大利亞**|澳洲東南部、澳洲東部|墨爾本、雪梨|
@@ -62,16 +62,18 @@
 | **[British Telecom](http://www.globalservices.bt.com/uk/en/news/bt_to_provide_connectivity_to_microsoft_azure)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
 |**CenturyLink** | 敬請期待 | 敬請期待| 矽谷 |
 |**China Telecom Global** | 支援 | 不支援 | 香港 |
-|**Cologix** | 支援 | 敬請期待 | 蒙特婁+、多倫多 |
+|**[Cologix](http://www.cologix.com/solutions/cloud-connect/public-clouds/microsoft-cloud/)** | 支援 | 敬請期待 | 蒙特婁+、多倫多 |
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** | 支援 | 支援 | 阿姆斯特丹、都柏林、倫敦、東京 |
 | **Comcast** | 支援 | 支援 | 芝加哥、矽谷、華盛頓特區 |
 | **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** | 支援 | 支援 | 洛杉磯 | 
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** | 支援 | 支援 | 阿姆斯特丹 |
+| **GÉANT** | 敬請期待 | 敬請期待 | 阿姆斯特丹+ |
 | **[Internet Initiative Japan Inc. - IIJ](http://www.iij.ad.jp/en/news/pressrelease/2015/1216-2.html)** | 支援 | 支援 | 大阪、東京 |
 | **[InterCloud](https://www.intercloud.com/)** | 支援 | 支援 | 阿姆斯特丹、倫敦、新加坡、華盛頓特區 |
 | **Internet Solutions - Cloud Connect** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
-| **Interxion** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
+| **Interxion** | 支援 | 支援 | 阿姆斯特丹、倫敦、巴黎 |
+| **Jisc** | 敬請期待 | 敬請期待 | 倫敦+ | 
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
 | **Megaport** | 支援 | 支援 | 達拉斯、拉斯維加斯+、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
 | **MTN** | 支援 | 支援 | 倫敦 |
@@ -99,9 +101,9 @@
 | **服務提供者** |**Microsoft Azure** | **Office 365** | **位置** |
 |-----------------------|--------------------|----------------|---------------|
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** | 支援 | 支援 | 芝加哥、華盛頓特區 |
-| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、紐約、華盛頓特區 |
+| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
 | **[Level 3 Communications - IPVPN](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 敬請期待 | 芝加哥、紐約+、華盛頓特區 |
-| **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** | 支援 | 支援 | 芝加哥、紐約、華盛頓特區 |
+| **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
 
 #### 中國
 
@@ -130,6 +132,7 @@
 	- [InterXion](http://www.interxion.com/)
 	- [NextDC](http://www.nextdc.com/)
 	- [CoreSite](http://www.coresite.com/)
+	- [Cologix](http://www.cologix.com/)
 - 請您的連線提供者將您的網路延伸到選擇的對等互連位置。
 	- 請確保您的連線提供者以高可用性的方式延伸您的連線，因此不會有單一失敗點。
 - 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
@@ -148,7 +151,7 @@
 |---|---|
 |**[Avanade Inc.](http://www.avanade.com/)**| 亞洲、歐洲、美國 |
 |**[Dotnet 解決方案](http://www.dotnetsolutions.co.uk/)**| 歐洲 |
-|**[Nimbo](http://www.nimbo.com/)**|US||
+|**[Equinix Professional Services](http://www.equinix.com/services/consulting/)**|US||
 |**[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** | 亞洲 |
 |**[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** | US |
 |**[Project Leadership](http://www.projectleadership.net/azure)** | US |
@@ -161,4 +164,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -22,6 +22,7 @@
 
 
 > [AZURE.SELECTOR]
+- [概觀](sql-database-firewall-configure.md)
 - [Azure 入口網站](sql-database-configure-firewall-settings.md)
 - [TSQL](sql-database-configure-firewall-settings-tsql.md)
 - [PowerShell](sql-database-configure-firewall-settings-powershell.md)
@@ -73,4 +74,4 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0615_2016-->

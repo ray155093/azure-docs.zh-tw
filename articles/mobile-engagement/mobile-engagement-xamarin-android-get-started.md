@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
+	ms.date="06/16/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Xamarin.Android 應用程式的 Azure Mobile Engagement
@@ -108,6 +108,20 @@ Xamarin Studio 會建立應用程式，我們將在其中整合 Mobile Engagemen
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個螢幕到 Mobile Engagement 後端。若要執行此作業 - 請確定 `MainActivity` 繼承自 `EngagementActivity`，而不是 `Activity`。
 
 	public class MainActivity : EngagementActivity
+	
+或者，如果您無法繼承自 `EngagementActivity`，則必須分別在 `OnResume` 和 `OnPause` 中加入 `.StartActivity` 和 `.EndActivity` 方法。
+
+		protected override void OnResume()
+	        {
+	            EngagementAgent.StartActivity(EngagementAgentUtils.BuildEngagementActivityName(Java.Lang.Class.FromType(this.GetType())), null);
+	            base.OnResume();             
+	        }
+	
+	        protected override void OnPause()
+	        {
+	            EngagementAgent.EndActivity();
+	            base.OnPause();            
+	        }
 
 ##<a id="monitor"></a>將應用程式與即時監視連接
 
@@ -131,4 +145,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [5]: ./media/mobile-engagement-xamarin-android-get-started/5.png
 [6]: ./media/mobile-engagement-xamarin-android-get-started/6.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="建立 Linux VM 的不同方式 | Microsoft Azure"
-	description="列出在 Azure 建立 Linux 虛擬機器的不同方式，並提供進一步指示的連結"
+	description="列出在 Azure 建立 Linux 虛擬機器的不同方式，並連結至每種方法的工具和教學課程"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="iainfoulds"
@@ -14,18 +14,16 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="infrastructure-services"
-	ms.date="04/12/2016"
+	ms.date="06/14/2016"
 	ms.author="iainfou"/>
 
 # 使用 Resource Manager 建立 Linux 虛擬機器的不同方式
 
 Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以供不同的使用者和用途使用。本文章將摘要說明這些差異，以及您建立 Linux 虛擬機器 (VM) 時可做的選擇。
 
-## 工具選項
+## Azure CLI 
 
-### 命令殼層︰Azure CLI 
-
-從 CLI，使用 Azure 命令列介面。您可以深入了解如何透過 npm、Docker 容器或安裝指令碼[安裝 Azure CLI](../xplat-cli-install.md)。下列教學課程提供有關使用 Azure CLI 的範例︰
+您可以深入了解如何透過 npm、Docker 容器或安裝指令碼[安裝 Azure CLI](../xplat-cli-install.md)。下列教學課程提供有關使用 Azure CLI 的範例︰
 
 * [從 Azure CLI 建立用於開發和測試的 Linux VM](virtual-machines-linux-quick-create-cli.md) 
 
@@ -33,7 +31,7 @@ Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以�
 
 * [使用 Azure CLI 從頭開始建立 Linux VM](virtual-machines-linux-create-cli-complete.md)
 
-### GUI：Azure 入口網站
+## Azure 入口網站
 
 [Azure 入口網站](https://portal.azure.com)的圖形化使用者介面是試用 VM 的簡單方法，特別是在您剛開始使用 Azure 時，因為您的系統上沒有要安裝的項目。使用 Azure 入口網站來建立 VM：
 
@@ -65,4 +63,4 @@ Azure 提供使用 Resource Manager 部署模型建立 VM 的不同方式，以�
 
 * [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md)的快速步驟
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -18,7 +18,9 @@
 
 # 使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式 
 
-[彈性資料庫工具](sql-database-elastic-scale-get-started.md)和[資料列層級安全性 (RLS)](https://msdn.microsoft.com/library/dn765131) 提供一組強大的功能，能以具彈性且有效率的方式，透過 Azure SQL Database 調整多租用戶應用程式的資料層。本文說明如何運用這些技術，透過 **ADO.NET SqlClient** 和/或 **Entity Framework** 建置應用程式，且讓此應用程式具有可支援多租用戶分區的高度可擴充資料層。
+[彈性資料庫工具](sql-database-elastic-scale-get-started.md)和[資料列層級安全性 (RLS)](https://msdn.microsoft.com/library/dn765131) 提供一組強大的功能，能以具彈性且有效率的方式，透過 Azure SQL Database 調整多租用戶應用程式的資料層。如需詳細資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+
+本文說明如何運用這些技術，透過 **ADO.NET SqlClient** 和/或 **Entity Framework** 建置應用程式，且讓此應用程式具有可支援多租用戶分區的高度可擴充資料層。
 
 * 彈性資料庫工具可讓開發人員藉由使用 .NET 程式庫和 Azure 服務範本的一套業界標準分區化作法，向外延展應用程式的資料層。使用「彈性資料庫用戶端程式庫」管理分區，有助於自動化及簡化許多通常與分區化相關的基礎結構工作。 
 
@@ -304,7 +306,18 @@ GO
 
 您可以將彈性資料庫工具與資料列層級安全性搭配使用，以支援多租用戶和單一租用戶的分區，藉此向外延展應用程式的資料層。多租用戶分區可以用來更有效率地儲存資料 (特別是在有大量租用戶，卻只有些許資料列的情況)，而單一租用戶分區則可以用來支援高階租用戶，因為這類租用戶有更嚴格的效能和隔離需求。如需詳細資訊，請參閱[資料列層級安全性參考資料](https://msdn.microsoft.com/library/dn765131)。
 
-[AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+## 其他資源
+
+- [什麼是 Azure 彈性資料庫集區？](sql-database-elastic-pool.md)
+- [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
+- [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+- [使用 Azure AD 和 OpenID Connect 的多租用戶應用程式驗證](../guidance/guidance-multitenant-identity-authenticate.md)
+- [Tailspin Surveys 應用程式](../guidance/guidance-multitenant-identity-tailspin.md)
+
+## 問題和功能要求
+
+如有問題，請在 [SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)上與我們連絡，如需要求增加功能，請將這些功能新增至 [SQLSQL Database 意見反應論壇](https://feedback.azure.com/forums/217321-sql-database/)。
+
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-tools-multi-tenant-row-level-security/blogging-app.png
@@ -312,4 +325,4 @@ GO
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/01/2016"
+   ms.date="06/20/2016"
    ms.author="ganesr"/>
 
 # 將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型
@@ -110,4 +110,4 @@ ExpressRoute 線路的作用就像是傳統與 Resource Manager 部署模型之�
 	- [設定路由](expressroute-howto-routing-arm.md)
 	- [將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0622_2016-->

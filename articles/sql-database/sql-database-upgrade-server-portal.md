@@ -37,7 +37,7 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 
 此外，與升級至單一資料庫的個別效能等級 (定價層) 相比，移轉至[彈性資料庫集區](sql-database-elastic-pool.md)更符合成本效益。集區也可以簡化資料庫管理，因為您只需要管理集區的效能設定，而不需分開管理個別資料庫的效能等級。如果您的資料庫位於多部伺服器上，請考慮將它們移到相同的伺服器，並利用將它們放入集區所帶來的優點。您可以輕鬆地[使用 PowerShell 自動將資料庫從 V11 伺服器直接移轉至彈性資料庫集區](sql-database-upgrade-server-powershell.md)。您也可以使用入口網站將 V11 資料庫移轉至集區，但在入口網站中，您必須已經備妥 V12 伺服器來建立集區。如果您擁有[可從集區受益的資料庫](sql-database-elastic-pool-guidance.md)，本文稍後有提供在升級伺服器之後建立集區的說明。
 
-請注意，您的資料庫會維持在線上，並且在整個升級作業中都會繼續保持運作。在實際轉換到新的效能等級時，資料庫連線可能會暫時中斷一段非常短的時間，通常約 90 秒，但最長可達 5 分鐘。如果您的應用程式[對於連線終止有暫時性的錯誤處理方式](sql-database-connect-central-recommendations.md)，就足以在升級結束時防止連線中斷。
+請注意，您的資料庫會維持在線上，並且在整個升級作業中都會繼續保持運作。在實際轉換到新的效能等級時，資料庫連線可能會暫時中斷一段非常短的時間，通常約 90 秒，但最長可達 5 分鐘。如果您的應用程式[對於連線終止有暫時性的錯誤處理方式](sql-database-connectivity-issues.md)，就足以在升級結束時防止連線中斷。
 
 升級至 SQL Database V12 後即無法復原。在升級之後，即無法將伺服器還原至 V11。
 
@@ -167,4 +167,4 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 [6]: ./media/sql-database-upgrade-server-portal/recommendations.png
 [7]: ./media/sql-database-upgrade-server-portal/new-elastic-pool.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

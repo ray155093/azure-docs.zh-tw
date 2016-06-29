@@ -59,10 +59,10 @@
 
 取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
-## 詳細資訊
+## 其他資源
 
 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

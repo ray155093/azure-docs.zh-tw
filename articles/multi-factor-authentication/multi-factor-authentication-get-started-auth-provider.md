@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="06/16/2016" 
 	ms.author="billmath"/>
 
 
@@ -22,6 +22,10 @@
 依預設，擁有 Azure Active Directory 和 Office 365 使用者的全域管理員可以使用 Multi-Factor Authentication。不過，如果您想要充分利用[進階功能](multi-factor-authentication-whats-next.md)，則必須購買完整版的 Azure MFA。
 
 > [AZURE.NOTE]  Azure Multi-Factor Auth Provider 可用來充分利用完整版 Azure MFA 所提供的功能。它的適用對象是**未透過 Azure MFA、Azure AD Premium 或 EMS 取得授權**的使用者。Azure MFA、Azure AD Premium 和 EMS 預設會包含完整版 Azure MFA。如果您有授權，則不需要 Azure Multi-Factor Auth Provider。
+
+如果您想要下載 SDK，則需要 Azure Multi-Factor Auth Provider。
+
+> [AZURE.IMPORTANT]  如果您想要下載 SDK，您必須建立 Azure Multi-Factor Auth Provider，即使您有 Azure MFA、AAD Premium 或 EMS 授權。如果您為此目的建立 Azure Multi-Factor Auth Provider 並已擁有授權，則必須建立採用 [每個啟用的使用者] 模型的 Provider，並將 Provider 連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。這可確保您不須付費，除非使用 SDK 的唯一使用者超過您所擁有的授權數目。
  
 使用下列步驟，建立 Azure Multi-Factor Auth Provider。
 
@@ -45,4 +49,4 @@
 		- 如果您要讓內部部署 Active Directory 環境與 Azure AD 目錄同步處理，Azure AD Connect、AAD Sync 或 DirSync 或 AAD Sync 只是一項需求。如果您只使用未同步的 Azure AD 目錄，則![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)。	
 5. 一旦按一下建立，系統便會建立 Multi-Factor Authentication Provider，而且您應該會看到一則指出「已成功建立 Multi-Factor Authentication Provider」的訊息。按一下 [確定]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)	
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

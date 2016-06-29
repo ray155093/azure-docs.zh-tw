@@ -1,5 +1,5 @@
 <properties
-	pageTitle="設定 Always On 可用性群組 Azure Resource Manager | Microsoft Azure"
+	pageTitle="在 Azure VM 中自動設定 Always On 可用性群組 - Resource Manager"
 	description="在 Azure Resource Manager 模式中使用 Azure 虛擬機器建立 Always On 可用性群組。本教學課程主要是透過此使用者介面來自動建立整個解決方案。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
@@ -13,20 +13,21 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/10/2016"
+	ms.date="06/09/2016"
 	ms.author="mikeray" />
 
-# 在 Azure Resource Manager 虛擬機器 (GUI) 中設定 Always On 可用性群組
+# 在 Azure VM 中自動設定 Always On 可用性群組 - Resource Manager
 
 > [AZURE.SELECTOR]
-- [範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-- [手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
+- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
+- [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
+- [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
 
 <br/>
 
 此端對端教學課程將示範如何使用 Azure Resource Manager 虛擬機器建立 SQL Server 可用性群組。本教學課程使用 Azure 刀鋒視窗來設定範本。逐步進行本教學課程時，您將在入口網站中檢閱預設設定、輸入必要的設定，以及更新刀鋒視窗。
 
->[AZURE.NOTE] 在 Azure 管理入口網站中，提供具有接聽程式的 Always On 可用性群組專用的新資源庫設定。這可自動設定可用性群組所需的所有項目。如需詳細資訊，請參閱 [Microsoft Azure 傳統入口網站資源庫提供的 SQL Server Always On](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。
 
 在本教學課程結束時，您 Azure 中的 SQL Server 可用性群組解決方案將包含下列項目：
 
@@ -66,7 +67,7 @@
 
 - 連接至其中一個網域控制站，再連接至其中一個 SQL Server
 
-## 使用 Resource Manager 部署模型從資源庫佈建可用性群組
+## 從資源庫佈建叢集
 
 Azure 提供整個解決方案的資源庫映像。若要找出範本，請執行下列動作：
 
@@ -142,7 +143,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [SQL Server 虛擬機器大小] 是兩個 SQL Server 的 Azure 虛擬機器大小。選擇適合您的工作負載的虛擬機器大小。如果您要為教學課程建置此環境，請使用 **DS2**。針對生產工作負載，請選擇可支援工作負載的虛擬機器大小。許多生產環境工作負載將需要 **DS4** 或更大。此範本會建置兩個此大小的虛擬機器，並在每個虛擬機器上安裝 SQL Server。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
 
->[AZURE.NOTE]Azure 會安裝 SQL Server Enterprise 版。成本根據版本和虛擬機器大小而定。如需目前成本的詳細資訊，請參閱[虛擬機器定價](http://azure.microsoft.com/pricing/details/virtual-machines/#Sql)。
+>[AZURE.NOTE]Azure 會安裝 SQL Server Enterprise 版。成本根據版本和虛擬機器大小而定。如需目前成本的詳細資訊，請參閱[虛擬機器價格](http://azure.microsoft.com/pricing/details/virtual-machines/#Sql)。
 
 - [網域控制站虛擬機器大小] 是網域控制站的虛擬機器大小。本教學課程使用 **D2**。
 
@@ -256,4 +257,4 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 
 您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定可用性群組。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -81,14 +81,12 @@
 
 資源提供者 | 功能
 ---------- | ------------
-計算 | 開機診斷。
 計算 | 未關聯的虛擬機器磁碟。
 計算 | 虛擬機器映像。
 網路 | 未關聯的保留 IP (如果未連接至 VM)。支援已連接至 VM 的保留 IP。
 網路 | 未關聯的網路安全性群組 (如果未連接至虛擬網路或網路介面)。支援虛擬網路所參考的 NSG。
 網路 | 端點 ACL。
 網路 | 虛擬網路閘道 (網站間、Azure ExpressRoute、點對站)。
-儲存體 | 儲存體帳戶。
 
 ### 不支援的組態
 
@@ -96,14 +94,13 @@
 
 服務 | 組態 | 建議
 ---------- | ------------ | ------------
-資源管理員 | 傳統資源的「角色型存取控制」(RBAC) | 由於資源的 URI 在移轉後會經過修改，因此建議您規劃需要在移轉後進行的 RBAC 原則更新。
+Resource Manager | 傳統資源的「角色型存取控制」(RBAC) | 由於資源的 URI 在移轉後會經過修改，因此建議您規劃需要在移轉後進行的 RBAC 原則更新。
 計算 | 與 VM 關聯的多個子網路 | 您應該將子網路組態更新為只參考子網路。
 計算 | 隸屬於虛擬網路但未獲指派明確子網路的虛擬機器。 | 您可以選擇刪除此 VM。
 計算 | 具有警示、自動調整原則的虛擬機器 | 目前，移轉可以進行，但這些設定將遭到捨棄。因此強烈建議您在進行移轉之前先評估您的環境。或者，您也可以在移轉完成之後重新設定警示設定。
 計算 | XML VM 擴充功能 (Visual Studio 偵錯工具、Web Deploy 及遠端偵錯) | 不支援此做法。建議您先從虛擬機器中移除這些擴充功能，再繼續移轉。
 計算 | 包含 Web 角色/背景工作角色的雲端服務 | 目前不支援。
 網路 | 包含虛擬機器和 Web 角色/背景工作角色的虛擬網路 | 目前不支援。
-網路 | 名稱中包含空格的子網路 | 目前不支援。
 Azure App Service | 包含 App Service 環境的虛擬網路 | 目前不支援。
 Azure HDInsight | 包含 HDInsight 服務的虛擬網路 | 目前不支援。
 Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之虛擬機器的虛擬網路 | 目前不支援。
@@ -226,4 +223,4 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 - [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

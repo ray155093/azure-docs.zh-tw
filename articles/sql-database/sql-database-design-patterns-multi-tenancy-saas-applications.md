@@ -150,13 +150,17 @@ Azure SQL Database 提供「彈性資料庫集區」來加強支援「租用戶�
 
 若要將現有的資料庫轉換為使用該工具，請參閱[移轉現有的資料庫以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
 
-透過[教學課程](sql-database-elastic-pool-create-portal.md)建立新的集區。
+若要建立新的集區，請參閱[建立彈性集區教學課程](sql-database-elastic-pool-create-portal.md)。
 
-## 詳細資訊
+若要監視和管理彈性資料庫集區，請參閱[監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-[什麼是 Azure 彈性資料庫集區？](sql-database-elastic-pool.md)
+## 其他資源
 
-[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
+- [什麼是 Azure 彈性資料庫集區？](sql-database-elastic-pool.md)
+- [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
+- [使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)
+- [使用 Azure AD 和 OpenID Connect 的多租用戶應用程式驗證](../guidance/guidance-multitenant-identity-authenticate.md)
+- [Tailspin Surveys 應用程式](../guidance/guidance-multitenant-identity-tailspin.md)
 
 ## 問題和功能要求
 
@@ -172,4 +176,4 @@ Azure SQL Database 提供「彈性資料庫集區」來加強支援「租用戶�
 
 	
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

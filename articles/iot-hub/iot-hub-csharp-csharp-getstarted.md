@@ -13,26 +13,12 @@
      ms.topic="hero-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="03/22/2016"
+     ms.date="06/16/2016"
      ms.author="dobett"/>
 
 # 開始使用適用於 .NET 的 Azure IoT 中樞
 
 [AZURE.INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
-
-## 簡介
-
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 (IoT) 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地將裝置連線至解決方案後端。若要解決這個問題，IoT 中樞：
-
-- 提供可靠的裝置到雲端和雲端到裝置的超大規模傳訊。
-- 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
-- 包括適用於最受歡迎的語言和平台的裝置程式庫。
-
-本教學課程說明如何：
-
-- 使用 Azure 入口網站來建立 IoT 中樞。
-- 在您的 IoT 中樞中建立裝置身分識別。
-- 建立模擬裝置，該裝置會傳送遙測到您的雲端後端，並從您的雲端後端接收命令。
 
 在本教學課程結尾處，您將會有三個 Windows 主控台應用程式：
 
@@ -71,7 +57,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 		using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Common.Exceptions;
 
-5. 將下列欄位加入至 **Program** 類別。將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串。
+5. 將下列欄位新增到 **Program** 類別。將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串。
 
 		static RegistryManager registryManager;
         static string connectionString = "{iothub connection string}";
@@ -126,7 +112,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
         using Microsoft.ServiceBus.Messaging;
         using System.Threading;
 
-5. 將下列欄位加入至 **Program** 類別。將預留位置的值替換為您在＜建立 IoT 中樞＞一節中為 IoT 中樞所建立的連接字串。
+5. 將下列欄位新增到 **Program** 類別。將預留位置的值替換為您在＜建立 IoT 中樞＞一節中為 IoT 中樞所建立的連接字串。
 
         static string connectionString = "{iothub connection string}";
         static string iotHubD2cEndpoint = "messages/events";
@@ -190,7 +176,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 		using Microsoft.Azure.Devices.Client;
         using Newtonsoft.Json;
 
-5. 將下列欄位加入至 **Program** 類別。以＜建立 IoT 中樞＞一節中擷取的 IoT 中樞主機名稱和＜建立裝置身分識別＞一節中擷取的裝置金鑰取代預留位置值。
+5. 將下列欄位新增到 **Program** 類別。以＜建立 IoT 中樞＞一節中擷取的 IoT 中樞主機名稱和＜建立裝置身分識別＞一節中擷取的裝置金鑰取代預留位置值。
 
 		static DeviceClient deviceClient;
         static string iotHubUri = "{iot hub hostname}";
@@ -262,7 +248,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 
 - [使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d-tutorial]，示範如何將訊息傳送到裝置，並處理 IoT 中樞所產生的傳送意見反應。
 - [處理裝置到雲端訊息][lnk-process-d2c-tutorial]，示範如何可靠地處理來自裝置的遙測和互動式訊息。
-- [從裝置上傳檔案][lnk-upload-tutorial]說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
+- [從裝置上傳檔案][lnk-upload-tutorial]視費如何從裝置上傳檔案。
 
 <!-- Images. -->
 [41]: ./media/iot-hub-csharp-csharp-getstarted/run-apps1.png
@@ -291,4 +277,4 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [lnk-connected-service]: https://visualstudiogallery.msdn.microsoft.com/e254a3a5-d72e-488e-9bd3-8fee8e0cd1d6
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

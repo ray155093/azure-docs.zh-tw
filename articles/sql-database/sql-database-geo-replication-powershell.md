@@ -13,18 +13,16 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="04/27/2016"
+    ms.date="06/14/2016"
     ms.author="sstein"/>
 
 # 使用 PowerShell 為 Azure SQL Database 設定異地複寫
 
-
-
 > [AZURE.SELECTOR]
+- [概觀](sql-database-geo-replication-overview.md)
 - [Azure 入口網站](sql-database-geo-replication-portal.md)
 - [PowerShell](sql-database-geo-replication-powershell.md)
-- [Transact-SQL](sql-database-geo-replication-transact-sql.md)
-
+- [T-SQL](sql-database-geo-replication-transact-sql.md)
 
 本文說明如何使用 PowerShell 為 SQL Database 設定異地複寫。
 
@@ -32,12 +30,12 @@
 
 >[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
-您可以在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫。
 
-若要設定「異地複寫」，您需要下列項目：
 
-- Azure 訂閱。如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]，然後再回來完成這篇文章。
-- Azure SQL Database - 您想要複寫到不同地理區域的主要資料庫。
+若要使用 PowerShell 設定作用中異地複寫，您需要下列項目：
+
+- Azure 訂用帳戶。 
+- Azure SQL Database - 您想要複寫的主要資料庫。
 - Azure PowerShell 1.0 或更新版本。依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，即可以下載並安裝 Azure PowerShell 模組。
 
 
@@ -165,4 +163,4 @@
 - [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -14,19 +14,28 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="06/09/2016"
 	ms.author="jgao"/>
 
 # 使用 Bootstrap 自訂 HDInsight 叢集
 
 有時候，您需要設定包含下列項目的組態檔：
 
+- clusterIdentity.xml
 - core-site.xml
+- gateway.xml
+- hbase-env.xml
+- hbase-site.xml
 - hdfs-site.xml
-- mapred-site.xml
-- yarn-site.xml
+- hive-env.xml
 - hive-site.xml
+- mapred-site
 - oozie-site.xml
+- oozie-env.xml
+- storm-site.xml
+- tez-site.xml
+- webhcat-site.xml
+- yarn-site.xml
 
 叢集無法保留重新製作映像所造成的變更。如需重新製作映像的詳細資訊，請參閱 [Role Instance Restarts Due to OS Upgrades (角色執行個體因作業系統升級而重新啟動)](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)。若要在叢集存留期間保留變更，您可以在建立程序期間使用 HDInsight 叢集自訂。我們建議您用這個方法來變更叢集的組態，並讓組態在這些 Azure 重新安裝映像、重新啟動、重新開始事件的過程中，都能保持不變。這些組態變更會在服務啟動之前套用，因此服務不需要重新啟動。
 
@@ -78,11 +87,11 @@
 3. 按一下您剛才使用 PowerShell 指令碼建立的叢集。
 4. 在刀鋒視窗頂端按一下 [儀表板]，以開啟 Ambari UI。
 5. 按一下左側功能表中的 [Hive]。
-6. 按一下 [摘要] 中的 [HiveServer2]。
-7. 按一下 [設定] 索引標籤。
+6. 按一下 [Summary (摘要)] 中的 [HiveServer2]。
+7. 按一下 [Configs (設定)] 索引標籤。
 8. 按一下左側功能表中的 [Hive]。
-9. 按一下 [進階] 索引標籤。
-10. 向下捲動，然後展開 [進階 Hive 網站]。
+9. 按一下 [Advanced (進階)] 索引標籤。
+10. 向下捲動，然後展開 [Advanced hive-site (進階 Hive 網站)]。
 11. 在此區段中尋找 **hive.metastore.client.socket.timeout**。
 
 以下是更多自訂其他組態檔的範例：
@@ -103,7 +112,7 @@
 
 ## 使用 .NET SDK
 
-請參閱[使用 .NET SDK 在 HDInsight 中建立 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk#use-bootstrap)。
+請參閱[在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
 
 ## 使用 Azure ARM 範本
 
@@ -252,4 +261,4 @@
 
     #endregion
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -17,7 +17,7 @@
 # 使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)
 
 > [AZURE.SELECTOR]
-- [Azure 傳統入口網站](sql-database-elastic-jobs-create-and-manage.md)
+- [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
 - [PowerShell](sql-database-elastic-jobs-powershell.md)
 
 
@@ -236,23 +236,9 @@
 
 ## 定義彈性資料庫分區對應目標
 
-若要針對分區集的所有資料庫執行工作 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)建立)，請使用分區對應做為資料庫目標。此範例需要一個使用彈性資料庫用戶端程式庫建立的分區應用程式。請參閱[開始使用彈性資料庫工具範例](sql-database-elastic-scale-get-started.md)。
+若要針對分區集的所有資料庫執行作業 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)建立)，請使用分區對應做為資料庫目標。此範例需要一個使用彈性資料庫用戶端程式庫建立的分區應用程式。請參閱[開始使用彈性資料庫工具範例](sql-database-elastic-scale-get-started.md)。
 
-###使用範例應用程式建立分區對應管理員
-
-此範例會建立分區對應管理員及數個分區，接著將資料插入至分區。
-
-1. 建置並執行**開始使用彈性資料庫工具**範例應用程式。遵循步驟，直到[下載及執行範例應用程式](sql-database-elastic-scale-get-started.md#Getting-started-with-elastic-database-tools)小節的步驟 7。在步驟 7 結束時，您會看到下列的命令提示字元：
-
-	![命令提示字元][1]
-
-2.  在命令視窗中，輸入 "1"，然後按 **Enter**。這會建立分區對應管理員，並加入兩個分區到伺服器。然後輸入 "3"，然後按 **Enter**；重複此動作四次。這會在您的分區中插入範例資料列。
-  
-3.  [Azure 入口網站](https://portal.azure.com)應該會在您的 v12 伺服器中顯示三個新的資料庫：
-
-	![Visual Studio 確認][2]
-
-使用 [**New-AzureSqlJobTarget Cmdlet**](https://msdn.microsoft.com/library/mt346063.aspx) 建立分區對應目標。您必須將分區對應管理員資料庫設為資料庫目標，然後將特定分區對應指定為目標。
+您必須將分區對應管理員資料庫設為資料庫目標，然後將特定分區對應指定為目標。
 
 	$shardMapCredentialName = "{Credential Name}"
 	$shardMapDatabaseName = "{ShardMapDatabaseName}" #example: ElasticScaleStarterKit_ShardMapManagerDb
@@ -694,4 +680,4 @@
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0615_2016-->

@@ -23,7 +23,7 @@
 
 尋找在傳統部署模型中建立和管理以 Linux 為基礎的虛擬機器所需的所有說明文件。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
 
 ## 開始使用
 - [Azure 上的 Linux 簡介](virtual-machines-linux-intro-on-azure.md)
@@ -58,7 +58,7 @@
 - [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](virtual-machines-linux-classic-cli-use-docker.md)
 - [使用 Azure 入口網站中的Docker VM 擴充程式](virtual-machines-linux-classic-portal-use-docker.md)
 - [在 Azure Marketplace 中快速開始使用 Docker](virtual-machines-linux-classic-docker-quickstart.md)
-- [如何在 Azure 上使用 docker-machine](virtual-machines-linux-classic-docker-machine.md)
+- [如何在 Azure 上使用 docker-machine](virtual-machines-linux-docker-machine.md)
 
 ### Ubuntu
 - [做法：MySQL 叢集](virtual-machines-linux-classic-mysql-cluster.md)
@@ -192,4 +192,4 @@
 
 - [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0615_2016-->
