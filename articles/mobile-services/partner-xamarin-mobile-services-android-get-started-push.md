@@ -72,7 +72,7 @@
 
 * [開始使用驗證](mobile-services-android-get-started-users.md) <br/>了解如何使用行動服務驗證使用不同帳戶類型的應用程式使用者。
 
-* [什麼是通知中心？](../notification-hubs/notification-hubs-overview.md) <br/>深入了解通知中心如何跨所有主要用戶端平台將通知傳遞到您的應用程式。
+* [什麼是通知中心？](../notification-hubs/notification-hubs-push-notification-overview.md) <br/>深入了解通知中心如何跨所有主要用戶端平台將通知傳遞到您的應用程式。
 
 * [偵錯通知中樞應用程式](http://go.microsoft.com/fwlink/p/?linkid=386630) </br>取得通知中樞解決方案的疑難排解和偵錯指引。
 
@@ -86,4 +86,4 @@
 [Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
 [Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

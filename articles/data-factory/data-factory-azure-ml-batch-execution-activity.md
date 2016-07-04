@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="06/20/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure 機器學習服務活動建立預測管線   
@@ -772,4 +772,4 @@ Azure ML 更新資源活動不會產生任何輸出，但在 Azure Data Factory 
 
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -1,6 +1,6 @@
 <properties
-pageTitle="搭配使用 Azure 資料湖存放區與 Azure HDInsight 上的 Apache Storm"
-description="了解如何從 HDInsight 上的 Apache Storm 拓撲將資料寫入到 Azure 資料湖存放區。本文件與相關聯的範例會示範如何使用 HdfsBolt 元件來寫入至資料湖存放區。"
+pageTitle="搭配使用 Azure Data Lake Store 與 Azure HDInsight 上的 Apache Storm"
+description="了解如何從 HDInsight 上的 Apache Storm 拓撲將資料寫入到 Azure Data Lake Store。本文件與相關聯的範例會示範如何使用 HdfsBolt 元件來寫入至 Data Lake Store。"
 services="hdinsight"
 documentationCenter="na"
 authors="Blackmist"
@@ -13,29 +13,29 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="01/28/2016"
+ms.date="06/17/2016"
 ms.author="larryfr"/>
 
-#搭配使用 Azure 資料湖存放區與 HDInsight 上的 Apache Storm
+#搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm
 
-Azure 資料湖存放區是 HDFS 相容的雲端儲存體服務，可為資料提供高輸送量、可用性、持久性及可靠性。在本文件中，您將學習如何使用 Java 型 Storm 拓撲，透過 Apache Storm 中所提供的 [HdfsBolt](http://storm.apache.org/javadoc/apidocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件將資料寫入至 Azure 資料湖存放區。
+Azure Data Lake Store 是 HDFS 相容的雲端儲存體服務，可為資料提供高輸送量、可用性、持久性及可靠性。在本文件中，您將學習如何使用 Java 型 Storm 拓撲，透過 Apache Storm 中所提供的 [HdfsBolt](http://storm.apache.org/javadoc/apidocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件將資料寫入至 Azure Data Lake Store。
 
-> [AZURE.IMPORTANT] 本文件中使用的範例拓撲需依賴 Storm on HDInsight 叢集隨附的元件，而且可能需要進行修改才能在搭配其他 Apache Storm 叢集使用時使用 Azure 資料湖存放區。
+> [AZURE.IMPORTANT] 本文件中使用的範例拓撲需依賴 Storm on HDInsight 叢集隨附的元件，而且可能需要進行修改才能在搭配其他 Apache Storm 叢集使用時使用 Azure Data Lake Store。
 
 ##必要條件
 
 * [Java JDK 1.7](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本
 * [Maven 3.x](https://maven.apache.org/download.cgi)
 * Azure 訂用帳戶
-* Storm on HDInsight 叢集。若要建立新的 Storm on HDInsight 叢集，請使用[使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。本文件中的步驟將逐步引導您建立新的 HDInsight 叢集和 Azure 資料湖存放區。  
+* Storm on HDInsight 叢集 3.2 版。若要建立新的 Storm on HDInsight 叢集，請使用[使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。本文件中的步驟將逐步引導您建立新的 HDInsight 叢集和 Azure Data Lake Store。  
 
-    > [AZURE.IMPORTANT] 當您建立 HDInsight 叢集時，必須選取 __Storm__ 做為叢集類型。作業系統可以是 Windows 或 Linux。
+    > [AZURE.IMPORTANT] 當您建立 HDInsight 叢集時，必須選取 __Storm__ 做為叢集類型，以及選取 __3.2__ 做為版本。作業系統可以是 Windows 或 Linux。
 
 ###設定環境變數
 
 當您在開發工作站上安裝 Java 和 JDK 時可能會設定下列環境變數。不過，您應該檢查它們是否存在，以及它們是否包含您系統的正確值。
 
-* __JAVA\_HOME__ - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-7-oracle`在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`
+* __JAVA\_HOME__ - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-7-oracle`在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`。
 
 * __PATH__ - 應該包含下列路徑：
 
@@ -61,11 +61,11 @@ Azure 資料湖存放區是 HDFS 相容的雲端儲存體服務，可為資料�
 
 ###了解 ADLStoreBolt
 
-ADLStoreBolt 是用於拓撲中寫入至 Azure 資料湖之 HdfsBolt 執行個體的名稱。這不是由 Microsoft 所建立的 HdfsBolt 特殊版本，不過它的確仰賴核心網站組態值，以及 Azure HDInsight 中用來與資料湖通訊的隨附 Hadoop 元件。
+ADLStoreBolt 是用於拓撲中寫入至 Azure Data Lake 之 HdfsBolt 執行個體的名稱。這不是由 Microsoft 所建立的 HdfsBolt 特殊版本，不過它的確仰賴核心網站組態值，以及 Azure HDInsight 中用來與 Data Lake 通訊的隨附 Hadoop 元件。
 
-具體來說，當您建立 HDInsight 叢集時，您可以將其關聯至 Azure 資料湖存放區。這會將項目寫入至所選取資料湖存放區的核心網站，hadoop-client 和 hadoop-hdfs 等元件會使用這些項目來與資料湖存放區進行通訊。
+具體來說，當您建立 HDInsight 叢集時，您可以將其關聯至 Azure Data Lake Store。這會將項目寫入至所選取 Data Lake Store 的核心網站，hadoop-client 和 hadoop-hdfs 等元件會使用這些項目來與 Data Lake Store 進行通訊。
 
-> [AZURE.NOTE] Microsoft 已為 Apache Hadoop 和 Storm 專案提供可與 Azure 資料湖存放區和 Azure Blob 儲存體進行通訊的程式碼，但其他 Hadoop 和 Storm 散發套件依預設不一定會包含這項功能。
+> [AZURE.NOTE] Microsoft 已為 Apache Hadoop 和 Storm 專案提供可與 Azure Data Lake Store 和 Azure Blob 儲存體進行通訊的程式碼，但其他 Hadoop 和 Storm 散發套件依預設不一定會包含這項功能。
 
 拓撲中的 HdfsBolt 組態如下所示：
 
@@ -92,9 +92,9 @@ ADLStoreBolt 是用於拓撲中寫入至 Azure 資料湖之 HdfsBolt 執行個�
     builder.setBolt("ADLStoreBolt", adlsBolt, 1)
       .globalGrouping("finalcount");
       
-如果您已熟悉 HdfsBolt 的使用方式，您會發現除了 URL 不一樣以外，這全都是相當標準的組態。URL 會提供 Azure 資料湖存放區的根目錄路徑。
+如果您已熟悉 HdfsBolt 的使用方式，您會發現除了 URL 不一樣以外，這全都是相當標準的組態。URL 會提供 Azure Data Lake Store 的根目錄路徑。
 
-因為寫入資料湖存放區時是使用 HdfsBolt，並且只需變更 URL，您應該能夠取得使用 HdfsBolt 寫入到 HDFS 或 WASB 的現有拓撲，並輕鬆地將它變更為使用 Azure 資料湖存放區。
+因為寫入 Data Lake Store 時是使用 HdfsBolt，並且只需變更 URL，您應該能夠取得使用 HdfsBolt 寫入到 HDFS 或 WASB 的現有拓撲，並輕鬆地將它變更為使用 Azure Data Lake Store。
 
 ##建置和封裝拓撲
 
@@ -158,7 +158,7 @@ ADLStoreBolt 是用於拓撲中寫入至 Azure 資料湖之 HdfsBolt 執行個�
 
 有數種方法能夠檢視資料。在本節中，我們使用 Azure 入口網站和 `hdfs` 命令來檢視資料。
 
-> [AZURE.NOTE] 您應該讓拓撲先執行幾分鐘後再檢查輸出資料，這樣才能讓資料同步至 Azure 資料湖存放區上的數個檔案。
+> [AZURE.NOTE] 您應該讓拓撲先執行幾分鐘後再檢查輸出資料，這樣才能讓資料同步至 Azure Data Lake Store 上的數個檔案。
 
 * __從 [Azure 入口網站](https://portal.azure.com)__：在入口網站中，選取搭配 HDInsight 使用的 Azure Data Lake Store。
 
@@ -221,4 +221,4 @@ __如果是以 Windows 為基礎的 HDInsight__：
 
 現在，您已了解如何使用 Storm 來寫入至 Azure Data Lake Store，接下來請探索其他 [HDInsight 的 Storm 範例](hdinsight-storm-example-topology.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

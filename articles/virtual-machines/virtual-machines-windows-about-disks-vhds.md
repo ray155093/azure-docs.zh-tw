@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="06/16/2016"
 	ms.author="cynthn"/>
 
 # 有關 Azure 虛擬機器的磁碟和 VHD
@@ -30,4 +30,4 @@
 -  [將 Windows VM 映像上傳至 Azure](virtual-machines-windows-upload-image.md)，以在建立新的 VM 時使用。
 -  [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)，讓您的應用程式可以使用 D: 磁碟機的資料。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

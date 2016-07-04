@@ -13,16 +13,12 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="05/09/2016"
+  ms.date="06/21/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
 
-<hr/>
-
 ## 社群焦點
-
-<hr/>
 
 讓我們推銷您的專案！ 讓我們看看您使用 DocumentDB 進行的絕佳專案，我們很樂意與全世界分享您的才華。若要提交您的專案，請傳送電子郵件給我們︰[askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
 
@@ -71,21 +67,11 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 在 [Github](https://github.com/yokawasa/fluent-plugin-documentdb) 和 [rubygems](https://rubygems.org/gems/fluent-plugin-documentdb) 上了解相關資訊。
 
-<br/><br/>
-
 在 [GitHub](https://github.com/search?p=4&q=documentdb&type=Repositories) 上尋找更多開放原始碼 DocumentDB 專案。
-
-<br/><br/>
-
-<hr/>
 
 ## 新聞、部落格和文章
 
-<hr/>
-
 您可以關注[我們的部落格](https://azure.microsoft.com/blog/tag/documentdb/)來隨時獲得最新的 DocumentDB 新聞和功能。
-
-<br/>
 
 **社群貼文：**
 
@@ -93,13 +79,13 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 * [**UWP, Azure App Services, and DocumentDB Soup: A photo-sharing app (UWP、Azure App Service 和 DocumentDB Soup：分享照片的應用程式)**](https://blogs.windows.com/buildingapps/2016/03/17/uwp-azure-app-services-and-documentdb-soup-a-photo-sharing-app/) - 作者：Eric Langland
 
-* [**Notifications for new or changed DocumentDB resources using Logic Apps**](documentdb-change-notification.md) - 作者：Howard Edidin
+* [**Notifications for new or changed DocumentDB resources using Logic Apps (使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知)**](documentdb-change-notification.md) - 作者：Howard Edidin
 
-* [**Collecting logs into Azure DocumentDB using fluent-plugin-documentdb**](http://unofficialism.info/posts/collecting-logs-into-azure-documentdb-using-fluent-plugin-documentdb/) - 作者：Yoichi Kawasaki
+* [**Collecting logs into Azure DocumentDB using fluent-plugin-documentdb (使用 fluent-plugin-documentdb 將記錄檔收集到 Azure DocumentDB)**](http://unofficialism.info/posts/collecting-logs-into-azure-documentdb-using-fluent-plugin-documentdb/) - 作者：Yoichi Kawasaki
 
-* [**DocumentDB revisited Part 1/2 – The theory**](https://peterintheazuresky.wordpress.com/2016/02/19/documentdb-revisited-part-12-the-theory/) - 作者：Peter Mannerhult
+* [**DocumentDB revisited Part 1/2 – The theory (DocumentDB 回顧 1/2 – 理論)**](https://peterintheazuresky.wordpress.com/2016/02/19/documentdb-revisited-part-12-the-theory/) - 作者：Peter Mannerhult
 
-* [**What to love and hate about Azure’s DocumentDB**](http://blog.falafel.com/4-what-to-love-and-hate-about-azures-documentdb/) - 作者：George Saadeh
+* [**What to love and hate about Azure’s DocumentDB (Azure DocumentDB 的愛與恨)**](http://blog.falafel.com/4-what-to-love-and-hate-about-azures-documentdb/) - 作者：George Saadeh
 
 * [**Azure DocumentDB Server-Side Scripting (Azure DocumentDB 伺服器端指令碼)**](https://www.simple-talk.com/cloud/cloud-data/azure-documentdb-server-side-scripting/) - 作者：Robert Sheldon
 
@@ -131,24 +117,16 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 * [**Azure DocumentDB – 備份時間點**](http://softwarejuancarlos.com/2015/09/06/azure-documentdb-point-in-time-backups/) - 由 Juan Carlos Sanchez 撰寫
 
-<br/><br/>
-
 您有想要分享的部落格文章、程式碼範例或個案研究嗎？ [請告訴我們](mailto:askdocdb@microsoft.com)！
 
-<br/><br/>
-
-<hr/>
-
 ## 活動和記錄
-
-<hr/>
 
 ### 最新和近期活動
 
 | 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ------------------------ | ------- |
-| [Meetup: UK Azure User Group](http://www.meetup.com/UKAzureUserGroup/events/229673468/) | Andrew Liu | 倫敦英國 | 2016 年 5 月 12 日 | n/a |
-| [聚會：ONETUG - Orlando .NET User Group ](http://www.meetup.com/ONETUG/events/230797164/) | Santosh Hari | 佛羅里達州奧蘭多市 | 2016 年 5 月 12 日 | [#ONETUG](https://twitter.com/search?q=%23onetug&src=typd) |
+| [整合和 IoT](http://www.btug.be/events) | Eldert Grootenboer | Kontich, Belgium | 2016 年 6 月 30 日 | n/a |
+
 
 您在演講或舉辦活動嗎？ [請告訴我們](mailto:askdocdb@microsoft.com)該如何協助您！
 
@@ -156,8 +134,10 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | 記錄 |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ---------------------- | --------- |
-| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | n/a
-| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
+| [Logic Apps 是否支援錯誤處理？](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/?event_date=2016-06-20) | Howard S. Edidin | 網路廣播 | 2016 年 6 月 20 日 | n/a |
+| [Meetup: UK Azure User Group](http://www.meetup.com/UKAzureUserGroup/events/229673468/)| Andrew Liu | 倫敦英國 | 2016 年 5 月 12 日 | n/a
+|[聚會：ONETUG - Orlando .NET User Group ](http://www.meetup.com/ONETUG/events/230797164/)| Santosh Hari| 佛羅里達州奧蘭多市| 2016 年 5 月 12 日| n/a 
+| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | n/a| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
 | [Integration User Group](http://www.integrationusergroup.com/#) | Howard Edidin | Webinar | 2016 年 4 月 25 日 | n/a |
 | [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) | Leonard Lobel | 美國加州橙市 | 2016 年 4 月 16 日 | n/a |
 | [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) | David Makogon | 美國華盛頓州雷德蒙德 98052-6399 | 2016 年 4 月 16 日 | n/a |
@@ -174,7 +154,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [SQL Saturday #430 - Sofia 2015](http://www.sqlsaturday.com/430/Sessions/Details.aspx?sid=36090) | Leonard Lobel | 保加利亞索菲亞 | 2015 年 10 月 10 日 | n/a |
 | [SQL Saturday #444 - Kansas City 2015](http://www.sqlsaturday.com/444/Sessions/Details.aspx?sid=38576) | Jeff Renz | 美國密蘇里州堪薩斯城 | 2015 年 10 月 3 日 | n/a |
 | [SQL Saturday #429 - Oporto 2015](http://www.sqlsaturday.com/429/Sessions/Details.aspx?sid=36089) | Leonard Lobel | 葡萄牙奧波圖 | 2015 年 10 月 3 日 | n/a |
-| [AzureCon](https://azure.microsoft.com/azurecon/) | David Makogon、Ryan Crawcour、John Macintyre | 虛擬活動 | 2015 年 9 月 29 日 | [Azure 資料和分析平台](https://channel9.msdn.com/events/Microsoft-Azure/AzureCon-2015/ACON207)<br/>[在 DocumentDB 中使用 NoSQL 資料](https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON338) |
+| [AzureCon](https://azure.microsoft.com/azurecon/) | David Makogon、Ryan Crawcour、John Macintyre | 虛擬活動 | 2015 年 9 月 29 日 | [Azure 資料和分析平台](https://channel9.msdn.com/events/Microsoft-Azure/AzureCon-2015/ACON207) [在 DocumentDB 中使用 NoSQL 資料](https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON338) |
 | [SQL Saturday #434 - Holland 2015](http://www.sqlsaturday.com/434/Sessions/Details.aspx?sid=36413) | Leonard Lobel | 荷蘭烏特勒支 | 2015 年 9 月 26 日 | [Azure DocumentDB 簡介](https://channel9.msdn.com/Blogs/Windows-Azure/SQL-Saturday-Holland-2015-Introduction-to-Azure-DocumentDB) |
 | [SQL Saturday #441 - Denver 2015](http://www.sqlsaturday.com/441/Sessions/Details.aspx?sid=39191) | Jeff Renz | 美國科羅拉多州丹佛 | 2015 年 9 月 19 日 | n/a |
 | [Meetup: San Francisco Bay Area Azure Developers](http://www.meetup.com/bayazure/events/223943785/) | Andrew Liu | 美國加州舊金山 | 2015 年 9 月 15 日 | n/a |
@@ -189,7 +169,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [Meetup: London SQL Server User Group](http://www.meetup.com/London-SQL-Server-User-Group/events/221525058/) | Allan Mitchell | 倫敦英國 | 2015 年 5 月 19 日 | n/a |
 | [DevIntersection](https://devintersection.com/) | Andrew Liu | 美國亞利桑那州斯科茲代爾 | 2015 年 5 月 18-21 日 | n/a |
 | [Meetup: Seattle Web App Developers Group](http://www.meetup.com/Seattle-Web-App-Developers-Group/events/220591071/) | Andrew Liu | 美國華盛頓州西雅圖 | 2015 年 5 月 14 日 | n/a |
-| [Ignite](http://ignite.microsoft.com/) | Andrew Hoh、John Macintyre | 美國伊利諾州芝加哥 | 2015 年 5 月 4-8 日 | [最新精選 DocumentDB 影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-select-latest-from-microsoft-azure-documentdb/)<br/>[DocumentDB 和 Azure HDInsight︰相得益彰影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-microsoft-azure-documentdb-and-azure-hdinsight-better-together/) |
+| [Ignite](http://ignite.microsoft.com/) | Andrew Hoh、John Macintyre | 美國伊利諾州芝加哥 | 2015 年 5 月 4-8 日 | [最新精選 DocumentDB 影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-select-latest-from-microsoft-azure-documentdb/) [DocumentDB 和 Azure HDInsight︰相得益彰影片](https://azure.microsoft.com/documentation/videos/microsoft-ignite-2015-microsoft-azure-documentdb-and-azure-hdinsight-better-together/) |
 | [Build 2015](http://www.buildwindows.com/) | Ryan Crawcour | 美國加州舊金山 | 2015 年 4 月 29 日至 5 月 1 日 | [使用 Azure 的 NoSQL 服務成就下一件大事︰DocumentDB](https://channel9.msdn.com/Events/Build/2015/2-729) |
 | [Global Azure Bootcamp 2015 - Spain](http://azurebootcamp.es/) | Luis Ruiz Pavon、Roberto Gonzalez | 馬德里西班牙 | 2015 年 4 月 25 日 | [在 Azure 上執行的 #DEAN DocumentDB + Express + AngularJS + NodeJS](https://channel9.msdn.com/events/Developers-Spain-Events/Global-Azure-Bootcamp-2015/DEAN-DocumentDB--Express--AngularJS--NodeJS-running-on-Azure) |
 | [Meetup: Azure Usergroup Denmark](http://www.meetup.com/Azure-Usergroup-Denmark/events/221026670/) | Christian Holm Diget | 丹麥哥本哈根 | 2015 年 4 月 16 日 | n/a |
@@ -230,24 +210,15 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 學習合作夥伴 | 說明 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [![Microsoft Virtual Academy](./media/documentdb-community/mva.png)](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554) | [**Microsoft Virtual Academy**](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554)<br/><br/>Microsoft Virtual Academy 提供您由協助建置 Azure DocumentDB 的人員所進行的訓練。 |
-| [![Pluralsight](./media/documentdb-community/pluralsight.png)](http://www.pluralsight.com/courses/azure-documentdb-introduction) | [**Pluralsight**](http://www.pluralsight.com/courses/azure-documentdb-introduction)<br/><br/>Pluralsight 是 Microsoft 重要的合作夥伴，他們提供 Azure 的訓練。如果您是 MSDN 訂閱者，請善用您存取 Microsoft Azure 訓練課程的權益。 |
-| [![OpsGility](./media/documentdb-community/opsgility.png)](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) | [**OpsGility**](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb)<br/><br/>Opsgility 提供深入的 Microsoft Azure 技術訓練。由導師現場授課，或由業界的專家指導員透過遠距教學授課。 |
-
-<br/><br/>
-
-<hr/>
+| [![Microsoft Virtual Academy](./media/documentdb-community/mva.png)](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554) | [**Microsoft Virtual Academy**](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554) 提供由協助建置 Azure DocumentDB 的菁英授課的訓練課程。 |
+| [![Pluralsight](./media/documentdb-community/pluralsight.png)](http://www.pluralsight.com/courses/azure-documentdb-introduction) | [**Pluralsight**](http://www.pluralsight.com/courses/azure-documentdb-introduction) 是提供 Azure 訓練的主要 Microsoft 合作夥伴。如果您是 MSDN 訂閱者，請善用您存取 Microsoft Azure 訓練課程的權益。 |
+| [![OpsGility](./media/documentdb-community/opsgility.png)](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) | [**OpsGility**](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) 提供深入的 Microsoft Azure 的技術訓練。由導師現場授課，或由業界的專家指導員透過遠距教學授課。 |
 
 ## 討論區
-
-<hr/>
-
 
 ### Twitter
 
 請在 Twitter ([@DocumentDB](https://twitter.com/DocumentDB)) 上追隨我們的動態，並透過 [#DocumentDB](https://twitter.com/hashtag/DocumentDB) hashtag 來掌握最新的對話。
-
-<br/><br/>
 
 ### 線上論壇
 
@@ -256,24 +227,13 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [![StackOverflow](./media/documentdb-community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-documentdb) | 適用於程式設計人員的共同編輯問題和答案網站 (與語言無關)。請追隨我們的標記︰[azure-documentdb](http://stackoverflow.com/questions/tagged/azure-documentdb) |
 | [![MSDN](./media/documentdb-community/msdn.png)](http://go.microsoft.com/fwlink/?LinkId=631655) | 提供 Microsoft Azure 功能和服務 (例如網站、DocumentDB 等) 支援和意見反應的好地方。 |
 
-<br/><br/>
-
-<hr/>
-
 ## 連絡小組
 
-| | |
-| -------------------------------------------------------- | --- |
-|![小組](./media/documentdb-community/documentdb-team.png) | 您需要技術協助嗎？ 有任何疑問嗎？ 想知道 NoSQL 是否適合您嗎？<br/><br/>您可以[安排直接與 DocumentDB 工程小組進行 1 對 1 交談](http://www.askdocdb.com/)。<br/><br/>您也可以傳送[電子郵件](mailto:askdocdb@microsoft.com)給我們，或在 [@DocumentDB](https://twitter.com/DocumentDB) 推文給我們。 |
+![小組](./media/documentdb-community/documentdb-team.png)
 
-
-<br/><br/>
-
-<hr/>
+您需要技術協助嗎？ 有任何疑問嗎？ 想知道 NoSQL 是否適合您嗎？ 您可以[安排直接與 DocumentDB 工程小組進行 1 對 1 交談](http://www.askdocdb.com/)。您也可以傳送[電子郵件](mailto:askdocdb@microsoft.com)給我們，或在 [@DocumentDB](https://twitter.com/DocumentDB) 推文給我們。
 
 ## 開放原始碼專案
-
-<hr/>
 
 這些專案是由 Azure DocumentDB 小組與我們的開放原始碼社群共同積極開發。
 
@@ -293,19 +253,19 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | Hadoop 連接器 | [azure-documentdb-hadoop](https://github.com/Azure/azure-documentdb-hadoop) | [Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-documentdb-hadoop%22) |
 | 資料移轉工具 | [azure-documentdb-datamigrationtool](https://github.com/Azure/azure-documentdb-datamigrationtool) | [Microsoft 下載中心](http://www.microsoft.com/zh-TW/download/details.aspx?id=46436) |
 
-<hr/>
-
 ## DocumentDB 精靈
 
-<hr/>
-
 DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他們在 Azure DocumentDB 上之經驗的最佳典範。他們和社群及 DocumentDB 小組分享了他們超乎常人的熱情、實用的知識以及技術專長。
+      
+                                                                                                                                                                                                                                                                                                           Wizard | Picture 
+ --- | --- 
+ [Allan Mitchell](https://twitter.com/allansqlis) | [![Allan Mitchell](./media/documentdb-community/wizard-allan-mitchell.jpg)](https://twitter.com/allansqlis) 
+ [Jen Stirrup](https://twitter.com/jenstirrup) | [![Jen Stirrup](./media/documentdb-community/wizard-jen-stirrup.jpg)](https://twitter.com/jenstirrup)            
+ [Lenni Lobel](https://twitter.com/lennilobel) | [![Lenni Lobel](./media/documentdb-community/wizard-lenni-lobel.jpg)](https://twitter.com/lennilobel) |          
+ [Mihail Mateev](https://twitter.com/mihailmateev) | [![Mihail Mateev](./media/documentdb-community/wizard-mihail-mateev.jpg)](https://twitter.com/mihailmateev) |
+ [Larry Maccherone](https://twitter.com/lmaccherone) | [![Larry Maccherone](./media/documentdb-community/wizard-larry-maccherone.jpg)](https://twitter.com/lmaccherone) 
+ [Howard Edidin](https://twitter.com/hsedidin) | [![Howard Edidin](./media/documentdb-community/wizard-howard-edidin.jpg)](https://twitter.com/hsedidin) 
 
-| | | | |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [![Allan Mitchell](./media/documentdb-community/wizard-allan-mitchell.jpg)](https://twitter.com/allansqlis) <br/> [Allan Mitchell](https://twitter.com/allansqlis) | [![Jen Stirrup](./media/documentdb-community/wizard-jen-stirrup.jpg)](https://twitter.com/jenstirrup) <br/> [Jen Stirrup](https://twitter.com/jenstirrup) | [![Lenni Lobel](./media/documentdb-community/wizard-lenni-lobel.jpg)](https://twitter.com/lennilobel) <br/> [Lenni Lobel](https://twitter.com/lennilobel) | [![Mihail Mateev](./media/documentdb-community/wizard-mihail-mateev.jpg)](https://twitter.com/mihailmateev) <br/> [Mihail Mateev](https://twitter.com/mihailmateev)|
-| [![Larry Maccherone](./media/documentdb-community/wizard-larry-maccherone.jpg)](https://twitter.com/lmaccherone) <br/> [Larry Maccherone](https://twitter.com/lmaccherone) | [![Howard Edidin](./media/documentdb-community/wizard-howard-edidin.jpg)](https://twitter.com/hsedidin) <br/> [Howard Edidin](https://twitter.com/hsedidin)
+想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[寄電子郵件給我們](mailto:askdocdb@microsoft.com)。
-
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

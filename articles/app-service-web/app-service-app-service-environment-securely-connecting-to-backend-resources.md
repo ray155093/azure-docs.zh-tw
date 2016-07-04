@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/06/2016" 
+	ms.date="06/21/2016" 
 	ms.author="stefsch"/>
 
 # 安全地從 App Service 環境連接到後端資源 #
@@ -34,9 +34,7 @@
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## 輸出連線和 DNS 需求 ##
-請注意，為了讓 App Service 環境正確運作，需要全球 Azure 儲存體的輸出存取權，以及相同 Azure 區域中的 SQL Database 連線。如果虛擬網路中封鎖輸出網際網路存取，則 App Service 環境將無法存取這些 Azure 端點。
-
-客戶可能也已在虛擬網路中設定自訂 DNS 伺服器。App Service 環境需要可以解析 *.database.windows.net、*.file.core.windows.net 和 *.blob.core.windows.net 下的 Azure 端點。
+為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。[ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)文章的＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
 
 也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。如果自訂的 DNS 伺服器存在於 VPN 閘道的另一端，而且 DNS 伺服器無法連線或無法使用，則 App Service 環境建立程序也會失敗。
 
@@ -88,6 +86,7 @@
 
 
 ## 開始使用
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
 
@@ -116,4 +115,4 @@
 [NetworkAccessControlListExample]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/NetworkAcl01.png
 [DefaultNetworkSecurityRules]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/DefaultNetworkSecurityRules01.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0622_2016-->

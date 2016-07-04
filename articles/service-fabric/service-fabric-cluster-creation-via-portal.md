@@ -77,7 +77,7 @@
 
 	c.主要節點類型的 VM 數目下限取決於您選擇的可靠性層級。可靠性層級的預設值為 Silver。進一步閱讀如何[選擇 Service Fabric 叢集可靠性和持久性](service-fabric-cluster-capacity.md)的文件。
 
-	c.選擇節點類型的 VM 數目。您可以在稍後相應增加或相應減少節點類型中的 VM 數目，但數目下限取決於您選擇的可靠性層級。其他節點類型的下限則可以是 1 部 VM。
+	c.選擇節點類型的 VM 數目。您可以在稍後相應增加或相應減少節點類型中的 VM 數目，但在主要節點類型上，數目下限取決於您選擇的可靠性層級。其他節點類型可以有 1 個 VM 的下限。
 
 
   	![建立節點類型的螢幕擷取畫面。][CreateNodeType]
@@ -225,4 +225,4 @@ Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAlive
 [ClusterDashboard]: ./media/service-fabric-cluster-creation-via-portal/ClusterDashboard.png
 [SecureConnection]: ./media/service-fabric-cluster-creation-via-portal/SecureConnection.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

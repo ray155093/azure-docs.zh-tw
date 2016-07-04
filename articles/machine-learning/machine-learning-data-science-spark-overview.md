@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev" />
 
 # 在 Azure HDInsight 上使用 Spark 的資料科學概觀
@@ -107,7 +107,7 @@
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-您也可以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。只需使用您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。您需要有系統管理員帳戶的密碼才能存取 Notebook。
+您也可以瀏覽至 ******https://CLUSTERNAME.azurehdinsight.net/jupyter*** 來存取 Jupyter Notebook。只需使用您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。您需要有系統管理員帳戶的密碼才能存取 Notebook。
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
@@ -145,4 +145,4 @@
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,42 +13,92 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="06/21/2016"
    ms.author="navale;tomfitz;"/>
 
 # Azure Resource Manager SDK for .Net  
-Azure Resource Manager (ARM) 預覽 SDK 可供多個語言和平台使用。這些語言實作都是透過其生態系統的封裝管理員和 GitHub 提供。
+Azure Resource Manager SDK 可供多個語言和平台使用。這些語言實作都是透過其生態系統的封裝管理員和 GitHub 提供。
 
 每個 SDK 中的程式碼都是從 [Azure RESTful API 規格](https://github.com/azure/azure-rest-api-specs)產生。這些規格是開放原始碼，以 Swagger v2 規格為基礎。SDK 程式碼是透過稱為 [AutoRest](https://github.com/azure/autorest) 的開放原始碼專案產生的程式碼。AutoRest 會將這些 RESTful API 規格轉換成多種語言版本的用戶端程式庫。如果您想要改善 SDK 中的產生程式碼的任何方面，建立 SDK 的完整工具集都開放免費取得，且是根據廣為採用的 API 規格格式。
 
-Azure SDK for .NET 是以一組 NuGet 封裝的形式提供，可協助您呼叫 Azure Resource Manager 所公開的大多數 API。如果 SDK 未公開必要的功能，您可以在幕後輕鬆地結合 SDK 規則與對 ARM REST API 的一般呼叫。
+[Azure SDK for .NET](https://azure.microsoft.com/downloads/) 是以一組 NuGet 封裝的形式提供，可協助您呼叫 Azure Resource Manager 所公開的大多數 API。如果 SDK 未公開必要的功能，您可以在幕後輕鬆地結合 SDK 規則與對 ARM REST API 的一般呼叫。
 
 本文件不是為了說明 Azure SDK for .NET、Azure ARM API 或 Visual Studio 的各個層面，而是要提供可讓您開始使用的快速方法。
 
 在[這裡](https://github.com/dx-ted-emea/Azure-Resource-Manager-Documentation/tree/master/ARM/SDKs/Samples/Net)可以找到從中取得以下所有程式碼片段之可完全下載的範例專案。
 
+## 安裝 NuGet 套件
+
+本主題中的範例需要兩個 NuGet 封裝 (除了 Azure SDK for .NET 以外)。在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]。
+
+1. 搜尋 **Microsoft.IdentityModel.Clients.ActiveDirectory** 並安裝最新穩定版本的封裝。
+2. 搜尋 **Microsoft.Azure.Management.ResourceManager**，然後選取 [包含發行前版本]。安裝最新的預覽版本 (例如 1.1.2-preview)。
+
 ## 驗證
-ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。若要取得此權杖，您必須先建立所謂 Azure AD 應用程式和服務主體，它們將用來進行登入。請依照[建立 Azure AD 應用程式和服務主體](resource-group-create-service-principal-portal.md)的逐步指示。
+Resource Manager 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。若要取得此權杖，您必須先建立所謂 Azure AD 應用程式和服務主體，它們將用來進行登入。如需逐步指示，依照下列其中一個︰[使用 Azure PowerShell 建立可存取資源的 Active Directory 應用程式](resource-group-authenticate-service-principal.md)、[使用 Azure CLI 建立可存取資源的 Active Directory 應用程式](resource-group-authenticate-service-principal-cli.md)，或[使用入口網站建立可存取資源的 Active Directory 應用程式](resource-group-create-service-principal-portal.md)。
 
 建立服務主體之後，您應該有︰
-* 用戶端識別碼 (GUID)
-* 用戶端密碼 (字串)
-* 租用戶識別碼 (GUID) 或網域名稱 (字串)
+
+- 用戶端識別碼或應用程式識別碼 (GUID)
+- 用戶端密碼 (字串)
+- 租用戶識別碼 (GUID) 或網域名稱 (字串)
 
 ### 從程式碼接收 AccessToken
 透過以下幾行程式碼，只傳入您的 Azure AD 租用戶識別碼、您的 Azure AD 應用程式用戶端識別碼和 Azure AD 應用程式用戶端密碼，即可輕鬆取得驗證權杖。針對數個要求儲存此權杖，因為它的預設有效時間為 1 小時。
 
 ```csharp
-private static AuthenticationResult GetAccessToken(string tenantId, string clientId, string clientSecret)
+private static async Task<AuthenticationResult> GetAccessTokenAsync(string tenantId, string clientId, string clientSecret)
 {
     Console.WriteLine("Aquiring Access Token from Azure AD");
     AuthenticationContext authContext = new AuthenticationContext
         ("https://login.windows.net/" /* AAD URI */
-            + $"{tenantId}.onmicrosoft.com" /* Tenant ID or AAD domain */);
+            + $"{tenantId}" /* Tenant ID */);
 
     var credential = new ClientCredential(clientId, clientSecret);
 
-    AuthenticationResult token = authContext.AcquireToken("https://management.azure.com/", credential);
+    var token = await authContext.AcquireTokenAsync("https://management.azure.com/", credential);
+
+    Console.WriteLine($"Token: {token.AccessToken}");
+    return token;
+}
+```
+
+除了使用租用戶識別碼進行登入，您可以使用如下所示的 Active Directory 網域。使用此方法會要求您變更方法簽章，以納入網域名稱，而不是租用戶識別碼。
+
+```csharp
+AuthenticationContext authContext = new AuthenticationContext
+    ("https://login.windows.net/" /* AAD URI */
+    + $"{domain}.onmicrosoft.com");
+```
+
+您可以為使用憑證進行驗證的 Active Directory 應用程式取得存取權杖︰
+
+```csharp
+private static async Task<AuthenticationResult> GetAccessTokenFromCertAsync(string tenantId, string clientId, string certName)
+{
+    Console.WriteLine("Aquiring Access Token from Azure AD");
+    AuthenticationContext authContext = new AuthenticationContext
+        ("https://login.windows.net/" /* AAD URI */
+        + $"{tenantId}" /* Tenant ID or AAD domain */);
+
+    X509Certificate2 cert = null;
+    X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+
+    try
+    {
+        store.Open(OpenFlags.ReadOnly);
+        var certCollection = store.Certificates;
+        var certs = certCollection.Find(X509FindType.FindBySubjectName, certName, false);
+        cert = certs[0];
+    }
+    finally
+    {
+        store.Close();
+    }
+
+    var certCredential = new ClientAssertionCertificate(clientId, cert);
+
+    var token = await authContext.AcquireTokenAsync("https://management.azure.com/", certCredential);
 
     Console.WriteLine($"Token: {token.AccessToken}");
     return token;
@@ -88,7 +138,7 @@ async private static Task<List<string>> GetSubscriptionsAsync(string token)
 }
 ```
 
-請注意，我們的確從 Azure 取得 JSON 回應，然後從中擷取訂用帳戶識別碼，以便傳回識別碼的清單。本文件中對 Azure ARM API 的所有後續呼叫只會使用單一 Azure 訂用帳戶識別碼，因此如果您的應用程式與數個訂用帳戶相關聯，接下來只要挑選正確的訂用帳戶並當作參數傳遞。
+請注意，我們的確從 Azure 取得 JSON 回應，然後從中擷取訂用帳戶識別碼，以便傳回識別碼的清單。本文件中對 Azure Resource Manage API 的所有後續呼叫會使用單一 Azure 訂用帳戶識別碼，因此如果您的應用程式與數個訂用帳戶相關聯，接下來只要挑選正確的訂用帳戶並當作參數傳遞。
 
 從這裡，我們對 Azure API 所做的每個呼叫將使用 Azure SDK for .NET，讓程式碼看起來有點不同。
 
@@ -97,6 +147,12 @@ async private static Task<List<string>> GetSubscriptionsAsync(string token)
 
 ```csharp
 var credentials = new TokenCredentials(token);
+```
+
+如果您有舊版的 Manager NuGet 封裝 (名為 **Microsoft.Azure.Management.Resources**)，則必須使用下列程式碼︰
+
+```csharp
+var credentials = new TokenCloudCredentials(subscriptionId, token.AccessToken);
 ```
 
 ## 建立資源群組
@@ -298,4 +354,4 @@ private static async Task<DeploymentExtended> CreateTemplatedDeployment(TokenCre
  
    
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

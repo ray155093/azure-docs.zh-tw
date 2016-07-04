@@ -247,8 +247,7 @@ Microsoft 是使用以上概述的架構來為 Azure IoT 進行威脅模型化�
 如需詳細資訊，請參閱下列文章：
 
 - [SDL 威脅模型化工具](https://www.microsoft.com/sdl/adopt/threatmodeling.aspx)
-
 - [Microsoft Azure IoT 參考架構](https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/)
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

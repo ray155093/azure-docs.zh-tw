@@ -2,7 +2,7 @@
     pageTitle="教學課程：Azure Active Directory 與 Zendesk 整合 | Microsoft Azure" 
     description="了解如何使用 Zendesk 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
     manager="stevenpo"/>
 <tags 
@@ -11,8 +11,8 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="06/20/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Zendesk 整合
   
@@ -52,7 +52,7 @@
 
     ![新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -78,11 +78,17 @@
 
     ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC773087.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Zendesk 登入 URL] 文字方塊中，使用下列模式輸入您的 URL： "*https://\<tenant-name>.zendesk.com*"，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面上，執行下列步驟：
 
     ![設定應用程式 URL](./media/active-directory-saas-zendesk-tutorial/IC773088.png "設定應用程式 URL")
+  
+	a.在 [Zendesk 登入 URL] 文字方塊中，使用下列模式輸入您的 URL︰`https://<tenant-name>.zendesk.com`
 
-4.  在 [設定在 Zendesk 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後在本機電腦上將憑證檔案儲存為 **c:\\zendesk.cer**。
+	b.按 [下一步]。
+
+
+
+4.  在 [設定在 Zendesk 單一登入] 頁面上，按一下 [下載憑證]，然後在本機電腦上儲存憑證檔案。
 
     ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC777534.png "設定單一登入")
 
@@ -94,7 +100,7 @@
 
     ![安全性](./media/active-directory-saas-zendesk-tutorial/IC773089.png "安全性")
 
-8.  在 [安全性] 頁面上，選取 [系統管理員和代理程式] 索引標籤。
+8.  在 [安全性] 頁面上，按一下 [系統管理員和代理程式] 索引標籤。
 
 9.  選取 [單一登入 (SSO) 和 SAML]，然後選取 [SAML]。
 
@@ -106,7 +112,7 @@
 
 12. 從匯出的憑證複製 [指紋] 值，然後將它貼入 [憑證指紋] 文字方塊。
 
-	>[AZURE.TIP]如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+	>[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
 13. 按一下 [儲存]。
 
@@ -132,7 +138,7 @@
 
     ![新增使用者](./media/active-directory-saas-zendesk-tutorial/IC773633.png "新增使用者")
 
->[AZURE.NOTE]您可以使用任何其他的 Zendesk 使用者帳戶建立工具或 Zendesk 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 Zendesk 使用者帳戶建立工具或 Zendesk 提供的 API，佈建 AAD 使用者帳戶。
 
 ##指派使用者
   
@@ -152,4 +158,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0622_2016-->

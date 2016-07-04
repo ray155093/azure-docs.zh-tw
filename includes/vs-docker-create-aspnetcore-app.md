@@ -1,14 +1,13 @@
-1. From the Visual Studio menu, select **File > New > Project**. 
+1. 從 Visual Studio 功能表中，選取 [檔案] > [新增] > [專案]。 
 
-1. Under the **Templates** section of the **New Project** dialog box, select **Visual C# > .NET Core**.
+1. 在 [新增專案] 對話方塊的 [範本] 區段下，選取 [Visual C#] > [.NET Core]。
 
-1. Select **ASP.NET Core Web Application (.NET Core)**.
-	![New Project dialog](./media/vs-docker-create-aspnetcore-app/create-new-project.png)
+1. 選取 [ASP.NET Core Web 應用程式 (.NET Core)]。![[新增專案] 對話方塊](./media/vs-docker-create-aspnetcore-app/create-new-project.png)
 
-1. Give your new application a name (or take the default) and Tap **OK**.  
+1. 指定新應用程式的名稱 (或使用預設值)，然後點選 [確定]。
 
-1. Under **ASP.NET Core Templates**, select **.NET Core**.
-	![New ASP.NET Project dialog](./media/vs-docker-create-aspnetcore-app/aspnet-core-template.png)
+1. 在 [ASP.NET Core 範本] 底下，選取 [.NET Core]。 ![[新增 ASP.NET 專案] 對話方塊](./media/vs-docker-create-aspnetcore-app/aspnet-core-template.png)
 
-1. Deselect **Host in the cloud** as you'll be using Docker as your deployment solution.
+1. 請取消選取 [雲端中的主機]，因為您將會使用 Docker 做為您的部署方案。
 
+<!---HONumber=AcomDC_0622_2016-->

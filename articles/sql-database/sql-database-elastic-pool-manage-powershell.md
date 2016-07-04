@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="05/27/2016"
+    ms.date="06/22/2016"
     ms.author="srinia"/>
 
 # 透過 PowerShell 監視和管理彈性資料庫集區 
@@ -107,6 +107,8 @@
 
 您可以將警示規則新增到資源中，以在資源達到您設定的使用率臨界值時，將電子郵件通知或警示字串傳送到 [URL 端點](https://msdn.microsoft.com/library/mt718036.aspx)。使用 Add-AzureRmMetricAlertRule Cmdlet。
 
+> [AZURE.IMPORTANT]監視彈性集區的資源使用率至少有 20 分鐘的延遲。目前不支援將彈性集區的警示設定為小於 30 分鐘。任何針對彈性集區所設定且期間 (PowerShell API 中名為 “-WindowSize” 的參數) 小於 30 分鐘的警示可能都不會觸發。請確定您針對彈性集區定義的任何警示都會使用 30 分鐘以上的期間 (WindowSize)。
+
 此範例會新增一個可在集區 eDTU 耗用量超過特定臨界值時接獲通知的警示。
 
     # Set up your resource ID configurations
@@ -126,11 +128,13 @@
     $alertName = $poolName + "- DTU consumption rule"
 
     # Create an alert rule for DTU_consumption_percent
-    Add-AzureRMMetricAlertRule -Name $alertName -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $ResourceID -MetricName "DTU_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:05:00 -Actions $actionEmail 
+    Add-AzureRMMetricAlertRule -Name $alertName -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $ResourceID -MetricName "DTU_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:60:00 -Actions $actionEmail 
 
 ## 將警示新增到集區中的所有資料庫
 
 您可以將警示規則新增到彈性集區中的所有資料庫，以在資源達到警示所設定的使用率臨界值時，將電子郵件通知或警示字串傳送到 [URL 端點](https://msdn.microsoft.com/library/mt718036.aspx)。
+
+> [AZURE.IMPORTANT] 監視彈性集區的資源使用率至少有 20 分鐘的延遲。目前不支援將彈性集區的警示設定為小於 30 分鐘。任何針對彈性集區所設定且期間 (PowerShell API 中名為 “-WindowSize” 的參數) 小於 30 分鐘的警示可能都不會觸發。請確定您針對彈性集區定義的任何警示都會使用 30 分鐘以上的期間 (WindowSize)。
 
 此範例會將警示新增到集區中的每個資料庫，以在資料庫的 DTU 耗用量超過特定臨界值時接獲通知。
 
@@ -156,7 +160,7 @@
     $alertName = $db.DatabaseName + "- DTU consumption rule"
 
     # Create an alert rule for DTU_consumption_percent
-    Add-AzureRMMetricAlertRule -Name $alertName  -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $dbResourceId -MetricName "dtu_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:05:00 -Actions $actionEmail
+    Add-AzureRMMetricAlertRule -Name $alertName  -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $dbResourceId -MetricName "dtu_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:60:00 -Actions $actionEmail
 
     # drop the alert rule
     #Remove-AzureRmAlertRule -ResourceGroup $resourceGroupName -Name $alertName
@@ -166,7 +170,7 @@
 
 ## 收集和監視訂用帳戶中多個集區的資源使用量資料
 
-當訂用帳戶中有大量資料庫時，難以分開監視每個彈性集區。因此，可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區與其資料庫收集資源使用量資料，以便監視和分析資源使用量。在 GitHub SQL Server 範例儲存機制中可以找到這樣一組 PowerShell 指令碼的[範例實作](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)，以及其作用和使用方式的相關文件。
+當訂用帳戶中有大量資料庫時，難以分開監視每個彈性集區。因此，可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區與其資料庫收集資源使用量資料，以便監視和分析資源使用量。在 GitHub 上的 SQL Server 範例存放庫中，可以找到這樣一組 PowerShell 指令碼的[範例實作](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)，以及其作用和使用方式的相關文件。
 
 若要使用此範例實作，請遵循下列步驟執行。
 
@@ -270,6 +274,6 @@ Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方�
 ## 後續步驟
 
 - [建立彈性工作](sql-database-elastic-jobs-overview.md)：彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
-- 參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具來相應放大規模、移動資料、查詢或建立交易。
+- 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

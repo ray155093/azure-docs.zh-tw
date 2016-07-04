@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev;weig;gopitk"/>
 
 
@@ -158,7 +158,7 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 
 ### <a name="ingest"></a>資料擷取：從公用 Blob 讀取資料
 
-Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
+Azure Blob 中的資料位置是以 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
 
 	///Read in Trip data
 	@trip0 =
@@ -181,7 +181,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
+由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 ****swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 ****wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
 
 	// change data types
 	@trip =
@@ -658,7 +658,7 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
  ![21](./media/machine-learning-data-science-process-data-lake-walkthrough/21-Hive-Query-Editor-v2.PNG)
 
 
-貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：**adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
+貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：****adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
 
 	CREATE EXTERNAL TABLE nyc_stratified_sample
 	(
@@ -734,11 +734,11 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 
 ## 後續步驟
 
-[Cortana Analytics 程序 (CAP)](http://aka.ms/datascienceprocess) 的學習路徑提供可說明進階分析程序中每個步驟之主題的連結。在**完整資料科學程序實務**節點外，有一系列的逐步解說，展示如何在 Cortana 套件的各種不同預測性分析案例中使用資源和服務︰
+[Team Data Science Process (TDSP)](http://aka.ms/datascienceprocess) 的學習路徑提供可說明進階分析程序中每個步驟的主題連結。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)頁面上分項列出一系列逐步解說，示範如何在各種不同預測性分析案例中使用資源和服務：
 
-- [Cortana Analytics 程序實務：使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
-- [Cortana 分析程序實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
-- [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-- [在 Azure HDInsight 上使用 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)
+- [Team Data Science Process 實務：使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
+- [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
+- [Team Data Science Process：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+- [在 Azure HDInsight 上使用 Spark 的資料科學程序概觀](machine-learning-data-science-spark-overview.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

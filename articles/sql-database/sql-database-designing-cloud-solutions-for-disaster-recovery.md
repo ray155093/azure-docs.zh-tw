@@ -36,7 +36,7 @@
 
 在此情況下，應用程式部署拓撲經過最佳化，可處理區域性災害，此時所有應用程式元件都受影響，而需要當成一個單位來容錯移轉。在地理備援方面，應用程式邏輯和資料庫複寫到另一個區域，但在正常情況下不負責處理應用程式工作負載。次要地區中的應用程式應該設定為使用次要資料庫的 SQL 連接字串。流量管理員設為使用[容錯移轉路由方法](../traffic-manager/traffic-manager-configure-failover-routing-method.md)。
 
-> [AZURE.NOTE] 這整篇文章使用 [Azure traffic manager](../traffic-manager/traffic-manager-overview.md) 僅供說明用途。您可以使用任何支援容錯移轉路由方法的負載平衡方案。    
+> [AZURE.NOTE] [Azure traffic manager]這整篇文章使用 (../traffic-manager/traffic-manager-overview.md) 僅供說明用途。您可以使用任何支援容錯移轉路由方法的負載平衡方案。
 
 除了主要應用程式執行個體，您還應該考慮部署小型的[背景工作角色應用程式](cloud-services-choose-me.md#tellmecs)，以定期發出 T-SQL 唯讀 (RO) 命令來監控主要資料庫。您可以利用它來自動觸發容錯移轉、在應用程式的系統管理員主控台產生警示，或兩種功能都執行。為了確保地區性的運作中斷不會影響監視，您應該將監視應用程式執行個體部署至每個區域，並將它們連接到其他區域中的資料庫，但只有次要地區中執行個體必須在作用中。
 
@@ -153,14 +153,20 @@
 | 應用程式負載平衡的主動-主動部署 | 讀寫存取 < 5 秒 | 失敗偵測時間 + 容錯移轉 API 呼叫 + SQL 連接字串變更 + 應用程式驗證測試
 | 資料保留的主動-被動部署 | 唯讀存取 < 5 秒，讀寫存取 = 0 | 唯讀存取 = 連線失敗偵測時間 + 應用程式驗證測試 <br>讀寫存取 = 運作中斷趨緩的時間
 
+## 後續步驟
+
+- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
 
 ## 其他資源
 
-
-- [業務續航力概觀](sql-database-business-continuity.md)
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [還原時間點](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
 - [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [使用 SQL Database 中的異地複寫針對雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
 - [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

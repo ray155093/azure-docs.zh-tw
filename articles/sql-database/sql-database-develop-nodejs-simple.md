@@ -9,11 +9,11 @@
 
 <tags
 	ms.service="sql-database"
-	ms.workload="data-management"
+	ms.workload="drivers"
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="06/16/2016"
 	ms.author="meetb"/>
 
 # 使用 Node.js 連接到 SQL Database
@@ -38,8 +38,14 @@
 
 [使用 Node.js 連接到 SQL 的概念證明](https://msdn.microsoft.com/library/mt715784.aspx)
 
-## 其他資源
+## 後續步驟
 
-如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
+* 更多有關 [Microsoft Node.js Driver for SQL Server](https://msdn.microsoft.com/library/mt652093.aspx) 的資訊
 
-<!---HONumber=AcomDC_0615_2016-->
+## 其他資源 
+
+* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
+
+<!---HONumber=AcomDC_0622_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/22/2016"
+   ms.date="06/20/2016"
    ms.author="alkohli" />
 
 # 在 Windows Server 主機上設定 StorSimple Virtual Array 的多重路徑 I/O
@@ -178,4 +178,4 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。您應該透過
 深入了解[使用 StorSimple Manager 服務來管理 StorSimple Virtual Array](storsimple-ova-manager-service-administration.md)。
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

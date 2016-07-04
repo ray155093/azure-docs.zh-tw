@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="TBD"
-    ms.date="03/23/2016"
+    ms.date="06/21/2016"
     ms.author="alkohli" />
 
 # StorSimple 8000 系列 Update 0.1 版本資訊 – 2014 年 10 月  
@@ -99,4 +99,4 @@
 這個版本不包含任何虛擬裝置的更新。套用此更新不會變更虛擬裝置的軟體版本。
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0622_2016-->

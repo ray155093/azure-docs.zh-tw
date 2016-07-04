@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/01/2016"
+	ms.date="06/21/2016"
 	ms.author="fboylu" />
 
 # 航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的腳本
@@ -346,4 +346,4 @@
 
 如需此架構的每個元件的詳細資訊，請參閱 [Azure](https://azure.microsoft.com/) 文件。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0622_2016-->

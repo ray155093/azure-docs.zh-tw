@@ -21,20 +21,12 @@
 
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-copy.md)
+- [概觀](sql-database-copy.md)
+- [Azure 入口網站](sql-database-copy-portal.md)
 - [PowerShell](sql-database-copy-powershell.md)
 - [T-SQL](sql-database-copy-transact-sql.md)
 
-
-
-下列步驟說明如何利用 PowerShell 複製 SQL Database。資料庫複製作業會使用 [Start-AzureSqlDatabaseCopy](https://msdn.microsoft.com/library/dn720220.aspx) Cmdlet，將 SQL Database 複製到新的資料庫。副本是您在同一部伺服器或不同伺服器上建立的資料庫快照備份。
-
-> [AZURE.NOTE] Azure SQL Database 會自動為您可還原的每個使用者資料庫[建立並維護備份](sql-database-automated-backups.md)。
-
-複製程序完成時，新的資料庫是功能完整的資料庫，獨立於來源資料庫。複製完成時，新資料庫與來源資料庫在交易上一致。資料庫副本與來源資料庫的服務層和效能層級 (定價層) 相同。複製完成之後，副本會變成功能完整的獨立資料庫。可以個別管理登入、使用者和權限。
-
-
-當您將資料庫複製到相同的邏輯伺服器時，可以在這兩個資料庫上使用相同的登入。您用來複製資料庫的安全性主體會變成新資料庫的資料庫擁有者 (DBO)。所有資料庫使用者、其權限及其安全性識別碼 (SID) 都會複製到資料庫副本。
+下列這些步驟說明如何利用 PowerShell，將 SQL Database 複製到相同的伺服器或不同的伺服器。資料庫複製作業會使用 [Start-AzureSqlDatabaseCopy](https://msdn.microsoft.com/library/dn720220.aspx) Cmdlet。
 
 
 若要完成本文，您需要下列項目：
@@ -87,6 +79,10 @@
 
     Get-AzureSqlDatabaseOperation -ServerName $ServerName -DatabaseName $DatabaseName
 
+## 解析登入
+
+若要在複製作業完成之後解析登入，請參閱[解析登入](sql-database-copy-transact-sql.md#resolve-logins-after-the-copy-operation-completes)
+
 
 ## PowerShell 指令碼範例
 
@@ -115,14 +111,18 @@
 
 ## 後續步驟
 
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-- [將資料庫匯出至 BACPAC](sql-database-export-powershell.md)
+- 如需複製 Azure SQL Database 的概觀，請參閱[複製 Azure SQL Database](sql-database-copy.md)。
+- 若要使用 Azure 入口網站複製資料庫，請參閱[使用 Azure 入口網站複製 Azure SQL Database](sql-database-copy-portal.md)。
+- 若要使用 Transact-SQL 複製資料庫，請參閱[使用 T-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md)。
+- 請參閱[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)，以了解如何在將資料庫複製到不同的邏輯伺服器時管理使用者與登入。
 
 
 ## 其他資源
 
-- [商業持續性概觀](sql-database-business-continuity.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
+- [管理登入](sql-database-manage-logins.md)
+- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+- [將資料庫匯出至 BACPAC](sql-database-export.md)
+- [商務持續性概觀](sql-database-business-continuity.md)
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

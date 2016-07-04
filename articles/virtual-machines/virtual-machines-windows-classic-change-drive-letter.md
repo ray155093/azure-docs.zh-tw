@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="06/16/2016"
 	ms.author="cynthn"/>
 
 # 使用 D 磁碟機做為 Windows VM 上的資料磁碟機 
@@ -111,4 +111,4 @@
 ## 後續步驟
 - 您可以[連接其他資料磁碟](virtual-machines-windows-attach-disk-portal.md)來增加虛擬機器可以使用的儲存空間。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

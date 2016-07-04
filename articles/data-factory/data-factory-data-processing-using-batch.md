@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/26/2016"
+    ms.date="06/17/2016"
     ms.author="spelluru"/>
 # 使用 Azure Batch 和 Data Factory 的 HPC 和資料協調
 
@@ -380,7 +380,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 	![](./media/data-factory-data-processing-using-batch/image5.png)
 
-13.  將 **MyDotNetActivity.zip** 當做 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 **customactvitycontainer**，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。如果 Blob 容器 **customactivitycontainer** 不存在，請自行建立。
+13.  將 **MyDotNetActivity.zip** 當做 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 **customactivitycontainer**，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。如果 Blob 容器 **customactivitycontainer** 不存在，請自行建立。
 
 ### 執行方法
 
@@ -543,7 +543,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     4.  針對 **batchUri** JSON 屬性，輸入 Batch URI。
     
-		> [AZURE.IMPORTANT] \[Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
+		> [AZURE.IMPORTANT] [Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：<accountname>.<region>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
 
         ![](./media/data-factory-data-processing-using-batch/image9.png)
 
@@ -702,7 +702,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 > [AZURE.IMPORTANT] 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
 
-1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...]\(省略符號) 就可看到。
+1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 
 2.  使用下列 JSON 指令碼取代右窗格中的 JSON。
 
@@ -797,11 +797,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     ![](./media/data-factory-data-processing-using-batch/image13.png)
 
-6.  使用 [Azure Batch 總管](http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx)檢視與**配量**相關聯的**工作**，並查看每個配量在哪個 VM 上執行。您發現有一個作業以名稱 **adf-<poolname>** 建立。此作業的每個配量都會有一個作業。在此範例中會有 5 個配量，因此 Azure Batch 中有 5 個工作。在 Azure Data Factory 中的管線 JSON 中將**並行**設定為 **5**，並且在具有 **2** 個 VM 的 Azure Batch 集區中將 [每個 VM 的工作數上限] 設定為 **2**，工作執行得非常快 (請檢視 [建立] 時間)。
-
-    ![](./media/data-factory-data-processing-using-batch/image14.png)
-
-	> [AZURE.NOTE] 下載 [Azure Batch 總管工具][batch-explorer]的原始程式碼，將其編譯並使用它來建立和監視批次集區。如需有關使用 Azure Batch 總管的逐步指示，請參閱 [Azure Batch 總管範例逐步解說][batch-explorer-walkthrough]。
+6.  使用 Azure 入口網站檢視與**配量**相關聯的**工作**，並查看每個配量在哪個 VM 上執行。請參閱 [Data Factory 和 Batch 整合](#data-factory-and-batch-integration)一節，以取得詳細資料。
 
 7.  在您的 Azure Blob 儲存體中，您應會在 **mycontainer** 的 **outputfolder** 中看見輸出檔案。
 
@@ -833,6 +829,19 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 
     **注意：**如果您未先刪除輸出檔案 2015-11-16-01.txt 即以 5 個輸入檔案來嘗試，您將會看到先前的配量執行有一行，而目前的配量執行有五行。根據預設，內容會附加至已存在的輸出檔案。
+
+### Data Factory 和 Batch 整合
+Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolname:job-xxx**。
+
+![Azure Data Factory - Batch 作業](media/data-factory-data-processing-using-batch/data-factory-batch-jobs.png)
+
+配量的每個活動執行都會在作業中建立一個工作。如果有 10 個配量就緒可供處理，作業中會建立 10 個工作。如果您在集區中有多個計算結點，您可以同時執行多個配量。如果每個計算結點的最大工作設為 > 1，您也可以在相同的計算中執行多個配量。
+
+在此範例中會有 5 個配量，因此 Azure Batch 中有 5 個工作。在 Azure Data Factory 中的管線 JSON 中將**並行**設定為 **5**，並且在具有 **2** 個 VM 的 Azure Batch 集區中將 [每個 VM 的工作數上限] 設定為 **2**，工作會執行得非常快 (請檢查工作的開始和結束時間)。
+
+使用入口網站來檢視與**配量**相關聯的 Batch 作業及其工作，並查看每個配量在哪個 VM 上執行。
+
+![Azure Data Factory - Batch 作業工作](media/data-factory-data-processing-using-batch/data-factory-batch-job-tasks.png)
 
 ## 偵錯管線
 
@@ -940,4 +949,4 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

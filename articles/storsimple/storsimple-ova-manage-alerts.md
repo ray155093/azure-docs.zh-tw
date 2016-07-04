@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/02/2016"
+   ms.date="06/07/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務檢視及管理 StorSimple Virtual Array 的警示
@@ -109,7 +109,7 @@ StorSimple Manager 服務儀表板可讓您快速概覽虛擬裝置上的警示�
 
 ## 排序和檢閱警示
 
-執行警示報告以分組檢閱和清除警示可能更有效率。此外，[**警示**] 索引標籤最多可顯示 250 個警示。如果超過該警示數目，則並非所有警示都會出現在預設檢視中。您可以結合下列欄位來自訂要顯示的通知：
+[警示] 索引標籤最多可顯示 250 個警示。如果超過該警示數目，則並非所有警示都會出現在預設檢視中。您可以結合下列欄位來自訂要顯示的通知：
 
 - **狀態** – 您可以顯示 [**作用中**] 或 [**已清除**] 警示。作用中警示仍在系統上觸發，而已清除的警示已由系統管理員手動清除，或因為系統以新資訊更新警示狀況而以程式設計方式清除。
 
@@ -182,4 +182,4 @@ StorSimple Manager 服務儀表板可讓您快速概覽虛擬裝置上的警示�
 
 - [深入了解 StorSimple Virtual Array](storsimple-ova-overview.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0622_2016-->

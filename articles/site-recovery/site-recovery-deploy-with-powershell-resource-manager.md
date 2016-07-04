@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="backup-recovery"
-	ms.date="06/13/2016"
+	ms.date="06/15/2016"
 	ms.author="bsiva"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫
@@ -82,19 +82,10 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
 	如果 **RegistrationState** 在上述這些命令的輸出中設為 [已註冊]，您可以繼續執行步驟 2。如果未設定，訂用帳戶中應該註冊遺漏的提供者。
 
-	若要註冊 Site Recovery 的 Azure 提供者，請執行下列命令：
+	若要註冊 Site Recovery 和復原服務的 Azure 提供者，請執行下列命令：
 
     	Register-AzureRmResourceProvider -ProviderNamespace Microsoft.SiteRecovery
-
-	同樣地，如果是第一次在訂用帳戶中使用復原服務 Cmdlet，您應註冊 Azure 復原服務提供者。執行這項動作之前，您要先執行下列命令，在您的訂用帳戶上啟用復原服務提供者的存取權：
-
-		Register-AzureRmProviderFeature -FeatureName betaAccess -ProviderNamespace Microsoft.RecoveryServices
-
-	>[AZURE.TIP] 成功完成這個命令之後，在訂用帳戶上啟用復原服務提供者的存取權可能需要一個小時。嘗試使用 `Register-AzureRmResourceProvider -ProviderNamespace Microsoft.RecoveryServices` 命令在訂用帳戶中註冊復原服務提供者可能會在過渡期間失敗。如果發生這種情況，請等待一個小時並重試。
-
-	您在訂用帳戶上啟用復原服務提供者存取權之後，請藉由執行下列命令，在您的訂用帳戶中註冊提供者：
-
-		Register-AzureRmResourceProvider -ProviderNamespace Microsoft.RecoveryServices
+    	Register-AzureRmResourceProvider -ProviderNamespace Microsoft.RecoveryServices
 
 	確認提供者成功使用 `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.RecoveryServices` 和 `Get-AzureRmResourceProvider -ProviderNamespace  Microsoft.SiteRecovery` 命令註冊。
 
@@ -198,7 +189,7 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 	> - 如果指定的復原儲存體帳戶屬於 Azure Storage (Classic) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Classic)。
 	> - 如果指定的復原儲存體帳戶屬於 Azure Storage (Azure Resource Manager) 類型，受保護機器的容錯移轉會將機器復原到 Azure IaaS (Azure Resource Manager)。
 
-	> 如果您要保護的 VM 有多個連接到它的磁碟，請使用 *OSDiskName* 參數指定作業系統磁碟。
+	> 如果您要保護的 VM 有多個連接到它的磁碟，請使用 OSDiskName 參數指定作業系統磁碟。
 
 3. 在初始複寫後，等待虛擬機器達到受保護的狀態。所需時間長短，受到要複寫的資料量和可用的 Azure 上游頻寬等因素影響。當 VM 達到受保護的狀態時，作業的 State 和 StateDescription 就會更新，如下所示。
 
@@ -264,6 +255,6 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
 ##後續步驟
 
-[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。
+[閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx)使用 Azure Resource Manager PowerShell Cmdlet 進行 Azure Site Recovery 的相關資訊。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

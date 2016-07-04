@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016" 
+	ms.date="06/22/2016" 
 	ms.author="sdanie"/>
 
 # 如何設定進階 Azure Redis 快取的 Redis 叢集
@@ -36,13 +36,9 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 在 Azure 中，Redis 叢集以主要/複本模型方式提供，其中的每個分區都有一個具複寫功能的主要/複本組，而複寫是由 Azure Redis 快取服務管理。
 
 ## 叢集
-叢集是在快取建立期間於 [新的 Redis 快取] 刀鋒視窗中所啟用。若要建立快取，請登入 [Azure 入口網站](https://portal.azure.com)，然後按一下 [新增] -> [資料 + 儲存體] -> [Redis 快取]。
+叢集是在快取建立期間於 [新的 Redis 快取] 刀鋒視窗中所啟用。
 
-![建立 Redis 快取][redis-cache-new-cache-menu]
-
-若要設定叢集，請先在 [選擇定價層] 刀鋒視窗中選取其中一個**進階**快取。
-
-![選擇價格層][redis-cache-premium-pricing-tier]
+[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
 叢集是在 [**Redis 叢集**] 刀鋒視窗中所設定。
 
@@ -57,31 +53,6 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 建立快取後，您可以連接並使用它，就像非叢集化快取一樣，而且 Redis 將會在整個快取分區散發資料。如果[已啟用](cache-how-to-monitor.md#enable-cache-diagnostics)診斷，則會針對每個分區個別擷取度量，而且可以在 [Redis 快取] 刀鋒視窗中[檢視](cache-how-to-monitor.md)。
 
 如需搭配 StackExchange.Redis 用戶端使用叢集的範例程式碼，請參閱 [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) 範例的 [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) 部分。
-
-<a name="move-exceptions"></a>
-
->[AZURE.IMPORTANT] 使用 StackExchange.Redis 連接已啟用叢集的 Azure Redis 快取時，您可能會碰到問題並收到 `MOVE` 例外狀況。這是因為 StackExchange.Redis 快取用戶端收集快取叢集中節點資訊的間隔時間短。如果您是第一次連接快取，並在用戶端完成收集此資訊前立即呼叫快取，便會發生這些例外狀況。解決應用程式中此問題最簡單方式就是連接快取，然後等候一秒後再對快取進行任何呼叫。做法是依照下列範例程式碼所示新增 `Thread.Sleep(1000)`。請注意，`Thread.Sleep(1000)` 只會在初次連接快取的期間發生。如需詳細資訊，請參閱 [StackExchange.Redis.RedisServerException - MOVED #248](https://github.com/StackExchange/StackExchange.Redis/issues/248)。此問題的修正程式正在開發中，若有任何更新，將張貼於此處。**更新**：此問題已在 StackExchange.Redis 最新的[發行前版本 1.1.572-alpha](https://www.nuget.org/packages/StackExchange.Redis/1.1.572-alpha) 組建中解決。請查看 [StackExchange.Redis NuGet 頁面](https://www.nuget.org/packages/StackExchange.Redis/)，以取得最新組建。
-
-
-	private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
-	{
-        // Connect to the Redis cache for the first time
-	    var connection =  ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
-
-		// Wait for 1 second
-		Thread.Sleep(1000);
-
-		// Return the connected ConnectionMultiplexer
-		return connection;
-	});
-	
-	public static ConnectionMultiplexer Connection
-	{
-	    get
-	    {
-	        return lazyConnection.Value;
-	    }
-	}
 
 <a name="cluster-size"></a>
 ## 在執行中的進階快取上變更叢集大小
@@ -107,6 +78,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 -	[我可以為先前建立的快取設定叢集嗎？](#can-i-configure-clustering-for-a-previously-created-cache)
 -	[我可以設定基本或標準快取的叢集嗎？](#can-i-configure-clustering-for-a-basic-or-standard-cache)
 -	[我可以將叢集使用於 Redis ASP.NET 工作階段狀態和輸出快取提供者嗎？](#can-i-use-clustering-with-the-redis-aspnet-session-state-and-output-caching-providers)
+-	[當我使用 StackExchange.Redis 和叢集時收到 MOVE 例外狀況，該怎麼辦？](#i-am-getting-move-exceptions-whzh-TWing-stackexchangeredis-and-clustering-what-should-i-do)
 
 ### 我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？
 
@@ -140,7 +112,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 現階段，並非所有用戶端都支援 Redis 叢集。StackExchange.Redis 就是不支援的其中一例。如需其他用戶端的詳細資訊，請參閱 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)的[試用叢集](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster)一節。
 
->[AZURE.NOTE] 如果您使用 StackExchange.Redis 做為您的用戶端，請確定您使用的是最新版的 [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/) (1.0.481) 或更新版本，叢集才能正常運作。如果您有任何關於移動例外狀況的問題，請參閱[移動例外狀況](#move-exceptions)，以取得詳細資訊。
+>[AZURE.NOTE] 如果您使用 StackExchange.Redis 做為您的用戶端，請確定您使用的是最新版的 [StackExchange.Redis](https://www.nuget.org/packages/StackExchange.Redis/) (1.0.481) 或更新版本，叢集才能正常運作。如果您有任何關於 Move 例外狀況的問題，請參閱 [Move 例外狀況](#move-exceptions)，以取得詳細資訊。
 
 ### 啟用叢集後，要如何連接到我的快取？
 
@@ -173,25 +145,18 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 -	**Redis 輸出快取提供者** - 不需要變更。
 -	**Redis 工作階段狀態提供者** - 若要使用叢集，您必須使用 [RedisSessionStateProvider](https://www.nuget.org/packages/Microsoft.Web.RedisSessionStateProvider) 2.0.1 或更高版本，否則會擲回例外狀況。這是一項重大變更。如需詳細資訊，請參閱 [v2.0.0 重大變更詳細資料](https://github.com/Azure/aspnet-redis-providers/wiki/v2.0.0-Breaking-Change-Details)。
 
+<a name="move-exceptions"></a>
+### 當我使用 StackExchange.Redis 和叢集時收到 MOVE 例外狀況，該怎麼辦？
+
+如果您正在使用 StackExchange.Redis，並且在使用叢集時收到 `MOVE` 例外狀況，請確定您使用的是 [StackExchange.Redis 1.1.603](https://www.nuget.org/packages/StackExchange.Redis/) 或更新版本。如需設定 .NET 應用程式以使用 StackExchange.Redis 的指示，請參閱[設定快取用戶端](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)。
+
 ## 後續步驟
 了解如何使用更多進階快取功能。
 
--	[如何設定進階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
--	[如何設定進階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
+-	[如何設定高階 Azure Redis Cache 的永續性](cache-how-to-premium-persistence.md)
+-	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
   
 <!-- IMAGES -->
-
-[redis-cache-new-cache-menu]: ./media/cache-how-to-premium-clustering/redis-cache-new-cache-menu.png
-
-[redis-cache-premium-pricing-tier]: ./media/cache-how-to-premium-clustering/redis-cache-premium-pricing-tier.png
-
-[NewCacheMenu]: ./media/cache-how-to-premium-clustering/redis-cache-new-cache-menu.png
-
-[CacheCreate]: ./media/cache-how-to-premium-clustering/redis-cache-cache-create.png
-
-[redis-cache-premium-pricing-group]: ./media/cache-how-to-premium-clustering/redis-cache-premium-pricing-group.png
-
-[redis-cache-premium-features]: ./media/cache-how-to-premium-clustering/redis-cache-premium-features.png
 
 [redis-cache-clustering]: ./media/cache-how-to-premium-clustering/redis-cache-clustering.png
 
@@ -199,4 +164,4 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 [redis-cache-redis-cluster-size]: ./media/cache-how-to-premium-clustering/redis-cache-redis-cluster-size.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

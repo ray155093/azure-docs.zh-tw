@@ -1,7 +1,7 @@
 <properties
    pageTitle="使用 VirtualBox 設定 Docker 主機 | Microsoft Azure"
    description="使用 Docker 機器和 VirtualBox 來設定預設 Docker 執行個體的逐步指示。"
-   services="visual-studio-online"
+   services="azure-container-service"
    documentationCenter="na"
    authors="allclark"
    manager="douge"
@@ -37,23 +37,29 @@
  
 1. 確認預設執行個體已完成設定且正在執行。(您應該會看到名為「default」的執行個體正在執行。
 
-		docker-machine ls 
+    ```PowerShell
+	docker-machine ls 
+    ```
 		
-	![][0]
+	![docker-machine ls 輸出][0]
  
 1. 預設為目前的主機，並設定您的 Shell。
 
-        docker-machine env default | Invoke-Expression
+    ```PowerShell
+    docker-machine env default | Invoke-Expression
+    ```
 
 1. 顯示作用中的 Docker 容器。清單應該是空的。
 
-		docker ps
+    ```PowerShell
+	docker ps
+    ```
 
-	![][1]
+	![docker ps 輸出][1]
  
-> [AZURE.NOTE] 每次您將開發用機器重新開機時，就需要重新啟動您的本機 Docker 主機。做法是在命令提示字元發出下列命令：`docker-machine start default`
+> [AZURE.NOTE] 每次您將開發用機器重新開機時，就需要重新啟動您的本機 Docker 主機。做法是在命令提示字元發出下列命令：`docker-machine start default`。
 
 [0]: ./media/vs-azure-tools-docker-setup/docker-machine-ls.png
 [1]: ./media/vs-azure-tools-docker-setup/docker-ps.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

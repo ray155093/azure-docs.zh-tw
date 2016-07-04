@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="06/14/2016"
 	ms.author="deguhath;bradsev" />
 
 # 評分 Spark 建置機器學習模型 
@@ -120,7 +120,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 本節包含一系列工作的程式碼，為擷取要評分的資料所必需。在聯結的 0.1% 取樣的計程車車程和費用檔案中讀取 (儲存為 .tsv 檔案)、格式化資料，然後建立清空的資料框架。
 
-已根據[作用中的 Cortana Analytics 程序：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)主題提供的程序來聯結計程車車程和費用檔案。
+已根據[Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)主題提供的程序來聯結計程車車程和費用檔案。
 
 	# INGEST DATA AND CREATE A CLEANED DATA FRAME
 
@@ -385,7 +385,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 	#LOAD LIBRARIES​
 	from pyspark.mllib.regression import LinearRegressionWithSGD, LinearRegressionModel
 	
-	# LOAD MODEL AND SCORE USING **SCALED VARIABLES**
+	# LOAD MODEL AND SCORE USING ** SCALED VARIABLES **
 	savedModel = LinearRegressionModel.load(sc, linearRegFileLoc)
 	predictions = oneHotTESTregScaled.map(lambda features: (float(savedModel.predict(features))))
 	
@@ -547,7 +547,7 @@ BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression\_2016-05-0317\_23\_
 
 Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從遠端提交批次工作或互動式查詢。Livy 預設在 HDInsight Spark 叢集上啟用。如需 Livy 的詳細資訊，請參閱[使用 Livy 遠端提交 Spark 作業](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。
 
-您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用類似 **Microsoft Azure 儲存體總管**或 **AzCopy** 的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ***wasb:///example/python/ConsumeGBNYCReg.py***。
+您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用類似 **Microsoft Azure 儲存體總管**或 **AzCopy** 的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ******wasb:///example/python/ConsumeGBNYCReg.py***。
 
 
 >[AZURE.NOTE] 您可在入口網站上，為 Spark 叢集關聯的儲存體帳戶尋找需要的存取金鑰。
@@ -610,4 +610,4 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

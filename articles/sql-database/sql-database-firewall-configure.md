@@ -15,10 +15,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="06/10/2016"
+   ms.date="06/22/2016"
    ms.author="rickbyh"/>
 
-# 如何設定 Azure SQL Server 防火牆 - 概觀
+# 設定 Azure SQL Database 防火牆規則 - 概觀
 
 
 > [AZURE.SELECTOR]
@@ -68,13 +68,13 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 您有兩種方式可以啟用來自 Azure 的連線：
 
-- 在 [Microsoft Azure 入口網站](https://portal.azure.com/)中，建立新的伺服器時，選取核取方塊 [允許 Azure 服務存取伺服器]。
+- 在 [Microsoft Azure 入口網站](https://portal.azure.com/)中，建立新的伺服器時，選取核取方塊 [允許 Azure 服務存取伺服器]。**重要事項 ︰**這個選項會設定防火牆，以允許所有來自 Azure 的連接，包括來自其他客戶訂用帳戶的連接。選取這個選項時，請確定您的登入和使用者權限會限制為只有授權的使用者才能存取。
 
-- 在[傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=161793)中，從伺服器上的 [設定] 索引標籤中，於 [允許的服務] 區段底下，針對 [Microsoft Azure 服務] 按一下 [是]。
+- 在[傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=161793)中，從伺服器上的 [設定] 索引標籤的 [允許的服務] 區段下方，針對 [Microsoft Azure 服務] 按一下 [是]。
 
 ## 建立第一個伺服器層級防火牆規則
 
-可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。如需伺服器層級防火牆規則的詳細資訊，請參閱[如何：使用 Azure 入口網站設定 Azure SQL Server 防火牆](sql-database-configure-firewall-settings.md)。
+可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。如需伺服器層級防火牆規則的詳細資訊，請參閱[做法：使用 Azure 入口網站設定 Azure SQL Server 防火牆](sql-database-configure-firewall-settings.md)。
 
 ## 建立資料庫層級防火牆規則
 
@@ -123,7 +123,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 - **本機防火牆組態：**在您的電腦可以存取 Azure SQL Database 之前，您可能需要在電腦上為 TCP 連接埠 1433 建立防火牆例外狀況。如果您是在 Azure 雲端界限內建立連接，您可能必須開啟其他連接埠。如需詳細資訊，請參閱[針對 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)的 **SQL Database V12：內部與外部**一節。
 
-- **網路位址轉譯 (NAT)：**由於 NAT，您的電腦用來連接到 Azure SQL Database 的 IP 位址，可能會不同於您電腦 IP 組態設定中顯示的 IP 位址。若要檢視您的電腦用來連接到 Azure 的 IP 位址，請登入入口網站，並瀏覽至主控您資料庫的伺服器上的 [設定] 索引標籤。在 [允許的 IP 位址] 區段底下，[目前的用戶端 IP 位址] 隨即顯示。對 **允許的 IP 位址** 按一下 [新增]，以允許此電腦存取伺服器。
+- **網路位址轉譯 (NAT)：**由於 NAT，您的電腦用來連接到 Azure SQL Database 的 IP 位址，可能會不同於您電腦 IP 組態設定中顯示的 IP 位址。若要檢視您電腦用來連接到 Azure 的 IP 位址，請登入入口網站，並在裝載您資料庫的伺服器上瀏覽至 [設定] 索引標籤。在 [允許的 IP 位址] 區段底下，[目前的用戶端 IP 位址] 隨即顯示。對 **允許的 IP 位址** 按一下 [新增]，以允許此電腦存取伺服器。
 
 - **允許清單的變更尚未生效：**Azure SQL Database 防火牆組態變更可能會延遲最多 5 分鐘才能生效。
 
@@ -135,13 +135,25 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
  - 改為針對您的用戶端電腦取得靜態 IP 位址，然後將 IP 位址新增為防火牆規則。
 
-## 另請參閱
+## 後續步驟
 
-[如何：使用 Azure 入口網站設定 Azure SQL Server 防火牆](sql-database-configure-firewall-settings.md)
+如需建立伺服器層級和資料庫層級防火牆規則的做法文章，請參閱：
 
-[SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
+- [使用 Azure 入口網站設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings.md)
+- [使用 T-SQL 設定 Azure SQL Database 伺服器層級和資料庫層級防火牆規則](sql-database-configure-firewall-settings-tsql.md)
+- [使用 PowerShell 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-powershell.md)
+- [使用 REST API 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-rest.md)
+
+如需建立資料庫的教學課程，請參閱[使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。若要了解如何瀏覽至資料庫，請參閱[管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
+
+
+
+## 其他資源
+
+- [保護您的資料庫](sql-database-security.md)
+- [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

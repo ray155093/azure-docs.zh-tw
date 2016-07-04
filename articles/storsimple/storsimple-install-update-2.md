@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/21/2016"
+   ms.date="06/21/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 2
@@ -91,4 +91,4 @@ Update 2 讓 Microsoft 從裝置提取其他診斷資訊。因此，當我們的
 
 深入了解 [Update 2 版](storsimple-update2-release-notes.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

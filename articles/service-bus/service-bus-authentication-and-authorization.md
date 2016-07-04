@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排驗證和授權 | Microsoft Azure"
-   description="共用存取簽章 (SAS) 驗證的概觀。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="服務匯流排驗證和授權 | Microsoft Azure"
+    description="共用存取簽章 (SAS) 驗證的概觀。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/22/2016"
+    ms.author="sethm" />
 
 # 服務匯流排驗證和授權
 
@@ -73,4 +73,4 @@ New-AzureSBNamespace <namespaceName> "<Region>” -CreateACSNamespace $false
 
 您可以在[作法：透過 OAuth 包裝通訊協定向 ACS 要求權杖](https://msdn.microsoft.com/library/hh674475.aspx)中找到 ACS 權杖的詳細資訊。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0622_2016-->

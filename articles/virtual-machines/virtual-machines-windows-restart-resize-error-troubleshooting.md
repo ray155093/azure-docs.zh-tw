@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="vm-windows"
    ms.devlang="na"
    ms.workload="required"
-   ms.date="05/12/2016"
+   ms.date="06/16/2016"
    ms.author="delhan"/>
 
 # 針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器的 Resource Manager 部署問題進行疑難排解
@@ -74,4 +74,8 @@
   2. 所有 VM 都停止後，將所需 VM 調整為較大的大小。
   3. 選取已調整大小的 VM，按一下 [啟動]，然後啟動每個已停止的 VM。
 
-<!---HONumber=AcomDC_0608_2016-->
+## 後續步驟
+
+如果您在 Azure 中建立新的 Windows VM 時遇到問題，請參閱 [Troubleshoot deployment issues with creating a new Windows virtual machine in Azure (針對在 Azure 中建立新 Windows 虛擬機器的部署問題進行疑難排解)](../virtual-machines/virtual-machines-windows-troubleshoot-deployment-new-vm.md)。
+
+<!---HONumber=AcomDC_0622_2016-->

@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="06/17/2016"
 	ms.author="larryfr"/>
 
 
-# 在以 Linux 為基礎的 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程 (預覽)
+# 在以 Linux 為基礎的 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程
 
 [AZURE.INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
@@ -64,9 +64,9 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。它可與 
 
 ##建立工作目錄
 
-Oozie 的工作所需資源必須儲存在同一個目錄中。此範例使用 **wasb:///tutorials/useoozie**。請使用以下命令建立此目錄，以及建立資料目錄，以保存此工作流程所建立的新 Hive 資料表：
+Oozie 的工作所需資源必須儲存在同一個目錄中。此範例使用 ****wasb:///tutorials/useoozie**。請使用以下命令建立此目錄，以及建立資料目錄，以保存此工作流程所建立的新 Hive 資料表：
 
-	hadoop fs -mkdir -p /tutorials/useoozie/data
+	hdfs dfs -mkdir -p /tutorials/useoozie/data
 
 > [AZURE.NOTE] `-p` 參數會使系統建立路徑中的所有目錄 (如果這些目錄尚未存在)。**data** 目錄將用來保存 **useooziewf.hql** 指令碼所使用的資料。
 
@@ -80,7 +80,7 @@ Oozie 的工作所需資源必須儲存在同一個目錄中。此範例使用 *
 
 由於此工作流程會使用 Sqoop 將資料匯出至 SQL Database，因此您必須提供一份要用來與 SQL Database 溝通的 JDBC 驅動程式複本。請使用以下命令將該複本複製到工作目錄：
 
-	hadoop fs -copyFromLocal /usr/share/java/sqljdbc_4.1/enu/sqljdbc4.jar /tutorials/useoozie/sqljdbc4.jar
+	hdfs dfs -copyFromLocal /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 
 如果工作流程使用了其他資源，例如含有 MapReduce 應用程式的 jar，則您也必須新增這些資源。
 
@@ -114,9 +114,9 @@ Oozie 的工作所需資源必須儲存在同一個目錄中。此範例使用 *
 
 2. 按 Ctrl-X，以結束編輯器。出現提示時，請選取 **Y** 儲存檔案，然後按 **Enter** 鍵以使用 **useooziewf.hql** 檔案名稱。
 
-3. 使用以下命令將 **useooziewf.hql** 複製到 **wasb:///tutorials/useoozie/useooziewf.hql**：
+3. 使用以下命令將 **useooziewf.hql** 複製到 ****wasb:///tutorials/useoozie/useooziewf.hql**：
 
-		hadoop fs -copyFromLocal useooziewf.hql /tutorials/useoozie/useooziewf.hql
+		hdfs dfs -copyFromLocal useooziewf.hql /tutorials/useoozie/useooziewf.hql
 
 	這些命令會將 **useooziewf.hql** 檔案儲存在與此叢集相關聯的 Azure 儲存體帳戶上，即使刪除叢集，此帳戶也仍會保留該檔案。這讓您得以刪除未使用的叢集以節省成本，同時又能維護工作和工作流程。
 
@@ -130,56 +130,56 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 1. 開啟 nano 編輯器後，請輸入下列項目做為檔案內容：
 
-		<workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-		  <start to = "RunHiveScript"/>
-		  <action name="RunHiveScript">
-		    <hive xmlns="uri:oozie:hive-action:0.2">
-		      <job-tracker>${jobTracker}</job-tracker>
-		      <name-node>${nameNode}</name-node>
-		      <configuration>
-		        <property>
-		          <name>mapred.job.queue.name</name>
-		          <value>${queueName}</value>
-		        </property>
-		      </configuration>
-		      <script>${hiveScript}</script>
-		      <param>hiveTableName=${hiveTableName}</param>
-		      <param>hiveDataFolder=${hiveDataFolder}</param>
-		    </hive>
-		    <ok to="RunSqoopExport"/>
-		    <error to="fail"/>
-		  </action>
-		  <action name="RunSqoopExport">
-		    <sqoop xmlns="uri:oozie:sqoop-action:0.2">
-		      <job-tracker>${jobTracker}</job-tracker>
-		      <name-node>${nameNode}</name-node>
-		      <configuration>
-		        <property>
-		          <name>mapred.compress.map.output</name>
-		          <value>true</value>
-		        </property>
-		      </configuration>
-		      <arg>export</arg>
-		      <arg>--connect</arg>
-		      <arg>${sqlDatabaseConnectionString}</arg>
-		      <arg>--table</arg>
-		      <arg>${sqlDatabaseTableName}</arg>
-		      <arg>--export-dir</arg>
-		      <arg>${hiveDataFolder}</arg>
-		      <arg>-m</arg>
-		      <arg>1</arg>
-		      <arg>--input-fields-terminated-by</arg>
-		      <arg>"\t"</arg>
-		      <archive>sqljdbc4.jar</archive>
-		      </sqoop>
-		    <ok to="end"/>
-		    <error to="fail"/>
-		  </action>
-		  <kill name="fail">
-		    <message>Job failed, error message[${wf:errorMessage(wf:lastErrorNode())}] </message>
-		  </kill>
-		  <end name="end"/>
-		</workflow-app>
+        <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
+            <start to = "RunHiveScript"/>
+            <action name="RunHiveScript">
+            <hive xmlns="uri:oozie:hive-action:0.2">
+                <job-tracker>${jobTracker}</job-tracker>
+                <name-node>${nameNode}</name-node>
+                <configuration>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+                </configuration>
+                <script>${hiveScript}</script>
+                <param>hiveTableName=${hiveTableName}</param>
+                <param>hiveDataFolder=${hiveDataFolder}</param>
+            </hive>
+            <ok to="RunSqoopExport"/>
+            <error to="fail"/>
+            </action>
+            <action name="RunSqoopExport">
+            <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+                <job-tracker>${jobTracker}</job-tracker>
+                <name-node>${nameNode}</name-node>
+                <configuration>
+                <property>
+                    <name>mapred.compress.map.output</name>
+                    <value>true</value>
+                </property>
+                </configuration>
+                <arg>export</arg>
+                <arg>--connect</arg>
+                <arg>${sqlDatabaseConnectionString}</arg>
+                <arg>--table</arg>
+                <arg>${sqlDatabaseTableName}</arg>
+                <arg>--export-dir</arg>
+                <arg>${hiveDataFolder}</arg>
+                <arg>-m</arg>
+                <arg>1</arg>
+                <arg>--input-fields-terminated-by</arg>
+                <arg>"\t"</arg>
+                <archive>sqljdbc41.jar</archive>
+                </sqoop>
+            <ok to="end"/>
+            <error to="fail"/>
+            </action>
+            <kill name="fail">
+            <message>Job failed, error message[${wf:errorMessage(wf:lastErrorNode())}] </message>
+            </kill>
+            <end name="end"/>
+        </workflow-app>
 
 	此工作流程中定義了兩個動作：
 
@@ -187,7 +187,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 	- **RunSqoopExport**：此動作會使用 Sqoop 將建立的資料從 Hive 指令碼匯出到 SQL Database。只有 **RunHiveScript** 動作成功時才會執行此動作。
 
-		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 2.1 版)。
+		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 2.1 版)。
 
 	請注意，工作流程有數個項目，例如 `${jobTracker}` 會替換為您在本文件稍後的工作定義中所使用的值。
 
@@ -195,40 +195,13 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 2. 依序按 Ctrl-X、**Y** 和 **Enter** 鍵以儲存檔案。
 
-3. 使用以下命令，將 **workflow.xml** 檔案複製到 **wasb:///tutorials/useoozie/workflow.xml**：
+3. 使用以下命令，將 **workflow.xml** 檔案複製到 ****wasb:///tutorials/useoozie/workflow.xml**：
 
-		hadoop fs -copyFromLocal workflow.xml wasb:///tutorials/useoozie/workflow.xml
+		hdfs dfs -copyFromLocal workflow.xml /tutorials/useoozie/workflow.xml
 
 ##建立資料庫
 
-下列步驟會建立要接收匯出資料的 Azure SQL Database。
-
-> [AZURE.IMPORTANT] 您必須先[安裝和設定 Azure CLI](../xplat-cli-install.md)，才能執行這些步驟。您可以在 HDInsight 叢集，或在本機工作站中，執行 CLI 安裝作業並依照下列步驟建立資料庫。
-
-1. 使用以下命令建立新的 Azure SQL Database 伺服器：
-
-        azure sql server create <adminLogin> <adminPassword> <region>
-
-    例如，`azure sql server create admin password "West US"`
-
-    命令完成時，您應該會收到類似這樣的回應：
-
-        info:    Executing command sql server create
-        + Creating SQL Server
-        data:    Server Name i1qwc540ts
-        info:    sql server create command OK
-
-    > [AZURE.IMPORTANT] 請記下此命令傳回的伺服器名稱 (在上述範例中為 **i1qwc540ts**)。 這是所建立的 SQL Database 伺服器的簡短名稱。完整的網域名稱 (FQDN) 為 **&lt;shortname&gt;.database.windows.net**。上述範例中，FQDN 會是 **i1qwc540ts.database.windows.net**。
-
-2. 使用以下命令，在 SQL Database 伺服器上建立名為 **oozietest** 的資料庫：
-
-        azure sql db create [options] <serverName> oozietest <adminLogin> <adminPassword>
-
-    完成時會傳回 [確定] 訊息。
-
-	> [AZURE.NOTE] 如果收到的錯誤指出您沒有存取權，您可能需要使用以下命令，將系統的 IP 位址加入至 SQL Database 防火牆：
-    >
-    > `sql firewallrule create [options] <serverName> <ruleName> <startIPAddress> <endIPAddress>`
+依照[建立 SQL Database](../sql-database/sql-database-get-started.md) 文件中的步驟，建立新的資料庫。建立資料庫時，請使用 __oozietest__ 做為資料庫名稱。並記下用於資料庫伺服器的名稱，因為下一節中需要用到該名稱。
 
 ###建立資料表
 
@@ -240,7 +213,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 4. 安裝 FreeTDS 後，請使用下列命令來連接至先前建立的 SQL Database 伺服器：
 
-        TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D oozietest
+        TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <sqlLogin> -P <sqlPassword> -p 1433 -D oozietest
 
     您將收到類似以下的輸出：
 
@@ -286,7 +259,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 		<name>fs.defaultFS</name>
 		<value>wasb://mycontainer@mystorageaccount.blob.core.windows.net</value>
 
-	儲存 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 值，後續的步驟中會使用該值。
+	儲存 ****wasb://mycontainer@mystorageaccount.blob.core.windows.net** 值，後續的步驟中會使用該值。
 
 2. 使用以下命令取得叢集前端節點的 FQDN。該項目將用於叢集的 JobTracker 位址。這稍後會在組態檔中用到：
 
@@ -363,7 +336,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 		  </property>
 		</configuration>
 
-	* 將 **wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體替換為您之前收到的值。
+	* 將 ****wasb://mycontainer@mystorageaccount.blob.core.windows.net** 的所有執行個體替換為您之前收到的值。
 
 	> [AZURE.WARNING] 您必須使用完整的 WASB 路徑，其中包含容器和儲存體帳戶做為路徑的一部分。使用簡短格式 (wasb:///) 會在工作開始時導致 RunHiveScript 動作失敗。
 
@@ -394,7 +367,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 		<name>oozie.base.url</name>
 		<value>http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie</value>
 
-	**http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie** 部分是要搭配 Oozie 命令使用的 URL。
+	****http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie** 部分是要搭配 Oozie 命令使用的 URL。
 
 2. 使用以下命令建立 URL 的環境變數，讓您不必為每個命令輸入該 URL：
 
@@ -481,7 +454,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 1. 建立 HDInsight 叢集的 SSH 通道。如需執行這些動作的相關資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
 
-2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 **https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
+2. 建立通道後，請在網頁瀏覽器中開啟 Ambari Web UI。Ambari 網站的 URI 是 ****https://CLUSTERNAME.azurehdinsight.net**。請將 **CLUSTERNAME** 替換為您以 Linux 為基礎的 HDInsight 叢集名稱。
 
 3. 在頁面左邊選取 [Oozie]，然後依序選取 [快速連結] 和 [Oozie Web UI]。
 
@@ -495,7 +468,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。它可讓
 
 	![工作資訊](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. 您可以在 [Job Info]\(工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
+6. 您可以在 [Job Info] (工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
 
 	* **工作記錄**：選取 [取得記錄] 按鈕，以取得工作的所有記錄，或使用 [輸入搜尋篩選條件] 欄位來篩選記錄
 
@@ -614,7 +587,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 1. 在 Oozie Web UI 中檢視工作。
 
-2. 如果發生錯誤或特定動作失敗，請選取該動作，以查看 [Error Message] \(錯誤訊息) 欄位是否有提供失敗的詳細資訊。
+2. 如果發生錯誤或特定動作失敗，請選取該動作，以查看 [Error Message] (錯誤訊息) 欄位是否有提供失敗的詳細資訊。
 
 3. 如果有提供，請使用動作的 URL 以檢視動作的更多詳細資料 (例如 JobTracker 記錄)。
 
@@ -658,13 +631,13 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 例如，您可以針對本文件中的工作使用下列步驟：
 
-1. 將 sqljdbc4.jar 檔複製到 /tutorials/useoozie 目錄：
+1. 將 sqljdbc4.1.jar 檔複製到 /tutorials/useoozie 目錄：
 
-		 hadoop fs -copyFromLocal /usr/share/java/sqljdbc_4.1/enu/sqljdbc4.jar /tutorials/useoozie/sqljdbc4.jar
+		 hadoop fs -copyFromLocal /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /tutorials/useoozie/sqljdbc41.jar
 
 2. 修改 workflow.xml，在 `</sqoop>` 上方用新的一行加入下列內容：
 
-		<archive>sqljdbc4.jar</archive>
+		<archive>sqljdbc41.jar</archive>
 
 ##後續步驟
 在本教學課程中，您已了解如何定義 Oozie 工作流程，以及如何執行 Oozie 工作。若要深入了解如何使用 HDInsight，請參閱下列文章：
@@ -722,4 +695,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

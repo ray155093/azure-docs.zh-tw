@@ -72,13 +72,13 @@
 
 + [將推播通知傳送給驗證的使用者](mobile-services-javascript-backend-windows-store-dotnet-push-notifications-app-users.md) <br/>了解如何利用標記，從行動服務將推播通知只傳送給已驗證的使用者。
 
-+ [將廣播通知傳送給訂閱者](../notification-hubs/notification-hubs-windows-store-dotnet-send-breaking-news.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
++ [將廣播通知傳送給訂閱者](../notification-hubs/notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
 
-+ [將跨平台通知傳送給訂閱者](../notification-hubs/notification-hubs-aspnet-cross-platform-notify-users.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
++ [將跨平台通知傳送給訂閱者](../notification-hubs/notification-hubs-aspnet-cross-platform-notification.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
 
 在下列主題中深入了解行動服務和通知中心：
 
-* [Azure 通知中樞 - 診斷指導方針](../notification-hubs/notification-hubs-diagnosing.md) <br/>了解如何疑難排解推播通知問題。
+* [Azure 通知中樞 - 診斷指導方針](../notification-hubs/notification-hubs-push-notification-fixer.md) <br/>了解如何疑難排解推播通知問題。
 
 * [開始使用驗證] <br/>了解如何使用行動服務驗證使用不同帳戶類型的應用程式使用者。
 
@@ -105,4 +105,4 @@
 [MobileServiceClient]: http://go.microsoft.com/fwlink/p/?LinkId=302030
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0622_2016-->

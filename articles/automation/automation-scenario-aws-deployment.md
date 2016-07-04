@@ -12,10 +12,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/13/2016"
+   ms.date="06/21/2016"
    ms.author="tiandert; bwren" />
 
-# Azure 自動化解決方案 - 佈建 AWS 虛擬機器 
+# Azure 自動化案例 - 佈建 AWS 虛擬機器 
 
 在本文中，我們會示範如何利用 Azure 自動化在 Amazon Web Service (AWS) 訂用帳戶中佈建虛擬機器，並且提供該 VM 的特定名稱 (AWS 稱為「標記」VM)。
 
@@ -30,14 +30,14 @@
 
 1. 開啟網頁瀏覽器，並瀏覽至 [PowerShell 資源庫](http://www.powershellgallery.com/packages/AWSPowerShell/)，然後按一下 [Deploy to Azure Automation](部署至 Azure 自動化) 按鈕。<br> ![AWS PS 模組匯入](./media/automation-scenario-aws-deployment/powershell-gallery-download-awsmodule.png)
 
-2. 您會被帶到 Azure 登入頁面，而在驗證之後，則會被帶到 Azure 入口網站，並出現下列刀鋒視窗。<br> ![匯入模組刀鋒視窗](./media/automation-scenario-aws-deployment/deploy-aws-powershell-module-parameters.png)
+2. 系統會帶您前往 Azure 登入頁面，而在驗證之後，則會帶您到 Azure 入口網站，並出現下列刀鋒視窗。<br> ![匯入模組刀鋒視窗](./media/automation-scenario-aws-deployment/deploy-aws-powershell-module-parameters.png)
 
 3. 從 [資源群組] 下拉式清單中選取資源群組，並在 [參數] 刀鋒視窗上提供下列資訊：
    * 從 [新增或現有自動化帳戶 (字串)] 下拉式清單中，選取 [現有]。  
    * 在 [自動化帳戶名稱 (字串)] 方塊中，輸入包括 AWS 訂用帳戶認證的確切自動化帳戶名稱。例如，如果您已建立名為 **AWSAutomation** 的專用帳戶，則這是您在此方塊中輸入的名稱。
    * 從 [自動化帳戶位置] 下拉式清單中，選取適當的區域。
 
-4. 完成輸入所需的資訊時，請按一下 [建立]。
+4. 輸入完所需的資訊後，請按一下 [建立]。
 
     >[AZURE.NOTE] 將 PowerShell 模組匯入 Azure 自動化時，也會擷取 Cmdlet，而且在模組完全完成匯入並擷取 Cmdlet 之前不會出現這些活動。此程序需要數分鐘的時間。<br>
 5. 在 Azure 入口網站中，開啟步驟 3 中所參考的自動化帳戶。
@@ -46,7 +46,7 @@
 
 ## 建立 AWS 部署 VM Runbook
 
-部署 AWS PowerShell 模組之後，我們現在可以製作 Runbook，以使用 PowerShell 指令碼自動化在 AWS 中佈建虛擬機器。下面的步驟將示範如何在 Azure 自動化中利用原生 PowerShell 指令碼。
+部署 AWS PowerShell 模組之後，我們現在可以製作 Runbook，以使用 PowerShell 指令碼自動在 AWS 中佈建虛擬機器。下面的步驟將示範如何在 Azure 自動化中利用原生 PowerShell 指令碼。
 
 >[AZURE.NOTE] 如需進一步選項以及此指令碼的相關資訊，請瀏覽 [PowerShell 資源庫](https://www.powershellgallery.com/packages/New-AwsVM/DisplayScript)。
 
@@ -72,14 +72,14 @@
 		#Sample to get the AWS VM available images
 		#Please provide the path where you have downloaded the AWS PowerShell module
 		Import-Module AWSPowerShell
-		$AWSRegion = "us-west-2"
+		$AwsRegion = "us-west-2"
 		$AwsCred = Get-Credential
 		$AwsAccessKeyId = $AwsCred.UserName
 		$AwsSecretKey = $AwsCred.GetNetworkCredential().Password
 
 		# Set up the environment to access AWS
-		Set-AWSCredentials -AccessKey $AwsAccessKeyId -SecretKey $AwsSecretKey -StoreAs AWSProfile
-		Set-DefaultAWSRegion -Region $AWSRegion
+		Set-AwsCredentials -AccessKey $AwsAccessKeyId -SecretKey $AwsSecretKey -StoreAs AWSProfile
+		Set-DefaultAWSRegion -Region $AwsRegion
 
 		Get-EC2ImageByName -ProfileName AWSProfile
 會傳回下列輸出：<br> ![取得 AWS 映像](./media/automation-scenario-aws-deployment/powershell-ise-output.png)  
@@ -96,7 +96,7 @@
    -  Runbook 設定 [記錄和追蹤] 下的 [記錄詳細資訊記錄] 和選擇性的 [記錄進度記錄] 已設為 [開啟]。<br> ![Runbook 記錄和追蹤](./media/automation-scenario-aws-deployment/runbook-settings-logging-and-tracing.png)
 
 1. 我們想要啟動 Runbook，因此按一下 [開始]，然後在 [啟動 Runbook] 刀鋒視窗開啟時按一下 [確定]。
-2. 在 [啟動 Runbook] 刀鋒視窗上，提供 **VMname**。接受您稍早在指令碼中預先設定之其他參數的預設值。按一下 [確定] 啟動 Runbook 工作。<br> ![啟動 New-AwsVM Runbook](./media/automation-scenario-aws-deployment/runbook-start-job-parameters.png)
+2. 在 [啟動 Runbook] 刀鋒視窗上，提供 **VMname**。接受您稍早已在指令碼中為其他參數預先設定的預設值。按一下 [確定] 啟動 Runbook 工作。<br> ![啟動 New-AwsVM Runbook](./media/automation-scenario-aws-deployment/runbook-start-job-parameters.png)
 3. 工作窗格會開啟我們剛剛建立的 Runbook 工作。關閉此窗格。
 4. 從 Runbook 工作刀鋒視窗中選取 [所有記錄檔] 圖格 ，即可檢視工作進度以及檢視輸出**資料流**。<br> ![串流輸出](./media/automation-scenario-aws-deployment/runbook-job-streams-output.png)
 5. 若要確認正在佈建 VM，請登入 AWS 管理主控台 (如果目前尚未登入)。<br> ![AWS 主控台部署 VM](./media/automation-scenario-aws-deployment/aws-instances-status.png)
@@ -107,4 +107,4 @@
 -	若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 -	如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

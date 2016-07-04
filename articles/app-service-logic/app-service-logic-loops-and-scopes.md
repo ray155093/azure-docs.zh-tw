@@ -28,10 +28,16 @@ Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動
 
 ```
 {
+    "email_filter": {
+        "type": "query",
+        "inputs": {
+            "from": "@triggerBody()['emails']",
+            "where": "@contains(item()['email'], 'microsoft.com')
+        }
+    },
     "forEach_email": {
         "type": "foreach",
-        "foreach": "@triggerBody()['emails']",
-        "expression": "@contains(item(), 'microsoft.com')",
+        "foreach": "@body('email_filter')",
         "actions": {
             "send_email": {
                 "type": "ApiConnection",
@@ -48,6 +54,9 @@ Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動
                 }
                 }
             }
+        },
+        "runAfter":{
+            "email_filter": [ "Succeeded" ]
         }
     }
 }
@@ -132,4 +141,4 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
 }
 ```
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

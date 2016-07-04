@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="03/08/2016"
+	ms.date="06/21/2016"
 	ms.author="pratshar"/>
 
 #  設計用於災害復原的網路基礎結構
@@ -179,4 +179,4 @@ Woodgrove 決定將來自 IP 位址範圍 (172.16.1.0/24, 172.16.2.0/24) 的 IP 
 
 [了解](site-recovery-network-mapping.md)當 VMM 伺服器用來管理主要網站時，「網站復原」如何對應來源和目標網路。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -70,7 +70,7 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 
     ![裝置到雲端設定][img-eventhubcompatible]
 
-> [AZURE.NOTE] 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。比方說，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
+> [AZURE.NOTE] 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。比方說，如果您的事件中樞相容端點為 ****sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，主機名稱會是 iothub-ns-myiothub-1234.servicebus.windows.net，而命名空間會是 iothub-ns-myiothub-1234。
 
 然後，您可以使用具有 **ServiceConnect** 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 
@@ -491,7 +491,7 @@ IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲�
 
 #### 通知 IoT 中樞已完成檔案上傳
 
-裝置會負責使用 Azure 儲存體 SDK 將檔案上傳至儲存體。上傳完成後，裝置會將 POST 傳送至 IoT 中樞的 `{iot hub}.azure-devices.net/devices/{deviceId}/messages/files/notifications/{correlationId}`，使用從初始 GET 收到的相互關聯識別碼。
+裝置會負責使用 Azure 儲存體 SDK 將檔案上傳至儲存體。上傳完成後，裝置會使用從初始 GET 收到的相互關聯識別碼，將 POST 傳送至 `{iot hub}.azure-devices.net/devices/{deviceId}/files/notifications/{correlationId}` 上的 IoT 中樞。
 
 #### 檔案上傳通知
 
@@ -624,4 +624,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-mqtt-support]: iot-hub-mqtt-support.md
 [lnk-throttle-blog]: https://azure.microsoft.com/blog/iot-hub-throttling-and-you/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

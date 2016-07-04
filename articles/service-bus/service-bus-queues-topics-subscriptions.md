@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排佇列、主題和訂用帳戶 | Microsoft Azure"
-   description="服務匯流排訊息實體的概觀。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="服務匯流排佇列、主題和訂用帳戶 | Microsoft Azure"
+    description="服務匯流排訊息實體的概觀。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="tysonn" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/20/2016"
+    ms.author="sethm" />
 
 # 服務匯流排佇列、主題和訂用帳戶
 
@@ -75,15 +75,15 @@ while ((message = myQueueClient.Receive(new TimeSpan(hours: 0, minutes: 0, secon
 
 在 [PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx) 模式中，接收作業會變成兩階段作業，因此可以支援無法容許遺漏訊息的應用程式。當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可透過呼叫所接收訊息上的 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx)，來完成接收程序的第二個階段。當服務匯流排看到 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx) 呼叫時，它會將訊息標示為已取用。
 
-如果應用程式因為某些原因無法處理訊息，它可以呼叫所接收訊息上的 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) 方法 (而不是 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx))。這可讓服務匯流排將訊息解除鎖定，讓此訊息可被相同的取用者或其他競爭取用取再次接收。其次，鎖定有相關聯的逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會將訊息解除鎖定並且讓訊息可以被重新接收。
+如果應用程式因為某些原因無法處理訊息，它可以呼叫所接收訊息上的 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) 方法 (而不是 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx))。這可讓服務匯流排將訊息解除鎖定，讓此訊息可被相同的取用者或其他競爭取用取再次接收。其次，鎖定有相關聯的逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會將訊息解除鎖定，並讓訊息可以被重新接收 (根據預設，基本上會執行 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) 作業)。
 
 請注意，如果應用程式在處理訊息之後，尚未發出 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx) 要求時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。這通常稱為「至少處理一次」；也就是說，每個訊息至少會被處理一次。不過，但在特定狀況下，可能會重新傳遞相同訊息。如果此案例不容許重複處理，則應用程式中需要額外的邏輯才能根據訊息的 **MessageId** 屬性偵測可達成的重複項目，而該屬性在所有傳遞嘗試中維持不變。這就是所謂的「剛好一次」處理。
 
-如需詳細資訊以及如何建立訊息和對佇列來回傳送訊息的工作範例，請參閱[服務匯流排代理傳訊 .NET 教學課程](https://msdn.microsoft.com/library/azure/hh367512.aspx)。
+如需詳細資訊以及如何建立訊息和對佇列來回傳送訊息的工作範例，請參閱[服務匯流排代理傳訊 .NET 教學課程](service-bus-brokered-tutorial-dotnet.md)。
 
 ## 主題和訂用帳戶
 
-有別於佇列，佇列中的每個訊息只會由單一取用者處理，主題和訂用帳戶採用發佈/訂用帳戶模式，提供一對多的通訊形式。適合用於相應增加為非常大量的收件者，每個發佈的訊息都會提供給每個在主題註冊的訂用帳戶。根據可依每個訂用帳戶設定的篩選規則，訊息會傳送至主題並傳遞給一或多個相關聯的訂用帳戶。訂用帳戶可以使用其他篩選器來限制他們想要接收的訊息。訊息會以其傳送至佇列的相同方式傳送至主題，但不會從主題直接接收訊息。反而會從訂用帳戶接收。主題訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。訊息會以從佇列接收的相同方式從訂用帳戶進行接收。
+有別於佇列，佇列中的每個訊息只會由單一取用者處理，「主題」和「訂用帳戶」採用「發佈/訂閱」模式，提供一對多的通訊形式。適合用於相應增加為非常大量的收件者，每個發佈的訊息都會提供給每個在主題註冊的訂用帳戶。根據可依每個訂用帳戶設定的篩選規則，訊息會傳送至主題並傳遞給一或多個相關聯的訂用帳戶。訂用帳戶可以使用其他篩選器來限制他們想要接收的訊息。訊息會以其傳送至佇列的相同方式傳送至主題，但不會從主題直接接收訊息。反而會從訂用帳戶接收。主題訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。訊息會以從佇列接收的相同方式從訂用帳戶進行接收。
 
 藉由比較，佇列的訊息傳送功能會直接對應至主題，而其訊息接收功能會對應至訂用帳戶。除此之外，這表示訂用帳戶支援本節前面所述有關佇列的相同模式︰競爭取用者、時脈解離、負載調節和負載平衡。
 
@@ -154,11 +154,11 @@ namespaceManager.CreateSubscription("IssueTrackingTopic", "Dashboard", new SqlFi
 
 採用此訂用帳戶篩選器，只有 `StoreName` 屬性設定為 `Store1` 的訊息會複製到 `Dashboard` 訂用帳戶的虛擬佇列。
 
-如需可能篩選值的詳細資訊，請參閱 [SqlFilter](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx) 和 [SqlRuleAction](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlruleaction.aspx) 類別的文件。此外，請參閱[代理傳訊︰進階篩選器](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749)範例。
+如需可能篩選值的詳細資訊，請參閱 [SqlFilter](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx) 和 [SqlRuleAction](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlruleaction.aspx) 類別的文件。此外，請參閱 [Brokered Messaging: Advanced Filters (代理傳訊︰進階篩選器)](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749) 和[主題篩選器](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters)範例。
 
 ## 事件中樞
 
-[事件中樞](https://azure.microsoft.com/services/event-hubs/)是事件處理服務，用於提供大規模進入 Azure 的事件和遙測入口，並具備低延遲和高可靠性等特性。當搭配其他下游服務時，該服務特別適合用於應用程式檢測、使用者經驗或工作流程處理及物聯網 (IoT) 案例。
+[事件中樞](https://azure.microsoft.com/services/event-hubs/)是事件處理服務，用於提供大規模進入 Azure 的事件和遙測入口，並具備低延遲和高可靠性等特性。與其他下游服務搭配使用時，該服務特別適合用於應用程式檢測、使用者體驗或工作流程處理及[物聯網 (IoT)](https://azure.microsoft.com/services/iot-hub/) 案例。
 
 事件中樞是訊息串流結構，雖然類似於佇列和主題，但仍有非常不同的特性。例如，事件中樞不提供訊息 TTL、寄不出的信件、交易或通知，因為這些都是傳統代理傳訊功能，而不是串流功能。事件中樞會提供其他串流相關功能，例如資料分割、保留順序和串流重播。
 
@@ -171,6 +171,7 @@ namespaceManager.CreateSubscription("IssueTrackingTopic", "Dashboard", new SqlFi
 - [服務匯流排代理傳訊 REST 教學課程](service-bus-brokered-tutorial-rest.md)
 - [事件中樞文件](https://azure.microsoft.com/documentation/services/event-hubs/)
 - [事件中樞開發人員指南](../event-hubs/event-hubs-programming-guide.md)
-- [代理傳訊︰進階篩選器](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749)
+- [主題篩選器範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters)
+- [代理傳訊︰進階篩選器範例](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0622_2016-->

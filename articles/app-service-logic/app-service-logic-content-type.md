@@ -26,7 +26,7 @@
 
 ### Application/json
 
-工作流程引擎依賴來自 HTTP 呼叫的 `Content-Type` 標頭來決定適當的處理。內容類型為 `application/json` 的任何要求都可以 JSON 物件形式來儲存並加以處理。此外，JSON 內容預設就能剖析，不需要任何轉換。因此 content-type 標頭為 `application/json ` 的要求如下所示︰
+工作流程引擎依賴來自 HTTP 呼叫的 `Content-Type` 標頭來決定適當的處理。內容類型為 `application/json` 的任何要求都會以 JSON 物件的形式儲存並加以處理。此外，JSON 內容預設就能剖析，不需要任何轉換。因此 content-type 標頭為 `application/json ` 的要求如下所示︰
 
 ```
 {
@@ -93,4 +93,4 @@ CustomerName=Frank&Address=123+Avenue
 
 其中 `$content` 是編碼為 Base64 字串的承載，可保留所有資料。由於目前沒有任何適用於 form-data 的原生函數，我仍然可以透過使用類似 `@string(body('formdataAction'))` 的函數手動存取資料，在工作流程內使用此資料。如果我希望我的連出要求也具有 `application/x-www-url-formencoded` content-type 標頭，我可以直接將它新增到動作本文，而不需使用任何像是 `@body('formdataAction')` 的轉換。不過，唯有當 body 是 `body` 輸入中的唯一參數時，這才能運作。如果您嘗試在 `application/json` 要求內執行 `@body('formdataAction')`，將會發生執行階段錯誤，因為它將傳送編碼的內文。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->
