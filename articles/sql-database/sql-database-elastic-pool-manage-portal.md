@@ -115,7 +115,7 @@
 
     圖表會以動態方式顯示該度量的資源使用量，協助您選擇閾值。
 
-4. 選擇 [條件] (大於、小於等) 和 [臨界值]。
+4. 選擇 [條件] \(大於、小於等) 和 [臨界值]。
 5. 按一下 [確定]。
 
 
@@ -161,7 +161,7 @@
 
 3. 在 [設定集區] 刀鋒視窗中，按一下 [儲存]。
 
-    ![按一下 [Save] (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
+    ![按一下 [Save] \ (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## 變更集區的效能設定
 

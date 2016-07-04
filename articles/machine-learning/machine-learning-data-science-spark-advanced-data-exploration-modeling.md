@@ -1164,7 +1164,7 @@ R-sqr = 0.733445485802
 
 本節的程式碼顯示如何訓練評估及儲存漸層停駐提升樹狀結構模型，可預測 NYC 計程車車程資料的小費金額。
 
-****訓練及評估**
+**訓練及評估**
 
 	#PREDICT TIP AMOUNTS USING GRADIENT BOOSTING TREES
 

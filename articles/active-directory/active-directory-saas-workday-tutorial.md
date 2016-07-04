@@ -176,7 +176,7 @@
 
 	a.啟用 [x509 私密金鑰組]。
 
-	b.在 [服務提供者識別碼] 文字方塊中，輸入 ****http://www.workday.com**。
+	b.在 [服務提供者識別碼] 文字方塊中，輸入 **http://www.workday.com**。
 
 	c.選取 [啟用 SP 啟始的 SAML 驗證]。
 
@@ -214,7 +214,7 @@
 
 1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  在 **Workday ** 應用程式整合頁面中，按一下 [指派使用者]。
+2.  在 **Workday** 應用程式整合頁面中，按一下 [指派使用者]。
 
     ![指派使用者](./media/active-directory-saas-workday-tutorial/IC782935.png "指派使用者")
 

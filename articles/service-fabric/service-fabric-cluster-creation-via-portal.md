@@ -176,22 +176,26 @@ Connect-serviceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 -KeepAlive
 
 1. 將封裝複製到您之前連線到的叢集。
 
-    ```powershell
+    ```
+    powershell
     $applicationPath = "C:\VS2015\WordCount\WordCount\pkg\Debug"
     ```
 
-    ```powershell
+    ```
+    powershell
     Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $applicationPath -ApplicationPackagePathInImageStore "WordCount" -ImageStoreConnectionString fabric:ImageStore
     ```
 2. 向 Service Fabric 註冊您的應用程式類型。
 
-    ```powershell
+    ```
+    powershell
     Register-ServiceFabricApplicationType -ApplicationPathInImageStore "WordCount"
     ```
 
 3. 針對您剛註冊的應用程式類型來建立新的執行個體。
 
-    ```powershell
+    ```
+    powershell
     New-ServiceFabricApplication -ApplicationName fabric:/WordCount -ApplicationTypeName WordCount -ApplicationTypeVersion 1.0.0.0
     ```
 

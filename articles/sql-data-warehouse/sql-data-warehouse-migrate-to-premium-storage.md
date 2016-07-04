@@ -150,6 +150,6 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 
 
 <!--Other Web references-->
-[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/zh-TW/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
+[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 
 <!---HONumber=AcomDC_0622_2016-->

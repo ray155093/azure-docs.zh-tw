@@ -339,7 +339,7 @@ Microsoft Azure 是 Microsoft 所推出的雲端服務平台，可提供各式�
 
 * [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南 (本文)][planning-guide]
 * [SAP NetWeaver on Azure virtual machines (VMs) - Deployment Guide (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南)][deployment-guide]
-* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
+* [SAP NetWeaver on Azure virtual machines (VMs) - DBMS Deployment Guide][dbms-guide] \ (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南)
 
 > [AZURE.IMPORTANT] 請盡可能地使用參考的 SAP 安裝指南連結 (如需參考 InstGuide-01，請參閱 <http://service.sap.com/instguides>)。由於本文只涵蓋 Microsoft Azure 虛擬機器中所安裝之 SAP NetWeaver 系統的特定工作，因此如需必要條件和安裝程序，請務必仔細閱讀 SAP NetWeaver 安裝指南。
 
@@ -939,7 +939,7 @@ __範本__
 #### VM 映像的部署
 若要從內部部署網路上傳現有的 VM 或 VHD 以便用作 Azure VM 映像，這類 VM 或 VHD 必須符合本文的[準備使用客戶特定的映像為 SAP 部署 VM][planning-guide-5.2.2] 一章中所列的需求。
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] \ (適用於 Linux)
 * 使用 _Login-AzureRmAccount_ 登入您的訂用帳戶
 * 使用 _Set-AzureRmContext_ 和參數 SubscriptionId 或 SubscriptionName 設定您的訂用帳戶內容 - 請參閱 <https://msdn.microsoft.com/library/mt619263.aspx>
 * 使用 _Add-AzureRmVhd_ 將 VHD 上傳至 Azure 儲存體帳戶 - 請參閱 <https://msdn.microsoft.com/library/mt603554.aspx>
@@ -948,7 +948,7 @@ __範本__
 
 __Azure CLI__
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] \ (適用於 Linux)
 * 使用 _azure config mode arm_ 切換至 Azure Resource Manager 模式
 * 使用 _azure login_ 登入您的訂用帳戶
 * 使用 _azure account set `<subscription name or id`>_ 選取您的訂用帳戶
@@ -957,7 +957,7 @@ __Azure CLI__
 
 __範本__
 
-* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] (適用於 Linux)
+* 在 Windows 上使用 _sysprep_ 或在 Linux 上使用 _waagent -deprovision_ 將您的 VM 一般化 - 請參閱 [Sysprep 技術參考](https://technet.microsoft.com/library/cc766049.aspx) (適用於 Windows) 或[如何擷取 Linux 虛擬機器作為 Resource Manager 範本使用][virtual-machines-linux-capture-image-resource-manager-capture] \ (適用於 Linux)
 * 使用 Powershell 或 Azure CLI 上傳 VHD
 * 使用參考映像 VHD 的 JSON 範本部署 VM，如[此 JSON 範本範例](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-from-user-image/azuredeploy.json)所示。
 
@@ -1490,13 +1490,13 @@ azure vm disk attach-new --resource-group $rgName --vm-name SAPERPDemo --size-in
 | 服務 | 連接埠名稱 | 範例 `<nn`> = 01 | 預設範圍 (最小值-最大值) | 註解 |
 |---------|-----------|-------------------|-------------------------|---------|
 | 發送器 | sapdp`<nn>` 請參閱 * | 3201 | 3200 - 3299 | SAP 發送器，供 Windows 和 Java 的 SAP GUI 使用 |
-| 訊息伺服器 | sapms`<sid`> 請參閱 ** | 3600 | 任意 sapms`<anySID`> | sid = SAP 系統 ID |
+| 訊息伺服器 | sapms`<sid`> 請參閱 * | 3600 | 任意 sapms`<anySID`> | sid = SAP 系統 ID |
 | 閘道器 | sapgw`<nn`> 請參閱 * | 3301 | 任意 | SAP 閘道，用於 CPIC 和 RFC 通訊 |
 | SAP 路由器 | sapdp99 | 3299 | 任意 | 安裝後，只能將 /etc/services 中的 CI (中央執行個體) 服務名稱重新指派為任意值。 |
 
 **) nn = SAP 執行個體號碼
 
-****) sid = SAP 系統 ID
+**) sid = SAP 系統 ID
 
 如需不同 SAP 產品或 SAP 產品所提供的服務所需之連接埠的詳細資訊，請參閱 <http://scn.sap.com/docs/DOC-17124>。透過這篇文章，您應該能夠在 VPN 裝置中，開啟特定 SAP 產品和案例所需的專用連接埠。
 
@@ -1591,8 +1591,8 @@ ___
 
 作法：
 
-* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain] (設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
-* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] (ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details] (詳細資料) -> [Utilities(M)] (公用程式(M)) -> [Authorization Test] (授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
+* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain] \ (設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
+* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] \ (ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details] \ (詳細資料) -> [Utilities(M)] \ (公用程式(M)) -> [Authorization Test] \ (授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
  
 ![網域控制站上的交易 STMS 初始畫面][planning-guide-figure-2300]
 
@@ -1600,7 +1600,7 @@ ___
 
 將 SAP 系統加入傳輸網域的順序如下所示︰
 
-* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration] (其他組態)，並繼續進行 [Include System in Domain] (將系統加入網域)。將網域控制站指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
+* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration] \ (其他組態)，並繼續進行 [Include System in Domain] \ (將系統加入網域)。將網域控制站指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
 * 基於安全性理由，您必須接著回到網域控制站確認您的要求。針對等候中系統，選擇 [系統概觀] 和 [核准]。然後確認提示，設定會隨即發佈。
 
 此 SAP 系統現在包含有關傳輸網域中所有其他 SAP 系統的必要資訊。同時會將新 SAP 系統的位址資料傳送至所有其他 SAP 系統，並在傳輸控制程式的傳輸設定檔中輸入 SAP 系統。檢查網域之傳輸目錄的 RFC 和存取是否運作正常。
@@ -1611,7 +1611,7 @@ ___
 
 * 確定您在內部部署的 STMS 已正確設定。
 * 確定您在 Azure 上的虛擬機器可解析傳輸網域控制站的主機名稱，反之亦然。
-* 呼叫交易 STMS -> [Other Configuration] (其他組態) -> [Include System in Domain] (將系統加入網域)。
+* 呼叫交易 STMS -> [Other Configuration] \ (其他組態) -> [Include System in Domain] \ (將系統加入網域)。
 * 確認內部部署 TMS 系統已連線。
 * 像往常一樣，設定傳輸路由、群組和層級。
 

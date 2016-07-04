@@ -545,7 +545,7 @@
 		    }
 		}
 
- 	輸出位置是 **adftutorial/customactivityoutput/**，而輸出檔案名稱是 yyyy-MM-dd-HH.txt ，其中 yyyy-MM-dd-HH 是產生配量的年、月、日、時。如需詳細資訊，請參閱[開發人員參考資料][adf-developer-reference]。
+ 	輸出位置是 **adftutorial/customactivityoutput/**，而輸出檔案名稱是 yyyy-MM-dd-HH.txt ，其中 yyyy-MM-dd-HH 是產生配量的年、月、日、時。如需詳細資訊，請參閱[開發人員參考資料] [adf-developer-reference]。
 
 	為每個輸入配量產生輸出 blob/檔案。以下是為每個配量命名輸出檔案的方式。所有的輸出檔案會產生於一個輸出資料夾：**adftutorial\\customactivityoutput**。
 
@@ -565,7 +565,7 @@
 
 ### 建立並執行使用自訂活動的管線
 
-1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
+1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] \(省略符號) 就可看到。
 2. 使用下列 JSON 指令碼取代右窗格中的 JSON。 
 
 		{

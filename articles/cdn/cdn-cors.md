@@ -41,7 +41,7 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
  
 ## 萬用字元或單一來源的狀況
 
-當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
+當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
  
 如果在您的來源上設定 CORS 之前已經向 CDN 發出要求，您必須清除您端點內容上的內容，以重新載入包含 **Access-Control-Allow-Origin** 標頭的內容。
  

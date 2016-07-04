@@ -21,7 +21,7 @@
 
 ## Azure Service Management 與 Azure Resource Manager 中的 WinRM
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型
 
 * 如需 Azure Resource Manager 的概觀，請參閱[本文章](../resource-group-overview.md)
 * 如需 Azure Service Management 與 Azure Resource Manager 之間的差異性，請參閱[本文章](../resource-manager-deployment-model.md)

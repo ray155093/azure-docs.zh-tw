@@ -106,10 +106,10 @@
 
     4.  在 Azure 傳統入口網站中的 [在 TalentLMS 設定單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [遠端登入 URL] 文字方塊中。
     5.  在 Azure 傳統入口網站中的 [在 TalentLMS 設定單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [遠端登出 URL] 文字方塊中。
-    6.  在 [TargetedID] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name**。
-7.  在 [名字] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
-8.  在 [姓氏] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
-9.  在 [電子郵件] 文字方塊中，輸入 ****http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
+    6.  在 [TargetedID] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name**。
+7.  在 [名字] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
+8.  在 [姓氏] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
+9.  在 [電子郵件] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
 10. 按一下 [儲存]。
 
 9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
