@@ -68,6 +68,10 @@ IIS 伺服器的狀態監視器不需要您使用 Application Insights SDK 重�
 
 按一下小型 [x] 以摺疊樹狀子目錄。
 
+將對應釘選至[儀表板](app-insights-dashboards.md) (對應將可在其中完整運作功能)。
+
+[深入了解](app-insights-app-map.md)。
+
 ## <a name="diagnosis"></a> 診斷 Web 伺服器中的相依性效能問題
 
 若要評估伺服器上的要求效能：
@@ -150,4 +154,4 @@ IIS 伺服器的狀態監視器不需要您使用 Application Insights SDK 重�
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

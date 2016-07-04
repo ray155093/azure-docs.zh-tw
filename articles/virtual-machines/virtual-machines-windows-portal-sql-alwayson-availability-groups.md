@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/09/2016"
+	ms.date="06/12/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM 中自動設定 Always On 可用性群組 - Resource Manager
@@ -27,7 +27,6 @@
 <br/>
 
 此端對端教學課程將示範如何使用 Azure Resource Manager 虛擬機器建立 SQL Server 可用性群組。本教學課程使用 Azure 刀鋒視窗來設定範本。逐步進行本教學課程時，您將在入口網站中檢閱預設設定、輸入必要的設定，以及更新刀鋒視窗。
-
 
 在本教學課程結束時，您 Azure 中的 SQL Server 可用性群組解決方案將包含下列項目：
 
@@ -66,6 +65,9 @@
 - 監視 Azure 建立整個環境的情形
 
 - 連接至其中一個網域控制站，再連接至其中一個 SQL Server
+
+[AZURE.INCLUDE [availability-group-template](../../includes/virtual-machines-windows-portal-sql-alwayson-ag-template.md)]
+
 
 ## 從資源庫佈建叢集
 
@@ -111,7 +113,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [SQL Server 子網路名稱] 是裝載 SQL Server 和檔案共用見證之虛擬網路中某個部分的名稱。本教學課程使用 **subnet-2**。這個子網路將會使用位址首碼 **10.0.1.0/26**。
 
-若要深入了解 Azure 中的虛擬網路，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
+若要深入了解 Azure 中的虛擬網路，請參閱[Virtual Network Overview (虛擬網路概觀)](../virtual-network/virtual-networks-overview.md)。
 
 [網域和網路設定] 看起來應該像這樣：
 
@@ -141,15 +143,15 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 在 [VM 大小，儲存體設定] 上，選擇 SQL Server 虛擬機器大小，並檢閱其他設定。
 
-- [SQL Server 虛擬機器大小] 是兩個 SQL Server 的 Azure 虛擬機器大小。選擇適合您的工作負載的虛擬機器大小。如果您要為教學課程建置此環境，請使用 **DS2**。針對生產工作負載，請選擇可支援工作負載的虛擬機器大小。許多生產環境工作負載將需要 **DS4** 或更大。此範本會建置兩個此大小的虛擬機器，並在每個虛擬機器上安裝 SQL Server。如需詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
+- [SQL Server 虛擬機器大小] 是兩個 SQL Server 的 Azure 虛擬機器大小。選擇適合您的工作負載的虛擬機器大小。如果您要為教學課程建置此環境，請使用 **DS2**。針對生產工作負載，請選擇可支援工作負載的虛擬機器大小。許多生產環境工作負載將需要 **DS4** 或更大。此範本會建置兩個此大小的虛擬機器，並在每個虛擬機器上安裝 SQL Server。如需詳細資訊，請參閱 [Sizes for virtual machines (虛擬機器的大小)](virtual-machines-linux-sizes.md)。
 
->[AZURE.NOTE]Azure 會安裝 SQL Server Enterprise 版。成本根據版本和虛擬機器大小而定。如需目前成本的詳細資訊，請參閱[虛擬機器價格](http://azure.microsoft.com/pricing/details/virtual-machines/#Sql)。
+>[AZURE.NOTE]Azure 會安裝 SQL Server Enterprise 版。成本根據版本和虛擬機器大小而定。如需目前成本的詳細資訊，請參閱[虛擬機器定價](http://azure.microsoft.com/pricing/details/virtual-machines/#Sql)。
 
 - [網域控制站虛擬機器大小] 是網域控制站的虛擬機器大小。本教學課程使用 **D2**。
 
 - [檔案共用見證虛擬機器大小] 是檔案共用見證的虛擬機器大小。本教學課程使用 **A1**。
 
-- [SQL 儲存體帳戶] 是存放 SQL Server 資料和作業系統磁碟的儲存體帳戶名稱。本教學課程使用 **alwaysonsql01**。
+- [SQL 儲存體帳戶] 是存放 SQL Server 資料和作業系統磁碟的儲存體帳戶的名稱。本教學課程使用 **alwaysonsql01**。
 
 - [DC 儲存體帳戶] 是網域控制站的儲存體帳戶名稱。本教學課程使用 **alwaysondc01**。
 
@@ -157,11 +159,11 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [儲存體最佳化] 會根據工作負載類型，設定 SQL Server 虛擬機器的特定儲存體組態設定。在此案例中，所有 SQL Server 都使用進階儲存體，且 Azure 磁碟主機快取設為唯讀。此外，有下列三種設定供您選擇，以最佳化 SQL Server 的工作負載設定：
 
-    - [一般工作負載] 不會設定任何特定的組態設定。
+    - [一般工作負載] 不會設定任何特定的組態設定
 
-    - [交易式處理] 會設定追蹤旗標 1117 和 1118。
+    - [交易式處理] 會設定追蹤旗標 1117 和 1118
 
-    - [資料倉儲] 會設定追蹤旗標 1117 和 610。
+    - [資料倉儲] 會設定追蹤旗標 1117 和 610
 
 本教學課程使用 [一般工作負載]。
 
@@ -187,7 +189,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [Windows Server 備份和存放集區](http://technet.microsoft.com/library/dn390929.aspx)
 
-如需有關 SQL Server 組態最佳做法的詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。
+如需有關 SQL Server 組態最佳做法的詳細資訊，請參閱 [Performance best practices for SQL Server in Azure virtual machines (Azure 虛擬機器中的 SQL Server 效能最佳做法)](virtual-machines-windows-sql-performance.md)
 
 
 ###SQL Server 設定
@@ -257,4 +259,4 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 
 您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定可用性群組。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

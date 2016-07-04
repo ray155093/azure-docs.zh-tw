@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="使用服務匯流排的共用存取簽章驗證 | Microsoft Azure"
-   description="使用服務匯流排的 SAS 驗證詳細資訊"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" />
+    pageTitle="使用服務匯流排的共用存取簽章驗證 | Microsoft Azure"
+    description="使用服務匯流排的 SAS 驗證詳細資訊"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/22/2016"
+    ms.author="sethm" />
 
 # 使用服務匯流排的共用存取簽章驗證
 
@@ -25,7 +25,7 @@ SAS 驗證支援包含在 Azure SDK 2.0 版或更新版本中。如需有關服�
 
 服務匯流排中的 SAS 驗證牽涉到在服務匯流排資源上設定具有相關權限的密碼編譯金鑰。用戶端會藉由出示 SAS 權杖來宣告服務匯流排資源的存取權。此權杖包含所存取的資源 URI 以及使用設定的金鑰所簽署的有效期限。
 
-您可以在服務匯流排[轉送](service-bus-fundamentals-hybrid-solutions.md#relays)、[佇列](service-bus-fundamentals-hybrid-solutions.md#queues)、[主題](service-bus-fundamentals-hybrid-solutions.md#topics)和[事件中樞](https://azure.microsoft.com/documentation/services/event-hubs/)上設定共用存取簽章授權規則。
+您可以在服務匯流排[轉送](service-bus-fundamentals-hybrid-solutions.md#relays)、[佇列](service-bus-fundamentals-hybrid-solutions.md#queues)、[主題](service-bus-fundamentals-hybrid-solutions.md#topics)和[事件中樞](service-bus-fundamentals-hybrid-solutions.md#event-hubs)上設定共用存取簽章授權規則。
 
 SAS 驗證會使用下列元素︰
 
@@ -35,7 +35,7 @@ SAS 驗證會使用下列元素︰
 
 ## 共用存取簽章驗證的設定
 
-您可以在服務匯流排命名空間、佇列或主題上設定 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx) 規則。目前不支援在服務匯流排訂用帳戶上設定 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx)，但是您可以使用在命名空間或主題上設定的規則來保護訂用帳戶的存取安全。如需可說明此程序的實用範例，請參閱[搭配使用共用存取簽章 (SAS) 驗證與服務匯流排訂用帳戶](http://code.msdn.microsoft.com/windowsazure/Using-Shared-Access-e605b37c)範例。
+您可以在服務匯流排命名空間、佇列或主題上設定 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx) 規則。目前不支援在服務匯流排訂用帳戶上設定 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx)，但是您可以使用在命名空間或主題上設定的規則來保護訂用帳戶的存取安全。如需可說明此程序的實用範例，請參閱[搭配使用共用存取簽章 (SAS) 驗證與服務匯流排訂用帳戶](http://code.msdn.microsoft.com/Using-Shared-Access-e605b37c)範例。
 
 在服務匯流排命名空間、佇列或主題上最多可以設定 12 條這類規則。在服務匯流排命名空間上設定的規則可套用到該命名空間中的所有實體。
 
@@ -52,7 +52,7 @@ SAS 驗證會使用下列元素︰
 |*SecondaryKey*|用來簽署和驗證 SAS 權杖的 Base64 編碼 256 位元次要金鑰。|
 |*AccessRights*|授權規則所授與的存取權限清單。這些權限可以是任何接聽、傳送和管理權限的集合。|
 
-佈建完服務匯流排命名空間後，預設會建立一個 [KeyName](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.keyname.aspx) 設為 **RootManageSharedAccessKey** 的 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx)。此外，也會針對通知中樞設定兩個預設 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx) 物件：一個具有接聽、傳送和管理權限，另一個只有接聽權限。
+佈建完服務匯流排命名空間後，預設會建立一個 [KeyName](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.keyname.aspx) 設為 **RootManageSharedAccessKey** 的 [SharedAccessAuthorizationRule](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sharedaccessauthorizationrule.aspx)。
 
 ## 重新產生並撤銷共用存取授權規則的金鑰
 
@@ -258,4 +258,4 @@ sendClient.Send(helloMessage);
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/08/2016"
+   ms.date="06/20/2016"
    ms.author="alkohli" />
 
 # 停用及刪除 StorSimple Virtual Array
@@ -101,4 +101,4 @@
 
 - 若要了解如何使用 StorSimple Manager 服務，請移至[使用 StorSimple Manager 服務管理 StorSimple Virtual Array](storsimple-ova-manager-service-administration.md)。 
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0622_2016-->

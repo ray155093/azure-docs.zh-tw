@@ -88,7 +88,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料**
 --- | ---
-**設定伺服器**| 您必須執行 Windows Server 2012 R2 的內部部署實體或虛擬機器。所有內部部署 Site Recovery 元件是安裝在此機器上。<br/><br/>針對 VMware VM 複寫，建議您部署伺服器作為高可用性的 VMware VM。如果您要複寫實體機器，則機器可以是實體伺服器。<br/><br/> 從 Azure 容錯回復到內部部署網站時一律是容錯回復到 VMware VM，無論您是容錯移轉 VM 還是實體伺服器。如果您不將組態伺服器部署為 VMware VM，則必須設定不同的主要目標伺服器作為 VMware VM，以接收容錯回復流量。<br/><br/>如果伺服器是 VMware VM，網路介面卡類型應該是 VMXNET3。如果您使用不同類型的網路介面卡，則必須在 vSphere 5.5 伺服器上安裝 [VMware 更新](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1)。<br/><br/>伺服器應該要有靜態 IP 位址。<br/><br/>伺服器不應該是網域控制站。<br/><br/>伺服器的主機名稱應該在 15 個字元以內。<br/><br/>應該只有英文版作業系統。<br/><br/> 您必須在組態伺服器上安裝 VMware vSphere PowerCLI 6.0。<br/><br/>組態伺服器需要網際網路存取。需要輸出存取，如下所示︰<br/><br/>在設定 Site Recovery 元件時暫時可存取 HTTP 80 (以便下載 MySQL)<br/><br/>在 HTTPS 443 上的持續輸出存取以便進行複寫管理<br/><br/>在 HTTPS 9443 上的持續輸出存取以便處理複寫流量 (可以修改此連接埠)<br/><br/>伺服器也需要存取下列 URL，以便連線到 Azure：*.hypervrecoverymanager.windowsazure.com; *.accesscontrol.windows.net; *.backup.windowsazure.com; *.blob.core.windows.net; *.store.core.windows.net<br/><br/>如果伺服器上有以 IP 位址為基礎的防火牆規則，請檢查規則可允許對 Azure 的通訊。您需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (433) 通訊協定。<br/><br/>允許您訂用帳戶的 Azure 區域和美國西部的 IP 位址範圍。<br/><br/>允許此 URL 以進行 MySQL 下載：.http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi
+**設定伺服器**| 您必須執行 Windows Server 2012 R2 的內部部署實體或虛擬機器。所有內部部署 Site Recovery 元件是安裝在此機器上。<br/><br/>針對 VMware VM 複寫，建議您部署伺服器作為高可用性的 VMware VM。如果您要複寫實體機器，則機器可以是實體伺服器。<br/><br/> 從 Azure 容錯回復到內部部署網站時一律是容錯回復到 VMware VM，無論您是容錯移轉 VM 還是實體伺服器。如果您不將組態伺服器部署為 VMware VM，則必須設定不同的主要目標伺服器作為 VMware VM，以接收容錯回復流量。<br/><br/>如果伺服器是 VMware VM，網路介面卡類型應該是 VMXNET3。如果您使用不同類型的網路介面卡，則必須在 vSphere 5.5 伺服器上安裝 [VMware 更新](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1)。<br/><br/>伺服器應該要有靜態 IP 位址。<br/><br/>伺服器不應該是網域控制站。<br/><br/>伺服器的主機名稱應該在 15 個字元以內。<br/><br/>應該只有英文版作業系統。<br/><br/> 您必須在組態伺服器上安裝 VMware vSphere PowerCLI 6.0。<br/><br/>組態伺服器需要網際網路存取。需要輸出存取，如下所示︰<br/><br/>在設定 Site Recovery 元件時暫時可存取 HTTP 80 (以便下載 MySQL)<br/><br/>在 HTTPS 443 上的持續輸出存取以便進行複寫管理<br/><br/>在 HTTPS 9443 上的持續輸出存取以便處理複寫流量 (可以修改此連接埠)<br/><br/>伺服器也需要存取下列 URL，以便連線到 Azure：*.hypervrecoverymanager.windowsazure.com; *.accesscontrol.windows.net; *.backup.windowsazure.com; *.blob.core.windows.net; *.store.core.windows.net<br/><br/>如果伺服器上有以 IP 位址為基礎的防火牆規則，請檢查規則可允許對 Azure 的通訊。您需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 通訊協定。<br/><br/>允許您訂用帳戶的 Azure 區域和美國西部的 IP 位址範圍。<br/><br/>允許此 URL 以進行 MySQL 下載：.http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi
 
 
 ## VMware vCenter/vSphere 主機必要條件
@@ -146,9 +146,9 @@ Site Recovery 處理序伺服器可以自動探索 vSphere 主機或管理主機
 
 	- 允許存取這些 URL： *.hypervrecoverymanager.windowsazure.com; *.accesscontrol.windows.net; *.backup.windowsazure.com; *.blob.core.windows.net; *.store.core.windows.net
 	- 允許存取 [http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi](http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi) 以下載 MySQL。
-	- 允許使用 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (433) 通訊協定的 Azure 防火牆通訊。
+	- 允許使用 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 通訊協定的 Azure 防火牆通訊。
 
-2.	在組態伺服器上下載並安裝 [VMware vSphere PowerCLI 6.0](https://developercenter.vmware.com/tool/vsphere_powercli/6.0)。
+2.	在組態伺服器上下載並安裝 [VMware vSphere PowerCLI 6.0](https://developercenter.vmware.com/tool/vsphere_powercli/6.0)。(目前不支援 PowerCLI 的其他版本，包括 6.0 版的 R 版本)。
 
 
 ## 建立復原服務保存庫
@@ -532,10 +532,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 來源作業系統 | 行動服務安裝檔案
 --- | ---
-Windows Server (僅限 64 位元) | Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR_UA_9.*.0.0_RHEL6-64_*release.tar.gz
-SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR_UA_9.*.0.0_SLES11-SP3-64_*release.tar.gz
-Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR_UA_9.*.0.0_OL6-64_*release.tar.gz
+Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz 
+SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
+Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
 
 #### 在 Windows 伺服器上手動安裝
@@ -834,4 +834,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

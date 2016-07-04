@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev" />
 
 
 # 如何識別案例和規劃進階分析資料處理
 
-在設定環境以對資料集執行進階分析處理時，您應該規劃包含哪些資源？ 本文提出一系列問題，有助於識別您的案例相關的工作和資源。[什麼是 Cortana 分析程序 (CAP)？](machine-learning-data-science-the-cortana-analytics-process.md)文件中概述預測性分析的高階步驟順序。針對您的案例相關的工作，每個步驟會需要特定的資源。用以識別案例的主要問題是關於資料邏輯、特性、資料集的品質，以及您想要進行分析的工具和語言。
+在設定環境以對資料集執行進階分析處理時，您應該規劃包含哪些資源？ 本文提出一系列問題，有助於識別您的案例相關的工作和資源。[何謂 Team Data Science Process (TDSP)？](data-science-process-overview.md)文件中概述預測性分析的高階步驟順序。針對您的案例相關的工作，每個步驟會需要特定的資源。用以識別案例的主要問題是關於資料邏輯、特性、資料集的品質，以及您想要進行分析的工具和語言。
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
@@ -47,7 +47,7 @@
 
 4. **資料是否需要定期移動或在移轉期間修改？** 當資料需要持續移轉時，特別是在涉及同時存取內部部署和雲端資源的混合式案例中，或當資料為交易式或在移轉過程中需要修改或新增商務邏輯時，請考慮使用 Azure Data Factory (ADF)。如需進一步資訊，請參閱[使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)。
 
-5. **有多少資料要移至 Azure？** 非常大的資料集可能會超過某些環境的儲存體容量。如需相關範例，請參閱下一節關於 Machine Learning studio 大小限制的討論。在這種情況下，分析期間可能使用資料樣本。如需有關如何在各種 Azure 環境中縮減取樣資料集的詳細資訊，請參閱[在 Cortana 分析程序中進行資料取樣](machine-learning-data-science-sample-data.md)。
+5. **有多少資料要移至 Azure？** 非常大的資料集可能會超過某些環境的儲存體容量。如需相關範例，請參閱下一節關於 Machine Learning studio 大小限制的討論。在這種情況下，分析期間可能使用資料樣本。如需如何在各種 Azure 環境中縮減取樣資料集的詳細資訊，請參閱[在 Team Data Science Process 中進行資料取樣](machine-learning-data-science-sample-data.md)。
 
 
 ## 資料特性問題：類型、格式和大小
@@ -80,7 +80,7 @@
 
 ## 資料品質問題：探索和前置處理
 
-1. **您對資料的熟悉程度為何？** 當您需要了解資料的基本特性時，請探索資料。資料呈現什麼模式或趨勢、有什麼極端值或遺漏多少值。這個步驟很重要，將會決定所需的前置處理程度、形成假設來建議最適合的功能分析類型，以及擬定計劃來收集其他資料。計算描述性統計資料和繪製視覺效果是很有用的資料檢查技術。如需有關如何在各種 Azure 環境中探索資料集的詳細資訊，請參閱[在 Cortana 分析程序中瀏覽資料](machine-learning-data-science-explore-data.md)。
+1. **您對資料的熟悉程度為何？** 當您需要了解資料的基本特性時，請探索資料。資料呈現什麼模式或趨勢、有什麼極端值或遺漏多少值。這個步驟很重要，將會決定所需的前置處理程度、形成假設來建議最適合的功能分析類型，以及擬定計劃來收集其他資料。計算描述性統計資料和繪製視覺效果是很有用的資料檢查技術。如需如何在各種 Azure 環境中探索資料集的詳細資訊，請參閱[在 Team Data Science Process 中探索資料](machine-learning-data-science-explore-data.md)。
 
 2. **資料是否需要前置處理或清除？** 前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。使用這類資料進行模型化可能會產生誤導的結果。如需說明，請參閱[準備增強機器學習服務的資料的工作](machine-learning-data-science-prepare-data.md)。
 
@@ -114,4 +114,4 @@
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -39,8 +39,8 @@
 
 1. 取得可以建立資源的可用位置清單。
 
-	    Get-AzureLocation | sort Name | Select Name
-
+	    Get-AzureRmLocation | sort Location | Select Location
+        
 2. 使用清單中的位置 (例如**美國中部**) 取代 **$locName** 的值。建立變數。
 
         $locName = "location name"
@@ -65,13 +65,13 @@
 1. 使用儲存體帳戶名稱取代 $stName 的值 (僅限小寫字母和數字)。測試名稱的唯一性。
 
         $stName = "storage account name"
-        Test-AzureName -Storage $stName
+        Get-AzureRmStorageAccountNameAvailability $stName
 
-    如果這個命令傳回 **False**，表示您設定的名稱不重複。
+    如果這個命令傳回 **True**，表示您設定的名稱沒有重複。
     
 2. 現在，請執行此命令來建立儲存體帳戶。
     
-        New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -Type "Standard_LRS" -Location $locName
+        New-AzureRmStorageAccount -ResourceGroupName $rgName -Name $stName -SkuName "Standard_LRS" -Kind "Storage" -Location $locName
         
 3. 使用帳戶中的 blob 儲存體端點來取代 {blob-storage-endpoint}。使用您的儲存體帳戶名稱來取代 {storage-account-name}。使用主要儲存體金鑰來取代 {primary-storage-key}。執行下列命令來建立儲存檔案的容器。您可以從 Azure 入口網站取得端點和金鑰值。
 
@@ -497,4 +497,4 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 - 如果部署有問題，下一個步驟是查看[透過 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
 - 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

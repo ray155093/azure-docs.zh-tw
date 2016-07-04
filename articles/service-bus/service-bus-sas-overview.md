@@ -13,12 +13,12 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="03/16/2016"
+    ms.date="06/22/2016"
     ms.author="darosa;sethm"/>
 
 # 共用存取簽章
 
-*共用存取簽章* (SAS) 是服務匯流排的主要安全性機制，括事件中樞、代理傳訊 (佇列和主題) 和轉送傳訊。這篇文章討論共用存取簽章、其運作方式以及如何以平台無關的方式使用它們。
+「共用存取簽章」(SAS) 是服務匯流排的主要安全性機制，包括事件中樞、代理傳訊 (佇列和主題)，以及轉送傳訊。這篇文章討論共用存取簽章、其運作方式以及如何以平台無關的方式使用它們。
 
 ## SAS 的概觀
 
@@ -192,7 +192,7 @@ ContentType: application/atom+xml;type=entry;charset=utf-8
 
 ```
 /// <summary>
-/// Send Claim Based Security (CBS) token
+/// Send claim-based security (CBS) token
 /// </summary>
 /// <param name="shareAccessSignature">Shared access signature (token) to send</param>
 private bool PutCbsToken(Connection connection, string sasToken)
@@ -253,10 +253,10 @@ AMQP 訊息包含眾多屬性，以及比簡單訊息更多的資訊。SAS 權�
 
 如需有關如何使用這些 SAS 權杖的詳細資訊，請參閱[服務匯流排 REST API 參考](https://msdn.microsoft.com/library/azure/hh780717.aspx)。
 
-如需有關服務匯流排驗證的詳細資訊，請參閱[服務匯流排驗證與授權](service-bus-authentication-and-authorization.md)。
+如需有關服務匯流排驗證的詳細資訊，請參閱[服務匯流排驗證和授權](service-bus-authentication-and-authorization.md)。
 
 [本部落格文章](http://developers.de/blogs/damir_dobric/archive/2013/10/17/how-to-create-shared-access-signature-for-service-bus.aspx)中有更多 C# 和 Java Script 的 SAS 範例。
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

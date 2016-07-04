@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/04/2016" 
+	ms.date="06/20/2016" 
 	ms.author="spelluru"/>
 
 # 使用新的監視及管理應用程式，來監視及管理 Azure Data Factory 管線
@@ -261,7 +261,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 ## 執行批次動作
 
 ### 重新執行已選取的活動時段
-選取某個活動時段、按一下第一個命令列按鈕旁的向下箭號，然後選取 [重新執行]/[Rerun with upstream in pipeline]\(搭配管線上游來重新執行)。當您選取 [Rerun with upstream in pipeline]\(搭配管線上游來重新執行) 時，系統也會傳回所有上游的活動時段。![重新執行某個活動時段](./media/data-factory-monitor-manage-app/ReRunSlice.png)
+選取某個活動時段、按一下第一個命令列按鈕旁的向下箭號，然後選取 [重新執行]/[Rerun with upstream in pipeline] \(搭配管線上游來重新執行)。當您選取 [Rerun with upstream in pipeline] \(搭配管線上游來重新執行) 時，系統也會傳回所有上游的活動時段。![重新執行某個活動時段](./media/data-factory-monitor-manage-app/ReRunSlice.png)
 
 您也可以選取清單中的數個活動時段，然後同時重新執行這些活動時段。您可能會想要根據狀態 (例如 [失敗]) 來篩選活動時段，然後在修正導致活動時段執行失敗的問題之後，重新執行失敗的活動時段。請參閱下一節來取得如何篩選清單中活動時段的詳細資料。
 
@@ -314,4 +314,4 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
     
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

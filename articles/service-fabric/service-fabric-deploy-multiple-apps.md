@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/06/2016"
+   ms.date="06/20/2016"
    ms.author="bscholl;mikhegn"/>
 
 
@@ -67,7 +67,7 @@
 - **/ma** 定義要用來啟動可執行檔的引數。由於未安裝 Node.js，因此 Service Fabric 需要執行 `node.exe bin/www` 來啟動 Node.js Web 伺服器。`/ma:'bin/www'` 會告訴封裝工具使用 `bin/ma` 做為 node.exe 的引數。
 - **/AppType** 定義 Service Fabric 應用程式類型名稱。
 
->[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。
+>[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#using-visual-studio-to-package-an-existing-application)
 
 如果您瀏覽至 /target 參數中指定的目錄，您可以看到工具已建立可完整運作的 Service Fabric 封裝，如以下所示：
 
@@ -137,7 +137,7 @@ mongod.exe --dbpath [path to data]
 
 為了將 MongoDB 新增至您的 Service Fabric 應用程式封裝，您必須確定 /target 參數指向已經包含應用程式資訊清單及 Node.js 應用程式的同一個目錄。您也需要確定您是使用相同的 ApplicationType 名稱。
 
->[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。
+>[AZURE.NOTE] 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#using-visual-studio-to-package-an-existing-application)
 
 讓我們瀏覽至該目錄並檢查已建立的工具。
 
@@ -204,4 +204,4 @@ New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationType
 
 - 了解如何[手動封裝來賓應用程式](service-fabric-deploy-existing-app.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

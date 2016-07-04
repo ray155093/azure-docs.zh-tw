@@ -43,6 +43,10 @@
 
 	您應該將後續的 API 呼叫張貼到 https://wamsbayclus001rest-hs.cloudapp.net/api/。
 
+##存取控制服務
+
+媒體服務存取控制位址是 https://wamsprodglobal001acs.accesscontrol.windows.net，但中國北部地區除外，其為 https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn。
+
 ##取得存取權杖
 
 若要直接透過 REST API 存取媒體服務，從 ACS 擷取存取權杖，並在每個您對服務提出的 HTTP 要求中使用它。這個權杖類似於 ACS 根據 HTTP 要求標頭中提供的存取宣告而提供的其他權杖，以及使用 OAuth v2 通訊協定。直接連接到媒體服務之前，您不需要其他任何必要條件。
@@ -173,4 +177,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0622_2016-->

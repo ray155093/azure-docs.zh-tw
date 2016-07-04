@@ -30,7 +30,7 @@
 
 - **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，請[免費註冊 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)，然後[啟用 MSDN 啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
-- **Azure PowerShell 1.0 版或更高** - 如果尚未安裝，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+- **Azure PowerShell 1.4 版或更高** - 如果尚未安裝，請參閱 [How to install and configure Azure PowerShell (如何安裝和設定 Azure PowerShell)](../powershell-install-configure.md)。
 
 - **執行 Windows 的虛擬機器** - 有許多工具可讓您在內部部署建立虛擬機器。如需範例，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。若要知道 Azure 支援哪些 Windows 作業系統，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
 
@@ -108,7 +108,7 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 ### 使用 PowerShell 建立或尋找 Azure 儲存體帳戶
 
-1. 開啟 Azure PowerShell 1.0.x，並登入您的 Azure 帳戶。
+1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。
 
 		Login-AzureRmAccount
 
@@ -142,7 +142,7 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 	3. 使用下列命令在此資源群組中建立新的儲存體帳戶：
 
-			New-AzureRmStorageAccount -ResourceGroupName YourResourceGroup -Name YourStorageAccountName -Location "West US" -Type "Standard_GRS"
+			New-AzureRmStorageAccount -ResourceGroupName YourResourceGroup -Name YourStorageAccountName -Location "West US" -SkuName "Standard_GRS" -Kind "Storage"
 
 
 </br> <a id="uploadvm"></a>
@@ -261,4 +261,4 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,18 +13,18 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/25/2016"
+    ms.date="06/22/2016"
     ms.author="adegeo"/>
 
 # 將 Azure 雲端服務角色連接到裝載於 Azure 中的自訂 AD 網域控制站
 
-我們會先在 Azure 中設定虛擬網路 (VNET)。接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNET。下一步是將現有雲端服務角色加入預先建立的 VNET，然後再將它們連接到網域控制站。
+我們會先在 Azure 中設定虛擬網路 (VNet)。接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNet。下一步是將現有雲端服務角色加入預先建立的 VNet，然後再將它們連接到網域控制站。
 
 在開始之前，請將以下幾件事牢記在心：
 
 1.	本教學課程使用 Powershell，因此請確認您已安裝 Azure Powershell 且已準備就緒。如需設定 Azure Powershell 的說明，請參閱「[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)」。
 
-2.	AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNET 中。
+2.	AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNet 中。
 
 請遵循以下逐步指南，如果您遇到任何問題，請在下方留言，我們將會回覆您 (沒錯，我們真的會閱讀留言)。
 
@@ -95,7 +95,7 @@ Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-
 
 ## 將雲端服務加入虛擬網路
 
-接下來，您需要將雲端服務部署加入剛才建立的 VNET。若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。
+接下來，您需要將雲端服務部署加入剛才建立的 VNet。若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。
 
 ```xml
 <ServiceConfiguration serviceName="[hosted-service-name]" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="[os-family]" osVersion="*">
@@ -110,7 +110,7 @@ Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-
     </Dns>
     <!--optional-->
 
-    <!--VNET settings-->
+    <!--VNet settings-->
     <VirtualNetworkSite name="[virtual-network-name]" />
     <AddressAssignments>
         <InstanceAddress roleName="[role-name]">
@@ -119,7 +119,7 @@ Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-
         </Subnets>
         </InstanceAddress>
     </AddressAssignments>
-    <!--VNET settings-->
+    <!--VNet settings-->
 
     </NetworkConfiguration>
 </ServiceConfiguration>
@@ -156,4 +156,4 @@ help New-AzureServiceADDomainExtensionConfig
 
 關於取得將虛擬機器提升為網域控制站的延伸，我們也想知道您對這個做法實用與否的意見反應。如果您認為這個做法很實用，請在意見區段中留言，讓我們知道。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0622_2016-->

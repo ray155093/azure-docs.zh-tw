@@ -14,11 +14,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="03/08/2016"
+   ms.date="06/21/2016"
    ms.author="kirpas"/>
 
 # 如何擴充 Azure 資源群組之虛擬機器的 OS 磁碟機
 
 [AZURE.INCLUDE [virtual-machine-common-expand-os-disk](../../includes/virtual-machines-common-expand-os-disk.md)]
 
-<!----HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

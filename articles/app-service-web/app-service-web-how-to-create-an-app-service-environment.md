@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/08/2016" 
+	ms.date="06/20/2016" 
 	ms.author="ccompy"/>
 
 # 如何建立 App Service 環境 #
@@ -38,7 +38,7 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 - 用來裝載 ASE 的 VNET 必須是區域傳統 "v1" VNET 
 - **用來裝載 ASE 的子網路不得包含任何其他計算資源**
 - 子網路中只能存在一個 ASE
-- 目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
+- 在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍「或」RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
 
 每個 ASE 部署都是 Azure 管理和維護的託管服務。雖然客戶會管理執行個體的數量和其大小，但不能存取裝載 ASE 系統角色的計算資源。
 
@@ -49,7 +49,7 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 ### 快速建立 ###
 在建立 ASE 時，可以利用一組預設值來進行快速建立。您只要輸入部署的名稱，即可快速建立 ASE。接著，將會透過下列項目在最接近您的區域中建立 ASE：
 
-- 具有 512 個位址的 VNET 
+- 使用 RFC1918 私人位址空間且具有 512 個位址的 VNET
 - 具有 256 個位址的子網路
 - 具有 2 個 P2 計算資源的前端集區
 - 具有 2 個 P1 計算資源的背景工作集區
@@ -59,12 +59,14 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 
 ![][1]
 
-針對 ASE 指定的名稱將用於在 ASE 中建立的應用程式。如果 ASE 的名稱是 appsvcenvdemo，則網域名稱會是 .*appsvcenvdemo.p.azurewebsites.net*。如果您因此建立名為 *mytestapp* 的應用程式，則可定址於 *mytestapp.appsvcenvdemo.p.azurewebsites.net*。您無法在 ASE 的名稱中使用空白字元。如果您在名稱中使用大寫字元，則網域名稱會是該名稱的全小寫版本。
+針對 ASE 指定的名稱將用於在 ASE 中建立的應用程式。如果 ASE 的名稱是 appsvcenvdemo，則網域名稱會是 .*appsvcenvdemo.p.azurewebsites.net*。如果您因此建立名為「mytestapp」的應用程式，則可定址於「mytestapp.appsvcenvdemo.p.azurewebsites.net」。您無法在 ASE 的名稱中使用空白字元。如果您在名稱中使用大寫字元，則網域名稱會是該名稱的全小寫版本。
 
 在某些情況下使用預設值會有很好的效果，但通常您都必須進行調整。後續幾節將一一說明 ASE 的相關組態區段。
 
 ### 虛擬網路 ###
-雖然快速建立功能可自動建立新的 VNET，但這項功能還支援選取現有的 VNET 和手動建立 VNET。如果現有的 VNET 夠大，您可加以選取 (在這時候，只有傳統 "v1" 虛擬網路受支援)，以支援 App Service 環境部署。VNET 必須有 8 個或更多位址。目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
+雖然快速建立功能可自動建立新的 VNET，但這項功能還支援選取現有的 VNET 和手動建立 VNET。如果現有的 VNET 夠大，您可加以選取 (在這時候，只有傳統 "v1" 虛擬網路受支援)，以支援 App Service 環境部署。VNET 必須有 8 個或更多位址。
+
+在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍「或」RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
 
 如果您選取預先存在的 VNET，您也必須指定要使用的子網路或建立新的子網路。子網路必須有 8 個或更多位址，且不可有任何其他資源已包含於其中。如果您嘗試使用已配置 VM 的子網路，ASE 建立將會失敗。
 
@@ -143,6 +145,7 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 
 
 ## 開始使用
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][WhatisASE]
 
@@ -165,4 +168,4 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 [AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -27,21 +27,24 @@ Azure 提供建立虛擬機器的不同方式，因為虛擬機器適用於不�
 
 [使用入口網站建立執行 Windows 的虛擬機器](virtual-machines-windows-hero-tutorial.md)
 
-## Azure PowerShell
-
-如果您偏好使用命令殼層，可以使用 Azure PowerShell。
-
-- [使用 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md)
-- [利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)
-
 ## 範本
 
 虛擬機器需要各種資源 (例如可用性設定組和儲存體帳戶)。您不是分開部署與管理每個資源，而是建立一個 Azure Resource Manager 範本，藉此經由協調的單一作業來部署與佈建所有資源。
 
 - [利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)
 
+
+## Azure PowerShell
+
+如果您偏好使用命令殼層，可以使用 Azure PowerShell。
+
+- [使用 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md)
+
+
 ## Visual Studio
 
-[使用運算、網路和儲存體 .NET 程式庫部署 Azure 資源](virtual-machines-windows-csharp.md)
+使用 Visual Studio 搭配 Azure Tools for Visual Studio 和 Azure SDK 來建置、管理與部署 VM。
 
-<!---HONumber=AcomDC_0601_2016-->
+[Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs)
+
+<!---HONumber=AcomDC_0622_2016-->

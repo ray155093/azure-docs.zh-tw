@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="06/17/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 #將範例資料載入 SQL 資料倉儲
 
-一旦您[建立 SQL 資料倉儲資料庫執行個體][create a SQL Data Warehouse database instance]之後，下一步便是建立並載入某些資料表。您可以使用我們為 SQL 資料倉儲建立的 Adventure Works 範例指令碼，建立並載入名為 Adventure Works 之虛構公司的資料表。這些指令碼使用 sqlcmd 來執行 SQL，並使用 bcp 載入資料。如果您還沒有安裝這些工具，請依照下列連結[安裝 bcp][] 和[安裝 sqlcmd][]。
+請遵循下列簡單的步驟來載入和查詢 Adventure Works 範例資料庫。這些指令碼會先使用 sqlcmd 來執行將建立資料表和檢視表的 SQL。一旦建立資料表之後，指令碼將使用 bcp 來載入資料。如果您還沒有安裝 sqlcmd 和 bcp，請依照下列連結來[安裝 bcp][] 和[安裝 sqlcmd][]。
 
-請遵循下列簡單的步驟，將 Adventure Works 範例資料庫載入至 SQL DW...
+##載入範例資料
 
-1. 下載[適用於 SQL 資料倉儲的 Adventure Works 範例指令碼][]。
+1. 下載[適用於 SQL 資料倉儲的 Adventure Works 範例指令碼][] zip 檔。
 
 2. 請從下載的 zip 將檔案解壓縮到本機電腦上的目錄。
 
@@ -85,11 +85,10 @@ SQL 資料倉儲幾乎支援所有 SQL Server 支援的 T-SQL 建構。所有的
 [載入]: ./sql-data-warehouse-overview-load.md
 [連接]: ./sql-data-warehouse-get-started-connect.md
 [程式碼移轉]: ./sql-data-warehouse-migrate-code.md
-[create a SQL Data Warehouse database instance]: ./sql-data-warehouse-get-started-provision.md
 [安裝 bcp]: ./sql-data-warehouse-load-with-bcp.md
 [安裝 sqlcmd]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other Web references-->
 [適用於 SQL 資料倉儲的 Adventure Works 範例指令碼]: https://migrhoststorage.blob.core.windows.net/sqldwsample/AdventureWorksSQLDW2012.zip
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

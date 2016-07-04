@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="gokuma;bradsev" />
 
 # 佈建 Linux 資料科學虛擬機器 
@@ -177,7 +177,7 @@ Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與�
 
 **VIM** 和 **Emacs** 是以文字為基礎的編輯器。在 Emacs 上，我們已安裝稱為 Emacs Speaks Statistics (ESS) 的附加元件封裝，它可以方便於在 Emacs 編輯器中使用 R。如需詳細資訊，請參閱 [ESS](http://ess.r-project.org/)。
 
-**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。Java 開發人員版本是安裝在 VM 上的執行個體。有提供幾種熱門語言的外掛程式，您可以安裝它們以延伸 Eclipse 環境。我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**，它可讓您使用支援如 Java 語言的 Eclipse 開發環境，輕鬆地建立、開發、測試和部署 Azure 應用程式。另外還有 **Azure SDK for Java**，它可讓您從 Java 環境中存取不同的 Azure 服務。Azure Toolkit for Eclipse 的詳細資訊位於 [Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse/)。
+**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。Java 開發人員版本是安裝在 VM 上的執行個體。有提供幾種熱門語言的外掛程式，您可以安裝它們以延伸 Eclipse 環境。我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**，它可讓您使用支援如 Java 語言的 Eclipse 開發環境，輕鬆地建立、開發、測試和部署 Azure 應用程式。另外還有 **Azure SDK for Java**，它可讓您從 Java 環境中存取不同的 Azure 服務。適用於 Eclipse 的 Azure 工具組的詳細資訊位於 [適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)。
 
 **LaTex** 透過 texlive 封裝與 Emacs 附加元件 [auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html) 封裝一起安裝，可簡化 Emacs 內的 LaTex 文件撰寫。
 
@@ -228,7 +228,7 @@ Python 和 R 中有可用於存取資料庫的程式庫。
 ### Azure 工具 
 VM 上安裝了下列 Azure 工具：
 
-- **Azure 命令列介面**：Azure 命令列介面 (CLI) 可讓您透過殼層命令來建立和管理 Azure 資源。若要叫用 Azure 工具，只要輸入 ***azure help***。如需詳細資訊，請參閱 [Azure CLI 文件頁面](../virtual-machines-command-line-tools/)。
+- **Azure 命令列介面**：Azure 命令列介面 (CLI) 可讓您透過殼層命令來建立和管理 Azure 資源。若要叫用 Azure 工具，只要輸入 ***azure help***。如需詳細資訊，請參閱 [Azure CLI 文件頁面](../virtual-machines-command-line-tools.md)。
 - **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是用來瀏覽您在 Azure 儲存體帳戶中所儲存物件的圖形化工具，也可以上傳/下載 Azure Blob 的資料。您可以從桌面捷徑圖示存取儲存體總管。從殼層命令提示字元叫用它則是輸入 ***StorageExplorer***。您需要從 X2go 用戶端登入，或是已設定 X11 轉寄。 
 - **Azure 程式庫**：以下是已安裝且可供您使用的一些程式庫︰
 
@@ -354,7 +354,7 @@ Rattle (R Analytical Tool To Learn Easily) 可讓您用 GUI 類型資料探索�
 以下是繼續您的學習和探索的一些後續步驟。
 
 * 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。您也可以在虛擬機器內的殼層上執行 *dsvm-more-info*，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。  
-* 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
+* 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) 以取得使用 Cortana Analytics Suite 的機器學習服務和資料分析範例。 
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/19/2016"
+   ms.date="06/20/2016"
    ms.author="larryfr"/>
 
 
@@ -67,10 +67,6 @@ Azure 虛擬網路可讓您延伸 Hadoop 解決方案以合併內部部署資源
 ###以位置為基礎的虛擬網路
 
 Azure HDInsight 僅支援以位置為基礎的虛擬網路，目前無法使用以同質群組為基礎的虛擬網路。
-
-###子網路
-
-強烈建議您針對每個 HDInsight 叢集建立單一子網路。
 
 ###傳統或 v2 虛擬網路
 
@@ -181,7 +177,7 @@ __使用 Azure CLI__
     
         data:    Id                              : /subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure
 
-2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。將 __RESOURCEGROUPNAME__ 取代為包含「Azure 虛擬網路」之資源群組的名稱。
+2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。
 
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule1 -p "*" -o "*" -u "443" -f "168.61.49.99" -e "VirtualNetwork" -c "Allow" -y 300 -r "Inbound"
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule2 -p "*" -o "*" -u "443" -f "23.99.5.239" -e "VirtualNetwork" -c "Allow" -y 301 -r "Inbound"
@@ -309,4 +305,4 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 若要深入了解 Azure 虛擬網路，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

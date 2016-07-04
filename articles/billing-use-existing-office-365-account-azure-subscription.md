@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="06/20/2016"
 	ms.author="cjiang"/>
 
 # 搭配使用現有的 Office 365 帳戶與 Azure 訂用帳戶，反之亦然
@@ -137,11 +137,14 @@ Office 365 和 Azure 均使用 Azure Active Directory (AAD) 服務來管理使�
 
 ![background-information](./media/billing-use-existing-office-365-account-azure-subscription/19-background-information.png)
 
-如需詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 連結](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
+如需詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
 
 **注意：**
 
 - Azure 訂用帳戶是由目錄中的個別使用者所擁有。
 - Office 365 訂用帳戶是由目錄本身所擁有。如果目錄中的使用者擁有必要權限，他們就可以操作這些訂用帳戶。
 
-<!---HONumber=AcomDC_0518_2016-->
+##後續步驟
+相關案例：您在過去分開取得 Azure 和 Office 365 訂用帳戶，而且想要能夠從 Azure 訂用帳戶存取 Office 365 租用戶。若要了解如何完成此工作，請參閱[將 Office 365 租用戶與 Azure 訂用帳戶建立關聯](billing-add-office-365-tenant-to-azure-subscription.md)。
+
+<!---HONumber=AcomDC_0622_2016-->

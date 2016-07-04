@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="在 Cortana 分析程序中瀏覽資料 | Microsoft Azure" 
-	description="如何在不同的儲存體環境中瀏覽資料。" 
+	pageTitle="探索 Team Data Science Process 中的資料 | Microsoft Azure" 
+	description="如何在不同的儲存體環境中探索資料。" 
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev" 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev" />
 
-#在 Cortana 分析程序中瀏覽資料
+#探索 Team Data Science Process 中的資料
 
-本文件涵蓋如何在 Cortana 分析程序中一般所使用的四個不同環境中瀏覽資料：
+本文件涵蓋如何在 Team Data Science Process 中一般所使用的四個不同環境中探索資料：
 
 - 使用 [Pandas](http://pandas.pydata.org/) Python 封裝來瀏覽 **Azure blob 容器**資料。
 - 使用 SQL 和使用類似 Python 的程式設計語言來瀏覽 **SQL Server 資料**。
@@ -29,4 +29,4 @@
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

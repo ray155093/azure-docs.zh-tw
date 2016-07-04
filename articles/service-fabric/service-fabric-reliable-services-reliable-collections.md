@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/25/2016"
+   ms.date="06/14/2016"
    ms.author="mcoskun"/>
 
 # Azure Service Fabric 具狀態服務中可靠的集合簡介
@@ -102,8 +102,10 @@
 - 請勿修改讀取作業所傳回的自訂類型物件 (例如 `TryPeekAsync` 或 `TryGetValueAsync`)。可靠的集合就像並行的集合一樣，會傳回物件參考而不是複本。
 - 請不要在未經修改之前，就深層複製傳回的自訂類型物件。因為結構和內建類型都是傳值，因此您不需要在其上執行深層複製。
 - 請勿針對逾時使用 `TimeSpan.MaxValue`。逾時應該用來偵測死結。
+- 在認可、中止或處置交易之後，請勿使用該交易。
+- 建構於交易範圍內的列舉程式不應在該交易範圍之外使用。
 - 請不要在另一個交易的 `using` 陳述式內建立交易，因為它會造成死結。
-- 請務必確保 `IComparable<TKey>` 實作是正確的。系統會對此採取相依性以合併檢查點。
+- 務必確保 `IComparable<TKey>` 實作是正確的。系統會對此採取相依性以合併檢查點。
 - 請考慮使用備份和還原功能以擁有災害復原。
 
 以下是要牢記在心的一些事項：
@@ -123,4 +125,4 @@
 - [Reliable Services 程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
 - [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

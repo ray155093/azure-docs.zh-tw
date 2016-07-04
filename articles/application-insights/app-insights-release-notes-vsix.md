@@ -16,7 +16,18 @@
 
 # 版本資訊 - Developer Analytics 工具
 ##### Visual Studio 中的 Application Insights 和 HockeyApp 分析
-## 版本 7.0.1
+## 7\.0 版
+###Application Insights 趨勢
+Application Insights 趨勢是 Visual Studio 的新工具，可用來分析應用程式在一段時間內的行為方式。若要開始使用，請從 Application Insights 工具列按鈕或 [Application Insights 搜尋] 視窗中選擇 [探索遙測趨勢]；或從 [檢視] - [其他視窗] 中選擇 [Application Insights 趨勢]。選擇五種常見查詢的其中一個，以便開始使用。您可以根據遙測類型、時間範圍和其他屬性，分析不同的資料集。若要尋找資料中的異常狀況，請選擇 [檢視類型] 下拉式清單底下的其中一個異常選項。視窗底部的篩選選項可讓您輕鬆地全神貫注於特定的遙測子集。
+
+![Application Insights 趨勢](./media/app-insights-release-notes-vsix/Trends.PNG)
+
+###CodeLens 中的例外狀況
+CodeLens 現在會顯示例外狀況遙測。如果您已將專案連線到 Application Insights 服務，您會看到過去 24 小時內生產環境中的每個方法所發生的例外狀況數量。您可以從 CodeLens 跳到 [搜尋] 或 [趨勢] 以深入調查例外狀況。
+
+![CodeLens 中的例外狀況](./media/app-insights-release-notes-vsix/ExceptionsCodeLens.png)
+
+###ASP.NET Core 支援
 Application Insights 現在支援 Visual Studio 中的 ASP.NET Core RC2 專案。您可以從 [新增專案] 對話方塊中將 Application Insights 加入至新的 ASP.NET Core RC2 專案，或在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [加入 Application Insights 遙測] 來加入至現有的專案。
 
 ![.NET Core 支援](./media/app-insights-release-notes-vsix/NetCoreSupport.PNG)
@@ -25,11 +36,15 @@ ASP.NET 5 RC1 和 ASP.NET Core RC2 專案也會在 [診斷工具] 視窗中提�
 
 ![診斷工具支援](./media/app-insights-release-notes-vsix/DiagnosticTools.PNG)
 
+###通用 Windows 應用程式的 HockeyApp
+除了 Beta 版散發套件和使用者意見反應，HockeyApp 還提供通用 Windows 應用程式的符號式當機報告。我們已經將 HockeyApp SDK 的新增作業變得更簡單︰以滑鼠右鍵按一下您的通用 Windows 專案，然後選擇 [Hockey App] - [啟用當機分析]。這會安裝 SDK、設定當機資訊收集，並在雲端上佈建 HockeyApp 資源，而不會將您的應用程式上傳至 HockeyApp 服務。
+
 其他的新功能：
 
 * 我們已經藉由在您選取時自動套用時間範圍和詳細資料篩選條件，來讓 Application Insights 搜尋體驗變得更快速且更直覺化
 * 在 Application Insights 搜尋中，現在會在要求遙測中提供 [移至程式碼] 的選項
 * 我們已經改善的 HockeyApp 登入體驗。
+* 在 [診斷工具] 中，現在會顯示例外狀況的生產遙測資訊。
 
 ## 5\.2 版
 很高興為您宣布，我們已推出 Visual Studio 中的 HockeyApp 案例。我們啟用的第一個整合是 VS 內的通用 Windows 應用程式和 Windows Forms 應用程式的 Beta 版散發套件。
@@ -95,7 +110,7 @@ Windows Forms 專案節點的內容功能表包含將組建上傳至 HockeyApp �
 
 
 ##4\.2 版
-在此版本中，我們新增了一些功能，可讓您更容易在事件內容中搜尋資料、能夠從更多資料事件跳到程式碼，以及輕鬆將記錄資料傳送給 Application Insights。這個延伸模組會每月更新，如果您有意見反應或功能要求，請傳送至 aidevtools@microsoft.com
+在此版本中，我們新增了一些功能，可讓您更容易在事件內容中搜尋資料、能夠從更多資料事件跳到程式碼，以及輕鬆將記錄資料傳送給 Application Insights。這個擴充功能會每月更新，如果您有意見反應或功能要求，請傳送至 aidevtools@microsoft.com
 ###- 零點選的記錄體驗
 如果您已經在使用 NLog、Log4Net 或 System.Diagnostics 追蹤功能，則您不必操心要如何將您的所有追蹤移到 AI，我們現在正在將 Application Insights 記錄配接器與標準組態體驗進行整合。如果您已經設定了這些記錄架構其中之一，則以下是您取得它的方式：
 ####如果您已經新增 Application Insights
@@ -164,4 +179,4 @@ Windows Forms 專案節點的內容功能表包含將組建上傳至 HockeyApp �
 
 我們會在未來版本的 Application Insights 延伸模組中推出新功能，可在 HockeyApp 和 Visual Studio 之間提供更為整合的體驗。現在您只要新增 NuGet 參考，即可開始使用 HockeyApp：如需詳細資訊，請參閱[文件](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

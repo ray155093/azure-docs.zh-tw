@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="06/15/2016"
+    ms.date="06/22/2016"
     ms.author="markvi"/>
 
 #如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單
@@ -173,6 +173,8 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Salesforce.jpg)| [Salesforce Sandbox](https://go.microsoft.com/fwLink/?LinkID=521879&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Salesforce.jpg)| [Salesforce](https://go.microsoft.com/fwLink/?LinkID=286017&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Samanage.jpg)| [Samanage](https://go.microsoft.com/fwLink/?LinkID=510241&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SAPBusinessByDesign.jpg)| [SAP Business ByDesign](https://go.microsoft.com/fwLink/?LinkID=807997&clcid=0x409)|
+| ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SAPCloudforCustomer.jpg)| [SAP Cloud for Customer](https://go.microsoft.com/fwLink/?LinkID=785288&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SapHanaCloudPlatform.jpg)| [SAP HANA 雲端平台](https://go.microsoft.com/fwLink/?LinkID=530219&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_SCCLifeCycle.jpg)| [SCC 生命週期](https://go.microsoft.com/fwLink/?LinkID=530218&clcid=0x409)|
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Sciforma.jpg)| [Sciforma](https://go.microsoft.com/fwLink/?LinkID=510264&clcid=0x409)|
@@ -235,9 +237,10 @@
 | ![標誌](./media/active-directory-saas-tutorial-list/SaaSApp_Zscaler.jpg)| [Zscaler](https://go.microsoft.com/fwLink/?LinkID=510254&clcid=0x409)|
 
 
+
 ##相關文章
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

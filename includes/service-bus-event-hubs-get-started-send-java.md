@@ -6,7 +6,7 @@
 <dependency>
 	<groupId>com.microsoft.azure</groupId>
 	<artifactId>azure-eventhubs</artifactId>
-	<version>0.6.9</version>
+	<version>0.7.2</version>
 </dependency>
 ```
  
@@ -33,7 +33,7 @@ public class Send
 	{
 ```
 
-使用您建立事件中樞時所使用的值，來取代命名空間和事件中樞名稱。`sasKeyName` 和 `sasKey` 會對應到您稍早建立之「傳送」規則的名稱和金鑰。您可以利用該資訊來建立連接字串。
+使用您建立事件中樞時所使用的值，來取代命名空間和事件中樞名稱。
 
 ``` Java
 	final String namespaceName = "----ServiceBusNamespaceName-----";
@@ -56,3 +56,5 @@ public class Send
 }
 
 ``` 
+
+<!---HONumber=AcomDC_0622_2016-->

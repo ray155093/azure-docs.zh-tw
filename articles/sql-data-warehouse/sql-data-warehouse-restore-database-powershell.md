@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/11/2016"
+   ms.date="06/17/2016"
    ms.author="elfish;barbkess;sonyama"/>
 
 # 還原 Azure SQL 資料倉儲 (PowerShell)
@@ -80,7 +80,8 @@ $RestoredDatabase.status
 
 ```
 
-還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+
 
 ## 還原已刪除的資料庫
 
@@ -116,7 +117,8 @@ $RestoredDatabase.status
 
 ```
 
-還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+
 
 ## 從 Azure 地理區域還原
 
@@ -146,14 +148,8 @@ $GeoRestoredDatabase.status
 
 ```
 
-### 在執行異地還原後設定您的資料庫
+>[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
 
-這份檢查清單可以用來幫助您準備產生復原的資料庫。
-
-1. **更新連接字串**：確認您用戶端工具的連接字串指向剛復原的資料庫。
-2. **修改防火牆規則**：確認目標伺服器上的防火牆規則，並確定已啟用您用戶端電腦或 Azure 與伺服器以及剛復原之資料庫的連線。
-3. **確認伺服器登入和資料庫使用者**：確認應用程式使用的所有登入是否都存在於主控您已復原之資料庫的伺服器上。重新建立缺少的登入，並將適當的已復原資料庫之權限授與登入。 
-4. **啟用稽核**：如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。
 
 如果來源資料庫是啟用 TDE，則復原的資料庫將是啟用 TDE。
 
@@ -165,12 +161,13 @@ $GeoRestoredDatabase.status
 
 <!--Article references-->
 [Azure SQL Database 商務持續性概觀]: sql-database-business-continuity.md
-[完成復原的資料庫]: sql-database-recovered-finalize.md
+[Finalize a recovered database]: sql-database-recovered-finalize.md
 [如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
 [概觀]: ./sql-data-warehouse-restore-database-overview.md
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
+[完成復原的資料庫]: ./sql-database-recovered-finalize.md
 
 <!--MSDN references-->
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
@@ -182,4 +179,4 @@ $GeoRestoredDatabase.status
 [Azure Portal]: https://portal.azure.com/
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

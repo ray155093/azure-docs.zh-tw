@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/10/2016"
+	ms.date="06/16/2016"
 	ms.author="cynthn"/>
 
 # 有關 Azure 虛擬機器的磁碟和 VHD
@@ -31,4 +31,4 @@
 -  [設定軟體 RAID](virtual-machines-linux-configure-raid.md) 以提供備援性。
 -  [擷取 Linux 虛擬機器](virtual-machines-linux-classic-capture-image.md)，讓您能快速部署額外的 VM。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

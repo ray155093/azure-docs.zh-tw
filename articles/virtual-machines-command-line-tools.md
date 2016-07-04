@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/08/2016"
+	ms.date="06/15/2016"
 	ms.author="danlep"/>
 
 # Azure 服務管理 (asm) 模式中的 Azure CLI 命令
@@ -25,19 +25,19 @@
 
 若要開始使用，請先[安裝 Azure CLI](xplat-cli-install.md)，並[連線到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
 
-如需在服務管理模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。您也可以在文件中找到建立和管理特定的 Azure 服務的 CLI 範例。
+如需在 asm 模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。您也可以在文件中找到建立和管理特定的 Azure 服務的 CLI 範例。
 
 選用參數會以方括弧括住 (例如，`[parameter]`)。其他所有參數皆為必要參數。
 
 除了本文所述的命令特定選用參數，還有三個選用參數可用來顯示詳細輸出，例如要求選項和狀態碼。`-v` 參數提供詳細資訊輸出，而 `-vv` 參數提供更詳細的詳細資訊輸出。`--json` 選項將以原始 json 格式輸出結果。
 
-## 設定服務管理模式
+## 設定 asm 模式
 
-目前，當您首次安裝 CLI 時，預設會啟用服務管理模式。如有需要，請使用下列命令來啟用 Azure CLI 服務管理命令。
+目前，當您首次安裝 CLI 時，預設會啟用 asm 模式。如果需要，請使用下列命令來設定 asm 模式。
 
 	azure config mode asm
 
->[AZURE.NOTE] Azure 資源管理員模式與 Azure 服務管理模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
+>[AZURE.NOTE] CLI 的 Azure Resource Manager 模式和 asm 模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
 
 ## 管理帳戶資訊及發佈設定
 CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳戶資訊 (請參閱[從 Azure CLI 連接到 Azure 訂用帳戶](xplat-cli-connect.md)以了解其他選項)。 您可以從 Azure 傳統入口網站取得這些資訊 (在發佈設定檔中，本文將有說明)。您可以匯入發佈設定檔，做為 CLI 後續作業所使用的持續性本機組態設定。您的發佈設定只需匯入一次即可。
@@ -791,7 +791,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 
 此命令還支援下列其他選項：
 
-**-q 或 **--quiet**：不顯示確認提示。請在自動化指令碼中使用此選項。
+****-q 或 **--quiet**：不顯示確認提示。請在自動化指令碼中使用此選項。
 
 
 **site start [options] [name]**
@@ -814,7 +814,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 	info:   Site mysite has been stopped
 	info:   site stop command OK
 
-**site restart [options] [name]**
+****site restart [options] [name]
 
 這個命令會停止再啟動指定的 Web 應用程式。
 
@@ -1879,10 +1879,8 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 + **-e** 或 **--label** &lt;label>：儲存體帳戶的標籤。
 + **-d** 或 **--description** &lt;description>：儲存體帳戶的描述。
 + **-l** 或 **--location** &lt;name>：要建立儲存體帳戶所在的區域。
-+ **-a** 或 **--affinity-group** &lt;name>：要與儲存體帳戶相關聯的同質群組。
-+ **--kind**︰帳戶類型︰「儲存體」或「儲存體 Blob」其中之一 
-+ **--sku-name**：指出要建立的帳戶類型：附帶備援選項的「標準儲存體」(LRS/ZRS/GRS/RAGRS) 或「進階儲存體」(PLRS) 其中之一。
-+ **--access-tier**︰指定儲存層︰「熱」或「冷」其中之一
++ **-a** 或 **--affinity-group** &lt;name>：要與儲存體帳戶相關聯的同質群組。 
++ **--type**：指出要建立的帳戶類型：包含備援選項 (LRS/ZRS/GRS/RAGRS) 的「Standard 儲存體」或「Premium 儲存體 (PLRS)」。
 
 **storage account set [options] <name>**
 
@@ -1898,8 +1896,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 + **-e** 或 **--label** &lt;label>：儲存體帳戶的標籤。
 + **-d** 或 **--description** &lt;description>：儲存體帳戶的描述。
 + **-l** 或 **--location** &lt;name>：要建立儲存體帳戶所在的區域。
-+ **--sku-name**：指出新的帳戶類型：附帶備援選項的「標準儲存體」(LRS/ZRS/GRS/RAGRS) 或「進階儲存體」(PLRS) 其中之一。
-+ **--access-tier**︰指定儲存層︰「熱」或「冷」其中之一
++ **--type**: 指出新的帳戶類型：包含備援選項 (LRS/ZRS/GRS/RAGRS) 的「Standard 儲存體」或「Premium 儲存體 (PLRS)」。
 
 **storage account delete [options] <name>**
 
@@ -2353,4 +2350,4 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 	+ Deleting the DNS server entry dns-4 ( 77.88.99.11 )
 	info:    network dnsserver unregister command OK
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -24,7 +24,7 @@
 
 [AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
 
-您的函式可使用設定的 Azure 通知中樞與極少的程式碼行以傳送推播通知。不過，也必須為您要使用的平台通知服務 (PNS) 設定通知中樞。如需設定 Azure 通知中樞以及開發註冊來接收通知之用戶端應用程式的詳細資訊，請參閱[開始使用通知中樞](../notification-hubs/notification-hubs-windows-store-dotnet-get-started.md)並按一下頂端的目標用戶端平台。
+您的函式可使用設定的 Azure 通知中樞與極少的程式碼行以傳送推播通知。不過，也必須為您要使用的平台通知服務 (PNS) 設定通知中樞。如需設定 Azure 通知中樞以及開發註冊來接收通知之用戶端應用程式的詳細資訊，請參閱[開始使用通知中樞](../notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)並按一下頂端的目標用戶端平台。
 
 ## Azure 通知中樞輸出繫結的 function.json
 
@@ -32,7 +32,7 @@ function.json 檔案提供下列屬性：
 
 - `name`︰函數程式碼中用於通知中樞訊息的變數名稱。
 - `type`︰必須設定為 *"notificationHub"*。
-- `tagExpression`︰標記運算式可讓您指定將通知傳遞到一組裝置，這些裝置已註冊要接收與標記運算式相符的通知。如需詳細資訊，請參閱[路由與標記運算式](../notification-hubs/notification-hubs-routing-tag-expressions.md)。
+- `tagExpression`︰標記運算式可讓您指定將通知傳遞到一組裝置，這些裝置已註冊要接收與標記運算式相符的通知。如需詳細資訊，請參閱[路由與標記運算式](../notification-hubs/notification-hubs-tags-segment-push-message.md)。
 - `hubName`︰Azure 入口網站中通知中樞資源的名稱。
 - `connection`︰此連接字串必須是針對您的通知中樞設定為 *DefaultFullSharedAccessSignature* 值的「應用程式設定」連接字串。
 - `direction`：必須設定為 *"out"*。 
@@ -68,7 +68,7 @@ function.json 範例：
 
 ## Node.js 計時器觸發程序的 Azure 通知中樞程式碼範例 
 
-這個範例會傳送包含 `location` 和 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates.md)通知。
+這個範例會傳送包含 `location` 和 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)通知。
 
 	module.exports = function (context, myTimer) {
 	    var timeStamp = new Date().toISOString();
@@ -87,7 +87,7 @@ function.json 範例：
 
 ## C# 佇列觸發程序的 Azure 通知中樞程式碼範例
 
-這個範例會傳送包含 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates.md)通知。
+這個範例會傳送包含 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)通知。
 
 
 	using System;
@@ -107,7 +107,7 @@ function.json 範例：
 	    return templateProperties;
 	}
 
-這個範例會使用有效的 JSON 字串，傳送包含 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates.md)通知。
+這個範例會使用有效的 JSON 字串，傳送包含 `message` 的[範本註冊](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)通知。
 
 	using System;
 	 
@@ -155,4 +155,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

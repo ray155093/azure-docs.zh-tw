@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev;weig;gopitk"/>
 
 
@@ -734,11 +734,11 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 
 ## 後續步驟
 
-[Cortana Analytics 程序 (CAP)](http://aka.ms/datascienceprocess) 的學習路徑提供可說明進階分析程序中每個步驟之主題的連結。在**完整資料科學程序實務**節點外，有一系列的逐步解說，展示如何在 Cortana 套件的各種不同預測性分析案例中使用資源和服務︰
+[Team Data Science Process (TDSP)](http://aka.ms/datascienceprocess) 的學習路徑提供可說明進階分析程序中每個步驟的主題連結。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)頁面上分項列出一系列逐步解說，示範如何在各種不同預測性分析案例中使用資源和服務：
 
-- [Cortana Analytics 程序實務：使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
-- [Cortana 分析程序實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
-- [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-- [在 Azure HDInsight 上使用 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)
+- [Team Data Science Process 實務：使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
+- [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
+- [Team Data Science Process：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+- [在 Azure HDInsight 上使用 Spark 的資料科學程序概觀](machine-learning-data-science-spark-overview.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

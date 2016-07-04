@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na" 
-    ms.date="03/16/2016"
+    ms.date="06/21/2016"
     ms.author="clemensv;sethm"/>
 
 # 服務匯流排寄不出的信件佇列的概觀
@@ -45,7 +45,7 @@
 
 ## 超過 MaxDeliveryCount
 
-佇列和訂用帳戶都有 [QueueDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 和 [SubscriptionDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptiondescription.maxdeliverycount.aspx) 屬性；預設值為 10。每當在鎖定下傳遞訊息 ([ReceiveMode.PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx))，但已明確放棄或鎖定已過期，訊息的 [BrokeredMessage.DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 會遞增。當 [DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 超過 [MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 時，訊息會移到 DLQ，指定 `MaxDeliveryCountExceeded` 原因代碼。
+佇列和訂用帳戶分別具有 [QueueDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 和 [SubscriptionDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptiondescription.maxdeliverycount.aspx) 屬性；預設值為 10。每當在鎖定下傳遞訊息 ([ReceiveMode.PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx))，但已明確放棄或鎖定已過期，訊息的 [BrokeredMessage.DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 會遞增。當 [DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 超過 [MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 時，訊息會移到 DLQ，指定 `MaxDeliveryCountExceeded` 原因代碼。
 
 無法停用此行為，但是您可以將 [MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 設定為非常大的數字。
 
@@ -88,7 +88,7 @@ while(true)
 
 如需服務匯流排佇列的詳細資訊，請參閱下列文章。
 
+- [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 - [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
-- 如何使用[服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

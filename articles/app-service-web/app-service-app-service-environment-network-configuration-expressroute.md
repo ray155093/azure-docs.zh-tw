@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/06/2016" 
+	ms.date="06/21/2016" 
 	ms.author="stefsch"/>
 
 # 使用 ExpressRoute 之 App Service 環境的網路組態詳細資料 
@@ -29,7 +29,7 @@
 在連接至 ExpressRoute 的虛擬網路中，可能一開始會不符合 App Service 環境的一些網路連線需求。App Service 環境需要下列所有項目，才能正確運作：
 
 
--  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 App Service 環境相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。  
+-  在連接埠 80 與 443 上，全球 Azure 儲存體端點的輸出網路連線能力。這包括位於與 App Service 環境相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。  
 -  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：database.windows.net。
 -  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 management.core.windows.net 和 management.azure.com 的輸出連線。 
 -  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出連線。需要此連線才能支援 SSL 功能。
@@ -58,7 +58,7 @@
 
 **重要事項：**UDR 中定義的路由**必須**明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
 
-**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由** 的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 如需使用者定義路由的背景資訊，請參閱此[概觀][UDROverview]。
 
@@ -114,6 +114,7 @@
 然後繼續建立 App Service 環境！
 
 ## 開始使用
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
 
@@ -137,4 +138,4 @@
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -81,11 +81,13 @@ Azure 上的 SQL Server Stretch Database 服務會以非同步方式將快照複
 
 	-   指定是否要建立遠端資料的複本，並連接到該複本 (建議)。
 
-	```tsql  
-	DECLARE @credentialName nvarchar(128);   
-	SET @credentialName = N'<existing_database_scoped_credential_name>';   
-	EXEC sp_rda_reauthorize_db @credential = @credentialName, @with_copy = 1;  
-
+    ```tsql  
+    USE <Stretch-enabled database name>;
+	GO
+	EXEC sp_rda_reauthorize_db
+	    @credential = N'<existing_database_scoped_credential_name>',
+		@with_copy = 1 ;  
+	GO
 	```  
 
 ## 另請參閱
@@ -96,4 +98,4 @@ Azure 上的 SQL Server Stretch Database 服務會以非同步方式將快照複
 
 [備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

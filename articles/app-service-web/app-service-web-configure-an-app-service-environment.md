@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/04/2016" 
+	ms.date="06/20/2016" 
 	ms.author="ccompy"/>
 
 
@@ -75,9 +75,10 @@ App Service 環境是由數個主要元件所組成：
 
 - 目前僅支援 V1「傳統」VNET。
 - VNET 必須是區域 VNET
-- 用來裝載 ASE 的 VNET 必須使用 RFC1918 位址 (也就是私人位址)
+- 在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍「或」RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
 - 需要有包含 8 個或更多位址且為 ASE 部署所在的子網路
 - 將子網路用於裝載 ASE 之後，就無法變更子網路的位址範圍。因此，建議子網路至少包含 64 個位置以適應未來 ASE 成長。 
+- **用來裝載 ASE 的子網路不得包含任何其他計算資源。**
 
 不同於包含 ASE 的託管服務，[虛擬網路][virtualnetwork]和子網路全都在使用者的控制之下。透過虛擬網路 UI 或 Powershell 即可管理您的 VNET。
 
@@ -119,7 +120,7 @@ ASE 刀鋒視窗中有一個包含幾項重要功能的「設定」區段。
 
 [設定] > [IP 位址] 當您在 ASE 中建立 IP SSL 應用程式時，您需要一個 IP SSL 位址。若要那樣做，您的 ASE 必須擁有一些可配置的 IP SSL 位址。ASE 在建立時會擁有 1 個 IP SSL 以供此用途使用，但您可以新增更多位址。額外的 IP SSL 位址需付費，如 SSL 連線之小節中的 [App Service 定價][AppServicePricing]所示。額外的價格是 IP SSL 價格。
 
-[設定] > [前端集區] > [背景工作集區]這些資源集區刀鋒視窗每一個都可讓您檢視該資源集區的資訊，以及提供充分調整該資源集區所需的控制。
+[設定] > [前端集區] > [背景工作集區] 這些資源集區刀鋒視窗每一個都可讓您檢視該資源集區的資訊，以及提供充分調整該資源集區所需的控制。
 
 每個資源集區的基準刀鋒視窗分別會提供一個圖表，內附該資源集區的計量。就像 ASE 刀鋒視窗中的圖表，您可以進入圖表，並設定所需的警示。從 ASE 刀鋒視窗為特定的資源集區設定警示，效果等同於從資源集區進行設定。在背景工作集區的 [設定] 刀鋒視窗中，您有權列出在此背景工作集區中執行的所有應用程式或 App Service 方案。
 
@@ -176,6 +177,7 @@ App Service 環境可設定為最多總計使用 55 個計算資源。在這 55 
 ![][9]
 
 ## 開始使用
+您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱[如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)
 
@@ -208,4 +210,4 @@ App Service 環境可設定為最多總計使用 55 個計算資源。在這 55 
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
 [ExpressRoute]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-network-configuration-expressroute/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

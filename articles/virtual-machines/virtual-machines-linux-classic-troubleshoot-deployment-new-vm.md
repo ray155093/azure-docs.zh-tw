@@ -13,8 +13,8 @@
   ms.workload="na"
   ms.tgt_pltfrm="vm-linux"
   ms.devlang="na"
-  ms.topic="support-article"
-  ms.date="05/06/2016"
+  ms.topic="article"
+  ms.date="06/20/2016"
   ms.author="cjiang"/>
 
 # 針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解
@@ -37,7 +37,7 @@
 
 [AZURE.INCLUDE [virtual-machines-linux-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-linux-troubleshoot-deployment-new-vm-table.md)]
 
-**Y：**如果作業系統是一般化的 Linux，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣的，如果作業系統是特殊化的 Linux，且帶著特殊化設定被上傳及/或擷取，則不會有任何錯誤。
+**Y：**如果作業系統是一般化的 Linux，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣地，如果作業系統是特殊化的 Linux，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
 
 **上傳錯誤：**
 
@@ -47,13 +47,13 @@
 
 **解決方案：**
 
-若要解決這兩個錯誤，請上傳原始 VHD、可用的內部部署、以及與該 OS (一般化/特殊化) 相同的設定。若要以一般化上傳，請務必先執行 -deprovision。如需詳細資訊，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)。
+若要解決這兩個錯誤，請使用與作業系統相同的設定 (一般化/特殊化) 來上傳原始 VHD (可從內部部署環境取得)。若要以一般化上傳，請務必先執行 -deprovision。如需詳細資訊，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)。
 
 **擷取錯誤：**
 
 **N<sup>3</sup>：**如果作業系統是一般化的 Linux，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
 
-**N<sup>4</sup>：**如果作業系統是特殊化的 Linux，但是以一般化被擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會被標示為特殊化而無法加以使用。
+**N<sup>4</sup>：**如果作業系統是特殊化的 Linux，但是以一般化被擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會因被標示為特殊化而無法供使用。
 
 **解決方案：**
 
@@ -81,4 +81,7 @@
 - 在新的虛擬網路中建立新 VM。
 - [連接您現有的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)到新的虛擬網路。深入了解[區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。此外，也可以[將同質群組式虛擬網路移轉至區域虛擬網路](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後建立新 VM。
 
-<!---HONumber=AcomDC_0525_2016-->
+## 後續步驟
+如果您在啟動已停止的 Linux VM，或重新調整 Azure 中現有 Linux VM 的大小時遇到問題，請參閱[針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)。
+
+<!---HONumber=AcomDC_0622_2016-->

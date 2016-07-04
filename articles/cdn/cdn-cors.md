@@ -41,7 +41,7 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
  
 ## 萬用字元或單一來源的狀況
 
-當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
+當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
  
 如果在您的來源上設定 CORS 之前已經向 CDN 發出要求，您必須清除您端點內容上的內容，以重新載入包含 **Access-Control-Allow-Origin** 標頭的內容。
  
@@ -65,7 +65,7 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
  
 > [AZURE.TIP] 「來自 Verizon 的 Azure CDN」使用 [Perl 相容的規則運算式](http://pcre.org/)做為其規則運算式引擎。您可以使用像 [Regular Expressions 101](https://regex101.com/) 這樣的工具來驗證您的規則運算式。請注意，規則運算式中的「/」字元是有效的，不需要逸出，不過將該字元逸出被視為是最佳做法，且某些規則運算式驗證程式也預期將它逸出。
 
-如果規則運算式相符，管理您規則的 CDN 會將來自來源的 **Access-Control-Allow-Origin** 標頭 (如果有) 取代為傳送該要求的來源。您也可以加入額外的 CORS 標頭，例如 **Access-Control-Allow-Methods**。
+如果規則運算式相符，您的規則會將來自來源的 **Access-Control-Allow-Origin** 標頭 (如果有) 取代為傳送該要求的來源。您也可以加入額外的 CORS 標頭，例如 **Access-Control-Allow-Methods**。
 
 ![包含規則運算式的規則範例](./media/cdn-cors/cdn-cors-regex.png)
  
@@ -81,4 +81,4 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
 
 在 Azure CDN 標準設定檔上，在不使用萬用字元來源情況下允許多重來源的唯一機制是使用[查詢字串快取](cdn-query-string.md)。您需要啟用 CDN 端點的查詢字串設定，然後針對來自每個允許之網域的查詢使用唯一的查詢字串。這樣做將使 CDN 針對每個唯一的查詢字串快取個別物件。但是這不是最理想的方法，因為它會導致在 CDN 上快取同一個檔案的多個複本。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->
