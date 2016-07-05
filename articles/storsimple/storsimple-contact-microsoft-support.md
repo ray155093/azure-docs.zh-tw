@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/18/2016"
+   ms.date="06/20/2016"
    ms.author="alkohli" />
 
 # 連絡 Microsoft 支援服務
@@ -102,4 +102,4 @@
 
 > [AZURE.IMPORTANT] 您可以執行 `Disable-HcsSupportAccess` 來停用支援存取。在起始工作階段之後 8 小時，StorSimple 裝置也會嘗試停用支援存取。最好在起始支援工作階段之後變更 StorSimple 裝置認證。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="fashah;bradsev" />
 
 # 移動資料至 Azure 虛擬機器上的 SQL Server
 
-本主題概述從一般檔案 (CSV 或 TSV 格式) 或是內部部署的 SQL Server，將資料移動至 Azure 虛擬機器上之 SQL Server 的選項。這些用於將資料移至雲端的工作是 Azure 所提供 Cortana 分析程序的一部分。
+本主題概述從一般檔案 (CSV 或 TSV 格式) 或是內部部署的 SQL Server，將資料移動至 Azure 虛擬機器上之 SQL Server 的選項。將資料移到雲端的這些工作是 Team Data Science Process 的一部分。
 
 如需概述移動資料至機器學習的 Azure SQL Database 之選項的主題，請參閱[移動資料至 Azure Machine Learning 的 Azure SQL Database](machine-learning-data-science-move-sql-azure.md)。
 
-以下**功能表**連結至其他主題，說明如何將資料擷取至其他目標環境，以在 Cortana Analytics 程序 (CAP) 期間儲存和處理該資料。
+以下**功能表**所連結的主題說明如何將資料內嵌至其他目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -224,4 +224,4 @@ SQL Server Management Studio 的資料庫備份/還原選項的螢幕擷取畫�
 [1]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/sqlserver_builtin_utilities.png
 [2]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/database_migration_wizard.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

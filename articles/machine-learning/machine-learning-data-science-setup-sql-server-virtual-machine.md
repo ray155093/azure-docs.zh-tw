@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="xibingao;bradsev" />
 
 # 將 Azure SQL Server 虛擬機器設定為 IPython Notebook 伺服器供進階分析使用
@@ -251,7 +251,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 ##<a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
 
-在 Cortana Analytics 程序的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。《Cortana Analytics 程序》指南中的連結提供更多與本主題相關的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
+在 Team Data Science Process 的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。您可以透過 Team Data Science Process 指南的連結來找到更多有關本主題的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
 
 2.	在[匯入資料模組](https://msdn.microsoft.com/library/azure/dn905997.aspx)的 [屬性] 窗格中，從 [資料來源] 下拉式清單中選取 [Azure SQL Database]。
 
@@ -285,9 +285,9 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 
 ## 您的 Azure SQL Server VM 已準備好可供使用：下一步是什麼？
 
-您的虛擬機器已經準備好在資料科學練習中使用。虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以用於進行資料探索和處理，以及其他可與 Azure Machine Learning 和 Cortana 分析程序 (CAP) 一起使用的工作。
+您的虛擬機器已經準備好在資料科學練習中使用。虛擬機器也已經準備好用來做為 IPython Notebook 伺服器，以進行資料探索和處理，以及其他可與 Azure 機器學習服務和 Team Data Science Process (TDSP) 一起使用的工作。
 
-「[學習指南：Azure 中的進階資料處理](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)」中說明了資料科學程序的後續步驟，其中可能包含將資料移至 HDInsight，並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
+[Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了資料科學程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
 
 
 [1]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/selectsqlvmimg.png
@@ -306,4 +306,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

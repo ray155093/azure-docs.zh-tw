@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev" />
 
 # 在 Azure HDInsight 上使用 Spark 的資料科學概觀
@@ -145,4 +145,4 @@
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

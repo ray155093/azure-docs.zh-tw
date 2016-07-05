@@ -10,9 +10,9 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/10/2016"
+	ms.date="06/17/2016"
 	ms.author="sstein"
-	ms.workload="data-management"
+	ms.workload="sqldb-bcdr"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
@@ -25,7 +25,7 @@
 - [Azure 入口網站](sql-database-geo-restore-portal.md)
 - [PowerShell](sql-database-geo-restore-powershell.md)
 
-本文說明如何使用 Azure 入口網站，將資料庫還原至使用異地還原的新伺服器。
+本文說明如何透過 Azure 入口網站，使用異地還原來將資料庫還原至新的伺服器。
 
 ## 選取要還原的資料庫
 
@@ -41,14 +41,12 @@
 
 ## 後續步驟
 
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-
+- 如需如何使用 Azure 入口網站，從異地備援備份還原 Azure SQL Database 的詳細步驟，請參閱[使用 Azure 入口網站進行異地還原](sql-database-geo-restore-portal.md)
+- 如需從異地備援備份還原 Azure SQL Database 的詳細資訊，請參閱[使用 PowerShell 進行異地還原](sql-database-geo-restore.md)
+- 如需如何從中斷復原的完整討論，請參閱[從中斷復原](sql-database-disaster-recovery.md)
 
 ## 其他資源
 
-- [異地還原](sql-database-geo-restore.md)
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
+- [商務持續性案例](sql-database-business-continuity-scenarios.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

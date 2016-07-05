@@ -14,4 +14,6 @@
 
 NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參考，以利用 StackExchange.Redis 快取用戶端來存取 Azure Redis 快取。
 
-<!---HONumber=AcomDC_0615_2016-->
+>[AZURE.NOTE] 如果您先前已經設定專案以使用 StackExchange.Redis，您就可以從 **NuGet 封裝管理員**檢查封裝更新。若要檢查及安裝 StackExchange.Redis NuGet 封裝的已更新版本，請按一下 [NuGet 封裝管理員] 視窗中的 [更新]。如果 StackExchange.Redis NuGet 封裝有更新可用，您可以更新您的專案來使用已更新版本。
+
+<!---HONumber=AcomDC_0622_2016-->

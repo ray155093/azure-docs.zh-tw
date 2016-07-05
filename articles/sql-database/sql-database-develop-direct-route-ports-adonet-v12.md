@@ -10,7 +10,7 @@
 
 <tags 
 	ms.service="sql-database" 
-	ms.workload="data-management" 
+	ms.workload="drivers"
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
@@ -120,4 +120,4 @@ SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點�
 
 - [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

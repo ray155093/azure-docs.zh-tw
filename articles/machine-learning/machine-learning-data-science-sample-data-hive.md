@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="hangzh;bradsev" />
 
 # 在 Azure HDInsight Hive 資料表中進行資料取樣
@@ -24,13 +24,13 @@
 * 依群組隨機取樣 
 * 分層取樣
 
-**為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
+**為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Team Data Science Process 中扮演的角色是，能夠快速建立資料處理函式與機器學習服務模型的原型。
 
 以下**功能表**會連結至如何從各種不同儲存體環境進行資料取樣的說明主題。
 
 [AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
-此取樣工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
 ## 如何提交 Hive 查詢
@@ -107,4 +107,4 @@ Hive 查詢可以從 Hadoop 叢集前端節點上的 Hadoop 命令列主控台�
 如需可在 Hive 中使用的進一步進階取樣方法相關資訊，請參閱 [LanguageManual 取樣](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Sampling)。
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

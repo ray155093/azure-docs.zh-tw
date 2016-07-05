@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Cortana Analytics 程序實務：使用 SQL 資料倉儲 | Microsoft Azure"
+	pageTitle="Team Data Science Process 實務：使用 SQL 資料倉儲 | Microsoft Azure"
 	description="進階分析程序和技術實務"  
 	services="machine-learning"
 	documentationCenter=""
@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev;hangzh;weig"/>
 
 
-# Cortana Analytics 程序實務：使用 SQL 資料倉儲
+# Team Data Science Process 實務：使用 SQL 資料倉儲
 
 在本教學課程中，我們將引導您使用 SQL 資料倉儲 (SQL DW)，針對可公開使用的資料集 ([NYC 計程車車程](http://www.andresmh.com/nyctaxitrips/)資料集) 建置和部署機器學習服務模型。所建構的二元分類模型可預測是否已針對某趟車程支付小費，並且也會討論預測支付的小費金額分佈的多元分類模型和迴歸模型。
 
-此程序遵循 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 工作流程。我們會示範如何設定資料科學環境、如何將資料載入 SQL DW，以及如何使用 SQL DW 或 IPython Notebook 來探索要模型化的資料和工程功能。然後，我們會示範如何使用 Azure Machine Learning 建置和部署模型。
+此程序會遵循 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 工作流程。我們會示範如何設定資料科學環境、如何將資料載入 SQL DW，以及如何使用 SQL DW 或 IPython Notebook 來探索要模型化的資料和工程功能。然後，我們會示範如何使用 Azure Machine Learning 建置和部署模型。
 
 
 ## <a name="dataset"></a>NYC 計程車車程資料集
@@ -91,7 +91,7 @@
 
 **安裝 Visual Studio 2015 和 SQL Server Data Tools。** 如需指示，請參閱[安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT (SQL Server Data Tools)](../sql-data-warehouse/sql-data-warehouse-install-visual-studio.md)。
 
-**使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-connect.md)中的步驟 1 和 2。
+**使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-connect-overview.md)中的步驟 1 和 2。
 
 >[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢) 以「建立主要金鑰」。
 
@@ -452,7 +452,7 @@
 	GO
 
 	-- User-defined function to calculate the direct distance  in mile between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] \ (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -499,7 +499,7 @@
 	GO
 
 	-- User-defined function calculate the direct distance between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] \ (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -920,7 +920,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 
 
 ## 摘要
-讓我們回顧一下已在此逐步解說教學課程中完成的工作，您已經建立 Azure 資料科學環境、使用大型公用資料集，並將其用於 Cortana Analytics 程序的整個過程，在這個過程中，您擷取資料、訓練模型，然後部署 Azure Machine Learning Web 服務。
+讓我們回顧一下已在此逐步解說教學課程中完成的工作，您已經建立 Azure 資料科學環境、使用大型公用資料集，並在 Team Data Science Process 的整個過程中使用它，而您在這個過程中擷取資料、進行模型定型，然後部署 Azure Machine Learning Web 服務。
 
 ### 授權資訊
 
@@ -964,4 +964,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

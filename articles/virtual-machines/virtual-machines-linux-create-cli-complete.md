@@ -1,10 +1,10 @@
 <properties
-   pageTitle="使用 Azure CLI 從頭開始建立 Linux VM | Microsoft Azure"
-   description="使用 Azure CLI 從頭開始建立 Linux VM、儲存體、虛擬網路和子網路、NIC、公用 IP、網路安全性群組。"
+   pageTitle="使用 Azure CLI 建立完整的 Linux 環境 | Microsoft Azure"
+   description="使用 Azure CLI 從頭開始建立 Linux VM、儲存體、虛擬網路和子網路、負載平衡器、NIC、公用 IP、網路安全性群組。"
    services="virtual-machines-linux"
    documentationCenter="virtual-machines"
    authors="iainfoulds"
-   manager="squillace"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"/>
 
@@ -14,14 +14,27 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="04/29/2016"
+   ms.date="06/10/2016"
    ms.author="iainfou"/>
 
-# 使用 Azure CLI 從頭開始建立 Linux VM
+# 使用 Azure CLI 建立完整的 Linux 環境
 
-若要建立 Linux VM，您需要資源管理員模式 (`azure config mode arm`) 下的 [Azure CLI](../xplat-cli-install.md) 以及 JSON 剖析工具，我們會使用 [jq](https://stedolan.github.io/jq/) 處理這份文件。
+讓我們來建立簡單的網路，其中具備負載平衡器和一組對開發及簡單計算很有用的 VM。您會以命令方式引導整個環境，依序引導逐一命令，直到您具備有效安全的 Linux VM，可透過網際網路從任何地方連線該 VM。然後您就可以繼續進行更複雜的網路和環境。
+
+在過程中，您將了解資源管理員部署模型提供給您的相依性階層，以及它提供多少功能。一旦您了解系統建置的方式，您就可以使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)更快地建置系統。一旦您看到環境的組件如何彼此搭配運作，就可以更輕鬆地建立範本來將它們自動化。
+
+環境將會包含︰
+
+- 位於可用性設定組中的兩部 VM
+- 連接埠 80 上具有負載平衡規則的負載平衡器
+- 避免 VM 產生不必要流量的網路安全性群組規則
+
+![基本環境概觀](./media/virtual-machines-linux-create-cli-complete/environment_overview.png)
+
+若要建立此自訂環境，您需要安裝最新的 [Azure CLI](../xplat-cli-install.md) 並處於資源管理員模式 (`azure config mode arm`)。您也需要 JSON 剖析工具 - 這個範例使用 [jq](https://stedolan.github.io/jq/)。
 
 ## 快速命令
+下列快速命令可用於建置您的自訂環境。如需進一步了解您建置環境時，每個命令執行之動作的概觀，請閱讀[以下的詳細逐步解說步驟](#detailed-walkthrough)。
 
 建立資源群組
 
@@ -118,16 +131,16 @@ azure network lb show -g TestRG -n TestLB --json | jq '.'
 建立第一個 NIC
 
 ```bash
-azure network nic create -g TestRG -n LB-NIC1 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd
-    -d "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool"
+azure network nic create -g TestRG -n LB-NIC1 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd \
+    -d "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool" \
     -e "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM1-SSH"
 ```
 
 建立第二個 NIC
 
 ```bash
-azure network nic create -g TestRG -n LB-NIC2 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd
-    -d "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool"
+azure network nic create -g TestRG -n LB-NIC2 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd \
+    -d "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool" \
     -e "/subscriptions/########-####-####-####-############/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM2-SSH"
 ```
 
@@ -175,7 +188,7 @@ azure availset create -g TestRG -n TestAvailSet -l westeurope
 建立第一個 Linux VM
 
 ```bash
-azure vm create \            
+azure vm create \
     --resource-group TestRG \
     --name TestVM1 \
     --location westeurope \
@@ -193,7 +206,7 @@ azure vm create \
 建立第二個 Linux VM
 
 ```bash
-azure vm create \            
+azure vm create \
     --resource-group TestRG \
     --name TestVM2 \
     --location westeurope \
@@ -215,15 +228,14 @@ azure vm show -g TestRG -n TestVM1 --json | jq '.'
 azure vm show -g TestRG -n TestVM2 --json | jq '.'
 ```
 
+將您已建置的環境匯出為範本，以快速重新建立新執行個體：
+
+```bash
+azure resource export TestRG
+```
+
 ## 詳細的逐步解說
-
-### 簡介
-
-本文使用受負載平衡器保護的兩個 Linux VM 來建置部署。它以命令方式引導整個基本部署，依序引導逐一命令，直到您具備有效的安全 Linux VM，可透過網際網路從任何地方連線。
-
-在過程中，您將了解資源管理員部署模型提供給您的相依性階層，以及它提供多少功能。您看到系統的建置方法時，可以使用更直接的 Azure CLI 命令，以更快的速度重建系統 (請參閱[本文](virtual-machines-linux-quick-create-cli.md)以使用 `azure vm quick-create` 命令處理大致相同的部署)，或者您可以繼續專精如何設計及自動化整個網路與應用程式部署，並使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)進行更新。一旦您看到部署的組件如何彼此搭配運作，就可以更輕鬆地建立範本來將它們自動化。
-
-讓我們利用對開發和簡單計算很實用的 VM 配對來建置簡單網路和負載平衡器，我們會在過程中加以解釋。然後您就可以繼續進行更複雜的網路和部署。
+這些更詳細的步驟說明您建置環境時每個命令所做的動作，有助於在您接著建置自己的自訂環境以進行開發或實際執行工作負載時，利用這些概念。
 
 ## 建立資源群組，並選擇部署位置
 
@@ -253,7 +265,7 @@ info:    group create command OK
 
 在其他案例中，您將需要儲存體帳戶，用於您的 VM 磁碟和任何您想要新增的額外資料磁碟。簡單地說，您一定要在建立資源群組之後立即建立儲存體帳戶。
 
-我們在此使用 `azure storage account create` 命令，傳遞帳戶的位置、將控制它的資源群組，以及您想要的儲存體支援類型。
+我們在此使用 `azure storage account create` 命令，傳遞帳戶的位置、將要控制它的資源群組，以及您想要的儲存體支援類型。
 
 ```bash
 azure storage account create \  
@@ -425,7 +437,7 @@ azure group show TestRG --json | jq '.'
 }
 ```
 
-現在讓我們在要於其中部署 VM 的 `TestVnet` 虛擬網路中建立子網路。我們使用 `azure network vnet subnet create` 命令搭配我們已經建立的資源︰`TestRG` 資源群組、`TestVNet` 虛擬網路，而且我們會新增子網路名稱 `FrontEnd` 和子網路位址首碼 `192.168.1.0/24`，如下所示。
+現在讓我們在要於其中部署 VM 的 `TestVnet` 虛擬網路中建立子網路。我們使用 `azure network vnet subnet create` 命令搭配我們已經建立的資源︰`TestRG` 資源群組、`TestVNet` 虛擬網路，然後我們會新增子網路名稱 `FrontEnd` 和子網路位址首碼 `192.168.1.0/24`，如下所示。
 
 ```bash
 azure network vnet subnet create -g TestRG -e TestVNet -n FrontEnd -a 192.168.1.0/24
@@ -447,7 +459,7 @@ data:
 info:    network vnet subnet create command OK
 ```
 
-因為子網路是以邏輯方式位於虛擬網路內，所以我們將使用稍有不同的命令尋找子網路資訊 -- `azure network vnet show`，但仍需使用 **jq** 檢查 JSON 輸出。
+因為子網路是以邏輯方式位於虛擬網路內，所以我們將使用稍有不同的命令尋找子網路資訊 -- `azure network vnet show`，但仍使用 **jq** 檢查 JSON 輸出。
 
 ```bash
 azure network vnet show TestRG TestVNet --json | jq '.'
@@ -486,7 +498,7 @@ azure network vnet show TestRG TestVNet --json | jq '.'
 
 ## 建立您的公用 IP 位址 (PIP)
 
-現在讓我們建立將指派給您負載平衡器且可讓您從網際網路使用 `azure network public-ip create` 命令連線到 VM 的公用 IP 位址 (PIP)。由於預設值是動態位址，所以我們會使用 `-d testsubdomain` 選項在 **.cloudapp.azure.com** 網域中建立具名的 DNS 項目。
+現在讓我們使用 `azure network public-ip create` 命令建立公用 IP 位址 (PIP)，此 IP 位址將會指派到您的負載平衡器，並可讓您從網際網路連線到 VM。由於預設值是動態位址，所以我們會使用 `-d testsubdomain` 選項在 **.cloudapp.azure.com** 網域中建立具名的 DNS 項目。
 
 ```bash
 azure network public-ip create -d testsubdomain TestRG TestPIP westeurope
@@ -570,7 +582,7 @@ azure group show TestRG --json | jq '.'
 }
 ```
 
-一如往常，您可以調查更多資源的詳細資料，包括使用更完整 `azure network public-ip show` 命令的子網域完整網域名稱 (FQDN)。請注意，公用 IP 位址資源以邏輯方式配置，但尚未指派特定位址。為此，您需要我們尚未建立的負載平衡器。
+一如往常，您可以使用更完整的 `azure network public-ip show` 命令，調查更多資源的詳細資料，包括子網域完整的網域名稱 (FQDN)。請注意，公用 IP 位址資源以邏輯方式配置，但尚未指派特定位址。為此，您需要我們尚未建立的負載平衡器。
 
 ```bash
 azure network public-ip show TestRG TestPIP --json | jq '.'
@@ -643,7 +655,7 @@ data:    Public IP address id            : /subscriptions/guid/resourceGroups/Te
 info:    network lb frontend-ip create command OK
 ```
 
-請注意，我們如何使用 `--public-ip-name` 參數來傳入我們稍早建立的 TestLBPIP。這會將公用 IP 位址指派給負載平衡器，因此我們可以透過網際網路連接 VM。
+請注意我們如何使用 `--public-ip-name` 參數來傳入我們稍早建立的 TestLBPIP。這會將公用 IP 位址指派給負載平衡器，因此我們可以透過網際網路連接 VM。
 
 接下來，讓我們建立第二個 IP 集區，這次是針對我們的後端流量︰
 
@@ -662,7 +674,7 @@ data:    Provisioning state              : Succeeded
 info:    network lb address-pool create command OK
 ```
 
-我們可以檢查如何使用 `azure network lb show` 尋找負載平衡器以及檢查 JSON 輸出：
+我們可以利用 `azure network lb show` 檢查負載平衡器的狀態，並檢查 JSON 輸出：
 
 ```bash
 azure network lb show TestRG TestLB --json | jq '.'
@@ -771,7 +783,7 @@ info:    network lb rule create command OK
 
 ## 建立負載平衡器健全狀況探查
 
-健全狀況探查會定期檢查受負載平衡器保護的 VM，確定它們為作業中並依定義回應要求。否則，會從作業中移除它們，確保不要將使用者導向到它們。您可以定義健全狀況探查的自訂檢查，以及間隔和逾時值。如需健全狀態探查的詳細資訊，請閱讀[負載平衡器探查](../load-balancer/load-balancer-custom-probe-overview.md)。
+健全狀況探查會定期檢查受負載平衡器保護的 VM，確定它們為作業中並依定義回應要求。否則，會從作業中移除它們，確保不要將使用者導向到它們。您可以定義健全狀況探查的自訂檢查，以及間隔和逾時值。如需健康狀態探查的詳細資訊，請閱讀[負載平衡器探查](../load-balancer/load-balancer-custom-probe-overview.md)。
 
 ```bash
 azure network lb probe create -g TestRG -l TestLB -n HealthProbe -p "http" -f healthprobe.aspx -i 15 -c 4
@@ -923,16 +935,17 @@ azure network lb show -g TestRG -n TestLB --json | jq '.'
 
 ## 建立 NIC 與 Linux VM 搭配使用
 
-因為您可能會將規則套用至 NIC 的使用上，並有多個規則，即使 NIC 也可以程式設計方式使用。請注意，在下列 `azure network nic create` 命令中，您將我們的 NIC 連結到負載後端 IP 集區，並建立與允許 SSH 流量之 NAT 規則的關聯。若要這麼做，需要指定 Azure 訂用帳戶的訂用帳戶識別碼來取代 `<GUID>`：
+因為您可能會將規則套用至 NIC 的使用上，並有多個規則，即使 NIC 也可以程式設計方式使用。請注意，在下列 `azure network nic create` 命令中，您將我們的 NIC 連結到負載後端 IP 集區，並將我們的 NAT 規則與允許的 SSH 流量建立關聯。若要這麼做，需要指定 Azure 訂用帳戶的訂用帳戶識別碼來取代 `<GUID>`：
 
 ```bash
-azure network nic create -g TestRG -n LB-NIC1 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd -d
+azure network nic create -g TestRG -n LB-NIC1 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd \
+     -d /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool \
+     -e /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM1-SSH
 ```
 
 輸出
 
 ```bash 
-/subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool -e /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM1-SSH
 info:    Executing command network nic create
 + Looking up the subnet "FrontEnd"
 + Looking up the network interface "LB-NIC1"
@@ -957,7 +970,7 @@ data:
 info:    network nic create command OK
 ```
 
-您可以藉由直接檢查資源與使用 `azure network nic show` 命令來查看詳細資料。
+您可以使用 `azure network nic show` 命令，直接檢查資源來查看詳細資料。
 
 ```bash
 azure network nic show TestRG LB-NIC1 --json | jq '.'
@@ -1008,13 +1021,9 @@ azure network nic show TestRG LB-NIC1 --json | jq '.'
 讓我們繼續進行，並建立第二個 NIC，再次連結到後端 IP 集區，而這次是允許 SSH 流量的第二個 NAT 規則︰
 
 ```bash
-azure network nic create -g TestRG -n LB-NIC2 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd -d
-```
-
-輸出
-
-```bash
- /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool -e /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM2-SSH
+azure network nic create -g TestRG -n LB-NIC2 -l westeurope --subnet-vnet-name TestVNet --subnet-name FrontEnd \
+    -d  /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/backendAddressPools/TestBackEndPool \
+    -e /subscriptions/<GUID>/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/inboundNatRules/VM2-SSH
 ```
 
 ## 建立您的網路安全性群組和規則
@@ -1062,13 +1071,13 @@ azure availset create -g TestRG -n TestAvailSet -l westeurope
 
 升級網域表示虛擬機器群組和可同時重新啟動的基礎實體硬體。重新啟動的升級網域順序可能不會在規劃的維護事件期間循序進行，而只會一次重新啟動一個升級網域。同樣地，將多個 VM 放到一個可用性設定網站內時，Azure 會自動將它們分散到升級網域。
 
-您可以深入了解[管理 VM 的可用性](./virtual-machines-linux-manage-availability.md)。
+您可以深入了解[管理 VM 的可用性](./virtual-machines-linux-manage-availability.md)
 
 ## 建立 Linux VM
 
 您已建立儲存體和網路資源以支援可存取網際網路的 VM。現在讓我們建立 VM，並利用沒有密碼的 SSH 金鑰保障其安全。在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。我們會使用 `azure vm image list` 找出該映像資訊 (如[尋找 Azure VM 映像](virtual-machines-linux-cli-ps-findimage.md)所述)。我們過往使用命令 `azure vm image list westeurope canonical | grep LTS` 選取映像，而在此情況下，我們將使用 `canonical:UbuntuServer:14.04.4-LTS:14.04.201604060`，但是我們將在最後一個欄位傳遞 `latest`，以便未來可隨時取得最新的組建 (我們使用的字串將會是 `canonical:UbuntuServer:14.04.4-LTS:14.04.201604060`)。
 
-> [AZURE.NOTE] 已使用 **ssh-keygen -t rsa -b 2048** 在 Linux 或 Mac 上建立 ssh rsa 公用和私人金鑰組的任何人都熟悉下一個步驟。如果您的 `~/.ssh` 目錄中沒有任何憑證金鑰組，您可以建立憑證金鑰組︰<br /> 1. 使用 `azure vm create --generate-ssh-keys` 選項自動進行 2. 使用[自行建立指示](virtual-machines-linux-ssh-from-linux.md)手動進行 <br /> 或者，您可以使用 `azure vm create --admin-username --admin-password` 選項，以使用通常較不安全的使用者名稱和密碼方法，在建立 VM 之後驗證您的 SSH 連線。
+> [AZURE.NOTE] 已使用 **ssh-keygen -t rsa -b 2048** 在 Linux 或 Mac 上建立 ssh rsa 公用和私人金鑰組的任何人，都熟悉下一個步驟。如果您的 `~/.ssh` 目錄中沒有任何憑證金鑰組，您可以建立憑證金鑰組︰<br /> 1. 使用 `azure vm create --generate-ssh-keys` 選項自動進行 2. 使用[自行建立指示](virtual-machines-linux-ssh-from-linux.md)手動進行 <br /> 或者，您可以使用 `azure vm create --admin-username --admin-password` 選項，以使用通常較不安全的使用者名稱和密碼方法，在建立 VM 之後驗證您的 SSH 連線。
 
 我們會藉由使用 `azure vm create` 命令結合所有資源和資訊，以建立 VM。
 
@@ -1168,7 +1177,7 @@ azure vm create \
     --admin-username ops
 ```
 
-而且您可以立即使用 `azure vm show testrg testvm` 命令來檢查您建立的內容。此時，您在 Azure 中有受負載平衡器保護的執行中 Ubuntu VM，您只能利用您擁有的 SSH 金鑰組登入；密碼會停用。您可以安裝 nginx 或 httpd 並部署 Web 應用程式，然後查看透過負載平衡器流向兩個 VM 的流量。
+而您現在可以使用 `azure vm show testrg testvm` 命令來檢查您建立的內容。此時，您在 Azure 中有受負載平衡器保護的執行中 Ubuntu VM，您只能利用您擁有的 SSH 金鑰組登入；密碼會停用。您可以安裝 nginx 或 httpd 並部署 Web 應用程式，然後查看透過負載平衡器流向兩個 VM 的流量。
 
 ```bash
 azure vm show TestRG TestVM1
@@ -1230,8 +1239,26 @@ data:      Diagnostics Instance View:
 info:    vm show command OK
 ```
 
+
+## 將環境匯出為範本
+您現在已經建立這個環境，如果您想要使用相同參數建立其他開發環境，或想要建立相符的生產環境時該怎麼辦？ Resource Manager 使用 JSON 範本，其中定義了您環境的所有參數，可讓您藉由參考這個 JSON 範本建立整個環境。您可以[手動建立 JSON 範本](../resource-group-authoring-templates.md)，或直接將現有的環境匯出，為您建立 JSON 範本：
+
+```bash
+azure group export TestRG
+```
+
+這會在您目前的工作目錄中建立 `TestRG.json` 檔案。然後，當您從這個範本建立新環境時，系統會提示您輸入所有的資源名稱，例如負載平衡器、網路介面、VM 等等。您可以將這些資訊填入範本，方法是將 `-p` 或 `--includeParameterDefaultValue` 加入到前述的 `azure group export` 命令中、編輯 JSON 範本來指定資源名稱，或[建立只指定資源名稱的 parameters.json 檔案](../resource-group-authoring-templates.md#parameters)。
+
+若要從範本建立新環境：
+
+```bash
+azure group deployment create -f TestRG.json -g NewRGFromTemplate
+```
+
+您可以閱讀[從範本部署的更多詳細資料](../resource-group-template-deploy-cli.md)，包括如何以累加方式更新環境、使用參數檔案，和從單一儲存體位置存取範本。
+
 ## 後續步驟
 
-現在您已準備好開始處理多個網路元件和 VM。
+現在您已準備好開始處理多個網路元件和 VM。您可以利用此處介紹的核心元件，使用這個相同環境來建置您的應用程式。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

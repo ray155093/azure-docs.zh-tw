@@ -1,5 +1,5 @@
 <properties 
-   pageTitle="SQL Database 嚴重損壞修復演練" 
+   pageTitle="SQL Database 災害復原演練 | Microsoft Azure" 
    description="了解使用 Azure SQL Database 執行嚴重損壞修復演練的指引和最佳作法，以協助確保您的關鍵性商務應用程式在失敗和中斷時可迅速復原。" 
    services="sql-database" 
    documentationCenter="" 
@@ -13,24 +13,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management" 
-   ms.date="04/18/2016"
+   ms.date="06/16/2016"
    ms.author="mihaelab"/>
 
-#執行嚴重損壞修復演練
+#執行災害復原演練
 
-建議您定期驗證應用程式的復原工作流程整備。最佳設計作法是，驗證容錯移轉所涉及之資料遺失和 (或) 中斷的應用程式行為和影響。這也是大多數業界標準在業務續航力認證中的規定。
+建議您定期驗證應用程式的復原工作流程整備。最佳設計作法是，驗證容錯移轉所涉及之資料遺失和 (或) 中斷的應用程式行為和影響。這也是大多數業界標準在商務持續性認證中的規定。
 
-嚴重損壞修復演練內容包括：
+災害復原演練內容包括：
 
 - 模擬資料層中斷情況
 - 復原 
 - 驗證復原後的應用程式完整性
 
-執行演練的工作流程會因您[設計業務續航力之應用程式](sql-database-business-continuity.md)的方式而異。以下將說明在 Azure SQL Database 的內容中進行嚴重損壞修復演練的最佳作法。
+執行演練的工作流程會因您[設計商務持續性之應用程式](sql-database-business-continuity.md)的方式而異。以下將說明在 Azure SQL Database 的內容中進行災害復原演練的最佳作法。
 
 ##異地還原
 
-為了避免在進行嚴重損壞修復演練時可能遺失資料，建議您使用測試環境來執行演練，方法是建立生產環境的複本，然後使用這個複本來驗證應用程式的容錯移轉工作流程。
+為了避免在進行災害復原演練時可能遺失資料，建議您使用測試環境來執行演練，方法是建立生產環境的複本，然後使用這個複本來驗證應用程式的容錯移轉工作流程。
  
 ####中斷模擬
 
@@ -63,4 +63,21 @@
 
 - 驗證復原後的應用程式完整性 (例如連接字串、登入、基本功能測試或標準應用程式登出程序的其他驗證部分)，完成演練。
 
-<!---HONumber=AcomDC_0420_2016-->
+
+## 後續步驟
+
+- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
+
+## 其他資源
+
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [還原時間點](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
+- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
+
+<!---HONumber=AcomDC_0622_2016-->

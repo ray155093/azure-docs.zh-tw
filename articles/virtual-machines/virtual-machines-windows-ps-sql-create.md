@@ -33,7 +33,7 @@
 本教學課程中，您將需要：
 
 - 在開始之前，您需要有 Azure 帳戶和訂用帳戶。如果您沒有帳戶，請註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- [Azure PowerShell](../powershell-install-configure.md)，最低版本 1.0.0 或更新版本 (本教學課程是以 1.0.4 版撰寫)。
+- [Azure PowerShell)](../powershell-install-configure.md)，最低版本 1.4.0 或更新版本 (本教學課程是以 1.5.0 版撰寫)。
     - 若要擷取您的版本，請輸入 **Get-Module Azure -ListAvailable**。
 
 ## 設定您的訂用帳戶
@@ -69,7 +69,7 @@
 視需要修改並執行下列 Cmdlet 來初始化這些變數。請注意，在此範例中，我們使用[進階儲存體](../storage/storage-premium-storage.md)，這是針對生產環境工作負載建議使用的儲存體。如需有關本指南及其他建議的詳細資料，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。
 
     $StorageName = $ResourceGroupName + "storage"
-    $StorageType = "Premium_LRS"
+    $StorageSku = "Premium_LRS"
 
 ### 網路屬性
 
@@ -125,11 +125,11 @@
 
 ## 建立儲存體帳戶
 
-虛擬機器需要作業系統磁碟和 SQL Server 資料和記錄檔的儲存體資源。為了簡單起見，我們將針對兩者建立單一磁碟。您可以在之後使用 [Add-Azure Disk](https://msdn.microsoft.com/library/azure/dn495252.aspx) Cmdlet 來連結額外的磁碟，以便將您的 SQL Server 資料和記錄檔放在專用的磁碟上。我們將使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 在新的資源群組中建立儲存體帳戶，此帳戶會使用以您先前初始化的變數定義的儲存體帳戶名稱、儲存體名稱及位置。
+虛擬機器需要作業系統磁碟和 SQL Server 資料和記錄檔的儲存體資源。為了簡單起見，我們將針對兩者建立單一磁碟。您可以在之後使用 [Add-Azure Disk](https://msdn.microsoft.com/library/azure/dn495252.aspx) Cmdlet 來連結額外的磁碟，以便將您的 SQL Server 資料和記錄檔放在專用的磁碟上。我們將使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 在新的資源群組中建立標準儲存體帳戶，此帳戶會使用以您先前初始化的變數定義的儲存體帳戶名稱、儲存體 Sku 名稱及位置。
 
 執行下列 Cmdlet 來建立新的儲存體帳戶。
 
-    $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -Type $StorageType -Location $Location
+    $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -SkuName $StorageSku -Kind "Storage" -Location $Location
 
 ## 建立網路資源
 
@@ -258,7 +258,7 @@
     $ResourceGroupName = "sqlvm1"
     ## Storage
     $StorageName = $ResourceGroupName + "storage"
-    $StorageType = "Premium_LRS"
+    $StorageSku = "Premium_LRS"
 
     ## Network
     $InterfaceName = $ResourceGroupName + "ServerInterface"
@@ -285,7 +285,7 @@
     New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
 
     # Storage
-    $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -Type $StorageType -Location $Location
+    $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -SkuName $StorageSku -Kind "Storage" -Location $Location
 
     # Network
     $SubnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name $SubnetName -AddressPrefix $VNetSubnetAddressPrefix
@@ -310,4 +310,4 @@
 ## 後續步驟
 建立虛擬機器之後，您即可準備使用 RDP 和設定連線能力來連接到虛擬機器。如需詳細資訊，請參閱[連線到 Azure 上的 SQL Server 虛擬機器 (資源管理員)](virtual-machines-windows-sql-connect.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

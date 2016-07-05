@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-     manager="stevenpo"/>
+     manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="04/06/2016" 
+    ms.date="06/21/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Thoughtworks Mingle 整合
@@ -36,7 +36,7 @@
 
 ###若要啟用 Thoughtworks Mingle 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC700993.png "Active Directory")
 
@@ -68,7 +68,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Thoughtworks Mingle] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Thoughtworks Mingle] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785153.png "設定單一登入")
 
@@ -97,7 +97,7 @@
     1.  若要上傳中繼資料檔案，請按一下 [選擇檔案]。
     2.  按一下 [儲存變更]。
 
-8.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+8.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785159.png "設定單一登入")
 
@@ -137,7 +137,7 @@
 
 ###若要指派使用者給 Thoughtworks Mingle，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Thoughtworks Mingle] 應用程式整合頁面中，按一下 [指派使用者]。
 
@@ -149,4 +149,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

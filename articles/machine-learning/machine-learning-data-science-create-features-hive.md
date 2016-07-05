@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="hangzh;bradsev" />
 
 
@@ -26,10 +26,10 @@
 [Github 儲存機制](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)中也會提供 [NYC 計程車車程資料](http://chriswhong.com/open-data/foil_nyc_taxi/)案例特定的查詢範例。這些查詢已經具備指定的資料結構描述，且準備好進行提交來執行。最後一節也會討論使用者可以微調的參數，以改善 Hive 查詢的效能。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Cortana Analytics 程序 (CAP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
-## 先決條件
+## 必要條件
 本文假設您已經：
 
 * 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。
@@ -184,4 +184,4 @@ Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處
 
  
 
-<!---HONumber=AcomDC_0518_2016--->
+<!---HONumber=AcomDC_0622_2016--->

@@ -9,11 +9,11 @@
 
 <tags
 	ms.service="sql-database"
-	ms.workload="sql-database"
+	ms.workload="drivers"
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="06/16/2016"
 	ms.author="tobiast"/>
 
 # 使用 .NET (C#) 連接到 SQL Database
@@ -37,8 +37,16 @@
 * [使用 ADO.NET 連接到 SQL 的概念證明](https://msdn.microsoft.com/library/mt718320.aspx)
 * [使用 ADO.NET 復原連接 SQL](https://msdn.microsoft.com/library/mt703195.aspx)
 
-## 其他資源
+## 後續步驟
 
-如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+* [使用驗證和 SQL DB 建立 ASP.NET MVC 應用程式並部署至 Azure App Service](../app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)
+* [使用現有的 SQL Database 和行動服務 .NET 後端建置服務](../mobile-services/mobile-services-dotnet-backend-use-existing-sql-database.md)
+* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
+* 更多有關 [Microsoft ADO.Net Driver for SQL Server](https://msdn.microsoft.com/library/mt657768.aspx) 的資訊
 
-<!---HONumber=AcomDC_0615_2016-->
+## 其他資源 
+
+* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
+
+<!---HONumber=AcomDC_0622_2016-->

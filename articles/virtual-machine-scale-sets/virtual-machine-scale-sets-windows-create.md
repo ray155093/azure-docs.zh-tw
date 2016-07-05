@@ -248,7 +248,7 @@
 
 1. 以您要用於儲存體設定檔的名稱取代 **$storageProfile** 的值，然後建立變數︰  
 
-        $storeProfile = "storage profile name"
+        $storageProfile = "storage profile name"
         
 2. 建立變數，該變數定義要使用的映像︰
       
@@ -264,7 +264,7 @@
         
 4. 建立儲存體設定檔：
 
-        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -Name $storeProfile -VhdContainer $vhdContainers -OsDiskCreateOption "FromImage" -OsDiskCaching "None"  
+        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -Name $storageProfile -VhdContainer $vhdContainers -OsDiskCreateOption "FromImage" -OsDiskCaching "None"  
 
 ### 虛擬機器擴展集
 
@@ -313,4 +313,4 @@
 - 請考慮使用[自動調整與虛擬機器擴展集](virtual-machine-scale-sets-autoscale-overview.md)中的資訊設定自動調整擴展集。
 - 檢閱[使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)，深入了解垂直調整
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

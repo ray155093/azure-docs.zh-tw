@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="06/20/2016" 
 	ms.author="anhoh"/>
 
 # DocumentDB 階層式資源模型和概念
@@ -149,7 +149,7 @@ DocumentDB REST API 支援資源的定址和要求的路由，方法是透過識
 DocumentDB 資料庫是一個或多個集合和使用者的邏輯容器，如下圖所示。您可以在 DocumentDB 資料庫帳戶下，根據供應項目限制建立任意數目的資料庫。
 
 ![資料庫帳戶和集合階層式模型][2]
-**資料庫是使用者和集合的邏輯容器**
+ **資料庫是使用者和集合的邏輯容器**
 
 資料庫可以包含依集合分割的虛擬無限制文件儲存體，進而形成其內所含文件的交易網域。
 
@@ -412,7 +412,7 @@ DocumentDB 可讓您將二進位 Blob/媒體儲存至 DocumentDB 或您自己的
 -	應用程式可能會將每個使用者的中繼資料儲存為不同的文件 (例如 Joe 的 book1 中繼資料儲存在 /colls/joe/docs/book1 所參考的文件中)。 
 -	指向使用者給定書籍之內容頁面的附件，儲存在對應的文件中 (例如 /colls/joe/docs/book1/chapter1、/colls/joe/docs/book1/chapter2 等)。 
 
-請注意，範例使用易記 ID 來傳達資源階層。資源是透過 REST API 以根據唯一資源 ID 進行存取。
+請注意，上述範例會使用易記 ID 來傳達資源階層。資源是透過 REST API 以根據唯一資源 ID 進行存取。
 
 針對 DocumentDB 所管理的媒體，附件的 \_media 屬性將會依媒體的 URI 來參考媒體。DocumentDB 將會在捨棄所有未完成的參考時，確保回收媒體的記憶體，如果您上傳新的媒體並填入 \_media 以指向新增的媒體，則 DocumentDB 會自動產生附件。如果您選擇將媒體儲存在您所管理的遠端 Blob 存放區中 (例如 OneDrive、Azure Storage、DropBox 等)，則還是可以使用附件來參考媒體。在此情況下，您將自行建立附件，並填入其 \_media 屬性中。
 
@@ -431,7 +431,7 @@ DocumentDB 使用者代表用於分組權限的邏輯命名空間。DocumentDB �
 
 不論您選擇的特定分區化策略為何，您可以將實際使用者建模為 DocumentDB 資料庫中的使用者，並將微調權限關聯至每個使用者。
 
-![使用者集合][3]
+![使用者集合][3] 
 **分區化策略和模型化使用者**
 
 與所有其他資源相同，使用 REST API 或任何用戶端 SDK，即可輕鬆地在 DocumentDB 中建立、取代、刪除、讀取或列舉使用者。DocumentDB 一律提供讀取或查詢使用者資源之中繼資料的強式一致性。這值得指出刪除使用者時會自動確保您無法存取其內所含的任何權限。即使 DocumentDB 在背景回收佈建為所刪除使用者一部分的權限配額，但是所刪除權限還是立即可以再度使用。
@@ -451,4 +451,4 @@ DocumentDB 使用者代表用於分組權限的邏輯命名空間。DocumentDB �
 [2]: media/documentdb-resources/resources2.png
 [3]: media/documentdb-resources/resources3.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -30,7 +30,7 @@
 
 若要完成本教學課程，您需要下列項目：
 
-+ Microsoft Visual Studio Express 2013 for Windows
++ [Microsoft Visual Studio](http://visualstudio.com)
 
 + 為了執行 [Maven](http://maven.apache.org/) 所設定的 Java 開發環境。在本教學課程中，我們將採用 [Eclipse](https://www.eclipse.org/)
 
@@ -66,11 +66,10 @@
 
 <!-- Links -->
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
-[Event Processor Host]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
 [事件中樞概觀]: event-hubs-overview.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 [使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

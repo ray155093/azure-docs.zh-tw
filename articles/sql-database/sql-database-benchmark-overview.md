@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="04/04/2016"
+	ms.date="06/21/2016"
 	ms.author="carlrab" />
 
 # Azure SQL Database 基準測試概觀
@@ -130,4 +130,4 @@ Azure SQL Database 基準測試會測量跨某範圍可用服務層和效能等�
 
 [單一資料庫的效能指引](sql-database-performance-guidance.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

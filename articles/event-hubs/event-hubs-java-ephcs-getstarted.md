@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/13/2016"
+	ms.date="06/16/2016"
 	ms.author="sethm"/>
 
 # 開始使用事件中心
@@ -32,14 +32,13 @@
 
 + Java 開發環境。在本教學課程中，我們將採用 [Eclipse](https://www.eclipse.org/)。
 
-+ Microsoft Visual Studio Express for Windows
++ [Microsoft Visual Studio](http://visualstudio.com)
 
 + 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 <a href="http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F" target="_blank">Azure 免費試用</a>。
 
 [AZURE.INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
 [AZURE.INCLUDE [service-bus-event-hubs-get-started-send-java](../../includes/service-bus-event-hubs-get-started-send-java.md)]
-
 
 [AZURE.INCLUDE [service-bus-event-hubs-get-started-receive-ephcs](../../includes/service-bus-event-hubs-get-started-receive-ephcs.md)]
 
@@ -51,7 +50,7 @@
 
 	![][21]
 
-2.	執行 **Sender** 專案，按下主控台視窗中的 **Enter** 鍵，並查看出現在接收器視窗中的事件。
+2.	執行 **Sender** 專案。
 
 	![][22]
 
@@ -67,7 +66,7 @@
 
 <!-- Images. -->
 [21]: ./media/event-hubs-java-ephcs-getstarted/run-csharp-ephcs1.png
-[22]: ./media/event-hubs-java-ephcs-getstarted/run-csharp-ephcs2.png
+[22]: ./media/event-hubs-java-ephcs-getstarted/java-send.png
 
 <!-- Links -->
 [Azure classic portal]: https://manage.windowsazure.com/
@@ -78,4 +77,4 @@
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

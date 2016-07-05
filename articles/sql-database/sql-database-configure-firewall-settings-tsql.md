@@ -1,5 +1,5 @@
 <properties
-	pageTitle="如何：設定 SQL Database 防火牆 | Microsoft Azure"
+	pageTitle="使用 T-SQL 的 Azure SQL Database 伺服器層級和資料庫層級防火牆規則 | Microsoft Azure"
 	description="了解如何設定存取 Azure SQL Database 之 IP 位址的防火牆。"
 	services="sql-database"
 	documentationCenter=""
@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article" 
-	ms.date="04/26/2016"
+	ms.date="06/15/2016"
 	ms.author="rickbyh"/>
 
 
-# 如何：使用 TSQL 設定 Azure SQL Database 防火牆
+# 使用 T-SQL 設定 Azure SQL Database 伺服器層級和資料庫層級防火牆規則
 
 
 > [AZURE.SELECTOR]
@@ -75,6 +75,18 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 ## 後續步驟
 
+如需使用其他方法建立伺服器層級防火牆規則的做法文章，請參閱：
+
+- [使用 Azure 入口網站設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings.md)
+- [使用 PowerShell 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-powershell.md)
+- [使用 REST API 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-rest.md)
+
 如需建立資料庫的教學課程，請參閱[使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。若要了解如何瀏覽至資料庫，請參閱[管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
-<!---HONumber=AcomDC_0615_2016-->
+
+## 其他資源
+
+- [保護您的資料庫](sql-database-security.md)
+- [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
+
+<!---HONumber=AcomDC_0622_2016-->

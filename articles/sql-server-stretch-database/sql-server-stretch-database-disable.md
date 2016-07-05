@@ -52,15 +52,18 @@
 
 ### 使用 Transact-SQL 以停用資料表的 Stretch Database
 
--   若要停用資料表的 Stretch，並將資料表的遠端資料從 Azure 複製到 SQL Server，請執行下列命令。這個命令無法取消。
+-   若要停用資料表的 Stretch，並將資料表的遠端資料從 Azure 複製到 SQL Server，請執行下列命令。當所有遠端資料都從 Azure 複製到 SQL Server 之後，資料表的 Stretch 功能將會停用。
+
+    這個命令無法取消。
 
     ```tsql
-    ALTER TABLE <table name>
+	USE <Stretch-enabled database name>;
+    GO
+    ALTER TABLE <Stretch-enabled table name>  
        SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = INBOUND ) ) ;
+    GO
     ```
-    >   [AZURE.NOTE] 將資料表的遠端資料從 Azure 複製回 SQL Server 會產生資料傳輸成本。如需詳細資訊，請參閱[資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
-
-    當所有遠端資料都從 Azure 複製到 SQL Server 之後，資料表的 Stretch 功能將會停用。
+    >   [AZURE.NOTE] 將資料表的遠端資料從 Azure 複製回 SQL Server 會產生資料傳輸成本。如需詳細資訊，請參閱[資料傳輸定價詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
 
 -   若要停用資料表的 Stretch，並放棄遠端資料，請執行下列命令。
 
@@ -98,4 +101,4 @@ ALTER DATABASE <database name>
 
 [Pause and resume Stretch Database (暫停和繼續 Stretch Database)](sql-server-stretch-database-pause.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/01/2016"
+   ms.date="06/17/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務來管理 StorSimple Virtual Array
@@ -96,4 +96,4 @@ StorSimple Manager 服務 UI 的瀏覽階層顯示於下表。
 ##後續步驟
 如需 Web UI 及如何使用的詳細資訊，請移至[使用 StorSimple Web UI 管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0622_2016-->

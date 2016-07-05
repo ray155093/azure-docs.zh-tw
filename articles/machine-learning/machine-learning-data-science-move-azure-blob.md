@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev;sunliangms;sachouks" />
 
 # 從 Azure Blob 儲存體來回移動資料
@@ -23,8 +23,8 @@
 以下是有關從 Azure Blob 儲存體來回移動資料所使用之技術的指引連結：
 
 [AZURE.INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
-
-哪一種方法最適合，將取決於您的案例。 [Azure Machine Learning 中進階分析程序和技術 (ADAPT) 的案例](machine-learning-data-science-plan-sample-scenarios.md)文章可協助您判斷進階分析程序中各種資料科學工作流程所需的資源。
+ 
+哪一種方法最適合，將取決於您的案例。[在 Azure 機器學習中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)文章可協助您判斷進階分析程序中各種資料科學工作流程所需的資源。
 
 > [AZURE.NOTE] 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage/storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
 
@@ -37,4 +37,4 @@
 - 若要設定 Azure 訂用帳戶，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 - 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="sunliangms;fashah;garye;bradsev" />
 
 #<a name="heading"></a>Azure blob 儲存體中的取樣資料
@@ -27,7 +27,7 @@
 
 [AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
-此取樣工作是 [Cortana Analytics Process (CAP) (Cortana Analytics 程序 (CAP))](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
 ## 下載和降低取樣資料
@@ -102,4 +102,4 @@
 
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

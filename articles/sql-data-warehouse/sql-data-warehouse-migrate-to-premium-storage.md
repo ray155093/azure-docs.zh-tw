@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/14/2016"
+   ms.date="06/21/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 # 移轉至進階儲存體詳細資料
@@ -37,24 +37,27 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 > [AZURE.NOTE] 這些設定不會在移轉過程中沿用︰
 > 
 >	-  Auditing at the Database level will need to be re-enabled
->	-  Firewall rules at the Database level will need to be re-added
+>	-  Firewall rules at the **Database** level will need to be re-added.  Firewall rules at the **Server** level will not be impacted.
 
 ### 自動移轉排程
 在下面所列的中斷排程期間，自動移轉會發生於下午 6 點至上午 6 點 (該地區的當地時間) 之間的某個時間點。
 
-| 區域 | 預估開始日期 | 預估結束日期 |
+| **區域** | **預估開始日期** | **預估結束日期** |
 | :------------------ | :--------------------------- | :--------------------------- |
 | 澳洲東部 | 尚未決定 | 尚未決定 |
 | 澳洲東南部 | 尚未決定 | 尚未決定 |
+| 巴西南部 | 尚未決定 | 尚未決定 |
 | 加拿大中部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 加拿大東部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 美國中部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 中國東部 | 尚未決定 | 尚未決定 |
+| 中國北部 | 尚未決定 | 尚未決定 |
 | 東亞 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 美國東部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 美國東部 2 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 印度中部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 印度南部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
+| 印度西部 | 尚未決定 | 尚未決定 |
 | 日本東部 | 尚未決定 | 尚未決定 |
 | 日本西部 | 尚未決定 | 尚未決定 |
 | 美國中北部 | 尚未決定 | 尚未決定 |
@@ -72,19 +75,22 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 ### 決定儲存體類型
 如果您在下列日期前建立 DW，則您目前是使用標準儲存體。
 
-| 區域 | 在此日期前建立的 DW |
+| **區域** | **在此日期前建立的 DW** |
 | :------------------ | :-------------------------------- |
 | 澳洲東部 | 尚未提供進階儲存體 |
 | 澳洲東南部 | 尚未提供進階儲存體 |
+| 巴西南部 | 尚未提供進階儲存體 |
 | 加拿大中部 | 2016 年 5 月 25 日 |
 | 加拿大東部 | 2016 年 5 月 26 日 |
 | 美國中部 | 2016 年 5 月 26 日 |
 | 中國東部 | 尚未提供進階儲存體 |
+| 中國北部 | 尚未提供進階儲存體 |
 | 東亞 | 2016 年 5 月 25 日 |
 | 美國東部 | 2016 年 5 月 26 日 |
 | 美國東部 2 | 2016 年 5 月 27 日 |
 | 印度中部 | 2016 年 5 月 27 日 |
 | 印度南部 | 2016 年 5 月 26 日 |
+| 印度西部 | 尚未提供進階儲存體 |
 | 日本東部 | 尚未提供進階儲存體 |
 | 日本西部 | 尚未提供進階儲存體 |
 | 美國中北部 | 尚未提供進階儲存體 |
@@ -96,37 +102,37 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 
 
 ### 自行移轉指示
-如果您想要控制停機時間，您可使用備份/還原自行移轉您的資料倉儲。每個 DW 每 TB 的儲存體預計需要約 1 小時的時間來進行移轉作業的還原部分。如果您要在移轉完成後保留相同的名稱，請遵循[重新命名因應措施][]以下的步驟。
+如果您想要控制停機時間，您可使用備份/還原自行移轉您的資料倉儲。每個 DW 每 TB 的儲存體預計需要約 1 小時的時間來進行移轉作業的還原部分。如果您要在移轉完成後保留相同的名稱，請遵循以下適用於[重新命名因應措施][]的步驟。
 
-1.	[暫停][]會進行自動備份的 DW
+1.	[暫停][]將進行自動備份的 DW
 2.	從最新的快照集[還原][]
 3.	刪除標準儲存體上的現有 DW。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
 
 > [AZURE.NOTE] 這些設定不會在移轉過程中沿用︰
 > 
 >	-  Auditing at the Database level will need to be re-enabled
->	-  Firewall rules at the Database level will need to be re-added
+>	-  Firewall rules at the **Database** level will need to be re-added.  Firewall rules at the **Server** level will not be impacted.
 
 #### 選擇性︰重新命名因應措施 
 相同邏輯伺服器上的兩個資料庫不能具有相同的名稱。SQL 資料倉儲目前不支援重新命名 DW 功能。以下指示可讓您在自行移轉期間解決這項遺漏功能 (附註︰自動移轉不會有這項限制)。
 
 基於此範例的目的，假設您在標準儲存體上的現有 DW 目前名為 “MyDW”。
 
-1.	[暫停][]會進行自動備份的 "MyDW"
-2.	從最新的快照集 (具有不同名稱 (如 "MyDWTemp") 的新資料庫) [還原][]
+1.	[暫停][]將進行自動備份的 "MyDW"
+2.	從最新的快照集[還原][]至具有不同名稱 (如 "MyDWTemp") 的新資料庫
 3.	刪除 "MyDW"。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
 4.	由於 "MyDWTemp" 是新建立的 DW，備份將有一段時間無法用於還原。建議繼續在 "MyDWTemp" 上執行作業數小時，然後繼續進行步驟 5 和 6。
-5.	[暫停][]會進行自動備份的 "MyDWTemp"。
-6.	從最新的 "MyDWTemp" 快照集 (具有 "MyDW" 名稱的新資料庫) [還原][]
+5.	[暫停][]將進行自動備份的 "MyDWTemp"。
+6.	從最新的 "MyDWTemp" 快照集[還原][]至名稱為 "MyDW" 的新資料庫
 7.	刪除 "MyDWTemp"。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
 
 > [AZURE.NOTE] 這些設定不會在移轉過程中沿用︰
 > 
 >	-  Auditing at the Database level will need to be re-enabled
->	-  Firewall rules at the Database level will need to be re-added
+>	-  Firewall rules at the **Database** level will need to be re-added.  Firewall rules at the **Server** level will not be impacted.
 
 ## 後續步驟
-如果您的資料倉儲遇到任何問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
+如果您遇到任何關於資料倉儲的問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
 
 <!--Image references-->
 
@@ -146,4 +152,4 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 <!--Other Web references-->
 [進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

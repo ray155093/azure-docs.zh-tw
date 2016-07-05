@@ -1,6 +1,6 @@
 <properties
-	pageTitle="如何管理災害復原後的安全性"
-	description="本主題說明管理 SQL Database 之主動式異地複寫案例的安全性考量。"
+	pageTitle="如何在將資料庫還原至新伺服器或將資料庫容錯移轉至次要資料庫複本之後管理安全性 |Microsoft Azure"
+	description="本主題說明在資料庫還原或容錯移轉之後管理安全性的安全性考量。"
 	services="sql-database"
 	documentationCenter="na"
 	authors="carlrabeler"
@@ -14,10 +14,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="05/10/2016"
+	ms.date="06/16/2016"
 	ms.author="carlrab" />
 
-# 如何管理災害復原後的安全性
+# 如何管理災害復原後的 Azure SQL Database 安全性
 
 >[AZURE.NOTE] [Active Geo-Replication](sql-database-geo-replication-overview.md) 現在可供所有服務層中的所有資料庫使用。
 
@@ -27,7 +27,7 @@
 
 ## 災害復原與自主使用者
 
-有了 [V12 版的 Azure SQL Database](sql-database-v12-whats-new.md)，SQL Database 現在支援自主使用者。不同於傳統的使用者必須對應到 master 資料庫中的登入，自主使用者完全由資料庫本身管理。這樣有兩個優點。在災害復原案例中，使用者可以繼續連線到新的主要資料庫或使用異地還原復原的資料庫，而不需任何額外的組態，因為資料庫可管理使用者。從登入的觀點來看，這個組態也有潛在的延展性和效能優勢。如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
+不同於傳統的使用者必須對應到 master 資料庫中的登入，自主使用者完全由資料庫本身管理。這樣有兩個優點。在災害復原案例中，使用者可以繼續連線到新的主要資料庫或使用異地還原復原的資料庫，而不需任何額外的組態，因為資料庫可管理使用者。從登入的觀點來看，這個組態也有潛在的延展性和效能優勢。如需詳細資訊，請參閱[自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
 
 主要的缺點是管理大規模災害復原程序更具挑戰性。當您有使用相同登入的多個資料庫時，維護在多個資料庫中使用自主使用者的認證可能不利於自主使用者。例如，密碼替換原則需要在多個資料庫中進行一致的變更，而不是在主要資料庫一次變更登入的密碼。基於這個理由，如果您有使用相同使用者名稱和密碼的多個資料庫，則不建議使用自主使用者。
 
@@ -46,7 +46,6 @@
 >[AZURE.NOTE] 如果您容錯移轉或異地還原至沒有正確設定登入存取權的伺服器，它會受限於伺服器系統管理員帳戶。
 
 設定目標伺服器上的登入包含下列概述的三個步驟︰
-
 
 #### 1\.決定具備主要資料庫存取權的登入：
 程序的第一個步驟是判斷目標伺服器上必須複製哪些登入。這是以一組 SELECT 陳述式完成，一個在來源伺服器上的邏輯 master 資料庫中，一個在主要資料庫本身。
@@ -91,13 +90,18 @@
 
 - 如需管理資料庫存取和登入的詳細資訊，請參閱 [SQL Database 安全性︰管理資料庫存取與登入安全性](sql-database-manage-logins.md)。
 - 如需自主資料庫使用者的詳細資訊，請參閱[自主資料庫使用者 - 使資料庫可攜](https://msdn.microsoft.com/library/ff929188.aspx)。
+- 如需使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
 
 ## 其他資源
 
-- [業務續航力概觀](sql-database-business-continuity.md)
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [還原時間點](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
 - [作用中異地複寫](sql-database-geo-replication-overview.md)
 - [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
 - [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

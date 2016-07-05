@@ -56,16 +56,16 @@
 
 此區段描述保護獨立 Windows 叢集所需的所有憑證。將 **ClusterCredentialType** 和 **ServerCredentialType** 的值設定為 X509，可啟用以憑證為基礎的安全性。
 
->[AZURE.NOTE] [指紋](https://en.wikipedia.org/wiki/Public_key_fingerprint)是憑證的主要身分識別。閱讀 [如何擷取憑證的指紋] (https://msdn.microsoft.com/library/ms734695(v=vs.110).aspx) 以找出您所建立之憑證的指紋。
+>[AZURE.NOTE] [指紋](https://en.wikipedia.org/wiki/Public_key_fingerprint)是憑證的主要身分識別。閱讀[如何擷取憑證的指紋](https://msdn.microsoft.com/library/ms734695.aspx)，以找出您所建立的憑證指紋。
 
 下表列出您在設定叢集時所需的實際憑證：
 
 |**CertificateInformation 設定**|**說明**|
 |-----------------------|--------------------------|
 |ClusterCertificate|需有此憑證，才能保護叢集上節點之間的通訊。您可以使用兩個不同的憑證 (主要和次要) 進行容錯移轉。在 **Thumbprint** 區段中設定主要憑證的指紋，以及在 **ThumbprintSecondary** 變數中設定次要憑證的指紋。|
-|ServerCertificate|用戶端嘗試連線到此叢集時，會向用戶端此憑證顯示此憑證。為了方便起見，您可以選擇對 ClusterCertificate 和 ServerCertificate 使用相同的憑證。您可以使用兩個不同的伺服器憑證 (主要和次要) 進行容錯移轉。在 **Thumbprint** 區段中設定主要憑證的指紋，以及在 **ThumbprintSecondary** 變數中設定次要憑證的指紋。 |
-|ClientCertificateThumbprints|這是您想在經過驗證的用戶端上安裝的一組憑證。在您要允許存取叢集和應用程式執行所在的電腦上，您可以安裝數個不同的用戶端憑證。在 **CertificateThumbprint** 變數中設定每個憑證的指紋。如果您將 **IsAdmin** 設為 true，則已安裝此憑證的用戶端可以對叢集執行各種管理活動。如果 **IsAdmin** 為 false，它只能存取在叢集上執行的應用程式。|
-|ClientCertificateCommonNames|針對 **CertificateCommonName** 設定第一個用戶端憑證的一般名稱。**CertificateIssuerThumbprint** 是此憑證的簽發者指紋。閱讀 [使用憑證] (https://msdn.microsoft.com/library/ms731899(v=vs.110).aspx) 可深入了解一般名稱和簽發者。|
+|ServerCertificate|用戶端嘗試連線到此叢集時，會向用戶端此憑證顯示此憑證。為了方便起見，您可以選擇對 *ClusterCertificate* 和 *ServerCertificate* 使用相同的憑證。您可以使用兩個不同的伺服器憑證 (主要和次要) 進行容錯移轉。在 **Thumbprint** 區段中設定主要憑證的指紋，以及在 **ThumbprintSecondary** 變數中設定次要憑證的指紋。 |
+|ClientCertificateThumbprints|這是您想在經過驗證的用戶端上安裝的一組憑證。在您要允許存取叢集和應用程式執行所在的電腦上，您可以安裝數個不同的用戶端憑證。在 **CertificateThumbprint** 變數中設定每個憑證的指紋。如果您將 **IsAdmin** 設為 *true*，則已安裝此憑證的用戶端可以對叢集執行各種管理活動。如果 **IsAdmin** 為 *false*，它只能存取在叢集上執行的應用程式。|
+|ClientCertificateCommonNames|針對 **CertificateCommonName** 設定第一個用戶端憑證的一般名稱。**CertificateIssuerThumbprint** 是此憑證的簽發者指紋。閱讀[使用憑證](https://msdn.microsoft.com/library/ms731899.aspx)，以深入了解一般名稱和簽發者。|
 
 
 ## 安裝憑證
@@ -104,12 +104,12 @@
 
 ## 後續步驟
 
-設定 ClusterConfig.X509.json 檔案的 **security** 區段後，您可以繼續[建立您的叢集](service-fabric-cluster-creation-for-windows-server.md#createcluster)區段，以設定節點和建立獨立叢集。請記得在建立叢集時使用 **ClusterConfig.X509.json** 檔案。例如，您的命令可能如下所示：
+設定 ClusterConfig.X509.json 檔案的 **security** 區段後，您可以繼續進行[建立叢集](service-fabric-cluster-creation-for-windows-server.md#createcluster)一節，以設定節點和建立獨立叢集。請記得在建立叢集時使用 **ClusterConfig.X509.json** 檔案。例如，您的命令可能如下所示：
 
 	cd $ServiceFabricDeployAnywhereFolder
 	.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.json -MicrosoftServiceFabricCabFilePath .\MicrosoftAzureServiceFabric.cab -AcceptEULA $true -Verbose
 
 
-順利執行安全的獨立 Windows 叢集，並已設定經過驗證的用戶端以便連線後，請依照[使用 PowerShell 連接至安全的叢集](service-fabric-connect-to-secure-cluster.md#connectsecurecluster)一節來連接它。
+順利執行安全的獨立 Windows 叢集，並已設定經過驗證的用戶端以進行連接之後，請依照[使用 PowerShell 來連線到安全的叢集](service-fabric-connect-to-secure-cluster.md#connectsecurecluster)一節來連接它。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

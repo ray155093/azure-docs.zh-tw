@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="na"
-   ms.date="06/06/2016"
+   ms.date="06/20/2016"
    ms.author="bscholl;mikhegn"/>
 
 # 將來賓可執行檔部署至 Service Fabric
 
-您可以在 Azure Service Fabric 中執行任何類型的應用程式，例如 Node.js、Java 或原生應用程式。在 Service Fabric 術語中，這些類型的應用程式稱為來賓可執行檔。Service Fabric 將來賓可執行檔視為無狀態服務。因此會根據可用性和其他度量將它們放在叢集的節點上。這篇文章說明如何使用 Visual Studio 或命令列公用程式，將來賓可執行檔封裝並部署至 Service Fabric 叢集。
+您可以在 Azure Service Fabric 中執行任何類型的應用程式，例如 Node.js、Java 或原生應用程式。在 Service Fabric 術語中，這些類型的應用程式稱為來賓可執行檔。Service Fabric 將來賓可執行檔視為無狀態服務。因此會根據可用性和其他度量將它們放在叢集的節點上。本文說明如何使用 Visual Studio 或命令列公用程式，封裝來賓可執行檔並部署至 Service Fabric 叢集。
 
 ## 在 Service Fabric 中執行來賓可執行檔的優點
 
@@ -284,17 +284,19 @@ Service Fabric 服務可以各種「組態」部署。 例如，它可部署為�
 
 Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執行檔部署至 Service Fabric 叢集。您必須進行下列步驟以完成發佈︰
 
-1. 選擇 [檔案] -> [新增專案]，然後建立新的 Service Fabric 應用程式
-2. 選擇 [來賓可執行檔] 做為服務範本
-3. 按一下 [瀏覽] 以選取內含可執行檔的資料夾，並填入其餘參數以建立新的服務
-  - [程式碼封裝行為] 可在設定後，將資料夾的所有內容複製到 Visual Studio 專案，因此適合用在可執行檔不會變更時。如果您預期會變更可執行檔，並想要以動態方式取得新組建，則可以選擇改為連結到資料夾。
-  - [程式] 會選擇應執行以便啟動服務的可執行檔。
-  - [引數] 會指定應傳遞至可執行檔的引數。這可以是具有引數的參數清單。
-  - [WorkingFolder] 會選擇即將啟動之程序的工作目錄。您可以指定兩個值：
-  	- [CodeBase] 會指定工作目錄即將設為應用程式封裝中的 code 目錄 (如下所示結構中的 `Code` 目錄)。
-    - [CodePackage] 會指定工作目錄即將設為應用程式封裝的根目錄 (`MyServicePkg`)。
-4. 指定服務的名稱，然後按一下 [確定]
-5. 如果服務需要用來進行通訊的端點，您現在可以新增 Protocol、Port 和 Type 到 ServiceManifest.xml 檔案 (舉例來說)︰```<Endpoint Name="NodeAppTypeEndpoint" Protocol="http" Port="3000" Type="Input" />```
+>[AZURE.NOTE] 此功能需要 [SDK 2.1.150 版](https://blogs.msdn.microsoft.com/azureservicefabric/2016/06/13/release-of-service-fabric-sdk-2-1-150-and-runtime-5-1-150/)
+
+1. 選擇 [檔案] -> [新增專案]，然後建立新的 Service Fabric 應用程式。
+2. 選擇 [來賓可執行檔] 做為 [服務範本]。
+3. 按一下 [瀏覽] 以選取內含可執行檔的資料夾，並填入其餘參數以建立新的服務。
+  - *Code Package Behavior* 可在設定後，將資料夾的所有內容複製到 Visual Studio 專案，因此適合用在可執行檔不會變更時。如果您預期會變更可執行檔，並想要以動態方式取得新組建，則可以選擇改為連結到資料夾。
+  - *Program* 會選擇應執行以便啟動服務的可執行檔。
+  - *Arguments* 會指定應傳遞至可執行檔的引數。這可以是具有引數的參數清單。
+  - *WorkingFolder* 會選擇即將啟動之程序的工作目錄。您可以指定兩個值：
+  	- *CodeBase* 會指定工作目錄即將設為應用程式封裝中的 code 目錄 (如下所示結構中的 `Code` 目錄)。
+    - *CodePackage* 會指定工作目錄即將設為應用程式封裝的根目錄 (`MyServicePkg`)。
+4. 指定服務的名稱，然後按一下 [確定]。
+5. 如果服務需要用來進行通訊的端點，您現在可以新增 Protocol、Port 和 Type 到 ServiceManifest.xml 檔案 (舉例來說)︰```<Endpoint Name="NodeAppTypeEndpoint" Protocol="http" Port="3000" Type="Input" />```。
 6. 您現在可以藉由在 Visual Studio 中偵錯方案，嘗試對本機叢集執行封裝和發佈動作。準備好時，即可將應用程式發佈至遠端叢集，或將方案簽入到原始檔控制。
 
 >[AZURE.NOTE] 您可以在 Visual Studio 中建立應用程式專案時，使用連結的資料夾。此資料夾會從專案內連結到來源位置，讓您可以在其來源目的地更新來賓可執行檔，讓這些更新成為組建的應用程式封裝的一部分。
@@ -306,4 +308,4 @@ Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執�
 - [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 - [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

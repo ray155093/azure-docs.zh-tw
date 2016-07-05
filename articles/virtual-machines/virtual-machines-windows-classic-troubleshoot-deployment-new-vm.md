@@ -13,8 +13,8 @@
   ms.workload="na"
   ms.tgt_pltfrm="vm-windows"
   ms.devlang="na"
-  ms.topic="support-article"
-  ms.date="05/06/2016"
+  ms.topic="article"
+  ms.date="06/20/2016"
   ms.author="cjiang"/>
 
 # 針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解
@@ -37,7 +37,7 @@
 
 [AZURE.INCLUDE [virtual-machines-windows-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-table.md)]
 
-**Y：**如果作業系統是一般化的 Windows，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣的，如果作業系統是特殊化的 Windows，且帶著特殊化設定被上傳及/或擷取，則不會有任何錯誤。
+**Y：**如果作業系統是一般化的 Windows，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣地，如果作業系統是特殊化的 Windows，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
 
 **上傳錯誤：**
 
@@ -81,4 +81,7 @@
 - 在新的虛擬網路中建立新 VM。
 - [連接您現有的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)到新的虛擬網路。深入了解[區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。此外，也可以[將同質群組式虛擬網路移轉至區域虛擬網路](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後建立新 VM。
 
-<!---HONumber=AcomDC_0525_2016-->
+## 後續步驟
+如果您在啟動已停止的 Windows VM，或重新調整 Azure 中現有的 Windows VM 大小時遇到問題，請參閱 [Troubleshoot classic deployment issues with restarting or resizing an existing Windows Virtual Machine in Azure (針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解)](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)。
+
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,7 +13,7 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-windows"
  ms.workload="big-compute"
- ms.date="04/29/2016"
+ ms.date="06/17/2016"
  ms.author="danlep"/>
 
 # 使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項
@@ -32,9 +32,9 @@ ms.service="virtual-machines-windows"
 
 * (Marketplace) [HPC Pack cluster for Excel workloads (適用於 Excel 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterexcelcn/)
 
-* (快速入門) [Create an HPC cluster (建立 HPC 叢集)](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)
+* (快速入門) [Create an HPC cluster (建立 HPC 叢集)](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster)
 
-* (快速入門) [Create an HPC cluster with custom compute node image (使用自訂的計算節點映像建立 HPC 叢集)](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)
+* (快速入門) [Create an HPC cluster with custom compute node image (使用自訂的計算節點映像建立 HPC 叢集)](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster-custom-image)
 
 ### Azure VM 映像
 
@@ -89,4 +89,4 @@ ms.service="virtual-machines-windows"
 
 * [使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0622_2016-->

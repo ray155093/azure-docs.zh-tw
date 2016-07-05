@@ -72,9 +72,7 @@
 
     在 [網站] 清單中，如果包含下列任一個 URL，請確定也會包含其他的 URL：
 
-    * https://login.microsoftonline.com
-    * https://login.windows.net
-    * https://analytics.applicationinsights.io 
+    https://analytics.applicationinsights.io<br/> https://login.microsoftonline.com<br/> https://login.windows.net
 
 
 ## 404 ...找不到資源
@@ -126,4 +124,4 @@ URL 無效。
  
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

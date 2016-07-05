@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/06/2016"
+   ms.date="06/17/2016"
    ms.author="larryfr"/>
 
 #在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
@@ -128,7 +128,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 ## 摘要
 
-如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 工作提交至 HDInsight 叢集、監視工作狀態，以及擷取輸出。
+如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 作業提交至 HDInsight 叢集，以及監視作業狀態。
 
 ## 後續步驟
 
@@ -143,4 +143,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

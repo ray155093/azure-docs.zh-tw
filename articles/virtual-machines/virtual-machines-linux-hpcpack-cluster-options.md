@@ -13,7 +13,7 @@ ms.service="virtual-machines-linux"
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="04/29/2016"
+ ms.date="06/17/2016"
  ms.author="danlep"/>
 
 # 使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項
@@ -31,18 +31,12 @@ ms.service="virtual-machines-linux"
 
 * (Marketplace) [HPC Pack cluster for Linux workloads (適用於 Linux 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)
 
-* (快速入門) [Create an HPC cluster with Linux compute nodes (使用 Linux 計算節點建立 HPC 叢集)](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/)
-
-
-### Azure VM 映像
-
-* [Windows Server 2012 R2 上的 HPC Pack](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)
-
+* (快速入門) [Create an HPC cluster with Linux compute nodes (使用 Linux 計算節點建立 HPC 叢集)](https://github.com/Azure/azure-quickstart-templates/tree/master/create-hpc-cluster-linux-cn)
 
 
 ### PowerShell 部署指令碼
 
-* [使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)
+* [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)
 
 ### 教學課程
 
@@ -65,4 +59,4 @@ ms.service="virtual-machines-linux"
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0622_2016-->

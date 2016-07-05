@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="bradsev" />
 
 # 使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料
@@ -87,4 +87,4 @@
 - 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Hive 指令碼，請使用 [Azure HDInsight Hive 工作](https://msdn.microsoft.com/library/mt146771.aspx)。
 - 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Pig 指令碼，請使用 [Azure HDInsight Pig 工作](https://msdn.microsoft.com/library/mt146781.aspx)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

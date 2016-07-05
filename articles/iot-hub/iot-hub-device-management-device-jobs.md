@@ -3,7 +3,7 @@
 	description="Azure IoT 中樞裝置管理教學課程說明如何使用裝置工作來執行作業 (例如遠端韌體更新)。"
 	services="iot-hub"
 	documentationCenter=".net"
-	authors="ellenfosborne"
+	authors="juanjperez"
 	manager="timlt"
 	editor=""/>
 
@@ -14,7 +14,7 @@
  ms.tgt_pltfrm="na"
  ms.workload="na"
  ms.date="04/29/2016"
- ms.author="elfarber"/>
+ ms.author="juanpere"/>
 
 # 教學課程：如何使用裝置工作更新裝置韌體 (預覽)
 
@@ -178,4 +178,4 @@ Azure IoT 中樞裝置管理用戶端程式庫會處理裝置與服務之間的�
 [lnk-github-firmware]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/c/iotdm_client/samples/iotdm_simple_sample/iotdm_simple_sample.c
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

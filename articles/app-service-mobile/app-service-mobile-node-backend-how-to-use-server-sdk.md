@@ -629,7 +629,7 @@ Swagger 端點將會位於 http://_yoursite_.azurewebsites.net/swagger。您可�
 
 ## <a name="push">推播通知
 
-行動應用程式會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](../notification-hubs/notification-hubs-overview.md)。
+行動應用程式會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](./notification-hubs/notification-hubs-push-notification-overview.md)。
 
 ### </a><a name="send-push"></a>作法：傳送推播通知
 
@@ -917,4 +917,4 @@ Azure 入口網站可讓您在 Visual Studio Team Services 中編輯 Node.js 後
 [ExpressJS 中介軟體]: http://expressjs.com/guide/using-middleware.html
 [Winston]: https://github.com/winstonjs/winston
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

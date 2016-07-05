@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="StevenPo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,16 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="06/22/2016"
 	ms.author="kgremban"/>
 
 
 # 使用連接器群組在不同的網路和位置發行應用程式
 
-> [AZURE.NOTE] 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
-
 「連接器」群組可用於一些不同狀況，包括：
-
 
 - 具有多個互連資料中心的網站。在此情況下，您希望資料中心內儘可能保持最大流量，因為跨資料中心的連結通常昂貴且緩慢。您可以在每個資料中心部署連接器，以只為資料中心內的應用程式提供服務。這種方法可將跨資料中心的連結減到最少，讓使用者體驗完全的流暢性。
 - 管理安裝在隔離網路 (不是主要的公司網路的一部分) 上的應用程式。您可以使用連接器群組將專用連接器安裝在隔離網路上，以同時將應用程式與網路隔離。
@@ -44,7 +41,7 @@
 ## 步驟 2：將連接器指派給您的群組
 一旦建立「連接器」群組，請將「連接器」移動到適當的群組。
 
-1. 按一下 [應用程式 Proxy] 底下的 [管理連接器]。
+1. 按一下 [應用程式 Proxy] 底下的 [ 管理連接器]。
 2. 在 [群組] 底下，選取每個「連接器」的群組。請注意，新群組中的連接器最多可能需要 10 分鐘才會變成作用中。![應用程式 Proxy 連接器螢幕擷取畫面 - 從下拉式功能表中選取群組](./media/active-directory-application-proxy-connectors/app_proxy_connectors_connectorlist.png)
 
 ## 步驟 3：將應用程式指派給您的連接器群組
@@ -63,4 +60,4 @@
 
 如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

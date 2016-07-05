@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev" />
 
 
@@ -144,7 +144,7 @@ VM 上安裝的 Visual Studio Community 版本。它是 Microsoft 提供的熱�
 * 按一下開始功能表並查看功能表中列出的工具，來探索資料科學 VM 上的各種資料科學工具。
 * 瀏覽至 **C:\\Program Files\\Microsoft\\MRO-for-RRE\\8.0\\R-3.2.2\\library\\RevoScaleR\\demoScripts**，以取得使用 R 中支援企業規模資料分析之 RevoScaleR 程式庫的範例。  
 * 閱讀文章：[您可以在 Data Science Virtual Machine 上做的十件事](http://aka.ms/dsvmtenthings)
-* 了解如何使用[資料科學程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)以系統化方式建置端對端分析方案
+* 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)，以取得使用 Cortana Intelligence Suite 的機器學習服務和資料分析範例。我們也已經在虛擬機器的開始功能表與桌面上提供圖示以方便存取 
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,7 +13,7 @@
    ms.topic="support-article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="required"
-   ms.date="05/12/2016"
+   ms.date="06/16/2016"
    ms.devlang="na"
    ms.author="delhan"/>
 
@@ -81,4 +81,8 @@
 
 如果現有的雲端服務未和以區域為基礎的虛擬網路相關聯，您必須刪除現有雲端服務中的 VM，並從其磁碟在新的雲端服務中將其重新建立。然而，請務必記得新的雲端服務將會有新的名稱和 VIP，因此您需要為所有目前將此資訊用於現有雲端服務的相依性更新該資訊。
 
-<!---HONumber=AcomDC_0608_2016-->
+## 後續步驟
+
+如果您在 Azure 中建立新的 Windows VM 時遇到問題，請參閱 [Troubleshoot deployment issues with creating a new Windows virtual machine in Azure (針對在 Azure 中建立新 Windows 虛擬機器的部署問題進行疑難排解)](../virtual-machines/virtual-machines-windows-troubleshoot-deployment-new-vm.md)。
+
+<!---HONumber=AcomDC_0622_2016-->

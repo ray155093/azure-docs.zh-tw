@@ -24,7 +24,8 @@
 
 ## 必要條件
 
-[部署 Azure 容器服務的執行個體](container-service-deployment.md) (其 Orchestrator 類型為 DCOS)，並[確保您的用戶端可以連線至您的叢集](container-service-connect.md)。此外，請執行下列步驟。[AZURE.INCLUDE [安裝 DC/OS 命令列介面 (CLI)](../../includes/container-service-install-dcos-cli-include.md)]
+[部署 Azure 容器服務的執行個體](container-service-deployment.md) (其 Orchestrator 類型為 DCOS)，並[確保您的用戶端可以連線至您的叢集](container-service-connect.md)。此外，請執行下列步驟。
+[AZURE.INCLUDE [安裝 DC/OS 命令列介面 (CLI)](../../includes/container-service-install-dcos-cli-include.md)]
 
 
 ## 負載平衡

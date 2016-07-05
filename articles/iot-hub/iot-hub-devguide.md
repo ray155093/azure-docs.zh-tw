@@ -491,7 +491,7 @@ IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲�
 
 #### 通知 IoT 中樞已完成檔案上傳
 
-裝置會負責使用 Azure 儲存體 SDK 將檔案上傳至儲存體。上傳完成後，裝置會將 POST 傳送至 IoT 中樞的 `{iot hub}.azure-devices.net/devices/{deviceId}/messages/files/notifications/{correlationId}`，使用從初始 GET 收到的相互關聯識別碼。
+裝置會負責使用 Azure 儲存體 SDK 將檔案上傳至儲存體。上傳完成後，裝置會使用從初始 GET 收到的相互關聯識別碼，將 POST 傳送至 `{iot hub}.azure-devices.net/devices/{deviceId}/files/notifications/{correlationId}` 上的 IoT 中樞。
 
 #### 檔案上傳通知
 
@@ -624,4 +624,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-mqtt-support]: iot-hub-mqtt-support.md
 [lnk-throttle-blog]: https://azure.microsoft.com/blog/iot-hub-throttling-and-you/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

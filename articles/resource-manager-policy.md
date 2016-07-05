@@ -131,7 +131,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 | 別名名稱 | 說明 |
 | ---------- | ----------- |
-| {resourceType}/sku.name | 支援的資源類型包括：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
+| {resourceType}/sku.name | 支援的資源類型包括：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Web/serverFarms、<br /> Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
 | {resourceType}/sku.family | 支援的資源類型為 Microsoft.Cache/Redis |
 | {resourceType}/sku.capacity | 支援的資源類型為 Microsoft.Cache/Redis |
 | Microsoft.Compute/virtualMachines/imagePublisher | |
@@ -140,9 +140,15 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 | Microsoft.Compute/virtualMachines/imageVersion | |
 | Microsoft.Cache/Redis/enableNonSslPort | |
 | Microsoft.Cache/Redis/shardCount | |
+| Microsoft.SQL/servers/version | |
+| Microsoft.SQL/servers/databases/requestedServiceObjectiveId | |
+| Microsoft.SQL/servers/databases/requestedServiceObjectiveName | |
+| Microsoft.SQL/servers/databases/edition | |
+| Microsoft.SQL/servers/databases/elasticPoolName | |
+| Microsoft.SQL/servers/elasticPools/dtu | |
+| Microsoft.SQL/servers/elasticPools/edition | |
 
-
-如需有關動作的詳細資訊，請參閱 [RBAC - 內建角色](active-directory/role-based-access-built-in-roles.md)。目前，原則只能適用於 PUT 要求。
+目前，原則只能適用於 PUT 要求。
 
 ## 效果
 原則支援三種效果類型 - **拒絕**、**稽核**和**附加**。
@@ -385,7 +391,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     }
 
 
-原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 *2016-04-01*。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
+原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 2016-04-01。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
 
 ### 使用 PowerShell 建立原則定義
 
@@ -418,7 +424,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
     PUT https://management.azure.com /subscriptions/{subscription-id}/providers/Microsoft.authorization/policyassignments/{policyAssignmentName}?api-version={api-version}
 
-{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 *2016-04-01*。
+{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 2016-04-01。
 
 使用如下的要求內文：
 
@@ -462,4 +468,4 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
     
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

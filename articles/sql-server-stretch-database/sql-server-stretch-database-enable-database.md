@@ -18,7 +18,7 @@
 
 # 為資料庫啟用 Stretch Database
 
-若要為資料庫設定 Stretch Database，請在 SQL Server Management Studio 中選取資料庫的 [工作 | Stretch | 啟用]，以開啟 [為資料庫啟用 Stretch] 精靈。您也可以使用 Transact-SQL 來為資料庫啟用 Stretch Database。
+若要為現有的資料庫設定 Stretch Database，請在 SQL Server Management Studio 中選取資料庫的 [工作 | Stretch | 啟用]，以開啟 [為資料庫啟用 Stretch] 精靈。您也可以使用 Transact-SQL 來為資料庫啟用 Stretch Database。
 
 如果您選取資料表的 [工作 | Stretch | 啟用]，且尚未為資料庫啟用 Stretch Database，精靈將會為資料庫設定 Stretch Database，並且做為程序的一部分，讓您設定資料表。請遵循本主題中的步驟，而非 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-database.md) 中的步驟。
 
@@ -133,4 +133,4 @@ GO
 
 [ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->
