@@ -183,7 +183,7 @@
 
 ## 將變更發行至您的應用程式
 
-1. 在文字編輯器中開啟 **server.js** 檔案，然後將「Hello World\\n」變更為「Hello Azure\\n」。
+1. 在文字編輯器中開啟 **server.js** 檔案，然後將「Hello World\\n」變更為「Hello Azure\\n」。 
 
 2. 儲存檔案。
 

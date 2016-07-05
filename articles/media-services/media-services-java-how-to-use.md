@@ -266,7 +266,7 @@
 
 ##其他資源
 
-如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] (英文)。
+如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] \(英文)。
 
 <!-- URLs. -->
 
