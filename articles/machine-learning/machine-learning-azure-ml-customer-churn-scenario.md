@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/11/2016" 
+	ms.date="06/17/2016" 
 	ms.author="jeannt"/>
 
 # 使用 Azure Machine Learning 分析客戶流失
@@ -22,7 +22,11 @@
 本主題提供使用 Azure Machine Learning Studio 建置客戶流失分析專案的參考實作。其中將討論關聯的一般模型，可全面性地解決產業客戶流失的問題。對於以機器學習建立的模型，我們也衡量其正確性，同時評估進一步開發的方向。
 
 ### 通知
-這項實驗是由 Microsoft 的首席資料科學家 Serge Berger 和 Microsoft Azure Machine Learning 的前產品經理 Roger Barga 共同開發和測試。Azure 文件團隊相當感謝他們將所學所見分享在這份白皮書中。
+
+這項實驗是由 Microsoft 的首席資料科學家 Serge Berger 和 Microsoft Azure Machine Learning 的前產品經理 Roger Barga 共同開發和測試。Azure 文件小組高度認可其專業知識，並感謝他們分享這份白皮書。
+
+>[AZURE.NOTE] 這項實驗中使用的資料無法公開使用。如需如何建置客戶流失分析的機器學習模型範例，請參閱︰[Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的[電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
@@ -98,7 +102,7 @@
 
 
 *圖 7：從資料來源擷取的特徵*
-> 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的實驗範例：[電信公司客戶流失](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383)。
+> 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的實驗範例：[Telco Customer Churn (電信公司客戶流失)](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383)。
 > 
 > 若要深入了解如何使用 Cortana Intelligence Suite 實作客戶流失分析模型，我們也推薦資深程式經理 Wee Hyong Tok 的[這段影片](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html)。
 > 
@@ -217,11 +221,11 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 
 [2] 維基百科文章：[Accuracy and precision (正確性與準確度)](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 
-\[3] [CRISP-DM 1.0：資料採礦逐步指南] (http://www.the-modeling-agency.com/crisp-dm.pdf)
+\[3] [CRISP-DM 1.0：資料採礦逐步指南] \ (http://www.the-modeling-agency.com/crisp-dm.pdf)
 
 \[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
 
-\[5] [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+\[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
 ##附錄
 
 ![][10]
@@ -240,4 +244,4 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="05/12/2016"
+	ms.date="06/16/2016"
 	ms.author="billmath"/>
 
 # 什麼是 Azure Multi-Factor Authentication？
@@ -118,7 +118,7 @@ MFA 報告| | | *
 事件確認| | | *
 信任的 IP| | | *
 記住受信任裝置的 MFA |* | * | *
-MFA SDK| | | *
+MFA SDK | | | * 需要 Multi-Factor Auth Provider 和完整的 Azure 訂用帳戶
 對使用 MFA Server 的內部部署應用程式進行 MFA| | | *
 
 
@@ -209,4 +209,4 @@ MFA 報告 | ● | ●
 
 <center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -153,14 +153,20 @@
 | 應用程式負載平衡的主動-主動部署 | 讀寫存取 < 5 秒 | 失敗偵測時間 + 容錯移轉 API 呼叫 + SQL 連接字串變更 + 應用程式驗證測試
 | 資料保留的主動-被動部署 | 唯讀存取 < 5 秒，讀寫存取 = 0 | 唯讀存取 = 連線失敗偵測時間 + 應用程式驗證測試 <br>讀寫存取 = 運作中斷趨緩的時間
 
+## 後續步驟
+
+- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
 
 ## 其他資源
 
-
-- [業務續航力概觀](sql-database-business-continuity.md)
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [還原時間點](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
 - [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [使用 SQL Database 中的異地複寫針對雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 - [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
 - [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

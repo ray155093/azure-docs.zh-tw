@@ -11,7 +11,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/09/2016"
+	ms.date="06/22/2016"
 	ms.author="ninarn"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -105,15 +105,17 @@
 
 您可以將規則加入資源，以在當資源達到您設定的使用率閾值時，傳送電子郵件給人員或傳送警示字串到 URL 端點。
 
+> [AZURE.IMPORTANT]監視彈性集區的資源使用率至少有 20 分鐘的延遲。目前不支援將彈性集區的警示設定為小於 30 分鐘。任何針對彈性集區所設定且期間 (PowerShell API 中名為 “-WindowSize” 的參數) 小於 30 分鐘的警示可能都不會觸發。請確定您針對彈性集區定義的任何警示都會使用 30 分鐘以上的期間 (WindowSize)。
+
 **將警示加入任何資源：**
 
 1. 按一下 [資源使用率] 圖表以開啟 [度量] 刀鋒視窗，按一下 [加入警示]，然後在 [加入警示規則] 刀鋒視窗中填寫資訊 ([資源] 會自動設定為使用中的集區)。
 2. 輸入可供您和收件者辨別警示的 [名稱] 和 [描述]。
-3. 從清單選擇要提出警示的 [度量]。
+3. 從清單中選擇要警示的 [度量]。
 
     圖表會以動態方式顯示該度量的資源使用量，協助您選擇閾值。
 
-4. 選擇 [條件] \(大於、小於等) 和 [閾值]。
+4. 選擇 [條件] \(大於、小於等) 和 [臨界值]。
 5. 按一下 [確定]。
 
 
@@ -126,16 +128,16 @@
 
     ![按一下 [設定集區]][1]
 
-2. 在 [設定集區] 刀鋒視窗中，按一下 [新增至集區]。
+2. 在 [設定集區] 刀鋒視窗中，按一下 [加入集區中]。
 
 	![按一下 [新增到集區]](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
 
 	
-3. 在 [新增資料庫] 刀鋒視窗中，選取要新增到集區中的資料庫。然後按一下 [選取]。
+3. 在 [加入資料庫] 刀鋒視窗中，選取一或多個要加入集區的資料庫。然後按一下 [選取]。
 
 	![選取要新增的資料庫](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
 
-    [設定集區] 刀鋒視窗現在會列出您選取要新增的資料庫，其狀態設為 [處理中]。
+    [設定集區] 刀鋒視窗現在會列出您選取要加入的資料庫，其狀態設為 [暫止]。
 
     ![擱置中的新增集區](./media/sql-database-elastic-pool-manage-portal/pending-additions.png)
 
@@ -145,7 +147,7 @@
 
 ## 將資料庫移出彈性集區
 
-1. 在 [設定集區] 刀鋒視窗中，選取要移除的資料庫。
+1. 在 [設定集區] 刀鋒視窗中，選取一或多個要移除的資料庫。
 
     ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/select-pools-removal.png)
 
@@ -153,17 +155,17 @@
 
     ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/click-remove.png)
 
-    [設定集區] 刀鋒視窗現在會列出您選取要移除的資料庫，其狀態設為 [處理中]。
+    [設定集區] 刀鋒視窗現在會列出您選取要移除的資料庫，其狀態設為 [暫止]。
     
     ![預覽新增和移除的資料庫](./media/sql-database-elastic-pool-manage-portal/pending-removal.png)
 
 3. 在 [設定集區] 刀鋒視窗中，按一下 [儲存]。
 
-    ![按一下 [Save] \(儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
+    ![按一下 [Save] \ (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## 變更集區的效能設定
 
-當您監視集區的資源使用率時，可能會發現需要一些調整。也許集區的效能或儲存體限制需要變更。您可能想要變更集區中的資料庫設定。您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。請參閱[何時應該使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)以取得更多資訊。
+當您監視集區的資源使用率時，可能會發現需要一些調整。也許集區的效能或儲存體限制需要變更。您可能想要變更集區中的資料庫設定。您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。請參閱[何時應該使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)以取得詳細資訊。
 
 **若要變更每個集區的 eDTU 和儲存體限制，以及每個資料庫的 eDTU：**
 
@@ -211,4 +213,4 @@
 [8]: ./media/sql-database-elastic-pool-manage-portal/db-utilization.png
 [9]: ./media/sql-database-elastic-pool-manage-portal/metric.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

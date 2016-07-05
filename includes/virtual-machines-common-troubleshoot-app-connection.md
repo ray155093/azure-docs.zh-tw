@@ -15,8 +15,8 @@
 
 - 重新啟動虛擬機器
 - 重新建立端點/防火牆規則/網路安全性群組 (NSG) 規則
-	- [管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-	- [管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+	- [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+	- [資源管理員模型 - 管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
 - 從不同的位置 (例如不同的 Azure 虛擬網路) 進行連線
 - 重新部署虛擬機器
 	- [重新部署 Windows VM](../articles/virtual-machines/virtual-machines-windows-redeploy-to-new-node.md)
@@ -74,8 +74,8 @@
 - 目標 VM 上的主機防火牆允許輸入要求與輸出回應的流量。
 - 在目標 VM 上執行的入侵偵測或網路監視軟體允許流量。
 - 雲端服務端點或網路安全性群組允許流量
-	- [管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
-	- [管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+	- [傳統模型 - 管理雲端服務端點](../articles/cloud-services/cloud-services-enable-communication-role-instances.md)
+	- [資源管理員模型 - 管理網路安全性群組](../articles/virtual-network/virtual-networks-create-nsg-arm-pportal.md)
 - 在您的 VM 中，測試 VM 與 VM 間的路徑執行的個別元件 (例如負載平衡器或防火牆) 允許流量。
 
 在 Windows 虛擬機器上，請使用「具有進階安全性的 Windows 防火牆」判斷防火牆規則是否排除了您應用程式的輸入與輸出流量。
@@ -90,12 +90,14 @@
 
 如果您無法存取應用程式，請檢查下列項目：
 
-- 若為使用傳統部署模型建立的 VM，其 VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
+- 對於使用傳統部署模型建立的 VM：
+	- VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
+	- 端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。
 	- 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)。
-- 若為使用傳統部署模型建立的 VM，其端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。
-	- 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)。
-- 若為使用資源管理員部署模型建立的 VM，其 VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
-- 網路安全性群組允許輸入要求與輸出回應的流量。
+	
+- 對於使用資源管理員部署模型建立的 VM：
+	- VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
+	- 網路安全性群組允許輸入要求與輸出回應的流量。
 	- 如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../articles/virtual-network/virtual-networks-nsg.md)。
 
 如果虛擬機器或端點是負載平衡集的成員：
@@ -115,3 +117,5 @@
 [疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](../articles/virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md)
 
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)
+
+<!---HONumber=AcomDC_0622_2016-->

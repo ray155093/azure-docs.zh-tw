@@ -34,9 +34,11 @@
 執行下列命令。
 
 ```tsql
-ALTER TABLE <table name>
-    SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = PAUSED ) ) ;
-GO;
+USE <Stretch-enabled database name>;
+GO
+ALTER TABLE <Stretch-enabled table name>  
+    SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = PAUSED ) ) ;  
+GO
 ```
 
 ## 繼續資料移轉
@@ -51,12 +53,23 @@ GO;
 執行下列命令。
 
 ```tsql
-ALTER TABLE <table name>
-    SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = OUTBOUND ) ) ;
+USE <Stretch-enabled database name>;
+GO
+ALTER TABLE <Stretch-enabled table name>   
+    SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = OUTBOUND ) ) ;  
+ GO
 ```
+
+## 查看移轉是否為作用中或已暫停
+
+### 使用 SQL Server Management Studio 查看移轉是否為作用中或已暫停
+在 SQL Server Management Studio 中，開啟 [Stretch Database 監視器]，然後查看 [移轉狀態] 欄中的值。如需詳細資訊，請參閱[資料移轉的監視及疑難排解](sql-server-stretch-database-monitor.md)。
+
+### 使用 Transact-SQL 查看移轉是否為作用中或已暫停
+查詢目錄檢視 **sys.remote\_data\_archive\_tables**，並查看 **is\_migration\_paused** 欄的值。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_tables](https://msdn.microsoft.com/library/dn935003.aspx)。
 
 ## 另請參閱
 
-[ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
+[ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx) [資料移轉的監視及疑難排解](sql-server-stretch-database-monitor.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

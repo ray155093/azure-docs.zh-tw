@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Application Insights 進行分析" 
+	pageTitle="使用 Application Insights 進行分析 | Microsoft Azure" 
 	description="裝置和 Web 應用程式分析。追蹤即時 Web 應用程式的使用情况和效能。偵測、分級和診斷問題。持續監視並改善您的使用者的成功。" 
 	services="application-insights" 
     documentationCenter=""
@@ -128,6 +128,7 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 
 ## 影片
 
+[![動畫簡介](./media/app-insights-overview/video-front-1.png)](https://www.youtube.com/watch?v=fX2NtGrh-Y0)
 
 > [AZURE.VIDEO 218]
 
@@ -157,4 +158,4 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0622_2016-->

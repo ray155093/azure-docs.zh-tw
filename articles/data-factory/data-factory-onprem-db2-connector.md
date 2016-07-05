@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/01/2016" 
+	ms.date="06/16/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 DB2 移動資料
@@ -223,7 +223,7 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 | 類型 | 類型屬性必須設為：**OnPremisesDB2** | 是 |
 | 伺服器 | DB2 伺服器的名稱。 | 是 |
 | 資料庫 | DB2 資料庫的名稱。 | 是 |
-| 結構描述 | 在資料庫中的結構描述名稱。 | 否 |
+| 結構描述 | 在資料庫中的結構描述名稱。結構描述名稱會區分大小寫。 | 否 |
 | authenticationType | 用來連接到 DB2 資料庫的驗證類型。可能的值為：匿名、基本和 Windows。 | 是 |
 | username | 如果您使用基本或 Windows 驗證，請指定使用者名稱。 | 否 |
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 否 |
@@ -240,7 +240,7 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- | 
-| tableName | DB2 資料庫執行個體中連結服務所參照的資料表名稱。 | 否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName | DB2 資料庫執行個體中連結服務所參照的資料表名稱。tableName 會區分大小寫。 | 否 (如果已指定 **RelationalSource** 的 **query**) |
 
 ## DB2 複製活動類型屬性
 
@@ -253,7 +253,14 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------- | -------------- |
-| query | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select * from MyTable。 | 否 (如果已指定 **dataset** 的 **tableName**)|
+| query | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如："query": "select * from "MySchema"."MyTable""。 | 否 (如果已指定 **dataset** 的 **tableName**)|
+
+> [AZURE.NOTE] 結構描述和資料表名稱會區分大小寫，而且必須在查詢中以 "" (雙引號) 括住。
+
+**範例：**
+
+ "query": "select * from "DB2ADMIN"."Customers""
+
 
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
@@ -314,4 +321,7 @@ Char | String
 
 [AZURE.INCLUDE [data-factory-type-repeatability-for-relational-sources](../../includes/data-factory-type-repeatability-for-relational-sources.md)]
 
-<!---HONumber=AcomDC_0316_2016-->
+## 效能和微調  
+請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+
+<!---HONumber=AcomDC_0622_2016-->

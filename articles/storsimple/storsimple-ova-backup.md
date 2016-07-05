@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/01/2016"
+   ms.date="06/07/2016"
    ms.author="alkohli" />
 
 # 備份 StorSimple Virtual Array
 
 ## 概觀 
 
-本教學課程適用於執行 2016 年 3 月公開上市 (GA) 版的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。
+本教學課程適用於執行 2016 年 3 月公開上市 (GA) 版或更新版本的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。
 
 StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，可設定為檔案伺服器或 iSCSI 伺服器。它可以建立備份、從備份還原，且當需要災害復原時可執行裝置容錯移轉。設為檔案伺服器時，也可進行項目層級的復原。本教學課程說明如何使用 Azure 傳統入口網站或 StorSimple Web UI 來建立 StorSimple Virtual Array 的排程及手動備份。
 
@@ -64,7 +64,7 @@ StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，�
 
     ![已建立備份工作](./media/storsimple-ova-backup/image7.png)
 
-3. 若要追蹤作業進度，按一下 [檢視作業] 圖示。
+3. 若要追蹤作業進度，按一下 [檢視作業]。
 
 4. 備份工作完成之後，請移至 [備份類別目錄] 索引標籤。您應該會看到完成的備份。
 
@@ -104,4 +104,4 @@ StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，�
 
 深入了解[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0622_2016-->

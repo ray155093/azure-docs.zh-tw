@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/13/2016"
+   ms.date="06/20/2016"
    ms.author="patw;jroth;aglick"/>
 
 #Azure 復原技術指導：從 Azure 的本機失敗中復原
@@ -98,7 +98,7 @@ Azure 儲存體可透過在位於區域內完全獨立的實體儲存子系統�
 
 ###資源管理
 
-在 2012 年 6 月 7 日之後建立的儲存體帳戶，最多可以成長到 200 TB (先前的上限為 100 TB)。如果需要額外空間，就必須將應用程式設計成會使用多個儲存體帳戶。
+在 2014 年 5 月之後建立的儲存體帳戶，最多可以成長到 500 TB (先前的上限為 200 TB)。如果需要額外空間，就必須將應用程式設計成會使用多個儲存體帳戶。
 
 ###虛擬機器磁碟
 
@@ -223,4 +223,4 @@ Azure 行動服務有兩個可用性考量。首先，定期備份與行動服�
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇是[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

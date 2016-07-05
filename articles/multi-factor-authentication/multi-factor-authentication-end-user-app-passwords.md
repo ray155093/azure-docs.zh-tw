@@ -45,7 +45,7 @@
 如何使用多因素驗證|說明
 :------------- | :------------- | 
 <a href="#Office">搭配 Office 365 使用</a> | 這表示您想要透過 Office 365 入口網站建立應用程式密碼。
-[](#creating-and-deleting-app-passwords-with-myapps-portal)|這表示您想要透過 [https://myapps.microsoft.com](https://myapps.microsoft.com) 建立應用程式密碼。
+<a href="#compte">我不知道</a>|這表示您想要透過 [https://myapps.microsoft.com](https://myapps.microsoft.com) 建立應用程式密碼。
 <a href="#Microsoft">搭配 Microsoft Azure 使用</a> | 這表示您想要透過 Azure 入口網站建立應用程式密碼。
 
 <h2 id="Office">搭配 Office 365 使用</h2> 
@@ -81,7 +81,7 @@
 9. 應用程式密碼刪除之後，就可以按一下 [關閉]。![關閉](./media/multi-factor-authentication-end-user-app-passwords/delete3.png)
 
 
-<h2 id="Microsoft">搭配 Microsoft Azure 使用</h2>
+<h2 id="compte">搭配 Microsoft Azure 使用</h2>
 如果您不確定您使用 Multi-Factor Authentication 的方式，一律可以透過 myapps 入口網站建立和刪除應用程式密碼。
 
 ### 使用 Myapps 入口網站建立應用程式密碼
@@ -107,7 +107,7 @@
 8. 應用程式密碼刪除之後，就可以按一下 [關閉]。![關閉](./media/multi-factor-authentication-end-user-app-passwords/delete3.png)
 
 
-## 在 Azure 入口網站中建立應用程式密碼
+<h2 id="Microsoft">在 Azure 入口網站中建立應用程式密碼</h2>
 
 如果您搭配 Azure 使用 Multi-Factor Authentication，您會透過 Azure 入口網站建立應用程式密碼。
 

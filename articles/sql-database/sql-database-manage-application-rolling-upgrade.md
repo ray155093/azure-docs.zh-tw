@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="05/10/2016"
+   ms.date="06/16/2016"
    ms.author="sashan"/>
 
 # 使用 SQL Database 作用中異地複寫管理雲端應用程式的輪流升級
@@ -120,8 +120,9 @@
 
 本文中所描述的兩種升級方法有不同的複雜度與金額成本，但它們都著重於將使用者受限為唯讀作業的時間降到最低。該時間由升級指令碼的期間直接定義。時間不會取決於資料庫大小、您選擇的服務層，以及網站設定和其他您無法輕鬆控制的因素。這是因為所有的準備步驟與升級步驟分離，並且不需影響實際執行應用程式即可完成。升級指令的效率是決定升級期間使用者的體驗的重要因素。因此您改進效率的最佳方式，是把工作焦點放在盡可能提高升級指令碼的效率。
 
-## 其他資源
- 下列頁面將協助您了解實作升級工作流程所需的特定作業：
+
+## 後續步驟
+下列頁面將協助您了解實作升級工作流程所需的特定作業：
 
 - [加入次要資料庫](https://msdn.microsoft.com/library/azure/mt603689.aspx) 
 - [將資料庫容錯移轉到次要](https://msdn.microsoft.com/library/azure/mt619393.aspx)
@@ -131,4 +132,15 @@
 - [複製資料庫](https://msdn.microsoft.com/library/azure/mt603644.aspx)
 - [將資料庫設定為唯讀或讀寫模式](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+## 其他資源
+
+- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
+- [時間點還原](sql-database-point-in-time-restore.md)
+- [異地還原](sql-database-geo-restore.md)
+- [作用中異地複寫](sql-database-geo-replication-overview.md)
+- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
+- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
+- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
+
+<!---HONumber=AcomDC_0622_2016-->

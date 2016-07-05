@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Cortana 分析程序實務 - 在 1 TB Criteo 資料集上使用 HDInsight Hadoop 叢集 | Microsoft Azure"
-	description="對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用進階分析程序和技術 (ADAPT) 使用"
+	pageTitle="Team Data Science Process 實務 - 在 1 TB Criteo 資料集上使用 HDInsight Hadoop 叢集 | Microsoft Azure"
+	description="對採用 HDInsight Hadoop 叢集來建置和部署使用大型 (1 TB) 公開可用資料集模型的端對端案例使用 Team Data Science Process"
 	services="machine-learning,hdinsight"
 	documentationCenter=""
 	authors="bradsev"
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="06/14/2016"
 	ms.author="ginathan;bradsev" />
 
-# Cortana 分析程序實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集
+# Team Data Science Process 實務 - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集
 
-在這個逐步解說中，我們會示範使用 Cortana 分析程序端對端搭配 [Azure HDInsight Hadoop 叢集](https://azure.microsoft.com/services/hdinsight/)來儲存、探索、號召工程人員，並從其中一個公開可用的 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/) 資料集縮減取樣資料。我們使用 Azure Machine Learning 在此資料上建置二進位的分類模型。我們也會顯示如何將其中一個模型發佈為 Web 服務。
+在這個逐步解說中，我們會示範在端對端案例中使用 Team Data Science Process 搭配 [Azure HDInsight Hadoop 叢集](https://azure.microsoft.com/services/hdinsight/)進行儲存、探索、特徵工程設計，並從其中一個公開可用的 [Criteo](http://labs.criteo.com/downloads/download-terabyte-click-logs/) 資料集縮減取樣資料。我們使用 Azure Machine Learning 在此資料上建置二進位的分類模型。我們也會顯示如何將其中一個模型發佈為 Web 服務。
 
 此外，也可以使用 IPython Notebook 來完成此逐步解說中說明的工作。想要嘗試這種方法的使用者，應該查閱[使用 Hive ODBC 連線的 Criteo 逐步解說](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-hive-walkthrough-criteo.ipynb)主題。
 
@@ -113,7 +113,7 @@ Criteo 資料是點選預測的資料集，大約是 370 GB 的 gzip 壓縮 TSV 
 
 **重要事項**：**請從上述的 Hive bin/ 目錄提示執行此逐步解說中的所有 Hive 命令。如此可自動處理路徑相關問題。我們將使用交替使用詞彙「Hive 目錄提示」、「Hive bin/ 目錄提示」和「Hadoop 命令列」。**
 
-**重要事項 2**： **若要執行任何 Hive 查詢，使用者一律可以執行下列** cd %hive\_home%\\bin hive
+**重要事項 2**：**若要執行任何 Hive 查詢，使用者一律可以執行下列** cd %hive\_home%\\bin hive
 
 Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
@@ -471,7 +471,7 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 ![](./media/machine-learning-data-science-process-hive-criteo-walkthrough/cl5tpGw.png)
 
-***重要注意事項：*** **為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
+***重要注意事項：***為訓練和測試資料集執行這項操作。此外，請記住要使用您為此目的提供的資料庫名稱和資料表名稱。在圖中所使用的值僅供說明之用。**
 
 ### <a name="step2"></a> 步驟 2：在 Azure Machine Learning 中建立簡單的實驗來預測按一下/未按一下
 
@@ -663,4 +663,4 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 這包含我們的端對端逐步解說，示範如何使用 Azure Machine Learning 處理大型資料集。我們開始使用 1 TB 的資料、建構預測模型，並將其部署為雲端中的 Web 服務。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

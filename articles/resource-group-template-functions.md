@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/06/2016"
+   ms.date="06/16/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員範本函數
@@ -93,30 +93,6 @@
     }
 
 
-<a id="length" />
-### length
-
-**length(array or string)**
-
-傳回陣列中的元素數量或字串中的字元數量。建立資源時，您可在陣列中使用此函式指定反覆運算的數量。下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
-
-    "copy": {
-        "name": "websitescopy",
-        "count": "[length(parameters('siteNames'))]"
-    }
-
-如需有關在此陣列中使用函式的詳細資訊，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-
-或者，您可以使用字串：
-
-    "parameters": {
-        "appName": { "type": "string" }
-    },
-    "variables": { 
-        "nameLength": "[length(parameters('appName'))]"
-    }
-
-
 <a id="mod" />
 ### mod
 
@@ -163,6 +139,7 @@
 
 - [base64](#base64)
 - [concat](#concat)
+- [length](#length)
 - [padLeft](#padleft)
 - [replace](#replace)
 - [分割](#split)
@@ -465,11 +442,96 @@
 
 資源管理員提供下列函式以使用陣列值。
 
-若要將多個陣列合併為單一陣列，請使用 [concat](#concat)。
+- [concat](#concat)
+- [length](#length)
+- [take](#take)
+- [skip](#skip)
+- [分割](#split)
 
-若要取得陣列中的元素數目，請使用 [length](#length)。
+<a id="length" />
+### length
 
-若要將字串值分割成字串值的陣列，請使用 [split](#split)。
+**length(array or string)**
+
+傳回陣列中的元素數量或字串中的字元數量。建立資源時，您可在陣列中使用此函式指定反覆運算的數量。下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
+
+    "copy": {
+        "name": "websitescopy",
+        "count": "[length(parameters('siteNames'))]"
+    }
+
+如需有關在此陣列中使用函式的詳細資訊，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+
+或者，您可以使用字串：
+
+    "parameters": {
+        "appName": { "type": "string" }
+    },
+    "variables": { 
+        "nameLength": "[length(parameters('appName'))]"
+    }
+
+<a id="take" />
+### take
+**take(originalValue, numberToTake)**
+
+傳回陣列或字串，其中包含從陣列或字串開頭算起指定的元素或字元數目。
+
+| 參數 | 必要 | 說明
+| :--------------------------------: | :------: | :----------
+| originalValue | 是 | 要從中取得元素或字元的陣列或字串。
+| numberToTake | 是 | 要取得的元素或字元數目。如果此值為 0 或更小，則會傳回空白陣列或字串。如果大於指定之陣列或字串的長度，則會傳回陣列或字串中的所有元素。
+
+下列範例會從陣列中取得指定的元素數目。
+
+    "parameters": {
+      "first": {
+        "type": "array",
+        "defaultValue": [ "one", "two", "three" ]
+      },
+      "second": {
+        "type": "int"
+      }
+    },
+    "resources": [
+    ],
+    "outputs": {
+      "return": {
+        "type": "array",
+        "value": "[take(parameters('first'),parameters('second'))]"
+      }
+    }
+
+<a id="skip" />
+### skip
+**skip(originalValue, numberToSkip)**
+
+傳回陣列或字串，其中包含陣列或字串中指定的數目之後的所有元素或字元。
+
+| 參數 | 必要 | 說明
+| :--------------------------------: | :------: | :----------
+| originalValue | 是 | 要用於略過元素或字元的陣列或字串。
+| numberToSkip | 是 | 要略過的元素或字元數目。如果此值為 0 或更小，則會傳回陣列或字串中的所有元素。如果大於陣列或字串的長度，則會傳回空白陣列或字串。 
+
+下列範例會略過陣列中指定的元素數目。
+
+    "parameters": {
+      "first": {
+        "type": "array",
+        "defaultValue": [ "one", "two", "three" ]
+      },
+      "second": {
+        "type": "int"
+      }
+    },
+    "resources": [
+    ],
+    "outputs": {
+      "return": {
+        "type": "array",
+        "value": "[skip(parameters('first'),parameters('second'))]"
+      }
+    }
 
 ## 部署值函式
 
@@ -815,4 +877,4 @@
 - 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

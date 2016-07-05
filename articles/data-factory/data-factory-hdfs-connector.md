@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/05/2016" 
+	ms.date="06/20/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從內部部署的 HDFS 移動資料
@@ -325,4 +325,4 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

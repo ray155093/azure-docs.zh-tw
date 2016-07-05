@@ -311,6 +311,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     ```
     
     做為參考，以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息︰
+
     ```
     {
       "ObjectType":"DeviceInfo",
@@ -329,11 +330,13 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     ```
     
     做為參考，以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息︰
+
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
     ```
     
     做為參考，以下是從 IoT 中樞收到的範例 **Command**︰
+    
     ```
     {
       "Name":"SetHumidity",
@@ -361,4 +364,4 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
 
 [lnk-setup-windows]: https://github.com/azure/azure-iot-sdks/blob/develop/c/doc/devbox_setup.md#windows
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

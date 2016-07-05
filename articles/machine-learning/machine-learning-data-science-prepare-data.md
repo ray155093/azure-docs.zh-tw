@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev" />
 
 
 # 準備增強機器學習服務的資料的工作
 
-前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。使用這類資料進行模型化可能會產生誤導的結果。這些工作屬於 Cortana 分析程序 (CAP)，通常會遵循用來探索及計劃所需預先處理的資料集初始探索。如需 CAP 程序的詳細指示，請參閱 [Cortana 分析程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中概述的步驟。
+前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。使用這類資料進行模型化可能會產生誤導的結果。這些工作屬於 Team Data Science Process (TDSP)，通常會遵循用來探索及計劃所需預先處理的資料集初始探索。如需更多關於 TDSP 程序的詳細指示，請參閱 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中概述的步驟。
 
 前置處理和清除工作，例如資料探索工作，可以在各種不同環境中實行，例如 SQL 或 Hive 或 Azure Machine Learning Studio，並使用各種工具與語言，例如 R 或 Python，取決於您的資料的儲存位置和格式。由於 CAP 本質上是反覆的，所以這些工作可以在程序工作流程中的各個步驟進行。
 
@@ -109,4 +109,4 @@
 
 >*Data Mining: Concepts and Techniques* (資料採礦：觀念與技術)，第三版，Morgan Kaufmann，2011，Jiawei Han、Micheline Kamber 及 Jian Pei
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

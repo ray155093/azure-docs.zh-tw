@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="04/06/2016" 
+    ms.date="06/21/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Directory 與 TOPdesk - Public 整合
@@ -39,7 +39,7 @@
 
 ###若要啟用 TOPdesk - Public 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-topdesk-public-tutorial/IC700993.png "Active Directory")
 
@@ -53,7 +53,7 @@
 
     ![新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -92,13 +92,14 @@
 
     1.  按 [下載] 來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
     2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。
-    
-    ![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
+
+        ![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
+
     3.  複製 **AssertionConsumerService** 值。  
 
         >[AZURE.NOTE] 在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
 
-6.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **Azure Active Directory** 入口網站。
+6.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **Azure 傳統入口網站**。
 
 7.  在 [TOPdesk - Public] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
@@ -112,9 +113,9 @@
 
     ![設定應用程式 URL](./media/active-directory-saas-topdesk-public-tutorial/IC790622.png "設定應用程式 URL")
 
-    1.  在 [TOPdesk - Public 登入 URL] 文字方塊中，輸入您的使用者用來登入 TOPdesk - Public 應用程式的 URL (例如："*https://qssolutions.topdesk.net*")。
-    2.  在 [TOPdesk - Public 回覆 URL] 文字方塊中，貼上 **TOPdesk - Public AssertionConsumerService URL** (例如："*https://qssolutions.topdesk.net/tas/public/login/saml*")。
-    3.  按 [下一步]。
+    1.  在 [TOPdesk - Public 登入 URL] 文字方塊中，輸入您的使用者用來登入 TOPdesk - Public 應用程式的 URL (例如："*https://qssolutions.topdesk.net*"))。
+2.  在 [TOPdesk - Public 回覆 URL] 文字方塊中，貼上 **TOPdesk - Public AssertionConsumerService URL** (例如："*https://qssolutions.topdesk.net/tas/public/login/saml*")。
+3.  按 [下一步]。
 
 10. 於 [在 TOPdesk - Public 設定單一登入] 頁面上，按 [下載中繼資料] 下載您的中繼資料，然後將檔案儲存在您的本機電腦中。
 
@@ -153,16 +154,16 @@
     2.  若要上傳您的憑證檔案，請在 [憑證 (RSA)] 下按一下 [瀏覽]。
     3.  若要上傳您從 TOPdesk 支援小組取得的標誌檔案，請在 [標誌圖示] 下按一下 [瀏覽]。
     4.  在 [使用者名稱屬性] 文字方塊中輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
-    5.  在 [顯示名稱] 文字方塊中，輸入您的組態名稱。
+5.  在 [顯示名稱] 文字方塊中，輸入您的組態名稱。
     6.  按一下 [儲存]。
 
-17. 在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+17. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790627.png "設定單一登入")
 
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。  
+若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。
 TOPdesk - Public 需以手動的方式佈建。
 
 ###若要設定使用者佈建，請執行下列步驟：
@@ -190,7 +191,7 @@ TOPdesk - Public 需以手動的方式佈建。
 
 ###若要指派使用者給 TOPdesk - Public，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [TOPdesk - Public] 應用程式整合頁面中，按一下 [指派使用者]。
 
@@ -202,4 +203,4 @@ TOPdesk - Public 需以手動的方式佈建。
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

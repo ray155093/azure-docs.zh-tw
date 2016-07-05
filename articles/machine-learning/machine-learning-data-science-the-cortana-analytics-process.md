@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="什麼是 Cortana 分析程序？| Microsoft Azure" 
-	description="Cortana 分析程序 (CAP) 是一種系統化的資料科學方法，可建置運用進分析的智慧型應用程式。" 
+	pageTitle="何謂 Team Data Science Process？| Microsoft Azure" 
+	description="Team Data Science Process 是一種系統化的方法，可建置運用進階分析的智慧型應用程式。" 
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev"
@@ -13,37 +13,37 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev;gopitk" />
 
 
-# 什麼是 Cortana 分析程序 (CAP)？
+# 何謂 Team Data Science Process (TDSP)？
 
-Cortana 分析程序 (CAP) 是一種系統化的資料科學方法，可列出一系列運用進階分析來建置智慧型應用程式的步驟。CAP 步驟可**指引**您定義問題、分析相關資料、建置和評估預測模型，然後將這些模型部署在智慧型應用程式中。
+Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用程式，讓資料科學家小組可在將這些應用程式轉換為產品所需的完整活動生命週期內，有效率地共同作業。TDSP 將概述定義開發週期的一系列步驟，以提供如何定義問題、設定所需的工具和環境、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的**指引**。
 
-以下是 **Cortana 分析程序**中的步驟：
+以下是 **Team Data Science Process** 中的步驟：
 
 ![CAP 工作流程](./media/machine-learning-data-science-the-cortana-analytics-process/CAP-workflow.png)
 
-此程序是**反覆執行的**：對於模型能有新的和現有的了解或精確調整，可發展出、同時也有賴於先前依序完成的修改步驟。現有的組織開發和專案規劃程序**可輕易調整**，以使用 CAP 定義的步驟順序。
+此程序是**反覆執行的**：對於模型能有新的和現有的了解或精確調整，可發展出、同時也有賴於先前依序完成的修改步驟。現有的組織開發和專案規劃程序**可輕易調整**，以使用 TDSP 定義的步驟順序。
 
-程序中的步驟已在 [CAP 學習途徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中以圖表和連結方式呈現，如下所述。
+程序中的步驟已在 [TDSP 學習路徑](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中以圖表和連結方式呈現，如下所述。
 
 ## 準備步驟 
 
 ## P1.規劃分析專案 
 
-定義您的商業目標和問題，是展開分析專案的第一步。這些項目會以**商業需求**的形式指定。此步驟的主要目標，是要識別分析需要哪些主要商業變數 (例如銷售預測，或訂單屬詐騙性質的機率) 進行預測以達成這些需求。接著通常需要進一步的規劃，以嘗試從分析的觀點了解達成專案目標所需的**資料來源**。舉例來說，我們常會發現現有的系統必須收集並記錄其他類型的資料，才能解決問題並達成專案目標。如需指引，請參閱[針對 Cortana 分析程序規劃您的環境](machine-learning-data-science-plan-your-environment.md)以及 [Azure 機器學習中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)。
+定義您的商業目標和問題，是展開分析專案的第一步。這些項目會以**商業需求**的形式指定。此步驟的主要目標，是要識別分析需要哪些主要商業變數 (例如銷售預測，或訂單屬詐騙性質的機率) 進行預測以達成這些需求。接著通常需要進一步的規劃，以嘗試從分析的觀點了解達成專案目標所需的**資料來源**。舉例來說，我們常會發現現有的系統必須收集並記錄其他類型的資料，才能解決問題並達成專案目標。如需指引，請參閱[針對 Team Data Science Process 規劃您的環境](machine-learning-data-science-plan-your-environment.md)和[在 Azure 機器學習中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)。
 
 ## P2.設定分析環境 
 
-Cortana 分析程序的分析環境包含數個元件：
+Team Data Science Process 的分析環境包含數個元件：
 
 - **資料工作區**，用來暫存分析和建立模型所需的資料 
 - **處理基礎結構**，用於資料的前置處理、瀏覽和模型化
 - **執行階段基礎結構**，用來運作分析模型，及執行取用模型的智慧型用戶端應用程式。  
 
-必須設定的分析基礎結構通常是環境中不屬於核心作業系統的部分。但它通常會運用來自企業內多個系統的資料，以及來自公司外部的資料。分析基礎結構可以純雲端架構或內部部署設定，或是兩者的混合。如需選項，請參閱[設定用於 Cortana 分析程序中的資料科學環境](machine-learning-data-science-environment-setup.md)。
+必須設定的分析基礎結構通常是環境中不屬於核心作業系統的部分。但它通常會運用來自企業內多個系統的資料，以及來自公司外部的資料。分析基礎結構可以純雲端架構或內部部署設定，或是兩者的混合。如需選項，請參閱[設定用於 Team Data Science Process 中的資料科學環境](machine-learning-data-science-environment-setup.md)。
 
 ## 分析步驟：  
 
@@ -61,12 +61,12 @@ Cortana 分析程序的分析環境包含數個元件：
 
 ## 3\.開發特性 
 
-與網域專家合作的資料科學家，必須識別可擷取資料集的顯著屬性以及最適合用來預測計劃期間所識別之重要商業變數的特性。這些新特性可以衍生自現有資料，或可能需要收集其他資料。此程序稱為**特性工程**，這是建置有效預測性分析系統的重要步驟之一。要執行此步驟，必須有創意地結合網域知識和獲取自資料瀏覽步驟的深入資訊。如需指引，請參閱 [Cortana 分析程序中的特性工程](machine-learning-data-science-create-features.md)。
+與網域專家合作的資料科學家，必須識別可擷取資料集的顯著屬性以及最適合用來預測計劃期間所識別之重要商業變數的特性。這些新特性可以衍生自現有資料，或可能需要收集其他資料。此程序稱為**特性工程**，這是建置有效預測性分析系統的重要步驟之一。要執行此步驟，必須有創意地結合網域知識和獲取自資料瀏覽步驟的深入資訊。如需指引，請參閱 [Team Data Science Process 中的特徵工程設計](machine-learning-data-science-create-features.md)。
 
 
 ## 4\.建立預測模型 
 
-資料科學家會建立分析模型，使用已清理和特性化的資料來預測規劃步驟中定義的商業需求所識別的重要變數。機器學習系統支援多個適用於各種情況的**模型化演算法**。如需指引，請參閱[如何選擇 Microsoft Azure 機器學習的演算法](machine-learning-algorithm-choice.md)。
+資料科學家會建立分析模型，使用已清理和特性化的資料來預測規劃步驟中定義的商業需求所識別的重要變數。機器學習系統支援多個適用於各種情況的**模型化演算法**。如需指引，請參閱[如何選擇 Team Azure 機器學習的演算法](machine-learning-algorithm-choice.md)。
 
 資料科學家必須選擇最適合其預測工作的模型，而來自多個模型的結果也經常必須結合以取得最佳結果。模型化的輸入資料通常隨機分成三個部分：
 
@@ -83,17 +83,17 @@ Cortana 分析程序的分析環境包含數個元件：
 
 ## 摘要和後續步驟
 
-[Cortana 分析程序](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)會模型化為一系列反覆執行的步驟，以針對使用進階分析來建置智慧型應用程式所需的工作**提供指引**。每個步驟也會提供詳細資訊，說明如何使用各種不同的 Microsoft 技術來完成工作。
+[Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 會模型化為一系列反覆執行的步驟，以針對使用進階分析來建置智慧型應用程式所需的工作**提供指引**。每個步驟也會提供詳細資訊，說明如何使用各種不同的 Microsoft 技術來完成工作。
 
-雖然 CAP 並未指定特定類型的**文件**成品，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
+雖然 TDSP 並未指定特定類型的**文件**構件，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
 
 此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。例如，請參閱︰
 
-- [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-- [Cortana Analytics 程序實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
+- [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+- [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
 - [在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)
 - [Azure Data Lake 中的可調整資料科學︰端對端逐步解說](machine-learning-data-science-process-data-lake-walkthrough.md)
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure Machine Learning 中進階分析程序和技術的案例 | Microsoft Azure"
-	description="針對 Azure Machine Learning 中的進階預測性分析程序選取適當的案例。"
+	description="選取適合使用 Team Data Science Process 進行進階預測性分析的案例。"
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016" 
+	ms.date="06/14/2016" 
 	ms.author="bradsev" />
 
 
 # 在 Azure 機器學習中的進階分析案例
 
-本文概述可以運用 Cortana Analytics 程序來處理的各種範例資料來源和目標案例。本文將根據資料特性、來源位置和在 Azure 中的目標儲存機制，來說明處理順序中可用的選項。
+本文概述可以運用 Team Data Science Process (TDSP) 來處理的各種範例資料來源和目標案例。TDSP 提供系統化的方法，可讓小組共同建置智慧型應用程式。此處呈現的案例將根據資料特性、來源位置和在 Azure 中的目標儲存機制，來說明資料處理工作流程中可用的選項。
 
 最後一節提供**決策樹**，讓您在選取適合您資料和目標的範例案例時可以使用。
 
@@ -296,8 +296,8 @@
 如需透過公用資料集運用進階分析程序和技術的端對端 Azure Machine Learning 逐步解說，請參閱：
 
 
-* [Cortana 分析程序實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
-* [Cortana 分析程序實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
+* [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
+* [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
 
 
 [1]: ./media/machine-learning-data-science-plan-sample-scenarios/dsp-plan-small-in-aml.png
@@ -314,4 +314,4 @@
 <!-- Module References -->
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0622_2016-->

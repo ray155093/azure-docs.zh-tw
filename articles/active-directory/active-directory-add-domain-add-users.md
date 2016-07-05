@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeffsta"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="06/21/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 將使用者指派至自訂網域
@@ -62,4 +62,4 @@
 
 -   [了解 Azure AD 中的網域管理概念](active-directory-add-domain-concepts.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0622_2016-->

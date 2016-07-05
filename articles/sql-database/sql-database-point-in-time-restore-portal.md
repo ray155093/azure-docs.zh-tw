@@ -10,9 +10,9 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="06/09/2016"
+	ms.date="06/17/2016"
 	ms.author="sstein"
-	ms.workload="data-management"
+	ms.workload="sqldb-bcdr"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
@@ -45,17 +45,13 @@
 
 ## 後續步驟
 
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [時間點還原](sql-database-point-in-time-restore.md)
-- [使用 REST API 進行時間點還原](https://msdn.microsoft.com/library/azure/mt163685.aspx)
-- [SQL Database 自動備份](sql-database-automated-backups.md)
+- 如需使用 PowerShell 復原至某個時間點的詳細步驟，請參閱[使用 PowerShell 的還原時間點](sql-database-point-in-time-restore-powershell.md)。
+- 如需如何使用 REST API 復原至某個時間點的相關資訊，請參閱[建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)。
+- 如需還原時間點的概觀，請參閱[還原時間點](sql-database-point-in-time-restore.md)。
+- 如需如何從使用者或應用程式錯誤中復原的完整討論，請參閱[從使用者錯誤復原](sql-database-user-error-recovery.md)。
 
 ## 其他資源
 
-- [還原已刪除的資料庫](sql-database-restore-deleted-database.md)
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- [商務持續性案例](sql-database-business-continuity-scenarios.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

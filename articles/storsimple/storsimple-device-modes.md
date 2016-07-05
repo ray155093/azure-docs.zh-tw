@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/22/2016"
+   ms.date="06/17/2016"
    ms.author="alkohli" />
 
 # 變更 StorSimple 裝置的裝置模式
@@ -98,4 +98,4 @@ StorSimple 裝置可以在標準、維護和復原模式下運作。以下簡短
 
 了解如何在 StorSimple 裝置上[套用標準和維護模式更新](storsimple-update-device.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0622_2016-->

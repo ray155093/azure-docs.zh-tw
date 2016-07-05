@@ -28,7 +28,10 @@
 若要查看已啟用延展功能之資料表在 SQL Server 中使用多少空間，請執行下列陳述式。
 
  ```tsql
- EXEC sp_spaceused '<table name>', 'true', 'LOCAL_ONLY';
+USE <Stretch-enabled database name>;
+GO
+EXEC sp_spaceused '<Stretch-enabled table name>', 'true', 'LOCAL_ONLY';
+GO
  ```
 ## 管理資料移轉
 
@@ -48,6 +51,15 @@
 ### <a name="RemoteInfo"></a>取得 Stretch Database 所使用之遠端資料庫和資料表的相關資訊
 開啟目錄檢視 **sys.remote\_data\_archive\_databases** 和 **sys.remote\_data\_archive\_tables**，以查看儲存了已移轉之資料的遠端資料庫和資料表的相關資訊。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_databases (Transact-SQL)](https://msdn.microsoft.com/library/dn934995.aspx) 和 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
 
+若要查看已啟用延展功能的資料表在 Azure 中使用了多少空間，請執行下列陳述式。
+
+ ```tsql
+USE <Stretch-enabled database name>;
+GO
+EXEC sp_spaceused '<Stretch-enabled table name>', 'true', 'REMOTE_ONLY';
+GO
+ ```
+
 ### 刪除已移轉的資料  
 如果您想要刪除已移轉到 Azure 的資料，請依照 [sys.sp\_rda\_reconcile\_batch](https://msdn.microsoft.com/library/mt707768.aspx) 中所述的步驟操作。
 
@@ -57,11 +69,11 @@
 請勿變更和已設定 Stretch Database 的 SQL Server 資料表相關聯之遠端 Azure 資料表的結構描述。特別是，請勿修改資料欄的名稱或資料類型。Stretch Database 功能會做出各種有關遠端資料表的結構描述與 SQL Server 資料表的結構描述之間關係的假設。如果您變更遠端結構描述，Stretch Database 針對已變更資料表將會停止運作。
 
 ### 將資料表資料行重新同步化  
-如果您不小心刪除遠端資料表中的資料行，請執行 **sp\_rda\_reconcile\_columns**，將存在於已啟用延展功能之 SQL Server 資料表中但不存在於遠端資料表中的資料行，新增到遠端資料表中。如需詳細資訊，請參閱 [sys.sp\_rda\_reconcile\_columns](https://msdn.microsoft.com/library/mt707765.aspx)。
+如果您不小心刪除了遠端資料表中的資料行，請執行 **sp\_rda\_reconcile\_columns**，將存在於已啟用延展功能的 SQL Server 資料表中但不存在於遠端資料表中的資料行，新增到遠端資料表中。如需詳細資訊，請參閱 [sys.sp\_rda\_reconcile\_columns](https://msdn.microsoft.com/library/mt707765.aspx)。
 
-  > [重要] 當 **sp\_rda\_reconcile\_columns** 重新建立您不小心從遠端資料表中刪除的資料行時，並不會還原先前在已刪除之資料行中的資料。
+  > [!IMPORTANT] 當 **sp\_rda\_reconcile\_columns** 重新建立您不小心從遠端資料表中刪除的資料行時，並不會還原先前在已刪除資料行中的資料。
 
-**sp\_rda\_reconcile\_columns** 不會從遠端資料表中，刪除存在於遠端資料表中但不存在於已啟用延展功能之 SQL Server 資料表中的資料行。如果遠端 Azure 資料表中有已不存在於已啟用延展功能之 SQL Server 資料表中的資料行，這些額外的資料行並不會導致 Stretch Database 無法正常運作。您可以視需要手動移除額外的資料行。
+**sp\_rda\_reconcile\_columns** 不會從遠端資料表中，刪除存在於遠端資料表中但不存在於已啟用延展功能的 SQL Server 資料表中的資料行。如果遠端 Azure 資料表中有已不存在於已啟用延展功能之 SQL Server 資料表中的資料行，這些額外的資料行並不會導致 Stretch Database 無法正常運作。您可以視需要手動移除額外的資料行。
 
 ## 管理效能與成本  
 
@@ -73,19 +85,19 @@
 -   您的網路狀況可能已降級。請連絡您的網路系統管理員，以取得最新問題或中斷情形的資訊。
 
 ### 針對耗用資源的操作 (例如編製索引)，請提升 Azure 效能等級。
-當您在針對 Stretch Database 設定的大型資料表上建立、重建或重組索引，並且預期在此期間於 Azure 中會有針對所移轉資料的大量查詢時，請考慮在此作業持續期間，提升對應之遠端 Azure 資料庫的效能等級。如需有關效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
+當您在針對 Stretch Database 設定的大型資料表上建立、重建或重組索引，並且預期在此期間於 Azure 中會有針對所移轉資料的大量查詢時，請考慮在此作業持續期間，提升對應之遠端 Azure 資料庫的效能等級。如需效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 
 ### 您無法暫停 Azure 上的 SQL Server Stretch Database 服務  
- 請確定您選取適當的效能和定價等級。如果您針對需要大量資源的作業暫時提升效能等級，請在作業完成之後，將它還原到先前的等級。如需有關效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
+ 請確定您選取適當的效能和定價等級。如果您針對需要大量資源的作業暫時提升效能等級，請在作業完成之後，將它還原到先前的等級。如需效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 
 ## 變更查詢的範圍  
  針對已啟用延展功能的資料表所進行的查詢預設既會傳回本機資料，也會傳回遠端資料。您可以針對所有使用者的所有查詢，或只針對系統管理員的單一查詢，變更查詢範圍。
 
 ### 變更所有使用者之所有查詢的查詢範圍  
- 若要變更所有使用者之所有查詢的範圍，請執行 **sys.sp\_rda\_set\_query\_mode** 預存程序。您可以將範圍縮減到只查詢本機資料、停用所有查詢，或是還原預設設定。如需詳細資訊，請參閱 [sys.sp\_rda\_set\_query\_mode](https://msdn.microsoft.com/library/mt703715.aspx)。
+ 若要變更所有使用者的所有查詢範圍，請執行 **sys.sp\_rda\_set\_query\_mode** 預存程序。您可以將範圍縮減到只查詢本機資料、停用所有查詢，或是還原預設設定。如需詳細資訊，請參閱 [sys.sp\_rda\_set\_query\_mode](https://msdn.microsoft.com/library/mt703715.aspx)。
 
-### <a name="queryHints"></a>變更系統管理員之單一查詢的查詢範圍  
- 若要變更 db\_owner 角色成員之單一查詢的範圍，請在 SELECT 陳述式中新增 **WITH ( REMOTE\_DATA\_ARCHIVE\_OVERRIDE = *value* )** 查詢提示。REMOTE\_DATA\_ARCHIVE\_OVERRIDE 查詢提示可以有下列值。
+### <a name="queryHints"></a>變更系統管理員進行單一查詢的查詢範圍  
+ 若要變更 db\_owner 角色成員的單一查詢範圍，請在 SELECT 陳述式中新增 **WITH ( REMOTE\_DATA\_ARCHIVE\_OVERRIDE = *value* )** 查詢提示。REMOTE\_DATA\_ARCHIVE\_OVERRIDE 查詢提示可以有下列值。
  -   **LOCAL\_ONLY**。只查詢本機資料。  
 
  -   **REMOTE\_ONLY**。只查詢遠端資料。
@@ -95,7 +107,10 @@
 例如，下列查詢只會傳回本機結果。
 
  ```tsql  
-SELECT * FROM Stretch_enabled_table WITH (REMOTE_DATA_ARCHIVE_OVERRIDE = LOCAL_ONLY) WHERE ...  
+ USE <Stretch-enabled database name>;
+ GO
+ SELECT * FROM <Stretch_enabled table name> WITH (REMOTE_DATA_ARCHIVE_OVERRIDE = LOCAL_ONLY) WHERE ... ;
+ GO
 ```  
 
 ## <a name="adminHints"></a>進行系統管理更新和刪除  
@@ -114,4 +129,4 @@ SELECT * FROM Stretch_enabled_table WITH (REMOTE_DATA_ARCHIVE_OVERRIDE = LOCAL_O
 
 [還原已啟用延展功能的資料庫](sql-server-stretch-database-restore.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0622_2016-->

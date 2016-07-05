@@ -14,14 +14,13 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="06/14/2016"
 	ms.author="iainfou"/>
 
 
 # 如何將傳統 Linux 虛擬機器擷取成映像
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines-linux-capture-image.md).
-
 
 本文說明如何將執行 Linux 的傳統 Azure 虛擬機器擷取成映像，以建立其他虛擬機器。此映像包含作業系統磁碟和連結至虛擬機器的資料磁碟。它並不包含網路組態，因此當您從此映像建立其他虛擬機器時，將需要設定該組態。
 
@@ -34,7 +33,7 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 
 ## 擷取虛擬機器
 
-1. 連線到使用您所選擇 SSH 用戶端的虛擬機器。如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器][]。
+1. 使用您所選擇的 SSH 用戶端[連線到虛擬機器](virtual-machines-linux-classic-log-on.md)。
 
 2. 在 SSH 視窗中，輸入下列命令。請注意，不同版本的 `waagent` 公用程式可能會有稍微不同的輸出：
 
@@ -55,7 +54,6 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 3. 輸入 **y** 繼續。您可以加入 `-force` 參數，便不用進行此確認步驟。
 
 4. 輸入 **Exit** 關閉 SSH 用戶端。
-
 
 	>[AZURE.NOTE] 接下來的步驟假設您已經在用戶端電腦上[安裝 Azure CLI](../xplat-cli-install.md)。您也可以在 [Azure 傳統入口網站][]中完成下方所有步驟。
 
@@ -92,10 +90,9 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 **另請參閱：** [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md)
 
 [Azure 傳統入口網站]: http://manage.windowsazure.com
-[如何登入執行 Linux 的虛擬機器]: virtual-machines-linux-classic-log-on.md
 [關於 Azure 中的虛擬機器映像]: virtual-machines-linux-classic-about-images.md
 [如何建立自訂虛擬機器]: virtual-machines-linux-classic-create-custom.md
 [How to Attach a Data Disk to a Virtual Machine]: virtual-machines-windows-classic-attach-disk.md
 [如何建立 Linux 虛擬機器]: virtual-machines-linux-classic-create-custom.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0622_2016-->

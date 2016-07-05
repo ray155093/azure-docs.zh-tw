@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/15/2016"
+   ms.date="06/20/2016"
    ms.author="bscholl"/>
 
 # 分割 Service Fabric 可靠服務
@@ -124,15 +124,15 @@ Service Fabric 有三個資料分割配置可選擇：
 3. 將專案命名為 "AlphabetPartitions"。
 4. 在 [建立服務] 對話方塊中，選擇 [具狀態] 服務，命名為 "Alphabet.Processing"，如下圖所示。
 
-    ![具狀態服務螢幕擷取畫面](./media/service-fabric-concepts-partitioning/alphabetstatefulnew.png)
+    ![具狀態服務螢幕擷取畫面](./media/service-fabric-concepts-partitioning/createstateful.png)
 
-5. 設定資料分割數目。開啟 AlphabetPartitions 專案中的 ApplicationManifest.xml 檔案，將參數 Processing\_PartitionCount 更新為 26，如下所示。
+5. 設定資料分割數目。開啟位於 AlphabetPartitions 專案的 ApplicationPackageRoot 資料夾中的 ApplicationManifest.xml 檔案，將參數 Processing\_PartitionCount 更新為 26，如下所示。
 
     ```xml
     <Parameter Name="Processing_PartitionCount" DefaultValue="26" />
     ```
-
-    您也需要更新 StatefulService 元素的 LowKey 和 HighKey 屬性，如下所示。
+    
+    您也需要在 ApplicationManifest.xml 中更新 StatefulService 元素的 LowKey 和 HighKey 屬性，如下所示。
 
     ```xml
     <Service Name="Processing">
@@ -145,7 +145,7 @@ Service Fabric 有三個資料分割配置可選擇：
 6. 為了能夠存取服務，請在 Alphabet.Processing 服務的 ServiceManifest.xml (位於 PackageRoot 資料夾) 中加入 endpoint 元素，以便在連接埠上開啟端點，如下所示：
 
     ```xml
-    <Endpoint Name="ProcessingServiceEndpoint" Protocol="http" Type="Internal" />
+    <Endpoint Name="ProcessingServiceEndpoint" Port="8089" Protocol="http" Type="Internal" />
     ```
 
     現在，服務已設定為接聽有 26 個資料分割的內部端點。
@@ -163,23 +163,24 @@ Service Fabric 有三個資料分割配置可選擇：
     ```CSharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
     {
-        return new[] { new ServiceReplicaListener(CreateInternalListener, "Internal", false) };
+         return new[] { new ServiceReplicaListener(context => this.CreateInternalListener(context))};
     }
-    private ICommunicationListener CreateInternalListener(StatefulServiceInitializationParameters args)
+    private ICommunicationListener CreateInternalListener(ServiceContext context)
     {
-        EndpointResourceDescription internalEndpoint = args.CodePackageActivationContext.GetEndpoint("ProcessingServiceEndpoint");
+            
+         EndpointResourceDescription internalEndpoint = context.CodePackageActivationContext.GetEndpoint("ProcessingServiceEndpoint");
+         string uriPrefix = String.Format(
+                "{0}://+:{1}/{2}/{3}-{4}/",
+                internalEndpoint.Protocol,
+                internalEndpoint.Port,
+                context.PartitionId,
+                context.ReplicaOrInstanceId,
+                Guid.NewGuid());
 
-        string uriPrefix = String.Format(
-            "{0}://+:{1}/{2}/{3}-{4}/",
-            internalEndpoint.Protocol,
-            internalEndpoint.Port,
-            this.ServiceInitializationParameters.PartitionId,
-            this.ServiceInitializationParameters.ReplicaId,
-            Guid.NewGuid());
+         string nodeIP = FabricRuntime.GetNodeContext().IPAddressOrFQDN;
 
-        string nodeIP = FabricRuntime.GetNodeContext().IPAddressOrFQDN;
-        string uriPublished = uriPrefix.Replace("+", nodeIP);
-        return new HttpCommunicationListener(uriPrefix, uriPublished, this.ProcessInternalRequest);
+         string uriPublished = uriPrefix.Replace("+", nodeIP);
+         return new HttpCommunicationListener(uriPrefix, uriPublished, this.ProcessInternalRequest);
     }
     ```
 
@@ -234,31 +235,31 @@ Service Fabric 有三個資料分割配置可選擇：
 10. 讓我們將無狀態服務加入至專案，瞭解如何呼叫特定的資料分割。
 
     這項服務做為簡單的 Web 介面，將接受 lastname 做為查詢字串參數、決定資料分割索引鍵，然後將它傳送給 Alphabet.Processing 服務來處理。
-
-11. 在 [建立服務] 對話方塊中，選擇 [無狀態] 服務，命名為 "Alphabet.WebApi"，如下圖所示。
-
-    ![無狀態服務螢幕擷取畫面](./media/service-fabric-concepts-partitioning/alphabetstatelessnew.png)。
+    
+11. 在 [建立服務] 對話方塊中，選擇 [無狀態] 服務，命名為 "Alphabet.Web"，如下圖所示。
+    
+    ![無狀態服務螢幕擷取畫面](./media/service-fabric-concepts-partitioning/createnewstateless.png)。
 
 12. 更新 Alphabet.WebApi 服務的 ServiceManifest.xml 中的端點資訊，以開啟連接埠，如下所示。
 
     ```xml
-    <Endpoint Name="WebApiServiceEndpoint" Protocol="http" Port="8090"/>
+    <Endpoint Name="WebApiServiceEndpoint" Protocol="http" Port="8081"/>
     ```
 
-13. 您需要傳回 ServiceInstanceListeners 的集合。同樣地，您可以選擇實作簡單的 HttpCommunicationListener。
+13. 您需要傳回 Web 類別中 ServiceInstanceListeners 的集合。同樣地，您可以選擇實作簡單的 HttpCommunicationListener。
 
     ```CSharp
     protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
     {
-        return new[] {new ServiceInstanceListener(this.CreateInputListener, "Input")};
+        return new[] {new ServiceInstanceListener(context => this.CreateInputListener(context))};
     }
-    private ICommunicationListener CreateInputListener(StatelessServiceInitializationParameters args)
+    private ICommunicationListener CreateInputListener(ServiceContext context)
     {
         // Service instance's URL is the node's IP & desired port
-        EndpointResourceDescription inputEndpoint = args.CodePackageActivationContext.GetEndpoint("WebApiServiceEndpoint")
+        EndpointResourceDescription inputEndpoint = context.CodePackageActivationContext.GetEndpoint("WebApiServiceEndpoint")
         string uriPrefix = String.Format("{0}://+:{1}/alphabetpartitions/", inputEndpoint.Protocol, inputEndpoint.Port);
-        var uriPublished = uriPrefix.Replace("+", m_nodeIP);
-        return new HttpCommunicationListener(uriPrefix, uriPublished, ProcessInputRequest);
+        var uriPublished = uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+        return new HttpCommunicationListener(uriPrefix, uriPublished, this.ProcessInputRequest);
     }
     ```
 
@@ -272,12 +273,13 @@ Service Fabric 有三個資料分割配置可選擇：
         {
             string lastname = context.Request.QueryString["lastname"];
             char firstLetterOfLastName = lastname.First();
-            int partitionKey = Char.ToUpper(firstLetterOfLastName) - 'A';
+            ServicePartitionKey partitionKey = new ServicePartitionKey(Char.ToUpper(firstLetterOfLastName) - 'A');
 
             ResolvedServicePartition partition = await this.servicePartitionResolver.ResolveAsync(alphabetServiceUri, partitionKey, cancelRequest);
             ResolvedServiceEndpoint ep = partition.GetEndpoint();
+                
             JObject addresses = JObject.Parse(ep.Address);
-            string primaryReplicaAddress = addresses["Endpoints"].First()["Value"].Value<string>();
+            string primaryReplicaAddress = (string)addresses["Endpoints"].First();
 
             UriBuilder primaryReplicaUriBuilder = new UriBuilder(primaryReplicaAddress);
             primaryReplicaUriBuilder.Query = "lastname=" + lastname;
@@ -285,7 +287,7 @@ Service Fabric 有三個資料分割配置可選擇：
             string result = await this.httpClient.GetStringAsync(primaryReplicaUriBuilder.Uri);
 
             output = String.Format(
-                    "Result: {0}. Partition key: '{1}' generated from the first letter '{2}' of input value '{3}'. Processing service partition ID: {4}. Processing service replica address: {5}",
+                    "Result: {0}. <p>Partition key: '{1}' generated from the first letter '{2}' of input value '{3}'. <br>Processing service partition ID: {4}. <br>Processing service replica address: {5}",
                     result,
                     partitionKey,
                     firstLetterOfLastName,
@@ -312,13 +314,13 @@ Service Fabric 有三個資料分割配置可選擇：
     ```CSharp
     string lastname = context.Request.QueryString["lastname"];
     char firstLetterOfLastName = lastname.First();
-    int partitionKey = Char.ToUpper(firstLetterOfLastName) - 'A';
+    ServicePartitionKey partitionKey = new ServicePartitionKey(Char.ToUpper(firstLetterOfLastName) - 'A');
     ```
 
     請記得，在此範例中，我們使用 26 個資料分割，每個資料分割有一個資料分割索引鍵。接下來，我們使用 `servicePartitionResolver` 物件的 `ResolveAsync` 方法，取得此索引鍵的服務資料分割 `partition`。`servicePartitionResolver` 定義為
 
     ```CSharp
-    private static readonly ServicePartitionResolver servicePartitionResolver = ServicePartitionResolver.GetDefault();
+    private readonly ServicePartitionResolver servicePartitionResolver = ServicePartitionResolver.GetDefault();
     ```
 
     `ResolveAsync` 方法接受服務 URI、資料分割索引鍵和取消語 Token 做為參數。處理服務的服務 URI 是 `fabric:/AlphabetPartitions/Processing`。接下來，我們會取得資料分割的端點。
@@ -331,7 +333,7 @@ Service Fabric 有三個資料分割配置可選擇：
 
     ```CSharp
     JObject addresses = JObject.Parse(ep.Address);
-    string primaryReplicaAddress = addresses["Endpoints"].First()["Value"].Value<string>();
+    string primaryReplicaAddress = (string)addresses["Endpoints"].First();
 
     UriBuilder primaryReplicaUriBuilder = new UriBuilder(primaryReplicaAddress);
     primaryReplicaUriBuilder.Query = "lastname=" + lastname;
@@ -351,12 +353,12 @@ Service Fabric 有三個資料分割配置可選擇：
     ```
 
 16. 完成部署之後，您可以在 Service Fabric 總管中檢查服務及其所有資料分割。
-
-    ![Service Fabric 總管螢幕擷取畫面](./media/service-fabric-concepts-partitioning/alphabetservicerunning.png)
-
-17. 您可以在瀏覽器中輸入 `http://localhost:8090/?lastname=somename` 來測試分割邏輯。您會看到以相同字母開頭的每個姓氏儲存在相同的資料分割中。
-
-    ![瀏覽器螢幕擷取畫面](./media/service-fabric-concepts-partitioning/alphabetinbrowser.png)
+    
+    ![Service Fabric 總管螢幕擷取畫面](./media/service-fabric-concepts-partitioning/sfxpartitions.png)
+    
+17. 您可以在瀏覽器中輸入 `http://localhost:8081/?lastname=somename` 來測試分割邏輯。您會看到以相同字母開頭的每個姓氏儲存在相同的資料分割中。
+    
+    ![瀏覽器螢幕擷取畫面](./media/service-fabric-concepts-partitioning/samplerunning.png)
 
 範例的完整原始程式碼位於 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/AlphabetPartitions)。
 
@@ -372,4 +374,4 @@ Service Fabric 有三個資料分割配置可選擇：
 
 [wikipartition]: https://en.wikipedia.org/wiki/Partition_(database)
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0622_2016-->

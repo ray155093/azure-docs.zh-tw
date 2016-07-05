@@ -5,14 +5,14 @@
     documentationCenter="na"
     authors="sethmanheim"
     manager="timlt"
-    editor="tysonn" />
+    editor="" />
 <tags 
     ms.service="service-bus"
     ms.devlang="na"
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="03/16/2016"
+    ms.date="06/21/2016"
     ms.author="sethm" />
 
 # 建立使用服務匯流排佇列的應用程式
@@ -53,13 +53,13 @@
 
 下一節會示範如何使用服務匯流排來建置此應用程式。
 
-### 註冊服務匯流排帳戶和訂用帳戶
+### 註冊 Azure 帳戶
 
 您需要 Azure 帳戶，才能開始使用服務匯流排。如果您沒有此帳戶，可以在[這裡](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF)註冊免費帳戶。
 
 ### 建立服務命名空間
 
-當您有訂用帳戶後，便可建立新的命名空間。請為所有服務匯流排帳戶的新命名空間指定唯一名稱。每個命名空間會作為一組服務匯流排實體的範圍容器。
+當您有訂用帳戶後，便可[建立新的命名空間](service-bus-create-namespace-portal.md)。每個命名空間會作為一組服務匯流排實體的範圍容器。請為所有服務匯流排帳戶的新命名空間指定唯一名稱。
 
 ### 安裝 NuGet 封裝
 
@@ -108,14 +108,14 @@ sender.Send(bm);
 
 ### 從佇列接收訊息
 
-最簡單的方式是使用 [MessageReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.aspx) 物件 (可使用 [CreateMessageReceiver](https://msdn.microsoft.com/library/azure/hh322642.aspx) 從 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 直接建立)，接收來自佇列的訊息。訊息接收者可在兩種不同的模式下運作：**ReceiveAndDelete** 和 **PeekLock**。訊息接收者建立時會設定 [ReceiveMode](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx)，做為 [CreateMessageReceiver](https://msdn.microsoft.com/library/azure/hh322642.aspx) 呼叫的參數。
+若要接收來自佇列的訊息，您可以使用 [MessageReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.aspx) 物件 (可使用 [CreateMessageReceiver](https://msdn.microsoft.com/library/azure/hh322642.aspx) 從 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 直接建立)。訊息接收者可在兩種不同的模式下運作：**ReceiveAndDelete** 和 **PeekLock**。訊息接收者建立時會設定 [ReceiveMode](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx)，做為 [CreateMessageReceiver](https://msdn.microsoft.com/library/azure/hh322642.aspx) 呼叫的參數。
 
 
 使用 **ReceiveAndDelete** 模式時，接收是一次性作業；也就是說，當服務匯流排收到要求時，它會將此訊息標示為已取用，並將它傳回應用程式。**ReceiveAndDelete** 模式是最簡單的模型，最適合的案例是，應用程式可容許在發生失敗時不處理訊息。若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。因為服務匯流排會將訊息標示為已取用，所以當應用程式重新啟動並開始再次取用訊息時，它將會遺漏當機前已取用的訊息。
 
 在 **PeekLock** 模式中，接收會變成兩階段作業，因此可以支援無法容許遺漏訊息的應用程式。當服務匯流排收到要求時，它會尋找要取用的下一則訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可透過呼叫所接收訊息上的 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx)，來完成接收程序的第二個階段。當服務匯流排看到 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx) 呼叫時，它會將訊息標示為已取用。
 
-可能會有兩種不同的結果。首先，如果應用程式因為某些原因無法處理訊息，它可以在收到的訊息上呼叫 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) (而不是 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx))。這會讓服務匯流排將訊息解除鎖定，讓相同的取用者或其他競爭取用者重新接收此訊息。其次，鎖定有相關聯的逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會將訊息解除鎖定，並讓訊息可以被重新接收。
+可能會有兩種不同的結果。首先，如果應用程式因為某些原因無法處理訊息，它可以在收到的訊息上呼叫 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) (而不是 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx))。這會讓服務匯流排將訊息解除鎖定，讓相同的取用者或其他競爭取用者重新接收此訊息。其次，鎖定有相關聯的逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會將訊息解除鎖定，並讓訊息可以被重新接收 (根據預設，基本上會執行 [Abandon](https://msdn.microsoft.com/library/azure/hh181837.aspx) 作業)。
 
 請注意，如果應用程式在處理訊息後，但尚未發出 [Complete](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.complete.aspx) 要求前當機，則會在應用程式重新啟動時，將訊息重新傳遞給該應用程式。這通常稱為*至少一次*處理。也就是說，每則訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。如果案例無法容許重複處理，那應用程式中需要有其他邏輯才能偵測重複項目。依據訊息的 [MessageId](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx) 屬性，即可做到這點。這個屬性的值在各個傳遞嘗試上均會維持不變。這便稱為「剛好一次」處理。
 
@@ -158,6 +158,6 @@ catch (Exception e)
 
 ## 後續步驟
 
-既然您了解佇列的基本概念，請參閱[建立使用服務匯流排主題和訂用帳戶的應用程式](service-bus-create-topics-subscriptions.md)，透過服務匯流排主題和訂用帳戶的發佈/訂用帳戶功能，繼續進行本文的討論。
+既然您了解佇列的基本概念，請參閱[建立使用服務匯流排主題和訂用帳戶的應用程式](service-bus-create-topics-subscriptions.md)，透過服務匯流排主題和訂用帳戶的發佈/訂閱功能，繼續進行本文的討論。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0622_2016-->

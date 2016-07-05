@@ -13,12 +13,41 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="04/18/2016"
+   ms.date="06/21/2016"
    ms.author="yuemlu"/>
 
 # Azure 客體作業系統 
 
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。推出這些更新的特定[系列][family-explain]皆會包含這些更新。
+
+## Azure 客體 OS 
+
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ---------------- | --------------------- |
+| MS16-035 | [3141780] | .NET Framework 的安全性更新，可解決略過安全性功能 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| 諮詢 | [3155527] | 更新 FalseStart 的加密套件 | 4\.33、3.40 | 2016 年 6 月 14 日 |
+| MS16-063 | [3163649] | Internet Explorer 的累積安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-069 | [3163640] | JScript 與 VBScript 的累積安全性更新 | 2\.52 | 2016 年 6 月 14 日 |
+| MS16-071 | [3164065] | Microsoft Windows DNS 伺服器的安全性更新 | 4\.33、3.40 | 2016 年 6 月 14 日 |
+| MS16-072 | [3163622] | 群組原則的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-073 | [3164028] | 核心模式驅動程式的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-074 | [3164036] | Microsoft 圖形元件的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-075 | [3164038] | Windows SMB Server 的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-076 | [3167691] | Netlogon 的安全性更新 | 4\.33 | 2016 年 6 月 14 日 |
+| MS16-077 | [3165191] | WPAD 的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| MS16-080 | [3164302] | Microsoft Windows PDF 的安全性更新 | 4\.33、3.40 | 2016 年 6 月 14 日 |
+| MS16-081 | [3160352] | Active Directory 的安全性更新 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+| | [2922223] | 如果在 Windows 中啟用 RealTimeIsUniversal 登錄項目，您無法變更系統時間 | 2\.52 | 2016 年 6 月 14 日 |
+| | [3121255] | "0x00000024" FsRtlNotifyFilterReportChange 中的停止錯誤且在 Windows 中複製檔案可能失敗 | 2\.52 | 2016 年 6 月 14 日 |
+| | [3125424] | LSASS 死結導致 Windows Server 2012 R2 或 Windows Server 2012 沒有回應 | 4\.33、3.40 | 2016 年 6 月 14 日 |
+| | [3125574] | 適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的方便彙總套件更新 | 2\.52 | 2016 年 6 月 14 日 |
+| | [3140245] | 此更新可啟用 TLS 1.1 和 TLS 1.2 作為 Windows 的 WinHTTP 中的預設安全通訊協定 | 3\.40、2.52 | 2016 年 6 月 14 日 |
+| | [3146604] | WMI 服務在 Windows Server 2012 R2 或 Windows Server 2012 中隨機損毀 | 4\.33、3.40 | 2016 年 6 月 14 日 |
+| | [3149157] | Windows 8.1 和 Windows Server 2012 R2 的 TCP/IP 可靠性和延展性改善 | 4\.33 | 2016 年 6 月 14 日 |
+| | [3156416] | 適用於 Windows Server 2012 的 2016 年 5 月更新彙總套件 | 3\.40 | 2016 年 6 月 14 日 |
+| | [3156418] | 適用於 Windows RT 8.1、Windows 8.1 和 Windows Server 2012 R2 的 2016 年 5 月更新彙總套件 | 4\.33 | 2016 年 6 月 14 日 |
+| | [3153731] | 適用於 Windows 在亞塞拜然、智利、海地和摩洛哥的 2016 年 5 月更新彙總套件 | 4\.33、3.40、2.52 | 2016 年 6 月 14 日 |
+
 
 ## 5 月客體 OS 
 
@@ -288,6 +317,32 @@
 | N/A | [2999802][2999802] | 在 Windows 中列印虛線時會變成實線 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 | N/A | [2896881][2896881] | 在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 
+
+[3141780]: http://support.microsoft.com/kb/3141780
+[3155527]: http://support.microsoft.com/kb/3155527
+[3163649]: http://support.microsoft.com/kb/3163649
+[3163640]: http://support.microsoft.com/kb/3163640
+[3164065]: http://support.microsoft.com/kb/3164065
+[3163622]: http://support.microsoft.com/kb/3163622
+[3164028]: http://support.microsoft.com/kb/3164028
+[3164036]: http://support.microsoft.com/kb/3164036
+[3164038]: http://support.microsoft.com/kb/3164038
+[3167691]: http://support.microsoft.com/kb/3167691
+[3165191]: http://support.microsoft.com/kb/3165191
+[3164302]: http://support.microsoft.com/kb/3164302
+[3160352]: http://support.microsoft.com/kb/3160352
+[2922223]: http://support.microsoft.com/kb/2922223
+[3121255]: http://support.microsoft.com/kb/3121255
+[3125424]: http://support.microsoft.com/kb/3125424
+[3125574]: http://support.microsoft.com/kb/3125574
+[3140245]: http://support.microsoft.com/kb/3140245
+[3146604]: http://support.microsoft.com/kb/3146604
+[3149157]: http://support.microsoft.com/kb/3149157
+[3156416]: http://support.microsoft.com/kb/3156416
+[3156418]: http://support.microsoft.com/kb/3156418
+[3153731]: http://support.microsoft.com/kb/3153731
+
+
 [3155533]: http://support.microsoft.com/kb/3155533
 [3156764]: http://support.microsoft.com/kb/3156764
 [3156754]: http://support.microsoft.com/kb/3156754
@@ -489,4 +544,4 @@
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-and-release-explanation
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->

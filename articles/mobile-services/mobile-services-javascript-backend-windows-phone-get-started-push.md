@@ -118,7 +118,7 @@
 
 	這會使行動服務以未經驗證的模式連接到 MPNS，以傳送推播通知。
 
-	>[AZURE.NOTE]本教學課程使用處於未通過驗證模式的 MPNS。在此模式中，MPNS 會限制可傳送至裝置通道的通知數。若要移除此限制，您必須按一下 [上傳] 並選取憑證，以產生憑證並加以上傳。如需產生憑證的詳細資訊，請參閱[設定已驗證的 Web 服務以傳送 Windows Phone 的推播通知] (英文)。
+	>[AZURE.NOTE]本教學課程使用處於未通過驗證模式的 MPNS。在此模式中，MPNS 會限制可傳送至裝置通道的通知數。若要移除此限制，您必須按一下 [上傳] 並選取憑證，以產生憑證並加以上傳。如需產生憑證的詳細資訊，請參閱[設定已驗證的 Web 服務以傳送 Windows Phone 的推播通知] \ (英文)。
 
 ##<a id="test"></a>在應用程式中測試推播通知
 
@@ -140,14 +140,14 @@
 
 本教學課程示範如何啟用 Windows 市集應用程式以便使用行動服務與通知中心來傳送推播通知的基礎。接著，請考慮完成下列其中一個教學課程：
 
-+ [將廣播通知傳送給訂閱者](../notification-hubs/notification-hubs-windows-phone-send-breaking-news.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
++ [將廣播通知傳送給訂閱者](../notification-hubs/notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) <br/>了解使用者如何註冊及接收其所需之類別的推播通知。
 
-+ [將跨平台通知傳送給訂閱者](../notification-hubs/notification-hubs-aspnet-cross-platform-notify-users.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
++ [將跨平台通知傳送給訂閱者](../notification-hubs/notification-hubs-aspnet-cross-platform-notification.md) <br/>了解如何使用範本從您的行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
 
 
 在下列主題中深入了解行動服務和通知中心：
 
-* [Azure 通知中樞 - 診斷指導方針](../notification-hubs/notification-hubs-diagnosing.md) <br/>了解如何疑難排解推播通知問題。
+* [Azure 通知中樞 - 診斷指導方針](../notification-hubs/notification-hubs-push-notification-fixer.md) <br/>了解如何疑難排解推播通知問題。
 
 * [開始使用驗證] <br/>了解如何使用行動服務驗證使用不同帳戶類型的應用程式使用者。
 
@@ -176,4 +176,4 @@
 
 [什麼是通知中心？]: ../notification-hubs/notification-hubs-overview.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0622_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="06/14/2016"
 	ms.author="deguhath;bradsev" />
 
 # 使用 Spark 資料探索和模型化
@@ -963,7 +963,7 @@ R-sqr = 0.759661334921
 
 本節的程式碼顯示如何訓練評估及儲存漸層停駐提升樹狀結構模型，可預測 NYC 計程車車程資料的小費金額。
 
-****訓練及評估**
+**訓練及評估**
 
 	#PREDICT TIP AMOUNTS USING GRADIENT BOOSTING TREES
 
@@ -1105,4 +1105,4 @@ BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression\_2016-
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0622_2016-->
