@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/29/2016"
+   ms.date="06/29/2016"
    ms.author="cherylmc" />
 
 # 關於站對站 VPN 閘道連線的 VPN 裝置
@@ -26,8 +26,8 @@
 
 - 靜態與動態路由的名稱已經變更。您可能二種詞彙都會看到。只有變更名稱，功能未變更。
 	- 靜態路由 = 原則式
-	- 動態路由 = 路由式 
-- 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也會與新的 Azure 高效能 VPN 閘道相容。 
+	- 動態路由 = 路由式
+- 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也會與新的 Azure 高效能 VPN 閘道相容。
 
 
 ## 已經驗證的 VPN 裝置 
@@ -47,7 +47,7 @@
 | Check Point | Security Gateway | R75.40、R75.40VS | [組態指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) | [組態指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |
 | Cisco | ASA | 8\.3 | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASA) | 不相容 |
 | Cisco | ASR | IOS 15.1 (原則式)、IOS 15.2 (路由式) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |
-| Cisco | ISR | IOS 15.0 (原則式)、IOS 15.1 (路由式) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
+| Cisco | ISR | IOS 15.0 (原則式)、IOS 15.1 (路由式*) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) | [Cisco 範例*](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
 | Citrix | CloudBridge MPX 裝置或 VPX 虛擬裝置 | N/A | [整合指示](https://www.citrix.com/welcome.html?resource=%2Fdownloads%2Fcloudbridge%2Fbetas-and-tech-previews%2Fcloudbridge-azure-integration) | 不相容 |
 | Dell SonicWALL | TZ 系列、NSA 系列、SuperMassive 系列、E 級 NSA 系列 | SonicOS 5.8.x、[SonicOS 5.9.x](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=850)、[SonicOS 6.x](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=646) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
 | F5 | BIG-IP 系列 | N/A | [組態指示](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) | 不相容 |
@@ -63,6 +63,7 @@
 | Palo Alto Networks | 所有執行 PAN-OS 的裝置 | PAN-OS 6.1.5 或更新版本 (原則式)、PAN-OS 7.0.5 或更新版本 (路由式) | [組態指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) | [組態指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
 | Watchguard | 全部 | Fireware XTM v11.x | [組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network/) | 不相容 |
 
+(*) ISR 7200 系列路由器僅支援原則式 VPN。
 
 ## 未經驗證的 VPN 裝置
 
@@ -75,8 +76,8 @@
 
 **編輯範本：**
 
-1. 使用 [記事本] 開啟範本。 
-1. 搜尋所有 <*文字*> 字串並使用適合您環境的值加以取代。請務必加上 < and >。當有指定名稱時，您選取的名稱應該是唯一名稱。如果命令無法運作，請參閱裝置製造商文件。
+1. 使用 [記事本] 開啟範本。
+1. 搜尋所有 <*文字*> 字串並使用適合您環境的值加以取代。請務必加上 < 和 >。當有指定名稱時，您選取的名稱應該是唯一名稱。如果命令無法運作，請參閱裝置製造商文件。
 
 | **範本中的文字** | **變更為** |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -117,10 +118,7 @@
 | IKE 版本 | IKEv1 | IKEv2 |
 | 雜湊演算法 | SHA1(SHA128) | SHA1(SHA128) |
 | 階段 2 安全性關聯 (SA) 存留期 (時間) | 3,600 秒 | 3,600 秒 |
-| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - |
-| IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)|
-| 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) |
-| 停用的對等互連偵測 (DPD) | 不支援 | 支援 |
+| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - | | IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)| | 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) | | 停用的對等互連偵測 (DPD) | 不支援 | 支援 |
 
 ### 路由式閘道 IPsec 安全性關聯 (SA) 提供項目
 
@@ -144,12 +142,11 @@
 | 14 | AH MD5 與 ESP DES null HMAC，未提議存留期 | AH MD5 與 ESP DES MD5，無存留期 |
 | 15 | AH SHA1與 ESP DES SHA1，無存留期 | ESP SHA，無存留期 |
 | 16 | AH MD5 與 ESP DES MD5，無存留期 | ESP MD5，無存留期 |
-| 17 | - | AH SHA，無存留期 |
-| 18 | - | AH MD5，無存留期 |
+| 17 | - | AH SHA，無存留期 | | 18 | - | AH MD5，無存留期 |
 
 
 - 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。用戶端可能會選擇在 vnet 對 vnet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 
 - 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

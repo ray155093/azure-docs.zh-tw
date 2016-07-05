@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="get-started-article"
-   ms.date="05/24/2016"
+   ms.date="06/24/2016"
    ms.author="magoedte" />
 
 # Azure 自動化整合模組
@@ -26,11 +26,13 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
 
 ## 什麼是 Azure 自動化整合模組？
 
-整合模組和 PowerShell 模組的差異不大。它就是選擇性地多包含一個檔案的 PowerShell 模組，該檔案是一個中繼資料檔案，會指定要與模組在 Runbook 中的 Cmdlet 搭配使用的 Azure 自動化連線類型。不論是否包含選擇性檔案，這些 PowerShell 模組都可以匯入到 Azure 自動化，以使其 Cmdlet 可供在 Runbook 內使用，以及使其 DSC 資源可供在 DSC 組態內使用。Azure 自動化會在幕後儲存這些模組，並在執行 Runbook 工作和 DSC 編譯工作時將其載入 Azure 自動化沙箱，以在其中執行 Runbook 和編譯 DSC 組態。模組中的任何 DSC 資源也會自動放在 Automation DSC 提取伺服器上，以供嘗試套用 DSC 組態的機器提取。我們在 Azure 自動化中隨附了許多現成可用的 Azure PowerShell 模組供您使用，因此您可以立即開始將 Azure 管理自動化，但您也可以針對任何您想要整合的系統、服務或工具，輕鬆地匯入 PowerShell 模組。
+整合模組和 PowerShell 模組的差異不大。它就是選擇性地多包含一個檔案的 PowerShell 模組，該檔案是一個中繼資料檔案，會指定要與模組在 Runbook 中的 Cmdlet 搭配使用的 Azure 自動化連線類型。不論是否包含選擇性檔案，這些 PowerShell 模組都可以匯入到 Azure 自動化，以使其 Cmdlet 可供在 Runbook 內使用，以及使其 DSC 資源可供在 DSC 組態內使用。Azure 自動化會在幕後儲存這些模組，並在執行 Runbook 作業和 DSC 編譯作業時將其載入 Azure 自動化沙箱，以在其中執行 Runbook 和編譯 DSC 組態。模組中的任何 DSC 資源也會自動放在 Automation DSC 提取伺服器上，以供嘗試套用 DSC 組態的機器提取。我們在 Azure 自動化中隨附了許多現成可用的 Azure PowerShell 模組供您使用，因此您可以立即開始將 Azure 管理自動化，但您也可以針對任何您想要整合的系統、服務或工具，輕鬆地匯入 PowerShell 模組。
+
+>[AZURE.NOTE] 某些模組會以自動化服務中的「全域模組 」隨附。這些全域模組可在您建立自動化帳戶時供您立即使用，而我們有時會更新這些模組，自動將其推送到您的自動化帳戶。如果您不想要進行自動更新，您一律可以自行匯入相同的模組，而這將會優先於隨附在服務中該模組的全域模組版本。
 
 您匯入整合模組封裝時所用的格式為，和模組同名的且副檔名為 .zip 的壓縮檔。封裝中含有 Windows PowerShell 模組和任何支援檔案，包括資訊清單檔 (.psd1) (如果模組有此檔的話)。
 
-如果模組應該包含 Azure 自動化連線類型，則它也必須包含名稱為 <ModuleName>-Automation.json 的檔案，以指定連線類型屬性。這是放在 .zip 壓縮檔的模組資料夾內的 json 檔案，並包含要連線到模組所代表的系統或服務所必須具有之「連線」的欄位。這最終會在 Azure 自動化中建立連線類型。使用此檔案，您就可以為模組的連線類型設定欄位名稱、類型以及欄位是否應該加密和/或選用的。以下是使用 json 檔案格式的範本︰
+如果模組應該包含 Azure 自動化連線類型，則它也必須包含名稱為 *<ModuleName>*-Automation.json 的檔案，以指定連線類型屬性。這是放在 .zip 壓縮檔的模組資料夾內的 json 檔案，並包含要連線到模組所代表的系統或服務所必須具有之「連線」的欄位。這最終會在 Azure 自動化中建立連線類型。使用此檔案，您就可以為模組的連線類型設定欄位名稱、類型以及欄位是否應該加密和/或選用的。以下是使用 json 檔案格式的範本︰
 
 ```
 { 
@@ -65,7 +67,7 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
 
 就算整合模組基本上等於 PowerShell 模組，也不代表我們就沒有一組相關的撰寫做法。當您在撰寫 PowerShell 模組時，我們仍建議您考慮一些事項，以便讓它在 Azure 自動化中發揮最大效用。其中有些考慮事項是 Azure 自動化特有的，有些則只適用於讓模組能在 PowerShell 工作流程中良好運作，而不論您是否使用自動化。
 
-1. 在模組中加入每個 Cmdlet 的概要、描述和說明 URI。在 PowerShell 中，您可以為 Cmdlet 定義特定說明資訊，以讓使用者透過 **Get-help** Cmdlet 獲得其使用說明。例如，以下是如何為 .psm1 檔案中所撰寫的 PowerShell 模組定義概要和說明 URI。<br>  
+1. 在模組中加入每個 Cmdlet 的概要、描述和說明 URI。在 PowerShell 中，您可以為 Cmdlet 定義特定說明資訊，以讓使用者透過 **Get-help** Cmdlet 獲得其使用說明。例如，以下是如何為 .psm1 檔案中所撰寫的 PowerShell 模組定義概要和說明 URI。<br>
 
     ```
     <#
@@ -192,11 +194,11 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
     }
     ```
 <br>
-6. 模組應該完全包含在可 Xcopy 的封裝中。當 Runbook 需要執行時，Azure 自動化模組會散發到自動化沙箱中，因此它們需要獨立於其執行所在的主機之外單獨運作。其所代表的意義是，您應該能夠壓縮模組封裝，將它移至擁有相同或較新 PowerShell 版本的任何其他主機，並讓它在匯入到該主機的 PowerShell 環境時正常運作。為了達成此一情況，模組不應該相依於模組資料夾 (匯入至 Azure 自動化時遭到壓縮的資料夾) 以外的任何檔案，或相依於主機上的任何唯一的登錄設定，例如產品安裝時所設定的登錄設定。若未遵循此最佳做法，模組在 Azure 自動化中將無法使用。  
+6. 模組應該完全包含在可 Xcopy 的封裝中。當 Runbook 需要執行時，Azure 自動化模組會散發到自動化沙箱中，因此它們需要獨立於其執行所在的主機之外單獨運作。其所代表的意義是，您應該能夠壓縮模組封裝，將它移至擁有相同或較新 PowerShell 版本的任何其他主機，並讓它在匯入到該主機的 PowerShell 環境時正常運作。為了達成此一情況，模組不應該相依於模組資料夾 (匯入至 Azure 自動化時遭到壓縮的資料夾) 以外的任何檔案，或相依於主機上的任何唯一的登錄設定，例如產品安裝時所設定的登錄設定。若未遵循此最佳做法，模組在 Azure 自動化中將無法使用。
 
 ## 後續步驟
 
 - 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 - 若要深入了解如何建立 PowerShell 模組，請參閱 [撰寫 Windows PowerShell 模組](https://msdn.microsoft.com/library/dd878310(v=vs.85).aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

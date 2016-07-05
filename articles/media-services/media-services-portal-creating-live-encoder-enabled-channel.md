@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
- 	ms.date="05/05/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -43,18 +43,18 @@
 1. 擷取通道內嵌 URL。
 
 	內嵌 URL 可供即時編碼器用來傳送串流到通道。
-1. 擷取通道預覽 URL。 
+1. 擷取通道預覽 URL。
 
 	使用此 URL 來確認您的通道會正確接收即時串流。
 
 3. 建立程式，此程式也會建立資產。
-1. 發佈程式，以建立相關聯資產的 OnDemand 定位器。  
+1. 發佈程式，以建立相關聯資產的 OnDemand 定位器。
 
 	請確定在您想串流內容的串流端點上至少有一個串流保留單元。
 1. 當您準備好開始串流和封存時，請啟動程式。
 2. 即時編碼器會收到啟動公告的信號 (選擇性)。公告會插入輸出串流中。
 1. 每當您想要停止串流處理和封存事件時，請停止程式。
-1. 刪除程式 (並選擇性地刪除資產)。   
+1. 刪除程式 (並選擇性地刪除資產)。
 
 ##本教學課程內容
 
@@ -64,8 +64,8 @@
 3.  建立啟用即可執行即時編碼的通道。
 1.  取得內嵌 URL，以將其提供給即時編碼器。即時編碼器將使用此 URL 將串流內嵌到通道。
 1.  建立程式 (和資產)
-1.  發佈資產並取得串流 URL  
-1.  播放您的內容 
+1.  發佈資產並取得串流 URL
+1.  播放您的內容
 2.  清除
 
 ##必要條件
@@ -276,4 +276,4 @@
 [standard4]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard4.png
 [standard5]: ./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel-standard_encode.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

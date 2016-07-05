@@ -143,30 +143,13 @@ Visual Studio Application Insights 的狀態監視器可讓您診斷 ASP.NET 應
 
 ### 連接錯誤
 
-您需要在伺服器防火牆開啟某些傳出的連接埠，以允許狀態監視器運作：
-
-+ 遙測 - 永遠需要這些項目：
- +	`dc.services.visualstudio.com:80`
- +	`dc.services.visualstudio.com:443`
- +	`dc.applicationinsights.microsoft.com`
-+ 組態 - 進行變更時才需要：
- -	`management.core.windows.net:443`
- -	`management.azure.com:443`
- -	`login.windows.net:443`
- -	`login.microsoftonline.com:443`
- -	`secure.aadcdn.microsoftonline-p.com:443`
- -	`auth.gfx.ms:443`
- -	`login.live.com:443`
-+ 安裝：
- +	`packages.nuget.org:443`
-
-這份清單可能會隨時變更。
+您需要在伺服器防火牆開啟[某些傳出的連接埠](app-insights-ip-addresses.md#outgoing-ports)，以允許狀態監視器運作。
 
 ### 沒有遙測資料？
 
   * 使用您的網站來產生一些資料。
   * 等候幾分鐘讓資料抵達，然後按一下 [重新整理]。
-  * 開啟 [診斷搜尋] \([搜尋] 磚) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
+  * 開啟 [診斷搜尋] ([搜尋] 磚) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
   * 開啟狀態監視器，然後選取左窗格中的應用程式。檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
   ![](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
@@ -244,7 +227,7 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 `Update-ApplicationInsightsMonitoring -Name appName [-InstrumentationKey "0000000-0000-000-000-0000"`]
 
 * `-Name`：Web 應用程式在 IIS 中的名稱。
-* `-InstrumentationKey` (選擇性。) 使用此參數可變更應用程式的遙測所要傳送至的資源。
+* `-InstrumentationKey` (選擇性)。 使用此參數可變更應用程式的遙測所要傳送至的資源。
 * 此 Cmdlet：
  * 將具名應用程式升級至最近下載到這台電腦之 SDK 的版本。(僅適用於 `SdkState==EnabledAfterDeployment` 時)
  * 如果您提供檢測金鑰，具名應用程式會重新設定為將遙測傳送至具有該索引鍵的資源。(適用於 `SdkState != Disabled` 時)
@@ -301,4 +284,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

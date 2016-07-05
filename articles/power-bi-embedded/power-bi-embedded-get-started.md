@@ -3,7 +3,7 @@
    description="對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
+   authors="minewiskan"
    manager="NA"
    editor=""
    tags=""/>
@@ -13,12 +13,12 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="04/24/2016"
-   ms.author="derrickv"/>
+   ms.date="06/28/2016"
+   ms.author="owend"/>
 
 # 開始使用 Microsoft Power BI Embedded 預覽
 
-**Microsoft Power BI Embedded** 是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。**Power BI Embedded** 會與現有的應用程式一同運作，而不需要重新設計這些應用程式，或變更其使用者登入的方式。
+**Power BI Embedded** 是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。**Power BI Embedded** 會與現有的應用程式一同運作，而不需要重新設計這些應用程式，或變更其使用者登入的方式。
 
 若要深入了解 Power BI Embedded，請參閱[什麼是 Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)。
 
@@ -107,4 +107,4 @@
 - [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 - [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

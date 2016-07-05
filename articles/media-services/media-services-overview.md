@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
- 	ms.date="05/03/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako;anilmur"/>
 
 #Azure 媒體服務概觀和常見案例
@@ -29,13 +29,13 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 若要建置媒體服務解決方案，您可以使用：
 
 - [媒體服務 REST API](https://msdn.microsoft.com/library/azure/hh973617.aspx)
-- 其中一個可用的用戶端 SDK： 
-	- [Azure Media Services SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、 
-	- [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java)、 
-	- [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php)、 
-	- [Azure Media Services for Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js) (這是非 Microsoft 版本的 Node.js SDK。它是由社群維護，且目前並沒有 AMS API 的 100% 涵蓋範圍)。 
-- 現有的工具： 
-	- [Azure 傳統入口網站](http://manage.windowsazure.com/) 
+- 其中一個可用的用戶端 SDK：
+	- [Azure Media Services SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、
+	- [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java)、
+	- [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php)、
+	- [Azure Media Services for Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js) (這是非 Microsoft 版本的 Node.js SDK。它是由社群維護，且目前並沒有 AMS API 的 100% 涵蓋範圍)。
+- 現有的工具：
+	- [Azure 傳統入口網站](http://manage.windowsazure.com/)
 	- [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) (Azure 媒體服務總管 (AMSE) 是適用於 Windows 的 Winforms/C# 應用程式)
 
 ##媒體服務學習路徑
@@ -49,9 +49,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 若要開始使用 Azure 媒體服務，您應該具備下列項目：
  
-3. 一個 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](azure.microsoft.com)。
+3. 一個 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com)。
 2. Azure 媒體服務帳戶。使用 Azure 傳統入口網站、.NET 或 REST API 建立 Azure 媒體服務帳戶。如需詳細資訊，請參閱[建立帳戶](media-services-create-account.md)。
-3. (選擇性) 設定開發環境。針對開發環境選擇 .NET 或 REST API。如需詳細資訊，請參閱[設定環境](media-services-dotnet-how-to-use.md)。 
+3. (選擇性) 設定開發環境。針對開發環境選擇 .NET 或 REST API。如需詳細資訊，請參閱[設定環境](media-services-dotnet-how-to-use.md)。
 
 	此外，請了解如何以程式設計方式[連線](media-services-dotnet-connect-programmatically.md)。
 4. (建議) 配置一或多個縮放單位。建議您為生產環境中的應用程式配置一個或多個縮放單位。如需詳細資訊，請參閱[管理串流端點](media-services-manage-origins.md)。
@@ -99,7 +99,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 2. 設定內容金鑰授權原則。
 1. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
 1. 透過建立 OnDemand 定位器，來發佈資產。
-1. 串流發佈的內容。 
+1. 串流發佈的內容。
 
 ###使用媒體分析從您的視訊衍生可採取行動的見解 
 
@@ -113,7 +113,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 	- **動作偵測** – [Azure 媒體分析的動作偵測](media-services-motion-detection.md)。
 	- **臉部偵測和臉部情緒** – [Azure 媒體分析的臉部和情緒偵測](media-services-face-and-emotion-detection.md)。
 	- **視訊摘要** – [使用 Azure 媒體視訊縮圖建立視訊摘要](media-services-video-summarization.md)
-3. 媒體分析的媒體處理器會產生 MP4 檔案或 JSON 檔案。如果媒體處理器產生了 MP4 檔案，您可以漸進式下載檔案。如果媒體處理器產生了 JSON 檔案，您可以從 Azure Blob 儲存體下載檔案。 
+3. 媒體分析的媒體處理器會產生 MP4 檔案或 JSON 檔案。如果媒體處理器產生了 MP4 檔案，您可以漸進式下載檔案。如果媒體處理器產生了 JSON 檔案，您可以從 Azure Blob 儲存體下載檔案。
 
 
 ###提供漸進式下載 
@@ -141,7 +141,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 	- 使用各種即時串流處理通訊協定 (例如 RTMP 或 Smooth Streaming) 擷取即時內容，
 	- (選擇性) 將您的串流編碼成調適性位元速率串流
 	- 預覽您的即時串流，
-	- 記錄和儲存擷取的內容以於稍後進行串流 (隨選視訊)
+	- 記錄並儲存擷取的內容以於稍後進行串流 (隨選視訊)
 	- 透過一般串流通訊協定 (例如，MPEG DASH、Smooth、HLS、HDS) 直接將內容傳遞給客戶，或傳遞至內容傳遞網路 (CDN) 供進一步的發佈。
 
 
@@ -153,9 +153,9 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 在 Azure 媒體服務中，**通道**代表處理即時串流內容的管線。通道可以用下列方式接收即時輸入串流：
 
-- 內部部署即時編碼器會傳送多位元速率 **RTMP** 或 **Smooth Streaming** (分散的 MP4) 到針對**即時通行**傳遞所設定的通道。**即時通行**傳遞就是擷取的串流會通過**通道**，無需進一步的處理。您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。下列即時編碼器會輸出 RTMP：Adobe Flash Live、Telestream Wirecast 和 Tricaster 轉錄器。即時編碼器也會傳送單一位元速率串流至無法用於即時編碼的通道，但是不建議。接到要求時，媒體服務會傳遞串流給客戶。
+- 內部部署即時編碼器會傳送多位元速率 **RTMP** 或 **Smooth Streaming** (分散的 MP4) 到針對**即時通行**傳遞所設定的通道。**即時通行**傳遞就是擷取的串流會通過**通道**，無需進一步的處理。您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。下列即時編碼器會輸出 RTMP：Adobe Flash Live、Telestream Wirecast 和 Tricaster 轉錄器。即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。接到要求時，媒體服務會傳遞串流給客戶。
 
-	>[AZURE.NOTE] 當您在很長一段時間內進行多個事件，而且已投資內部部署編碼器時，使用即時通行方法是進行即時串流的最經濟實惠的方式。請參閱[價格](/pricing/details/media-services/)詳細資料。
+	>[AZURE.NOTE] 如果您在很長一段時間內進行多個事件，而且已投資內部部署編碼器時，使用傳遞方法是進行即時串流的最經濟實惠方式。請參閱[價格](/pricing/details/media-services/)詳細資料。
 	
 - 內部部署即時編碼器會傳送單一位元速率串流至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTP (MPEG-TS)、RTMP 或 Smooth Streaming (分散的 MP4) 。通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。接到要求時，媒體服務會傳遞串流給客戶。
 
@@ -220,4 +220,4 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 [live-overview2]: ./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

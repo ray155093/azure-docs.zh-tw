@@ -1,6 +1,7 @@
 <properties 
-	pageTitle="Azure Data Factory 簡介" 
-	description="了解如何使用 Azure Data Factory 服務撰寫資料處理、資料儲存和資料移動服務，以建立產生可信資訊的管線。" 
+	pageTitle="什麼是 Data Factory？ 資料整合服務 | Microsoft Azure" 
+	description="了解 Azure Data Factory 是什麼：一項雲端資料整合服務，用來協調以及自動移動和轉換資料。" 
+	keywords="資料整合、雲端資料整合、azure data factory 是什麼"
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -16,14 +17,14 @@
 	ms.date="04/26/2016" 
 	ms.author="spelluru"/>
 
-# Azure Data Factory 服務簡介
+# Azure Data Factory 服務 (雲端中的資料整合服務) 簡介
 
-## 概觀
+## Azure 資料處理站是什麼？ 
 Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。就像製造廠運轉設備來取得原物料並將之轉換成成品一樣，Data Factory 會協調現有服務的流程來收集原始資料，並將之轉換成隨時可用的資訊。
 
 Data Factory 會在內部部署、雲端資料來源和 SaaS 之間運作，以便擷取、準備、轉換、分析及發行您的資料。利用 [Azure HDInsight (Hadoop)](http://azure.microsoft.com/documentation/services/hdinsight/) 和 [Azure Batch](https://azure.microsoft.com/documentation/services/batch/) 這類的服務，使用 Data Factory 將服務撰寫到所管理的資料流程管線，以符合計算巨量資料的需求，另外也可以使用 [Azure Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/) 實施您的分析解決方案。不僅僅是表格式的監視檢視，還使用了豐富的視覺效果呈現 Data Factory，來快速顯示歷程和資料管線之間的相依性。從單一的統一檢視來監視所有的資料流程管線，輕鬆找出問題並設定監視警示。
 
-![概觀](./media/data-factory-introduction/data-factory-overview.png)
+![圖表︰Data Factory 概觀 (資料整合服務)](./media/data-factory-introduction/what-is-azure-data-factory.png)
 
 **圖 1。** 從許多不同的內部部署資料來源收集資料、擷取和準備資料，透過各種轉換來組織並分析資料，然後發行隨時可用的資料以供使用。
 
@@ -35,7 +36,7 @@ Data Factory 會在內部部署、雲端資料來源和 SaaS 之間運作，以�
 
 Azure Data Factory 有幾個主要實體會共同運作，來定義輸入和輸出資料、處理事件以及執行指定之資料流程所需的排程和資源。
 
-![重要概念](./media/data-factory-introduction/key-concepts.png)
+![圖表︰Data Factory 概觀 (雲端資料整合服務) - 重要概念](./media/data-factory-introduction/data-integration-service-key-concepts.png)
 
 **圖 2.** 資料集、活動、管線和連結服務之間的關聯性。
 
@@ -69,4 +70,4 @@ Azure Data Factory 本身不會儲存任何資料。它可讓您建立資料驅�
 未來我們計畫讓 Azure 在每個地理位置都能支援 Azure Data Factory。
   
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

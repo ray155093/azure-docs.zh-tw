@@ -13,7 +13,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="06/17/2016"
+	ms.date="06/29/2016"
 	ms.author="marsma"/>
 
 # 適用於開發人員的 Batch 功能概觀
@@ -102,7 +102,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台；Batch 集區提�
 	**雲端服務組態**只提供 Windows 計算節點。雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」。建立 Windows 計算節點的集區時，最常使用的是雲端服務。
 
     - 「OS 系列」也會決定哪些版本的.NET 會與作業系統一起安裝。
-	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
+	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] (如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
     - 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。一旦通過驗證，即可更新集區的 [OS 版本] 並安裝新的 OS 映像 – 如此將會中斷任何執行中的工作並重新排入佇列。
 
 - **節點的大小**
@@ -207,7 +207,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台；Batch 集區提�
 
 如同任何 Azure Batch 工作，除了要執行的**命令列**以外，還可以指定 [Azure 儲存體][azure_storage]中的**資源檔**清單。Batch 會先從 Azure 儲存體將資源檔案複製到節點，然後再執行命令列。對於集區啟動工作，檔案清單通常包含工作應用程式封裝與其相依項目，但也可以包含在計算節點上執行的所有工作將會使用的參考資料。例如，啟動工作的命令列可執行 `robocopy` 作業，將應用程式檔案 (已指定為資源檔案並下載至節點) 從啟動工作的[工作目錄](#files-and-directories)複製到[共用資料夾](#files-and-directories)，然後接著執行 MSI 或 `setup.exe`。
 
-> [AZURE.IMPORTANT] Batch 目前「僅」支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。您的 Batch 工作 (包括標準工作、啟動工作、作業準備和作業發行工作) 必須指定「只」位於**一般用途**的儲存體帳戶中的資源檔。
+> [AZURE.IMPORTANT] Batch 目前只支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。您的 Batch 工作 (包括標準工作、啟動工作、作業準備和作業發行工作) 必須指定「只」位於**一般用途**的儲存體帳戶中的資源檔。
 
 通常 Batch 服務最好能夠等待開始工作完成，然後再考慮將工作指派給節點，但這是可以設定的。
 
@@ -250,7 +250,7 @@ Batch 提供作業前執行設定的作業準備工作，和作業後維護或�
 
 #### 作業相依性
 
-工作相依性正如其名，可讓您在執行某個工作之前，指定該工作相依於其他工作。此功能提供下列情況的支援：「下游」工作取用「上游」工作的輸出，或當上游工作執行下游工作所需的某種初始化時。若要使用這項功能，您必須先在 Batch 作業上啟用工作相依性。然後，針對每個相依於另一個工作 (或其他許多工作) 的工作，指定該工作相依的工作。
+[工作相依性](batch-task-dependencies.md)正如其名，可讓您在執行某個工作之前，指定該工作相依於其他工作。此功能提供下列情況的支援：「下游」工作取用「上游」工作的輸出，或當上游工作執行下游工作所需的某種初始化時。若要使用這項功能，您必須先在 Batch 作業上啟用工作相依性。然後，針對每個相依於另一個工作 (或其他許多工作) 的工作，指定該工作相依的工作。
 
 利用工作相依性，您可以設定如下所示的案例︰
 
@@ -258,7 +258,7 @@ Batch 提供作業前執行設定的作業準備工作，和作業後維護或�
 * taskC 同時相依於 taskA 和 taskB
 * taskD 在執行前相依於某個範圍的工作，例如工作 1 至 10
 
-請查看 [azure-batch-samples][github_samples] GitHub 儲存機制中的 [TaskDependencies][github_sample_taskdeps] 程式碼範例。您將在其中使用 [Batch .NET][batch_net_api] 程式庫，了解如何設定相依於其他工作的工作。
+如需此功能的其他詳細資訊，請查看 [Azure Batch 中的工作相依性](batch-task-dependencies.md) 和 [azure-batch-samples][github_samples] GitHub 儲存機制中的 [TaskDependencies][github_sample_taskdeps] 程式碼範例。
 
 ## 工作的環境設定
 
@@ -285,11 +285,11 @@ Batch 提供作業前執行設定的作業準備工作，和作業後維護或�
 | `AZ_BATCH_TASK_ID` | 目前工作的 ID。 |
 | `AZ_BATCH_TASK_WORKING_DIR` | 節點上工作工作目錄的完整路徑。 |
 
->[AZURE.IMPORTANT] 這些環境變數僅適用於**工作使用者**的內容中，也就是工作執行所在節點上的使用者帳戶。如果您透過 RDP 或 SSH [從遠端連接](#connecting-to-compute-nodes)到計算節點並列出環境變數，您就**不會**看到這些。
+>[AZURE.IMPORTANT] 這些環境變數僅適用於**工作使用者**的內容中，也就是工作執行所在節點上的使用者帳戶。如果您透過 RDP 或 SSH [從遠端連接](#connecting-to-compute-nodes)到計算節點並列出環境變數，您就**不會**看到這些，因為用於遠端連線的使用者帳戶與工作所用的帳戶不同。
 
 ## 檔案和目錄
 
-每個工作會在其工作目錄下建立零個或多個檔案和目錄，以儲存工作執行的程式、工作處理的資料，以及工作執行之處理的輸出。這些檔案和目錄可供作業執行期間的其他工作使用。節點上的所有工作、檔案和目錄由單一使用者帳戶擁有。
+每個工作會在其「工作目錄」下建立零個或多個檔案和目錄。此工作目錄可用來儲存工作所執行的程式、工作所處理的資料，以及工作所執行之處理的輸出。工作使用者擁有工作的所有檔案和目錄。
 
 Batch 服務會在節點上公開檔案系統的一部分作為「根目錄」。 工作可存取 `AZ_BATCH_NODE_ROOT_DIR` 環境變數來使用根目錄。如需有關如何使用環境變數的詳細資訊，請參閱[工作的環境設定](#environment-settings-for-tasks)。
 
@@ -341,7 +341,7 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 - **資源度量** – 根據 CPU 使用量、頻寬使用量、記憶體使用量和節點的數目。
 
-- **工作度量** – 以工作狀態為基礎，例如 [作用中] \(已排入佇列)、[執行中] 或 [已完成]。
+- **工作度量** – 以工作狀態為基礎，例如 [作用中] (已排入佇列)、[執行中] 或 [已完成]。
 
 當自動調整減少集區中的計算節點數目時，您必須考量如何處理在減少作業時正在執行的工作。為了配合這一點，Batch 會提供您可以納入公式中的「節點解除配置選項」。例如，您可以指定執行中的工作立即停止，立即停止而後重新排入佇列以便在另一個節點上執行，或允許先完成再從集區中移除節點。
 
@@ -483,4 +483,4 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

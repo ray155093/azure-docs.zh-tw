@@ -33,7 +33,8 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 ## 開始之前
 
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 **Windows PowerShell** 區段下載並安裝最新版本。
-2. 請確認您的運作中虛擬網路具有有效子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨位於虛擬網路子網路中。
+2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立新的子網路，僅供應用程式閘道使用。您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。
+3. 請確認您的運作中虛擬網路具有有效子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨位於虛擬網路子網路中。
 3. 您要設定為使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## 建立應用程式閘道需要什麼？
@@ -45,7 +46,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 值如下：
 
 - **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
-- **後端伺服器集區設定：**每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
+- **後端伺服器集區設定：**每個集區都有一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
 - **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會達到此連接埠，然後重新導向至其中一個後端伺服器。
 - **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
 - **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
@@ -78,7 +79,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 	Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
 
 
- Description、InstanceCount 和 GatewaySize 為選用參數。
+ *Description*、*InstanceCount* 和 *GatewaySize* 為選用參數。
 
 
 若要驗證已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
@@ -97,10 +98,10 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 	VirtualIPs    : {}
 	DnsName       :
 
->[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
+>[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。*GatewaySize* 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
 
 
- 因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。閘道處於執行中狀態之後，將會建立這些項目。
+ 因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，將會建立這些項目。
 
 ## 設定應用程式閘道
 
@@ -413,4 +414,4 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

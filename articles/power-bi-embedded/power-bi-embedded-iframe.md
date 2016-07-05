@@ -3,7 +3,7 @@
    description="Microsoft Power BI Embedded 概觀 - 將報告整合到您的應用程式的必要程式碼、如何使用 Power BI Embedded 應用程式權杖進行驗證、如何取得報告"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
+   authors="minewiskan"
    manager="NA"
    editor=""
    tags=""/>
@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="05/16/2016"
-   ms.author="derrickv"/>
+   ms.date="06/28/2016"
+   ms.author="owend"/>
 
 # 使用 IFrame 內嵌 Power BI 報告
 本文說明使用 **Microsoft Power BI Embedded** REST API、應用程式權杖、IFrame 和一些 JavaScript 的必要程式碼，以將報告整合或內嵌到您的應用程式。
@@ -228,4 +228,4 @@ $filter=Store/Chain%20eq%20'Lindseys'
 - [System.IdentityModel.Tokens.JwtSecurityTokenHandler](https://msdn.microsoft.com/library/system.identitymodel.tokens.signingcredentials.aspx)
 - [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->
