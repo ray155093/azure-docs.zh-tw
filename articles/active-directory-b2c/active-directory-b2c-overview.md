@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="06/06/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：在您的應用程式中註冊與登入取用者
@@ -54,7 +54,7 @@ Azure Active Directory B2C 處於預覽版狀態。我們冀望在此期間能�
 
 以下連結有助於深入探索服務：
 
-- 請參閱 [Active Directory B2C 價格資訊](https://azure.microsoft.com/pricing/details/active-directory-b2c/)。
+- 請參閱 [Azure Active Directory B2C 價格資訊](https://azure.microsoft.com/pricing/details/active-directory-b2c/)。
 - 使用 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 或 [adal](http://stackoverflow.com/questions/tagged/adal) 標記，取得堆疊溢位的相關說明。
 - 透過 [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/) 告訴我們您對預覽版的想法 - 我們冀望瞭解您的看法！ 請在您的文章標題中使用 "AzureADB2C:" 字詞，以方便我們尋找。
 - Azure Active Directory B2C 使用稱為「應用程式模型 v2.0」的應用程式註冊模型，可支援業界標準通訊協定、OpenID Connect 和 OAuth 2.0。
@@ -67,4 +67,4 @@ Azure Active Directory B2C 處於預覽版狀態。我們冀望在此期間能�
 
 我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以收到安全性事件發生時間的通知。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

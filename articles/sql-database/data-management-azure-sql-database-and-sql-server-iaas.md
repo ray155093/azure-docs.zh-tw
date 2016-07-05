@@ -67,9 +67,9 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 |||||
 |**資源：**|您不想要運用 IT 資源來支援和維護基礎結構，但想要專注於應用程式層級。|您擁有可支援和維護的 IT 資源。|
 |**擁有權的總成本：**|排除硬體成本，並降低管理成本。|排除硬體成本。|
-|**業務持續性︰**|除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如[時間點還原](sql-database-point-in-time-restore.md)、[地理還原](sql-database-geo-restore.md)和[主動式異地複寫](sql-database-active-geo-replication.md)。如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。|Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您的資料庫特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
-|**混合式雲端：**|您的內部部署應用程式可以存取 Azure SQL Database 中的資料。|有了 Azure VN 上的 SQL Server，您的應用程式可以部分在雲端中執行和部分在內部部署中執行。例如，您可以透過 [[Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)] 將內部部署網路和 Active Directory 網域延伸到雲端。此外，您可以使用 [Azure 中的 SQL Server 資料檔案](http://msdn.microsoft.com/library/dn385720.aspx)，將內部部署資料檔案儲存在 Azure 儲存體中。如需詳細資訊，請參閱 [SQL Server 2014 混合式雲端簡介](http://msdn.microsoft.com/library/dn606154.aspx)。|
-||支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)為訂閱者。|支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)、災害復原和 [Azure Vm 中的 AlwaysOn 複本](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
+|**業務持續性︰**|除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如[自動備份](sql-database-automated-backups.md)、[時間點還原](sql-database-recovery-using-backups.md#point-in-time-restore)、[異地還原](sql-database-recovery-using-backups.md#geo-restore)和[主動式異地複寫](sql-database-active-geo-replication.md)。如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。|Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您的資料庫特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
+|**混合式雲端：**|您的內部部署應用程式可以存取 Azure SQL Database 中的資料。|有了 Azure VN 上的 SQL Server，您的應用程式可以部分在雲端中執行和部分在內部部署中執行。例如，您可以透過 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)，將內部部署網路和 Active Directory 網域延伸到雲端。此外，您可以使用 [Azure 中的 SQL Server 資料檔案](http://msdn.microsoft.com/library/dn385720.aspx)，將內部部署資料檔案儲存在 Azure 儲存體中。如需詳細資訊，請參閱 [SQL Server 2014 混合式雲端簡介](http://msdn.microsoft.com/library/dn606154.aspx)。|
+||支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)為訂閱者。|支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)、災害復原和 [Azure VM 中的 AlwaysOn 複本](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
 |||||
 |||||
 
@@ -105,9 +105,9 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 如需價格的詳細資訊，請參閱下列資源：
 
-- [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)
+- [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)
 - [SQL](https://azure.microsoft.com/pricing/details/virtual-machines/#sql) 和 [Windows](https://azure.microsoft.com/pricing/details/virtual-machines/#windows) 的[虛擬機器價格](https://azure.microsoft.com/pricing/details/virtual-machines/)
-- [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)
+- [Azure 定價計算機](https://azure.microsoft.com/pricing/calculator/)
 
 > [AZURE.NOTE] SQL Server 上有一小部分不適用於或無法使用於 SQL Database 的功能。如需詳細資訊，請參閱 [SQL Database 一般限制和指導方針](sql-database-general-limitations.md)和 [SQL Database Transact-SQL 資訊](sql-database-transact-sql-information.md)。如果您要將現有的 SQL Server 解決方案移至雲端，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。當您將現有的內部部署 SQL Server 應用程式移轉至 SQL Database 時，建議更新應用程式以利用雲端服務所提供的功能。例如，您可以考慮使用 [Azure Web App Service](https://azure.microsoft.com/services/app-service/web/) 或 [Azure 雲端服務](https://azure.microsoft.com/services/cloud-services/)來裝載您的應用程式，以增加成本利益。
 
@@ -156,4 +156,4 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 - 請參閱[在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-portal-sql-server-provision.md)以開始使用 Azure VM 上的 SQL Server。
 - 請參閱 [Azure 虛擬機器上的 SQL Server：學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

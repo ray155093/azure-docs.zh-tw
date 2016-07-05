@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="hero-article"
-	ms.date="04/08/2016"
+	ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure App Service 中建立 WordPress Web 應用程式
@@ -128,4 +128,4 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [7]: ./media/web-sites-php-web-site-gallery/search-web-app.png
 [browse]: ./media/web-sites-php-web-site-gallery/browse-web.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

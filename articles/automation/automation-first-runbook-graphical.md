@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/21/2016"
+    ms.date="06/28/2016"
     ms.author="magoedte;bwren"/>
 
 # 我的第一個圖形化 Runbook
@@ -62,7 +62,7 @@
 
 1.	按一下 [測試窗格] 來開啟 [測試] 刀鋒視窗。<br> ![測試窗格](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
 2.	按一下 [開始] 以開始測試。這應該是唯一啟用的選項。
-3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並在窗格中顯示其狀態。作業狀態一開始會顯示為 [已排入佇列]，表示其正在等候雲端中的 Runbook 背景工作變為可用狀態。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
+3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並在窗格中顯示其狀態。作業狀態一開始會顯示為 [已排入佇列]，表示其正在等候雲端中的 Runbook 背景工作變為可用狀態。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。
 4.	Runbook 工作完成時，會顯示其輸出。在我們的情況中，我們應該會看到「Hello World」。<br> ![Hello World](media/automation-first-runbook-graphical/runbook-test-results.png)
 5.	關閉 [測試] 刀鋒視窗返回畫布。
 
@@ -76,7 +76,7 @@
 4.	我們只想要啟動 Runbook，因此按一下 [**開始**] 然後出現提示時按一下 [**是**]。<br> ![啟動 Runbook](media/automation-first-runbook-graphical/runbook-controls-start-revised20165.png)
 5.	作業刀鋒視窗會開啟我們剛剛建立的 Runbook 作業。我們可以關閉此刀鋒視窗，但在此情況下，我們要將它開啟，使得我們可以觀看作業的進度。
 6.	[工作摘要] 中會顯示工作狀態，且符合當我們測試 Runbook 時看到的狀態。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-summary.png)
-7.	一旦 Runbook 狀態顯示「已完成」，請按一下 [輸出]。[輸出] 刀鋒視窗會開啟，而且可以在窗格中看到我們的「Hello World」。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-output.png)  
+7.	一旦 Runbook 狀態顯示「已完成」，請按一下 [輸出]。[輸出] 刀鋒視窗會開啟，而且可以在窗格中看到我們的「Hello World」。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-output.png)
 8.	關閉 [輸出] 刀鋒視窗。
 9.	按一下 [所有記錄檔] 以開啟 Runbook 作業的 [資料流] 刀鋒視窗。我們應該只會在輸出資料流中看到「Hello World」，但可能也會顯示 Runbook 工作的其他資料流，例如 Runbook 寫入時發生的詳細資訊和錯誤。<br> ![工作摘要](media/automation-first-runbook-graphical/runbook-job-AllLogs.png)
 10.	關閉 [所有記錄檔] 刀鋒視窗和 [作業] 刀鋒視窗以返回 [MyFirstRunbook] 刀鋒視窗。
@@ -90,8 +90,8 @@
 1. 在 [自動化帳戶] 刀鋒視窗中按一下 [資產] 圖格，隨即會開啟 [資產] 刀鋒視窗。
 2. 在 [資產] 刀鋒視窗中，按一下 [變數] 圖格。
 3. 在 [變數] 刀鋒視窗中，按一下 [加入變數]。<br>![自動化變數](media/automation-first-runbook-graphical/create-new-subscriptionid-variable.png)
-4. 在 [新增變數] 刀鋒視窗中，於 [名稱] 方塊中輸入 **AzureSubscriptionId**，並於 [值] 方塊中輸入您的訂用帳戶識別碼。讓 [類型] 保持是 [字串]，並讓 [加密] 保持預設值。  
-5. 按一下 [建立] 來建立變數。  
+4. 在 [新增變數] 刀鋒視窗中，於 [名稱] 方塊中輸入 **AzureSubscriptionId**，並於 [值] 方塊中輸入您的訂用帳戶識別碼。讓 [類型] 保持是 [字串]，並讓 [加密] 保持預設值。
+5. 按一下 [建立] 來建立變數。
 
 
 ## 步驟 6 - 加入驗證來管理 Azure 資源
@@ -101,25 +101,25 @@
 1.	按一下 [MyFirstRunbook] 刀鋒視窗上的 [編輯] 來開啟圖形化編輯器。<br> ![編輯 Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
 2.	我們不再需要 [撰寫 Hello World 到輸出]，因此以滑鼠右鍵按一下它並選取 [刪除]。
 3.	在 [程式庫] 控制項中，展開 [連線]，並選取 [加入至畫布] 以將 [AzureRunAsConnection] 加入至畫布。
-4.	在畫布上選取 [Get-AutomationVariable]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [取得執行身分連線]。這是連線 
+4.	在畫布上選取 [Get-AutomationVariable]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [取得執行身分連線]。這是連線
 5.	在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Add-AzureRmAccount**。
 6.	將 [Add-AzureRmAccount] 加入至畫布。<br> ![Add-AzureRMAccount](media/automation-first-runbook-graphical/search-powershell-cmdlet-addazurermaccount.png)
 7.	將滑鼠停留在 [取得執行身分連線]，直到圖形的底端出現圓形。按一下圓形，並將箭頭拖曳到 [Add-AzureRmAccount]。您剛才建立的箭號是*連結*。Runbook 將會開始使用 [取得執行身分連線]，然後執行 [Add-AzureRmAccount]。<br> ![建立活動之間的連結](media/automation-first-runbook-graphical/runbook-link-auth-activities.png)
 8.	在畫布上選取 [Add-AzureRmAccount]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [登入 Azure]。
-9.	按一下 [參數]，隨即會顯示 [活動參數組態] 刀鋒視窗。 
-10.  [Add-AzureRmAccount] 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。按一下 [參數集]，然後選取 [ServicePrincipalCertificate] 參數集。 
+9.	按一下 [參數]，隨即會顯示 [活動參數組態] 刀鋒視窗。
+10.  [Add-AzureRmAccount] 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。按一下 [參數集]，然後選取 [ServicePrincipalCertificate] 參數集。
 11.  一旦您選取參數集，參數會在 [活動參數組態] 刀鋒視窗中顯示。按一下 [APPLICATIONID]。<br> ![加入 Azure RM 帳戶參數](media/automation-first-runbook-graphical/add-azurermaccount-parameterset.png)
 12.  在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出] 並從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **ApplicationId**，然後按一下 [確定]。我們會指定欄位路徑之屬性的名稱，因為活動會輸出具有多個屬性的物件。
-13.  按一下 [CERTIFICATETHUMBPRINT]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **CertificateThumbprint**，然後按一下 [確定]。 
+13.  按一下 [CERTIFICATETHUMBPRINT]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **CertificateThumbprint**，然後按一下 [確定]。
 14.  按一下 [SERVICEPRINCIPAL] 並在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [ConstantValue]，按一下選項 [True]，然後按一下 [確定]。
-15.  按一下 [TENANTID]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **TenantId**，然後按兩次 [確定]。  
-16.  在 [程式庫] 控制項的搜尋文字方塊中輸入 **Get-AzureRmContext**。
+15.  按一下 [TENANTID]，然後在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [活動輸出]。從清單中選取 [取得執行身分連線]，在 [欄位路徑] 文字方塊中輸入 **TenantId**，然後按兩次 [確定]。
+16.  在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Set-AzureRmContext**。
 17.	 將 [Set-AzureRmContext] 加入至畫布。
 18.	 在畫布上選取 [Set-AzureRmContext]，然後在 [組態] 控制項窗格的 [標籤] 文字方塊中輸入 [指定訂用帳戶識別碼]。
-19.	 按一下 [參數]，隨即會顯示 [活動參數組態] 刀鋒視窗。 
-20. [Set-AzureRmContext] 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。按一下 [參數集]，然後選取 [SubscriptionId] 參數集。  
+19.	 按一下 [參數]，隨即會顯示 [活動參數組態] 刀鋒視窗。
+20. [Set-AzureRmContext] 有多個參數集，因此我們必須先選取一個參數，我們才可以提供參數值。按一下 [參數集]，然後選取 [SubscriptionId] 參數集。
 21.	 一旦您選取參數集，參數會在 [活動參數組態] 刀鋒視窗中顯示。按一下 [SubscriptionID]
-22.	 在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [變數資產]，接著在清單中選取 [AzureSubscriptionId]，然後按兩次 [確定]。   
+22.	 在 [參數值] 刀鋒視窗中，為 [資料來源] 選取 [變數資產]，接著在清單中選取 [AzureSubscriptionId]，然後按兩次 [確定]。
 23.  將滑鼠停留在 [登入 Azure]，直到圖形的底端出現圓形。按一下圓形，並將箭頭拖曳到 [指定訂用帳戶識別碼]。
 
 
@@ -131,7 +131,7 @@
 
 1. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Start-AzureRm**。
 2. 將 **Start-AzureRmVM** 加入至畫布，然後按一下並拖曳到 [連接到 Azure] 下方。
-3. 將滑鼠停留在 [指定訂用帳戶識別碼]，直到圖形的底端出現圓形。按一下圓形，並將箭頭拖曳到 [Start-AzureRmVM]。 
+3. 將滑鼠停留在 [指定訂用帳戶識別碼]，直到圖形的底端出現圓形。按一下圓形，並將箭頭拖曳到 [Start-AzureRmVM]。
 4.	選取 [Start-AzureRmVM]。按一下 [參數] 然後按一下 [參數集] 以檢視 [Start-AzureRmVM] 的參數集。選取 [ResourceGroupNameParameterSetName] 參數集。請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。這表示它們是必要的參數。也請注意這兩者應該是字串值。
 5.	選取 [**名稱**]。在 [資料來源] 中選取 [PowerShell 運算式]，並輸入用雙引號括住的虛擬機器名稱，此為我們要用此 Runbook 啟動的虛擬機器。按一下 [確定]。<br>![Start-AzureRmVM 名稱參數值](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
 6.	選取 [ResourceGroupName]。為 [資料來源] 使用 [PowerShell 運算式]，並輸入用雙引號括住的資源群組名稱。按一下 [**確定**]。<br> ![Start-AzureRmVM 參數](media/automation-first-runbook-graphical/startazurermvm-params.png)
@@ -169,12 +169,12 @@
 5. 選取 [Get-AzureRmVM] 然後選取 [參數集] 以檢視 [Get-AzureRmVM] 的參數集。選取 [GetVirtualMachineInResourceGroupNameParamSet] 參數集。請注意，[ResourceGroupName] 和 [名稱] 旁邊具有驚嘆號。這表示它們是必要的參數。也請注意這兩者應該是字串值。
 6. 在 [名稱] 的 [資料來源] 底下，選取 [Runbook 輸入]，然後選取 [VMName]。按一下 [確定]。
 7. 在 [ResourceGroupName] 的 [資料來源] 底下，選取 [Runbook 輸入]，然後選取 [ResourceGroupName]。按一下 [確定]。
-8. 在 [狀態] 的 [資料來源] 底下，選取 [常數值]，然後按一下 [True]。按一下 [確定]。  
+8. 在 [狀態] 的 [資料來源] 底下，選取 [常數值]，然後按一下 [True]。按一下 [確定]。
 9. 建立從 [指定訂用帳戶識別碼] 至 [Get-AzureRmVM] 的連結。
-10. 在 [程式庫] 控制項中展開 [Runbook 控制項]，並將 [程式碼] 加入至畫布。  
-11. 建立從 [Get-AzureRmVM] 至 [程式碼] 的連結。  
+10. 在 [程式庫] 控制項中展開 [Runbook 控制項]，並將 [程式碼] 加入至畫布。
+11. 建立從 [Get-AzureRmVM] 至 [程式碼] 的連結。
 12. 按一下 [程式碼]，接著在 [組態] 窗格中將標籤變更為 [取得狀態]。
-13. 選取 [程式碼] 參數，隨即出現 [程式碼編輯器] 刀鋒視窗。  
+13. 選取 [程式碼] 參數，隨即出現 [程式碼編輯器] 刀鋒視窗。
 14. 在程式碼編輯器中，貼上下列程式碼片段︰
 
      ```
@@ -189,7 +189,7 @@
      ```
 
 15. 建立從 [取得狀態] 至 [Start-AzureRmVM] 的連結。<br> ![程式碼模組的 Runbook](media/automation-first-runbook-graphical/runbook-startvm-get-status.png)
-16. 選取該連結，然後在 [組態] 窗格中將 [套用條件] 變更為 [是]。請注意，連結轉變為虛線表示目標活動只有在條件解析為 true 時才會執行。  
+16. 選取該連結，然後在 [組態] 窗格中將 [套用條件] 變更為 [是]。請注意，連結轉變為虛線表示目標活動只有在條件解析為 true 時才會執行。
 17. 在 [條件運算式] 中輸入「$ActivityOutput['Get Status'] -eq "Stopped"」。**Start-AzureRmVM** 現在只會在虛擬機器停止時執行。
 18.	在 [程式庫] 控制項中，展開 **Cmdlet**，然後展開 **Microsoft.PowerShell.Utility**。
 19.	將 [Write-Output] 加入至畫布兩次。<br> ![Write-Output 的 Runbook](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
@@ -211,4 +211,4 @@
 -	若要開始使用 PowerShell Runbook，請參閱[我的第一個 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
 -	若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

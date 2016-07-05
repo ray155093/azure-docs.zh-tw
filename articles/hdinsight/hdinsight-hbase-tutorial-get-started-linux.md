@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/04/2016"
+	ms.date="06/27/2016"
 	ms.author="jgao"/>
 
 
@@ -43,7 +43,7 @@
 
 1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。ARM 範本位於公用 Blob 容器中。 
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
@@ -61,7 +61,7 @@
 6. 按一下 [建立]。大約需要 20 分鐘的時間來建立叢集。
 
 
->[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設 Blob 容器建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。
+>[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設 Blob 容器建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。建議在刪除叢集前停用 HBase 資料表，以避免不一致情況。
 
 ## 建立資料表和插入資料
 
@@ -111,6 +111,8 @@
 
 		exit
 
+
+
 **將資料大量載入連絡人 HBase 資料表中**
 
 HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請參閱[大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
@@ -152,7 +154,7 @@ HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請�
 1. 開啟 **PuTTY**，然後連線到叢集。請參閱先前程序中的指示。
 2. 開啟 Hive 殼層。
 
-	hive
+	   hive
 3. 執行下列 HiveQL 指令碼，建立對應到 HBase 資料表的 Hive 資料表。在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
 
 		CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
@@ -174,34 +176,59 @@ HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請�
 
 1. 從命令列中，使用下列命令來確認您可以連線到 HDInsight 叢集：
 
-		curl -u <UserName>:<Password> -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
+		curl -u <UserName>:<Password> \
+		-G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
 
 	您應該會收到如下所示的回應：
 
-    {"status":"ok","version":"v1"}
+		{"status":"ok","version":"v1"}
 
-  此命令中使用的參數如下：
+	此命令中使用的參數如下：
 
-    * **-u** - 用來驗證要求的使用者名稱和密碼。
-    * **-G** - 指出這是 GET 要求。
+	* **-u** - 用來驗證要求的使用者名稱和密碼。
+	* **-G** - 指出這是 GET 要求。
 
 2. 使用下列命令列出現有的 HBase 資料表：
 
-		curl -u <UserName>:<Password> -G https://<ClusterName>.azurehdinsight.net/hbaserest/
+		curl -u <UserName>:<Password> \
+		-G https://<ClusterName>.azurehdinsight.net/hbaserest/
 
 3. 使用下列命令建立含兩個資料欄系列的新 HBase 資料表：
 
-		curl -u <UserName>:<Password> -v -X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/schema" -H "Accept: application/json" -H "Content-Type: application/json" -d "{"@name":"test","ColumnSchema":[{"name":"Personal"},{"name":"Office"}]}"
+		curl -u <UserName>:<Password> \
+		-X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/schema" \
+		-H "Accept: application/json" \
+		-H "Content-Type: application/json" \
+		-d "{"@name":"Contact1","ColumnSchema":[{"name":"Personal"},{"name":"Office"}]}" \
+		-v
 
 	結構描述是以 JSON 格式提供。
 
 4. 使用下列命令插入一些資料：
 
-		curl -u <UserName>:<Password> -v -X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/schema" -H "Accept: application/json" -H "Content-Type: application/json" -d "{"Row":{"key":"1000","Cell":{"column":"Personal:Name", "$":"John Dole"}}}"
+		curl -u <UserName>:<Password> \
+		-X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/false-row-key" \
+		-H "Accept: application/json" \
+		-H "Content-Type: application/json" \
+		-d "{"Row":{"key":"MTAwMA==","Cell":{"column":"UGVyc29uYWw6TmFtZQ==", "$":"Sm9obiBEb2xl"}}}" \
+		-v
+
+	您必須使用 base64 編碼 -d 參數中指定的值。在此範例中︰
+
+	- MTAwMA==: 1000
+	- UGVyc29uYWw6TmFtZQ==: Peronsal:Name
+	- Sm9obiBEb2xl: John Dole
+
+	[false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) 可讓您插入多個 (批次) 值。
 
 5. 使用下列命令取得資料列：
 
-		curl -u <UserName>:<Password> -v -X GET "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/1000" -H "Accept: application/json"
+		curl -u <UserName>:<Password> \
+		-X GET "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/1000" \
+		-H "Accept: application/json" \
+		-v
+
+如需 HBase Rest 的詳細資訊，請參閱 [Apache HBase 參考指南](https://hbase.apache.org/book.html#_rest)。
 
 ## 檢查叢集狀態
 
@@ -252,15 +279,18 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 	- **SOCKS v5**：(已選取)
 	- **遠端 DNS**：(已選取)
 7. 按一下 [確定] 儲存變更。
-8. 瀏覽至 http://<TheFQDN of a ZooKeeper>:60010/master-status
+8. 瀏覽至 ZooKeeper>:60010/master-status 的 http://&lt;The FQDN。
 
 在高可用性叢集中，您會找到目前使用中之 HBase 主要節點 (其正在主控 WebUI) 的連結。
 
 ##刪除叢集
 
+建議在刪除叢集前停用 HBase 資料表，以避免不一致情況。
+
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## 後續步驟
+
 在 HDInsight 的本 HBase 教學課程中，您已了解如何建立 HBase 叢集，以及如何建立資料表，並從 HBase Shell 檢視這些資料表中的資料。您同時也了解到如何使用 Hive 查詢 HBase 資料表中的資料，以及如何使用 HBase C# REST API 建立 HBase 資料表，並擷取其資料表中的資料。
 
 若要深入了解，請參閱：
@@ -295,4 +325,4 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-bigtable.png
 
-<!----HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

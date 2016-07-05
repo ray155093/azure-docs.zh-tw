@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="05/02/2016"
+   ms.date="06/02/2016"
    ms.author="elizapo"/>
 
 # 使用 Azure RemoteApp 在任何裝置上執行任何 Windows 應用程式
@@ -119,4 +119,4 @@
 <!--Image references-->
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

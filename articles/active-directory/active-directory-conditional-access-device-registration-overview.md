@@ -5,7 +5,7 @@
 	keywords="裝置註冊, 啟用裝置註冊, 裝置註冊和 MDM"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/29/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 開始使用 Azure Active Directory 裝置註冊
@@ -87,4 +87,4 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 - [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

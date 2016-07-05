@@ -22,7 +22,7 @@
 
 ##概觀
 
-本教學課程說明如何使用 Azure 行動應用程式後端，將雲端型後端服務新增到 Xamarin.Forms 行動應用程式。您將同時建立新的行動應用程式後端，以及在 Azure 中儲存應用程式資料的簡單「Todo list」Xamarin.Forms 應用程式。
+本教學課程說明如何使用 Azure 行動應用程式後端，將雲端型後端服務新增到 Xamarin.Forms 行動應用程式。您將同時建立新的行動應用程式後端，以及在 Azure 中儲存應用程式資料的簡單 Todo list Xamarin.Forms 應用程式。
 
 完成本教學課程是所有其他 Xamarin.Forms 應用程式的行動應用程式教學課程的必要條件。
 
@@ -160,8 +160,12 @@
 ##後續步驟
 
 * [加入驗證至應用程式](app-service-mobile-xamarin-forms-get-started-users.md)了解如何使用身分識別提供者驗證應用程式的使用者。
-* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-forms-get-started-push.md)了解如何在應用程式中新增推播通知。
-* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
+
+* [將推播通知新增至應用程式](app-service-mobile-xamarin-forms-get-started-push.md)：了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
+
+* [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
+
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。
 
 
 <!-- Anchors. -->
@@ -184,4 +188,4 @@
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016--->
+<!---HONumber=AcomDC_0629_2016-->

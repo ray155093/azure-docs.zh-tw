@@ -1,5 +1,5 @@
 <properties
-	pageTitle="開始使用 Azure 傳統入口網站來傳遞點播內容 | Microsoft Azure"
+	pageTitle=" 開始使用 Azure 傳統入口網站來傳遞點播內容 | Microsoft Azure"
 	description="本教學課程將逐步引導您使用 Azure 傳統入口網站，藉由 Azure 媒體服務來實作點播視訊 (VoD) 內容傳遞應用程式。"
 	services="media-services"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/25/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -33,8 +33,8 @@
 1.  建立 Azure 媒體服務帳戶。
 2.  設定串流端點。
 1.  上傳視訊檔案。
-1.  將來源檔案編碼為一組調適性位元速率 MP4 檔案。
-1.  發佈資產並取得串流和漸進式下載 URL。  
+1.  將來源檔案編碼為一組自適性 MP4 檔案。
+1.  發佈資產並取得串流和漸進式下載 URL。
 1.  播放您的內容。
 
 
@@ -73,7 +73,7 @@
 
 若要利用動態封裝，您需要執行下列動作：
 
-- 將您的夾層 (來源) 檔編碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (編碼步驟稍後示範於本教學課程中)。  
+- 將您的夾層 (來源) 檔編碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (編碼步驟稍後示範於本教學課程中)。
 - 為您計畫從該處傳遞內容的*串流端點*至少取得一個串流單元。
 
 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
@@ -107,7 +107,7 @@
 	![UploadContentDialog][uploadcontent]
 
 5. 在 [上傳內容] 對話方塊中，按一下核取按鈕以接受 [檔案] 和 [內容名稱]。
-6. 上傳隨即開始，而您可以在入口網站底部追蹤進度。  
+6. 上傳隨即開始，而您可以在入口網站底部追蹤進度。
 
 	![JobStatus][status]
 
@@ -253,4 +253,4 @@ Azure 傳統入口網站提供內容播放程式，可讓您用來測試視訊�
 [encrypt]: ./media/media-services-manage-content/media-services-encrypt-content.png
 [AMSPlayer]: ./media/media-services-portal-get-started/media-services-portal-player.png
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0629_2016-->
