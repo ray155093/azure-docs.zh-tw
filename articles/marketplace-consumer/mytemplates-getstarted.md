@@ -33,7 +33,7 @@
 - **範本**是一項封裝資源，其中包含 Resource Manager 範本和其他中繼資料。其操作方式非常類似 Marketplace 中的項目。主要差別在於它是私人項目 (相對於公用 Marketplace 項目)。
 - **範本**程式庫適用於需要自訂其部署的使用者。
 - **範本**適用於在 Azure 中需要簡單儲存機制的使用者。
-- 開始使用現有的 Resource Manager 範本。在 [github](https://github.com/Azure/azure-quickstart-templates) 中尋找範本，或現有的資源群組[匯出範本](https://azure.microsoft.com/blog/export-template/)。
+- 開始使用現有的 Resource Manager 範本。在 [github](https://github.com/Azure/azure-quickstart-templates) 中尋找範本，或現有的資源群組[匯出範本](../resource-manager-export-template.md)。
 - **範本**會繫結至發佈它們的使用者。每個具有範本讀取權限的使用者都可以看到發佈者名稱。
 - **範本**是 Resource Manager 資源，一旦發佈便無法重新命名。
 
@@ -44,7 +44,7 @@
 ### 方法 1︰從執行中的資源群組建立新的範本資源
 
 1. 瀏覽至 Azure 入口網站上的現有資源群組。在 [設定] 中選取 [匯出範本]。
-2. 匯出 Resource Manager 範本後，使用 [儲存範本] 按鈕將它儲存到**範本**儲存機制。在[這裡](https://azure.microsoft.com/blog/export-template/)尋找匯出範本的完整詳細資料。<br /><br /> ![資源群組匯出](media/rg-export-portal1.PNG) <br />
+2. 匯出 Resource Manager 範本後，使用 [儲存範本] 按鈕將它儲存到**範本**儲存機制。在[這裡](../resource-manager-export-template.md)尋找匯出範本的完整詳細資料。<br /><br /> ![資源群組匯出](media/rg-export-portal1.PNG) <br />
 
 3. 選取 [儲存至範本] 命令按鈕。<br /><br />
 
@@ -131,4 +131,4 @@
 - 若要了解您可用於 Resource Manager 範本中的函數，請參閱[範本函式](../resource-group-template-functions.md)
 - 如需設計範本的指引，請參閱[設計 Azure 資源管理員範本的最佳做法](../best-practices-resource-manager-design-templates.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

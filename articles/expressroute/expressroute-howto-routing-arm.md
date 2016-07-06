@@ -13,7 +13,7 @@
    ms.topic="hero-article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/08/2016"
+   ms.date="06/29/2016"
    ms.author="ganesr"/>
 
 # 建立和修改 ExpressRoute 線路的路由
@@ -35,7 +35,7 @@
 
 ## 組態必要條件
 
-- 您需要最新版的 Azure PowerShell 模組 (版本 1.0 或更新版本)。 
+- 您需要最新版的 Azure PowerShell 模組 (版本 1.0 或更新版本)。
 - 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。
 - 您必須擁有作用中的 ExpressRoute 線路。繼續之前，請遵循指示來[建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由您的連線提供者來啟用該線路。ExpressRoute 線路必須處於已佈建和已啟用狀態，您才能執行如下所述的 Cmdlet。
 
@@ -136,7 +136,7 @@
 
 	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### 檢視 Azure 私用對等詳細資料
+### 檢視 Azure 私用對等詳細資訊
 
 您可以使用下列 Cmdlet 來取得組態詳細資料
 
@@ -199,7 +199,7 @@
 	
 	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由連線提供者佈建它。
 
-	如果您的連線提供者是提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 公用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
+	如果您的連線提供者提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 公用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
 
 3. 檢查 ExpressRoute 線路以確定已佈建。
 
@@ -241,7 +241,7 @@
 	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
 	- MD5 雜湊 (如果選擇使用)。**這是選擇性的**。
 	
-	您可以執行下列 Cmdlet 來為線路設定 Azure 公用對等
+	您可以執行下列 Cmdlet 來為電路設定 Azure 公用對等
 
 		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -Circuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100
 
@@ -256,7 +256,7 @@
 
 	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### 檢視 Azure 公用對等詳細資料
+### 檢視 Azure 公用對等詳細資訊
 
 您可以使用下列 Cmdlet 來取得組態詳細資料
 
@@ -403,4 +403,4 @@
 
 -  如需使用虛擬網路的詳細資訊，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

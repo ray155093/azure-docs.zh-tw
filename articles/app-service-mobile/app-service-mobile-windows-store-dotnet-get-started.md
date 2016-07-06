@@ -78,11 +78,11 @@
 
 ##後續步驟
 
-* [將驗證新增至應用程式](app-service-mobile-windows-store-dotnet-get-started-users.md)了解如何使用身分識別提供者驗證應用程式的使用者。
+* [加入驗證至應用程式](app-service-mobile-windows-store-dotnet-get-started-users.md)了解如何使用身分識別提供者驗證應用程式的使用者。
 
 * [將推播通知新增至應用程式](app-service-mobile-windows-store-dotnet-get-started-push.md)：了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
 
-* [啟用 Windows 應用程式的離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
+* [啟用應用程式的離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
 
 <!-- Anchors. -->
 <!-- Images. -->
@@ -91,4 +91,4 @@
 [Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2015]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0525_2016--->
+<!---HONumber=AcomDC_0629_2016-->

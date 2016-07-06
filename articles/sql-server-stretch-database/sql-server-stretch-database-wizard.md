@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="06/14/2016"
+	ms.date="06/27/2016"
 	ms.author="douglasl"/>
 
 # 開始執行為資料庫啟用延伸功能精靈
@@ -51,25 +51,25 @@
 |**名稱**|指定資料表中的資料欄名稱。|
 |(沒有標題)|此資料行中的符號可能代表不會阻止您針對 Stretch 啟用所選資料表的警告。它也可能代表會阻止您針對 Stretch 啟用所選資料表的封鎖問題 - 例如，因為資料表使用不支援的資料類型。以滑鼠暫留在符號上，以在工作提示中顯示更多資訊。如需詳細資訊，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。|
 |**已延伸**|指出資料表是否已啟用 Stretch。|
-|**移轉**|您可以移轉整個資料表 (**整個資料表**)，也可以指定依據資料表中的現有資料行篩選。如果您想要使用不同的篩選述詞來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選述詞。如需篩選述詞的詳細資訊，請參閱[使用篩選述詞選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。如需有關如何套用述詞的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
+|**移轉**|您可以移轉整個資料表 (**整個資料表**)，也可以指定依據資料表中的現有資料行篩選。如果您想要使用不同的篩選函式來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選函式。如需有關篩選函式的詳細資訊，請參閱[使用篩選函式來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。如需有關如何套用函式的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。|
 |**列**|指定資料表中的資料列數目。|
 |**大小 (KB)**|指定資料表的大小 (以 KB 為單位)。|
 
 ## <a name="Filter"></a>選擇性地提供資料列篩選
 
-如果您想要提供篩選述詞來選取要移轉的資料列，請在 [選取資料表] 頁面上執行下列作業。
+如果您想要提供篩選函式來選取要移轉的資料列，請在 [選取資料表] 頁面上執行下列作業。
 
 1.  在 [選取您要延展的資料表] 清單中，按一下資料表的資料列中的 [整個資料表]。[選取要延展的資料列] 對話方塊隨即開啟。
 
-    ![定義篩選述詞][StretchWizardImage2a]
+    ![定義篩選函式][StretchWizardImage2a]
 
 2.  在 [選取要延展的資料列] 對話方塊中，選取 [選擇資料列]。
 
-3.  在 [名稱] 欄位中，提供篩選述詞的名稱。
+3.  在 [名稱] 欄位中，提供篩選函式的名稱。
 
 4.  針對 **Where** 子句，從資料表中挑選資料行、挑選一個運算子，以及提供一個值。
 
-5. 按一下 [檢查] 來測試述詞。如果述詞傳回資料表的結果 (也就是有要移轉的資料列滿足條件)，則測試會報告 [成功]。
+5. 按一下 [檢查] 來測試函式。如果函式傳回資料表的結果 (也就是有要移轉的資料列滿足條件)，則測試會報告 [成功]。
 
     >   [AZURE.NOTE] 顯示篩選查詢的文字方塊是唯讀的。您無法在文字方塊中編輯查詢。
 
@@ -77,13 +77,13 @@
 
 只有在您完成精靈時，篩選函式才會建立於 SQL Server 中。屆時，您可以回到 [選取資料表] 頁面，以變更或重新命名篩選函式。
 
-![在定義篩選述詞後選取 [資料表] 頁面][StretchWizardImage2b]
+![在定義篩選函式後選取 [資料表] 頁面][StretchWizardImage2b]
 
-如果您想要使用不同類型的篩選述詞來選取要移轉的資料列，請執行下列其中一項作業。
+如果您想要使用不同類型的篩選函式來選取要移轉的資料列，請執行下列其中一項操作。
 
--   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定述詞。如需詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)。  
+-   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定函式。如需詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)。
 
--   結束精靈之後，請執行 ALTER TABLE 陳述式來指定述詞。如需必要步驟，請參閱[在執行精靈後新增篩選述詞](sql-server-stretch-database-predicate-function.md#addafterwiz)。
+-   結束精靈之後，請執行 ALTER TABLE 陳述式來指定函式。如需必要步驟，請參閱[在執行精靈後新增篩選函式](sql-server-stretch-database-predicate-function.md#addafterwiz)。
 
 ## <a name="Configure"></a>設定 Azure 部署
 
@@ -94,7 +94,7 @@
 2.  選取要用於 Stretch Database 的現有 Azure 訂用帳戶。
 
 3.  選取 Azure 區域。
-    -   如果您建立新伺服器，該伺服器將會建立於此區域。  
+    -   如果您建立新伺服器，該伺服器將會建立於此區域。
     -   如果您在所選區域中有現有的伺服器，精靈會在您選擇 [現有伺服器] 時列出這些伺服器。
 
     若要將延遲降到最低，請選擇您的 SQL Server 所位於之區域做為 Azure 區域。如需區域的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
@@ -190,4 +190,4 @@
 [StretchWizardImage8]: ./media/sql-server-stretch-database-wizard/stretchwiz8.png
 [StretchWizardImage9]: ./media/sql-server-stretch-database-wizard/stretchwiz9.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

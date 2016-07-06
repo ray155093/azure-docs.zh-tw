@@ -18,15 +18,15 @@
 
 # 教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-get-started.md)
-- [使用 Data Factory 編輯器](data-factory-get-started-using-editor.md)
-- [使用 PowerShell](data-factory-monitor-manage-using-powershell.md)
-- [使用 Visual Studio](data-factory-get-started-using-vs.md)
+- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 在本教學課程中，您將使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory，然後使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
 
-> [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-get-started.md)文章，並在執行本教學課程之前完成必要的步驟。
+> [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成必要的步驟。
 
 ## 建立 Data Factory
 在此步驟中，您會使用 Azure 入口網站來建立名為 **ADFTutorialDataFactory** 的 Azure Data Factory。
@@ -36,12 +36,12 @@
 	![新增->DataFactory](./media/data-factory-copy-data-wizard-tutorial/new-data-factory-menu.png)
 
 6. 在 [新增 Data Factory] 刀鋒視窗中：
-	1. 輸入 **ADFTutorialDataFactory** 做為**名稱**。 
+	1. 輸入 **ADFTutorialDataFactory** 做為**名稱**。
 	
   		![新增 Data Factory 刀鋒視窗](./media/data-factory-copy-data-wizard-tutorial/getstarted-new-data-factory.png)
 	2. 按一下 [資源群組名稱]，然後執行下列動作：
 		1. 按一下 [建立新的資源群組]。
-		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的**名稱**，然後按一下 [確定]。 
+		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的**名稱**，然後按一下 [確定]。
 
 			![建立資源群組](./media/data-factory-copy-data-wizard-tutorial/create-new-resource-group.png)
 
@@ -92,7 +92,7 @@
 	![複製工具 - 檔案格式設定](./media/data-factory-copy-data-wizard-tutorial/copy-tool-file-format-settings.png)  
 8. 在 [目的地資料存放區] 頁面上，按一下 [Azure SQL Database] 圖格，然後按 [下一步]。
 9. 在 [指定 Azure SQL Database] 頁面︰
-	1. 針對 [連結服務名稱] 欄位輸入 **AzureSqlLinkedService**。 
+	1. 針對 [連結服務名稱] 欄位輸入 **AzureSqlLinkedService**。
 	2. 確認 [伺服器/資料庫選取方法] 已設為 [從 Azure 訂用帳戶]。
 	3. 選取 [伺服器名稱] 和 [資料庫]。
 	4. 輸入 [使用者名稱] 和 [密碼]。
@@ -119,4 +119,4 @@
 | [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->
