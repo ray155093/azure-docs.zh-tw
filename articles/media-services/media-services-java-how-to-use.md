@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
- 	ms.date="04/18/2016"  
+	ms.date="06/22/2016"   
 	ms.author="robmcm"/>
 
 #如何搭配使用媒體服務和 Java
@@ -266,7 +266,7 @@
 
 ##其他資源
 
-如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] (英文)。
+如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] \(英文)。
 
 <!-- URLs. -->
 
@@ -276,4 +276,4 @@
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

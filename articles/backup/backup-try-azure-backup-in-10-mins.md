@@ -14,10 +14,10 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="hero-article"
-   ms.date="05/10/2016"
+   ms.date="06/27/2016"
    ms.author="jimpark;"/>
 
-# 初步了解：使用 Azure 備份與 Resource Manager 部署模型將檔案和資料夾從 Windows Server 或用戶端備份到 Azure
+# 初步了解：使用 Azure 備份與 Resource Manager 部署模型備份檔案和資料夾
 
 本文說明如何使用 Azure 備份與 Resource Manager 將 Windows Server (或 Windows 用戶端) 的檔案和資料夾備份至 Azure。本文中的教學課程是要讓您逐步了解基本概念。如果您想要開始使用 Azure 備份，請閱讀本文的內容。
 
@@ -193,7 +193,7 @@
 
 完成初始備份之後，備份主控台中會顯示 [作業已完成] 狀態。
 
-![IR 已完成](./media/backup-try-azure-backup-in-10-mins/ircomplete.png)
+    ![IR 已完成](./media/backup-try-azure-backup-in-10-mins/ircomplete.png)
 
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
@@ -203,4 +203,4 @@
 - 現在您已備份好檔案和資料夾，接下來您可以[管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 - 如果您需要還原備份，請使用本文來[還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
- 	ms.date="06/05/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -28,7 +28,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 需要有下列項目，才能完成教學課程：
 
-- 一個 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+- 一個 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - 媒體服務帳戶。若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-create-account.md)。
 - 網路攝影機。例如，[Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。
 
@@ -48,10 +48,10 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 	此步驟也可以在您建立通道之後執行。
 
 1. 建立並啟動即時通行通道。
-1. 擷取通道內嵌 URL。 
+1. 擷取通道內嵌 URL。
 
 	內嵌 URL 可供即時編碼器用來傳送串流到通道。
-1. 擷取通道預覽 URL。 
+1. 擷取通道預覽 URL。
 
 	使用此 URL 來確認您的通道會正確接收即時串流。
 
@@ -63,7 +63,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 1. 當您準備好開始串流和封存時，請啟動事件/程式。
 2. 即時編碼器會收到啟動公告的信號 (選擇性)。公告會插入輸出串流中。
 1. 每當您想要停止串流處理和封存事件時，請停止事件/程式。
-1. 刪除事件/程式 (並選擇性地刪除資產)。     
+1. 刪除事件/程式 (並選擇性地刪除資產)。
 
 >[AZURE.IMPORTANT] 請檢閱[使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)，以了解具有內部部署編碼器和即時通行通道之即時串流的相關概念和考量。
 
@@ -81,7 +81,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 若要建立和變更串流保留單位數目，請執行下列動作：
 
-1. 在 [設定] 視窗中，按一下 [串流端點]。 
+1. 在 [設定] 視窗中，按一下 [串流端點]。
 
 2. 按一下預設串流端點。
 
@@ -121,7 +121,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 如需即時通行通道的詳細資訊，請參閱[使用會從建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
-1. 在 [設定] 視窗中，按一下 [即時串流]。 
+1. 在 [設定] 視窗中，按一下 [即時串流]。
 
 	![開始使用](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
 	
@@ -130,7 +130,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 3. 按一下 [快速建立]，使用 RTMP 內嵌通訊協定建立即時通行通道。
 
 	[建立新的通道] 視窗隨即出現。
-4. 提供新通道的名稱，然後按一下 [建立]。 
+4. 提供新通道的名稱，然後按一下 [建立]。
 
 	便會使用 RTMP 內嵌通訊協定建立即時通行通道。
 
@@ -175,4 +175,4 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

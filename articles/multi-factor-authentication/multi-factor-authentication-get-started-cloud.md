@@ -30,7 +30,7 @@
 
 
 - [註冊 Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/) - 如果您還沒有 Azure 訂用帳戶，可以免費註冊。如果您剛開始使用 Azure MFA，您可以使用試用版訂用帳戶
-2. [建立 Multi-Factor Auth Provider](multi-factor-authentication-get-started-auth-provider.md) 並將它指派給目錄，或[將授權指派給使用者](multi-factor-authentication-get-started-assign-licenses.md)。 
+2. [建立 Multi-Factor Auth Provider](multi-factor-authentication-get-started-auth-provider.md) 並將它指派給目錄，或[將授權指派給使用者](multi-factor-authentication-get-started-assign-licenses.md)。
 
 > [AZURE.NOTE]  授權的適用對象是擁有 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite (EMS) 的使用者。MFA 包含在 Azure AD Premium 和 EMS。如果您有足夠的授權，則不需要建立 Auth Provider。
 		
@@ -57,12 +57,12 @@
 
 ## 使用 PowerShell 自動開啟 Multi-Factor Authentication
 
-若要使用 [Azure AD PowerShell](powershell-install-configuremd) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。您可以將 `$st.State` 變更為下列其中一個狀態：
+若要使用 [Azure AD PowerShell](../powershell-install-configure.md) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。您可以將 `$st.State` 變更為下列其中一個狀態：
 
 
 - 已啟用
 - 已強制
-- 已停用  
+- 已停用
 
 > [AZURE.IMPORTANT]  請注意，如果您直接從 [停用] 狀態進入 [強制] 狀態，非現代化驗證用戶端將會停止運作，因為使用者未通過 MFA 註冊並取得[應用程式密碼](multi-factor-authentication-whats-next.md#app-passwords)。如果您具有非現代化驗證用戶端，而且需要應用程式密碼，則建議您從 [停用] 狀態變更為 [啟用] 狀態。這可讓使用者註冊並取得其應用程式密碼。
 		
@@ -90,4 +90,4 @@
 ## 後續步驟
 現在您已在雲端中設定 Multi-Factor Authentication，接下來您可以設定及安裝您的部署。請參閱 [設定 Azure Multi-Factor Authentication]。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

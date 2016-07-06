@@ -34,7 +34,7 @@
 
 - 您**必須**詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文，並完成必要的步驟，再進一步繼續。
 - **Azure PowerShell** (英文)。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
-- (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](https://msdn.microsoft.com/library/dn820234.aspx)。 
+- (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](https://msdn.microsoft.com/library/dn820234.aspx)。
 
 若您使用 **1.0 版本之前**的 Azure PowerShell，您必須使用[這裡](https://msdn.microsoft.com/library/azure/dn820234.aspx)所記載的 Cmdlet。您也必須在使用 Data Factory Cmdlet 之前，先執行下列命令：
  
@@ -52,15 +52,15 @@
 在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。讓我們在這個步驟中開始建立 Data Factory。
 
 1. 開啟 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	- 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。  
+	- 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
 	- 執行 Get-AzureRmSubscription 以檢視此帳戶的所有訂用帳戶。
-	- 執行 Select-AzureRmSubscription **<Name of the subscription>** 以選取您想要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
+	- 執行 **Select-AzureRmSubscription <訂用帳戶名稱>** 以選取您想要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
 3. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
 
 		New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
 
 	本教學課程的某些步驟假設您使用名為 ADFTutorialResourceGroup 的資源群組。如果使用不同的資源群組，您必須以該群組取代本教學課程中的 ADFTutorialResourceGroup。
-4. 執行 **New-AzureRmDataFactory** Cmdlet，建立名為 **FirstDataFactoryPSH** 的 Data Factory。  
+4. 執行 **New-AzureRmDataFactory** Cmdlet，建立名為 **FirstDataFactoryPSH** 的 Data Factory。
 
 		New-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name FirstDataFactoryPSH –Location "West US"
 
@@ -70,9 +70,9 @@
 - Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：「Data Factory 名稱 “FirstDataFactoryPSH” 無法使用」，請變更名稱 (例如 yournameFirstDataFactoryPSH)。執行本教學課程中的步驟時，請使用此名稱來取代 ADFTutorialFactoryPSH。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 - 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 - Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-- 如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰ 
+- 如果您收到錯誤：**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**，請執行下列其中一項，然後嘗試再次發佈︰
 
-	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
+	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
 		
 			Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
 	
@@ -148,13 +148,13 @@
 
 	請注意：
 	
-	- Data Factory 會以上述 JSON 為您建立**以 Windows 為基礎的** HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。 
+	- Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立「以 Linux 為基礎的」HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
 	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。原先的設計就是如此。使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
 	
 		隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
 
-	如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。 
+	如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 2. 執行 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立名為 HDInsightOnDemandLinkedServiceHDInsightOnDemandLinkedService 的連結服務。
 
 		New-AzureRmDataFactoryLinkedService $df -File .\HDInsightOnDemandLinkedService.json
@@ -297,8 +297,8 @@
 
 	在活動 JSON 中，您會指定 Hive 指令碼要在透過 **linkedServiceName** – **HDInsightOnDemandLinkedService** 指定的計算上執行。
 
-	> [ACOM.NOTE] 如需上述範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。 
-2.  確認您在 Azure Blob 儲存體的 **adfgetstarted/inputdata** 資料夾中看到了**input.log** 檔案，並執行下列命令以部署管線。由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 false，管線 (管線中的活動) 會在部署之後立即執行。 
+	> [ACOM.NOTE] 如需上述範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。
+2.  確認您在 Azure Blob 儲存體的 **adfgetstarted/inputdata** 資料夾中看到了**input.log** 檔案，並執行下列命令以部署管線。由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 false，管線 (管線中的活動) 會在部署之後立即執行。
 
 		New-AzureRmDataFactoryPipeline $df -File .\MyFirstPipelinePSH.json
 5. 恭喜，您已經成功使用 Azure PowerShell 建立您的第一個管線！
@@ -365,12 +365,12 @@
 1.	建立 Azure **Data Factory**。
 2.	建立兩個**連結服務**：
 	1.	**Azure 儲存體**連結服務可將保留輸入/輸出檔案的 Azure Blob 儲存體連結至 Data Factory。
-	2.	**Azure HDInsight** 隨選連結服務可將 HDInsight Hadoop 隨選叢集連結至 Data Factory。Azure Data Factory 會即時建立 HDInsight Hadoop 叢集以處理輸入資料及產生輸出資料。 
-3.	建立兩個**資料集**，以說明管線中 HDInsight Hive 活動的輸入和輸出資料。 
-4.	建立具有 **HDInsight Hive** 活動的**管線**。 
+	2.	**Azure HDInsight** 隨選連結服務可將 HDInsight Hadoop 隨選叢集連結至 Data Factory。Azure Data Factory 會即時建立 HDInsight Hadoop 叢集以處理輸入資料及產生輸出資料。
+3.	建立兩個**資料集**，以說明管線中 HDInsight Hive 活動的輸入和輸出資料。
+4.	建立具有 **HDInsight Hive** 活動的**管線**。
 
 ## 後續步驟
-在本文中，您已經建立可在隨選 Azure HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱[教學課程：從 Azure Blob 將資料複製到 Azure SQL](./data-factory-get-started.md)。
+在本文中，您已經建立可在隨選 Azure HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱[教學課程：從 Azure Blob 將資料複製到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
 ## 另請參閱
 | 主題 | 說明 |
@@ -383,4 +383,4 @@
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->
