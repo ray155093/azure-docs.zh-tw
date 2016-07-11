@@ -18,7 +18,7 @@
 
 # 使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
  
 
 本主題說明並逐步引導您在 Azure 虛擬機器中，部署並設定 SQL Server Reporting Services 原生模式報表伺服器。本文件的步驟採用一連串手動步驟的組合建立虛擬機器，並使用 Windows PowerShell 指令碼設定 VM 上的 Reporting Services。組態指令碼包含針對 HTTP 或 HTTPS 開啟防火牆連接埠。
@@ -83,7 +83,7 @@
 
 	- [雲端服務]：選取 [建立新的雲端服務]。
 	
-	- [雲端服務 DNS 名稱]：這是與 VM 相關聯的雲端服務的公用 DNS 名稱。預設名稱就是您為 VM 名稱鍵入的名稱。如果您在本主題的後續步驟中，建立信任的 SSL 憑證，系統會將 DNS 名稱作為該憑證的 [**核發給**] 值。
+	- [雲端服務 DNS 名稱]：這是與 VM 相關聯的雲端服務的公用 DNS 名稱。預設名稱就是您為 VM 名稱鍵入的名稱。如果您在本主題的後續步驟中建立信任的 SSL 憑證，系統會將 DNS 名稱作為該憑證的 [核發給] 值。
 	
 	- [區域/同質群組/虛擬網路]：選擇最靠近您使用者的區域。
 	
@@ -117,7 +117,7 @@
 
 ### 使用由信任的憑證授權單位 (CA) 所建立的憑證
 
-1. **針對網站向憑證授權單位要求伺服器憑證**。 
+1. **針對網站向憑證授權單位要求伺服器憑證**。
 
 	您可以使用 Web 伺服器憑證精靈，產生傳送至憑證授權單位的憑證要求檔案 (Certreq.txt)，或產生給線上憑證授權單位的要求。例如 Windows Server 2012 中的 Microsoft Certificate Services。視您伺服器憑證提供的識別保證層級而定，憑證授權單位核准您的要求並將憑證檔案傳送給您的時間，可能需要幾天或幾個月。
 
@@ -633,7 +633,7 @@
 
 		http://localhost/Reports
 
-- 從本機電腦瀏覽至 VM 上的**遠端**報告管理員。視需要更新下列範例中的 DNS 名稱。如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。使用者名稱的格式是 [網域] \[使用者名稱]，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\\testuser。如果您不是使用 HTTP**S**，請移除 URL 中的 **s**。如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
+- 從本機電腦瀏覽至 VM 上的**遠端**報告管理員。視需要更新下列範例中的 DNS 名稱。如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。使用者名稱的格式是 [網域]\[使用者名稱]，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\\testuser。如果您不是使用 HTTP**S**，請移除 URL 中的「s」。如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
 
 		https://ssrsnativecloud.cloudapp.net/Reports
 
@@ -705,4 +705,4 @@
 
 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)
 
-<!-----HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

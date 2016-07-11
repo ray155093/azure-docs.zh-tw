@@ -21,9 +21,8 @@
 
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-geo-restore.md)
-- [Azure 入口網站](sql-database-geo-restore-portal.md)
-- [PowerShell](sql-database-geo-restore-powershell.md)
+- [概觀](sql-database-recovery-using-backups.md)
+- [異地還原：PowerShell](sql-database-geo-restore-powershell.md)
 
 本文說明如何透過 Azure 入口網站，使用異地還原來將資料庫還原至新的伺服器。
 
@@ -39,14 +38,14 @@
 
 4.  指定資料庫名稱，您想要還原資料庫的目標伺服器，然後按一下 [建立]︰
 
+
 ## 後續步驟
 
-- 如需如何使用 Azure 入口網站，從異地備援備份還原 Azure SQL Database 的詳細步驟，請參閱[使用 Azure 入口網站進行異地還原](sql-database-geo-restore-portal.md)
-- 如需從異地備援備份還原 Azure SQL Database 的詳細資訊，請參閱[使用 PowerShell 進行異地還原](sql-database-geo-restore.md)
-- 如需如何從中斷復原的完整討論，請參閱[從中斷復原](sql-database-disaster-recovery.md)
+- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-## 其他資源
-
-- [商務持續性案例](sql-database-business-continuity-scenarios.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="Identity"
-   ms.date="04/20/2016"
+   ms.date="06/27/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：設計概念
@@ -37,7 +37,7 @@ sourceAnchor 屬性的定義是*在物件存留期間不會變更的屬性*。�
 
 - 長度小於 60 個字元
     - 系統會將 a-z、A-Z 或 0-9 以外的字元編碼並計為 3 個字元
-- 不包含特殊字元︰&#92; ! # $ % & * + / = ? ^ &#96; { } | ~ < > ( ) ' ; : , [ ] " @ \_
+- 不包含特殊字元︰&#92; ! # $ % & * + / = ? ^ &#96; { }| ~ < > ( ) ' ; : , [ ] " @ _
 - 必須是全域唯一的
 - 必須是字串、整數或二進位
 - 不應以使用者的名稱、這些變更為基礎
@@ -93,4 +93,4 @@ Azure AD Connect 會偵測您是否在無法路由傳送的網域環境中執行
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -311,7 +311,7 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 SQL Database 在 Azure 入口網站中提供兩種工具來分析及修正資料庫的效能問題：
 
 - [查詢效能深入解析](sql-database-query-performance.md)
-- [SQL Database 建議程式](sql-database-index-advisor.md)
+- [SQL Database 建議程式](sql-database-advisor.md)
 
 請參閱前面的連結，以取得關於這些工具及其使用方式的詳細資訊。接下來關於遺漏索引和查詢微調的兩節將會提供其他方式來手動找出並更正類似的效能問題。我們建議您先嘗試入口網站中的工具，以便更有效率地診斷並更正問題。若是特殊情況，請使用手動微調方法。
 
@@ -340,7 +340,7 @@ OLTP 資料庫效能中常見的問題與實體資料庫設計相關。資料庫
 
 Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常見遺漏索引狀況的功能。Azure SQL Database 內建的動態管理檢視 (DMV) 會查看查詢編譯，其中的索引會大幅減少執行查詢的估計成本。執行查詢期間，它會追蹤每個查詢計劃的執行頻率，以及執行查詢計劃和其中存在該索引之假設查詢計劃之間的落差。這樣可讓資料庫管理員快速推測哪些實體資料庫設計變更可能會改善指定資料庫和其實際工作負載的整體工作負載成本。
 
->[AZURE.NOTE] 在使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與 SQL Database Advisor](#query-performance-insight-and-index-advisor) 一節。
+>[AZURE.NOTE] 使用 DMV 來尋找遺漏索引之前，請先檢閱[查詢效能深入解析與 SQL Database 建議程式](#query-performance-insight-and-index-advisor)一節。
 
 下列查詢可用來評估潛在的遺漏索引。
 
@@ -368,7 +368,7 @@ Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常�
 
 在此範例中，建議使用下列索引。
 
-	CREATE INDEX missing_index_5006_5005 ON [dbo].[missingindex] \([col2])  
+	CREATE INDEX missing_index_5006_5005 ON [dbo].[missingindex] ([col2])  
 
 一旦建立之後，同一個 SELECT 陳述式現在會挑選不同的計劃，使用搜尋而不是掃描，更有效率地執行，如同下列查詢計劃所示。
 
@@ -507,4 +507,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -19,7 +19,7 @@
 
 # 如何搭配swarm 使用 docker
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 本主題將示範一個非常簡單的方式來搭配使用 [docker](https://www.docker.com/) 和 [swarm](https://github.com/docker/swarm)，以便在 Azure 上建立由 swarm 管理的叢集。它會在 Azure 中建立四個虛擬機器，一個用來做為 swarm 管理員，其餘三個則做為 docker 主機叢集的一部分。當您完成時，可以使用 swarm 查看叢集，然後開始在其上使用 docker。此外，本主題中的 Azure CLI 呼叫會使用服務管理 (asm) 模式。
@@ -137,4 +137,4 @@
 [docker-machine-azure]: virtual-machines-linux-docker-machine.md
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

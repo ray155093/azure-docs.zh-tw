@@ -4,9 +4,7 @@
 
 1. 在入口網站中，選取 [虛擬機器]，然後選取 SQL Server VM。
 
-2. 按一下 [所有設定] 連結。
-
-3. 展開 [網路介面]。
+3. 然後選取 [網路介面]。
 
 	![網路介面](./media/virtual-machines-sql-server-connection-steps/rm-network-interface.png)
 
@@ -20,7 +18,7 @@
 
 5. 按一下 [新增] 按鈕。
 
-6. 提供 SQLServerPublicTraffic 的 [名稱]。
+6. 提供 SQLServerPublicTraffic 做為 [名稱]。
 
 7. 將 [通訊協定] 變更為 [TCP]。
 
@@ -32,4 +30,4 @@
 
 9. 按一下 [確定] 以儲存 VM 的規則。
 
-<!---HONumber=AcomDC_0107_2016-->
+<!---HONumber=AcomDC_0629_2016-->

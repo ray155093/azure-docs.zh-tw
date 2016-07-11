@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/28/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB 指令碼總管建立和執行預存程序、觸發程序和使用者定義函式
@@ -119,4 +119,4 @@ Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存�
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -56,10 +56,10 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 [本節](#What-SSH-and-key-creation-programs-do-you-need)上方列出數個公用程式，它們包含適用於 Windows 的 `ssh-keygen` 和 `openssl`。以下列出一些範例：
 
-###使用 GitHub for Windows###
+###使用 Git for Windows###
 
-1.	從下列位置下載並安裝 GitHub for Windows：[https://git-for-windows.github.io/](https://git-for-windows.github.io/)
-2.	從 [開始] 功能表 > [所有應用程式] > [GitHub] 執行 Git Bash
+1.	從下列位置下載並安裝 Git for Windows：[https://git-for-windows.github.io/](https://git-for-windows.github.io/)
+2.	從 [開始] 功能表 > [所有應用程式] > [Git Shell] 執行 Git Bash
 
 > [AZURE.NOTE] 當您執行上述的 `openssl` 命令時，可能會遇到下列錯誤：
 
@@ -166,4 +166,4 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 5.	按一下 [開啟] 以連線到虛擬機器。
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

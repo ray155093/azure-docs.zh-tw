@@ -2,17 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 Sprinklr 整合 | Microsoft Azure" 
     description="了解如何使用 Sprinklr 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="06/29/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Sprinklr 整合
   
@@ -38,7 +38,7 @@
 
 ###若要啟用 Sprinklr 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-sprinklr-tutorial/IC700993.png "Active Directory")
 
@@ -52,7 +52,7 @@
 
     ![新增應用程式](./media/active-directory-saas-sprinklr-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-sprinklr-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Sprinklr] 應用程式整合頁面上，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Sprinklr] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782903.png "設定單一登入")
 
@@ -107,21 +107,21 @@
     1.  在 [名稱] 文字方塊中，輸入您的組態名稱 (例如：*WAADSSOTest*)。
     2.  選取 [啟用]。
     3.  選取 [使用新的 SSO 憑證]。
-    4.  從您下載的憑證建立 **base-64 編碼**檔案。  
+    4.  從您下載的憑證建立 **base-64 編碼**檔案。
 
-        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     5.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後貼到 [識別提供者憑證] 文字方塊中。
-    6.  在 Azure 入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [識別提供者識別碼] 值，然後將它貼至 [實體 ID] 文字方塊中。
-    7.  在 Azure 入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [識別提供者登入 URL] 文字方塊中。
-    8.  在 Azure 入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [識別提供者登出 URL] 文字方塊中。
+    6.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [識別提供者識別碼] 值，然後將它貼至 [實體 ID] 文字方塊中。
+    7.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [識別提供者登入 URL] 文字方塊中。
+    8.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [識別提供者登出 URL] 文字方塊中。
     9.  在 [SAML 使用者識別碼類型] 選取 [判斷提示包含使用者的 sprinklr.com 使用者名稱]。
     10. 在 [SAML 使用者識別碼位置] 選取 [使用者識別碼位於 Subject 陳述式的 NameIdentifier 元素中]。
     11. 關閉 [儲存]。
 
         ![SAML](./media/active-directory-saas-sprinklr-tutorial/IC782911.png "SAML")
 
-10. 在 Azure AD 入口網站上，選取 [單一登入組態確認]，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782912.png "設定單一登入")
 
@@ -155,7 +155,7 @@
     4.  選取 [使用者類型]。
     5.  按一下 [更新]。
 
-    >[AZURE.IMPORTANT]必須選取 [密碼已停用]，才能讓使用者透過識別提供者登入。
+    >[AZURE.IMPORTANT] 必須選取 [密碼已停用]，才能讓使用者透過識別提供者登入。
 
 6.  請移至 [角色]，然後執行下列步驟：
 
@@ -164,7 +164,7 @@
     1.  在 [全域] 清單中選取 [所有權限]。
     2.  按一下 [更新]。
 
->[AZURE.NOTE]您可以使用任何其他的 Sprinklr 使用者帳戶建立工具或 Sprinklr 提供的 API 來佈建 Azure AD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 Sprinklr 使用者帳戶建立工具或 Sprinklr 提供的 API 來佈建 Azure AD 使用者帳戶。
 
 ##指派使用者
   
@@ -172,7 +172,7 @@
 
 ###若要將使用者指派到 Sprinklr，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Sprinklr] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -184,4 +184,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資料，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0629_2016-->

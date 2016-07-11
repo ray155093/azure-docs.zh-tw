@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="06/24/2016"
     ms.author="robmcm"/>
 
 # 如何搭配使用 Azure 從屬外掛程式與 Jenkins 連續整合
@@ -212,4 +212,4 @@ Jenkins 會隨即使用上一節建立的範本來建立從屬節點，並執行
 [checkpoint general template config]: ./media/virtual-machines-azure-slave-plugin-for-jenkins/jenkins-slave-template-general-configuration.png
 [OS Image list sample]: ./media/virtual-machines-azure-slave-plugin-for-jenkins/jenkins-os-family-list-sample.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

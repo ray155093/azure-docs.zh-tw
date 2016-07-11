@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/27/2016"
 	ms.author="daleche"/>
 
 
@@ -429,7 +429,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 
 下列 EntLib60 類別特別有助於重試邏輯。這些全部都在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中，或進一步位於其下：
 
-在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中：
+在命名空間 Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling 中：
 
 - **RetryPolicy** 類別
  - **ExecuteAction** 方法
@@ -556,11 +556,11 @@ public bool IsTransient(Exception ex)
 
 ## 後續步驟
 
-- 如需疑難排解其他常見的 Azure SQL Database 連接問題，請造訪[疑難排解 Azure SQL Database 的常見連接問題](sql-database-troubleshoot-common-connection-issues.md)。
+- 如需針對其他常見的 Azure SQL Database 連接問題進行疑難排解，請造訪[針對 Azure SQL Database 連線問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md)。
 
 - [SQL Server 連接集區 (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx)
 
 
 - [*重試*是 Apache 2.0 授權的一般用途重試文件庫，以 **Python** 撰寫，幾乎可對任何案例加入重試作業。](https://pypi.python.org/pypi/retrying)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -106,7 +106,7 @@
 
 	這個程式碼會經歷建立 Data Lake Store 和 Data Lake Analytics 帳戶、在存放區中建立檔案、執行作業、取得作業狀態、下載作業輸出及最後刪除帳戶的程序。
 
->[AZURE.NOTE] 目前沒有任何關於使用 Azure Data Lake 服務的已知問題。如果範例應用程式已中斷或發生錯誤，您可能需要手動刪除指令碼所建立的 Data Lake Store 和 Data Lake Analytics 帳戶。如果您不熟悉入口網站，[使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md) 指南可協助您開始。
+	>[AZURE.NOTE] 目前沒有任何關於使用 Azure Data Lake 服務的已知問題。如果範例應用程式已中斷或發生錯誤，您可能需要手動刪除指令碼所建立的 Data Lake Store 和 Data Lake Analytics 帳戶。如果您不熟悉入口網站，[使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md) 指南可協助您開始。
 
 
 		package com.company;
@@ -180,7 +180,10 @@
 		        WaitForNewline("Accounts displayed.", "Creating files.");
 		
 		        // Create a file in Data Lake Store: input1.csv
-		        CreateFile("/input1.csv", "123,abc", true);
+		        // TODO: these change order in the next patch
+		        byte[] bytesContents = "123,abc".getBytes();
+		        _adlsFileSystemClient.getFileSystemOperations().create(_adlsAccountName, "/input1.csv", bytesContents, true);
+		
 		        WaitForNewline("File created.", "Submitting a job.");
 		
 		        // Submit a job to Data Lake Analytics
@@ -203,10 +206,11 @@
 		        WaitForNewline("File deleted.", "Deleting account.");
 		
 		        // Delete account
-		        DeleteAccounts();
+		        _adlsClient.getAccountOperations().delete(_resourceGroupName, _adlsAccountName);
+		        _adlaClient.getAccountOperations().delete(_resourceGroupName, _adlaAccountName);
 		        WaitForNewline("Account deleted.", "DONE.");
-			}
-	
+		    }
+		
 		    //Set up clients
 		    public static void SetupClients(ServiceClientCredentials creds)
 		    {
@@ -224,18 +228,14 @@
 		    {
 		        if (nextAction == null)
 		            nextAction = "";
+		
+		        System.out.println(reason + "\r\nPress ENTER to continue...");
+		        try{System.in.read();}
+		        catch(Exception e){}
+		
 		        if (!nextAction.isEmpty())
 		        {
-		            System.out.println(reason + "\r\nPress ENTER to continue...");
-		            try{System.in.read();}
-		            catch(Exception e){}
 		            System.out.println(nextAction);
-		        }
-		        else
-		        {
-		            System.out.println(reason + "\r\nPress ENTER to continue...");
-		            try{System.in.read();}
-		            catch(Exception e){}
 		        }
 		    }
 		
@@ -244,7 +244,6 @@
 		        // Create ADLS account
 		        DataLakeStoreAccount adlsParameters = new DataLakeStoreAccount();
 		        adlsParameters.setLocation(_location);
-		
 		
 		        _adlsClient.getAccountOperations().create(_resourceGroupName, _adlsAccountName, adlsParameters);
 		
@@ -267,48 +266,20 @@
 		        adlaParameters.setName(_adlaAccountName);
 		        adlaParameters.setProperties(adlaProperties);
 		
-				/* If this line generates an error message like "The deep update for property 'DataLakeStoreAccounts' is not supported", please delete the ADLS and ADLA accounts via the portal and re-run your script. */
- 
+		            /* If this line generates an error message like "The deep update for property 'DataLakeStoreAccounts' is not supported", please delete the ADLS and ADLA accounts via the portal and re-run your script. */
+		
 		        _adlaClient.getAccountOperations().create(_resourceGroupName, _adlaAccountName, adlaParameters);
 		    }
 		
-		    // Create file
-		    public static void CreateFile(String path) throws IOException, CloudException {
-		        _adlsFileSystemClient.getFileSystemOperations().create(path, _adlsAccountName);
-		    }
-		
-		    // Create file with contents
+		    //todo: this changes in the next version of the API
 		    public static void CreateFile(String path, String contents, boolean force) throws IOException, CloudException {
 		        byte[] bytesContents = contents.getBytes();
 		
-		        _adlsFileSystemClient.getFileSystemOperations().create(path, _adlsAccountName, bytesContents, force);
+		        _adlsFileSystemClient.getFileSystemOperations().create(_adlsAccountName, path, bytesContents, force);
 		    }
 		
-		    // Append to file
-		    public static void AppendToFile(String path, String contents) throws IOException, CloudException {
-		        byte[] bytesContents = contents.getBytes();
-		
-		        _adlsFileSystemClient.getFileSystemOperations().append(path, _adlsAccountName, bytesContents);
-		    }
-		
-		    // Concatenate files
-		    public static void ConcatenateFiles(List<String> srcFilePaths, String destFilePath) throws IOException, CloudException {
-		        _adlsFileSystemClient.getFileSystemOperations().concat(destFilePath, _adlsAccountName, srcFilePaths);
-		    }
-		
-		    // Delete concatenated file
 		    public static void DeleteFile(String filePath) throws IOException, CloudException {
 		        _adlsFileSystemClient.getFileSystemOperations().delete(filePath, _adlsAccountName);
-		    }
-		
-		    // Get file or directory info
-		    public static FileStatusProperties GetItemInfo(String path) throws IOException, CloudException {
-		        return _adlsFileSystemClient.getFileSystemOperations().getFileStatus(path, _adlsAccountName).getBody().getFileStatus();
-		    }
-		
-		    // List files and directories
-		    public static List<FileStatusProperties> ListItems(String directoryPath) throws IOException, CloudException {
-		        return _adlsFileSystemClient.getFileSystemOperations().listFileStatus(directoryPath, _adlsAccountName).getBody().getFileStatuses().getFileStatus();
 		    }
 		
 		    // Download file
@@ -356,13 +327,6 @@
 		        return jobId;
 		    }
 		
-		    // Submit a U-SQL job by providing a path to the script
-		    public static UUID SubmitJobByPath(String scriptPath, String jobName) throws IOException, CloudException {
-		        byte[] scriptFileContents = Files.readAllBytes(Paths.get(scriptPath));
-		        String script = new String(scriptFileContents, Charset.defaultCharset());
-		        return SubmitJobByScript(script, jobName);
-		    }
-		
 		    // Wait for job completion
 		    public static JobResult WaitForJob(UUID jobId) throws IOException, CloudException {
 		        JobInformation jobInfo = _adlaJobClient.getJobOperations().get(_adlaAccountName, jobId).getBody();
@@ -378,17 +342,6 @@
 		        JobInformation jobInfo = _adlaJobClient.getJobOperations().get(_adlaAccountName, jobId).getBody();
 		        return jobInfo.getState().toValue();
 		    }
-		
-		    // List jobs
-		    public static List<JobInformation> ListJobs() throws IOException, CloudException {
-		        return _adlaJobClient.getJobOperations().list(_adlaAccountName).getBody();
-		    }
-		
-		    // Delete accounts
-		    public static void DeleteAccounts() throws InterruptedException, CloudException, IOException {
-		        _adlsClient.getAccountOperations().delete(_resourceGroupName, _adlsAccountName);
-		        _adlaClient.getAccountOperations().delete(_resourceGroupName, _adlaAccountName);
-		    }
 		}
 
 6. 請依照提示來執行並完成應用程式。
@@ -403,4 +356,4 @@
 - 針對管理工作，請參閱[使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

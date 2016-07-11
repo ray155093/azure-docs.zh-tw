@@ -24,7 +24,7 @@
 
 [Azure 進階儲存體](../storage/storage-premium-storage.md)是新一代儲存體，可提供低延遲和高輸送量 IO。它最適合用於需要大量 IO 的重要工作負載，例如，IaaS [虛擬機器](https://azure.microsoft.com/services/virtual-machines/)上的 SQL Server。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 本文提供移轉執行 SQL Server 的虛擬機器來執行進階儲存體的規劃與指導方針。這包括 Azure 基礎結構 (網路功能、儲存體) 和客體 Windows VM 步驟。[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的範例示範一個全方位的端對端移轉，說明如何透過 PowerShell 移動更大規模的 VM，來利用 改善的本機 SSD 儲存體。
@@ -96,7 +96,7 @@
 
 ### VHD 快取設定
 
-在建立屬於進階儲存體帳戶一部分的磁碟間的主要差異在於磁碟快取設定。針對 SQL Server 資料磁碟區磁碟，建議使用 [讀取快取]****。針對交易記錄磁碟區，應該將磁碟快取設定設為 [無]****。這與適用於標準儲存體帳戶的建議不同。
+在建立屬於進階儲存體帳戶一部分的磁碟間的主要差異在於磁碟快取設定。針對 SQL Server 資料磁碟區磁碟，建議使用 [讀取快取]。針對交易記錄磁碟區，應該將磁碟快取設定設為 [無]。這與適用於標準儲存體帳戶的建議不同。
 
 一旦連結 VHD 之後，就無法更改快取設定。您需要中斷連結 VHD，然後使用更新的快取設定重新連結。
 
@@ -279,7 +279,7 @@
 
 
 #### 步驟 3：使用現有的映像
-您可以使用現有的映像。或者，您可以[取得現有機器的映像](virtual-machines-windows-classic-capture-image.md)。請注意，您取得映像的機器不一定是 DS* 機器。一旦取得映像之後，下列步驟示範如何使用 **Start-AzureStorageBlobCopy** PowerShell commandlet，將它複製到進階儲存體帳戶。
+您可以使用現有的映像。或者，您可以[取得現有機器的映像](virtual-machines-windows-classic-capture-image.md)。請注意，您取得映像的機器並不需要是 DS* 機器。一旦取得映像之後，下列步驟示範如何使用 **Start-AzureStorageBlobCopy** PowerShell commandlet，將它複製到進階儲存體帳戶。
 
     #Get storage account keys:
     #Standard Storage account
@@ -409,8 +409,8 @@
 1. 將新節點新增到叢集，然後執行完整驗證。
 1. 驗證成功之後，啟動所有 SQL Server 服務。
 1. 備份交易記錄，然後還原使用者資料庫。
-1. 將新節點新增到 Always On 可用性群組，並使複寫可以**同步**。
-1. 根據[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的多站台範例，透過適用於 Always On 的 PowerShell，來新增新雲端服務 ILB/ELB 的 IP 位址資源。在 Windows 叢集中，將 [IP 位址] 資源的 [可能的擁有者] 設為之前的新節點。請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的＜在同一個子網路上新增 IP 位址資源＞。
+1. 將新節點新增到 AlwaysOn 可用性群組，並使複寫可以**同步**。
+1. 根據[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的多站台範例，透過適用於 AlwaysOn 的 PowerShell 新增新雲端服務 ILB/ELB 的 IP 位址資源。在 Windows 叢集中，將 [IP 位址] 資源的 [可能的擁有者] 設為之前的新節點。請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的＜在同一個子網路上新增 IP 位址資源＞。
 1. 容錯移轉到其中一個新節點。
 1. 使新節點成為自動容錯移轉夥伴並測試容錯移轉。
 1. 從可用性群組移除原始節點。
@@ -485,7 +485,7 @@
 - 在此情況下，應使用 Azure **Start-AzureStorageBlobCopy** commandlet (這是非同步的)。複製完成時沒有 SLA。複製的時間各有不同，儘管這取決於在佇列中等候的時間，但它還是會根據要傳輸的資料量來決定。如果即將傳輸到另一個 Azure 資料中心 (該資料中心支援另一個區域的進階儲存體)，則會增加複製時間。如果您只有 2 個節點，請考慮可能發生複製所需時間比測試時間還長的移轉案例。這可能包括下列概念。
 	- 在進行具有議定之停機時間的移轉之前，為 HA 新增第 3 個 SQL Server 臨時節點。
 	- 在 Azure 排定的維護期間以外執行移轉。
-	- 確保您已正確設定叢集仲裁。  
+	- 確保您已正確設定叢集仲裁。
 
 ##### 高階步驟
 
@@ -609,7 +609,7 @@
     $destcloudsvc = "danNewSvcAms"
     New-AzureService $destcloudsvc -Location $location
 
-#### 步驟 2：提高資源上允許發生的失敗數 <Optional>
+#### 步驟 2：提高資源上允許發生的失敗數 (選擇性)
 在隸屬於 Always On 可用性群組的特定資源上有下列限制：可以在一段期間內發生的失敗次數，而叢集服務將嘗試在其中重新啟動資源群組。儘管您正在逐步執行此程序，但還是建議您提高此限制， 因為，如果您不會手動進行容錯移轉，以及藉由關閉機器來觸發容錯移轉，就會更接近這個限制。
 
 明智的做法是將容錯度加倍，若要在容錯移轉叢集管理員中執行這個動作，請移至 Always On 資源群組的 [屬性]：
@@ -618,7 +618,7 @@
 
 將 [最大失敗數目] 變更為 6。
 
-#### 步驟 3：新增叢集群組的 IP 位址資源 <Optional>
+#### 步驟 3：新增叢集群組的 IP 位址資源 (選擇性)
 
 如果您只有一個適用於叢集群組的 IP 位址且已將此位址指派給雲端子網路，請注意，如果您不小心在該網路上使雲端中的所有叢集節點離線，則叢集 IP 資源和叢集網路名稱將無法變成上線狀態。發生這個情況時，將阻止更新其他叢集資源。
 
@@ -1149,4 +1149,4 @@
 [24]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_14.png
 [25]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_15.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

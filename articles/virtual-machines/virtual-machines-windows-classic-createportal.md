@@ -19,7 +19,7 @@
 
 # 建立一個執行 Windows 的自訂虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 [AZURE.INCLUDE [virtual-machines-common-classic-createportal](../../includes/virtual-machines-common-classic-createportal.md)]
 
@@ -30,4 +30,4 @@
 
 您也可以使用傳統入口網站[建立執行 Linux 的自訂虛擬機器](virtual-machines-linux-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

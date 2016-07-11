@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="05/03/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #使用 REST API 管理媒體服務實體
@@ -25,11 +25,11 @@
 
 Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 上。因此，您可以使用與任何其他 OData 服務上的相同方式，新增、查詢、更新和刪除實體。在適用時會呼叫例外狀況。如需 OData 的詳細資訊，請參閱[開放式資料通訊協定文件](http://www.odata.org/documentation/)。
 
-- 加入實體 
-- 查詢實體 
+- 加入實體
+- 查詢實體
 - 透過實體的大型集合列舉
-- 更新實體 
-- 刪除實體 
+- 更新實體
+- 刪除實體
 
 >[AZURE.NOTE] 使用媒體服務 REST API 時，適用下列考量事項：
 >
@@ -175,4 +175,4 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

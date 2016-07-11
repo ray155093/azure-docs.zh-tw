@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="05/04/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 # 將自訂 Java Web 應用程式上傳至 Azure
@@ -30,7 +30,7 @@
 - 您應停用所有的接聽連接埠 (單一 HTTP 接聽程式除外)。在 Tomcat 中，這包括了關機、HTTPS 和 AJP 連接埠。
 - 僅需針對 IPv4 流量設定容器。
 - 組態中必須設定應用程式的 **startup** 命令。
-- 要求目錄具備寫入權限的應用程式必須位於 Azure Web 應用程式的內容目錄，也就是 **D:\\home**。環境變數 `HOME` 是指 D:\\home。  
+- 要求目錄具備寫入權限的應用程式必須位於 Azure Web 應用程式的內容目錄，也就是 **D:\\home**。環境變數 `HOME` 是指 D:\\home。
 
 您可以在 web.config 檔案中視需要設定環境變數。
 
@@ -257,4 +257,4 @@ App Service Web Apps 支援 Liferay。因為 Liferay 需要大量記憶體，Web
 <!-- External Links -->
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

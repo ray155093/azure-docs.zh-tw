@@ -7,8 +7,8 @@
 | columnDelimiter | 在檔案中做為資料行分隔符號的字元。目前只允許一個字元。此標記是選擇性的。預設值是逗號 (,)。 | 否 |
 | rowDelimiter | 在檔案中做為資料列分隔符號的字元。目前只允許一個字元。此標記是選擇性的。預設值是下列任一項：[“\\r\\n”, “\\r”,” \\n”]。 | 否 |
 | escapeChar | 用來逸出內容中顯示之資料行分隔符號的特殊字元。此標記是選擇性的。沒有預設值。您為此屬性指定的字元不得超過一個。<br/><br/>例如，如果您以逗號 (,) 作為資料行分隔符號，但您想要在文字中使用逗號字元 (例如：“Hello, world”)，您可以定義 ‘$’ 作為逸出字元，並在來源中使用字串 “Hello$, world”。<br/><br/>請注意，您無法同時為資料表指定 escapeChar 和 quoteChar。 | 否 | 
-| quoteChar | 用來引用字串值的特殊字元。引號字元內的資料行和資料列分隔符號會被視為字串值的一部分。此標記是選擇性的。沒有預設值。您為此屬性指定的字元不得超過一個。<br/><br/>例如，如果您以逗號 (,) 做為資料行分隔符號，但您想要在文字中使用逗號字元 (例如：<Hello  world>)，您可以定義 ‘"’ 做為引用字元，並在來源中使用字串 <"Hello, world">。這個屬性同時適用於輸入和輸出資料表。<br/><br/>請注意，您無法同時為資料表指定 escapeChar 和 quoteChar。 | 否 |
-| nullValue | 用來代表 Blob 檔案內容中 null 值的字元。此標記是選擇性的。預設值為 “\\N”。<br/><br/>例如，根據上述範例，Blob 中的 “NaN” 會在複製到 SQL Server 時轉換成 Null 值。 | 否 |
+| quoteChar | 用來引用字串值的特殊字元。引號字元內的資料行和資料列分隔符號會被視為字串值的一部分。此標記是選擇性的。沒有預設值。您為此屬性指定的字元不得超過一個。<br/><br/>例如，如果您以逗號 (,) 做為資料行分隔符號，但您想要在文字中使用逗號字元 (例如：<Hello, world>)，您可以定義 ‘"’ 做為引用字元，並在來源中使用字串 <"Hello, world">。這個屬性同時適用於輸入和輸出資料表。<br/><br/>請注意，您無法同時為資料表指定 escapeChar 和 quoteChar。 | 否 |
+| nullValue | 用來代表 Blob 檔案內容中 null 值的字元。此標記是選擇性的。預設值為 “\\N” 和 “NULL”。<br/><br/>例如，根據下面範例，Blob 中的 “NaN” 會在複製到 SQL Server 時轉換成 Null 值。 | 否 |
 | encodingName | 指定編碼名稱。如需有效編碼名稱的清單，請參閱：[Encoding.EncodingName 屬性](https://msdn.microsoft.com/library/system.text.encoding.aspx)。例如：windows-1250 或 shift\_jis。預設值為 UTF-8。 | 否 | 
 
 #### TextFormat 範例
@@ -49,7 +49,7 @@
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
 | filePattern | 表示每個 JSON 檔案中儲存的資料模式。允許的值為︰**setOfObjects** 和 **arrayOfObjects**。**預設**值為：**setOfObjects**。如需這些模式的詳細資料，請參閱下列各節。| 否 |
-| encodingName | 指定編碼名稱。如需有效編碼名稱的清單，請參閱：[Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) 屬性。例如：windows-1250 或 shift\_jis。**預設**值為 **UTF-8**。 | 否 | 
+| encodingName | 指定編碼名稱。如需有效編碼名稱的清單，請參閱：[Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) 屬性。例如：windows-1250 或 shift\_jis。**預設**值為：**UTF-8**。 | 否 | 
 | nestingSeparator | 用來分隔巢狀層級的字元。**預設**值為 **. (點)**。 | 否 | 
 
 
@@ -214,11 +214,11 @@ JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的�
 #### 支援的 JSON 結構
 請注意：
 
-- 每個含有名稱/值組集合的物件將會對應到資料 (表格格式) 的某一個資料列。物件可以是巢狀的，而您可以定義預設要在資料集中使用巢狀分隔字元 (.) 來簡維結構的方式。如需範例，請參閱上述的 [JsonFormat 範例](#jsonformat-example)一節。  
-- 如果未在 Data Factory 資料集中定義結構，複製活動即會偵測到第一個物件的結構描述，並簡維整個物件。 
+- 每個含有名稱/值組集合的物件將會對應到資料 (表格格式) 的某一個資料列。物件可以是巢狀的，而您可以定義預設要在資料集中使用巢狀分隔字元 (.) 來簡維結構的方式。如需範例，請參閱上述的 [JsonFormat 範例](#jsonformat-example)一節。
+- 如果未在 Data Factory 資料集中定義結構，複製活動即會偵測到第一個物件的結構描述，並簡維整個物件。
 - 如果 JSON 輸入具有陣列，複製活動就會將整個陣列值轉換為字串。您可以使用[資料行對應或篩選](#column-mapping-with-translator-rules)，選擇略過它。
 - 如果相同層級中有重複的名稱，複製活動將會挑選最後一個。
-- 屬性名稱會區分大小寫。名稱相同但大小寫不同的兩個屬性會被視為兩個不同的屬性。 
+- 屬性名稱會區分大小寫。名稱相同但大小寫不同的兩個屬性會被視為兩個不同的屬性。
 
 ### 指定 OrcFormat
 如果格式設為 OrcFormat，您不需要在 typeProperties 區段內的 Format 區段中指定任何屬性。範例：
@@ -228,10 +228,11 @@ JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的�
 	    "type": "OrcFormat",
 	}
 
-請注意：
- 
--	如果您要在內部部署和雲端資料儲存區之間使用 ORC 格式複製資料，並且不要依原樣從來源複製 ORC 檔案到接收，則需要在閘道機器上安裝 JRE (Java 執行階段環境)。 
--	不支援複雜資料類型 (STRUCT、MAP、LIST、UNION)
--	ORC 檔案有 3 種[壓縮相關選項](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)︰NONE、ZLIB、SNAPPY。Data Factory 支援以任何上述壓縮格式從 ORC 檔案讀取資料。它會使用中繼資料裡的壓縮轉碼器來讀取資料。不過，寫入 ORC 檔案時，Data Factory 會選擇 ZLIB，這是 ORC 的預設值。此時沒有任何選項可覆寫這個行為。 
+> [AZURE.IMPORTANT] 如果您要在內部部署和雲端資料儲存區之間使用 ORC 格式複製資料，並且不要依原樣從來源複製 ORC 檔案到接收，則需要在將用來把您的資料轉變成正確格式的閘道機器上安裝 JRE 8 (Java 執行階段環境)。請注意，64 位元閘道需要 64 位元 JRE，而 32 位元閘道需要 32 位元 JRE。您可以從[這裡](http://go.microsoft.com/fwlink/?LinkId=808605)找到這兩個版本，請選擇正確版本。
 
-<!---HONumber=AcomDC_0525_2016-->
+請注意：
+
+-	不支援複雜資料類型 (STRUCT、MAP、LIST、UNION)
+-	ORC 檔案有 3 種[壓縮相關選項](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)︰NONE、ZLIB、SNAPPY。Data Factory 支援以任何上述壓縮格式從 ORC 檔案讀取資料。它會使用中繼資料裡的壓縮轉碼器來讀取資料。不過，寫入 ORC 檔案時，Data Factory 會選擇 ZLIB，這是 ORC 的預設值。此時沒有任何選項可覆寫這個行為。
+
+<!---HONumber=AcomDC_0629_2016-->

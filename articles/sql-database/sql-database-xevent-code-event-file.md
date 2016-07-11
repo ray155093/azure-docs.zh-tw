@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/08/2016" 
+	ms.date="06/24/2016" 
 	ms.author="genemi"/>
 
 
@@ -292,7 +292,7 @@ PowerShell 指令碼在結束時列印出幾個具名的值。您必須編輯 Tr
 &nbsp;
 
 
-> [AZURE.WARNING] 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須移除前置 '?'。
+> [AZURE.WARNING] 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須移除前置 '?'。否則您的動作可能會遭到安全性封鎖。
 
 
 &nbsp;
@@ -559,9 +559,17 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 </event>
 ```
 
+&nbsp;
 
 
+上述 TRANSACT-SQL 指令碼使用下列系統函數讀取 event\_file：
 
+- [sys.fn\_xe\_file\_target\_read\_file (Transact-SQL)](http://msdn.microsoft.com/library/cc280743.aspx)
+
+
+您可以在下列文章中取得進階選項的說明，這些選項可用來檢視擴充事件的資料：
+
+- [進一步檢視擴充事件的目標資料](http://msdn.microsoft.com/library/mt752502.aspx)
 
 &nbsp;
 
@@ -585,20 +593,15 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 ## 詳細資訊
 
 
-Azure SQL Database 上擴充事件的主要主題是：
-
-- [SQL Database 中的擴充事件](sql-database-xevent-db-diff-from-svr.md) - 是 Azure SQL Database 上擴充事件的主要主題。
- - 對比 Azure SQL Database 與 Microsoft SQL Server 之間擴充事件的不同層面。
-
-
-- [SQL Database 中擴充事件的環形緩衝區目標程式碼](sql-database-xevent-code-ring-buffer.md) - 提供快速又簡單的相關程式碼範例，比較適合簡單的測試，但是對於較大的活動則較不穩定。
-
-
 如需 Azure 儲存體服務中帳戶和容器的詳細資訊，請參閱：
 
 - [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
 - [命名和參考容器、Blob 及中繼資料](http://msdn.microsoft.com/library/azure/dd135715.aspx)
 - [使用根容器](http://msdn.microsoft.com/library/azure/ee395424.aspx)
+- [第 1 課：在 Azure 容器上建立預存的存取原則和共用存取簽章](http://msdn.microsoft.com/library/dn466430.aspx)
+    - [第 2 課：使用共用存取簽章建立 SQL Server 認證](http://msdn.microsoft.com/library/dn466435.aspx)
+
+
 
 
 <!--
@@ -607,4 +610,4 @@ Image references.
 
 [30_powershell_ise]: ./media/sql-database-xevent-code-event-file/event-file-powershell-ise-b30.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

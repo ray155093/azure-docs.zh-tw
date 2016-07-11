@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
 #如何建立 PHP Web 和背景工作角色
@@ -211,4 +211,4 @@ Azure 模擬器所提供的本機環境，可讓您在 Azure 應用程式部署�
 [sqlsrv drivers]: http://php.net/sqlsrv
 []: http://go.microsoft.com/fwlink/?LinkID=239648
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

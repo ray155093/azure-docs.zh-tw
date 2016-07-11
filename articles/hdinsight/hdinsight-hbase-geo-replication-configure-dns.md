@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="03/04/2016"
+   ms.date="06/28/2016"
    ms.author="jgao"/>
 
 # 設定兩個 Azure 虛擬網路之間的 DNS
@@ -21,7 +21,7 @@
 > [AZURE.SELECTOR]
 - [設定 VPN 連線](../hdinsight-hbase-geo-replication-configure-VNETs.md)
 - [設定 DNS](hdinsight-hbase-geo-replication-configure-DNS.md)
-- [設定 HBase 複寫](hdinsight-hbase-geo-replication.md) 
+- [設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
 
 
 了解如何新增與設定 Azure 虛擬網路的 DNS 伺服器，以處理虛擬網路內部與虛擬網路之間的名稱解析。
@@ -67,8 +67,8 @@
 2.	選擇 [**Windows Server 2012 R2 Datacenter**]。
 3.	輸入：
 	- **虛擬機器名稱**：Contoso-DNS-EU
-	- **新的使用者名稱**： 
-	- **新密碼**： 
+	- **新的使用者名稱**：
+	- **新密碼**：
 4.	輸入：
 	- **雲端服務**：建立新的雲端服務
 	- **區域/同質群組/虛擬網路**：(選取 [Contoso-VNet-EU])
@@ -77,8 +77,8 @@
 	
 		雲端服務名稱會與虛擬機器名稱相同。在此例中是 Contoso-DNS-EU。對於後續的虛擬機器，我可以選擇使用相同的雲端服務。相同雲端服務下的所有虛擬機器會共用相同的虛擬網路和網域尾碼。
 
-		儲存體帳戶用來儲存虛擬機器映像檔。 
-	- **端點**：(向下捲動並選取 [**DNS**]) 
+		儲存體帳戶用來儲存虛擬機器映像檔。
+	- **端點**：(向下捲動並選取 [**DNS**])
 
 建立虛擬機器之後，請找出內部 IP 和外部 IP。
 
@@ -105,7 +105,7 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 **設定兩個虛擬機器的靜態 IP 位址**
 
 1. 開啟 Windows PowerShell ISE。
-2. 執行下列 cmdlet。  
+2. 執行下列 cmdlet。
 
 		Add-AzureAccount
 		Select-AzureSubscription [YourAzureSubscriptionName]
@@ -122,7 +122,7 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 
 **新增 Contoso-DNS-EU 的 DNS 伺服器角色**
 
-1.	從 Azure 傳統入口網站，按一下左側的 [虛擬機器]。 
+1.	從 Azure 傳統入口網站，按一下左側的 [虛擬機器]。
 2.	按一下 [**Contoso-DNS-EU**]。
 3.	按一下上方的 [**儀表板**]。
 4.	按一下底部的 [**連接**]，並依照指示透過 RDP 連接到虛擬機器。
@@ -134,7 +134,7 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 7.	選取您的 DNS 虛擬機器 (它應該已反白顯示)，然後按 [**下一步**]。
 8.	核取 [**DNS 伺服器**]。
 9.	按一下 [**新增功能**]，然後按一下 [**繼續**]。
-10.	按三次 [**下一步**]，然後按一下 [**安裝**]。 
+10.	按三次 [**下一步**]，然後按一下 [**安裝**]。
 
 **新增 Contoso-DNS-US 的 DNS 伺服器角色**
 
@@ -184,7 +184,7 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 1. RDP 到 **Contoso-DNS-EU**。
 2. 開啟 Windows PowerShell 主控台或命令提示字元。
 3. 執行 **ipconfig**，並記下**連線特定 DNS 尾碼**。
-4. 請勿關閉 RDP 工作階段，您仍然需要它。 
+4. 請勿關閉 RDP 工作階段，您仍然需要它。
 5. 重複相同步驟來找出 **Contoso-DNS-US** 的**連線特定 DNS 尾碼**。
 
 
@@ -199,7 +199,7 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 	- **主要伺服器的 IP 位址**：輸入 10.2.0.4，也就是 Contoso-DNS-US 的 IP 位址。
 6.	按下 **ENTER** 鍵，然後按一下 [**確定**]。現在您可以從 Contoso-DNS-EU 解析 Contoso-DNS-US 的 IP 位址。
 7.	重複這些步驟，以將 DNS 轉寄站新增至附帶下列值之 Contoso-DNS-US 虛擬機器上的 DNS 服務：
-	- **DNS 網域**：輸入 Contoso-DNS-EU 的 DNS 尾碼。 
+	- **DNS 網域**：輸入 Contoso-DNS-EU 的 DNS 尾碼。
 	- **主要伺服器的 IP 位址**：輸入 10.2.0.4，也就是 Contoso-DNS-EU 的 IP 位址。
 
 ##測試虛擬網路之間的名稱解析
@@ -222,4 +222,4 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 
 [img-vnet-diagram]: ./media/hdinsight-hbase-geo-replication-configure-DNS/HDInsight.HBase.VPN.diagram.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

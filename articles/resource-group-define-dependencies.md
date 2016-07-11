@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/04/2016"
+   ms.date="06/23/2016"
    ms.author="tomfitz"/>
 
 # 定義 Azure 資源管理員範本中的相依性
@@ -101,11 +101,11 @@ reference 函式可讓運算式從其他 JSON 名稱和值組或執行階段資�
 
 您可以使用此元素或 dependsOn 元素指定相依性，但是您不需要針對相同的相依資源使用兩者。本指導方針是使用隱含的參考以避免不小心讓不必要的 dependsOn 元素防止部署引擎以平行方式進行部署的風險。
 
-若要深入了解，請參閱 [reference 函數](../resource-group-template-functions/#reference)。
+若要深入了解，請參閱 [reference 函數](resource-group-template-functions.md#reference)。
 
 ## 後續步驟
 
-- 若要了解如何建立 Azure 資源管理員範本，請參閱[撰寫範本](resource-group-authoring-templates.md)。 
+- 若要了解如何建立 Azure 資源管理員範本，請參閱[撰寫範本](resource-group-authoring-templates.md)。
 - 如需在範本中可用函式的清單，請參閱[範本函式](resource-group-template-functions.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

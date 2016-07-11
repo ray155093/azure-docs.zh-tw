@@ -33,7 +33,7 @@
 3. 在 [所有設定] 刀鋒視窗中，按一下 [功能] 下的 [預設一致性] 項目。![預設一致性工作階段][6]
 
 4. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [儲存]。
-
+5. 透過 Azure 入口網站通知中樞可監視作業的進度。
 
 > [AZURE.NOTE] 整個 DocumentDB 帳戶的預設一致性設定變更可能需要幾分鐘的時間才會生效。
 
@@ -86,7 +86,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 
 ### 在 Azure 入口網站中檢視並複製存取金鑰
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。 
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
 2. 在 [基本功能] 列中，從 [DocumentDB 帳戶] 刀鋒視窗按一下 [金鑰]。
 3. 在 [金鑰] 刀鋒視窗中，按一下要複製的金鑰右邊的 [複製] 按鈕。
 
@@ -101,11 +101,17 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 如果您有應用程式或雲端服務正在使用 DocumentDB 帳戶，除非您變換金鑰，否則會在重新產生金鑰後失去連線。下列步驟概述變換金鑰所牽涉的程序。
 
 1. 更新應用程式程式碼中的存取金鑰，以參考 DocumentDB 帳戶的次要存取金鑰。
+
 2. 重新產生 DocumentDB 帳戶的主要存取金鑰。在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
+
 3. 在 [基本功能] 列中，從 [DocumentDB 帳戶] 刀鋒視窗按一下 [金鑰]。
+
 4. 在 [金鑰] 刀鋒視窗中按一下 [重新產生主要金鑰] 命令，然後按一下 [確定] 以確認要產生新的金鑰。
+
 5. 一旦確認新的金鑰可供使用後 (重新產生後約 5 分鐘)，更新應用程式程式碼中的存取金鑰，以參考新的主要存取金鑰。
+
 6. 重新產生次要存取金鑰。
+
 
 > [AZURE.NOTE] 新產生的金鑰可能需要經過幾分鐘之後才能用來存取 DocumentDB 帳戶。
 
@@ -138,7 +144,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
-[azureregions]: https://azure.microsoft.com/regions/#services
-[offers]: https://azure.microsoft.com/pricing/details/documentdb/
+[azureregions]: https://azure.microsoft.com/zh-TW/regions/#services
+[offers]: https://azure.microsoft.com/zh-TW/pricing/details/documentdb/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

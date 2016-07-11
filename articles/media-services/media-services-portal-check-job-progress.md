@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="05/03/2016"  
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 #作法：檢查工作進度
@@ -26,7 +26,7 @@
 ##使用入口網站來檢查工作狀態
 
 1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=256666&clcid=0x409)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱。
-2. 選取 [**工作**] 頁面。 
+2. 選取 [**工作**] 頁面。
 
 	在頁面上，您可以看到您所有工作的狀態。您也可以依狀態、時間或工作識別碼來篩選。
 
@@ -50,4 +50,4 @@
 [checkstatus]: ./media/media-services-portal-check-job-progress/media-services-monitor-job-progress.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

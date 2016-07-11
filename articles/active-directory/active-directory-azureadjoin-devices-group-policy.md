@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""
 	tags="azure-classic-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10
@@ -57,7 +57,7 @@
 
 ### 步驟 1：部署 Azure Active Directory Connect
 
-Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件。若要部署 Azure AD Connect，請參閱[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect/#install-azure-ad-connect) 一文中的 ＜安裝 Azure AD Connect＞。
+Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件。若要部署 Azure AD Connect，請參閱[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md#install-azure-ad-connect) 一文中的＜安裝 Azure AD Connect＞。
 
  - 如果您先前是依照[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md) (不是快速安裝) 操作，則請遵循此步驟稍後的**在內部部署 Active Directory 中建立服務連接點**程序。
  - 如果您在安裝 Azure AD Connect 之前已有 Azure AD 的同盟組態 (例如，如果您先前已部署 Active Directory Federation Service (AD FS))，則請遵循此步驟稍後的**設定 AD FS 宣告規則**程序。
@@ -77,7 +77,7 @@ Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件
 
 執行 Cmdlet $aadAdminCred = Get-credential 時，針對在 Get-credential 快顯視窗出現時輸入的認證使用者名稱使用格式 *user@example.com* 。
 
-執行 Cmdlet Initialize-ADSyncDomainJoinedComputerSync ... 時，以用來做為 Active Directory 連接器帳戶的網域帳戶來取代 [*連接器帳戶名稱*]。
+執行 Cmdlet Initialize-ADSyncDomainJoinedComputerSync ... 時，以用來做為 Active Directory 連接器帳戶的網域帳戶來取代 [連接器帳戶名稱]。
 
 #### 設定 AD FS 宣告規則
 設定 AD FS 宣告規則可讓電腦使用 Kerberos/NTLM 透過 AD FS 進行驗證，進而透過 Azure 裝置註冊服務來讓電腦即時註冊。若未進行此步驟，電腦將會以延遲的方式進入 Azure AD (受限於 Azure AD Connect 同步處理的時間)。
@@ -137,7 +137,7 @@ Windows 10 電腦將會使用 Windows 整合式驗證，對 AD FS 所裝載的�
  - 已加入網域且會向 Azure AD 自動註冊的 Windows 10 電腦所屬的特定安全性群組
 
 >[AZURE.NOTE]
-此群組原則範本在 Windows 10 中已重新命名。如果您從 Windows 10 電腦執行群組原則工具，原則將會顯示為：<br> **註冊加入網域的電腦為裝置**<br>原則將位於下列位置中：<br> ***電腦設定/原則/系統管理範本 /Windows 元件/裝置註冊***
+此群組原則範本在 Windows 10 中已重新命名。如果您從 Windows 10 電腦執行群組原則工具，原則將會顯示為：<br> **註冊加入網域的電腦為裝置**<br>原則將位於下列位置中：<br> **電腦設定/原則/系統管理範本 /Windows 元件/裝置註冊**
 
 
 ## 其他資訊
@@ -147,4 +147,4 @@ Windows 10 電腦將會使用 Windows 整合式驗證，對 AD FS 所裝載的�
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0629_2016-->

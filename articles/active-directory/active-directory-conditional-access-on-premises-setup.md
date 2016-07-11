@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 
@@ -122,8 +122,7 @@
   3. 驗證及管理目錄同步作業。此步驟中可取得單一登入的指示。
   
   > [AZURE.NOTE] 
-  如上面連結的文件所述，設定與 AD FS 同盟。
-  您不需要設定任何預覽功能。
+  如上面連結的文件所述，設定與 AD FS 同盟。您不需要設定任何預覽功能。
 
 
 ## 升級您的 Active Directory 網域服務結構描述
@@ -191,7 +190,7 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 4. 出現提示時，請使用您的認證登入。裝置會隨即加入。
 
 ###使用 Azure Active Directory 裝置註冊加入 Windows 7 裝置
-若要註冊加入網域的 Windows 7 裝置，您需要部署裝置註冊軟體套件。此軟體封裝稱為 Workplace Join for Windows 7，可以從 [Microsoft Connect 網站](https://connect.microsoft.com/site1164)下載。[為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)中有提供如何使用此封裝的指示。
+若要註冊加入網域的 Windows 7 裝置，您需要部署裝置註冊軟體套件。此軟體套件稱為 Workplace Join for Windows 7，可以從 [Microsoft Connect 網站](https://connect.microsoft.com/site1164)下載。[為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)中有提供如何使用此套件的指示。
 
 ### 使用 Azure Active Directory 裝置註冊加入 Android 裝置
 
@@ -253,4 +252,4 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

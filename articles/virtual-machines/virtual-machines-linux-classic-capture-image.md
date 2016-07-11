@@ -20,7 +20,7 @@
 
 # 如何將傳統 Linux 虛擬機器擷取成映像
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines-linux-capture-image.md).
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-linux-capture-image.md)。
 
 本文說明如何將執行 Linux 的傳統 Azure 虛擬機器擷取成映像，以建立其他虛擬機器。此映像包含作業系統磁碟和連結至虛擬機器的資料磁碟。它並不包含網路組態，因此當您從此映像建立其他虛擬機器時，將需要設定該組態。
 
@@ -95,4 +95,4 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 [How to Attach a Data Disk to a Virtual Machine]: virtual-machines-windows-classic-attach-disk.md
 [如何建立 Linux 虛擬機器]: virtual-machines-linux-classic-create-custom.md
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

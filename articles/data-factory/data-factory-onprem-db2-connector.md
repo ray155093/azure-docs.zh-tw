@@ -25,6 +25,8 @@
 
 資料處理站目前只支援將資料從 DB2 移至其他資料存放區，而不支援從其他資料存放區移至 DB2
 
+> [AZURE.NOTE] 此 DB2 連接器目前支援 DB2 for LUW (Linux、UNIX、Windows)。若要從 DB2 for z/OS 或 DB2 for AS/400 複製資料，請考慮使用一般的 ODBC 連接器，並在閘道器電腦上安裝對應的 ODBC 驅動程式。例如，若要從 DB2 for AS/400 內嵌資料，您可以使用 iSeries Access ODBC 驅動程式，並參閱[內部部署/Azure IaaS 上的 ODBC 資料來源](data-factory-odbc-connector.md)以設定複製活動。
+
 ## 安裝 
 
 若要讓資料管理閘道器連接至 DB2 資料庫，您必須在與資料管理閘道器相同的系統上安裝 [IBM DB2 Data Server Driver](http://go.microsoft.com/fwlink/p/?LinkID=274911)。
@@ -41,10 +43,10 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 此範例具有下列 Data Factory 實體：
 
 1.	[OnPremisesDb2](data-factory-onprem-db2-connector.md#db2-linked-service-properties) 類型的連結服務。
-2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。 
+2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
 3.	[RelationalTable](data-factory-onprem-db2-connector.md#db2-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
-5.	具有使用 [RelationalSource](data-factory-onprem-db2-connector.md#db2-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+5.	具有使用 [RelationalSource](data-factory-onprem-db2-connector.md#db2-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每個小時將資料從 DB2 資料庫中的查詢結果複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -322,6 +324,6 @@ Char | String
 [AZURE.INCLUDE [data-factory-type-repeatability-for-relational-sources](../../includes/data-factory-type-repeatability-for-relational-sources.md)]
 
 ## 效能和微調  
-請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

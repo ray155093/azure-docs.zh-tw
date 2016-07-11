@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/18/2016"
+   ms.date="06/27/2016"
    ms.author="jgao"/>
 
 # 在 Azure 虛擬網路上建立 HBase 叢集 
@@ -38,30 +38,29 @@
 
 本節中，您將在 HDInsight 中使用 [Azure ARM 範本](../resource-group-template-deploy.md)建立以 Linux 為基礎的 HBase 叢集。進行本教學課程並不需要具備 Azure ARM 範本經驗。如需其他叢集建立方法及了解各項設定，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。如需有關使用 ARM 範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱[使用 ARM 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
 
-1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。ARM 範本位於公用 Blob 容器中。 
+1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。ARM 範本位於公用 Blob 容器中。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-vnet.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-vnet.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 從 [參數] 刀鋒視窗，輸入下列資料：
-
     - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
     - **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
-    - **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。您可以將它重新命名。 
+    - **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。您可以將它重新命名。
+	
+	某些屬性已硬式編碼至範本。例如：<br/>
 
-    許多屬性已硬式編碼至範本。例如：
-    
     - 位置：美國東部
-    - 叢集背景工作節點計數：4
-    - 預設儲存體帳戶：<Cluster Name>store
-    - 虛擬網路名稱：<Cluster Name>-vnet
+	- 叢集背景工作節點計數：4
+    - 預設儲存體帳戶︰&lt;叢集名稱>store
+    - 虛擬網路名稱：&lt;叢集名稱>-vnet
     - 虛擬網路位址空間：10.0.0.0/16
     - 子網路名稱：default
     - 子網路位址範圍：10.0.0.0/24
 
 3. 按一下 [確定] 儲存參數。
-4. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
+4. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
 5. 按一下 [法律條款]，然後按一下 [建立]。
-6. 按一下 [建立]。您會看到新的圖格，標題為 [提交範本部署的部署]。大約需要 20 分鐘的時間來建立叢集。一旦建立叢集後，您可以在入口網站按一下 [叢集] 刀鋒視窗來開啟它。
+6. 按一下 [建立]。您將會看到新的圖格，標題為**提交範本部署的部署**。大約需要 20 分鐘的時間來建立叢集。一旦建立叢集後，您可以在入口網站按一下 [叢集] 刀鋒視窗來開啟它。
 
 完成本教學課程之後，您可以刪除叢集。利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。您也需支付 HDInsight 叢集的費用 (即使未使用)。由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。如需有關刪除叢集的指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#delete-clusters)。
 
@@ -71,9 +70,18 @@
 
 1.	相同的 Azure 虛擬網路和相同的子網路中建立基礎結構即服務 (IaaS) 虛擬機器。因此，虛擬機器和 HBase 叢集會使用相同的內部 DNS 伺服器來解析主機名稱。若要這麼做，您必須選擇 [從組件庫] 選項，並選取虛擬網路而不是資料中心。如需指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。標準 Windows Server 2012 映像搭配小型 VM 即已足夠。
 
-2.	使用 Java 應用程式從遠端連接到 HBase 時，您必須使用完整網域名稱 (FQDN)。若要決定此名稱，您必須取得 HBase 叢集的連線特定 DNS 尾碼。請使用 Curl 以查詢 Ambari，或使用遠端桌面連接到叢集。
+2.	使用 Java 應用程式從遠端連接到 HBase 時，您必須使用完整網域名稱 (FQDN)。若要決定此名稱，您必須取得 HBase 叢集的連線特定 DNS 尾碼。若要這麼做，您可以使用下列其中一種方法：
 
-	* **Curl** - 使用下列命令：
+	* 使用網頁瀏覽器進行 Ambari 呼叫︰
+	
+		瀏覽至 https://&lt;ClusterName>.azurehdinsight.net/api/v1/clusters/&lt;ClusterName>/hosts?minimal\_response=true。結果是具有 DNS 尾碼的 JSON 檔案。
+
+	* 使用 Ambari 網站︰
+
+		1. 瀏覽至 https://&lt;ClusterName>.azurehdinsight.net。
+		2. 按一下頂端功能表中的 [主機]。
+
+	* 使用 Curl 進行 REST 呼叫︰
 
 			curl -u <username>:<password> -k https://<clustername>.azurehdinsight.net/ambari/api/v1/clusters/<clustername>.azurehdinsight.net/services/hbase/components/hbrest
 
@@ -85,7 +93,9 @@
 
 		以叢集名稱開頭的網域名稱部分就是 DNS 尾碼。例如，mycluster.b1.cloudapp.net。
 
-	* **Azure PowerShell** - 使用下列 Azure PowerShell 指令碼以註冊 **Get-ClusterDetail** 函數，並可使用該函數傳回 DNS 尾碼：
+	* 使用 Azure PowerShell
+	
+		使用下列 Azure PowerShell 指令碼來註冊 **Get-ClusterDetail** 函數，此函數可用來傳回 DNS 尾碼：
 
 			function Get-ClusterDetail(
 			    [String]
@@ -183,9 +193,11 @@
 
 		這會傳回 DNS 尾碼。例如，**yourclustername.b4.internal.cloudapp.net**。
 
-	> [AZURE.NOTE] 您也可以使用遠端桌面連接到 HBase 叢集 (將連接到前端節點)，再從命令提示字元執行 **ipconfig** 以取得 DNS 尾碼。如需啟用遠端桌面通訊協定 (RDP) 並使用 RDP 連接到叢集的指示，請參閱[使用 Azure 入口網站在 HDInsight 中管理 Hadoop 叢集][hdinsight-admin-portal]。
-	>
-	> ![hdinsight.hbase.dns.surffix][img-dns-surffix]
+	* 使用 RDP
+	
+		您也可以使用遠端桌面連接到 HBase 叢集 (將連接到前端節點)，再從命令提示字元執行 **ipconfig** 以取得 DNS 尾碼。如需啟用遠端桌面通訊協定 (RDP) 並使用 RDP 連接到叢集的指示，請參閱[使用 Azure 入口網站在 HDInsight 中管理 Hadoop 叢集][hdinsight-admin-portal]。
+		
+		![hdinsight.hbase.dns.surffix][img-dns-surffix]
 
 
 <!--
@@ -272,4 +284,4 @@
 
 [azure-preview-portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

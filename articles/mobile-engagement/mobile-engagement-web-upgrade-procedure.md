@@ -19,33 +19,33 @@
 
 # Azure Mobile Engagement Web SDK 升級程序
 
-如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
+如果您已經將舊版 Azure Mobile Engagement Web SDK 整合到您的 Web 應用程式，則當您升級 SDK 時需要考慮下列幾點。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。例如，如果您要從 1.4.0 移轉到 1.6.0，必須先遵循「從 1.4.0 到 1.5.0」的程序，然後再依照「從 1.5.0 到 1.6.0」的程序進行。
+如果您略過多個版本的 Mobile Engagement Web SDK，您可能需要在升級程序期間完成數個程序。例如，如果您從 1.4.0 移轉到 1.6.0，請先遵循從從 1.4.0 升級到 1.5.0 的程序。然後，遵循從 1.5.0 升級到 1.6.0 的程序。
 
-不論您升級開始的版本為何，都必須將 `azure-engagement.js` 替換為新的。
+不論您要從哪一個版本升級，都要使用最新版的 azure-engagement.js 檔案來取代舊版檔案。
 
-## 從 1.2.1 到 2.0.0
+## 從 1.2.1 升級到 2.0.0
 
-以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 1.2.1 後再套用以下程序。
+本節說明如何將 Mobile Engagement Web SDK 整合從 Capptain SAS 提供的 Capptain 服務移轉到 Azure Mobile Engagement 應用程式。如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 1.2.1 後再套用以下程序。
 
-此版本的 Engagement Web SDK 不支援 samsung-tv、OperaTV、webOS 及 Reach 功能。
+此版本的 Mobile Engagement Web SDK 不支援 Samsung Smart TV、Opera TV、webOS 或 Reach 功能。
 
->[AZURE.IMPORTANT] Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
+>[AZURE.IMPORTANT] Capptain 和 Azure Mobile Engagement 不是同一個服務。下列程序只會強調說明如何移轉用戶端應用程式。移轉應用程式中的 Mobile Engagement Web SDK，不會將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
 
 ### JavaScript 檔案
 
-將 `capptain-sdk.js` 檔案以 `azure-engagement.js` 檔案取代，並相應地更新您的指令碼匯入。
+使用 azure-engagement.js 檔案來取代 capptain-sdk.js 檔案，然後據以更新您的指令碼匯入。
 
 ### 移除 Capptain Reach
 
-此 Engagement Web SDK 不支援 Reach 功能，如果您已在應用程式中整合 Capptain Reach，則您必須將它移除。
+此版本的 Mobile Engagement Web SDK 不支援 Reach 功能。如果您將 Capptain Reach 整合到您的應用程式，就需要加以移除。
 
-從您的頁面移除 Reach css 匯入，並移除相關的 css 檔案 (預設為 capptain-reach.css)。
+從您的頁面移除 Reach CSS 匯入，並移除相關的 .css 檔案 (預設為 capptain-reach.css)。
 
-刪除 Reach 資源：關閉影像 (預設為 capptain-close.png) 和品牌圖示 (預設為 capptain-notification-icon)。
+刪除下列 Reach 資源：關閉影像 (預設為 capptain-close.png) 和品牌圖示 (預設為 capptain-notification-icon)。
 
-移除 App 內通知的 Reach UI，預設配置看起來像是：
+移除用於應用程式內通知的 Reach UI。預設配置看起來像這樣：
 
 	<!-- capptain notification -->
 	<div id="capptain_notification_area" class="capptain_category_default">
@@ -62,7 +62,7 @@
 	  </div>
 	</div>
 
-移除文字\\Web 通知和投票的 Reach UI，預設配置看起來像是：
+移除用於文字和 Web 宣告和輪詢的 Reach UI。預設配置看起來像這樣：
 
 	<div id="capptain_overlay" class="capptain_category_default">
 	  <button id="capptain_overlay_close">x</button>
@@ -75,7 +75,7 @@
 	  </div>
 	</div>
 
-若有的話，請從您的設定中移除 `reach` 物件。它看起來如下：
+從您的組態中移除 `reach` 物件 (如果存在)。它看起來像這樣：
 
 	window.capptain = {
 	  [...]
@@ -84,21 +84,21 @@
 	  }
 	}
 
-移除所有其他 Reach 自訂，例如類別。
+移除所有其他的 Reach 自訂，例如類別。
 
 ### 移除已被取代的 API
 
-在 SDK 的 Engagement 版本中，某些來自 Capptain 的 API 已被取代。
+在 Mobile Engagement Web SDK 中，某些來自 Capptain 的 API 已被取代。
 
-移除針對下列 API 的所有呼叫：`agent.connect`、`agent.disconnect`、`agent.pause`、`agent.sendMessageToDevice`。
+移除針對下列 API 的所有呼叫：`agent.connect`、`agent.disconnect`、`agent.pause` 及 `agent.sendMessageToDevice`。
 
-若有的話，請從您的 Capptain 設定移除下列回呼：`onConnected`、`onDisconnected`、`onDeviceMessageReceived`、`onPushMessageReceived`。
+從您的 Capptain 組態移除下列回呼的所有執行個體：`onConnected`、`onDisconnected`、`onDeviceMessageReceived` 及 `onPushMessageReceived`。
 
 ### 組態
 
-現在 Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
+Mobile Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
 
-將應用程式識別碼以您的連接字串取代，同時請注意到 SDK 設定的全域物件將從 `capptain` 移至 `azureEngagement`。
+使用您的連接字串來取代應用程式識別碼。請注意，適用於 SDK 組態的全域物件會從 `capptain` 變更為 `azureEngagement`。
 
 移轉前：
 
@@ -114,12 +114,12 @@
 	  [...]
 	};
 
-您應用程式的連接字串會顯示在 Azure 入口網站。
+您應用程式的連接字串會顯示於 Azure 入口網站中。
 
 ### JavaScript API
 
-全域 JavaScript 物件 `window.capptain` 已被重新命名為 `window.azureEngagement`，但您可以針對 API 呼叫使用 `window.engagement` 別名 (您無法使用該別名來定義 SDK 設定)。
+全域 JavaScript 物件 `window.capptain` 已重新命名為 `window.azureEngagement`，但您可以針對 API 呼叫使用 `window.engagement` 別名。您無法使用此別名來定義 SDK 組態。
 
-例如：`capptain.deviceId` 會變成 `engagement.deviceId`，`capptain.agent.startActivity` 會變成 `engagement.agent.startActivity` 等等...
+例如，`capptain.deviceId` 會變成 `engagement.deviceId`，`capptain.agent.startActivity` 會變成 `engagement.agent.startActivity`，依此類推。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

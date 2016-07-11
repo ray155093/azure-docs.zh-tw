@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-    ms.date="04/29/2016"
+    ms.date="06/24/2016"
 	ms.author="micurd"/>
 
 
@@ -415,4 +415,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure Storage SDK for Node API 參考]: http://dl.windowsazure.com/nodestoragedocs/index.html
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

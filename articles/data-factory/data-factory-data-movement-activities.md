@@ -1,6 +1,7 @@
 <properties 
-	pageTitle="資料移動活動" 
-	description="了解您可以在 Data Factory 管線中用來移動資料的 Data Factory 實體。" 
+	pageTitle="資料移動活動 | Microsoft Azure" 
+	description="了解 Data Factory 管線中的資料移動︰雲端存放區之間和內部部署與雲端之間的資料移轉。使用複製活動。" 
+	keywords="資料移動, 資料移轉, 複製資料, 傳輸資料"
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -16,16 +17,16 @@
 	ms.date="05/31/2016" 
 	ms.author="spelluru"/>
 
-# 資料移動活動
-[複製活動](#copyactivity)會在 Azure Data Factory 中執行資料移動，而此活動是由[全域可用的服務](#global)所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。服務會自動選擇最佳區域來執行資料移動。系統會使用最靠近接收資料存放區的區域。
- 
-讓我們來了解在不同情況下發生這個資料移動的方式。
+# 資料移動和複製活動︰將資料移轉至雲端以及在雲端存放區之間移轉資料
+從來源到接收 (目的地) 的資料移動是由 Azure Data Factory 中的[複製活動](#copyactivity)來執行。複製活動則由安全、可靠、可調整且[全域可用的服務](#global)來支援。服務會自動選擇最佳區域來執行資料移動，這通常是最接近接收資料存放區的區域。
+
+以下將說明兩個雲端資料存放區之間以及內部部署資料存放區與雲端資料存放區之間的資料移轉，以及 Azure Iaas VM 上的資料存放區的來回資料移轉。
 
 ## 在兩個雲端資料存放區之間複製資料
 當來源和接收 (目的地) 資料存放區同時位於雲端時，複製活動就會經歷下列階段，將資料從來源複製/移動到接收資料存放區。支援複製活動的服務會執行下列作業：
 
 1. 從來源資料存放區讀取資料
-2.	根據輸入資料集、輸出資料集和複製活動的組態，執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換 
+2.	根據輸入資料集、輸出資料集和複製活動的組態，執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換
 3.	將資料寫入目的地資料存放區
 
 ![從雲端複製到雲端](.\media\data-factory-data-movement-activities\cloud-to-cloud.png)
@@ -44,18 +45,18 @@
 
 | 來源| 接收 |
 |:------- | :---- |
-| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[Oracle 資料庫內部部署/Azure IaaS](data-factory-onprem-oracle-connector.md)</li></ul> |
+| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server /Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表 (來自 HTML 的資料表)](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[Oracle 資料庫內部部署/Azure IaaS](data-factory-onprem-oracle-connector.md)</li></ul> |
 
 
-> [AZURE.NOTE] 您只可在 Azure DocumentDB 和其他 Azure 服務 (例如 Azure Blob、Azure 資料表、Azure SQL Database、Azure SQL 資料倉儲、Azure DocumentDB 和 Azure 資料湖存放區) 之間來回移動。短期內也會支援 Azure Document DB 的完整矩陣。
+> [AZURE.NOTE] 目前不支援將資料從 Azure DocumentDB 複製到內部部署/Azure IaaS 資料存放區，反向複製動作亦不支援。很快就會啟用 Azure DocumentDB 的完整矩陣。
 
 如果您需要將資料移至**複製活動**不支援的資料存放區，或從該資料存放區移動資料，則您可以在 Data Factory 中使用**自訂活動**搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
 
 ## 教學課程
-如需使用複製活動的快速教學課程，請參閱[教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-get-started.md)。在教學課程中，您會使用複製活動將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。
+如需使用複製活動的快速教學課程，請參閱[教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。在教學課程中，您會使用複製活動將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。
 
 ## <a name="copyactivity"></a>複製活動
-複製活動會將輸入資料集 (**來源**) 的資料複製到輸出資料集 (**接收器**)。資料複製是根據活動上指定的排程以批次方式完成。若要了解定義活動的概觀，請參閱 [Azure Data Factory 中的管線及活動](data-factory-create-pipelines.md)一文。
+複製活動會將輸入資料集 (**來源**) 的資料複製到輸出資料集 (**接收**)。資料複製是根據活動上指定的排程以批次方式完成。若要了解定義活動的概觀，請參閱 [Azure Data Factory 中的管線及活動](data-factory-create-pipelines.md)一文。
 
 複製活動提供下列功能：
 
@@ -76,8 +77,8 @@
 
 
 
-### <a name="moveonpremtocloud"></a>安全地在內部部署位置與雲端之間移動資料
-現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回移動資料。資料管理閘道器是您可以安裝內部部署以啟用混合式資料管線的代理程式。
+### <a name="moveonpremtocloud"></a>安全地在內部部署位置與雲端之間傳輸資料
+現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回傳輸資料。資料管理閘道器是您可以安裝內部部署以啟用混合式資料管線的代理程式。
 
 資料閘道器提供下列功能：
 
@@ -128,8 +129,8 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。CopyActivity2 只會符合下列條件時開始執行︰
 
-- CopyActivity2 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。   
-- Dataset3 可供使用。此資料集代表已複製到目的地的資料。  
+- CopyActivity2 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。
+- Dataset3 可供使用。此資料集代表已複製到目的地的資料。
 
 
 ### 複製活動的效能及微調 
@@ -195,4 +196,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

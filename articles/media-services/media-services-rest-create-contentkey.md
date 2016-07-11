@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"   
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 
@@ -35,11 +35,11 @@
 
 以下是產生您將與要加密資產相關聯的內容金鑰的一般步驟。
 
-1. 隨機產生 16 位元組 AES 金鑰 (適用於一般加密以及信封加密) 或 32 位元組 AES 金鑰 (適用於儲存體加密)。 
+1. 隨機產生 16 位元組 AES 金鑰 (適用於一般加密以及信封加密) 或 32 位元組 AES 金鑰 (適用於儲存體加密)。
 
-	這是您資產的內容金鑰，這表示與該資產相關聯的所有檔案都必須在解密期間使用相同的內容金鑰。 
+	這是您資產的內容金鑰，這表示與該資產相關聯的所有檔案都必須在解密期間使用相同的內容金鑰。
 2.	呼叫 [GetProtectionKeyId](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkeyid) 和 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 方法，以取得用來將內容金鑰加密時必須使用的正確 X.509 憑證。
-3.	使用 X.509 憑證的公開金鑰將您的內容金鑰加密。 
+3.	使用 X.509 憑證的公開金鑰將您的內容金鑰加密。
 
 	媒體服務 .NET SDK 會使用 RSA 和 OAEP 來執行加密作業。您可以在 [EncryptSymmetricKeyData 函式](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)中查看範例。
 4.	建立使用金鑰識別碼和內容金鑰計算的總和檢查碼值 (根據 PlayReady AES 金鑰總和檢查碼演算法)。如需詳細資訊，請參閱位於[這裡](http://www.microsoft.com/playready/documents/)的 PlayReady 標頭物件文件的＜PlayReady AES 金鑰總和檢查碼演算法＞一節。
@@ -262,4 +262,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""
 	tags="azure-classic-portal"/>
 
@@ -14,10 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/26/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 在您的工作場所中使用 Windows 10 裝置
+
+適用於︰Windows 10 電腦
 
 Windows 10 為組織提供了三種模型，讓使用者能夠以安全且方便的方式存取工作資源。
 
@@ -52,7 +54,7 @@ Windows 10 提供兩種方法讓工作用的裝置存取工作資源：
 
 Azure AD Join 是 Windows 10 中新的自助式工作佈建體驗。以在雲端中主要存取 Office 365 等工作資源的工作者為對象。它是為企業設定電腦、平板電腦和手機的精簡方式。在 Windows 平台之間使用一致的控制功能，透過行動裝置管理來管理裝置。
 
-**您可以基於下列任何原因使用 Azure AD Join**：
+**您可以基於下列任何原因使用「加入 Azure AD」**：
 
 - 您想要為行動工作者啟用裝置的自助式佈建。
 - 您為使用者提供工作用的行動裝置，例如平板電腦和手機。
@@ -97,7 +99,7 @@ Azure AD Join 是 Windows 10 中新的自助式工作佈建體驗。以在雲端
 
 使用者可以非常方便地將公司帳戶或學校帳戶新增至個人裝置。他們可以在第一次存取工作應用程式時執行這項操作，或透過 [設定] 功能表以手動方式這樣做。此帳戶支援經由 SSO 存取組織資源。
 
-如需關於 Azure AD Join 的詳細資訊，請參閱[將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)。
+如需關於「加入 Azure AD」的詳細資訊，請參閱[將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)。
 
 ## 啟用加入網域或 Azure AD Join
 
@@ -175,4 +177,4 @@ Windows 8.1 中使用「加入工作場所」來啟用 BYOD。在 Windows 10 中
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

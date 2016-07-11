@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure CLI 來建立 AD 應用程式 | Microsoft Azure"
-   description="描述如何使用 Azure CLI 建立 Active Directory 應用程式，並透過角色型存取控制將存取權授與資源。它示範如何使用密碼或憑證來驗證應用程式。"
+   pageTitle="使用 Azure CLI 建立服務主體 | Microsoft Azure"
+   description="描述如何使用 Azure CLI 建立 Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。它示範如何使用密碼或憑證來驗證應用程式。"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,7 +16,7 @@
    ms.date="05/26/2016"
    ms.author="tomfitz"/>
 
-# 使用 Azure CLI 來建立可存取資源的 Active Directory 應用程式
+# 使用 Azure CLI 建立用來存取資源的服務主體
 
 > [AZURE.SELECTOR]
 - [PowerShell](resource-group-authenticate-service-principal.md)
@@ -149,7 +149,7 @@
 在您的指令碼中您將會傳入三個值，需要登入為服務主體。您將需要：
 
 - 應用程式識別碼
-- 租用戶識別碼 
+- 租用戶識別碼
 - 憑證指紋
 
 您已在先前步驟中看過應用程式識別碼和憑證指紋。不過，如果您稍後需要擷取這些值，命令如下所示，同時列出取得租用戶識別碼的命令。
@@ -183,10 +183,10 @@
 ## 後續步驟
   
 - 如需 .NET 驗證範例，請參閱 [Azure Resource Manager SDK for .NET](resource-manager-net-sdk.md)。
-- 如需 Java 驗證範例，請參閱 [Azure Resource Manager SDK for Java](resource-manager-java-sdk.md)。 
+- 如需 Java 驗證範例，請參閱 [Azure Resource Manager SDK for Java](resource-manager-java-sdk.md)。
 - 如需 Python 驗證範例，請參閱[適用於 Python 的資源管理驗證](https://azure-sdk-for-python.readthedocs.io/en/latest/resourcemanagementauthentication.html)。
 - 如需 REST 驗證範例，請參閱 [Resource Manager REST API](resource-manager-rest-api.md)。
 - 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱[利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
-- 如需使用憑證和 Azure CLI 的詳細資訊，請參閱 [從 Linux 命令列以憑證方式驗證 Azure 服務主體](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx) 
+- 如需使用憑證和 Azure CLI 的詳細資訊，請參閱 [從 Linux 命令列以憑證方式驗證 Azure 服務主體](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

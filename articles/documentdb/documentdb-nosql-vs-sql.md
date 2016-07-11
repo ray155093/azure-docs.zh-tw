@@ -1,6 +1,6 @@
 <properties
 	pageTitle="NoSQL 與 SQL 的使用時機 | Microsoft Azure"
-	description="比較使用非關聯式 NoSQL 解決方案和 SQL 解決方案的優點。了解 Microsoft Azure 的 NoSQL 服務或 SQL Server 解決方案哪一個最符合您的案例。"
+	description="比較使用 NoSQL 非關聯式解決方案和 SQL 解決方案的優點。了解 Microsoft Azure 的 NoSQL 服務或 SQL Server 哪一個最符合您的案例。"
 	keywords="nosql 與 sql, NoSQL 的使用時機, sql 與 nosql"
 	services="documentdb"
 	documentationCenter=""
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article" 
-	ms.date="03/28/2016"
+	ms.date="06/24/2016"
 	ms.author="mimig"/>
 
 # NoSQL 與 SQL
@@ -130,4 +130,4 @@ Microsoft 有五個 SQL 供應項目︰
     - [SQL Server](https://www.microsoft.com/server-cloud/products/sql-server-2016/)
     - [Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

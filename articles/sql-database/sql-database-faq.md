@@ -38,8 +38,8 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 範例
 
 - 如果您在上午 11:18 以 200 eDTU 建立 Standard 彈性資料庫集區，將五個資料庫加入至集區，您會被收取在該小時 200 eDTU 的費用，從上午 11:00 開始到當天剩餘的時間。
-- 在第 2 天上午 5:05，資料庫 1 開始取用 50 eDTU 並穩定持有一天。資料庫 2-5 會在 0 和 80 eDTU 之間波動。在當天，您加入全天取用不同 eDTU 的其他五個資料庫。第 2 天是全天，以 200 eDTU 計費。 
-- 在第 3 天上午 5:00，您加入另外 15 個資料庫。資料庫使用量全天增加，到下午 8:05 您決定將集區的 eDTU 從 200 增加為 400。以 200 eDTU 收費生效到下午 8:00，並在其餘 4 小時增加至 400 eDTU。 
+- 在第 2 天上午 5:05，資料庫 1 開始取用 50 eDTU 並穩定持有一天。資料庫 2-5 會在 0 和 80 eDTU 之間波動。在當天，您加入全天取用不同 eDTU 的其他五個資料庫。第 2 天是全天，以 200 eDTU 計費。
+- 在第 3 天上午 5:00，您加入另外 15 個資料庫。資料庫使用量全天增加，到下午 8:05 您決定將集區的 eDTU 從 200 增加為 400。以 200 eDTU 收費生效到下午 8:00，並在其餘 4 小時增加至 400 eDTU。
 
 ## 在彈性資料庫集區中使用「作用中異地複寫」會在我的帳單上如何顯示？
 與單一資料庫不同，搭配彈性資料庫使用[作用中異地複寫](sql-database-geo-replication-overview.md)對計費並沒有直接的影響。您只需支付對每個集區佈建的 eDTU (主要集區和次要集區)
@@ -69,7 +69,7 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 Azure 的智慧型引擎如果發現必要的使用模式，將會對資料庫建議集區。如需詳細資訊，請參閱 [SQL Database 定價層建議](sql-database-service-tier-advisor.md)。如需選擇在單一與彈性資料庫之間進行選擇的詳細指引，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 ## 備份儲存體可高達 200% 的最大可佈建資料庫儲存體，這是什麼意思？ 
-備份儲存體是與您的自動資料庫備份關聯的儲存體，自動資料庫備份可用在[還原時間點](sql-database-point-in-time-restore.md)及[異地還原](sql-database-geo-restore.md)上。Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可佈建資料庫儲存體，且不須支付額外費用。例如，如果您擁有可佈建 DB 大小為 250GB 的標準 DB 執行個體，您將免費獲得 500GB 的備份儲存體。若您的資料庫超過所提供的備份儲存體，您可以連絡 Azure 支援部門，選擇縮短保留期限，或是以標準讀取存取地理備援儲存體 (RA-GRS) 費率，另購額外的備份儲存體。如需 RA-GRS 計費的詳細資訊，請參閱儲存體價格詳細資料。
+備份儲存體是與自動資料庫備份相關聯的儲存體，可用於[還原時間點](sql-database-recovery-using-backups.md#-point-in-time-restore)和[異地還原](sql-database-recovery-using-backups.md#geo-restore)。Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可佈建資料庫儲存體，且不須支付額外費用。例如，如果您擁有可佈建 DB 大小為 250GB 的標準 DB 執行個體，您將免費獲得 500GB 的備份儲存體。若您的資料庫超過所提供的備份儲存體，您可以連絡 Azure 支援部門，選擇縮短保留期限，或是以標準讀取存取地理備援儲存體 (RA-GRS) 費率，另購額外的備份儲存體。如需 RA-GRS 計費的詳細資訊，請參閱儲存體價格詳細資料。
 
 ## 我正從 Web/Business 移到新的服務層，我應該知道什麼？
 Azure SQL Web 和 Business 資料庫現已淘汰。基本、標準、高階和彈性層取代淘汰 Web 和商務資料庫。我們提供額外的常見問題集，在此過渡期應該有所幫助。[Web 和 Business 版本終止常見問題集](sql-database-web-business-sunset-faq.md)
@@ -89,4 +89,4 @@ Azure SQL Web 和 Business 資料庫現已淘汰。基本、標準、高階和�
 ## 若要監視主要資料庫和地區資料庫之間的複寫延遲，有哪些工具可以使用？
 我們會透過 DMV 將主要資料庫和地區次要資料庫之間的即時複寫延遲公開。如需詳細資訊，請參閱 [sys.dm\_geo\_replication\_link\_status](https://msdn.microsoft.com/library/mt575504.aspx)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

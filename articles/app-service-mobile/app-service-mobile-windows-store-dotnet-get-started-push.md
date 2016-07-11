@@ -34,7 +34,7 @@
 
 在您能從 Azure 傳送推播通知到您的 Windows 應用程式之前，您必須將應用程式提交至 Windows 市集。接著您可以設定您的伺服器專案與 WNS 整合。
 
-1. 在 Visual Studio 方案總管中，以滑鼠右鍵按一下 UWP 應用程式專案，然後按一下 [市集] > [將應用程式與市集建立關聯...]。 
+1. 在 Visual Studio 方案總管中，以滑鼠右鍵按一下 UWP 應用程式專案，然後按一下 [市集] > [將應用程式與市集建立關聯...]。
 
     ![建立應用程式與 Windows 市集的關聯](./media/app-service-mobile-windows-store-dotnet-get-started-push/notification-hub-associate-uwp-app.png)
     
@@ -200,10 +200,21 @@
 [AZURE.INCLUDE [app-service-mobile-windows-universal-test-push](../../includes/app-service-mobile-windows-universal-test-push.md)]
 
 
-##<a id="more"></a>更多資訊
+##<a id="more"></a>接續步驟
 
-* 範本可讓您彈性地傳送跨平台推播和當地語系化推播。[如何針對 Azure 行動應用程式使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md#how-to-register-push-templates-to-send-cross-platform-notifications)一文，說明如何註冊範本。
-* 標記可讓您使用推播鎖定區隔的客戶。[使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-add-tags-to-a-device-installation-to-enable-push-to-tags)一文，說明如何在裝置安裝中新增標記。
+進一步了解推播通知︰
+
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md#how-to-register-push-templates-to-send-cross-platform-notifications)：範本可讓您彈性地傳送跨平台推播和當地語系化推播。了解如何註冊範本。
+
+* [使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-add-tags-to-a-device-installation-to-enable-push-to-tags)：標記可讓您使用推播鎖定區隔的客戶。了解如何將標記加入至裝置安裝。
+
+* [診斷推播通知問題](../notification-hubs/notification-hubs-push-notification-fixer.md)：通知遭到捨棄或未抵達裝置有各種原因。本主題說明如何分析及找出推播通知失敗的根本原因。
+
+請考慮繼續進行下列其中一個教學課程：
+
++ [將驗證加入應用程式中](app-service-mobile-windows-store-dotnet-get-started-users.md)：了解如何使用識別提供者來驗證應用程式的使用者。
+
++ [啟用應用程式的離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
 
 <!-- Anchors. -->
 
@@ -211,6 +222,5 @@
 [Azure Portal]: https://portal.azure.com/
 
 <!-- Images. -->
-))) )
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

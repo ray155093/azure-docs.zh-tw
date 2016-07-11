@@ -23,7 +23,7 @@ Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用�
 
 具體來說，TDSP 目前可為資料科學小組提供下列各項：
 
-- **方法論**︰概述定義開發週期的一系列步驟，以提供如何定義問題、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的指引。 
+- **方法論**︰概述定義開發週期的一系列步驟，以提供如何定義問題、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的指引。
 - **資源**︰可簡化設定適用於資料科學活動環境的工具和技術 (例如資料科學 VM)，以及適用於加入新技術的實用指引。
 
 以下是 TDSP 的開發週期：
@@ -47,9 +47,9 @@ Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用�
 
 Team Data Science Process 的分析環境包含數個元件：
 
-- **資料工作區**，用來暫存分析和建立模型所需的資料 
+- **資料工作區**，用來暫存分析和建立模型所需的資料
 - **處理基礎結構**，用於資料的前置處理、瀏覽和模型化
-- **執行階段基礎結構**，用來運作分析模型，及執行取用模型的智慧型用戶端應用程式。  
+- **執行階段基礎結構**，用來運作分析模型，及執行取用模型的智慧型用戶端應用程式。
 
 必須設定的分析基礎結構通常是環境中不屬於核心作業系統的部分。但它通常會運用來自企業內多個系統的資料，以及來自公司外部的資料。分析基礎結構可以純雲端架構或內部部署設定，或是兩者的混合。如需選項，請參閱[設定用於 Team Data Science Process 中的資料科學環境](machine-learning-data-science-environment-setup.md)。
 
@@ -79,9 +79,9 @@ Team Data Science Process 的分析環境包含數個元件：
 
 資料科學家必須選擇最適合其預測工作的模型，而來自多個模型的結果也經常必須結合以取得最佳結果。模型化的輸入資料通常隨機分成三個部分：
 
-- 訓練資料集、 
-- 驗證資料集 
-- 測試資料集 
+- 訓練資料集、
+- 驗證資料集
+- 測試資料集
 
 模型會使用**訓練資料集**來建置。模型的最佳組合 (透過參數調整) 可藉由執行模型及評估**驗證資料集**的預測誤差來選取。最後，會使用**測試資料集**來評估選擇的模型對於未用來訓練或驗證模型之獨立資料的效能。如需程序，請參閱[如何評估 Azure 機器學習中的模型效能](machine-learning-evaluate-model-performance.md)。
 
@@ -97,11 +97,6 @@ Team Data Science Process 的分析環境包含數個元件：
 
 雖然 TDSP 並未指定特定類型的**文件**構件，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
 
-此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。例如，請參閱︰
+此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)主題中會列出這些逐步解說與縮圖描述。
 
-- [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-- [Team Data Science Process 實務：使用 HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)。
-- [在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)
-- [Azure Data Lake 中的可調整資料科學︰端對端逐步解說](machine-learning-data-science-process-data-lake-walkthrough.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

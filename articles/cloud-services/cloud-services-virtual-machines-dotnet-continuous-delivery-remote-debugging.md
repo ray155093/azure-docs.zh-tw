@@ -29,10 +29,10 @@
 
 		msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of the certificate added to the cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path to your VS solution file>"
 
-	`VSX64RemoteDebuggerPath` 是存放 Visual Studio 遠端工具中 msvsmon.exe 的資料夾的路徑。
+	`VSX64RemoteDebuggerPath` 是存放 Visual Studio 遠端工具中 msvsmon.exe 的資料夾的路徑。`RemoteDebuggerConnectorVersion` 是雲端服務中的 Azure SDK 版本。它也應符合隨 Visual Studio 一起安裝的版本。
 
 5. 使用前一個步驟中產生的封裝和 .cscfg 檔案來發行至目標雲端服務。
-6. 將憑證匯入 (.pfx file) 已安裝包含 Azure SDK for .NET 的 Visual Studio 的機器。
+6. 將憑證匯入 (.pfx file) 已安裝包含 Azure SDK for .NET 的 Visual Studio 的機器。請務必匯入至 `CurrentUser\My` 憑證存放區，否則附加至 Visual Studio 中的偵錯工具將會失敗。
 
 ## 對虛擬機器啟用遠端偵錯
 
@@ -91,4 +91,4 @@
 
 6. 將憑證 (.pfx) 匯入已安裝 Visual Studio with Azure SDK for .NET 的機器。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

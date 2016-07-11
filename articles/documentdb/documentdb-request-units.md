@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="06/29/2016" 
 	ms.author="stbaro"/>
 
 #DocumentDB 中的要求單位
@@ -64,6 +64,9 @@ DocumentDB 藉由「保留」資源以滿足應用程式的輸送量需求，來
 - 文件建立 (寫入)
 - 文件讀取
 - 文件刪除
+- 文件更新
+
+此工具也支援根據您提供的範例文件預估資料儲存需求。
 
 使用此工具很簡單︰
 
@@ -71,11 +74,13 @@ DocumentDB 藉由「保留」資源以滿足應用程式的輸送量需求，來
 
 	![將文件上傳至要求單位計算機][2]
 
-2. 輸入您需要的建立、讀取和刪除作業的文件數 (以每秒為單位)。
+2. 若要預估資料儲存需求，請輸入您預期要儲存的文件總數。
+
+3. 輸入您需要的建立、讀取、更新和刪除作業的文件數 (以每秒為單位)。若要預估文件更新作業的要求單位費用，請上傳一份上述步驟 1 中包含一般欄位更新的範例文件。例如，如果文件更新通常會修改名為 lastLogin 和 userVisits 的兩個屬性，則只要複製範例文件、更新這兩個屬性的值，並上傳複製的文件。
 
 	![在要求單位計算機中輸入輸送量需求][3]
 
-3. 按一下計算，並檢查結果。
+4. 按一下計算，並檢查結果。
 
 	![要求單位計算機結果][4]
 
@@ -92,7 +97,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 例如：
 
-1. 記錄建立 (插入) 標準文件的要求單位費用。 
+1. 記錄建立 (插入) 標準文件的要求單位費用。
 2. 記錄讀取標準文件的要求單位費用。
 3. 記錄更新標準文件的要求單位費用。
 3. 記錄標準且常見文件查詢的要求單位費用。
@@ -185,7 +190,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 在此情況下，我們預期平均輸送量需求為 1,275 RU/秒。四捨五入至最接近 100 的數目，我們會針對此應用程式的集合佈建 1,300 RU/秒。
 
 ##超過保留的輸送量限制
-您應該記得，要求單位耗用量是以每秒的速率來評估。對於超過集合上佈建的要求單位速率的應用程式，對於該集合的要求會受到節流控制，直到該速率降到預留層級以下。當節流發生時，伺服器將預先使用 RequestRateTooLarge (HTTP 狀態碼 429) 來結束要求，並傳回 x-ms-retry-after-ms 標頭，以指出使用者重試要求之前必須等候的時間量 (毫秒)。
+您應該記得，要求單位耗用量是以每秒的速率來評估。對於超過集合上佈建的要求單位速率的應用程式，對於該集合的要求會受到節流控制，直到該速率降到預留層級以下。當節流發生時，伺服器將預先使用 RequestRateTooLargeException (HTTP 狀態碼 429) 來結束要求，並傳回 x-ms-retry-after-ms 標頭，以指出使用者重試要求之前必須等候的時間量 (毫秒)。
 
 	HTTP Status 429
 	Status Line: RequestRateTooLarge
@@ -200,7 +205,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 若要深入了解透過 Azure DocumentDB 保留輸送量的方式，請探索下列資源：
  
 - [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)
-- [管理 DocumentDB 容量](documentdb-manage.md) 
+- [管理 DocumentDB 容量](documentdb-manage.md)
 - [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)
 - [DocumentDB 效能等級](documentdb-partition-data.md)
 
@@ -215,4 +220,4 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 [4]: ./media/documentdb-request-units/RUEstimatorResults.png
 [5]: ./media/documentdb-request-units/RUCalculator2.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

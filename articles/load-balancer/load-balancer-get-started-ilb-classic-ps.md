@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](load-balancer-get-started-ilb-arm-ps.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](load-balancer-get-started-ilb-arm-ps.md)。
 
 [AZURE.INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -82,7 +82,7 @@
 
 
 
-若要使用這些命令，請填入值並移除 < and >。下列是一個範例：
+若要使用這些命令，請填入值並移除 < 和 >。下列是一個範例：
 
 	$svc="mytestcloud"
 	Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
@@ -139,7 +139,7 @@
 	$epname="<Name of the endpoint>"
 	Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 
-若要使用這些命令，請填入值並移除 < and >。
+若要使用這些命令，請填入值並移除 < 和 >。
 
 下列是一個範例：
 
@@ -153,7 +153,7 @@
 	$svc="<Cloud service name>"
 	Remove-AzureInternalLoadBalancer -ServiceName $svc
 
-若要使用這些命令，請填入值並移除 < and >。
+若要使用這些命令，請填入值並移除 < 和 >。
 
 下列是一個範例：
 
@@ -181,4 +181,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -1,11 +1,12 @@
 <properties
-	pageTitle="建置您的第一個 Data Factory |Microsoft Azure"
-	description="本教學課程示範如何建立含有使用 Azure HDInsight 轉換資料之資料管線的 Data Factory。"
+	pageTitle="Data Factory 教學課程︰第一個資料管線 | Microsoft Azure"
+	description="此 Azure Data Factory 教學課程會示範如何使用 Hadoop 叢集上的 Hive 指令碼，建立和排程處理資料的 Data Factory。"
 	services="data-factory"
+	keywords="azure data factory 教學課程, hadoop 叢集, hadoop hive"
 	documentationCenter=""
 	authors="spelluru"
-	manager="jhubbard"
-	editor="monicar"/>
+	manager=""
+	editor=""/>
 
 <tags
 	ms.service="data-factory"
@@ -13,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="05/23/2016"
+	ms.date="06/17/2016"
 	ms.author="spelluru"/>
 
-# 教學課程︰建立您的第一個 Data Factory (概觀)
+# Azure Data Factory 教學課程︰使用 Hadoop 叢集建置處理資料的資料管線 
 > [AZURE.SELECTOR]
 - [教學課程概觀](data-factory-build-your-first-pipeline.md)
 - [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
@@ -24,7 +25,7 @@
 - [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-本文可協助您開始建置您的第一個 Azure Data Factory。
+在本教學課程中，您將會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來處理資料的資料管線。
 
 > [AZURE.NOTE] 本文不提供 Azure Data Factory 服務的概念性概觀。如需有關服務的詳細概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
 
@@ -43,14 +44,14 @@
 
 在本教學課程中，您將執行下列步驟：
 
-1.	建立 **Data Factory**。Data Factory 可以包含一或多個資料管線，可移動和處理資料。 
-2.	建立**連結的服務**。您會建立一個連結的服務，以將資料存放區或計算服務連結到 Data Factory。像是 Azure 儲存體的資料存放區會保留管線中的活動輸入/輸出資料。計算服務 (例如 Azure HDInsight 處理/轉換資料)。    
+1.	建立 **Data Factory**。Data Factory 可以包含一或多個資料管線，可移動和處理資料。
+2.	建立**連結的服務**。您會建立一個連結的服務，以將資料存放區或計算服務連結到 Data Factory。像是 Azure 儲存體的資料存放區會保留管線中的活動輸入/輸出資料。計算服務 (例如 Azure HDInsight 處理/轉換資料)。
 3.	建立輸入和輸出**資料集**。輸入資料集表示管線中的活動輸入，而輸出資料集表示活動的輸出。
 3.	建立**管線**。管線可以有一或多個活動 (例如「複製活動」)，以便從來源將資料複製到目的地 (或) HDInsight Hive 活動，並使用 Hive 指令碼轉換輸入資料以產生輸出資料。本範例使用執行 Hive 指令碼的 HDInsight Hive 活動。指令碼首先會建立一個參照儲存在 Azure Blob 儲存體中的原始 Web 記錄資料的外部資料表，再依年份或月份分割原始資料。
 
 您的第一個管線名為 **MyFirstPipeline**，使用 Hive 活動來轉換並分析您上傳到 Azure Blob 儲存體中 **adfgetstarted** 容器 (adfgetstarted/inputdata) 中 **inputdata** 資料夾的 Web 記錄檔。
  
-![圖表檢視](./media/data-factory-build-your-first-pipeline/diagram-view.png)
+![Data Factory 教學課程中的圖表檢視](./media/data-factory-build-your-first-pipeline/data-factory-tutorial-diagram-view.png)
 
 
 在本教學課程中，adfgetstarted (容器) => inputdata (資料夾) 包含一個名為 input.log 的檔案。此記錄檔包含三個月的項目，分別是：2014 年 1 月、2 月和 3 月。這裡是輸入檔中每個月份的資料列範例。
@@ -73,11 +74,11 @@
 您將在本節進行下列工作：
 
 2. 將 Hive 查詢檔案 (HQL) 上傳到 adfgetstarted 容器中的 [指令碼] 資料夾。
-3. 將輸入檔案上傳到 adfgetstarted 容器中的 [inputdata] 資料夾。 
+3. 將輸入檔案上傳到 adfgetstarted 容器中的 [inputdata] 資料夾。
 
 ### 建立 HQL 指令碼檔案 
 
-1. 啟動 [記事本]，並貼上下列 HQL 指令碼。此 Hive 指令碼會建立兩個外部資料表：**WebLogsRaw** 和 **WebLogsPartitioned**。按一下功能表上的 [檔案]，並選取 [另存新檔]。切換至硬碟機上的 **C:\\adfgetstarted** 資料夾。在 [檔案類型] 欄位選取 [所有檔案 (*.*)]。在 [檔案名稱]輸入 **partitionweblogs.hql**。確認已將對話方塊底部的 [編碼] 欄位設為 [ANSI]。如果沒有，請將它設為 [ANSI]。  
+1. 啟動 [記事本]，並貼上下列 HQL 指令碼。此 Hive 指令碼會建立兩個外部資料表：**WebLogsRaw** 和 **WebLogsPartitioned**。按一下功能表上的 [檔案]，並選取 [另存新檔]。切換至硬碟機上的 **C:\\adfgetstarted** 資料夾。在 [檔案類型] 欄位選取 [所有檔案 (*.*)]。在 [檔案名稱]輸入 **partitionweblogs.hql**。確認已將對話方塊底部的 [編碼] 欄位設為 [ANSI]。如果沒有，請將它設為 [ANSI]。
 	
 		set hive.exec.dynamic.partition.mode=nonstrict;
 		
@@ -189,7 +190,7 @@
 	 
 2. 為教學課程準備 Azure 儲存體：
 	1. 下載[最新版本的 **AzCopy**](http://aka.ms/downloadazcopy)，或[最新預覽版本](http://aka.ms/downloadazcopypr)。請參閱[如何使用 AzCopy](../storage/storage-use-azcopy.md) 一文以取得使用公用程式的指示。
-	2. AzCopy 安裝之後，您可以在命令提示字元中執行下列命令，將其新增到系統路徑。 
+	2. AzCopy 安裝之後，您可以在命令提示字元中執行下列命令，將其新增到系統路徑。
 	
 			set path=%path%;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy
 
@@ -209,7 +210,7 @@
 			Transfer skipped:        0
 			Transfer failed:         0
 			Elapsed time:            00.00:00:01
-	1. 執行下列命令，將 **partitionweblogs.hql** 檔案上傳到 **adfgetstarted** 容器的 [指令碼] 資料夾中。命令如下： 
+	1. 執行下列命令，將 **partitionweblogs.hql** 檔案上傳到 **adfgetstarted** 容器的 [指令碼] 資料夾中。命令如下：
 	
 			AzCopy /Source:. /Dest:https://<storageaccountname>.blob.core.windows.net/adfgetstarted/script /DestKey:<storagekey>  /Pattern:partitionweblogs.hql
 
@@ -220,6 +221,6 @@
 - Azure 入口網站 (Data Factory 編輯器)
 - Azure PowerShell
 - Visual Studio
-- Azure 資源管理員範本 
+- Azure 資源管理員範本
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -22,7 +22,7 @@ ms.service="virtual-machines-windows"
 
 本文將說明如何將隨選做為運算資源的 Azure「高載」節點 (在雲端服務中執行的背景工作角色執行個體) 新增至 Azure 中現有的 HPC Pack 前端節點。這可讓您依需求相應增加 Azure 中的 HPC 叢集的計算能力，且無需維護一組預先設定的計算節點 VM。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ![高載節點][burst]
 
@@ -89,4 +89,4 @@ ms.service="virtual-machines-windows"
 <!--Image references-->
 [burst]: ./media/virtual-machines-windows-classic-hpcpack-cluster-node-burst/burst.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

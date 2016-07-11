@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="xpouyat,vsood" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/21/2016"  
+	ms.date="06/22/2016"  
 	ms.author="xpouyat"/>
 
 #Licensing Microsoft® Smooth Streaming Client Porting Kit
@@ -30,19 +30,19 @@ Microsoft Smooth Streaming Client Porting Kit (簡稱 **SSPK**) 是最佳化的 
 
 SSPK 是根據可提供絕佳商業價值的條款授權。SSPK 授權提供給業界：
 
-- Smooth Streaming Porting Kit 的 C++ 原始碼 
+- Smooth Streaming Porting Kit 的 C++ 原始碼
   - 實作 Smooth Streaming 用戶端功能
   - 新增格式剖析、啟發學習法、緩衝處理邏輯等等
-- 播放器應用程式 API 
+- 播放器應用程式 API
   -	可與媒體播放器應用程式互動的程式設計介面
-- 平台抽象層 (PAL) 介面 
+- 平台抽象層 (PAL) 介面
   -	用於與作業系統 (執行緒、通訊端) 互動的程式設計介面
-- 硬體抽象層 (HAL) 介面 
+- 硬體抽象層 (HAL) 介面
   -	用於與硬體 A/V 解碼器 (解碼、轉譯) 互動的程式設計介面
-- 數位版權管理 (DRM) 介面 
+- 數位版權管理 (DRM) 介面
   -	可透過 DRM 抽象層 (DAL) 處理 DRM 的程式設計介面
   -	Microsoft PlayReady Porting Kit 個別出貨，但可透過這個介面整合。如需 Microsoft PlayReady Device 授權的詳細資訊，請按一下[這裡](http://www.microsoft.com/playready/licensing/device_technology.mspx#pddipdl)。
-- 實作範例 
+- 實作範例
   -	適用於 Linux 的 PAL 實作範例
   -	適用於 GStreamer 的 HAL 實作範例
 
@@ -71,7 +71,7 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 
 - 送交的每一裝置實作為 $0.10 美元
 - 每年的權利金上限為 $50,000 美元
-- 每年前 10,000 個裝置實作不需權利金 
+- 每年前 10,000 個裝置實作不需權利金
 
 ##授權程序和 SSPK 存取
 
@@ -164,4 +164,4 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

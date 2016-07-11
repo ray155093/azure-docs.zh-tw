@@ -1,6 +1,7 @@
 <properties 
-	pageTitle="從 Azure Blob 來回移動資料 | Azure Data Factory" 
-	description="了解如何使用 Azure Data Factory 從 Azure Blob 儲存體來回移動資料" 
+	pageTitle="了解如何複製/移動 Azure Blob 資料集 | Azure Data Factory" 
+	description="了解如何在 Azure Data Factory 複製 Blob 資料。使用我們的範例：如何在 Azure Blob 儲存體和 Azure SQL Database 將資料複製進來和複製出去。" 
+    keywords="blob 資料, azure blob 複製"
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -17,7 +18,7 @@
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 Azure Blob 來回移動資料
-本文概述如何在 Azure Data Factory 中使用複製活動，在 Azure Blob 與其他資料存放區之間移動資料。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文說明如何使用 Azure Data Factory 中的複製活動，透過從其他資料存放區獲得 Blob 資料在 Azure Blob 中來回移動資料。本文是根據資料移動活動一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 下列範例顯示如何在 Azure Blob 儲存體和 Azure SQL Database 將資料複製進來和複製出去。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
  
@@ -388,7 +389,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 | fileName | Blob 的名稱。fileName 是選擇性且區分大小寫。<br/><br/>如果您指定 fileName，則活動 (包括複製活動) 適用於特定的 Blob。<br/><br/>如果未指定 fileName，則複製活動將會包含輸入資料集 folderPath 中的所有 Blob。<br/><br/>如果未指定輸出資料集的 fileName，則所產生檔案的名稱會採用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
 | partitionedBy | partitionedBy 是選擇性的屬性。您可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。如需詳細資訊和範例，請參閱以下[運用 partitionedBy 屬性](#Leveraging-partitionedBy-property)一節。 | 否
 | format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：「最佳」和「最快」。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 ### 運用 partitionedBy 屬性
 如上所述，您可以使用 **partitionedBy** 區段、Data Factory 巨集和系統變數 (SliceStart 和 SliceEnd，表示指定資料配量的開始和結束時間)，指定時間序列資料的動態 folderPath 和 filename。
@@ -444,7 +445,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
 | blobWriterAddHeader | 指定是否要加入資料行定義的標頭。 | TRUE<br/>FALSE (預設值) | 否 |
-| copyBehavior | 當來源為 BlobSource 或 FileSystem 時，定義複製行為。 | **PreserveHierarchy：**在目標資料夾中保留檔案階層架構，亦即來源檔案至來源資料夾的相對路徑，與目標檔案至目標資料夾的相對路徑完全相同。<br/><br/>**FlattenHierarchy：**來源資料夾的所有檔案都將位於目標資料夾的第一層。目標檔案都會有自動產生的名稱。<br/><br/>**MergeFiles：(預設) **會將來源資料夾的所有檔案合併為一個檔案。如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 | 否 |
+| copyBehavior | 當來源為 BlobSource 或 FileSystem 時，定義複製行為。 | **PreserveHierarchy：**在目標資料夾中保留檔案階層架構，亦即來源檔案至來源資料夾的相對路徑，與目標檔案至目標資料夾的相對路徑完全相同。<br/><br/>**FlattenHierarchy：**來源資料夾的所有檔案都將位於目標資料夾的第一層。目標檔案會有自動產生的名稱。<br/><br/>**MergeFiles：(預設值)** 將來源資料夾的所有檔案合併為一個檔案。如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 | 否 |
 
 ### 遞迴和 copyBehavior 範例
 本節說明遞迴和 copyBehavior 值在不同組合的情況下，複製作業所產生的行為。
@@ -470,4 +471,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

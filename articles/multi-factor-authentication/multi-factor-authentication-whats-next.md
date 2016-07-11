@@ -32,7 +32,7 @@
 [詐騙警示](#fraud-alert)|您可以配置及設定詐騙警示，讓使用者得以針對存取其資源的詐騙嘗試提出報告。|如何設定、配置及提報詐騙活動
 [一次性略過](#one-time-bypass) |一次性略過可讓使用者「略過」Multi-Factor Authentication 來通過驗證一次。|如何設定及配置一次性略過
 [自訂語音訊息](#custom-voice-messages) |自訂語音訊息可讓您將自己的錄音或問候語用於 Multi-Factor Authentication。 |如何設定及配置自訂問候語和訊息
-[快取](#caching)|您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 |如何設定及配置驗證快取。
+[快取](#caching-in-azure-multi-factor-authentication)|您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 |如何設定及配置驗證快取。
 [信任的 IP](#trusted-ips)|信任的 IP 是 Multi-Factor Authentication 的功能，它賦予受管理或同盟租用戶管理員，讓從公司近端內部網路登入之使用者略過 Multi-Factor Authentication 的能力。|配置及設定要免除 Multi-Factor Authentication 的 IP 位址	
 [應用程式密碼](#app-passwords)|應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。|應用程式密碼的相關資訊。
 [針對已記住的裝置和瀏覽器，記住其 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-users-trust)|可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。|啟用此功能及設定的天數的相關資訊。
@@ -50,7 +50,7 @@
 3.	在 Azure Multi-Factor Authentication 管理入口網站中，按一下 [設定] 區段底下的 [設定]。
 4.	在 [設定] 頁面的 [詐騙警示] 區段底下，核取 [允許使用者提交詐騙警示] 核取方塊。
 5.	如果您想要在使用者提報詐騙活動時封鎖使用者，請核取 [提報詐騙時封鎖使用者]。
-6.	在 [初始問候語期間以代碼報告詐騙] 文字方塊中，輸入可在通話驗證期間使用的數字代碼。如果使用者輸入此代碼加上 #，而不只是 # 符號，系統將會提報詐騙警示。 
+6.	在 [初始問候語期間以代碼報告詐騙] 文字方塊中，輸入可在通話驗證期間使用的數字代碼。如果使用者輸入此代碼加上 #，而不只是 # 符號，系統將會提報詐騙警示。
 7.	在底部按一下 [儲存]。
 
 >[AZURE.NOTE]
@@ -67,7 +67,7 @@ Microsoft 的預設語音問候語會指示使用者按 0# 以提交詐騙警示
 
 
 1. 當系統將驗證傳送到電話時，請按一下它，Azure Authenticator 應用程式隨即會啟動。
-2. 若要提報詐騙活動，請按一下 [取消及提報詐騙]。指出系統將會通知組織 IT 支援員工的方塊隨即會出現。 
+2. 若要提報詐騙活動，請按一下 [取消及提報詐騙]。指出系統將會通知組織 IT 支援員工的方塊隨即會出現。
 3. 按一下 [提報詐騙]。
 4. 在應用程式中，按一下 [關閉]。
 
@@ -194,7 +194,7 @@ Azure AD 租用戶類型| 可用的信任 IP 選項
 5. 在 Multi-Factor Authentication 區段中，按一下 [管理服務設定]。
 6. 在 [服務設定] 頁面之 [信任的 IP] 下方，選取以下任一項：
 
-	- 對於來自內部網路之同盟使用者所發出的要求 – 所有從公司網路登入同盟使用者，都能使用 AD FS 發行的宣告略過 Multi-Factor Authentication。 
+	- 對於來自內部網路之同盟使用者所發出的要求 – 所有從公司網路登入同盟使用者，都能使用 AD FS 發行的宣告略過 Multi-Factor Authentication。
 	- 對於來自特定公開 IP 範圍的要求 – 使用 CIDR 表示法在提供的方塊中輸入 IP 位址。例如：xxx.xxx.xxx.0/24 代表介於 xxx.xxx.xxx.1 – xxx.xxx.xxx.254 之範圍內的 IP 位址；xxx.xxx.xxx.xxx/32 代表一個 IP 位址。您最多可以輸入 50 個 IP 位址範圍。
 
 7. 按一下 [儲存]。
@@ -321,7 +321,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 
 ### 在沒有 Office 365 或 Azure 訂用帳戶的情況下建立應用程式密碼
 --------------------------------------------------------------------------------
-1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)	
+1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)
 2. 在頂端，選取 [設定檔]。
 3. 按一下您的使用者名稱並選取 [其他安全性驗證]。
 5. 在 proofup 頁面的頂端，選取應用程式密碼
@@ -376,4 +376,4 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

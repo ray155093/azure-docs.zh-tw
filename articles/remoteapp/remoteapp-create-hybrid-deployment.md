@@ -20,7 +20,7 @@
 
 Azure RemoteApp 收藏分成兩種：
 
-- 雲端：完全位於 Azure 中。您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。   
+- 雲端：完全位於 Azure 中。您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。
 - 混合式：包含可內部存取的虛擬網路，這需要使用 Azure AD 和內部部署的 Active Directory 環境。
 
 不知道您需要什麼嗎? 請查看 [Azure RemoteApp 需要何種集合？](remoteapp-collections.md)
@@ -112,7 +112,7 @@ Asure RemoteApp 範本映像包含您要與使用者共用的程式。您可以�
 
 RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具有 [密碼同步] 選項的 Azure Active Directory 同步作業，或 2) 設定不具 [密碼同步] 選項的 Azure Active Directory 同步作業，但使用同盟至 AD FS 的網域。
 
-請參閱 [AD Connect](http://blogs.technet.com/b/ad/archive/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect.aspx) - 本文會協助您以 4 個步驟設定目錄整合。
+請參閱 [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) - 本文會協助您以 4 個步驟設定目錄整合。
 
 如需規劃資訊和詳細步驟，請參閱[目錄同步處理藍圖](http://msdn.microsoft.com//library/azure/hh967642.aspx)。
 
@@ -149,4 +149,4 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 ### 幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：限制
@@ -24,7 +24,7 @@ Azure Active Directory (Azure AD) B2C 有幾項特性與功能在預覽期間還
 
 ## 建立 Azure AD B2C 租用戶期間的問題
 
-如果您在[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started)期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
+如果您在[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
 
 ## 驗證電子郵件上的商標問題
 
@@ -70,6 +70,10 @@ Azure AD B2C 預覽支援 OpenID Connect 和 OAuth 2.0。不過，並非每個�
 
 許多由 Azure AD B2C 預覽所簽發的權杖都實作為 JSON Web Token (簡稱 JWT)。不過，並非 JWT 中包含的所有資訊 (又稱為「宣告」) 都相當完備，不然就是有所疏漏。例如 "sub" 和 "preferred\_username" 宣告。在預覽期間，此處的資訊會有很大的變化。若要進一步了解目前 Azure AD B2C 服務所發出的權杖，請參閱[權杖參考](active-directory-b2c-reference-tokens.md)。
 
+## 巢狀群組的限制
+
+Azure AD B2C 租用戶中不支援巢狀群組成員資格。我們沒有打算加入這項功能。
+
 ## Azure 傳統入口網站上的使用者管理問題
 
 在 Azure 入口網站上可存取 B2C 功能。不過，您可以使用 Azure 傳統入口網站來存取其他的租用戶功能，包括使用者管理。目前，Azure 傳統入口網站上的使用者管理 ([使用者] 索引標籤) 有幾個已知問題：
@@ -82,11 +86,11 @@ Azure AD B2C 預覽支援 OpenID Connect 和 OAuth 2.0。不過，並非每個�
 
 ## 在 Azure 傳統入口網站上的系統管理員起始密碼重設問題
 
-如果您針對本機帳戶取用者，在 Azure 傳統入口網站上重設其密碼 ([使用者] 索引標籤上的 [重設密碼] 命令)，該取用者下次登入時將無法變更密碼，且會被鎖定不得使用您的應用程式。我們正在努力修正這個問題。解決方法是使用 [Azure AD 圖形 API](active-directory-b2c-devquickstarts-graph-dotnet.md) 重設取用者的密碼。
+如果您在 Azure 傳統入口網站上重設本機帳戶取用者的密碼 ([使用者] 索引標籤上的 [重設密碼] 命令)，該取用者下次登入時將無法變更密碼；如果您使用「註冊或登入」原則，取用者還會被鎖定不得使用您的應用程式。我們正在努力修正這個問題。解決方法是使用 [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md) 重設取用者密碼 (不含密碼到期)，或使用「登入」原則，而不是「註冊或登入」原則。
 
-## 刪除 Azure AD B2C 租用戶的限制
+## 建立自訂屬性時的問題
 
-您無法在 Azure 傳統入口網站中刪除 Azure AD B2C 租用戶。
+[在 Azure 入口網站上加入的自訂屬性](active-directory-b2c-reference-custom-attr.md)不會立即在 B2C 租用戶中建立。您必須至少在一個原則中使用自訂屬性，它才會在 B2C 租用戶中建立，也才可透過圖形 API 使用。
 
 ## 在 Azure 傳統入口網站上驗證網域的問題
 
@@ -97,6 +101,6 @@ Azure AD B2C 預覽支援 OpenID Connect 和 OAuth 2.0。不過，並非每個�
 在 Safari 瀏覽器上，登入原則的要求 (在開啟 MFA 時) 偶爾會失敗，並出現 HTTP 400 (不正確的要求) 錯誤。這是因為 Safari 的低 Cookie 大小限制所致。此問題有許多因應措施︰
 
 - 使用「註冊或登入原則」而不是「登入原則」。
-- 減少原則中所要求的**應用程式宣告**數目。 
+- 減少原則中所要求的**應用程式宣告**數目。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

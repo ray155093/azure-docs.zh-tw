@@ -22,7 +22,7 @@
 
 [MySQL](http://www.mysql.com) 是一種很受歡迎的開放原始碼 SQL 資料庫。本教學課程示範如何在執行 Windows Server 2012 R2 的虛擬機器上安裝並執行 MySQL 5.6.23 社群版本作為 MySQL 伺服器。如需在 Linux 上安裝 MySQL 的指示，請參閱[如何在 Azure 上安裝 MySQL](virtual-machines-linux-mysql-install.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ## 建立執行 Windows Server 2012 R2 的虛擬機器
 
@@ -126,4 +126,4 @@
 
 若要深入了解如何執行 MySQL，請參閱 [MySQL 文件](http://dev.mysql.com/doc/)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

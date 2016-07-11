@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="06/29/2016"
 	ms.author="jeedes"/>
 
 
 # 教學課程：Azure Active Directory 與 SilkRoad Life Suite 整合
 
-本教學課程的目標是說明如何將 SilkRoad Life Suite 與 Azure Active Directory (Azure AD) 整合。<br>將 SilkRoad Life Suite 與 Azure AD 整合可提供您下列好處：
+本教學課程旨在說明如何整合 SilkRoad Life Suite 與 Azure Active Directory (Azure AD)。SilkRoad Life Suite 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中控制可存取 SilkRoad Life Suite 的人員 
+- 您可以在 Azure AD 中控制可存取 SilkRoad Life Suite 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 SilkRoad Life Suite (單一登入)
 
 若您想了解 SaaS 應用程式與 Azure AD 整合的更多詳細資訊，請參閱[什麼是應用程式存取和 Azure Active Directory 的單一登入](active-directory-appssoaccess-whatis.md)。
@@ -40,13 +40,13 @@
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
 ## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。<br> 本教學課程中說明的案例由二個主要建置組塊組成：
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫加入 SilkRoad Life Suite 
+1. 從資源庫加入 SilkRoad Life Suite
 2. 設定並測試 Azure AD 單一登入
 
 
@@ -55,21 +55,37 @@
 
 **若要從資源庫新增 SilkRoad Life Suite，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**的左方瀏覽窗格中，按一下 [Active Directory]。<br><br> ![Active Directory][1]<br>
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+
+	![Active Directory][1]
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。<br><br> ![應用程式][2]<br>
-4. 按一下頁面底部的 [加入]。<br><br> ![應用程式][3]<br>
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。<br><br> ![應用程式][4]<br>
-6. 在 [搜尋] 方塊中，輸入 **SilkRoad Life Suite**。<br><br> ![應用程式][5]<br>
-7. 在結果窗格中，選取 [SilkRoad Life Suite]，然後按一下 [完成] 以加入應用程式。<br><br>![應用程式][50]<br>
+3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+
+	![應用程式][2]
+
+4. 按一下頁面底部的 [新增]。
+
+	![應用程式][3]
+
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+
+	![應用程式][4]
+
+6. 在 [搜尋] 方塊中，輸入 **SilkRoad Life Suite**。
+
+	![應用程式][5]
+
+7. 在結果窗格中，選取 [SilkRoad Life Suite]，然後按一下 [完成] 以加入應用程式。
+
+	![應用程式][50]
 
 
 ##  設定並測試 Azure AD 單一登入
 本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 SilkRoad Life Suite 的 Azure AD 單一登入。
 
-單一登入若要運作，Azure AD 必須知道 SilkRoad Life Suite 與 Azure AD 中互相對應的使用者。換句話說，Azure AD 使用者和 SilkRoad Life Suite 中的相關使用者之間必須建立連結關聯性。<br> 建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 SilkRoad Life Suite 中 **Username** 的值。
+單一登入若要運作，Azure AD 必須知道 SilkRoad Life Suite 與 Azure AD 中互相對應的使用者。換句話說，Azure AD 使用者和 SilkRoad Life Suite 中的相關使用者之間必須建立連結關聯性。建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 SilkRoad Life Suite 中 **Username** 的值。
  
 若要設定及測試對 SilkRoad Life Suite 的 Azure AD 單一登入，您需要完成下列建置組塊：
 
@@ -81,38 +97,52 @@
 
 ### 設定 Azure AD 單一登入
 
-本節目標是在 Azure AD 入口網站啟用 Azure AD 單一登入，並在您的 SilkRoad Life Suite 應用程式中設定單一登入。<br>
+本節目標是在 Azure 傳統入口網站啟用 Azure AD 單一登入，並在您的 SilkRoad Life Suite 應用程式中設定單一登入。
 
 **若要使用 SilkRoad Life Suite 設定 Azure AD 單一登入，請執行下列步驟：**
 
-5. 以系統管理員身分登入您的 SilkRoad 公司網站。 
+5. 以系統管理員身分登入您的 SilkRoad 公司網站。
 
 
     > [AZURE.NOTE] 若要取得用於設定與 Microsoft Azure AD 的同盟存取的 SilkRoad Life Suite 驗證應用程式，請連絡 SilkRoad 支援人員或您的 SilkRoad 服務代表。
 
 
-6. 移至 [服務提供者]，然後按一下 [同盟詳細資料]。<br><br>![Azure AD 單一登入][10] <br>
+6. 移至 [服務提供者]，然後按一下 [同盟詳細資料]。
+
+	![Azure AD 單一登入][10]
 
 
-1. 按一下 [下載同盟中繼資料]，然後將資料檔儲存在您的電腦中。<br><br>![Azure AD 單一登入][11] <br>
+1. 按一下 [下載同盟中繼資料]，然後將資料檔儲存在您的電腦中。
 
-3. 在 Azure AD 入口網站的 [SilkRoad Life Suite] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。<br><br> ![設定單一登入][6] <br>
+	![Azure AD 單一登入][11]
 
-2. 在 [您希望使用者如何登入 SilkRoad Life Suite] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。<br><br> ![Azure AD 單一登入][7] <br>
+3. 在 Azure 傳統入口網站的 [SilkRoad Life Suite] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-3. 在 [設定應用程式設定] 對話方塊頁面，執行下列步驟：<br><br>![Azure AD 單一登入][8] <br>
+	![設定單一登入][6]
+
+2. 在 [您希望使用者如何登入 SilkRoad Life Suite] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+
+	![Azure AD 單一登入][7]
+
+3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+
+	![Azure AD 單一登入][8]
  
-    a.在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 SilkRoad Life Suite 網站的 URL (例如：**https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*))。
+    a.在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 SilkRoad Life Suite 網站的 URL (例如：*https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*)。
 
-    b.開啟下載 **Silkroad** 中繼資料檔案。
+    b.開啟下載的 **Silkroad** 中繼資料檔案。
 
-    c.找到 **AssertionConsumerService** 標記，然後複製 **Location** 屬性。<br><br>![Azure AD 單一登入][21] <br>
+    c.找到 **AssertionConsumerService** 標籤，然後複製 **Location** 屬性。
+
+	![Azure AD 單一登入][21]
    
     d.請將該值貼入 [回覆 URL] 文字方塊。
  
     e.按 [下一步]。
  
-4. 在 [設定在 SilkRoad Life Suite 單一登入] 頁面上，執行下列步驟：<br><br>![Azure AD 單一登入][9] <br>
+4. 在 [設定在 SilkRoad Life Suite 單一登入] 頁面上，執行下列步驟：
+
+	![Azure AD 單一登入][9]
 
     a.按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
 
@@ -121,26 +151,36 @@
 
 
 
-1. 在您的 **SilkRoad** 應用程式中，按一下 [驗證來源]。 <br><br>![Azure AD 單一登入][12] <br>
+1. 在您的 **SilkRoad** 應用程式中，按一下 [驗證來源]。
+
+	![Azure AD 單一登入][12]
 
 
 
-1. 按一下 [加入驗證來源]。<br><br>![Azure AD 單一登入][13] <br>
+1. 按一下 [加入驗證來源]。
+
+	![Azure AD 單一登入][13]
 
 
 
-1. 在 [加入驗證來源] 區段中，執行下列步驟：<br><br>![Azure AD 單一登入][14] <br>
+1. 在 [加入驗證來源] 區段中，執行下列步驟：
+
+	![Azure AD 單一登入][14]
 
     a.在 [選項 2 - 中繼資料檔案] 下，按一下 [瀏覽] 來上傳下載的中繼資料檔案。
 
-    b.按一下 [使用檔案資料建立識別提供者]。
+    b.按一下 [使用檔案資料建立身分識別提供者]。
 
 
 
-1. 在 [驗證來源] 區段中，按一下 [編輯]。<br><br>![Azure AD 單一登入][15] <br>
+1. 在 [驗證來源] 區段中，按一下 [編輯]。
+
+	![Azure AD 單一登入][15]
 
 
-1. 在 [編輯驗證來源] 對話方塊中，執行下列步驟：<br><br>![Azure AD 單一登入][16] <br>
+1. 在 [編輯驗證來源] 對話方塊中，執行下列步驟：
+
+	![Azure AD 單一登入][16]
 
     a.對 [已啟用] 選取 [是]。
 
@@ -151,27 +191,43 @@
     d.按一下 [儲存]。
 
 
-6. 停用所有其他驗證來源。<br><br>![Azure AD 單一登入][17]<br>
+6. 停用所有其他驗證來源。
 
-7. 在 Azure AD 入口網站的 [單一登入確認] 頁面上，按一下 [完成]。<br><br>![Azure AD 單一登入][18]
+	![Azure AD 單一登入][17]
 
-1. 在 [單一登入確認] 頁面上，按一下 [完成]。<br><br>![Azure AD 單一登入][19]
+7. 在 Azure 傳統入口網站的 [單一登入確認] 頁面上，按一下 [完成]。
+
+	![Azure AD 單一登入][18]
+
+1. 在 [單一登入確認] 頁面上，按一下 [完成]。
+
+	![Azure AD 單一登入][19]
 
 
 ### 建立 Azure AD 測試使用者
-本節的目標是要在 Azure 入口網站中建立名為 Britta Simon 的測試使用者。<br> 在 [使用者] 清單中，選取 [Britta Simon]。<br><br>![建立 Azure AD 使用者][20]<br>
+本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+
+![建立 Azure AD 使用者][20]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**中，按一下左方瀏覽窗格中的 [Active Directory]。<br><br>![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_09.png) <br> 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_09.png)
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下功能表頂端的 [使用者]。<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_03.png) <br>
- 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_04.png) <br>
+3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_05.png) <br>
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_03.png)
+ 
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_04.png)
+
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_05.png)
 
     a.針對 [使用者類型]，選取 [您組織中的新使用者]。
 
@@ -179,7 +235,9 @@
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：<br><br>![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_06.png) <br>
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_06.png)
  
     a.在 [名字] 文字方塊中，輸入 **Britta**。
 
@@ -189,9 +247,13 @@
 
     d.在 [角色] 清單中，選取 [使用者]。按 [下一步]。
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。<br><br> ![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_07.png) <br>
+7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_07.png)
  
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：<br><br>![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_08.png) <br>
+8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_08.png)
   
     a.記下 [新密碼] 的值。
 
@@ -211,22 +273,35 @@
 
 ### 指派 Azure AD 測試使用者
 
-本節目標是授與 Britta Simon 對 SilkRoad Life Suite 的存取權，讓她能夠使用 Azure 單一登入。<br><br>![指派使用者][200] <br>
+本節目標是授與 Britta Simon 對 SilkRoad Life Suite 的存取權，讓她能夠使用 Azure 單一登入。
+
+![指派使用者][200]
 
 **若要將 Britta Simon 指派到 SilkRoad Life Suite，請執行以下步驟：**
 
-1. 在 Azure 入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。<br><br>![指派使用者][201] <br>
-2. 在應用程式清單中，選取 [SilkRoad Life Suite]。<br><br>![指派使用者][202] <br>
-1. 在頂端的功能表中，按一下 [使用者]。<br><br>![指派使用者][203] <br>
+1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+
+	![指派使用者][201]
+
+2. 在應用程式清單中，選取 [SilkRoad Life Suite]。
+
+	![指派使用者][202]
+
+1. 在頂端的功能表中，按一下 [使用者]。
+
+	![指派使用者][203]
+
 1. 在 [使用者] 清單中，選取 [Britta Simon]。
 
-2. 在底部的工具列中，按一下 [指派]。<br><br>![指派使用者][205]
+2. 在底部的工具列中，按一下 [指派]。
+
+	![指派使用者][205]
 
 
 
 ### 測試單一登入
 
-本節目標是使用存取面板測試您的 Azure AD 單一登入組態。<br> 當您在 [存取面板] 中按一下 [SilkRoad Life Suite] 磚時，您應該會自動登入您的 SilkRoad Life Suite 應用程式。
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在 [存取面板] 中按一下 [SilkRoad Life Suite] 磚時，您應該會自動登入您的 SilkRoad Life Suite 應用程式。
 
 
 ## 其他資源
@@ -271,4 +346,4 @@
 [204]: ./media/active-directory-saas-silkroad-life-suite-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-silkroad-life-suite-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

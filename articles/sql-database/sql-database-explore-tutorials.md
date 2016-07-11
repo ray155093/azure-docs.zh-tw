@@ -74,7 +74,7 @@
 |---|---|---|
 | [變更您資料庫的服務層級和效能等級](sql-database-scale-up.md#change-the-service-tier-and-performance-level-of-your-database) | 在本教學課程中，您將了解如何使用服務層相應增加或相應減少 Azure SQL Database 的效能。 |
 | [SQL Database 建議程式查詢效能深入解析](sql-database-performance.md#performance-overview) | 在本教學課程中，您將了解如何開啟和使用 SQL Database 建議程式查詢效能深入解析。|
-| [SQL Database 建議程式效能建議](sql-database-index-advisor.md#viewing-recommendations) | 在本教學課程中，您將了解如何檢視並套用 SQL Database 建議程式效能建議。 |
+| [SQL Database 建議程式效能建議](sql-database-advisor.md#viewing-recommendations) | 在本教學課程中，您將了解如何檢視並套用 SQL Database 建議程式效能建議。 |
 | [檢閱排名最前面的 CPU 取用查詢](sql-database-query-performance.md#review-top-cpu-consuming-queries)| 在本教學課程中，您將了解如何使用 SQL Database 建議程式查詢效能深入解析來檢閱排名最前面的 CPU 取用查詢。|
 | [檢視個別查詢詳細資料](sql-database-query-performance.md#viewing-individual-query-details)| 在本教學課程中，您將了解如何使用 SQL Database 建議程式查詢效能深入解析以檢視個別查詢效能詳細資料。|
 ||||
@@ -180,4 +180,4 @@
 
 [探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

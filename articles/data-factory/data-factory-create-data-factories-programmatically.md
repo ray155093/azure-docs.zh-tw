@@ -40,11 +40,11 @@
 		<li>按一下 [確定]<b></b> 以建立專案。</li>
 	</ol>
 2. 按一下 [<b>工具</b>]，指向 [<b>NuGet 封裝管理員</b>]，然後按一下 [<b>封裝管理員主控台</b>]。
-3.	在 [Package Manager Console]<b></b> 中，逐一執行下列命令。</b>。 
+3.	在 [Package Manager Console]<b></b> 中，逐一執行下列命令。</b>。
 
 		Install-Package Microsoft.Azure.Management.DataFactories
 		Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
-6. 將下列 **appSetttings** 區段加入 **App.config** 檔案。Helper 方法使用的是：**Microsoft.identitymodel.waad.preview.graph.graphinterface**。 
+6. 將下列 **appSetttings** 區段加入 **App.config** 檔案。Helper 方法使用的是：**Microsoft.identitymodel.waad.preview.graph.graphinterface**。
 
 	以您的 Azure 訂用帳戶與租用戶識別碼取代 **SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。從 Azure PowerShell 執行 **Get-AzureAccount** 即可取得這些值 (您可能需要先使用 Add-AzureAccount 登入)。
  
@@ -71,7 +71,7 @@
 		
 		using Microsoft.IdentityModel.Clients.ActiveDirectory;
 		using Microsoft.Azure;
-6. 將下列會建立 **DataPipelineManagementClient** 類別執行個體的程式碼加入 **Main** 方法中。您將使用此物件來建立 Data Factory、連結的服務、輸入和輸出資料集，以及管線。您也將使用此物件來監視執行階段的資料集配量。    
+6. 將下列會建立 **DataPipelineManagementClient** 類別執行個體的程式碼加入 **Main** 方法中。您將使用此物件來建立 Data Factory、連結的服務、輸入和輸出資料集，以及管線。您也將使用此物件來監視執行階段的資料集配量。
 
         // create data factory management client
         string resourceGroupName = "resourcegroupname";
@@ -123,7 +123,7 @@
                 }
             }
         );
-9. 將下列會建立**輸入和輸出資料集**的程式碼加入 **Main** 方法中。 
+9. 將下列會建立**輸入和輸出資料集**的程式碼加入 **Main** 方法中。
 
 	請注意，輸入 Blob 的 **FolderPath** 設定為 **adftutorial/**，其中 **adftutorial** 是 Blob 儲存體中的容器名稱。如果 Azure Blob 儲存體中沒有此容器，請以下列名稱建立容器：**adftutorial**，並將文字檔上傳至容器。
 	
@@ -263,7 +263,7 @@
 
 	
 
-12. 將 **Main** 方法所使用的下列 Helper 方法加入 **Program** 類別中。此方法會顯示一個對話方塊，讓您提供登入 Azure 入口網站的 [使用者名稱]和 [密碼]。 
+12. 將 **Main** 方法所使用的下列 Helper 方法加入 **Program** 類別中。此方法會顯示一個對話方塊，讓您提供登入 Azure 入口網站的 [使用者名稱]和 [密碼]。
  
 		public static string GetAuthorizationHeader()
         {
@@ -366,17 +366,17 @@
         Console.ReadKey();
 
 15. 在 [方案總管] 中展開專案 (**DataFactoryAPITestApp**)，以滑鼠右鍵按一下 [參考]，然後按一下 [加入參考]。選取 **System.Configuration** 組件的核取方塊，然後按一下 [確定]。
-16. 建置主控台應用程式。按一下功能表上的 [建置]，再按一下 [建置方案]。 
+16. 建置主控台應用程式。按一下功能表上的 [建置]，再按一下 [建置方案]。
 16. 確認您 Azure Blob 儲存體之 adftutorial 容器中至少有一個檔案。如果沒有，請在「記事本」中以下列內容建立 Emp.txt 檔案，然後將它上傳至 adftutorial 容器。
 
         John, Doe
 		Jane, Doe
 	 
 17. 按一下功能表上的 [偵錯] -> [開始偵錯]，執行範例。當您看到 [取得資料配量的執行詳細資料]，請等待數分鐘再按 **ENTER**。
-18. 使用 Azure 入口網站確認 Data Factory：**APITutorialFactory** 是使用下列成品所建立： 
-	- 連結服務：**LinkedService\_AzureStorage** 
+18. 使用 Azure 入口網站確認 Data Factory：**APITutorialFactory** 是使用下列成品所建立：
+	- 連結服務：**LinkedService\_AzureStorage**
 	- 資料集：**DatasetBlobSource** 和 **DatasetBlobDestination**。
-	- 管線：**PipelineBlobSample** 
+	- 管線：**PipelineBlobSample**
 18. 確認輸出檔案已建立在 **adftutorial** 容器的 **apifactoryoutput** 資料夾中。
 
 
@@ -385,7 +385,7 @@
 
 
 [data-factory-introduction]: data-factory-introduction.md
-[adf-getstarted]: data-factory-get-started.md
+[adf-getstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
 [use-custom-activities]: data-factory-use-custom-activities.md
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
  
@@ -393,4 +393,4 @@
 [azure-developer-center]: http://azure.microsoft.com/downloads/
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

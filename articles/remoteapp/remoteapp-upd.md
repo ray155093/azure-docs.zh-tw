@@ -26,7 +26,7 @@ Azure RemoteApp 跨越裝置和工作階段儲存使用者身分識別和自訂�
 
 請閱讀更多有關使用者設定檔資料的特殊資訊。
 
->[AZURE.NOTE] 必須停用 UPD 嗎？ 現在您可以那麼做了 - 詳細資料請查看 Pavithra 的部落格文章：[在 Azure RemoteApp 停用使用者設定檔磁碟 (UPD)](http://blogs.msdn.com/b/rds/archive/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp.aspx) (英文)。
+>[AZURE.NOTE] 必須停用 UPD 嗎？ 現在您可以那麼做了 - 詳細資料請查看 Pavithra 的部落格文章：[在 Azure RemoteApp 停用使用者設定檔磁碟 (UPD)](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/) (英文)。
 
 
 ## 系統管理員如何取得資料？
@@ -83,10 +83,10 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 遇到下列情況時，建議您停用 UPD：
 
 - 您需要使用者資料的完整存取權限和控制 (針對稽核和檢閱之目的，例如金融機構)。
-- 您有內部部署的第三方使用者設定檔管理解決方案，並想要加入網域的 Azure RemoteApp 部署繼續使用它們。這會需要將設定檔代理程式載入主要映像。 
+- 您有內部部署的第三方使用者設定檔管理解決方案，並想要加入網域的 Azure RemoteApp 部署繼續使用它們。這會需要將設定檔代理程式載入主要映像。
 - 您不需要任何本機資料儲存空間，或者您的所有資料都在雲端 (例如商務用 OneDrive) 或檔案共用，並且想要使用 Azure RemoteApp 控制在本機的檔案儲存。
 
-如需詳細資訊，請參閱[在 Azure RemoteApp 停用使用者設定檔磁碟 (UPD)](http://blogs.msdn.com/b/rds/archive/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp.aspx) (英文)。
+如需詳細資訊，請參閱[在 Azure RemoteApp 停用使用者設定檔磁碟 (UPD)](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/) (英文)。
 
 ## 我可以限制使用者不要將資料儲存到系統磁碟機嗎？
 
@@ -159,4 +159,4 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 這可讓您略過 New-PSDrive Cmdlet 中的 -Credential 參數。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

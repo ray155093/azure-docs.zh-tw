@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"    
+	ms.date="06/22/2016"  
 	ms.author="Mingfeiy;willzhan;Juliako"/>
 
 
@@ -37,10 +37,10 @@
 
 - 媒體內容儲存在 AMS 中。
 - 內容金鑰的金鑰識別碼儲存在 castLabs 與 AMS 中。
-- castLabs 與 AMS 皆有內建權杖驗證。以下幾節將會討論驗證權杖。 
+- castLabs 與 AMS 皆有內建權杖驗證。以下幾節將會討論驗證權杖。
 - 用戶端要求串流視訊時，AMS 會使用 **一般加密** (CENC) 動態加密內容，並動態封裝到 Smooth Streaming 與 DASH。我們也會針對 HLS 串流通訊協定傳遞 PlayReady M2TS 基礎資料流加密。
-- PlayReady 授權擷取自 AMS 授權伺服器，Widevine 授權擷取自 castLabs 授權伺服器。 
-- 媒體播放器會根據平台功能自動決定提取哪些授權。 
+- PlayReady 授權擷取自 AMS 授權伺服器，Widevine 授權擷取自 castLabs 授權伺服器。
+- 媒體播放器會根據平台功能自動決定提取哪些授權。
 
 ##產生驗證權杖以取得授權
 
@@ -107,7 +107,7 @@ jti|權杖的唯一識別碼 (每個權杖在 castLabs 系統中只使用一次)
 3.	貼上資料流 URL。
 4.	按一下 [**進階選項**] 核取方塊。
 5.	在 [保護] 下拉式清單中選取 PlayReady 和/或 Widevine。
-6.	在 [權杖] 文字方塊中貼上您從 STS 取得的權杖。 
+6.	在 [權杖] 文字方塊中貼上您從 STS 取得的權杖。
 	
 	castLab 授權伺服器不需要權杖前有 “Bearer=” 前置詞。因此請先移除該前置詞，再提交權杖。
 7.	更新播放程式。
@@ -122,4 +122,4 @@ jti|權杖的唯一識別碼 (每個權杖在 castLabs 系統中只使用一次)
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

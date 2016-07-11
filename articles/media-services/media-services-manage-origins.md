@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -68,9 +68,7 @@
 	任何新的串流單位配置需要大約 20 分鐘的時間才能完成。
 
 	 
->[AZURE.NOTE] 目前，串流單位從任何正數值到無，都可能停用隨選串流長達一小時。
-
-</br>
+	>[AZURE.NOTE] 目前，串流單位從任何正數值到無，都可能停用隨選串流長達一小時。
 
 	>[AZURE.NOTE] 計算成本時會使用 24 小時內指定的最大單元數。如需定價詳細資料的相關資訊，請參閱＜[媒體服務定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)＞。
 	
@@ -127,6 +125,7 @@
 
 ![串流端點啟用 CDN][streaming-endpoint-enable-cdn]
 
+>[AZURE.IMPORTANT] Azure 媒體服務與 Azure CDN 的整合會在**來自 Verizon 的 Azure CDN** 上實作。如果您想要將**來自 Akamai 的 Azure CDN** 用於 Azure 媒體服務，您必須[手動設定端點](../cdn/cdn-create-new-endpoint.md)。如需 Azure CDN 功能的詳細資訊，請參閱 [CDN 概觀](../cdn/cdn-overview.md)。
 
 ###其他考量
 
@@ -152,4 +151,4 @@
 [configure-origin-configure-custom-host-names]: ./media/media-services-manage-origins/media-services-configure-custom-host-names.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

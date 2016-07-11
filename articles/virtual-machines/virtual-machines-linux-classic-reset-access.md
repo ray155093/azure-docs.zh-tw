@@ -22,7 +22,7 @@
 
 如果您因為忘記密碼、安全殼層 (SSH) 金鑰不正確或 SSH 組態有問題而無法連線到 Linux 虛擬機器，請使用 VMAccessForLinux 擴充功能搭配 Azure CLI 來重設密碼或 SSH 金鑰、修正 SSH 組態和檢查磁碟一致性。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
 
 使用 Azure CLI，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 **azure vm extension set** 命令來存取命令。如需詳細的擴充功能使用方式，請執行 **azure help vm extension set**。
 
@@ -122,7 +122,7 @@
 
 如果您想要刪除使用者帳戶而不直接登入 VM，可以使用這個指令碼。
 
-1. 使用此內容建立名為 PrivateConf.json 的檔案，以要移除的使用者名稱來取代 &#60;usernametoremove&#62;。 
+1. 使用此內容建立名為 PrivateConf.json 的檔案，以要移除的使用者名稱來取代 &#60;usernametoremove&#62;。
 
         {
         "remove_user":"<usernametoremove>"
@@ -138,11 +138,11 @@
 
         azure vm extension get
 
-## <a name='checkdisk'<</a>檢查新增的磁碟的一致性
+## <a name='checkdisk'<</a>檢查新增磁碟的一致性
 
 若要在 Linux 虛擬機器中的所有磁碟上執行 fsck，您必須執行下列操作：
 
-1. 使用此內容建立名為 PublicConf.json 的檔案。檢查磁碟以布林值決定是否要檢查附加至您的虛擬機器的磁碟。 
+1. 使用此內容建立名為 PublicConf.json 的檔案。檢查磁碟以布林值決定是否要檢查附加至您的虛擬機器的磁碟。
 
         {   
         "check_disk": "true"
@@ -156,7 +156,7 @@
 
 若要修復未掛接或發生掛接設定錯誤的磁碟，請使用 VMAccess 擴充功能來重設 Linux 虛擬機器上的掛接設定。使用您的磁碟名稱取代 &#60;yourdisk&#62;。
 
-1. 使用此內容建立名為 PublicConf.json 的檔案。 
+1. 使用此內容建立名為 PublicConf.json 的檔案。
 
         {
         "repair_disk":"true",
@@ -171,10 +171,10 @@
 
 ## 後續步驟
 
-* 如果您想要使用 Azure PowerShell Cmdlet 或 Azure Resource Manager 範本來重設密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性，請參閱 [GitHub 上的 VMAccess 擴充功能文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。 
+* 如果您想要使用 Azure PowerShell Cmdlet 或 Azure Resource Manager 範本來重設密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性，請參閱 [GitHub 上的 VMAccess 擴充功能文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
 
-* 您也可以使用 [Azure 入口網站](https://portal.azure.com)來重設傳統部署模型中部署的 Linux VM 的密碼或 SSH 金鑰。目前您無法使用入口網站來針對部署在 Resource Manager 部署模型內的 Linux VM 執行上述操作。
+* 您也可以使用 [Azure 入口網站](https://portal.azure.com)來重設傳統部署模型中部署的 Linux VM 密碼或 SSH 金鑰。目前您無法使用入口網站來針對部署在 Resource Manager 部署模型內的 Linux VM 執行上述操作。
 
-* 如需使用適用於 Azure 虛擬機器之 VM 擴充功能的詳細資訊，請參閱[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md)。
+* 如需使用 Azure 虛擬機器 VM 擴充功能的詳細資訊，請參閱[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="06/29/2016" 
 	ms.author="sdanie"/>
 
 # Azure Redis Cache 高階層簡介
@@ -41,6 +41,7 @@ Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資�
 若要開始使用叢集，請參閱[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)。
 
 ##增強的安全性和隔離
+
 您可透過公用網際網路存取基本或標準層中建立的快取。對快取的存取權會受到存取金鑰的限制。若使用高階層，您可以進一步確保只有指定網路中的用戶端可以存取快取。您可以在 [Azure 虛擬網路 (VNet)](https://azure.microsoft.com/services/virtual-network/) 中部署 Redis Cache。您可以使用 VNet 的所有功能，例如子網路、存取控制原則和其他功能，進一步限制對 Redis 的存取權。
 
 如需詳細資訊，請參閱[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)。
@@ -55,6 +56,29 @@ Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資�
 
 如需詳細資訊，請參閱[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)。
 
+## 重新啟動
+
+進階層可讓您依需求重新啟動快取的一或多個節點。這可讓您測試應用程式，以便在發生失敗時加以復原。您可以重新啟動下列節點。
+
+-	快取的主要節點
+-	快取的從屬節點
+-	快取的主要和從屬節點
+-	使用進階快取搭配叢集時，您可以針對快取中的個別分區重新啟動主要、從屬或這兩個節點
+
+如需詳細資訊，請參閱[重新啟動](cache-administration.md#reboot)和[重新啟動常見問題集](cache-administration.md#reboot-faq)。
+
+## 排程更新
+
+排程更新功能可讓您指定適用於快取的維護期間。若指定了維護期間，即會在此期間進行任何 Redis 伺服器更新。若要指定維護期間，請選取所需的天數，並指定每一天的維護期間開始小時。請注意，維護期間時間是 UTC。
+
+如需詳細資訊，請參閱[排程更新](cache-administration.md#schedule-updates)和[排程更新常見問題集](cache-administration.md#schedule-updates-faq)。
+
+>[AZURE.NOTE] 在排程維護期間，只會進行 Redis 伺服器更新。維護期間不適用於 Azure 更新或 VM 作業系統的更新。
+
+## 調整為進階層
+
+若要調整為進階層，只需選擇 [變更定價層] 刀鋒視窗中的其中一個進階層。您也可以使用 PowerShell 和 CLI 來將快取調整為進階層。如需逐步指示，請參閱[如何調整 Azure Redis 快取](cache-how-to-scale.md)和[如何自動化調整作業](cache-how-to-scale.md#how-to-automate-a-scaling-operation)。
+
 ## 後續步驟
 
 建立快取並探索高階層的新功能。
@@ -63,6 +87,7 @@ Azure Redis Cache 是一種分散式受管理快取，可提供超快速的資�
 -	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
 -	[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)
 -	[如何將資料匯入 Azure Redis 快取與從其中匯出資料](cache-how-to-import-export-data.md)
+-	[如何管理 Azure Redis 快取](cache-administration.md)
   
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

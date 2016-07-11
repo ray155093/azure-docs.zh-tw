@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako;cenkdin;anilmur"/>
 
 #使用 FMLE 編碼器來傳送單一位元速率的即時串流
@@ -70,16 +70,16 @@
 
 **視訊**：
  
-- 轉碼器：H.264 
-- 設定檔：高 (層級 4.0) 
-- 位元速率：5000 kbps 
-- 主要畫面格：2 秒 (60 秒) 
+- 轉碼器：H.264
+- 設定檔：高 (層級 4.0)
+- 位元速率：5000 kbps
+- 主要畫面格：2 秒 (60 秒)
 - 畫面播放速率：30
  
 **音訊**：
 
-- 轉碼器：AAC (LC) 
-- 位元速率：192 kbps 
+- 轉碼器：AAC (LC)
+- 位元速率：192 kbps
 - 取樣速率：44.1 kHz
 
 
@@ -89,9 +89,9 @@
 
 	介面是各種設定的主頁面。請記下以下的建議設定，以開始透過 FMLE 使用串流。
 	
-	- 格式：H.264 畫面播放速率：30.00 
-	- 輸入大小：1280 x 720 
-	- 位元速率：5000 Kbps (可視網路限制加以調整)  
+	- 格式：H.264 畫面播放速率：30.00
+	- 輸入大小：1280 x 720
+	- 位元速率：5000 Kbps (可視網路限制加以調整)
 
 	![fmle](./media/media-services-fmle-live-encoder/media-services-fmle3.png)
 
@@ -101,13 +101,13 @@
 
 	- 設定檔：主要
 	- 層級：4.0
-	- 主要畫面格頻率：2 秒 
+	- 主要畫面格頻率：2 秒
 	
 	![fmle](./media/media-services-fmle-live-encoder/media-services-fmle4.png)
 
 3. 設定下列重要的音訊設定：
 	
-	- 格式：AAC 
+	- 格式：AAC
 	- 取樣速率：44100 Hz
 	- 位元速率：192 kbps
 	
@@ -129,11 +129,11 @@
 8. 選取 [**連接**]。
 
 >[AZURE.IMPORTANT] 在您按一下 [**連接**] 之前，**必須**先確保頻道已就緒。
->此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
+此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
 
 ##測試播放
   
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
+1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。
 
 	![fmle](./media/media-services-fmle-live-encoder/media-services-fmle8.png)
 
@@ -143,13 +143,13 @@
 
 ##建立程式
 
-1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。  
+1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。
 
 	![fmle](./media/media-services-fmle-live-encoder/media-services-fmle9.png)
 
 2. 為程式命名，並視需要調整**封存時間長度** (預設為 4 小時)。您也可以指定儲存體位置，或保留為預設值。
 3. 勾選 [現在啟動程式] 方塊。
-4. 按一下 [建立程式]。  
+4. 按一下 [建立程式]。
   
 	注意：建立程式時所使用的時間會比建立通道時更少。
  
@@ -172,4 +172,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!------HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

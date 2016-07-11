@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="05/19/2016"
+   ms.date="06/27/2016"
    ms.author="andkjell;billmath"/>
 
 
@@ -107,7 +107,7 @@ Exchange 混合式部署 | [Exchange 混合回寫](active-directory-aadconnectsy
 ![AD 帳戶](./media/active-directory-aadconnect-accounts-permissions/adsyncserviceaccount.png)
 
 ### Azure AD Connect 同步處理服務帳戶
-安裝精靈會建立本機服務帳戶 (除非您在自訂設定指定要使用的帳戶)。此帳戶的前面會加上 **AAD\_** 並用來做為實際同步處理服務的執行身分。如果您在網域控制站上安裝 Azure AD Connect，則在網域中建立帳戶。如果您使用執行 SQL Server 的遠端伺服器，或使用要求驗證的 Proxy，**AAD\_** 服務帳戶就必須位於網域中。
+安裝精靈會建立本機服務帳戶 (除非您在自訂設定指定要使用的帳戶)。此帳戶的前面會加上 **AAD_** 並用做實際同步處理服務的執行身分。如果您在網域控制站上安裝 Azure AD Connect，則在網域中建立帳戶。如果您使用執行 SQL Server 的遠端伺服器，或使用要求驗證的 Proxy，**AAD_** 服務帳戶就必須位於網域中。
 
 ![同步服務帳戶](./media/active-directory-aadconnect-accounts-permissions/syncserviceaccount.png)
 
@@ -134,4 +134,4 @@ Exchange 混合式部署 | [Exchange 混合回寫](active-directory-aadconnectsy
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

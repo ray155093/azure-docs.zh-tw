@@ -13,12 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="06/23/2016"
 	ms.author="priyamo"/>
 
 # 單一登入 SAML 通訊協定
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 在本文中，我們將了解 Azure Active Directory (Azure AD) 針對單一登入所支援的 SAML 2.0 驗證要求和回應。
 
@@ -154,7 +152,7 @@ Azure AD 會忽略 `AuthnRequest` 元素中的 `Subject` 元素。
 - `Destination`︰當登入順利完成時，這會設定為服務提供者 (雲端服務) 的 `RedirectUri`。
 - `InResponseTo`︰這會設定為起始回應的 `AuthnRequest` 元素的 `ID` 屬性。
 
-### Issuer
+### 簽發者
 
 Azure AD 會將 `Issuer` 元素設為 `https://login.microsoftonline.com/<TenantIDGUID>/`，其中，<TenantIDGUID> 是 Azure AD 租用戶的租用戶識別碼。
 
@@ -205,7 +203,7 @@ Timestamp: 2013-03-18 08:49:24Z</samlp:StatusMessage>
 
 除了 `ID`、`IssueInstant` 和 `Version`，Azure AD 還會在回應的 `Assertion` 元素中設定下列元素。
 
-#### Issuer
+#### 簽發者
 
 這會設為 `https://sts.windows.net/<TenantIDGUID>/`，其中，<TenantIDGUID> 是 Azure AD 租用戶的租用戶識別碼。
 
@@ -303,4 +301,4 @@ Azure AD 會簽署判斷提示以回應成功的登入。`Signature` 元素包�
 </AuthnStatement>
 ```
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

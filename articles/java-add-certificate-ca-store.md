@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="05/04/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 # 新增憑證至 Java CA 憑證存放區
@@ -56,4 +56,4 @@ Baltimore 憑證可能已經安裝於您的 cacerts 存放區，因此請記得�
 
 如需 Java 的詳細資訊，請參閱 [Java 開發人員中心](/develop/java/)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

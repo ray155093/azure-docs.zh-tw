@@ -1,5 +1,5 @@
 <properties
-   pageTitle="巡覽並選取 Linux VM 映像 | Microsoft Azure"
+   pageTitle="使用 Azure CLI 選取 Linux VM 映像 | Microsoft Azure"
    description="了解如何在使用資源管理員部署模型建立 Linux 虛擬機器時，判斷映像的發行者、訂閱詳情及 SKU。"
    services="virtual-machines-linux"
    documentationCenter=""
@@ -18,7 +18,7 @@
    ms.date="06/06/2016"
    ms.author="rasquill"/>
 
-# 使用 CLI 或 PowerShell 在 Azure 中巡覽並選取 Linux 虛擬機器映像
+# 使用 Azure CLI 選取 Linux VM 映像
 
 本主題描述如何為可能會進行部署的每個位置，找到發行者、訂閱詳情、SKU 和版本。例如，一些常用的 Linux VM 映像包括︰
 
@@ -38,4 +38,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-ps-findimage](../../includes/virtual-machines-common-cli-ps-findimage.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

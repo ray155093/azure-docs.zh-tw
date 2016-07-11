@@ -16,7 +16,7 @@
 	ms.date="02/29/2016"
 	ms.author="piyushjo" />
 
-#如何在 Web 應用程式中整合 Engagement
+#在 Web 應用程式中整合 Azure Mobile Engagement
 
 > [AZURE.SELECTOR]
 - [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md)
@@ -24,32 +24,30 @@
 - [iOS](mobile-engagement-ios-integrate-engagement.md)
 - [Android](mobile-engagement-android-integrate-engagement.md)
 
-此程序描述在您的 Web 應用程式中，啟動 Engagement 的分析和監視功能時，最簡單的方法。
+本文中的程序說明在 Web 應用程式中，啟用 Azure Mobile Engagement 中分析與監視功能的最簡單方式。
 
-下列步驟足以啟動計算使用者、工作階段、活動、當機和技術相關之所有統計資料所需的記錄檔報表。用來計算事件、錯誤及工作等其他統計資料所需的記錄檔報告必須使用 Engagement API 手動完成 (請參閱[如何在 Web 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-web-use-engagement-api.md))，因為這些是與應用程式相依的統計資料。
+遵循下列步驟來啟用進行下列動作所需的記錄檔報告：計算關於使用者、工作階段、活動、當機和技術的所有統計資料。對於相依於應用程式的統計資料 (例如事件、錯誤及工作)，您必須使用 Azure Mobile Engagement API 手動啟用記錄檔報告。如需詳細資訊，請了解[如何在 Web 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-web-use-engagement-api.md)。
 
 ## 簡介
 
-請從[這裡](http://aka.ms/P7b453)下載 Web SDK。該 SDK 是以名為 **azure-engagement.js** 的單一 JavaScript 檔案隨附，您必須將它包含在網站或 Web 應用程式的每個頁面中。
+[下載 Azure Mobile Engagement Web SDK](http://aka.ms/P7b453)。Mobile Engagement Web SDK 是以單一 JavaScript 檔案 (azure-engagement.js) 隨附，您必須將它包含在網站或 Web 應用程式的每個頁面中。
 
-此指令碼**必須**在您需要撰寫以為應用程式設定 Engagement 的指令碼或程式碼片段**之後**載入。
+> [AZURE.IMPORTANT] 執行此指令碼之前，必須先執行您撰寫來為應用程式設定 Mobile Engagement 的指令碼或程式碼片段。
 
 ## 瀏覽器相容性
 
-Engagement Web SDK 使用原生 JSON 編碼/解碼及跨網域 AJAX 要求 (仰賴 W3C CORS 規格)。
+Mobile Engagement Web SDK 使用原生 JSON 編碼和解碼，以及跨網域 AJAX 要求 (仰賴 W3C CORS 規格)。它與下列瀏覽器相容：
 
-* Edge 12+
-* IE 10+
+* Microsoft Edge 12+
+* Internet Explorer 10+
 * Firefox 3.5+
 * Chrome 4+
 * Safari 6+
 * Opera 12+
 
-## 設定 Engagement
+## 設定 Mobile Engagement
 
-撰寫能建立全域 **azureEngagement** JavaScript 物件的指令碼，如下所示。
- 
-由於您的網站可能包含多個頁面，此範例將假設此指令碼也已包含在每個頁面中，我們在此程序中將它命名為 `azure-engagement-conf.js`。
+撰寫能建立全域 `azureEngagement` JavaScript 物件的指令碼，如下列範例所示。因為您的網站可能包含多個頁面，此範例假設這個指令碼包含於每個頁面中。在此範例中，JavaScript 物件的名稱為 `azure-engagement-conf.js`。
 
 	window.azureEngagement = {
 	  connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -57,11 +55,12 @@ Engagement Web SDK 使用原生 JSON 編碼/解碼及跨網域 AJAX 要求 (仰�
 	  appVersionCode: 1
 	};
 
-您應用程式的 `connectionString` 會顯示在 Azure 入口網站。
+適用於您應用程式的 `connectionString` 值會顯示於 Azure 入口網站中。
 
-> [AZURE.NOTE] `appVersionName` 和 `appVersionCode` 為選擇性，我們建議您設定它們，好讓分析能夠處理版本資訊。
+> [AZURE.NOTE] `appVersionName` 和 `appVersionCode` 是選擇性的。不過，我們建議您設定它們，讓分析可以處理版本資訊。
 
-## 在頁面中包含 Engagement 指令碼
+## 在頁面中包含 Mobile Engagement 指令碼
+使用下列其中一種方式，將 Mobile Engagement 指令碼新增至您的頁面：
 
 	<head>
 	  ...
@@ -70,7 +69,7 @@ Engagement Web SDK 使用原生 JSON 編碼/解碼及跨網域 AJAX 要求 (仰�
 	  ...
 	</head>
 
-或
+或是這個：
 
 	<body>
 	  ...
@@ -81,9 +80,9 @@ Engagement Web SDK 使用原生 JSON 編碼/解碼及跨網域 AJAX 要求 (仰�
 
 ## Alias
 
-一旦載入，SDK 指令碼會建立 **engagement** 別名以存取 SDK API (它不能被用來定義 SDK 設定)。此別名將會做為此文件中的參考使用。
+載入 Mobile Engagement Web SDK 指令碼之後，它會建立 **engagement** 別名來存取 SDK API。您無法使用此別名來定義 SDK 組態。此別名將用來做為此文件中的參考。
 
-請注意，如果預設別名與另一個來自您頁面的全域變數發生衝突，您可以在載入 SDK 之前於設定中將它重新定義，如下所示：
+請注意，如果預設別名與另一個來自您頁面的全域變數發生衝突，您可以在載入 Mobile Engagement Web SDK 之前，於組態中將它重新定義，如下所示：
 
 	window.azureEngagement = {
 	  connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -94,13 +93,15 @@ Engagement Web SDK 使用原生 JSON 編碼/解碼及跨網域 AJAX 要求 (仰�
 
 ## 基本報告
 
+Mobile Engagement 中的基本報告涵蓋了工作階段層級的統計資料，例如使用者、工作階段、活動和當機的相關統計資料。
+
 ### 工作階段追蹤
 
-Engagement 工作階段被分成一系列由某個名稱所識別的活動。
+Mobile Engagement 工作階段被分成一系列活動，每一個都可透過名稱來識別。
 
-在傳統網站上，我們建議您在網站的每個頁面上宣告不同的活動。在永遠不會變更目前頁面的網站或 Web 應用程式中，您可能會想要以更加細緻的方式追蹤活動。
+在傳統網站中，我們建議您在每個網站頁面上宣告不同的活動。對於目前頁面永遠不會變更的網站或 Web 應用程式，您可能想要追蹤較小範圍中的活動，例如，在該頁面內。
 
-無論如何，若要開始或變更目前的使用者活動，請呼叫 `engagement.agent.startActivity` 函數，如此範例所示：
+無論如何，若要開始或變更目前的使用者活動，請呼叫 `engagement.agent.startActivity` 函式。例如：
 
 	<body onload="yourOnload()">
 
@@ -111,27 +112,27 @@ Engagement 工作階段被分成一系列由某個名稱所識別的活動。
       engagement.agent.startActivity('welcome');
 	};
 
-已開啟的工作階段將會在應用程式頁面關閉後，於 3 分鐘之內由 Engagement 伺服器自動結束。
+Mobile Engagement 伺服器會在應用程式頁面關閉後，於三分鐘內自動結束開啟的工作階段。
 
-或者，您也可以透過呼叫 `engagement.agent.endActivity` 來手動結束工作階段，這將會把目前的使用者活動設定為「閒置」，並會在 10 秒後結束該工作階段，除非期間有對 `engagement.agent.startActivity` 做出新的呼叫並使工作階段繼續。
- 
-這個 10 秒的延遲可以在全域 **engagement** 物件中設定：
+或者，您可以呼叫 `engagement.agent.endActivity` 手動結束工作階段。這會將目前的使用者活動設定為 'Idle'。 除非有新的 `engagement.agent.startActivity` 呼叫繼續執行工作階段，否則該工作階段將會在 10 秒後結束。
+
+您可以在全域 engagement 物件中設定 10 秒延遲，如下所示：
 
 	engagement.sessionTimeout = 2000; // 2 seconds
 	// or
 	engagement.sessionTimeout = 0; // end the session as soon as endActivity is called
 
-> [AZURE.NOTE] `engagement.agent.endActivity` 無法在 `onunload` 回呼中使用，因為此階段並無法做出 Ajax 呼叫。
+> [AZURE.NOTE] 您無法在 `onunload` 回呼中使用 `engagement.agent.endActivity`，因為您不能在這個階段進行 AJAX 呼叫。
 
 ## 進階報告
 
-此外，如果您想要報告應用程式特定的 `events`、`errors` 及 `jobs`，您必須透過 `engagement.agent` 物件使用 Engagement API。
+此外，如果您想要報告應用程式特定的事件、錯誤及工作，就必須使用 Mobile Engagement API。您可以透過 `engagement.agent` 物件存取 Mobile Engagement API。
 
-Engagement API 允許使用所有 Engagement 的進階功能，詳情請見[如何在 Web 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-web-use-engagement-api.md)。
+您可以在 Mobile Engagement API 中存取 Mobile Engagement 中所有的進階功能。[如何在 Web 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-web-use-engagement-api.md) 文章中會詳述此 API。
 
 ## 自訂用於 AJAX 呼叫的 URL
 
-您可以自訂 SDK 使用的 URL。如需重新定義記錄檔 URL (用於記錄的 SDK 端點) 的範例，您可以透過下列方式複寫設定：
+您可以自訂 Mobile Engagement Web SDK 使用的 URL。例如，若要重新定義記錄檔 URL (用於記錄的 SDK 端點)，您可以透過下列方式複寫組態：
 
 	window.azureEngagement = {
 	  ...
@@ -143,9 +144,7 @@ Engagement API 允許使用所有 Engagement 的進階功能，詳情請見[如�
 	  }
 	};
 
-如果您的 URL 函數傳回開頭為 `/`、`//`、`http://` 或 `https://` 的字串，便代表沒有使用預設配置。
-
-根據預設，那些 URL 會使用 `https://` 配置。如果您想要自訂預設配置，請透過下列方式複寫設定：
+如果您的 URL 函式傳回開頭為 `/`、`//`、`http://` 或 `https://` 的字串，便代表沒有使用預設配置。根據預設，這些 URL 會使用 `https://` 配置。如果您想要自訂預設配置，請透過下列方式複寫組態：
 
 	window.azureEngagement = {
 	  ...
@@ -155,4 +154,4 @@ Engagement API 允許使用所有 Engagement 的進階功能，詳情請見[如�
 	  }
 	};
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->
