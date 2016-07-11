@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/05/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # 從 Data Factory 叫用 Spark 程式
@@ -102,9 +102,9 @@
 
 如您所見，MapReduce 活動設定為叫用 Azure 儲存體之 **libs** 容器中的 **spark-adf-job-bin.jar** (在 StorageLinkedService.json 中指定)。這個程式的原始程式碼位於 Spark-ADF/src/main/java/com/adf/spark 資料夾，呼叫 spark-submit 並執行 Spark 作業。
 
-在 HDInsight Spark 叢集上執行的這個 MapReduce 程式 (spark-adf-job-bin.jar) 會叫用 Spark 程式 **sparkdemoapp\_2.10-1.0.jar**，並透過 MapReduce 活動將收到的引數傳遞給 Spark 程式 (如前文的 JSON 所示)。**sparkdemoapp\_2.10-1.0.jar** 包含將資料從一個 Azure blob 容器複製到另一個 Azure Blob 容器的 Scala 原始程式碼。您可以使用包含任何作業的任何其他 Jar 取代這個示範應用程式的 Jar，這個作業是您嘗試用 Spark 執行的任何作業。
+在 HDInsight Spark 叢集上執行的這個 MapReduce 程式 (spark-adf-job-bin.jar) 會叫用 Spark 程式 **sparkdemoapp**2.10-1.0.jar，並透過 MapReduce 活動將收到的引數傳遞給 Spark 程式 (如前文的 JSON 所示)。sparkdemoapp2.10-1.0.jar 包含將資料從一個 Azure blob 容器複製到另一個 Azure Blob 容器的 Scala 原始程式碼。您可以使用包含任何作業的任何其他 Jar 取代這個示範應用程式的 Jar，這個作業是您嘗試用 Spark 執行的任何作業。
 
-簡言之，**MapReduce 活動**會叫用 MapReduce 程式 **spark-adf-job-bin.jar**，而後者叫用 Spark 程式 **sparkdemoapp\_2.10-1.0.jar**。若要執行您自己的 Spark 程式，請以您自己的程式取代 sparkdemoapp\_2.10-1.0.jar。
+簡言之，**MapReduce 活動**會叫用 MapReduce 程式 **spark-adf-job-bin.jar**，而後者叫用 Spark 程式 **sparkdemoapp2.10-1.0.jar**。若要執行您自己的 Spark 程式，請以您自己的程式取代 sparkdemoapp2.10-1.0.jar。
 
 > [AZURE.NOTE] 您必須以這個方法使用您自己的 HDInsight Spark 叢集，使用 MapReduce 活動叫用 Spark 程式。不支援使用隨選 HDInsight 叢集。
 
@@ -116,4 +116,4 @@
 - [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
 - [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

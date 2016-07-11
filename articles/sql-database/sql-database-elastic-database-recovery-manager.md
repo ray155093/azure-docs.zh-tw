@@ -42,9 +42,8 @@ GSM 和 LSM 可能因為以下原因變成不同步：
 
 如需 Azure SQL Database 彈性資料庫工具、異地複寫和還原的詳細資訊，請參閱下列：
 
-* [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](sql-database-business-continuity.md) 
-* [業務續航力的設計](sql-database-business-continuity-design.md)
-* [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)  
+* [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](sql-database-business-continuity.md)
+* [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)
 * [ShardMap 管理](sql-database-elastic-scale-shard-map-management.md)
 
 ## 從 ShardMapManager 擷取 RecoveryManager 
@@ -63,8 +62,8 @@ GSM 和 LSM 可能因為以下原因變成不同步：
 
 [DetachShard 方法](https://msdn.microsoft.com/library/azure/dn842083.aspx)會從給定的分區卸離分區對應，並刪除與分區相關聯的對應。
 
-* location 參數是分區位置，特別是要卸離的分區的伺服器名稱和資料庫名稱。 
-* shardMapName 參數是分區對應名稱。只有在多個分區對應是由相同的分區對應管理員管理時才為必要。選用。 
+* location 參數是分區位置，特別是要卸離的分區的伺服器名稱和資料庫名稱。
+* shardMapName 參數是分區對應名稱。只有在多個分區對應是由相同的分區對應管理員管理時才為必要。選用。
 
 **重要**：只有在您確定更新對應的範圍是空白時，才可使用這項技術。上述方法並不會檢查要移動的資料範圍，因此您最好在程式碼中納入檢查。
 
@@ -82,8 +81,8 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 
 	rm.DetectMappingDifferences(location, shardMapName);
 
-* *location* 指定伺服器名稱和資料庫名稱。 
-* *shardMapName* 參數是分區對應名稱。只有在多個分區對應是由相同的分區對應管理員管理時才為必要。選用。 
+* *location* 指定伺服器名稱和資料庫名稱。
+* *shardMapName* 參數是分區對應名稱。只有在多個分區對應是由相同的分區對應管理員管理時才為必要。選用。
 
 ## 解決對應的差異
 
@@ -91,7 +90,7 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 
 	ResolveMappingDifferences (RecoveryToken, MappingDifferenceResolution.KeepShardMapping);
    
-* *RecoveryToken* 參數會列舉特定分區的 GSM 與 LSM 之間對應的差異。 
+* *RecoveryToken* 參數會列舉特定分區的 GSM 與 LSM 之間對應的差異。
 
 * [MappingDifferenceResolution 列舉](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx)用來指出用於解析分區對應之間差異的方法。
 * 當 LSM 包含正確對應時，建議使用 **MappingDifferenceResolution.KeepShardMapping**，因此應該使用分區中的對應。這通常是因為發生容錯移轉：分區現在位於新的伺服器上。由於必須先從 GSM 中移除分區 (使用 RecoveryManager.DetachShard 方法)，GSM 上不再存在對應。因此，LSM 必須用來重新建立分區對應。
@@ -102,7 +101,7 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 
 	rm.AttachShard(location, shardMapName) 
 
-* *location* 參數是要附加的分區的伺服器名稱和資料庫名稱。 
+* *location* 參數是要附加的分區的伺服器名稱和資料庫名稱。
 
 * *shardMapName* 參數是分區對應名稱。只有在多個分區對應是由相同的分區對應管理員管理時才為必要。選用。
 
@@ -123,17 +122,17 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 
 異地容錯移轉和復原是一般由應用程式的雲端系統管理員管理的作業，刻意利用 Azure SQL Database 其中一個商務持續性功能。商務持續性計劃需要處理程序、程序和措施以確保商務運作能持續而不會中斷。應該在此工作流程中使用隨著 RecoveryManager 類別提供的方法，以確保根據採取的修復動作，GSM 和 LSM 都處於最新狀態。在容錯移轉事件後，要正確確保 GSM 和 LSM 反映正確資訊有 5 個基本步驟。執行這些步驟的應用程式程式碼可以整合至現有的工具和工作流程。
 
-1. 從 ShardMapManager 擷取 RecoveryManager。 
+1. 從 ShardMapManager 擷取 RecoveryManager。
 2. 從分區對應卸離舊分區。
 3. 將新的分區附加至分區對應，包括新的分區位置。
-4. 在 GSM 和 LSM 之間的對應中偵測到不一致。 
-5. 解決 GSM 和 LSM 之間的差異，信任 LSM。 
+4. 在 GSM 和 LSM 之間的對應中偵測到不一致。
+5. 解決 GSM 和 LSM 之間的差異，信任 LSM。
 
 此範例會執行下列步驟：
 1. 從分區對應移除分區，其反映分區在容錯移轉事件之前的位置。
 2. 將分區附加至分區對應會反映新分區位置 (參數 "Configuration.SecondaryServer" 是是新伺服器名稱，但是相同的資料庫名稱)。
-3. 透過偵測每個分區的 GSM 與 LSM 之間的對應差異來擷取復原權杖。 
-4. 透過信任來自每個分區 LSM 的對應，即可解決不一致情形。 
+3. 透過偵測每個分區的 GSM 與 LSM 之間的對應差異來擷取復原權杖。
+4. 透過信任來自每個分區 LSM 的對應，即可解決不一致情形。
 
 	var shards = smm.GetShards(); foreach (shard s in shards) { if (s.Location.Server == Configuration.PrimaryServer) { ShardLocation slNew = new ShardLocation(Configuration.SecondaryServer, s.Location.Database);
 		
@@ -159,4 +158,4 @@ GSM 中對應的分區位置在刪除的分區之前。因為已刪除分區，�
 [1]: ./media/sql-database-elastic-database-recovery-manager/recovery-manager.png
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

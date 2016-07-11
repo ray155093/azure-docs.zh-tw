@@ -4,8 +4,8 @@
    services="azure-resource-manager,key-vault"
    documentationCenter="na"
    authors="tfitzmac"
-   manager="wpickett"
-   editor=""/>
+   manager="timlt"
+   editor="tysonn"/>
 
 <tags
    ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/16/2016"
+   ms.date="06/23/2016"
    ms.author="tomfitz"/>
 
 # 在部署期間傳遞安全值
@@ -26,9 +26,9 @@
 
 若要了解如何部署金鑰保存庫和密碼，請參閱[金鑰保存庫結構描述](resource-manager-template-keyvault.md)和[金鑰保存庫密碼結構描述](resource-manager-template-keyvault-secret.md)。
 
-## 參考密碼
+## 使用靜態識別碼參考密碼
 
-您會從將值傳遞至範本的參數檔案中參考密碼。您可以藉由傳遞金鑰保存庫的資源識別碼和密碼的名稱來參考密碼。
+您會從將值傳遞至範本的參數檔案中參考密碼。您可以藉由傳遞金鑰保存庫的資源識別碼和密碼的名稱來參考密碼。在此範例中，金鑰保存庫密碼必須已經存在，而且您要針對其資源識別碼使用靜態值。
 
     "parameters": {
       "adminPassword": {
@@ -94,7 +94,49 @@
         "outputs": { }
     }
 
+## 使用動態識別碼參考密碼
 
+上一節已說明如何傳遞金鑰保存庫密碼的靜態資源識別碼。不過，在某些情況下，您需要參考會隨目前的部署而變化的金鑰保存庫密碼。在該情況下，您將無法在參數檔中硬式編碼資源識別碼。不幸的是，因為參數檔中不允許使用範本運算式，因此您無法在參數檔中以動態方式產生資源識別碼。
+
+若要以動態方式產生金鑰保存庫密碼的資源識別碼，您必須將需要密碼的資源移動到巢狀範本。在主要範本中，您必須新增巢狀範本，並傳入包含動態產生的資源識別碼的參數。
+
+    {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "vaultName": {
+          "type": "string"
+        },
+        "secretName": {
+          "type": "string"
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-01-01",
+          "name": "nestedTemplate",
+          "type": "Microsoft.Resources/deployments",
+          "properties": {
+            "mode": "incremental",
+            "templateLink": {
+              "uri": "https://www.contoso.com/AzureTemplates/newVM.json",
+              "contentVersion": "1.0.0.0"
+            },
+            "parameters": {
+              "adminPassword": {
+                "reference": {
+                  "keyVault": {
+                    "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', parameters('vaultName'))]"
+                  },
+                  "secretName": "[parameters('secretName')]"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outputs": {}
+    }
 
 
 ## 後續步驟
@@ -103,4 +145,4 @@
 - 如需搭配虛擬機器使用金鑰保存庫的相關資訊，請參閱 [Azure Resource Manager 的安全性考量](best-practices-resource-manager-security.md)。
 - 如需參考金鑰密碼的完整範例，請參閱[金鑰保存庫範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

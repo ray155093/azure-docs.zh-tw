@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/12/2016" 
+	ms.date="06/24/2016" 
 	ms.author="hanuk;robmcm"/>
 
 # 在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取 
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](https://azure.microsoft.com/documentation/templates/datastax-on-ubuntu/)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](https://azure.microsoft.com/documentation/templates/datastax-on-ubuntu/)。
 
 ## 概觀
 Microsoft Azure 是一個開放雲端平台，可執行 Microsoft 和非 Microsoft 軟體，包括作業系統、應用程式伺服器、傳訊中介軟體，以及來自商業和開放原始碼模型的 SQL 和 NoSQL 資料庫。如果要在包括 Azure 在內的公用雲端上建立具有恢復功能的服務，應用程式伺服器和儲存層都必須要有仔細的規劃和審慎的架構。Cassandra 的分散式儲存架構天生就有助於建置可針對叢集失敗容錯的高可用性系統。Cassandra 是一種雲端等級的 NoSQL 資料庫，由 Apache Software Foundation 維護 (網址 cassandra.apache.org)；Cassandra 以 Java 撰寫，因此可以在 Windows 與 Linux 平台上執行。
@@ -33,7 +33,7 @@ Microsoft Azure 網路功能可供部署獨立的私人叢集，透過限制其�
 
 - 外部系統無法從 Azure 內部或外部存取 Cassandra 資料庫
 - Cassandra 叢集必須位於 thrift 流量的負載平衡器後方
-- 在每個資料中心部署 Cassandra 節點為兩個群組以提高叢集可用性 
+- 在每個資料中心部署 Cassandra 節點為兩個群組以提高叢集可用性
 - 鎖定叢集，只有應用程式伺服器陣列可直接存取資料庫
 - 除了 SSH 以外，沒有其他公用網路端點
 - 每個 Cassandra 節點需要固定的內部 IP 位址
@@ -82,7 +82,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 **以近接性為基礎的部署：**清除租用戶使用者與區域對應的多租用戶應用程式，可以因為多地區叢集的低延遲而受益。例如，適用於教育機構的學習管理系統可以在美國東部和美國西部區域部署分散式叢集，分別做為適用於交易與分析的校園。資料可以在讀取和寫入期間維持本機一致性，而且最終可在這兩個區域間維持一致性。其他的範例還有媒體發佈、電子商務，以及可為地理位置集中之使用者提供服務的一切 (這是此部署模型的絕佳使用案例)。
 
-**高可用性：**備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。在 Microsoft Azure 上，實現真正備援的唯一可靠方式就是部署多區域叢集。應用程式可部署於主動/主動或主動/被動模式中，如果其中一個區域已關閉，Azure 流量管理員就能將流量重新導向至作用中的區域。使用單一區域部署時，如果可用性是 99.9，則兩個區域的部署可以達到 99.9999 的可用性，計算公式如下：(1-(1-0.999) * (1-0.999)) * 100)。如需詳細資訊，請參閱上述文件。
+**高可用性：**備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。在 Microsoft Azure 上，實現真正備援的唯一可靠方式就是部署多區域叢集。應用程式可部署於主動/主動或主動/被動模式中，如果其中一個區域已關閉，Azure 流量管理員就能將流量重新導向至作用中的區域。使用單一區域部署時，如果可用性是 99.9，則兩個區域的部署可以達到 99.9999 的可用性，計算公式如下：(1-(1-0.999)(1-0.999))100)。如需詳細資訊，請參閱上述文件。
 
 **災害復原：**如果設計正確，多區域的 Cassandra 叢集就能承受重大的資料中心中斷。如果某個區域已關閉，部署到其他區域的應用程式就能開始為使用者提供服務。和所有其他的商務持續實作一樣，應用程式必須能對非同步管線中的資料所產生的部分資料遺失進行容錯。不過，相較於傳統資料庫復原程序所花費的時間，Cassandra 能夠更快速地進行復原。圖 2 顯示每個區域中有八個節點的典型多區域部署模型。這兩個區域是彼此具備相同對稱性的鏡映影像。真實世界的設計取決於工作負載類型 (例如，交易或分析)、RPO、RTO、資料一致性，以及可用性需求。
 
@@ -294,7 +294,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 確定已反白顯示虛擬機器，然後按一下底部命令列中的 [關機] 連結。
 
 #####3：擷取映像
-確定已反白顯示虛擬機器，然後按一下底部命令列中的 [擷取] 連結。在下一個畫面中，指定 [映像名稱] \(例如 hk-cas-2-08-ub-14-04-2014071)、適當的 [映像描述]，然後按一下「確認」記號以完成擷取程序。
+確定已反白顯示虛擬機器，然後按一下底部命令列中的 [擷取] 連結。在下一個畫面中，指定 [映像名稱] (例如 hk-cas-2-08-ub-14-04-2014071)、適當的 [映像描述]，然後按一下「確認」記號以完成擷取程序。
 
 這需要幾秒鐘的時間，然後您應該就可以在映像庫的 [我的映像] 區段中找到映像。成功擷取映像之後，來源 VM 就會自動刪除。
 
@@ -440,7 +440,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 1.    使用 Powershell 命令 Get-AzureInternalLoadbalancer Cmdlet 取得內部負載平衡器的 IP 位址 (例如10.1.2.101)。命令的語法如下所示：Get-AzureLoadbalancer –ServiceName "hk-c-svc-west-us” [顯示內部負載平衡器以及其 IP 位址的詳細資訊]
 2.	使用 Putty 或 ssh 登入 Web 伺服陣列 VM (例如 hk-w1-west-us)
-3.	執行 $CASS\_HOME/bin/cqlsh 10.1.2.101 9160 
+3.	執行 $CASS\_HOME/bin/cqlsh 10.1.2.101 9160
 4.	使用下列 CQL 命令來確認叢集是否正常運作：
 
 		CREATE KEYSPACE customers_ks WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };	
@@ -559,12 +559,12 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 
 ###步驟 1：使用 PowerShell 取得這兩個區域的內部負載平衡器 IP
 - Get-AzureInternalLoadbalancer -ServiceName "hk-c-svc-west-us"
-- Get-AzureInternalLoadbalancer -ServiceName "hk-c-svc-east-us"  
+- Get-AzureInternalLoadbalancer -ServiceName "hk-c-svc-east-us"
 
     請注意顯示的 IP 位址 (例如西部 - 10.1.2.101，東部 - 10.2.2.101)。
 
 ###步驟 2：登入 hk-w1-west-us 後，在西部區域執行下列命令
-1.    執行 $CASS\_HOME/bin/cqlsh 10.1.2.101 9160 
+1.    執行 $CASS\_HOME/bin/cqlsh 10.1.2.101 9160
 2.	執行下列 CQL 命令：
 
 		CREATE KEYSPACE customers_ks
@@ -584,7 +584,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 
 
 ###步驟 3：登入 hk-w1-east-us 後，在東部區域執行下列命令
-1.    執行 $CASS\_HOME/bin/cqlsh 10.2.2.101 9160 
+1.    執行 $CASS\_HOME/bin/cqlsh 10.2.2.101 9160
 2.	執行下列 CQL 命令：
 
 		USE customers_ks;
@@ -611,7 +611,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 
 1. 安裝 Node.js 和 npm
 2. 使用 npm 安裝節點套件"cassandra-client"
-3. 在殼層提示字元中執行下列指令碼，顯示擷取資料的 json 字串： 
+3. 在殼層提示字元中執行下列指令碼，顯示擷取資料的 json 字串：
 
 		var pooledCon = require('cassandra-client').PooledConnection;
 		var ksName = "custsupport_ks";
@@ -702,7 +702,7 @@ Microsoft Azure 是一個富彈性的平台，可以執行 Microsoft 與開放�
 
 ##參考##
 - [http://cassandra.apache.org](http://cassandra.apache.org)
-- [http://www.datastax.com](http://www.datastax.com) 
-- [http://www.nodejs.org](http://www.nodejs.org) 
+- [http://www.datastax.com](http://www.datastax.com)
+- [http://www.nodejs.org](http://www.nodejs.org)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

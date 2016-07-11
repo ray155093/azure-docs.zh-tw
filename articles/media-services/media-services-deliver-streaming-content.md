@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -40,10 +40,10 @@
 
    1. 如果內容已加密，請定義存取原則。
    2. 建立隨選串流定位器。
-   3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。 
+   3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。
    		
-	如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。  
-   4. 建置資訊清單檔或 MP4 檔案的 URL。 
+	如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。
+   4. 建置資訊清單檔或 MP4 檔案的 URL。
    
 
 ###使用 Media Services .NET SDK 
@@ -171,4 +171,4 @@
 
 [下載資產](media-services-deliver-asset-download.md) [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

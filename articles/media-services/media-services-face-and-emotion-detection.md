@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/14/2016"   
+	ms.date="06/22/2016"   
 	ms.author="milanga;juliako;"/>
  
 #使用 Azure 媒體分析偵測臉部和情緒
@@ -351,7 +351,7 @@ AggregateEmotionIntervalMs|0\.5|1|0\.25
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-1. 根據包含下列 JSON 預設值的設定檔案，建立執行臉部偵測工作的工作。 
+1. 根據包含下列 JSON 預設值的設定檔案，建立執行臉部偵測工作的工作。
 					
 		{
 		    "version": "1.0"
@@ -537,4 +537,4 @@ AggregateEmotionIntervalMs|0\.5|1|0\.25
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

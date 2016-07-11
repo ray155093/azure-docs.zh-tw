@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
- 	ms.date="04/18/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -57,7 +57,7 @@ Microsoft Azure Media Services 可用來針對數種用戶端技術 (例如 iOS�
 
 -或-
  
-1. 上傳預先編碼的 MP4 檔案。 
+1. 上傳預先編碼的 MP4 檔案。
 
 	>[AZURE.NOTE] 但不建議您這樣做。
 	
@@ -80,4 +80,4 @@ Microsoft Azure Media Services 可用來針對數種用戶端技術 (例如 iOS�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

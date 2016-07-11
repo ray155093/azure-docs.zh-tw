@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/19/2016"    
+	ms.date="06/22/2016"   
 	ms.author="juliako"/>
 
 
@@ -43,7 +43,7 @@
 
 		// Load the XML (or JSON) from the local file.
 	    string configuration = File.ReadAllText(fileName);  
-- 將編碼工作新增至作業。 
+- 將編碼工作新增至作業。
 - 指定要編碼的輸入資產。
 - 建立將包含已編碼資產的輸出資產。
 - 加入事件處理常式來檢查工作進度。
@@ -980,7 +980,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 - 程式碼片段和 JSON 預設值顯示串連兩個視訊檔案的範例。您可以將其擴充至兩個以上的視訊，方法是︰
 
 	1. 重複呼叫 task.InputAssets.Add() 依序加入更多視訊。
-	2. 加入更多項目，以依相同順序對 JSON 中的 "Sources" 元素進行對應編輯。 
+	2. 加入更多項目，以依相同順序對 JSON 中的 "Sources" 元素進行對應編輯。
 
 
 ###.NET 程式碼
@@ -1086,4 +1086,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

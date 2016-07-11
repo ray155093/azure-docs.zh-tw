@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="06/27/2016"
 	ms.author="andkjell;markvi"/>
 
 
@@ -160,7 +160,7 @@
 
 **語法：**`str ConvertFromBase64(str source)` - 假設使用 Unicode 進行編碼<br>`str ConvertFromBase64(str source, enum Encoding)`
 
-- source：Base64 編碼的字串  
+- source：Base64 編碼的字串
 - Encoding：Unicode、ASCII、UTF8
 
 範例 `ConvertFromBase64("SABlAGwAbABvACAAdwBvAHIAbABkACEA")` `ConvertFromBase64("SGVsbG8gd29ybGQh", UTF8)`
@@ -563,7 +563,7 @@
 
 **語法：**`str LTrim(str value)`
 
-**範例：**`LTrim(" Test ")` 傳回 "Test"
+**範例：**`LTrim(" Test ")` 傳回 "Test "
 
 ----------
 ### Mid
@@ -770,7 +770,7 @@
 - delimiter：用來做為分隔符號的單一字元。
 - limit：將傳回的值數目上限。
 
-**範例：**`Split("SMTP:john.doe@contoso.com,smtp:jd@contoso.com",",")` 傳回多重值的字串，其中包含 2 個 proxyAddress 屬性可用的元素
+**範例：**`Split("SMTP:john.doe@contoso.com,smtp:jd@contoso.com",",")` 傳回多重值的字串，其中包含 2 個 proxyAddress 屬性可用的元素。
 
 ----------
 ### StringFromGuid
@@ -859,4 +859,4 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

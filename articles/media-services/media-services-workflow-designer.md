@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/08/2016"  
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -28,7 +28,7 @@
 您可以建立的範例工作流程包括：
 
 - 決策型工作流程，會檢查要解析的來源內容，並且只會編碼想要的輸出追蹤。藉由消除倍增的來源內容不經意地產生的浪費的追蹤，而有所助益。
-- 多個輸入檔案可以用來支援標題、重疊和連結在一起的內容。 
+- 多個輸入檔案可以用來支援標題、重疊和連結在一起的內容。
 
 這項工具也可用來修改任何[已發佈工作流程](media-services-workflow-designer.md#existing_workflows)。
 
@@ -90,4 +90,4 @@
 
 [Azure Premium 編碼器工作流程設計工具訓練影片](http://johndeutscher.com/2015/07/06/azure-premium-encoder-workflow-designer-training-videos/)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

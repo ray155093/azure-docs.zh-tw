@@ -21,7 +21,7 @@
 
 有許多因素會影響 Azure 上的 MySQL 效能，均與虛擬硬體選取和軟體設定有關。本文著重於透過儲存體、系統和資料庫設定最佳化效能。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 ##在 Azure 虛擬機器上利用 RAID
@@ -105,7 +105,7 @@ Linux 會實作四種類型的 I/O 排程演算法：
 -	NOOP 演算法 (沒有作業)
 -	期限演算法 (期限)
 -	完全公平佇列演算法 (CFQ)
--	預算週期演算法 (預期)  
+-	預算週期演算法 (預期)
 
 您可以在不同的狀況下選取不同的 I/O 排程器，讓效能達到最佳化。在完全隨機存取環境中，CFQ 與期限演算法的效能沒有太大差別。通常建議將 MySQL 資料庫環境設為 [期限]，以求穩定性。如果有大量循序 I/O，CFQ 可能會降低磁碟 I/O 效能。
 
@@ -208,7 +208,7 @@ MySQL 是高並行存取資料庫。Linux 的並行控制代碼預設數目為 1
 主要的 I/O 最佳化規則如下：
 
 -	增加快取的大小。
--	減少 I/O 回應時間。  
+-	減少 I/O 回應時間。
 
 若要最佳化 MySQL 伺服器設定，您可以更新 my.cnf 檔案，該檔案是伺服器和用戶端電腦的預設組態檔。
 
@@ -220,7 +220,7 @@ MySQL 是高並行存取資料庫。Linux 的並行控制代碼預設數目為 1
 -	**Innodb\_file\_per\_table**：此設定可啟用或停用 InnoDB 在個別檔案中儲存資料表的功能。開啟此選項將確保可有效地套用數個進階管理作業。從效能觀點來看，它可以加速資料表空間傳輸，並將 debris 管理效能最佳化。因此這個選項的建議設定為 ON。</br> 從 MySQL 5.6 開始，預設設定為 ON。因此，不需要採取任何動作。若為其他版本，也就是 5.6 以前的版本，預設設定為 OFF。必須將此選項設為 ON。而且應在載入資料之前套用，因為只有新建的資料表會受影響。
 -	**innodb\_flush\_log\_at\_trx\_commit**：預設值為 1，其範圍設為 0~2。對獨立 MySQL DB 而言，預設值是最適合的選項。設定為 2 可達到最大資料完整性，適合於 MySQL 叢集中的主機。設定為 0 會讓資料遺失，這可能會影響可靠性，在某些情況下，效能會更佳，適合於 MySQL 叢集中的從屬。
 -	**Innodb\_log\_buffer\_size**：記錄緩衝區允許交易執行，而不需在交易認可前將記錄檔排清到磁碟。不過，如果有大型二進位物件或文字欄位，將會非常快速地耗用快取，並將觸發頻繁的磁碟 I/O。如果 Innodb\_log\_waits 狀態變數不是 0，最好能增加緩衝區大小。
--	**query\_cache\_size**：最佳選項是一開始就將它停用。將 query\_cache\_size 設為 0 (這現在是 MySQL 5.6 中的預設值)，並使用其他方法來加速查詢。  
+-	**query\_cache\_size**：最佳選項是一開始就將它停用。將 query\_cache\_size 設為 0 (這現在是 MySQL 5.6 中的預設值)，並使用其他方法來加速查詢。
 
 請參閱[附錄 D](#AppendixD) 來比較最佳化之後的效能。
 
@@ -348,4 +348,4 @@ MySQL 緩慢查詢記錄檔可協助您識別 MySQL 的較慢查詢。啟用 MyS
 [13]: ./media/virtual-machines-linux-classic-optimize-mysql/virtual-machines-linux-optimize-mysql-perf-13.png
 [14]: ./media/virtual-machines-linux-classic-optimize-mysql/virtual-machines-linux-optimize-mysql-perf-14.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

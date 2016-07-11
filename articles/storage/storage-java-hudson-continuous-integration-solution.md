@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="02/21/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 # 使用 Azure 儲存體與 Hudson 連續整合解決方案
@@ -122,8 +122,8 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
     在您為 [Execute Windows batch command] 輸入指令碼的 [命令] 區段下方是個連結，可連結到 Hudson 認可的環境變數。按一下該連結即可了解各環境變數名稱和描述。請注意，含有特殊字元的環境變數 (例如 **BUILD\_URL** 環境變數) 不能當做容器名稱或共同虛擬路徑。
 
 8. 在此範例中，請按一下 [Make new container public by default]。(如果您想要使用私用容器，則需要建立共用存取簽章來允許存取。這已超出本文的範圍。您可以參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)，以進一步了解共用存取簽章。
-9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading] \(若不想清除容器的內容，請維持不核取)。
-10. 在 [List of Artifacts to upload]，輸入 **text/*.txt**。
+9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading] (若不想清除容器的內容，請維持不核取)。
+10. 在 [List of Artifacts to upload]，輸入 *text/*.txt*。
 11. 在 [Common virtual path for uploaded artifacts]，輸入 **${BUILD\_ID}/${BUILD\_NUMBER}**。
 12. 按一下 [Save] 儲存您的設定。
 13. 在 Hudson 儀表板中，按一下 [Build Now] 以執行 **MyJob**。檢查主控台輸出中的狀態。當建置後動作開始上傳組建成品時，主控台輸出將會包含 Azure 儲存體的狀態訊息。
@@ -182,4 +182,4 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
 
 如需詳細資訊，另請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0629_2016-->

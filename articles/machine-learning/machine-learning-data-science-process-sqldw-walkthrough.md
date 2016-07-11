@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="06/24/2016"
 	ms.author="bradsev;hangzh;weig"/>
 
 
@@ -84,7 +84,7 @@
 
 **佈建 Azure SQL DW 執行個體。** 遵循[建立 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)中的說明來佈建 SQL 資料倉儲執行個體。請務必記下下列 SQL 資料倉儲認證以用於稍後的步驟。
 
-  - **伺服器名稱**：<server Name>.database.windows.net
+  - **伺服器名稱**：<伺服器名稱>.database.windows.net
   - **SQLDW (資料庫) 名稱**
   - **使用者名稱**
   - **密碼**
@@ -93,7 +93,7 @@
 
 **使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-connect-overview.md)中的步驟 1 和 2。
 
->[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢) 以「建立主要金鑰」。
+>[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢) 以**建立主要金鑰**。
 
 	BEGIN TRY
 	       --Try to create the master key
@@ -109,7 +109,7 @@
 
 開啟 Windows PowerShell 命令主控台。執行下列 PowerShell 命令，將我們在 Github 上與您分享的範例 SQL 指令碼檔案，下載到您使用 *-DestDir* 參數所指定的本機目錄中。您可以將 *-DestDir* 參數的值變更為任何本機目錄。如果 *-DestDir* 不存在，PowerShell 指令碼會加以建立。
 
->[AZURE.NOTE] 如果需要系統管理員權限才能建立或寫入到 *DestDir* 目錄，您可能需要在執行下列 PowerShell 指令碼時「以系統管理員身分執行」。
+>[AZURE.NOTE] 如果需要系統管理員權限才能建立或寫入 *DestDir* 目錄，您可能需要在執行下列 PowerShell 指令碼時**以系統管理員身分執行**。
 
 	$source = "https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/SQLDW/Download_Scripts_SQLDW_Walkthrough.ps1"
 	$ps1_dest = "$pwd\Download_Scripts_SQLDW_Walkthrough.ps1"
@@ -121,17 +121,17 @@
 
 ![][19]
 
-在您的 *-DestDir* 中，以系統管理員模式執行下列 PowerShell 指令碼：
+在 *-DestDir* 中，以系統管理員模式執行下列 PowerShell 指令碼：
 
 	./SQLDW_Data_Import.ps1
 
-當 PowerShell 指令碼第一次執行時，系統會要求您輸入 Azure SQL DW 和 Azure Blob 儲存體帳戶的資訊。當這個 PowerShell 指令碼完成第一次執行時，您所輸入的認證即已寫入現在的工作目錄中的組態檔 SQLDW.conf。日後再次執行這個 PowerShell 指令碼檔案時，就會有從這個組態檔讀取所有所需參數的選項。如果您需要變更一些參數，您可以選擇刪除此組態檔並依提示輸入參數值，並在提示時於畫面上輸入參數，或編輯 *-DestDir* 目錄中的 SQLDW.conf 檔案以變更參數值。
+當 PowerShell 指令碼第一次執行時，系統會要求您輸入 Azure SQL DW 和 Azure Blob 儲存體帳戶的資訊。當這個 PowerShell 指令碼完成第一次執行時，您所輸入的認證即已寫入現在的工作目錄中的組態檔 SQLDW.conf。日後再次執行這個 PowerShell 指令碼檔案時，就會有從這個組態檔讀取所有所需參數的選項。如果您需要變更一些參數，您可以選擇在提示時於畫面上輸入參數 (方法是刪除此組態檔，並依提示輸入參數值)，或是變更參數值 (方法是編輯 *-DestDir* 目錄中的 SQLDW.conf 檔案)。
 
 >[AZURE.NOTE] 為了避免結構描述名稱與 Azure SQL DW 中現存的名稱發生衝突，在直接從 SQLDW.conf 檔案讀取參數時，都會對 SQLDW.conf 檔案中的結構描述名稱加上 3 位數的隨機數字，以做為每次執行的預設結構描述名稱。PowerShell 指令碼可能會提示您輸入結構描述名稱：使用者可自行指定此名稱。
 
-此 PowerShell 指令碼檔案會完成下列工作：
+此 **PowerShell 指令碼**檔案會完成下列工作：
 
-- 如果尚未安裝 AzCopy，請下載並安裝AzCopy
+- 如果尚未安裝 AzCopy，請**下載並安裝 AzCopy**
 
 		$AzCopy_path = SearchAzCopy
     	if ($AzCopy_path -eq $null){
@@ -153,7 +153,7 @@
 					$env_path = $env:Path
 				}
 
-- 使用 AzCopy 從公用 Blob 將資料複製到私人 Blob 儲存體帳戶
+- 使用 AzCopy 從公用 Blob **將資料複製到私人 Blob 儲存體帳戶**
 
 		Write-Host "AzCopy is copying data from public blob to yo storage account. It may take a while..." -ForegroundColor "Yellow"
 		$start_time = Get-Date
@@ -165,7 +165,7 @@
     	Write-Host "This step (copying data from public blob to your storage account) takes $total_seconds seconds." -ForegroundColor "Green"
 
 
-- 從您的私人 Blob 儲存體帳戶搭配下列命令使用 Polybase 載入資料 (藉由執行 LoadDataToSQLDW.sql) 到您的 Azure SQL DW。
+- 從您的私人 Blob 儲存體帳戶搭配下列命令**使用 Polybase 載入資料 (藉由執行 LoadDataToSQLDW.sql) 到您的 Azure SQL DW**。
 
 	- 建立結構描述
 
@@ -314,13 +314,18 @@
 			)
 			;
 
+儲存體帳戶的地理位置會影響載入時間。
+
 >[AZURE.NOTE] 根據私人 Blob 儲存體帳戶所在的地理位置，將公用 Blob 中的資料複製到私人儲存體帳戶的程序可能需要大約 15 分鐘或更久時間，而將儲存體帳戶中的資料載入到 Azure SQL DW 的程序則可能需要 20 分鐘或更久時間。
 
->[AZURE.NOTE] 如果私人 Blob 儲存體帳戶中已有要從公用 Blob 儲存體複製到私人 Blob 儲存體帳戶的 .csv 檔案，AzCopy 會詢問您是否要加以覆寫。如果不想加以覆寫，請在出現提示時輸入 **n**。如果想「全部」加以覆寫，請在出現提示時輸入 **a**。您也可以輸入 **y** 來個別覆寫 .csv 檔案。
+您必須決定當您有重複的來源和目的地檔案時該如何做。
+
+>[AZURE.NOTE] 如果私人 Blob 儲存體帳戶中已有要從公用 Blob 儲存體複製到私人 Blob 儲存體帳戶的 .csv 檔案，AzCopy 會詢問您是否要加以覆寫。如果不想加以覆寫，在出現提示時輸入 **n**。如果想要**全部**覆寫，在出現提示時輸入 **a**。您也可以輸入 **y** 來個別覆寫 .csv 檔案。
 
 ![圖 #21][21]
 
->[AZURE.TIP] **使用您自己的資料：**如果資料位於內部部署電腦的現實應用程式中，您仍可以使用 AzCopy 將內部部署資料上傳至私人 Azure Blob 儲存體。您只需要在 AzCopy 命令中，將 PowerShell 指令碼檔案中的 **Source** 位置 (`$Source = "http://getgoing.blob.core.windows.net/public/nyctaxidataset"`) 變更為包含您的資料的本機目錄。
+您可以使用自己的資料。如果資料位於內部部署電腦的現實應用程式中，您仍可以使用 AzCopy 將內部部署資料上傳至私人 Azure Blob 儲存體。您只需要在 AzCopy 命令中，將 PowerShell 指令碼檔案中的 **Source** 位置 (`$Source = "http://getgoing.blob.core.windows.net/public/nyctaxidataset"`) 變更為包含您的資料的本機目錄。
+
 
 >[AZURE.TIP] 如果資料已位於私人 Azure Blob 儲存體的現實應用程式中，您可以略過 PowerShell 指令碼中的 AzCopy 步驟，並直接將資料上傳到 Azure SQL DW。這將需要另外編輯指令碼，使它符合您的資料格式。
 
@@ -452,7 +457,7 @@
 	GO
 
 	-- User-defined function to calculate the direct distance  in mile between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \ (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -499,7 +504,7 @@
 	GO
 
 	-- User-defined function calculate the direct distance between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \ (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -626,7 +631,7 @@
     CONNECTION_STRING = 'DRIVER={'+DRIVER+'};SERVER='+SERVER_NAME+';DATABASE='+DATABASE_NAME+';UID='+USERID+';PWD='+PASSWORD
     conn = pyodbc.connect(CONNECTION_STRING)
 
-### 報告資料表 <nyctaxi_trip> 中資料列和資料行的數目
+### 報告資料表 <nyctaxi\_trip> 中資料列和資料行的數目
 
     nrows = pd.read_sql('''
 		SELECT SUM(rows) FROM sys.partitions
@@ -642,10 +647,10 @@
 
 	print 'Total number of columns = %d' % ncols.iloc[0,0]
 
-- 資料列總數 = 173179759  
+- 資料列總數 = 173179759
 - 資料行總數 = 14
 
-### 報告資料表 <nyctaxi_fare> 中資料列和資料行的數目
+### 報告資料表 <nyctaxi\_fare> 中資料列和資料行的數目
 
     nrows = pd.read_sql('''
 		SELECT SUM(rows) FROM sys.partitions
@@ -661,7 +666,7 @@
 
 	print 'Total number of columns = %d' % ncols.iloc[0,0]
 
-- 資料列總數 = 173179759  
+- 資料列總數 = 173179759
 - 資料行總數 = 11
 
 ### 從 SQL 資料倉儲資料庫讀入小型資料取樣
@@ -852,7 +857,7 @@
 
 2. 登入 [Azure Machine Learning Studio](https://studio.azureml.net)。
 
-3. Studio 首頁會提供豐富的資訊、影片、教學課程、與模組參考的連結，以及其他資源。如需 Azure Machine Learning 的詳細資訊，請參閱[機器學習服務文件](https://azure.microsoft.com/documentation/services/machine-learning/)。
+3. Studio 首頁會提供豐富的資訊、影片、教學課程、與模組參考的連結，以及其他資源。如需 Azure Machine Learning 的詳細資訊，請參閱 [Azure 機器學習服務文件中心](https://azure.microsoft.com/documentation/services/machine-learning/)。
 
 典型的訓練實驗包含下列步驟：
 
@@ -869,7 +874,7 @@
 
 在這個練習中，我們已經探索了 SQL 資料倉儲中的資料並進行處理，並且決定了要在 Azure ML 中擷取的取樣大小。以下是建置一或多個預測模型的程序：
 
-1. 使用[匯入資料][import-data]模組 (可從＜資料輸入和輸出＞一節取得) 將資料匯入 Azure ML 中。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
+1. 使用[匯入資料][import-data]模組 (可從**資料輸入和輸出**一節取得) 將資料匯入 Azure ML。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
 
 	![Azure ML 匯入資料][17]
 
@@ -912,7 +917,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 2. 識別邏輯**輸入連接埠**，表示預期的輸入資料結構描述。
 3. 識別邏輯**輸出連接埠**，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，而只包含「計分標籤」和「計分機率」。
+建立計分實驗時，請檢閱它並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，只包含**計分標籤**和**計分機率**。
 
 下圖提供評分實驗範例。準備部署時，請按下方動作列中的 [發佈 Web 服務] 按鈕。
 
@@ -964,4 +969,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

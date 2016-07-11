@@ -62,16 +62,16 @@
     範例解決方案會使用 Azure Batch (透過 Azure Data Factory 管線間接使用)，以平行方式處理計算節點集區上的資料；該集區是受管理的虛擬機器集合。
 
 4.  建立至少有 2 個計算節點的 **Azure Batch 集區**。
-	1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [批次帳戶]。 
-	2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶] 刀鋒視窗。 
+	1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [批次帳戶]。
+	2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶] 刀鋒視窗。
 	3. 按一下 [集區] 圖格。
 	4. 在 [集區] 刀鋒視窗中，按一下工具列上的 [新增] 按鈕以新增集區。
-		1. 輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。 
+		1. 輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。
 		2. 指定作業系統系列設定的 **Windows Server 2012 R2**。
-		3. 選取**節點定價層**。 
+		3. 選取**節點定價層**。
 		3. 輸入 **2** 做為 [目標專用] 設定的值。
 		4. 輸入 **2** 做為 [每個節點的工作上限] 設定的值。
-	5. 按一下 [確定] 以建立集區。 
+	5. 按一下 [確定] 以建立集區。
  	 
 5.  [Azure 儲存體總管 6 (工具)](https://azurestorageexplorer.codeplex.com/) 或 [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (來自 ClumsyLeaf 軟體)。這些 GUI 工具可用來檢查及更改 Azure 儲存體專案中的資料，包括雲端架構應用程式的記錄檔。
 
@@ -539,11 +539,11 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     2.  使用 Azure Batch 帳戶的存取金鑰來取代**存取金鑰**。
 
-    3.  針對 **poolName** 屬性，輸入集區的識別碼。對於此屬性，您可以指定集區名稱或集區識別碼。
+    3.  針對 **poolName** 屬性輸入**集區識別碼**。 您可以針對此屬性指定集區名稱或集區識別碼。
 
     4.  針對 **batchUri** JSON 屬性，輸入 Batch URI。
     
-		> [AZURE.IMPORTANT] \[Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
+		> [AZURE.IMPORTANT] [Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：<accountname>.<region>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
 
         ![](./media/data-factory-data-processing-using-batch/image9.png)
 
@@ -702,7 +702,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 > [AZURE.IMPORTANT] 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
 
-1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...]\(省略符號) 就可看到。
+1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 
 2.  使用下列 JSON 指令碼取代右窗格中的 JSON。
 
@@ -888,7 +888,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
     **注意：** 您會在 Azure Blob 儲存體中看到一個**容器**，名為：**adfjobs**。此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：**adf-<pool ID/name>:job-0000000001**。您可以在完成解決方案的測試之後刪除此作業 (如果您要的話)。
 7. 自訂活動不會使用來自您套件的 **app.config** 檔案，因此如果您的程式碼會從組態檔讀取任何連接字串，在執行階段將沒有作用。最佳做法是使用 Azure Batch 將所有密碼存放 **Azure KeyVault** 中、使用以憑證為基礎的服務主體來保護 keyvault，然後將憑證發佈至 Azure Batch 集區。接著，.NET 自訂活動便可以在執行階段從 KeyVault 存取密碼。這是一般解決方案，而且可以擴展至任何類型的密碼，不僅限於連接字串。
 
-	此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的新「Azure SQL 連結服務」、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。
+	此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的新 **Azure SQL 連結服務**、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。
 
 ### 擴充範例
 
@@ -902,7 +902,15 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 
 4.  建立具有**自動調整**功能的 Azure Batch 集區。自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
  
-		pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);$TargetDedicated = max(pendingTaskSampleVector);
+	每個暫止工作一次一個 VM (例如︰5 個暫止工作 -> 5 個 VM)：
+
+		pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);
+		$TargetDedicated = max(pendingTaskSampleVector);
+
+	無論暫止工作的數目為何，一次最多一個 VM︰
+
+		pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);
+		$TargetDedicated = (max(pendingTaskSampleVector)>0)?1:0;
 
 	如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的計算節點](../batch/batch-automatic-scaling.md)。
 
@@ -949,4 +957,4 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

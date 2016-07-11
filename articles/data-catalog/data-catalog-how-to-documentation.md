@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-catalog"
-	ms.date="04/07/2016"
+	ms.date="06/27/2016"
 	ms.author="spelluru"/>
 
 # 記載資料來源
@@ -48,4 +48,4 @@
 
 在 **Azure 資料目錄**中記載資料來源可依所需詳細程度建立資料資產的相關敘述。藉由使用連結，您可以連結至現有內容儲存機制中儲存的內容，以結合您現有的文件和資料資產。一旦使用者找到合適的資料資產，就能取得一組完整的說明文件。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

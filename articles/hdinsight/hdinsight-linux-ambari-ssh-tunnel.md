@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="04/12/2016"
+ms.date="06/28/2016"
 ms.author="larryfr"/>
 
 #使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI
@@ -181,7 +181,7 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 	![YARN ResourceManager UI 的影像](./media/hdinsight-linux-ambari-ssh-tunnel/yarnresourcemanager.png)
 
-	> [AZURE.NOTE] 請注意此頁的 URL，它應該類似於 __http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/cluster__。這使用了節點的內部完整網域名稱 (FQDN)，而且必須使用 SSH 通道才能存取。
+	> [AZURE.NOTE] 請注意此頁的 URL，它應該類似於 http://hn1-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8088/cluster__。這使用了節點的內部完整網域名稱 (FQDN)，而且必須使用 SSH 通道才能存取。
 
 ##後續步驟
 
@@ -195,4 +195,4 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

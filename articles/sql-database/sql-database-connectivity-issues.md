@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/27/2016"
 	ms.author="daleche"/>
 
 
@@ -218,8 +218,7 @@
 [AZURE.INCLUDE [sql-database-include-ip-address-22-v12portal](../../includes/sql-database-include-ip-address-22-v12portal.md)]
 
 
-如需詳細資訊，請參閱：
-[作法：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
+如需詳細資訊，請參閱：[作法：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
 
 <a id="c-connection-ports" name="c-connection-ports"></a>
@@ -245,8 +244,7 @@
 如果您的用戶端程式裝載在 Azure 虛擬機器 (VM) 上，您應該閱讀：<br/>[1433 以外供 ADO.NET 4.5 和 SQL Database V12 使用的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
 
 
-如需設定連接埠及 IP 位址的背景資訊，請參閱：
-[Azure SQL Database 防火牆](sql-database-firewall-configure.md)
+如需設定連接埠及 IP 位址的背景資訊，請參閱：[Azure SQL Database 防火牆](sql-database-firewall-configure.md)
 
 
 <a id="d-connection-ado-net-4-5" name="d-connection-ado-net-4-5"></a>
@@ -429,7 +427,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 
 下列 EntLib60 類別特別有助於重試邏輯。這些全部都在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中，或進一步位於其下：
 
-在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中：
+在命名空間 Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling 中：
 
 - **RetryPolicy** 類別
  - **ExecuteAction** 方法
@@ -474,8 +472,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 - 記錄區塊可彙總來自記錄目的地的記錄功能，使應用程式程式碼能夠一致，而不必理會目標記錄存放區的的位置和類型。
 
 
-如需詳細資料，請參閱：
-[5 - 輕而易舉：使用記錄應用程式區塊](https://msdn.microsoft.com/library/dn440731%28v=pandp.60%29.aspx)
+如需詳細資料，請參閱：[5 - 輕而易舉：使用記錄應用程式區塊](https://msdn.microsoft.com/library/dn440731%28v=pandp.60%29.aspx)
 
 <a id="entlib60-istransient-method-source-code" name="entlib60-istransient-method-source-code"></a>
 
@@ -556,11 +553,11 @@ public bool IsTransient(Exception ex)
 
 ## 後續步驟
 
-- 如需疑難排解其他常見的 Azure SQL Database 連接問題，請造訪[疑難排解 Azure SQL Database 的常見連接問題](sql-database-troubleshoot-common-connection-issues.md)。
+- 如需針對其他常見的 Azure SQL Database 連接問題進行疑難排解，請造訪[針對 Azure SQL Database 連線問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md)。
 
 - [SQL Server 連接集區 (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx)
 
 
 - [*重試*是 Apache 2.0 授權的一般用途重試文件庫，以 **Python** 撰寫，幾乎可對任何案例加入重試作業。](https://pypi.python.org/pypi/retrying)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

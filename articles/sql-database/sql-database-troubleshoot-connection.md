@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/29/2016"
+	ms.date="06/27/2016"
 	ms.author="daleche"/>
 
 # 疑難排解「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接」錯誤
@@ -39,4 +39,4 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 - 如果您收到不同的錯誤，請評估[錯誤訊息](sql-database-develop-error-messages.md)，找出問題的線索。
 - 如果問題持續發生，請造訪[疑難排解 SQL Azure Database 常見的連接問題](sql-database-troubleshoot-common-connection-issues.md)中的指引。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

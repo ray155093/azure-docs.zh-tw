@@ -79,7 +79,7 @@
   如果查詢具有參數，一個建立唯一查詢名稱的方法是納入該參數值。例如，如果您要篩選 userid，您的查詢名稱可能如下 (在 C# 中)：
 
 		await todoTable.PullAsync("todoItems" + userid, 
-			syncTable.Where(u => u.UserId = userid));
+			syncTable.Where(u => u.UserId == userid));
 
   如果您想選擇不要增量同步處理，則傳遞 `null` 做為查詢識別碼。在此情況下，每次呼叫 `PullAsync` 時都會擷取所有的記錄，這可能會沒有效率。
 
@@ -104,4 +104,4 @@
 [Xamarin Android：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
 [Windows 8.1：啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

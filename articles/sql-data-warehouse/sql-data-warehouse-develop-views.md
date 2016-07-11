@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/23/2016"
+   ms.date="06/27/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 
@@ -22,6 +22,8 @@
 在 SQL 資料倉儲中檢視特別有用。以許多不同的方式使用，可以提升您的方案品質。
 
 本文特別強調幾個範例，說明如何藉由實作檢視來豐富您的解決方案。此外，也必須考量一些限制。
+
+> [AZURE.NOTE] 本文中不會討論 `CREATE VIEW` 的語法。如需此參考資訊，請參閱 MSDN 上的 [CREATE VIEW][] 文章。
 
 ## 架構抽象概念
 極為常見的應用程式模式就是在載入資料時，使用後面接著物件重新命名模式的 CREATE TABLE AS SELECT (CTAS) 來重建資料表。
@@ -63,7 +65,7 @@ SQL 資料倉儲中的檢視僅限中繼資料使用。
 
 
 ## 後續步驟
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。如需 `CREATE VIEW` 語法，請參閱 [CREATE VIEW][]。
 
 <!--Image references-->
 
@@ -71,7 +73,8 @@ SQL 資料倉儲中的檢視僅限中繼資料使用。
 [SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
+[CREATE VIEW]: https://msdn.microsoft.com/zh-TW/library/ms187956.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

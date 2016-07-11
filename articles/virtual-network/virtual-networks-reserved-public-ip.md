@@ -20,20 +20,20 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 
 
 若要防止 IP 位址變更，您可以保留 IP 位址。保留的 IP 僅能用作 VIP，即使資源都關閉或解除配置，也能確保雲端服務的 IP 位址將會相同。此外，您可以轉換現有的動態 IP，作為保留的 IP 位址的 VIP。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-network-ip-addresses-overview-arm.md).
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-network-ip-addresses-overview-arm.md)。
 
 請確定您了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在 Azure 中的運作方式。
 
 ## 何時需要保留的 IP？
-- **您想要確保 IP 會保留在您的訂用帳戶中**。如果您想要保留 IP 位址，使其在任何情況下將不會從訂用帳戶釋放，您應該使用保留的公用 IP。  
+- **您想要確保 IP 會保留在您的訂用帳戶中**。如果您想要保留 IP 位址，使其在任何情況下將不會從訂用帳戶釋放，您應該使用保留的公用 IP。
 - **即使在已停止或解除配置狀態 (VM)，您想要保持 IP 與雲端服務之間的關聯**。如果您想要讓服務可以使用 IP 位址來存取，且即使雲端服務中的 VM 已停止或解除配置，該 IP 位址也不會變更。
 - **您想要確保來自 Azure 的輸出流量使用可預測的 IP 位址**。您可能必須設定內部部署防火牆，以便僅允許來自特定 IP 位址的流量。藉由保留 IP，您將會知道來源 IP 位址，且不必因為 IP 變更而更新您的防火牆規則。
 
 ## 常見問題集
-1. 我可以針對所有 Azure 服務使用保留的 IP 嗎？  
+1. 我可以針對所有 Azure 服務使用保留的 IP 嗎？
   - 保留的 IP 僅可用於 VM 和雲端服務透過 VIP 公開的執行個體角色。
-1. 我可以有多少保留的 IP？  
-  - 目前，所有 Azure 訂用帳戶已獲授權可使用 20 個保留的 IP。不過，您可以要求其他保留的 IP。請參閱＜[訂用帳戶和服務限制](../azure-subscription-service-limits/)＞頁面以取得詳細資訊。
+1. 我可以有多少保留的 IP？
+  - 目前，所有 Azure 訂用帳戶已獲授權可使用 20 個保留的 IP。不過，您可以要求其他保留的 IP。請參閱＜[訂用帳戶和服務限制](../azure-subscription-service-limits.md)＞頁面以取得詳細資訊。
 1. 保留的 IP 是否會收取費用？
   - 請參閱＜[保留的 IP 位址定價詳細資料](http://go.microsoft.com/fwlink/?LinkID=398482)＞以取得定價資訊。
 1. 我該如何保留 IP 位址？
@@ -84,7 +84,7 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 
 	| Add-AzureProvisioningConfig -Windows -AdminUsername adminuser -Password MyP@ssw0rd!! `
 	| New-AzureVM -ServiceName TestService -ReservedIPName MyReservedIP -Location "Central US"
 
->[AZURE.NOTE] 當您建立保留的 IP 以搭配使用雲端服務時，您仍然需要針對輸入通訊使用 *VIP:&lt;連接埠號碼>* 來參照 VM。保留 IP 並不表示您可以直接連接至 VM。保留的 IP 會指派給已部署 VM 的雲端服務。如果您想要透過 IP 直接連接到 VM，您必須設定執行個體層級公用 IP。執行個體層級公用 IP 是一種公用 IP 類型 (稱為 ILPIP)，其會直接指派給您的 VM。此類型 IP 無法保留。請參閱＜[執行個體層級公用 IP (ILPIP)](../virtual-networks-instance-level-public-ip)＞以取得詳細資訊。
+>[AZURE.NOTE] 當您建立保留的 IP 以搭配使用雲端服務時，您仍然需要針對輸入通訊使用 *VIP:&lt;連接埠號碼>* 來參照 VM。保留 IP 並不表示您可以直接連接至 VM。保留的 IP 會指派給已部署 VM 的雲端服務。如果您想要透過 IP 直接連接到 VM，您必須設定執行個體層級公用 IP。執行個體層級公用 IP 是一種公用 IP 類型 (稱為 ILPIP)，其會直接指派給您的 VM。此類型 IP 無法保留。請參閱＜[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md)＞以取得詳細資訊。
 
 ## 如何從執行中部署移除保留的 IP
 若要針對上述指令碼中建立的新服務，移除新增至其中之保留的 IP，請執行下列 PowerShell 命令：
@@ -126,8 +126,8 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 
 
 - 了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在傳統部署模型中的運作方式。
 
-- 深入了解[保留的私人 IP 位址](../virtual-networks-reserved-private-ip)。
+- 深入了解[保留的私人 IP 位址](virtual-networks-reserved-private-ip.md)。
 
-- 深入了解[執行個體層級公用 IP (ILPIP) 位址](../virtual-networks-instance-level-public-ip)。
+- 深入了解[執行個體層級公用 IP (ILPIP) 位址](virtual-networks-instance-level-public-ip.md)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

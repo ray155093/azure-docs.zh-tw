@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/15/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
-# SaaS 應用程式的 Azure 條件式存取預覽
+# 開始使用 Azure AD 的條件式存取  
 
-SaaS 應用程式的 Azure 條件式存取已可公開預覽。預覽版本可讓您設定每個應用程式的多重要素驗證 (MFA) 存取規則，且能夠封鎖不在受信任網路上的使用者存取。
+SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條件式存取已可公開預覽。預覽可讓您根據群組、位置和應用程式敏感性來設定條件式存取。
 
-您可以將多因素驗證規則套用至所有已指派給應用程式的使用者，或只套用至指定的安全性群組內的使用者。如果使用者是從組織網路內的 IP 位址存取應用程式，則可從多因素驗證需求中排除這些使用者。購買 Azure Active Directory Premium 授權的客戶可使用這些功能。
+您可以將多重要素驗證規則套用至所有已指派給應用程式的使用者，或只套用至指定的安全性群組內的使用者。基於應用程式敏感性的條件式存取可讓您設定每個應用程式的多重要素驗證 (MFA) 存取規則，能夠封鎖不在受信任網路上的使用者存取。如果使用者是從組織網路內的 IP 位址存取應用程式，則可從多因素驗證需求中排除這些使用者。
+
+購買 Azure Active Directory Premium 授權的客戶可使用這些功能。
 
 ## 案例必要條件
 * Azure Active Directory Premium 的授權
@@ -92,4 +94,4 @@ SaaS 應用程式的 Azure 條件式存取已可公開預覽。預覽版本可�
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

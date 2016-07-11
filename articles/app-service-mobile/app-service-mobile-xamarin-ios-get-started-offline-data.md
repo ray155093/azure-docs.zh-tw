@@ -57,7 +57,8 @@
     在提供的程式碼中，遠端 `TodoItem` 資料表中的所有記錄都會進行查詢，但是也可能透過將查詢識別碼與查詢傳遞至 `PushAsync` 來篩選記錄。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理]中的*增量同步處理*一節。
 
 	<!-- Need updated conflict handling info : `InitializeAsync` uses the default conflict handler, which fails whenever there is a conflict. To provide a custom conflict handler, see the tutorial [Handling conflicts with offline support for Mobile Services].
- 	-->
+	-->
+
 
 		// QSTodoService.cs
 
@@ -122,7 +123,7 @@
 
 在本節中，您會將應用程式重新連接到行動後端，而模擬回到線上狀態的應用程式。當您執行重新整理動作時，資料將會同步處理至您的行動後端中。
 
-1. 開啟 `QSTodoService.cs`。更正 `applicationURL` 和 `gatewayURL`，以指向正確的 URL。
+1. 開啟 `QSTodoService.cs`。更正 `applicationURL` 以指向正確的 URL。
 
 2. 重建並執行用戶端應用程式。應用程式嘗試於啟動後與 Azure 行動應用程式後端同步處理。請確認偵錯主控台沒有記錄任何例外狀況。
 
@@ -134,7 +135,7 @@
 
 * [Azure 行動應用程式中的離線資料同步處理]
 
-* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 
 <!-- ##Summary
 
@@ -157,4 +158,4 @@
 [How to use the Xamarin Component client for Azure Mobile Services]: partner-xamarin-mobile-services-how-to-use-client-library.md
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

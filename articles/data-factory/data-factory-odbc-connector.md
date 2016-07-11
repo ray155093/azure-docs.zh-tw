@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/13/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 ODBC 資料存放區移動資料
@@ -225,7 +225,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 | -------- | ----------- | -------- | 
 | 類型 | 類型屬性必須設為：**OnPremisesOdbc** | 是 |
 | connectionString | 連接字串的非存取認證部分，以及選擇性的加密認證。請參閱以下範例。 | 是
-| 認證 | 以驅動程式特定屬性-值的格式指定的連接字串的存取認證部分，例如“Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;”。 | 否
+| 認證 | 以驅動程式特定屬性-值的格式指定的連接字串的存取認證部分，例如“Uid=<使用者識別碼>;Pwd=<密碼>;RefreshToken=<密碼重新整理權杖>;”。 | 否
 | authenticationType | 用來連接到 ODBC 資料存放區的驗證類型。可能的值為：Anonymous 和 Basic。 | 是 | 
 | username | 如果您要使用 Basic 驗證，請指定使用者名稱。 | 否 | 
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 否 | 
@@ -353,19 +353,19 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 如需在複製作業中將 ODBC 資料存放區用做來源資料存放區的詳細概觀，請從頭閱讀本文。
 
 ## 疑難排解連線問題
-使用「資料管理閘道組態管理員」的 [診斷] 索引標籤針對連線問題進行疑難排解。
+使用**資料管理閘道組態管理員**的 [診斷] 索引標籤針對連線問題進行疑難排解。
 
-1. 啟動「資料管理閘道組態管理員」。您可以直接執行 "C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\ConfigManager.exe" (或) 搜尋**閘道**，以尋找「Microsoft 資料管理閘道」應用程式的連結，如下圖所示。 
+1. 啟動**資料管理閘道組態管理員**。您可以直接執行 "C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\ConfigManager.exe" (或) 搜尋**閘道**，以尋找 **Microsoft 資料管理閘道**應用程式的連結，如下圖所示。
 
 	![搜尋閘道器](./media/data-factory-odbc-connector/search-gateway.png)
 2. 切換至 [診斷] 索引標籤。
 
-	![閘道診斷](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png) 
-3. 選取資料存放區 (連結的服務) 的「類型」 。 
-4. 指定「驗證」並輸入「認證」 (或) 輸入「連接字串」，以連接到資料存放區。 
-5. 按一下 [測試連線] 以測試資料存放區連線。 
+	![閘道診斷](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png)
+3. 選取資料存放區 (連結的服務) 的**類型**。
+4. 指定**驗證**並輸入**認證** (或) 輸入**連接字串**，以連接到資料存放區。
+5. 按一下 [測試連線] 以測試資料存放區連線。
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

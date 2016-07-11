@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"  
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #實作容錯移轉串流案例
@@ -22,10 +22,10 @@
 
 1. 在「資料中心 A」中設定媒體服務帳戶。
 1. 將夾層檔上傳到來源資產。
-1. 將資產編碼為多位元速率 MP4 檔案。 
+1. 將資產編碼為多位元速率 MP4 檔案。
 1. 為來源資產建立唯讀 SAS 定位器，以取得與來源資產相關聯的儲存體帳戶中容器的讀取權限。
 1. 從上一個步驟中建立的唯讀 SAS 定位器取得來源資產的容器名稱。我們需要此資訊，才能在儲存體帳戶之間複製 Blob (本主題稍後說明)。
-1. 為編碼工作所建立的資產建立原始定位器。 
+1. 為編碼工作所建立的資產建立原始定位器。
 
 接著，若要處理容錯移轉：
 
@@ -33,17 +33,17 @@
 1. 在目標媒體服務帳戶中建立目標空資產。
 1. 為目標空資產建立寫入 SAS 定位器，以取得與目標資產相關聯的目標儲存體帳戶中容器的寫入權限。
 1. 使用 Azure 儲存體 SDK 在「資料中心 A」中的來源儲存體帳戶與「資料中心 B」中的目標儲存體帳戶之間複製 Blob (資產檔案) (這些儲存體帳戶會與感興趣的資產相關聯)。
-1. 讓複製到目標 Blob 容器的 Blob (資產檔案) 與目標資產產生關聯。 
-1. 為「資料中心 B」中的資產建立原始定位器，並指定為「資料中心 A」中的資產所產生的定位器識別碼。 
-1. 這可提供串流 URL，其中 URL 的相對路徑相同 (只有基底 URL 不同)。 
+1. 讓複製到目標 Blob 容器的 Blob (資產檔案) 與目標資產產生關聯。
+1. 為「資料中心 B」中的資產建立原始定位器，並指定為「資料中心 A」中的資產所產生的定位器識別碼。
+1. 這可提供串流 URL，其中 URL 的相對路徑相同 (只有基底 URL 不同)。
  
 然後，若要處理任何中斷情形，您可以在這些原始定位器之上建立 CDN。
 
 您必須考量下列事項：
 
 - 目前的媒體服務 SDK 版本不支援以指定的定位器識別碼建立定位器。為了達成這項工作，我們將使用媒體服務 REST API。
-- 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。為了達成這項工作，我們將使用 CreateFileInfos 媒體服務 REST API。 
-- 儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫 (因為兩個媒體服務帳戶中的加密金鑰不同)。 
+- 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。為了達成這項工作，我們將使用 CreateFileInfos 媒體服務 REST API。
+- 儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫 (因為兩個媒體服務帳戶中的加密金鑰不同)。
 - 如果您要利用動態封裝，您必須先取得至少一個隨選串流保留單元。如需詳細資訊，請參閱[動態封裝資產](media-services-dynamic-packaging-overview.md)。
  
 
@@ -61,7 +61,7 @@
 在本節中，您將建立 C# Console Application 專案。
 
 1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。輸入 HandleRedundancyForOnDemandStreaming 做為名稱，然後按一下 [確定]。
-1. 在與 HandleRedundancyForOnDemandStreaming.csproj 專案檔案相同的層級上建立 SupportFiles 資料夾。在 SupportFiles 資料夾下建立 OutputFiles 和 MP4Files 資料夾。將 .mp4 檔案複製到 MP4Files 資料夾中 (此範例使用 BigBuckBunny.mp4 檔案)。 
+1. 在與 HandleRedundancyForOnDemandStreaming.csproj 專案檔案相同的層級上建立 SupportFiles 資料夾。在 SupportFiles 資料夾下建立 OutputFiles 和 MP4Files 資料夾。將 .mp4 檔案複製到 MP4Files 資料夾中 (此範例使用 BigBuckBunny.mp4 檔案)。
 1. 使用 **Nuget** 將參考新增至媒體服務相關的 DLL。在 Visual Studio 主要功能表中，選取 [工具] -> [Library Package Manager] -> [Package Manager Console]。在主控台視窗中輸入 Install-package windowsazure.mediaservices，然後按下 Enter。
 1. 新增此專案所需的其他參考：System.Configuration、System.Runtime.Serialization 和 System.Web。
 1. 將預設新增至 Programs.cs 檔的 using 陳述式取代為下列陳述式：
@@ -972,4 +972,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -23,7 +23,7 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 在為 DocumentDB 設計查詢語言時，我們有兩個謹記的目標：
 
 -	我們想要支援 SQL，而不是發明新的 JSON 查詢語言。SQL 是一種最熟悉且熱門的查詢語言。DocumentDB SQL 提供一個正式的程式設計模型，可在 JSON 文件上進行豐富的查詢。
--	由於 JSON 文件資料庫可以直接在資料庫引擎中執行 JavaScript，因此，我們想要使用 JavaScript 的程式設計模型做為查詢語言的基礎。DocumentDB SQL 是以 JavaScript 的類型系統、運算式評估和函數叫用為基礎。這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。 
+-	由於 JSON 文件資料庫可以直接在資料庫引擎中執行 JavaScript，因此，我們想要使用 JavaScript 的程式設計模型做為查詢語言的基礎。DocumentDB SQL 是以 JavaScript 的類型系統、運算式評估和函數叫用為基礎。這除了其他功能之外，還進而提供自然程式設計模型來進行關聯式投射、跨 JSON 文件的階層式導覽、自我聯結、空間查詢，以及叫用完全以 JavaScript 撰寫的使用者定義函式 (UDF)。
 
 我們相信這些功能的重點是減少應用程式與資料庫之間的摩擦，而且對開發人員的生產力而言十分重要。
 
@@ -157,9 +157,9 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 
 我們想要透過目前所看到的範例來指出 DocumentDB 查詢語言的一些重要部分：
  
--	因為 DocumentDB SQL 處理 JSON 值，所以它處理樹狀形式的實體，而不是資料列和資料行。因此，此語言可讓您參考樹狀目錄中任意深度的節點 (例如 `Node1.Node2.Node3…..Nodem`)，該節點與參考 `<table>.<column>` 之兩個部分參考的關聯式 SQL 類似。   
--	結構化查詢語言可處理無結構描述資料。因此，需要動態繫結類型系統。相同的運算式可能會對不同的文件產生不同的類型。查詢的結果會是有效的 JSON 值，但不保證會是固定的結構描述。  
--	DocumentDB 只支援嚴謹的 JSON 文件。這表示類型系統和運算式只能處理 JSON 類型。如需詳細資料，請參閱 [JSON 規格](http://www.json.org/)。  
+-	因為 DocumentDB SQL 處理 JSON 值，所以它處理樹狀形式的實體，而不是資料列和資料行。因此，此語言可讓您參考樹狀目錄中任意深度的節點 (例如 `Node1.Node2.Node3…..Nodem`)，該節點與參考 `<table>.<column>` 之兩個部分參考的關聯式 SQL 類似。
+-	結構化查詢語言可處理無結構描述資料。因此，需要動態繫結類型系統。相同的運算式可能會對不同的文件產生不同的類型。查詢的結果會是有效的 JSON 值，但不保證會是固定的結構描述。
+-	DocumentDB 只支援嚴謹的 JSON 文件。這表示類型系統和運算式只能處理 JSON 類型。如需詳細資料，請參閱 [JSON 規格](http://www.json.org/)。
 -	DocumentDB 集合是 JSON 文件的無結構描述容器。集合中文件內及跨文件之資料實體中的關係，會由內含項目以隱含方式擷取，而不是由主索引鍵和外部索引鍵關係擷取。這是本文稍後討論之文件內聯結中值得指出的重要部分。
 
 ## DocumentDB 索引編製
@@ -170,7 +170,7 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 
 因此，我們在設計 DocumentDB 索引子系統時，設定了下列目標：
 
--	在不需要結構描述的情況下，對文件編製索引：索引子系統不需要任何結構描述資訊，或提出任何文件結構描述的相關假設。 
+-	在不需要結構描述的情況下，對文件編製索引：索引子系統不需要任何結構描述資訊，或提出任何文件結構描述的相關假設。
 
 -	支援有效率、豐富階層式及關聯式查詢：索引可有效率地支援 DocumentDB 查詢語言，包括支援階層式和關聯式投射。
 
@@ -552,7 +552,7 @@ WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。它會指定條件�
 其他比較運算子 (例如 >、>=、!=、< 及 <=) 則適用下列規則：
 
 -	不同類型的比較會導致 Undefined。
--	兩個物件或兩個陣列之間的比較會導致 Undefined。   
+-	兩個物件或兩個陣列之間的比較會導致 Undefined。
 
 如果篩選中純量運算式的結果是 Undefined，則不會將對應的文件併入結果中，因為 Undefined 邏輯上不會等於 "true"。
 
@@ -607,8 +607,6 @@ IN 關鍵字可用來檢查指定的值是否符合清單中的任何值。例�
     SELECT *
     FROM Families 
     WHERE Families.address.state IN ("NY", "WA", "CA", "PA", "OH", "OR", "MI", "WI", "MN", "FL")
-
-IN 就相當於鏈結多個 OR 子句，不過因為可以使用單一索引，所以 DocumentDB 對於 IN 子句中指定的引數數目支援較高的[限制](documentdb-limits.md)。
 
 ### 三元 (?) 和聯合 (??) 運算子
 三元和聯合運算子可用來建立條件運算式，與熱門程式設計語言 (如 C# 和 JavaScript) 類似。
@@ -866,8 +864,7 @@ DocumentDB SQL 的另一個重要功能是建立陣列/物件。在前一個範�
 	]
 
 
-###* 運算子
-支援使用特殊運算子 (*) 來依原樣投射文件。使用時，它必須是唯一投射的欄位。如果這類 `SELECT * FROM Families f` 查詢有效，`SELECT VALUE * FROM Families f ` 和 `SELECT *, f.id FROM Families f ` 則無效。
+###運算子 支援使用特殊運算子 () 來依原樣投射文件。使用時，它必須是唯一投射的欄位。如果這類 `SELECT * FROM Families f` 查詢有效，`SELECT VALUE * FROM Families f ` 和 `SELECT *, f.id FROM Families f ` 則無效。
 
 **查詢**
 
@@ -1054,7 +1051,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 ### 聯結
 在關聯式資料庫中，跨資料表的聯結需求極為重要。就設計正規化結構描述而言，邏輯上需要它。與此相反的是，DocumentDB 會處理無結構描述文件的反正規化資料模型。這在邏輯上等同於「自我聯結」。
 
-此語言支援的語法是 <from_source1> JOIN <from_source2> JOIN ...JOIN <from_sourceN>。整體而言，這會傳回一組 **N**-Tuple (具有 **N** 個值的 Tuple)。每個 Tuple 所擁有的值，都是將所有集合別名在其個別集合上反覆運算所產生。換句話說，這是參與聯結之集的完整交叉乘積。
+語言支援的語法是 <from\_source1> JOIN <from\_source2> JOIN ...JOIN <from\_sourceN>。整體而言，這會傳回一組 **N**-Tuple (具有 **N** 個值的 Tuple)。每個 Tuple 所擁有的值，都是將所有集合別名在其個別集合上反覆運算所產生。換句話說，這是參與聯結之集的完整交叉乘積。
 
 下列範例示範 JOIN 子句的運作方式。在下列範例中，結果是空的，因為來源中每個文件與空集合的交叉乘積是空的。
 
@@ -1118,7 +1115,7 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
 
 -	展開陣列中的每個子項目 **c**。
 -	套用文件 **f** 的根目錄與第一個步驟中所簡維之每個子項目 **c** 的交叉乘積。
--	最後，單獨投射根物件 **f** 名稱屬性。 
+-	最後，單獨投射根物件 **f** 名稱屬性。
 
 第一份文件 (`AndersenFamily`) 只包含一個子項目，因此結果集只會包含與此文件相對應的單一物件。第二份文件 (`WakefieldFamily`) 包含兩個子系。因此，交叉乘積會產生每個子系的個別物件，進而導致兩個物件 (一個對應至此文件的子系一個)。請注意，這兩個文件中的根欄位會相同，就像您在交叉乘積中預期地一樣。
 
@@ -1203,7 +1200,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
 ## JavaScript 整合
 DocumentDB 提供一個程式設計模型，以根據預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。這允許：
 
--	藉由直接在資料庫引擎內深入整合 JavaScript 執行階段，對集合中的文件執行高效能交易式 CRUD 操作和查詢。 
+-	藉由直接在資料庫引擎內深入整合 JavaScript 執行階段，對集合中的文件執行高效能交易式 CRUD 操作和查詢。
 -	將控制流程、變數範圍限制、指派以及例外狀況處理基本類型與資料庫交易的整合自然模型化。如需 JavaScript 整合之 DocumentDB 支援的詳細資料，請參閱 JavaScript 伺服器端程式設計文件。
 
 ###使用者定義函數 (UDF)
@@ -2366,8 +2363,8 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 4.	[DocumentDB 一致性層級][consistency-levels]
 5.	ANSI SQL 2011 [http://www.iso.org/iso/iso\_catalogue/catalogue\_tc/catalogue\_detail.htm?csnumber=53681](http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681)
 6.	JSON [http://json.org/](http://json.org/)
-7.	Javascript 規格 [http://www.ecma-international.org/publications/standards/Ecma-262.htm](http://www.ecma-international.org/publications/standards/Ecma-262.htm) 
-8.	LINQ [http://msdn.microsoft.com/library/bb308959.aspx](http://msdn.microsoft.com/library/bb308959.aspx) 
+7.	Javascript 規格 [http://www.ecma-international.org/publications/standards/Ecma-262.htm](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
+8.	LINQ [http://msdn.microsoft.com/library/bb308959.aspx](http://msdn.microsoft.com/library/bb308959.aspx)
 9.	大型資料庫的查詢評估技術 [http://dl.acm.org/citation.cfm?id=152611](http://dl.acm.org/citation.cfm?id=152611)
 10.	平行關聯式資料庫系統中的查詢處理 (IEEE Computer Society Press，1994 年)
 11.	Lu, Ooi, Tan, 平行關聯式資料庫系統中的查詢處理 (IEEE Computer Society Press，1994 年)。
@@ -2380,4 +2377,4 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 [consistency-levels]: documentdb-consistency-levels.md
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

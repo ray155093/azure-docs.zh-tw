@@ -22,7 +22,11 @@
 
 ## 索引
 
-**查詢和運算子** [count](#count-operator) | [extend](#extend-operator) | [join](#join-operator) | [let 子句](#let-clause) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render 指示詞](#render-directive) | [restrict 子句](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator)
+
+**Let 和 set** [let](#let-clause) | [set](#set-clause)
+
+
+**查詢和運算子** [count](#count-operator) | [extend](#extend-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render 指示詞](#render-directive) | [restrict 子句](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator)
 
 **彙總** [any](#any) | [argmax](#argmax) | [argmin](#argmin) | [avg](#avg) | [buildschema](#buildschema) | [count](#count) | [countif](#countif) | [dcount](#dcount) | [dcountif](#dcountif) | [makelist](#makelist) | [makeset](#makeset) | [max](#max) | [min](#min) | [percentile](#percentile) | [percentiles](#percentiles) | [percentilesw](#percentilesw) | [percentilew](#percentilew) | [stdev](#stdev) | [sum](#sum) | [variance](#variance)
 
@@ -38,7 +42,85 @@
 
 
 
+## Let 和 set
 
+### let 子句
+
+**表格式 let - 命名資料表**
+
+    let recentReqs = requests | where timestamp > ago(3d); 
+    recentReqs | count
+
+**純量 let - 命名值**
+
+    let interval = 3d; 
+    requests | where timestamp > ago(interval)
+
+**Lambda let - 命名函式**
+
+    let Recent = 
+       (interval:timespan) { requests | where timestamp > ago(interval) };
+    Recent(3h) | count
+
+    let us_date = (t:datetime){strcat(getmonth(t),'/',dayofmonth(t),'/',getyear(t)) }; 
+    requests | summarize count() by bin(timestamp, 1d) | project count_, day=us_date(timestamp)
+
+let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
+
+**語法**
+
+    let name = scalar_constant_expression ; query
+
+    let name = query ; query
+
+    let name = (parameterName : type [, ...]) { plain_query }; query
+
+    let name = (parameterName : type [, ...]) { scalar_expression }; query
+
+* type：`bool`、`int`、`long`、`double`、`string`、`timespan`、`datetime`、`guid`、[`dynamic`](#dynamic-type)
+* plain\_query：未在開頭加上 let 子句的查詢。
+
+**範例**
+
+    let rows(n:long) = range steps from 1 to n step 1;
+    rows(10) | ...
+
+
+自我聯結︰
+
+    let Recent = events | where timestamp > ago(7d);
+    Recent | where name contains "session_started" 
+    | project start = timestamp, session_id
+    | join (Recent 
+        | where name contains "session_ended" 
+        | project stop = timestamp, session_id)
+      on session_id
+    | extend duration = stop - start 
+
+### Set 子句
+
+Set 子句可設定查詢持續時間的選項。查詢選項可控制查詢如何執行和傳回結果。它們可以是布林旗標 (預設為關閉)，或有部分的整數值。查詢可能包含零個、一個或多個 set 陳述式。Set 陳述式只會影響依程式順序追蹤它們的表格式運算式陳述式。
+
+    set OptionName [= OptionValue] ; query
+
+
+|名稱 | 設為 true 時的含意
+|---|---
+|querytrace| 提高查詢所產生之偵錯追蹤的層級。 
+|noexecute| 停止實際執行查詢 (只執行查詢規劃階段)。 
+|perftrace| 啟用效能追蹤。 
+|notruncation| 停用結果集截斷。 
+|truncationmaxsize| 限制查詢結果資料大小 (位元組)。 
+|truncationmaxrecords| 限制查詢結果記錄數目。 
+|nostreaming |停用結果集串流處理。 
+
+**範例**
+
+```
+
+    set querytrace;
+    requests | take 100
+```
 
 ## 查詢和運算子
 
@@ -109,7 +191,7 @@ requests | count
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要新增的資料行名稱。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* ColumnName：要新增的資料行名稱。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
 * Expression︰現有資料行的計算。
 
 **傳回**
@@ -119,7 +201,7 @@ requests | count
 **秘訣**
 
 * 如果您也想要捨棄或重新命名某些資料行，請改用 [`project`](#project-operator)。
-* 不要為了讓名稱縮短以方便用於長運算式中而使用 `extend`。`...| extend x = anonymous_user_id_from_client | ... func(x) ...` 
+* 不要為了讓名稱縮短以方便用於長運算式中而使用 `extend`。`...| extend x = anonymous_user_id_from_client | ... func(x) ...`
 
     資料表原本的資料行已編制索引，但縮短後的新名稱會另外定義尚未編製索引的資料行，而可能導致查詢的執行速度變慢。
 
@@ -155,7 +237,7 @@ traces
 含有下列項目的資料表︰
 
 * 兩個資料表中的每個資料行各自佔據一個資料行，包括用來比對的索引鍵。如果名稱有衝突，右側的資料行會自動重新命名。
-* 輸入資料表間的每個相符項目各自佔據一個資料列。其中一個資料表中選取的資料列如果和另一個資料表中的資料列在所有 `on` 欄位的值皆相同，就代表是相符項目。 
+* 輸入資料表間的每個相符項目各自佔據一個資料列。其中一個資料表中選取的資料列如果和另一個資料表中的資料列在所有 `on` 欄位的值皆相同，就代表是相符項目。
 
 * `Kind` 未指定
 
@@ -179,7 +261,7 @@ traces
 
 若要獲得最佳效能︰
 
-* 在 `join` 前面使用 `where` 和 `project`，以減少輸入資料表中的資料列和資料行數目。 
+* 在 `join` 前面使用 `where` 和 `project`，以減少輸入資料表中的資料列和資料行數目。
 * 如果某個資料表一定會比另一個資料表還小，請將它做為聯結的左側 (管線)。
 * 聯結相符項目的資料行必須具有相同名稱。如果必須重新命名其中一個資料表中的資料行，請使用 project 運算子。
 
@@ -200,53 +282,6 @@ traces
 
 ```
 
-### let 子句
-
-**表格式 let - 命名資料表**
-
-    let recentReqs = requests | where timestamp > ago(3d); 
-    recentReqs | count
-
-**純量 let - 命名值**
-
-    let interval = 3d; 
-    requests | where timestamp > ago(interval)
-
-**Lambda let - 命名函式**
-
-    let Recent = 
-       (interval:timespan) { requests | where timestamp > ago(interval) };
-    Recent(3h) | count
-
-let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
-
-**語法**
-
-    let name = scalar_constant_expression ; query
-
-    let name = query ; query
-
-    let name = (parameterName : type [, ...]) { plain_query }; query
-
-* type：`bool`、`int`、`long`、`double`、`string`、`timespan`、`datetime`、`guid`、[`dynamic`](#dynamic-type)
-* plain\_query：未在開頭加上 let 子句的查詢。
-
-**範例**
-
-    let rows(n:long) = range steps from 1 to n step 1;
-    rows(10) | ...
-
-
-自我聯結︰
-
-    let Recent = events | where timestamp > ago(7d);
-    Recent | where name contains "session_started" 
-    | project start = timestamp, session_id
-    | join (Recent 
-        | where name contains "session_ended" 
-        | project stop = timestamp, session_id)
-      on session_id
-    | extend duration = stop - start 
 
 ### limit 運算子
 
@@ -307,7 +342,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 
 **引數**
 
-* ColumnName：在結果中，具名資料行中的陣列會展開為多個資料列。 
+* ColumnName：在結果中，具名資料行中的陣列會展開為多個資料列。
 * ArrayExpression：產生陣列的運算式。如果使用這種形式，則會新增新資料行，並保留現有資料行。
 * Name︰新資料行的名稱。
 * Typename：將展開的運算式轉換為特定類型
@@ -322,7 +357,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 有兩種屬性包展開模式可受到支援︰
 
 * `bagexpansion=bag`︰屬性包會展開為單一項目屬性包。這是預設展開模式。
-* `bagexpansion=array`︰屬性包會展開為有兩個項目 `[`*索引鍵*`,`*值*`]` 陣列結構，以便能夠統一存取索引鍵和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。 
+* `bagexpansion=array`︰屬性包會展開為有兩個項目 `[`*key*`,`*value*`]` 的陣列結構，以便能夠統一存取索引鍵和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。
 
 **範例**
 
@@ -357,14 +392,14 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。
 **引數**
 
 * `T`：輸入資料表。
-* `kind`： 
+* `kind`：
  * `simple` (預設值)：`Match` 字串是純字串。
- * `relaxed`：如果文字不會剖析成資料行的類型，資料行會設為 null，而剖析會繼續 
+ * `relaxed`：如果文字不會剖析成資料行的類型，資料行會設為 null，而剖析會繼續
  * `regex`：`Match` 字串是規則運算式。
 * `Text`：評估為屬於字串或可以轉換為字串的資料行或其他運算式。
 * Match：比對字串的下一個部分，並捨棄它。
 * Column：將字串的下一個部分指派給這個資料行。如果資料行不存在，將會建立資料行。
-* Type：將字串的下一個部分剖析為指定的類型，例如 int、date、double。 
+* Type：將字串的下一個部分剖析為指定的類型，例如 int、date、double。
 
 
 **傳回**
@@ -474,8 +509,8 @@ resource | slice | lock | release | previous
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
-* Expression︰參考輸入資料行的選擇性純量運算式。 
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* Expression︰參考輸入資料行的選擇性純量運算式。
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
 
@@ -527,7 +562,7 @@ T
 * ColumnName：輸出資料表中的單一資料行名稱。
 * Start︰輸出中的最小值。
 * Stop︰輸出中產生的最大值 (或者，如果 step 跨越此值，即為最大值界限)。
-* Step︰兩個連續值之間的差異。 
+* Step︰兩個連續值之間的差異。
 
 引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函數](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator))。
 
@@ -580,7 +615,7 @@ range timestamp from ago(4h) to now() step 1m
 **引數**
 
 * ColumnName：要檢查的資料行。它必須是字串類型。
-* Threshold：範圍 {0..1} 內的值。預設值為 0.001。若為大型輸入，臨界值應該小一點。 
+* Threshold：範圍 {0..1} 內的值。預設值為 0.001。若為大型輸入，臨界值應該小一點。
 
 **傳回**
 
@@ -665,9 +700,9 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* Column：結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。[名稱](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* Column：結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
 * Aggregation︰`count()` 或 `avg()` 等彙總函數的呼叫，以資料行名稱做為引數。請參閱[彙總](#aggregations)。
-* GroupExpression：可提供一組相異值的資料行運算式。它通常是已提供一組受限值的資料行名稱，或是以數值或時間資料行做為引數的 `bin()`。 
+* GroupExpression：可提供一組相異值的資料行運算式。它通常是已提供一組受限值的資料行名稱，或是以數值或時間資料行做為引數的 `bin()`。
 
 如果您提供數值或時間運算式而不使用 `bin()`，「分析」就會自動為它套用 `1h` 間隔的時間，或 `1.0` 的數字。
 
@@ -677,7 +712,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **傳回**
 
-輸入資料列會各自分組到具有相同 `by` 運算式值的群組。然後指定的彙總函式會針對每個群組進行計算，以便為每個群組產生資料列。結果會包含 `by` 資料行，而且每個經過計算的彙總至少會佔有一個資料行(某些彙總函式會傳回多個資料行)。
+輸入資料列會各自分組到具有相同 `by` 運算式值的群組。然後指定的彙總函式會針對每個群組進行計算，以便為每個群組產生資料列。結果會包含 `by` 資料行，而且每個經過計算的彙總至少會佔有一個資料行。(某些彙總函式會傳回多個資料行)。
 
 `by` 值有多少個不同組合，結果就會有多少個資料列。如果您想要彙總數值範圍，請使用 `bin()` 來將範圍減少為離散值。
 
@@ -731,7 +766,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 **引數**
 
 * N:int - 傳回或傳遞到下一層的資料列數目。在有三個層級的查詢 (其中 N 為 5、3 及 3) 中，資料列總數將會是 45。
-* COLUMN - 可據以群組來進行彙總的資料行。 
+* COLUMN - 可據以群組來進行彙總的資料行。
 * AGGREGATION - 要套用到每個資料列群組的[彙總函數](#aggregations)。這些彙總的結果將決定要顯示的最上層群組。
 
 
@@ -753,10 +788,10 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
  *  資料表的名稱 (例如 `requests`) 或 [let 子句](#let-clause)中定義的資料表；或
  *  查詢運算式，例如 `(requests | where success=="True")`
  *  使用萬用字元指定的一組資料表。例如，`e*` 會形成先前 let 子句中定義的所有資料表聯集，其名稱開頭為 'e'，並具有 'exceptions' 資料表。
-* `kind`： 
+* `kind`：
  * `inner` - 結果中會有所有輸入資料表共有的資料行子集。
  * `outer` - 結果中會有任何輸入中出現的所有資料行。輸入資料列未定義的資料格會設為 `null`。
-* `withsource=`*ColumnName：*如果指定，輸出中會包含名為 ColumnName 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
+* `withsource=`ColumnName：如果指定，輸出中會包含名為 ColumnName 的資料行，其值會指出哪一個來源資料表貢獻了每個資料列。
 
 **傳回**
 
@@ -822,7 +857,7 @@ exceptions
 
     例如，`where Timestamp >= ago(1d)` 比 `where floor(Timestamp, 1d) == ago(1d)` 更好。
 
-* **最簡單的詞彙優先**︰如果您使用 `and` 連結多個子句，請先放置只包含一個資料行的子句。因此 `Timestamp > ago(1d) and OpId == EventId` 比反過來要好。
+* **最簡單的詞彙優先**︰如果您使用 `and` 連結多個子句，請先放置只包含一個資料行的子句。因此 `Timestamp > ago(1d) and OpId == EventId` 反而比較好。
 
 
 **範例**
@@ -1014,7 +1049,7 @@ traces
 
     dcount( Expression [ ,  Accuracy ])
 
-傳回群組中 Expr 相異值數目的估計值(若要列出相異值，請使用 [`makeset`](#makeset))。
+傳回群組中 Expr 相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset))。
 
 Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
@@ -1062,7 +1097,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
     makeset(Expression [ , MaxSetSize ] )
 
-傳回一組相異值的 `dynamic` (JSON) 陣列，這些是 Expr 在群組中取得的值(秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount))。
+傳回一組相異值的 `dynamic` (JSON) 陣列，這些是 Expr 在群組中取得的值。(秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount))。
   
 *  MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
 
@@ -1183,7 +1218,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 幾個重點如下︰
 
-* 估計誤差的範圍會隨著要求的百分位數值而變化。最佳精確度位於 [0..100] 級別的尾端，百分位數 0 和 100 正好是數據分佈的最小值和最大值。精確度會逐漸向級別中央減少。在中位數時最差，且上限為 %1。 
+* 估計誤差的範圍會隨著要求的百分位數值而變化。最佳精確度位於 [0..100] 級別的尾端，百分位數 0 和 100 正好是數據分佈的最小值和最大值。精確度會逐漸向級別中央減少。在中位數時最差，且上限為 %1。
 * 誤差範圍是在秩上測得，而非在值上。假設 percentile(X, 50) 傳回 Xm 的值。此估計可保證最少 49%、最多 51% 的 X 值小於 Xm。Xm 與 X 的實際中位數值之間的差異理論上沒有限制。
 
 ### stdev
@@ -1216,7 +1251,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 | `bool` | `boolean` | `System.Boolean` |
 | `datetime`| `date` | `System.DateTime` |
 | `dynamic` | | `System.Object` |
-| `guid` | `uuid`, `uniqueid` | `System.Guid` |
+| `guid` | `uuid`、`uniqueid` | `System.Guid` |
 | `int` | | `System.Int32` |
 | `long` | | `System.Int64` |
 | `double` | `real` | `System.Double` |
@@ -1426,17 +1461,7 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 |
-| * | 乘 |
-| / | 除 |
-| % | 模數 |
-||
-|`<` |小於 
-|`<=`|小於或等於 
-|`>` |大於 
-|`>=`|大於或等於 
-|`<>`|不等於 
-|`!=`|不等於
+| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
 
 
 ### abs
@@ -1467,8 +1492,8 @@ true 或 false，取決於值是 null 或不是 null。
 
 **引數**
 
-* value︰數字、日期或時間範圍。 
-* roundTo：「bin 的大小」。用來分割 value 的數字、日期或時間範圍。 
+* value︰數字、日期或時間範圍。
+* roundTo：「bin 的大小」。用來分割 value 的數字、日期或時間範圍。
 
 **傳回**
 
@@ -1539,7 +1564,7 @@ true 或 false，取決於值是 null 或不是 null。
 **傳回**
 
 * 像是 `sqrt(x) * sqrt(x) == x` 的正數
-* 如果引數為負數或無法轉換為 `real` 值，則為 `null`。 
+* 如果引數為負數或無法轉換為 `real` 值，則為 `null`。
 
 
 
@@ -1898,7 +1923,7 @@ h"hello"
 
 * text：字串。
 * search︰用來在 text 中進行比對的純文字字串或規則運算式。
-* kind：`"normal"|"regex"`。預設值 `normal`。 
+* kind：`"normal"|"regex"`。預設值 `normal`。
 
 **傳回**
 
@@ -1933,7 +1958,7 @@ h"hello"
 * regex：[規則運算式](#regular-expressions)。
 * captureGroup：指出要擷取之擷取群組的正 `int` 常數。0 代表整個相符項目、1 代表規則運算式中第一個 '('括號')' 所相符的值，2 或以上的數字代表後續的括號。
 * text：要搜尋的 `string`。
-* typeLiteral：選擇性的類型常值 (例如 `typeof(long)`)。如果提供，所擷取的子字串會轉換為此類型。 
+* typeLiteral：選擇性的類型常值 (例如 `typeof(long)`)。如果提供，所擷取的子字串會轉換為此類型。
 
 **傳回**
 
@@ -2006,7 +2031,7 @@ extract("^.{2,2}(.{4,4})", 1, Text)
 
 **引數**
 
-* regex：用來搜尋 text 的[規則運算式](https://github.com/google/re2/wiki/Syntax)。它可以在 '('括號')' 中包含擷取群組。 
+* regex：用來搜尋 text 的[規則運算式](https://github.com/google/re2/wiki/Syntax)。它可以在 '('括號')' 中包含擷取群組。
 * rewrite：matchingRegex 所找到的任何相符項目的取代 regex。使用 `\0` 來代表整個相符項目、`\1` 來代表第一個擷取群組，`\2` 和以上的數字來代表後續的擷取群組。
 * text：字串。
 
@@ -2051,7 +2076,7 @@ range x from 1 to 5 step 1
 
 * source：將根據指定的分隔符號分割的來源字串。
 * delimiter︰將用來分割來源字串的分隔符號。
-* requestedIndex︰以零為基礎的選擇性索引 `int`。如果提供，當要求的子字串存在時，傳回的字串陣列將會包含該子字串。 
+* requestedIndex︰以零為基礎的選擇性索引 `int`。如果提供，當要求的子字串存在時，傳回的字串陣列將會包含該子字串。
 
 **傳回**
 
@@ -2096,7 +2121,7 @@ split("aabbcc", "bb")         // ["aa","cc"]
 
 * source︰要從中擷取子字串的來源字串。
 * startingIndex：所要求子字串的以零為基礎的起始字元位置。
-* length：可用來指定子字串中要求的字元數目的選擇性參數。 
+* length：可用來指定子字串中要求的字元數目的選擇性參數。
 
 **傳回**
 
@@ -2216,7 +2241,7 @@ substring("ABCD", 0, 2)       // AB
 若要建立動態常值，請搭配使用 `parsejson` (別名 `todynamic`) 與 JSON 字串引數：
 
 * `parsejson('[43, 21, 65]')` - 數字陣列
-* `parsejson('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')` 
+* `parsejson('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`
 * `parsejson('21')` - 包含數字的動態類型單一值
 * `parsejson('"21"')` - 包含字串的動態類型單一值
 
@@ -2387,7 +2412,7 @@ T
 
 **引數**
 
-* start：所產生陣列中第一個項目的值。 
+* start：所產生陣列中第一個項目的值。
 * stop︰所產生陣列中最後一個項目的值，或所產生陣列中大於最後一個項目，且位於從 start 算起整數倍數的 step 內的最小值。
 * step︰陣列的兩個連續項目之間的差異。
 
@@ -2458,4 +2483,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -31,7 +31,7 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 - 內部部署網路與 Azure 虛擬網路之間的連線如需關於建立此虛擬網路的詳細資訊，請參閱[在 Azure 傳統入口網站中設定站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ## 加入 Azure 複本精靈
 
@@ -103,4 +103,4 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

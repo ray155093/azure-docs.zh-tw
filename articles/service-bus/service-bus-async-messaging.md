@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="服務匯流排非同步傳訊 |Microsoft Azure"
-   description="描述服務匯流排非同步代理傳訊。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="" /> 
+    pageTitle="服務匯流排非同步傳訊 |Microsoft Azure"
+    description="描述服務匯流排非同步代理傳訊。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="" /> 
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/16/2016"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/27/2016"
+    ms.author="sethm" />
 
 # 非同步傳訊模式和高可用性
 
@@ -43,7 +43,7 @@
 
 -   單一子系統上的服務匯流排失敗。在此情況下，運算節點可進入不一致的狀態且本身必須重新啟動，導致它提供的所有實體平衡其他節點的負載。這又會導致短期內的訊息處理速度緩慢。
 
--   Azure 資料中心內的服務匯流排失敗。這就是傳統的「災難性失敗」，系統有數分鐘或數小時的時間無法連線。
+-   Azure 資料中心內的服務匯流排失敗。這就是「災難性失敗」，系統有數分鐘或數小時的時間無法連線。
 
 > [AZURE.NOTE] 「儲存體」一詞可表示 Azure 儲存體和 SQL Azure。
 
@@ -61,9 +61,9 @@ Azure 中的其他元件可能會不時出現服務問題。例如，當服務�
 
 ### 單一子系統上的服務匯流排失敗
 
-在任何應用程式中，有些情況可能會導致服務匯流排的內部元件變得不一致。當服務匯流排偵測到這種情況時，它會從應用程式收集資料以協助診斷發生什麼狀況。收集資料後，應用程式會在嘗試回到一致狀態時重新啟動。這個程序非常迅速地發生，而且會導致實體呈現無法使用長達數分鐘，然而一般的停機時間短很多。
+在任何應用程式中，有些情況會導致服務匯流排的內部元件變得不一致。當服務匯流排偵測到這種情況時，它會從應用程式收集資料以協助診斷發生什麼狀況。收集資料後，應用程式會在嘗試回到一致狀態時重新啟動。這個程序非常迅速地發生，而且會導致實體呈現無法使用長達數分鐘，然而一般的停機時間短很多。
 
-在這些情況下，用戶端應用程式會產生 [System.TimeoutException][] 或 [MessagingException][] 例外狀況。服務匯流排 .NET SDK 包含此問題的緩和措施 (採用自動用戶端重試邏輯形式)。一旦重試期間用完且未傳遞訊息，您可以使用[配對的命名空間][]等其他功能進行探索。配對命名空間有[配對命名空間實作詳細資料和成本影響](service-bus-paired-namespaces.md)一文中討論的其他情況。
+在這些情況下，用戶端應用程式會產生 [System.TimeoutException][] 或 [MessagingException][] 例外狀況。服務匯流排包含此問題的緩和措施 (採用自動用戶端重試邏輯形式)。一旦重試期間用完且未傳遞訊息，您可以使用[配對的命名空間][]等其他功能進行探索。配對的命名空間有其他需要的注意事項 (請見該文章中的討論)。
 
 ### Azure 資料中心內的服務匯流排失敗
 
@@ -102,7 +102,7 @@ Azure 資料中心失敗的最可能原因是服務匯流排或相依系統的�
 
 ### MessagingFactory.PairNamespaceAsync API
 
-配對的命名空間功能在 [Microsoft.ServiceBus.Messaging.MessagingFactory][] 類別上引進 [PairNamespaceAsync][] 方法︰
+配對的命名空間功能會在 [Microsoft.ServiceBus.Messaging.MessagingFactory][] 類別上包含 [PairNamespaceAsync][] 方法：
 
 ```
 public Task PairNamespaceAsync(PairedNamespaceOptions options);
@@ -149,7 +149,7 @@ if (sendAvailabilityOptions.BacklogQueueCount < 1)
 
 ## 後續步驟
 
-您現已了解服務匯流排中非同步傳訊的基本概念，請閱讀更多有關[配對的命名空間][]的詳細資料。
+既然您已了解服務匯流排中非同步傳訊的基本概念，請閱讀[配對的命名空間][] 以取得更多詳細資料。
 
   [ServerBusyException]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.serverbusyexception.aspx
   [System.TimeoutException]: https://msdn.microsoft.com/library/system.timeoutexception.aspx
@@ -171,4 +171,4 @@ if (sendAvailabilityOptions.BacklogQueueCount < 1)
   [BacklogQueueCount]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sendavailabilitypairednamespaceoptions.backlogqueuecount.aspx
   [配對的命名空間]: service-bus-paired-namespaces.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

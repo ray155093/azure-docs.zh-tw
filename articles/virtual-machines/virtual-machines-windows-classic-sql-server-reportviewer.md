@@ -18,7 +18,7 @@
 
 # 在裝載於 Azure 上的網站中使用 ReportViewer
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 您可以使用 Visual Studio ReportViewer 控制項 (可顯示儲存在 Microsoft Azure 虛擬機器上的報告)，建置 Microsoft Azure 網站。ReportViewer 控制項位於您使用 ASP.NET Web 應用程式範本建置的 Web 應用程式中。
@@ -83,7 +83,7 @@
 
 1. 依照上述的指示，下載並安裝 Microsoft Report Viewer 2012 Runtime 可轉散發套件。
 
-1. 在專案中建立 <language> 資料夾，並複製該資料夾中的相關聯資源組件檔案。需複製的資源組件檔案為：**Microsoft.ReportViewer.Webforms.Resources.dll** 和 **Microsoft.ReportViewer.Common.Resources.dll**。選取資源組件檔案，然後在 [屬性] 窗格中，將 [複製到輸出目錄] 設為[**永遠複製**]。
+1. 在專案中建立 <language> 資料夾，並複製該資料夾中的相關聯資源組件檔案。需複製的資源組件檔案為：**Microsoft.ReportViewer.Webforms.Resources.dll** 和 **Microsoft.ReportViewer.Common.Resources.dll**。選取資源組件檔案，然後在 [屬性] 窗格中，將 [複製到輸出目錄] 設為[永遠複製]。
 
 1. 設定 Web 專案的文化特性和 UI 文化特性。如需關於設定 ASP.NET 網頁的文化特性和 UI 文化特性的詳細資訊，請參閱[作法：設定 ASP.NET Web 網頁全球化的文化特性和 UI 文化特性](http://go.microsoft.com/fwlink/?LinkId=237461)。
 
@@ -109,4 +109,4 @@ ReportViewer 必須使用正確的認證對報表伺服器進行驗證，而且�
 
 [Reporting Services 報告檢視器控制項和 Microsoft Azure 虛擬機器型報表伺服器](http://download.microsoft.com/download/2/2/0/220DE2F1-8AB3-474D-8F8B-C998F7C56B5D/Reporting%20Services%20report%20viewer%20control%20and%20Azure%20VM%20based%20report%20servers.docx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

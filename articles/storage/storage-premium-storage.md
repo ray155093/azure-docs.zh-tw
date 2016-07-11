@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="06/23/2016"
 	ms.author="prkhad"/>
 
 
@@ -39,7 +39,7 @@ Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例
 
 進階儲存體 Blob：進階儲存體可支援 Azure 分頁 Blob，其用於保存適用於 Azure 虛擬機器 (VM) 的永續性磁碟。進階儲存體目前不支援 Azure 區塊 Blob、Azure 附加 Blob、Azure 檔案、Azure 資料表或 Azure 佇列。放在進階儲存體帳戶中的任何其他物件都會是分頁 Blob，並且貼齊其中一個支援的佈建大小。Heance 進階儲存體帳戶不是用於儲存小型 Blob。
 
-**進階儲存體帳戶**︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。如果您想要使用 [Azure 入口網站](https://portal.azure.com)，則可以指定「進階」效能層和「本地備援儲存體 (LRS)」作為複寫選項來建立進階儲存體帳戶。使用[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 2014-02-14 版或更新版本將類型指定為 “Premium\_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (ARM 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
+**進階儲存體帳戶**︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。如果您想要使用 [Azure 入口網站](https://portal.azure.com)，則可以指定「進階」效能層和「本地備援儲存體 (LRS)」作為複寫選項來建立進階儲存體帳戶。使用[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 2014-02-14 版或更新版本將類型指定為 “Premium\_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (Resource Manager 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
 
 **進階本地備援儲存體**：進階儲存體帳戶僅支援本地備援儲存體 (LRS) 作為複寫選項，並在單一區域內會保留三份資料。如需使用進階儲存體時關於異地複寫的考量，請參閱本文的[快照與複製 Blob](#snapshots-and-copy-blob) 一節。
 
@@ -112,7 +112,7 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。�
 
 如需詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
 
-如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。例如，如果要將 51 TB 的磁碟連結到多個 VM，請將它們分散到兩個儲存體帳戶，因為單一 Premium 儲存體帳戶的限制是 35 TB。請務必確認單一 Premium 儲存體帳戶的佈建磁碟不要超過 35 TB。
+如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。例如，如果要將 51 TB 的磁碟連結到多個 VM，請將它們分散到兩個儲存體帳戶，因為單一進階儲存體帳戶的限制是 35 TB。請務必確認單一 Premium 儲存體帳戶的佈建磁碟不要超過 35 TB。
 
 ### 進階儲存體磁碟限制
 
@@ -163,24 +163,24 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。�
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-	<td><strong>每個 P10 磁碟的輸送量上限</strong></td>
-	<td><strong>從磁碟的非快取讀取</strong></td>
-	<td><strong>對磁碟的非快取寫入</strong></td>
+<td><strong>每個 P10 磁碟的輸送量上限</strong></td>
+<td><strong>從磁碟的非快取讀取</strong></td>
+<td><strong>對磁碟的非快取寫入</strong></td>
 </tr>
 <tr>
-	<td>每秒 100 MB</td>
-	<td>每秒 100 MB</td>
-	<td>0</td>
+<td>每秒 100 MB</td>
+<td>每秒 100 MB</td>
+<td>0</td>
 </tr>
 <tr>
-	<td>每秒 100 MB</td>
-	<td>0</td>
-	<td>每秒 100 MB</td>
+<td>每秒 100 MB</td>
+<td>0</td>
+<td>每秒 100 MB</td>
 </tr>
 <tr>
-	<td>每秒 100 MB </td>
-	<td>每秒 60 MB </td>
-	<td>每秒 40 MB </td>
+<td>每秒 100 MB </td>
+<td>每秒 60 MB </td>
+<td>每秒 40 MB </td>
 </tr>
 </tbody>
 </table>
@@ -351,7 +351,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 - 進階儲存體快照
 - 輸出資料傳輸
 
-**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶，以儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
+**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶來儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
 
 **進階儲存體快照**：進階儲存體上的快照會因為使用的額外容量而產生費用。如需有關快照的資訊，請參閱[建立 Blob 的快照](http://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
@@ -374,7 +374,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 ### 透過 Azure 入口網站使用進階儲存體來建立 Azure 虛擬機器
 
-#### I.在 Azure 入口網站中建立進階儲存體帳戶。
+#### I.在 Azure 入口網站中建立進階儲存體帳戶
 
 本節說明如何使用 Azure 入口網站來建立進階儲存體帳戶。
 
@@ -388,7 +388,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 	>  
 	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
+4. 指定所要使用的部署模型：[資源管理員] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
 5. 將儲存體帳戶的效能層指定為 [進階]。
 
@@ -424,12 +424,12 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 ### 透過 Azure PwerShell 使用 Premium 儲存體建立 Azure 虛擬機器
 
-#### I.在 Azure PowerShell 中建立進階儲存體帳戶。
+#### I.在 Azure PowerShell 中建立進階儲存體帳戶
 
 這個 PowerShell 範例示範如何建立新的 Premium 儲存體帳戶並將使用該帳戶的資料磁碟連接至新的 Azure 虛擬機器。
 
 1. 依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中提供的步驟設定您的 PowerShell 環境。
-2. 啟動 PowerShell 主控台，連接至您的訂用帳戶，並在主控台視窗中執行下列 PowerShell Cmdlet。如此 PowerShell 陳述式所示，當您建立 Premium 儲存體帳戶時，必須將 **Type** 參數指定為 **Premium\_LRS**。
+2. 啟動 PowerShell 主控台，連接至您的訂用帳戶，並在主控台視窗中執行下列 PowerShell Cmdlet。如此 PowerShell 陳述式所示，當您建立進階儲存體帳戶時，必須將 **Type** 參數指定為 **Premium\_LRS**。
 
 		New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
 
@@ -469,7 +469,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 ### 透過 Azure 命令列介面使用 Premium 儲存體建立 Azure 虛擬機器
 
-[Azure 命令列介面](../xplat-cli-install.md) (Azure CLI) 提供您一組開放原始碼的跨平台命令，供您運用在 Azure 平台上。下列範例示範如何使用 Azure CLI (版本 0.8.14 和更新版本) 建立 Premium 儲存體帳戶、新的虛擬機器，並從 Premium 儲存體帳戶連接新的資料磁碟。
+[Azure 命令列介面](../xplat-cli-install.md) (Azure CLI) 提供您一組開放原始碼的跨平台命令，供您運用在 Azure 平台上。下列範例示範如何使用 Azure CLI (版本 0.8.14 和更新版本) 建立進階儲存體帳戶、新的虛擬機器，並從進階儲存體帳戶連接新的資料磁碟。
 
 #### I.透過 Azure CLI 建立進階儲存體帳戶
 
@@ -562,4 +562,4 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 [Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

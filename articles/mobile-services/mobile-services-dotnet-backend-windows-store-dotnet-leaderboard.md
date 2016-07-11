@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="06/24/2016"
 	ms.author="glenga"/>
 
 # 使用 Azure 行動服務 .NET 後端建立排行榜應用程式
@@ -142,7 +142,7 @@ PlayerRank 具有 Player 的外部索引鍵。每個玩家各有零或一個 Pla
 
 ![][8]
 
-此控制器衍生自 **TableController<T>**。此類別會繼承 **ApiController**，但這是適用於 Azure 行動服務的特殊類別。
+控制器會衍生自 **TableController<T>**。此類別會繼承 **ApiController**，但這是適用於 Azure 行動服務的特殊類別。
 
 - 路由：**TableController** 的預設路由為 `/tables/{table_name}/{id}`，其中的 *table\_name* 符合實體名稱。因此，「玩家」控制器的路徑為 */tables/player/{id}*。此路徑慣例會使 **TableController** 與行動服務 [REST API](http://msdn.microsoft.com/library/azure/jj710104.aspx) 一致。
 - 資料存取：在資料庫作業中，**TableController** 類別會使用 **IDomainManager** 介面，而此介面會定義資料存取的抽象。scaffolding 會使用 **EntityDomainManager**，這是包裝 EF 內容之 **IDomainManager** 的固定實作。
@@ -593,7 +593,7 @@ Model-View-ViewModel (MVVM) 是 Model-View-Controller (MVC) 的變體。MVVM 模
 
 ## 新增 MobileServiceClient 執行個體
 
-開啟 *App.xaml.cs* 檔案，並將 **MobileServiceClient** 執行個體新增至 `App` 類別。
+開啟 App.xaml.cs 檔案，並將 **MobileServiceClient** 執行個體新增至 `App` 類別。
 
 	// New code:
 	using Microsoft.WindowsAzure.MobileServices;
@@ -765,4 +765,4 @@ Model-View-ViewModel (MVVM) 是 Model-View-Controller (MVC) 的變體。MVVM 模
 [新增推播通知]: ../notification-hubs-windows-store-dotnet-get-started.md
 [開始使用驗證]: /develop/mobile/tutorials/get-started-with-users-dotnet
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

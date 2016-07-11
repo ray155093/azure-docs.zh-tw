@@ -12,7 +12,7 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="05/17/2016"
+ms.date="06/27/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
@@ -32,9 +32,9 @@ ms.author="eugenesh" />
 若要設定 Blob 編製索引，請執行下列作業：
 
 1. 建立類型 `azureblob` 的資料來源，它參考 Azure 儲存體帳戶中的容器 (和選擇性參考該容器中的資料夾)。
-	- 傳入您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數。
+	- 傳遞儲存體帳戶連接字串做為 `credentials.connectionString` 參數。您可以從 Azure 入口網站取得連接字串︰瀏覽至所需的儲存體帳戶刀鋒視窗 / 索引鍵，並使用「主要連接字串」或「次要連線字串」值。
 	- 指定容器名稱。您也可以選擇性地使用 `query` 參數來包含資料夾。
-2. 使用可搜尋的 `content` 欄位建立搜尋索引。 
+2. 使用可搜尋的 `content` 欄位建立搜尋索引。
 3. 將資料來源連接到目標索引來建立索引子。
 
 ### 建立資料來源
@@ -83,6 +83,8 @@ ms.author="eugenesh" />
 	  "schedule" : { "interval" : "PT2H" }
 	}
 
+這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。支援的最短間隔為 5 分鐘。排程是選擇性 - 如果省略，索引子只會在建立時執行一次。不過，您隨時都可依需求執行索引子。
+
 如需建立索引子 API 的詳細資訊，請參閱[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer)。
 
 
@@ -91,12 +93,12 @@ ms.author="eugenesh" />
 blob 索引子可以從下列文件格式擷取文字：
 
 - PDF
-- Microsoft Office 格式：DOCX/DOC、XLSX/XLS、PPTX/PPT、MSG (Outlook 電子郵件)  
+- Microsoft Office 格式：DOCX/DOC、XLSX/XLS、PPTX/PPT、MSG (Outlook 電子郵件)
 - HTML
 - XML
 - ZIP
 - EML
-- 純文字檔案  
+- 純文字檔案
 - JSON (如需詳細資訊，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md))
 
 ## 文件擷取程序
@@ -215,7 +217,7 @@ PPT (application/vnd.ms-powerpoint) | `metadata_content_type`<br/>`metadata_auth
 MSG (application/vnd.ms-outlook) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` | 擷取文字，包括附件
 ZIP (application/zip) | `metadata_content_type` | 從封存中的所有文件擷取文字
 XML (application/xml) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 移除 XML 標記並且擷取文字
-JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊。
+JSON (application/json) | `metadata_content_type`</br>`metadata_content_encoding` | 擷取文字<br/>注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊
 EML (message/rfc822) | `metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` | 擷取文字，包括附件
 純文字 (text/plain) | `metadata_content_type`</br>`metadata_content_encoding`</br> | 
 
@@ -264,7 +266,7 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 ### 只編製儲存體中繼資料的索引
 
-您可以使用 `indexStorageMetadataOnly` 組態屬性只編製儲存體元資料的索引，完全略過文件擷取程序。當您不需要文件內容，也不需要任何特定類型內容的中繼資料屬性時，這非常有用。若要這樣做，請將 `indexStorageMetadataOnly` 屬性設為 `true`：
+您可以使用 `indexStorageMetadataOnly` 組態屬性只編製儲存體中繼資料的索引，完全略過文件擷取程序。當您不需要文件內容，也不需要任何特定類型內容的中繼資料屬性時，這非常有用。若要這樣做，將 `indexStorageMetadataOnly` 屬性設為 `true`：
 
 	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -277,7 +279,7 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 ### 編製儲存體和內容類型中繼資料的索引，但略過內容擷取。
 
-如果您需要擷取全部元資料但跳過所有 Blob 的內容擷取，可以使用索引子組態來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 元資料加入每個 Blob 中。若要這樣做，請將 `skipContent` 索引子組態屬性設為 `true`︰
+如果您需要擷取所有中繼資料但跳過所有 Blob 的內容擷取，可以使用索引子組態來要求這個行為，而不必個別將 `AzureSearch_SkipContent` 中繼資料加入每個 Blob 中。若要這樣做，將 `skipContent` 索引子組態屬性設為 `true`：
 
 	PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2015-02-28-Preview
 	Content-Type: application/json
@@ -292,4 +294,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

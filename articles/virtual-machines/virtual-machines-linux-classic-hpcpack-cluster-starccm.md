@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="04/13/2016"
+ ms.date="06/28/2016"
  ms.author="xpillons"/>
 
 # 在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 STAR-CCM+
@@ -286,7 +286,7 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
     exit ${RTNSTS}
 ```
 
-在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。針對該權杖，您必須將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及在命令列的 **-podkey** 選項中設定索引鍵。
+在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。針對該權杖，您必須將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及命令列 **-podkey** 選項中的索引鍵。
 
 在進行一些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP\_NODES\_CORES** 環境變數中，擷取節點清單來建置 MPI 啟動器使用的 hostfile。此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
 
@@ -298,11 +298,11 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 
 其中：
 
-* `<Number of nodes>` 是配置給此工作的節點數目。
+* `<Number of nodes>` 是配置給此作業的節點數目。
 
-* `<Name of node_n_...>` 是配置給此工作的每個節點名稱。
+* `<Name of node_n_...>` 是配置給此作業的每個節點名稱。
 
-* `<Cores of node_n_...>` 是配置給此工作的節點上核心數目。
+* `<Cores of node_n_...>` 是配置給此作業的節點上核心數目。
 
 核心數目 (**$NBCORES**) 也是根據節點的數目 (**$NBNODES**) 和每個節點的核心數目 (以 **$NBCORESPERNODE** 參數提供) 來計算。
 
@@ -316,7 +316,7 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 
 *   `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"` 可讓 Intel MPI 與 Azure InfiniBand 搭配運作，並可設定每個節點的必要核心數目。
 
-*   `-batch` 可以用批次模式 (無使用者介面) 啟動 STAR-CCM+。
+*   `-batch` 可以用批次模式啟動 STAR-CCM+ (無使用者介面)。
 
 
 最後，若要開始作業，請確定您的節點啟動並執行，並且在叢集管理員中處於線上狀態。然後從 PowerShell 命令提示字元中，執行此作業︰
@@ -345,4 +345,4 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 [hndeploy]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/hndeploy.png
 [clustermanager]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/ClusterManager.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

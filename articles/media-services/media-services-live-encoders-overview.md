@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/05/2016"
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -53,4 +53,4 @@
 
 [使用 Azure 媒體服務執行即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

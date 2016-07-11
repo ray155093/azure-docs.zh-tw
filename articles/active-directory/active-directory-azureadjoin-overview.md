@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""
 	tags="azure-classic-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/26/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能
@@ -36,7 +36,7 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 * **教育機構**：我們常聽到的其中一個案例是，教育機構包含教職員和學生兩種使用者類型。教職成員會被視為組織中較長期的成員，因此適合為他們建立內部部署帳戶。但學生是組織中較短期的成員，因而可放在 Azure AD 中管理。這表示可以將目錄範圍推送至雲端，而不是儲存在內部部署這也表示學生可以使用其 Azure AD 帳戶登入 Windows，並在瀏覽器或 Office 應用程式中存取 Office 365 資源。
 
 * **零售業**：客戶指出的另一個案例是他們想要更容易地管理週期性工作者。同樣地，較長期、全職員工的帳戶通常是在已加入網域的電腦上建立為內部部署帳戶。但週期性工作者是組織中較短期的成員，因而適合在可更輕易四處移動使用者授權的位置加以管理。在具有 Office 365 授權的雲端中建立這些使用者，可讓使用者享受到利用 Azure AD 帳戶登入 Windows 和 Office 應用程式的好處。同時，在他們離職之後，您也能對他們的授權保有更大的處理彈性。
-* **其他企業**：即使您在內部部署 Active Directory 中維護使用者，您仍然可以享受到將使用者加入 Azure AD 的好處。這是因為 Azure AD 為 Azure AD 和內部部署資源提供簡化的加入經驗、有效率的裝置管理、自動的行動裝置管理註冊和單一登入功能。  
+* **其他企業**：即使您在內部部署 Active Directory 中維護使用者，您仍然可以享受到將使用者加入 Azure AD 的好處。這是因為 Azure AD 為 Azure AD 和內部部署資源提供簡化的加入經驗、有效率的裝置管理、自動的行動裝置管理註冊和單一登入功能。
 
 ## Azure AD Join 提供哪些功能？
 使用 Azure AD Join，您可以：
@@ -79,4 +79,4 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

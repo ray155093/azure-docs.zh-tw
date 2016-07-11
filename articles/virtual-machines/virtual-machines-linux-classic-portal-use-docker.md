@@ -20,7 +20,7 @@
 
 # 搭配使用 Docker VM 擴充程式與 Azure 傳統入口網站
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 [Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 [Linux 容器](http://en.wikipedia.org/wiki/LXC)作為在共用資源上獨立資料和執行計算的方法。您可以使用 [Azure Linux 代理程式]所管理的 Docker VM 延伸模組，如此可在 Azure 上建立 Docker VM 來託管任何數量的應用程式容器。
@@ -38,7 +38,7 @@
 
 在建立 VM 之後，請確定您的用戶端電腦已安裝 Docker。(如需詳細資訊，請參閱 [Docker 安裝指示](https://docs.docker.com/installation/#installation) (英文)。)
 
-根據[使用 https 執行 Docker] \(英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
+根據[使用 https 執行 Docker] (英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
 
 > [AZURE.NOTE] 入口網站中的 Docker VM 延伸模組目前需要 base64 編碼的認證。
 
@@ -148,4 +148,4 @@ WARNING: No swap limit support
 [使用 https 執行 Docker]: http://docs.docker.com/articles/https/
 [Docker 使用者指南]: https://docs.docker.com/userguide/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

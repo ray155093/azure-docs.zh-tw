@@ -36,7 +36,7 @@ Redis 輸出快取提供者為輸出快取資料的程序外儲存體機制。�
 NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入至您的 web.config 檔案，其中包含 ASP.NET 應用程式使用 Redis 輸出快取提供者的必要設定。
 
     <caching>
-      <outputCachedefaultProvider="MyRedisOutputCache">
+      <outputCachedefault Provider="MyRedisOutputCache">
         <providers>
           <!--
           <add name="MyRedisOutputCache"
@@ -50,7 +50,7 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
             operationTimeoutInMilliseconds = "5000" [number]
           />
           -->
-          <add name="MyRedisOutputCache"type="Microsoft.Web.Redis.RedisOutputCacheProvider"host="127.0.0.1"accessKey="" ssl="false"/>
+          <add name="MyRedisOutputCache" type="Microsoft.Web.Redis.RedisOutputCacheProvider" host="127.0.0.1" accessKey="" ssl="false"/>
         </providers>
       </outputCache>
     </caching>
@@ -81,4 +81,4 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
 
 請查看 [Azure Redis 快取的 ASP.NET 工作階段狀態提供者](cache-aspnet-session-state-provider.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

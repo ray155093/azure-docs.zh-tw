@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="03/16/2016"
+    ms.date="06/27/2016"
     ms.author="sethm" />
 
 # 配對命名空間實作詳細資料和成本影響
@@ -129,4 +129,4 @@ Ping 訊息是空的 [BrokeredMessage][]，其 [ContentType][] 屬性設定為 a
   [1]: ./media/service-bus-paired-namespaces/IC673406.png
   [2]: ./media/service-bus-paired-namespaces/IC673407.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="04/05/2016" 
+    ms.date="06/27/2016" 
     ms.author="elizapo" />
 
 
@@ -29,9 +29,9 @@
 ## 部署 QuickBooks 的步驟
 
 1. 建立 Azure VM 並安裝 QuickBooks、QuickBooks 資料庫伺服器，然後將公司檔案放在 Azure VM 上。請務必正確設定防火牆規則。
-2. 在[自訂映像檔](remoteapp-imageoptions.md)上安裝 QuickBooks，並且在與裝載 QuickBooks 資料庫伺服器 (公司檔案所在) 之 VM 完全相同的 VNET 內建立 [Azure RemoteApp 集合](remoteapp-collections.md) (無論是在雲端或混合式)。 
+2. 在[自訂映像檔](remoteapp-imageoptions.md)上安裝 QuickBooks，並且在與裝載 QuickBooks 資料庫伺服器 (公司檔案所在) 之 VM 完全相同的 VNET 內建立 [Azure RemoteApp 集合](remoteapp-collections.md) (無論是在雲端或混合式)。
 3.	[發佈](remoteapp-publish.md) QuickBooks 應用程式給使用者
-4.	啟動 Azure RemoteApp 裝載的 QuickBooks 用戶端，使用標準 Windows 網路瀏覽至裝載 QuickBooks 資料庫伺服器的 VM，並開啟公司檔案。 
+4.	啟動 Azure RemoteApp 裝載的 QuickBooks 用戶端，使用標準 Windows 網路瀏覽至裝載 QuickBooks 資料庫伺服器的 VM，並開啟公司檔案。
 
 ## 文件參考
 
@@ -44,4 +44,4 @@
 
 ![QuickBooks + Azure RemoteApp 部署](./media/remoteapp-quickbooks/ra-quickbooks.png)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

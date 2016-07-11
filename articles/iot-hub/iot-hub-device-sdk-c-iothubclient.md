@@ -26,6 +26,8 @@
 
 我們將使用 **IoTHubClient** SDK 範例來說明這些主題。如果您想要遵循執行，請參閱適用於 C 的 Azure IoT 裝置 SDK 中隨附的 **iothub\_client\_sample\_http** 和 **iothub\_client\_sample\_amqp** 應用程式。下列各節所述的所有內容都會在這些範例中加以示範。
 
+您可以尋找 [Microsoft Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中的**適用於 C 的 Azure IoT 裝置 SDK**，並在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
+
 ## 較低層級的 API
 
 前一篇文章描述 **iothub\_client\_sample\_amqp** 應用程式內容中 **IotHubClient** 的基本作業。比方說，該文說明如何使用下列程式碼初始化程式庫。
@@ -278,4 +280,4 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 本文深入探討**適用於 C 的 Azure IoT 裝置 SDK** 中發現之 **IoTHubClient** 程式庫的行為。利用這項資訊，您就可以充分了解 **IoTHubClient** 程式庫的功能。[下一篇文章](iot-hub-device-sdk-c-serializer.md)將提供**序列化程式**庫的類似詳細資料。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

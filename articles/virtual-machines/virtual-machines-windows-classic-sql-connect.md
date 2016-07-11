@@ -1,11 +1,10 @@
 <properties
 	pageTitle="連線到 SQL Server 虛擬機器 (傳統) | Microsoft Azure"
-	description="本主題會使用以傳統部署模型建立的資源，並說明如何連接到在 Azure 中的虛擬機器上執行的 SQL Server。案例會視網路組態和用戶端的位置而有所不同。"
+	description="了解如何連接在 Azure 虛擬機器上執行的 SQL Server。本主題使用傳統部署模型。案例會視網路組態和用戶端的位置而有所不同。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="rothja"
-	manager="jeffreyg"
-	editor="monicar"    
+	manager="jhubbard"
 	tags="azure-service-management"/>
 <tags
 	ms.service="virtual-machines-windows"
@@ -13,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="03/24/2016"
+	ms.date="06/23/2016"
 	ms.author="jroth" />
 
 # 連線到 Azure 上的 SQL Server 虛擬機器 (傳統部署)
@@ -24,13 +23,9 @@
 
 ## 概觀
 
-連線至在 Azure 虛擬機器上執行的 SQL Server 設定步驟，與設定內部部署 SQL Server 執行個體所需的步驟差別並不大。您仍然必須設定防火牆、驗證和資料庫登入。
+本主題說明如何連接在 Azure 虛擬機器上執行的 SQL Server 執行個體。其中涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。
 
-但在 SQL Server 連線方面還是有一些 Azure VM 特定的設定。本文涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。
-
-本文著重於如何連接到使用傳統模型的現有 SQL Server 虛擬機器。
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。如果您是使用資源管理員 VM，請參閱[使用資源管理員連接到 Azure 上的 SQL Server 虛擬機器](virtual-machines-windows-sql-connect.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 如果您是使用 Resource Manager VM，請參閱[使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](virtual-machines-windows-sql-connect.md)。
 
 ## 連接案例
 
@@ -40,13 +35,13 @@
 - [連接網際網路中的 SQL Server](#connect-to-sql-server-over-the-internet)
 - [連接相同虛擬網路中的 SQL Server](#connect-to-sql-server-in-the-same-virtual-network)
 
+>[AZURE.NOTE] 在使用其中任一種方法來連接之前，您必須遵循[本文章中的步驟設定連線能力](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。
+
 ### 連接相同雲端服務中的 SQL Server
 
-可以在相同的雲端服務中建立多個虛擬機器。若要了解此虛擬機器案例，請參閱[如何連接虛擬機器與虛擬網路或雲端服務](virtual-machines-linux-classic-connect-vms.md)。
+可以在相同的雲端服務中建立多個虛擬機器。若要了解此虛擬機器案例，請參閱[如何連接虛擬機器與虛擬網路或雲端服務](virtual-machines-windows-classic-connect-vms.md#connect-vms-in-a-standalone-cloud-service)。此案例為當虛擬機器上的用戶端嘗試連接到在同一個雲端服務中執行的另一部虛擬機器上的 SQL Server。
 
-首先，請依照[本文的步驟設定連線](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。請注意，如果您要連接相同雲端服務中的機器，則不需要設定公用端點。
-
-您可以在用戶端連接字串中使用 VM **主機名稱**。主機名稱是您在建立期間給予 VM 的名稱。例如，如果您的 SQL VM 名稱為 **mysqlvm**，且雲端服務 DNS 名稱為 **mycloudservice.cloudapp.net**，在同一個雲端服務中的用戶端 VM 便可以使用下列連接字串進行連接：
+在此案例中，您可以使用 VM「名稱」(在入口網站也稱為「電腦名稱」或「主機名稱」) 來連接。這是您在建立期間提供給 VM 的名稱。例如，如果將您的 SQL VM 命名為 **mysqlvm**，則在相同雲端服務中的用戶端 VM 將可以使用下列連接字串來連接：
 
 	"Server=mysqlvm;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
@@ -54,27 +49,25 @@
 
 如果您希望透過網際網路連接您的 SQL Server 資料庫引擎，您必須建立虛擬機器端點以進行傳入 TCP 通訊。此 Azure 組態步驟能將傳入 TCP 連接埠流量導向虛擬機器可存取的 TCP 連接埠。
 
-首先，請依照[本文的步驟設定連線](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。可存取網際網路的任何用戶端只要指定雲端服務 DNS 名稱 (例如 **mycloudservice.cloudapp.net**) 和 VM 端點 (例如 **57500**)，即可連接至 SQL Server 執行個體。
+若要透過網際網路連接，您必須使用 VM 的 DNS 名稱和 VM 端點連接埠號碼 (稍後在本文中設定)。若要尋找 DNS 名稱，請瀏覽至 Azure 入口網站，然後選取 [虛擬機器 (傳統)]。然後選取您的虛擬機器。[摘要] 區段中會顯示 [DNS 名稱]。
+
+例如，假設名為 **mysqlvm** 的虛擬機器，其 DNS 名稱為 **mysqlvm7777.cloudapp.net** 且 VM 端點是 **57500**。假設已適當設定連線能力，則使用下列連接字串，就能從網際網路上任何位置存取該虛擬機器：
 
 	"Server=mycloudservice.cloudapp.net,57500;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
 用戶端雖然可透過網際網路連線，但這不表示任何人都可以連接您的 SQL Server。外部用戶端必須要有正確的使用者名稱和密碼。為了增加安全性，請勿使用知名的 1433 連接埠做為公用虛擬機器端點。請盡可能考慮在您的端點加入 ACL 來限制流量，只開放給您允許的用戶端。如需有關在端點中使用 ACL 的指示，請參閱[在端點上管理 ACL](virtual-machines-windows-classic-setup-endpoints.md#manage-the-acl-on-an-endpoint)。
 
->[AZURE.NOTE] 請務必注意，當您使用這項技巧與 SQL Server 進行通訊時，所有傳回的資料會視為資料中心的連出流量，並受限於一般[輸出資料傳輸價格](https://azure.microsoft.com/pricing/details/data-transfers/)。即使您在相同的 Azure 資料中心內的另一部機器或雲端服務使用這項技巧，也是如此，因為流量還是會通過 Azure 的公用負載平衡器。
+>[AZURE.NOTE] 請務必注意，當您使用此技術與 SQL Server 通訊時，所有從 Azure 資料中心傳出的資料都會以一般[輸出資料傳輸價格](https://azure.microsoft.com/pricing/details/data-transfers/)計費。
 
 ### 連接相同虛擬網路中的 SQL Server
 
-[虛擬網路](..\virtual-network\virtual-networks-overview.md)讓其他案例變得可行。您可連接相同虛擬網路中的 VM，即使這些 VM 位於不同的雲端服務也沒關係。[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 可讓您建立能將 VM 連接至內部部署網路和電腦的混合式架構。
+[虛擬網路](../virtual-network/virtual-networks-overview.md)讓其他案例變得可行。您可連接相同虛擬網路中的 VM，即使這些 VM 位於不同的雲端服務也沒關係。[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 可讓您建立能將 VM 連接至內部部署網路和電腦的混合式架構。
 
 虛擬網路也可讓您將 Azure VM 加入網域。這是在 SQL Server 使用的 Windows 驗證的唯一方式。其他連接案例則需要使用者名稱和密碼進行 SQL 驗證。
 
-首先，請依照[本文的步驟設定連線](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。如果您要設定網域環境及 Windows 驗證，您就不需要使用本文中的步驟來設定 SQL 驗證和登入。此外，在此案例中公用端點並非必要。
-
-假設您已設定 DNS，您可以在連接字串中指定 SQL Server VM 的主機名稱來連接 SQL Server 執行個體。下列範例假設 Windows 驗證也已設定，且使用者已獲得存取 SQL Server 執行個體的權限。
+如果您要設定網域環境及 Windows 驗證，您就不需要使用本文中的步驟來設定公用端點或是 SQL 驗證及登入。在此案例中，您可以在連接字串中指定 SQL Server VM 名稱來連接 SQL Server 執行個體。下列範例假設 Windows 驗證也已設定，且使用者已獲得存取 SQL Server 執行個體的權限。
 
 	"Server=mysqlvm;Integrated Security=true"
-
-請注意，在此案例中您也可以指定 VM 的 IP 位址。
 
 ## Azure VM 中設定 SQL Server 連線的步驟
 
@@ -106,6 +99,8 @@
 
 請務必檢閱在 Azure 虛擬機器上執行之 SQL Server 的所有安全性最佳做法。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-sql-security.md)。
 
+[探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)：Azure 虛擬機器上的 SQL Server。
+
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="條件式存取常見問題集 | Microsoft Azure"
-	description="關於條件式存取的常見問題集"
+	description="關於條件式存取的常見問題集 "
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/15/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 條件式存取常見問題集
@@ -30,4 +30,4 @@
 ## 為什麼我無法在用戶端應用程式 (例如 Word 或 Outlook) 上設定原則？
 條件式存取原則會設定存取服務的需求，並在該服務發生驗證時強制套用。因此原則不是直接設定於用戶端應用程式上，而是在它呼叫服務時加以套用。例如，在 SharePoint 上設定的原則將會套用至呼叫 SharePoint 的用戶端，而 Exchange 上設定的原則將會套用至 Outlook。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

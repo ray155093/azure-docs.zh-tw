@@ -23,7 +23,7 @@
 災害復原演練內容包括：
 
 - 模擬資料層中斷情況
-- 復原 
+- 復原
 - 驗證復原後的應用程式完整性
 
 執行演練的工作流程會因您[設計商務持續性之應用程式](sql-database-business-continuity.md)的方式而異。以下將說明在 Azure SQL Database 的內容中進行災害復原演練的最佳作法。
@@ -38,7 +38,7 @@
 
 ####復原
 
-- 如[此處](sql-database-disaster-recovery.md)所述，將資料庫異地還原至其他伺服器。 
+- 如[此處](sql-database-disaster-recovery.md)所述，將資料庫異地還原至其他伺服器。
 - 將應用程式組態變更為連接到復原資料庫，並遵循[在復原後設定資料庫](sql-database-disaster-recovery.md)指南以完成復原。
 
 ####驗證
@@ -55,7 +55,7 @@
 
 ####復原
 
-- 請確定 DR 區域中的應用程式組態會指向先前的次要資料庫，該資料庫將變成可完全存取的新主要資料庫。 
+- 請確定 DR 區域中的應用程式組態會指向先前的次要資料庫，該資料庫將變成可完全存取的新主要資料庫。
 - 執行[規劃的容錯移轉](sql-database-geo-replication-powershell.md#initiate-a-planned-failover)將次要資料庫變成新的主要資料庫
 - 請遵循[在復原後設定資料庫](sql-database-disaster-recovery.md)指南以完成復原。
 
@@ -66,18 +66,10 @@
 
 ## 後續步驟
 
-- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-## 其他資源
-
-- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
-- [還原時間點](sql-database-point-in-time-restore.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

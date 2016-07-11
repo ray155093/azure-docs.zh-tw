@@ -37,7 +37,7 @@
 -	[API 管理在部署到多個地理位置時使用什麼路由方法？](#what-routing-method-does-api-management-use-when-deployed-to-multiple-geographic-locations)
 -	[可以使用 ARM 範本建立 API 管理服務執行個體嗎？](#can-i-create-an-api-management-service-instance-using-an-arm-template)
 -	[是否可以對後端使用自我簽署 SSL 憑證？](#can-i-use-a-self-signed-ssl-certificate-for-a-backend)
-
+-	[為什麼我在嘗試複製 GIT 儲存機制時發生驗證失敗？](#why-am-i-getting-authentication-failure-when-i-try-to-clone-the-git-repository)
 
 
 ### 如何向 API 管理小組詢問問題？
@@ -75,7 +75,7 @@
 
 透過下列步驟即可實現︰
 
-1. 登入新的 [Azure 入口網站](https://portal.azure.com) 
+1. 登入新的 [Azure 入口網站](https://portal.azure.com)
 2. 瀏覽至包含所需 API 管理執行個體的資源群組
 3. 將所需的使用者新增至「API 管理參與者」角色
 
@@ -138,7 +138,7 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 是，請參閱 [Azure API 管理服務](http://aka.ms/apimtemplate)快速入門範本。
 
-### 是否可以對後端使用自我簽署 SSL 憑證
+### 是否可以對後端使用自我簽署 SSL 憑證？
 
 是。請遵循下列步驟：
 
@@ -146,4 +146,8 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 2. 將 skipCertificateChainValidation 屬性設定為 true
 3. 一旦您不再想要允許自我簽署的憑證，您可以刪除 Backend 實體或將 skipCertificateChainValidation 屬性設定為 false
 
-<!---HONumber=AcomDC_0601_2016-->
+### 為什麼我在嘗試複製 GIT 儲存機制時發生驗證失敗？ 
+
+如果您使用 GIT 認證管理員，或嘗試透過 Visual Studio 複製儲存機制，您可能遇到 Windows 認證對話方塊的已知問題，此對話方塊將密碼長度限制為最多 127 個字元，因此會截斷我們產生的密碼。我們正在努力縮短密碼。目前請使用 GIT Bash 來複製。
+
+<!---HONumber=AcomDC_0629_2016-->

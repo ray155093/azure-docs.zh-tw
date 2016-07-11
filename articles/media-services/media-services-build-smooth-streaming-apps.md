@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"   
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 
@@ -38,9 +38,9 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 
 您可以從 MSDN 開發人員程式碼範例 (Code Gallery) 下載每個課程的已完成解答：
 
-- [課程 1](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) - 簡單 Windows 8 Smooth Streaming Media Player， 
-- [課程 2](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) - 具有滑動軸控制項的簡單 Windows 8 Smooth Streaming Media Player， 
-- [課程 3](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) - 具有串流選擇的 Windows 8 Smooth Streaming Media Player，  
+- [課程 1](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) - 簡單 Windows 8 Smooth Streaming Media Player，
+- [課程 2](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) - 具有滑動軸控制項的簡單 Windows 8 Smooth Streaming Media Player，
+- [課程 3](http://code.msdn.microsoft.com/A-Windows-8-Smooth-883c3b44) - 具有串流選擇的 Windows 8 Smooth Streaming Media Player，
 - [課程 4](http://code.msdn.microsoft.com/A-Windows-8-Smooth-aa9e4907) - 具有追蹤選擇的 Windows 8 Smooth Streaming Media Player，
 
 ##課程 1：建立基本的 Smooth Streaming 市集應用程式
@@ -83,7 +83,7 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 參考群組|Windows/延伸
 參考|選取 Microsoft Smooth Streaming Client SDK for Windows 8 和 Microsoft Visual C++ Runtime Package
 	
-3.	按一下 [確定]。 
+3.	按一下 [確定]。
 
 加入參考之後，您必須選取目標平台 (x64 或 x86)，而加入參考在「任何 CPU 平台」組態中將沒有作用。在方案總管中，您會看到這些加入的參考具有黃色警告標記。
 
@@ -212,10 +212,10 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。若要啟用 Smo
 
 1.	從 [建置] 功能表中，按一下 [組態管理員]。
 2.	變更 [使用中的方案平台]，以符合您的開發平台。
-3.	按 **F6** 鍵編譯專案。 
+3.	按 **F6** 鍵編譯專案。
 4.	按 **F5** 鍵執行應用程式。
-5.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
-6.	按一下 [設定來源]。因為預設會啟用 [自動播放]，所以應該會自動播放媒體。您可以使用 [播放]、[暫停] 和 [停止] 按鈕來控制媒體。您可以使用垂直滑動軸來控制媒體音量。不過，尚未完整實作用於控制媒體進度的水平滑動軸。 
+5.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。
+6.	按一下 [設定來源]。因為預設會啟用 [自動播放]，所以應該會自動播放媒體。您可以使用 [播放]、[暫停] 和 [停止] 按鈕來控制媒體。您可以使用垂直滑動軸來控制媒體音量。不過，尚未完整實作用於控制媒體進度的水平滑動軸。
 
 您已完成課程 1。在本課程中，您使用 MediaElement 控制項來播放 Smooth Streaming 內容。在下一個課程中，您將新增滑動軸來控制 Smooth Streaming 內容的進度。
 
@@ -229,7 +229,7 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。若要啟用 Smo
 
 本課程包含下列程序：
 
-1.	註冊 Smooth Streaming 處理常式 
+1.	註冊 Smooth Streaming 處理常式
 2.	新增調適性來源管理員層級事件處理常式
 3.	新增調適性來源層級事件處理常式
 4.	新增 MediaElement 事件處理常式
@@ -484,10 +484,10 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。若要啟用 Smo
 
 **編譯和測試應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
+1. 按 **F6** 鍵編譯專案。
 2.	按 **F5** 鍵執行應用程式。
-3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
-4.	按一下 [設定來源]。 
+3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。
+4.	按一下 [設定來源]。
 5.	測試滑動軸。
 
 您已完成課程 2。在本課程中，您將在應用程式中新增滑動軸。
@@ -757,10 +757,10 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。在
 
 **編譯和測試應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
+1. 按 **F6** 鍵編譯專案。
 2.	按 **F5** 鍵執行應用程式。
-3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
-4.	按一下 [設定來源]。 
+3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。
+4.	按一下 [設定來源]。
 5.	預設語言為 audio\_eng。嘗試在 audio\_eng 與 audio\_es 之間切換。每次您選取新的資料流時，都必須按一下 [提交] 按鈕。
 
 您已完成課程 3。在本課程中，您新增了選擇資料流的功能。
@@ -960,10 +960,10 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
 
 **編譯和測試應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
+1. 按 **F6** 鍵編譯專案。
 2.	按 **F5** 鍵執行應用程式。
-3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
-4.	按一下 [設定來源]。 
+3.	在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。
+4.	按一下 [設定來源]。
 5.	預設會選取視訊資料流的所有曲目。若要試驗位元速率變更，您可以選取可用的最低位元速率，然後選取可用的最高位元速率。您必須在每次變更之後按一下 [提交]。您可以看到視訊品質變更。
 
 您已完成課程 4。在本課程中，您新增了選擇追蹤的功能。
@@ -986,4 +986,4 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
 [CodeViewPic]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-2.png
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

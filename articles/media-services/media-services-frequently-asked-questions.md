@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="03/02/2016"  
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -52,7 +52,7 @@
 
 問：如何使用 REST 連線？
 
-成功連線至 https://media.windows.net 後，您會收到 301 重新導向，其指定另一個媒體服務 URI。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect_programmatically.md)所述，對新的 URI 進行後續呼叫。
+成功連線至 https://media.windows.net 後，您會收到 301 重新導向，其指定另一個媒體服務 URI。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
 
 
 問：如何在編碼過程中旋轉影片？
@@ -83,4 +83,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0629_2016-->

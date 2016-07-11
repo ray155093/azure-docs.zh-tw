@@ -2,17 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 SpringCM 整合 | Microsoft Azure" 
     description="了解如何使用 SpringCM 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="06/29/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Spring CM 整合
   
@@ -38,7 +38,7 @@
 
 ###若要啟用 SpringCM 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-spring-cm-tutorial/IC700993.png "Active Directory")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [SpringCM] 應用程式整合頁面上，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [SpringCM] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-spring-cm-tutorial/IC797047.png "設定單一登入")
 
@@ -80,7 +80,7 @@
 
 3.  在 [設定應用程式 URL] 頁面的 [SpringCM 登入 URL] 文字方塊中，輸入使用者用來登入 SpringCM 應用程式的 URL，然後按 [下一步]。
 
-    此應用程式 URL 是您 SpringCM 租用戶的 URL (例如：**https://na11.springcm.com/atlas/SSO/SSOEndpoint.ashx?aid=16826*)：
+    此應用程式 URL 是您 SpringCM 租用戶的 URL (例如：*https://na11.springcm.com/atlas/SSO/SSOEndpoint.ashx?aid=16826*)：
 
     ![設定應用程式 URL](./media/active-directory-saas-spring-cm-tutorial/IC797049.png "設定應用程式 URL")
 
@@ -99,12 +99,12 @@
     ![識別提供者組態](./media/active-directory-saas-spring-cm-tutorial/IC797052.png "識別提供者組態")
 
     1.  若要上傳已下載的 Azure Active Directory 憑證，請按一下 [選取簽發者憑證] 或 [變更簽發者憑證]。
-    2.  在 Microsoft Azure 入口網站中的 [設定在 SpringCM 單一登入] 對話頁面上， 複製 [簽發者 URL] 值，然後將它貼至 [簽發者] 文字方塊中。
-    3.  在 Microsoft Azure 入口網站的 [設定在 SpringCM 單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [服務提供者 (SP) 啟始的端點] 文字方塊中。
+    2.  在 Azure 傳統入口網站的 [設定在 SpringCM 單一登入] 頁面上，複製 [簽發者 URL] 值，然後貼至 [簽發者] 文字方塊中。
+    3.  在 Azure 傳統入口網站的 [設定在 SpringCM 單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [服務提供者 (SP) 啟始的端點] 文字方塊中。
     4.  在 [啟用 SAML] 選取 [啟用]。
     5.  按一下 [儲存]。
 
-8.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+8.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-spring-cm-tutorial/IC797053.png "設定單一登入")
 
@@ -112,7 +112,7 @@
   
 若要讓 Azure Active Directory 使用者能夠登入 SpringCM，必須將他們佈建到 SpringCM。SpringCM 需以手動方式佈建。
 
->[AZURE.NOTE]如需詳細資料，請參閱[建立和編輯 SpringCM 使用者](http://knowledge.springcm.com/create-and-edit-a-springcm-user)。
+>[AZURE.NOTE] 如需詳細資料，請參閱[建立和編輯 SpringCM 使用者](http://knowledge.springcm.com/create-and-edit-a-springcm-user)。
 
 ###若要佈建使用者帳戶到 SpringCM，請執行下列步驟：
 
@@ -134,7 +134,7 @@
 
 8.  按一下 [儲存]。
 
->[AZURE.NOTE]您可以使用任何其他的 SpringCM 使用者帳戶建立工具或 SpringCM 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 SpringCM 使用者帳戶建立工具或 SpringCM 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
   
@@ -142,7 +142,7 @@
 
 ###若要將使用者指派到 SpringCM，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [SpringCM] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -154,4 +154,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資料，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0629_2016-->

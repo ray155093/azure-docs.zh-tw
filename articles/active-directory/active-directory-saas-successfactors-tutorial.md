@@ -4,20 +4,19 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="04/06/2016" 
+    ms.date="06/29/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 SuccessFactors 整合
   
-本教學課程的目的是要示範在 [服務提供者起始單一登入模式] 之 Azure 與 SuccessFactors 的整合。
-本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範在 [服務提供者起始單一登入模式] 之 Azure 與 SuccessFactors 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   在 [服務提供者起始模式] 中啟用 SuccessFactors 單一登入的訂用帳戶
@@ -39,7 +38,7 @@
 
 ###若要啟用 SuccessFactors 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-successfactors-tutorial/IC700993.png "Active Directory")
 
@@ -73,7 +72,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 **SuccessFactors** 應用程式整合頁面上，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [SuccessFactors] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-successfactors-tutorial/IC791138.png "設定單一登入")
 
@@ -88,10 +87,7 @@
     1.  在 [SuccessFactors 登入 URL] 文字方塊中，輸入使用者用來登入 SuccessFactors 應用程式的 URL (例如："*https://performancemanager4.successfactors.com/sf/home?company=CompanyName&loginMethod=SSO*")。
     2.  在 [SuccessFactors 回覆 URL] 文字方塊中，輸入 **https://performancemanager4.successfactors.com/saml2/SAMLAssertionConsumer?company=CompanyName**。
 
-        >[AZURE.NOTE] 這個值只是暫時的預留位置。
-	您會從 SuccessFactors 支援小組取得實際的值。
-	稍後在本教學課程中，您會找到連絡 SuccessFactors 支援小組的指示。
-	在此交談內容中，您會收到實際 SuccessFactors 回覆 URL。
+        >[AZURE.NOTE] 這個值只是暫時的預留位置。您會從 SuccessFactors 支援小組取得實際的值。稍後在本教學課程中，您會找到連絡 SuccessFactors 支援小組的指示。在此交談內容中，您會收到實際 SuccessFactors 回覆 URL。
 
 4.  在 [設定在 SuccessFactors 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
 
@@ -107,14 +103,13 @@
 
     您的 Successfactors 支援小組會將 [設定應用程式 URL] 對話方塊所需的正確 **Successfactors 回覆 URL** 傳送給您]。
 
-6.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 關閉 [設定單一登入] 對話方塊。
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-successfactors-tutorial/IC791142.png "設定單一登入")
 
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者能夠登入 SuccessFactors，必須將他們佈建到 SuccessFactors。
-SuccessFactors 需以手動方式佈建。
+若要讓 Azure AD 使用者能夠登入 SuccessFactors，必須將他們佈建到 SuccessFactors。SuccessFactors 需以手動方式佈建。
   
 若要在 SuccessFactors 建立使用者，您需要連絡 SuccessFactors 支援小組。
 
@@ -124,9 +119,9 @@ SuccessFactors 需以手動方式佈建。
 
 ###若要指派使用者給 SuccessFactors，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  在 [SuccessFactors 應用程式整合] 頁面中，按一下 [指派使用者]。
+2.  在 [SuccessFactors] 應用程式整合頁面上，按一下 [指派使用者]。
 
     ![指派使用者](./media/active-directory-saas-successfactors-tutorial/IC791143.png "指派使用者")
 
@@ -134,6 +129,6 @@ SuccessFactors 需以手動方式佈建。
 
     ![是](./media/active-directory-saas-successfactors-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資料，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

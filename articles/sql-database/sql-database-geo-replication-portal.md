@@ -12,7 +12,7 @@
     ms.devlang="NA"
     ms.topic="article"
     ms.tgt_pltfrm="NA"
-    ms.workload="data-management" 
+   ms.workload="sqldb-bcdr"
     ms.date="06/14/2016"
     ms.author="sstein"/>
 
@@ -27,16 +27,14 @@
 
 本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「作用中異地複寫」。
 
-若要起始容錯移轉，請參閱[為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)。
+若要使用 Azure 入口網站起始容錯移轉，請參閱[使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)。
 
 >[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
 若要使用 Azure 入口網站設定異地複寫，您需要下列項目：
 
-- Azure 訂用帳戶。 
+- Azure 訂用帳戶。
 - Azure SQL Database 資料庫 - 您想要複寫到不同地理區域的主要資料庫。
-
-
 
 ## 加入次要資料庫
 
@@ -44,13 +42,9 @@
 
 若要加入次要資料庫，您必須是訂閱擁有者或共同擁有者。
 
-次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。如需詳細資訊，請參閱[服務層](sql-database-service-tiers.md)。
-建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。
+次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。如需詳細資訊，請參閱[服務層](sql-database-service-tiers.md)。建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。
 
 > [AZURE.NOTE] 如果夥伴資料庫已經存在 (例如，因終止先前的「異地複寫」關聯性所導致)，命令將會失敗。
-
-
-
 
 ### 加入次要
 
@@ -62,7 +56,7 @@
     ![加入次要][1]
 
 
-4. 設定 [次要類型] \([可讀取] 或 [不可讀取])。
+4. 設定 [次要類型] ([可讀取] 或 [不可讀取])。
 5. 選取或設定次要資料庫的伺服器。
 
     ![建立次要][3]
@@ -101,26 +95,10 @@
     ![確認移除][8]
 
 
-
-   
-
 ## 後續步驟
 
-- [為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)
-- [使用異地複寫設計業務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-
-
-## 其他資源
-
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-
+- 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
 
 <!--Image references-->
 [1]: ./media/sql-database-geo-replication-portal/configure-geo-replication.png
@@ -134,4 +112,4 @@
 [9]: ./media/sql-database-geo-replication-portal/seeding-complete.png
 [10]: ./media/sql-database-geo-replication-portal/failover.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

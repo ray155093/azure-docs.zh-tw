@@ -42,7 +42,7 @@
 ## Azure 入口網站中的範例
 您可以使用您 Data Factory 首頁上的 [範例管線] 磚，將範例管線及其相關實體 (資料集和連結的服務) 部署到您的 Data Factory 中。
 
-1. 建立新的 Data Factory，或開啟現有的 Data Factory。如需建立 Data Factory 的步驟，請參閱 [開始使用 Azure Data Factory](data-factory-get-started.md#CreateDataFactory)。
+1. 建立新的 Data Factory，或開啟現有的 Data Factory。如需建立 Data Factory 的步驟，請參閱 [開始使用 Azure Data Factory](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md#CreateDataFactory)。
 2. 在 Data Factory 的 [DATA FACTORY] 刀鋒視窗中，按一下 [範例管線] 磚。
 
 	![範例管線圖格](./media/data-factory-samples/SamplePipelinesTile.png)
@@ -61,7 +61,7 @@
 	![部署狀態](./media/data-factory-samples/DeploymentStatus.png)
 
 6. 當您看到範例磚出現 [部署成功] 訊息時，請關閉 [範例管線] 刀鋒視窗。
-5. 在 [DATA FACTORY] 刀鋒視窗中，您會看到連結服務、資料集和管線已加入至您的 Data Factory。  
+5. 在 [DATA FACTORY] 刀鋒視窗中，您會看到連結服務、資料集和管線已加入至您的 Data Factory。
 
 	![Data Factory 刀鋒視窗](./media/data-factory-samples/DataFactoryBladeAfter.png)
    
@@ -77,31 +77,31 @@
 
 ### 使用 Data Factory 範本
 
-1. 按一下功能表上的 [檔案]，指向 [新增]，然後按一下 [專案]。 
-2. 在 [新增專案] 對話方塊中，執行下列操作： 
-	1. 在 [範本] 下方選取 [DataFactory]。 
-	2. 在右窗格中選取 [Data Factory 範本]。 
-	3. 輸入專案的 [名稱]。 
-	4. 選取專案的 [位置]。 
-	5. 按一下 [確定]。 
+1. 按一下功能表上的 [檔案]，指向 [新增]，然後按一下 [專案]。
+2. 在 [新增專案] 對話方塊中，執行下列操作：
+	1. 在 [範本] 下方選取 [DataFactory]。
+	2. 在右窗格中選取 [Data Factory 範本]。
+	3. 輸入專案的 [名稱]。
+	4. 選取專案的 [位置]。
+	5. 按一下 [確定]。
 
 	![[新增專案] 對話方塊](./media/data-factory-samples/vs-new-project-adf-templates.png)
-6. 在 [Data Factory 範本] 對話方塊中，從 [使用案例範本] 區段選取範例範本，然後按 [下一步]。以下步驟將引導您完成 [客戶分析] 範本的使用。其他範例的步驟均相去不遠。 
+6. 在 [Data Factory 範本] 對話方塊中，從 [使用案例範本] 區段選取範例範本，然後按 [下一步]。以下步驟將引導您完成 [客戶分析] 範本的使用。其他範例的步驟均相去不遠。
 
-	![Data Factory 範本對話方塊](./media/data-factory-samples/vs-data-factory-templates-dialog.png) 
+	![Data Factory 範本對話方塊](./media/data-factory-samples/vs-data-factory-templates-dialog.png)
 7. 在 [Data Factory 組態] 對話方塊中，於 [Data Factory 基本] 頁面上按 [下一步]。
-8. 在 [設定 Data Factory] 頁面上，執行下列操作： 
+8. 在 [設定 Data Factory] 頁面上，執行下列操作：
 	1. 根據本逐步解說的目的，選取 [建立新的 Data Factory]。您也可以選取 [使用現有的 Data Factory]。
 	2. 輸入 Data Factory 的 [名稱]。
-	3. 選取您要在其中建立 Data Factory 的 [Azure 訂用帳戶]。 
+	3. 選取您要在其中建立 Data Factory 的 [Azure 訂用帳戶]。
 	4. 選取 Data Factory 的 [資源群組]。
 	5. 針對 [區域]，選取 [美國西部]、[美國東部] 或 [北歐]。
-	6. 按 [下一步]。 
-9. 在 [設定資料存放區] 頁面上，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶]\(或建立新項目)，然後按 [下一步]。 
-10. 在 [設定計算] 頁面上，選取預設值，然後按 [下一步]。 
-11. 在 [摘要] 頁面上，檢閱所有設定，然後按 [下一步]。 
+	6. 按 [下一步]。
+9. 在 [設定資料存放區] 頁面上，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶] (或建立新項目)，然後按 [下一步]。
+10. 在 [設定計算] 頁面上，選取預設值，然後按 [下一步]。
+11. 在 [摘要] 頁面上，檢閱所有設定，然後按 [下一步]。
 12. 在 [部署狀態] 頁面上，等候部署完成，然後按一下 [完成]。
-13. 在 [方案總管] 中，以滑鼠右鍵按一下專案，再按一下 [發佈]。 
+13. 在 [方案總管] 中，以滑鼠右鍵按一下專案，再按一下 [發佈]。
 19. 如果您看到 [登入您的 Microsoft 帳戶] 對話方塊，請輸入具有 Azure 訂用帳戶的帳戶認證，然後按一下 [登入]。
 20. 您應該會看到下列對話方塊：
 
@@ -109,12 +109,12 @@
 
 21. 在 [設定 Data Factory] 頁面中，執行下列操作：
 	1. 確認 [使用現有的 Data Factory] 選項。
-	2. 選取使用上述範本時已選取的 **Data Factory**。 
-	6. 按 [下一步]，切換至 [發佈項目] 頁面。(如果 [下一步] 按鈕已停用，請按 **TAB** 來移出 [名稱] 欄位)。 
-23. 在 [發佈項目] 頁面上，確認所有 Data Factory 實體都已選取，並按 [下一步] 切換至 [摘要] 頁面。     
+	2. 選取使用上述範本時已選取的 **Data Factory**。
+	6. 按 [下一步]，切換至 [發佈項目] 頁面。(如果 [下一步] 按鈕已停用，請按 **TAB** 來移出 [名稱] 欄位)。
+23. 在 [發佈項目] 頁面上，確認所有 Data Factory 實體都已選取，並按 [下一步] 切換至 [摘要] 頁面。
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
-25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。 
+25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。
 
 如需有關使用 Visual Studio 來撰寫 Data Factory 實體並將其發行至 Azure 的詳細資料，請參閱[建置您的第一個 Data Factory (Visual Studio)](data-factory-build-your-first-pipeline-using-vs.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

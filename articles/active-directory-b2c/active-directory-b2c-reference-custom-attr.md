@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/28/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 #  Azure Active Directory B2C 預覽：使用自訂屬性收集您的取用者的相關資訊
@@ -53,4 +53,4 @@
 - 除了註冊原則，自訂屬性也可以使用於註冊或登入原則和設定檔編輯原則。
 - 自訂屬性有已知的限制。只有在第一次用於任何原則時才會建立，而不是在您將它加入至 [使用者屬性] 清單時建立。我們計劃儘快修正此問題。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

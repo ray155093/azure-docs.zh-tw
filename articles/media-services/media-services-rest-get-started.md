@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="03/01/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #使用 REST API 傳遞點播內容入門
@@ -33,7 +33,7 @@
 需要下列必要條件，才能開始使用 REST API 用媒體服務進行開發。
 
 - 了解如何使用媒體服務 REST API 進行開發。如需詳細資訊，請參閱 [media-services-rest-overview](http://msdn.microsoft.com/library/azure/hh973616.aspx)。
-- 由您選擇可以傳送 HTTP 要求和回應的應用程式。本教學課程使用 [Fiddler](http://www.telerik.com/download/fiddler)。 
+- 由您選擇可以傳送 HTTP 要求和回應的應用程式。本教學課程使用 [Fiddler](http://www.telerik.com/download/fiddler)。
 
 本快速入門會顯示下列工作。
 
@@ -42,8 +42,8 @@
 1.  使用 REST API 建立新資產並上傳視訊檔案。
 1.  使用 REST API 來設定串流單位。
 2.  使用 REST API 將來源檔案編碼為一組調適性位元速率 MP4 檔案。
-1.  使用 REST API 發行資產及取得串流和漸進式下載 URL。 
-1.  播放您的內容。 
+1.  使用 REST API 發行資產及取得串流和漸進式下載 URL。
+1.  播放您的內容。
 
 
 ## <a id="create_ams"></a>使用入口網站建立媒體服務帳戶
@@ -80,16 +80,16 @@
 
 當您使用媒體服務 REST API 連接到媒體服務時，下列步驟將說明最常見的工作流程：
 
-1. 取得存取權杖。 
-2. 連接至媒體服務 URI。  
+1. 取得存取權杖。
+2. 連接至媒體服務 URI。
 
 	請記住，成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。後續的呼叫必須送到新的 URI。您也可能會收到 HTTP/1.1 200 回應，其中包含 ODATA API 中繼資料描述。
-3. 將後續的 API 呼叫張貼到新的 URL。 
+3. 將後續的 API 呼叫張貼到新的 URL。
 	
 	例如，如果您在嘗試進行連接之後得到下列結果：
 		
-			HTTP/1.1 301 Moved Permanently
-			Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
+		HTTP/1.1 301 Moved Permanently
+		Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
 
 	您應該將後續的 API 呼叫張貼到 https://wamsbayclus001rest-hs.cloudapp.net/api/。
 
@@ -146,7 +146,7 @@
 	
 
 >[AZURE.NOTE]
-建議您將 "access_token" 和 "expires_in" 值快取到外部儲存體。稍後可以從儲存體擷取權杖資料，然後重複使用在媒體服務 REST API 呼叫中。這特別適用於權杖可以在多個處理程序或電腦之間安全共用的情況。
+建議您將 "access\_token" 和 "expires\_in" 值快取到外部儲存體。稍後可以從儲存體擷取權杖資料，然後重複使用在媒體服務 REST API 呼叫中。這特別適用於權杖可以在多個處理程序或電腦之間安全共用的情況。
 
 請務必監控存取權杖的 "expires\_in" 值，並視需要以新權杖更新您的 REST API 呼叫。
 
@@ -156,7 +156,7 @@
 
 請注意，上傳與下載資產檔案的根 URI 是 https://yourstorageaccount.blob.core.windows.net/，其中儲存體帳戶名稱是您在媒體服務帳戶設定期間所用的相同名稱。
 
-下列範例示範對媒體服務根 URI 的 HTTP 要求 (https://media.windows.net/)。此要求會在回應中得到 301 重新導向。後續的要求使用新的 URI (https://wamsbayclus001rest-hs.cloudapp.net/api/)。
+下列範例示範對媒體服務根 URI 的 HTTP 要求 (https://media.windows.net/)。此要求會在回應中得到 301 重新導向。後續的要求會使用新的 URI (https://wamsbayclus001rest-hs.cloudapp.net/api/)。
 
 **HTTP 要求**：
 	
@@ -221,7 +221,7 @@
 您必須建立資產時提供的值是資產建立選項。**Options** 屬性是描述可以使用建立資產之加密選項的列舉值。有效的值是以下清單的其中一個值，而不是值的組合。
 
  
-- **None** = **0** - 不會使用加密。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
+- **None** = **0** - 不會使用加密。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
 - **StorageEncrypted** = **1** - 在本機使用 AES-256 位元加密將您的純文字內容加密，然後將它上傳到 Azure 儲存體，在該處以加密的方式儲存。以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
 - **CommonEncryptionProtected** = **2** - 如果您要上傳已經使用一般加密或 PlayReady DRM (例如使用 PlayReady DRM 保護的 Smooth Streaming) 加密及保護的內容，請使用這個選項。
 - **EnvelopeEncryptionProtected** = **4** – 如果您要上傳使用 AES 加密的 HLS，請使用這個選項。請注意，檔案必須已由 Transform Manager 編碼和加密。
@@ -405,7 +405,7 @@ SAS URL 具有下列格式：
 適用一些考量事項：
 
 - 您一次不能有超過五個唯一定位器與指定的資產相關聯。如需詳細資訊，請參閱＜定位器＞。
-- 如果您需要立即上傳檔案，您應該將 StartTime 值設為目前時間的五分鐘前。這是因為用戶端電腦與媒體服務之間可能有時間差。此外，您的 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。	
+- 如果您需要立即上傳檔案，您應該將 StartTime 值設為目前時間的五分鐘前。這是因為用戶端電腦與媒體服務之間可能有時間差。此外，您的 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。
 - 建立 Locator 之後到它可供使用時，中間可能會有 30 到 40 秒的延遲。此問題同時適用於 SAS URL 與原始定位器。
 
 下列範例會示範如何建立 SAS URL 定位器，如要求主體中的 Type 屬性所定義 ("1" 代表 SAS 定位器，"2" 代表隨選原始定位器)。傳回的 **Path** 屬性包含上傳檔案必須使用的 URL。
@@ -497,8 +497,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，會傳回下列訊息：
-	HTTP/1.1 204 沒有內容
+如果成功，會傳回下列訊息：HTTP/1.1 204 沒有內容
 
 ## 刪除 Locator 和 AccessPolicy 
 
@@ -549,8 +548,8 @@ SAS URL 具有下列格式：
 
 若要利用動態封裝，您需要執行下列動作：
 
-- 為您打算從該處傳遞內容的 **串流端點** 取得至少一個串流單位 (如本節所述)。
-- 將夾層 (來源) 檔案編碼或轉碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (本教學課程稍後會示範編碼步驟)、  
+- 為您打算從該處傳遞內容的**串流端點**取得至少一個串流單位 (如本節所述)。
+- 將夾層 (來源) 檔案編碼或轉碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (本教學課程稍後會示範編碼步驟)、
 
 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
@@ -668,8 +667,8 @@ SAS URL 具有下列格式：
 
 若要利用動態封裝，您需要執行下列動作：
 
-- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。  
-- 為您打算從該處傳遞內容的串流端點取得至少一個串流單位。 
+- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
+- 為您打算從該處傳遞內容的串流端點取得至少一個串流單位。
 
 下一節示範如何建立包含一個編碼工作的工作。此工作指定使用**媒體編碼器標準**，將夾層檔案轉換為一組調適性位元速率 MP4。此節也會示範如何監視工作處理進度。工作完成時，您將能夠建立存取資產所需的定位器。
 
@@ -724,7 +723,7 @@ SAS URL 具有下列格式：
 
 每個工作可以有一或多個工作，視您想要完成的處理類型而定。您可以透過 REST API 以兩種方式的其中之一建立工作和其相關工作：工作可以透過 Job 實體上的 Tasks 導覽屬性，或透過 OData 批次處理進行內嵌定義。媒體服務 SDK 使用批次處理；不過，為了本主題中的程式碼範例可讀性，工作都是內嵌定義。如需批次處理的資訊，請參閱[開放式資料通訊協定 (OData) 批次處理](http://www.odata.org/documentation/odata-version-3-0/batch-processing/)。
 
-下列範例會示範如何建立和張貼工作，並將一個工作設為在特定的解析度與品質將視訊編碼。下列文件區段包含媒體編碼器標準處理器所支援之所有[工作預設](http://msdn.microsoft.com/library/mt269960)的清單。
+下列範例會示範如何建立和張貼工作，並將一個工作設為在特定的解析度與品質將視訊編碼。下列文件區段包含媒體編碼器標準處理器支援的所有[工作預設](http://msdn.microsoft.com/library/mt269960)清單。
 
 **HTTP 要求**
 	
@@ -827,12 +826,12 @@ SAS URL 具有下列格式：
 - 每個工作可以有多個輸出資產。一個 JobOutputAsset(x) 只能使用一次做為工作中的工作輸出。
 - 您可以指定 JobInputAsset 或 JobOutputAsset 做為工作的輸入資產。
 - 工作不能形成循環。
-- 您傳遞至 JobInputAsset 或 JobOutputAsset 的 value 參數代表資產的索引值。實際資產定義在作業實體定義上的 InputMediaAsset 與 OutputMediaAsset 導覽屬性。 
+- 您傳遞至 JobInputAsset 或 JobOutputAsset 的 value 參數代表資產的索引值。實際資產定義在作業實體定義上的 InputMediaAsset 與 OutputMediaAsset 導覽屬性。
 
 >[AZURE.NOTE] 由於媒體服務建置在 OData v3 之上，因此 InputMediaAsset 與 OutputMediaAsset 導覽屬性集合中的個別資產會透過 "\_\_metadata : uri" 名稱 / 值組參考。.
 
 - InputMediaAsset 對應至您在媒體服務中建立的一個或多個資產。OutputMediaAsset 由系統建立。它們不會參考現有的資產。
-- OutputMediaAsset 可以使用 assetName 屬性命名。如果這個屬性不存在，則 OutputMediaAsset 的名稱將是 <outputAsset> 元素的任何內部文字值，並且尾碼為工作名稱值或工作識別碼值 (在未定義 Name 屬性的情況下)。例如，如果您將 assetName 的值設為 "Sample"，則 OutputMediaAsset Name 屬性會設為 "Sample"。不過，如果您未設定 assetName 的值，但已將工作名稱設為 "NewJob"，則 OutputMediaAsset Name 會是 "JobOutputAsset(value)\_NewJob"。
+- OutputMediaAsset 可以使用 assetName 屬性命名。如果這個屬性不存在，則 OutputMediaAsset 的名稱將是 <outputAsset> 元素的任何內部文字值，而且尾碼為工作名稱值或工作識別碼值 (在未定義 Name 屬性的情況下)。例如，如果您將 assetName 的值設為 "Sample"，則 OutputMediaAsset Name 屬性會設為 "Sample"。不過，如果您未設定 assetName 的值，但已將工作名稱設為 "NewJob"，則 OutputMediaAsset Name 會是 "JobOutputAsset(value)\_NewJob"。
 
 	下列範例示範如何設定 assetName 屬性：
 	
@@ -985,9 +984,9 @@ MPEG DASH 的串流 URL 具有下列格式：
 
 本節示範如何執行「發行」您的資產所需的下列工作。
 
-- 建立具有讀取權限的 AccessPolicy 
-- 建立下載內容用的 SAS URL 
-- 建立串流內容用的原始 URL 
+- 建立具有讀取權限的 AccessPolicy
+- 建立下載內容用的 SAS URL
+- 建立串流內容用的原始 URL
 
 ###建立具有讀取權限的 AccessPolicy
 
@@ -1204,4 +1203,4 @@ MPEG DASH 的串流 URL 具有下列格式：
 <!-- URLs. -->
   [Azure 傳統入口網站]: http://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

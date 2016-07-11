@@ -1,5 +1,5 @@
 <properties
-   pageTitle="在入口網站中建立 Active Directory 應用程式 | Microsoft Azure"
+   pageTitle="在入口網站中建立服務主體 | Microsoft Azure"
    description="描述如何建立可以與 Azure 資源管理員中的角色型存取控制搭配使用來管理資源存取權的新 Active Directory 應用程式和服務主體。"
    services="azure-resource-manager"
    documentationCenter="na"
@@ -16,7 +16,13 @@
    ms.date="05/18/2016"
    ms.author="tomfitz"/>
 
-# 使用入口網站來建立可存取資源的 Active Directory 應用程式
+# 使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
+
+> [AZURE.SELECTOR]
+- [PowerShell](resource-group-authenticate-service-principal.md)
+- [Azure CLI](resource-group-authenticate-service-principal-cli.md)
+- [入口網站](resource-group-create-service-principal-portal.md)
+
 
 如果您擁有需要存取或修改資源的自動化程序或應用程式，您就必須設定一個 Active Directory 應用程式並為其指派必要的權限。本主題說明如何透過入口網站執行這些步驟。目前，您必須使用傳統入口網站來建立新的 Active Directory 應用程式，然後再切換到 Azure 入口網站，才能指派角色給該應用程式。
 
@@ -65,7 +71,7 @@
 
      ![名稱應用程式](./media/resource-group-create-service-principal-portal/tell-us-about-your-application.png)
 
-7. 填寫您應用程式的屬性。針對 [登入 URL]，提供描述您應用程式的網站 URI。這並不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。
+7. 填寫您應用程式的屬性。針對 [登入 URL]，提供描述您應用程式之網站的 URI。這並不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。
 
      ![應用程式屬性](./media/resource-group-create-service-principal-portal/app-properties.png)
 
@@ -163,7 +169,7 @@
 
      ![顯示](./media/resource-group-create-service-principal-portal/show-app.png)
 
-如需透過入口網站將使用者和應用程式指派給角色的詳細資訊，請參閱[使用 Azure 管理入口網站管理存取權](../role-based-access-control-configure/#manage-access-using-the-azure-management-portal)。
+如需透過入口網站將使用者和應用程式指派給角色的詳細資訊，請參閱[使用 Azure 管理入口網站管理存取權](role-based-access-control-configure.md#manage-access-using-the-azure-management-portal)。
 
 ## 以程式碼取得存取權杖
 
@@ -180,7 +186,7 @@
 
 ## 後續步驟
 
-- 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。  
+- 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

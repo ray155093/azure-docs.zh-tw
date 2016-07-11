@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/04/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：針對具有 Google+ 帳戶的取用者提供註冊和登入
@@ -66,4 +66,4 @@
 6. 按一下 [設定此識別提供者]，然後輸入您先前建立的 Google+ 應用程式用戶端識別碼和用戶端密碼。
 7. 依序按一下 [確定] 和 [建立]，儲存您的 Google+ 組態。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

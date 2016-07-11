@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/28/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：在取用者導向應用程式中啟用 Multi-Factor Authentication
@@ -58,4 +58,4 @@ Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，�
 
 如同對上面的註冊和登入原則所述，也可以對註冊或登入原則和密碼重設原則啟用 Multi-Factor Authentication。很快即可用於設定檔編輯原則。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

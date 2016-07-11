@@ -23,7 +23,7 @@
 ## 安裝 
 如果是能夠連接到您內部部署 Oracle 資料庫的 Azure Data Factory 服務，您就必須安裝下列項目：
 
-- 位於裝載資料庫的同一部電腦上或個別電腦上的資料管理閘道，可避免與資料庫競用資源。資料管理閘道是一套透過安全且可管理的方式，將內部部署資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。 
+- 位於裝載資料庫的同一部電腦上或個別電腦上的資料管理閘道，可避免與資料庫競用資源。資料管理閘道是一套透過安全且可管理的方式，將內部部署資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。
 - .NET 的 Oracle 資料提供者。這包含於[適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。在安裝閘道的主機電腦上安裝適當版本 (32/64 位元)。[Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
 
 > [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
@@ -35,7 +35,7 @@
 
 1.	[OnPremisesOracle](data-factory-onprem-oracle-connector.md#oracle-linked-service-properties) 類型的連結服務。
 2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
-3.	[OracleTable](data-factory-onprem-oracle-connector.md#oracle-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。 
+3.	[OracleTable](data-factory-onprem-oracle-connector.md#oracle-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5.	具有使用 [OracleSource](data-factory-onprem-oracle-connector.md#oracle-copy-activity-type-properties) 做為來源和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 做為接收之複製活動的[管線](data-factory-create-pipelines.md)。
 
@@ -224,7 +224,7 @@
 1.	[OnPremisesOracle](data-factory-onprem-oracle-connector.md#oracle-linked-service-properties) 類型的連結服務。
 2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
 3.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-4.	[OracleTable](data-factory-onprem-oracle-connector.md#oracle-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
+4.	[OracleTable](data-factory-onprem-oracle-connector.md#oracle-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5.	具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 做為來源和 [OracleSink](data-factory-onprem-oracle-connector.md#oracle-copy-activity-type-properties) 做為接收之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每小時將資料從 Blob移動到內部部署 Oracle 資料庫中的資料表。如需下列範例中所使用之各種屬性的詳細資訊，請參閱範例後章節中不同屬性的文件。
@@ -425,15 +425,15 @@ tableName | Oracle 資料庫中連結服務所參照的資料表名稱。 | 否 
 
 屬性 | 說明 |允許的值 | 必要
 -------- | ----------- | ------------- | --------
-oracleReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select * from MyTable<br/><br/>若未指定，執行的 SQL 陳述式即為 select * from MyTable | 否 (如果已指定 **dataset** 的 **tableName**)
+oracleReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：select from MyTable<br/><br/>若未指定，執行的 SQL 陳述式即為 select from MyTable | 否 (如果已指定 **dataset** 的 **tableName**)
 
 ### OracleSink
 **OracleSink** 支援下列屬性：
 
 屬性 | 說明 | 允許的值 | 必要
 -------- | ----------- | -------------- | --------
-writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：00:30:00 (30 分鐘)。 | 否
-writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中整數。 | (單位 = 資料列計數) | 否 (預設值 = 10000)  
+writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | 時間範圍<br/><br/> 範例：00:30:00 (30 分鐘)。 | 否
+writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | Integer | 否 (預設值：10000)  
 sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。 | 查詢陳述式。 | 否
 sliceIdentifierColumnName | 使用者指定了可供複製活動使用自動產生的配量識別碼填入的資料行名稱，在重新執行時將用來清除特定配量的資料。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否
 
@@ -482,16 +482,16 @@ XML | String
 **可能的原因**
 
 1. 未安裝 .NET Framework Data Provider for Oracle。
-2. .NET Framework Data Provider for Oracle 已安裝於 .NET Framework 2.0，而且在 .NET Framework 4.0 資料夾中找不到。 
+2. .NET Framework Data Provider for Oracle 已安裝於 .NET Framework 2.0，而且在 .NET Framework 4.0 資料夾中找不到。
 
 **解析/因應措施**
 
-1. 如果您尚未安裝 .NET Provider for Oracle，請[安裝它](http://www.oracle.com/technetwork/topics/dotnet/downloads/)，然後重試此案例。 
-2. 如果您即使在安裝提供者之後還是會收到錯誤訊息，請執行下列作業： 
-	1. 從資料夾開啟 .NET 2.0 的電腦組態：<system disk>:\\Windows\\Microsoft.NET\\Framework64\\v2.0.50727\\CONFIG\\machine.config。
-	2. 搜尋 **Oracle Data Provider for .NET**，而您應該能夠在 **system.data** -> **DbProviderFactories** 下方找到類似下列內容的項目：“<add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description="Oracle Data Provider for .NET" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />"
-2.	將此項目複製到下列 v4.0 資料夾中的 machine.config 檔案 : <system disk>:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config，並將版本變更為 4.xxx.x.x。
-3.	執行 “gacutil /i [provider path]”，將 “<ODP.NET Installed Path>\\11.2.0\\client\_1\\odp.net\\bin\\4\\Oracle.DataAccess.dll” 安裝到全域組件快取 (GAC)。
+1. 如果您尚未安裝 .NET Provider for Oracle，請[安裝它](http://www.oracle.com/technetwork/topics/dotnet/downloads/)，然後重試此案例。
+2. 如果您即使在安裝提供者之後還是會收到錯誤訊息，請執行下列作業：
+	1. 從資料夾開啟 .NET 2.0 的電腦組態：<系統磁碟>:\\Windows\\Microsoft.NET\\Framework64\\v2.0.50727\\CONFIG\\machine.config。
+	2. 搜尋 **Oracle Data Provider for .NET**，而您應該能夠在 **system.data** -> **DbProviderFactories** 下方找到類似下列內容的項目：“<add name="Oracle Data Provider for .NET" invariant="Oracle.DataAccess.Client" description="Oracle Data Provider for .NET" type="Oracle.DataAccess.Client.OracleClientFactory, Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />”
+2.	將此項目複製到下列 v4.0 資料夾中的 machine.config 檔案：<系統磁碟>:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config，並將版本變更為 4.xxx.x.x。
+3.	執行 “gacutil /i [provider path]”，將 “<ODP.NET 安裝路徑>\\11.2.0\\client\_1\\odp.net\\bin\\4\\Oracle.DataAccess.dll” 安裝到全域組件快取 (GAC)。
 
 
 
@@ -501,4 +501,4 @@ XML | String
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

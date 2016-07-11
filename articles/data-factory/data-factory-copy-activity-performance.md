@@ -23,8 +23,8 @@
 透過複製活動，您將可以取得高水準的資料移動輸送量，如下列範例所示︰
 
 - 在 3 小時內，從內部部署檔案系統和 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure Blob 儲存體 (也就是 @ 100 MBps)
-- 在 3 小時內，從內部部署檔案系統和 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure Data Lake Store (也就是 @ 100 MBps) 
-- 在 3 小時內，從 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure SQL 資料倉儲 (也就是 @ 100 MBps) 
+- 在 3 小時內，從內部部署檔案系統和 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure Data Lake Store (也就是 @ 100 MBps)
+- 在 3 小時內，從 Azure Blob 儲存體，內嵌 1 TB 資料到 Azure SQL 資料倉儲 (也就是 @ 100 MBps)
 
 請參閱下列章節，深入了解複製活動的效能以及加以進一步改善的微調秘訣。
 
@@ -49,7 +49,7 @@
 	- [資料管理閘道](#considerations-on-data-management-gateway)
 	- [其他考量](#other-considerations)
 	- [平行複製](#parallel-copy)
-	- [雲端資料移動單位](#cloud-data-movement-units)    
+	- [雲端資料移動單位](#cloud-data-movement-units)
 
 3. **將組態擴充至您的整體資料**：如果您對執行結果及效能感到滿意，您可以將資料集定義和管線作用期間涵蓋至圖片中的整體資料。
 
@@ -171,8 +171,8 @@ cloudDataMovementUnits 屬性的**允許值**是︰1 (預設值)、2、4 和 8�
 ## 分段複製
 從來源資料存放區將資料複製到接收資料存放區時，您可能會使用 Azure Blob 儲存體做為過渡暫存存放區。暫存功能在下列情況下特別有用︰
 
-1.	**有時需要一段時間，以透過慢速網路連接執行混合式資料移動 (也就是在內部部署資料存放區至雲端資料存放區，反之亦然)。** 為了提升這類資料移動的效能，您可以壓縮內部部署資料，透過寫入至雲端中的暫存資料存放區，然後在將其載入至目的地資料存放區之前在暫存存放區中解壓縮資料，減少移動資料的時間。 
-2.	**由於 IT 原則，您不想要在您的防火牆中開啟 80 和 443 以外的連接埠。** 例如，從內部部署資料存放區將資料複製到 Azure SQL Database 接收或 Azure SQL 資料倉儲接收時，必須針對 Windows 防火牆和公司防火牆啟用連接埠 1433 上的輸出 TCP 通訊。在這類案例中，您可以利用資料管理閘道器先將資料複製到暫存 Azure Blob 儲存體，這會透過 Http(s) 也就是透過連接埠 443 進行，並接著將資料從暫存 Blob 儲存體載入到 SQL Database 或 SQL 資料倉儲。在這種流程中，連接埠 1433 並不需要啟用。 
+1.	**有時需要一段時間，以透過慢速網路連接執行混合式資料移動 (也就是在內部部署資料存放區至雲端資料存放區，反之亦然)。** 為了提升這類資料移動的效能，您可以壓縮內部部署資料，透過寫入至雲端中的暫存資料存放區，然後在將其載入至目的地資料存放區之前在暫存存放區中解壓縮資料，減少移動資料的時間。
+2.	**由於 IT 原則，您不想要在您的防火牆中開啟 80 和 443 以外的連接埠。** 例如，從內部部署資料存放區將資料複製到 Azure SQL Database 接收或 Azure SQL 資料倉儲接收時，必須針對 Windows 防火牆和公司防火牆啟用連接埠 1433 上的輸出 TCP 通訊。在這類案例中，您可以利用資料管理閘道器先將資料複製到暫存 Azure Blob 儲存體，這會透過 Http(s) 也就是透過連接埠 443 進行，並接著將資料從暫存 Blob 儲存體載入到 SQL Database 或 SQL 資料倉儲。在這種流程中，連接埠 1433 並不需要啟用。
 3.	**從各種資料存放區透過 PolyBase 將資料擷取至 Azure SQL 資料倉儲。** Azure SQL 資料倉儲提供 PolyBase 做為高輸送量機制，將大量資料載入 SQL 資料倉儲。不過，這需要來源資料位於 Azure Blob 儲存體，而且符合其他額外的條件。從 Azure Blob 儲存體以外的資料存放區載入資料時，您可以透過過渡暫存 Azure Blob 儲存體複製資料，在這種情況下，Azure Data Factory 會對資料執行必要的轉換，以確保它符合 PolyBase 的需求，然後使用 PolyBase 將資料載入 SQL 資料倉儲。如需詳細資訊和範例，請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse)。
 
 ### 分段複製的運作方式
@@ -224,6 +224,7 @@ enableCompression | 指定資料在從來源資料存放區移至接收資料存
 		}
 	}
 	]
+
 
 ### 計費影響
 請注意，將會根據複製持續時間的兩個階段和其複製類型，分別向您計費，這表示︰
@@ -391,4 +392,4 @@ enableCompression | 指定資料在從來源資料存放區移至接收資料存
 - 內部部署 SQL Server：[效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)。
 - 內部部署檔案伺服器：[檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

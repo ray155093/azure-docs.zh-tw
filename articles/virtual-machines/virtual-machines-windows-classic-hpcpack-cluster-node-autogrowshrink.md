@@ -23,7 +23,7 @@ ms.service="virtual-machines-windows"
 
 如果在您的 HPC Pack 叢集部署 Azure「高載」節點，或您在 Azure VM 中建立 HPC Pack 叢集，您可能需要能根據叢集上目前的工作負載，自動增加或縮減 Azure 計算資源的數目，例如核心。這可讓您更有效率地使用您的 Azure 資源及控制其成本。若要這樣做，請設定 HPC Pack 叢集屬性 **AutoGrowShrink**。此外，也可執行隨著 HPC Pack 安裝的 **AzureAutoGrowShrink.ps1** HPC PowerShell 指令碼。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。此外，目前您只能自動擴增和縮減正在執行 Windows Server 作業系統的 HPC Pack 計算節點。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)].此外，目前您只能自動擴增和縮減正在執行 Windows Server 作業系統的 HPC Pack 計算節點。
 
 ## 設定 AutoGrowShrink 叢集屬性
 
@@ -70,7 +70,7 @@ ms.service="virtual-machines-windows"
 以下是您可以使用 **Set-HpcClusterProperty** 命令修改的 AutoGrowShrink 參數。
 
 * **EnableGrowShrink** -切換以啟用或停用 **AutoGrowShrink** 屬性。
-* **ParamSweepTasksPerCore** - 用來增加一個核心的參數式掃蕩工作數目。預設為每個工作增加一個核心。 
+* **ParamSweepTasksPerCore** - 用來增加一個核心的參數式掃蕩工作數目。預設為每個工作增加一個核心。
  
     >[AZURE.NOTE] HPC Pack QFE KB3134307 會將 **ParamSweepTasksPerCore** 變更為 **TasksPerResourceUnit**。它根據作業資源類型，而且可以是節點、通訊端或核心。
     
@@ -78,9 +78,9 @@ ms.service="virtual-machines-windows"
 * **GrowInterval** -以分鐘為單位的觸發自動增加間隔。預設間隔為 5 分鐘。
 * **ShrinkInterval** -以分鐘為單位的觸發自動縮減間隔。預設間隔為 5 分鐘。
 * **ShrinkIdleTimes** - 指出節點閒置前，持續檢查縮減的數目。預設值為 3 次。例如，如果 **ShrinkInterval** 為 5 分鐘，HPC Pack 每隔 5 分鐘會檢查節點是否閒置。如果節點連續 3 次檢查 (15 分鐘) 處於閒置狀態，HPC Pack 會縮縮該節點。
-* **ExtraNodesGrowRatio** - 針對訊息傳遞介面 (MPI) 作業，要增加的節點的額外百分比。預設值為 1，表示 HPC Pack 針對 MPI 作業增加節點 1%。 
+* **ExtraNodesGrowRatio** - 針對訊息傳遞介面 (MPI) 作業，要增加的節點的額外百分比。預設值為 1，表示 HPC Pack 針對 MPI 作業增加節點 1%。
 * **GrowByMin** - 用來指出自動增加原則是否會根據作業所需的最少資源的參數。預設值是 false，這表示 HPC Pack 會根據作業所需的資源數上限，為工作增加節點。
-* **SoaJobGrowThreshold** - 傳入 SOA 要求以觸發自動增加程序的臨界值。預設值是 50000。  
+* **SoaJobGrowThreshold** - 傳入 SOA 要求以觸發自動增加程序的臨界值。預設值是 50000。
     
     >[AZURE.NOTE] 從 HPC Pack 2012 R2 Update 3 開始支援這個參數。
     
@@ -179,4 +179,4 @@ AzureAutoGrowShrink.ps1
 .\AzureAutoGrowShrink.ps1 -NodeTemplates 'Default ComputeNode Template' -JobTemplates 'Default' -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 10 -NumOfActiveQueuedTasksToGrowThreshold 15 -NumOfInitialNodesToGrow 5 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 1 -ShrinkCheckIdleTimes 10 -ArgFile 'IaaSVMComputeNodes_Arg.xml' -LogFilePrefix 'IaaSVMComputeNodes_log'
 ```
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -51,7 +51,7 @@ Azure SQL Web 和 Business 資料庫現已淘汰。基本、標準、高階和�
 
 同盟功能將隨著 Web 和 Business 版本淘汰。我們鼓勵需要橫向擴充其資料庫的客戶改為對 [Azure SQL Database](sql-database-elastic-scale-get-started.md) 使用或移轉至[彈性資料庫工具](sql-database-elastic-scale-get-started.md)，如此可簡化對使用分區化的應用程式的建置和管理。.NET 用戶端程式庫可讓應用程式定義將資料對應到分區，並將 OLTP 要求遞送到適當的資料庫的方式。為了支援重新設定資料如何分散在分區之間的管理作業，納入了您可以在 Azure 訂用帳戶中管理的 Azure 雲端服務範本。除了[彈性資料庫工具](sql-database-elastic-scale-get-started.md)，Microsoft 將根據與客戶深入合作的經驗，繼續建立和發佈[自訂分區化模式與實例指南](https://msdn.microsoft.com/library/azure/dn764977.aspx)。需要橫向擴充功能的新客戶應該查看[彈性資料庫工具](sql-database-elastic-scale-get-started.md)及/或連絡 Microsoft 支援服務，以評估他們的選項。
 
-Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 Premium 資料庫配額有限，T-SQL 中 CREATE DATABASE … AS A COPY OF 會建立沒有保留的資源的 Suspended Premium 資料庫，它是以與 Business 資料庫的相同費率收費。隨著 Premium 配額現在能更自由運用，已不再支援 Suspended Premium。資料庫複本現在將使用與來源相同的版本和效能層級建立，並將據此計費。如果需要，客戶可以選擇將複製的資料庫降級為不同的服務層或效能層級，以降低成本。現有 Suspended Premium 資料庫將隨著這個版本轉換為 Business 版本。預期[還原時間點](sql-database-point-in-time-restore.md)的推出將減少製作資料庫備份的需求。
+Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 Premium 資料庫配額有限，T-SQL 中 CREATE DATABASE … AS A COPY OF 會建立沒有保留的資源的 Suspended Premium 資料庫，它是以與 Business 資料庫的相同費率收費。隨著 Premium 配額現在能更自由運用，已不再支援 Suspended Premium。資料庫複本現在將使用與來源相同的版本和效能層級建立，並將據此計費。如果需要，客戶可以選擇將複製的資料庫降級為不同的服務層或效能層級，以降低成本。現有 Suspended Premium 資料庫將隨著這個版本轉換為 Business 版本。預期[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)的推出將減少製作資料庫備份的需求。
 
 ## 基本、標準和高階如何改善我的計費體驗？
 
@@ -68,4 +68,4 @@ Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 
 
 [升級至 Azure SQL Database V12](sql-database-upgrade-server-portal.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

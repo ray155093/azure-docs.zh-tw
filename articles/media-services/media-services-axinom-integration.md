@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"   
+	ms.date="06/22/2016"   
 	ms.author="willzhan;Mingfeiy;rajputam;Juliako"/>
 
 #使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務  
@@ -45,7 +45,7 @@ Azure 媒體服務 (AMS) 已新增Google Widevine 動態保護 (如需詳細資�
 您可以使用多重 DRM 為同時具有下列二者的 DASH 串流設定動態 CENC 保護：
 
 1. MS Edge 和 IE11 的 PlayReady 保護，可能有權杖授權限制。權杖限制原則必須伴隨著安全權杖服務 (STS) 所發出的權杖，例如 Azure Active Directory；
-1. Chrome 的 Widevine 保護，它可能需要對其他 STS 所發行的權杖進行權杖驗證。 
+1. Chrome 的 Widevine 保護，它可能需要對其他 STS 所發行的權杖進行權杖驗證。
 
 請參閱＜[JWT 權杖產生](media-services-axinom-integration.md#jwt-token-generation)＞一節，了解 Azure Active Directory 為何無法做為 Axinom Widevine 授權伺服器的 STS。
 
@@ -209,4 +209,4 @@ Widevine 授權取得 URL|必須用於設定 DASH 串流資產傳遞原則 (請�
 
 我們想要向下列為建立此文件貢獻心力的人員致謝：Kristjan Jõgi of Axinom、Mingfei Yan 及 Amit Rajput。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

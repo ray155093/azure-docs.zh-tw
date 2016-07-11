@@ -20,7 +20,7 @@ EventProcessorHost 是一個 Java 類別，透過管理持續檢查點以及來�
 
 ###使用 EventProcessor 主機建立 Java 專案
 
-適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：
+適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制][Maven Package]的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：
 
 ``` XML
 <dependency>
@@ -30,9 +30,9 @@ EventProcessorHost 是一個 Java 類別，透過管理持續檢查點以及來�
 </dependency>
 ```
  
-對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。
+對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制][Maven Package]或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。
 
-1. 針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。此類別將稱為 ```ErrorNotificationHandler```。     
+1. 針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。此類別將稱為 ```ErrorNotificationHandler```。
 
 	``` Java
 	import java.util.function.Consumer;
@@ -187,9 +187,10 @@ EventProcessorHost 是一個 Java 類別，透過管理持續檢查點以及來�
 [Event Hubs Overview]: event-hubs-overview.md
 [Azure 儲存體帳戶]: ../storage/storage-create-storage-account.md
 [Azure 傳統入口網站]: http://manage.windowsazure.com
+[Maven Package]: https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs-eph%22
 
 <!-- Images -->
 [11]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp2.png
 [12]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp3.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

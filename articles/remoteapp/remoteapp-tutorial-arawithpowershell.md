@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="05/05/2016"
+   ms.date="06/27/2016"
    ms.author="elizapo"/>
 
 
@@ -36,8 +36,8 @@
 
 1.	下載並安裝 [Azure PowerShell Cmdlet](http://go.microsoft.com/?linkid=9811175)。
 2.	啟動 Microsoft Azure PowerShell。
-3.	執行 **Add-AzureAccount** 以驗證您的 Azure 訂用帳戶。出現提示時，請輸入您用來登入 Azure 入口網站的使用者名稱和密碼。  
-4.	執行 **Get-AzureSubscription** 以列出與您使用者帳戶相關聯的訂用帳戶。 
+3.	執行 **Add-AzureAccount** 以驗證您的 Azure 訂用帳戶。出現提示時，請輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+4.	執行 **Get-AzureSubscription** 以列出與您使用者帳戶相關聯的訂用帳戶。
 5.	執行 **Select-AzureSubscription** 並指定要在 PowerShell 主控台中使用的訂用帳戶名稱或識別碼。
 
 恭喜，您的 Azure PowerShell 主控台已設定完成且可以使用了。請注意，每次您啟動 Azure PowerShell 主控台後都必須重複步驟 2至 5。
@@ -111,4 +111,4 @@ Other RemoteApp cmdlets:
 - Get-AzureRemoteAppOperationResult
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

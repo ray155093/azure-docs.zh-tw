@@ -55,7 +55,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 您必須在內部部署安裝 vContinuum 伺服器並將它指向組態伺服器。
 
-1.  [下載 vContinuum](http://go.microsoft.com/fwlink/?linkid=526305)。 
+1.  [下載 vContinuum](http://go.microsoft.com/fwlink/?linkid=526305)。
 2.  然後下載 [vContinuum 更新](http://go.microsoft.com/fwlink/?LinkID=533813)版本。
 3. 安裝最新版本的 vContinuum。在 [歡迎] 頁面中，按 [下一步]。![](./media/site-recovery-failback-azure-to-vmware/image2.png)
 4.  在精靈的第一個頁面上，指定 CX 伺服器 IP 位址和 CX 伺服器連接埠。選取 [使用 HTTPS]。
@@ -152,7 +152,7 @@ Windows 主要目標已經隨附於 vContinuum 安裝程式中。當您安裝 vC
 
 注意：請先確定系統具有網際網路連線，然後再下載並安裝其他封裝。
 
-\# yum install -y xfsprogs perl lsscsi rsync wget kexec-tools
+# yum install -y xfsprogs perl lsscsi rsync wget kexec-tools
 
 此命令會從 CentOS 6.6 儲存機制下載這 15 個封裝，並加以安裝：
 
@@ -188,17 +188,17 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 注意：如果來源機器會針對根目錄或開機裝置使用 Reiser 或 XFS 檔案系統，則下列封裝應該下載並安裝於 Linux 主要目標上，才能提供保護。
 
-\# cd /usr/local
+# cd /usr/local
 
-\# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm>
+# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm>
 
-\# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm>
+# wget <http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm>
 
-\# rpm -ivh kmod-reiserfs-0.0-1.el6.elrepo.x86\_64.rpm reiserfs-utils-3.6.21-1.el6.elrepo.x86\_64.rpm
+# rpm -ivh kmod-reiserfs-0.0-1.el6.elrepo.x86\_64.rpm reiserfs-utils-3.6.21-1.el6.elrepo.x86\_64.rpm
 
-\# wget <http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_64.rpm>
+# wget <http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_64.rpm>
 
-\# rpm -ivh xfsprogs-3.1.1-16.el6.x86\_64.rpm
+# rpm -ivh xfsprogs-3.1.1-16.el6.x86\_64.rpm
 
 #### 套用自訂組態變更
 
@@ -223,7 +223,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 3. 使用您選擇的 ssh 用戶端，登入 Linux 主要目標伺服器虛擬機器
 4. 如果您已連接到 Azure 網路 (您已在其上透過 VPN 連線部署 Linux 主要目標伺服器)，則可使用您在虛擬機器 [儀表板] 索引標籤中發現之伺服器的內部 IP 位址，以及使用連接埠 22 來連接到使用安全殼層的 Linux 主要目標伺服器。
 5. 如果您透過公用網際網路連線連接到 Linux 主要目標伺服器，則可使用 Linux 主要目標伺服器的公用虛擬 IP 位址 (從虛擬機器 [儀表板] 索引標籤)，以及針對 ssh 建立的公用端點來登入 Linux 伺服器。
-6. 藉由從包含安裝程式檔案的目錄執行：*“tar –xvzf Microsoft-ASR\_UA\_8.2.0.0\_RHEL6-64*”*，從 gzipped Linux 主要目標伺服器安裝程式 tar 封存檔解壓縮檔案。
+6. 藉由從包含安裝程式檔案的目錄執行：“tar –xvzf Microsoft-ASR\_UA\_8.2.0.0\_RHEL6-64\\”，從 gzipped Linux 主要目標伺服器安裝程式 tar 封存檔解壓縮檔案。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image16.png)
 
@@ -266,7 +266,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 將 VM 容錯移轉到 Azure 時，它會新增額外的暫存磁碟機以供分頁檔使用。這通常是您已容錯移轉的 VM 不需要的額外磁碟機，因為它可能已經有分頁檔專用的磁碟機。在開始反向保護虛擬機器之前，您需要確定磁碟機已離線，使它不會受到保護。以下列方式來執行此動作：
 
 1.  開啟 [電腦管理] 並選取 [儲存管理]，即會列出磁碟已上線且已連接到機器。
-2.  選取連接到機器的暫存磁碟，並選擇使其離線。 
+2.  選取連接到機器的暫存磁碟，並選擇使其離線。
 
 ### 保護 VM
 
@@ -325,7 +325,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 #### 設定 NAT 原則
 
-1. 若要啟用虛擬機器的保護，需要建立兩個通訊通道。第一個通道位於虛擬機器和處理序伺服器之間。此通道會從 VM 收集資料，並將其傳送至處理序伺服器，該伺服器會再將資料傳送給主要目標伺服器。如果處理序伺服器和受保護的虛擬機器位於相同的 Azure 虛擬網路上，則您不需使用 NAT 設定。否則，請指定 NAT 設定。在 Azure 中檢視處理序伺服器的公用 IP 位址。 
+1. 若要啟用虛擬機器的保護，需要建立兩個通訊通道。第一個通道位於虛擬機器和處理序伺服器之間。此通道會從 VM 收集資料，並將其傳送至處理序伺服器，該伺服器會再將資料傳送給主要目標伺服器。如果處理序伺服器和受保護的虛擬機器位於相同的 Azure 虛擬網路上，則您不需使用 NAT 設定。否則，請指定 NAT 設定。在 Azure 中檢視處理序伺服器的公用 IP 位址。
 
 	![](./media/site-recovery-failback-azure-to-vmware/image28.png)
 
@@ -424,8 +424,8 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 
 
 
-- [深入了解](site-recovery-vmware-to-azure-classic.md)使用增強部署將 VMware 虛擬機器和實體伺服器複寫至 Azure。
+- [深入了解](site-recovery-vmware-to-azure-classic.md)使用增強部署，將 VMware 虛擬機器和實體伺服器複寫至 Azure。
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="05/04/2016" 
+    ms.date="06/24/2016" 
     ms.author="robmcm" />
 
 # 如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者
@@ -74,7 +74,7 @@ Azure ACS 是以宣告式身分識別為原則來打造，後者是為內部部�
 若要完成本指南中的工作，您需要有下列項目：
 
 - Java Developer Kit (JDK) 1.6 版或更新版本。
-- Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。 
+- Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
 - Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat、GlassFish、JBoss Application Server 或 Jetty。
 - Azure 訂閱，可從 <http://www.microsoft.com/windowsazure/offers/> 取得。
 - Azure Toolkit for Eclipse，2014 年 4 月版本或更新版本。如需詳細資訊，請參閱[安裝 Azure Toolkit for Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690946.aspx)。
@@ -86,8 +86,8 @@ Azure ACS 是以宣告式身分識別為原則來打造，後者是為內部部�
 若要在 Azure 開始使用存取控制服務 (ACS)，您必須建立 ACS 命名空間。此命名空間可提供從您的應用程式內定址 ACS 資源的唯一範圍。
 
 1. 登入 [Azure 管理入口網站][]。
-2. 按一下 [Active Directory]。 
-3. 若要建立新的存取控制命名空間，請按一下 [新增]、按一下 [應用程式服務]、按一下 [存取控制]，然後按一下 [快速建立]。 
+2. 按一下 [Active Directory]。
+3. 若要建立新的存取控制命名空間，請按一下 [新增]、按一下 [應用程式服務]、按一下 [存取控制]，然後按一下 [快速建立]。
 4. 輸入命名空間的名稱。Azure 會確認名稱是否具唯一性。
 5. 選取使用命名空間的地區。為了獲得最佳效能，請使用您要在其中部署應用程式的地區。
 6. 如果您有多個訂閱，請選取要對 ACS 命名空間使用的訂閱。
@@ -116,8 +116,8 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
     1.  在 [名稱] 中，輸入 RP 的名稱。基於本教學課程的目的，輸入 **Azure Web App**。
     2.  在 [模式] 中，選取 [Enter settings manually]。
     3.  在 [領域] 中，輸入 ACS 所簽發的安全性權杖要套用至的 URI。對於此工作，輸入 **http://localhost:8080/**。![Relying party realm for use in compute emulator][relying_party_realm_emulator]
-4.  在 [傳回 URL] 中，輸入 ACS 傳回安全性權杖的 URL。對於此工作，輸入 **http://localhost:8080/MyACSHelloWorld/index.jsp** ![信賴憑證者傳回可用於計算模擬器的 URL][relying_party_return_url_emulator]
-5.  在其餘的欄位中接受預設值。
+    4.  在 [傳回 URL] 中，輸入 ACS 傳回安全性權杖的 URL。對於此工作，輸入 **http://localhost:8080/MyACSHelloWorld/index.jsp** ![信賴憑證者傳回可用於計算模擬器的 URL][relying_party_return_url_emulator]
+    5.  在其餘的欄位中接受預設值。
 
 4.  按一下 [儲存]。
 
@@ -130,7 +130,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 1.  在 ACS 管理入口網站主頁面上，按一下 [規則群組]。
 2.  在 [規則群組] 頁面上，按一下 [Default Rule Group for Azure Web App]。
 3.  在 [Edit Rule Group] 頁面上，按一下 [產生]。
-4.  在 [**產生規則：Azure Web 應用程式的預設規則群組**] 頁面上，確定已核取 Windows Live ID，然後按一下 [**產生**]。	
+4.  在 [**產生規則：Azure Web 應用程式的預設規則群組**] 頁面上，確定已核取 Windows Live ID，然後按一下 [**產生**]。
 5.  在 [Edit Rule Group] 頁面上，按一下 [儲存]。
 
 ## 將憑證上傳至您的 ACS 命名空間
@@ -140,9 +140,9 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 1.  在 ACS 管理入口網站主頁面上，按一下 [Certificates and keys]。
 2.  在 [Certificates and Keys] 頁面上，按一下 [權杖簽署] 上面的 [新增]。
 3.  在 [Add Token-Signing Certificate or Key] 頁面上：
-    1. 在 [Used for] 區段中，按一下 [Relying Party Application]，然後選取 [Azure Web App] \(先前設為信賴憑證者應用程式的名稱)。
+    1. 在 [Used for] 區段中，按一下 [Relying Party Application]，然後選取 [Azure Web App] (先前設為信賴憑證者應用程式的名稱)。
     2. 在 [類型] 區段中，選取 [X.509 憑證]。
-    3. 在 [憑證] 區段中，按一下瀏覽按鈕，並導覽至您要使用的 X.509 憑證檔案。這將為 .PFX 檔案。選取檔案、按一下 [開啟]，然後在 [密碼] 文字方塊中輸入憑證密碼。請注意，基於測試目的，您可能使用自我簽署憑證。如果要建立自我簽署憑證，請使用 [**ACS 篩選器程式庫**] 對話方塊 (稍後將說明) 中的 [**新增**] 按鈕，或 **encutil.exe** 公用程式 (來自 Azure Starter Kit for Java 的[專案網站][] \(英文))。
+    3. 在 [憑證] 區段中，按一下瀏覽按鈕，並導覽至您要使用的 X.509 憑證檔案。這將為 .PFX 檔案。選取檔案、按一下 [開啟]，然後在 [密碼] 文字方塊中輸入憑證密碼。請注意，基於測試目的，您可能使用自我簽署憑證。如果要建立自我簽署憑證，請使用 [**ACS 篩選器程式庫**] 對話方塊 (稍後將說明) 中的 [**新增**] 按鈕，或 **encutil.exe ** 公用程式 (來自 Azure Starter Kit for Java 的[專案網站][] (英文))。
     4. 確定已核取 [Make Primary]。您的 [**新增權杖簽署憑證或金鑰**] 頁面應該看起來如下。![Add token-signing certificate][add_token_signing_cert]
     5. 按一下 [儲存] 以儲存您的設定，並關閉 [Add Token-Signing Certificate or Key] 頁面。
 
@@ -152,7 +152,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 
 您可以找到將 Java Web 應用程式 (RP 應用程式) 設定成在 ASC 管理入口網站的應用程式整合頁面上使用 ACS 所需的所有資訊和程式碼。設定 Java Web 應用程式進行結盟驗證時，您將需要此資訊。
 
-1.  在 ACS 管理入口網站上，按一下 [Application integration]。  
+1.  在 ACS 管理入口網站上，按一下 [Application integration]。
 2.  在 [Application integration] 頁面中，按一下 [Login Pages]。
 3.  在 [Login Page Integration] 頁面中，按一下 [Azure Web App]。
 
@@ -240,7 +240,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 
 13. 按一下 [完成] 以關閉 [編輯程式庫] 對話方塊。
 14. 按一下 [確定] 以關閉 [Properties for MyACSHelloWorld] 對話方塊。
-15. 在 Eclipse 中，按一下 [Publish to Azure Cloud] 按鈕。回應提示，類似於**在 Eclipse 建立 Azure 的 Hello World 應用程式** (英文) 主題的[將應用程式部署至 Azure](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx)一節中所做一般。 
+15. 在 Eclipse 中，按一下 [Publish to Azure Cloud] 按鈕。回應提示，類似於**在 Eclipse 建立 Azure 的 Hello World 應用程式** (英文) 主題的[將應用程式部署至 Azure](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx)一節中所做一般。
 
 在部署了 Web 應用程式後，請關閉任何開啟的瀏覽器工作階段、執行 Web 應用程式，而且系統應該提示您利用 Windows Live ID 認證登入，然後傳送至信賴憑證者應用程式的傳回 URL。
 
@@ -249,7 +249,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 
 ## <a name="next_steps"></a>接續步驟
 
-若要檢查 ACS 傳回給應用程式的安全性聲明標記語言 (SAML)，請參閱[如何檢視 Azure 存取控制服務傳回的 SAML][]。若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] \(英文)。
+若要檢查 ACS 傳回給應用程式的安全性聲明標記語言 (SAML)，請參閱[如何檢視 Azure 存取控制服務傳回的 SAML][]。若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] (英文)。
 
 同時，此範例也使用了 [Embed the certificate in the WAR file] 選項。此選項可讓您輕易部署憑證。如果您想要改為讓簽署憑證與 WAR 檔案維持分開狀態，則可以使用下列技術：
 
@@ -258,7 +258,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 3. 按一下 [新增]。
 4. 在 [新增元件] 對話方塊中：
     1. 在 [匯入] 區段中：
-        1. 使用 [檔案] 按鈕，導覽至您要使用的憑證。 
+        1. 使用 [檔案] 按鈕，導覽至您要使用的憑證。
         2. 對於 [方法]，選取 [複製]。
     2. 對於 [As Name]，按一下文字方塊並接受預設名稱。
     3. 在 [部署] 區段中：
@@ -310,4 +310,4 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 [add_token_signing_cert]: ./media/active-directory-java-authenticate-users-access-control-eclipse/AddTokenSigningCertificate.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

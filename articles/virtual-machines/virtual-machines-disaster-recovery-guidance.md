@@ -22,11 +22,11 @@ Microsoft 的同仁一向努力確保提供您需要的服務。有時候因為�
 
 Microsoft 為其服務提供服務等級協定 (SLA)，作為執行時間和連接承諾。個別的 Azure 服務 SLA 位於 [Azure 服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
-Azure 已經有許多支援高可用性應用程式的內建平台功能。如需這些服務的詳細資訊，請參閱 [Azure 應用程式的災害復原與高可用性](https://aka.ms/drtechguide)。
+Azure 已經有許多支援高可用性應用程式的內建平台功能。如需這些服務的詳細資訊，請參閱 [Azure 應用程式的災害復原與高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)。
 
 本文內含當整個地區因重大天災或大規模服務中斷而發生中斷的真實災害復原案例。這些都是極其罕見的情況，但您還是必須對整個區域發生中斷的可能性有所準備。如果整個區域的服務中斷，會暫時無法使用本機的備援資料複本。如果已啟用異地複寫，會在不同的區域儲存額外三份 Azure 儲存體 Blob 和資料表。如果發生全面性區域中斷或嚴重損壞，且主要區域無法復原時，Azure 會重新對應異地複寫區域的所有 DNS 項目。
 
->[AZURE.NOTE]請注意，您完全無法控制這個程序，而且它只有在全區域服務中斷時才會發生。因此，您也必須依賴其他的應用程式特定備份策略，以達到最高層級的可用性。如需詳細資訊，請參閱[災害復原的資料策略](https://aka.ms/drtechguide#DSDR)一節。
+>[AZURE.NOTE]請注意，您完全無法控制這個程序，而且它只有在全區域服務中斷時才會發生。因此，您也必須依賴其他的應用程式特定備份策略，以達到最高層級的可用性。如需詳細資訊，請參閱[災害復原的資料策略](../resiliency/resiliency-disaster-recovery-azure-applications.md#data-strategies-for-disaster-recovery)一節。
 
 為協助您處理這些罕見事件，我們提供以下 Azure 虛擬機器指引，以因應 Azure 虛擬機器應用程式部署所在的整個區域發生服務中斷的情況。
 
@@ -52,9 +52,9 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。如�
 >[AZURE.NOTE]雖然 Azure 虛擬機器的作業系統和資料磁碟會複寫至次要 VHD，但如果它們位在異地備援儲存體或讀取權限異地備援儲存體帳戶，則會各自複寫每個 VHD。這個層級的複寫並不保證各個複寫的 VHD 一致。如果使用這些資料磁碟的應用程式和/或資料庫彼此有相依性，不保證所有的 VHD 都能複寫成一個快照。也不保證異地備援儲存體或讀取權限異地備援儲存體的 VHD 複本能讓應用程式一致的快照啟動 VM。
 
 ##後續步驟
-若要深入了解如何實作災害復原和高可用性策略，請參閱 [Azure 應用程式的災害復原和高可用性](https://aka.ms/drtechguide)。
+若要深入了解如何實作災害復原和高可用性策略，請參閱 [Azure 應用程式的災害復原和高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)。
 
-若要開發雲端平台功能的詳細技術知識，請參閱 [Azure 商務持續性技術指引](http://aka.ms/bctechguide)。
+若要開發雲端平台功能的詳細技術知識，請參閱 [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)。
 
 若要了解如何備份 VM，請參閱[備份 Azure 虛擬機器](../backup/backup-azure-vms.md)。
 
@@ -62,4 +62,4 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。如�
 
 如果指示不清楚，或如果您希望 Microsoft 代您執行作業，請連絡[客戶支援](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

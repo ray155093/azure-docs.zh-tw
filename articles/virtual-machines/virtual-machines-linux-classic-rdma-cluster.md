@@ -18,7 +18,7 @@ ms.service="virtual-machines-linux"
 
 # 設定 Linux RDMA 叢集以執行 MPI 應用程式
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 了解如何在 Azure 中使用[ A8 和 A9 大小的虛擬機器](virtual-machines-linux-a8-a9-a10-a11-specs.md)設定 Linux RDMA 叢集，以便執行平行訊息傳遞介面 (MPI) 應用程式。當您設定 A8 和 A9 大小 VM 的叢集以執行支援的 Linux HPC 發行版本和支援的 MPI 實作時，MPI 應用程式可透過低延遲、高輸送量網路，在運用遠端直接記憶體存取 (RDMA) 技術的 Azure 中進行有效率的通訊。
@@ -35,7 +35,7 @@ ms.service="virtual-machines-linux"
 
 * **Azure CLI 指令碼** - 如同本文中其他部分的步驟所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI)，建置虛擬網路部署的指令碼和其他必要元件以建立 A8 或 A9 大小的 Linux VM 叢集。服務管理模式中的 CLI 將循序在傳統部署模型中建立叢集節點，因此如果您正在部署許多計算節點，則可能需要花費幾分鐘才能完成部署。
 
-* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
+* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署多個 A8 和 A9 Linux VM，以及定義虛擬網路、靜態 IP 位址、DNS 設定和其他資源，以便建立可利用 RDMA 網路執行 MPI 工作負載的計算叢集。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。
 
 ## 傳統模型中的範例部署
 
@@ -101,7 +101,7 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
 
 >[AZURE.IMPORTANT]Microsoft Azure 不會提供 Linux VM 的根目錄存取權。若要在以使用者身分連接至 VM 時取得系統管理存取權，請使用 `sudo` 執行命令。
 
-* **更新** - 使用 **zypper** 安裝更新。您也可能會想要安裝 NFS 公用程式。  
+* **更新** - 使用 **zypper** 安裝更新。您也可能會想要安裝 NFS 公用程式。
 
     >[AZURE.IMPORTANT]如果您部署了 SLES 12 HPC V，目前我們建議您不要套用核心更新，因為這可能會導致 Linux RDMA 驅動程式發生問題。
     >
@@ -127,7 +127,7 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
 
         <User or group name> soft    memlock <memory required for your application in KB>
 
-    >[AZURE.NOTE]基於測試目的，您也可以將 memlock 設定為無限制。例如：'<User or group name> 硬 memlock 無限制。
+    >[AZURE.NOTE]基於測試目的，您也可以將 memlock 設定為無限制。例如：`<使用者或群組名稱> hard memlock unlimited。
 
 * **SLES 12 VM 的 SSH 金鑰** - 產生 SSH 金鑰以在執行 MPI 工作時，於 SLES 12 HPC 叢集的所有計算節點之中建立使用者帳戶的信任。(如果您部署 CentOS 型 HPC VM，請勿遵循此步驟。請參閱本文稍後的指示，在您擷取映像並部署叢集之後，設定叢集節點間的 passwordless SSH 信任。)
 
@@ -219,7 +219,7 @@ done
 
 如果您使用 CentOS 型 HPC 映像部署叢集，有兩種方法可建立計算節點之間的信任︰以主機為基礎的驗證和以使用者為基礎的驗證。以主機為基礎的驗證超出本文的範圍，通常必須在部署期間透過擴充功能指令碼來完成。以使用者為基礎的驗證便於在部署之後建立信任，而且需要在叢集中計算節點之間產生與共用 SSH 金鑰。這通常稱為 passwordless SSH 登入，且為執行 MPI 工作時的必要項目。
 
-從社群所貢獻的範例指令碼位於 [GitHub](https://github.com/tanewill/utils/blob/master/user_authentication.sh) 上，可在 CentOS 型 HPC 叢集上啟用簡單使用者驗證。您可以使用下列步驟來下載並使用此指令碼。您也可以修改此指令碼，或使用任何其他方法來建立叢集計算節點之間的 passwordless SSH 驗證。
+從社群所貢獻的範例指令碼位於 [GitHub](https://github.com/tanewill/utils/blob/master/user_authentication.sh) 上，以在 CentOS 型 HPC 叢集上啟用簡單使用者驗證。您可以使用下列步驟來下載並使用此指令碼。您也可以修改此指令碼，或使用任何其他方法來建立叢集計算節點之間的 passwordless SSH 驗證。
 
     wget https://raw.githubusercontent.com/tanewill/utils/master/ user_authentication.sh
     
@@ -234,9 +234,9 @@ done
 
 此指令碼會執行下列動作︰
 
-* 在名為 .ssh 的主機節點上建立目錄，此為 passwordless 登入的必要項目。 
-* 在 .ssh 目錄中建立組態檔，它會指示 passwordless 登入允許從叢集中的任何節點登入。 
-* 建立檔案，其中包含叢集中所有節點的節點名稱與節點 IP 位址。在使用者執行指令碼做為參考之後，會保留這些檔案。 
+* 在名為 .ssh 的主機節點上建立目錄，此為 passwordless 登入的必要項目。
+* 在 .ssh 目錄中建立組態檔，它會指示 passwordless 登入允許從叢集中的任何節點登入。
+* 建立檔案，其中包含叢集中所有節點的節點名稱與節點 IP 位址。在使用者執行指令碼做為參考之後，會保留這些檔案。
 * 建立每個叢集節點的私密和公開金鑰組，包括主機節點，並共用金鑰組的相關資訊，以及在 authorized\_keys 檔案中建立項目。
 
 >[AZURE.WARNING]執行這個指令碼可能會建立潛在的安全性風險。請確定未散發 ~/.ssh 中的公開金鑰資訊。
@@ -398,4 +398,4 @@ mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAP
 
 * 請嘗試[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/intel-lustre-clients-on-centos)以使用 CentOS 型 HPC 映像建立 Intel Lustre 叢集。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

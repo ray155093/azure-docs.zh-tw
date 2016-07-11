@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/10/2016"
+   ms.date="06/23/2016"
    ms.author="navale;tomfitz;"/>
    
 # 資源管理員 REST API
@@ -240,4 +240,4 @@ Content-Type: application/json
 
 省略了此要求的較長 JSON 回應，以便改善這份文件的可讀性。回應將會包含您剛建立的樣板化部署相關資訊。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -16,8 +16,9 @@
 
 3. 在查詢視窗中，編輯並使用下列 Transact-SQL 陳述式，對指定的使用者授與 dbo 權限。
 
-    '''ALTER ROLE db\_owner ADD MEMBER user1;
+    ```ALTER ROLE db_owner ADD MEMBER user1;
+    ```
 
      ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-grant-database-user-dbo-permissions/sql-database-grant-database-user-dbo-permissions-1.png)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署模型建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-cli.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署模型建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-cli.md)。
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
@@ -35,7 +35,7 @@
 
 您需要建立和設定下列物件以部署負載平衡器：
 
-- 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。 
+- 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。
 
 - 後端位址集區 - 包含虛擬機器的網路介面 (NIC)，可從負載平衡器接收網路流量。
 
@@ -54,7 +54,7 @@
 
 ### 步驟 1
 
-		PS C:\> Login-AzureRmAccount
+		Login-AzureRmAccount
 
 系統會提示使用您的認證進行驗證。<BR>
 
@@ -62,20 +62,20 @@
 
 檢查帳戶的訂用帳戶
 
-		PS C:\> Get-AzureRmSubscription 
+		Get-AzureRmSubscription 
 
 ### 步驟 3 
 
 選擇其中一個要使用的 Azure 訂用帳戶。<BR>
 
-		PS C:\> Select-AzureRmSubscription -SubscriptionId 'GUID of subscription'
+		Select-AzureRmSubscription -SubscriptionId 'GUID of subscription'
 
 ### 步驟 4
 
 建立新的資源群組 (若使用現有的資源群組，請略過此步驟)。
 
 
-    	PS C:\> New-AzureRmResourceGroup -Name NRP-RG -location "West US"
+    	New-AzureRmResourceGroup -Name NRP-RG -location "West US"
 
 
 ## 建立前端 IP 集區的虛擬網路和公用 IP 位址
@@ -181,7 +181,7 @@ TCP 探查
 檢查 NIC。
 
 
-	PS C:\> $backendnic1
+	$backendnic1
 
 預期的輸出：
 
@@ -248,7 +248,7 @@ TCP 探查
 
 將後端組態載入到變數之中。
 
-	PS C:\> $backend=Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
+	$backend=Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
 
 #### 步驟 3 
 
@@ -260,13 +260,13 @@ TCP 探查
 
 變更網路介面上的後端組態。
 
-	PS C:\> $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
+	$nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
 
 #### 步驟 5 
 
 儲存網路介面物件。
 
-	PS C:\> Set-AzureRmNetworkInterface -NetworkInterface $nic
+	Set-AzureRmNetworkInterface -NetworkInterface $nic
 
 網路介面在新增至負載平衡器的後端集區後，便會開始根據該負載平衡器資源的負載平衡規則接收網路流量。
 
@@ -308,4 +308,4 @@ TCP 探查
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

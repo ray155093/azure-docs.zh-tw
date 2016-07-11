@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="media" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -47,8 +47,8 @@
 - [2014 年 8 月版本](#august_changes_14)
 - [2014 年 7 月版本](#july_changes_14)
 - [2014 年 5 月版本](#may_changes_14)
-- [2014 年 4 月版本](#april_changes_14) 
-- [2014 年 1/2 月版本](#jan_feb_changes_14) 
+- [2014 年 4 月版本](#april_changes_14)
+- [2014 年 1/2 月版本](#jan_feb_changes_14)
 - [2013 年 12 月版本](#december_changes_13)
 - [2013 年 11 月版本](#november_changes_13)
 - [2013 年 8 月版本](#august_changes_13)
@@ -68,7 +68,7 @@
 使用包含逸出字元 (例如 %20) 的檔案名稱為資產編碼時，作業會失敗，並出現「MediaProcessor：找不到檔案。」|要新增至資產並編碼的檔案，其名稱只能包含英數字元和空格。此問題將在未來的更新中修正。
 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法無法運作。|媒體服務會根據 [2012-02-12](http://msdn.microsoft.com/library/azure/dn592123.aspx) 版本產生 SAS URL。如果您要使用 Azure Storage SDK 列出 Blob 容器中的 Blob，請使用屬於 Azure Storage SDK 2.x 版的 [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx) 方法。屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法將會失敗。
 媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。|如需詳細資訊，請在 [Azure 媒體服務錯誤碼](http://msdn.microsoft.com/library/azure/dn168949.aspx)主題中參閱 503 HTTP 狀態碼的說明。
-查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] \(.NET) \[最前面] \(REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
+查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] (.NET)/ [最前面] (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
 
 
 ### <a id="dotnet_issues"></a>Media Services SDK for .NET 問題
@@ -189,7 +189,7 @@ Azure 媒體服務 .NET SDK 現在是版本 3.4.0.0。此版本中加入了下�
 Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。此版本中加入了下列功能：
 
 - 支援 OpenId Connect 探索規格
-- 支援處理識別提供者端的金鑰變換 
+- 支援處理識別提供者端的金鑰變換
 
 如果您使用的身分識別提供者會公開 OpenID Connect 探索文件 (如同下列提供者：Azure Active Directory、Google、Salesforce)，您可以指示 Azure 媒體服務從 OpenID Connect 探索規格取得 JWT 權杖驗證的簽署金鑰。
 
@@ -206,29 +206,29 @@ Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。此版本中加入了下�
 
 ##<a id="april_changes_15"></a>2015 年 4 月版本
 
-        ###一般媒體服務更新
+        ###General Media Services Updates
 
-        - [發表 Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)。
-        - 從媒體服務 REST 2.10 開始，設定為擷取 RTMP 通訊協定的通道，會和主要與次要擷取 URL 一起建立。如需詳細資訊，請參閱[通道擷取組態](media-services-manage-channels-overview.md#channel_input)
-        - Azure 媒體索引器更新
-        - 支援西班牙文語言
-        - 新的組態 xml 格式
+        - [Announcing Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/).
+        - Starting with Media Services REST 2.10, channels that are configured to ingest an RTMP protocol, are created with primary and secondary ingest URLs. For more information, see [Channel ingest configurations](media-services-live-streaming-with-onprem-encoders.md#channel_input)
+        - Azure Media Indexer updates
+        - Support for Spanish Language
+        - New configuration xml format
 
-        如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/)。
-        ###媒體服務 .NET SDK 更新
+        For more information see [this blog](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/).
+        ###Media Services .NET SDK Updates
 
-        Azure 媒體服務 .NET SDK 現在是版本 3.2.0.0。
+        Azure Media Services .NET SDK is now version 3.2.0.0.
 
-        以下是一些屬於客戶面向的更新：
+        The following are some of the customer facing updates:
 
-        - **重大變更**：已將 **TokenRestrictionTemplate.Issuer** 和 **TokenRestrictionTemplate.Audience** 變更為字串類型。 
-        - 與建立自訂重試原則相關的更新。 
-        - 與上傳/下載檔案相關的錯誤修正。 
-        - **MediaServicesCredentials** 類別現在接受主要和次要存取控制端點做為驗證對象。
+        - **Breaking change**: Changed **TokenRestrictionTemplate.Issuer** and **TokenRestrictionTemplate.Audience** to be of a string type.
+        - Updates related to creating custom retry policies.
+        - Bug fixes related to uploading/downloading files.
+        - The **MediaServicesCredentials** class now accepts primary and secondary access control endpoint to authenticate against.
 
 
 
-        ##<a id="march_changes_15"></a>2015 年 3 月版本
+        ##<a id="march_changes_15"></a>March 2015 Release
 
 ### 一般媒體服務更新
 
@@ -343,7 +343,7 @@ Media Services SDK for .NET 目前的版本為 3.0.0.7。
 	
 	* 您必須具有自訂網域名稱的擁有權。
 	
-	* 網域名稱的擁有權必須通過 Azure 媒體服務的驗證。若要驗證網域，請建立將 <MediaServicesAccountId>.<parent domain> 對應到 verifydns.<mediaservices-dns-zone> 的 CName。
+	* 網域名稱的擁有權必須通過 Azure 媒體服務的驗證。若要驗證網域，請建立 CName，將 <MediaServicesAccountId>.<父系網域> 對應到 verifydns.<mediaservices-dns-zone>。
 	
 	* 您必須建立另一個 CName，將自訂主機名稱 (例如，sports.contoso.com) 對應到您的媒體服務 StreamingEndpont 主機名稱 (例如，amstest.streaming.mediaservices.windows.net)。
 
@@ -395,7 +395,7 @@ Azure Media Services Packager 和 Encryptor 完成了下列錯誤修正：
 
 * 重試邏輯和暫時性例外狀況處理已有改善：
 
-	* 因查詢、儲存變更、上傳或下載檔案而造成的例外狀況，在暫時性錯誤偵測和重試邏輯方面已有改善。 
+	* 因查詢、儲存變更、上傳或下載檔案而造成的例外狀況，在暫時性錯誤偵測和重試邏輯方面已有改善。
 	
 	* 當 Web 例外狀況出現時 (例如，在 ACS 權杖要求期間)，您會發現嚴重錯誤現在的失效速度已變快。
 
@@ -430,7 +430,7 @@ Azure Media Services Packager 和 Encryptor 完成了下列錯誤修正：
 
 3\.0.0.3 中做了下列變更：
 
-* 已升級 Azure 儲存體相依性而使用 3.0.3.0 版。 
+* 已升級 Azure 儲存體相依性而使用 3.0.3.0 版。
 
 * 已修正 3.0.*.* 版的回溯相容性問題。
 
@@ -461,7 +461,7 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 
 [azure-sdk-tools] 中現在包含下列媒體服務 PowerShell Cmdlet。
 
-* Get-AzureMediaServices 
+* Get-AzureMediaServices
 
 	例如，`Get-AzureMediaServicesAccount`。
 
@@ -483,7 +483,7 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 
 本節說明的變更是 2013 年 6 月媒體服務版本所包含的更新。
 
-* 能夠將多個儲存體帳戶連結至媒體服務帳戶。 
+* 能夠將多個儲存體帳戶連結至媒體服務帳戶。
 
 	StorageAccount
 	
@@ -666,4 +666,4 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

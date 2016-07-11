@@ -21,13 +21,13 @@
 
 本文說明如何建立及上傳包含 FreeBSD 作業系統的虛擬硬碟 (VHD)，以便使用它做為您自己的映像，在 Azure 中建立虛擬機器 (VM)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 ##必要條件##
 本文假設您具有下列項目：
 
-- **Azure 訂用帳戶** - 如果您沒有的話，只需要幾分鐘的時間就可以建立帳戶。如果您有 MSDN 訂閱，請參閱 [MSDN 訂閱者的 Azure 權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。否則，請參閱[建立免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/)。  
+- **Azure 訂用帳戶** - 如果您沒有的話，只需要幾分鐘的時間就可以建立帳戶。如果您有 MSDN 訂閱，請參閱 [MSDN 訂閱者的 Azure 權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。否則，請參閱[建立免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
 - **Azure PowerShell 工具** - 您已安裝 Microsoft Azure PowerShell 模組，並設定為使用您的訂用帳戶。若要下載此模組，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)。這裡有安裝和設定模組的教學課程。您將使用 [Azure Downloads](https://azure.microsoft.com/downloads/) Cmdlet 上傳 VHD。
 
@@ -227,4 +227,4 @@
 
 	![azure 中的 freebsd 映像](./media/virtual-machines-linux-classic-freebsd-create-upload-vhd/freebsdimageinazure.png)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

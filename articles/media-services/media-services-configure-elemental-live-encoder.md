@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="05/03/2016"
+	ms.date="06/22/2016"
 	ms.author="cenkdin;anilmur;juliako"/>
 
 #使用 Elemental Live 編碼器來傳送單一位元速率的即時串流
@@ -58,8 +58,7 @@
 
 請確認已選取 [**立即啟動新頻道**]。
 
-3. 按一下 [**建立頻道**]。
-![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
+3. 按一下 [**建立頻道**]。![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 
@@ -73,22 +72,22 @@
 
 **視訊**：
  
-- 轉碼器：H.264 
-- 設定檔：高 (層級 4.0) 
-- 位元速率：5000 kbps 
-- 主要畫面格：2 秒 (60 秒) 
+- 轉碼器：H.264
+- 設定檔：高 (層級 4.0)
+- 位元速率：5000 kbps
+- 主要畫面格：2 秒 (60 秒)
 - 畫面播放速率：30
  
 **音訊**：
 
-- 轉碼器：AAC (LC) 
-- 位元速率：192 kbps 
+- 轉碼器：AAC (LC)
+- 位元速率：192 kbps
 - 取樣速率：44.1 kHz
 
 
 ####組態步驟
 
-1. 瀏覽至 **Elemental Live** Web 介面，並設定用於 **UDP/TS** 串流的編碼器。 
+1. 瀏覽至 **Elemental Live** Web 介面，並設定用於 **UDP/TS** 串流的編碼器。
 
 2. 建立新事件後，請向下捲動至輸出群組並新增 **UDP/TS** 輸出群組。
 
@@ -99,17 +98,17 @@
 	>[AZURE.NOTE] 建議將 Elemental 事件的時間代碼設定為「系統時鐘」，以協助編碼器在串流失敗時重新連接。
 
 4. 現在已建立好輸出，請按一下 [**新增串流**]。現在可以設定輸出設定。
-5. 向下捲動到剛剛建立的「串流 1」，按一下左側的 [**視訊**] 索引標籤並展開 [**進階**] 設定區段。 
+5. 向下捲動到剛剛建立的「串流 1」，按一下左側的 [**視訊**] 索引標籤並展開 [**進階**] 設定區段。
 
 	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental4.png)
 
 	雖然 Elemental Live 有各種不同的可用自訂，建議對串流至 AMS 入門使用下列設定。
 	
-	- 解析度：1280 x 720 
-	- 畫面播放速率：30 
-	- GOP 大小：60 個畫面格 
-	- 交錯式模式：漸進式 
-	- 位元速率：5000000 位元/秒 (這可以根據網路限制調整) 
+	- 解析度：1280 x 720
+	- 畫面播放速率：30
+	- GOP 大小：60 個畫面格
+	- 交錯式模式：漸進式
+	- 位元速率：5000000 位元/秒 (這可以根據網路限制調整)
 	
 
 	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental5.png)
@@ -128,16 +127,15 @@
 
 	如需額外的備援，請對次要輸入 URL 重複這些步驟，方法是為 UDP/TS 串流建立個別的「輸出」索引標籤。
 	
-7. 按一下 [**建立**] \(如果已建立新事件) 或 [**更新**] \(如果是編輯原有的事件)，然後繼續啟動編碼器。
+7. 按一下 [**建立**] (如果已建立新事件) 或 [**更新**] (如果是編輯原有的事件)，然後繼續啟動編碼器。
 
->[AZURE.IMPORTANT] 按一下 Elemental Live Web 介面上的 [**開始**] 之前，您**必須**確保頻道已就緒。
->此外，請確保不要讓通道處於就緒狀態而無任何事件超過 15 分鐘。
+>[AZURE.IMPORTANT] 按一下 Elemental Live Web 介面上的 [**開始**] 之前，您**必須**確保頻道已就緒。此外，請確保不要讓通道處於就緒狀態而無任何事件超過 15 分鐘。
 
 在串流已經執行了 30 秒後，導覽回 AMSE 工具和測試播放。
 
 ###測試播放
   
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
+1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。
 
 	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental8.png)
 
@@ -147,18 +145,18 @@
 
 ###建立程式
 
-1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。  
+1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。
 
 	![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental9.png)
 
 2. 為程式命名，並視需要調整**封存時間長度** (預設為 4 小時)。您也可以指定儲存體位置，或保留為預設值。
 3. 勾選 [現在啟動程式] 方塊。
-4. 按一下 [建立程式]。  
+4. 按一下 [建立程式]。
   
 	注意：建立程式時所使用的時間會比建立通道時更少。
  
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。
-6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] \(或從 [程式資訊和設定] 功能表選項擷取這項資訊)。 
+6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
 
 串流現在已經可以內嵌於播放程式中，或散發給某個對象，以供即時檢視。
 
@@ -175,4 +173,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

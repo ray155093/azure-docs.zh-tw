@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="03/03/2016"
+   ms.date="06/14/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲的設計決策和程式碼撰寫技術
@@ -42,8 +42,6 @@
 - [暫存資料表][]
 - [動態 SQL][]
 - [迴圈][]
-- [重新命名物件][]
-- [樞紐分析資料][]
 - [依據選項分組][]
 - [變數指派][]
 
@@ -61,7 +59,6 @@
 [雜湊散發索引鍵]: sql-data-warehouse-develop-hash-distribution-key.md
 [標籤]: sql-data-warehouse-develop-label.md
 [迴圈]: sql-data-warehouse-develop-loops.md
-[樞紐分析資料]: sql-data-warehouse-develop-pivot-unpivot.md
 [統計資料]: sql-data-warehouse-develop-statistics.md
 [預存程序]: sql-data-warehouse-develop-stored-procedures.md
 [資料表設計]: sql-data-warehouse-develop-table-design.md
@@ -75,8 +72,8 @@
 [Transact-SQL 參考資料]: sql-data-warehouse-overview-reference.md
 
 <!--MSDN references-->
-[重新命名物件]: https://msdn.microsoft.com/library/mt631611.aspx
+[renaming objects]: https://msdn.microsoft.com/library/mt631611.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -14,26 +14,22 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="06/24/2016"
 	ms.author="davidmu"/>
 
 # 使用 C 部署 Azure 資源# 
 
-本文將說明如何使用 Azure PowerShell 設定驗證和儲存體，然後使用 C# 建立 Azure 資源。
+本文說明如何使用 C# 建立 Azure 資源。
 
-若要完成本教學課程，您也需要：
+請確定您已完成下列項目：
 
-- [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
-- [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)
-- [驗證權杖](../resource-group-authenticate-service-principal.md)
+- 安裝 [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
+- 驗證 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855) 的安裝
+- 取得[驗證權杖](../resource-group-authenticate-service-principal.md)
 
 執行這些步驟需要 30 分鐘左右。
 
-## 步驟 1：安裝 Azure PowerShell
-
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
-
-## 步驟 2：建立 Visual Studio 專案，並安裝程式庫
+## 步驟 1：建立 Visual Studio 專案，並安裝程式庫
 
 NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。您必須安裝 Azure Resource Management Library、Azure Active Directory Authentication Library，以及 Computer Resource Provider Library。若要在 Visual Studio 中取得這些程式庫，請執行下列動作：
 
@@ -45,26 +41,26 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 4. 在搜尋方塊中輸入 *Active Directory*，對 Active Directory Authentication Library 封裝按一下 [**安裝**]，然後依照指示，安裝封裝。
 
-5. 在頁面的頂端，選取 [包含發行前版本]。在搜尋方塊中輸入 *Microsoft.Azure.Management.Compute*，針對「Compute .NET 程式庫」按一下 [安裝]，然後遵循指示來安裝封裝。
+5. 在頁面的頂端，選取 [包含發行前版本]。在搜尋方塊中輸入 *Microsoft.Azure.Management.Compute*，對 Compute .NET Library 按一下 [安裝]，然後遵循指示來安裝封裝。
 
-6. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Network*，針對「Network .NET 程式庫」按一下 [安裝]，然後遵循指示來安裝封裝。
+6. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Network*，對 Network .NET Library 按一下 [安裝]，然後遵循指示來安裝封裝。
 
-7. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Storage*，針對「Storage .NET 程式庫」按一下 [安裝]，然後遵循指示來安裝封裝。
+7. 在搜尋方塊中輸入 *Microsoft.Azure.Management.Storage*，對 Storage .NET Library 按一下 [安裝]，然後遵循指示來安裝封裝。
 
-8. 在搜尋方塊中輸入 *Microsoft.Azure.ResourceManager*，針對「Resource Management 程式庫」按一下 [安裝]。
+8. 在搜尋方塊中輸入 *Microsoft.Azure.Management.ResourceManager*，對 Resource Management Library 按一下 [安裝]。
 
 您現在已經準備就緒，可以開始使用程式庫建立您的應用程式。
 
-## 步驟 3：建立用來驗證要求的認證
+## 步驟 2：建立用來驗證要求的認證
 
-已經建立 Azure Active Directory 應用程式並安裝驗證程式庫，您現在要將應用程式資訊格式化成用來驗證 Azure Resource Manager 要求的認證。執行此動作：
+已經建立 Azure Active Directory 應用程式並安裝驗證程式庫，您現在要將應用程式資訊格式化成用來驗證對 Azure Resource Manager 的要求的認證。執行此動作：
 
 1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端：
 
         using Microsoft.Azure;
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
-        using Microsoft.Azure.Management.Resources;
-        using Microsoft.Azure.Management.Resources.Models;
+        using Microsoft.Azure.Management.ResourceManager;
+        using Microsoft.Azure.Management.ResourceManager.Models;
         using Microsoft.Azure.Management.Storage;
         using Microsoft.Azure.Management.Storage.Models;
         using Microsoft.Azure.Management.Network;
@@ -75,32 +71,28 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別，以取得建立認證所需的權杖：
 
-        private static string GetAuthorizationHeader()
+        private static async Task<AuthenticationResult> GetAccessTokenAsync()
         {
-          ClientCredential cc = new ClientCredential("{application-id}", "{password}");
+          var cc = new ClientCredential("{client-id}", "{client-secret}");
           var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
           var result = context.AcquireTokenAsync("https://management.azure.com/", cc);
-
           if (result == null)
           {
-            throw new InvalidOperationException("Failed to obtain the JWT token");
+            throw new InvalidOperationException("Could not get the token");
           }
-
-          string token = result.AccessToken;
-
           return token;
         }
 
-	將 {application-id} 取代成您先前記錄的應用程式識別碼、將 {password} 取代成您為 AD 應用程式選擇的密碼，並將 {tenant-id} 取代成您的訂用帳戶的租用戶識別碼。您可以透過執行 Get-AzureRmSubscription 來尋找租用戶識別碼。
+	將 {client-id} 用 Azure Active Directory 應用程式的識別碼取代，將 {client-secret} 用 AD 應用程式的存取金鑰取代，並將 {tenant-id} 用您訂用帳戶的租用戶識別碼取代。您可以透過執行 Get-AzureRmSubscription 來尋找租用戶識別碼。您可以使用 Azure 入口網站尋找存取金鑰。
 
 3. 將下列程式碼新增至 Program.cs 檔案的 Main 方法以建立認證：
 
-        var token = GetAuthorizationHeader();
-        var credential = new TokenCredentials(token);
+        var token = GetAccessTokenAsync();
+        var credential = new TokenCredentials(token.Result.AccessToken);
 
 4. 儲存 Program.cs 檔案。
 
-## 步驟 4：加入程式碼以註冊提供者，並建立資源
+## 步驟 3：加入程式碼以註冊提供者，並建立資源
 
 ### 註冊提供者，並建立資源群組
 
@@ -109,90 +101,90 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 1. 將變數新增至 Program 類別的 Main 方法，以指定您要用於資源的名稱、資源的位置 (例如 "Central US")、系統管理員帳戶資訊，以及您的訂用帳戶識別碼：
 
         var groupName = "resource group name";
-        var ipName = "public ip name";
-        var avSetName = "availability set name";
-        var nicName = "network interface name";
+        var subscriptionId = "subsciption id";
+        var location = "location name";
         var storageName = "storage account name";
-        var vmName = "virtual machine name";  
-        var vnetName = "virtual network name";
+        var ipName = "public ip name";
         var subnetName = "subnet name";
+        var vnetName = "virtual network name";
+        var nicName = "network interface name";
+        var avSetName = "availability set name";
+        var vmName = "virtual machine name";  
         var adminName = "administrator account name";
         var adminPassword = "administrator account password";
-        var location = "location name";
-        var subscriptionId = "subsciption id";
-
+        
     以您想要使用的名稱和識別碼取代所有變數值。您可以執行 Get-AzureRmSubscription 來尋找訂用帳戶識別碼。
 
-2. 將下列方法新增至 Program 類別以建立資源群組：
+2. 將下列方法新增至 Program 類別以建立資源群組並註冊提供者：
 
-        public static void CreateResourceGroup(
+        public static async Task<ResourceGroup> CreateResourceGroupAsync(
           TokenCredentials credential,
           string groupName,
           string subscriptionId,
           string location)
         {
-          Console.WriteLine("Creating the resource group...");
-          var resourceManagementClient = new ResourceManagementClient(credential);
-          resourceManagementClient.SubscriptionId = subscriptionId;
-          var resourceGroup = new ResourceGroup {
-            Location = location
-          };
-          var rgResult = resourceManagementClient.ResourceGroups.CreateOrUpdate(groupName, resourceGroup);
-          Console.WriteLine(rgResult.Properties.ProvisioningState);
-
           var rpResult = resourceManagementClient.Providers.Register("Microsoft.Storage");
           Console.WriteLine(rpResult.RegistrationState);
           rpResult = resourceManagementClient.Providers.Register("Microsoft.Network");
           Console.WriteLine(rpResult.RegistrationState);
           rpResult = resourceManagementClient.Providers.Register("Microsoft.Compute");
           Console.WriteLine(rpResult.RegistrationState);
+          
+          Console.WriteLine("Creating the resource group...");
+          var resourceManagementClient = new ResourceManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          var resourceGroup = new ResourceGroup { Location = location };
+          return await resourceManagementClient.ResourceGroups.CreateOrUpdateAsync(groupName, resourceGroup);
         }
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        CreateResourceGroup(
+        var rgResult = CreateResourceGroupAsync(
           credential,
           groupName,
           subscriptionId,
           location);
+        Console.WriteLine(rgResult.Result.Properties.ProvisioningState);
         Console.ReadLine();
 
 ### 建立儲存體帳戶
 
-儲存針對虛擬機器建立的虛擬硬碟檔案時，需要儲存體帳戶。
+儲存針對虛擬機器建立的虛擬硬碟檔案時，需要[儲存體帳戶](../storage/storage-create-storage-account.md)。
 
 1. 將下列方法新增至 Program 類別以建立儲存體帳戶：
 
-        public static void CreateStorageAccount(
-          TokenCredentials credential,         
-          string storageName,
+        public static async Task<StorageAccount> CreateStorageAccountAsync(
+          TokenCredentials credential,       
           string groupName,
           string subscriptionId,
-          string location)
+          string location,
+          string storageName)
         {
           Console.WriteLine("Creating the storage account...");
           var storageManagementClient = new StorageManagementClient(credential);
-          storageManagementClient.SubscriptionId = subscriptionId;
-          var saResult = storageManagementClient.StorageAccounts.Create(
+            { SubscriptionId = subscriptionId };
+          return await storageManagementClient.StorageAccounts.CreateAsync(
             groupName,
             storageName,
             new StorageAccountCreateParameters()
             {
-              AccountType = AccountType.StandardLRS,
+              Sku = new Microsoft.Azure.Management.Storage.Models.Sku() 
+                { Name = SkuName.StandardLRS},
+              Kind = Kind.Storage,
               Location = location
             }
           );
-          Console.WriteLine(saResult.ProvisioningState);
         }
 
 2. 將下列程式碼新增至 Program 類別的 Main 方法，以呼叫您剛才新增的方法：
 
-        CreateStorageAccount(
+        var stResult = CreateStorageAccountAsync(
           credential,
-          storageName,
           groupName,
           subscriptionId,
-          location);
+          location,
+          storageName);
+        Console.WriteLine(stResult.Result.ProvisioningState);  
         Console.ReadLine();
 
 ### 建立公用 IP 位址
@@ -201,17 +193,17 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 1. 將下列方法新增至 Program 類別以建立虛擬機器的公用 IP 位址：
 
-        public static void CreatePublicIPAddress(
-          TokenCredentials credential,
-          string ipName,  
+        public static async Task<PublicIPAddress> CreatePublicIPAddressAsync(
+          TokenCredentials credential,  
           string groupName,
           string subscriptionId,
-          string location)
+          string location,
+          string ipName)
         {
           Console.WriteLine("Creating the public ip...");
-          var networkManagementClient = new NetworkManagementClient(credential);
-          networkManagementClient.SubscriptionId = subscriptionId;
-          var ipResult = networkManagementClient.PublicIPAddresses.CreateOrUpdate(
+          var networkManagementClient = new NetworkManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          return await networkManagementClient.PublicIPAddresses.CreateOrUpdateAsync(
             groupName,
             ipName,
             new PublicIPAddress
@@ -220,17 +212,17 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
               PublicIPAllocationMethod = "Dynamic"
             }
           );
-          Console.WriteLine(ipResult.ProvisioningState);
         }
 
 2. 將下列程式碼新增至 Program 類別的 Main 方法，以呼叫您剛才新增的方法：
 
-        CreatePublicIPAddress(
+        var ipResult = CreatePublicIPAddressAsync(
           credential,
-          ipName,
           groupName,
           subscriptionId,
-          location);
+          location,
+          ipName);
+        Console.WriteLine(ipResult.Result.ProvisioningState);  
         Console.ReadLine();
 
 ### 建立虛擬網路
@@ -239,19 +231,17 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 1. 將下列方法新增至 Program 類別，以建立子網路和虛擬網路：
 
-        public static void CreateNetwork(
+        public static async Task<VirtualNetwork> CreateVirtualNetworkAsync(
           TokenCredentials credential,
-          string vnetName,
-          string subnetName,
-          string nicName,
-          string ipName,
           string groupName,
           string subscriptionId,
-          string location)
+          string location,
+          string vnetName,
+          string subnetName)
         {
           Console.WriteLine("Creating the virtual network...");
-          var networkManagementClient = new NetworkManagementClient(credential);
-          networkManagementClient.SubscriptionId = subscriptionId;
+          var networkManagementClient = new NetworkManagementClient(credential)
+            { SubscriptionId = subscriptionId };
           
           var subnet = new Subnet
           {
@@ -263,7 +253,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
             AddressPrefixes = new List<string> { "10.0.0.0/16" }
           };
           
-          var vnResult = networkManagementClient.VirtualNetworks.CreateOrUpdate(
+          return await networkManagementClient.VirtualNetworks.CreateOrUpdateAsync(
             groupName,
             vnetName,
             new VirtualNetwork
@@ -273,19 +263,47 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
               Subnets = new List<Subnet> { subnet }
             }
           );
-          
-          Console.WriteLine(vnResult.ProvisioningState);
-          
-          var subnetResponse = networkManagementClient.Subnets.Get(
+        }
+        
+2. 將下列程式碼新增至 Program 類別的 Main 方法，以呼叫您剛才新增的方法：
+
+        var vnResult = CreateVirtualNetworkAsync(
+          credential,
+          groupName,
+          subscriptionId,
+          location,
+          vnetName,
+          subnetName);
+        Console.WriteLine(vnResult.Result.ProvisioningState);  
+        Console.ReadLine();
+        
+### 建立網路介面
+
+虛擬機器需要網路介面來在剛才建立的虛擬網路上通訊。
+
+1. 將下列方法新增至 Program 類別以建立網路介面：
+
+        public static async Task<NetworkInterface> CreateNetworkInterfaceAsync(
+          TokenCredentials credential,
+          string groupName,
+          string subscriptionId,
+          string location,
+          string subnetName,
+          string vnetName,
+          string ipName,
+          string nicName)
+        {
+          Console.WriteLine("Creating the network interface...");
+          var networkManagementClient = new NetworkManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          var subnetResponse = await networkManagementClient.Subnets.GetAsync(
             groupName,
             vnetName,
             subnetName
           );
+          var pubipResponse = await networkManagementClient.PublicIPAddresses.GetAsync(groupName, ipName);
 
-          var pubipResponse = networkManagementClient.PublicIPAddresses.Get(groupName, ipName);
-
-          Console.WriteLine("Updating the network with the nic...");
-          var nicResult = networkManagementClient.NetworkInterfaces.CreateOrUpdate(
+          return await networkManagementClient.NetworkInterfaces.CreateOrUpdateAsync(
             groupName,
             nicName,
             new NetworkInterface
@@ -295,27 +313,27 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
               {
                 new NetworkInterfaceIPConfiguration
                 {
-                  Name = "nicConfig1",
+                  Name = nicName,
                   PublicIPAddress = pubipResponse,
                   Subnet = subnetResponse
                 }
               }
             }
           );
-          Console.WriteLine(vnResult.ProvisioningState);
         }
 
 2. 將下列程式碼新增至 Program 類別的 Main 方法，以呼叫您剛才新增的方法：
 
-        CreateNetwork(
+        var ncResult = CreateNetworkInterfaceAsync(
           credential,
-          vnetName,
-          subnetName,
-          nicName,
-          ipName,
           groupName,
           subscriptionId,
-          location);
+          location,
+          subnetName,
+          vnetName,
+          ipName,
+          nicName);
+        Console.WriteLine(ncResult.Result.ProvisioningState);  
         Console.ReadLine();
 
 ### 建立可用性設定組
@@ -324,17 +342,17 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 1. 將下列方法新增至 Program 類別以建立可用性設定組：
 
-        public static void CreateAvailabilitySet(
+        public static async Task<AvailabilitySet> CreateAvailabilitySetAsync(
           TokenCredentials credential,
-          string avsetName,
           string groupName,
           string subscriptionId,
-          string location)
+          string location,
+          string avsetName)
         {
           Console.WriteLine("Creating the availability set...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          var avResult = computeManagementClient.AvailabilitySets.CreateOrUpdate(
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          return await computeManagementClient.AvailabilitySets.CreateOrUpdateAsync(
             groupName,
             avsetName,
             new AvailabilitySet()
@@ -346,12 +364,12 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 2. 將下列程式碼新增至 Program 類別的 Main 方法，以呼叫您剛才新增的方法：
 
-        CreateAvailabilitySet(
-          credential,
-          avSetName,
+        var avResult = CreateAvailabilitySetAsync(
+          credential,  
           groupName,
           subscriptionId,
-          location);
+          location,
+          avSetName);
         Console.ReadLine();
 
 ### 建立虛擬機器
@@ -360,20 +378,20 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 
 1. 將下列方法新增至 Program 類別以建立虛擬機器：
 
-        public static void CreateVirtualMachine(
-          TokenCredentials credential,
-          string vmName,
+        public static async Task<VirtualMachine> CreateVirtualMachineAsync(
+          TokenCredentials credential, 
           string groupName,
+          string subscriptionId,
+          string location,
           string nicName,
           string avsetName,
           string storageName,
           string adminName,
           string adminPassword,
-          string subscriptionId,
-          string location)
+          string vmName)
         {
           var networkManagementClient = new NetworkManagementClient(credential);
-          networkManagementClient.SubscriptionId = subscriptionId;
+            { SubscriptionId = subscriptionId };
           var nic = networkManagementClient.NetworkInterfaces.Get(groupName, nicName);
 
           var computeManagementClient = new ComputeManagementClient(credential);
@@ -381,7 +399,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
           var avSet = computeManagementClient.AvailabilitySets.Get(groupName, avsetName);
 
           Console.WriteLine("Creating the virtual machine...");
-          var vm = computeManagementClient.VirtualMachines.CreateOrUpdate(
+          return await computeManagementClient.VirtualMachines.CreateOrUpdateAsync(
             groupName,
             vmName,
             new VirtualMachine
@@ -436,48 +454,52 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
           Console.WriteLine(vm.ProvisioningState);
         }
 
-	>[AZURE.NOTE] 本教學課程中會建立執行 Windows Server 作業系統版本的虛擬機器。若要深入了解如何選取其他映像，請參閱[使用 Windows PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
+	>[AZURE.NOTE] 本教學課程中會建立執行 Windows Server 作業系統版本的虛擬機器。若要深入了解如何選取其他映像，請參閱[使用 Windows PowerShell 和 Azure CLI 巡覽並選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
 
 2. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        CreateVirtualMachine(
+        var vmResult = CreateVirtualMachineAsync(
           credential,
-          vmName,
           groupName,
+          subscriptionId,
+          location,
           nicName,
-          avSetName,
+          avsetName,
           storageName,
           adminName,
           adminPassword,
-          subscriptionId,
-          location);
+          vmName);
+        Console.WriteLine(vmResult.Result.ProvisioningState);
         Console.ReadLine();
 
-##步驟 5：加入程式碼以刪除資源
+##步驟 4：加入程式碼以刪除資源
 
 您將為 Azure 中所使用的資源支付費用，因此，刪除不再需要的資源永遠是最好的做法。如果您想要刪除虛擬機器及所有支援的資源，您只需要刪除資源群組。
 
-1. 將下列方法新增至 Program 類別以刪除資源群組：
+1.	將下列方法新增至 Program 類別以刪除資源群組：
 
-        public static void DeleteResourceGroup(
+        public static async void DeleteResourceGroupAsync(
           TokenCredentials credential,
-          string groupName)
+          string groupName,
+          string subscriptionId)
         {
-            Console.WriteLine("Deleting resource group...");
-            var resourceGroupClient = new ResourceManagementClient(credential);
-            resourceGroupClient.ResourceGroups.DeleteAsync(groupName);
+          Console.WriteLine("Deleting resource group...");
+          var resourceManagementClient = new ResourceManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          return await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
         }
 
-2. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
+2.	將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        DeleteResourceGroup(
+        DeleteResourceGroupAsync(
           credential,
-          groupName);
+          groupName,
+          subscriptionId);
         Console.ReadLine();
 
-## 步驟 6：執行主控台應用程式
+## 步驟 5：執行主控台應用程式
 
-1. 若要執行主控台應用程式，按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+1. 若要執行主控台應用程式，按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 2. 傳回每個狀態碼之後，按下 **Enter** 以建立每個資源。建立虛擬機器之後，請執行下一個步驟，再按 Enter 以刪除所有資源。
 
@@ -489,6 +511,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
     
 ## 後續步驟
 
-使用[使用 C# 和 Resource Manager 範本部署 Azure 虛擬機器](virtual-machines-windows-csharp-template.md)中的資訊，以利用範本來建立虛擬機器。
+- 使用[利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器](virtual-machines-windows-csharp-template.md)中的資訊，以利用範本來建立虛擬機器。
+- 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

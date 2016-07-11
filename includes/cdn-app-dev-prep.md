@@ -1,55 +1,56 @@
-## Preparation
+## 準備工作
 
-Before we can write CDN management code, we need to do some preparation.  The first thing we're going to do is create a resource group to contain the CDN profile we create in this tutorial.  We will then setup Azure Active Directory to provide authentication for our application.  After that's done, we'll apply permissions to the resource group so that only authorized users from our Azure AD tenant can interact with our CDN profile.
+在我們可以撰寫 CDN 管理程式碼之前，需要先做一些準備工作。首要任務就是建立資源群組，以包含我們在本教學課程中建立的 CDN 設定檔。然後設定 Azure Active Directory，針對我們的應用程式提供驗證。完成之後，將權限套用到資源群組，如此一來，就只有來自我們 Azure AD 租用戶的授權使用者可以與我們的 CDN 設定檔互動。
 
-### Creating the resource group
+### 建立資源群組
 
-1. Log into the [Azure Portal](https://portal.azure.com).
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. Click the **New** button in the upper left, and then **Management**, and **Resource Group**.
+2. 依序按一下左上方的 [新增] 按鈕、[管理] 和 [資源群組]。
 	
-	![Creating a new resource group](./media/cdn-app-dev-prep/cdn-new-rg-1.png)
+	![建立新的資源群組](./media/cdn-app-dev-prep/cdn-new-rg-1.png)
 
-3. Call your resource group *CdnConsoleTutorial*.  Select your subscription and choose a location near you.  If you wish, you may click the **Pin to dashboard** checkbox to pin the resource group to the dashboard in the portal.  This will make it easier to find later.  After you've made your selections, click **Create**.
+3. 呼叫您的資源群組 CdnConsoleTutorial。選取您的訂用帳戶，並選擇離您最近的位置。您可以視需要按一下 [釘選到儀表板] 核取方塊，將資源群組釘選到入口網站的儀表板上。這將方便日後尋找。進行選擇之後，按一下 [建立]。
 
-	![Naming the resource group](./media/cdn-app-dev-prep/cdn-new-rg-2.png)
+	![為資源群組命名](./media/cdn-app-dev-prep/cdn-new-rg-2.png)
 
-4. After the resource group is created, if you didn't pin it to your dashboard, you can find it by clicking **Browse**, then **Resource Groups**.  Click the resource group to open it.  Make a note of your **Subscription ID**.  We'll need it later.
+4. 建立資源群組之後，如果您未將它釘選到儀表板，您可以依序按一下 [瀏覽] 和 [資源群組] 來尋找它。按一下資源群組，將它開啟。請記下您的**訂用帳戶 ID**。我們稍後將會用到此資訊。
 
-	 ![Naming the resource group](./media/cdn-app-dev-prep/cdn-subscription-id.png)
+	 ![為資源群組命名](./media/cdn-app-dev-prep/cdn-subscription-id.png)
 
-### Creating the Azure AD application
+### 建立 Azure AD 應用程式
 
-There are two approaches to app authentication with Azure Active Directory: Individual users or a service principal. A service principal is similar to a service account in Windows.  Instead of granting a particular user permissions to interact with the CDN profiles, we instead grant the permissions to the service principal.  Service principals are generally used for automated, non-interactive processes.  Even though this tutorial is writing an interactive console app, we'll focus on the service principal approach.
+有兩種方式可以使用 Azure Active Directory 來進行應用程式驗證︰個別使用者或服務主體。服務主體類似於 Windows 中的服務帳戶。我們並未授與特定使用者權限來與 CDN 設定檔互動，而是改為將權限授與服務主體。服務主體通常用於自動化的非互動式處理程序。雖然本教學課程是撰寫互動式主控台應用程式，但我們將著重在服務主體處理方法。
 
-Creating a service principal consists of several steps, including creating an Azure Active Directory application.  To do this, we're going to [follow this tutorial](../articles/resource-group-create-service-principal-portal.md).
+建立服務主體包含數個步驟，其中包括建立 Azure Active Directory 應用程式。為達此目的，我們將[遵循此教學課程](../articles/resource-group-create-service-principal-portal.md)。
 
-> [AZURE.IMPORTANT] Be sure to follow all the steps in the [linked tutorial](../articles/resource-group-create-service-principal-portal.md).  It is *extremely important* that you complete it exactly as described.  Make sure to note your **tenant ID**, **tenant domain name** (commonly a *.onmicrosoft.com* domain unless you've specified a custom domain), **client ID**, and **client authentication key**, as we will need these later.  Be very careful to guard your **client ID** and **client authentication key**, as these credentials can be used by anyone to execute operations as the service principal. 
+> [AZURE.IMPORTANT] 請務必遵循[連結的教學課程](../articles/resource-group-create-service-principal-portal.md)中的所有步驟。您必須如所述方式確實完成，這點「極為重要」。請務必記下您的**租用戶識別碼**、**租用戶網域名稱** (除非您指定了自訂網域，否則通常是 *.onmicrosoft.com* 網域)、**用戶端識別碼**和**用戶端驗證金鑰**，因為我們稍後將需要用到這些項目。務必謹慎地保護您的**用戶端識別碼**和**用戶端驗證金鑰**，因為任何人都可以使用這些認證，以服務主體形式來執行作業。
 > 	
-> When you get to the step named [Configure multi-tenant application](../articles/resource-group-create-service-principal-portal.md#configure-multi-tenant-application), select **No**.
+> 當您要進入名為[設定多租用戶應用程式](../articles/resource-group-create-service-principal-portal.md#configure-multi-tenant-application)的步驟時，選取 [否]。
 > 
-> When you get to the step [Assign application to role](../articles/resource-group-create-service-principal-portal.md#assign-application-to-role), use the resource group we created earlier,  *CdnConsoleTutorial*, but instead of the **Reader** role, assign the **CDN Profile Contributor** role.  After you assign the application the **CDN Profile Contributor** role on your resource group, return to this tutorial. 
+> 當您要進入[將應用程式指派給角色](../articles/resource-group-create-service-principal-portal.md#assign-application-to-role)的步驟時，請使用我們稍早建立的資源群組 CdnConsoleTutorial，而不是**讀取者**角色來指派 **CDN 設定檔參與者**角色。當您將應用程式指派給資源群組中的 **CDN 設定檔參與者**角色之後，請返回本教學課程。
 
-Once you've created your service principal and assigned the **CDN Profile Contributor** role, the **Users** blade for your resource group should look similar to this.
+一旦您建立服務主體並指派 **CDN 設定檔參與者**角色之後，資源群組的 [使用者] 刀鋒視窗看起來應該如下所示。
 
-![Users blade](./media/cdn-app-dev-prep/cdn-service-principal.png)
+![[使用者] 刀鋒視窗](./media/cdn-app-dev-prep/cdn-service-principal.png)
 
 
-### Interactive user authentication
+### 互動式使用者驗證
 
-If, instead of a service principal, you'd rather have interactive individual user authentication, the process is very similar to that for a service principal.  In fact, you will need to follow the same procedure, but make a few minor changes.
+如果比起服務主體，您比較想要使用互動式個別使用者驗證，則此程序與服務主體的程序非常類似。事實上，您必須遵循相同的程序，但要進行些微的變動。
 
->[AZURE.IMPORTANT] Only follow these next steps if you are choosing to use individual user authentication instead of a service principal.
+>[AZURE.IMPORTANT] 如果您選擇使用個別使用者驗證，而不是服務主體，只需遵循以下這些步驟。
 
-1. When creating your application, instead of **Web App**, choose **Native application**. 
+1. 當您建立應用程式，而不是 **Web 應用程式**時，選擇 [原生應用程式]。
 	
-	![Native application](./media/cdn-app-dev-prep/cdn-native-application.png)
+	![原生應用程式](./media/cdn-app-dev-prep/cdn-native-application.png)
 	
-2. On the next page, you will be prompted for a **redirect URI**.  The URI won't be validated, but remember what you entered.  You'll need it later. 
+2. 在下一個頁面上，系統將提示您輸入**重新導向 URI**。URI 不會進行驗證，但請記住您的輸入。稍後您將會用到此資訊。
 
-3. There is no need to create a **client authentication key**.
+3. 不需要**用戶端驗證金鑰**。
 
-4. Instead of assigning a service principal to the **CDN Profile Contributor** role, we're going to assign individual users or groups.  In this example, you can see that I've assigned  *CDN Demo User* to the **CDN Profile Contributor** role.  
+4. 我們不會將服務主體指派給 **CDN 設定檔參與者**角色，而是將指派個別使用者或群組。在此範例中，您可以看到我已將「CDN 示範使用者」指派給 **CDN 設定檔參與者**角色。
 	
-	![Individual user access](./media/cdn-app-dev-prep/cdn-aad-user.png)
+	![個別使用者存取](./media/cdn-app-dev-prep/cdn-aad-user.png)
 
+<!---HONumber=AcomDC_0629_2016-->

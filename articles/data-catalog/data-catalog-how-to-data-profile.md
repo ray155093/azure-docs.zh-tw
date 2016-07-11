@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-catalog"
-	ms.date="04/07/2016"
+	ms.date="06/27/2016"
 	ms.author="spelluru"/>
 
 # 對資料來源進行資料分析
@@ -91,4 +91,4 @@
 -	[如何註冊資料來源](data-catalog-how-to-register.md)
 -	[開始使用 Azure 資料目錄](data-catalog-get-started.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,12 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/16/2016"
+   ms.date="06/23/2016"
    ms.author="mbaldwin"/>
 
 # 支援的權杖和宣告類型
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 本主題旨在幫助您了解和評估 Azure Active Directory (Azure AD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告。
 
@@ -80,7 +78,7 @@ Azure AD 不支援 SAML 權杖中的應用程式識別碼宣告。
 
 ### 驗證方法
 
-驗證方法宣告指出如何驗證權杖的主體。在此範例中，識別提供者會使用密碼來驗證使用者。http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password
+驗證方法宣告指出如何驗證權杖的主體。在此範例中，身分識別提供者會使用密碼來驗證使用者。http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password
 
 在 SAML 權杖中，驗證方法值會出現在 AuthnContextClassRef 元素中。
 
@@ -414,4 +412,4 @@ Version 宣告儲存權杖的版本號碼。在 JWT 權杖中，使用者主體�
 
 [Azure Active Directory 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn151124.aspx)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

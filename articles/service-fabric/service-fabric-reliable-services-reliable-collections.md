@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="06/14/2016"
+   ms.date="06/19/2016"
    ms.author="mcoskun"/>
 
 # Azure Service Fabric 具狀態服務中可靠的集合簡介
@@ -119,10 +119,11 @@
 ## 後續步驟
 
 - [Reliable Services 快速入門](service-fabric-reliable-services-quick-start.md)
+- [Reliable Services 通知](service-fabric-reliable-services-notifications.md)
 - [備份與還原 Reliable Services (災害復原)](service-fabric-reliable-services-backup-restore.md)
 - [Reliable State Manager 組態](service-fabric-reliable-services-configuration.md)
 - [開始使用 Service Fabric Web API 服務](service-fabric-reliable-services-communication-webapi.md)
 - [Reliable Services 程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
 - [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

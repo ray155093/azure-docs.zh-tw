@@ -19,7 +19,7 @@
 
 # MariaDB (MySQL) 叢集 - Azure 教學課程
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 > [AZURE.NOTE]  Azure Marketplace 現已提供 MariaDB Enterprise 叢集。此新方案會自動在 ARM 上部署 MariaDB Galera 叢集。您應該從 https://azure.microsoft.com/zh-TW/marketplace/partners/mariadb/cluster-maxscale/ 使用此新方案
 
@@ -374,4 +374,4 @@
 [Azure CLI 工具中的問題 #1268]: https://github.com/Azure/azure-xplat-cli/issues/1268
 [在 Linux 上叢集 MySQL 的另一種方法]: virtual-machines-linux-mysql-cluster.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

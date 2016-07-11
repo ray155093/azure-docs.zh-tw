@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="04/18/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -37,7 +37,7 @@
 
 - 媒體服務帳戶金鑰。
 
-若要尋找這些值，請移至 Azure 管理入口網站，並選取您的媒體服務帳戶，然後按一下入口網站視窗底部的 [**管理金鑰**] 圖示。按一下每個文字方塊旁邊的圖示，會將值複製到系統剪貼簿。
+若要尋找這些值，請移至 Azure 管理入口網站，並選取您的媒體服務帳戶，然後按一下入口網站視窗底部的 [管理金鑰] 圖示。按一下每個文字方塊旁邊的圖示，會將值複製到系統剪貼簿。
 
 
 ## 建立 CloudMediaContext 執行個體
@@ -196,4 +196,4 @@ CloudMediaContext 有五個建構函式多載。建議使用採用 **MediaServic
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="05/03/2016"    
+ 	ms.date="06/22/2016"    
 	ms.author="juliako"/>
 
 
@@ -691,7 +691,7 @@
 
 如果您要使用 AES 128 將 HLS 加密，可選擇使用動態加密 (建議選項) 或靜態加密 (如本節所示)。如果您決定使用動態加密，請參閱[使用 AES 128 動態加密和金鑰傳遞服務](media-services-protect-with-aes128.md)。
 
->[AZURE.NOTE]若要將您的內容轉換為 HLS，必須先將其轉換/編碼為 Smooth Streaming。此外，針對使用 AES 加密的 HLS，請務必設定 MediaPackager\_SmoothToHLS.xml 檔案中的下列屬性：將加密屬性設為 true、設定金鑰值和指向驗證/授權伺服器的 KeyURI 值。媒體服務將會建立金鑰檔案，並將其放到資產容器中。您應該將 /asset-containerguid/*.key 檔案複製到伺服器中 (或自行建立金鑰檔案)，然後再從資產容器中刪除 *.key 檔案。
+>[AZURE.NOTE]若要將您的內容轉換為 HLS，必須先將其轉換/編碼為 Smooth Streaming。此外，針對使用 AES 加密的 HLS，請務必設定 MediaPackager\_SmoothToHLS.xml 檔案中的下列屬性：將加密屬性設為 true、設定金鑰值和指向驗證/授權伺服器的 KeyURI 值。媒體服務將會建立金鑰檔案，並將其放到資產容器中。您應該將 /asset-containerguid/*.key 檔案複製到伺服器中 (或自行建立金鑰檔案)，然後從資產容器中刪除 *.key 檔案。
 
 本節中的範例會將夾層檔案 (本例中為 MP4) 編碼為多位元速率 MP4 檔案，然後將 MP4 封裝為 Smooth Streaming。接著，該範例會將 Smooth Streaming 封裝為 HTTP Live Streaming (HLS)，該格式使用進階加密標準 (AES) 128 位元串流加密進行加密。請務必更新下列指向資料夾 (您可在其中找到輸入的 MP4 檔案) 的程式碼。此外，也請更新指向 MediaPackager\_MP4ToSmooth.xml 和 MediaPackager\_SmoothToHLS.xml 檔案位置的程式碼。您可以在 [Azure Media Packager 工作預設值](http://msdn.microsoft.com/library/azure/hh973635.aspx)主題中找到這些檔案的定義。
 	
@@ -1447,4 +1447,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="03/01/2016"  
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -27,9 +27,9 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 
 使用 REST 時須考量下列事項：
 
-- 查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。您需要使用 [略過] 和 [採用] (.NET)/ [最前面] (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
+- 查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。您需要使用 [略過] 和 [採用] (.NET)/ [最前面] (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。
 
-- 當使用 JSON 且指定在要求中使用 **\_\_metadata** 關鍵字時 (例如，為了參考連結的物件)，您「必須」將 **Accept** 標頭設為 [JSON Verbose 格式](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/) (請參閱下列範例)。Odata 並不了解要求中的 **\_\_metadata** 屬性，除非您將它設為 verbose。
+- 使用 JSON 並指定在要求中使用 **__metadata** 關鍵字時 (例如，為了參考連結的物件)，您「必須」將 **Accept** 標頭設為 [JSON Verbose 格式](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/) (請參閱下列範例)。Odata 並不了解要求中的 **__metadata** 屬性，除非您將它設為 verbose。
 
 		POST https://media.windows.net/API/Jobs HTTP/1.1
 		Content-Type: application/json;odata=verbose
@@ -74,7 +74,7 @@ Accept-Language|"en"、"es" 等。|指定回應的慣用語言。
 Accept-Charset|字元集類型，如 "UTF-8"|預設值為 UTF-8。
 X-HTTP-Method|HTTP 方法|可讓不支援 PUT 或 DELETE 等 HTTP 方法的用戶端或防火牆，透過 GET 呼叫通道傳送使用這些方法。
 Content-Type|內容類型|PUT 或 POST 要求中的要求主體內容類型。
-client-request-id|String|呼叫端定義的值，識別指定的要求。如果指定，回應訊息中將包含此值以做為對應要求的方式。<p><p>**重要資訊**<p>值的上限應該為 2096b (2k)。
+client-request-id|String|呼叫端定義的值，識別指定的要求。如果指定，回應訊息中將包含此值以做為對應要求的方式。<p><p>**重要**<p>值的上限應該為 2096b (2k)。
 
 ## 媒體服務支援的標準 HTTP 回應標頭
 
@@ -106,7 +106,7 @@ HEAD|傳回 GET 回應的物件中繼資料。
 
 ##限制
 
-查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。您需要使用 [略過] 和 [採用] \(.NET) [最前面] \(REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。
+查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。您需要使用 **Skip** 和 **Take** (.NET)/ **top** (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。
 
 
 ## 探索媒體服務模型
@@ -132,4 +132,4 @@ HEAD|傳回 GET 回應的物件中繼資料。
 
  
 
-<!-----HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

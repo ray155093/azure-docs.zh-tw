@@ -20,10 +20,8 @@
 # 還原使用 Azure 入口網站的已刪除 Azure SQL Database
 
 > [AZURE.SELECTOR]
-- [概觀](sql-database-restore-deleted-database.md)
-- [Azure 入口網站](sql-database-restore-deleted-database-portal.md)
-- [PowerShell](sql-database-restore-deleted-database-powershell.md)
-
+- [概觀](sql-database-recovery-using-backups.md)
+- [還原已刪除的資料庫︰PowerShell](sql-database-restore-deleted-database-powershell.md)
 
 ## 選取要還原的資料庫 
 
@@ -38,19 +36,14 @@
 
     ![還原 Azure SQL Database](./media/sql-database-restore-deleted-database-portal/restore-deleted.png)
 
+
 ## 後續步驟
 
-- 如需如何使用 PowerShell 還原已刪除資料庫的詳細步驟，請參閱[使用 PowerShell 還原已刪除的資料庫](sql-database-restore-deleted-database-powershell.md)。
-- 如需如何還原已刪除資料庫的相關資訊，請參閱[使用 REST API 還原刪除的資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)。
-- 如需還原已刪除資料庫的詳細資訊，請參閱[還原已刪除的資料庫](sql-database-restore-deleted-database.md)。
-- 如需 Azure SQL Database 自動備份的詳細資訊，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
+- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-## 其他資源
-
-- [還原時間點](sql-database-point-in-time-restore.md)
-- [商務持續性概觀](sql-database-business-continuity.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

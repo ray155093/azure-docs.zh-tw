@@ -23,7 +23,7 @@
 
 ## 災害復原的驗證需求概觀
 
-本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。它也描述如何在使用異地還原之後啟用復原資料庫的存取權。如需復原選項的詳細資訊，請參閱[從中斷復原 Azure SQL Database](sql-database-disaster-recovery.md)。
+本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。它也會描述如何在使用[異地還原](sql-database-recovery-using-backups.md#geo-restore)之後啟用復原資料庫的存取權。如需復原選項的詳細資訊，請參閱[從中斷復原 Azure SQL Database](sql-database-disaster-recovery.md)。
 
 ## 災害復原與自主使用者
 
@@ -82,7 +82,7 @@
 
 >[AZURE.NOTE] 如果您想要授與使用者次要資料庫的存取權，而不是主要資料庫的，您可以藉由使用下列語法在主要伺服器上改變使用者登入，即可完成。
 >
->ALTER LOGIN <login name> DISABLE
+>ALTER LOGIN <登入名稱> DISABLE
 >
 >DISABLE 不會變更密碼，因此必要時可以永遠啟用。
 
@@ -91,17 +91,8 @@
 - 如需管理資料庫存取和登入的詳細資訊，請參閱 [SQL Database 安全性︰管理資料庫存取與登入安全性](sql-database-manage-logins.md)。
 - 如需自主資料庫使用者的詳細資訊，請參閱[自主資料庫使用者 - 使資料庫可攜](https://msdn.microsoft.com/library/ff929188.aspx)。
 - 如需使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 如需使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
+- 如需使用異地還原的相關資訊，請參閱[異地還原](sql-database-recovery-using-backups.md#geo-restore)
 
 ## 其他資源
 
-- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
-- [還原時間點](sql-database-point-in-time-restore.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

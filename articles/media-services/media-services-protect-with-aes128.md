@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
- 	ms.date="06/16/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 #使用 AES-128 動態加密和金鑰傳遞服務
@@ -39,11 +39,11 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 以下是您利用 AES 加密資產、使用媒體服務金鑰傳遞服務，同時也使用動態加密時將需要執行的一般步驟。
 
-1. [建立資產並將檔案上傳到資產](media-services-protect-with-aes128.md#create_asset)。 
+1. [建立資產並將檔案上傳到資產](media-services-protect-with-aes128.md#create_asset)。
 1. [將包含檔案的資產編碼為自適性位元速率 MP4 集](media-services-protect-with-aes128.md#encode_asset)。
 1. [建立內容金鑰，並將它與編碼的資產產生關聯](media-services-protect-with-aes128.md#create_contentkey)。在媒體服務中，內容金鑰包含資產的加密金鑰。
-1. [設定內容金鑰的授權原則](media-services-protect-with-aes128.md#configure_key_auth_policy)。內容金鑰授權原則必須由您設定，而且用戶端必須符合條件，才能將內容金鑰傳遞給用戶端。 
-1. [設定資產的傳遞原則](media-services-protect-with-aes128.md#configure_asset_delivery_policy)。傳遞原則組態包括：主要取得 URL 和初始化向量 (IV) (AES 128 會在加密和解密時要求提供相同的 IV)、傳送通訊協定 (例如，MPEG DASH、HLS、HDS、Smooth Streaming 或全部)、動態加密的類型 (例如，信封或沒有動態加密)。 
+1. [設定內容金鑰的授權原則](media-services-protect-with-aes128.md#configure_key_auth_policy)。內容金鑰授權原則必須由您設定，而且用戶端必須符合條件，才能將內容金鑰傳遞給用戶端。
+1. [設定資產的傳遞原則](media-services-protect-with-aes128.md#configure_asset_delivery_policy)。傳遞原則組態包括：主要取得 URL 和初始化向量 (IV) (AES 128 會在加密和解密時要求提供相同的 IV)、傳送通訊協定 (例如，MPEG DASH、HLS、HDS、Smooth Streaming 或全部)、動態加密的類型 (例如，信封或沒有動態加密)。
 
 	您可以將不同的原則套用至相同資產上的每一個通訊協定。例如，您可以將 PlayReady 加密套用到 Smooth/DASH，以及將 AES 信封加密套用到 HLS。傳遞原則中未定義的任何通訊協定 (例如，您加入單一原則，它只有指定 HLS 做為通訊協定) 將會遭到封鎖無法串流。這個狀況的例外情形是您完全沒有定義資產傳遞原則之時。那麼，將允許所有通訊協定，不受阻礙。
 
@@ -91,10 +91,10 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 設定資產的傳遞原則。資產傳遞原則組態包括：
 
-- 金鑰取得 URL。 
-- 用於信封加密的初始化向量 (IV)。AES 128 會在加密和解密時要求提供相同的 IV。 
+- 金鑰取得 URL。
+- 用於信封加密的初始化向量 (IV)。AES 128 會在加密和解密時要求提供相同的 IV。
 - 資產傳遞通訊協定 (例如，MPEG DASH、HLS、HDS、Smooth Streaming 或全部)。
-- 動態加密的類型 (例如，AES 信封) 或沒有動態加密。 
+- 動態加密的類型 (例如，AES 信封) 或沒有動態加密。
 
 如需詳細資訊，請參閱[設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)。
 
@@ -129,7 +129,7 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 ###資訊清單檔案
 
-用戶端必須從資訊清單檔案擷取 URL (其中也包含內容金鑰識別碼 (kid)) 值。用戶端接著會嘗試從金鑰傳遞服務取得加密金鑰。用戶端也必須擷取 IV 值，並使用它解密串流。下列程式碼片段展示 Smooth Streaming 資訊清單的 <Protection> 項目。
+用戶端必須從資訊清單檔案擷取 URL (其中也包含內容金鑰識別碼 (kid)) 值。用戶端接著會嘗試從金鑰傳遞服務取得加密金鑰。用戶端也必須擷取 IV 值，並使用它解密串流。下列程式碼片段展示 Smooth Streaming 資訊清單的 <Protection> 元素。
 
 	<Protection>
 	  <ProtectionHeader SystemID="B47B251A-2409-4B42-958E-08DBAE7B4EE9">
@@ -630,4 +630,4 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

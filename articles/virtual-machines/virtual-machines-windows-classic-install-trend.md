@@ -20,7 +20,7 @@
 
 # 如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 本文說明如何在執行 Windows Server 的新或現有虛擬機器 (VM) 上，安裝和設定 Trend Micro Deep Security as a Service。Deep Security as a Service 包括反惡意程式碼防護、防火牆、入侵防禦系統及完整監視。
 
@@ -50,14 +50,14 @@
 
 - 在目標虛擬機器上安裝 VM 代理程式。
 
-首先，確認已安裝 VM 代理程式。填寫雲端服務名稱和虛擬機器名稱，然後在系統管理員層級 Azure PowerShell 命令提示字元上執行下列命令。取代括弧內的所有項目，包括 < and > 字元。
+首先，確認已安裝 VM 代理程式。填寫雲端服務名稱和虛擬機器名稱，然後在系統管理員層級 Azure PowerShell 命令提示字元上執行下列命令。取代括弧內 (包括 < 和 > 字元) 的所有項目。
 
 	$CSName = "<cloud service name>"
 	$VMName = "<virtual machine name>"
 	$vm = Get-AzureVM -ServiceName $CSName -Name $VMName
 	write-host $vm.VM.ProvisionGuestAgent
 
-如果您不知道雲端服務和虛擬機器名稱，請執行 **Get-AzureVM** 以顯示目前訂用帳戶中所有虛擬機器的該項資訊。
+如果您不知道雲端服務和虛擬機器名稱，請執行 **Get-AzureVM**，來顯示目前訂用帳戶中所有虛擬機器的該項資訊。
 
 如果 **write-host** 命令傳回 **True**，則會安裝 VM 代理程式。如果傳回 **False**,，請參閱 Azure 部落格文章 [VM 代理程式與延伸模組 - 第 2 部分](http://go.microsoft.com/fwlink/p/?LinkId=403947)中的指示和下載連結。
 
@@ -86,4 +86,4 @@
 [如何登入執行 Windows Server 的虛擬機器]: virtual-machines-windows-classic-connect-logon.md
 [Azure VM 延伸模組與功能]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

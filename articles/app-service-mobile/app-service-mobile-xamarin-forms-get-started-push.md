@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用 Azure App Service 將推播通知新增至 Xamarin.Forms 應用程式"
-	description="了解如何使用 Azure App Service 將推播通知傳送至 Xamarin.Forms 應用程式"
+	pageTitle="將推播通知新增至 Xamarin.Forms 應用程式 | Microsoft Azure"
+	description="了解如何使用 Azure 服務將多平台推播通知傳送至 Xamarin.Forms 應用程式。"
 	services="app-service\mobile"
 	documentationCenter="xamarin"
 	authors="wesmc7777"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="06/20/2016"
 	ms.author="wesmc"/>
 
 # 將推播通知新增至 Xamarin.Forms 應用程式
@@ -22,30 +22,21 @@
 
 ##概觀
 
-本教學課程以 [Xamarin.Forms 快速入門教學課程](app-service-mobile-xamarin-forms-get-started.md)為基礎，您必須先完成該教學課程。對於您在 Xamarin.Forms 快速入門專案中想要支援的每個專案，您將會加入推播通知支援。每次插入記錄時，就會傳送推播通知。
+本主題說明如何使用 Azure 服務，將推播通知傳送至各種原生裝置平台 (Android、iOS 和 Windows) 上執行的 Xamarin.Forms 應用程式。Azure Mobile Apps 後端會使用 Azure 通知中樞傳來推播通知。由於使用範本註冊，相同的訊息可以透過各種推播通知服務 (PNS)，傳送至所有平台上執行的裝置。如需傳送跨平台推播通知的詳細資訊，請參閱 [Azure 通知中樞](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)文件。
 
-如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
-
-[IOS 模擬器不支援推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)，所以您必須使用實體 iOS 裝置。您也必須註冊 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)。
+您可以將推播通知新增至 Xamarin.Forms 應用程式支援的每個專案。後端每次插入記錄時，就會傳送推播通知。
 
 ##必要條件
 
-* 完成[建立 Xamarin.Forms 應用程式](app-service-mobile-xamarin-forms-get-started.md)教學課程，它會列出其他必要條件。本文使用該教學課程中的已完成應用程式。
+為了讓本教學課程產生最佳結果，建議您先完成[建立 Xamarin.Forms 應用程式](app-service-mobile-xamarin-forms-get-started.md)教學課程。完成本教學課程之後，您將會有一個多平台 TodoList 應用程式的 Xamarin.Forms 專案。
 
-* 實體的 iOS 裝置。iOS 模擬器不支援推播通知。
+如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-##建立行動應用程式的通知中樞
+將推播通知傳送至 iOS 裝置需要具備 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)。此外，您必須使用實體 iOS 裝置，因為 [iOS 模擬器不支援推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)。
 
-若要設定應用程式以傳送通知，請建立新的中樞，並在其中設定您要使用的平台通知服務。
+##<a name="create-hub"></a>建立通知中樞
 
-這些步驟會引導您建立新的通知中樞。如果您已經建立通知中樞，直接選擇它即可。
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。按一下 [瀏覽] > [Mobile Apps] > 您的後端 > [設定] > [行動] > [推送] > [通知中樞] > [+通知中樞]，提供新通知中樞的名稱和命名空間，然後按一下 [確定] 按鈕。
-
-	![](./media/app-service-mobile-xamarin-ios-get-started-push/mobile-app-configure-notification-hub.png)
-
-2. 在 [建立通知中樞] 刀鋒視窗中，按一下 [建立]。
-
+[AZURE.INCLUDE [app-service-mobile-create-notification-hub](../../includes/app-service-mobile-create-notification-hub.md)]
 
 ##更新伺服器專案以傳送推播通知
 
@@ -54,31 +45,29 @@
 
 ##(選擇性) 設定和執行 Android 專案
 
-這一節適用於對 Android 裝置執行 Xamarin Adroid 專案。如果未使用 Android 裝置，可以略過這一節。
+完成本節可以為適用於 Android 的 Xamarin.Forms Droid 專案啟用推播通知。
 
 
-####啟用 Google 雲端通訊 (GCM)
-
+###啟用 Google 雲端通訊 (GCM)
 
 [AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
 
+###設定行動應用程式後端以使用 GCM 傳送推送要求
 
-####設定 GCM 的通知中樞
+[AZURE.INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。按一下 [瀏覽] > [Mobile Apps] > 您的行動應用程式 > [設定] > [推送] > [Google (GCM)]。貼上您先前建立的伺服器 API 金鑰，然後按一下 [儲存]。您的服務現在已設定為對 Android 使用推播通知。
+###將推播通知新增至 Android 專案
 
-	![](./media/app-service-mobile-xamarin-forms-get-started-push/mobile-app-save-gcm-api-key.png)
+將後端設定為使用 Google 雲端通訊 (GCM) 後，我們可以將元件和程式碼新增至用戶端，使應用程式能夠向 GCM 註冊、透過行動應用程式後端向 Azure 通知中樞註冊推播通知，並且接收通知。
 
+1. 在 **Droid** 專案中，以滑鼠右鍵按一下 [元件] 資料夾，按一下 [取得更多元件...]，搜尋 [Google 雲端通訊用戶端] 元件，然後將它新增至專案。此元件支援 Xamarin Android 專案的推播通知。
 
-####將推播通知新增至 droid 專案
-
-1. 在 [元件] 資料夾上按一下滑鼠右鍵，按一下 [取得更多元件...]，搜尋 [Google 雲端通訊用戶端] 元件，然後將它新增至專案。此元件可協助簡化在 Xamarrin Android 專案中使用推播通知。
 
 2. 開啟 MainActivity.cs 專案檔案，然後將下列 using 陳述式加入至檔案頂端：
 
 		using Gcm.Client;
 
-3. 將下列程式碼加入至 `LoadApplication` 呼叫後面的 `OnCreate` 方法。
+3. 在 **OnCreate** 方法中，在呼叫 **LoadApplication** 之後加入下列程式碼：
 
 	    try
 	    {
@@ -92,7 +81,7 @@
 	    }
 	    catch (Java.Net.MalformedURLException)
 	    {
-	        CreateAndShowDialog("There was an error creating the Mobile Service. Verify the URL", "Error");
+	        CreateAndShowDialog("There was an error creating the client. Verify the URL.", "Error");
 	    }
 	    catch (Exception e)
 	    {
@@ -100,7 +89,7 @@
 	    }
 
 
-4. 將下列程式碼加入至 `CreateAndShowDialog` 協助程式方法。
+4. 加入新的 **CreateAndShowDialog** 協助程式方法，如下所示︰
 
 		private void CreateAndShowDialog(String message, String title)
 		{
@@ -112,7 +101,7 @@
 		}
 
 
-5. 在 `MainActivity` 類別中，新增下列程式碼以公開目前的 `MainActivity`，讓我們可以在主要 UI 執行緒上執行某些 UI：
+5. 將下列程式碼加入至 **MainActivity** 類別：
 
 		// Create a new instance field for this activity.
 		static MainActivity instance = null;
@@ -126,41 +115,40 @@
 		    }
 		}
 
-6. 初始化 `MainActivity.OnCreate` 方法開頭的 `instance` 變數。
+	這會公開目前的 **MainActivity** 執行個體，讓我們可以在主要 UI 執行緒上執行。
+
+6. 初始化 **OnCreate** 方法開頭的 `instance` 變數，如下所示。
 
 		// Set the current instance of MainActivity.
 		instance = this;
 
-7. 將新的類別檔案加入至 **Droid** 專案。將新的類別檔案命名為 **GcmService**。
+2. 在名為 `GcmService.cs` 的 **Droid** 專案中，加入新的類別檔案，並確定下列 **using** 陳述式出現在檔案頂端︰
 
-8. 確定檔案頂端包含下列 `using` 陳述式。
-
-		using Gcm.Client;
-		using Microsoft.WindowsAzure.MobileServices;
 		using Android.App;
 		using Android.Content;
+		using Android.Media;
+		using Android.Support.V4.App;
+		using Android.Util;
+		using Gcm.Client;
+		using Microsoft.WindowsAzure.MobileServices;
+		using Newtonsoft.Json.Linq;
+		using System;
 		using System.Collections.Generic;
 		using System.Diagnostics;
-		using Android.Util;
-		using Newtonsoft.Json.Linq;
 		using System.Text;
-		using System.Linq;
-		using Android.Support.V4.App;
-		using Android.Media;
 
 
-9. 在檔案頂端，`using` 陳述式和 `namespace` 宣告之間，加入下列權限要求。
+9. 在檔案頂端的 **using** 陳述式和 **namespace** 宣告之間，加入下列權限要求。
 
 		[assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
 		[assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-		[assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
-
-		//GET_ACCOUNTS is only needed for android versions 4.0.3 and below
-		[assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
+		[assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")
 		[assembly: UsesPermission(Name = "android.permission.INTERNET")]
 		[assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
+		//GET_ACCOUNTS is only needed for android versions 4.0.3 and below
+		[assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
 
-10. 將下列類別定義加入至命名空間。以您先前記下的專案號碼取代 **<PROJECT_NUMBER>**。
+10. 將下列類別定義加入至命名空間。
 
 		[BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
 		[IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, Categories = new string[] { "@PACKAGE_NAME@" })]
@@ -171,7 +159,9 @@
 		    public static string[] SENDER_IDS = new string[] { "<PROJECT_NUMBER>" };
 		}
 
-11. 更新 `GcmService` 類別以使用新的廣播接收器。
+	>[AZURE.NOTE]以您先前記下的專案號碼取代 **<PROJECT\_NUMBER>**。
+
+11. 使用下列程式碼取代空的 **GcmService** 類別，以使用新的廣播接收器︰
 
 		 [Service]
 		 public class GcmService : GcmServiceBase
@@ -183,9 +173,7 @@
 		 }
 
 
-12. 在 GcmService 類別中加入下列程式碼，以覆寫 OnRegistered 事件處理常式並實作 `Register` 方法。
-
-	此程式碼將會註冊範本主體，以使用 `messageParam` 參數接收範本通知。範本通知可讓您跨平台傳送通知。如需詳細資訊，請參閱[範本](https://msdn.microsoft.com/library/azure/dn530748.aspx)。
+12. 在 **GcmService** 類別中加入下列程式碼，以覆寫 **OnRegistered** 事件處理常式並實作 **Register** 方法。
 
 		protected override void OnRegistered(Context context, string registrationId)
 		{
@@ -219,7 +207,9 @@
             }
         }
 
-13. 您必須實作 `OnMessage` 來處理內送的推播通知。此程式碼中，我們將會處理通知，並將它傳送至通知管理員。
+		Note that this code uses the `messageParam` parameter in the template registration. 
+
+13. 加入下列程式碼以實作 **OnMessage**：
 
 		protected override void OnMessage(Context context, Intent intent)
 		{
@@ -286,7 +276,9 @@
             notificationManager.Notify(1, notification);
         }
 
-14. 您也必須為收接器實作 `OnUnRegistered` 和 `OnError` 處理常式。
+	這會處理內送通知，並將它們傳送至通知管理員來顯示。
+
+14. **GcmServiceBase** 也會要求您實作 **OnUnRegistered** 和 **OnError** 處理常式方法，您的做法如下所示：
 
 		protected override void OnUnRegistered(Context context, string registrationId)
 		{
@@ -298,27 +290,30 @@
 			Log.Error("PushHandlerBroadcastReceiver", "GCM Error: " + errorId);
 		}
 
+現在，您已經準備好在 Android 裝置或模擬器上執行的應用程式中測試推播通知。
 
+###在 Android 應用程式中測試推播通知
 
-####在 Android 應用程式中測試推播通知
+只有在模擬器上測試時，才需要前兩個步驟。
 
-1. 在 Visual Studio 或 Xamarin Studio 中，以滑鼠右鍵按一下 **droid** 專案，然後按一下 [設定為啟始專案]。
+1. 針對您要部署的目的地虛擬裝置或偵錯的所在虛擬裝置，請確認該裝置具有已設定為目標的 Google API，如以下 Android 虛擬裝置管理員 (AVD) 所示。
 
-2. 按 [執行] 按鈕以建置專案，並在 Android 裝置上啟動應用程式。
+2. 按一下 [應用程式] > [設定] > [加入帳戶] 將 Google 帳戶加入 Android 裝置，然後依照提示使用裝置現有的 Google 帳戶來建立新帳戶。
+
+1. 在 Visual Studio 或 Xamarin Studio 中，以滑鼠右鍵按一下 **Droid** 專案，然後按一下 [設定為啟始專案]。
+
+2. 按 [執行] 按鈕以建置專案，並在 Android 裝置或模擬器上啟動應用程式。
 
 3. 在應用程式中輸入一項工作，然後按一下加號 (**+**) 圖示。
 
 4. 確認在加入項目時收到通知。
 
 
-
-
-
 ##(選擇性) 設定和執行 iOS 專案
 
 這一節適用於對 iOS 裝置執行 Xamarin iOS 專案。如果未使用 iOS 裝置，可以略過這一節。
 
-[AZURE.INCLUDE [通知中樞 Xamarin 啟用 Apple 推播通知](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
+[AZURE.INCLUDE [notification-hubs-xamarin-enable-apple-push-notifications](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
 
 
 ####設定 APNS 的通知中樞
@@ -419,11 +414,9 @@
 4. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
 
 
-
-
 ##(選擇性) 設定和執行 Windows 專案
 
-這一節適用於對 Windows 裝置執行 WinApp 專案。如果未使用 Windows 裝置，可以略過這一節。
+本節說明執行適用於 Windows 裝置的 Xamarin.Forms WinApp 和 WinPhone81 專案。這些步驟也支援通用 Windows 平台 (UWP) 專案。如果未使用 Windows 裝置，可以略過這一節。
 
 
 ####向 WNS 註冊 Windows 應用程式以使用推播通知
@@ -438,26 +431,26 @@
 
 ####將推播通知加入至 Windows 應用程式
 
-1. 在 Visual Studio 中，開啟 **WinApp** 專案中的 **App.xaml.cs**，然後新增下列 `using` 陳述式。
+1. 在 Visual Studio 中，開啟 Windows 專案中的 **App.xaml.cs**，並新增下列 **using** 陳述式。
 
+		using Newtonsoft.Json.Linq;
+		using Microsoft.WindowsAzure.MobileServices;
 		using System.Threading.Tasks;
 		using Windows.Networking.PushNotifications;
-		using Microsoft.WindowsAzure.MobileServices;
-		using Newtonsoft.Json.Linq;
+		using <your_TodoItemManager_portable_class_namespace>;
 
-	在包含 `TodoItemManager` 類別的可攜式專案中，也加入命名空間的 `using` 陳述式。
-
-		using <Your namespace for the TodoItemManager class>;
+	使用包含 `TodoItemManager` 類別的可攜式專案所在的命名空間，取代 `<your_TodoItemManager_portable_class_namespace>`。
  
 
-2. 在 App.xaml.cs 中，加入下列 `InitNotificationsAsync` 方法。這個方法會取得推播通知通道，並註冊範本以接收來自通知中樞的範本通知。支援 `messageParam` 的範本通知，會傳送到此用戶端。
+2. 在 App.xaml.cs 中，加入下列 **InitNotificationsAsync** 方法：
 
         private async Task InitNotificationsAsync()
         {
             var channel = await PushNotificationChannelManager
                 .CreatePushNotificationChannelForApplicationAsync();
 
-            const string templateBodyWNS = "<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>";
+            const string templateBodyWNS = 
+				"<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>";
 
             JObject headers = new JObject();
             headers["X-WNS-Type"] = "wns/toast";
@@ -466,58 +459,29 @@
             templates["genericMessage"] = new JObject
 			{
 				{"body", templateBodyWNS},
-				{"headers", headers} // Only needed for WNS & MPNS
+				{"headers", headers} // Needed for WNS.
 			};
 
-            await TodoItemManager.DefaultManager.CurrentClient.GetPush().RegisterAsync(channel.Uri, templates);
+            await TodoItemManager.DefaultManager.CurrentClient.GetPush()
+				.RegisterAsync(channel.Uri, templates);
         }
 
-3. 在 App.xaml.cs 中，利用 `async` 屬性更新 `OnLaunched` 事件處理常式，並在方法的底端加入 `InitNotificationsAsync`的呼叫。
+	這個方法會取得推播通知通道，並註冊範本以接收來自通知中樞的範本通知。支援 messageParam 的範本通知會傳送到此用戶端。
 
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
+3. 在 App.xaml.cs 中，加入 `async` 修飾詞以更新 **OnLaunched** 事件處理常式方法定義，然後在方法結尾處新增下一行程式碼︰
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-                // Set the default language
-                rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
-                rootFrame.NavigationFailed += OnNavigationFailed;
-                Xamarin.Forms.Forms.Init(e);
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
+        await InitNotificationsAsync();
 
-            if (rootFrame.Content == null)
-            {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
-            }
-            // Ensure the current window is active
-            Window.Current.Activate();
-
-            await InitNotificationsAsync();
-        }
+	如此可確保每次啟動應用程式時都會建立或重新整理推播通知註冊。必須如此以保證 WNS 推送通道永遠在作用中。
 
 4. 在 Visual Studio 的 [方案總管] 中，開啟 **Package.appxmanifest** 檔案，然後把 [通知] 下方的 [支援快顯通知] 設為 [是]。
 
-5. 建置應用程式並確認沒有錯誤。您用戶端應用程式現在應該註冊行動應用程式後端的範本通知。
+5. 建置應用程式並確認沒有錯誤。您用戶端應用程式現在應該註冊行動應用程式後端的範本通知。針對方案中每個 Windows 專案重複操作這一節。
 
 
 ####在 Windows 應用程式中測試推播通知
 
-1. 在 Visual Studio 中，以滑鼠右鍵按一下 **WinApp** 專案，然後按一下 [設定為啟始專案]。
-
+1. 在 Visual Studio 中，以滑鼠右鍵按一下 Windows 專案，然後按一下 [設定為啟始專案]。
 
 2. 按 [執行] 按鈕，以建立專案並啟動應用程式。
 
@@ -525,7 +489,19 @@
 
 4. 確認在加入項目時收到通知。
 
+##後續步驟
 
+進一步了解推播通知︰
+
+* [使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-add-tags-to-a-device-installation-to-enable-push-to-tags)：標記可讓您使用推播鎖定區隔的客戶。了解如何將標記加入至裝置安裝。
+
+* [診斷推播通知問題](../notification-hubs/notification-hubs-push-notification-fixer.md)：通知遭到捨棄或未抵達裝置有各種原因。本主題說明如何分析及找出推播通知失敗的根本原因。
+
+請考慮繼續進行下列其中一個教學課程：
+
+* [將驗證加入應用程式中](app-service-mobile-xamarin-forms-get-started-users.md)：了解如何使用識別提供者驗證應用程式的使用者。
+
+* [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
 
 <!-- Images. -->
 
@@ -534,4 +510,4 @@
 [Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->
