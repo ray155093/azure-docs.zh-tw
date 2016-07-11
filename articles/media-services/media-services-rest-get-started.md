@@ -497,7 +497,8 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，會傳回下列訊息：HTTP/1.1 204 沒有內容
+如果成功，會傳回下列訊息：
+	HTTP/1.1 204 沒有內容
 
 ## 刪除 Locator 和 AccessPolicy 
 

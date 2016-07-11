@@ -42,7 +42,7 @@
 ### 必要條件
 **在企業層級 (系統管理員)**
 
-*	Azure 訂用帳戶搭配 Azure Active Directory
+*	Azure 訂用帳戶搭配 Azure Active Directory  
 
 **在使用者層級**
 

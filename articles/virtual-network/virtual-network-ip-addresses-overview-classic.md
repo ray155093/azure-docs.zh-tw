@@ -149,10 +149,10 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 
 在大多數情況下，公用 IP 位址是免費的。使用額外和 (或) 靜態公用 IP 位址則會有少許費用。請務必了解[公用 IP 的價格結構](https://azure.microsoft.com/pricing/details/ip-addresses/)。
 
-## Resource Manager 與傳統部署之間的差異
-以下是 Resource Manager 與傳統部署模型中 IP 定址功能的比較。
+## 資源管理員與傳統部署之間的差異
+以下是「資源管理員」與傳統部署模型中 IP 定址功能的比較。
 
-||資源|傳統|Resource Manager|
+||資源|傳統|資源管理員|
 |---|---|---|---|
 |**公用 IP 位址**|VM|稱為 ILPIP (僅動態)|稱為公用 IP (動態或靜態)|
 |||指派給 IaaS VM 或 PaaS 角色執行個體|關連到 VM 的 NIC|

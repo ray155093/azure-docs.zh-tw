@@ -74,7 +74,8 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		CREATE CLUSTERED INDEX ClusteredID ON dbo.sampletable(Id);
 		GO
 
-	Id 是可唯一識別的，而 datetimestamp 資料行是產生對應識別碼的日期和時間。![範例資料](./media/data-factory-stored-proc-activity/sample-data.png)
+	Id 是可唯一識別的，而 datetimestamp 資料行是產生對應識別碼的日期和時間。
+	![範例資料](./media/data-factory-stored-proc-activity/sample-data.png)
 
 2. 建立下列**預存程序**，將資料插入 **sampletable**。
 
@@ -173,7 +174,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回到 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
 7. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
 8. 在 [圖表檢視] 中，按兩下 **sprocsampleout** 資料集。您將會看到就緒狀態的配量。由於配量是針對 2015/01/02 和 2015/01/03 之間的每一個小時所產生，因此，應該會有 24 個配量。
-10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 *select from sampledata** 查詢，以驗證預存程序已將資料插入資料表。
+10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 **select from sampledata** 查詢，以驗證預存程序已將資料插入資料表。
 
 	![輸出資料](./media/data-factory-stored-proc-activity/output.png)
 

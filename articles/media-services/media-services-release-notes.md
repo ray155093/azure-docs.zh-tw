@@ -68,7 +68,7 @@
 使用包含逸出字元 (例如 %20) 的檔案名稱為資產編碼時，作業會失敗，並出現「MediaProcessor：找不到檔案。」|要新增至資產並編碼的檔案，其名稱只能包含英數字元和空格。此問題將在未來的更新中修正。
 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法無法運作。|媒體服務會根據 [2012-02-12](http://msdn.microsoft.com/library/azure/dn592123.aspx) 版本產生 SAS URL。如果您要使用 Azure Storage SDK 列出 Blob 容器中的 Blob，請使用屬於 Azure Storage SDK 2.x 版的 [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx) 方法。屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法將會失敗。
 媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。|如需詳細資訊，請在 [Azure 媒體服務錯誤碼](http://msdn.microsoft.com/library/azure/dn168949.aspx)主題中參閱 503 HTTP 狀態碼的說明。
-查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] (.NET)/ [最前面] (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
+查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] \(.NET) \[最前面] \(REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
 
 
 ### <a id="dotnet_issues"></a>Media Services SDK for .NET 問題
@@ -206,29 +206,29 @@ Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。此版本中加入了下�
 
 ##<a id="april_changes_15"></a>2015 年 4 月版本
 
-        ###General Media Services Updates
+###一般媒體服務更新
 
-        - [Announcing Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/).
-        - Starting with Media Services REST 2.10, channels that are configured to ingest an RTMP protocol, are created with primary and secondary ingest URLs. For more information, see [Channel ingest configurations](media-services-live-streaming-with-onprem-encoders.md#channel_input)
-        - Azure Media Indexer updates
-        - Support for Spanish Language
-        - New configuration xml format
+- [發表 Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)。
+- 從媒體服務 REST 2.10 開始，設定為擷取 RTMP 通訊協定的通道，會和主要與次要擷取 URL 一起建立。如需詳細資訊，請參閱[通道擷取組態](media-services-manage-channels-overview.md#channel_input)
+- Azure 媒體索引器更新
+	- 支援西班牙文語言
+	- 新的組態 xml 格式
+	
+	如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/)。
+###媒體服務 .NET SDK 更新
 
-        For more information see [this blog](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/).
-        ###Media Services .NET SDK Updates
+Azure 媒體服務 .NET SDK 現在是版本 3.2.0.0。
 
-        Azure Media Services .NET SDK is now version 3.2.0.0.
-
-        The following are some of the customer facing updates:
-
-        - **Breaking change**: Changed **TokenRestrictionTemplate.Issuer** and **TokenRestrictionTemplate.Audience** to be of a string type.
-        - Updates related to creating custom retry policies.
-        - Bug fixes related to uploading/downloading files.
-        - The **MediaServicesCredentials** class now accepts primary and secondary access control endpoint to authenticate against.
+以下是一些屬於客戶面向的更新：
+ 
+- **重大變更**：已將 **TokenRestrictionTemplate.Issuer** 和 **TokenRestrictionTemplate.Audience** 變更為字串類型。 
+- 與建立自訂重試原則相關的更新。 
+- 與上傳/下載檔案相關的錯誤修正。 
+- **MediaServicesCredentials** 類別現在接受主要和次要存取控制端點做為驗證對象。
 
 
 
-        ##<a id="march_changes_15"></a>March 2015 Release
+##<a id="march_changes_15"></a>2015 年 3 月版本
 
 ### 一般媒體服務更新
 

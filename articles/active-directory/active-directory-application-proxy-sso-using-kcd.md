@@ -140,10 +140,10 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 
 1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。請注意，這些設定也決定使用者如何登入 Office 365、Windows 10 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。![識別使用者螢幕擷取畫面 - [使用者主體名稱] 下拉式清單](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_connect_settings.png)
 2. 在您想要修改之應用程式的應用程式組態設定中，選取要使用的 [委派的登入識別]：
-  - 使用者主體名稱：joe@contoso.com
-  - 替代的使用者主體名稱：joed@contoso.local
-  - 使用者主體名稱的使用者名稱部分：joe
-  - 替代的使用者主體名稱的使用者名稱部分：joed
+  - 使用者主體名稱：joe@contoso.com  
+  - 替代的使用者主體名稱：joed@contoso.local  
+  - 使用者主體名稱的使用者名稱部分：joe  
+  - 替代的使用者主體名稱的使用者名稱部分：joed  
   - 內部部署 SAM 帳戶名稱：視內部網域控制站設定而定
 
   ![[委派的登入身分識別] 下拉式功能表螢幕擷取畫面](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_upn.png)

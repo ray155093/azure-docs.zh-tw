@@ -87,7 +87,10 @@
     1.  在 [SuccessFactors 登入 URL] 文字方塊中，輸入使用者用來登入 SuccessFactors 應用程式的 URL (例如："*https://performancemanager4.successfactors.com/sf/home?company=CompanyName&loginMethod=SSO*")。
     2.  在 [SuccessFactors 回覆 URL] 文字方塊中，輸入 **https://performancemanager4.successfactors.com/saml2/SAMLAssertionConsumer?company=CompanyName**。
 
-        >[AZURE.NOTE] 這個值只是暫時的預留位置。您會從 SuccessFactors 支援小組取得實際的值。稍後在本教學課程中，您會找到連絡 SuccessFactors 支援小組的指示。在此交談內容中，您會收到實際 SuccessFactors 回覆 URL。
+        >[AZURE.NOTE] 這個值只是暫時的預留位置。  
+	您會從 SuccessFactors 支援小組取得實際的值。  
+	稍後在本教學課程中，您會找到連絡 SuccessFactors 支援小組的指示。  
+	在此交談內容中，您會收到實際 SuccessFactors 回覆 URL。  
 
 4.  在 [設定在 SuccessFactors 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
 
@@ -109,7 +112,8 @@
 
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者能夠登入 SuccessFactors，必須將他們佈建到 SuccessFactors。SuccessFactors 需以手動方式佈建。
+若要讓 Azure AD 使用者能夠登入 SuccessFactors，必須將他們佈建到 SuccessFactors。
+SuccessFactors 需以手動方式佈建。
   
 若要在 SuccessFactors 建立使用者，您需要連絡 SuccessFactors 支援小組。
 
