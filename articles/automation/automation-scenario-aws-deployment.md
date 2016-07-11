@@ -28,7 +28,7 @@
 
 我們的 VM 佈建 Runbook 將會利用 AWS PowerShell 模組來執行其工作。執行下列步驟，將模組新增至使用 AWS 訂用帳戶認證所設定的自動化帳戶。
 
-1. 開啟網頁瀏覽器，並瀏覽至 [PowerShell 資源庫](http://www.powershellgallery.com/packages/AWSPowerShell/)，然後按一下 [Deploy to Azure Automation](部署至 Azure 自動化) 按鈕。<br> ![AWS PS 模組匯入](./media/automation-scenario-aws-deployment/powershell-gallery-download-awsmodule.png)
+1. 開啟網頁瀏覽器，並瀏覽至 [PowerShell 資源庫](http://www.powershellgallery.com/packages/AWSPowerShell/)，然後按一下 [Deploy to Azure Automation]\(部署至 Azure 自動化) 按鈕。<br> ![AWS PS 模組匯入](./media/automation-scenario-aws-deployment/powershell-gallery-download-awsmodule.png)
 
 2. 系統會帶您前往 Azure 登入頁面，而在驗證之後，則會帶您到 Azure 入口網站，並出現下列刀鋒視窗。<br> ![匯入模組刀鋒視窗](./media/automation-scenario-aws-deployment/deploy-aws-powershell-module-parameters.png)
 
