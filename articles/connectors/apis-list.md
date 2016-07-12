@@ -17,13 +17,15 @@
 	ms.date="05/31/2016"
 	ms.author="deonhe"/>
 
-# 受管理的連接器清單
+# 連接器清單
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。對於 2014-12-01-preview 結構描述版本，請按一下[連接器清單](../app-service-logic/app-service-logic-connectors-list.md)。
 
 如需定價資訊，以及每個服務層隨附項目的清單，請參閱 [Azure App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
 
 > [AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；沒有承諾。
+
+## 標準連接器
 
 選取圖示，以了解如何快速地利用這些連接器，來建置可呼叫這些服務的 app。這些連接器可以用來建立邏輯應用程式、PowerApps 和流程。
 
@@ -32,13 +34,19 @@
 |[![API 圖示][blobicon]<br/>**Azure Blob**][azureblobdoc]|[![API 圖示][boxicon]<br/>**Box**][boxDoc]|[![API 圖示][crmonlineicon]<br/>**CRM Online**][crmonlinedoc]|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|
 |[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|
 |[![API 圖示][mailchimpicon]<br/>**MailChimp**][mailchimpdoc]|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|
-|[![API 圖示][office365icon]<br/>**Office 365**<br/>**影片**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**OneDrive<br/>for Business**][onedriveforbusinessdoc]|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|
+|[![API 圖示][office365icon]<br/>**Office 365**<br/>**視訊**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**商務用 <br/>OneDrive**][onedriveforbusinessdoc]|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|
 |[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|
 |[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**Online**][sharepointdoc]|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|
 |[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|[![API 圖示][trelloicon]<br/>**Trello**][trellodoc]|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|
 |[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
 
-> [AZURE.NOTE] 如果您已使用 2014-12-01-preview 結構描述建立邏輯應用程式，您會發現上面並未列出適用於 BizTalk 的企業整合連接器。我們知道這些都很重要，我們會努力為您提供這些服務。雖然我們未能公佈確切的公開上市日期，但請注意，為您提供這些服務是我們最高的優先順序之一。在此同時，您可以[從 Logic Apps 存取 v1 API 和 BizTalk API](https://blogs.msdn.microsoft.com/logicapps/2016/02/25/accessing-v1-apis-and-biztalk-apis-from-logic-apps/)。感謝您的理解。敬請期待。
+## 企業整合套件 (EIP) 連接器
+使用 EIP 連接器，針對包含 EAI 和 EDI 的 B2B 案例建立邏輯應用程式。
+ 
+|EIP 連接器 ||||
+|-----------|-----------|-----------|-----------|
+|[![API 圖示][as2icon]<br/>**AS2</br>編碼/解碼**][as2doc]|[![API 圖示][x12icon]<br/>**X12</br>編碼/解碼**][x12Doc]|[![API 圖示][xmlvalidateicon]<br/>**XML <br/>驗證**][xmlvalidatedoc]|[![API 圖示][xmltransformicon]<br/>**XML<br/> 轉換**][xmltransformdoc]|
+|[![API 圖示][flatfileicon]<br/>**一般檔案</br>編碼**][flatfiledoc]|[![API 圖示][flatfiledecodeicon]<br/>**一般檔案</br>解碼**][flatfiledecodedoc]|||
 
 
 ### 連接器可以是觸發程序
@@ -54,10 +62,7 @@
 連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 
-[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
-[立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
-[立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
-[將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
+[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md) [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md) [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md)
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"
@@ -94,6 +99,12 @@
 [twitterdoc]: ./connectors-create-api-twitter.md "連接到 Twitter，取得時間軸、張貼推文等等。"
 [wunderlistdoc]: ./connectors-create-api-wunderlist.md "讓您的生活保持同步。"
 [yammerdoc]: ./connectors-create-api-yammer.md "連接到 Yammer 張貼訊息並取得新的訊息。"
+[as2doc]: ../app-service-logic/app-service-logic-enterprise-integration-as2.md "深入了解企業整合 AS2。"
+[x12doc]: ../app-service-logic/app-service-logic-enterprise-integration-x12.md "深入了解企業整合 X12"
+[flatfiledoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml.md "深入了解企業整合 XML 驗證。"
+[xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
 
 <!--Icon references-->
 [blobicon]: ./media/apis-list/blobicon.png
@@ -127,5 +138,11 @@
 [twittericon]: ./media/apis-list/twittericon.png
 [wunderlisticon]: ./media/apis-list/wunderlisticon.png
 [yammericon]: ./media/apis-list/yammericon.png
+[as2icon]: ./media/apis-list/as2new.png
+[x12icon]: ./media/apis-list/x12new.png
+[flatfileicon]: ./media/apis-list/flatfileencoding.png
+[flatfiledecodeicon]: ./media/apis-list/flatfiledecoding.png
+[xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
+[xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

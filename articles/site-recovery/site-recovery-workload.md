@@ -13,7 +13,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="03/27/2016" 
+	ms.date="07/06/2016" 
 	ms.author="raynew"/>
 
 # Azure Site Recovery 可以保護哪些工作負載？
@@ -39,7 +39,7 @@ Site Recovery 可協助您實作應用程式層級的保護和復原，如下所
 - 僅需 30 秒即可完成 PRO 近同步複寫，能滿足大多數重要商務應用程式的需求。
 - 適用於單一或多層式架構應用程式的應用程式一致性快照。
 - 整合 SQL Server AlwaysOn，並與其他應用程式層級的複寫技術合作，包括 AD 複寫、SQL AlwaysOn、Exchange 資料庫可用性群組 (DAG) 和 Oracle 資料保護。
-- 彈性修復計劃，讓您只要按一下就能復原整個應用程式堆疊，並在方案中納入外部指令碼和手動動作。 
+- 彈性修復計劃，讓您只要按一下就能復原整個應用程式堆疊，並在方案中納入外部指令碼和手動動作。
 - Site Recovery 和 Azure 中的進階網路管理可簡化應用程式網路需求，包括保留 IP 位址、設定負載平衡，以及與 Azure 流量管理員整合而達到低 RTO 網路轉換。
 -  豐富的自動化程式庫，提供已可用於生產環境的應用程式特定指令碼，這些指令碼可供下載並與復原方案整合。
 
@@ -77,7 +77,7 @@ Active Directory 和 DNS 基礎結構是大多數企業應用程式的必要項�
 
 SQL Server 針對內部部署資料中心內許多商務應用程式，提供資料服務的資料服務基礎。Site Recovery 可與 SQL Server HA/DR 技術一起用來保護採用 SQL Server 的多層式企業應用程式。Site Recovery 提供：
 
-- 針對 SQL Server 提供簡單且符合成本效益的災害復原解決方案。將多個版本的 SQL Server 獨立伺服器和叢集複寫至 Azure 或次要網站。  
+- 針對 SQL Server 提供簡單且符合成本效益的災害復原解決方案。將多個版本的 SQL Server 獨立伺服器和叢集複寫至 Azure 或次要網站。
 - 整合 SQL AlwaysOn 可用性群組，利用 Azure Site Recovery 復原方案管理容錯移轉和容錯回復。
 - 應用程式中各層 (包括 SQL Server 資料庫) 的端對端復原方案。
 - 藉由將 SQL Server「暴增」到 Azure 中較大的 IaaS 虛擬機器中，利用 Azure Site Recovery 調整 SQL Server 以因應尖峰負載。
@@ -149,4 +149,4 @@ Site Recovery 協助保護 Exchange 的方式如下所示：
 
 [準備](site-recovery-best-practices.md) Site Recovery 部署
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0706_2016-->

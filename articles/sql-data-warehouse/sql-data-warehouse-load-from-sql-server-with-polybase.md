@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/10/2016"
+   ms.date="06/30/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 
@@ -103,13 +103,13 @@
     cd /d "%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy"
     ```
 
-1. 執行下列命令以上傳檔案。針對 <blob service endpoint URL> 指定 Blob 服務端點 URL，並針對 <azure_storage_account_key> 指定 Azure 儲存體帳戶金鑰。
+1. 執行下列命令以上傳檔案。針對 <Blob 服務端點 URL> 指定 Blob 服務端點 URL，並針對 <azure\_storage\_account\_key> 指定 Azure 儲存體帳戶金鑰。
 
     ```
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-另請參閱[開始使用 AzCopy 命令列公用程式][]。
+另請參閱[開始使用 AzCopy 命令列公用程式][latest version of AzCopy]。
 
 ### E.瀏覽 Blob 儲存體容器
 
@@ -256,13 +256,11 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 
 
 <!--Article references-->
-[PolyBase in SQL Data Warehouse Tutorial]: sql-data-warehouse-get-started-load-with-polybase.md
-[Load data with bcp]: sql-data-warehouse-load-with-bcp.md
-[solution partners]: sql-data-warehouse-solution-partners.md
-[development overview]: sql-data-warehouse-overview-develop.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
-[PolyBase 指南]: sql-data-warehouse-load-polybase-guide.md
-[開始使用 AzCopy 命令列公用程式]: ../storage/storage-use-azcopy.md
+[PolyBase in SQL Data Warehouse Tutorial]: ./sql-data-warehouse-get-started-load-with-polybase.md
+[Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[PolyBase 指南]: ./sql-data-warehouse-load-polybase-guide.md
+[latest version of AzCopy]: ../storage/storage-use-azcopy.md
 [最新版 AzCopy]: ../storage/storage-use-azcopy.md
 
 <!--External references-->
@@ -287,4 +285,4 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 [建立資料庫範圍認證 (Transact-SQL)]: https://msdn.microsoft.com/library/mt270260.aspx
 [DROP CREDENTIAL (Transact-SQL)]: https://msdn.microsoft.com/library/ms189450.aspx
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

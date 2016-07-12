@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/03/2016"
+   ms.date="07/05/2016"
    ms.author="yurid"/>
 
 # 在 Azure 資訊安全中心設定安全性原則
@@ -69,7 +69,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 | 原則 | 當狀態為開啟時 |
 |----- |-----|
-| 系統更新 | 根據為該虛擬機器設定的服務，每天會從 Windows Update 或 WSUS 抓取可用的安全性和重大更新清單，並建議套用遺漏的更新。 |
+| 系統更新 | 根據為該虛擬機器設定的服務，每天會從 Windows Update 或 WSUS 抓取可用的安全性和重大更新清單，並建議套用遺漏的更新。它也會檢查 Linux 系統的最新更新，並檢查來自[雲端服務](./cloud-services/cloud-services-how-to-configure.md)虛擬機器的安全性和重大更新。 |
 | 基準規則 | 每天分析可能造成虛擬機器更容易受到攻擊的作業系統組態，並建議進行組態變更來處理這些弱點。如需受監視之特定設定的詳細資訊，請參閱[建議的基準清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 |
 | 端點保護 | 建議為所有 Windows 虛擬機器佈建端點保護，以協助識別和移除病毒、間諜軟體及其他惡意軟體。 
 | 網路安全性群組 | 建議設定[網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG) 來控制子網路與網路介面的輸入與輸出流量。除非另有指定，否則所有虛擬機器網路介面都會繼承為子網路設定的 NSG。除了檢查是否已設定 NSG 之外，此選項還會評估輸入安全性規則來識別是否有任何允許連入流量的規則。 |
@@ -104,4 +104,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

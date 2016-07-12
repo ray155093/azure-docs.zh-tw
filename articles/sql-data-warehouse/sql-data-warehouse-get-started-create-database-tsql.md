@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/04/2016"
+   ms.date="07/01/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫
@@ -52,15 +52,13 @@ CREATE DATABASE MySqlDwDb (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400',
 sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREATE DATABASE MySqlDwDb (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB)"
 ```
 
-**MAXSIZE** 和 **SERVICE\_OBJECTIVE** 參數可指定資料庫可使用的最大磁碟空間，以及配置給您的資料倉儲執行個體的計算資源。服務目標基本上是以線性方式隨著 DWU 大小調整的 CPU 和記憶體配置。
-
-MAXSIZE 可以介於 250 GB 與 240 TB 之間。服務目標可以介於 DW100 與 DW2000 之間。如需所有 MAXSIZE 和 SERVICE\_OBJECTIVE 有效值的完整清單，請參閱 MSDN 文件中的 [CREATE DATABASE][]。使用 [ALTER DATABASE][] T-SQL 命令也可以變更 MAXSIZE 和 SERVICE\_OBJECTIVE。變更 SERVICE\_OBJECTIVE 時應使用警告，因為這會導致服務重新啟動而取消所有進行中的查詢。變更 MAXSIZE 並不會重新啟動服務，因為這只是簡單的中繼資料作業。
+`MAXSIZE` 可以介於 250 GB 與 240 TB 之間。`SERVICE_OBJECTIVE` 可以介於 DW100 與 DW2000 [DWU][] 之間。如需所有有效值的清單，請參閱 MSDN 文件中的 [CREATE DATABASE][]。使用 [ALTER DATABASE][] T-SQL 命令也可以變更 MAXSIZE 和 SERVICE\_OBJECTIVE。變更 SERVICE\_OBJECTIVE 時應使用警告，因為這會導致服務重新啟動而取消所有進行中的查詢。變更 MAXSIZE 並不會重新啟動服務，因為這只是簡單的中繼資料作業。
 
 ## 後續步驟
 您的 SQL 資料倉儲完成佈建之後，您可以[載入範例資料][]或查看如何[開發][]、[載入][]，或[移轉][]。
 
 <!--Article references-->
-
+[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
 [how to create a SQL Data Warehouse from the Azure portal]: ./sql-data-warehouse-get-started-provision.md
 [使用 Visual Studio 連接到 SQL 資料倉儲]: ./sql-data-warehouse-get-started-connect.md
 [移轉]: ./sql-data-warehouse-overview-migrate.md
@@ -82,4 +80,4 @@ MAXSIZE 可以介於 250 GB 與 240 TB 之間。服務目標可以介於 DW100 �
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

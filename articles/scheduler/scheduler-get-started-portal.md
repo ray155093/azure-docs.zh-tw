@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="hero-article"
- ms.date="03/09/2016"
+ ms.date="06/30/2016"
  ms.author="krisragh"/>
 
 # 開始在 Azure 入口網站中使用 Azure 排程器
@@ -21,7 +21,7 @@
 
 ## 建立工作
 
-1.  登入 [Azure 入口網站](https://portal.azure.com/)。  
+1.  登入 [Azure 入口網站](https://portal.azure.com/)。
 
 2.  按一下 [+新增] > 在搜尋方塊中輸入_排程器_ > 在結果中選取 [排程器] > 按一下 [建立]。
 
@@ -29,7 +29,7 @@
 
 3.  讓我們使用 GET 要求建立只要點擊 http://www.microsoft.com/ 的工作。在 [排程器作業] 畫面中，輸入下列資訊：
 
-    1.  **名稱：** `getmicrosoft`  
+    1.  **名稱：** `getmicrosoft`
 
     2.  **訂用帳戶：**您的 Azure 訂用帳戶
 
@@ -37,7 +37,7 @@
 
 4.  接下來，在 [動作設定] 中，定義下列值：
 
-    1.  **動作類型：** ` HTTP`  
+    1.  **動作類型：** ` HTTP`
 
     2.  **方法：** `GET`
 
@@ -63,7 +63,7 @@
 
 建立作業之後，它會出現在主要 Azure 儀表板。按一下作業，即會開啟新視窗並顯示下列索引標籤：
 
-1.  屬性  
+1.  屬性
 
 2.  動作設定
 
@@ -111,7 +111,7 @@
 
 [歷程記錄] 索引標籤為選取的作業顯示系統中每次執行作業時選取的度量。這些度量提供有關排程器健全狀況的即時值：
 
-1.  狀態  
+1.  狀態
 
 2.  詳細資料
 
@@ -182,4 +182,4 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的�
 [14]: ./media/scheduler-get-started-portal/scheduler-get-started-portal014.png
 [15]: ./media/scheduler-get-started-portal/scheduler-get-started-portal015.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/06/2016"
+   ms.date="06/29/2016"virtual
    ms.author="yurid"/>
 
 #Azure 資訊安全中心的安全性健康情況監視
@@ -97,8 +97,21 @@
 
 此刀鋒視窗中提供 VM 的安全性詳細資料。您可以在此刀鋒視窗底部看到建議的動作和每個問題的嚴重性。
 
-###監視虛擬網路
-當您按一下 [資源健全狀況] 磚中的 [網路] 時，將會開啟含有更多詳細資訊的 [網路] 刀鋒視窗，如下所示：
+#### 雲端服務 (預覽) 區段
+雲端服務的健全狀態會包含在虛擬機器的安全性健全狀態圖格中。OS 版本過期時會建立一項建議，如下所示︰
+
+![雲端服務](./media/security-center-monitoring/security-center-monitoring-fig8-new2.png)
+
+您必須依照建議中的步驟來更新 OS 版本。例如，如果您按一下其中一個 Web 角色 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 或背景工作角色 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 的紅色警示，將會開啟新的刀鋒視窗並顯示這項建議的相關詳細資料，如下所示︰
+
+![雲端服務詳細資料](./media/security-center-monitoring/security-center-monitoring-fig8-new3.png)
+
+若要查看有關這項建議的更多規範說明，請按一下 [描述] 資料行之下的 [更新OS 版本]。[更新 OS 版本 (預覽)] 刀鋒視窗會開啟並顯示更多詳細資料。
+
+![雲端服務建議](./media/security-center-monitoring/security-center-monitoring-fig8-new4.png)
+
+### 監視虛擬網路
+按一下 [資源健全狀況] 圖格中的 [網路] 時，將會開啟含有更多詳細資訊的 [網路] 刀鋒視窗，如下所示：
 
 ![網路](./media/security-center-monitoring/security-center-monitoring-fig9-new3.png)
 
@@ -129,7 +142,7 @@
 ![網際網路面向端點](./media/security-center-monitoring/security-center-monitoring-fig121-new5.png)
 
 此資料表有代表 VM 的端點名稱、網際網路面向的 IP 位址、NSG 和 NGFW 目前的嚴重性狀態。此資料表是依嚴重性排序，如下所述︰
-- 紅色 (在頂端)：高優先順序，應立即處理 
+- 紅色 (在頂端)：高優先順序，應立即處理
 - 橘色︰中等優先順序，應儘速處理
 - 綠色 (最後一個)︰健康狀態
 
@@ -140,7 +153,7 @@
 ![網路拓撲](./media/security-center-monitoring/security-center-monitoring-fig121-new4.png)
 
 此資料表是依重要性排序 (VM 和子網路)，如下所述︰
-- 紅色 (在頂端)：高優先順序，應立即處理 
+- 紅色 (在頂端)：高優先順序，應立即處理
 - 橘色︰中等優先順序，應儘速處理
 - 綠色 (最後一個)︰健康狀態
 
@@ -155,7 +168,7 @@
 
 ![SQL 資源健全狀況](./media/security-center-monitoring/security-center-monitoring-fig15-new.png)
 
-您可以按一下這些建議中的任何一項來取得更多解決問題之進一步動作的相關詳細資訊。下列範例顯示**未啟用資料庫稽核**建議的擴充。
+您可以按一下這些建議中的任何一項來取得更多解決問題之進一步動作的相關詳細資訊。下列範例顯示**未啟用資料庫稽核**建議的擴充功能。
 
 ![SQL 資源健全狀況](./media/security-center-monitoring/security-center-monitoring-fig16-new.png)
 
@@ -191,8 +204,8 @@
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何在 Azure 資訊安全中心設定安全性設定
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

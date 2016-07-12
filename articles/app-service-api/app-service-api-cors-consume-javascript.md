@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="dotnet"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/31/2016"
+	ms.date="05/27/2016"
 	ms.author="tdykstra"/>
 
 # 使用 CORS 從 JavaScript 取用 API 應用程式
@@ -22,7 +22,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 本文包含兩個部分：
 
-* [如何設定 CORS](#corsconfig)一節說明一般會如何設定 API 應用程式、Web 應用程式或行動應用程式的 CORS。本節一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。 
+* [如何設定 CORS](#corsconfig)一節說明一般會如何設定 API 應用程式、Web 應用程式或行動應用程式的 CORS。本節一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。
 
 * 從[繼續進行 .NET 入門教學課程](#tutorialstart)一節開始，本文就會成為示範 CORS 支援的教學課程，其示範方法是透過以您在[第一個 API Apps 入門教學課程](app-service-api-dotnet-get-started.md)中所做的為基礎進行建置。
 
@@ -50,7 +50,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
@@ -204,13 +204,13 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。在這個螢幕擷取畫面中，ToDoListAPI0223 API 應用程式會接受來自 ToDoListAngular Web 應用程式的 JavaScript 用戶端呼叫。
 
 ### 在啟用 CORS 的情況下測試應用程式
 
-* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。 
+* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。
 
 	這一次，應用程式會讓您檢視、新增、編輯和刪除待辦事項項目。
 
@@ -285,4 +285,4 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 
 在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。若要深入了解 API 應用程式，請閱讀 [App Service 中的驗證簡介](../app-service/app-service-authentication-overview.md)，然後前往 [API 應用程式的使用者驗證](app-service-api-dotnet-user-principal-auth.md)教學課程。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

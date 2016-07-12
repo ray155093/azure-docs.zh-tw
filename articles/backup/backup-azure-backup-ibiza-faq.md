@@ -14,7 +14,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="03/30/2016"
+	 ms.date="07/01/2016"
 	 ms.author="trinadhk; markgal; jimpark;"/>
 
 # 公開預覽版本的 Azure 備份服務 - 常見問題集
@@ -43,4 +43,4 @@
 
 **Q1.Azure VM 的 ARM 支援是否有任何限制？** <br/> A1.目前並未提供適用於 ARM 的 PowerShell Cmdlet。您必須使用 Azure 入口網站 UI 將資源加入至資源群組。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0706_2016-->

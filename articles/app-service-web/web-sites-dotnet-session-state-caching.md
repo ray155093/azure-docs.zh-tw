@@ -5,7 +5,7 @@
 	documentationCenter=".net" 
 	authors="Rick-Anderson" 
 	manager="wpickett" 
-	editor="jimbe"/>
+	editor="none"/>
 
 <tags 
 	ms.service="app-service-web" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="get-started-article" 
-	ms.date="02/27/2016" 
+	ms.date="06/27/2016" 
 	ms.author="riande"/>
 
 
@@ -43,7 +43,7 @@
 
 1. 開啟 *web.config*，然後尋找 **sessionState** 元素。
 
-1. 輸入 `host`、`accessKey`、`port` (SSL 連接埠應為 6380)，然後將 `SSL` 設定為 `true`。這些值可以從快取執行個體的 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)分頁中取得。如需詳細資訊，請參閱[連線至快取](../cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-cache)。請注意，預設會為新的快取停用非 SSL 連接埠。如需啟用非 SSL 連接埠的詳細資訊，請參閱[在 Azure Redis 快取中設定快取](https://msdn.microsoft.com/library/azure/dn793612.aspx)主題中的[存取連接埠](https://msdn.microsoft.com/library/azure/dn793612.aspx#AccessPorts)一節。下列標記會顯示 *web.config* 檔案的變更結果，特別是 *port*、*host*、accessKey* 和 *ssl* 的變更結果。
+1. 輸入 `host`、`accessKey`、`port` (SSL 連接埠應為 6380)，然後將 `SSL` 設定為 `true`。這些值可以從快取執行個體的 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)分頁中取得。如需詳細資訊，請參閱[連線至快取](../cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-cache)。請注意，預設會為新的快取停用非 SSL 連接埠。如需啟用非 SSL 連接埠的詳細資訊，請參閱[在 Azure Redis 快取中設定快取](https://msdn.microsoft.com/library/azure/dn793612.aspx)主題中的[存取連接埠](https://msdn.microsoft.com/library/azure/dn793612.aspx#AccessPorts)一節。下列標記會顯示 web.config 檔案的變更結果，特別是 port、host、accessKey 和 ssl* 的變更結果。
 
 		  <system.web>;
 		    <customErrors mode="Off" />;
@@ -108,4 +108,4 @@
   [ManageKeys]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_ManageAccessKeys.png
  
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0706_2016-->

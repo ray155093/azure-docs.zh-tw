@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/16/2016"
+	ms.date="07/06/2016"
 	ms.author="marsma"/>
 
 # Azure Batch 的基本概念
@@ -46,7 +46,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 
 ## 使用 Batch 進行開發
 
-當您建置決方案來使用 Azure Batch 處理平行工作負載時，您可以使用 [Batch API](#batch-development-apis) 來程式設計。Batch API 可讓您建立和管理計算節點 (虛擬機器) 集區，以及排程作業及工作在這些節點上執行。您撰寫的用戶端應用程式或服務會使用 Batch API 來與 Batch 服務進行通訊。
+使用 Batch 處理平行工作負載通常會透過其中一個 [Batch API](#batch-development-apis)，以程式設計方式進行。Batch API 可讓您建立和管理計算節點 (虛擬機器) 集區，以及排程作業及工作在這些節點上執行。您撰寫的用戶端應用程式或服務會使用 Batch API 來與 Batch 服務進行通訊。
 
 您可以為組織有效率地處理大量工作負載，或提供前端服務給客戶，讓他們可以在一個、數百個或甚至數千個節點上，依需要或依排程執行作業和工作。您也可以在 [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md) 之類的工具所管理的大型工作流程中使用 Batch。
 
@@ -71,8 +71,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 | **Batch REST** | [MSDN][batch_rest] | N/A | [MSDN][batch_rest] |
 | **Batch .NET** | [MSDN][api_net] | [NuGet][api_net_nuget] | [GitHub][api_sample_net] |
 | **Batch Python** | [readthedocs.io][api_python] | [PyPI][api_python_pypi] |[GitHub][api_sample_python] |
-| **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - | 
-| **Batch Java** (預覽) | [github.io][api_java] | [Maven snapshot repo][api_java_jar] | - |
+| **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - | | **Batch Java** (預覽) | [github.io][api_java] | [Maven snapshot repo][api_java_jar] | [GitHub][api_sample_java] |
 
 ### Batch 資源管理
 
@@ -137,6 +136,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 [api_python_pypi]: https://pypi.python.org/pypi/azure-batch
 [api_sample_net]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp
 [api_sample_python]: https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch
+[api_sample_java]: https://github.com/Azure/azure-batch-samples/tree/master/Java/
 [batch_ps]: https://msdn.microsoft.com/library/azure/mt125957.aspx
 [batch_rest]: https://msdn.microsoft.com/library/azure/Dn820158.aspx
 [free_account]: https://azure.microsoft.com/free/
@@ -147,4 +147,4 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行更�
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

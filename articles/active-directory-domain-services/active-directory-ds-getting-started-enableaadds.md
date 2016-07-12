@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/25/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 啟用 Azure AD 網域服務
@@ -94,4 +94,4 @@
 ## 工作 4 - 更新 Azure 虛擬網路的 DNS 設定
 下一個組態工作是[更新 Azure 虛擬網路的 DNS 設定](active-directory-ds-getting-started-dns.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->
