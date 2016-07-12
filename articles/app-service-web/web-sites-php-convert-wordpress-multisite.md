@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
 	ms.topic="article" 
-	ms.date="04/08/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 
@@ -78,7 +78,7 @@
 
 **免費**的 [應用程式服務](http://go.microsoft.com/fwlink/?LinkId=529714)方案模式不支援將自訂網域新增至 Web Apps。您需要切換至 [共用] 或 [標準] 模式。作法：
 
-* 登入 Azure 入口網站，並找出您的 Web 應用程式。 
+* 登入 Azure 入口網站，並找出您的 Web 應用程式。
 * 按一下 [設定] 中的 [相應增加] 索引標籤。
 * 在 [一般] 下，選取 [共用] 或 [標準]
 * 按一下 [儲存]
@@ -153,4 +153,4 @@ Azure Web Apps 可讓您將不限數量的網域加入至 Web 應用程式。若
 
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

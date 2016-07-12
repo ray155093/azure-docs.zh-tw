@@ -58,7 +58,7 @@ v2.0 端點只能在下列新位置中註冊：[apps.dev.microsoft.com](https://
 在原始的 Azure AD 服務中，app 可做為**資源**或是權杖的收件者。資源可以定義它所了解的許多**範圍**或 **oAuth2Permissions**，讓用戶端應用程式得以針對特定一組範圍要求該資源的權杖。請考慮以 Azure AD Graph API 做為資源的範例：
 
 - 資源識別碼，或`AppID URI`：`https://graph.windows.net/`
-- 範圍，或`OAuth2Permissions`：`Directory.Read`、`Directory.Write` 等。  
+- 範圍，或`OAuth2Permissions`：`Directory.Read`、`Directory.Write` 等。
 
 這一切都適用於 v2.0 端點。應用程式仍可做為資源、定義範圍並依據 URI 識別。用戶端應用程式仍可要求存取這些範圍。不過，用戶端用來要求這些權限的方式已改變。在過去，Azure AD 的 OAuth 2.0 授權要求可能如下所示：
 
@@ -72,7 +72,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 其中 **resource** 參數指出用戶端應用程式要求授權的資源。Azure AD 根據 Azure 入口網站中的靜態設定計算應用程式所需的權限，並據以發出權杖。現在，相同的 OAuth 2.0 授權要求如下所示：
 
 ```
-GET https://login.microsoftonline.com/common/v2.0/oauth2/authorize?
+GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
 client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 &scope=https%3A%2F%2Fgraph.windows.net%2Fdirectory.read%20https%3A%2F%2Fgraph.windows.net%2Fdirectory.write
 ...
@@ -94,7 +94,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 透過 v2.0 端點，您可以在執行階段**動態**指定您的 app 在一般使用期間所需的權限。若要這麼做，您可以在授權要求的 `scope` 參數中包含範圍，以在任何指定的時間點指定您的應用程式所需的範圍：
 
 ```
-GET https://login.microsoftonline.com/common/v2.0/oauth2/authorize?
+GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
 client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 &scope=https%3A%2F%2Fgraph.windows.net%2Fdirectory.read%20https%3A%2F%2Fgraph.windows.net%2Fdirectory.write
 ...
@@ -132,4 +132,4 @@ V2.0 端點所簽發的權杖中的宣告與公開上市 Azure AD 端點所簽�
 ## 限制
 使用 v2.0 端點時有一些要注意的限制。請參閱 [v2.0 限制文件](active-directory-v2-limitations.md)，以了解是否有任何限制適用於您特定的案例。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

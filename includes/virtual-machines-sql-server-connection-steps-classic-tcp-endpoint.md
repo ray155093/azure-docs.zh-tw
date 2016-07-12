@@ -4,19 +4,22 @@
 
 >[AZURE.NOTE] 如果您在相同的雲端服務或虛擬網路內連接，則不需要建立可公開存取的端點在此情況下，您可以繼續進行下一個步驟。如需詳細資訊，請參閱[連接案例](../articles/virtual-machines/virtual-machines-windows-classic-sql-connect.md#connection-scenarios)。
 
-1. 在 Azure 管理入口網站中按一下 [虛擬機器]。
-	
-2. 按一下新建立的虛擬機器。畫面上即會顯示您虛擬機器的相關資訊。
-	
-3. 選取頁面頂端附近的 [端點] 頁面，然後按一下頁面底部的 [新增]。
-	
-4. 在 [Add an Endpoint to a Virtual Machine] 頁面中，按一下 [Add a Stand-alone Endpoint]，然後按 [下一步] 箭頭以繼續操作。
-	
-5. 在 [Specify the details of the endpoint] 頁面中，提供下列資訊。
+1. 在 Azure 入口網站中，選取 [虛擬機器 (傳統)]。
 
-	- 在 [名稱] 方塊中，提供端點的名稱。
-	- 在 [通訊協定] 方塊中，選取 [TCP]。您可以在 [公用連接埠] 方塊中輸入 **57500**。同樣地，您可以在 [私人連接埠] 方塊中輸入 SQL Server 的預設接聽連接埠 **1433**。請注意，有許多組織會藉由選取不同連接埠號碼來避免惡意的安全性攻擊。 
+2. 然後選取您的 SQL Server 虛擬機器。
 
-6. 按一下打勾記號繼續。系統隨即會建立端點。
+3. 選取 [端點]，然後按一下位於 [端點] 刀鋒視窗頂端的 [新增] 按鈕。
 
-<!---HONumber=AcomDC_0323_2016-->
+	![建立端點的入口網站步驟](./media/virtual-machines-sql-server-connection-steps/portal-endpoint-creation.png)
+
+4. 在 [新增端點] 刀鋒視窗上，提供 [名稱]，例如 SQLEndpoint。
+
+5. [通訊協定].請選取 [TCP]。
+
+6. 對於 [公用連接埠]，請指定連接埠號碼，例如 **57500**。
+
+7. 對於 [私用連接埠]，請指定 SQL Server 的接聽連接埠，預設為 **1433**。
+
+6. 按一下 [確定] 以建立端點。
+
+<!---HONumber=AcomDC_0629_2016-->

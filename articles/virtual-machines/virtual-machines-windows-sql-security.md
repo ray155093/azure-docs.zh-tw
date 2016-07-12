@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="03/23/2016"
+	ms.date="06/24/2016"
 	ms.author="jroth" />
 
 # Azure 虛擬機器中的 SQL Server 安全性考量
-
+ 
 本主題包含整體安全性指導方針，可協助制定 Azure VM 中 SQL Server 執行個體的存取安全。不過，為了確保能更有效保護 Azure 中的 SQL Server 資料庫執行個體，除了 Azure 的安全性最佳作法外，我們也建議您實作傳統的內部部署安全性作法。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 如需關於 SQL Server 安全性作法的詳細資訊，請參閱 [SQL Server 2008 R2 安全性最佳作法 - 操作與管理工作](http://download.microsoft.com/download/1/2/A/12ABE102-4427-4335-B989-5DA579A4D29D/SQL_Server_2008_R2_Security_Best_Practice_Whitepaper.docx)
@@ -58,4 +58,4 @@ Azure 符合多種業界規範及標準，可讓您使用在虛擬機器中執�
 
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

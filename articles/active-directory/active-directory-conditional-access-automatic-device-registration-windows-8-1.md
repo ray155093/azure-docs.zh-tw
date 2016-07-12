@@ -1,10 +1,10 @@
 <properties
 	pageTitle="為加入網域的 Windows 8.1 裝置設定自動註冊裝置 | Microsoft Azure"
-	description="設定群組原則將加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊的步驟。"
+	description=" 設定群組原則將加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊的步驟。"
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 為加入網域的 Windows 8.1 裝置設定自動註冊裝置
@@ -61,4 +61,4 @@ Windows 8.1 電腦上的 Windows 事件記錄檔會顯示與裝置註冊相關�
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-conditional-access-automatic-device-registration.md)
 - [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

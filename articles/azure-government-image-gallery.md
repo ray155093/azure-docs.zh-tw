@@ -1,10 +1,10 @@
-<properties 
-   pageTitle="Azure Government 映像庫" 
-   description="這篇文章提供 Azure Government 映像庫與其包含之映像的概觀" 
-   services="Azure-Government" 
-   documentationCenter="" 
-   authors="joharve2" 
-   manager="chrisnie" 
+<properties
+   pageTitle="Azure Government 映像庫 | Microsoft Azure"
+   description="這篇文章提供 Azure Government 映像庫與其包含之映像的概觀"
+   services="Azure-Government"
+   documentationCenter=""
+   authors="joharve2"
+   manager="chrisnie"
    editor=""/>
 
 <tags
@@ -12,7 +12,7 @@
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="azure-government" 
+   ms.workload="azure-government"
    ms.date="06/01/2016"
    ms.author="brendalee"/>
 
@@ -118,7 +118,7 @@ Visual Studio|Visual Studio Enterprise 2015 Update 2 with Azure SDK 2.9 on Windo
 
 下面的資源應該會提供關於從映像庫部署或建立您自己的 VHD 的詳細資訊。請參考 <a href="../azure-government-developer-guide">Azure Government 開發人員指南</a>，以發現使用 Azure Government 時端點的程式設計差異。
 
-###其他資源： 
+###其他資源：
 
 - [部署 Windows 虛擬機器](virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
@@ -141,4 +141,4 @@ Visual Studio|Visual Studio Enterprise 2015 Update 2 with Azure SDK 2.9 on Windo
 [Link 2 to another azure.microsoft.com documentation topic]: app-service-web/web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -14,16 +14,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
-#在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
+# 在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
 
 本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 Git 將其部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)。您會使用 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及安裝在您的電腦上的 [Git][install-git]。本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
 
 您將了解：
 
-* 如何使用 [Azure 入口網站](https://portal.azure.com)建立 Web 應用程式和 MySQL 資料庫。由於預設會在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
+* 如何使用 [Azure 入口網站][management-portal]建立 Web 應用程式和 MySQL 資料庫。由於預設會在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
 * 如何使用 Git 來發行與重新發行應用程式到 Azure。
 * 如何啟用編輯器延伸模組以在每個 `git push` 自動執行編輯器工作。
 
@@ -31,12 +31,12 @@
 
 ![Azure PHP web site][running-app]
 
-##設定開發環境
+## 設定開發環境
 
 本教學課程假設您已經具備 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一項工具)，以及安裝在您的電腦上的 [Git][install-git]。
 
-
-##<a id="create-web-site-and-set-up-git"></a>建立 Web 應用程式並設定 Git 發佈
+<a id="create-web-site-and-set-up-git"></a>
+## 建立 Web 應用程式並設定 Git 發行
 
 請遵循以下步驟來建立 Web 應用程式與 MySQL 資料庫：
 
@@ -75,7 +75,7 @@
 	![Create publishing credentials][credentials]
 
 
-##取得遠端 MySQL 連線資訊
+## 取得遠端 MySQL 連線資訊
 
 若要連接至在 Web Apps 中執行的 MySQL 資料庫，您需要連線資訊。若要取得 MySQL 連線資訊，請依照以下步驟執行：
 
@@ -91,7 +91,7 @@
 
     ![注意屬性][note-properties]
 
-##在本機建置及測試您的應用程式
+## 在本機建置及測試您的應用程式
 
 現在您已經建立了 Web 應用程式，您可以在本機開發自己的應用程式，並在測試後進行部署。
 
@@ -209,7 +209,7 @@
 您現在可以瀏覽至 **http://localhost:8000/** 測試應用程式。
 
 
-##發佈您的應用程式
+## 發佈您的應用程式
 
 當您在本機完成應用程式測試之後，可以使用 Git 將其發佈至 Web Apps。您將初始化本機 Git 儲存機制並發行該應用程式。
 
@@ -236,7 +236,7 @@
 
 發佈應用程式之後，您可以開始對其進行變更，並使用 Git 來發佈它們。
 
-##將變更發佈至應用程式
+## 將變更發佈至應用程式
 
 若要將變更發佈至應用程式，請依照以下步驟進行：
 
@@ -257,45 +257,47 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-<a name="composer">
+<a name="composer"></a>
 ## 利用編輯器延伸模組啟用編輯器自動化功能
 
-根據預設，App Service 中的 git 部署程序不會對您在 PHP 專案中擁有的 composer.json 執行任何操作。若想在 `git push` 期間啟用 composer.json 處理，您可以透過啟用編輯器延伸模組來達成。
+根據預設，App Service 中的 git 部署程序不會對您在 PHP 專案中擁有的 composer.json 執行任何操作。若想在 `git push` 期間啟用 composer.json 處理，您可以透過啟用編輯器擴充功能來達成。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)的 PHP Web 應用程式刀鋒視窗中，按一下 [工具] > [延伸模組]。
+1. 在 [Azure 入口網站][management-portal]的 PHP Web 應用程式刀鋒視窗中，按一下 [工具] > [擴充功能]。
 
-    ![](./media/web-sites-php-mysql-deploy-use-git/composer-extension-settings.png)
+    ![編輯器擴充功能設定][composer-extension-settings]
 
-2. 依序按一下 [新增] 和 [編輯器]。
+2. 按一下 [新增]，然後按一下 [編輯器]。
 
-    ![](./media/web-sites-php-mysql-deploy-use-git/composer-extension-add.png)
+    ![編輯器擴充功能新增][composer-extension-add]
     
-3. 按一下 [確定] 接受法律條款。再按一次 [確定] 以新增延伸模組。
+3. 按一下 [確定] 以接受法律條款。再按一次 [確定] 以新增擴充功能。
 
-    [已安裝的延伸模組] 刀鋒視窗會立即顯示編輯器延伸模組。![](./media/web-sites-php-mysql-deploy-use-git/composer-extension-view.png)
+    [已安裝的擴充功能] 刀鋒視窗現在將顯示編輯器擴充功能。![編輯器擴充功能檢視][composer-extension-view]
     
 4. 現在，和上一節一樣執行 `git add`、`git commit` 和 `git push`。您就會立即看到編輯器正在安裝 composer.json 中定義的相依性。
 
-    ![](./media/web-sites-php-mysql-deploy-use-git/composer-extension-success.png)
+    ![編輯器擴充功能成功][composer-extension-success]
 
 ## 後續步驟
 
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+<!-- URL List -->
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062
 [install-Drivers]: http://www.microsoft.com/download/details.aspx?id=20098
 [install-git]: http://git-scm.com/
 [install-mysql]: http://dev.mysql.com/downloads/mysql/
-
 [pdo-mysql]: http://www.php.net/manual/en/ref.pdo-mysql.php
+[management-portal]: https://portal.azure.com
+[sql-database-editions]: http://msdn.microsoft.com/library/windowsazure/ee621788.aspx
+
+<!-- IMG List -->
+
 [running-app]: ./media/web-sites-php-mysql-deploy-use-git/running_app_2.png
 [new-website]: ./media/web-sites-php-mysql-deploy-use-git/new_website2.png
 [custom-create]: ./media/web-sites-php-mysql-deploy-use-git/create_web_mysql.png
-[website-details]: ./media/web-sites-php-mysql-deploy-use-git/website_details.jpg
 [new-mysql-db]: ./media/web-sites-php-mysql-deploy-use-git/create_db.png
 [go-to-webapp]: ./media/web-sites-php-mysql-deploy-use-git/select_webapp.png
 [setup-git-publishing]: ./media/web-sites-php-mysql-deploy-use-git/setup_git_publishing.png
@@ -311,10 +313,10 @@
 [git-instructions]: ./media/web-sites-php-mysql-deploy-use-git/git-instructions.png
 [git-change-push]: ./media/web-sites-php-mysql-deploy-use-git/php-git-change-push.png
 [git-initial-push]: ./media/web-sites-php-mysql-deploy-use-git/php-git-initial-push.png
-[deployments-list]: ./media/web-sites-php-mysql-deploy-use-git/php-deployments-list.png
-[connection-string-info]: ./media/web-sites-php-mysql-deploy-use-git/connection_string_info.png
-[management-portal]: https://portal.azure.com
-[sql-database-editions]: http://msdn.microsoft.com/library/windowsazure/ee621788.aspx
- 
 
-<!---HONumber=AcomDC_0504_2016-->
+[composer-extension-settings]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-settings.png
+[composer-extension-add]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-add.png
+[composer-extension-view]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-view.png
+[composer-extension-success]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-success.png
+
+<!---HONumber=AcomDC_0629_2016-->

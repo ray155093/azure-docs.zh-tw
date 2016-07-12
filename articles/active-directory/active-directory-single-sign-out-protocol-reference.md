@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="06/23/2016"
 	ms.author="priyamo"/>
 
 
 # 單一登出 SAML 通訊協定
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 Azure Active Directory (Azure AD) 支援 SAML 2.0 Web 瀏覽器單一登出設定檔。若要讓單一登出正常運作，Azure AD 必須在應用程式註冊期間註冊其中繼資料 URL。Azure AD 會從中繼資料取得雲端服務的登出 URL 和簽署金鑰。Azure AD 會使用簽署金鑰來驗證連入 LogoutRequest 上的簽章，並且將在使用者登出之後使用 LogoutURL 來重新導向使用者。
 
@@ -76,7 +74,7 @@ Azure AD 會傳送 `LogoutResponse` 以回應 `LogoutRequest` 元素。下列摘
 
 Azure AD 會設定 `LogoutResponse` 元素中的 `ID`、`Version` 和 `IssueInstant` 值。它也會將 `InResponseTo` 元素設定為導出回應的 `LogoutRequest` 的 `ID` 屬性值。
 
-### Issuer
+### 簽發者
 
 Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`，其中，<TenantIdGUID> 是 Azure AD 租用戶的租用戶識別碼。
 
@@ -86,4 +84,4 @@ Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`�
 
 Azure AD 使用 `Status` 元素中的 `StatusCode` 元素，來指出登出成功或失敗。登出嘗試失敗時，`StatusCode` 元素也可包含自訂錯誤訊息。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

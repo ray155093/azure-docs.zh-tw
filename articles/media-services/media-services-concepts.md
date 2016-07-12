@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/11/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 #Azure 媒體服務概念 
@@ -31,7 +31,7 @@
 決定要在資產中上傳及儲存何種媒體內容時，適用下列考量：
 
 - 資產應該只包含一個唯一的媒體內容執行個體。例如，一份電視影集、電影或廣告的剪輯。
-- 資產不應包含多份視聽檔案的轉譯或剪輯。不當使用資產的例子是嘗試在資產內儲存一份以上電視影集、廣告或同一作品的多個拍攝角度。在資產內儲存多份視聽檔案的轉譯或剪輯，可能會在工作流程稍後的提交編碼工作、串流處理和保護資產傳遞時造成問題。  
+- 資產不應包含多份視聽檔案的轉譯或剪輯。不當使用資產的例子是嘗試在資產內儲存一份以上電視影集、廣告或同一作品的多個拍攝角度。在資產內儲存多份視聽檔案的轉譯或剪輯，可能會在工作流程稍後的提交編碼工作、串流處理和保護資產傳遞時造成問題。
 
 ###資產檔案 
 [AssetFile](https://msdn.microsoft.com/library/azure/hh974275.aspx) 代表儲存在 blob 容器中的實際視訊或音訊檔案。資產檔案一律會與資產相關聯，一個資產可包含一或多個檔案。如果資產檔案物件並未與 blob 容器中的數位檔案相關聯，媒體服務編碼器工作將會失敗。
@@ -138,7 +138,7 @@ ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最
 
 - [使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)
 - [使用通道，從內部部署編碼器接收多位元速率即時串流](media-services-live-streaming-with-onprem-encoders.md)
-- [配額和限制](media-services-quotas-and-limitations.md)。  
+- [配額和限制](media-services-quotas-and-limitations.md)。
 
 ##保護內容
 
@@ -252,4 +252,4 @@ StreamingEndpoint 代表可以直接將內容傳遞給用戶端播放程式應�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

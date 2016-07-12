@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="06/27/2016"
 	ms.author="andkjell"/>
 
 
@@ -43,7 +43,8 @@
 [搜尋連接器空間](#search-connector-space) | 用來尋找物件，以及[在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。
 
 ### 刪除
-刪除動作適用於兩個不同的用途。  
+刪除動作適用於兩個不同的用途。
+
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectordelete.png)
 
 [僅刪除連接器空間] 選項將移除所有資料，但會保留所有組態。
@@ -80,8 +81,7 @@
 [錯誤]：
 出現有問題的物件時才會顯示 [錯誤] 頁面。如需如何[對同步處理錯誤進行疑難排解](active-directory-aadconnectsync-service-manager-ui-operations.md#troubleshoot-errors-in-operations-tab)的詳細資訊，請參閱 [作業] 頁面上的詳細資訊。
 
-[歷程]：
-[歷程] 索引標籤會顯示連接器空間物件與 Metaverse 物件關聯的方式。我們可以看到上次從連接的系統匯入變更的時間，以及套用哪些規則以便在 metaverse 中填入資料。
+[歷程]：[歷程] 索引標籤會顯示連接器空間物件與 Metaverse 物件關聯的方式。我們可以看到上次從連接的系統匯入變更的時間，以及套用哪些規則以便在 metaverse 中填入資料。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineage.png) 
 在 [動作]資料行中，我們可以看到有一個動作為 [佈建] 的 [輸入] 同步處理規則。這表示，只要此連接器空間物件存在，metaverse 物件將會保留。如果同步處理規則清單顯示的同步處理規則方向為 [輸出] 和 [佈建]，這表示刪除 Metaverse 物件時，將會刪除此物件。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineageout.png) 
@@ -92,7 +92,7 @@
 所有索引標籤的底部都有兩個按鈕︰[預覽] 和 [記錄]。
 
 [預覽]：
-[預覽] 頁面可用來同步處理某一個單一物件。如果您正在疑難排解某些客戶的同步處理規則，並且想要在單一物件上查看變更的影響，則此頁面非常有用。您可以在 [完整同步處理] 和 [差異同步處理] 之間選擇。您也可以在 [產生預覽] \(這只會在記憶體中保留變更) 和 [認可預覽] \(將暫存目標連接器空間的所有變更) 之間進行選擇。
+[預覽] 頁面可用來同步處理某一個單一物件。如果您正在疑難排解某些客戶的同步處理規則，並且想要在單一物件上查看變更的影響，則此頁面非常有用。您可以在 [完整同步處理] 和 [差異同步處理] 之間選擇。您也可以在 [產生預覽] (這只會在記憶體中保留變更) 和 [認可預覽] (將暫存目標連接器空間的所有變更) 之間進行選擇。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview1.png) 
 您可以檢查物件，以及哪一個規則適用於特定的屬性流程。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview2.png)
@@ -102,10 +102,10 @@
 
 ### Metaverse 物件屬性
 [屬性]：
-在 [屬性] 索引標籤中，您可以看到值，以及是由哪一個連接器提供它。  
+在 [屬性] 索引標籤中，您可以看到值，以及是由哪一個連接器提供它。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvattributes.png) 
 [連接器]：
-[連接器] 索引標籤會顯示所有具有物件表示法的連接器空間。  
+[連接器] 索引標籤會顯示所有具有物件表示法的連接器空間。
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvconnectors.png) 
 此索引標籤也可讓您瀏覽至[連接器空間物件](#connector-space-object-properties)。
 
@@ -114,4 +114,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!----HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

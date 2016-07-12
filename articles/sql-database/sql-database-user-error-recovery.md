@@ -16,14 +16,14 @@
    ms.date="06/16/2016"
    ms.author="carlrab"/>
 
-# 從使用者錯誤復原 Azure SQL Database
+# 從錯誤復原 Azure SQL Database
 
 Azure SQL Database 提供兩個核心功能，從使用者錯誤或非預期的資料修改復原。
 
-- [還原時間點](sql-database-point-in-time-restore.md) 
-- [還原已刪除的資料庫](sql-database-restore-deleted-database.md)
+- [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)
+- [還原已刪除的資料庫](sql-database-recovery-using-backups.md#deleted-database-restore)
 
-Azure SQL Database 一律會還原至新的資料庫。所有「基本」、「標準」和「高階」資料庫都提供這些還原功能。
+Azure SQL Database 在執行還原時間點時，一律會還原到新的資料庫，但在從已刪除的資料庫還原時，可以還原到相同的資料庫名稱。所有「基本」、「標準」和「高階」資料庫都提供這些還原功能。
 
 ##還原時間點
 
@@ -35,7 +35,7 @@ Azure SQL Database 一律會還原至新的資料庫。所有「基本」、「�
 
 - [使用 Azure 入口網站的還原時間點](sql-database-point-in-time-restore-portal.md)
 - [使用 PowerShell 的還原時間點](sql-database-point-in-time-restore-powershell.md)
-- [使用 REST API 的還原時間點 (createmode=PointInTimeRestore)](https://msdn.microsoft.com/library/azure/mt163685.aspx) 
+- [使用 REST API 的還原時間點 (createmode=PointInTimeRestore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)
 
 
 ## 還原已刪除的資料庫
@@ -53,18 +53,10 @@ Azure SQL Database 一律會還原至新的資料庫。所有「基本」、「�
 
 ## 後續步驟
 
-- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
+- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 
-## 其他資源
-
-- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
-- [還原時間點](sql-database-point-in-time-restore.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

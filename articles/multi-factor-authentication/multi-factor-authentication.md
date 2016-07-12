@@ -50,7 +50,7 @@ Azure Multi-Factor Authentication 是一個容易使用、可調整且可靠的�
 - **容易使用** - Azure Multi-Factor Authenticaton 很容易設定及使用。Azure Multi-Factor Authentication 提供的額外保護功能可讓使用者使用及管理他們自己的裝置，而且在許多情況下，只要簡單地按幾下就可以設定完成。
 - **可調整** - Azure Multi-Factor Authenticaton 採用雲端技術且與您內部部署的 AD 與自訂應用程式整合。此保護功能甚至可以擴充以因應您高任務關鍵性的狀況。
 - **永遠受到保護** - Azure Multi-Factor Authentication 使用最高工業標準提供強大驗證功能。
-- **可靠** - 我們保證 Azure Multi-Factor Authentication 的可用性可達到 99.9%。當服務無法接收或處理多因素驗證的驗證要求時，服務會被視為無法使用。  
+- **可靠** - 我們保證 Azure Multi-Factor Authentication 的可用性可達到 99.9%。當服務無法接收或處理多因素驗證的驗證要求時，服務會被視為無法使用。
 
 如需為何使用 Azure Multi-Factor Authentication 的其他資訊，請參閱以下影片。
 
@@ -137,7 +137,7 @@ MFA SDK | | | * 需要 Multi-Factor Auth Provider 和完整的 Azure 訂用帳�
 - **每位使用者**。通常適用於想要為一群定期需要驗證之固定數量員工啟用 Multi-Factor Authentication 的企業。
 - **每次驗證**。通常適用於想要為大量不定期需要驗證之外部使用者啟用 Multi-Factor Authentication 的企業。
 
-Azure Multi-Factor Authentication 為雲端與伺服器提供可選取的驗證方法。這表示您可以選擇可供使用者用於多重要素驗證的方法。在雲端版的多重要素驗證中，這項功能目前為公開預覽狀態。如需其他資訊，請參閱[可選取的驗證方法](multi-factor-authentication-whats-next.md#selectable-verification-methods-public-preview)。
+Azure Multi-Factor Authentication 為雲端與伺服器提供可選取的驗證方法。這表示您可以選擇可供使用者用於多重要素驗證的方法。在雲端版的多重要素驗證中，這項功能目前為公開預覽狀態。如需其他資訊，請參閱[可選取的驗證方法](multi-factor-authentication-whats-next.md#selectable-verification-methods)。
 
 如需定價詳細資料，請參閱 [Azure MFA 定價](https://azure.microsoft.com/pricing/details/multi-factor-authentication/)。
 
@@ -209,4 +209,4 @@ MFA 報告 | ● | ●
 
 <center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

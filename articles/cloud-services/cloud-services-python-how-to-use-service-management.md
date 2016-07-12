@@ -3,7 +3,7 @@
 	description="了解如何透過程式設計從 Python 執行一般服務管理工作。"
 	services="cloud-services"
 	documentationCenter="python"
-	authors="huguesv"
+	authors="lmazuel"
 	manager="wpickett"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="11/03/2015"
-	ms.author="huvalo"/>
+	ms.date="06/22/2016"
+	ms.author="lmazuel"/>
 
 # 如何從 Python 使用服務管理
 
@@ -115,7 +115,7 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 
 ## <a name="CreateCloudService"> </a>作法：建立雲端服務
 
-當您在 Azure 中建立應用程式並加以執行時，程式碼和組態會統稱為 Azure [雲端服務] \(在舊版的 Azure 中稱為*代管服務*)。**create\_hosted\_service** 方法可讓您藉由提供代管服務名稱 (在 Azure 中必須是唯一的)、標籤 (自動編碼為 base64)、描述和位置，來建立新的代管服務。
+當您在 Azure 中建立應用程式並加以執行時，程式碼和組態會統稱為 Azure [雲端服務] (在舊版的 Azure 中稱為*代管服務*)。**create\_hosted\_service** 方法可讓您藉由提供代管服務名稱 (在 Azure 中必須是唯一的)、標籤 (自動編碼為 base64)、描述和位置，來建立新的代管服務。
 
 	from azure import *
 	from azure.servicemanagement import *
@@ -433,6 +433,6 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 [svc-mgmt-rest-api]: http://msdn.microsoft.com/library/windowsazure/ee460799.aspx
 
 
-[雲端服務]: https://azure.microsoft.com/documentation/services/cloud-services/
+[雲端服務]: https://azure.microsoft.com/zh-TW/documentation/services/cloud-services/
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

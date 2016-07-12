@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="html"
 	ms.devlang="javascript"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="06/29/2016"
 	ms.author="adrianha;ricksal"/>
 
 # 如何使用適用於 Azure 行動應用程式的 JavaScript 用戶端程式庫
 
 [AZURE.INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-本指南將教導您使用最新的「適用於 Azure 行動應用程式的 JavaScript SDK」執行一般案例。如果您不熟悉 Azure 行動應用程式，請先完成 [Azure 行動應用程式快速入門]建立後端，並建立資料表。在本指南中，我們會著重在使用 HTML/JavaScript Web 應用程式中的行動後端。
+本指南將教導您使用最新的[適用於 Azure Mobile Apps 的 JavaScript SDK] 執行一般案例。如果您不熟悉 Azure 行動應用程式，請先完成 [Azure 行動應用程式快速入門]建立後端，並建立資料表。在本指南中，我們會著重在使用 HTML/JavaScript Web 應用程式中的行動後端。
 
 ##<a name="Setup"></a>設定和必要條件
 
@@ -57,60 +57,37 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 [AZURE.INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
 
-##<a name="register-for-push"></a>作法：註冊推播通知
+###<a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
 
-安裝 [phonegap-plugin-push] 來處理推播通知。在命令列中使用 `cordova plugin add` 命令，或在 Visual Studio 內透過 Git 外掛程式安裝程式，即可輕鬆加入。以下在 Apache Cordova 應用程式中的程式碼將為您的裝置註冊推播通知：
+數種類型的 JavaScript 應用程式使用回送功能來處理 OAuth UI 流程，例如，在本機執行您的服務時、在 Ionic 架構中使用即時重新載入，或重新導向至 App Service 進行驗證時。這可能會造成問題，因為根據預設，App Service 驗證只設定為允許從您的行動應用程式後端來存取。
 
-```
-var pushOptions = {
-    android: {
-        senderId: '<from-gcm-console>'
-    },
-    ios: {
-        alert: true,
-        badge: true,
-        sound: true
-    },
-    windows: {
-    }
-};
-pushHandler = PushNotification.init(pushOptions);
+請使用下列步驟來變更 App Service 設定，以允許從 localhost 進行驗證︰
 
-pushHandler.on('registration', function (data) {
-    registrationId = data.registrationId;
-    // For cross-platform, you can use the device plugin to determine the device
-    // Best is to use device.platform
-    var name = 'gcm'; // For android - default
-    if (device.platform.toLowerCase() === 'ios')
-        name = 'apns';
-    if (device.platform.toLowerCase().substring(0, 3) === 'win')
-        name = 'wns';
-    client.push.register(name, registrationId);
-});
+1. 登入 [Azure 入口網站]，瀏覽至您的行動應用程式後端，然後按一下 [工具] > [資源總管] > [前往]，為您的行動應用程式後端 (網站) 開啟新的資源總管視窗。
 
-pushHandler.on('notification', function (data) {
-    // data is an object and is whatever is sent by the PNS - check the format
-    // for your particular PNS
-});
+2. 展開應用程式的 **config** 節點，然後按一下 [authsettings] > [編輯]，尋找 **allowedExternalRedirectUrls** 元素 (應該是 null)，並將它變更如下︰
 
-pushHandler.on('error', function (error) {
-    // Handle errors
-});
-```
+         "allowedExternalRedirectUrls": [
+             "http://localhost:3000",
+             "https://localhost:3000"
+         ],
 
-使用通知中樞 SDK 從伺服器傳送推播通知。絕對不要直接從用戶端傳送推播通知，因為用戶端可能被利用來對通知中樞或 PNS 發動阻絕服務攻擊。
+    使用您的服務的 URL 取代陣列中的 URL，在此範例中為本機 Node.js 範例服務的 `http://localhost:3000`。若是 Ripple 服務，您也可以使用 `http://localhost:4400` 或一些其他的 URL，根據您的應用程式的設定方式而定。
+    
+3. 在頁面頂端，按一下 [讀取/寫入]，然後按一下 [PUT] 以儲存您所做的更新。
+
+    您仍需要將相同的回送 URL 加入至 CORS 白名單設定：
+
+4. 回到 [Azure 入口網站]，在您的行動應用程式後端，按一下 [所有設定] > [CORS]，將回送 URL 加入至白名單，然後按一下 [儲存]。
+
+後端更新之後，您就可以在應用程式中使用新的回送 URL。
 
 <!-- URLs. -->
 [Azure 行動應用程式快速入門]: app-service-mobile-cordova-get-started.md
 [開始使用驗證]: app-service-mobile-cordova-get-started-users.md
-[將驗證新增至您的應用程式]: app-service-mobile-cordova-get-started-users.md
+[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
 
-[Apache Cordova Plugin for Azure Mobile Apps]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
-[your first Apache Cordova app]: http://cordova.apache.org/#getstarted
-[phonegap-facebook-plugin]: https://github.com/wizcorp/phonegap-facebook-plugin
-[phonegap-plugin-push]: https://www.npmjs.com/package/phonegap-plugin-push
-[cordova-plugin-device]: https://www.npmjs.com/package/cordova-plugin-device
-[cordova-plugin-inappbrowser]: https://www.npmjs.com/package/cordova-plugin-inappbrowser
-[Query 物件文件]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
+[適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
+[Query object documentation]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

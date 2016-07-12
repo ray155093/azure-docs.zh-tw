@@ -21,6 +21,8 @@
 
 Data factory 目前只支援把 Web 資料表的資料移動到其他資料存放區，但不支援把其他資料存放區的資料移動到 Web 資料表。
 
+> [AZURE.NOTE] 此 Web 連接器目前只支援從 HTML 網頁擷取資料表內容。
+
 ## 範例：把 Web 資料表的資料複製到 Azure Blob
 
 下列範例顯示：
@@ -35,7 +37,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 下列範例示範如何把 Web 資料表的資料複製到 Azure Blob。不過，您可以使用 Azure Data Factory 中的複製活動，把資料直接複製到[資料移動活動](data-factory-data-movement-activities.md)一文中所述的任何接收器。
 
-**Web 連結服務** 這個範例會使用有匿名驗證的 Web 連結服務。請參閱＜[Web 連結服務](#web-linked-service-properties)＞一節，來了解您可以使用的不同驗證類型。
+**Web 連結服務** 這個範例會使用有匿名驗證的 Web 連結服務。請參閱 [Web 連結服務](#web-linked-service-properties)一節，來了解您可以使用的不同驗證類型。
 
 	{
 	    "name": "WebLinkedService",
@@ -65,7 +67,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 將 **external** 設定為 **True**的**WebTable 輸入資料集**，及指定 **externalData** 原則 (可省略) 即可通知 Data Factory 服務：這是 Data Factory 外部的資料表，且不是由 Data Factory 中的活動所產生。
 
-> [AZURE.NOTE] 如需如何取得 HTML 網頁中資料表索引的步驟，請參閱＜[取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page)＞一節。
+> [AZURE.NOTE] 如需如何取得 HTML 網頁中資料表索引的步驟，請參閱[取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page)一節。
 
 	
 	{
@@ -116,7 +118,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設定為 **WebSource**，且 **sink** 類型設定為 **BlobSink**。
 
-如需 WebSource 支援的屬性清單，請參閱＜[WebSource 類別屬性](#websource-copy-activity-type-properties)＞一節。
+如需 WebSource 支援的屬性清單，請參閱 [WebSource 類別屬性](#websource-copy-activity-type-properties)一節。
 	
 	{  
 	    "name":"SamplePipeline",
@@ -251,19 +253,19 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 
 ## 取得 HTML 網頁中資料表的索引
 
-1. 啟動 [Excel 2016]，然後切換到 [資料] 索引標籤。  
+1. 啟動 [Excel 2016]，然後切換到 [資料] 索引標籤。
 2. 按一下工具列上的 [開新查詢]、指向 [從其他來源]，然後按一下 [從 Web]。
 	
-	![Power Query 功能表](./media/data-factory-web-table-connector/PowerQuery-Menu.png) 
-3. 在 [從 Web] 對話方塊中，輸入您要在連結服務 JSON 中使用的 **URL** (例如：https://en.wikipedia.org/wiki/)，以及您為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。 
+	![Power Query 功能表](./media/data-factory-web-table-connector/PowerQuery-Menu.png)
+3. 在 [從 Web] 對話方塊中，輸入您要在連結服務 JSON 中使用的**URL** (例如：https://en.wikipedia.org/wiki/)，以及您為資料集指定的路徑 (例如：AFI%27s\_100\_Years...100\_Movies)，然後按一下 [確定]。
 
 	![[從 Web] 對話方塊](./media/data-factory-web-table-connector/FromWeb-DialogBox.png)
 
-	此範例所使用的 URL：https://en.wikipedia.org/wiki/AFI%27s_100_Years...100_Movies 
-4.  當您看到 [存取 Web 內容] 對話方塊時，選取右側的 **URL**、**驗證方式**，然後按一下 [連線]。 
+	此範例所使用的 URL：https://en.wikipedia.org/wiki/AFI%27s_100_Years...100_Movies
+4.  當您看到 [存取 Web 內容] 對話方塊時，選取右側的 **URL**、**驗證方式**，然後按一下 [連線]。
 
 	![[存取 Web 內容] 對話方塊](./media/data-factory-web-table-connector/AccessWebContentDialog.png)
-5.  按一下樹狀檢視中的某個**資料表**項目來查看資料表內容，然後按一下底部的 [編輯] 按鈕。  
+5.  按一下樹狀檢視中的某個**資料表**項目來查看資料表內容，然後按一下底部的 [編輯] 按鈕。
 
 	![[導覽器] 對話方塊](./media/data-factory-web-table-connector/Navigator-DialogBox.png)
 
@@ -283,6 +285,6 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

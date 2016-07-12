@@ -20,7 +20,7 @@
 
 身為系統管理員，您可能需要鎖定訂用帳戶、資源群組或資源，以防止組織中的其他使用者不小心刪除或修改重要資源。您可以將鎖定層級設定為 **CanNotDelete** 或 **ReadOnly**。
 
-- **CanNotDelete** 表示經過授權的使用者仍然可以讀取和修改資源，但無法刪除資源。 
+- **CanNotDelete** 表示經過授權的使用者仍然可以讀取和修改資源，但無法刪除資源。
 - **ReadOnly** 表示經過授權的使用者可以讀取資源，但是無法刪除資源或對其執行任何動作。對資源的權限限制為**讀取者**角色。套用 **ReadOnly** 會導致無法預期的結果，因為有些看似讀取作業的作業實際上需要其他動作。例如，將 **ReadOnly** 鎖定放置在儲存體帳戶上，會防止所有使用者列出金鑰。清單金鑰作業是透過 POST 要求進行處理，因為傳回的金鑰可用於寫入作業。至於其他範例，將 **ReadOnly** 鎖定放置在 App Service 資源，會防止 Visual Studio 伺服器總管顯示資源的檔案，因為該互動需要寫入存取權。
 
 不同於角色型存取控制，您可以使用管理鎖定來對所有使用者和角色套用限制。如要了解使用者和角色的設定權限，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
@@ -100,7 +100,7 @@
 
 您可以使用 **New-AzureRmResourceLock**，來利用 Azure PowerShell 鎖定已部署的資源，如下所示。
 
-    New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockSite -ResourceName examplesite -ResourceType Microsoft.Web/sites
+    New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockSite -ResourceName examplesite -ResourceType Microsoft.Web/sites -ResourceGroupName exampleresourcegroup
 
 Azure PowerShell 為使用中的鎖定提供其他命令，例如可更新鎖定的 **Set-AzureRmResourceLock**，以及可刪除鎖定的 **Remove-AzureRmResourceLock**。
 
@@ -111,4 +111,4 @@ Azure PowerShell 為使用中的鎖定提供其他命令，例如可更新鎖定
 - 若要變更資源所在的資源群組，請參閱[將資源移動到新的資源群組](resource-group-move-resources.md)
 - 您可以使用自訂原則，在訂用帳戶內套用限制和慣例。如需詳細資訊，請參閱[使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

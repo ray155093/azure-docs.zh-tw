@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/27/2016"    
+	ms.date="06/22/2016"    
 	ms.author="juliako"/>
 
 
@@ -42,7 +42,7 @@
 
 			// Load the XML (or JSON) from the local file.
 		    string configuration = File.ReadAllText(fileName);  
-- 將編碼工作新增至作業。 
+- 將編碼工作新增至作業。
 - 指定要編碼的輸入資產。
 - 建立將包含已編碼資產的輸出資產。
 - 加入事件處理常式來檢查工作進度。
@@ -959,4 +959,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

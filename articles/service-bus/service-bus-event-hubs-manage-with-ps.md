@@ -1,20 +1,20 @@
 <properties
-   pageTitle="使用 PowerShell 來管理服務匯流排和事件中樞資源"
-   description="使用 PowerShell 來建立及管理服務匯流排和事件中樞資源"
-   services="service-bus"
-   documentationCenter=".NET"
-   authors="sethmanheim"
-   manager="timlt"
-   editor=""/>
+    pageTitle="使用 PowerShell 來管理服務匯流排和事件中樞資源 | Microsoft Azure"
+    description="使用 PowerShell 來建立及管理服務匯流排和事件中樞資源"
+    services="service-bus"
+    documentationCenter=".NET"
+    authors="sethmanheim"
+    manager="timlt"
+    editor=""/>
 
 <tags
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="sethm"/>
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="na"
+    ms.date="06/24/2016"
+    ms.author="sethm"/>
 
 # 使用 PowerShell 來管理服務匯流排和事件中樞資源
 
@@ -276,4 +276,4 @@ catch [System.Exception]
 [服務匯流排的 .NET API]: https://msdn.microsoft.com/zh-TW/library/azure/mt419900.aspx
 [安裝並設定 Azure PowerShell]: ../powershell-install-configure.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0629_2016-->

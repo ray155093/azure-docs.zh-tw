@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/29/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從內部部署檔案系統來回移動資料
 
-本文概述如何使用資料處理站複製活動和內部部署檔案系統往來移動資料。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文概述如何使用資料處理站複製活動和內部部署檔案系統往來移動資料。如需可做為內部部署檔案系統之來源或接收的資料存放區清單，請參閱[支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores)。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 資料處理站支援透過資料管理閘道器連接至內部部署檔案系統。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道器和設定閘道器的逐步指示。
 
@@ -32,7 +32,7 @@
 執行下列兩個步驟來搭配使用 Linux 檔案共用和檔案伺服器連結服務：
 
 - 在您的 Linux 伺服器上安裝 [Samba](https://www.samba.org/)。
-- 在 Windows 伺服器上安裝和設定資料管理閘道器。不支援在 Linux 伺服器上安裝閘道器。 
+- 在 Windows 伺服器上安裝和設定資料管理閘道器。不支援在 Linux 伺服器上安裝閘道器。
  
 ## 範例：將資料從內部部署檔案系統複製到 Azure Blob
 
@@ -44,7 +44,7 @@
 2.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
 3.	[FileShare](data-factory-onprem-file-system-connector.md#on-premises-file-system-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-4.	具有使用 [FileSystemSource](data-factory-onprem-file-system-connector.md#file-share-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+4.	具有使用 [FileSystemSource](data-factory-onprem-file-system-connector.md#file-share-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 下列範例每小時都會將屬於時間序列的資料從內部部署檔案系統複製到 Azure blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -255,7 +255,7 @@
 
 1.	AzureSqlDatabase 類型的連結服務。
 2.	類型 OnPremisesFileServer 的連結服務。
-3.	AzureSqlTable 類型的輸入資料集。 
+3.	AzureSqlTable 類型的輸入資料集。
 3.	類型 FileShare 的輸出資料集。
 4.	具有使用 SqlSource 和 FileSystemSink 之複製活動的管線。
 
@@ -439,7 +439,7 @@
 主機 | 伺服器的主機名稱。使用 ‘ \\ ’ 作為逸出字元，如下列範例所示：如果您的共用是 \\servername，請指定 \\\servername。<br/><br/>如果檔案系統位於閘道器電腦，請使用 Local 或 localhost。如果檔案系統與閘道器電腦位於不同的伺服器上，請使用 \\\servername。 | 是
 userid | 指定具有伺服器存取權之使用者的識別碼 | 否 (如果您選擇 encryptedCredential)
 password | 指定使用者的密碼 (userid) | 否 (如果您選擇 encryptedCredential) 
-encryptedCredential | 指定您可以藉由執行 New-AzureRmDataFactoryEncryptValue Cmdlet 取得的加密認證<br/><br/>**請注意：**您必須使用 Azure PowerShell 0.8.14 或更高版本才能使用 Cmdlet，例如類型參數設為 OnPremisesFileSystemLinkedService 的 New-AzureRmDataFactoryEncryptValue | 否 (如果您選擇以純文字指定使用者識別碼和密碼)
+encryptedCredential | 指定您可以藉由執行 New-AzureRmDataFactoryEncryptValue Cmdlet 取得的加密認證<br/><br/>**注意：**您必須使用 Azure PowerShell 0.8.14 或更高版本才能使用 Cmdlet，例如類型參數設為 OnPremisesFileSystemLinkedService 的 New-AzureRmDataFactoryEncryptValue | 否 (如果您選擇以純文字指定使用者識別碼和密碼)
 gatewayName | 資料處理站服務應該用來連接到內部部署檔案伺服器的閘道器名稱 | 是
 
 如需為內部部署檔案系統資料來源設定認證的詳細資料，請參閱[設定認證和安全性](data-factory-move-data-between-onprem-and-cloud.md#set-credentials-and-security)。
@@ -485,8 +485,8 @@ folderPath | 資料夾的路徑。範例：myfolder<br/><br/>使用逸出字元 
 fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。如果您未指定此屬性的任何值，資料表會指向資料夾中的所有檔案。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：<br/><br/>Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否
 partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
 格式 | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否
-fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：* (多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**請注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**Optimal** 和 **Fastest**。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：(多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": ".log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 > [AZURE.NOTE] 無法同時使用檔名和 fileFilter。
 
@@ -555,7 +555,7 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
 
 
@@ -564,4 +564,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

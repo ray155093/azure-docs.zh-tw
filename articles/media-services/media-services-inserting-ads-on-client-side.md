@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -89,7 +89,7 @@ VAST 檔案會指定要顯示的廣告。下列 XML 是線性廣告的 VAST 檔�
 	  </Ad>
 	</VAST>
 	
-線性廣告如 **<Linear>** 元素所述。它會指定廣告的持續時間、追蹤事件、點選連結、點選追蹤和許多 **<MediaFile>** 元素。追蹤事件是在 **<TrackingEvents>** 元素中指定，並允許廣告伺服器追蹤在檢視廣告時所發生的各種事件。在此案例中會追蹤開始、中間點、完成及展開事件。當顯示廣告時，就會發生開始事件。當至少已經檢視 50% 的廣告時間軸時，就會發生中間點事件。當廣告播放到結尾時，就會發生完成事件。當使用者將視訊播放器展開至全螢幕時，就會發生展開事件。點選連結是以 **<VideoClicks>** 元素內的 **<ClickThrough>** 元素指定，並且會指定當使用者按一下廣告時，要顯示的資源的 URI。點選追蹤是在一樣是 **<VideoClicks>** 元素內的 **<ClickTracking>** 元素中指定，並且會在使用者按一下廣告時追蹤使用者要求的資源。**<MediaFile>** 元素會指定廣告特定編碼的相關資訊。當有一個以上的 **<MediaFile>** 元素時，視訊播放器可以選擇對於平台最佳的編碼。
+線性廣告是利用 **<Linear>** 元素來說明。它會指定廣告的持續時間、追蹤事件、點選連結、點選追蹤，以及許多 **<MediaFile>** 元素。追蹤事件是在 **<TrackingEvents>** 元素中指定，並允許廣告伺服器追蹤在檢視廣告時所發生的各種事件。在此案例中會追蹤開始、中間點、完成及展開事件。當顯示廣告時，就會發生開始事件。當至少已經檢視 50% 的廣告時間軸時，就會發生中間點事件。當廣告播放到結尾時，就會發生完成事件。當使用者將視訊播放器展開至全螢幕時，就會發生展開事件。點選連結是以 **<VideoClicks>** 元素內的 **<ClickThrough>** 元素指定，並指定當使用者按一下廣告時要顯示資源的 URI。點選追蹤是在 **<ClickTracking>** 元素 (同樣位於 **<VideoClicks>** 元素內) 中指定，並指定在使用者按一下廣告時播放器要求的追蹤資源。**<MediaFile>** 元素會指定廣告特定編碼的相關資訊。若有一個以上的 **<MediaFile>** 元素，視訊播放器就可以選擇最適合平台的編碼。
 
 線性廣告可以依照指定的順序顯示。若要這樣做，請將其他 <Ad> 元素加入至 VAST 檔案，並使用順序屬性指定順序。下列範例會加以說明：
 	
@@ -152,7 +152,7 @@ VAST 檔案會指定要顯示的廣告。下列 XML 是線性廣告的 VAST 檔�
 	</Creative>
 
  
-**<NonLinearAds>** 元素可以包含一或多個 **<NonLinear>** 元素，其中每一個元素可以說明非線性廣告。**<NonLinear>** 元素會指定非線性廣告的資源。資源可以是 **<StaticResouce>**、**<IFrameResource>** 或 **<HTMLResouce>**。**<StaticResource>** 會說明非 HTML 資源，並且定義 creativeType 屬性，該屬性會指定資源的顯示方式：
+**<NonLinearAds>** 元素可以包含一或多個 **<NonLinear>** 元素，其中每一個元素都可說明一個非線性廣告。**<NonLinear>** 元素會指定非線性廣告的資源。資源可以是 **<StaticResouce>**、**<IFrameResource>** 或 **<HTMLResouce>**。**<StaticResource>** 會說明非 HTML 資源，並定義 creativeType 屬性，該屬性會指定資源的顯示方式：
 
 image/gif、image/jpeg、image/png – 資源在 HTML **<img>** 標記中顯示。
 
@@ -160,9 +160,9 @@ Application/x-javascript – 資源在 HTML <**scrip**> 標記中顯示。
 
 Application/x-shockwave-flash – 資源在 Flash Player 中顯示。
 
-**<IFrameResource>** 說明 HTML 資源，可以在 IFrame 中顯示。**<HTMLResource>** 說明 HTML 程式碼的片段，可以插入至網頁。**<TrackingEvents>** 指定追蹤事件以及當發生事件時要求的 URI。在此範例中，會追蹤 acceptInvitation 和 collapse 事件。如需有關 **<NonLinearAds>** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。請注意，**<TrackingEvents>** 元素是位於 **<NonLinearAds>** 元素內，而非 **<NonLinear>** 元素。
+**<IFrameResource>** 說明可在 IFrame 中顯示的 HTML 資源。**<HTMLResource>** 說明可插入網頁的 HTML 程式碼片段。**<TrackingEvents>** 指定追蹤事件以及當發生事件時要求的 URI。在此範例中，會追蹤 acceptInvitation 和 collapse 事件。如需有關 **<NonLinearAds>** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。請注意，**<TrackingEvents>** 元素位於 **<NonLinearAds>** 元素內，而不是 **<NonLinear>** 元素中。
 
-隨播廣告會在 <CompanionAds> 元素內定義。<CompanionAds> 元素可以包含一或多個 <Companion> 元素。每個 <Companion> 元素都會說明隨播廣告，而且可以包含 <StaticResource>、<IFrameResource> 或 <HTMLResource>，其指定方式與非線性廣告相同。VAST 檔案可以包含多個隨播廣告，而且播放器應用程式可以選擇要顯示的最適當廣告。如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
+隨播廣告定義於 <CompanionAds> 元素內。<CompanionAds> 元素可以包含一或多個 <Companion> 元素。每個 <Companion> 元素都會說明一個隨播廣告，而且可包含 <StaticResource>、<IFrameResource> 或 <HTMLResource>，其指定方式與非線性廣告相同。VAST 檔案可以包含多個隨播廣告，而且播放器應用程式可以選擇要顯示的最適當廣告。如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
 
 ###使用 Digital Video Multiple Ad Playlist (VMAP) 檔案
 
@@ -215,7 +215,7 @@ VMAP 檔案可讓您指定何時插播廣告、每個插播多久、插播中可
 	  </vmap:AdBreak>
 	</vmap:VMAP>
 	 
-VMAP 檔案開頭為 <VMAP> 元素，包含一或多個 <AdBreak> 元素，每個元素都會定義廣告插播。每個廣告插播都會指定插播類型、插播 ID 和時間位移。breakType 屬性會指定插播期間可以播放的廣告類型：線性、非線性或顯示。顯示廣告會對應到 VAST 隨播廣告。在逗號 (無空格) 分隔的清單中可以指定一個以上的廣告類型。breakID 是廣告的選擇性識別碼。timeOffset 會指定何時應該顯示廣告。可以利用下列方式之一來指定：
+VMAP 檔案開頭為 <VMAP> 元素，其中包含一或多個 <AdBreak> 元素，每個元素都會定義廣告插播。每個廣告插播都會指定插播類型、插播 ID 和時間位移。breakType 屬性會指定插播期間可以播放的廣告類型：線性、非線性或顯示。顯示廣告會對應到 VAST 隨播廣告。在逗號 (無空格) 分隔的清單中可以指定一個以上的廣告類型。breakID 是廣告的選擇性識別碼。timeOffset 會指定何時應該顯示廣告。可以利用下列方式之一來指定：
 
 1. 時間 – hh: mm: 或 hh:mm:ss.mmm 的格式，其中.mmm 為毫秒。這個屬性的值會指定從視訊時間軸開始到廣告插播開始的時間。
 1. 百分比 – n% 格式，其中 n 是視訊時間軸在播放廣告之前播放的百分比
@@ -232,7 +232,7 @@ VMAP 檔案開頭為 <VMAP> 元素，包含一或多個 <AdBreak> 元素，每�
 
 - <VASTAdData> 表示 VAST 廣告回應內嵌在 VMAP 檔案
 - <AdTagURI> 從另一個系統參考廣告回應的 URI
-- <CustomAdData> -表示非 VAST 回應的任意字串
+- <CustomAdData> - 表示非 VAST 回應的任意字串
 
 在這個範例中，內嵌廣告回應是以 <VASTAdData> 元素指定，該元素包含 VAST 廣告回應。如需其他元素的詳細資訊，請參閱 [VMAP](http://www.iab.net/guidelines/508676/digitalvideo/vsuite/vmap)。
 
@@ -314,16 +314,16 @@ MAST 檔案可讓您指定觸發程序，定義何時顯示廣告。以下是範
 
  
 
-MAST 檔案開頭為 **<MAST>** 元素，包含一個 **<triggers>** 元素。<triggers> 元素包含一個或多個 **<trigger>** 元素，定義何時應該播放廣告。
+MAST 檔案開頭為 **<MAST>** 元素，其中包含一個 **<triggers>** 元素。<triggers> 元素包含一或多個 **<trigger>** 元素，定義何時應該播放廣告。
 
-**<trigger>** 元素包含 **<startConditions>** 元素，定義何時應該播放廣告。**<startConditions>** 元素包含一或多個 <condition> 元素。當每個 <condition> 評估為 true 時，會起始或撤銷觸發程序，取決於 <condition> 是分別內含於 **<startConditions**> 或 **<endConditions>** 元素。當多個 <condition> 元素都存在時，則會視為隱含 OR，任何評估為 true 的條件都會導致起始觸發程序。<condition> 元素可以為巢狀。當預設子系 <condition> 元素時，它們會被視為隱含 AND，所有條件必須評估為 true，才會起始觸發程序。<condition> 元素包含會定義條件的下列屬性：
+**<trigger>** 元素包含 **<startConditions>** 元素，定義何時應該開始播放廣告。**<startConditions>** 元素包含一或多個 <condition> 元素。當每個 <condition> 評估為 true 時，要起始或撤銷觸發程序取決於 <condition> 包含於 **<startConditions**> 或 **<endConditions>** 元素內。如果有多個 <condition> 元素存在，則會將它們視為隱含的 OR，任何評估為 true 的條件都會導致起始觸發程序。<condition> 元素可以是巢狀的。預設子系 <condition> 元素時，會將它們視為隱含的 AND，所有條件必須評估為 true，才會起始觸發程序。<condition> 元素包含下列定義條件的屬性：
 
 1. **type** – 指定條件、事件或屬性的類型
 1. **name** – 要在評估期間使用之屬性或事件的名稱
 1. **value** – 屬性將會針對其進行評估的值
 1. **operator** – 要在評估期間使用的運算：EQ (等於)、NEQ (不等於)、GTR (大於)、GEQ (大於或等於)、LT (小於)、LEQ (小於或等於)、MOD (模數)
 
-**<endConditions>** 也包含 <condition> 元素。當條件評估為 true 時，會重設觸發程序。<trigger> 元素也包含 <sources> 元素，該元素包含一或多個 <source> 元素。<source> 元素定義廣告回應的 URI 與廣告回應的類型。在此範例中，會對 VAST 回應指定 URI。
+**<endConditions>** 也會包含 <condition> 元素。當條件評估為 true 時，會重設觸發程序。<trigger> 元素也會包含 <sources> 元素，該元素包含一或多個 <source> 元素。<source> 元素定義廣告回應的 URI 與廣告回應的類型。在此範例中，會對 VAST 回應指定 URI。
 
 
 	<trigger id="postroll" description="postroll"  >
@@ -342,7 +342,7 @@ MAST 檔案開頭為 **<MAST>** 元素，包含一個 **<triggers>** 元素。<t
 
 VPAID 是 API，用於啟用可執行廣告單元，以便與視訊播放器通訊。如此可提供高度互動性與體驗。使用者可以與廣告互動，而且廣告可以回應檢視者採取的動作。例如，廣告可能會顯示按鈕，讓使用者檢視更多詳細資訊或廣告的加長版。視訊播放器必須支援 VPAID API，可執行廣告必須實作 API。當播放器向廣告伺服器要求廣告時，該伺服器可能會以包含 VPAID 廣告的 VAST 回應進行回應。
 
-必須在如 Adobe Flash™ 或可以在網頁瀏覽器中執行的 JavaScript 執行階段環境中執行的程式碼中建立可執行廣告。當廣告伺服器傳回包含 VPAID 廣告的 VAST 回應時，<MediaFile> 元素中屬性 apiFramework 的值必須是 "VPAID"。這個屬性會指定包含的廣告是 VPAID 可執行廣告。類型屬性必須設定為可執行的 MIME 類型，例如 “application/x-shockwave-flash” 或 “application/x-javascript”。下列 XML 程式碼片段顯示來自包含 VPAID 可執行廣告之 VAST 回應的 <MediaFile> 元素。
+必須在如 Adobe Flash™ 或可以在網頁瀏覽器中執行的 JavaScript 執行階段環境中執行的程式碼中建立可執行廣告。當廣告伺服器傳回包含 VPAID 廣告的 VAST 回應時，<MediaFile> 元素中 apiFramework 屬性的值必須是 "VPAID"。這個屬性會指定包含的廣告是 VPAID 可執行廣告。類型屬性必須設定為可執行的 MIME 類型，例如 “application/x-shockwave-flash” 或 “application/x-javascript”。下列 XML 程式碼片段顯示來自 VAST 回應的 <MediaFile> 元素，其中包含 VPAID 的可執行廣告。
 
 	
 	<MediaFiles>
@@ -353,7 +353,7 @@ VPAID 是 API，用於啟用可執行廣告單元，以便與視訊播放器通�
 	</MediaFiles>
  
 
-可以使用 VAST 回應中 <Linear> 或 <NonLinear> 元素內的 <AdParameters> 元素，初始化可執行廣告。如需 <AdParameters> 元素的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。如需 VPAID API 的詳細資訊，請參閱 [VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf)。
+您可以使用 VAST 回應中 <Linear> 或 <NonLinear> 元素內的 <AdParameters> 元素，初始化可執行廣告。如需 <AdParameters>元素的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。如需 VPAID API 的詳細資訊，請參閱 [VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf)。
 
 ##實作包含廣告支援的 Windows 或 Windows Phone 8 播放器
 
@@ -399,7 +399,7 @@ Microsoft 媒體平台：Player Framework for Windows 8 和 Windows Phone 8 包�
 
 ###AdSchedulingPage
 
-此範例也會使用 AdSchedulerPlugin。它會排程三個廣告，片頭廣告、片中廣告和片尾廣告。每個廣告的 VAST 的 URI 是在 <RemoteAdSource> 元素中指定。
+此範例也會使用 AdSchedulerPlugin。它會排程三個廣告，片頭廣告、片中廣告和片尾廣告。適用於每個廣告的 VAST 檔案 URI 是在 <RemoteAdSource> 元素中指定。
 	
 	<mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
 	            <mmppf:MediaPlayer.Plugins>
@@ -813,4 +813,4 @@ Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合
 
 [開發視訊播放程式應用程式](media-services-develop-video-players.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

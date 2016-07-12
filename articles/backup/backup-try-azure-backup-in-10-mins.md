@@ -193,7 +193,7 @@
 
 完成初始備份之後，備份主控台中會顯示 [作業已完成] 狀態。
 
-    ![IR 已完成](./media/backup-try-azure-backup-in-10-mins/ircomplete.png)
+![IR 已完成](./media/backup-try-azure-backup-in-10-mins/ircomplete.png)
 
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。

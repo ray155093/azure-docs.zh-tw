@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+    ms.date="06/28/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集
@@ -101,7 +101,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	![Azure 入口網站 hdinsight 叢集使用量](./media/hdinsight-administer-use-management-portal/hdinsight.portal.cluster.settings.png)
 
 	- **屬性**：檢視叢集屬性。
-	- **叢集 AAD 身分識別**： 
+	- **叢集 AAD 身分識別**：
 	- **Azure 儲存體金鑰**：檢視預設儲存體帳戶與其金鑰。儲存體帳戶是叢集建立程序期間的組態。
 	- **叢集登入**：變更叢集 HTTP 使用者名稱和密碼。
 	- **外部中繼存放區**：檢視 Hive 和 Oozie 中繼存放區。中繼存放區只可以在叢集建立程序期間進行設定。
@@ -121,7 +121,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	- **區域**：Azure 位置。如需支援的 Azure 位置清單，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)上的 [區域] 下拉式清單方塊。
 	- **資料已建立**。
 	- **作業系統**：**Windows** 或 **Linux**。
-	- **類型**：Hadoop、HBase、Storm、Spark。 
+	- **類型**：Hadoop、HBase、Storm、Spark。
 	- **版本**。請參閱 [HDInsight 版本](hdinsight-component-versioning.md)
 	- **訂用帳戶**︰訂用帳戶名稱。
 	- **訂用帳戶識別碼**。
@@ -142,7 +142,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 ##調整叢集
 叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的背景工作節點數目，而不需要重新建立叢集。
 
->[AZURE.NOTE] 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。請參閱[列出和顯示叢集](hdinsight-adminster-use-management-portal/#list-and-show-clusters)。
+>[AZURE.NOTE] 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。請參閱[列出和顯示叢集](hdinsight-adminster-use-management-portal.md#list-and-show-clusters)。
 
 變更 HDInsight 支援的每一種叢集所用的資料節點數目會有何影響：
 
@@ -201,7 +201,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 
 有許多方法可以設計程序：
 
-- 使用 Azure Data Factory。請參閱 [Azure HDInsight 連結服務](../data-factory/data-factory-compute-linked-services.md/#azure-hdinsight-linked-service)和[使用 Azure Data Factory 進行轉換和分析](../data-factory/data-factory-data-transformation-activities.md)，以取得隨選和自行定義的 HDInsight 連結服務。
+- 使用 Azure Data Factory。請參閱 [Azure HDInsight 連結服務](../data-factory/data-factory-compute-linked-services.md)和[使用 Azure Data Factory 進行轉換和分析](../data-factory/data-factory-data-transformation-activities.md)，以取得隨選和自行定義的 HDInsight 連結服務。
 - 使用 Azure PowerShell。請參閱[分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)。
 - 使用 Azure CLI。請參閱[使用 Azure CLI 管理 HDInsight 叢集](hdinsight-administer-use-command-line.md)。
 - 使用 HDInsight .NET SDK。請參閱[提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)。
@@ -252,7 +252,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 ##尋找預設的儲存體帳戶
 
-每個 HDInsight 叢集都有預設的儲存體帳戶。叢集的預設儲存體帳戶與其金鑰會顯示在 [設定] / [屬性] / [Azure 儲存體金鑰] 之下。請參閱[列出和顯示叢集](#list-and-show-clusters)。
+每個 HDInsight 叢集都有預設的儲存體帳戶。叢集的預設儲存體帳戶與其金鑰會顯示在 [設定]/[屬性]/[Azure 儲存體金鑰] 之下。請參閱[列出和顯示叢集](#list-and-show-clusters)。
 
 	
 ##尋找資源群組 
@@ -260,7 +260,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 在 ARM 模式中，每個 HDInsight 叢集是隨著 Azure 資源群組一起建立。叢集所屬的 Azure 資源群組會出現於：
 
 - 叢集清單含有 [資源群組] 資料行。
-- 叢集 [基本資料] 磚。  
+- 叢集 [基本資料] 磚。
 
 請參閱[列出和顯示叢集](#list-and-show-clusters)。
    
@@ -277,19 +277,19 @@ HDInsight 查詢主控台包括下列功能：
 
 	![hdinsight 入口網站工作歷程記錄](./media/hdinsight-administer-use-management-portal/hdinsight-job-history.png)
 
-	按一下 [查詢名稱] 來顯示詳細資料，包括工作屬性、[工作查詢] 和 [工作輸出]。您也可以將查詢和輸出下載至您的工作站。
+	按一下 [查詢名稱] 來顯示詳細資料，包括工作屬性、[工作查詢] 和 [工作輸出]**。您也可以將查詢和輸出下載至您的工作站。
 
 - **檔案瀏覽器**：瀏覽預設的儲存體帳戶和連結的儲存體帳戶。
 
 	![hdinsight 入口網站檔案瀏覽器瀏覽](./media/hdinsight-administer-use-management-portal/hdinsight-file-browser.png)
 
-	在螢幕擷取畫面上，**<Account>** 類型表示此項目是 Azure 儲存體帳戶。按一下帳戶名稱以瀏覽檔案。
+	在螢幕擷取畫面上，**<帳戶>** 類型表示此項目是 Azure 儲存體帳戶。按一下帳戶名稱以瀏覽檔案。
 	
 - **Hadoop UI**。
 
 	![hdinsight 入口網站 Hadoop UI](./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-ui.png)
 	
-	從 *Hadoop UI*，您可以瀏覽檔案，並檢查記錄檔。
+	從「Hadoop UI」，您可以瀏覽檔案，並檢查記錄檔。
 
 - **Yarn UI**。
 
@@ -385,4 +385,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -26,7 +26,7 @@
 <br>
 
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-machines-windows-ps-create.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-ps-create.md)。
 
 
 下列步驟將示範如何使用建置組塊自訂一組 Azure PowerShell 命令，建立和預先設定以 Windows 為基礎的 Azure 虛擬機器。您可以使用此程序，對於以 Windows 為基礎的新虛擬機器建立命令集合，並擴充現有部署，或建立快速建置自訂開發/測試或 IT 專業環境的多個命令集。
@@ -37,14 +37,14 @@
 
 ## 步驟 1︰加入您的帳戶
 
-1. 在 PowerShell 提示字元處，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。 
-2. 輸入與您 Azure 訂用帳戶相關聯的電子郵件地址，並按一下 [**繼續**]。 
-3. 輸入您帳戶的密碼。 
+1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。
+2. 輸入與您 Azure 訂用帳戶相關聯的電子郵件地址，並按一下 [**繼續**]。
+3. 輸入您帳戶的密碼。
 4. 按一下 [**登入**]。
 
 ## 步驟 2：設定您的訂用帳戶和儲存體帳戶
 
-在 Windows PowerShell 命令提示字元處執行這些命令，來設定您的 Azure 訂用帳戶與儲存體帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+在 Windows PowerShell 命令提示字元處執行這些命令，來設定您的 Azure 訂用帳戶與儲存體帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<subscription name>"
 	$staccount="<storage account name>"
@@ -82,7 +82,7 @@
 
 ## 步驟 4：建置命令集
 
-將下列適當的區塊集合複製到新的文字檔或 ISE，然後填入變數值並移除 < and > 字元，以建置命令集的其餘部分。請參閱本文結尾的兩個[範例](#examples)，以了解最終產生的結果。
+將下列適當的區塊集合複製到新的文字檔或 ISE，然後填入變數值並移除 < 和 > 字元，以建置命令集的其餘部分。請參閱本文結尾的兩個[範例](#examples)，以了解最終產生的結果。
 
 選擇兩個命令區塊的其中一個，啟動命令集 (必要)。
 
@@ -168,14 +168,14 @@
 
 ## 步驟 5：執行命令集
 
-檢閱在步驟 4 中使用文字編輯器或 PowerShell ISE 以多個命令區塊建立的 Azure PowerShell 命令集。確定您已指定所需的所有變數，並且這些變數具有正確的值。也確定已移除所有 < and > 字元。
+檢閱在步驟 4 中使用文字編輯器或 PowerShell ISE 以多個命令區塊建立的 Azure PowerShell 命令集。確定您已指定所需的所有變數，並且這些變數具有正確的值。也確定已移除所有 < 和 > 字元。
 
 如果目前使用文字編輯器，請將命令集複製到剪貼簿，然後按一下滑鼠右鍵開啟 Windows PowerShell 命令提示字元。這將發出命令集作為一系列的 PowerShell 命令，並建立 Azure 虛擬機器。或者，在 PowerShell ISE 中執行命令集。
 
 如果您將再次建立這個虛擬機器或類似的虛擬機器，您可以：
 
 - 將此命令集儲存為 PowerShell 指令碼檔案 (*.ps1)。
-- 在 Azure 傳統入口網站的 [自動化] 區段中，將這個命令集儲存為 Azure 自動化 Runbook。
+- 將這個命令集儲存為 Azure 傳統入口網站 [自動化] 區段中的 Azure 自動化 Runbook。
 
 ## <a id="examples"></a>範例
 
@@ -258,6 +258,6 @@
 
 ## 後續步驟
 
-如果您需要大於 127 GB 的 OS 磁碟，可以[展開 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
+如果您需要大於 127 GB 的 OS 磁碟，可以[擴充 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="02/04/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 # 在 Azure 中啟用遠端桌面
@@ -95,7 +95,7 @@
 
 ## 其他資源
 
-- [從遠端存取 Azure 中的角色執行個體] 
+- [從遠端存取 Azure 中的角色執行個體]
 - [搭配使用遠端桌面與 Azure 角色]
 - [Node.js 開發人員中心](/develop/nodejs/)
 
@@ -115,4 +115,4 @@
 [搭配使用遠端桌面與 Azure 角色]: http://msdn.microsoft.com/library/windowsazure/gg443832.aspx
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0629_2016-->

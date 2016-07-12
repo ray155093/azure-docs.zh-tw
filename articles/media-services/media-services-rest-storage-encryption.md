@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="05/02/2016"   
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -26,8 +26,8 @@
 - 建立內容金鑰。
 - 建立資產。建立資產時，請將 AssetCreationOption 設為 StorageEncryption。
 
-	加密的資產必須與內容金鑰相關聯。
-- 將內容金鑰連結到資產。  
+	 加密的資產必須與內容金鑰相關聯。
+- 將內容金鑰連結到資產。
 - 在 AssetFile 實體上設定加密相關的參數。
  
 >[AZURE.NOTE]如果您想要傳遞儲存體加密資產，就必須設定資產的傳遞原則。資產可以串流處理之前，串流伺服器會移除儲存體加密，並使用指定的傳遞原則來串流您的內容。如需詳細資訊，請參閱[設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)。
@@ -53,11 +53,11 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。AES CT
 
 以下是產生您將與要加密資產相關聯的內容金鑰的一般步驟。
 
-1. 對於儲存體加密，請隨機產生 32 個位元組的 AES 金鑰。 
+1. 對於儲存體加密，請隨機產生 32 個位元組的 AES 金鑰。
 
-	這是您資產的內容金鑰，這表示與該資產相關聯的所有檔案都必須在解密期間使用相同的內容金鑰。 
+	這是您資產的內容金鑰，這表示與該資產相關聯的所有檔案都必須在解密期間使用相同的內容金鑰。
 2.	呼叫 [GetProtectionKeyId](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkeyid) 和 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 方法，以取得用來將內容金鑰加密時必須使用的正確 X.509 憑證。
-3.	使用 X.509 憑證的公開金鑰將您的內容金鑰加密。 
+3.	使用 X.509 憑證的公開金鑰將您的內容金鑰加密。
 
 	媒體服務 .NET SDK 會使用 RSA 和 OAEP 來執行加密作業。您可以在 [EncryptSymmetricKeyData 函式](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)中查看 .NET 範例。
 4.	建立使用金鑰識別碼和內容金鑰計算的總和檢查碼值。下列 .NET 範例會使用金鑰識別碼和明文內容金鑰的 GUID 部分計算總和檢查碼。
@@ -99,7 +99,7 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。AES CT
 	---|---
 	識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼：“nb:kid:UUID:<NEW GUID>”。
 	ContentKeyType | 這是針對此內容金鑰以整數表示的內容金鑰類型。我們會傳遞值 1 來進行儲存體加密。
-	EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。其範例請參閱下列 .NET 程式碼︰[這裡](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)定義的 **EncryptSymmetricKeyData** 方法。
+	EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。範例請參閱下列 .NET 程式碼︰[這裡](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)定義的 **EncryptSymmetricKeyData** 方法。
 	ProtectionKeyId | 這是適用於儲存體加密 X.509 憑證的保護金鑰識別碼，可用來加密我們的內容金鑰。
 	ProtectionKeyType | 這是適用於保護金鑰的加密類型，可用來將內容金鑰加密。針對本文範例，此值為 StorageEncryption(1)。
 	總和檢查碼 |MD5 會針對內容金鑰計算出總和檢查碼。它是使用內容金鑰來將內容識別碼加密計算而得的。範例程式碼示範如何計算總和檢查碼。
@@ -313,7 +313,7 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。AES CT
 
 請注意，**AssetFile** 執行個體和實際的媒體檔案是兩個不同的物件。AssetFile 執行個體包含媒體檔案的相關中繼資料，而媒體檔案包含實際的媒體內容。
 
-您將數位媒體檔案上傳至 Blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (未顯示在本主題中)。
+當您將數位媒體檔案上傳至 Blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (未顯示在本主題中)。
 
 **HTTP 要求**
 
@@ -375,4 +375,4 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。AES CT
 	   "ContentChecksum":null
 	}
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

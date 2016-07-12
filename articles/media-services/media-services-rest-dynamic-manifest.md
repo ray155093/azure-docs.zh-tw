@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"  
+	ms.date="06/22/2016"  
 	ms.author="juliako;cenkdin"/>
 
 #使用 Azure 媒體服務 REST API 建立篩選器
@@ -374,4 +374,4 @@ Request body
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

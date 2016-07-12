@@ -1,11 +1,4 @@
-<properties
-	pageTitle="教學課程：將資料從 Azure Blob 儲存體複製到 Azure SQL Database"
-	description="本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，從 Azure Blob 複製資料到 Azure SQL Database。"
-	services="data-factory"
-	documentationCenter=""
-	authors="spelluru"
-	manager="jhubbard"
-	editor="monicar"/>
+<properties pageTitle="將資料從 Blob 儲存體複製到 SQL Database | Microsoft Azure" description="本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，將資料從 Blob 儲存體複製到 SQL Database。" 關鍵字："blob sql, blob 儲存體, 資料複製" services="data-factory" documentationCenter="" authors="spelluru" manager="jhubbard" editor="monicar"/>
 
 <tags
 	ms.service="data-factory"
@@ -13,10 +6,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="04/01/2016"
+	ms.date="06/27/2016"
 	ms.author="spelluru"/>
 
-# 教學課程：將資料從 Azure Blob 儲存體複製到 Azure SQL Database
+# 使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database 
 > [AZURE.SELECTOR]
 - [教學課程概觀](data-factory-get-started.md)
 - [使用 Data Factory 編輯器](data-factory-get-started-using-editor.md)
@@ -24,7 +17,7 @@
 - [使用 Visual Studio](data-factory-get-started-using-vs.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-在本教學課程中，您將建立 Azure Data Factory，並建立具有複製活動的管線，以將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
+在本教學課程中，您將建立 Data Factory 與管線，以將資料從 Blob 儲存體複製到 SQL Database。
 
 複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
@@ -36,7 +29,7 @@
 - **Azure 訂用帳戶**。如果您沒有訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資料，請參閱[免費試用][azure-free-trial]一文。
 - **Azure 儲存體帳戶**。在本教學課程中，您將使用 Blob 儲存體做為**來源**資料存放區。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶][data-factory-create-storage]一文以取得建立步驟。
 - **Azure SQL Database**。在本教學課程中，您將使用 Azure SQL Database 做為**目的地**資料存放區。如果您沒有可在教學課程中使用的 Azure SQL Database，請參閱[如何建立和設定 Azure SQL Database][data-factory-create-sql-database]建立一個。
-- **SQL Server 2012/2014 或 Visual Studio 2013**。您將使用 SQL Server Management Studio 或 Visual Studio，建立範例資料庫以及檢視資料庫中的結果資料。  
+- **SQL Server 2012/2014 或 Visual Studio 2013**。您將使用 SQL Server Management Studio 或 Visual Studio，建立範例資料庫以及檢視資料庫中的結果資料。
 
 ### 收集 Azure 儲存體帳戶的帳戶名稱和帳戶金鑰
 您需要有 Azure 儲存體帳戶的帳戶名稱和帳戶金鑰，才能進行這個教學課程。請依照下面的指示，記下 Azure 儲存體帳戶的**帳戶名稱**和**帳戶金鑰**：
@@ -45,7 +38,7 @@
 2. 按一下左邊的 [瀏覽] 中樞，然後選取 [儲存體帳戶]。
 3. 在 [**儲存體帳戶**] 刀鋒視窗中，選取您想要在本教學課程中使用的 [**Azure 儲存體帳戶**]。
 4. 在 [**儲存體**] 刀鋒視窗中，按一下 [**金鑰**] 磚。
-5. 在 [**管理金鑰**] 刀鋒視窗中，按一下 [**儲存體帳戶名稱**] 文字方塊旁的 [**複製** (影像)] 按鈕，然後將它儲存/貼到某個位置 (例如：在文字檔中)。  
+5. 在 [**管理金鑰**] 刀鋒視窗中，按一下 [**儲存體帳戶名稱**] 文字方塊旁的 [**複製** (影像)] 按鈕，然後將它儲存/貼到某個位置 (例如：在文字檔中)。
 6. 重複上述步驟，複製或記下 [主要存取金鑰]。
 7. 按一下 **X**，關閉所有刀鋒視窗。
 
@@ -53,7 +46,7 @@
 您需要有 Azure SQL 伺服器、資料庫和使用者的名稱，才能進行這個教學課程。遵循下面的指示，記下 Azure SQL Database 的**伺服器**、**資料庫**和**使用者**名稱：
 
 1. 在 **Azure 入口網站**中，按一下左邊的 [瀏覽]，然後選取 [SQL Database]。
-2. 在 [**SQL Database**] 刀鋒視窗中，選取您想要在本教學課程中使用的**資料庫**。記下**資料庫名稱**。  
+2. 在 [**SQL Database**] 刀鋒視窗中，選取您想要在本教學課程中使用的**資料庫**。記下**資料庫名稱**。
 3. 在 [**SQL Database**] 刀鋒視窗中，按一下 [**屬性**]。
 4. 記下 [伺服器名稱] 和 [伺服器系統管理員登入] 的值。
 5. 按一下 **X**，關閉所有刀鋒視窗。
@@ -77,8 +70,8 @@
 
 2. 使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/)這類的工具建立 **adftutorial** 容器，並將 **emp.txt** 檔案上傳至該容器。
 
-    ![Azure 儲存體總管](./media/data-factory-get-started/getstarted-storage-explorer.png)
-3. 使用下列 SQL 指令碼，在您的 Azure SQL Database 中建立 **emp** 資料表。  
+    ![Azure 儲存體總管。將資料從 Blob 儲存體複製到 SQL Database](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
+3. 使用下列 SQL 指令碼，在您的 Azure SQL Database 中建立 **emp** 資料表。
 
 
         CREATE TABLE dbo.emp
@@ -116,4 +109,4 @@
 [data-factory-create-storage]: http://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account
 [data-factory-create-sql-database]: ../sql-database/sql-database-get-started.md
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,43 +13,36 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/13/2016"
-   ms.author="mausher;sonyama;barbkess"/>
+   ms.date="06/28/2016"
+   ms.author="sonyama;barbkess"/>
 
 # 針對 Azure SQL 資料倉儲問題進行疑難排解
 本主題列出一些您在使用「Azure SQL 資料倉儲」時可能遇到的較常見問題。
 
-## 連線能力
-其他常見連線能力問題包括：
 
-- 未設定防火牆規則
-- 使用不支援的工具/通訊協定
+##連接失敗
+
+如果您遇到連接問題，以下是一些客戶所回報的較常見問題。
+
+### CTAIP 錯誤
+若已在 SQL Server Master 資料庫上建立登入，但未在 SQL 資料倉儲資料庫上建立，則會發生這個錯誤。如果您遇到這個錯誤，請查看[安全性概觀][]一文。這篇文章說明如何在 Master 上建立登入，接著如何在 SQL 資料倉儲資料庫上建立使用者。
 
 ### 防火牆規則
-為確保只有已知的 IP 位址擁有資料庫的存取權限，Azure SQL 資料庫受到伺服器及資料庫層級的防火牆所保護。防火牆預設將會受到保護，因此您在可以連線之前，必須明確啟用單一 IP 位址或位址範圍。若要設定防火牆的存取，請遵循[佈建指示][]中[設定您用戶端 IP 的伺服器防火牆存取][]的步驟。
+為確保只有已知的 IP 位址擁有資料庫的存取權限，Azure SQL 資料庫受到伺服器及資料庫層級的防火牆所保護。防火牆預設將會受到保護，因此您在可以連線之前，必須明確啟用單一 IP 位址或位址範圍。若要設定防火牆的存取，請遵循[佈建指示][]中[設定用戶端 IP 的伺服器防火牆存取][]的步驟。
 
-### 使用不支援的工具/通訊協定
-SQL 資料倉儲建議使用 [Visual Studio 2013 或 2015][] 以查詢您的資料。針對用戶端連接性，建議使用 [SQL Server Native Client 10/11 (ODBC)][]。SQL Server Management Studio (SSMS) 目前尚未受到支援。雖然它的部分功能可以運作，物件總管樹狀結構尚無法搭配 SQL 資料倉儲使用，而查詢功能可能可以在忽略某些錯誤訊息之後運作。
+### 不支援的工具/通訊協定
+SQL 資料倉儲建議使用 [Visual Studio 2013 或 2015][] 來查詢您的資料。針對用戶端連接性，建議使用 [SQL Server Native Client 10/11 (ODBC)][]。SQL Server Management Studio (SSMS) 目前尚未受到支援。雖然它的部分功能可以運作，物件總管樹狀結構尚無法搭配 SQL 資料倉儲使用，而查詢功能可能可以在忽略某些錯誤訊息之後運作。
 
-## 查詢效能
 
-針對資料庫設計，有幾個您可以執行的簡單動作，以確保您可以從 SQL 資料倉儲取得最佳化的查詢效能。[了解如何監視您的查詢][]一文是了解您查詢效能的絕佳起點。有時，只要[調整您的 SQL 資料倉儲][]來提升計算能力，即可改善查詢的執行速度。若想在一處就找到許多這些最佳化方式，請查看 [SQL 資料倉儲最佳做法][]一文。
+## 效能問題
 
-以下是一些造成查詢效能問題的最常見原因。
+開始了解如何改善查詢效能的最佳位置是 [SQL 資料倉儲最佳做法][]一文。如果您正試著針對特定查詢進行疑難排解，則這篇關於[了解如何監視查詢][]文章也是個不錯的起點。有時，只要[調整您的 SQL 資料倉儲][]來提升計算能力，即可改善查詢的執行速度。
 
-### 統計資料
-
-您資料表上的[統計資料][]包含資料庫資料行或資料行組合中值之範圍與頻率的相關資訊。查詢引擎會使用這些統計資料最佳化查詢執行，以及改善查詢效能。與 SQL Server 或 SQL Database 不同，「SQL 資料倉儲」並不會自動建立或更新統計資料。所有資料表的統計資料都必須以手動方式維護。若要了解管理統計資料及識別需要統計資料之資料表的方式，請查看[管理 SQL 資料倉儲中的統計資料][]一文。
-
-### 資料表設計
-
-您在您的 SQL 資料倉儲中會做出的最重要選項之一，便是[為您的資料表選擇正確的雜湊散發金鑰][]及[資料表設計][]。當您的需求從開始使用 SQL 資料倉儲，逐漸移至從 SQL 資料倉儲取得最快的效能時，請務必了解這些文章中的概念。
-
-### 叢集資料行存放區區段品質
+## 叢集資料行存放區區段品質
 
 叢集資料行存放區區段品質對叢集資料行存放區資料表的最佳查詢效能很重要。壓縮的資料列群組中的資料列數目可以測量區段品質。下列查詢會識別出資料行存放區索引區段健康狀態不佳的資料表，並產生 T-SQL 來重建這些資料表的資料行存放區索引。這個查詢結果的第一欄會提供您重建每個索引的 T-SQL。第二欄會提供最基本的資源類別建議，用以最佳化壓縮。
  
-**步驟 1：**對每個 SQL 資料倉儲資料庫執行這個查詢，識別出任何次佳的叢集資料行存放區索引。若未傳回任何資料列，則這個迴歸並未影響您，不需要執行任何動作。
+**步驟 1：**對每個 SQL 資料倉儲資料庫執行這個查詢，以找出任何次佳的叢集資料行存放區索引。如果未傳回任何資料列，則不需採取進一步動作。
 
 ```sql
 SELECT 
@@ -79,7 +72,7 @@ ORDER BY
     s.name, t.name
 ```
  
-**步驟 2：**提高使用者的資源類別，這個使用者有權限可以將這份資料表上的索引重建為上述查詢第二欄建議的資源類別。
+**步驟 2：**提高使用者的資源類別，該使用者有權將此資料表上的索引重建為上述查詢第二欄中建議的資源類別。
 
 ```sql
 EXEC sp_addrolemember 'xlargerc', 'LoadUser'
@@ -92,7 +85,7 @@ EXEC sp_addrolemember 'xlargerc', 'LoadUser'
  
 **步驟 4：**重新執行步驟 1 的查詢。如果有效建置了索引，這個查詢就不應該傳回任何資料列。若未傳回任何資料列，表示完成作業。如果您有多個 SQL DW 資料庫，則要對每個資料庫都重複這個程序。如果傳回資料列，請繼續執行步驟 5。
  
-**步驟 5：** 如果重新執行步驟 1 的查詢會傳回資料列，某些資料表可能有特寬的資料列，需要大量的記憶體才能以最佳方式建置叢集資料行存放區索引。如果是這種情況，請使用 xlargerc 類別對這些資料表再試一次這個程序。若要變更資源類別，請使用 xlargerc 重複步驟 2。然後，針對仍有次佳索引的資料表重複步驟 3。如果您使用的是 DW100-DW300，也使用了 xlargerc，您就可以選擇讓索引保持原樣，或暫時增加 DWU 以為這項作業提供更多的記憶體。
+**步驟 5：** 如果重新執行步驟 1 的查詢會傳回資料列，某些資料表可能有特寬的資料列，需要大量記憶體才能以最佳方式建置叢集資料行存放區索引。如果是這種情況，請使用 xlargerc 類別對這些資料表再試一次這個程序。若要變更資源類別，請使用 xlargerc 重複步驟 2。然後，針對仍有次佳索引的資料表重複步驟 3。如果您使用的是 DW100-DW300，也使用了 xlargerc，您就可以選擇讓索引保持原樣，或暫時增加 DWU 以為這項作業提供更多的記憶體。
  
 **最後一個步驟︰**前文中指定的資源類別，是建立最高品質資料行存放區索引的建議基本資源類別。我們建議您保留這項設定，供使用者載入您的資料。不過，如果您想要復原步驟 2 中的變更，您可以使用下列命令執行這項作業。
 
@@ -104,27 +97,40 @@ CCI 資料表負載的基本資源類別指引，是針對 DW100 到 DW300 使�
 
 
 ## 後續步驟
-請參考 [SQL 資料倉儲最佳作法][]一文，以取得最佳化 SQL 資料倉儲解決方案的詳細資訊。
+
+如果您找不到解決上述問題的方法，以下是一些您可以嘗試的其他資源。
+
+- [部落格]
+- [功能要求]
+- [影片]
+- [CAT 小組部落格]
+- [建立支援票證]
+- [MSDN 論壇]
+- [Stack Overflow 論壇]
+- [Twitter]
 
 <!--Image references-->
 
 <!--Article references-->
+[安全性概觀]: ./sql-data-warehouse-overview-manage-security.md
+[建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [調整您的 SQL 資料倉儲]: ./sql-data-warehouse-manage-compute-overview.md
-[資料表設計]: ./sql-data-warehouse-develop-table-design.md
-[為您的資料表選擇正確的雜湊散發金鑰]: ./sql-data-warehouse-develop-hash-distribution-key
-[development overview]: ./sql-data-warehouse-overview-develop.md
-[了解如何監視您的查詢]: ./sql-data-warehouse-manage-monitor.md
-[管理 SQL 資料倉儲中的統計資料]: ./sql-data-warehouse-develop-statistics.md
+[了解如何監視查詢]: ./sql-data-warehouse-manage-monitor.md
 [佈建指示]: ./sql-data-warehouse-get-started-provision.md
-[設定您用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
+[設定用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
 [Visual Studio 2013 或 2015]: ./sql-data-warehouse-get-started-connect.md
-[SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
 [SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
-[統計資料]: ./sql-data-warehouse-develop-statistics.md
 
 <!--MSDN references-->
 [SQL Server Native Client 10/11 (ODBC)]: https://msdn.microsoft.com/library/ms131415.aspx
 
-<!--Other web references-->
+<!--Other Web references-->
+[部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
+[CAT 小組部落格]: https://blogs.msdn.microsoft.com/sqlcat/tag/sql-dw/
+[功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse
+[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureSQLDataWarehouse
+[Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
+[Twitter]: https://twitter.com/hashtag/SQLDW
+[影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

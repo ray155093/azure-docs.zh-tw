@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/21/2016" 
+	ms.date="06/27/2016" 
 	ms.author="stefsch"/>
 
 # 使用 ExpressRoute 之 App Service 環境的網路組態詳細資料 
@@ -29,13 +29,15 @@
 在連接至 ExpressRoute 的虛擬網路中，可能一開始會不符合 App Service 環境的一些網路連線需求。App Service 環境需要下列所有項目，才能正確運作：
 
 
--  在連接埠 80 與 443 上，全球 Azure 儲存體端點的輸出網路連線能力。這包括位於與 App Service 環境相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。  
--  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：database.windows.net。
--  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 management.core.windows.net 和 management.azure.com 的輸出連線。 
--  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出連線。需要此連線才能支援 SSL 功能。
+-  在連接埠 80 與 443 上，全球 Azure 儲存體端點的輸出網路連線能力。這包括位於與 App Service 環境相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。
+-  位於連接埠 445 的 Azure 檔案服務的輸出網路連線
+-  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：database.windows.net。這需要開啟連接埠 1433、11000-11999 和 14000 14999 的存取。如需詳細資訊，請參閱 [Sql Database V12 連接埠使用方式](../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md)一文。
+-  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。
+-  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。需要此連線才能支援 SSL 功能。
 -  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。如果無法解析這些端點，App Service 環境建立嘗試將會失敗，而且現有的 App Service 環境會標示為狀況不良。
--  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。 
--  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。  
+-  需要有連接埠 53 的輸出存取，才能與 DNS 伺服器通訊。
+-  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。
+-  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。
 -  按照本[文章][requiredports]所述，您必須允許「App Service 環境」之必要連接埠的輸入網路存取。
 
 確定已針對虛擬網路設定及維護有效的 DNS 基礎結構，即可符合 DNS 需求。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於 [Azure 入口網站][NewPortal]中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
@@ -58,7 +60,7 @@
 
 **重要事項：**UDR 中定義的路由**必須**明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
 
-**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+**非常重要：****未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 如需使用者定義路由的背景資訊，請參閱此[概觀][UDROverview]。
 
@@ -71,7 +73,7 @@
 1. 從 [Azure 下載頁面][AzureDownloads]安裝最新 Azure Powershell (日期為 2015 年 6 月或更新版本)。在 [命令列工具] 的 [Windows Powershell] 下，有一個 [安裝] 連結可安裝最新的 Powershell Cmdlet。
 
 2. 建議您建立唯一的子網路，以專供 App Service 環境使用。這可確保套用至子網路的 UDR 只會開啟 App Service 環境的輸出流量。
-3. **重要事項**：除非**已經**進行下列組態步驟，否則不要部署 App Service 環境。這可確保輸出網路連線可用，再嘗試部署 App Service 環境。
+3. **重要事項**：除非已經進行下列組態步驟，否則不要部署 App Service 環境。這可確保輸出網路連線可用，再嘗試部署 App Service 環境。
 
 **步驟 1：建立具名路由表**
 
@@ -106,8 +108,8 @@
 路由表繫結至子網路之後，建議您先測試並確認預期的效果。例如，將虛擬機器部署至子網路，並確認：
 
 
-- 本文前面提到的 Azure 和非 Azure 端點的輸出流量**不會**流到 ExpressRoute 循環。請務必確認此行為，因為如果來自子網路的輸出流量仍是使用強制通道傳送至內部部署，App Service 環境建立一律會失敗。 
-- 已正確解析前面所提端點的所有 DNS 查閱。 
+- 本文前面提到的 Azure 和非 Azure 端點的輸出流量**不會**流到 ExpressRoute 循環。請務必確認此行為，因為如果來自子網路的輸出流量仍是使用強制通道傳送至內部部署，App Service 環境建立一律會失敗。
+- 已正確解析前面所提端點的所有 DNS 查閱。
 
 一旦確認上述步驟後，您必須刪除虛擬機器，因為在建立 App Service 環境時，子網路必須是「空的」。
  
@@ -138,4 +140,4 @@
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -25,8 +25,8 @@
 
 Azure 虛擬機器會執行 SQL Server IaaS Agent 擴充功能 (SQLIaaSAgent) 以自動化系統管理工作。本主題概述擴充功能支援的服務以及安裝、狀態及移除相關指示。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-Resource Manager 模型。若要檢視這篇文章的 Resource Manager 版本，請參閱[適用於 SQL Server VM Resource Manager 的 SQL Server Agent 擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]  
+若要檢視這篇文章的 Resource Manager 版本，請參閱[適用於 SQL Server VM Resource Manager 的 SQL Server Agent 擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
 
 ## 支援的服務
 
@@ -97,4 +97,4 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
 
 如需在 Azure 虛擬機器上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016--->
+<!----HONumber=AcomDC_0629_2016-->

@@ -1,6 +1,6 @@
 <properties pageTitle="使用 Node.js 模組" description="了解如何在使用 Azure App Service 或雲端服務時使用 Node.js 模組。" services="" documentationCenter="nodejs" authors="rmcmurray" manager="wpickett" editor=""/>
 
-<tags ms.service="multiple" ms.workload="na" ms.tgt_pltfrm="na" ms.devlang="nodejs" ms.topic="article" ms.date="05/04/2016" ms.author="robmcm"/>
+<tags ms.service="multiple" ms.workload="na" ms.tgt_pltfrm="na" ms.devlang="nodejs" ms.topic="article" ms.date="06/24/2016" ms.author="robmcm"/>
 
 
 
@@ -78,4 +78,4 @@ Azure App Service 不支援所有的原生模組，而且在編譯具有非常�
 [Build and deploy a Node.js application to an Azure Cloud Service]: cloud-services-nodejs-develop-deploy-app.md
 [使用 Kudu 自訂網站部署指令碼]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

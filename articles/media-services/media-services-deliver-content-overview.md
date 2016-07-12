@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/22/2016"
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -25,7 +25,7 @@
 
 若要達成此目標：
 
-- 將您的資料流編碼成多位元速率 (彈性位元速率) 視訊串流 (這會處理品質與網路條件)，並 
+- 將您的資料流編碼成多位元速率 (彈性位元速率) 視訊串流 (這會處理品質與網路條件)，並
 - 使用媒體服務[動態封裝](media-services-dynamic-packaging-overview.md)將資料流動態地重新封裝至不同的通訊協定 (這會處理不同裝置上的資料流)。媒體服務支援傳遞下列可調位元速率資料流技術：HTTP 即時資料流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access licensees)。
 
 本主題提供內容傳遞概念的重要概觀。
@@ -39,7 +39,7 @@
 若要利用動態封裝，您需要執行下列動作：
 
 - 將您的夾層 (來源) 檔編碼成一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
-- 為您計畫從該處傳遞內容的串流端點取得至少一個隨選串流單元。如需詳細資訊，請參閱[如何調整隨選串流保留單元](media-services-manage-origins.md#scale_streaming_endpoints)。 
+- 為您計畫從該處傳遞內容的串流端點取得至少一個隨選串流單元。如需詳細資訊，請參閱[如何調整隨選串流保留單元](media-services-manage-origins.md#scale_streaming_endpoints)。
 
 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
@@ -58,7 +58,7 @@
 如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發行您的資產。定位器提供一個登入點，讓使用者可以存取資產包含的檔案。媒體服務支援兩種類型的定位器：
 
 - **OnDemandOrigin** 定位器可用來傳送媒體 (例如，MPEG DASH、 HLS 或 Smooth Streaming) 或漸進式下載檔案。
--  **SAS** (存取簽章) URL 定位器可用來將媒體檔案下載到本機電腦。 
+-  **SAS** (存取簽章) URL 定位器可用來將媒體檔案下載到本機電腦。
 
 **存取原則**可用來定義權限 (例如讀取、寫入和清單) 以及用戶端可以使用特定資產多久的時間。請注意，建立 OrDemandOrigin 定位器時，不應使用清單權限 (AccessPermissions.List)。
 
@@ -187,4 +187,4 @@
 [啟動儲存體金鑰之後更新媒體服務定位器](media-services-roll-storage-access-keys.md)
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0629_2016-->

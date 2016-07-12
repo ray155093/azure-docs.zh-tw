@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="06/23/2016"
 	ms.author="priyamo"/>
 
 
 # 使用 OpenID Connect 和 Azure Active Directory 授權存取 Web 應用程式
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 是以 OAuth 2.0 通訊協定為建置基礎的簡單身分識別層。OAuth 2.0 定義的機制可以取得及使用**存取權杖**來存取受保護的資源，但它們不會定義提供身分識別資訊的標準方法。OpenID Connect 會實作驗證做為 OAuth 2.0 授權程序的擴充，以驗證使用者身分識別的 `id_token` 形式提供使用者相關資訊，以及提供關於使用者的基本設定檔資訊。
 
@@ -60,11 +58,11 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | tenant | 必要 | 要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。租用戶獨立權杖允許的值為租用戶識別碼，例如 `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` 或 `contoso.onmicrosoft.com` 或 `common` |
 | client\_id | 必要 | 向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。您可在 Azure 傳統入口網站中找到此資訊。按一下 [Active Directory]，按一下目錄，按一下應用程式，然後按一下 [設定] |
 | response\_type | 必要 | 必須包含 OpenID Connect 登入的 `id_token`。它也可能包含其他 response\_types，例如 `code`。 |
-| scope | 必要 | 範圍的空格分隔清單。針對 OpenID Connect，即必須包含範圍 `openid`，其會在同意 UI 中轉譯成「登入」。您也可以在此要求中包含其他範圍以要求同意。 |
+| scope | 必要 | 範圍的空格分隔清單。針對 OpenID Connect，即必須包含範圍 `openid`，其會在同意 UI 中轉譯成「讓您登入」權限。您也可以在此要求中包含其他範圍以要求同意。 |
 | nonce | 必要 | 包含在要求中的值 (由應用程式所產生)，將會包含在所得的 `id_token` 中來做為宣告。應用程式接著便可確認此值，以減少權杖重新執行攻擊。此值通常是隨機的唯一字串或 GUID，可用以識別要求的來源。 |
 | redirect\_uri | 建議使用 | 應用程式的 redirect\_uri，您的應用程式可在此傳送及接收驗證回應。其必須完全符合您在入口網站中註冊的其中一個 redirect\_uris，不然就必須得是編碼的 url。 |
 | response\_mode | 建議使用 | 指定將產生的 authorization\_code 傳回到應用程式所應該使用的方法。支援的值為 `form_post` (*HTTP 表單公佈*) 或 `fragment` (*URL 片段*)。針對 Web 應用程式，建議使用 `response_mode=form_post`，確保會以最安全的方式將權杖傳輸至您的應用程式。  
-| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨網站偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
+| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
 | prompt | 選用 | 表示需要的使用者互動類型。此時的有效值為「登入」、「無」和「同意」。`prompt=login` 會強制使用者在該要求上輸入認證，否定單一登入。`prompt=none` 則相反 - 它會確保不會對使用者顯示任何互動式提示。如果要求無法透過單一登入以無訊息方式完成，端點會傳回錯誤。`prompt=consent` 會在使用者登入之後觸發 OAuth 同意對話方塊，詢問使用者是否要授與權限給應用程式。 |
 | login\_hint | 選用 | 如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。通常應用程式會在重新驗證期間使用此參數，已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
 
@@ -86,7 +84,7 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&state=12345
 | 參數 | 說明 |
 | ----------------------- | ------------------------------- |
 | id\_token | 應用程式要求的 `id_token`。您可以使用 `id_token` 確認使用者的身分識別，並以使用者開始工作階段。 |
-| state | 如果要求中包含狀態參數，回應中就應該出現相同的值。應用程式應該確認要求和回應中的狀態值完全相同。 |
+| state | 同樣會隨權杖回應傳回之要求中所包含的值。隨機產生的唯一值通常用於[防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
 
 ### 錯誤回應
 錯誤回應可能也會傳送至 `redirect_uri`，讓應用程式可以適當地處理：
@@ -104,9 +102,21 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 | 錯誤 | 用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
 | error\_description | 協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
+#### 授權端點錯誤的錯誤碼
+
+下表說明各種可能在錯誤回應的 `error` 參數中傳回的錯誤碼。
+
+| 錯誤碼 | 說明 | 用戶端動作 |
+|------------|-------------|---------------|
+| invalid\_request | 通訊協定錯誤，例如遺漏必要的參數。 | 修正並重新提交要求。這是通常會在初始測試期間擷取到的開發錯誤。|
+| unauthorized\_client | 不允許用戶端應用程式要求授權碼。 | 這通常會在用戶端應用程式未在 Azure AD 中註冊，或未加入至使用者的 Azure AD 租用戶時發生。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+| access\_denied | 資源擁有者拒絕同意 | 用戶端應用程式可以通知使用者，除非使用者同意，否則無法繼續進行。 |
+| unsupported\_response\_type | 授權伺服器不支援要求中的回應類型。 | 修正並重新提交要求。這是通常會在初始測試期間擷取到的開發錯誤。|
+|server\_error | 伺服器發生非預期的錯誤。 | 重試要求。這些錯誤可能是由暫時性狀況所引起。用戶端應用程式可能會向使用者解釋，其回應因為暫時性錯誤而延遲。 |
+| temporarily\_unavailable | 伺服器暫時過於忙碌而無法處理要求。 | 重試要求。用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。 |
+| invalid\_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。| 這表示尚未在租用戶中設定資源 (如果存在)。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 
 ## 驗證 id\_token
-
 
 僅接收 `id_token` 不足以驗證使用者，您必須驗證簽章，並依照應用程式的需求確認 `id_token` 中的宣告。Azure AD 端點使用 JSON Web Tokens (JWT) 和公開金鑰加密簽署權杖及驗證其是否有效。
 
@@ -122,7 +132,7 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 ## 傳送登出要求
 
-當您想要將使用者登出應用程式時，只是清除應用程式的 Cookie 或結束使用者的工作階段還是不夠。您也必須將使用者重新導向至 `end_session_endpoint` 來完成登出。如果不這樣做，使用者可能不需要再次輸入認證就能重新通過應用程式的驗證，因為他們與 Azure AD 端點之間仍然存在有效的單一登入工作階段。
+當您想要將使用者登出應用程式時，只是清除應用程式的 Cookie 或結束使用者的工作階段還是不夠。您也必須將使用者重新導向至 `end_session_endpoint` 以完成登出。如果不這樣做，使用者可能不需要再次輸入認證就能重新通過應用程式的驗證，因為他們與 Azure AD 端點之間仍然存在有效的單一登入工作階段。
 
 您可以直接將使用者重新導向至 OpenID Connect 中繼資料文件中所列出的 `end_session_endpoint`：
 
@@ -195,6 +205,8 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 | 錯誤 | 用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
 | error\_description | 協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
+如需可能的錯誤碼及建議的用戶端動作說明，請參閱[授權端點錯誤的錯誤碼](#error-codes-for-authorization-endpoint-errors)。
+
 一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。若要將使用者登入，您必須完整地如上方所述驗證 `id_token`。若要取得存取權杖，您可以遵循我們的 [OAuth 通訊協定文件](active-directory-protocols-oauth-code.md#Use-the-Authorization-Code-to-Request-an-Access-Token)中所述的步驟。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

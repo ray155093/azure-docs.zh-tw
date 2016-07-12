@@ -14,7 +14,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="03/02/2016"
+     ms.date="06/27/2016"
      ms.author="stevehob"/>
 
 # 自訂預先設定的方案
@@ -39,9 +39,9 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 您可以直接編輯這些工作以改變邏輯，或新增案例特有的邏輯。您可以尋找串流分析工作，如下所示︰
  
 1. 移至 [Azure 入口網站][](https://portal.azure.com)。
-2. 瀏覽至名稱與 IoT 解決方案相同的資源群組。 
-3. 選取要修改的 Azure 串流分析作業。 
-4. 在命令集中選取 [停止] 以停止作業。 
+2. 瀏覽至名稱與 IoT 解決方案相同的資源群組。
+3. 選取要修改的 Azure 串流分析作業。
+4. 在命令集中選取 [停止] 以停止作業。
 5. 編輯輸入、查詢及輸出。
 
     簡單修改的目的在於變更**規則**作業的查詢，以便使用 **"<"** 而不是 **">"**。編輯規則時，解決方案入口網站仍會顯示 **">"**，不過因為基礎作業中的變更，您可以發現行為已翻轉。
@@ -66,9 +66,28 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 遠端監視預先設定解決方案中的預先設定模擬器，是發出溫度和濕度遙測的冷卻裝置，當您分接 GitHub 儲存機制後，可以在 [Simulator.WebJob](https://github.com/Azure/azure-iot-remote-monitoring/tree/master/Simulator/Simulator.WebJob) 專案中修改模擬器。
 
+### 模擬裝置的可用位置
+
+預設的一組位置是在美國華盛頓州的西雅圖市/雷德蒙德市。您可以在 [SampleDeviceFactory.cs][lnk-sample-device-factory] 變更這些位置。
+
+
 ### 建置並使用自己的 (實體) 裝置
 
 [Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) 提供用來將各種裝置類型 (語言和作業系統) 連接至 IoT 解決方案中的程式庫。
+
+## 修改儀表板限制
+
+### 儀表板下拉式清單中顯示的裝置數目
+
+預設值為 200。您可以在 [DashboardController.cs][lnk-dashboard-controller] 變更這個數字。
+
+### Bing 地圖控制項中要顯示的釘選數目
+
+預設值為 200。您可以在 [TelemetryApiController.cs][lnk-telemetry-api-controller-01] 變更這個數字。
+
+### 遙測圖形的期間
+
+預設值是 10 分鐘。您可以在 [TelmetryApiController.cs][lnk-telemetry-api-controller-02] 變更此值。
 
 ## 手動設定應用程式角色
 
@@ -78,7 +97,7 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 1. 前往 [Azure 傳統入口網站][lnk-classic-portal]。
 
-2. 選取 [Active Directory]。
+2. 選取 **Active Directory**。
 
 3. 按一下您在佈建解決方案時所使用的 AAD 租用戶名稱。
 
@@ -139,6 +158,10 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 [IoT Device SDK]: https://azure.microsoft.com/documentation/articles/iot-hub-sdks-summary/
 [lnk-permissions]: iot-suite-permissions.md
+[lnk-dashboard-controller]: https://github.com/Azure/azure-iot-remote-monitoring/blob/3fd43b8a9f7e0f2774d73f3569439063705cebe4/DeviceAdministration/Web/Controllers/DashboardController.cs#L27
+[lnk-telemetry-api-controller-01]: https://github.com/Azure/azure-iot-remote-monitoring/blob/3fd43b8a9f7e0f2774d73f3569439063705cebe4/DeviceAdministration/Web/WebApiControllers/TelemetryApiController.cs#L27
+[lnk-telemetry-api-controller-02]: https://github.com/Azure/azure-iot-remote-monitoring/blob/e7003339f73e21d3930f71ceba1e74fb5c0d9ea0/DeviceAdministration/Web/WebApiControllers/TelemetryApiController.cs#L25
+[lnk-sample-device-factory]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Common/Factory/SampleDeviceFactory.cs#L40
 [lnk-classic-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

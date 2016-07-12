@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="02/25/2016"  
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #Azure 隨選媒體編碼器的概觀和比較
@@ -220,7 +220,7 @@ ErrorCancelingTask|涵蓋嘗試取消工作時失敗的錯誤類別
 TransientError|涵蓋暫時性問題 (例如 Azure 儲存體暫時性網路問題) 的錯誤類別
 
 
-若要從**媒體服務**小組取得協助，請開啟[支援票證](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+若要獲得**媒體服務**小組的協助，請開啟[支援票證](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 
 
@@ -242,4 +242,4 @@ TransientError|涵蓋暫時性問題 (例如 Azure 儲存體暫時性網路問�
 <!--Reference links in article-->
 [1]: http://azure.microsoft.com/pricing/details/media-services/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

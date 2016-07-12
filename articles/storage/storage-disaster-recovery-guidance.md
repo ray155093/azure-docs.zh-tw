@@ -25,9 +25,9 @@
 
 每位客戶備妥自己的災害復原計畫是相當重要的。自儲存體中斷的狀況復原，通常需要作業人員與自動化程序，以將應用程式重新啟動回運作狀態。請參閱下列 Azure 文件，以建立您的災害復原計畫：
 
--   [Azure 應用程式災害復原與高可用性](https://msdn.microsoft.com/library/azure/dn251004.aspx)
+-   [Azure 應用程式的災害復原和高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)
 
--   [Azure 業務持續性技術指引](https://msdn.microsoft.com/library/azure/hh873027.aspx)
+-   [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)
 
 -   [Azure Site Recovery 服務](https://azure.microsoft.com/services/site-recovery/)
 
@@ -81,4 +81,4 @@
 
 -   檔案 – 使用 [AzCopy](storage-use-azcopy.md) 或 [Azure PowerShell](storage-powershell-guide-full.md) 將您的檔案複製到位於其他區域的其他儲存體帳戶。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

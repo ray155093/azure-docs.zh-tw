@@ -1,5 +1,5 @@
 <properties
-   pageTitle="允許從外部存取 Linux VM | Microsoft Azure"
+   pageTitle="針對 Linux VM 開啟連接埠或端點 | Microsoft Azure"
    description="了解如何開啟連接埠 / 使用 Resource Manager 部署模型和 Azure CLI 來建立允許從外部存取您 Linux VM 的端點"
    services="virtual-machines-linux"
    documentationCenter=""
@@ -16,8 +16,8 @@
    ms.date="05/24/2016"
    ms.author="iainfou"/>
 
-# 允許從外部存取您的 VM
-[AZURE.INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
+# 開啟連接埠與端點
+您在 Azure 中藉由建立網路篩選器來開啟連接埠或建立端點，讓流量流向子網路或虛擬機器 (VM) 網路介面上您選擇的連接埠。控制輸入和輸出流量的這些篩選器會放在網路安全性群組中，並附加至可接收流量的資源。讓我們使用連接埠 80 上的 Web 流量的常見範例。
 
 ## 快速命令
 若要建立「網路安全性群組」和規則，您將需要讓 [Azure CLI](../xplat-cli-install.md) 處於資源管理員模式 (`azure config mode arm`)。
@@ -61,4 +61,4 @@ azure network vnet subnet set --resource-group TestRG --name TestSubnet --networ
 - [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
 - [負載平衡器的 Azure Resource Manager 概觀](../load-balancer2 /load-balancer-arm.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

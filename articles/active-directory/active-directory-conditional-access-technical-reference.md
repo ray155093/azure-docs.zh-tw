@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="06/15/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 技術參考：Azure AD 應用程式的條件式存取
@@ -55,13 +55,14 @@
 
 用於指定「工作時」網路的選項
 
-1. 在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)中設定可信任的 IP位址範圍。「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。 
+1. 在 [Multi-Factor Authentication 組態頁面](../multi-factor-authentication/multi-factor-authentication-whats-next.md)中設定可信任的 IP位址範圍。「條件式存取」原則會在每個驗證要求和權杖發行上使用已設定的範圍來評估規則。
 2. 設定使用公司網路內部的宣告，您可以使用 AD FS，將此選項與同盟目錄搭配使用。[深入了解公司網路內部宣告](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
 3. 設定公用 IP 位址範圍。您可以在 [設定] 索引標籤中，為您的目錄設定公用 IP 位址。條件式存取將使用這些 IP 位址做為「工作中」IP 位址，這樣就能在 MFA 設定頁面強制執行的 50 個 IP 位址限制以外設定其他的範圍。
 
 
 
-## 以個別應用程式為基礎的規則
+## 根據應用程式敏感性的規則
+
 規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。條件式存取規則可以在應用程式的 [設定] 索引標籤上設定。
 
 目前提供的規則︰
@@ -81,4 +82,4 @@
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

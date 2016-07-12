@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="03/24/2016"
+	ms.date="06/24/2016"
 	ms.author="jroth"/>
 
 # 在 Azure VM (資源管理員) 上設定 SQL Server 的 Azure 金鑰保存庫整合
@@ -39,9 +39,8 @@
 
 如需佈建的詳細逐步解說，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
-如果需要在現有 VM 上啟用 AKV 整合，則您可以使用範本。如需詳細資訊，請參閱 [Azure 金鑰保存庫整合的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-keyvault-setup)。
-
+如果需要在現有 VM 上啟用 AKV 整合，則您可以使用範本。如需詳細資訊，請參閱 [Azure 金鑰保存庫整合的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-keyvault-update)。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

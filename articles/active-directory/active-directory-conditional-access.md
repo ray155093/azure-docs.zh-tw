@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="06/15/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 
@@ -32,10 +32,10 @@
 
 ## 使用者型資源存取
   
-- **使用者屬性**：在使用者屬性層級，您可以套用原則以確保只有已獲授權的使用者可以存取公司資源。   
-- **使用者的群組成員資格**：您也可以根據使用者的群組成員資格，控制提供給使用者的存取權層級。   
-- **Multi-Factor Authentication (MFA)**：您也可以強制執行一些原則，以要求使用者必須使用多重要素驗證系統來驗證其身分識別。例如，您可以強制使用者在個人行動電話上確認 PIN 碼，以確保一層額外的安全性。對於未獲授權但已取得有效使用者之使用者名稱和密碼存取權的使用者，MFA 驗證可防止其存取您的資源。 
-- **登入和使用者風險**︰條件式存取風險原則適用於 Azure AD Identity Protection，並根據風險事件和異常登入活動提供進階保護。 
+- **使用者屬性**：在使用者屬性層級，您可以套用原則以確保只有已獲授權的使用者可以存取公司資源。
+- **使用者的群組成員資格**：您也可以根據使用者的群組成員資格，控制提供給使用者的存取權層級。
+- **Multi-Factor Authentication (MFA)**：您也可以強制執行一些原則，以要求使用者必須使用多重要素驗證系統來驗證其身分識別。例如，您可以強制使用者在個人行動電話上確認 PIN 碼，以確保一層額外的安全性。對於未獲授權但已取得有效使用者之使用者名稱和密碼存取權的使用者，MFA 驗證可防止其存取您的資源。
+- **登入和使用者風險**︰條件式存取風險原則適用於 Azure AD Identity Protection，並根據風險事件和異常登入活動提供進階保護。
  
 
 ## 裝置型條件式存取 
@@ -51,9 +51,9 @@
 
 | 案例 | 文章 |
 |------------------------------------------------------|----------|
-| 根據驗證強度或使用者保護資源 |[透過 MFA 和外部網路開始使用對 Azure AD SaaS 應用程式進行條件式存取](active-directory-conditional-access-azuread-connected-apps.md)<br><br>[支援哪些應用程式](active-directory-conditional-access-supported-apps.md)|
+| 根據驗證強度或使用者保護資源 |[根據群組、位置和應用程式敏感性開始使用 Azure AD 連線應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)<br><br>[支援的應用程式種類](active-directory-conditional-access-supported-apps.md)|
 | 保護遺失/遭竊裝置上的公司資料 |[Help protect your data with full or selective wipe using Microsoft Intune (使用 Microsoft Intune 搭配完整或選擇性抹除協助保護您的資料)](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)|
 |根據登入風險保護資源 |[Azure AD Identity Protection](active-directory-identityprotection.md) |
-| 其他資訊 |[條件式存取常見問題集](active-directory-conditional-faqs.md)|
+| 其他資訊 |[條件式存取常見問題集](active-directory-conditional-faqs.md)<br><br>[技術參考](active-directory-conditional-access-technical-reference.md) |
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

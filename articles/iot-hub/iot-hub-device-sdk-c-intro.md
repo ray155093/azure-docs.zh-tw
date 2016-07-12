@@ -30,20 +30,18 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 
 ## SDK 架構
 
-您可以在下列 GitHub 儲存機制中找到 **Azure IoT 裝置 SDK (適用於 C)**︰
-
-[azure-iot-sdks](https://github.com/Azure/azure-iot-sdks)
+您可以尋找 [Microsoft Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中的**適用於 C 的 Azure IoT 裝置 SDK**，並在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
 
 在此儲存機制的 **master** 分支中可找到最新版的程式庫：
 
   ![](media/iot-hub-device-sdk-c-intro/01-MasterBranch.PNG)
 
-此儲存機制包含整個系列的 Azure IoT 裝置 SDK。不過，本文是關於「Azure IoT 裝置 SDK (適用於 C)」(可在 **c** 資料夾中找到)。
+此儲存機制包含整個系列的 Azure IoT 裝置 SDK。不過，本文是關於「適用於 C」的 Azure IoT 裝置 SDK (可在 **c** 資料夾中找到)。
 
   ![](media/iot-hub-device-sdk-c-intro/02-CFolder.PNG)
 
-* SDK 核心實作可以在 [iothub\_client] 資料夾中找到，這個資料夾包含了 SDK 中最低 API 層級的實作：**IoTHubClient** 程式庫。**IoTHubClient** 程式庫包含了將訊息傳送至 IoT 中樞，以及從 IoT 中樞接收訊息之原始傳訊的 API 實作。使用此程式庫時，您必須負責實作訊息序列化 (最終會使用如下所述的序列化程式範例)，但會為您處理其他與 IoT 中樞通訊的詳細資料。
-* [serializer] 資料夾包含 helper 函式和示範如何在資料傳送至 Azure IoT 中樞之前，使用用戶端程式庫將資料序列化的範例。請注意，使用序列化程式並非必要，而且只提供您方便使用。如果您使用 **serializer** 程式庫，您首先會定義一個模型，以指定您要傳送至 IoT 中樞的事件以及您期望從 IoT 中樞收到的訊息。一旦定義此模型之後，SDK 會提供您一個可讓您輕鬆處理事件與訊息的 API 介面，而不用擔心該程式庫所相依之其他使用數個通訊協定 (AMQP, MQTT) 實作傳輸之開放原始碼程式庫的序列化詳細資料。
+* SDK 核心實作可以在 **iothub\_client** 資料夾中找到，這個資料夾包含了 SDK 中最低 API 層級的實作：**IoTHubClient** 程式庫。**IoTHubClient** 程式庫包含了將訊息傳送至 IoT 中樞，以及從 IoT 中樞接收訊息之原始傳訊的 API 實作。使用此程式庫時，您必須負責實作訊息序列化 (最終會使用如下所述的序列化程式範例)，但會為您處理其他與 IoT 中樞通訊的詳細資料。
+* **serializer** 資料夾包含 helper 函式和示範如何在資料傳送至 Azure IoT 中樞之前，使用用戶端程式庫將資料序列化的範例。請注意，使用序列化程式並非必要，而且只提供您方便使用。如果您使用 **serializer** 程式庫，您首先會定義一個模型，以指定您要傳送至 IoT 中樞的事件以及您期望從 IoT 中樞收到的訊息。一旦定義此模型之後，SDK 會提供您一個可讓您輕鬆處理事件與訊息的 API 介面，而不用擔心該程式庫所相依之其他使用數個通訊協定 (AMQP, MQTT) 實作傳輸之開放原始碼程式庫的序列化詳細資料。
 * **IoTHubClient** 程式庫相依於其他開放原始碼程式庫：
    * [Azure C 共用公用程式](https://github.com/Azure/azure-c-shared-utility)程式庫，提供了跨越數個 Azure 相關 C SDK 所需要之基本工作 (例如字串、清單管理、IO 等...) 的常用功能
    * [Azure uAMQP](https://github.com/Azure/azure-uamqp-c) 程式庫，這是針對資源條件約束裝置最佳化的 AMQP 用戶端端實作。
@@ -65,7 +63,7 @@ SDK 隨附的[讀我檔案](https://github.com/Azure/azure-iot-sdks/tree/master/
 
 針對某些平台 (例如適用於 Windows 的 NuGet 或適用於 Debian 和 Ubuntu 的 apt\_get) 提供封裝，且範例會在這些封裝可用時使用的同時，下面的指示會詳細說明如何直接從程式碼建置程式庫和範例。
 
-首先，您必須從 GitHub 取得 SDK 的複本，然後建立來源。您應該從 [GitHub 儲存機制](https://github.com/Azure/azure-iot-sdks)的 **master** 分支取得一份原始檔複本：
+首先，您必須從 GitHub 取得 SDK 的複本，然後建立來源。您應該從 [GitHub 儲存機制](https://github.com/Azure/azure-iot-sdks)的 **master** 分支取得一份原始檔複本。
 
 下載來源的複本後，您必須完成 SDK 文章 [Prepare your development environment (準備開發環境)](https://github.com/Azure/azure-iot-sdks/blob/master/c/doc/devbox_setup.md) 中所述的步驟。
 
@@ -471,4 +469,4 @@ serializer_deinit();
 
 若要在 **Azure IoT 裝置 SDK (適用於 C)** 中深入了解如何使用裝置管理功能，請參閱 [Azure IoT 中樞裝置管理程式庫 (適用於 C) 簡介](iot-hub-device-management-library.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

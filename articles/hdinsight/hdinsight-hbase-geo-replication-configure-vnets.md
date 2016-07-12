@@ -13,20 +13,20 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="03/04/2016"
+   ms.date="06/28/2016"
    ms.author="jgao"/>
 
 # 設定兩個 Azure 虛擬網路之間的 VPN 連線  
 
 > [AZURE.SELECTOR]
-- [設定 VPN 連線](../hdinsight-hbase-geo-replication-configure-VNETs.md)
+- [設定 VPN 連線](hdinsight-hbase-geo-replication-configure-VNETs.md)
 - [設定 DNS](hdinsight-hbase-geo-replication-configure-DNS.md)
-- [設定 HBase 複寫](hdinsight-hbase-geo-replication.md) 
+- [設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
 
 Azure 虛擬網路的站對站連線會使用 VPN 閘道來提供採用 Ipsec/IKE 的安全通道。VNet 可位於不同的訂用帳戶和不同的區域。您甚至可以使用多網站組態來結合 VNet 對 VNet 通訊。VNet 對 VNet 連線的原因有幾種：
 
-- 跨區域的異地備援和異地目前狀態 
-- 具有嚴密隔離界限的區域性多層式應用程式 
+- 跨區域的異地備援和異地目前狀態
+- 具有嚴密隔離界限的區域性多層式應用程式
 - 在 Azure 中的跨訂用帳戶、組織間通訊
 
 如需詳細資訊，請參閱[設定 VNet 對 VNet 連線](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)。
@@ -83,7 +83,7 @@ Azure 虛擬網路的站對站連線會使用 VPN 閘道來提供採用 Ipsec/IK
 		本教學課程使用北歐和美國東部資料中心。您可以選擇自己的資料中心。
 4.	輸入：
 
-	- **DNS 伺服器**：(保留為空白) 
+	- **DNS 伺服器**：(保留為空白)
 	
 		您需要有自己的 DNS 伺服器才能在虛擬網路內進行名稱解析。如需有關何時使用 Azure 提供的名稱解析，以及何時使用自己的 DNS 伺服器的詳細資訊，請參閱[名稱解析 (DNS)](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。如需有關設定 Vnet 之間名稱解析的指示，請參閱[設定兩個 Azure 虛擬網路之間的 DNS][hdinsight-hbase-dns]。
   
@@ -260,16 +260,16 @@ Vnet 閘道會使用共用金鑰來驗證虛擬網路之間的連線。此金鑰
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [azure-portal]: https://portal.azure.com
 
-[powershell-install]: ../install-configure-powershell
+[powershell-install]: ../install-configure-powershell.md
 
 
 
-[hdinsight-hbase-replication]: ../hdinsight-hbase-geo-replication/
-[hdinsight-hbase-dns]: ../hdinsight-hbase-geo-replication-configure-DNS/
+[hdinsight-hbase-replication]: hdinsight-hbase-geo-replication.md
+[hdinsight-hbase-dns]: hdinsight-hbase-geo-replication-configure-DNS.md
 
 
 [img-vnet-diagram]: ./media/hdinsight-hbase-geo-replication-configure-VNets/HDInsight.HBase.VPN.diagram.png
 [img-vnet-lnet-diagram]: ./media/hdinsight-hbase-geo-replication-configure-VNets/HDInsight.HBase.VPN.LNet.diagram.png
 [img-vpn-status]: ./media/hdinsight-hbase-geo-replication-configure-VNets/HDInsight.HBase.VPN.status.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

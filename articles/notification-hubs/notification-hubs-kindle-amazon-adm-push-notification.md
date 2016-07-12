@@ -4,7 +4,7 @@
 	services="notification-hubs"
 	documentationCenter=""
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-kindle"
 	ms.devlang="Java"
 	ms.topic="hero-article"
-	ms.date="02/29/2016"
+	ms.date="06/29/2016"
 	ms.author="wesmc"/>
 
 # 開始使用適用於 Kindle 應用程式的通知中樞
@@ -79,7 +79,7 @@
 將 ADM 程式庫新增至您的 Eclipse 專案：
 
 1. 若要取得 ADM 程式庫，請[下載 SDK]。將 SDK zip 檔案解壓縮。
-2. 在 Eclipse 中，以滑鼠右鍵按一下您的專案，然後按一下 [屬性]。選取左側的 [Java Build Path]，然後選取頂端的 **Libraries** 索引標籤。按一下 [Add External Jar]，然後從您解壓縮 Amazon SDK 的目錄中選取 `\SDK\Android\DeviceMessaging\lib\amazon-device-messaging-*.jar` 檔案。
+2. 在 Eclipse 中，以滑鼠右鍵按一下您的專案，然後按一下 [屬性]。選取左側的 [Java 組建路徑]，然後選取頂端的 [程式庫] 索引標籤。按一下 [Add External Jar]，然後從您解壓縮 Amazon SDK 的目錄中選取 `\SDK\Android\DeviceMessaging\lib\amazon-device-messaging-*.jar` 檔案。
 3. 下載 NotificationHubs Android SDK (連結)。
 4. 將封裝解壓縮，然後將 `notification-hubs-sdk.jar` 檔案拖曳到 Eclipse 的 `libs` 資料夾中。
 
@@ -281,4 +281,4 @@
 [6]: ./media/notification-hubs-kindle-get-started/notification-hub-kindle-new-java-class.png
 [7]: ./media/notification-hubs-kindle-get-started/notification-hub-kindle-notification.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

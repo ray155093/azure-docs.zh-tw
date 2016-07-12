@@ -26,7 +26,7 @@
 
 <br/>
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 本端對端教學課程將示範如何透過在 Azure 虛擬機器上執行的 SQL Server Always On 實作可用性群組。
@@ -73,7 +73,7 @@
 
 1. 在 [建立虛擬網路] 對話方塊中，透過套用下方設定以通過精靈中的頁面，來建立新的虛擬網路。
 
-	|Page|設定|
+	|頁面|設定|
 |---|---|
 |虛擬網路詳細資料|**名稱 = ContosoNET**<br/>**地區 = 美國西部**|
 |DNS 伺服器和 VPN 連線能力|None|
@@ -85,11 +85,11 @@
 
 1. 在 [建立虛擬機器] 對話方塊中，透過套用下方設定以通過精靈中的頁面，來設定新的 VM。
 
-	|Page|設定|
+	|頁面|設定|
 |---|---|
 |選取虛擬機器作業系統|Windows Server 2012 R2 Datacenter|
-|虛擬機器組態|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoDC<br/>**層** = 標準<br/>**大小** = A2 (2 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼**= Contoso!000<br/>**確認** = Contoso!000|
-|虛擬機器組態|**雲端服務** = 建立新的雲端服務<br/>**雲端服務 DNS 名稱** = 唯一的雲端服務名稱<br/>**DNS 名稱** = 唯一的名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性集合** = (無)|
+|虛擬機器組態|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoDC<br/>**層** = 標準<br/>**大小** = A2 (2 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|
+|虛擬機器組態|**雲端服務** = 建立新的雲端服務<br/>**雲端服務 DNS 名稱** = 唯一的雲端服務名稱<br/>**DNS 名稱** = 唯一的名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = (無)|
 |虛擬機器選項|使用預設值|
 
 新的 VM 設定完畢後，請等候系統佈建 VM。此程序需要一些時間才能完成，如果您按一下 Azure 傳統入口網站中的 [虛擬機器] 索引標籤，您會看到 ContosoDC 的循環狀態從 [啟動中 (佈建中)] 變成 [停止]、[啟動中]、[執行中 (佈建中)]，最後 [執行中]。
@@ -136,7 +136,7 @@
 
 1. 在 **Active Directory 網域服務組態精靈**中，使用下列值：
 
-	|Page|設定|
+	|頁面|設定|
 |---|---|
 |部署組態|**新增樹系** = 已選取<br/>**根網域名稱** = corp.contoso.com|
 |網域控制站選項|**密碼** = Contoso!000<br/>**確認密碼** = Contoso!000|
@@ -194,11 +194,11 @@
 
 接下來，建立三個 VM，包括 WSFC 叢集節點和兩個 SQL Server VM。為了逐一建立每個 VM，請回到 Azure 傳統入口網站，依序按一下 [**新增**]、[**計算**]、[**虛擬機器**] 和 [**從資源庫**]。然後使用下表中的範本建立 VM。
 
-|Page|VM1|VM2|VM3|
+|頁面|VM1|VM2|VM3|
 |---|---|---|---|
 |選取虛擬機器作業系統|**Windows Server 2012 R2 Datacenter**|**SQL Server 2014 RTM Enterprise**|**SQL Server 2014 RTM Enterprise**|
-|虛擬機器組態|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoWSFCNode<br/>**層** = 標準<br/>**大小** = A2 (2 核心)<br/>**新的使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoSQL1<br/>**層** = 標準<br/>**大小** = A3 (4 核心)<br/>**新的使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoSQL2<br/>**層** = 標準<br/>**大小** = A3 (4 核心)<br/>**新的使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|
-|虛擬機器組態|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性集合** = 建立可用性集合<br/>**可用性集合名稱** = SQLHADR|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性集合名稱** = SQLHADR (也可以在虛擬機器建立後，再設定可用性集合。三部虛擬機器都必須指派至 SQLHADR 可用性集合)。|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性集合名稱** = SQLHADR (也可以在虛擬機器建立後，再設定可用性集合。三部虛擬機器都必須指派至 SQLHADR 可用性集合)。|
+|虛擬機器組態|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoWSFCNode<br/>**層** = 標準<br/>**大小** = A2 (2 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoSQL1<br/>**層** = 標準<br/>**大小** = A3 (4 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoSQL2<br/>**層** = 標準<br/>**大小** = A3 (4 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|
+|虛擬機器組態|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = 建立可用性設定組<br/>**可用性設定組名稱** = SQLHADR|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = SQLHADR (也可以在虛擬機器建立後，再設定可用性設定組。三部虛擬機器都必須指派至 SQLHADR 可用性集合)。|**雲端服務** = 先前建立的唯一雲端服務 DNS 名稱 (例如：ContosoDC123)<br/>**區域/同質群組/虛擬網路** = ContosoNET<br/>**虛擬網路子網路** = 後端 (10.10.2.0/24)<br/>**儲存體帳戶** = 使用自動產生的儲存體帳戶<br/>**可用性設定組** = SQLHADR (也可以在虛擬機器建立後，再設定可用性設定組。三部虛擬機器都必須指派至 SQLHADR 可用性集合)。|
 |虛擬機器選項|使用預設值|使用預設值|使用預設值|
 
 <br/>
@@ -221,7 +221,7 @@
 
 	![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC784629.png)
 
-1. 在命令列上按一下 [變更此連接的設定]\(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+1. 在命令列上按一下 [變更此連接的設定] (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 
 1. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]，然後按一下 [內容]。
 
@@ -231,7 +231,7 @@
 
 	![使用 NSLOOKUP 尋找 DC 的 IP 位址](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC664954.jpg)
 
-1. 依序按一下 [確**定**]、[關閉] 以認可變更。現在您可以將 VM 加入 **corp.contoso.com**。
+1. 依序按一下 [確定]、[關閉] 以認可變更。現在您可以將 VM 加入 **corp.contoso.com**。
 
 1. 回到 [本機伺服器] 視窗中，按一下 [工作群組] 連結。
 
@@ -319,7 +319,7 @@
 
 1. 在建立叢集精靈中，透過套用下方設定以通過精靈中的頁面，來建立單節點叢集：
 
-	|Page|設定|
+	|頁面|設定|
 |---|---|
 |開始之前|使用預設值|
 |選取伺服器|在 [輸入伺服器名稱] 中輸入 **ContosoSQL1**，然後按一下 [新增]。|
@@ -347,7 +347,7 @@
 
 1. 在 [新增節點精靈] 中，按 [下一步]。在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **ContosoSQL2** 和 **ContosoWSFCNode** 新增至清單。完成之後，按 [下一步]。
 
-1. 在 [驗證警告] 頁面上，按一下 [否] \(實際操作時，請執行驗證測試)。然後按 [下一步]。
+1. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。然後按 [下一步]。
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
@@ -413,11 +413,11 @@
 
 1. 在 [名稱] 頁面中，指定規則名稱，例如在 [名稱] 文字方塊中指定 [SQL Server (程式規則)]，然後按一下 [完成]。
 
-1. 接下來，啟用 [Always On 可用性群組] 功能。在 [開始] 畫面中，啟動 [SQL Server 組態管理員]。
+1. 接下來，啟用「AlwaysOn 可用性群組」功能。在 [開始] 畫面中，啟動 [SQL Server 組態管理員]。
 
 1. 在瀏覽器樹狀目錄中按一下 [SQL Server 服務]，然後以滑鼠右鍵按一下 [SQL Server (MSSQLSERVER)] 服務，再按一下 [內容]。
 
-1. 如下方所示，按一下 [Always On 高可用性] 索引標籤，然後選取 [啟用 Always On 可用性群組]，再按一下 [套用]。按一下快顯對話方塊中的 [確定]，先不要關閉 [內容] 視窗。變更服務帳戶之後，將重新啟動 SQL Server 服務。
+1. 如下方所示，按一下 [AlwaysOn 高可用性] 索引標籤，然後選取 [啟用 AlwaysOn 可用性群組]，再按一下 [套用]。按一下快顯對話方塊中的 [確定]，先不要關閉 [內容] 視窗。變更服務帳戶之後，將重新啟動 SQL Server 服務。
 
 	![啟用 Always On 可用性群組](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665520.gif)
 
@@ -445,7 +445,7 @@
 
 1. 啟動 **ContosoSQL1** 的 RDP 檔案，並以 **CORP\\Install** 的身分登入。
 
-1. 在 [檔案總管] 中，於 **C:** 磁碟下方，建立名為**備份**的目錄。此目錄將用來備份和還原您的資料庫。
+1. 在 [檔案總管] 中，於 **C:** 磁碟中，建立名為「備份」的目錄。此目錄將用來備份和還原您的資料庫。
 
 1. 如下方所示，以滑鼠右鍵按一下新目錄，指向 [共用對象]，然後按一下 [特定人員]。
 
@@ -491,7 +491,7 @@
 
 ### 建立可用性群組：
 
-1. 回到 **ContosoSQL1** 的遠端桌面工作階段。如下方所示，在 SSMS 的 [物件總管] 中，以滑鼠右鍵按一下 [Always On 高可用性]，再按一下 [新增可用性群組精靈]。
+1. 回到 **ContosoSQL1** 的遠端桌面工作階段。如下方所示，在 SSMS 的 [物件總管] 中，以滑鼠右鍵按一下 [AlwaysOn 高可用性]，再按一下 [新增可用性群組精靈]。
 
 	![啟動新增可用性群組精靈](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665523.gif)
 
@@ -519,7 +519,7 @@
 
 	![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665529.gif)
 
-1. 在 [驗證] 頁面中按 [下一步]。此頁面的外觀類似於下圖。由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。完成此教學課程之後，若要設定接聽程式，請參閱[在 Azure 中為 Always On 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+1. 在 [驗證] 頁面中按 [下一步]。此頁面的外觀類似於下圖。由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。完成此教學課程之後，若要設定接聽程式，請參閱[設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 	![新增 AG 精靈：驗證](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665530.gif)
 
@@ -527,11 +527,11 @@
 
 	![新增 AG 精靈：結果](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665531.gif)
 
-1. 在 [物件總管] 中，展開 [Always On 高可用性]，再展開 [可用性群組]。新的可用性群組應會顯示在此容器中。以滑鼠右鍵按一下 [AG1 (主要)]，再按一下 [顯示儀表板]。
+1. 在 [物件總管] 中，展開 [AlwaysOn 高可用性]，再展開 [可用性群組]。新的可用性群組應會顯示在此容器中。以滑鼠右鍵按一下 [AG1 (主要)]，再按一下 [顯示儀表板]。
 
 	![顯示 AG 儀表板](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665532.gif)
 
-1. [Always On 儀表板] 的外觀應類似於下圖。當中會顯示複本、每個複本的容錯移轉模式和同步處理狀態。
+1. [AlwaysOn 儀表板] 的外觀應類似於下圖。當中會顯示複本、每個複本的容錯移轉模式和同步處理狀態。
 
 	![AG 儀表板](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665533.gif)
 
@@ -541,11 +541,11 @@
 
 	![容錯移轉叢集管理員中的 AG](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665534.gif)
 
->[AZURE.WARNING] 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。所有容錯移轉作業都應在 SSMS 的 **Always On 儀表板**中執行。如需詳細資訊，請參閱[容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
+>[AZURE.WARNING] 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。所有容錯移轉作業都應在 SSMS 的 [AlwaysOn 儀表板] 中執行。如需詳細資訊，請參閱[容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
 
 ## 後續步驟
-現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。若要為此可用性群組設定接聽程式，請參閱[在 Azure 中為 Always On 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。若要為此可用性群組設定接聽程式，請參閱[設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

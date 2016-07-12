@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"   
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 
@@ -29,8 +29,8 @@
 
 當您使用媒體服務 REST API 連接到媒體服務時，下列步驟將說明最常見的工作流程：
 
-1. 取得存取權杖 
-2. 連接至媒體服務 URI 
+1. 取得存取權杖
+2. 連接至媒體服務 URI
 
 	>[AZURE.NOTE] 成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。後續的呼叫必須送到新的 URI。您也可能會收到 HTTP/1.1 200 回應，其中包含 ODATA API 中繼資料描述。
 
@@ -110,7 +110,7 @@
 
 請注意，上傳與下載資產檔案的根 URI 是 https://yourstorageaccount.blob.core.windows.net/，其中儲存體帳戶名稱是您在媒體服務帳戶設定期間所用的相同名稱。
 
-下列範例示範對媒體服務根 URI 的 HTTP 要求 (https://media.windows.net/)。此要求會在回應中得到 301 重新導向。後續的要求使用新的 URI (https://wamsbayclus001rest-hs.cloudapp.net/api/)。
+下列範例示範對媒體服務根 URI 的 HTTP 要求 (https://media.windows.net/)。此要求會在回應中得到 301 重新導向。後續的要求會使用新的 URI (https://wamsbayclus001rest-hs.cloudapp.net/api/)。
 
 **HTTP 要求**：
 	
@@ -177,4 +177,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

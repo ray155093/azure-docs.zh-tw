@@ -87,6 +87,13 @@
 
 如需整合金鑰保存庫和 Azure 及搭配使用的詳細工作特定指引，請參閱 [Ryan Jones 金鑰保存庫 ARM 範本範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
+## 與金鑰保存庫整合
+
+這些文章是關於其他可讓我們與金鑰保存庫整合的案例和服務。
+
+- [Azure 磁碟加密](../azure-security-disk-encryption.md)利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。此解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
+
+
 ## 支援程式庫
 
 - [Microsoft Azure 金鑰保存庫核心程式庫](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/1.0.0)提供 `IKey` 和 `IKeyResolver` 介面，以從識別碼尋找金鑰和使用金鑰執行作業。
@@ -97,4 +104,4 @@
 - [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 - [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

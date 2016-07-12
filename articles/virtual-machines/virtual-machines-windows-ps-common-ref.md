@@ -31,8 +31,8 @@
 新增組態設定 | $vm = [Set-AzureRmVMOperatingSystem](https://msdn.microsoft.com/library/mt603843.aspx) -VM $vm -Windows -ComputerName "computer\_name" -Credential $cred -ProvisionVMAgent -EnableAutoUpdate<BR></BR><BR></BR>作業系統設定包括加入至您先前使用 New-AzureRmVMConfig 建立之組態物件的[認證](https://technet.microsoft.com/library/hh849815.aspx)。
 新增網路介面 | $vm = [Add-AzureRmVMNetworkInterface](https://msdn.microsoft.com/library/mt619351.aspx) -VM $vm -Id $nic.Id<BR></BR><BR></BR>VM 必須有[網路介面](virtual-machines-windows-ps-create.md)才能在虛擬網路中通訊。您也可以使用 [Get-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619434.aspx) 擷取現有的網路介面物件。
 指定平台映像 | $vm = [Set-AzureRmVMSourceImage](https://msdn.microsoft.com/library/mt619344.aspx) -VM $vm -PublisherName "publisher\_name" -Offer "publisher\_offer" -Skus "product\_sku" -Version "latest"<BR></BR><BR></BR>[映像資訊](virtual-machines-windows-cli-ps-findimage.md)會加入至您先前使用 New-AzureRmVMConfig 建立的組態物件。只有在您設定作業系統磁碟使用平台映像時，才會使用此命令傳回的物件。
-設定作業系統磁碟使用平台映像 | $vm = [Set-AzureRmVMOSDisk](https://msdn.microsoft.com/library/mt603746.aspx) -VM $vm -Name "disk\_name" -VhdUri "http://mystore1.blob.core.windows.net/vhds/disk\_name.vhd" -CreateOption fromImage<BR></BR><BR></BR>作業系統磁碟的名稱及其將位於[儲存體](../storage/storage-powershell-guide-full.md)中的位置會加入至您先前建立的組態物件。
-設定作業系統磁碟使用一般化映像 | $vm = Set-AzureRmVMOSDisk -VM $vm -Name "disk\_name" -SourceImageUri "https://mystore1.blob.core.windows.net/system/Microsoft.Compute/Images/myimages/myprefix-osDisk.{guid}.vhd" -VhdUri "https://mystore1.blob.core.windows.net/vhds/disk\_name.vhd" -CreateOption fromImage -Windows<BR></BR><BR></BR>作業系統磁碟的名稱、來源映像的位置，以及磁碟將位於[儲存體](../storage/storage-powershell-guide-full.md)中的位置會加入至您先前建立的組態物件。
+設定作業系統磁碟使用平台映像 | $vm = [Set-AzureRmVMOSDisk](https://msdn.microsoft.com/library/mt603746.aspx) -VM $vm -Name "disk\_name" -VhdUri "http://mystore1.blob.core.windows.net/vhds/disk\_name.vhd" -CreateOption FromImage<BR></BR><BR></BR>作業系統磁碟的名稱及它將位於[儲存體](../storage/storage-powershell-guide-full.md)中的位置會加入至您先前建立的組態物件。
+設定作業系統磁碟使用一般化映像 | $vm = Set-AzureRmVMOSDisk -VM $vm -Name "disk\_name" -SourceImageUri "https://mystore1.blob.core.windows.net/system/Microsoft.Compute/Images/myimages/myprefix-osDisk.{guid}.vhd" -VhdUri "https://mystore1.blob.core.windows.net/vhds/disk\_name.vhd" -CreateOption FromImage -Windows<BR></BR><BR></BR>作業系統磁碟的名稱、來源映像的位置，以及磁碟將位於[儲存體](../storage/storage-powershell-guide-full.md)中的位置會加入至您先前建立的組態物件。
 設定作業系統磁碟使用一般化映像 | $vm = Set-AzureRmVMOSDisk -VM $vm -Name "name\_of\_disk" -VhdUri "http://mystore1.blob.core.windows.net/vhds/" -CreateOption Attach -Windows
 建立 VM | [New-AzureRmVM]() -ResourceGroupName "resource\_group\_name" -Location "location\_name" -VM $vm<BR></BR><BR></BR>所有資源都會建立於[資源群組](../powershell-azure-resource-manager.md)中。VM 必須建立於與資源群組相同的[位置](https://msdn.microsoft.com/library/azure/dn495177.aspx)。執行此命令之前，請執行 New-AzureRmVMConfig、Set-AzureRmVMOperatingSystem、Set-AzureRmVMSourceImage、Add-AzureRmVMNetworkInterface 和 Set-AzureRmVMOSDisk。
 列出訂用帳戶中的 VM| [Get-AzureRmVM](https://msdn.microsoft.com/library/mt603718.aspx)
@@ -54,4 +54,4 @@
 
 - 請參閱[使用 Resource Manager 和 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md) 中建立虛擬機器的基本步驟。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

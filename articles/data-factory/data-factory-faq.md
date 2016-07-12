@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/28/2016" 
 	ms.author="spelluru"/>
 
 # Azure 資料處理站-常見問題集
@@ -35,8 +35,8 @@ Data Factory 服務可讓您建立資料驅動的工作流程，在內部部署�
 ### 如何開始使用 Azure Data Factory？
 
 - 如需 Azure Data Factory 的概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
-- 如需說明如何使用複製活動**複製/移動資料**的教學課程，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-get-started.md)。
-- 如需說明如何使用 HDInsight Hive 活動**轉換資料**的教學課程。請參閱[在 Hadoop 叢集上執行 Hive 指令碼來處理資料](data-factory-build-your-first-pipeline.md) 
+- 如需說明如何使用複製活動**複製/移動資料**的教學課程，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+- 如需說明如何使用 HDInsight Hive 活動**轉換資料**的教學課程。請參閱[在 Hadoop 叢集上執行 Hive 指令碼來處理資料](data-factory-build-your-first-pipeline.md)
   
 ### 什麼是資料處理站的區域可用性？
 Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站所使用的計算服務和儲存體服務可以在其他區域使用。請參閱[支援的區域](data-factory-introduction.md#supported-regions)。
@@ -73,7 +73,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 ### 您可以在 Data Factory 管線中使用的不同類型活動有哪些？ 
 
 - [資料移動活動](data-factory-data-movement-activities.md)以移動資料。
-- [資料轉換活動](data-factory-data-transformation-activities.md)以處理/轉換資料。 
+- [資料轉換活動](data-factory-data-transformation-activities.md)以處理/轉換資料。
 
 ### 何時執行活動？
 輸出資料表中的**可用性**組態設定決定何時執行活動。如果已指定輸入資料集，活動會在開始執行之前，檢查是否滿足所有輸入資料相依性 (即**就緒**狀態)。
@@ -81,6 +81,11 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 ## 複製活動 - 常見問題集
 ### 最好是一個管線有多個活動，還是每個活動都有不同的管線？ 
 管線依例應該有配套的相關活動。邏輯上，如果管線外部的任何其他活動都未使用連接活動的資料表，則可以將活動保留在一個管線中。如此一來，您就不需要鏈結管線作用期間，使其彼此一致。此外，更新管線時，也會更適當地保留管線內部資料表中的資料完整性。管線更新基本上會停止、移除並重新建立管線內的所有活動。從撰寫觀點來看，可能也較容易看出管線的某個 JSON 檔案中相關活動內的資料流程。
+
+### 會在哪裡執行複製作業？ 
+
+如需詳細資料，請參閱[全域可用的資料移動](data-factory-data-movement-activities.md#global)一節。簡單地說，在涉及內部部署資料存放區時，複製作業是由資料管理閘道器在內部部署環境中執行。而在兩個雲端存放區之間移動資料時，複製作業是在最接近相同地理位置內接收位置的區域中執行。
+
 
 ## HDInsight 活動 - 常見問題集
 
@@ -119,7 +124,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 
 ## 配量 - 常見問題集
 
-### 為什麼我的輸入配量不是處於就緒狀態？ 
+### 為什麼我的輸入配量不是處於就緒狀態？  
 常見的錯誤是當輸入資料是 Data Factory 的外部資料 (不是由 Data Factory 產生) 時，未將輸入資料集上的 **external** 屬性設定為 **true**。
 
 在下列範例中，您只需要將 **dataset1** 上的 **external** 設定為 true 即可。
@@ -147,9 +152,9 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 ### 如何重新執行配量？
 您可以利用下列方式之一來重新執行配量：
 
-- 使用「監視及管理應用程式」來重新執行活動時段或配量。如需相關指示，請參閱[重新執行已選取的活動時段](data-factory-monitor-manage-app.md#re-run-selected-activity-windows)。   
+- 使用「監視及管理應用程式」來重新執行活動時段或配量。如需相關指示，請參閱[重新執行已選取的活動時段](data-factory-monitor-manage-app.md#re-run-selected-activity-windows)。
 - 針對入口網站中的配量，在 [**資料配量**] 刀鋒視窗的命令列中按一下 [**執行**]。
-- 在配量的 Status 設定為 **Waiting** 的情況下，執行 **Set-AzureRmDataFactorySliceStatus** Cmdlet。   
+- 在配量的 Status 設定為 **Waiting** 的情況下，執行 **Set-AzureRmDataFactorySliceStatus** Cmdlet。
 	
 		Set-AzureRmDataFactorySliceStatus -Status Waiting -ResourceGroupName $ResourceGroup -DataFactoryName $df -TableName $table -StartDateTime "02/26/2015 19:00:00" -EndDateTime "02/26/2015 20:00:00" 
 
@@ -163,9 +168,9 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 1. 在您 Data Factory 的 **Data Factory** 刀鋒視窗中，按一下 [**資料集**] 磚。
 2. 在 [**資料集**] 刀鋒視窗中，按一下特定資料集。
 3. 從 [**資料表**] 刀鋒視窗的 [**最近配量**] 清單中，選取您感興趣的配量。
-4. 從 [**資料配量**] 刀鋒視窗的 [**活動執行**] 清單中，按一下活動執行。 
-5. 在 [**活動執行詳細資料**] 刀鋒視窗中，按一下 [**屬性**] 磚。 
-6. 您應該會看到 [持續時間] 欄位與值。這是處理配量所需的時間。   
+4. 從 [**資料配量**] 刀鋒視窗的 [**活動執行**] 清單中，按一下活動執行。
+5. 在 [**活動執行詳細資料**] 刀鋒視窗中，按一下 [**屬性**] 磚。
+6. 您應該會看到 [持續時間] 欄位與值。這是處理配量所需的時間。
 
 ### 如何停止執行中配量？
 如果需要停止執行管線，可以使用 [Suspend-AzureRmDataFactoryPipeline](https://msdn.microsoft.com/library/mt603721.aspx) Cmdlet。目前，擱置管線並不會停止正在進行的配量執行。一旦進行中的執行完成，就不會再挑選任何額外的配量。
@@ -187,4 +192,4 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 [hdinsight-alternate-storage-2]: http://blogs.msdn.com/b/cindygross/archive/2014/05/05/use-additional-storage-accounts-with-hdinsight-hive.aspx
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

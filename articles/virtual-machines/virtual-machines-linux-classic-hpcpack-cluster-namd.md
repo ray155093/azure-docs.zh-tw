@@ -1,6 +1,6 @@
 <properties
  pageTitle="Linux VM 上的 NAMD 與 Microsoft HPC Pack | Microsoft Azure"
- description="在 Azure 上部署 Microsoft HPC Pack 叢集並且執行在多個 Linux 運算節點上具有 charmrun 的 NAMD 模擬。"
+ description="在 Azure 上部署 Microsoft HPC Pack 叢集，並執行在多個 Linux 運算節點上具有 charmrun 的 NAMD 模擬"
  services="virtual-machines-linux"
  documentationCenter=""
  authors="dlepow"
@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="03/22/2016"
+ ms.date="06/23/2016"
  ms.author="danlep"/>
 
 # 在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD
@@ -29,16 +29,16 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 ## 必要條件
 
-* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由 Windows Server 2012 R2 前端節點與大小為 4 的大型 (A3) CentOS 6.6 計算節點所組成。請視環境需要採用此選項。
+* **具備 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署具備 Linux 計算節點的 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，該叢集由 Windows Server 2012 R2 前端節點與大小為 4 的大型 CentOS 6.6 計算節點所組成。請視環境需要採用此選項。
 
 
-* **NAMD 軟體與教學課程檔案** - 從 [NAMD](http://www.ks.uiuc.edu/Research/namd/) 網站下載 Linux 的 NAMD 軟體 (需要註冊)。這篇文章是根據 NAMD 2.10 版，並使用 [Linux-x86\_64 (64 位元 Intel/AMD，具有乙太網路)](http://www.ks.uiuc.edu/Development/Download/download.cgi?UserID=&AccessCode=&ArchiveID=1310) 封存，您會用來在叢集網路中的多個 Linux 運算節點上執行 NAMD。另請下載 [NAMD 教學課程檔案](http://www.ks.uiuc.edu/Training/Tutorials/#namd)。因為下載的是 .tar 檔案，所以需要 Windows 工具將檔案解壓縮至叢集前端節點。請依照本文稍後的指示執行此該操作。
+* **NAMD 軟體與教學課程檔案** - 從 [NAMD](http://www.ks.uiuc.edu/Research/namd/) 網站下載 Linux 的 NAMD 軟體 (需要註冊)。這篇文章是根據 NAMD 2.10 版，並使用 [Linux-x86\_64 (64 位元 Intel/AMD，具有乙太網路)](http://www.ks.uiuc.edu/Development/Download/download.cgi?UserID=&AccessCode=&ArchiveID=1310) 封存，您會用來在叢集網路中的多個 Linux 運算節點上執行 NAMD。另請下載 [NAMD 教學課程檔案](http://www.ks.uiuc.edu/Training/Tutorials/#namd)。下載的是 .tar 檔案，而您需要 Windows 工具以解壓縮叢集前端節點上的檔案。請依照本文稍後的指示執行此該操作。
 
 * **VMD** (選擇性) - 若要查看 NAMD 工作的結果，請在您選擇的電腦上，下載和安裝分子視覺化程式 [VMD](http://www.ks.uiuc.edu/Research/vmd/)。目前版本為 1.9.2。請參閱 VMD 下載網站以開始作業。
 
 
 ## 設定運算節點之間的相互信任
-在多個 Linux 節點上執行跨節點作業，需要節點相互信任 (藉由 **rsh** 或 **ssh**)。當您使用 Microsoft HPC Pack IaaS 部署指令碼建立 HPC Pack 叢集時，指令碼會自動為您指定的系統管理員帳戶設定永久相互信任。針對您在叢集的網域中建立的非系統管理員使用者，您必須在將工作配置給他們時，設定節點間的暫時相互信任，並且在工作完成之後終結關聯性。若要為每個使用者執行此動作，提供 HPC Pack 用來建立信任關係的 RSA 金鑰組給叢集。
+在多個 Linux 節點上執行跨節點作業，需要節點相互信任 (藉由 **rsh** 或 **ssh**)。當您使用 Microsoft HPC Pack IaaS 部署指令碼建立 HPC Pack 叢集時，指令碼會自動為您指定的系統管理員帳戶設定永久相互信任。針對您在叢集的網域中建立的非系統管理員使用者，您必須在將工作配置給他們時，設定節點間的暫時相互信任，並且在工作完成之後終結關聯性。若要為每個使用者執行此動作，提供 HPC Pack 用來建立信任關係的 RSA 金鑰組給叢集。指示如下。
 
 ### 產生 RSA 金鑰組
 產生 RSA 金鑰組很容易，其中包含公開金鑰和私密金鑰，方法是執行 Linux **ssh-keygen** 命令。
@@ -60,11 +60,11 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
     ![私密和公開金鑰][keys]
 
 ### 將金鑰組新增至 HPC Pack 叢集
-1.	使用您的 HPC Pack 系統管理員帳戶與您的前端節點進行遠端桌面連線 (當您執行部署指令碼時設定的系統管理員帳戶)。
+1.	使用您的 HPC Pack 系統管理員帳戶與您的前端節點進行遠端桌面連線 (您在部署叢集時設定的系統管理員帳戶)。
 
-2. 您可以使用標準的 Windows Server 程序在叢集的 Active Directory 網域中建立網域使用者帳戶。例如，在前端節點上使用 Active Directory 使用者和電腦工具。本文中的範例假設您建立名為 hpclab\\hpcuser 的網域使用者。
+2. 您可以使用標準的 Windows Server 程序在叢集的 Active Directory 網域中建立網域使用者帳戶。例如，在前端節點上使用 Active Directory 使用者和電腦工具。本文中的範例假設您在 hpclab 網域中建立名為 hpcuser 的網域使用者 (hpclab\\hpcuser)。
 
-3. 將網域使用者以叢集使用者身分加入 HPC Pack 叢集中。請參閱 [Add or remove cluster users (新增或移除叢集使用者)](https://technet.microsoft.com/library/ff919330.aspx)。
+3. 將網域使用者以叢集使用者身分加入 HPC Pack 叢集中。如需指示，請參閱 [(Add or Remove Cluster Users) 新增或移除叢集使用者](https://technet.microsoft.com/library/ff919330.aspx)。
 
 2.	建立名為 C:\\cred.xml 的檔案，並且將 RSA 金鑰資料複製到其中。您可以在本文結尾處的範例檔案中找到範例。
 
@@ -75,7 +75,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
     </ExtendedData>
     ```
 
-3.	開啟命令提示字元並輸入下列命令，以設定 hpclab\\hpcuser 帳戶的認證資料。您使用 **extendeddata** 參數來傳遞您針對金鑰資料建立之 C:\\cred.xml 檔案的名稱。
+3.	開啟命令提示字元並輸入下列命令，以設定 hpclab\\hpcuser 帳戶的認證資料。您使用 **extendeddata** 參數來傳遞您針對金鑰資料建立的 C:\\cred.xml 檔案名稱。
 
     ```
     hpccred setcreds /extendeddata:c:\cred.xml /user:hpclab\hpcuser /password:<UserPassword>
@@ -89,13 +89,18 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 ## 為 Linux 節點設定檔案共用
 
-現在請設定 SMB 檔案共用，並在所有 Linux 節點上裝載共用資料夾，允許 Linux 節點存取具有共用路徑的 NAMD 檔案。請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](virtual-machines-linux-classic-hpcpack-cluster.md)中的檔案共用選項和步驟。以下是要在前端節點上裝載共用資料夾的步驟，像 CentOS 6.6 這種目前不支援 Azure 檔案服務的發佈，就建議使用這些步驟。如果您的 Linux 節點支援 Azure 檔案共用，請參閱[如何在 Linux 使用 Azure 檔案儲存體](../storage/storage-how-to-use-files-linux.md)。
+現在請設定 SMB 檔案共用，並在所有 Linux 節點上裝載共用資料夾，允許 Linux 節點存取具有共用路徑的 NAMD 檔案。以下是要在前端節點上裝載共用資料夾的步驟，像 CentOS 6.6 這種目前不支援 Azure 檔案服務的發佈，就建議使用這些步驟。如果您的 Linux 節點支援 Azure 檔案共用，請參閱[如何搭配使用 Azure 檔案儲存體與 Linux](../storage/storage-how-to-use-files-linux.md)。如需 HPC Pack 的其他檔案共用選項，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
 
 1.	在前端節點上建立資料夾，並藉由設定讀取/寫入權限與每個人共用。在此範例中，\\\CentOS66HN\\Namd 是資料夾的名稱，其中CentOS66HN 是前端節點的主機名稱。
 
-2. 在資料夾中解壓縮 NAMD 檔案，方法是使用 Windows 的 **tar** 版本，或其他可以操作 .tar 封存的 Windows 公用程式。將 NAMD tar 封存解壓縮至 \\\CentOS66HN\\Namd\\namd2，並且在 \\\CentOS66HN\\Namd\\namd2\\namdsample 底下解壓縮教學課程檔案。
+2. 在共用資料夾中建立名為 namd2 的子資料夾。在 namd2 中建立另一個名為 namdsample 的子資料夾。
 
-2.	開啟 Windows PowerShell 視窗並執行下列命令來裝載共用資料夾。
+3. 在資料夾中解壓縮 NAMD 檔案，方法是使用 Windows 的 **tar** 版本，或其他可以操作 .tar 封存的 Windows 公用程式。
+    * 將 NAMD tar 封存解壓縮到 \\\CentOS66HN\\Namd\\namd2。
+    
+    * 解壓縮 \\\CentOS66HN\\Namd\\namd2\\namdsample 之下的教學課程檔案。
+
+4. 開啟 Windows PowerShell 視窗並執行下列命令來將共用資料夾裝載在 Linux 節點上。
 
     ```
     clusrun /nodegroup:LinuxNodes mkdir -p /namd2
@@ -112,11 +117,11 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 您的 NAMD 作業需要 *nodelist* 檔案，如此 **charmrun** 才可決定啟動 NAMD 程序時要使用的節點數目。您會使用 Bash 指令碼，產生 nodelist 檔案，並在執行 **charmrun** 搭配此 nodelist 檔案。然後您就可以在會呼叫此指令碼的 HPC 叢集管理員中提交 NAMD 工作。
 
-使用您選擇的文字編輯器，在包含 NAMD 程式檔案的資料夾中建立 Bash 指令碼，並將其命名為 hpccharmrun.sh。只要複製本文結尾處範例檔案中提供的範例即可。
+使用您選擇的文字編輯器，在包含 NAMD 程式檔案的 /namd2 資料夾中建立 Bash 指令碼，並將它命名為 hpccharmrun.sh。只要複製本文結尾處範例檔案中提供的範例即可。
 
 >[AZURE.TIP] 將您的指令碼儲存為具有 Linux 行尾結束符號 (只有 LF，不是 CR LF) 的文字檔案。這可確保它在 Linux 節點上正常運作。
 
-以下是這個 bash 指令碼的詳細作業內容。如果您要進行概念證明，又只想執行一個 NAMD 作業，請將 hpccharmrun.sh 指令碼儲存到檔案共用，然後前往[提交 NAMD 作業](#submit-a-namd-job)。
+以下是這個 bash 指令碼的詳細作業內容。如果您是在進行概念證明，並只想執行一個 NAMD 作業，請將 hpccharmrun.sh 指令碼儲存到檔案共用上的 /namd2 資料夾中，然後前往[提交 NAMD 作業](#submit-a-namd-job)。
 
 1.	定義一些變數。
 
@@ -238,14 +243,14 @@ host CENTOS66LN-03 ++cpus 2
 
     ![工作資源][job_resources]
 
-5. 按一下左側導覽的 [編輯工作]，再按一下 [加入] 將工作加入作業中。
+5. 按一下左側導覽的 [編輯工作]，然後按一下 [新增] 來將工作加入作業中。
 
 
-6. 在 [Task Details and I/O Redirection] \(工作詳細資料和 I/O 重新導向) 頁面上，設定下列值。
+6. 在 [工作詳細資料和 I/O 重新導向] 頁面上，設定下列值。
 
     * **命令列** - `/namd2/hpccharmrun.sh ++remote-shell ssh /namd2/namd2 /namd2/namdsample/1-2-sphere/ubq_ws_eq.conf > /namd2/namd2_hpccharmrun.log`
 
-    >[AZURE.TIP] 前面的命令列是不含分行符號的單一命令。它會換行出現在數行**命令列**下。
+        >[AZURE.TIP] 前面的命令列是不含分行符號的單一命令。它會換行以出現在**命令列**的數行之下。
 
     * **工作目錄** - /namd2
 
@@ -255,7 +260,7 @@ host CENTOS66LN-03 ++cpus 2
 
     >[AZURE.NOTE] 您在這裡設定工作目錄，因為 **charmrun** 嘗試瀏覽至每個節點上相同的工作目錄。如果未設定工作目錄，HPC Pack 會在其中一個 Linux 節點上建立的隨機命名資料夾中啟動命令。這會在其他節點上導致下列錯誤：`/bin/bash: line 37: cd: /tmp/nodemanager_task_94_0.mFlQSN: No such file or directory.` 若要避免這個問題，指定所有節點可存取為工作目錄的資料夾路徑。
 
-5.	按一下 [提交] 以執行此工作。
+5.	按一下 [確定]，然後按一下 [提交] 以執行此作業。
 
     根據預設，HPC Pack 會以您目前登入的使用者帳戶提交工作。對話方塊可能會在您按一下 [提交] 之後提示您輸入使用者名稱和密碼。
 
@@ -269,7 +274,7 @@ host CENTOS66LN-03 ++cpus 2
 
 6.	工作需要數分鐘的時間才能完成。
 
-7.	在 \<headnodeName>\\Namd\\namd2\\namd2\_hpccharmrun.log 中尋找工作記錄檔，在 \<headnode>\\Namd\\namd2\\namdsample\\1-2-sphere 中尋找輸出檔案。
+7.	在 \\<headnodeName>\\Namd\\namd2\\namd2\_hpccharmrun.log 中尋找工作記錄檔，在 \\<headnodeName>\\Namd\\namd2\\namdsample\\1-2-sphere 中尋找輸出檔案。
 
 8.	選擇性啟動 VMD 以檢視您的工作結果。用來視覺化 NAMD 輸出檔案 (在此案例中，水圈中的泛素蛋白質分子) 的步驟已超出本文的範圍。如需詳細資訊，請參閱 [NAMD 教學課程](http://www.life.illinois.edu/emad/biop590c/namd-tutorial-unix-590C.pdf)。
 
@@ -415,4 +420,4 @@ exit ${RTNSTS}
 [task_details]: ./media/virtual-machines-linux-classic-hpcpack-cluster-namd/task_details.png
 [vmd_view]: ./media/virtual-machines-linux-classic-hpcpack-cluster-namd/vmd_view.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

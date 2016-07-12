@@ -21,7 +21,7 @@
 
 Apache Tomcat (或直接稱為 Tomcat，以往也稱為 Jakarta Tomcat) 是 Apache Software Foundation (ASF) 開發的開放原始碼 Web 伺服器和 Servlet 容器。Tomcat 實作 Sun Microsystems 的 Java Servlet 和 JavaServer 頁面 (JSP) 規格，並提供執行 Java 程式碼的純 Java HTTP 網頁伺服器環境。在最簡單的組態中，Tomcat 會在單一作業系統處理序中執行。此程序會執行 Java 虛擬機器 (JVM)。從瀏覽器到 Tomcat 的每個 HTTP 要求都會以 Tomcat 程序中個別的執行緒形式予以處理。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 在本指南中，您將在 Linux 映像上安裝 tomcat7，並將它部署於 Microsoft Azure。
@@ -75,8 +75,8 @@ TCP 連接埠 8080 是 tomcat 接聽的預設連接埠號碼。在 Azure 端點�
 
 1.	在 Azure 入口網站中，按一下 [瀏覽] -> [虛擬機器]，然後按一下您建立的虛擬機器。![][5]
 2.	若要將端點新增至虛擬機器，請按一下 [端點] 方塊。![][6]
-3.	按一下 [新增]。  
-	1.	對於**端點**，在 [端點] 中輸入端點的名稱，然後在 [公用連接埠] 中輸入 80。  
+3.	按一下 [新增]。
+	1.	對於**端點**，在 [端點] 中輸入端點的名稱，然後在 [公用連接埠] 中輸入 80。
 
 		如果設定為 80，不需要在 URL 中包含連接埠號碼就可讓您存取 tomcat。例如，http://tomcatdemo.cloudapp.net。
 
@@ -128,7 +128,7 @@ open-jdk
 
 oracle-jdk
 
--	若要從 Oracle 網站下載 JDK：  
+-	若要從 Oracle 網站下載 JDK：
 
 		wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-x64.tar.gz  
 
@@ -206,7 +206,7 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 
 	sudo /etc/init.d/tomcat7 restart  
 
-開啟瀏覽器，並輸入 URL **http://<your tomcat server DNS name>/manager/html**。本文中的範例 URL 是 http://tomcatexample.cloudapp.net/manager/html。
+開啟瀏覽器，並輸入 URL **http://<您的 tomcat 伺服器 DNS 名稱>/manager/html**。本文中的範例 URL 是 http://tomcatexample.cloudapp.net/manager/html。
 
 連接之後，您應該會看到類似下面的內容：![][18]
 
@@ -215,8 +215,8 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 ###無法從網際網路存取使用 Tomcat 和 Moodle 的虛擬機器
 
 -	**徵兆** Tomcat 正在執行中，但無法使用瀏覽器來查看 Tomcat 預設頁面。
--	**可能的根本原因**   
-	1.	Tomcat 接聽連接埠與您虛擬機器針對 Tomcat 流量的端點私人連接埠不同。  
+-	**可能的根本原因**
+	1.	Tomcat 接聽連接埠與您虛擬機器針對 Tomcat 流量的端點私人連接埠不同。
 
 		檢查您的公用連接埠和私人連接埠端點設定，確定私人連接埠與 Tomcat 接聽連接埠相同。請參閱＜第 1 階段：建立映像＞，以取得為虛擬機器設定端點的指示。
 
@@ -240,7 +240,7 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 			w3m http://localhost:8080  
 
 -	**解決方法**
-	1. 如果 Tomcat 接聽連接埠與虛擬機器上針對流量的端點私人連接埠不同，您需要將私人連接埠變更為與 tomcat 接聽連接埠相同。   
+	1. 如果 Tomcat 接聽連接埠與虛擬機器上針對流量的端點私人連接埠不同，您需要將私人連接埠變更為與 tomcat 接聽連接埠相同。
 
 	2.	如果問題是防火牆/iptables 造成，請在 /etc/sysconfig/iptables 中加入下列幾行：
 
@@ -261,7 +261,7 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 
 ###上傳您的專案檔案到 /var/lib/tomcat7/webapps/ 時權限遭拒  
 
--	**徵兆**當您使用任何 SFTP 用戶端 (例如 FileZilla) 連線到虛擬機器，並瀏覽到 /var/lib/tomcat7/webapps/ 以發佈網站時，您收到類似下列的錯誤訊息：  
+-	**徵兆**當您使用任何 SFTP 用戶端 (例如 FileZilla) 連線到虛擬機器，並瀏覽到 /var/lib/tomcat7/webapps/ 以發佈網站時，您收到類似下列的錯誤訊息：
 
 		status:	Listing directory /var/lib/tomcat7/webapps
 		Command:	put "C:\Users\liang\Desktop\info.jsp" "info.jsp"
@@ -269,7 +269,7 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 		Error:	File transfer failed
 
 -	**可能的根本原因**您沒有存取 /var/lib/tomcat7/webapps 資料夾的權限。
--	**解決方案**您需要從 root 帳戶取得權限。您可以從 root 將該資料夾的擁有權變更為佈建機器時所使用的使用者名稱。下列是一個 azureuser 帳戶名稱的範例：  
+-	**解決方案**您需要從 root 帳戶取得權限。您可以從 root 將該資料夾的擁有權變更為佈建機器時所使用的使用者名稱。下列是一個 azureuser 帳戶名稱的範例：
 
 		sudo chown azureuser -R /var/lib/tomcat7/webapps
 
@@ -306,4 +306,4 @@ tomcat7 伺服器將在您安裝時自動啟動。您也可以自行使用下列
 [17]: ./media/virtual-machines-linux-classic-setup-tomcat/virtual-machines-linux-setup-tomcat7-linux-17.png
 [18]: ./media/virtual-machines-linux-classic-setup-tomcat/virtual-machines-linux-setup-tomcat7-linux-18.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0629_2016-->

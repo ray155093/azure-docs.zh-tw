@@ -22,7 +22,8 @@
 
 這篇文章提供如何使用 PowerShell Cmdlet 在 Azure 中建立 SQL Server 虛擬機器的步驟。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]Resource Manager 模型。如果您需要本主題的 Resource Manager 版本，請參閱[使用 Azure PowerShell Resource Manager 佈建 SQL Server 虛擬機器](virtual-machines-windows-ps-sql-create.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]  
+如果您需要本主題的 Resource Manager 版本，請參閱[使用 Azure PowerShell Resource Manager 佈建 SQL Server 虛擬機器](virtual-machines-windows-ps-sql-create.md)。
 
 ## 安裝並設定 PowerShell
 
@@ -64,7 +65,7 @@
 
 		(Get-AzureStorageAccount | where { $_.GeoPrimaryLocation -eq $dcLocation }).StorageAccountName
 
-	>[AZURE.NOTE] 如果您需要新的儲存體帳戶，請先使用 AzureStorageAccount 命令建立全部小寫的儲存體帳戶名稱，如下列範例所示：**New-AzureStorageAccount -StorageAccountName "<storage account name>" -Location $dcLocation**
+	>[AZURE.NOTE] 如果您需要新的儲存體帳戶，請先使用 AzureStorageAccount 命令建立全部小寫的儲存體帳戶名稱，如下列範例所示：**New-AzureStorageAccount -StorageAccountName "<儲存體帳戶名稱>" -Location $dcLocation**
 
 1. 將目標儲存體帳戶名稱指派至 **$staccount**。接著，使用 **Set-AzureSubscription** 設定訂用帳戶和目前的儲存體帳戶。
 
@@ -168,8 +169,8 @@
 
 在許多情況下下，下一個步驟是將資料庫移轉到這個新的 SQL Server VM。如需資料庫移轉的指引，請參閱[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
-如果您也想了解如何使用 Azure 入口網站建立 SQL 虛擬機器，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。請注意，本教學課程將逐步說明從入口網站利用建議的資源管理員模型建立 VM，而不是利用本 PowerShell 主題中所使用的傳統模型建立 VM。
+如果您也想了解如何使用 Azure 入口網站建立 SQL 虛擬機器，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。請注意，本教學課程將逐步說明從入口網站利用建議的資源管理員模型建立 VM，而不是利用本 PowerShell 主題中所使用的傳統模型建立 VM。
 
 除了上述資源，我們也建議您檢閱[在 Azure 虛擬機器中執行 SQL Server 的其他相關主題](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!----HONumber=AcomDC_0629_2016-->

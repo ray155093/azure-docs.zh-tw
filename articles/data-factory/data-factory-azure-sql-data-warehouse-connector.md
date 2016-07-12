@@ -29,7 +29,7 @@
 > [AZURE.NOTE] 
 如需 Azure Data Factory 服務的概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
 > 
-> 這篇文章提供 JSON 範例，但沒有提供如何建立資料處理站的逐步指示。請參閱[教學課程：將資料從 Azure Blob 複製到 Azure SQL Database](data-factory-get-started.md)，以取得快速逐步解說，其中包含如何使用 Azure Data Factory 中複製活動的逐步指示。
+> 這篇文章提供 JSON 範例，但沒有提供如何建立資料處理站的逐步指示。請參閱[教學課程：將資料從 Azure Blob 複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，以取得快速逐步解說，其中包含如何使用 Azure Data Factory 中複製活動的逐步指示。
 
 
 ## 範例：將資料從 Azure SQL 資料倉儲複製到 Azure Blob
@@ -37,8 +37,8 @@
 下列範例顯示：
 
 1. [AzureSqlDW](#azure-sql-data-warehouse-linked-service-properties) 類型的連結服務。
-2. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。 
-3. [AzureSqlDWTable](#azure-sql-data-warehouse-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。 
+2. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務。
+3. [AzureSqlDWTable](#azure-sql-data-warehouse-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4. 具有使用 [SqlDWSource](#azure-sql-data-warehouse-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
@@ -464,10 +464,10 @@
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | 整數。(單位 = 資料列計數) | 否 (預設值 = 10000) |
-| writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | (單位 = 時間範圍) 範例：“00:30:00” (30 分鐘)。 | 否 | 
+| writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | Integer | 否 (預設值：10000) |
+| writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | 時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 | 否 | 
 | sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。如需詳細資訊，請參閱下面「重複性」一節。 | 查詢陳述式。 | 否 |
-| allowPolyBase | 指出是否使用 PolyBase (適用的話) 將資料載入 Azure SQL 資料倉儲 (而不是使用 BULKINSERT 機制)。<br/><br/>請注意，目前只支援 **format** 設為 **TextFormat** 的 **Azure Blob** 資料集做為來源資料集，近期即將支援其他來源類型。<br/><br/>請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](#use-polybase-to-load-data-into-azure-sql-data-warehouse)一節中的條件約束和詳細資料。 | True <br/>False (預設值) | 否 |  
+| allowPolyBase | 指出是否使用 PolyBase (適用的話) 將資料載入 Azure SQL 資料倉儲 (而不是使用 BULKINSERT 機制)。<br/><br/>請注意，目前只支援 **format** 設為 **TextFormat** 的 **Azure Blob** 資料集做為來源資料集，近期即將支援其他來源類型。<br/><br/>請參閱[使用 PolyBase 將資料載入 Azure SQL 資料倉儲](#use-polybase-to-load-data-into-azure-sql-data-warehouse)一節中的條件約束和詳細資料。 | True<br/>False (預設值) | 否 |  
 | polyBaseSettings | 可以在 **allowPolybase** 屬性設定為 **true** 時指定的一組屬性。 | &nbsp; | 否 |  
 | rejectValue | 指定在查詢失敗前可以拒絕的資料列數目或百分比。<br/><br/>在 [CREATE EXTERNAL TABLE (Transact-SQL)](https://msdn.microsoft.com/library/dn935021.aspx) 主題的**引數**一節中，深入了解 PolyBase 的拒絕選項。 | 0 (預設值)、1、2、… | 否 |  
 | rejectType | 指定要將 rejectValue 選項指定為常值或百分比。 | 值 (預設值)、百分比 | 否 |   
@@ -508,12 +508,12 @@
 
 請注意，Azure Data Factory 會檢查設定，如果不符合需求，即會自動切換回適用於資料移動的 BULKINSERT 機制。
 
-1.	**來源連結服務**的類型為 **Azure 儲存體**，而且不會設定為使用 SAS (共用存取簽章) 驗證。如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。  
+1.	**來源連結服務**的類型為 **Azure 儲存體**，而且不會設定為使用 SAS (共用存取簽章) 驗證。如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。
 2. **輸入資料集**的類型為 **Azure Blob**，而類型屬性下方的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
-	1. **rowDelimiter** 必須是 **\\n**。 
-	2. **nullValue** 設定為**空字串** ("")。 
-	3. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。 
-	4. 未指定 **escapeChar** 和 **quoteChar**。 
+	1. **rowDelimiter** 必須是 **\\n**。
+	2. **nullValue** 設定為**空字串** ("")。
+	3. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。
+	4. 未指定 **escapeChar** 和 **quoteChar**。
 	5. **Compression** 不是 **BZIP2**。
 	 
 			"typeProperties": {
@@ -530,14 +530,14 @@
 	                "level": "Optimal"  
     	        }  
 			},
-3.	管線中複製活動的 **BlobSource** 之下沒有 **skipHeaderLineCount** 設定。 
+3.	管線中複製活動的 **BlobSource** 之下沒有 **skipHeaderLineCount** 設定。
 4.	管線中複製活動的 **SqlDWSink** 之下沒有 **sliceIdentifierColumnName** 設定。(PolyBase 保證所有資料都已更新，或在單一執行未更新任何項目。若要達到**重複性**，您可以使用 **sqlWriterCleanupScript**。
-5.	目前沒有任何 **columnMapping** 使用於相關聯的複製活動。 
+5.	目前沒有任何 **columnMapping** 使用於相關聯的複製活動。
 
 ### 使用 PolyBase 分段複製
 當您的資料來源不符合上一節所介紹的準則時，您可以透過過渡暫存 Azure Blob 儲存體複製資料，在這種情況下，Azure Data Factory 會對資料執行轉換以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入 SQL 資料倉儲。如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
 
-> [AZURE.IMPORTANT] 如果您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲，您需要在閘道電腦上安裝 JRE (Java Runtime Environment)，您可以使用此電腦將來源資料轉換為適當的格式。請注意，64 位元閘道需要 64 位元 JRE，而 32 位元閘道需要 32 位元 JRE。您可以從[這裡](http://go.microsoft.com/fwlink/?LinkId=808605)找到這兩個版本，請進行正確選擇。
+> [AZURE.IMPORTANT] 如果您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲，您需要在閘道電腦上安裝 JRE 8 (Java Runtime Environment)，您可以使用此電腦將來源資料轉換為適當的格式。請注意，64 位元閘道需要 64 位元 JRE，而 32 位元閘道需要 32 位元 JRE。從 [Java 下載位置](http://go.microsoft.com/fwlink/?LinkId=808605)下載適當的版本。
 
 若要使用此功能，請建立 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)，這是指具有過渡 Blob 儲存體的 Azure 儲存體帳戶，然後針對複製活動指定 **enableStaging** 和 **stagingSettings** 屬性，如下所示：
 
@@ -652,6 +652,6 @@ NULL 值是一種特殊形式的預設值。如果資料行可為 null，該資�
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

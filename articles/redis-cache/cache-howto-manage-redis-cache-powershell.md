@@ -580,7 +580,7 @@
 <a name="classic"></a>
 ## 使用 PowerShell 傳統部署模型管理 Azure Redis 快取執行個體
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](cache-howto-manage-redis-cache-powershell.md)，如本文開頭所述。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](cache-howto-manage-redis-cache-powershell.md)，如本文開頭所述。
 
 下列指令碼示範如何使用傳統部署模型來建立、更新和刪除 Azure Redis 快取。
 		
@@ -636,4 +636,4 @@
 - [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
 - ["Hey, Scripting Guy!" 部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

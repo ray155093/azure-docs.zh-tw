@@ -5,7 +5,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
-	manager="stevenpo"
+	manager="swadhwa"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="06/23/2016"
 	ms.author="femila"/>
 
 # 適用於 Android 的 Azure Authenticator
@@ -43,7 +43,7 @@ IT 系統管理員可能曾建議您使用 Microsoft Azure Authenticator 進行�
 6. 在 [加入工作場所] 畫面上，輸入您的組織所提供的 userID，然後按一下 [加入]。
 7. 若要登入 Azure Authenticator 應用程式，請輸入您的組織帳戶和密碼，然後按一下 [登入]。
 8. 下一個畫面會顯示 Multi-Factor Authentication (MFA) 的相關資訊，這是為了增加安全性的選擇性畫面。如果您的公司或學校要求次要因素驗證才能建立工作帳戶，您將會看到這個畫面。它會提供進一步驗證帳戶的指示。
-9. [加入工作場所] 畫面會顯示「正在加入您的工作場所」訊息。Azure Authenticator 應用程式會嘗試將您的裝置加入至您的工作場所。
+9. [加入工作場所] 畫面會顯示「**正在加入您的工作場所**」訊息。Azure Authenticator 應用程式會嘗試將您的裝置加入至您的工作場所。
 10. 您應該會在下一個畫面上看到「已加入工作場所」訊息。
 
 >[AZURE.NOTE]
@@ -117,4 +117,4 @@ IT 系統管理員可能曾建議您使用 Microsoft Azure Authenticator 進行�
 
 如果您看到 [金鑰存放區錯誤]，這可能是因為您未使用 PIN 設定鎖定畫面。若要解決這個問題，請將 Azure Authenticator 應用程式解除安裝、設定鎖定螢幕的 PIN，以及重新安裝應用程式。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sqldb-quickstart"
-   ms.date="06/01/2016"
+   ms.date="06/22/2016"
    ms.author="carlrab"/>
 
 # 探索 Azure SQL Database 解決方案快速入門
@@ -30,7 +30,7 @@ GitHub SQL Server 範例儲存機制中的[使用 PowerShell 和 Power BI 來管
 
 這個「解決方案快速入門」為「軟體即解決方案」(SaaS) 案例提供一個解決方案，它利用「彈性集區」來提供符合成本效益、可調整的 SaaS 應用程式資料庫後端。在此解決方案中，您將逐步完成一個 Web 應用程式實作，此應用程式可讓您使用補充「Azure 入口網站」的自訂儀表板，以視覺化方式呈現負載產生器在「彈性集區」上建立的負載，。
 
-GitHub SQL Server 範例儲存機制中的 [Saas-scenario-with-elastic-pools](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) 提供一個負載產生器和監視 Web 應用程式，以及其用途和使用方式的相關文件。
+GitHub SQL Server 範例儲存機制中[適用於 Saas 的彈性集區自訂儀表板](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools-custom-dashboard)提供一個負載產生器和監視 Web 應用程式，以及其用途和使用方式的相關文件。
 
 ## 使用 Entity Framework 和 Code First 開發建立 Azure SQL Database
 
@@ -52,4 +52,4 @@ GitHub SQL Server 範例儲存機制中的 [Saas-scenario-with-elastic-pools](ht
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

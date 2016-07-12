@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="01/20/2016"
+	ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
 # 使用 Azure 表格服務的 Node.js Web 應用程式
@@ -423,7 +423,7 @@
 
 ### 建立組態檔
 
-為了在本機執行應用程式，我們會將 Azure 儲存體認證放入組態檔。使用下列 JSON 建立名為 **config.json** 的檔案：
+為了在本機執行應用程式，我們會將 Azure 儲存體認證放入組態檔。使用下列 JSON 建立名為「config.json」的檔案：
 
 	{
 		"STORAGE_NAME": "<storage account name>",
@@ -497,6 +497,7 @@
 	此命令會啟動瀏覽器並瀏覽至下載頁面。若出現提示，請使用與您的 Azure 訂用帳戶相關聯的帳戶登入。
 
 	<!-- ![The download page][download-publishing-settings] -->
+
 	檔案下載會自動開始；如果沒有，您可以按一下頁面頂端的連結，以手動下載檔案。儲存檔案，並記下檔案路徑。
 
 2. 輸入下列命令以匯入設定：
@@ -544,11 +545,11 @@
 		STORAGE_NAME=<storage account name>;STORAGE_KEY=<storage access key>;PARTITION_KEY=mytasks;TABLE_NAME=tasks
 
 
-將 **<storage account name>** 取代為您先前建立的儲存體帳戶名稱，並將 **<storage access key>** 取代為您儲存體帳戶的主要存取金鑰。(使用與您稍早建立的 config.json 檔案相同的值)。
+將 **<儲存體帳戶名稱>** 取代為您先前建立的儲存體帳戶名稱，並將 **<儲存體存取金鑰>** 取代為您儲存體帳戶的主要存取金鑰。(使用與您稍早建立的 config.json 檔案相同的值)。
 
 或者，您可以在 [Azure 入口網站](https://portal.azure.com/)中設定環境變數：
 
-1.  依序按一下 [瀏覽] > [Web Apps] > Web 應用程式名稱，開啟 Web 應用程式的刀鋒視窗。
+1.  依序按一下 [瀏覽] > [Web 應用程式] > Web 應用程式名稱，開啟 Web 應用程式的刀鋒視窗。
 
 1.  在您的 Web 應用程式刀鋒視窗中，按一下 [所有設定] > [應用程式設定]。
 
@@ -636,4 +637,4 @@
 [app-settings-save]: ./media/storage-nodejs-use-table-storage-web-site/savebutton.png
 [app-settings]: ./media/storage-nodejs-use-table-storage-web-site/storage-tasks-appsettings.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0629_2016-->

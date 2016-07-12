@@ -24,23 +24,23 @@
 ### 錯誤︰訂用帳戶未註冊為使用命名空間 'Microsoft.DataFactory'
 如果您收到此錯誤，Azure Data Factory 資源提供者尚未在您的電腦上註冊。請執行以下動作：
 
-1. 啟動 Azure PowerShell。 
-2. 使用下列命令來登入您的 Azure 帳戶。Login-AzureRmAccount 
+1. 啟動 Azure PowerShell。
+2. 使用下列命令來登入您的 Azure 帳戶。Login-AzureRmAccount
 3. 執行下列命令以註冊 Azure Data Factory 提供者。Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
 
 ### 問題：執行 Data Factory Cmdlet 時發生未授權錯誤
 您在 Azure PowerShell 中可能未使用正確的 Azure 帳戶或訂用帳戶。請使用下列 Cmdlet 來選取要用於 Azure PowerShell 的正確 Azure 帳戶和訂用帳戶帳戶。
 
 1. Login-AzureRmAccount - 使用正確的使用者識別碼和密碼
-2. Get-AzureRmSubscription - 檢視帳戶的所有訂用帳戶。 
-3. Select-AzureRmSubscription <subscription name> - 選取正確的訂用帳戶。請使用您在 Azure 入口網站上用來建立 Data Factory 的相同帳戶。
+2. Get-AzureRmSubscription - 檢視帳戶的所有訂用帳戶。
+3. Select-AzureRmSubscription <訂用帳戶名稱> - 選取正確的訂用帳戶。請使用您在 Azure 入口網站上用來建立 Data Factory 的相同帳戶。
 
 ### 問題：無法從 Azure 入口網站啟動資料管理閘道器快速安裝
 資料管理閘道器的快速安裝需要有 Internet Explorer 或 Microsoft ClickOnce 相容的 Web 瀏覽器。如果無法啟動快速安裝，請執行下列其中一項：
 
 - 請使用 Internet Explorer 或 Microsoft ClickOnce 相容的 Web 瀏覽器。
 
-	如果您使用 Chrome，請移至 [Chrome 線上應用程式商店](https://chrome.google.com/webstore/)，利用關鍵字 "ClickOnce" 搜尋，選擇其中一個 ClickOnce 延伸模組並安裝。
+	如果您使用 Chrome，請移至 [Chrome 線上應用程式商店](https://chrome.google.com/webstore/)，使用關鍵字 "ClickOnce" 進行搜尋，選擇其中一個 ClickOnce 擴充功能並安裝。
 	
 	您需要針對 Firefox 進行相同動作 (安裝附加元件)。按一下工具列上的 [開啟功能表] 按鈕 (右上角的三條水平線)，按一下 [附加元件]，以「ClickOnce」關鍵字進行搜尋，選擇其中一個 ClickOnce 延伸模組並安裝。
 
@@ -113,9 +113,8 @@
 如需詳細資料，請參閱[使用 Azure PowerShell 監視 Data Factory 管線](data-factory-build-your-first-pipeline-using-powershell.md#monitor-pipeline)。
 
 
-[adfgetstarted]: data-factory-get-started.md
+[adfgetstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
 [use-custom-activities]: data-factory-use-custom-activities.md
-[monitor-manage-using-powershell]: data-factory-monitor-manage-using-powershell.md
 [troubleshoot]: data-factory-troubleshoot.md
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456
@@ -144,4 +143,4 @@
 [image-data-factory-troubleshoot-activity-run-details]: ./media/data-factory-troubleshoot/Walkthrough2ActivityRunDetails.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

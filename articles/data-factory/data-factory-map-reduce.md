@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # 從 Data Factory 叫用 MapReduce 程式
@@ -31,7 +31,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 1. 將 **activity** 的 **type** 設為 **HDInsight**。
 3. 指定 **className** 屬性的類別名稱。
 4. 為 **jarFilePath** 屬性指定包含檔案名稱的 JAR 檔案路徑。
-5. 為 **jarLinkedService** 屬性指定連結服務，此連結服務參考包含 JAR 檔案的 Azure Blob 儲存體。   
+5. 為 **jarLinkedService** 屬性指定連結服務，此連結服務參考包含 JAR 檔案的 Azure Blob 儲存體。
 6. 在 **arguments** 區段中，為 MapReduce 程式指定所有引數。在執行階段，您會看到 MapReduce 架構的幾個額外的引數 (例如: mapreduce.job.tags)。若要區分在 MapReduce 引數中所使用您的引數，請考慮同時使用選項和值做為引數，如下列範例所示 (-s、--input、--output 等等...這些選項後面緊跟著其值)。
 
 		{
@@ -215,8 +215,8 @@ linkedServiceName | 表示您先前建立的 HDInsight 連結服務。
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456
 
 
-[adfgetstarted]: data-factory-get-started.md
-[adfgetstartedmonitoring]: data-factory-get-started.md#monitor-pipelines
+[adfgetstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
+[adfgetstartedmonitoring]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md#monitor-pipelines
 
 [Developer Reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [Azure Portal]: http://portal.azure.com
@@ -228,4 +228,4 @@ linkedServiceName | 表示您先前建立的 HDInsight 連結服務。
 - [叫用 Spark 程式](data-factory-spark.md)
 - [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

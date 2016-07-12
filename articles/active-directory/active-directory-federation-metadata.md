@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="06/23/2016"
 	ms.author="priyamo"/>
 
 
 # 同盟中繼資料
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 Azure Active Directory (Azure AD) 會針對服務發佈同盟中繼資料文件，而該服務已設定為接受由 Azure AD 簽發的安全性權杖。[Web 服務同盟語言 (WS-Federation) 1.2 版](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html) (該說明為 [適用於 OASIS 安全性聲明標記語言 (SAML) 的中繼資料 2.0 版](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf) 的延伸資訊) 中說明了同盟中繼資料文件格式。
 
@@ -29,7 +27,7 @@ Azure AD 會發佈租用戶專屬與租用戶獨立端點。
 
 租用戶專屬端點是專為特定租用戶所設計的。租用戶專屬同盟中繼資料包含租用戶相關資訊，其中包括租用戶專屬簽發者和端點資訊。限制存取單一租用戶的應用程式會使用租用戶專屬端點。
 
-租用戶獨立端點會提供通用資訊給所有 Azure AD 租用戶。本資訊適用裝載於「login.microsoftonline.com」的租用戶，並由所有租用戶共用。建議多租用戶應用程式使用租用戶獨立端點，因為它們並不與任何特定租用戶相關聯。
+租用戶獨立端點會提供通用資訊給所有 Azure AD 租用戶。本資訊適用裝載於 login.microsoftonline.com 的租用戶，並由所有租用戶共用。建議多租用戶應用程式使用租用戶獨立端點，因為它們並不與任何特定租用戶相關聯。
 
 ## 同盟中繼資料端點
 
@@ -60,7 +58,7 @@ xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
 ID="_b827a749-cfcb-46b3-ab8b-9f6d14a1294b"
 entityID="https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db45/">
 ```
-您可以使用您的租用戶識別碼來取代租用戶獨立端點中的租用戶識別碼，以建立租用戶特定的 `EntityID` 值。產生的值會與權杖簽發者相同。這項策略可讓多租用戶應用程式驗證指定租用戶的簽發者。
+您可以使用租用戶識別碼來取代租用戶獨立端點中的租用戶識別碼，以建立租用戶特定的 `EntityID` 值。產生的值會與權杖簽發者相同。這項策略可讓多租用戶應用程式驗證指定租用戶的簽發者。
 
 下列中繼資料說明了範例租用戶獨立 `EntityID` 項目。請注意，`{tenant}` 是常值，而不是預留位置。
 
@@ -163,4 +161,4 @@ https://login.microsoftonline.com/common/wsfed
   </IDPSSODescriptor>
 ```
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

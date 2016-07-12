@@ -3,8 +3,8 @@
    description="Microsoft Power BI Embedded 常見案例"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
-   manager="NA"
+   authors="minewiskan"
+   manager="mblythe"
    editor=""
    tags=""/>
 <tags
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="03/29/2016"
-   ms.author="jocaplan"/>
+   ms.date="06/28/2016"
+   ms.author="owend"/>
 
 # Microsoft Power BI Embedded 常見案例
 
@@ -22,7 +22,7 @@
 
 以下是在應用程式中使用 **Power BI Embedded** 的一些案例。
 
-- 使用新的應用程式權杖驗證模型，可以將 Power BI Desktop 中編寫的完整互動式報表內嵌在您自己的應用程式內。
+- 在 Power BI Desktop 中編寫的完整互動式報表，可以使用新的應用程式權杖驗證模型，內嵌於您自己的應用程式內。
 - 建置客戶面向應用程式的獨立軟體廠商和客戶，可以使用 **Power BI Embedded** 服務和 Power BI SDK 來內嵌互動式報表。若要了解做法，請參閱[開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)。
 - 身為開發人員，您可以使用 Power BI 視覺化架構來建立可在專屬應用程式中使用的自訂視覺化。請參閱[使用自訂視覺效果擴充 Power BI](https://powerbi.microsoft.com/custom-visuals/)。
 
@@ -32,4 +32,4 @@
 - [開始使用範例](power-bi-embedded-get-started.md)
 - [使用自訂視覺效果擴充 Power BI](https://powerbi.microsoft.com/custom-visuals/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

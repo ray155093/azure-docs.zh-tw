@@ -22,7 +22,7 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 
 ## 驗證通訊協定的文件和參考資料
 
-- [Azure AD 中簽署金鑰變換的相關重要資訊](https://msdn.microsoft.com/library/azure/dn641920.aspx) – 了解 Azure AD 的簽署金鑰變換模式、對自動更新金鑰進行的變更，以及如何更新最常見應用程式案例的討論。
+- [Azure AD 中簽署金鑰變換的相關重要資訊](active-directory-signing-key-rollover.md) – 了解 Azure AD 的簽署金鑰變換模式、對自動更新金鑰進行的變更，以及如何更新最常見應用程式案例的討論。
 
 
 - [支援的權杖和宣告類型](active-directory-token-and-claims.md) - 了解權杖中 Azure AD 所發出的宣告。
@@ -55,4 +55,4 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 
 [Active Directory 程式碼範例](active-directory-code-samples.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

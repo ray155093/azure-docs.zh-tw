@@ -4,7 +4,7 @@
 	services="media-services" 
 	documentationCenter="" 
 	authors="Juliako" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="03/14/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #將現有的 blob 複製到媒體服務資產
@@ -39,7 +39,7 @@
 
 在本節中，您將建立 C# Console Application 專案。
 
-1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。 
+1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。
 2. 輸入 CopyExistingBlobsIntoAsset 做為名稱，然後按一下 [確定]。
 1. 使用 Nuget 將參考新增至媒體服務相關的 DLL。在 Visual Studio 主要功能表中，選取 [工具] -> [Library Package Manager] -> [Package Manager Console]。在主控台視窗中輸入 Install-package windowsazure.mediaservices，然後按下 Enter。
 1. 新增此專案所需的其他參考：System.Configuration。
@@ -76,7 +76,7 @@
 
 下列程式碼範例會執行下列工作：
 
-1. 建立 CloudMediaContext 執行個體。 
+1. 建立 CloudMediaContext 執行個體。
 1. 建立 CloudStorageAccount 執行個體：\_sourceStorageAccount 和 \_destinationStorageAccount。
 1. 將 Smooth Streaming 檔案從本機目錄上傳至位於 \_sourceStorageAccount 的 blob 容器中。
 1. 建立新資產。為此資產建立的 blob 容器位於 \_destinationStorageAccount 中。
@@ -85,7 +85,7 @@
 	>[AZURE.NOTE]如果定位器已過期，複製作業不會擲回例外狀況。
 
 1. 由於在此範例中我們正在複製 Smooth Streaming 檔案，所以此範例會示範如何將 .ism 檔案設定為主要檔案。例如，如果我們複製的是 .mp4 檔案，則會將 mp4 檔案設定為主要檔案。
-1. 為與該資產相關聯的 OnDemandOrigin 定位器建立 Smooth Streaming URL。 
+1. 為與該資產相關聯的 OnDemandOrigin 定位器建立 Smooth Streaming URL。
 			
 		class Program
 	        {
@@ -322,4 +322,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -19,7 +19,7 @@
 
 # IoT 閘道 SDK (Beta) – 搭配使用真實裝置與 Linux 來傳送裝置到雲端訊息
 
-這個[藍牙低功耗範例][lnk-ble-samplecode]逐步解說示範如何使用 [Microsoft Azure IoT 閘道 SDK][lnk-sdk]，將裝置到雲端遙測從實體裝置轉送到 IoT 中樞，以及如何將命令從 IoT 中樞路由傳送到實體裝置。
+這個[藍牙低功耗範例][lnk-ble-samplecode]逐步解說示範如何使用 [Microsoft Azure IoT 閘道 SDK][lnk-sdk]，將「裝置到雲端」的遙測資料從實體裝置轉送到 IoT 中樞，以及如何將命令從 IoT 中樞路由傳送到實體裝置。
 
 本逐步解說涵蓋下列項目：
 
@@ -29,7 +29,7 @@
 
 ## 架構
 
-本逐步解說會示範如何在執行 Linux 的 Intel Edison Compute Module 上建置和執行 IoT 閘道。閘道是使用 IoT 閘道 SDK 所建置。這個範例會使用 Texas Instruments SensorTag 藍牙低功耗 (BLE) 裝置來收集溫度資料。
+本逐步解說會示範如何在執行 Linux 的 Intel Edison Compute Module 上建置和執行 IoT 閘道。閘道是使用 IoT 閘道 SDK 建置而成。這個範例會使用 Texas Instruments SensorTag 藍牙低功耗 (BLE) 裝置來收集溫度資料。
 
 當您執行閘道時，它會執行下列動作︰
 
@@ -85,8 +85,8 @@
 
 若要設定 Edison 裝置並熟悉它，您應該完成這些「開始使用」文章中的所有步驟，但最後一個步驟 (「選擇 IDE」) 除外，因為目前的教學課程不需要用到它。在 Edison 安裝程序結尾，您必須︰
 
-- 使用最新版韌體快閃您的 Edison。
-- 建立從您的主機到 Edison 的序列式連線。
+- 使用最新版韌體更新您的 Edison。
+- 從您的主機建立與 Edison 的序列式連線。
 - 執行 **configure\_edison** 指令碼來設定密碼，並啟用 Edison 上的 WiFi。
 
 ### 從 Edison 面板上啟用與 SensorTag 裝置的連線
@@ -127,7 +127,7 @@
 
 接著，您需要確認 Edison 可以連接到 SensorTag 裝置。
 
-1. 解除封鎖 Edison 上的藍牙，並檢查版本號碼為 **5.37**。
+1. 將 Edison 上的藍牙解除封鎖，並檢查版本號碼為 **5.37**。
     
     ```
     rfkill unblock bluetooth
@@ -164,7 +164,7 @@
     Discovery stopped
     ```
 
-6. 輸入 **connect <MAC address>**，使用裝置的 MAC 位址連接到 SensorTag 裝置。請注意以下為簡略的範例輸出︰
+6. 輸入 **connect <MAC 位址>**，使用裝置的 MAC 位址連接到 SensorTag 裝置。請注意以下為簡略的範例輸出︰
     
     ```
     Attempting to connect to A0:E6:F8:B5:F6:00
@@ -207,7 +207,7 @@
 
 ### 在您的 IoT 中樞上設定兩個範例裝置
 
-- [建立 IoT 中樞][lnk-create-hub] \(於 Azure 訂用帳戶中) 時，您需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- [建立 IoT 中樞][lnk-create-hub] (於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
 - 在您的 IoT 中樞新增一個名為 **SensorTag\_01** 的裝置，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將這個裝置新增到您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。當您設定閘道時，您會將此裝置對應到 SensorTag 裝置。
 
 ### 在 Edison 裝置上建置閘道 SDK
@@ -238,10 +238,9 @@ pscp .\gatewaysdk.zip root@192.168.0.45:/home/root
 
 ### 在 Edison 裝置上設定和執行 BLE 範例
 
-若要啟動並執行範例，您需要設定參與閘道的每個模組。這個組態是以 JSON 檔案來提供，您必須設定所有五個參與的模組。儲存機制中提供了一個名為 **gateway\_sample.json** 的範例 JSON 檔案，您可以用其做為建立您自己的組態檔的起點。這個檔案位於閘道 SDK 儲存機制本機複本的 **samples/ble\_gateway\_hl/src** 資料夾中。
+若要啟動並執行範例，您需要設定參與閘道的每個模組。這個組態是以 JSON 檔案來提供，您必須設定所有五個參與的模組。儲存機制中提供了一個名為 **gateway\_sample.json** 的範例 JSON 檔案，您可以把它當作起點，開始建立自己的組態檔。這個檔案位於閘道 SDK 儲存機制本機複本的 **samples/ble\_gateway\_hl/src** 資料夾中。
 
 下列各節說明如何編輯 BLE 範例的這個組態檔，並假設閘道 SDK 儲存機制位於Edison 裝置上的 **/home/root/azure-iot-gateway-sdk /** 資料夾中。如果儲存機制位於其他地方，您應該據以調整該路徑︰
-
 
 #### 記錄器組態
 
@@ -260,7 +259,7 @@ pscp .\gatewaysdk.zip root@192.168.0.45:/home/root
 
 #### BLE 模組組態
 
-BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。任何可做為 GATT 週邊操作的標準 BLE 裝置應該可以運作，但您需要更新 GATT 特性識別碼和資料 (適用於寫入指示)。新增 SensorTag 裝置的 MAC 位址︰
+BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。任何可作為 GATT 週邊操作的標準 BLE 裝置應該可以運作，但您需要更新 GATT 特性識別碼和資料 (適用於寫入指示)。新增 SensorTag 裝置的 MAC 位址︰
 
 ```json
 {
@@ -421,7 +420,7 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [
     }
     ```
 
-針對使用 HTTP 通訊協定連接到 IoT 中樞之裝置的預設行為是每隔 25 分鐘會檢查新的命令。因此，如果您傳送數個個別命令，就需要等待 25 分鐘，讓裝置接收每個命令。
+使用 HTTP 通訊協定連接到 IoT 中樞的裝置，預設為每隔 25 分鐘檢查一次新的命令。因此，如果您傳送數個個別命令，就需要等待 25 分鐘，讓裝置接收每個命令。
 
 > [AZURE.NOTE] 閘道也會在它每次啟動時檢查新命令，如此您就能藉由停止和啟動閘道來強制其處理命令。
 
@@ -442,4 +441,4 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [
 [lnk-setup-linux]: https://software.intel.com/get-started-edison-linux
 [lnk-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

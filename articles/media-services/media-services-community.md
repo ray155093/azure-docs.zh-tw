@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/24/2016"   
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 # Azure 媒體服務社群  
@@ -63,4 +63,4 @@ Azure Media Player|ampinfo@microsoft.com
 Azure 媒體瀏覽器|amse@microsoft.com
 工作流程設計工具|mepd@microsoft.com
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

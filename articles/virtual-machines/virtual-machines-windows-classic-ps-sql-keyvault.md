@@ -26,7 +26,7 @@
 ## 概觀
 有多個 SQL Server 加密功能，例如[透明資料加密 (TDE)](https://msdn.microsoft.com/library/bb934049.aspx)、[資料行層級加密 (CLE)](https://msdn.microsoft.com/library/ms173744.aspx) 和 [備份加密](https://msdn.microsoft.com/library/dn449489.aspx)。這些形式的加密需要您管理和儲存用來加密的密碼編譯金鑰。Azure 金鑰保存庫 (AKV) 服務是設計來改善這些金鑰在安全且高度可用位置的安全性和管理。[SQL Server 連接器](http://www.microsoft.com/download/details.aspx?id=45344)讓 SQL Server 可以從 Azure 金鑰保存庫使用這些金鑰。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 如果您使用內部部署電腦執行 SQL Server，有[您可以遵循的步驟以從您的內部部署 SQL Server 電腦存取 Azure 金鑰保存庫](https://msdn.microsoft.com/library/dn198405.aspx)。但是對於 Azure VM 中的 SQL server，您可以使用 *Azure 金鑰保存庫整合*功能來節省時間。使用一些 Azure PowerShell Cmdlet 來啟用這項功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
 
@@ -70,4 +70,4 @@ SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

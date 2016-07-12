@@ -22,8 +22,8 @@
 
 您的應用程式可透過數種方式存取資源管理員 API︰
 
-1. **使用者 + 應用程式存取**︰為代表登入的使用者存取資源的應用程式使用這個方法。這適用於僅處理「互動式管理」Azure 資源的應用程式，例如 Web 應用程式和命令列工具。
-1. **僅應用程式存取**︰當應用程式的身分識別必須被授與直接存取資源時，請使用這個方法。這適用於協助程式服務和已排程的工作，其需要長期「離線存取」至 Azure。
+1. **使用者 + 應用程式存取**︰當應用程式能代表已登入的使用者存取資源時，請使用這個方法。這適用於僅處理「互動式管理」Azure 資源的應用程式，例如 Web 應用程式和命令列工具。
+1. **僅應用程式存取**︰如果必須將資源的直接存取權授與應用程式的身分識別，請使用這個方法。這適用於協助程式服務和已排程的工作，其長期需要 Azure「離線存取權」。
 
 本主題逐步說明如何建立應用程式，以運用這兩種授權方法。
 
@@ -67,7 +67,7 @@
 [使用入口網站建立 Active Directory 應用程式和服務主體](resource-group-create-service-principal-portal.md)主題顯示設定您的應用程式所需要的所有步驟。當您建立具有下列屬性的應用程式時，請參閱該主題︰
 
 - 名為 **CloudSense** 的 Web 應用程式
-- 格式 * ***http://{domain_name_of_your_directory}/{name_of_the_app}** 的登入 URL 和應用程式識別碼 URI。
+- 格式 * *http://{domain_name_of_your_directory}/{name_of_the_app}** 的登入 URL 和應用程式識別碼 URI。
 - 用於登入應用程式的驗證金鑰
 - 委派 [Azure 服務管理 API] 的 [存取 Azure 服務管理] 權限。保留 [Azure Active Directory] 的預設值 [啟用單一登入並讀取使用者的設定檔]。
 - 多租用戶應用程式
@@ -86,7 +86,7 @@ Azure AD 也支援應用程式的憑證認證︰您建立自我簽署憑證、�
 
 您必須要求使用者兩件事︰
 
-1. **目錄網域名稱**︰使用者的 Azure 訂用帳戶相關聯的 Azure Active Directory 的網域名稱。OAuth 2.0 授權要求必須傳送至此 Azure AD。使用者可瀏覽到 Azure 入口網站，並選取右上角的帳戶，以瞭解其 Azure AD 的網域名稱。您可以將視覺化指示提供給使用者，如︰ 
+1. **目錄網域名稱**︰使用者的 Azure 訂用帳戶相關聯的 Azure Active Directory 的網域名稱。OAuth 2.0 授權要求必須傳送至此 Azure AD。使用者可瀏覽到 Azure 入口網站，並選取右上角的帳戶，以瞭解其 Azure AD 的網域名稱。您可以將視覺化指示提供給使用者，如︰
 
      ![](./media/resource-manager-api-authentication/show-directory.png)
    
@@ -98,7 +98,7 @@ Azure AD 也支援應用程式的憑證認證︰您建立自我簽署憑證、�
 
 將開啟識別碼連線/OAuth2.0 授權要求發給 Azure AD 授權端點︰
 
-    http://login.microsoftonline.com/{directory_domain_name}/OAuth2/Authorize
+    https://login.microsoftonline.com/{directory_domain_name}/OAuth2/Authorize
 
 [授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)主題說明適用於此要求的查詢字串參數。
 
@@ -146,7 +146,7 @@ Open ID Connect 回應的範例是︰
 - **簽發者**︰檢查 iss 宣告以確保權杖簽發者是 Azure Active Directory：https://sts.windows.net/{tenant_id_of_the_directory}
 - **觀眾**︰檢查 aud 宣告以確保已為您的應用程式新建權杖。值必須是您的應用程式的用戶端識別碼。
 - **Nonce**︰檢查 nonce 宣告以檢查您在授權要求中傳送的 nonce 資料，以確保您的應用程式已新建回應，且並未重新播放權杖。
-- **簽章**︰您的應用程式必須確認權杖已由 Azure Active Directory 簽署。Azure AD 簽署金鑰經常捲動，因此您的應用程式必須每日輪詢重新整理的金鑰，或在簽章驗證失敗時錯誤移轉至重新整理的金鑰。如需詳細資訊，請參閱 [Azure AD 中簽署金鑰變換的相關重要資訊](https://msdn.microsoft.com/library/azure/dn641920.aspx)。
+- **簽章**︰您的應用程式必須確認權杖已由 Azure Active Directory 簽署。Azure AD 簽署金鑰經常捲動，因此您的應用程式必須每日輪詢重新整理的金鑰，或在簽章驗證失敗時錯誤移轉至重新整理的金鑰。如需詳細資訊，請參閱 [Azure AD 中簽署金鑰變換的相關重要資訊](active-directory/active-directory-signing-key-rollover.md)。
 
 驗證 **id\_token** 後，使用 oid 宣告值作為使用者的不變且不可重複使用的識別碼。將 **unique\_name** 或 upn/email 宣告作為人類可讀取的使用者顯示名稱。您也可以針對顯示用途使用選擇性的 given\_name/family\_name 宣告。
 
@@ -154,7 +154,7 @@ Open ID Connect 回應的範例是︰
 
 您的應用程式現在已從 Azure AD 收到授權碼，現在是取得 Azure Resource Manager 的存取權杖的時候了。將 OAuth2.0 程式碼授與權杖要求張貼至 Azure AD 權杖端點︰
 
-    http://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token
+    https://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token
 
 [授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)主題說明適用於此要求的查詢字串參數。
 
@@ -190,7 +190,7 @@ Open ID Connect 回應的範例是︰
 
 成功的權杖回應會包含 Azure Resource Manager 的 (使用者 + 應用程式) 存取權杖。應用程式將使用此存取權杖來代表使用者存取資源管理員。Azure AD 所發出的存取權杖存留期是一小時。Web 應用程式不太可能必須更新 (使用者 + 應用程式) 存取權杖；但如果需要，您可以使用您的應用程式在權杖回應中收到的重新整理權杖。將 OAuth2.0 權杖要求張貼至 Azure AD 權杖端點︰
 
-    http://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token
+    https://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token
 
 使用重新整理要求的參數說明於[授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
 
@@ -301,7 +301,7 @@ ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](
 |----|----
 | grant\_type | **client\_credentials**
 | client\_id | 您的應用程式的用戶端識別碼
-| resource | 正在針對存取權杖要求之資源的 URL 編碼識別碼。在此情況下，Azure AD Graph API 的識別項：**https://graph.windows.net/** 
+| resource | 正在針對存取權杖要求之資源的 URL 編碼識別碼。在此案例中為 Azure AD 圖形 API 的識別碼：**https://graph.windows.net/**
 | client\_secret 或 client\_assertion\_type + client\_assertion | 如果您的應用程式使用密碼認證，請使用 client\_secret。如果您的應用程式使用憑證認證，請使用 client\_assertion。
 
 用戶端認證授與權杖要求範例︰
@@ -444,4 +444,4 @@ ASP.net MVC 範例應用程式的 [RevokeRoleFromServicePrincipalOnSubscription 
 
 好了，使用者現在能使用您的應用程式來輕鬆連接及管理其 Azure 訂用帳戶。
 
-<!----HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

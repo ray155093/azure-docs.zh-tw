@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="infrastructure-services"
-	ms.date="05/10/2016"
+	ms.date="06/27/2016"
 	ms.author="rasquill"/>
 
 
@@ -23,7 +23,7 @@
 
 尋找在傳統部署模型中建立和管理以 Linux 為基礎的虛擬機器所需的所有說明文件。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ## 開始使用
 - [Azure 上的 Linux 簡介](virtual-machines-linux-intro-on-azure.md)
@@ -57,7 +57,6 @@
 ### Docker
 - [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](virtual-machines-linux-classic-cli-use-docker.md)
 - [使用 Azure 入口網站中的Docker VM 擴充程式](virtual-machines-linux-classic-portal-use-docker.md)
-- [在 Azure Marketplace 中快速開始使用 Docker](virtual-machines-linux-classic-docker-quickstart.md)
 - [如何在 Azure 上使用 docker-machine](virtual-machines-linux-docker-machine.md)
 
 ### Ubuntu
@@ -113,8 +112,8 @@
 
 ## 疑難排解
 - [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md)
-- [針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-troubleshoot-deployment-new-vm.md)  
-- [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md) 
+- [針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-troubleshoot-deployment-new-vm.md)
+- [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)
 
 
 ## 參考
@@ -126,7 +125,7 @@
 
 
 ## 一般連結
-下列連結是上述 Azure.com 文件之外的 Microsoft 部落格、Technet 頁面和外部網站。由於 Azure 和開放原始碼運算的世界都是變動迅速的目標，因此「儘管」我們應該盡全力持續加入較新的主題並移除過期的主題，但是幾乎可以肯定的是下列連結已過時。如果我們遺漏了什麼，請在註解中讓我們知道，或將提取要求提交至我們的 [Github 儲存機制](https://github.com/Azure/azure-content/)。
+下列連結是上述 Azure.com 文件之外的 Microsoft 部落格、Technet 頁面和外部網站。由於 Azure 和開放原始碼運算的世界都是變動迅速的目標，因此「儘管」我們會盡全力持續加入較新的主題並移除過期的主題，但我們也幾乎可以肯定下列連結已經過時了。如果我們遺漏了什麼，請在註解中讓我們知道，或將提取要求提交至我們的 [Github 儲存機制](https://github.com/Azure/azure-content/)。
 
 - [在 Linux 上使用 Docker 容器執行 ASP.NET 5](http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx)
 - [如何部署 OpenLogic 提供的 CentOS VM 映像](https://azure.microsoft.com/blog/2013/01/11/deploying-openlogic-centos-images-on-windows-azure-virtual-machines/)
@@ -188,8 +187,6 @@
 - [部落格：如何使用 Powershell DSC for Linux](http://blogs.technet.com/b/privatecloud/archive/2014/05/19/powershell-dsc-for-linux-step-by-step.aspx)
 - [GitHub：Docker 用戶端 DSC](https://github.com/anweiss/DockerClientDSC)
 
-- [Ubuntu Juju](https://juju.ubuntu.com/docs/config-azure.html)
-
 - [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

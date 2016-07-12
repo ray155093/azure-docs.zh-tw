@@ -229,7 +229,7 @@
 
 現在您已經準備好執行應用程式。
 
-1.	在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。選取 [多個啟始專案]，然後同時針對 **ProcessDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 [啟動] 做為動作。
+1.	在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 [啟動] 做為動作。
 
    	![啟動專案屬性][41]
 
@@ -277,4 +277,4 @@
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [lnk-connected-service]: https://visualstudiogallery.msdn.microsoft.com/e254a3a5-d72e-488e-9bd3-8fee8e0cd1d6
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

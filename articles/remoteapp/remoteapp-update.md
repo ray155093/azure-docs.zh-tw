@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="compute"
-   ms.date="04/05/2016"
+   ms.date="06/05/2016"
    ms.author="elizapo"/>
 
 # 更新 Azure RemoteApp 中的收藏
@@ -34,4 +34,4 @@
 
 1. 按一下核取記號以啟動更新。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

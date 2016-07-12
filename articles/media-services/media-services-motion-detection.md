@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/14/2016"   
+	ms.date="06/22/2016"  
 	ms.author="milanga;juliako;"/>
  
 # 使用 Azure 媒體分析偵測動作
@@ -165,7 +165,7 @@ RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-1. 根據包含下列 JSON 預設值的設定檔案，建立執行影片動作偵測工作的工作。 
+1. 根據包含下列 JSON 預設值的設定檔案，建立執行影片動作偵測工作的工作。
 					
 		{
 		    "version": "1.0"
@@ -351,4 +351,4 @@ RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

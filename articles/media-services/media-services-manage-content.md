@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/25/2016"   
+	ms.date="06/22/2016"  
 	ms.author="juliako"/>
 
 
@@ -40,14 +40,14 @@
 
 
 1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=256666&clcid=0x409)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱。
-2. 選取 [內容] 頁面。 
-3. 按一下頁面或入口網站底部的 [上傳] 按鈕。 
+2. 選取 [內容] 頁面。
+3. 按一下頁面或入口網站底部的 [上傳] 按鈕。
 4. 在 [Upload content] 對話方塊中，瀏覽到想要的資產檔案。按一下檔案，然後按一下 [開啟] 或按 **Enter** 鍵。
 
 	![UploadContentDialog][uploadcontent]
 
 5. 在 [Upload Content] 對話方塊中，按一下核取按鈕以接受 [File and Content Name]。
-6. 上傳隨即開始，而您可以在入口網站底部追蹤進度。  
+6. 上傳隨即開始，而您可以在入口網站底部追蹤進度。
 
 	![JobStatus][status]
 
@@ -125,7 +125,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 - 將您的夾層 (來源) 檔編碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (編碼步驟示範於[編碼](#encode)區段)。
 - 為您計畫從該處傳遞內容的串流端點取得至少一個隨選串流單元。如需詳細資訊，請參閱[如何調整隨選串流保留單元](media-services-manage-origins.md#scale_streaming_endpoints/)。
-- 設定「預設 aes 清除金鑰服務原則」或「預設 playready 授權服務原則」。如需詳細資訊，請參閱[設定內容金鑰授權原則](media-services-portal-configure-content-key-auth-policy.md)。  
+- 設定「預設 aes 清除金鑰服務原則」或「預設 playready 授權服務原則」。如需詳細資訊，請參閱[設定內容金鑰授權原則](media-services-portal-configure-content-key-auth-policy.md)。
 
 
 	當您已經準備要啟用加密時，請按**內容**頁面底部的**加密**按鈕。
@@ -179,8 +179,8 @@ SAS URL 具有下列格式：
 
 若要使用入口網站發佈資產，請執行下列作業：
 
-1. 選取資產。 
-2. 然後，按一下 [發佈] 按鈕。 
+1. 選取資產。
+2. 然後，按一下 [發佈] 按鈕。
 	
  ![PublishedContent][publishedcontent]
 
@@ -222,4 +222,4 @@ SAS URL 具有下列格式：
 [encrypt]: ./media/media-services-manage-content/media-services-encrypt-content.png
 [AMSPlayer]: ./media/media-services-manage-content/media-services-portal-player.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

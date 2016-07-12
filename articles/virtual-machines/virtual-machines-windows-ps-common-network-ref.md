@@ -44,4 +44,4 @@
 - 使用您剛才[建立 VM ](virtual-machines-windows-ps-create.md)時所建立的網路介面。
 - 深入了解如何[建立具有多個網路介面的 VM](../virtual-network/virtual-networks-multiple-nics.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

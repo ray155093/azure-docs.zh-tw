@@ -22,7 +22,7 @@
 本文說明如何使用作業系統上傳虛擬硬碟 (VHD)，以便用它做為映像，根據該映像建立虛擬機器。如需 Microsoft Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md)。
 
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。您也可以使用 Resource Manager 模型來[擷取](virtual-machines-windows-capture-image.md)和[上傳](virtual-machines-windows-upload-image.md)虛擬機器。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)].您也可以使用 Resource Manager 模型來[擷取](virtual-machines-windows-capture-image.md)和[上傳](virtual-machines-windows-upload-image.md)虛擬機器。
 
 ## 必要條件
 
@@ -76,7 +76,7 @@
 
  - 在 **URL** 下，為儲存體帳戶輸入要在 URL 中使用的子網域名稱。此項目可以包含 3 至 24 個小寫字母與數字。此名稱會成為 URL 的主機名稱，您將其用來存取訂用帳戶的 blob、佇列或資料表資源。
  - 選擇儲存體帳戶的**位置或同質群組**。同質群組可讓您將雲端服務和儲存體放在相同的資料中心。
- - 決定儲存體帳戶是否要使用**地理區域複寫**。依預設會開啟異地複寫。此選項可讓您免費將資料複寫至次要位置，使您在主要位置發生重大錯誤時，可將儲存體容錯移轉至該位置。次要位置會自動指派，且無法變更。如果您因為法律規定或組織原則而需要更充分掌控您以雲端為基礎的儲存體所在的位置，您可以關閉地理複寫。但是，如果您後續又開啟異地複寫，在您將現有的資料複寫至次要位置時，將會產生一次性的資料傳輸費用。不含異地複寫的儲存服務會有相對的折扣。如需詳細資料，請參閱[建立、管理或刪除儲存體帳戶](../storage-create-storage-account/#replication-options)。
+ - 決定儲存體帳戶是否要使用**地理區域複寫**。依預設會開啟異地複寫。此選項可讓您免費將資料複寫至次要位置，使您在主要位置發生重大錯誤時，可將儲存體容錯移轉至該位置。次要位置會自動指派，且無法變更。如果您因為法律規定或組織原則而需要更充分掌控您以雲端為基礎的儲存體所在的位置，您可以關閉地理複寫。但是，如果您後續又開啟異地複寫，在您將現有的資料複寫至次要位置時，將會產生一次性的資料傳輸費用。不含異地複寫的儲存服務會有相對的折扣。如需詳細資料，請參閱[建立、管理或刪除儲存體帳戶](../storage/storage-create-storage-account.md#replication-options)。
 
       ![輸入儲存體帳戶詳細資料](./media/virtual-machines-windows-classic-createupload-vhd/Storage-create-account.png)
 
@@ -203,4 +203,4 @@
 [Step 3: Prepare the connection to Azure]: #prepAzure
 [Step 4: Upload the .vhd file]: #upload
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

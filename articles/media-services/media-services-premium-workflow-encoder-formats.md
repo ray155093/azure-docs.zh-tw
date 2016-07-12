@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"    
+	ms.date="06/22/2016"    
 	ms.author="juliako;anilmur"/>
 
 #Media Encoder Premium Workflow 格式和轉碼器
@@ -82,7 +82,7 @@
 - Windows Media/ASF
 - AVI (未壓縮 8 位元/10 位元)
 - Smooth Streaming 檔案格式 (PIFF 1.3)
-- MPEG-TS 
+- MPEG-TS
 
 
 ###輸出視訊轉碼器
@@ -138,4 +138,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -18,7 +18,7 @@
 # 執行個體層級公用 IP 概觀
 執行個體層級公用 IP (ILPIP) 是您可以直接指派至 VM 或角色執行個體的 IP 位址，而不是指派至 VM 或角色執行個體所在的雲端服務。這不會取代指派給雲端服務的 VIP (虛擬 IP)。應該說是您可以用來直接連接到 VM 或角色執行個體的其他 IP 位址。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager model](virtual-network-ip-addresses-overview-arm.md).
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-network-ip-addresses-overview-arm.md)。
 
 請確定您了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在 Azure 中的運作方式。
 
@@ -31,7 +31,7 @@
 當您在 Azure 中建立雲端服務時，對應的 DNS A 記錄即會自動建立，以允許透過完整格式的網域名稱 (FQDN) 存取服務，而不需使用實際的 VIP。相同程序也適用於 ILPIP，但可改為透過 FQDN 而不是 ILPIP 來允許存取 VM 或角色執行個體。例如，若您建立名為 *contosoadservice* 的雲端服務，並設定名為 *contosoweb* 且具有兩個執行個體的 Web 角色，Azure 將會為那些執行個體登錄下列 A 記錄：
 
 - contosoweb\_IN\_0.contosoadservice.cloudapp.net
-- contosoweb\_IN\_1.contosoadservice.cloudapp.net 
+- contosoweb\_IN\_1.contosoadservice.cloudapp.net
 
 >[AZURE.NOTE] 您只能針對每個 VM 或角色執行個體指派一個 ILPIP。您可以針對每個訂用帳戶最多使用 5 個 ILPIP。ILPIP 目前不支援多個 NIC 的 VM。
 
@@ -126,7 +126,7 @@
 
 - 了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md)在傳統部署模型中的運作方式。
 
-- 深入了解[保留的 IP](../virtual-networks-reserved-public-ip)。
+- 深入了解[保留的 IP](virtual-networks-reserved-public-ip.md)。
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

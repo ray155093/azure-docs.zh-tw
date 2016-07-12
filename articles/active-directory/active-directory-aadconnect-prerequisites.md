@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="05/24/2016"
+   ms.date="06/27/2016"
    ms.author="andkjell;billmath"/>
 
 # Azure AD Connect 的必要條件
@@ -45,7 +45,7 @@
 - Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。預設會安裝 SQL Server 2012 Express LocalDB (輕量版的 SQL Server Express)，並且在本機電腦上建立服務的服務帳戶。SQL Server Express 有 10 GB 的大小限制，可讓您管理大約 100,000 個物件。如果您需要管理更多數量的目錄物件，則必須將安裝精靈指向不同的 SQL Server 安裝。
 - 如果您使用個別的 SQL Server，這些需求適用於：
     - Azure AD Connect 支援從 SQL Server 2008 (含 SP4) 至 SQL Server 2014 的各種 Microsoft SQL Server。**不支援**使用 Microsoft Azure SQL Database 作為資料庫。
-    - 您必須使用不區分大小寫的 SQL 定序。這些定序是在其名稱中使用 a \_CI\_ 來識別。**不支援**使用區分大小寫的定序 (在其名稱中以 \_CS\_ 來識別)。
+    - 您必須使用不區分大小寫的 SQL 定序。這些定序是在其名稱中使用 \_CI_ 來識別。**不支援**使用區分大小寫的定序 (在其名稱中以 \_CS_ 來識別)。
     - 您在每個資料庫執行個體中只能有一個同步引擎。**不支援**使用 FIM/MIM Sync、DirSync 或 Azure AD Sync 來共用資料庫執行個體。
 
 ### 帳戶
@@ -60,7 +60,7 @@
 - Azure AD Connect 伺服器需要內部網路和網際網路的 DNS 解析。DNS 伺服器必須能夠將名稱解析成您的內部部署 Active Directory 以及 Azure AD 端點。
 - 如果您的內部網路有防火牆，而您需要開放 Azure AD Connect 伺服器與網域控制站之間的連接埠，請參閱 [Azure AD Connect 連接埠](active-directory-aadconnect-ports.md)以了解詳細資訊。
 - 如果您的 Proxy 會限制哪些 URL 可供存取，則必須在 Proxy 中開啟 [Office 365 URL 和 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)中記載的 URL。
-    - 如果您是使用 Microsoft Cloud Germany，或是使用 Microsoft Azure Government 雲端，則參閱 [Azure AD Connect：執行個體的特殊考量](active-directory-aadconnect-instances.md)中的 URL。
+    - 如果您是使用 Microsoft Cloud Germany，或是使用 Microsoft Azure Government 雲端，則請參閱 [Azure AD Connect：執行個體的特殊考量](active-directory-aadconnect-instances.md)中的 URL。
 - Azure AD Connect 預設使用 TLS 1.0 來和 Azure AD 通訊。您可以依照[啟用 Azure AD Connect 的 TLS 1.2](#enable-tls-12-for-azure-ad-connect) 中的步驟變更為使用 TLS 1.2。
 - 如果您使用連出 Proxy 來連線到網際網路，就必須在 **C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config** 檔案中加入下列設定，安裝精靈和 Azure AD Connect 同步處理才能夠連線到網際網路和 Azure AD。必須在檔案底部輸入此文字。在此程式碼中，&lt;PROXYADRESS&gt; 代表實際的 Proxy IP 位址或主機名稱。
 
@@ -115,7 +115,7 @@ Azure AD Connect 需要 Microsoft PowerShell 和 .NET Framework 4.5.1。您需�
 ### 啟用 Azure AD Connect 的 TLS 1.2
 Azure AD Connect 預設使用 TLS 1.0 將同步引擎伺服器和 Azure AD 之間的通訊加密。您可以在伺服器上將 .Net 應用程式設定變更為預設使用 TLS 1.2。您可以在 [Microsoft 資訊安全摘要報告 2960358](https://technet.microsoft.com/security/advisory/2960358) 中找到 TLS 1.2 的相關詳細資訊。
 
-1. TLS 1.2 無法在 Windows Server 2008 上啟用。您需要 Windows Server 2008R2 或更新版本。請確定您已經為您的作業系統安裝 .Net 4.5.1 Hotfix，請參閱 [Microsoft 資訊安全摘要報告 2960358](https://technet.microsoft.com/security/advisory/2960358)。您的伺服器上可能已經安裝此版本或更新版本。
+1. TLS 1.2 無法在 Windows Server 2008 上啟用。您需要 Windows Server 2008R2 或更新版本。請確定您已經為作業系統安裝 .Net 4.5.1 Hotfix，請參閱 [Microsoft 資訊安全摘要報告 2960358](https://technet.microsoft.com/security/advisory/2960358)。您的伺服器上可能已經安裝此版本或更新版本。
 2. 如果您使用 Windows Server 2008R2，請確定已啟用 TLS 1.2。在 Windows Server 2012 伺服器和更新版本的伺服器作業系統上，TLS 1.2 應該已經啟用。
 ```
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2]
@@ -154,7 +154,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
 - 您可以在測試實驗室環境中的同盟伺服器上使用自我簽署的憑證。不過，在生產環境中，我們建議您從公用 CA 取得憑證。
     - 如果使用非公開信任的憑證，請確定每個 Web 應用程式 Proxy 伺服器上安裝的憑證已取得本機伺服器和所有同盟伺服器的信任
 - 憑證的身分識別必須與同盟服務名稱相符 (例如 sts.contoso.com)。
-    - 身分識別可以是 dNSName 類型的主體別名 (SAN) 副檔名；或如果沒有 SAN 項目，則會將主體名稱指定為通用名稱。  
+    - 身分識別可以是 dNSName 類型的主體別名 (SAN) 副檔名；或如果沒有 SAN 項目，則會將主體名稱指定為通用名稱。
     - 憑證中可顯示多個 SAN 項目，前提是其中一個項目與 Federation Service 名稱相符。
     - 如果您打算使用「加入工作場所」，則需要一個值為 **enterpriseregistration.** 的額外 SAN，後面接著組織的「使用者主體名稱」(UPN) 尾碼 (例如 **enterpriseregistration.contoso.com**)。
 - 不支援以 CryptoAPI 新一代 (CNG) 金鑰和金鑰儲存體為基礎的憑證。這表示您必須使用以 CSP (密碼編譯服務提供者) 為基礎的憑證，而不是 KSP (金鑰儲存體提供者)。
@@ -197,4 +197,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -195,14 +195,14 @@
 
 
 ### 步驟 1：下載最新版本的 Azure AD Connect
-密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。如果您執行較舊的版本，請至少升級至此版本，再繼續作業。[按一下這裡以下載最新版本的 Azure AD Connect](active-directory-aadconnect.md#download-azure-ad-connect)。
+密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。如果您執行較舊的版本，請至少升級至此版本，再繼續作業。[按一下這裡以下載最新版本的 Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
 
 #### 檢查 Azure AD Sync 的版本
-1.	瀏覽至 **%ProgramFiles%\\Azure Active Directory Sync**。
+1.	瀏覽至 *%ProgramFiles%\Azure Active Directory Sync*。
 2.	尋找 **ConfigWizard.exe** 可執行檔。
-3.	以滑鼠右鍵按一下可執行檔，然後從內容功能表選取 [屬性] 選項。
-4.	按一下 [詳細資料] 索引標籤。
-5.	尋找 [檔案版本] 欄位。
+3.	以滑鼠右鍵按一下可執行檔，然後從內容功能表選取 [**屬性**] 選項。
+4.	按一下 [**詳細資料**] 索引標籤。
+5.	尋找 [**檔案版本**] 欄位。
 
     ![][021]
 
@@ -215,24 +215,24 @@
 您已下載 Azure AD Connect 工具，已準備就緒可以啟用密碼回寫。您可以使用下列兩種方式之一來執行這個動作。您可以在 Azure AD Connect 安裝精靈的選用功能畫面中啟用密碼回寫，或者您可以透過 Windows PowerShell 啟用它。
 
 #### 在組態精靈中啟用密碼回寫
-1.	在您的 [目錄同步處理電腦] 中，開啟 [Azure AD Connect] 組態精靈。
-2.	按一下各個步驟，直到您到達 [選用功能] 組態畫面。
-3.	勾選 [密碼回寫] 選項。
+1.	在您的 [**目錄同步處理電腦**] 中，開啟 [**Azure AD Connect**] 組態精靈。
+2.	按一下各個步驟，直到您到達 [**選用功能**] 組態畫面。
+3.	勾選 [**密碼回寫**] 選項。
 
     ![][022]
 
 4.	完成精靈，最後一頁將會摘要說明變更，並且會包含密碼回寫組態變更。
 
-> [AZURE.NOTE] 您可以隨時停用密碼回寫，方法是重新執行此精靈，並且取消選取此功能，或是將 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 中的 [將密碼回寫至內部部署目錄] 設定設為 [否]。如需有關自訂您的密碼重設體驗的詳細資訊，請參閱[自訂：Azure AD 密碼管理](active-directory-passwords-customize.md)。
+> [AZURE.NOTE] 您可以隨時停用密碼回寫，方法是重新執行此精靈，並且取消選取此功能，或是將 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [**設定**] 索引標籤的 [**使用者密碼重設原則**] 中的 [**將密碼回寫至內部部署目錄**] 設定設為 [**否**]。如需有關自訂您的密碼重設體驗的詳細資訊，請參閱[自訂：Azure AD 密碼管理](active-directory-passwords-customize.md)。
 
 #### 使用 Windows PowerShell 啟用密碼回寫
-1.	在您的 [目錄同步處理電腦] 中，開啟新的 [提升權限的 Windows PowerShell 視窗]。
+1.	在您的 [**目錄同步處理電腦**] 中，開啟新的 [**提升權限的 Windows PowerShell 視窗**]。
 2.	如果尚未載入模組，輸入 `Import-Module ADSync` 命令以將 Azure AD Connect Cmdlet 載入到您目前的工作階段。
 3.	取得您的系統中的 AAD 連接器清單，方法是執行 `Get-ADSyncConnector` Cmdlet，並將結果儲存在 `$aadConnectorName`
 4.	若要取得目前連接器的回寫的目前狀態，請執行下列 Cmdlet：`Get-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName`
 5.	執行下列 Cmdlet，以啟用密碼回寫：`Set-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName –Enable $true`
 
-> [AZURE.NOTE] 如果系統提示輸入認證，請確定您為 AzureADCredential 指定的系統管理員帳戶是**雲端系統管理員帳戶 (在 Azure AD 中建立)**，不是同盟帳戶 (在內部部署 AD 中建立並且同步處理至 Azure AD。[AZURE.NOTE] 您可以透過 PowerShell 停用密碼回寫，方法是重複上述的相同指示，但是在步驟中傳遞 `$false`，或者將 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 區段的 [將密碼回寫至內部部署目錄] 設為 [否]。
+> [AZURE.NOTE] 如果系統提示輸入認證，請確定您為 AzureADCredential 指定的系統管理員帳戶是**雲端系統管理員帳戶 (在 Azure AD 中建立)**，不是同盟帳戶 (在內部部署 AD 中建立並且同步處理至 Azure AD。[AZURE.NOTE] 您可以透過 PowerShell 停用密碼回寫，方法是重複上述的相同指示，但是在步驟中傳遞 `$false`，或者將 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [**設定**] 索引標籤的 [**使用者密碼重設原則**] 區段的 [**將密碼回寫至內部部署目錄**] 設為 [**否**]。
 
 #### 確認組態是否成功
 一旦組態成功，您會在 Windows PowerShell 視窗中看到密碼重設回寫已啟用的訊息，或者在組態 UI 中看到成功訊息。
@@ -252,45 +252,45 @@
 ### 步驟 4：設定適當的 Active Directory 權限
 對於包含使用者 (其密碼將會重設) 的每個樹系，如果 X 為組態精靈 (初始組態期間) 中針對該樹系指定的帳戶，則必須為 X 指定**重設密碼**、**變更密碼**、`lockoutTime` 的 **寫入權限** 和 `pwdLastSet` 的 **寫入權限**、該樹系中每個網域之根物件的擴充權限。權限應該標示為由所有使用者物件繼承。
 
-如果您不確定上述指的是哪些帳戶，請開啟 Azure Active Directory Connect 組態 UI，並按一下 [檢閱您的方案] 選項。您需要新增權限的帳戶會有紅色底線，如下列螢幕擷取畫面所示。
+如果您不確定上述指的是哪些帳戶，請開啟 Azure Active Directory Connect 組態 UI，並按一下 [**檢閱您的方案**] 選項。您需要新增權限的帳戶會有紅色底線，如下列螢幕擷取畫面所示。
 
 **<font color="red">請確定針對您系統中各樹系的各個網域設定這項權限，否則密碼回寫將無法正常運作。</font>**
 
   ![][032]
 
-  設定這些權限將會允許每個樹系的 MA 服務帳戶代表該樹系內的使用者帳戶管理密碼。如果您沒有指定這些權限，則即使回寫看起來設定正確，使用者在嘗試從雲端管理其內部部署密碼時還是會遇到錯誤。以下是您如何使用 [Active Directory 使用者和電腦] 管理嵌入式管理單元以進行作業的詳細步驟：
+  設定這些權限將會允許每個樹系的 MA 服務帳戶代表該樹系內的使用者帳戶管理密碼。如果您沒有指定這些權限，則即使回寫看起來設定正確，使用者在嘗試從雲端管理其內部部署密碼時還是會遇到錯誤。以下是您如何使用 [**Active Directory 使用者和電腦**] 管理嵌入式管理單元以進行作業的詳細步驟：
 
 >[AZURE.NOTE] 最多可能需要一小時讓這些權限複寫至您的目錄中的所有物件。
 
 #### 設定正確權限以執行回寫
 
-1.	以具有適當網域管理權限的帳戶開啟 [Active Directory 使用者和電腦]。
-2.	在 [檢視功能表] 選項中，確定 [進階功能] 已開啟。
+1.	以具有適當網域管理權限的帳戶開啟 [**Active Directory 使用者和電腦**]。
+2.	在 [**檢視功能表**] 選項中，確定 [**進階功能**] 已開啟。
 3.	在左面板中，以滑鼠右鍵按一下代表網域根目錄的物件。
-4.	按一下 [安全性] 索引標籤。
-5.	然後按一下 [進階]。
+4.	按一下 [**安全性**] 索引標籤。
+5.	然後按一下 [**進階**]。
 
     ![][024]
 
-6.	按一下 [權限] 索引標籤上的 [新增]。
+6.	按一下 [**權限**] 索引標籤上的 [**新增**]。
 
     ![][025]
 
 7.	選取您想要授與權限的帳戶 (這是與設定該樹系同步處理時所指定的相同帳戶)。
-8.	在最上層的下拉式清單中選取 [下階使用者物件]。
-9.	在顯示的 [權限項目] 對話方塊中，勾選 [重設密碼]、[變更密碼]、[`lockoutTime` 的寫入權限] 和 [`pwdLastSet` 的寫入權限] 的方塊。
+8.	在最上層的下拉式清單中選取 [**下階使用者物件**]。
+9.	在顯示的 [**權限項目**] 對話方塊中，勾選 [**重設密碼**]、[**變更密碼**]、[`lockoutTime` 的**寫入權限**] 和 [`pwdLastSet` 的**寫入權限**] 的方塊。
 
     ![][026]
     ![][027]
     ![][028]
 
-10.	然後在所有開啟的對話方塊中按一下 [套用/確定]。
+10.	然後在所有開啟的對話方塊中按一下 [**套用/確定**]。
 
 ### 步驟 5：以使用者的身分重設您的 AD 密碼
 現在已啟用密碼回寫，您可以測試它是否正常運作，方法是對已同步處理至您的雲端租用戶的使用者帳戶重設密碼。
 
 #### 確認密碼回寫是否正常運作
-1.	瀏覽至 [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com)，或前往任何組織識別碼登入畫面，然後按一下 [無法存取您的帳戶？] 連結。
+1.	瀏覽至 [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com)，或前往任何組織識別碼登入畫面，然後按一下 [**無法存取您的帳戶？**] 連結。
 
     ![][029]
 
@@ -299,7 +299,7 @@
 
     ![][030]
 
-4.	若要確認作業是否成功或診斷任何錯誤，請移至您的 [目錄同步處理電腦]、開啟 [事件檢視器]、瀏覽至 [應用程式事件記錄檔]，並針對您的測試使用者從來源 **PasswordResetService** 尋找事件 **31002 - PasswordResetSuccess**。
+4.	若要確認作業是否成功或診斷任何錯誤，請移至您的 [**目錄同步處理電腦**]、開啟 [**事件檢視器**]、瀏覽至 [**應用程式事件記錄檔**]，並針對您的測試使用者從來源 **PasswordResetService** 尋找事件 **31002 - PasswordResetSuccess**。
 
     ![][031]
 
@@ -353,4 +353,4 @@
 [031]: ./media/active-directory-passwords-getting-started/031.jpg "Image_031.jpg"
 [032]: ./media/active-directory-passwords-getting-started/032.jpg "Image_032.jpg"
 
-<!---HONumber=AcomDC_0427_2016--->
+<!---HONumber=AcomDC_0706_2016-->

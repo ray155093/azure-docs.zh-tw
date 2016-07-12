@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/03/2016"
+   ms.date="06/27/2016"
    ms.author="sonyama;barbkess;sahajs"/>
 
 # 使用 DMV 監視工作負載
@@ -29,9 +29,9 @@ SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed';
 ```
 
 ## 調查查詢執行
-若要監視執行查詢，請以 [sys.dm\_pdw\_exec\_requests][] 開始。此檢視包含查詢進度，以及最近完成之查詢的歷程記錄。Request\_id 專門識別每個查詢，而且是此檢視的主索引鍵。Request\_id 依序指派給每個新的查詢。查詢這個資料表找出給定的 session\_id，將顯示給定登入的所有查詢。
+若要監視執行查詢，請以 [sys.dm\_pdw\_exec\_requests][] 開始。此檢視包含查詢進度，以及最近完成之查詢的歷程記錄。Request\_id 專門識別每個查詢，而且是此檢視的主索引鍵。Request\_id 依序指派給每個新的查詢。針對指定的 session\_id 查詢這個資料表，即會顯示指定登入的所有查詢。
 
-在您想要調查特定查詢之執行查詢的案例中，以下是一些要遵循的常見步驟。
+請遵循以下步驟來調查特定查詢的查詢執行計畫和時間。
 
 ### 步驟 1：尋找要調查的查詢
 
@@ -162,4 +162,4 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 [DBCC PDW\_SHOWEXECUTIONPLAN]: http://msdn.microsoft.com/library/mt204017.aspx
 [DBCC PDW_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

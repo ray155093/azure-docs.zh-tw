@@ -14,7 +14,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="04/04/2016"
+	 ms.date="07/01/2016"
 	 ms.author="trinadhk; giridham; arunak; markgal; jimpark;"/>
 
 # Azure 備份服務常見問題集
@@ -182,7 +182,7 @@
 
 **Q3.什麼是用來加密備份資料之加密金鑰的最小長度？** <br/> A3.加密金鑰應該至少包含 16 個字元。
 
-**Q4.如果我錯置加密金鑰，則會發生什麼情況？ 我可以復原資料 (或者) Microsoft 可以復原資料嗎？** <br/> A4.用來加密備份資料的金鑰僅存在於客戶組織內部。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。若客戶錯置金鑰，則 Microsoft 無法復原備份資料。
+**Q4.如果我錯置加密金鑰，則會發生什麼情況？ 我可以復原資料 (或者) Microsoft 可以復原資料嗎？** <br/> A4.用來加密備份資料的金鑰僅存在於客戶組織內部。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。若客戶錯置金鑰，則 Microsoft 無法復原備份資料。 
 
 ## 備份快取
 
@@ -221,4 +221,4 @@
 
 快取資料夾和中繼資料 VHD 都不建議有上述屬性，以便 Azure 備份代理程式能如預期般運作。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

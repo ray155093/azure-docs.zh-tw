@@ -3,7 +3,7 @@
    description="Power BI Embedded 關於驗證和授權用的應用程式權杖"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
+   authors="minewiskan"
    manager="NA"
    editor=""
    tags=""/>
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="03/29/2016"
-   ms.author="derrickv"/>
+   ms.date="06/28/2016"
+   ms.author="owend"/>
 
 # 關於 Power BI Embedded 的應用程式權杖流程
 
@@ -56,4 +56,4 @@
 - [Microsoft Power BI Embedded Preview 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->
