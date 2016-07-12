@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/31/2016"
+   ms.date="07/01/2016"
    ms.author="barbkess;mausher;jrj;sonyama"/>
 
 
@@ -48,7 +48,7 @@
 ### 資料管理
 管理資料相當重要，尤其是當您知道不久之後可能會用盡磁碟空間。資料倉儲通常會將資料分割成有意義的範圍，並儲存為資料表中的資料分割。所有 SQL Server 式產品都可讓您將資料分割移入和移出資料表。此資料分割切換可讓您將較舊的資料移至較便宜的儲存體，並將最新的資料保留在線上儲存體。
 
-- 資料行存放區索引可支援經分割的資料表。資料行存放區索引會使用經分割的資料表來管理和保存資料。對於逐列儲存的資料表而言，資料分割在查詢效能方面的角色較為吃重。  
+- 資料行存放區索引可支援經分割的資料表。資料行存放區索引會使用經分割的資料表來管理和保存資料。對於逐列儲存的資料表而言，資料分割在查詢效能方面的角色較為吃重。
 
 - PolyBase 在管理資料方面扮演著重要角色。使用 PolyBase，您就能選擇將較舊的資料封存至 Hadoop 或 Azure blob 儲存體。由於資料還在線上，這樣便能提供許多可用選項。從 Hadoop 擷取資料可能需要較長的時間，但以擷取時間換取儲存體成本，可能會得不償失。
 
@@ -59,18 +59,16 @@
 - 如需進行分析，您可以在資料倉儲建立分析 Cube，然後針對資料倉儲執行分析，或是前置處理資料，然後再匯出到分析伺服器進行進一步分析。
 
 ## 後續步驟
-若要開始開發您的資料倉儲，請參閱[開發概觀][]。
-
-## 叢書
-[巨量資料倉儲](https://www.manning.com/books/big-data-warehousing) (Big Data Warehousing) (Karthik Ramachandran、Istvan Szededi 和 Richard L.Saltzer 合著，Manning Publications 出版)。[第 1 章](https://manning-content.s3.amazonaws.com/download/e/3d94acd-9512-46c8-b0b0-8c9c3c6a303b/BDW_MEAP_ch1.pdf)
+現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][]和[載入範例資料][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
+[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
 
 <!--MSDN references-->
 
 <!--Other web references-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

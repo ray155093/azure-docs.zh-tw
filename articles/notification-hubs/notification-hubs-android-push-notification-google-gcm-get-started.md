@@ -5,7 +5,7 @@
 	documentationCenter="android"
 	keywords="推播通知,推播通知,android 推播通知"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 <tags
 	ms.service="notification-hubs"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="hero-article"
-	ms.date="05/27/2016"
+	ms.date="07/05/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Android
@@ -22,7 +22,7 @@
 
 ##概觀
 
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
+> [AZURE.IMPORTANT] 本主題示範使用 Google 雲端通訊 (GCM) 的推播通知。如果您是使用 Google 的 Firebase 雲端通訊 (FCM)，請參閱[使用 Azure 通知中樞和 FCM 將推播通知傳送至 Android](notification-hubs-android-push-notification-google-fcm-get-started.md)。
 
 本教學課程說明如何使用 Azure 通知中樞傳送推播通知到 Android 應用程式。您將建立可使用 Google Cloud Messaging (GCM) 接收推播通知的空白 Android app。
 
@@ -32,6 +32,8 @@
 
 
 ##必要條件
+
+> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
 
 除了上述的作用中 Azure 帳戶，本教學課程只需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 
@@ -91,7 +93,7 @@
 ### 更新 AndroidManifest.xml。
 
 
-1. 若要支援 GCM，我們必須在程式碼中實作執行個體識別碼接聽程式服務，以便使用 [Google 的執行個體識別碼 API](https://developers.google.com/instance-id/) 來[取得註冊權杖](https://developers.google.com/cloud-messaging/android/client#sample-register)。在本教學課程中，我們將此類別命名為 `MyInstanceIDService`。 
+1. 若要支援 GCM，我們必須在程式碼中實作執行個體識別碼接聽程式服務，以便使用 [Google 的執行個體識別碼 API](https://developers.google.com/instance-id/) 來[取得註冊權杖](https://developers.google.com/cloud-messaging/android/client#sample-register)。在本教學課程中，我們將此類別命名為 `MyInstanceIDService`。
  
 	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
 
@@ -104,7 +106,7 @@
 
 2. 一旦從執行個體識別碼 API 收到 GCM 註冊權杖，我們會將它用來[向 Azure 通知中樞註冊](notification-hubs-push-notification-registration-management.md)。我們將使用名為 `RegistrationIntentService` 的 `IntentService` 在背景支援此註冊。此服務也會負責[重新整理我們的 GCM 註冊權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
  
-	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
+	將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標記內。以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
 
         <service
             android:name="<your package>.RegistrationIntentService"
@@ -141,13 +143,13 @@
 ### 加入程式碼
 
 
-1. 在 [專案檢視] 中，展開 [應用程式] > [src] > [主要] > [java]。以滑鼠右鍵按一下 **java** 底下您的封裝資料夾，按一下 [**New**]，然後按一下 [**Java Class**]。新增名為 `NotificationSettings` 的新類別。 
+1. 在 [專案檢視] 中，展開 [應用程式] > [src] > [主要] > [java]。以滑鼠右鍵按一下 **java** 底下您的封裝資料夾，按一下 [**New**]，然後按一下 [**Java Class**]。新增名為 `NotificationSettings` 的新類別。
 
 	![Android Studio - 新增 Java 類別][6]
 
 	請務必在 `NotificationSettings` 類別的下列程式碼中更新這三個預留位置：
 	* **SenderId**：您稍早在 [Google Cloud Console](http://cloud.google.com/console) 中取得的專案編號。
-	* **HubListenConnectionString**：您的中樞的 **DefaultListenAccessSignature** 連接字串。在 [Azure 入口網站]中按一下您的中樞的 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
+	* **HubListenConnectionString**：中樞的 **DefaultListenAccessSignature** 連接字串。在 [Azure 入口網站]中，按一下中樞 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
 	* **HubName**︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
 
 	`NotificationSettings` 程式碼︰
@@ -229,7 +231,7 @@
 		                regID = hub.register(token).getRegistrationId();
 
 		                // If you want to use tags...
-						// Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
+						// Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
 		                // regID = hub.register(token, "tag1,tag2").getRegistrationId();
 
 		                resultString = "Registered Successfully - RegId : " + regID;
@@ -360,7 +362,7 @@
 	    }
 
 
-10. `ToastNotify` 方法會使用「"Hello World"」`TextView` 控制項持續在應用程式中報告狀態和通知。在 activity\_main.xml 配置中，為該控制項加入下列識別碼。
+10. `ToastNotify` 方法會使用 "Hello World" `TextView` 控制項持續在應用程式中報告狀態和通知。在 activity\_main.xml 配置中，為該控制項加入下列識別碼。
 
         android:id="@+id/text_hello"
 
@@ -465,7 +467,7 @@
 
 3. 在 `NotificationSetting.java` 檔案中，將下列設定新增至 `NotificationSettings` 類別。
 
-	使用中樞的 **DefaultFullSharedAccessSignature** 連接字串更新 `HubFullAccess`。按一下您通知中樞的 [設定] 刀鋒視窗上的 [存取原則]，即可從 [Azure 入口網站]複製此連接字串。
+	使用中樞的 **DefaultFullSharedAccessSignature** 連接字串更新 `HubFullAccess`。按一下通知中樞 [設定] 刀鋒視窗上的 [存取原則]，即可從 [Azure 入口網站]複製此連接字串。
 
 		public static String HubFullAccess = "<Enter Your DefaultFullSharedAccess Connection string>";
 
@@ -619,7 +621,7 @@
 	
 	                        // Include any tags
 	                        // Example below targets 3 specific tags
-	                        // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
+	                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
 	                        // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
 							//		"tag1 || tag2 || tag3");
 	
@@ -663,9 +665,9 @@
 
 ####在模擬器中測試推播通知
 
-如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。如果您的映像不支援原生 Google API，您最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
+如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。如果您的映像不支援原生 Google API，最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
 
-除此之外，請確定已將您的 Google 帳戶加入至執行中模擬器的 [設定] > [帳戶] 之下。否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
+除此之外，請確定已將 Google 帳戶加入至執行中模擬器的 [設定] > [帳戶] 之下。否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
 
 ####執行應用程式
 
@@ -677,7 +679,7 @@
 
    	![在 Android 上測試 - 傳送訊息][19]
 
-3. 按 [**傳送通知**]。任何執行應用程式的裝置將會顯示含推播通知訊息的 `AlertDialog` 執行個體。未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。從左上角往下撥動，即可檢視通知。
+3. 按 [**傳送通知**]。任何執行應用程式的裝置都會顯示含推播通知訊息的 `AlertDialog` 執行個體。未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。從左上角往下撥動，即可檢視通知。
 
    	![在 Android 上測試 - 通知][21]
 
@@ -724,4 +726,4 @@
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

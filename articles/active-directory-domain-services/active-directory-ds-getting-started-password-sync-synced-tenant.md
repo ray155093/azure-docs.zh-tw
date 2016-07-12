@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/25/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 啟用 Azure AD 網域服務的密碼同步處理
@@ -40,7 +40,7 @@
 
 **[下載 Azure AD Connect](http://www.microsoft.com/download/details.aspx?id=47594)**
 
-建議版本：**1.1.130.0** - 已於 2016 年 4 月 12 日發佈。
+建議版本：**1.1.189.0** - 已於 2016 年 6 月 3 日發佈。
 
   > [AZURE.WARNING] 您「必須」安裝建議的最新 Azure AD Connect 版本，才能將傳統密碼認證 (NTLM 和 Kerberos 驗證所需的認證) 同步處理到 Azure AD 租用戶。此功能無法在舊版的 Azure AD Connect 中使用，或與舊版 DirSync 工具搭配使用。
 
@@ -80,4 +80,4 @@ Set-ADSyncAADPasswordSyncConfiguration -SourceConnector $adConnector -TargetConn
 
 - [將 Red Hat Enterprise Linux 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

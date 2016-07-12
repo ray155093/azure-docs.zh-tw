@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="06/02/2016"
+   ms.date="07/02/2016"
    ms.author="elizapo"/>
 
 # 使用 Azure RemoteApp 在任何裝置上執行任何 Windows 應用程式
@@ -28,7 +28,9 @@
 
 請注意：因為 Access 是一個資料庫，而且我們想要使用該資料庫，所以我們會進行一些額外的步驟，讓使用者存取 Access 資料共用。如果您的應用程式不是資料庫，或不需要使用者能夠存取檔案共用，您可以略過本教學課程中的這些步驟
 
-[AZURE.INCLUDE [free-trial-note](../../includes/free-trial-note.md)]
+> [AZURE.NOTE] <a name="note"></a>您必須有 Azure 帳戶，才能完成本教學課程：
+> - 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+> - 您可以[啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
 
 ## 在 RemoteApp 中建立集合
@@ -119,4 +121,4 @@
 <!--Image references-->
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

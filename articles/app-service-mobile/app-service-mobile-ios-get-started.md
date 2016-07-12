@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="hero-article"
-	ms.date="04/19/2016"
+	ms.date="06/30/2016"
 	ms.author="krisragh"/>
 
 #建立 iOS 應用程式
@@ -29,7 +29,7 @@
 若要完成此教學課程，您需要下列項目：
 
 * [作用中的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
-* 具有 [Visual Studio Community 2013] 或更新版本的電腦 
+* 具有 [Visual Studio Community 2013] 或更新版本的電腦
 * 具有 Xcode 7.3 或更新版本的 Mac
 
 ## 步驟 I：建立新的 Azure 行動應用程式後端
@@ -52,4 +52,4 @@
 [Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
 [Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -85,7 +85,7 @@
 
     ```
     private static final String connectionString = "{yourhubconnectionstring}";
-    private static final String deviceId = "javadevice";
+    private static final String deviceId = "myFirstJavaDevice";
     
     ```
     
@@ -325,12 +325,12 @@
     import java.util.concurrent.ExecutorService;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdeviceid}** 和 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置值：
+7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置金鑰值：
 
     ```
-    private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}";
+    private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myFirstJavaDevice;SharedAccessKey={yourdevicekey}";
     private static IotHubClientProtocol protocol = IotHubClientProtocol.AMQPS;
-    private static String deviceId = "{yourdeviceid}";
+    private static String deviceId = "myFirstJavaDevice";
     private static DeviceClient client;
     ```
 
@@ -489,4 +489,4 @@
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/25/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 建立或選取虛擬網路
@@ -70,4 +70,4 @@
 ## 工作 3 - 啟用 Azure AD 網域服務
 下一個組態工作是[啟用 Azure AD 網域服務](active-directory-ds-getting-started-enableaadds.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

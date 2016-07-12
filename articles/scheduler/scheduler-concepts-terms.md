@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="get-started-article"
- ms.date="03/09/2016"
+ ms.date="06/30/2016"
  ms.author="krisragh"/>
 
 # 排程器概念、術語及實體階層
@@ -45,7 +45,7 @@
 
 在基本層級中，排程工作有幾個部分：
 
-- 要在工作計時器啟動時執行的動作  
+- 要在工作計時器啟動時執行的動作
 
 - (選用) 執行工作的時間
 
@@ -109,7 +109,7 @@
 
 如同上述範例排程器工作中所見，工作定義具有數個部分：
 
-- 開始時間 ("startTime")  
+- 開始時間 ("startTime")
 
 - 動作 ("action")，其中包含錯誤動作 ("errorAction")
 
@@ -160,7 +160,7 @@
 
 週期具有數個部分：
 
-- 頻率：分鐘、小時、天、週、月、年的其中一個  
+- 頻率：分鐘、小時、天、週、月、年的其中一個
 
 - 間隔：週期特定頻率的間隔
 
@@ -214,4 +214,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

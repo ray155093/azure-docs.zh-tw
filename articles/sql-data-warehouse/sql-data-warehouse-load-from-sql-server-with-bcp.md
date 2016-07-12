@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/08/2016"
+   ms.date="06/30/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 
@@ -182,16 +182,16 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 您可以使用 bcp 的 **queryout** 函數匯出查詢結果，而不是匯出整份資料表。
 
 ## 後續步驟
-如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][]。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。如需有關在 SQL 資料倉儲上建立資料表的詳細資訊，請參閱[資料表設計][]或 [CREATE TABLE 語法][]。
+如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][]。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。如需有關在 SQL 資料倉儲上建立資料表的詳細資訊，請參閱[資料表概觀][]或 [CREATE TABLE 語法][]。
 
 <!--Image references-->
 
 <!--Article references-->
 
-[將資料載入 SQL 資料倉儲]: sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
-[資料表設計]: sql-data-warehouse-develop-table-design.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
+[將資料載入 SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[資料表概觀]: ./sql-data-warehouse-tables-overview.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 
 <!--MSDN references-->
 [bcp]: https://msdn.microsoft.com/library/ms162802.aspx
@@ -200,4 +200,4 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 <!--Other Web references-->
 [Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

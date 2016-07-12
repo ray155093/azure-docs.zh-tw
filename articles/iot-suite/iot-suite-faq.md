@@ -25,9 +25,13 @@
 
 - 如果您在 [Azure 入口網站中][lnk-azure-portal]刪除資源群組，您只刪除了該資源群組中的資源；您也必須在 [Azure 傳統入口網站][lnk-classic-portal]中刪除與預先設定解決方案相關聯的 Azure Active Directory 應用程式。
 
+### 我可以在一個訂用帳戶中佈建多少個 IoT 中樞執行個體？ 
+
+10 個。您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但根據預設，每一個訂用帳戶只可以佈建 10 個 IoT 中樞，如 [Azure 訂用帳戶限制][link-azuresublimits]所述。因此，每個預先設定的方案會佈建一個新的 IoT 中樞，所以您只能在指定的訂用帳戶中佈建最多 10 個預先設定的方案。
+
 ### 我可以在一個訂用帳戶中佈建多少個 DocumentDB 執行個體？
 
-50 個。您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但根據預設，每一個訂用帳戶只可以佈建 50 個 DocumentDB 執行個體。因此，您只可以在一個指定的訂用帳戶中最多佈建 5 個遠端監視預先設定的方案。
+50 個。您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但根據預設，每一個訂用帳戶只可以佈建 50 個 DocumentDB 執行個體。
 
 ### 我可以在一個訂用帳戶中佈建多少個免費 Bing 地圖服務 API？
 
@@ -35,7 +39,7 @@
 
 ### 我有使用靜態地圖的遠端監視解決方案部署，如何加入互動式 Bing 地圖？ 
 1. 從 [Azure 入口網站][lnk-azure-portal]取得 Bing Maps API for Enterprise QueryKey：
- 1. 在 [Azure 入口網站][lnk-azure-portal]中瀏覽至您的 Bing Maps API for Enterprise 所在的資源群組。
+ 1. 在 [Azure 入口網站][lnk-azure-portal]中瀏覽至 Bing Maps API for Enterprise 所在的資源群組。
  2. 按一下 [所有設定]，然後 [金鑰管理]。
  3. 您會注意到兩個金鑰 ︰MasterKey 和 QueryKey。複製 QueryKey 的值。
 
@@ -59,6 +63,7 @@
 請參閱 Eric Golpe 的部落格文章：[刪除 Azure AD 租用戶的逐步解說][lnk-delete-aad-tennant]。
 
 [link-azuresupportticket]: https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade
+[link-azuresublimits]: https://azure.microsoft.com/en-us/documentation/articles/azure-subscription-service-limits/#iot-hub-limits
 [lnk-azure-portal]: https://portal.azure.com
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-classic-portal]: https://manage.windowsazure.com
@@ -67,4 +72,4 @@
 [lnk-30daytrial]: https://azure.microsoft.com/free/
 [lnk-delete-aad-tennant]: http://blogs.msdn.com/b/ericgolpe/archive/2015/04/30/walkthrough-of-deleting-an-azure-ad-tenant.aspx
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

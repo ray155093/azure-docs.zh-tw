@@ -14,12 +14,12 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="05/13/2016"
+	ms.date="07/05/2016"
 	ms.author="carlrab"/>
 
 # SQL Database 選項和效能：了解每個服務層中可用的項目
 
-[Azure SQL Database](sql-database-technical-overview.md) 有多個服務層可處理不同的工作負載。您可以在應用程式零停機的情況下，隨時變更服務層。您也可以使用已定義的特性和價格[建立單一資料庫](sql-database-get-started.md)。或者，您可以藉由[建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)來管理多個資料庫。在這兩種情況下，服務層包含**基本**、**標準**和**進階**。這些層中的資料庫選項類似於單一資料庫和彈性集區，但彈性集區有其他考量。本文會提供單一資料庫和彈性資料庫的服務層詳細資料。
+[Azure SQL Database](sql-database-technical-overview.md) 有多個服務層可處理不同的工作負載。您可以在應用程式停機時間最短 (通常平均少於 4 秒) 的情況下，隨時[變更服務層](sql-database-scale-up.md)。您也可以使用已定義的特性和價格[建立單一資料庫](sql-database-get-started.md)。或者，您可以藉由[建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)來管理多個資料庫。在這兩種情況下，服務層包含**基本**、**標準**和**進階**。這些層中的資料庫選項類似於單一資料庫和彈性集區，但彈性集區有其他考量。本文會提供單一資料庫和彈性資料庫的服務層詳細資料。
 
 ## 服務層和資料庫選項
 基本、標準和高階服務層都具備 99.99% 的執行時間 SLA，並且提供可預測的效能、彈性的商務持續性選項、安全性功能，以及小時計費。下表提供最適用於不同應用程式工作負載的服務層範例。
@@ -33,7 +33,7 @@
 >[AZURE.NOTE] Web 和 Business Edition 均已淘汰。如果您打算繼續使用 Web 和 Business Edition，請閱讀[終止常見問題集](https://azure.microsoft.com/pricing/details/sql-database/web-business/)。
 
 ## 單一資料庫服務層和效能等級
-若為單一資料庫，每個服務層內有多個效能等級。您可以彈性選擇最符合您工作負載需求的層級。如果您需要相應增加或相應減少，可以很輕鬆地變更資料庫服務層，**您的應用程式完全不需要停機**。 如需詳細資訊，請參閱[變更資料庫服務層和效能層級](sql-database-scale-up.md)。
+若為單一資料庫，每個服務層內有多個效能等級。您可以彈性選擇最符合您工作負載需求的層級。如果您需要相應增加或相應減少，可以很輕鬆地變更資料庫的服務層。如需詳細資訊，請參閱[變更資料庫服務層和效能層級](sql-database-scale-up.md)。
 
 此處所列的效能特性會套用至使用 [SQL Database V12](sql-database-v12-whats-new.md) 建立的資料庫。如果 Azure 中的基礎硬體裝載了多個資料庫，您的資料庫仍然會有一組資源，且您資料庫的預期效能特性不會受到影響。
 
@@ -59,13 +59,13 @@
 [AZURE.INCLUDE [SQL DB DTU 說明](../../includes/sql-database-understanding-dtus.md)]
 
 ## 後續步驟
-- 請在 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)進一步了解這些層的價格。
+- 請在 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)進一步了解這些層的定價。
 - 了解[彈性資料庫集區](sql-database-elastic-pool-guidance.md)和[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 - 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
-- 如果您認識了 SQL Database 各個層，可以[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
+- 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
 
 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

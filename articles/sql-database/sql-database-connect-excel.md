@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/25/2016"
+	ms.date="07/05/2016"
 	ms.author="joseidz"/>
 
 
@@ -30,7 +30,7 @@
 
 開始之前，Azure 中需要有 SQL Database。如果您沒有，請參閱[建立您的第一個 SQL Database](sql-database-get-started.md) 以取得包含範例資料的資料庫，並執行幾分鐘的時間。在本文中，您會將該文章中的範例資料匯入 Excel 中，但是您可以依照類似的步驟並使用您自己的資料來執行。
 
-您也會需要 Excel。本文使用 [Microsoft Excel 2016](https://products.office.com/zh-TW/)。
+您也會需要 Excel。本文使用 [Microsoft Excel 2016](https://products.office.com/en-US/)。
 
 ## 將 Excel 連接到 SQL Database 並建立 odc 檔案
 
@@ -83,4 +83,4 @@
 - 了解[彈性集區](sql-database-elastic-pool.md)的優點。
 - 了解如何[建立 Web 應用程式以連接到後端的 SQL Database](../app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

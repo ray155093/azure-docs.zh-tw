@@ -76,7 +76,7 @@
 
     ```
     var device = new iothub.Device(null);
-    device.deviceId = 'myFirstDevice';
+    device.deviceId = 'myFirstNodeDevice';
     registry.create(device, function(err, deviceInfo, res) {
       if (err) {
         registry.get(device.deviceId, printDeviceInfo);
@@ -201,10 +201,10 @@
     var Message = require('azure-iot-device').Message;
     ```
 
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdeviceid}** 和 **{yourdevicekey}** 取代為您在「建立裝置身分識別」一節中產生的裝置值：
+5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置金鑰值：
 
     ```
-    var connectionString = 'HostName={youriothubname}.azure-devices.net;DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
+    var connectionString = 'HostName={youriothubname}.azure-devices.net;DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
     
     var client = clientFromConnectionString(connectionString);
     ```
@@ -220,7 +220,7 @@
     }
     ```
 
-7. 建立回呼，並使用 **setInterval** 函數每秒將新訊息傳送至 IoT 中樞：
+7. 建立回呼，並使用 **setInterval** 函式每秒將新訊息傳送至 IoT 中樞：
 
     ```
     var connectCallback = function (err) {
@@ -232,11 +232,11 @@
         // Create a message and send it to the IoT Hub every second
         setInterval(function(){
             var windSpeed = 10 + (Math.random() * 4);
-            var data = JSON.stringify({ deviceId: 'mydevice', windSpeed: windSpeed });
+            var data = JSON.stringify({ deviceId: 'myFirstNodeDevice', windSpeed: windSpeed });
             var message = new Message(data);
             console.log("Sending message: " + message.getData());
             client.sendEvent(message, printResultFor('send'));
-        }, 2000);
+        }, 1000);
       }
     };
     ```
@@ -306,4 +306,4 @@
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->
