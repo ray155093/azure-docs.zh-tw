@@ -73,7 +73,7 @@ Active Directory 和 DNS 基礎結構是大多數企業應用程式的必要項�
 
 [深入了解](site-recovery-active-directory.md)如何保護 Active Directory 和 DNS。
 
-## 保護 SQL Server
+##保護 SQL Server
 
 SQL Server 針對內部部署資料中心內許多商務應用程式，提供資料服務的資料服務基礎。Site Recovery 可與 SQL Server HA/DR 技術一起用來保護採用 SQL Server 的多層式企業應用程式。Site Recovery 提供：
 

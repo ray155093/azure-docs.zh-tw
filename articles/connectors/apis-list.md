@@ -38,7 +38,8 @@
 |[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|
 |[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**Online**][sharepointdoc]|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|
 |[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|[![API 圖示][trelloicon]<br/>**Trello**][trellodoc]|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|
-|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
+|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|
+[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
 
 ## 企業整合套件 (EIP) 連接器
 使用 EIP 連接器，針對包含 EAI 和 EDI 的 B2B 案例建立邏輯應用程式。
@@ -62,7 +63,10 @@
 連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 
-[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md) [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md) [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md)
+[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
+[立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
+[立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
+[將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"

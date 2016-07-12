@@ -210,7 +210,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 ### 在啟用 CORS 的情況下測試應用程式
 
-* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。
+* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。 
 
 	這一次，應用程式會讓您檢視、新增、編輯和刪除待辦事項項目。
 

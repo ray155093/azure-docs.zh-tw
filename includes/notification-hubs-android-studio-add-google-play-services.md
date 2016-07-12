@@ -1,4 +1,4 @@
-1. 按一下 Android Studio 工具列上的圖示以開啟 Android SDK Manager，或按一下工能表上的 [工具] -> [Android] -> [SDK Manager]。尋找專案中使用之 Android SDK 的目標版本，請按一下[顯示封裝詳細資料]來開啟該版本，然後選擇 [Google API] (如果尚未安裝的話)。
+1. 按一下 Android Studio 工具列上的圖示以開啟 Android SDK Manager，或按一下工能表上的 [工具] -> [Android] -> [SDK Manager]。尋找專案中使用之 Android SDK 的目標版本，請按一下[顯示封裝詳細資料]來開啟該版本，然後選擇 [Google API] \(如果尚未安裝的話)。
 
 2. 按一下 [SDK Tools] 索引標籤。如果您尚未安裝 Google Play 服務，按一下 **Google Play 服務**，如下所示。然後按一下 [套用] 來安裝。
  
@@ -11,7 +11,7 @@
 
 	![](./media/notification-hubs-android-studio-add-google-play-services/notification-hubs-android-studio-add-google-play-dependency.png)
 
-4. 新增此行至 *相依項目*下方：
+4. 新增此行至 *相依項目* 下方：
 
    		compile 'com.google.android.gms:play-services-gcm:9.2.0'
 
