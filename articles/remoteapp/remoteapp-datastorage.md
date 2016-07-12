@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/07/2016"
+    ms.date="06/27/2016"
     ms.author="elizapo" />
 
 
@@ -39,7 +39,7 @@
 重點︰
 
 - 建立自訂映像時，可能遺失的機密資料絕不儲存在映像上。
-- 機密資料應該一律放在雲端的個別檔案伺服器、個別 Azure VM 上，一律是在 Azure RemoteApp 中裝載應用程式的 VM 執行個體外部。 
+- 機密資料應該一律放在雲端的個別檔案伺服器、個別 Azure VM 上，一律是在 Azure RemoteApp 中裝載應用程式的 VM 執行個體外部。
 - 使用者資料儲存和保存在使用者設定檔磁碟 (UPD)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

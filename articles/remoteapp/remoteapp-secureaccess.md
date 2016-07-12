@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="04/05/2016" 
+    ms.date="06/27/2016" 
     ms.author="elizapo" />
 
 # 保護 Azure RemoteApp 的存取，且後續將會推出更多功能
@@ -34,7 +34,7 @@
 使用 Azure AD 帳戶來控制 Azure RemoteApp 的存取有兩個好處：
 
 1.	我們永遠會知道誰可以存取已發行的應用程式以及這些應用程式所連接到的後端。
-2.	我們能控制基礎的 Azure AD，因此可以建立和刪除使用者帳戶、設定密碼原則，以及使用 Multi-Factor Authentication 等等。 
+2.	我們能控制基礎的 Azure AD，因此可以建立和刪除使用者帳戶、設定密碼原則，以及使用 Multi-Factor Authentication 等等。
 
 ## 集合的存取方式為何？ 是從哪裡進行存取的？
 系統管理員通常會想要定義原則，來規範公用網際網路面向環境 (例如 Azure RemoteApp) 的存取。比方說，他們想要確定從公司網路外部存取環境的使用者必須使用 Multi-Factor Authentication (MFA) 才能取得存取權，或者，應該全都遭到封鎖。
@@ -110,4 +110,4 @@ Azure RemoteApp 支援兩種集合部署類型，您可以在其中提供您自�
 ## 完整解決方案
 下圖顯示完整的解決方案，我們在其中建置了起自使用者、經過 Azure RemoteApp (ARA)，並於最後進入後端資源的安全存取通道。![保護 Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png)在階段 1 中，我們已選取使用者，並建立了控制 ARA 存取方式的存取規則。在下面的範例中，我們只允許從公司網路進行工作的使用者進行存取。不符合此規定的使用者將完全無法存取 ARA 環境。在「階段 2」中，我們公開了後端資源，但只能透過我們所控制的 VNet/VPN 組態來存取。Azure RemoteApp 已放置於相同的 VNet。最終結果是只能透過 ARA 環境存取資源。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0629_2016-->

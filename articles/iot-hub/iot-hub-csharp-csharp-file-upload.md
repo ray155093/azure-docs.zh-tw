@@ -35,12 +35,106 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 + Microsoft Visual Studio 2015，
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fiot%2Ftutorials%2Ffile-upload%2F target="\_blank")。
++ 使用中的 Azure 帳戶。(如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
 
-[AZURE.INCLUDE [iot-hub-file-upload-device-csharp](../../includes/iot-hub-file-upload-device-csharp.md)]
+## 讓 Azure 儲存體帳戶與 IoT 中樞產生關聯
 
+由於模擬裝置會將檔案上傳至 Azure 儲存體 Blob，因此您必須擁有和 IoT 中樞關聯的 [Azure 儲存體]帳戶。當您在建立儲存體帳戶與 IoT 中樞的關聯時，該中樞會產生可供裝置安全地將檔案上傳至 Blob 容器的 SAS URI。IoT 中樞服務和裝置 SDK 會協調產生 SAS URI 的程序，並使其可供裝置用來上傳檔案。
 
-[AZURE.INCLUDE [iot-hub-file-upload-cloud-csharp](../../includes/iot-hub-file-upload-cloud-csharp.md)]
+請依照[透過 Azure 入口網站管理 IoT 中樞]中的指示，讓 Azure 儲存體帳戶與 IoT 中樞產生關聯。
+
+## 從模擬裝置上傳檔案
+
+在本節中，您將修改在[使用 IoT 中樞傳送雲端到裝置訊息]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
+
+1. 在 Visual Studio 中，以滑鼠右鍵按一下 **SimulatedDevice** 專案，按一下 [新增]，然後按一下 [現有項目]。瀏覽至影像檔並將它包含在您的專案中。本教學課程假設影像名稱為`image.jpg`。
+
+2. 以滑鼠右鍵按一下影像，然後按一下 [內容]。確定 [複製到輸出目錄] 是設為 [一律複製]。
+
+    ![][1]
+
+3. 在 **Program.cs** 檔的頂端，新增下列陳述式：
+
+        using System.IO;
+
+4. 將下列方法加入至 **Program** 類別：
+         
+        private static async void SendToBlobAsync()
+        {
+            string fileName = "image.jpg";
+            Console.WriteLine("Uploading file: {0}", fileName);
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            using (var sourceData = new FileStream(@"image.jpg", FileMode.Open))
+            {
+                await deviceClient.UploadToBlobAsync(fileName, sourceData);
+            }
+
+            watch.Stop();
+            Console.WriteLine("Time to upload file: {0}ms\n", watch.ElapsedMilliseconds);
+        }
+
+    `UploadToBlobAsync` 方法會取得要上傳之檔案的檔案名稱與資料流來源，然後處理上傳至儲存體的工作。主控台應用程式會顯示上傳檔案時使用的時間。
+
+5. 將下列方法新增到 **Main** 方法中緊接在 `Console.ReadLine()` 行前面：
+
+        SendToBlobAsync();
+
+> [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在生產環境程式碼中，您應該如 MSDN 文章[暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
+
+## 接收檔案上傳通知
+
+在本節中，您將撰寫 Windows 主控台應用程式，它會接收來自 IoT 中樞的檔案上傳通知訊息。
+
+1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立新的 Visual C# Windows 專案。將專案命名為 **ReadFileUploadNotification**。
+
+    ![Visual Studio 中的新專案][2]
+
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadFileUploadNotification** 專案，然後按一下 [管理 NuGet 封裝]。
+
+    此時會顯示 [管理 NuGet 封裝] 視窗。
+
+2. 搜尋 `Microsoft.Azure.Devices`，然後按一下 [**安裝**] 並接受使用條款。
+
+	這會下載及安裝參考，並將參考加入 **ReadFileUploadNotification** 專案中的 [Azure IoT - 服務 SDK NuGet 封裝]。
+
+3. 在 **Program.cs** 檔的頂端，新增下列陳述式：
+
+        using Microsoft.Azure.Devices;
+
+4. 將下列欄位新增到 **Program** 類別。將預留位置的值替換成[開始使用 IoT 中樞] 中的 IoT 中樞連接字串：
+
+		static ServiceClient serviceClient;
+        static string connectionString = "{iot hub connection string}";
+        
+5. 將下列方法加入至 **Program** 類別：
+   
+        private async static Task ReceiveFileUploadNotificationAsync()
+        {
+            var notificationReceiver = serviceClient.GetFileNotificationReceiver();
+
+            Console.WriteLine("\nReceiving file upload notification from service");
+            while (true)
+            {
+                var fileUploadNotification = await notificationReceiver.ReceiveAsync();
+                if (fileUploadNotification == null) continue;
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Received file upload noticiation: {0}", string.Join(", ", fileUploadNotification.BlobName));
+                Console.ResetColor();
+
+                await notificationReceiver.CompleteAsync(fileUploadNotification);
+            }
+        }
+
+    請注意，這裡的接收模式，與用來從裝置應用程式接收雲端到裝置訊息的模式相同。
+
+6. 最後，將下列幾行加入至 **Main** 方法：
+
+        Console.WriteLine("Receive file upload notifications\n");
+        serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
+        ReceiveFileUploadNotificationAsync().Wait();
+        Console.ReadLine();
 
 ## 執行應用程式
 
@@ -70,6 +164,8 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 <!-- Images. -->
 
 [50]: ./media/iot-hub-csharp-csharp-file-upload/run-apps1.png
+[1]: ./media/iot-hub-csharp-csharp-file-upload/image-properties.png
+[2]: ./media/iot-hub-csharp-csharp-file-upload/create-identity-csharp1.png
 
 <!-- Links -->
 
@@ -90,7 +186,14 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [IoT 中心開發人員指南]: iot-hub-devguide.md
 [IoT Hub Supported Devices]: iot-hub-supported-devices.md
 [開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
-[Supported devices]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/tested_configurations.md
+[Supported devices]: iot-hub-tested-configurations.md
 [Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
 
-<!---HONumber=AcomDC_0622_2016-->
+[IoT Hub Developer Guide - C2D]: iot-hub-devguide.md#c2d
+[暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
+[透過 Azure 入口網站管理 IoT 中樞]: iot-hub-manage-through-portal.md#file-upload
+[Azure IoT - 服務 SDK NuGet 封裝]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
+[lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
+
+<!---HONumber=AcomDC_0629_2016-->

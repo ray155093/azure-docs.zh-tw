@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
-	ms.date="05/18/2016" 
+	ms.date="06/30/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Redis 快取建立 Web 應用程式
@@ -82,7 +82,7 @@
 
 ### 新增模型
 
-1. 在 [方案總管] 中以滑鼠右鍵按一下 [模型]，並選擇 [新增] > [類別]。 
+1. 在 [方案總管] 中以滑鼠右鍵按一下 [模型]，並選擇 [新增] > [類別]。
 
     ![新增模型][cache-model-add-class]
 
@@ -190,7 +190,7 @@
 
 ### 新增控制器
 
-1. 按 **F6** 來建置專案。 
+1. 按 **F6** 來建置專案。
 2. 在 [方案總管] 中，於 [控制器] 資料夾上按一下滑鼠右鍵，然後依序選擇 [新增] 和 [控制器]。
 
     ![新增控制器][cache-add-controller]
@@ -236,7 +236,7 @@
 
 ### 設定檢視
 
-1. 在 [方案總管] 中依序展開 [檢視] 資料夾和 [共用] 資料夾，然後按兩下 [**\_Layout.cshtml**]。
+1. 在 [方案總管] 中依序展開 [檢視] 資料夾和 [共用] 資料夾，然後按兩下 **\_Layout.cshtml**。
 
     ![\_Layout.cshtml][cache-layout-cshtml]
 
@@ -268,7 +268,7 @@
 
 ### 設定應用程式以使用 StackExchange.Redis
 
-1. 若要在 Visual Studio 中使用 StackExchange.Redis NuGet 封裝來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。 
+1. 若要在 Visual Studio 中使用 StackExchange.Redis NuGet 封裝來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。
 
     ![Manage NuGet packages][redis-cache-manage-nuget-menu]
 
@@ -846,4 +846,4 @@
 [cache-delete-resource-group]: ./media/cache-web-app-howto/cache-delete-resource-group.png
 [cache-delete-confirm]: ./media/cache-web-app-howto/cache-delete-confirm.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

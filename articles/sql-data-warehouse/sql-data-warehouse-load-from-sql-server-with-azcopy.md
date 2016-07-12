@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/08/2016"
+   ms.date="06/30/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 
@@ -56,7 +56,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 "
 ```
 
->[AZURE.NOTE] 如需有關在 SQL 資料倉儲上建立資料表和 WITH 子句中可用選項的詳細資訊，請參閱[資料表設計][]或 [CREATE TABLE 語法][]。
+>[AZURE.NOTE] 如需有關在 SQL 資料倉儲上建立資料表和 WITH 子句中可用選項的詳細資訊，請參閱[資料表概觀][]或 [CREATE TABLE 語法][]。
 
 ### 步驟 2：建立來源資料檔
 
@@ -159,10 +159,10 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 
 <!--Article references-->
 
-[將資料載入 SQL 資料倉儲]: sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
-[資料表設計]: sql-data-warehouse-develop-table-design.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
+[將資料載入 SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[資料表概觀]: ./sql-data-warehouse-tables-overview.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 
 <!--MSDN references-->
 [bcp]: https://msdn.microsoft.com/library/ms162802.aspx
@@ -171,4 +171,4 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 <!--Other Web references-->
 [Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

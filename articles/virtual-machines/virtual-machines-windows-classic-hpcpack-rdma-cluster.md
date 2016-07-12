@@ -18,14 +18,11 @@ ms.service="virtual-machines-windows"
 
 # 使用 HPC Pack 和 A8 與 A9 執行個體設定 Windows RDMA 叢集，以執行 MPI 應用程式
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
-
-
 使用 [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) 和[大小為 A8 和 A9 的計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)，在 Azure 中設定 Windows RDMA 叢集，以執行平行訊息傳遞介面 (MPI) 應用程式。當您設定 A8 和 A9 大小的 Windows Server 執行個體在 HPC Pack 中執行時，MPI 應用程式可透過低延遲、高輸送量網路，在運用遠端直接記憶體存取 (RDMA) 技術的 Azure 中進行有效率的通訊。
 
 如果您想要在存取 Azure RDMA 網路的 Linux VM 上執行 MPI 工作負載，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ## HPC Pack 叢集部署選項
 Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Server 型 HPC 叢集。HPC Pack 包含 Windows 訊息傳遞介面 (MS-MPI) 之 Microsoft 實作的執行階段環境。在使用 A8 和 A9 執行個體時，HPC Pack 會是執行可存取 Azure 中 RDMA 網路之 Windows MPI 應用程式最有效的方式。
@@ -56,13 +53,13 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 
 ### 使用 A8 和 A9 執行個體的考量
 
-* **Proxy 節點** - 在大量計算執行個體的每個「將量擴大到 Azure」部署中，除了您指定的 Azure 背景工作角色執行個體以外，HPC Pack 還會自動部署至少 2 個 A8 大小的執行個體作為 Proxy 節點。Proxy 節點會使用配置給訂用帳戶的核心，並產生 Azure 背景工作角色執行個體的相關費用。
+* **Proxy 節點** - 在大量計算執行個體的每個「將量擴大到 Azure」部署中，除了您指定的 Azure 背景工作角色執行個體以外，HPC Pack 還會自動部署至少 2 個 A8 大小執行個體做為 Proxy 節點。Proxy 節點會使用配置給訂用帳戶的核心，並產生 Azure 背景工作角色執行個體的相關費用。
 
 ### 步驟
 
 4. **部署及設定 HPC Pack 2012 R2 前端節點**
 
-    從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=49922)下載最新的 HPC Pack 安裝套件。如需 Azure 高載部署準備工作的需求和指示，請參閱 [HPC Pack 快速入門指南](https://technet.microsoft.com/library/jj884144.aspx)和[使用 Microsoft HPC Pack 將量擴大到 Azure 背景工作執行個體](https://technet.microsoft.com/library/gg481749.aspx)。
+    從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=49922)下載最新的 HPC Pack 安裝套件。如需 Azure 高載部署準備工作的需求和指示，請參閱 [HPC Pack Getting Started Guide (HPC Pack 入門指南)](https://technet.microsoft.com/library/jj884144.aspx) 和 [Burst to Azure Worker Instances with Microsoft HPC Pack (使用 Microsoft HPC Pack 將量擴大到 Azure 背景工作執行個體)](https://technet.microsoft.com/library/gg481749.aspx)。
 
 5. **在 Azure 訂用帳戶中設定管理憑證**
 
@@ -74,7 +71,7 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 
 7. **建立 Azure 節點範本**
 
-    使用 [HPC 叢集管理員] 中的 [建立節點範本精靈]。如需相關步驟，請參閱「使用 Microsoft HPC Pack 部署 Azure 節點的步驟」中的[建立 Azure 節點範本](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Templ)。
+    使用 [HPC 叢集管理員] 中的 [建立節點範本精靈]。如需相關步驟，請參閱＜使用 Microsoft HPC Pack 部署 Azure 節點的步驟＞中的[建立 Azure 節點範本](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Templ)。
 
     為了進行初始測試，建議您在範本中設定手動可用性原則。
 
@@ -122,11 +119,11 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 
     * **雲端服務** - 建議您將前端節點部署在一個雲端服務中，並將 A8 和 A9 運算節點部署在另一個雲端服務中。
 
-    * **前端節點大小** - 在此案例中，請考慮讓前端節點至少使用 A4 的大小 (超大型)。
+    * **前端節點大小** - 在此案例中，請考慮讓前端節點至少使用 A4 的大小 (特大)。
 
     * **HpcVmDrivers 延伸模組** - 當您使用 Windows Server 作業系統部署 A8 或 A9 大小的運算節點時，部署指令碼會自動安裝 Azure VM 代理程式和 HpcVmDrivers 延伸模組。HpcVmDrivers 會在運算節點 VM 上安裝驅動程式，使其可以連接到 RDMA 網路。
 
-    * **叢集網路組態** - 部署指令碼會自動在拓撲 5 (企業網路上的所有節點) 上設定 HPC Pack 叢集。VM 中的所有 HPC Pack 叢集部署都需要此拓撲。後續請勿變更此叢集網路拓撲。
+    * **叢集網路組態** - 部署指令碼會自動以拓撲 5 (企業網路上的所有節點) 設定 HPC Pack 叢集。VM 中的所有 HPC Pack 叢集部署都需要此拓撲。後續請勿變更此叢集網路拓撲。
 
 2. **讓運算節點上線執行工作**
 
@@ -136,7 +133,7 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 
     連接到前端節點以提交工作，或設定內部部署電腦來執行這項操作。如需相關資訊，請參閱[將工作提交至 Azure 中的 HPC 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md)。
 
-4. **讓節點離線並加以停止 (取消配置)**
+4. **讓節點離線並加以停止 (解除配置)**
 
     工作執行完成後，請使用 [HPC 叢集管理員] 讓節點離線。然後，使用 Azure 管理工具將其關閉。
 
@@ -221,7 +218,7 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 
 * 若要在 Azure 執行個體上執行 MPI 應用程式，請執行 **hpcfwutil** 命令，對 Windows 防火牆註冊執行個體上的每個 MPI 應用程式。如此，即可在防火牆動態指派的連接埠上進行 MPI 通訊。
 
-    >[AZURE.NOTE] 針對「將量擴大到 Azure」部署，您也可以設定防火牆例外狀況命令，使其在所有新增至您的叢集的新 Azure 節點上自動執行。在您執行 **hpcfwutil** 命令並驗證應用程式可運作之後，請將命令新增至 Azure 節點的啟動指令碼。如需詳細資訊，請參閱 [Use a Startup Script for Azure Nodes (使用 Azure 節點的啟動指令碼)](https://technet.microsoft.com/library/jj899632.aspx)。
+    >[AZURE.NOTE] 針對「將量擴大到 Azure」部署，您也可以設定防火牆例外狀況命令，使其在所有新增至您的叢集的新 Azure 節點上自動執行。在您執行 **hpcfwutil** 命令並驗證應用程式可運作之後，請將命令新增至 Azure 節點的啟動指令碼。如需詳細資訊，請參閱 [Use a Startup Script for Azure Nodes (針對 Azure 節點使用啟動指令碼)](https://technet.microsoft.com/library/jj899632.aspx)。
 
 
 
@@ -246,4 +243,4 @@ Microsoft HPC Pack 是免費提供的工具，可在 Azure 中建立 Windows Ser
 [pingpong1]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/pingpong1.png
 [pingpong2]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/pingpong2.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

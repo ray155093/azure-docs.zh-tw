@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="01/28/2016"
+   ms.date="06/28/2016"
    ms.author="larryfr"/>
 
 # 在 HDInsight (Hadoop) 中使用 Apache Storm、事件中樞和 HBase 分析感應器資料
 
 了解如何使用 Apache Storm on HDInsight 處理 Azure 事件中樞的感應器資料，並使用 D3.js 將其視覺化呈現。本文件也將說明如何透過 Azure 虛擬網路，將 Storm on HDInsight 與 HBase on HDInsight 連線，並將拓撲的資料儲存至 HBase。
 
-> [AZURE.NOTE] 本文件中的資訊以在 HDInsight 叢集上使用以 Windows 為基礎的 Storm 為基礎。如需從 HDInsight 上以 Linux 為基礎的 Storm 使用 Azure 事件中樞的相關資訊，請參閱[使用 HDInsight 上的 Storm 處理 Azure 事件中樞的事件](hdinsight-storm-develop-java-event-hub-topology.md)
+> [AZURE.NOTE] 本文件中的資訊以在 HDInsight 叢集 3.2 版上使用以 Windows 為基礎的 Storm 為基礎。如需從 HDInsight 上以 Linux 為基礎的 Storm 使用 Azure 事件中樞的相關資訊，請參閱[使用 HDInsight 上的 Storm 處理 Azure 事件中樞的事件](hdinsight-storm-develop-java-event-hub-topology.md)
 
 ## 必要條件
 
@@ -93,7 +93,7 @@
 
 事件中樞是此範例的資料來源。請使用下列步驟建立新的事件中心。
 
-1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增] > [服務匯流排] > [事件中樞] > [自訂建立]。
+1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增]| Service Bus | Event Hub | Custom Create**.
 
 2. 在 [新增事件中樞] 對話方塊中，輸入 [事件中樞名稱]，選取要建立中樞的 [區域]，然後建立新的命名空間或選取現有的命名空間。最後，按一下箭頭以繼續。
 
@@ -196,7 +196,7 @@
 
 		Server listening at port 3000
 
-2. 開啟 Web 瀏覽器，在網址列輸入 ****http://localhost:3000/**。您應該會看到如下所示的頁面：
+2. 開啟 Web 瀏覽器，在網址列輸入 **http://localhost:3000/**。您應該會看到如下所示的頁面：
 
 	![Web 儀表板](./media/hdinsight-storm-sensor-data-analysis/emptydashboard.png)
 
@@ -372,7 +372,7 @@
 
 	HBase Bolt 將藉此與 HBase 叢集通訊。
 
-1. 以文字編輯器開啟 **hdinsight-eventhub-example\\TemperatureMonitor\\src\\main\\java\\com\\microsoft\\examples\\bolts**，並將開頭的 `//` 移除以取消以下行的註解。完成此項變更後，請儲存檔案。
+1. 以文字編輯器開啟「hdinsight-eventhub-example\\TemperatureMonitor\\src\\main\\java\\com\\microsoft\\examples\\bolts」，並將開頭的 `//` 移除以取消以下行的註解。完成此項變更後，請儲存檔案。
 
 		topologyBuilder.setBolt("HBase", new HBaseBolt("SensorData", mapper).withConfigKey("hbase.conf"), spoutConfig.getPartitionCount())
     	  .fieldsGrouping("Parser", "hbasestream", new Fields("deviceid")).setNumTasks(spoutConfig.getPartitionCount());
@@ -427,4 +427,4 @@
 
 [azure-portal]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0629_2016-->

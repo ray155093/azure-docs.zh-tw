@@ -3,7 +3,7 @@
    description="對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
+   authors="minewiskan"
    manager="NA"
    editor=""
    tags=""/>
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="05/16/2016"
-   ms.author="derrickv"/>
+   ms.date="06/28/2016"
+   ms.author="owend"/>
 
 # 開始使用 Microsoft Power BI Embedded 範例
 
-**Microsoft Power BI Embedded 預覽** 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化。下列資源可協助您開始將 Power BI 報表整合到您的應用程式中。
+透過 **Microsoft Power BI Embedded 預覽**，您可以將 Power BI 報表整合到 Web 或行動應用程式中，就不需要建立自訂解決方案來為使用者將資料視覺化。下列資源可協助您開始將 Power BI 報表整合到您的應用程式中。
 
  -	[範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
  -	[Power BI Embedded API 參考](https://msdn.microsoft.com/library/mt711493.aspx)
@@ -242,4 +242,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 - [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
 - [關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

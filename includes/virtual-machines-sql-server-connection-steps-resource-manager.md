@@ -14,6 +14,8 @@
 
 3. 輸入 DNS 標籤名稱。此名稱是「A 紀錄」，可用來透過名稱 (而非直接透過 IP 位址) 連線到 SQL Server VM。
 
+4. 按一下 [儲存] 按鈕。
+
 	![DNS 標籤](./media/virtual-machines-sql-server-connection-steps/rm-dns-label.png)
 
 ### 從另一部電腦連接 Database Engine
@@ -31,3 +33,5 @@
 7. 按一下 [連接]。
 
 	![SSMS 連線](./media/virtual-machines-sql-server-connection-steps/rm-ssms-connect.png)
+
+<!---HONumber=AcomDC_0629_2016-->

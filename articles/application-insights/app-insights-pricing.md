@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/17/2016" 
+	ms.date="06/22/2016" 
 	ms.author="awills"/>
 
 # 管理 Application Insights 的定價和配額
@@ -48,7 +48,7 @@ Application Insights 目前僅供預覽。
 
 ## 每月配額
 
-* 您的應用程式每月最多可以將指定的遙測資料量上傳至 Application Insights。目前免費定價層的配額是每個月 5 百萬個資料點，而其他訂價配置會提供多出許多的配額。如果您的配額用完了，可以購買更多的配額。如需實際數字，請參閱[定價機制][pricing]。 
+* 您的應用程式每月最多可以將指定的遙測資料量上傳至 Application Insights。目前免費定價層的配額是每個月 5 百萬個資料點，而其他訂價配置會提供多出許多的配額。如果您的配額用完了，可以購買更多的配額。如需實際數字，請參閱[定價機制][pricing]。
 * 配額取決於您所選擇的定價層。
 * 配額的計算是從每個月第一天的午夜起 (UTC)。
 * 資料點圖表會顯示您這個月已使用多少配額。
@@ -64,7 +64,7 @@ Application Insights 目前僅供預覽。
  * [度量](app-insights-metrics-explorer.md) (例如效能計數器) 的每個原始測量資料。(您在圖表看到的點通常是多個原始資料點的彙總)。
  * Web 可用性圖表上的每個點，也都是幾個資料點的彙總。
 * 您也可以在偵錯時，在來源檢查個別的資料點：
- * 如果您在 Visual Studio 的偵錯模式中執行應用程式，資料點會記錄在輸出視窗中。 
+ * 如果您在 Visual Studio 的偵錯模式中執行應用程式，資料點會記錄在輸出視窗中。
  * 若要查看用戶端資料點，請開啟瀏覽器的偵錯窗格 (通常是 F12)，然後開啟 [網路] 索引標籤。
 * 資料速率 (預設) 可能會依[調適性取樣](app-insights-sampling.md)降低。這表示，隨著應用程式使用頻率的增加，遙測速率不會如像您預期一般增加。
 
@@ -119,7 +119,7 @@ Application Insights 目前僅供預覽。
 * 使用[取樣](app-insights-sampling.md)。這項技術可減少資料率而不會曲解您的計量，且不會中斷在 [搜尋] 中於相關項目之間瀏覽的能力。
 * [限制可回報的 Ajax 呼叫次數](app-insights-javascript.md#detailed-configuration) (在每個頁面檢視中) 或關閉 Ajax 報告功能。
 * 藉由[編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 來關閉您不需要的集合模組。例如，您可能會決定效能計數器或相依性資料是不必要的。
-* 預先彙總度量。如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。您也可以使用[預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。 
+* 預先彙總度量。如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。您也可以使用[預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。
 
 
 ## 取樣
@@ -145,10 +145,11 @@ Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 
 
 ## 名稱限制
 
-1.	您的應用程式具有最多 200 個唯一計量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型 (例如事件) 的度量資料 。每個檢測金鑰的[計量和屬性名稱][api]是全域的，不只限於資料類型。
-2.	只有在每個屬性具有少於 100 個唯一值時，[屬性][apiproperties]才能用於篩選和分組依據。唯一值超過 100 之後，屬性仍可用於搜尋與篩選，但無法用於篩選器。
+1.	您的應用程式具有最多 200 個唯一計量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型 (例如事件) 的度量資料 。每個檢測金鑰的[計量和屬性名稱][api]是全域的。
+2.	只有在每個屬性具有少於 100 個唯一值時，[屬性][apiproperties]才能用於篩選和分組依據。唯一值的數目超過 100 個之後，您仍可以搜尋屬性，但無法再用於篩選或分組依據。
 3.	標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。超過 1000 個唯一值之後，額外值都會標示為「其他值」。 原始值仍然可以用於全文檢索搜尋和篩選。
 
+如果您發現您的應用程式超過這些限制，請考慮依照不同的檢測金鑰來分割您的資料 - 也就是[建立新的 Application Insights 資源](app-insights-create-new-resource.md)，並將部分資料傳送至新的檢測金鑰。您可能會發現結果更具結構化。您可以使用[儀表板](app-insights-dashboards.md#dashboards)將不同的度量呈現在相同的畫面上，如此，這種方法就不會妨礙您比較不同的度量。
 
 ## 限制摘要
 
@@ -164,4 +165,4 @@ Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

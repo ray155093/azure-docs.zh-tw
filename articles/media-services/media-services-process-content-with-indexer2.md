@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/22/2016"   
+	ms.date="06/22/2016" 
 	ms.author="adsolank;juliako;"/>
 
 
@@ -289,4 +289,4 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

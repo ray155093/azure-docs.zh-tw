@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/28/2016"
+    ms.date="06/27/2016"
     ms.author="elizapo" />
 
 
@@ -30,4 +30,4 @@
 
 有人給您意見嗎？ 張貼問題到[討論區論壇](https://feedback.azure.com/forums/247748-azure-remoteapp/) (英文)。如果您有 [Azure 支援方案](https://azure.microsoft.com/support/plans/)，則可以提交支援案例。每個人都可以在我們的[意見反應論壇](https://feedback.azure.com/forums/247748-azure-remoteapp/) (英文) 上送出意見。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

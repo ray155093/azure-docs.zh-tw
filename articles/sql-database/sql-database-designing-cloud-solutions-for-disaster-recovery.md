@@ -32,7 +32,7 @@
 
 + 單一 Azure 區域中的作用中執行個體
 + 強烈依賴資料的讀寫 (RW) 存取
-+ 考量到延遲和流量成本，無法接受應用程式邏輯和資料庫之間的跨區域連接    
++ 考量到延遲和流量成本，無法接受應用程式邏輯和資料庫之間的跨區域連接
 
 在此情況下，應用程式部署拓撲經過最佳化，可處理區域性災害，此時所有應用程式元件都受影響，而需要當成一個單位來容錯移轉。在地理備援方面，應用程式邏輯和資料庫複寫到另一個區域，但在正常情況下不負責處理應用程式工作負載。次要地區中的應用程式應該設定為使用次要資料庫的 SQL 連接字串。流量管理員設為使用[容錯移轉路由方法](../traffic-manager/traffic-manager-configure-failover-routing-method.md)。
 
@@ -76,9 +76,9 @@
 此雲端災害復原選項最適合具有下列特性的應用程式：
 
 + 資料庫的讀取與寫入比率很高
-+ 資料庫寫入延遲不會影響使用者體驗  
++ 資料庫寫入延遲不會影響使用者體驗
 + 使用不同的連接字串可以隔開唯讀邏輯和讀寫邏輯
-+ 唯讀邏輯不依賴資料與最新更新完全同步  
++ 唯讀邏輯不依賴資料與最新更新完全同步
 
 如果您的應用程式具有這些特性，只要將使用者連接的負載分散於不同區域中的多個應用程式執行個體，即可改善效能和使用者體驗。若要達成此目標，每個區域都應該有應用程式的作用中執行個體，而且讀寫 (RW) 邏輯要連接到主要區域中的主要資料庫。唯讀 (RO) 邏輯應該連接到應用程式執行個體所在的相同區域中的次要資料庫。流量管理員應該設定為使用[循環配置資源路由](../traffic-manager/traffic-manager-configure-round-robin-routing-method.md)或[效能路由](../traffic-manager/traffic-manager-configure-performance-routing-method.md)，而且每個應用程式執行個體都啟用[端點監視](../traffic-manager/traffic-manager-monitoring.md)。
 
@@ -103,7 +103,7 @@
 
 + 應用程式執行個體和資料庫之間的讀寫連接有不同的延遲和成本
 + 運作中斷期間會影響應用程式效能
-+ 在資料庫容錯移轉之後，應用程式執行個體需要動態變更 SQL 連接字串。  
++ 在資料庫容錯移轉之後，應用程式執行個體需要動態變更 SQL 連接字串。
 
 > [AZURE.NOTE] 有一個類似的方法可用來卸載特殊工作負載，例如報告工作、商業智慧工具或備份。這些工作負載通常會耗用大量的資料庫資源，因此建議您為它們指定其中一個次要資料庫，而且效能層級要符合預期的工作負載。
 
@@ -156,17 +156,14 @@
 ## 後續步驟
 
 - 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-geo-restore.md)
+- 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-recovery-using-backups.md#geo-restore)
 
-## 其他資源
+## 後續步驟
 
-- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
-- [還原時間點](sql-database-point-in-time-restore.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

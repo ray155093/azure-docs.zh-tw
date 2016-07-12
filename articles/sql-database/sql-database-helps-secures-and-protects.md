@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="05/13/2016"
+   ms.date="06/23/2016"
    ms.author="carlrab"/>
    
 # Azure SQL Database 安全防護
@@ -33,7 +33,7 @@ Azure SQL Database 在雲端中支援數百萬的關鍵任務資料庫，這些�
 
 ## 最大的相容性組合
 
-SQL Database 在產業中具有最大的相容性組合。因此，如果您需要 HIPPA、FERPA 或甚至新加坡 MTCS 層級 3，請不用擔心，我們會提供支援。
+SQL Database 在產業中具有最大的相容性組合。因此，如果您需要 HIPPA 相容性、FERPA 或甚至新加坡 MTCS 層級 3，請不用擔心，我們會提供支援。
 
 [閱讀文件](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 
@@ -55,4 +55,4 @@ SQL Database 提供多個資料保護層。您的資料會在靜止時、移動�
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

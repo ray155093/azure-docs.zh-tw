@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/01/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -43,7 +43,7 @@ Azure Media Encryptor|停用|
 
 ##取得媒體處理器
 
-下列方法將說明如何取得媒體處理器執行個體。此程式碼範例假設會使用名為 **\_context** 的模組層級變數來參考伺服器內容，如[如何：以程式設計方式連接到媒體服務](media-services-dotnet-connect_programmatically.md)一節所述。
+下列方法將說明如何取得媒體處理器執行個體。此程式碼範例假設會使用名為 **\_context** 的模組層級變數來參考伺服器內容，如[做法：以程式設計方式連接到媒體服務](media-services-dotnet-connect-programmatically.md)一節所述。
 
 	private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
 	{
@@ -69,4 +69,4 @@ Azure Media Encryptor|停用|
 
 既然您已了解如何取得媒體處理器執行個體，請移至[如何為資產編碼](media-services-dotnet-encode-with-media-encoder-standard.md)主題，以了解如何使用媒體編碼器標準將資產編碼。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

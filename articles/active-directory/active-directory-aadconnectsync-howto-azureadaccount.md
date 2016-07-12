@@ -2,7 +2,7 @@
 	pageTitle="Azure AD Connect 同步處理︰如何管理 Azure AD 服務帳戶 | Microsoft Azure"
 	description="本主題將說明如何還原 Azure AD 服務帳戶。"
 	services="active-directory"
-    keywords="如何重設 Azure AD Connect 同步處理連接器服務帳戶的密碼"
+    keywords="AADSTS70002, AADSTS50054, 如何重設 Azure AD Connect 同步處理連接器服務帳戶的密碼"
 	documentationCenter=""
 	authors="andkjell"
 	manager="stevenpo"
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="06/27/2016"
 	ms.author="andkjell"/>
 
 # Azure AD Connect 同步處理︰如何管理 Azure AD 服務帳戶
@@ -29,7 +29,16 @@ Azure AD 連接器所使用的服務帳戶應該是免費的服務。但是如�
 
 這個 Cmdlet 將重設服務帳戶的密碼，並在 Azure AD 和同步處理引擎中加以更新。
 
+## 這些步驟可以解決的已知問題
+這是已依照下列步驟修正客戶所回報的錯誤清單。
+
+-----------
+事件 6900 伺服器在處理密碼變更通知時發生未預期的錯誤︰AADSTS70002︰驗證認證時發生錯誤。AADSTS50054︰使用舊密碼進行驗證。
+
+----------
+事件 659 擷取密碼原則同步處理設定時發生錯誤。Microsoft.IdentityModel.Clients.ActiveDirectory.AdalServiceException: AADSTS70002：驗證認證時發生錯誤。AADSTS50054︰使用舊密碼進行驗證。
+
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

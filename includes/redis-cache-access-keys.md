@@ -1,4 +1,4 @@
-若要連接到快取，快取用戶端需要主機名稱、連接埠和金鑰。某些用戶端可能會以稍有不同的名稱來參考這些項目。若要擷取這些項目，請在 [Azure 入口網站](https://portal.azure.com)中[瀏覽](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings)至您的快取，然後按一下 [設定] 或 [所有設定]。
+若要連接到 Azure Redis 快取執行個體，快取用戶端需要主機名稱、連接埠和快取金鑰。某些用戶端可能會以稍有不同的名稱來參考這些項目。若要擷取這些項目，請在 [Azure 入口網站](https://portal.azure.com)中[瀏覽](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings)至您的快取，然後按一下 [設定] 或 [所有設定]。
 
 ![Redis 快取設定](media/redis-cache-access-keys/redis-cache-settings.png)
 
@@ -13,3 +13,5 @@
 若要擷取存取金鑰，請按一下 [存取金鑰]。
 
 ![Redis 快取存取金鑰](media/redis-cache-access-keys/redis-cache-access-keys.png)
+
+<!---HONumber=AcomDC_0629_2016-->

@@ -23,7 +23,7 @@
 
 當您使用 VPN 閘道或 ExpressRoute 電路將網路擴充至 Azure 時，私人 IP 位址用於 Azure 虛擬網路 (VNet)、雲端服務和內部部署網路內的通訊。
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager deployment model](virtual-network-ip-addresses-overview-arm.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 部署模型執行這些步驟](virtual-network-ip-addresses-overview-arm.md)。
 
 ## 公用 IP 位址
 Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服務 (例如 [Azure Redis Cache](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)、[SQL Database](../sql-database/sql-database-technical-overview.md) 和 [Azure 儲存體](../storage/storage-introduction.md)) 進行通訊。
@@ -149,10 +149,10 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 
 在大多數情況下，公用 IP 位址是免費的。使用額外和 (或) 靜態公用 IP 位址則會有少許費用。請務必了解[公用 IP 的價格結構](https://azure.microsoft.com/pricing/details/ip-addresses/)。
 
-## Resource Manager 與傳統部署之間的差異
-以下是 Resource Manager 與傳統部署模型中 IP 定址功能的比較。
+## 資源管理員與傳統部署之間的差異
+以下是「資源管理員」與傳統部署模型中 IP 定址功能的比較。
 
-||資源|傳統|Resource Manager|
+||資源|傳統|資源管理員|
 |---|---|---|---|
 |**公用 IP 位址**|VM|稱為 ILPIP (僅動態)|稱為公用 IP (動態或靜態)|
 |||指派給 IaaS VM 或 PaaS 角色執行個體|關連到 VM 的 NIC|
@@ -166,4 +166,4 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 ## 後續步驟
 - 使用傳統入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-classic-pportal.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

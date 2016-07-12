@@ -24,7 +24,7 @@
 
 自動備份會針對執行 SQL Server 2014 Standard 或 Enterprise 之 Azure VM 上所有現存和新的資料庫，自動設定 [Managed Backup 到 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx)。這可讓您設定採用持久性 Azure Blob 儲存體的一般資料庫備份。自動備份相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]  
 傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動備份 (傳統)](virtual-machines-windows-classic-sql-automated-backup.md)。
 
 ## 必要條件
@@ -81,7 +81,7 @@
 
 ## 使用 PowerShell 進行設定
 
-佈建 SQL VM 之後，請使用 PowerShell 設定自動批次。
+佈建 SQL VM 之後，請使用 PowerShell 設定自動備份。
 
 在下列 PowerShell 範例中，是針對現有的 SQL Server 2014 VM 設定自動備份。**AzureRM.Compute\\New-AzureVMSqlServerAutoBackupConfig** 命令會設定自動備份設定，將備份儲存在與虛擬機器相關聯的 Azure 儲存體帳戶中。這些備份將會保留 10 天。**Set-AzureRmVMSqlServerExtension** 命令會使用這些設定更新指定的 Azure VM。
 
@@ -117,4 +117,4 @@
 
 如需在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016--->
+<!----HONumber=AcomDC_0629_2016-->

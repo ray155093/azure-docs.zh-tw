@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"  
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -42,10 +42,10 @@
 
    1. 如果內容已加密，請定義存取原則。
    2. 建立隨選串流定位器。
-   3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。 
+   3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。
    		
-	如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。 
-   4. 建置資訊清單檔或 MP4 檔案的 URL。 
+	如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。
+   4. 建置資訊清單檔或 MP4 檔案的 URL。
    5. 請注意，您無法使用包含寫入或刪除權限的 AccessPolicy 建立串流訂位器。
 
 
@@ -191,4 +191,4 @@ URL：**Path** + 資產檔案 MP4 名稱
 
 [設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

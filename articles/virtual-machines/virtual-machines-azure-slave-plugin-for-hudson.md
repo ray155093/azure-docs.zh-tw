@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
 # 如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合
@@ -156,7 +156,7 @@
 3. 針對工作類型選取 [**建置自由樣式的軟體作業**]。
 4. 按一下 [**確定**]。
 5. 在工作組態頁面中，選取 [**限制可以執行這個專案的位置**]。
-6. 選取 [**節點和標籤功能表**]，然後選取 [**linux**]\(上一節在建立虛擬機器範本時，我們指定了這個標籤)。
+6. 選取 [**節點和標籤功能表**]，然後選取 [**linux**] (上一節在建立虛擬機器範本時，我們指定了這個標籤)。
 
 7. 在 [**組件**] 區段中，按一下 [**新增組件步驟**]，然後選取 [**執行殼層**]。
 8. 編輯下列指令碼，將 **(github 帳戶名稱)**、**(專案名稱)** 和 **(專案目錄)** 取代為適當值，並在出現的文字區域中貼上編輯過的指令碼。
@@ -202,4 +202,4 @@ Hudson 就會使用上一節建立的範本建立從屬節點，並執行您針�
 [template config]: ./media/virtual-machines-azure-slave-plugin-for-hudson/hudson-setup-templateconfig1-withdata.png
 [OS family list]: ./media/virtual-machines-azure-slave-plugin-for-hudson/hudson-oslist.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

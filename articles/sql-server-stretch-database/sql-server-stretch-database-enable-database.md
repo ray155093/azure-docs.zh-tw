@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="06/27/2016"
 	ms.author="douglasl"/>
 
 # 為資料庫啟用 Stretch Database
 
 若要為現有的資料庫設定 Stretch Database，請在 SQL Server Management Studio 中選取資料庫的 [工作 | Stretch | 啟用]，以開啟 [為資料庫啟用 Stretch] 精靈。您也可以使用 Transact-SQL 來為資料庫啟用 Stretch Database。
 
-如果您選取資料表的 [工作 | Stretch | 啟用]，且尚未為資料庫啟用 Stretch Database，精靈將會為資料庫設定 Stretch Database，並且做為程序的一部分，讓您設定資料表。請遵循本主題中的步驟，而非 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-database.md) 中的步驟。
+如果您選取個別資料表的 [工作 | Stretch | 啟用]，且尚未為資料庫啟用 Stretch Database，精靈將會為資料庫設定 Stretch Database，並在程序執行過程中讓您選取資料表。請遵循本主題中的步驟，而非 [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-database.md) 中的步驟。
 
 在資料庫或資料表上啟用 Stretch Database 需要 db\_owner 權限。在資料庫或資料表上啟用 Stretch Database 也需要 CONTROL DATABASE 權限。
 
@@ -32,9 +32,9 @@
 
 -   Stretch Database 會將資料移轉至 Azure。因此您必須擁有 Azure 帳戶，以及計費的訂用帳戶。若要取得 Azure 帳戶，請[按一下這裡](http://azure.microsoft.com/pricing/free-trial/)。
 
--   請準備好建立新遠端資料庫或是選取現有遠端資料庫，並建立可讓您的本機伺服器與遠端伺服器通訊之防火牆規則的所需資訊。
+-   您需要具備連接和登入資訊，才能建立新的 Azure 伺服器或選取現有 Azure 伺服器。
 
-## <a name="EnableTSQLServer"></a>Prerequisite: Permission to enable Stretch Database on the server (必要條件：在伺服器上啟用 Stretch Database 的權限)
+## <a name="EnableTSQLServer"></a>必要條件：在伺服器上啟用 Stretch Database
 在您可以在資料庫或資料表上啟用 Stretch Database 之前，您必須先在本機伺服器上啟用它。此操作需要 sysadmin 或 serveradmin 權限。
 
 -   如果您擁有必要的系統管理權限，[為資料庫啟用 Stretch] 精靈將會為伺服器設定 Stretch。
@@ -59,18 +59,21 @@ GO
 
 在資料庫或資料表上啟用 Stretch Database 需要 db\_owner 權限。在資料庫或資料表上啟用 Stretch Database 也需要 CONTROL DATABASE 權限。
 
-1.  在您開始之前，請選擇要接收由 Stretch Database 所移轉之資料的現有 Azure 伺服器，或是建立新的伺服器。
+1.  在您開始之前，請選擇現有 Azure 伺服器來接收 Stretch Database 所移轉的資料，或建立新的 Azure 伺服器。
 
-2.  在 Azure 伺服器上，以 SQL Server 的 IP 位址 (或 IP 位址範圍) 建立能讓 SQL Server 與遠端伺服器通訊的防火牆規則。
+2.  在 Azure 伺服器上，利用 SQL Server 的 IP 位址範圍，來建立能讓 SQL Server 與遠端伺服器通訊的防火牆規則。
 
-3.  若要為 SQL Server 資料庫設定 Stretch Database，該資料庫必須擁有資料庫主要金鑰。資料庫主要金鑰能保護 Stretch Database 用來連線到遠端資料庫的認證。若要手動建立資料庫主要金鑰，請參閱[建立主要金鑰 (Transact-SQL)](https://msdn.microsoft.com/library/ms174382.aspx) 及[建立資料庫主要金鑰](https://msdn.microsoft.com/library/aa337551.aspx)。
+3.  若要為 SQL Server 資料庫設定 Stretch Database，該資料庫必須擁有資料庫主要金鑰。資料庫主要金鑰能保護 Stretch Database 用來連線到遠端資料庫的認證。以下範例會建立新的資料庫主要金鑰。
 
     ```tsql
-    USE <database>
+    USE <database>;
     GO
 
-    CREATE MASTER KEY ENCRYPTION BY PASSWORD ='<password>'
+    CREATE MASTER KEY ENCRYPTION BY PASSWORD ='<password>';
+	GO
     ```
+
+    如需資料庫主要金鑰的詳細資訊，請參閱 [CREATE MASTER KEY (Transact-SQL)](https://msdn.microsoft.com/library/ms174382.aspx) 及[建立資料庫主要金鑰](https://msdn.microsoft.com/library/aa337551.aspx)。
 
 4.  當您為資料庫設定 Stretch Database 時，您必須為 Stretch Database 提供認證，以供內部部署 SQL Server 與遠端 Azure 伺服器之間進行通訊使用。您有兩個選擇。
 
@@ -78,15 +81,17 @@ GO
 
         -   如果您是透過執行精靈啟用 Stretch Database，您可以在那時建立認證。
 
-        -   如果您是透過執行 **ALTER DATABASE** 啟用 Stretch Database，您必須在啟用 Stretch Database 之前手動建立認證。
+        -   如果您打算透過執行 **ALTER DATABASE** 來啟用 Stretch Database，您必須在執行 **ALTER DATABASE** 啟用 Stretch Database 之前手動建立認證。
 
-        若要手動建立認證，請參閱 [CREATE DATABASE SCOPED CREDENTIAL (Transact-SQL) (建立資料庫範圍認證 (Transact-SQL))](https://msdn.microsoft.com/library/mt270260.aspx)。建立認證需要 ALTER ANY CREDENTIAL 權限。
+		以下範例會建立新的認證。
 
         ```tsql
         CREATE DATABASE SCOPED CREDENTIAL <db_scoped_credential_name>
-            WITH IDENTITY = '<identity>' , SECRET = '<secret>'
+            WITH IDENTITY = '<identity>' , SECRET = '<secret>';
         GO
         ```
+
+		如需認證的詳細資訊，請參閱 [CREATE DATABASE SCOPED CREDENTIAL (Transact-SQL)](https://msdn.microsoft.com/library/mt270260.aspx)。建立認證需要 ALTER ANY CREDENTIAL 權限。
 
     -   您可以使用同盟服務帳戶，讓 SQL Server 與 Azure 伺服器在下列條件全數成立時進行通訊。
 
@@ -102,7 +107,7 @@ GO
 
     1.  針對 SERVER 引數，請提供現有 Azure 伺服器的名稱，包括名稱的 `.database.windows.net` 部分 - 例如：`MyStretchDatabaseServer.database.windows.net`。
 
-    2.  提供現有系統管理員認證並搭配 CREDEMTIAL 引數，或是指定 FEDERATED\_SERVICE\_ACCOUNT = ON。下列範例提供現有的認證。
+    2.  提供現有系統管理員認證並搭配 CREDENTIAL 引數，或是指定 FEDERATED\_SERVICE\_ACCOUNT = ON。下列範例提供現有的認證。
 
     ```tsql
     ALTER DATABASE <database name>
@@ -111,13 +116,11 @@ GO
                 SERVER = '<server_name>',
                 CREDENTIAL = <db_scoped_credential_name>
             ) ;
-    GO;
+    GO
     ```
 
 ## 後續步驟
-為其他資料表啟用 Stretch Database。監視資料移轉並管理已啟用 Stretch 的資料庫和資料表。
-
--   [Enable Stretch Database for a table (為資料表啟用 Stretch Database)](sql-server-stretch-database-enable-table.md) 以啟用其他資料表。
+-   [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 以啟用其他資料表。
 
 -   [監視 Stretch Database](sql-server-stretch-database-monitor.md) 以查看資料移轉狀態。
 
@@ -129,8 +132,8 @@ GO
 
 ## 另請參閱
 
-[識別適用於 Stretch Database 的資料庫和資料表](sql-server-stretch-database-identify-databases.md)。
+[識別適用於 Stretch Database 的資料庫和資料表。](sql-server-stretch-database-identify-databases.md)
 
 [ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="06/27/2016"
 	ms.author="douglasl"/>
 
 # 為資料表啟用 Stretch Database
@@ -22,7 +22,7 @@
 
 -   如果您將冷資料儲存在個別的資料表上，您可以移轉整個資料表。
 
--   如果您的資料表同時包含熱資料和冷資料，您可以指定篩選述詞以選取要移轉的資料列。
+-   如果您的資料表同時包含熱資料和冷資料，您可以指定篩選函數以選取要移轉的資料列。
 
 **必要條件**。如果您選取資料表的 [Stretch | 啟用]，且沒有為資料庫啟用 Stretch Database，精靈將會先為資料庫設定 Stretch Database。請依照[開始執行為資料庫啟用延展功能精靈](sql-server-stretch-database-wizard.md)中的步驟操作，而非本主題中的步驟。
 
@@ -43,11 +43,11 @@
 
 確認您想要啟用的資料表皆已顯示且選取。
 
-您可以移轉整個資料表，也可以在精靈中指定簡單的篩選述詞。如果您想要使用不同類型的篩選述詞來選取要移轉的資料列，請執行下列其中一項操作。
+您可以移轉整個資料表，也可以在精靈中指定簡單的篩選函數。如果您想要使用不同類型的篩選函數來選取要移轉的資料列，請執行下列其中一項操作。
 
--   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定述詞。
+-   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定函數。
 
--   結束精靈之後，請執行 ALTER TABLE 陳述式來指定述詞。如需必要步驟，請參閱[在執行精靈後新增篩選述詞](sql-server-stretch-database-predicate-function.md#addafterwiz)。
+-   結束精靈之後，請執行 ALTER TABLE 陳述式來指定篩選函數。如需必要步驟，請參閱[在執行精靈後新增篩選函數](sql-server-stretch-database-predicate-function.md#addafterwiz)。
 
 本主題後面會說明 ALTER TABLE 語法。
 
@@ -65,9 +65,9 @@
 ### 選項
 當您執行 CREATE TABLE 或 ALTER TABLE 以在資料表上啟用 Stretch Database 時，請使用下列選項。
 
--   (選擇性) 如果資料表同時包含熱資料和冷資料，請使用 `FILTER_PREDICATE = <predicate>` 子句來指定述詞以選取要移轉的資料列。述詞必須呼叫嵌入資料表值函式。如需詳細資訊，請參閱[使用篩選述詞來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。如果您不指定篩選述詞，便會移轉整個資料表。
+-   (選擇性) 如果資料表同時包含熱資料和冷資料，請使用 `FILTER_PREDICATE = <function>` 子句來指定函數以選取要移轉的資料列。述詞必須呼叫嵌入資料表值函式。如需詳細資訊，請參閱[使用篩選函數來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。如果您未指定篩選函數，便會移轉整個資料表。
 
-    >   [AZURE.NOTE] 如果您提供執行不良的篩選述詞，則資料移轉也會執行不良。Stretch Database 使用 CROSS APPLY 運算子將篩選述詞套用至資料表。
+    >   [AZURE.NOTE] 如果您提供執行不良的篩選函數，則資料移轉也會執行不良。Stretch Database 使用 CROSS APPLY 運算子，將篩選函數套用至資料表。
 
 -   指定 `MIGRATION_STATE = OUTBOUND` 以立即開始資料移轉，或指定 `MIGRATION_STATE = PAUSED` 以延後資料移轉的開始時間。
 
@@ -83,7 +83,7 @@ ALTER TABLE <table name>
     SET ( REMOTE_DATA_ARCHIVE = ON ( MIGRATION_STATE = OUTBOUND ) ) ;  
 GO
 ```
-以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函數所識別的資料列，並且會延後資料移轉。如需有關篩選述詞的詳細資訊，請參閱[使用篩選述詞來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
+以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函數所識別的資料列，並且會延後資料移轉。如需篩選函數的詳細資訊，請參閱[使用篩選函數來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -111,7 +111,7 @@ CREATE TABLE <table name>
 GO
 ```
 
-以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函數所識別的資料列，並且會延後資料移轉。如需有關篩選述詞的詳細資訊，請參閱[使用篩選述詞來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
+以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函數所識別的資料列，並且會延後資料移轉。如需篩選函數的詳細資訊，請參閱[使用篩選函數來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -133,4 +133,4 @@ GO
 
 [CREATE TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms174979.aspx)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

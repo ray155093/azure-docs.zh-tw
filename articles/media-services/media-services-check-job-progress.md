@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="04/18/2016"    
+	ms.date="06/22/2016"   
 	ms.author="juliako"/>
 
 #作法：檢查工作進度
@@ -119,7 +119,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 當您設計的媒體服務應用程式會使用 Azure 儲存體佇列時，請考慮下列幾點。
 
 - 佇列服務不保證會按照先進先出 (FIFO) 的順序傳遞訊息。如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
-- Azure 儲存體佇列不是推播服務；您必須輪詢佇列。 
+- Azure 儲存體佇列不是推播服務；您必須輪詢佇列。
 - 您可以有任意數目的佇列。如需詳細資訊，請參閱[佇列服務 REST API](https://msdn.microsoft.com/library/azure/dd179363.aspx)。
 - Azure 儲存體佇列存在某些限制，如需具體的描述，請參閱以下文章：[Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
 
@@ -132,10 +132,10 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 1. 建立一個會接收編碼工作相關通知訊息的佇列。
 1. 建立一個會對應到佇列的通知端點。
 1. 將通知端點附加至工作，然後提交編碼工作。您可以將多個通知端點附加至工作。
-1. 在這個範例中，我們只想知道工作的最終狀態，所以我們將 **NotificationJobState.FinalStatesOnly** 傳遞給 **AddNew** 方法。 
+1. 在這個範例中，我們只想知道工作的最終狀態，所以我們將 **NotificationJobState.FinalStatesOnly** 傳遞給 **AddNew** 方法。
 		
 		job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, _notificationEndPoint);
-1. 如果您傳遞 NotificationJobState.All，表示您想取得所有的狀態變更通知：[已排入佇列] -> [已排程] -> [處理中] -> [已完成]。不過，如先前所述，Azure 儲存體佇列服務不保證會按照順序傳遞。您可以使用 Timestamp 屬性 (定義在以下範例中的 EncodingJobMessage 類型) 來排序訊息。您可能會收到重複的通知訊息。請使用 ETag 屬性 (定義在 EncodingJobMessage 類型上) 來檢查重複的通知訊息。請注意，某些狀態變更通知也有可能被略過。 
+1. 如果您傳遞 NotificationJobState.All，表示您想取得所有的狀態變更通知：[已排入佇列] -> [已排程] -> [處理中] -> [已完成]。不過，如先前所述，Azure 儲存體佇列服務不保證會按照順序傳遞。您可以使用 Timestamp 屬性 (定義在以下範例中的 EncodingJobMessage 類型) 來排序訊息。您可能會收到重複的通知訊息。請使用 ETag 屬性 (定義在 EncodingJobMessage 類型上) 來檢查重複的通知訊息。請注意，某些狀態變更通知也有可能被略過。
 1. 每隔 10 秒檢查佇列一次，等候工作進入「已完成」狀態。處理好訊息之後，請予以刪除。
 1. 刪除佇列和通知端點。
 
@@ -436,4 +436,4 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

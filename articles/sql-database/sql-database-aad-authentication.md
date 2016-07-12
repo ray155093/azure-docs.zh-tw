@@ -27,7 +27,7 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 - 客戶可以管理使用外部 (AAD) 群組的資料庫權限。
 - 它可以藉由啟用整合式 Windows 驗證和 Azure Active Directory 支援的其他形式驗證來避免儲存密碼。
 - Azure Active Directory 驗證會使用自主資料庫使用者，在資料庫層級驗證身分。
-- Azure Active Directory 支援連接到 SQL Database 的應用程式權杖型驗證。
+- Azure Active Directory 針對連線到 SQL Database 的應用程式支援權杖型驗證。
 - Azure Active Directory 驗證本機 Azure Active Directory 的 ADFS (網域同盟) 或原生使用者/密碼驗證，而不需進行網域同步處理。
 
 > [AZURE.IMPORTANT] Azure Active Directory 驗證是預覽功能，必須遵循授權合約 (例如，Enterprise 合約、Microsoft Azure 合約或Microsoft 線上訂用帳戶合約) 中的預覽條款，以及任何適用的 [Microsoft Azure 預覽版補充使用條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
@@ -253,7 +253,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 如果您已使用您的 Azure Active Directory 認證從同盟網域登入 Windows，請使用這個方法。
 
-1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
+1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] \(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
 ![選取 AD 整合式驗證][11]
 
 2. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。
@@ -266,9 +266,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] \(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 密碼驗證]。
 2. 在 [使用者名稱] 方塊中，以 **username@domain.com** 格式輸入您的 Azure Active Directory 使用者名稱。這必須是來自 Azure Active Directory 的帳戶或來自與 Azure Active Directory 建立同盟之網域的帳戶。
-3. 在 [密碼] 方塊中，輸入您的 Azure Active Directory 帳戶或同盟網域帳戶的使用者密碼。
-
-	![選取 AD 密碼驗證][12]
+3. 在 [密碼] 方塊中，輸入您 Azure Active Directory 帳戶或同盟網域帳戶的使用者密碼。![選取 AD 密碼驗證][12]
 
 4. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。
 
@@ -341,7 +339,7 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 ### 使用 Azure AD 權杖的 7.3 連接
 這種驗證方法可以從 Azure Active Directory (AAD) 取得權杖，讓中介層服務連接到 Azure SQL Database 或 Azure SQL 資料倉儲。這可容許包含憑證型驗證的複雜案例。您必須完成四個基本步驟，才能使用 Azure AD 權杖驗證︰
 
-1. 向 Azure Active Directory 註冊您的應用程式，並取得程式碼的用戶端識別碼。 
+1. 向 Azure Active Directory 註冊您的應用程式，並取得程式碼的用戶端識別碼。
 2. 建立代表應用程式的資料庫使用者。(稍早在步驟 6 中已完成)。
 3. 在要執行應用程式的用戶端電腦上建立憑證。
 4. 將憑證加入應用程式當做索引鍵。
@@ -372,4 +370,4 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 [11]: ./media/sql-database-aad-authentication/11connect-using-int-auth.png
 [12]: ./media/sql-database-aad-authentication/12connect-using-pw-auth.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

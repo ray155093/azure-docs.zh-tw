@@ -14,14 +14,16 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/17/2016"
+	ms.date="06/24/2016"
 	ms.author="davidmu"/>
 
-# 使用 Azure Resource Manager 和 C 管理 Azure 虛擬機器#  
+# 使用 Azure Resource Manager 和 C# 管理 Azure 虛擬機器#  
+
+本文章中的工作會示範如何管理虛擬機器，例如啟動、停止及更新。
 
 若要完成本文中的工作，您需要：
 
-- [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)。
+- [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
 - [驗證權杖](../resource-group-authenticate-service-principal.md)
 
 ## 建立 Visual Studio 專案並安裝封裝
@@ -36,7 +38,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 在搜尋方塊中輸入 *Active Directory*，對 Active Directory Authentication Library 封裝按一下 [**安裝**]，然後依照指示，安裝封裝。
 
-5. 在頁面的頂端，選取 [包含發行前版本]。在搜尋方塊中輸入 *Microsoft.Azure.Management.Compute*，針對「Compute .NET 程式庫」按一下 [安裝]，然後遵循指示來安裝封裝。
+5. 在頁面的頂端，選取 [包含發行前版本]。在搜尋方塊中輸入 *Microsoft.Azure.Management.Compute*，對 Compute .NET Library 按一下 [安裝]，然後遵循指示來安裝封裝。
 
 現在，您已經準備就緒，可以開始使用程式庫來管理虛擬機器。
 
@@ -63,28 +65,24 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
     
 3. 將下列方法新增至 Program 類別，以取得建立認證所需的權杖。
 
-	    private static string GetAuthorizationHeader()
+	    private static async Task<AuthenticationResult> GetAccessTokenAsync()
 	    {
-          ClientCredential cc = new ClientCredential("{application-id}", "{password}");
+          var cc = new ClientCredential("{client-id}", "{client-secret}");
           var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
           var result = context.AcquireTokenAsync("https://management.azure.com/", cc);
-
           if (result == null)
           {
-            throw new InvalidOperationException("Failed to obtain the JWT token");
+            throw new InvalidOperationException("Could not get the token");
           }
-
-          string token = result.Result.AccessToken;
-
           return token;
         }
 	
-    將 {application-id} 取代成您先前記錄的應用程式識別碼、將 {password} 取代成您為 AD 應用程式選擇的密碼，並將 {tenant-id} 取代成您的訂用帳戶的租用戶識別碼。
+    將 {client-id} 用 Azure Active Directory 應用程式的識別碼取代，將 {client-secret} 用 AD 應用程式的存取金鑰取代，並將 {tenant-id} 用您訂用帳戶的租用戶識別碼取代。您可以透過執行 Get-AzureRmSubscription 來尋找租用戶識別碼。您可以使用 Azure 入口網站尋找存取金鑰。
     
 4. 將下列程式碼新增至 Program.cs 的 Main 方法，以建立認證：
 
-        var token = GetAuthorizationHeader();
-        var credential = new TokenCredentials(token);
+        var token = GetAccessTokenAsync();
+        var credential = new TokenCredentials(token.Result.AccessToken);
 
 5. 儲存 Program.cs 檔案。
 
@@ -92,7 +90,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 1. 將此方法新增至您先前所建立專案的 Program 類別：
 
-        public static void GetVirtualMachine(
+        public static async void GetVirtualMachineAsync(
           TokenCredentials credential, 
           string groupName, 
           string vmName, 
@@ -100,9 +98,9 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
         {
           Console.WriteLine("Getting information about the virtual machine...");
 
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          var vmResult = computeManagementClient.VirtualMachines.Get(
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          var vmResult = await computeManagementClient.VirtualMachines.GetAsync(
             groupName, 
             vmName, 
             InstanceViewTypes.InstanceView);
@@ -174,11 +172,12 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
             Console.WriteLine("  level: " + istat.Level);
             Console.WriteLine("  displayStatus: " + istat.DisplayStatus);
           }
+          
         }
 
 2. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        GetVirtualMachine(
+        GetVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -188,7 +187,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
     
 3. 儲存 Program.cs 檔案。
 
-4. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+4. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 	當您執行此方法時，應該會看到如下的結果：
     
@@ -259,21 +258,21 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別：
 
-        public static void StartVirtualMachine(
+        public static async void StartVirtualMachineAsync(
           TokenCredentials credential, 
           string groupName, 
           string vmName, 
           string subscriptionId)
         {
           Console.WriteLine("Starting the virtual machine...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          computeManagementClient.VirtualMachines.Start(groupName, vmName);
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          await computeManagementClient.VirtualMachines.StartAsync(groupName, vmName);
         }
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        StartVirtualMachine(
+        StartVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -283,7 +282,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 儲存 Program.cs 檔案。
 
-5. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+5. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 	您應該會看到虛擬機器的狀態變更為 [執行中]。
 
@@ -295,16 +294,16 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別：
 
-        public static void StopVirtualMachine(
+        public static void StopVirtualMachineAsync(
           TokenCredentials credential, 
           string groupName, 
           string vmName, 
           string subscriptionId)
         {
           Console.WriteLine("Stopping the virtual machine...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          computeManagementClient.VirtualMachines.PowerOff(groupName, vmName);
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          await computeManagementClient.VirtualMachines.PowerOffAsync(groupName, vmName);
         }
 
 	如果您想要解除配置虛擬機器，請將 PowerOff 呼叫變更為下列項目︰
@@ -313,7 +312,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        StopVirtualMachine(
+        StopVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -323,7 +322,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 儲存 Program.cs 檔案。
 
-5. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+5. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
     您應該會看到虛擬機器的狀態變更為 [已停止]。如果您執行的方法呼叫「解除配置」，則狀態為 [已停止 (已解除配置)]。
 
@@ -333,21 +332,21 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別：
 
-        public static void RestartVirtualMachine(
+        public static async void RestartVirtualMachineAsync(
           TokenCredentials credential,
           string groupName,
           string vmName,
           string subscriptionId)
         {
           Console.WriteLine("Restarting the virtual machine...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          computeManagementClient.VirtualMachines.Restart(groupName, vmName);
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          await computeManagementClient.VirtualMachines.RestartAsync(groupName, vmName);
         }
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        RestartVirtualMachine(
+        RestartVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -357,7 +356,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 儲存 Program.cs 檔案。
 
-5. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+5. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 ## 刪除虛擬機器
 
@@ -365,21 +364,21 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別：
 
-        public static void DeleteVirtualMachine(
+        public static async void DeleteVirtualMachineAsync(
           TokenCredentials credential, 
           string groupName, 
           string vmName, 
           string subscriptionId)
         {
           Console.WriteLine("Deleting the virtual machine...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          computeManagementClient.VirtualMachines.Delete(groupName, vmName);
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          await computeManagementClient.VirtualMachines.DeleteAsync(groupName, vmName);
         }
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        DeleteVirtualMachine(
+        DeleteVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -389,7 +388,7 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 儲存 Program.cs 檔案。
 
-5. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+5. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 ## 更新虛擬機器
 
@@ -399,23 +398,23 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 2. 將下列方法新增至 Program 類別：
 
-        public static void UpdateVirtualMachine(
+        public static async void UpdateVirtualMachineAsync(
           TokenCredentials credential, 
           string groupName, 
           string vmName, 
           string subscriptionId)
         {
           Console.WriteLine("Updating the virtual machine...");
-          var computeManagementClient = new ComputeManagementClient(credential);
-          computeManagementClient.SubscriptionId = subscriptionId;
-          var vmResult = computeManagementClient.VirtualMachines.Get(groupName, vmName);
+          var computeManagementClient = new ComputeManagementClient(credential)
+            { SubscriptionId = subscriptionId };
+          var vmResult = await computeManagementClient.VirtualMachines.GetAsync(groupName, vmName);
           vmResult.HardwareProfile.VmSize = "Standard_A1";
-          computeManagementClient.VirtualMachines.CreateOrUpdate(groupName, vmName, vmResult);
+          await computeManagementClient.VirtualMachines.CreateOrUpdateAsync(groupName, vmName, vmResult);
         }
 
 3. 將下列程式碼新增至 Main 方法，以呼叫您剛才新增的方法：
 
-        UpdateVirtualMachine(
+        UpdateVirtualMachineAsync(
           credential,
           groupName,
           vmName,
@@ -425,12 +424,12 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。�
 
 4. 儲存 Program.cs 檔案。
 
-5. 按一下 Visual Studio 中的 [啟動]，然後以搭配您訂用帳戶使用的相同使用者名稱和密碼，登入 Azure AD。
+5. 按一下 Visual Studio 中的 [啟動]，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
     您應該會看到虛擬機器的大小變更為 Standard\_A1。
     
 ## 後續步驟
 
-如果部署發生問題，請查看[使用 Azure 入口網站疑難排解資源群組部署](../resource-manager-troubleshoot-deployments-portal.md)
+如果部署發生問題，請查看[使用 Azure 入口網站來檢視部署作業](../resource-manager-troubleshoot-deployments-portal.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="get-started-article"
-	ms.date="06/01/2016"
+	ms.date="07/01/2016"
 	ms.author="cephalin"/>
 
 # 在 Azure App Service 中開始使用 Node.js Web 應用程式
@@ -145,7 +145,7 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
         loggingEnabled: true
         logDirectory: iisnode
     
-    它們會一起告訴 App Service 中的 iisnode 將其 stdout 和 stderror 輸出放在 D:\\home\\site\\wwwroot**iisnode** 目錄中。
+    它們會一起告訴 App Service 中的 iisnode 將其 stdout 和 stderror 輸出放在 D:\\home\\site\\wwwroot*iisnode* 目錄中。
 
 3. 儲存變更，然後使用下列 Git 命令將變更推送至 Azure：
 
@@ -159,7 +159,7 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 
         https://{appname}.scm.azurewebsites.net/DebugConsole 
 
-    請注意，此 URL 不同於 Web 應用程式 URL，因為前者在 DNS 名稱中加入了「.scm.」。如果您未在 URL 中加入此項目，就會收到 404 錯誤。
+    請注意，此 URL 不同於 Web 應用程式 URL，因為前者在 DNS 名稱中加入了 ".scm."。如果您未在 URL 中加入此項目，就會收到 404 錯誤。
 
 5. 瀏覽至 D:\\home\\site\\wwwroot\\iisnode
 
@@ -179,7 +179,7 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 
 若要啟用節點偵測器，請遵循下列步驟︰
 
-1. 開啟位於儲存機制根目錄中的 iisnode.yml，並指定下列參數︰ 
+1. 開啟位於儲存機制根目錄中的 iisnode.yml，並指定下列參數︰
 
         debuggingEnabled: true
         debuggerExtensionDll: iisnode-inspector.dll
@@ -201,6 +201,7 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 ## 其他資源
 
 - [在 Azure 應用程式中指定 Node.js 版本](../nodejs-specify-node-version-azure-apps.md)
+- [Azure 上 Node.js 應用程式的最佳作法和疑難排解指南](app-service-web-nodejs-best-practices-and-troubleshoot-guide.md)
 - [如何在 Azure App Service 中偵錯 Node.js Web 應用程式](web-sites-nodejs-debug.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 - [Azure App Service Web Apps：Node.js](http://blogs.msdn.com/b/silverlining/archive/2012/06/14/windows-azure-websites-node-js.aspx)
@@ -235,4 +236,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 [iislog-kudu-console-open]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-open.png
 [iislog-kudu-console-read]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-read.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

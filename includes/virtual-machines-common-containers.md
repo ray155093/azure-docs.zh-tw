@@ -5,7 +5,7 @@ Azure 提供您建立在虛擬機器上的絕佳雲端解決方案，虛擬機�
 
 **但這已經是眾所周知的舊聞了。** 「真正的」新聞是，Azure 甚至還提供您更多的 Docker 優點：
 
-- [建立 Docker 主機](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)有[許多](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md)[不同](../articles/virtual-machines/virtual-machines-linux-classic-portal-use-docker.md)的[方式](../articles/virtual-machines/virtual-machines-linux-classic-docker-quickstart.md)，讓容器能符合您的情況
+- 建立 Docker 主機有[許多](../articles/virtual-machines/virtual-machines-linux-docker-machine.md) [不同的](../articles/virtual-machines/virtual-machines-linux-dockerextension.md)方式，讓容器能符合您的情況
 - 有 [Azure 資源管理員](../articles/resource-group-overview.md)和[資源群組範本](../articles/resource-group-authoring-templates.md)可簡化部署和更新複雜的分散式應用程式
 - 能與大量專屬和開放原始碼組態管理工具進行整合
 
@@ -116,7 +116,7 @@ Windows 容器對於任何在 Windows 執行的應用程式提供與 Linux 容�
 
 Docker 有自己的 VM 建立工具 ([docker-machine](../articles/virtual-machines/virtual-machines-linux-docker-machine.md)) 以及一個負載平衡、docker-container 叢集管理工具 ([swarm](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md))。此外，[Azure Docker VM 延伸模組](https://github.com/Azure/azure-docker-extension/blob/master/README.md)預設會支援 [`docker-compose`](https://docs.docker.com/compose/)，它可以跨越多個容器部署設定好的應用程式容器。
 
-此外，您可以試試 [Mesosphere 的資料中心作業系統 (DCOS)](http://docs.mesosphere.com/install/azurecluster/)。DCOS 是根據開放原始碼 [Mesos](http://mesos.apache.org/) 的「分散式系統核心」，可讓您將您的資料中心視為一個可定址的服務。DCOS 擁有幾個重要系統的內建套件，例如 [Spark](http://spark.apache.org/) 和 [Kafka](http://kafka.apache.org/) (以及其他)，以及例如 [Marathon](https://mesosphere.github.io/marathon/) (容器控制系統) 和 [Chronos](https://mesosphere.github.io/chronos/) (分散式排程器) 的內建服務。Mesos 衍生自在 Twitter、AirBnb 和其他 Web 規模的企業學習到的工作。
+此外，您可以試試 [Mesosphere 的資料中心作業系統 (DCOS)](http://docs.mesosphere.com/install/azurecluster/)。DCOS 是根據開放原始碼 [Mesos](http://mesos.apache.org/) 的「分散式系統核心」，可讓您將您的資料中心視為一個可定址的服務。DCOS 擁有幾個重要系統的內建套件，例如 [Spark](http://spark.apache.org/) 和 [Kafka](http://kafka.apache.org/) (以及其他)，以及例如 [Marathon](https://mesosphere.github.io/marathon/) (容器控制系統) 和 [Chronos](https://mesos.github.io/chronos/) (分散式排程器) 的內建服務。Mesos 衍生自在 Twitter、AirBnb 和其他 Web 規模的企業學習到的工作。
 
 而 [Kubernetes](https://azure.microsoft.com/blog/2014/08/28/hackathon-with-kubernetes-on-azure/) 則是一個 VM 和容器群組管理的開放原始碼系統，衍生自在 Google 學習到的工作。您甚至可以使用 [Kubernetes 搭配 Weave 提供網路支援](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/coreos/azure/README.md#kubernetes-on-azure-with-coreos-and-weave)。
 
@@ -164,7 +164,6 @@ Microsoft Azure 上的 Docker：
 - [Azure Docker VM 延伸模組使用者指南](https://github.com/Azure/azure-docker-extension/blob/master/README.md)
 - [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md)
 - [使用 Azure 入口網站中的Docker VM 擴充程式](../articles/virtual-machines/virtual-machines-linux-classic-portal-use-docker.md)
-- [在 Azure Marketplace 中快速開始使用 Docker](../articles/virtual-machines/virtual-machines-linux-classic-docker-quickstart.md)
 - [如何在 Azure 上使用 docker-machine](../articles/virtual-machines/virtual-machines-linux-docker-machine.md)
 - [如何在 Azure 上搭配 swarm 使用 docker](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md)
 - [在 Azure 上開始使用 Docker 和 Compose](../articles/virtual-machines/virtual-machines-linux-docker-compose-quickstart.md)
@@ -196,10 +195,6 @@ Linux 散發套件和 Azure 範例：
 	- [協力廠商︰適用於 Azure 的 Hudson 從屬外掛程式](http://wiki.hudson-ci.org/display/HUDSON/Azure+Slave+Plugin)
 	- [協力廠商︰適用於 Azure 的 Hudson 儲存體外掛程式](https://github.com/hudson3-plugins/windows-azure-storage-plugin)
 
--	[Chef](https://docs.chef.io/index.html)
-	- [Chef 和虛擬機器](../articles/virtual-machines/virtual-machines-windows-install-chef-client.md)
-	- [影片：Chef 是什麼，以及如何運作？](https://msopentech.com/blog/2014/03/31/using-chef-to-manage-azure-resources/)
-
 -	[Azure 自動化](https://azure.microsoft.com/services/automation/)
 	- [影片：如何在 Linux VM 上使用 Azure 自動化](http://channel9.msdn.com/Shows/Azure-Friday/Azure-Automation-104-managing-Linux-and-creating-Modules-with-Joe-Levy)
 
@@ -216,4 +211,4 @@ Linux 散發套件和 Azure 範例：
 [微服務]: http://martinfowler.com/articles/microservices.html
 <!--Image references-->
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

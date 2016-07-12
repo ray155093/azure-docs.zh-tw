@@ -19,7 +19,7 @@
 
 # 使用 Azure PowerShell 管理您的虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 可以使用 Azure PowerShell Cmdlet 自動執行許多 VM 的日常管理工作。這篇文章提供了幾個簡單工作的範例命令，另外也提供顯示用來完成更複雜的工作之命令的文章連結。
@@ -27,12 +27,12 @@
 >[AZURE.NOTE] 如果您尚未安裝和設定 Azure PowerShell，可以在[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文章中取得相關指示。
 
 ## 如何使用範例命令
-命令中的某些文字必須換成適合您環境的文字。 < and > 符號表示您需要取代的文字。當您取代文字時，請移除符號，但將引號保留在原處。
+命令中的某些文字必須換成適合您環境的文字。< 和 > 符號表示您需要取代的文字。當您取代文字時，請移除符號，但將引號保留在原處。
 
 ## 取得 VM
 這是您會經常使用的基本工作。使用它來取得 VM 的相關資訊、在 VM 上執行工作，或取得輸出以儲存至變數中。
 
-若要取得 VM 的相關資訊，請執行此命令，並取代引號中的所有內容 (包括 < and > 字元)：
+若要取得 VM 的相關資訊，請執行此命令，並取代引號中的所有內容 (包括 < 和 > 字元)：
 
      Get-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
@@ -46,10 +46,10 @@
 
 >[AZURE.NOTE] 您可以從 **Get-azurevm** 命令顯示的畫面中，取得虛擬機器和雲端服務名稱。
 >
-	$svcName="<cloud service name>"
-	$vmName="<virtual machine name>"
-	$localPath="<drive and folder location to store the downloaded RDP file, example: c:\temp >"
-	$localFile=$localPath + "" + $vmname + ".rdp"
+	$svcName = "<cloud service name>"
+	$vmName = "<virtual machine name>"
+	$localPath = "<drive and folder location to store the downloaded RDP file, example: c:\temp >"
+	$localFile = $localPath + "" + $vmname + ".rdp"
 	Get-AzureRemoteDesktopFile -ServiceName $svcName -Name $vmName -LocalPath $localFile -Launch
 
 ## 停止 VM
@@ -73,20 +73,18 @@
 
 若要附加新的磁碟，請執行這個命令：
 
-    Add-AzureDataDisk -CreateNew -DiskSizeInGB 128 -DiskLabel "<main>" -LUN <0> -VM <$vm> `
-              | Update-AzureVM
+    Add-AzureDataDisk -CreateNew -DiskSizeInGB 128 -DiskLabel "<main>" -LUN <0> -VM $vm | Update-AzureVM
 
 若要附加現有的資料磁碟，請執行這個命令：
 
-    Add-AzureDataDisk -Import -DiskName "<MyExistingDisk>" -LUN <0> `
-              | Update-AzureVM
+    Add-AzureDataDisk -Import -DiskName "<MyExistingDisk>" -LUN <0> | Update-AzureVM
 
 若要從 Blob 儲存體中現有的 .vhd 檔案附加資料磁碟，請執行這個命令：
 
     Add-AzureDataDisk -ImportFrom -MediaLocation `
               "<https://mystorage.blob.core.windows.net/mycontainer/MyExistingDisk.vhd>" `
-              -DiskLabel "<main>" -LUN <0> `
-              | Update-AzureVM
+              -DiskLabel "<main>" -LUN <0> |
+              Update-AzureVM
 
 ## 建立以 Windows 為基礎的 VM
 
@@ -97,4 +95,4 @@
 - 成為現有負載平衡集的成員。
 - 具有靜態 IP 位址。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

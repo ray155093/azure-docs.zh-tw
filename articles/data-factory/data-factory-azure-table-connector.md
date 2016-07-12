@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/28/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 Azure 資料表來回移動資料
@@ -29,8 +29,8 @@
 
 1.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務 (同時用於資料表和 Blob)。
 2.	[AzureTable](#azure-table-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-3.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
-3.	具有使用 [AzureTableSource](#azure-table-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+3.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+3.	具有使用 [AzureTableSource](#azure-table-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每小時將 Azure 資料表中屬於預設資料分割的資料複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -190,8 +190,8 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 1.	[AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務 (同時用於資料表和 Blob)
 3.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-4.	[AzureTable](#azure-table-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
-4.	具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 和 [AzureTableSink](#azure-table-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+4.	[AzureTable](#azure-table-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+4.	具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 和 [AzureTableSink](#azure-table-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 
 此範例會每小時將屬於時間序列的資料從 Azure Blob 複製到 Azure 資料表資料庫中的資料表。範例後面的各節會說明這些範例中使用的 JSON 屬性。
@@ -360,9 +360,9 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| tableName | Azure 資料表資料庫執行個體中連結服務所參照的資料表名稱。 | 是
+| tableName | Azure 資料表資料庫執行個體中連結服務所參照的資料表名稱。 | 是。指定 tableName 時若沒有指定 azureTableSourceQuery，資料表中的所有記錄都會複製到目的地。如果同時指定了 azureTableSourceQuery，則資料表中符合查詢的記錄會複製到目的地。 |
 
-### Data Factory 的結構描述
+### Data factory 的結構描述
 針對無結構描述的資料存放區 (如 Azure 資料表)，Data Factory 服務會以下列一種方式推斷結構描述：
 
 1.	如果您是使用資料集定義中的 **structure** 屬性來定義結構，Data Factory 服務會將此結構接受為結構描述。在此情況下，如果資料列不包含資料行的值，則會使用 null 值。
@@ -380,7 +380,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 屬性 | 說明 | 允許的值 | 必要
 -------- | ----------- | -------------- | -------- 
-azureTableSourceQuery | 使用自訂查詢來讀取資料。 | Azure 資料表查詢字串。請參閱以下範例。 | 否
+azureTableSourceQuery | 使用自訂查詢來讀取資料。 | Azure 資料表查詢字串。請參閱以下範例。 | 否。指定 tableName 時若沒有指定 azureTableSourceQuery，資料表中的所有記錄都會複製到目的地。如果同時指定了 azureTableSourceQuery，則資料表中符合查詢的記錄會複製到目的地。  
 azureTableSourceIgnoreTableNotFound | 指出是否忍受資料表不存在的例外狀況。 | TRUE<br/>FALSE | 否 |
 
 ### azureTableSourceQuery 範例
@@ -403,8 +403,8 @@ azureTableDefaultPartitionKeyValue | 可供接收器使用的預設資料分割�
 azureTablePartitionKeyName | 使用者指定的資料行名稱，其資料行值會做為資料分割索引鍵。如果未指定，則會使用 AzureTableDefaultPartitionKeyValue 做為資料分割索引鍵。 | 資料行名稱。 | 否 |
 azureTableRowKeyName | 使用者指定的資料行名稱，其資料行值會做為資料列索引鍵。如果未指定，則會針對每個資料列使用 GUID。 | 資料行名稱。 | 否  
 azureTableInsertType | 將資料插入 Azure 資料表的模式。<br/><br/>這個屬性會控制輸出資料表中具有相符分割區和資料列索引鍵的現有資料列，會取代或合併其值。<br/><br/>請參閱[插入或合併實體](https://msdn.microsoft.com/library/azure/hh452241.aspx)和[插入或取代實體](https://msdn.microsoft.com/library/azure/hh452242.aspx)主題來了解這些設定 (合併和取代) 的運作方式。<br/><br> 請注意，這項設定是套用在資料列層級，不是套用在資料表層級，而且兩個選項都不會刪除輸入中沒有的輸出資料表資料列。 | 合併 (預設值)<br/>取代 | 否 
-writeBatchSize | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中。 | 1 與 100 之間的整數 (單位 = 資料列計數) | 否 (預設值 = 100) 
-writeBatchTimeout | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中 | (單位 = 時間範圍) 範例：“00:20:00” (20 分鐘) | 否 (預設為儲存體用戶端預設逾時值 90 秒)
+writeBatchSize | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中。 | Integer | 否 (預設值：10000) 
+writeBatchTimeout | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中 | 時間範圍<br/><br/>範例：“00:20:00” (20 分鐘) | 否 (預設為儲存體用戶端預設逾時值 90 秒)
 
 ### azureTablePartitionKeyName
 您必須使用轉譯器 JSON 屬性將來源資料行對應至目的地資料行，才能使用目的地資料行做為 azureTablePartitionKeyName。
@@ -527,6 +527,6 @@ lastlogindate | Edm.DateTime
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

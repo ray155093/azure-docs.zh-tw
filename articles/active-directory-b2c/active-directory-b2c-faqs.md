@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="06/27/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C 預覽：常見問題集
@@ -34,7 +34,7 @@ Azure AD B2C 無法與 Microsoft Office 365 一起使用。一般而言，它不
 
 在 Azure AD 租用戶中，租用戶的每位使用者 (不包括目前有 Microsoft 帳戶的使用者) 都是以 `<xyz>@<tenant domain>` 格式的電子郵件地址登入，當中的 `<tenant domain>` 是租用戶已驗證的其中一個網域，或初始 `<...>.onmicrosoft.com` 網域。這種類型的帳戶就是工作或學校帳戶。
 
-在 Azure AD B2C 租用戶中，大部分的 app 都希望使用者以任意的電子郵件地址登入 (例如 joe@comcast.net、bob@gmail.com、sarah@contoso.com 或 jim@live.com))。這種類型的帳戶就是本機帳戶。現在，我們也支援任意的使用者名稱 (僅單純字串) 做為本機帳戶 (例如，joe、bob、sarah 或 jim)。您可以在 Azure AD B2C 服務中選擇這兩個本機帳戶類型的其中之一。
+在 Azure AD B2C 租用戶中，大部分的應用程式都希望使用者以任意的電子郵件地址登入 (例如 joe@comcast.net、bob@gmail.com、sarah@contoso.com 或 jim@live.com)。這種類型的帳戶就是本機帳戶。現在，我們也支援任意的使用者名稱 (僅單純字串) 做為本機帳戶 (例如，joe、bob、sarah 或 jim)。您可以在 Azure AD B2C 服務中選擇這兩個本機帳戶類型的其中之一。
 
 ### 你們現在支援哪些社交身分識別提供者？ 你們打算在未來支援哪些？
 
@@ -102,15 +102,17 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 請遵循下列步驟來刪除 Azure AD B2C 租用戶︰
 
-- 以訂用帳戶管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。(此為您註冊 Azure 時所用的相同工作或學校帳戶，或是相同的 Microsoft 帳戶)。
+- 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
+- 瀏覽至 [應用程式]、[識別提供者] 和 [所有原則] 刀鋒視窗，並刪除每個地方的所有項目。
+- 現在，以訂用帳戶管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。(此為您註冊 Azure 時所用的相同工作或學校帳戶，或是相同的 Microsoft 帳戶)。
 - 瀏覽至左側的 Active Directory 擴充，然後按一下 B2C 租用戶。
+- 按一下 [使用者] 索引標籤。
+- 逐一選取每個使用者 (不包括您目前登入的使用者身分，亦即，訂用帳戶管理員)。按一下頁面底部的 [刪除]，然後在出現提示時按一下 [是]。
 - 按一下 [**應用程式**] 索引標籤。
 - 選取 [顯示] 下拉式欄位中的 [我公司所擁有的應用程式]，然後按一下核取記號。
 - 您會看到下面列出名稱為 **b2c-extensions-app** 的應用程式。按一下頁面底部的 [刪除]，然後在出現提示時按一下 [是]。
 - 再次瀏覽至 Active Directory 擴充，然後選取 B2C 租用戶。
 - 按一下頁面底部的 [**刪除**]。依照畫面上的指示完成程序。
-
-如果您已在 B2C 租用中建立**使用者**、**應用程式**或其他物件，您必須先刪除這些物件，再執行上述步驟。
 
 ### 我可以從 Enterprise Mobility Suite 中取得 Azure AD B2C 嗎？
 
@@ -128,4 +130,4 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 您也可能想要檢閱目前的[預覽限制和條件約束](active-directory-b2c-limitations.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

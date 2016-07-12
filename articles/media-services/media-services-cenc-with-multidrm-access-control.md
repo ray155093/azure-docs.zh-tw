@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016"     
+	ms.date="06/22/2016"  
 	ms.author="willzhan;kilroyh;yanmf;juliako"/>
 
 #具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作
@@ -159,7 +159,7 @@ DRM 子系統可能包含下列元件：
 
 
 
-1. 每月訂用帳戶：使用持續性授權，以及 1 對多的內容金鑰對資產對應。例如，對於所有兒童影片，我們會使用單一內容金鑰進行加密。在此案例中： 
+1. 每月訂用帳戶：使用持續性授權，以及 1 對多的內容金鑰對資產對應。例如，對於所有兒童影片，我們會使用單一內容金鑰進行加密。在此案例中：
 
 	所有兒童影片/裝置的授權數總計 = 1
 
@@ -209,7 +209,7 @@ DRM 子系統可能包含下列元件：
 1. 在使用者驗證時，會產生 JWT 權杖；
 1. JWT 權杖中包含的其中一個宣告是「群組」宣告，包含「EntitledUserGroup」的群組物件識別碼。這個宣告會用於傳遞「權利檢查」。
 1. 播放器會下載 CENC 保護內容的用戶端資訊清單，並且「看到」下列項目：
-	1. 金鑰識別碼， 
+	1. 金鑰識別碼，
 	1. 內容是受 CENC 保護，
 	1. 授權取得 URL。
 
@@ -223,7 +223,7 @@ DRM 子系統可能包含下列元件：
 
 1. 準備測試資產：編碼/封裝測試視訊為 Azure 媒體服務中的多位元速率分散 MP4。這項資產不受 DRM 保護。DRM 保護稍後會由動態保護完成。
 1. 建立金鑰識別碼和內容金鑰 (選擇性地從金鑰種子)。對於我們的目的，不需要金鑰管理系統，因為我們只會針對一些測試資產處理一組金鑰識別碼和內容金鑰；
-1. 使用 AMS API 來針對測試資產設定多重 DRM 授權傳遞服務。如果您使用貴公司或貴公司的廠商的自訂授權伺服器，而不是 Azure 媒體服務中的授權服務，您可以略過此步驟，並且在設定授權傳遞的步驟中指定授權取得 URL。需要 AMS API 以指定一些詳細組態，例如不同 DRM 授權服務的授權原則限制、授權回應範本等等。目前，Azure 入口網站尚未提供此組態所需的 UI。您可以在 Julia Kornich 的文件中尋找 API 層級資訊和範例程式碼：[使用 PlayReady 和/或 Widevine Dynamic Common Encryption](media-services-protect-with-drm.md)。 
+1. 使用 AMS API 來針對測試資產設定多重 DRM 授權傳遞服務。如果您使用貴公司或貴公司的廠商的自訂授權伺服器，而不是 Azure 媒體服務中的授權服務，您可以略過此步驟，並且在設定授權傳遞的步驟中指定授權取得 URL。需要 AMS API 以指定一些詳細組態，例如不同 DRM 授權服務的授權原則限制、授權回應範本等等。目前，Azure 入口網站尚未提供此組態所需的 UI。您可以在 Julia Kornich 的文件中尋找 API 層級資訊和範例程式碼：[使用 PlayReady 和/或 Widevine Dynamic Common Encryption](media-services-protect-with-drm.md)。
 1. 使用 AMS API 來針對測試資產設定資產傳遞原則。您可以在 Julia Kornich 的文件中尋找 API 層級資訊和範例程式碼：[使用 PlayReady 和/或 Widevine Dynamic Common Encryption](media-services-protect-with-drm.md)。
 1. 在 Azure 中建立和設定 Azure Active Directory 租用戶；
 1. 在 Azure Active Directory 租用戶中建立幾個使用者帳戶和群組：您應該至少建立「EntitledUser」群組，並將使用者新增至此群組。此群組中的使用者會通過授權取得的權利檢查，而不在此群組中的使用者將無法通過驗證檢查，且無法取得任何授權。成為此「EntitledUser」群組的成員，是由 Azure AD 發出的 JWT 權杖中的必要「群組」宣告。這個宣告需求應該在設定多重 DRM 授權傳遞服務步驟中指定。
@@ -255,7 +255,7 @@ George 也撰寫了一篇相關的部落格文章：[JWT token Authentication in
 
 實作中有一些「錯誤」。希望下列「錯誤」清單可以在您遇到問題時協助您疑難排解。
 
-1. **簽發者**的 URL 結尾應該是 **"/"**。  
+1. **簽發者**的 URL 結尾應該是 **"/"**。
 
 	**受眾**應該是播放器應用程式用戶端識別碼，且您也應該在簽發者 URL 的結尾新增 **"/"**。
 
@@ -317,7 +317,7 @@ George 也撰寫了一篇相關的部落格文章：[JWT token Authentication in
 
 Azure AD 使用業界標準，使用 Azure AD 在本身和應用程式之間建立信任。具體而言，Azure AD 使用簽署金鑰，該金鑰是由公開和私密金鑰組所組成。當 Azure AD 建立包含使用者相關資訊的安全性權杖時，此權杖是由 Azure AD 在其私密金鑰傳送回應用程式之前，使用該私密金鑰來簽署。若要確認該權杖有效且確實來自 Azure AD，應用程式必須使用由 Azure AD 公開，包含在租用戶的同盟中繼資料文件中的公開金鑰來驗證權杖的簽章。此公開金鑰 – 和它從其衍生的簽署金鑰 – 是用於 Azure AD 中所有租用戶的相同金鑰。
 
-下列文件中提供 Azure AD 金鑰變換的詳細資訊：[Azure AD 中簽署金鑰變換的相關重要資訊](http://msdn.microsoft.com/library/azure/dn641920.aspx/)。
+下列文件中提供 Azure AD 金鑰變換的詳細資訊：[Azure AD 中簽署金鑰變換的相關重要資訊](../active-directory/active-directory-signing-key-rollover.md)。
 
 在[公開/私密金鑰組](https://login.windows.net/common/discovery/keys/)之間，
 
@@ -361,15 +361,15 @@ DRM 授權傳遞服務永遠會檢查來自 Azure AD 的目前/有效公開金�
 
 1.	在 Azure AD 租用戶中
 
-	- 新增應用程式 (資源) 與登入 URL： 
+	- 新增應用程式 (資源) 與登入 URL：
 
 	https://[resource_name].azurewebsites.net/ 和
 
-	- 應用程式識別碼 URL： 
+	- 應用程式識別碼 URL：
 	
-	https://[aad_tenant_name].onmicrosoft.com/[resource_name]; 
+	https://[aad_tenant_name].onmicrosoft.com/[resource_name];
 2.	為資源應用程式新增新的金鑰；
-3.	更新應用程式資訊清單檔案，讓 groupMembershipClaims 屬性具有下列值："groupMembershipClaims": "All"，  
+3.	更新應用程式資訊清單檔案，讓 groupMembershipClaims 屬性具有下列值："groupMembershipClaims": "All"，
 4.	在Azure AD 應用程式中指向播放器 Web 應用程式，在 [其他應用程式的權限] 區段中，新增上述步驟 1 中已新增的資源應用程式。在 [委派的權限] 底下勾選 [存取 [resource\_name]] 核取記號。這可給予 Web 應用程式權限以建立存取權杖，來存取資源應用程式。如果您使用 Visual Studio 和 Azure Web 應用程式進行開發，您應該對本機和已部署版本的 Web 應用程式這麼做。
 	
 因此，Azure AD 所發出的 JWT 權杖確實是存取此「指標」資源的存取權杖。
@@ -386,7 +386,7 @@ DRM 授權傳遞服務永遠會檢查來自 Azure AD 的目前/有效公開金�
 
 通常，客戶可能會在他們自己的資料中心或由 DRM 服務提供者裝載的位置，投資授權伺服器陣列。幸運的是，Azure 媒體服務內容保護可讓您在混合模式中運作：內容會在 Azure 媒體服務中裝載並且以動態方式保護，而 DRM 授權是由 Azure 媒體服務外部的伺服器傳遞。在此情況下，有下列的變更考量：
 
-1. 安全權杖服務必須發出權杖，授權伺服器陣列可接受及驗證該權杖。例如，Axinom 所提供的 Widevine 授權伺服器要求特定 JWT 權杖，其中包含「權利訊息」。因此，您需要有 STS 以發出這類的 JWT 權杖。作者已完成這類實作，而您可以在 [Azure 文件中心](https://azure.microsoft.com/documentation/)的下列文件中找到詳細資料：[使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-axinom-integration.md)。 
+1. 安全權杖服務必須發出權杖，授權伺服器陣列可接受及驗證該權杖。例如，Axinom 所提供的 Widevine 授權伺服器要求特定 JWT 權杖，其中包含「權利訊息」。因此，您需要有 STS 以發出這類的 JWT 權杖。作者已完成這類實作，而您可以在 [Azure 文件中心](https://azure.microsoft.com/documentation/)的下列文件中找到詳細資料：[使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-axinom-integration.md)。
 1. 您不再需要在 Azure 媒體服務中設定授權傳遞服務 (ContentKeyAuthorizationPolicy)。您需要做的是當您在設定 CENC 與多重 DRM 中設定 AssetDeliveryPolicy 時，提供授權取得 URL (針對 PlayReady、Widevine 和 FairPlay)。
  
 ### 如果我想要使用自訂 STS？
@@ -522,4 +522,4 @@ Windows 10 的 Microsoft Edge 及 IE 11 中的 EME，允許支援 [PlayReady SL3
 
 William Zhang、Mingfei Yan、Roland Le Franc、Kilroy Hughes、Julia Kornich
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

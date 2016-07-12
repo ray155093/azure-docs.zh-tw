@@ -63,7 +63,7 @@ Azure Active Directory (Azure AD) 提供身分識別做為服務來簡化開發�
 • 使用者通過驗證之後，應用程式必須驗證使用者的安全性權杖，以確定相關各方的驗證成功。開發人員可以使用提供的驗證程式庫來驗證來自 Azure AD 的任何權杖，包括 JSON Web Token (JWT) 或 SAML 2.0。如果您想要手動執行驗證，請參閱 [JWT 權杖處理常式](https://msdn.microsoft.com/library/dn205065.aspx)文件。
 
 
-> [AZURE.IMPORTANT] Azure AD 使用公開金鑰密碼編譯來簽署權杖並驗證它們有效。如需有關應用程式中必要的邏輯以確保永遠以最新金鑰更新的相關資訊，請參閱 [Azure AD 中簽署金鑰變換的相關重要資訊](https://msdn.microsoft.com/library/azure/dn641920.aspx)。
+> [AZURE.IMPORTANT] Azure AD 使用公開金鑰密碼編譯來簽署權杖並驗證它們有效。如需有關應用程式中必要的邏輯以確保永遠以最新金鑰更新的相關資訊，請參閱 [Azure AD 中簽署金鑰變換的相關重要資訊](active-directory-signing-key-rollover.md)。
 
 
 • 驗證程序的要求和回應流程由使用的驗證通訊協定決定，例如 OAuth 2.0、OpenID Connect，WS-同盟或 SAML 2.0。[Azure Active Directory 驗證通訊協定](active-directory-authentication-protocols.md)主題和下列各節中更詳細地討論這些通訊協定。
@@ -464,8 +464,8 @@ Azure AD 所簽發的安全性權杖包含宣告，或已驗證之主體的相�
 
 [Azure Active Directory 程式碼範例](active-directory-code-samples.md)
 
-[Azure AD 中簽署金鑰變換的相關重要資訊](https://msdn.microsoft.com/library/azure/dn641920.aspx)
+[Azure AD 中簽署金鑰變換的相關重要資訊](active-directory-signing-key-rollover.md)
 
 [Azure AD 中的 OAuth 2.0](https://msdn.microsoft.com/library/azure/dn645545.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

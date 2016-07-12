@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/05/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # 從 Azure Data Factory 在 Azure 資料湖分析上執行 U-SQL 指令碼 
@@ -257,4 +257,4 @@ ADF 會使用 ‘parameters’ 區段動態傳遞上述 U-SQL 指令碼中 @in �
 
 您可以指定其他屬性 (即 degreeOfParallelism、priority 等)，以及 Azure 資料湖分析服務上執行之作業的管線定義中的屬性。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

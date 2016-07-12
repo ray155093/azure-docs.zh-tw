@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/08/2016"
+	ms.date="06/23/2016"
 	ms.author="tamram"/>
 
 # Azure 儲存體複寫
@@ -31,7 +31,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 
 | 複寫策略 | LRS | ZRS | GRS | RA-GRS |
-|:-----------------------------------------------------------------------------------|:----|:----|:----|:-------|
+|:----------------------------------------------------------------------------------|:---|:---|:---|:------|
 | 可跨多個設備複寫資料。 | 否 | 是 | 是 | 是 |
 | 可從次要位置及主要位置讀取資料。 | 否 | 否 | 否 | 是 |
 | 可在不同的節點上維護的資料副本數量。 | 3 | 3 | 6 | 6 |
@@ -65,10 +65,42 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 在已啟用 GRS 的儲存體帳戶中，更新會先交付到主要區域，並在此複寫三次。然後更新會複寫到跨不同容錯網域和升級網域的次要區域，並同樣在此複寫三次。
 
-
 > [AZURE.NOTE] 使用 GRS 時，寫入資料的要求會以非同步方式複寫到次要區域。請務必注意，選擇 GRS 並不會影響對主要區域提出要求的延遲。不過，由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要區域的變更。
  
-建立儲存體帳戶時，您可以為帳戶選取主要區域。次要區域會視主要區域而定，且無法變更。如需主要和次要地區配對的最新資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
+建立儲存體帳戶時，您可以為帳戶選取主要區域。次要區域會視主要區域而定，且無法變更。下表顯示主要和次要區域配對：
+
+| 主要 | 次要 |
+|---------------------|---------------------|
+| 美國中北部 | 美國中南部 |
+| 美國中南部 | 美國中北部 |
+| 美國東部 | 美國西部 |
+| 美國西部 | 美國東部 |
+| 美國東部 2 | 美國中部 |
+| 美國中部 | 美國東部 2 |
+| 北歐 | 西歐 |
+| 西歐 | 北歐 |
+| 東南亞 | 東亞 |
+| 東亞 | 東南亞 |
+| 中國東部 | 中國北部 |
+| 中國北部 | 中國東部 |
+| 日本東部 | 日本西部 |
+| 日本西部 | 日本東部 |
+| 巴西南部 | 美國中南部 |
+| 澳洲東部 | 澳大利亞東南部 |
+| 澳大利亞東南部 | 澳洲東部 |
+| 印度南部 | 印度中部 |
+| 印度中部 | 印度南部 |
+| 美國政府愛荷華州 | 美國政府維吉尼亞州 |
+| 美國政府維吉尼亞州 | 美國政府愛荷華州 |
+| 加拿大中部 | 加拿大東部 |
+| 加拿大東部 | 加拿大中部 |
+| 英國北部 | 英國南部 2 |
+| 英國南部 2 | 英國北部 |
+| 德國中部 | 德國東北部 |
+| 德國東北部 | 德國中部 |
+
+
+如需 Azure 支援地區的相關最新資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
  
 ## 讀取權限異地備援儲存體
 
@@ -81,7 +113,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 - [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
 - [關於 Azure 儲存體帳戶](storage-create-storage-account.md)
 - [Azure 儲存體的延展性與效能目標](storage-scalability-targets.md)
-- [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)  
-- [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)  
+- [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)
+- [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

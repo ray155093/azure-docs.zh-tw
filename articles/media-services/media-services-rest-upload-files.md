@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako"/>
 
 
@@ -50,7 +50,7 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 您可以在建立資產時指定的其中一個屬性是 **Options**。**Options** 是列舉值，描述可用來建立資產的加密選項。有效的值是以下清單的其中一個值，而不是值的組合。
 
 - **None** = **0**：將不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。
-如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
+	如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
 
 - **StorageEncrypted** = **1**：如果要用 AES-256 位元加密來加密您的檔案，以便進行上傳和儲存，請指定此值。
 
@@ -234,7 +234,7 @@ SAS URL 具有下列格式：
 適用一些考量事項：
 
 - 您一次不能有超過五個唯一定位器與指定的資產相關聯。如需詳細資訊，請參閱＜定位器＞。
-- 如果您需要立即上傳檔案，您應該將 StartTime 值設為目前時間的五分鐘前。這是因為用戶端電腦與媒體服務之間可能有時間差。此外，您的 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。	
+- 如果您需要立即上傳檔案，您應該將 StartTime 值設為目前時間的五分鐘前。這是因為用戶端電腦與媒體服務之間可能有時間差。此外，您的 StartTime 值必須是以下日期時間格式：YYYY-MM-DDTHH:mm:ssZ (例如，"2014-05-23T17:53:50Z")。
 - 建立 Locator 之後到它可供使用時，中間可能會有 30 到 40 秒的延遲。此問題同時適用於 SAS URL 與原始定位器。
 
 下列範例會示範如何建立 SAS URL 定位器，如要求主體中的 Type 屬性所定義 ("1" 代表 SAS 定位器，"2" 代表隨選原始定位器)。傳回的 **Path** 屬性包含上傳檔案必須使用的 URL。
@@ -462,7 +462,7 @@ IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產�
  
 要求本文屬性 | 說明
 ---|---
-識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼："nb:kid:UUID:<NEW GUID>"。
+識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼：“nb:kid:UUID:<NEW GUID>”。
 ContentKeyType | 這是針對此內容金鑰以整數表示的內容金鑰類型。我們會傳遞值 1 來進行儲存體加密。
 EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。
 ProtectionKeyId | 這是適用於儲存體加密 X.509 憑證的保護金鑰識別碼，可用來加密我們的內容金鑰。
@@ -531,4 +531,4 @@ ProtectionKeyType | 這是適用於保護金鑰的加密類型，可用來將內
 [How to Get a Media Processor]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

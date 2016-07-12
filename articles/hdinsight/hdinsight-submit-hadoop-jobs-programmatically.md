@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="06/28/2016"
 	ms.author="jgao"/>
 
 # 在 HDInsight 上提交 Hadoop 工作
@@ -26,4 +26,4 @@
 - [在 HDInsight 中使用 Sqoop](hdinsight-use-sqoop.md)
 - [在 HDInsight 中使用 Oozie](hdinsight-use-oozie.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

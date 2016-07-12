@@ -14,12 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="06/28/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB Document Explorer 檢視、編輯、建立和上傳 JSON 文件
 
 本篇文章提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Document Explorer 的概觀，它是一種 Azure 入口網站的工具，可讓您檢視、編輯、建立、上傳和篩選使用 DocumentDB 的 JSON 文件。
+
+請注意，具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用 Document Explorer。啟用此功能時，此頁面會加以更新。
 
 ## 啟動 Document Explorer
 
@@ -45,7 +47,7 @@
 
 	![[Document Explorer] 建立文件體驗的螢幕擷取畫面，您可以在其中檢視 JSON 和編輯 JSON](./media/documentdb-view-json-document-explorer/createdocument.png)
 
-2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存]，將您的文件認可至在 [Document Explorer] 刀鋒視窗中指定的資料庫和集合。
+2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存] 以對 [Document Explorer] 刀鋒視窗中指定的資料庫和集合認可您的文件。
 
 	![[Document Explorer] 儲存命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/savedocument1.png)
 
@@ -57,11 +59,11 @@
 
 1. [啟動 Document Explorer](#launch-document-explorer)。
 
-2. 若要編輯現有的文件，請在 [Document Explorer] 刀鋒視窗中加以選取，在 [文件] 刀鋒視窗中編輯該文件，然後按一下 [儲存]。
+2. 若要編輯現有文件，請在 [Document Explorer] 刀鋒視窗中加以選取，在 [文件] 刀鋒視窗中編輯文件，然後按一下 [儲存]。
 
     ![用來檢視 JSON 之 [Document Explorer] 編輯文件功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/editdocument.png)
 
-    如果您正在編輯文件，並決定捨棄目前這組編輯，只需按一下 [文件] 刀鋒視窗中的 [捨棄]，確認捨棄動作，便會重新載入文件先前的狀態。
+    如果您正在編輯文件，並決定您要捨棄目前這組編輯，只要按一下 [文件] 刀鋒視窗中的 [捨棄]、確認捨棄動作，然後就會重新載入文件的先前狀態。
 
     ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/discardedit.png)
 
@@ -158,4 +160,4 @@ Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文�
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

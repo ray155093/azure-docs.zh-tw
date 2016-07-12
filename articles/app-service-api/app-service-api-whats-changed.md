@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/13/2016"
+	ms.date="06/29/2016"
 	ms.author="mohisri"/>
 
 # App Service API Apps - 變更的項目
@@ -32,7 +32,7 @@ API Apps 更新的主要設計原則是讓您可以使用您選擇的語言，�
 
 對於 API 案例，有一些相關的新功能：
 
-- **支援直接使用 Azure Active Directory**，而不需要用戶端程式碼交換工作階段權杖的 AAD 權杖：您的用戶端可以根據持有人權杖規格，在 Authorization 標頭只包含 AAD 權杖。這也表示用戶端或伺服器端上不需要有任何 App Service 專用 SDK。 
+- **支援直接使用 Azure Active Directory**，而不需要用戶端程式碼交換工作階段權杖的 AAD 權杖：您的用戶端可以根據持有人權杖規格，在 Authorization 標頭只包含 AAD 權杖。這也表示用戶端或伺服器端上不需要有任何 App Service 專用 SDK。
 - **服務對服務或「內部」存取**：如果您有精靈處理序或某些需要存取沒有介面之 API 的其他用戶端，可以使用 AAD 服務主體來要求權杖，並將它傳遞至 App Service 來驗證您的應用程式。
 - **延遲授權**：許多應用程式對於應用程式的不同部分有各種不同的存取限制。也許您想要讓某些 API 可供公開使用，而有些則需要登入。原始的驗證/授權功能是孤注一擲，整個網站都需要登入。此選項仍然存在，但是您也可以選擇允許您的應用程式程式碼在 App Service 驗證使用者之後，呈現存取決策。
  
@@ -85,13 +85,13 @@ API 定義刀鋒視窗可以透過 Web、行動及 API Apps 使用。在管理�
 重新部署的步驟與將任何現有的 Web API 部署到 App Service 的步驟相同。步驟：
 
 1. 建立空的 API 應用程式。做法是在入口網站中使用 [新增] > [API 應用程式]，在 Visual Studio 中使用 [發佈]，或使用資源管理員工具。如果是使用資源管理員工具或範本，在 **Microsoft.Web/sites** 資源類型上將 [種類] 值設為 **api**，將管理入口網站中的快速入門和設定導向 API 案例。
-2. 使用 App Service 支援的任何部署機制，連接及部署專案到空的 API 應用程式。如需詳細資訊，請參閱 [Azure App Service 部署文件](../app-service-web/web-sites-deploy.md)。 
+2. 使用 App Service 支援的任何部署機制，連接及部署專案到空的 API 應用程式。如需詳細資訊，請參閱 [Azure App Service 部署文件](../app-service-web/web-sites-deploy.md)。
   
 ### 驗證
 App Service 驗證服務支援相同的功能，這些功能可用於先前的 API 應用程式模型。如果您使用工作階段權杖並且需要 SDK，請使用下列用戶端與伺服器 SDK：
 
 - 用戶端：[Azure 行動用戶端 SDK](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/)
-- 伺服器：[Microsoft Azure 行動應用程式 .NET 驗證延伸模組](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/) 
+- 伺服器：[Microsoft Azure 行動應用程式 .NET 驗證延伸模組](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/)
 
 如果您改為使用 App Service alpha SDK，這些項目目前已被取代：
 
@@ -122,4 +122,4 @@ App Service 驗證服務支援相同的功能，這些功能可用於先前的 A
 - [MSDN 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)
 - [堆疊溢位](http://stackoverflow.com/questions/tagged/azure-api-apps)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

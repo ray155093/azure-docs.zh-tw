@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="06/29/2016" 
 	ms.author="stbaro"/>
 
 # 使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶
@@ -28,15 +28,19 @@
 
 若要將具有 MongoDB 通訊協定支援的 DocumentDB 帳戶新增至 MongoChef 連接管理員，請執行下列步驟。
 
-1. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
+1. 使用[這裡](documentdb-connect-mongodb-account.md)的資訊，擷取具有 MongoDB 連接資訊通訊協定支援的 DocumentDB。
+
+	![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-connect-mongodb-account/ConnectionStringBlade.png)
+
+2. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
 
 	![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManager.png)
 	
-2. 在 [新增連線] 視窗中，請在 [伺服器] 索引標籤上輸入具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的 FQDN 和連接埠。
+2. 在 [新增連線] 視窗中，請在 [伺服器] 索引標籤上輸入具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的主機 (FQDN) 和連接埠。
 	
 	![[MongoChef 連接管理員伺服器] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerServerTab.png)
 
-3. 在 [新增連線] 視窗中，請在 [驗證] 索引標籤上選擇驗證模式 [標準 (MONGODB-CR 或 SCARM-SHA-1)]，並輸入使用者名稱和密碼資訊。接受預設的驗證資料庫 (管理員)，或提供您自己的值。
+3. 在 [新增連線] 視窗中，請在 [驗證] 索引標籤上選擇驗證模式 [標準 (MONGODB-CR 或 SCARM-SHA-1)]，並輸入使用者名稱和密碼。接受預設的驗證資料庫 (管理員)，或提供您自己的值。
 
 	![[MongoChef 連接管理員驗證] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
 
@@ -128,4 +132,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0629_2016-->

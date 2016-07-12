@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="設定 Telestream Wirecast 編碼器來傳送單一位元速率的即時串流" 
+	pageTitle="設定 Telestream Wirecast 編碼器來傳送單一位元速率的即時串流 " 
 	description="本主題示範如何設定 Wirecast 即時編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="06/22/2016"
 	ms.author="juliako;cenkdin;anilmur"/>
 
 #使用 Wirecast 編碼器來傳送單一位元速率的即時串流
@@ -55,7 +55,6 @@
 請確認已選取 [**立即啟動新頻道**]。
 
 3. 按一下 [**建立頻道**]。
-
 	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
@@ -70,16 +69,16 @@
 
 **視訊**：
  
-- 轉碼器：H.264 
-- 設定檔：高 (層級 4.0) 
-- 位元速率：5000 kbps 
-- 主要畫面格：2 秒 (60 秒) 
+- 轉碼器：H.264
+- 設定檔：高 (層級 4.0)
+- 位元速率：5000 kbps
+- 主要畫面格：2 秒 (60 秒)
 - 畫面播放速率：30
  
 **音訊**：
 
-- 轉碼器：AAC (LC) 
-- 位元速率：192 kbps 
+- 轉碼器：AAC (LC)
+- 位元速率：192 kbps
 - 取樣速率：44.1 kHz
 
 
@@ -145,7 +144,7 @@
 
 ##測試播放
   
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
+1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。
 
 	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast8.png)
 
@@ -155,13 +154,13 @@
 
 ##建立程式
 
-1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。  
+1. 一旦確認通道播放沒問題後，請建立程式。在 AMSE 工具的 [Live] 索引標籤下，於程式區域內按一下滑鼠右鍵，並選取 [建立新的程式]。
 
 	![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast9.png)
 
 2. 為程式命名，並視需要調整**封存時間長度** (預設為 4 小時)。您也可以指定儲存體位置，或保留為預設值。
 3. 勾選 [現在啟動程式] 方塊。
-4. 按一下 [建立程式]。  
+4. 按一下 [建立程式]。
   
 	注意：建立程式時所使用的時間會比建立通道時更少。
  
@@ -183,4 +182,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

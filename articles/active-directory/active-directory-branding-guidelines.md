@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/16/2016"
+   ms.date="06/23/2016"
    ms.author="mbaldwin"/>
 
 
 # 應用程式的商標指導方針
 
 
-本主題討論使用 Azure Active Directory 開發應用程式時，您應該使用的商標指導方針。當客戶想要使用其工作或學校帳戶 (在 Azure AD 中管理) 來註冊和登入您的應用程式時，這些指導方針可協助引導客戶。
+本主題討論使用 Azure Active Directory (Azure AD) 開發應用程式時，您應該使用的商標指導方針。當客戶想要使用其工作或學校帳戶 (在 Azure AD 中管理) 或其個人帳戶來註冊和登入您的應用程式時，這些指導方針可協助引導客戶。
 
 ## 個人帳戶與 Microsoft 提供的工作或學校帳戶的比較
 
@@ -47,7 +47,7 @@ Microsoft 不會在 Azure 或 Active Directory 品牌名稱上公開使用者，
 
 您的應用程式可能將註冊和登入劃分成不同的路徑，下列各節提供這兩個案例的視覺化導引。
 
-**如果您的應用程式支援使用者註冊 (例如免費試用版或免費增值模式)**：您可以顯示 [**登入**] 按鈕，讓使用者利用 Microsoft 提供的工作或學校帳戶來存取您的應用程式。他們第一次存取您的應用程式時，Azure AD 會顯示同意提示。
+**如果您的應用程式支援使用者註冊 (例如免費試用版或免費增值模式)**：您可以顯示**登入**按鈕，讓使用者利用其工作帳戶或個人帳戶來存取您的應用程式。他們第一次存取您的應用程式時，Azure AD 會顯示同意提示。
 
 **如果您的應用程式需要唯有系統管理員才能同意的權限，或您的應用程式需要組織授權**：您應該將系統管理員擷取與使用者登入分開。 **取得此應用程式] 按鈕**會將系統管理員重新導向登入，然後要求他們代表組織中使用者來表示同意。額外的好處是避免您的應用程式顯示使用者同意提示。
 
@@ -60,25 +60,28 @@ Microsoft 不會在 Azure 或 Active Directory 品牌名稱上公開使用者，
 ![應用程式類型和案例](./media/active-directory-branding-guidelines/add-to-my-org.png)
 
 不過，我們建議您撰寫說明文字，而不要依賴按鈕。例如：
-> *如果您已經使用 Office 365 或 Microsoft 的其他商務服務，您可以直接授權 <your_app_name> 存取您的組織資料。這可讓使用者利用其現有的工作帳戶存取 <your_app_name>。*
+> 如果您已經使用 Office 365 或 Microsoft 的其他商務服務，可以直接授權 <your\_app\_name> 存取您的組織資料。這可讓使用者利用其現有的工作帳戶存取 <your\_app\_name>。
 
 
 ## 登入的視覺化導引
 您的應用程式應該顯示登入按鈕，將使用者重新導向登入端點，此端點符合您用來與 Azure AD 整合的通訊協定。下節提供該按鈕外觀的詳細資料。
 
-### 象形圖和「公司或學校帳戶」
-結合 Microsoft 標誌與通用的「工作或學校」詞彙，才能在應用程式可能支援的其他身分識別提供者之中，彰顯 Azure AD 的獨特性。如果沒有足夠的空間顯示「工作或學校帳戶」，可以縮短為「工作帳戶」。
+### 象形圖和「使用 Microsoft 帳戶登入」
+結合 Microsoft 標誌與「使用 Microsoft 帳戶登入」詞彙，才能在應用程式可能支援的其他身分識別提供者之中，彰顯 Azure AD 的獨特性。如果沒有足夠的空間顯示「使用 Microsoft 帳戶登入」，可以縮短為「登入」。
 
-![應用程式類型和案例](./media/active-directory-branding-guidelines/work-or-school-account.png)
+![應用程式類型和案例](./media/active-directory-branding-guidelines/sign-in-with-microsoft-light.png)
 
-![應用程式類型和案例](./media/active-directory-branding-guidelines/work-account.png)
+![應用程式類型和案例](./media/active-directory-branding-guidelines/sign-in-light.png)
 
-您也可以提供其他說明，幫助使用者了解他們是否可使用此按鈕：
+按鈕也可以使用深色配置。
 
-![應用程式類型和案例](./media/active-directory-branding-guidelines/work-account-with-explaination.png)
+![應用程式類型和案例](./media/active-directory-branding-guidelines/sign-in-with-microsoft-dark.png)
+
+![應用程式類型和案例](./media/active-directory-branding-guidelines/sign-in-dark.png)
 
 ## 商標的建議與禁忌
-**建議**使用「工作或學校帳戶」結合 Microsoft 標誌，以代表使用 Azure AD 登入。如果空間有限，您可以只顯示「工作帳戶」，但**禁止**使用「企業帳戶」、「商務帳戶」或「公司帳戶」之類的其他詞彙。
+
+**建議**將「工作或學校帳戶」與「使用 Microsoft 登入」按鈕結合使用，以提供更多說明協助使用者了解是否可使用它。**禁止**使用「企業帳戶」、「商務帳戶」或「公司帳戶」之類的其他詞彙。
 
 **禁止**使用 "Office 365 ID" 或 "Azure ID"。Office 365 也是 Microsoft 提供的消費型產品名稱，並不使用 Azure AD 進行驗證。
 
@@ -90,8 +93,4 @@ Microsoft 不會在 Azure 或 Active Directory 品牌名稱上公開使用者，
 
 **建議**提供方法讓使用者登出並切換至另一個使用者帳戶。雖然大部分的人只有一個 Microsoft/Facebook/Google/Twitter 個人帳戶，但往往與多個組織相關聯。我們即將支援多重登入使用者。
 
-## 在您的應用程式中同時支援 Azure AD 與 Microsoft 帳戶
-
-如果您的應用程式同時支援 Azure AD 與 Microsoft 帳戶，則您的應用程式中需要包含兩個不同的登入按鈕。我們正在積極進行更新，將可讓您只需要整合一次，就能同時支援 Microsoft 提供的個人和工作帳戶。此更新推出時，您將能夠在應用程式中只顯示一個 [使用 Microsoft 登入] 按鈕。
-
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

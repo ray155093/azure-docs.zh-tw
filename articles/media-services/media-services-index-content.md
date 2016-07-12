@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/08/2016"   
+	ms.date="06/22/2016"   
 	ms.author="adsolank;juliako;johndeu"/>
 
 
@@ -154,9 +154,9 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 檔案名稱 | 說明
 ----------|------------
 __InputFileName.aib__ | 音訊索引 blob 檔案。<br /><br />音訊索引 Blob (AIB) 檔案是二進位檔案，可讓您在 Microsoft SQL Server 中使用全文檢索搜尋功能來搜尋。AIB 檔比簡單的字幕檔案強大，因為它包含每個字的替代字，允許更豐富的搜尋經驗。<br/> <br/>它需要已安裝 Indexer SQL 附加元件的 Microsoft SQL Server 2008 或更新版本的電腦。使用 Microsoft SQL Server 全文檢索搜尋來搜尋 AIB 可以比搜尋 WAMI 產生之隱藏式字幕檔案提供更正確的搜尋結果。這是因為 AIB 包含發音類似的替代字，而隱藏式字幕檔案則包含音訊每一節的最高信賴字。如果口說字詞的搜尋功能是最重要的，則建議一起使用 AIB 和 Microsoft SQL Server。<br/><br/> 若要下載附加元件，請按一下 <a href="http://aka.ms/indexersql">Azure 媒體索引器 SQL 附加元件</a>。<br/><br/>您也可以利用其他搜尋引擎 (例如 Apache Lucene/Solr)，只根據隱藏式字幕和關鍵字 XML 檔案來為視訊建立索引，但這會導致搜尋結果較不正確。
-__InputFileName.smi__<br />\_\_InputFileName.ttml\_\_<br />\_\_InputFileName.vtt\_\_ |SAMI、TTML 和 WebVTT 格式的隱藏式字幕 (CC) 檔案。<br/><br/>它們可以用來讓具有聽力障礙的人存取音訊和視訊檔案。<br/><br/>隱藏式字幕檔案包含稱為 <b>Recognizability</b> 的標記，它會根據來源視訊中的語音可辨識度來為索引工作評分。您可以使用 <b>Recognizability</b> 的值，針對實用性來篩選輸出檔。較低的分數表示由於音訊品質所致的不良索引結果。
+__InputFileName.smi__<br />__InputFileName.ttml__<br />__InputFileName.vtt__ |SAMI、TTML 和 WebVTT 格式的隱藏式字幕 (CC) 檔案。<br/><br/>它們可以用來讓具有聽力障礙的人存取音訊和視訊檔案。<br/><br/>隱藏式字幕檔案包含稱為 <b>Recognizability</b> 的標記，它會根據來源視訊中的語音可辨識度來為索引工作評分。您可以使用 <b>Recognizability</b> 的值，針對實用性來篩選輸出檔。較低的分數表示由於音訊品質所致的不良索引結果。
 __InputFileName.kw.xml<br />InputFileName.info__ |關鍵字與資訊檔案。<br/><br/>關鍵字檔案是 XML 檔案，其中包含從語音內容擷取的關鍵字，以及關鍵字的頻率和位移資訊。<br/><br/>資訊檔案是純文字檔案，包含每個已辨識字詞的細微資訊。第一行是特殊行並包含可辨識分數。後續每一行皆是下列資料的清單 (以 tab 鍵分隔)：開始時間、結束時間、文字/片語、信賴值。時間是以秒為單位，信賴值則是以 0-1 的數字標示。<br/><br/>範例行："1.20 1.45 word 0.67" <br/><br/>這些檔案的用途眾多，例如執行語音分析，或是公開到搜尋引擎 (例如 Bing、Google 或 Microsoft SharePoint) 來讓媒體檔案更容易被找到，或甚至用來放送更多相關的廣告。
-__JobResult.txt__ |包含下列資訊的輸出資訊清單 (只會在檢索多個檔案時顯示)：<br/><br/><table border="1"><tr><th>InputFile</th><th>別名</th><th>MediaLength</th><th>錯誤</th></tr><tr><td>a.mp4</td><td>Media\_1</td><td>300</td><td>0</td></tr><tr><td>b.mp4</td><td>Media\_2</td><td>0</td><td>3000</td></tr><tr><td>c.mp4</td><td>Media\_3</td><td>600</td><td>0</td></tr></table><br/>
+__JobResult.txt__ |包含下列資訊的輸出資訊清單 (只會在編製多個檔案的索引時顯示)：<br/><br/><table border="1"><tr><th>輸入檔案</th><th>別名</th><th>媒體長度</th><th>錯誤</th></tr><tr><td>a.mp4</td><td>Media_1</td><td>300</td><td>0</td></tr><tr><td>b.mp4</td><td>Media_2</td><td>0</td><td>3000</td></tr><tr><td>c.mp4</td><td>Media\_3</td><td>600</td><td>0</td></tr></table><br/>
 
 
 
@@ -298,4 +298,4 @@ __功能__ <br /><br /> 在 1.2 版中新增。目前唯一支援的功能是語
 
 [使用 Azure Media Indexer 2 Preview 編製媒體檔案索引](media-services-process-content-with-indexer2.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0629_2016-->

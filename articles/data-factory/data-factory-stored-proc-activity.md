@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/05/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # SQL Server 預存程序活動
@@ -21,9 +21,9 @@
 您可以在 Data Factory [管線](data-factory-create-pipelines.md)中使用 SQL Server 預存程序活動，以叫用下列其中一個資料存放區中的預存程序。
 
 
-- Azure SQL Database 
-- Azure SQL 資料倉儲  
-- 您的企業或 Azure VM 中的 SQL Server 資料庫。您必須在位於裝載資料庫的同一部電腦上或個別電腦上安裝資料管理閘道，以避免與資料庫競用資源。資料管理閘道器是一套透過安全且可管理的方式，將內部部署資料來源/Azure VM 中裝載的資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。 
+- Azure SQL Database
+- Azure SQL 資料倉儲
+- 您的企業或 Azure VM 中的 SQL Server 資料庫。您必須在位於裝載資料庫的同一部電腦上或個別電腦上安裝資料管理閘道，以避免與資料庫競用資源。資料管理閘道器是一套透過安全且可管理的方式，將內部部署資料來源/Azure VM 中裝載的資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。
 
 本文是根據[資料轉換活動](data-factory-data-transformation-activities.md)一文，它呈現資料轉換和支援的轉換活動的一般概觀。
 
@@ -62,7 +62,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 ### 範例資料表與預存程序
 > [AZURE.NOTE] 這個範例雖使用 Azure SQL Database，但對於 Azure SQL 資料倉儲和 SQL Server 資料庫也同樣適用。
 
-1. 在您的 Azure SQL Database 中，使用 SQL Server Management Studio 或任何其他您很熟悉的工具，來建立下列**資料表**。Datetimestamp 資料行是產生對應識別碼的日期和時間。 
+1. 在您的 Azure SQL Database 中，使用 SQL Server Management Studio 或任何其他您很熟悉的工具，來建立下列**資料表**。Datetimestamp 資料行是產生對應識別碼的日期和時間。
 
 		CREATE TABLE dbo.sampletable
 		(
@@ -91,10 +91,10 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 	
 ### 建立 Data Factory  
 4. 登入 [Azure 入口網站](https://portal.azure.com/)之後，執行下列動作：
-	1.	按一下左側功能表上的 [新增]。 
+	1.	按一下左側功能表上的 [新增]。
 	2.	按一下 [建立] 刀鋒視窗中的 [資料分析]。
 	3.	按一下 [資料分析] 刀鋒視窗上的 [Data Factory]。
-4.	在 [新增 Data Factory] 刀鋒視窗中，輸入 **LogProcessingFactory** 做為 [名稱]。Azure Data Factory 名稱必須是全域唯一的。您必須在 Data Factory 的名稱前面加上您的名稱，才能成功建立 Factory。 
+4.	在 [新增 Data Factory] 刀鋒視窗中，輸入 **LogProcessingFactory** 做為 [名稱]。Azure Data Factory 名稱必須是全域唯一的。您必須在 Data Factory 的名稱前面加上您的名稱，才能成功建立 Factory。
 3.	如果您尚未建立任何資源群組，您必須建立資源群組。作法：
 	1.	按一下 [資源群組名稱]。
 	2.	在 [資源群組] 刀鋒視窗中，選取 [建立新的資源群組]。
@@ -107,8 +107,8 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 ### 建立 Azure SQL 連結服務  
 建立 Data Factory 之後，您可以建立 Azure SQL 連結的服務，將 Azure SQL Database 連結到 Data Factory。這是包含 sampletable 資料表和 sp\_sample 預存程序的資料庫。
 
-7.	在適用於 **SProcDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。這會啟動 Data Factory 編輯器。 
-2.	在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure SQL]。您應該會在編輯器中看到用來建立 Azure SQL 連結服務的 JSON 指令碼。 
+7.	在適用於 **SProcDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。這會啟動 Data Factory 編輯器。
+2.	在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure SQL]。您應該會在編輯器中看到用來建立 Azure SQL 連結服務的 JSON 指令碼。
 4. 使用您的 Azure SQL Database 伺服器名稱來取代 **servername**、使用您在其中建立資料表和預存程序的資料庫來取代 **databasename**、使用有權存取資料庫的使用者帳戶來取代 **username@servername**，以及使用該使用者帳戶的密碼來取代 **password**。
 5. 按一下命令列的 [部署]，部署連結服務。
 
@@ -130,13 +130,13 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 				}
 			}
 		}
-7. 按一下命令列上的 [部署] 來部署資料集。 
+7. 按一下命令列上的 [部署] 來部署資料集。
 
 ### 使用 SqlServerStoredProcedure 活動建立管線
 現在，讓我們使用 SqlServerStoredProcedure 活動來建立管線。
  
-9. 按一下命令列上的 **...(省略符號)**，然後按一下 [新管線]。 
-9. 複製/貼上下列 JSON 程式碼片段。將 **StoredProcedureName** 設定為 **sp\_sample**。**DateTime** 參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。  
+9. 按一下命令列上的 **...(省略符號)**，然後按一下 [新管線]。
+9. 複製/貼上下列 JSON 程式碼片段。將 **StoredProcedureName** 設定為 **sp\_sample**。**DateTime** 參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。
 
 		{
 		    "name": "SprocActivitySamplePipeline",
@@ -167,14 +167,14 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		        "isPaused": false
 		    }
 		}
-9. 按一下工具列上的 [部署] 來部署管線。  
+9. 按一下工具列上的 [部署] 來部署管線。
 
 ### 監視管線
 
 6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回到 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
-7. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。 
-8. 在 [圖表檢視] 中，按兩下 **sprocsampleout** 資料集。您將會看到就緒狀態的配量。由於配量是針對 2015/01/02 和 2015/01/03 之間的每一個小時所產生，因此，應該會有 24 個配量。 
-10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 **select * from sampledata** 查詢，以驗證預存程序已將資料插入資料表。
+7. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
+8. 在 [圖表檢視] 中，按兩下 **sprocsampleout** 資料集。您將會看到就緒狀態的配量。由於配量是針對 2015/01/02 和 2015/01/03 之間的每一個小時所產生，因此，應該會有 24 個配量。
+10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 **select from sampledata** 查詢，以驗證預存程序已將資料插入資料表。
 
 	![輸出資料](./media/data-factory-stored-proc-activity/output.png)
 
@@ -208,4 +208,4 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		}
 	}
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0629_2016-->

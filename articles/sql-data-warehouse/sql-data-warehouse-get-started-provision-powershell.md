@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/07/2016"
+   ms.date="07/01/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 Powershell 建立 SQL 資料倉儲
@@ -55,7 +55,7 @@
 
 此 Cmdlet 所需的參數：
 
-- **RequestedServiceObjectiveName**：您要求的 DWU 數量，其格式為 "DWXXX"。DWU 代表 CPU 和記憶體配置。每個 DWU 值都代表這些資源的線性增加。目前支援的值為：100、200、300、400、500、600、1000、1200、1500、2000。
+- **RequestedServiceObjectiveName**：您要求的 [DWU][] 數量。支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500 和 DW2000。
 - **DatabaseName**：您要建立的 SQL 資料倉儲的名稱。
 - **ServerName**：您用來建立的伺服器名稱 (必須是 V12)。
 - **ResourceGroupName**：您使用的資源群組。若要尋找訂用帳戶中可用的資源，請使用 Get-AzureResource。
@@ -64,19 +64,19 @@
 如需參數選項的詳細資訊，請參閱[建立資料庫 (Azure SQL 資料倉儲)][]。如需命令參考，請參閱 [New-AzureRmSqlDatabase][]
 
 ## 後續步驟
-您的 SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或查看如何[開發][]、[載入][]或[移轉][]。
+SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或查看如何[開發][]、[載入][]或[移轉][]。
 
 如果您有興趣進一步了解如何以程式設計方式管理 SQL 資料倉儲，請查看我們的文章中有關 [PowerShell Cmdlet 和 REST API][] 的使用方式。
 
 <!--Image references-->
 
 <!--Article references-->
-
-[移轉]: sql-data-warehouse-overview-migrate.md
-[開發]: sql-data-warehouse-overview-develop.md
-[載入]: sql-data-warehouse-load-with-bcp.md
-[載入範例資料]: sql-data-warehouse-get-started-load-sample-databases.md
-[PowerShell Cmdlet 和 REST API]: sql-data-warehouse-reference-powershell-cmdlets.md
+[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[移轉]: ./sql-data-warehouse-overview-migrate.md
+[開發]: ./sql-data-warehouse-overview-develop.md
+[載入]: ./sql-data-warehouse-load-with-bcp.md
+[載入範例資料]: ./sql-data-warehouse-get-started-load-sample-databases.md
+[PowerShell Cmdlet 和 REST API]: ./sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: ../sql-database-configure-firewall-settings.md
 
 [如何安裝和設定 Azure PowerShell]: ../powershell/powershell-install-configure.md
@@ -96,4 +96,4 @@
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

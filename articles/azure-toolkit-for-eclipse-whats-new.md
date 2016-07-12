@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/04/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694270.aspx -->
@@ -160,7 +160,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 * **Azul Zulu OpenJDK 封裝更新 45。** 自這一版開始，現在會提供 Azul System 的 Zulu (Open JDK v7 封裝) 更新 45，除此之外，先前已提供更新 40 和更新 25。
 * **支援私人端點連接埠的「自動」功能。** 您可以將輸入端點和內部端點的私人連接埠設定為自動，以讓 Azure 自動為該端點指派連接埠。先前您只能指派特定連接埠號碼。
 * **支援在建立自我簽署憑證的 UI 中自訂憑證名稱 (CN)。** 先前會對所有新憑證使用相同的硬式編碼名稱，但現在您可以指定自有憑證名稱，以協助區分 Azure 入口網站中具有不同用途的多個憑證。
-* **Azure 工具列：**Azure 工具列已做了下列變更： 
+* **Azure 工具列：**Azure 工具列已做了下列變更：
     * ![][ic710876] 已加入 [新增 Azure 部署專案] 這個圖示。
     * ![][ic710877] 已加入這個圖示來做為建立自我簽署憑證對話方塊的捷徑。
 * **支援 A5 Azure 虛擬機器大小。** 您現在可以將雲端服務部署到高記憶體的 A5 虛擬機器大小。如需此 VM 大小的詳細資訊，請參閱 [Azure 的虛擬機器和雲端服務大小]。
@@ -278,7 +278,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 * **在安裝外掛程式期間有提供 Microsoft JDBC Driver 4.0 for SQL Server：**在安裝新外掛程式期間，可以安裝最新版的 Microsoft JDBC Driver for SQL Server。
 * **在安裝外掛程式期間有提供 Azure 存取控制服務篩選器：**納入工具組中做為 Eclipse 程式庫的這個新元件，可讓 Java Web 應用程式使用各種身分識別提供者 (例如 Google、Live.com 和 Yahoo!)，順暢地利用 Azure 存取控制服務 (ACS) 驗證。您不需要自行撰寫驗證邏輯，只要設定幾個選項，然後讓篩選器執行讓使用者使用 ACS 進行登入的困難工作。您可以完全專注於撰寫程式碼，以讓使用者根據要求物件內的篩選器傳回給應用程式的身分識別來存取資源。如需如何使用 ACS 篩選器的教學課程，請參閱[如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者]。
 * **自動偵測 Azure SDK 1.7 必要條件：**在建立新的 Azure 部署專案時，會自動下載 Azure SDK 1.7 (如果尚未安裝)。
-* **執行個體端點：**允許直接存取連接埠端點以便與負載平衡的角色執行個體進行通訊。您可以透過 [[端點屬性]] 頁面上的端點 UI 來新增執行個體端點。這有助於在具有多個執行個體部署的案例中，對雲端上執行的特定計算執行個體進行遠端偵錯和 JMX 診斷。 
+* **執行個體端點：**允許直接存取連接埠端點以便與負載平衡的角色執行個體進行通訊。您可以透過 [[端點屬性]] 頁面上的端點 UI 來新增執行個體端點。這有助於在具有多個執行個體部署的案例中，對雲端上執行的特定計算執行個體進行遠端偵錯和 JMX 診斷。
 * **元件 UI：**可讓進階使用者在專案的個別 Azure 角色與其他外部資源 (例如 Java 應用程式專案) 之間輕鬆設定專案相依性，同時也可輕鬆描述其部署邏輯。如需詳細資訊，請參閱[元件屬性]。
 * **自動升級舊版專案：**當您開啟的工作區具有以舊版外掛程式建立的 Azure 專案時，舊專案在 Eclipse 中將會顯示為關閉狀態，因為舊版專案與新版本不相容。如果您嘗試開啟其中一個舊專案，將會啟動升級精靈。如果您同意升級，將會建立新的專案 (名稱後會附加 **\_Upgraded**)，並自動更新為使用新版本。您可以視需要重新命名新專案。升級過程中不會修改原始專案 (並且會保持關閉狀態)。
 
@@ -293,7 +293,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 * **遠端 Java 應用程式偵錯設定 UI：**可讓您輕鬆地驅使 Eclipse 的遠端偵錯工具存取模擬器或 Azure 雲端中執行的 Java 應用程式，以便您可以逐步執行和即時偵錯 Java 程式碼。如需詳細資訊，請參閱[在 Eclipse 中偵錯 Azure 應用程式]。
 * **本機儲存資源設定 UI：**讓您不必再透過直接操作 XML 來設定本機資源。這項功能也可讓您在本機資源已透過環境變數 (可直接從啟動指令碼參考) 進行部署之後，存取本機資源的有效檔案路徑。如需詳細資訊，請參閱[本機儲存體屬性]。
 * **環境變數設定 UI：**讓您不必再透過手動編輯設定 XML 來設定環境變數。如需詳細資訊，請參閱[環境變數屬性]。
-* **適用於 SQL Azure 的 JDBC 驅動程式：**透過外掛程式安裝為完美整合的 Eclipse 程式庫，讓您更輕鬆地針對 SQL Azure 進行程式設計。 
+* **適用於 SQL Azure 的 JDBC 驅動程式：**透過外掛程式安裝為完美整合的 Eclipse 程式庫，讓您更輕鬆地針對 SQL Azure 進行程式設計。
 * **以內容功能表快速存取角色設定 UI**：只要以滑鼠右鍵按一下角色資料夾，然後按一下 [屬性]。
 * **自訂 Azure 專案和角色資料夾圖示：**讓您在工作區和專案中更容易看見和瀏覽。
 
@@ -304,7 +304,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 - [適用於 Eclipse 的 Azure 工具組]
   - [安裝 Azure Toolkit for Eclipse]
   - [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
-  - 適用於 Eclipse 的 Azure 工具組的新功能 (本文)
+  - *適用於 Eclipse 的 Azure 工具組的新功能 (本文)*
 - [Azure Toolkit for IntelliJ]
   - [安裝 Azure Toolkit for IntelliJ]
   - [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
@@ -354,4 +354,4 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 [ic710882]: ./media/azure-toolkit-for-eclipse-whats-new/ic710882.png
 [ic710883]: ./media/azure-toolkit-for-eclipse-whats-new/ic710883.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

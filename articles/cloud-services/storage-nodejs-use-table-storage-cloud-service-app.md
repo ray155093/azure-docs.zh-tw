@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="05/04/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 # 使用儲存體的 Node.js Web 應用程式
@@ -241,7 +241,7 @@
 
 ### 修改 app.js
 
-1. 在 **WebRole1** 目錄中，在文字編輯器中開啟 **app.js** 檔案。 
+1. 在 **WebRole1** 目錄中，在文字編輯器中開啟 **app.js** 檔案。
 
 2. 在檔案開頭，加入下列內容以載入 azure 模組，以及設定資料表名稱和資料分割索引鍵：
 
@@ -403,4 +403,4 @@ Azure 會就每小時伺服器時間所使用的 Web 角色執行個體數進行
  
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

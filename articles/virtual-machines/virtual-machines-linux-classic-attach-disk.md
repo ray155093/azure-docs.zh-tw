@@ -19,7 +19,7 @@
 
 # 如何將資料磁碟連接至 Linux 虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。您也可以[使用 Resource Manager 部署模型來連結資料磁碟](virtual-machines-linux-add-disk.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)].參閱如何[使用 Resource Manager 部署模型連接資料磁碟](virtual-machines-linux-add-disk.md)。
 
 您可以將空的磁碟和含有資料的磁碟連接到 Azure VM。這兩種類型的磁碟都是位於 Azure 儲存體帳戶中的 .vhd 檔案。就像將任何磁碟新增到 Linux 機器一樣，連接之後您需要將它初始化和格式化才可供使用。本文將會詳細說明連接空的磁碟和連接含有資料的磁碟到 VM，以及初始化和格式化新磁碟的方法。
 
@@ -173,4 +173,4 @@
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-classic-log-on.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

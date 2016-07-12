@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="03/29/2016"
+   ms.date="06/28/2016"
    ms.author="mthalman" />
 
 # 使用 Visual Studio Team Services 為 Service Fabric 應用程式設定持續整合
@@ -401,7 +401,7 @@
     |指令碼檔名|按一下 [...] 按鈕，然後瀏覽至應用程式專案內的 [指令碼] 目錄。選取 `Deploy-FabricApplication.ps1`。|
     |引數|`-PublishProfileFile path/to/MySolution/MyApplicationProject/PublishProfiles/MyPublishProfile.xml -ApplicationPackagePath path/to/MySolution/MyApplicationProject/pkg/$(BuildConfiguration)`|
 
->[AZURE.NOTE] 若要輕鬆地建立有效的發佈設定檔 xml 檔案，請在 Visual Studio 中建立，如此處所示︰https://azure.microsoft.com/documentation/articles/service-fabric-publish-app-remote-cluster
+>[AZURE.NOTE] 若要輕鬆地建立有效的發佈設定檔 xml 檔案，請在 Visual Studio 中建立，如此處所示︰https://azure.microsoft.com/zh-TW/documentation/articles/service-fabric-publish-app-remote-cluster
 
 >[AZURE.NOTE] 如果您想要藉由覆寫現有應用程式而非予以升級來支援將應用程式部署至叢集，請新增此 Powershell 引數：'-OverwriteBehavior SameAppTypeAndVersion'。此外，請確定選取的發佈設定檔未設定為啟用升級。這會先移除任何現有的 ApplicationType 再安裝較新的組建。
 
@@ -437,4 +437,4 @@
  - [部署組建代理程式](https://msdn.microsoft.com/Library/vs/alm/Build/agents/windows)
  - [建立和設定組建定義](https://msdn.microsoft.com/Library/vs/alm/Build/vs/define-build)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

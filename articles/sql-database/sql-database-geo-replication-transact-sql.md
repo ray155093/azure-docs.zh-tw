@@ -12,7 +12,7 @@
     ms.devlang="NA"
     ms.topic="article"
     ms.tgt_pltfrm="NA"
-    ms.workload="data-management"
+   ms.workload="sqldb-bcdr"
     ms.date="06/14/2016"
     ms.author="carlrab"/>
 
@@ -24,9 +24,9 @@
 - [PowerShell](sql-database-geo-replication-powershell.md)
 - [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-本文說明如何使用 Transact-SQL 為 Azure SQL Database 設定作用中異地複寫。
+本文說明如何使用 Transact-SQL，為 Azure SQL Database 設定作用中異地複寫。
 
-若要起始容錯移轉，請參閱[為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
+若要使用 Transact-SQL 起始容錯移轉，請參閱[使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
 
 >[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
@@ -164,18 +164,7 @@
 
 ## 後續步驟
 
-- [為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
+- 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
 
-
-## 其他資源
-
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -20,7 +20,7 @@ ms.service="virtual-machines-windows"
 
 如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個運算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 ## 必要條件
@@ -179,4 +179,4 @@ Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 
 * 如果您需要能根據叢集上目前工作的工作負載自動增加或縮減叢集節點的方法，請參閱[在 Azure 中根據叢集工作負載自動增加和縮減 HPC Pack 叢集資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

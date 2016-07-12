@@ -19,7 +19,7 @@
 
 # 透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
 
@@ -176,4 +176,4 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
  
 [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式]: virtual-machines-linux-docker-compose-quickstart.md
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

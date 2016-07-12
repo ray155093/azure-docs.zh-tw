@@ -1,1 +1,3 @@
-This article is part of a wider series to provide you with design considerations and guidelines as you build out an application infrastructure in Azure. You can [view the additional topics in the series](#next-steps). Although you can build out a dev/test environment in Azure very quickly, there are additional considerations when it comes to implementing a production-ready, highly-available, and secure environment.
+本文章是許多系列文章的一部份，可提供您設計考量和指導方針，以協助您在 Azure 中建置應用程式基礎結構。您可以[檢視系列中的其他主題](#next-steps)。雖然您可以很快速地在 Azure 珠建置開發/測試環境，但在實作已準備好用於生產環境、高可用性及安全環境時，還是有其他的考量。
+
+<!---HONumber=AcomDC_0629_2016-->

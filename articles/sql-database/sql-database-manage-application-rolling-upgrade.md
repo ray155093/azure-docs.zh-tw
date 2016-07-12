@@ -12,7 +12,7 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
+   ms.workload="sqldb-bcdr"
    ms.date="06/16/2016"
    ms.author="sashan"/>
 
@@ -29,14 +29,14 @@
 + 升級期間對應用程式可用性的影響。應用程式功能可能受到限制或降級多久時間。
 + 防止萬一升級失敗的復原功能。
 + 升級期間發生不相關的重大失敗時，應用程式的弱點。
-+ 總金額成本。這包括額外備援以及升級程序所使用之暫時性元件的累加成本。 
++ 總金額成本。這包括額外備援以及升級程序所使用之暫時性元件的累加成本。
 
 ## 升級依賴資料庫備份以進行災害復原的應用程式 
 
 如果您的應用程式依賴自動資料庫備份，並針對災害復原使用異地復原，則它通常是部署到單一 Azure 區域。在此案例中，升級程序涉及建立升級中相關的所有應用程式元件的備份部署。若要對使用者的干擾降到最低，您要利用 Azure 流量管理員 (WATM) 與容錯移轉設定檔。下圖說明升級程序之前的作業環境。端點 <i>contoso-1.azurewebsites.net</i> 代表需要升級之應用程式的生產位置。若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。準備升級應用程式需要執行下列步驟：
 
 1.  為升級建立預備位置。若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站。監視次要資料庫，查看植入程序是否完成。
-3.  在 WATM 中建立容錯移轉設定檔，<i>contoso-1.azurewebsites.net</i> 作為線上端點，<i>contoso-2.azurewebsites.net</i> 作為離線端點。 
+3.  在 WATM 中建立容錯移轉設定檔，<i>contoso-1.azurewebsites.net</i> 作為線上端點，<i>contoso-2.azurewebsites.net</i> 作為離線端點。
 
 > [AZURE.NOTE] 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 
@@ -44,23 +44,23 @@
 
 一旦準備步驟完成後，應用程式就已準備好實際升級。下圖說明升級程序相關的步驟。
 
-1. 將生產位置中的主要資料庫設定為唯讀模式 (3)。這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。  
+1. 將生產位置中的主要資料庫設定為唯讀模式 (3)。這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。
 2. 使用規劃的終止模式 (4) 中斷次要資料庫的連線。它會建立完整同步的主要資料庫獨立複本。此資料庫將會升級。
-3. 在預備位置 (5) 中將主要資料庫切換為讀寫模式，然後執行升級指令碼。     
+3. 在預備位置 (5) 中將主要資料庫切換為讀寫模式，然後執行升級指令碼。
 
 ![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-2.png)
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的預備複本。它現在將會成為應用程式的生產位置。這涉及一些步驟，如下圖所示。
 
-1. 將 WATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。  
-2. 如果您不再需要 V1 應用程式元件，您可以安全地移除它們 (7)。   
+1. 將 WATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。
+2. 如果您不再需要 V1 應用程式元件，您可以安全地移除它們 (7)。
 
 ![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-3.png)
 
 如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。若要將應用程式復原到升級前狀態，您只需將生產位置中的應用程式還原至完整存取。下圖顯示相關的步驟。
 
 1. 將資料庫複本設定為讀寫模式 (8)。這會還原生產位置中完整的 V1 功能。
-2. 執行根本原因分析，然後移除預備位置 (9) 中遭到危害的元件。 
+2. 執行根本原因分析，然後移除預備位置 (9) 中遭到危害的元件。
 
 此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
@@ -81,8 +81,8 @@
 
 1.  為升級建立預備位置。若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站複本。監視次要資料庫，查看植入程序是否完成。
 2.  將次要資料庫異地複寫至備份區域 (這裡稱為「鏈結異地複寫」)，在預備位置建立異地備援次要資料庫。監視備份次要資料庫，查看植入程序是否完成 (3)。
-3.  在備份區域中建立網站待命複本，然後將它連結至異地備援次要資料庫 (4)。  
-4.  新增額外的端點 <i>contoso-2.azurewebsites.net</i> 和 <i>contoso-3.azurewebsites.net</i> 到 WATM 中的容錯移轉設定檔作為離線端點 (5)。 
+3.  在備份區域中建立網站待命複本，然後將它連結至異地備援次要資料庫 (4)。
+4.  新增額外的端點 <i>contoso-2.azurewebsites.net</i> 和 <i>contoso-3.azurewebsites.net</i> 到 WATM 中的容錯移轉設定檔作為離線端點 (5)。
 
 > [AZURE.NOTE] 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 
@@ -90,23 +90,23 @@
 
 一旦準備步驟完成後，預備位置就準備好升級。下圖說明升級步驟。
 
-1. 將生產位置中的主要資料庫設定為唯讀模式 (6)。這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。  
+1. 將生產位置中的主要資料庫設定為唯讀模式 (6)。這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。
 2. 使用規劃的終止模式 (7) 中斷相同區域內次要資料庫的連線。它會建立主要資料庫完整同步的獨立複本，它會在終止後自動成為主要資料庫。此資料庫將會升級。
-3. 將預備位置中的主要資料庫切換為讀寫模式，然後執行升級指令碼 (8)。    
+3. 將預備位置中的主要資料庫切換為讀寫模式，然後執行升級指令碼 (8)。
 
 ![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-2.png)
 
 如果升級順利完成，您現在已準備好將使用者切換至應用程式的 V2 版本。下圖說明相關步驟。
 
-1. 將 WATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。 
-2. 如果您不再需要 V1 應用程式，您可以安全地移除它 (10 和 11)。  
+1. 將 WATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。
+2. 如果您不再需要 V1 應用程式，您可以安全地移除它 (10 和 11)。
 
 ![SQL Database「異地複寫」組態。雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-3.png)
 
 如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。若要將應用程式復原到升級前狀態，您只需以完整存取使用生產位置中的應用程式即可復原。下圖顯示相關的步驟。
 
 1. 將生產位置中的主要資料庫複本設定為讀寫模式 (12)。這會還原生產位置中完整的 V1 功能。
-2. 執行根本原因分析，然後移除預備位置 (13 和 14) 中遭到危害的元件。 
+2. 執行根本原因分析，然後移除預備位置 (13 和 14) 中遭到危害的元件。
 
 此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
@@ -122,25 +122,23 @@
 
 
 ## 後續步驟
+
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
+
+## 其他資源
+
 下列頁面將協助您了解實作升級工作流程所需的特定作業：
 
-- [加入次要資料庫](https://msdn.microsoft.com/library/azure/mt603689.aspx) 
+- [加入次要資料庫](https://msdn.microsoft.com/library/azure/mt603689.aspx)
 - [將資料庫容錯移轉到次要](https://msdn.microsoft.com/library/azure/mt619393.aspx)
 - [中斷異地複寫次要資料庫連線](https://msdn.microsoft.com/library/azure/mt603457.aspx)
-- [異地還原資料庫](https://msdn.microsoft.com/library/azure/mt693390.aspx) 
+- [異地還原資料庫](https://msdn.microsoft.com/library/azure/mt693390.aspx)
 - [卸除資料庫](https://msdn.microsoft.com/library/azure/mt619368.aspx)
 - [複製資料庫](https://msdn.microsoft.com/library/azure/mt603644.aspx)
 - [將資料庫設定為唯讀或讀寫模式](https://msdn.microsoft.com/library/bb522682.aspx)
 
-## 其他資源
-
-- [SQL Database 商務持續性和災害復原](sql-database-business-continuity.md)
-- [時間點還原](sql-database-point-in-time-restore.md)
-- [異地還原](sql-database-geo-restore.md)
-- [作用中異地複寫](sql-database-geo-replication-overview.md)
-- [為雲端災害復原設計應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [完成復原的 Azure SQL Database](sql-database-recovered-finalize.md)
-- [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)
-- [SQL Database BCDR 常見問題集](sql-database-bcdr-faq.md)
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

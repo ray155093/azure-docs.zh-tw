@@ -20,7 +20,7 @@
 
 #如何登入執行 Linux 的虛擬機器 #
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] [Resource Manager deployment model](virtual-machines-linux-quick-create-portal.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 部署模型執行這些步驟](virtual-machines-linux-quick-create-portal.md)。
 
 您必須在要用來登入虛擬機器的電腦上安裝 SSH 用戶端。有許多 SSH 用戶端程式可供選擇。下面是一些可能的選項：
 
@@ -32,7 +32,7 @@
 
 此程序說明如何在 OS X 上使用 SSH 用戶端來存取虛擬機器。
 
-1. 在**管理入口網站**中尋找 [主機名稱] 和 [連接埠資訊](http://manage.windowsazure.com)。您可以從虛擬機器的儀表板中找到您需要的資訊。請按一下虛擬機器名稱，然後在儀表板的 [Quick Glance] 區段中尋找 [SSH Details]。
+1. 在**管理入口網站**中尋找 [主機名稱] 和 [連接埠資訊][](http://manage.windowsazure.com)。您可以從虛擬機器的儀表板中找到您需要的資訊。請按一下虛擬機器名稱，然後在儀表板的 [Quick Glance] 區段中尋找 [SSH Details]。
 
 	![取得 SSH 詳細資料](./media/virtual-machines-linux-classic-log-on/portalsshdetails.png)
 
@@ -47,4 +47,4 @@
 <!-- LINKS -->
 [如何為 Linux 虛擬機器重設密碼或 SSH]: http://go.microsoft.com/fwlink/p/?LinkId=512138
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -13,13 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="06/23/2016"
 	ms.author="priyamo"/>
 
 
 # 使用 OAuth 2.0 和 Azure Active Directory 授權存取 Web 應用程式
-
-[AZURE.INCLUDE [active-directory-protocols](../../includes/active-directory-protocols.md)]
 
 Azure Active Directory (Azure AD) 使用 OAuth 2.0 讓您授權存取 Azure AD 租用戶中的 Web 應用程式和 Web API。本指南與語言無關，描述在不使用我們的任何開放原始碼程式庫的情況下，如何傳送和接收 HTTP 訊息。
 
@@ -47,7 +45,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 &response_type=code
 &redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 &response_mode=query
-&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
+&resource=https%3A%2F%2Fservice.contoso.com%2F
 &state=12345
 ```
 
@@ -57,12 +55,12 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | client\_id | 必要 | 向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。您可在 Azure 管理入口網站中找到此值。按一下 [Active Directory]，按一下目錄，按一下應用程式，然後按一下 [設定] |
 | response\_type | 必要 | 授權碼流程必須包含 `code`。 |
 | redirect\_uri | 建議使用 | 應用程式的 redirect\_uri，您的應用程式可在此傳送及接收驗證回應。其必須完全符合您在入口網站中註冊的其中一個 redirect\_uris，不然就必須得是編碼的 url。對於原生和行動應用程式，請使用 `urn:ietf:wg:oauth:2.0:oob` 的預設值。 |
-| scope | 必要 | 您要使用者同意的[範圍](active-directory-v2-scopes.md)空格分隔清單。 |
 | response\_mode | 建議使用 | 指定將產生的權杖送回到應用程式所應該使用的方法。可以是 `query` 或 `form_post`。 |
-| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨網站偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
-| prompt | 選用 | 表示需要的使用者互動類型。此時的有效值為「登入」、「無」和「同意」。`prompt=login` 會強制使用者在該要求上輸入認證，否定單一登入。`prompt=none` 則相反 - 它會確保不會對使用者顯示任何互動式提示。如果要求無法透過單一登入以無訊息方式完成，v2.0 端點會傳回錯誤。`prompt=consent` 會在使用者登入之後觸發 OAuth 同意對話方塊，詢問使用者是否要授與權限給應用程式。 |
+| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。隨機產生的唯一值通常用於[防止跨站台要求偽造攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
+| resource | 選用 | Web API (受保護的資源) 應用程式識別碼 URI。若要尋找 Web API 的應用程式識別碼 URI，請在 Azure 管理入口網站中，依序按一下 [Active Directory]、目錄、應用程式及 [設定]。 |
+| prompt | 選用 | 表示需要的使用者互動類型。<p> 有效值為︰<p>login︰應提示使用者重新驗證。<p>content︰已授與使用者同意，但需要更新。應提示使用者同意。<p>admin\_consent︰應提示管理員代表其組織內的所有使用者同意 |
 | login\_hint | 選用 | 如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。通常應用程式會在重新驗證期間使用此參數，已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
-| domain\_hint | 選用 | 可以是 `consumers` 或 `organizations` 其中一個。如果包含，它會略過使用者在 v2.0 登入頁面上經歷的以電子郵件為基礎的探索程序，導致稍微更佳流暢的使用者經驗。通常應用程式會在重新驗證 (擷取上一次登入的 `tid`) 期間使用此參數。如果 `tid` 宣告值是 `9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用 `domain_hint=consumers`。否則，使用 `domain_hint=organizations`。 |
+| domain\_hint | 選用 | 提供有關使用者應該用來登入之租用戶或網域的提示。domain\_hint 的值是租用戶的註冊網域。如果租用戶與內部部署目錄結成同盟，AAD 會重新導向至指定的租用戶同盟伺服器。 |
 
 > [AZURE.NOTE] 如果使用者隸屬於組織，組織的系統管理員可以代表使用者同意或拒絕，或允許使用者自行同意。只有當系統管理員允許時，使用者才會獲得同意的選項。
 
@@ -73,10 +71,8 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 成功的回應看起來可能像這樣︰
 
 ```
-http://localhost:12345/?
-code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrqqf_ZT_p5uEAEJJ_nZ3UmphWygRNy2C3jJ239gV_DBnZ2syeg95Ki-374WHUP-i3yIhv5i-7KU2CEoPXwURQp6IVYMw-DjAOzn7C3JCu5wpngXmbZKtJdWmiBzHpcO2aICJPu1KvJrDLDP20chJBXzVYJtkfjviLNNW7l7Y3ydcHDsBRKZc3GuMQanmcghXPyoDg41g8XbwPudVh7uCmUponBQpIhbuffFP_tbV8SNzsPoFz9CLpBCZagJVXeqWoYMPe2dSsPiLO9Alf_YIe5zpi-zY4C3aLw5g9at35eZTfNd0gBRpR5ojkMIcZZ6IgAA
-&state=12345
-&session_state=733ad279-b681-49c3-9215-951abf94d2c5
+GET  HTTP/1.1 302 Found
+Location: http://localhost/myapp/?code= AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrqqf_ZT_p5uEAEJJ_nZ3UmphWygRNy2C3jJ239gV_DBnZ2syeg95Ki-374WHUP-i3yIhv5i-7KU2CEoPXwURQp6IVYMw-DjAOzn7C3JCu5wpngXmbZKtJdWmiBzHpcO2aICJPu1KvJrDLDP20chJBXzVYJtkfjviLNNW7l7Y3ydcHDsBRKZc3GuMQanmcghXPyoDg41g8XbwPudVh7uCmUponBQpIhbuffFP_tbV8SNzsPoFz9CLpBCZagJVXeqWoYMPe2dSsPiLO9Alf_YIe5zpi-zY4C3aLw5g9at35eZTfNd0gBRpR5ojkMIcZZ6IgAA&session_state=7B29111D-C220-4263-99AB-6F6E135D75EF&state=D79E5777-702E-4260-9A62-37F75FF22CCE
 ```
 
 | 參數 | 說明 |
@@ -84,8 +80,7 @@ code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrqqf_ZT_p5uEAEJJ_nZ3Umph
 | admin\_consent | 如果系統管理員已對同意要求提示表示同意，則值為 True。|
 | code | 應用程式要求的授權碼。應用程式可以使用授權碼要求目標資源的存取權杖。 |
 | session\_state | 識別目前使用者工作階段的唯一值。這個值是 GUID，但應視為不檢查即傳遞的不透明值。 |
-| state | 如果要求中包含狀態參數，回應中就應該出現相同的值。應用程式應該確認要求中的狀態值
-如果要求中包含狀態參數，回應中就會出現相同的值。應用程式最好確認要求和回應中的狀態值完全相同。
+| state | 如果要求中包含狀態參數，回應中就應該出現相同的值。應用程式最好在使用回應之前確認要求和回應中的狀態值完全相同。這有助於偵測對用戶端發動的[跨網站偽造要求 (CSRF) 攻擊](https://tools.ietf.org/html/rfc6749#section-10.12)。  
 
 ### 錯誤回應
 
@@ -97,9 +92,29 @@ error=access_denied
 &error_description=the+user+canceled+the+authentication
 ```
 
+| 參數 | 說明 |
+|-----------|-------------|
+| 錯誤 | [OAuth 2.0 授權架構](http://tools.ietf.org/html/rfc6749)的 5.2 節中所定義的錯誤碼值。下一份資料表會描述 Azure AD 傳回的錯誤碼。 |
+| error\_description | 更詳細的錯誤描述。此訊息的目的並非要方便使用者了解。 |
+| state | 狀態值是隨機產生的非重複使用值，會在要求中傳送並在回應中傳回以防止跨網站偽造要求 (CSRF) 攻擊。 |
+
+#### 授權端點錯誤的錯誤碼
+
+下表說明各種可能在錯誤回應的 `error` 參數中傳回的錯誤碼。
+
+| 錯誤碼 | 說明 | 用戶端動作 |
+|------------|-------------|---------------|
+| invalid\_request | 通訊協定錯誤，例如遺漏必要的參數。 | 修正並重新提交要求。這是通常會在初始測試期間擷取到的開發錯誤。|
+| unauthorized\_client | 不允許用戶端應用程式要求授權碼。 | 這通常會在用戶端應用程式未在 Azure AD 中註冊，或未加入至使用者的 Azure AD 租用戶時發生。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+| access\_denied | 資源擁有者拒絕同意 | 用戶端應用程式可以通知使用者，除非使用者同意，否則無法繼續進行。 |
+| unsupported\_response\_type | 授權伺服器不支援要求中的回應類型。 | 修正並重新提交要求。這是通常會在初始測試期間擷取到的開發錯誤。|
+|server\_error | 伺服器發生非預期的錯誤。 | 重試要求。這些錯誤可能是由暫時性狀況所引起。用戶端應用程式可能會向使用者解釋，其回應因為暫時性錯誤而延遲。 |
+| temporarily\_unavailable | 伺服器暫時過於忙碌而無法處理要求。 | 重試要求。用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。 |
+| invalid\_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。| 這表示尚未在租用戶中設定資源 (如果存在)。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+
 ## 使用授權碼來要求存取權杖
 
-既然您已經取得授權碼並獲得使用者授權，您就可以將 POST 要求傳送至 `/token` 端點，兌換授權碼以取得所需資源的存取權杖：
+既然已經取得授權碼並獲得使用者授權，您就可以將 POST 要求傳送至 `/token` 端點，兌換授權碼以取得所需資源的存取權杖：
 
 ```
 // Line breaks for legibility only
@@ -107,13 +122,14 @@ error=access_denied
 POST /{tenant}/oauth2/token HTTP/1.1
 Host: https://login.microsoftonline.com
 Content-Type: application/x-www-form-urlencoded
+grant_type=authorization_code
+&client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
+&code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrqqf_ZT_p5uEAEJJ_nZ3UmphWygRNy2C3jJ239gV_DBnZ2syeg95Ki-374WHUP-i3yIhv5i-7KU2CEoPXwURQp6IVYMw-DjAOzn7C3JCu5wpngXmbZKtJdWmiBzHpcO2aICJPu1KvJrDLDP20chJBXzVYJtkfjviLNNW7l7Y3ydcHDsBRKZc3GuMQanmcghXPyoDg41g8XbwPudVh7uCmUponBQpIhbuffFP_tbV8SNzsPoFz9CLpBCZagJVXeqWoYMPe2dSsPiLO9Alf_YIe5zpi-zY4C3aLw5g9at35eZTfNd0gBRpR5ojkMIcZZ6IgAA
+&redirect_uri=https%3A%2F%2Flocalhost%2Fmyapp%2F
+&resource=https%3A%2F%2Fservice.contoso.com%2F
+&client_secret=p@ssw0rd
 
-client_id=6731de76-14a6-49ae-97bc-6eba6914391e
-&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
-&code=OAAABAAAAiL9Kn2Z27UubvWFPbm0gLWQJVzCTE9UkP3pSx1aXxUjq3n8b2JRLk4OxVXr...
-&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
-&grant_type=authorization_code
-&client_secret=JqQX2PNo9bpM0uEihUPzyrh    // NOTE: client_secret only required for web apps
+//NOTE: client_secret only required for web apps
 ```
 
 | 參數 | | 說明 |
@@ -124,9 +140,14 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | code | 必要 | 您在上一節中取得的 `authorization_code` |
 | redirect\_uri | 必要 | 用來取得 `authorization_code` 的相同 `redirect_uri` 值。 |
 | client\_secret | Web Apps 所需 | 您在應用程式註冊入口網站中為應用程式建立的應用程式密碼。其不應用於原生應用程式，因為裝置無法穩當地儲存 client\_secret。Web Apps 和 Web API 都需要應用程式密碼，其能夠將 `client_secret` 安全地儲存在伺服器端。 |
-
+| resource | 如果在授權碼要求中指定，則為必要，否則為選擇性 | Web API (受保護的資源) 應用程式識別碼 URI。
+若要尋找應用程式識別碼 URI，請在 Azure 管理入口網站中，依序按一下 [Active Directory]、目錄、應用程式及 [設定]。
 
 ### 成功回應
+
+Azure AD 在成功回應時會傳回存取權杖。為了減少來自用戶端應用程式和與其相關延遲的網路呼叫，用戶端應用程式應該快取存取權杖達 OAuth 2.0 回應中所指定的權杖存留期。若要判斷權杖存留期，請使用 `expires_in` 或 `expires_on` 參數值。
+
+如果 Web API 資源傳回 `invalid_token` 錯誤碼，這可能表示資源判定權杖已過期。如果用戶端和資源的時鐘時間不同 (稱為「時間偏差」)，在從用戶端快取中清除權杖之前，資源可能會將權杖視為已過期。如果發生這種情況，請從快取中清除權杖，即使它仍在其計算的存留期內，也是如此。
 
 成功的回應看起來可能像這樣︰
 
@@ -149,6 +170,8 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | access\_token | 所要求的存取權杖。應用程式可以使用這個權杖驗證受保護的資源，例如 Web API。 |
 | token\_type | 表示權杖類型值。Azure AD 唯一支援的類型是 Bearer。如需持有人權杖的詳細資訊，請參閱 [OAuth2.0 授權架構︰持有人權杖用法 (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt) |
 | expires\_in | 存取權杖的有效期 (以秒為單位)。 |
+| expires\_on | 存取權杖的到期時間。日期會表示為從 1970-01-01T0:0:0Z UTC 至到期時間的秒數。這個值用來判斷快取權杖的存留期。 |
+| resource | Web API (受保護的資源) 應用程式識別碼 URI。|
 | scope | 授與用戶端應用程式的模擬權限。預設權限為 `user_impersonation`。受保護資源的擁有者可以在 Azure AD 中註冊其他的值。|
 | refresh\_token | OAuth 2.0 重新整理權杖。應用程式可以使用這個權杖，在目前的存取權杖過期之後，取得其他的存取權杖。重新整理權杖的有效期很長，而且可以用來長期保留資源存取權。 |
 | id\_token | 不帶正負號的 JSON Web Token (JWT)。應用程式可以 base64Url 解碼這個權杖的區段，要求已登入使用者的相關資訊。應用程式可以快取並顯示值，但不應依賴這些值來取得任何授權或安全性界限。 |
@@ -198,6 +221,8 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 ### 錯誤回應
 
+權杖發行端點錯誤是 HTTP 錯誤碼，因為用戶端會直接呼叫權杖發行端點。除了 HTTP 狀態碼，Azure AD 權杖發行端點也會傳回 JSON 文件與描述錯誤的物件。
+
 範例錯誤回應看起來可能像這樣︰
 
 ```
@@ -222,9 +247,33 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | trace\_id | 有助於診斷的要求唯一識別碼。 |
 | correlation\_id | 有助於跨元件診斷的要求唯一識別碼。|
 
+#### HTTP 狀態碼
+
+下表列出權杖發行端點傳回的 HTTP 狀態碼。在某些情況下，錯誤碼就足以描述回應，但若發生錯誤，您就必須剖析隨附的 JSON 文件並檢查其錯誤碼。
+
+| HTTP 代碼 | 說明 |
+|-----------|-------------|
+| 400 | 預設的 HTTP 代碼。用於大部分情況，通常是因為要求的格式不正確。修正並重新提交要求。 |
+| 401 | 驗證失敗。例如，要求遺漏 client\_secret 參數。|
+| 403 | 授權失敗。例如，使用者沒有存取資源的權限。 |
+| 500 | 服務發生內部錯誤。重試要求。 |
+
+#### 權杖端點錯誤的錯誤碼
+
+| 錯誤碼 | 說明 | 用戶端動作 |
+|------------|-------------|---------------|
+| invalid\_request | 通訊協定錯誤，例如遺漏必要的參數。 | 修正並重新提交要求 |
+| invalid\_grant | 授權碼無效或已過期。 | 嘗試向 `/authorize` 端點提出新的要求 |
+| unauthorized\_client | 未授權驗證用戶端使用此授權授與類型。 | 這通常會在用戶端應用程式未在 Azure AD 中註冊，或未加入至使用者的 Azure AD 租用戶時發生。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+| invalid\_client | 用戶端驗證失敗。 | 用戶端認證無效。若要修正，應用程式系統管理員必須更新認證。 |
+| unsupported\_grant\_type | 授權伺服器不支援授權授與類型。 | 變更要求中的授與類型。這種類型的錯誤應該只會在開發期間發生，並且會在初始測試期間偵測出來。 |
+| invalid\_resource | 目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。 | 這表示尚未在租用戶中設定資源 (如果存在)。應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+| interaction\_required | 要求需要使用者互動。例如，必須進行其他驗證步驟。 | 以相同資源重試要求。 |
+| temporarily\_unavailable | 伺服器暫時過於忙碌而無法處理要求。 | 重試要求。用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。|
+
 ## 使用存取權杖來存取資源
 
-既然您已經成功取得 `access_token`，您就可以透過在 `Authorization` 標頭中包含權杖，在 Web API 的要求中使用權杖。[RFC 6750](http://www.rfc-editor.org/rfc/rfc6750.txt) 規格會說明如何在 HTTP 要求中使用持有人權杖來存取受保護的資源。
+既然已經成功取得 `access_token`，您就可以透過在 `Authorization` 標頭中包含權杖，在 Web API 的要求中使用權杖。[RFC 6750](http://www.rfc-editor.org/rfc/rfc6750.txt) 規格會說明如何在 HTTP 要求中使用持有人權杖來存取受保護的資源。
 
 ### 範例要求
 
@@ -234,11 +283,44 @@ Host: service.contoso.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1THdqcHdBSk9NOW4tQSJ9.eyJhdWQiOiJodHRwczovL3NlcnZpY2UuY29udG9zby5jb20vIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvN2ZlODE0NDctZGE1Ny00Mzg1LWJlY2ItNmRlNTdmMjE0NzdlLyIsImlhdCI6MTM4ODQ0MDg2MywibmJmIjoxMzg4NDQwODYzLCJleHAiOjEzODg0NDQ3NjMsInZlciI6IjEuMCIsInRpZCI6IjdmZTgxNDQ3LWRhNTctNDM4NS1iZWNiLTZkZTU3ZjIxNDc3ZSIsIm9pZCI6IjY4Mzg5YWUyLTYyZmEtNGIxOC05MWZlLTUzZGQxMDlkNzRmNSIsInVwbiI6ImZyYW5rbUBjb250b3NvLmNvbSIsInVuaXF1ZV9uYW1lIjoiZnJhbmttQGNvbnRvc28uY29tIiwic3ViIjoiZGVOcUlqOUlPRTlQV0pXYkhzZnRYdDJFYWJQVmwwQ2o4UUFtZWZSTFY5OCIsImZhbWlseV9uYW1lIjoiTWlsbGVyIiwiZ2l2ZW5fbmFtZSI6IkZyYW5rIiwiYXBwaWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0yNzRhNzJhNzMwOWUiLCJhcHBpZGFjciI6IjAiLCJzY3AiOiJ1c2VyX2ltcGVyc29uYXRpb24iLCJhY3IiOiIxIn0.JZw8jC0gptZxVC-7l5sFkdnJgP3_tRjeQEPgUn28XctVe3QqmheLZw7QVZDPCyGycDWBaqy7FLpSekET_BftDkewRhyHk9FW_KeEz0ch2c3i08NGNDbr6XYGVayNuSesYk5Aw_p3ICRlUV1bqEwk-Jkzs9EEkQg4hbefqJS6yS1HoV_2EsEhpd_wCQpxK89WPs3hLYZETRJtG5kvCCEOvSHXmDE6eTHGTnEgsIk--UlPe275Dvou4gEAwLofhLDQbMSjnlV5VLsjimNBVcSRFShoxmQwBJR_b2011Y5IuD6St5zPnzruBbZYkGNurQK63TJPWmRd3mbJsGM0mf3CUQ
 ```
 
+### 錯誤回應
+
+實作 RFC 6750 的受保護資源會發出 HTTP 狀態碼。如果要求不包含驗證認證或是遺漏權杖，回應中會包含 `WWW-Authenticate` 標頭。當要求失敗時，資源伺服器會回應 HTTP 狀態碼和錯誤碼。
+
+以下是用戶端要求未包含持有人權杖時的不成功回應範例︰
+
+```
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Bearer authorization_uri="https://login.window.net/contoso.com/oauth2/authorize",  error="invalid_token",  error_description="The access token is missing.",
+```
+
+#### 錯誤參數
+
+| 參數 | 說明 |
+|-----------|-------------|
+| authorization\_uri | 授權伺服器的 URI (實體端點)。此值也可做為查閱索引鍵，以從探索端點取得伺服器的詳細資訊。<p><p> 用戶端必須確認授權伺服器受到信任。當資源受到 Azure AD 保護時，便足以確認 URL 開頭為 https://login.windows.net 或 Azure AD 支援的其他主機名稱。租用戶特定資源應該一律會傳回租用戶特定授權 URI。 |
+| 錯誤 | [OAuth 2.0 授權架構](http://tools.ietf.org/html/rfc6749)的 5.2 節中所定義的錯誤碼值。|
+| error\_description | 更詳細的錯誤描述。此訊息的目的並非要方便使用者了解。|
+| resource\_id | 傳回資源的唯一識別碼。用戶端應用程式可在要求資源的權杖時，使用此識別碼做為 `resource` 參數的值。<p><p> 用戶端應用程式務必要確認此值，否則惡意服務或許可以引發**提升權限**攻擊 <p><p> 防止攻擊的建議策略是確認 `resource_id` 符合要存取的 Web API URL 的基礎。例如，如果要存取 https://service.contoso.com/data，`resource_id` 可以是 htttps://service.contoso.com/。除非有可確認識別碼的可靠替代方法，否則用戶端應用程式必須拒絕開頭不是基礎 URL 的 `resource_id`。 |
+
+#### 持有人配置錯誤碼
+
+RFC 6750 規格會針對在回應中使用 WWW 驗證標頭和持有人配置的資源，定義下列錯誤。
+
+| HTTP 狀態碼 | 錯誤碼 | 說明 | 用戶端動作 |
+|------------------|------------|-------------|---------------|
+| 400 | invalid\_request | 要求的格式不正確。例如，它可能遺漏參數或使用相同參數兩次。 | 修正錯誤，然後重試要求。這種類型的錯誤應該只會在開發期間發生，並且會在初始測試中偵測出來。 |
+| 401 | invalid\_token | 存取權杖遺漏、無效或已撤銷。error\_description 參數的值會提供其他詳細資料。 | 從授權伺服器要求新的權杖。如果新的權杖失敗，則表示已發生未預期的錯誤。傳送錯誤訊息給使用者，並在隨機的延遲之後重試。 |
+| 403 | insufficient\_scope | 存取權杖不包含存取資源所需的模擬權限。 | 將新的授權要求傳送至授權端點。如果回應包含範圍參數，則在資源的要求中使用範圍值。 |
+| 403 | insufficient\_access | 權杖的主體沒有存取資源所需的權限。 | 提示使用者使用不同的帳戶，或要求所指定資源的權限。 |
+
 ## 重新整理存取權杖
 
 存取權杖有效期很短，到期後必須重新整理，才能繼續存取資源。您可以重新整理 `access_token`，方法是向 `/token` 端點送出另一個 `POST` 要求，但這次提供 `refresh_token`，而不提供 `code`。
 
-不會提供重新整理權杖的存留期，而且此存留期會根據原則設定，以及 Azure AD 撤銷授權碼授與的時間而有所不同。應用程式應該預期並處理新的存取權杖要求失敗時的情況。在此情況下，它應該傳回給要求新存取權杖的程式碼。
+重新整理權杖並沒有指定的存留期。一般而言，重新整理權杖的存留期相當長。不過，在某些情況下，重新整理權杖會過期、遭到撤銷或對要執行的動作缺乏足夠的權限。應用程式必須預期並正確處理權杖發行端點所傳回的錯誤。
+
+當您收到具有重新整理權杖錯誤的回應時，請捨棄目前的重新整理權杖並要求新的授權碼或存取權杖。特別是，在授權碼授與流程中使用重新整理權杖時，如果您收到的回應含有 `interaction_required` 或 `invalid_grant` 錯誤代碼，請捨棄重新整理權杖並要求新的授權碼。
 
 使用重新整理權杖來取得新存取權杖之**租用戶專屬**端點 (您也可以使用**一般**端點) 的要求範例看起來像這樣︰
 
@@ -297,4 +379,15 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 }
 ```
 
-<!---HONumber=AcomDC_0608_2016-->
+| 參數 | 說明 |
+| ----------------------- | ------------------------------- |
+| 錯誤 | 用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
+| error\_description | 協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
+| error\_codes | 有助於診斷的 STS 特定錯誤碼清單。 |
+| timestamp | 發生錯誤的時間。 |
+| trace\_id | 有助於診斷的要求唯一識別碼。 |
+| correlation\_id | 有助於跨元件診斷的要求唯一識別碼。|
+
+如需錯誤碼及建議的用戶端動作的說明，請參閱[權杖端點錯誤的錯誤碼](#error-codes-for-token-endpoint-errors)。
+
+<!---HONumber=AcomDC_0629_2016-->

@@ -4,8 +4,8 @@
 	services="notification-hubs"
     keywords="ios 推播通知,推播訊息,推播通知"
 	documentationCenter="xamarin"
-	authors="ysxu"
-	manager="dwrede"
+	authors="wesmc7777"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -14,15 +14,15 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="02/15/2016"
-	ms.author="yuaxu"/>
+	ms.date="06/29/2016"
+	ms.author="wesmc"/>
 
 # 適用於 Xamarin 應用程式的 iOS 推播通知和通知中樞
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ##概觀
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-ios-get-started)。
+> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-ios-get-started)。
 
 本教學課程示範如何使用 Azure 通知中樞將推播通知傳送至 iOS 應用程式。您將使用 [Apple Push Notification Service (APN)](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html)，建立可接收推播通知的空白 Xamarin.iOS 應用程式。完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。[NotificationHubs 應用程式][GitHub]範例中提供完成的程式碼。
 
@@ -243,7 +243,7 @@
 
 5. 按 F5 鍵以執行應用程式。在幾秒之內就可以看到推播通知出現在裝置上。無論是使用 Wi-Fi 或行動資料網路，請確定裝置上有作用中的網際網路連線。
 
-您可以在 Apple [本機和推播通知程式設計指南] \(英文) 中找到所有可能的裝載。
+您可以在 Apple [本機和推播通知程式設計指南] (英文) 中找到所有可能的裝載。
 
 ####(選用) 從行動服務傳送通知
 
@@ -328,4 +328,4 @@
 [WindowsAzure.Messaging]: https://github.com/infosupport/WindowsAzure.Messaging.iOS
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

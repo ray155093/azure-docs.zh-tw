@@ -64,7 +64,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 ## 自動根據需求調整您的應用程式
 
-接下來，讓我們自動調整您的應用程式，以便它能自動調整容量以回應使用者的需求 (進一步的資訊請參閱[在 Azure App Service 中調整定價層](app-service-scale)和[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md))。
+接下來，讓我們自動調整您的應用程式，讓它能自動調整容量以回應使用者的需求 (進一步的資訊請參閱[在 Azure 中相應增加您的應用程式](web-sites-scale.md)和[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md))。
 
 簡單地說，Web 應用程式有兩種調整方法︰
 
@@ -99,7 +99,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 - 根據排程自動調整
 - 設定未來事件的自動調整行為
 
-如需有關相應增加應用程式的詳細資訊，請參閱[在 Azure App Service 中調整定價層](../app-service/app-service-scale.md)。如需有關相應放大的詳細資訊，請參閱[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md)。
+如需有關相應增加應用程式的詳細資訊，請參閱[在 Azure 中相應增加您的應用程式](../app-service-web/web-sites-scale.md)。如需有關相應放大的詳細資訊，請參閱[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md)。
 
 ## 接收應用程式的警示
 
@@ -128,13 +128,13 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 了解如何以您部署的應用程式執行更多作業。以下只是部分清單︰
 
 - [購買並設定自訂網域名稱](custom-dns-web-site-buydomains-web-app.md) - 為您的 Web 應用程式購買引人注意的網域，而非 *.azurewebsites.net 網域。或使用既有網域。
-- [設定預備環境](web-sites-staged-publishing.md) - 先將應用程式部署至預備 URL，再將它放到生產環境。放心地更新執行中的 Web 應用程式。為精心規劃的 DevOps 方案設定多個部署位置。 
+- [設定預備環境](web-sites-staged-publishing.md) - 先將應用程式部署至預備 URL，再將它放到生產環境。放心地更新執行中的 Web 應用程式。為精心規劃的 DevOps 方案設定多個部署位置。
 - [設定連續部署](web-sites-publish-source-control.md) - 將應用程式部署整合至原始檔控制系統。使用每個認可部署到 Azure。
 - [存取內部部署資源](web-sites-hybrid-connection-get-started.md) - 存取現有的內部部署資料庫或 CRM 系統。
 - [備份您的應用程式](web-sites-backup.md) - 為 Web 應用程式設定備份與還原。為非預期的失敗做好準備，並從中復原。
 - [啟用診斷記錄](web-sites-enable-diagnostic-log.md) - 讀取 Azure 或應用程式追蹤內的 IIS 記錄檔。在串流中讀取記錄檔、下載記錄檔，或將記錄檔移植到 [Application Insights](../application-insights/app-insights-overview.md) 來進行周全分析。
 - [掃描應用程式中的弱點](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) - 使用 [Tinfoil Security](https://www.tinfoilsecurity.com/) 所提供的服務，掃描 Web 應用程式中是否有新型威脅。
 - [執行背景工作](../azure-functions/functions-overview.md) - 執行資料處理、報告等工作。
-- [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md) 
+- [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

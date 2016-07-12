@@ -98,7 +98,7 @@
 若要深入了解災害復原，請參閱這些文章：
 
 - [Azure SQL Database 商務持續性][]
-- [Azure 業務持續性技術指引][]
+- [Azure 復原技術指導][]
 
   [服務匯流排驗證]: service-bus-authentication-and-authorization.md
   [分割的傳訊實體]: service-bus-partitioning.md
@@ -109,6 +109,6 @@
   [搭配服務匯流排代理訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
   [持續訊息傳送者]: http://code.msdn.microsoft.com/Service-Bus-Durable-Sender-0763230d
   [Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
-  [Azure 業務持續性技術指引]: https://msdn.microsoft.com/library/azure/hh873027.aspx
+  [Azure 復原技術指導]: ../resiliency/resiliency-technical-guidance.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

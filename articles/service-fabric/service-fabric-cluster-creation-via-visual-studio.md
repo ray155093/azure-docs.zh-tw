@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/04/2016"
+   ms.date="06/27/2016"
    ms.author="karolz@microsoft.com"/>
 
 # 使用 Visual Studio 設定 Service Fabric 叢集
@@ -39,16 +39,17 @@
 
 |參數名稱 |說明|
 |-----------------------  |--------------------------|
+|adminUserName |Service Fabric 電腦 (節點) 的系統管理員帳戶名稱。|
 |certificateThumbprint |將保護叢集安全的憑證指紋。|
 |sourceVaultResourceId |用來保護叢集的憑證儲存所在之金鑰保存庫的資源識別碼。|
 |certificateUrlValue |叢集安全性憑證的 URL。|
 
-Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護的安全叢集。此憑證是以最後三個範本參數識別 (`certificateThumbprint`、`sourceVaultValue` 和 `certificateUrlValue`)，而且必須存在於 [Azure 金鑰保存庫]。如需如何建立叢集安全性憑證的詳細資訊，請參閱[如何使用憑證來保護 Service Fabric 叢集](service-fabric-cluster-security.md#secure-a-service-fabric-cluster-by-using-certificates)一文。
+Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護的安全叢集。此憑證是利用最後三個範本參數 (`certificateThumbprint`、`sourceVaultValue` 和 `certificateUrlValue`) 來識別，其必須存在於 **Azure 金鑰保存庫**中。如需如何建立叢集安全性憑證的詳細資訊，請參閱 [Service Fabric 叢集安全性案例](service-fabric-cluster-security.md#x509-certificates-and-service-fabric)一文。
 
 ## 選擇性︰變更叢集名稱
-每個 Service Fabric 叢集都有一個名稱。在 Azure 中建立網狀架構叢集時，叢集名稱會 (與 Azure 區域一起) 決定叢集的網域名稱系統 (DNS) 名稱。例如，如果您將叢集命名為 `myBigCluster`，並將 `clusterLocation` 參數設定為美國東部 (East US)，則叢集的 DNS 名稱將會是 `myBigCluster.eastus.cloudapp.azure.com`。
+每個 Service Fabric 叢集都有一個名稱。在 Azure 中建立網狀架構叢集時，叢集名稱會 (與 Azure 區域一起) 決定叢集的網域名稱系統 (DNS) 名稱。例如，如果您將叢集命名為 `myBigCluster`，而且將裝載新叢集的資源群組位置 (Azure 區域) 是美國東部，則叢集的 DNS 名稱將是 `myBigCluster.eastus.cloudapp.azure.com`。
 
-預設會自動產生叢集名稱，而且「叢集」前置詞後面會附加一個隨機的尾碼，使該名稱變成唯一的。如此便可以很容易使用範本做為**連續整合** (CI) 系統的一部分。如果您想要為您的叢集使用特定的名稱，對您有意義的一個名稱，請將資源管理員範本檔案 (`ServiceFabricCluster.json`) 中 `clusterName` 變數的值設定為您所選擇的名稱。該名稱是該檔案中定義的第一個變數。
+預設會自動產生叢集名稱，而且「叢集」前置詞後面會附加一個隨機的尾碼，使該名稱變成唯一的。如此便可以很容易使用範本做為**連續整合** (CI) 系統的一部分。如果您想要為叢集使用特定名稱，一個對您有意義的名稱，請將 Resource Manager 範本檔案 (`ServiceFabricCluster.json`) 中 `clusterName` 變數值設定為您所選擇的名稱。該名稱是該檔案中定義的第一個變數。
 
 ## 選擇性：新增公用應用程式連接埠
 您也可能想變更叢集的公用應用程式連接埠再部署它。根據預設，範本只會開啟兩個公用 TCP 連接埠 (80 和 8081)。如果您的應用程式需要更多，請修改範本中的 Azure 負載平衡器定義。此定義儲存在主要範本檔案 (`ServiceFabricCluster.json`) 中。開啟該檔案，並搜尋 `loadBalancedAppPort`。您會注意到每個連接埠會與三個成品相關聯：
@@ -73,7 +74,7 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
     }
 	```
 
-3. 將連接埠和探查繫結在一起的「負載平衡規則」，可在一組 Service Fabric 叢集節點上啟用負載平衡︰
+3. 將連接埠和探查繫結在一起的「負載平衡規則」，可在一組 Service Fabric 叢集節點上啟用負載平衡：
 
     ```json
 	{
@@ -96,10 +97,10 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 	    }
 	}
     ```
-如果您打算部署至叢集的應用程式需要更多連接埠，您可以透過建立其他探查和負載平衡規則定義來新增連接埠。如需有關如何透過資源管理員範本使用 Azure 負載平衡器的詳細資訊，請參閱[開始使用範本建立內部負載平衡器](../load-balancer/load-balancer-get-started-ilb-arm-template.md)。
+如果您打算部署至叢集的應用程式需要更多連接埠，您可以透過建立其他探查和負載平衡規則定義來新增連接埠。如需如何透過 Resource Manager 範本使用 Azure Load Balancer 的詳細資訊，請參閱[開始使用範本建立內部負載平衡器](../load-balancer/load-balancer-get-started-ilb-arm-template.md)。
 
 ## 使用 Visual Studio 部署範本
-在 `ServiceFabricCluster.param.dev.json` 檔案中儲存所有必要的參數值後，您就可以部署範本並建立 Service Fabric 叢集。以滑鼠右鍵按一下 Visual Studio [方案總管] 中的資源群組專案，然後選擇 [部署]。Visual Studio 將會顯示 [部署到資源群組] 對話方塊，要求您視需要向 Azure 進行驗證：
+在 `ServiceFabricCluster.param.dev.json` 中儲存所有必要的參數值後，您就可以部署範本和建立 Service Fabric 叢集。以滑鼠右鍵按一下 Visual Studio [方案總管] 中的資源群組專案，然後選擇 [部署 | 新增部署...]。Visual Studio 會顯示 [部署到資源群組] 對話方塊，要求您視需要向 Azure 進行驗證：
 
 ![[部署到資源群組] 對話方塊][3]
 
@@ -126,4 +127,4 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 [2]: ./media/service-fabric-cluster-creation-via-visual-studio/selecting-azure-template.png
 [3]: ./media/service-fabric-cluster-creation-via-visual-studio/deploy-to-azure.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0629_2016-->

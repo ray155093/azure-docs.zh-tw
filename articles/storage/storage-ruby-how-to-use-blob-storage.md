@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="ruby"
 	ms.topic="article"
-    ms.date="04/29/2016"
+    ms.date="06/24/2016"
 	ms.author="robmcm"/>
 
 
@@ -59,20 +59,20 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 	Azure.config.storage_access_key = "<your azure storage access key>"
 
 
-若要從 Azure 入口網站的傳統或 ARM 儲存體帳戶取得這些值：
+若要從 Azure 入口網站中的傳統或 Resource Manager 儲存體帳戶取得這些值：
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 瀏覽到您要使用的儲存體帳戶。
 3. 在右邊的 [設定] 刀鋒視窗中，按一下 [存取金鑰]。
-4. [存取金鑰] 刀鋒視窗隨即顯示，您會看到存取金鑰 1 和存取金鑰 2。您可以使用其中一個存取金鑰。 
-5. 按一下複製圖示以將金鑰複製到剪貼簿。 
+4. [存取金鑰] 刀鋒視窗隨即顯示，您會看到存取金鑰 1 和存取金鑰 2。您可以使用其中一個存取金鑰。
+5. 按一下複製圖示以將金鑰複製到剪貼簿。
 
-若要從傳統入口網站的傳統儲存體帳戶取得這些值：
+若要從 Azure 入口網站的傳統儲存體帳戶取得這些值：
 
-1. 登入[傳統入口網站](https://manage.windowsazure.com)。
+1. 登入[傳統 Azure 入口網站](https://manage.windowsazure.com)。
 2. 瀏覽到您要使用的儲存體帳戶。
 3. 按一下導覽窗格底部的 [管理存取金鑰]。
-4. 在快顯對話方塊中，您將會看到儲存體帳戶名稱、主要存取金鑰和次要存取金鑰。如需存取金鑰，您可以使用主要存取金鑰或次要存取金鑰。 
+4. 在快顯對話方塊中，您將會看到儲存體帳戶名稱、主要存取金鑰和次要存取金鑰。如需存取金鑰，您可以使用主要存取金鑰或次要存取金鑰。
 5. 按一下複製圖示以將金鑰複製到剪貼簿。
 
 ## 建立容器
@@ -157,4 +157,4 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 - GitHub 上的 [Azure SDK for Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) 存放庫
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

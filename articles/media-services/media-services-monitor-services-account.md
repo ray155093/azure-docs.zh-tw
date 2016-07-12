@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 #<a id="monitormediaservicesaccount"></a>如何監視媒體服務帳戶
@@ -26,7 +26,7 @@ Azure 媒體服務儀表板會顯示可用來管理媒體服務帳戶的使用�
 
 ##<a id="configuremonitoring"></a>作法：監視媒體服務帳戶
 
-1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=256666)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱來開啟儀表板。 
+1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=256666)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱來開啟儀表板。
 
 	![MediaServices\_Dashboard][dashboard]
 
@@ -62,7 +62,7 @@ Azure 媒體服務儀表板會顯示可用來管理媒體服務帳戶的使用�
 
 ##提供意見反應
 
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]隨選資料流工作流程](http://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)
+[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)] 隨選資料流工作流程](http://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)
 
 
 <!-- Images -->
@@ -71,4 +71,4 @@ Azure 媒體服務儀表板會顯示可用來管理媒體服務帳戶的使用�
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0629_2016-->

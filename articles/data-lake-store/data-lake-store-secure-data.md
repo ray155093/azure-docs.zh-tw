@@ -1,5 +1,5 @@
 <properties 
-   pageTitle="保護 Azure 資料湖儲存區的資料 | Azure" 
+   pageTitle="保護儲存在 Azure Data Lake Store 中的資料 | Microsoft Azure" 
    description="了解如何使用群組和存取控制清單來保護 Azure 資料湖儲存區中的資料" 
    services="data-lake-store" 
    documentationCenter="" 
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="05/11/2016"
+   ms.date="06/22/2016"
    ms.author="nitinme"/>
 
 # 保護儲存在 Azure 資料湖儲存區中的資料
@@ -26,7 +26,9 @@
 
 3. 指派 AAD 安全性群組做為資料湖儲存區檔案系統上的存取控制清單 (ACL)。
 
-本文提供有關如何使用 Azure 入口網站執行上述工作的詳細指示。
+4. 此外，您也可以針對可以存取 Data Lake Store 中資料的用戶端設定 IP 位址範圍。
+
+本文提供有關如何使用 Azure 入口網站執行上述工作的詳細指示。如需 Data Lake Store 如何在帳戶和資料層級實作安全性的深入資訊，請參閱 [Azure Data Lake Store 安全性](data-lake-store-security-overview.md)。
 
 ## 必要條件
 
@@ -88,7 +90,9 @@
 
 ## <a name="filepermissions"></a>將使用者或安全性群組以 ACL 型式指派給 Azure 資料湖儲存區檔案系統
 
-藉由指派使用者/安全性群組給 Azure 資料湖檔案系統，您可以針對儲存在 Azure 資料湖儲存區中的資料設定存取控制。在目前版本中，僅可在檔案系統的根節點設定 ACL。
+藉由指派使用者/安全性群組給 Azure 資料湖檔案系統，您可以針對儲存在 Azure 資料湖儲存區中的資料設定存取控制。
+
+>[AZURE.NOTE] 在目前版本中，僅可在 Data Lake Store 帳戶的根節點設定 ACL。此外，只有已獲指派擁有者角色的使用者可以新增/修改 ACL。
 
 1. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管]。
 
@@ -103,7 +107,7 @@
 	![列出標準和自訂存取](./media/data-lake-store-secure-data/adl.acl.2.png "列出標準和自訂存取")
 
 	* **標準存取**為 UNIX 樣式存取，可讓您指定讀取、寫入、執行 (rwx) 三種不同的使用者類別：擁有者、群組和其他。
-	* **自訂存取**會對應至 POSIX ACL，讓您除了設定檔案擁有者或群組的權限外，還可以設定特定命名的使用者或群組的權限。 
+	* **自訂存取**會對應至 POSIX ACL，讓您除了設定檔案擁有者或群組的權限外，還可以設定特定命名的使用者或群組的權限。
 	
 	如需詳細資訊，請參閱 [HDFS ACLs](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists)。
 
@@ -126,11 +130,17 @@
 
 6. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。具有相關權限的新增群組現在會列在 [存取] 刀鋒視窗中。
 
-	![將權限指派至群組](./media/data-lake-store-secure-data/adl.acl.5.png "指派權限給群組")
+	![將權限指派至群組](./media/data-lake-store-secure-data/adl.acl.5.png "將權限指派至群組")
 
 	> [AZURE.IMPORTANT] 在目前的版本中，[自訂存取] 下方只能有 9 個項目。如要新增超過 9 位使用者，您必須建立安全性群組、新增使用者至安全性群組，並新增存取權限給該資料湖儲存區帳戶的安全性群組。
 
 7. 如有需要，您也可以在新增群組之後修改存取權限。根據您是否要移除或指派該權限給安全性群組，選擇清除或選取每個權限類型的核取方塊 (讀取、寫入、執行)。按一下 [儲存] 儲存變更，或按一下 [捨棄] 復原變更。
+
+## 設定資料存取的 IP 位址範圍
+
+Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的存取。您可以啟用防火牆、指定 IP 位址或為受信任的用戶端定義 IP 位址範圍。一旦啟用，只有具有定義範圍內 IP 位址的用戶端可以連線到存放區。
+
+![防火牆設定和 IP 存取](./media/data-lake-store-secure-data/firewall-ip-access.png "防火牆設定和 IP 位址")
 
 ## 移除 Azure 資料湖儲存區帳戶的安全性群組
 
@@ -174,4 +184,4 @@
 - [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
 - [使用 .NET SDK 開始使用資料湖存放區](data-lake-store-get-started-net-sdk.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="get-started-article"
 	ms.date="04/12/2016"
-	ms.author="sethm;nberdy"/>
+	ms.author="sethm"/>
 
 # Azure 事件中樞是什麼？
 
@@ -45,4 +45,4 @@
 [事件中樞教學課程]: event-hubs-csharp-ephcs-getstarted.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="multiple"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="05/04/2016" 
+    ms.date="06/24/2016" 
     ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh698319.aspx -->
@@ -30,8 +30,8 @@ Javadoc 內容與 Azure Libraries for Java 產生關聯時，即可在 Eclipse �
 * 按一下 [內容]。
 * 在 [**內容**] 對話方塊的左側窗格中，按一下 [**Javadoc 位置**]。隨即顯示 [**Javadoc 位置**] 對話方塊。
 * 您可以指定 **Javadoc URL**或**封存檔案中的 Javadoc**。
-    * 若您選擇指定 **Javadoc URL**，請使用 URL，例如 * ***http://dl.windowsazure.com/javadoc** 或 * ***http://dl.windowsazure.com/storage/javadoc**。
-* 若選擇使用**封存檔案中的 Javadoc**，可以指定外部檔案或工作區檔案。選擇後視需要進行瀏覽/驗證。下列範例中，Azure Libraries for Java 會與已下載至本機 **c:\\MyAzureJARs** 資料夾的對應 Javadoc JAR 產生關聯。 ![][ic553487]
+    * 若您選擇指定 **Javadoc URL**，請使用 URL，例如 **http://dl.windowsazure.com/javadoc** 或 **http://dl.windowsazure.com/storage/javadoc**。
+    * 若選擇使用**封存檔案中的 Javadoc**，可以指定外部檔案或工作區檔案。選擇後視需要進行瀏覽/驗證。下列範例中，Azure Libraries for Java 會與已下載至本機 **c:\\MyAzureJARs** 資料夾的對應 Javadoc JAR 產生關聯。 ![][ic553487]
 * *選擇性步驟*：按一下 [**驗證**]。這裡可能會顯示 Javadoc JAR 可能發生的問題。
 * 按一下 [確定]。
 
@@ -61,4 +61,4 @@ Javadoc 內容與 Azure Libraries for Java 產生關聯時，即可在 Eclipse �
 [ic553487]: ./media/azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries/ic553487.png
 [ic553488]: ./media/azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries/ic553488.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

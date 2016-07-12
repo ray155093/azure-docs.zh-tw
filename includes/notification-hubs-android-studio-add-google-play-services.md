@@ -11,18 +11,16 @@
 
 	![](./media/notification-hubs-android-studio-add-google-play-services/notification-hubs-android-studio-add-google-play-dependency.png)
 
-4. 新增此行至 *相依項目*下方：
+4. 新增此行至 *相依項目* 下方：
 
-   		compile 'com.google.android.gms:play-services-gcm:8.4.0'
+   		compile 'com.google.android.gms:play-services-gcm:9.2.0'
 
-5. 在 *defaultConfig* 下方，將 *minSdkVersion* 值變更為 9。
- 
-6. 按一下工具列中的 [**同步處理專案與 Gradle 檔案**] 圖示。
+5. 按一下工具列中的 [**同步處理專案與 Gradle 檔案**] 圖示。
 
-7. 開啟 **AndroidManifest.xml** 並將此標記加入至應用程式標記。
+6. 開啟 **AndroidManifest.xml** 並將此標記加入至應用程式標記。
 
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

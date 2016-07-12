@@ -14,7 +14,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="06/15/2016"
+	ms.date="07/06/2016"
 	ms.author="carlrab"/>
 
 # 監視 Azure SQL Database 中的資料庫效能
@@ -27,7 +27,7 @@
 - CPU 百分比
 - DTU 百分比
 - 資料 IO 百分比
-- 儲存空間百分比
+- 資料庫大小百分比
 
 新增這些度量之後，您可以在 [**度量**] 視窗中，在含有詳細資料的 [**監視**] 圖表中繼續檢視它們。這四個度量都會顯示與資料庫 **DTU** 相對的平均使用率百分比。如需 DTU 的詳細資訊，請參閱[服務層](sql-database-service-tiers.md)文章。
 
@@ -47,4 +47,4 @@
 
 若為彈性資料庫集區，您可以監視其中的個別資料庫，技巧如本節所述。但您也可以監視集區整體。如需詳細資訊，請參閱[監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

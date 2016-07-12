@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="06/27/2016"
 	ms.author="douglasl"/>
 
 # Stretch Database 的管理和疑難排解
@@ -35,21 +35,21 @@ GO
  ```
 ## 管理資料移轉
 
-### 查看套用至資料表的篩選述詞
-開啟目錄檢視 **sys.remote\_data\_archive\_tables** 並查看 **filter\_predicate** 資料行的值，以識別 Stretch Database 用來選取要移轉之資料列的函數。如果值為 Null，便代表整個資料表皆符合移轉資格。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
+### 查看套用至資料表的篩選函數
+開啟目錄檢視 **sys.remote\_data\_archive\_tables** 並查看 **filter\_predicate** 資料行的值，以識別 Stretch Database 用來選取要移轉之資料列的函數。如果值為 Null，便代表整個資料表皆符合移轉資格。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_tables (TRANSACT-SQL)](https://msdn.microsoft.com/library/dn935003.aspx) 和[使用篩選函數來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
 
 ### <a name="Migration"></a>查看資料移轉狀態
-在 SQL Server Management Studio 中，針對資料庫選取 [工作] | [延展] | [監視]，以在「Stretch Database 監視器」中監視資料移轉。如需詳細資訊，請參閱[資料移轉的監視及疑難排解 (Stretch Database) (資料移轉的監視及疑難排解 (Stretch Database))](sql-server-stretch-database-monitor.md)。
+在 SQL Server Management Studio 中，針對資料庫選取 [工作 | Stretch | 監視]，以在 Stretch Database 監視器中監視資料移轉。如需詳細資訊，請參閱[資料移轉的監視及疑難排解 (Stretch Database)](sql-server-stretch-database-monitor.md)。
 
-或是開啟動態管理檢視 **sys.dm\_db\_rda\_migration\_status**，以查看已移轉之批次和資料列的數量。
+或是開啟動態管理檢視 **sys.dm\_db\_rda\_migration\_status**，以查看已移轉的批次和資料列數量。
 
-### <a name="Firewall"></a>資料移轉疑難排解
-如需疑難排解建議，請參閱 [Monitor and troubleshoot data migration (Stretch Database) (資料移轉的監視及疑難排解 (Stretch Database))](sql-server-stretch-database-monitor.md)。
+### <a name="Firewall"></a>資料移轉的疑難排解
+如需疑難排解的建議，請參閱[資料移轉的監視及疑難排解 (Stretch Database)](sql-server-stretch-database-monitor.md)。
 
 ## 管理遠端資料
 
-### <a name="RemoteInfo"></a>取得 Stretch Database 所使用之遠端資料庫和資料表的相關資訊
-開啟目錄檢視 **sys.remote\_data\_archive\_databases** 和 **sys.remote\_data\_archive\_tables**，以查看儲存了已移轉之資料的遠端資料庫和資料表的相關資訊。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_databases (Transact-SQL)](https://msdn.microsoft.com/library/dn934995.aspx) 和 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
+### <a name="RemoteInfo"></a>取得 Stretch Database 所使用的遠端資料庫和資料表相關資訊
+開啟目錄檢視 **sys.remote\_data\_archive\_databases** 和 **sys.remote\_data\_archive\_tables**，以查看儲存已移轉資料的遠端資料庫和資料表相關資訊。如需詳細資訊，請參閱 [sys.remote\_data\_archive\_databases (Transact-SQL)](https://msdn.microsoft.com/library/dn934995.aspx) 和 [sys.remote\_data\_archive\_tables (Transact-SQL)](https://msdn.microsoft.com/library/dn935003.aspx)。
 
 若要查看已啟用延展功能的資料表在 Azure 中使用了多少空間，請執行下列陳述式。
 
@@ -85,7 +85,7 @@ GO
 -   您的網路狀況可能已降級。請連絡您的網路系統管理員，以取得最新問題或中斷情形的資訊。
 
 ### 針對耗用資源的操作 (例如編製索引)，請提升 Azure 效能等級。
-當您在針對 Stretch Database 設定的大型資料表上建立、重建或重組索引，並且預期在此期間於 Azure 中會有針對所移轉資料的大量查詢時，請考慮在此作業持續期間，提升對應之遠端 Azure 資料庫的效能等級。如需效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
+當您在針對 Stretch Database 設定的大型資料表上建立、重建或重組索引，並且預期在此期間於 Azure 中會有針對所移轉資料的大量查詢時，請考慮在此作業持續期間，提升對應之遠端 Azure 資料庫的效能等級。如需有關效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 
 ### 您無法暫停 Azure 上的 SQL Server Stretch Database 服務  
  請確定您選取適當的效能和定價等級。如果您針對需要大量資源的作業暫時提升效能等級，請在作業完成之後，將它還原到先前的等級。如需效能等級和定價的詳細資訊，請參閱 [SQL Server Stretch Database 定價](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
@@ -98,7 +98,7 @@ GO
 
 ### <a name="queryHints"></a>變更系統管理員進行單一查詢的查詢範圍  
  若要變更 db\_owner 角色成員的單一查詢範圍，請在 SELECT 陳述式中新增 **WITH ( REMOTE\_DATA\_ARCHIVE\_OVERRIDE = *value* )** 查詢提示。REMOTE\_DATA\_ARCHIVE\_OVERRIDE 查詢提示可以有下列值。
- -   **LOCAL\_ONLY**。只查詢本機資料。  
+ -   **LOCAL\_ONLY**。只查詢本機資料。
 
  -   **REMOTE\_ONLY**。只查詢遠端資料。
 
@@ -115,7 +115,7 @@ GO
 
 ## <a name="adminHints"></a>進行系統管理更新和刪除  
  根據預設，您無法「更新」或「刪除」已啟用延展功能之資料表中符合移轉資格的資料列，或已移轉的資料列。當您必須修正問題時，db\_owner 角色的成員可以藉由在陳述式中新增 **WITH ( REMOTE\_DATA\_ARCHIVE\_OVERRIDE = *value* )** 查詢提示來執行「更新」或「刪除」作業。REMOTE\_DATA\_ARCHIVE\_OVERRIDE 查詢提示可以有下列值。
- -   **LOCAL\_ONLY**。只更新或刪除本機資料。  
+ -   **LOCAL\_ONLY**。只更新或刪除本機資料。
 
  -   **REMOTE\_ONLY**。只更新或刪除遠端資料。
 
@@ -129,4 +129,4 @@ GO
 
 [還原已啟用延展功能的資料庫](sql-server-stretch-database-restore.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

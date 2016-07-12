@@ -26,8 +26,7 @@
 
 <br/>
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Resource Manager 模型。
-
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高可用性 SQL Server 系統。本教學課程將示範如何使用 Azure 環境中的 SQL Server Always On 端對端實作可用性群組。在本教學課程結束時，您 Azure 中的 SQL Server Always On 解決方案將包含下列項目：
 
@@ -167,7 +166,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 	- **New-AzureVM** 可建立新的雲端服務，以及在新的雲端服務中建立新的 Azure VM。
 
-1. 等候系統完整佈建新 VM ，並將遠端桌面檔案下載至您的工作目錄。因為佈建新的 Azure VM 需要很長的時間，所以 while 迴圈會持續輪詢新的 VM 直到該 VM 準備就緒。
+1. 等候系統完整佈建新 VM，並將遠端桌面檔案下載至您的工作目錄。因為佈建新的 Azure VM 需要很長的時間，所以 while 迴圈會持續輪詢新的 VM 直到該 VM 準備就緒。
 
 		$VMStatus = Get-AzureVM -ServiceName $dcServiceName -Name $dcServerName
 
@@ -379,7 +378,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 	- **New-AzureVM** 可在相同的雲端服務中建立新的 SQL Server VM：ContosoQuorum。若想要讓所有 VM 都位於相同的可用性集合中，您必須將 VM 放置到相同的雲端服務。
 
-1. 等候系統完整佈建新 VM ，並將其遠端桌面檔案下載至您的工作目錄。for 迴圈會針對三個新 VM 分別執行，並針對每個 VM 執行最上層大括弧中的命令。
+1. 等候系統完整佈建新 VM，並將其遠端桌面檔案下載至您的工作目錄。for 迴圈會針對三個新 VM 分別執行，並針對每個 VM 執行最上層大括弧中的命令。
 
 		Foreach ($VM in $VMs = Get-AzureVM -ServiceName $sqlServiceName)
 		{
@@ -563,7 +562,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 		net share backup=$backup "/grant:$acct1,FULL" "/grant:$acct2,FULL"
 		icacls.exe "$backup" /grant:r ("$acct1" + ":(OI)(CI)F") ("$acct2" + ":(OI)(CI)F")
 
-1. 在 **ContosoSQL1** 上建立資料庫 **MyDB1**，同時為其建立完整備份和記錄備份，然後透過 **[使用 NORECOVERY]** 選項將這些備份還原至 **ContosoSQL2**。
+1. 在 **ContosoSQL1** 上建立名稱為 **MyDB1** 的資料庫，同時為它建立完整備份和記錄備份，然後透過 [使用 NORECOVERY] 選項將這些備份還原至 **ContosoSQL2**。
 
 		Invoke-SqlCmd -Query "CREATE database $db"
 		Backup-SqlDatabase -Database $db -BackupFile "$backupShare\db.bak" -ServerInstance $server1
@@ -627,8 +626,8 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 		    -Database $db
 
 ## 後續步驟
-現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。若要為此可用性群組設定接聽程式，請參閱[在 Azure 中為 Always On 可用性群組設定 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。若要為此可用性群組設定接聽程式，請參閱[設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0629_2016-->

@@ -66,7 +66,7 @@
 
 4. 按一下 [建立]。
 
->[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設儲存體帳戶和預設 Blob 容器來建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。
+>[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設儲存體帳戶和預設 Blob 容器來建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
 
 ## 建立資料表和插入資料
 
@@ -163,7 +163,7 @@ HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請�
 
 **開啟叢集儀表板**
 
-1. 瀏覽至 **https://<HDInsight Cluster Name>.azurehdinsight.net/**。
+1. 瀏覽至 **https://<HDInsight 叢集名稱>.azurehdinsight.net/**。
 5. 輸入 Hadoop 使用者帳戶的使用者名稱和密碼。預設使用者名稱為 **admin**，密碼則是您在建立程序中輸入的密碼。隨即開啟新的瀏覽器索引標籤。
 6. 按一下頁面頂端的 [Hive 編輯器]。Hive 編輯器外觀如下：
 
@@ -294,8 +294,7 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。使用 Web UI，�
 在高可用性叢集中，您會找到目前使用中之 HBase 主要節點 (其正在主控 WebUI) 的連結。
 
 ##刪除叢集
-
-[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 
 ## 後續步驟
@@ -335,4 +334,4 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。使用 Web UI，�
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-bigtable.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0629_2016-->

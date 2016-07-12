@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="06/27/2016"
 	ms.author="markusvi;andkjell"/>
 
 
@@ -51,6 +51,8 @@ Azure Active Directory Connect 同步處理服務 (Azure AD Connect 同步處理
 **作業和 UI** |
 [同步處理服務管理員](active-directory-aadconnectsync-service-manager-ui.md) | 說明 Synchronization Service Manager UI，包括 [[作業]](active-directory-aadconnectsync-service-manager-ui-operations.md)、[[連接器]](active-directory-aadconnectsync-service-manager-ui-connectors.md)、[[Metaverse 設計工具]](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) 和 [[Metaverse 搜尋]](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) 索引標籤。
 [作業工作和考量](active-directory-aadconnectsync-operations.md) | 說明作業考量，例如災害復原。
+**作法...** |
+[重設 Azure AD 帳戶](active-directory-aadconnectsync-howto-azureadaccount.md) | 如何將 Azure AD Connect 同步處理連線至 Azure AD 時所使用的服務帳戶重設認證。
 **詳細資訊和參考** |
 [連接埠](active-directory-aadconnect-ports.md) | 列出您需要在同步處理引擎以及內部部署目錄與 Azure AD 之間開啟的連接埠。
 [將屬性同步處理至 Azure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md) | 列出在內部部署 AD 與 Azure AD 之間進行同步處理的所有屬性。
@@ -60,4 +62,4 @@ Azure Active Directory Connect 同步處理服務 (Azure AD Connect 同步處理
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0629_2016-->

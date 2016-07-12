@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/01/2016"  
+	ms.date="06/22/2016" 
 	ms.author="juliako"/>
 
 
@@ -47,7 +47,7 @@ Azure Media Encryptor|停用|
 >
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。如需詳細資訊，請參閱[媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
->成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect_programmatically.md)所述，對新的 URI 進行後續呼叫。
+>成功連線至 https://media.windows.net 後，您會收到指定另一個媒體服務 URI 的 301 重新導向。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
 
 
 下列 REST 呼叫示範如何依名稱取得媒體處理器執行個體 (在此案例中，**媒體編碼器標準**)。
@@ -99,4 +99,4 @@ Azure Media Encryptor|停用|
 
 既然您已了解如何取得媒體處理器執行個體，請移至[如何為資產編碼](media-services-rest-get-started.md)主題，以了解如何使用媒體編碼器標準將資產編碼。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0629_2016-->

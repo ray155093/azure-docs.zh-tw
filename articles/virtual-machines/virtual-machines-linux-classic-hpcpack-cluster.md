@@ -1,6 +1,6 @@
 <properties
  pageTitle="HPC Pack 叢集中的 Linux 運算 VM | Microsoft Azure"
- description="了解如何在 Azure 中建立及使用 HPC Pack 叢集，來處理 Linux 高效能計算 (HPC) 工作負載。"
+ description="了解如何在 Azure 中建立及使用 HPC Pack 叢集，來處理 Linux 高效能運算 (HPC) 工作負載"
  services="virtual-machines-linux"
  documentationCenter=""
  authors="dlepow"
@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="03/21/2016"
+ ms.date="06/23/2016"
  ms.author="danlep"/>
 
 # 開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點
@@ -27,37 +27,43 @@
 
 ![具有 Linux 節點的 HPC Pack 叢集][scenario]
 
->[AZURE.TIP]如果您有興趣在內部部署的 HPC Pack 叢集中使用 Linux 節點，請參閱 [TechNet guidance (TechNet 指引)](https://technet.microsoft.com/library/mt595803.aspx)。
 
 ## 部署具有 Linux 運算節點的 HPC Pack 叢集
 
 以下是兩種在 Azure 中以 Linux 計算節點建立 HPC Pack 叢集的建議方式︰
 
-* **Azure Resource Manager 範本** - 使用 Azure Marketplace 範本或社群資源庫的範本，自動化在資源管理員部署模型中的建立叢集作業。例如，Azure Marketplace 中的 [HPC Pack cluster for Linux workloads (處理 Linux 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) 範本，會建立完整的 HPC Pack 叢集，包括 Azure 虛擬網路、使用本機 SQL 資料庫的前端節點、Active Directory 網域樹系 (其前端節點設定為網域控制站)，以及數個執行支援的 Linux 發佈之計算節點。
+* **Azure Resource Manager 範本** - 使用 Azure Marketplace 範本，或是來自社群的快速入門範本，來自動化在資源管理員部署模型中的建立叢集作業。例如，Azure Marketplace 中的 [HPC Pack cluster for Linux workloads (處理 Linux 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) 範本，會針對 Linux HPC 工作負載建立完整的 HPC Pack 叢集基礎結構。
 
-* **PowerShell 指令碼** - 使用 [Microsoft HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md) (**New-HpcIaaSCluster.ps1**)，在傳統部署模型中自動化叢集部署作業。此 Azure PowerShell 指令碼使用 Azure Marketplace 中的 HPC Pack VM 映像進行快速部署，並提供一組完整的組態參數，讓部署變得簡單且有彈性。此指令碼可部署 Azure 虛擬網路、儲存體帳戶、雲端服務、網域控制站、不同的選用 SQL Server 資料庫伺服器、叢集前端節點、計算節點、訊息代理程式節點、Azure PaaS (「高載」) 節點以及 Linux 計算節點。
+* **PowerShell 指令碼** - 使用 [Microsoft HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md) (**New-HpcIaaSCluster.ps1**)，在傳統部署模型中自動化完整叢集部署作業。此 Azure PowerShell 指令碼使用 Azure Marketplace 中的 HPC Pack VM 映像進行快速部署，並提供一組完整的組態參數以部署 Linux 計算節點。
 
-如需 HPC Pack 叢集部署選項的概觀，請參閱 [HPC Pack 2012 R2 和 HPC Pack 2012 的入門指南](https://technet.microsoft.com/library/jj884144.aspx)和[使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項](virtual-machines-linux-hpcpack-cluster-options.md)。
+如需 Azure 中的 HPC Pack 叢集部署選項概觀，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項](virtual-machines-linux-hpcpack-cluster-options.md)。
 
 ### 必要條件
 
-* **Azure 訂用帳戶** - 您可以在 Azure 全域或 Azure China 服務中使用訂用帳戶。如果您沒有帳戶，只需要幾分鐘的時間即可建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+* **Azure 訂用帳戶** - 您可以在 Azure 全域或 Azure China 服務中使用訂用帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **核心配額** - 您可能需要增加核心的配額，特別是如果您選擇部署多核心 VM 大小的數個叢集節點。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
+* **核心配額** - 您可能需要增加核心的配額，特別是如果您選擇部署多核心 VM 大小的數個叢集節點。若要增加配額，您可以免費開立線上客戶支援要求。
 
-* **Linux 發佈** - HPC Pack 目前為計算節點支援下列 Linux 發佈：Ubuntu Server 14.04、CentOS 6.6 或 7.0、Red Hat Enterprise Linux 6.7 或 7.2，以及 SUSE Linux Enterprise Server 12。您可以使用這些發佈的 Marketplace 版本，或提供您自己的版本。
+* **Linux 散發** - 目前 HPC Pack 針對計算節點支援下列 Linux 發佈。您可以使用這些發佈的 Marketplace 版本，或提供您自己的版本。
 
-    >[AZURE.TIP]若要使用其大小為 A8 和 A9 計算節點 VM 的 Azure RDMA 網路，請指定 SUSE Linux Enterprise Server 12 – Marketplace 提供的高效能最佳化計算映像。您必須在根據應用程式需求部署好叢集之後，於節點上安裝及設定支援的 MPI 程式庫。如需範例，請參閱[在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
+    * CentOS 型：6.5、6.6、6.7、7.0、7.1、7.2、6.5 HPC、7.1 HPC
+    * Red Hat Enterprise Linux：6.7、6.8、7.2
+    * SUSE Linux Enterprise Server：SLES 12、SLES 12 (Premium)、SLES 12 for HPC、SLES 12 for HPC (Premium)
+    * Ubuntu Server：14.04 LTS、16.04 LTS
 
-如果使用 HPC Pack IaaS 部署指令碼部署叢集，還需要其他必要條件：
+
+
+    >[AZURE.TIP]若要搭配使用 Azure RDMA 網路和大小為 A8 和 A9 的計算節點 VM，請指定來自 Marketplace 的其中一個 SUSE Linux Enterprise Server 12 HPC 或 CentOS 型的 HPC 映像。如需詳細資訊，請參閱[關於 A8、A9、A10 和 A11 運算密集執行個體](virtual-machines-linux-a8-a9-a10-a11-specs.md)。
+
+使用 HPC Pack IaaS 部署指令碼部署叢集的其他必要條件：
 
 * **用戶端電腦** - 您需要有 Windows 用戶端電腦才能執行叢集部署指令碼。
 
 * **Azure PowerShell** - 在您的用戶端電腦上[安裝和設定 Azure PowerShell](../powershell-install-configure.md) (0.8.10 版或更新版本)。
 
-* **HPC Pack IaaS 部署指令碼** - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=44949)下載並解壓縮最新版的指令碼。執行 `New-HPCIaaSCluster.ps1 –Version` 即可檢查指令碼的版本。這篇文章根據 4.4.0 版或更新版本的指令碼。
+* **HPC Pack IaaS 部署指令碼** - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=44949)下載並解壓縮最新版的指令碼。執行 `.\New-HPCIaaSCluster.ps1 –Version` 即可檢查指令碼的版本。這篇文章根據 4.4.1 版或更新版本的指令碼。
 
-### 部署案例 1。使用 Marketplace 範本
+### 部署選項 1。使用 Resource Manager 範本
 
 1. 前後 Azure Marketplace 的 [HPC Pack cluster for Linux workloads (處理 Linux 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) 範本，按一下 [部署]。
 
@@ -69,20 +75,20 @@
 
 4. 如果是第一次部署，通常可接受 [Head node settings] \(前端節點設定) 刀鋒視窗中的預設值。
 
-    >[AZURE.NOTE] [Post-configuration script URL] \(組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。
+    >[AZURE.NOTE] \[Post-configuration script URL] \(組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。
     
-5. 在 [Compute node settings] \(計算節點設定) 刀鋒視窗中，選取節點的命名模式、節點數目與大小，以及要部署的 Linux 發佈映像。
+5. 在 [計算節點設定] 刀鋒視窗中，選取節點的命名模式、節點數目與大小，以及要部署的 Linux 散發。
 
 6. 在 [Infrastructure settings] \(基礎結構設定) 刀鋒視窗中，輸入叢集的虛擬網路和 Active Directory 網域名稱、網域及 VM 系統管理員認證，以及叢集所需的儲存體帳戶命名模式。
 
     >[AZURE.NOTE]HPC Pack 會使用 Active Directory 網域來驗證叢集使用者。
 
-7. 驗證測試執行完畢且您準備好部署之後，請按一下 [建立]。
+7. 當驗證測試執行完畢，且您已檢閱使用條款之後，按一下 [購買]。
 
 
-### 部署案例 2。使用 IaaS 部署指令碼
+### 部署選項 2。使用 IaaS 部署指令碼
 
-HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC 叢集的基礎結構。下列範例組態檔會部署一個小型的叢集，由前端節點和兩個大小為 A7 的 CentOS 7 Linux 計算節點所組成。請根據環境和所要的叢集組態，視需要修改檔案。如需組態檔中元素的詳細資訊，請參閱指令碼資料夾中的 Manual.rtf 檔案與[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC 叢集的基礎結構。下列範例組態檔會部署一個小型的叢集，由 HPC Pack 前端節點和兩個大小為 A7 的 CentOS 7.0 Linux 計算節點所組成。請根據環境和所要的叢集組態視需要修改檔案，並將它以 HPCDemoConfig.xml 之類的名稱儲存。例如，您將需要提供您的訂用帳戶名稱、唯一儲存體帳戶名稱及雲端服務名稱，而且您可能會想要針對計算節點選擇不同的支援 Linux 映像。如需組態檔中元素的詳細資訊，請參閱指令碼資料夾中的 Manual.rtf 檔案與[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -106,7 +112,7 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC
   <HeadNode>
     <VMName>CentOS7RDMA-HN</VMName>
     <ServiceName>centos7rdma-je</ServiceName>
-  <VMSize>A4</VMSize>
+  <VMSize>ExtraLarge</VMSize>
   <EnableRESTAPI />
   <EnableWebPortal />
   </HeadNode>
@@ -130,7 +136,7 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC
     cd E:\IaaSClusterScript
     ```
 
-3. 執行下列命令來部署 HPC Pack 叢集。這個範例假設組態檔位於 E:\\HPCDemoConfig.xml。
+3. 執行下列命令來部署 HPC Pack 叢集。這個範例假設組態檔位於 E:\\HPCDemoConfig.xml
 
     ```
     .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
@@ -140,7 +146,7 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC
 
     a.因為未在上述命令中指定 **AdminPassword**，所以系統會提示您輸入使用者 *MyAdminName* 的密碼。
 
-    b.指令碼會接著開始驗證組態檔。根據網路連線而定，這需要數十秒以至幾分鐘的時間。
+    b.指令碼會接著開始驗證組態檔。根據網路連線而定，這可能會花費數分鐘的時間。
 
     ![驗證][validate]
 
@@ -180,16 +186,16 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC
 
 如需建立 Azure 檔案共用以及將其裝載於前端節點上的詳細步驟，請參閱[開始使用 Windows 上的 Azure 檔案儲存體](../storage/storage-dotnet-how-to-use-files.md)。若要在 Linux 節點上裝載 Azure 檔案共用，請參閱[如何在 Linux 使用 Azure 檔案儲存體](../storage/storage-how-to-use-files-linux.md)。若要設定持續性連線，請參閱 [Microsoft Azure 檔案的持續性連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)。
 
-在此範例中，我們會在儲存體帳戶 allvhdsje 上建立名為 rdma 的 Azure 檔案共用。若要在前端節點上裝載共用，請開啟 [命令提示字元] 並輸入下列命令：
+在下列範例中，在儲存體帳戶上建立 Azure 檔案共用。若要在前端節點上裝載共用，請開啟 [命令提示字元] 並輸入下列命令：
 
 ```
 > cmdkey /add:allvhdsje.file.core.windows.net /user:allvhdsje /pass:<storageaccountkey>
 > net use Z: \\allvhdje.file.core.windows.net\rdma /persistent:yes
 ```
 
-在此範例中，allvhdsje 是儲存體帳戶名稱、storageaccountkey 是儲存體帳戶金鑰，以及 rdma 是 Azure 檔案共用名稱。Azure 檔案共用將會裝載到前端節點的 Z: 上。
+在此範例中，allvhdsje 是您的儲存體帳戶名稱、storageaccountkey 是您的儲存體帳戶金鑰，而 rdma 則是 Azure 檔案共用名稱。Azure 檔案共用將會裝載到前端節點的 Z: 上。
 
-若要在 Linux 節點上裝載 Azure 檔案共用，請在前端節點上執行 **clusrun** 命令。**[Clusrun](https://technet.microsoft.com/library/cc947685.aspx)** 是實用的 HPC Pack 工具，可在多個節點上執行系統管理工作 (請參閱本文中的[適用於 Linux 節點的 CLusrun](#CLusrun-for-Linux-nodes))。
+若要在 Linux 節點上裝載 Azure 檔案共用，請在前端節點上執行 **clusrun** 命令。**[Clusrun](https://technet.microsoft.com/library/cc947685.aspx)** 是實用的 HPC Pack 工具，可在多個節點上執行系統管理工作。(同時請參閱本文中的[適用於 Linux 節點的 CLusrun](#Clusrun-for-Linux-nodes))。
 
 開啟 Windows PowerShell 視窗並輸入下列命令。
 
@@ -294,6 +300,8 @@ HPC Pack **clusrun** 工具可透過命令提示字元或 HPC 叢集管理員，
 
 * 嘗試大小為 [A8 或 A9](virtual-machines-windows-a8-a9-a10-a11-specs.md) 計算節點的叢集以執行 MPI 工作負載。如需範例，請參閱[在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)。
 
+* 如果您有興趣在內部部署的 HPC Pack 叢集中使用 Linux 節點，請參閱 [TechNet guidance (TechNet 指引)](https://technet.microsoft.com/library/mt595803.aspx)。
+
 <!--Image references-->
 [scenario]: ./media/virtual-machines-linux-classic-hpcpack-cluster/scenario.png
 [portal]: ./media/virtual-machines-linux-classic-hpcpack-cluster/portal.png
@@ -309,4 +317,4 @@ HPC Pack **clusrun** 工具可透過命令提示字元或 HPC 叢集管理員，
 [nfsperm]: ./media/virtual-machines-linux-classic-hpcpack-cluster/nfsperm.png
 [nfsmanage]: ./media/virtual-machines-linux-classic-hpcpack-cluster/nfsmanage.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0629_2016-->

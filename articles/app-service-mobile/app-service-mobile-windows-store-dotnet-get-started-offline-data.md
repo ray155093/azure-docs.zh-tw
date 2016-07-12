@@ -41,11 +41,11 @@
 
 Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與本機資料庫互動。若要在您的應用程式中使用這些功能，您必須將 [SyncContext][synccontext] 初始化至本機存放區。接著，請透過 [IMobileServiceSyncTable][IMobileServiceSyncTable] 介面參考您的資料表。SQLite 可做為裝置上的本機存放區。
 
-1. 安裝 [Windows 通用平台的 SQLite 執行階段](http://sqlite.org/2016/sqlite-uwp-3120200.vsix)。
+1. 安裝[適用於通用 Windows 平台的 SQLite 執行階段](http://sqlite.org/2016/sqlite-uwp-3120200.vsix)。
 
 2. 在 Visual Studio 中，開啟您在[建立 Windows 應用程式]教學課程中完成的 UWP 應用程式專案的 NuGet 封裝管理員，然後搜尋並安裝 **Microsoft.Azure.Mobile.Client.SQLiteStore** NuGet 封裝。
 
-4. 在 [方案總管] 中，以滑鼠右鍵按一下 [參考] > [通用 Windows] > [延伸]，然後啟用 [適用於通用 Windows 平台的 SQLite] 和 [適用於通用 Windows 平台應用程式的 Visual C++ 2015 執行階段]。
+4. 在 [方案總管] 中，以滑鼠右鍵按一下 [參考] > [加入參考...] > [通用 Windows] > [擴充功能]，然後啟用 [適用於通用 Windows 平台的 SQLite] 和 [適用於通用 Windows 平台應用程式的 Visual C++ 2015 執行階段]。
 
     ![新增 SQLite UWP 參考][1]
 
@@ -147,7 +147,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 在本節中，您會將應用程式重新連接至行動應用程式後端。您將藉此模擬應用程式在行動應用程式後端中，從離線狀態恢復為線上狀態的情境。當您第一次執行應用程式時，`OnNavigatedTo` 事件處理常式會呼叫 `InitLocalStoreAsync`。接著會呼叫 `SyncAsync` 來同步處理您的本機存放區與後端資料庫。因此，應用程式會嘗試於開機時同步處理。
 
-1. 開啟共用專案中的 App.xaml.cs。取消註解先前的 `MobileServiceClient` 初始化，以使用正確的行動應用程式 URL 與閘道器 URL。
+1. 在共用專案中開啟 App.xaml.cs，取消註解先前的 `MobileServiceClient` 初始化，以使用正確的行動應用程式 URL。
 
 2. 按 **F5** 鍵，以重新建置與執行應用程式。該應用程式會在 `OnNavigatedTo` 事件處理常式執行時使用推送與提取作業，同步處理您的本機變更與 Azure 行動應用程式後端。
 
@@ -164,9 +164,9 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 *  **[PushAsync]** 因為這個方法是 [IMobileServicesSyncContext] 的成員，因此所有資料表的變更都會套用至後端。只有具有本機變更的記錄會傳送到伺服器。
 
-* **[PullAsync]** 提取會從 [IMobileServiceSyncTable] 開始。當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。「PushOtherTables」參數會控制是否在隱含推送中推送內容中的其他資料表。「query」參數會採用 [IMobileServiceTableQuery&lt;U&gt;][IMobileServiceTableQuery] 或 OData 查詢字串來篩選傳回的資料。「QueryId」參數可用來定義增量同步處理。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
+* **[PullAsync]** 提取會從 [IMobileServiceSyncTable] 開始。當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。pushOtherTables 參數會控制是否在隱含推送中推送內容中的其他資料表。query 參數會採用 [IMobileServiceTableQuery&lt;U&gt;][IMobileServiceTableQuery] 或 OData 查詢字串來篩選傳回的資料。queryId 參數可用來定義增量同步處理。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
 
-* **[PurgeAsync]** 您的應用程式應定期呼叫這個方法，以清除本機存放區中的過時資料。當您需要清除任何尚未同步處理的變更時，請使用「force」參數。
+* **[PurgeAsync]** 您的應用程式應定期呼叫這個方法，以清除本機存放區中的過時資料。當您需要清除任何尚未同步處理的變更時，請使用 force 參數。
 
 如需這些概念的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
 
@@ -175,7 +175,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 下列主題提供其他關於 Mobile Apps 離線同步處理功能的背景資訊︰
 
 * [Azure 行動應用程式中的離線資料同步處理]
-* [雲端報導︰Azure 行動服務中的離線同步處理]\(注意︰此影片是針對行動服務，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰此影片是針對行動服務，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 * [Azure Friday：Azure 行動服務中離線啟用的應用程式]
 
 <!-- Anchors. -->
@@ -212,4 +212,4 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday：Azure 行動服務中離線啟用的應用程式]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

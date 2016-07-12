@@ -1,6 +1,7 @@
 <properties 
-	pageTitle="Azure Data Factory 中的資料集 | Microsoft Azure" 
-	description="了解 Azure Data Factory 資料集並學習如何建立它們。" 
+	pageTitle="在 Azure Data Factory 中建立資料集 | Microsoft Azure" 
+	description="了解如何透過使用位移和 anchorDateTime 等屬性的範例，在 Azure Data Factory 中建立資料集。"
+    keywords="建立資料集, 資料集範例, 位移範例"
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -13,22 +14,19 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/08/2016" 
+	ms.date="06/27/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 中的資料集
-Azure Data Factory 中的資料集是具名的參考/指標，指向您要用來當做管線中的活動輸入或輸出的資料。資料集會在包括資料表、檔案、資料夾和文件在內的各種資料存放區中，識別資料。
+本文說明 Azure Data Factory 中的資料集，並包含位移、anchorDateTime 和位移/樣式資料庫等範例。
 
-**連結的服務**會定義 Azure Data Factory **連接**到**資料存放區** (例如 Azure 儲存體帳戶和 Azure SQL Database) 或**電腦** (例如 Azure HDInsight 和 Azure Batch) 所需的資訊。連結的服務會定義存取資料存放區或電腦的機制 (位址、通訊協定、驗證結構描述等等)。
+當您建立資料集時，您會對想要處理的資料建立指標。資料會在活動中處理 (輸入/輸出)，而活動則包含在管線中。輸入資料集表示管線中的活動輸入，而輸出資料集表示活動的輸出。
 
-如需支援的資料存放區連結服務清單，請參閱[支援的資料來源](data-factory-data-movement-activities.md#supported-data-stores)。按一下表格中的資料來源以取得相關主題，來提供如何針對該資料存放區建立/設定已連結服務的詳細說明。
+資料集可識別資料表、檔案、資料夾和文件等各種資料存放區中的資料。建立資料集之後，您可以將其與管線中的活動搭配使用。例如，資料集可以是複製活動或 HDInsightHive 活動的輸入/輸出資料集。Azure 入口網站可提供您所有管線和資料的輸入和輸出的視覺化版面配置。您只需要看一眼，就可以看出資料管線在所有來源的所有關聯性和相依性，因此能永遠知道資料的來源和目的地。
 
-如需支援的計算連結服務清單，請參閱[計算連結服務](data-factory-compute-linked-services.md)。若要了解使用這些連結服務的活動，請參閱[資料轉換活動](data-factory-data-transformation-activities.md)。
-
-Data Factory 中的**資料集**代表由**資料存放區連結服務**來表示之資料存放區內的資料結構，例如 Azure 儲存體帳戶中的 Blob 容器、Azure SQL Database 中的資料表)。它可用來當做管線中活動的輸入或輸出。建立資料集之後，您可以將其與管線中的活動搭配使用。例如，您可以將資料集當作複製活動/HDInsightHive 活動的輸入/輸出資料集。
+在 Azure Data Factory 中，您可以使用管線中的複製活動從資料集取得資料。
 
 > [AZURE.NOTE] 如果您不熟悉 Azure Data Factory，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)以取得 Azure Data Factory 服務的概觀，以及參閱[建置您的第一個 Data Factory](data-factory-build-your-first-pipeline.md) 以取得建立您的第一個 Data Factor 的教學課程。這兩篇文章提供您進一步了解這篇文章所需的背景資訊。
-
 
 ## 定義資料集
 Azure Data Factory 中的資料集定義如下：
@@ -72,7 +70,7 @@ Azure Data Factory 中的資料集定義如下：
 | availability | 定義處理時間範圍或資料集生產的切割模型。<br/><br/>請參閱[資料集可用性](#Availability)主題，以取得詳細資訊<br/><br/>請參閱[排程和執行](data-factory-scheduling-and-execution.md)一文，以取得資料集切割模型的詳細資訊 | 是 | NA
 | 原則 | 定義資料集配量必須符合的準則或條件。<br/><br/>請參閱[資料集原則](#Policy)主題，以取得詳細資訊 | 否 | NA |
 
-### 範例
+## 資料集範例
 
 以下的資料集範例表示 **Azure SQL Database** 中名為 **MyTable** 的資料表。
 
@@ -97,8 +95,8 @@ Azure Data Factory 中的資料集定義如下：
 
 - 類型設為 AzureSqlTable。
 - tableName 類型屬性 (針對 AzureSqlTable 類型) 設定為 MyTable。
-- linkedServiceName 代表 AzureSqlDatabase 類型的連結服務。請參閱下方的連結服務的定義。 
-- 可用性頻率設為 [天]，間隔設為 1，表示每天產生配量。  
+- linkedServiceName 代表 AzureSqlDatabase 類型的連結服務。請參閱下方的連結服務的定義。
+- 可用性頻率設為 [天]，間隔設為 1，表示每天產生配量。
 
 AzureSqlLinkedService 定義如下︰
 
@@ -116,7 +114,7 @@ AzureSqlLinkedService 定義如下︰
 在上述 JSON 中：
 
 - 類型設為 AzureSqlDatabase
-- connectionString 類型屬性會指定連接至 Azure SQL Database 的資訊。  
+- connectionString 類型屬性會指定連接至 Azure SQL Database 的資訊。
 
 
 如您所見，連結的服務會定義如何連接到 Azure SQL Database，資料集會定義使用哪個資料表做為您的 Data Factory 的輸入/輸出。您的[管線](data-factory-create-pipelines.md) JSON 中的 [活動] 區段會指定使用資料集做為輸入或輸出資料集。
@@ -153,10 +151,10 @@ AzureSqlLinkedService 定義如下︰
 | 屬性 | 說明 | 必要 | 預設值 |
 | -------- | ----------- | -------- | ------- |
 | frequency | 指定資料集配量生產的時間單位。<br/><br/>**支援的頻率**：分鐘、小時、日、週、月 | 是 | NA |
-| interval | 指定頻率的倍數<br/><br/>「頻率 x 間隔」可決定產生配量的頻率。<br/><br/>如果您需要每小時切割資料集，請將 **Frequency** 設為 **Hour**，將 **interval** 設為 **1**。<br/><br/>**注意：** 如果您將 Frequency 指定為 Minute，建議您將間隔設為不小於 15 | 是 | NA |
+| interval | 指定頻率的倍數<br/><br/>「頻率 x 間隔」可決定產生配量的頻率。<br/><br/>如果您需要每小時切割資料集，請將 **Frequency** 設為 **Hour**，將 **interval** 設為 **1**。<br/><br/>**注意：**如果您將 Frequency 指定為 Minute，建議您將間隔設為不小於 15 | 是 | NA |
 | style | 指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 Frequency 設為 Month 且 style 設為 EndOfInterval，則會在月份的最後一天產生配量。如果 style 設為 StartOfInterval，則會在月份的第一天產生配量。<br/><br/>如果 Frequency 設為 Day 且 style 設為 EndOfInterval，則會在一天的最後一個小時產生配量。<br/><br/>如果 Frequency 設為 Hour 且 style 設為 EndOfInterval，則會在一小時結束時產生配量。例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 | 否 | EndOfInterval |
-| anchorDateTime | 定義排程器用來計算資料集配量界限的時間絕對位置。<br/><br/>**注意：** 如果 AnchorDateTime 有比頻率更細微的日期部分，則會忽略更細微的部分。<br/><br/>例如，如果 **interval** 為**每小時** (frequency: hour 且 interval: 1) 而且 **AnchorDateTime** 包含**分鐘和秒鐘**，則會忽略 **AnchorDateTime** 的分鐘和秒鐘部分。 | 否 | 01/01/0001 |
-| Offset | 所有資料集配量的開始和結束移位所依據的時間範圍。<br/><br/>**附註：** 如果已指定 anchorDateTime 和 offset，結果會是合併的移位。 | 否 | NA |
+| anchorDateTime | 定義排程器用來計算資料集配量界限的時間絕對位置。<br/><br/>**注意：**如果 AnchorDateTime 有比頻率更細微的日期部分，則會忽略更細微的部分。<br/><br/>例如，如果 **interval** 為**每小時** (frequency: hour 且 interval: 1) 而且 **AnchorDateTime** 包含**分鐘和秒鐘**，則會忽略 AnchorDateTime 的**分鐘和秒鐘**部分。 | 否 | 01/01/0001 |
+| Offset | 所有資料集配量的開始和結束移位所依據的時間範圍。<br/><br/>**注意︰**如果已指定 anchorDateTime 和 offset，結果會是合併的移位。 | 否 | NA |
 
 ### 位移範例
 
@@ -173,7 +171,7 @@ AzureSqlLinkedService 定義如下︰
 
 在 12 個月 (頻率 = 月；間隔 = 12) 的排程中，offset: 60.00:00:00 表示每年的 3 月 1 日或 2 日 (如果樣式 = StartOfInterval，則為從年初算起的 60 天)，這取決於該年度是否為閏年。
 
-### anchorDateTime 範例
+## anchorDateTime 範例
 
 **範例：**於 2007-04-19T08:00:00 開始的 23 小時資料集配量
 
@@ -184,9 +182,9 @@ AzureSqlLinkedService 定義如下︰
 		"anchorDateTime":"2007-04-19T08:00:00"	
 	}
 
-### 位移/樣式範例
+## 位移/樣式範例
 
-如果您需要在特定日期和時間 (假設在每月 3 日上午 8:00) 執行以每月為基礎的資料集，您可以使用**位移**標記，以設定其應該要執行的日期和時間。
+如果您需要在特定日期和時間 (假設在每月 3 日上午 8:00) 執行以每月為基礎的資料集，您可以使用**位移**標籤，以設定其應該要執行的日期和時間。
 
 	{
 	  "name": "MyDataset",
@@ -347,4 +345,4 @@ AzureSqlLinkedService 定義如下︰
 	    }
 	}
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->

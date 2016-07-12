@@ -18,8 +18,7 @@
 
 # Azure 虛擬機器中的 SQL Server Business Intelligence
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]資源管理員模型。
-
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 Microsoft Azure 虛擬機器資源庫含有包含 SQL Server 安裝的映像。資源庫映像中支援的 SQL Server 版本與您可以在內部部署電腦與虛擬機器中安裝的安裝檔案相同。本主題摘要說明映像上安裝的 SQL Server 商業智慧 (BI) 功能和佈建虛擬機器後所需的組態步驟。本主題也描述 BI 功能支援的部署拓撲和最佳作法。
 
@@ -244,7 +243,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 **入口網站 URL 或 2012 和 2014 版的報表管理員 URL：**
 
-1. 在左窗格中，按一下 [Web Portal URL] \(入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
+1. 在左窗格中，按一下 [Web Portal URL] (入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
 
 1. 按一下 [Apply (套用)]。
 
@@ -316,7 +315,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 按一下 [SQL Server 安裝中心]。
 
-或執行 C:\\SQLServer\_13.0\_full\\setup.exe、C:\\SQLServer\_12.0\_full\\setup.exe 或 C:\\SQLServer\_11.0\_full\\setup.exe
+或執行 C:\\SQLServer\_13.0_full\\setup.exe、C:\\SQLServer_12.0_full\\setup.exe 或 C:\\SQLServer_11.0\_full\\setup.exe
 
 >[AZURE.NOTE] 第一次執行 SQL Server 安裝程式時，可能會下載更多安裝檔，且需要將虛擬機器重新開機和重新啟動 SQL Server 安裝程式。
 >
@@ -334,7 +333,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 1. 在 SQL Server 安裝精靈中，按一下左窗格中的 [安裝]，然後按一下 [新的 SQL 伺服器安裝或將功能加入到現有安裝]。
 
-	- 如果您看到 [瀏覽資料夾]，請瀏覽至 c:\\SQLServer\_13.0\_full、c:\\SQLServer\_12.0\_full 或 c:\\SQLServer\_11.0\_full，然後按一下 [確定]。
+	- 如果您看到 [瀏覽資料夾]，請瀏覽至 c:\\SQLServer\_13.0_full、c:\\SQLServer_12.0_full 或 c:\\SQLServer_11.0\_full，然後按一下 [確定]。
 
 1. 在產品更新頁面上，按 [下一步]。
 
@@ -392,8 +391,8 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 	|連接埠|類型|說明|
 |---|---|---|
-|**80**|TCP|報表伺服器遠端存取 (*).|
-|**1433**|TCP|SQL Server Management Studio (*).|
+|**80**|TCP|報表伺服器遠端存取 (\\*)。|
+|**1433**|TCP|SQL Server Management Studio (\\*)。|
 |**1434**|UDP|SQL Server Browser。在 VM 加入網域時所需。|
 |**2382**|TCP|SQL Server Browser。|
 |**2383**|TCP|SQL Server Analysis Services 預設執行個體和叢集具名執行個體。|
@@ -437,4 +436,4 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0629_2016-->

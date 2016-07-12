@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="06/20/2016"
+	ms.date="06/29/2016"
 	ms.author="sdanie" />
 
 # 如何設定 Azure Redis 快取
@@ -39,14 +39,17 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 	-	[Maxmemory 原則](#maxmemory-policy-and-maxmemory-reserved)
 	-	[進階設定 (Keyspace 通知)](#keyspace-notifications-advanced-settings)
 	-	[Redis 快取顧問](#redis-cache-advisor)
--	[資料管理設定](#data-management-settings)
-	-	[Redis 資料永續性](#redis-data-persistence)
-	-	[匯入/匯出](#importexport)
--	[網路設定](#network-settings)
--	[診斷設定](#diagnostics-settings)
 -	[擴充設定](#scale-settings)
 	-	[定價層](#pricing-tier)
 	-	[Redis 叢集大小](#cluster-size)
+-	[資料管理設定](#data-management-settings)
+	-	[Redis 資料永續性](#redis-data-persistence)
+	-	[匯入/匯出](#importexport)
+-	[管理設定](#administration-settings)
+	-	[重新啟動](#reboot)
+	-	[排程更新](#schedule-updates)
+-	[診斷設定](#diagnostics-settings)
+-	[網路設定](#network-settings)
 -	[資源管理設定](#resource-management-settings)
 
 ## 支援和疑難排解設定
@@ -57,15 +60,15 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 按一下 [疑難排解] 將提供您解決這些常見問題和解決問題的策略。
 
-按一下 [稽核記錄檔]，以檢視在您的快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+按一下 [稽核記錄檔]，以檢視在快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
 
-**資源健康狀態**會監看您的資源，並告知您其是否正在如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure Resource health overview (Azure 資源健康狀態概觀)](../resource-health/resource-health-overview.md)。
+**資源健康狀態**會監看您的資源，並告知您其是否正在如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure 資源健康狀態概觀](../resource-health/resource-health-overview.md)。
 
 按一下 [新增支援要求] 以開啟快取的支援要求。
 
 ## 一般設定
 
-[一般] 區段中的設定可讓您存取和設定快取的下列設定。
+[一般] 區段中的設定可讓您存取和設定下列快取設定。
 
 ![一般設定](./media/cache-configure/redis-cache-general-settings.png)
 
@@ -153,9 +156,38 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 若要升級您的快取，按一下 [立即升級] 以變更[定價層](#pricing-tier)及調整您的快取。如需選擇定價層的詳細資訊，請參閱[應該使用哪個 Redis 快取供應項目和大小？](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
 
+## 擴充設定
+
+[調整] 區段中的設定可讓您存取和設定下列快取設定。
+
+![網路](./media/cache-configure/redis-cache-scale.png)
+
+-	[定價層](#pricing-tier)
+-	[Redis 叢集大小](#cluster-size)
+
+### 定價層
+
+按一下 [定價層] 以檢視或變更快取的定價層。如需調整的詳細資訊，請參閱[如何調整 Azure Redis Cache](cache-how-to-scale.md)。
+
+![Redis 快取定價層](./media/cache-configure/pricing-tier.png)
+
+<a name="cluster-size"></a>
+### Redis 叢集大小
+
+按一下 [Redis 叢集大小 (預覽)]，針對已啟用叢集且目前執行中的進階快取，變更叢集大小。
+
+>[AZURE.NOTE] 請注意，雖然 Azure Redis 快取進階層已發行正式上市版，但 Redis 叢集大小功能目前為預覽狀態。
+
+![Redis 叢集大小](./media/cache-configure/redis-cache-redis-cluster-size.png)
+
+若要變更叢集大小，請使用滑桿，或在 [分區計數] 文字方塊中輸入 1 到 10 之間的數字，然後按一下 [確定] 加以儲存。
+
+>[AZURE.IMPORTANT] Redis 叢集只適用於進階快取。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取叢集](cache-how-to-premium-clustering.md)。
+
+
 ## 資料管理設定
 
-[資料管理] 區段中的設定可讓您存取和設定快取的下列設定。
+[資料管理] 區段中的設定可讓您存取和設定下列快取設定。
 
 ![資料管理](./media/cache-configure/redis-cache-data-management.png)
 
@@ -188,13 +220,43 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 >[AZURE.IMPORTANT] 匯入/匯出僅供進階層快取使用。如需詳細資訊和指示，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 
-## 網路設定
 
-[網路] 區段中的設定可讓您存取和設定快取的下列設定。
+## 管理設定
 
-![網路](./media/cache-configure/redis-cache-network.png)
+[管理] 區段中的設定可讓您針對進階快取執行下列管理工作。
 
->[AZURE.IMPORTANT] 虛擬網路設定只適用於快取建立期間利用 VNET 支援設定的進階快取。如需使用 VNET 支援建立進階快取並更新其設定的相關資訊，請參閱[如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
+![系統管理](./media/cache-configure/redis-cache-administration.png)
+
+-	[重新啟動](#reboot)
+-	[排程更新](#schedule-updates)
+
+>[AZURE.IMPORTANT] 本節中的設定僅適用於進階層快取。
+
+### 重新啟動
+
+[重新啟動] 刀鋒視窗可讓您重新啟動快取的一或多個節點。這可讓您測試應用程式，以便在發生失敗時加以復原。
+
+![重新啟動](./media/cache-configure/redis-cache-reboot.png)
+
+如果您的進階快取已啟用叢集，您可以選取要重新啟動的快取分區。
+
+![重新啟動](./media/cache-configure/redis-cache-reboot-cluster.png)
+
+若要重新啟動快取的一或多個節點，選取所需的節點，然後按一下 [重新啟動]。如果您的進階快取已啟用叢集，選取要重新啟動的分區，然後按一下 [重新啟動]。稍候幾分鐘之後，選取的節點會重新啟動，並在幾分鐘之後重新上線。
+
+>[AZURE.IMPORTANT] 重新啟動僅適用於進階層快取。如需詳細資訊和指示，請參閱 [Azure Redis Cache administration - Reboot (Azure Redis 快取管理 - 重新啟動)](cache-administration.md#reboot)。
+
+### 排程更新
+
+[排程更新] 刀鋒視窗可讓您針對適用於快取的 Redis 伺服器更新指定維護期間。
+
+>[AZURE.IMPORTANT] 請注意，維護期間僅適用於 Redis 伺服器更新，不適用於任何 Azure 更新，或是在裝載快取的 VM 上更新作業系統。
+
+![排程更新](./media/cache-configure/redis-schedule-updates.png)
+
+若要指定維護期間，請檢查所需的天數，並指定每一天的維護期間開始小時，然後按一下 [確定]。請注意，維護期間時間是 UTC。
+
+>[AZURE.IMPORTANT] 排程更新僅適用於進階層快取。如需詳細資訊和指示，請參閱 [Azure Redis Cache administration - Schedule updates (Azure Redis 快取管理 - 排程更新)](cache-administration.md#schedule-updates)。
 
 ## 診斷設定
 
@@ -206,38 +268,18 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![Redis 快取診斷](./media/cache-configure/redis-cache-diagnostics-settings.png)
 
-按一下 [Redis 度量] 可[檢視快取的度量](cache-how-to-monitor.md#how-to-view-metrics-and-customize-charts)，而 [警示規則] 可[設定警示規則](cache-how-to-monitor.md#operations-and-alerts)。
+按一下 [Redis 度量] 可[檢視快取的計量](cache-how-to-monitor.md#how-to-view-metrics-and-customize-charts)，而 [警示規則] 可[設定警示規則](cache-how-to-monitor.md#operations-and-alerts)。
 
 如需有關 Azure Redis 快取診斷的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)。
 
-## 擴充設定
 
-[調整] 區段中的設定可讓您存取和設定快取的下列設定。
+## 網路設定
 
-![網路](./media/cache-configure/redis-cache-scale.png)
+[網路] 區段中的設定可讓您存取和設定下列快取設定。
 
--	[定價層](#pricing-tier)
--	[Redis 叢集大小](#cluster-size)
+![網路](./media/cache-configure/redis-cache-network.png)
 
-### 定價層
-
-按一下 [定價層] 以檢視或變更快取的定價層。如需調整的詳細資訊，請參閱[如何調整 Azure Redis Cache](cache-how-to-scale.md)。
-
-![Redis 快取定價層](./media/cache-configure/pricing-tier.png)
-
-<a name="cluster-size"></a>
-### Redis 叢集大小
-
-按一下 [Redis 叢集大小 (預覽)]，針對已啟用叢集且目前執行中的進階快取，變更叢集大小。
-
->[AZURE.NOTE] 請注意，雖然 Azure Redis 快取進階層已發行正式上市版，但 Redis 叢集大小功能目前為預覽狀態。
-
-![Redis 叢集大小](./media/cache-configure/redis-cache-redis-cluster-size.png)
-
-若要變更叢集大小，請使用滑桿，或在 [分區計數] 文字方塊中輸入 1 到 10 之間的數字，然後按一下 [確定] 加以儲存。
-
->[AZURE.IMPORTANT] Redis 叢集只適用於進階快取。如需詳細資訊，請參閱[如何設定進階 Azure Redis 快取叢集](cache-how-to-premium-clustering.md)。
-
+>[AZURE.IMPORTANT] 虛擬網路設定只適用於快取建立期間利用 VNET 支援設定的進階快取。如需使用 VNET 支援建立進階快取並更新其設定的相關資訊，請參閱[如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
 ## 資源管理設定
 
@@ -286,7 +328,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 	-	P2 (13 GB - 130 GB) - 最多 32 個資料庫
 	-	P3 (26 GB - 260 GB) - 最多 48 個資料庫
 	-	P4 (53 GB - 530 GB) - 最多 64 個資料庫
-	-   所有進階版快取均已啟用 Redis 叢集 - Redis 叢集僅支援使用資料庫 0，因此對於已啟用 Redis 叢集的任何進階快取，`databases` 限制實際上是 1，並且不允許 [Select](http://redis.io/commands/select) 命令。如需詳細資訊，請參閱[我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+	-   所有進階快取均已啟用 Redis 叢集 - Redis 叢集僅支援使用資料庫 0，因此對於已啟用 Redis 叢集的任何進階快取，`databases` 限制實際上是 1，並且不允許 [Select](http://redis.io/commands/select) 命令。如需詳細資訊，請參閱[我需要對我的用戶端應用程式進行任何變更才能使用叢集嗎？](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
 
 
 >[AZURE.NOTE] `databases` 設定只能在快取建立期間，而且只能使用 PowerShell、CLI 或其他管理用戶端來設定。如需在快取建立期間使用 PowerShell 設定 `databases` 的範例，請參閱 [New-AzureRmRedisCache](cache-howto-manage-redis-cache-powershell.md#databases)。
@@ -345,7 +387,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ## 將您的快取移動到新的訂用帳戶
 
-您也可以按一下 [移動]，將您的快取移到新的訂用帳戶。
+您也可以按一下 [移動]，將快取移到新的訂用帳戶。
 
 ![移動 Redis 快取](./media/cache-configure/redis-cache-move.png)
 
@@ -354,4 +396,4 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 ## 後續步驟
 -	如需使用 Redis 命令的詳細資訊，請參閱[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0629_2016-->

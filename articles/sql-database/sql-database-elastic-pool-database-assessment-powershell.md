@@ -60,7 +60,7 @@
 指令碼完成時，它會輸出集區所需的 eDTU 的估計數目，以包含目標伺服器中的所有候選資料庫。這個估計的 eDTU 可用於建立和設定集區。一旦建立集區並將資料庫移到集區之後，應該密切監控集區數日，並且視需要，對集區 eDTU 設定進行任何調整。請參閱[監視、管理和估量彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
 
-   [AZURE.INCLUDE [learn-about-deployment-models-classic-include](../../includes/learn-about-deployment-models-classic-include.md)
+   [AZURE.INCLUDE [learn-about-deployment-models-classic-include](../../includes/learn-about-deployment-models-classic-include.md)]
     
     param (
 	[Parameter(Mandatory=$true)][string]$AzureSubscriptionName, # Azure Subscription name - can be found on the Azure portal: https://portal.azure.com/
@@ -266,4 +266,4 @@
 
         
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0629_2016-->
