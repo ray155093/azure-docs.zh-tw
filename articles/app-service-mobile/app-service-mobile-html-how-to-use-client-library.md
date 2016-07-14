@@ -85,7 +85,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 <!-- URLs. -->
 [Azure 行動應用程式快速入門]: app-service-mobile-cordova-get-started.md
 [開始使用驗證]: app-service-mobile-cordova-get-started-users.md
-[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
+[將驗證新增至您的應用程式]: app-service-mobile-cordova-get-started-users.md
 
 [適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
 [Query object documentation]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
