@@ -92,7 +92,7 @@
 		![][ic719488]
 
 1. 按一下 [發佈] 發佈至預備環境。當系統提示您執行完整建置時，請按一下 [是]。第一次建置時可能需要幾分鐘的時間。[Azure 活動記錄檔] 會顯示在 Eclipse 索引標籤式的檢視區段。![][ic719489] 您可以使用這個記錄檔，以及 [主控台] 檢視，以查看部署進度。替代方法是登入 [Azure 管理入口網站][]，並使用 [雲端服務] 區段以監視狀態。
-1. 成功部署後，[Azure 活動記錄檔] 將顯示 [已發佈] 狀態。按一下 [已發佈] (如下圖所示)，瀏覽器隨即會開啟部署的執行個體。![][ic719490]
+1. 成功部署後，[Azure 活動記錄檔] 將顯示 [已發佈] 狀態。按一下 [已發佈] \(如下圖所示)，瀏覽器隨即會開啟部署的執行個體。![][ic719490]
 
 因為這是部署到預備環境，DNS 名稱將會採用 http://&lt;*guid*&gt;.cloudapp.net 格式，且 URL 將包含 DNS 名稱再加上您應用程式的尾碼。例如，http://447564652c20426f6220526f636b7321.cloudapp.net/MyHelloWorld。(**MyHelloWorld** 部分會區分大小寫)。 如果您按一下 Azure 平台管理入口網站 (在管理入口網站的 [雲端服務] 部分中) 中的部署名稱，您也會看到 DNS 名稱。
 
@@ -150,7 +150,7 @@
 
 ## 刪除您的部署 ##
 
-若要在適用於 Eclipse 的 Azure 工具組中刪除部署，請確定在 Eclipse 的 [專案總管] 中選取 [MyHelloWorld\_onAzure]，確定 Eclipse 的 [專案總管] 是目前的視窗，然後按一下 Eclipse 工具列中的 [取消發佈] 按鈕 ![][ic710883] (您可以在 Eclipse 的 [專案總管] 中以滑鼠右鍵按一下 [MyHelloWorld\_onAzure]，再依序按一下 [Azure] 及 [從 Azure 雲端解除部署] 以執行相同的作業)。 這會顯示 [取消發佈 Azure 專案] 對話方塊。
+若要在適用於 Eclipse 的 Azure 工具組中刪除部署，請確定在 Eclipse 的 [專案總管] 中選取 [MyHelloWorld\_onAzure]，確定 Eclipse 的 [專案總管] 是目前的視窗，然後按一下 Eclipse 工具列中的 [取消發佈] 按鈕 ![][ic710883] \(您可以在 Eclipse 的 [專案總管] 中以滑鼠右鍵按一下 [MyHelloWorld\_onAzure]，再依序按一下 [Azure] 及 [從 Azure 雲端解除部署] 以執行相同的作業)。 這會顯示 [取消發佈 Azure 專案] 對話方塊。
 
 ![][ic719491]
 
@@ -198,4 +198,4 @@
 [ic789598]: ./media/azure-toolkit-for-eclipse-creating-a-hello-world-application/ic789598.png
 [publishDropdownButton]: ./media/azure-toolkit-for-eclipse-creating-a-hello-world-application/publishDropdownButton.png
 
-<!----HONumber=AcomDC_0629_2016-->
+<!-----HONumber=AcomDC_0629_2016-->
