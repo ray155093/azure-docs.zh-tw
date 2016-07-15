@@ -57,7 +57,7 @@
     ![加入次要][1]
 
 
-4. 設定 [次要類型] ([可讀取] 或 [不可讀取])。
+4. 設定 [次要類型] \([可讀取] 或 [不可讀取])。
 5. 選取或設定次要資料庫的伺服器。
 
     ![建立次要][3]
@@ -113,4 +113,4 @@
 [9]: ./media/sql-database-geo-replication-portal/seeding-complete.png
 [10]: ./media/sql-database-geo-replication-portal/failover.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!----HONumber=AcomDC_0629_2016-->
