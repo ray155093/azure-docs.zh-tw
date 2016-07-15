@@ -32,14 +32,13 @@
 |連接器||||
 |-----------|-----------|-----------|-----------|
 |[![API 圖示][blobicon]<br/>**Azure Blob**][azureblobdoc]|[![API 圖示][boxicon]<br/>**Box**][boxDoc]|[![API 圖示][crmonlineicon]<br/>**CRM Online**][crmonlinedoc]|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|
-|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|
+|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google<br/>雲端硬碟**][googledrivedoc]|
 |[![API 圖示][mailchimpicon]<br/>**MailChimp**][mailchimpdoc]|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|
 |[![API 圖示][office365icon]<br/>**Office 365**<br/>**視訊**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**商務用 <br/>OneDrive**][onedriveforbusinessdoc]|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|
 |[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|
 |[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**Online**][sharepointdoc]|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|
 |[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|[![API 圖示][trelloicon]<br/>**Trello**][trellodoc]|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|
-|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|
-[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
+|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
 
 ## 企業整合套件 (EIP) 連接器
 使用 EIP 連接器，針對包含 EAI 和 EDI 的 B2B 案例建立邏輯應用程式。
@@ -150,3 +149,4 @@
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
 <!---HONumber=AcomDC_0706_2016-->
+
