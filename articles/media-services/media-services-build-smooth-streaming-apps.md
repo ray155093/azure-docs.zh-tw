@@ -742,7 +742,8 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。在
 
 	因此，當 MediaElement 資訊清單就緒時，程式碼會取得可用資料流清單，並將這份清單填入 UI 清單方塊。
 
-6. Inside the MainPage class, locate the UI buttons click events region, and then add the following function definition:
+6. 在 MainPage 類別中，找到 UI 按鈕並按一下事件區域，再新增下列函式定義：  
+
 
 		private void btnChangeStream_Click(object sender, RoutedEventArgs e)
         {
@@ -945,7 +946,8 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
 		getTracks(manifestObject);
 		refreshAvailableTracksListBoxItemSource();
 
-6. Inside the MainPage class, locate the UI buttons click events region, and then add the following function definition:
+6. 在 MainPage 類別中，找到 UI 按鈕並按一下事件區域，再新增下列函式定義：  
+
 
 		private void btnChangeStream_Click(object sender, RoutedEventArgs e)
         {
