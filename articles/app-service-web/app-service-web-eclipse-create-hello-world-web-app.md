@@ -36,7 +36,7 @@
 
 首先，我們將從建立 Java 專案開始。
 
-1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] (如果在按一下 [File] (檔案)、[New] (新增) 後沒有看到 [Dynamic Web Project] (動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] (檔案)、[New] (新增)、[Project...] (專案)，展開 [Web]，按一下 [Dynamic Web Project] (動態 Web 專案)，然後按一下 [Next] (下一步)。)
+1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] \(如果在按一下 [File] \(檔案)、[New] \(新增) 後沒有看到 [Dynamic Web Project] \(動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] \(檔案)、[New] \(新增)、[Project...] \(專案)，展開 [Web]，按一下 [Dynamic Web Project] \(動態 Web 專案)，然後按一下 [Next] \(下一步)。)
 
 1. 基於本教學課程的目的，將專案命名為 **MyHelloWorld** 您的畫面將出現，如下所示：
 
@@ -75,7 +75,7 @@
    ![][04]
    
    注意︰如果您有多個 Azure 帳戶，登入程序期間的某些提示即使內容相同也可能會出現多次。發生此情況時，請遵循登入指示繼續。
-1. 在您成功登入 Azure 帳戶後，[Manage Subscriptions] (管理訂用帳戶) 對話方塊將會顯示與您認證相關聯的訂用帳戶清單。如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。當您選取訂用帳戶之後，按一下 [Close] (關閉)。
+1. 在您成功登入 Azure 帳戶後，[Manage Subscriptions] \(管理訂用帳戶) 對話方塊將會顯示與您認證相關聯的訂用帳戶清單。如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。當您選取訂用帳戶之後，按一下 [Close] \(關閉)。
 
    ![][05]
    
@@ -97,15 +97,15 @@
 
   1. 在 [Web 容器] 下拉式功能表中，為應用程式選取適當的軟體。
 
-        Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
+        目前，您可以從 Tomcat 8、Tomcat 7 或 Jetty 9 選擇。 所選軟體最新發行的版本由 Azure 提供，會在最新發行的 JDK 8 (由 Oracle 建立並由 Azure 提供) 中運作。
 
   1. 在 [訂用帳戶] 下拉式選單中，選取您希望此部署使用的訂用帳戶。
 
   1. 在 [資源群組] 下拉式功能表中，選取您要與 Web 應用程式相關聯的資源群組。
 
-        Note: Azure Resource Groups allow you to group related resources together so that, for example, they can be deleted together.
+        注意：Azure 資源群組可讓您將相關的資源分在同一組，方便一次刪除。
 
-        You can select an existing Resource Group (if you have any) and skip to step g below, or use the following these steps to create a new Resource Group:
+        您可以選取現有的資源群組 (如果有)，並略過下方步驟 g，或使用以下步驟建立新的資源群組：
 
       * 按一下 [新增...]
 
@@ -121,9 +121,9 @@
 
   1. [App Service 方案] 下拉式功能表會列出與您選取之資源群組相關聯的應用程式服務方案。
 
-        Note: An App Service Plan specifies information such as the location of your Web App, the pricing tier and the compute instance size. A single App Service Plan can be used for multiple Web Apps, which is why it is maintained separately from a specific Web App deployment.
+        注意：App Service 方案會指定特定資訊，例如您 Web 應用程式的位置、定價層以及計算執行個體大小。 單一 App Service 方案可用於多個 Web Apps，這也就是要與特定 Web 應用程式部署分開維護的原因。
 
-        You can select an existing App Service Plan (if you have any) and skip to step h below, or use the following these steps to create a new App Service Plan:
+        您可以選取現有的 App Service 方案 (如果有)，並略過下方步驟 h，或使用以下步驟建立新的 App Service 方案：
 
       * 按一下 [新增...]
 
@@ -139,13 +139,13 @@
 
       * 在 [執行個體大小] 下拉式功能表中，為方案選取適當的執行個體大小。針對測試用途，您可以選擇 [小型]。
 
-  1. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+  1. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
 
         ![][10]
 
   1. 按一下 [確定] 來完成建立新的 Web 應用程式容器。
 
-        Wait a few seconds for the list of the Web App containers to be refreshed, and your newly-created web app container should now be selected in the list.
+        等待數秒鐘，讓 Web 應用程式容器清單重新整理；接著，您應該會在清單中看到新建立的 Web 應用程式容器已被選取。
 
 1. 您現在已經準備好，可以完成將 Web 應用程式部署至 Azure 的初始部署：
 

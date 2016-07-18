@@ -107,7 +107,7 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 
 若要建立一項工作，而該工作相依於一組識別碼位於某範圍內且順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_taskdependencies].[OnIdRange][net_onidrange] 靜態方法提供該範圍的第一個和最後一個工作識別碼。
 
->[AZURE.IMPORTANT] 對相依性使用工作識別碼範圍時，該範圍內的工作識別碼「必須」是**以字串表示的****整數值**。此外，**範圍內的每項工作**皆必須順利完成，才能排定執行相依工作。
+>[AZURE.IMPORTANT] 對相依性使用工作識別碼範圍時，該範圍內的工作識別碼「必須」是**以字串表示的** **整數值**。此外，**範圍內的每項工作**皆必須順利完成，才能排定執行相依工作。
 
 ```csharp
 // Tasks 1, 2, and 3 don't depend on any other tasks. Because

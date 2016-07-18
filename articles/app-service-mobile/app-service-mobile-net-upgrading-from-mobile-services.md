@@ -274,7 +274,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 [如何使用 .NET 伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
 [Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[App Service 定價]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
+[App Service 定價]: https://azure.microsoft.com/pricing/details/app-service/
 [.NET 伺服器 SDK 概觀]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 
 <!---HONumber=AcomDC_0706_2016-->

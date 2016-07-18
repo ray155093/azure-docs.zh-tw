@@ -152,7 +152,7 @@
 	
 	![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_003.png)
 
-	d.選取 [Allow RightScale-initiated SSO using a discovery hint] (允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的「網域名稱」。
+	d.選取 [Allow RightScale-initiated SSO using a discovery hint] \(允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的「網域名稱」。
 
 	![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_004.png)
 

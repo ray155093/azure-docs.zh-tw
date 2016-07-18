@@ -197,7 +197,7 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 [註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
 [Azure Portal]: https://portal.azure.com
 [完整範例]: https://github.com/Azure/azure-notificationhubs-samples
-[Azure Mobile Apps]: https://azure.microsoft.com/zh-TW/services/app-service/mobile/
-[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
+[Azure Mobile Apps]: https://azure.microsoft.com/services/app-service/mobile/
+[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
 
 <!---HONumber=AcomDC_0706_2016-->

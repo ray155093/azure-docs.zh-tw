@@ -37,7 +37,7 @@
 
 	![設定](./media/azure-api-management-certs/subscription.png)
 
-3. 當您選取正確的訂用帳戶之後，按入口網站左側的 [設定] (您可能需要向下捲動)。
+3. 當您選取正確的訂用帳戶之後，按入口網站左側的 [設定] \(您可能需要向下捲動)。
     
     ![Settings](./media/azure-api-management-certs/settings.png)
 
