@@ -14,8 +14,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="04/06/2016"
-   ms.author="iainfou;memccror"/>
+   ms.date="07/05/2016"
+   ms.author="memccror"/>
 
 # 如何在 Azure 中標記 Windows 虛擬機器
 
@@ -103,4 +103,4 @@
 [了解 Azure 帳單]: ../billing-understand-your-bill.md
 [深入了解 Microsoft Azure 資源耗用量]: ../billing-usage-rate-card-overview.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

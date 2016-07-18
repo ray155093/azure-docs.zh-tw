@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="06/30/2016"
 	ms.author="cjiang"/>
 
 # Azure 註冊問題疑難排解
 本文針對註冊 Azure 時可能發生的問題，協助您對常見的原因進行疑難排解。
 
-[AZURE.INCLUDE [支援免責聲明](../includes/support-disclaimer.md)]
+> [AZURE.NOTE] 如果您對本文內容有需要協助之處，可以連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以在 [Azure 支援網站](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)上提出 Azure 支援事件。如需關於使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](https://azure.microsoft.com/support/faq/)。
 
 ## 我在輸入註冊資訊時出現錯誤。
 帳戶個人檔案資訊正確嗎？ 您的個人檔案詳細資料會用來產生帳單，因此請務必輸入正確的資訊。不正確的欄位範例如下︰
@@ -53,7 +53,7 @@
 - 根據帳戶國家/地區而定，接受的信用卡/轉帳卡提供者有所不同。
 
 建議：
-- 如需使用信用卡或金融卡之註冊問題的常見原因，請參閱[當我嘗試註冊 Azure 時，我的信用卡不被接受](billing-credit-card-fails-during-azure-sign-up.md)文章。
+- 如需使用信用卡或金融卡的註冊問題常見原因，請參閱[當我嘗試註冊 Azure 時，我的信用卡不被接受](billing-credit-card-fails-during-azure-sign-up.md)文章。
 
 ## 我無法啟用 MSDN、BizSpark、BizSparkPlus 或 MPN 之類的 Azure 權益方案。
 確認資格：透過您的權益方案頻道來進行驗證，確認您是否符合所選方案的資格：
@@ -81,4 +81,4 @@
 建議：
 - 如果您以前已啟用過 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮購買「隨用隨付」訂用帳戶。您也可能有資格獲得權益優惠。請在 [Microsoft Azure 優惠詳細資料頁面](https://azure.microsoft.com/support/legal/offer-details/)深入了解，而非 Azure 免費試用方案。請注意，權益方案需要特定的必要條件。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

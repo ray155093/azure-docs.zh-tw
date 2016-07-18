@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="05/06/2016"
+    ms.date="07/05/2016"
     ms.author="sethm" />
 
 # 搭配使用 .NET 的服務匯流排與 AMQP 1.0
@@ -21,7 +21,7 @@
 
 ## 下載服務匯流排 SDK
 
-服務匯流排 SDK 2.1 版或更新版本提供 AMQP 1.0 支援。您可以從 [NuGet][] 下載最新的服務匯流排位元。
+服務匯流排 SDK 2.1 版或更新版本提供 AMQP 1.0 支援。您可以從 [NuGet][] 下載服務匯流排軟體，以確保您擁有最新版本。
 
 ## 設定 .NET 應用程式以使用 AMQP 1.0
 
@@ -45,7 +45,7 @@
 
 	Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
 
-其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] \(英文)。
+其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] (英文)。
 
 使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。此標記法會通知用戶端程式庫使用 AMQP 1.0 連線到服務匯流排。
 
@@ -99,51 +99,7 @@
 
 -   透過傳輸目的地傳送。
 
--   依照訊息序號接收。
-
--   訊息和工作階段瀏覽。
-
--   工作階段狀態。
-
--   批次型 API。
-
 -   擴充接收。
-
--   訂用帳戶規則的執行階段操作。
-
--   工作階段鎖定更新。
-
-具體而言，使用 AMQP 時目前不支援以下 API 功能：
-
-- [Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession][]
-- [Microsoft.ServiceBus.Messaging.MessagingFactory.CreateMessageSender(System.String,System.String)][]
-
-- [Microsoft.ServiceBus.Messaging.MessageSender.SendBatch(System.Collections.Generic.IEnumerable{Microsoft.ServiceBus.Messaging.BrokeredMessage})][]
-
-- [Microsoft.ServiceBus.Messaging.MessageReceiver.Receive(System.Int64)][]
-- [Microsoft.ServiceBus.Messaging.MessageReceiver.ReceiveBatch][]
-- [Microsoft.ServiceBus.Messaging.MessageReceiver.CompleteBatch(System.Collections.Generic.IEnumerable{System.Guid})][]
-- [Microsoft.ServiceBus.Messaging.MessageReceiver.Peek][]
-- [Microsoft.ServiceBus.Messaging.MessageReceiver.PeekBatch][]
-
-- [Microsoft.ServiceBus.Messaging.QueueClient.Peek][]
-- [Microsoft.ServiceBus.Messaging.QueueClient.PeekBatch][]
-
-- [Microsoft.ServiceBus.Messaging.TopicClient.SendBatch(System.Collections.Generic.IEnumerable{Microsoft.ServiceBus.Messaging.BrokeredMessage})][]
-
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.Receive(System.Int64)][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.ReceiveBatch][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.CompleteBatch(System.Collections.Generic.IEnumerable{System.Guid})][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.Peek][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.PeekBatch][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.AddRule][]
-- [Microsoft.ServiceBus.Messaging.SubscriptionClient.RemoveRule(System.String)][]
-
-- [Microsoft.ServiceBus.Messaging.MessageSession.GetState][]
-- [Microsoft.ServiceBus.Messaging.MessageSession.SetState(System.IO.Stream)][]
-- [Microsoft.ServiceBus.Messaging.MessageSession.RenewLock][]
-
-- [Microsoft.ServiceBus.Messaging.BrokeredMessage.RenewLock][]
 
 相較於預設通訊協定，使用 AMQP 時，服務匯流排 .NET API 也有一些細微的行為差異：
 
@@ -176,26 +132,6 @@
   [BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
   [Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession]: https://msdn.microsoft.com/library/azure/jj657638.aspx
   [Microsoft.ServiceBus.Messaging.MessagingFactory.CreateMessageSender(System.String,System.String)]: https://msdn.microsoft.com/library/azure/jj657703.aspx
-  [Microsoft.ServiceBus.Messaging.MessageSender.SendBatch(System.Collections.Generic.IEnumerable{Microsoft.ServiceBus.Messaging.BrokeredMessage})]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.sendbatch.aspx
-  [Microsoft.ServiceBus.Messaging.MessageReceiver.Receive(System.Int64)]: https://msdn.microsoft.com/library/azure/hh322665.aspx
-  [Microsoft.ServiceBus.Messaging.MessageReceiver.ReceiveBatch]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.receivebatch.aspx
-  [Microsoft.ServiceBus.Messaging.MessageReceiver.CompleteBatch(System.Collections.Generic.IEnumerable{System.Guid})]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.completebatch.aspx
-  [Microsoft.ServiceBus.Messaging.MessageReceiver.Peek]: https://msdn.microsoft.com/library/azure/jj908731.aspx
-  [Microsoft.ServiceBus.Messaging.MessageReceiver.PeekBatch]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.peekbatch.aspx
-  [Microsoft.ServiceBus.Messaging.QueueClient.Peek]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.peek.aspx
-  [Microsoft.ServiceBus.Messaging.QueueClient.PeekBatch]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.peekbatch.aspx
-  [Microsoft.ServiceBus.Messaging.TopicClient.SendBatch(System.Collections.Generic.IEnumerable{Microsoft.ServiceBus.Messaging.BrokeredMessage})]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicclient.sendbatch.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.Receive(System.Int64)]: https://msdn.microsoft.com/library/azure/hh293110.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.ReceiveBatch]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.receivebatch.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.CompleteBatch(System.Collections.Generic.IEnumerable{System.Guid})]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.completebatch.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.Peek]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.peek.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.PeekBatch]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.peekbatch.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.AddRule]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.addrule.aspx
-  [Microsoft.ServiceBus.Messaging.SubscriptionClient.RemoveRule(System.String)]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.removerule.aspx
-  [Microsoft.ServiceBus.Messaging.MessageSession.GetState]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.getstate.aspx
-  [Microsoft.ServiceBus.Messaging.MessageSession.SetState(System.IO.Stream)]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.setstate.aspx
-  [Microsoft.ServiceBus.Messaging.MessageSession.RenewLock]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.renewlock.aspx
-  [Microsoft.ServiceBus.Messaging.BrokeredMessage.RenewLock]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.renewlock.aspx
   [OperationTimeout]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx
 [NuGet]: http://nuget.org/packages/WindowsAzure.ServiceBus/
 [Azure 傳統入口網站]: http://manage.windowsazure.com
@@ -203,4 +139,4 @@
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -15,7 +15,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="05/03/2016" 
+	ms.date="07/06/2016" 
 	ms.author="jeffstok"
 />
 
@@ -27,11 +27,11 @@
 
 圖 1：
 
-![串流分析機器學習服務教學課程圖 1](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-1.png)
+![串流分析機器學習服務教學課程圖 1](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-2.png)
 
 圖 2：
 
-![串流分析機器學習服務教學課程圖 2](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-2.png)
+![串流分析機器學習服務教學課程圖 2](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-figure-1.png)
 
 ## 必要條件
 
@@ -46,14 +46,14 @@
 2.	將 Cortana 智慧資源庫的情緒分析模型加入到機器學習服務工作區
 3.	將此模型部署為 Azure Machine Learning 工作區中的 Web 服務
 4.	建立串流分析作業，以函式形式呼叫此 Web 服務來判斷所輸入文字的情緒。
-5.	啟動串流分析作業並觀察輸出 
+5.	啟動串流分析作業並觀察輸出
 
 
 ## 將 CSV 輸入檔上傳至 Blob 儲存體
 
 在此步驟中，您可以使用包括簡介中所指定的檔案在內的任何 CSV 檔。若要上傳檔案，可使用 [Azure 儲存體總管](http://storageexplorer.com/)或 Visual Studio 以及自訂程式碼。本教學課程所提供的是適用於 Visual Studio 的範例。
 
-1.	展開 [Azure]，並以滑鼠右鍵按一下 [儲存體]。選擇 [附加外部儲存體]，並提供 [帳戶名稱] 和 [帳戶金鑰]。  
+1.	展開 [Azure]，並以滑鼠右鍵按一下 [儲存體]。選擇 [附加外部儲存體]，並提供 [帳戶名稱] 和 [帳戶金鑰]。
 
     ![串流分析機器學習服務教學課程伺服器總管](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-server-explorer.png)
 
@@ -65,13 +65,13 @@
 
 ## 新增 Cortana 智慧資源庫中的情緒分析模型
 
-1.	下載 Cortana 智慧資源庫中的[預測情緒分析模型](https://gallery.cortanaintelligence.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1)。  
-2.	在 Studio 中按一下 [開啟]：  
+1.	下載 Cortana 智慧資源庫中的[預測情緒分析模型](https://gallery.cortanaintelligence.com/Experiment/Predictive-Mini-Twitter-sentiment-analysis-Experiment-1)。
+2.	在 Studio 中按一下 [開啟]：
 
     ![串流分析機器學習服務教學課程開啟機器學習服務 Studio](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-open-ml-studio.png)
 
 3.	登入以前往工作區。選擇最適合您所在地的位置。
-4.	現在按一下 Studio 底部的 [執行]  
+4.	現在按一下 Studio 底部的 [執行]
 5.	一旦成功執行，請按一下 [部署 Web 服務]。
 6.	現在情緒分析模型已可供使用。若要驗證，請按一下 [測試] 按鈕，並提供文字輸入 (例如 "I love Microsoft")，然後測試作業應該就會傳回類似下面的結果：
 
@@ -89,21 +89,21 @@
 
 ## 建立使用機器學習服務模型的串流分析作業
 
-1.	瀏覽至 [Azure 管理入口網站](https://manage.windowsazure.com)。  
-2.	依序按一下 [新增]、[資料服務]、[串流分析] 和 [快速建立]。提供 [工作名稱] 和適當的工作 [區域]，然後選擇 [區域監視儲存體帳戶]。    
-3.	作業建立好之後，瀏覽至 [輸入] 索引標籤，然後按一下 [加入輸入]。  
+1.	瀏覽至 [Azure 管理入口網站](https://manage.windowsazure.com)。
+2.	依序按一下 [新增]、[資料服務]、[串流分析] 和 [快速建立]。提供 [工作名稱] 和適當的工作 [區域]，然後選擇 [區域監視儲存體帳戶]。
+3.	作業建立好之後，瀏覽至 [輸入] 索引標籤，然後按一下 [加入輸入]。
 
     ![串流分析機器學習服務教學課程資料新增機器學習服務輸入](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-add-input-screen.png)
 
 4.	在 [加入輸入精靈] 視窗的第一頁上，選取 [資料串流] 並按一下 [下一步]。在第二頁上選取 [Blob 儲存體] 作為輸入，然後按一下 [下一步]。
-5.	在精靈的 [Blob 儲存體設定] 頁面上，提供先前上傳資料時所定義的儲存體帳戶 Blob 容器名稱。按一下 [下一步]。選擇 [CSV] 作為 [事件序列化格式]。接受其餘 [序列化設定] 的預設值。按一下 [確定]。  
-6.	瀏覽至 [輸出] 索引標籤，然後按一下 [加入輸出]。  
+5.	在精靈的 [Blob 儲存體設定] 頁面上，提供先前上傳資料時所定義的儲存體帳戶 Blob 容器名稱。按一下 [下一步]。選擇 [CSV] 作為 [事件序列化格式]。接受其餘 [序列化設定] 的預設值。按一下 [確定]。
+6.	瀏覽至 [輸出] 索引標籤，然後按一下 [加入輸出]。
 
     ![串流分析機器學習服務教學課程新增輸出](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-add-output-screen.png)
 
 7.	選擇 [Blob 儲存體]，並提供相同的參數 (但容器除外)。我們先前已設定為要從 **CSV** 檔所上傳到的 "test" 容器中讀取**輸入**。至於**輸出**，則指定為 “testoutput”。容器名稱必須不同，並請確認此容器存在。
 8.	按一下 [下一步] 以設定輸出的 [序列化設定]。和在輸入時一樣，選擇 [CSV] 並按一下 [確定] 按鈕。
-9.	瀏覽至 [函數] 索引標籤，然後按一下 [加入機器學習服務函數]。  
+9.	瀏覽至 [函數] 索引標籤，然後按一下 [加入機器學習服務函數]。
 
     ![串流分析機器學習服務教學課程新增機器學習服務函式](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-add-ml-function.png)
 
@@ -121,20 +121,20 @@
 	Select text, result.[Score]  
 	Into output  
 	From subquery  
-```
+```    
 
-12. 按一下 [儲存] 以儲存查詢。    
+然後按一下 [儲存] 以儲存查詢。
 
 ## 啟動串流分析作業並觀察輸出
 
-1.	按一下作業底部的 [啟動]。 
-2.	在 [開始查詢對話方塊] 上，選擇 [自訂時間]，然後選取將 CSV 上傳至 Blob 儲存體之前的時間。按一下 [確定]。  
+1.	按一下作業底部的 [啟動]。
+2.	在 [開始查詢對話方塊] 上，選擇 [自訂時間]，然後選取將 CSV 上傳至 Blob 儲存體之前的時間。按一下 [確定]。
 
     ![串流分析機器學習服務教學課程自訂時間](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-custom-time.png)
 
 3.	使用上傳 CSV 檔時所使用的工具瀏覽至 Blob 儲存體。本教學課程使用 Visual Studio。
-4.	在作業啟動後經過幾分鐘的時間，就會建立輸出容器並於其中上傳 CSV 檔。  
-5.	按兩下該檔案將會開啟預設的 CSV 編輯器，並且應該會顯示如下內容：  
+4.	在作業啟動後經過幾分鐘的時間，就會建立輸出容器並於其中上傳 CSV 檔。
+5.	按兩下該檔案將會開啟預設的 CSV 編輯器，並且應該會顯示如下內容：
 
     ![串流分析機器學習服務教學課程 csv 檢視](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-csv-view.png)
 
@@ -144,10 +144,10 @@
 
 您也能觀察 Azure Machine Learning 函式的相關度量。按一下 [監視] 索引標籤。此時會出現三個函式的相關度量。
   
-- 「函式要求」指出機器學習服務 Web 服務的要求數目。  
-- 「函式事件」指出要求中的事件數目：依預設，每個 ML Web 服務的要求可包含多達 1000 個事件。  
-- 「失敗的函式要求」指出機器學習服務 Web 服務的失敗要求數目。  
+- 「函式要求」指出機器學習服務 Web 服務的要求數目。
+- 「函式事件」指出要求中的事件數目：依預設，每個 ML Web 服務的要求可包含多達 1000 個事件。
+- 「失敗的函式要求」指出機器學習服務 Web 服務的失敗要求數目。
 
     ![串流分析機器學習服務教學課程 ml 監視檢視](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-ml-monitor-view.png)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

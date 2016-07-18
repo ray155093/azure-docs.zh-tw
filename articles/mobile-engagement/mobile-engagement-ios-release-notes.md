@@ -1,10 +1,10 @@
 <properties
-	pageTitle="Azure Mobile Engagement iOS SDK 版本資訊"
+	pageTitle="Azure Mobile Engagement iOS SDK 版本資訊 | Microsoft Azure"
 	description="Azure Mobile Engagement iOS SDK 的最新更新與程序"
 	services="mobile-engagement"
 	documentationCenter="mobile"
-	authors="MehrdadMzfr"
-	manager="dwrede"
+	authors="piyushjo"
+	manager="erikre"
 	editor="" />
 
 <tags
@@ -13,10 +13,14 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="02/29/2016"
-	ms.author="MehrdadMzfr" />
+	ms.date="06/30/2016"
+	ms.author="piyushjo" />
 
-#版本資訊
+#Azure Mobile Engagement iOS SDK 版本資訊
+
+##3\.2.4 (06/30/2016)
+
+-   修正技術記錄和其他記錄之間的彙總。
 
 ##3\.2.3 (06/07/2016)
 
@@ -67,4 +71,4 @@
 -   增強安全性。
 -   已移除 SmartAd 追蹤。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

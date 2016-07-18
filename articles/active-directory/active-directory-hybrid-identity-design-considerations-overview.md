@@ -21,7 +21,7 @@
 以取用者為基礎的裝置正廣為公司組織採用，而且雲端架構的軟體即服務 (SaaS) 應用程式是很易於採用的。因此，要持續掌控使用者在內部資料中心與雲端平台間的應用程式存取，是很不容易的。Microsoft 的身分識別解決方案可跨越內部部署和雲端架構功能，建立單一使用者身分識別以用於所有資源的驗證和授權，不論位於何處。我們稱之為混合式身分識別。使用 Microsoft 解決方案時，混合式身分識別有不同的設計和組態可供選擇，且在某些情況下，可能會難以判斷哪些組合最符合組織的需求。此混合式身分識別設計考量指南將協助您了解如何設計與組織的商務和技術需求最相符的混合式身分識別解決方案。本指南將詳細說明一系列您可以依循的步驟和工作，以協助您設計符合組織獨特需求的混合式身分識別解決方案。在這些步驟和工作中，本指南將提供相關的技術和功能選項，讓組織能夠因應其功能和服務品質 (例如可用性、延展性、效能、管理性和安全性) 層級需求。具體來說，混合式身分識別設計考量指南的目標，是為您解答下列問題：
 
 - 我需要提出及回答哪些問題，以針對某個技術或問題範疇完成最符合自身需求的混合式身分識別特定設計？
-- 針對此技術或問題範疇設計混合式身分識別解決方案時，需要完成哪些活動？ 
+- 針對此技術或問題範疇設計混合式身分識別解決方案時，需要完成哪些活動？
 - 哪些混合式身分識別技術和組態選項可協助我達到自身的需求？ 應如何取捨這些選項，以選擇出適用於我的企業的最佳選項？
 
 
@@ -47,7 +47,7 @@
 |-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 判斷身分識別需求 | [判段商務需求](active-directory-hybrid-identity-design-considerations-business-needs.md)<br> [判斷目錄同步處理需求](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)<br> [判斷多因素驗證需求](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md)<br> [定義混合式身分識別採用策略](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md) |
 | 透過增強式身分識別解決方案規劃更高的資料安全性 | [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md) <br> [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)<br> [判斷存取控制需求](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)<br> [判斷事件回應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) <br> [定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) |
-| 規劃混合式身分識別生命週期 | [判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybridId-management-tasks.md) <br> [同步處理管理](active-directory-hybrid-identity-design-considerations-hybridId-management-tasks.md)<br> [判斷混合式身分識別管理採用策略](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md) |     
+| 規劃混合式身分識別生命週期 | [判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md) <br> [同步處理管理](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)<br> [判斷混合式身分識別管理採用策略](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md) |     
 
 
 ##下載此指南
@@ -55,4 +55,4 @@
 
                                                              
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

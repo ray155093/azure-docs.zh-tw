@@ -41,11 +41,11 @@
 
  如果您想要使用冷項目放置，必須提供目錄中每個項目的功能資訊，您的目錄前幾行可能如下所示 (請注意，功能的索引鍵=值格式)︰
 
-> 6CX-00001,Surface Pro2, Surface, Type=Hardware, Storage=128GB, Memory=4G, Manufacturer=Microsoft
+> 6CX-00001,Surface Pro2, Surface,, Type=Hardware, Storage=128GB, Memory=4G, Manufacturer=Microsoft
 
-> 73H-00013,Wake Xbox 360,Gaming, Type=Software, Language=English, Rating=Mature
+> 73H-00013,Wake Xbox 360,Gaming,, Type=Software, Language=English, Rating=Mature
 
-> WAH-0F05,Minecraft Xbox 360,Gaming, * Type=Software, Language=Spanish, Rating=Youth
+> WAH-0F05,Minecraft Xbox 360,Gaming,, * Type=Software, Language=Spanish, Rating=Youth
 
 > ...
 
@@ -64,6 +64,26 @@
  建議您套用使用者建議的典型範例之一，就是當使用者在歡迎使用頁面上第一次登入您的存放區/網站時。您可以在那裡推銷適用於特定使用者的內容。
  
  您可能也想要在使用者即將簽出時套用建議組建類型。這時候，您會有客戶即將購買的項目清單，而這就是您根據目前的購物籃提供建議的機會。
+ 
+#### 建議組建參數 
+ 
+| 名稱 | 	說明 |	 類型，<br> 有效值 <br> (預設值)
+|-------|-------------------|------------------
+| NumberOfModelIterations |	整體運算時間和模型精確度會反映模型執行反覆運算的次數。數字越高，得到的精確度就越高，但需要較久的運算時間。 |	 整數，<br> 10 到 50 <br> 預設值︰40 
+| NumberOfModelDimensions |	維度的數目與「功能」的數目相關，模型會嘗試尋找資料中的數目。增加維度的數目將允許結果進一步微調成較小的叢集。不過，太多維度會讓模型無法尋找項目之間的關聯。 |	整數，<br> 10 到 40 <br> 預設值︰20 |
+| ItemCutOffLowerBound |	定義應該在模型中考量項目應位於其中的最小使用量點數目。 |		整數，<br> 2 或以上。<br> 預設值︰2 |
+| ItemCutOffUpperBound | 	定義應該在模型中考量項目應位於其中的最大使用量點數目。 | 整數，<br> 2 或以上。<br> 預設值：2147483647 |
+|UserCutOffLowerBound |	定義模型中應考量使用者必須先執行的最小交易數目。 |	整數，<br> 2 或以上。<br> 預設值︰2 
+| ItemCutOffUpperBound |	定義模型中應考量使用者必須先執行的最大交易數目。 |	整數，<br> 2 或以上。<br> 預設值：2147483647|
+| UseFeaturesInModel |	指出是否可以使用功能以加強建議模型。 | 	 布林值<br> 預設值︰True 
+|ModelingFeatureList |	使用於建議組建中的功能名稱逗號分隔清單，可加強建議。(取決於很重要的功能) |	字串，最多 512 個字元
+| AllowColdItemPlacement |	指出建議是否也應該透過功能相似度推入冷項目。 | 布林值<br> 預設值︰False	
+| EnableFeatureCorrelation | 指出功能是否可用於推論。 |	布林值<br> 預設值︰False
+| ReasoningFeatureList |	用於推論句 (例如建議說明) 的功能名稱逗號分隔清單。(取決於對客戶而言很重要的功能) | 字串，最多 512 個字元
+| EnableU2I |	啟用個人化建議，又稱為U2I (使用者對項目的建議)。 | 布林值<br> 預設值︰True
+|EnableModelingInsights |	定義是否應該執行離線評估，才能收集模型深入解析 (也就是精確度和多樣性計量)。若設為 true，就不會將資料的子集用於訓練，因為要將它保留來供測試模型使用。深入了解[離線評估](#OfflineEvaluation) | 布林值<br> 預設值︰False
+| SplitterStrategy | 如果將啟用模型深入解析設為 true，則這是應基於評估目的用來分割資料的方式 | 字串，RandomSplitter 或 LastEventSplitter <br>預設值︰RandomSplitter 
+
 
 <a name="FBTBuild"></a>
 ### FBT 組建類型 ###
@@ -77,6 +97,16 @@ FBT 代表經常一起購買。FBT 組建會進行分析，以計算兩項或三
 目前，如果有兩個具有相同使用者識別碼和時間戳記的項目出現在一筆交易中，則假設會在相同的工作階段中購買這兩個項目。
 
 FBT 組建目前不支援冷項目，因為其依照定義預期會在同一筆交易中實際購買兩個項目。FBT 組建可傳回項目集 (三個一組)，但因為它們接受以單一種子項目做為輸入，所以不支援個人化建議。
+
+
+#### FBT 組建參數 
+ 
+| 名稱 | 	說明 |		類型，<br> 有效值 <br> (預設值)
+|-------|---------------|-----------------------
+| FbtSupportThreshold | 模型的保守程度。模型化時要考量項目的共同出現次數。 | 整數，<br> 3-50 <br> 預設值：6 
+| FbtMaxItemSetSize | 頻繁集合中的項目數界限。| 整數，<br> 2-3 <br> 預設值：2
+| FbtMinimalScore | 頻繁集合應該具有的最低分數，以包含在傳回的結果中。愈高愈好。 | 雙精準數 <br> 0 以上 <br> 預設值︰0
+| FbtSimilarityFunction | 定義組建所使用的相似度函式。Lift 有利於機緣巧合、Co-occurrence 有助於可預測性，而 Jaccard 可在兩者間取得一個很好的平衡。 | 字串，<br> <i>cooccurrence、lift、jaccard</i><br> 預設值︰ <i>jaccard</i> 
 
 <a name="SelectBuild"></a>
 ## 如何選取要使用的確切組建？ ##
@@ -241,4 +271,4 @@ FBT 組建目前不支援冷項目，因為其依照定義預期會在同一筆�
     "IsFaulted": false
     }
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

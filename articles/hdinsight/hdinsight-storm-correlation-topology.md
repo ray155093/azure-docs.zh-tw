@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="04/19/2016"
+ ms.date="07/05/2016"
  ms.author="larryfr"/>
 
 # 使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯
@@ -27,11 +27,11 @@
 
 ## 必要條件
 
--	HDInsight Tools for Visual Studio：如需安裝資訊，請參閱[開始使用 HDInsight Tools for Visual Studio](../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md)。
+-	Visual Studio 和 HDInsight Tools for Visual Studio：如需安裝的相關資訊，請參閱[開始使用 HDInsight Tools for Visual Studio](../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
--	Apache Storm on HDInsight 叢集
+-	Apache Storm on HDInsight 叢集 (Windows)。這會執行 Storm 拓撲，其會處理內送資料並儲存至 HBase。
 
--	Apache HBase on HDInsight 叢集
+-	Apache HBase on HDInsight 叢集 (Windows 或 Linux)。這是此範例的資料來源。
 
 ## 架構
 
@@ -204,4 +204,4 @@
 如需更多 Storm 範例，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

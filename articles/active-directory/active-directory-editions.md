@@ -64,7 +64,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **常用功能**
 
-- [目錄物件](#directory-objects) 
+- [目錄物件](#directory-objects)
 
 - [使用者與群組管理 (新增/更新/刪除)/以使用者為基礎的佈建、裝置註冊](#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)
 
@@ -163,11 +163,11 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 | 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| 每個使用者 10 個應用程式 [1] \(預先整合的 SaaS 和開發人員整合的應用程式)| 每個使用者 10 個應用程式 [1] \(免費層 + 應用程式 Proxy 應用程式) | 沒有限制 [2] \(免費層、基本層 + 自助式應用程式整合範本)| 每個使用者 10 個應用程式 [1] \(預先整合的 SaaS 和開發人員整合的應用程式)|
+| 每位使用者 10 個應用程式 (1) | 每位使用者 10 個應用程式 (1) | 沒有限制 (2) | 每位使用者 10 個應用程式 (1)|
 
-[1] 使用 Azure AD Free 和 Azure AD Basic 時，使用者如果已獲指派 SaaS 應用程式的存取權，便可在其 [存取面板] 最多看見 10 個應用程式，並取得這些應用程式的 SSO 存取權。使用 Free 和 Basic 版本時，系統管理員可以設定 SSO 並指派任意數量的 SaaS 應用程式存取權給使用者，不過使用者在其 [存取面板] 中一次只能看到 10 個應用程式。
+1. 使用 Azure AD Free 和 Azure AD Basic 時，使用者如果已獲指派 SaaS 應用程式的存取權，便可在其「存取面板」中最多看見 10 個應用程式，並取得這些應用程式的 SSO 存取權。使用 Free 和 Basic 版本時，系統管理員可以設定 SSO 並指派任意數量的 SaaS 應用程式存取權給使用者，不過使用者在其 [存取面板] 中一次只能看到 10 個應用程式。
 
-[2] 任何支援 SAML、SCIM 或表單型驗證之應用程式的自助式整合 (藉由使用應用程式庫功能表中提供的範本)。如需詳細資訊，請參閱[設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)。
+2. 藉由使用應用程式庫功能表中提供的範本，自助整合任何支援 SAML、SCIM 或表單型驗證的應用程式。如需詳細資訊，請參閱[設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)。
 
 **其他詳細資訊：**
 
@@ -495,4 +495,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

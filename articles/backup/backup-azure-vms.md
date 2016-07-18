@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="07/01/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
@@ -59,8 +59,7 @@
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-6. 按一下頁面底部的 [**探索**]。
-	![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
+6. 按一下頁面底部的 [**探索**]。![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
@@ -81,8 +80,7 @@
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-3. 按一下頁面底部的 [註冊]。
-	![註冊按鈕](./media/backup-azure-vms/register-button-only.png)
+3. 按一下頁面底部的 [註冊]。![註冊按鈕](./media/backup-azure-vms/register-button-only.png)
 
 4. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。如果有兩個以上同名的虛擬機器，請使用雲端服務加以區別。
 
@@ -185,4 +183,4 @@
 - [管理和監視虛擬機器](backup-azure-manage-vms.md)
 - [還原虛擬機器](backup-azure-restore-vms.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

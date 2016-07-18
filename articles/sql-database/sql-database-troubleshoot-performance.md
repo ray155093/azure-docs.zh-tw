@@ -26,8 +26,12 @@
 2.	使用[查詢效能深入解析](sql-database-query-performance.md)來以 DTU 評估查詢，然後使用 [SQL Database 建議程式](sql-database-advisor.md)來檢視適用於建立和卸除索引、參數化查詢及修正結構描述問題的建議。
 3.	您可以使用動態管理檢視 (DMV)、擴充的事件 (Xevent) 和 SSMS 中的查詢存放區即時取得效能參數。如需詳細的監視和調整秘訣，請參閱[效能指引主題](sql-database-performance-guidance.md)。
 
+
+    > [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
 ## 使用更多資源提升資料庫效能的步驟
 1.	若是單一資料庫，您可以視需要[變更服務層級](sql-database-scale-up.md)以提升資料庫效能。
 2.	若是多個資料庫，請考慮使用[彈性資料庫集區](sql-database-elastic-pool-guidance.md)自動調整資源。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

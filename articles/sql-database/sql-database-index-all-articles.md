@@ -161,7 +161,7 @@
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
 | 83 | [使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)](sql-database-elastic-jobs-powershell.md) | 用來管理 Azure SQL Database 集區的 PowerShell |
-| 84 | [建立和管理相應放大的 SQL Azure 資料庫 (預覽)](sql-database-elastic-jobs-create-and-manage.md) | 逐步解說如何建立和管理彈性資料庫工作。 |
+| 84 | [建立和管理相應放大的 Azure SQL Database (預覽)](sql-database-elastic-jobs-create-and-manage.md) | 逐步解說如何建立和管理彈性資料庫工作。 |
 | 85 | [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md) | 如何使用彈性資料庫工作 |
 | 86 | [安裝彈性資料庫工作概觀](sql-database-elastic-jobs-service-installation.md) | 逐步解說如何安裝彈性工作功能。 |
 | 87 | [管理相應放大的雲端資料庫](sql-database-elastic-jobs-overview.md) | 說明彈性資料庫工作服務 |
@@ -351,7 +351,7 @@
 | 180 | [Azure SQL Database 資源限制](sql-database-resource-limits.md) | 此頁面描述一些 Azure SQL Database 常見的資源限制。 |
 | 181 | [Azure SQL Database Transact-SQL 差異](sql-database-transact-sql-information.md) | 在 Azure SQL Database 中未完整支援 Transact-SQL 陳述式 |
 | 182 | [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md) | 列出用戶端程式可用來連接到 Azure SQL Database 或 Microsoft SQL Server 之每個驅動程式的最低版本號碼。連結所提供的驅動程式版本資訊，是由社群 (而不是由 Microsoft) 所發行。 |
-| 183 | [使用篩選器搜尋](https://azure.microsoft.com/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
+| 183 | [使用篩選器搜尋](https://azure.microsoft.com/zh-TW/documentation/articles/?service=sql-database) | 使用篩選器搜尋 Azure SQL Database 文件的相關文章。 |
 
 
 ## 其他資訊
@@ -378,4 +378,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

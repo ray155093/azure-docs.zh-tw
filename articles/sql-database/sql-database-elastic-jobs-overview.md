@@ -22,14 +22,14 @@
 
 * 自訂的資料庫集合 (如下所述)
 * [彈性資料庫集區](sql-database-elastic-pool.md)中的所有資料庫
-* 分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)建立)。 
+* 分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)建立)。
  
 ## 文件
 
-* [安裝彈性資料庫工作元件](sql-database-elastic-jobs-service-installation.md)。 
+* [安裝彈性資料庫工作元件](sql-database-elastic-jobs-service-installation.md)。
 * [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
 * [使用 Powershell 建立和管理工作](sql-database-elastic-jobs-powershell.md)。
-* [建立和管理相應放大的 SQL Azure 資料庫](sql-database-elastic-jobs-getting-started.md)
+* [建立和管理相應放大的 Azure SQL Database](sql-database-elastic-jobs-getting-started.md)
 
 **彈性資料庫工作**目前是客戶裝載的 Azure 雲端服務，可以執行臨機操作和排程的管理工作，稱為**工作**。利用工作，您可以執行 Transact-SQL 指令碼來執行管理作業，進而輕鬆又可靠地管理大量 Azure SQL Database 群組。
 
@@ -73,10 +73,10 @@
 
 ## 彈性資料庫工作：端對端 
 1.	安裝**彈性資料庫工作**元件。如需詳細資訊，請參閱[安裝彈性資料庫工作](sql-database-elastic-jobs-service-installation.md)。如果安裝失敗，請參閱[如何解除安裝](sql-database-elastic-jobs-uninstall.md)。
-2.	使用 PowerShell API 來存取更多功能，例如建立自訂定義資料庫集合、新增排程及/或收集結果集。使用入口網站以進行簡單安裝並建立/監視限制為針對**彈性資料庫集區**執行的工作。 
+2.	使用 PowerShell API 來存取更多功能，例如建立自訂定義資料庫集合、新增排程及/或收集結果集。使用入口網站以進行簡單安裝並建立/監視限制為針對**彈性資料庫集區**執行的工作。
 3.	針對工作執行建立加密認證及[將使用者 (或角色) 新增至群組中的每個資料庫](sql-database-security.md)。
-4.	建立能夠針對群組中的每個資料庫執行的等冪 T-SQL 指令碼。 
-5.	遵循下列步驟，使用 Azure 入口網站建立工作：[建立和管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。 
+4.	建立能夠針對群組中的每個資料庫執行的等冪 T-SQL 指令碼。
+5.	遵循下列步驟，使用 Azure 入口網站建立工作：[建立和管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。
 6.	或使用 PowerShell 指令碼：[使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)](sql-database-elastic-jobs-powershell.md)。
 
 ## 等冪指令碼
@@ -111,7 +111,7 @@
  
 下列元件共同建立允許臨機執行管理工作的 Azure 雲端服務。這些元件會於安裝期間在您的訂用帳戶中自動安裝和設定。您可以識別服務，因為這些服務都有自動產生的相同名稱。這個名稱是唯一的，包含前置詞 "edj"，後面接著隨機產生的 21 個字元。
 
-* **Azure 雲端服務**：彈性資料庫工作 (預覽) 會以客戶託管的 Azure 雲端服務來傳遞，以執行所要求的工作。您可以從入口網站，在 Microsoft Azure 訂用帳戶中部署及託管服務。預設至少會使用兩個背景工作角色來執行已部署的服務，以取得高可用性。每個背景工作角色 (ElasticDatabaseJobWorker) 都會以預設大小在 A0 執行個體上執行。如需價格，請參閱[雲端服務價格](https://azure.microsoft.com/pricing/details/cloud-services/)。 
+* **Azure 雲端服務**：彈性資料庫工作 (預覽) 會以客戶託管的 Azure 雲端服務來傳遞，以執行所要求的工作。您可以從入口網站，在 Microsoft Azure 訂用帳戶中部署及託管服務。預設至少會使用兩個背景工作角色來執行已部署的服務，以取得高可用性。每個背景工作角色 (ElasticDatabaseJobWorker) 都會以預設大小在 A0 執行個體上執行。如需價格，請參閱[雲端服務價格](https://azure.microsoft.com/pricing/details/cloud-services/)。
 * **Azure SQL Database**：服務會使用稱為**控制資料庫**的 Azure SQL Database 來儲存所有的工作中繼資料。預設服務層為 S0。如需價格，請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 * **Azure 服務匯流排**：Azure 服務匯流排可協調 Azure 雲端服務內的工作。請參閱[服務匯流排價格](https://azure.microsoft.com/pricing/details/service-bus/)。
 * **Azure 儲存體**：Azure 儲存體帳戶可用來儲存在問題需要進一步偵錯的事件中所記錄的診斷輸出 (請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md))。如需價格，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
@@ -120,7 +120,7 @@
 
 1.	Azure SQL Database 會指定**控制資料庫**，它會儲存所有中繼資料和狀態資料。
 2.	控制資料庫是由**工作服務**存取，以啟動和追蹤要執行的工作。
-3.	與控制資料庫通訊的兩個不同角色： 
+3.	與控制資料庫通訊的兩個不同角色：
 	* 控制站：判斷哪些工作需要作業以執行要求的工作，並且藉由建立新的工作作業來重試失敗的工作。
 	* 工作作業執行：執行工作作業。
 
@@ -138,8 +138,8 @@
 
 1.	使用入口網站或 PowerShell API，工作會插入至**控制資料庫**。工作會使用特定認證，要求針對資料庫群組執行 Transact-SQL 指令碼。
 2.	控制站會識別新的工作。建立和執行工作作業以分割指令碼以及重新整理群組的資料庫。最後，會建立和執行新的工作以展開作業，並且建立新的子工作，在其中指定每個子工作以根據群組中的個別資料庫執行 Transact-SQL 指令碼。
-3.	控制站會識別已建立的子工作。對於每個工作，控制站會建立並觸發工作作業，以針對資料庫執行指令碼。 
-4.	完成所有工作作業之後，控制站會將工作更新為已完成狀態。在工作執行期間，可以隨時使用 PowerShell API 以檢視工作執行的目前狀態。PowerShell API 所傳回的所有時間都是以 UTC 表示。如有需要，可以初始化取消要求以停止工作。 
+3.	控制站會識別已建立的子工作。對於每個工作，控制站會建立並觸發工作作業，以針對資料庫執行指令碼。
+4.	完成所有工作作業之後，控制站會將工作更新為已完成狀態。在工作執行期間，可以隨時使用 PowerShell API 以檢視工作執行的目前狀態。PowerShell API 所傳回的所有時間都是以 UTC 表示。如有需要，可以初始化取消要求以停止工作。
 
 ## 後續步驟
 [安裝元件](sql-database-elastic-jobs-service-installation.md)，然後[建立記錄檔並加入資料庫群組中的每個資料庫](sql-database-security.md)。若要進一步了解工作的建立和管理，請參閱[建立及管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。另請參閱[開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
@@ -152,4 +152,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -28,7 +28,7 @@
   - [如何存取密碼為使用者重設資料](#how-to-access-password-reset-data-for-your-users)
 
 ## 密碼回寫概觀
-密碼回寫是一種可供目前的 Azure Active Directory Premium 訂閱者啟用及使用的 [Azure Active Directory Connect](active-directory-aadconnect) 元件。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+密碼回寫是一種可供目前的 Azure Active Directory Premium 訂閱者啟用及使用的 [Azure Active Directory Connect](active-directory-aadconnect.md) 元件。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
 密碼回寫可讓您設定雲端租用戶以在內部部署 Active Directory 中將密碼回寫給您。此服務讓您不需設定和管理複雜的內部部署自助式密碼重設解決方案，並且會提供便利的雲端方式供您的使用者重設其內部部署密碼，無論他們身處何處。請繼續閱讀以下內容，以了解密碼回寫的某些重要功能：
 
@@ -66,7 +66,7 @@
 10.	如果密碼設定作業失敗，我們會對使用者傳回錯誤，請他們再試一次。作業可能因各種原因而失敗，例如服務已關閉、所選密碼不符合組織原則、在本機 AD 中找不到使用者等等。其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。
 
 ### 密碼回寫的支援案例
-下表描述同步處理功能的各個版本所支援的案例。如果您想要使用密碼回寫，我們一般會強烈建議您安裝最新版的 [Azure AD Connect](active-directory-aadconnect.md#download-azure-ad-connect)。
+下表描述同步處理功能的各個版本所支援的案例。如果您想要使用密碼回寫，我們一般會強烈建議您安裝最新版的 [Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
 
   ![][002]
 
@@ -279,7 +279,7 @@
 * 驗證電子郵件
 
 ####只能使用註冊 UI 設定的資料
-下列欄位只能透過 SSPR 註冊 UI 存取 (https://aka.ms/ssprsetup)：
+下列欄位只能透過 SSPR 註冊 UI (https://aka.ms/ssprsetup) 來存取：
 
 * 安全性問題和答案
 
@@ -362,7 +362,7 @@ Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthenticationUserDetails | select Email
 ```
 
-## 連結至密碼重設文件
+## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
 * [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
@@ -379,4 +379,4 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 [001]: ./media/active-directory-passwords-learn-more/001.jpg "Image_001.jpg"
 [002]: ./media/active-directory-passwords-learn-more/002.jpg "Image_002.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0706_2016-->

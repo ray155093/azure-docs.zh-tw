@@ -1,5 +1,5 @@
 <properties
-   pageTitle="詢問您可以使用資料回答的問題 | Microsoft Azure"
+   pageTitle="詢問您可以使用資料回答的問題 - 適用於初學者的資料科學 | Microsoft Azure"
    description="了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。包含分類和迴歸問題的比較。"
    keywords="選取問題, 資料科學問題, 制訂一個問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
    services="machine-learning"
@@ -17,9 +17,11 @@
    ms.date="06/28/2016"
    ms.author="cgronlun;brohrer;garye"/>
 
-# 詢問您可以使用資料回答的問題：適用於初學者的資料科學影片 3 
+# 適用於初學者的資料科學影片 3：詢問您可以使用資料回答的問題 
 
 了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。這個影片包含適用於分類和迴歸演算法的問題比較。
+
+若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
 > [AZURE.VIDEO data-science-for-beginners-ask-a-question-you-can-answer-with-data]
 
@@ -86,14 +88,15 @@
 「適用於初學者的資料科學」是五個簡短影片中對於資料科學的快速簡介。
 
 
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)。**目前已可供使用。**
-  * 影片 2：[已備妥資料來進行資料科學嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) **目前已可供使用。**
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)。**目前已可供使用。**
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)。於 6 月 30 日提供。
+  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
+  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
+  * 影片 3：詢問您可以使用資料回答的問題
+  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
+  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 
 ## 後續步驟
 
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

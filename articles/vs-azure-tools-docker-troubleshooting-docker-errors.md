@@ -61,7 +61,7 @@ volumes:
 **從 Windows**
 
 ```
-a
+docker run -it -v /c/Users/Public:/wormhole busybox
 / # ls
 ```
 
@@ -105,14 +105,14 @@ Documents        Libraries        Pictures         desktop.ini
 
 1. 移至**網際網路選項**。
     - 在 Windows 10 上，您可以在 Windows [執行] 方塊中輸入 `Internet Options`。
-    - 在 Internet Explorer 中，您可以移至 [設定] 功能表，然後選取 [網際網路選項]。 
-1. 選取出現的 [網際網路選項]。 
+    - 在 Internet Explorer 中，您可以移至 [設定] 功能表，然後選取 [網際網路選項]。
+1. 選取出現的 [網際網路選項]。
 1. 選取 [安全性] 索引標籤。
 1. 選取 [近端內部網路] 區域。
-1. 選取 [網站]。 
-1. 將您虛擬機器 (在這個案例中為 Docker 主機) 的 IP 位址新增到清單中。 
-1. 在 Edge 中重新整理網頁，此時您應該會看到網站已正常運作。 
-1. 如需這個問題的詳細資訊，請瀏覽 Scott Hanselman 的部落格文章：[Microsoft Edge can't see or open VirtualBox-hosted local web sites](http://www.hanselman.com/blog/FixedMicrosoftEdgeCantSeeOrOpenVirtualBoxhostedLocalWebSites.aspx) (Microsoft Edge 無法看到或開啟裝載在 VirtualBox 上的本機網站)。 
+1. 選取 [網站]。
+1. 將您虛擬機器 (在這個案例中為 Docker 主機) 的 IP 位址新增到清單中。
+1. 在 Edge 中重新整理網頁，此時您應該會看到網站已正常運作。
+1. 如需這個問題的詳細資訊，請瀏覽 Scott Hanselman 的部落格文章：[Microsoft Edge can't see or open VirtualBox-hosted local web sites](http://www.hanselman.com/blog/FixedMicrosoftEdgeCantSeeOrOpenVirtualBoxhostedLocalWebSites.aspx) (Microsoft Edge 無法看到或開啟裝載在 VirtualBox 上的本機網站)。
 
 ##疑難排解 0.15 版或更舊版本
 
@@ -135,4 +135,4 @@ Documents        Libraries        Pictures         desktop.ini
 	"commandLineArgs": "-noexit -ExecutionPolicy RemoteSigned …”
     ```
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

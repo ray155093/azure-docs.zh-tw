@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="04/20/2016"
+ms.date="07/05/2016"
 ms.author="larryfr"/>
 
 #在 HDInsight 叢集建立期間新增 Hive 程式庫
@@ -51,7 +51,7 @@ __需求__
     
     * 放在連結儲存體容器上的容器中。例如，在入口網站中，您可以使用 [選擇性組態]、[連結的儲存體帳戶] 新增額外的儲存體。
 
-* 必須指定容器的 WASB 路徑做為指令碼動作的參數。例如，如果 jar 儲存在名為 __mystorage__ 的儲存體帳戶上的名為 __libs__ 的容器中，則這個參數會是 \_\___wasb://libs@mystorage.blob.core.windows.net/__。
+* 必須指定容器的 WASB 路徑做為指令碼動作的參數。例如，如果 jar 儲存在名為 __mystorage__ 的儲存體帳戶上的名為 __libs__ 的容器中，則這個參數會是 \_\_wasb://libs@mystorage.blob.core.windows.net/__。
 
     > [AZURE.NOTE] 本文件假設您已建立儲存體帳戶、blob 容器，也已將檔案上傳給它。
     >
@@ -72,7 +72,7 @@ __需求__
     * __HEAD__：勾選此選項
     * __背景工作角色__：勾選此選項。
     * __ZOOKEEPER__：將此選項保留空白。
-    * __參數__：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。例如，\_\___wasb://libs@mystorage.blob.core.windows.net/__
+    * __參數__：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。例如，\_\_wasb://libs@mystorage.blob.core.windows.net/__
 
 3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。
 
@@ -88,4 +88,4 @@ __需求__
 
 在這份文件中，您已經學會如何在叢集建立期間將 jar 檔案包含的 Hive 程式庫新增至 HDInsight 叢集。如需有關使用 Hive 的詳細資訊，請參閱[搭配使用 Hive 與 HDInsight](hdinsight-use-hive.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

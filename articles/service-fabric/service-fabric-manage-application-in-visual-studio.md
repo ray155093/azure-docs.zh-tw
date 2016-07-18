@@ -36,23 +36,24 @@
 
 在 Visual Studio 中按下 **F5** 也會部署應用程式，並將偵錯工具附加到所有應用程式執行個體。您可以使用 **Ctrl + F5** 來部署應用程式而不進行偵錯，或是使用發佈設定檔來發佈至本機或遠端叢集。如需詳細資訊，請參閱[使用 Visual Studio 將應用程式發佈至遠端叢集](service-fabric-publish-app-remote-cluster.md)。
 
-### 保留測試回合之間的資料
+### 應用程式偵錯模式
 
-您通常是透過新增測試資料輸入、修改幾個程式碼區塊，然後再次於本機進行偵錯，以在本機測試服務。「Visual Studio Service Fabric 工具」提供一個稱為 [啟動時保留資料] 的便利屬性，可保留您在前一個工作階段中輸入的資料，讓您可以重複使用。
+在本機偵錯服務時，有時您可能想要保留現有的應用程式和資料。Visual Studio Service Fabric 工具提供一個稱為**應用程式偵錯模式**的屬性，可控制 **F5** 是否應該在偵錯工作階段結束之後解除安裝應用程式，或保留應用程式。
 
-#### 啟用 [啟動時保留資料] 屬性
+#### 設定應用程式偵錯模式屬性
 
-1. 在應用程式專案的捷徑功能表上，選擇 [屬性] \(或按 **F4** 按鍵)。
-1. 在 [屬性] 視窗中，將 [啟動時保留資料] 屬性設定為 [是]。
+1. 在應用程式專案的捷徑功能表上，選擇 [屬性] (或按 **F4** 按鍵)。
+2. 在 [屬性] 視窗中，將 [應用程式偵錯模式] 屬性設為 [移除] 或 [自動升級]。
 
-	![設定 [啟動時保留資料] 屬性][preservedata]
+![設定應用程式偵錯模式屬性][debugmodeproperty]
 
-當您重新執行應用程式時，這時部署指令碼就會將部署視為使用未受監視之自動模式的升級，將應用程式快速升級至較新版本並附加日期字串。此升級程序會保留您在前一個偵錯工作階段中輸入的所有資料。
+此屬性值設定為 [自動升級] 會維持應用程式繼續在本機叢集上執行。第二次按 **F5** 會將部署視為升級，使用未受監視的自動模式，將應用程式快速升級至較新版本並附加日期字串。此升級程序會保留您在前一個偵錯工作階段中輸入的所有資料。
 
-![附加日期的新應用程式版本範例][preservedate]
+![附加範例 1 的新應用程式版本範例][preservedate]
 
 保留資料時，所利用的是來自 Service Fabric 平台的升級功能。如需有關升級應用程式的詳細資訊，請參閱 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
 
+**附註︰**Visual Studio 適用的 Service Fabric 工具 1.1 版之前沒有這個屬性。在 1.1 版之前，請使用 [啟動時保留資料] 屬性來達成相同的行為。
 ## 將服務加入 Service Fabric 應用程式
 
 您可以將新的 Fabric 服務新增至應用程式以擴充其功能。若要確保應用程式封裝中包含該服務，請透過 [新增 Fabric 服務] 功能表項目新增服務。
@@ -96,5 +97,6 @@
 [newserviceapplicationmanifest]: ./media/service-fabric-manage-application-in-visual-studio/newserviceapplicationmanifest.png
 [preservedata]: ./media/service-fabric-manage-application-in-visual-studio/preservedata.png
 [preservedate]: ./media/service-fabric-manage-application-in-visual-studio/preservedate.png
+[debugmodeproperty]: ./media/service-fabric-manage-application-in-visual-studio/debugmodeproperty.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

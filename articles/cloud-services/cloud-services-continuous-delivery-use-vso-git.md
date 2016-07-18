@@ -3,7 +3,7 @@
 	description="了解如何設定 Visual Studio Team Services 的 Team 專案，以使用 Git 自動建置和部署至 Azure App Service 或雲端服務中的 Web 應用程式功能。"
 	services="cloud-services"
 	documentationCenter=".net"
-	authors="TomArcher"
+	authors="mlearned"
 	manager="douge"
 	editor=""/>
 
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/08/2016"
-	ms.author="tarcher"/>
+	ms.date="07/06/2016"
+	ms.author="mlearned"/>
 
 # 使用 Visual Studio Team Services 和 Git 連續傳遞至 Azure
 
 您可以使用 Visual Studio Team Services 的 Team 專案託管原始程式碼的 Git 儲存機制，並在每次將認可推送至儲存機制時，自動建置該機制並部署至 Azure Web 應用程式或雲端服務。
 
-您需要安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
+您需要安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用][](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
 
 
 > [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
@@ -272,4 +272,4 @@
 [47]: ./media/cloud-services-continuous-delivery-use-vso-git/SourceSettingsPage.PNG
 [48]: ./media/cloud-services-continuous-delivery-use-vso-git/IncludeWorkingBranch.PNG
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

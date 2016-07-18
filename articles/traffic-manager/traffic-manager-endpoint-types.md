@@ -27,7 +27,7 @@ Microsoft Azure 流量管理員可讓您控制使用者流量如何分散到在�
 
 流量管理員支援三種類型的端點：
 
-- **Azure 端點**用於在 Azure 中裝載的服務。  
+- **Azure 端點**用於在 Azure 中裝載的服務。
 - **外部端點**用於 Azure 外部裝載的服務 (在內部部署或使用不同的主機服務提供者)。
 - **巢狀端點**用於合併流量管理員端點，以建立更有彈性的流量路由配置，進而支援更大型且更複雜部署的需求。
 
@@ -127,7 +127,7 @@ PublicIPAddress 資源是 Azure Resource Manager 資源，它們不存在於 Azu
 
 若為 Web Apps，Azure 流量管理員端點不允許將相同 Azure 區域中的多個 Web 應用程式端點新增至相同的流量管理員設定檔。下列步驟提供此條件約束的因應措施：
 
-1.	檢查相同區域內的 Web Apps 是否位於不同的 Web 應用程式「縮放單位」，也就是不同的 Web 應用程式服務執行個體。若要這樣做，請檢查 <...>.azurewebsites.net DNS 項目的 DNS 路徑，縮放單位看起來應該像 ‘waws-prod-xyz-123.vip.azurewebsites.net’。指定的網域名稱必須對應到指定的縮放單位中的單一網站，因此相同縮放單位中的兩個 Web Apps 無法共用一個流量管理員設定檔。 
+1.	檢查相同區域內的 Web Apps 是否位於不同的 Web 應用程式「縮放單位」，也就是不同的 Web 應用程式服務執行個體。若要這樣做，請檢查 <...>.azurewebsites.net DNS 項目的 DNS 路徑，縮放單位看起來應該像 ‘waws-prod-xyz-123.vip.azurewebsites.net’。指定的網域名稱必須對應到指定的縮放單位中的單一網站，因此相同縮放單位中的兩個 Web Apps 無法共用一個流量管理員設定檔。
 2.	假設每個 Web 應用程式位於不同的縮放單位中，將虛名網域名稱新增為每個 Web 應用程式的自訂主機名稱。所有 Web Apps 必須屬於相同的訂用帳戶。
 3.	如往常一樣，將一個 (且唯一一個) Web 應用程式端點新增至流量管理員設定檔，成為 Azure 端點。
 4.	將每個額外的 Web 應用程式端點新增至流量管理員設定檔，成為外部端點。您需要將 Resource Manager 經驗 (而非服務管理經驗) 用於流量管理員。
@@ -142,4 +142,4 @@ PublicIPAddress 資源是 Azure Resource Manager 資源，它們不存在於 Azu
 
 - 了解流量管理員的[流量路由方法](traffic-manager-routing-methods.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2015"
+	ms.date="07/04/2016"
 	ms.author="giridham;jimpark"/>
 
 
@@ -233,4 +233,4 @@ DPM 會以 LocalSystem 帳戶身分執行。若要備份 SQL Server 資料庫，
 - 檢閱 [System Center 2012 - Data Protection Manager 版本資訊](https://technet.microsoft.com/library/jj860415.aspx)
 - 檢閱 [System Center 2012 SP1 的 Data Protection Manager 版本資訊](https://technet.microsoft.com/library/jj860394.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/09/2016"
+	ms.date="07/06/2016"
 	ms.author="nitinme"/>
 
 
@@ -42,7 +42,7 @@
  
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
  
-* IntelliJ IDEA 的 HDInsight Tools 外掛程式。如需安裝外掛程式的指示，請參閱[安裝 IntelliJ IDEA 的 HDInsight Tools 外掛程式](hdinsight-apache-spark-intellij-tool-plugin.md#install-hdinsight-tools-plugin-for-intellij-idea)。
+* IntelliJ IDEA 的 HDInsight Tools 外掛程式。IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 的一部份。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
  
 * 在 Windows 電腦上執行 Spark Scala 應用程式以進行遠端偵錯時，可能會發生 [SPARK-2356](https://issues.apache.org/jira/browse/SPARK-2356) 中所述的例外狀況，此例外狀況發生的原因是因為 Windows 上缺少 WinUtils.exe。若要解決這個錯誤，您必須[從這裡下載可執行檔](http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe)並將其放至 **C:\\WinUtils\\bin** 之類的位置。然後，您必須新增環境變數 **HADOOP\_HOME**，並將變數的值設為 **C\\WinUtils**。
 
@@ -50,9 +50,9 @@
 
 請依照下列連結的指示建立 Azure 虛擬網路，然後確認桌上型電腦和 Azure 虛擬網路之間的連線。
 
-* [使用 Azure 入口網站建立具有站對站 VPN 連線的 VNet](..\vpn-gateway\vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-* [使用 PowerShell 建立具有站對站 VPN 連線的 VNet](..\vpn-gateway\vpn-gateway-create-site-to-site-rm-powershell.md)
-* [使用 PowerShell 設定虛擬網路的點對站連線](..\vpn-gateway\vpn-gateway-howto-point-to-site-rm-ps.md)
+* [使用 Azure 入口網站建立具有站對站 VPN 連線的 VNet](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+* [使用 PowerShell 建立具有站對站 VPN 連線的 VNet](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
+* [使用 PowerShell 設定虛擬網路的點對站連線](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
 
 ## 步驟 2：建立 HDInsight Spark 叢集
 
@@ -111,11 +111,11 @@
 
 	* 提供專案名稱和專案位置。
 	* 對於 [專案 SDK]，請確定您提供的 Java 版本大於 7。
-	* 對於 [Scala SDK]，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**確定您未使用 2.11.x 版**。此範例使用 **2.10.6** 版。
+	* 對於 **Scala SDK**，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**確定您未使用 2.11.x 版**。此範例使用 **2.10.6** 版。
 
 		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-scala-version.png)
 
-	* 對於 [Spark SDK]，請從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。(例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
+	* 對於 **Spark SDK**，請從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark)，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。(例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
 
 		![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-scala-project-details.png)
 
@@ -156,7 +156,7 @@
 
 6. 更新 `core-site.xml` 以進行下列變更。
 
-	1. `core-site.xml` 包含與叢集相關聯的儲存體帳戶的加密金鑰。在您新增至專案的 `core-site.xml` 中，以與預設儲存體帳戶相關聯的實際儲存體金鑰取代加密金鑰。請參閱[管理儲存體存取金鑰](..\storage\storage-create-storage-account.md#manage-your-storage-account)。
+	1. `core-site.xml` 包含與叢集相關聯的儲存體帳戶的加密金鑰。在您新增至專案的 `core-site.xml` 中，以與預設儲存體帳戶相關聯的實際儲存體金鑰取代加密金鑰。請參閱[管理儲存體存取金鑰](../storage/storage-create-storage-account.md#manage-your-storage-account)。
 
 			<property>
 	      		<name>fs.azure.account.key.hdistoragecentral.blob.core.windows.net</name>
@@ -252,7 +252,7 @@
 	這裡有幾個重點值得注意：
 	
 	* 對於 `.set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`，請確定 Spark 組件 JAR 可用於指定路徑的叢集存放區。
-	* 對於 `setJars`，指定將會建立構件 jar 的位置。通常是 `<Your IntelliJ project directory>\out<project name>_DefaultArtifact\default_artifact.jar`。 
+	* 對於 `setJars`，指定將會建立構件 jar 的位置。通常是 `<Your IntelliJ project directory>\out<project name>_DefaultArtifact\default_artifact.jar`。
 
 
 11. 在 `RemoteClusterDebugging` 類別中，以滑鼠右鍵按一下 `test` 關鍵字，然後選取 [Create RemoteClusterDebugging Configuration (建立 RemoteClusterDebugging 組態)]。
@@ -330,6 +330,8 @@
 
 * [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
 
+* [使用 Eclipse 的 HDInsight Tools 外掛程式來建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
+
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
@@ -344,4 +346,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

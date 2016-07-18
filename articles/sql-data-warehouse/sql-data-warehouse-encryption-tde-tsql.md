@@ -17,9 +17,16 @@
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 開始使用透明資料加密 (TDE)
+
+
 > [AZURE.SELECTOR]
-- [Azure 入口網站](sql-data-warehouse-encryption-tde.md)
-- [TSQL](sql-data-warehouse-encryption-tde-tsql.md)
+- [安全性概觀](sql-data-warehouse-overview-manage-security.md)
+- [威脅偵測](sql-data-warehouse-security-threat-detection.md)
+- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
+- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
+- [稽核概觀](sql-data-warehouse-auditing-overview.md)
+- [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
+
 
 Azure SQL 資料倉儲透明資料加密 (TDE) 可在不需變更應用程式的情況下，對靜止的資料庫、相關聯的備份和交易記錄檔執行即時加密和解密，協助防止惡意活動的威脅。
 
@@ -66,7 +73,7 @@ FROM
 
 ##加密 DMV  
 
-- [sys.databases][] 
+- [sys.databases][]
 - [sys.dm\_pdw\_nodes\_database\_encryption\_keys][]
 
 
@@ -79,4 +86,4 @@ FROM
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -4,7 +4,7 @@
 	services="notification-hubs" 
 	documentationCenter="" 
 	authors="wesmc7777" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor="" />
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="powershell" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="06/29/2016" 
 	ms.author="wesmc"/>
 
 # 使用 PowerShell 來部署和管理通知中樞
@@ -96,7 +96,7 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 您會在指令碼的這個部分設定四個本機變數。
 
 1. `$Namespace`：將此變數設定為要建立通知中樞之命名空間的名稱。
-2. `$Path`：將此路徑設定為新的通知中樞之名稱。例如，"MyHub"。    
+2. `$Path`：將此路徑設定為新的通知中樞之名稱。例如，"MyHub"。
 3. `$WnsPackageSid`：從 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?linkid=266582&clcid=0x409)將此變數設定為 Windows 應用程式的封裝 SID。
 4. `$WnsSecretkey`：從 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?linkid=266582&clcid=0x409)將此變數設定為 Windows 應用程式的祕密金鑰。
 
@@ -172,4 +172,4 @@ else
 [Get-AzureSBAuthorizationRule]: https://msdn.microsoft.com/library/azure/dn495113.aspx
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="dotnet"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/04/2016" 
+	ms.date="06/30/2016" 
 	ms.author="tdykstra"/>
 
 # 在 Azure App Service 中 API Apps 的服務主體驗證
@@ -83,8 +83,8 @@
 
 同一租用戶中的使用者所擁有的持有人權杖也會對受保護的 API 應用程式有效。如果您想要確保只有服務主體可以呼叫受保護的 API 應用程式，請在受保護的 API 應用程式中新增程式碼以驗證來自權杖的下列宣告：
 
-* `appid` 應該是與呼叫端相關聯之 Azure AD 應用程式的用戶端識別碼。 
-* `oid` (`objectidentifier`) 應該是呼叫端的服務主體識別碼。 
+* `appid` 應該是與呼叫端相關聯之 Azure AD 應用程式的用戶端識別碼。
+* `oid` (`objectidentifier`) 應該是呼叫端的服務主體識別碼。
 
 App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` 宣告。
 
@@ -130,7 +130,7 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式] 底下，按一下 [建立新的 AD 應用程式] \(若尚未選取)。
+7. 在 [管理模式] 底下，按一下 [建立新的 AD 應用程式] (若尚未選取)。
 
 	入口網站會在 [建立應用程式] 輸入方塊中填入預設值。根據預設，Azure AD 應用程式的名稱會與 API 應用程式相同。如有需要，也可以輸入不同名稱。
 	
@@ -150,7 +150,7 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 ### 確認 API 應用程式已受到保護
 
-1. 在瀏覽器中，移至 API 應用程式的 URL：在 Azure 入口網站的 [API 應用程式] 刀鋒視窗中，按一下 [URL] 下方的連結。 
+1. 在瀏覽器中，移至 API 應用程式的 URL：在 Azure 入口網站的 [API 應用程式] 刀鋒視窗中，按一下 [URL] 下方的連結。
 
 	由於未經驗證的要求不得觸達 API 應用程式，因此系統會將您重新導向至登入畫面。
 
@@ -166,7 +166,7 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 * 在中介層 API 應用程式中新增使用 Azure AD 應用程式認證的程式碼，以取得權杖，然後透過 HTTP 要求將其傳送至資料層 API 應用程式。
 * 從 Azure AD 取得您需要的認證。
-* 在中介層 API 應用程式的 Azure App Service 執行階段環境設定中輸入認證。 
+* 在中介層 API 應用程式的 Azure App Service 執行階段環境設定中輸入認證。
 
 ### 設定 ToDoListAPI 專案以取得和傳送 Azure AD 權杖
 
@@ -415,4 +415,4 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 如需了解藉由使用 Visual Studio，或是藉由使用[原始檔控制系統](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control)來[自動化部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery)，以將 Visual Studio 專案部署到 API 應用程式的其他方式相關資訊，請參閱[如何部署 Azure App Service 應用程式](../app-service-web/web-sites-deploy.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="07/06/2016"
 	ms.author="raynew"/>
 
 # 使用 SAN 搭配 Azure Site Recovery 將 Hyper-V VM (位於 VMM 雲端中) 複寫至次要網站
@@ -40,8 +40,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 利用企業儲存體合作夥伴在光纖通道及 iSCSI 存放裝置之間提供的 SAN 複寫功能。請參閱我們 [SAN 儲存體合作夥伴](http://social.technet.microsoft.com/wiki/contents/articles/28317.deploying-azure-site-recovery-with-vmm-and-san-supported-storage-arrays.aspx)。
 - 運用現有的 SAN 基礎結構保護在 Hyper-V 叢集中部署的關鍵任務應用程式。
 - 為客體叢集提供支援。
-- 藉由低 RTO 與 RPO 的同步複寫，以及高彈性的非同步複寫 (視存放裝置陣列功能而定) 確保不同層應用程式的複寫一致性。  
-- 與 VMM 整合時，可在 VMM 主控台中提供 SAN 管理功能，且 VMM 中的 SMI-S 會探索現有的存放裝置。  
+- 藉由低 RTO 與 RPO 的同步複寫，以及高彈性的非同步複寫 (視存放裝置陣列功能而定) 確保不同層應用程式的複寫一致性。
+- 與 VMM 整合時，可在 VMM 主控台中提供 SAN 管理功能，且 VMM 中的 SMI-S 會探索現有的存放裝置。
 
 ## 架構
 
@@ -202,7 +202,7 @@ Site Recovery 可協調對 VMM 雲端中 Hyper-V 主機伺服器上之虛擬機�
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
 
 10. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
-11. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。 
+11. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。
 
 	![伺服器註冊](./media/site-recovery-vmm-san/vault-creds.png)
 
@@ -239,7 +239,7 @@ Site Recovery 可協調對 VMM 雲端中 Hyper-V 主機伺服器上之虛擬機�
 
 其中參數為：
 
- - **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置  
+ - **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置
  - **/FriendlyName**：對於 Hyper-V 主機伺服器名稱的必要參數，該伺服器會出現在 Azure Site Recovery 入口網站中。
  - **/EncryptionEnabled**：如果您需要在 Azure 中以靜止的方式為虛擬機器加密，則必須只能在 VMM 到 Azure 案例中使用這個選用參數。請確定您提供的檔案名稱具有 **.pfx** 副檔名。
  - **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
@@ -325,8 +325,7 @@ Site Recovery 可協調對 VMM 雲端中 Hyper-V 主機伺服器上之虛擬機�
 測試您的部署，以確定虛擬機器和資料容錯移轉如預期般運作。若要這樣做，您將必須選取複寫群組來建立復原方案。然後在方案上執行測試容錯移轉。
 
 1. 在 [復原計畫] 索引標籤上，按一下 [建立復原計畫]。
-2. 指定復原方案的名稱，以及來源和目標 VMM 伺服器。來源伺服器必須有已啟用容錯移轉和復原功能的虛擬機器。選取 [SAN]，僅檢視為 SAN 複寫設定的雲端。
-3.![建立復原計畫](./media/site-recovery-vmm-san/r-plan.png)
+2. 指定復原方案的名稱，以及來源和目標 VMM 伺服器。來源伺服器必須有已啟用容錯移轉和復原功能的虛擬機器。選取 [SAN]，僅檢視為 SAN 複寫設定的雲端。3. ![建立復原計畫](./media/site-recovery-vmm-san/r-plan.png)
 
 4. 在 [選取虛擬機器] 中，選取複寫群組。所有與複寫群組關聯的虛擬機器，將會被選取並新增至復原方案。這些虛擬機器會新增到復原方案預設群組 (群組 1)。您可以視需要新增更多群組。請注意，複寫之後，虛擬機器將會根據復原方案群組的順序來啟動。
 
@@ -362,4 +361,4 @@ Site Recovery 可協調對 VMM 雲端中 Hyper-V 主機伺服器上之虛擬機�
 
 在您執行測試容錯移轉檢查您的環境是否如預期般運作之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0706_2016-->

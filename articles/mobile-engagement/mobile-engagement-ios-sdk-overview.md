@@ -1,10 +1,10 @@
 <properties
-	pageTitle="Azure Mobile Engagement iOS SDK 概觀"
+	pageTitle="Azure Mobile Engagement iOS SDK 概觀 | Microsoft Azure"
 	description="Azure Mobile Engagement iOS SDK 的最新更新與程序"
 	services="mobile-engagement"
 	documentationCenter="mobile"
 	authors="piyushjo"
-	manager="dwrede"
+	manager="erikre"
 	editor="" />
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="02/29/2016"
-	ms.author="MehrdadMzfr" />
+	ms.date="06/30/2016"
+	ms.author="piyushjo" />
 
 #Azure Mobile Engagement iOS SDK
 
@@ -32,9 +32,9 @@
 
 ##版本資訊
 
-###3\.2.2 (04/07/2016)
+###3\.2.4 (06/30/2016)
 
--   修正 HTTP 要求取消有時會導致損毀的錯誤。 
+-   修正技術記錄和其他記錄之間的彙總。
 
 如需較早版本，請參閱[完整版本資訊](mobile-engagement-ios-release-notes.md)
 
@@ -59,4 +59,4 @@
 	-(void)didFailToRetrieveLaunchMessage;
 	-(void)didReceiveLaunchMessage:(AEPushMessage*)launchMessage;
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

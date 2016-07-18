@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/08/2016"
+	ms.date="07/05/2016"
 	ms.author="jroth"/>
 
 # 在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
@@ -70,4 +70,4 @@ SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

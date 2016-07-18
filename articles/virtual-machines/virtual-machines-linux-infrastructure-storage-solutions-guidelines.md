@@ -46,7 +46,7 @@ Azure 儲存體是部署和管理虛擬機器 (VM) 和應用程式的重要部�
 有兩種可供支援 VM 使用的儲存體帳戶：
 
 - 標準儲存體帳戶可供您存取 blob 儲存體 (用於存放 Azure VM 磁碟)、表格儲存體、佇列儲存體和檔案儲存體
-- [進階儲存體](../storage/storage-premium-storage.md)可針對 I/O 密集的工作負載提供高效能且低延遲的磁碟支援 (例如位於 AlwaysOn 叢集中的 SQL Server)，且目前僅支援 Azure VM 磁碟。
+- [進階儲存體](../storage/storage-premium-storage.md)可針對 I/O 密集的工作負載提供高效能且低延遲的磁碟支援 (例如 MongoDB 分區化叢集)，且目前僅支援 Azure VM 磁碟。
 
 Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零或多個選用資料磁碟的 VM。作業系統磁碟和資料磁碟都是 Azure 頁面 Blob，而暫存磁碟會儲存在本機機器所在的節點上。請注意，在設計應用程式時，請務必僅將此暫存磁碟用於非持續性資料上，因為 VM 可能會在維護事件期間於主機之間移轉。任何儲存在暫存磁碟上的資料都會遺失。
 
@@ -71,7 +71,7 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 - 使用 LVM
 - 避免使用 Azure 資料磁碟快取選項 (快取原則 = 無)
 
-如需詳細資訊，請參閱〈[儲存體空間 - 適用於效能的設計](http://social.technet.microsoft.com/wiki/contents/articles/15200.storage-spaces-designing-for-performance.aspx)〉。
+如需詳細資訊，請參閱[在 Linux VM 上設定 LVM](virtual-machines-linux-configure-lvm.md)。
 
 
 ## 多個儲存體帳戶
@@ -85,4 +85,4 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

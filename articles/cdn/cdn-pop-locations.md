@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/05/2016"
 	ms.author="casoper"/>
 
 
@@ -38,4 +38,7 @@
 | 非洲 | | **&#x2713;*** |
 | 澳大利亞與紐西蘭 | 墨爾本，澳大利亞<br />雪梨，澳大利亞 | **&#x2713;*** |
 
-<!---HONumber=AcomDC_0629_2016-->
+## 另請參閱
+* [Azure CDN from Verizon Edge Server IP Ranges (來自 Verizon Edge Server IP 範圍的 Azure CDN)](https://msdn.microsoft.com/library/mt757330.aspx)
+
+<!---HONumber=AcomDC_0706_2016-->

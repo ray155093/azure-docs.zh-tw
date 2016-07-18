@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 
@@ -42,7 +42,7 @@
 
 ## 步驟 2：設定您的訂用帳戶和儲存體帳戶
 
-在 Windows PowerShell 命令提示字元處執行這些命令，來設定您的 Azure 訂用帳戶與儲存體帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+在 Windows PowerShell 命令提示字元處執行這些命令，來設定您的 Azure 訂用帳戶與儲存體帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<subscription name>"
 	$staccount="<storage account name>"
@@ -147,4 +147,4 @@
 
     New-AzureVM –ServiceName $svcname -VMs $vm1 -VNetName $vnetname -Location "Central US" -DnsSettings $dns
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

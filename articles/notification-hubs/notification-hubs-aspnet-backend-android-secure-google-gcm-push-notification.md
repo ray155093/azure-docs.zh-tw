@@ -4,7 +4,7 @@
 	documentationCenter="android"
     keywords="推播通知,推播訊息,android 推播通知"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""
 	services="notification-hubs"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="02/15/2016" 
+	ms.date="06/29/2016" 
 	ms.author="wesmc"/>
 
 #使用 Azure 通知中樞傳送安全的推播通知
@@ -134,4 +134,4 @@ Microsoft Azure 中的推播通知支援可讓您存取易於使用、多重平�
 
 4. 在 Android 應用程式 UI 中，按一下 [登入]。然後按一下 [傳送推播]。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

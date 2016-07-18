@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="article"
- ms.date="03/09/2016"
+ ms.date="06/30/2016"
  ms.author="krisragh"/>
 
 # Azure 排程器的計劃和計費
@@ -25,7 +25,8 @@
 |:---|:---|:---|:---|:---|
 |**免費**|每個工作集合 5 個工作|每小時一次。執行工作不得超過一個小時|允許 1 個訂用帳戶最多 1 個免費工作集合|無法使用 [HTTP 輸出授權物件](scheduler-outbound-authentication.md)
 |**標準**|每個工作集合 50 個工作|每分鐘一次。執行工作不得超過一分鐘|允許一個訂用帳戶最多 100 個標準工作集合|存取排程器的完整功能集|
-|**高級**|每個工作集合 50 個工作|每分鐘一次。執行工作不得超過一分鐘|允許一個訂用帳戶最多 10,000 個高階工作集合如需詳細資訊，請<a href="mailto:wapteams@microsoft.com">與我們連絡</a>。|存取排程器的完整功能集|
+|**P10 Premium**|每個工作集合 50 個工作|每分鐘一次。執行工作不得超過一分鐘|允許一個訂用帳戶最多 10,000 個 P10 Premium 作業集合如需詳細資訊，請<a href="mailto:wapteams@microsoft.com">與我們連絡</a>。|存取排程器的完整功能集|
+|**P20 Premium**|每個作業集合 1000 個工作|每分鐘一次。執行工作不得超過一分鐘|允許一個訂用帳戶最多 500 個 P20 進階作業集合如需詳細資訊，請<a href="mailto:wapteams@microsoft.com">與我們連絡</a>。|存取排程器的完整功能集|
 
 ## 升級或降級工作集合計劃
 
@@ -85,4 +86,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

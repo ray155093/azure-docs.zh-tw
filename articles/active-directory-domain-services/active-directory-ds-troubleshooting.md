@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 *(預覽)* - 疑難排解指南
@@ -64,4 +64,4 @@
 ### 連絡我們
 請連絡 Azure Active Directory 網域服務產品小組，[分享意見或尋求支援](active-directory-ds-contact-us.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

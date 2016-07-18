@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/06/2016"
+	ms.date="06/28/2016"
 	ms.author="glenga"/>
 
 # 使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK
@@ -194,7 +194,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 [控制器] 資料夾，然後按一下 [加入] > [控制器]，選取 [Web API 2 控制器&mdash;空白]，然後按一下 [加入]。
 
-2. 提供 [控制器名稱] \(例如 `CustomController`)，然後按一下 [加入]。這會建立繼承自 **ApiController** 的新 **CustomController** 類別。
+2. 提供 [控制器名稱] (例如 `CustomController`)，然後按一下 [加入]。這會建立繼承自 **ApiController** 的新 **CustomController** 類別。
 
 3. 在新的控制器類別檔案中，新增下列 Using 陳述式：
 
@@ -340,7 +340,7 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
     // Get the SID of the current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
     string sid = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
-    
+
     // Only return data rows that belong to the current user.
     return Query().Where(t => t.UserId == sid);
 
@@ -478,4 +478,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Login]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Login/
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

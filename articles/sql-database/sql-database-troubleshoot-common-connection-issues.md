@@ -20,15 +20,14 @@
 
 連線到 Azure SQL Database 失敗時，您會收到[錯誤訊息](sql-database-develop-error-messages.md)。本文是集中式主題，可協助您針對 Azure SQL Database 連線問題進行疑難排解。本文除了介紹連線問題的[常見原因](#cause)，還推薦可協助您識別問題的[疑難排解工具](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues)，以及提供疑難排解步驟來解決[暫時性錯誤](#troubleshoot-transient-errors)和[持續性或非暫時性錯誤](#troubleshoot-the-persistent-errors)。最後，則是列出 [Azure SQL Database 連線問題的所有相關文章](#all-topics-for-azure-sql-database-connection-problems)。
 
-如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 原因
 
 連線問題可能由下列任何一個原因所造成：
 
 - 在設計應用程式的過程中，無法套用最佳作法和設計指南。請參閱 [SQL Database 開發概觀](sql-database-develop-overview.md)以便開始使用。
-- SQL Azure 資料庫重新設定
+- Azure SQL Database 重新設定
 - 防火牆設定
 - 連線逾時
 - 不正確的登入資訊
@@ -53,7 +52,7 @@
 
 ## 針對持續性錯誤 (非暫時性錯誤) 進行疑難排解
 
-如果應用程式持續無法連接到 SQL Azure Database，通常表示下列其中一項發生問題︰
+如果應用程式持續無法連接到 Azure SQL Database，通常表示下列其中一項發生問題︰
 
 - 防火牆組態。Azure SQL Database 或用戶端防火牆封鎖 Azure SQL Database 的連接。
 - 用戶端上的網路重新設定：例如，新的 IP 位址或 Proxy 伺服器。
@@ -99,6 +98,6 @@
 - [一般暫時性錯誤處理指引](../best-practices-retry-general.md)
 - [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 - [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
-- [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale) 
+- [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

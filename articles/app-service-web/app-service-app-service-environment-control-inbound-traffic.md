@@ -13,19 +13,19 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/26/2016" 
+	ms.date="07/01/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
 
 ## 概觀 ##
-APP Service 環境會一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路中。建立 APP Service 環境時，可定義新的區域傳統 "v1" 虛擬網路和新的子網路。或者亦可在先前既存的區域傳統 "v1" 虛擬網路與子網路中，建立 APP Service 環境。目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
+APP Service 環境會一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路中。建立 APP Service 環境時，可定義新的區域傳統 "v1" 虛擬網路和新的子網路。或者亦可在先前既存的區域傳統 "v1" 虛擬網路與子網路中，建立 APP Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
 
 **注意：**在「v2」ARM 管理的虛擬網路中，無法建立 App Service 環境。
 
 App Service 環境必須一律建立於子網路中，因為子網路可提供網路界限以便用來鎖定上游裝置和服務背後的輸入流量，因此只接受來自特定上游 IP 位址的 HTTP 和 HTTPS 流量。
 
-使用[網路安全性群組][NetworkSecurityGroups]，可控制子網路上的輸入和輸出網路流量。控制輸入流量時，需要在網路安全性群組中建立網路安全性規則，然後將網路安全性群組指派給包含 App Service 環境的子網路。
+使用[網路安全性群組][NetworkSecurityGroups]，可控制子網路上的輸入和輸出網路流量。針對 App Service 環境，目前只支援在傳統部署模型中建立的網路安全性群組。控制輸入流量時，需要在網路安全性群組中建立網路安全性規則，然後將網路安全性群組指派給包含 App Service 環境的子網路。
 
 將網路安全性群組指派給子網路後，會根據網路安全性群組中定義的允許和拒絕規則，允許/封鎖 App Service 環境中應用程式的輸入流量。
 
@@ -41,7 +41,7 @@ App Service 環境必須一律建立於子網路中，因為子網路可提供�
 - 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。
 - 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。
 - 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。
-- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠   
+- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠
 - 4016：用於 Visual Studio 2012 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
 - 4018：用於 Visual Studio 2013 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
 - 4020：用於 Visual Studio 2015 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
@@ -53,13 +53,13 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 
 以下清單詳細描述 App Service 環境所需的連線能力和 DNS：
 
--  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 App Service 環境相同區域中的端點，以及位於「其他」 Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。  
+-  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 App Service 環境相同區域中的端點，以及位於「其他」 Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。
 -  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：*database.windows.net*。
--  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。 
+-  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。
 -  *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。需要此連線才能支援 SSL 功能。
 -  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。如果無法解析這些端點，App Service 環境建立嘗試將會失敗，而且現有的 App Service 環境會標示為狀況不良。
--  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。 
--  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。  
+-  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。
+-  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。
 -  按照本[文章](app-service-app-service-environment-control-inbound-traffic.md)所述，您必須允許「App Service 環境」之必要連接埠的輸入網路存取。
 
 也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。同樣地，若自訂 DNS 伺服器存在於 VPN 閘道的另一端，且 DNS 伺服器無法連線或使用，則 App Service 環境建立程序也會失敗。
@@ -67,7 +67,7 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 ## 建立網路安全性群組 ##
 如需有關網路安全性群組如何運作的完整詳細資訊，請參閱下列[資訊][NetworkSecurityGroups]。以下詳細資料是有關網路安全性群組的重點，著重於設定網路安全群組並套用到包含 App Service 環境的子網路。
 
-**注意：**網路安全性群組只能使用如下所述的 Powershell Cmdlet 設定。由於 Azure 入口網站僅允許使用與「v2」虛擬網路關聯的 NSG 圖形化組態，因此無法使用[入口網站](https://portal.azure.com) (portal.azure.com) 採圖形化方式設定網路安全性群組。不過，App Service 環境目前僅支援處理傳統 "v1" 虛擬網路。因此，您僅可使用 Powershell Cmdlet 將網路安全性群組設為與 "v1" 虛擬網路關聯。
+**注意︰**您可以使用 [Azure 入口網站](https://portal.azure.com)或透過 Azure PowerShell，利用圖形方式設定網路安全性群組。
 
 網路安全性群組首次會建立為與訂用帳戶相關聯的獨立實體。由於網路安全性群組建立於 Azure 區域，所以請確保網路安全性群組建立於與 App Service 環境相同的區域中。
 
@@ -149,4 +149,4 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

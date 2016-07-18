@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/19/2016" 
+	ms.date="07/05/2016" 
 	ms.author="larryfr"/>
 
 #在 HDInsight 上使用 Hadoop 分析航班延誤資料
@@ -43,7 +43,11 @@
 1. 瀏覽至[創新技術研究管理部運輸統計處][rita-website]。
 2. 在此頁面上選取下列值：
 
-	| 名稱 | 值| | Filter Year | 2013 | | Filter Period | January | | Fields | Year、FlightDate、UniqueCarrier、Carrier、FlightNum、OriginAirportID、Origin、OriginCityName、OriginState、DestAirportID、Dest、DestCityName、DestState、DepDelayMinutes、ArrDelay、ArrDelayMinutes、CarrierDelay、WeatherDelay、NASDelay、SecurityDelay、LateAircraftDelay。清除所有其他欄位 |
+    | 名稱 | 值 |
+    | ---- | ---- |
+    | 篩選年份 | 2013 |
+    | 篩選期間 | 一月 |
+    | 欄位 | Year、FlightDate、UniqueCarrier、Carrier、FlightNum、OriginAirportID、Origin、OriginCityName、OriginState、DestAirportID、Dest、DestCityName、DestState、DepDelayMinutes、ArrDelay、ArrDelayMinutes、CarrierDelay、WeatherDelay、NASDelay、SecurityDelay、LateAircraftDelay。清除所有其他欄位 |
 
 3. 按一下 [下載]。
 
@@ -75,7 +79,7 @@
 	
 4. 使用以下命令在 WASB (HDInsight 所使用的分散式資料存放區) 上建立新目錄，並複製檔案：
 
-	hadoop fs -mkdir -p /tutorials/flightdelays/data hadoop fs -copyFromLocal FILENAME.csv /tutorials/flightdelays/data/FILENAME.csv
+	hdfs dfs -mkdir -p /tutorials/flightdelays/data hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
 	
 ##建立並執行 HiveQL
 
@@ -149,13 +153,18 @@
 
 3. 使用以下命令啟動 Hive 並執行 __flightdelays.hql__ 檔案：
 
-		hive -i flightdelays.hql
+        beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -f flightdelays.hql
 		
-	這會執行檔案，然後傳回 `hive>` 提示字元。
+	> [AZURE.NOTE] 此範例會使用 `localhost`，因為您是連接到 HDInsight 叢集的前端節點，也就是 HiveServer2 執行所在位置。
 
-4. 當您接收 `hive>` 提示字元時，請使用以下命令從匯入的航班延誤資料抓取資料。
+4. 使用下列命令來開啟互動式 Beeline 工作階段：
+
+        beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+
+5. 當您接收 `jdbc:hive2://localhost:10001/>` 提示字元時，請使用以下命令從匯入的航班延誤資料抓取資料。
 
 		INSERT OVERWRITE DIRECTORY '/tutorials/flightdelays/output'
+        ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 		SELECT regexp_replace(origin_city_name, '''', ''),
 			avg(weather_delay)
 		FROM delays
@@ -164,34 +173,13 @@
 
 	這會抓取經歷過因氣候因素而延誤的城市清單以及平均延誤時間，並會儲存到 `/tutorials/flightdelays/output`。稍後，Sqoop 會從此位置讀取該資料，並匯出到 Azure SQL Database。
 
-##建立 SQL Database
+6. 若要結束 Beeline，請在提示字元中輸入 `!quit`。
 
-使用下列步驟建立 Azure SQL Database。這會用來保留透過 Sqoop 從 HDInsight 匯出的資料。
+## 建立 SQL Database
 
-1. 在您安裝 Azure CLI 的開發環境中，使用以下命令建立新的 Azure SQL Database：
+如果您已經有 SQL Database，就必須取得伺服器名稱。您可以在 [Azure 入口網站](https://portal.azure.com)中找到此名稱，方法是選取 [SQL Database]，然後篩選您想要使用的資料庫名稱。伺服器名稱會列在 [伺服器] 資料行中。
 
-		azure sql server create <adminLogin> <adminPassword> <region>
-
-	例如，`azure sql server create admin password "West US"`
-
-	命令完成時，您應該會收到類似這樣的回應：
-
-		info:    Executing command sql server create
-		+ Creating SQL Server
-		data:    Server Name i1qwc540ts
-		info:    sql server create command OK
-
-> [AZURE.IMPORTANT] 請注意此命令傳回的伺服器名稱。這是所建立的 SQL Database 伺服器的簡短名稱。完整網域名稱 (FQDN) 為 `<shortname>.database.windows.net`。
-
-2. 使用下列命令，在 SQL Database 伺服器上建立名為 **sqooptest** 的資料庫：
-
-        azure sql db create [options] <serverName> sqooptest <adminLogin> <adminPassword>
-
-    完成時會傳回 [確定] 訊息。
-
-	> [AZURE.NOTE] 如果您收到的錯誤指出您沒有存取權，您可能需要使用下列命令，將用戶端工作站的 IP 位址加入至 SQL Database 防火牆：
-	>
-	> `sql firewallrule create [options] <serverName> <ruleName> <startIPAddress> <endIPAddress>`
+如果您還沒有 SQL Database，請使用 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md) 中的相關資訊來建立一個資料庫。您必須儲存用於資料庫的伺服器名稱。
 
 ##建立 SQL Database 資料表
 
@@ -203,9 +191,9 @@
 
         sudo apt-get --assume-yes install freetds-dev freetds-bin
 
-4. 安裝 FreeTDS 後，請使用下列命令來連接至先前建立的 SQL Database 伺服器：
+4. 安裝 FreeTDS 後，使用下列命令來連接到 SQL Database 伺服器。使用 SQL Database 伺服器名稱取代 __serverName__。使用 SQL Database 的登入取代 __adminLogin__ 和 __adminPassword__。使用資料庫名稱取代 __databaseName__。
 
-        TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D sqooptest
+        TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
 
     您將收到類似以下的輸出：
 
@@ -234,27 +222,23 @@
     您應該會看到如下所示的輸出：
 
         TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
-        sqooptest       dbo     delays      BASE TABLE
+        databaseName       dbo     delays      BASE TABLE
 
 8. 在 `1>` 提示字元輸入 `exit` 以結束 tsql 公用程式。
 	
 ##使用 Sqoop 匯出資料
 
-1. 使用下列命令來建立從 Sqoop lib 目錄到 SQL Server JDBC 驅動程式的連結。這可讓 Sqoop 使用此驅動程式來聯繫 SQL Database：
-
-		sudo ln /usr/share/java/sqljdbc_4.1/enu/sqljdbc4.jar /usr/hdp/current/sqoop-client/lib/sqljdbc4.jar
-
 2. 使用下列命令以確認 Sqoop 看得見您的 SQL Database：
 
 		sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
 
-	這應該會傳回一份資料庫清單，其中包含您稍早建立的 sqooptest 資料庫。
+	這應該會傳回一份資料庫清單，包含您稍早在其中建立 delays 資料表的資料庫。
 
 3. 使用以下命令，將資料從 hivesampletable 匯出至 mobiledata 資料表：
 
-		sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir 'wasb:///tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
+		sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir 'wasb:///tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
 
-	這會指示 Sqoop 連線到 SQL Database、sqooptest 資料庫，並從 wasb:///tutorials/flightdelays/output (我們稍早儲存 Hive 查詢輸出的位置) 匯出資料到延誤資料表。
+	這會指示 Sqoop 連接到 SQL Database、連接到包含 delays 資料表的資料庫，並將資料從 wasb:///tutorials/flightdelays/output (我們稍早儲存 Hive 查詢輸出的位置) 匯出到 delays 資料表。
 
 4. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
 
@@ -268,6 +252,7 @@
 	您應會看到資料表中的資料清單。輸入 `exit` 以結束 tsql 公用程式。
 
 ##<a id="nextsteps"></a> 後續步驟
+
 現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。若要深入了解，請參閱下列文章：
 
 * [開始使用 HDInsight][hdinsight-get-started]
@@ -306,4 +291,4 @@
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

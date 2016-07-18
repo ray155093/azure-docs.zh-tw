@@ -19,8 +19,14 @@
 # 搭配使用 Azure PowerShell 與 Azure 資源管理員
 
 > [AZURE.SELECTOR]
-- [Azure PowerShell](powershell-azure-resource-manager.md)
+- [入口網站](azure-portal/resource-group-portal.md)
 - [Azure CLI](xplat-cli-azure-resource-manager.md)
+- [Azure PowerShell](powershell-azure-resource-manager.md)
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
+
 
 Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建立並管理個別資源，您首先想像整個解決方案，例如，部落格、相片庫、SharePoint 入口網站或 Wiki。使用範本 (解決方案的宣告式呈現) 建立包含支援解決方案所需所有資源的資源群組。然後，以邏輯單元的方式來管理與部署該資源群組。
 
@@ -31,7 +37,7 @@ Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建�
 - 防火牆規則 - 允許 Web 應用程式連接到資料庫
 - App Service 計劃 - 定義 Web 應用程式的功能和成本
 - 網站 - 執行 Web 應用程式
-- Web 組態 - 將連接字串儲存到資料庫 
+- Web 組態 - 將連接字串儲存到資料庫
 - 警示規則 - 用於監視效能和錯誤
 - App Insights - 用於自動調整設定
 
@@ -71,7 +77,7 @@ Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建�
 	Get-AzureRmADGroupMember               Get a group members.
 	...
 
-若要取得完整的 cmdlet，請輸入以下格式的命令：
+To get full help for a cmdlet, type a command with the format:
 
     Get-Help <cmdlet-name> -Full
   
@@ -115,7 +121,7 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 
 ## 部署您的解決方案
 
-本主題不會顯示如何建立您的範本或討論範本的結構。如需該資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)和[資源管理員範本逐步解說](resource-manager-template-walkthrough.md)。您會從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署預先定義的[佈建 Web 應用程式與 SQL Database](https://azure.microsoft.com/documentation/templates/201-web-app-sql-database/)範本。
+本主題不會顯示如何建立您的範本或討論範本的結構。如需該資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)和 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。您會從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署預先定義的[佈建 Web 應用程式與 SQL Database](https://azure.microsoft.com/documentation/templates/201-web-app-sql-database/)範本。
 
 您具有資源群組和範本，因此現在您已經準備好要將在您的範本中定義的基礎結構部署至資源群組。使用 **New-AzureRmResourceGroupDeployment** Cmdlet 部署資源。範本會指定許多預設值，我們將使用這些預設值，所以您不需要提供這些參數的值。基本語法如下所示：
 
@@ -134,7 +140,7 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
     (Type !? for Help.)
     administratorLoginPassword: ********
 
-如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本包含名為 **ResourceGroupName** 的參數，而且與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，將會提示您在後置詞為 **FromTemplate** 的參數中提供一個值 (例如 **ResourceGroupNameFromTemplate**)。一般而言，請不要將參數命名為與部署作業所用的參數同名，以避免這種混淆情形。
+如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，系統會提示您為後置詞是 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供一個值。一般而言，請不要將參數命名為與部署作業所用的參數同名，以避免這種混淆情形。
 
 資源建立時，命令會執行並且傳回訊息。最後，您會看到您的部署結果。
 
@@ -171,7 +177,7 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 
 ### 記錄偵錯資訊
 
-在部署範本時，藉由指定執行 **New-AzureRmResourceGroupDeployment** 時的 **-DeploymentDebugLogLevel** 參數，即可記錄有關要求和回應的其他資訊。此資訊可協助您疑難排解部署錯誤。預設值為 [無]，意指不會記錄任何要求或回應內容。您可以指定從要求、回應或兩者記錄內容。如需有關針對部署進行疑難排解和記錄偵錯資訊的詳細資訊，請參閱[透過 Azure PowerShell 針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-powershell.md)。下列範例會記錄部署的要求內容和回應內容。
+在部署範本時，藉由指定執行 **New-AzureRmResourceGroupDeployment** 時的 **-DeploymentDebugLogLevel** 參數，即可記錄有關要求和回應的其他資訊。此資訊可協助您疑難排解部署錯誤。預設值為 **None**，意指不會記錄任何要求或回應內容。您可以指定從要求、回應或兩者記錄內容。如需有關針對部署進行疑難排解和記錄偵錯資訊的詳細資訊，請參閱[透過 Azure PowerShell 針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-powershell.md)。下列範例會記錄部署的要求內容和回應內容。
 
     New-AzureRmResourceGroupDeployment -ResourceGroupName TestRG1 -DeploymentDebugLogLevel All -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json 
 
@@ -380,4 +386,4 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 - 如需部署專案的詳細範例，請參閱[透過可預測方式在 Azure 中部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 若要了解如何疑難排解失敗的部署，請參閱[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-powershell.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

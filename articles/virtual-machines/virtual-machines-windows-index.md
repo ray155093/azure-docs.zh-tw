@@ -77,7 +77,7 @@
 
 [擷取以傳統部署模型建立的 Windows 虛擬機器](virtual-machines-windows-classic-capture-image.md)
 
-[使用 Powershell 建立並上傳傳統 Windows Server VHD](virtual-machines-windows-classic-createupload-vhd.md)
+[使用 PowerShell 建立並上傳傳統 Windows Server VHD](virtual-machines-windows-classic-createupload-vhd.md)
 
 [使用 Chef 自動化 Azure 虛擬機器部署](virtual-machines-windows-chef-automation.md)
 
@@ -192,4 +192,4 @@
 
 [針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

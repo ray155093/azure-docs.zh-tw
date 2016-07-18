@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/20/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # 將 Red Hat Enterprise Linux 7 虛擬機器加入受管理的網域
@@ -177,4 +177,4 @@ RHEL 7.2 虛擬機器已佈建在 Azure 中。下一個工作是從遠端連線�
 - [安裝 Kerberos](https://access.redhat.com/documentation/zh-TW/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 - [Red Hat Enterprise Linux 7 - Windows 整合指南](https://access.redhat.com/documentation/zh-TW/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

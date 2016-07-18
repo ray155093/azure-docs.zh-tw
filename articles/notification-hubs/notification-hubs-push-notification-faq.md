@@ -4,7 +4,7 @@
 	services="notification-hubs"
 	documentationCenter="mobile"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
     keywords="推播通知, 推播通知, iOS 推播通知, android 推播通知, ios 推播, android 推播"
 	editor="" />
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="03/09/2016"
+	ms.date="06/29/2016"
 	ms.author="wesmc" />
 
 #使用 Azure 通知中樞推播通知 - 常見問題集 (FAQ)
@@ -197,7 +197,7 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 [註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
 [Azure Portal]: https://portal.azure.com
 [完整範例]: https://github.com/Azure/azure-notificationhubs-samples
-[Azure Mobile Apps]: https://azure.microsoft.com/services/app-service/mobile/
-[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
+[Azure Mobile Apps]: https://azure.microsoft.com/zh-TW/services/app-service/mobile/
+[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

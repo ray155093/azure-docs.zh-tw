@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/10/2016" 
+	ms.date="06/30/2016" 
 	ms.author="tomfitz"/>
 
 # 使用 Resource Manager 範本與 Azure 入口網站來部署資源
@@ -22,11 +22,14 @@
 - [PowerShell](resource-group-template-deploy.md)
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
-- [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 - [REST API](resource-group-template-deploy-rest.md)
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
 
 
-本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](resource-group-overview.md) 來部署您的 Azure 資源。若要了解如何管理您的資源，請參閱[使用入口網站來管理 Azure 資源](./azure-portal/resource-group-portal.md)。
+本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](resource-group-overview.md) 來部署您的 Azure 資源。若要了解如何管理您的資源，請參閱[透過入口網站管理 Azure 資源](./azure-portal/resource-group-portal.md)。
 
 目前並非所有服務都支援入口網站或資源管理員。針對這些服務，您必須使用[傳統入口網站](https://manage.windowsazure.com)。如需每個服務的狀態，請參閱 [Azure 入口網站可用性圖表](https://azure.microsoft.com/features/azure-portal/availability/)。
 
@@ -64,7 +67,7 @@
 
     ![檢視通知](./media/resource-group-template-deploy-portal/view-notification.png)
 
-5. 部署您的資源之後，您可以在資源群組刀鋒視窗上使用 **Add** 命令，將更多資源新增至資源群組。
+5. 部署您的資源之後，您可以在資源群組刀鋒視窗上使用 [新增] 命令，將更多資源新增至資源群組。
 
     ![新增資源](./media/resource-group-template-deploy-portal/add-resource.png)
 
@@ -100,7 +103,7 @@
 
 ## 從儲存至您帳戶的範本部署資源
 
-入口網站可讓您將範本儲存至您的 Azure 帳戶，並於日後部署它。如需使用已儲存之範本的詳細資訊，請參閱[開始在 Azure 入口網站上使用私人範本](./marketplace-consumer/mytemplates-getstarted.md)。
+入口網站可讓您將範本儲存至您的 Azure 帳戶，並於日後部署它。如需使用這些已儲存範本的詳細資訊，請參閱[開始在 Azure 入口網站上使用私人範本](./marketplace-consumer/mytemplates-getstarted.md)。
 
 1. 若要尋找您已儲存的範本，請選取 [瀏覽] > [範本]。
 
@@ -110,7 +113,7 @@
 
     ![已儲存的範本](./media/resource-group-template-deploy-portal/saved-templates.png)
 
-3. 選取 [部署] 來重新部署此儲存的範本。
+3. 選取 [部署] 來重新部署這個已儲存的範本。
 
     ![部署已儲存的範本](./media/resource-group-template-deploy-portal/deploy-saved-template.png)
 
@@ -120,4 +123,4 @@
 - 若要針對部署錯誤進行疑難排解，請參閱[使用 Azure 入口網站對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 - 若要從部署或資源群組擷取範本，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

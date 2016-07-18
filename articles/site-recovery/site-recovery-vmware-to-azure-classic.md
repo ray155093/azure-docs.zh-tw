@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/15/2016"
+	ms.date="07/06/2016"
 	ms.author="raynew"/>
 
 # 使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure
@@ -43,7 +43,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 增強部署是一項重大更新。以下是我們所做的改良功能的摘要：
 
-- **Azure 中沒有基礎結構 VM**：資料會直接複寫到 Azure 儲存體帳戶。除了複寫和容錯移轉之外，並不需要如舊版部署中所需，設定任何基礎結構 VM (組態伺服器、主要目標伺服器)。  
+- **Azure 中沒有基礎結構 VM**：資料會直接複寫到 Azure 儲存體帳戶。除了複寫和容錯移轉之外，並不需要如舊版部署中所需，設定任何基礎結構 VM (組態伺服器、主要目標伺服器)。
 - **整合安裝**：單一安裝可提供內部部署元件的簡單設定及延展性。
 - **安全部署**：所有流量都會加密，且複寫管理通訊會透過 HTTPS 443 傳送。
 - **復原點**：支援 Windows 和 Linux 環境中的當機和應用程式一致復原點，並同時支援單一 VM 和多個 VM 一致組態。
@@ -264,9 +264,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 5. 在 [網際網路設定] 中，指定將安裝在伺服器上的提供者，會如何透過網際網路連線到 Azure Site Recovery。
 
-	- 如果您要讓提供者直接連線，請選取 [Connect directly without a proxy] \ (不使用 Proxy 直接連線)。
-	- 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [Connect with existing proxy settings] \ (以現有的 Proxy 設定連線)。
-	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [Connect with custom proxy settings] \ (以自訂 Proxy 設定連線)。
+	- 如果您要讓提供者直接連線，請選取 [不使用 Proxy 直接連線]。
+	- 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
+	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
 	- 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證
 	- 如果您使用 proxy，則應該可以透過它存取下列 URL：
 
@@ -280,7 +280,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 ![TimeSyncIssue](./media/site-recovery-vmware-to-azure-classic/time-sync-issue.png)
 
-8. 在 [MySQL Configuration] \ (MySQL 組態) 中，建立認證來登入 MySQL 伺服器執行個體。您可以指定這些特殊字元：'\_'、'!'、'@'、'$'、'\\'、'%'。
+8. 在 [MySQL 組態] 中，建立認證來登入 MySQL 伺服器執行個體。您可以指定這些特殊字元：'\_'、'!'、'@'、'$'、'\\'、'%'。
 
 	![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz5.png)
 
@@ -304,13 +304,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 13.  在 [摘要] 中檢閱資訊。
 
 	![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
->[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。
-安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
+>[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
 >
-	$pwd = ConvertTo-SecureString -String ProxyUserPassword 
-	Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd 
-	net stop obengine 
-	net start obengine
+	$pwd = ConvertTo-SecureString -String ProxyUserPassword Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd net stop obengine net start obengine
 
 
 
@@ -424,7 +420,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	>[AZURE.NOTE] 如果您未使用網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。若要執行此動作，請在 HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System 下加入值為 1 的 LocalAccountTokenFilterPolicy DWORD 登錄項目。若要透過 CLI 開啟命令或使用 PowerShell 新增登錄項目，請輸入 **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**。
 
-2.  在您想要保護之機器的 Windows 防火牆上，選取 [Allow an app or feature through Firewall] \(允許應用程式或功能通過防火牆)，並啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
+2.  在您想要保護之機器的 Windows 防火牆上，選取 [允許應用程式或功能通過防火牆]，並啟用 [檔案及印表機共用] 和 [Windows Management Instrumentation]。針對隸屬於網域中的機器，您可以利用 GPO 設定防火牆原則。
 
 	![防火牆設定](./media/site-recovery-vmware-to-azure-classic/mobility1.png)
 
@@ -464,9 +460,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 來源作業系統 | 行動服務安裝檔案
 --- | ---
-Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_Windows\_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz 
-SUSE Linux Enterprise Server 11 SP3 (64 bit only) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
+Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0_Windows_* release.exe
+CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
 
@@ -487,7 +483,7 @@ Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.
 
 您也可以從命令列安裝：
 
-UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝目錄>] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <複雜密碼檔案路徑>] [/LogFilePath <Log File Path>]
+UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝目錄>] [/CSIP <用於註冊的 CS IP 位址>] [/PassphraseFilePath <複雜密碼檔案路徑>] [/LogFilePath <記錄檔路徑>]
 
 其中：
 
@@ -574,7 +570,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 ![啟用保護。](./media/site-recovery-vmware-to-azure-classic/enable-protection5.png)
 
-此外，您可以在 [受保護的項目] > <protection group name> > [虛擬機器] 中監視保護狀態。初始複寫完成並且同步處理資料之後，機器狀態會變更為 **受保護**。
+此外，您可以在 [受保護的項目] > <保護群組名稱> > [虛擬機器] 中監視保護狀態。初始複寫完成並且同步處理資料之後，機器狀態會變更為 [受保護]。
 
 ![啟用保護。](./media/site-recovery-vmware-to-azure-classic/enable-protection6.png)
 
@@ -630,7 +626,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 	- 如果可能的話您應該在執行非計劃性容錯移轉之前關閉主要機器。這可確保您不需要同時執行來源和複本機器。如果您是複寫 VMware VM，則當您執行非計劃性容錯移轉時，您可以指定 Site Recovery 應該要盡全力關閉來源機器。根據主要網站的狀態，可能可以運作。如果您是複寫實體伺服器，則 Site Recovery 不提供此選項。
 	- 當您執行非計劃性容錯移轉時，會停止從主要機器的資料複寫，讓任何資料差異不會在開始非計劃性容錯移轉之後傳送。
 
-- 如果您要在容錯移轉之後連接到 Azure 中的複本虛擬機器，請先在來源機器上啟用遠端桌面連線，再執行測試容錯移轉，並且允許 RDP 連接通過防火牆。您也需要在容錯移轉之後，在 Azure 虛擬機器的公用端點上允許 RDP。請依照這些[最佳做法](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)進行，以確保 RDP 在容錯移轉之後能夠運作。
+- 如果您要在容錯移轉之後連接到 Azure 中的複本虛擬機器，請先在來源機器上啟用遠端桌面連線，再執行測試容錯移轉，並且允許 RDP 連接通過防火牆。您也需要在容錯移轉之後，在 Azure 虛擬機器的公用端點上允許 RDP。請依照這些[最佳作法](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)進行，以確保 RDP 在容錯移轉之後能夠運作。
 
 >[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。Linux 代理程式可在[這裡](https://github.com/Azure/WALinuxAgent)找到，而 Windows 代理程式可在[這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到
 
@@ -742,7 +738,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 --- | --- | ---
 Azure\_Site\_Recovery 角色 | VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區 -> 配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路 -> 網路指派<br/><br/>資源 -> 指派虛擬機器至資源集區、移轉已關閉電源的虛擬機器、移轉已開啟電源的虛擬機器<br/><br/>工作 -> 建立工作、更新工作<br/><br/>虛擬機器 -> 組態<br/><br/>虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟機媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 -> 清查 -> 建立、註冊、取消註冊<br/><br/>虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 -> 快照 -> 移除快照
 vCenter 使用者角色 | VMware VM 探索/容錯移轉而不關閉來源 VM | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=唯讀 <br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取權，請將具有 [傳播至子物件] 的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。
-vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取，請將具有 [傳播至子物件] 的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 
+vCenter 使用者角色 | 容錯移轉和容錯回復 | 針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 – 傳播至子物件、角色=Azure\_Site\_Recovery<br/><br/>使用者是在資料中心層級指派的，因此具有資料中心內所有物件的存取權。如果您想要限制存取，請將具有 [傳播至子物件] 的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。  
 
 
 
@@ -762,4 +758,4 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 [深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將 Azure 中執行失敗的機器還原到您的內部部署環境。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

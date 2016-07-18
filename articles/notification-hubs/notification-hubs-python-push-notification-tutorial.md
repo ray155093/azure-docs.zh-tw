@@ -4,7 +4,7 @@
 	services="notification-hubs" 
 	documentationCenter="" 
 	authors="wesmc7777"
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="python" 
 	ms.devlang="php" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="06/29/2016" 
 	ms.author="wesmc"/>
 
 # 如何透過 Python 使用通知中樞
@@ -28,8 +28,8 @@
 在本主題中，我們將說明如何：
 
 * 在 Python 中建置通知中樞功能的 REST 用戶端。
-* 使用 Python 介面傳送通知到通知中樞 REST API。 
-* 取得 HTTP REST 要求/回應的傾印以用於偵錯/教學用途。 
+* 使用 Python 介面傳送通知到通知中樞 REST API。
+* 取得 HTTP REST 要求/回應的傾印以用於偵錯/教學用途。
 
 您可以遵循選定行動平台的[開始使用教學課程](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)來實作 Python 的後端部分。
 
@@ -320,7 +320,7 @@
 
 您會看到詳細的通知中樞結果，例如
 
-- 訊息成功傳送至推播通知服務的時間。 
+- 訊息成功傳送至推播通知服務的時間。
 	
 		<Outcome>The Notification was successfully sent to the Push Notification System</Outcome>
 
@@ -391,4 +391,4 @@
 [5]: ./media/notification-hubs-python-backend-how-to/TemplatedNotification.png
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

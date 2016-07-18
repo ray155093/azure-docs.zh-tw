@@ -1,5 +1,5 @@
 <properties
-   pageTitle="移轉 Azure 訂用帳戶 | Microsoft Azure"
+   pageTitle="轉移 Azure 訂用帳戶的擁有權 | Microsoft Azure"
    description="如何將 Azure 訂用帳戶轉移到另一位使用者和關於程序的一些常見問題集 (FAQ)"
    services="billing"
    documentationCenter=""
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="billing"
-   ms.date="04/14/2016"
+   ms.date="07/04/2016"
    ms.author="genli"/>
 
-# 移轉 Azure 訂用帳戶
+# 轉移 Azure 訂用帳戶的擁有權
 
 您是否：
 
@@ -27,7 +27,16 @@
 
 您現在可以針對隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶，輕鬆地在 Microsoft Azure 帳戶中心執行此動作。我們已經可讓您將您的訂用帳戶轉移給另一位使用者。換句話說，您現在可以在所擁有的任何隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶上變更帳戶管理員，而不論您是在哪個國家/地區進行操作。我們現在也支援移轉這些訂用帳戶類型的 Azure Marketplace 購買。
 
-## 如何移轉 Azure 訂用帳戶
+**注意** 您必須是帳戶管理員，才能執行擁有權轉移。您可以使用下列方式來確認誰是訂用帳戶的帳戶管理員：
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 在 [中樞] 功能表中，選取 [訂用帳戶]。
+3. 選取您想要檢查的訂用帳戶，然後選取 [設定]。![settings](./media/billing-subscription-transfer/settings.png)
+4. 選取 [內容]。訂用帳戶的帳戶管理員將顯示於 [帳戶管理員] 方塊中。![checkaa](./media/billing-subscription-transfer/checkaa.png)
+
+## 如何轉移 Azure 訂用帳戶的擁有權
+
+> [AZURE.VIDEO transfer-an-azure-subscription]
 
 1.  登入 <https://account.windowsazure.com/Subscriptions>
 
@@ -70,7 +79,7 @@
 
     這不是完整的清單。如果接受者需要限制對其資源的存取權，則應該考慮更新與服務相關聯的任何密碼。大部分資源可以更新如下：
 
-    1.   移至 Azure 入口網站：[**https://portal.azure.com*](https://portal.azure.com)
+    1.   開啟 Azure 入口網站：[*https://portal.azure.com*](https://portal.azure.com)
 
     2.    按一下 [全部瀏覽] -&gt; [所有資源]
 
@@ -114,4 +123,4 @@
 4. 請至 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)[深入了解](http://go.microsoft.com/fwlink/?LinkID=533292) 更新此訂用帳戶的計費警示。
 5. 	如果您正與合作夥伴協力作業，請考慮更新此訂用帳戶的合作夥伴 ID。您可以在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)中執行這個動作。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

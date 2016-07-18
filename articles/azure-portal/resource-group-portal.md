@@ -19,7 +19,16 @@
 
 # 透過入口網站管理 Azure 資源
 
-本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](../resource-group-overview.md) 來管理您的 Azure 資源。若要了解如何透過入口網站部署資源，請參閱 [Deploy resources with Resource Manager templates and Azure portal (使用 Resource Manager 範本與 Azure 入口網站來部署資源)](../resource-group-template-deploy-portal.md)。
+> [AZURE.SELECTOR]
+- [入口網站](azure-portal/resource-group-portal.md)
+- [Azure CLI](xplat-cli-azure-resource-manager.md)
+- [Azure PowerShell](powershell-azure-resource-manager.md)
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
+
+本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](../resource-group-overview.md) 來管理您的 Azure 資源。若要了解如何透過入口網站部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
 目前並非所有服務都支援入口網站或資源管理員。針對這些服務，您必須使用[傳統入口網站](https://manage.windowsazure.com)。如需每個服務的狀態，請參閱 [Azure 入口網站可用性圖表](https://azure.microsoft.com/features/azure-portal/availability/)。
 
@@ -63,7 +72,7 @@
 
     ![拖曳圖格](./media/resource-group-portal/drag-tile.png)
 
-6. 選取入口網站頂端的 [完成] 之後，新的檢視就是刀鋒視窗的一部分。
+6. 選取入口網站頂端的 [完成] 之後，新檢視就是刀鋒視窗的一部分。
 
     ![顯示圖格](./media/resource-group-portal/show-lens.png)
 
@@ -120,6 +129,6 @@
 
 - 若要檢視稽核記錄檔，請參閱[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。
 - 若要針對部署錯誤進行疑難排解，請參閱[使用 Azure 入口網站對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
-- 若要透過入口網站部署資源，請參閱 [Deploy resources with Resource Manager templates and Azure portal (使用 Resource Manager 範本與 Azure 入口網站來部署資源)](../resource-group-template-deploy-portal.md)。
+- 若要透過入口網站部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/18/2016"
+   ms.date="06/30/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 
@@ -180,9 +180,7 @@ $write.Dispose()
 <!--Article references-->
 [Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
 [使用 PolyBase 載入資料]: ./sql-data-warehouse-get-started-load-with-polybase.md
-[solution partners]: ./sql-data-warehouse-solution-partners.md
-[development overview]: ./sql-data-warehouse-overview-develop.md
-[統計資料]: ./sql-data-warehouse-develop-statistics.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 [資料移轉概觀]: ./sql-data-warehouse-overview-migrate.md
 
 <!--MSDN references-->
@@ -208,4 +206,4 @@ $write.Dispose()
 
 <!-- External Links -->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

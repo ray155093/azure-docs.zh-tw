@@ -3,7 +3,7 @@
 
 ##使用 VM 擴充功能
 
-Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure VM 上運作 (例如，**WebDeployForVSDevTest** 延伸模組可讓 Visual Studio 在您的 Azure VM 上進行 Web 部署解決方案)，或是讓您能夠與 VM 互動以支援一些其他行為 (例如，您可以使用 Powershell 的 VM 存取延伸模組、Azure CLI 和 REST 用戶端，來重設或修改 Azure VM 上的遠端存取值)。
+Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure VM 上運作 (例如，**WebDeployForVSDevTest** 延伸模組可讓 Visual Studio 在您的 Azure VM 上進行 Web 部署解決方案)，或是讓您能夠與 VM 互動以支援一些其他行為 (例如，您可以使用 PowerShell 的 VM 存取延伸模組、Azure CLI 和 REST 用戶端，來重設或修改 Azure VM 上的遠端存取值)。
 
 >[AZURE.IMPORTANT] 如需所支援功能的完整延伸模組清單，請參閱 [Azure VM 延伸模組與功能](../articles/virtual-machines/virtual-machines-windows-extensions-features.md)。因為每個 VM 擴充功能支援特定功能，您確切可以及不可以使用擴充功能做到的事取決於擴充功能。因此，在修改 VM 之前，請確定您已閱讀想要使用之 VM 擴充功能的文件。不支援移除一些 VM 擴充功能。其他則具有已設定來大幅變更 VM 行為的屬性。
 
@@ -22,12 +22,12 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 您可以使用下列各項找到擴充功能和其他資訊：
 
 -   PowerShell
--   Azure 跨平台介面 (Azure CLI)
+-   Azure 跨平台命令列介面 (Azure CLI)
 -   服務管理 REST API
 
 ###Azure PowerShell
 
-有些擴充功能有特有的 Powershell Cmdlet，這可能會使其更容易從 PowerShell 進行設定。但下列 Cmdlet 適用於所有的 VM 擴充功能。
+有些擴充功能有特有的 PowerShell Cmdlet，這可能會使其更容易從 PowerShell 進行設定。但下列 Cmdlet 適用於所有的 VM 擴充功能。
 
 您可以使用下列 Cmdlet 來取得可用擴充功能的相關資訊：
 
@@ -36,9 +36,7 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 
      例如，下列程式碼範例示範如何使用 PowerShell 來列出 **IaaSDiagnostics** 延伸模組的資訊。
 
-        PS C:\PowerShell> Get-AzureVMAvailableExtension -ExtensionName IaaSDiagnostics
-        VERBOSE: 5:09:01 PM - Begin Operation: Get-AzureVMAvailableExtension
-        VERBOSE: 5:09:06 PM - Completed Operation: Get-AzureVMAvailableExtension
+        PS C:\> Get-AzureVMAvailableExtension -ExtensionName IaaSDiagnostics
 
         Publisher                   : Microsoft.Azure.Diagnostics
         ExtensionName               : IaaSDiagnostics
@@ -64,7 +62,7 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 
 有些延伸模組有特有的 Azure CLI 命令 (Docker VM 延伸模組便是一個例子)，這可能會讓其更容易進行設定。但下列命令適用於所有的 VM 延伸模組。
 
-您可以使用 **azure vm extension list** 命令來取得可用延伸模組的相關資訊，並使用 **--json** 選項來顯示有關一或多個延伸模組的所有可用資訊。如果您不使用擴充功能名稱，命令會傳回所有可用擴充功能的 json 描述。
+您可以使用 **azure vm extension list** 命令來取得可用延伸模組的相關資訊，並使用 **--json** 選項來顯示有關一或多個延伸模組的所有可用資訊。如果您不使用擴充功能名稱，命令會傳回所有可用擴充功能的 JSON 描述。
 
 例如，下列程式碼範例示範如何使用 Azure CLI **azure vm extension list** 命令列出 **IaaSDiagnostics** 延伸模組的資訊，並使用 **–-json** 選項傳回完整資訊。
 
@@ -119,4 +117,4 @@ Azure VM 延伸模組會實作行為或功能，以協助其他程式在 Azure V
 
 >[AZURE.NOTE]擴充功能也可以使用 JSON 所定義的組態。使用這些類型的延伸模組時，只會使用 **SampleConfig** 元素。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

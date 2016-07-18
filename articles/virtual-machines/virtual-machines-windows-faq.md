@@ -79,4 +79,8 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 是。若要快速建立 Linux VM 以試用，請參閱[使用入口網站在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-portal.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+## 我可以在建立 VM 之後將 NIC 新增至此 VM 嗎？
+
+否。目前只能在建立時這樣做。
+
+<!---HONumber=AcomDC_0706_2016-->

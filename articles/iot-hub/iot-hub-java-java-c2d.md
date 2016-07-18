@@ -24,16 +24,20 @@
 
 Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。[IoT 中心入門]教學課程會示範如何建立 IoT 中心、在其中佈建裝置識別，以及編寫模擬的裝置，以傳送裝置到雲端的訊息。
 
-本教學課程是以[開始使用 IoT 中樞]為基礎。本教學課程示範如何將雲端到裝置訊息傳送至單一裝置、向「IoT 中樞」要求傳遞通知 (「回饋」)，以及從應用程式雲端後端接收該通知。
+本教學課程是以[開始使用 IoT 中樞]為基礎。這會說明如何：
+
+- 從您的應用程式雲端後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
+- 接收裝置上的雲端到裝置訊息。
+- 從您的應用程式雲端後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (*意見反應*)。
 
 您可以在 [IoT 中心開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
 在本教學課程結尾，您將會執行兩個 Java 主控台應用程式：
 
-* **simulated-device**：在[開始使用 IoT 中樞]中建立之應用程式的修改版本，可連接到您的「IoT 中樞」並接收雲端到裝置訊息。
+* **simulated-device**：在[開始使用 IoT 中樞]中建立的應用程式修改版本，可連接到您的「IoT 中樞」並接收雲端到裝置訊息。
 * **send-c2d-messages**：會將雲端到裝置訊息透過「IoT 中樞」傳送到模擬的裝置，然後接收其傳遞通知。
 
-> [AZURE.NOTE] 「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。如需有關如何將您的裝置與本教學課程中的程式碼做連接 (通常是連接到「Azure IoT 中樞」) 的逐步指示，請參閱 [Azure IoT 開發人員中樞]。
+> [AZURE.NOTE] 「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。如需有關如何將您的裝置與本教學課程中的程式碼連接 (通常是連接到「Azure IoT 中樞」) 的逐步指示，請參閱 [Azure IoT 開發人員中樞]。
 
 若要完成此教學課程，您需要下列項目：
 
@@ -45,7 +49,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 在模擬裝置上接收訊息
 
-在本節中，您將修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中心的雲端對裝置訊息。
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
 
 1. 使用文字編輯器開啟 simulated-device\\src\\main\\java\\com\\mycompany\\app\\App.java 檔案。
 
@@ -73,11 +77,11 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     client.open();
     ```
 
-    > [AZURE.NOTE] 如果您使用 HTTP/1 而非 AMQP 來做為傳輸，**DeviceClient** 執行個體不會經常檢查 IoT 中樞是否傳來訊息 (每隔 25 分鐘以上)。如需有關 AMQP 與 HTTP/1 支援間的差異，以及「IoT 中樞」節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+    > [AZURE.NOTE] 如果您使用 HTTP/1 而非 AMQP 做為傳輸，**DeviceClient** 執行個體不會經常檢查 IoT 中樞是否傳來訊息 (每隔 25 分鐘以上)。如需有關 AMQP 與 HTTP/1 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
 ## 從應用程式後端傳送雲端到裝置訊息
 
-在本節中，您會建立 Java 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼，以及您的 IoT 中樞的連接字串 (可在 Azure 入口網站中找到)。
+在本節中，您會建立 Java 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼，以及您 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
 
 1. 在命令提示字元中使用下列命令建立名為 **send-c2d-messages** 的新 Maven 專案。請注意，這是一個非常長的命令：
 
@@ -87,7 +91,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 2. 在命令提示字元中，瀏覽到新的 send-c2d-messages 資料夾。
 
-3. 使用文字編輯器，在 send-c2d-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性] 節點新增下列相依性。這可讓您使用應用程式中的 **iothub-java-service-client** 封裝與 IoT 中樞服務通訊：
+3. 使用文字編輯器，在 send-c2d-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性] 節點新增下列相依性。這可讓您使用應用程式中的 **iothub-java-service-client** 套件與 IoT 中樞服務通訊：
 
     ```
     <dependency>
@@ -117,7 +121,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     private static final IotHubServiceClientProtocol protocol = IotHubServiceClientProtocol.AMQPS;
     ```
     
-8. 使用下列連線到您的 IoT 中樞的程式碼取代 **main** 方法，傳送訊息給您的裝置，然後等候裝置已接收並處理訊息的通知︰
+8. 使用下列連線到您 IoT 中樞的程式碼取代 **main** 方法，傳送訊息給您的裝置，然後等候裝置已接收並處理訊息的通知︰
 
     ```
     public static void main(String[] args) throws IOException,
@@ -151,6 +155,26 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
     > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在生產環境程式碼中，您應該如 MSDN 文章[暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
 
+## 執行應用程式
+
+現在您已經準備好執行應用程式。
+
+1. 在 simulated-device 資料夾的命令提示字元中，執行下列命令以開始將遙測資料傳送至 IoT 中樞，並接聽從 IoT 中樞送出的雲端到裝置訊息：
+
+    ```
+    mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
+    ```
+
+    ![][img-simulated-device]
+
+2. 在 send-c2d-messages 資料夾中的命令提示字元，執行下列命令來傳送雲端到裝置訊息並等候意見反應通知︰
+
+    ```
+    mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
+    ```
+
+    ![][img-send-command]
+
 ## 後續步驟
 
 在本教學課程中，您已了解如何傳送和接收雲端到裝置的訊息。您可以利用下列教學課程繼續探索 IoT 中樞功能和案例：
@@ -166,6 +190,10 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 * [支援的裝置平台和語言]
 * [Azure IoT 開發人員中心]
 
+
+<!-- Images -->
+[img-simulated-device]: media/iot-hub-java-java-c2d/receivec2d.png
+[img-send-command]: media/iot-hub-java-java-c2d/sendc2d.png
 <!-- Links -->
 
 [IoT 中心入門]: iot-hub-java-java-getstarted.md
@@ -182,5 +210,6 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/java-devbox-setup.md
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

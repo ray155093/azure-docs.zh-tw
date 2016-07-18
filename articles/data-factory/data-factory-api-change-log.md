@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="07/05/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory - .NET API 變更記錄 
@@ -45,7 +45,7 @@
 	- [資料集](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.pipelineproperties.datasets.aspx)
 - 下列屬性已新增至 [PipelineRuntimeInfo](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.common.models.pipelineruntimeinfo.aspx)：
 	- [PipelineState](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.common.models.pipelineruntimeinfo.pipelinestate.aspx)
-- 加入了新的 [StorageFormat](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.storageformat.aspx) 類型 [JsonFormat](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.jsonformat.aspx) 類型，可用來定義資料採用 JSON 格式的資料集。 
+- 加入了新的 [StorageFormat](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.storageformat.aspx) 類型 [JsonFormat](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.jsonformat.aspx) 類型，可用來定義資料採用 JSON 格式的資料集。
 
 ## 4\.5.0 版
 發行日期：2016.02.24
@@ -53,11 +53,11 @@
 ### 新增功能
 * 加入了[活動時段的清單作業](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.activitywindowoperationsextensions.aspx)。
     * 已根據實體類型 (即資料處理站、資料集、管線和活動)，加入了擷取有篩選器活動視窗的方法。
-* 已加入下列連結服務類型： 
+* 已加入下列連結服務類型：
     * [ODataLinkedService](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.odatalinkedservice.aspx)、[WebLinkedService](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.weblinkedservice.aspx)
-* 已加入下列資料集類型： 
+* 已加入下列資料集類型：
     * [ODataResourceDataset](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.odataresourcedataset.aspx)、[WebTableDataset](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.webtabledataset.aspx)
-* 已加入下列複製來源類型： 	
+* 已加入下列複製來源類型：
     * [WebSource](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.websource.aspx)
 
 ## 4\.4.0 版
@@ -66,7 +66,7 @@
 ### 新增功能
 
 - 已新增下列連結服務類型來做為複製活動的資料來源和接收器：
-	- [AzureStorageSasLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.azurestoragesaslinkedservice.aspx)。如需概念性資訊和範例，請參閱 [Azure 儲存體 SAS 連結服務](data-factory-azure-blob-connector.md#azure-storage-sas-linked-service)。 
+	- [AzureStorageSasLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.azurestoragesaslinkedservice.aspx)。如需概念性資訊和範例，請參閱 [Azure 儲存體 SAS 連結服務](data-factory-azure-blob-connector.md#azure-storage-sas-linked-service)。
 
 ## 4\.3.0 版
 發行日期：2015.11.25
@@ -74,8 +74,8 @@
 ### 新增功能
 
 - 已新增下列連結服務類型來做為複製活動的資料來源：
-	- [HdfsLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.hdfslinkedservice.aspx)。如需概念性資訊和範例，請參閱 [使用 Data Factory 從 HDFS 移動資料](data-factory-hdfs-connector.md)。 
-	- [OnPremisesOdbcLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.onpremisesodbclinkedservice.aspx)。如需概念性資訊和範例，請參閱 [使用 Azure Data Factory 從 ODBC 資料存放區移動資料](data-factory-odbc-connector.md)。 
+	- [HdfsLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.hdfslinkedservice.aspx)。如需概念性資訊和範例，請參閱 [使用 Data Factory 從 HDFS 移動資料](data-factory-hdfs-connector.md)。
+	- [OnPremisesOdbcLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.onpremisesodbclinkedservice.aspx)。如需概念性資訊和範例，請參閱 [使用 Azure Data Factory 從 ODBC 資料存放區移動資料](data-factory-odbc-connector.md)。
 
 ## 4\.2.0 版
 發行日期：2015-11-10
@@ -83,21 +83,21 @@
 ### 新增功能
 
 - 新增下列新的活動類型：[AzureMLUpdateResourceActivity](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuremlupdateresourceactivity.aspx)。如需有關活動的詳細資訊，請參閱[使用更新資源活動更新 Azure ML 模型](data-factory-azure-ml-batch-execution-activity.md#updating-azure-ml-models-using-the-update-resource-activity)。
-- 新的選擇性屬性 [updateResourceEndpoint](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuremllinkedservice.updateresourceendpoint.aspx) 已加入 [AzureMLLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuremllinkedservice.aspx)。 
-- [LongRunningOperationInitialTimeout](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.longrunningoperationinitialtimeout.aspx) 和 [LongRunningOperationRetryTimeout](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.longrunningoperationretrytimeout.aspx) 屬性已加入 [DataFactoryManagementClient](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.aspx) 類別。 
-- 允許設定用戶端呼叫 Data Factory 服務的逾時值。 
+- 新的選擇性屬性 [updateResourceEndpoint](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuremllinkedservice.updateresourceendpoint.aspx) 已加入 [AzureMLLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuremllinkedservice.aspx)。
+- [LongRunningOperationInitialTimeout](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.longrunningoperationinitialtimeout.aspx) 和 [LongRunningOperationRetryTimeout](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.longrunningoperationretrytimeout.aspx) 屬性已加入 [DataFactoryManagementClient](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.datafactorymanagementclient.aspx) 類別。
+- 允許設定用戶端呼叫 Data Factory 服務的逾時值。
 
 
 ## 4\.1.0 版
 發行日期：2015-10-28
 
 ### 新增功能
-* 已加入下列連結服務類型： 
+* 已加入下列連結服務類型：
     * [AzureDataLakeStoreLinkedService](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)
     * [AzureDataLakeAnalyticsLinkedService](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)
-* 已加入下列活動類型： 
+* 已加入下列活動類型：
     * [DataLakeAnalyticsUSQLActivity](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.datalakeanalyticsusqlactivity.aspx)
-* 已加入下列資料集類型： 
+* 已加入下列資料集類型：
     * [AzureDataLakeStoreDataset](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestoredataset.aspx)
 * 已加入複製活動的下列來源和接收器類型：
     * [AzureDataLakeStoreSource](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestoresource.aspx)
@@ -164,4 +164,4 @@ SqlServerDataset | [SqlServerTableDataset](https://msdn.microsoft.com/library/mi
 
 - 我們現在支援對 Azure SQL Database 和 Azure SQL 資料倉儲的來源執行預存程序，做為複製活動的一部分。[SqlSource](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.sqlsource.aspx) 和 [SqlDWSource](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.sqldwsource.aspx) 類別具有下列屬性，以支援此功能：**SqlReaderStoredProcedureName** 和 **StoredProcedureParameters**。如需這些屬性的詳細資料，請參閱 Azure.com 上的 [Azure SQL Database](data-factory-azure-sql-connector.md#sqlsource) 和 [Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#sqldwsource)文章。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -1,10 +1,10 @@
 <properties
-   pageTitle="如何執行安全性檢閱 | Microsoft Azure"
+   pageTitle="如何執行存取權檢閱 | Microsoft Azure"
    description="了解如何使用 Azure Privileged Identity Management 應用程式來執行檢閱。"
    services="active-directory"
    documentationCenter=""
    authors="kgremban"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/19/2016"
+   ms.date="07/01/2016"
    ms.author="kgremban"/>
 
-# Azure AD Privileged Identity Management：如何執行安全性檢閱
+# 如何在 Azure AD Privileged Identity Management 中執行存取權檢閱
 
 Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理特殊權限身分識別的方式，和存取 Azure AD 以及如 Office 365 或 Microsoft Intune 等其他 Microsoft 線上服務資源的方式。
 
@@ -28,25 +28,32 @@ Azure Active Directory (AD) Privileged Identity Management 簡化了企業管理
 
 您可以使用 [Azure 入口網站](https://portal.azure.com/)中的 Azure AD Privileged Identity Management (PIM) 應用程式來執行檢閱。如果入口網站中沒有 Azure AD Privileged Identity Management 應用程式，請遵循這些步驟操作。
 
-1. 如果您尚未登入 [Azure 入口網站](https://portal.azure.com/)，請先登入。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 如果貴組織有多個目錄，請按一下 Azure 入口網站右上角的使用者名稱，選取您要操作的目錄。
-3. 選取左側導覽中的**新增**圖示。
-4. 從功能表中選取 [安全性 + 識別]。
-5. 選取 [Azure AD Privileged Identity Management]。
-6. 保留勾選 [釘選到儀表板] 核取方塊，然後按一下 [建立] 按鈕。Privileged Identity Management 應用程式隨即開啟。
+3. 選取 [新增] > [安全性 + 身分識別] > [Azure AD Privileged Identity Management]。
+
+	![在入口網站中啟用 PIM][1]
+
+4. 選取 [釘選到儀表板] 選項，然後按一下 [建立] 按鈕。[特殊權限身分識別管理] 儀表板隨即開啟。
 
 
 ## 核准或拒絕存取
 
-存取不會變更，直到[完成檢閱](active-directory-privileged-identity-management-how-to-complete-review.md)。此程序只會針對變更角色存取權的使用者建置檢查清單。至少選取一位使用者之後，即會啟用 [核准存取] 和 [拒絕存取] 按鈕。
+當您核准或拒絕存取權時，只是在告訴檢閱者您是否仍然使用此角色。如果您想要繼續擔任此角色，請選擇 [核准]，如果您已不再需要此存取權，則請選擇 [拒絕]。您的狀態不會立即變更，必須等到檢閱者套用結果之後才會變更。請依照下列步驟來尋找並完成存取權檢閱︰
 
-1. 在 PIM 應用程式中，按一下主功能表上的 [檢閱系統管理存取權]。隨即會出現安全性檢閱清單。
-2. 在清單中，選取您要變更存取權的 [使用者]。
-3. 針對您選取的使用者按一下 [核准存取] 或 [拒絕存取]。通知會出現在 Azure 入口網站的主功能表上，檢閱清單中選取的名稱便會消失 (變更篩選選項即可再度顯示名稱)。關閉 [檢閱 Azure AD 角色] 刀鋒視窗。
+1. 在 PIM 應用程式中，選取 [檢閱特殊存取權限]。如果您有任何擱置中的存取權檢閱時，它們會顯示在 Azure AD 的 [存取權檢閱] 刀鋒視窗中。
+2. 選取您想要完成的檢閱。
+3. 除非該檢閱是您所建立，否則您將會顯示為該檢閱中的唯一使用者。選取您名稱旁邊的核取記號。
+4. 選擇 [核准] 或 [拒絕]。您可能需要在 [提供原因] 文字方塊中提供您的決定原因。
+5. 關閉 [檢閱 Azure AD 角色] 刀鋒視窗。
 
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!--Image references-->
+
+[1]: ./media/active-directory-privileged-identity-management-configure/PIM_EnablePim.png
+
+<!---HONumber=AcomDC_0706_2016-->

@@ -52,7 +52,7 @@
 ### 僅限雲端虛擬網路
 如果內部部署的使用者和電腦不需持續連線到 Azure 虛擬網路中的 VM，您的虛擬網路設計將會相當直覺：
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/vnet01.png)
+![基本僅雲端虛擬網路圖表](./media/virtual-machines-common-infrastructure-service-guidelines/vnet01.png)
 
 這通常適用於網際網路對應的工作負載，例如，以網際網路為基礎的 Web 伺服器。您可以使用 SSH 或點對站 VPN 連線來管理這些 VM。
 
@@ -62,7 +62,7 @@
 ### 跨單位虛擬網路
 如果內部部署的使用者和電腦要求持續連線到 Azure 虛擬網路中的 VM，請建立跨單位的虛擬網路，然後使用 ExpressRoute 或站對站 VPN 連線，將它連線到您的內部部署網路。
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/vnet02.png)
+![跨部署虛擬網路圖表](./media/virtual-machines-common-infrastructure-service-guidelines/vnet02.png)
 
 在這個設定中，Azure 虛擬網路本質上是您的內部部署網路中具備雲端功能的延伸模組。
 
@@ -107,4 +107,4 @@
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

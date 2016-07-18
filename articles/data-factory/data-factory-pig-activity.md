@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="06/15/2016" 
 	ms.author="spelluru"/>
 
 # Pig 活動
@@ -98,7 +98,7 @@ script | 指定 Pig 指令碼內嵌 | 否
 1. 建立連結服務以註冊[您自己的 HDInsight 運算叢集](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或設定[隨選 HDInsight 運算叢集](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。讓我們將此連結服務命名為 "HDInsightLinkedService"。
 2.	建立[連結服務](data-factory-azure-blob-connector.md)以設定裝載資料之 Azure Blob 儲存體的連接。讓我們將此連結服務命名為 "StorageLinkedService"。
 3.	建立指向輸入和輸出資料的[資料集](data-factory-create-datasets.md)。讓我們分別命名輸入資料集為 "PigSampleIn" 和輸出資料集為 "PigSampleOut"。
-4.	將檔案中的 Pig 查詢複製到上述步驟 #2 中設定的 Azure Blob 儲存體。如果裝載資料的連結服務和裝載此查詢檔案的服務不同，請建立個別的 Azure 儲存體連結服務並在活動組態中參考它。使用 **scriptPath** 指定 Pig 指令碼檔案的路徑並使用 **scriptLinkedService** 指定包含指令碼檔案的 Azure 儲存體。
+4.	將檔案中的 Pig 查詢複製到上述步驟 #2 中設定的 Azure Blob 儲存體。如果裝載資料的連結服務和裝載此查詢檔案的服務不同，請建立個別的 Azure 儲存體連結服務並在活動組態中參考它。使用 **scriptPath** 指定 Pig 指令碼檔案的路徑，並使用 **scriptLinkedService** 指定包含指令碼檔案的 Azure 儲存體。
 	
 	> [AZURE.NOTE] 您也可以使用**指令碼**屬性提供活動定義中內嵌的 Pig 指令碼，但是不建議這麼做，因為 JSON 文件內指令碼中的所有特殊字元需要逸出，而且可能會造成偵錯問題。最佳做法是遵循步驟 #4。
 5. 利用 HDInsightPig 活動建立下列管線來處理資料。
@@ -133,7 +133,7 @@ script | 指定 Pig 指令碼內嵌 | 否
 		    ]
 		  }
 		} 
-6. 部署管線。如需詳細資料，請參閱〈[建立管線](data-factory-create-pipelines.md)〉文章。 
+6. 部署管線。如需詳細資料，請參閱〈[建立管線](data-factory-create-pipelines.md)〉文章。
 7. 使用資料處理站監視和管理檢視來監視管線。如需詳細資料，請參閱〈[監視及管理 Data Factory 管線](data-factory-monitor-manage-pipelines.md)〉文章。
 
 ## 使用定義項目指定 Pig 指令碼的參數
@@ -194,4 +194,4 @@ script | 指定 Pig 指令碼內嵌 | 否
 - [叫用 Spark 程式](data-factory-spark.md)
 - [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

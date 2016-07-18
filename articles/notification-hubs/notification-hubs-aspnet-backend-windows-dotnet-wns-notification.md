@@ -3,7 +3,7 @@
 	description="了解如何在 Azure 中傳送安全的推播通知。程式碼範例是以 C# 撰寫並使用 .NET API。"
 	documentationCenter="windows"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	services="notification-hubs"
 	editor=""/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="06/29/2016"
 	ms.author="wesmc"/>
 
 #Azure 通知中樞透過 .NET 後端通知使用者
@@ -347,7 +347,7 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 
 1. 在 Windows 8.1 和 Windows Phone 8.1 上啟動應用程式。對於 Windows Phone 8.1，您可以在模擬器或實際裝置中執行執行個體。
 
-2. 在應用程式的 Windows 8.1 執行個體中，輸入 [使用者名稱] 和 [密碼] \ (如下列畫面所示)。它應該與您在 Windows Phone 上輸入的使用者名稱和密碼不同。
+2. 在應用程式的 Windows 8.1 執行個體中，輸入 [使用者名稱] 和 [密碼] (如下列畫面所示)。它應該與您在 Windows Phone 上輸入的使用者名稱和密碼不同。
 
 
 3. 按一下 [登入並註冊]，並確認顯示您已登入的對話方塊。這也會啟用 [傳送推播] 按鈕。
@@ -387,4 +387,4 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 [使用通知中心傳送即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
 [通知中心指引]: http://msdn.microsoft.com/library/jj927170.aspx
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/20/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # 針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
@@ -242,4 +242,4 @@
 
 - [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域) ](active-directory-ds-admin-guide-administer-domain.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

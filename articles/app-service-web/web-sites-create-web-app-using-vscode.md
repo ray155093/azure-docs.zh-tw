@@ -32,7 +32,7 @@ ASP.NET 5 是大幅重新設計的 ASP.NET。ASP.NET 5 是新的開放原始碼�
 
 * 安裝 [VS Code](http://code.visualstudio.com/Docs/setup)。
 * 安裝 [Node.js](http://nodejs.org) - Node.js 是一種平台，可使用 JavaScript 來建置快速且可調整的伺服器應用程式。Node 是執行階段 (Node)，而 [npm](http://www.npmjs.com/) 是Node 模組的封裝管理員。您將使用 npm，在本教學課程中建立 ASP.NET 5 Web 應用程式的結構。
-* 安裝 Git - 您可以從下列位置安裝它：[Chocolatey](https://chocolatey.org/packages/git) 或 [git scm.com](http://git-scm.com/downloads)。如果您不熟悉 Git，請選擇 [git-scm.com](http://git-scm.com/downloads)，然後選取 [從 Windows 命令提示字元使用 Git] 選項。一旦您安裝 Git，也需要設定 Git 使用者名稱和電子郵件，因為稍後教學課程將需要用到 (從 VS Code 執行認可時)。  
+* 安裝 Git - 您可以從下列位置安裝它：[Chocolatey](https://chocolatey.org/packages/git) 或 [git scm.com](http://git-scm.com/downloads)。如果您不熟悉 Git，請選擇 [git-scm.com](http://git-scm.com/downloads)，然後選取 [從 Windows 命令提示字元使用 Git] 選項。一旦您安裝 Git，也需要設定 Git 使用者名稱和電子郵件，因為稍後教學課程將需要用到 (從 VS Code 執行認可時)。
 
 ## 安裝 ASP.NET 5 和 DNX
 ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X、Linux 及 Windows 上執行的新式雲端和 Web 應用程式。它已從頭建置，以將最佳化的開發架構提供給已部署至雲端或執行內部部署的應用程式。其由額外負荷最低的模組化元件組成，以便您可以在建構解決方案時保留彈性。
@@ -93,7 +93,7 @@ ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X�
 
 	![Yeoman-ASP.NET 5 產生器](./media/web-sites-create-web-app-using-vscode/01-yo-aspnet.png)
 
-5. 將新的 ASP.NET web 應用程式的名稱設定為 **SampleWebApp**。因為整個教學課程會使用此名稱，所以如果您選取不同的名稱，您需要取代每次出現的 **SampleWebApp**。按下 **&lt;Enter>** 時，Yeoman 將會建立名為 **SampleWebApp** 的新資料夾，以及新應用程式必要的檔案。
+5. 將新的 ASP.NET web 應用程式的名稱設定為 **SampleWebApp**。因為整個教學課程會使用此名稱，所以如果您選取不同的名稱，您需要取代每次出現的 **SampleWebApp**。按下 ** &lt;Enter>** 時，Yeoman 將會建立名為 **SampleWebApp** 的新資料夾，以及新應用程式必要的檔案。
 
 6. 在命令提示字元，將目錄切換到您的新專案資料夾：
 
@@ -123,7 +123,7 @@ ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X�
 
 	命令視窗將會顯示該應用程式已啟動。如果命令視窗未顯示此訊息，請檢查 VS Code 左下角以找出專案中的錯誤。
 	
-	> [AZURE.NOTE] 在 [命令選擇區] 發出命令時，命令列的開頭必須要有 **>** 字元。您可以在 *project.json* 檔案中檢視 **web** 命令的相關詳細資料。
+	> [AZURE.NOTE] 在 [命令選擇區] 發出命令時，命令列的開頭必須要有 **>** 字元。您可以在 *project.json* 檔案中檢視 **web** 命令的相關詳細資料。如果命令未出現或無法使用，您可能需要安裝 C# 擴充功能。執行 `>Extensions: Install Extension` 和 `ext install c#` 來安裝 C# 擴充功能。
 
 2. 開啟瀏覽器並瀏覽至下列 URL。
 
@@ -250,7 +250,7 @@ Git 是一個您可用來部署 Azure App Service Web 應用程式的分散式�
 
 這有兩種方式可以完成：
 
-* 開啟瀏覽器並輸入 Web 應用程式的名稱，如下所示。   
+* 開啟瀏覽器並輸入 Web 應用程式的名稱，如下所示。
 
 		http://SampleWebAppDemo.azurewebsites.net
  
@@ -262,4 +262,4 @@ Git 是一個您可用來部署 Azure App Service Web 應用程式的分散式�
 ## 摘要
 在本教學課程中，您學到如何在 VS Code 建立 Web 應用程式，並將其部署至 Azure。如需有關 VS Code 的詳細資訊，請參閱文章：[為什選擇 Visual Studio Code？](https://code.visualstudio.com/Docs/) 如需 App Service Web Apps 的相關資訊，請參閱 [Web 應用程式概觀](app-service-web-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

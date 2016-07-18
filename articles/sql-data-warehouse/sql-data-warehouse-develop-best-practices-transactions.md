@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/21/2016"
+   ms.date="06/30/2016"
    ms.author="jrj;barbkess"/>
 
 # 最佳化 SQL 資料倉儲的交易
@@ -413,7 +413,7 @@ Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。�
 
 <!--Article references-->
 [SQL 資料倉儲中的交易]: ./sql-data-warehouse-develop-transactions.md
-[資料表分割]: ./sql-data-warehouse-develop-table-partitions.md
+[資料表分割]: ./sql-data-warehouse-tables-partition.md
 [並行]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
 [SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
@@ -424,4 +424,4 @@ Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。�
 
 <!-- Other web references -->
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/04/2016"
+	ms.date="06/28/2016"
 	ms.author="mahender"/>
 
 # 將驗證新增至 Xamarin.Android 應用程式
@@ -107,4 +107,4 @@
 <!-- URLs. -->
 [建立 Xamarin.Android 應用程式教學課程]: app-service-mobile-xamarin-android-get-started.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0706_2016-->
