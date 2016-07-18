@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/17/2016"
+   ms.date="06/30/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 將資料載入 Azure SQL 資料倉儲
@@ -38,7 +38,7 @@
 
 <!-- 5. Schedule and run a loading job. --> 
 
-如需教學課程，請參閱 [Load data from Azure blob storage to SQL Data Warehouse (PolyBase) (從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase))][]。
+如需教學課程，請參閱[從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)][]。
 
 ### 2\.使用 Azure Data Factory
 
@@ -57,7 +57,7 @@
 ## 從 SQL Server 載入
 若要將資料從 SQL Server 載入 SQL 資料倉儲，您可以使用 Integration Services (SSIS)、傳輸一般檔案，或寄送磁碟給 Microsoft。繼續閱讀以查看不同載入程序的摘要，以及教學課程的連結。
 
-若要計畫從 SQL Server 到 SQL 資料倉儲的完整資料移轉，請參閱[移轉概觀][]。
+若要規劃從 SQL Server 到 SQL 資料倉儲的完整資料移轉，請參閱[移轉概觀][]。
 
 ### 使用 Integration Services (SSIS)
 如果您已經在使用 Integration Services (SSIS) 套件來載入至 SQL Server，您可以更新套件以使用 SQL Server 做為來源，並使用 SQL 資料倉儲做為目的地。這是一項快速且簡單的作業，也很適合在您不想移轉載入程序以使用已存在於雲端中之資料的情況下使用。缺點是載入的速度將會比使用 PolyBase 的情況還慢，因為此 SSIS 並不會以平行的方式執行載入。
@@ -69,7 +69,7 @@
 3. 將您套件中的對應變更為僅使用 SQL 資料倉儲所支援的資料類型。
 3. 排程並執行套件。
 
-如需教學課程，請參閱 [Load data from SQL Server to Azure SQL Data Warehouse (SSIS) (將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS))][]。
+如需教學課程，請參閱[從 SQL Server 將資料載入 Azure SQL 資料倉儲 (SSIS)][]。
 
 ### 使用 AZCopy (建議於資料 < 10 TB 的情況使用)
 如果您的資料大小 < 10 TB，您可以從 SQL Server 將資料匯出成一般檔案，將檔案複製到 Azure Blob 儲存體，然後使用 PolyBase 將資料載入至 SQL 資料倉儲
@@ -80,7 +80,7 @@
 2. 使用 AZCopy 命令列公用程式將資料從一般檔案複製到 Azure Blob 儲存體。
 3. 使用 PolyBase 來載入 SQL 資料倉儲。
 
-如需教學課程，請參閱 [Load data from Azure blob storage to SQL Data Warehouse (PolyBase) (從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase))][]。
+如需教學課程，請參閱[從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)][]。
 
 ### 使用 bcp
 如果您只有少量的資料，您可以使用 bcp 將資料直接載入至 Azure SQL 資料倉儲。
@@ -89,7 +89,7 @@
 1. 使用 bcp 命令列公用程式從 SQL Server 將資料匯出成一般檔案。
 2. 使用 bcp 將資料從一般檔案直接載入 SQL 資料倉儲。
 
-如需教學課程，請參閱[將資料從 SQL Server 載入 Azure SQL 資料倉儲 (bcp)][]。
+如需教學課程，請參閱[從 SQL Server 將資料載入 Azure SQL 資料倉儲 (bcp)][]。
 
 
 ### 使用匯入/匯出 (建議於資料 > 10 TB 的情況使用)
@@ -105,7 +105,6 @@
 
 我們有許多合作夥伴皆提供載入解決方案。若要深入了解，請參閱我們的[解決方案合作夥伴][]清單。
 
-
 如果您的資料是來自非關聯式來源，且您想要將它載入 SQL 資料倉儲，您在載入之前必須先將它轉換成資料列和資料行。已轉換的資料並不需要儲存在資料庫中，而可以儲存在文字檔案中。
 
 建立新載入資料的統計資料。Azure 資料倉儲尚未支援自動建立或自動更新統計資料。為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。如需詳細資料，請參閱[統計資料][]。
@@ -117,21 +116,21 @@
 <!--Image references-->
 
 <!--Article references-->
-[Load data from Azure blob storage to SQL Data Warehouse (PolyBase) (從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase))]: sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
-[從 Azure blob 儲存體將資料載入 Azure SQL 資料倉儲 (Azure Data Factory)]: sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md
-[Load data from SQL Server to Azure SQL Data Warehouse (SSIS) (將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS))]: sql-data-warehouse-load-from-sql-server-with-integration-services.md
-[將資料從 SQL Server 載入 Azure SQL 資料倉儲 (bcp)]: sql-data-warehouse-load-from-sql-server-with-bcp.md
-[Load data from SQL Server to Azure SQL Data Warehouse (AZCopy)]: sql-data-warehouse-load-from-sql-server-with-azcopy.md
+[從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)]: ./sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
+[從 Azure blob 儲存體將資料載入 Azure SQL 資料倉儲 (Azure Data Factory)]: ./sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md
+[從 SQL Server 將資料載入 Azure SQL 資料倉儲 (SSIS)]: ./sql-data-warehouse-load-from-sql-server-with-integration-services.md
+[從 SQL Server 將資料載入 Azure SQL 資料倉儲 (bcp)]: ./sql-data-warehouse-load-from-sql-server-with-bcp.md
+[Load data from SQL Server to Azure SQL Data Warehouse (AZCopy)]: ./sql-data-warehouse-load-from-sql-server-with-azcopy.md
 
-[載入範例資料庫]: sql-data-warehouse-load-sample-databases.md
-[移轉概觀]: sql-data-warehouse-overview-migrate.md
-[解決方案合作夥伴]: sql-data-warehouse-integrate-solution-partners.md
-[開發概觀]: sql-data-warehouse-overview-develop.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
+[載入範例資料庫]: ./sql-data-warehouse-load-sample-databases.md
+[移轉概觀]: ./sql-data-warehouse-overview-migrate.md
+[解決方案合作夥伴]: ./sql-data-warehouse-integrate-solution-partners.md
+[開發概觀]: ./sql-data-warehouse-overview-develop.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 [匯入/匯出]: https://azure.microsoft.com/documentation/articles/storage-import-export-service/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

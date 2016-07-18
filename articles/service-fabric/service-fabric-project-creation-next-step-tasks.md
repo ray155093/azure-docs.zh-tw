@@ -47,7 +47,7 @@
 動作項目專案提供了一些方法，以便設定和取得動作項目的狀態中可靠地保存的計數器值。介面專案提供了其他服務可用來叫用動作項目的介面。
 
 ### 無狀態 Web API
-無狀態 Web API 專案會提供基本一項 Web 服務，您可用來對外部用戶端開放您的應用程式。如需有關如何建構專案的詳細資訊，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi)。
+無狀態 Web API 專案會提供基本一項 Web 服務，您可用來對外部用戶端開放您的應用程式。如需有關如何建構專案的詳細資訊，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md)。
 
 ## 後續步驟
 ### 建立 Azure 叢集
@@ -80,4 +80,4 @@ Service Fabric 可讓您為應用程式中的獨立服務進行獨立的版本�
 [reliable-services-webapi]: service-fabric-reliable-services-communication-webapi.md
 [app-upgrade-tutorial]: service-fabric-application-upgrade-tutorial.md
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0706_2016-->

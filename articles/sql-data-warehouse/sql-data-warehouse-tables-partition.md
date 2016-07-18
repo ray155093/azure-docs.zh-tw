@@ -1,6 +1,6 @@
 <properties
-   pageTitle="SQL 資料倉儲中的資料表分割 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中使用資料表分割開發解決方案的秘訣。"
+   pageTitle="在 SQL 資料倉儲中分割資料表 | Microsoft Azure"
+   description="開始在 Azure SQL 資料倉儲中分割資料表。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -13,34 +13,83 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/14/2016"
+   ms.date="06/29/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
-# SQL 資料倉儲中的資料表分割
+# 在 SQL 資料倉儲中分割資料表
 
-若要將 SQL Server 分割定義移轉至 SQL 資料倉儲：
+> [AZURE.SELECTOR]
+- [概觀][]
+- [資料類型][]
+- [散發][]
+- [Index][]
+- [資料分割][]
+- [統計資料][]
+- [暫存][]
 
-- 移除 SQL Server 分割函式和配置，因為這會在您建立資料表時為您管理。
-- 在建立資料表時定義分割。只需指定分割界限點，以及您希望邊界點為有效的 `RANGE RIGHT` 或 `RANGE LEFT`。
+所有 SQL 資料倉儲資料表類型都支援資料分割；包括叢集資料行存放區、叢集索引和堆積。所有散發類型也也支援資料分割，包括散發的雜湊或循環配置資源。資料分割可讓您將資料分成較小的資料群組，而在大部分情況下，會在日期資料行上進行資料分割。
 
-注意︰若要深入了解 SQL Server 中的資料分割，請參閱[資料分割資料表和索引](https://msdn.microsoft.com/library/ms190787.aspx)。
+## 資料分割的優點
 
+資料分割可以提升資料維護和查詢效能。其具備上述兩個優點，還是只有一個優點，取決於資料的載入方式，以及相同的資料行是否可用於這兩個目的，因為資料分割只能在一個資料行上進行。
 
-### 分割大小
-SQL DW 為 DBA 提供數個資料表類型選項：堆積 (CI)、叢集索引和叢集資料行存放區索引 (CCI)。DBA 也可以針對每個資料表類型分割資料表，也就是將其分割成多個區段，以提升效能。不過，建立具有太多分割區的資料表，實際上有可能會導致效能降低，或導致查詢在某些情況下失敗。CCI 資料表尤其堪慮。若要讓資料分割有所助益， DBA 務必要了解使用資料分割的時機，以及要建立的分割區數目。這些指南是為了協助 DBA 在遇到狀況時做出最佳選擇。
+### 載入的優點
 
-資料表分割區通常在兩種主要方式下會很有用：
+SQL 資料倉儲中資料分割的主要優點是藉由使用分割區刪除、切換和合併，來改善資料載入的效率與效能。在大部分情況下，會依照與資料載入到資料庫的順序密切相關的日期資料行分割資料。使用資料分割來維護資料的最大優點之一是避免記錄交易。雖然插入、更新或刪除資料可能是最直接的方法，但只要付出一些關心和努力，在載入處理期間使用資料分割可以大幅改善效能。
 
-1. 切換分割區以快速截斷資料表的某個區段。常用的設計是針對包含只供某段預先決定期限內使用之資料列的事實資料表。例如，銷售事實資料表可能僅包含過去 36 個月的資料。在每個月月底，便會從資料表刪除最舊月份的銷售資料。只要刪除最舊月份的所有資料列即可完成此作業，但逐列刪除大量資料可能會花費很多時間。為了最佳化此狀況，SQL DW 支援分割區交換，讓您只要執行一項作業，就能快速卸除分割區中的整個資料列集。
+切換分割區可用於快速移除或取得資料表的某個區段。例如，銷售事實資料表可能僅包含過去 36 個月的資料。在每個月月底，便會從資料表刪除最舊月份的銷售資料。使用 delete 陳述式來刪除最舊月份的資料，即可刪除此資料。不過，使用 delete 陳述式逐列刪除大量資料可能需要很長的時間，而且會產生大型交易的風險，如果發生錯誤，則可能需要很長的時間來復原。比較理想的方法是直接卸除最舊的資料磁碟分割。刪除個別的資料列需要數小時的時間，而刪除整個磁碟分割可能只要數秒。
 
-2. 如果查詢在資料分割資料行上放置述詞，資料分割便可讓查詢輕易排除處理大量的資料列集 (亦即分割區)。例如，如果使用銷售日期欄位將銷售事實資料表分割成 36 個月，以銷售日期進行篩選的查詢便可略過處理不符合篩選條件的分割區。實際上，以這種方式使用的資料分割是粒度粗糙的索引。
+### 查詢的優點
 
-在 SQL DW 中建立叢集資料行存放區索引時，DBA 需考量另一個因素：資料列數目。CCI 資料表可以達成高度壓縮，並協助 SQL DW 加速查詢效能。由於壓縮會在 SQL DW 內部運作，因此 CCI 資料表中的每個分割區在壓縮資料前都必須擁有相當大量的資料列。此外，SQL DW 會在大量的散發之間分散資料，而且分割區會進一步分割每個散發。為了最佳壓縮和效能，每個散發與分割區都需要至少 100,000 個資料列。依據上述範例，如果銷售事實資料表包含 36 個月的分割區，並假設 SQL DW 有 60 個散發，則銷售事實資料表每個月應包含 6 百萬個資料列，或是在填入所有月份時包含 216 百萬個資料列。如果資料表包含的資料列遠少於建議的最小值，DBA 就應該考慮建立具有較少分割區的資料表，以增加每個散發的資料列數目。
+資料分割也可用來改善查詢效能。如果查詢在資料分割資料行上套用篩選，這可能會讓掃描僅限於合格的資料分割 (這可能是較小部分的資料)，進而避免掃描整個資料表。引進叢集資料行存放區索引後，述詞消除效能優勢比較沒有幫助，但在某些情況下，對查詢有所益處。例如，如果使用銷售日期欄位將銷售事實資料表分割成 36 個月，以銷售日期進行篩選的查詢便可略過不符合篩選條件的分割區。
 
+## 磁碟分割大小調整指引
 
-若要在分割層級調整目前 SQL Server 資料庫的大小，請使用類似以下的查詢：
+雖然資料分割可用來改善某些案例的效能，但是在某些情況下，建立具有**太多**資料分割的資料表可能會降低效能。叢集資料行存放區資料表尤其堪慮。若要讓資料分割有所助益，務必要了解使用資料分割的時機，以及要建立的分割區數目。多少資料分割才算太多並無硬性規定，這取決於您的資料以及您同時載入多少資料分割。但依照一般經驗法則，考慮加入 10 到 100 個分割區，而不是 1000 個。
+
+在**叢集資料行存放區**資料表上建立資料分割時，請務必考慮每個資料分割中將放入多少資料列。為了讓叢集資料行存放區資料表達到最佳壓縮和效能，每個散發與分割區都需要至少 100 萬個資料列。建立分割區之前，SQL 資料倉儲已將每個資料表分割成 60 個分散式資料庫。除了散發以外，任何加入至資料表的資料分割都是在幕後建立。依據此範例，如果銷售事實資料表包含 36 個月的分割區，並假設 SQL 資料倉儲有 60 個散發，則銷售事實資料表每個月應包含 6 千萬個資料列，或是在填入所有月份時包含 21 億個資料列。如果資料表包含的資料列遠少於每個分割區建議的最小資料列數，請考慮使用較少的分割區，以增加每個分割區的資料列數目。另請參閱[索引][Index]一文，其中包含可在 SQL 資料倉儲執行的查詢，以評估叢集資料行存放區索引的品質。
+
+## 與 SQL Server 的語法差異
+
+SQL 資料倉儲引進與 SQL Server 稍有不同的簡化分割定義。資料分割函式和配置不會如同在 SQL Server 中一樣，使用於 SQL 資料倉儲。相反地，您只需要識別已分割的資料行和邊界點。雖然資料分割的語法與 SQL Server 稍有不同，但基本概念是一樣的。SQL Server 和 SQL 資料倉儲支援每個資料表一個分割資料行，它可以是遠距資料分割。若要深入了解資料分割，請參閱[分割資料表和索引][]。
+
+SQL 資料倉儲分割 [CREATE TABLE][] 陳述式的以下範例，會依據 OrderDateKey 資料行分割 FactInternetSales 資料表︰
 
 ```sql
+CREATE TABLE [dbo].[FactInternetSales]
+(
+    [ProductKey]            int          NOT NULL
+,   [OrderDateKey]          int          NOT NULL
+,   [CustomerKey]           int          NOT NULL
+,   [PromotionKey]          int          NOT NULL
+,   [SalesOrderNumber]      nvarchar(20) NOT NULL
+,   [OrderQuantity]         smallint     NOT NULL
+,   [UnitPrice]             money        NOT NULL
+,   [SalesAmount]           money        NOT NULL
+)
+WITH
+(   CLUSTERED COLUMNSTORE INDEX
+,   DISTRIBUTION = HASH([ProductKey])
+,   PARTITION   (   [OrderDateKey] RANGE RIGHT FOR VALUES
+                    (20000101,20010101,20020101
+                    ,20030101,20040101,20050101
+                    )
+                )
+)
+;
+```
+
+## 從 SQL Server 移轉資料分割
+
+若要將 SQL Server 分割定義移轉至 SQL 資料倉儲，只需：
+
+- 刪除 SQL Server [資料分割配置][]。
+- 將[資料分割函式][]定義加入制您的 CREATE TABLE。
+
+如果您從 SQL Server 執行個體移轉分割資料表，下面的 SQL 可協助您詢問每個分割區中的資料列數目。請記住，如果 SQL 資料倉儲上使用相同的資料分割資料細微性，則每個分割區的資料列數目會依 60 的倍數減少。
+
+```sql
+-- Partition information for a SQL Server Database
 SELECT      s.[name]                        AS      [schema_name]
 ,           t.[name]                        AS      [table_name]
 ,           i.[name]                        AS      [index_name]
@@ -73,28 +122,11 @@ GROUP BY    s.[name]
 ;
 ```
 
-散發的總數等於我們建立資料表時所使用的儲存體位置數目。也就是，每個資料表會根據每一個散發建立一次。
+## 工作負載管理
 
-您也可以大致預測有多少個資料列，因而預測每個分割有多大。來源資料倉儲中的分割會再細分為每個散發。
+要納入資料表分割決策的最後一項資訊是[工作負載管理][]。SQL 資料倉儲中的工作負載管理主要是記憶體和並行存取管理。在 SQL 資料倉儲中，資源類別會控管在查詢執行期間配置給每個散發的最大記憶體。在理想的情況下，會考量建置叢集資料行存放區索引的記憶體需求等其他因素，以調整您的分割大小。配置更多記憶體給叢集資料行存放區索引時，即可獲得極大的好處。因此，您會想要確定重建分割索引不會耗盡記憶體。從預設角色 smallrc 切換到其他角色 (例如 largerc)，即可增加您的查詢可用的記憶體數量。
 
-決定分割大小時，請使用下列計算方式來引導您：
-
-MPP 分割大小 = SMP 分割大小 / 散發數目
-
-您可以使用下列查詢，找出您的 SQL 資料倉儲資料庫有多少個散發：
-
-```sql
-SELECT  COUNT(*)
-FROM    sys.pdw_distributions
-;
-```
-
-您現在知道來源系統中的每個分割有多大，以及您預期的 SQLDW 大小為何，即可決定分割界限。
-
-### 工作負載管理
-您需要納入資料表分割決策的最後一項資訊是工作負載管理。在 SQL 資料倉儲中，此功能會控管在查詢執行期間配置給每個散發的最大記憶體。如需[工作負載管理]的詳細資訊，請參閱下面的文章。理想上，調整您的分割大小時，會將 inmemory 作業 (如資料行存放區索引重建) 列入考量。重建索引會使用大量記憶體。因此，您會想要確定重建分割索引不會耗盡記憶體。從預設角色切換到其中一個可用的其他角色，即可增加您的查詢可用的記憶體數量。
-
-查詢資源管理員動態管理檢視，即可取得每個散發的記憶體配置資訊。事實上，記憶體授與會小於下列數據。不過，這會提供指導方針，以便在針對資料管理作業調整分割大小時使用。
+查詢資源管理員動態管理檢視，即可取得每個散發的記憶體配置資訊。事實上，記憶體授與會小於下列數據。不過，這會提供指導方針，以便在針對資料管理作業調整分割大小時使用。盡量避免將分割大小調整超過超大型資源類別所提供的記憶體授與。如果分割成長超過此數據，您就會冒著記憶體壓力的風險，進而導致比較不理想的壓縮。
 
 ```sql
 SELECT  rp.[name]								AS [pool_name]
@@ -112,12 +144,12 @@ AND     rp.[name]    = 'SloDWPool'
 ;
 ```
 
-> [AZURE.NOTE] 盡量避免將分割大小調整超過超大型資源類別所提供的記憶體授與。如果分割成長超過此數據，您就會冒著記憶體壓力的風險，進而導致比較不理想的壓縮。
-
 ## 分割切換
+
 若要切換兩個資料表間的分割，您必須確定分割對齊其各自的界限，而且資料表定義相符。檢查條件約束不適用於強制資料表中的值範圍，來源資料表必須包含與目標資料表相同的分割界限。如果情況不是如此，則分割切換將會失敗，因為分割中繼資料不會同步處理。
 
 ### 如何分割包含資料的分割
+
 使用 `CTAS` 陳述式是分割已含資料之分割的最有效方法。如果分割資料表是叢集式資料行存放區，則資料表分割必須空的，才可加以分割。
 
 下列範例顯示每個分割包含一個資料列的分割資料行存放區資料表：
@@ -234,9 +266,10 @@ UPDATE STATISTICS [dbo].[FactInternetSales];
 ```
 
 ### 資料表分割原始檔控制
+
 若要避免您的資料表定義在您的原始檔控制系統中**失效**，您可以考慮下列方法：
 
-將資料表建立為分割資料表，但沒有分割值：
+1. 將資料表建立為分割資料表，但沒有分割值
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales]
@@ -260,7 +293,7 @@ WITH
 ;
 ```
 
-在部署過程中 `SPLIT` 資料表：
+2. 在部署過程中 `SPLIT` 資料表：
 
 ```sql
 -- Create a table containing the partition boundaries
@@ -315,25 +348,35 @@ DROP TABLE #partitions;
 
 利用這種方法，原始檔控制中的程式碼會保持靜態，並允許動態的分割界限值；隨著時間與倉儲一起發展。
 
->[AZURE.NOTE] 相較於 SQL Server，分割切換有一些差異。務必閱讀[移轉程式碼][]，以深入了解這個主題。
-
-
 ## 後續步驟
-一旦成功將資料庫結構描述移轉到 SQL 資料倉儲，您就可以繼續閱讀下列其中一篇文章：
 
-- [移轉資料][]
-- [移轉程式碼][]
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
-<!-- Article references -->
-[移轉程式碼]: sql-data-warehouse-migrate-code.md
-[移轉資料]: sql-data-warehouse-migrate-data.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
-[工作負載管理]: sql-data-warehouse-develop-concurrency.md
+<!--Article references-->
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[概觀]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[資料類型]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
+[散發]: ./sql-data-warehouse-tables-distribute.md
+[Index]: ./sql-data-warehouse-tables-index.md
+[資料分割]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[暫存]: ./sql-data-warehouse-tables-temporary.md
+[工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
+[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
 <!-- MSDN Articles -->
+[分割資料表和索引]: https://msdn.microsoft.com/library/ms190787.aspx
+[CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
+[資料分割函式]: https://msdn.microsoft.com/library/ms187802.aspx
+[資料分割配置]: https://msdn.microsoft.com/library/ms179854.aspx
+
 
 <!-- Other web references -->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

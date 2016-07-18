@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="backup-recovery"
-	ms.date="03/30/2016"
+	ms.date="07/06/2016"
 	ms.author="raynew"/>
 
 #  複寫單一 VMM 伺服器上的 Hyper-V 虛擬機器
@@ -27,7 +27,7 @@
 
 有數種方式可以覆寫位在 VMM 雲端 Hyper-V 主機上的 Hyper-V VM：
 
-- 複寫至 Azure。 
+- 複寫至 Azure。
 - 複寫至次要 VMM 站台
 
 但如果您想要複寫至次要 VMM 位置，可是您的部署中只有單一 VMM 伺服器時該怎麼辦？
@@ -62,7 +62,7 @@
 
 發生中斷時，您可以復原 Hyper-V VM 上的工作負載，如下所示：
 
-1. 搭配使用 Hyper-V 管理員與規劃的容錯移轉，手動將 VMM VM 容錯移轉至次要站台。 
+1. 搭配使用 Hyper-V 管理員與規劃的容錯移轉，手動將 VMM VM 容錯移轉至次要站台。
 2. 復原 VMM VM 之後，您可以從次要站台登入 Hyper-V 復原管理員，並執行從次要站台至主要站台的非計劃性 VM 容錯移轉。請注意，必須手動將 VMM VM 容錯移轉至次要站台，然後工作負載 VM 才能進行容錯移轉。
 3. 在非計劃性的容錯移轉完成之後，將可透過主要站台再次存取所有資源。
 
@@ -93,4 +93,4 @@
 
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

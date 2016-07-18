@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/14/2016" 
+	ms.date="07/06/2016" 
 	ms.author="raynew"/>
 
 
@@ -132,12 +132,12 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 ####  步驟 1：加入 SQL Server
 
 
-1. 按一下 [加入 SQL] 以加入新的 SQL Server。 
+1. 按一下 [加入 SQL] 以加入新的 SQL Server。
 
 	![加入 SQL](./media/site-recovery-sql/add-sql.png)
 
 2. 在 [設定 SQL 設定] > [名稱] 中提供易記的名稱來代表 SQL Server。
-3. 在 [SQL Server (FQDN)] 中指定您想要加入的來源 SQL Server 的 FQDN。如果 SQL Server 安裝在容錯移轉叢集上，則提供叢集的 FQDN，而不是任何叢集節點的 FQDN。  
+3. 在 [SQL Server (FQDN)] 中指定您想要加入的來源 SQL Server 的 FQDN。如果 SQL Server 安裝在容錯移轉叢集上，則提供叢集的 FQDN，而不是任何叢集節點的 FQDN。
 4. 在 [SQL Server 執行個體] 中選擇預設執行個體或提供自訂執行個體的名稱。
 5. 在 [VMM 伺服器] 中選取在 Site Recovery 保存庫中註冊的 VMM 伺服器。Site Recovery 會使用此 VMM 伺服器與 SQL Server 通訊。
 6. 在 [執行身分帳戶] 中提供在 VMM 伺服器上建立的執行身分帳戶的名稱。此帳戶會用來存取 SQL Server，且應該有 SQL Server 機器上可用性群組的讀取和容錯移轉權限。
@@ -151,7 +151,7 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
 #### 步驟 2：加入 SQL 可用性群組
 
-1. 加入 SQL Server 機器之後，下一步是將可用性群組加入 Site Recovery。若要這樣做，請向下切入在上一個步驟中加入的 SQL Server，然後按一下 SQL 可用性群組。 
+1. 加入 SQL Server 機器之後，下一步是將可用性群組加入 Site Recovery。若要這樣做，請向下切入在上一個步驟中加入的 SQL Server，然後按一下 SQL 可用性群組。
 
 	![加入 SQL AG](./media/site-recovery-sql/add-sqlag.png)
 
@@ -353,4 +353,4 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
  
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0706_2016-->

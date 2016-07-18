@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/11/2016"
+   ms.date="06/21/2016"
    ms.author="rclaus" />
 
 # Azure 中 Linux VM 的 DNS 名稱解析選項
@@ -78,9 +78,9 @@ Azure 預設會提供單一虛擬網路內所含之所有 VM 的 DNS 名稱解�
 - **Ubuntu (使用 resolvconf)**：
 	- 只安裝 dnsmasq 封裝 (“sudo apt-get install dnsmasq”)。
 - **SUSE (使用 netconf)**：
-	- 安裝 dnsmasq 封裝 (“sudo zypper install dnsmasq”) 
-	- 啟用 dnsmasq 服務 (“systemctl enable dnsmasq.service”) 
-	- 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”) 
+	- 安裝 dnsmasq 封裝 (“sudo zypper install dnsmasq”)
+	- 啟用 dnsmasq 服務 (“systemctl enable dnsmasq.service”)
+	- 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”)
 	- 編輯 “/etc/sysconfig/network/config” 並將 NETCONFIG\_DNS\_FORWARDER="" 變更為 ”dnsmasq”
 	- 更新 resolv.conf ("netconfig update") 來設定快取做為本機 DNS 解析程式
 - **OpenLogic (使用 NetworkManager)**：
@@ -96,8 +96,8 @@ Azure 預設會提供單一虛擬網路內所含之所有 VM 的 DNS 名稱解�
 
 DNS 主要是 UDP 通訊協定。因為 UDP 通訊協定並不保證訊息傳遞，所以重試邏輯會在 DNS 通訊協定本身處理。每個 DNS 用戶端 (作業系統) 可以展現不同的重試邏輯，根據建立者喜好設定而定：
 
- - Windows 作業系統會在 1 秒後重試，然後再依序隔 2、4、4 秒後重試。 
- - 預設 Linux 安裝程式會在 5 秒之後重試。建議您變更為以 1 秒的間隔重試 5 次。  
+ - Windows 作業系統會在 1 秒後重試，然後再依序隔 2、4、4 秒後重試。
+ - 預設 Linux 安裝程式會在 5 秒之後重試。建議您變更為以 1 秒的間隔重試 5 次。
 
 檢查 Linux VM 上目前的設定，'cat /etc/resolv.conf' 並查看 [選項] 行，例如：
 
@@ -106,13 +106,13 @@ DNS 主要是 UDP 通訊協定。因為 UDP 通訊協定並不保證訊息傳遞
 resolv.conf 檔案通常是自動產生的，且不可編輯。新增 [選項] 行的特定步驟會因散發版本而有所不同：
 
 - **Ubuntu** (使用 resolvconf)：
-	- 將選項行新增至 '/etc/resolveconf/resolv.conf.d/head' 
+	- 將選項行新增至 '/etc/resolveconf/resolv.conf.d/head'
 	- 執行 'resolvconf -u' 以進行更新
 - **SUSE** (使用 netconf)：
-	- 將 'timeout:1 attempts:5' 新增至 '/etc/sysconfig/network/config' 中的 NETCONFIG\_DNS\_RESOLVER\_OPTIONS="" 參數 
+	- 將 'timeout:1 attempts:5' 新增至 '/etc/sysconfig/network/config' 中的 NETCONFIG\_DNS\_RESOLVER\_OPTIONS="" 參數
 	- 執行 'netconfig update' 以進行更新
 - **OpenLogic** (使用 NetworkManager)：
-	- 將 'echo "options timeout:1 attempts:5"' 新增至 '/etc/NetworkManager/dispatcher.d/11-dhclient' 
+	- 將 'echo "options timeout:1 attempts:5"' 新增至 '/etc/NetworkManager/dispatcher.d/11-dhclient'
 	- 執行 'service network restart' 以進行更新
 
 ## 使用專屬 DNS 伺服器的名稱解析
@@ -126,16 +126,16 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 
 使用 Azure 提供的名稱解析時，會提供內部 DNS 尾碼給每部使用 DHCP 的 VM。使用您自己的名稱解析解決方案時，不會提供 VM 此尾碼，因為它會干擾其他 DNS 架構。若要透過 FQDN 參照電腦，或要設定 VM 上的尾碼，可使用 PowerShell 或 API 來決定尾碼：
 
--  針對 Azure Resource Management Managed VNET，透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源可以取得尾碼；或者，您可以執行命令 `azure network public-ip show <resource group> <pip name>` 來顯示您公用 IP 的詳細資料 (包括 NIC 的 FQDN)。    
+-  針對 Azure Resource Management Managed VNET，透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源可以取得尾碼；或者，您可以執行命令 `azure network public-ip show <resource group> <pip name>` 來顯示您公用 IP 的詳細資料 (包括 NIC 的 FQDN)。
 
 
 如果將查詢轉送到 Azure 不符合您的需求，您會需要提供專屬的 DNS 解決方案。您的 DNS 解決方案將需要：
 
--  提供適當的主機名稱解析，例如透過 [DDNS](../virtual-network/virtual-networks-name-resolution-ddns.md)。請注意，如果使用 DDNS，您可能需要停用 DNS 記錄清除功能，因為 Azure 的 DHCP 租用期很長，所以 DNS 記錄可能會提前被清除。 
+-  提供適當的主機名稱解析，例如透過 [DDNS](../virtual-network/virtual-networks-name-resolution-ddns.md)。請注意，如果使用 DDNS，您可能需要停用 DNS 記錄清除功能，因為 Azure 的 DHCP 租用期很長，所以 DNS 記錄可能會提前被清除。
 -  提供適當的遞迴解析來允許外部網域名稱的解析。
 -  可從其服務的用戶端存取 (連接埠 53 上的 TCP 和 UDP)，且能夠存取網際網路。
 -  受保護以防止來自網際網路的存取，降低外部代理程式的威脅。
 
 > [AZURE.NOTE] 為了達到最佳效能，使用 Azure VM 做為 DNS 伺服器時，應該停用 IPv6 且 [執行個體層級公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) 應該指派給每個 DNS 伺服器 VM。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

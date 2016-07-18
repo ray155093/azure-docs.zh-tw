@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/03/2016"
+   ms.date="06/30/2016"
    ms.author="lodipalm;barbkess;sonyama;jrj"/>
 
 # 將您的 SQL 程式碼移轉至 SQL 資料倉儲
@@ -115,14 +115,14 @@ AND     request_id IN
 <!--Image references-->
 
 <!--Article references-->
-[更新時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md
-[刪除時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md
-[merge 陳述式]: ./sql-data-warehouse-develop-ctas.md
-[INSERT..EXEC]: ./sql-data-warehouse-develop-temporary-tables.md
+[更新時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-update-statements
+[刪除時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-delete-statements
+[merge 陳述式]: ./sql-data-warehouse-develop-ctas.md#replace-merge-statements
+[INSERT..EXEC]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
 [Transact-SQL 主題]: ./sql-data-warehouse-reference-tsql-statements.md
 
 [資料指標]: ./sql-data-warehouse-develop-loops.md
-[SELECT..INTO]: ./sql-data-warehouse-develop-ctas.md
+[SELECT..INTO]: ./sql-data-warehouse-develop-ctas.md#selectinto
 [group by 子句搭配 rollup / cube / grouping sets 選項]: ./sql-data-warehouse-develop-group-by-options.md
 [由含有 rollup / cube / grouping sets options 的子句組成的群組]: ./sql-data-warehouse-develop-group-by-options.md
 [巢狀層級超過 8]: ./sql-data-warehouse-develop-transactions.md
@@ -134,4 +134,4 @@ AND     request_id IN
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

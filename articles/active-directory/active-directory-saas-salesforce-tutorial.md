@@ -84,7 +84,7 @@
 
 	![選取 [Azure AD 單一登入]][7]
 
-	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis/#how-does-single-sign-on-with-azure-active-directory-work)
+	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
 
 4. 在 [設定應用程式設定] 頁面上，使用下列格式在 [登入 URL] 輸入您的 Salesforce 網域 URL：
  - 企業帳戶：`https://<domain>.my.salesforce.com`
@@ -256,4 +256,4 @@
 [28]: ./media/active-directory-saas-salesforce-tutorial/assign-confirm.png
 [29]: ./media/active-directory-saas-salesforce-tutorial/assign-sf-profile.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

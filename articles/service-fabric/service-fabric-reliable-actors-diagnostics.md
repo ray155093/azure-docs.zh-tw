@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/28/2016"
+   ms.date="07/05/2016"
    ms.author="abhisram"/>
 
 # Reliable Actors 的診斷和效能監視
@@ -118,7 +118,7 @@ Reliable Actor 執行階段會發佈下列與並行相關的效能計數器。
 |Service Fabric 動作項目|保留動作項目鎖定的平均毫秒數|保留每個動作項目鎖定的時間 (單位為毫秒)|
 
 ### 動作項目狀態管理事件與效能計數器
-Reliable Actor 執行階段會發出下列與[動作項目狀態管理](service-fabric-reliable-actors-state-management)相關的事件。
+Reliable Actor 執行階段會發出下列與[動作項目狀態管理](service-fabric-reliable-actors-state-management.md)相關的事件。
 
 |事件名稱|事件識別碼|Level|關鍵字|說明|
 |---|---|---|---|---|
@@ -169,4 +169,4 @@ Reliable Actor 執行階段會發佈下列與動作項目啟用和停用相關�
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
  - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0706_2016-->

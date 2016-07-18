@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽) - 建立「AAD DC 系統管理員」群組
@@ -58,4 +58,4 @@
 ## 步驟 2：建立或選取 Azure 虛擬網路
 下一個組態工作是[建立或選取 Azure 虛擬網路](active-directory-ds-getting-started-vnet.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="06/29/2016"
 	ms.author="juliako;anilmur"/>
 
 #Media Encoder Standard 格式和轉碼器
@@ -37,7 +37,9 @@ MP4 (.mp4、.m4a、.m4v)/ISMV (.isma、.ismv)|是
 Matroska/WebM (.mkv) |是 
 WAVE/WAV (.wav) |是 
 QuickTime (.mov) |是
- 
+
+>[AZURE.NOTE] 以上是較常見的副檔名清單。Media Encoder Standard 支援許多其他副檔名 (例如，.m2ts、.mpeg2video 和 .qt)。如果您嘗試將檔案編碼，但收到格式不支援的相關錯誤訊息，請在[這裡](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/)提供意見反應。
+
 ###輸入容器中的音訊格式 
 
 Media Encoder Standard 支援在輸入容器中帶有下列音訊格式：
@@ -121,4 +123,4 @@ MPEG2-TS |H.264 (高、主要和基準設定檔)|AAC-LC、HE-AAC v1、HE-AAC v2
 
 [如何使用 Media Encoder Standard 進行編碼](media-services-dotnet-encode-with-media-encoder-standard.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="05/27/2016"
+    ms.date="07/05/2016"
     ms.author="srinia"/>
 
 # 透過 C&#x23; 監視和管理彈性資料庫集區 
@@ -29,9 +29,7 @@
 
 如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 
-彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。如果您有 SQL Database V11 伺服器，您可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md)。
-
-您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx) 執行下列命令，以安裝資源庫：
+下列範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，因此您需要在繼續前安裝此程式庫 (如果尚未安裝的話)。您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中執行下列命令，以安裝此程式庫：
 
     PM> Install-Package Microsoft.Azure.Management.Sql –Pre
 
@@ -432,4 +430,4 @@
 - [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
 - 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

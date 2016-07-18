@@ -32,7 +32,7 @@
 
 - [設定密碼到期](#set-a-password-to-expire)
 
-- [設定密碼使其不會到期](#set-a-password-not-to-expire)
+- [設定密碼使其不會到期](#set-a-password-to-never-expire)
 
 ## 如何檢查密碼到期原則
 
@@ -64,4 +64,4 @@
 
 	- 若要將組織中所有使用者的密碼設為永久有效，請執行下列 Cmdlet：`Get-MSOLUser | Set-MsolUser -PasswordNeverExpires \$true`
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -83,8 +83,8 @@
 
 **度量資料粒度/保留期限：**
 
-* 系統會以 5 分鐘的資料粒度傳回資料。  
-* 資料會保留 14 天。  
+* 系統會以 5 分鐘的資料粒度傳回資料。
+* 資料會保留 35 天。
 
 此 Cmdlet 和 API 會將一次呼叫中可擷取的資料列限制為 1,000 個 (大約是 3 天份且資料粒度為 5 分鐘的資料)。但可以用不同的開始/結束時間間隔來多次呼叫此命令，以擷取更多資料。
 
@@ -177,7 +177,7 @@
 
 1. 下載[指令碼和文件](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)：
 2. 為您的環境修改指令碼。指定裝載彈性集區的一或多部伺服器。
-3. 指定儲存所收集度量的遙測資料庫。 
+3. 指定儲存所收集度量的遙測資料庫。
 4. 自訂指令碼，以指定指令碼的執行持續時間。
 
 概括而言，指令碼會執行下列作業︰
@@ -276,4 +276,4 @@ Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方�
 - [建立彈性工作](sql-database-elastic-jobs-overview.md)：彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 - 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

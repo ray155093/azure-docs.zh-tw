@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="06/21/2016"
 	ms.author="rclaus"/>
 
 # 在 Azure 上最佳化 Linux VM
@@ -59,7 +59,7 @@
 您必須如下變更它們：
 
 * ResourceDisk.EnableSwap=Y
-* ResourceDisk.SwapSizeMB={符合您需求的大小 (MB)} 
+* ResourceDisk.SwapSizeMB={符合您需求的大小 (MB)}
 
 進行變更之後，需要重新啟動 waagent 或重新啟動 Linux VM，以反映這些變更。當您使用 `free` 命令來檢視可用空間時，可以知道已實作變更並已建立交換檔。以下範例在修改 waagent.conf 檔案後建立了 512 MB 的交換檔。
 
@@ -126,4 +126,4 @@
 - [在 Azure Linux VM 上最佳化 MySQL 效能](virtual-machines-linux-classic-optimize-mysql.md)
 - [在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/14/2016"
+   ms.date="06/30/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲中的預存程序
@@ -89,12 +89,12 @@ SQL 資料倉儲不允許您透過 INSERT 陳述式取用預存程序的結果�
 <!--Image references-->
 
 <!--Article references-->
-[暫存資料表]: sql-data-warehouse-develop-temporary-tables.md
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[暫存資料表]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
+[開發概觀]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 [nest level]: https://msdn.microsoft.com/library/ms187371.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

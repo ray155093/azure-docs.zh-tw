@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/07/2016"
+	ms.date="07/01/2016"
 	ms.author="cephalin"/>
 
 
@@ -43,7 +43,7 @@
 
 將圖片放入文字：
 
--	部署架構分成三個不同環境 (或 Azure 中的[資源群組](../resource-group-overview.md))，其各有專屬 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)、[調整](web-sites-scale.md)設定和 SQL 資料庫。 
+-	部署架構分成三個不同環境 (或 Azure 中的[資源群組](../resource-group-overview.md))，其各有專屬 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)、[調整](web-sites-scale.md)設定和 SQL 資料庫。
 -	您可以個別管理每個環境。它們甚至可以存在於不同的訂用帳戶中。
 -	預備和生產環境會實作為相同 App Service 應用程式的兩個位置。主要分支是設定進行具有預備位置的連續整合。
 -	在預備位置 (含生產資料) 上驗證主要分支的認可時，已驗證的預備應用程式會交換到生產位置，[而不中斷](web-sites-staged-publishing.md)。
@@ -60,14 +60,16 @@
 
 -	一個 Azure 帳戶
 -	一個 [GitHub](https://github.com/) 帳戶
--	Git Shell (與 [GitHub for Windows](https://windows.github.com/) 一起安裝) - 這可讓您在相同的工作階段中執行 Git 和 PowerShell 命令 
+-	Git Shell (與 [GitHub for Windows](https://windows.github.com/) 一起安裝) - 這可讓您在相同的工作階段中執行 Git 和 PowerShell 命令
 -	最新 [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/download/0.9.4-June2015/azure-powershell.0.9.4.msi) 位元
 -	下列項目的基本了解：
 	-	[Azure 資源管理員](../resource-group-overview.md)範本部署 (另請參閱[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md))
 	-	[Git](http://git-scm.com/documentation)
 	-	[PowerShell](https://technet.microsoft.com/library/bb978526.aspx)
 
-> [AZURE.NOTE] 您需要 Azure 帳戶才能完成本教學課程：+ 您可以[免費申請 Azure 帳戶](/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。+ 您可以[啟用 Visual Studio 訂用帳戶權益](/pricing/member-offers/msdn-benefits-details/) - 您的 Visual Studio 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
+> [AZURE.NOTE] 要完成此教學課程，您必須要有 Azure 帳戶：
+> + 您可以[免費申請 Azure 帳戶](/pricing/free-trial/)：您將取得可試用 Azure 付費服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。
+> + 您可以[啟用 Visual Studio 訂戶權益](/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
 >
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
@@ -121,7 +123,7 @@
 
 現在，您已有在 Azure 內之生產環境中執行的複雜應用程式，您將根據敏捷式方法來更新應用程式。在本節中，您將建立需要進行必要更新的開發和測試分支。
 
-1.	先建立測試環境。在 Git Shell 工作階段中，執行下列命令來建立稱為 **NewUpdate** 的新分支環境。 
+1.	先建立測試環境。在 Git Shell 工作階段中，執行下列命令來建立稱為 **NewUpdate** 的新分支環境。
 
 		git checkout -b NewUpdate
 		git push origin NewUpdate 
@@ -280,4 +282,4 @@
 -	[在 Azure AD 中建立或編輯使用者](https://msdn.microsoft.com/library/azure/hh967632.aspx#BKMK_1)
 -	[專案 Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0706_2016-->

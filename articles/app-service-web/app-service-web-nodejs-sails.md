@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="03/31/2016"
+	ms.date="07/01/2016"
 	ms.author="cephalin"/>
 
 # 將 Sails.js Web 應用程式部署至 Azure App Service
@@ -82,7 +82,7 @@
         loggingEnabled: true
         logDirectory: iisnode
 
-    現在已針對 iisnode 啟用記錄功能。如需其運作方式的詳細資訊，請參閱[從 iisnode 取得 stdout 和 stderr 記錄](app-service-web-nodejs-sails.md#iisnodelog)。
+    現在已針對 iisnode 啟用記錄功能。如需其運作方式的詳細資訊，請參閱[從 iisnode 取得 stdout 和 stderr 記錄](app-service-web-nodejs-get-started.md#iisnodelog)。
 
 2. 開啟 config/env/production.js 來設定您的生產環境，並設定 `port` 和 `hookTimeout`：
 
@@ -238,4 +238,4 @@
 - [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/27/2016"
+   ms.date="07/05/2016"
    ms.author="terrylan"/>
 
 # 管理 Azure 資訊安全中心的安全性建議
@@ -82,6 +82,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 |部署 VM 代理程式|可讓您查看哪些 VM 需要「VM 代理程式」。為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在 VM 上安裝「VM 代理程式」。預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/)。|
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。建議您的 VM 上的作業系統和資料磁碟區都進行加密。|
 |提供安全性連絡人詳細資料 | 建議您提供每個訂用帳戶安全性連絡人資訊。連絡人資訊為電子郵件地址和電話號碼。如果我們的安全性小組發現您的資源遭到入侵，就會用這項資訊連絡您。 |
+| 更新作業系統版本 | 建議您將雲端服務的作業系統 (OS) 版本更新為作業系統系列可用的最新版本。若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。 |
 
 您可以篩選並關閉建議。
 
@@ -89,12 +90,12 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
     ![][3]
 
-2. 如果您判斷建議不適用，您可解除該建議，然後將它從您的檢視中篩除。解除建議的方式有兩種。有一種方式是在項目上按一下滑鼠右鍵，然後選取 [解除]。另一種方式是將滑鼠游標暫留在項目上、按一下出現在右邊的三個點，然後選取 [解除]。您可以按一下 [篩選]，然後選取 [已解除]，來檢視已解除的建議。
+2. 如果您判斷建議不適用，您可解除該建議，然後將它從您的檢視中篩除。解除建議的方式有兩種。有一種方式是在項目上按一下滑鼠右鍵，然後選取 [解除]。另一種方式是將滑鼠游標暫留在項目上、按一下出現在右邊的三個點，然後選取 [解除]。您可以按一下 [篩選]，然後選取 [已解除]，以檢視已解除的建議。
 
     ![][4]
 
 ### 套用建議
-檢視所有建議之後，請決定應該先套用哪一個建議。建議您使用嚴重性分級做為主要參數，以評估應該先套用哪些建議。讓我們使用**啟用反惡意程式碼**建議，逐步解說如何套用建議的範例。
+檢視所有建議之後，請決定應該先套用哪一個建議。建議您使用嚴重性分級做為主要參數，以評估應該先套用哪些建議。讓我們使用**啟用反惡意程式碼**建議，透過範例來逐步解說如何套用建議。
 
 1. 在 [建議] 刀鋒視窗中，選取 [啟用反惡意程式碼]。![][5]
 
@@ -110,7 +111,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 在本文件中，已向您介紹「資訊安全中心」的安全性建議。如要深入了解資訊安全中心，請參閱下列主題：
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
+- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 - [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
@@ -123,4 +124,4 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 [5]: ./media/security-center-recommendations/select-enable-antimalware.png
 [6]: ./media/security-center-recommendations/install-antimalware.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

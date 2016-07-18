@@ -1,6 +1,6 @@
 <properties
-   pageTitle="管理 SQL 資料倉儲中的統計資料 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中管理統計資料以便開發解決方案的秘訣。"
+   pageTitle="管理 SQL 資料倉儲中的資料表的統計資料 | Microsoft Azure"
+   description="開始使用 Azure SQL 資料倉儲中的資料表的統計資料。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -13,46 +13,37 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/10/2016"
-   ms.author="jrj;barbkess;sonyama;nicw"/>
+   ms.date="06/30/2016"
+   ms.author="jrj;barbkess;sonyama"/>
 
-# 管理 SQL 資料倉儲中的統計資料
- SQL 資料倉儲使用統計資料來評估以不同方式執行分散式查詢的成本。如果統計資料很精確，查詢最佳化工具即可產生高品質查詢計劃，以改善查詢效能。
+# 管理 SQL 資料倉儲中的資料表的統計資料
 
-建立和更新統計資料極為重要，以便達到 SQL 資料倉儲預計提供的查詢效能。本指南提供統計資料的概觀，然後顯示如何：
+> [AZURE.SELECTOR]
+- [概觀][]
+- [資料類型][]
+- [散發][]
+- [Index][]
+- [資料分割][]
+- [統計資料][]
+- [暫存][]
 
-- 在資料庫設計階段建立統計資料
-- 在資料庫維護階段更新統計資料
-- 利用系統檢視和函式檢視統計資料
+SQL 資料倉儲越了解您的資料，查詢資料的速度就越快。您藉由收集資料的統計資料，讓 SQL 資料倉儲了解您的資料。從資料中取得統計資料是將查詢最佳化最重要的工作之一。統計資料可協助 SQL 資料倉儲為您的查詢建立最佳計畫。這是因為 SQL 資料倉儲查詢最佳化工具是一種以成本為考量的最佳化工具。也就是說，它會比較各種查詢計畫的成本，然後選擇成本最低的計畫，也就是執行速度最快的計畫。
 
-## 統計資料簡介
+您可以根據單一資料行、多個資料行或資料表的索引來建立統計資料。統計資料儲存在長條圖中，可擷取值的範圍和選擇性。當最佳化工具需要評估查詢中的 JOIN、GROUP BY、HAVING 和 WHERE 子句時，這是特別有用。例如，如果最佳化工具估計您在查詢中篩選的日期會傳回 1 個資料列，一旦它估計您選取的日期會傳回 1 百萬個資料列，它可能會選擇非常不同的計畫。建立統計資料非常重要，同樣重要的是統計資料要能「準確」反映資料表的目前狀態。取得最新統計資料可確保最佳化工具選取良好的計畫。最佳化工具建立的計畫是否良好，完全取決於資料的統計資料。
 
-單一資料行統計資料是含有單一資料行中值範圍和次數相關資訊的物件。查詢最佳化工具會使用此長條圖來估計查詢結果中的資料列數目。這會直接影響如何最佳化查詢的相關決策。
+建立和更新統計資料的程序目前是手動程序，但做起來很簡單。這不同於 SQL Server 根據單一資料行和索引來自動建立和更新統計資料。下列資訊可讓您在管理資料的統計資料時，發揮更高的自動化程度。
 
-多重資料行統計資料是對一份資料行清單建立的統計資料。其中包含清單中第一個資料行的單一資料行統計資料，再加上一些跨資料行關聯性資訊 (稱為密度)。多重資料行統計資料可以改善某些作業 (例如複合 joins 和 group by) 的查詢效能。
+## 開始使用統計資料
 
-如需詳細資訊，請參閱 MSDN 上的 [DBCC SHOW\_STATISTICS][]。
+ 建立每個資料行的範本統計資料是開始使用統計資料的簡單方式。因為隨時更新統計資料也同樣重要，保守的作法可能是每天或每次載入之後更新統計資料。建立和更新統計資料的效能與成本之間總有一些取捨。如果您發現維護所有統計資料所需時間太長，可能要更謹慎選擇哪些資料行要加以統計資料、哪些資料行需要頻繁更新。例如，由於可能有新的值加入，您可能想要每天更新日期資料行，而不是在每次載入之後才更新。同樣地，根據涉入 JOIN、GROUP BY、HAVING 和 WHERE 子句的資料行建立統計資料，將可享受最大的好處。如果資料表有許多資料行，但都只用在 SELECT 子句中，則這些資料行的統計資料沒有多大幫助，多花一些心思找出統計資料有所幫助的資料行，將可縮短統計資料的維護時間。
 
-## 為何需要統計資料？
-若無正確的統計資料，您將無法獲得 SQL 資料倉儲預計提供的效能。資料表和資料行都沒有 SQL 資料倉儲自動產生的統計資料，所以您需要自行建立。在建立資料表時建立統計資料，然後在您填入統計資料後予以更新是個不錯的主意。
+## 多重資料行統計資料
 
-> [AZURE.NOTE] 如果您使用 SQL Server，您可能會視需要依賴 SQL Server 為您建立和更新單一資料行統計資料。SQL 資料倉儲在這方面有所不同。由於資料已分散，所以 SQL 資料倉儲不會自動彙總所有分散式資料的統計資料。它只會在您建立和更新統計資料時產生彙總統計資料。
+除了根據單一資料行建立統計資料，您可能會發現查詢也能受益於多重資料行統計資料。多重資料行統計資料是對一份資料行清單建立的統計資料。其中包含清單中第一個資料行的單一資料行統計資料，再加上一些跨資料行關聯性資訊 (稱為密度)。例如，如果一個資料表根據兩個資料行而聯結另一個資料表，您可能會發現只要 SQL 資料倉儲了解兩個資料行之間的關聯性，就可以進一步最佳化計畫。多重資料行統計資料可以改善某些作業 (例如複合聯結和分組分式) 的查詢效能。
 
-## 何時建立統計資料
-一組一致的最新統計資料是 SQL 資料倉儲的重要部分。因此，務必在設計資料表階段建立統計資料。
+## 更新統計資料
 
-建立每個資料行的單一資料行統計資料是開始使用統計資料的簡單方式。不過，建立和更新統計資料的效能與成本之間總有一些取捨。如果您建立所有資料行的單一資料行統計資料，而後發現更新所有統計資料花費太長的時間，您可以捨棄一些統計資料，或較常更新其中一些統計資料。
-
-只有在資料行位於複合 joins 或 group by 子句時，查詢最佳化工具才會使用多重資料行統計資料。複合篩選條件目前並未受益於多重資料行統計資料。
-
-開始進行 SQL 資料倉儲開發時，實作下列模式是個不錯的主意：
-- 對每個資料表上的每個資料行建立單一資料行統計資料
-- 對 joins 和 group by 子句中查詢所用的資料行，建立多重資料行統計資料。
-
-當您了解要如何查詢您的資料時，您可能想要修改此模型 - 尤其在資料表的範圍很廣時。如需更進階的方法，請參閱 [實作統計資料管理]\(## 實作統計資料管理) 一節。
-
-## 何時更新統計資料
-請務必在您的資料庫管理例行工作中納入更新統計資料。資料庫中的資料散發情況改變時，就需要更新統計資料。否則，您可看見次佳的查詢效能，而進一步排解查詢疑難所做的付出可能不值得。
+在資料庫管理例行工作中，更新統計資料很重要。資料庫中的資料散發情況改變時，就需要更新統計資料。過期的統計資料將會導致查詢效能欠佳。
 
 其中一個最佳做法，是隨著新增新的日期，每天在日期資料行上更新統計資料。每次有新資料列載入資料倉儲時，就會加入新的載入日期或交易日期。這些會改變資料散發情況並使統計資料過時。相反地，客戶資料表中國家/地區資料行上的統計資料，可能永遠不需要更新，因為值散發通常不會變更。假設客戶間的散發固定不變，將新資料列加入至資料表變化並不會改變資料散發情況。不過，如果您的資料倉儲原本只包含單一國家/地區，而您又帶入來自新國家/地區的資料，並導致資料倉儲儲存了來自多個國家/地區的資料，您便必須更新國家/地區資料行上的統計資料。
 
@@ -62,8 +53,8 @@
 
 如需參考，**SQL Server** (非 SQL 資料倉儲) 會針對下列情況自動更新統計資料：
 
-- 如果您的資料表中有零個資料列，當您新增一個或多個資料列時，系統便會自動更新統計資料
-- 當您將超過 500 個資料列新增到原本擁有少於 500 個資料列的資料表時 (例如，您一開始擁有 499 個資料列，然後新增 500 個資料列，變成一共有 999 個資料列)，系統便會自動更新統計資料 
+- 如果您的資料表中有零個資料列，當您新增資料列時，系統便會自動更新統計資料
+- 當您將超過 500 個資料列新增到原本擁有少於 500 個資料列的資料表時 (例如，您一開始擁有 499 個資料列，然後新增 500 個資料列，變成一共有 999 個資料列)，系統便會自動更新統計資料
 - 當您擁有超過 500 個資料列之後，您必須新增 500 個資料列 + 數目為資料表大小 20% 的額外資料列，系統才會針對統計資料進行自動更新
 
 由於沒有 DMV 可以判斷資料表內的資料於上次更新統計資料後是否有變更，了解您統計資料的年齡將可以協助您做出判斷。您可以使用下列查詢來判斷每份資料表上次更新了哪些統計資料。
@@ -355,7 +346,7 @@ UPDATE STATISTICS dbo.table1;
 
 > [AZURE.NOTE] 更新資料表上的所有統計資料時，SQL 資料倉儲會進行掃描，以針對每個統計資料進行資料表取樣。如果資料表很大、有許多資料行以及許多統計資料，則根據需求來更新個別統計資料可能比較有效率。
 
-如需 `UPDATE STATISTICS` 程序的實作，請參閱[暫存資料表]一文。實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但最終結果相同。
+如需 `UPDATE STATISTICS` 程序的實作，請參閱[暫存資料表][Temporary]一文。實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但最終結果相同。
 
 如需完整語法，請參閱 MSDN 上的[更新統計資料][]。
 
@@ -473,17 +464,28 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 4. 無法使用資料行名稱來識別統計資料物件
 5. 不支援自訂錯誤 2767
 
-
 ## 後續步驟
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
+
+如需詳細資訊，請參閱 MSDN 上的 [DBCC SHOW\_STATISTICS][]。若要深入了解，請參閱[資料表概觀][Overview]、[資料表的資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]和[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
-<!--Link references--In actual articles, you only need a single period before the slash.-->
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
-[暫存資料表]: ./sql-data-warehouse-develop-temporary-tables.md
+<!--Article references-->
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[概觀]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[資料類型]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
+[散發]: ./sql-data-warehouse-tables-distribute.md
+[Index]: ./sql-data-warehouse-tables-index.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[資料分割]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[暫存]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
-<!-- External Links -->
+<!--MSDN references-->  
 [基數估計]: https://msdn.microsoft.com/library/dn600374.aspx
 [CREATE STATISTICS]: https://msdn.microsoft.com/library/ms188038.aspx
 [DBCC SHOW\_STATISTICS]: https://msdn.microsoft.com/library/ms174384.aspx
@@ -498,4 +500,6 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 [sys.table\_types]: https://msdn.microsoft.com/library/bb510623.aspx
 [更新統計資料]: https://msdn.microsoft.com/library/ms187348.aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!--Other Web references-->  
+
+<!---HONumber=AcomDC_0706_2016-->

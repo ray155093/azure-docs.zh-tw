@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/07/2016" 
+	ms.date="06/24/2016" 
 	ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694271.aspx -->
@@ -65,17 +65,20 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 - [Azure Toolkit for IntelliJ]
   - [安裝 Azure Toolkit for IntelliJ]
   - [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
+  - [適用於 IntelliJ 的 Azure 工具組新增功能]
 
 如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
 
 <!-- URL List -->
 
+[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
 [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
 [適用於 Eclipse 的 Azure 工具組的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
+[適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 
@@ -99,4 +102,4 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 <!-- [SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699549 -->
 <!-- [Using the Azure Service Runtime Library in JSP]: http://go.microsoft.com/fwlink/?LinkID=699551 -->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

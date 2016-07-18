@@ -38,7 +38,7 @@
 
 Application Insights 資源是您在其中分析和顯示遙測資料的位置。
 
-1.  在 [Azure 入口網站][portal] 中，建立新的 Application Insights 資源。針對應用程式類型，選擇 ASP.NET 應用程式。 
+1.  在 [Azure 入口網站][portal] 中，建立新的 Application Insights 資源。針對應用程式類型，選擇 ASP.NET 應用程式。
 
     ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-cloudservices/01-new.png)
 
@@ -59,7 +59,7 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
     ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]](./media/app-insights-cloudservices/03-nuget.png)
 
 
-2. 若為 Web 角色，新增 [Application Insights for Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet 封裝。此 SDK 版本包含新增伺服器內容 (如角色資訊) 的模組。若為背景工作角色，請使用 [Windows 服務的 Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/)。
+2. 若為 Web 角色，新增 [Application Insights for Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet 封裝。此 SDK 版本包含新增伺服器內容 (如角色資訊) 的模組。若為背景工作角色，請使用[適用於 Windows Server 的 Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/)。
 
     ![搜尋「Application Insights」](./media/app-insights-cloudservices/04-ai-nuget.png)
 
@@ -87,9 +87,9 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
  
  * [Web 角色](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Global.asax.cs#L27)
  * [背景工作角色](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/WorkerRoleA/WorkerRoleA.cs#L232)
- * [針對網頁](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Views/Shared/_Layout.cshtml#L13)   
+ * [針對網頁](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/Samples/AzureEmailService/MvcWebRole/Views/Shared/_Layout.cshtml#L13)
 
-4. 將 ApplicationInsights.config 設定為一律複製到輸出目錄。 
+4. 將 ApplicationInsights.config 設定為一律複製到輸出目錄。
 
     (在 .config 檔案中，您會看到訊息詢問您將檢測金鑰放至該處。不過，針對雲端應用程式，最好是從 .cscfg 檔案中設定。這可確保角色會在入口網站中正確識別。)
 
@@ -145,7 +145,7 @@ Application Insights 資源是您在其中分析和顯示遙測資料的位置�
 
 哪裡可以找到診斷：
 
-* 效能計數器顯示為自訂度量。 
+* 效能計數器顯示為自訂度量。
 * Windows 事件記錄檔顯示為追蹤和自訂事件。
 * 應用程式記錄檔、ETW 記錄檔和任何診斷基礎結構記錄檔顯示為追蹤。
 
@@ -286,4 +286,4 @@ Application Insights SDK 可以報告應用程式對外部相依性的呼叫，�
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

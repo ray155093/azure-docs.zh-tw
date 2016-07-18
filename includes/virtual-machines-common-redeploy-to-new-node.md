@@ -1,36 +1,23 @@
+## 使用 Azure 入口網站
 
-如果您對遠端桌面 (RDP) 連線到以 Windows 為基礎的 Azure 虛擬機器，或 SSH 連線到以 Linux 為基礎的 Azure 虛擬機器，在疑難排解時遇到困難，則此文章將協助您自行減輕困難，而不用尋求支援或重新調整虛擬機器大小。當您透過 Azure PowerShell 叫用重新部署作業時，Microsoft Azure 將會自動重新部署您的虛擬機器。
+1. 選取您想要重新部署的 VM，然後按一下 [設定] 刀鋒視窗中的 [重新部署] 按鈕︰
 
-請注意，此作業完成之後，將會遺失暫時磁碟機資料，且將會更新與虛擬機器關聯的動態 IP 位址。
+	![Azure VM 刀鋒視窗](./media/virtual-machines-common-redeploy-to-new-node/vmoverview.png)
 
+2. 按一下 [重新部署] 按鈕，確認此作業︰
 
-## 使用 Azure PowerShell
+	![重新部署 VM 刀鋒視窗](./media/virtual-machines-common-redeploy-to-new-node/redeployvm.png)
 
-確定您的電腦上已安裝最新版本的 Azure PowerShell 1.x。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md)。
+3. 當 VM 準備重新部署時，您會看到 VM 的 [狀態] 變成 [更新中]︰
 
-使用這個 Azure PowerShell 命令來重新部署您的虛擬機器：
+	![VM 正在更新](./media/virtual-machines-common-redeploy-to-new-node/vmupdating.png)
 
-	Set-AzureRmVM -Redeploy -ResourceGroupName $rgname -Name $vmname 
+4. 當 VM 在新的 Azure 主機上開機時，[狀態] 會接著變成 [啟動中]︰
 
+	![VM 正在啟動](./media/virtual-machines-common-redeploy-to-new-node/vmstarting.png)
 
-命令執行的時候，在 [Azure 入口網站](https://portal.azure.com)查看您的虛擬機器。請注意，VM 的 [狀態] 變更如下 ︰
+5. 在 VM 完成開機程序之後，[狀態] 將回復為 [執行中]，表示已順利重新部署 VM︰
 
-1. 初始 [狀態] 是 [正在執行]
+	![VM 正在執行](./media/virtual-machines-common-redeploy-to-new-node/vmrunning.png)
 
-	![重新部署的初始狀態](./media/virtual-machines-common-redeploy-to-new-node/statusrunning1.png)
-
-2. [狀態] 變為 [正在更新]
-
-	![重新部署狀態 [正在更新]](./media/virtual-machines-common-redeploy-to-new-node/statusupdating.png)
-
-3. [狀態] 變為 [正在啟動]
-
-	![重新部署狀態 [正在啟動]](./media/virtual-machines-common-redeploy-to-new-node/statusstarting.png)
-
-4. [狀態] 變回 [正在執行]
-
-	![重新部署的最終狀態](./media/virtual-machines-common-redeploy-to-new-node/statusrunning2.png)
-
-當 [狀態] 變回 [正在執行] 時，表示 VM 已重新部署成功。
-
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0706_2016-->

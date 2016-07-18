@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # 管理 Azure AD 網域服務受管理網域上的 DNS
@@ -118,4 +118,4 @@ Azure AD 目錄中的系統管理員沒有權限，不能透過遠端桌面連�
 
 - [DNS 系統管理工具](https://technet.microsoft.com/library/cc753579.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -44,12 +44,8 @@
 | [使用 Azure 入口網站/Data Factory 編輯器建置您的第一個 Azure Data Factory](data-factory-build-your-first-pipeline-using-editor.md) | 在本教學課程中，您將使用 Azure 入口網站中的 Data Factory 編輯器，建立範例 Azure Data Factory 管線。 |
 | [使用 Azure PowerShell 建置您的第一個 Azure Data Factory](data-factory-build-your-first-pipeline-using-powershell.md) | 在本教學課程中，您將使用 Azure PowerShell，建立範例 Azure Data Factory 管線。 |
 | [教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory](data-factory-build-your-first-pipeline-using-arm.md) | 在本教學課程中，您將使用 Azure 資源管理員範本，來建立範例 Azure Data Factory 管線。 |
-| [教學課程︰建立您的第一個 Data Factory (概觀)](data-factory-build-your-first-pipeline.md) | 本教學課程示範如何建立使用 Azure HDInsight 轉換資料的 Data Factory。 |
-| [教學課程：將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-get-started.md) | 本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，從 Azure Blob 複製資料到 Azure SQL Database。 |
-| [教學課程：使用 Azure PowerShell 建立具有複製活動的管線](data-factory-monitor-manage-using-powershell.md) | 在本教學課程中，您將使用 Azure PowerShell，建立具有複製活動的 Azure Data Factory 管線。 |
+| [教學課程︰建立您的第一個 Data Factory (概觀)](data-factory-build-your-first-pipeline.md) | 本教學課程示範如何建立含有使用 Azure HDInsight 轉換資料之資料管線的 Data Factory。 |
 | [教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md) | 在本教學課程中，您將使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。 |
-| [教學課程：使用 Data Factory 編輯器建立具有複製活動的管線](data-factory-get-started-using-editor.md) | 在本教學課程中，您將使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。 |
-| [教學課程：使用 Visual Studio 建立具有複製活動的管線](data-factory-get-started-using-vs.md) | 在本教學課程中，您將使用 Visual Studio，建立具有複製活動的 Azure Data Factory 管線。 |
 
 ## 資料移動
 
@@ -157,4 +153,4 @@
 
 - 學習路徑圖：[Data Factory](http://azure.microsoft.com/documentation/learning-paths/data-factory/)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

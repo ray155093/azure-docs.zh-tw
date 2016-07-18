@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/01/2016"
+   ms.date="07/01/2016"
    ms.author="sonyama;barbkess;jrj"/>
 
 # SQL 資料倉儲容量限制
@@ -25,10 +25,10 @@
 
 | 類別 | 說明 | 最大值 |
 | :------------------ | :------------------------------------------- | :----------------- |
-| 資料倉儲單位 (DWU)| 計算、記憶體及 IO 資源 | 2000 |
+| [資料倉儲單位 (DWU)][]| 計算、記憶體及 IO 資源 | 2000 |
 | 資料庫連接 | 同時開啟的工作階段 | 1024<br/><br/>我們支援最多 1024 個使用中的連線，每個連線可以同時針對一個 SQL 資料倉儲資料庫提交要求。請注意，實際可以並行執行的查詢數是有限的。超過並行存取限制時，要求會進入內部佇列以等待處理。|
 | 資料庫連接 | 準備陳述式的最大記憶體 | 20 MB |
-| 工作負載管理 | 並行查詢上限 | 32<br/><br/> 根據預設，SQL 資料倉儲最多會執行 32 個併行查詢，並將剩餘的查詢納入佇列。<br/><br/>當使用者被指派到更高的資源類別時，並行存取層級可能會降低。系統總是會允許某些查詢 (例如 DMV 查詢) 執行。如需詳細資訊，請參閱[並行存取和工作負載管理][]。|
+| [工作負載管理][] | 並行查詢上限 | 32<br/><br/> 根據預設，SQL 資料倉儲最多會執行 32 個併行查詢，並將剩餘的查詢納入佇列。<br/><br/>當使用者被指派到更高的資源類別時，並行存取層級可能會降低。系統總是會允許某些查詢 (例如 DMV 查詢) 執行。|
 
 
 ## 資料庫物件
@@ -40,7 +40,7 @@
 | 資料表 | 每個資料庫的資料表 | 20 億 |
 | 資料表 | 每個資料表的資料行 | 1024 個資料行 |
 | 資料表 | 每個資料行的位元組 | 8000 個位元組 |
-| 資料表 | 每個資料列的位元組，已定義的大小 | 8060 個位元組<br/><br/>每個資料列的位元組數目計算方式同於已啟用頁面壓縮的 SQL Server。就像 SQL Server，SQL 資料倉儲支援資料列溢位儲存，讓可變長度的資料行能發送至超出資料列。發送超出資料列的可變長度資料行在主資料列只有儲存 24 位元的根。如需詳細資訊，請參閱《SQL Server 線上叢書》中的[超過 8 KB 的資料列溢位資料][]主題。<br/><br/>如需 SQL 資料倉儲資料類型大小的清單，請參閱 [CREATE TABLE (Azure SQL Data Warehouse) (CREATE TABLE (Azure SQL 資料倉儲))][]。 |
+| 資料表 | 每個資料列的位元組，已定義的大小 | 8060 個位元組<br/><br/>每個資料列的位元組數目計算方式同於已啟用頁面壓縮的 SQL Server。就像 SQL Server，SQL 資料倉儲支援資料列溢位儲存，讓可變長度的資料行能發送至超出資料列。發送超出資料列的可變長度資料行在主資料列只有儲存 24 位元的根。如需詳細資訊，請參閱《SQL Server 線上叢書》中的[超過 8 KB 的資料列溢位資料][]主題。<br/><br/>如需 SQL 資料倉儲資料類型大小的清單，請參閱 [CREATE TABLE (Azure SQL 資料倉儲)][]。 |
 | 資料表 | 每個資料表的資料分割 | 15,000<br/><br/>為了獲得高效能，建議在能夠支援業務需求的情況下，將您需要的資料分割數目降至最低。隨著資料分割數目增加，資料定義語言 (DDL) 和資料操作語言 (DML) 作業的負荷會加重，導致效能變慢。|
 | 資料表 | 每個資料分割界限值的字元。| 4000 |
 | 索引 | 每個資料表的非叢集索引。 | 999<br/><br/>僅適用於資料列存放區資料表。|
@@ -77,7 +77,7 @@
 | SELECT | 每個 JOIN 的資料行 | 1024 個資料行<br/><br/>JOIN 中絕對不能超過 1024 個資料行。不保證一定可以有 1024 個。如果 JOIN 計畫需要比 JOIN 結果更多資料行的暫存資料表，暫存資料表會受限於 1024 的限制。 |
 | SELECT | 每個 GROUP BY 資料行的位元組。 | 8060<br/><br/>GROUP BY 子句中的資料行最多可以有 8060 個位元組。|
 | SELECT | 每個 ORDER BY 資料行的位元組 | 8060 個位元組。<br/><br/>ORDER BY 子句中的資料行最多可以有 8060 個位元組。|
-| 每個陳述式的識別項和常數 | 參考的識別項和常數個數。 | 65,535<br/><br/>SQL 資料倉儲限制單一查詢運算式中可包含的識別項和常數個數。此限制為 65,535。超過此數字會導致 SQL Server 錯誤 8632。如需詳細資訊，請參閱 [Internal error: An expression services limit has been reached (內部錯誤：到達運算式服務限制)][]。|
+| 每個陳述式的識別項和常數 | 參考的識別項和常數個數。 | 65,535<br/><br/>SQL 資料倉儲限制單一查詢運算式中可包含的識別項和常數個數。此限制為 65,535。超過此數字會導致 SQL Server 錯誤 8632。如需詳細資訊，請參閱[內部錯誤：到達運算式服務限制][]。|
 
 
 ## 中繼資料
@@ -101,12 +101,13 @@
 <!--Image references-->
 
 <!--Article references-->
-[SQL 資料倉儲參考概觀]: sql-data-warehouse-overview-reference.md
-[並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
+[資料倉儲單位 (DWU)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[SQL 資料倉儲參考概觀]: ./sql-data-warehouse-overview-reference.md
+[工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
 
 <!--MSDN references-->
 [超過 8 KB 的資料列溢位資料]: https://msdn.microsoft.com/library/ms186981.aspx
-[CREATE TABLE (Azure SQL Data Warehouse) (CREATE TABLE (Azure SQL 資料倉儲))]: https://msdn.microsoft.com/library/mt203953.aspx
-[Internal error: An expression services limit has been reached (內部錯誤：到達運算式服務限制)]: https://support.microsoft.com/kb/913050
+[CREATE TABLE (Azure SQL 資料倉儲)]: https://msdn.microsoft.com/library/mt203953.aspx
+[內部錯誤：到達運算式服務限制]: https://support.microsoft.com/kb/913050
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/19/2016"
+   ms.date="07/05/2016"
    ms.author="larryfr"/>
 
 #使用 Ambari REST API 管理 HDInsight 叢集
@@ -76,13 +76,11 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
         "Host/host_status/UNKNOWN" : 0,
         "Host/host_status/ALERT" : 0
 
-由於這是 JSON，使用 JSON 剖析器來擷取資料通常較容易。例如，如果您想要擷取警示的計數 (包含在 __"Host/host\_status/ALERT"__ 元素中) 您可以使用下列指令直接存取值：
+由於這是 JSON，使用 JSON 剖析器來擷取資料通常較容易。例如，如果您想要擷取叢集的健全狀態資訊，可以使用下列項目。
 
-    curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME" | jq '.Clusters.health_report."Host/host_status/ALERT"'
+    curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME" | jq '.Clusters.health_report'
     
-這會擷取 JSON 文件，然後將輸出用管道輸送至 jq。`'.Clusters.health_report."Host/host_status/ALERT"'` 指出您要擷取的 JSON 文件內的元素。
-
-> [AZURE.NOTE] __Host/host\_status/ALERT__ 元素含括在引號中，以表示 '/' 是元素名稱的一部分。如需使用 jq 的詳細資訊，請參閱 [jq website](https://stedolan.github.io/jq/)。
+這會擷取 JSON 文件，然後將輸出用管道輸送至 jq。`.Clusters.health_report` 指出您要擷取的 JSON 文件內的元素。
 
 ##範例：取得叢集節點的 FQDN
 
@@ -164,7 +162,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
             "version" : 1
         }
 
-    從此清單中，您需要複製元件的名稱 (例如，__spark\_thrift\_sparkconf__ 和 __tag__ 值。
+    您需要從此清單中複製元件的名稱 (例如，__spark\_thrift\_sparkconf__ 和 __tag__ 值。
     
 2. 使用下列命令以擷取元件和標記的組態。將 __spark-thrift-sparkconf__ 和 __INITIAL__ 取代為您想要擷取其組態的元件和標記。
 
@@ -172,9 +170,9 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
     
     Curl 會擷取 JSON 文件，然後 jq 用來做一些修改以建立範本，讓我們可用來新增/修改組態值。它特別具有下列功能：
     
-    * 建立唯一的值，其中包含字串 "string" 和日期，會儲存在 __newtag__
+    * 建立唯一的值，其中包含字串 "version" 和日期，會儲存在 __newtag__
     * 建立新的所需組態的根文件
-    * 取得 .items 陣列的內容，並且在 __desired\_config__ 元素底下加入。
+    * 取得 .items 陣列的內容，並且新增在 __desired\_config__ 元素下。
     * 刪除 __href__、__version__ 和 __Config__ 元素，因為提交新組態時不需要這些
     * 加入新的 __tag__ 元素，並且將其值設為 __version#################__，其中數值部分是根據目前的日期。每個組態都必須有唯一的標記。
     
@@ -257,4 +255,4 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 > [AZURE.NOTE] 某些 Ambari 功能已停用，因為這些功能是由 HDInsight 雲端服務所管理；例如，在叢集中新增或移除主機，或新增服務。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

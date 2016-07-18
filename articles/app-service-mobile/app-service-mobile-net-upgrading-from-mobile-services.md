@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="從行動服務升級為 Azure App Service" 
-	description="了解如何輕鬆地將您的行動服務應用程式升級為 App Service 行動 App" 
-	services="app-service\mobile" 
-	documentationCenter="" 
-	authors="mattchenderson" 
-	manager="dwrede" 
+<properties
+	pageTitle="從行動服務升級為 Azure App Service"
+	description="了解如何輕鬆地將您的行動服務應用程式升級為 App Service 行動 App"
+	services="app-service\mobile"
+	documentationCenter=""
+	authors="mattchenderson"
+	manager="dwrede"
 	editor=""/>
 
-<tags 
-	ms.service="app-service-mobile" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="mobile" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="02/09/2016" 
+<tags
+	ms.service="app-service-mobile"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="06/28/2016"
 	ms.author="mahender"/>
 
 # 將您現有的 .NET Azure 行動服務升級為 App Service
@@ -84,10 +84,10 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
         // Use this class to set configuration options for your mobile service
         ConfigOptions options = new ConfigOptions();
-        
+
         // Use this class to set WebAPI configuration options
         HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
-        
+
 取代為
 
         HttpConfiguration config = new HttpConfiguration();
@@ -98,9 +98,9 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 >[AZURE.NOTE] 如果您想要深入了解新的 .NET 伺服器 SDK 以及如何從您的應用程式新增/移除功能，請參閱[如何使用 .NET 伺服器 SDK] 主題。
 
 如果您的應用程式會使用驗證功能，您也必須註冊 OWIN 中介軟體。在此情況下，您應該將上述組態程式碼移入新的 OWIN 啟動類別。
- 
+
 1. 如果 NuGet 封裝 `Microsoft.Owin.Host.SystemWeb` 尚未包含於專案中，請新增它。
-2. 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選取 [新增] -> [新項目]。依序選取 [Web] -> [一般] -> [OWIN 啟動類別]。 
+2. 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選取 [新增] -> [新項目]。依序選取 [Web] -> [一般] -> [OWIN 啟動類別]。
 3. 將 MobileAppConfiguration 的上述程式碼從 `WebApiConfig.Register()` 移至您新啟動類別的 `Configuration()` 方法。
 
 確定 `Configuration()` 方法的結尾：
@@ -117,19 +117,19 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 若要確定您的結構描述與之前參考的一樣，請使用下列內容來設定 DbContext 中適用於您應用程式的結構描述：
 
         string schema = System.Configuration.ConfigurationManager.AppSettings.Get("MS_MobileServiceName");
-        
+
 如果您執行了上述設定，請確定您具有 MS\_MobileServiceName。如果您的應用程式先前已自訂這個結構描述，您也可以提供另一個結構描述名稱。
 
 ### 系統屬性
 
-#### 命名 
+#### 命名
 
 在 Azure 行動服務伺服器 SDK 中，系統屬性一律會包含適用於屬性的雙底線 (`__`) 前置詞：
 
-- __\_\_createdAt
-- __\_\_updatedAt
-- __\_\_deleted
-- __\_\_version
+- \_\_createdAt
+- \_\_updatedAt
+- \_\_deleted
+- \_\_version
 
 行動服務用戶端 SDK 具有特殊的邏輯，可用來剖析這種格式的系統屬性。
 
@@ -142,7 +142,7 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
 Mobile Apps 用戶端 SDK 會使用新的系統屬性名稱，因此不需要對用戶端程式碼進行任何變更。不過，如果您要直接對服務進行 REST 呼叫，則您應該據以變更您的查詢。
 
-#### 本機存放區 
+#### 本機存放區
 
 變更系統屬性的名稱，表示適用於行動服務的離線同步處理本機資料庫與 Mobile Apps 不相容。如果可能，在將暫止的變更傳送到伺服器之前，您應該避免將用戶端應用程式從行動服務升級為 Mobile Apps。接著，升級的應用程式應該使用新的資料庫檔案名稱。
 
@@ -209,7 +209,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 
 `ApiServices` 物件不再是 SDK 的一部分。若要存取行動應用程式設定，您可以使用下列：
 
-    MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings(); 
+    MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
 同樣地，現在已使用標準 ASP.NET 追蹤寫入完成記錄︰
 
@@ -230,11 +230,11 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 您可以取得其他使用者資訊，包括透過 `GetAppServiceIdentityAsync()` 方法存取權杖：
 
         FacebookCredentials creds = await this.User.GetAppServiceIdentityAsync<FacebookCredentials>();
-        
+
 此外，如果您的應用程式依存於使用者識別碼 (例如，將它們儲存於資料庫中)，請務必注意，行動服務和 App Service Mobile Apps 之間的使用者識別碼是不同的。不過，您仍然可以取得行動服務使用者識別碼。所有的 ProviderCredentials 子類別都具有 UserId 屬性。因此，繼續之前的範例：
 
         string mobileServicesUserId = creds.Provider + ":" + creds.UserId;
-        
+
 如果您的應用程式依存於使用者識別碼，請務必盡可能使用相同的身分識別提供者註冊。使用者識別碼的範圍通常限定在已使用的應用程式註冊，因此引入新的註冊，可能會讓使用者在比對其資料時發生問題。
 
 ### 自訂驗證
@@ -253,7 +253,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 您可以透過下列連結，閱讀有關安裝新的 SDK 以及使用新結構的相關資訊：
 
 - [iOS 3.0.0 版或更新版本](app-service-mobile-ios-how-to-use-client-library.md)
-- [.NET (Windows/Xamarin) 2.0.0 版或更新版本](app-service-mobile-dotnet-how-to-use-client-library.md) 
+- [.NET (Windows/Xamarin) 2.0.0 版或更新版本](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 如果您的應用程式會使用推播通知，請記下每個平台特定的註冊指示，因為也已有一些變更。
 
@@ -274,7 +274,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 [如何使用 .NET 伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
 [Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[App Service 定價]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
+[App Service 定價]: https://azure.microsoft.com/pricing/details/app-service/
 [.NET 伺服器 SDK 概觀]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0706_2016-->

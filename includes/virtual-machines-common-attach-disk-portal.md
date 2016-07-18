@@ -3,13 +3,13 @@
 
 ## 尋找虛擬機器
 
-1. 登入 Azure 入口網站。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
 2. 在 [中樞] 功能表上，按一下 [虛擬機器]。
 
 3.	然後從清單中選取虛擬機器。
 
-4. 在右側的 [Essentials] 底下，按一下 [所有設定]，然後按一下 [磁碟]。
+4. 在虛擬機器刀鋒視窗的 [基本資訊] 中，按一下 [所有設定] > [磁碟]。
 
 	![開啟磁碟設定](./media/virtual-machines-common-attach-disk-portal/find-disk-settings.png)
 
@@ -43,4 +43,4 @@
 
 6.	Azure 將磁碟連接至虛擬機器之後，該磁碟會列在虛擬機器磁碟設定中的 [資料磁碟] 下面。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0706_2016-->

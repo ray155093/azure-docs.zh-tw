@@ -13,11 +13,11 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="01/28/2016"
+      ms.date="06/28/2016"
       ms.author="hascipio; avikova" />
 
 # 適用於 Azure Marketplace 的資料服務發佈指南
-完成步驟 1 [帳戶建立及註冊][link-acct-creation]之後，我們會透過 Azure Marketplace 上資料服務優惠的[一般非技術性](marketplace-publishing-pre-requisites.md)和[技術性需求](marketplace-publishing-data-service-creation-prerequisites.md)來引導您。現在，我們將逐步引導您在 Azure Marketplace 的[發佈入口網站][link-pubportal]上建立資料服務優惠。
+完成步驟 1 [帳戶建立及註冊](marketplace-publishing-accounts-creation-registration.md)之後，我們會透過 Azure Marketplace 上資料服務優惠的[一般非技術性](marketplace-publishing-pre-requisites.md)和[技術性需求](marketplace-publishing-data-service-creation-prerequisites.md)來引導您。現在，我們將逐步引導您在 Azure Marketplace 的[發佈入口網站][link-pubportal]上建立資料服務優惠。
 
 ## 1\.登入發佈入口網站。
 
@@ -143,7 +143,6 @@ Azure Marketplace 服務層必須負責監視每個查詢所取用的交易量 (
 - 如果您有興趣檢閱範例，請閱讀[資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文，來查看範例程式碼，並了解程式碼語法與內容。
 
 
-[link-acct-creation]: marketplace-publishing-microsoft-accounts-creation-registration.md
 [link-pubportal]: https://publish.windowsazure.com
 
-<!---HONumber=AcomDC_0204_2016-->
+<!---HONumber=AcomDC_0706_2016-->

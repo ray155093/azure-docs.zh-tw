@@ -1,5 +1,5 @@
 <properties
-   pageTitle="已備妥資料來進行資料科學嗎？- 資料評估 |Microsoft Azure"
+   pageTitle="您的資料已經可以進行資料科學了嗎？(資料評估) - 適用於初學者的資料科學 | Microsoft Azure"
    description="了解已備妥資料來進行資料科學的 4 個準則。適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。"
    keywords="資料評估, 相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料"
    services="machine-learning"
@@ -18,15 +18,17 @@
    ms.author="cgronlun;brohrer;garye"/>
 
 
-# 已備妥資料來進行資料科學嗎？ 適用於初學者的資料科學影片 2
+# 適用於初學者的資料科學影片 2：您的資料已經可以進行資料科學了嗎？
 
 了解如何評估您的資料，以確定它符合適用於資料科學的基本準則。
+
+若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
 > [AZURE.VIDEO data-science-for-beginners-series-is-your-data-ready-for-data-science]
 
 ## 文字記錄：已備妥資料來進行資料科學嗎？
 
-歡迎觀賞「適用於初學者的資料科學」系列的第二部影片「已備妥資料來進行資料科學嗎？」
+歡迎觀賞「適用於初學者的資料科學」系列的第二部影片「您的資料已經可以進行資料科學了嗎？」。
 
 您必須先提供一些可運用的高品質原始資料，資料科學才能提供您想要的答案。就像製作比薩，您一開始使用的原料越好，最終產品就越好。
 
@@ -102,10 +104,11 @@
 
 「適用於初學者的資料科學」是五個簡短影片中對於資料科學的快速簡介。
 
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)。**目前已可供使用。**
-  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)。**目前已可供使用。**
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)。**目前已可供使用。**
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)。於 6 月 30 日提供。
+  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
+  * 影片 2：您的資料已經可以進行資料科學了嗎？
+  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
+  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
+  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 
 
 ## 後續步驟
@@ -113,4 +116,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

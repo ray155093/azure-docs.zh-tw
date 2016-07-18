@@ -12,8 +12,8 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="05/06/2016"
-    ms.author="sethm" />
+    ms.date="07/01/2016"
+    ms.author="sethm;hillaryc" />
 
 # 分割訊息實體
 
@@ -111,16 +111,25 @@ committableTransaction.Commit();
 
 Azure 服務匯流排支援從分割實體自動轉送訊息、自動轉送訊息至分割實體，或在分割實體之間自動轉送訊息。若要啟用自動訊息轉送，請在來源佇列或訂用帳戶上設定 [QueueDescription.ForwardTo][] 屬性。如果該訊息指定分割索引鍵 ([SessionId][]、[PartitionKey][] 或 [MessageId][])，該分割索引鍵會用於目的地實體。
 
+## 考量和指導方針
+
+- **高度一致性功能**︰如果實體使用工作階段、重複偵測或明確控制資料分割索引鍵等功能，則傳訊作業一定會路由至特定的片段。如果任何片段遇到過高的流量，或基礎存放區的狀況不良，這些作業將會失敗，而且可用性會降低。整體來說，一致性仍然遠高於非分割實體，只有一部分流量會遭遇問題，而不是所有的流量。
+- **管理**︰必須在實體的所有片段上執行建立、更新及刪除等作業。如果任何片段的狀況不良，可能會造成這些作業失敗。以「取得」作業來說，必須彙總來自所有片段的資訊，例如訊息計數。如果任何片段的狀況不良，則實體可用性狀態會報告為受限制。
+- **少量訊息案例**︰對於這類案例，尤其是當使用 HTTP 通訊協定時，您可能必須執行多次接收作業，才能取得所有訊息。對於接收要求，前端會在所有片段上執行接收，並快取所有收到的回應。相同連接上的後續接收要求將受益於此快取，而且接收延遲將會縮短。不過，如果您有多個連線或使用 HTTP，則會針對每個要求建立新的連接。因此，不保證抵達相同的節點。如果所有現有的訊息遭鎖定，而且在另一個前端中快取，接收作業會傳回 **null**。訊息最後會到期，您可以再次接收它們。建議使用 HTTP 持續作用。
+- **瀏覽/查看訊息**：PeekBatch 不一定會傳回 [MessageCount 屬性](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.messagecount.aspx) 中指定的訊息數目。這有兩個常見的原因。其中一個原因是訊息集合的彙總大小超過大小上限 256KB。另一個原因是，如果佇列或主題的 [EnablePartitioning 屬性](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enablepartitioning.aspx)設為 **true**，資料分割可能沒有足夠的訊息來完成所要求的訊息數目。一般而言，如果應用程式想要接收一定數目的訊息，它應該重複呼叫 [PeekBatch](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.peekbatch.aspx)，直到取得該數目的訊息，或已沒有更多訊息可查看為止。如需詳細資訊，包括程式碼範例，請參閱 [QueueClient.PeekBatch](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.peekbatch.aspx) 或 [SubscriptionClient.PeekBatch](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.peekbatch.aspx)。
+
+## 最新加入的功能
+
+- 分割實體現在支援新增或移除規則。不同於非分割實體，交易情況下不支援這些作業。
+- AMQP 現在支援往返於分割實體傳送和接收訊息。
+- AMQP 現在支援下列作業：[Batch 傳送](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.sendbatch.aspx)、[Batch 接收](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.receivebatch.aspx)、[依序號接收](https://msdn.microsoft.com/library/azure/hh330765.aspx)、[查看](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.peek.aspx)、[更新鎖定](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.renewmessagelock.aspx)、[排定訊息](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.schedulemessageasync.aspx)、[取消排定的訊息](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.cancelscheduledmessageasync.aspx)、[新增規則](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.ruledescription.aspx)、[移除規則](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.ruledescription.aspx)、[工作階段更新鎖定](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.renewlock.aspx)、[設定工作階段狀態](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.setstate.aspx)、[取得工作階段狀態](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.getstate.aspx)、[查看工作階段訊息](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.peek.aspx)和[列舉工作階段](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.queueclient.getmessagesessionsasync.aspx)。
+
 ## 分割實體限制
 
 在目前的實作中，服務匯流排會為分割的佇列和主題設定下列限制：
 
--   分割的佇列及主題可透過 SBMP 或 HTTP/HTTPS 使用，也可與 AMQP 搭配使用。
-
 -   分割的佇列及主題不支援在單一交易中傳送屬於不同工作階段的訊息。
-
 -   服務匯流排目前每個命名空間允許最多 100 個分割佇列或主題。每個分割佇列或主題的配額計數為每個命名空間 10,000 個實體。
-
 -   Windows Server 1.0 和 1.1 版的服務匯流排不支援分割的佇列和主題。
 
 ## 後續步驟
@@ -144,4 +153,4 @@ Azure 服務匯流排支援從分割實體自動轉送訊息、自動轉送訊�
   [QueueDescription.ForwardTo]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.forwardto.aspx
   [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

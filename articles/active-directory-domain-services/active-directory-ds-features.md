@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/11/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽)
@@ -37,7 +37,13 @@
 
 - **LDAP 繫結與 LDAP 讀取支援：**您可以使用依賴 LDAP 繫結的應用程式，在 Azure AD 網域服務所服務的網域中驗證使用者。此外，使用 LDAP 讀取作業來從目錄查詢使用者/電腦屬性的應用程式也可以針對 Azure AD 網域服務運作。
 
+- **安全 LDAP (LDAPS)：**透過安全 LDAP (LDAPS) 啟用目錄的存取。預設可在虛擬網路內使用安全 LDAP 存取。不過，您也可以選擇為網際網路啟用安全 LDAP 存取。
+
 - **群組原則：**您可以針對每個使用者和電腦容器來利用單一內建的 GPO，針對使用者帳戶以及已加入網域的電腦強制採用符合安全性原則的規範。
+
+- **管理 DNS：**「AAD DC 系統管理員」群組成員可以使用熟悉的 DNS 系統管理工具 (例如 DNS 系統管理 MMC 嵌入式管理單元)，來管理您 Azure AD 網域服務受管理網域的 DNS。
+
+- **建立自訂的組織單位 (OU)：**「AAD DC 系統管理員」群組成員可以在 AAD 網域服務受管理網域內建立自訂的 OU。這些使用者會被授與自訂 OU 的完整系統管理權限，讓他們可以在這些自訂的 OU 內新增或移除服務帳戶、電腦、群組等。
 
 - **可在多個 Azure 區域中使用：**請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面，以了解可使用 Azure AD 網域服務的 Azure 區域。
 
@@ -45,4 +51,4 @@
 
 - **使用熟悉的管理工具：**您可以使用 Active Directory 管理中心或 PowerShell 的 Active Directory 等熟悉的 Windows Server Active Directory 管理工具，來管理 Azure AD 網域服務所提供的網域。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

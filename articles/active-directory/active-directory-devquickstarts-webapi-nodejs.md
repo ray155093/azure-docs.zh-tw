@@ -231,7 +231,8 @@ server.js 檔案可提供我們 Web API 伺服器的大部分功能。我們將�
 	var getopt = require('posix-getopt');
 	var mongoose = require('mongoose/');
 	var restify = require('restify');
-  var OIDCBearerStrategy = require('passport-azure-ad').BearerStrategy;
+	var passport = require('passport');
+  var BearerStrategy = require('passport-azure-ad').BearerStrategy;
 ```
 
 儲存檔案。我們稍後會再回到此檔案。
@@ -254,7 +255,7 @@ server.js 檔案可提供我們 Web API 伺服器的大部分功能。我們將�
      audience: 'your application URL',
     // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
   // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
-     identityMetadata: 'https://login.microsoftonline.com/<your client id>/.well-known/openid-configuration', 
+     identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration', 
      validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
      passReqToCallback: false,
      loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
@@ -927,4 +928,4 @@ Transfer-Encoding: chunked
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

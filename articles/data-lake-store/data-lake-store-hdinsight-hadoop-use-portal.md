@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/10/2016"
+   ms.date="07/01/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
@@ -31,7 +31,11 @@
 
 * **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
 
-> [AZURE.NOTE] 只有 HDInsight 3.2 版和 3.4 版 (適用於 Windows 及 Linux 上的 Hadoop、HBase 及 Storm 叢集) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。針對 Linux 上的 Spark 叢集，此選項僅適用於 HDInsight 3.4 版的叢集。
+> [AZURE.NOTE] 有一些需要注意的重要事項。
+> 
+> * 只有 HDInsight 3.2 版和 3.4 版 (適用於 Windows 及 Linux 上的 Hadoop、HBase 及 Storm 叢集) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。針對 Linux 上的 Spark 叢集，此選項僅適用於 HDInsight 3.4 版的叢集。
+>
+> * 如上所述，Data Lake Store 可用來做為部分叢集類型 (HBase) 的預設儲存體，以及其他叢集類型的其他儲存體 (Hadoop、Spark、Storm)。使用 Data Lake Store 做為其他儲存體帳戶，不會影響效能或從叢集讀取/寫入至儲存體的能力。如果使用 Data Lake Store 做為其他儲存體，則會將叢集相關的檔案 (例如記錄檔等) 寫入預設儲存體 (Azure Blob)，而您想要處理的資料會儲存於 Data Lake Store 帳戶中。
 
 
 ## 必要條件
@@ -50,7 +54,7 @@
 觀看下列影片來了解如何透過存取 Data Lake Store 來佈建 HDInsight 叢集。
 
 * [建立可存取 Data Lake Store 的 HDInsight 叢集](https://mix.office.com/watch/l93xri2yhtp2)
-* 一旦設定叢集，[請使用 Hive 和 Pig 指令碼存取 Data Lake Store 中的資料](https://mix.office.com/watch/1n9g5w0fiqv1q)
+* 一旦設定叢集之後，請[使用 Hive 和 Pig 指令碼存取 Data Lake Store 中的資料](https://mix.office.com/watch/1n9g5w0fiqv1q)
 
 ## 建立可存取 Azure 資料湖存放區的 HDInsight 叢集
 
@@ -72,11 +76,11 @@
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.2.png "將服務主體新增至 HDInsight 叢集")
 
-		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。選取想要與 HDInsight 叢集產生關聯之帳戶的 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
+		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。為您想要與 HDInsight 叢集產生關聯的帳戶選取 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.png "將服務主體新增至 HDInsight 叢集")
 
-		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [下載憑證]，以下載與您所建立之服務主體相關聯的憑證。日後在建立其他 HDInsight 叢集時如果您想要使用相同的服務主體，便很適合這麼做。按一下 [選取]。
+		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [下載憑證]，以下載與您所建立服務主體相關聯的憑證。日後在建立其他 HDInsight 叢集時如果您想要使用相同的服務主體，便很適合這麼做。按一下 [選取]。
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.4.png "將服務主體新增至 HDInsight 叢集")
 
@@ -87,9 +91,9 @@
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.png "將服務主體新增至 HDInsight 叢集")
 
-		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，上傳與您所選取之服務主體相關聯的憑證 (.pfx)，然後提供憑證密碼。
+		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，上傳與您所選取服務主體相關聯的憑證 (.pfx)，然後提供憑證密碼。
 
-		* 按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。選取想要與 HDInsight 叢集產生關聯之帳戶的 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
+		* 按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。為您想要與 HDInsight 叢集產生關聯的帳戶選取 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.existing.save.png "將服務主體新增至 HDInsight 叢集")
 
@@ -133,7 +137,7 @@
 
 		SHOW TABLES;
 
-	[結果] 索引標籤應顯示下列資訊：
+	[結果] 索引標籤應會顯示下列資訊：
 
 		hivesampletable
 		vehicles
@@ -233,7 +237,7 @@
 
 在本節中，您會使用可與 HDInsight Spark 叢集搭配使用的 Jupyter Notebook 來執行工作，從您關聯至 HDInsight Spark 叢集的 Data Lake Store 帳戶讀取資料，而不是從預設的 Azure 儲存體 Blob 帳戶讀取。
 
-1. 將一些範例資料從與 Spark 叢集相關聯的預設儲存體帳戶 (WASB) 複製到與該叢集相關聯的 Azure Data Lake Store 帳戶。您可以使用 [AdlCopy 工具](http://aka.ms/downloadadlcopy)來執行此動作。從連結下載並安裝此工具。
+1. 將一些範例資料從與 Spark 叢集相關聯的預設儲存體帳戶 (WASB) 複製到與該叢集相關聯的 Azure Data Lake Store 帳戶。您可以使用 [ADLCopy 工具](http://aka.ms/downloadadlcopy)來執行此動作。從連結下載並安裝此工具。
 
 2. 開啟命令提示字元，並瀏覽至安裝 AdlCopy 的目錄，通常是 `%HOMEPATH%\Documents\adlcopy`。
 
@@ -299,7 +303,7 @@
 		# Register the data fram as a table to run queries against
 		hvacdf.registerTempTable("hvac")
 
-5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [HDInsight Spark 叢集可供 Jupyter Notebook 使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 詳細資訊，請參閱 [HDInsight Spark 叢集可供 Jupyter Notebook 使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 		
 		%%sql
 		SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = "6/1/13"
@@ -343,4 +347,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

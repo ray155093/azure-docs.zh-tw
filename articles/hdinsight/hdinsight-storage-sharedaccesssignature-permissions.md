@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="04/19/2016"
+ms.date="07/05/2016"
 ms.author="larryfr"/>
 
 #使用 Azure 儲存體共用存取簽章來限制使用 HDInsight 對資料的存取
@@ -290,4 +290,4 @@ __解決方案__：使用符合下列準則的密碼：
 
 [powershell]: ../powershell-install-configure.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

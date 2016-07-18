@@ -4,7 +4,7 @@
 
     此時會顯示新的 [CDN 設定檔] 刀鋒視窗。
 
-    ![新增 CDN 設定檔](./media/cdn-create-profile/new-cdn-profile.png)
+    ![新增 CDN 設定檔](./media/cdn-create-profile/new-cdn-profile-include.png)
 
 2. 輸入 CDN 設定檔的名稱。
 
@@ -14,8 +14,10 @@
 
 5. 選取**定價層**。如需定價層的比較，請參閱 [CDN 概觀](cdn-overview.md#azure-cdn-features)。
     
-    ![CDN 定價層選取項目](./media/cdn-create-profile/cdn-choose-sku.png)
+    ![CDN 定價層選取項目](./media/cdn-create-profile/cdn-choose-sku-include.png)
 
 6. 選取這個 CDN 設定檔的 [訂用帳戶]。
 
 7. 按一下 [建立] 按鈕，以建立新的設定檔。
+
+<!---HONumber=AcomDC_0706_2016-->

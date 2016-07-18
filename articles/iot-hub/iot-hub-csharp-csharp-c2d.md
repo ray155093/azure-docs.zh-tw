@@ -24,16 +24,20 @@
 
 Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。[IoT 中心入門]教學課程會示範如何建立 IoT 中心、在其中佈建裝置識別，以及編寫模擬的裝置，以傳送裝置到雲端的訊息。
 
-本教學課程是以[開始使用 IoT 中樞]為基礎。本教學課程示範如何將雲端到裝置訊息傳送至單一裝置、向「IoT 中樞」要求傳遞通知 (「回饋」)，以及從應用程式雲端後端接收該通知。
+本教學課程是以[開始使用 IoT 中樞]為基礎。這會說明如何：
+
+- 從您的應用程式雲端後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
+- 接收裝置上的雲端到裝置訊息。
+- 從您的應用程式雲端後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (*意見反應*)。
 
 您可以在 [IoT 中心開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
 在本教學課程結尾，您將會執行兩個 Windows 主控台應用程式：
 
 * **SimulatedDevice**，[IoT 中心入門]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
-* **SendCloudToDevice**：會將雲端到裝置訊息透過「IoT 中樞」傳送到模擬的裝置，然後接收其傳遞通知。
+* **SendCloudToDevice**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置，然後接收其傳遞通知。
 
-> [AZURE.NOTE] 「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。如需有關如何將您的裝置與本教學課程中的程式碼做連接 (通常是連接到「Azure IoT 中樞」) 的逐步指示，請參閱 [Azure IoT 開發人員中樞]。
+> [AZURE.NOTE] 「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。如需有關如何將您的裝置與本教學課程中的程式碼連接 (通常是連接到「Azure IoT 中樞」) 的逐步指示，請參閱 [Azure IoT 開發人員中樞]。
 
 若要完成此教學課程，您需要下列項目：
 
@@ -43,7 +47,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 在模擬裝置上接收訊息
 
-在本節中，您將修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中心的雲端對裝置訊息。
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
 
 1. 在 Visual Studio 的 **SimulatedDevice** 專案中，將下列方法加入 [程式] 類別。
 
@@ -65,11 +69,11 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
     `ReceiveAsync` 方法會以非同步方式，在裝置收到訊息時，傳回收到的訊息。它會在可指定的逾時期間過後傳回「null」(在本例中，使用的是預設值 1 分鐘)。當發生這種情況時，程式碼應該繼續等待新訊息。所以加上 `if (receivedMessage == null) continue` 行。
 
-    對 `CompleteAsync()` 的呼叫會通知「IoT 中樞」，說明已成功處理訊息。可以安全地從裝置佇列中移除該訊息。如果因故導致裝置應用程式無法完成訊息處理作業，「IoT 中樞」將會重新傳遞該訊息。因此，裝置應用程式中的訊息處理邏輯必須是「等冪」，如此一來，多次接收相同的訊息才會產生相同的結果。應用程式也可以暫時放棄訊息，這會使得「IoT 中樞」將訊息保留在佇列中以供未來取用。或者，應用程式可以拒絕訊息，這會將訊息從佇列中永久移除。如需有關雲端到裝置訊息生命週期的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+    對 `CompleteAsync()` 的呼叫會通知 IoT 中樞，說明已成功處理訊息。可以安全地從裝置佇列中移除該訊息。如果因故導致裝置應用程式無法完成訊息處理作業，「IoT 中樞」將會重新傳遞該訊息。因此，裝置應用程式中的訊息處理邏輯必須是「等冪」，如此一來，多次接收相同的訊息才會產生相同的結果。應用程式也可以暫時放棄訊息，這會使得「IoT 中樞」將訊息保留在佇列中以供未來取用。或者，應用程式可以拒絕訊息，這會將訊息從佇列中永久移除。如需有關雲端到裝置訊息生命週期的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
-    > [AZURE.NOTE] 使用 HTTP/1 而不使用 AMQP 做為傳輸時，`ReceiveAsync` 方法會立即傳回。使用 HTTP/1 時，針對雲端到裝置訊息支援的模式是裝置以間歇方式連接而不常檢查訊息 (低於每 25 分鐘一次)。發出更多 HTTP/1 接收會導致「IoT 中樞」對要求進行節流。如需有關 AMQP 與 HTTP/1 支援間的差異，以及「IoT 中樞」節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+    > [AZURE.NOTE] 使用 HTTP/1 而不使用 AMQP 做為傳輸時，`ReceiveAsync` 方法會立即傳回。使用 HTTP/1 時，針對雲端到裝置訊息支援的模式是裝置以間歇方式連接而不常檢查訊息 (低於每 25 分鐘一次)。發出更多 HTTP/1 接收會導致「IoT 中樞」對要求進行節流。如需有關 AMQP 與 HTTP/1 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
-2. 將下列方法新增到 **Main** 方法中緊接在 `Console.ReadLine()` 行前面：
+2. 緊接在 `Console.ReadLine()` 行前面，將下列方法新增到 **Main** 方法中：
 
         ReceiveC2dAsync();
 
@@ -95,7 +99,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 		using Microsoft.Azure.Devices;
 
-5. 將下列欄位新增到 **Program** 類別。將預留位置的值替換成[開始使用 IoT 中樞] 中的 IoT 中樞連接字串：
+5. 將下列欄位新增到 **Program** 類別。將預留位置的值替換成[開始使用 IoT 中樞]中的 IoT 中樞連接字串：
 
 		static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
@@ -129,7 +133,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 ## 接收傳遞意見反應
 您可以向「IoT 中樞」要求每個雲端到裝置訊息的傳遞 (或到期) 通知。如此一來，雲端後端就能輕鬆地通知重試或補償邏輯。如需有關雲端到裝置意見反應的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
-在本節中，您將修改 **SendCloudToDevice** 應用程式以要求意見反應，然後從「IoT 中樞」接收意見反應。
+在本節中，您會修改 **SendCloudToDevice** 應用程式以要求意見反應，然後從「IoT 中樞」接收意見反應。
 
 1. 在 Visual Studio 的 **SendCloudToDevice** 專案中，將下列方法加入至 **Program** 類別。
    
@@ -153,7 +157,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
     請注意，這裡的接收模式，與用來從裝置應用程式接收雲端到裝置訊息的模式相同。
 
-2. 將下列方法新增到 **Main** 方法中緊接在 `serviceClient = ServiceClient.CreateFromConnectionString(connectionString)` 行後面：
+2. 緊接在 `serviceClient = ServiceClient.CreateFromConnectionString(connectionString)` 行後面，將下列方法新增到 **Main** 方法中：
 
         ReceiveFeedbackAsync();
 
@@ -207,4 +211,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

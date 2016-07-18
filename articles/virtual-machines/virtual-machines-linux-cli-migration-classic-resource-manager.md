@@ -27,9 +27,8 @@
 
 - 將[不支援的組態或功能清單](virtual-machines-windows-migration-classic-resource-manager.md)看一遍。如果您的虛擬機器使用不支援的組態或功能，建議您等到宣布支援該功能/組態之後，再進行移轉。或者，您可以移除該功能或移出該組態，以利移轉進行 (如果這麼做符合您的需求)。
 -	如果您是使用自動化指令碼來部署現今的基礎結構和應用程式，請使用這些指令碼來嘗試建立相似的測試設定以進行移轉。或者，您也可以使用 Azure 入口網站來設定範例環境。
-- 由於服務目前是公開預覽版，因此請確定用來進行移轉的測試環境已與您的生產環境隔離。請勿在測試環境和生產環境之間混用儲存體帳戶、虛擬網路或其他資源。
 
-## 步驟 2︰設定您的訂用帳戶並註冊移轉公開預覽版
+## 步驟 2︰設定您的訂用帳戶並註冊以進行移轉
 
 針對移轉案例，您必須為傳統和 Resource Manager 模型設定您的環境。[安裝 Azure CLI](../xplat-cli-install.md) 並[選取您的訂用帳戶](../xplat-cli-connect.md)。
 
@@ -37,7 +36,11 @@
 
 	azure account set "azure-subscription-name"
 
-使用下列命令來註冊公開預覽版。請注意，在某些情況下，此命令會逾時。不過，註冊將會成功。
+>[AZURE.NOTE] 註冊是一次性步驟，但必須在嘗試移轉之前完成。如果不註冊，您會看到下列錯誤訊息
+
+>	*BadRequest : Subscription is not registered for migration.* 
+
+請使用下列命令向移轉資源提供者註冊。請注意，在某些情況下，此命令會逾時。不過，註冊將會成功。
 
 	azure provider register Microsoft.ClassicInfrastructureMigrate
 
@@ -45,7 +48,7 @@
 
 	azure provider show Microsoft.ClassicInfrastructureMigrate
 
-現在，請將 CLI 切換至 `asm` 模式
+現在，請將 CLI 切換至 `asm` 模式。
 
 	azure config mode asm
 
@@ -105,9 +108,25 @@
 
 	azure network vnet commit-migration virtualnetworkname
 
+### 移轉儲存體帳戶
+
+完成虛擬機器移轉之後，我們建議您將移轉儲存體帳戶。
+
+使用下列命令來準備儲存體帳戶以進行移轉
+
+	azure storage account prepare-migration storageaccountname
+
+使用 CLI 或 Azure 入口網站來檢查已備妥之儲存體帳戶的設定。如果您尚未準備好進行移轉，而想要回到舊狀態，請使用下列命令。
+
+	azure storage account abort-migration storageaccountname
+
+如果備妥的組態看起來沒問題，您就可以繼續進行並使用下列命令來認可資源。
+
+	azure storage account commit-migration storageaccountname
+
 ## 後續步驟
 
 - [平台支援的 IaaS 資源移轉 (從傳統移轉至 Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

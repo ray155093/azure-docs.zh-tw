@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="05/20/2016"
+	ms.date="06/30/2016"
 	ms.author="marsma" />
 
 # 使用 Azure Batch 應用程式封裝部署應用程式
@@ -198,21 +198,23 @@ myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 await myCloudPool.CommitAsync();
 ```
 
+您針對集區指定的應用程式封裝會在每個電腦節點加入集區時，以及該節點重新啟動或重新安裝映像時，安裝於該節點上。如果應用程式封裝部署基於任何因素而失敗，批次服務會將節點標示為[無法使用][net_nodestate]，而且不會在該節點上排程任何要執行的工作。在此情況下，您應該**重新啟動**節點，以將封裝部署重新初始化 (重新啟動節點，也會在節點上重新啟用工作排程)。
+
 ## 執行安裝的應用程式
 
-當每個計算節點加入集區 (或是重新啟動或重新安裝映像)，您指定的封裝會下載及解壓縮到節點上 `AZ_BATCH_ROOT_DIR` 內指定的目錄中。Batch 也會為您的工作命令列建立環境變數，以在呼叫應用程式二進位檔時使用；此變數會遵守下列命名配置︰
+當每個計算節點加入集區 (或是重新啟動或重新安裝映像) 時，您指定的封裝會下載並解壓縮到節點上 `AZ_BATCH_ROOT_DIR` 內指定的目錄中。Batch 也會為您的工作命令列建立環境變數，以在呼叫應用程式二進位檔時使用；此變數會遵守下列命名配置︰
 
 `AZ_BATCH_APP_PACKAGE_appid#version`
 
-例如，如果您指定要安裝應用程式 blender 的 2.7 版，您的工作可以透過在其命令列中參考下列環境變數來存取應用程式二進位檔︰
+例如，如果您指定要安裝應用程式 Blender 的 2.7 版，您的工作可以透過在其命令列中參考下列環境變數來存取應用程式二進位檔：
 
 `AZ_BATCH_APP_PACKAGE_BLENDER#2.7`
 
-如果應用程式指定預設版本，您可以參考不含版本字串尾碼的環境變數。例如，如果您已在 Azure 入口網站中指定應用程式 blender 的預設版本 2.7，您的工作可以參考下列環境變數︰
+如果應用程式指定預設版本，您可以參考不含版本字串尾碼的環境變數。例如，如果您已在 Azure 入口網站中指定應用程式 Blender 的預設版本 2.7，您的工作可以參考下列環境變數：
 
 `AZ_BATCH_APP_PACKAGE_BLENDER`
 
-下列程式碼片段示範當您已指定應用程式 blender 的預設版本時，該如何設定工作。
+下列程式碼片段示範當您已指定應用程式 Blender 的預設版本時，該如何設定工作。
 
 ```csharp
 string taskId = "blendertask01";
@@ -230,7 +232,7 @@ CloudTask blenderTask = new CloudTask(taskId, commandLine);
 * 在更新封裝參考時已存在集區中的計算節點不會自動安裝新應用程式封裝，必須將它們重新啟動或重新安裝映像，才會接收新的封裝。
 * 部署新的封裝之後，所建立的環境變數會反映新的應用程式封裝參考。
 
-在此範例中，現有集區已將應用程式 blender 的 2.7 版設定為其中一個 [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]。若要將集區的節點更新為 2.76b 版，請將新的 [ApplicationPackageReference][net_pkgref] 指定為新版本並認可變更。
+在此範例中，現有集區已將應用程式 blender 的 2.7 版設定為其中一個 [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]。若要將集區的節點更新為 2.76b 版，請將 [ApplicationPackageReference][net_pkgref] 指定為新版本並認可變更。
 
 ```csharp
 string newVersion = "2.76b";
@@ -248,7 +250,7 @@ await boundPool.CommitAsync();
 
 ## 列出 Batch 帳戶中的應用程式
 
-您可以使用 [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries] 方法，列出 Batch 帳戶中的應用程式及其封裝。
+您可以使用 [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries] 方法列出 Batch 帳戶中的應用程式和應用程式封裝。
 
 ```csharp
 // List the applications and their application packages in the Batch account.
@@ -270,7 +272,7 @@ foreach (ApplicationSummary app in applications)
 
 ## 後續步驟
 
-* [Batch REST API][api_rest] 也提供使用應用程式封裝的支援。例如，請參閱[將集區加入至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 元素，以了解如何使用 REST API 來指定要安裝的封裝。如需使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
+* [Batch REST API][api_rest] 也提供應用程式封裝的使用支援。例如，請參閱[將集區加入至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 項目，以了解如何使用 REST API 來指定要安裝的封裝。如需使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
 
 * 了解如何以程式設計方式[使用 Batch Management .NET 管理 Azure Batch 帳戶和配額](batch-management-dotnet.md)。[Batch Management .NET][api_net_mgmt] 程式庫可以啟用 Batch 應用程式或服務的帳戶建立和刪除功能。
 
@@ -284,6 +286,7 @@ foreach (ApplicationSummary app in applications)
 [net_appops_listappsummaries]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.applicationoperations.listapplicationsummaries.aspx
 [net_cloudpool]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.aspx
 [net_cloudpool_pkgref]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.applicationpackagereferences.aspx
+[net_nodestate]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.computenode.state.aspx
 [net_pkgref]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.applicationpackagereference.aspx
 [rest_applications]: https://msdn.microsoft.com/library/azure/mt643945.aspx
 [rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
@@ -301,4 +304,4 @@ foreach (ApplicationSummary app in applications)
 [11]: ./media/batch-application-packages/app_pkg_11.png "Azure 入口網站中的更新封裝刀鋒視窗"
 [12]: ./media/batch-application-packages/app_pkg_12.png "Azure 入口網站中的刪除封裝確認對話方塊"
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

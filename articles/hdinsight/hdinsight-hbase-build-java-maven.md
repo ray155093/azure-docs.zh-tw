@@ -14,14 +14,16 @@ ms.workload="big-data"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="05/18/2016"
+ms.date="06/29/2016"
 ms.author="larryfr"/>
 
-#使用 Maven 建置搭配使用 HBase 和 HDInsight (Hadoop) 的 Java 應用程式 (英文)
+#使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight (Hadoop) 的 Java 應用程式
 
 了解如何使用 Apache Maven 以 Java 建立和建置 [Apache HBase](http://hbase.apache.org/) 應用程式。然後在 Azure HDInsight (Hadoop) 中使用此應用程式。
 
 [Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。在本文中，您將了解如何用它來建立基本的 Java 應用程式，以便在 Azure HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
+
+> [AZURE.NOTE] 本文件中的步驟是假設您使用以 Windows 為基礎的 HDInsight 叢集。如需使用以 Linux 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
 
 ##需求
 
@@ -29,7 +31,9 @@ ms.author="larryfr"/>
 
 * [Maven](http://maven.apache.org/)
 
-* [具有 HBase 的 Azure HDInsight 叢集](hdinsight-hbase-get-started.md#create-hbase-cluster)
+* [搭配使用 HBase 和以 Windows 為基礎的 HDInsight 叢集](hdinsight-hbase-get-started.md#create-hbase-cluster)
+
+    > [AZURE.NOTE] 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試.在範例中提供的預設值是 HDInsight 3.3 叢集。
 
 ##建立專案
 
@@ -54,10 +58,29 @@ ms.author="larryfr"/>
         <dependency>
           <groupId>org.apache.hbase</groupId>
           <artifactId>hbase-client</artifactId>
-          <version>0.98.4-hadoop2</version>
+          <version>1.1.2</version>
         </dependency>
 
-    這向 Maven 表示專案需要 __hbase-client__ 版本 __0.98.4-hadoop2__。編譯時，將會從預設 Maven 儲存機制下載此版本。您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)，進一步了解此相依性的詳細資訊。
+    如此會告知 Maven，表示專案需要 __hbase-client__ 版本 __1.1.2__。編譯時，將會從預設 Maven 儲存機制下載此版本。您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)，進一步了解此相依性的詳細資訊。
+
+    > [AZURE.IMPORTANT] 版本號碼必須符合隨附於 HDInsight 叢集的 HBase 版本。您可以使用下表來尋找正確的版本號碼。
+
+    | HDInsight 叢集版本 | 要使用的 HBase 版本 |
+    | ----- | ----- |
+    | 3\.2 | 0\.98.4-hadoop2 |
+    | 3\.3 | 1\.1.2 |
+
+    如需 HDInsight 版本和元件的詳細資訊，請參閱 [HDInsight 提供的 Hadoop 元件有什麼不同](hdinsight-component-versioning.md)。
+
+2. 如果您使用 HDInsight 3.3 叢集，也必須將下列內容加入 `<dependencies>` 區段︰
+
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>4.4.0-HBase-1.1</version>
+        </dependency>
+    
+    此動作會載入 Phoenix 核心元件，可供 Hbase 1.1.x 版使用。
 
 2. 將下列程式碼加入 __pom.xml__ 檔案。這必須在檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>`之間。
 
@@ -78,8 +101,8 @@ ms.author="larryfr"/>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
               </plugin>
             <plugin>
@@ -152,19 +175,11 @@ ms.author="larryfr"/>
             <name>hbase.zookeeper.property.clientPort</name>
             <value>2181</value>
           </property>
-          <!-- Uncomment the following if you are using
-               a Linux-based HDInsight cluster -->
-          <!--
-          <property>
-            <name>zookeeper.znode.parent</name>
-            <value>/hbase-unsecure</value>
-          </property>
-          -->
         </configuration>
 
     此檔案用來載入 HDInsight 叢集的 HBase 組態。
 
-    > [AZURE.NOTE] 這是一個極小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。對於以 Linux 為基礎的叢集，您必須取消註解 `zookeeper.znode.parent` 的項目，以正確設定 HBase 所使用的根 Zookeeper znode。
+    > [AZURE.NOTE] 這是一個極小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。
 
 3. 儲存 __hbase-site.xml__ 檔案。
 
@@ -446,9 +461,9 @@ ms.author="larryfr"/>
                     -Clustername $clusterName `
                     -JobId $job.JobId `
                     -DefaultContainer $storage.container `
-                    -DefaultStorageAccountName $storage.storageAccountName `
+                    -DefaultStorageAccountName $storage.storageAccount `
                     -DefaultStorageAccountKey $storage.storageAccountKey `
-                    -HttpCredential $creds
+                    -HttpCredential $creds `
                     -DisplayOutputType StandardError
         }
         Write-Host "Display the standard output ..." -ForegroundColor Green
@@ -456,7 +471,7 @@ ms.author="larryfr"/>
                     -Clustername $clusterName `
                     -JobId $job.JobId `
                     -DefaultContainer $storage.container `
-                    -DefaultStorageAccountName $storage.storageAccountName `
+                    -DefaultStorageAccountName $storage.storageAccount `
                     -DefaultStorageAccountKey $storage.storageAccountKey `
                     -HttpCredential $creds
         }
@@ -631,4 +646,4 @@ ms.author="larryfr"/>
 
 請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -46,6 +46,7 @@
 ```
 EXEC sp_configure 'remote data archive' , '1';
 GO
+
 RECONFIGURE;
 GO
 ```
@@ -62,6 +63,10 @@ GO
 1.  在您開始之前，請選擇現有 Azure 伺服器來接收 Stretch Database 所移轉的資料，或建立新的 Azure 伺服器。
 
 2.  在 Azure 伺服器上，利用 SQL Server 的 IP 位址範圍，來建立能讓 SQL Server 與遠端伺服器通訊的防火牆規則。
+
+    您可以嘗試從 SQL Server Management Studio (SSMS) 中的 [物件總管] 連接至 Azure 伺服器，以輕鬆找到您需要的值並建立防火牆規則。SSMS 會開啟下列對話方塊，其中已包含必要的 IP 位址值，以協助您建立規則。
+
+	![在 SSMS 中建立防火牆規則][FirewallRule]
 
 3.  若要為 SQL Server 資料庫設定 Stretch Database，該資料庫必須擁有資料庫主要金鑰。資料庫主要金鑰能保護 Stretch Database 用來連線到遠端資料庫的認證。以下範例會建立新的資料庫主要金鑰。
 
@@ -136,4 +141,6 @@ GO
 
 [ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+[FirewallRule]: ./media/sql-server-stretch-database-enable-database/firewall.png
+
+<!---HONumber=AcomDC_0706_2016-->

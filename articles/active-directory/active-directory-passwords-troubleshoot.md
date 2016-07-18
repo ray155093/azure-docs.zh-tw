@@ -37,12 +37,12 @@
  - **錯誤的一般描述** – 使用者實際看到的錯誤訊息。 如果沒有任何錯誤訊息，請詳細說明您所注意到的未預期行為。
  - **頁面** – 您看到錯誤時的所在頁面 (包含 URL)。
  - **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
- - **支援碼** – 使用者看到錯誤時所產生的支援碼 (若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師)。 
+ - **支援碼** – 使用者看到錯誤時所產生的支援碼 (若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師)。
    - 如果您所在的頁面底部沒有支援碼，請按 F12，搜尋 SID 和 CID，然後將這兩個結果傳送給支援工程師。
 
     ![][001]
 
- - **使用者識別碼** – 看到錯誤之使用者的識別碼 (例如 user@contoso.com)?
+ - **使用者識別碼** – 看到錯誤之使用者的識別碼是什麼 (例如 user@contoso.com)？
  - **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？ 使用者是否已獲得 AAD Premium 或 AAD Basic 授權？
  - **應用程式事件記錄檔** – 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請將 Azure AD Connect 伺服器中的應用程式事件記錄檔複本進行壓縮，然後連同要求一起送出。
 
@@ -102,7 +102,7 @@
             </td>
             <td>
               <p>許多 UI 項目只會在需要時出現。如果您想要看到這些項目，請嘗試啟用頁面上的所有選項。</p>
-              <p>如需所有可用控制項的詳細資訊，請參閱<a href="../active-directory-passwords-customize#password-management-behavior">自訂使用者密碼重設原則</a>。</p>
+              <p>如需有關所有可用控制項的詳細資訊，請參閱<a href="active-directory-passwords-customize.md#password-management-behavior">密碼管理行為</a>。</p>
             </td>
           </tr>
           <tr>
@@ -114,7 +114,7 @@
             </td>
             <td>
               <p>在您下載 Azure AD Connect 並設定密碼回寫後，才會出現此選項。當您完成上述動作時，此選項便會出現，並可讓您啟用或停用雲端回寫。</p>
-              <p>如需如何執行上述動作的詳細資訊，請參閱<a href="../active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>。</p>
+              <p>如需有關如何執行此動作的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#step-2-enable-password-writeback-in-azure-ad-connect">在 Azure AD Connect 中啟用密碼回寫</a>。</p>
             </td>
           </tr>
         </tbody></table>
@@ -289,7 +289,7 @@
               <p>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
             <td>
-              <p>確定使用者已在目錄中登記格式正確的連絡資料，然後再繼續。如需如何在目錄中設定驗證資訊，以免使用者看到此錯誤的相關資訊，請參閱<a href="../active-directory-passwords-learn-more#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
+              <p>確定使用者已在目錄中登記格式正確的連絡資料，然後再繼續。如需如何在目錄中設定驗證資訊，以免使用者看到此錯誤的相關資訊，請參閱<a href="active-directory-passwords-learn-more.md#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
             </td>
           </tr>
           <tr>
@@ -305,7 +305,7 @@
               <p>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
             <td>
-              <p>確定使用者有至少兩個已正確設定的連絡方法 (例如行動電話和辦公室電話)，然後再繼續。如需如何在目錄中設定驗證資訊，以免使用者看到此錯誤的相關資訊，請參閱<a href="../active-directory-passwords-learn-more#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
+              <p>確定使用者有至少兩個已正確設定的連絡方法 (例如行動電話和辦公室電話)，然後再繼續。如需如何在目錄中設定驗證資訊，以免使用者看到此錯誤的相關資訊，請參閱<a href="active-directory-passwords-learn-more.md#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
             </td>
           </tr>
           <tr>
@@ -327,7 +327,7 @@
               <p>使用者按一下「發簡訊給我」或「打電話給我」後，從未收到任何消息。</p>
             </td>
             <td>
-              <p>原因可能是目錄中的電話號碼格式不正確。請確定電話號碼的格式是 “+ccc xxxyyyzzzzXeeee”。若要深入了解格式化電話號碼以用於密碼重設，請參閱<a href="../active-directory-passwords-learn-more#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
+              <p>原因可能是目錄中的電話號碼格式不正確。請確定電話號碼的格式是 “+ccc xxxyyyzzzzXeeee”。若要深入了解格式化電話號碼以用於密碼重設，請參閱<a href="active-directory-passwords-learn-more.md#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
               <p>如果您需要傳送分機號碼給提出要求的使用者，請注意密碼重設並不支援分機號碼，即使您在目錄中有指定也是一樣 (發送呼叫前會將其刪除)。請嘗試使用沒有分機號碼的電話號碼，或將分機號碼整合至 PBX 中的電話號碼。</p>
             </td>
           </tr>
@@ -340,7 +340,7 @@
             </td>
             <td>
               <p>這個問題最常見的原因是垃圾郵件篩選器拒絕了郵件。請檢查您的垃圾郵件或刪除的郵件資料夾中是否有該電子郵件。</p>
-              <p>也請確定您是在正確的電子郵件信箱中檢查是否有該郵件，許多人都有非常類似的電子郵件地址，結果在錯誤的收件匣中檢查是否有該郵件。如果上述方式都沒有用，也有可能是目錄中的電子郵件地址格式不正確，請確定電子郵件地址正確無誤，然後再試一次。若要深入了解格式化電子郵件地址以用於密碼重設，請參閱<a href="../active-directory-passwords-learn-more#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
+              <p>也請確定您是在正確的電子郵件信箱中檢查是否有該郵件，許多人都有非常類似的電子郵件地址，結果在錯誤的收件匣中檢查是否有該郵件。如果上述方式都沒有用，也有可能是目錄中的電子郵件地址格式不正確，請確定電子郵件地址正確無誤，然後再試一次。若要深入了解格式化電子郵件地址以用於密碼重設，請參閱<a href="active-directory-passwords-learn-more.md#what-data-is-used-by-password-reset">密碼重設使用哪些資料</a>。</p>
             </td>
           </tr>
           <tr>
@@ -519,7 +519,7 @@
               <p>在運作一段時間後，已同盟或密碼雜湊同步處理的使用者無法重設其密碼。</p>
             </td>
             <td>
-              <p>在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。在這些情況下，請先檢查內部部署是否已啟用密碼回寫。若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。如需如何執行此作業的詳細資訊，請參閱<a href="../active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
+              <p>在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。在這些情況下，請先檢查內部部署是否已啟用密碼回寫。若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
               <p>
                 
               </p>
@@ -563,7 +563,7 @@
                 <li>
 										現在您嘗試啟用/停用密碼回寫。精靈會使用認證將連接器的名稱建構為 “abc.onmicrosoft.com – AAD”，並傳遞給密碼回寫 Cmdlet。此作業會失敗，因為沒有使用此名稱建立的連接器。&lt;br>&lt;br></li>
               </ol>
-              <p>最新的組建已修正此問題。如果您有較舊的組建，有一個解決方法是使用 PowerShell Cmdlet 來啟用/停用此功能。如需如何執行此作業的詳細資訊，請參閱<a href="../active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
+              <p>最新的組建已修正此問題。如果您有較舊的組建，有一個解決方法是使用 PowerShell Cmdlet 來啟用/停用此功能。如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
             </td>
           </tr>
           <tr>
@@ -638,7 +638,7 @@
               <p>嘗試在 Azure 管理入口網站代表使用者重設密碼時，您看到訊息指出：「內部部署環境中執行的密碼重設服務不支援系統管理員重設使用者的密碼。請升級至最新版的 Azure AD Connect 來解決此問題。」</p>
             </td>
             <td>
-              <p>當同步處理引擎的版本不支援所使用的特定密碼回寫作業時，就會發生此錯誤。1.0.0419.0911 之後的 Azure AD Connect 版本支援所有密碼管理作業，包括密碼重設回寫、密碼變更回寫，以及系統管理員在 Azure 管理入口網站中起始的密碼重設回寫。&#160; 1.0.6862 之後的 DirSync 版本則僅支援密碼重設回寫。若要解決此問題，我們強烈建議您安裝最新版的 Azure AD Connect 或 Azure Active Directory Connect (如需詳細資訊，請參閱<a href="../active-directory-aadconnect#download-azure-ad-connect">目錄整合工具</a>) 來解決此問題，並在組織中徹底發揮密碼回寫的效益。</p>
+              <p>當同步處理引擎的版本不支援所使用的特定密碼回寫作業時，就會發生此錯誤。1.0.0419.0911 之後的 Azure AD Connect 版本支援所有密碼管理作業，包括密碼重設回寫、密碼變更回寫，以及系統管理員在 Azure 管理入口網站中起始的密碼重設回寫。&#160; 1.0.6862 之後的 DirSync 版本則僅支援密碼重設回寫。若要解決此問題，我們強烈建議您安裝最新版的 Azure AD Connect 或 Azure Active Directory Connect (如需詳細資訊，請參閱<a href="active-directory-aadconnect">目錄整合工具</a>) 來解決此問題，並在組織中徹底發揮密碼回寫的效益。</p>
             </td>
           </tr>
         </tbody></table>
@@ -1284,7 +1284,7 @@
               <p>PasswordResetService</p>
             </td>
             <td>
-              <p>這個事件表示管理代理程式服務帳戶沒有適當的指定帳戶權限，因此無法設定新密碼。請確定使用者樹系中的 MA 帳戶有樹系中所有物件的重設和變更密碼權限。如需如何執行此作業的詳細資訊，請參閱<a href="../active-directory-passwords-getting-started#step-4-set-up-the-appropriate-active-directory-permissions">步驟 4：設定適當的 Active Directory 權限</a>。</p>
+              <p>這個事件表示管理代理程式服務帳戶沒有適當的指定帳戶權限，因此無法設定新密碼。請確定使用者樹系中的 MA 帳戶有樹系中所有物件的重設和變更密碼權限。如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#step-4-set-up-the-appropriate-active-directory-permissions">步驟 4：設定適當的 Active Directory 權限</a>。</p>
             </td>
           </tr>
           <tr>
@@ -1416,11 +1416,12 @@
             </td>
           </tr>
         </tbody></table>
+		
 ## 疑難排解密碼回寫連線
 
 如果 Azure AD Connect 的密碼回寫元件發生服務中斷，以下是可供用來解決此問題的一些快速步驟：
 
- - [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-AD-sync-service)
+ - [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-AD-Connect-sync-service)
  - [停用再重新啟用密碼回寫功能](#disable-and-re-enable-the-password-writeback-feature)
  - [安裝最新版的 Azure AD Connect](#install-the-latest-azure-ad-connect-release)
  - [疑難排解密碼回寫](#troubleshoot-password-writeback)
@@ -1466,7 +1467,7 @@
 重新安裝 Azure AD Connect 封裝將可解決任何可能會影響您能否連線到雲端服務或能否管理本機 AD 環境中密碼的設定問題。
 建議您只在嘗試過上述前兩個步驟後，才執行此步驟。
 
- 1.	在[這裡](active-directory-aadconnect.md#download-azure-ad-connect)下載最新版的 Azure AD Connect。
+ 1.	在[這裡](active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
  2.	由於您已安裝 Azure AD Connect，您只需要執行就地升級，即可將 Azure AD Connect 安裝更新為最新版。
  3.	執行下載的封裝，並遵循螢幕上的指示來更新您的 Azure AD Connect 電腦。過程中不需手動執行任何額外步驟，除非您已自訂現成可用的同步處理規則，在此情況下，您就應該**先備份這些規則，然後再繼續進行升級，並於完成後以手動方式重新部署這些規則**。
 
@@ -1500,4 +1501,4 @@
 [003]: ./media/active-directory-passwords-troubleshoot/003.jpg "Image_003.jpg"
 [004]: ./media/active-directory-passwords-troubleshoot/004.jpg "Image_004.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0706_2016-->

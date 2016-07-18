@@ -4,7 +4,7 @@
 	services="notification-hubs"
 	documentationCenter=""
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/29/2016" 
+	ms.date="06/29/2016" 
 	ms.author="wesmc"/>
 
 # 企業推送架構指引
@@ -45,7 +45,7 @@
 ###優點：
 
 1. 接收器 (行動應用程式/透過通知中樞傳送的服務) 與傳送器 (後端系統) 的解離可讓您在變更少量架構的情況下整合額外的後端系統。
-2. 含有多個行動應用程式的案例也能藉此接收來自一或多個後端系統的事件。  
+2. 含有多個行動應用程式的案例也能藉此接收來自一或多個後端系統的事件。
 
 ## 範例：
 
@@ -271,4 +271,4 @@
 [通知中樞 - Windows Universal 教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-windows-store-dotnet-get-started/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

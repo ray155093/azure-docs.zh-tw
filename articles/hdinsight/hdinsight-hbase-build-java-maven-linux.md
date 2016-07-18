@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="06/29/2016"
 	ms.author="larryfr"/>
 
-#使用 Maven 建置搭配使用 HBase 和 HDInsight (Hadoop) 的 Java 應用程式 (英文)
+#使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight (Hadoop) 之 Java 應用程式
 
 了解如何使用 Apache Maven 以 Java 建立和建置 [Apache HBase](http://hbase.apache.org/) 應用程式。然後搭配以 Linux 為基礎的 HDInsight 叢集使用應用程式。
 
 [Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。在本文中，您將了解如何用它來建立基本的 Java 應用程式，以便在以 Linux 為基礎的 HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
+
+> [AZURE.NOTE] 本文件中的步驟是假設您使用以 Linux 為基礎的 HDInsight 叢集。如需使用以 Windows 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven.md)
 
 ##需求
 
@@ -29,6 +31,8 @@
 * [Maven](http://maven.apache.org/)
 
 * [具有 HBase 且以 Linux 為基礎的 Azure HDInsight 叢集](../hdinsight-hbase-get-started-linux.md#create-hbase-cluster)
+
+    > [AZURE.NOTE] 這份文件中的步驟已經過 HDInsight 叢集 3.2 版、3.3 版和 3.4 版的測試.在範例中提供的預設值是 HDInsight 3.4 叢集。
 
 * **熟悉 SSH 和 SCP**。如需搭配 HDInsight 使用 SSH 和 SCP 的詳細資訊，請參閱下列文章：
 
@@ -59,10 +63,29 @@
 		<dependency>
       	  <groupId>org.apache.hbase</groupId>
           <artifactId>hbase-client</artifactId>
-          <version>0.98.4-hadoop2</version>
+          <version>1.1.2</version>
         </dependency>
 
-	這向 Maven 表示專案需要 __hbase-client__ 版本 __0.98.4-hadoop2__。編譯時，將會從預設 Maven 儲存機制下載此版本。您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)，進一步了解此相依性的詳細資訊。
+	如此會告知 Maven，表示專案需要 __hbase-client__ 版本 __1.1.2__。編譯時，將會從預設 Maven 儲存機制下載此版本。您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)，進一步了解此相依性的詳細資訊。
+
+    > [AZURE.IMPORTANT] 版本號碼必須符合隨附於 HDInsight 叢集的 HBase 版本。您可以使用下表來尋找正確的版本號碼。
+
+    | HDInsight 叢集版本 | 要使用的 HBase 版本 |
+    | ----- | ----- |
+    | 3\.2 | 0\.98.4-hadoop2 |
+    | 3\.3 和 3.4 | 1\.1.2 |
+
+    如需 HDInsight 版本和元件的詳細資訊，請參閱 [HDInsight 提供的 Hadoop 元件有什麼不同](hdinsight-component-versioning.md)。
+
+2. 如果您使用 HDInsight 3.3 或 3.4 叢集，也必須將下列內容加入 `<dependencies>` 區段︰
+
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>4.4.0-HBase-1.1</version>
+        </dependency>
+    
+    此動作會載入 Phoenix 核心元件，這些元件是 Hbase 1.1.x 版所必需的。
 
 2. 將下列程式碼加入 __pom.xml__ 檔案。這必須在檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>`之間。
 
@@ -83,8 +106,8 @@
         	  <artifactId>maven-compiler-plugin</artifactId>
 						<version>3.3</version>
         	  <configuration>
-          	    <source>1.6</source>
-          	    <target>1.6</target>
+          	    <source>1.7</source>
+          	    <target>1.7</target>
         	  </configuration>
       		</plugin>
 		    <plugin>
@@ -163,7 +186,7 @@
             //NOTE: Actual zookeeper host names can be found using Ambari:
             //curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/hosts"
             
-            //Linux-based HDInsight clusters don't use the default znode parent
+            //Linux-based HDInsight clusters use /hbase-unsecure as the znode parent
             config.set("zookeeper.znode.parent","/hbase-unsecure");
 
             // create an admin object using the config
@@ -367,4 +390,4 @@
 
 	hadoop jar hbaseapp-1.0-SNAPSHOT.jar com.microsoft.examples.DeleteTable
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

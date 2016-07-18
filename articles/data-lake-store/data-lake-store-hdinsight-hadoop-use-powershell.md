@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/10/2016"
+   ms.date="07/01/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure PowerShell 建立 HDInsight 叢集與資料湖存放區
@@ -29,7 +29,11 @@
 
 * **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。
 
-> [AZURE.NOTE] 只有 HDInsight 3.2 版和 3.4 版 (適用於 Windows 及 Linux 上的 Hadoop、HBase 及 Storm 叢集) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。針對 Linux 上的 Spark 叢集，此選項僅適用於 HDInsight 3.4 版的叢集。
+> [AZURE.NOTE] 有一些需要注意的重要事項。
+> 
+> * 只有 HDInsight 3.2 版和 3.4 版 (適用於 Windows 及 Linux 上的 Hadoop、HBase 及 Storm 叢集) 提供建立可存取 Data Lake Store 之 HDInsight 叢集的選項。針對 Linux 上的 Spark 叢集，此選項僅適用於 HDInsight 3.4 版的叢集。
+>
+> * 如上所述，Data Lake Store 可用來做為部分叢集類型 (HBase) 的預設儲存體，以及其他叢集類型的其他儲存體 (Hadoop、Spark、Storm)。使用 Data Lake Store 做為其他儲存體帳戶，不會影響效能或從叢集讀取/寫入至儲存體的能力。如果使用 Data Lake Store 做為其他儲存體，則會將叢集相關的檔案 (例如記錄檔等) 寫入預設儲存體 (Azure Blob)，而您想要處理的資料會儲存於 Data Lake Store 帳戶中。
 
 
 在本文中，我們佈建 Hadoop 叢集與資料湖存放區做為額外的儲存體。
@@ -380,4 +384,4 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

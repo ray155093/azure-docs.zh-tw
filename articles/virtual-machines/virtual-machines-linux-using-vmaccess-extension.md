@@ -21,13 +21,16 @@
 
 # 管理使用者、SSH，並使用 VMAccess 擴充功能檢查或修復 Azure Linux VM 上的磁碟
 
-本文會說明如何使用 VMAcesss VM 擴充功能 [(Github)](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) 來檢查或修復磁碟、重設使用者存取、管理使用者帳戶，或重設 Linux 上的 SSHD 組態。本文需要 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)、[SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md)、Azure Linux 虛擬機器，以及安裝並使用 `azure config mode arm` 切換到 ARM 模式的 Azure CLI。
+本文將說明如何使用 VMAcesss VM 擴充功能 [(Github)](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) 來檢查或修復磁碟、重設使用者存取、管理使用者帳戶，或重設 Linux 上的 SSHD 組態。本文需要 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)、[SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md)、Azure Linux 虛擬機器，以及安裝並使用 `azure config mode arm` 切換到 ARM 模式的 Azure CLI。
 
 ## 快速命令
 
-有兩種方式可在 Linux VM 上使用 VMAccess。第一個方式是使用 Azure CLI 和有正確旗標的 `azure vm reset-access`。第二個方法是使用 VMAccess 要處理運作的原始 JSON 檔案來使用 VMAccess。在快速命令區段，我們會使用 `azure vm reset-access` 方法。
+有兩種方式可在 Linux VM 上使用 VMAccess：
 
-在下列命令範例中，請將 &lt; 和 &gt; 之間的值取代為您自己環境中的值。
+- 使用 Azure CLI 和必要的參數。
+- 使用 VMAccess 將處理並據以採取行動的原始 JSON 檔案。
+
+在快速命令區段中，我們會使用 Azure CLI `azure vm reset-access` 方法。在下列命令範例中，請將 &lt; 和 &gt; 之間的值取代為您自己環境中的值。
 
 ## 重設根密碼
 
@@ -101,7 +104,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 
 ### 使用 VMAccess 重設 Linux 的使用者存取
 
-如已無法存取 Linux VM 的根，您可以啟動 VMAccess 指令碼重設根密碼、解除鎖定 Linux。
+如已無法存取 Linux VM 的根，您可以啟動 VMAccess 指令碼重設根密碼。
 
 若要重設根密碼，請使用這個 VMAccess 指令碼︰
 
@@ -205,4 +208,4 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_sshd.json
 ```
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

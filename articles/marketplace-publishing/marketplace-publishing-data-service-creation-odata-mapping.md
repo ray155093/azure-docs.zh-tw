@@ -69,15 +69,15 @@ ATOM Pub 的延伸模組，其中每個項目代表結果集的一個資料列�
 
 允許定義透過資料庫公開的函式 (SPROC) 和實體。您可以在此處找到詳細資訊：[http://msdn.microsoft.com/library/bb399292.aspx](http://msdn.microsoft.com/library/bb399292.aspx)
 
-> [AZURE.TIP]如果您看不到該篇文章，請按一下 [其他版本] 下拉式清單並選取一個版本。
+> [AZURE.TIP] 如果您看不到該篇文章，請按一下 [其他版本] 下拉式清單並選取一個版本。
 
 ### EDM - 項目資料模型
-- 概觀：[http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx][OverviewLink]
-[OverviewLink]:http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx
-- 預覽：[http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx][PreviewLink]
-[PreviewLink]:http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx
+- 概觀︰[http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx][OverviewLink]
+[OverviewLink]: http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx
+- 概觀︰[http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx][PreviewLink]
+[PreviewLink]: http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx
 - 資料類型：[http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx][DataTypesLink]
-[DataTypesLink]:http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx
+[DataTypesLink]: http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx
 
 下圖顯示從用戶端輸入 OData 陳述式 (呼叫內容提供者的 Web 服務) 到取回結果/資料的詳細流程 (從左至右)：
 
@@ -115,7 +115,11 @@ CSDL 是說明 Web 服務的 XML 文法。規格本身分成 4 個主要元素�
 - EntityType ~= 資料行
 - FunctionImport ~= 預存程序
 
-**允許的 HTTP 動詞命令** - GET - 從 DB 傳回值 (傳回集合) - POST - 用來將資料傳遞至 DB 並選擇性地從 db 傳回值 (在集合中建立新項目，傳回識別碼/URI) - DELETE - 從 DB 刪除資料 (刪除集合) - PUT - 將資料更新至 DB (取代集合或建立新集合)
+**允許的 HTTP 動詞命令**
+- GET – 從 db 傳回值 (傳回集合)
+- POST – 用來傳送資料到 db 和選擇性從 db 傳回值 (在集合中建立新項目，傳回 id/URI)
+- DELETE – 從 DB 刪除資料 (刪除集合)
+- PUT – 更新資料到 DB (取代集合或建立一個集合)
 
 ## 中繼資料/對應文件
 
@@ -123,7 +127,10 @@ CSDL 是說明 Web 服務的 XML 文法。規格本身分成 4 個主要元素�
 
 CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後進行變更以符合您的服務。然後在 [Azure Marketplace 發佈入口網站](https://publish.windowsazure.com)中建立您的服務時，貼至 [DataService] 索引標籤底下的 CSDL 對應)。
 
-**詞彙：**將 CSDL 詞彙關聯至[發佈入口網站](https://publish.windowsazure.com) UI (PPUI) 詞彙。- 將 PPUI 中的優惠「標題」關聯至 MyWebOffer - 將 PPUI 中的 MyCompany 關聯至 [Microsoft 開發人員中心](http://dev.windows.com/registration?accountprogram=azure) UI 中的**發行者顯示名稱** UI - 您的 API 會關聯至 Web 或資料服務 (PPUI 中的方案)
+**詞彙：**將 CSDL 詞彙與[發佈入口網站](https://publish.windowsazure.com) UI (PPUI) 詞彙建立關聯。
+- PPUI 中的供應項目「標題」與 MyWebOffer 相關聯
+- PPUI 中的 MyCompany 與 [Microsoft 開發人員中心](http://dev.windows.com/registration?accountprogram=azure) UI 中的 **Publisher Display Name (發行者顯示名稱)** 相關聯
+- 您的 API 與 Web 或資料服務相關聯 (在 PPUI 中的計畫)
 
 **階層：**公司 (內容提供者) 擁有具有方案 (即服務) 的優惠，可利用 API 來排列。
 
@@ -239,7 +246,7 @@ CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後
             </EntityType>
         </Schema>
 
-> [AZURE.TIP]在[透過 CSDL 將現有的 Web 服務對應至 OData 的範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文中，檢視更多 CSDL Web 服務範例。
+> [AZURE.TIP] 在[透過 CSDL 將現有的 Web 服務對應至 OData 的範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文中，檢視更多 CSDL Web 服務範例。
 
 ###DataService CSDL 範例
 
@@ -301,4 +308,4 @@ CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後
 - 如果您有興趣檢閱範例，請閱讀[資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文，來查看範例程式碼，並了解程式碼語法與內容。
 - 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!----HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0706_2016-->

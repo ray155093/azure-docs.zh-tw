@@ -1,6 +1,6 @@
 <properties
    pageTitle="SQL 資料倉儲中的暫存資料表 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中使用暫存資料表開發解決方案的秘訣。"
+   description="開始使用 Azure SQL 資料倉儲中的暫存資料表。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -13,21 +13,32 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/06/2016"
+   ms.date="06/29/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲中的暫存資料表
-暫存資料表在處理資料時非常有用 - 尤其是具有暫時性中繼結果的轉換期間。在 SQL 資料倉儲中，暫存資料表存在於工作階段層級。不過，這類資料表仍會定義為本機暫存資料表，但與 SQL Server 資料表不同的是，它們可以從工作階段內的任何位置存取。
 
-本文包含使用暫存資料表的一些基本指引，並強調說明工作階段層級暫存資料表的原則。使用此資訊，可協助您將程式碼模組化。請務必進行程式碼模組化，以方便維護和重複使用程式碼。
+> [AZURE.SELECTOR]
+- [概觀][]
+- [資料類型][]
+- [散發][]
+- [Index][]
+- [資料分割][]
+- [統計資料][]
+- [暫存][]
+
+暫存資料表在處理資料時非常有用 - 尤其是具有暫時性中繼結果的轉換期間。在 SQL 資料倉儲中，暫存資料表存在於工作階段層級。它們只出現在建立它們的工作階段中，工作階段登出時就會自動卸除它們。暫存資料表的結果會寫入至本機，而不是遠端儲存體，這是它的效能優點。Azure SQL 資料倉儲中的暫存資料表稍微不同於 Azure SQL Database，因為從工作階段內的任何地方都可存取它們，包括在預存程序的內部和外部。
+
+本文包含使用暫存資料表的基本指引，並強調說明工作階段層級暫存資料表的原則。使用這份文件中的資訊可協助您將程式碼模組化，以提高程式碼的重複使用性，維護起來更簡單。
 
 ## 建立暫存資料表
-建立暫存資料表是非常直截了當的。您所要做的就只是在資料表名稱前面加上 #，如下列範例所示 ︰
+
+建立暫存資料表時只是在資料表名稱前面加上 `#`。例如：
 
 ```sql
 CREATE TABLE #stats_ddl
 (
-	[schema_name]			NVARCHAR(128) NOT NULL
+	[schema_name]		NVARCHAR(128) NOT NULL
 ,	[table_name]            NVARCHAR(128) NOT NULL
 ,	[stats_name]            NVARCHAR(128) NOT NULL
 ,	[stats_is_filtered]     BIT           NOT NULL
@@ -42,7 +53,7 @@ WITH
 )
 ```
 
-暫存資料表也可以使用完全相同的方法，利用 `CTAS` 來建立。
+`CTAS` 也可用來建立暫存資料表，方法完全相同：
 
 ```sql
 CREATE TABLE #stats_ddl
@@ -95,12 +106,12 @@ FROM    t1
 ;
 ``` 
 
->[AZURE.NOTE] `CTAS` 是一個非常強大的命令，其附加優點是能夠非常有效率地使用交易記錄空間。
+>[AZURE.NOTE] `CTAS` 是一個非常強大的命令，非常有效率地使用交易記錄空間是它額外的好處。
 
 
 ## 捨棄暫存資料表
 
-為了確保您的 `CREATE TABLE` 陳述式會成功，請務必確保資料表尚未存在於工作階段中。這可以使用下列模式，透過預先存在的簡單檢查來處理：
+建立新的工作階段時，不應該存在任何暫存資料表。不過，如果您呼叫同一個預存程序來建立具有相同名稱的暫存資料表，為了確保 `CREATE TABLE` 陳述式成功執行，可使用 `DROP` 進行簡單的預先存在性檢查，如以下範例所示︰
 
 ```sql
 IF OBJECT_ID('tempdb..#stats_ddl') IS NOT NULL
@@ -109,23 +120,15 @@ BEGIN
 END
 ```
 
-> [AZURE.NOTE] 若要以一致性方式編寫程式碼，建議針對資料表和暫存資料表使用此模式。
-
-當您在程式碼中完成使用暫存資料表之後，使用 `DROP TABLE` 加以移除也是一個很好的做法。
+為了維持編寫程式碼的一致性，資料表和暫存資料表最好都採用此模式。當您在程式碼中完成使用暫存資料表之後，使用 `DROP TABLE` 加以移除也是一個很好的做法。在預存程序開發期間，在程序結尾一併搭配 drop 命令以確保會清除這些物件，也是相當常見的做法。
 
 ```sql
 DROP TABLE #stats_ddl
 ```
 
-在預存程序開發期間，在程序結尾一併搭配 drop 命令以確保會清除這些物件，也是相當常見的做法。
-
 ## 模組化程式碼
 
-在使用者工作階段中的任何位置均可看見暫存資料表的這項事實，可用於實際協助您將應用程式的程式碼模組化。
-
-讓我們舉個可行的範例。
-
-下列預存程序結合了先前所述的範例。此程式碼可用來產生更新資料庫中每個資料行的統計資料所需的 DDL：
+因為在使用者工作階段中的任何位置均可看見暫存資料表，這可用於協助您將應用程式程式碼模組化。例如，下列預存程序結合了上述建議的做法產生 DDL，將可依統計資料名稱更新資料庫中的所有統計資料。
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_update_stats]
@@ -199,15 +202,7 @@ FROM    t1
 GO
 ```
 
-在這個階段中，不需對資料表進行任何動作。程序只會產生更新統計資料所需的 DDL，並將該程式碼儲存於暫存資料表中。
-
-不過，也請注意，預存程序不會在結尾包含 `DROP TABLE` 命令。不過，我們已將預先存在的檢查包含於預存程序中，讓程式碼穩固且可重複；如此可確保我們的 `CTAS` 在產生工作階段中現有的重複物件時將不會失敗。
-
-現在進入最有趣的部分！
-
-在 SQL 資料倉儲中，可能會在建立暫存資料表的程序外部使用它。這與 SQL Server 有所不同。事實上，暫存資料表可以使用於工作階段內的**任何位置**。
-
-這可能會導致更多模組化和可管理的程式碼。查看下方範例：
+在這個階段中，唯一進行的動作是建立預存程序，只是以 DDL 陳述式產生暫存資料表 #stats\_ddl。如果 #stats\_ddl 已經存在，這個預存程序將會卸除它，以確保在工作階段中執行一次以上時不會失敗。不過，因為預存程序結尾沒有任何 `DROP TABLE`，當預存程序完成時，它將保留建立的資料表，以便能夠從預存程序之外讀取。不同於其他 SQL Server 資料庫，在 SQL 資料倉儲中，從建立暫存資料表的程序之外能夠使用此暫存資料表。工作階段內的**任何位置**都可以使用 SQL 資料倉儲暫存資料表。這可以產生更具模組化和更易於管理的程式碼，如下列範例所示：
 
 ```sql
 EXEC [dbo].[prc_sqldw_update_stats] @update_type = 1, @sample_pct = NULL;
@@ -228,30 +223,33 @@ END
 DROP TABLE #stats_ddl;
 ```
 
-產生的程式碼會更加精簡。
-
-在某些情況下，也可以使用這項技術來取代內嵌和多重陳述式的函式。
-
-> [AZURE.NOTE] 您也可以擴充此解決方案。如果您只想要更新單一資料表，您只需要篩選 #stats\_ddl 資料表
-
 ## 暫存資料表限制
-SQL 資料倉儲在實作暫存資料表時的確有一些限制。
 
-主要限制如下：
-
-- 不支援全域暫存資料表
-- 無法在暫存資料表上建立檢視
+SQL 資料倉儲在實作暫存資料表時的確有一些限制。目前，僅支援工作階段範圍內的暫存資料表。不支援全域暫存資料表。此外，無法在暫存資料表上建立檢視。
 
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表的資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]和[維護資料表統計資料][Statistics]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[開發概觀]: ./sql-data-warehouse-overview-develop.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[概觀]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[資料類型]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
+[散發]: ./sql-data-warehouse-tables-distribute.md
+[Index]: ./sql-data-warehouse-tables-index.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[資料分割]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[暫存]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

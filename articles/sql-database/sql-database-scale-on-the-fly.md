@@ -19,14 +19,14 @@
 
 # Azure SQL Database 即時調整
 
-## 當您的應用程式使用者從少數客戶成長到幾乎每個人都在使用時，Azure SQL Database 可即時調整而不需讓應用程式停機
+## 當您的應用程式使用者從少數客戶成長到幾乎每個人都在使用時，Azure SQL Database 可即時調整而幾乎不需讓應用程式停機
 
 在 Microsoft Azure 上執行 SQL Database 的優點之一是能夠向上或向下調整效能，並且即時快速適應變化的工作負載需求。SQL Database 提供廣泛的效能層級範圍，以符合應用程式的特定需求。每個層級都會保證效能，因此您的應用程式使用者擁有可預測的效能體驗。
 
 ![scale-on-the-fly](./media/sql-database-scale-on-the-fly/sql-database-scale-on-the-fly.png)
 
 ## 當您的應用程式快速獲得許多使用者青睞
-SQL Database 可隨時輕鬆調整。因此如果您的應用程式快速獲得許多使用者青睞，只要按一下就可以滿足新的效能需求。此外，在不需要停機的情況下，您不必擔心應用程式要在相應增加或減少時受到影響。
+SQL Database 可隨時輕鬆調整。因此如果您的應用程式快速獲得許多使用者青睞，只要按一下就可以滿足新的效能需求。此外，在幾乎不停機的情況下，您不必擔心應用程式要在相應增加或減少時受到影響。
 
 [閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787569)
 
@@ -54,4 +54,4 @@ SQL Database 包含最新的記憶體內部技術來執行極快速的交易，�
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

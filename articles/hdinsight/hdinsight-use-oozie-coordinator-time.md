@@ -86,7 +86,7 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。它可與 
 	<tr><td>SQL Database 名稱</td><td>$sqlDatabaseName</td><td></td><td>Sqoop 會將資料匯出至其中的 Azure SQL Database。</td></tr>
 	</table>
 
-	> [AZURE.NOTE] 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。如需建立 SQL Database 和設定防火牆規則的相關指示，請參閱 [建立及設定 SQL Database][sqldatabase-create-configure]。
+	> [AZURE.NOTE] 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。如需關於建立 SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-get-started]。
 
 
 > [AZURE.NOTE] 在資料表中填入值。這將有助於本教學課程的執行。
@@ -211,7 +211,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。預
 	<tr><td>${hiveOutputFolder}</td><td>Hive INSERT OVERWRITE 陳述式的輸出資料夾。這是 Sqoop 匯出 (export-dir) 的相同資料夾。</td></tr>
 	</table>
 
-	如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 叢集 2.1 版)。
+	如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 叢集 2.1 版)。
 
 2. 使用 ANSI (ASCII) 編碼將檔案另存為 **C:\\Tutorials\\UseOozie\\workflow.xml**(如果您的文字編輯器沒有此選項，請使用「記事本」)。
 
@@ -257,7 +257,7 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob �
 
 	wasb[s]://<ContainerName>@<StorageAccountName>.blob.core.windows.net/<path>/<filename>
 
-> [AZURE.NOTE] 只有 HDInsight 叢集 3.0 版才支援 **wasb://* 語法。HDInsight 2.1 和 1.6 版叢集支援較舊的 **asv://* 語法，但 HDInsight 3.0 版叢集已不支援該語法。
+> [AZURE.NOTE] 只有 HDInsight 叢集 3.0 版才支援 *wasb://* 語法。HDInsight 2.1 和 1.6 版叢集支援較舊的 *asv://* 語法，但 HDInsight 3.0 版叢集已不支援該語法。
 
 > [AZURE.NOTE] wasb:// 路徑為虛擬路徑。如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
 
@@ -281,7 +281,7 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob �
 - CREATE EXTERNAL TABLE 命令不會移動資料檔案。
 - CREATE EXTERNAL TABLE 命令不允許在 LOCATION 子句中指定的資料夾下放置任何子資料夾。因此，此教學課程複製了 sample.log 檔案。
 
-如需詳細資訊，請參閱 [HDInsight：Hive 內部和外部資料表簡介][cindygross-hive-tables] (英文)。
+如需詳細資訊，請參閱 [HDInsight：Hive 內部和外部資料表簡介][cindygross-hive-tables] \(英文)。
 
 **教學課程前置工作**
 
@@ -382,7 +382,7 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。�
 
 **提交 Oozie 工作**
 
-1. 開啟 Windows PowerShell ISE (在 Windows 8 的 [開始] 畫面上輸入 **PowerShell\_ISE**，然後按一下 [Windows PowerShell ISE]。如需詳細資訊，請參閱[在 Windows 8 和 Windows 上啟動 Windows PowerShell][powershell-start] \(英文))。
+1. 開啟 Windows PowerShell ISE (在 Windows 8 的 [開始] 畫面上輸入 **PowerShell\_ISE**，然後按一下 [Windows PowerShell ISE]。如需詳細資訊，請參閱[在 Windows 8 和 Windows 上啟動 Windows PowerShell][powershell-start] (英文))。
 
 3. 將以下指令碼複製到指令碼窗格中，然後設定前十四個變數 (但請略過 **$storageUri**)。
 
@@ -717,7 +717,6 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。�
 [hdinsight-develop-java-mapreduce]: hdinsight-develop-deploy-java-mapreduce-linux.md
 [hdinsight-use-oozie]: hdinsight-use-oozie.md
 
-[sqldatabase-create-configue]: ../sql-database-create-configure.md
 [sqldatabase-get-started]: ../sql-database/sql-database-get-started.md
 
 [azure-management-portal]: https://portal.azure.com/
@@ -741,4 +740,4 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

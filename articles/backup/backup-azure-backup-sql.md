@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/08/2016"
+	ms.date="07/01/2016"
 	ms.author="giridham; jimpark;"/>
 
 
@@ -30,7 +30,7 @@
 3. 從 Azure 復原資料庫。
 
 ## 開始之前
-開始之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有[必要條件](../backup-azure-dpm-introduction/#prerequisites)。必要條件涵蓋下列類似工作：建立備份保存庫、下載保存庫認證、安裝 Azure Backup Agent，以及向保存庫註冊伺服器。
+開始之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有[必要條件](../backup-azure-dpm-introduction.md#prerequisites)。必要條件涵蓋下列類似工作：建立備份保存庫、下載保存庫認證、安裝 Azure Backup Agent，以及向保存庫註冊伺服器。
 
 ## 建立備份原則以在 Azure 保護 SQL Server 資料庫
 
@@ -62,7 +62,7 @@
 
     ![短期目標](./media/backup-azure-backup-sql/pg-shortterm.png)
 
-    >[AZURE.NOTE] 傳輸從前一天的下午 8:00 備份點後修改的資料，即可在每天下午 8:00 PM (根據畫面輸入) 建立備份點。這個程序稱為 [快速完整備份]。雖然交易記錄檔每隔 15 分鐘同步處理一次，但如果有需要在下午 9:00 復原資料庫，則此點可藉由重新執行最後一個快速完整備份點 (在本例中為下午 8:00) 的記錄檔來建立。
+    >[AZURE.NOTE] 傳輸從前一天下午 8:00 備份點後修改的資料，即可在每天下午 8:00 PM (根據畫面輸入) 建立備份點。這個程序稱為 [快速完整備份]。雖然交易記錄檔每隔 15 分鐘同步處理一次，但如果有需要在下午 9:00 復原資料庫，則此點可藉由重新執行最後一個快速完整備份點 (在本例中為下午 8:00) 的記錄檔來建立。
 
 8. 按 [**下一步**]
 
@@ -174,4 +174,4 @@
 
 • [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0706_2016-->

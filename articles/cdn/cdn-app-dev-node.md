@@ -13,16 +13,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="07/01/2016"
 	ms.author="casoper"/>
 
-# 開始使用 Azure CDN SDK for Node.js
+# 開始使用 Azure CDN 開發
+
+> [AZURE.SELECTOR]
+- [.NET](cdn-app-dev-net.md)
+- [Node.js](cdn-app-dev-node.md)
 
 您可以使用 [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn)，自動建立和管理 CDN 設定檔與端點。本教學課程將逐步建立簡單的 Node.js 主控台應用程式，示範數個可用的作業。本教學課程的目的不是詳細說明 Azure CDN SDK for Node.js 的所有層面。
 
-若要完成本教學課程，您應該已安裝和設定 [Node.js](http://www.nodejs.org) **為 4.x.x** 或更新版本。您可以使用任何想要的文字編輯器，來建立 Node.js 應用程式。為了撰寫本教學課程，我使用了 [Visual Studio 程式碼](https://code.visualstudio.com)。
+若要完成本教學課程，您應該已安裝和設定 [Node.js](http://www.nodejs.org) **4.x.x** 或更新版本。您可以使用任何想要的文字編輯器，來建立 Node.js 應用程式。為了撰寫本教學課程，我使用了 [Visual Studio 程式碼](https://code.visualstudio.com)。
 
-如需本教學課程的完整範例，請參閱[這裡](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74)。
+> [AZURE.TIP] 您可以在 MSDN 上下載[本教學課程中完成的專案](https://code.msdn.microsoft.com/Azure-CDN-SDK-for-Nodejs-c712bc74)。
 
 [AZURE.INCLUDE [cdn-app-dev-prep](../../includes/cdn-app-dev-prep.md)]
 
@@ -34,16 +38,16 @@
 	
 	npm init
 	
-然後您會看到一系列用來初始化專案的問題。針對 **entry point**，本教學課程將使用「app.js」。您可以在下列範例中看到我的其他選擇。
+然後您會看到一系列用來初始化專案的問題。本教學課程將使用 app.js 做為**進入點**。您可以在下列範例中看到我的其他選擇。
 
 ![NPM init 輸出](./media/cdn-app-dev-node/cdn-npm-init.png)
 
-我們的專案現在會使用「packages.json」檔案加以初始化。我們的專案將使用 NPM 封裝內含的一些 Azure 程式庫。我們將會針對 Node.js (ms-rest-azure) 使用 Azure 用戶端執行階段，針對 Node.js (azure-arm-cd) 使用 Azure CDN 用戶端程式庫。讓我們將它們新增至專案做為相依性。
+我們的專案現在會使用 packages.json 檔案加以初始化。我們的專案將使用 NPM 封裝內含的一些 Azure 程式庫。我們將會針對 Node.js (ms-rest-azure) 使用 Azure 用戶端執行階段，針對 Node.js (azure-arm-cd) 使用 Azure CDN 用戶端程式庫。讓我們將它們新增至專案做為相依性。
  
 	npm install --save ms-rest-azure
 	npm install --save azure-arm-cdn
 
-封裝完成安裝後，「package.json」檔案看起來應該會類似下面 (版本號碼可能會有所不同)︰
+封裝完成安裝後，package.json 檔案看起來應該類似下列內容 (版本號碼可能不同)：
 
 ```
 {
@@ -63,11 +67,11 @@
 }
 ```
 
-最後，使用文字編輯器建立空白文字檔，並將它儲存為專案資料夾根目錄中的「app.js」。我們現在可以開始撰寫程式碼了。
+最後，使用文字編輯器來建立空白文字檔，並將它儲存為專案資料夾根目錄中的 app.js。我們現在可以開始撰寫程式碼了。
 
 ## 必要項目、常數、驗證和結構
 
-在編輯器已開啟「app.js」的情況下，讓我們開始撰寫程式的基本結構。
+在編輯器中開啟 app.js，開始撰寫程式的基本結構。
 
 1. 使用下列內容在頂端為我們的 NPM 封裝新增「必要項目」︰
 
@@ -107,7 +111,7 @@
 	var cdnClient = new cdnManagementClient(credentials, subscriptionId);
 	```
 
-	務必要使用正確資訊取代 **&lt;角括號&gt;** 中的項目。對於 `<redirect URI>`，請使用您在 Azure AD 中註冊應用程式時所輸入的重新導向 URI。
+	務必使用正確資訊來取代 **&lt;角括號&gt;** 中的項目。對於 `<redirect URI>`，請使用您在 Azure AD 中註冊應用程式時所輸入的重新導向 URI。
 	
 
 4.  我們的 Node.js 主控台應用程式將會採用一些命令列參數。讓我們驗證看看是否已至少傳遞一個參數。
@@ -337,7 +341,7 @@ function cdnDelete() {
 
 現在我們可以使用慣用的偵錯工具或是在主控台執行我們的 Node.js 程式。
 
-> [AZURE.TIP] 如果您要使用 Visual Studio 程式碼做為偵錯工具，您必須設定您的環境以傳入命令列參數。Visual Studio 程式碼會在 **lanuch.json** 檔案中進行此動作。尋找名為 **args** 的屬性，並為您的參數新增字串值陣列，使它看起來類似下面︰`"args": ["list", "profiles"]`。
+> [AZURE.TIP] 如果您要使用 Visual Studio 程式碼做為偵錯工具，您必須設定您的環境以傳入命令列參數。Visual Studio 程式碼會在 **lanuch.json** 檔案中進行此動作。尋找名為 **args** 的屬性，並為您的參數新增字串值陣列，使它看起來類似下列內容︰`"args": ["list", "profiles"]`。
 
 讓我們從列出設定檔來著手。
 
@@ -363,4 +367,4 @@ function cdnDelete() {
 
 若要尋找其他關於 Azure SDK for Node.js 的文件，請檢視[完整參考資料](http://azure.github.io/azure-sdk-for-node/)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

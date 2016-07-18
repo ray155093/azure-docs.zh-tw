@@ -1,19 +1,19 @@
 <properties 
-   pageTitle="Azure 佇列和服務匯流排佇列 - 異同比較 | Microsoft Azure"
-   description="分析 Azure 所提供之兩種佇列類型之間的差異和相似性。"
-   services="service-bus"
-   documentationCenter="na"
-   authors="sethmanheim"
-   manager="timlt"
-   editor="tysonn" />
+    pageTitle="Azure 佇列和服務匯流排佇列 - 異同比較 | Microsoft Azure"
+    description="分析 Azure 所提供之兩種佇列類型之間的差異和相似性。"
+    services="service-bus"
+    documentationCenter="na"
+    authors="sethmanheim"
+    manager="timlt"
+    editor="tysonn" />
 <tags 
-   ms.service="service-bus"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="tbd"
-   ms.date="11/18/2015"
-   ms.author="sethm" />
+    ms.service="service-bus"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="tbd"
+    ms.date="07/05/2015"
+    ms.author="sethm" />
 
 # Azure 佇列和服務匯流排佇列 - 異同比較
 
@@ -67,7 +67,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - 您的佇列大小不會成長超過 80 GB。
 
-- 您想要使用 AMQP 1.0 標準型傳訊代理人。如需 AMQP 的詳細資訊，請參閱[服務匯流排 AMQP 概觀](service-bus-amqp-overview.md)。
+- 您想要使用 AMQP 1.0 標準型傳訊通訊協定。如需 AMQP 的詳細資訊，請參閱[服務匯流排 AMQP 概觀](service-bus-amqp-overview.md)。
 
 - 您可以預見最後會從佇列架構的點對點通訊移轉至允許緊密整合其他接收者 (訂戶) 的訊息交換模式，而且每個接收者都會接收傳送至佇列之部分或所有訊息的獨立複本。後者是指服務匯流排原本提供的發佈/訂閱功能。
 
@@ -94,7 +94,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |推送型 API|**否**|**是**<br/><br/>[OnMessage](https://msdn.microsoft.com/library/azure/jj908682.aspx) 和 **OnMessage** 工作階段的 .NET API。|
 |接收模式|**查看與租用**|**查看與鎖定**<br/><br/>**接收與刪除**|
 |獨佔存取模式|**以租用為基礎**|**以鎖定為基礎**|
-|租用/鎖定持續時間|**30 秒 (預設值)**<br/><br/>**7 天 (上限)** (您可以使用 [UpdateMessage](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.updatemessage.aspx) API 更新或釋放訊息租用)|**60 秒 (預設值)**<br/><br/>您可以使用 [RenewLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.renewlock.aspx) API 更新訊息鎖定。|
+|租用/鎖定持續時間|**30 秒 (預設值)**<br/><br/>**7 天 (上限)** (您可以使用 [UpdateMessage](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.updatemessage.aspx) API 更新或釋放訊息租用)。|**60 秒 (預設值)**<br/><br/>您可以使用 [RenewLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.renewlock.aspx) API 更新訊息鎖定。|
 |租用/鎖定精確度|**訊息層級**<br/><br/>(每個訊息都可以具有不同的逾時值，您稍後可以在處理訊息時，視需要使用 [UpdateMessage](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.queue.cloudqueue.updatemessage.aspx) API 更新這個逾時值)|**佇列層級**<br/><br/>(每個佇列都有套用至所有訊息的鎖定精確度，但是您可以使用 [RenewLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.renewlock.aspx) API 更新鎖定)|
 |批次接收|**是**<br/><br/>(在擷取訊息時明確指定訊息計數，最多 32 個訊息)|**是**<br/><br/>(隱含啟用預先擷取屬性或明確透過使用交易)|
 |批次傳送|**否**|**是**<br/><br/>(透過使用交易或用戶端批次)|
@@ -109,7 +109,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - Azure 佇列是設計來支援標準佇列案例，例如使應用程式元件脫鉤以增加延展性及容錯能力、進行負載調節，以及建置程序工作流程。
 
-- 服務匯流排佇列支援「至少一次」的傳遞保證。此外，也可支援「最多一次」語意，方法是使用工作階段狀態來儲存應用程式狀態，並且使用交易以不可部分完成的方式接收訊息並更新工作階段狀態。Azure 工作流程服務會使用這項技術來保證「最多一次」傳遞。
+- 服務匯流排佇列支援「至少一次」的傳遞保證。此外，也可支援「最多一次」語意，方法是使用工作階段狀態來儲存應用程式狀態，並且使用交易以不可部分完成的方式接收訊息並更新工作階段狀態。
 
 - Azure 佇列提供跨佇列、資料表和 BLOB 之統一且一致的程式設計模型，適合開發人員和營運團隊使用。
 
@@ -161,9 +161,9 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - Azure 佇列支援更新訊息內容。您可以使用這項功能，將狀態資訊和累加進度更新保存至訊息中，以便從最後已知的檢查點處理訊息，而不用從頭開始處理。使用服務匯流排佇列時，您可以透過使用訊息工作階段來實現相同案例。工作階段可讓您使用 [SetState](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.setstate.aspx) 和 [GetState](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.getstate.aspx) 儲存和擷取應用程式處理狀態。
 
-- 只有服務匯流排佇列支援的無效信件處理可用於隔離接收端應用程式無法順利處理的訊息，或是由於存留時間 (TTL) 屬性過期而無法送達目的地的訊息。TTL 值會指定訊息保留在佇列中的時間長度。在服務匯流排中，當 TTL 期限到期時，訊息將會移至稱為 $DeadLetterQueue 的特殊佇列。
+- 只有服務匯流排佇列支援的[無效信件處理](service-bus-dead-letter-queues.md)可用於隔離接收端應用程式無法順利處理的訊息，或是由於存留時間 (TTL) 屬性過期而無法送達目的地的訊息。TTL 值會指定訊息保留在佇列中的時間長度。在服務匯流排中，當 TTL 期限到期時，訊息將會移至稱為 $DeadLetterQueue 的特殊佇列。
 
-- 為了在 Azure 佇列中找出「有害」訊息，應用程式會在清除佇列中的訊息時，檢查訊息的 DequeueCount 屬性。如果 DequeueCount 超過給定的臨界值，應用程式就會將訊息移至應用程式定義的「無效信件」佇列。
+- 為了在 Azure 佇列中找出「有害」訊息，應用程式會在清除佇列中的訊息時，檢查訊息的 **[DequeueCount](https://msdn.microsoft.com/library/azure/dd179474.aspx)** 屬性。如果 **DequeueCount** 超過給定的臨界值，應用程式就會將訊息移至應用程式定義的「無效信件」佇列。
 
 - Azure 佇列可讓您取得針對佇列執行之所有交易的詳細記錄，以及彙總的度量資料。這兩個選項有助於偵錯和了解應用程式的 Azure 佇列使用狀況，也有助於對您的應用程式進行效能微調，以及降低使用佇列的成本。
 
@@ -173,7 +173,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 ## 容量和配額
 
-本節將從可能適用之容量和配額的觀點來比較 Azure 佇列和服務匯流排佇列。
+本節將從可能適用之[容量和配額](service-bus-quotas.md)的觀點來比較 Azure 佇列和服務匯流排佇列。
 
 |比較準則|Azure 佇列|服務匯流排佇列|
 |---|---|---|
@@ -205,14 +205,14 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |---|---|---|
 |管理通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**|
 |執行階段通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**<br/><br/>**AMQP 1.0 標準 (TCP 和 TLS)**|
-|.NET Managed API|**是**<br/><br/>(.NET 受管理的儲存體用戶端 API)|**是**<br/><br/>(.NET Managed 代理傳訊 API)|
+|.NET Managed API|**是**<br/><br/>(.NET Managed 儲存體用戶端 API)|**是**<br/><br/>(.NET Managed 代理傳訊 API)|
 |Native C++|**是**|**否**|
 |Java API|**是**|**是**|
 |PHP API|**是**|**是**|
 |Node.js API|**是**|**是**|
 |任意中繼資料支援|**是**|**否**|
-|佇列命名規則|**長度最多 63 個字元**<br/><br/>(佇列名稱的字母必須是小寫)|**長度最多 260 個字元**<br/><br/>(佇列路徑和名稱不區分大小寫)|
-|取得佇列長度函式|**是**<br/><br/>(如果訊息過了 TTL 而到期卻未遭刪除，則為近似值)|**是**<br/><br/>(精確的時間點值)|
+|佇列命名規則|**長度最多 63 個字元**<br/><br/>(佇列名稱的字母必須是小寫)。|**長度最多 260 個字元**<br/><br/>(佇列路徑和名稱不區分大小寫)。|
+|取得佇列長度函式|**是**<br/><br/>(如果訊息過了 TTL 而到期卻未遭刪除，則為近似值)。|**是**<br/><br/>(精確的時間點值)。|
 |查看函式|**是**|**是**|
 
 ### 其他資訊
@@ -225,7 +225,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - Azure 佇列名稱長度可以是 3-63 個字元，而且可以包含小寫字母、數字和連字號。如需詳細資訊，請參閱[為佇列和中繼資料命名](https://msdn.microsoft.com/library/azure/dd179349.aspx)。
 
-- 服務匯流排佇列名稱長度最多 260 個字元，而且命名規則的限制較少。服務匯流排佇列名稱可以包含字母、數字、句號 (.)、連字號 (-) 和底線 (\_)。
+- 服務匯流排佇列名稱長度最多 260 個字元，而且命名規則的限制較少。服務匯流排佇列名稱可以包含字母、數字、句號、連字號和底線。
 
 ## 效能
 
@@ -247,9 +247,9 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - Azure 佇列和服務匯流排佇列都會拒絕對正在節流之佇列提出的要求，藉以強制執行節流行為。不過，這兩者都不會將已節流的要求視為可計費的要求。
 
-- 對服務匯流排佇列進行的基準測試顯示，單一佇列可以達到每秒最多 2,000 個訊息的訊息輸送量 (訊息大小大約為 1 KB)。若要達到更高的輸送量，請使用多個佇列。如需使用服務匯流排達到效能最佳化的詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](service-bus-performance-improvements.md)。
+- 若要達到更高的輸送量，請使用多個服務匯流排佇列。如需使用服務匯流排達到效能最佳化的詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](service-bus-performance-improvements.md)。
 
-- 達到服務匯流排佇列的最大輸送量時，會傳回 [ServerBusyException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.serverbusyexception.aspx) (使用 .NET 代理傳訊 API 時) 或 HTTP 503 (使用 REST API 時) 給佇列用戶端，表示佇列正在進行節流。
+- 達到服務匯流排佇列的最大輸送量時，會傳回 [ServerBusyException](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.serverbusyexception.aspx) (使用 .NET 傳訊 API 時) 或 HTTP 503 (使用 REST API 時) 給佇列用戶端，表示佇列正在進行節流。
 
 ## 驗證和授權
 
@@ -263,7 +263,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 ### 其他資訊
 
-- 對這兩種佇列技術提出的每項要求都必須經過驗證。不支援具有匿名存取的公用佇列。使用 SAS 時，您可以發佈唯寫 SAS、唯讀 SAS 或甚至是完整存取 SAS 來解決這種情況。
+- 對這兩種佇列技術提出的每項要求都必須經過驗證。不支援具有匿名存取的公用佇列。使用 [SAS](service-bus-sas-overview.md) 時，您可以發佈唯寫 SAS、唯讀 SAS 或甚至是完整存取 SAS 來解決這種情況。
 
 - Azure 佇列所提供的驗證配置需要使用對稱金鑰，這個金鑰是雜湊式訊息驗證碼 (HMAC)、使用 SHA-256 演算法所計算並且編碼為 **Base64** 字串。如需個別通訊協定的詳細資訊，請參閱 [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)。服務匯流排佇列支援使用對稱金鑰的類似模型。如需詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](service-bus-shared-access-signature-authentication.md)。
 
@@ -275,9 +275,9 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |---|---|---|
 |佇列交易成本|**$0.0036**<br/><br/>(每 100,000 筆交易)|**基本層**：**$0.05**<br/><br/>(每百萬個作業)|
 |可計費的作業|**全部**|**僅限傳送/接收**<br/><br/>(其他作業免費)|
-|閒置交易|**可計費**<br/><br/>(查詢空的佇列會視為一筆可計費的交易)|**可計費**<br/><br/>(針對空的佇列進行接收會視為一個可計費的訊息)|
+|閒置交易|**可計費**<br/><br/>(查詢空的佇列會視為一筆可計費的交易)。|**可計費**<br/><br/>(針對空的佇列進行接收會視為一個可計費的訊息)。|
 |儲存成本|**$0.07**<br/><br/>(每個 GB/月)|**$0.00**|
-|輸出資料傳輸成本|**$0.12 - $0.19**<br/><br/>(根據地理位置)|**$0.12 - $0.19**<br/><br/>(根據地理位置)|
+|輸出資料傳輸成本|**$0.12 - $0.19**<br/><br/>(根據地理位置)。|**$0.12 - $0.19**<br/><br/>(根據地理位置)。|
 
 ### 其他資訊
 
@@ -289,7 +289,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 - 由於支援長期輪詢，因此在需要低度延遲傳遞的情況下使用服務匯流排佇列可能會符合成本效益。
 
->[AZURE.NOTE] 所有成本都可能會變更。上表反映撰寫本文時的目前定價，不包括目前可能適用的任何促銷優惠方案。如需 Azure 的最新定價資訊，請參閱 [Azure 定價](https://azure.microsoft.com/pricing/)頁面。如需服務匯流排定價的詳細資訊，請參閱[服務匯流排價格](https://azure.microsoft.com/pricing/details/service-bus/)。
+>[AZURE.NOTE] 所有成本都可能會變更。上表反映目前定價，不包括目前可能適用的任何促銷優惠方案。如需 Azure 的最新定價資訊，請參閱 [Azure 定價](https://azure.microsoft.com/pricing/)頁面。如需服務匯流排定價的詳細資訊，請參閱[服務匯流排價格](https://azure.microsoft.com/pricing/details/service-bus/)。
 
 ## 結論
 
@@ -306,7 +306,6 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 - [使用服務匯流排代理傳訊的效能改進最佳作法](service-bus-performance-improvements.md)
 - [Azure 服務匯流排的佇列和主題簡介](http://www.code-magazine.com/article.aspx?quickid=1112041)
 - [服務匯流排的開發人員指南](http://www.cloudcasts.net/devguide/)
-- [「深入探討 Azure 資料表和佇列」](http://www.microsoftpdc.com/2009/SVC09)
 - [Azure 儲存體架構](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 - [使用 Azure 中的佇列服務](http://www.developerfusion.com/article/120197/using-the-queuing-service-in-windows-azure/)
 - [了解 Azure 儲存體計費 - 頻寬、交易和容量](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx)
@@ -314,4 +313,4 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 [Azure 傳統入口網站]: http://manage.windowsazure.com
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

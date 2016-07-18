@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/20/2016" 
+	ms.date="06/29/2016" 
 	ms.author="anwestg"/>
 
 # 企業的 Azure App Service Web Apps 提供項目白皮書 #
@@ -47,9 +47,9 @@ App Service Web Apps 是裝載此類應用程式的最佳選項，提供可擴�
 
 另一個方法是運用現有的就地投資。在本範例案例中 (員工費用報銷系統)，您會維護位於內部基礎結構中的資料存放區。這可能是為了與內部系統 (報告、薪資、帳單等) 整合或是為了滿足 IT 管理需求。Web Apps 提供一些可讓您連線到內部部署基礎結構的方法：
 
-- [App Service 環境](app-service-app-service-environment-intro.md) -「App Service 環境」(ASE) 是最近新增到 Microsoft Azure App Service 供應項目中的新「進階」功能。ASE 提供一個完全隔離且專用的環境，在相當高的程度上可安全地執行 Azure App Service app，同時又提供隔離且安全的網路存取。   
-- [混合式連線](../biztalk-services/integration-hybrid-connection-overview.md) – 混合式連線是 Microsoft Azure BizTalk 服務的一個功能，可讓 Web Apps 安全連線到內部部署資源，例如 SQL Server、MySQL、Web API 和自訂 Web 服務。 
-- [虛擬網路整合](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/) – Web Apps 與 Azure 虛擬網路整合可讓您將 Web 應用程式連線到 Azure 虛擬網路，此虛擬網路會透過站台對站台 VPN 依序連線到您的內部部署基礎結構。 
+- [App Service 環境](app-service-app-service-environment-intro.md) -「App Service 環境」(ASE) 是最近新增到 Microsoft Azure App Service 供應項目中的新「進階」功能。ASE 提供一個完全隔離且專用的環境，在相當高的程度上可安全地執行 Azure App Service app，同時又提供隔離且安全的網路存取。
+- [混合式連線](../biztalk-services/integration-hybrid-connection-overview.md) – 混合式連線是 Microsoft Azure BizTalk 服務的一個功能，可讓 Web Apps 安全連線到內部部署資源，例如 SQL Server、MySQL、Web API 和自訂 Web 服務。
+- [虛擬網路整合](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/) – Web Apps 與 Azure 虛擬網路整合可讓您將 Web 應用程式連線到 Azure 虛擬網路，此虛擬網路會透過站台對站台 VPN 依序連線到您的內部部署基礎結構。
 
 下列圖表說明一個內含內部部署資源連線選項的範例概略解決方案。第一個範例示範如何使用標準 Azure App Service 功能來達成此解決方案，第二個範例則示範如何使用進階提供項目 (App Service 環境) 來達成此解決方案。
 
@@ -110,11 +110,11 @@ App Service Web Apps 是一個可擴充的全域平台，可讓 Web 應用程式
 從內部部署環境移轉應用程式時，您可能要思考幾個 Web Apps 限制。將 Web 應用程式移轉到 Web Apps 時，以下是一些要注意的重要主題 ([http://aka.ms/websitesmigrationresources](http://aka.ms/websitesmigrationresources))：
 
 -	連接埠繫結 - Web Apps 僅支援連接埠 80 (適用於 HTTP) 和連接埠 443 (適用於 HTTPS 流量)。如果您的應用程式使用其他連接埠，則移轉之後，應用程式將使用連接埠 80 (適用於 HTTP) 和連接埠 443 (適用於 HTTPS 流量)。這通常不是很大的問題，因為在內部部署部署中，為了克服使用的網域名稱問題而使用不同連接埠的情況十分常見，尤其是在開發和測試環境中。
--	驗證 - Web Apps 預設支援匿名驗證以及應用程式所指定的表單驗證。當應用程式僅與 Azure Active Directory 和 ADFS 整合時，Web Apps 可提供 Windows 驗證。有關此功能更詳細的討論請參閱[此處](http://aka.ms/azurebizapp) 
+-	驗證 - Web Apps 預設支援匿名驗證以及應用程式所指定的表單驗證。當應用程式僅與 Azure Active Directory 和 ADFS 整合時，Web Apps 可提供 Windows 驗證。有關此功能更詳細的討論請參閱[此處](http://aka.ms/azurebizapp)
 -	GAC 架構組件 – Web Apps 不允許將組件部署至全域組件快取 (GAC)。因此如果正在移轉的應用程式在內部部署使用了這項功能，請考慮將組件移至應用程式的 bin 資料夾。
 -	IIS5 相容性模式 - Web Apps 不支援 IIS5 相容性模式，因此，每個 Web Apps 執行個體與上層 Web Apps 執行個體下的所有 Web 應用程式會在單一應用程式集區內的相同背景工作處理序中執行。
 -	COM 元件的使用 – Web Apps 不允許在平台上註冊 COM 元件。因此，如果應用程式使用任何 COM 元件，則必須以 Managed 程式碼重新撰寫這些元件並利用應用程式進行部署。
--	ISAPI 篩選器 – Web Apps 上可支援 ISAPI 篩選器。它們必須作為應用程式的一部分進行部署，並在 Web 應用程式的 web.config 檔案中註冊。如需詳細資訊，請參閱 [http://aka.ms/azurewebsitesxdt](web-sites-transform-extend.md)。 
+-	ISAPI 篩選器 – Web Apps 上可支援 ISAPI 篩選器。它們必須作為應用程式的一部分進行部署，並在 Web 應用程式的 web.config 檔案中註冊。如需詳細資訊，請參閱 [http://aka.ms/azurewebsitesxdt](web-sites-transform-extend.md)。
 
 在思考了這些主題之後，您的 Web 應用程式應該可以開始在雲端中使用。別擔心，如果部分主題未達到要求，移轉工具仍會盡全力移轉。
 
@@ -159,4 +159,4 @@ App Service Web Apps 針對快速發展環境中的企業動態需求，提供�
  
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->
