@@ -290,7 +290,7 @@ Azure 資料目錄支援群眾外包的註解作法，可讓任何資料目錄�
 1. 選取搜尋結果中的 **Product**。按一下工具列上的 [開啟於]，然後選取 [Excel]。
  
     ![Azure 資料目錄 - 連線到資料資產](media/data-catalog-get-started/data-catalog-connect1.png)
-5. 按一下底部下載快顯視窗中的 [開啟] (視瀏覽器而定，此體驗可能會不同)。
+5. 按一下底部下載快顯視窗中的 [開啟] \(視瀏覽器而定，此體驗可能會不同)。
 
 	![Azure 資料目錄 - 下載 Excel 連線檔案](media/data-catalog-get-started/data-catalog-download-open.png)
 6. 在 [Microsoft Excel 安全性注意事項] 視窗中，按一下 [啟用]。

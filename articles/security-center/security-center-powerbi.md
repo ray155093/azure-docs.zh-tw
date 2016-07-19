@@ -43,7 +43,7 @@ Azure 資訊安全中心的 [Power BI 儀表板](http://aka.ms/azure-security-ce
 
 	![Azure 資訊安全中心安全性深入解析儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new3.png)
 
-5. [連接到 Azure 資訊安全中心安全性深入解析] 視窗隨即出現。確定 [驗證] 方法為 [oAuth2] (如下所示)，然後按一下 [登入] 按鈕。
+5. [連接到 Azure 資訊安全中心安全性深入解析] 視窗隨即出現。確定 [驗證] 方法為 [oAuth2] \(如下所示)，然後按一下 [登入] 按鈕。
 	
 	![驗證](./media/security-center-powerbi/security-center-powerbi-fig1-new4.png)
 
@@ -93,7 +93,7 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。�
 
 2. 基於此範例的目的，按一下 [Azure 資訊安全中心原則管理] 圖格中的 [取得]。
 
-3. 在 [連接到 Azure 資訊安全中心原則管理] 視窗中，請務必選取 [驗證方法] 下拉式清單底下的[oAuth2] (如下所示)，然後按一下 [登入] 按鈕。
+3. 在 [連接到 Azure 資訊安全中心原則管理] 視窗中，請務必選取 [驗證方法] 下拉式清單底下的[oAuth2] \(如下所示)，然後按一下 [登入] 按鈕。
 
 	![原則管理視窗](./media/security-center-powerbi/security-center-powerbi-fig1-new8.png)
 

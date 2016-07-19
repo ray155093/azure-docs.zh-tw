@@ -32,7 +32,7 @@
 |連接器||||
 |-----------|-----------|-----------|-----------|
 |[![API 圖示][blobicon]<br/>**Azure Blob**][azureblobdoc]|[![API 圖示][boxicon]<br/>**Box**][boxDoc]|[![API 圖示][crmonlineicon]<br/>**CRM Online**][crmonlinedoc]|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|
-|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|
+|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google<br/>雲端硬碟**][googledrivedoc]|
 |[![API 圖示][mailchimpicon]<br/>**MailChimp**][mailchimpdoc]|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|
 |[![API 圖示][office365icon]<br/>**Office 365**<br/>**視訊**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**商務用 <br/>OneDrive**][onedriveforbusinessdoc]|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|
 |[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|
@@ -62,7 +62,10 @@
 連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 
-[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md) [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md) [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md)
+[最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
+[立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
+[立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
+ [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"

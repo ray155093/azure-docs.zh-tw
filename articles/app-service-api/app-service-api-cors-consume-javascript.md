@@ -50,7 +50,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
@@ -204,7 +204,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。在這個螢幕擷取畫面中，ToDoListAPI0223 API 應用程式會接受來自 ToDoListAngular Web 應用程式的 JavaScript 用戶端呼叫。
 
