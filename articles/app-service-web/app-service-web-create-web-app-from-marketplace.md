@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/10/2016"
+	ms.date="07/11/2016"
 	ms.author="robmcm"/>
 
 <!-- Note: This article replaces web-sites-php-web-site-gallery.md -->
@@ -26,13 +26,13 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 在本教學課程中，您將了解如何：
 
-* 在 Azure Marketplace 中尋找應用程式範本。
-* 在 Azure App Service 中建立以範本為基礎的 Web 應用程式。
-* 為新的 Web 應用程式和資料庫設定 Azure App Service 設定。
+* 在 Azure App Service 中尋找和建立以 Azure Marketplace 範本為基礎的 Web 應用程式。
+* 為新的 Web 應用程式進行 Azure App Service 設定。
+* 啟動及管理您的 Web 應用程式。
 
 基於本教學課程的目的，您將會從 Azure Marketplace 部署 WordPress 部落格網站。當您完成本教學課程中的步驟時，您的專屬 WordPress 網站將在雲端中啟動並執行。
 
-![WordPress Web 應用程式儀表板範例][WordPressDashboard]
+![WordPress Web 應用程式儀表板範例][WordPressDashboard1]
 
 您在本教學課程中部署的 WordPress 網站使用 MySQL 來做為資料庫。如果您想改為使用 SQL Database 來做為資料庫，請參閱 [專案 Nami]，其也可透過 Azure Marketplace 來取得。
 
@@ -41,7 +41,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 >
 > 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service]。您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式 - 不需信用卡，不需任何承諾。
 
-## 選取 WordPress 和設定 Azure App Service
+## 在 Azure App Service 中尋找及建立 Web 應用程式
 
 1. 登入 [Azure 入口網站]。
 
@@ -57,13 +57,15 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 	![建立 WordPress Web 應用程式][MarketplaceCreate]
 
-1. 隨即會顯示 [WordPress 設定] 刀鋒視窗，以供您完成下列步驟︰
+## 為新的 Web 應用程式進行 Azure App Service 設定
+
+1. 建立新的 Web 應用程式之後，[WordPress 設定] 刀鋒視窗隨即會顯示，以供您完成下列步驟︰
 
 	![設定 WordPress Web 應用程式設定][ConfigStart]
 
 1. 在 [Web 應用程式] 方塊中，輸入 Web 應用程式的名稱。
 
-	此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {名稱}.azurewebsites.net。如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
+	此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {name}.azurewebsites.net。如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
 
 	![設定 WordPress Web 應用程式名稱][ConfigAppName]
 
@@ -71,7 +73,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 	![設定 Web 應用程式的訂用帳戶][ConfigSubscription]
 
-1. 選取 [資源群組] 或建立新的資源群組。
+1. 選取 [資源群組]，或建立新的資源群組。
 
 	如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源][ResourceGroups]。
 
@@ -131,7 +133,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 1. 您網站的 [儀表板] 頁面便會開啟，並顯示您所提供的資訊。
 
-	![檢視您的 WordPress 儀表板][WordPressDashboard]
+	![檢視您的 WordPress 儀表板][WordPressDashboard2]
 
 ## 後續步驟
 
@@ -174,7 +176,8 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [WordPressSelect]: ./media/app-service-web-create-web-app-from-marketplace/wpselect.png
 [WordPressBrowse]: ./media/app-service-web-create-web-app-from-marketplace/wpbrowse.png
 [WordPressLanguage]: ./media/app-service-web-create-web-app-from-marketplace/wplanguage.png
-[WordPressDashboard]: ./media/app-service-web-create-web-app-from-marketplace/wpdashboard.png
+[WordPressDashboard1]: ./media/app-service-web-create-web-app-from-marketplace/wpdashboard1.png
+[WordPressDashboard2]: ./media/app-service-web-create-web-app-from-marketplace/wpdashboard2.png
 [WordPressConfigure]: ./media/app-service-web-create-web-app-from-marketplace/wpconfigure.png
 
-<!---HONumber=AcomDC_0511_2016---->
+<!---HONumber=AcomDC_0713_2016-->

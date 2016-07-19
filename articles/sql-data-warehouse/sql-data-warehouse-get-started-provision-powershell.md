@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/01/2016"
+   ms.date="07/11/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 Powershell 建立 SQL 資料倉儲
@@ -24,7 +24,7 @@
 - [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
 
 ## 必要條件
-開始之前，請確定您已備妥下列必要條件。
+開始之前，請確定您已符合下列必要條件。
 
 - **Azure 帳戶**︰請參閱 [Azure 免費試用][]或 [MSDN Azure 點數][]以建立帳戶。
 - **V12 Azure SQL Server**︰請參閱[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器][]或[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器][]。
@@ -33,7 +33,7 @@
 
 > [AZURE.NOTE] 建立新的 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
 
-## 建立 SQL 資料倉儲資料庫
+## 建立 SQL 資料倉儲
 1. 開啟 Windows PowerShell。
 2. 執行此 Cmdlet 來登入 Azure 資源管理員。
 
@@ -55,7 +55,7 @@
 
 此 Cmdlet 所需的參數：
 
-- **RequestedServiceObjectiveName**：您要求的 [DWU][] 數量。支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500 和 DW2000。
+- **RequestedServiceObjectiveName**：您要求的 [DWU][] 數量。支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500、DW2000、DW3000 和 DW6000。
 - **DatabaseName**：您要建立的 SQL 資料倉儲的名稱。
 - **ServerName**：您用來建立的伺服器名稱 (必須是 V12)。
 - **ResourceGroupName**：您使用的資源群組。若要尋找訂用帳戶中可用的資源，請使用 Get-AzureResource。
@@ -64,6 +64,7 @@
 如需參數選項的詳細資訊，請參閱[建立資料庫 (Azure SQL 資料倉儲)][]。如需命令參考，請參閱 [New-AzureRmSqlDatabase][]
 
 ## 後續步驟
+
 SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或查看如何[開發][]、[載入][]或[移轉][]。
 
 如果您有興趣進一步了解如何以程式設計方式管理 SQL 資料倉儲，請查看我們的文章中有關 [PowerShell Cmdlet 和 REST API][] 的使用方式。
@@ -96,4 +97,4 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

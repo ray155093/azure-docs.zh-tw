@@ -40,7 +40,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 本節中的步驟示範如何建立新的 AMS 帳戶。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [+新增] > [媒體服務 + CDN] > [媒體服務]。
+2. 按一下 [+新增] > [媒體 + CDN] > [媒體服務]。
 
 	![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new1.png)
 
@@ -229,4 +229,4 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

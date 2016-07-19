@@ -1,5 +1,5 @@
 <properties
-	pageTitle="要用於 Microsoft Azure 邏輯應用程式中的 Microsoft 管理的連接器清單 | Microsoft Azure App Service"
+	pageTitle="要用於 Microsoft Azure 邏輯應用程式中的 Microsoft 管理的連接器清單 | Microsoft Azure App Service | Microsoft Azure"
 	description="取得受 Microsoft 管理的連接器完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
 	services="app-service\logic"
 	documentationCenter=""
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/31/2016"
+	ms.date="07/07/2016"
 	ms.author="deonhe"/>
 
 # 連接器清單
@@ -65,7 +65,7 @@
 [最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
 [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
 [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
-[將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
+ [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"
@@ -105,7 +105,7 @@
 [as2doc]: ../app-service-logic/app-service-logic-enterprise-integration-as2.md "深入了解企業整合 AS2。"
 [x12doc]: ../app-service-logic/app-service-logic-enterprise-integration-x12.md "深入了解企業整合 X12"
 [flatfiledoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
-[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md/#how-to-create-the-flat-file-decoding-connector "深入了解企業整合一般檔案。"
 [xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml.md "深入了解企業整合 XML 驗證。"
 [xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
 
@@ -148,5 +148,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0706_2016-->
-
+<!---HONumber=AcomDC_0713_2016-->

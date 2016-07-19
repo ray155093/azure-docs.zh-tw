@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/26/2016"
+   ms.date="07/13/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 重設 Azure VPN 閘道
@@ -58,4 +58,4 @@
 	
 如需這個 cmdlet 的詳細資訊，請參閱 [PowerShell 參考](https://msdn.microsoft.com/library/azure/mt270366.aspx)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
 	ms.date="04/22/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 使用 Visual Studio 將 ASP.NET Web 應用程式部署至 Azure App Service
 
@@ -147,19 +147,19 @@
 
 ## Visual Studio 會建立專案和 Web 應用程式
 
-通常在不到一分鐘的時間內，Visual Studio 就會建立 Web 專案和 Web 應用程式。
+	通常在不到一分鐘的時間內，Visual Studio 就會建立 Web 專案和 Web 應用程式。
 
-[方案總管] 視窗會顯示新專案中的檔案和資料夾。
+	[方案總管] 視窗會顯示新專案中的檔案和資料夾。
 
-![Solution Explorer](./media/web-sites-dotnet-get-started/solutionexplorer.png)
+	![Solution Explorer](./media/web-sites-dotnet-get-started/solutionexplorer.png)
 
-[Azure App Service 活動] 視窗會顯示已建立 Web 應用程式。
+	[Azure App Service 活動] 視窗會顯示已建立 Web 應用程式。
 
-![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
+	![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
 
-[雲端總管] 視窗可讓您檢視和管理 Azure 資源，包括您剛建立的新 web 應用程式。
+	[雲端總管] 視窗可讓您檢視和管理 Azure 資源，包括您剛建立的新 web 應用程式。
 
-![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
+	![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
 	
 ## 將 Web 專案部署至 Azure Web 應用程式
 
@@ -199,7 +199,7 @@
 
 	![在 Azure 中執行的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13deployedsite.png)
 
- > [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
+> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
 > ![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
 
 ## 疑難排解
@@ -214,7 +214,7 @@
 
 在本教學課程中，您已了解如何建立簡易的 Web 應用程式，並將其部署至 Azure Web 應用程式。以下是有助於您深入了解 Azure App Service 的一些相關主題和資源。
 
-* 在 [Azure 入口網站](https://portal.azure.com/)中監控及管理 Web 應用程式。 
+* 在 [Azure 入口網站](https://portal.azure.com/)中監控及管理 Web 應用程式。
 
 	如需詳細資訊，請參閱 [Azure 入口網站概觀](/services/management-portal/)和[在 Azure App Service 中設定 Web 應用程式](web-sites-configure.md)。
 
@@ -241,4 +241,4 @@
 
 	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Azure 入口網站來部署及管理 Azure 資源](../resource-group-portal.md)。
 
-<!---HONumber=AcomDC_0504_2016--->
+<!---HONumber=AcomDC_0713_2016-->

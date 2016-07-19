@@ -109,7 +109,7 @@ Storm on HDInsight 隨附完整的企業級全年無休支援。Storm on HDInsig
 
 ##即時分析的常見使用案例
 
-以下是一些 Apache storm on HDInsight 可能的常見使用案例。如需真實案例的相關資訊，請參閱[公司如何使用 Storm](https://storm.incubator.apache.org/documentation/Powered-By.html) (英文)。
+以下是一些 Apache storm on HDInsight 可能的常見使用案例。如需真實案例的相關資訊，請參閱[公司如何使用 Storm](https://storm.apache.org/documentation/Powered-By.html) (英文)。
 
 * 物聯網 (IoT)
 * 詐騙偵測
@@ -162,11 +162,11 @@ HDInsight Tools for Visual Studio 可讓 .NET 開發人員以 C# 設計和實作
 
 您遇到的大多數 Java 範例都是純 Java 或 Trident。Trident 是一種高階抽象概念，可讓工作變得更簡單，例如聯結、彙總、分組和篩選。不過，Trident 是以 Tuple 批次為對象，而原始 Java 解決方案是以一次一個 Tuple 的方式來處理串流。
 
-如需關於 Trident 的詳細資訊，請參閱 apache.org 上的 [Trident 教學課程](https://storm.incubator.apache.org/documentation/Trident-tutorial.html) (英文)。
+如需關於 Trident 的詳細資訊，請參閱 apache.org 上的 [Trident 教學課程](https://storm.apache.org/documentation/Trident-tutorial.html) (英文)。
 
 如需 Java 與 Trident 拓撲的範例，請參閱[範例 Storm 拓撲清單](hdinsight-storm-example-topology.md)或 HDInsight 叢集上的 Storm-Starter 範例。
 
-Storm-Starter 範例位於 Linux 叢集上的 \_\_ /usr/hdp/current/storm-client/contrib/storm-starter\_\_ 目錄和 Windows 叢集上的 **%storm\_home%\\contrib\\storm-starter** 目錄。
+Storm-Starter 範例位於 Linux 叢集上的 __ /usr/hdp/current/storm-client/contrib/storm-starter__ 目錄和 Windows 叢集上的 **%storm\_home%\\contrib\\storm-starter** 目錄。
 
 ##有哪些常見的開發模式？
 
@@ -214,9 +214,9 @@ Storm 可以提供不同程度的訊息處理保證。例如，基本的 Storm �
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-[stormtrident]: https://storm.incubator.apache.org/documentation/Trident-API-Overview.html
+[stormtrident]: https://storm.apache.org/documentation/Trident-API-Overview.html
 [samoa]: http://yahooeng.tumblr.com/post/65453012905/introducing-samoa-an-open-source-platform-for-mining
-[apachetutorial]: https://storm.incubator.apache.org/documentation/Tutorial.html
+[apachetutorial]: https://storm.apache.org/documentation/Tutorial.html
 [gettingstarted]: hdinsight-apache-storm-tutorial-get-started-linux.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->
