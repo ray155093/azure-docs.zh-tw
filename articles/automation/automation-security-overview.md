@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/10/2016"
+   ms.date="07/06/2016"
    ms.author="magoedte" />
 
 # Azure 自動化安全性
@@ -45,4 +45,4 @@ Azure AD 服務主體物件 | Azure 資源管理員 | [使用 Azure 執行身分
 Windows 驗證 | 內部部署資料中心 | [驗證混合式 Runbook 背景工作角色的 Runbook](../automation/automation-hybrid-runbook-worker.md)
 AWS 認證 | Amazon Web Services | [使用 Amazon Web Services (AWS) 驗證 Runbook](../automation/automation-sec-configure-aws-account.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

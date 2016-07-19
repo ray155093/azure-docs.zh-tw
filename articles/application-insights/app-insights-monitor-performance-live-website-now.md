@@ -149,7 +149,7 @@ Visual Studio Application Insights 的狀態監視器可讓您診斷 ASP.NET 應
 
   * 使用您的網站來產生一些資料。
   * 等候幾分鐘讓資料抵達，然後按一下 [重新整理]。
-  * 開啟 [診斷搜尋] \([搜尋] 磚) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
+  * 開啟 [診斷搜尋] ([搜尋] 磚) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
   * 開啟狀態監視器，然後選取左窗格中的應用程式。檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
   ![](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
@@ -179,6 +179,12 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 ## 使用 PowerShell 進行自動化
 
 您可以使用 PowerShell 啟動和停止監視。
+
+先匯入 Application Insights 模組︰
+
+`Import-Module 'C:\Program Files\Microsoft Application Insights\Status Monitor\PowerShell\Microsoft.Diagnostics.Agent.StatusMonitor.PowerShell.dll'`
+
+找出受監視的應用程式︰
 
 `Get-ApplicationInsightsMonitoringStatus [-Name appName]`
 
@@ -284,4 +290,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

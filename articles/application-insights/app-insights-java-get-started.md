@@ -163,6 +163,19 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 * HTTP 要求元件是選用的。它會自動將要求和回應時間的遙測傳送到入口網站。
 * 事件相互關聯是 HTTP 要求元件的補充。它會指派識別碼給伺服器收到的每個要求，並將它加入為遙測的每個項目的屬性，作為 'Operation.Id' 屬性。它可讓您相互關聯與每個要求關聯的遙測，方法是在[診斷搜尋][diagnostic]中設定篩選器。
 
+### 設定檢測金鑰的替代方法
+
+Application Insights SDK 會依此順序尋找此金鑰︰
+
+1. 系統屬性：-DAPPLICATION\_INSIGHTS\_IKEY=your\_ikey
+2. 環境變數：APPLICATION\_INSIGHTS\_IKEY
+3. 組態檔︰ApplicationInsights.xml
+
+您也可以[在程式碼中設定](app-insights-api-custom-events-metrics.md#ikey)：
+
+    telemetryClient.InstrumentationKey = "...";
+
+
 ## 4\.加入 HTTP 篩選器
 
 上一個組態步驟可讓 HTTP 要求元件記錄每個 Web 要求。(如果您只需要單純的 API，則非必要。)
@@ -243,21 +256,19 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
 
 ### 分析︰功能強大的查詢語言
 
-當您累積更多資料時，您就可以執行查詢以彙總資料並找出個別執行個體。[分析]()是功能強大的工具，既可了解效能和使用情況，也可進行診斷。
+當您累積更多資料時，您就可以執行查詢以彙總資料並找出個別執行個體。[分析]()是一項強大的工具，既可了解效能和使用情況，也可進行診斷。
 
 ![分析的範例](./media/app-insights-java-get-started/025.png)
 
 
-## 5\.在伺服器上安裝您的 App
+## 7\.在伺服器上安裝您的 App
 
 現在將您的應用程式發佈至伺服器供人使用，然後查看入口網站顯示的遙測。
 
 * 請確定您的防火牆允許應用程式將遙測傳送至這些連接埠：
 
  * dc.services.visualstudio.com:443
- * dc.services.visualstudio.com:80
  * f5.services.visualstudio.com:443
- * f5.services.visualstudio.com:80
 
 
 * 在 Windows 伺服器上，安裝：
@@ -274,7 +285,7 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
 
 若要收集其他例外狀況的資料，您有兩個選項：
 
-* [在您的程式碼中插入 TrackException 的呼叫][apiexceptions]。 
+* [在您的程式碼中插入 TrackException 的呼叫][apiexceptions]。
 * [在伺服器上安裝 Java 代理程式](app-insights-java-agent.md)。指定您想要觀看的方法。
 
 
@@ -401,4 +412,4 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [metrics]: app-insights-metrics-explorer.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

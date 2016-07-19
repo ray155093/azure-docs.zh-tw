@@ -35,12 +35,17 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 **先決條件：**
 
-- [Microsoft Visual Studio](https://www.visualstudio.com/zh-TW/visual-studio-homepage-vs.aspx)
+- [Microsoft Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 - [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
 - [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
 
 [AZURE.INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
+
+### 更多範例
+
+如需使用表格儲存體的其他範例，請參閱[在 .NET 中開始使用 Azure 資料表儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)。您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
+
 
 [AZURE.INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -88,7 +93,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 ## 將實體加入至資料表
 
-使用衍生自 **TableEntity** 的自訂類別，將實體對應至 C# 物件。若要將實體新增至資料表，請建立一個類別來定義實體的屬性。下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。應該儲存在資料表服務中的任何屬性，都必須是公開 `get` 和 `set` 之支援類型的公用屬性。此外，您的實體類型「必須」公開無參數建構函數。
+使用衍生自 **TableEntity** 的自訂類別，將實體對應至 C# 物件。若要將實體新增至資料表，請建立一個類別來定義實體的屬性。下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。應該儲存在資料表服務中的任何屬性，都必須是公開 `get` 和 `set` 之支援類型的公用屬性。此外，您的實體類型「必須」公開無參數建構函式。
 
     public class CustomerEntity : TableEntity
     {
@@ -437,6 +442,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 
 現在您已經了解資料表儲存體的基本概念，請參考下列連結以了解更複雜的儲存體工作：
 
+- 如需更多表格儲存體範例，請參閱[在 .NET 中開始使用 Azure 資料表儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)。
 - 如需可用 API 的完整詳細資訊，請檢視資料表服務參考文件：
     - [Storage Client Library for .NET 參考資料](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
     - [REST API 參考資料](http://msdn.microsoft.com/library/azure/dd179355)
@@ -463,4 +469,4 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
   [How to: Programmatically access Table storage]: #tablestorage
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

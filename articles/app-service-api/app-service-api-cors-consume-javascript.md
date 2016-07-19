@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="get-started-article"
 	ms.date="05/27/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 使用 CORS 從 JavaScript 取用 API 應用程式
 
@@ -210,7 +210,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 ### 在啟用 CORS 的情況下測試應用程式
 
-* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。 
+* 開啟瀏覽器至 Web 應用程式的 HTTPS URL。
 
 	這一次，應用程式會讓您檢視、新增、編輯和刪除待辦事項項目。
 
@@ -285,4 +285,4 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 
 在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。若要深入了解 API 應用程式，請閱讀 [App Service 中的驗證簡介](../app-service/app-service-authentication-overview.md)，然後前往 [API 應用程式的使用者驗證](app-service-api-dotnet-user-principal-auth.md)教學課程。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

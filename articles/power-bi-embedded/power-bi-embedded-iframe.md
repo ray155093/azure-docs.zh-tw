@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Microsoft Power BI Embedded 概觀 - 使用 IFrame 內嵌 Power BI 報告"
-   description="Microsoft Power BI Embedded 概觀 - 將報告整合到您的應用程式的必要程式碼、如何使用 Power BI Embedded 應用程式權杖進行驗證、如何取得報告"
+   pageTitle="Microsoft Power BI Embedded - 使用 IFrame 內嵌 Power BI 報告"
+   description="Microsoft Power BI Embedded - 將報告整合到您的應用程式的必要程式碼、如何使用 Power BI Embedded 應用程式權杖進行驗證、如何取得報告"
    services="power-bi-embedded"
    documentationCenter=""
    authors="minewiskan"
@@ -13,28 +13,26 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="06/28/2016"
+   ms.date="07/05/2016"
    ms.author="owend"/>
 
 # 使用 IFrame 內嵌 Power BI 報告
 本文說明使用 **Microsoft Power BI Embedded** REST API、應用程式權杖、IFrame 和一些 JavaScript 的必要程式碼，以將報告整合或內嵌到您的應用程式。
 
-在[開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)，了解如何設定**工作區集合**，為報告內容保存一或多個**工作區**。然後，在[開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)，將報告匯入**工作區**。
+在[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)，了解如何設定**工作區集合**，為報告內容保存一或多個**工作區**。然後，在[開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)，將報告匯入**工作區**。
 
-本文說明將報告內嵌至您的應用程式的步驟。若要依照這篇文章，您應該下載 GitHub 上的[整合報告與 IFrame](https://github.com/Azure-Samples/power-bi-embedded-iframe) 範例。這個範例是簡單的 ASP.NET Web Form 應用程式，用來說明您整合報告所需的基本 C# 和 JavaScript 程式碼。如需使用 Model-View-Controller (MVC) 設計模式以整合報告的更進階範例，請參閱 GitHub 上的[範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)。
+在本文中，我們會詳細解說將報告內嵌至您的應用程式的步驟。若要依照這篇文章，您應該下載 GitHub 上的[整合報告與 IFrame](https://github.com/Azure-Samples/power-bi-embedded-iframe) 範例。這個範例是簡單的 ASP.NET Web Form 應用程式，用來說明您整合報告所需的基本 C# 和 JavaScript 程式碼。如需使用 Model-View-Controller (MVC) 設計模式以整合報告的更進階範例，請參閱 GitHub 上的[範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)。
 
-讓我們開始說明如何將 **Power BI Embedded** 報告整合至您的應用程式。
-
-以下是整合報告的步驟。
+為了整合報告，我們將會經歷下列步驟︰
 
 - 步驟 1：[在工作區中取得報告](#GetReport)。在此步驟中，您可以使用應用程式權杖流程取得存取權杖，來呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業。一旦您從 **Get Reports** 清單中取得報告，您使用 **IFrame** 元素將報告內嵌到應用程式。
 - 步驟 2：[將報告內嵌到應用程式](#EmbedReport)。在此步驟中，您使用報告、一些 JavaScript 和 IFrame 的內嵌權杖，將報告整合或內嵌至 Web 應用程式。
 
 如果您想要執行範例，以查看如何整合報告，請下載 GitHub 上的[整合報告與 IFrame](https://github.com/Azure-Samples/power-bi-embedded-iframe) 範例，並且設定三個 Web.Config 設定︰
 
-- **AccessKey**：**AccessKey** 是用來產生 JSON Web Token (JWT)，它是用來取得報告與內嵌報告。若要了解如何取得 **AccessKey**，請參閱[開始使用 Microsoft Power BI Embedded 概觀](power-bi-embedded-get-started.md)。
-- **WorkspaceName**：若要了解如何取得 **WorkspaceName**，請參閱[開始使用 Microsoft Power BI Embedded 概觀](power-bi-embedded-get-started.md)。
-- **WorkspaceId**：若要了解如何取得 **WorkspaceId**，請參閱[開始使用 Microsoft Power BI Embedded 概觀](power-bi-embedded-get-started.md)。
+- **AccessKey**：**AccessKey** 是用來產生 JSON Web 權杖 (JWT)，它是用來取得報告與內嵌報告。若要了解如何取得 **AccessKey**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
+- **WorkspaceName**：若要了解如何取得 **WorkspaceName**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
+- **WorkspaceId**：若要了解如何取得 **WorkspaceId**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
 
 下一個章節會顯示整合報告所需的程式碼。
 
@@ -213,19 +211,16 @@ $filter=Store/Chain%20eq%20'Lindseys'
 &filterPaneEnabled=false
 ```
 
-## 結論
+## 其他資源
 
-在本文中，為您介紹將 **Power BI** 報告整合到您的應用程式的程式碼。若要快速開始將報告整合到應用程式，請下載 GitHub 上的這些範例︰
+在本文中，為您介紹將 **Power BI** 報告整合到您的應用程式的程式碼。請務必查看 GitHub 上的其他範例︰
 
 - [整合報告與 IFrame 範例](https://github.com/Azure-Samples/power-bi-embedded-iframe)
 - [範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
 
 ## 另請參閱
-- [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
-- [開始使用範例](power-bi-embedded-get-started-sample.md)
 - [System.IdentityModel.Tokens.SigningCredentials](https://msdn.microsoft.com/library/system.identitymodel.tokens.signingcredentials.aspx)
 - [System.IdentityModel.Tokens.JwtSecurityToken](https://msdn.microsoft.com/library/system.identitymodel.tokens.jwtsecuritytoken.aspx)
 - [System.IdentityModel.Tokens.JwtSecurityTokenHandler](https://msdn.microsoft.com/library/system.identitymodel.tokens.signingcredentials.aspx)
-- [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

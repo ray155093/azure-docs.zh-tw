@@ -184,7 +184,9 @@
 
 ## 後續步驟
 
-若要繼續了解 Azure IoT 中樞裝置管理功能，請參閱[使用範例 UI 探索 Azure IoT 中樞裝置管理][lnk-sample-ui]教學課程。
+若要繼續開始使用 IoT 中樞，請參閱[開始使用閘道 SDK][lnk-gateway-SDK]。
+
+若要深入了解 Azure IoT 中樞裝置管理功能，請參閱[使用範例 UI 探索 Azure IoT 中樞裝置管理][lnk-sample-ui]教學課程。
 
 <!-- images and links -->
 [img-new-hub]: media/iot-hub-device-management-get-started-node/image1.png
@@ -200,5 +202,6 @@
 [使用資源群組來管理您的 Azure 資源]: ../azure-portal/resource-group-portal.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
 [lnk-sample-ui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->
