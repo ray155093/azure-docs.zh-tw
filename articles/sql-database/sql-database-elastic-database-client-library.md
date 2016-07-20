@@ -18,7 +18,7 @@
 
 # 建置可調整的雲端資料庫
 
-使用 SQL Azure 資料庫的可調整工具和功能，可以輕鬆地相應放大資料庫。特別是，您可以使用**彈性資料庫用戶端程式庫**來建立和管理相應放大的資料庫。這項功能可讓您使用成百上千個 Azure SQL 資料庫，輕鬆地開發分區化應用程式。
+使用 Azure SQL Database 的可調整工具和功能，可以輕鬆地相應放大資料庫。特別是，您可以使用**彈性資料庫用戶端程式庫**來建立和管理相應放大的資料庫。這項功能可讓您使用成百上千個 Azure SQL 資料庫，輕鬆地開發分區化應用程式。
 
 若要安裝程式庫，請瀏覽 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。
 
@@ -31,13 +31,13 @@
 * [多分區查詢](sql-database-elastic-scale-multishard-querying.md)
 * [使用彈性資料庫工具加入分區](sql-database-elastic-scale-add-a-shard.md)
 * [使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)
-* [升級用戶端程式庫應用程式](sql-database-elastic-scale-upgrade-client-library.md) 
+* [升級用戶端程式庫應用程式](sql-database-elastic-scale-upgrade-client-library.md)
 * [彈性查詢概觀](sql-database-elastic-query-overview.md)
 * [彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)
 * [搭配使用彈性資料庫用戶端程式庫與 Entity Framework](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md)
 * [彈性資料庫用戶端程式庫與 Dapper](sql-database-elastic-scale-working-with-dapper.md)
 * [分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)
-* [分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md) 
+* [分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md)
 * [彈性資料庫工具常見問題集](sql-database-elastic-scale-faq.md)
 
 ## 用戶端功能
@@ -73,4 +73,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-database-client-library/glossary.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

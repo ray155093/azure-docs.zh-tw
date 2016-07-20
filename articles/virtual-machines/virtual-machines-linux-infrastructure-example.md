@@ -36,7 +36,7 @@ Adventure Works Cycles 想要在 Azure 中建置一個線上商店，該商店�
 	- 一個針對網頁伺服器的前端子網路
 	- 一個針對應用程式伺服器、MongoDB 叢集，以及網域控制站的後端子網路
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/example-tiers.png)
+![不同應用程式基礎結構層級的圖表](./media/virtual-machines-common-infrastructure-service-guidelines/example-tiers.png)
 
 連入的安全網路流量需要在客戶瀏覽線上商店時，於網頁伺服器之間達成負載平衡。來自網頁伺服器的 HTTP 要求形式處理訂單流量，需要在應用程式伺服器之間達成負載平衡。此外，基礎結構必須設計為高可用性。
 
@@ -115,7 +115,7 @@ Adventure Works Cycles 決定為其 Azure VM 使用下列名稱：
 
 以下是產生的組態。
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/example-config.png)
+![在 Azure 中部署的最終應用程式基礎結構](./media/virtual-machines-common-infrastructure-service-guidelines/example-config.png)
 
 這個設定包含下列各項：
 
@@ -132,4 +132,4 @@ Adventure Works Cycles 決定為其 Azure VM 使用下列名稱：
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

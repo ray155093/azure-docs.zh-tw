@@ -18,7 +18,7 @@
 
 #資料相依路由
 
-**資料相依路由**是可使用查詢中的資料，將要求路由至適當的資料庫。這是使用分區化資料庫時的一種基本模式。要求內容也可能會用於路由要求，特別是如果分區化索引鍵不是查詢的一部分。在使用資料相依路由的應用程式中，每個特定的查詢或交易會限制每個要求只能存取單一資料庫。針對 SQL Azure Database Elastic 工具，此路由會在 ADO.NET 應用程式中使用 **[ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)**來完成。
+**資料相依路由**是可使用查詢中的資料，將要求路由至適當的資料庫。這是使用分區化資料庫時的一種基本模式。要求內容也可能會用於路由要求，特別是如果分區化索引鍵不是查詢的一部分。在使用資料相依路由的應用程式中，每個特定的查詢或交易會限制每個要求只能存取單一資料庫。針對 Azure SQL Database Elastic 工具，此路由會在 ADO.NET 應用程式中使用 **[ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)**來完成。
 
 應用程式不需要在分區化環境中追蹤不同的連接字串或與不同資料片段相關聯的 DB 位置。相反地，[分區對應管理員](sql-database-elastic-scale-shard-map-management.md)會根據分區對應中的資料和分區化索引鍵的值 (應用程式要求的目標)，在必要時開啟正確資料庫的連接。此索引鍵通常是 *customer\_id*、*tenant\_id*、*date\_key*，或作為資料庫要求基本參數的其他一些特定的識別項)。
 
@@ -52,7 +52,7 @@
 	)
 
 
-* **key** 參數做為分區對應中的查閱索引鍵，以決定要求的適當資料庫。 
+* **key** 參數做為分區對應中的查閱索引鍵，以決定要求的適當資料庫。
 
 * **connectionString** 只用來傳遞使用者認證給所需的連接。此 *connectionString* 中不含任何資料庫名稱或伺服器名稱，因為此方法會使用 **ShardMap** 來決定資料庫和伺服器。
 
@@ -133,4 +133,4 @@ int newPersonId = 4321;
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

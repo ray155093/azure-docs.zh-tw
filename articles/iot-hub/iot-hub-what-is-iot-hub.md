@@ -59,7 +59,7 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
 -   **IoT 通訊協定和擴充性**。如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
 
-    - 使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。 
+    - 使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。
     - 自訂 [Azure IoT 通訊協定閘道][protocol-gateway]，這是在雲端執行的開放原始碼元件。
 
 -   **調整**。Azure IoT 中樞會調整為數百萬個同時連接的裝置，以及每秒數百萬個事件。
@@ -96,13 +96,14 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 
 ## 後續步驟
 
-若要深入了解 Azure IoT 中樞，請參閱這些連結：
+若要了解 Azure IoT 中樞如何啟用標準型 IoT 裝置管理，以便您遠端管理、設定和更新您的裝置，請參閱 [IoT 中樞裝置管理概觀][lnk-device-management]。
 
-* [開始使用 IoT 中心][lnk-get-started]
-* [連接裝置][lnk-connect-device]
-* [處理裝置到雲端的訊息][lnk-d2c]
+您可以使用 IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台和作業系統上執行。IoT 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置的命令。當您使用 SDK 時，您可從數個網路通訊協定中挑選，以和 IoT 中樞通訊。若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
+
+若要開始撰寫一些程式碼和執行一些範例，請參閱[開始使用 IoT 中樞][lnk-get-started]教學課程。
 
 [img-architecture]: media/iot-hub-what-is-iot-hub/hubarchitecture.png
+
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
@@ -120,5 +121,6 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
+[lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

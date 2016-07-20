@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="07/05/2016"
 	ms.author="larryfr"/>
 
 #HDInsight 上 Hadoop 叢集的可用性和可靠性
@@ -225,4 +225,4 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 [azure-powershell]: ../powershell-install-configure.md
 [azure-cli]: ../xplat-cli-install.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

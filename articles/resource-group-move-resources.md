@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/08/2016" 
+	ms.date="07/06/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -82,7 +82,7 @@
 
 使用 App Service 應用程式時，您無法只移動 App Service 方案。若要移動 App Service 應用程式，您的選項如下：
 
-- 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。這表示甚至會移動未與 App Service 方案相關聯的 App Service 資源。 
+- 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。這表示甚至會移動未與 App Service 方案相關聯的 App Service 資源。
 - 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
 
 如果原始資源群組也包含 Application Insights 資源，則無法移動該資源，因為 Application Insights 目前不支援移動作業。如果您在移動 App Service 應用程式時包含 Application Insights 資源，則整個移動作業會失敗。不過，Application Insights 和 App Service 方案不需要位於與應用程式相同的資源群組，應用程式就能正確運作。
@@ -119,7 +119,7 @@
 將資源從一個資源群組移到「相同訂用帳戶內」的另一個資源群組時，適用下列限制︰
 
 - 無法移動虛擬網路 (傳統)。
-- 虛擬機器 (傳統) 必須與雲端服務一起移動。 
+- 虛擬機器 (傳統) 必須與雲端服務一起移動。
 - 只有在移動包含其所有虛擬機器時，才能移動雲端服務。
 - 一次只能移動一個雲端服務。
 - 一次只能移動一個儲存體帳戶 (傳統)。
@@ -132,17 +132,17 @@
 
 ## 使用入口網站移動資源
 
-您可以透過入口網站移動一些資源；不過，並非所有支援移動作業的資源提供者都透過入口網站提供該功能。
-
 若要移動資源，請選取該資源，然後選取 [移動] 按鈕。
 
 ![移動資源](./media/resource-group-move-resources/move-resources.png)
+
+> [AZURE.NOTE] 目前並非所有資源都支援透過入口網站移動。如果您想要移動的資源沒有 [移動] 按鈕，請使用 PowerShell、CLI 或 REST API 來移動資源。
 
 移動資源時，您可以指定目的地訂用帳戶和資源群組。如果其他資源必須連同此資源移動，便會列出這些資源。
 
 ![選取目的地](./media/resource-group-move-resources/select-destination.png)
 
-在 [通知] 中，您會看到正在執行移動作業。
+在 [通知] 中，您會看到移動作業正在執行。
 
 ![顯示移動狀態](./media/resource-group-move-resources/show-status.png)
 
@@ -272,4 +272,4 @@
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

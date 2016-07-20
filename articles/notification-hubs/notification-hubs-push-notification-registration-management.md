@@ -4,7 +4,7 @@
 	services="notification-hubs"
 	documentationCenter=".net"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/11/2016"
+	ms.date="06/29/2016"
 	ms.author="wesmc"/>
 
 # 註冊管理
@@ -329,4 +329,4 @@ SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式�
 
 後端必須處理註冊更新之間的並行存取。「服務匯流排」可提供開放式並行存取控制來管理註冊。在 HTTP 層級，這是藉由在註冊管理作業上使用 ETag 來進行實作。Microsoft SDK 會在背景使用這項功能，如果因並行存取而導致更新被拒，將會擲回例外狀況。App 後端會負責處理這些例外狀況，並視需要重試更新。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

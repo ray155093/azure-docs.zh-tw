@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="hero-article"
 	ms.date="05/27/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 在 Azure App Service 中開始使用 API Apps、ASP.NET 和 Swagger
 
@@ -42,7 +42,7 @@
 
 ![](./media/app-service-api-dotnet-get-started/projectsinse.png)
 
-* **ToDoListAngular** - 前端：呼叫中介層的 AngularJS SPA。 
+* **ToDoListAngular** - 前端：呼叫中介層的 AngularJS SPA。
 
 * **ToDoListAPI** - 中介層：呼叫資料層以對待辦事項項目執行 CRUD 作業的 ASP.NET Web API 專案。
 
@@ -86,7 +86,7 @@ ASP.NET Web API 專案可以使用 [Swashbuckle](https://www.nuget.org/packages/
 
 在教學課程的這一節中，請看一下所產生的 Swagger 2.0 中繼資料，然後試用以 Swagger 中繼資料為基礎的測試 UI。
 
-2. 將 ToDoListDataAPI 專案 (**而非** ToDoListAPI 專案) 設定為起始專案。 
+2. 將 ToDoListDataAPI 專案 (**而非** ToDoListAPI 專案) 設定為起始專案。
  
 4. 按 F5 或按一下 [偵錯] > [啟動偵錯] 來以偵錯模式執行專案。
 
@@ -233,7 +233,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。如果您要將 Swagg
 
 	如果您輸入的名稱已有他人使用，您會在右邊看到紅色驚嘆號。
 
-	API 應用程式的 URL 會是 `{APi app name}.azurewebsites.net`。
+	API 應用程式的 URL 會是 `{API app name}.azurewebsites.net`。
 
 6. 在 [資源群組] 下拉式清單中，按一下 [新增]，然後輸入 "ToDoListGroup" 或其他您偏好使用的名稱。
 
@@ -391,7 +391,7 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 
 	建構函式參數會從 `toDoListDataAPIURL` 應用程式設定取得端點 URL。在 Web.config 檔案中，該值設為 API 專案的本機 IIS Express URL，以便讓您在本機執行應用程式。如果您省略建構函式參數，預設端點會是您產生程式碼的 URL。
 
-6. 將會根據您的 API 應用程式名稱，以不同的名稱產生您的用戶端類別；在「Controllers\\ToDoListController.cs」中變更此程式碼，讓類型名稱符合您的專案中產生的內容。例如，如果您將 API 應用程式命名為 ToDoListDataAPI0121，則會將此程式碼︰
+6. 將會根據您的 API 應用程式名稱，以不同的名稱產生您的用戶端類別；在「Controllers\\ToDoListController.cs」中變更此程式碼，讓類型名稱符合您的專案中產生的內容。例如，如果您將 API 應用程式命名為 ToDoListDataAPI071316，則會將此程式碼︰
 
 		private static ToDoListDataAPI NewDataAPIClient()
 		{
@@ -399,9 +399,9 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 
 變更為以下程式碼：
 
-		private static ToDoListDataAPI0121 NewDataAPIClient()
+		private static ToDoListDataAPI071316 NewDataAPIClient()
 		{
-		    var client = new ToDoListDataAPI0121(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
+		    var client = new ToDoListDataAPI071316(new Uri(ConfigurationManager.AppSettings["toDoListDataAPIURL"]));
 
 
 ## 建立 API 應用程式來裝載中間層
@@ -445,7 +445,7 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 	| **Key** | toDoListDataAPIURL |
 	|---|---|
 	| **值** | https://{your 資料層 API 應用程式名稱}.azurewebsites.net |
-	| **範例** | https://todolistdataapi0121.azurewebsites.net |
+	| **範例** | https://todolistdataapi.azurewebsites.net |
 
 4. 按一下 [儲存]。
 
@@ -491,4 +491,4 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 
 [Azure API 應用程式] 專案範本等同於選擇 [空白] ASP.NET 4.5.2 範本、按一下核取方塊以加入 Web API 支援，然後安裝 Swashbuckle NuGet 封裝。此外，範本會加入為了避免建立重複的 Swagger 作業識別碼而設計的某些 Swashbuckle 組態程式碼。在建立 API 應用程式專案之後，您可以使用在本教學課程中看到的相同方式，將它部署到 API 應用程式。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="kgremban"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/19/2016"
+   ms.date="07/01/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management 安全性精靈
@@ -26,12 +26,12 @@
 
 精靈的第二個步驟會讓您有機會變更系統管理員的角色指派。
 
-> [AZURE.WARNING] 您必須至少有一個全域系統管理員，這一點很重要，而且要有多個具備組織帳戶 (而非 Microsoft 帳戶) 的特殊權限角色管理員。如果只有一個特殊權限角色管理員，若該帳戶遭到刪除，組織就無法管理 PIM。此外，如果使用者具有 Microsoft 帳戶，請勿將角色指派變更為暫時性。如果您計劃要求 MFA 來啟用該角色，就會封鎖該使用者角色。
+> [AZURE.WARNING] 您必須至少有一個全域系統管理員，這一點很重要，而且要有多個具備組織帳戶 (而非 Microsoft 帳戶) 的特殊權限角色管理員。如果只有一個特殊權限角色管理員，若該帳戶遭到刪除，組織就無法管理 PIM。此外，如果使用者擁有 Microsoft 帳戶 (他們用來登入 Skype 和 Outlook.com 這類 Microsoft 服務的帳戶)，請將角色指派設為永久。如果您打算要求必須執行 MFA 才能啟用該角色，該使用者將會遭到封鎖。
 
 
 進行變更之後，將不會再次顯示精靈。下次當您或其他特殊權限角色管理員使用 PIM 時，您將會看到 PIM 儀表板。
 
-- 如果您想要從角色新增或移除使用者，或將指派從永久變更為暫時，請參閱 [Azure AD Privileged Identity Management：如何開始安全性檢閱](active-directory-privileged-identity-management-how-to-add-role-to-user.md)。
+- 如果您想要從角色新增或移除使用者，或將指派從永久變更為符合資格，請參閱[如何新增或移除使用者的角色](active-directory-privileged-identity-management-how-to-add-role-to-user.md)。
 - 如果您想要讓更多使用者存取管理 PIM，請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何授與存取權以管理 Azure AD Privileged Identity Management)](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)。
 
 
@@ -39,4 +39,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

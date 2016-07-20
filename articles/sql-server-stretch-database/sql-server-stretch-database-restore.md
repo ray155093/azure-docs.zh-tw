@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="07/06/2016"
 	ms.author="douglasl"/>
 
 # 還原已啟用延展功能的資料庫
@@ -56,28 +56,13 @@ Azure 上的 SQL Server Stretch Database 會在卸除資料庫前建立資料庫
 5. 指定新的 [資料庫名稱]，然後按一下 [建立]。
 6. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序。
 
-### 在不同 Azure 區域中復原 Azure 資料庫  
-Azure 上的 SQL Server Stretch Database 服務會以非同步方式將快照複製到不同的 Azure 地理區域，以提升發生區域失敗時的復原能力。如果您因 Azure 區域失敗而無法存取資料庫，則可以將資料庫還原到其中一個異地備援快照集。
-
->   [AZURE.NOTE] 若要在不同的 Azure 區域中復原 Azure 資料庫，需要在復原後變更用戶端應用程式中的連接字串，而且可能導致永久性資料遺失。請只有在中斷可能持續很長一段時間時，才執行這類復原。
-
-若要使用 Azure 入口網站，在不同的 Azure 區域中將 Azure 資料庫復原到先前的時間點，請執行下列操作。
-
-1. 登入 Azure 管理入口網站。
-2. 在畫面左側選取 [+新增]，然後依序選取 [資料和儲存體] 和 [SQL 資料倉儲]
-3. 選取 [備份] 做為來源，然後選取您想要從中復原的異地備援備份
-4. 指定其餘資料庫屬性，然後按一下 [建立]
-5. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序
-
-在不同區域還原 Azure 資料庫之後，您必須執行 **sys.sp\_rda\_deauthorize\_db** 和 **sys.sp\_rda\_reauthorize\_db** 預存程序來重新建立已啟用延展功能之 SQL Server 資料庫與遠端 Azure 資料庫之間的連線。如需詳細資訊，請參閱[還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線](#Restore-the-connection-between-the-SQL-Server-database-and-the-remote-Azure-database)。
-
 ## 還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線
 
-1.  如果您即將連接到已還原但名稱不同或在不同區域中的 Azure 資料庫，請執行 [sys.sp\_rda\_deauthorize\_db](https://msdn.microsoft.com/library/mt703716.aspx) 預存程序以與先前的 Azure 資料庫中斷連線。  
+1.  如果您即將連接到已還原但名稱不同或在不同區域中的 Azure 資料庫，請執行 [sys.sp\_rda\_deauthorize\_db](https://msdn.microsoft.com/library/mt703716.aspx) 預存程序以與先前的 Azure 資料庫中斷連線。
 
 2.  執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序，以將已啟用延展功能的本機資料庫重新連接到 Azure 資料庫。
 
-	-   請以 sysname 或 varchar(128) 值提供現有資料庫範圍認證。(請勿使用 varchar(max))。 您可以在 **sys.database\_scoped\_credentials** 檢視中查閱認證名稱。  
+	-   請以 sysname 或 varchar(128) 值提供現有資料庫範圍認證。(請勿使用 varchar(max))。 您可以在 **sys.database\_scoped\_credentials** 檢視中查閱認證名稱。
 
 	-   指定是否要建立遠端資料的複本，並連接到該複本 (建議)。
 
@@ -98,4 +83,4 @@ Azure 上的 SQL Server Stretch Database 服務會以非同步方式將快照複
 
 [備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -4,7 +4,7 @@
   services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="06/29/2016"
 	ms.author="curtand"/>
 
 
@@ -28,7 +28,7 @@
 | 屬性 | UserPrincipalName 需求 |
 |   ----------------------- |   ----------------------- |
 | 允許的字元 | <ul> <li>A – Z</li> <li>a -z </li><li>0 – 9</li> <li> . - \_ ! # ^ ~</li></ul> |
-| 不允許的字元 | <ul> <li>@</li> <li>'@' 符號前面不可直接包含句點字元 '.'</li></ul> |
+| 不允許的字元 | <ul> <li>任何不是用來分隔使用者名稱和網域的 '@' 字元。</li> <li>'@' 符號前面不可直接包含句點字元 '.'</li></ul> |
 | 長度限制 | <ul> <li>總長度不得超過 113 個字元</li><li>'@' 符號前是 64 個字元</li><li>' @' 符號後是 48 個字元</li></ul>
 
 ## 僅適用於雲端使用者帳戶的密碼原則
@@ -37,9 +37,9 @@
 
 | 屬性 | 需求 |
 |   ----------------------- |   ----------------------- |
-| 允許的字元 | <ul><li>A – Z</li><li>a -z </li><li>0 – 9</li> <li>@ # $ % ^ & * - \_ ! + = [ ] { } &#124; \\ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| 不允許的字元 | <ul><li>Unicode 字元</li><li>空格</li><li>空格</li><li> **僅限強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
-| 密碼限制 | <ul><li>8 個字元的最小和最大 16 個字元</li><li>* * 不易破解的密碼 * *： 需要 3 從以下的 4:<ul><li>小寫字元</li><li>大寫字元</li><li>數字 (0-9)</li><li>符號 (請參閱上面的密碼限制)</li></ul></li></ul> |
+| 允許的字元 | <ul><li>A – Z</li><li>a -z </li><li>0 – 9</li> <li>@ # $ % ^ & * - \_ ! + = [ ] { } | \\ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
+| 不允許的字元 | <ul><li>Unicode 字元</li><li>空格</li><li>空格</li><li> **僅限使用增強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
+| 密碼限制 | <ul><li>最少 8 個字元，最多 16 個字元</li><li>**僅限使用增強式密碼**：必須包含下列 4 種字元中的 3 種：<ul><li>小寫字元</li><li>大寫字元</li><li>數字 (0-9)</li><li>符號 (請參閱上面的密碼限制)</li></ul></li></ul> |
 | 密碼到期時間 | <ul><li>預設值：**90** 天 </li><li>值可透過適用於 Windows PowerShell 的 Azure Active Directory 模組使用 Set-MsolPasswordPolicy Cmdlet 設定。</li></ul> |
 | 密碼到期通知 | <ul><li>預設值：**14** 天 (密碼到期前)</li><li>值可使用 Set-msolpasswordpolicy Cmdlet 設定。</li></ul> |
 | 密碼到期 | <ul><li>預設值：**false** 天 (表示已啟用該密碼到期) </li><li>可以針對個別使用者帳戶使用 Set-msoluser Cmdlet 設定值。 </li></ul> |
@@ -60,4 +60,4 @@
 * [疑難排解密碼管理](active-directory-passwords-troubleshoot.md)
 * [深入了解](active-directory-passwords-learn-more.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

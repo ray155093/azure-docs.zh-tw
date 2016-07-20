@@ -257,7 +257,7 @@ DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseT
 
 - **容器共用存取簽章**：每個工作在計算節點上完成其工作時，便會將其輸出檔案上傳至 Azure 儲存體中的「輸出」容器。若要這樣做，TaskApplication 會使用容器共用存取簽章，其在上傳檔案時提供寫入容器以成為路徑的一部分的存取權。取得容器共用存取簽章與取得 Blob 共用存取簽章的方式很類似。在 DotNetTutorial 中，您會發現 `GetContainerSasUrl` 協助程式方法會呼叫 [CloudBlobContainer.GetSharedAccessSignature][net_sas_container] 來進行此操作。您將在「步驟 6：監視工作」中進一步了解 TaskApplication 如何使用容器共用存取簽章。
 
-> [AZURE.TIP] 查看有關共用存取簽章的兩部分系列[第 1 部分：了解共用存取簽章 (SAS) 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分：建立和使用共用存取簽章 (SAS) 與 Blob 服務](../storage/storage-dotnet-shared-access-signature-part-2.md)，進一步了解如何提供您儲存體帳戶中資料的安全存取。
+> [AZURE.TIP] 查看有關共用存取簽章的兩部分系列[第 1 部分：了解共用存取簽章 (SAS) 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分：建立和使用共用存取簽章 (SAS) 與 Blob 儲存體](../storage/storage-dotnet-shared-access-signature-part-2.md)，進一步了解如何提供您儲存體帳戶中資料的安全存取。
 
 ## 步驟 3：建立 Batch 集區
 
@@ -754,4 +754,4 @@ Sample complete, hit ENTER to exit...
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

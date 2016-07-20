@@ -20,14 +20,18 @@
 # 搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure 資源管理員
 
 > [AZURE.SELECTOR]
+- [入口網站](azure-portal/resource-group-portal.md)
 - [Azure CLI](xplat-cli-azure-resource-manager.md)
 - [Azure PowerShell](powershell-azure-resource-manager.md)
-
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
 
 此文介紹在 Azure Resource Manager 模式中使用 Azure 命令列介面 (Azure CLI) 建立及管理 Azure 資源的常見方法。
 
->[AZURE.NOTE] 若要使用命令列建立與管理 Azure 資源，您必須有 Azure 訂用帳戶 ([免費 Azure 帳戶](https://azure.microsoft.com/free/))。您還需要[安裝 Azure CLI](xplat-cli-install.md)，並[登入使用與您帳戶的相關 Azure 資源](xplat-cli-connect.md)。如果上述事項都已完成，您就能開始進行了。
+>[AZURE.NOTE] 若要使用命令列建立與管理 Azure 資源，您必須有 Azure 訂用帳戶 ([免費 Azure 帳戶](https://azure.microsoft.com/free/))。您還需要[安裝 Azure CLI](xplat-cli-install.md)，並[登入才能使用與您帳戶相關聯的 Azure 資源](xplat-cli-connect.md)。如果上述事項都已完成，您就能開始進行了。
 
 ## Azure 資源
 
@@ -35,9 +39,9 @@
 
 Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建立 Azure 資源，亦即描述可在 JSON「範本」中部署的資源群組的結構與關係。範本會識別可在執行命令時內嵌的參數，或儲存於個別 JavaScript 物件標記法 (JSON) 的參數檔案中。如此一來，您只要提供不同的參數，就能使用相同的範本輕易建立新資源。例如，建立網站的範本將具有網站名稱的參數、網站將放置的區域，以及其他共同設定。
 
-使用範本修改或建立群組時，會建立部署，接著將其套用至群組。如需 Azure 資源管理員的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
+使用範本修改或建立群組時，會建立_部署_，接著將其套用至群組。如需 Azure 資源管理員的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
 
-建立部署之後，您可以在命令列上以命令管理個別的資源，就如同在傳統部署模型中一樣。例如，使用資源管理員模式中的 CLI 命令來啟動、停止或刪除資源，例如 [Azure Resource Manager 虛擬機器](./virtual-machines/virtual-machines-linux-cli-deploy-templates.md)。
+建立部署之後，您可以在命令列上以命令管理個別的資源，就如同在傳統部署模型中一樣。例如，使用 Resource Manager 模式中的 CLI 命令來啟動、停止或刪除資源，例如 [Azure Resource Manager 虛擬機器](./virtual-machines/virtual-machines-linux-cli-deploy-templates.md)。
 
 ## 驗證
 
@@ -65,7 +69,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 ## 建立資源群組
 
-資源群組是網路、儲存體和計算資源等資源的邏輯群組。資源管理員模式中幾乎所有命令都需要資源群組。例如，您可以使用下列命令建立名為 testRG 的美國西部區域資源群組。
+資源群組是網路、儲存體和計算資源等資源的邏輯群組。資源管理員模式中幾乎所有命令都需要資源群組。例如，您可以使用下列命令在美國西部區域建立名為 testRG 的資源群組。
 
 	azure group create -n "testRG" -l "West US"
 
@@ -179,7 +183,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 		azure resource list testRG
 
-2. 若要檢視群組內的個別資源 (例如名為 *MyUbuntuVM* 的 VM)，請使用如下所示的命令。
+2. 若要檢視群組內的個別資源 (例如名為 MyUbuntuVM 的 VM)，請使用如下所示的命令。
 
 		azure resource show testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15"
 
@@ -234,4 +238,4 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 * 如需透過 Azure PowerShell 來使用 Azure 資源管理員的相關資訊，請參閱[搭配使用 Azure PowerShell 與 Azure 資源管理員](powershell-azure-resource-manager.md)。
 * 如需從 Azure 入口網站使用 Azure Resource Manager 的相關資訊，請參閱[使用 Azure 入口網站部署及管理 Azure 資源](./azure-portal/resource-group-portal.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0706_2016-->

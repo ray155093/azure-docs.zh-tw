@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # 將 Windows Server 虛擬機器加入受管理的網域
@@ -134,4 +134,4 @@
 
 - 確定您已如《入門指南》中所指定的等候夠久的時間以讓密碼同步處理完成。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

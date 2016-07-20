@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/20/2016"
+	ms.date="07/06/2016"
 	ms.author="maheshu"/>
 
 # Azure Active Directory 網域服務預覽：常見問題集
@@ -78,4 +78,4 @@
 #### 「Azure AD 網域服務」將於何時正式上市？
 我們目前無法分享服務何時將公開上市的時間表。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

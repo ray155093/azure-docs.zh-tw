@@ -3,7 +3,7 @@
 
 ## 透過範本標記虛擬機器
 
-首先，我們來看一下透過範本進行標記。[此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags)將標記置於下列資源上：運算 (虛擬機器)、儲存體 (儲存體帳戶) 和網路 (公用 IP 位址、虛擬網路和網路介面)。(這個範本範例的對象為 Windows VM，但也適用於 Linux VM)。
+首先，我們來看一下透過範本進行標記。[此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags)將標記置於下列資源上：運算 (虛擬機器)、儲存體 (儲存體帳戶) 和網路 (公用 IP 位址、虛擬網路和網路介面)。這個範本適用於 Windows VM，但也可改寫成適用於 Linux VM。
 
 按一下[範本連結](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-tags) 中的 [部署至 Azure] 按鈕。這會瀏覽至 [Azure 入口網站](https://portal.azure.com/)，以便您部署此範本。
 
@@ -44,3 +44,5 @@
 新標籤現在應出現在您的資源的標記清單中。
 
 ![Azure 入口網站中儲存的新標記](./media/virtual-machines-common-tag/azure-portal-saved-new-tag.png)
+
+<!---HONumber=AcomDC_0706_2016-->

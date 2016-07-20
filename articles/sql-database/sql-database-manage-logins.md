@@ -52,6 +52,9 @@
 如需使用 SQL Server Management Studio 連接的逐步解說，請參閱 [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
 
 
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
 ## 其他的特殊帳戶
 SQL Database 在虛擬 master 資料庫中提供兩個限制的系統管理角色，可以將使用者帳戶新增至該資料庫。
 
@@ -59,7 +62,7 @@ SQL Database 在虛擬 master 資料庫中提供兩個限制的系統管理角�
 系統管理帳戶可以建立新的資料庫。若要建立可以建立資料庫的其他帳戶，您必須在 master 中建立使用者，並且將使用者新增至特殊的 **dbmanager** 資料庫角色。使用者可以是自主資料庫使用者，或依據虛擬 master 資料庫中的 SQL Server 登入的使用者。
 
 1.	使用系統管理員帳戶，連接至虛擬 master 資料庫。
-2.	選擇性步驟︰建立 SQL Server 驗證登入，使用 [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) 陳述式。範例陳述式︰
+2.	選擇性步驟︰使用 [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) 陳述式建立 SQL Server 驗證登入。範例陳述式︰
 
      ```
      CREATE LOGIN Mary WITH PASSWORD = '<strong_password>';
@@ -158,4 +161,4 @@ GRANT ALTER ANY USER TO Mary;
 
 [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/18/2016"
+   ms.date="07/13/2016"
    ms.author="cherylmc" />
 
 # Azure VPN 閘道連線拓撲
@@ -104,4 +104,4 @@ ExpressRoute 是從 WAN 直接連往 Microsoft 服務 (包括 Azure) 的專用�
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0713_2016-->

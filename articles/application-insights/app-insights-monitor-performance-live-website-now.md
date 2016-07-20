@@ -180,6 +180,12 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
 您可以使用 PowerShell 啟動和停止監視。
 
+先匯入 Application Insights 模組︰
+
+`Import-Module 'C:\Program Files\Microsoft Application Insights\Status Monitor\PowerShell\Microsoft.Diagnostics.Agent.StatusMonitor.PowerShell.dll'`
+
+找出受監視的應用程式︰
+
 `Get-ApplicationInsightsMonitoringStatus [-Name appName]`
 
 * `-Name` (選擇性) Web 應用程式的名稱。
@@ -284,4 +290,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

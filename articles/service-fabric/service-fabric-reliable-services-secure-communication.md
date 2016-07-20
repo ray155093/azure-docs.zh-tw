@@ -3,7 +3,7 @@
    description="如何協助保護於 Azure Service Fabric 叢集中所執行之可靠服務的通訊安全概觀。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="punewa"
+   authors="suchiagicha"
    manager="timlt"
    editor="vturecek"/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/22/2016"
-   ms.author="punewa"/>
+   ms.date="07/06/2016"
+   ms.author="suchiagicha"/>
 
 # 協助保護 Azure Service Fabric 中服務的通訊安全
 
@@ -309,4 +309,4 @@
 
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

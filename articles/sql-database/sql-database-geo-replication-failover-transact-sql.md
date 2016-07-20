@@ -32,7 +32,11 @@
 若要起始容錯移轉，您需要下列各項︰
 
 - 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
-- 最新版本的 SQL Server Management Studio - 若要取得最新版本的 SQL Server Management Studio (SSMS)，請移至[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。如需使用 SQL Server Management Studio 來管理 Azure SQL Database 邏輯伺服器和資料庫的詳細資訊，請參閱[使用 SQL Server Management Studio 管理 Azure SQL Database](sql-database-manage-azure-ssms.md)
+- SQL Server Management Studio (SSMS)
+
+
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
 
 
 
@@ -98,4 +102,4 @@
 - [SQL Database 文件](https://azure.microsoft.com/services/sql-database/)
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

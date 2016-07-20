@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/08/2016"
+   ms.date="06/30/2016"
    ms.author="tomfitz"/>
 
 # 使用 Resource Manager 範本與 Azure CLI 部署資源
@@ -22,15 +22,29 @@
 - [PowerShell](resource-group-template-deploy.md)
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
-- [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 - [REST API](resource-group-template-deploy-rest.md)
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
 
 本主題說明如何使用 Azure CLI 與 Resource Manager 範本，將您的資源部署至 Azure。
 
 > [AZURE.TIP] 如需部署期間偵錯錯誤的說明，請參閱︰
 >
-> - [使用 Azure CLI 檢視部署作業](resource-manager-troubleshoot-deployments-cli.md)，以了解有關取得可協助您疑難排解錯誤的資訊
+> - [使用 Azure CLI 來檢視部署作業](resource-manager-troubleshoot-deployments-cli.md)，以了解有關取得可協助您針對錯誤進行疑難排解的資訊
 > - [針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)，以了解如何解決常見的部署錯誤
+
+您的範本可以是本機檔案，或者是透過 URI 提供使用的外部檔案。當您的範本位於儲存體帳戶中時，您可以限制範本的存取權，並在部署期間提供共用存取簽章 (SAS) Token
+
+## 部署的快速步驟
+
+本文章說明部署期間提供您選擇的所有不同選項。不過，通常您只需要兩個簡單的命令。若要快速開始部署，請使用下列命令：
+
+    azure group create -n ExampleResourceGroup -l "West US"
+    azure group deployment create -f <PathToTemplate> -e <PathToParameterFile> -g ExampleResourceGroup -n ExampleDeployment
+
+若要深入了解可能更適合您案例的部署選項，請繼續閱讀此文章。
 
 [AZURE.INCLUDE [resource-manager-deployments](../includes/resource-manager-deployments.md)]
 
@@ -71,7 +85,7 @@
         data:
         info:    group create command OK
 
-5. 先驗證部署，再執行 **azure group template validate** 命令執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
+5. 請先執行 **azure group template validate** 命令來驗證部署，然後再執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
 
         azure group template validate -f <PathToTemplate> -p "{"ParameterName":{"value":"ParameterValue"}}" -g ExampleResourceGroup
 
@@ -130,7 +144,7 @@
         export AZURE_STORAGE_ACCOUNT=storagecontosotemplates
         export AZURE_STORAGE_ACCESS_KEY={storage_account_key}
 
-4. 建立新的容器。權限設為 [關閉] 表示容器僅限擁有者存取。
+4. 建立新的容器。權限設為 **Off** 表示容器僅限擁有者存取。
 
         azure storage container create --container templates -p Off 
         
@@ -151,7 +165,7 @@
 
         azure group deployment create --template-uri $fullurl -g ExampleResourceGroup
 
-如需使用包含已連結範本之 SAS Token 的範例，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
+如需使用包含已連結範本的 SAS Token 範例，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
 
 [AZURE.INCLUDE [resource-manager-parameter-file](../includes/resource-manager-parameter-file.md)]
 
@@ -159,6 +173,6 @@
 - 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
-- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資訊，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

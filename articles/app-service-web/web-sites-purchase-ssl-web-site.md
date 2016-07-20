@@ -14,19 +14,19 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="07/01/2016"
 	ms.author="apurvajo"/>
 
 #購買並設定您的 Azure App Service 的 SSL 憑證
 
 > [AZURE.SELECTOR]
 - [購買 Web Apps 的 SSL 憑證](web-sites-purchase-ssl-web-site.md)
-- [為自訂網域啟用 SSL](web-sites-configure-ssl-certificate.md)  
+- [為自訂網域啟用 SSL](web-sites-configure-ssl-certificate.md)
 
-根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您的 Web 應用程式 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像所有*[萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。本文說明如何使用 3 個簡單的步驟，購買並設定您的 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。
+根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像*[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。本文說明如何使用 3 個簡單的步驟，來購買並設定 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。
 
 > [AZURE.NOTE]
-自訂網域名稱的 SSL 憑證無法搭配免費和共用的 Web 應用程式使用。您必須將 Web 應用程式設定為 [基本]、[標準] 或 [進階] 模式，但這可能會變更您的訂用帳戶費用。如需詳細資訊，請參閱 **[Web Apps 價格格詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
+自訂網域名稱的 SSL 憑證無法搭配免費和共用的 Web 應用程式使用。您必須將 Web 應用程式設定為 [基本]、[標準] 或 [進階] 模式，但這可能會變更您的訂用帳戶費用。如需詳細資訊，請參閱 **[Web Apps 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
 
 
 
@@ -34,8 +34,8 @@
 > [AZURE.NOTE]
 請不要嘗試使用沒有與作用中信用卡相關聯的訂用帳戶購買 SSL 憑證。這可能會導致您的訂用帳戶被停用。
 
-##<a> 購買、儲存及指派您的自訂網域的 SSL 憑證 </a>
-若要為自訂網域 (如 contoso.com) 啟用 HTTPS，首先必須**[在 Azure App Service 中設定自訂的網域名稱](web-sites-custom-domain-name.md)**。
+##<a> 購買、儲存及指派您自訂網域的 SSL 憑證 </a>
+若要為自訂網域 (如 contoso.com) 啟用 HTTPS，首先必須**[在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)**。
 
 在要求 SSL 憑證之前，您必須先決定有哪些網域名稱要由該憑證保護。這將決定您必須取得的憑證類型。如果您只需要保護單一網域名稱 (如 contoso.com 或 www.contoso.com)，則標準 (基本) 憑證就已足夠。如果您需要保護多個網域名稱 (如 contoso.com、www.contoso.com 與 mail.contoso.com)，則您可以取得**[萬用字元憑證](http://en.wikipedia.org/wiki/Wildcard_certificate)**
 
@@ -43,55 +43,55 @@
 
 在此步驟中，您將學習如何訂購您選擇的 SSL 憑證。
 
-1.	在 **[Azure 入口網站](https://portal.azure.com/)**中，按一下 [瀏覽]，然後在搜尋列中輸入「App Service 憑證」，並且從結果中選取 [App Service 憑證]，然後按一下 [新增]。 
+1.	在 **[Azure 入口網站](https://portal.azure.com/)**中按一下 [瀏覽]、在搜尋列中輸入「App Service 憑證」、從結果中選取 [App Service 憑證]，然後按一下 [新增]。
 
     ![插入使用瀏覽建立的影像](./media/app-service-web-purchase-ssl-web-site/browse.jpg)
 
     ![插入使用瀏覽建立的影像](./media/app-service-web-purchase-ssl-web-site/add.jpg)
 
-2.	為 SSL 憑證提供 [易記名稱]。
+2.	為 SSL 憑證提供**易記名稱**。
 
-3.	輸入 [主機名稱]
+3.	輸入**主機名稱**
 > [AZURE.NOTE]
     這是購買程序中其中一個最重要的部分。請務必輸入您想要使用此憑證保護的正確主機名稱 (自訂網域)。**請勿**在主機名稱上附加 WWW。例如，如果您的自訂網域名稱為 www.contoso.com，則只要在 [主機名稱] 欄位中輸入 contoso.com，憑證會保護 www 和根網域。
     
-4.	選取您的 [訂用帳戶]。
+4.	選取您的**訂用帳戶**。
 
     如果您有多個訂用帳戶，請務必在您用於自訂網域或 Web 應用程式的相同訂用帳戶中建立 SSL 憑證。
        
-5.	選取或建立 [資源群組]。
+5.	選取或建立**資源群組**。
 
     資源群組可讓您以單位的形式管理相關的 Azure 資源，並可在您為應用程式建立角色型存取控制 (RBAC) 規則時發揮效用。如需詳細資訊，請參閱「管理 Azure 資源」。
      
 6.	選取 [憑證 SKU]。
 
-    最後，選取符合您需求的憑證 SKU，然後按一下 [建立]。現在，Azure App Service 可讓您購買兩個不同 SKU • S1 – 1 年有效期和自動續約的標準憑證 • W1 – 1 年有效期和自動續約的萬用字元憑證。如需詳細資訊，請參閱 **[Web Apps 價格詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
+    最後，選取符合您需求的憑證 SKU，然後按一下 [建立]。現在，Azure App Service 可讓您購買兩個不同 SKU • S1 – 1 年有效期和自動續約的標準憑證 • W1 – 1 年有效期和自動續約的萬用字元憑證。如需詳細資訊，請參閱 **[Web Apps 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
 
 ![插入憑證 SKU 的影像](./media/app-service-web-purchase-ssl-web-site/SKU.jpg)
 
 > [AZURE.NOTE]
 建立 SSL 憑證需要 1 - 10 分鐘。此程序會在背景中執行多個步驟，若手動執行這些步驟有些繁複。
 
-##<a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證上傳至 Azure 金鑰保存庫
+##<a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證儲存至 Azure 金鑰保存庫
 
 在此步驟中，您將學習如何訂購 SSL 憑證，並將其儲存至您選擇的 Azure 金鑰保存庫。
 
-1.	SSL 憑證購買程序完成之後，您必須手動開啟 **App Service 憑證** 資源刀鋒視窗，方法是再瀏覽一次 (請參閱上述「步驟 1」)   
+1.	完成 SSL 憑證購買程序之後，您必須手動開啟 [App Service 憑證] 資源刀鋒視窗，方法是再瀏覽一次 (請參閱上述「步驟 1」)
 
     ![插入準備在 KV 中儲存的影像](./media/app-service-web-purchase-ssl-web-site/ReadyKV.jpg)
 
-    您會注意到憑證狀態是「暫止發行」，因為在您可以開始使用此憑證之前，還有一些步驟需要完成。
+    您會注意到憑證狀態是「暫止發行」，因為您必須先完成一些其他的步驟，才能開始使用此憑證。
  
-2. 按一下 [憑證內容] 刀鋒視窗內的 [憑證設定]，然後按一下 [步驟 1：儲存] 將此憑證儲存至 Azure 金鑰保存庫。
+2. 按一下 [憑證內容] 刀鋒視窗內的 [憑證設定]，然後按一下 [步驟 1：儲存]，將此憑證儲存至 Azure 金鑰保存庫。
 
-3.	從 [金鑰保存庫狀態] 刀鋒視窗中按一下 [金鑰保存庫儲存機制]，選擇要儲存此憑證的現有金鑰保存庫，或者選擇 [建立新的金鑰保存庫]，在相同的訂用帳戶和資源群組內建立新的金鑰保存庫。
+3.	從 [金鑰保存庫狀態] 刀鋒視窗中按一下 [金鑰保存庫儲存機制]，選擇要儲存此憑證的現有金鑰保存庫，或者選擇 [建立新的金鑰保存庫]，在相同訂用帳戶和資源群組內建立新的金鑰保存庫。
  
     ![插入建立新 KV 的影像](./media/app-service-web-purchase-ssl-web-site/NewKV.jpg)
  
     > [AZURE.NOTE]
     Azure 金鑰保存庫儲存此憑證會產生少許費用。如需詳細資訊，請參閱 **[Azure 金鑰保存庫定價詳細資料](https://azure.microsoft.com/pricing/details/key-vault/)**。
 
-4. 一旦您選取儲存憑證所在的金鑰保存庫儲存機制，請繼續進行並儲存，方法是按一下 [金鑰保存庫狀態] 刀鋒視窗頂端的 [儲存] 按鈕。
+4. 當您選取要儲存此憑證的金鑰保存庫儲存機制之後，請繼續進行並加以儲存，方法是按一下 [金鑰保存庫狀態] 刀鋒視窗頂端的 [儲存] 按鈕。
 
     這樣應該就完成使用您選擇的 Azure 金鑰保存庫儲存您購買的憑證的步驟。在重新整理刀鋒視窗時，您應該會看到此步驟也標示綠色勾號。
     
@@ -101,9 +101,9 @@
 
 1.	從 [憑證設定] 刀鋒視窗按一下 [步驟 2：驗證] 步驟。App Service 憑證支援 4 種類型的網域驗證。
 
-    * **App Service 驗證** 
+    * **App Service 驗證**
     
-        * 如果您已經有**指派給 App Service 應用程式的自訂網域**，則這是最方便的程序 這個方法將會列出符合此準則的所有 App Service 應用程式。例如，在此案例中，**contosocertdemo.com** 是指派給名為 **"ContosoCertDemo"** 的 App Service 應用程式的自訂網域，所以它是這裡唯一列出的 App Service 應用程式。如果有多重區域部署，則它會列出跨區域的所有項目。
+        * 如果您已經有**指派給 App Service 應用程式的自訂網域**，則這是最方便的程序。 這個方法將會列出符合此準則的所有 App Service 應用程式。例如，在此案例中，**contosocertdemo.com** 是一個自訂網域，且已將其指派給名為 **"ContosoCertDemo"** 的 App Service 應用程式，所以它是這裡唯一列出的 App Service 應用程式。如果有多重區域部署，則它會列出跨區域的所有項目。
         
            驗證方法僅適用於標準 (基本) 憑證購買。對於萬用字元憑證，請略過並移至以下的選項 B、C 或 D。
         * 按一下 [驗證] 按鈕來完成這個步驟。
@@ -158,7 +158,7 @@
 
 1.	在瀏覽器中，開啟 **[Azure 入口網站](https://portal.azure.com/)**。
 2.	按一下頁面左側的 [App Service] 選項。
-3.	按一下您要指派此憑證的應用程式的名稱。 
+3.	按一下您要指派此憑證的應用程式的名稱。
 4.	在 [設定] 中，按一下 [自訂網域和 SSL]。
 5.	在 [憑證區段] 中，按一下 [匯入憑證] 並選取您剛剛購買的憑證
 
@@ -176,7 +176,7 @@
 
 如果您已選取 [**IP SSL**]，而且您的自訂網域是以 A 記錄設定，則必須執行下列額外步驟：
 
-* 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式 [儀表板] 頁面上的 [快速概覽] 區段中，找到這個 IP 位址。它將會列為 [虛擬 IP 位址]：
+* 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式 [儀表板] 頁面上的 [快速概覽] 區段中，找到這個 IP 位址。它將會列出成為 [虛擬 IP 位址]：
     
     ![插入 IP SSL 的影像](./media/app-service-web-purchase-ssl-web-site/IPSSL.jpg)
 
@@ -187,17 +187,17 @@
 
 ##<a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
 
-1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。 
+1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。
 
-2. 按一下 [重設金鑰] 按鈕來啟動程序。此程序需要 1 - 10 分鐘才能完成。
+2. 按一下 [重設金鑰] 按鈕來啟動處理程序。此程序需要 1 - 10 分鐘才能完成。
 
     ![插入重設 SSL 金鑰的影像](./media/app-service-web-purchase-ssl-web-site/Rekey.jpg)
 
 3. 重設您的憑證的金鑰，會以憑證授權單位發行的新憑證變更憑證。
-4. 在憑證的存留期期間，不會向您收取重設金鑰的費用。 
-5. 重設您的憑證的金鑰會經歷 [暫止發行] 狀態。 
+4. 在憑證的存留期期間，不會向您收取重設金鑰的費用。
+5. 重設您的憑證的金鑰會經歷 [暫止發行] 狀態。
 6. 憑證準備就緒後，請確定使用此憑證同步處理您的資元，以避免服務中斷。
-7. 同步處理選項不適用於尚未指派到 Web 應用程式的憑證。 
+7. 同步處理選項不適用於尚未指派到 Web 應用程式的憑證。
 
 ## 其他資源 ##
 - [針對 Azure App Service 中的 App 啟用 HTTPS](web-sites-configure-ssl-certificate.md)
@@ -208,4 +208,4 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

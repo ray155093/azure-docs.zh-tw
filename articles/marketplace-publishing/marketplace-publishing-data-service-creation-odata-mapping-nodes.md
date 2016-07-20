@@ -13,7 +13,7 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="04/29/2016"
+      ms.date="06/29/2016"
       ms.author="hascipio; avikova" />
 
 # 了解透過 CSDL 將現有的 Web 服務對應至 OData 的節點結構描述
@@ -39,9 +39,9 @@
 ## FunctionImport 節點
 FunctionImport 節點代表一個將服務公開給使用者的 URL (進入點)此節點允許描述 URL 的定址方式、使用者可用的參數，以及如何提供這些參數。
 
-這個節點的詳細資料位於 [http://msdn.microsoft.com/library/cc716710(v=vs.100).aspx][MSDNFunctionImportLink]
+這個節點的詳細資料可在[這裡][MSDNFunctionImportLink]找到
 
-[MSDNFunctionImportLink]: 'http://msdn.microsoft.com/library/cc716710(v=vs.100).aspx'
+[MSDNFunctionImportLink]: (https://msdn.microsoft.com/library/cc716710(v=vs.100).aspx)
 
 以下是 FunctionImport 節點所公開的其他屬性 (或屬性的新增項目)：
 
@@ -143,18 +143,18 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 
 此節點代表一個公開為 URI 範本 / 要求本文 (已在 FunctionImport 節點中指定) 一部分的參數。
 
-對「參數元素」節點很有用的詳細文件位於 [http://msdn.microsoft.com/library/ee473431.aspx](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：*`<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
+對「參數元素」節點很有用的詳細文件位於[這裡](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：*`<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
 
 | 參數屬性 | 必要 | 值 |
 |----|----|----|
 | 名稱 | 是 | 參數名稱。區分大小寫！ BaseUri 大小寫須相符。**範例：**`<Property Name="IsDormant" Type="Byte" />` |
-| 類型 | 是 | 參數類型。此值必須是 **EDMSimpleType** 或是模型範圍內的複雜類型。如需詳細資訊，請參閱「6 種支援的參數/屬性類型」。(區分大小寫！ 第一個字元是大寫，其他都是小寫)。 另請參閱 [http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx][MSDNParameterLink].**範例：**`<Property Name="LimitedPartnershipID " Type="Int32" />` |
+| 類型 | 是 | 參數類型。此值必須是 **EDMSimpleType** 或是模型範圍內的複雜類型。如需詳細資訊，請參閱「6 種支援的參數/屬性類型」。(區分大小寫！ 第一個字元是大寫，其他都是小寫)。 另請參閱[概念模型類型 (CSDL)][MSDNParameterLink]。**範例：**`<Property Name="LimitedPartnershipID " Type="Int32" />` |
 | 模式 | 否 | **In**、Out 或 InOut，取決於參數是輸入、輸出或輸入/輸出參數。(只有 “IN” 適用於 Azure Marketplace)。 **範例：**`<Parameter Name="StudentID" Mode="In" Type="Int32" />` |
 | MaxLength | 否 | 允許的參數長度上限。**範例：**`<Property Name="URI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />` |
 | Precision | 否 | 參數的精確度。**範例：**`<Property Name="PreviousDate" Type="DateTime" Precision="0" />` |
 | 調整 | 否 | 參數的小數位數。**範例：**`<Property Name="SICCode" Type="Decimal" Precision="10" Scale="0" />` |
 
-[MSDNParameterLink]: 'http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx'
+[MSDNParameterLink]: (http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx)
 
 以下是已加入至 CSDL 規格的屬性：
 
@@ -169,7 +169,7 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 
 這個節點代表從 Marketplace 傳回給使用者的其中一個類型。它也包含從內容提供者服務所傳回之輸出到傳回給使用者之值的對應。
 
-這個節點的詳細資料位於 [http://msdn.microsoft.com/library/bb399206.aspx](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。
+這個節點的詳細資料位於[這裡](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。
 
 | 屬性名稱 | 必要 | 值 |
 |----|----|----|
@@ -272,4 +272,4 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 - 如果您有興趣檢閱範例，請閱讀[資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文，來查看範例程式碼，並了解程式碼語法與內容。
 - 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

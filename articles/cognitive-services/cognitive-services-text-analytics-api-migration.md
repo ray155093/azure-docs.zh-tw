@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/24/2016"
+	ms.date="07/05/2016"
 	ms.author="onewth"/>
 
 # 升級到第 2 版文字分析 API #
 
-本指南將引導您從使用[第一版的 API](../machine-learning-apps-text-analytics/) 改為使用第二版，來更新您的程式碼。
+本指南將引導您從使用[第一版的 API](../machine-learning/machine-learning-apps-text-analytics.md) 改為使用第二版，來更新您的程式碼。
 
 如果您未曾使用過 API，並且想要進一步了解，您可以**[在這裡深入了解 API](//go.microsoft.com/fwlink/?LinkID=759711)**，或**[遵循快速啟動指南](//go.microsoft.com/fwlink/?LinkID=760860)**。如需技術參考，請參閱 **[API 定義](//go.microsoft.com/fwlink/?LinkID=759346)**。
 
@@ -308,4 +308,4 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
 
 您現在應已準備就緒！ 使用小型範例測試您的程式碼，以確保您可以成功處理資料。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

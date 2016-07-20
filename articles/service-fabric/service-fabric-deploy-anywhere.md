@@ -33,7 +33,7 @@ Service Fabric 會提供安裝套件，讓您在內部部署建立這些獨立 S
 如需 Windows Server 的詳細資訊，請參閱[建立適用 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 
 ## 叢集的建立與設定
-Service Fabric 會提供可下載的安裝套件。下載此套件之後，您將必須變更 JSON 組態檔來指定您叢集的設定。編輯叢集設定之後，您會執行一個安裝指令碼，此指令碼可建立涵蓋您在叢集設定中所指定之電腦的叢集。也能執行指令碼以從一組電腦移除叢集。
+Service Fabric 會提供可下載的安裝套件。下載此套件之後，您將必須變更 JSON 組態檔來指定您叢集的設定。編輯叢集設定之後，您會執行一個安裝指令碼，此指令碼可建立涵蓋您在叢集設定中所指定之電腦的叢集。您也能執行指令碼以從一組電腦移除叢集。
 
 ## 任何雲端部署與內部部署之比較
 在內部部署環境建立 Service Fabric 叢集的程序會與在您所選擇、具有一組 VM 的任何雲端建立叢集的程序類似。佈建 VM 的初始步驟將取決於您要使用的雲端提供者或內部部署環境。在您有一組彼此之間已啟用網路連線的 VM 之後，則安裝 Service Fabric 封裝、編輯叢集設定，以及執行叢集建立與管理指令碼的步驟將會相同。這可確保當您選擇以新裝載環境做為目標時，可將您操作和管理 Service Fabric 叢集方面的知識與經驗轉移過去。
@@ -53,8 +53,8 @@ Service Fabric 會提供可下載的安裝套件。下載此套件之後，您�
 
 * **Azure 資源管理員：**使用 Azure 資源管理員可輕鬆管理叢集做為單位使用的所有資源，並簡化成本追蹤與付費作業。
 * **Service Fabric 叢集做為 Azure 資源** Service Fabric 叢集是 ARM 資源，因此可以像其他 Azure 中的 ARM 資源進行模型化。
-* **與 Azure 基礎結構整合** Service Fabric 會協調作業系統的 Azure 基礎結構、網路和其他升級，以改善應用程式的可用性和可靠性。  
-* **診斷：**在 Azure 上，我們提供與 Azure 診斷及 Operational Insights 的整合。
+* **與 Azure 基礎結構整合** Service Fabric 會協調作業系統的 Azure 基礎結構、網路和其他升級，以改善應用程式的可用性和可靠性。
+* **診斷：**在 Azure 上，我們提供與 Azure 診斷及 Log Analytics 的整合。
 * **自動調整：**對於 Azure 上的叢集，我們會提供虛擬機器調整集產生的內建自動調整功能。在內部部署與其他雲端環境中，您將必須建置您自己的自動調整規模功能，或使用 Service Fabric 針對調整叢集規模顯示的 API 來手動調整規模。
 
 ## 後續步驟
@@ -62,4 +62,4 @@ Service Fabric 會提供可下載的安裝套件。下載此套件之後，您�
 
 在執行 Linux 的 VM 或電腦上建立叢集︰[Linux 上的 Service Fabric](service-fabric-linux-overview.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

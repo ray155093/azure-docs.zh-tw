@@ -17,6 +17,16 @@
    ms.author="rortloff;barbkess;sonyama"/>
 
 # Azure SQL 資料倉儲中的稽核
+
+> [AZURE.SELECTOR]
+- [安全性概觀](sql-data-warehouse-overview-manage-security.md)
+- [威脅偵測](sql-data-warehouse-security-threat-detection.md)
+- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
+- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
+- [稽核概觀](sql-data-warehouse-auditing-overview.md)
+- [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
+
+
 「Azure SQL 資料倉儲」稽核會追蹤資料庫事件，並將所稽核的事件寫入「Azure 儲存體」帳戶中的稽核記錄。
 
 稽核可協助您保持法規遵循、了解資料庫活動，以及深入了解可指出商務考量或疑似安全違規的不一致和異常。
@@ -141,4 +151,4 @@ SQL 資料倉儲資料庫稽核可讓您：
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

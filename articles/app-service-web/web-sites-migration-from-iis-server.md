@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/26/2016" 
+	ms.date="07/01/2016" 
 	ms.author="cephalin"/>
 
 # 將企業 Web 應用程式移轉至 Azure App Service
@@ -30,14 +30,14 @@
 ## 在相容性分析期間驗證的元素 ##
 移轉小幫手會建立整備報表，來識別導致無法從內部部署 IIS 成功移轉至 Azure App Service Web Apps 之相關問題或封鎖問題的任何潛在原因。一些需要留意的重要項目：
 
--	連接埠繫結 - Web Apps 僅支援連接埠 80 (適用於 HTTP) 和連接埠 443 (適用於 HTTPS 流量)。系統將會忽略不同的連接埠組態，並將流量路由傳送至 80 或 443。 
--	驗證 - Web Apps 預設支援匿名驗證以及應用程式所指定的表單驗證。只有與 Azure Active Directory 和 ADFS 整合，才能使用 Windows 驗證。目前不支援所有其他形式的驗證 (例如基本驗證)。 
--	全域組件快取 (GAC) - Web Apps 不支援 GAC。如果您的應用程式會參考您通常部署至 GAC 的組件，就必須部署至 Web Apps 上的應用程式 bin 資料夾。 
--	IIS5 相容性模式 - Web Apps 不支援此模式。 
+-	連接埠繫結 - Web Apps 僅支援連接埠 80 (適用於 HTTP) 和連接埠 443 (適用於 HTTPS 流量)。系統將會忽略不同的連接埠組態，並將流量路由傳送至 80 或 443。
+-	驗證 - Web Apps 預設支援匿名驗證以及應用程式所指定的表單驗證。只有與 Azure Active Directory 和 ADFS 整合，才能使用 Windows 驗證。目前不支援所有其他形式的驗證 (例如基本驗證)。
+-	全域組件快取 (GAC) - Web Apps 不支援 GAC。如果您的應用程式會參考您通常部署至 GAC 的組件，就必須部署至 Web Apps 上的應用程式 bin 資料夾。
+-	IIS5 相容性模式 - Web Apps 不支援此模式。
 -	應用程式集區 - 在 Web Apps 中，每個網站及其子應用程式都在相同的應用程式集區中執行。如果您的網站上有多個利用多個應用程式集區的子應用程式，請將它們彙總到具有通用設定的單一應用程式集區，或將每個應用程式移轉至個別的 Web 應用程式。
 -	COM 元件 - Web Apps 不允許在平台上註冊 COM 元件。如果您的網站或應用程式使用任何 COM 元件，您必須以 Managed 程式碼予以重新撰寫，並與網站或應用程式一起部署這些元件。
 -	ISAPI 篩選器 - Web Apps 可支援使用 ISAPI 篩選器。您需要執行下列動作：
-	-	使用您的 Web 應用程式部署 DLL 
+	-	使用您的 Web 應用程式部署 DLL
 	-	使用 [Web.config](http://www.iis.net/configreference/system.webserver/isapifilters) 註冊 DLL
 	-	將 applicationHost.xdt 檔案置於網站根目錄中，包含下列內容：
 
@@ -57,7 +57,7 @@
 ## 如何使用 Web Apps 移轉小幫手 ##
 這一節逐步說明如何移轉一些使用 SQL Server 資料庫並在內部部署 Windows Server 2003 R2 (IIS 6.0) 機器上執行之網站的範例：
 
-1.	在 IIS 伺服器或您的用戶端機器上瀏覽至 [https://www.movemetothecloud.net/](https://www.movemetothecloud.net/) 
+1.	在 IIS 伺服器或您的用戶端機器上瀏覽至 [https://www.movemetothecloud.net/](https://www.movemetothecloud.net/)
 
 	![](./media/web-sites-migration-from-iis-server/migration-tool-homepage.png)
 
@@ -135,4 +135,4 @@
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0706_2016-->

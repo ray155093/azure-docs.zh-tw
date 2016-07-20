@@ -4,7 +4,7 @@
 	services="notification-hubs" 
 	documentationCenter="" 
 	authors="wesmc7777" 
-	manager="dwrede" 
+	manager="erikre" 
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="java" 
 	ms.devlang="java" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="06/29/2016" 
 	ms.author="wesmc"/>
 
 # 如何從 Java 使用通知中樞
@@ -25,14 +25,14 @@
 
 SDK 目前支援：
 
-- 通知中樞的 CRUD 
+- 通知中樞的 CRUD
 - 註冊的 CRUD
 - 安裝管理
 - 匯入/匯出註冊
 - 定期傳送
 - 排程的傳送
 - 透過 Java NIO 的非同步作業
-- 受支援的平台：APNS (iOS)、GCM (Android)、WNS (Windows 市集應用程式)、MPNS (Windows Phone)、ADM (Amazon Kindle Fire)、Baidu (沒有 Google 服務的 Android) 
+- 受支援的平台：APNS (iOS)、GCM (Android)、WNS (Windows 市集應用程式)、MPNS (Windows Phone)、ADM (Amazon Kindle Fire)、Baidu (沒有 Google 服務的 Android)
 
 ## SDK 的使用方式
 
@@ -285,7 +285,7 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。您要求的作�
 ##<a name="next-steps"></a>後續步驟
 在本主題中，我們會說明如何為通知中心建立簡單的 Java REST 用戶端。您可以在這裡執行下列動作：
 
-* 下載完整的 [Java SDK]，其中包含完整的 SDK 程式碼。 
+* 下載完整的 [Java SDK]，其中包含完整的 SDK 程式碼。
 * 試用範例：
 	- [開始使用通知中樞]
 	- [傳送即時新聞]
@@ -303,4 +303,4 @@ CreateOrUpdate、Patch 和 Delete 最終都會與 Get 一致。您要求的作�
 [Maven]: http://maven.apache.org/
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

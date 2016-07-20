@@ -14,8 +14,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="04/06/2016"
-   ms.author="iainfour;memccror"/>
+   ms.date="07/05/2016"
+   ms.author="memccror"/>
 
 # 如何在 Azure 中標記 Linux 虛擬機器
 
@@ -25,7 +25,7 @@
 
 ## 透過 Azure CLI 進行標記
 
-已透過 Azure CLI 建立的資源也支援標記。首先，請設定 [Azure CLI 環境][]。透過 Azure CLI 登入您的訂用帳戶並切換至 Resource Manager 模式 (`azure config mode arm`)。
+若要開始，請[安裝和設定 Azure CLI](../xplat-cli-azure-resource-manager.md)，並確定您處於 Resource Manager 模式 (`azure config mode arm`)。
 
 您可以使用這個命令來檢視指定之虛擬機器的所有屬性，包括標記：
 
@@ -53,10 +53,10 @@
 
 
 
-[Azure CLI 環境]: ./xplat-cli-azure-resource-manager.md
+[Azure CLI environment]: ./xplat-cli-azure-resource-manager.md
 [Azure Resource Manager 概觀]: ../resource-group-overview.md
 [使用標記來組織您的 Azure 資源]: ../resource-group-using-tags.md
 [了解 Azure 帳單]: ../billing-understand-your-bill.md
 [深入了解 Microsoft Azure 資源耗用量]: ../billing-usage-rate-card-overview.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

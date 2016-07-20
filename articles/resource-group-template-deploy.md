@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/08/2016"
+   ms.date="06/30/2016"
    ms.author="tomfitz"/>
 
 # 使用 Resource Manager 範本與 Azure PowerShell 來部署資源
@@ -22,16 +22,30 @@
 - [PowerShell](resource-group-template-deploy.md)
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
-- [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 - [REST API](resource-group-template-deploy-rest.md)
+- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
+- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
+- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
+- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
 
 
 本主題說明如何使用 Azure PowerShell 與 Resource Manager 範本，將您的資源部署至 Azure。
 
 > [AZURE.TIP] 如需部署期間偵錯錯誤的說明，請參閱︰
 >
-> - [使用 Azure PowerShell 來檢視部署作業](resource-manager-troubleshoot-deployments-powershell.md)，以了解有關取得可協助您疑難排解錯誤的資訊
+> - [使用 Azure PowerShell 來檢視部署作業](resource-manager-troubleshoot-deployments-powershell.md)，以了解有關取得可協助您針對錯誤進行疑難排解的資訊
 > - [針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)，以了解如何解決常見的部署錯誤
+
+您的範本可以是本機檔案，或者是透過 URI 提供使用的外部檔案。當您的範本位於儲存體帳戶中時，您可以限制範本的存取權，並在部署期間提供共用存取簽章 (SAS) Token
+
+## 部署的快速步驟
+
+本文章說明部署期間提供您選擇的所有不同選項。不過，通常您只需要兩個簡單的命令。若要快速開始部署，請使用下列命令：
+
+    New-AzureRmResourceGroup -Name ExampleResourceGroup -Location "West US"
+    New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathToTemplate> -TemplateParameterFile <PathToParameterFile>
+
+若要深入了解可能更適合您案例的部署選項，請繼續閱讀此文章。
 
 [AZURE.INCLUDE [resource-manager-deployments](../includes/resource-manager-deployments.md)]
 
@@ -111,7 +125,7 @@
         Mode              : Incremental
         ...
 
-     如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，則系統會提示您為後置詞是 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供一個值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+     如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本包含名為 **ResourceGroupName** 的參數，而且與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，將會提示您在後置詞為 **FromTemplate** 的參數中提供一個值 (例如 **ResourceGroupNameFromTemplate**)。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **DeploymentDebugLogLevel** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
 
@@ -141,7 +155,7 @@
 
         Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
 
-4. 建立新的容器。權限設為 [關閉] 表示容器僅限擁有者存取。
+4. 建立新的容器。權限設為 **Off** 表示容器僅限擁有者存取。
 
         New-AzureStorageContainer -Name templates -Permission Off
         
@@ -165,7 +179,7 @@
 
         New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleResourceGroup -TemplateUri $templateuri
 
-如需使用包含已連結範本之 SAS Token 的範例，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
+如需使用包含已連結範本的 SAS Token 範例，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
 
 [AZURE.INCLUDE [resource-manager-parameter-file](../includes/resource-manager-parameter-file.md)]
 
@@ -173,6 +187,6 @@
 - 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
-- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資訊，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

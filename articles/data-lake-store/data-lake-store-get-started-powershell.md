@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/07/2016"
+   ms.date="07/07/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure PowerShell 開始使用 Azure 資料湖分析存放區
@@ -43,7 +43,7 @@
 
 ## 建立 Azure 資料湖存放區帳戶
 
-1. 從您的桌面上開啟新的 Azure PowerShell 視窗，輸入下列程式碼片段登入 Azure 帳戶、設定訂用帳戶，然後註冊資料湖存放區提供者。系統提示您登入時，請使用其中一個訂用帳戶管理員/擁有者身分登入：
+1. 從您的桌面上開啟新的 Windows PowerShell 視窗，輸入下列程式碼片段登入 Azure 帳戶、設定訂用帳戶，然後註冊 Data Lake Store 提供者。系統提示您登入時，請使用其中一個訂用帳戶管理員/擁有者身分登入：
 
         # Log in to your Azure account
 		Login-AzureRmAccount
@@ -141,4 +141,4 @@
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

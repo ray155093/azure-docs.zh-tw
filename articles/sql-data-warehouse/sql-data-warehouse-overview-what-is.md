@@ -162,13 +162,13 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [1]: ./media/sql-data-warehouse-overview-what-is/dwarchitecture.png
 
 <!--Article references-->
-[建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
-[載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
-[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
-[移轉文件]: ./sql-data-warehouse-overview-migrate.md
-[SQL 資料倉儲解決方案合作夥伴]: ./sql-data-warehouse-integrate-solution-partners.md
-[整合式工具概觀]: ./sql-data-warehouse-overview-integrate.md
-[備份與還原概觀]: ./sql-data-warehouse-restore-database-overview.md
+[建立支援票證]: sql-data-warehouse-get-started-create-support-ticket.md
+[載入範例資料]: sql-data-warehouse-load-sample-databases.md
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[移轉文件]: sql-data-warehouse-overview-migrate.md
+[SQL 資料倉儲解決方案合作夥伴]: sql-data-warehouse-partner-business-intelligence.md
+[整合式工具概觀]: sql-data-warehouse-overview-integrate.md
+[備份與還原概觀]: sql-data-warehouse-restore-database-overview.md
 
 <!--MSDN references-->
 
@@ -176,9 +176,9 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
 [CAT 小組部落格]: https://blogs.msdn.microsoft.com/sqlcat/tag/sql-dw/
 [功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSQLDataWarehouse
+[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse
 [Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

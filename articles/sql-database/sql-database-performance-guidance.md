@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="04/29/2016"
+	ms.date="06/30/2016"
 	ms.author="carlrab" />
 
 # 單一資料庫的 Azure SQL Database 效能指引
@@ -23,7 +23,7 @@
 
 Microsoft Azure SQL Database 有三個[服務層](sql-database-service-tiers.md)，基本、標準和高階。這些服務層全都會嚴密區隔提供給您的 Azure SQL Database 的資源，並保證可預測的效能。為您的資料庫保證的輸送量會從基本層、標準層、高階層一路提高。
 
->[AZURE.NOTE] 2015 年 9 月將會淘汰商務和 Web 服務層。如需詳細資訊，請參閱 [Web 和 Business Edition 終止常見問題集](https://msdn.microsoft.com/library/azure/dn741330.aspx)。如需將現有的 Web 及商務資料庫升級至新服務層的詳細資訊，請參閱[將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-server-portal.md)。
+>[AZURE.NOTE] 2015 年 9 月已淘汰商務和 Web 服務層。如需詳細資訊，請參閱 [Web 和 Business Edition 終止常見問題集](https://msdn.microsoft.com/library/azure/dn741330.aspx)。如需將現有的 Web 及商務資料庫升級至新服務層的詳細資訊，請參閱[將 SQL Database Web/商務資料庫升級至新的服務層](sql-database-upgrade-server-portal.md)。
 
 本文提供指引以幫助您判斷哪一個服務層適合您的應用程式，並提供微調應用程式以充分利用 Azure SQL Database 的建議。
 
@@ -206,7 +206,7 @@ Microsoft 也包含 Azure SQL Database 中的許多自動管理功能，例如�
 
 ### 使用 sys.resource\_stats
 
-**master** 資料庫中的 [sys.resource\_stats](https://msdn.microsoft.com/library/dn269979.aspx) 檢視會提供在 SQL Database 的特定服務層和效能層級內監視其效能使用情形的其他資訊。這項資料每隔五分鐘就會收集一次，並且會維持大約 14 天。這個檢視更適合用於進行 SQL Database 資源使用量的長期歷史分析。
+**master** 資料庫中的 [sys.resource\_stats](https://msdn.microsoft.com/library/dn269979.aspx) 檢視會提供在 SQL Database 的特定服務層和效能層級內監視其效能使用情形的其他資訊。這項資料每隔五分鐘就會收集一次，並且會維持大約 35 天。這個檢視更適合用於進行 SQL Database 資源使用量的長期歷史分析。
 
 下圖顯示在一週中 P2 效能等級之高階資料庫每小時的 CPU 資源使用率。這張特別的圖從星期一開始，顯示 5 個工作天，然後是較少發生在應用程式的週末。
 
@@ -507,4 +507,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

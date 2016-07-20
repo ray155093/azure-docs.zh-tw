@@ -14,7 +14,7 @@
 	ms.devlang="node"
 	ms.topic="get-started-article"
 	ms.date="05/26/2016"
-	ms.author="bradygaster"/>
+	ms.author="rachelap"/>
 
 # 建置 Node.js RESTful API 並將它部署至 Azure 中的 API 應用程式
 
@@ -90,7 +90,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 ### 自訂所建構的程式碼
 
-1. 從 **start** 資料夾將 **lib** 資料夾複製到建構者所建立的 **ContactList** 資料夾。 
+1. 從 **start** 資料夾將 **lib** 資料夾複製到建構者所建立的 **ContactList** 資料夾。
 
 1. 以下列程式碼取代 **handlers/contacts.js** 檔案中的程式碼。
 
@@ -155,7 +155,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 ### 測試於本機中執行的 API
 
-1. 使用 Node.js 命令列可執行檔來啟動伺服器。 
+1. 使用 Node.js 命令列可執行檔來啟動伺服器。
 
         node server.js
 
@@ -179,7 +179,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 在本節中，您會使用 Azure 入口網站在 Azure 中建立新的 API 應用程式。此 API 應用程式代表 Azure 所提供來執行程式碼的計算資源。在後續幾節中，您會將程式碼部署到新的 API 應用程式。
 
-1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。 
+1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。
 
 1. 按一下 **[新增] > [Web + 行動] > [API 應用程式]**。
 
@@ -221,7 +221,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 您會將認可推送至 Azure App Service 中的 Git 儲存機制，以將您的程式碼部署到 API 應用程式。在教學課程的這一節當中，您將會在 Azure 中建立要用於部署的認證與 Git 儲存機制。
 
-1. 在建立好 API 應用程式之後，從入口網站首頁按一下 [應用程式服務] > [{您的 API 應用程式}]。 
+1. 在建立好 API 應用程式之後，從入口網站首頁按一下 [應用程式服務] > [{您的 API 應用程式}]。
 
 	入口網站會顯示 [API 應用程式] 和 [設定] 刀鋒視窗。
 
@@ -294,7 +294,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 ## 測試於 Azure 中執行的 API
  
-3. 複製 [API 應用程式] 刀鋒視窗的 [基本功能] 區段中的 [URL]。 
+3. 複製 [API 應用程式] 刀鋒視窗的 [基本功能] 區段中的 [URL]。
 
     ![部署已完成](media/app-service-api-nodejs-api-app/deployment-completed.png)
 
@@ -312,4 +312,4 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 至此，您已成功建立 API 應用程式並在其中部署 Node.js API 程式碼。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

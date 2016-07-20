@@ -1,23 +1,23 @@
 <properties 
     pageTitle="服務匯流排架構 | Microsoft Azure"
-    description="描述 Azure 服務匯流排的訊息處理架構。"
+    description="描述 Azure 服務匯流排的訊息和轉送處理架構。"
     services="service-bus"
     documentationCenter="na"
     authors="sethmanheim"
     manager="timlt"
-    editor="tysonn" />
+    editor="" />
 <tags 
     ms.service="service-bus"
     ms.devlang="na"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="04/19/2016"
+    ms.date="07/11/2016"
     ms.author="sethm" />
 
 # 服務匯流排架構
 
-本文章描述 Azure 服務匯流排的訊息處理架構。
+本文描述 Azure 服務匯流排的訊息和轉送處理架構。
 
 ## 服務匯流排縮放單位
 
@@ -53,10 +53,10 @@
 
 ## 後續步驟
 
-既然您已閱讀服務匯流排運作方式的概觀，若要開始，請瀏覽下列連結：
+既然您已閱讀服務匯流排架構的概觀，若要開始使用，請瀏覽下列連結：
 
 - [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 - [使用服務匯流排佇列的佇列訊息解決方案](service-bus-dotnet-multi-tier-app-using-service-bus-queues.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

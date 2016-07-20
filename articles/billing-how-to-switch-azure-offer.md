@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/01/2016"
+	ms.date="06/29/2016"
 	ms.author="genli"/>
 
 # 切換至不同的 Azure 優惠
@@ -25,6 +25,8 @@
 -	如果您希望在註冊「隨用隨付」訂用帳戶之後，利用成員資格的權益 (例如 MSDN 或 BizSpark)。
 
 ## 如何將訂用帳戶切換到其他優惠
+
+> [AZURE.VIDEO switch-to-a-different-azure-offer]
 
 1.	登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
 2.	選取要移轉的訂用帳戶。
@@ -62,15 +64,15 @@
 
 **注意**：因為計費相關條件約束，優惠無法在建立訂用帳戶之後的第一個計費週期內變更。
 
-**可以使用這個機制從 Web 直接移轉至[雲端方案提供者](https://partner.microsoft.com/Solutions/cloud-reseller-overview) (CSP)，或[企業合約](https://azure.microsoft.com/pricing/enterprise-agreement/) (EA) 優惠嗎？**
+**我可以使用這個機制從 Web 直接移轉至[雲端方案提供者](https://partner.microsoft.com/Solutions/cloud-reseller-overview) (CSP)，或[企業合約](https://azure.microsoft.com/pricing/enterprise-agreement/) (EA) 優惠嗎？**
 
 這個機制僅限 Web 直接優惠來回切換。若要將現有的訂用帳戶移至 EA，請您的註冊系統管理員將您的帳戶加入至 EA。接著，您會收到邀請電子郵件。當您遵循指示接受邀請時，您的訂用帳戶會自動移至企業合約。目前沒有將現有的 Web 直接訂用帳戶移到 CSP 的選項。
 
 ## 您可以切換的可用優惠
 
-以下是目前[帳戶中心](https://account.windowsazure.com/Subscriptions)中支援的路徑。當我們加入更多選項時，本文也會隨之更新。如需其他優惠變更，[請連絡支援人員](http://go.microsoft.com/fwlink/?LinkID=619338)。
+以下是[帳戶中心](https://account.windowsazure.com/Subscriptions)目前支援的路徑。當我們加入更多選項時，本文也會隨之更新。如需其他優惠變更，請[連絡支援](http://go.microsoft.com/fwlink/?LinkID=619338)。
 
 -	[12 個月預付優惠](https://azure.microsoft.com/offers/ms-azr-0026p/)的[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)
--	任何[適用於 Visual Studio 訂閱者之每月 Azure 點數優惠](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)的[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)
+-	任何 [Visual Studio 訂閱者每月 Azure 點數優惠](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)的[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0706_2016-->

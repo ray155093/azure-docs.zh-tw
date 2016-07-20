@@ -25,6 +25,10 @@
 
 在下列教學課程中，您將會了解如何使用 SQL Server Management Studio 來管理及查詢 Azure SQL Database。
 
+
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
 | 教學課程 | 說明 |
 |---|---|---|
 | [使用伺服器層級主體登入來連接到 SQL Database](sql-database-get-started-security.md#connect-to-azure-sql-database-using-a-server-level-principal-login)| 在本教學課程中，您將了解如何使用伺服器層級主體登入連線到 Azure SQL Database。|
@@ -105,7 +109,7 @@
 
 ##開發
 
-在下列教學課程中，您將了解[SQL Database 開發](sql-database-develop-overview.md)和如何使用[連線庫](sql-database-libraries.md)。
+在下列教學課程中，您將了解 [SQL Database 開發](sql-database-develop-overview.md)和如何使用[連線庫](sql-database-libraries.md)。
 
 | 教學課程 | 說明 |
 |---|---|---|
@@ -180,4 +184,4 @@
 
 [探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

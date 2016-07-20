@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/31/2016"
+    ms.date="07/05/2016"
     ms.author="larryfr"/>
 
 # 使用 HDInsight 開發指令碼動作
@@ -50,6 +50,7 @@
 - [設定自訂元件來使用 Azure Blob 儲存體](#bPS6)
 - [將資訊寫入至 STDOUT 和 STDERR](#bPS7)
 - [將檔案儲存為具有 LF 行尾結束符號的 ASCII](#bps8)
+- [使用重試邏輯從暫時性錯誤復原](#bps9)
 
 > [AZURE.IMPORTANT] 指令碼動作必須在 60 分鐘內完成，否則就會逾時。在節點佈建期間，會同時執行指令碼與其他安裝和設定程序。與在您開發環境中的執行時間相較，爭用 CPU 時間和網路頻寬等資源可能會導致指令碼需要較長的時間才能完成。
 
@@ -107,7 +108,7 @@
 
 這會將傳送到 STDOUT (1，這是預設值，因此未在此處列出) 的資訊重新導向至 STDERR (2)。如需 IO 重新導向的詳細資訊，請參閱 [http://www.tldp.org/LDP/abs/html/io-redirection.html](http://www.tldp.org/LDP/abs/html/io-redirection.html)。
 
-如需檢視指令碼動作記錄之資訊的詳細資訊，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)。
+如需檢視指令碼動作記錄之資訊的詳細資訊，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)
 
 ###<a name="bps8"></a>將檔案儲存為具有 LF 行尾結束符號的 ASCII
 
@@ -115,6 +116,40 @@ Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束�
 
     $'\r': command not found
     line 1: #!/usr/bin/env: No such file or directory
+
+###<a name="bps9"></a> 使用重試邏輯從暫時性錯誤復原
+
+下載檔案時，使用 apt-get 安裝封裝的動作，或其他透過網際網路傳輸資料的動作，可能會因為暫時性網路錯誤而失敗。例如，您正進行通訊的遠端資源可能正處於容錯移轉至備份節點的程序中。
+
+若要讓您的指令碼從暫時性錯誤中復原，可以實作重試邏輯。以下是函式的範例，其會執行任何傳遞給函式的命令，並且 (如果命令失敗) 重試三次。每次重試之間會等待兩秒。
+
+    #retry
+    MAXATTEMPTS=3
+
+    retry() {
+        local -r CMD="$@"
+        local -i ATTMEPTNUM=1
+        local -i RETRYINTERVAL=2
+
+        until $CMD
+        do
+            if (( ATTMEPTNUM == MAXATTEMPTS ))
+            then
+                    echo "Attempt $ATTMEPTNUM failed. no more attempts left."
+                    return 1
+            else
+                    echo "Attempt $ATTMEPTNUM failed! Retrying in $RETRYINTERVAL seconds..."
+                    sleep $(( RETRYINTERVAL ))
+                    ATTMEPTNUM=$ATTMEPTNUM+1
+            fi
+        done
+    }
+
+以下是使用此函式的範例。
+
+    retry ls -ltr foo
+
+    retry wget -O ./tmpfile.sh https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
 
 ## <a name="helpermethods"></a>自訂指令碼的協助程式方法
 
@@ -190,7 +225,7 @@ Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。您�
 - [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)
 - [在 HDInsight Hadoop 叢集上安裝和使用 R](hdinsight-hadoop-r-scripts-linux.md)
 - [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install-linux.md)
-- [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install-linux.md)  
+- [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install-linux.md)
 
 > [AZURE.NOTE] 以上的連結文件是針對以 Linux 為基礎的 HDInsight 叢集。對於使用以 Windows 為基礎的 HDInsight 的指令碼，請參閱[使用 HDInsight 開發指令碼動作 (Windows)](hdinsight-hadoop-script-actions.md) 或使用每篇文章頂端的可用連結。
 
@@ -229,8 +264,8 @@ _解決方式_：將檔案儲存為 ASCII，或不具有 BOM 的 UTF-8。您也�
 
 * 深入了解[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
 
-* 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)，深入了解如何建立 .NET 應用程式來管理 HDInsight。
+* 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)，深入了解如何建立 .NET 應用程式來管理 HDInsight
 
 * 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx)，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

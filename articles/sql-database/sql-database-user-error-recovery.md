@@ -29,7 +29,7 @@ Azure SQL Database 在執行還原時間點時，一律會還原到新的資料�
 
 發生使用者錯誤或非預期的資料修改時，還原時間點可用來將資料庫還原至資料庫保留期限內的任何時間點。
 
-「基本」資料庫有 7 天的保留期，「標準」資料庫有 14 天的「保留期」，「高階」資料庫則有 35 天的保留期。若要深入了解資料庫備份保留，請參閱[自動備份](sql-database-automated-backups.md)。
+「基本」資料庫有 7 天的保留期，「標準」資料庫有 35 天的「保留期」，「高階」資料庫則有 35 天的保留期。若要深入了解資料庫備份保留，請參閱[自動備份](sql-database-automated-backups.md)。
 
 若要執行還原時間點，請參閱：
 
@@ -59,4 +59,4 @@ Azure SQL Database 在執行還原時間點時，一律會還原到新的資料�
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
 - 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

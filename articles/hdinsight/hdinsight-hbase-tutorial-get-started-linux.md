@@ -216,7 +216,7 @@ HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請�
 	您必須使用 base64 編碼 -d 參數中指定的值。在此範例中︰
 
 	- MTAwMA==: 1000
-	- UGVyc29uYWw6TmFtZQ==: Peronsal:Name
+	- UGVyc29uYWw6TmFtZQ==: Personal:Name
 	- Sm9obiBEb2xl: John Dole
 
 	[false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) 可讓您插入多個 (批次) 值。
@@ -325,4 +325,4 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-bigtable.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

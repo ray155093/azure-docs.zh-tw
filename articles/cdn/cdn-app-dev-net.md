@@ -13,16 +13,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="07/01/2016"
 	ms.author="casoper"/>
 
-# 開始使用適用於 .NET 的 Azure CDN 程式庫
+# 開始使用 Azure CDN 開發
+
+> [AZURE.SELECTOR]
+- [.NET](cdn-app-dev-net.md)
+- [Node.js](cdn-app-dev-node.md)
 
 您可以使用[適用於 .NET 的 Azure CDN 程式庫](https://msdn.microsoft.com/library/mt657769.aspx)，自動建立和管理 CDN 設定檔與端點。本教學課程將逐步建立簡單的 .NET 主控台應用程式，示範數個可用的作業。本教學課程的目的不是詳細說明適用於 .NET 的 Azure CDN 程式庫的所有層面。
 
 您需要 Visual Studio 2015，才能完成本教學課程。[Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs.aspx) 可供免費下載。
 
-如需本教學課程的完整範例，請參閱[這裡](https://code.msdn.microsoft.com/Azure-CDN-Management-1f2fba2c)。
+> [AZURE.TIP] 您可以在 MSDN 上下載[本教學課程中完成的專案](https://code.msdn.microsoft.com/Azure-CDN-Management-1f2fba2c)。
 
 [AZURE.INCLUDE [cdn-app-dev-prep](../../includes/cdn-app-dev-prep.md)]
 
@@ -36,7 +40,7 @@
 
 我們的專案將使用 Nuget 封裝內含的一些 Azure 程式庫。讓我們先將它們新增至專案。
 
-1. 從 [工具] 功能表中，依序按一下 [Nuget 封裝管理員] 和 [封裝管理員主控台]。
+1. 依序按一下 [工具] 功能表、[Nuget 封裝管理員] 和 [封裝管理員主控台]。
 
 	![管理 Nuget 封裝](./media/cdn-app-dev-net/cdn-manage-nuget.png)
 
@@ -142,7 +146,7 @@
 		}
 		else
 		{
-			// They're not pressing Y or N.  Let's ask them again.
+			// They pressed something other than Y or N.  Let's ask them again.
 			return PromptUser(Question);
 		}
 	}
@@ -264,7 +268,7 @@ private static void CreateCdnEndpoint(CdnManagementClient cdn)
 }
 ```
 
->[AZURE.NOTE] 上述範例會指派端點一個名為「Contoso」的來源且主機名稱為 `www.contoso.com`。您應該變更此項以指向您自己來源的主機名稱。
+>[AZURE.NOTE] 上述範例會為端點指派一個名為「Contoso」的來源且主機名稱為 `www.contoso.com`。您應該變更此項以指向您自己來源的主機名稱。
 
 ## 清除端點
 
@@ -283,7 +287,7 @@ private static void PromptPurgeCdnEndpoint(CdnManagementClient cdn)
 }
 ```
 
->[AZURE.NOTE] 在上述範例中，字串 `/*` 代表我想要清除端點路徑根目錄中的所有項目。這相當於在 Azure 入口網站的 [清除] 對話方塊中勾選 [全部清除] 。在 `CreateCdnProfile` 方法中，我已經使用程式碼 `Sku = new Sku(SkuName.StandardVerizon)` 來建立設定檔做為 **來自 Verizon 的 Azure CDN** 設定檔，因此這將會成功。不過，**來自 Akamai 的 CDN** 設定檔不支援 [全部清除]，因此，如果我在本教學課程中使用 Akamai 設定檔，就必須包含要清除的特定路徑。
+>[AZURE.NOTE] 在上述範例中，字串 `/*` 代表我想要清除端點路徑根目錄中的所有項目。這相當於在 Azure 入口網站的 [清除] 對話方塊中勾選 [全部清除]。在 `CreateCdnProfile` 方法中，我已經使用程式碼 `Sku = new Sku(SkuName.StandardVerizon)` 來建立設定檔做為 **來自 Verizon 的 Azure CDN** 設定檔，因此這將會成功。不過，**來自 Akamai 的 CDN** 設定檔不支援 [全部清除]，因此，如果我在本教學課程中使用 Akamai 設定檔，就必須包含要清除的特定路徑。
 
 ## 刪除 CDN 設定檔和端點
 
@@ -331,6 +335,6 @@ private static void PromptDeleteCdnProfile(CdnManagementClient cdn)
 
 若要查看此逐步解說中已完成的專案，請[下載範例](https://code.msdn.microsoft.com/Azure-CDN-Management-1f2fba2c)。
 
-若要尋找適用於 .NET 的 Azure CDN 管理程式庫上的其他相關文件，請檢視 [MSDN 上的參考](https://msdn.microsoft.com/library/mt657769.aspx)。
+若要尋找適用於 .NET 的 Azure CDN 管理程式庫的其他相關文件，請檢視 [MSDN 上的參考](https://msdn.microsoft.com/library/mt657769.aspx)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

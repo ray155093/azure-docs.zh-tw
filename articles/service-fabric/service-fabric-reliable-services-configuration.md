@@ -93,7 +93,7 @@ ReplicatorConfig
 |MaxRecordSizeInKB|KB|1024|複寫器可以寫入記錄檔中的最大記錄大小。此值必須是 4 的倍數且大於 16。|
 |SharedLogId|GUID|""|指定用於識別此複本共用記錄檔的唯一 GUID。服務通常不應使用此設定。不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。|
 |SharedLogPath|完整路徑名稱|""|指定建立此複本共用記錄檔的完整路徑。服務通常不應使用此設定。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。|
-
+|SlowApiMonitoringDuration|秒|300|設定 Managed API 呼叫的監視間隔。範例︰使用者提供的備份回呼函式。經過這段間隔後，警告健全狀況報告會傳送到健全狀況管理員。|
 
 ### 透過程式碼的範例組態
 ```csharp
@@ -162,4 +162,4 @@ SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便讓服務使�
  - [在 Visual Studio 中偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
  - [可靠的服務的開發人員參考資料](https://msdn.microsoft.com/library/azure/dn706529.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

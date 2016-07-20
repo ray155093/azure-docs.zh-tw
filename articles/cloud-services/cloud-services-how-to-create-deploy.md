@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016"
+	ms.date="07/05/2016"
 	ms.author="adegeo"/>
 
 
@@ -34,14 +34,14 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 ## 概念
 需要三個元件才能部署應用程式成為 Azure 中的雲端服務：
 
-- **服務定義** 
-雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
+- **服務定義**
+ 雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
 
-- **服務組態** 
-雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
+- **服務組態**
+ 雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
 
-- **服務封裝** 
-服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
+- **服務封裝**
+ 服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
   
 您可以在[這裡](cloud-services-model-and-package.md)深入了解這些內容，以及如何建立封裝。
 
@@ -139,7 +139,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 
 	狀態應該會顯示服務為 [正在執行]。
 
-2. 在 [快速瀏覽] 下，按一下網站 URL，在網頁瀏覽器中開啟您的雲端服務。
+2. 在 [quick glance] 下，按一下網站 URL，在網頁瀏覽器中開啟您的雲端服務。
 
     ![CloudServices\_QuickGlance](./media/cloud-services-how-to-create-deploy/CloudServices_QuickGlance.png)
 
@@ -153,4 +153,4 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 * [管理您的雲端服務](cloud-services-how-to-manage.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0706_2016-->

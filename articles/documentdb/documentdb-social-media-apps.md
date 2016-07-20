@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="06/29/2016" 
 	ms.author="mimig"/>
 
 # 使用 DocumentDB 進行社交活動
@@ -106,6 +106,33 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 您也可以使用相同的技術，以延後方式來處理貼文的點數和按讚數，建立最終一致的環境。
 
+至於粉絲，則需要有更多的技巧來處理。DocumentDB 的文件大小限制為 512 Kb，因此您可能會考慮使用下列結構，以文件形式儲存粉絲：
+
+    {
+    	"id":"234d-sd23-rrf2-552d",
+    	"followersOf": "dse4-qwe2-ert4-aad2",
+    	"followers":[
+    		"ewr5-232d-tyrg-iuo2",
+    		"qejh-2345-sdf1-ytg5",
+    		//...
+    		"uie0-4tyg-3456-rwjh"
+    	]
+    }
+
+這可能適用於有數千位粉絲的使用者，但是，如果有一些名人加入我們的行列，這個處理方法最終將會觸達文件大小上限。
+
+為了解決這個問題，我們可以使用混合的處理方法。我們可以在使用者統計資料文件中儲存粉絲人數：
+
+    {
+    	"id":"234d-sd23-rrf2-552d",
+    	"user": "dse4-qwe2-ert4-aad2",
+    	"followers":55230,
+    	"totalPosts":452,
+    	"totalPoints":11342
+    }
+
+接著使用[擴充功能](https://github.com/richorama/AzureStorageExtensions#azuregraphstore)，將實際的粉絲圖表儲存於 Azure 儲存體資料表，以允許進行簡單的「A-跟隨-B」儲存和擷取。如此一來，我們就可將確切粉絲清單的擷取程序 (當我們需要它時) 委派給 Azure 儲存體資料表，但對於快速號碼查閱，我們仍會繼續使用 DocumentDB。
+
 ## 「階梯」模式與資料複製
 
 您可能已經注意到，參考貼文的 JSON 文件中，有一位使用者出現多次。您猜的沒錯，這意謂著在使用這種反正規化的情況下，代表使用者的資訊可能會出現在多個位置。
@@ -140,21 +167,26 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 最大的一階為「擴充使用者」。它包含所有重要的使用者資訊，加上其他並不需要快速讀取或最終使用情況的相關資料 (例如登入過程)。這些資料可以儲存在 DocumentDB 外部、Azure SQL Database 中或 Azure 儲存體資料表中。
 
-為什麼我們要分割使用者，甚至在不同位置儲存這些資訊？ 因為 DocumentDB 的儲存空間有限，而且從效能方面來看，文件愈大，查詢也就愈昂貴。讓文件保持精簡，只包含適當資訊以針對社交網路進行所有與效能相依的查詢，並將用於最終情況 (例如完整的設定檔編輯、登入，甚至是針對資料採礦進行的使用情況分析和巨量資料計劃) 所需的其他額外資訊加以儲存。我們不用擔心針對資料採礦進行的資料收集作業是否比較慢，因為這項作業執行於 Azure SQL Database 上，但我們必須保障使用者擁有快速且精簡的體驗。在 DocumentDB 中儲存的「使用者」，應類似如下︰
+為什麼我們要分割使用者，甚至在不同位置儲存這些資訊？ 因為 DocumentDB 的儲存空間[有限](documentdb-limits.md)，而且從效能方面來看，文件愈大，查詢也就愈昂貴。讓文件保持精簡，只包含適當資訊以針對社交網路進行所有與效能相依的查詢，並將用於最終情況 (例如完整的設定檔編輯、登入，甚至是針對資料採礦進行的使用情況分析和巨量資料計劃) 所需的其他額外資訊加以儲存。我們不用擔心針對資料採礦進行的資料收集作業是否比較慢，因為這項作業執行於 Azure SQL Database 上，但我們必須保障使用者擁有快速且精簡的體驗。在 DocumentDB 中儲存的「使用者」，應類似如下︰
 
     {
         "id":"dse4-qwe2-ert4-aad2",
         "name":"John",
         "surname":"Doe",
+        "username":"johndoe"
         "email":"john@doe.com",
-        "twitterHandle":"@john",
-        "totalPoints":100,
-        "totalPosts":24,
-        "following":{
-            "count":2,
-            "list":[
-                UserChunk1, UserChunk2
-            ]
+        "twitterHandle":"@john"
+    }
+
+而貼文應該看起來像這樣：
+
+    {
+        "id":"1234-asd3-54ts-199a",
+        "title":"Awesome post!",
+        "date":"2016-01-02",
+        "createdBy":{
+        	"id":"dse4-qwe2-ert4-aad2",
+    		"username":"johndoe"
         }
     }
 
@@ -164,13 +196,13 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 一般來說，使用者都能很幸運地產生許多內容。即使內容不是直接在本身的內容串流中，我們也應該可以提供搜尋及尋找這些內容的功能，因為有時我們可能不想關注建立者，或只是想要尋找 6 個月前的舊貼文。
 
-幸好，我們是使用 Azure DocumentDB，因此可以透過 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)，輕鬆地在幾分鐘的時間內實作搜尋引擎，而不需要輸入任何一行程式碼 (當然除了搜尋程序和 UI 以外)。
+幸好，我們使用的是 Azure DocumentDB，因此可以透過 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)，輕鬆地在幾分鐘的時間內實作搜尋引擎，而不需要輸入任何一行程式碼 (當然除了搜尋程序和 UI 以外)。
 
 為什麼可以這麼輕鬆？
 
-Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (其為與您的資料存放庫連結的背景處理序)，並會自動新增、更新或移除您索引中的物件。它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)以及強大的 [Azure DocumentDB 索引子](../documentdb/documentdb-search-indexer.md)。從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案，來搜尋所有內容。
+Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (這是與您資料儲存機制連結的背景處理序)，並會自動新增、更新或移除您在索引中的物件。它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)，很幸運地也支援 [Azure DocumentDB 索引子](../documentdb/documentdb-search-indexer.md)。從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案來搜尋所有內容。
 
-如需 Azure 搜尋服務的詳細資訊，請瀏覽 [Hitchhiker’s Guide to Search](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/) (搜尋漫遊指南)。
+如需 Azure 搜尋服務的詳細資訊，請瀏覽[搜尋漫遊指南](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/)。
 
 ## 基礎知識
 
@@ -178,11 +210,13 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 答案很簡單：讓這些內容發揮效益，並從中學習。
 
-但是，我們可以學習到什麼呢？ 其中幾個簡單的範例包括[情感分析](https://en.wikipedia.org/wiki/Sentiment_analysis)、根據使用者喜好設定的內容建議，甚至是可確保社交網路所發行之所有內容都適合闔家瀏覽的自動化內容仲裁者。
+但是，我們可以學習到什麼呢？ 其中幾個簡單的範例包括[情感分析](https://en.wikipedia.org/wiki/Sentiment_analysis)、根據使用者喜好設定的內容建議，甚至還包括自動化內容仲裁者，其可確保社交網路所發行的所有內容都適合闔家瀏覽。
 
 現在，大家一定更感興趣了吧？您一定以為要有數學的博士學位，才能從簡單的資料庫和檔案中擷取這些模式和資訊，但您錯了。
 
 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 是一項完全受管理的雲端服務，其隨附於 [Cortana Intelligence Suite](https://www.microsoft.com/en/server-cloud/cortana-analytics-suite/overview.aspx)，可讓您透過簡單的拖放介面使用演算法來建立工作流程、以 [R] (https://en.wikipedia.org/wiki/R_(programming_language)) 撰寫自己的演算法程式碼，或使用一些內建和現成的 API，例如︰[文字分析](https://gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2)、[內容仲裁者](https://www.microsoft.com/moderator)或[建議](https://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)。
+
+為了達成上述任一個機器學習服務案例，我們可以使用 [Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/) 內嵌不同來源的資訊，並使用 [U-SQL](https://azure.microsoft.com/documentation/videos/data-lake-u-sql-query-execution/) 來處理資訊，並產生可由 Azure Machine Learning 處理的輸出。
 
 ## 結論
 
@@ -194,8 +228,8 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 ## 後續步驟
 
-閱讀[在 DocumentDB 中模型化資料](documentdb-modeling-data.md)文章，以深入了解資料模型化。如果您想了解 DocumentDB 的其他使用案例，請參閱[常見的 DocumentDB 使用案例](documentdb-use-cases.md)。
+請閱讀[在 DocumentDB 中模型化資料](documentdb-modeling-data.md)文章，以深入了解資料模型化。如果您想了解 DocumentDB 的其他使用案例，請參閱[常見的 DocumentDB 使用案例](documentdb-use-cases.md)。
 
 或者，您可以遵循 [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)以深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/22/2016"
+	ms.date="07/06/2016"
 	ms.author="genli"/>
 
 # 如何新增或變更 Azure 管理員角色
@@ -48,7 +48,7 @@ Microsoft Azure 中的管理員角色有三種：
 
 	**注意**
 	- 擁有者角色具有與共同管理員相同的存取權限。此角色沒有 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)的存取權限。
-	- 您透過 [Azure 入口網站](https://portal.azure.com)新增的擁有者無法管理 [Azure 傳統入口網站](https://manage.windowsazure.com)中的服務。  
+	- 您透過 [Azure 入口網站](https://portal.azure.com)新增的擁有者無法管理 [Azure 傳統入口網站](https://manage.windowsazure.com)中的服務。
 
 5. 輸入您想要新增為擁有者的使用者的電子郵件地址，按一下使用者，然後按一下 [選取]。
 
@@ -69,7 +69,7 @@ Microsoft Azure 中的管理員角色有三種：
 下列電子郵件地址可以新增為共同管理員：
 
 * **Microsoft 帳戶** (先前稱為 Windows Live ID) </br> 您可以使用 Microsoft 帳戶登入所有消費者導向的 Microsoft 產品和雲端服務，例如 Outlook (Hotmail)、Skype (MSN)、OneDrive、Windows Phone 和 Xbox LIVE。
-* **組織帳戶**</br> 組織帳戶是建立在 Azure Active Directory 之下的帳戶。組織帳戶地址的樣式如下：user@&lt;yourdomain&gt;.onmicrosoft.com
+* **組織帳戶**</br> 組織帳戶是建立在 Azure Active Directory 之下的帳戶。組織帳戶地址的樣式如下：user@&lt;您的網域&gt;.onmicrosoft.com
 
 ### 限制和約束
 
@@ -94,7 +94,7 @@ Microsoft Azure 中的管理員角色有三種：
 
 2. 選取您想變更的訂用帳戶。
 
-3. 按一下右側的 [編輯訂用帳戶] 詳細資料。</br>
+3. 按一下右側的 [編輯訂用帳戶詳細資料]。</br>
 
 	![editsub](./media/billing-add-change-azure-subscription-administrator/editsub.png)
 
@@ -104,14 +104,14 @@ Microsoft Azure 中的管理員角色有三種：
 
 ## 如何變更帳戶管理員
 
-若要將 Azure 帳戶的擁有權移轉到另一個帳戶，請參閱[移轉 Azure 訂用帳戶](billing-subscription-transfer.md)。
+若要將 Azure 帳戶的擁有權轉移到另一個帳戶，請參閱[轉移 Azure 訂用帳戶的擁有權](billing-subscription-transfer.md)。
 
 ## 後續步驟
 
 * 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](./active-directory/active-directory-understanding-resource-access.md)
 
-* 如需有關 Azure Active Directory 如何與您的 Azure 訂用帳戶關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated directory.md)
+* 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)
 
-* 如需有關 Azure Active Directory 如何與您的 Azure 訂用帳戶關聯的詳細資訊，請參閱[在 Azure Active Directory (Azure AD) 中指派系統管理員角色](./active-directory/active-directory-assign-admin-roles.md)
+* 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱[在 Azure Active Directory (Azure AD) 中指派系統管理員角色](./active-directory/active-directory-assign-admin-roles.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0706_2016-->

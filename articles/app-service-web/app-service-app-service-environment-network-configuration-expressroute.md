@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
+	ms.date="07/01/2016" 
 	ms.author="stefsch"/>
 
 # 使用 ExpressRoute 之 App Service 環境的網路組態詳細資料 
@@ -21,7 +21,7 @@
 ## 概觀 ##
 客戶可以將 [Azure ExpressRoute][ExpressRoute] 循環連接至虛擬網路基礎結構，因而將其內部部署網路延伸至 Azure。您可以在這個[虛擬網路][virtualnetwork]基礎結構的子網路中建立 App Service 環境。在 App Service 環境上執行的應用程式接著可以建立與後端資源的安全連線，而後端資源只能透過 ExpressRoute 連線來存取。
 
-**注意：**在「v2」虛擬網路中，無法建立 App Service 環境。App Service 環境目前僅支援處理使用 RFC1918 位址空間 (即私人位址) 的傳統 "v1" 虛擬網路。
+**注意：**在「v2」虛擬網路中，無法建立 App Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -60,7 +60,7 @@
 
 **重要事項：**UDR 中定義的路由**必須**明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
 
-**非常重要：****未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 如需使用者定義路由的背景資訊，請參閱此[概觀][UDROverview]。
 
@@ -140,4 +140,4 @@
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

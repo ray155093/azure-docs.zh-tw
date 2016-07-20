@@ -27,7 +27,6 @@
  - [Azure Active Directory 報告回填](active-directory-reporting-backfill.md)
  - [Azure Active Directory 報告延遲](active-directory-reporting-latencies.md)
  - [Azure Active Directory 報告「未知的執行者」事件](active-directory-reporting-unknown-actor.md)
- - [Azure Active Directory 所有使用者登入活動報告](active-directory-reporting-all-user-sign-in-activity-report.md)
  - [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0706_2016-->

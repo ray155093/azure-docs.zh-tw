@@ -75,7 +75,7 @@
 | **Interxion** | 支援 | 支援 | 阿姆斯特丹、倫敦、巴黎 |
 | **Jisc** | 敬請期待 | 敬請期待 | 倫敦+ | 
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
-| **Megaport** | 支援 | 支援 | 達拉斯、拉斯維加斯+、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
+| **Megaport** | 支援 | 支援 | 達拉斯、香港、拉斯維加斯+、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
 | **MTN** | 支援 | 支援 | 倫敦 |
 | **NEXTDC** | 支援 | 支援 | 墨爾本、雪梨 |
 | **NTT Communications** | 支援 | 支援 | 倫敦、大阪、東京 |
@@ -164,4 +164,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

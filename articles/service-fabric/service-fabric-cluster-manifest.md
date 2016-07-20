@@ -19,7 +19,7 @@
 
 # 獨立 Windows 叢集的組態設定
 
-本文說明如何使用 **ClusterConfig.JSON** 檔案來設定獨立 Service Fabric 叢集。當您[下載獨立 Service Fabric 封裝](service-fabric-cluster-creation-for-windows-server.md#downloadpackage)時，即會將這個檔案下載至您的工作電腦。ClusterConfig.JSON 檔案可讓您針對 Service Fabric 叢集指定如下的資訊：Service Fabric 節點及其 IP 位址、叢集上不同類型的節點、安全性組態，以及關於失敗/升級網域的網路拓撲。
+本文說明如何使用 **ClusterConfig.JSON** 檔案來設定獨立 Service Fabric 叢集。當您[下載獨立 Service Fabric 封裝](service-fabric-cluster-creation-for-windows-server.md#downloadpackage)時，即會將這個檔案下載至您的工作電腦。ClusterConfig.JSON 檔案可讓您針對 Service Fabric 叢集指定如下的資訊：Service Fabric 節點及其 IP 位址、叢集上不同類型的節點、安全性組態，以及關於容錯/升級網域的網路拓撲。
 
 我們後續將會檢查此檔案的不同區段。
 
@@ -75,9 +75,9 @@ Service Fabric 叢集至少需要 3 個節點。您可以根據安裝程式，�
         "etlReadIntervalInMinutes": "5",
         "uploadIntervalInMinutes": "10",
         "dataDeletionAgeInDays": "7",
-        "etwStoreConnectionString": "file:c:\\ProgramData\\SF\\FileshareETW",
-        "crashDumpConnectionString": "file:c:\\ProgramData\\SF\\FileshareCrashDump",
-        "perfCtrConnectionString": "file:c:\\ProgramData\\SF\\FilesharePerfCtr"
+        "etwStoreConnectionString": "file:c:\ProgramData\SF\FileshareETW",
+        "crashDumpConnectionString": "file:c:\ProgramData\SF\FileshareCrashDump",
+        "perfCtrConnectionString": "file:c:\ProgramData\SF\FilesharePerfCtr"
     },
 
 這些變數有助於收集 ETW 追蹤記錄檔、損毀傾印，以及效能計數器。如需 ETW 追蹤記錄檔的詳細資訊，請參閱 [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) 和 [ETW 追蹤](https://msdn.microsoft.com/library/ms751538.aspx)。適用於 Service Fabric 節點和叢集的[損毀傾印](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/)可導向至 **crashDumpConnectionString** 資料夾。適用於叢集的[效能計數器](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx)可導向至電腦上的 **perfCtrConnectionString** 資料夾。
@@ -137,10 +137,10 @@ ClusterConfig.JSON 中的**屬性**區段可用來設定叢集，如下所示。
         "name": "Setup",
         "parameters": [{
             "name": "FabricDataRoot",
-            "value": "C:\\ProgramData\\SF"
+            "value": "C:\ProgramData\SF"
         }, {
             "name": "FabricLogRoot",
-            "value": "C:\\ProgramData\\SF\\Log"
+            "value": "C:\ProgramData\SF\Log"
     }]
 
 請注意，如果您只自訂資料根目錄，則記錄根目錄將會以資料根目錄的下一個層級來取代。
@@ -150,4 +150,4 @@ ClusterConfig.JSON 中的**屬性**區段可用來設定叢集，如下所示。
 
 當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[在內部部署或雲端建立 Azure Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

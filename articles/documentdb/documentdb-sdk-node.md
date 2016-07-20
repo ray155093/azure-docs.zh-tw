@@ -47,7 +47,7 @@
 
 ###<a name="1.6.0"/>1.6.0</a>
 
-- 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。 
+- 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
 
 ###<a name="1.5.6"/>1.5.6</a>
 
@@ -79,7 +79,7 @@
 
 ### <a name="1.4.0"/>1.4.0</a>
 
-- 實作 Upsert。documentClient 上新的 upsertXXX 方法。 
+- 實作 Upsert。documentClient 上新的 upsertXXX 方法。
 
 ### <a name="1.3.0"/>1.3.0</a>
 
@@ -98,7 +98,7 @@
 ### <a name="1.2.0"/>1.2.0</a>
 
 - 新增對地理空間索引的支援。
-- 驗證所有資源的識別碼屬性。資源的識別碼不能包含 ?、/、#、&#47;&#47; 等字元，或在結尾處使用空格。 
+- 驗證所有資源的識別碼屬性。資源的識別碼不能包含 ?、/、#、&#47;&#47; 等字元，或在結尾處使用空格。
 - 將新標頭「索引轉換進度」加至 ResourceResponse。
 
 ### <a name="1.1.0"/>1.1.0</a>
@@ -171,4 +171,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

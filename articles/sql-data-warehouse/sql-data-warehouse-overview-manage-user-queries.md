@@ -39,13 +39,13 @@
 <!--Image references-->
 
 <!--Article references-->
-[尋找長時間執行的查詢]: sql-data-warehouse-manage-find-long-running-queries.md
-[並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
-[管理概觀]: sql-data-warehouse-overview-manage.md
+[尋找長時間執行的查詢]: ./sql-data-warehouse-manage-monitor.md
+[並行存取和工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
+[管理概觀]: ./sql-data-warehouse-overview-manage.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

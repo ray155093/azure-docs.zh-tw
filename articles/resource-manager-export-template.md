@@ -147,7 +147,7 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
 
       ![匯出資源群組](./media/resource-manager-export-template/export-resource-group.png)
 
-     並非所有的資源類型都支援匯出範本功能。如果您的資源群組只包含本文中顯示的儲存體帳戶和虛擬網路，將不會看到錯誤。不過，如果您已建立其他資源類型，您可能會看到錯誤，指出匯出有問題。您將在[修正匯出問題](#fixing-export-issues)一節中了解如何處理這些問題。
+     並非所有的資源類型都支援匯出範本功能。如果您的資源群組只包含本文中顯示的儲存體帳戶和虛擬網路，將不會看到錯誤。不過，如果您已建立其他資源類型，您可能會看到錯誤，指出匯出有問題。您將在[修正匯出問題](#fix-export-issues)一節中了解如何處理這些問題。
 
       
 
@@ -342,4 +342,4 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
 - 若要了解如何透過 PowerShell 匯出範本，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
 - 若要了解如何透過 Azure CLI 匯出範本，請參閱[搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

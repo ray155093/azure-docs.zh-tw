@@ -25,6 +25,10 @@
 
 進階使用者在移轉至 Azure SQL Database 之前，可以先使用 SQL Server Management Studio 來修正 SQL Server 資料庫相容性問題。
 
+
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
 ## 使用 SQL Server Management Studio
 
 使用 SQL Server Management Studio 以各種 Transact-SQL 命令修正相容性問題，例如 **ALTER DATABASE**。這個方法主要適用於擅長在即時資料庫上操作 Transact-SQL 的進階使用者。否則，建議您使用 SSDT。
@@ -43,4 +47,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

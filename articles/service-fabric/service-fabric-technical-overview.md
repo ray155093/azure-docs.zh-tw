@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/05/2016"
+   ms.date="07/01/2016"
    ms.author="ryanwi"/>
 
 # Service Fabric 術語概觀
@@ -90,4 +90,4 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 - [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
 - [應用程式案例](service-fabric-application-scenarios.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

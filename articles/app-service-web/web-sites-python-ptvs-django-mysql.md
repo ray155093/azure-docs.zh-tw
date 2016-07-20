@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="python"
 	ms.topic="get-started-article" 
-	ms.date="06/01/2016"
+	ms.date="07/07/2016"
 	ms.author="huvalo"/>
 
 # Azure 上使用 Python Tools 2.2 for Visual Studio 的 Django 和 MySQL 
@@ -26,16 +26,16 @@
 > 
 > [PTVS 2.1：Django 應用程式與 MySQL][video]
 
-如需更多相關文章 (說明透過使用 Bottle、Flask 和 Django 架構的 PTVS、透過 MongoDB、Azure 資料表儲存體、MySQL 和 SQL Database 服務進行 Azure App Service Web Apps 開發)，請參閱 [Python 開發人員中心]。雖然本文著重於 App Service，但其開發步驟類似於開發 [Azure 雲端服務]。
+如需更多相關文章 (說明透過使用 Bottle、Flask 和 Django 架構的 PTVS、透過 Azure 資料表儲存體、MySQL 和 SQL Database 服務進行 Azure App Service Web Apps 開發)，請參閱 [Python 開發人員中心]。雖然本文著重於 App Service，但其開發步驟類似於開發 [Azure 雲端服務]。
 
 ## 必要條件
 
- - Visual Studio 2013 或 2015
- - [Python 2.7 (32 位元)]
+ - Visual Studio 2015
+ - [Python 2.7 32 位元]或 [Python 3.4 32 位元]
  - [Python Tools 2.2 for Visual Studio]
  - [Python Tools 2.2 for Visual Studio 範例 VSIX]
- - [Azure SDK Tools for VS 2013] 或 [Azure SDK Tools for VS 2015]
- - Django 1.6 或更早版本
+ - [Azure SDK Tools for VS 2015]
+ - Django 1.9 或更新版本
 
 [AZURE.INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
@@ -49,7 +49,7 @@
 
 1. 在 Visual Studio 中，選取 [檔案]、[新增專案]。
 
-1. 在 [Python]、[範例] 之下可取得 PTVS 範例 VSIX 中的專案範本。選取 [Polls Django Web Project]，然後按一下 [確定] 以建立專案。
+1. 在 [Python]、[範例] 之下可取得 [Python Tools 2.2 for Visual Studio 範例 VSIX] 中的專案範本。選取 [Polls Django Web Project]，然後按一下 [確定] 以建立專案。
 
     ![New Project Dialog](./media/web-sites-python-ptvs-django-mysql/PollsDjangoNewProject.png)
 
@@ -57,17 +57,13 @@
 
     ![外部套件對話方塊](./media/web-sites-python-ptvs-django-mysql/PollsDjangoExternalPackages.png)
 
-1. 選取 **Python 2.7** 作為基礎解譯器。
+1. 選取 [Python 2.7] 或 [Python 3.4] 作為基礎解譯器。
 
     ![新增虛擬環境對話方塊](./media/web-sites-python-ptvs-django-mysql/PollsCommonAddVirtualEnv.png)
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下專案節點並選取 [Python]，然後選取 [Django Sync DB]。
-
-    ![Django Sync DB 命令](./media/web-sites-python-ptvs-django-mysql/PollsDjangoSyncDB.png)
+1. 在 [方案總管] 中，以滑鼠右鍵按一下專案節點並選取 [Python]，然後選取 [Django 移轉]。然後選取 [Django 建立超級使用者]。
 
 1. 這樣會開啟 Django 管理主控台，並在專案資料夾中建立 sqlite 資料庫。依照提示建立使用者。
-
-    ![Django 管理主控台視窗](./media/web-sites-python-ptvs-django-mysql/PollsDjangoConsole.png)
 
 1. 按 `F5` 確認應用程式可運作。
 
@@ -99,13 +95,7 @@
 
 1. 在導覽窗格的頂端，依序按一下 [新增]、[資料 + 儲存體] 和 [MySQL 資料庫]。
 
-1. 在搜尋方塊中輸入 "**mysql**"，然後按一下 [MySQL 資料庫]，再按一下 [建立]。
-
-    <!-- ![Choose Add-on Dialog](./media/web-sites-python-ptvs-django-mysql/PollsDjangoClearDBAddon1.png) -->
-
 1. 設定新的 MySQL 資料庫，做法是建立新的資源群組，然後為其選取一個適當的位置。
-
-    <!-- ![Personalize Add-on Dialog](./media/web-sites-python-ptvs-django-mysql/PollsDjangoClearDBAddon2.png) -->
 
 1. 建立 MySQL 資料庫後，請按一下資料庫刀鋒視窗中的 [屬性]。
 
@@ -135,15 +125,13 @@
 
 1. 在 [方案總管] 的 [Python 環境] 之下，在虛擬環境上按一下滑鼠右鍵並選取 [安裝 Python 封裝]。
 
-1. 使用 **easy\_install** 安裝 `mysql-python` 封裝。
+1. 使用 **pip** 安裝 `mysqlclient` 封裝。
 
     ![安裝套件對話方塊](./media/web-sites-python-ptvs-django-mysql/PollsDjangoMySQLInstallPackage.png)
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下專案節點並選取 [Python]，然後選取 [Django Sync DB]。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下專案節點並選取 [Python]，然後選取 [Django 移轉]。然後選取 [Django 建立超級使用者]。
 
     此舉會為您在上一節中建立的 MySQL 資料庫建立資料表。依照提示建立使用者，該使用者不需符合在本文第一節中建立之 sqlite 資料庫中的使用者。
-
-    ![Django 管理主控台視窗](./media/web-sites-python-ptvs-django-mysql/PollsDjangoConsole.png)
 
 1. 使用 `F5` 執行應用程式。使用 [Create Sample Polls] 建立的民調以及投票所提交的資料將會在 MySQL 資料庫中序列化。
 
@@ -155,7 +143,7 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 
     ![發行 Web 對話方塊](./media/web-sites-python-ptvs-django-mysql/PollsCommonPublishWebSiteDialog.png)
 
-1. 按一下 [Microsoft Azure Web Apps]。
+1. 按一下 [Microsoft Azure App Service]。
 
 1. 按一下 [新增] 以建立新的 Web 應用程式。
 
@@ -165,8 +153,6 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 	- **資源群組**
 	- **區域**
 	- 讓「資料庫伺服器」維持設定為「沒有資料庫」
-
-    <!-- ![Create Site on Microsoft Azure Dialog](./media/web-sites-python-ptvs-django-mysql/PollsCommonCreateWebSite.png) -->
 
 1. 接受所有其他預設值並按一下 [發佈]。
 
@@ -200,9 +186,9 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 for Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Python Tools 2.2 for Visual Studio 範例 VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
-[Azure SDK Tools for VS 2013]: http://go.microsoft.com/fwlink/?LinkId=323510
 [Azure SDK Tools for VS 2015]: http://go.microsoft.com/fwlink/?LinkId=518003
-[Python 2.7 (32 位元)]: http://go.microsoft.com/fwlink/?LinkId=517190
+[Python 2.7 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517190
+[Python 3.4 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517191
 [Python Tools for Visual Studio 說明文件]: http://aka.ms/ptvsdocs
 [在 Microsoft Azure 上進行遠端偵錯]: http://go.microsoft.com/fwlink/?LinkId=624026
 [Web 專案]: http://go.microsoft.com/fwlink/?LinkId=624027
@@ -211,4 +197,4 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 [MySQL]: http://www.mysql.com/
 [video]: http://youtu.be/oKCApIrS0Lo
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -40,7 +40,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 ## 開始之前
 
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 **Windows PowerShell** 區段下載並安裝最新版本。
-2. 您將建立應用程式閘道的虛擬網路和子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨位於虛擬網路子網路中。
+2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立新的子網路，僅供應用程式閘道使用。您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。
 3. 您要設定為使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## 建立應用程式閘道需要什麼？
@@ -270,4 +270,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

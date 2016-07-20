@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="02/22/2016"
+	ms.date="07/06/2016"
 	ms.author="raynew"/>
 
 
@@ -65,7 +65,9 @@ Azure Site Recovery 可藉由協調虛擬機器與實體伺服器的複寫、容
 
 ![設定儲存體對應](./media/site-recovery-storage-mapping/storage-mapping1.png)
 
-在此範例中：- 為 GOLD 儲存體 (SourceShare1) 上的任何虛擬機器建立複本虛擬機器時，它將會複寫至 GOLD\_TARGET 儲存體 (TargetShare1)。- 為 SILVER 儲存體 (SourceShare2) 上的任何虛擬機器建立複本虛擬機器時，它將會複寫至 SILVER\_TARGET (TargetShare2) 儲存體，依此類推。
+在此範例中：
+- 在 GOLD 儲存體 (SourceShare1) 上為任何虛擬機器建立複本虛擬機器時，它會複寫至 GOLD\_TARGET 儲存體 (TargetShare1)。
+- 在 SILVER 儲存體 (SourceShare2) 上為任何虛擬機器建立複本虛擬機器時，它會複寫至 SILVER\_TARGET (TargetShare2) 儲存體，依此類推。
 
 VMM 中的實際檔案共用及其獲指派的分類會顯示在下一個螢幕擷取畫面中。
 
@@ -98,4 +100,4 @@ VM5 | C:\\ClusterStorage\\SourceVolume3 | N/A | 沒有對應，因此會使用 H
 
 既然您已經更了解儲存體對應，[請準備開始部署 Azure Site Recovery](site-recovery-best-practices.md)。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0706_2016-->

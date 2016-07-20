@@ -33,13 +33,18 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 **先決條件：**
 
-- [Microsoft Visual Studio](https://www.visualstudio.com/zh-TW/visual-studio-homepage-vs.aspx)
+- [Microsoft Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 - [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
 - [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
 
 
 [AZURE.INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
+
+### 更多範例
+
+如需使用 Blob 儲存體的其他範例，請參閱[在 .NET 中開始使用 Azure Blob 儲存體](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)。您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
+
 
 [AZURE.INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
@@ -367,11 +372,15 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
 Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
 
 - **用戶端加密：**支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。程式庫也支援與 Azure 金鑰保存庫整合，以進行儲存體帳戶金鑰管理。如需詳細資訊，請參閱 [Microsoft Azure 儲存體的用戶端 .NET 加密](storage-client-side-encryption.md)。另請參閱[教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)。
-- **伺服器端加密**：Azure 儲存體現在支援伺服器端加密。請參閱[待用資料的 Azure 儲存體服務加密 (預覽)](storage-service-encryption.md)。 
+- **伺服器端加密**：Azure 儲存體現在支援伺服器端加密。請參閱[待用資料的 Azure 儲存體服務加密 (預覽)](storage-service-encryption.md)。
 
 ## 後續步驟
 
 了解 Blob 儲存體的基礎概念之後，請使用下列連結深入了解。
+
+### Blob 儲存體範例
+
+- [在 .NET 中開始使用 Azure Blob 儲存體](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
 
 ### Blob 儲存體參考
 
@@ -395,4 +404,4 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
   [.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
   [REST API reference]: http://msdn.microsoft.com/library/azure/dd179355
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

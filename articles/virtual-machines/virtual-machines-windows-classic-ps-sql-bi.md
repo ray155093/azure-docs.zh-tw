@@ -243,7 +243,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 **入口網站 URL 或 2012 和 2014 版的報表管理員 URL：**
 
-1. 在左窗格中，按一下 [Web Portal URL] (入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
+1. 在左窗格中，按一下 [Web Portal URL] \(入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
 
 1. 按一下 [Apply (套用)]。
 

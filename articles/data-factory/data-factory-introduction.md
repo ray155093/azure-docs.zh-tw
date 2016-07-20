@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="04/26/2016" 
+	ms.date="07/12/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 服務 (雲端中的資料整合服務) 簡介
@@ -69,5 +69,13 @@ Azure Data Factory 本身不會儲存任何資料。它可讓您建立資料驅�
 
 未來我們計畫讓 Azure 在每個地理位置都能支援 Azure Data Factory。
   
+## 後續步驟
+請遵循下列教學課程中的逐步指示，以了解如何建置具有資料管線的 Data Factory。
 
-<!---HONumber=AcomDC_0629_2016-->
+教學課程 | 說明
+-------- | -----------
+[使用 Hadoop 叢集建置處理資料的資料管線](data-factory-build-your-first-pipeline.md) | 在本教學課程中，您將會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來**處理資料**的資料管線。 |
+[建置資料管線以在兩個雲端資料存放區之間移動資料](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) | 在本教學課程中，您將建立具有管線的 Data Factory，以從 Blob 儲存體**移動資料**至 SQL Database。
+[建置資料管線，以使用資料管理閘道在內部部署資料存放區與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) | 在本教學課程中，您將建置具有管線的 Data Factory，以從**內部部署** SQL Server 資料庫**移動資料**至 Azure Blob。在逐步解說中，您將在您的電腦上安裝及設定資料管理閘道。 
+
+<!---HONumber=AcomDC_0713_2016-->

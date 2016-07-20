@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="dotnet"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/04/2016"
+	ms.date="06/30/2016"
 	ms.author="tdykstra"/>
 
 # Azure App Service 中 API Apps 的使用者驗證
@@ -91,7 +91,7 @@
 
 * 設定 App Service 以要求在呼叫中介層 API 應用程式時需要進行 Azure Active Directory (Azure AD) 驗證。
 * 建立 Azure AD 應用程式。
-* 設定 Azure AD 應用程式，使其在登入後將持有人權杖傳送到 AngularJS 前端。 
+* 設定 Azure AD 應用程式，使其在登入後將持有人權杖傳送到 AngularJS 前端。
 
 如果您遵循教學課程指示進行時遇到問題，請參閱教學課程尾端的[疑難排解](#troubleshooting) 一節。
  
@@ -119,7 +119,7 @@
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式]\(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
 
 	![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
 
@@ -135,7 +135,7 @@
 
 ### 選擇性：測試 API 應用程式
 
-1. 在瀏覽器中，移至 API 應用程式的 URL：在 Azure 入口網站的 [API 應用程式] 刀鋒視窗中，按一下 [URL] 下方的連結。  
+1. 在瀏覽器中，移至 API 應用程式的 URL：在 Azure 入口網站的 [API 應用程式] 刀鋒視窗中，按一下 [URL] 下方的連結。
 
 	由於未經驗證的要求不得觸達 API 應用程式，因此系統會將您重新導向至登入畫面。
 
@@ -329,11 +329,11 @@ ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI�
 
 [AZURE.INCLUDE [疑難排解](../../includes/app-service-api-auth-troubleshooting.md)]
 
-* 請確定不要混淆 ToDoListAPI (中介層) 和 ToDoListDataAPI (資料層)。例如，請確認將驗證新增至中介層 API 應用程式而非資料層。 
-* 請確定 AngularJS 原始碼其參考中介層 API 應用程式 URL (ToDoListAPI 而非 ToDoListDataAPI) 和正確的 Azure AD 用戶端識別碼。 
+* 請確定不要混淆 ToDoListAPI (中介層) 和 ToDoListDataAPI (資料層)。例如，請確認將驗證新增至中介層 API 應用程式而非資料層。
+* 請確定 AngularJS 原始碼其參考中介層 API 應用程式 URL (ToDoListAPI 而非 ToDoListDataAPI) 和正確的 Azure AD 用戶端識別碼。
 
 ## 後續步驟
 
 在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。在下一個教學課程中，您將學習如何[對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

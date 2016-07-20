@@ -62,7 +62,7 @@
 | Environment | dev、stg、prod | 取決於每個環境的用途與名稱。 |
 | 位置 | usw (West US)、use (East US 2) | 取決於資料中心的區域或組織的區域。 |
 | Azure 元件、服務或產品 | Rg (適用於資源群組)、VNet (適用於虛擬網路) | 取決於資源提供支援的產品。 |
-| 角色 | sql、ora、sp、iis | 取決於虛擬機器的角色。 |
+| 角色 | db、app、web | 取決於虛擬機器的角色。 |
 | 執行個體 | 01、02 和 03 等 | 適用於有一個以上執行個體的資源。例如，雲端服務中負載平衡的 Web 伺服器。 |
 
 
@@ -110,4 +110,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->
