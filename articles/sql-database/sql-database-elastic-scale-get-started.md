@@ -51,19 +51,20 @@
 
 恭喜您 – 您已在 Azure SQL Database 上成功建置並執行第一個使用彈性資料庫工具的分區化應用程式。請使用 Visual Studio 或 SQL Server Management Studio 連接到您的 Azure DB Server，以快速瀏覽範例所建立的分區。您會看見範例所建立的新範例分區資料庫和分區對應管理員資料庫。
 
-**附註**：如果您沒有 SQL Server Management Studio，請參閱[使用 SQL Server Management Studio 管理 Azure SQL Database](sql-database-manage-azure-ssms.md)，其中包含取得此工具的指示。
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
 
 ### 程式碼範例的主要部分
 
-1. **管理分區和分區對應**：此程式碼會解說如何使用 **ShardMapManagerSample.cs** 檔案中的分區、範圍和對應。您可以在下列連結中找到更多關於此主題的資訊：[分區對應管理](http://go.microsoft.com/?linkid=9862595)。  
-2. **資料相依路由**：**DataDependentRoutingSample.cs** 中說明如何將交易路由至正確的分區。如需詳細資訊，請參閱[資料相依路由](http://go.microsoft.com/?linkid=9862596)。 
+1. **管理分區和分區對應**：此程式碼會解說如何使用 **ShardMapManagerSample.cs** 檔案中的分區、範圍和對應。您可以在下列連結中找到更多關於此主題的資訊：[分區對應管理](http://go.microsoft.com/?linkid=9862595)。
+2. **資料相依路由**：**DataDependentRoutingSample.cs** 中說明如何將交易路由至正確的分區。如需詳細資訊，請參閱[資料相依路由](http://go.microsoft.com/?linkid=9862596)。
 3. **查詢多個分區**：**MultiShardQuerySample.cs** 檔案中說明如何在各個分區間進行查詢。如需詳細資訊，請參閱[多分區查詢](http://go.microsoft.com/?linkid=9862597)。
 4. **新增空的分區**：反覆新增空分區的作業，由 **AddNewShardsSample.cs** 檔案中的程式碼所執行。此主題的詳細資料請見：[分區對應管理](http://go.microsoft.com/?linkid=9862595)。
 
 ### 其他 Elastic Scale 作業
 
 1. **分割現有的分區**：分割分區的功能是透過 [分割合併工具] 來提供。您可以在這裡找到有關此工具的詳細資訊：[分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。
-2. **合併現有的分區**：分區合併也可使用 [分割合併工具] 來執行。如需詳細資訊，請參閱：[分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。   
+2. **合併現有的分區**：分區合併也可使用 [分割合併工具] 來執行。如需詳細資訊，請參閱：[分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。
 
 
 ## 成本
@@ -77,8 +78,8 @@
 ## 後續步驟
 如需有關彈性資料庫工具的詳細資訊，請參閱：
 
-* [彈性資料庫工具文件地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/) 
--    程式碼範例： 
+* [彈性資料庫工具文件地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
+-    程式碼範例：
     -    [彈性資料庫與 Azure SQL - 開始使用](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-a80d8dc6?SRC=VSIDE)
     -    [彈性資料庫與 Azure SQL - 與 Entity Framework 整合](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE)
     -    [指令碼中心的分區彈性](https://gallery.technet.microsoft.com/scriptcenter/Elastic-Scale-Shard-c9530cbe)
@@ -101,4 +102,4 @@
 [4]: ./media/sql-database-elastic-scale-get-started/output2.png
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

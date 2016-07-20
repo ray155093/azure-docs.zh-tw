@@ -28,7 +28,7 @@
 連線問題可能由下列任何一個原因所造成：
 
 - 在設計應用程式的過程中，無法套用最佳作法和設計指南。請參閱 [SQL Database 開發概觀](sql-database-develop-overview.md)以便開始使用。
-- SQL Azure 資料庫重新設定
+- Azure SQL Database 重新設定
 - 防火牆設定
 - 連線逾時
 - 不正確的登入資訊
@@ -53,7 +53,7 @@
 
 ## 針對持續性錯誤 (非暫時性錯誤) 進行疑難排解
 
-如果應用程式持續無法連接到 SQL Azure Database，通常表示下列其中一項發生問題︰
+如果應用程式持續無法連接到 Azure SQL Database，通常表示下列其中一項發生問題︰
 
 - 防火牆組態。Azure SQL Database 或用戶端防火牆封鎖 Azure SQL Database 的連接。
 - 用戶端上的網路重新設定：例如，新的 IP 位址或 Proxy 伺服器。
@@ -99,6 +99,6 @@
 - [一般暫時性錯誤處理指引](../best-practices-retry-general.md)
 - [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 - [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
-- [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale) 
+- [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

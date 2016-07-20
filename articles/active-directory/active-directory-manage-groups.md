@@ -67,7 +67,7 @@ Azure AD 存取管理解決方案的重點是安全性群組。使用安全性�
 ## 開始使用存取管理
 準備好開始了嗎？ 您可以嘗試一些可以使用 Azure AD 群組進行的基本工作。使用這些功能，針對組織中的不同資源，提供特殊存取權給不同群組的人員。以下是基本的首要步驟清單。
 
-* [建立簡單的規則，設定群組的動態成員資格](active-directory-accessmanagement-manage-groups.md#how-can-i-create-a-simple-rule-to-manage-members-of-a-group-dynamically)
+* [建立簡單的規則，設定群組的動態成員資格](active-directory-accessmanagement-manage-groups.md#how-can-i-manage-the-membership-of-a-group-dynamically)
 
 * [使用群組來管理 SaaS 應用程式的存取權](active-directory-accessmanagement-group-saasapps.md)
 
@@ -91,4 +91,4 @@ Azure AD 存取管理解決方案的重點是安全性群組。使用安全性�
 
 * [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

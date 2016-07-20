@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/08/2016"
+   ms.date="06/30/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 
@@ -85,7 +85,7 @@ WITH (
 
 ### 1\.2.建立外部資料來源
 
-使用此[建立外部資料來源][]命令以儲存資料的位置及類型。
+使用此 [CREATE EXTERNAL DATA SOURCE][] 命令以儲存資料的位置及類型。
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -100,7 +100,7 @@ WITH
 
 ## 2\.設定資料格式
 
-資料將會以文字檔儲存在 Azure Blob 儲存體中，每個欄位都會以分隔符號分隔。執行此[建立外部檔案格式][]命令以指定文字檔中資料的格式。Contoso 資料為未壓縮且以直立線符號分隔。
+資料將會以文字檔儲存在 Azure Blob 儲存體中，每個欄位都會以分隔符號分隔。執行此 [CREATE EXTERNAL FILE FORMAT][] 命令以指定文字檔中資料的格式。Contoso 資料為未壓縮且以直立線符號分隔。
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -232,7 +232,7 @@ GO
 
 ### 4\.2.將資料載入新資料表
 
-若要從 Azure Blob 儲存體載入資料，並將它儲存在您資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT][] (CTAS) T-SQL 陳述式。以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][] 陳述式。
+若要從 Azure Blob 儲存體載入資料，並將它儲存在您資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT][] \(CTAS) T-SQL 陳述式。以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。若要將資料載入新的資料表中，請針對每個資料表使用一個 [CTAS][] 陳述式。
 
 CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。
 
@@ -264,7 +264,7 @@ WHERE r.label = 'CTAS : Load [cso].[DimProduct]             '
 
 ## 5\.最佳化資料行存放區壓縮
 
-根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。載入完成後，某些資料列可能不會被壓縮為資料行存放區。有許多原因會導致發生此情況。若要深入了解，請參閱...。
+根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。載入完成後，某些資料列可能不會被壓縮為資料行存放區。有許多原因會導致發生此情況。若要深入了解，請參閱[管理資料行存放區索引][]。
 
 若要最佳化載入後的查詢效能和資料行存放區壓縮，請重建資料表以強制資料行存放區索引對所有資料列進行壓縮。
 
@@ -346,21 +346,22 @@ GROUP BY p.[BrandName]
 請使用 SQL 資料倉儲進行瀏覽。
 
 ## 後續步驟
-若要載入完整的 Contoso 零售資料倉儲資料，請使用 [SQL 資料倉儲開發概觀][]中的指令碼。
+若要載入完整的 Contoso 零售資料倉儲資料，請使用指令碼。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
-[Load data into SQL Data Warehouse]: sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
-[管理資料行存放區索引]：
-[統計資料]: sql-data-warehouse-develop-statistics.md
-[CTAS]: sql-data-warehouse-develop-ctas.md
-[label]: sql-data-warehouse-develop-label.md
+[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
+[Load data into SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[管理資料行存放區索引]: ./sql-data-warehouse-tables-index.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[CTAS]: ./sql-data-warehouse-develop-ctas.md
+[label]: ./sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
-[建立外部資料來源]: [建立外部資料來源]:
+[CREATE EXTERNAL DATA SOURCE]: https://msdn.microsoft.com/zh-TW/library/dn935022.aspx
+[CREATE EXTERNAL FILE FORMAT]: https://msdn.microsoft.com/zh-TW/library/dn935026.aspx
 [sys.dm_pdw_exec_requests]: https://msdn.microsoft.com/library/mt203887.aspx
 [REBUILD]: https://msdn.microsoft.com/library/ms188388.aspx
 
@@ -368,4 +369,4 @@ GROUP BY p.[BrandName]
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
 [載入完整 Contoso 零售資料倉儲]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

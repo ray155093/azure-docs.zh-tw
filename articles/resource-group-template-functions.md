@@ -432,7 +432,7 @@
 | baseUri | 是 | 基底 uri 的字串。
 | relativeUri | 是 | 要加入至基底 uri 字串的相對 uri 字串。
 
-**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 **http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 **http://contoso.com/resources/** 的基底 URI。
+**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 **http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數傳遞時，會產生 http://contoso.com/resources/** 的基底 URI**。
 
 下列範例顯示如何根據上層範本的值建構巢狀範本的連結。
 
@@ -444,9 +444,9 @@
 
 - [concat](#concat)
 - [length](#length)
-- [take](#take)
 - [skip](#skip)
 - [分割](#split)
+- [take](#take)
 
 <a id="length" />
 ### length
@@ -469,37 +469,6 @@
     },
     "variables": { 
         "nameLength": "[length(parameters('appName'))]"
-    }
-
-<a id="take" />
-### take
-**take(originalValue, numberToTake)**
-
-傳回陣列或字串，其中包含從陣列或字串開頭算起指定的元素或字元數目。
-
-| 參數 | 必要 | 說明
-| :--------------------------------: | :------: | :----------
-| originalValue | 是 | 要從中取得元素或字元的陣列或字串。
-| numberToTake | 是 | 要取得的元素或字元數目。如果此值為 0 或更小，則會傳回空白陣列或字串。如果大於指定之陣列或字串的長度，則會傳回陣列或字串中的所有元素。
-
-下列範例會從陣列中取得指定的元素數目。
-
-    "parameters": {
-      "first": {
-        "type": "array",
-        "defaultValue": [ "one", "two", "three" ]
-      },
-      "second": {
-        "type": "int"
-      }
-    },
-    "resources": [
-    ],
-    "outputs": {
-      "return": {
-        "type": "array",
-        "value": "[take(parameters('first'),parameters('second'))]"
-      }
     }
 
 <a id="skip" />
@@ -530,6 +499,37 @@
       "return": {
         "type": "array",
         "value": "[skip(parameters('first'),parameters('second'))]"
+      }
+    }
+
+<a id="take" />
+### take
+**take(originalValue, numberToTake)**
+
+傳回陣列或字串，其中包含從陣列或字串開頭算起指定的元素或字元數目。
+
+| 參數 | 必要 | 說明
+| :--------------------------------: | :------: | :----------
+| originalValue | 是 | 要從中取得元素或字元的陣列或字串。
+| numberToTake | 是 | 要取得的元素或字元數目。如果此值為 0 或更小，則會傳回空白陣列或字串。如果大於指定之陣列或字串的長度，則會傳回陣列或字串中的所有元素。
+
+下列範例會從陣列中取得指定的元素數目。
+
+    "parameters": {
+      "first": {
+        "type": "array",
+        "defaultValue": [ "one", "two", "three" ]
+      },
+      "second": {
+        "type": "int"
+      }
+    },
+    "resources": [
+    ],
+    "outputs": {
+      "return": {
+        "type": "array",
+        "value": "[take(parameters('first'),parameters('second'))]"
       }
     }
 
@@ -669,11 +669,11 @@
 
 **list* (resourceName 或 resourceIdentifier, apiVersion)**
 
-開頭為 **list** 的任何作業可在您的範本中用為函式，包括如上所示的 **listKeys**，以及 **list**、**listAdminKeys** 和 **listStatus** 等作業。呼叫函數時，請使用函式的實際名稱，而非使用 list*。為判斷哪一個資源類型具有清單作業，請使用以下 PowerShell 命令。
+開頭為 **list** 的任何作業都可在您的範本中用為函式。包括如上所示的 **listKeys**，以及 **list**、**listAdminKeys** 和 **listStatus** 等作業。呼叫函數時，請使用函式的實際名稱，而非使用 list*。為判斷哪一個資源類型具有清單作業，請使用以下 PowerShell 命令。
 
     PS C:\> Get-AzureRmProviderOperation -OperationSearchString *  | where {$_.Operation -like "*list*"} | FT Operation
 
-或者，請擷取具有 Azure CLI 的清單。以下範例擷取 **apiapps** 的所有作業，並使用 JSON 公用程式 [jq](http://stedolan.github.io/jq/download/) 來篩選清單作業。
+或者，請擷取具有 Azure CLI 的清單。以下範例會擷取 **apiapps** 的所有作業，並使用 JSON 公用程式 [jq](http://stedolan.github.io/jq/download/) 來只篩選出 list 作業。
 
     azure provider operations show --operationSearchString */apiapps/* --json | jq ".[] | select (.operation | contains("list"))"
 
@@ -877,4 +877,4 @@
 - 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -348,7 +348,7 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
     "outputs": {
        "<outputName>" : {
          "type" : "<type-of-output-value>",
-         "value": "<output-value-expression>",
+         "value": "<output-value-expression>"
        }
     }
 
@@ -368,11 +368,13 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
        }
     }
 
+如需使用輸出的相關資訊，請參閱[Azure Resource Manager 範本中的共用狀態](best-practices-resource-manager-state.md)。
+
 ## 後續步驟
-- 若要檢視許多不同類型的解決方案的完整範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
-- 如需您可以在範本內使用之函數的詳細資訊，請參閱 [Azure Resource Manager 範本函數](resource-group-template-functions.md)。
+- 若要檢視許多不同類型解決方案的完整範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)。
+- 如需您可以在範本內使用哪些函式的詳細資料，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
 - 若要在部署期間合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
 - 若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

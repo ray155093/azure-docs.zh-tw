@@ -54,9 +54,11 @@
 
 - 如果您想要進一步了解如何將內部部署的 SQL Server 資料庫移動至 Azure，請參閱[將資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 
+- 如果您想要使用 BCP 將某些資料從 CSV 檔案載入新資料表，請參閱[使用 BCP 將資料從 CSV 檔案載入 SQL 資料庫](sql-database-load-from-csv-with-bcp.md)。
+
 
 ## 其他資源
 
 [什麼是 SQL Database？](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

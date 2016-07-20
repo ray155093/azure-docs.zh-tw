@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/07/2016"
+   ms.date="07/07/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 命令列開始使用 Azure 資料湖存放區
@@ -189,4 +189,4 @@ Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平�
 
 [azure-command-line-tools]: ../xplat-cli-install.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

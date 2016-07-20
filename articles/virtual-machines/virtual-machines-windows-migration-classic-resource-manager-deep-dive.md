@@ -47,7 +47,7 @@
 | UDR | UDR | 在移轉至 Resource Manager 部署模型的過程中，會複製與子網路關聯的使用者定義路由。請注意，在移轉期間不會移除傳統部署模型中的 UDR。不過，移轉正在進行時，會封鎖 UDR 的管理平面作業。 | | |
 | VM 網路組態上的 IP 轉送屬性 | NIC 上的 IP 轉送屬性 | 在移轉期間，VM 上的 IP 轉送屬性會轉換成網路介面上的屬性。 | | |
 | 具有多個 IP 的負載平衡器 | 具有多個公用 IP 資源的負載平衡器 | 與負載平衡器關聯的每個公用 IP 在移轉後都會轉換成公用 IP 資源，並與負載平衡器產生關聯。 | | |
-| VM 上的內部 DNS 名稱 | NIC 上的內部 DNS 名稱 | 在移轉期間，會將內部 DNS 尾碼更新成符合 Resource Manager 部署模型的尾碼。請注意，名稱解析在移轉後會繼續運作。不過，與 VM 關聯的尾碼會變更。 | | |
+| VM 上的內部 DNS 名稱 | NIC 上的內部 DNS 名稱 | 在移轉期間，VM 的內部 DNS 尾碼會移轉至 NIC 上名為 "InternalDomainNameSuffix" 的唯讀屬性。尾碼在移轉後保持不變，VM 解析應該會像之前一樣繼續運作。 | | |
 
 ## 簡單的移轉逐步解說圖解
 
@@ -64,4 +64,4 @@
 - [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0706_2016-->

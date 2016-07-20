@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/24/2016"
+	ms.date="07/06/2016"
 	ms.author="cynthn"/>
 
 # 透過虛擬網路或雲端服務來連線利用傳統部署模型所建立的 Windows 虛擬機器
@@ -33,4 +33,4 @@
 
 建立虛擬機器之後，最好[新增資料磁碟](virtual-machines-windows-classic-attach-disk.md)，讓服務與工作負載有存放資料的地方。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

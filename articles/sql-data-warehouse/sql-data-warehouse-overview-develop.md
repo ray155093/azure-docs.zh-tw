@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/14/2016"
+   ms.date="06/30/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲的設計決策和程式碼撰寫技術
@@ -27,8 +27,8 @@
 - [並行][]
 - [交易][]
 - [使用者定義的結構描述][]
-- [資料表設計][]
-- [雜湊散發索引鍵][]
+- [資料表散發][]
+- [資料表索引][]
 - [資料表分割][]
 - [CTAS][]
 - [統計資料][]
@@ -51,29 +51,28 @@
 <!--Image references-->
 
 <!--Article references-->
-[並行]: sql-data-warehouse-develop-concurrency.md
-[連接]: sql-data-warehouse-develop-connections.md
-[CTAS]: sql-data-warehouse-develop-ctas.md
-[動態 SQL]: sql-data-warehouse-develop-dynamic-sql.md
-[依據選項分組]: sql-data-warehouse-develop-group-by-options.md
-[雜湊散發索引鍵]: sql-data-warehouse-develop-hash-distribution-key.md
-[標籤]: sql-data-warehouse-develop-label.md
-[迴圈]: sql-data-warehouse-develop-loops.md
-[統計資料]: sql-data-warehouse-develop-statistics.md
-[預存程序]: sql-data-warehouse-develop-stored-procedures.md
-[資料表設計]: sql-data-warehouse-develop-table-design.md
-[資料表分割]: sql-data-warehouse-develop-table-partitions.md
-[暫存資料表]: sql-data-warehouse-develop-temporary-tables.md
-[交易]: sql-data-warehouse-develop-transactions.md
-[使用者定義的結構描述]: sql-data-warehouse-develop-user-defined-schemas.md
-[變數指派]: sql-data-warehouse-develop-variable-assignment.md
-[檢視]: sql-data-warehouse-develop-views.md
-
-[Transact-SQL 參考資料]: sql-data-warehouse-overview-reference.md
+[並行]: ./sql-data-warehouse-develop-concurrency.md
+[連接]: ./sql-data-warehouse-develop-connections.md
+[CTAS]: ./sql-data-warehouse-develop-ctas.md
+[動態 SQL]: ./sql-data-warehouse-develop-dynamic-sql.md
+[依據選項分組]: ./sql-data-warehouse-develop-group-by-options.md
+[標籤]: ./sql-data-warehouse-develop-label.md
+[迴圈]: ./sql-data-warehouse-develop-loops.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[預存程序]: ./sql-data-warehouse-develop-stored-procedures.md
+[資料表散發]: ./sql-data-warehouse-tables-distribute.md
+[資料表索引]: ./sql-data-warehouse-tables-index.md
+[資料表分割]: ./sql-data-warehouse-tables-partition.md
+[暫存資料表]: ./sql-data-warehouse-tables-temporary.md
+[交易]: ./sql-data-warehouse-develop-transactions.md
+[使用者定義的結構描述]: ./sql-data-warehouse-develop-user-defined-schemas.md
+[變數指派]: ./sql-data-warehouse-develop-variable-assignment.md
+[檢視]: ./sql-data-warehouse-develop-views.md
+[Transact-SQL 參考資料]: ./sql-data-warehouse-overview-reference.md
 
 <!--MSDN references-->
 [renaming objects]: https://msdn.microsoft.com/library/mt631611.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

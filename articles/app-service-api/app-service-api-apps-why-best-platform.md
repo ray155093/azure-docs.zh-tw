@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
 	ms.date="05/03/2016" 
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # API Apps 概觀
 
@@ -57,10 +57,10 @@ API 管理和 API 應用程式的某些功能具有類似的功能。例如，�
 
 若要透過將範例程式碼部署至其中一個應用程式以開始使用 API Apps，請參閱您所需架構適用的教學課程︰
 
-* [ASP.NET](app-service-api-dotnet-get-started.md) 
-* [Node.js](app-service-api-nodejs-api-app.md) 
-* [Java](app-service-api-java-api-app.md) 
+* [ASP.NET](app-service-api-dotnet-get-started.md)
+* [Node.js](app-service-api-nodejs-api-app.md)
+* [Java](app-service-api-java-api-app.md)
 
-若要詢問有關 API Apps 的問題，請在 [API Apps 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)中發問。
+若要詢問有關 API Apps 的問題，請在 [API Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureAPIApps)中發問。
 
-<!---HONumber=AcomDC_0511_2016---->
+<!---HONumber=AcomDC_0713_2016-->

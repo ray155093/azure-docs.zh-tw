@@ -1,24 +1,26 @@
 
-This article walks you through how to move a VM between subscriptions. This can be handy if you originally created a VM in a personal subscription and now want to move it to your company's subscription to continue your work.
+本文將逐步引導您了解如何在訂用帳戶之間移動 VM。如果您原本在個人訂用帳戶中建立 VM，而現在想要將它移至您的公司訂用帳戶以繼續工作，這樣會很方便。
 
-> [AZURE.NOTE] New resource IDs will be created as part of the move. Once the VM has been moved, you will need to update your tools and scripts to use the new resource IDs. 
+> [AZURE.NOTE] 移動過程中會建立新的資源識別碼。移動 VM 之後，您必須更新工具和指令碼以使用新的資源識別碼。
 
-1. Open the [Azure portal](https://portal.azure.com).
-2. Click **Browse** > **Virtual machines** and select the VM you would like to move from the list.
+1. 開啟 [Azure 入口網站](https://portal.azure.com)。
+2. 按一下 [瀏覽] > [虛擬機器]，然後從清單中選取您要移動的 VM。
 	
-	![Screenshot of the Essentials section where you click the pencil icon to open the Move resources blade.](./media/virtual-machines-common-move-vm/move-button.png)
+	![程式集區段螢幕擷取畫面，按一下鉛筆圖示以開啟移動資源刀鋒視窗。](./media/virtual-machines-common-move-vm/move-button.png)
 	
-3. In the **Essentials** section, click on the **Change subscription** pencil icon next to the subscription name. The **Move resources** blade will open.
+3. 在 [基本資訊] 區段中，按一下訂用帳戶名稱旁邊的 [變更訂用帳戶] 鉛筆圖示。[移動資源] 刀鋒視窗隨即開啟。
 	
-	![Screenshot of the Move resources blade.](./media/virtual-machines-common-move-vm/move.png)
+	![移動資源刀鋒視窗的螢幕擷取畫面。](./media/virtual-machines-common-move-vm/move.png)
 	
-4. Select each of the resources to move. In most cases, you should move all of the listed optional resources.
-5. Select the **Subscription** where you want the VM to be moved.
-6. Select an existing **Resource group** or type a name to have a new resource group created.
-7. When you are done, select that you understand that new resource IDs will be created and those need to be used with the VM once it is moved, then click **OK**.
+4. 選取每個要移動的資源。在大部分情況下，您應該移動所有列出的選擇性資源。
+5. 選取您要將 VM 移到的**訂用帳戶**。
+6. 選取現有的**資源群組**，或輸入名稱以建立新的資源群組。
+7. 完成之後，選取您了解將建立新的資源識別碼，而且這些識別碼必須用於移動後的 VM，然後按一下 [確定]。
 
 
 
-## Next steps
+## 後續步驟
 
-You can move many different types of resources between resource groups and subscriptions. For more information, see [Move resources to new resource group or subscription](../articles/resource-group-move-resources.md).	
+您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。如需詳細資訊，請參閱[將資源移動到新的資源群組或訂用帳戶](../articles/resource-group-move-resources.md)。
+
+<!---HONumber=AcomDC_0706_2016-->

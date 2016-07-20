@@ -69,7 +69,7 @@ Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾�
 
 您也可以在下列連結中找到有關工作選項的相關文件：<http://www.blitline.com/docs/api>
 
-在有了 JSON 之後，您唯一需要做的動作是將它 **POST** 至 `http://api.blitline.com/jobs`
+在有了 JSON 之後，您唯一需要做的動作是將它 **POST** 至 `http://api.blitline.com/job`
 
 您將取回如下所示的 JSON：
 
@@ -85,7 +85,7 @@ Blitline 使用 JSON 定義您要對影像採取的動作。此 JSON 是由幾�
     }
 
 
-這代表 Blitline 已收到您的要求，它已將您的要求置入處理佇列，以及當它完成映像時的位置：****https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_ID/CK3f0xBF_2bV6wf7gEZE8w.jpg**
+這代表 Blitline 已收到您的要求，它已將您的要求置入處理佇列，以及當它完成映像時的位置：**https://s3.amazonaws.com/dev.blitline/2011110722/YOUR\_APP\_ID/CK3f0xBF_2bV6wf7gEZE8w.jpg**
 
 ## 如何將影像儲存至您的 Azure 儲存體帳戶
 
@@ -132,4 +132,4 @@ SAS 必須包含整個 SAS URL，包括目的地檔案的檔案名稱。
 * Blitline API 範例 <http://www.blitline.com/docs/examples>
 * 協力廠商 Nuget 程式庫 <http://nuget.org/packages/Blitline.Net>
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0706_2016-->

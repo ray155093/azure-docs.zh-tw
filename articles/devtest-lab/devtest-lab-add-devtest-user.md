@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="07/05/2016"
 	ms.author="tarcher"/>
 
 # 將擁有者和使用者加入實驗室
@@ -31,7 +31,7 @@ DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。�
 -  **DevTest Labs 使用者**︰指派給 **DevTest Labs 使用者**角色的使用者，可以在指定實驗室中建立 VM 以及檢視所有實驗室資源，例如 VM、原則或虛擬網路。使用者可以是*內部* (訂用帳戶的 Azure Active Directory 成員) 或*外部* (不屬於 Azure AD 成員的使用者，例如合作夥伴組織的成員)。
 	-  **研發/測試實驗室使用者**角色必須透過實驗室的 [新增使用者] 磚來指派。
 	-  **研發/測試實驗室使用者**角色中的使用者只能在指派他們的實驗室內部執行這些作業。例如，**研發/測試實驗室使用者**無法使用訂用帳戶的虛擬機器服務來建立虛擬機器。只允許從研發/測試實驗室帳戶建立虛擬機器。
-	- *外部*使用者必須擁有其中一個 Microsoft 帳戶網域 (也就是 @hotmail.com、@live.com、@msn.com、@passport.com、@outlook.com，或者特定國家/地區的任何變體) 的帳戶。
+	- 「外部」使用者是使用 Microsoft 帳戶 (MSA) 的使用者。
  
 一旦建立了 VM，建立它的使用者就會自動指派給所建立 VM 上的**擁有者**角色，使其能夠執行實驗室所提供的所有動作。
 
@@ -103,4 +103,4 @@ DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。�
 
 1. [使用者] 刀鋒視窗會顯示新增的角色及使用者。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

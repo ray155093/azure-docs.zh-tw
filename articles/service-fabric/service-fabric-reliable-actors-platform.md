@@ -39,7 +39,7 @@
 
  - 服務備份和還原。
  - 適用於所有動作項目的共用功能，例如斷路器。
- - 遠端處理程序會在動作項目服務本身，以及每個個別動作項目上進行呼叫。 
+ - 遠端處理程序會在動作項目服務本身，以及每個個別動作項目上進行呼叫。
 
 ### 使用動作項目服務
 
@@ -251,7 +251,7 @@ ActorProxy.Create<IMyActor>(new ActorId(1234));
  - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
  - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+ - [範例程式碼](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 
  
 <!--Image references-->
@@ -261,4 +261,4 @@ ActorProxy.Create<IMyActor>(new ActorId(1234));
 [4]: ./media/service-fabric-reliable-actors-platform/actor-replica-role.png
 [5]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

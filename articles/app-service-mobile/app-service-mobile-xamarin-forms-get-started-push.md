@@ -330,43 +330,14 @@
 
 ####將推播通知加入至 iOS 應用程式
 
-1. 將下列 `using` 陳述式加入至 **AppDelegate.cs** 檔案頂端。
+1. 在 **iOS** 專案中開啟 AppDelegate.cs，並將下列 **using** 陳述式新增到程式碼檔案頂端。
 
-        using Microsoft.WindowsAzure.MobileServices;
-		using Newtonsoft.Json.Linq;
+        using Newtonsoft.Json.Linq;
 
+4. 在 **AppDelegate** 類別中，新增 **RegisteredForRemoteNotifications** 事件的覆寫以註冊通知：
 
-2. 在 iOS 專案中，開啟 AppDelegate.cs 並更新 `FinishedLaunching` 以支援遠端通知，如下所示。
-
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			global::Xamarin.Forms.Forms.Init ();
-
-			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-
-            // IMPORTANT: uncomment this code to enable sync on Xamarin.iOS
-            // For more information, see: http://go.microsoft.com/fwlink/?LinkId=620342
-            //SQLitePCL.CurrentPlatform.Init();
-
-            // registers for push for iOS8
-            var settings = UIUserNotificationSettings.GetSettingsForTypes(
-                UIUserNotificationType.Alert
-                | UIUserNotificationType.Badge
-                | UIUserNotificationType.Sound,
-                new NSSet());
-
-            UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
-            UIApplication.SharedApplication.RegisterForRemoteNotifications();
-
-			LoadApplication (new App ());
-
-			return base.FinishedLaunching (app, options);
-		}
-
-
-4. 在 AppDelegate.cs 中，也新增 **RegisteredForRemoteNotifications** 事件的覆寫以註冊通知：
-
-        public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
+        public override void RegisteredForRemoteNotifications(UIApplication application, 
+			NSData deviceToken)
         {
             const string templateBodyAPNS = "{"aps":{"alert":"$(messageParam)"}}";
 
@@ -381,9 +352,10 @@
             push.RegisterAsync(deviceToken, templates);
         }
 
-5. 在 AppDelegate.cs 中，也新增 **DidReceivedRemoteNotification** 事件的覆寫，以便在應用程式執行時處理內送通知：
+5. 此外，也在 **AppDelegate** 中新增 **DidReceivedRemoteNotification** 事件處理常式的下列覆寫：
 
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        public override void DidReceiveRemoteNotification(UIApplication application, 
+			NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
             NSDictionary aps = userInfo.ObjectForKey(new NSString("aps")) as NSDictionary;
 
@@ -398,6 +370,22 @@
                 avAlert.Show();
             }
         }
+
+	當應用程式執行時，此方法會處理傳入的通知。
+
+2. 在 **AppDelegate** 類別中，將下列程式碼新增到 **FinishedLaunching** 方法：
+
+        // Register for push notifications.
+        var settings = UIUserNotificationSettings.GetSettingsForTypes(
+            UIUserNotificationType.Alert
+            | UIUserNotificationType.Badge
+            | UIUserNotificationType.Sound,
+            new NSSet());
+
+        UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+        UIApplication.SharedApplication.RegisterForRemoteNotifications();
+
+	這能夠支援遠端通知，並要求推播註冊。
 
 您的應用程式現在已更新為支援推播通知。
 
@@ -439,10 +427,10 @@
 		using Windows.Networking.PushNotifications;
 		using <your_TodoItemManager_portable_class_namespace>;
 
-	使用包含 `TodoItemManager` 類別的可攜式專案所在的命名空間，取代 `<your_TodoItemManager_portable_class_namespace>`。
+	使用包含 `TodoItemManager` 類別的可攜式專案命名空間來取代 `<your_TodoItemManager_portable_class_namespace>`。
  
 
-2. 在 App.xaml.cs 中，加入下列 **InitNotificationsAsync** 方法：
+2. 在 App.xaml.cs 中，新增下列 **InitNotificationsAsync** 方法：
 
         private async Task InitNotificationsAsync()
         {
@@ -468,7 +456,7 @@
 
 	這個方法會取得推播通知通道，並註冊範本以接收來自通知中樞的範本通知。支援 messageParam 的範本通知會傳送到此用戶端。
 
-3. 在 App.xaml.cs 中，加入 `async` 修飾詞以更新 **OnLaunched** 事件處理常式方法定義，然後在方法結尾處新增下一行程式碼︰
+3. 在 App.xaml.cs 中，新增 `async` 修飾詞以更新 **OnLaunched** 事件處理常式方法定義，然後在方法結尾處新增下一行程式碼：
 
         await InitNotificationsAsync();
 
@@ -485,7 +473,7 @@
 
 2. 按 [執行] 按鈕，以建立專案並啟動應用程式。
 
-3. 在應用程式中輸入新 todoitem 的名稱，然後按一下加號 (**+**) 圖示加入它。
+3. 在應用程式中輸入新 todoitem 的名稱，然後按一下加號 (**+**) 圖示來加入它。
 
 4. 確認在加入項目時收到通知。
 
@@ -493,15 +481,15 @@
 
 進一步了解推播通知︰
 
-* [使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-add-tags-to-a-device-installation-to-enable-push-to-tags)：標記可讓您使用推播鎖定區隔的客戶。了解如何將標記加入至裝置安裝。
+* [使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#how-to-add-tags-to-a-device-installation-to-enable-push-to-tags) 標記可讓您使用推播鎖定區隔的客戶。了解如何將標記加入至裝置安裝。
 
-* [診斷推播通知問題](../notification-hubs/notification-hubs-push-notification-fixer.md)：通知遭到捨棄或未抵達裝置有各種原因。本主題說明如何分析及找出推播通知失敗的根本原因。
+* [診斷推播通知問題](../notification-hubs/notification-hubs-push-notification-fixer.md) 通知遭到捨棄或未抵達裝置有各種原因。本主題說明如何分析及找出推播通知失敗的根本原因。
 
 請考慮繼續進行下列其中一個教學課程：
 
-* [將驗證加入應用程式中](app-service-mobile-xamarin-forms-get-started-users.md)：了解如何使用識別提供者驗證應用程式的使用者。
+* [在您的應用程式中新增驗證](app-service-mobile-xamarin-forms-get-started-users.md) 了解如何使用身分識別提供者驗證應用程式的使用者。
 
-* [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
+* [啟用應用程式的離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md) 了解如何使用行動應用程式後端，將離線支援新增至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
 
 <!-- Images. -->
 
@@ -510,4 +498,4 @@
 [Xcode]: https://go.microsoft.com/fwLink/?LinkID=266532
 [apns object]: http://go.microsoft.com/fwlink/p/?LinkId=272333
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -43,7 +43,7 @@
 
 在 Azure 中，您可以邏輯性地將相關資源 (例如儲存體帳戶、虛擬網路及虛擬機器 (VM)) 分組在一起，以將它們做為單一實體進行部署、管理及維護。從管理的角度來看，這可讓您在將所有相關資源保持在一起的情況下更輕鬆地部署應用程式，或是授與其他人存取該資源群組。如需針對資源群組取得更完整的了解，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
-資源群組的其中一個關鍵功能，是使用宣告儲存體、網路及計算資源的 JSON 檔案，以及任何要套用的相關自訂指令碼或設定來建置環境的能力。透過使用這些 JSON 範本，您可以為應用程式建立一致且可重現的部署。這讓您可以輕鬆建置開發環境，然後使用相同的範本建立生產環境部署，反之亦然。如需深入了解範本的使用方式，您可以參閱[範本逐步解說](../resource-manager-template-walkthrough.md)，它將能引導您完成建置 JSON 範本的每個步驟。
+資源群組的其中一個關鍵功能，是使用宣告儲存體、網路及計算資源的 JSON 檔案，以及任何要套用的相關自訂指令碼或設定來建置環境的能力。透過使用這些 JSON 範本，您可以為應用程式建立一致且可重現的部署。這讓您可以輕鬆建置開發環境，然後使用相同的範本建立生產環境部署，反之亦然。如需深入了解範本的使用方式，您可以參閱[範本逐步解說](../resource-manager-template-walkthrough.md)，它將能引導您完成建置 JSON 範本的每個步驟
 
 您在使用資源群組設計環境時，有兩種不同的執行方式：
 
@@ -57,4 +57,4 @@
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

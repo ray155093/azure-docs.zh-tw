@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="03/29/2016"
+	ms.date="07/06/2016"
 	ms.author="raynew"/>
 
 # 準備 Azure Site Recovery 部署
@@ -139,4 +139,4 @@ FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 - [利用 SAN 將 Hyper-V VM 複寫至次要網站](site-recovery-vmm-san.md)
 - [利用單一 VMM 伺服器複寫 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

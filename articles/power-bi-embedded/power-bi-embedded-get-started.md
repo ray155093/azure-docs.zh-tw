@@ -1,5 +1,5 @@
 <properties
-   pageTitle="開始使用 Microsoft Power BI Embedded 預覽"
+   pageTitle="開始使用 Microsoft Power BI Embedded"
    description="對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
    services="power-bi-embedded"
    documentationCenter=""
@@ -13,16 +13,14 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="06/28/2016"
+   ms.date="07/05/2016"
    ms.author="owend"/>
 
-# 開始使用 Microsoft Power BI Embedded 預覽
+# 開始使用 Microsoft Power BI Embedded
 
-**Power BI Embedded** 是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。**Power BI Embedded** 會與現有的應用程式一同運作，而不需要重新設計這些應用程式，或變更其使用者登入的方式。
+**Power BI Embedded** 是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。**Power BI Embedded** 會與現有的應用程式一同運作，而不需要重新設計或變更使用者登入的方式。
 
-若要深入了解 Power BI Embedded，請參閱[什麼是 Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)。
-
-如[什麼是 Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md) 中所述，**Microsoft Power BI Embedded** 的資源是透過 [Azure ARM API](https://msdn.microsoft.com/library/mt712306.aspx) 佈建。在此情況下，您可以佈建的資源是 **Power BI 工作區集合**。下一節將說明如何建立工作區集合。
+**Microsoft Power BI Embedded** 的資源也是透過 [Azure ARM API](https://msdn.microsoft.com/library/mt712306.aspx) 佈建。在此情況下，您佈建的資源是 **Power BI 工作區集合**。
 
 ![](media\power-bi-embedded-get-started\introduction.png)
 
@@ -53,8 +51,6 @@
 
 [建立刀鋒視窗] 包含呼叫 API 所需的資訊，以建立工作區並將內容部署到這些工作區。
 
-下一節說明**存取金鑰**如何用來產生**應用程式權杖**，而這些權杖用來驗證 API 要求。
-
 <a name="view-access-keys"/>
 ## 檢視 Power BI API 存取金鑰
 
@@ -68,13 +64,13 @@
 
 複製這些金鑰並將它們安全地儲存在您的應用程式中。請務必如同密碼一樣處理這些金鑰，因為這些金鑰可供存取您的**工作區集合**中的所有內容。
 
-雖已列出兩個金鑰，但一次只需要一個金鑰。系統會提供第二個金鑰，以便您定期重新產生金鑰，而不需中斷對服務的存取。
+雖已列出兩個金鑰，但特定時間只需要一個金鑰。系統會提供第二個金鑰，以便您定期重新產生金鑰，而不需中斷對服務的存取。
 
 您現在已有應用程式的 Power BI 執行個體以及**存取金鑰**，您可以將報告匯入自己的應用程式中。在了解如何匯入報告之前，下一節說明如何建立要內嵌到應用程式中的 Power BI 資料集和報告。
 
 ## 建立要內嵌到應用程式中的 Power BI 資料集和報告
 
-您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/zh-TW/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
+您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
 
 透過 **Power BI Desktop**，將資料複本匯入 **Power BI Desktop** 或使用 **DirectQuery** 直接連接到資料來源，即可連接到資料來源。
 
@@ -107,4 +103,4 @@
 - [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 - [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

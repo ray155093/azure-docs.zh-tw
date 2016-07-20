@@ -1,4 +1,4 @@
-* [調整 Azure App Service](../articles/app-service/app-service-scale.md)
+* [調整 Azure App Service](../articles/app-service-web/web-sites-scale.md)
 	* 了解備援性與可靠性
 	* 比較「具狀態」與「無狀態」應用程式
 		* [設定無狀態應用程式](/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/)
@@ -14,4 +14,4 @@
 * 地理分散
 	* [運用流量管理員達到全球規模](../articles/traffic-manager/traffic-manager-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

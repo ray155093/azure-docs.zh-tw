@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="06/29/2016"
 	ms.author="curtand"/>
 
-# 在 Azure Active Directory (Azure AD) 中指派系統管理員角色
+# 在 Azure Active Directory 中指派系統管理員角色
 
-根據公司的大小，您可能想要指定數個擁有不同功能的系統管理員。這些系統管理員可以存取 Azure 入口網站或 Azure 傳統入口網站中的各種功能，此外，根據其角色，將可以建立或編輯使用者、將系統管理角色指派給其他人、重設使用者密碼、管理使用者授權，以及管理網域。
-
-請務必了解，不論您是在 Office 365 入口網站還是 Azure 傳統入口網站中指派角色，或是使用適用於 Windows PowerShell 的 Azure AD 模組指派角色，獲指派系統管理員角色的使用者在您組織所訂閱的所有雲端服務中都擁有相同的權限。
+使用 Azure Active Directory (Azure AD) 時，您可以指定個別的系統管理員來執行不同的功能。這些系統管理員可以存取 Azure 入口網站或 Azure 傳統入口網站中的各種功能，此外，根據其角色，將可以建立或編輯使用者、將系統管理角色指派給其他人、重設使用者密碼、管理使用者授權，以及管理網域。不論您是在 Office 365 入口網站還是 Azure 傳統入口網站中指派角色，或是使用適用於 Windows PowerShell 的 Azure AD 模組來指派角色，獲指派系統管理員角色的使用者在您組織所訂閱的所有雲端服務中都擁有相同的權限。
 
 可用的系統管理員角色如下：
 
@@ -39,6 +37,10 @@
 	> [AZURE.NOTE] 若要指派服務管理員角色給使用者，全域管理員必須先指派管理權限給服務中的該使用者，例如 Exchange Online，再指派服務管理員角色給 Azure 傳統入口網站中的使用者。
 
 - **使用者管理員**：重設密碼、監控服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。部分限制適用於使用者管理管理員的權限。例如，他們無法刪除全域管理員，或建立其他管理員。此外，他們無法重設計費、全域和服務管理員的密碼。
+
+- **安全性讀取者**︰能夠以唯讀方式存取「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 防護中心」的一些安全性功能。
+
+- **安全性系統管理員**︰具備「安全性讀取者」角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 防護中心」。
 
 ## 系統管理員權限
 
@@ -72,6 +74,22 @@
 ------------- | -------------
 <p>檢視公司和使用者資訊</p><p>管理 Office 支援票證</p><p>重設使用者密碼 (具有限制)。他或她無法重設計費、全域和服務管理員的密碼。</p><p>建立及管理使用者檢視</p><p>建立、編輯及刪除使用者與群組，以及管理使用者授權 (具有限制)。他或她無法刪除全域管理員，或建立其他管理員。</p> | <p>執行 Office 產品的計費和購買作業</p><p>管理網域</p><p>管理公司資訊</p><p>將系統管理角色委派給其他人</p><p>使用目錄同步</p><p>啟用或停用 Multi-Factor Authentication</p>
 
+### 安全性讀取者
+
+在 | 可以執行
+------------- | -------------
+身分識別防護中心 | 讀取安全性功能的所有安全性報告和設定資訊<ul><li>反垃圾郵件<li>加密<li>資料外洩防護<li>反惡意程式碼<li>進階威脅防護<li>防網路釣魚<li>郵件流程規則
+Privileged Identity Management | <p>以唯讀方式存取 Azure AD PIM 中所顯示的一切資訊︰Azure AD 角色指派的原則和報告、安全性檢閱，以及在未來還可透過讀取來存取 Azure AD 角色指派以外案例的原則資料和報告。<p>**無法**註冊 Azure AD PIM 或對它進行任何變更。擔任此角色的人員可以在 PIM 的入口網站中，或是透過 PowerShell，為其他角色 (例如「全域管理員」或「特殊權限角色管理員」) 的候選人啟用角色。
+<p>監視 Office 365 服務健全狀況</p><p>Office 365 防護中心</p> | <ul><li>讀取及管理警示<li>讀取安全性原則<li>讀取威脅情報、執行 Cloud App Discovery，以及在搜尋和調查時執行隔離<li>讀取所有報告
+
+### 安全性系統管理員
+
+在 | 可以執行
+------------- | -------------
+身分識別防護中心 | <ul><li>「安全性讀取者」角色的所有權限。<li>此外，還能夠執行除了重設密碼以外的所有 IPC 作業。
+Privileged Identity Management | <ul><li>「安全性讀取者」角色的所有權限。<li>**無法**管理 Azure AD 角色成員資格或設定。
+<p>監視 Office 365 服務健全狀況</p><p>Office 365 防護 | <ul><li>「安全性讀取者」角色的所有權限。<li>可以設定「進階威脅防護」功能 (惡意程式碼和病毒保護、惡意 URL 組態、URL 追蹤等) 中的所有設定。
+
 ## 全域管理員角色的詳細資料
 
 全域管理員可以存取所有系統管理功能。註冊 Azure 訂用帳戶的人員預設會獲指派目錄的全域管理員角色。只有全域管理員才能指派其他系統管理員角色。
@@ -98,7 +116,7 @@
 
 - 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 
-- 如需 Azure Active Directory 如何與您的 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
+- 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 
 - [管理使用者](active-directory-create-users.md)
 
@@ -106,4 +124,4 @@
 
 - [管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="Azure"
   ms.workload="na"
-  ms.date="04/07/2016"
+  ms.date="06/29/2016"
   ms.author="hascipio; v-divte"/>
 
 # 建立 Azure Marketplace 供應項目的一般必要條件
@@ -46,13 +46,11 @@
 如果要在 Azure Marketplace 上銷售服務，請務必確認您的註冊實體是其中一個經過核准的「銷售來源」國家/地區。這項限制是基於付款和稅務理由。我們正積極在不久的將來擴充這份國家/地區清單，所以請密切注意。如需完整清單，請參閱 [Azure Marketplace 參與原則](http://go.microsoft.com/fwlink/?LinkID=526833)的第 1 節 b 項。
 
 ## 後續步驟
-接下來是每個供應項目類型的技術性必要條件。按一下您想要在 Azure Marketplace 建立之個別供應項目類型的文章連結。
-
-| 虛擬機器映像 | 開發人員服務 | 資料服務 | 方案範本 |
-|-----|-----|-----|-----|
-| [VM 技術性必要條件](marketplace-publishing-vm-image-creation-prerequisites.md) | 私人預覽 | [資料服務技術性必要條件](marketplace-publishing-data-service-creation-prerequisites.md) | [方案範本技術性必要條件](marketplace-publishing-solution-template-creation-prerequisites.md) |
+一旦滿足非技術性的必要條件後，下一步是特定供應項目的技術性必要條件。按一下您想要在 Azure Marketplace 建立之個別供應項目類型的文章連結。
+- [VM 技術性必要條件](marketplace-publishing-vm-image-creation-prerequisites.md)
+- [解決方案範本技術性必要條件](marketplace-publishing-solution-template-creation-prerequisites.md)
 
 ## 另請參閱
 - [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0706_2016-->

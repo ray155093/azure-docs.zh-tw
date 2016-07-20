@@ -1,5 +1,5 @@
 <properties
-	pageTitle="要用於 Microsoft Azure 邏輯應用程式中的 Microsoft 管理的連接器清單 | Microsoft Azure App Service"
+	pageTitle="要用於 Microsoft Azure 邏輯應用程式中的 Microsoft 管理的連接器清單 | Microsoft Azure App Service | Microsoft Azure"
 	description="取得受 Microsoft 管理的連接器完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
 	services="app-service\logic"
 	documentationCenter=""
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/31/2016"
+	ms.date="07/07/2016"
 	ms.author="deonhe"/>
 
 # 連接器清單
@@ -32,14 +32,13 @@
 |連接器||||
 |-----------|-----------|-----------|-----------|
 |[![API 圖示][blobicon]<br/>**Azure Blob**][azureblobdoc]|[![API 圖示][boxicon]<br/>**Box**][boxDoc]|[![API 圖示][crmonlineicon]<br/>**CRM Online**][crmonlinedoc]|[![API 圖示][dropboxicon]<br/>**Dropbox**][dropboxdoc]|
-|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google 雲端硬碟**][googledrivedoc]|
+|[![API 圖示][facebookicon]<br/>**Facebook**][facebookdoc]|[![API 圖示][ftpicon]<br/>**FTP**][ftpdoc]|[![API 圖示][githubicon]<br/>**GitHub**][githubdoc]|[![API 圖示][googledriveicon]<br/>**Google<br/>雲端硬碟**][googledrivedoc]|
 |[![API 圖示][mailchimpicon]<br/>**MailChimp**][mailchimpdoc]|[![API 圖示][microsofttranslatoricon]<br/>**Translator**][microsofttranslatordoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**Outlook**][office365outlookdoc]|[![API 圖示][office365icon]<br/>**Office 365**<br/>**使用者**][office365usersdoc]|
 |[![API 圖示][office365icon]<br/>**Office 365**<br/>**視訊**][office365videodoc]|[![API 圖示][onedriveicon]<br/>**OneDrive**][onedrivedoc]|[![API 圖示][onedriveicon]<br/>**商務用 <br/>OneDrive**][onedriveforbusinessdoc]|[![API 圖示][outlookicon]<br/>**Outlook**][outlookdoc]|
 |[![API 圖示][projectonlineicon]<br/>**Project<br/>Online**][projectonlinedoc]|[![API 圖示][rssicon]<br/>**RSS**][rssdoc]|[![API 圖示][salesforceicon]<br/>**Salesforce**][salesforcedoc]|[![API 圖示][sendgridicon]<br/>**SendGrid**][sendgriddoc]|
 |[![API 圖示][servicebusicon]<br/>**服務匯流排**][servicebusdoc]|[![API 圖示][sftpicon]<br/>**SFTP**][sftpdoc]|[![API 圖示][sharepointicon]<br/>**SharePoint**<br/>**Online**][sharepointdoc]|[![API 圖示][slackicon]<br/>**Slack**<br/>][slackdoc]|
 |[![API 圖示][smtpicon]<br/>**SMTP**][smtpdoc]|[![API 圖示][sqlicon]<br/>**SQL Azure**][sqldoc]|[![API 圖示][trelloicon]<br/>**Trello**][trellodoc]|[![API 圖示][twilioicon]<br/>**Twilio**][twiliodoc]|
-|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|
-[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
+|[![API 圖示][twittericon]<br/>**Twitter**][twitterdoc]|[![API 圖示][wunderlisticon]<br/>**Wunderlist**][wunderlistdoc]|[![API 圖示][yammericon]<br/>**Yammer**][yammerdoc] | |
 
 ## 企業整合套件 (EIP) 連接器
 使用 EIP 連接器，針對包含 EAI 和 EDI 的 B2B 案例建立邏輯應用程式。
@@ -66,7 +65,7 @@
 [最新消息](../app-service-logic/app-service-logic-schema-2015-08-01.md)  
 [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
 [立即開始使用 PowerApps](../power-apps/powerapps-get-started-azure-portal.md)  
-[將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
+ [將現有邏輯應用程式移轉至最新的結構描述版本](connectors-schema-migration.md) 
 
 <!--Connectors Documentation-->
 [azureblobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"
@@ -106,7 +105,7 @@
 [as2doc]: ../app-service-logic/app-service-logic-enterprise-integration-as2.md "深入了解企業整合 AS2。"
 [x12doc]: ../app-service-logic/app-service-logic-enterprise-integration-x12.md "深入了解企業整合 X12"
 [flatfiledoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
-[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md/#how-to-create-the-flat-file-decoding-connector "深入了解企業整合一般檔案。"
 [xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml.md "深入了解企業整合 XML 驗證。"
 [xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
 
@@ -149,4 +148,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

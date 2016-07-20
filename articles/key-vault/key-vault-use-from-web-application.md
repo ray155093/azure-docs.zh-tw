@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/13/2016"
+	ms.date="07/05/2016"
 	ms.author="adhurwit"/>
 
 # 從 Web 應用程式使用 Azure 金鑰保存庫 #
@@ -97,7 +97,8 @@
 	    return result.AccessToken;
     }
 
-> [AZURE.NOTE] 透過用戶端識別碼和密碼，使用用戶端密碼來驗證 Azure AD 應用程式是最簡單的方法。此外，如果在 Web 應用程式中使用該密碼，您將能夠區分職責，並充分掌控您的金鑰管理。但是，要這樣做就必須將用戶端密碼保存在組態設定中。在某種程度上，這樣的做法與將您要保護的密碼保存在組態設定中的方法相較而言，兩者的風險是一樣的。如需關於如何使用用戶端識別碼與憑證 (而非用戶端識別碼與用戶端密碼) 來驗證 Azure AD 應用程式的討論，請參閱以下內容。
+> [AZURE.NOTE] 
+使用用戶端識別碼和用戶端密碼來驗證 Azure AD 應用程式是最簡單的方法。此外，如果在 Web 應用程式中使用該密碼，您將能夠區分職責，並充分掌控您的金鑰管理。但是，要這樣做就必須將用戶端密碼保存在組態設定中。在某種程度上，這樣的做法與將您要保護的密碼保存在組態設定中的方法相較而言，兩者的風險是一樣的。如需關於如何使用用戶端識別碼與憑證 (而非用戶端識別碼與用戶端密碼) 來驗證 Azure AD 應用程式的討論，請參閱以下內容。
 
 
 
@@ -228,7 +229,7 @@
     var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetAccessToken));
 
 
-**將憑證加入 Web 應用程式** 將憑證加入您的 Web 應用程式的程序相當簡單，只需兩個步驟。首先，請移至 Azure 入口網站並瀏覽至您的 Web 應用程式。在 Web 應用程式的 [設定] 刀鋒視窗中，按一下 [自訂網域及 SSL] 的項目。在開啟的刀鋒視窗中，您將能夠上傳先前建立的憑證 KVWebApp.pfx，並請確定您記得 pfx 的密碼。
+**透過 Azure 入口網站將憑證加入 Web 應用程式** 將憑證加入您的 Web 應用程式的程序相當簡單，只需兩個步驟。首先，請移至 Azure 入口網站並瀏覽至您的 Web 應用程式。在 Web 應用程式的 [設定] 刀鋒視窗中，按一下 [自訂網域及 SSL] 的項目。在開啟的刀鋒視窗中，您將能夠上傳先前建立的憑證 KVWebApp.pfx，並請確定您記得 pfx 的密碼。
 
 ![在 Azure 入口網站中將憑證加入 Web 應用程式][2]
 
@@ -236,6 +237,9 @@
 您需要做的最後一件事，就是將應用程式設定新增至名為WEBSITE\_LOAD\_CERTIFICATES 與值為 * 的 Web 應用程式。如此可確保載入所有憑證。如果您只想載入已上傳的憑證，則可輸入其憑證指紋的逗號分隔清單。
 
 若要深入了解將憑證加入 Web 應用程式的程序，請參閱[在 Azure 網站應用程式中使用憑證](https://azure.microsoft.com/blog/2014/10/27/using-certificates-in-azure-websites-applications/) (英文)
+
+
+**將憑證加入至金鑰保存庫以做為密碼** (而非直接上傳您的憑證至 Web 應用程式服務)，您可以將其儲存在金鑰保存庫以做為密碼，並從此處加以部署。這是兩個步驟的程序，以下的部落格文章有大概的描述：[透過金鑰保存庫部署 Azure Web 應用程式憑證](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
 
 
 
@@ -249,4 +253,4 @@
 [1]: ./media/key-vault-use-from-web-application/PortalAppSettings.png
 [2]: ./media/key-vault-use-from-web-application/PortalAddCertificate.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

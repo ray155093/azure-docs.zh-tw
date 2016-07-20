@@ -137,7 +137,7 @@ V12 不支援 Web 和商務服務定價層級。
  - *無法*將 V11 資料庫升級至 V12。
 
 
-- http://*yourservername*.database.windows.net)<br/>Azure SQL Database 傳統入口網站：
+- (http://*yourservername*.database.windows.net)<br/>Azure SQL Database 傳統入口網站：
  - 「無法」管理 V12 伺服器。
 
 
@@ -158,6 +158,9 @@ V12 不支援 Web 和商務服務定價層級。
 如需另一個替代方式，您可以使用 SQL Server Management Studio (SSMS) 2014 與 [CU6](http://support.microsoft.com/kb/3031047/) 來連線至 Azure SQL Database。此部落格文章包含更多詳細資料：<br/>[Azure SQL Database 的用戶端工具更新](https://azure.microsoft.com/blog/2014/12/22/client-tooling-updates-for-azure-sql-database/)。
 
 
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
 ### 升級至 V12 *期間*的限制
 
 
@@ -166,7 +169,7 @@ V12 不支援 Web 和商務服務定價層級。
 
 | 限制 | 說明 |
 | :--- | :--- |
-| 升級期間 | 升級期間取決於大小、版本和伺服器中的資料庫數目而定。伺服器的升級程序可能會執行數小時至數天，尤其對於具有下列資料庫的伺服器：<br/><br/>* 大於 50 GB，或 <br/>* 在非高階服務層<br/><br/>升級期間在伺服器上建立新資料庫，也會增加升級的時間。 |
+| 升級期間 | 升級期間取決於大小、版本和伺服器中的資料庫數目而定。伺服器的升級程序可能會執行數小時至數天，尤其對於具有下列資料庫的伺服器：<br/><br/>*大於 50 GB，或<br/>*在非高階服務層<br/><br/>升級期間在伺服器上建立新資料庫，也會增加升級的時間。 |
 | 無法進行異地複寫 | 目前正在進行從 V11 升級的 V12 伺服器不支援「異地複寫」。 |
 | 資料庫在升級至 V12 的最終階段會短暫地無法使用 | 屬於 V11 伺服器的資料庫在升級過程中仍可以使用。不過，在從 V11 開始切換成就緒的 V12 時，伺服器和資料庫的連線在最終階段會短暫地無法使用。<br/><br/>切換期間的時間長度可從 40 秒到 5 分鐘不等。大多數伺服器的切換作業預期會在 90 秒內完成。如果有大量資料庫，或是當資料庫具有大量寫入工作負載時，則伺服器的切換時間會增加。 |
 
@@ -253,4 +256,4 @@ Stop- Cmdlet 表示取消，不是暫停。升級一旦停止就沒有任何方�
 <!--Anchors-->
 [Subheading 1]: #subheading-1
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

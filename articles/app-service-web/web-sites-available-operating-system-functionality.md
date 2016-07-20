@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/26/2016" 
+	ms.date="07/01/2016" 
 	ms.author="cephalin"/>
 
 # Azure App Service 上的作業系統功能 #
@@ -111,4 +111,4 @@ App Service 中的每個應用程式都會以隨機獨特的低權限背景工�
  
  
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0706_2016-->

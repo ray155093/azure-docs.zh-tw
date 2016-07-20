@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/20/2016"
+   ms.date="07/06/2016"
    ms.author="larryfr"/>
 
 
@@ -93,6 +93,8 @@ HDInsight 服務是受管理服務，在佈建期間和執行時需要有網際�
 
 允許針對這些位址透過連接埠 443 的輸入存取，可讓您成功將 HDInsight 安裝到安全虛擬網路。
 
+> [AZURE.IMPORTANT] HDInsight 不支援限制輸出流量，僅限制輸入流量。針對包含 HDInsight 的子網路定義網路安全性群組規則時，僅使用輸入規則。
+
 下列各範例示範如何建立新的網路安全性群組，這個群組允許必要的位址，並將安全性群組套用至虛擬網路內的子網路。這些步驟假設您已建立虛擬網路和要安裝 HDInsight 的子網路。
 
 __使用 Azure PowerShell__
@@ -169,7 +171,7 @@ __使用 Azure PowerShell__
 
 __使用 Azure CLI__
 
-1. 使用下列命令來建立名為 `hdisecure` 的新網路安全性群組。將 __RESOURCEGROUPNAME__ 和 __LOCATION__ 取代為包含「Azure 虛擬網路」的資源群組以及在其中建立群組的位置 (區域)。
+1. 使用下列命令來建立名為 `hdisecure` 的新網路安全性群組。將 __RESOURCEGROUPNAME__ 和 __LOCATION__ 取代為包含「Azure 虛擬網路」的資源群組，以及在其中建立群組的位置 (區域)。
 
         azure network nsg create RESOURCEGROUPNAME hdisecure LOCATION
     
@@ -184,7 +186,7 @@ __使用 Azure CLI__
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule3 -p "*" -o "*" -u "443" -f "168.61.48.131" -e "VirtualNetwork" -c "Allow" -y 302 -r "Inbound"
         azure network nsg rule create RESOURCEGROUPNAME hdisecure hdirule4 -p "*" -o "*" -u "443" -f "138.91.141.162" -e "VirtualNetwork" -c "Allow" -y 303 -r "Inbound"
 
-3. 建立規則之後，請使用下列將新的網路安全性群組套用至子網路。將 __RESOURCEGROUPNAME__ 取代為包含「Azure 虛擬網路」之資源群組的名稱。將 __VNETNAME__ 和 __SUBNETNAME__ 取代為「Azure 虛擬網路」的名稱及安裝 HDInsight 時將使用之子網路的名稱。
+3. 建立規則之後，請使用下列將新的網路安全性群組套用至子網路。將 __RESOURCEGROUPNAME__ 取代為包含 Azure 虛擬網路的資源群組名稱。將 __VNETNAME__ 和 __SUBNETNAME__ 取代為「Azure 虛擬網路」的名稱，及安裝 HDInsight 時將使用之子網路的名稱。
 
         azure network vnet subnet set RESOURCEGROUPNAME VNETNAME SUBNETNAME -w "/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
     
@@ -305,4 +307,4 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 若要深入了解 Azure 虛擬網路，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

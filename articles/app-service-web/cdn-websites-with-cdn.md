@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="07/01/2016" 
 	ms.author="cephalin"/>
 
 
@@ -24,7 +24,7 @@
 整合 Web Apps 與 Azure CDN 提供下列優點：
 
 - 將內容部署 (影像、指令碼和樣式表) 整合到 Web 應用程式的[連續部署](web-sites-publish-source-control.md)程序中
-- 輕鬆地升級 Azure App Service 的 Web 應用程式中的 NuGet 封裝 (例如 jQuery 或 Bootstrap 版本) 
+- 輕鬆地升級 Azure App Service 的 Web 應用程式中的 NuGet 封裝 (例如 jQuery 或 Bootstrap 版本)
 - 從相同的 Visual Studio 介面來管理 Web 應用程式和 CDN 提供的內容
 - 整合 ASP.NET 統合和縮製與 Azure CDN
 
@@ -107,11 +107,11 @@
 
 >[AZURE.NOTE] 雖然本節教學課程並不需要啟用查詢字串，但為了方便起見，請儘早這樣做，因為此處的任何變更需要花費很長時間才能傳播至所有 CDN 節點，您不希望任何未啟用查詢字串的內容塞滿 CDN 快取 (稍後會討論更新 CDN 內容)。
 
-2. 現在，請瀏覽至 CDN 端點位址。如果端點已準備就緒，您應該會看到顯示的 Web 應用程式。如果您收到 **HTTP 404** 錯誤，表示 CDN 端點還未準備就緒。您可能需要等候一小時，CDN 組態才能傳播到所有邊緣節點。 
+2. 現在，請瀏覽至 CDN 端點位址。如果端點已準備就緒，您應該會看到顯示的 Web 應用程式。如果您收到 **HTTP 404** 錯誤，表示 CDN 端點還未準備就緒。您可能需要等候一小時，CDN 組態才能傳播到所有邊緣節點。
 
 	![](media/cdn-websites-with-cdn/11-access-success.png)
 
-1. 接下來，試著存取 ASP.NET 專案中的 **~/Content/bootstrap.css** 檔案。請在瀏覽器視窗中，瀏覽至 **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**。在我的設定中，此 URL 為：
+1. 接下來，試著存取 ASP.NET 專案中的 **~/Content/bootstrap.css** 檔案。在瀏覽器視窗中，瀏覽至 **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**。在我的設定中，此 URL 為：
 
 		http://az673227.azureedge.net/Content/bootstrap.css
 
@@ -127,14 +127,14 @@
 
 -	/Script 路徑中的 .js 檔案
 -	/Content 路徑中的任何內容檔案
--	任何控制器/動作 
+-	任何控制器/動作
 -	任何含有查詢字串的 URL (若 CDN 端點已啟用查詢字串的話)
 -	整個 Azure Web 應用程式 (若所有內容都是公用)
 
 請注意，透過 Azure CDN 提供整個 Azure Web 應用程式不見得是個好主意 (或通常是個好主意)。有幾點需要注意：
 
 -	此作法需要公開整個網站，因為 Azure CDN 無法提供任何私人內容。
--	如果 CDN 端點因故離線 (不論是排定的維護或使用者錯誤)，則除非能夠將客戶重新導向至原始 URL **http://*&lt;sitename>*.azurewebsites.net/**，否則整個 Web 應用程式都會離線。 
+-	如果 CDN 端點因故離線 (不論是排定的維護或使用者錯誤)，除非能夠將客戶重新導向至原始 URL **http://*&lt;sitename>*.azurewebsites.net/**，否則整個 Web 應用程式都會離線。
 -	即使使用自訂 Cache-Control 設定 (請參閱[在 Azure Web 應用程式中設定靜態檔案的快取選項](#configure-caching-options-for-static-files-in-your-azure-web-app))，CDN 端點也無法改善高度動態內容的效能。如果您嘗試從 CDN 端點載入首頁，如上所示，請注意，第一次載入預設首頁 (非常簡單的頁面) 至少需要 5 秒。設想，如果此頁面包含必須每分鐘更新的動態內容，客戶體驗有何影響。從 CDN 端點提供動態內容需要有較短的快取到期時間，這也說明 CDN 端點經常會發生快取遺漏。這會降低 Azure Web 應用程式的效能，也會折損 CDN 的效用。
 
 替代方法是在 Azure Web 應用程式中依個別情況決定從 Azure CDN 提供什麼內容。總之，您已了解如何從 CDN 端點存取個別的內容檔案。我將在[透過 Azure CDN 從控制器動作提供內容](#serve-content-from-controller-actions-through-azure-cdn)中說明如何透過 CDN 端點提供特定的控制器動作。
@@ -375,14 +375,14 @@
 
 請遵循下列步驟來整合 ASP.NET 統合和縮製與 CDN 端點。
 
-1. 回到 *App\_Start\\BundleConfig.cs*，修改 `bundles.Add()` 方法來使用不同的 [Bundle 建構函數](http://msdn.microsoft.com/library/jj646464.aspx) (此函數會指定 CDN 位址)。若要這樣做，請將 `RegisterBundles` 方法定義改成下列程式碼：  
+1. 回到 *App\_Start\\BundleConfig.cs*，修改 `bundles.Add()` 方法來使用不同的 [Bundle 建構函數](http://msdn.microsoft.com/library/jj646464.aspx) (此函數會指定 CDN 位址)。若要這樣做，請將 `RegisterBundles` 方法定義改成下列程式碼：
 	
         public static void RegisterBundles(BundleCollection bundles)
         {
           bundles.UseCdn = true;
           var version = System.Reflection.Assembly.GetAssembly(typeof(Controllers.HomeController))
             .GetName().Version.ToString();
-          var cdnUrl = "http://<yourCDNName>.azureedge.net/{0}?v=" + version;
+          var cdnUrl = "http://<yourCDNName>.azureedge.net/{0}?" + version;
 
           bundles.Add(new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "bundles/jquery")).Include(
                 "~/Scripts/jquery-{version}.js"));
@@ -413,15 +413,16 @@
 
 	就如同：
 
-		new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "http://<yourCDNName>.azureedge.net/bundles/jquery?v=<W.X.Y.Z>"))
+		new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "http://<yourCDNName>.azureedge.net/bundles/jquery?<W.X.Y.Z>"))
 
 	此建構函式告知 ASP.NET 統合和縮製在本機偵錯時轉譯個別指令碼檔案，但使用指定的 CDN 位址來存取所提及的指令碼。不過，對於此謹慎建構的 CDN URL，請注意兩項重要特性：
 	
-	- 此 CDN URL 的來源是 `http://<yourSiteName>.azurewebsites.net/bundles/jquery?v=<W.X.Y.Z>`，實際上就是 Web 應用程式中指令碼套件組合的虛擬目錄。
+	- 此 CDN URL 的來源是 `http://<yourSiteName>.azurewebsites.net/bundles/jquery?<W.X.Y.Z>`，實際上就是 Web 應用程式中指令碼套件組合的虛擬目錄。
 	- 由於是使用 CDN 建構函式，套件組合的 CDN 指令碼標籤在轉譯的 URL 中已不再包含自動產生的版本字串。指令碼套件組合每次修改時，您都必須手動產生唯一的版本字串，以強制在 Azure CDN 上發生快取遺漏。同時，在部署套件組合之後，此唯一的版本字串在部署的整個存在期間內必須保持不變，讓 Azure CDN 的快取命中率達到最高。
-	- 查詢字串 v=<W.X.Y.Z> 會從 ASP.NET 專案的 *Properties\\AssemblyInfo.cs* 中提取。您的部署工作流程中可以包含每次發佈至 Azure 時就遞增組件版本。或者，您可以直接修改專案中的 *Properties\\AssemblyInfo.cs*，使用萬用字元 '*' 表示每次建置時就自動遞增版本字串。例如：
 
-			[assembly: AssemblyVersion("1.0.0.*")]
+3. 查詢字串 `<W.X.Y.Z>` 會從 ASP.NET 專案的 *Properties\\AssemblyInfo.cs* 中提取。您的部署工作流程中可以包含每次發佈至 Azure 時就遞增組件版本。或者，您可以直接修改專案中的 *Properties\\AssemblyInfo.cs*，使用萬用字元 '*' 表示每次建置時就自動遞增版本字串。例如，變更 `AssemblyVersion`，如下所示：
+	
+		[assembly: AssemblyVersion("1.0.0.*")]
 	
 	在此可採取其他任何策略在部署的存在期間內產生唯一字串。
 
@@ -430,11 +431,11 @@
 4. 檢視頁面的 HTML 程式碼。您應該會看到轉譯的 CDN URL，以及每次將變更重新發佈至 Azure Web 應用程式時的唯一版本字串。例如：
 	
         ...
-        <link href="http://az673227.azureedge.net/Content/css?v=1.0.0.25449" rel="stylesheet"/>
-        <script src="http://az673227.azureedge.net/bundles/modernizer?v=1.0.0.25449"></script>
+        <link href="http://az673227.azureedge.net/Content/css?1.0.0.25449" rel="stylesheet"/>
+        <script src="http://az673227.azureedge.net/bundles/modernizer?1.0.0.25449"></script>
         ...
-        <script src="http://az673227.azureedge.net/bundles/jquery?v=1.0.0.25449"></script>
-        <script src="http://az673227.azureedge.net/bundles/bootstrap?v=1.0.0.25449"></script>
+        <script src="http://az673227.azureedge.net/bundles/jquery?1.0.0.25449"></script>
+        <script src="http://az673227.azureedge.net/bundles/bootstrap?1.0.0.25449"></script>
         ...
 
 5. 在 Visual Studio 中，按 `F5`，在 Visual Studio 中進行 ASP.NET 應用程式偵錯。
@@ -457,7 +458,7 @@
 
 [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 類別包含一個稱為 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) 的屬性，可讓您設定 CDN 失敗時的後援機制。若要使用此屬性，請遵循下列步驟：
 
-1. 在 ASP.NET 專案中，開啟 *App\_Start\\BundleConfig.cs*，在您於每一個 [Bundle 建構函式](http://msdn.microsoft.com/library/jj646464.aspx)中已加入 CDN URL 的地方，如下方顯示的四處加入 `CdnFallbackExpression` 程式碼，以便將後援機制加入預設套件組合。  
+1. 在 ASP.NET 專案中，開啟 *App\_Start\\BundleConfig.cs*，在您於每一個 [Bundle 建構函式](http://msdn.microsoft.com/library/jj646464.aspx)中已加入 CDN URL 的地方，如下方顯示的四處加入 `CdnFallbackExpression` 程式碼，以便將後援機制加入預設套件組合。
 	
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -517,17 +518,17 @@
 	這個新的延伸方法採用相同的概念，將指令碼插入 HTML 中來檢查 DOM，尋找 CSS 套件組合中定義的相符類別名稱、規則名稱和規則值，而如果找不到相符項，則退一步存取原始 Web 伺服器。
 
 4. 重新發佈至 Azure Web 應用程式並存取首頁。
-5. 檢視頁面的 HTML 程式碼。您應該會發現類似下方的插入指令碼：    
+5. 檢視頁面的 HTML 程式碼。您應該會發現類似下方的插入指令碼：
 	
 	```
 	...
-	<link href="http://az673227.azureedge.net/Content/css?v=1.0.0.25474" rel="stylesheet"/>
+	<link href="http://az673227.azureedge.net/Content/css?1.0.0.25474" rel="stylesheet"/>
 <script>(function() {
                 var loadFallback,
                     len = document.styleSheets.length;
                 for (var i = 0; i < len; i++) {
                     var sheet = document.styleSheets[i];
-                    if (sheet.href.indexOf('http://az673227.azureedge.net/Content/css?v=1.0.0.25474') !== -1) {
+                    if (sheet.href.indexOf('http://az673227.azureedge.net/Content/css?1.0.0.25474') !== -1) {
                         var meta = document.createElement('meta');
                         meta.className = 'sr-only';
                         document.head.appendChild(meta);
@@ -539,26 +540,26 @@
                     }
                 }
                 return true;
-            }())||document.write('<script src="/Content/css"><\\/script>');</script>
+            }())||document.write('<script src="/Content/css"><\/script>');</script>
 
-	<script src="http://az673227.azureedge.net/bundles/modernizer?v=1.0.0.25474"></script>
+	<script src="http://az673227.azureedge.net/bundles/modernizer?1.0.0.25474"></script>
  	<script>(window.Modernizr)||document.write('<script src="/bundles/modernizr"><\/script>');</script>
 	... 
-	<script src="http://az673227.azureedge.net/bundles/jquery?v=1.0.0.25474"></script>
+	<script src="http://az673227.azureedge.net/bundles/jquery?1.0.0.25474"></script>
 	<script>(window.jquery)||document.write('<script src="/bundles/jquery"><\/script>');</script>
 
- 	<script src="http://az673227.azureedge.net/bundles/bootstrap?v=1.0.0.25474"></script>
+ 	<script src="http://az673227.azureedge.net/bundles/bootstrap?1.0.0.25474"></script>
  	<script>($.fn.modal)||document.write('<script src="/bundles/bootstrap"><\/script>');</script>
 	...
 	```
 
-	請注意，為 CSS 套件組合插入的指令碼仍在下列行中包含 `CdnFallbackExpression` 屬性的出錯殘留部分：
+	請注意，針對 CSS 套件組合插入的指令碼，仍在這一行中包含 `CdnFallbackExpression` 屬性殘留的遊蕩部分：
 
 		}())||document.write('<script src="/Content/css"><\/script>');</script>
 
 	但因為 || 運算式的開頭部分一定會傳回 true (緊鄰的上一行)，所以 document.write() 函數永遠不會執行。
 
-6. 若要測試後援指令碼是否可運作，請回到 CDN 端點的刀鋒視窗，並按一下 [停止]。
+6. 若要測試後援指令碼是否正在運作，請回到 CDN 端點的刀鋒視窗，並按一下 [停止]。
 
 	![](media/cdn-websites-with-cdn/13-test-fallback.png)
 
@@ -570,8 +571,4 @@
 - [整合雲端服務與 Azure CDN](../cdn/cdn-cloud-service-with-cdn.md)
 - [ASP.NET 統合和縮製](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
- 
-
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="12/14/2015" 
+	ms.date="07/06/2016" 
 	ms.author="anbacker"/>
 	
 # 監視和疑難排解虛擬機器與實體伺服器的保護
@@ -148,7 +148,7 @@ ASR 中的每個作業都會被稽核，並且在 [工作] 索引標籤底下追
 -   [如何保留已容錯移轉或移轉至 Azure 的受保護虛擬機器的磁碟機代號](http://support.microsoft.com/kb/3031135)
 -   [如何管理內部部署至 Azure 保護網路頻寬使用](https://support.microsoft.com/kb/3056159)
 -   [ASR：當您嘗試啟用虛擬機器的保護時的「找不到叢集資源」錯誤](http://support.microsoft.com/kb/3010979)
--   [了解及疑難排解 HYPER-V 複本指南](http://www.microsoft.com/en-in/download/details.aspx?id=29016) 
+-   [了解及疑難排解 HYPER-V 複本指南](http://www.microsoft.com/en-in/download/details.aspx?id=29016)
 
 ## 常見的 ASR 錯誤及其解決方案
 
@@ -171,7 +171,7 @@ ASR 中的每個作業都會被稽核，並且在 [工作] 索引標籤底下追
 ### 保護
 - <span style="color:green;">NEW</span> [啟用保護失敗，發生錯誤「保護無法針對虛擬機器設定」。錯誤 60007, 40003](http://social.technet.microsoft.com/wiki/contents/articles/32194.azure-site-recovery-enable-protection-failing-with-error-protection-couldn-t-be-configured-for-the-virtual-machine-error-60007-40003.aspx)
 - <span style="color:green;">NEW</span> [啟用保護失敗，發生錯誤「保護無法針對虛擬機器啟用。」 錯誤 70094](http://social.technet.microsoft.com/wiki/contents/articles/32195.azure-site-recovery-enable-protection-failing-with-error-protection-couldn-t-be-enabled-for-the-virtual-machine-error-70094.aspx)
-- <span style="color:green;">NEW</span> [即時移轉錯誤 23848 - 虛擬機器即將使用 Live 類型移動。這可能會中斷虛擬機器的復原保護狀態。](http://social.technet.microsoft.com/wiki/contents/articles/32021.live-migration-error-23848-the-virtual-machine-is-going-to-be-moved-using-type-live-this-could-break-the-recovery-protection-status-of-the-virtual-machine.aspx) 
+- <span style="color:green;">NEW</span> [即時移轉錯誤 23848 - 虛擬機器即將使用 Live 類型移動。這可能會中斷虛擬機器的復原保護狀態。](http://social.technet.microsoft.com/wiki/contents/articles/32021.live-migration-error-23848-the-virtual-machine-is-going-to-be-moved-using-type-live-this-could-break-the-recovery-protection-status-of-the-virtual-machine.aspx)
 - [啟用保護失敗，因為主機機器上未安裝代理程式](http://social.technet.microsoft.com/wiki/contents/articles/31105.enable-protection-failed-since-agent-not-installed-on-host-machine.aspx)
 - [找不到複本虛擬機器的適當主機 - 因為計算資源不足](http://social.technet.microsoft.com/wiki/contents/articles/25501.a-suitable-host-for-the-replica-virtual-machine-can-t-be-found-due-to-low-compute-resources.aspx)
 - [找不到複本虛擬機器的適當主機 - 因為未連接邏輯網路](http://social.technet.microsoft.com/wiki/contents/articles/25502.a-suitable-host-for-the-replica-virtual-machine-can-t-be-found-due-to-no-logical-network-attached.aspx)
@@ -202,4 +202,4 @@ ASR 中的每個作業都會被稽核，並且在 [工作] 索引標籤底下追
 ### 容錯移轉之後的遠端桌面疑難排解
 -   許多客戶面臨在 Azure 中連接到容錯移轉的 VM 的問題。[使用疑難排解文件 RDP 至 VM](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

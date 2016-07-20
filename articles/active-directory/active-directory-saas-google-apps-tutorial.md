@@ -88,7 +88,7 @@
 
 	![選取 [Azure AD 單一登入]][7]
 
-	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis/#how-does-single-sign-on-with-azure-active-directory-work)
+	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
 
 3. 在 [設定應用程式設定] 頁面的 [登入 URL] 欄位中，使用下列格式輸入您的 Google Apps 租用戶 URL：`https://mail.google.com/a/<yourdomain>`
 
@@ -124,7 +124,7 @@
 
 	![選取 [Azure AD 單一登入]][7]
 
-	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis/#how-does-single-sign-on-with-azure-active-directory-work)
+	> [AZURE.NOTE] 若要深入了解有關不同單一登入的選項，請[按一下這裡](../active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
 
 3. 在 [設定應用程式設定] 頁面的 [登入 URL] 欄位中，使用下列格式輸入您的 Google Apps 租用戶 URL：`https://mail.google.com/a/<yourdomain>`
 
@@ -194,7 +194,7 @@
 
 4. 如果您還沒將自訂網域名稱加入 Azure Active directory，請執行下列步驟：
 
-	- 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。在目錄清單中，選取您的目錄。 
+	- 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。在目錄清單中，選取您的目錄。
 
 	- 從最上層功能表按一下 [網域]，然後按一下 [新增自訂網域]。
 
@@ -313,4 +313,4 @@
 [29]: ./media/active-directory-saas-google-apps-tutorial/assign-users.png
 [30]: ./media/active-directory-saas-google-apps-tutorial/assign-confirm.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

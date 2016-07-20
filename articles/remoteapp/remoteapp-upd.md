@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/13/2016" 
+    ms.date="06/30/2016" 
     ms.author="elizapo" />
 
 # Azure RemoteApp 如何儲存使用者資料和設定？
@@ -50,9 +50,6 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 如需使用 Outlook 和 Azure RemoteApp 的詳細資訊，請查看[這篇文章](remoteapp-outlook.md)。
 
-## 我們可以使用共用的資料解決方案嗎？
-是，Azure RemoteApp 支援使用共用的資料解決方案 - 尤其是商務用 OneDrive 和 Dropbox。不過請注意，不支援 OneDrive Consumer (個人版) 和 Box。
-
 ## 重新導向呢？
 您可以設定 Azure RemoteApp，讓使用者藉由設定[重新導向](remoteapp-redirection.md)來存取本機裝置。然後本機裝置即可存取 UPD 上的資料。
 
@@ -84,7 +81,7 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 - 您需要使用者資料的完整存取權限和控制 (針對稽核和檢閱之目的，例如金融機構)。
 - 您有內部部署的第三方使用者設定檔管理解決方案，並想要加入網域的 Azure RemoteApp 部署繼續使用它們。這會需要將設定檔代理程式載入主要映像。
-- 您不需要任何本機資料儲存空間，或者您的所有資料都在雲端 (例如商務用 OneDrive) 或檔案共用，並且想要使用 Azure RemoteApp 控制在本機的檔案儲存。
+- 您不需要任何本機資料儲存空間，或者您的所有資料都在雲端或檔案共用，並且想要使用 Azure RemoteApp 控制在本機的檔案儲存。
 
 如需詳細資訊，請參閱[在 Azure RemoteApp 停用使用者設定檔磁碟 (UPD)](https://blogs.technet.microsoft.com/enterprisemobility/2015/11/11/disable-user-profile-disks-upds-in-azure-remoteapp/) (英文)。
 
@@ -111,7 +108,6 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 3. 使用啟動指令碼來載入檔案共用。如需 Azure RemoteApp 中啟動指令碼的詳細資訊，請參閱下列內容。
 4. 引導使用者將所有資料儲存至檔案共用。
 
-您也可以使用資料同步應用程式，如商務用 OneDrive。
 
 ## 如何在 Azure RemoteApp 中執行啟動指令碼？
 
@@ -143,7 +139,7 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 ## 可以在 VM 本機儲存資料嗎?
 
-否，資料若不儲存在 UPD 而儲存在 VM 上的任何地方，資料將會遺失。使用者下次登入 Azure RemoteApp 時不會得到同一 VM 的可能性很高。我們不會維護「使用者-VM」持續性，因此使用者無法登入相同的 VM，故資料會遺失。此外，當我們更新集合時，現有 VM 會被一組新的 VM 取代 - 這表示儲存在 VM 本身的所有資料都會遺失。建議將資料儲存在 UPD、共用儲存體 (如 Azure Files)、VNET 內部的檔案伺服器，或儲存在使用商務用 OneDrive 或其他支援的雲端儲存體系統 (如 DropBox) 的雲端上。
+否，資料若不儲存在 UPD 而儲存在 VM 上的任何地方，資料將會遺失。使用者下次登入 Azure RemoteApp 時不會得到同一 VM 的可能性很高。我們不會維護「使用者-VM」持續性，因此使用者無法登入相同的 VM，故資料會遺失。此外，當我們更新集合時，現有 VM 會被一組新的 VM 取代 - 這表示儲存在 VM 本身的所有資料都會遺失。建議將資料儲存在 UPD、共用儲存體 (如 Azure Files)、VNET 內部的檔案伺服器，或儲存在使用雲端儲存體系統 (如 DropBox) 的雲端上。
 
 ## 如何使用 PowerShell 在 VM 上掛接 Azure File 共用?
 
@@ -159,4 +155,4 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 這可讓您略過 New-PSDrive Cmdlet 中的 -Credential 參數。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

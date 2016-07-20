@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016"
+	ms.date="07/05/2016"
 	ms.author="adegeo"/>
 
 
@@ -78,7 +78,7 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 4. 在新的 [雲端服務] 刀鋒視窗中，輸入 [DNS 名稱] 的值。
 5. 建立新的 [資源群組] 或選取現有的資源群組。
 6. 選取 [位置]。
-7. 按一下 [封裝]。這會開啟 [上傳封裝] 刀鋒視窗。填寫必要欄位。  
+7. 按一下 [封裝]。這會開啟 [上傳封裝] 刀鋒視窗。填寫必要欄位。
 
      如果您的任一個角色包含單一執行個體，請確定核取 [即使一個或多個角色包含單一執行個體，也要部署]。
 
@@ -119,4 +119,4 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 * [管理您的雲端服務](cloud-services-how-to-manage-portal.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate-portal.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0706_2016-->

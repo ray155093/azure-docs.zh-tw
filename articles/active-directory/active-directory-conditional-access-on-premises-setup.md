@@ -80,15 +80,15 @@
 
 | 工作 | 參考 |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| 利用 Windows Server 2012 R2 結構描述延伸模組部署 Active Directory 網域服務網域。您不需要將任何網域控制站升級到 Windows Server 2012 R2。結構描述升級是唯一的要求。 | [升級您的 Active Directory 網域服務結構描述](#升級您的 Active Directory 網域服務結構描述) |
-| 裝置會尋找已知的 DNS 記錄來探索您的 Azure Active Directory 裝置註冊服務。您必須設定您的公司 DNS，讓裝置能夠探索您的 Azure Active Directory 裝置註冊服務。 | [準備您的 Active Directory 支援裝置](#準備您的 Active Directory 以支援裝置) |
+| 利用 Windows Server 2012 R2 結構描述延伸模組部署 Active Directory 網域服務網域。您不需要將任何網域控制站升級到 Windows Server 2012 R2。結構描述升級是唯一的要求。 | [升級您的 Active Directory 網域服務結構描述](#upgrade-your-active-directory-domain-services-schema) |
+| 裝置會尋找已知的 DNS 記錄來探索您的 Azure Active Directory 裝置註冊服務。您必須設定您的公司 DNS，讓裝置能夠探索您的 Azure Active Directory 裝置註冊服務。 | [準備您的 Active Directory 支援裝置](#prepare-your-active-directory-to-support-devices) |
 
 
 ##第 3 部分：在 Azure AD 中啟用裝置回寫
 
 | 工作 | 參考 |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| 完成「在 Azure AD Connect 中啟用裝置回寫」的第 2 部分。完成時，回到這份指南。 | [在 Azure AD Connect 中啟用裝置回寫](#升級您的 Active Directory 網域服務結構描述) |
+| 完成「在 Azure AD Connect 中啟用裝置回寫」的第 2 部分。完成時，回到這份指南。 | [在 Azure AD Connect 中啟用裝置回寫](#upgrade-your-active-directory-domain-services-schema) |
 
 
 ##[選擇性] 第 4 部分：啟用 Multi-Factor Authentication
@@ -102,10 +102,10 @@
 
 | 工作 | 參考 |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| 使用 Azure Active Directory 裝置註冊將某些裝置加入工作場所您可以加入 iOS、Windows 和 Android 裝置 | [使用 Azure Active Directory 裝置註冊將裝置加入工作場所](#使用 Azure Active Directory 裝置註冊將裝置加入工作場所) |
+| 使用 Azure Active Directory 裝置註冊將某些裝置加入工作場所您可以加入 iOS、Windows 和 Android 裝置 | [使用 Azure Active Directory 裝置註冊將裝置加入工作場所](#join-devices-to-your-workplace-using-azure-active-directory-device-registration) |
 | 您可以使用系統管理員入口網站，檢視並啟用/停用已註冊的裝置。在這項工作中，您將使用系統管理員入口網站檢視一些已註冊的裝置。 | [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md) |
-| 確認裝置物件已從 Azure Active Directory 寫回至 Windows Server Active Directory。 | [確認已註冊的裝置已寫回至 Active Directory](#確認已註冊的裝置已寫回至 Active Directory) |
-| 現在使用者可以註冊其裝置，您可以在 AD FS 中建立僅允許已註冊裝置的應用程式存取原則。在這項工作中，建立應用程式存取規則和自訂拒絕存取訊息 | [建立應用程式存取原則和自訂拒絕存取訊息](#建立應用程式存取原則和自訂拒絕存取訊息) |
+| 確認裝置物件已從 Azure Active Directory 寫回至 Windows Server Active Directory。 | [確認已註冊的裝置已寫回至 Active Directory](#verify-registered-devices-are-written-back-to-active-directory) |
+| 現在使用者可以註冊其裝置，您可以在 AD FS 中建立僅允許已註冊裝置的應用程式存取原則。在這項工作中，建立應用程式存取規則和自訂拒絕存取訊息 | [建立應用程式存取原則和自訂拒絕存取訊息](#create-an-application-access-policy-and-custom-access-denied-message) |
 
 
 
@@ -180,7 +180,7 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
     https://enterpriseregistration.windows.net/enrollmentserver/otaprofile/contoso.com
 
-有許多不同的方式可讓 URL 與您的使用者進行通訊。其中一個建議方式是在 AD FS 中的自訂應用程式拒絕存取訊息發佈此 URL。這會包含在即將推出的章節：[建立應用程式存取原則和自訂拒絕存取訊息](#建立應用程式存取原則和自訂拒絕存取訊息)。
+有許多不同的方式可讓 URL 與您的使用者進行通訊。其中一個建議方式是在 AD FS 中的自訂應用程式拒絕存取訊息發佈此 URL。這會包含在即將推出的小節中：[建立應用程式存取原則和自訂拒絕存取訊息](#create-an-application-access-policy-and-custom-access-denied-message)。
 
 ###使用 Azure Active Directory 裝置註冊加入 Windows 8.1 裝置
 
@@ -252,4 +252,4 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

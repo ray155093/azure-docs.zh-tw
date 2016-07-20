@@ -36,7 +36,10 @@
 - 邏輯 Azure SQL Database 伺服器 <MyLocalServer> 和 SQL Database <MyDB> - 您想要複寫的主要資料庫。
 - 一或多個邏輯 Azure SQL Database 伺服器 <MySecondaryServer(n)> - 您將在其中建立次要資料庫的夥伴伺服器的邏輯伺服器。
 - 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
-- 最新版本的 SQL Server Management Studio - 若要取得最新版本的 SQL Server Management Studio (SSMS)，請移至[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。如需使用 SQL Server Management Studio 來管理 Azure SQL Database 邏輯伺服器和資料庫的詳細資訊，請參閱[使用 SQL Server Management Studio 管理 Azure SQL Database](sql-database-manage-azure-ssms.md)
+- SQL Server Management Studio (SSMS)
+
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
 
 ## 加入次要資料庫
 
@@ -167,4 +170,4 @@
 - 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

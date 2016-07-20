@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/04/2016"
+   ms.date="07/01/2016"
    ms.author="jtuliani" />
 
 # 流量管理員端點監視和容錯移轉
@@ -175,4 +175,4 @@ HTTP 和 HTTPS 健全狀況檢查中使用的主機標頭是與每個端點相�
 
 [疑難排解流量管理員端點上的已降級狀態](traffic-manager-troubleshooting-degraded.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

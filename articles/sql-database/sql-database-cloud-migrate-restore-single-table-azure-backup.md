@@ -34,7 +34,7 @@
 
 | 資料庫還原 | 基本層 | 標準層 | 進階層 |
 | :-- | :-- | :-- | :-- |
-| 時間點還原 | 7 天內的任何還原點|14 天內的任何還原點| 35 天內的任何還原點|
+| 時間點還原 | 7 天內的任何還原點|35 天內的任何還原點| 35 天內的任何還原點|
 
 ## 使用 SQL Database 移轉工具，從還原的資料庫複製資料表
 1. 下載並安裝 [SQL Database 移轉精靈](https://sqlazuremw.codeplex.com)。
@@ -71,4 +71,4 @@
 
 [SQL Database 自動備份](sql-database-automated-backups.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

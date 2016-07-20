@@ -66,4 +66,4 @@ OData 服務不再只是需要仰賴後端的資料庫。OData 支援各種儲�
 
 [link-acct]: marketplace-publishing-accounts-creation-registration.md
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0706_2016-->

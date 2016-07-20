@@ -3,7 +3,7 @@
 	description="了解如何從 Azure 將安全的推播通知傳送至 iOS 應用程式。程式碼範例是以 Objective-C 及 C# 撰寫。"
 	documentationCenter="ios"
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor=""
 	services="notification-hubs"/>
 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="06/29/2016"
 	ms.author="wesmc"/>
 
 #Azure 通知中心安全推播
@@ -158,4 +158,4 @@ Microsoft Azure 中的推播通知支援可讓您存取易於使用、多重平�
 
 [IOS1]: ./media/notification-hubs-aspnet-backend-ios-secure-push/secure-push-ios-1.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0706_2016-->

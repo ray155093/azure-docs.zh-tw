@@ -68,14 +68,14 @@ ms.author="garye;haining"/>
 	# Assume the default configuration file exists and is properly set to point to the valid Workspace.
 	$scoringSvc = Get-AmlWebService | where Name -eq 'Bike Rental Scoring'
 	$trainingSvc = Get-AmlWebService | where Name -eq 'Bike Rental Training'
-	
+
 接著，執行下列 PowerShell 命令：
 
 	# Create 10 endpoints on the scoring web service.
 	For ($i = 1; $i -le 10; $i++){
 	    $seq = $i.ToString().PadLeft(3, '0');
 	    $endpointName = 'rentalloc' + $seq;
-	    Write-Host ('adding endpoint ' + $endpontName + '...')
+	    Write-Host ('adding endpoint ' + $endpointName + '...')
 	    Add-AmlWebServiceEndpoint -WebServiceId $scoringSvc.Id -EndpointName $endpointName -Description $endpointName     
 	}
 
@@ -87,8 +87,10 @@ ms.author="garye;haining"/>
 
 下一步是使用經過每個客戶的個別資料所特別訓練的模型來更新端點。但首先我們需要從**自行車出租訓練** Web 服務來產生這些模型。讓我們回到**自行車出租訓練** Web 服務。我們需要以 10 個不同的訓練資料集呼叫其 BES 端點 10 次，才能產生 10 個不同的模型。我們將使用 **InovkeAmlWebServiceBESEndpoint** PowerShell Cmdlet 來執行這項操作。
 
+您也必須在 `$configContent` 提供您 Blob 儲存體帳戶的認證，也就是 `AccountName`、`AccountKey` 和 `RelativeLocation` 欄位。`AccountName` 可以是您其中一個帳戶名稱，如**Classic Azure Management Portal (傳統的 Azure 管理入口網站)** ([儲存體] 索引標籤) 中所示。按一下儲存體帳戶後，按下底部的 [管理存取金鑰]按鈕，即可找到儲存體帳戶的`AccountKey`，並複製*主要存取金鑰*。`RelativeLocation` 是相對於您儲存體的路徑，其可儲存新模型。例如，下列指令碼中的 `hai/retrain/bike_rental/` 路徑指向名為 `hai` 的容器，而 `/retrain/bike_rental/` 是子資料夾。目前，您無法透過入口網站 UI 建立子資料夾，但有[數個 Azure Storage Explorers (Azure 儲存體總管)](../storage/storage-explorers.md)可讓您執行這項操作。建議您在儲存體中將建立新的容器，來儲存新的訓練模型 (.ilearner 檔案)，如下所示︰從儲存體頁面中，按一下底部的 [新增] 按鈕，並命名為 `retrain`。簡而言之，下列指令碼的必要變更屬於 `AccountName``AccountKey` 和 `RelativeLocation` (:`"retrain/model' + $seq + '.ilearner"`)。
+
 	# Invoke the retraining API 10 times
-	# This is the default (and the only) endpoint on the training web service 
+	# This is the default (and the only) endpoint on the training web service
 	$trainingSvcEp = (Get-AmlWebServiceEndpoint -WebServiceId $trainingSvc.Id)[0];
 	$submitJobRequestUrl = $trainingSvcEp.ApiLocation + '/jobs?api-version=2.0';
 	$apiKey = $trainingSvcEp.PrimaryKey;
@@ -122,12 +124,12 @@ ms.author="garye;haining"/>
 ## 完整 PowerShell 指令碼
 
 以下是完整原始程式碼的清單︰
-	
+
 	Import-Module .\AzureMLPS.dll
 	# Assume the default configuration file exists and properly set to point to the valid workspace.
 	$scoringSvc = Get-AmlWebService | where Name -eq 'Bike Rental Scoring'
 	$trainingSvc = Get-AmlWebService | where Name -eq 'Bike Rental Training'
-	
+
 	# Create 10 endpoints on the scoring web service
 	For ($i = 1; $i -le 10; $i++){
 	    $seq = $i.ToString().PadLeft(3, '0');
@@ -135,7 +137,7 @@ ms.author="garye;haining"/>
 	    Write-Host ('adding endpoint ' + $endpontName + '...')
 	    Add-AmlWebServiceEndpoint -WebServiceId $scoringSvc.Id -EndpointName $endpointName -Description $endpointName     
 	}
-	
+
 	# Invoke the retraining API 10 times to produce 10 regression models in .ilearner format
 	$trainingSvcEp = (Get-AmlWebServiceEndpoint -WebServiceId $trainingSvc.Id)[0];
 	$submitJobRequestUrl = $trainingSvcEp.ApiLocation + '/jobs?api-version=2.0';
@@ -147,7 +149,7 @@ ms.author="garye;haining"/>
 	    Write-Host ('training regression model on ' + $inputFileName + ' for rental location ' + $seq + '...');
 	    Invoke-AmlWebServiceBESEndpoint -JobConfigString $configContent -SubmitJobRequestUrl $submitJobRequestUrl -ApiKey $apiKey
 	}
-	
+
 	# Patch the 10 endpoints with respective .ilearner models
 	$baseLoc = 'http://bostonmtc.blob.core.windows.net/'
 	$sasToken = '?test'
@@ -159,4 +161,4 @@ ms.author="garye;haining"/>
 	    Patch-AmlWebServiceEndpoint -WebServiceId $scoringSvc.Id -EndpointName $endpointName -ResourceName 'Bike Rental [trained model]' -BaseLocation $baseLoc -RelativeLocation $relativeLoc -SasBlobToken $sasToken
 	}
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -52,10 +52,10 @@
 - 電子郵件地址 - 選擇性
 - 電話號碼 - 進行語音通話或簡訊驗證時
 - 安全性權杖 - 執行行動應用程式驗證時
-- 驗證模式 
-- 驗證結果 
-- MFA Server 名稱 
-- MFA Server IP 
+- 驗證模式
+- 驗證結果
+- MFA Server 名稱
+- MFA Server IP
 - 用戶端 IP – 如果有的話
 
 
@@ -83,7 +83,7 @@ Azure Multi-Factor Authentication 能當作獨立服務選購，並按照使用�
 每位使用者耗用量 (Azure 承諾用量)| 每個月 1.40 美元 (不限驗證次數)
 每次驗證耗用量 (Azure 承諾用量)|每 10 次驗證 1.40 美元
 每位使用者每年授權 (Direct)|每個月 1.40 美元 (不限驗證次數)
-每位使用者每年授權 (大量授權)|請連絡您的 [Enterprise 合約代表](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx)。
+每位使用者每年授權 (大量授權)|請連絡您的 [Enterprise 合約代表](https://www.microsoft.com/zh-TW/licensing/licensing-programs/enterprise.aspx)。
 
 **問：[每位使用者] 計費模型的收費是以啟用 Multi-Factor Authentication 的使用者數目或執行驗證的使用者數目為基礎？**
 
@@ -132,7 +132,7 @@ Azure Multi-Factor Authentication 能當作獨立服務選購，並按照使用�
 **問：如果使用者無法登入非瀏覽器應用程式，該怎麼辦？**
 
 - 已啟用 Multi-Factor Authentication 的使用者需要應用程式密碼，才能登入一些非瀏覽器應用程式。
-- 使用者需要清除登入資訊 (刪除登入資訊)，重新啟動應用程式，然後使用其使用者名稱和應用程式密碼登入。 
+- 使用者需要清除登入資訊 (刪除登入資訊)，重新啟動應用程式，然後使用其使用者名稱和應用程式密碼登入。
 
 如需有關建立應用程式密碼的資訊，請參閱[協助使用應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)
 
@@ -185,4 +185,4 @@ Azure Multi-Factor Authentication 服務會透過簡訊彙總工具傳送簡訊�
 
 此種情況的因應措施是使用不同的使用者帳戶進行系統管理相關作業和非系統管理作業。您稍後可以連結系統管理帳戶與非系統管理帳戶之間的信箱，以便使用非系統管理帳戶登入 Outlook。如需詳細資訊，請參閱[讓系統管理員能夠開啟及檢視使用者信箱的內容](http://help.outlook.com/141/gg709759(d=loband).aspx?sl=1)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

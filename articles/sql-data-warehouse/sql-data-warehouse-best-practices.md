@@ -1,5 +1,5 @@
 <properties
-   pageTitle="SQL 資料倉儲最佳作法 | Microsoft Azure"
+   pageTitle="Azure SQL 資料倉儲最佳作法 | Microsoft Azure"
    description="開發 Azure SQL 資料倉儲的解決方案時應該知道的建議和最佳作法。這些可協助您成功。"
    services="sql-data-warehouse"
    documentationCenter="NA"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/02/2016"
+   ms.date="06/30/2016"
    ms.author="sonyama;barbkess"/>
 
 # Azure SQL 資料倉儲最佳做法
@@ -31,131 +31,132 @@ SQL 資料倉儲的一個重要功能，是能夠在您不使用它時予以暫�
 ## 暫停或調整之前先清空交易 
 當您暫停或調整 SQL 資料倉儲時，資料庫執行個體會在幕後停止。這表示所有進行中的查詢都會取消。取消簡單的 SELECT 查詢是很快的作業，對於暫停或調整執行個體所花費的時間幾乎沒有什麼影響。不過，交易性查詢 (會修改您的資料或結構) 可能無法快速地停止。**交易性查詢必須完全完成或回復變更。** 回復交易性查詢已完成的工作可能需要很長時間，甚至比查詢套用原始變更更久。例如，如果您取消的刪除資料列查詢已經執行一小時，系統可能需要一個小時將已刪除的資料列回復插入。如果您在交易執行中執行暫停或調整，暫停或調整作業可能需要一些時間，因為暫停和調整必須等回復完成才能繼續。
 
-另請參閱 [SQL 資料倉儲中的交易][]、[最佳化 SQL 資料倉儲的交易][]
+另請參閱[了解交易][]、[最佳化交易][]
 
 ## 維護統計資料
 不同於 SQL Server (會自動偵測資料行並建立或更新受益資料行的統計資料)，SQL 資料倉儲需要手動維護統計資料。我們計劃在未來改進這一點，但現在您仍需要維護您的統計資料，以確保 SQL 資料倉儲的計劃最佳化。最佳化工具建立的計劃只能利用可用的統計資料。**建立每個資料行的範本統計資料是開始使用統計資料的簡單方式。** 更新統計資料和對您的資料做重大變更一樣重要。保守的作法是每天或每次載入之後更新統計資料。建立和更新統計資料的效能與成本之間總有一些取捨。如果您發現維護所有統計資料所需時間太長，可能要更謹慎選擇哪些資料行要加以統計資料、哪些資料行需要頻繁更新。例如，您可能想要更新您每天都要加入新值的日期資料行。**對牽涉聯結的資料行、WHERE 子句中使用的資料行、在 GROUP BY 中找到的資料行加以統計資料，可以獲得最大效益。**
 
-另請參閱[管理 SQL 資料倉儲中的統計資料][]、[建立統計資料 (Transact-SQL)][]、[更新統計資料 (Transact-SQL)][]
+另請參閱[管理資料表的統計資料][]、[CREATE STATISTICS][]、[UPDATE STATISTICS][]
 
 ## 將 INSERT 陳述式群組為批次
 使用 INSERT 陳述式單次載入小型資料表、或甚至定期重新載入查閱，可能會和使用像 `INSERT INTO MyLookup VALUES (1, 'Type 1')` 這樣的陳述式一樣正常執行。不過，如果您一整天都得載入數千或數百萬個資料列，您可能會發現單一 INSERT 跟不上您的需求。所以，請開發您自己的程序將它們寫入檔案，以及另一個程序定期執行並載入此檔案。
 
-另請參閱 [INSERT (Transact-SQL)][]
+另請參閱 [INSERT][]
  
 ## 使用 PolyBase 將資料快速載入及匯出
 SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase、BCP) 來載入及匯出資料。若是小量的資料，效能不是那麼重要，任何工具都可以滿足您的需求。不過，當您要載入或匯出大量資料，或者需要快速的效能時，PolyBase 是最佳選擇。PolyBase 利用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此載入及匯出巨量資料的速度比其他任何工具更快。您可使用 CTAS 或 INSERT INTO 來執行 PolyBase 載入。**使用 CTAS 可以減少交易記錄，是載入資料最快的方法。** Azure Data Factory 也支援 PolyBase 載入。PolyBase 支援各種不同的檔案格式，包括 Gzip 檔案。**若要在使用 gzip 文字檔案時獲得最大的輸送量，將檔案分成 60 個以上的檔案讓載入有最大化的平行處理。** 如需更快的總輸送量，請考慮同時載入資料。
 
-另請參閱[資料載入 SQL 資料倉儲][]、[在 SQL 資料倉儲中使用 PolyBase 指南][]、[Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料][]、[CREATE EXTERNAL FILE FORMAT (Transact-SQL) (建立外部檔案格式 (Transact-SQL))][]、[在 SQL 資料倉儲中的 Create Table As Select (CTAS)][]
+另請參閱[載入資料][]、[PolyBase 使用指南][]、[Azure SQL 資料倉儲載入模式和策略][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 移動資料][]、[CREATE EXTERNAL FILE FORMAT][]、[Create table as select (CTAS)][]
 
 ## 雜湊分散大型資料表
 根據預設，資料表是以「循環配置資源」方式分散。這可讓使用者更容易開始建立資料表，而不必決定應該如何分散其資料表。循環配置資源的資料表在某些工作負載中執行良好，但通常選取分散資料行的執行效能會更好。依資料行分散資料表的效能遠勝於循環配置資源資料表的最常見例子，是聯結兩個大型事實資料表。例如，如果您有一個依 order\_id 分散的訂單資料表，以及一個也是依 order\_id 分散的交易資料表，當您將訂單資料聯結至交易資料表上的 order\_id，此查詢會變成傳遞查詢，也就是資料移動作業會被消除。較少的步驟代表較快的查詢。較少的資料移動也會讓查詢更快。這樣的解釋只是大致的梗概。載入分散的資料表時，請確定您的內送資料的分散式索引鍵沒有排序，因為這會拖慢載入。關於選取分散資料行如何能提升效能，以及如何在 CREATE TABLE 陳述式的 WITH 子句中定義分散的資料表，如需詳細資訊請參閱以下的連結。
 
-另請參閱[雜湊分散及其對 SQL 資料倉儲中的查詢效能的影響][]、[選擇雜湊分散式資料表與循環配置資源分散式資料表][]、[CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]、[CREATE TABLE AS SELECT (Azure SQL 資料倉儲)][]
+另請參閱[資料表概觀][]、[資料表散發][]、[選取資料表散發][]、[CREATE TABLE][]、[CREATE TABLE AS SELECT][]
 
 ## 不要過度執行資料分割
 雖然資料分割可以讓資料維護變得有效率 (透過分割切換或最佳化掃描將分割消除)，太多的資料分割會讓查詢變慢。通常在 SQL Server 上運作良好的高資料粒度分割策略，可能無法在 SQL 資料倉儲上運作良好。如果每個資料分割的資料列少於 1 百萬，太多個資料分割也會減少叢集資料行存放區索引的效率。請記住，SQL 資料倉儲資料在幕後為您將資料分割成 60 的資料庫，因此如果您建立有 100 個分割的資料表，實際上會導致 6000 個分割。每個工作負載都不同，因此最佳建議是嘗試不同的分割，找出最適合您工作負載的分割。請考慮比您的 SQL Server 上運作良好的資料粒度更低的粒度。例如，考慮使用每週或每月資料分割，而不是每日資料分割。
 
-另請參閱 [SQL 資料倉儲中的資料表分割][]
+另請參閱[資料表分割][]
 
 ## 將交易大小最小化
 在交易中執行的 INSERT、UPDATE、DELETE 陳述式，失敗時必須回復。為了將長時間回復的可能性降到最低，請盡可能將交易大小最小化。這可以透過將 INSERT、UPDATE、DELETE 陳述式分成小部分來達成。例如，如果您預期您的 INSERT 需要 1 小時，可能的話，將 INSERT 分成 4 個部分，每個執行 15 分鐘。利用特殊的最低限度記錄案例，像是 CTAS、TRUNCATE、DROP TABLE 或 INSERT 空資料表，來降低回復的風險。另一個消除回復的作法是使用「僅中繼資料」作業 (像是資料分割切換) 進行資料管理。例如，不要執行 DELETE 陳述式來刪除資料表中所有 order\_date 為 2001 年 10 月的資料列，而是將資料每月分割後，再從另一個資料表將有空分割之資料的分割調動出來 (請參閱 ALTER TABLE 範例)。針對未分割的資料表，請考慮使用 CTAS 將您想要保留的資料寫入資料表中，而不是使用 DELETE。如果 CTAS 需要的時間一樣長，則較安全的作業，是在它具有極小交易記錄的條件下執行它，且必要時可以快速地取消。
 
-另請參閱 [SQL 資料倉儲中的交易][]、[最佳化 SQL 資料倉儲的交易][]、[SQL 資料倉儲中的資料表分割][]、[TRUNCATE TABLE (Transact-SQL)][]、[ALTER TABLE (Transact-SQL)][]、[SQL 資料倉儲中的 Create Table As Select (CTAS)][]
+另請參閱[了解交易][]、[最佳化交易][]、[資料表分割][]、[TRUNCATE TABLE][]、[ALTER TABLE][]、[Create table as select (CTAS)][]
 
 ## 使用最小的可能資料行大小
 在定義 DDL 時，使用可支援您的資料的最小資料類型，將能夠改善查詢效能。這對 CHAR 和 VARCHAR 資料行尤其重要。如果資料行中最長的值是 25 個字元，請將您的資料行定義為 VARCHAR(25)。避免將所有字元資料行定義為較大的預設長度。此外，將資料行定義為 VARCHAR (當它只需要這樣的大小時) 而非 NVARCHAR。
 
-另請參閱 [CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]。
+另請參閱[資料表概觀][]、[資料表的資料類型][]、[CREATE TABLE][]
 
 ## 針對暫時性資料使用暫存堆積資料表
 當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。此外，將資料載入暫存資料表也會比將資料表載入永久儲存體更快速。暫存資料表會以 "#" 開頭，且只有建立它的工作階段才能夠存取它，因此在某些情況下可能無法運作。堆積資料表是在 CREATE TABLE 的 WITH 子句中定義。如果您使用暫存資料表，請記得也在該暫存資料表上建立統計資料。
 
-另請參閱 [SQL 資料倉儲中的暫存資料表][]、[CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)][]、[CREATE TABLE AS SELECT (Azure SQL 資料倉儲)][]
+另請參閱[暫存資料表][]、[CREATE TABLE][]、[CREATE TABLE AS SELECT][]
 
 ## 將叢集資料行存放區資料表最佳化
-叢集資料行存放區索引是將資料儲存在 Azure SQL 資料倉儲中最有效率的方式之一。根據預設，SQL 資料倉儲中的資料表會建立為「叢集資料行存放區」。為了讓資料行存放區資料表的查詢獲得最佳效能，良好的區段品質很重要。當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。壓縮的資料列群組中的資料列數目可以測量區段品質。如需偵測和改善叢集資料行存放區資料表區段品質的逐步指示，請參閱[疑難排解][]中的**叢集資料行存放區區段品質**一節。因為取得高品質的資料行存放區區段相當重要，建立只用於載入中型或大型資源類別的特殊使用者識別碼，通常是個不錯的主意。使用的 DWU 愈較，要指派給載入使用者的資源類別愈多。
+叢集資料行存放區索引是將資料儲存在 Azure SQL 資料倉儲中最有效率的方式之一。根據預設，SQL 資料倉儲中的資料表會建立為「叢集資料行存放區」。為了讓資料行存放區資料表的查詢獲得最佳效能，良好的區段品質很重要。當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。壓縮的資料列群組中的資料列數目可以測量區段品質。如需偵測和改善叢集資料行存放區資料表區段品質的逐步指示，請參閱[資料表索引][]一文中的[資料行存放區索引品質不佳的原因][]。因為取得高品質的資料行存放區區段相當重要，建立只用於載入中型或大型資源類別的特殊使用者識別碼，通常是個不錯的主意。使用的 DWU 愈較，要指派給載入使用者的資源類別愈多。
 
-由於資料行存放區資料表通常要等到每個資料表有超過 1 百萬個資料列之後才會將資料推送到壓縮的資料行存放區區段，而且每個 SQL 資料倉儲資料表分割成 60 個資料表，根據經驗法則，資料行存放區資料表對於查詢沒有好處，除非資料表有超過 6 千萬個資料列。小於 6 千萬列的資料表使用資料行存放區索引似乎不太合理，但也無傷大雅。此外，如果您將資料分割，則您要考慮的是每個資料分割必須有 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果資料表有 100 個分割，則它至少必須擁有 60 億個資料列才會受益於叢集資料行存放區 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果在此範例中，您的資料表並沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。使用次要索引搭配堆積資料表而不是資料行存放區資料表，也可能是值得進行的實驗，看看是否可以獲得較佳的效能。資料行存放區資料表尚不支援次要索引。
+由於資料行存放區資料表通常要等到每個資料表有超過 1 百萬個資料列之後才會將資料推送到壓縮的資料行存放區區段，而且每個 SQL 資料倉儲資料表分割成 60 個資料表，根據經驗法則，資料行存放區資料表對於查詢沒有好處，除非資料表有超過 6 千萬個資料列。小於 6 千萬列的資料表使用資料行存放區索引似乎不太合理，但也無傷大雅。此外，如果您將資料分割，則您要考慮的是每個資料分割必須有 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果資料表有 100 個分割，則它至少必須擁有 60 億個資料列才會受益於叢集資料行存放區 (60 個散發「100 個資料分割」1 百萬個資料列)。如果在此範例中，您的資料表並沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。使用次要索引搭配堆積資料表而不是資料行存放區資料表，也可能是值得進行的實驗，看看是否可以獲得較佳的效能。資料行存放區資料表尚不支援次要索引。
 
 查詢資料行存放區資料表時，如果您只選取您需要的資料行，查詢執行會更快速。
 
-另請參閱[疑難排解][]、[管理 Azure SQL 資料倉儲中的資料行存放區索引][]、[資料行存放區索引指南][]
+另請參閱[資料表索引][]、[資料行存放區索引指南][]
 
 ## 使用較大的資源類別來改善查詢效能
 SQL 資料倉儲會使用資源群組，做為將記憶體配置給查詢的一種方式。根據預設，所有使用者都會被指派小型資源類別，此類別授予每個散發 100 MB 的記憶體。因為永遠會有 60 個散發，每個散發有至少 100 MB，整個系統的總記憶體配置為 6000 MB 或是剛好接近6 GB。有些查詢，像是大型聯結或載入叢集資料行存放區資料表，將受益於較大的記憶體配置。有些查詢，像是純掃描，則沒有任何好處。另一方面，使用較大的資源類別會影響並行存取，因此您將所有的使用者移到大型資源類別之前，要先將這一點列入考慮。
  
-另請參閱 [SQL 資料倉儲中的並行存取和工作負載管理][]
+另請參閱[並行存取和工作負載管理][]
 
 ## 使用較小的資源類別來增加並行存取
 如果您注意到使用者查詢似乎長時間延遲，可能是您的使用者在較大資源類別中執行，佔用大量的並行存取位置，而導致其他查詢排入佇列。若要確認使用者的查詢是否被排入佇列，請執行 `SELECT * FROM sys.dm_pdw_waits` 看看是否會傳回任何資料列。
 
-另請參閱 [SQL 資料倉儲中的並行存取和工作負載管理][]、[sys.dm\_pdw\_waits (Transact-SQL)][]
+另請參閱[並行存取和工作負載管理][]、[sys.dm\_pdw\_waits][]
 
 ## 使用 DMV 對查詢進行監視和最佳化
 SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視相關文章會逐步解說如何查看執行中查詢的詳細資料。若要在這些 DMV 中快速找到查詢，可在您的查詢中使用 LABEL 選項。
 
-另請參閱[使用 DMV 監視工作負載][]、[使用標籤檢測 SQL 資料倉儲中的查詢][]、[OPTION 子句 (Transact-SQL)][]、[sys.dm\_exec\_sessions (Transact-SQL)][]、[sys.dm\_pdw\_exec\_requests (Transact-SQL)][]、[sys.dm\_pdw\_request\_steps (Transact-SQL)][]、[sys.dm\_pdw\_sql\_requests (Transact-SQL)][]、[sys.dm\_pdw\_dms\_workers (Transact-SQL)]、[DBCC PDW\_SHOWEXECUTIONPLAN (Transact-SQL)][]、[sys.dm\_pdw\_waits (Transact-SQL)][]
+另請參閱[使用 DMV 監視工作負載][]、[LABEL][]、[OPTION][]、[sys.dm\_exec\_sessions][]、[sys.dm\_pdw\_exec\_requests][]、[sys.dm\_pdw\_request\_steps][]、[sys.dm\_pdw\_sql\_requests][]、[sys.dm\_pdw\_dms\_workers]、[DBCC PDW\_SHOWEXECUTIONPLAN][]、[sys.dm\_pdw\_waits][]
 
 ## 其他資源
-有許多地方能夠找到關於如何使用 Azure SQL 資料倉儲的資訊。本文是 Azure 文件的一部分，有許多其他 Azure 文章和 MSDN 文章的連結。我們會監看這些文章的意見反應，並經常更新。如果您認為文章很有幫助，請回答這個問題：「本網頁實用嗎？」告訴我們。不管您的答案是「是」或「否」，都可以提供意見。如果您發現文章很有幫助，但有任何意見，請按一下「是」，並加入您認為我們可以如何改善文章的任何意見。如果這個問題沒有出現，在每個 Azure 文章的最後一定可以找到；MSDN 文章請使用每個 MSDN 頁面右上角的「有任何建議嗎？」連結。我們非常重視您的意見反應，並會對大部分的反應採取動作。
+另請參閱[疑難排解][]一文中的常見問題和解決方案。
 
-如果您有對SQL 資料倉儲的**功能建議**，請使用 [Azure SQL 資料倉儲意見反應][]頁面。加入您的要求，或投票其他要求，以協助我們決定功能的優先順序。
+如果您在此文件中找不到想要尋找的內容，請嘗試使用此頁面左邊的 [搜尋文件] 來搜尋所有 Azure SQL 資料倉儲文件。我們也建立了 [Azure SQL 資料倉儲 MSDN 論壇][]，讓您可以向其他使用者和 SQL 資料倉儲的產品群組提出問題。我們會主動監看這個論壇，以確保您的問題有其他使用者或是我們回答。如果您比較想在 Stack Overflow上詢問您的問題，我們也有 [Azure SQL 資料倉儲 Stack Overflow 論壇][]。
 
-我們也建立了 [Azure SQL 資料倉儲 MSDN 論壇][]，讓您可以向其他使用者和 SQL 資料倉儲的產品群組提出問題。我們會主動監看這個論壇，以確保您的問題有其他使用者或是我們回答。如果您比較想在 Stack Overflow上詢問您的問題，我們也有 [Azure SQL 資料倉儲 Stack Overflow 論壇][]。
+最後，請使用 [Azure SQL 資料倉儲意見反應][]頁面來提出功能要求。加入您的要求或票選其他要求確實可協助我們決定功能的優先順序。
 
 <!--Image references-->
 
 <!--Article references-->
-[create a support ticket]: sql-data-warehouse-get-started-create-support-ticket.md
-[SQL 資料倉儲中的並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
-[SQL 資料倉儲中的 Create Table As Select (CTAS)]: sql-data-warehouse-develop-ctas.md
-[在 SQL 資料倉儲中的 Create Table As Select (CTAS)]: sql-data-warehouse-develop-ctas.md
-[在 SQL 資料倉儲中使用 PolyBase 指南]: sql-data-warehouse-load-polybase-guide.md
-[雜湊分散及其對 SQL 資料倉儲中的查詢效能的影響]: sql-data-warehouse-develop-hash-distribution-key.md
-[資料載入 SQL 資料倉儲]: sql-data-warehouse-overview-load.md
-[使用 Azure Data Factory 載入資料]: sql-data-warehouse-get-started-load-with-azure-data-factory.md
-[Load data with bcp]: sql-data-warehouse-load-with-bcp.md
-[Load data with PolyBase in SQL Data Warehouse]: sql-data-warehouse-get-started-load-with-polybase.md
-[管理 Azure SQL 資料倉儲中的資料行存放區索引]: sql-data-warehouse-manage-columnstore-indexes.md
-[管理 SQL 資料倉儲中的統計資料]: sql-data-warehouse-develop-statistics.md
-[使用 DMV 監視工作負載]: sql-data-warehouse-manage-monitor.md
-[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
-[最佳化 SQL 資料倉儲的交易]: sql-data-warehouse-develop-best-practices-transactions.md
-[暫停計算資源]: sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
-[繼續計算資源]: sql-data-warehouse-manage-compute-overview.md#resume-compute-bk
-[調整計算資源]: sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
-[Table design in SQL Data Warehouse]: sql-data-warehouse-develop-table-design.md
-[SQL 資料倉儲中的資料表分割]: sql-data-warehouse-develop-table-partitions.md
-[SQL 資料倉儲中的暫存資料表]: sql-data-warehouse-develop-temporary-tables.md
-[SQL 資料倉儲中的交易]: sql-data-warehouse-develop-transactions.md
-[疑難排解]: sql-data-warehouse-troubleshoot.md
-[使用標籤檢測 SQL 資料倉儲中的查詢]: sql-data-warehouse-develop-label.md
+[Create a support ticket]: ./sql-data-warehouse-get-started-create-support-ticket.md
+[並行存取和工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
+[Create table as select (CTAS)]: ./sql-data-warehouse-develop-ctas.md
+[資料表概觀]: ./sql-data-warehouse-tables-overview.md
+[資料表的資料類型]: ./sql-data-warehouse-tables-data-types.md
+[資料表散發]: ./sql-data-warehouse-tables-distribute.md
+[資料表索引]: ./sql-data-warehouse-tables-index.md
+[資料行存放區索引品質不佳的原因]: ./sql-data-warehouse-tables-index.md#causes-of-poor-columnstore-index-quality
+[資料表分割]: ./sql-data-warehouse-tables-partition.md
+[管理資料表的統計資料]: ./sql-data-warehouse-tables-statistics.md
+[暫存資料表]: ./sql-data-warehouse-tables-temporary.md
+[PolyBase 使用指南]: ./sql-data-warehouse-load-polybase-guide.md
+[載入資料]: ./sql-data-warehouse-overview-load.md
+[使用 Azure Data Factory 移動資料]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
+[使用 Azure Data Factory 載入資料]: ./sql-data-warehouse-get-started-load-with-azure-data-factory.md
+[Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
+[Load data with PolyBase]: ./sql-data-warehouse-get-started-load-with-polybase.md
+[使用 DMV 監視工作負載]: ./sql-data-warehouse-manage-monitor.md
+[暫停計算資源]: ./sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
+[繼續計算資源]: ./sql-data-warehouse-manage-compute-overview.md#resume-compute-bk
+[調整計算資源]: ./sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
+[了解交易]: ./sql-data-warehouse-develop-transactions.md
+[最佳化交易]: ./sql-data-warehouse-develop-best-practices-transactions.md
+[疑難排解]: ./sql-data-warehouse-troubleshoot.md
+[LABEL]: ./sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
-[ALTER TABLE (Transact-SQL)]: https://msdn.microsoft.com/library/ms190273.aspx
+[ALTER TABLE]: https://msdn.microsoft.com/library/ms190273.aspx
+[CREATE EXTERNAL FILE FORMAT]: https://msdn.microsoft.com/library/dn935026.aspx
+[CREATE STATISTICS]: https://msdn.microsoft.com/library/ms188038.aspx
+[CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
+[CREATE TABLE AS SELECT]: https://msdn.microsoft.com/library/mt204041.aspx
+[DBCC PDW\_SHOWEXECUTIONPLAN]: https://msdn.microsoft.com/library/mt204017.aspx
+[INSERT]: https://msdn.microsoft.com/library/ms174335.aspx
+[OPTION]: https://msdn.microsoft.com/library/ms190322.aspx
+[TRUNCATE TABLE]: https://msdn.microsoft.com/library/ms177570.aspx
+[UPDATE STATISTICS]: https://msdn.microsoft.com/library/ms187348.aspx
+[sys.dm\_exec\_sessions]: https://msdn.microsoft.com/library/ms176013.aspx
+[sys.dm\_pdw\_exec\_requests]: https://msdn.microsoft.com/library/mt203887.aspx
+[sys.dm\_pdw\_request\_steps]: https://msdn.microsoft.com/library/mt203913.aspx
+[sys.dm\_pdw\_sql\_requests]: https://msdn.microsoft.com/library/mt203889.aspx
+[sys.dm\_pdw\_dms\_workers]: https://msdn.microsoft.com/library/mt203878.aspx
+[sys.dm\_pdw\_waits]: https://msdn.microsoft.com/library/mt203893.aspx
 [資料行存放區索引指南]: https://msdn.microsoft.com/library/gg492088.aspx
-[CREATE TABLE (Azure SQL 資料倉儲，平行資料倉儲)]: https://msdn.microsoft.com/library/mt203953.aspx
-[CREATE EXTERNAL FILE FORMAT (Transact-SQL) (建立外部檔案格式 (Transact-SQL))]: https://msdn.microsoft.com/library/dn935026.aspx
-[CREATE TABLE AS SELECT (Azure SQL 資料倉儲)]: https://msdn.microsoft.com/library/mt204041.aspx
-[建立統計資料 (Transact-SQL)]: https://msdn.microsoft.com/library/ms188038.aspx
-[DBCC PDW\_SHOWEXECUTIONPLAN (Transact-SQL)]: https://msdn.microsoft.com/library/mt204017.aspx
-[INSERT (Transact-SQL)]: https://msdn.microsoft.com/library/ms174335.aspx
-[OPTION 子句 (Transact-SQL)]: https://msdn.microsoft.com/library/ms190322.aspx
-[sys.dm\_exec\_sessions (Transact-SQL)]: https://msdn.microsoft.com/library/ms176013.aspx
-[sys.dm\_pdw\_exec\_requests (Transact-SQL)]: https://msdn.microsoft.com/library/mt203887.aspx
-[sys.dm\_pdw\_request\_steps (Transact-SQL)]: https://msdn.microsoft.com/library/mt203913.aspx
-[sys.dm\_pdw\_sql\_requests (Transact-SQL)]: https://msdn.microsoft.com/library/mt203889.aspx
-[sys.dm\_pdw\_dms\_workers (Transact-SQL)]: https://msdn.microsoft.com/library/mt203878.aspx
-[sys.dm\_pdw\_waits (Transact-SQL)]: https://msdn.microsoft.com/library/mt203893.aspx
-[TRUNCATE TABLE (Transact-SQL)]: https://msdn.microsoft.com/library/ms177570.aspx
-[更新統計資料 (Transact-SQL)]: https://msdn.microsoft.com/library/ms187348.aspx
 
 <!--Other Web references-->
-[選擇雜湊分散式資料表與循環配置資源分散式資料表]: https://blogs.msdn.microsoft.com/sqlcat/2015/08/11/choosing-hash-distributed-table-vs-round-robin-distributed-table-in-azure-sql-dw-service/
+[選取資料表散發]: https://blogs.msdn.microsoft.com/sqlcat/2015/08/11/choosing-hash-distributed-table-vs-round-robin-distributed-table-in-azure-sql-dw-service/
 [Azure SQL 資料倉儲意見反應]: https://feedback.azure.com/forums/307516-sql-data-warehouse
 [Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/sqlserver/home?forum=AzureSQLDataWarehouse
 [Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
-[Azure SQL Data Warehouse loading patterns and strategies (Azure SQL 資料倉儲載入模式和策略)]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
+[Azure SQL 資料倉儲載入模式和策略]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0706_2016-->

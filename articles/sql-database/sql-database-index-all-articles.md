@@ -161,7 +161,7 @@
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
 | 83 | [使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)](sql-database-elastic-jobs-powershell.md) | 用來管理 Azure SQL Database 集區的 PowerShell |
-| 84 | [建立和管理相應放大的 SQL Azure 資料庫 (預覽)](sql-database-elastic-jobs-create-and-manage.md) | 逐步解說如何建立和管理彈性資料庫工作。 |
+| 84 | [建立和管理相應放大的 Azure SQL Database (預覽)](sql-database-elastic-jobs-create-and-manage.md) | 逐步解說如何建立和管理彈性資料庫工作。 |
 | 85 | [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md) | 如何使用彈性資料庫工作 |
 | 86 | [安裝彈性資料庫工作概觀](sql-database-elastic-jobs-service-installation.md) | 逐步解說如何安裝彈性工作功能。 |
 | 87 | [管理相應放大的雲端資料庫](sql-database-elastic-jobs-overview.md) | 說明彈性資料庫工作服務 |
@@ -378,4 +378,4 @@
 
 - 學習路徑圖：[sql-database-elastic-scale](http://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0706_2016-->

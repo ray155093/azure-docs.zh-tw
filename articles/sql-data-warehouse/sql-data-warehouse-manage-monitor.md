@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/27/2016"
+   ms.date="06/30/2016"
    ms.author="sonyama;barbkess;sahajs"/>
 
 # 使用 DMV 監視工作負載
@@ -30,6 +30,8 @@ SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed';
 
 ## 調查查詢執行
 若要監視執行查詢，請以 [sys.dm\_pdw\_exec\_requests][] 開始。此檢視包含查詢進度，以及最近完成之查詢的歷程記錄。Request\_id 專門識別每個查詢，而且是此檢視的主索引鍵。Request\_id 依序指派給每個新的查詢。針對指定的 session\_id 查詢這個資料表，即會顯示指定登入的所有查詢。
+
+>[AZURE.NOTE] 預存程序會使用多個 request\_id。將循序指派要求 id。
 
 請遵循以下步驟來調查特定查詢的查詢執行計畫和時間。
 
@@ -74,7 +76,7 @@ ORDER BY waits.object_name, waits.object_type, waits.state;
 
 ### 步驟 3：尋找查詢計劃的最長執行步驟
 
-使用要求 ID，從 [sys.dm\_pdw\_request\_steps][] 擷取查詢計劃步驟的清單。藉由查看總經過時間，尋找長時間執行的步驟。
+使用要求 ID，從 [sys.dm\_pdw\_request\_steps][] 擷取查詢計畫步驟的清單。藉由查看總經過時間，尋找長時間執行的步驟。
 
 ```sql
 
@@ -106,7 +108,7 @@ WHERE request_id = 'QID33209' AND step_index = 2;
 ```
 
 
-如果查詢仍在執行中，則 [DBCC PDW\_SHOWEXECUTIONPLAN][] 可以用來為特定散發擷取目前執行中 SQL 步驟的 SQL Server 執行計劃。
+如果查詢仍在執行中，則 [DBCC PDW\_SHOWEXECUTIONPLAN][] 可以用來為特定散發擷取目前執行中 SQL 步驟的 SQL Server 執行計畫。
 
 ```sql
 -- Find the SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
@@ -143,15 +145,14 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 ```
 
 ## 後續步驟
-如需有關動態管理檢視 (DMV) 的詳細資訊，請參閱[系統檢視][]。如需管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。如需最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
+如需有關動態管理檢視 (DMV) 的詳細資訊，請參閱[系統檢視][]。如需管理 SQL 資料倉儲的秘訣，請參閱[管理概觀][]。如需最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[manage data skew for distributed tables]: sql-data-warehouse-manage-distributed-data-skew.md
-[管理概觀]: sql-data-warehouse-overview-manage.md
-[SQL Data 資料倉儲最佳做法]: sql-data-warehouse-best-practices.md
-[系統檢視]: sql-data-warehouse-reference-tsql-system-views.md
+[管理概觀]: ./sql-data-warehouse-overview-manage.md
+[SQL Data 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
+[系統檢視]: ./sql-data-warehouse-reference-tsql-system-views.md
 
 <!--MSDN references-->
 [sys.dm\_pdw\_dms\_workers]: http://msdn.microsoft.com/library/mt203878.aspx
@@ -162,4 +163,4 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 [DBCC PDW\_SHOWEXECUTIONPLAN]: http://msdn.microsoft.com/library/mt204017.aspx
 [DBCC PDW_SHOWSPACEUSED]: http://msdn.microsoft.com/library/mt204028.aspx
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="06/30/2016"
 	ms.author="jeffstok"/>
 
 #  串流分析及 Power BI：適用於串流資料的即時分析儀表板
@@ -25,12 +25,10 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 
 在這篇文章中，您將了解如何使用 Power BI 做為 Azure 串流分析工作的輸出，來建立您的自訂商業智慧型工具，以及如何利用即時儀表板。
 
-> [AZURE.NOTE] 在此階段，Azure 入口網站不支援 Power BI 輸出的建立及設定，只有 Azure 傳統入口網站支援。
-
 ## 必要條件
 
 * Microsoft Azure 帳戶
-* 串流分析工作從中使用串流資料的輸入。串流分析可接收來自 Azure 事件中樞或 Azure Blob 儲存體的輸入。  
+* 串流分析工作從中使用串流資料的輸入。串流分析可接收來自 Azure 事件中樞或 Azure Blob 儲存體的輸入。
 * Power BI 的公司帳戶或學校帳戶
 
 ## 建立 Azure 串流分析工作
@@ -204,9 +202,18 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 
 ![graphic12][graphic12]
 
+同樣地，如果作業在權杖已過期時嘗試啟動，將會發生錯誤，而作業啟動將會失敗。錯誤看起來如下所示︰
+
+![PowerBI 驗證錯誤](./media/stream-analytics-power-bi-dashboard/stream-analytics-power-bi-dashboard-token-expire.png)
+ 
+
 若要解決這個問題，請停止執行工作並移至 Power BI 輸出。按一下 [更新授權] 連結，並從 [上次停止時間] 重新啟動您的工作以避免資料遺失。
 
-![graphic13][graphic13]
+![PowerBI 驗證更新](./media/stream-analytics-power-bi-dashboard/stream-analytics-power-bi-dashboard-token-renew.png)
+
+透過 Power BI 重新整理授權後，您會看見授權區域中出現綠色警示︰
+
+![PowerBI 驗證更新](./media/stream-analytics-power-bi-dashboard/stream-analytics-power-bi-dashboard-token-renewed.png)
 
 ## 取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics)
@@ -234,4 +241,4 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 [graphic12]: ./media/stream-analytics-power-bi-dashboard/12-stream-analytics-power-bi-dashboard.png
 [graphic13]: ./media/stream-analytics-power-bi-dashboard/13-stream-analytics-power-bi-dashboard.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0706_2016-->

@@ -29,14 +29,14 @@
 
 - [使用服務匯流排轉送建置 .NET 內部部署/雲端混合式應用程式](service-bus-dotnet-hybrid-app-using-service-bus-relay.md)
 - [如何使用服務匯流排轉送 (視訊和程式碼範例) (英文)](http://appfabricdemos.codeplex.com/releases/view/67597)
-- [如何透過服務匯流排轉送將 Azure 網站與 LOB 應用程式整合](https://code.msdn.microsoft.com/How-to-integrate-a-Windows-f1fedff8) 
+- [如何透過服務匯流排轉送將 Azure 網站與 LOB 應用程式整合](https://code.msdn.microsoft.com/How-to-integrate-a-Windows-f1fedff8)
 - [搭配服務匯流排轉送訊息的異地複寫 (英文)](http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd)
 - [如何將行動服務與 REST 服務匯流排轉送服務整合 (英文)](http://blogs.msdn.com/b/paolos/archive/2013/07/09/how-to-integrate-a-mobile-service-with-a-rest-service-bus-relay-service.aspx)
  
 ## 熱門
 
 - [服務匯流排定價資訊](https://azure.microsoft.com/pricing/details/service-bus/)
-- [服務匯流排定價常見問題集](service-bus-pricing-faq.md)
+- [服務匯流排常見問題集](service-bus-faq.md)
 - [服務匯流排 REST API 參考](http://msdn.microsoft.com/library/azure/hh780717.aspx)
 - [註冊免費 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF)
  
@@ -44,7 +44,7 @@
 
 - [BizTalk 服務](https://azure.microsoft.com/services/biztalk-services/)
 - [行動應用程式](https://azure.microsoft.com/services/app-service/mobile/)
-- [雲端服務](https://azure.microsoft.com/services/cloud-services/) 
+- [雲端服務](https://azure.microsoft.com/services/cloud-services/)
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0706_2016-->

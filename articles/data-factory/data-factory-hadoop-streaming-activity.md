@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/18/2016" 
+	ms.date="07/05/2016" 
 	ms.author="spelluru"/>
 
 # Hadoop 串流活動
@@ -74,7 +74,7 @@ HDInsight 叢集會使用範例程式 (wc.exe 和 cat.exe) 和資料 (將 davinc
 2. 將活動的類型設為 **HDInsightStreaming**。
 3. 針對 **mapper** 屬性，指定對應程式可執行檔的名稱。在上述範例中，cat.exe 是對應程式可執行檔。
 4. 針對 **reducer** 屬性，指定減壓器可執行檔的名稱。在上述範例中，cat.exe 是減壓器可執行檔。
-5. 針對 **input** 類型屬性，指定對應程式的輸入檔 (包括位置)。在 "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" 範例中：adfsample 是 blob 容器，example/data/Gutenberg 是資料夾，而 davinci.txt 是 blob。
+5. 針對 **input** 類型屬性，指定對應程式的輸入檔 (包括位置)。在 "wasb://adfsample@<帳戶名稱>.blob.core.windows.net/example/data/gutenberg/davinci.txt" 範例中：adfsample 是 blob 容器，example/data/Gutenberg 是資料夾，而 davinci.txt 是 blob。
 6. 針對 **output** 類型屬性，指定減壓器的輸出檔 (包括位置)。Hadoop 串流工作的輸出會寫入針對這個屬性指定的位置。
 7. 在 **filePaths** 區段中，指定對應程式和減壓器可執行檔的路徑。在 "adfsample/example/apps/wc.exe" 範例中，adfsample 是 blob 容器，example/apps 是資料夾，而 wc.exe 是可執行檔。
 8. 針對 **fileLinkedService** 屬性，指定代表 Azure 儲存體 (包含 filePaths 區段中指定的檔案) 的 Azure 儲存體連結服務。
@@ -199,4 +199,4 @@ HDInsight 叢集會使用範例程式 (wc.exe 和 cat.exe) 和資料 (將 davinc
 - [叫用 Spark 程式](data-factory-spark.md)
 - [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0706_2016-->

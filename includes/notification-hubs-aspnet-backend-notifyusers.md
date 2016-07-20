@@ -4,7 +4,7 @@
 
 1. **驗證用戶端**：稍後會加入訊息處理常式，以驗證用戶端要求並將使用者與要求產生關聯。
 2. **用戶端通知註冊**：之後，您將加入一個控制器來處理新的註冊，以便用戶端裝置接收通知。經過驗證的使用者名稱會自動加入至註冊作為 [標記](https://msdn.microsoft.com/library/azure/dn530749.aspx)。
-3. **傳送通知給用戶端**：之後，您也會加入一個控制器，以便使用者對與標記相關聯的裝置和用戶端觸發安全的推播。 
+3. **傳送通知給用戶端**：之後，您也會加入一個控制器，以便使用者對與標記相關聯的裝置和用戶端觸發安全的推播。
 
 下列步驟說明如何建立新的 ASP.NET WebAPI 後端：
 
@@ -16,7 +16,7 @@
 > [AZURE.NOTE] 確定您已安裝 Visual Studio [Azure SDK](https://azure.microsoft.com/downloads/) 以供網站部署。
 
 1. 啟動 Visual Studio 或 Visual Studio Express。按一下 [伺服器總管] 並登入您的 Azure 帳戶。Visual Studio 將需要您登入，才能在您的帳戶上建立網站資源。
-2. 在 Visual Studio 中，依序按一下 [**檔案**]、[**新增**]、[**專案**]，展開 [**範本**]、[**Visual C#**]，再按一下 [**Web**] 和 [**ASP.NET Web 應用程式**]，輸入名稱 **AppBackend**，然後按一下 [**確定**]。 
+2. 在 Visual Studio 中，依序按一下 [**檔案**]、[**新增**]、[**專案**]，展開 [**範本**]、[**Visual C#**]，再按一下 [**Web**] 和 [**ASP.NET Web 應用程式**]，輸入名稱 **AppBackend**，然後按一下 [**確定**]。
 	
 	![][B1]
 
@@ -48,7 +48,10 @@
 
 3. 在 AuthenticationTestHandler.cs 中，以下列程式碼取代 `AuthenticationTestHandler` 類別定義。
 
-	當下列三個條件都成立時，此處理常式將授權要求：* 要求包含*授權*標頭。* 要求會使用 *基本* 驗證。* 使用者名稱字串和密碼字串都是相同的字串。
+	下列三個條件都成立時，這個處理常式將授權要求：
+	* 要求已包含*授權*標頭。
+	* 要求使用*基本*驗證。
+	* 使用者名稱字串和密碼字串是相同的字串。
 
 	否則，將會拒絕此要求。這不是真正的驗證和授權方法。這只是本教學課程中一個非常簡單的範例。
 
@@ -122,9 +125,9 @@
 
 3. 按一下結果清單中的 [Microsoft Azure 通知中樞]，然後按一下 [安裝]。請完成安裝，然後關閉 [NuGet Package Manager] 視窗。
 
-	這會使用 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 封裝</a>加入對 Azure 通知中樞 SDK 的參考。
+	這會使用 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 封裝</a> 加入對 Azure 通知中樞 SDK 的參考。
 
-4. 我們現在會建立新的類別檔案，表示即將傳送的不同安全通知。在完整的實作中，通知會儲存在資料庫中。為了簡單起見，本教學課程會將它們儲存在記憶體中。在 [方案總管] 中，於 **Models** 資料夾上按一下滑鼠右鍵，按一下 [**新增**]，然後按一下 [**類別**]。將新類別命名為 **Notifications.cs**，然後按一下 [**新增**] 以產生類別。
+4. 我們現在將建立新的類別檔案，代表與用來傳送通知的通知中樞間的連接。在 [方案總管] 中，於 **Models** 資料夾上按一下滑鼠右鍵，按一下 [**新增**]，然後按一下 [**類別**]。將新類別命名為 **Notifications.cs**，然後按一下 [**新增**] 以產生類別。
 
 	![][B6]
 
@@ -364,4 +367,4 @@
 [B16]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-notify-users16.PNG
 [B18]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-notify-users18.PNG
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0706_2016-->
