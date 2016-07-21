@@ -147,19 +147,19 @@
 
 ## Visual Studio 會建立專案和 Web 應用程式
 
-	通常在不到一分鐘的時間內，Visual Studio 就會建立 Web 專案和 Web 應用程式。
+通常在不到一分鐘的時間內，Visual Studio 就會建立 Web 專案和 Web 應用程式。
 
-	[方案總管] 視窗會顯示新專案中的檔案和資料夾。
+[方案總管] 視窗會顯示新專案中的檔案和資料夾。
 
-	![Solution Explorer](./media/web-sites-dotnet-get-started/solutionexplorer.png)
+![Solution Explorer](./media/web-sites-dotnet-get-started/solutionexplorer.png)
 
-	[Azure App Service 活動] 視窗會顯示已建立 Web 應用程式。
+[Azure App Service 活動] 視窗會顯示已建立 Web 應用程式。
 
-	![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
+![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
 
-	[雲端總管] 視窗可讓您檢視和管理 Azure 資源，包括您剛建立的新 web 應用程式。
+[雲端總管] 視窗可讓您檢視和管理 Azure 資源，包括您剛建立的新 web 應用程式。
 
-	![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
+![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
 	
 ## 將 Web 專案部署至 Azure Web 應用程式
 
