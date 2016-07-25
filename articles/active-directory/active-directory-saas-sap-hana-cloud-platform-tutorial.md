@@ -140,7 +140,9 @@
 
         |判斷提示屬性| 主體屬性|
 		|-------------------|--------------------|
-        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname|名字|--------------------|--------------------| |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname|姓氏|---| |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress|email|
+        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname|名字|--------------------|--------------------|
+        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname|姓氏|---|
+        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress|email|
 
     >[AZURE.NOTE]屬性的設定取決於 HCP 上的應用程式是如何開發的，意即其預期在 SAML 回應中的是哪個屬性，以及其在程式碼中哪個名稱 (主體屬性) 之下存取該屬性。
     >  

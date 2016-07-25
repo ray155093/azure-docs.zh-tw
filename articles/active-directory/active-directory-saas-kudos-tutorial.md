@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 Kudos 整合
   
-本教學課程的目的是要示範 Azure 與 Kudos 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Kudos 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   Kudos 租用戶
@@ -64,7 +65,9 @@
     ![Kudos](./media/active-directory-saas-kudos-tutorial/IC787801.png "Kudos")
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Kudos 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Kudos 中進行驗證。  
+在此程序中，您必須建立 Base-64 編碼的憑證檔案。  
+如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
 ###若要設定單一登入，請執行下列步驟：
 

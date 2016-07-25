@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 Egnyte 整合
   
-本教學課程的目的是要示範 Azure 與 Egnyte 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Egnyte 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   已啟用 Egnyte 單一登入的訂用帳戶
@@ -64,7 +65,9 @@
     ![Egnyte](./media/active-directory-saas-egnyte-tutorial/IC787814.png "Egnyte")
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Egnyte。在此程序中，您必須建立 base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Egnyte。  
+在此程序中，您必須建立 base-64 編碼的憑證檔案。  
+如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -120,7 +123,8 @@
     ![設定單一登入](./media/active-directory-saas-egnyte-tutorial/IC787823.png "設定單一登入")
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 Egnyte，則必須將他們佈建到 Egnyte。Egnyte 需以手動的方式佈建。
+若要讓 Azure AD 使用者可以登入 Egnyte，則必須將他們佈建到 Egnyte。
+Egnyte 需以手動的方式佈建。
 
 ###若要佈建使用者帳戶，請執行下列步驟：
 

@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 ServiceNow 整合
   
-本教學課程的目的是要示範 Azure 與 ServiceNow 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 ServiceNow 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   ServiceNow (Calgary 版本或更新版本) 中的租用戶

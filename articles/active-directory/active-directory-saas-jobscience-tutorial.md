@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 Jobscience 整合
   
-本教學課程的目的是要示範 Azure 與 Jobscience 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Jobscience 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
 -   啟用 Jobscience 單一登入的訂用帳戶
@@ -64,7 +65,9 @@
     ![Jobscience](./media/active-directory-saas-jobscience-tutorial/IC784357.png "Jobscience")
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Jobscience 中進行驗證。設定 Jobscience 的單一登入需要您從憑證抓取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Jobscience 中進行驗證。
+設定 Jobscience 的單一登入需要您從憑證抓取指紋值。
+如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -145,10 +148,12 @@
 
 ![安全性控制項](./media/active-directory-saas-jobscience-tutorial/IC784368.png "安全性控制項")
   
-按一下您已經在上述步驟中建立的 SSO 設定檔。此頁面會顯示公司的單一登入 URL (例如 *https://companyname.my.salesforce.com?so=companyid*)。
+按一下您已經在上述步驟中建立的 SSO 設定檔。
+此頁面會顯示公司的單一登入 URL (例如 *https://companyname.my.salesforce.com?so=companyid*)。
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者能夠登入 Jobscience，必須將他們佈建到 Jobscience。Jobscience 需以手動的方式佈建。
+若要讓 Azure AD 使用者能夠登入 Jobscience，必須將他們佈建到 Jobscience。
+Jobscience 需以手動的方式佈建。
 
 ###若要設定使用者佈建，請執行下列步驟：
 
