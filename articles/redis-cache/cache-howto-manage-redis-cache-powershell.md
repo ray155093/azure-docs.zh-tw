@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016" 
+	ms.date="07/13/2016" 
 	ms.author="sdanie"/>
 
 # 使用 Azure PowerShell 管理 Azure Redis 快取
@@ -60,7 +60,7 @@
 
 	Get-Help New-AzureRmRedisCache -Detailed
 
-## 如何連線至 Azure Government 雲端或 Azure 中國雲端
+### 如何連線至 Azure Government 雲端或 Azure 中國雲端
 
 根據預設，Azure 環境是 `AzureCloud`，其代表全域 Azure 雲端執行個體。若要連線至不同的執行個體，請使用 `Add-AzureRmAccount` 命令搭配 `-Environment` 或使用 -`EnvironmentName` 命令列參數搭配所需的環境或環境名稱。
 
@@ -100,7 +100,7 @@
 
 如需 Azure 中國雲端的詳細資訊，請參閱[由中國的世紀互聯營運的 Azure 中國雲端](http://www.windowsazure.cn/)。
 
-## 用於 Azure Redis 快取 PowerShell 的屬性
+### 用於 Azure Redis 快取 PowerShell 的屬性
 
 下表為使用 Azure PowerShell 建立和管理 Azure Redis 快取執行個體時，常用參數的屬性和說明。
 
@@ -148,7 +148,7 @@
 
 若要查看 `New-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
 
-	PS SQLSERVER:> Get-Help New-AzureRmRedisCache -detailed
+	PS C:\> Get-Help New-AzureRmRedisCache -detailed
 	
 	NAME
 	    New-AzureRmRedisCache
@@ -577,8 +577,189 @@
 	Are you sure you want to remove redis cache 'myCache'?
 	[Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
+
+## 匯入 Redis 快取
+
+您可以使用 `Import-AzureRmRedisCache` Cmdlet 將資料匯入 Azure Redis 快取執行個體。
+
+>[AZURE.IMPORTANT] 匯入/匯出僅供[進階層](cache-premium-tier-intro.md)快取使用。如需匯入/匯出的詳細資訊，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
+
+若要查看 `Import-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+
+	PS C:\> Get-Help Import-AzureRmRedisCache -detailed
+	
+	NAME
+	    Import-AzureRmRedisCache
+	
+	SYNOPSIS
+	    Import data from blobs to Azure Redis Cache.
+	
+	
+	SYNTAX
+	    Import-AzureRmRedisCache -Name <String> -ResourceGroupName <String> -Files <String[]> [-Format <String>] [-Force]
+	    [-PassThru] [<CommonParameters>]
+	
+	
+	DESCRIPTION
+	    The Import-AzureRmRedisCache cmdlet imports data from the specified blobs into Azure Redis Cache.
+	
+	
+	PARAMETERS
+	    -Name <String>
+	        The name of the cache.
+	
+	    -ResourceGroupName <String>
+	        The name of the resource group that contains the cache.
+	
+	    -Files <String[]>
+	        SAS urls of blobs whose content should be imported into the cache.
+	
+	    -Format <String>
+	        Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
+	
+	    -Force
+	        When the Force parameter is provided, import will be performed without any confirmation prompts.
+	
+	    -PassThru
+	        By default Import-AzureRmRedisCache imports data in cache and does not return any value. If the PassThru
+	        parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating the success of the
+	        operation.
+	
+	    <CommonParameters>
+	        This cmdlet supports the common parameters: Verbose, Debug,
+	        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	        OutBuffer, PipelineVariable, and OutVariable. For more information, see
+	        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+	
+
+以下命令能將資料從 SAS URI 所指定的 blob 匯入 Azure Redis 快取。
+
+
+	PS C:\>Import-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Files @("https://mystorageaccount.blob.core.windows.net/mycontainername/blobname?sv=2015-04-05&sr=b&sig=caIwutG2uDa0NZ8mjdNJdgOY8%2F8mhwRuGNdICU%2B0pI4%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwd") -Force
+
+## 匯出 Redis 快取
+
+您可以使用 `Export-AzureRmRedisCache` Cmdlet 從 Azure Redis 快取執行個體匯出資料。
+
+>[AZURE.IMPORTANT] 匯入/匯出僅供[進階層](cache-premium-tier-intro.md)快取使用。如需匯入/匯出的詳細資訊，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
+
+若要查看 `Export-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+
+	PS C:\> Get-Help Export-AzureRmRedisCache -detailed
+	
+	NAME
+	    Export-AzureRmRedisCache
+	
+	SYNOPSIS
+	    Exports data from Azure Redis Cache to a specified container.
+	
+	
+	SYNTAX
+	    Export-AzureRmRedisCache -Name <String> -ResourceGroupName <String> -Prefix <String> -Container <String> [-Format
+	    <String>] [-PassThru] [<CommonParameters>]
+	
+	
+	DESCRIPTION
+	    The Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache to a specified container.
+	
+	
+	PARAMETERS
+	    -Name <String>
+	        The name of the cache.
+	
+	    -ResourceGroupName <String>
+	        The name of the resource group that contains the cache.
+	
+	    -Prefix <String>
+	        Prefix to use for blob names.
+	
+	    -Container <String>
+	        SAS url of container where data should be exported.
+	
+	    -Format <String>
+	        Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
+	
+	    -PassThru
+	        By default Export-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+	        then Export-AzureRmRedisCache returns a boolean value indicating the success of the operation.
+	
+	    <CommonParameters>
+	        This cmdlet supports the common parameters: Verbose, Debug,
+	        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	        OutBuffer, PipelineVariable, and OutVariable. For more information, see
+	        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+
+以下命令能將資料從 Azure Redis 快取執行個體匯出到 SAS URI 所指定的容器。
+
+
+	    PS C:\>Export-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Prefix "blobprefix"
+	    -Container "https://mystorageaccount.blob.core.windows.net/mycontainer?sv=2015-04-05&sr=c&sig=HezZtBZ3DURmEGDduauE7
+	    pvETY4kqlPI8JCNa8ATmaw%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwdl"
+
+## 重新啟動 Redis 快取
+
+您可以使用 `Reset-AzureRmRedisCache` Cmdlet 重新啟動 Azure Redis 快取執行個體。
+
+>[AZURE.IMPORTANT] 重新啟動僅適用於[進階層](cache-premium-tier-intro.md)快取。如需重新啟動快取的詳細資訊，請參閱[快取管理 - 重新啟動](cache-administration.md#reboot)。
+
+若要查看 `Reset-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+
+	PS C:\> Get-Help Reset-AzureRmRedisCache -detailed
+	
+	NAME
+	    Reset-AzureRmRedisCache
+	
+	SYNOPSIS
+	    Reboot specified node(s) of an Azure Redis Cache instance.
+	
+	
+	SYNTAX
+	    Reset-AzureRmRedisCache -Name <String> -ResourceGroupName <String> -RebootType <String> [-ShardId <Integer>]
+	    [-Force] [-PassThru] [<CommonParameters>]
+	
+	
+	DESCRIPTION
+	    The Reset-AzureRmRedisCache cmdlet reboots the specified node(s) of an Azure Redis Cache instance.
+	
+	
+	PARAMETERS
+	    -Name <String>
+	        The name of the cache.
+	
+	    -ResourceGroupName <String>
+	        The name of the resource group that contains the cache.
+	
+	    -RebootType <String>
+	        Which node to reboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
+	
+	    -ShardId <Integer>
+	        Which shard to reboot when rebooting a premium cache with clustering enabled.
+	
+	    -Force
+	        When the Force parameter is provided, reset will be performed without any confirmation prompts.
+	
+	    -PassThru
+	        By default Reset-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+	        then Reset-AzureRmRedisCache returns a boolean value indicating the success of the operation.
+	
+	    <CommonParameters>
+	        This cmdlet supports the common parameters: Verbose, Debug,
+	        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	        OutBuffer, PipelineVariable, and OutVariable. For more information, see
+	        about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+	
+
+以下命令會重新啟動指定快取的兩個節點。
+
+	
+	    PS C:\>Reset-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -RebootType "AllNodes"
+	    -Force
+	
+
+
 <a name="classic"></a>
-## 使用 PowerShell 傳統部署模型管理 Azure Redis 快取執行個體
+### 使用 PowerShell 傳統部署模型管理 Azure Redis 快取執行個體
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](cache-howto-manage-redis-cache-powershell.md)，如本文開頭所述。
 
@@ -636,4 +817,4 @@
 - [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
 - ["Hey, Scripting Guy!" 部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

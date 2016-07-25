@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/09/2016" 
+	ms.date="07/07/2016" 
 	ms.author="sstein"/>
 
 # 使用 PowerShell 管理 Azure SQL Database
@@ -83,18 +83,18 @@
 
 您也可以使用 [Remove-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603488.aspx) 命令刪除伺服器。下列範例會刪除名為 server12 的伺服器。
 
+
+>[AZURE.NOTE]  刪除作業是非同步，可能需要一些時間，因此請確認作業已完成，然後再執行相依於完全刪除之伺服器的任何其他作業 - 例如，建立具有相同名稱的新伺服器。
+
+
 	Remove-AzureRmSqlServer -ResourceGroupName "resourcegroupJapanWest" -ServerName "server12"
 
 
 
-如果您將再次建立這些 Azure SQL 資源或類似的資源，您可以：
-
-- 將這個命令集儲存為 PowerShell 指令碼檔案 (*.ps1)
-- 在 Azure 傳統入口網站的 [自動化] 區段中，將這個命令集儲存為 Azure 自動化 Runbook 
 
 ## 後續步驟
 
-結合命令和自動化。例如，以您的值取代引號中的任何內容 (包括 < and > 字元) 以建立伺服器、防火牆規則和資料庫：
+結合命令和自動化。例如，以您的值取代引號中的任何內容，包括 "<" 和 ">" 字元，以建立伺服器、防火牆規則和資料庫：
 
 
     New-AzureRmResourceGroup -Name "<resourceGroupName>" -Location "<Location>"
@@ -106,4 +106,4 @@
 
 - [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

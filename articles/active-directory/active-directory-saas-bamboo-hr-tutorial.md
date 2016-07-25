@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 BambooHR 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 BambooHR 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-bamboo-hr-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-bamboo-hr-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-bamboo-hr-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [BambooHR] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [BambooHR] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![案例](./media/active-directory-saas-bamboo-hr-tutorial/IC796685.png "案例")
 
@@ -78,7 +78,7 @@
 
     ![設定單一登入](./media/active-directory-saas-bamboo-hr-tutorial/IC796688.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [BambooHR 登入 URL] 文字方塊中，輸入您的使用者用來登入 BambooHR 應用程式的 URL (例如：https://company.bamboohr.com))，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [BambooHR 登入 URL] 文字方塊中，輸入您的使用者用來登入 BambooHR 應用程式的 URL (例如：https://company.bamboohr.com)，然後按一下 [下一步]。
 
     ![設定應用程式 URL](./media/active-directory-saas-bamboo-hr-tutorial/IC796689.png "設定應用程式 URL")
 
@@ -100,15 +100,15 @@
 
     ![SAML 單一登入](./media/active-directory-saas-bamboo-hr-tutorial/IC796692.png "SAML 單一登入")
 
-    1.  在 Azure 入口網站的 [在 BambooHR 設定單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [SSO 登入 URL] 文字方塊中。
-    2.  從您下載的憑證建立 **base-64 編碼**檔案。  
+    1.  在 Azure 傳統入口網站的 [在 BambooHR 設定單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [SSO 登入 URL] 文字方塊中。
+    2.  從您下載的憑證建立「Base-64 編碼」檔案。
 
-        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     3.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後貼到 [X.509 憑證] 文字方塊中。
     4.  按一下 [儲存]。
 
-8.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+8.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-bamboo-hr-tutorial/IC796693.png "設定單一登入")
 ##設定使用者佈建
@@ -132,7 +132,7 @@ BambooHR 需以手動方式佈建。
 
 6.  按一下 [儲存]。
 
->[AZURE.NOTE]您可以使用任何其他的 BambooHR 使用者帳戶建立工具或 BambooHR 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 BambooHR 使用者帳戶建立工具或 BambooHR 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
 
@@ -140,7 +140,7 @@ BambooHR 需以手動方式佈建。
 
 ###若要指派使用者給 BambooHR，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [BambooHR] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -152,4 +152,4 @@ BambooHR 需以手動方式佈建。
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!-----HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

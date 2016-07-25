@@ -105,6 +105,8 @@ DM 用戶端程式庫在裝置管理中擔負兩項重責大任︰
 
 ## 後續步驟
 
+您可以使用 IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台和作業系統上執行。IoT 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置的命令。當您使用 SDK 時，您可從數個網路通訊協定中挑選，以和 IoT 中樞通訊。若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
+
 若要繼續了解 Azure IoT 中樞裝置管理功能，請參閱[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程。
 
 <!-- Images and links -->
@@ -118,5 +120,6 @@ DM 用戶端程式庫在裝置管理中擔負兩項重責大任︰
 [lnk-tutorial-twin]: iot-hub-device-management-device-twin.md
 [lnk-apidocs]: http://azure.github.io/azure-iot-sdks/
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
+[lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

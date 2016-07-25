@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/29/2016"
+   ms.date="07/12/2016"
    ms.author="bwren" />
 
 # 在 Azure 自動化中排程 Runbook
@@ -23,6 +23,8 @@
 ## 建立排程
 
 您可以在 Azure 入口網站、傳統入口網站或使用 Windows PowerShell 為 Runbook 建立新排程。當您使用 Azure 傳統入口網站或 Azure 入口網站將 Runbook 連結至排程時，也可以選擇建立新的排程。
+
+>[AZURE.NOTE] 當您將排程與 Runbook 產生關聯時，自動化會在您的帳戶中儲存目前的模組版本，並將它們連結到該排程。這表示如果在建立排程時，您的帳戶中有 1.0 版的模組，而後將模組更新為 2.0 版，則此排程會繼續使用 1.0。若要使用更新後的模組版本，您必須建立新的排程。
 
 ### 在 Azure 傳統入口網站中建立新排程
 
@@ -64,6 +66,7 @@
 ## 將排程連結至 Runbook
 
 Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Runbook。如果 Runbook 有參數，您可以為它們提供值。您必須為任何必要參數提供值，並可以提供任何選擇性參數的值。每次此排程啟動 Runbook 時將會使用這些值。您可以將相同的 Runbook 附加到另一個排程，並指定不同的參數值。
+
 
 ### 使用 Azure 傳統入口網站將排程連結至 Runbook
 
@@ -142,9 +145,10 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 	Set-AzureRmAutomationSchedule –AutomationAccountName $automationAccountName `
     –Name $scheduleName –IsEnabled $false -ResourceGroupName "ResourceGroup01"
 
+
 ## 後續步驟
 
 - 若要深入了解如何使用排程，請參閱 [Azure 自動化中的排程資產](http://msdn.microsoft.com/library/azure/dn940016.aspx)
 - 若要在 Azure 自動化中開始使用 Runbook，請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

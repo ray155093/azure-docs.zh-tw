@@ -1,5 +1,5 @@
 <properties
-   pageTitle="您的資料已經可以進行資料科學了嗎？(資料評估) - 適用於初學者的資料科學 | Microsoft Azure"
+   pageTitle="已備妥資料來進行資料科學嗎？ 資料評估 | Microsoft Azure"
    description="了解已備妥資料來進行資料科學的 4 個準則。適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。"
    keywords="資料評估, 相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料"
    services="machine-learning"
@@ -116,4 +116,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

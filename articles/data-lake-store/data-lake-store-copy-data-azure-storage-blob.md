@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/13/2016"
+   ms.date="07/07/2016"
    ms.author="nitinme"/>
 
 # 將資料從 Azure 儲存體 Blob 複製到資料湖存放區
@@ -118,4 +118,4 @@ AdlCopy 工具有兩種使用方式：
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

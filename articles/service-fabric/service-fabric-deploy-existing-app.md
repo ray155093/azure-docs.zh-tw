@@ -25,8 +25,8 @@
 在 Service Fabric 叢集中執行來賓可執行檔有幾個優點：
 
 - 高可用性。Service Fabric 中執行的應用程式天生就有高用性。Service Fabric 會確保應用程式永遠有一個執行個體已啟動並執行中。
-- 健康狀況監視。現成可用的 Service Fabric 狀況監控會偵測應用程式是否已啟動並執行，而且會在失敗的情況下提供診斷資訊   
-- 應用程式生命週期管理。除了提供無需停機的升級以外，Service Fabric 也可讓您在升級期間發生問題時回復到之前的版本。    
+- 健康狀況監視。現成可用的 Service Fabric 狀況監控會偵測應用程式是否已啟動並執行，而且會在失敗的情況下提供診斷資訊
+- 應用程式生命週期管理。除了提供無需停機的升級以外，Service Fabric 也可讓您在升級期間發生問題時回復到之前的版本。
 - 密度。您可以在叢集中執行多個應用程式，每個應用程式不必在自己的硬體上執行
 
 本文中涵蓋將來賓可執行檔封裝並部署至 Service Fabric 的基本步驟。
@@ -52,12 +52,12 @@
 
 ```
 |-- ApplicationPackage
-	|-- code
-		|-- existingapp.exe
-	|-- config
-		|-- Settings.xml
-  |-- data    
-  |-- ServiceManifest.xml
+    |-- code
+        |-- existingapp.exe
+    |-- config
+        |-- Settings.xml
+    |-- data
+    |-- ServiceManifest.xml
 |-- ApplicationManifest.xml
 ```
 
@@ -308,4 +308,4 @@ Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執�
 - [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 - [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

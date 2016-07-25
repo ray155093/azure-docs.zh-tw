@@ -67,6 +67,15 @@ Microsoft Azure IoT 服務 SDK 包含有助於建置應用程式的程式碼，�
 - [Microsoft Azure IoT 服務 SDK for Node.js][]
 - [Microsoft Azure IoT 閘道器 SDK][]
 
+## 後續步驟
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
 [Microsoft Azure IoT SDK]: https://github.com/Azure/azure-iot-sdks/blob/master/readme.md
 [Azure IoT 裝置 SDK for C]: https://github.com/Azure/azure-iot-sdks/blob/master/c/readme.md
 [Azure IoT 裝置 SDK for .NET]: https://github.com/Azure/azure-iot-sdks/blob/master/csharp/device/readme.md
@@ -88,4 +97,9 @@ Microsoft Azure IoT 服務 SDK 包含有助於建置應用程式的程式碼，�
 [Microsoft Azure IoT 服務 SDK for Node.js]: http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iothub/1.0.10/index.html
 [Microsoft Azure IoT 閘道器 SDK]: http://azure.github.io/azure-iot-gateway-sdk/api_reference/c/html/
 
-<!---HONumber=AcomDC_0629_2016-->
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

@@ -188,7 +188,7 @@ FBT 組建目前不支援冷項目，因為其依照定義預期會在同一筆�
 
 2.	您可以選擇性地選取 splitterStrategy (RandomSplitter 或 LastEventSplitter)。RandomSplitter 會根據指定的 randomSplitterParameters 測試百分比和隨機種子值，分割訓練和測試集中的使用量資料。LastEventSplitter 會根據每個使用者的最後一筆交易，分割訓練和測試集中的使用量資料。
 
-這會觸發一個組建，該組建僅使用一部分的資料進行訓練，而其餘的資料則用來計算評估計量。在組建完成之後，若要取得評估的輸出，您只需呼叫[取得組建計量 API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/573e43bb3e9d4627a8c4bd3e/console)，並傳遞個別的 modelId 和 buildId。
+這會觸發一個組建，該組建僅使用一部分的資料進行訓練，而其餘的資料則用來計算評估計量。在組建完成之後，若要取得評估的輸出，您只需呼叫[取得組建計量 API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/577eaa75eda565095421666f)，並傳遞個別的 modelId 和 buildId。
 
  以下是我們執行的範例評估的 JSON 輸出︰
 
@@ -271,4 +271,4 @@ FBT 組建目前不支援冷項目，因為其依照定義預期會在同一筆�
     "IsFaulted": false
     }
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

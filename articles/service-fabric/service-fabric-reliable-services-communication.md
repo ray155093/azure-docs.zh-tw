@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 如何使用 Reliable Services 通訊 API
@@ -69,7 +69,7 @@ class MyStatefulService : StatefulService
 
 在無狀態服務中，覆寫項會傳回 ServiceInstanceListeners 的集合。ServiceInstanceListener 包含一個用來建立 ICommunicationListener 並賦予其名稱的函式。就具狀態服務而言，覆寫項則會傳回 ServiceReplicaListeners 集合。這與其無狀態的對應項稍有不同，因為 ServiceReplicaListener 可以選擇在次要複本上開啟 ICommunicationListener。您不僅可以在服務中使用多個通訊接聽程式，也可以指定哪些接聽程式要在次要複本上接受要求，以及哪些接聽程式只在主要複本上進行接聽。
 
-例如，您可以有一個只在主要複本上接受 RPC 呼叫的 ServiceRemotingListener，以及一個在次要複本上接受讀取要求的第二、自訂接聽程式：
+例如，您可以有一個只在主要複本上接受 RPC 呼叫的 ServiceRemotingListener，以及一個透過 HTTP 在次要複本上接受讀取要求的第二、自訂接聽程式：
 
 ```csharp
 protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -77,8 +77,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     return new[]
     {
         new ServiceReplicaListener(context =>
-            new MyCustomListener(context),
-            "customReadonlyEndpoint",
+            new MyCustomHttpListener(context),
+            "HTTPReadonlyEndpoint",
             true),
 
         new ServiceReplicaListener(context =>
@@ -88,6 +88,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     };
 }
 ```
+
+> [AZURE.NOTE] 建立服務的多個接聽程式時，**必須**為每個接聽程式提供唯一的名稱。
 
 最後，在[服務資訊清單](service-fabric-application-model.md)中有關端點的區段下方說明服務所需的端點。
 
@@ -145,10 +147,10 @@ Reliable Services API 提供下列程式庫來撰寫與服務通訊的用戶端�
 ### 服務端點解析
 與服務通訊的第一個步驟是，解析您想要通訊之服務的分割區或執行個體的端點位址。`ServicePartitionResolver` 公用程式類別是一個基本類型，可協助用戶端在執行階段判斷服務的端點。在 Service Fabric 術語中，判斷服務端點的程序稱為「服務端點解析」。
 
-若要連接到叢集內的服務，可建立 `ServicePartitionResolver` 且不需任何參數︰
+若要連接到叢集內的服務，可以使用預設設定建立 `ServicePartitionResolver`。這是大多數情況的建議用法︰
 
 ```csharp
-ServicePartitionResolver resolver = new  ServicePartitionResolver();
+ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
 ```
 
 若要連接到不同叢集中的服務，可利用一組叢集閘道端點來建立 `ServicePartitionResolver`。請注意，閘道端點就只是可用來連接到相同叢集的不同端點。例如：
@@ -157,13 +159,13 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver();
 ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
 ```
 
-可為 `ServicePartitionResolver` 指定一個函式來建立 `FabricClient`，以便在內部使用。
+另外，可為 `ServicePartitionResolver` 指定一個函式來建立 `FabricClient`，以便在內部使用：
  
 ```csharp
 public delegate FabricClient CreateFabricClientDelegate();
 ```
 
-`FabricClient` 是為了叢集上各種管理作業而用來與 Service Fabric 叢集通訊的物件。當您想要更充分掌控 `ServicePartitionClient` 與叢集互動的方式時，這非常實用。`FabricClient` 會在內部執行快取但建立的成本通常很高，因此一定要儘可能重複使用 `FabricClient` 執行個體。
+`FabricClient` 是為了叢集上各種管理作業而用來與 Service Fabric 叢集通訊的物件。當您想要更充分掌控 `ServicePartitionResolver` 與叢集互動的方式時，這非常實用。`FabricClient` 會在內部執行快取但建立的成本通常很高，因此一定要儘可能重複使用 `FabricClient` 執行個體。
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMyFabricClient());
@@ -172,7 +174,7 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMy
 解析方法接著可用於擷取服務或已資料分割之服務的服務分割區的位址。
 
 ```csharp
-ServicePartitionResolver resolver = new ServicePartitionResolver();
+ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
 
 ResolvedServicePartition partition =
     await resolver.ResolveAsync(new Uri("fabric:/MyApp/MyService"), new ServicePartitionKey(), cancellationToken);
@@ -186,7 +188,7 @@ ResolvedServicePartition partition =
 
 通訊 Factory 程式庫會實作典型的錯誤處理重試模式，更容易重試與已解析服務端點的連接。儘管您提供錯誤處理常式，Factory 程式庫還是會提供重試機制。
 
-`ICommunicationClientFactory` 定義通訊用戶端 Factory 所實作的基底介面，並產生可以與 Service Fabric 服務通訊的用戶端。CommunicationClientFactory 的實作取決於用戶端想要通訊的 Service Fabric 服務所使用的通訊堆疊。Reliable Services API 提供 `CommunicationClientFactoryBase<TCommunicationClient>`。這樣可以提供 `ICommunicationClientFactory` 介面的基底實作，並執行所有通訊堆疊都通用的工作(這些工作包括使用 `ServicePartitionResolver` 來判斷服務端點)。用戶端通常會實作 CommunicationClientFactoryBase 抽象類別來處理通訊堆疊專用的邏輯。
+`ICommunicationClientFactory` 定義通訊用戶端 Factory 所實作的基底介面，並產生可以與 Service Fabric 服務通訊的用戶端。CommunicationClientFactory 的實作取決於用戶端想要通訊的 Service Fabric 服務所使用的通訊堆疊。Reliable Services API 提供 `CommunicationClientFactoryBase<TCommunicationClient>`。這樣可以提供 `ICommunicationClientFactory` 介面的基底實作，並執行所有通訊堆疊都通用的工作。(這些工作包括使用 `ServicePartitionResolver` 來判斷服務端點)。用戶端通常會實作 CommunicationClientFactoryBase 抽象類別來處理通訊堆疊專用的邏輯。
 
 通訊用戶端只會接收位址，並使用它來連接到服務。用戶端可以使用它想要的任何通訊協定。
 
@@ -226,10 +228,10 @@ public class MyCommunicationClientFactory : CommunicationClientFactoryBase<MyCom
 
 最後，例外狀況處理常式會負責判斷發生例外狀況時要採取什麼動作。例外狀況會分類為**可重試**和**不可重試**。
 
- - **不可重試**的例外狀況只會重新擲回給呼叫端。 
+ - **不可重試**的例外狀況只會重新擲回給呼叫端。
  - **不可重試**的例外狀況會進一步分類為**暫時性**和**非暫時性**。
-  - **暫時性**例外狀況是只會重試而不會重新解析服務端點位址的例外狀況。這類例外狀況包括暫時性網路問題或服務錯誤回應，但不包括指出服務端點位址不存在的錯誤回應。 
-  - **非暫時性**例外狀況是需要重新解析服務端點位址的例外狀況。這類例外狀況包括指出無法連上服務端點 (表示服務已移至其他節點) 的例外狀況。 
+  - **暫時性**例外狀況是只會重試而不會重新解析服務端點位址的例外狀況。這類例外狀況包括暫時性網路問題或服務錯誤回應，但不包括指出服務端點位址不存在的錯誤回應。
+  - **非暫時性**例外狀況是需要重新解析服務端點位址的例外狀況。這類例外狀況包括指出無法連上服務端點 (表示服務已移至其他節點) 的例外狀況。
 
 `TryHandleException` 會做出有關特定例外狀況的決定。如果它**不知道**要對例外狀況做出哪些決定，則應傳回 **false**。如果它**知道**如何做決定，則應該據以設定結果並傳回 **true**。
  
@@ -282,4 +284,4 @@ var result = await myServicePartitionClient.InvokeWithRetryAsync(async (client) 
 
  - [使用 Reliable Services 的 WCF 通訊](service-fabric-reliable-services-communication-wcf.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

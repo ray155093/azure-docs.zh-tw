@@ -1,12 +1,4 @@
-<properties
-	pageTitle="疑難排解：Web 應用程式的效能降低"
-	description="本文可協助您疑難排解 Azure App Service 所託管之 Web 應用程式的效能問題。"
-	services="app-service\web"
-	documentationCenter=""
-	authors="cephalin"
-	manager="wpickett"
-	editor=""
-	tags="top-support-issue"/>
+<properties pageTitle="App Service 中的 Web 應用程式效能變慢 | Microsoft Azure" description="本文可協助您對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解。" services="app-service\\web" documentationCenter="" authors="cephalin" manager="wpickett" editor="" tags="top-support-issue keywords="web 應用程式效能, 變慢的應用程式, 應用程式變慢"/>
 
 <tags
 	ms.service="app-service-web"
@@ -14,14 +6,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/13/2016"
+	ms.date="07/06/2016"
 	ms.author="cephalin"/>
 
-# 疑難排解：Web 應用程式的效能降低
+# 針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解
 
-本文可協助您疑難排解 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 所託管之 Web 應用程式的效能問題。
+本文可協助您針對 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中 Web 應用程式效能變慢的問題進行疑難排解。
 
-若您對本文中的任何步驟有需要進一步協助的地方，請連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
+如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
 
 ## 徵狀
 
@@ -64,7 +56,7 @@
 -	記憶體工作集
 -	要求
 
-![](./media/app-service-web-troubleshoot-performance-degradation/1-monitor-metrics.png)
+![監視 Web 應用程式效能](./media/app-service-web-troubleshoot-performance-degradation/1-monitor-metrics.png)
 
 如需詳細資訊，請參閱：
 
@@ -182,8 +174,8 @@ AutoHeal 會根據您選擇的設定 (例如組態變更、要求、以記憶體
 
 若要從一次性問題中復原，這通常是最簡單的方式。在 [Azure 入口網站](https://portal.azure.com/)上的 Web 應用程式刀鋒視窗中有提供停止或重新啟動應用程式的選項。
 
- ![](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
+ ![重新啟動 Web 應用程式以解決效能問題](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
 
 您也可以使用 Azure Powershell 管理 Web 應用程式。如需詳細資訊，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0713_2016-->

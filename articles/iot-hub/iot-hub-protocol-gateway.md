@@ -39,4 +39,23 @@ MQTT 配接器也會示範程式設計模型，此模型可為其他通訊協定
 * [GitHub 上的 Azure IoT 通訊協定閘道儲存機制 (英文)](https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md)
 * [Azure IoT 通訊協定閘道開發人員指南 (英文)](https://github.com/Azure/azure-iot-protocol-gateway/blob/master/docs/DeveloperGuide.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+若要深入了解如何規劃 IoT 中樞部署，請參閱：
+
+- [與事件中樞比較][lnk-compare]
+- [縮放、HA 及 DR][lnk-scaling]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
+[lnk-compare]: iot-hub-compare-event-hubs.md
+[lnk-scaling]: iot-hub-scaling.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

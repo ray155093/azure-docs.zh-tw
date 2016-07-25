@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="MarkusVi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="07/08/2016"
 	ms.author="markvi"/>
 
 # Azure Active Directory 版本
@@ -480,6 +480,9 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 - Privileged Identity Management
 - [HR 應用程式整合](active-directory-saas-workday-inbound-tutorial.md)
 - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
+- [iOS 上的憑證式驗證](active-directory-certificate-based-authentication-ios.md)
+- [Android 上的憑證式驗證](active-directory-certificate-based-authentication-android.md)
+ 
 
 
 
@@ -491,8 +494,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 - [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
 - [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
-
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -36,7 +36,7 @@
 
 * 對於需要較快的 CPU 但每一 CPU 核心不需要太多記憶體或本機 SSD 的工作負載來說，F 系列 VM 是一個絕佳選擇。分析、遊戲伺服器、Web 伺服器及批次處理之類的工作負載都將因 F 系列的實用性而受益。
 
-*   Azure 資料中心的某些實體主機可能不支援較大的虛擬機器大小，例如 A5-A11。因此，您可能會在將現有的虛擬機器調整為新的大小、在 2013 年 4 月 16 日之前建立的虛擬網路中建立新的虛擬機器，或將新的虛擬機器加入現有雲端服務時，看到錯誤訊息：「無法設定虛擬機器 <machine name>」或「無法建立虛擬機器 <machine name>」 。請參閱支援論壇上[錯誤：「無法設定虛擬機器」](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows)，以查看每個部署案例的因應措施。
+*   Azure 資料中心的某些實體主機可能不支援較大的虛擬機器大小，例如 A5-A11。因此，您可能會在將現有的虛擬機器調整為新的大小、在 2013 年 4 月 16 日之前建立的虛擬網路中建立新的虛擬機器，或將新的虛擬機器加入現有雲端服務時，看到錯誤訊息：「無法設定虛擬機器 <machine name>」或「無法建立虛擬機器 <machine name>」。請參閱支援論壇上[錯誤：「無法設定虛擬機器」](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows)，以查看每個部署案例的因應措施。
 
 
 ## 效能考量
@@ -122,12 +122,12 @@
 |Standard\_D2\_v2 |2|7 GB|2|暫存 (SSD) = 100 GB |4|4x500| 高 |
 |Standard\_D3\_v2 |4|14 GB|4|暫存 (SSD) = 200 GB |8|8x500| 高 |
 |Standard\_D4\_v2 |8|28 GB|8|暫存 (SSD) = 400 GB |16|16x500| 高 |
-|Standard\_D5\_v2 |16|56 GB|8|暫存 (SSD) = 800 GB |32|32x500| 非常高 |
+|Standard\_D5\_v2 |16|56 GB|8|暫存 (SSD) = 800 GB |32|32x500| 極高 |
 |Standard\_D11\_v2 |2|14 GB|2|暫存 (SSD) = 100 GB |4|4x500| 高 |
 |Standard\_D12\_v2 |4|28 GB|4|暫存 (SSD) = 200 GB |8|8x500| 高 |
 |Standard\_D13\_v2 |8|56 GB|8|暫存 (SSD) = 400 GB |16|16x500| 高 |
-|Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500| 非常高 |
-|Standard\_D15\_v2 |20|140 GB|10|暫存 (SSD) =1 TB |40|40x500| 非常高 |
+|Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500| 極高 |
+|Standard\_D15\_v2 |20|140 GB|10|暫存 (SSD) =1 TB |40|40x500| 極高 |
 
 
 ## DS 系列*
@@ -143,7 +143,7 @@
 |Standard\_DS13 |8|56|8|本機 SSD 磁碟 = 112 GB |16|288| 25,600 每秒 256 MB | 高 |
 |Standard\_DS14 |16|112|8|本機 SSD 磁碟 = 224 GB |32|576| 51,200 每秒 512 MB | 非常高 |
 
-**磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
+*磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
 
 
 ## DSv2 系列*
@@ -154,15 +154,15 @@
 |Standard\_DS2\_v2 |2|7|2|本機 SSD 磁碟 = 14 GB |4|86| 6,400 每秒 96 MB | 高 |
 |Standard\_DS3\_v2 |4|14|4|本機 SSD 磁碟 = 28 GB |8|172| 12,800 每秒 192 MB | 高 |
 |Standard\_DS4\_v2 |8|28|8|本機 SSD 磁碟 = 56 GB |16|344| 25,600 每秒 384 MB | 高 |
-|Standard\_DS5\_v2 |16|56|8|本機 SSD 磁碟 = 112 GB |32|688| 51,200 每秒 768 MB | 高 |
+|Standard\_DS5\_v2 |16|56|8|本機 SSD 磁碟 = 112 GB |32|688| 51,200 每秒 768 MB | 極高 |
 |Standard\_DS11\_v2 |2|14|2|本機 SSD 磁碟 = 28 GB |4|72| 6,400 每秒 96 MB | 高 |
 |Standard\_DS12\_v2 |4|28|4|本機 SSD 磁碟 = 56 GB |8|144| 12,800 每秒 192 MB | 高 |
 |Standard\_DS13\_v2 |8|56|8|本機 SSD 磁碟 = 112 GB |16|288| 25,600 每秒 384 MB | 高 |
-|Standard\_DS14\_v2 |16|112|8|本機 SSD 磁碟 = 224 GB |32|576| 51,200 每秒 768 MB | 非常高 |
-|Standard\_DS15\_v2 |20|140 GB|10|本機 SSD 磁碟 = 280 GB |40| 720|64,000 每秒 960 MB | 非常高 |
+|Standard\_DS14\_v2 |16|112|8|本機 SSD 磁碟 = 224 GB |32|576| 51,200 每秒 768 MB | 極高 |
+|Standard\_DS15\_v2 |20|140 GB|10|本機 SSD 磁碟 = 280 GB |40| 720|64,000 每秒 960 MB | 極高 |
 
 
-**磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
+*磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
 
 
 ## F 系列
@@ -174,7 +174,7 @@
 | Standard\_F2 | 2 | 4 GB | 2 | 暫存 (SSD) = 32 GB | 4 | 4x500 | 高 |
 | Standard\_F4 | 4 | 8 GB | 4 | 暫存 (SSD) = 64 GB | 8 | 8x500 | 高 |
 | Standard\_F8 | 8 | 16 GB | 8 | 暫存 (SSD) = 128 GB | 16 | 16x500 | 高 |
-| Standard\_F16 | 16 | 32 GB | 8 | 暫存 (SSD) = 256 GB | 32 | 32x500 | 非常高 |
+| Standard\_F16 | 16 | 32 GB | 8 | 暫存 (SSD) = 256 GB | 32 | 32x500 | 極高 |
 
 
 
@@ -186,11 +186,11 @@
 | Standard\_F2s | 2 | 4 | 2 | 本機 SSD 磁碟 = 8 GB | 4 | 24 | 6,400 每秒 96 MB | 高 |
 | Standard\_F4s | 4 | 8 | 4 | 本機 SSD 磁碟 = 16 GB | 8 | 48 | 12,800 每秒 192 MB | 高 |
 | Standard\_F8s | 8 | 16 | 8 | 本機 SSD 磁碟 = 32 GB | 16 | 96 | 25,600 每秒 384 MB | 高 |
-| Standard\_F16s | 16 | 32 | 8 | 本機 SSD 磁碟 = 64 GB | 32 | 192 | 51,200 每秒 768 MB | 非常高 |
+| Standard\_F16s | 16 | 32 | 8 | 本機 SSD 磁碟 = 64 GB | 32 | 192 | 51,200 每秒 768 MB | 極高 |
 
 
 
-**磁碟大小會影響 Fs 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
+*磁碟大小會影響 Fs 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
 
 
 
@@ -227,7 +227,7 @@
 
 在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 Powershell 中的稍有不同。
 
-* Standard\_A0 是「特小型」 
+* Standard\_A0 是「特小型」
 * Standard\_A1 是「小型」
 * Standard\_A2 是「中型」
 * Standard\_A3 是「大型」
@@ -239,4 +239,4 @@
 - 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
 - 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 密集運算執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/29/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 移轉應用程式之前，先了解「雲端服務」與 Service Fabric 之間的差異。
@@ -37,7 +37,7 @@ Service Fabric 本身是在 Windows 或 Linux 執行的應用程式平台層，�
 
  - 部署快速。建立 VM 執行個體可能非常耗時。在 Service Fabric 中，只會部署一次 VM 以形成裝載 Service Fabric 應用程式平台的叢集。此後，應用程式封裝可快速部署到該叢集。
  - 高密度裝載。在雲端服務中，一個背景工作角色 VM 裝載一個工作負載。在 Service Fabric 中，應用程式與執行它們的 VM 分離，表示您可以將大量的應用程式部署到小量的 VM，這樣可以降低大量部署的成本。
- - Service Fabric 平台可在任何具備 Windows Server 或 Linux 電腦的位置執行，不論為 Azure 或內部部署。平台透過背後的基礎結構提供抽象層，因此您的應用程式可在不同環境執行。 
+ - Service Fabric 平台可在任何具備 Windows Server 或 Linux 電腦的位置執行，不論為 Azure 或內部部署。平台透過背後的基礎結構提供抽象層，因此您的應用程式可在不同環境執行。
  - 管理分散式應用程式。Service Fabric 這個平台不僅能裝載分散式應用程式，也協助獨立於主控 VM 或電腦生命週期之外管理其生命週期。
 
 ## 應用程式架構
@@ -50,7 +50,12 @@ Service Fabric 應用程式也可以選擇在完整應用程式中使用同樣�
 
 ![簡單移轉後的 Service Fabric 架構][10]
 
-在這個階段，系統應該如先前般運作。善加利用 Service Fabric 的具狀態服務，若適用則外部狀態存放區可初始化為具狀態服務。這比單純移轉 Web 和背景工作角色至 Service Fabric 無狀態服務更複雜，因為需要撰寫如先前外部服務為應用程式提供之相同功能性的自訂程式碼。這樣做的好處包括移除外部相依性並整合部署、管理及升級模型。初始化這些服務的基礎結構之結果的範例如下：
+在這個階段，系統應該如先前般運作。善加利用 Service Fabric 的具狀態服務，若適用則外部狀態存放區可初始化為具狀態服務。這比單純移轉 Web 和背景工作角色至 Service Fabric 無狀態服務更複雜，因為需要撰寫如先前外部服務為應用程式提供之相同功能性的自訂程式碼。這樣做的優點包括︰
+
+ - 移除外部相依性
+ - 統一部署、管理及升級模型。
+ 
+初始化這些服務的基礎結構之結果的範例如下：
 
 ![完整移轉後的 Service Fabric 架構][11]
 
@@ -66,7 +71,7 @@ Service Fabric 應用程式也可以選擇在完整應用程式中使用同樣�
 
  直接通訊是 Service Fabric 中常見的通訊模型。Service Fabric 和雲端服務的關鍵差異在於，在雲端服務中您是連接到 VM，而在 Service Fabric 中是連接到服務。這是重要差異，原因如下：
 
- - Service Fabric 中的服務不受限於裝載它們的 VM。服務可以在叢集中移動，且已預期會因為幾個原因而移動：資源平衡、容錯移轉、應用程式和基礎結構更新，以及位置或負載的限制。這表示服務執行個體的位址可隨時變更。 
+ - Service Fabric 中的服務不受限於裝載它們的 VM。服務可以在叢集中移動，且已預期會因為幾個原因而移動：資源平衡、容錯移轉、應用程式和基礎結構更新，以及位置或負載的限制。這表示服務執行個體的位址可隨時變更。
  - Service Fabric 中的 VM 可以託管多個服務，且每個有獨特的端點。
 
 Service Fabric 提供服務探索機制 (稱為「名稱服務」)，可用來解析服務的端點位置。
@@ -100,4 +105,4 @@ Service Fabric 提供服務探索機制 (稱為「名稱服務」)，可用來�
 [10]: ./media/service-fabric-cloud-services-migration-differences/service-fabric-architecture-simple.png
 [11]: ./media/service-fabric-cloud-services-migration-differences/service-fabric-architecture-full.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0713_2016-->

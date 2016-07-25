@@ -20,10 +20,14 @@
 # 使用 Azure Data Factory 從 Azure Blob 來回移動資料
 本文說明如何使用 Azure Data Factory 中的複製活動，透過從其他資料存放區獲得 Blob 資料在 Azure Blob 中來回移動資料。本文是根據資料移動活動一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-下列範例顯示如何在 Azure Blob 儲存體和 Azure SQL Database 將資料複製進來和複製出去。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
- 
+## 複製資料精靈
+要建立將資料複製到 Azure Blob 儲存體，或複製 Azure Blob 儲存體資料的管線，最簡單的方法是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
+
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。它們會示範如何將資料複製到 Azure Blob 儲存體和 Azure SQL Database，以及複製其中的資料。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
 
 ## 範例：從 Azure Blob 複製資料到 Azure SQL
+ 
+
 下列範例顯示：
 
 1.	[AzureSqlDatabase](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties) 類型的連結服務。
@@ -58,7 +62,7 @@
 	  }
 	}
 
-Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)章節以取得詳細資料。
+Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)一節以取得詳細資料。
 
 **Azure Blob 輸入資料集：**
 
@@ -230,7 +234,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 	  }
 	}
 
-Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)章節以取得詳細資料。
+Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)一節以取得詳細資料。
 
 
 **Azure SQL 輸入資料集：**
@@ -386,10 +390,10 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- | 
 | folderPath | Blob 儲存體中容器和資料夾的路徑。範例：myblobcontainer\\myblobfolder\\ | 是 |
-| fileName | Blob 的名稱。fileName 是選擇性且區分大小寫。<br/><br/>如果您指定 fileName，則活動 (包括複製活動) 適用於特定的 Blob。<br/><br/>如果未指定 fileName，則複製活動將會包含輸入資料集 folderPath 中的所有 Blob。<br/><br/>如果未指定輸出資料集的 fileName，則所產生檔案的名稱會採用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
+| fileName | Blob 的名稱。fileName 是選填項目且區分大小寫。<br/><br/>如果您指定 fileName，則活動 (包括複製活動) 適用於特定的 Blob。<br/><br/>如果未指定 fileName，則複製活動將會包含輸入資料集 folderPath 中的所有 Blob。<br/><br/>如果未指定輸出資料集的 fileName，則所產生檔案的名稱會採用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
 | partitionedBy | partitionedBy 是選擇性的屬性。您可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。如需詳細資訊和範例，請參閱以下[運用 partitionedBy 屬性](#Leveraging-partitionedBy-property)一節。 | 否
-| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，**AvroFormat** 或 **OrcFormat** 格式的資料，目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 ### 運用 partitionedBy 屬性
 如上所述，您可以使用 **partitionedBy** 區段、Data Factory 巨集和系統變數 (SliceStart 和 SliceEnd，表示指定資料配量的開始和結束時間)，指定時間序列資料的動態 folderPath 和 filename。
@@ -469,6 +473,6 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

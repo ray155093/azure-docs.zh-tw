@@ -1,4 +1,4 @@
-連接到 Azure 虛擬機器 (VM) 上執行的應用程式時，可能會因各種原因而發生問題，例如，應用程式未執行和未接聽預期連接埠，或網路規則未將流量正確地傳遞到應用程式。本文說明條理式方法，以找出並更正問題。
+無法啟動或連接到 Azure 虛擬機器 (VM) 上執行的應用程式時，可能有各種原因，例如，應用程式未執行或未接聽預期連接埠、接聽封鎖的連接埠、或網路規則未將流量正確地傳遞到應用程式。本文說明條理式方法，以找出並更正問題。
 
 如果您在使用 RDP 或 SSH 連接到 VM 時發生問題，請先參閱下列其中一篇文章︰
 
@@ -29,7 +29,7 @@
 
 有四個主要區域來疑難排解在 Azure 虛擬機器執行上之應用程式的存取。
 
-![](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access1.png)
+![疑難排解無法啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access1.png)
 
 1.	在 Azure 虛擬機器上執行的應用程式。
 	- 應用程式本身是否正確地執行？
@@ -46,7 +46,7 @@
 
 嘗試使用適當的用戶端程式，從執行所在的 VM 存取應用程式。使用本機主機名稱、本機 IP 位址或迴路位址 (127.0.0.1)。
 
-![](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
+![直接從 VM 啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access2.png)
 
 例如，如果應用程式是網頁伺服器，則在 VM 上開啟瀏覽器，並嘗試存取在 VM 上託管的網頁。
 
@@ -63,7 +63,7 @@
 
 使用 VM 的主機名稱或其 Azure 指派的公用、私人或提供者 IP 位址，嘗試存取不同 VM，但相同虛擬網路中的應用程式。若為使用傳統部署模型建立的虛擬機器，請勿使用雲端服務的公用 IP 位址。
 
-![](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
+![從其他 VM 啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
 
 例如，如果應用程式是網頁伺服器，請嘗試在相同虛擬網路中的其他 VM 上使用瀏覽器存取網頁。
 
@@ -84,7 +84,7 @@
 
 請嘗試從位於虛擬網路之外執行應用程式所在 VM 的電腦存取應用程式，但該電腦與您原始的用戶端電腦在不同的網路上。
 
-![](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
+![從位於虛擬網路之外的電腦啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
 
 例如，如果應用程式是 Web 伺服器，請嘗試從虛擬網路外的電腦執行瀏覽器來存取網頁。
 
@@ -94,7 +94,7 @@
 	- VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
 	- 端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。
 	- 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)。
-	
+
 - 對於使用資源管理員部署模型建立的 VM：
 	- VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
 	- 網路安全性群組允許輸入要求與輸出回應的流量。
@@ -118,4 +118,4 @@
 
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

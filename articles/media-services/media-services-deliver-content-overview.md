@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="07/12/2016"
 	ms.author="juliako"/>
 
 
@@ -30,6 +30,7 @@
 
 本主題提供內容傳遞概念的重要概觀。
 
+若要查閱已知問題，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
 
 ##動態封裝
 
@@ -86,7 +87,7 @@
 
 ##Streaming URL 格式
 
-**MPEG DASH 格式**
+###MPEG DASH 格式
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=mpd-time-csf)
 
@@ -96,28 +97,28 @@
 
 
 
-**Apple HTTP Live Streaming (HLS) V4 格式**
+###Apple HTTP Live Streaming (HLS) V4 格式
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=m3u8-aapl)
 
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl)
 
-**Apple HTTP Live Streaming (HLS) V3 格式**
+###Apple HTTP Live Streaming (HLS) V3 格式
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=m3u8-aapl-v3)
 	
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3)
 
-**Apple HTTP Live Streaming (HLS) 格式搭配僅限音訊的篩選條件**
+###Apple HTTP Live Streaming (HLS) 格式搭配僅限音訊的篩選條件
 
 根據預設，僅限音訊的曲目只包含在 HLS 資訊清單。這是用於行動電話通訊網路的 Apple 存放區認證所需要的。在此情況下，如果用戶端沒有足夠的頻寬，或透過 2G 網路連線，它會切換成僅限音訊的播放。這可在沒有緩衝的情況下讓串流進行，但缺點是沒有視訊。不過，在某些案例中，播放程式緩衝處理可能比僅限音訊更好。如果您想要移除僅限音訊的曲目，您可以加入 (audio-only=false) 到此 URL 並將其移除。
 
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3,audio-only=false)
 
-如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/azure-media-services-release-dynamic-manifest-composition-remove-hls-audio-only-track-and-hls-i-frame-track-support/)。
+如需詳細資訊，請參閱[此](https://azure.microsoft.com/blog/azure-media-services-release-dynamic-manifest-composition-remove-hls-audio-only-track-and-hls-i-frame-track-support/)部落格。
 
 
-**Smooth Streaming 格式**
+###Smooth Streaming 格式
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest
 
@@ -125,7 +126,7 @@
 
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest
 
-**Smooth Streaming 2.0 資訊清單 (舊版資訊清單)**
+###<a id="fmp4_v20"></a>Smooth Streaming 2.0 資訊清單 (舊版資訊清單)
 
 根據預設，Smooth Streaming 資訊清單格式會包含重複的標記 (r-tag)。不過，有些播放程式不支援 r-tag。此類用戶端可以使用停用 r-tag 的格式：
 
@@ -133,12 +134,11 @@
 
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=fmp4-v20)
 
-**HDS (僅適用於 Adobe PrimeTime/Access 使用人)**
+###HDS (僅適用於 Adobe PrimeTime/Access 使用人)
 
 {串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=f4m-f4f)
 
 	http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=f4m-f4f)
-
 
 ##漸進式下載 
 
@@ -151,7 +151,6 @@
 您必須考量下列事項：
 
 - 您必須解密任何您想要從原始服務傳送的儲存體加密資產，這樣才能漸進式下載。
-
 
 ##下載
 
@@ -166,13 +165,38 @@
 - 您必須解密任何您想要從原始服務傳送的儲存體加密資產，這樣才能漸進式下載。
 - 未在 12 小時內完成下載，最後一定會失敗。
 
-
-
 ##串流端點
 
 **串流端點**代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給內容傳遞網路 (CDN) 進行進一步發佈的串流服務。從串流端點服務的輸出串流可以是即時資料流，或媒體服務帳戶中的隨選視訊資產。此外，您可以藉由調整串流保放留單位，控制串流端點服務如何應付不斷增加的頻寬需求。您應該為生產環境中的應用程式，至少配置一個保留單元。如需詳細資訊，請參閱[如何調整媒體服務](media-services-manage-origins.md#scale_streaming_endpoints)。
 
+##已知問題
 
+### Smooth Streaming 資訊清單版本變更
+
+在 2016 年 7 月之前的服務版本中，當您使用動態封裝串流 Media Encoder Standard、Media Encoder Premium Workflow 或舊版 Azure 媒體編碼器所產生的資產時，傳回的 Smooth Streaming 資訊清單會符合 2.0 版，亦即片段持續時間不使用所謂的重複 ('r') 標籤。例如：
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<SmoothStreamingMedia MajorVersion="2" MinorVersion="0" Duration="8000" TimeScale="1000">
+		<StreamIndex Chunks="4" Type="video" Url="QualityLevels({bitrate})/Fragments(video={start time})" QualityLevels="3" Subtype="" Name="video" TimeScale="1000">
+			<QualityLevel Index="0" Bitrate="1000000" FourCC="AVC1" MaxWidth="640" MaxHeight="360" CodecPrivateData="00000001674D4029965201405FF2E02A100000030010000003032E0A000F42400040167F18E3050007A12000200B3F8C70ED0B16890000000168EB7352" />
+			<c t="0" d="2000" n="0" />
+			<c d="2000" />
+			<c d="2000" />
+			<c d="2000" />
+		</StreamIndex>
+	</SmoothStreamingMedia>
+
+在 2016 年 7 月之後的服務版本中，產生的 Smooth Streaming 資訊清單會符合 2.2 版，即片段持續時間使用重複標籤。例如：
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<SmoothStreamingMedia MajorVersion="2" MinorVersion="2" Duration="8000" TimeScale="1000">
+		<StreamIndex Chunks="4" Type="video" Url="QualityLevels({bitrate})/Fragments(video={start time})" QualityLevels="3" Subtype="" Name="video" TimeScale="1000">
+			<QualityLevel Index="0" Bitrate="1000000" FourCC="AVC1" MaxWidth="640" MaxHeight="360" CodecPrivateData="00000001674D4029965201405FF2E02A100000030010000003032E0A000F42400040167F18E3050007A12000200B3F8C70ED0B16890000000168EB7352" />
+			<c t="0" d="2000" r="4" />
+		</StreamIndex>
+	</SmoothStreamingMedia>
+
+某些舊版的 Smooth Streaming 用戶端可能會不支援重複標籤，因此無法載入資訊清單。若要解決這個問題，您可以使用舊版資訊清單格式參數 **(format=fmp4-v20)** (如需詳細資訊，請參閱[這](media-services-deliver-content-overview.md#fmp4_v20)一節)，或將用戶端更新為支援重複標籤的最新版本。
 
 ##媒體服務學習路徑
 
@@ -187,4 +211,4 @@
 [啟動儲存體金鑰之後更新媒體服務定位器](media-services-roll-storage-access-keys.md)
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

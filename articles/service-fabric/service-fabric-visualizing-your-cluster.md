@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/05/2016"
+   ms.date="07/07/2016"
    ms.author="seanmck"/>
 
 # 使用 Service Fabric 總管視覺化叢集
@@ -99,9 +99,9 @@ Azure 入口網站的叢集基本資訊窗格中也會提供完整 URL。
 
 ### 連線到安全的叢集
 
-您可以要求用戶端出示用來連線到您 Service Fabric 叢集的憑證，以控制對該叢集的存取。
+您可以為使用[憑證](service-fabric-cluster-security.md)或使用 [Azure Active Directory (AAD)](service-fabric-cluster-security-client-auth-with-aad.md) 來控制用戶端對您的 Service Fabric 叢集的存取。
 
-如果您嘗試連線到安全叢集上的 Service Fabric 總管，您的瀏覽器將會要求您出示用來取得存取權的憑證。
+如果您嘗試連線到安全叢集上的 Service Fabric Explorer，將必須出示用戶端憑證或使用 AAD 登入，取決於該叢集的管理端點的安全性設定類型。
 
 ## 後續步驟
 
@@ -116,4 +116,4 @@ Azure 入口網站的叢集基本資訊窗格中也會提供完整 URL。
 [sfx-service-essentials]: ./media/service-fabric-visualizing-your-cluster/SfxServiceEssentials.png
 [sfx-delete-application]: ./media/service-fabric-visualizing-your-cluster/SfxDeleteApplication.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

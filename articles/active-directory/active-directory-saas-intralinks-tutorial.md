@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -74,7 +74,7 @@ Intralinks 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -315,4 +315,4 @@ Intralinks 針對其他所有 Intralinks 應用程式使用相同的單一登入
 [204]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-intralinks-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

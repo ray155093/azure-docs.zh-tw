@@ -111,12 +111,20 @@
 
 ## 後續步驟
 
-您現在已透過使用範例裝置管理 UI 體驗，完成裝置管理概念的引導式探索。如果您想要更進一步了解裝置管理 API 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程：
+您現在已透過使用範例裝置管理 UI 體驗，完成裝置管理概念的引導式探索。如果您想要更進一步了解裝置管理 API 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
 
 - [如何使用裝置對應項][lnk-tutorial-twin]
 - [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
 - [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
+- [啟用 IoT 閘道的受管理裝置][lnk-dm-gateway]
 - [Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 [1]: media/iot-hub-device-management-ui-sample/image1.png
 [2]: media/iot-hub-device-management-ui-sample/image2.png
@@ -130,9 +138,16 @@
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-get-started]: iot-hub-device-management-get-started.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management/
-[lnk-library-c]: iot-hub-device-management-library.md
+
 [lnk-tutorial-twin]: iot-hub-device-management-device-twin.md
 [lnk-tutorial-queries]: iot-hub-device-management-device-query.md
 [lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
+[lnk-dm-gateway]: iot-hub-gateway-device-management.md
+[lnk-library-c]: iot-hub-device-management-library.md
 
-<!---HONumber=AcomDC_0615_2016-->
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

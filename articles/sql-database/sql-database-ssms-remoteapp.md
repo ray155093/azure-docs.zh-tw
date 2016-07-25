@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="07/05/2016"
 	ms.author="adhurwit"/>
 
 # 在 Azure RemoteApp 中使用 SQL Server Management Studio 來連接到 SQL Database
@@ -158,4 +158,4 @@ Sysprep 完成時，它會關閉 VM。
 [5]: ./media/sql-database-ssms-remoteapp/publish.png
 [6]: ./media/sql-database-ssms-remoteapp/user.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

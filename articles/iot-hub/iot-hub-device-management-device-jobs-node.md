@@ -66,7 +66,7 @@ Azure IoT 中樞裝置管理目前提供六種類型的裝置作業 (我們會�
 
 若要啟動範例，您需要執行 `jobClient_scheduleJob.js`。這會在所有模擬裝置上啟動韌體更新程序。遵循下列步驟來啟動範例：
 
-1.  從您複製 **azure-iot-sdks** 儲存機制的根資料夾，瀏覽至 **azure-iot-sdks/node/service/samples** 目錄。  
+1.  從您複製 **azure-iot-sdks** 儲存機制的根資料夾，瀏覽至 **azure-iot-sdks/node/service/samples** 目錄。
 
 2.  開啟 **jobClient\_scheduleJob.js**，以您的 IoT 中樞連接字串取代預留位置。
 
@@ -106,11 +106,16 @@ Azure IoT 中樞裝置管理用戶端程式庫會處理裝置與服務之間的�
 
 若要深入了解 Azure IoT 中樞裝置管理功能，您可以瀏覽下列教學課程︰
 
+- [啟用 IoT 閘道的受管理裝置][lnk-dm-gateway]
+- [Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]
 - Azure IoT 中樞 DM 用戶端程式庫提供使用 [Intel Edison 裝置][lnk-edison]的端對端範例。
 
-- [如何使用裝置對應項][lnk-twin-tutorial]
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
-- [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 <!-- Images and links -->
 
@@ -127,4 +132,12 @@ Azure IoT 中樞裝置管理用戶端程式庫會處理裝置與服務之間的�
 [lnk-github-firmware]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/c/iotdm_client/samples/iotdm_simple_sample/iotdm_simple_sample.c
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 
-<!---HONumber=AcomDC_0622_2016-->
+[lnk-dm-gateway]: iot-hub-gateway-device-management.md
+[lnk-library-c]: iot-hub-device-management-library.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

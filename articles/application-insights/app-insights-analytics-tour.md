@@ -111,7 +111,7 @@
 ![結果](./media/app-insights-analytics-tour/270.png)
 
 * 如果[資料行名稱](app-insights-analytics-reference.md#names)是以括號括起來 (如下所示)，就可以包含空格或符號︰`['...']` 或 `["..."]`
-* `%` 是很常見的模數運算子。 
+* `%` 是很常見的模數運算子。
 * `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
 * `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
@@ -412,7 +412,7 @@
 
 我們可以從中看到︰
 
-* 5% 的工作階段的持續時間小於 3 分鐘 34 秒； 
+* 5% 的工作階段的持續時間小於 3 分鐘 34 秒；
 * 50% 的工作階段的持續時間小於 36 分鐘；
 * 5% 的工作階段的持續時間超過 7 天
 
@@ -455,7 +455,7 @@
 
 ## [Let](app-insights-analytics-reference.md#let-clause)︰將結果指派給變數
 
-使用 [let](./app-insights-analytics-syntax.md#let-statements) 來分隔前一個運算式的各個部分。結果不變：
+使用 [let](./app-insights-analytics-reference.md#let-statements) 來分隔前一個運算式的各個部分。結果不變：
 
 ```AIQL
 
@@ -472,4 +472,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/06/2016"
+   ms.date="07/08/2016"
    ms.author="seanmck"/>
 
 # 疑難排解本機開發叢集設定
@@ -92,10 +92,11 @@
 
 請確定您的解決方法中沒有任何設定為啟始專案的服務專案。只有 Service Fabric 應用程式專案才可設為啟始專案。
 
+>[AZURE.TIP] 如果在安裝之後，您的本機叢集開始行為異常，您可以使用本機叢集管理員系統匣應用程式將其重設。這麼做會移除現有叢集，並設定新的叢集。請注意，所有已部署的應用程式和相關聯的資料都會被移除。
 
 ## 後續步驟
 
 - [透過系統健康情況報告了解及疑難排解您的叢集](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 - [使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

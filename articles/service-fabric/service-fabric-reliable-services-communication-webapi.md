@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 開始使用：Service Fabric Web API 服務與 OWIN 自我裝載 | Microsoft Azure
@@ -39,11 +39,13 @@ Web API 應用程式本身不會變更。它與您過去撰寫的 Web API 應用
 
 ![建立新的 Service Fabric 應用程式](media/service-fabric-reliable-services-communication-webapi/webapi-newproject.png)
 
-使用 Web API 的無狀態服務有 Visual Studio 範本可供使用。在本教學課程中，我們將建置一個專案，這就是您選取此範本時所會得到的結果。此時，您可以從無狀態服務 Web API 著手並依照指示進行，或從空的無狀態服務著手並從頭開始建置。
+使用 Web API 的無狀態服務有 Visual Studio 範本可供使用。在本教學課程中，我們將從頭建置 Web API 專案，這就是您選取此範本時所會得到的結果。
+
+選取空白的無狀態服務專案，以了解如何從頭建置 Web API 專案，或者您可以從無狀態服務 Web API 範本開始，只需依照指示進行。
 
 ![建立單一無狀態服務](media/service-fabric-reliable-services-communication-webapi/webapi-newproject2.png)
 
-第一個步驟是提取一些 Web API 的 NuGet 封裝。我們想要使用的封裝是 Microsoft.AspNet.WebApi.OwinSelfHost。此封裝包含所有必要的 Web API 封裝和主機封裝。這在稍後會很重要。
+第一個步驟是提取一些 Web API 的 NuGet 封裝。我們想要使用的封裝是 Microsoft.AspNet.WebApi.OwinSelfHost。此套件包含所有必要的 Web API 套件和主機套件。這在稍後會很重要。
 
 ![藉由使用 NuGet 封裝管理員來建立 Web API](media/service-fabric-reliable-services-communication-webapi/webapi-nuget.png)
 
@@ -165,7 +167,7 @@ internal static class Program
 
 假設您的 Web API 應用程式程式碼裝載在自己的處理序中，您如何將它連結到 Web 伺服器？ 輸入 [OWIN](http://owin.org/)。OWIN 只是 .NET Web 應用程式和 Web 伺服器之間的合約。傳統上使用 ASP.NET (直到 MVC 5) 時，Web 應用程式已透過 System.Web 緊密結合至 IIS。不過，Web API 會實作 OWIN，所以您可以撰寫獨立於裝載它的 Web 伺服器的 Web 應用程式。因此，您可以使用可在自己的程序中啟動的自我裝載 OWIN web 伺服器。這樣完全符合我們先前所提到的 Service Fabric 裝載模型。
 
-在本文中，我們將使用 Katana 做為 Web API 應用程式的 OWIN 主機。Katana 是開放原始碼的 OWIN 主機實作。
+在本文中，我們將使用 Katana 做為 Web API 應用程式的 OWIN 主機。Katana 是開放原始碼 OWIN 主機實作，建置在 [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx) 和 Windows [HTTP 伺服器 API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx) 上。
 
 > [AZURE.NOTE] 若要深入了解 Katana，請移至 [Katana 網站](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana)。如需如何使用 Katana 自我裝載 Web API 的快速概觀，請參閱[使用 OWIN 自我裝載 ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api)。
 
@@ -222,7 +224,7 @@ ICommunicationListener 介面提供三個方法來管理服務的通訊接聽程
 
  - OpenAsync。開始接聽要求。
  - CloseAsync。停止接聽要求，完成任何進行中的要求，並正常關機。
- - Abort。取消所有項目，並立即停止。
+ - 中止。取消所有項目，並立即停止。
 
 若要開始，請為接聽程式運作所需的項目新增私用類別成員。這些會透過建構函式初始化，並在您稍後設定接聽 URL 時使用。
 
@@ -439,7 +441,7 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-這正是 Web API 應用程式 和 OWIN 主機 最後相會之處。提供應用程式的執行個體 (透過 startup 的 Web API) 給主機 (OwinCommunicationListener)。然後 Service Fabric 會管理其生命週期。通常可以針對任何通訊堆疊運用相同的模式。
+這正是 Web API 應用程式和 OWIN 主機最後相會之處。提供應用程式的執行個體 (透過 startup 的 Web API) 給主機 (OwinCommunicationListener)。然後 Service Fabric 會管理其生命週期。通常可以針對任何通訊堆疊運用相同的模式。
 
 ## 組合在一起
 
@@ -685,4 +687,4 @@ New-ServiceFabricService -ApplicationName "fabric:/WebServiceApplication" -Servi
 
 [使用 Visual Studio 偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

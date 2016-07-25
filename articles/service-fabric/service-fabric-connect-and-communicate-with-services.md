@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/18/2016"
-   ms.author="mfussell"/>
+   ms.date="07/05/2016"
+   ms.author="vturecek"/>
 
 # 連接至 Service Fabric 中的服務並與其進行通訊
 在 Service Fabric 中，服務會在 Service Fabric 叢集中的某處執行，通常是分散到多個 VM。它可以由服務擁有者或是 Service Fabric 自動從某個位置移到其他位置。服務無法以靜態方式繫結至特定電腦或位址。
@@ -139,4 +139,4 @@ Reliable Services 架構隨附數個預先建置的通訊選項。最適合您�
 [7]: ./media/service-fabric-connect-and-communicate-with-services/distributedservices.png
 [8]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancerprobe.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

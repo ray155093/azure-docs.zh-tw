@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/20/2016"
+   ms.date="07/07/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 串流分析將來自 Azure 儲存體 Blob 的資料串流處理至 Data Lake Store
 
 在這篇文章中，您將了解如何使用 Azure Data Lake Store 做為 Azure 串流分析作業的輸出。這篇文章示範從 Azure 儲存體 Blob (輸入) 讀取資料以及將資料寫入至 Data Lake Store (輸出) 的簡單案例。
 
->[AZURE.NOTE] 目前只有在 [Azure 傳統入口網站](manage.windowsazure.com)支援建立及設定串流分析的 Data Lake Store 輸出。因此，此教學課程的部份內容會使用 Azure 傳統入口網站。
+>[AZURE.NOTE] 目前只有在 [Azure 傳統入口網站](https://manage.windowsazure.com)支援建立及設定串流分析的 Data Lake Store 輸出。因此，此教學課程的部份內容會使用 Azure 傳統入口網站。
 
 ## 必要條件
 
@@ -95,7 +95,7 @@
 
 	* **輸入一個輸出別名**。這是提供作業輸出用的唯一名稱。
 	* **指定 Data Lake Store 帳戶**。您應該已經建立此帳戶，如必要條件中所述。
-	* **指定路徑前置詞模式**。您必須指定此項目，才能識別由串流分析作業寫入至 Data Lake Store 的輸出檔案。因為由作業所寫入的輸出標題為 GUID 格式，因此納入前置詞可協助識別已寫入的輸出。如果您想要包含日期和時間戳記，做為前置詞的一部分，請確定將 `{date}/{time}` 納入前置詞模式中。如果您納入此模式，就會啟用 **日期格式** 和 [時間格式] 欄位，而且您可以選取希望使用的格式。
+	* **指定路徑前置詞模式**。您必須指定此項目，才能識別由串流分析作業寫入至 Data Lake Store 的輸出檔案。因為由作業所寫入的輸出標題為 GUID 格式，因此納入前置詞可協助識別已寫入的輸出。如果您想要包含日期和時間戳記，做為前置詞的一部分，請確定將 `{date}/{time}` 納入前置詞模式中。如果您納入此模式，就會啟用 [日期格式] 和 [時間格式] 欄位，而且可以選取希望使用的格式。
 
 	按一下向前箭號。
 
@@ -119,7 +119,7 @@
 
 ![監視作業](./media/data-lake-store-stream-analytics/run.query.3.png "監視作業")
 
-最後，您可以使用 [Azure 入口網站](portal.azure.com) 來開啟 Data Lake Store 帳戶，並驗證資料是否已成功寫入帳戶。
+最後，您可以使用 [Azure 入口網站](https://portal.azure.com) 來開啟 Data Lake Store 帳戶，並驗證資料是否已成功寫入帳戶。
 
 ![驗證輸出](./media/data-lake-store-stream-analytics/run.query.4.png "驗證輸出")
 
@@ -129,4 +129,4 @@
 
 * [建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

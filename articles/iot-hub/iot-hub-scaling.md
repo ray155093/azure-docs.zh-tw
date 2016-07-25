@@ -54,15 +54,25 @@ Azure IoT 中樞最多可支援百萬個同時連線的裝置。如需詳細資�
 
 ## 後續步驟
 
-遵循下列連結以深入了解 Azure IoT 中樞：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
-- [開始使用 IoT 中樞 (教學課程)][lnk-get-started]
-- [何謂 Azure IoT 中心？][]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub
 [IoT 中樞配額與節流]: iot-hub-devguide.md#throttling
 
-[lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[何謂 Azure IoT 中心？]: iot-hub-what-is-iot-hub.md
+[lnk-design]: iot-hub-guidance.md
+[lnk-mqtt]: iot-hub-mqtt-support.md
+[lnk-devices]: iot-hub-tested-configurations.md
+[lnk-protocols]: iot-hub-protocol-gateway.md
+[lnk-compare]: iot-hub-compare-event-hubs.md
+[lnk-scaling]: iot-hub-scaling.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

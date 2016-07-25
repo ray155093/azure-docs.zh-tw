@@ -4,7 +4,7 @@
 	keywords="堆疊追蹤，錯誤訊息"
 	services="hdinsight"
 	documentationCenter="NA"
-	authors="cjgronlund"
+	authors="mumian"
 	manager="paulettm"
 	editor="cgronlun"/>
 
@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="NA"
 	ms.workload="big-data"
 	ms.date="03/21/2016"
-	ms.author="rashimg;cgronlun"/>
+	ms.author="rashimg;jgao"/>
 
 # HDInsight 中的 Hadoop 堆疊追蹤錯誤：疑難排解文章索引
 
@@ -34,4 +34,4 @@
 * [收集 Blob 儲存體中的堆積傾印以偵錯和分析 Hadoop 服務](hdinsight-hadoop-collect-debug-heap-dumps.md)
 * [Azure HDInsight 上 Hadoop 元件的版本資訊](hdinsight-release-notes.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0713_2016-->

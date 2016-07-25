@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/20/2016" 
+	ms.date="07/06/2016" 
 	ms.author="arramac"/>
 
 # Azure DocumentDB 的效能和規模測試
@@ -25,7 +25,7 @@
 閱讀本文後，您將能夠回答下列問題：
 
 - 哪裡可以找到可供進行 Azure DocumentDB 效能測試的範例 .NET 用戶端應用程式？
-- 以對 Azure DocumentDB 發出的要求來說，影響其端對端效能的關鍵因素是什麼？ 
+- 以對 Azure DocumentDB 發出的要求來說，影響其端對端效能的關鍵因素是什麼？
 - 如何藉由 Azure DocumentDB 從我的用戶端應用程式達到高輸送量層級？
 
 若要開始使用程式碼，請從 [DocumentDB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)下載專案。
@@ -39,7 +39,7 @@ DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲
 - **在相同的 Azure 區域內進行測試**︰可能的話，請從部署在相同 Azure 區域中的虛擬機器或 App Service 進行測試。以約略的比較來說，在相同區域內對 DocumentDB 進行的呼叫會在 1-2 毫秒內完成，但美國西岸和美國東岸之間的延遲則會大於 50 毫秒。
 - **增加每部主機的 System.Net MaxConnections**：DocumentDB 要求預設是透過 HTTPS/REST 發出，並受制於每個主機名稱或 IP 位址的預設連線限制。您可能必須將此值設定成較高的值 (100-1000)，以便讓用戶端程式庫能夠利用多個連到 DocumentDB 的同時連線。在 .NET 中，這會是 [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx)。
 - **開啟伺服器端 GC**︰在某些情況下，降低廢棄項目收集頻率可能會有幫助。在 .NET 中，請將 [gcServer](https://msdn.microsoft.com/library/ms229357.aspx) 設定為 true。
-- **搭配 TCP 通訊協定使用直接連線**︰搭配 [TCP 通訊協定](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.protocol.aspx)使用[直接連線](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionmode.aspx)以獲得最佳效能。 
+- **使用直接連線**︰為了達到最佳效能，請使用[直接連線](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionmode.aspx)。
 - **在 RetryAfter 間隔實作降速**︰在進行效能測試期間，您應該增加負載，直到系統對小部分要求進行節流處理為止。如果進行節流處理，用戶端應用程式應該在節流時降速，且持續時間達伺服器指定的重試間隔。這可確保您在重試之間花費最少的等待時間。請參閱 [RetryAfter](https://msdn.microsoft.com/library/microsoft.azure.documents.documentclientexception.retryafter.aspx)。
 - **相應放大用戶端工作負載**︰如果您是以高輸送量層級 (> 50,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。如果您達到這個點，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 DocumentDB 帳戶再往前推進一步。
 
@@ -112,4 +112,4 @@ DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
 * [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0713_2016-->

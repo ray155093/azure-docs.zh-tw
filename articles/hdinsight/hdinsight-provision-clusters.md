@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/09/2016"
+   ms.date="07/08/2016"
    ms.author="jgao"/>
 
 # 在 HDInsight 中建立 Windows 型 Hadoop 叢集
@@ -45,7 +45,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 |Storm|Nimbus 節點 (2)、監督員伺服器 (1+)、Zookeeper 節點 (3)|![HDInsight Storm 叢集節點](./media/hdinsight-provision-clusters/HDInsight.Storm.roles.png)|
 |Spark|前端節點 (2)、背景工作角色節點 (1+)、Zookeeper 節點 (3) (A1 Zookeeper VM 大小不限)|![HDInsight Spark 叢集節點](./media/hdinsight-provision-clusters/HDInsight.Spark.roles.png)|
 
-* 括弧中是每種節點類型的節點數目。
+(注意：括弧中是每種節點類型的節點數目。)
 
 > [AZURE.IMPORTANT] 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB ram 的前端節點大小。
 
@@ -124,7 +124,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
     客戶需根據叢集的生命期，就這些節點的使用量支付費用。一旦建立叢集之後便會開始計費，而刪除叢集時便會停止計費 (無法取消配置或保留叢集)。
 
-	不同的叢集類型具有不同的節點類型、節點數目和節點大小。例如，Hadoop 叢集類型有兩個_前端節點_和預設的四個_資料節點_，而 Storm 叢集類型有兩個 _Nimbus 節點_、三個 _Zookeeper 節點_和預設的四個_監督員節點_。HDInsight 叢集的成本是由節點數和節點的虛擬機器大小來決定。例如，如果您知道將會執行需要大量記憶體的作業，您可以選取具有較多記憶體的運算資源。為了方便學習，建議使用 1 個資料節點。如需關於 HDInsight 定價的詳細資訊，請參閱 [HDInsight 定價](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)。
+	不同的叢集類型具有不同的節點類型、節點數目和節點大小。例如，Hadoop 叢集類型有兩個_前端節點_和預設的四個_資料節點_，而 Storm 叢集類型有兩個 _Nimbus 節點_、三個 _Zookeeper 節點_和預設的四個_監督員節點_。HDInsight 叢集的成本是由節點數和節點的虛擬機器大小來決定。例如，如果您知道將會執行需要大量記憶體的作業，您可以選取具有較多記憶體的計算資源。為了方便學習，建議使用 1 個資料節點。如需關於 HDInsight 定價的詳細資訊，請參閱 [HDInsight 定價](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)。
 
 	>[AZURE.NOTE] 叢集大小限制會隨著 Azure 訂用帳戶而有所不同。若要提高限制，請與帳務支援人員連絡。
 	
@@ -173,7 +173,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
         |Standard\_D13\_v2 |8|56 GB|8|暫存 (SSD) = 400 GB |16|16x500|
         |Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500|    
  
-    如需規劃使用這些資源時所需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-size-specs.md)。如需各式大小的定價資訊，請參閱 [HDInsight定價](https://azure.microsoft.com/pricing/details/hdinsight)。
+    如需規劃使用這些資源時所需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-size-specs.md)。如需各式大小的定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight)
     
 	> [AZURE.IMPORTANT] 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB RAM 的前端節點大小。建立叢集後就開始計費，只有在刪除叢集時才會停止計費。如需價格的詳細資訊，請參閱 [HDInsight 價格詳細資料](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
@@ -189,9 +189,13 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
 如果想要在刪除 HDInsight 叢集之後保留 Hive 資料表，以便日後將中繼存放區連接至另一個 HDInsight 叢集，強烈建議您使用自訂的中繼存放區。
 
+> [AZURE.IMPORTANT] Hdinsight 中繼存放區不具有回溯相容性。例如，您無法使用 HDInsight 3.3 叢集的中繼存放區建立 HDInsight 3.2 叢集。
+
 中繼存放區包含 Hive 和 Oozie 中繼資料，例如 Hive 資料表、資料分割、結構描述和資料行。使用中繼存放區能協助您保留 Hive 和 Oozie 中繼資料，因此在建立新叢集時，您便無需重建 Hive 資料表或 Oozie 工作。根據預設，Hive 會使用內嵌的 Azure SQL 資料庫來儲存此資訊。刪除叢集時，嵌入的資料庫將無法保留中繼資料。舉例來說，您使用 Hive 中繼存放區來建立叢集。您已建立一些 Hive 資料表。當您刪除叢集並透過相同的 Hive 中繼存放區重建叢集之後，便可以看到您在原始的叢集中建立的 Hive 資料表。
 
-> [AZURE.NOTE] HBase 叢集類型無法使用中繼存放區組態。
+HBase 叢集類型無法使用中繼存放區組態。
+
+> [AZURE.IMPORTANT] 在建立自訂中繼存放區時，請勿使用包含破折號或連字號的資料庫名稱，因為這會導致叢集建立程序失敗。
 
 ## 使用 Azure 虛擬網路
 
@@ -254,4 +258,4 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 | [.NET SDK](hdinsight-hadoop-create-windows-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [ARM 範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

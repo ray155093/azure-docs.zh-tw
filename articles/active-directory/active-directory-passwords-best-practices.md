@@ -1,22 +1,25 @@
-<properties 
-	pageTitle="最佳做法：Azure AD 密碼管理 | Microsoft Azure" 
-	description="Azure Active Directory 中密碼管理的部署和使用方式最佳做法、範例使用者文件和訓練指南。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="最佳做法：Azure AD 密碼管理 | Microsoft Azure"
+	description="Azure Active Directory 中密碼管理的部署和使用方式最佳做法、範例使用者文件和訓練指南。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 部署密碼管理並訓練使用者使用它
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
 啟用密碼重設之後，您必須採取的下一個步驟就是讓使用者使用組織的服務。若要這麼做，您必須確定已正確將使用者設定為使用此服務，同時您也必須訓練使用者，讓他們可以順利管理自己的密碼。本文章將向您說明下列概念：
 
 * [**如何針對密碼管理設定使用者**](#how-to-get-users-configured-for-password-reset)
@@ -84,7 +87,7 @@
 為了此處的進行，我們建立了一個使用最新回應 UI 設計架構、且能夠在所有的瀏覽器與行動裝置上運作的簡易頁面。
 
   ![][007]
-  
+
 您可以[在這裡下載網站範本](https://github.com/kenhoff/password-reset-page)。建議您針對貴組織的需求自訂標誌和色彩。
 
 ### 使用強制註冊
@@ -112,12 +115,12 @@
 1.	在 **Azure 管理入口網站**的 [Active Directory 延伸模組](https://manage.windowsazure.com)中瀏覽至您的目錄。
 2.	按一下 [使用者] 索引標籤。
 3.	從清單中選取您需要的使用者。
-4.	您會在第一個索引標籤上發現**備用電子郵件**項目，此項目可做為啟用密碼重設的屬性。 
+4.	您會在第一個索引標籤上發現**備用電子郵件**項目，此項目可做為啟用密碼重設的屬性。
 
     ![][005]
 
 5.	按一下 [工作資訊] 索引標籤。
-6.	您會在此頁面上發現**辦公室電話**、**行動電話**、**驗證電話**和**驗證電子郵件**。您也可以設定這些屬性，以允許使用者重設密碼。 
+6.	您會在此頁面上發現**辦公室電話**、**行動電話**、**驗證電話**和**驗證電子郵件**。您也可以設定這些屬性，以允許使用者重設密碼。
 
     ![][006]
 
@@ -134,7 +137,7 @@
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -153,4 +156,4 @@
 [006]: ./media/active-directory-passwords-best-practices/006.jpg "Image_006.jpg"
 [007]: ./media/active-directory-passwords-best-practices/007.jpg "Image_007.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0713_2016-->

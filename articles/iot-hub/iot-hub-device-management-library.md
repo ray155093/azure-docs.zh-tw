@@ -180,13 +180,13 @@ LWM2M 資料模型引進了物件和資源的概念︰
 
 | 資源名稱 | 作業 | 類型 | 範圍與單位 | 說明 |
 |----------------|-----------|---------|-----------------|-------------|
-| Package | 寫入 | Opaque | | 二進位格式的韌體封裝。<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackage** |
-| PackageURI | 寫入 | String | 0-255 個位元組 | 可供裝置下載韌體封裝的 URI。<br/>對應至服務 API：**SystemPropertyNames.FirmwarePackageUri** |
-| 更新 | 執行 | | | 使用儲存在封裝中的韌體封裝或使用從封裝 URI 下載的韌體來更新韌體。<br/>對應至服務 API：<br/>**ScheduleFirmwareUpdateAsync** |
-| 狀況 | 讀取 | Integer | 1-3 | 韌體更新程序的狀態︰<br/>**1**：閒置。這可能在下載韌體封裝之前或套用韌體封裝之後發生。<br/>**2**：正在下載韌體封裝。<br/>**3**：韌體封裝已下載。<br/> 對應至服務 API：**SystemPropertyNames.FirmwareUpdateState** |
-| UpdateResult | 讀取 | Integer | 0-6 | 韌體的下載或更新結果<br/>**0**：預設值。<br/>**1**：韌體更新成功。<br/>**2**：儲存空間不足，無法儲存新的韌體封裝。<br/>**3**：韌體封裝下載期間耗盡記憶體。<br/>**4**：韌體封裝下載期間連線中斷。<br/>**5**：新下載的封裝未通過 CRC 檢查。<br/>**6**：不支援的韌體封裝類型。<br/>**7**：無效的 URI。對應至服務 API：**SystemPropertyNames.FirmwareUpdateResult** |
-| PkgName | 讀取 | String | 0-255 個位元組 | **封裝**資源所參考之韌體封裝的描述性名稱<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackageName** |
-| PackageVersion | 讀取 | String | 0-255 個位元組 | **封裝**資源所參考之韌體封裝的版本<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackageVersion** |
+| Package | 寫入 | Opaque | | 二進位格式的韌體套件。<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackage** |
+| PackageURI | 寫入 | String | 0-255 個位元組 | 可供裝置下載韌體套件的 URI。<br/>對應至服務 API：**SystemPropertyNames.FirmwarePackageUri** |
+| 更新 | 執行 | | | 使用儲存在套件中的韌體套件或使用從套件 URI 下載的韌體來更新韌體。<br/>對應至服務 API：<br/>**ScheduleFirmwareUpdateAsync** |
+| State | 讀取 | Integer | 1-3 | 韌體更新程序的狀態︰<br/>**1**：閒置。這可能在下載韌體套件之前或套用韌體套件之後發生。<br/>**2**：正在下載韌體套件。<br/>**3**：韌體套件已下載。<br/> 對應至服務 API：**SystemPropertyNames.FirmwareUpdateState** |
+| UpdateResult | 讀取 | Integer | 0-6 | 韌體的下載或更新結果<br/>**0**：預設值。<br/>**1**：韌體更新成功。<br/>**2**：儲存空間不足，無法儲存新的韌體套件。<br/>**3**：韌體套件下載期間耗盡記憶體。<br/>**4**：韌體套件下載期間連線中斷。<br/>**5**：新下載的套件未通過 CRC 檢查。<br/>**6**：不支援的韌體套件類型。<br/>**7**：無效的 URI。對應至服務 API：**SystemPropertyNames.FirmwareUpdateResult** |
+| PkgName | 讀取 | String | 0-255 個位元組 | **套件**資源所參考之韌體套件的描述性名稱<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackageName** |
+| PackageVersion | 讀取 | String | 0-255 個位元組 | **套件**資源所參考之韌體套件的版本<br/>對應至服務 API：<br/>**SystemPropertyNames.FirmwarePackageVersion** |
 
 ### LWM2M 伺服器物件
 
@@ -204,6 +204,15 @@ LWM2M 資料模型引進了物件和資源的概念︰
 | 值 | 讀取寫入 | String | | 可唯一識別要讀取或更新的組態值。 |
 | 套用 | 執行 | | | 對裝置套用組態變更。 |
 
+## 後續步驟
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
 [img-library-overview]: media/iot-hub-device-management-library/library.png
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-get-started]: iot-hub-device-management-get-started.md
@@ -216,10 +225,14 @@ LWM2M 資料模型引進了物件和資源的概念︰
 [Wakaama]: https://github.com/eclipse/wakaama
 [OMA LWM2M Object and resource registry]: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry
 
-[lnk-run-linux]: http://TODO
 [lnk-Wakaama]: https://github.com/eclipse/wakaama
 [lnk-github1]: https://github.com/Azure/azure-iot-sdks/tree/dmpreview/c/iotdm_client/lwm2m_objects
 [lnk-github2]: https://github.com/Azure/azure-iot-sdks/tree/dmpreview/c/iotdm_client/lwm2m_objects
 [lnk-oma]: http://technical.openmobilealliance.org/Technical/technical-information/omna/lightweight-m2m-lwm2m-object-registry
 
-<!---HONumber=AcomDC_0608_2016-->
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

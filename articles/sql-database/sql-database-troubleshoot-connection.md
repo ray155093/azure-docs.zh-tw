@@ -1,11 +1,12 @@
 <properties
-	pageTitle="疑難排解 Azure SQL Database 的「目前無法使用伺服器上的資料庫」"
-	description="找出並解決 Azure SQL Database 連接錯誤的步驟。"
+	pageTitle="目前無法使用伺服器上的資料庫，連接到 SQL Database | Microsoft Azure"
+	description="針對應用程式連接到 SQL Database 時發生的「目前無法使用伺服器上的資料庫」錯誤進行。"
 	services="sql-database"
 	documentationCenter=""
 	authors="dalechen"
 	manager="felixwu"
-	editor=""/>
+	editor=""
+	keywords="目前無法使用伺服器上的資料庫，連接到 SQL Database"/>
 
 <tags
 	ms.service="sql-database"
@@ -13,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="07/06/2016"
 	ms.author="daleche"/>
 
-# 疑難排解「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接」錯誤
+# 連接到 SQL Database 時發生「目前無法使用伺服器上的資料庫」錯誤
 [AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 當應用程式連接到 Azure SQL Database 時，您會收到下列錯誤訊息︰
@@ -37,6 +38,6 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 
 ## 後續步驟
 - 如果您收到不同的錯誤，請評估[錯誤訊息](sql-database-develop-error-messages.md)，找出問題的線索。
-- 如果問題持續發生，請造訪[疑難排解 Azure SQL Database 常見的連接問題](sql-database-troubleshoot-common-connection-issues.md)中的指引。
+- 如果問題持續發生，請造訪[針對 Azure SQL Database 常見的連接問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md)中的指引。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

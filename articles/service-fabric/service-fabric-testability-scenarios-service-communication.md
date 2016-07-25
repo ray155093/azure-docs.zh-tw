@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # Service Fabric Testability 案例：服務通訊
@@ -67,7 +67,7 @@
 
     ```powershell
 
-    PS > Restart-ServiceFabricNode -NodeName Node.1
+    PS > Restart-ServiceFabricNode -NodeName Node_1
 
     ```
 
@@ -97,4 +97,4 @@ PS > Invoke-ServiceFabricPartitionQuorumLoss -ServiceName fabric:/Myapplication/
 
 [深入了解 Testability 案例](service-fabric-testability-scenarios.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/04/2016"
-	ms.author="mikeray" />
+	ms.date="07/12/2016"
+	ms.author="MikeRayMSFT" />
 
 # Azure 虛擬機器中的 SQL Server 高可用性和災害復原
 
@@ -153,4 +153,4 @@ Azure 磁碟中的異地複寫不支援將相同資料庫的資料檔與記錄�
 - [在 Azure 中安裝新的 Active Directory 樹系](../active-directory/active-directory-new-forest-virtual-machine.md)
 - [在 Azure VM 中建立 Always On 可用性群組的 WSFC 叢集](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

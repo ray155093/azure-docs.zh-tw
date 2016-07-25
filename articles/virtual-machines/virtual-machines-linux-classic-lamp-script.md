@@ -68,7 +68,7 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 ### 上傳指令碼
 
-將指令碼儲存為文字檔 (例如 *lamp\_install.sh*)，然後將它上傳到 Azure 儲存體。您可以使用 Azure CLI，輕鬆執行這個動作。下列範例會將檔案上傳到名為 "scripts" 的儲存體容器中。如果此容器不存在，您必須先建立它。
+將指令碼儲存為文字檔 (例如 *install\_lamp.sh*)，然後將它上傳到 Azure 儲存體。您可以使用 Azure CLI，輕鬆執行這個動作。下列範例會將檔案上傳到名為 "scripts" 的儲存體容器中。如果此容器不存在，您必須先建立它。
 
     azure storage blob upload -a <yourStorageAccountName> -k <yourStorageKey> --container scripts ./install_lamp.sh
 
@@ -83,7 +83,7 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
     azure vm extension set -c "./public_config.json" lamp-vm CustomScriptForLinux Microsoft.OSTCExtensions 1.*
 
-前一個命令會在名為 *lamp-vm* 的 VM 上下載並執行 *lamp\_install.sh* 指令碼。
+前一個命令會在名為 *lamp-vm* 的 VM 上下載並執行 *install\_lamp.sh* 指令碼。
 
 因為該應用程式包含 Web 伺服器，所以請記得使用下列命令，在遠端 VM 上開啟 HTTP 接聽連接埠。
 
@@ -110,4 +110,4 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 [Azure 上的 Linux 和開放原始碼運算](virtual-machines-linux-opensource-links.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

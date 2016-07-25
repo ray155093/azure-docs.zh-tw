@@ -94,10 +94,20 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ## 後續步驟
 
-遵循下列連結以深入了解 Azure IoT 中樞：
+若要深入了解如何規劃 IoT 中樞部署，請參閱：
 
-- [開始使用 IoT 中樞 (教學課程)][lnk-get-started]
-- [何謂 Azure IoT 中心？][lnk-what-is-hub]
+- [MQTT 支援][lnk-mqtt]
+- [支援的裝置][lnk-devices]
+- [支援其他通訊協定][lnk-protocols]
+- [與事件中樞比較][lnk-compare]
+- [縮放、HA 及 DR][lnk-scaling]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal-manage]
 
 [img-tokenservice]: ./media/iot-hub-guidance/tokenservice.png
 
@@ -121,4 +131,14 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [IoT 中樞配額與節流]: iot-hub-devguide.md#throttling
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!---HONumber=AcomDC_0504_2016-->
+[lnk-mqtt]: iot-hub-mqtt-support.md
+[lnk-devices]: iot-hub-tested-configurations.md
+[lnk-protocols]: iot-hub-protocol-gateway.md
+[lnk-compare]: iot-hub-compare-event-hubs.md
+[lnk-scaling]: iot-hub-scaling.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal-manage]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

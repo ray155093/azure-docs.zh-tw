@@ -1,22 +1,25 @@
-<properties 
-	pageTitle="疑難排解：Azure AD 密碼管理 |Microsoft Azure" 
-	description="Azure AD 密碼管理的常見疑難排解步驟，包括重設、變更、回寫、註冊，以及尋求協助時應包含的資訊。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="疑難排解：Azure AD 密碼管理 |Microsoft Azure"
+	description="Azure AD 密碼管理的常見疑難排解步驟，包括重設、變更、回寫、註冊，以及尋求協助時應包含的資訊。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 如何疑難排解密碼管理
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
 如果您有密碼管理方面的問題，我們在此提供協助。您可能會碰到的大多數問題都可以透過以下幾個簡單的疑難排解步驟來加以解決，請閱讀其內容來疑難排解您的部署：
 
 * [**您需要協助時應包含的資訊**](#information-to-include-when-you-need-help)
@@ -42,7 +45,7 @@
 
     ![][001]
 
- - **使用者識別碼** – 看到錯誤之使用者的識別碼是什麼 (例如 user@contoso.com)？
+ - **使用者識別碼** – 看到錯誤的使用者其識別碼為何 (例如 user@contoso.com)？
  - **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？ 使用者是否已獲得 AAD Premium 或 AAD Basic 授權？
  - **應用程式事件記錄檔** – 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請將 Azure AD Connect 伺服器中的應用程式事件記錄檔複本進行壓縮，然後連同要求一起送出。
 
@@ -216,7 +219,7 @@
             <td>
               <p>使用者看到錯誤指出：</p>
               <p>
-                
+
               </p>
               <p>處理要求時發生錯誤 </p>
               <p>在其嘗試重設密碼時。</p>
@@ -257,7 +260,7 @@
               <p>您的帳戶未啟用密碼重設功能</p>
               <p>很抱歉，您的系統管理員還沒將您的帳戶設定用於此服務。</p>
               <p>
-                
+
               </p>
               <p>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
@@ -284,7 +287,7 @@
               <p>您的帳戶未啟用密碼重設功能</p>
               <p>很抱歉，您的系統管理員還沒將您的帳戶設定用於此服務。</p>
               <p>
-                
+
               </p>
               <p>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
@@ -300,7 +303,7 @@
               <p>您的帳戶未啟用密碼重設功能</p>
               <p>很抱歉，您的系統管理員還沒將您的帳戶設定用於此服務。</p>
               <p>
-                
+
               </p>
               <p>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
@@ -362,7 +365,7 @@
             <td>
               <p>使用者看到錯誤指出：</p>
               <p>
-                
+
               </p>
               <p>請使用其他選項。</p>
               <p>在最近 1 小時內，您已嘗試驗證帳戶太多次。為了確保安全，您必須在等候 24 小時後，方可再試一次。</p>
@@ -388,7 +391,7 @@
             <td>
               <p>使用者在嘗試驗證電話來做為驗證方法時，看到錯誤指出：</p>
               <p>
-                
+
               </p>
               <p>指定的電話號碼不正確。</p>
             </td>
@@ -404,7 +407,7 @@
             <td>
               <p>使用者看到錯誤指出：</p>
               <p>
-                
+
               </p>
               <p>處理要求時發生錯誤 </p>
               <p>在其嘗試重設密碼時。</p>
@@ -444,7 +447,7 @@
             <td>
               <p>內部部署未啟動密碼重設服務，Azure AD Connect 電腦的應用程式事件記錄檔中有錯誤 6800。</p>
               <p>
-                
+
               </p>
               <p>上架之後，已同盟或密碼雜湊同步處理的使用者無法重設其密碼。</p>
             </td>
@@ -460,7 +463,7 @@
             <td>
               <p>在 Azure AD Connect 安裝程序的最後一個步驟時，您看到錯誤指出無法設定密碼回寫。</p>
               <p>
-                
+
               </p>
               <p>Azure AD Connect 應用程式事件記錄檔包含錯誤 32009 以及「取得授權權杖時發生錯誤」文字。</p>
             </td>
@@ -484,17 +487,17 @@
             <td>
               <p>Azure AD Connect 電腦的事件記錄檔包含 PasswordResetService 所擲回的錯誤 32002。</p>
               <p>
-                
+
               </p>
               <p>這個錯誤的內容是：「連線到 ServiceBus 時發生錯誤。權杖提供者無法提供安全性權杖...」</p>
               <p>
-                
+
               </p>
             </td>
             <td>
               <p>此錯誤的根本原因是內部部署環境中執行的密碼重設服務無法連線到雲端的服務匯流排端點。這個錯誤通常是因為防火牆規則封鎖連往特定連接埠或網址的輸出連線所導致。</p>
               <p>
-                
+
               </p>
               <p>請確定您的防火牆允許下列項目的輸出連線：</p>
               <ul>
@@ -506,7 +509,7 @@
 										輸出連線&lt;br>&lt;br></li>
               </ul>
               <p>
-                
+
               </p>
               <p>一旦您更新這些規則後，請重新啟動 Azure AD Connect 電腦，密碼回寫應該就會再次開始工作。</p>
             </td>
@@ -521,7 +524,7 @@
             <td>
               <p>在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。在這些情況下，請先檢查內部部署是否已啟用密碼回寫。若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
               <p>
-                
+
               </p>
               <p>如果這麼做沒有效，請嘗試完整解除安裝再重新安裝 Azure AD Connect。</p>
             </td>
@@ -533,14 +536,14 @@
             <td>
               <p>已同盟或密碼雜湊同步處理的使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。</p>
               <p>
-                
+
               </p>
               <p>此外，在密碼重設作業期間，您可能會在內部部署的事件記錄檔中看到關於管理代理程式存取遭拒的錯誤。</p>
             </td>
             <td>
               <p>如果您在事件記錄檔中看到這些錯誤，請確認 AD MA 帳戶 (在設定時於精靈中所指定) 有密碼回寫的必要權限。</p>
               <p>
-                
+
               </p>
               <p>請注意，一旦給予此權限，最多要 1 小時的時間，此權限才會透過 DC 上的 sdprop 背景工作往下傳遞。</p>
               <p>若要讓密碼重設正常運作，必須在要重設密碼的使用者物件安全性描述元上為權限加上戳記。在使用者物件上出現此權限之前，密碼重設會繼續因存取遭拒而失敗。</p>
@@ -576,7 +579,7 @@
             <td>
               <p>Active Directory 中的特殊權限使用者會透過 AdminSDHolder 受到保護。如需詳細資訊，請參閱 <a href="https://technet.microsoft.com/magazine/2009.09.sdadminholder.aspx">http://technet.microsoft.com/magazine/2009.09.sdadminholder.aspx</a>。</p>
               <p>
-                
+
               </p>
               <p>這表示會定期檢查這些物件上的安全性描述元來比對 AdminSDHolder 中指定的描述元，如有不同就會予以重設。密碼回寫所需的額外權限因此不會傳遞給這類使用者。這會導致這類使用者的密碼回寫沒有作用。因此，我們沒有對這些群組中的使用者支援密碼管理工作，因為它會破壞 AD 安全性模型。</p>
             </td>
@@ -588,14 +591,14 @@
             <td>
               <p>已同盟或密碼雜湊同步處理的使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。</p>
               <p>
-                
+
               </p>
               <p>此外，在密碼重設作業期間，您可能會在 Azure AD Connect 服務的事件記錄檔中看到錯誤指出「找不到物件」錯誤。</p>
             </td>
             <td>
               <p>這個錯誤通常表示同步處理引擎找不到 AAD 連接器空間中的使用者物件，或連結的 MV 或 AD 連接器空間物件。</p>
               <p>
-                
+
               </p>
               <p>若要疑難排解這個問題，請確定使用者已確實透過 Azure AD Connect 的目前執行個體從內部部屬同步處理到 AAD，並檢查連接器空間和 MV 中物件的狀態。確認 AD CS 物件透過 “Microsoft.InfromADUserAccountEnabled.xxx” 規則連線到 MV 物件。</p>
             </td>
@@ -607,14 +610,14 @@
             <td>
               <p>已同盟或密碼雜湊同步處理的使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。</p>
               <p>
-                
+
               </p>
               <p>此外，在密碼重設作業期間，您可能會在 Azure AD Connect 服務的事件記錄檔中看到錯誤指出「找到多個相符項目」錯誤。</p>
             </td>
             <td>
               <p>此錯誤指出同步處理引擎偵測到 MV 物件透過 “Microsoft.InfromADUserAccountEnabled.xxx” 連線到多個 AD CS 物件。這表示使用者在多個樹系中啟用帳戶。</p>
               <p>
-                
+
               </p>
               <p>密碼回寫目前不支援此案例。</p>
             </td>
@@ -1416,7 +1419,7 @@
             </td>
           </tr>
         </tbody></table>
-		
+
 ## 疑難排解密碼回寫連線
 
 如果 Azure AD Connect 的密碼回寫元件發生服務中斷，以下是可供用來解決此問題的一些快速步驟：
@@ -1485,7 +1488,7 @@
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -1501,4 +1504,4 @@
 [003]: ./media/active-directory-passwords-troubleshoot/003.jpg "Image_003.jpg"
 [004]: ./media/active-directory-passwords-troubleshoot/004.jpg "Image_004.jpg"
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

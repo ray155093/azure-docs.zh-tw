@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="05/31/2016"
+   ms.date="07/07/2016"
    ms.author="jeffstok"
 />
 
@@ -46,7 +46,7 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 2.	如果資料位於本機，且是 XDF 格式，則重複分析會比較快。
 3.	最好是從文字資料來源串流小量的資料；如果資料量較大，請將其轉換為 XDF 格式再進行分析。
 4.	對於非常大量的資料，將資料複製或串流至邊緣節點以進行分析的額外負荷會變得難以管理。
-5.	在 Hadoop 中進行分析時，Spark 比 Map Reduce 還快，直到資料量變得非常大且不再適合用於分散式記憶體時為止。
+5.	Spark 在 Hadoop 中的分析速度較 Map Reduce 快。
 
 對於這些原則，用來選取計算內容的一般規則是︰
 
@@ -61,7 +61,7 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 
 ### Hadoop Map Reduce
 
-- 如果要分析的資料量非常大，且 Spark 效能開始下降，請嘗試透過 Map Reduce 進行分析。
+- 請只在您使用 Spark 計算內容時發生無法克服的問題時才使用，因為它的速度通常會比較慢。
 
 ## rxSetComputeContext 的內嵌說明
 
@@ -81,4 +81,4 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 - [將 RStudio 伺服器加入 HDInsight Premium 中](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight Premium R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

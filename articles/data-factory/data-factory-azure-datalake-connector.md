@@ -24,7 +24,10 @@
 >  
 > 請檢閱[建置您的第一個管線教學課程](data-factory-build-your-first-pipeline.md)，以了解建立 Data Factory、連結服務、資料集和管線的詳細步驟。搭配使用 JSON 片段和 Data Factory 編輯器或 Visual Studio 或 Azure PowerShell 來建立 Data Factory 實體。
 
-下列範例顯示如何在 Azure 資料湖存放區和 Azure Blob 儲存體將資料複製進來和複製出去。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
+## 複製資料精靈
+要建立將資料複製到 Azure Data Lake Store/複製 Azure Data Lake Store 之資料的管線，最簡單的方法是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
+
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。它們會示範如何將資料複製到 Azure Data Lake Store 和 Azure Blob 儲存體，以及複製其中的資料。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
 
 
 ## 範例：從 Azure Blob 複製資料到 Azure 資料湖存放區
@@ -68,7 +71,7 @@
 ### 使用 Data Factory 編輯器建立 Azure 資料湖連結服務
 下列程序提供使用 Data Factory 編輯器建立 Azure 資料湖存放區連結服務的步驟。
 
-1. 按一下命令列上的 [新增資料存放區]，然後選取 [Azure 資料湖存放區]。
+1. 按一下命令列上的 [新增資料存放區]，然後選取 [Azure Data Lake Store]。
 2. 在 JSON 編輯器中，為 **dataLakeStoreUri** 屬性輸入 Data Lake 的 URI。
 3. 按一下命令列上的 [授權] 按鈕。應該會出現一個快顯視窗。
 
@@ -78,7 +81,7 @@
 5. (選擇性步驟) 指定 JSON 中選用參數的值，例如 **accountName**、**subscriptionID** 與 **resourceGroupName**，或將這些屬性從 JSON 中刪除。
 6. 按一下命令列的 [部署]，部署連結服務。
 
-> [AZURE.IMPORTANT] 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。您必須在**權杖到期**和重新部署連結的服務時使用 [授權] 按鈕**重新授權**。如需詳細資訊，請參閱 [Azure 資料湖存放區連結服務](#azure-data-lake-store-linked-service-properties)章節。
+> [AZURE.IMPORTANT] 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。您必須在**權杖到期**和重新部署連結的服務時使用 [授權] 按鈕**重新授權**。如需詳細資訊，請參閱 [Azure Data Lake Store 連結服務](#azure-data-lake-store-linked-service-properties)章節。
 
 
 
@@ -224,7 +227,7 @@
 2.	[AzureStorage](#azure-storage-linked-service-properties) 類型的連結服務。
 3.	[AzureDataLakeStore](#azure-data-lake-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4.	[AzureBlob](#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-5.	具有使用 [AzureDataLakeStoreSource](#azure-data-lake-copy-activity-type-properties) 與 [BlobSink](#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
+5.	具有使用 [AzureDataLakeStoreSource](#azure-data-lake-copy-activity-type-properties) 與 [BlobSink](#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)
 
 此範例每小時會將屬於時間序列的資料從 Azure 資料湖存放區複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -405,7 +408,7 @@
 | 屬性 | 說明 | 必要 |
 | :-------- | :----------- | :-------- |
 | 類型 | type 屬性必須設為：**AzureDataLakeStore** | 是 |
-| dataLakeStoreUri | 指定有關 Azure 資料湖存放區帳戶的資訊。格式如下：https://<Azure Data Lake account name>.azuredatalakestore.net/webhdfs/v1 | 是 |
+| dataLakeStoreUri | 指定有關 Azure 資料湖存放區帳戶的資訊。格式如下：https://<Azure Data Lake 帳戶名稱>.azuredatalakestore.net/webhdfs/v1 | 是 |
 | authorization | 按一下 [**Data Factory 編輯器**] 中的 [**授權**] 按鈕，然後輸入您的認證，此動作會將自動產生的授權 URL 指派給此屬性。 | 是 |
 | sessionId | OAuth 工作階段的 OAuth 工作階段識別碼。每個工作階段識別碼都是獨一無二的，只能使用一次。當您使用 Data Factory 編輯器時便會自動產生。 | 是 |  
 | accountName | 資料湖帳戶名稱 | 否 |
@@ -423,7 +426,7 @@
 
 請注意，如果您在此權杖的到期時間之前變更密碼，權杖將立即到期，且您會看到上述錯誤。
 
-如果要避免/解決此錯誤，您必須在權杖到期時使用 [授權] 按鈕重新授權，然後重新部署連結服務。您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。
+如果要避免/解決此錯誤，您必須在權杖到期時使用 [授權] 按鈕重新授權，然後重新部署連結服務。您也可以使用下一節中的程式碼，以程式設計方式產生 sessionId 和 authorization 屬性的值。
 
 ### 若要以程式設計方式產生 sessionId 與 authorization 的值 
 
@@ -457,15 +460,15 @@
 
 如需可供定義資料集使用的 JSON 區段和屬性的完整清單，請參閱[建立資料集](data-factory-create-datasets.md)文章。資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
-每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中資料的位置和格式等相關資訊。AzureDataLakeStore 類型資料集的 typeProperties 區段具有下列屬性。
+每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中資料的位置和格式等相關資訊。**AzureDataLakeStore** 類型資料集的 typeProperties 區段具有下列屬性。
 
 | 屬性 | 說明 | 必要 |
 | :-------- | :----------- | :-------- |
 | folderPath | Azure 資料湖存放區中容器與資料夾的路徑。 | 是 |
 | fileName | Azure 資料湖存放區中的檔案名稱。fileName 為選用且區分大小寫。<br/><br/>若您指定 fileName，活動 (包括複製活動) 將只會在特定檔案上運作。<br/><br/>若未指定 fileName，則複製活動會包含輸入資料集 folderPath 中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，則所產生檔案的名稱會使用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
 | partitionedBy | partitionedBy 是選擇性的屬性。您可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。如需詳細資訊和範例，請參閱下面的＜運用 partitionedBy 屬性＞一節。 | 否 |
-| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式底下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：「最佳」和「最快」。請注意，目前針對 **AvroFormat** 或 **OrcFormat** 格式的資料，不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，**AvroFormat** 或 **OrcFormat** 格式的資料，目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 ### 運用 partitionedBy 屬性
 如上所述，您可以使用 **partitionedBy** 區段、Data Factory 巨集和系統變數 (SliceStart 和 SliceEnd，表示指定資料配量的開始和結束時間)，指定時間序列資料的動態 folderPath 和 filename。
@@ -526,10 +529,10 @@
  
 請注意，[壓縮] 區段有兩個屬性：
   
-- **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。  
-- **層級：**壓縮比，它可以是**最佳**或**最快**。 
-	- **最快：**即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。 
-	- **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。 
+- **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。
+- **層級：**壓縮比，它可以是**最佳**或**最快**。
+	- **最快：**即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。
+	- **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。
 	
 	請參閱[壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx)主題以取得詳細資訊。
 
@@ -537,9 +540,9 @@
 
 當您在輸入資料集 JSON 中指定壓縮屬性，管線可以從來源讀取壓縮的資料，當您在輸出資料集 JSON 中指定屬性，複製活動可以將壓縮的資料寫入到目的地。以下是一些範例案例：
 
-- 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure 資料湖存放區。 
-- 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure 資料湖存放區。您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure 資料湖資料集。  
-- 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure 資料湖存放區。您會在此情況下利用設為 GZIP 的壓縮類型定義輸入 Azure 資料湖存放區資料集，並利用設為 BZIP2 的壓縮類型定義輸出資料集。   
+- 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure 資料湖存放區。
+- 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure 資料湖存放區。您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure 資料湖資料集。
+- 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure 資料湖存放區。您會在此情況下利用設為 GZIP 的壓縮類型定義輸入 Azure 資料湖存放區資料集，並利用設為 BZIP2 的壓縮類型定義輸出資料集。
 
 
 ## Azure 資料湖複製活動類型屬性  
@@ -569,6 +572,6 @@
 [AZURE.INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## 效能和微調  
-若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

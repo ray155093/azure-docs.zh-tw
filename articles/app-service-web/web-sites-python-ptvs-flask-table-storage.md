@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="python" 
 	ms.topic="article" 
-	ms.date="02/20/2016"
+	ms.date="07/07/2016"
 	ms.author="huvalo"/>
 
 
@@ -32,10 +32,10 @@
 
 ## 必要條件
 
- - Visual Studio 2013 或 2015
+ - Visual Studio 2015
  - [Python Tools 2.2 for Visual Studio]
  - [Python Tools 2.2 for Visual Studio 範例 VSIX]
- - [Azure SDK Tools for VS 2013] 或 [Azure SDK Tools for VS 2015]
+ - [Azure SDK Tools for VS 2015]
  - [Python 2.7 32 位元]或 [Python 3.4 32 位元]
 
 [AZURE.INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
@@ -48,7 +48,7 @@
 
 1.  在 Visual Studio 中，選取 [檔案]、[新增專案]。
 
-1.  在 [Python]、[範例] 之下可取得 PTVS 範例 VSIX 中的專案範本。選取 [Polls Flask Web Project]，然後按一下 [確定] 以建立專案。
+1.  在 [Python]、[範例] 之下可取得 [Python Tools 2.2 for Visual Studio 範例 VSIX] 中的專案範本。選取 [Polls Flask Web Project]，然後按一下 [確定] 以建立專案。
 
   	![New Project Dialog](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskNewProject.png)
 
@@ -74,9 +74,13 @@
 
 2. 按一下入口網站左上方的 [新增] 圖示，然後按一下 [資料+儲存體] > [儲存體帳戶]。按一下 [建立]，接著為儲存體帳戶指定唯一名稱，並為它建立新的[資源群組](../resource-group-overview.md)。
 
-  	<!-- ![New Button](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzurePlusNew.png) -->建立儲存體帳戶後，[通知] 按鈕便會閃爍綠色 [成功]，儲存體帳戶的刀鋒視窗會開啟，顯示它屬於您所建立的新資源群組。
+  	![Quick Create](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageCreate.png)
 
-5. 按一下儲存體帳戶刀鋒視窗中的 [設定] 部分。記下帳戶名稱和金鑰。
+	建立儲存體帳戶後，[通知] 按鈕便會閃爍綠色 [成功]，儲存體帳戶的刀鋒視窗會開啟，顯示它屬於您所建立的新資源群組。
+
+5. 按一下儲存體帳戶刀鋒視窗中的 [存取金鑰] 部分。記下帳戶名稱和金鑰1。
+
+  	![之間的信任](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageKeys.png)
 
 	我們在下一節中將需要此資訊來設定您的專案。
 
@@ -110,21 +114,25 @@
 
 ## 探索 Azure 資料表儲存體
 
-使用 Visual Studio 中的 [伺服器總管] 即可輕易檢視和編輯儲存體資料表。在這一節中，我們將使用 [伺服器總管] 來檢視民調應用程式資料表的內容。
+使用 Visual Studio 中的 [雲端總管] 即可輕易檢視和編輯儲存體資料表。在這一節中，我們將使用 [伺服器總管] 來檢視民調應用程式資料表的內容。
 
 > [AZURE.NOTE] 這需要安裝 Microsoft Azure Tools (可在 [Azure SDK for .NET] 中取得)。
 
-1.  開啟 [伺服器總管]。依序展開 [Azure]、[儲存體]、您的儲存體帳戶和 [資料表]。
+1.  開啟 [雲端總管]。依序展開 [儲存體帳戶]、您的儲存體帳戶和 [資料表]。
 
-  	<!-- ![Server Explorer](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonServerExplorer.png) -->
+  	![雲端總管](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorer.png)
 
 1.  按兩下 [民調] 或 [選擇] 資料表可在文件視窗中檢視目錄，以及新增/移除/編輯實體。
 
-  	<!-- ![Table Query Results](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonServerExplorerTable.png) -->
+  	![資料表查詢結果](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorerTable.png)
 
 ## 將 Web 應用程式發佈至 Azure App Service
 
 Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Service。
+
+1.  在 [方案總管] 中，以滑鼠右鍵按一下專案節點並選取 [發佈]。
+
+  	![發行 Web 對話方塊](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonPublishWebSiteDialog.png)
 
 1.  按一下 [Microsoft Azure Web Apps]。
 
@@ -137,8 +145,6 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 	-	**區域**
 	-	讓「資料庫伺服器」維持設定為「沒有資料庫」
 
-  	<!-- ![Create Site on Microsoft Azure Dialog](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonCreateWebSite.png) -->
-
 1.  接受所有其他預設值並按一下 [發佈]。
 
 1.  您的 Web 瀏覽器將會自動開啟到已發佈的 Web 應用程式。如果您瀏覽至 [關於] 頁面，您會看到它使用 [記憶體內部] 儲存機制，而非 [Azure 資料表儲存體] 儲存機制。
@@ -149,19 +155,15 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 
 在本節中，我們將設定 Web Apps 執行個體的環境變數。
 
-1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下 [瀏覽] > [Web Apps] > [您的 Web 應用程式名稱] 以開啟 Web 應用程式的刀鋒視窗。
+1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下 [瀏覽] > [應用程式服務] > [您的 Web 應用程式名稱] 以開啟 Web 應用程式的刀鋒視窗。
 
 1.  在您的 Web 應用程式刀鋒視窗中，按一下 [所有設定] > [應用程式設定]。
 
-  	<!-- ![Top Menu](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonWebSiteTopMenu.png) -->
+1.  向下捲動到 [應用程式設定] 區段，並設定 [REPOSITORY\_NAME]、[STORAGE\_NAME] 和 [STORAGE\_KEY] 的值，如前面的＜設定專案＞一節所述。
 
-1.  向下捲動到 [應用程式設定] 區段，並如上一節所述設定 **REPOSITORY\\_NAME**、**STORAGE\\_NAME** 和 **STORAGE\\_KEY** 的值。
+  	![應用程式設定](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png)
 
-  	<!-- ![App Settings](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png) -->
-
-1. 依序按一下 [儲存]、[重新啟動] 及 [瀏覽]。
-
-  	<!-- ![Bottom Menu](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonWebSiteConfigureBottomMenu.png) -->
+1.  按一下 [儲存]。您收到已套用變更的通知後，請按一下 Web 應用程式主要刀鋒視窗上的 [瀏覽]。
 
 1.  透過使用「Azure 資料表儲存體」儲存機制，應該會看到 Web 應用程式如預期般運作。
 
@@ -198,7 +200,6 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 for Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Python Tools 2.2 for Visual Studio 範例 VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
-[Azure SDK Tools for VS 2013]: http://go.microsoft.com/fwlink/?LinkId=323510
 [Azure SDK Tools for VS 2015]: http://go.microsoft.com/fwlink/?linkid=518003
 [Python 2.7 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python 3.4 32 位元]: http://go.microsoft.com/fwlink/?LinkId=517191
@@ -211,4 +212,4 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 [Azure SDK for Python]: https://github.com/Azure/azure-sdk-for-python
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0713_2016-->

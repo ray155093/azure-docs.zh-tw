@@ -1,23 +1,24 @@
 <properties
-	pageTitle="遠端桌面的詳細疑難排解 |Microsoft Azure"
-	description="RDP 連線至執行 Windows 之 Azure 虛擬機器的詳細疑難排解。"
+	pageTitle="詳細疑難排解：無法連線至 VM 的遠端桌面 |Microsoft Azure"
+	description="針對您無法使用遠端桌面連線到 Azure 中 Windows 虛擬機器的遠端桌面錯誤進行疑難排解"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="iainfoulds"
 	manager="timlt"
 	editor=""
-	tags="top-support-issue,azure-service-management,azure-resource-manager"/>
+	tags="top-support-issue,azure-service-management,azure-resource-manager"
+	keywords="無法連線到遠端桌面, 疑難排解遠端桌面, 遠端桌面無法連線, 遠端桌面錯誤, 遠端桌面疑難排解, 遠端桌面問題"/>
 
 <tags
 	ms.service="virtual-machines-windows"
 	ms.workload="infrastructure-services"
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
-	ms.topic="support-article"
-	ms.date="06/07/2016"
+	ms.topic="article"
+	ms.date="07/06/2016"
 	ms.author="iainfou"/>
 
-# 以 Windows 為基礎的 Azure 虛擬機器之遠端桌面連線的詳細疑難排解
+# 針對無法連接到 Azure 中 Windows VM 遠端桌面的問題進行詳細的疑難排解
 
 本文章提供診斷和修正複雜的以 Windows 為基礎的 Azure 虛擬機器的遠端桌面錯誤的詳細疑難排解步驟。
 
@@ -113,7 +114,15 @@
 
 ### <a id="nsgs"></a>來源 4：網路安全性群組
 
-網路安全性群組能夠更精確地控制受允許的輸入和輸出流量。您可以在 Azure 虛擬網路中建立跨越子網路和雲端服務的規則。請檢查您的網路安全性群組規則，以確保允許來自網際網路的遠端桌面流量。
+網路安全性群組能夠更精確地控制受允許的輸入和輸出流量。您可以在 Azure 虛擬網路中建立跨越子網路和雲端服務的規則。請檢查您的網路安全性群組規則，以確保允許來自網際網路的遠端桌面流量：
+
+- 在 Azure 入口網站中選取您的 VM
+- 按一下 [所有設定] | [網路介面]，然後選取您的網路介面。
+- 按一下 [所有設定] | [網路安全性群組]，然後選取您的網路安全性群組。
+- 按一下 [所有設定] | [輸入安全性規則]，並確定您有一個規則允許 TCP 連接埠 3389 上的 RDP。
+	- 如果您還沒有規則，按一下 [新增] 建立新的規則。在通訊協定輸入 **TCP**，然後在目的地連接埠範圍輸入 **3389**。
+	- 請確定已將動作設定為**允許**，然後按一下 [確定] 儲存您的新輸入規則。
+
 
 如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)。
 
@@ -121,7 +130,7 @@
 
 ![](./media/virtual-machines-windows-detailed-troubleshoot-rdp/tshootrdp_5.png)
 
-使用 [Azure IaaS (Windows) 診斷封裝](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864)以查看失敗的原因是否在 Azure 虛擬機器本身。如果這個診斷封裝無法解決「RDP 連線至 Azure VM (需要重新開機)」問題，請依照[本文](virtual-machines-windows-reset-rdp.md)中的指示來重設虛擬機器上的「遠端桌面服務」。這將會：
+使用 [Azure IaaS (Windows) 診斷套件](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864)查看失敗的原因是否在 Azure 虛擬機器本身。如果這個診斷套件無法解決「RDP 連線至 Azure VM (需要重新開機)」問題，請依照[本文](virtual-machines-windows-reset-rdp.md)中的指示來重設虛擬機器上的「遠端桌面服務」。這將會：
 
 - 啟用「遠端桌面」 Windows 防火牆預設規則 (TCP 連接埠 3389)。
 - 藉由將 HKLM\\System\\CurrentControlSet\\Control\\Terminal Server\\fDenyTSConnections 登錄值設為 0 ，啟用遠端桌面連線。
@@ -139,7 +148,7 @@
 
 接下來，開啟 Azure PowerShell 命令提示字元，並將目前資料夾變更為 **InstallWinRMCertAzureVM.ps1** 指令碼檔案的位置。若要執行 Azure PowerShell 指令碼，您必須設定正確的執行原則。請執行 **Get-ExecutionPolicy** 命令來判斷您目前的原則層級。如需設定適當層級的相關資訊，請參閱 [Set-ExecutionPolicy](https://technet.microsoft.com/library/hh849812.aspx)。
 
-接下來，請填入您的 Azure 訂用帳戶名稱、雲端服務名稱以及虛擬機器名稱 (移除 < and > 字元)，然後再執行這些命令。
+接下來，請填入您的 Azure 訂用帳戶名稱、雲端服務名稱以及虛擬機器名稱 (移除 "<" 和 ">" 字元)，然後再執行這些命令。
 
 	$subscr="<Name of your Azure subscription>"
 	$serviceName="<Name of the cloud service that contains the target virtual machine>"
@@ -148,7 +157,7 @@
 
 您可以從 **Get-AzureSubscription** 命令顯示畫面中的 _SubscriptionName_ 屬性，取得正確的訂用帳戶名稱。您可以從 **Get-AzureVM** 命令顯示畫面中的 _ServiceName_ 欄位，取得虛擬機器的雲端服務名稱。
 
-請檢查您是否有新的憑證，開啟目前使用者的 [憑證] 嵌入式管理單元，然後查看 [受信任的根憑證授權單位\\憑證] 資料夾。您應該在 Issued To 資料行中查看具有您的雲端服務之 DNS 名稱的憑證 (範例：cloudservice4testing.cloudapp.net)。
+請檢查您是否有新的憑證，開啟目前使用者的 [憑證] 嵌入式管理單元，然後查看**受信任的根憑證授權單位\\憑證**資料夾。您應該在 Issued To 資料行中查看具有您的雲端服務之 DNS 名稱的憑證 (範例：cloudservice4testing.cloudapp.net)。
 
 接下來，使用這些命令起始遠端 Azure PowerShell 工作階段。
 
@@ -195,4 +204,4 @@ PortNumber 屬性會顯示目前的連接埠號碼。如有需要，請使用此
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="07/14/2016"
 	ms.author="femila"/>
 
 # 開始使用 Azure AD 的條件式存取  
@@ -68,7 +68,7 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 
 * **需要多重要素驗證**︰使用此選項時，套用存取規則的使用者必須先完成多重要素驗證，才能存取套用規則的應用程式。
 
-* **不在工作時需要多重要素驗證**︰使用此選項時，來自受信任 IP 位址的使用者不需要執行多重要素驗證。受信任的 IP 位址範圍可以在 [多重要素驗證設定] 頁面上設定，或藉由在目錄設定索引標籤上設定公用 IP 位址範圍來設定。
+* **不在工作時需要多重要素驗證**︰使用此選項時，來自受信任 IP 位址的使用者不需要執行多重要素驗證。可以在 [Multi-Factor Authentication 設定] 頁面上設定受信任的 IP 位址範圍。
 
 * **不工作時封鎖存取**：使用此選項時，將封鎖不是來自受信任 IP 位址的使用者。可以在 [Multi-Factor Authentication 設定] 頁面上設定受信任的 IP 位址範圍。
 
@@ -94,4 +94,4 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

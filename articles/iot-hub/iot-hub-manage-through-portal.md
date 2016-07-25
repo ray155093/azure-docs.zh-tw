@@ -157,10 +157,19 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
 
 ## 後續步驟
 
-遵循下列連結以深入了解 Azure IoT 中樞：
+遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
-- [開始使用 IoT 中樞 (教學課程)][lnk-get-started]
-- [何謂 Azure IoT 中樞？][]
+- [大量管理 IoT 裝置][lnk-bulk]
+- [用量度量][lnk-metrics]
+- [作業監視][lnk-monitor]
+- [管理 IoT 中樞的存取權][lnk-itpro]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 
   [4]: ./media/iot-hub-manage-through-portal/create-iothub.png
@@ -173,6 +182,16 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
   [14]: ./media/iot-hub-manage-through-portal/file-upload-container-selection.png
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[何謂 Azure IoT 中樞？]: iot-hub-what-is-iot-hub.md
+[What is Azure IoT Hub?]: iot-hub-what-is-iot-hub.md
 
-<!---HONumber=AcomDC_0706_2016-->
+[lnk-bulk]: iot-hub-bulk-identity-mgmt.md
+[lnk-metrics]: iot-hub-metrics.md
+[lnk-monitor]: iot-hub-operations-monitoring.md
+[lnk-itpro]: iot-hub-itpro-info.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+
+<!---HONumber=AcomDC_0713_2016-->

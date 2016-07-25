@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="07/12/2016"
 	ms.author="larryfr"/>
 
 
@@ -26,7 +26,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 ##必要條件
 
-* Windows 7、Windows 8 或 Windows 8.1。
+* Windows 7 或更新版本。
 
 * 含有下列版本的 Visual Studio：
 
@@ -34,7 +34,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 	* Visual Studio 2013 Community/Professional/Premium/Ultimate，含 [Update 4](https://www.microsoft.com/download/details.aspx?id=44921)
 
-	* Visual Studio 2015 預覽
+	* Visual Studio 2015
 
 * HDInsight 叢集上的 Hadoop - 如需建立叢集的步驟，請參閱[佈建 HDInsight 叢集](hdinsight-provision-clusters.md)
 
@@ -241,4 +241,4 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

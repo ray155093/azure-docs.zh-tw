@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/25/2016"
+   ms.date="07/11/2016"
    ms.author="oanapl"/>
 
 # 使用系統健康狀態報告進行疑難排解
@@ -471,6 +471,65 @@ Visual Studio 2015 診斷事件：RunAsync 在 **fabric:/HelloWorldStatefulAppli
 - **SourceId**：System.Replicator
 - **Property**：**PrimaryReplicationQueueStatus** 或 **SecondaryReplicationQueueStatus** (根據複本角色而定)
 
+### 緩慢的命名作業
+
+當命名作業花費的時間多於可接受的時間，**System.NamingService** 會報告其主要複本的健全狀況。[CreateServiceAsync](https://msdn.microsoft.com/library/azure/mt124028.aspx)、[DeleteServiceAsync](https://msdn.microsoft.com/library/azure/mt124029.aspx) 都是命名作業的例子。在 FabricClient 下可以找到更多方法，例如[服務管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.servicemanagementclient.aspx) 或[屬性管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.propertymanagementclient.aspx)底下。
+
+> [AZURE.NOTE] 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。它是 Service Fabric 資料分割保存的服務。其中一個資料分割代表「授權限擁有者」，其中包含所有系統網狀架構名稱和服務的中繼資料。Service Fabric 名稱會對應至不同的資料分割 (稱為「名稱擁有者資料分割」)，讓服務可以擴充。深入了解[命名服務](service-fabric-architecture.md)。
+
+命名作業所花費的時間超出預期，在*負責處理該作業的命名服務資料分割的主要複本*上，該作業會標幟警告報表。如果作業順利完成，就會清除警告。如果作業完成但發生錯誤，健全狀況報告會包含錯誤的詳細資訊。
+
+- **SourceId**：System.NamingService
+- **Property**：以 **Duration\_** 字首開始，識別緩慢作業和套用該作業的 Service Fabric 名稱。例如，如果在名稱網狀架構建立 /MyApp/MyService 服務花太多時間，其 Property 就是 Duration\_AOCreateService.fabric:/MyApp/MyService。AO 指向這個名稱和作業的命名資料分割的角色。
+- **後續步驟**︰檢查命名作業失敗的原因。每個作業都可能有不同的根本原因。例如，由於服務程式碼中的使用者錯誤造成節點上的應用程式主機持續當機，使刪除服務會卡在節點上。
+
+以下是一個建立服務作業。作業所花費的時間超過設定的期間。AO 重試，並將工作傳送到 NO。NO 逾時完成最後一個作業。在此情況中，AO 和 NO 角色有相同的主要複本。
+
+```powershell
+PartitionId           : 00000000-0000-0000-0000-000000001000
+ReplicaId             : 131064359253133577
+AggregatedHealthState : Warning
+UnhealthyEvaluations  : 
+                        Unhealthy event: SourceId='System.NamingService', Property='Duration_AOCreateService.fabric:/MyApp/MyService', HealthState='Warning', ConsiderWarningAsError=false.
+                        
+HealthEvents          : 
+                        SourceId              : System.RA
+                        Property              : State
+                        HealthState           : Ok
+                        SequenceNumber        : 131064359308715535
+                        SentAt                : 4/29/2016 8:38:50 PM
+                        ReceivedAt            : 4/29/2016 8:39:08 PM
+                        TTL                   : Infinite
+                        Description           : Replica has been created.
+                        RemoveWhenExpired     : False
+                        IsExpired             : False
+                        Transitions           : Error->Ok = 4/29/2016 8:39:08 PM, LastWarning = 1/1/0001 12:00:00 AM
+                        
+                        SourceId              : System.NamingService
+                        Property              : Duration_AOCreateService.fabric:/MyApp/MyService
+                        HealthState           : Warning
+                        SequenceNumber        : 131064359526778775
+                        SentAt                : 4/29/2016 8:39:12 PM
+                        ReceivedAt            : 4/29/2016 8:39:38 PM
+                        TTL                   : 00:05:00
+                        Description           : The AOCreateService started at 2016-04-29 20:39:08.677 is taking longer than 30.000.
+                        RemoveWhenExpired     : True
+                        IsExpired             : False
+                        Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
+                        
+                        SourceId              : System.NamingService
+                        Property              : Duration_NOCreateService.fabric:/MyApp/MyService
+                        HealthState           : Warning
+                        SequenceNumber        : 131064360657607311
+                        SentAt                : 4/29/2016 8:41:05 PM
+                        ReceivedAt            : 4/29/2016 8:41:08 PM
+                        TTL                   : 00:00:15
+                        Description           : The NOCreateService started at 2016-04-29 20:39:08.689 completed with FABRIC_E_TIMEOUT in more than 30.000.
+                        RemoveWhenExpired     : True
+                        IsExpired             : False
+                        Transitions           : Error->Warning = 4/29/2016 8:39:38 PM, LastOk = 1/1/0001 12:00:00 AM
+``` 
+
 ## DeployedApplication 系統健康狀態報告
 **System.Hosting** 是已部署實體的授權單位。
 
@@ -478,7 +537,7 @@ Visual Studio 2015 診斷事件：RunAsync 在 **fabric:/HelloWorldStatefulAppli
 當應用程式在節點上成功啟用時，System.Hosting 會回報為 OK。否則，它會報告錯誤。
 
 - **SourceId**：System.Hosting
-- **Property**：啟用，包括首度發行版本
+- **Property**：Activation，包括首度發行版本
 - **後續步驟**：如果應用程式的狀況不佳，請調查啟用失敗的原因。
 
 以下說明成功啟用的情況：
@@ -526,7 +585,7 @@ HealthEvents                       :
 - **後續步驟**：調查啟用失敗的原因。
 
 ### 程式碼封裝啟用
-如果成功啟用，**System.Hosting** 會針對每個程式碼封裝回報為 OK。如果啟用失敗，它會依設定回報警告。如果 **CodePackage** 無法啟用，或者因為錯誤數超過 **CodePackageHealthErrorThreshold** 的設定而結束，則 Hosting 會回報錯誤。如果服務封裝包含多個程式碼封裝，就會針對每個封裝產生啟用報告。
+如果啟用成功，**System.Hosting** 會針對每個程式碼封裝回報 OK。如果啟用失敗，它會依設定回報警告。如果 **CodePackage** 無法啟用，或者因為錯誤數超過 **CodePackageHealthErrorThreshold** 的設定而結束，則 Hosting 會回報錯誤。如果服務封裝包含多個程式碼封裝，就會針對每個封裝產生啟用報告。
 
 - **SourceId**：System.Hosting
 - **Property**：使用前置詞 **CodePackageActivation**，並以 **CodePackageActivation:*CodePackageName*:*SetupEntryPoint/EntryPoint*** 形式 (例如 **CodePackageActivation:Code:SetupEntryPoint**) 包含程式碼封裝的名稱和進入點
@@ -586,7 +645,7 @@ HealthEvents          :
 ```
 
 ### 下載
-如果服務封裝下載失敗，**System.Hosting** 會回報錯誤。
+如果服務套件下載失敗，**System.Hosting** 會回報錯誤。
 
 - **SourceId**：System.Hosting
 - **Property**：**Download:*RolloutVersion***
@@ -596,14 +655,16 @@ HealthEvents          :
 如果驗證在升級期間失敗，或者節點上的升級失敗，**System.Hosting** 會回報錯誤。
 
 - **SourceId**：System.Hosting
-- **Property**：使用前置詞 **FabricUpgradeValidation**，並包含升級版本
+- **Property**：使用 **FabricUpgradeValidation** 前置詞，並包含升級版本
 - **Description**：指出發生的錯誤
 
 ## 後續步驟
 [檢視 Service Fabric 健康狀態報告](service-fabric-view-entities-aggregated-health.md)
 
+[如何回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+
 [在本機上監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

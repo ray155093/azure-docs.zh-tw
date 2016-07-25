@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 15Five 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 15Five 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-15five-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-15five-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-15five-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -68,7 +68,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [15Five] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [15Five] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-15five-tutorial/IC784670.png "設定單一登入")
 
@@ -76,7 +76,7 @@
 
     ![設定單一登入](./media/active-directory-saas-15five-tutorial/IC784671.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [15Five 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："**https://company.15Five.com*"，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [15Five 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://company.15Five.com*"，然後按一下 [下一步]**。
 
     ![設定應用程式 URL](./media/active-directory-saas-15five-tutorial/IC784672.png "設定應用程式 URL")
 
@@ -84,9 +84,9 @@
 
     ![設定單一登入](./media/active-directory-saas-15five-tutorial/IC784673.png "設定單一登入")
 
-    >[AZURE.NOTE]單一登入必須由 15Five 支援小組啟用。
+    >[AZURE.NOTE] 單一登入必須由 15Five 支援小組啟用。
 
-5.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+5.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-15five-tutorial/IC784674.png "設定單一登入")
 ##設定使用者佈建
@@ -112,9 +112,9 @@
     1.  在相關的文字方塊中，輸入您想要佈建之有效 Azure Active Directory 帳戶的 [名字]、[姓氏]、[職稱]、[電子郵件地址]。
     2.  按一下 [完成]。
 
-    >[AZURE.NOTE]Azure AD 帳戶的持有者會收到一封包含連結的電子郵件，以便在帳戶啟用前加以確認。
+    >[AZURE.NOTE] Azure AD 帳戶的持有者會收到一封包含連結的電子郵件，以便在帳戶啟用前加以確認。
 
->[AZURE.NOTE]您可以使用任何其他的 15Five 使用者帳戶建立工具或 15Five 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 15Five 使用者帳戶建立工具或 15Five 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
 
@@ -122,7 +122,7 @@
 
 ###若要將使用者指派到 15Five，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [15Five] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -134,4 +134,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

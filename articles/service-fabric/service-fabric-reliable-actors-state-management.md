@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # Reliable Actors 狀態管理
@@ -62,7 +62,7 @@ class MyActor : Actor, IMyActor
 
 ### 預設值和產生的設定
 
-使用 `StatePersistence` 屬性時，在動作項目服務啟動時，會在執行階段自動為您選取狀態供應器。不過，複本計數是在編譯時期由 Visual Studio 動作項目建置工具所設定。建置工具會在 ApplicationManifest.xml 中自動為動作項目服務產生「預設服務」。參數是針對「複本集大小下限」和「目標複本集大小」來建立。您當然可以手動變更這些參數，不過，每當 `StatePersistence` 屬性變更時，參數將會設定為所選 `StatePersistence` 屬性的預設複本集大小值，覆寫所有舊值。
+使用 `StatePersistence` 屬性時，在動作項目服務啟動時，會在執行階段自動為您選取狀態供應器。不過，複本計數是在編譯時期由 Visual Studio 動作項目建置工具所設定。建置工具會在 ApplicationManifest.xml 中自動為動作項目服務產生「預設服務」。參數是針對「複本集大小下限」和「目標複本集大小」來建立。您當然可以手動變更這些參數，不過，每當 `StatePersistence` 屬性變更時，參數將會設定為所選 `StatePersistence` 屬性的預設複本集大小值，覆寫所有舊值。換句話說，您在 ServiceManifest.xml 中設定的值將**只**會在當您變更 `StatePersistence` 屬性值時，於建置階段覆寫。
 
 ```xml
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="Application12Type" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -98,7 +98,7 @@ class MyActor : Actor, IMyActor
 
  - 從狀態管理員中擷取物件之後，動作項目方法會擲回未處理的例外狀況。
  - 動作項目會在已停用之後或因為失敗而重新啟動。
- - 如果狀態供應器會將狀態分頁到磁碟。這個行為取決於狀態供應器實作。`Persisted` 設定的預設狀態供應器具有這個行為。 
+ - 如果狀態供應器會將狀態分頁到磁碟。這個行為取決於狀態供應器實作。`Persisted` 設定的預設狀態供應器具有這個行為。
 
 如果指定索引鍵的項目不存在，就可以使用會擲回 `KeyNotFoundException` 的標準 *Get* 作業來擷取狀態：
 
@@ -232,4 +232,4 @@ class MyActor : Actor, IMyActor
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
  - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

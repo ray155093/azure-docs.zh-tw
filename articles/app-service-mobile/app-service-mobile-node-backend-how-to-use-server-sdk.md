@@ -174,11 +174,11 @@ azure-mobile-apps Node.js Server SDK 提供將儲存在 Azure SQL Database 中�
 
 | 作業 | 說明 |
 | --------- | ----------- |
-| GET /tables/\_tablename\_ | 取得資料表中的所有記錄 |
-| GET /tables/\_tablename\_/:id | 取得資料表中的特定記錄 |
-| POST /tables/\_tablename\_ | 在資料表中建立新記錄 |
-| PATCH /tables/\_tablename\_/:id | 更新資料表中的現有記錄 |
-| DELETE /tables/\_tablename\_/:id | 刪除資料表中的記錄 |
+| GET /tables/_tablename_ | 取得資料表中的所有記錄 |
+| GET /tables/_tablename_/:id | 取得資料表中的特定記錄 |
+| POST /tables/_tablename_ | 在資料表中建立新記錄 |
+| PATCH /tables/_tablename_/:id | 更新資料表中的現有記錄 |
+| DELETE /tables/_tablename_/:id | 刪除資料表中的記錄 |
 
 此 WebAPI 支援 [OData]，而且擴充資料表結構描述以支援[離線資料同步]。
 
@@ -328,7 +328,7 @@ Azure Mobile Apps 會從本機檔案系統讀取名為 _azureMobile.js_ 的 Java
 
 建議您將 _azureMobile.js_ 新增至您的 _.gitignore_ 檔案 (或其他原始程式碼控制忽略檔案)，以防止密碼儲存在雲端中。請一律在 [Azure 入口網站]內的 [應用程式設定] 中設定生產設定。
 
-### <a name="howto-appsettings"></a>如何：設定行動應用程式的應用程式設定
+### <a name="howto-appsettings"></a>作法：設定行動應用程式的應用程式設定
 
 _azureMobile.js_ 檔案中的大部分設定在 [Azure 入口網站]中都有對等的「應用程式設定」。請使用下列清單在 [應用程式設定] 中設定您的應用程式：
 
@@ -431,9 +431,9 @@ _azureMobile.js_ 檔案中的大部分設定在 [Azure 入口網站]中都有對
 
 如果未定義存取屬性，則會允許未經驗證的存取。
 
-### <a name="howto-tables-getidentity"></a>作法：如何透過資料表使用驗證宣告
+### <a name="howto-tables-getidentity"></a>作法：透過資料表使用驗證宣告
 
-您可以設定驗證設定時所要求的多個宣告。這些宣告通常無法透過 `context.user` 物件取得，但可使用 `context.user.getIdentity()` 方法擷取。`getIdentity()` 方法會傳回會解析該物件的 Promise。物件會以驗證方法 (facebook、google、twitter、microsoftaccount 或 aad) 建立索引。
+您可以設定驗證設定時所要求的多個宣告。這些宣告通常無法透過 `context.user` 物件取得。但可使用 `context.user.getIdentity()` 方法擷取。`getIdentity()` 方法會傳回可解析成一項物件的 Promise。物件會以驗證方法 (facebook、google、twitter、microsoftaccount 或 aad) 建立索引。
 
 例如，如果您設定 Microsoft 帳戶驗證並要求電子郵件地址宣告時，可以利用下列來將電子郵件地址加入記錄：
 
@@ -629,7 +629,7 @@ Swagger 端點將會位於 http://_yoursite_.azurewebsites.net/swagger。您可�
 
 ## <a name="push">推播通知
 
-行動應用程式會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](./notification-hubs/notification-hubs-push-notification-overview.md)。
+行動應用程式會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](../notification-hubs/notification-hubs-push-notification-overview.md)。
 
 ### </a><a name="send-push"></a>作法：傳送推播通知
 
@@ -664,7 +664,7 @@ Swagger 端點將會位於 http://_yoursite_.azurewebsites.net/swagger。您可�
     }
 
 
-###<a name="push-user"></a>如何：使用標記將推播通知傳送給已驗證的使用者
+###<a name="push-user"></a>作法：使用標記將推播通知傳送給已驗證的使用者
 
 當驗證的使用者註冊推播通知之後，使用者識別碼便會自動加入到註冊中。藉由使用這個標記，您可以傳送推播通知給特定使用者已註冊的所有裝置。下列程式碼會取得提出要求之使用者的 SID，並將範本推播通知傳送至該使用者的每個裝置註冊︰
 
@@ -818,7 +818,7 @@ Azure 行動應用程式 SDK 允許透過要求物件存取整個「內容」，
     api.get.access = 'authenticated';
     module.exports = api;
 
-## <a name="Debugging"></a>偵錯、簡單的資料表及簡單的 API
+## <a name="Debugging"></a>偵錯、簡單資料表及簡單的 API
 
 ### <a name="howto-diagnostic-logs"></a>作法：為 Azure Mobile Apps 偵錯、診斷和進行疑難排解
 
@@ -832,7 +832,7 @@ Node.js 應用程式可存取多種不同的診斷記錄工具。在內部，Azu
 
 ### <a name="in-portal-editing"></a><a name="work-easy-tables"></a>作法：在 Azure 入口網站中使用簡單資料表
 
-入口網站中的簡單資料表，可讓您直接在入口網站中建立及使用資料表。您甚至可以使用 Visual Studio 線上編輯器來編輯資料表作業。
+入口網站中的簡單資料表，可讓您直接在入口網站中建立及使用資料表。您甚至可以使用 App Service 編輯器編輯資料表作業。
 
 當您按一下後端網站設定中的 [簡單資料表] 時，您可以加入新的資料表，或是修改或刪除現有的資料表。您也可以查看資料表中的資料。
 
@@ -841,7 +841,7 @@ Node.js 應用程式可存取多種不同的診斷記錄工具。在內部，Azu
 下列命令可用於資料表的命令列：
 
 + **變更權限** - 修改在資料表上讀取、插入、更新和刪除作業的權限。選項包括允許匿名存取、要求驗證，或停用作業的所有存取。這可修改 table.json 專案程式碼檔案。
-+ **編輯指令碼** - 會在 Visual Studio Team Services 編輯器中開啟資料表的指令碼檔案。
++ **編輯指令碼** - 資料表的指令碼檔案會在 App Service 編輯器中開啟。
 + **管理結構描述** - 新增或刪除資料行，或變更資料表索引。
 + **清除資料表** - 截斷現有的資料表可能會刪除所有資料列，但結構描述會維持不變。
 + **刪除資料列** - 刪除個別的資料列。
@@ -849,21 +849,21 @@ Node.js 應用程式可存取多種不同的診斷記錄工具。在內部，Azu
 
 ###<a name="work-easy-apis"></a>做法：在 Azure 入口網站中使用簡單 API
 
-入口網站中的簡單 API，可讓您直接在入口網站中建立及使用自訂 API。您甚至可以使用 Visual Studio 線上編輯器來編輯 API 指令碼。
+入口網站中的簡單 API，可讓您直接在入口網站中建立及使用自訂 API。您甚至可以使用 App Service 編輯器編輯 API 指令碼。
 
 當您按一下後端網站設定中的 [簡單 API] 時，您可以加入新的自訂 API 端點，或是修改或刪除現有的 API 端點。
 
 ![使用簡單 API](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-easy-apis.png)
 
-在入口網站中，您可以變更指定之 HTTP 動作的存取權限、在 Visual Studio Team Services 編輯器中編輯 API 指令碼檔案，或檢視資料流記錄。
+在入口網站中，您可以變更指定 HTTP 動作的存取權限、在 App Service 編輯器中編輯 API 指令碼檔案，或檢視串流記錄檔。
 
-###<a name="online-editor"></a>做法：在 Visual Studio Team Services 中編輯程式碼
+###<a name="online-editor"></a>作法：在 App Service 編輯器中編輯程式碼
 
-Azure 入口網站可讓您在 Visual Studio Team Services 中編輯 Node.js 後端指令碼檔案，而不需將專案下載到本機電腦。若要在線上編輯器中編輯指令碼檔案：
+Azure 入口網站可讓您在 App Service 編輯器中編輯 Node.js 後端指令碼檔案，而不需將專案下載到本機電腦。若要在線上編輯器中編輯指令碼檔案：
 
-1. 在您的「行動應用程式」後端刀鋒視窗中，按一下 [所有設定] > [簡單資料表] 或 [簡單 API]，按一下資料表或 API，然後按一下 [編輯指令碼]。將會在 Visual Studio Team Services 編輯器中開啟指令碼檔案。
+1. 在您的「行動應用程式」後端刀鋒視窗中，按一下 [所有設定] > [簡單資料表] 或 [簡單 API]，按一下資料表或 API，然後按一下 [編輯指令碼]。指令碼檔案會在 App Service 編輯器中開啟。
 
-	![Visual Studio Team Services 程式碼編輯器](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-visual-studio-editor.png)
+	![App Service 編輯器](./media/app-service-mobile-node-backend-how-to-use-server-sdk/mobile-apps-visual-studio-editor.png)
 
 2. 在線上編輯器中變更程式碼檔案。當您輸入資料時，會自動儲存變更。
 
@@ -917,4 +917,4 @@ Azure 入口網站可讓您在 Visual Studio Team Services 中編輯 Node.js 後
 [ExpressJS 中介軟體]: http://expressjs.com/guide/using-middleware.html
 [Winston]: https://github.com/winstonjs/winston
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

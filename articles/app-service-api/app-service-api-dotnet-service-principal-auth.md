@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="06/30/2016" 
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 在 Azure App Service 中 API Apps 的服務主體驗證
 
@@ -415,4 +415,4 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 如需了解藉由使用 Visual Studio，或是藉由使用[原始檔控制系統](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control)來[自動化部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery)，以將 Visual Studio 專案部署到 API 應用程式的其他方式相關資訊，請參閱[如何部署 Azure App Service 應用程式](../app-service-web/web-sites-deploy.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

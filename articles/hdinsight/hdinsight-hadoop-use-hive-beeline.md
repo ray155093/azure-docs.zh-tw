@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/27/2016"
+   ms.date="07/12/2016"
    ms.author="larryfr"/>
 
 #利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop
@@ -55,25 +55,13 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 ##<a id="beeline"></a>使用 Beeline 命令
 
-1. 連線之後，使用下列命令來取得前端節點的主機名稱：
+1. 連線之後，使用下列命令啟動 Beeline：
 
-        hostname -f
+        beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+
+    這將會啟動 Beeline 用戶端及連接 JDBC URL。在這裡我們使用 `localhost` ，因為 HiveServer2 會在叢集中的兩個前端節點上執行，而且我們要在前端節點 0 上直接執行 Beeline。
     
-    儲存傳回的主機名稱，因為稍後從 Beeline 連接到 HiveServer2 時會用到該資料。
-    
-2. 使用下列命令來啟動 Hive CLI：
-
-        beeline
-
-2. 從 `beeline>` 命令提示字元，使用下列命令來連接至 HiveServer2 服務。以稍早傳回的前端節點主機名稱取代 __HOSTNAME__：
-
-        !connect jdbc:hive2://HOSTNAME:10001/;transportMode=http admin
-        
-    這會指示 Beeline 連接到所指定 __HOSTNAME__ 上的連接埠 __10001__，而 __HTTP__ 是傳輸方法。__系統管理員__帳戶用來驗證連線。
-
-    出現提示時，輸入 HDInsight 叢集的系統管理員 (admin) 帳戶密碼。建議連線後，提示將變更如下：
-    
-        jdbc:hive2://HOSTNAME:10001/>
+    命令完成之後，您將會看見 `jdbc:hive2://localhost:10001/>` 提示字元。
 
 3. Beeline 命令通常以 `!` 字元開頭，例如 `!help` 顯示說明。不過，往往會省略 `!`。例如，`help` 也可行。
 
@@ -176,13 +164,15 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。使用下列步�
     
     > [AZURE.NOTE] 與外部資料表不同，捨棄內部資料表也會同時刪除基礎資料。
     
-3. 若要儲存檔案，請使用 __Ctrl__+___\_X__，然後輸入 __Y__，最後按 __Enter__。
+3. 若要儲存檔案，請使用 __Ctrl__+__X\_，然後輸入 __Y__，最後按 __Enter\_\_。
 
-4. 使用下列命令，以使用 Beeline 來執行檔案。以稍早取得的前端節點名稱取代 __HOSTNAME__，以及以系統管理員帳戶的密碼取代 __PASSWORD__：
+4. 使用下列命令，以使用 Beeline 來執行檔案。以稍早取得的前端節點名稱取代 __HOSTNAME__，並以系統管理員帳戶的密碼取代 __PASSWORD__：
 
-        beeline -u 'jdbc:hive2://HOSTNAME:10001/;transportMode=http' -n admin -p PASSWORD -f query.hql
+        beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i query.hql
 
-5. 若要確認已建立 **errorLogs** 資料表，啟動 Beeline 並連接到 HiveServer2，然後使用下列陳述式從 **errorLogs** 傳回所有資料列：
+    > [AZURE.NOTE] `-i` 參數會啟動 Beeline、執行 query.hql 檔案中的陳述式，並停留在 Beeline 的 `jdbc:hive2://localhost:10001/>` 提示字元中。您也可以使用 `-f` 參數執行檔案，它會在檔案處理完畢後讓您返回 Bash。
+
+5. 若要確認 **errorLogs** 資料表已建立，請使用下列陳述式傳回 **errorLogs** 的所有資料列：
 
         SELECT * from errorLogs;
 
@@ -245,4 +235,4 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。使用下列步�
 
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->
