@@ -219,4 +219,4 @@
 - [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)
 - [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

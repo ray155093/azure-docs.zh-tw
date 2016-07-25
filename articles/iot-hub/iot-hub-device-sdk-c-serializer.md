@@ -668,4 +668,21 @@ serializer_deinit();
 
 在此也將結束本系列有關如何使用**Azure IoT 裝置 SDK (適用於 C)**開發應用程式的三部曲。這些資訊應該不僅足以讓您入門，還能讓您徹底了解 API 的運作方式。如需其他資訊，還有一些 SDK 中的範例未涵蓋在本文中。除此之外，[SDK 文件](https://github.com/Azure/azure-iot-sdks)也是取得其他資訊的絕佳資源。
 
-<!---HONumber=AcomDC_0629_2016-->
+
+若要深入了解如何開發 IoT 中樞，請參閱 [IoT 中樞 SDK][lnk-sdks]。
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
+[lnk-sdks]: iot-hub-sdks-summary.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

@@ -207,8 +207,16 @@ Azure IoT 中樞裝置管理用戶端程式庫會啟用查詢。只要同步處�
 
 若要深入了解 Azure IoT 中樞裝置管理功能，您可以瀏覽下列教學課程︰
 
-- [如何使用裝置對應項][lnk-twin-tutorial]
-- [如何使用裝置作業更新裝置韌體][lnk-jobs-tutorial]
+- [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
+- [啟用 IoT 閘道的受管理裝置][lnk-dm-gateway]
+- [Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 
 
@@ -221,4 +229,13 @@ Azure IoT 中樞裝置管理用戶端程式庫會啟用查詢。只要同步處�
 [lnk-query-samples]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/doc/get_started/dm_queries/query-samples.md
 [lnk-query-expression-guide]: https://github.com/Azure/azure-iot-sdks/blob/dmpreview/node/service/devdoc/query_expression_requirements.md
 
-<!---HONumber=AcomDC_0622_2016-->
+[lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
+[lnk-dm-gateway]: iot-hub-gateway-device-management.md
+[lnk-library-c]: iot-hub-device-management-library.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

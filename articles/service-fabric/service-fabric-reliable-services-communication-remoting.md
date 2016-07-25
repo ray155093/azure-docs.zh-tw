@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 使用 Reliable Services 的遠端服務
@@ -42,7 +42,7 @@ class MyService : StatelessService, IMyService
 {
     public MyService(StatelessServiceContext context)
         : base (context)
-{
+    {
     }
 
     public Task HelloWorld()
@@ -82,4 +82,4 @@ string message = await helloWorldClient.GetHelloWorld();
 
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="06/29/2016"
-	ms.author="mohisri"/>
+	ms.author="rachelap"/>
 
 # App Service API Apps - 變更的項目
 
@@ -122,4 +122,4 @@ App Service 驗證服務支援相同的功能，這些功能可用於先前的 A
 - [MSDN 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)
 - [堆疊溢位](http://stackoverflow.com/questions/tagged/azure-api-apps)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

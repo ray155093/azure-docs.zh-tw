@@ -3,8 +3,8 @@
 	description="了解如何使用 Azure 佇列儲存體服務來建立和刪除佇列，以及插入、取得和刪除訊息。範例是以 PHP 撰寫的。"
 	documentationCenter="php"
 	services="storage"
-	authors="allclark"
-	manager="douge"
+	authors="rmcmurray"
+	manager="wpickett"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="PHP"
 	ms.topic="article"
 	ms.date="06/01/2016"
-	ms.author="allclark;yaqiyang"/>
+	ms.author="robmcm"/>
 
 # 如何使用 PHP 的佇列儲存體
 
@@ -384,4 +384,4 @@
 [require\_once]: http://www.php.net/manual/en/function.require-once.php
 [Azure Portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,6 +1,6 @@
 <properties
    pageTitle="用來部署 Linux HPC 叢集的 PowerShell 指令碼 | Microsoft Azure"
-   description="執行 PowerShell 指令碼，以在 Azure 基礎結構服務中部署 Linux HPC Pack 叢集"
+   description="執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Linux HPC Pack 叢集"
    services="virtual-machines-linux"
    documentationCenter=""
    authors="dlepow"
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="big-compute"
-   ms.date="04/05/2016"
+   ms.date="07/07/2016"
    ms.author="danlep"/>
 
 # 使用 HPC Pack IaaS 部署指令碼建立 Linux 高效能運算 (HPC) 叢集
 
-在用戶端電腦上執行 HPC Pack IaaS 部署 PowerShell 指令碼，以在 Azure 基礎結構服務 (IaaS) 中為 Linux 工作負載部署完整的 HPC 叢集。如果您想要在 Azure 中為 Windows 工作負載部署 HPC Pack 叢集，請參閱[使用 HPC Pack IaaS 部署指令碼建立 Windows HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。
+執行 HPC Pack IaaS 部署 PowerShell 指令碼，在 Azure 虛擬機器中為 Linux 工作負載部署完整的 HPC 叢集。叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及執行其中一個 HPC Pack 所支援的 Linux 散發套件的計算節點所組成。如果您想要在 Azure 中為 Windows 工作負載部署 HPC Pack 叢集，請參閱[使用 HPC Pack IaaS 部署指令碼建立 Windows HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。如需範例，請參閱[使用 Linux 計算節點建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/)。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
@@ -26,9 +26,9 @@
 
 ## 範例組態檔
 
-### 範例 1
+下列組態檔會建立新的網域控制站和網域樹系並部署 HPC Pack 叢集，其中包含 1 個具有本機資料庫的前端節點和 10 個 Linux 計算節點。所有雲端服務都直接建立在「東亞」位置中。Linux 計算節點會建立在 2 個雲端服務和 2 個儲存體帳戶中 (即 _MyLnxCNService01_ 和 _mylnxstorage01_ 中的 _MyLnxCN-0001_ 至 _MyLnxCN-0005_、_MyLnxCNService02_ 和 _mylnxstorage02_ 中的 _MyLnxCN-0006_ 至 _MyLnxCN-0010_)。計算節點會從 OpenLogic CentOS 7.0 版 Linux 映像建立。
 
-下列組態檔會建立新的網域樹系並部署 HPC Pack 叢集，其中包含 1 個具有本機資料庫的前端節點和 20 個 Linux 計算節點。所有雲端服務都直接建立在「東亞」位置中。Linux 計算節點會建立在 4 個雲端服務和 4 個儲存體帳戶中 (即 _MyLnxCNService01_ 和 _mylnxstorage01_ 中的 _MyLnxCN-0001_ 至 _MyLnxCN-0005_、_MyLnxCNService02_ 和 _mylnxstorage02_ 中的 _MyLnxCN-0006_ 至 _MyLnxCN-0010_、_MyLnxCNService03_ 和 _mylnxstorage03_ 中的 _MyLnxCN-0011_ 至 _MyLnxCN-0015_，以及 _MyLnxCNService04_ 和 _mylnxstorage04_ 中的 _MyLnxCN-0016_ 至 _MyLnxCN-0020_)。運算節點會從 OpenLogic CentOS 7.0 版 Linux 映像建立。
+請將訂用帳戶名稱和服務及服務名稱取代為您自己的值。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -65,12 +65,8 @@
     <MaxNodeCountPerService>5</MaxNodeCountPerService>
     <StorageAccountNamePattern>mylnxstorage%01%</StorageAccountNamePattern>
     <VMSize>Medium</VMSize>
-    <NodeCount>20</NodeCount>
+    <NodeCount>10</NodeCount>
     <ImageName>5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-70-20150325 </ImageName>
-    <SSHKeyPairForRoot>
-      <PfxFile>d:\mytestcert1.pfx</PfxFile>
-      <Password>MyPsw!!2</Password>
-    </SSHKeyPairForRoot>
   </LinuxComputeNodes>
 </IaaSClusterConfig>
 ```
@@ -84,8 +80,10 @@
     
 ## 後續步驟
 
-* 如需使用指令碼來建立叢集並執行 Linux HPC 工作負載的教學課程，請參閱[在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md) 或[在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)。
+* 有關支援的 Linux 散發套件、移動資料，以及使用 Linux 計算節點將工作提交至 HPC Pack 叢集，如需詳細資訊請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
+* 如需有關使用指令碼來建立叢集和執行 Linux HPC 工作負載的教學課程，請參閱︰
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md)
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 STAR-CCM+](virtual-machines-linux-classic-hpcpack-cluster-starccm.md)
 
-* 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。如需範例，請參閱 [Create an HPC cluster with Linux compute nodes (使用 Linux 計算節點建立 HPC 叢集)](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/)。
-
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

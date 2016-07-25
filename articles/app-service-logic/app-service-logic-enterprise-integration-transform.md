@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="企業整合套件概觀 | Microsoft Azure App Service" 
+	pageTitle="企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="利用企業整合套件的功能，使用 Microsoft Azure App service 啟用商務程序和整合案例" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/06/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 具備 XML 轉換的企業整合
@@ -34,20 +34,16 @@
 
 ### 必要條件 
 在預覽中，您必須：
+
 -  [建立 Azure Functions 容器](https://ms.portal.azure.com/#create/Microsoft.FunctionApp "建立 Azure Functions 容器")
-
-
->[AZURE.TIP] 請記下 Azure Functions 容器的名稱，您需要在下一個步驟中用到它。
-
-
 -  [將函式加入至 Azure Functions 容器](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-logic-app-transform-function%2Fazuredeploy.json "此範本會建立以 Webhook 為基礎的 C# Azure 函式並具備轉換功能，以便在邏輯應用程式整合案例中使用")
+-  建立整合帳戶，並加入對應
 
-
->[AZURE.TIP] 請記下函式的名稱，您需要在下一個步驟中用到它。
+>[AZURE.TIP] 請記下 Azure Functions 容器與 Azure 函式的名稱，您需要在下一個步驟中用到它們。
 
 既然您已完成必要元件，就可以建立邏輯應用程式：
 
-1. 建立邏輯應用程式並[將它連結到包含轉換的整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解如何將整合帳戶連結到邏輯應用程式")。
+1. 建立邏輯應用程式並[將它連結到包含對應的整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解如何將整合帳戶連結到邏輯應用程式")。
 2. 將 [要求 - 收到 HTTP 要求時] 觸發程序新增到您的邏輯應用程式 ![](./media/app-service-logic-enterprise-integration-transforms/transform-1.png)
 3. 先選取 [新增動作] 來新增 [轉換 XML] 動作 ![](./media/app-service-logic-enterprise-integration-transforms/transform-2.png)
 4. 在搜尋方塊中輸入「轉換」文字，篩選所有動作以取得您想要使用的動作 ![](./media/app-service-logic-enterprise-integration-transforms/transform-3.png)
@@ -75,6 +71,7 @@
 
 ## 詳細資訊
 - [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
+- [深入了解對應](./app-service-logic-enterprise-integration-maps.md "了解企業整合對應")
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

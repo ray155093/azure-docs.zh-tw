@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/31/2016"
+   ms.date="07/12/2016"
    ms.author="maroche"/>
 
 # Azure 資料目錄的常見問題集
@@ -140,4 +140,4 @@ Azure 資料目錄是可以同時使用雲端和內部部署資料來源的雲�
 
 請前往 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)。那裡提出的問題會在這裡找到答案。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

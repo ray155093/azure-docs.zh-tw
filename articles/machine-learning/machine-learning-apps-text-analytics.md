@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/05/2016"
+	ms.date="07/07/2016"
 	ms.author="onewth"/>
 
 
 # 機器學習 API：情感文字分析、關鍵片語擷取、語言偵測及主題偵測
 
->[AZURE.NOTE] 本指南適用於第 1 版的 API。關於第 2 版，[**請參閱本文件**](../cognitive-services-text-analytics-quick-start/)。現在建議使用此 API 的第 2 版。
+>[AZURE.NOTE] 本指南適用於第 1 版的 API。關於第 2 版，[**請參閱本文件**](../cognitive-services/cognitive-services-text-analytics-quick-start.md)。現在建議使用此 API 的第 2 版。
 
 ## 概觀
 
@@ -385,4 +385,4 @@ API 會以下列格式傳回 JSON 格式的輸出：
 | TopicId | 已獲指派記錄的主題識別碼。 |
 | Distance | 記錄屬於主題的信賴度。Distance 越接近零，表示信賴度越高。 |
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

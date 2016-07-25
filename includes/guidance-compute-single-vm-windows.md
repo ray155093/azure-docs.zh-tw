@@ -34,7 +34,7 @@
 
 ### VM 建議
 
-- 我們建議使用 DS 和 GS 系列，除非您有高效能運算等特殊工作負載。如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。然後根據 CPU、記憶體和磁碟 IOPS 測量您的實際工作負載效能，並視需要調整大小。此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。  
+- 我們建議使用 DS 和 GS 系列，除非您有高效能運算等特殊工作負載。如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。然後根據 CPU、記憶體和磁碟 IOPS 測量您的實際工作負載效能，並視需要調整大小。此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。
 
 - 當您佈建 VM 和其他資源時，您必須指定一個位置。一般而言，選擇最接近您的內部使用者或客戶的位置。不過，並非所有 VM 大小在所有位置都可用。如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。若要列出指定位置可用的 VM 大小，請執行下列 Azure CLI 命令：
 
@@ -46,7 +46,7 @@
 
 ### 磁碟和儲存體建議
 
-- 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。成本是依佈建的磁碟大小而定。IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
+- 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。成本是依佈建的磁碟大小而定。IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。
 
 - 新增一或多個資料磁碟。當您建立新的 VHD 時，它仍未格式化。登入 VM 來格式化磁碟。
 
@@ -70,7 +70,7 @@
 
 ## 延展性考量
 
-- 您可以藉由[變更 VM 大小][vm-resize]來相應放大或相應縮小 VM。 
+- 您可以藉由[變更 VM 大小][vm-resize]來相應放大或相應縮小 VM。
 
 - 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。如需詳細資訊，請參閱[在 Azure 上執行多個 Windows VM][multi-vm]。
 
@@ -114,7 +114,7 @@
 
 ## 安全性考量
 
-- 使用 [Azure 資訊安全中心][security-center]，可集中檢閱 Azure 資源的安全性狀態。資訊安全中心會監視潛在的安全性問題，例如系統更新、反惡意程式碼，並提供全面性的部署安全性健康狀態。 
+- 使用 [Azure 資訊安全中心][security-center]，可集中檢閱 Azure 資源的安全性狀態。資訊安全中心會監視潛在的安全性問題，例如系統更新、反惡意程式碼，並提供全面性的部署安全性健康狀態。
 
     - 資訊安全中心是依每個 Azure 訂用帳戶設定。按照[使用安全中心]所述來啟用安全資料收集。
     - 一旦啟用資料收集，安全性中心就會自動掃描任何該訂用帳戶建立的 VM。
@@ -123,7 +123,7 @@
 
 - **反惡意程式碼。** 如果啟用，安全性中心會檢查是已安裝反惡意程式碼軟體。您也可以使用安全性中心來從 Azure 入口網站內安裝反惡意程式碼軟體。
 
-- 使用[角色型存取控制][rbac] \ (RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
@@ -260,19 +260,19 @@ CALL azure network nsg rule create --nsg-name %NSG_NAME% --direction Inbound ^
 <!-- links -->
 
 [arm-templates]: ../articles/virtual-machines/virtual-machines-windows-cli-deploy-templates.md
-[audit-logs]: https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/
+[audit-logs]: https://azure.microsoft.com/zh-TW/blog/analyze-azure-audit-logs-in-powerbi-more/
 [azure-cli]: ../articles/virtual-machines-command-line-tools.md
 [azure-storage]: ../articles/storage/storage-introduction.md
 [blob-snapshot]: ../articles/storage/storage-blob-snapshots.md
 [blob-storage]: ../articles/storage/storage-introduction.md
-[boot-diagnostics]: https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/
+[boot-diagnostics]: https://azure.microsoft.com/zh-TW/blog/boot-diagnostics-for-virtual-machines-v2/
 [cname-record]: https://en.wikipedia.org/wiki/CNAME_record
 [data-disk]: ../articles/virtual-machines/virtual-machines-windows-about-disks-vhds.md
 [disk-encryption]: ../articles/azure-security-disk-encryption.md
 [enable-monitoring]: ../articles/azure-portal/insights-how-to-use-diagnostics.md
 [fqdn]: ../articles/virtual-machines/virtual-machines-windows-portal-create-fqdn.md
 [group-policy]: https://technet.microsoft.com/zh-TW/library/dn595129.aspx
-[log-collector]: https://azure.microsoft.com/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
+[log-collector]: https://azure.microsoft.com/zh-TW/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
 [manage-vm-availability]: ../articles/virtual-machines/virtual-machines-windows-manage-availability.md
 [multi-vm]: ../articles/guidance/guidance-compute-multi-vm.md
 [naming conventions]: ../articles/guidance/guidance-naming-conventions.md
@@ -284,21 +284,21 @@ CALL azure network nsg rule create --nsg-name %NSG_NAME% --direction Inbound ^
 [rbac-roles]: ../articles/active-directory/role-based-access-built-in-roles.md
 [rbac-devtest]: ../articles/active-directory/role-based-access-built-in-roles.md#devtest-lab-user
 [rbac-network]: ../articles/active-directory/role-based-access-built-in-roles.md#network-contributor
-[reboot-logs]: https://azure.microsoft.com/blog/viewing-vm-reboot-logs/
+[reboot-logs]: https://azure.microsoft.com/zh-TW/blog/viewing-vm-reboot-logs/
 [resize-os-disk]: ../articles/virtual-machines/virtual-machines-windows-expand-os-disk.md
 [Resize-VHD]: https://technet.microsoft.com/zh-TW/library/hh848535.aspx
-[Resize virtual machines]: https://azure.microsoft.com/blog/resize-virtual-machines/
+[Resize virtual machines]: https://azure.microsoft.com/zh-TW/blog/resize-virtual-machines/
 [resource-lock]: ../articles/resource-group-lock-resources.md
 [resource-manager-overview]: ../articles/resource-group-overview.md
-[security-center]: https://azure.microsoft.com/services/security-center/
+[security-center]: https://azure.microsoft.com/zh-TW/services/security-center/
 [select-vm-image]: ../articles/virtual-machines/virtual-machines-windows-cli-ps-findimage.md
-[services-by-region]: https://azure.microsoft.com/regions/#services
+[services-by-region]: https://azure.microsoft.com/zh-TW/regions/#services
 [static-ip]: ../articles/virtual-network/virtual-networks-reserved-public-ip.md
 [storage-price]: https://azure.microsoft.com/pricing/details/storage/
 [使用安全中心]: ../articles/security-center/security-center-get-started.md#use-security-center
 [virtual-machine-sizes]: ../articles/virtual-machines/virtual-machines-windows-sizes.md
 [vm-disk-limits]: ../articles/azure-subscription-service-limits.md#virtual-machine-disk-limits
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
-[vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
+[vm-sla]: https://azure.microsoft.com/zh-TW/support/legal/sla/virtual-machines/v1_0/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

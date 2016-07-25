@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="04/27/2016"
+	ms.date="07/12/2016"
 	ms.author="sdanie" />
 
 # Azure Redis 快取的 ASP.NET 工作階段狀態提供者
@@ -53,7 +53,7 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
     		operationTimeoutInMilliseconds = "5000" [number]
 		/>
         -->
-		<add name="MySessionStateStore"type="Microsoft.Web.Redis.RedisSessionStateProvider"host="127.0.0.1"accessKey="" ssl="false"/>
+		<add name="MySessionStateStore" type="Microsoft.Web.Redis.RedisSessionStateProvider" host="127.0.0.1" accessKey="" ssl="false"/>
         </providers>
     </sessionState>
 
@@ -106,4 +106,4 @@ NuGet 封裝會下載並加入需要的組件參考，並將下列區段加入�
 
 查看 [Azure Redis 快取的 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

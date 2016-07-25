@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/22/2016"
+   ms.date="07/12/2016"
    ms.author="larryfr"/>
 
 #使用 Ambari Web UI 管理 HDInsight 叢集
@@ -224,4 +224,4 @@ Ambari 檢視可讓開發人員使用 [Ambari 檢視架構](https://cwiki.apache
 * Hive 檢視：Hive 檢視可讓您直接從網頁瀏覽器執行 Hive 查詢。您可以儲存查詢、檢視結果、將結果儲存至叢集存放區，或將結果下載到您本機系統。如需有關使用 Hive 檢視的詳細資訊，請參閱[在 HDInsight 上使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)。
 * Tez 檢視：Tez 檢視可讓您透過檢視 Tez 工作執行方式及工作使用哪些資源的相關資訊，更深入了解工作以及將工作最佳化。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

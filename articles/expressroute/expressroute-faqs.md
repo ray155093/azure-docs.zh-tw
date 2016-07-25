@@ -251,4 +251,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 可以透過 ExpressRoute 連線存取 Dynamics AX 嗎？
 不，不支援此做法。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

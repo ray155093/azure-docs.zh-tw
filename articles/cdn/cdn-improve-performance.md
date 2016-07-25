@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/06/2016"
 	ms.author="casoper"/>
 
 # 藉由壓縮檔案來改善效能
@@ -114,15 +114,16 @@
 |----------------|-----------|------------|-----|
 |已壓縮|已壓縮|已壓縮|支援格式之間的 CDN 轉碼|
 |已壓縮|未壓縮|已壓縮|CDN 執行壓縮|
-|已壓縮|不快取|已壓縮|如果來源傳回未壓縮，則 CDN 會執行壓縮|
+|已壓縮|不快取|已壓縮|如果來源傳回未壓縮，則 CDN 會執行壓縮。**來自 Verizon 的 Azure CDN** 會傳遞第一次要求中的未壓縮檔案，然後再壓縮及快取檔案以供後續要求之需。具有 `Cache-Control: no-cache` 標頭的檔案永遠不會經過壓縮。 
 |未壓縮|已壓縮|未壓縮|CDN 執行解壓縮|
 |未壓縮|未壓縮|未壓縮| |	
-|未壓縮|不快取|未壓縮| |	
+|未壓縮|不快取|未壓縮| |
 
-## 注意事項
-1. 對於啟用媒體服務 CDN 的串流端點，壓縮功能依預設會針對下列內容類型啟用：application/vnd.ms-sstr+xml, application/dash+xml,application/vnd.apple.mpegurl, application/f4m+xml。您不能使用 Azure 入口網站啟用/停用上述類型的壓縮。  
+## 媒體服務 CDN 壓縮
+
+對於啟用媒體服務 CDN 的串流端點，壓縮功能依預設會針對下列內容類型啟用：application/vnd.ms-sstr+xml, application/dash+xml,application/vnd.apple.mpegurl, application/f4m+xml。您不能使用 Azure 入口網站啟用/停用上述類型的壓縮。
 
 ## 另請參閱
-- [CDN 檔案壓縮疑難排解](cdn-troubleshoot-compression.md)    
+- [CDN 檔案壓縮疑難排解](cdn-troubleshoot-compression.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

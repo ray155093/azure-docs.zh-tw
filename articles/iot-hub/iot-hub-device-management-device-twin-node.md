@@ -54,7 +54,7 @@ Azure IoT 中樞裝置管理引進裝置對應項 (實體裝置的服務呈現)�
 
 若要啟動範例，您需要執行 ```jobClient_devicePropertyReadWrite.js```。這會從裝置對應項和實體裝置讀取裝置屬性。它也會變更實體裝置上的裝置屬性。遵循下列步驟來啟動範例：
 
-1.  從您複製 **azure-iot-sdks** 儲存機制的根資料夾，瀏覽至 **azure-iot-sdks/node/service/samples** 目錄。  
+1.  從您複製 **azure-iot-sdks** 儲存機制的根資料夾，瀏覽至 **azure-iot-sdks/node/service/samples** 目錄。
 
 2.  開啟 **jobClient\_devicePropertyReadWrite.js**，以您的 IoT 中樞連接字串取代預留位置。
 
@@ -128,10 +128,17 @@ set_device_batterylevel(0, level);
 若要深入了解 Azure IoT 中樞裝置管理功能，您可以瀏覽下列教學課程︰
 
 - [如何使用查詢找出裝置對應項][lnk-tutorial-queries]
-
-- [如何使用裝置作業更新裝置韌體][lnk-dm-jobs]
-
+- [如何使用裝置作業更新裝置韌體][lnk-tutorial-jobs]
+- [啟用 IoT 閘道的受管理裝置][lnk-dm-gateway]
+- [Azure IoT 中樞裝置管理用戶端程式庫簡介][lnk-library-c]
 - 裝置管理用戶端程式庫提供使用 [Intel Edison 裝置][lnk-edison]的端對端範例。
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 <!-- images and links -->
 [img-twin]: media/iot-hub-device-management-device-twin/image1.png
@@ -145,4 +152,14 @@ set_device_batterylevel(0, level);
 [lnk-dm-jobs]: iot-hub-device-management-device-jobs.md
 [lnk-edison]: https://github.com/Azure/azure-iot-sdks/tree/dmpreview/c/iotdm_client/samples/iotdm_edison_sample
 
-<!---HONumber=AcomDC_0622_2016-->
+[lnk-tutorial-queries]: iot-hub-device-management-device-query.md
+[lnk-tutorial-jobs]: iot-hub-device-management-device-jobs.md
+[lnk-dm-gateway]: iot-hub-gateway-device-management.md
+[lnk-library-c]: iot-hub-device-management-library.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

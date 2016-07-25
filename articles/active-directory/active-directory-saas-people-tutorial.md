@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/11/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -58,7 +58,7 @@ People 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 People，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
  
 	![Active Directory][1]
 
@@ -287,4 +287,4 @@ People 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-people-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-people-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

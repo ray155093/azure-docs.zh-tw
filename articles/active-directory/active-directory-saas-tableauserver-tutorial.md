@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/12/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -25,7 +25,7 @@ Tableau Server 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Tableau Server 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Tableau Server (單一登入)
-- 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
+- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -60,7 +60,7 @@ Tableau Server 與 Azure AD 整合提供下列優點：
 
 **如要從資源庫新增 Tableau Server，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
  
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Tableau Server 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -189,7 +189,7 @@ Tableau Server 應用程式需要特定格式的 SAML 判斷提示。以下螢�
 
 	b.選取 [使用 SAML 進行單一登入] 的核取方塊。
 
-	c.尋找從 Azure 管理入口網站下載的同盟中繼資料檔案，然後將其上傳至 **SAML Idp 中繼資料檔案**。
+	c.尋找從 Azure 傳統入口網站下載的同盟中繼資料檔案，然後將其上傳至「SAML Idp 中繼資料檔案」。
 
 	d.Tableau Server 傳回 URL—Tableau Server 使用者將存取的 URL，例如 http://tableau_server。不建議您使用 http://localhost。不支援使用包含結尾斜線的 URL (例如，http://tableau_server/)。複製 **Tableau Server 傳回 URL** 並將其貼至 Azure AD [單一登入 URL] 文字方塊，如步驟 3 所示
 
@@ -341,4 +341,4 @@ Tableau Server 應用程式需要特定格式的 SAML 判斷提示。以下螢�
 [204]: ./media/active-directory-saas-tableauserver-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-tableauserver-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

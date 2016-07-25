@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="06/07/2016" 
+	ms.date="07/11/2016" 
 	ms.author="awills"/>
 
 # 自訂事件和度量的 Application Insights API 
@@ -47,8 +47,8 @@ API 是跨所有平台統一的，除了一些小變化形式。
 * 將 Application Insights SDK 加入至專案：
  * [ASP.NET 專案][greenbrown]
  * [Windows 專案][windows]
- * [Java 專案][java] 
- * [JavaScript 網頁][client]   
+ * [Java 專案][java]
+ * [JavaScript 網頁][client]
 
 * 在裝置或 Web 伺服器程式碼中，加入：
 
@@ -505,7 +505,35 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 > [AZURE.WARNING] 不要重複使用相同的遙測項目執行個體 (此範例中的 `event`) 來呼叫 Track*() 多次。這可能會讓遙測隨著不正確的組態傳送。
 
-#### <a name="timed"></a>計時事件
+## 作業內容
+
+當 Web 應用程式收到 HTTP 要求時，Application Insights 要求追蹤模組會指派要求的識別碼，並將相同的值設定為目前的作業識別碼。傳送要求的回應時，會清除作業識別碼。在作業期間進行的任何追蹤呼叫會被指派相同的作業識別碼 (前提是它們使用預設 TelemetryContext)。這可讓您在入口網站中檢查相關事件時，讓相關事件與特定要求相互關聯。
+
+![相關項目](./media/app-insights-api-custom-events-metrics/21.png)
+
+如果您要監視與 HTTP 要求不相關的事件，或如果您未使用要求追蹤模組 (比方說，您正在監視後端處理序) - 則您可以使用以下模式設定自己的作業內容︰
+
+    // Establish an operation context and associated telemetry item:
+    using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
+    {
+        // Telemetry sent in here will use the same operation ID.
+        ...
+        telemetry.TrackEvent(...); // or other Track* calls
+        ...
+        // Set properties of containing telemetry item - for example:
+        operation.Telemetry.ResponseCode = "200";
+        
+        // Optional: explicitly send telemetry item:
+        telemetry.StopOperation(operation);
+
+    } // When operation is disposed, telemetry item is sent.
+
+除了設定作業內容以外，`StartOperation` 會建立採用您指定類型的遙測項目，並在處置作業或在您明確地呼叫 `StopOperation` 時傳送它。如果您使用 `RequestTelemetry` 為遙測類型，則其 [持續時間] 會設定為開始與停止之間的時間間隔。
+
+作業內容不可為巢狀。如果已經有作業內容，則其識別碼會與所有內含項目 (包括使用 StartOperation 建立的項目) 相關聯。
+
+
+## <a name="timed"></a>計時事件
 
 有時候您想要繪製執行某些動作耗費多少時間的圖表。例如，您可能想要知道使用者在遊戲中思考選項時花費多少時間。這是使用測量參數的實用範例。
 
@@ -576,7 +604,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 您可以撰寫程式碼，在從 SDK 傳送遙測資料前加以處理。處理包括從標準遙測模組 (如 HTTP 要求收集和相依性收集) 的資料。
 
-* 實作 `ITelemetryInitializer` 以[加入屬性](app-insights-api-filtering-sampling.md#add-properties)至遙測；例如，加入版本號碼或從其他屬性計算得出的值。 
+* 實作 `ITelemetryInitializer` 以[加入屬性](app-insights-api-filtering-sampling.md#add-properties)至遙測；例如，加入版本號碼或從其他屬性計算得出的值。
 * [篩選](app-insights-api-filtering-sampling.md#filtering)可以先修改或捨棄遙測，再藉由實作 `ITelemetryProcesor` 從 SDK 傳送遙測。您可控制要傳送或捨棄的項目，但是您必須考量這對您的度量的影響。視您捨棄項目的方式而定，您可能會喪失在相關項目之間瀏覽的能力。
 * [取樣](app-insights-api-filtering-sampling.md#sampling)是減少從應用程式傳送至入口網站的資料量的封裝方案。但不會影響顯示的計量，而且藉由在相關項目 (如例外狀況、要求和頁面檢視) 之間瀏覽，並不會影響您診斷問題的能力。
 
@@ -617,7 +645,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 *C#*
     
     var telemetry = new TelemetryClient();
-    telemetry.Context.InstrumentationKey = "---my key---";
+    telemetry.InstrumentationKey = "---my key---";
     // ...
 
 
@@ -672,11 +700,11 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 * **位置** 識別裝置的地理位置。
 * **作業** 在 Web 應用程式中，目前的 HTTP 要求。在其他應用程式類型中，您可以設定以將事件群組在一起。
  * **識別碼**：產生的值，與不同事件相互關聯，如此當您在 [診斷搜尋] 中檢查任何事件時，您可以發現「相關項目」
- * **名稱**：識別碼，通常是 HTTP 要求的 URL。 
+ * **名稱**：識別碼，通常是 HTTP 要求的 URL。
  * **SyntheticSource**：如果不為 null 或空白，這個字串表示要求的來源已被識別為傀儡程式或 Web 測試。根據預設，會從計量瀏覽器的計算中排除。
 * **屬性** 與所有遙測資料一起傳送的屬性。可以在個別 Track* 呼叫中覆寫。
 * **工作階段** 識別使用者的工作階段。識別碼會設為產生的值，當使用者一段時間沒有作用時會變更。
-* **使用者** 使用者資訊。 
+* **使用者** 使用者資訊。
 
 ## 限制
 
@@ -750,4 +778,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

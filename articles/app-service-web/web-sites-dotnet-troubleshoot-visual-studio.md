@@ -14,7 +14,7 @@
 	ms.devlang="dotnet" 
 	ms.topic="article" 
 	ms.date="04/28/2016" 
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式
 
@@ -269,7 +269,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 * **Web 伺服器記錄**<br/>
 Web 伺服器會為每個通往 Web 應用程式的 HTTP 要求建立記錄項目。
 * **詳細的錯誤訊息記錄**<br/>
-Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。 
+Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。
 * **失敗要求追蹤記錄**<br/>
 Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML 檔案。Web 伺服器會一併提供 XSL 檔案，在瀏覽器中格式化 XML。
   
@@ -283,7 +283,7 @@ Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML
 
 * 將追蹤陳述式加入至您在[開始使用 Azure 和 ASP.NET][GetStarted] 中建立的 Web 專案。
 * 當您在本機上執行專案時檢視記錄。
-* 依原樣檢視 Azure 中執行的應用程式所產生的記錄。 
+* 依原樣檢視 Azure 中執行的應用程式所產生的記錄。
 
 如需如何在 WebJobs 中建立應用程式記錄的詳細資訊，請參閱[如何運用 WebJobs SDK 來使用 Azure 佇列儲存體 - 如何寫入記錄](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs)。下列有關在 Azure 中檢視記錄和控制記錄儲存方式的指示也同樣適用於 WebJobs 所建立的應用程式記錄。
 
@@ -353,7 +353,7 @@ Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML
 
 3. 按 CTRL+F5 執行應用程式。
 
-4. 在瀏覽器視窗的網址列中，將 *trace.axd* 新增至 URL，然後按 Enter (此 URL 會類似於 http://localhost:53370/trace.axd))。
+4. 在瀏覽器視窗的網址列中，將 *trace.axd* 新增至 URL，然後按 Enter (此 URL 會類似於 http://localhost:53370/trace.axd)。
 
 5. 在 [應用程式追蹤] 頁面上，按一下第一行 (不是 BrowserLink 行) 上的 [檢視詳細資料]。
 
@@ -525,7 +525,7 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。為了在 [
 
 ![建立儲存體帳戶](./media/web-sites-dotnet-troubleshoot-visual-studio/createstor.png)
 
-3. 在 [建立儲存體帳戶] 對話方塊中，輸入儲存體帳戶的名稱。 
+3. 在 [建立儲存體帳戶] 對話方塊中，輸入儲存體帳戶的名稱。
 
 	這個名稱必須是唯一的 (其他 Azure 儲存體帳戶不可以有相同的名稱)。如果您輸入的名稱已在使用中，您可以變更此名稱。
 
@@ -652,7 +652,7 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 在了解 Visual Studio 如何讓您輕鬆地檢視 Azure Web 應用程式所建立的記錄之後，下列各節提供相關主題的更多資源連結：
 
 * Azure Web 應用程式疑難排解
-* 在 Visual Studio 中偵錯 
+* 在 Visual Studio 中偵錯
 * 在 Azure 中遠端偵錯
 * 在 ASP.NET 應用程式中追蹤
 * 分析 Web 伺服器記錄
@@ -732,4 +732,4 @@ Microsoft TechNet 網站內的[使用失敗要求追蹤](http://www.iis.net/lear
 [GetStartedWJ]: websites-dotnet-webjobs-sdk.md
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

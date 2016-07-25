@@ -3,9 +3,9 @@
    description="使用 Service Fabric 混亂測試和容錯移轉測試案例來引發錯誤並確認服務的可靠性。"
    services="service-fabric"
    documentationCenter=".net"
-   authors="anmolah"
+   authors="motanv"
    manager="timlt"
-   editor="vturecek"/>
+   editor="toddabel"/>
 
 <tags
    ms.service="service-fabric"
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
-   ms.author="anmola"/>
+   ms.date="07/08/2016"
+   ms.author="motanv"/>
 
 # Testability 案例
 雲端基礎結構之類的大型分散式系統本身並不可靠。Azure Service Fabric 讓開發人員能夠撰寫可在不可靠的基礎結構上執行的服務。為了撰寫高品質的服務，開發人員必須能夠產生這類不可靠的基礎結構，才能測試其服務的穩定性。
@@ -247,4 +247,4 @@ Connect-ServiceFabricCluster $connection
 Invoke-ServiceFabricFailoverTestScenario -TimeToRunMinute $timeToRun -MaxServiceStabilizationTimeoutSec $maxStabilizationTimeSecs -WaitTimeBetweenFaultsSec $waitTimeBetweenFaultsSec -ServiceName $serviceName -PartitionKindSingleton
 ```
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

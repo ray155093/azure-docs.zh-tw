@@ -2,17 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 Projectplace 整合 | Microsoft Azure" 
     description="了解如何使用 Projectplace 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="07/07/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Projectplace 整合
   
@@ -37,7 +37,7 @@
 
 ###若要啟用 Projectplace 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-projectplace-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-projectplace-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-projectplace-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -68,7 +68,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Projectplace] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Projectplace] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-projectplace-tutorial/IC790220.png "設定單一登入")
 
@@ -76,7 +76,7 @@
 
     ![設定單一登入](./media/active-directory-saas-projectplace-tutorial/IC790221.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Projectplace 登入 URL] 文字方塊中，輸入您的 Projectplace 租用戶 URL (例如："**http://company.projectplace.com*")，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [Projectplace 登入 URL] 文字方塊中，輸入您的 Projectplace 租用戶 URL (例如："*http://company.projectplace.com*")，然後按一下 *[下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-projectplace-tutorial/IC790222.png "設定應用程式 URL")
 
@@ -86,9 +86,9 @@
 
 5.  將中繼資料檔傳送給 Projectplace 支援小組。
 
-    >[AZURE.NOTE]單一登入設定必須由 Projectplace 支援小組執行。設定完成後，您將會收到通知。
+    >[AZURE.NOTE] 單一登入設定必須由 Projectplace 支援小組執行。設定完成後，您將會收到通知。
 
-6.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-projectplace-tutorial/IC790227.png "設定單一登入")
 ##設定使用者佈建
@@ -114,7 +114,7 @@
     1.  在 [新成員] 文字方塊中，於相關文字方塊中輸入您想要佈建之有效 AAD 帳戶的電子郵件地址。
     2.  按一下 [傳送]
 
-	    >[AZURE.NOTE]系統會傳送一封電子郵件給 Azure Active Directory 帳戶的持有者，郵件中包含用來在啟用帳戶前確認帳戶的連結。
+	    >[AZURE.NOTE] 系統會傳送一封電子郵件給 Azure Active Directory 帳戶的持有者，郵件中包含用來在啟用帳戶前確認帳戶的連結。
     
 >[AZURE.NOTE]您可以使用任何其他的 Projectplace 使用者帳戶建立工具或 Projectplace 提供的 API，佈建 AAD 使用者帳戶。
 
@@ -124,7 +124,7 @@
 
 ###若要指派使用者給 Projectplace，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Projectplace] 應用程式整合頁面中，按一下 [指派使用者]。
 
@@ -136,4 +136,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0713_2016-->

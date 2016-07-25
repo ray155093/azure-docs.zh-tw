@@ -13,15 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/21/2016" 
+	ms.date="07/11/2016" 
 	ms.author="stefsch"/>
 
 # 安全地從 App Service 環境連接到後端資源 #
 
 ## 概觀 ##
-由於 App Service 環境一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路，所以從 App Service 環境送至其他後端資源的輸出連線可以獨佔方式透過虛擬網路傳送。請注意，目前只支援使用 RFC1918 位址空間的虛擬網路 (也就是私人位址)。
-
-**注意：**在「v2」ARM 管理的虛擬網路中，無法建立 App Service 環境。
+因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[虛擬網路][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
 
 例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。此端點可能已納入 ACL，只允許從相同虛擬網路上的其他資源進行存取。
 
@@ -36,7 +34,9 @@
 ## 輸出連線和 DNS 需求 ##
 為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。[ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)文章的＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
 
-也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。如果自訂的 DNS 伺服器存在於 VPN 閘道的另一端，而且 DNS 伺服器無法連線或無法使用，則 App Service 環境建立程序也會失敗。
+App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於入口網站中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
+
+也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。同樣地，若自訂 DNS 伺服器存在於 VPN 閘道的另一端，且 DNS 伺服器無法連線或使用，則 App Service 環境建立程序也會失敗。
 
 ## 連接至 SQL Server
 常見的 SQL Server 組態會有在連接埠 1433 上接聽的端點：
@@ -46,7 +46,7 @@
 有兩種方法可限制送至此端點的流量：
 
 
-- [網路存取控制清單][NetworkAccessControlLists] \ (網路 ACL)
+- [網路存取控制清單][NetworkAccessControlLists] (網路 ACL)
 
 - [網路安全性群組][NetworkSecurityGroups]
 
@@ -86,7 +86,7 @@
 
 
 ## 開始使用
-您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
 
@@ -115,4 +115,4 @@
 [NetworkAccessControlListExample]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/NetworkAcl01.png
 [DefaultNetworkSecurityRules]: ./media/app-service-app-service-environment-securely-connecting-to-backend-resources/DefaultNetworkSecurityRules01.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

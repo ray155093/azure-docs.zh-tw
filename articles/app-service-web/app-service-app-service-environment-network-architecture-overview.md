@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/17/2016" 
+	ms.date="07/13/2016" 
 	ms.author="stefsch"/>
 
 # App Service 環境的網路架構概觀
@@ -23,9 +23,11 @@ App Service 環境一律建立於[虛擬網路][virtualnetwork]的子網路內�
 
 ## 一般網路流程 ##
  
-App Service 環境一律會有公用虛擬 IP 位址 (VIP)。所有輸入流量都會到達該公用 VIP (包括應用程式的 HTTP 和 HTTPS 流量，以及 FTP、遠端偵錯功能和 Azure 管理作業的其他流量)。如需公用 VIP 上可用特定連接埠 (必要和選擇性) 的完整清單，請參閱有關[控制輸入流量][controllinginboundtraffic]至 App Service 環境的文章。
+當 App Service 環境 (ASE) 針對應用程式使用公開虛擬 IP 位址 (VIP) 時，所有傳入的流量都會到達該公用 VIP。這包括應用程式的 HTTP 和 HTTPS 流量，以及 FTP 的其他流量、遠端偵錯功能和 Azure 管理作業。如需公用 VIP 上可用特定連接埠 (必要和選擇性) 的完整清單，請參閱有關[控制輸入流量][controllinginboundtraffic]至 App Service 環境的文章。
 
-下圖顯示各種輸入和輸出網路流程的概觀：
+App Service 環境也支援執行僅繫結至虛擬網路內部位址，也稱為 ILB (內部負載平衡器) 位址的應用程式。在已啟用 ILB 的 ASE 上，應用程式的 HTTP 和 HTTPS 流量以及遠端偵錯呼叫會送達 ILB 位址。針對大部分的 ILB-ASE 組態，FTP/FTPS 流量也會送達 ILB 位址。不過，Azure 管理作業仍會流向公用 VIP (屬於已啟用 ILB 的 ASE) 上的連接埠 454/455。
+
+下圖顯示 App Service 環境的各種傳入和傳出網路流量的概觀，其中應用程式是繫結至公用虛擬 IP 位址：
 
 ![一般網路流程][GeneralNetworkFlows]
 
@@ -46,7 +48,7 @@ App Service 環境進行輸出呼叫時，IP 位址一律會與輸出呼叫相�
  
 ![輸出 IP 位址][OutboundIPAddress]
 
-在 App Service 環境中建立應用程式，然後對應用程式位址執行 *nslookup*，也可以決定此位址。產生的 IP 位址是公用 VIP，也是 App Service 環境的輸出 NAT 位址。
+透過在 App Service 環境中建立應用程式，然後在應用程式的位址上執行 *nslookup*，也可以針對僅具有公用 VIP 的 ASE 來決定此位址。產生的 IP 位址是公用 VIP，也是 App Service 環境的輸出 NAT 位址。
 
 如果所呼叫的端點是在虛擬網路拓撲**內部**，則呼叫端應用程式的輸出位址會是執行應用程式之個別計算資源的內部 IP 位址。不過，虛擬網路內部 IP 位址與應用程式不會有持續性的對應。應用程式可以在不同的計算資源之間移動，而且可以基於調整作業而變更 App Service 環境中的可用計算資源集區。
 
@@ -73,6 +75,8 @@ App Service 環境進行輸出呼叫時，IP 位址一律會與輸出呼叫相�
 即使不同 App Service 環境之間的呼叫會視為「網際網路」呼叫，當兩個 App Service 環境同時位於相同的 Azure 區域時，網路流量會維持在 Azure 區域網路上，而不會實際在公用網際網路流動。因此，您可以使用第二個 App Service 環境的子網路上的網路安全性群組，僅允許來自第一個 App Service (其傳入 IP 位址為 192.23.1.2) 的傳入呼叫，因而確保 App Service 環境之間的通訊安全。
 
 ## 其他連結和資訊 ##
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+
 如需 App Service 環境所使用輸入連接埠以及使用網路安全性群組來控制輸入流量的詳細資料，請參閱[這裡][controllinginboundtraffic]。
 
 如需利用使用者定義路徑來授與到 App Service 環境之輸出網際網路存取的詳細資料，請參閱本[文章][ExpressRoute]。
@@ -89,4 +93,4 @@ App Service 環境進行輸出呼叫時，IP 位址一律會與輸出呼叫相�
 [OutboundNetworkAddresses]: ./media/app-service-app-service-environment-network-architecture-overview/OutboundNetworkAddresses-1.png
 [CallsBetweenAppServiceEnvironments]: ./media/app-service-app-service-environment-network-architecture-overview/CallsBetweenEnvironments-1.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

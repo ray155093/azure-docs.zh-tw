@@ -20,7 +20,7 @@
 
 ## 簡介
 
-Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
+Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
 
 本教學課程是以 [IoT 中樞入門]中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
 
@@ -108,14 +108,14 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 為了確保不會在重複資料刪除時間範圍外重新提交任何訊息，程式碼會將 **EventProcessorHost** 檢查點機制與「服務匯流排」佇列重複資料刪除時間範圍同步。做法是在每次重複資料刪除時間範圍過去時 (在本教學課程中為一小時)，至少強制執行一次檢查點。
 
-> [AZURE.NOTE] 本教學課程使用單一分割服務匯流排佇列來處理所有擷取自 IoT 中樞的互動式訊息。如需有關如何使用「服務匯流排」佇列來滿足您解決方案之延展性需求的詳細資訊，請參閱[服務匯流排文件]。
+> [AZURE.NOTE] 本教學課程使用單一分割服務匯流排佇列來處理所有擷取自 IoT 中樞的互動式訊息。如需有關如何使用「服務匯流排」佇列來滿足您解決方案之延展性需求的詳細資訊，請參閱 [Azure 服務匯流排]文件。
 
 ### 佈建 Azure 儲存體帳戶和服務匯流排佇列
 為使用 [EventProcessorHost] 類別，您必須擁有 Azure 儲存體帳戶才能讓 **EventProcessorHost** 記錄檢查點資訊。您可以使用現有的儲存體帳戶，或是依照[關於 Azure 儲存體]中的指示建立新的帳戶。請記下儲存體帳戶連接字串。
 
 > [AZURE.NOTE] 當您複製並貼上儲存體帳戶連接字串時，請確定當中未包含任何空格。
 
-您也需要服務匯流排佇列以可靠地處理互動式訊息。您可以透過程式設計方式，建立一個重複資料刪除時間範圍為一小時的佇列，如[如何使用服務匯流排佇列][Service Bus queue]所述。或者，您也可以依照下列步驟，使用 [Azure 傳統入口網站]：
+您也需要服務匯流排佇列以可靠地處理互動式訊息。您可以透過程式設計方式，建立一個重複資料刪除時間範圍為一小時的佇列，如[如何使用服務匯流排佇列][Service Bus queue]所述。或者，您也可以依照下列步驟使用 [Azure 傳統入口網站][lnk-classic-portal]：
 
 1. 按一下左下角的 [新增]。接著，按一下 [應用程式服務] > [服務匯流排] > [佇列] > [自訂建立]。輸入名稱 **d2ctutorial**，選取區域，然後使用現有命名空間或建立一個新命名空間。在下一個頁面上，選取 [啟用重複偵測]，然後將 [重複的偵測記錄期間] 設定為一小時。接著，按一下右下角的勾選記號來儲存您的佇列組態。
 
@@ -396,24 +396,15 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 在本教學課程中，您學到如何使用 [EventProcessorHost] 類別，可靠地處理資料點與互動式裝置到雲端訊息。
 
-[從裝置上傳檔案]教學課程是根據本教學課程，使用類似的訊息處理邏輯來建置。其中也會說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
+[如何使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]示範如何從後端將訊息傳送到您的裝置。
 
-有關 IoT 中心的其他資訊：
+若要查看使用 IoT 中樞的完整端對端解決方案範例，請參閱 [Azure IoT 套件][lnk-suite]。
 
-* [IoT 中心概觀]
-* [IoT 中心開發人員指南]
-* [IoT 中心指引]
-* [支援的裝置平台和語言][Supported devices]
-* [Azure IoT 開發人員中心]
+若要深入了解如何使用 IoT 中樞開發解決方案，請參閱 [IoT 中樞開發人員指南]。
 
 <!-- Images. -->
 [50]: ./media/iot-hub-csharp-csharp-process-d2c/run1.png
 [10]: ./media/iot-hub-csharp-csharp-process-d2c/create-identity-csharp1.png
-[12]: ./media/iot-hub-csharp-csharp-process-d2c/create-identity-csharp3.png
-
-[20]: ./media/iot-hub-csharp-csharp-process-d2c/create-storage1.png
-[21]: ./media/iot-hub-csharp-csharp-process-d2c/create-storage2.png
-[22]: ./media/iot-hub-csharp-csharp-process-d2c/create-storage3.png
 
 [30]: ./media/iot-hub-csharp-csharp-process-d2c/createqueue2.png
 [31]: ./media/iot-hub-csharp-csharp-process-d2c/createqueue3.png
@@ -426,23 +417,15 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [HDInsight (Hadoop)]: https://azure.microsoft.com/documentation/services/hdinsight/
 [Service Bus queue]: ../service-bus/service-bus-dotnet-get-started-with-queues.md
 [服務匯流排佇列]: ../service-bus/service-bus-dotnet-get-started-with-queues.md
-[EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
-
-
 
 [Azure IoT 中樞開發人員指南 - 裝置到雲端]: iot-hub-devguide.md#d2c
 
 [Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [Azure 服務匯流排]: https://azure.microsoft.com/documentation/services/service-bus/
 
-[使用 IoT 中樞傳送雲端到裝置訊息]: iot-hub-csharp-csharp-c2d.md
-[從裝置上傳檔案]: iot-hub-csharp-csharp-file-upload.md
-[IoT 中心概觀]: iot-hub-what-is-iot-hub.md
-[IoT 中心指引]: iot-hub-guidance.md
-[IoT 中心開發人員指南]: iot-hub-devguide.md
+[IoT 中樞開發人員指南]: iot-hub-devguide.md
 [IoT 中樞入門]: iot-hub-csharp-csharp-getstarted.md
 [開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
-[Supported devices]: iot-hub-tested-configurations.md
 [Azure IoT 開發人員中心]: https://azure.microsoft.com/develop/iot
 [lnk-service-fabric]: https://azure.microsoft.com/documentation/services/service-fabric/
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
@@ -451,18 +434,17 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 <!-- Links -->
 [關於 Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
-[Azure IoT - Service SDK NuGet package]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 [開始使用事件中樞]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
-[IoT Hub Developer Guide - Identity Registry]: iot-hub-devguide.md#identityregistry
 [Azure 儲存體延展性指導方針]: ../storage/storage-scalability-targets.md
 [Azure Block Blobs]: https://msdn.microsoft.com/library/azure/ee691964.aspx
 [事件中樞]: ../event-hubs/event-hubs-overview.md
-[Scaled out event processing]: https://code.msdn.microsoft.com/windowsazure/Service-Bus-Event-Hub-45f43fc3
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
 [事件中樞程式設計指南]: ../event-hubs/event-hubs-programming-guide.md
 [Transient Fault Handling (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-[Azure Portal]: https://manage.windowsazure.com/
 [使用服務匯流排建置多層式應用程式]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
-[服務匯流排文件]: https://azure.microsoft.com/documentation/services/service-bus/
 
-<!---HONumber=AcomDC_0629_2016-->
+[lnk-classic-portal]: https://manage.windowsazure.com
+[lnk-c2d]: iot-hub-csharp-csharp-process-d2c.md
+[lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
+
+<!---HONumber=AcomDC_0713_2016-->

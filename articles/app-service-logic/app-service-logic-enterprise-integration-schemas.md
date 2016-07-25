@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="結構描述與企業整合套件的概觀 | Microsoft Azure App Service" 
+	pageTitle="結構描述與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用結構描述搭配企業整合套件與 Logic Apps" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 了解結構描述與企業整合套件  
@@ -53,8 +53,8 @@
 
 ## 後續步驟
 
-- [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
+- [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
       
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

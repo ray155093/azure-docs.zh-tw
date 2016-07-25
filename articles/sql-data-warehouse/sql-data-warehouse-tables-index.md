@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/29/2016"
+   ms.date="07/12/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 在 SQL 資料倉儲中編製資料表的索引
@@ -244,6 +244,16 @@ ALTER INDEX ALL ON [dbo].[DimProduct] REBUILD
 ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5
 ```
 
+```sql
+-- Rebuild a single partition with archival compression
+ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE_ARCHIVE)
+```
+
+```sql
+-- Rebuild a single partition with columnstore compression
+ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE)
+```
+
 在 SQL 資料倉儲中重建索引是一項離線作業。如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][]中的＜ALTER INDEX REBUILD＞一節和語法主題 [ALTER INDEX][]。
  
 ### 步驟 3︰確認已改善叢集資料行存放區區段品質
@@ -296,7 +306,7 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 ## 後續步驟
 
-若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]、[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
@@ -316,6 +326,7 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
 [暫存]: ./sql-data-warehouse-tables-temporary.md
 [Concurrency]: ./sql-data-warehouse-develop-concurrency.md
+[CTAS]: ./sql-data-warehouse-develop-ctas.md
 [SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
@@ -328,4 +339,4 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -79,7 +79,7 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。�
 
 如需 DS 系列、DSv2 系列和 GS 系列 VM 的 IOPS 和輸送量 (頻寬) 上限的最新資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
-若要了解有關「進階儲存體」磁碟及其 IOPS 與輸送量限制，請參閱本文＜[使用進階儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)＞一節中的表格。
+若要了解進階儲存體磁碟及其 IOPS 與輸送量限制，請參閱本文的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)一節中的表格。
 
 ## 進階儲存體延展性和效能目標
 
@@ -351,7 +351,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 - 進階儲存體快照
 - 輸出資料傳輸
 
-**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#scalability-and-performance-targets-whzh-TWing-premium-storage)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶來儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
+**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#premium-storage-scalability-and-performance-targets)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶來儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
 
 **進階儲存體快照**：進階儲存體上的快照會因為使用的額外容量而產生費用。如需有關快照的資訊，請參閱[建立 Blob 的快照](http://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
@@ -562,4 +562,4 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 [Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

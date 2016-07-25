@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="07/12/2016"
 	ms.author="larryfr"/>
 
 
@@ -132,7 +132,7 @@ Sudoku 範例的使用指示似乎有點不實用：「在命令列中包含謎�
 
 - 格子之間以空格分隔
 
-現在，必須以特定的方法建立數獨謎題，那就是您不能在某個資料行或資料列中使用重複的數字。幸好 HDInsight 叢集上已經有一個正確建立的範例。它位於 **/usr/hdp/2.2.4.9-1/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta** 且包含下列內容：
+建立數獨謎題必須採用特定的方法，那就是您不能在某個資料行或資料列中使用重複的數字。HDInsight 叢集上已經有一個正確建立的範例。它位於 **/usr/hdp/2.2.4.9-1/hadoop/src/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta** 且包含下列內容：
 
     8 5 ? 3 9 ? ? ? ?
     ? ? 2 ? ? ? ? ? ?
@@ -236,4 +236,4 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

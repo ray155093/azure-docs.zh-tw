@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/10/2016" 
+	ms.date="07/07/2016" 
 	ms.author="arramac"/>
 
-# 如何在 DocumentDB 中使用 .NET SDK 分割資料
+# 如何在 DocumentDB 中使用用戶端支援分割資料
 
-Azure DocumentDB 支援的集合可以相應增加至[較大的儲存體和輸送量](documentdb-partition-data.md)。不過，還有使用案例很有幫助，對於分割行為有細微的控制。為了減少分割工作所需的樣板程式碼數量，我們已在 .NET、Node.js 和 Java SDK 中加入功能，讓您可以輕鬆地建立跨多個集合相應放大的應用程式。
+Azure DocumentDB 支援[自動分割集合](documentdb-partition-data.md)。不過，還有使用案例很有幫助，對於分割行為有細微的控制。為了減少分割工作所需的樣板程式碼數量，我們已在 .NET、Node.js 和 Java SDK 中加入功能，讓您可以輕鬆地建立跨多個集合相應放大的應用程式。
 
 在本文中，我們將探討在 .NET SDK 中的類別和介面，以及如何使用它們來開發資料分割應用程式。Java、Node.js 和 Python 等其他 SDK 可支援支援類似的用戶端資料分割方法和介面。
 
-## 使用 DocumentDB SDK 資料分割
+## 使用 DocumentDB SDK 進行用戶端資料分割
 
 在深入探討資料分割之前，讓我們複習一下一些與資料分割相關的基本 DocumentDB 概念。每個 Azure DocumentDB 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。集合可以是單一分割區或本身進行分割，並具有下列屬性：
 
@@ -140,7 +140,7 @@ foreach (UserProfile activeUser in query)
 
 是，DocumentDB 支援[伺服器端分割](documentdb-partition-data.md)。DocumentDB 也針對更進階的使用案例，透過用戶端分割解析程式支援用戶端分割。
 
-** 何時應該使用伺服器端與用戶端分割？** 對於大多數的使用案例，我們建議使用伺服器端分割，因為它會處理分割資料和路由傳送要求的系統管理工作。不過，如果您需要範圍分割或特殊的使用案例來取得不同的分割索引鍵值之間的效能隔離，則用戶端分割可能是最好的方法。
+** 何時應該使用伺服器端與用戶端分割？** 對於大多數的使用案例而言，我們建議使用伺服器端分割，因為它會處理分割資料和路由傳送要求的系統管理工作。不過，如果您需要範圍分割或特殊的使用案例來取得不同的分割索引鍵值之間的效能隔離，則用戶端分割可能是最好的方法。
 
 **如何將集合新增或移除至我的資料分割配置？**
 
@@ -164,4 +164,4 @@ foreach (UserProfile activeUser in query)
 * [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
  
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

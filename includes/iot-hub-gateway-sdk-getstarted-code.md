@@ -198,13 +198,11 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 - [IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
 - GitHub 上的 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
 
-閱讀 [Azure IoT 中樞裝置管理概觀][lnk-device-management]，即可深入了解 IoT 中樞的裝置管理。
-
 <!-- Links -->
 [lnk-main-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/samples/hello_world/src/main.c
 [lnk-helloworld-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/modules/hello_world/src/hello_world.c
 [lnk-logger-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/modules/logger/src/logger.c
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 [lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md
-[lnk-device-management]: ../articles/iot-hub/iot-hub-device-management-overview.md
 
+<!---HONumber=AcomDC_0713_2016-->

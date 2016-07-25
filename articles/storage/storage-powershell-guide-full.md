@@ -46,10 +46,10 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
     	#begin
     	# Update with the name of your subscription.
-    	$SubscriptionName="YourSubscriptionName"
+    	$SubscriptionName = "YourSubscriptionName"
 
     	# Give a name to your new storage account. It must be lowercase!
-    	$StorageAccountName="yourstorageaccountname"
+    	$StorageAccountName = "yourstorageaccountname"
 
     	# Choose "West US" as an example.
     	$Location = "West US"
@@ -138,14 +138,14 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
 Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。如需安裝和設定 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure PowerShell 模組。
 
-您可以在 Azure PowerShell 主控台、標準 Windows PowerShell 主控台或 Windows PowerShell 整合式指令碼環境 (ISE) 中執行這些 Cmdlet。例如，若要開啟 **Azure PowerShell 主控台**，請移至 [開始] 功能表、輸入 Microsoft Azure PowerShell，以滑鼠右鍵按一下，然後按一下 [以系統管理員身分執行]。若要開啟 [Windows PowerShell ISE]，請移至 [開始] 功能表、輸入「系統管理工具」，然後按一下加以執行。在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
+您可以在標準 Windows PowerShell 主控台，或是 Windows PowerShell 整合式指令碼環境 (ISE) 中執行 Cmdlet。若要開啟 [Windows PowerShell ISE]，請移至 [開始] 功能表、輸入「系統管理工具」，然後按一下加以執行。在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
 
 ## 如何在 Azure 中管理儲存體帳戶
 
 ### 如何設定預設 Azure 訂用帳戶
 若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 教學課程。本指南使用 Azure Active Directory 驗證。
 
-1.	在 Azure PowerShell 主控台或 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
+1.	在 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
 
     `Add-AzureAccount`
 
@@ -177,7 +177,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
 1.	執行 Get-azurelocation Cmdlet 來尋找所有可用的資料中心位置：
 
-    `Get-AzureLocation | format-Table -Property Name, AvailableServices, StorageAccountTypes`
+    `Get-AzureLocation | Format-Table -Property Name, AvailableServices, StorageAccountTypes`
 
 2.	接著，執行 New-AzureStorageAccount Cmdlet 來建立新的儲存體帳戶。下列範例會在「美國西部」資料中心建立新的儲存體帳戶。
 
@@ -233,7 +233,7 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。�
 
 如需如何設定儲存體連接字串的詳細資訊，請參閱[設定連接字串](storage-configure-connection-string.md)。
 
-您現已設定您的電腦並學會如何使用 Azure PowerShell 管理訂用帳戶和儲存體帳戶。請移至下一節，以了解如何管理 Azure Blob 和 Blob 快照集。
+您現已設定您的電腦並學會如何使用 Azure PowerShell 管理訂用帳戶和儲存體帳戶，請移至下一節，以了解如何管理 Azure Blob 和 Blob 快照集。
 
 ### 如何抓取和重新產生 Azure 儲存體金鑰
 
@@ -388,7 +388,7 @@ Azure 可讓您建立 Blob 的快照集。快照集是在某個點時間取得�
     #Copy the snapshot to another container.
     Start-AzureStorageBlobCopy –Context $Ctx -ICloudBlob $snap -DestBlob $DestBlobName -DestContainer $DestContainerName
 
-您現已學會如何使用 Azure PowerShell 來管理 Azure Blob 和 Blob 快照集。請移至下一節，以了解如何管理資料表、佇列和檔案。
+現在，您已學會如何使用 Azure PowerShell 管理 Azure Blob 和 Blob 快照集，請移至下一節，以了解如何管理資料表、佇列和檔案。
 
 ## 如何管理 Azure 資料表和資料表實體
 Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存和查詢龐大的結構化、非關聯式資料集。服務的主要元件是資料表、實體和屬性。資料表是一組實體。實體是一組屬性。每個實體最多可有 252 個屬性，也就是所有的名稱/值組。本節假設您已熟悉 Azure 資料表儲存體服務概念。如需詳細資訊，請參閱[了解表格服務資料模型](http://msdn.microsoft.com/library/azure/dd179338.aspx)和[以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)。
@@ -481,7 +481,7 @@ Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存�
     #Define the storage account and context.
     $StorageAccountName = "yourstorageaccount"
     $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
-    $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary;
+    $Ctx = New-AzureStorageContext –StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
     $TableName = "Employees"
 
     #Get a reference to a table.
@@ -505,7 +505,7 @@ Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存�
     $entities = $table.CloudTable.ExecuteQuery($query)
 
     #Display entity properties with the table format.
-    $entities  | Format-Table PartitionKey, RowKey, @{ Label = "Name"; Expression={$_.Properties["Name"].StringValue}}, @{ Label = "ID"; Expression={$_.Properties[“ID”].Int32Value}} -AutoSize
+    $entities  | Format-Table PartitionKey, RowKey, @{ Label = "Name"; Expression={$_.Properties["Name"].StringValue}}, @{ Label = "ID"; Expression={$_.Properties["ID"].Int32Value}} -AutoSize
 
 #### 如何刪除資料表實體
 您可以使用實體的資料分割和資料列索引鍵來刪除實體。下列範例假設您已執行本指南的「如何新增實體」一節中提供的指令碼。此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。如果資料表已存在，則會呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) 方法，根據資料分割及資料列索引鍵的值擷取實體。然後，將實體傳遞至 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) 方法加以刪除。
@@ -523,11 +523,12 @@ Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存�
     if ($table -ne $null) {
        #Together the PartitionKey and RowKey uniquely identify every  
        #entity within a table.
-       $tableResult = $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Retrieve(“Partition2”, "Row1"))
-       $entity = $tableResult.Result;
+       $tableResult = $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Retrieve("Partition2", "Row1"))
+       $entity = $tableResult.Result
     if ($entity -ne $null)
     {
-       #Delete the entity.$table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Delete($entity))
+       #Delete the entity.
+       $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Delete($entity))
     }
     }
 
@@ -631,7 +632,7 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 - **臨機操作 SAS**：當您建立臨機操作的 SAS 時，SAS 的開始時間、到期時間和權限全都標示在 SAS URI 上。您可以在容器、Blob、資料表或佇列上建立此類型的 SAS，而且無法撤銷它。
 - **具有預存存取原則的 SAS**：預存存取原則是在資源容器、Blob 容器、資料表或佇列中定義，且可用來管理一或多個共用存取簽章的條件約束。當您將 SAS 與預存存取原則建立關聯時，SAS 會繼承為該預存存取原則所定義的限制 (開始時間、過期時間和權限)。這種類型的 SAS 是可撤銷的。
 
-如需詳細資訊，請參閱[共用存取簽章，第 1 部分：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+如需詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
 在下一節中，您將了解如何為 Azure 資料表建立共用存取簽章權杖和預存的存取原則。Azure PowerShell 也會為容器、Blob 和佇列提供類似的 Cmdlet。若要執行本節中的指令碼，請下載 [Azure PowerShell 0.8.14 版](http://go.microsoft.com/?linkid=9811175&clcid=0x409)或更高版本。
 
@@ -751,4 +752,4 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 [How to use Azure Storage for U.S. government and Azure China]: #gov
 [Next Steps]: #next
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

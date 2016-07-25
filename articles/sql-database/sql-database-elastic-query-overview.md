@@ -117,7 +117,7 @@
 
 *    [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx) mymasterkey
 *    [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx) mycredential
-*    使用彈性資料庫用戶端程式庫，建立代表您的資料層的[分區對應](sql-database-elastic-scale-shard-map-management.md)。   
+*    使用彈性資料庫用戶端程式庫，建立代表您的資料層的[分區對應](sql-database-elastic-scale-shard-map-management.md)。
 *    [CREATE/DROP EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx) mydatasource (類型為 **SHARD\_MAP\_MANAGER**)
 *    [CREATE/DROP EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) mytable
 
@@ -129,6 +129,8 @@
 ## 工具的連線能力
 您可以使用一般 SQL Server 連接字串，將您的應用程式、BI 或資料整合工具連接到具有外部資料表的資料庫。請確定 SQL Server 可支援做為您的工具的資料來源。連線之後，請參考彈性查詢資料庫和該資料庫中的外部資料表，就如同您會使用您的工具連接的任何其他 SQL Server 資料庫一樣。
 
+> [AZURE.IMPORTANT] 目前不支援使用 Azure Active Directory 與彈性查詢進行驗證。
+
 ## 成本
 
 彈性查詢算在 Azure SQL Database 資料庫的成本內。請注意，支援遠端資料庫與彈性查詢端點位於不同資料中心的拓撲，但從遠端資料庫輸出的資料以一般 [Azure 費率](https://azure.microsoft.com/pricing/details/data-transfers/)收費。
@@ -137,7 +139,7 @@
 * 在標準效能層上執行第一個彈性查詢最多可能需要幾分鐘的時間。需要這些時間才能載入彈性查詢功能；較高效能層級改善了載入效能。
 * 尚未支援來自 SSMS 或 SSDT 的外部資料來源或外部資料表的指令碼。
 * SQL DB 匯入/匯出還不支援外部資料來源和外部資料表。如果您需要使用匯入/匯出，請在匯出前卸除這些物件，然後在匯入後予以重新建立。
-* 彈性資料庫查詢目前僅支援外部資料表的唯讀存取。不過，您可以在定義外部資料表的資料庫上使用完整的 T-SQL 功能。這很有用，例如，使用 SELECT <column_list> INTO <local_table> 保存暫存結果，或在彈性查詢資料庫上定義預存程序來參考外部資料表。
+* 彈性資料庫查詢目前僅支援外部資料表的唯讀存取。不過，您可以在定義外部資料表的資料庫上使用完整的 T-SQL 功能。這很有用，例如，使用 SELECT <column\_list> INTO <local\_table> 保存暫存結果，或在彈性查詢資料庫上定義預存程序來參考外部資料表。
 * 除了 nvarchar (max) 以外，外部資料表定義不支援 LOB 類型。若要解決此問題，您可以在將 LOB 類型轉型成 nvarchar (max) 的遠端資料庫上建立檢視表、透過此檢視表而非基底資料表定義外部資料表，然後在查詢中將它轉換回原始的 LOB 類型。
 * 目前不支援外部資料表的資料行統計資料。支援資料表統計資料，但必須以手動方式建立。
 
@@ -169,4 +171,4 @@
 
 <!--anchors-->
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/23/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # Azure App Service 中的 API Apps 驗證與授權
 
@@ -28,7 +28,7 @@ Azure App Service 提供內建的驗證與授權服務，可實作 [OAuth 2.0](#
 
 * 它會前置處理傳入的 API 要求，這表示它能使用 App Service 所支援的任何語言或架構。
 * 它會提供您幾個選項讓您決定要在自有程式碼中進行多少驗證工作。
-* 它適用於使用者與服務帳戶驗證。 
+* 它適用於使用者與服務帳戶驗證。
 * 它支援五個識別提供者：Azure Active Directory、Facebook、Google、Twitter 和 Microsoft 帳戶。
 * 它在 API Apps、Web Apps 和 Mobile Apps 的作用都相同。
 
@@ -94,12 +94,12 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 如需 Azure App Service 中的驗證與授權的詳細資訊，請參閱下列資源：
 
 * [擴充 App Service 驗證/授權](/blog/announcing-app-service-authentication-authorization/)
-* [如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md) (頁面頂端有其他驗證提供者的連結)。 
+* [如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md) (頁面頂端有其他驗證提供者的連結)。
 
 如需 OAuth 2.0、OpenID Connect 和 JSON Web 權杖 (JWT) 的詳細資訊，請參閱下列資源。
 
-* [開始使用 OAuth 2.0](http://shop.oreilly.com/product/0636920021810.do "開始使用 OAuth 2.0") 
-* [OAuth2、OpenID Connect 和 JSON Web 權杖 (JWT) 簡介 - PluralSight 課程](http://www.pluralsight.com/courses/oauth2-json-web-tokens-openid-connect-introduction) 
+* [開始使用 OAuth 2.0](http://shop.oreilly.com/product/0636920021810.do "開始使用 OAuth 2.0")
+* [OAuth2、OpenID Connect 和 JSON Web 權杖 (JWT) 簡介 - PluralSight 課程](http://www.pluralsight.com/courses/oauth2-json-web-tokens-openid-connect-introduction)
 * [在 ASP.NET 中建置和保護多個用戶端的 RESTful API - PluralSight 課程](http://www.pluralsight.com/courses/building-securing-restful-api-aspdotnet)
 
 如需 Azure Active Directory 的詳細資訊，請參閱下列資源。
@@ -112,4 +112,4 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 本文說明了可用於 API 應用程式之 App Service 的驗證和授權功能。在下一個快速入門系列教學課程中，會說明如何實作 [App Service API Apps 中的使用者驗證](app-service-api-dotnet-user-principal-auth.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

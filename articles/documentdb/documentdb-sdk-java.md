@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="java" 
 	ms.topic="article" 
-	ms.date="06/14/2016" 
+	ms.date="06/30/2016" 
 	ms.author="andrl"/>
 
 # DocumentDB SDK
@@ -36,19 +36,23 @@
 
 ## 版本資訊
 
+### <a name="1.8.1"/>[1\.8.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.1)
+  - 修正 PartitionKeyDefinitionMap 中將單一資料分割集合加入快取，而非提出額外擷取資料分割索引鍵要求的錯誤。
+  - 修正在提供不正確的資料分割索引鍵時不重試的錯誤。
+
 ### <a name="1.8.0"/>[1\.8.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.0)
   - 新增對多重區域資料庫帳戶的支援。
-  - 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。 
-  - 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。請針對更高的儲存體和輸送量使用分割集合。 
+  - 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
+  - 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。請針對更高的儲存體和輸送量使用分割集合。
 
 ### <a name="1.7.1"/>[1\.7.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.1)
-- 新加入節流的重試原則支援。  
+- 新加入節流的重試原則支援。
 
 ### <a name="1.7.0"/>[1\.7.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.0)
-- 新加入文件的存留時間 (TTL) 支援。 
+- 新加入文件的存留時間 (TTL) 支援。
 
 ### <a name="1.6.0"/>[1\.6.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.6.0)
-- 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。 
+- 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
 
 ### <a name="1.5.1"/>[1\.5.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.1)
 - 修正 HashPartitionResolver 中的錯誤以產生與其他 SDK 一致的 little-endian 雜湊值。
@@ -88,6 +92,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
+| [1\.8.1](#1.8.1) | 2016 年 6 月 30 日 |--- 
 | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
 | [1\.7.1](#1.7.1) | 2016 年 4 月 30 日 |--- 
 | [1\.7.0](#1.7.0) | 2016 年 4 月 27 日 |--- 
@@ -114,4 +119,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

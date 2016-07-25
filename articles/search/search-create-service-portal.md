@@ -11,7 +11,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="06/06/2016"
+	ms.date="07/13/2016"
 	ms.author="ashmaka"/>
 
 # 使用 Azure 入口網站建立 Azure 搜尋服務
@@ -47,7 +47,7 @@
 作為 Azure 服務，Azure 搜尋服務可以裝載在世界各地的資料中心。請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/)。
 
 ## 選擇定價層
-[Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。每一層都有自己的[容量和限制](search-limits-quotas-capacity.md)。
+[Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。每一層都有自己的[容量和限制](search-limits-quotas-capacity.md)。請參閱 [選擇定價層或 SKU](search-sku-tier.md) 以取得指引。
 
 在此情況下，我們已為服務選擇標準層。
 
@@ -74,4 +74,6 @@
 ## 下一步
 佈建 Azure 搜尋服務之後，您就可以[定義 Azure 搜尋服務索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。
 
-<!---HONumber=AcomDC_0608_2016-->
+如需快速教學課程，請參閱[開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md)。
+
+<!---HONumber=AcomDC_0713_2016-->

@@ -14,12 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="04/12/2016"
+   ms.date="07/12/2016"
    ms.author="mandia"/>
 
 # 教學課程：為 PowerApps 和邏輯流程建立自訂 AAD 保護的 Web API
 
 本教學課程示範如何建立 ASP.Net Web API、在 Azure Webapps 上裝載、啟用 AAD 驗證 (透過簡單驗證)，然後將 Web API 註冊於 PowerApps 和邏輯流程中。
+
+>[AZURE.IMPORTANT] 本主題已移至 powerapps.microsoft.com，位於：[教學課程：針對 PowerApps 和流程建立自訂 AAD 保護的 Web API](https://powerapps.microsoft.com/tutorials/customapi-web-api-tutorial/)。請移至 PowerApps 以取得最新版本。此 Azure 連結會被封存。
 
 ## 若要開始，您需要：
 
@@ -42,7 +44,7 @@
 
  	**<your-root-url>/swagger**
 
-6. 當您滿意您的 Web API 之後，就可發佈至 Azure。若要在 Visual Studio 中發佈它，請移至 [建置]，然後選取 [發行]。
+6. 當您滿意您的 Web API 之後，就可發佈至 Azure。若要在 Visual Studio 中發佈，請移至 [建置]，然後選取 [發佈]。
 
 7. 瀏覽至 ***https://\<azure-webapp-url>/swagger/docs/v1***，解壓縮 Swagger 的 json。
 
@@ -57,19 +59,19 @@
 
 1. 第一個 AAD 應用程式用於保護 Web API。它命名為 **webAPI**。
 2. 第二個 AAD 應用程式用於保護自訂 API 註冊，和取得由第一個應用程式保護之 web API 的委派存取權限。這個應用程式命名為 **webAPI-customAPI**。
-3. 針對 **webAPI**，請使用下列設定：  
+3. 針對 **webAPI**，請使用下列設定：
 
-  1. 登入 url：***https://login.windows.net***
-  2. 應用程式識別碼 Uri：***https://\<your-root-url>*** (通常為您部署在 Azure 上的網站 URL)
-  3. 回覆 url：***https://\<your-root-url>/.auth/login/aad/callback***  
+  1. 登入 URL：***https://login.windows.net***
+  2. 應用程式識別碼 Uri：**https://\<your-root-url>** (通常為您部署在 Azure 上的網站 URL)
+  3. 回覆 url：**https://\<your-root-url>/.auth/login/aad/callback**
   
 	>[AZURE.IMPORTANT] 在稍後您需要此應用程式的用戶端識別碼，因此請記下它。
 
 4. 針對 **webAPI-customAPI**，請使用下列設定：
   
-  1. 登入 url：**https://login.windows.net**
+  1. 登入 URL：**https://login.windows.net**
   2. 應用程式識別碼 Uri：**可以是任何唯一的 URL**
-  3. 回覆 url：***https://msmanaged-na.consent.azure-apim.net/redirect***
+  3. 回覆 URL：***https://msmanaged-na.consent.azure-apim.net/redirect***
   4. 新增權限至具有委派存取權限的 webAPI。
   5. 稍後您也需要此應用程式的用戶端識別碼，因此請記下它。
   6. 產生金鑰並儲存在安全的位置。稍後我們需要此金鑰。
@@ -80,14 +82,14 @@
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)，然後移至您在**步驟 1** (本主題中) 部署的 Web 應用程式。
 2. 在 [設定] 中，選取 [驗證/授權]。
-3. 開啟 [App Service 驗證]，然後選取 [Azure Active Directory]。在下一個刀鋒視窗，選取 [快速]。  
+3. 開啟 [App Service 驗證]，然後選取 [Azure Active Directory]。在下一個刀鋒視窗，選取 [快速]。
 4. 按一下 [選取現有的 AD 應用程式]，然後選取您在步驟二中建立的第一個 AAD 應用程式。在此案例中，選取 [webAPI]。
 
 這應該會設定您 Web 應用程式的 AAD 驗證。
 
 ## 步驟 4：設定自訂 API 
 
-1. 我們需要將我們的 Swagger 檔案做一些修改，以輸入 `securityDefintions` 物件及用於 Web 應用程式的 AAD 驗證。新增下列幾行程式碼： 
+1. 我們需要將我們的 Swagger 檔案做一些修改，以輸入 `securityDefintions` 物件及用於 Web 應用程式的 AAD 驗證。新增下列幾行程式碼：
 
 	```javascript
   "host": "<your-root-url>",
@@ -111,9 +113,9 @@
 4. 針對您的自訂 API 設定 AAD 驗證：
 
   1. 用戶端識別碼：**步驟 2** (本主題中) 4.5 的 **webAPI-CustomAPI 用戶端識別碼**
-  2. 密碼：**步驟 2** (本主題中) 4.6 的 ***webAPI-CustomAPI 金鑰***
+  2. 密碼：**步驟 2** (本主題中) 4.6 的 **webAPI-CustomAPI 金鑰**
   3. 登入 url：***https://login.windows.net***
-  4. ResourceUri：**步驟 2** (本主題中) 3.4 的***webAPI 用戶端識別碼***
+  4. ResourceUri：**步驟 2** (本主題中) 3.4 的**webAPI 用戶端識別碼**
 
 5. 選取 [建立]，並嘗試在自訂 API 上建立連接。如果所有項目皆已正確設定，您應該能夠登入成功。
 
@@ -134,4 +136,4 @@
 [5]: https://powerapps.microsoft.com/tutorials/powerapps-api-functions/
 [6]: http://pwrappssamples.blob.core.windows.net/samples/webAPI.json
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

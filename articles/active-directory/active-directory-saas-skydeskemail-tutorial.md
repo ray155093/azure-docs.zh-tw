@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -60,7 +60,7 @@ Skydesk Email 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫加入 Skydesk Email，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Skydesk Email 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -176,7 +176,7 @@ Skydesk Email 與 Azure AD 整合提供下列優點：
 
     c.[變更密碼 URL] 是選擇性的，將它保留為空白。
 
-    d.按一下 [Get Key From File] \(從檔案取得金鑰) 來選取下載的 Skydesk Email 憑證，然後按一下 [開啟] 以上傳憑證。
+    d.按一下 [Get Key From File] (從檔案取得金鑰) 來選取下載的 Skydesk Email 憑證，然後按一下 [開啟] 以上傳憑證。
 
     e.選取 [RSA] 做為 [演算法]。
 
@@ -325,4 +325,4 @@ a.在 Skydesk Email 中按一下左方面板的 [使用者存取]，然後輸入
 [204]: ./media/active-directory-saas-skydeskemail-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-skydeskemail-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

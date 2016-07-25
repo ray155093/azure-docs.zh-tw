@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="04/04/2016" 
+    ms.date="07/08/2016" 
     ms.author="hawong"/>
 
 # 常見的 DocumentDB 使用案例
@@ -33,7 +33,7 @@ Azure DocumentDB 是 NoSQL 資料庫的一般用途，其廣泛運用在應用�
 
 - DocumentDB 會原生分割您的資料以實現高可用性和延展性。
 - DocumentDB 具有以 SSD 支持的儲存體，可提供低延遲的毫秒級回應時間。
-- DocumentDB 支援最終、工作階段和界限-陳舊等一致性層級，因此能提供高性價比。 
+- DocumentDB 支援最終、工作階段和界限-陳舊等一致性層級，因此能提供高性價比。
 - DocumentDB 有彈性的資料友善計價模式，可針對儲存體和輸送量單獨計價。
 - DocumentDB 的保留輸送量模式可讓您以讀取/寫入數量，而非基礎硬體的 CPU/記憶體/IOPs 來做為思考方向。
 - DocumentDB 的設計可讓您調整為每日數十億個要求級數的巨量要求。
@@ -99,9 +99,9 @@ Azure 事件中樞可以擷取暴增的資料量，因為它提供高輸送量�
 - [Halo](https://azure.microsoft.com/blog/how-halo-5-guardians-implemented-social-gameplay-using-azure-documentdb/)。Halo 5 如何使用 Azure DocumentDB 實作社交遊戲。
 - [Cortana Analytics 資源庫](https://azure.microsoft.com/blog/cortana-analytics-gallery-a-scalable-community-site-built-on-azure-documentdb/)。Cortana Analytics 資源庫 - 以 Azure DocumentDB 為基礎所建置的可調整社群網站。
 - [Breeze](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18602)。只需幾分鐘的時間，前置整合器即可使用富彈性的雲端技術來提供跨國企業的全球資訊分析。
-- [News Republic](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18639)。為新聞加入智慧功能，提供以參加的公民為對象的資訊。 
+- [News Republic](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18639)。為新聞加入智慧功能，提供以參加的公民為對象的資訊。
 - [SGS International](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18653)。為取得全球的一致性色彩，主要品牌會尋求 SGS 的協助。而 SGS 會求助於 Azure。
-- [Telenor](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18608)。全球領導者 Telenor 借助雲端之力加快啟動速度。 
+- [Telenor](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18608)。全球領導者 Telenor 借助雲端之力加快啟動速度。
 - [XOMNI](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18667)。未來存放區的運作基礎會是快速搜尋和簡單資料流程。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

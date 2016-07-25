@@ -26,7 +26,7 @@
 開始之前，您必須：
 
 - [設定開發環境][lnk-setupdevbox]以在 Windows 上使用 SDK。
-- [建立 IoT 中樞][lnk-create-hub] \(於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- [建立 IoT 中樞][lnk-create-hub] (於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
 - 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具將您的裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
 
 建置範例：
@@ -119,7 +119,18 @@
 
 ## 後續步驟
 
-若要了解如何使用閘道 SDK，請參閱 GitHub 上的 [Azure IoT Gateway SDK (Azure IoT 閘道 SDK)][lnk-gateway-sdk]。
+如果您想要更進一步了解閘道 SDK 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
+
+- [透過閘道 SDK 從實際裝置傳送裝置到雲端訊息][lnk-physical-device]
+- [管理閘道裝置][lnk-manage-devices]
+- [Azure IoT 閘道器 SDK][lnk-gateway-sdk]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 <!-- Links -->
 [lnk-setupdevbox]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/doc/devbox_setup.md
@@ -128,4 +139,12 @@
 [lnk-explorer-tools]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 
-<!---HONumber=AcomDC_0608_2016-->
+[lnk-physical-device]: iot-hub-gateway-sdk-physical-device.md
+[lnk-manage-devices]: iot-hub-gateway-sdk-device-management.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

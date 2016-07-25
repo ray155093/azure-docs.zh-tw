@@ -291,7 +291,7 @@ private static void PromptPurgeCdnEndpoint(CdnManagementClient cdn)
 
 ## 刪除 CDN 設定檔和端點
 
-我們所涵蓋的最後一個方法會刪除端點和設定檔。
+最後一個方法會刪除我們的端點和設定檔。
 
 ```
 private static void PromptDeleteCdnEndpoint(CdnManagementClient cdn)
@@ -337,4 +337,4 @@ private static void PromptDeleteCdnProfile(CdnManagementClient cdn)
 
 若要尋找適用於 .NET 的 Azure CDN 管理程式庫的其他相關文件，請檢視 [MSDN 上的參考](https://msdn.microsoft.com/library/mt657769.aspx)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

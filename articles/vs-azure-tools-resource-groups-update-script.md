@@ -3,8 +3,8 @@
 	description="描述手動更新 Azure 資源群組部署專案隨附的 PowerShell 指令碼所需的步驟。"
 	services="visual-studio-online"
 	documentationCenter="na"
-	authors="TomArcher"
-	manager="douge"
+	authors="tfitzmac"
+	manager="timlt"
 	editor="" />
 
  <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
 	ms.date="05/08/2016"
-	ms.author="tarcher" />
+	ms.author="tomfitz" />
 
 # 更新 Azure 資源群組專案 PowerShell 指令碼
 
@@ -215,4 +215,4 @@ New-AzureRMResourceGroupDeployment `
 
 ```
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

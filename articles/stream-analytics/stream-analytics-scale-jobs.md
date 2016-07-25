@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="07/13/2016"
 	ms.author="jeffstok"/>
 
 # 調整 Azure 串流分析工作，以提高串流資料處理的輸送量
@@ -40,14 +40,14 @@
 ## 窘迫平行作業
 窘迫平行作業是我們在 Azure 串流分析中調整性最高的案例。它將對於查詢執行個體之輸入的某個資料分割，連接到輸出的某個資料分割。為達到此平行處理原則，您必須滿足幾項需求：
 
-1.  如果您的查詢邏輯所相依於的索引鍵，就是同一個執行個體所處理的索引鍵，則您必須確保事件移至您輸入的資料分割。在事件中樞的案例中，這代表事件資料必須要有 **PartitionKey** 組，或是您可以使用已分割的傳送者。對於 Blob 而言，這代表事件是傳送到相同的資料分割資料夾。如果您的查詢邏輯並不需要由同一個查詢執行個體所處的相同索引鍵，您可以忽略這項需求。例如，簡單的選取/專案/篩選查詢。  
-2.	當資料的配置方式像是它必須在輸入端時，我們就需要確保您的查詢已分割。這需要您在所有步驟中使用 [Partition By]。您可以使用多重步驟，但這些步驟都必須以相同的索引鍵來分割。另外要注意的是，目前的資料分割索引鍵必須設定為 **PartitionId**，才能擁有完全平行作業。  
-3.	目前只有事件中樞和 Blob 支援已分割的輸出。對於事件中樞輸出，您必須將 [PartitionKey] 欄位設定為「PartitionId」。而對於 Blob，您不需要採取任何動作。  
-4.	另外要注意的是，輸入資料分割的數目必須與輸出資料分割的數目相同。Blob 輸出目前並不支援資料分割，但沒有關係，因為它會繼承上游查詢的資料分割配置。允許完全平行作業的資料分割值範例：  
+1.  如果您的查詢邏輯所相依於的索引鍵，就是同一個執行個體所處理的索引鍵，則您必須確保事件移至您輸入的資料分割。在事件中樞的案例中，這代表事件資料必須要有 **PartitionKey** 組，或是您可以使用已分割的傳送者。對於 Blob 而言，這代表事件是傳送到相同的資料分割資料夾。如果您的查詢邏輯並不需要由同一個查詢執行個體所處的相同索引鍵，您可以忽略這項需求。例如，簡單的選取/專案/篩選查詢。
+2.	當資料的配置方式像是它必須在輸入端時，我們就需要確保您的查詢已分割。這需要您在所有步驟中使用 [Partition By]。您可以使用多重步驟，但這些步驟都必須以相同的索引鍵來分割。另外要注意的是，目前的資料分割索引鍵必須設定為 **PartitionId**，才能擁有完全平行作業。
+3.	目前只有事件中樞和 Blob 支援已分割的輸出。對於事件中樞輸出，您必須將 [PartitionKey] 欄位設定為「PartitionId」。而對於 Blob，您不需要採取任何動作。
+4.	另外要注意的是，輸入資料分割的數目必須與輸出資料分割的數目相同。Blob 輸出目前並不支援資料分割，但沒有關係，因為它會繼承上游查詢的資料分割配置。允許完全平行作業的資料分割值範例：
 	1.	8 個事件中樞輸入資料分割，和 8 個事件中樞輸出資料分割
-	2.	8 個事件中樞輸入資料分割，和 Blob 輸出  
-	3.	8 個 Blob 輸入資料分割，和 Blob 輸出  
-	4.	8 個 Blob 輸入資料分割，和 8 個事件中樞輸出資料分割  
+	2.	8 個事件中樞輸入資料分割，和 Blob 輸出
+	3.	8 個 Blob 輸入資料分割，和 Blob 輸出
+	4.	8 個 Blob 輸入資料分割，和 8 個事件中樞輸出資料分割
 
 以下是幾個窘迫平行的範例案例。
 
@@ -88,7 +88,7 @@
     FROM Step1 Partition By PartitionId
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-這個查詢有群組索引鍵，且同一個查詢執行個體必須處理相同的索引鍵。我們可以使用與上一個查詢相同的策略。這個查詢有多重步驟。每個步驟都有 [PartitionId] 的 [Partition By] 嗎？ 有，所以沒問題了。對於輸出，我們必須把 [PartitionKey] 設定為「PartitionId」，就跟上面討論的一樣，且我們也得讓資料分割的數目跟輸入的一樣。這個拓撲的確是窘迫平行。
+這個查詢有群組索引鍵，且同一個查詢執行個體必須處理相同的索引鍵。我們可以使用與上一個查詢相同的策略。這個查詢有多重步驟。每個步驟都有 [PartitionId] 的 [Partition By] 嗎？ 有，所以沒問題了。針對輸出，我們必須把 [PartitionKey] 設定為[PartitionId]，就跟上面討論的一樣，且我們也得讓資料分割的數目跟輸入的一樣。這個拓撲的確是窘迫平行。
 
 
 ## 並非窘迫平行的範例案例
@@ -118,7 +118,7 @@ PowerBI 輸出目前並不支援資料分割。
     FROM Step1 Partition By TollBoothId
     GROUP BY TumblingWindow(minute, 3), TollBoothId
     
-如您所見，第二個步驟把「TollBoothId」當做資料分割索引鍵來使用。這跟第一個步驟中的不同，因此需要我們來更換一下。
+如您所見，第二個步驟把[TollBoothId] 當做資料分割索引鍵來使用。這跟第一個步驟中的不同，因此需要我們來更換一下。
 
 我們有幾個串流分析工作的範例和反例，能夠達到窘迫平行拓撲，且有可能會達到最大級別。對於不符合任何這些情況的作業，將來會有更新來詳述如何以最大幅度調整某些其他的 Canonical 串流分析案例。
 
@@ -326,7 +326,6 @@ PowerBI 輸出目前並不支援資料分割。
 
 - [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
 - [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
-- [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
@@ -351,4 +350,4 @@ PowerBI 輸出目前並不支援資料分割。
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

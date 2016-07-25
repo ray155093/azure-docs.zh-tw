@@ -433,7 +433,7 @@ oracleReaderQuery | 使用自訂查詢來讀取資料。 | SQL 查詢字串。�
 屬性 | 說明 | 允許的值 | 必要
 -------- | ----------- | -------------- | --------
 writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | 時間範圍<br/><br/> 範例：00:30:00 (30 分鐘)。 | 否
-writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | Integer | 否 (預設值：10000)  
+writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | 整數 (資料列數目)| 否 (預設值：10000)  
 sqlWriterCleanupScript | 使用者指定了可供複製活動執行的查詢，以便清除特定配量的資料。 | 查詢陳述式。 | 否
 sliceIdentifierColumnName | 使用者指定了可供複製活動使用自動產生的配量識別碼填入的資料行名稱，在重新執行時將用來清除特定配量的資料。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否
 
@@ -501,4 +501,4 @@ XML | String
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

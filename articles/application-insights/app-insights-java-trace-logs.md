@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="01/21/2016" 
+	ms.date="07/12/2016" 
 	ms.author="awills"/>
 
 # 在 Application Insights 中探索 Java 追蹤記錄
@@ -136,9 +136,9 @@ Application Insights 附加器可由任何設定的記錄器參考，而不一�
 
 ## 在 Application Insights 入口網站中探索您的追蹤
 
-既然已將專案設定為傳送追蹤至 Application Insights，您可以在 Application Insights 入口網站的 [[診斷搜尋][diagnostic]] 分頁中檢視及搜尋這些追蹤。
+既然已將專案設定為傳送追蹤至 Application Insights，您可以在 Application Insights 入口網站的[搜尋][diagnostic]刀鋒視窗中檢視及搜尋這些追蹤。
 
-![在 Application Insights 入口網站中，開啟診斷搜尋](./media/app-insights-java-trace-logs/10-diagnostics.png)
+![在 Application Insights 入口網站中，開啟 [搜尋]](./media/app-insights-java-trace-logs/10-diagnostics.png)
 
 ## 後續步驟
 
@@ -151,4 +151,4 @@ Application Insights 附加器可由任何設定的記錄器參考，而不一�
 
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0713_2016-->

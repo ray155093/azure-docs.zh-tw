@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="04/18/2016"
+	ms.date="07/12/2016"
 	ms.author="gauravbh;tomfitz"/>
 
 # 使用原則來管理資源和控制存取
@@ -97,7 +97,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 支援下列欄位和來源：
 
-欄位：**name**、**kind**、**type**、**location**、**tags**、**tags.*** 和 **property alias**。
+欄位：**name**、**kind**、**type**、**location**、**tags**、**tags.*** 和**property alias**。
 
 ### 屬性別名 
 屬性別名可在原則定義中用來存取資源類型特定屬性，例如設定和 SKU。它適用於所有具有屬性的 API 版本。別名可使用如下所示的 REST API 來擷取 (未來將新增 Powershell 支援)：
@@ -151,13 +151,13 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 目前，原則只能適用於 PUT 要求。
 
 ## 效果
-原則支援三種效果類型 - **拒絕**、**稽核**和**附加**。
+原則支援三種效果類型 - **deny**、**audit** 以及 **append**。
 
 - 拒絕會在稽核記錄檔中產生事件，並且使要求失敗
 - 稽核會在稽核記錄檔中產生事件，但不會使要求失敗
-- 附加會在要求中加入一組已定義的欄位 
+- 附加會在要求中加入一組已定義的欄位
 
-對於**附加**，您必須提供詳細資訊，如下所示︰
+對於 **append**，您必須提供的詳細資訊如下所示︰
 
     ....
     "effect": "append",
@@ -391,7 +391,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     }
 
 
-原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 2016-04-01。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
+原則定義可以定義為如上所示的其中一個範例。對於 api-version，請使用 *2016-04-01*。如需範例與更多詳細資料，請參閱[適用於原則定義的 REST API](https://msdn.microsoft.com/library/azure/mt588471.aspx)。
 
 ### 使用 PowerShell 建立原則定義
 
@@ -424,7 +424,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
     PUT https://management.azure.com /subscriptions/{subscription-id}/providers/Microsoft.authorization/policyassignments/{policyAssignmentName}?api-version={api-version}
 
-{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 2016-04-01。
+{policy-assignment} 是原則指派的名稱。對於 api-version，請使用 *2016-04-01*。
 
 使用如下的要求內文：
 
@@ -468,4 +468,4 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
     
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

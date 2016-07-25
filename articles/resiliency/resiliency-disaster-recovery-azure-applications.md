@@ -32,7 +32,7 @@ Azure 會維護世界各地許多區域的資料中心。此基礎結構可支�
 
 發生特定區域的失敗時，您必須將流量重新導向至其他區域中的服務或部署。您可以手動方式進行此路由傳送，但使用自動化程序更有效率。Azure 流量管理員是專為此工作所設計的。您可以用來自動管理將使用者流量容錯移轉到另一個區域，以免發生主要區域失敗。因為流量管理是整體策略中很重要的一部分，請務必了解流量管理員的基本概念。
 
-在下圖中，使用者會連線到針對流量管理員 (__http://myATMURL.trafficmanager.net__) 指定的 URL，以擷取實際的網站 URL (__http://app1URL.cloudapp.net__ 和 \_\___http://app2URL.cloudapp.net__)。根據您如何設定何時路由傳送使用者的準則，使用者會在政策規定時傳送至正確的實際網站。原則選項包括循環配置資源、效能或容錯移轉。基於本文的目的，我們只會關心容錯移轉選項。
+在下圖中，使用者會連線到針對流量管理員 (__http://myATMURL.trafficmanager.net__) 指定的 URL，以擷取實際的網站 URL (__http://app1URL.cloudapp.net__ 和 \_\_http://app2URL.cloudapp.net__。根據您如何設定何時路由傳送使用者的準則，使用者會在政策規定時傳送至正確的實際網站。原則選項包括循環配置資源、效能或容錯移轉。基於本文的目的，我們只會關心容錯移轉選項。
 
 ![透過 Azure 流量管理員進行路由傳送](./media/resiliency-disaster-recovery-azure-applications/routing-using-azure-traffic-manager.png)
 
@@ -147,7 +147,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 
 實作完整功能的災害模式策略時，必須將交易資料非同步複寫到次要地區。可進行複寫的實際時間範圍將會決定應用程式的 RPO 特性。在複寫時間範圍內，您仍可復原從主要區域遺失的資料。您也可以稍後合併次要地區。
 
-下列架構範例對於在容錯移轉案例中以不同方式處理交易資料，提供了一些構想。請務必注意，這些範例並不詳盡。例如，Azure SQL Database 可以取代佇列等中繼儲存位置。佇列本身可能是 Azure 儲存體或服務匯流排佇列 (請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比](../service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md))。伺服器存放裝置目的地也可能有所改變，例如 Azure 資料表，而不是 SQL Database。此外，也可能會插入背景工作角色做為各種步驟中的媒介。重點不是要完全模擬這些架構，而是要考量復原交易資料和相關模組中的各種替代方案。
+下列架構範例對於在容錯移轉案例中以不同方式處理交易資料，提供了一些構想。請務必注意，這些範例並不詳盡。例如，Azure SQL Database 可以取代佇列等中繼儲存位置。佇列本身可能是 Azure 儲存體或服務匯流排佇列 (請參閱 [Azure 佇列和服務匯流排佇列 - 比較和對比](../service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md))。伺服器存放裝置目的地也可能有所改變，例如 Azure 資料表，而不是 SQL Database。此外，也可能會插入背景工作角色做為各種步驟中的媒介。重點不是要完全模擬這些架構，而是要考量復原交易資料和相關模組中的各種替代方案。
 
 ####複寫交易資料以準備進行災害復原
 
@@ -305,4 +305,4 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 本文屬於著重[在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](./resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。這一系列中的前一篇文章是[在 Microsoft Azure 上建置的應用程式的高可用性](./resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

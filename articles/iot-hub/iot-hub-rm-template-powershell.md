@@ -131,6 +131,18 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 - 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
 - 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
+若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+
+- [C SDK 簡介][lnk-c-sdk]
+- [IoT 中心 SDK][lnk-sdks]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
@@ -139,4 +151,12 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-azure-rm-overview]: ../resource-group-overview.md
 [lnk-powershell-arm]: ../powershell-azure-resource-manager.md
 
-<!---HONumber=AcomDC_0504_2016-->
+[lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
+[lnk-sdks]: iot-hub-sdks-summary.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

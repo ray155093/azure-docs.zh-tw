@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="07/12/2016"
 	ms.author="guybo"/>
 
 # 虛擬機器調整集概觀
@@ -25,7 +25,7 @@
 
 若想進一步了解 VM 調整集，請觀看下列影片：
 
- - [Mark Russinovich 講述 Azure 調整集](https://channel9.msdn.com/Blogs/Regular-IT-Guy/Mark-Russinovich-Talks-Azure-Scale-Sets/)  
+ - [Mark Russinovich 講述 Azure 調整集](https://channel9.msdn.com/Blogs/Regular-IT-Guy/Mark-Russinovich-Talks-Azure-Scale-Sets/)
 
  - [Guy Bowerman 與虛擬機器調整集](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-191-Virtual-Machine-Scale-Sets-with-Guy-Bowerman)
 
@@ -43,13 +43,13 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 若要增加或減少 VM 調整集內的虛擬機器數目，請直接變更 _capacity_ 屬性，並重新部署範本。這樣的單純性，可讓您在想要定義不受 Azure 自動調整支援的自訂調整事件時，能更輕易地撰寫您的自訂調整層。
 
-如果您想要重新部署範本以變更容量，您可以定義小得多的範本，使其僅包含 SKU 和更新的容量。範例如[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-linux-nat/azuredeploy.json)所示。
+如果您想要重新部署範本以變更容量，您可以定義小得多的範本，使其僅包含 SKU 和更新的容量。範例如[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)所示。
 
 若要逐步完成相關步驟以建立會自動調整的調整集，請參閱[在虛擬機器調整集中自動調整機器](virtual-machine-scale-sets-windows-autoscale.md)
 
 ## 監視 VM 調整集
 
-就目前而言，建議您使用 [Azure 資源總管](https://resources.azure.com)來檢視 VM 調整集。VM 調整集是 Microsoft.Compute 之下的一項資源，因此您可以展開下列連結，從這個網站加以檢視：
+[Azure 入口網站](https://portal.azure.com)會列出調整集，並顯示基本屬性以及調整集中的 VM 清單。如需詳細資訊，可使用 [Azure 資源總管](https://resources.azure.com)來檢視 VM 調整集。VM 調整集是 Microsoft.Compute 之下的一項資源，因此您可以展開下列連結，從這個網站加以檢視：
 
 	subscriptions -> your subscription -> resourceGroups -> providers -> Microsoft.Compute -> virtualMachineScaleSets -> your VM scale set -> etc.
 
@@ -57,9 +57,9 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 本節列出一些典型的 VM 調整集案例。某些較高階的 Azure 服務 (例如 Batch、Service Fabric、Azure 容器服務) 也會使用這些案例。
 
- - **透過 RDP/SSH 連接到 VM 擴展集執行個體** - VM 擴展集會建立在 VNET 內，且不會為擴展集中的個別 VM 配置公用 IP 位址。這是件好事，因為您通常不希望計算方格中，為了要將個別 IP 位址配置給所有的無狀態資源，而產生支出與管理負擔，而且您可以輕鬆地從 VNET 中的其他資源連接到這些 VM，包括具有公用 IP 位址的資源，像是負載平衡器或獨立虛擬機器。
+ - **透過 RDP/SSH 連接到 VM 擴展集執行個體** - VM 調整集會建立在 VNET 內，且不會為調整集中的個別 VM 配置公用 IP 位址。這是件好事，因為您通常不希望計算方格中，為了要將個別公用 IP 位址配置給所有的無狀態資源，而產生支出與管理負擔，而且您可以輕鬆地從 VNET 中的其他資源連接到這些 VM，包括具有公用 IP 位址的資源，像是負載平衡器或獨立虛擬機器。
 
- - **使用 NAT 規則連接到 VM** - 您可以建立一個公用 IP 位址、將它指派給負載平衡器，然後定義將 IP 位址的連接埠對應至 VM 擴展集內某個 VM 之連接埠的輸入 NAT 規則：
+ - **使用 NAT 規則連接到 VM** - 您可以建立一個公用 IP 位址、將它指派給負載平衡器，然後定義將 IP 位址的連接埠對應至 VM 調整集內某個 VM 之連接埠的輸入 NAT 規則。例如：
  
 	來源 | 來源連接埠 | 目的地 | 目的地連接埠
 	--- | --- | --- | ---
@@ -75,7 +75,7 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 	[為了提供此方法的範例，此範本建立了一個簡易 Mesos 叢集，其中包含一個獨立的主要 VM，用來管理 VM 的 VM 擴展集架構叢集。](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json)
 
- - **對 VM 調整集執行個體進行循環配置資源負載平衡** - 如果您想要使用「循環配置資源」方法將工作傳送到 VM 的計算叢集，您可以使用負載平衡規則據以設定 Azure 負載平衡器。您也可以定義探查，藉由使用指定的通訊協定、間隔和要求路徑對連接埠執行 ping，以驗證您的應用程式正在執行中。
+ - **對 VM 調整集執行個體進行負載平衡** - 如果您想要使用「循環配置資源」方法將工作傳送到 VM 的計算叢集，您可以使用負載平衡規則據以設定 Azure 負載平衡器。您可以定義探查，藉由使用指定的通訊協定、間隔和要求路徑對連接埠執行 ping，以驗證您的應用程式正在執行中。Azure [應用程式閘道](https://azure.microsoft.com/services/application-gateway/) 也支援調整集，以及更複雜的負載平衡案例。
 
 	[以下範例會為執行 IIS Web 伺服器的 VM 建立一個 VM 擴展集，並使用負載平衡器來平衡每個 VM 獲得的負載。此外也會使用 HTTP 通訊協定對每個 VM 的特定 URL 執行 ping。](https://github.com/gbowerman/azure-myriad/blob/master/vmss-win-iis-vnet-storage-lb.json) (請查看 Microsoft.Network/loadBalancers 資源類型，以及 virtualMachineScaleSet 中的 networkProfile 和 extensionProfile。)
 
@@ -98,7 +98,7 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 **問：** 您在 VM 調整集內可以有多少個 VM？
 
-**答：** 如果您使用可以分散到多個儲存體帳戶的平台映像，則是 100 個。如果您使用自訂映像，則最多是 40 個 (如果 _overprovision_ 屬性設定為 "false"，則預設為 20 個)，因為自訂映像在預覽期間受限於單一儲存體帳戶。
+**答：** 如果您使用可以分散到多個儲存體帳戶的平台映像，則是 100 個。如果您使用自訂映像，則最多是 40 個 (如果 _overprovision_ 屬性設定為 "false"，則預設為 20 個)，因為自訂映像目前受限於單一儲存體帳戶。
 
 **問：**VM 調整集有哪些其他資源的限制？
 
@@ -149,10 +149,10 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 **問：** 在一個 VM 調整集內使用多個延伸模組時，是否可以強制執行「執行順序」？
 
-**答：** 不直接，但針對 customScript 擴充，您的指令碼可以等候另一個擴充完成 ([例如透過監視擴充記錄](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vmss-lapstack-autoscale/install_lap.sh))。
+**答：** 不是直接，但針對 customScript 擴充，您的指令碼可以等候另一個擴充完成 ([例如透過監視擴充記錄](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vmss-lapstack-autoscale/install_lap.sh))。有關擴充排序的其他指導方針，請參閱此部落格文章︰[在 Azure VM 調整集中的擴充排序](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/)。
 
 **問：** VM 調整集是否可與 Azure 可用性設定組組搭配使用？
 
 **答：** 是。VM 調整集是隱含的可用性設定組，具有 5 個 FD 和 5 個 UD。您不需要在 virtualMachineProfile 下進行任何設定。在未來的版本中，VM 調整集有可能跨越多個租用戶，但目前調整集只是單一可用性設定組。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="設定傳統 VM 的可用性設定組 | Microsoft Azure"
-	description="使用 Azure 傳統入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有虛擬機器的可用性設定組。"
+	pageTitle="傳統 Linux VM 的可用性設定組 | Microsoft Azure"
+	description="使用 Azure 入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有 Linux 虛擬機器的可用性設定組。"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="cynthn"
@@ -14,13 +14,18 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/19/2016"
+	ms.date="07/12/2016"
 	ms.author="cynthn"/>
 
-# 如何以傳統部署模型設定虛擬機器的可用性設定組
+# 如何以傳統部署模型設定 Linux 虛擬機器的可用性設定組
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)].您也可以在資源管理員部署中設定可用性設定組。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]。您也可以在 Resource Manager 部署中[設定可用性設定組](azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets)。
 
 [AZURE.INCLUDE [virtual-machines-common-classic-configure-availability](../../includes/virtual-machines-common-classic-configure-availability.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+
+## 後續步驟 
+
+有關傳統部署的其他文件，請參閱 [Azure 上的 Linux 和開放原始碼運算](virtual-machines-linux-opensource-links.md)。
+
+<!---HONumber=AcomDC_0713_2016-->

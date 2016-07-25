@@ -24,9 +24,9 @@
 ||
 |---|---
 |[**可用性測試**](app-insights-monitor-web-app-availability.md)<br/>定期從世界各地傳送您的 Web 應用程式 HTTP 要求。如果回應太慢或不可靠，我們會通知您。| 
-|[**相依性和 AJAX 呼叫**](app-insights-asp-net-dependencies.md)<br/>監視 SQL 查詢，以及呼叫 REST 或其他資源。|
+|[**相依性呼叫**](app-insights-asp-net-dependencies.md)<br/>監視 SQL 查詢，以及呼叫 REST 或其他資源。|
 |[**例外狀況**](app-insights-asp-net-exceptions.md)<br/>計算已處理和未處理的例外狀況、取得堆疊追蹤，以及點擊至程式碼。|
-|[**網頁**](app-insights-javascript.md)<br/>檢測您的網頁來監視網頁使用狀況和效能。
+|[**網頁**](app-insights-javascript.md)<br/>檢測您的網頁來監視網頁使用狀況、效能和 AJAX 呼叫。
 |**主機效能︰[Azure 診斷](app-insights-azure-diagnostics.md)、[Windows 效能計數器](app-insights-web-monitor-performance.md)**<br/>查看 CPU 使用率和其他內容計量。 |![](./media/app-insights-asp-net-more/04.png)
 |[**SDK API - 自訂遙測**](app-insights-api-custom-events-metrics.md)<br/>可傳送您自己的事件和計量，以取得您的應用程式效能和使用狀況的更詳細檢視 (在伺服器和用戶端程式碼中)。|
 |[**記錄整合**](app-insights-asp-net-trace-logs.md)<br/>如果您使用記錄架構 (例如 Log4Net、NLog 或 System.Diagnostics.Trace)，就會有可將這些追蹤與其他遙測一起傳送至 Application Insights 的配接器。|
@@ -52,4 +52,4 @@
 |**資料存取 API**<br/>即將推出。|
 |[**取樣**](app-insights-sampling.md)<br/>縮短資料速率，並協助您維持在您定價層的限制內。|![取樣圖格](./media/app-insights-asp-net-more/030.png)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

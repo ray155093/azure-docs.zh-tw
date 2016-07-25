@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="企業整合概觀 | Microsoft Azure App Service" 
+	pageTitle="企業整合概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="利用企業整合的功能，使用 Logic Apps 啟用商務程序和整合案例" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/06/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 企業整合套件概觀
@@ -35,7 +35,7 @@
 ## 如何開始使用企業整合？
 您可以透過 **Azure 入口網站**上的 Logic Apps 設計工具，使用邏輯應用程式來建置和管理 B2B 應用程式。
 
-以下是您可以在 Azure 入口網站中建立應用程式之前需採取的步驟概觀︰![](./media/app-service-logic-enterprise-integration-overview/overview-0.png)
+以下是您可以在 Azure 入口網站中建立應用程式之前需採取的步驟概觀︰![overviewimage](./media/app-service-logic-enterprise-integration-overview/overview-0.png)
 
 ## 有哪些常見的案例？
 
@@ -44,23 +44,21 @@
 - EDI - 電子資料交換
 - EAI - 企業應用程式整合
 
-## 費用是多少？
-如需定價資訊，以及每個服務層隨附項目的清單，請參閱 [Azure App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
-
 ## 以下是您需要立即開始進行的事項
 - 具有整合帳戶的 Azure 訂用帳戶
 - 可建立對應和結構描述的 Visual Studio 2015
 - [Visual Studio 2015 2.0 適用的 Microsoft Azure Logic Apps 企業整合工具](https://aka.ms/vsmapsandschemas)
 
 ## 深入了解：
-- [結構描述](./app-service-logic-enterprise-integration-schemas.md "了解企業整合結構描述")
-- [對應](./app-service-logic-enterprise-integration-maps.md "了解企業整合對應")
-- [憑證](./app-service-logic-enterprise-integration-certificates.md "了解企業整合憑證")
-- [合作夥伴](./app-service-logic-enterprise-integration-partners.md "了解企業整合夥伴")
 - [合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
-- [整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解整合帳戶")
 - [企業對企業 (B2B) 案例](./app-service-logic-enterprise-integration-b2b.md "了解如何建立具有 B2B 功能的 Logic Apps")
-- [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
+- [憑證](./app-service-logic-enterprise-integration-certificates.md "了解企業整合憑證")
 - [一般檔案編碼/解碼](./app-service-logic-enterprise-integration-flatfile.md "了解如何將一般檔案內容編碼和解碼")
+- [整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解整合帳戶")
+- [對應](./app-service-logic-enterprise-integration-maps.md "了解企業整合對應")
+- [合作夥伴](./app-service-logic-enterprise-integration-partners.md "了解企業整合夥伴")
+- [結構描述](./app-service-logic-enterprise-integration-schemas.md "了解企業整合結構描述")
+- [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
+- [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

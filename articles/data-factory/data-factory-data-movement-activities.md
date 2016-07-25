@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="07/11/2016" 
 	ms.author="spelluru"/>
 
 # 資料移動和複製活動︰將資料移轉至雲端以及在雲端存放區之間移轉資料
@@ -33,9 +33,11 @@
 
 
 ## 在內部部署資料存放區和雲端資料存放區之間複製資料
-若要[安全地在公司防火牆背後的內部部署資料存放區和雲端資料存放區之間移動資料](#moveonpremtocloud)，您必須安裝資料管理閘道，這是一個代理程式，能夠在內部部署的電腦上啟用混合式資料移動及處理。資料管理閘道可以和資料存放區本身安裝於同一部電腦上，或者安裝於具備可觸達該資料存放區之存取權的個別電腦上。在此案例中，序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換都是透過資料管理閘道來執行。資料不流經 Azure Data Factory 服務就是這種情況。資料管理閘道會直接將資料寫入到目的地存放區。
+若要安全地在公司防火牆背後的內部部署資料存放區和雲端資料存放區之間移動資料，您必須安裝資料管理閘道，這是一個代理程式，能夠在內部部署的電腦上啟用混合式資料移動及處理。資料管理閘道可以和資料存放區本身安裝於同一部電腦上，或者安裝於具備可觸達該資料存放區之存取權的個別電腦上。在此案例中，序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換都是透過資料管理閘道來執行。資料不流經 Azure Data Factory 服務就是這種情況。資料管理閘道會直接將資料寫入到目的地存放區。
 
 ![從內部部署複製到雲端](.\media\data-factory-data-movement-activities\onprem-to-cloud.png)
+
+如需指示和逐步解說，請參閱[在內部部署與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文；如需資料管理閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
 
 ## 複製自/至 Azure Iaas VM 上資料存放區的資料 
 您也可以使用資料管理閘道，將資料移出/移入裝載於 Azure IaaS VM (基礎結構即為服務的虛擬機器) 上支援的資料存放區。在此情況下，資料管理閘道可以和資料存放區本身安裝於同一部 Azure VM 上，或者安裝於具備可觸達該資料存放區之存取權的個別 VM 上。
@@ -50,7 +52,7 @@
 
 > [AZURE.NOTE] 目前不支援將資料從 Azure DocumentDB 複製到內部部署/Azure IaaS 資料存放區，反向複製動作亦不支援。很快就會啟用 Azure DocumentDB 的完整矩陣。
 
-如果您需要將資料移至**複製活動**不支援的資料存放區，或從該資料存放區移動資料，則您可以在 Data Factory 中使用**自訂活動**搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure 資料處理站管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
+如果您需要將資料移至**複製活動**不支援的資料存放區，或從該資料存放區移動資料，則您可以在 Data Factory 中使用**自訂活動**搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
 
 ## 教學課程
 如需使用複製活動的快速教學課程，請參閱[教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。在教學課程中，您會使用複製活動將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。
@@ -74,21 +76,6 @@
 
 
 > [AZURE.NOTE] 如果目的地資料存放區的區域不在上述清單中，複製活動將會失敗而不是前往替代區域。
-
-
-
-### <a name="moveonpremtocloud"></a>安全地在內部部署位置與雲端之間傳輸資料
-現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回傳輸資料。資料管理閘道器是您可以安裝內部部署以啟用混合式資料管線的代理程式。
-
-資料閘道器提供下列功能：
-
-1.	安全地管理內部部署資料存放區的存取權。
-2.	在相同資料處理站內建立內部部署資料存放區和雲端資料存放區的模型及移動資料。
-3.	具有用於監視和管理的單一窗格，可利用資料處理站雲端為基礎的儀表板看見閘道器的狀態。
-
-您應該將資料來源視為內部部署資料來源 (亦即在防火牆後面)，即使您使用 **ExpressRoute** 和**使用閘道**來建立服務與資料來源之間的連接也一樣。
-
-如需詳細資料，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 
 ### 可靠且符合成本效益的資料移動
@@ -147,9 +134,9 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 #### 用法直覺且操作流暢的資料複製精靈 
 此精靈可讓您在幾分鐘內輕鬆地將資料從來源移動到目的地，只需要完成以下簡單的步驟即可︰
 
-1.	選取**來源**
-2.	選取**目的地**
-3.	配置**設定**
+1.	選取 [來源]
+2.	選取 [目的地]
+3.	配置 [設定]
 
 ![選取資料來源](./media/data-factory-data-movement-activities/select-data-source-page.png)
 
@@ -196,4 +183,9 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ![使用自訂變數](./media/data-factory-data-movement-activities/blob-custom-variables-in-folder-path.png)
 
-<!---HONumber=AcomDC_0629_2016-->
+## 後續步驟
+- 若要了解如何使用複製活動將資料從來源資料存放區移動到一般接收資料存放區，請參閱[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+- 若要了解將資料從內部部署資料存放區移動到雲端資料存放區的相關資訊，請參閱[將資料從內部部署資料存放區移動到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
+ 
+
+<!---HONumber=AcomDC_0713_2016-->

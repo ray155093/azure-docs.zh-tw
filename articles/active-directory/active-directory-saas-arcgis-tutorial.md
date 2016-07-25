@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 ArcGIS 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 ArcGIS 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-arcgis-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-arcgis-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-arcgis-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -68,7 +68,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [ArcGIS] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [ArcGIS] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784738.png "設定單一登入")
 
@@ -76,7 +76,7 @@
 
     ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784739.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [ArcGIS 登入 URL] 文字方塊中，使用下列模式輸入您的使用者用來登入的 URL："**https://company.maps.arcgis.com*"，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [ArcGIS 登入 URL] 文字方塊中，使用下列模式輸入您的使用者用來登入的 URL："*https://company.maps.arcgis.com*"，然後按一下 *[下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-arcgis-tutorial/IC784740.png "設定應用程式 URL")
 
@@ -107,7 +107,7 @@
     3.  若要上傳您下載的中繼資料檔，請按一下 [選擇檔案]。
     4.  按一下 [設定識別提供者]。
 
-10. 在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784746.png "設定單一登入")
 ##設定使用者佈建
@@ -137,7 +137,7 @@
 
     ![加入成員](./media/active-directory-saas-arcgis-tutorial/IC784750.png "加入成員")
 
->[AZURE.NOTE]您可以使用任何其他的 ArcGIS 使用者帳戶建立工具或 ArcGIS 提供的 API 來佈建AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 ArcGIS 使用者帳戶建立工具或 ArcGIS 提供的 API 來佈建AAD 使用者帳戶。
 
 ##指派使用者
 
@@ -145,7 +145,7 @@
 
 ###若要將使用者指派給 ArcGIS，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [ArcGIS] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -157,4 +157,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

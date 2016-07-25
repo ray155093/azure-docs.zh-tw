@@ -14,26 +14,26 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/29/2016"
+	ms.date="07/11/2016"
 	ms.author="genli"/>
 
 #  Azure 計費及訂用帳戶常見問題集
 
 這篇文章回答一些有關 Azure 計費及訂用帳戶的最常見問題。
 
-**帳戶管理**
+## 帳戶管理
 
 - [如何在新的 Azure 入口網站中管理系統管理員帳戶？](#how-do-i-manage-administrator-accounts-in-the-new-azure-portal)
 - [可以讓通知寄送到其他電子郵件地址，而非我的帳戶所關聯的帳戶擁有者電子郵件地址嗎？](#can-notifications-be-sent-to-a-different-email-address-other-than-the-account-owner-email-address-associated-with-my-account)
 - [為什麼我無法編輯或新增詳細資料到我的訂用帳戶中？](#why-cannot-i-edit-or-add-details-to-my-subscription)
 - [我無法登入 Azure 入口網站](#i-am-unable-to-log-in-to-the-azure-portal)
 
-**計費**
+## 計費
 
 - [如何取得我的發票副本？](#how-do-i-get-a-copy-of-my-invoice)
 - [我沒有看見上期的發票。原因為何？](#i-do-not-see-an-invoice-for-the-last-billing-period-why)
 
-**免費試用**
+## 免費試用
 
 - [我可以免費試用 Azure，不需擔心收費問題嗎？](#can-i-try-azure-for-free-without-any-risk-of-being-charged)
 - [什麼是試用版訂用帳戶，其持續時間有多久？](#what-is-a-trial-subscription-and-how-long-does-it-last)
@@ -41,7 +41,7 @@
 - [如果我在我的免費試用中移除消費限制，會發生什麼事？](#what-happens-if-i-remove-the-spending-limit-on-my-free-trial)
 - [哪裡可以取得更多關於免費試用的詳細資料？](#where-can-i-get-more-details-on-free-trial)
 
-**如何購買 Azure**
+## 如何購買 Azure
 
 - [Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？](#in-which-countries-and-regions-is-microsoft-azure-commercially-available-and-what-currencies-can-be-used-to-purchase-azure)
 - [我們是否限制將 Azure 服務轉售至實施禁運的國家/地區？](#do-we-restrict-resale-of-azure-based-service-into-countries-under-embargo)
@@ -49,7 +49,7 @@
 - [可以使用在 Azure 外部購買的現有 Windows 授權嗎？](#can-i-use-my-existing-windows-licenses-that-i-bought-outside-of-azure)
 - [誰可以購買 Azure 服務？](#who-can-purchase-azure-services)
 
-**付款**
+## 付款
 
 - [購買 Azure 有哪些付款方式？](#what-payment-options-do-i-have-in-purchasing-azure)
 - [如何要求發票付款方式？](#how-can-i-request-the-invoice-method-of-payment)
@@ -58,24 +58,24 @@
 - [如何更新或變更信用卡資訊？](#how-can-i-update-or-change-my-credit-card-information)
 - [我要如何編輯 Azure 訂用帳戶的付費資訊？](#how-can-i-edit-my-payment-information-for-my-azure-subscriptions)
 
-**Azure 定價**
+## Azure 定價
 
 - [哪裡可以找到 Azure 服務的權益和定價資訊？](#where-can-i-find-the-benefits-and-pricing-information-for-azure-services)
 - [如何變更我的定價計劃？](#how-do-i-change-my-pricing-plan)
 
-**服務等級協定 (SLA)**
+## 服務等級協定 (SLA)
 
 - [我們如何預先知道因維護計劃而停止服務的時間？](#how-do-we-know-in-advance-about-service-downtime-for-planned-maintenance)
 - [何謂執行時間與連線能力的 Azure SLA 合約？](#what-is-the-azure-sla-agreement-for-uptime-and-connectivity)
 - [什麼是 Azure SLA 信用額度？](#what-are-the-azure-sla-credits)
 - [Azure 服務等級協定如何搭配目前的內部部署 Microsoft 授權合約運作？](#how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements)
 
-**Azure 消費限制**
+## Azure 消費限制
 
 - [如果我關閉「消費限制」功能，還能再重新開啟嗎？](#can-i-turn-the-spending-limit-back-on-if-i-turn-off-it)
 - [我可以調整「消費限制」的金額嗎？](#can-i-adjust-the-amount-of-the-spending-limit)
 
-**支援方案**
+## 支援方案
 
 - [如何購買 Azure 支援？](#how-do-i-purchase-azure-support)
 - [月費會涵蓋單一 Azure 方案還是整個帳戶？](#does-the-monthly-rate-cover-a-single-azure-plan-or-the-entire-account)
@@ -84,7 +84,7 @@
 - [期限結束時，該怎麼辦？](#what-happens-at-the-end-of-the-term)
 - [如何取消我的 Azure 支援方案？](#how-do-i-cancel-my-azure-support-plan)
 
-**移轉訂用帳戶、服務和資料**
+## 移轉訂用帳戶、服務和資料
 
 - [如何將我的 Azure 訂用帳戶資料與服務移轉至新的訂用帳戶？](#how-do-i-migrate-data-and-services-for-my-azure-subscription-to-a-new-subscription)
 - [如何移轉我的訂用帳戶的擁有權？](#how-do-i-transfer-ownership-of-my-subscriptions)
@@ -95,7 +95,7 @@
 
 **注意：**
 
-- 一旦您選擇了發票選項，就不能轉為使用信用卡選項。若要註冊開立發票，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
+- 一旦您選擇了發票選項，就不能轉為使用信用卡選項。若要註冊以開立發票，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
 - 請注意我們不接受預付款項和虛擬信用卡。
 - 您是信用卡利息或其他費用的唯一付款人。
 
@@ -105,19 +105,19 @@
 
 ### 如何檢查信用卡付款的狀態？
 
-您必須提交支援票證來要求協助。若要建立支援票證以檢查信用卡付款狀況，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
+您必須提交支援票證來要求協助。若要建立支援票證以檢查信用卡付款狀況，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md)。
 
 ### 如何取得我的發票副本？
 
-身為 Azure 帳戶系統管理員，您可以在 Azure 帳戶中心檢視目前的帳單，並下載過去六個計費週期的明細。如需詳細資訊，請參閱[如何下載您的 Azure 帳單發票和每日使用量資料](billing-download-azure-invoice-daily-usage-date.md)。
+身為 Azure 帳戶系統管理員，您可以在 Azure 帳戶中心檢視目前的帳單，並下載過去六個計費週期的明細。如需詳細資訊，請參閱 [How to download your Azure billing invoice and daily usage data (如何下載您的 Azure 帳單發票和每日使用量資料)](billing-download-azure-invoice-daily-usage-date.md)。
 
 ### 如何移除不再使用於 Azure 付款方式的信用卡？
 
-您必須提交支援票證來要求協助。若要建立支援票證以移除信用卡，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
+您必須提交支援票證來要求協助。若要建立支援票證以移除信用卡，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md)。
 
 ### 如何更新或變更信用卡資訊？
 
-如果您的信用卡換卡，但號碼維持不變，則只要更新現有信用卡的詳細資料即可，例如有效期限。如果您的信用卡號碼已變更，或您想要使用不同的信用卡，便需要新增信用卡。您可以在這裡找到更新或新增信用卡的指示︰[如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)。
+如果您的信用卡換卡，但號碼維持不變，則只要更新現有信用卡的詳細資料即可，例如有效期限。如果您的信用卡號碼已變更，或您想要使用不同的信用卡，便需要新增信用卡。您可以在這裡找到更新或新增信用卡的指示︰[How to change the credit card used to pay for an Azure subscription (如何變更用來支付 Azure 訂用帳戶的信用卡)](billing-how-to-change-credit-card.md)。
 
 ### 我們如何預先知道因維護計劃而停止服務的時間？
 
@@ -125,7 +125,7 @@
 
 **計劃性維護 (傳統入口網站)**：針對單一執行個體和多重執行個體組態，Azure 會預先傳送電子郵件通訊，警告您有關即將到來的計劃性維護 (單一執行個體為提前一週，多個執行個體為提前 48 小時)。這封電子郵件將會傳送到訂用帳戶中提供的帳戶管理員、系統管理員及共同系統管理員電子郵件帳戶。
 
-**注意**：如需虛擬機器的特定詳細資訊，請參閱 [Azure 虛擬機器的計劃性維護](virtual-machines/virtual-machines-linux-planned-maintenance.md)一文。
+**注意：**如需虛擬機器的特定詳細資訊，請參閱 [Planned maintenance for Azure virtual machines (Azure 虛擬機器的計劃性維護)](virtual-machines/virtual-machines-linux-planned-maintenance.md) 一文。
 
 **非計劃性維護：**如果 Azure 平台發生非計劃性服務中斷，我們的[服務儀表板](http://status.azure.com/)上會進行狀態更新，而客戶會同時在 [Azure 傳統入口網站](https://manage.windowsazure.com/)收到通知。
 
@@ -187,11 +187,11 @@ Microsoft Azure 帳戶可從 [Azure 帳戶中心](https://account.windowsazure.c
 
 帳戶擁有者可以登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)，依序選取 [帳戶中心] 及 [訂用帳戶]，藉以取消 Azure 支援方案。若您具有訂用帳戶，便會顯示您的訂用帳戶清單。選取您想要取消的訂用帳戶。接著會在螢幕右方顯示訂用帳戶的詳細資料及選項清單。選取 [取消] 並繼續。若您不具訂用帳戶，則會顯示「您不具任何訂用帳戶」訊息。
 
-請注意，Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如需詳細資訊，請參閱[如何取消 Azure 訂用帳戶](billing-how-to-cancel-azure-subscription.md)。
+請注意，Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如需詳細資訊，請參閱 [How to cancel your Azure subscription (如何取消 Azure 訂用帳戶)](billing-how-to-cancel-azure-subscription.md)。
 
 ### 如何將我的 Azure 訂用帳戶資料與服務移轉至新的訂用帳戶？
 
-如需詳細資訊，請連絡 [Azure 支援服務](https://azure.microsoft.com/support/options/)。若要建立支援票證以將 Azure 訂用帳戶的資料及服務移轉到新的訂用帳戶，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)一文。
+如需詳細資訊，請連絡 [Azure 支援服務](https://azure.microsoft.com/support/options/)。若要建立支援票證以將 Azure 訂用帳戶的資料及服務移轉到新的訂用帳戶，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md) 一文。
 
 ### 如何在新的 Azure 入口網站中管理系統管理員帳戶？
 
@@ -217,7 +217,7 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 
 是。如果您想要指定不同的電子郵件地址來接收通知，請遵循下列指示：
 
-1.	移至 Azure 帳戶入口網站中的 [[設定檔] 索引標籤](https://account.windowsazure.com/Profile)。
+1.	移至 Azure 帳戶入口網站中的 [設定檔] 索引標籤[](https://account.windowsazure.com/Profile)。
 2.	按一下 [編輯詳細資料] 更新您的電子郵件地址以接收通知。
 
 ### 我要如何編輯 Azure 訂用帳戶的付費資訊？
@@ -226,20 +226,20 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 
 1.	移至 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
 2.	在訂用帳戶頁面上，按一下您想要加以更新付款方式的訂用帳戶。
-3.	在 [訂用帳戶] 摘要頁面上，按一下 [變更付款方式]。[變更付款方式] 工具隨即在另一個視窗中顯示。
+3.	在 [訂用帳戶] 摘要頁面上，按一下 [變更付款方式]。[變更付款方式] 工具就會在另一個視窗中顯示。
 
 **注意**：您也可以從 Microsoft Azure 傳統入口網站存取帳戶中心。若要這麼做，請依序按一下帳戶名稱以及 [檢視我的帳單]。
 4.	在 [選擇付款方式] 頁面上，按一下下拉式清單，選取要更新的付款方式，然後按一下 [編輯]。
 5.	在詳細資料頁面上，確認您已選取正確的信用卡類型及卡號。
 6.	視需要變更信用卡詳細資料，然後按一下 [下一步]。
 
-如需詳細資訊，請參閱[如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)一文。
+如需詳細資訊，請參閱 [How to change the credit card used to pay for an Azure subscription (如何變更用來支付 Azure 訂用帳戶的信用卡)](billing-how-to-change-credit-card.md) 一文。
 
 **注意**：目前 [變更付款方式] 工具不允許您移除現有作為付款方式的信用卡。如需如何移除信用卡方式的相關資訊，請參閱本文章中常見問題集的「移除不再作為 Azure 付款方式使用的信用卡」。
 
 ### 為什麼我無法編輯或新增詳細資料到我的訂用帳戶中
 
-若要檢視及編輯 Azure 帳戶資訊，您必須以帳戶管理員的身分登入 Azure 帳戶中心。如果您是帳戶管理員，且仍無法編輯訂用帳戶，請提交支援票證以要求協助。若要建立支援票證，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)一文。
+若要檢視及編輯 Azure 帳戶資訊，您必須以帳戶管理員的身分登入 Azure 帳戶中心。如果您是帳戶管理員，且仍無法編輯訂用帳戶，請提交支援票證以要求協助。若要建立支援票證，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md) 一文。
 
 ### 誰可以購買 Azure 服務？
 
@@ -247,7 +247,7 @@ Azure 原本是要供企業用來建置雲端規模的應用程式與服務。�
 
 ### 我可以免費試用 Azure，不需擔心收費問題嗎？
 
-是。我們的[消費限制功能](https://azure.microsoft.com/pricing/spending-limits/)，可讓註冊免費試用、MSDN、MPN 或 BizSpark 優惠的客戶使用 Azure 時，只要持續開啟「消費限制」功能，就不用擔心會收費。如需註冊 Azure 的詳細資訊，請參閱[如何註冊、購買、升級或啟動 Azure 訂用帳戶](billing-buy-sign-up-azure-subscription.md)一文。
+是。我們的[消費限制功能](https://azure.microsoft.com/pricing/spending-limits/)，可讓註冊免費試用、MSDN、MPN 或 BizSpark 優惠的客戶在使用 Azure 時，只要持續開啟「消費限制」功能，就不用擔心會收費。如需註冊 Azure 的詳細資訊，請參閱 [How to sign up for, purchase, upgrade or activate an Azure subscription (如何註冊、購買、升級或啟動 Azure 訂用帳戶)](billing-buy-sign-up-azure-subscription.md) 一文。
 
 ### 如果我關閉「消費限制」功能，還能再重新開啟嗎？
 
@@ -277,7 +277,7 @@ Azure 試用訂用帳戶可給予您信用額度，讓您根據您的需要使�
 
 ### 使用免費試用帳戶時有哪些資源可用？
 
-在免費試用的同時，您也會收到 200 美元的 Azure 信用額度。您現在可以自行選擇如何運用 Azure 點數。如需詳細資訊，請參閱[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)。
+在免費試用的同時，您也會收到 200 美元的 Azure 信用額度。您現在可以自行選擇如何運用 Azure 點數。如需詳細資料，請參閱[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)。
 
 ### 如果我在我的免費試用中移除消費限制，會發生什麼事？
 
@@ -286,4 +286,4 @@ Azure 試用訂用帳戶可給予您信用額度，讓您根據您的需要使�
 ### 哪裡可以取得更多關於免費試用的詳細資料？
 請瀏覽[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)和閱讀[官方的免費試用常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

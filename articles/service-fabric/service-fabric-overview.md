@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/24/2016"
+   ms.date="07/05/2016"
    ms.author="mfussell"/>
 
 # Service Fabric 概觀
@@ -41,7 +41,7 @@ Service Fabric 為由微服務組成的應用程式，提供完整的執行階�
 ## 隨處建立 Service Fabric 叢集
 您可以在許多要部署應用程式的環境中建立 Service Fabric 叢集。可以是在 Azure 或內部部署中，Windows Server 或 Linux 上。此外，SDK 中的開發環境等同於沒有涉及模擬器的生產環境。換句話說，如果在本機開發叢集上執行，它會部署到其他環境中的相同叢集。
 
-如需詳細資訊，請參閱[使用 Service Fabric 在 Windows Server 或 Linux 上隨處部署](service-fabric-deploy-anywhere.md)
+如需建立叢集內部部署的詳細資訊，請參閱[在 Windows Server 或 Linux 上建立叢集](service-fabric-deploy-anywhere.md)，或者[透過 Azure 入口網站](service-fabric-cluster-creation-via-portal.md)針對 Azure 建立叢集。
 
 ![Service Fabric 平台][Image1]
 
@@ -105,9 +105,9 @@ Service Fabric ALM 功能讓應用程式管理員/IT 操作員能夠使用簡單
 * 其他資訊：
     * [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
     * [術語概觀](service-fabric-technical-overview.md)
-* 設定 Service Fabric [開發環境](service-fabric-get-started.md)  
+* 設定 Service Fabric [開發環境](service-fabric-get-started.md)
 * 為您的服務[選擇程式設計模型架構](service-fabric-choose-framework.md)
 
 [Image1]: media/service-fabric-overview/Service-Fabric-Overview.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

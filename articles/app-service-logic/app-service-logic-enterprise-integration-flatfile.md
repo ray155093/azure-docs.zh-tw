@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="企業整合套件概觀 | Microsoft Azure App Service" 
-	description="利用企業整合套件的功能，使用 Microsoft Azure App service 啟用商務程序和整合案例" 
+	pageTitle="了解如何使用企業整合套件與 Logic Apps 編碼或解碼一般檔案 |Microsoft Azure App Service |Microsoft Azure" 
+	description="使用企業整合套件與 Logic Apps 的功能編碼或解碼一般檔案" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/30/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 具備一般檔案的企業整合
@@ -65,4 +65,4 @@
 ## 詳細資訊
 - [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

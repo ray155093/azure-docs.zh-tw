@@ -1,22 +1,25 @@
-<properties 
-	pageTitle="取得深入了解：Azure AD 密碼管理報告 |Microsoft Azure" 
-	description="本文說明如何使用報告，在您的組織中取得密碼管理作業的深入了解。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="取得深入了解：Azure AD 密碼管理報告 |Microsoft Azure"
+	description="本文說明如何使用報告，在您的組織中取得密碼管理作業的深入了解。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 如何使用密碼管理報告取得 Operational Insights
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
 本章節描述如何使用 Azure Active Directory 的密碼管理報告，來檢視使用者如何使用密碼重設及您的組織中的變更。
 
 - [**密碼管理報告概觀**](#overview-of-password-management-reports)
@@ -156,7 +159,7 @@
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -171,4 +174,4 @@
 [002]: ./media/active-directory-passwords-get-insights/002.jpg "Image_002.jpg"
 [003]: ./media/active-directory-passwords-get-insights/003.jpg "Image_003.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0713_2016-->

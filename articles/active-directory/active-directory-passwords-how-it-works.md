@@ -1,22 +1,25 @@
-<properties 
-	pageTitle="它的運作方式：Azure AD 密碼管理 | Microsoft Azure" 
-	description="了解 Azure AD 密碼管理的不同元件，包括使用者註冊、重設及變更其密碼的位置，以及系統管理員設定、報告及啟用內部部署 Active Directory 密碼管理的位置。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="它的運作方式：Azure AD 密碼管理 | Microsoft Azure"
+	description="了解 Azure AD 密碼管理的不同元件，包括使用者註冊、重設及變更其密碼的位置，以及系統管理員設定、報告及啟用內部部署 Active Directory 密碼管理的位置。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 密碼管理如何運作
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
 Azure Active Directory 中的密碼管理是由以下所述的數個邏輯元件所組成。按一下每個連結以深入了解該元件。
 
 - [**密碼管理組態入口網站**](#password-management-configuration-portal) – 系統管理員可以控制如何在其租用戶中管理密碼的方式的不同面向，方法瀏覽至 [Azure 管理入口網站](https://manage.windowsazure.com)中其目錄的 [設定] 索引標籤。
@@ -102,7 +105,7 @@ Azure Active Directory 中的密碼管理是由以下所述的數個邏輯元件
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
 * [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
@@ -121,4 +124,4 @@ Azure Active Directory 中的密碼管理是由以下所述的數個邏輯元件
 [006]: ./media/active-directory-passwords-how-it-works/006.jpg "Image_006.jpg"
 [007]: ./media/active-directory-passwords-how-it-works/007.jpg "Image_007.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0713_2016-->
