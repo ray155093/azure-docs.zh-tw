@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure 媒體分析偵測動作"
+	pageTitle="使用 Azure 媒體分析偵測動作 | Microsoft Azure"
 	description="「Azure 媒體動作偵測器」媒體處理器 (MP) 能讓您在冗長且平淡的影片中，有效識別出感興趣的區段。"
 	services="media-services"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016"  
+	ms.date="07/11/2016"  
 	ms.author="milanga;juliako;"/>
  
 # 使用 Azure 媒體分析偵測動作
@@ -28,29 +28,74 @@
 
 本主題提供有關 **Azure 媒體動作偵測器**的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
 
+
 ##動作偵測器輸入檔案
 
 影片檔案。目前支援下列格式：MP4、MOV 及 WMV。
+
+##工作組態 (預設)
+
+以 **Azure 媒體動作偵測器**建立工作時，您必須指定設定預設值。
+
+###參數
+
+您可以使用以下參數：
+
+名稱|選項|說明|預設值
+---|---|---|---
+sensitivityLevel|字串：'low'、'medium'、'high'|設定要報告哪些動作的敏感度等級。調整該項目可調整誤判的數量。|'medium'
+frameSamplingValue|正整數|設定演算法的執行頻率。1 等於每個畫面，2 表示每 2 個畫面，依此類推。|1
+detectLightChange|布林值：'true'、'false'|設定是否要在結果中報告光源變化|'False'
+mergeTimeThreshold|Xs-time: Hh:mm:ss<br/>範例：00:00:03|指定要將 2 個事件合併及回報為 1 個事件的動作事件時間間隔。|00:00:00
+detectionZones|偵測區域的陣列︰<br/>- 偵測區域是由 3 個點或更多點組成的陣列<br/>- 點是介於 0 到 1 之間的 x 和 y 座標。|描述要使用的多邊形偵測區域。<br/>回報的結果會將區域視為 ID，第一個 ID 是 'id':0|涵蓋整個畫面的單一區域。
+
+###JSON 範例
+
+	
+	{
+	  'version': '1.0',
+	  'options': {
+	    'sensitivityLevel': 'medium',
+	    'frameSamplingValue': 1,
+	    'detectLightChange': 'False',
+	    "mergeTimeThreshold":
+	    '00:00:02',
+	    'detectionZones': [
+	      [
+	        {'x': 0, 'y': 0},
+	        {'x': 0.5, 'y': 0},
+	        {'x': 0, 'y': 1}
+	       ],
+	      [
+	        {'x': 0.3, 'y': 0.3},
+	        {'x': 0.55, 'y': 0.3},
+	        {'x': 0.8, 'y': 0.3},
+	        {'x': 0.8, 'y': 0.55},
+	        {'x': 0.8, 'y': 0.8},
+	        {'x': 0.55, 'y': 0.8},
+	        {'x': 0.3, 'y': 0.8},
+	        {'x': 0.3, 'y': 0.55}
+	      ]
+	    ]
+	  }
+	}
+
 
 ##動作偵測器輸出檔案
 
 動作偵測工作會在輸出資產中傳回 JSON 檔案，該檔案會在影片中描述動作警示及類別。檔案將包含在影片中所偵測到動作之時間和持續時間的資訊。
 
-目前動作偵測僅支援一般動作類別，此類別在輸出中被稱為 ***type 2***。
-
-X 和 Y 座標和大小將會以介於 0.0 和 1.0 之間的標準化浮點數列出。將此數值乘以影片的高度和寬度解析度，來取得已偵測到動作之區域的週框方塊。
-
-每個輸出都會被分割成片段，並再細分成間隔，以定義影片中的資料。片段長度並不需要相等。在沒有偵測到任何動作的情況下，長度可能會變得非常長。
-
 動作偵測器 API 會在物件於固定背景的影片 (例如監視影片) 中移動時提供指示器。動作偵測器已針對降低誤判 (例如光源和陰影變化) 進行調整。目前演算法的限制包括夜視影片、半透明物件及小型物件。
 
 ###<a id="output_elements"></a>輸出 JSON 檔案的元素
+
+>[AZURE.NOTE]在最新版本中，輸出 JSON 格式已變更，而且對某些客戶來說可能代表著重大變更。
 
 下表說明輸出 JSON 的元素。
 
 元素|說明
 ---|---
-版本|這是指影片 API 的版本。
+版本|這是指影片 API 的版本。目前版本為 2。
 時幅|影片每秒的「刻度」數目。
 Offset|時間戳記的時間位移 (以「刻度」為單位)。在版本 1.0 的影片 API 中，這永遠會是 0。在我們於未來將支援的案例中，此值可能會變更。
 畫面播放速率|影片的每秒畫面格數。
@@ -61,98 +106,56 @@ Offset|時間戳記的時間位移 (以「刻度」為單位)。在版本 1.0 �
 事件|每個事件片段皆包含在該持續期間內所偵測到的動作。
 類型|在目前的版本中，針對一般動作，這永遠會是「2」。此標籤可讓影片 API 在未來的版本中能夠彈性地為動作進行分類。
 RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓影片 API 在未來的版本中能夠彈性地在各個區域中尋找動作。
-區域|指的是影片中您會關心其中所發生之動作的區塊。在目前版本的影片 API 中，您並無法指定區域，影片的整個表面都是要進行偵測的動作區域。<br/>-識別碼代表區域 – 此版本中只有一個，亦即識別碼 0。<br/>-矩形代表您會關心其中所發生之動作的區域形狀。在此版本中，它永遠會是矩形。 <br/>- 區域擁有以 X、Y、寬度及高度表示的維度。X 和 Y 座標代表以標準化縮放 (0.0 到 1.0) 顯示之區域左上角的 XY 座標。寬度和高度代表以標準化縮放 (0.0 到 1.0) 顯示之區域的大小。在目前的版本中，X、Y、寬度及高度永遠會被固定在 0，0 和 1，1。<br/>-片段。中繼資料會被分成稱為「片段」的不同區段。每個片段皆包含開始、持續時間、間隔數字及事件。沒有事件的片段，代表在該片段的開始時間和持續時間之間沒有偵測到任何動作。
+區域|指的是影片中您會關心發生動作的區塊。<br/><br/>-"id" 代表區域 – 此版本中只有一個，亦即 ID 0。<br/>-"type" 代表您會關心發生動作之區域的形狀。目前支援「矩形」和「多邊形」。<br/> 如果您指定「矩形」，區域的維度將以 X、Y、寬度及高度表示。X 和 Y 座標代表以標準化縮放 (0.0 到 1.0) 顯示之區域左上角的 XY 座標。寬度和高度代表以標準化縮放 (0.0 到 1.0) 顯示之區域的大小。在目前版本中，X、Y、寬度和高度一律固定為 0, 0 和 1, 1。<br/>如果您指定「多邊形」，區域的維度將以點表示。<br/>
+片段|中繼資料會被分成稱為「片段」的不同區段。每個片段皆包含開始、持續時間、間隔數字及事件。沒有事件的片段，代表在該片段的開始時間和持續時間之間沒有偵測到任何動作。
 括號|每個括號皆代表事件中的單一間隔。如果間隔顯示空白括號，便代表沒有偵測到動作。
- 
+位置|這是位在事件下的新項目，它能列出動作的發生位置。它比偵測區域更明確。
 
-##工作設定 (預設)
-
-以 **Azure 媒體動作偵測器**建立工作時，您必須指定設定預設值。目前您沒辦法在 Azure 媒體動作偵測器設定預設值中設定任何選項。下列為您必須提供的最低設定預設值。
-
-	{"version":"1.0"}
-
-##範例影片和動作偵測器輸出
-
-###具有實際動作的範例
-
-[具有實際動作的範例](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fd54876c6-89a5-41de-b1f4-f45b6e10a94f%2FGarage.ism%2Fmanifest)
-
-###JSON 輸出
-
-	 {
-	 "version": "1.0",
-	 "timescale": 60000,
-	 "offset": 0,
-	 "framerate": 30,
-	 "width": 1920,
-	 "height": 1080,
-	 "regions": [
-	   {
-	     "id": 0,
-	     "type": "rectangle",
-	     "x": 0,
-	     "y": 0,
-	     "width": 1,
-	     "height": 1
-	   }
-	 ],
-	 "fragments": [
-	   {
-	     "start": 0,
-	     "duration": 68510
-	   },
-	   {
-	     "start": 68510,
-	     "duration": 969999,
-	     "interval": 969999,
-	     "events": [
-	       [
-	         {
-	           "type": 2,
-	           "regionId": 0
-	         }
-	       ]
-	     ]
-	   },
-	   {
-	     "start": 1038509,
-	     "duration": 41489
-	   }
-	 ]
-	}
-
-###具有誤判的範例
-
-[具有誤判的範例 (光源變化)：](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Ffdc6656b-1c10-4f3f-aa7c-07ba073c1615%2FLivingRoomLight.ism%2Fmanifest&tech=flash)
-
-###JSON 輸出
+以下是 JSON 輸出範例
 
 	{
-	    "version": "1.0",
-	    "timescale": 30000,
-	    "offset": 0,
-	    "framerate": 29.97,
-	    "width": 1920,
-	    "height": 1080,
-	    "regions": [
+	  "version": 2,
+	  "timescale": 23976,
+	  "offset": 0,
+	  "framerate": 24,
+	  "width": 1280,
+	  "height": 720,
+	  "regions": [
 	    {
-	        "id": 0,
-	        "type": "rectangle",
-	        "x": 0,
-	        "y": 0,
-	        "width": 1,
-	        "height": 1
+	      "id": 0,
+	      "type": "polygon",
+	      "points": [{'x': 0, 'y': 0},
+	        {'x': 0.5, 'y': 0},
+	        {'x': 0, 'y': 1}]
 	    }
-	    ],
-	    "fragments": [
+	  ],
+	  "fragments": [
 	    {
-	        "start": 0,
-	        "duration": 320320
-	    }
-	    ]
-	}
-
-
+	      "start": 0,
+	      "duration": 226765
+	    },
+	    {
+	      "start": 226765,
+	      "duration": 47952,
+	      "interval": 999,
+	      "events": [
+	        [
+	          {
+	            "type": 2,
+	            "typeName": "motion",
+	            "locations": [
+	              {
+	                "x": 0.004184,
+	                "y": 0.007463,
+	                "width": 0.991667,
+	                "height": 0.985185
+	              }
+	            ],
+	            "regionId": 0
+	          }
+	        ],
+	
+	…
 ##限制
 
 - 支援的輸入影片格式包括 MP4、MOV 及 WMV。
@@ -168,7 +171,31 @@ RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓
 1. 根據包含下列 JSON 預設值的設定檔案，建立執行影片動作偵測工作的工作。
 					
 		{
-		    "version": "1.0"
+		  'Version': '1.0',
+		  'Options': {
+		    'SensitivityLevel': 'medium',
+		    'FrameSamplingValue': 1,
+		    'DetectLightChange': 'False',
+		    "MergeTimeThreshold":
+		    '00:00:02',
+		    'DetectionZones': [
+		      [
+		        {'x': 0, 'y': 0},
+		        {'x': 0.5, 'y': 0},
+		        {'x': 0, 'y': 1}
+		       ],
+		      [
+		        {'x': 0.3, 'y': 0.3},
+		        {'x': 0.55, 'y': 0.3},
+		        {'x': 0.8, 'y': 0.3},
+		        {'x': 0.8, 'y': 0.55},
+		        {'x': 0.8, 'y': 0.8},
+		        {'x': 0.55, 'y': 0.8},
+		        {'x': 0.3, 'y': 0.8},
+		        {'x': 0.3, 'y': 0.55}
+		      ]
+		    ]
+		  }
 		}
 
 1. 下載輸出 JSON 檔案。
@@ -346,9 +373,10 @@ RegionID|如前文所述，這在此版本中將永遠會是 0。此標籤可讓
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ##相關連結
+[Azure 媒體服務動作偵測器部落格](https://azure.microsoft.com/blog/motion-detector-update/)
 
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

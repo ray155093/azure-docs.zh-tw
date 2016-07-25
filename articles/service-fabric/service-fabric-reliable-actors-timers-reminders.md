@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 
@@ -107,7 +107,7 @@ public class ToDoListActor : Actor, IToDoListActor, IRemindable
 
 當觸發提醒時，Reliable Actors 執行階段將會叫用動作項目上的 `ReceiveReminderAsync` 方法。一個動作項目可以註冊多個提醒，而每當觸發這些提醒中的任一個時，便會叫用 `ReceiveReminderAsync` 方法。動作項目可以使用傳遞至 `ReceiveReminderAsync` 方法的提醒名稱，以找出已觸發的提醒。
 
-當 `ReceiveReminderAsync` 呼叫完成時，動作項目執行階段會儲存動作項目狀態。如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。若要指定不需在提醒回呼完成時儲存的狀態，呼叫 `RegisterReminder` 方法建立提醒時，`ActorReminderAttributes.ReadOnly` 旗標可以在 `attributes` 參數中設定。
+當 `ReceiveReminderAsync` 呼叫完成時，動作項目執行階段會儲存動作項目狀態。如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
 
 若要取消註冊提醒，動作項目要呼叫 `UnregisterReminder` 方法，如下列範例所示。
 
@@ -125,4 +125,4 @@ Task reminderUnregistration = UnregisterReminder(reminder);
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
  - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

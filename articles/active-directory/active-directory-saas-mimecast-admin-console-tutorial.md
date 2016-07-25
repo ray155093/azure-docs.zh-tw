@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/08/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Mimecast Admin Console 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 Mimecast Admin Console 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-mimecast-admin-console-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -68,7 +68,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Mimecast Admin Console] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Mimecast Admin Console] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795011.png "設定單一登入")
 
@@ -78,7 +78,7 @@
 
 3.  在 [設定應用程式 URL] 頁面的 [Mimecast Admin Console 登入 URL] 文字方塊中，輸入使用者登入您的 Mimecast Admin Console 應用程式所使用的 URL (如：“https://webmail-uk.mimecast.com” 或 “https://webmail-us.mimecast.com”)，然後按一下 [下一步]。
 
-    >[AZURE.NOTE]登入 URL 是地區特定的 URL。
+    >[AZURE.NOTE] 登入 URL 是地區特定的 URL。
 
     ![設定應用程式 URL](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795013.png "設定應用程式 URL")
 
@@ -107,9 +107,9 @@
     1.  在 [描述] 文字方塊中，輸入您的組態名稱。
     2.  選取 [強制執行 Mimecast Admin Console 的 SAML 驗證]。
     3.  在 [提供者] 中選取 [Azure Active Directory]。
-    4.  在 Azure 入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [簽發者 URL] 文字方塊中。
-    5.  在 Azure 入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登入 URL] 文字方塊中。
-    6.  在 Azure 入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登出 URL] 文字方塊中。  
+    4.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [簽發者 URL] 文字方塊中。
+    5.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登入 URL] 文字方塊中。
+    6.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登出 URL] 文字方塊中。
 
         >[AZURE.NOTE]Mimecast Admin Console 的登入 URL 值與登出 URL 值是相同的。
 
@@ -117,11 +117,11 @@
 
         >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-    8.  在記事本中開啟您的 base-64 編碼的憑證，移除第一行 (“*--“) 與最後一行 (“--*“)，將它的其餘內容複製到您的剪貼簿，然後貼到 [識別提供者憑證 (中繼資料)] 文字方塊中。
+    8.  在記事本中開啟您的 base-64 編碼的憑證，移除第一行 (“*--*“) 與最後一行 (“*--*“)，將它的其餘內容複製到您的剪貼簿，然後貼到 [識別提供者憑證 (中繼資料)] 文字方塊中。
     9.  選取 [允許單一登入]。
     10. 按一下 [儲存]。
 
-10. 在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795016.png "設定單一登入")
 ##設定使用者佈建
@@ -161,7 +161,7 @@
 
 ###若要指派使用者給 Mimecast Admin Console，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Mimecast Admin Console] 應用程式整合頁面中，按一下 [指派使用者]。
 
@@ -171,6 +171,6 @@
 
     ![是](./media/active-directory-saas-mimecast-admin-console-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

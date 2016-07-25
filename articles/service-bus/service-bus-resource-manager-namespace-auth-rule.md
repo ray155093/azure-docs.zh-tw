@@ -13,12 +13,12 @@
     ms.topic="article"
     ms.tgt_pltfrm="dotnet"
     ms.workload="na"
-    ms.date="04/15/2016"
+    ms.date="07/11/2016"
     ms.author="sethm;shvija"/>
 
 # 使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
 
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列的授權規則。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列的[授權規則](service-bus-authentication-and-authorization.md#shared-access-signature-authentication)。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][]。
 
@@ -31,13 +31,13 @@
 >-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 >-    [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 >
->若要檢查最新的範本，請參閱 [Azure 快速入門範本][]並搜尋服務匯流排。
+>若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋服務匯流排。
 
 ## 您將部署什麼？
 
 使用此範本，您將部署命名空間和訊息實體 (在此情況下為佇列) 的服務匯流排授權規則。
 
-此範本使用共用存取簽章 (SAS) 進行驗證。SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
+此範本使用[共用存取簽章 (SAS)](service-bus-sas-overview.md) 進行驗證。SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
 
 若要自動執行部署，請按一下下列按鈕：
 
@@ -47,7 +47,7 @@
 
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。此範本有一個 `Parameters` 區段，內含所有參數值。您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。請不要為永遠保持不變的值定義參數。每個參數值都可在範本中用來定義所部署的資源。
 
-我們將說明範本中的每個參數。
+範本會定義下列參數。
 
 ### serviceBusNamespaceName
 
@@ -172,9 +172,9 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
 - [服務匯流排驗證和授權](service-bus-authentication-and-authorization.md)
 
   [編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
-  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/
+  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
   [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [服務匯流排授權規則範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/301-servicebus-create-authrule-namespace-and-queue/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

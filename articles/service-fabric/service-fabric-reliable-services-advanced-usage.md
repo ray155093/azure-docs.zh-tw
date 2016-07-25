@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 可靠服務程式設計模型的進階用法
@@ -42,7 +42,7 @@ Azure Service Fabric 可簡化撰寫和管理可靠的無狀態與具狀態服�
 
 具狀態服務複本的生命週期比無狀態服務執行個體更為複雜。除了開啟、關閉和中止事件，具狀態服務複本會在其生命週期內經歷角色變更。當具狀態服務複本變更角色時，會觸發 `OnChangeRoleAsync` 事件︰
 
-- 具狀態服務變更角色 (例如變更為主要或次要角色) 時，會呼叫 `Task OnChangeRoleAsync(ReplicaRole, CancellationToken)` OnChangeRoleAsync。主要複本會獲得寫入狀態 (可建立並寫入可靠的集合)。次要複本則會獲得讀取狀態 (只能從現有的可靠集合讀取)。您可以啟動或更新背景作業以回應角色變更，例如在次要複本上執行唯讀驗證、產生報告或資料採礦。
+- 具狀態服務複本變更角色 (例如變更為主要或次要角色) 時，會呼叫 `Task OnChangeRoleAsync(ReplicaRole, CancellationToken)` OnChangeRoleAsync。主要複本會獲得寫入狀態 (可建立並寫入可靠的集合)。次要複本則會獲得讀取狀態 (只能從現有的可靠集合讀取)。具狀態服務中的大部分工作會在主要複本執行。次要複本可以執行唯讀驗證、產生報表、資料採礦或其他唯讀作業。
 
 在具狀態服務中，只有主要複本具有狀態的寫入權限，因此通常在服務正在執行實際工作時。只有在具狀態服務複本為主要複本時，才會執行具狀態服務中的 `RunAsync` 方法。主要複本的角色變成非主要時，以及在關閉和中止事件期間會取消 `RunAsync` 方法。
 
@@ -67,4 +67,4 @@ Azure Service Fabric 可簡化撰寫和管理可靠的無狀態與具狀態服�
 
 - [使用 Service Fabric 叢集資源管理員設定服務](service-fabric-cluster-resource-manager-configure-services.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

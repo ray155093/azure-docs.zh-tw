@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="企業整合套件的對應概觀 | Microsoft Azure App Service" 
+	pageTitle="企業整合套件的對應概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用對應搭配企業整合套件與 Logic Apps" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 了解對應與企業整合套件
@@ -47,15 +47,15 @@
 4. 選取您想要上傳的對應檔案，方法是使用開啟的檔案選擇器對話方塊，然後在檔案選擇器中選取 [開啟] ![](./media/app-service-logic-enterprise-integration-maps/edit-2.png)
 5. 上傳對應之後，您將會收到通知快顯視窗。
 
-
 ## 如何刪除對應？
 1. 選取 [對應] 圖格
 2. 開啟 [對應] 刀鋒視窗時，選取您想要刪除的對應
 3. 選取 [刪除] 連結 ![](./media/app-service-logic-enterprise-integration-maps/delete.png)
 4. 確認您真的想要刪除對應。![](./media/app-service-logic-enterprise-integration-maps/delete-confirmation-1.png)
 
-
 ## 後續步驟
+- [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
+- [深入了解轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合轉換")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

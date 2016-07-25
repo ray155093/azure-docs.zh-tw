@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 開始使用 Service Fabric Reliable Services
@@ -24,7 +24,7 @@ Azure Service Fabric 應用程式包含一個或多個執行您的程式碼的�
 
 無狀態服務是目前在雲端應用程式中做為基準的服務類型。服務會視為無狀態，因為服務本身不包含需要可靠地儲存或設為高度可用的資料。如果無狀態服務的執行個體關閉，其所有內部狀態都會遺失。在此類型的服務中，狀態必須保存到外部存放區，例如 Azure 資料表或 SQL 資料庫中，才能成為高度可用且可靠。
 
-以管理員身分啟動 Visual Studio 2015 RC，並建立新的 Service Fabric 應用程式專案，命名為 *HelloWorld*：
+以管理員身分啟動 Visual Studio 2015，並建立新的 Service Fabric 應用程式專案，命名為 HelloWorld：
 
 ![使用新增專案對話方塊來建立新的 Service Fabric 應用程式](media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject.png)
 
@@ -70,7 +70,7 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 ```csharp
 protected override async Task RunAsync(CancellationToken cancellationToken)
 {
-    // TODO: Replace the following sample code with your own logic 
+    // TODO: Replace the following sample code with your own logic
     //       or remove this RunAsync override if it's not needed in your service.
 
     long iterations = 0;
@@ -122,7 +122,7 @@ Service Fabric 導入了一種可設定狀態的新服務。具狀態服務能�
 ```csharp
 protected override async Task RunAsync(CancellationToken cancellationToken)
 {
-    // TODO: Replace the following sample code with your own logic 
+    // TODO: Replace the following sample code with your own logic
     //       or remove this RunAsync override if it's not needed in your service.
 
     var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
@@ -140,7 +140,7 @@ protected override async Task RunAsync(CancellationToken cancellationToken)
 
             await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
 
-            // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
+            // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are
             // discarded, and nothing is saved to the secondary replicas.
             await tx.CommitAsync();
         }
@@ -159,7 +159,7 @@ protected override async Task RunAsync(CancellationToken cancellationToken)
 var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
 ```
 
-IReliableDictionary 是一個字典實作，您可以在服務中可靠地儲存狀態。有了 Service Fabric 和可靠的集合，您可以直接在服務中儲存資料，而不需要外部的持續性存放區。可靠的集合可讓您的資料具備高可用性。Service Fabric 會藉由為您建立與管理服務的多個複本來完成此作業。它也提供 API 讓管理這些複本和其狀態轉換的複雜性抽象化。
+[IReliableDictionary](https://msdn.microsoft.com/library/dn971511.aspx) 是一個字典實作，您可以在服務中可靠地儲存狀態。有了 Service Fabric 和可靠的集合，您可以直接在服務中儲存資料，而不需要外部的持續性存放區。可靠的集合可讓您的資料具備高可用性。Service Fabric 會藉由為您建立與管理服務的多個複本來完成此作業。它也提供 API 讓管理這些複本和其狀態轉換的複雜性抽象化。
 
 可靠的集合可以儲存任何 .NET 類型 (包括您的自訂類型)，不過有幾個需要注意的事項：
 
@@ -186,7 +186,7 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 
 可靠的集合與其 `System.Collections.Generic` 和 `System.Collections.Concurrent` 對應項目具有許多相同的作業 (LINQ 除外)。可靠的集合上的作業是非同步的。這是因為具備可靠集合的寫入作業執行 I/O 作業以將資料複寫並保存至磁碟。
 
-可靠的集合作業為交易式作業，因此您可以在多個可靠的集合和作業之間維持狀態的一致。比方說，您可能會從可靠佇列取出一個工作項目、對它執行作業，然後將結果儲存在可靠字典中，全都在單一交易中完成。這會被視為不可部分完成的作業，而且它可保證整個作業都會成功，或整個作業都會回復。如果您從佇列取消項目之後，但在您儲存結果之前發生錯誤，那麼會回復整個交易，且項目會保持在佇列中進行處理。
+可靠的集合作業為「交易式」作業，因此您可以在多個可靠的集合和作業之間維持狀態的一致。比方說，您可能會從可靠佇列取出一個工作項目、對它執行作業，然後將結果儲存在可靠字典中，全都在單一交易中完成。這會被視為不可部分完成的作業，而且它可保證整個作業都會成功，或整個作業都會回復。如果您從佇列取消項目之後，但在您儲存結果之前發生錯誤，那麼會回復整個交易，且項目會保持在佇列中進行處理。
 
 ## 執行應用程式
 
@@ -213,4 +213,4 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 
 [Reliable Services 的開發人員參考資料](https://msdn.microsoft.com/library/azure/dn706529.aspx)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

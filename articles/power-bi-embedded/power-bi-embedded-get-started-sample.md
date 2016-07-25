@@ -1,5 +1,5 @@
 <properties
-   pageTitle="開始使用範例"
+   pageTitle="以範例作為起始"
    description="對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
    services="power-bi-embedded"
    documentationCenter=""
@@ -13,24 +13,26 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="06/28/2016"
+   ms.date="07/05/2016"
    ms.author="owend"/>
 
-# 開始使用 Microsoft Power BI Embedded 範例
+# 開始使用 Power BI Embedded 範例
 
-透過 **Microsoft Power BI Embedded 預覽**，您可以將 Power BI 報表整合到 Web 或行動應用程式中，就不需要建立自訂解決方案來為使用者將資料視覺化。下列資源可協助您開始將 Power BI 報表整合到您的應用程式中。
+運用 **Microsoft Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。在本文中，會向您介紹 **Power BI Embedded** 開始使用範例。
+
+在我們繼續之前，您可能想要儲存下列資源。它們會協助您將 Power BI 報告整合至範例應用程式和您自己的應用程式。
 
  -	[範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
  -	[Power BI Embedded API 參考](https://msdn.microsoft.com/library/mt711493.aspx)
- -	[Power BI Embedded .NET SDK (透過 NuGet 提供)](http://go.microsoft.com/fwlink/?LinkId=746472)
+ -	[Power BI Embedded .NET SDK](http://go.microsoft.com/fwlink/?LinkId=746472) (透過 NuGet 提供)
 
-在本文中，會向您介紹 **Power BI Embedded** 開始使用範例。讓我們開始設定範例應用程式，您就可以執行範例 Web 應用程式。
 
-> [AZURE.NOTE] 在您可以設定及執行 Power BI Embedded 開始使用範例之前，您需要在您的 Azure 訂用帳戶中至少建立一個**工作區集合**。若要了解如何在 Azure 入口網站中建立**工作區集合**，請參閱[開始使用 Power BI Embedded 預覽](power-bi-embedded-get-started.md)。
+
+> [AZURE.NOTE] 在您可以設定及執行 Power BI Embedded 開始使用範例之前，您需要在您的 Azure 訂用帳戶中至少建立一個**工作區集合**。若要了解如何在 Azure 入口網站中建立**工作區集合**，請參閱[開始使用 Power BI Embedded](power-bi-embedded-get-started.md)。
 
 ## 設定範例應用程式
 
-以下將逐步引導您設定 Visual Studio 開發環境，以存取執行範例應用程式時所需的 Preview 元件。
+讓我們逐步引導您設定 Visual Studio 開發環境，以存取執行範例應用程式時所需的元件。
 
 1. 下載並解壓縮 GitHub 上的[Power BI Embedded - 將報表整合到 Web 應用程式中](http://go.microsoft.com/fwlink/?LinkId=761493)範例。
 
@@ -40,11 +42,11 @@
 
 4. 執行 **ProvisionSample** 主控台應用程式。您可以在範例主控台應用程式中，佈建工作區並匯入 PBIX 檔案。
 
-5. 若要佈建新的**工作區**，請選取選項 **5.在現有的工作區集合中佈建新的工作區**。
+5. 若要佈建新的**工作區**，請選取選項 5，**在現有的工作區集合中佈建新的工作區**。
 
     ![](media\powerbi-embedded-get-started-sample\console-option-5.png)
 
-6. 輸入您的 **工作區集合** 名稱，以及**存取金鑰**。您可以在 **Azure 入口網站** 中取得這些項目。若要深入了解如何取得**存取金鑰**，請參閱「開始使用 Microsoft Power BI Embedded 預覽」中的[檢視 Power BI API 存取金鑰](power-bi-embedded-get-started-sample.md#view-access-keys)。
+6. 輸入您的 **工作區集合** 名稱，以及**存取金鑰**。您可以在 **Azure 入口網站** 中取得這些項目。若要深入了解如何取得**存取金鑰**，請參閱「開始使用 Microsoft Power BI Embedded」中的[檢視 Power BI API 存取金鑰](power-bi-embedded-get-started-sample.md#view-access-keys)。
 
     ![](media\powerbi-embedded-get-started-sample\azure-portal.png)
 
@@ -65,13 +67,11 @@ Checking import state... Succeeded
 
 > [AZURE.NOTE] 如果您的 PBIX 檔案包含任何直接查詢連接，請執行選項 7 來更新連接字串。
 
-此時，您已經將 Power BI PBIX 報表匯入您的**工作區**。下一節將說明如何執行 **Power BI Embedded** 開始使用範例 Web 應用程式。您將在下一節中了解如何執行範例 Web 應用程式。
+此時，您已經將 Power BI PBIX 報表匯入您的**工作區**。現在我們看一下如何執行 **Power BI Embedded** 開始使用範例 Web 應用程式。
 
 ## 執行範例 Web 應用程式
 
-Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**的報表。
-
-以下說明如何設定 Web 應用程式範例。
+Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**的報表。以下說明如何設定 Web 應用程式範例。
 
 1. 在 **PowerBI-embedded** Visual Studio 解決方案中，用滑鼠右鍵按一下 **EmbedSample** Web 應用程式，然後選擇 [設定為啟始專案]。
 2. 在 **web.config** 中，於 **EmbedSample** Web 應用程式中編輯 **appSettings**：**AccessKey**、**WorkspaceCollection** 名稱，及 **WorkspaceId**。
@@ -86,7 +86,7 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
     ```
 3. 執行 **EmbedSample** Web 應用程式。
 
-在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [多個報表] 功能表。若要檢視您匯入的報表，請展開 [多個報表]，然後按一下報表。如果您匯入了[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，範例 Web 應用程式看起來就會像這樣︰
+在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [報告] 功能表。若要檢視您匯入的報告，請展開 [報告]，然後按一下報告。如果您匯入了[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，範例 Web 應用程式看起來就會像這樣︰
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-sample-left-nav.png)
 
@@ -94,26 +94,25 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
 
 ![](media\powerbi-embedded-get-started-sample\sample-web-app.png)
 
-下一節會說明 **Power BI Embedded** 範例程式碼。
 
 ## 探討範例程式碼
-**Microsoft Power BI Embedded** 預覽範例是向您示範如何將 **Power BI** 報表整合到您應用程式中的範例儀表板 Web 應用程式。它會使用「模型-檢視-控制器」(MVC) 設計樣式來示範最佳作法。本節重點在於 **PowerBI-embedded** Web 應用程式解決方案中您可以探討的部分範例程式碼。「模型-檢視-控制器」(MVC) 樣式會依據使用者在三種個別類型中的輸入來分隔網域、簡報及動作的模型製作：模型、檢視及控制器。若要詳細了解 MVC，請參閱[了解 ASP.NET](http://www.asp.net/mvc)。
+**Microsoft Power BI Embedded** 範例是向您示範如何將 **Power BI** 報告整合到您應用程式中的範例儀表板 Web 應用程式。它會使用「模型-檢視-控制器」(MVC) 設計樣式來示範最佳作法。本節重點在於 **PowerBI-embedded** Web 應用程式解決方案中您可以探討的部分範例程式碼。「模型-檢視-控制器」(MVC) 樣式會依據使用者在三種個別類型中的輸入來分隔網域、簡報及動作的模型製作：模型、檢視及控制器。若要詳細了解 MVC，請參閱[了解 ASP.NET](http://www.asp.net/mvc)。
 
-**Microsoft Power BI Embedded** 預覽範例程式碼是以下列方式分隔。每個區段都包含 PowerBI-embedded.sln 解決方案中的檔案名稱，因此您可以很容易地在範例中找到程式碼。
+**Microsoft Power BI Embedded** 範例程式碼是以下列方式分隔。每個區段都包含 PowerBI-embedded.sln 解決方案中的檔案名稱，因此您可以很容易地在範例中找到程式碼。
 
 > [AZURE.NOTE] 本節是示範程式碼撰寫方式之範例程式碼的摘要。我們將在正式上市 (GA) 時擴充範例說明。若要檢視完整範例，請在 Visual Studio 中載入 PowerBI-embedded.sln 解決方案。
 
 ### 模型
 範例有 **ReportsViewModel** 和 **ReportViewModel**。
 
-**ReportsViewModel.cs**：代表 Power BI 多個報表。
+**ReportsViewModel.cs**：代表 Power BI 多個報告。
 
     public class ReportsViewModel
     {
         public List<Report> Reports { get; set; }
     }
 
-**ReportViewModel.cs**：代表 Power BI 報表。
+**ReportViewModel.cs**：代表 Power BI 報告。
 
     public classReportViewModel
     {
@@ -123,7 +122,7 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
     }
 
 ### 檢視
-[檢視] 可管理 Power BI [多個報表] 和 Power BI [報表] 的顯示。
+[檢視] 可管理 Power BI [報告] 和 Power BI [報告] 的顯示。
 
 **Reports.cshtml**：反覆執行 **Model.Reports** 來建立 **ActionLink**。**ActionLink** 是由以下所示項目組成：
 
@@ -159,7 +158,7 @@ Report.cshtml：設定 **Model.AccessToken**，以及 **PowerBIReportFor** 的 L
 
 ### Controller
 
-**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。JSON Web Token (JWT) 是從**簽署金鑰**產生，以取得**認證**。**認證**是用來建立 **PowerBIClient** 的執行個體。如需**應用程式權杖**的詳細資訊，請參閱[應用程式權杖流程的運作方式？](#key-flow)。在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
+**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。JSON Web 權杖 (JWT) 是從**簽署金鑰**產生，以取得**認證**。**認證**是用來建立 **PowerBIClient** 的執行個體。如需**應用程式權杖**的詳細資訊，請參閱[應用程式權杖流程的運作方式？](#key-flow)。在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
 
 CreatePowerBIClient()
 
@@ -217,7 +216,7 @@ Task<ActionResult> Report(string reportId)
 
 ### 將報表整合到您的應用程式中
 
-在您擁有**報表**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報表**。以下是來自 **Microsoft Power BI Embedded** 預覽範例中 powerbi.js 的程式碼片段。
+在您擁有**報告**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報告**。以下是來自 **Microsoft Power BI Embedded** 預覽範例中 powerbi.js 的程式碼片段。
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-iframe-code.png)
 
@@ -237,9 +236,7 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 
 ## 另請參閱
 
-- [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
-- [Microsoft Power BI Embedded 預覽常見案例](power-bi-embedded-scenarios.md)
-- [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
+- [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

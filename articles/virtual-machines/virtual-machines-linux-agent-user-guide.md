@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/14/2016" 
+	ms.date="07/13/2016" 
 	ms.author="szark"/>
 
 
@@ -25,9 +25,11 @@
 
 ##簡介
 
-Azure Linux 代理程式 (/usr/sbin/waagent) 可管理虛擬機器與 Azure 網狀架構控制器之間的互動。它具有下列功能：
+Azure Linux 代理程式 (/usr/sbin/waagent) 可管理虛擬機器與 Azure 網狀架構控制器之間的互動。有關安裝和更新執行中 VM 上的代理程式，相關資訊請另外參閱[如何更新 Azure Linux 代理程式](virtual-machines-linux-update-agent.md)。
 
-> [AZURE.NOTE] 如需本指南的最新版本，請參閱 Azure Linux 代理程式的[讀我檔案](https://github.com/Azure/WALinuxAgent/blob/2.0/README)。
+Azure Linux 代理程式負責下列各項︰
+
+> [AZURE.NOTE] 如需本指南的最新版本，請參閱 Azure Linux 代理程式的[讀我檔案](https://github.com/Azure/WALinuxAgent/blob/master/README.md)。
 
 * **映像佈建**
   - 建立使用者帳戶
@@ -323,4 +325,4 @@ Linux 代理程式需要一些系統封裝才能正確運作：
 
  
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0713_2016-->

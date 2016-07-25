@@ -32,6 +32,8 @@
 - [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
 - [只有音訊的預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
 - [串連兩個以上的視訊檔案](media-services-custom-mes-presets-with-dotnet.md#concatenate)
+- [以 Media Encoder Standard 裁剪影片](media-services-custom-mes-presets-with-dotnet.md#crop)
+
 
 ##<a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
@@ -254,7 +256,7 @@
 
 本節說明如何自訂產生縮圖的預設值。下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並加入可產生縮圖的程式碼。
 
->[AZURE.NOTE]如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果編碼為多重位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
+>[AZURE.NOTE]如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果編碼為多位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
 
 
 如需結構描述的資訊，請參閱[這個主題](https://msdn.microsoft.com/library/mt269962.aspx)。
@@ -460,7 +462,7 @@
 
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 - [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
-若要修剪您的視訊，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應該位於預設值開頭。
+若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應該位於預設值開頭。
  
 ###<a id="json"></a>JSON 預設值
 	
@@ -584,7 +586,7 @@
 
 ###XML 預設值
 	
-若要修剪您的視訊，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
+若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
 
 	<?xml version="1.0" encoding="utf-16"?>
 	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -707,7 +709,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是**主要**檔案。
 
-上述 .NET 範例定義兩個函數：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函數會使用傳遞給其的自訂預設值檔案 (例如，後續的預設值) 建立編碼工作。
+上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給其的自訂預設值檔案 (例如，後續的預設值) 建立編碼工作。
 
 >[AZURE.NOTE]目前限制：
 >
@@ -1072,7 +1074,10 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	    }
 	  ]
 	}
-	
+
+##<a id="crop"></a>以 Media Encoder Standard 裁剪影片
+
+請參閱[以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)主題。
 
 ##媒體服務學習路徑
 
@@ -1086,4 +1091,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

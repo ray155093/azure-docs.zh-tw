@@ -95,7 +95,7 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 
 ### 啟用稽核
 
-如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。用戶端應用程式必須在 *.database.secure.windows.net 的模式中使用安全連接字串，才能有良好的稽核指標。如需詳細資訊，請參閱[開始使用 SQL 資料庫稽核](sql-database-auditing-get-started.md)。
+如果需要稽核才能存取您的資料庫，則您必須在資料庫復原之後啟用稽核。如需詳細資訊，請參閱[開始使用 SQL 資料庫稽核](sql-database-auditing-get-started.md)。此外，如為「下層用戶端」，請參閱[稽核與下層用戶端支援](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
 
 
 ## 後續步驟
@@ -106,4 +106,4 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 - 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="06/28/2016"
+   ms.date="07/05/2016"
    ms.author="owend"/>
 
 # 何謂 Microsoft Power BI Embedded？
 
-透過 **Power BI Embedded**，您可以將 Power BI 報表整合到 Web 或行動應用程式中，就不需要建立自訂解決方案來為使用者將資料視覺化。
+運用 **Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。
 
 ![](media\powerbi-embedded-whats-is\what-is.png)
 
-**Power BI Embedded** 是一個 Azure 服務，可讓獨立軟體廠商 (ISV) 在其應用程式中呈現 Power BI 資料體驗。身為 ISV，表示您已經有建立應用程式的經驗。這些應用程式有它們自己的使用者和個別的功能集。這些應用程式也可能已經內建一些資料元素，例如現在可以由 **Microsoft Power BI Embedded** 提供的圖表和報表。應用程式的使用者不需要 Power BI 帳戶就可以使用您的應用程式。他們可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄與磚體驗並與它們互動。
+Power BI Embedded 是一個 **Azure 服務**，可讓 ISV 和應用程式開發人員在其應用程式中呈現 Power BI 資料體驗。身為開發人員，您已建置應用程式，這些應用程式有它們自己的使用者和個別的功能集。這些應用程式也可能已經內建一些資料元素，例如現在可以由 Microsoft Power BI Embedded 提供的圖表和報表。使用者不需要 Power BI 帳戶就可以使用您的應用程式。他們可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄體驗並與它們互動。
 
 ## Microsoft Power BI Embedded 授權
 
@@ -32,33 +32,22 @@
 
 ![](media\powerbi-embedded-whats-is\model.png)
 
-就像 Azure 中的任何其他服務一樣，**Microsoft Power BI Embedded** 也是透過 [Azure ARM API](https://msdn.microsoft.com/library/mt712306.aspx) 佈建。在此情況下，您佈建的資源是 **Power BI 工作區集合**。
+就像 Azure 中的任何其他服務一樣，Power BI Embedded 也是透過 [Azure ARM API](https://msdn.microsoft.com/library/mt712306.aspx) 佈建。在此情況下，您佈建的資源是 **Power BI 工作區集合**。
 
 ## 工作區集合
 
-**工作區集合**是包含 0 個或更多**工作區**之資源的最上層 Azure 容器。**工作區** **集合**擁有所有標準 Azure 屬性，以及下列項目：
+**工作區集合**是包含 0 個或更多**工作區**之資源的最上層 Azure 容器。**工作區****集合**擁有所有標準 Azure 屬性，以及下列項目：
 
 -	**存取金鑰** – 安全呼叫 Power BI API 時使用的金鑰 (會在稍後的小節中說明)。
 -	**使用者** – 具有管理權現，可透過 Azure 入口網站或 ARM API 管理 Power BI 工作區集合的 Azure Active Directory (AAD) 使用者。
--	**地區** – 佈建**工作區集合**時，您可以選取要佈建的地區。如需詳細資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
+-	**區域** – 佈建**工作區集合**時，您可以選取要佈建的區域。如需詳細資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
 
 ## 工作區
 
-**工作區**是 Power BI 內容的容器，可包括資料集、報表及儀表板。**工作區**在第一次建立時是空白的。在使用預覽版期間，您將會使用 Power BI Desktop 授權所有內容，且您會使用 [Power BI REST API](http://docs.powerbi.apiary.io/reference) 將它上傳至您其中一個工作區。
+**工作區**是 Power BI 內容的容器，可包括資料集、報告及儀表板。**工作區**在第一次建立時是空白的。在使用預覽版期間，您將會使用 Power BI Desktop 授權所有內容，且您會使用 [Power BI REST API](http://docs.powerbi.apiary.io/reference) 將它上傳至您其中一個工作區。
 
 ## 使用工作區集合和工作區
 **工作區集合**與**工作區**是內容的容器，您可以針對您正在建立之應用程式的設計，採用任何最佳方式來使用及組織內容。將會有許多不同的方式可供您管理它們內部的內容。您可以選擇將所有內容放在某一個工作區內，然後之後再使用應用程式權杖進一步在您的客戶之間細分內容。您也可以選擇將所有客戶放在個別工作區中，這樣一來他們之間就會有一些區隔。或者，您可選擇依據地區 (而非依據客戶) 來組織使用者。這個彈性設計可讓您選擇最佳的內容組織方式。
-## 預覽版中的資料來源
-
-我們將會為預覽版啟用一組有限的資料來源，如下所示：
-
-### 直接查詢
-
-我們將會針對預覽版的雲端來源支援直接查詢連線。這表示您將能夠連線至他們的資料來源以顯示最新資料。這些資料來源必須可從雲端存取，且必須使用基本驗證。以下是適合用於此作業的部分理想候選者：
-
--	SQL Azure
--	SQL Azure DW
--	HD Insight Spark
 
 ## 快取的資料集
 
@@ -93,9 +82,6 @@
 
 ## 另請參閱
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
-- [開始使用 Microsoft Power BI Embedded 預覽](power-bi-embedded-get-started.md)
-- [應用程式權杖](power-bi-embedded-get-started-sample.md#key-flow)
-- [Power BI REST API](http://docs.powerbi.apiary.io/reference)
-- [Azure 區域](https://azure.microsoft.com/regions/)
+- [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

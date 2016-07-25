@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="02/29/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
  
 # 將 Web 角色和背景工作角色轉換成 Service Fabric 無狀態服務的指南
@@ -134,7 +134,7 @@ Service Fabric 為接聽用戶端要求的服務提供選擇性的通訊設定�
 
 雲端服務中的組態設定已針對 VM 角色設定，並套用至該 VM 角色的所有執行個體。這些設定是 ServiceConfiguration.*.cscfg 檔案中所設定的索引鍵/值組，並可直接透過 RoleEnvironment 進行存取。在 Service Fabric 中，設定會個別套用至每個服務和每個應用程式，而不是套用至 VM，因為 VM 可以裝載多個服務和應用程式。服務包含三個封裝：
 
- - **程式碼：**包含服務的可執行檔、二進位檔、Dll 和服務需要執行的任何其他檔案。
+ - **程式碼：**包含服務的可執行檔、二進位檔、DLL 和服務需要執行的任何其他檔案。
  - **組態：**服務的所有組態檔和設定。
  - **資料：**與服務相關聯的靜態資料檔案。
 
@@ -160,7 +160,7 @@ string value = RoleEnvironment.GetConfigurationSettingValue("Key");
 
 ```C#
 
-ConfigurationPackage configPackage = this.ServiceInitializationParameters.CodePackageActivationContext.GetConfigurationPackageObject("Config");
+ConfigurationPackage configPackage = this.Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");
 
 // Access Settings.xml
 KeyedCollection<string, ConfigurationProperty> parameters = configPackage.Settings.Sections["MyConfigSection"].Parameters;
@@ -204,7 +204,7 @@ foreach (var settingChange in settingChanges)
  
 ```C#
 
-this.ServiceInitializationParameters.CodePackageActivationContext.ConfigurationPackageModifiedEvent +=
+this.Context.CodePackageActivationContext.ConfigurationPackageModifiedEvent +=
                     this.CodePackageActivationContext_ConfigurationPackageModifiedEvent;
 
 private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(object sender, PackageModifiedEventArgs<ConfigurationPackage> e)
@@ -277,4 +277,4 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png
 [4]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/worker-role-to-stateless-service.png
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

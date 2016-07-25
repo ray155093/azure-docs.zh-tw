@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="07/12/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 將資料載入 Azure SQL 資料倉儲
@@ -100,6 +100,19 @@
 3. 將磁碟寄送給 Microsoft。
 4. Microsoft 將資料載入 SQL 資料倉儲
 
+## 從 HDInsight 載入
+SQL 資料倉儲支援從 HDInsight 透過 PolyBase 載入資料。此程序和從 Azure Blob 儲存體載入資料相同 - 使用 PolyBase 連接到 HDInsight 以載入資料。
+
+### 1\.使用 PolyBase 和 T-SQL
+
+載入流程的摘要：
+
+2. 將您的資料格式化為 UTF-8，因為 PolyBase 目前並不支援 UTF-16。
+2. 將您的資料移到 HDInsight，並將它儲存為文字檔、ORC 或 Parquet 格式。
+3. 設定 SQL 資料倉儲中的外部物件，以定義資料的位置和格式。
+4. 執行 T-SQL 命令以將資料平行載入新的資料庫資料表。
+
+如需教學課程，請參閱[從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)][]。
 
 ## 建議
 
@@ -124,7 +137,7 @@
 
 [載入範例資料庫]: ./sql-data-warehouse-load-sample-databases.md
 [移轉概觀]: ./sql-data-warehouse-overview-migrate.md
-[解決方案合作夥伴]: ./sql-data-warehouse-integrate-solution-partners.md
+[解決方案合作夥伴]: ./sql-data-warehouse-partner-business-intelligence.md
 [開發概觀]: ./sql-data-warehouse-overview-develop.md
 [統計資料]: ./sql-data-warehouse-tables-statistics.md
 
@@ -133,4 +146,4 @@
 <!--Other Web references-->
 [匯入/匯出]: https://azure.microsoft.com/documentation/articles/storage-import-export-service/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

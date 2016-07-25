@@ -13,15 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/01/2016" 
+	ms.date="07/13/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
 
 ## 概觀 ##
-APP Service 環境會一律建立於區域傳統 "v1" [虛擬網路][virtualnetwork]的子網路中。建立 APP Service 環境時，可定義新的區域傳統 "v1" 虛擬網路和新的子網路。或者亦可在先前既存的區域傳統 "v1" 虛擬網路與子網路中，建立 APP Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
-
-**注意：**在「v2」ARM 管理的虛擬網路中，無法建立 App Service 環境。
+App Service 環境可以在 Azure Resource Manager 虛擬網路或傳統式部署模型[虛擬網路][virtualnetwork]其中之一中建立。建立 APP Service 環境時，可以定義新的虛擬網路和新的子網路。或者亦可在先前既存的虛擬網路和既存的子網路中建立 APP Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
 
 App Service 環境必須一律建立於子網路中，因為子網路可提供網路界限以便用來鎖定上游裝置和服務背後的輸入流量，因此只接受來自特定上游 IP 位址的 HTTP 和 HTTPS 流量。
 
@@ -36,31 +34,20 @@ App Service 環境必須一律建立於子網路中，因為子網路可提供�
 
 以下是 App Service 環境所使用的連接埠清單：
 
-- 454：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。
-- 455：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。
-- 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。
-- 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。
-- 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。
-- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠
-- 4016：用於 Visual Studio 2012 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
-- 4018：用於 Visual Studio 2013 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
-- 4020：用於 Visual Studio 2015 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。
+- 454：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
+- 455：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
+- 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
+- 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
+- 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
+- 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
+- 4016：用於 Visual Studio 2012 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
+- 4018：用於 Visual Studio 2013 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
+- 4020：用於 Visual Studio 2015 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 
 ## 輸出連線和 DNS 需求 ##
-為了讓 App Service 環境正確運作，需要全球 Azure 儲存體以及相同 Azure 區域中 SQL Database 的輸出存取權。如果虛擬網路中封鎖輸出網際網路存取，則 App Service 環境將無法存取這些 Azure 端點。
+為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。[ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)文章＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
 
-App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於 [Azure 入口網站][NewPortal]中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，將會導致環境挑選新的 DNS 組態。
-
-以下清單詳細描述 App Service 環境所需的連線能力和 DNS：
-
--  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 App Service 環境相同區域中的端點，以及位於「其他」 Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。
--  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：*database.windows.net*。
--  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。
--  *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。需要此連線才能支援 SSL 功能。
--  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。如果無法解析這些端點，App Service 環境建立嘗試將會失敗，而且現有的 App Service 環境會標示為狀況不良。
--  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。
--  輸出網路路徑不可經過內部公司 Proxy，也不可使用強制通道傳送至內部部署。這麼會變更來自 App Service 環境的輸出網路流量的有效 NAT 位址。變更 App Service 環境之輸出網路流量的 NAT 位址會導致上述眾多端點的連接失敗。這會導致 App Service 環境建立嘗試失敗，而之前狀況良好的 App Service 環境會標示為狀況不良。
--  按照本[文章](app-service-app-service-environment-control-inbound-traffic.md)所述，您必須允許「App Service 環境」之必要連接埠的輸入網路存取。
+App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於 [Azure 入口網站][NewPortal]中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
 
 也建議事先在虛擬網路上設定任何自訂 DNS 伺服器，再建立 App Service 環境。如果在建立 App Service 環境時變更虛擬網路的 DNS 組態，則會導致 App Service 環境建立程序失敗。同樣地，若自訂 DNS 伺服器存在於 VPN 閘道的另一端，且 DNS 伺服器無法連線或使用，則 App Service 環境建立程序也會失敗。
 
@@ -121,13 +108,17 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
     Get-AzureNetworkSecurityGroup -Name "testNSGexample" | Remove-AzureNetworkSecurityGroupFromSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-test'
 
 ## 明確 IP-SSL 的特殊考量 ##
-若以明確的 IP 位址設定應用程式，而非使用 App Service 環境的預設 IP 位址，則 HTTP 和 HTTPS 流量會透過與連接埠 80 和 443 不同的一組連接埠流入子網路。
+如果以明確的 IP-SSL 位址 (適用於僅具有公用 VIP 的 ASE) 設定 app，而不是使用 App Service 環境的預設 IP 位址，HTTP 和 HTTPS 流量都會透過一組不同的連接埠 (而非連接埠 80 和 443) 流向子網路。
 
-若要尋找每個 IP-SSL 的位址所用的個別連接埠配對，您可從 App Service 環境的使用者介面刀鋒視窗，依序按一下 [所有設定] --> [IP 位址]。「IP 位址」刀鋒視窗會顯示 App Service 環境的所有明確設定 IP-SSL 位址，以及用於路由與每個 IP-SSL 位址關聯之 HTTP 和 HTTPS 流量的特殊連接埠配對。在網路安全性群組中設定規則時，必須針對 DestinationPortRange 參數使用此連接埠配對。
+每個 IP-SSL 位址使用的個別連接埠組合，可以在 App Service 環境的詳細資料 UX 刀鋒視窗的入口網站使用者介面中找到。選取 [所有設定] --> [IP 位址]。「IP 位址」刀鋒視窗會顯示 App Service 環境所有明確設定的 IP-SSL 位址，以及特殊連接埠配對，這些特殊連接埠配對則是用於路由與每個 IP-SSL 位址關聯的 HTTP 和 HTTPS 流量。在網路安全性群組中設定規則時，必須針對 DestinationPortRange 參數使用此連接埠配對。
+
+當 ASE 上的 app 設定為使用 IP-SSL 時，外部客戶將不會看到且不需要擔心特殊連接埠配對對應。應用程式流量會正常流向設定的 IP-SSL 位址。將流量路由到包含 ASE 的子網路時，在路由流量最後階段期間，特殊連接埠組合的轉譯會於內部自動發生。
 
 ## 開始使用
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
+
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 如需安全地從 App Service 環境連接到後端資源的詳細資訊，請參閱 [安全地從 App Service 環境連接到後端資源][SecurelyConnecttoBackend]
 
@@ -149,4 +140,4 @@ App Service 環境也需要針對虛擬網路設定的有效 DNS 基礎結構。
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

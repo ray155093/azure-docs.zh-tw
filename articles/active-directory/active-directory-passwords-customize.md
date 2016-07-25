@@ -1,23 +1,26 @@
-<properties 
-	pageTitle="自訂：Azure AD 密碼管理 |Microsoft Azure" 
-	description="如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="自訂：Azure AD 密碼管理 |Microsoft Azure"
+	description="如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 自訂密碼管理以符合您的組織的需求
-為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。事實上，您可以前往 [Azure 管理入口網站](https://manage.windowsazure.com)的 [**Active Directory 延伸模組**] 中的組態索引標籤，立即開始探索。本主題會引導您從 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [**設定**] 索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
+為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。事實上，您可以前往 [Azure 傳統入口網站](https://manage.windowsazure.com)的 [Active Directory 延伸模組] 中的組態索引標籤，立即開始探索。本主題會引導您從 [Azure 傳統入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
 
 | 主題 | |
 | --------- | --------- |
@@ -37,7 +40,7 @@
 | 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌](#password-managment-look-and-feel) |
 
 
-## 密碼管理外觀
+## 密碼管理外觀與風格
 下表描述每個控制項如何影響使用者註冊密碼重設及重設其密碼的體驗。您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [**設定**] 索引標籤的 [**目錄內容**] 區段底下，設定這些選項。
 
 <table>
@@ -95,7 +98,7 @@
               <td>
                 <p>決定造訪密碼重設頁面的使用者是否會看到 Microsoft 標誌或您自己的自訂標誌。這個組態項目也會將您的商標加入至存取面板和登入頁面。</p>
                 <p>
-                  
+
                 </p>
                 <p>您可以在<a href="https://technet.microsoft.com/library/dn532270.aspx">將公司商標加入至您的登入和存取面板頁面</a>深入了解租用戶商標和自訂功能。</p>
               </td>
@@ -223,7 +226,7 @@
               <td>
                 <p>決定允許哪個使用者群組使用密碼重設。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>密碼重設限制存取</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
@@ -262,16 +265,16 @@
               <td>
                 <p>決定允許使用者使用哪些挑戰以重設其密碼。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>使用者啟用密碼重設</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
               <td>
                 <p>
-                  
+
                 </p>
                 <p>
-                  
+
                 </p>
                 <p>
                   <strong>注意：</strong>
@@ -328,7 +331,7 @@
               <td>
                 <p>判斷使用者必須通過才能重設其密碼的可用驗證方法數目下限。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>使用者啟用密碼重設</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
@@ -398,7 +401,7 @@
               <td>
                 <p>決定當重設密碼時，使用者必須回答的問題數目下限。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在已啟用 [<strong>安全性問題</strong>] 核取方塊時才能看見)。</p>
               </td>
@@ -432,7 +435,7 @@
               <td>
                 <p>定義您的使用者在註冊密碼重設以及重設其密碼時，可以選取的預先定義安全性問題。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在已啟用 [<strong>安全性問題</strong>] 核取方塊時才能看見)。</p>
               </td>
@@ -483,7 +486,7 @@
               <td>
                 <p>定義您的使用者在註冊密碼重設以及重設其密碼時，可能會選取的安全性問題。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在已啟用 [<strong>安全性問題</strong>] 核取方塊時才能看見)。</p>
               </td>
@@ -533,7 +536,7 @@
                   <p>登入時要求使用者註冊？</p>
                 </div>
                 <p>
-                  
+
                 </p>
               </td>
               <td>
@@ -542,20 +545,20 @@
                 <p>這項功能適用於任何使用工作或學校帳戶的登入頁面。這類頁面包括所有 Office 365、Azure 管理入口網站、存取面板和任何使用 Azure AD 來登入的同盟或自訂開發應用程式。
                 </p>
                 <p>
-                  
+
                 </p>
                 <p>強制執行的註冊將僅適用於啟用密碼重設的使用者，因此，如果您已經使用「限制密碼重設的存取」功能並將密碼重設的範圍限定為一組特定的使用者，則只有該群組中的使用者需於登入時註冊密碼重設。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>使用者啟用密碼重設</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
               <td>
                 <p>
-                  
+
                 </p>
                 <p>
-                  
+
                 </p>
                 <p>
                   <strong>注意：</strong>
@@ -586,16 +589,16 @@
               <td>
                 <p>當 [<strong>要求使用者註冊</strong>] 開啟時，此設定會決定使用者必須重新確認其資料之前所經過的時間長度。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>當登入存取面板時要求使用者註冊</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
               <td>
                 <p>
-                  
+
                 </p>
                 <p>
-                  
+
                 </p>
                 <p>
                   <strong>注意：</strong>
@@ -622,7 +625,7 @@
               <td>
                 <p>控制當發生錯誤或使用者於作業等候太久時，在密碼重設入口網站上顯示的連絡您的系統管理員連結 (顯示在左側) 是否指向自訂 URL 或電子郵件地址。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>使用者啟用密碼重設</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
@@ -668,7 +671,7 @@
               <td>
                 <p>控制 [<strong>連絡您的系統管理員</strong>] 連結所指向的電子郵件地址或 URL。</p>
                 <p>
-                  
+
                 </p>
                 <p>(只有在 [<strong>自訂連絡您的系統管理員連結</strong>] 設定為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
@@ -702,13 +705,13 @@
               <td>
                 <p>控制是否對此目錄啟用密碼回寫，如果回寫開啟，則表示內部部署回寫服務的狀態。</p>
                 <p>
-                  
+
                 </p>
                 <p>如果您想要暫時停用服務而不重新設定 Azure AD Connect，此設定就很有用。</p>
               </td>
               <td>
                 <p>
-                  
+
                 </p>
                 <p>
                   <strong>注意：</strong>
@@ -748,11 +751,11 @@
                 </div>
               </td>
               <td>
-              
+
               <p>指定是否應為瀏覽密碼重設入口網站的使用者提供選項，讓他們在不重設密碼的情況下解除鎖定內部部署的 Active Directory 帳戶。根據預設，Azure AD 執行密碼重設時會一律解除鎖定帳戶，此設定可讓您區隔這兩項作業。</p>
-              
+
               <p>如果設為「是」，會提供使用者重設其密碼以解除鎖定帳戶的選項，或是在不重設密碼的情況下解除鎖定的選項。</p>
-              
+
               <p>如果設定為「否」，使用者將只能執行合併的密碼重設和帳戶解除鎖定作業。</p>
 
               </td>
@@ -763,7 +766,7 @@
                 <ul>
                   <li class="unordered">
 												若要使用這項功能，您必須安裝 2015 年 8 月或更新版本的 Azure AD Connect (v.1.0.8667.0 或更新版本)。<br><br><a href="http://www.microsoft.com/download/details.aspx?id=47594">按一下這裡以下載最新版本的 Azure AD Connect。</a></li>
-                        
+
                   <li class="unordered">
                     <strong>附註：</strong>為測試這項功能，您需要啟用密碼回寫，並使用來自內部部署 (例如同盟或密碼同步處理使用者) 的帳戶，而且有一個已鎖定的帳戶。非內部部署而且沒有鎖定帳戶的使用者，將看不到解除鎖定其帳戶的選項。</li>
                 </ul>
@@ -860,7 +863,7 @@
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
@@ -872,4 +875,4 @@
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0713_2016-->

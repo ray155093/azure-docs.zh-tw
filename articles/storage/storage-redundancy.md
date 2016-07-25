@@ -98,7 +98,8 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 | 英國南部 2 | 英國北部 |
 | 德國中部 | 德國東北部 |
 | 德國東北部 | 德國中部 |
-
+| 美國西部 2 | 美國中西部 |
+| 美國中西部 | 美國西部 2 |
 
 如需 Azure 支援地區的相關最新資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
  
@@ -116,4 +117,4 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 - [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)
 - [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -99,11 +99,7 @@
 
 ## <a name="diagnosis"></a> 診斷相依性效能問題
 
-若要評估伺服器上的要求效能：
-
-![在 Application Insights 的應用程式 [概觀] 頁面中，按一下 [效能] 磚](./media/app-insights-asp-net-dependencies/01-performance.png)
-
-向下捲動以查看要求方格：
+若要評估您伺服器上的要求效能，請開啟 [效能] 刀鋒視窗，然後向下捲動以查看要求格線︰
 
 ![含有平均和計數的要求清單](./media/app-insights-asp-net-dependencies/02-reqs.png)
 
@@ -116,21 +112,24 @@
 
 按一下任一個長時間執行的執行個體，來進一步檢查。
 
-> [AZURE.NOTE] 稍微向下捲動，以選擇執行個體。管線中的延遲可能表示最上方的執行個體資料不完整。
-
 向下捲動至與此要求相關的遠端相依性呼叫：
 
 ![尋找遠端相依性的呼叫，識別不尋常的持續時間](./media/app-insights-asp-net-dependencies/04-dependencies.png)
 
 看起來此要求的大部分時間似乎都花費在呼叫本機服務上。
 
-選取該列，以取得詳細資訊：
 
+選取該列，以取得詳細資訊：
 
 ![點選該遠端相依性來找出問題原因](./media/app-insights-asp-net-dependencies/05-detail.png)
 
 詳細資料含有足以診斷問題的資訊。
 
+
+在不同的情況下，所有相依性呼叫都不長，但切換至時間軸檢視，我們即可看到我們的內部處理中發生延遲的位置︰
+
+
+![尋找遠端相依性的呼叫，識別不尋常的持續時間](./media/app-insights-asp-net-dependencies/04-1.png)
 
 
 ## 失敗
@@ -178,9 +177,9 @@
 
 ## 後續步驟
 
-- [例外狀況](app-insights-asp-net-exception-mvc.md#selector1)
-- [使用者和頁面資料](app-insights-asp-net-client.md#selector1)
-- [Availability](app-insights-monitor-web-app-availability.md#selector1)
+- [例外狀況](app-insights-asp-net-exceptions.md)
+- [使用者和頁面資料][client]
+- [Availability](app-insights-monitor-web-app-availability.md)
 
 
 
@@ -202,4 +201,4 @@
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

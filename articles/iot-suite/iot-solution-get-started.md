@@ -4,7 +4,7 @@
 	services=""
     documentationCenter=".net"
     suite=""
-	authors="alancameronwills"
+	authors="harikmenon"
 	manager="douge"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="03/25/2016"
-	ms.author="awills"/>
+	ms.author="harikm"/>
 
 # MyDriving IoT 系統：快速入門
 
@@ -54,7 +54,7 @@ MyDriving 的真正用途是讓您開始建立您自己的 IoT 解決方案。�
 
 在 Windows 10 Mobile 上啟動應用程式是否有任何問題？ 可能是因為您的手機是上一次或上上一次更新的版本。請確定您已經取得最新更新，或安裝：
 
- - [Microsoft.NET.Native.Framework.1.2.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Framework.1.2.appx) 
+ - [Microsoft.NET.Native.Framework.1.2.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Framework.1.2.appx)
 
  - [Microsoft.NET.Native.Runtime.1.1.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Runtime.1.1.appx)
 
@@ -170,4 +170,4 @@ MyDriving 的真正用途是讓您開始建立您自己的 IoT 解決方案。�
   [HockeyApp portal (HockeyApp 入口網站)]: https://rink.hockeyapp.org
   [在 GitHub 上提出問題]: https://github.com/Azure-Samples/MyDriving/issues
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

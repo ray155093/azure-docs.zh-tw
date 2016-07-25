@@ -1,5 +1,5 @@
 <properties
-   pageTitle="利用簡單模型預測答案 - 適用於初學者的資料科學 | Microsoft Azure"
+   pageTitle="利用簡單模型預測答案 - 迴歸模型 | Microsoft Azure"
    description="如何在「適用於初學者的資料科學」影片 4 中，建立簡單模型來預測鑽石價格。包含基本線性迴歸以及目標資料。"                                  
    keywords="建立模型, 簡單模型, 簡單資料模型, 價格預測, 簡單迴歸模型"
    services="machine-learning"
@@ -138,4 +138,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

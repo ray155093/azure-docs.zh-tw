@@ -54,11 +54,17 @@ IoT 中樞提供數個度量，以讓您概略了解中樞的健全狀況和連�
 
 ## 後續步驟
 
-您現已了解診斷度量的概觀，接下來請遵循下列連結來深入了解：
+您現已了解診斷度量的概觀，接下來請遵循下列連結來深入了解如何管理 Azure IoT 中樞：
 
-- [IoT 中樞作業監視][lnk-operations-monitoring]
-- [調整 IoT 中樞][lnk-scaling]
-- [IoT 中樞高可用性和災害復原][lnk-dr]
+- [作業監視][lnk-monitor]
+- [管理 IoT 中樞的存取權][lnk-itpro]
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 <!-- Links and images -->
 [1]: media/iot-hub-metrics/enable-metrics-1.png
@@ -70,4 +76,12 @@ IoT 中樞提供數個度量，以讓您概略了解中樞的健全狀況和連�
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
-<!---HONumber=AcomDC_0706_2016-->
+[lnk-monitor]: iot-hub-operations-monitoring.md
+[lnk-itpro]: iot-hub-itpro-info.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+
+<!---HONumber=AcomDC_0713_2016-->

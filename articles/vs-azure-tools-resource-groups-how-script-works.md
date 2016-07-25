@@ -3,8 +3,8 @@
 	description="說明在 Azure 資源群組部署專案中，PowerShell 指令碼的運作方式。"
 	services="visual-studio-online"
 	documentationCenter="na"
-	authors="TomArcher"
-	manager="douge"
+	authors="tfitzmac"
+	manager="timlt"
 	editor="" />
 
  <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
 	ms.date="05/08/2016"
-	ms.author="tarcher" />
+	ms.author="tomfitz" />
 
 # Azure 資源群組專案部署指令碼的概觀
 
@@ -73,7 +73,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
 
 1.	將具有相對路徑的任何變數轉換為絕對路徑。例如，將 `..\Tools\AzCopy.exe` 的路徑變更為 `C:\YourFolder\Tools\AzCopy.exe`。此外，將變數 *ArtifactsLocationName* 和 *ArtifactsLocationSasTokenName* 初始化為 null。*ArtifactsLocation* 和 *SaSToken* 可能是範本的參數。如果在參數檔案中讀取之後其值為 null，指令碼會為它們產生值。
 
-    Azure 工具會在範本中使用參數值 *\_artifactsLocation* 和 *\_artifactsLocationSasToken* 來管理構件。如果 PowerShell 指令碼找到具有這些名稱的參數，但是未提供參數值，則指令碼會上傳構件，並且針對這些參數傳回適當的值。接著，透過 `@OptionsParameters` 將它們傳遞至 Cmdlet。
+    Azure 工具會在範本中使用 *\_artifactsLocation* 和 *\_artifactsLocationSasToken* 參數值來管理構件。如果 PowerShell 指令碼找到具有這些名稱的參數，但是未提供參數值，則指令碼會上傳構件，並且針對這些參數傳回適當的值。接著，透過 `@OptionsParameters` 將它們傳遞至 Cmdlet。
 
 	|變數|說明|
     |---|---|
@@ -94,7 +94,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
     $OptionalParameters.Add($ArtifactsLocationSasTokenName, $null)
     ```
 
-1.	本節會檢查 <app name>.parameters.json 檔案 (稱為「參數檔案」) 是否擁有名為 **parameters** 的父節點 (在 `else` 區塊)。否則，它沒有父節點。可以接受任一格式。
+1.	本節會檢查 <應用程式名稱>.parameters.json 檔案 (稱為「參數檔案」) 是否擁有名為 **parameters** 的父節點 (在 `else` 區塊)。否則，它沒有父節點。可以接受任一格式。
     
 	```
     if ($JsonParameters -eq $null) {
@@ -264,4 +264,4 @@ $(Build.StagingDirectory)/AzureResourceGroup1/Scripts/Deploy-AzureResourceGroup.
 [4]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy5c.png
 [5]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy6c.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -62,7 +62,7 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 		WITH IDENTITY = '<username>', 
 		SECRET = '<password>';  
 
-	"username" 和 "password" 應該是用來登入 Customers 資料庫的使用者名稱和密碼。
+	"username" 和 "password" 應該是用來登入 Customers 資料庫的使用者名稱和密碼。目前不支援使用 Azure Active Directory 與彈性查詢進行驗證。
 
 ### 外部資料來源
 若要建立外部資料來源，請在 Orders 資料庫上執行下列命令：
@@ -106,4 +106,4 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 
 <!--anchors-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

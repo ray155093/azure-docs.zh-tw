@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/18/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -25,7 +25,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中管控可存取 Keylight 的人員
 - 您可以讓使用者透過其 Azure AD 帳戶自動登入 Keylight (單一登入)
-- 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
+- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -60,7 +60,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫加入 Keylight，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**的左方瀏覽窗格中，按一下 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -99,12 +99,12 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 ### 設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 Keylight 中設定單一登入。
+在本節中，您會在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Keylight 應用程式中設定單一登入。
 
 
 **若要使用 Keylight 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 入口網站的 [Keylight] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1. 在 Azure 傳統入口網站的 [Keylight] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入][6]
 
@@ -163,7 +163,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
     e.將 [SAML 使用者識別碼位置] 設定為 [Subject 陳述式的 NameIdentifier 元素]。
    
-    f.使用以下模式提供 **Keylight 服務提供者︰**https://&lt;Company Name&gt;.keylightgrc.com**。
+    f.使用下列模式提供 [Keylight 服務提供者]︰https://&lt;Company Name&gt;.keylightgrc.com**。
 
     g.將 [自動佈建使用者] 設定為 [作用中]。
 
@@ -184,7 +184,7 @@ Keylight 與 Azure AD 整合提供下列優點：
   
    
   
-6. 在 Azure 入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按一下 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -196,7 +196,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 
 ### 建立 Azure AD 測試使用者
-在本節中，您會在 Azure 入口網站中建立名稱為 Britta Simon 的測試使用者。
+在本節中，您會在 Azure 傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 在 [使用者] 清單中，選取 [Britta Simon]。
 
@@ -206,7 +206,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Active Directory]。
+1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/create_aaduser_09.png)
 
@@ -277,7 +277,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 
 **若要將 Britta Simon 指派到 Keylight，請執行以下步驟：**
 
-1. 在 Azure 入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
 	![指派使用者][201]
 
@@ -329,4 +329,4 @@ Keylight 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-keylight-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-keylight-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

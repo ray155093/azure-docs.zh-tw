@@ -13,13 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/29/2016"
+	ms.date="07/12/2016"
 	ms.author="curtand"/>
 
 
 # 密碼原則和 Azure Active Directory 中的限制
 
 本文說明和儲存在 Azure AD 目錄中的使用者帳戶相關聯的密碼原則和複雜性需求。
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 
 ## 適用於所有使用者帳戶的 UserPrincipalName 原則
 
@@ -38,7 +40,7 @@
 | 屬性 | 需求 |
 |   ----------------------- |   ----------------------- |
 | 允許的字元 | <ul><li>A – Z</li><li>a -z </li><li>0 – 9</li> <li>@ # $ % ^ & * - \_ ! + = [ ] { } | \\ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| 不允許的字元 | <ul><li>Unicode 字元</li><li>空格</li><li>空格</li><li> **僅限使用增強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
+| 不允許的字元 | <ul><li>Unicode 字元</li><li>空格</li><li> **僅限使用增強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
 | 密碼限制 | <ul><li>最少 8 個字元，最多 16 個字元</li><li>**僅限使用增強式密碼**：必須包含下列 4 種字元中的 3 種：<ul><li>小寫字元</li><li>大寫字元</li><li>數字 (0-9)</li><li>符號 (請參閱上面的密碼限制)</li></ul></li></ul> |
 | 密碼到期時間 | <ul><li>預設值：**90** 天 </li><li>值可透過適用於 Windows PowerShell 的 Azure Active Directory 模組使用 Set-MsolPasswordPolicy Cmdlet 設定。</li></ul> |
 | 密碼到期通知 | <ul><li>預設值：**14** 天 (密碼到期前)</li><li>值可使用 Set-msolpasswordpolicy Cmdlet 設定。</li></ul> |
@@ -50,6 +52,7 @@
 
 ## 後續步驟
 
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [從任何地方管理您的密碼](active-directory-passwords.md)
 * [密碼管理如何運作](active-directory-passwords-how-it-works.md)
 * [開始使用密碼管理](active-directory-passwords-getting-started.md)
@@ -60,4 +63,4 @@
 * [疑難排解密碼管理](active-directory-passwords-troubleshoot.md)
 * [深入了解](active-directory-passwords-learn-more.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

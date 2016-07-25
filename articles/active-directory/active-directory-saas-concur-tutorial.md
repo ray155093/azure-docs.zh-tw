@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Concur 整合  
@@ -31,7 +31,7 @@
 
 ![案例](./media/active-directory-saas-concur-tutorial/IC769766.png "案例")
 
->[AZURE.NOTE]設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+>[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
 
 ##啟用 Concur 的應用程式整合
 
@@ -39,7 +39,7 @@
 
 ###若要啟用 Concur 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-concur-tutorial/IC700993.png "Active Directory")
 
@@ -64,11 +64,11 @@
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Concur。
 
->[AZURE.NOTE]設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+>[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Concur] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Concur] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-concur-tutorial/IC769767.png "設定單一登入")
 
@@ -86,9 +86,9 @@
 
     1.  按 [下載中繼資料]，然後將資料檔儲存在您的電腦中。
     2.  請連絡 Concur 支援小組來設定您的租用戶的 SSO。
-    3.  選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。  
+    3.  選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
 
-	>[AZURE.NOTE]設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
+	>[AZURE.NOTE] 設定 Concur 訂用帳戶以透過 SAML 進行同盟 SSO 是獨立的工作，您必須連絡 Concur 執行這項工作。
 
 ##設定使用者佈建
 
@@ -126,7 +126,7 @@ Concur 顧問或用戶端系統管理員必須建立不同的 Web 服務系統�
 
     ![確認動作](./media/active-directory-saas-concur-tutorial/IC721732.png "確認動作")
 
-6.  從 Azure 管理入口網站的應用程式清單中選取[Concur]，以開啟 [Concur] 對話頁面。
+6.  從 Azure 傳統入口網站的應用程式清單中選取 [Concur]，以開啟 [Concur] 對話頁面。
 
 7.  若要開啟 [設定使用者佈建] 對話頁面，按一下 [設定使用者佈建]。
 
@@ -141,7 +141,7 @@ Concur 顧問或用戶端系統管理員必須建立不同的 Web 服務系統�
 
 ###若要將使用者指派給 Concur，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Concur] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -155,4 +155,4 @@ Concur 顧問或用戶端系統管理員必須建立不同的 Web 服務系統�
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -3,8 +3,8 @@
 	description="使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合"
 	services="visual-studio-online"
 	documentationCenter="na"
-	authors="TomArcher"
-	manager="douge"
+	authors="tfitzmac"
+	manager="timlt"
 	editor="" />
 
  <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
 	ms.date="04/19/2016"
-	ms.author="tarcher" />
+	ms.author="tomfitz" />
 
 # 使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合
 
@@ -63,7 +63,7 @@
 
 1.	選擇 [Azure PowerShell] 組建步驟，再填上其值。
 
-    1.	如果您已經將 Azure 服務端點加入 VS Team Services，請在 [Azure 訂用帳戶] 下拉式清單方塊中選擇訂用帳戶，並跳至下一節。 
+    1.	如果您已經將 Azure 服務端點加入 VS Team Services，請在 [Azure 訂用帳戶] 下拉式清單方塊中選擇訂用帳戶，並跳至下一節。
 
         如果您的 VS Team Services 中沒有 Azure 服務端點，請新增一個。此訂用帳戶會帶您完成此程序。如果您的 Azure 帳戶使用 Microsoft 帳戶 (例如 Hotmail)，您需要進行下列步驟以取得服務主體驗證。
 
@@ -121,7 +121,7 @@
 
     | 參數 | 說明|
     |---|---|
-    | -ResourceGroupLocation | 資源群組所在的地理位置，例如 **eastus** 或**'美國東部'**。(如果名稱中有空間，請加入單引號。) 如需詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。| |
+    | -ResourceGroupLocation | 資源群組所在的地理位置，例如 **eastus** 或**'美國東部'**。(如果名稱中有空間，請加入單引號。) 如需詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/zh-TW/regions/)。| |
     | -ResourceGroupName | 此部署使用的資源群組名稱。| |
     | -UploadArtifacts | 出現此參數時，表示必須將構件從本機系統上傳到 Azure。您只需要在範本部署需要您希望暫存的其他構件時，使用 PowerShell 指令碼設定此轉換 (例如組態指令碼或巢狀範本) 即可。 |
     | -StorageAccountName | 用來暫存此部署之構件的儲存體帳戶名稱。只有在您將構件複製到 Azure 時才需要此參數。部署時不會自動建立此儲存體帳戶，請在部署前先自行建立此儲存體帳戶。| |
@@ -160,4 +160,4 @@
 [10]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough11b.png
 [11]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough12.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

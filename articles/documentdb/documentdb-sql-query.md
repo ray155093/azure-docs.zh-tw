@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
+	ms.date="07/07/2016" 
 	ms.author="arramac"/>
 
 # DocumentDB 中的 SQL 查詢和 SQL 語法
@@ -864,8 +864,8 @@ DocumentDB SQL 的另一個重要功能是建立陣列/物件。在前一個範�
 	]
 
 
-###* 運算子
-支援使用特殊運算子 (*) 來依原樣投射文件。使用時，它必須是唯一投射的欄位。如果這類 `SELECT * FROM Families f` 查詢有效，`SELECT VALUE * FROM Families f ` 和 `SELECT *, f.id FROM Families f ` 則無效。
+###運算子
+支援使用特殊運算子 () 來依原樣投射文件。使用時，它必須是唯一投射的欄位。如果這類 `SELECT * FROM Families f` 查詢有效，`SELECT VALUE * FROM Families f ` 和 `SELECT *, f.id FROM Families f ` 則無效。
 
 **查詢**
 
@@ -2378,4 +2378,4 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 [consistency-levels]: documentdb-consistency-levels.md
  
 
-<!----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -332,10 +332,26 @@ static string GetContainerSasUri(CloudBlobContainer container)
 
 ## 後續步驟
 
-在本文中，您已了解如何對 IoT 中樞內的裝置身分識別登錄執行大量操作。您可以利用下列文章繼續探索 IoT 中樞功能和其他 IoT 案例：
+在本文中，您已了解如何對 IoT 中樞內的裝置身分識別登錄執行大量操作。遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
-- [以程式設計方式建立 IoT 中樞](iot-hub-rm-template.md)
-- [IoT 中樞用量度量](iot-hub-metrics.md)
-- [IoT 中樞作業監視](iot-hub-operations-monitoring.md)
+- [用量度量][lnk-metrics]
+- [作業監視][lnk-monitor]
+- [管理 IoT 中樞的存取權][lnk-itpro]
 
-<!---HONumber=AcomDC_0504_2016-->
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+
+[lnk-metrics]: iot-hub-metrics.md
+[lnk-monitor]: iot-hub-operations-monitoring.md
+[lnk-itpro]: iot-hub-itpro-info.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+
+<!---HONumber=AcomDC_0713_2016-->

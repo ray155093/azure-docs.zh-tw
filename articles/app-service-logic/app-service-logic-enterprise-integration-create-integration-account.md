@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="整合帳戶與企業整合套件的概觀 | Microsoft Azure App Service" 
+	pageTitle="整合帳戶與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解關於整合帳戶、企業整合套件與邏輯應用程式的一切" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 整合帳戶概觀
@@ -73,4 +73,4 @@
 
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

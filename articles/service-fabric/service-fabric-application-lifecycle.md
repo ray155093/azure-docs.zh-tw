@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/14/2016"
+   ms.date="07/11/2016"
    ms.author="ryanwi"/>
 
 
@@ -100,7 +100,7 @@
 5. 當新的節點加入至叢集或從叢集移除現有節點時，Service Fabric 會自動對叢集中所有節點的執行中應用程式進行負載平衡，以達到最佳效能。
 
 ## Remove
-1. *運算子*可以使用 [**DeleteServiceAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.servicemanagementclient.deleteserviceasync.aspx)、[**Remove-ServiceFabricService** Cmdlet](https://msdn.microsoft.com/library/azure/mt126033.aspx)，或[**刪除服務** REST 作業](https://msdn.microsoft.com/library/azure/dn707687.aspx)，刪除叢集內執行中服務的特定執行個體，而不需要移除整個應用程式。  
+1. *運算子*可以使用 [**DeleteServiceAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.servicemanagementclient.deleteserviceasync.aspx)、[**Remove-ServiceFabricService** Cmdlet](https://msdn.microsoft.com/library/azure/mt126033.aspx)，或[**刪除服務** REST 作業](https://msdn.microsoft.com/library/azure/dn707687.aspx)，刪除叢集內執行中服務的特定執行個體，而不需要移除整個應用程式。
 
 2. *運算子*也可以使用 [**DeleteApplicationAsync** 方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.applicationmanagementclient.deleteapplicationasync.aspx)、[**Remove-ServiceFabricApplication** Cmdlet](https://msdn.microsoft.com/library/azure/mt125914.aspx)，或[**刪除應用程式** REST 作業](https://msdn.microsoft.com/library/azure/dn707651.aspx)，刪除應用程式執行個體及其所有服務。
 
@@ -121,4 +121,4 @@
 - [Testability 概觀](service-fabric-testability-overview.md)
 - [REST 架構應用程式生命週期範例](service-fabric-rest-based-application-lifecycle-sample.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

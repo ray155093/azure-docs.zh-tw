@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/08/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Onit 整合
@@ -37,7 +37,7 @@
 
 ###若要啟用 Onit 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-onit-tutorial/IC700993.png "Active Directory")
 
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-onit-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-onit-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -72,7 +72,7 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Onit] 應用程式整合頁面中，按一下最上面功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Onit] 應用程式整合頁面中，按一下最上面功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
 
     ![屬性](./media/active-directory-saas-onit-tutorial/IC791169.png "屬性")
 
@@ -101,7 +101,7 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
 
     ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791171.png "設定單一登入")
 
-7.  在 [設定應用程式 URL] 頁面的 [Onit 單一登入 URL] 文字方塊中，輸入使用者登入您 Onit 應用程式所使用的 URL (如："**https://ms-sso-test.onit.com*”)，然後按一下 [下一步]。
+7.  在 [設定應用程式 URL] 頁面的 [Onit 單一登入 URL] 文字方塊中，輸入使用者用來登入 Onit 應用程式的 URL (如："*https://ms-sso-test.onit.com*”)，然後按一下 *[下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-onit-tutorial/IC791172.png "設定應用程式 URL")
 
@@ -128,17 +128,17 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
     ![單一登入](./media/active-directory-saas-onit-tutorial/IC791177.png "單一登入")
 
     1.  對於**驗證策略**，請選取 [單一登入和密碼]。
-    2.  在 Azure 入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登入 URL] 值，然後將它貼至 [IDP 目標 URL] 文字方塊中。
-    3.  在 Azure 入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登出 URL] 值，然後將它貼至 [IDP 登出 URL] 文字方塊中。
-    4.  從匯出的憑證複製**憑證指紋**值，然後將它貼至 [IDP 憑證指紋 (SHA1)] 文字方塊中。  
+    2.  在 Azure 傳統入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登入 URL] 值，然後將它貼至 [IDP 目標 URL] 文字方塊中。
+    3.  在 Azure 傳統入口網站中的 [設定在 Onit 單一登入] 對話頁面上， 複製 [遠端登出 URL] 值，然後將它貼至 [IDP 登出 URL] 文字方塊中。
+    4.  從匯出的憑證複製**憑證指紋**值，然後將它貼至 [IDP 憑證指紋 (SHA1)] 文字方塊中。
 
-        >[AZURE.TIP]如需詳細資訊，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)
 
     5.  **SSO 類型**請選取 **SAML**。
     6.  在 [SSO 登入按鈕文字] 文字方塊中輸入您想要的按鈕文字。
     7.  選取 [使用 SSO 登入：針對下列網域/使用者為必要]，將測試使用者的電子郵件地址輸入相關的文字方塊，然後按一下 [更新]。![編輯公司](./media/active-directory-saas-onit-tutorial/IC791178.png "編輯公司")
 
-14. 在 Azure AD 入口網站上，選取單一登入設定確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+14. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791179.png "設定單一登入")
 ##設定使用者佈建
@@ -158,11 +158,11 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
     ![新增使用者](./media/active-directory-saas-onit-tutorial/IC791181.png "新增使用者")
 
     1.  在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [名稱] 與 [電子郵件地址]。
-    2.  按一下 [建立]。  
+    2.  按一下 [建立]。
 
-        >[AZURE.NOTE]帳戶擁有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
+        >[AZURE.NOTE] 帳戶擁有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
 
->[AZURE.NOTE]您可以使用任何其他的 Onit 使用者帳戶建立工具或 Onit 提供的 API，佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] 您可以使用任何其他的 Onit 使用者帳戶建立工具或 Onit 提供的 API，佈建 AAD 使用者帳戶。
 
 ##指派使用者
   
@@ -170,7 +170,7 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
 
 ###若要指派使用者給 Onit，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Onit] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -180,6 +180,6 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
 
     ![是](./media/active-directory-saas-onit-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

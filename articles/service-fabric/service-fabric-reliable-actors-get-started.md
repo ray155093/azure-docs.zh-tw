@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # 開始使用 Reliable Actors
@@ -32,10 +32,11 @@
 	* 它會解析名稱。它能夠在叢集中找到動作項目 (尋找裝載動作項目的叢集節點)。
 	* 它會處理失敗。它可以重試方法叫用並重新決定動作項目位置，例如在需要動作項目重新定位至叢集中另一個節點失敗後進行。
 
-值得一提的是下列與動作項目介面方法相關的規則︰
+值得一提的是下列與動作項目介面相關的規則︰
 
 - 動作項目介面方法無法多載。
 - 動作項目介面方法不能有 out、ref 或選擇性參數。
+- 不支援泛型介面。
 
 ## 在 Visual Studio 中建立新專案
 安裝 Visual Studio 專用的 Service Fabric 工具後，您可以建立新的專案類型。新專案類型位在 [新專案] 對話方塊的 [雲端] 類別下。
@@ -68,7 +69,7 @@ public interface IMyActor : IActor
 }
 ```
 
-* **動作項目服務專案 (MyActor)**。此專案用於定義即將裝載動作項目的 Service Fabric 服務。它包含動作項目的實作。動作項目實作是衍生自基底型別 `Actor` 的類別，可實作 MyActor.Interfaces 專案中所定義的介面。
+* **動作項目服務專案 (MyActor)**。此專案用於定義即將裝載動作項目的 Service Fabric 服務。它包含動作項目的實作。動作項目實作是衍生自基底類型 `Actor` 的類別，可實作 MyActor.Interfaces 專案中所定義的介面。
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -139,4 +140,4 @@ Visual Studio 專用的 Service Fabric 工具支援在本機機器上偵錯。�
 [4]: ./media/service-fabric-reliable-actors-get-started/vs-context-menu.png
 [5]: ./media/service-fabric-reliable-actors-get-started/reliable-actors-newproject1.PNG
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

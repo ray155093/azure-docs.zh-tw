@@ -14,11 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="04/12/2016"
+   ms.date="07/12/2016"
    ms.author="mandia"/>
 
 
 # 為 PowerApps 和邏輯流程自訂 Swagger 定義
+
+>[AZURE.IMPORTANT] 本主題已移至 powerapps.microsoft.com，位於：[為 PowerApps 和流程自訂 Swagger 定義](https://powerapps.microsoft.com/tutorials/customapi-how-to-swagger/)。請移至 PowerApps 以取得最新版本。此 Azure 連結會被封存。
+
 
 ## 為您的 API 撰寫 Swagger 2.0 API 定義
 
@@ -54,7 +57,7 @@
 	
 - `operationId`：比對已叫用作業 operationId 的字串
 - `parameters`：物件屬性定義作業所需參數的物件
-- `value-collection`：在回應裝載中評估物件陣列的路徑字串
+- `value-collection`：在回應承載中評估物件陣列的路徑字串
 - `value-path`：參考參數值的 "value-collection" 內部物件中的路徑字串。
 - `value-title`：參考值描述的 "value-collection" 內部物件中的路徑字串。
 
@@ -115,4 +118,4 @@ Salesforce 有很多內建物件。`x-ms-dynamic-values` 在這裡用來協助�
 <!--Reference links in article-->
 [1]: https://github.com/domaindrivendev/Swashbuckle/blob/master/README.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

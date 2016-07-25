@@ -80,7 +80,7 @@
 3. 按一下 [加入 Runbook] 按鈕，然後按一下 [匯入]。
 4. 按一下 [Runbook 檔案] 以選取要匯入的檔案
 2. 如果 [名稱] 欄位已啟用，則您可以選擇變更它。Runbook 名稱必須以字母開頭，可以具有字母、數字、底線和連字號。
-3. [Runbook 類型](automation-runbook-types.md)將會自動選取，但您可以在將適用限制納入考量之後變更此類型。 
+3. [Runbook 類型](automation-runbook-types.md)將會自動選取，但您可以在將適用限制納入考量之後變更此類型。
 3. 新的 Runbook 會出現在 [自動化帳戶] 的 Runbook 清單中。
 4. 您必須[發佈 Runbook](#publishing-a-runbook)，才能執行。
 
@@ -92,7 +92,7 @@
 
 以下範例命令示範如何將指令碼檔案匯入 Runbook。
 
-    $automationAccountName =  AutomationAccount"
+    $automationAccountName =  "AutomationAccount"
     $runbookName = "Sample_TestRunbook"
     $scriptPath = "C:\Runbooks\Sample_TestRunbook.ps1"
     $RGName = "ResourceGroup"
@@ -123,7 +123,7 @@
 
 您可以使用 [Publish-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603705.aspx) Cmdlet，利用 Windows PowerShell 發佈 Runbook。下列範例命令顯示如何發佈範例 Runbook。
 
-	$automationAccountName =  AutomationAccount"
+	$automationAccountName =  "AutomationAccount"
     $runbookName = "Sample_TestRunbook"
     $RGName = "ResourceGroup"
 
@@ -136,4 +136,4 @@
 - 若要深入了解使用文字編輯器編輯 PowerShell 和 PowerShell 工作流程 Runbook，請參閱[在 Azure 自動化中編輯文字式 Runbook](automation-edit-textual-runbook.md)
 - 若要深入了解如何編寫圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

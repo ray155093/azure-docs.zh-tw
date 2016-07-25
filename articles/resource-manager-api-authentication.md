@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="04/18/2016"
+   ms.date="07/12/2016"
    ms.author="dugill;tomfitz" />
 
 
@@ -444,4 +444,4 @@ ASP.net MVC 範例應用程式的 [RevokeRoleFromServicePrincipalOnSubscription 
 
 好了，使用者現在能使用您的應用程式來輕鬆連接及管理其 Azure 訂用帳戶。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -73,7 +73,7 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 
 ### .NET
 
-下列函式會採用其中一個指定的 MP 名稱，並傳回 NP 物件。
+下列函式會採用其中一個指定的 MP 名稱，並傳回 MP 物件。
 
     static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
     {
@@ -144,4 +144,4 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 
 [overview]: ./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

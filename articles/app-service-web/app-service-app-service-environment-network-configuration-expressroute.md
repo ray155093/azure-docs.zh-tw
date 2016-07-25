@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/01/2016" 
+	ms.date="07/11/2016" 
 	ms.author="stefsch"/>
 
 # 使用 ExpressRoute 之 App Service 環境的網路組態詳細資料 
@@ -21,7 +21,7 @@
 ## 概觀 ##
 客戶可以將 [Azure ExpressRoute][ExpressRoute] 循環連接至虛擬網路基礎結構，因而將其內部部署網路延伸至 Azure。您可以在這個[虛擬網路][virtualnetwork]基礎結構的子網路中建立 App Service 環境。在 App Service 環境上執行的應用程式接著可以建立與後端資源的安全連線，而後端資源只能透過 ExpressRoute 連線來存取。
 
-**注意：**在「v2」虛擬網路中，無法建立 App Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
+App Service 環境可以在 Azure Resource Manager 虛擬網路或者傳統式部署模型虛擬網路其中之一中建立。在 2016 年 6 月所進行的最新變更之後，ASE 現在也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
 
 [AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -29,11 +29,11 @@
 在連接至 ExpressRoute 的虛擬網路中，可能一開始會不符合 App Service 環境的一些網路連線需求。App Service 環境需要下列所有項目，才能正確運作：
 
 
--  在連接埠 80 與 443 上，全球 Azure 儲存體端點的輸出網路連線能力。這包括位於與 App Service 環境相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：table.core.windows.net、blob.core.windows.net、queue.core.windows.net 和 file.core.windows.net。
+-  在連接埠 80 與 443 上，全球 Azure 儲存體端點的輸出網路連線能力。這包括位於與 App Service 環境相同區域中的端點，以及位於「其他」 Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。
 -  位於連接埠 445 的 Azure 檔案服務的輸出網路連線
 -  位於與 App Service 環境相同區域中的 SQL DB 端點的輸出網路連接。Sql DB 端點在以下網域之下解析：database.windows.net。這需要開啟連接埠 1433、11000-11999 和 14000 14999 的存取。如需詳細資訊，請參閱 [Sql Database V12 連接埠使用方式](../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md)一文。
 -  Azure 管理平面端點 (ASM 和 ARM 端點) 的輸出網路連線。這包括 *management.core.windows.net* 和 *management.azure.com* 的輸出連線。
--  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。需要此連線才能支援 SSL 功能。
+-  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的傳出網路連線。需要此連線才能支援 SSL 功能。
 -  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。如果無法解析這些端點，App Service 環境建立嘗試將會失敗，而且現有的 App Service 環境會標示為狀況不良。
 -  需要有連接埠 53 的輸出存取，才能與 DNS 伺服器通訊。
 -  如果 VPN 閘道的另一端有自訂 DNS 伺服器存在，則必須可從包含 App Service 環境的子網路連接該 DNS 伺服器。
@@ -58,9 +58,9 @@
 
 這些步驟的合併效果是子網路層級 UDR 會優先於 ExpressRoute 強制通道，因而確保來自 App Service 環境的輸出網際網路存取。
 
-**重要事項：**UDR 中定義的路由**必須**明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
-
-**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+> [AZURE.IMPORTANT] UDR 中定義的路由必須明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
+>
+>**未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 App Service 環境。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 App Service 環境子網路的所有輸出網路封包都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。此網路流程將會破壞 App Service 環境。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 如需使用者定義路由的背景資訊，請參閱此[概觀][UDROverview]。
 
@@ -116,7 +116,7 @@
 然後繼續建立 App Service 環境！
 
 ## 開始使用
-您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 若要開始使用 App Service 環境，請參閱 [App Service 環境簡介][IntroToAppServiceEnvironment]
 
@@ -140,4 +140,4 @@
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

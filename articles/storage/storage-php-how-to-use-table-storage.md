@@ -3,8 +3,8 @@
 	description="了解如何使用 PHP 的資料表服務來建立和刪除資料表，以及插入、刪除和查詢資料表。"
 	services="storage"
 	documentationCenter="php"
-	authors="allclark"
-	manager="douge"
+	authors="rmcmurray"
+	manager="wpickett"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="PHP"
 	ms.topic="article"
 	ms.date="06/01/2016"
-	ms.author="allclark;yaqiyang"/>
+	ms.author="robmcm"/>
 
 
 # 如何使用 PHP 的資料表儲存體
@@ -23,7 +23,7 @@
 
 ## 概觀
 
-本指南說明如何使用 Azure 資料表服務執行一般案例。這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download] \(英文)。所涵蓋的案例包括「建立和刪除資料表」以及「在資料表中插入、刪除及查詢實體」。如需有關 Azure 資料表服務的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本指南說明如何使用 Azure 資料表服務執行一般案例。這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download] (英文)。所涵蓋的案例包括「建立和刪除資料表」以及「在資料表中插入、刪除及查詢實體」。如需有關 Azure 資料表服務的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
 [AZURE.INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -478,4 +478,4 @@
 [filters]: http://msdn.microsoft.com/library/azure/dd894031.aspx
 [entity-group-transactions]: http://msdn.microsoft.com/library/azure/dd894038.aspx
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="04/13/2016"
+   ms.date="07/13/2016"
    ms.author="hascipio; v-divte"/>
 
 # 建立 Azure Marketplace 的虛擬機器映像的指南
@@ -33,6 +33,8 @@
 SKU 是 VM 映像的商務名稱。VM 映像包含一個作業系統磁碟以及零或多個資料磁碟。它在本質上是虛擬機器的完整儲存體設定檔。每個磁碟都需要一個 VHD。即使空的資料磁碟也需要建立一個 VHD。
 
 無論您使用哪一種作業系統，您只能加入 SKU 所需的最少數目資料磁碟。客戶無法在部署時移除屬於映像一部分的磁碟，但是可隨時在必要時於部署期間或之後加入磁碟。
+
+>[AZURE.IMPORTANT] **請勿變更新映像版本中的磁碟計數。** 如果您必須重新設定映像中的資料磁碟，請定義新的 SKU。對於自動調整大小、透過 ARM 範本自動部署解決方案和其他案例來說，發行磁碟計數相異的新映像版本有可能會毀損以新映像版本為基礎的新部署。
 
 ### 1\.1 加入供應項目
 
@@ -567,4 +569,4 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
 [link-intsvc]: http://www.microsoft.com/download/details.aspx?id=41554
 [link-python]: https://www.python.org/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

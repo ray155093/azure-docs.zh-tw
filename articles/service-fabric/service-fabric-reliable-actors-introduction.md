@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 # Service Fabric Reliable Actor 簡介
@@ -105,7 +105,7 @@ await myActor.DoWorkAsync();
 
 Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動作項目方法。這表示動作項目物件代碼內永遠只能有一個執行緒為使用中。回合式存取會大幅簡化並行系統，因為不需要使用同步機制來進行資料存取。這也表示系統必須針對每個動作項目執行個體的單一執行緒存取本質的特殊考量來設計。
 
- - 單一動作項目執行個體無法一次處理一個以上的要求。如果預期動作項目執行個體要處理並行要求，可能就會遇到輸送量瓶頸。 
+ - 單一動作項目執行個體無法一次處理一個以上的要求。如果預期動作項目執行個體要處理並行要求，可能就會遇到輸送量瓶頸。
  - 如果兩個動作項目之間有一個循環要求，同時還會對其中一個動作項目提出外部要求，則動作項目會在彼此間產生死結。動作項目執行階段將會在動作項目呼叫時自動逾時，並將例外狀況擲回呼叫端，以中斷可能發生的死結狀況。
 
 ![Reliable Actors 通訊][3]
@@ -158,4 +158,4 @@ Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動�
 [2]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 [3]: ./media/service-fabric-reliable-actors-introduction/actor-communication.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

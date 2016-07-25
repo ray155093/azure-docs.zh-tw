@@ -3,7 +3,7 @@
    description="Microsoft Power BI Embedded Preview 疑難排解"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="dvana"
+   authors="minewiskan"
    manager="NA"
    editor=""
    tags=""/>
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="04/25/2016"
-   ms.author="derrickv"/>
+   ms.date="06/29/2016"
+   ms.author="owend"/>
 
 # Microsoft Power BI Embedded Preview 疑難排解
 本文提供如何疑難排解 **Power BI Embedded** 的解答。
@@ -40,4 +40,4 @@
 - [開始使用範例](power-bi-embedded-get-started-sample.md)
 - [什麼是 Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

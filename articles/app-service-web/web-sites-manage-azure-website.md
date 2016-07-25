@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/27/2016" 
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 在 Azure App Service 中管理 Web 應用程式
 
@@ -60,8 +60,7 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 ### 監控
 
 - 您可以透過 Azure 入口網站來[新增效能度量](web-sites-monitor.md) (如 CPU 使用率和用戶端要求數目)。
-- 如需深入探索，請使用 New Relic 來監視及管理效能。請參閱[在 Azure App Service 中的 .NET Web 應用程式使用 New Relic 應用程式效能管理](store-new-relic-web-sites-dotnet-application-performance-management.md)。
-- [調整 Web 應用程式](web-sites-scale.md)以因應流量變化。您可以根據階層來調整 VM 的數目和/或 VM 執行個體的大小。在標準和高階階層中，您還可以設定自動調整，使 Web 應用程式得以按照固定排程或根據負載自動調整。  
+- [調整 Web 應用程式](web-sites-scale.md)以因應流量變化。您可以根據階層來調整 VM 的數目和/或 VM 執行個體的大小。在標準和高階階層中，您還可以設定自動調整，使 Web 應用程式得以按照固定排程或根據負載自動調整。
  
 ### 備份
 
@@ -70,7 +69,7 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
 ### 疑難排解
 
-- 發生問題時，您可以在雲端使用診斷記錄和即時偵錯，以[在 Visual Studio 中疑難排解 Azure 網站](web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)。 
+- 發生問題時，您可以在雲端使用診斷記錄和即時偵錯，以[在 Visual Studio 中疑難排解 Azure 網站](web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)。
 - 在 Visual Studio 之外，還有各種方法可用來收集診斷記錄。請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能](web-sites-enable-diagnostic-log.md)。
 - 若是 Node.js 應用程式，請參閱[如何在 Azure App Service 中偵錯 Node.js Web 應用程式](web-sites-nodejs-debug.md)。
 
@@ -87,7 +86,7 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
 如果您使用 Visual Studio Team Services，可以從原始檔控制設定連續部署：
 
-- [使用 Team Foundation 版本控制 (TFVC)](../cloud-services/cloud-services-continuous-delivery-use-vso.md) 
+- [使用 Team Foundation 版本控制 (TFVC)](../cloud-services/cloud-services-continuous-delivery-use-vso.md)
 - [使用 Git](../cloud-services/cloud-services-continuous-delivery-use-vso-git.md)
  
 <!-- Anchors. -->
@@ -98,4 +97,4 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
   
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

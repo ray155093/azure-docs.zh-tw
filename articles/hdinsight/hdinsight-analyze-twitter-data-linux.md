@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/22/2016"
+	ms.date="07/12/2016"
 	ms.author="larryfr"/>
 
 # 在 HDInsight 中使用 Hive 分析 Twitter 資料
 
 在本文件中，您將會使用 Twitter 串流 API 取得推文，然後在以 Linux 為基礎的 HDInsight 叢集上使用 Apache Hive 處理 JSON 格式化的資料。結果會是傳送最多包含特定文字推文的 Twitter 使用者清單。
 
-> [AZURE.NOTE] 本文章中的個別部分適用於以 Windows 為基礎的 HDInsight 叢集 (例如 Python 與 Hive)，許多步驟則適用於以 Linux 為基礎的 HDInsight 叢集。如需 Windows 為基礎的叢集的特定步驟，請參閱[在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)。
+> [AZURE.NOTE] 本文章中的個別部分適用於以 Windows 為基礎的 HDInsight 叢集 (如 Python)，許多步驟則適用於以 Linux 為基礎的 HDInsight 叢集。如需 Windows 為基礎的叢集的特定步驟，請參閱[在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)。
 
 ###必要條件
 
@@ -99,7 +99,7 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 
 		nano gettweets.py
 
-5. 使用以下命令做為 __gettweets.py__ 檔案的內容。使用您 Twitter 應用程式的資訊，取代 __consumer/\_secret__、__consumer/\_key__、__access/\_token__ 和 __access/\_token/\_secret__ 的預留位置資訊。
+5. 使用以下命令做為 __gettweets.py__ 檔案的內容。使用您 Twitter 應用程式的資訊，取代 __consumer/secret、__consumer/key\_、__access/token 及 __access/token/secret 的預留位置資訊。
 
         #!/usr/bin/python
 
@@ -160,6 +160,8 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 		python gettweets.py
 
 	應會顯示進度列指示器，且在下載推文並儲存至檔案時顯示 100%。
+
+    > [AZURE.NOTE] 如果進度列需要花費很長的時間才會向前移動，您應該變更篩選器來追蹤趨勢主題。如果您要篩選的主題有很多相關推文，便能非常快速地取得所需的 10000 則推文。
 
 ###上傳資料
 
@@ -288,11 +290,11 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 
 4. 使用以下命令執行包含於檔案中的 HiveQL：
 
-		hive -i twitter.hql		
+		beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i twitter.hql		
 		
-	這會載入 Hive 殼層，執行 __twitter.hql__ 檔案中的 HiveQL，最後會傳回 `hive >` 提示字元。
+	這會載入 Hive 殼層，執行 __twitter.hql__ 檔案中的 HiveQL，最後會傳回 `jdbc:hive2//localhost:10001/>` 提示字元。
 	
-5. 從 `hive >` 提示字元使用以下命令，以確認您可以選取 HiveQL 在 __twitter.hql__ 檔案中建立的 __tweets__ 資料表的資料：
+5. 從 Beeline 提示字元使用以下命令，以確認您可以選取 HiveQL 在 __twitter.hql__ 檔案中建立的 __tweets__ 資料表的資料：
 		
 		SELECT name, screen_name, count(1) as cc
 			FROM tweets
@@ -317,4 +319,4 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 [twitter-streaming-api]: https://dev.twitter.com/docs/streaming-apis
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

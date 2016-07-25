@@ -38,7 +38,7 @@
 **若要在 BizTalk 服務中建立「混合式連線」**：
 
 1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
-2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。 
+2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。
 
 	如果您沒有現有的 BizTalk 服務，您可以[建立 BizTalk 服務](biztalk-provision-services.md)。
 3. 選取 [混合式連接] 索引標籤：![混合式連線索引標籤][HybridConnectionTab]
@@ -47,16 +47,16 @@
 
 	屬性 | 說明
 --- | ---
-名稱 | 混合式連線名稱必須是唯一的，且不能與 BizTalk 服務的名稱相同。您可以輸入任何名稱，但要能夠具體表示用途。範例包括：<br/><br/>Payroll*SQLServer*<br/>SupplyList*SharepointServer*<br/>Customers*OracleServer*
-主機名稱 | 輸入內部部署資源的完整主機名稱、僅主機名稱，或 IPv4 位址。範例包括：<br/><br/>mySQLServer<br/>*mySQLServer*.*Domain*.corp.*yourCompany*.com<br/>*myHTTPSharePointServer*<br/>*myHTTPSharePointServer*.*yourCompany*.com<br/>10.100.10.10
+名稱 | 混合式連線名稱必須是唯一的，且不能與 BizTalk 服務的名稱相同。您可以輸入任何名稱，但要能夠具體表示用途。範例包括︰<br/><br/>Payroll*SQLServer*<br/>SupplyList*SharepointServer*<br/>Customers*OracleServer*
+主機名稱 | 輸入內部部署資源的完整主機名稱、僅主機名稱，或 IPv4 位址。範例包括︰<br/><br/>mySQLServer<br/>*mySQLServer*.*Domain*.corp.*yourCompany*.com<br/>*myHTTPSharePointServer*<br/>*myHTTPSharePointServer*.*yourCompany*.com<br/>10.100.10.10
 連接埠 | 輸入內部部署資源的連接埠號碼。例如，如果您使用 Web Apps，請輸入連接埠 80 或 443。如果您使用 SQL Server，請輸入連接埠 1433。
 
 5. 選取核取記號以完成設定。
 
 #### 其他
 
-- 可建立多個混合式連線。請參閱「[BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md)」(英文) 瞭解允許的連接數量。 
-- 每個「混合式連線」都是由一對連接字串建立而成：分別是負責「傳送」的應用程式金鑰，以及負責「接聽」的內部部署金鑰。每一對都有「主要」和「次要」金鑰。 
+- 可建立多個混合式連線。請參閱「[BizTalk 服務：版本圖表](biztalk-editions-feature-chart.md)」(英文) 瞭解允許的連接數量。
+- 每個「混合式連線」都是由一對連接字串建立而成：分別是負責「傳送」的應用程式金鑰，以及負責「接聽」的內部部署金鑰。每一對都有「主要」和「次要」金鑰。
 
 
 ## <a name="LinkWebSite"></a>連結 Azure Web Apps 或 Azure Mobile Apps
@@ -71,11 +71,11 @@
 建立混合式連線之後，請在內部部署資源上安裝混合式連線管理員。可從 Azure Web Apps 或 BizTalk 服務下載此程式。BizTalk 服務步驟：
 
 1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
-2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。 
+2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。
 3. 選取 [混合式連接] 索引標籤：![混合式連線索引標籤][HybridConnectionTab]
 4. 在工作列中，選取 [內部部署設定]：![On-Premises Setup][HCOnPremSetup]
-5. 選取 [**安裝和設定**]，在內部部署系統上執行或下載混合式連線管理員。 
-6. 選取核取記號來開始安裝。 
+5. 選取 [**安裝和設定**]，在內部部署系統上執行或下載混合式連線管理員。
+6. 選取核取記號來開始安裝。
 
 <!--
 You can also download the Hybrid Connection Manager MSI file and copy the file to your on-premises resource. Specific steps:
@@ -88,32 +88,32 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 --> 
 
 #### 其他
-- 混合式連線支援下列作業系統上安裝的內部部署資源：
+- 混合式連線管理員可以安裝在以下作業系統上︰
 
-	- Windows Server 2008 R2
-	- Windows Server 2012
+	- Windows Server 2008 R2 (須有 .NET Framework 4.5+ 和 Windows Management Framework 4.0+)
+	- Windows Server 2012 (須有 Windows Management Framework 4.0+)
 	- Windows Server 2012 R2
 
 
 - 安裝混合式連線管理員之後的情況如下：
 
-	- 裝載於 Azure 的混合式連線會自動設定為使用「主要應用程式連接字串」。 
+	- 裝載於 Azure 的混合式連線會自動設定為使用「主要應用程式連接字串」。
 	- 內部部署資源會自動設定為使用「主要內部部署連接字串」。
 
 - 混合式連線管理員必須使用有效的內部部署連接字串，才能進行授權。Azure Web Apps 或 Azure Mobile Apps 必須使用有效的應用程式連接字串，才能進行授權。
-- 您可以在另一部伺服器上安裝另一個混合式連線管理員的執行個體，藉此調整混合式連線。設定內部部署接聽程式，以使用與第一個內部部署接聽程式相同的位址。在此情況下，流量會隨機分散 (循環配置資源) 到作用中的內部部署接聽程式之間。 
+- 您可以在另一部伺服器上安裝另一個混合式連線管理員的執行個體，藉此調整混合式連線。設定內部部署接聽程式，以使用與第一個內部部署接聽程式相同的位址。在此情況下，流量會隨機分散 (循環配置資源) 到作用中的內部部署接聽程式之間。
 
 
 ## <a name="ManageHybridConnection"></a>管理混合式連線
 若要管理混合式連線，您可以：
 
-- 使用 Azure 入口網站並移至您的 BizTalk 服務。 
+- 使用 Azure 入口網站並移至您的 BizTalk 服務。
 - 使用 [REST API](http://msdn.microsoft.com/library/azure/dn232347.aspx)。
 
 #### 複製/重新產生混合式連線字串
 
 1. 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)。
-2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。 
+2. 在左側瀏覽窗格中，選取 [**BizTalk 服務**]，然後選取您的 BizTalk 服務。
 3. 選取 [混合式連接] 索引標籤：![混合式連線索引標籤][HybridConnectionTab]
 4. 選取 [混合式連線]。在工作列中，選取 [管理連線]：![管理選項][HCManageConnection]
 
@@ -128,7 +128,7 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 
 1. 下載[混合式連線管理員的系統管理範本](http://www.microsoft.com/download/details.aspx?id=42963)。
 2. 將檔案解壓縮。
-3. 在修改群組原則的電腦上，執行下列動作：  
+3. 在修改群組原則的電腦上，執行下列動作：
 
 	- 將 .ADMX 檔案複製到 *%WINROOT%\\PolicyDefinitions* 資料夾。
 	- 將 .ADML 檔案複製到 *%WINROOT%\\PolicyDefinitions\\zh-TW* 資料夾。
@@ -152,4 +152,4 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 [HCOnPremSetup]: ./media/integration-hybrid-connection-create-manage/WABS_HybridConnectionOnPremSetup.png
 [HCManageConnection]: ./media/integration-hybrid-connection-create-manage/WABS_HybridConnectionManageConn.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-multiple" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/10/2016" 
-	ms.author="wesmc" />
+	ms.date="07/07/2016" 
+	ms.author="wesmc;ricksal" />
 
 #使用 REST 存取 Azure Mobile Engagement 服務 API
 
@@ -49,7 +49,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
 
 ## 建立服務 API 應用程式
 
-1. 首先，您需要用於此範例的四個驗證參數。這些參數是 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。若要取得這些驗證參數，建議您使用[驗證](mobile-engagement-api-authentication.md#authentication)教學課程中單次設定 (使用指令碼) 一節下所述的 PowerShell 指令碼方法。 
+1. 首先，您需要用於此範例的四個驗證參數。這些參數是 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。若要取得這些驗證參數，建議您使用[驗證](mobile-engagement-api-authentication.md#authentication)教學課程中單次設定 (使用指令碼) 一節下所述的 PowerShell 指令碼方法。
 
 2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 REST Service API 建立與啟用新的公告行銷活動。開啟 Visual Studio，建立新的 [主控台應用程式]。
 
@@ -461,4 +461,4 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
 
 [1]: ./media/mobile-engagement-dotnet-sdk-service-api/include-prerelease.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0713_2016-->

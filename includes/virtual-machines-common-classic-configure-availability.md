@@ -18,15 +18,15 @@
 
 使用 Azure 入口網站：
 
-1. 如果您尚未登入 Azure 入口網站，請先登入。
+1. 如果您尚未登入 [Azure 入口網站](https://portal.azure.com)，請先登入。
 
-2. 在 [中樞] 功能表上按一下 [+ New] \(+ 新增)，然後按一下 [虛擬機器]。
+2. 在 [中樞] 功能表上按一下 [+新增]，然後按一下 [虛擬機器]。
     
     ![替代映像文字](./media/virtual-machines-common-classic-configure-availability/ChooseVMImage.png)
 
 3. 選取您想要使用的 Marketplace 虛擬機器映像。您可以選擇建立 Linux 或 Windows 虛擬機器。
 
-4. 確認所選虛擬機器的部署模型設為 [傳統]，然後按一下 [建立]。
+4. 確認所選虛擬機器的部署模型設為 [傳統]，然後按一下 [建立]
     
     ![替代映像文字](./media/virtual-machines-common-classic-configure-availability/ChooseClassicModel.png)
 
@@ -42,13 +42,13 @@
 
 9. 當 Azure 建立虛擬機器時，您可以在 [中樞] 功能表的 [虛擬機器] 下追蹤進度。
 
-若要使用 Azure PowerShell 命令建立 Azure 虛擬機器，並將它新增至新的或現有的可用性設定組，請參閱[使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-create-powershell.md)。
+若要使用 Azure PowerShell 命令建立 Azure 虛擬機器，並將它新增至新的或現有的可用性設定組，請參閱[使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-create-powershell.md)
 
 ## <a id="addmachine"> </a>選項 2：將現有虛擬機器加入至可用性設定組##
 
 在 Azure 入口網站中，您可以將現有的傳統虛擬機器新增至現有的可用性設定組，或為其建立一個新的可用性設定組。(請注意，相同可用性設定組中的虛擬機器必須隸屬於相同的雲端服務。) 步驟幾乎完全相同。有了 Azure PowerShell，您可以將虛擬機器加入現有的可用性設定組。
 
-1. 如果您尚未登入 Azure 入口網站，請先登入。
+1. 如果您尚未登入 [Azure 入口網站](https://portal.azure.com)，請先登入。
 
 2. 在 [中樞] 功能表上，按一下 [虛擬機器 (傳統)]。
     
@@ -66,15 +66,12 @@
 
 6. 按一下 [儲存]。
 
-若要使用 Azure PowerShell 命令，請開啟系統管理員層級的 Azure PowerShell 工作階段並執行下列命令。在預留位置 (例如 &lt;VmCloudServiceName&gt;) 中，以正確的名稱取代引號中的所有內容，包括 < and > 字元。
+若要使用 Azure PowerShell 命令，請開啟系統管理員層級的 Azure PowerShell 工作階段並執行下列命令。在預留位置 (例如 &lt;VmCloudServiceName&gt;) 中，以正確的名稱取代引號中的所有內容，包括 "<" 和 ">" 字元。
 
 	Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Set-AzureAvailabilitySet -AvailabilitySetName "<AvSetName>" | Update-AzureVM
 
 >[AZURE.NOTE] 系統可能必須重新啟動虛擬機器，以結束將它加入至可用性集合的作業。
 
-## 其他資源
-
-[傳統虛擬機器的文章][]
 
 <!-- LINKS -->
 [選項 1：同時建立虛擬機器和可用性設定組]: #createset
@@ -85,6 +82,5 @@
 
 [Create a virtual machine running Windows]: ../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md
 [Virtual Network overview]: ../articles/virtual-network/virtual-networks-overview.md
-[傳統虛擬機器的文章]: https://azure.microsoft.com/documentation/articles/?tag=azure-service-management&service=virtual-machines
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0713_2016-->

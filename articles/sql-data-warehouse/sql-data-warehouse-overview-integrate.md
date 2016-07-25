@@ -38,7 +38,7 @@ Power BI 整合可讓您運用 SQL 資料倉儲的計算能力以及 Power BI �
 Azure Data Factory 提供使用者一個受管理的平台，以建立複雜的擷取-載入管線。SQL 資料倉儲與 Azure Data Factory 的整合包含下列內容：
 
 + **預存程序**：協調 SQL 資料倉儲上的預存程序的執行。
-+ **複製**：使用 ADF 將資料移到「SQL 資料倉儲」中。這項作業可以在幕後使用 ADF 的標準資料移動機制或 PolyBase。 
++ **複製**：使用 ADF 將資料移到「SQL 資料倉儲」中。這項作業可以在幕後使用 ADF 的標準資料移動機制或 PolyBase。
 
 如需詳細資訊，請參閱[與 Azure Data Factory 整合](./sql-data-warehouse-integrate-azure-data-factory.md)或 [Azure Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)。
 
@@ -66,10 +66,10 @@ Azure 串流分析是複雜、完全受管理的基礎結構，可處理和取�
 [Azure Machine Learning]: sql-data-warehouse-integrate-azure-machine-learning.md
 [Azure Stream Analytics]: sql-data-warehouse-integrate-azure-stream-analytics.md
 [Power BI]: sql-data-warehouse-integrate-power-bi.md
-[Partners]: sql-data-warehouse-integrate-solution-partners.md
+[Partners]: sql-data-warehouse-partner-business-intelligence.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

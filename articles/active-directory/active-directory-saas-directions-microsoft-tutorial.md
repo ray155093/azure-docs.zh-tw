@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Directions on Microsoft 整合
@@ -21,7 +21,7 @@
 -   有效的 Azure 訂閱
 -   Directions on Microsoft 訂用帳戶
 
-如果您尚未有同盟的 Directions on Microsoft 訂用帳戶，請透過電子郵件傳送要求到 "*service@DirectionsOnMicrosoft.com*”。
+如果您尚未有同盟的 Directions on Microsoft 訂用帳戶，請透過電子郵件傳送要求到 “*service@DirectionsOnMicrosoft.com*”。
 
 完成本教學課程之後，您指派給 Directions on Microsoft 的 Azure Active Directory 使用者將能夠使用單一登入，單一登入到應用程式。
 
@@ -39,7 +39,7 @@
 
 ###若要啟用 Directions on Microsoft 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-directions-microsoft-tutorial/IC700993.png "Active Directory")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Directions on Microsoft] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Directions on Microsoft] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![啟用單一登入](./media/active-directory-saas-directions-microsoft-tutorial/IC786879.png "啟用單一登入")
 
@@ -78,7 +78,7 @@
 
     ![Microsoft Azure AD 單一登入](./media/active-directory-saas-directions-microsoft-tutorial/IC786880.png "Microsoft Azure AD 單一登入")
 
-3.  在 [設定應用程式 URL] 頁面上的 [登入 URL] 文字方塊中，輸入 ****https://www.directionsonmicrosoft.com/user/login**，然後按一下 [下一步]。
+3.  在 [設定應用程式 URL] 頁面上的 [登入 URL] 文字方塊中，輸入 **https://www.directionsonmicrosoft.com/user/login**，然後按一下 **[下一步]**。
 
     ![設定應用程式 URL](./media/active-directory-saas-directions-microsoft-tutorial/IC786881.png "設定應用程式 URL")
 
@@ -86,11 +86,11 @@
 
     ![設定單一登入](./media/active-directory-saas-directions-microsoft-tutorial/IC786882.png "設定單一登入")
 
-5.  將中繼資料檔傳送給 Directions on Microsoft 支援小組 (**service@DirectionsOnMicrosoft.com*)。若要讓 Directions on Microsoft 支援小組能夠找出您的同盟站台成員資格，請在您的電子郵件中附上您公司的資訊。
+5.  將中繼資料檔傳送給 Directions on Microsoft 支援小組 (*service@DirectionsOnMicrosoft.com*)。若要讓 Directions on Microsoft 支援小組能夠找出您的同盟站台成員資格，請在您的電子郵件中附上您公司的資訊。
 
-    >[AZURE.NOTE]Directions on Microsoft 的單一登入必須由 Directions on Microsoft 支援小組啟用。單一登入啟用之後，您便會收到通知。
+    >[AZURE.NOTE] Directions on Microsoft 的單一登入必須由 Directions on Microsoft 支援小組啟用。單一登入啟用之後，您便會收到通知。
 
-6.  在 Azure AD 入口網站上，選取單一登入組態確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-directions-microsoft-tutorial/IC786883.png "設定單一登入")
 ##設定使用者佈建
@@ -102,7 +102,7 @@
 
 ###若要將使用者指派給 Directions on Microsoft，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [Directions on Microsoft] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -112,4 +112,4 @@
 
     ![是](./media/active-directory-saas-directions-microsoft-tutorial/IC767830.png "是")
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->
