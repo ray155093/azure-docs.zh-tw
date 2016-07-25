@@ -128,7 +128,7 @@
 	
 	5. 選擇特定子網路和網路介面來連接至處理序伺服器。注意 - 您必須建立您自己的[網路介面](../virtual-network/virtual-networks-multiple-nics.md) (NIC)，並在部署時選取它。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/psinputsadd.PNG)
+		![](./media/site-recovery-failback-azure-to-vmware-new/PSinputsadd.PNG)
 	
 	6. 按一下 [確定]。這樣會觸發利用處理序伺服器安裝程式建立資源管理員部署類型虛擬機器的工作。您必須在 VM 內部執行安裝程式，將伺服器註冊到組態伺服器。您可以依照[這些步驟](./site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)進行。
 
@@ -252,4 +252,4 @@
 - ExpressRoute 應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 - 資料會複寫至公用端點上的 Azure 儲存體帳戶。您應該在 ExpressRoute 中設定與目標資料中心的公用對等互連，這樣一來，Site Recovery 複寫才能使用 ExpressRoute。
 
-<!----HONumber=AcomDC_0713_2016---->
+<!----HONumber=AcomDC_0713_2016----->
