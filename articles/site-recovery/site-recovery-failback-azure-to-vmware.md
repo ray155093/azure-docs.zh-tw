@@ -112,7 +112,7 @@
 	
 	1. 映像的名稱是 Microsoft Azure Site Recovery Process Server V2。請確定您選取 [傳統] 做為部署模型。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/templatename.PNG)
+		![](./media/site-recovery-failback-azure-to-vmware-new/templateName.PNG)
 	
 	2. 根據[這裡提供](./site-recovery-vmware-to-azure-classicz.md#step-5-install-the-management-server)的各步驟安裝處理序伺服器
 	
@@ -252,4 +252,4 @@
 - ExpressRoute 應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 - 資料會複寫至公用端點上的 Azure 儲存體帳戶。您應該在 ExpressRoute 中設定與目標資料中心的公用對等互連，這樣一來，Site Recovery 複寫才能使用 ExpressRoute。
 
-<!---HONumber=AcomDC_0713_2016---->
+<!----HONumber=AcomDC_0713_2016---->
