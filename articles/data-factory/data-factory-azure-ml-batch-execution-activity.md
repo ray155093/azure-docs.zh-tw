@@ -27,20 +27,20 @@
 
 1. **建立訓練實驗**。Azure ML Studio 是共同作業的視覺化開發環境，您使用所提供的訓練資料來訓練和測試預測性分析模型。
 2. **將其轉換為評分實驗**。一旦您的模型已使用現有資料訓練，並做好使用該模型為新資料評分的準備之後，您準備並簡化用於評分實驗。
-3. **將其部署為 Web 服務**。只要按一下，您就可以將評分實驗當做 Azure Web 服務發佈。使用者可以透過此 Web 服務端點將資料傳送至您的模型，並接收來自模型的結果預測。  
+3. **將其部署為 Web 服務**。只要按一下，您就可以將評分實驗當做 Azure Web 服務發佈。使用者可以透過此 Web 服務端點將資料傳送至您的模型，並接收來自模型的結果預測。
 
 Azure Data Factory 可讓您輕鬆地建立管線，運用已發佈的 [Azure 機器學習服務][azure-machine-learning] Web 服務進行預測性分析。在 Azure Data Factory 管線中使用 [批次執行活動]，您可以叫用 Azure ML Web 服務以對批次中的資料進行預測。如需詳細資訊，請參閱[使用批次執行活動叫用 Azure ML Web 服務](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity)一節。
 
 經過一段時間，必須使用新的輸入資料集重新訓練 Azure ML 評分實驗中的預測模型。您可以執行下列步驟，從 Data Factory 管線重新訓練 Azure ML 模型：
 
 1. 將訓練實驗 (而非預設實驗) 發佈為 Web 服務。在 Azure ML Studio 中的作法，就如同先前案例中將預測實驗公開為 Web 服務一樣。
-2. 使用 Azure ML 批次執行活動，對訓練實驗叫用 Web 服務。基本上，您可以使用 Azure ML 批次執行活動來叫用訓練 Web 服務和評分 Web 服務。 
+2. 使用 Azure ML 批次執行活動，對訓練實驗叫用 Web 服務。基本上，您可以使用 Azure ML 批次執行活動來叫用訓練 Web 服務和評分 Web 服務。
   
 完成重新訓練之後，您想要使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。您可以遵循下面的步驟來達到此目的：
 
 1. 將非預設的端點加入至評分 Web 服務。無法更新 Web 服務的預設端點，所以您必須使用 Azure 入口網站建立新的非預設端點。如需概念資訊和程序步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。
 2. 更新評分的現有 Azure ML 連結服務，以使用非預設端點。您應該開始使用新的端點，才能使用已更新的 Web 服務。
-3. 使用 [Azure ML 更新資源活動] 以新訓練的模型更新 Web 服務。  
+3. 使用 [Azure ML 更新資源活動] 以新訓練的模型更新 Web 服務。
 
 如需詳細資訊，請參閱[使用更新資源活動更新 Azure ML 模型](#updating-azure-ml-models-using-the-update-resource-activity)一節。
 
@@ -50,7 +50,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，運用已發佈的 [Azure �
 
 1. 建立 Azure Machine Learning 連結服務。您需要以下項目：
 	1. 適用於批次執行 API 的**要求 URI**。您可以按一下 Web 服務頁面中的**批次執行**連結 (如下所示)，即可找到要求 URI。
-	1. 適用於已發佈之 Azure Machine Learning Web 服務的 **API 金鑰**。按一下已發佈的 Web 服務，即可找到 API 金鑰。 
+	1. 適用於已發佈之 Azure Machine Learning Web 服務的 **API 金鑰**。按一下已發佈的 Web 服務，即可找到 API 金鑰。
  2. 使用 **AzureMLBatchExecution** 活動。
 
 	![機器學習服務儀表板](./media/data-factory-azure-ml-batch-execution-activity/AzureMLDashboard.png)
@@ -216,7 +216,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，運用已發佈的 [Azure �
 		    }
 		  }
 		}
-5. 最後，撰寫一個包含 **AzureMLBatchExecution** 活動的管線。它會從輸入資料集取得輸入檔案的位置，並呼叫 Azure Machine Learning 批次執行 API，然後將批次執行輸出複製到輸出資料集中指定的 Blob。 
+5. 最後，撰寫一個包含 **AzureMLBatchExecution** 活動的管線。它會從輸入資料集取得輸入檔案的位置，並呼叫 Azure Machine Learning 批次執行 API，然後將批次執行輸出複製到輸出資料集中指定的 Blob。
 
 	> [AZURE.NOTE] AzureMLBatchExecution 活動可以有零個或多個輸入，以及一個或多個輸出。
 
@@ -351,7 +351,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，運用已發佈的 [Azure �
  
 在上述 JSON 範例中：
 
-- 已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。此 Web 服務會公開下列 4 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。  
+- 已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。此 Web 服務會公開下列 4 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。
 - **開始**和**結束**日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。例如：2014-10-14T16:32:41Z。**結束**時間是選用項目。如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx)。
 
 ### 其他案例
@@ -438,16 +438,16 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 
 **隨身秘訣**如下：
 
--   如果您的實驗端點會使用 webServiceInput，則可透過 Blob 資料集來表示它，並將它包含於活動輸入以及 webServiceInput 屬性中。否則，即會省略 webServiceInput 屬性。 
+-   如果您的實驗端點會使用 webServiceInput，則可透過 Blob 資料集來表示它，並將它包含於活動輸入以及 webServiceInput 屬性中。否則，即會省略 webServiceInput 屬性。
 -   如果您的實驗端點會使用 webServiceOutput，則可透過 Blob 資料集來表示它們，並將它們包含於活動輸出以及 (此實驗中每個輸出名稱所對應的) webServicepOutputs 屬性中。否則，即會省略 webServiceOutputs 屬性。
--   如果您的實驗端點會公開 globalParameter，則會在活動 globalParameters 屬性中提供它們以做為金鑰值組。否則，即會省略 globalParameters 屬性。金鑰會區分大小寫。[Azure Data Factory 函式](data-factory-scheduling-and-execution.md#data-factory-functions-reference)可能會在值中使用。 
-- 您可以將額外的資料集包含於活動輸入和輸出屬性中，而不需在活動的 typeProperties 中加以參考。這些將會使用配量相依性來管理執行，但其他的則會被 AzureMLBatchExecution 活動所忽略。 
+-   如果您的實驗端點會公開 globalParameter，則會在活動 globalParameters 屬性中提供它們以做為金鑰值組。否則，即會省略 globalParameters 屬性。金鑰會區分大小寫。[Azure Data Factory 函式](data-factory-scheduling-and-execution.md#data-factory-functions-reference)可能會在值中使用。
+- 您可以將額外的資料集包含於活動輸入和輸出屬性中，而不需在活動的 typeProperties 中加以參考。這些將會使用配量相依性來管理執行，但其他的則會被 AzureMLBatchExecution 活動所忽略。
 
 
 ## 使用更新資源活動更新 Azure ML 模型
 經過一段時間，必須使用新的輸入資料集重新訓練 Azure ML 評分實驗中的預測模型。完成重新訓練之後，您想要使用已重新訓練的 ML 模型來更新評分 Web 服務。透過 Web 服務啟用重新訓練和更新 Azure ML 模型的一般步驟如下：
 
-1. 在 [Azure ML Studio](https://studio.azureml.net) 中建立實驗。 
+1. 在 [Azure ML Studio](https://studio.azureml.net) 中建立實驗。
 2. 當您對模型感到滿意時，請使用 Azure ML Studio 對**訓練實驗**和評分/**預測實驗**發佈 Web 服務。
 
 下表說明本範例中使用的 Web 服務。如需詳細資訊，請參閱[以程式設計方式重新定型機器學習服務模型](../machine-learning/machine-learning-retrain-models-programmatically.md)。
@@ -479,8 +479,8 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 #### Azure Blob 儲存體連結服務：
 Azure 儲存體會保留下列資料：
 
-- 訓練資料。這是 Azure ML 訓練 Web 服務的輸入資料。  
-- iLearner 檔案。這是 Azure ML 訓練 Web 服務的輸出。同時也是更新資源活動的輸入。  
+- 訓練資料。這是 Azure ML 訓練 Web 服務的輸入資料。
+- iLearner 檔案。這是 Azure ML 訓練 Web 服務的輸出。同時也是更新資源活動的輸入。
    
 以下是連結服務的範例 JSON 定義：
 
@@ -563,9 +563,9 @@ Azure 儲存體會保留下列資料：
 在 [Azure ML Studio] 中，依下列方式取得 **mlEndpoint** 和 **apiKey** 的值：
 
 1. 按一下左功能表中的 [**Web 服務**]。
-2. 按一下 Web 服務清單中的**訓練 Web 服務**。 
+2. 按一下 Web 服務清單中的**訓練 Web 服務**。
 3. 按一下 [API 金鑰] 文字方塊旁的 [複製]，將 API 金鑰複製到剪貼簿。將金鑰貼到 Data Factory JSON 編輯器中。
-4. 在 [Azure ML studio] 中，按一下 [批次執行] 連結，從 [要求] 區段複製 [要求 URI] 並將它貼到 Data Factory JSON 編輯器中。   
+4. 在 [Azure ML studio] 中，按一下 [批次執行] 連結，從 [要求] 區段複製 [要求 URI] 並將它貼到 Data Factory JSON 編輯器中。
 
 
 #### Azure ML 可更新評分端點的連結服務：
@@ -772,4 +772,4 @@ Azure ML 更新資源活動不會產生任何輸出，但在 Azure Data Factory 
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

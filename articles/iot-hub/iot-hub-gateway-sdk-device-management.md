@@ -379,7 +379,14 @@ IoT 裝置管理服務所要求的 Edison 韌體更新通常會下載 zip 檔案
 
 若要深入了解使用 IoT 中樞的裝置管理和範例 UI，請參閱 [Azure IoT 中樞裝置管理概觀][lnk-device-management]一文。
 
-若要了解如何將實體裝置連接至 IoT 中樞，請參閱 [IoT 閘道 SDK – 透過使用 Linux 的真實裝置傳送裝置對雲端訊息][lnk-gateway-physical]一文。
+如果您想要更進一步了解閘道 SDK 並實驗一些程式碼範例，請造訪 [Azure IoT Gateway SDK][lnk-gateway-sdk]。
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 
 
@@ -411,4 +418,9 @@ IoT 裝置管理服務所要求的 Edison 韌體更新通常會下載 zip 檔案
 [lnk-gateway-scenario]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-dm-jobs]: iot-hub-device-management-device-jobs.md
 
-<!---HONumber=AcomDC_0629_2016-->
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

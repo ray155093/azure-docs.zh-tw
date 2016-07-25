@@ -13,12 +13,12 @@
     ms.topic="article"
     ms.tgt_pltfrm="dotnet"
     ms.workload="na"
-    ms.date="04/15/2016"
+    ms.date="07/11/2016"
     ms.author="sethm;shvija"/>
 
 # 使用 Azure Resource Manager 範本建立服務匯流排命名空間和佇列
 
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
+本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][]。
 
@@ -31,15 +31,13 @@
 >-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 >-    [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 >
->若要檢查最新的範本，請參閱 [Azure 快速入門範本][]並搜尋服務匯流排。
+>若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋服務匯流排。
 
 ## 您將部署什麼？
 
 使用此範本，您將部署具有佇列的服務匯流排命名空間。
 
-如果有一或多個競爭取用者，佇列會採取先進先出 (FIFO) 訊息傳遞機制。
-
-[深入了解服務匯流排佇列](service-bus-queues-topics-subscriptions.md)。
+如果有一或多個競爭取用者，[服務匯流排佇列](service-bus-queues-topics-subscriptions.md#queues)會採用「先進先出」(FIFO) 訊息傳遞機制。
 
 若要自動執行部署，請按一下下列按鈕：
 
@@ -49,7 +47,7 @@
 
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。此範本有一個 `Parameters` 區段，內含所有參數值。您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。請不要為永遠保持不變的值定義參數。每個參數值都可在範本中用來定義所部署的資源。
 
-我們將說明範本中的每個參數。
+範本會定義下列參數。
 
 ### serviceBusNamespaceName
 
@@ -142,9 +140,9 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
 
   [編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
   [服務匯流排命名空間和佇列範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/
-  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/
+  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
   [Learn more about Service Bus queues]: service-bus-queues-topics-subscriptions.md
   [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

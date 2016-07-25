@@ -14,13 +14,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="04/12/2016"
+   ms.date="07/12/2016"
    ms.author="mandia"/>
 
 
 # 教學課程：針對 PowerApps 和邏輯流程建立自訂 AAD 保護的 ARM API 
 
 本教學課程將逐步引導您完成必要的步驟來註冊描述 [ARM API][6] 的 Swagger 檔案，然後連接到 PowerApps 中的自訂 API。
+
+>[AZURE.IMPORTANT] 本主題已移至 powerapps.microsoft.com，位於：[教學課程：針對 PowerApps 和流程建立自訂 AAD 保護的 ARM API](https://powerapps.microsoft.com/tutorials/customapi-azure-resource-manager-tutorial/)。請移至 PowerApps 以取得最新版本。此 Azure 連結會被封存。
+
 
 ## 若要開始，您需要：
 
@@ -31,13 +34,13 @@
 
 首先，我們需要建立 Azure Active Directory (AAD) 應用程式，該應用程式在呼叫 ARM API 端點時會執行驗證。
 
-1. 若要建立 AAD 應用程式，請登入您的 [Azure 訂用帳戶][7]，然後移至 [Active Directory]：![](./media/powerapps-azure-resource-manager-tutorial/azureaad.png "Azure AAD")  
+1. 若要建立 AAD 應用程式，請登入您的 [Azure 訂用帳戶][7]，然後移至 [Active Directory]：![](./media/powerapps-azure-resource-manager-tutorial/azureaad.png "Azure AAD")
 
 2. 在此頁面上，選擇您要在其中建立 AAD 應用程式的目錄。選取該目錄，移至 [應用程式] 索引標籤，並選取 [新增]：![](./media/powerapps-azure-resource-manager-tutorial/azureapplication.png "Azure 應用程式")
 
 3. 輸入應用程式名稱，選取 [Web 應用程式和/或 Web API]，然後選取 [下一步]：![](./media/powerapps-azure-resource-manager-tutorial/newapplication.png "新增應用程式")
 
-4. 在 [登入 URL] 中，輸入：**http://login.windows.net*。在 [應用程式識別碼 URI] 中，輸入任何唯一的 URI。接著，選取 [完成]：![](./media/powerapps-azure-resource-manager-tutorial/newapplication2.png "新增第二個應用程式")
+4. 在 [登入 URL] 中，輸入：*http://login.windows.net*。在 [應用程式識別碼 URI]** 中，輸入任何唯一的 URI。接著，選取 [完成]**：![](./media/powerapps-azure-resource-manager-tutorial/newapplication2.png "新增第二個應用程式")
 
 5. 建立 AAD 應用程式之後，移至 [設定] 索引標籤。在此索引標籤中，我們設定應用程式的權限。
 
@@ -55,7 +58,7 @@
 
 既然已經設定好 AAD 應用程式，讓我們來加入自訂 API。
 
-1. 開啟 [PowerApps 入口網站][1]，移至 [連線] 索引標籤，然後選取右上角的 [新增連線]：![](./media/powerapps-azure-resource-manager-tutorial/createnewconnection.png "建立自訂 API")  
+1. 開啟 [PowerApps 入口網站][1]，移至 [連線] 索引標籤，然後選取右上角的 [新增連線]：![](./media/powerapps-azure-resource-manager-tutorial/createnewconnection.png "建立自訂 API")
 
 2. 選取 [新增自訂 API]：![](./media/powerapps-azure-resource-manager-tutorial/connecttocustomapi.png "建立自訂 API")
 
@@ -87,4 +90,4 @@
 [7]: https://manage.windowsazure.com
 [8]: http://pwrappssamples.blob.core.windows.net/samples/AzureResourceManager.json
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0713_2016-->

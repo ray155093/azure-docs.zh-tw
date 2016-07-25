@@ -42,14 +42,22 @@ IoT 中心內對其他管理端點的存取權，也是透過一組權限來控�
 
 ## 後續步驟
 
-這篇文章包含特定資訊，供設定開發和測試環境的 IT 專業人員和開發人員閱讀。請遵循下列連結以深入了解 Azure IoT 中心服務：
+這篇文章包含特定資訊，供設定開發和測試環境的 IT 專業人員和開發人員閱讀。[Azure IoT 中心開發人員指南中的「安全性」章節][lnk-devguide]提供 IoT 中心內權杖和權限系統的其他資訊。
 
-- [何謂 Azure IoT 中心？][lnk-iothub]
-- [Azure IoT 中心開發人員指南中的「安全性」章節][lnk-devguide]提供 IoT 中心內權杖和權限系統的其他資訊。
-- [透過 Azure 入口網站管理 IoT 中樞][lnk-manage-portal]說明如何使用 Azure 入口網站來管理您 IoT 中樞。
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 [lnk-iothub]: iot-hub-what-is-iot-hub.md
 [lnk-devguide]: iot-hub-devguide.md#security
 [lnk-manage-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0504_2016-->
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+
+<!---HONumber=AcomDC_0713_2016-->

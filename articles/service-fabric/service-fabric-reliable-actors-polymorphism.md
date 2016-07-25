@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2016"
+   ms.date="07/07/2016"
    ms.author="seanmck"/>
 
 # Reliable Actors 架構中的多型
@@ -35,7 +35,7 @@ Reliable Actors 架構會要求您至少定義一個要由動作項目類型實�
 public abstract class Shape : Actor, IShape
 {
     public abstract Task<int> GetVerticeCount();
-    
+
     public abstract Task<double> GetAreaAsync();
 }
 ```
@@ -75,12 +75,4 @@ public class Circle : Shape, ICircle
 
 [shapes-interface-hierarchy]: ./media/service-fabric-reliable-actors-polymorphism/Shapes-Interface-Hierarchy.png
 
-## 後續步驟
- - [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)
- - [動作項目生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
- - [動作項目計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
- - [動作項目事件](service-fabric-reliable-actors-events.md)
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
-
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

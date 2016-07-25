@@ -26,7 +26,7 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 所有讀取都將傳送至 PreferredLocations 清單中的第一個可用區域。如果要求失敗，用戶端將無法往下到清單中的下一個區域，依此類推。
 
-用戶端 SDK 只會嘗試讀取到 PreferredLocations 中所指定的區域。因此，比方說，如果資料庫帳戶可供三個區域使用，但用戶端只針對 PreferredLocations 指定其中兩個非寫入區域，則將不會在該寫入區域以外的地方提供讀取服務，即使發生容錯移轉也一樣。
+用戶端 SDK 只會嘗試讀取 PreferredLocations 中所指定的區域。因此，比方說，如果資料庫帳戶可供三個區域使用，但用戶端只針對 PreferredLocations 指定其中兩個非寫入區域，則將不會在該寫入區域以外的地方提供讀取服務，即使發生容錯移轉也一樣。
 
 應用程式可以藉由檢查兩個屬性 (WriteEndpoint 和 ReadEndpoint，適用於 SDK 1.8 版和以上版本) 來確認 SDK 目前所選擇的寫入端點和讀取端點。
 
@@ -143,4 +143,4 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 [regions]: https://azure.microsoft.com/regions/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

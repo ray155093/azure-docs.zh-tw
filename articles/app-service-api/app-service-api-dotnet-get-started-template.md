@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="04/13/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # 使用 Visual Studio 來開始使用 Azure App Service 和 ASP.NET Web API 2
 
@@ -263,4 +263,4 @@
 
 在本教學課程中，您已了解如何建立簡易的 Web API 並將其部署至 Azure App Service 中的 API 應用程式。如需可讓您更輕鬆地開發和使用 Web API 之 App Service 功能的簡介，請參閱教學課程系列，此系列的第一課是[開始使用 API Apps 和 ASP.NET](app-service-api-dotnet-get-started.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

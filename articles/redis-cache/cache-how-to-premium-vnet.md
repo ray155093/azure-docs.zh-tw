@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/01/2016" 
+	ms.date="07/12/2016" 
 	ms.author="sdanie"/>
 
 # 如何設定高階 Azure Redis 快取的虛擬網路支援
@@ -74,6 +74,7 @@ Azure Redis 快取進階層包括叢集、永續性及虛擬網路 (VNet) 支援
 -	[Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？](#what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets)
 -	[可以搭配標準或基本快取使用 VNet 嗎？](#can-i-use-vnets-with-a-standard-or-basic-cache)
 -	[為什麼無法在某些子網路中建立 Redis 快取，但其他的可以？](#why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others)
+-	[將快取裝載於 VNET 時，所有快取功能都可以正常運作嗎？](#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
 
 ## Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？
@@ -96,8 +97,8 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。如果�
 
 在虛擬網路中，可能一開始就不符合 Azure Redis 快取的一些網路連線需求。Azure Redis 快取需要符合下列各項，才能在虛擬網路內使用時正確運作。
 
--  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 Azure Redis 快取執行個體相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。 
--  *ocsp.msocsp.com*、*mscrl.microsoft.com* 和 *crl.microsoft.com* 的輸出網路連線。需要此連線才能支援 SSL 功能。
+-  全球 Azure 儲存體端點的輸出網路連線。這包括位於與 Azure Redis 快取執行個體相同區域中的端點，以及位於**其他** Azure 區域的儲存體端點。Azure 儲存體端點在下列 DNS 網域之下解析：*table.core.windows.net*、*blob.core.windows.net*、*queue.core.windows.net* 和 *file.core.windows.net*。
+-  ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。需要此連線才能支援 SSL 功能。
 -  虛擬網路的 DNS 設定必須能夠解析前面幾點所提到的所有端點和網域。確定已針對虛擬網路設定及維護有效的 DNS 基礎結構，即可符合 DNS 需求。
 
 
@@ -111,6 +112,13 @@ VNet 僅適用於進階快取。
 如果您將 Azure Redis 快取部署到 ARM VNet，快取就必須位於不含任何其他資源類型的專用子網路中。如果嘗試將 Azure Redis 快取部署到含有其他資源的 ARM VNet 子網路，則部署將會失敗。您必須先刪除子網路內的現有資源，然後才能建立新的 Redis 快取。
 
 只要有足夠的可用 IP 位址，您就可以將多個類型的資源部署到傳統的 VNet。
+
+### 將快取裝載於 VNET 時，所有快取功能都可以正常運作嗎？
+
+當您的快取屬於 VNET 時，只有 VNET 中的用戶端可以存取快取，因此以下快取管理功能目前無法正常運作。
+
+-	Redis 主控台 - Redis 主控台使用的 redis cli.exe 用戶端裝載於不屬於您 VNET 的 VM 上，因此主控台無法連接到您的快取。
+
 
 ## 搭配 Azure Redis 快取使用 ExpressRoute
 
@@ -133,11 +141,11 @@ VNet 僅適用於進階快取。
 
 **重要事項：**UDR 中定義的路由**必須**明確足以優先於 ExpressRoute 組態所通告的任何路由。以下範例使用廣泛 0.0.0.0/0 位址範圍，因此使用更明確的位址範圍，有可能會不小心由路由通告所覆寫。
 
-**非常重要：** **未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 Azure Redis 快取。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 Azure Redis 快取執行個體子網路的所有輸出網路封包，都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。這個網路流量將會中斷 Azure Redis 快取。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+**非常重要：****未正確交叉通告從公用對等互連路徑至私人對等互連路徑之路由**的 ExpressRoute 組態不支援 Azure Redis 快取。已設定公用對等互連的 ExpressRoute 組態，會收到來自 Microsoft 的一大組 Microsoft Azure IP 位址範圍的路由通告。如果這些位址範圍在私人對等互連路徑上不正確地交叉通告，最後的結果會是來自 Azure Redis 快取執行個體子網路的所有輸出網路封包，都會不正確地使用強制通道傳送至客戶的內部部署網路基礎結構。這個網路流量將會中斷 Azure Redis 快取。此問題的解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
 
 如需使用者定義路由的背景資訊，請參閱此[概觀](../virtual-network/virtual-networks-udr-overview.md)。
 
-如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)
 
 ## 後續步驟
 了解如何使用更多進階快取功能。
@@ -159,4 +167,4 @@ VNet 僅適用於進階快取。
 
 [redis-cache-vnet-info]: ./media/cache-how-to-premium-vnet/redis-cache-vnet-info.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -18,7 +18,7 @@
 
 # 使用 Azure Resource Manager 範本來建立服務匯流排命名空間
 
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排「訊息」命名空間與標準/基本 SKU。本文也會定義針對部署執行而指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+本文說明如何使用 Azure Resource Manager 範本，建立**訊息**類型的服務匯流排命名空間與標準/基本 SKU。本文也會定義針對部署執行而指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][]。
 
@@ -31,7 +31,7 @@
 >-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 >-    [建立服務匯流排命名空間與佇列和授權規則](service-bus-resource-manager-namespace-auth-rule.md)
 >
->若要檢查最新的範本，請參閱 [Azure 快速入門範本][]並搜尋服務匯流排。
+>若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋服務匯流排。
 
 ## 您將部署什麼？
 
@@ -45,7 +45,7 @@
 
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。此範本有一個 `Parameters` 區段，內含所有參數值。您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。請不要為永遠保持不變的值定義參數。每個參數值都可在範本中用來定義所部署的資源。
 
-我們將說明範本中的每個參數。
+範本會定義下列參數。
 
 ### serviceBusNamespaceName
 
@@ -62,7 +62,7 @@
 
 ### serviceBusSKU
 
-要建立的服務匯流 [SKU](https://azure.microsoft.com/pricing/details/service-bus/) 名稱。
+要建立的服務匯流排 [SKU](https://azure.microsoft.com/pricing/details/service-bus/) 名稱。
 
 ```
 "serviceBusSku": { 
@@ -82,7 +82,7 @@
 
 每個月有美金 $10 元的標準層基本費用，讓您每個月執行最多 1,250 萬個作業，且不需額外費用。基本層收費為每百萬個作業美金 $0.05 元。
 
-如需服務匯流排定價的詳細資訊，請參閱[服務匯流排定價與計費][]。
+如需服務匯流排價格的詳細資訊，請參閱[服務匯流排價格與計費][]。
 
 ### serviceBusApiVersion
 
@@ -149,9 +149,9 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
 
   [編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
   [服務匯流排命名空間範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/101-servicebus-create-namespace/
-  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/
-  [服務匯流排定價與計費]: https://azure.microsoft.com/documentation/articles/service-bus-pricing-billing/
+  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+  [服務匯流排價格與計費]: https://azure.microsoft.com/documentation/articles/service-bus-pricing-billing/
   [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

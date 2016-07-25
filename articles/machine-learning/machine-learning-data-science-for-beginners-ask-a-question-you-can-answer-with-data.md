@@ -1,5 +1,5 @@
 <properties
-   pageTitle="詢問您可以使用資料回答的問題 - 適用於初學者的資料科學 | Microsoft Azure"
+   pageTitle="詢問您可以使用資料回答的問題 - 制訂問題 | Microsoft Azure"
    description="了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。包含分類和迴歸問題的比較。"
    keywords="選取問題, 資料科學問題, 制訂一個問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
    services="machine-learning"
@@ -17,7 +17,7 @@
    ms.date="06/28/2016"
    ms.author="cgronlun;brohrer;garye"/>
 
-# 適用於初學者的資料科學影片 3：詢問您可以使用資料回答的問題 
+# 適用於初學者的資料科學影片 3：詢問您可以使用資料回答的問題
 
 了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。這個影片包含適用於分類和迴歸演算法的問題比較。
 
@@ -99,4 +99,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

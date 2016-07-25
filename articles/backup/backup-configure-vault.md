@@ -27,7 +27,7 @@
 
 ![備份程序步驟](./media/backup-configure-vault/initial-backup-process.png)
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 ## 開始之前
 若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
@@ -184,6 +184,8 @@
 
 備份代理程式提供網路節流。節流會控制資料傳輸期間的網路頻寬使用方式。如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。節流適用於備份和還原活動。
 
+>[AZURE.NOTE] 網路節流不適用於 Windows Server 2008 R2 SP1、Windows Server 2008 SP2 或 Windows 7 (含 service pack)。Azure 備份網路節流功能可保證本機作業系統上的服務品質 (QoS)。雖然 Azure 備份可保護這些作業系統，但這些平台上可用的 QoS 版本無法與 Azure 備份網路節流搭配使用。網路節流可使用於所有其他[支援的作業系統](backup-azure-backup-faq.md#installation-amp-configuration)。
+
 **啟用網路節流**
 
 1. 在備份代理程式中，按一下 [變更屬性]。
@@ -223,4 +225,4 @@
 - 現在您已備份好檔案和資料夾，接下來您可以[管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 - 如果您需要還原備份，請使用本文來[還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="06/30/2016"
-	ms.author="tdykstra"/>
+	ms.author="rachelap"/>
 
 # Azure App Service 中 API Apps 的使用者驗證
 
@@ -119,7 +119,7 @@
 
 	您不必建立租用戶，因為每個 Azure 帳戶都會自動擁有一個。
 
-7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] \(如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
+7. 在 [管理模式]下，按一下 [建立新的 AD 應用程式] (如果尚未選取)，並記下 [建立應用程式] 文字方塊中的值；您稍後將在 Azure 傳統入口網站中查閱此 AAD 應用程式。
 
 	![Azure 入口網站 Azure AD 設定](./media/app-service-api-dotnet-user-principal-auth/aadsettings2.png)
 
@@ -336,4 +336,4 @@ ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI�
 
 在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。在下一個教學課程中，您將學習如何[對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

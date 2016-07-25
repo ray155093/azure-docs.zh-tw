@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="ibiza"
     ms.devlang="na"
     ms.topic="article"
-	ms.date="06/09/2016"
+	ms.date="06/28/2016"
     ms.author="awills"/>
 
 # Application Insights 中的發行註解
@@ -40,7 +40,7 @@
 
 
 1. 登入 [Microsoft Azure 入口網站](https://portal.azure.com)並開啟負責監視應用程式的 Application Insights 資源。(如果您尚未建立此資訊，也可以[立即建立](app-insights-overview.md)。)
-2. 開啟 [設定]、[API 存取]，然後複製 Application Insights 識別碼。
+2. 開啟 [API 存取]，然後複製 [Application Insights 識別碼]。
 
     ![在 portal.azure.com 中，開啟您的 Application Insights 資源然後選擇 [設定]。開啟 [API 存取]。複製應用程式識別碼](./media/app-insights-annotations/20.png)
 
@@ -96,4 +96,4 @@
 
 ![按一下任一版本註解標記。](./media/app-insights-annotations/60.png)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

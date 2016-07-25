@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/31/2016"
+   ms.date="07/06/2016"
    ms.author="bwren" />
 
 # Azure 自動化 Runbook 類型
@@ -52,7 +52,7 @@ PowerShell Runbook 以 Windows PowerShell 為基礎。您可以直接使用 Azur
 
 ### 優點
 
-- 使用 PowerShell 程式碼實作所有複雜的邏輯，不必處理 PowerShell 工作流程的其他複雜性。 
+- 使用 PowerShell 程式碼實作所有複雜的邏輯，不必處理 PowerShell 工作流程的其他複雜性。
 - Runbook 的啟動速度比圖形化或 PowerShell 工作流程 Runbook 更快，因為它在執行之前不需要編譯。
 
 ### 限制
@@ -67,7 +67,7 @@ PowerShell Runbook 以 Windows PowerShell 為基礎。您可以直接使用 Azur
 
 - PowerShell Runbook 無法擷取具有 Null 值的未加密[變數資產](automation-variables.md)。
 - PowerShell Runbook 無法擷取名稱中含有 *~* 的[變數資產](automation-variables.md)。
-- PowerShell Runbook 中落入迴圈的 Get-Process 大約在 80 次反覆運算之後就會損毀。 
+- PowerShell Runbook 中落入迴圈的 Get-Process 大約在 80 次反覆運算之後就會損毀。
 - 如果 PowerShell Runbook 嘗試一次將非常大量的資料寫入輸出資料流，可能會失敗。在處理大型物件時，只輸出您所需的資訊，通常就可以解決這個問題。比方說，不要輸出類似 *Get-Process* 之類的資訊，您可以使用 *Get-Process | Select ProcessName, CPU*，只輸出需要的欄位。
 
 ## PowerShell 工作流程 Runbook
@@ -104,4 +104,4 @@ PowerShell Workflow Runbook 是以 [Windows PowerShell 工作流程](automation-
 - 若要了解適用於 Runbook 的 PowerShell 和 PowerShell 工作流程之間的差異，請參閱[了解 Windows PowerShell 工作流程](automation-powershell-workflow.md)
 - 如需如何建立或匯入 Runbook 的詳細資訊，請參閱[建立或匯入 Runbook](automation-creating-importing-runbook.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

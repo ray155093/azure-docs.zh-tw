@@ -1,11 +1,12 @@
 <properties
-	pageTitle="如何評估與改善 Azure SQL Database 中的資料庫效能"
-	description="描述如何評估與改善資料庫效能"
+	pageTitle="SQL Database 效能調整秘訣 | Microsoft Azure"
+	description="透過評估和改進來調整 Azure SQL Database 效能的秘訣。"
 	services="sql-database"
 	documentationCenter=""
 	authors="v-shysun"
 	manager="felixwu"
-	editor=""/>
+	editor=""
+	keywords="sql 效能調整，資料庫效能調整，sql 效能調整秘訣，sql 資料庫效能調整"/>
 
 <tags
 	ms.service="sql-database"
@@ -13,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/03/2016"
+	ms.date="07/06/2016"
 	ms.author="v-shysun"/>
 
-# 如何評估與改善 Azure SQL Database 中的資料庫效能
-您可以隨時變更單一資料庫的[服務層級](sql-database-service-tiers.md)或增加彈性資料庫集區的 eDTU 以提升查詢效能，但建議您先找出改善與最佳化的時機。遺漏索引與查詢最佳化不足是資料庫效能不佳的常見原因。
+# SQL Database 效能調整秘訣
+您可以隨時變更單一資料庫的[服務層級](sql-database-service-tiers.md)或增加彈性資料庫集區的 eDTU 以提升效能，但您可能會想要先識別提升與最佳化查詢效能的機會。遺漏索引與查詢最佳化不足是資料庫效能不佳的常見原因。本文提供 SQL Database 的效能調整指引。
 
 [AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
@@ -34,4 +35,4 @@
 1.	若是單一資料庫，您可以視需要[變更服務層級](sql-database-scale-up.md)以提升資料庫效能。
 2.	若是多個資料庫，請考慮使用[彈性資料庫集區](sql-database-elastic-pool-guidance.md)自動調整資源。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

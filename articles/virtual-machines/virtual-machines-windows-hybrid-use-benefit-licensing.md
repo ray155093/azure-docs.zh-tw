@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="05/03/2016"
+   ms.date="07/13/2016"
    ms.author="georgem"/>
 
 # 適用於 Windows Server 的 Azure Hybrid Use Benefit
@@ -38,6 +38,8 @@
 ```
 Add-AzureRmVhd -ResourceGroupName MyResourceGroup -Destination "https://mystorageaccount.blob.core.windows.net/vhds/myvhd.vhd" -LocalFilePath 'C:\Path\To\myvhd.vhd'
 ```
+
+> [AZURE.NOTE] Microsoft SQL Server、SharePoint 伺服器、Dynamics 也可以使用您的軟體保證授權。您仍然需要安裝應用程式元件，並提供相應的授權金鑰，然後上傳磁碟映像至 Azure，藉此準備 Windows Server 映像。檢閱以您的應用程式執行 Sysprep 的相關文件，例如[使用 Sysprep 安裝 SQL Server 的考量](https://msdn.microsoft.com/library/ee210754.aspx)或[建置 SharePoint 伺服器 2016年參照映像 (Sysprep)](http://social.technet.microsoft.com/wiki/contents/articles/33789.build-a-sharepoint-server-2016-reference-image-sysprep.aspx)。
 
 您也可以進一步了解[將 VHD 上傳至 Azure](./virtual-machines-windows-upload-image.md#upload-the-vm-image-to-your-storage-account) 的程序。
 
@@ -89,7 +91,7 @@ LicenseType              :
  
 ## 詳細的 PowerShell 逐步解說
 
-下列是說明完整部署 VM 的詳細 PowerShell 步驟。您可以在[使用 Resource Manager 和 PowerShell 建立 Windows VM](./virtual-machines-windows-ps-create.md) 中深入了解更多內容，包括實際的 Cmdlet 和所建立的不同元件。您將逐步進行建立資源群組、儲存體帳戶和虛擬網路，然後定義 VM 並完成建立 VM 的步驟。
+下列是說明完整部署 VM 的詳細 PowerShell 步驟。您可以閱讀[使用 Resource Manager 和 PowerShell 建立 Windows VM](./virtual-machines-windows-ps-create.md) 深入了解更多內容，包括實際的 Cmdlet 和所建立的不同元件。您將逐步進行建立資源群組、儲存體帳戶和虛擬網路，然後定義 VM 並完成建立 VM 的步驟。
  
 首先，安全地取得認證，並設定位置和資源群組名稱：
 
@@ -164,4 +166,4 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 
 深入了解[使用 Resource Manager 範本](../resource-group-overview.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

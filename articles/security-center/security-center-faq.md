@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/05/2016"
+   ms.date="07/11/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
@@ -132,6 +132,4 @@ Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的�
 
 也支援雲端服務中執行的 VM。只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。
 
-資訊安全中心的建議事項[套用系統更新](security-center-recommendations.md)，建議您將遺漏的系統安全性與重大更新部署到 VM。對於雲端服務中的 VM，建議事項**更新作業系統版本**建議將作業系統更新為最新版本。
-
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

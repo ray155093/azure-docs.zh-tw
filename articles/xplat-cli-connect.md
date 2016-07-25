@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/08/2016"
+	ms.date="07/13/2016"
 	ms.author="danlep"/>
 
 # 從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶
@@ -23,11 +23,17 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 有兩種方法可從 Azure CLI 連接到您的訂用帳戶：
 
-* **使用工作或學校帳戶或 Microsoft 帳戶身分識別登入 Azure** - 使用 CLI 0.9.10 以上版本中的 `azure login` 命令以及任何類型的帳戶身分識別，以透過 Azure Active Directory 進行驗證。CLI (0.9.9 以上版本) 也支援針對已啟用多重要素驗證的帳戶透過 web 入口網站進行互動式驗證。也請使用 `azure login` 命令來驗證 Azure Active Directory 應用程式的服務主體，可用來執行自動化的服務。利用支援的帳戶身分識別登入之後，您可以使用 Azure Resource Manager 模式或 Azure 服務管理模式命令。
+* **使用工作或學校帳戶或 Microsoft 帳戶身分識別登入 Azure** - 使用 `azure login` 命令搭配任何類型的帳戶身分識別，透過 Azure Active Directory 進行驗證。大部分要建立新 Azure 部署的客戶都應該使用這種方法。使用特定帳戶時，`azure login` 命令需要您透過 Web 入口網站以互動的方式登入。
 
-* **下載和使用發佈設定檔案** - 這會在您的本機電腦上安裝憑證，只要訂用帳戶和憑證有效，該憑證便可讓您執行管理工作。此方法只允許您使用 Azure 服務管理模式命令。
+    也請使用 `azure login` 命令來驗證 Azure Active Directory 應用程式的服務主體，這在執行自動化服務時很有用。
+    
+    利用支援的帳戶身分識別登入之後，您可以使用 Azure Resource Manager 模式或 Azure 服務管理模式 CLI 命令。
 
->[AZURE.NOTE] 如果您使用的是 Azure CLI 0.9.10 版之前的版本，只能搭配公司或學校帳戶使用 `azure login` 命令，無法使用 Microsoft 帳戶身分識別。不過，您可以依意願[從 Microsoft 帳戶識別碼建立工作或學校識別碼](virtual-machines/virtual-machines-windows-create-aad-work-id.md)。
+* **下載和使用發佈設定檔案** - 這會在您的本機電腦上安裝憑證，只要訂用帳戶和憑證有效，該憑證便可讓您執行管理工作。
+
+    此方法只允許您使用 Azure 服務管理模式 CLI 命令。
+
+>[AZURE.NOTE] 如果您使用的是 Azure CLI 0.9.10 版之前的版本，只能搭配公司或學校帳戶使用 `azure login` 命令，無法使用 Microsoft 帳戶身分識別。不過，若您想要的話，可以[從 Microsoft 帳戶識別碼建立公司或學校識別碼](virtual-machines/virtual-machines-windows-create-aad-work-id.md)。
 
 如需不同帳戶身分識別與 Azure 訂用帳戶的背景，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
 
@@ -35,7 +41,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 使用 `azure login` 命令 (不含任何引數)，以下列其中一種方式進行互動驗證：
 
-- 需要 Multi-Factor Authentication 的公司或學校帳戶身分識別 (也稱為組織帳戶)，或
+- 需要多重要素驗證的公司或學校帳戶身分識別 (也稱為組織帳戶)，或
 - 當您想要存取資源管理員模式命令時的 Microsoft 帳戶身分識別
 
 > [AZURE.NOTE]  在這兩種情況下，驗證和授權都是使用 Azure Active Directory 來執行。如果您使用 Microsoft 帳戶身分識別，登入程序就會存取您的 Azure Active Directory 預設網域(如果您註冊免費 Azure 帳戶，可能不會發覺 Azure Active Directory 為您的帳戶建立了預設網域)。
@@ -44,9 +50,9 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 	azure login                                                                                                                                                                                         
 	info:    Executing command login
-	info:    To sign in, use a web browser to open the page http://aka.ms/devicelogin. Enter the code XXXXXXXXX to authenticate. If you're signing in as an Azure AD application, use the --username and --password parameters.
+	info:    To sign in, use a web browser to open the page http://aka.ms/devicelogin. Enter the code XXXXXXXXX to authenticate. 
 
-複製上方提供的程式碼，開啟瀏覽器至 http://aka.ms/devicelogin。輸入程式碼後，系統會提示您針對您要使用之身分識別輸入使用者名稱和密碼。完成此程序之後，命令殼層便完成登入程序。會出現類似下面的畫面：
+複製上方提供的程式碼，開啟瀏覽器以到 http://aka.ms/devicelogin (或指定的其他頁面)。輸入程式碼後，系統會提示您針對您要使用之身分識別輸入使用者名稱和密碼。完成此程序之後，命令殼層便完成登入程序。會出現類似下面的畫面：
 
 	info:    Added subscription Visual Studio Ultimate with MSDN
 	info:    Added subscription Azure Free Trial
@@ -57,7 +63,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 ## 使用 azure 登入與使用者名稱和密碼
 
 
-在您想要使用不需要多重要素驗證的工作或學校帳戶時，使用 `azure login` 命令與使用者名稱參數，或者使用使用者名稱與密碼進行驗證。下列範例會傳遞組織帳戶的使用者名稱︰
+當您想要使用不需要多重要素驗證的公司或學校帳戶時，可以使用 `azure login` 命令搭配使用者名稱參數，或搭配使用者名稱與密碼來進行驗證。下列範例會傳遞組織帳戶的使用者名稱︰
 
 	azure login -u ahmet@contoso.onmicrosoft.com
 	info:    Executing command login
@@ -78,7 +84,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 
 ## 使用發行設定檔案
 
-如果您只需要使用 Azure 服務管理模式 CLI 命令，您可以使用發佈設定檔連線。
+如果您只需要使用 Azure 服務管理模式 CLI 命令 (例如，在傳統部署模型中部署 Azure VM)，您可以使用發佈設定檔連線。
 
 * **若要下載您帳戶的發佈設定檔**，請使用下列命令 (僅供服務管理模式使用)：
 
@@ -151,6 +157,6 @@ Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源
 
 * 若要深入了解 Azure CLI、下載來源程式碼、回報問題，或是參與專案，請造訪 [Azure CLI 的 GitHub 儲存機制](https://github.com/azure/azure-xplat-cli)。
 
-* 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home) (英文)。
+* 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=azurescripting) (英文)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

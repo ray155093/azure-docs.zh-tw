@@ -13,19 +13,20 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="06/06/2016"
+ ms.date="07/07/2016"
  ms.author="nberdy"/>
 
 # 作業監視簡介
 
 IoT 中樞的作業監視可讓使用者即時監視其 IoT 中樞上的作業狀態。IoT 中樞會追蹤數個作業類別的事件，而且使用者可以選擇讓一個或多個類別的事件傳送至其 IoT 中樞的端點進行處理。使用者可以監視資料中是否有錯誤，或根據資料模式設定更複雜的處理行為。
 
-IoT 中樞會監視四個類別的事件：
+IoT 中樞會監視五個類別的事件：
 
 - 裝置身分識別作業
 - 裝置遙測
 - 雲端到裝置的命令
 - 連線
+- 檔案上傳
 
 ## 如何啟用作業監視
 
@@ -143,11 +144,14 @@ IoT 中樞會監視四個類別的事件：
 
 ## 後續步驟
 
-您現已了解作業監視的概觀，接下來請遵循下列連結來深入了解：
+現在您已了解監視操作的概觀，請參閱[管理 IoT 中樞的存取權][lnk-itpro]，以取得管理 IoT 中樞的其他相關資訊。
 
-- [IoT 中樞的診斷度量][lnk-diagnostic-metrics]
-- [調整 IoT 中樞][lnk-scaling]
-- [IoT 中樞高可用性和災害復原][lnk-dr]
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 <!-- Links and images -->
 [1]: media/iot-hub-operations-monitoring/enable-OM-1.png
@@ -158,4 +162,11 @@ IoT 中樞會監視四個類別的事件：
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
-<!---HONumber=AcomDC_0608_2016-->
+[lnk-itpro]: iot-hub-itpro-info.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+
+<!---HONumber=AcomDC_0713_2016-->

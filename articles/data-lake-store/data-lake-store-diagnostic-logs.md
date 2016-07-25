@@ -1,0 +1,165 @@
+<properties 
+   pageTitle="檢視 Azure Data Lake Store 的診斷記錄 | Microsoft Azure" 
+   description="了解如何設定及存取 Azure Data Lake Store 的診斷記錄 " 
+   services="data-lake-store" 
+   documentationCenter="" 
+   authors="nitinme" 
+   manager="paulettm" 
+   editor="cgronlun"/>
+ 
+<tags
+   ms.service="data-lake-store"
+   ms.devlang="na"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="big-data" 
+   ms.date="07/11/2016"
+   ms.author="nitinme"/>
+
+# 存取 Azure Data Lake Store 的診斷記錄
+
+了解如何啟用 Data Lake Store 帳戶的診斷記錄，以及如何檢視針對帳戶收集的記錄。
+
+組織可以啟用 Azure Data Lake Store 帳戶的診斷記錄，以便收集資料存取稽核記錄，取得如存取資料的使用者清單、資料存取頻率、儲存在帳戶內的資料量等資訊。
+
+## 必要條件
+
+- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。
+
+## 啟用 Data Lake Store 帳戶的診斷記錄
+
+1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
+
+2. 開啟 Data Lake Store 帳戶，接著在 Data Lake Store 帳戶刀鋒視窗中依序按一下 [設定] 和 [診斷設定]。
+
+3. 在 [診斷] 刀鋒視窗中，變更下列項目以設定診斷記錄。
+
+	![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "啟用診斷記錄")
+
+	* 將 [狀態] 設定為 [開啟] 以啟用診斷記錄。
+	* 您可以選擇兩種不同的資料儲存/處理方法。
+		* 選取 [匯出到事件中樞] 選項可將記錄資料串流到 Azure 事件中樞。如果您有即時分析內送記錄的下游處理管線，很可能會使用這個選項。如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
+		* 選取 [匯出到儲存體帳戶] 選項可將記錄儲存到 Azure 儲存體帳戶。如果您想要保存資料以供日後批次處理，可以使用此選項。如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
+	* 指定要取得稽核記錄、要求記錄或兩者。
+	* 指定的資料的保留天數。
+	* 按一下 [儲存]。
+
+一旦您啟用了診斷設定，即可在 [診斷記錄] 索引標籤中查看記錄。
+
+## 檢視 Data Lake Store 帳戶的診斷記錄
+
+1. 在 Data Lake Store 帳戶的 [設定] 刀鋒視窗中，按一下 [診斷記錄]。
+
+	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄")
+
+2. 在 [診斷記錄] 刀鋒視窗中，您應該會看到依照 [稽核記錄] 和 [要求記錄] 分類的記錄。
+	* 要求記錄能擷取所有以 Data Lake Store 帳戶提出的 API 要求。
+	* 稽核記錄與要求記錄相似，不過能針對以 Data Lake Store 帳戶執行之作業提供更詳細的明細。例如，要求記錄中的一個上傳 API 呼叫可能會致使稽核記錄出現多個「附加」作業。
+
+3. 針對每個要下載的記錄的記錄項目按一下 [下載] 連結。
+
+## 了解記錄資料的結構
+
+稽核和要求記錄採用 JSON 格式。在本節中，我們要探討要求和稽核記錄的 JSON 結構。
+
+### 要求記錄
+
+以下是採用 JSON 格式之要求記錄中的範例項目。每個 Blob 會一個名為**記錄**的根物件，其中包含記錄物件的陣列。
+
+	{
+	"records": 
+	  [		
+		. . . .
+		,
+		{
+			 "time": "2016-07-07T21:02:53.456Z",
+			 "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
+			 "category": "Requests",
+			 "operationName": "GETCustomerIngressEgress",
+			 "resultType": "200",
+			 "callerIpAddress": "::ffff:1.1.1.1",
+			 "correlationId": "4a11c709-05f5-417c-a98d-6e81b3e29c58",
+			 "identity": "1808bd5f-62af-45f4-89d8-03c5e81bac30",
+			 "properties": {"HttpMethod":"GET","Path":"/webhdfs/v1/Samples/Outputs/Drivers.csv","RequestContentLength":0,"ClientRequestId":"3b7adbd9-3519-4f28-a61c-bd89506163b8","StartTime":"2016-07-07T21:02:52.472Z","EndTime":"2016-07-07T21:02:53.456Z"}
+		}
+		,
+		. . . .
+	  ]
+	}
+
+#### 要求記錄的結構描述
+
+| 名稱 | 類型 | 說明 |
+|-----------------|--------|--------------------------------------------------------------------------------|
+| 分析 | String | 記錄的時間戳記 (UTC 時間) |
+| resourceId | String | 作業發生之資源的識別碼 |
+| category | String | 記錄類別。例如，**要求**。 |
+| operationName | String | 記錄的作業名稱。例如，getfilestatus。 |
+| resultType | String | 作業的狀態。例如，200。 |
+| callerIpAddress | String | 提出要求之用戶端的 IP 位址 |
+| correlationId | String | 用來將一組相關記錄項目分組在一起的記錄識別碼 |
+| 身分識別 | Object | 產生記錄的身分識別 |
+| 屬性 | JSON | 如需詳細資料，請參閱下文 |
+
+#### 要求記錄屬性結構描述
+
+| 名稱 | 類型 | 說明 |
+|----------------------|--------|-----------------------------------------------------------|
+| HttpMethod | String | 作業使用的 HTTP 方法。例如，GET。 |
+| Path | String | 執行作業的所在路徑 |
+| RequestContentLength | int | HTTP 要求的內容長度 |
+| ClientRequestId | String | 可唯一識別要求的識別碼 |
+| StartTime | String | 伺服器接收到要求的時間 |
+| EndTime | String | 伺服器傳送回應的時間 |
+
+### 稽核記錄檔
+
+以下是採用 JSON 格式之稽核記錄中的範例項目。每個 Blob 會一個名為**記錄**的根物件，其中包含記錄檔物件的陣列
+
+	{
+	"records": 
+	  [		
+		. . . .
+		,
+		{
+			 "time": "2016-07-08T19:08:59.359Z",
+			 "resourceId": "/SUBSCRIPTIONS/<subscription_id>/RESOURCEGROUPS/<resource_group_name>/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/<data_lake_store_account_name>",
+			 "category": "Audit",
+			 "operationName": "SeOpenStream",
+			 "resultType": "0",
+			 "correlationId": "381110fc03534e1cb99ec52376ceebdf;Append_BrEKAmg;25.66.9.145",
+			 "identity": "A9DAFFAF-FFEE-4BB5-A4A0-1B6CBBF24355",
+			 "properties": {"StreamName":"adl://<data_lake_store_account_name>.azuredatalakestore.net/logs.csv"}
+		}
+		,
+		. . . .
+	  ]
+	}
+
+#### 稽核記錄的結構描述
+
+| 名稱 | 類型 | 說明 |
+|-----------------|--------|--------------------------------------------------------------------------------|
+| 分析 | String | 記錄的時間戳記 (UTC 時間) |
+| resourceId | String | 作業發生之資源的識別碼 |
+| category | String | 記錄類別。例如，**稽核**。 |
+| operationName | String | 記錄的作業名稱。例如，getfilestatus。 |
+| resultType | String | 作業的狀態。例如，200。 |
+| correlationId | String | 用來將一組相關記錄項目分組在一起的記錄識別碼 |
+| 身分識別 | Object | 產生記錄的身分識別 |
+| 屬性 | JSON | 如需詳細資料，請參閱下文 |
+
+#### 稽核記錄屬性結構描述
+
+| 名稱 | 類型 | 說明 |
+|------------|--------|------------------------------------------|
+| StreamName | String | 執行作業的所在路徑 |
+
+## 另請參閱
+
+- [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
+- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
+
+<!---HONumber=AcomDC_0713_2016-->

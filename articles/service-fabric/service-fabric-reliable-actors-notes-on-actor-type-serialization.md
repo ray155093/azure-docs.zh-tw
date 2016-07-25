@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/25/2015"
+   ms.date="07/06/2015"
    ms.author="vturecek"/>
 
 # Service Fabric Reliable Actors 類型序列化的注意事項
@@ -92,4 +92,4 @@ public class VoicemailBox
  - [動作項目多型和物件導向的設計模式](service-fabric-reliable-actors-polymorphism.md)
  - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

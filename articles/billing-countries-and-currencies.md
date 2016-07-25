@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/14/2016"
+	ms.date="07/13/2016"
 	ms.author="genli"/>
 
 # Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？
 
-您可以在全球超過 140 個國家/地區購買 Microsoft Azure，並且支援許多不同貨幣。以下是您可以購買 Azure 的國家/地區，以及可用來支付 Azure 帳單之貨幣的清單。
+您可以在全球超過 140 個國家/地區購買 Microsoft Azure，並且支援許多不同貨幣。以下是一份清單，其中列出您可以購買 Azure 的國家/地區，以及可用來支付 Azure 帳單的貨幣。
 
 | 國家 (地區) | 貨幣代碼 |
 |---------------------------------|---------------|
@@ -171,4 +171,4 @@
 | 尚比亞 | 美元 |
 | 辛巴威 | 美元 |
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0713_2016-->

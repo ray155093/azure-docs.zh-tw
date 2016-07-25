@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="在 Azure 入口網站中啟用儲存體計量功能 | Microsoft Azure" 
-	description="如何啟用 Blob、佇列、表格和檔案服務的儲存體度量" 
-	services="storage" 
-	documentationCenter="" 
-	authors="robinsh" 
-	manager="carmonm" 
+<properties
+	pageTitle="在 Azure 入口網站中啟用儲存體計量功能 | Microsoft Azure"
+	description="如何啟用 Blob、佇列、表格和檔案服務的儲存體度量"
+	services="storage"
+	documentationCenter=""
+	authors="robinsh"
+	manager="carmonm"
 	editor="tysonn"/>
 
-<tags 
-	ms.service="storage" 
-	ms.workload="storage" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="05/09/2016" 
+<tags
+	ms.service="storage"
+	ms.workload="storage"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="07/05/2016"
 	ms.author="robinsh"/>
 
 # 啟用 Azure 儲存體計量和檢視計量資料
@@ -30,7 +30,7 @@
 
 依照下列步驟在 [Azure 入口網站](https://portal.azure.com)中啟用計量功能：
 
-1. 瀏覽至儲存體帳戶。 
+1. 瀏覽至儲存體帳戶。
 1. 開啟 [**設定**] 刀鋒視窗，然後選取 [**診斷**]。
 1. 確定 [**狀態**] 設為 [**開啟**]。
 1. 選取您要監視之服務的計量。
@@ -71,7 +71,7 @@
     // Create service client for credentialed access to the Blob service.
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Enable Storage Analytics logging and set retention policy to 10 days. 
+    // Enable Storage Analytics logging and set retention policy to 10 days.
     ServiceProperties properties = new ServiceProperties();
     properties.Logging.LoggingOperations = LoggingOperations.All;
     properties.Logging.RetentionDays = 10;
@@ -92,7 +92,7 @@
     // Set the service properties.
     blobClient.SetServiceProperties(properties);
 
-    
+
 ## 檢視儲存體度量
 
 在您設定儲存體分析計量監視您的儲存體帳戶後，儲存體分析會將計量記錄在您儲存體帳戶中一組已知資料表中。您可以在 [Azure 入口網站](https://portal.azure.com)中將圖表設定為檢視每小時計量：
@@ -102,7 +102,16 @@
 3. 若要編輯要在圖表中顯示的計量，請按一下 [**編輯**] 連結。您可以透過選取或取消選取計量，來新增或移除個別的計量。
 4. 編輯完計量後，按一下 [**儲存**]。
 
-如果要下載長期儲存體的度量，或在本機加以分析，您必須使用工具或撰寫程式碼來讀取資料表。您必須下載每分鐘度量以進行分析。如果您在儲存體帳戶中列出所有資料表，則資料表就不會出現，但您可以直接依名稱存取它們。有許多協力廠商儲存體瀏覽工具可以感知這些資料表，讓您能夠直接檢視它們 (如需可用工具清單，請參閱部落格文章 [Microsoft Azure 儲存體總管](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx))。
+如果要下載長期儲存體的度量，或在本機加以分析，您必須：
+
+- 使用可感知這些資料表、且可讓您檢視及下載它們的工具。
+- 撰寫自訂應用程式或指令碼來讀取和儲存資料表。
+
+有許多協力廠商儲存體瀏覽工具可以感知這些資料表，讓您能夠直接檢視它們。如需可用工具的清單，請參閱 [Azure 儲存體總管](storage-explorers.md)。
+
+> [AZURE.NOTE] 從 [Microsoft Azure 儲存體總管](http://storageexplorer.com/) 0.8.0 版開始，您現在可以檢視和下載分析度量資料表。
+
+為了能編寫程式來存取分析資料表，請注意，如果您在儲存體帳戶中列出所有資料表，則分析資料表就不會出現。您可以直接依名稱存取它們，或在 .NET 用戶端程式庫中使用 [CloudAnalyticsClient API](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.analytics.cloudanalyticsclient.aspx) 查詢資料表名稱。
 
 ### 每小時度量
 - $MetricsHourPrimaryTransactionsBlob
@@ -148,7 +157,7 @@
     // Convert the dates to the format used in the PartitionKey
     var start = startDateTime.ToUniversalTime().ToString("yyyyMMdd'T'HHmm");
     var end = endDateTime.ToUniversalTime().ToString("yyyyMMdd'T'HHmm");
-    
+
     var services = Enum.GetValues(typeof(StorageService));
     foreach (StorageService service in services)
     {
@@ -161,9 +170,9 @@
     // Note, you can't filter using the entity properties Time, AccessType, or TransactionType
     // because they are calculated fields in the MetricsEntity class.
     // The PartitionKey identifies the DataTime of the metrics.
-    where entity.PartitionKey.CompareTo(start) >= 0 && entity.PartitionKey.CompareTo(end) <= 0 
+    where entity.PartitionKey.CompareTo(start) >= 0 && entity.PartitionKey.CompareTo(end) <= 0
     select entity;
-    
+
     // Filter on "user" transactions after fetching the metrics from Table Storage.
     // (StartsWith is not supported using LINQ with Azure table storage)
     var results = query.ToList().Where(m => m.RowKey.StartsWith("user"));
@@ -171,7 +180,7 @@
     Console.WriteLine(resultString);
     }
     }
-    
+
     private static string MetricsString(MetricsEntity entity, OperationContext opContext)
     {
     var entityProperties = entity.WriteEntity(opContext);
@@ -181,7 +190,7 @@
     string.Format("TransactionType: {0}, ", entity.TransactionType) +
     string.Join(",", entityProperties.Select(e => new KeyValuePair<string, string>(e.Key.ToString(), e.Value.PropertyAsObject.ToString())));
     return entityString;
-    
+
     }
 
 
@@ -203,6 +212,5 @@
 
 ## 後續步驟：
 [啟用儲存體記錄和存取記錄檔資料](https://msdn.microsoft.com/library/dn782840.aspx)
- 
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0713_2016-->

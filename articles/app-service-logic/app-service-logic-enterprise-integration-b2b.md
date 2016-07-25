@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="利用企業整合套件建立 B2B 解決方案 | Microsoft Azure App Service" 
+	pageTitle="利用企業整合套件建立 B2B 解決方案 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用企業整合套件的 B2B 功能接收資料" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 了解如何使用企業整合套件的 B2B 功能接收資料#
@@ -75,4 +75,4 @@
 
 [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

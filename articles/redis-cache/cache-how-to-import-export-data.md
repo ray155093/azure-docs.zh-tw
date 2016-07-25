@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016" 
+	ms.date="07/13/2016" 
 	ms.author="sdanie"/>
 
 # 在 Azure Redis 快取中匯入與匯出資料
@@ -137,11 +137,13 @@ Azure Redis 快取永續性讓您將儲存在 Redis 快取中的資料存留至 
 
 ### 我可以使用 PowerShell、CLI 或其他管理用戶端自動化匯入/匯出嗎？
 
-這項功能無法在預覽期間使用，但即將推出。
+可以。如需 PowerShell 指示，請參閱[匯入 Redis 快取](cache-howto-manage-redis-cache-powershell.md#to-import-a-redis-cache)和[匯出 Redis 快取](cache-howto-manage-redis-cache-powershell.md#to-export-a-redis-cache)。
+
+
 
 ### 我在匯入/匯出作業期間收到逾時錯誤。這代表什麼意思？
 
-如果您在初始化作業之前停留在 [匯入資料] 或 [匯出資料] 刀鋒視窗超過 15 分鐘，您會收到類似下列的錯誤。
+如果您在初始化作業之前停留在 [匯入資料] 或 [匯出資料] 刀鋒視窗超過 15 分鐘，會收到類似下列的錯誤。
 
     The request to import data into cache 'contoso55' failed with status 'error' and error 'One of the SAS URIs provided could not be used for the following reason: The SAS token end time (se) must be at least 1 hour from now and the start time (st), if given, must be at least 15 minutes in the past.
 
@@ -168,4 +170,4 @@ Azure Redis 快取永續性讓您將儲存在 Redis 快取中的資料存留至 
 [cache-import-blobs]: ./media/cache-how-to-import-export-data/cache-import-blobs.png
 [cache-import-data-import-complete]: ./media/cache-how-to-import-export-data/cache-import-data-import-complete.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0713_2016-->

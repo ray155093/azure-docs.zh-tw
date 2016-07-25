@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="03/24/2016"
+   ms.date="07/05/2016"
    ms.author="mfussell"/>
 
 # 為何要用微服務方式建置應用程式？
@@ -140,15 +140,16 @@ Service Fabric 不會限制您建置服務的方式，您可以使用任何技�
 
 可能。根據我們的經驗，隨著 Microsoft 中越來越多團隊被告知基於商業理由，應該以雲端為目標來建置，有許多團隊都了解到採用類似微服務的方法所帶來的優點。例如，Bing 多年來在搜尋方面就一直這樣做。這對於其他團隊而言相當新穎。他們發現需要解決困難的問題，但這並非他們的強項。這就是為什麼 Service Fabric 受到重視而成為建置服務的最佳技術。
 
-Service Fabric 的目標是將使用微服務方法建置應用程式時的複雜性降低，讓您不需要經歷許多耗費成本的重新設計工作。方法就是從小規模開始、需要時調整、淘汰服務、加入新服務、隨客戶用法而演化。我們也知道，為了讓微服務更易於為大部分開發人員所接受，事實上還有許多其他尚待解決的問題。容器和 Actor 程式設計模型都是朝此目標前進的一小步，我們確信將會浮現更多創新來輕鬆達成目標。
+Service Fabric 的目標是將使用微服務方法建置應用程式時的複雜性降低，讓您不需要經歷許多耗費成本的重新設計工作。方法就是從小規模開始、需要時調整、淘汰服務、加入新服務、隨客戶用法而演化。我們也知道，為了讓微服務更易於為大部分開發人員所接受，事實上還有許多其他尚待解決的問題。容器和 Actor 程式設計模型都是朝此目標前進的一小步，我們確信將會浮現更多創新來輕鬆達成目標。 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
 
 * 其他資訊：
     * [Service Fabric 概觀](service-fabric-overview.md)
-    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/zh-TW/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

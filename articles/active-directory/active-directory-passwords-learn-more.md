@@ -1,22 +1,25 @@
-<properties 
-	pageTitle="深入了解：Azure AD 密碼管理 | Microsoft Azure" 
-	description="Azure AD 密碼管理的進階主題，包括密碼回寫的運作方式、密碼回寫安全性、密碼重設入口網站的運作方式，以及密碼重設使用哪些資料。" 
-	services="active-directory" 
-	documentationCenter="" 
-	authors="asteen" 
-	manager="kbrint" 
-	editor="billmath"/>
+<properties
+	pageTitle="深入了解：Azure AD 密碼管理 | Microsoft Azure"
+	description="Azure AD 密碼管理的進階主題，包括密碼回寫的運作方式、密碼回寫安全性、密碼重設入口網站的運作方式，以及密碼重設使用哪些資料。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
-<tags 
-	ms.service="active-directory" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="02/16/2016" 
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
 	ms.author="asteen"/>
 
 # 深入了解密碼管理
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
 如果您已部署密碼管理，或只是想要在部署之前先深入了解其運作方式的技術細節，本節可讓您大致了解這項服務背後的技術概念。我們將探討以下內容：
 
 * [**密碼回寫概觀**](#password-writeback-overview)
@@ -365,7 +368,7 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**重設自己的密碼**](active-directory-passwords-update-your-own-password.md) - 了解身為系統使用者如何重設或變更自己的密碼
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -379,4 +382,4 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 [001]: ./media/active-directory-passwords-learn-more/001.jpg "Image_001.jpg"
 [002]: ./media/active-directory-passwords-learn-more/002.jpg "Image_002.jpg"
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="了解夥伴與企業整合套件 | Microsoft Azure App Service" 
+	pageTitle="了解夥伴與企業整合套件 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/08/2016" 
 	ms.author="deonhe"/>
 
 # 了解夥伴與企業整合套件
@@ -53,14 +53,12 @@
 3. 在 [更新夥伴] 圖格上，進行您所需的變更
 4. 當您滿意變更時，選取 [儲存] 連結，否則，請選取 [捨棄] 連結以捨棄所做的變更。![](./media/app-service-logic-enterprise-integration-partners/edit-1.png)
 
-
 ## 如何刪除夥伴
 1. 選取 [夥伴] 圖格
 2. 開啟 [夥伴] 刀鋒視窗時，選取您想要編輯的夥伴
 3. 選取 [刪除] 連結 ![](./media/app-service-logic-enterprise-integration-partners/delete-1.png)
 
-
 ## 後續步驟
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

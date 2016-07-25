@@ -40,9 +40,9 @@
 
 ## 異動複寫需求
 
-交易複寫是內建技術，與 SQL Server 6.5 之後的 SQL Server 整合。它是大部分 DBA 知道他們會體驗到的非常成熟且經過實證的技術。現在，您只要使用 [SQL Server 2016 預覽](http://www.microsoft.com/server-cloud/products/sql-server-2016/)，即可將 Azure SQL Database 設為內部部署發佈的[交易複寫訂閱者](https://msdn.microsoft.com/library/mt589530.aspx)。您從 Management Studio 設定它的經驗，與在內部部署伺服器上設定交易複寫訂閱者完全相同。當發行者和散發者至少其中之一為下列 SQL Server 版本時，即支援對此案例的支援：
+交易複寫是內建技術，與 SQL Server 6.5 之後的 SQL Server 整合。它是大部分 DBA 知道他們會體驗到的非常成熟且經過實證的技術。現在，您只要使用 [SQL Server 2016](https://www.microsoft.com/zh-TW/cloud-platform/sql-server)，即可將 Azure SQL Database 設為內部部署發佈的[交易複寫訂閱者](https://msdn.microsoft.com/library/mt589530.aspx)。您從 Management Studio 設定它的經驗，與在內部部署伺服器上設定交易複寫訂閱者完全相同。當發行者和散發者至少其中之一為下列 SQL Server 版本時，即支援對此案例的支援：
 
- - SQL Server 2016 CTP3 (預覽版) 和更新版本 
+ - SQL Server 2016 或以上版本
  - SQL Server 2014 SP1 CU3 和更新版本
  - SQL Server 2014 RTM CU10 和更新版本
  - SQL Server 2012 SP2 CU8 和更新版本
@@ -56,7 +56,7 @@
 
 - [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
 - [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [SQL Server 2016 預覽](http://www.microsoft.com/server-cloud/products/sql-server-2016/)
+- [SQL Server 2016](https://www.microsoft.com/zh-TW/cloud-platform/sql-server)
 
 ## 其他資源
 
@@ -65,4 +65,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

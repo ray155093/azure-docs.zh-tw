@@ -14,7 +14,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="vm-linux"
   ms.workload="infrastructure-services"
-  ms.date="04/19/2016" 
+  ms.date="07/11/2016" 
   ms.author="ahmetb" />
 
 # 在 Azure 上部署您自己的私用 Docker Registry
@@ -100,4 +100,4 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 [registry-config]: http://docs.docker.com/registry/configuration/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0713_2016-->

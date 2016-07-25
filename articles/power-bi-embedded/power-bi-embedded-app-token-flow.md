@@ -1,6 +1,6 @@
 <properties
-   pageTitle="關於 Power BI Embedded 的應用程式權杖流程"
-   description="Power BI Embedded 關於驗證和授權用的應用程式權杖"
+   pageTitle="使用 Power BI Embedded 驗證和授權"
+   description="使用 Power BI Embedded 驗證和授權"
    services="power-bi-embedded"
    documentationCenter=""
    authors="minewiskan"
@@ -13,16 +13,54 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="06/28/2016"
+   ms.date="07/01/2016"
    ms.author="owend"/>
 
-# 關於 Power BI Embedded 的應用程式權杖流程
+# 使用 Power BI Embedded 驗證和授權
 
-**Power BI Embedded** 服務是使用**應用程式權杖**進行驗證和授權，而不是使用明確的使用者驗證。在**應用程式權杖**模型中，您的應用程式會管理您使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送**應用程式權杖**，以告知我們的服務轉譯要求的報告。雖然您可以使用 **Azure Active Directory** 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。
+Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證和授權，而不是使用明確的使用者驗證。在此模型中，您的應用程式會管理使用者的驗證與授權。然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報告。雖然您仍然可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。
 
-**以下是應用程式權杖金鑰流程的運作方式**
+## 兩種驗證方式
 
-1. 將 API 金鑰複製到您的應用程式。您可以在 **Azure 入口網站**取得索引鍵。
+**金鑰** - 您可以針對所有 Power BI Embedded REST API 呼叫使用金鑰。金鑰可以在 **Azure 入口網站** 中找到，方法是按一下[所有設定]，然後按一下 [存取金鑰]。一律將您的金鑰視為密碼。這些金鑰具有在特定工作區集合上呼叫任何 REST API 的權限。
+
+若要在 REST 呼叫上使用金鑰，請新增下列授權標頭︰
+
+    Authorization: AppKey {your key}
+
+**應用程式權杖** - 應用程式權杖用於所有內嵌的要求。它們設計為在用戶端執行，因此限制為單一報告，且最佳做法是設定到期時間。
+
+應用程式權杖是 JWT (JSON Web 權杖)，由您的其中一個金鑰簽署。
+
+您的應用程式權杖可包含下列宣告：
+
+| 宣告 | 說明 |
+|--------------|------------|
+| **ver** | 應用程式權杖的版本。目前版本為 1.0.0。 |
+| **aud** | 權杖的預定接收者。對於 Power BI Embedded，使用：“https://analysis.windows.net/powerbi/api”。 |
+| **iss** | 字串，表示已發出權杖的應用程式。 |
+| **type** | 正在建立的應用程式權杖類型。目前唯一支援的類型為**內嵌**。 |
+| **wcn** | 為其發出權杖的工作區集合名稱。 |
+| **wid** | 為其發出權杖的工作區識別碼。 |
+| **rid** | 為其發出權杖的報告識別碼。 |
+| **username** (選擇性) | 與 RLS 搭配使用，這是字串，可以在套用 RLS 規則時協助識別使用者。 |
+| **角色** (選擇性) | 字串，包含套用資料列層級安全性規則時要選取的角色。如果傳遞多個角色，應該將它們傳遞為字串陣列。 |
+| **exp** (選擇性) | 指出權杖到期的時間。這些項目應該傳遞為 Unix 時間戳記。 |
+| **nbf** (選擇性) | 指出權杖開始生效的時間。這些項目應該傳遞為 Unix 時間戳記。 |
+
+範例應用程式權杖看起來像這樣：
+
+![](media\power-bi-embedded-app-token-flow\power-bi-embedded-app-token-flow-sample-coded.png)
+
+
+解碼時，看起來像這樣：
+
+![](media\power-bi-embedded-app-token-flow\power-bi-embedded-app-token-flow-sample-decoded.png)
+
+
+## 以下是流程的運作方式
+
+1. 將 API 金鑰複製到您的應用程式。您可以在 **Azure 入口網站**取得金鑰。
 
     ![](media\powerbi-embedded-get-started-sample\azure-portal.png)
 
@@ -52,8 +90,7 @@
 
 ## 另請參閱
 - [開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)
-- [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
-- [Microsoft Power BI Embedded Preview 常見案例](power-bi-embedded-scenarios.md)
-- [開始使用 Microsoft Power BI Embedded Preview](power-bi-embedded-get-started.md)
+- [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
+- [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

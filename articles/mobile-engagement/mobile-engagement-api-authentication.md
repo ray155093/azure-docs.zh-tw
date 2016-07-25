@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.workload="mobile" 
-	ms.date="03/11/2016"
-	ms.author="wesmc"/>
+	ms.date="07/08/2016"
+	ms.author="wesmc;ricksal"/>
 
 # 使用 Mobile Engagement REST API 進行驗證
 
@@ -40,7 +40,7 @@
 
 您應該遵循下列這組指示，使用 PowerShell 指令碼來執行安裝程式，該指令碼會利用最少時間進行安裝，但會使用最多允許的預設值。或者，您也可以依照[手動安裝](mobile-engagement-api-authentication-manual.md)中的指示來執行，以便從 Azure 入口網站直接執行此動作並進行更細微的設定。
 
-1. 從[此處](http://aka.ms/webpi-azps)取得最新版的 Azure PowerShell。如需下載指示的詳細資訊，您可以查看這個[連結](../powershell-install-configure.md)。  
+1. 從[此處](http://aka.ms/webpi-azps)取得最新版的 Azure PowerShell。如需下載指示的詳細資訊，您可以查看這個[連結](../powershell-install-configure.md)。
 
 2. 安裝 Azure PowerShell 之後，使用下列命令，以確保您已安裝 **Azure 模組**︰
 
@@ -94,8 +94,8 @@
 
 1. 使用下列參數呼叫 API，且務必取代 TENANT\_ID、CLIENT\_ID 與 CLIENT\_SECRET：
 
-	- **要求 URL** 為 **https://login.microsoftonline.com/{TENANT\_ID}/oauth2/token*
-- **HTTP Content-Type 標頭**為 *application/x-www-form-urlencoded*
+	- **要求 URL** 為 *https://login.microsoftonline.com/{TENANT\_ID}/oauth2/token*
+	- **HTTP Content-Type 標頭**為 *application/x-www-form-urlencoded*
 	- **HTTP 要求主體**為 *grant\_type=client\_credentials&client\_id={CLIENT\_ID}&client\_secret={CLIENT\_SECRET}&resource=https%3A%2F%2Fmanagement.core.windows.net%2F*
 
 	以下是範例要求：
@@ -141,13 +141,13 @@
 	- **1** `{subscription-id}`
 	- **2** `{app-collection}`
 	- **3** `{app-resource-name}`
-	- **4** 除非您建立一個新的，否則您的資源群組名稱應該是 **MobileEngagement**。 
+	- **4** 除非您建立一個新的，否則您的資源群組名稱應該是 **MobileEngagement**。
 
 	![Mobile Engagement API URI 參數][2]
 
 >[AZURE.NOTE] <br/>
 >1. 忽略 API 根位址，因為這適用於舊版 API。<br/>
->2. 若您已使用 Azure 傳統入口網站建立應用程式，則您就需要使用不同於應用程式名稱本身的應用程式資源名稱。若您已在 Azure 入口網站內建立應用程式，則您應該使用應用程式其本身的名稱 (針對建立於新入口網站內的應用程式，在應用程式資源名稱與應用程式名稱之間其實並無差別)。  
+>2. 若您已使用 Azure 傳統入口網站建立應用程式，則您就需要使用不同於應用程式名稱本身的應用程式資源名稱。若您已在 Azure 入口網站內建立應用程式，則您應該使用應用程式其本身的名稱 (針對建立於新入口網站內的應用程式，在應用程式資源名稱與應用程式名稱之間其實並無差別)。
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-api-authentication/azure-module.png
@@ -155,4 +155,4 @@
 [3]: ./media/mobile-engagement-api-authentication/ps-cmdlets.png
 [4]: ./media/mobile-engagement-api-authentication/ad-app-creation.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -2,17 +2,17 @@
     pageTitle="教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合 | Microsoft Azure" 
     description="了解如何使用 SAP HANA 雲端平台搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/12/2016" 
-    ms.author="markvi" />
+    ms.date="07/07/2016" 
+    ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合
   
@@ -53,7 +53,7 @@
 
     ![新增應用程式](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [SAP HANA 雲端平台] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [SAP HANA 雲端平台] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC778552.png "設定單一登入")
 
@@ -78,7 +78,7 @@
 
     ![設定單一登入](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790797.png "設定單一登入")
 
-3.  在不同的網頁瀏覽器視窗中，在 https://account.\<橫向主機>.ondemand.com/cockpit 登入 SAP HANA 雲端平台駕駛座 (例如：**https://account.hanatrial.ondemand.com/cockpit*)。
+3.  在不同的網頁瀏覽器視窗中，登入 SAP HANA 雲端平台駕駛座，網址為 https://account.\<架構主機>.ondemand.com/cockpit (例如：*https://account.hanatrial.ondemand.com/cockpit*)。
 
 4.  按一下 [信任] 索引標籤。
 
@@ -91,11 +91,11 @@
     1.  按一下 [本機服務提供者] 索引標籤。
     2.  若要下載 SAP HANA 雲端平台中繼資料檔案，請按一下 [取得中繼資料]。
 
-6.  在 Azure Active Directory 入口網站中的 [設定應用程式 URL] 頁面上，執行下列步驟，然後按 [下一步]。
+6.  在 Azure Active Directory 傳統入口網站中的 [設定應用程式 URL] 頁面上，執行下列步驟，然後按一下 [下一步]。
 
     ![設定應用程式 URL](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC790798.png "設定應用程式 URL")
 
-    1.  在 [登入 URL] 文字方塊中，輸入使用者用來登入 **SAP HANA 雲端平台**應用程式的 URL。這是您的 SAP HANA 雲端平台應用程式中受保護資源的帳戶特定 URL。該 URL 是以下列模式為基礎：*https://\<applicationName><accountName>.<landscape host>.ondemand.com/<path\_to\_protected\_resource>* (例如：**https://xleavep1941203872trial.hanatrial.ondemand.com/xleave*)
+    1.  在 [登入 URL] 文字方塊中，輸入使用者用來登入 **SAP HANA 雲端平台**應用程式的 URL。這是您的 SAP HANA 雲端平台應用程式中受保護資源的帳戶特定 URL。該 URL 是以下列模式為基礎：*https://\<applicationName><accountName>.<landscape host>.ondemand.com/<path\_to\_protected\_resource>* (例如：*https://xleavep1941203872trial.hanatrial.ondemand.com/xleave*)
 
 		>[AZURE.NOTE]這是您 SAP HANA 雲端平台應用程式中需要使用者以進行驗證的 URL。
 
@@ -128,7 +128,7 @@
 
     ![信任管理](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC793932.png "信任管理")
 
-    >[AZURE.NOTE]上傳中繼資料檔之後，**單一登入 URL**、**單一登出 URL** 和**簽署憑證**的值會自動填入。
+    >[AZURE.NOTE] 上傳中繼資料檔之後，**單一登入 URL**、**單一登出 URL** 和**簽署憑證**的值會自動填入。
 
 11. 按一下 [屬性] 索引標籤。
 
@@ -140,9 +140,7 @@
 
         |判斷提示屬性| 主體屬性|
 		|-------------------|--------------------|
-        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname|名字|--------------------|--------------------|
-        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname|姓氏|---|
-        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress|email|
+        |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname|名字|--------------------|--------------------| |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname|姓氏|---| |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress|email|
 
     >[AZURE.NOTE]屬性的設定取決於 HCP 上的應用程式是如何開發的，意即其預期在 SAML 回應中的是哪個屬性，以及其在程式碼中哪個名稱 (主體屬性) 之下存取該屬性。
     >  
@@ -150,7 +148,7 @@
     >
     >b.螢幕擷取畫面所顯示的**主體屬性**名稱與值取決於應用程式是如何開發的。您的應用程式很可能需要不同的對應。
 
-13. 在 Azure 入口網站的 [設定在 SAP HANA 雲端平台單一登入] 對話方塊上，選取 [單一登入設定確認]，然後按一下 [完成]。
+13. 在 Azure 傳統入口網站的 [設定在 SAP HANA 雲端平台單一登入] 對話方塊上，選取單一登入設定確認，然後按一下 [完成]。
 
     ![設定單一登入](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC796933.png "設定單一登入")
   
@@ -184,7 +182,7 @@
 
 ###若要將使用者指派給 SAP HANA 雲端平台，請執行下列步驟：
 
-1.  在 Azure AD 入口網站中建立測試帳戶。
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [SAP HANA 雲端平台] 應用程式整合頁面上，按一下 [指派使用者]。
 
@@ -196,4 +194,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!----HONumber=AcomDC_0114_2016-->
+<!---HONumber=AcomDC_0713_2016-->

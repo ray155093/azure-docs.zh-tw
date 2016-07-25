@@ -13,44 +13,53 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/20/2016" 
+	ms.date="07/12/2016" 
 	ms.author="ccompy"/>
 
 # 如何建立 App Service 環境 #
 
 App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供多租用戶戳記中不提供的增強式設定功能。ASE 功能基本上會將 Azure App Service 部署到客戶的虛擬網路中。若要更深入了解 App Service 環境所提供的功能，請閱讀[什麼是 App Service 環境][WhatisASE]文件。
 
+
 ### 概觀 ###
+
+ASE 是由前端和背景工作角色計算資源所組成。前端可做為 HTTP/HTTPS 端點，將流量傳送到背景工作角色 (也就是裝載您的應用程式的角色)。
 
 要建立 ASE，客戶必須提供下列幾項資訊：
 
 - ASE 的名稱
-- 要用於 ASE 的訂用帳戶  
+- 要用於 ASE 的訂用帳戶
 - 資源群組
-- Azure 虛擬網路 (VNET) 選取項目和子網路
+- Azure 虛擬網路 (VNet) (具有可供 ASE 使用的 8 個或更多位址以及一個子網路)
+- VIP 類型 (外部或內部)
 - ASE 資源集區定義
+
 
 其中每個項目都有一些重要的詳細資料。
 
-- ASE 的名稱將用於該 ASE 中建立的任何應用程式的子網域。
+- ASE 的名稱將用於該 ASE 中建立的任何應用程式的子網域 (如果設有外部 VIP)。
+- 具有外部 VIP 的 ASE 可裝載網際網路可存取的應用程式。具有內部 VIP 的 ASE 可使用內部負載平衡器 (ILB)
 - ASE 中建立的所有應用程式將位於 ASE 本身的相同訂用帳戶中
 - 如果您無法存取用來建立 ASE 的訂用帳戶，則無法使用 ASE 來建立應用程式
-- 用來裝載 ASE 的 VNET 必須是區域傳統 "v1" VNET 
+- 用來裝載 ASE 的 VNet 必須是區域 VNet。您可以使用傳統或 Resource Manager VNet。
 - **用來裝載 ASE 的子網路不得包含任何其他計算資源**
 - 子網路中只能存在一個 ASE
-- 在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍「或」RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
+- ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立 VNet 和子網路，然後在 ASE 建立 UX 中選取子網路。
+
 
 每個 ASE 部署都是 Azure 管理和維護的託管服務。雖然客戶會管理執行個體的數量和其大小，但不能存取裝載 ASE 系統角色的計算資源。
 
 存取 ASE 建立 UI 的方法有兩種。在 Azure Marketplace 中搜尋 ***App Service 環境***或經由 [新增] -> [Web + 行動]，即可找到。
 
-如果您想讓 VNET 有不同於 ASE 的資源群組，您必須先個別建立 VNET，然後在 ASE 建立期間加以選取。此外，如果您想要於 ASE 建立期間在現有的 VNET 中建立子網路，則 ASE 必須屬於與 VNET 相同的資源群組。
+如果您想讓 VNet 有不同於 ASE 的資源群組，您必須先個別建立 VNet，然後在 ASE 建立期間加以選取。此外，如果您想要於 ASE 建立期間在現有的 VNet 中建立子網路，則 ASE 必須屬於與 VNet 相同的資源群組。
+
 
 ### 快速建立 ###
 在建立 ASE 時，可以利用一組預設值來進行快速建立。您只要輸入部署的名稱，即可快速建立 ASE。接著，將會透過下列項目在最接近您的區域中建立 ASE：
 
-- 使用 RFC1918 私人位址空間且具有 512 個位址的 VNET
+- 使用 RFC1918 私人位址空間且具有 512 個位址的 VNet
 - 具有 256 個位址的子網路
+- 外部 VIP
 - 具有 2 個 P2 計算資源的前端集區
 - 具有 2 個 P1 計算資源的背景工作集區
 - 要用於 IP SSL 的單一 IP 位址
@@ -59,35 +68,46 @@ App Service 環境 (ASE) 是 Azure App Service 的進階服務選項，可提供
 
 ![][1]
 
-針對 ASE 指定的名稱將用於在 ASE 中建立的應用程式。如果 ASE 的名稱是 appsvcenvdemo，則網域名稱會是 .*appsvcenvdemo.p.azurewebsites.net*。如果您因此建立名為「mytestapp」的應用程式，則可定址於「mytestapp.appsvcenvdemo.p.azurewebsites.net」。您無法在 ASE 的名稱中使用空白字元。如果您在名稱中使用大寫字元，則網域名稱會是該名稱的全小寫版本。
+針對 ASE 指定的名稱將用於在 ASE 中建立的應用程式。如果 ASE 的名稱是 appsvcenvdemo，則子網域名稱會是 .appsvcenvdemo.p.azurewebsites.net。如果您因此建立名為 mytestapp的應用程式，則可定址於 mytestapp.appsvcenvdemo.p.azurewebsites.net。您無法在 ASE 的名稱中使用空白字元。如果您在名稱中使用大寫字元，則網域名稱會是該名稱的全小寫版本。如果您使用 ILB，則 ASE 名稱不會用於您的子網域中，但是會在 ASE 建立期間明確指定。
 
 在某些情況下使用預設值會有很好的效果，但通常您都必須進行調整。後續幾節將一一說明 ASE 的相關組態區段。
 
-### 虛擬網路 ###
-雖然快速建立功能可自動建立新的 VNET，但這項功能還支援選取現有的 VNET 和手動建立 VNET。如果現有的 VNET 夠大，您可加以選取 (在這時候，只有傳統 "v1" 虛擬網路受支援)，以支援 App Service 環境部署。VNET 必須有 8 個或更多位址。
 
-在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍「或」RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
+### 虛擬網路 ###
+ASE 建立程序支援選取現有的傳統或 Resource Manager VNet，以及建立新的傳統 VNet。
+
+當您選取現有的 VNet 時，您會看到您的傳統和 Resource Manager Vnet 一起列出。傳統 Vnet 的位置旁邊有「傳統」這個字。若未如此顯示，則是 Resource Manager VNet。
+
+![][2]
+
+
+如果要經由 VNet 建立 UI，您必須提供：
+
+- VNet 名稱
+- CIDR 表示法中的 VNet 位址範圍
+- 位置
+
+VNet 的位置就是 ASE 的位置。請記住，這會建立傳統 VNet，而非 Resource Manager VNet。
+
+ASE 可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。若要搭配使用虛擬網路與公用位址範圍，您必須事先建立子網路，然後在 ASE 建立 UX 中選取子網路。
 
 如果您選取預先存在的 VNET，您也必須指定要使用的子網路或建立新的子網路。子網路必須有 8 個或更多位址，且不可有任何其他資源已包含於其中。如果您嘗試使用已配置 VM 的子網路，ASE 建立將會失敗。
 
-如果要經由 VNET 建立 UI，您必須提供：
+在您指定或選取 VNet 後，您必須建立或選取適當的子網路。您必須在此處提供的詳細資料包括：
 
-- VNET 名稱
-- CIDR 表示法中的 VNET 位址範圍
-- 位置
-
-VNET 的位置就是 ASE 的位置，因為 ASE 部署至該 VNET 中。
-
-在您指定或選取 VNET 後，您必須建立或選取適當的子網路。您必須在此處提供的詳細資料包括：
 - 子網路名稱
 - CIDR 表示法中的子網路範圍
 
 如果您不熟悉 CIDR (無類別網域間路由) 表示法，請留意它會採用以正斜線與 CIDR 值分隔的 IP 位址格式。其顯示如下：*10.0.0.0/22*。CIDR 值表示對顯示的 IP 位址進行遮罩處理的前導位元數。如果要以更簡單的方式表達此概念，我們可以說 CIDR 值提供了 IP 範圍。在此範例中，10.0.0.0/22 表示 1024 個位址，或從 10.0.0.0 到 10.0.3.255 的範圍。/23 表示 512 個位址等等。
 
-提醒您，如果您想要在現有的 VNET 中建立子網路，ASE 將會屬於與 VNET 相同的資源群組。若要讓您的 ASE 與 VNET 分屬於不同的資源群組，只要在建立 ASE 之前個別建立 VNET 和子網路即可。
+提醒您，如果您想要在現有的 VNet 中建立子網路，ASE 將會屬於與 VNet 相同的資源群組。若要讓您的 ASE 與 VNet 分屬於不同的資源群組，只要在建立 ASE 之前個別建立 VNet 和子網路即可。
 
-![][2]
 
+#### 外部或內部 VIP ####
+
+根據預設，VNet 組態設有外部 VIP 類型和 1 個 IP 位址。如果您想要使用 ILB，而不是使用外部 VIP，請進入 [VNet 組態] 並將 [VIP 類型] 變更為 [內部]。預設會使用外部 VIP。當您將 [VIP 類型] 變更為 [內部] 時，您必須針對 ASE 指定您的子網域。使用 ILB 作為 ASE 的 VIP 時會有一些取捨。若要深入了解，請參閱[在 App Service 環境中使用內部負載平衡器][ILBASE]。
+
+![][4]
 
 ### 計算資源集區 ###
 
@@ -160,6 +180,7 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 [1]: ./media/app-service-web-how-to-create-an-app-service-environment/asecreate-basecreateblade.png
 [2]: ./media/app-service-web-how-to-create-an-app-service-environment/asecreate-vnetcreation.png
 [3]: ./media/app-service-web-how-to-create-an-app-service-environment/asecreate-resources.png
+[4]: ./media/app-service-web-how-to-create-an-app-service-environment/asecreate-externalvip.png
 
 <!--Links-->
 [WhatisASE]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
@@ -167,5 +188,6 @@ App Service 環境的定價是根據指派的計算資源。無論是否裝載�
 [AppServicePricing]: http://azure.microsoft.com/pricing/details/app-service/
 [AzureAppService]: http://azure.microsoft.com/documentation/articles/app-service-value-prop-what-is/
 [ASEAutoscale]: http://azure.microsoft.com/documentation/articles/app-service-environment-auto-scale/
+[ILBASE]: http://azure.microsoft.com/documentation/articles/app-service-environment-with-internal-load-balancer/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

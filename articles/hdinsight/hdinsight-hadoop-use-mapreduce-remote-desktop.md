@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/22/2016"
+   ms.date="07/12/2016"
    ms.author="larryfr"/>
 
 # 利用遠端桌面在 HDInsight 上的 Hadoop 中使用 MapReduce
@@ -62,7 +62,7 @@
 
 		hadoop fs -ls wasb:///example/data/WordCountOutput
 
-	這應該會顯示兩個檔案：**SUCCESS** 和 **part-r-00000**。**part-r-00000** 檔案包含這項工作的輸出。
+	這應該會顯示兩個檔案：**\_SUCCESS** 和 **part-r-00000**。**part-r-00000** 檔案包含這項工作的輸出。
 
 	> [AZURE.NOTE] 某些 MapReduce 工作可能會將結果分成多個 **part-r-#####** 檔案。若是如此，請使用 ##### 尾碼指出檔案的順序。
 
@@ -96,4 +96,4 @@
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

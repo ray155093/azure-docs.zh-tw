@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/20/2016"
+	ms.date="07/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -58,7 +58,7 @@ IBM Kenexa Survey Enterprise 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 IBM Kenexa Survey Enterprise，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -143,7 +143,7 @@ IBM Kenexa Survey Enterprise 與 Azure AD 整合提供下列優點：
 
  - 下載的憑證檔案
  - **簽發者 URL**
- - **SAML SSO URL** 
+ - **SAML SSO URL**
  - **單一登出服務 URL**
 
 	> [AZURE.NOTE] 請注意，回應中的 NameID 宣告值必須符合 Kenexa 系統中設定的 SSO 識別碼。因此請與 Kenexa 支援小組合作，以將您組織中適當的使用者識別碼對應為 SSO 識別碼。Azure AD 預設會將 NameIdentifier 設為 UPN 值。您可以如以下螢幕擷取畫面所示，在 [屬性] 索引標籤中變更此值。在完成正確對應後，整合才有作用。
@@ -289,4 +289,4 @@ IBM Kenexa Survey Enterprise 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-kenexasurvey-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

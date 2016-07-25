@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"  
+ 	ms.date="07/12/2016"  
 	ms.author="juliako"/>
 
 #使用 .NET 進行媒體服務開發
@@ -75,7 +75,12 @@
 若要取得**帳戶名稱**和**帳戶金鑰**資訊，請開啟 Azure 傳統入口網站，並選取媒體服務帳戶，然後按一下 [管理金鑰] 按鈕。
 
 
-<configuration> ... <appSettings> <add key="MediaServicesAccountName" value="Media-Services-Account-Name" /> <add key="MediaServicesAccountKey" value="Media-Services-Account-Key" /> </appSettings>
+	<configuration>
+	...
+	  <appSettings>
+	    <add key="MediaServicesAccountName" value="Media-Services-Account-Name" />
+	    <add key="MediaServicesAccountKey" value="Media-Services-Account-Key" />
+	  </appSettings>
 	  
 	</configuration>
 
@@ -103,4 +108,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

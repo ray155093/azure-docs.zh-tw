@@ -92,9 +92,9 @@
 
 |命令|說明|
 |-------|-----------|
-|[ALTER DATABASE (Azure SQL Database)]https://msdn.microsoft.com/zh-TW/library/mt574871.aspx)|使用 ADD SECONDARY ON SERVER 引數，針對現有資料庫建立次要資料庫並開始資料複寫|
-|[ALTER DATABASE (Azure SQL Database)]https://msdn.microsoft.com/zh-TW/library/mt574871.aspx)|使用 FAILOVER 或 FORCE\_FAILOVER\_ALLOW\_DATA\_LOSS，將次要資料庫切換為主要資料庫以便開始容錯移轉
-|[ALTER DATABASE (Azure SQL Database)]https://msdn.microsoft.com/zh-TW/library/mt574871.aspx)|使用 REMOVE SECONDARY ON SERVER，來終止 SQL Database 和指定次要資料庫間的資料複寫。|
+|[ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx)|使用 ADD SECONDARY ON SERVER 引數，針對現有資料庫建立次要資料庫並開始資料複寫|
+|[ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx)|使用 FAILOVER 或 FORCE\_FAILOVER\_ALLOW\_DATA\_LOSS，將次要資料庫切換為主要資料庫以便開始容錯移轉
+|[ALTER DATABASE (Azure SQL Database)](https://msdn.microsoft.com/library/mt574871.aspx)|使用 REMOVE SECONDARY ON SERVER，來終止 SQL Database 和指定次要資料庫間的資料複寫。|
 |[sys.geo\_replication\_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx)|針對 Azure SQL Database 邏輯伺服器上的每個資料庫，傳回所有結束複寫連結的相關資訊。|
 |[sys.dm\_geo\_replication\_link\_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx)|針對指定的 SQL Database，取得上次複寫時間、上次複寫延遲，以及複寫連結的其他相關資訊。|
 |[sys.dm\_operation\_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx)|顯示所有資料庫作業的狀態，包括複寫連結的狀態。|
@@ -116,7 +116,7 @@
 
 |API|說明|
 |---|-----------|
-|[REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)|建立、更新或還原主要或次要資料庫。|
+|[Create or Update Database (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)|建立、更新或還原主要或次要資料庫。|
 |[取得建立或更新資料庫狀態](https://msdn.microsoft.com/library/azure/mt643934.aspx)|在建立作業期間傳回狀態。|
 |[將次要資料庫設定為主要資料庫 (計劃的容錯移轉)](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx)|在異地複寫關聯性中升級次要資料庫以做為新的主要資料庫。|
 |[將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://msdn.microsoft.com/library/azure/mt582027.aspx)|強制容錯移轉至次要資料庫，並將次要資料庫設定為主要資料庫。|
@@ -128,10 +128,10 @@
 
 ## 後續步驟
 
-- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
-- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
-- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
+- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
+- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)。
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)。
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

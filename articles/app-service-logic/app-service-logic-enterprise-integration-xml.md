@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="XML 驗證與企業整合套件的概觀 | Microsoft Azure App Service" 
-	description="了解驗證如何在企業整合套件與 Logic Apps 中運作" 
+	pageTitle="企業整合套件中 XML 處理的概觀 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解如何使用企業整合套件與 Logic Apps 處理和驗證 XML 訊息" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
@@ -13,30 +13,21 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/07/2016" 
 	ms.author="deonhe"/>
 
-# 具備 XML 驗證的企業整合
 
-## 概觀
-在 B2B 案例中，合約的夥伴通常需要先驗證彼此間所交換訊息是有效的，才能開始處理資料。在企業整合套件中，您可以使用 XML 驗證連接器，根據預先定義的結構描述來驗證文件。
+# XML 處理
 
-## 如何利用 XML 驗證連接器驗證文件
-1. 建立邏輯應用程式並[將它連結到整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解如何將整合帳戶連結到邏輯應用程式")，其中包含用來驗證 XML 資料的結構描述。
-2. 將 [要求 - 收到 HTTP 要求時] 觸發程序新增到您的邏輯應用程式 ![](./media/app-service-logic-enterprise-integration-xml/xml-1.png)
-3. 先選取 [新增動作] 來新增 [XML 驗證] 動作
-4. 在搜尋方塊中輸入「xml」，篩選所有動作以取得您想要使用的動作
-5. 選取 [XML 驗證] ![](./media/app-service-logic-enterprise-integration-xml/xml-2.png)
-6. 選取 [內容] 文字方塊 ![](./media/app-service-logic-enterprise-integration-xml/xml-1-5.png)
-7. 選取內文標記做為要驗證的內容。![](./media/app-service-logic-enterprise-integration-xml/xml-3.png)
-8. 選取 [結構描述名稱] 清單方塊，然後選擇您想要用來驗證上述輸入內容的結構描述 ![](./media/app-service-logic-enterprise-integration-xml/xml-4.png)
-9. 儲存您的工作 ![](./media/app-service-logic-enterprise-integration-xml/xml-5.png)
+企業整合套件可讓您輕鬆地驗證和處理您與商業夥伴交換的 XML 文件。以下是您可以使用 Logic Apps 處理這些 XML 訊息的方法︰
 
-此時，您已完成設定驗證連接器。在真實世界應用程式中，您可能想要在 LOB 應用程式 (例如 SalesForce) 中儲存已驗證的資料。您可以輕鬆新增動作，來將驗證的輸出傳送到 Salesforce。
+- [XML 驗證](./app-service-logic-enterprise-integration-xml-validation.md "了解 XML 訊息驗證") - XML 驗證可讓您針對特定的結構描述，驗證來自來源端點的訊息。
+- [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解 XML 訊息轉換和對應") - XML 轉換可讓您根據目的地端點的需求轉換 XML 訊息。
+- [一般檔案編碼與一般檔案解碼](./app-service-logic-enterprise-integration-flatfile.md "了解一般檔案編碼/解碼") - 一般檔案編碼/解碼可讓您將一般檔案編碼或解碼。
+- [XPath](https://msdn.microsoft.com/library/mt643789.aspx) - 可讓您擴充訊息，並從訊息擷取特定的屬性。擷取的屬性可用來將訊息傳送至目的地或中繼端點。
 
-您現在可以藉由向 HTTP 端點提出要求來測試驗證動作。
+## 詳細資訊
 
-## 後續步驟
-- [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
+[深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/06/2016"
+	ms.date="07/12/2016"
 	ms.author="tomfitz"/>
 
 # Azure 資源管理員範本中的共用狀態
@@ -426,4 +426,4 @@ enableJumpbox | 來自條件約束清單的字串 (enabled/disabled) | 識別是
 - 如要了解範本的各區段，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要查看範本中可以使用的函數，請參閱 [Azure Resource Manager 範本函數](resource-group-template-functions.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

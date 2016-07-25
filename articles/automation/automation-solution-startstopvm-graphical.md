@@ -12,17 +12,17 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="06/14/2016"
+	ms.date="07/06/2016"
 	ms.author="bwren" />
 
 # Azure 自動化案例 - 啟動和停止虛擬機器
 
 此 Azure 自動化案例包含可啟動和停止傳統虛擬機器的 Runbook。此案例可用來做為下列任何用途：
 
-- 在您自己的環境中不修改而直接使用 Runbook。 
-- 修改 Runbook 來執行自訂的功能。  
-- 在整個解決方案中從另一個 Runbook 呼叫 Runbook。 
-- 將 Runbook 當作教學課程來了解 Runbook 撰寫概念。 
+- 在您自己的環境中不修改而直接使用 Runbook。
+- 修改 Runbook 來執行自訂的功能。
+- 在整個解決方案中從另一個 Runbook 呼叫 Runbook。
+- 將 Runbook 當作教學課程來了解 Runbook 撰寫概念。
 
 > [AZURE.SELECTOR]
 - [圖形化](automation-solution-startstopvm-graphical.md)
@@ -150,7 +150,7 @@ Runbook 的最後一個步驟是傳送輸出，而不論是否成功提交每個
 ## 後續步驟
 
 - [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
-- [Azure 自動化中的子 Runbook](automation-child-runbooks.md) 
+- [Azure 自動化中的子 Runbook](automation-child-runbooks.md)
 - [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

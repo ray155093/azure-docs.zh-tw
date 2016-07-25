@@ -140,15 +140,15 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 	下方 Cmdlet 範例會將預設路由加入至步驟 1 中所建立的路由表。請注意，唯一支援的路由是到「VPNGateway」Nexthop 的「0.0.0.0/0」目的地前置詞。
  
-		Set-AzureRoute –RouteTableName "MyRouteTable" –RouteName "DefaultRoute" –AddressPrefix "0.0.0.0/0" –NextHopType VPNGateway
+		Set-AzureRoute –RouteTable "MyRouteTable" –RouteName "DefaultRoute" –AddressPrefix "0.0.0.0/0" –NextHopType VPNGateway
 
 3. 將路由表關聯至子網路。
 
 	建立路由表並加入路由之後，使用下方 Cmdlet 將路由表加入或關聯至 VNet 子網路。下方範例會將路由表「MyRouteTable」加入至 VNet 多層式 VNet 中的中層和後端子網路。
 
-		Set-AzureSubnetRouteTable -VNetName "MultiTier-VNet" -SubnetName "Midtier" -RouteTableName "MyRouteTable"
+		Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Midtier" -RouteTableName "MyRouteTable"
 
-		Set-AzureSubnetRouteTable -VNetName "MultiTier-VNet" -SubnetName "Backend" -RouteTableName "MyRouteTable"
+		Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Backend" -RouteTableName "MyRouteTable"
 
 4. 為強制通道指派預設站台。
 
@@ -161,7 +161,7 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 ### 刪除路由表
 
-	Remove-AzureRouteTable -RouteTableName <routeTableName>
+	Remove-AzureRouteTable -Name <routeTableName>
 
 ### 列出路由表
 
@@ -173,14 +173,14 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 ### 從子網路移除路由
 
-	Remove-AzureSubnetRouteTable –VNetName <virtualNetworkName> -SubnetName <subnetName>
+	Remove-AzureSubnetRouteTable –VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
 
 ### 列出與子網路相關聯的路由表
 	
-	Get-AzureSubnetRouteTable -VNetName <virtualNetworkName> -SubnetName <subnetName>
+	Get-AzureSubnetRouteTable -VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
 
 ### 從 VNet VPN 閘道移除預設網站
 
-	Remove-AzureVnetGatewayDefaultSites -VNetName <virtualNetworkName>
+	Remove-AzureVnetGatewayDefaultSite -VNetName <virtualNetworkName>
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

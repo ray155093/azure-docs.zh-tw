@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/22/2016" 
+	ms.date="07/12/2016" 
 	ms.author="sdanie"/>
 
 # 使用範本建立 Redis 快取
@@ -136,4 +136,4 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

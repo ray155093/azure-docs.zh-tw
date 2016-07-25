@@ -20,6 +20,10 @@
 
 本文包含「Azure SQL Database 解決方案快速入門」的概觀。這些「快速入門」是根據真實世界案例，示範在完整解決方案中如何使用 SQL Database。如需示範如何使用特定 Azure SQL Database 功能的簡單逐步教學課程，請參閱[探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)。
 
+## WingTipTickets 示範和實際操作實驗室
+
+[Azure SQL 資料庫 WingTipTickets](https://github.com/microsoft/wingtiptickets) 示範和實際操作實驗室。這些檔案構成的實際操作實驗室，示範以 Azure SQL Database 和 Azure 搜尋服務為基礎的範例應用程式，用於銷售音樂會門票
+
 ## 收集和監視多個集區的資源使用狀況資料
 
 這個「解決方案快速入門」提供一個解決方案來收集和監視訂用帳戶中多個集區的 Azure SQL Database 資源使用狀況。當訂用帳戶中有大量資料庫時，難以分開監視每個彈性集區。若要解決這個難題，您可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區及其資料庫收集資源使用狀況資料，以便監視和分析資源使用狀況。
@@ -52,4 +56,4 @@ GitHub SQL Server 範例儲存機制中[適用於 Saas 的彈性集區自訂儀�
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

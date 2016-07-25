@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="dotnet"
     ms.workload="na"
-    ms.date="04/22/2016"
+    ms.date="07/11/2016"
     ms.author="sethm"/>
 
 # 使用 Azure Resource Manager 範本建立服務匯流排資源
@@ -22,7 +22,7 @@
 
 Azure Resource Manager 範本會協助您定義要部署給解決方案的資源，以及指定參數和變數，讓您可以針對不同的環境來輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。如需撰寫 Azure Resource Manager 範本和討論範本格式的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
 
->[AZURE.NOTE] 本文中的範例會示範如何使用 Azure Resource Manager 來建立服務匯流排命名空間和訊息實體 (佇列)。如需其他範本範例，請參閱 [Azure 快速入門範本][]資源庫並搜尋「服務匯流排」。
+>[AZURE.NOTE] 本文中的範例會示範如何使用 Azure Resource Manager 來建立服務匯流排命名空間和訊息實體 (佇列)。如需其他範本範例，請造訪 [Azure 快速入門範本][]資源庫並搜尋「服務匯流排」。
 
 ## 服務匯流排和事件中樞 Resource Manager 範本
 
@@ -144,7 +144,7 @@ Azure Resource Manager 範本會協助您定義要部署給解決方案的資源
 }
 ```
 
-如需詳細資訊，請參閱[參數檔案](../resource-group-template-deploy.md#parameter-file)一文。
+如需詳細資訊，請參閱[參數檔案](../resource-group-template-deploy.md#parameter-file)主題。
 
 ### 登入 Azure 並設定 Azure 訂用帳戶
 
@@ -154,13 +154,13 @@ Azure Resource Manager 範本會協助您定義要部署給解決方案的資源
 Login-AzureRmAccount
 ```
 
-系統會提示您登入您的 Azure 帳戶。登入之後，執行下列命令以檢視可用的訂用帳戶︰
+系統會提示您登入您的 Azure 帳戶。登入之後，執行下列命令以檢視可用的訂用帳戶。
 
 ```
 Get-AzureRMSubscription
 ```
 
-這個命令會傳回可用的 Azure 訂用帳戶清單。執行下列命令為目前的工作階段選擇訂用帳戶。以您要使用的 Azure 訂用帳戶 GUID取代 `<YourSubscriptionId>`：
+這個命令會傳回可用的 Azure 訂用帳戶清單。執行下列命令為目前的工作階段選擇訂用帳戶。以您要使用的 Azure 訂用帳戶 GUID取代 `<YourSubscriptionId>`。
 
 ```
 Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
@@ -168,13 +168,13 @@ Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 
 ### 設定資源群組
 
-如果沒有現成的資源群組，請使用 **New-AzureRmResourceGroup** 命令建立新的資源群組。提供您要使用的資源群組名稱和位置。例如：
+如果沒有現成的資源群組，請使用 **New-AzureRmResourceGroup ** 命令建立新的資源群組。提供您要使用的資源群組名稱和位置。例如：
 
 ```
 New-AzureRmResourceGroup -Name MyDemoRG -Location "West US"
 ```
 
-如果成功，就會顯示新資源群組的摘要：
+如果成功，就會顯示新資源群組的摘要。
 
 ```
 ResourceGroupName : MyDemoRG
@@ -202,7 +202,7 @@ Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <p
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-若要改用參數檔案，請使用下列命令。
+若要改為指定參數檔案，請使用下列命令。
 
 ```
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
@@ -253,4 +253,4 @@ Parameters        :
 [使用 Azure Resource Manager 範本部署資源]: ../resource-group-template-deploy.md
 [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

@@ -122,7 +122,7 @@
 
 11. 將新的磁碟機新增至 /etc/fstab：
 
-	為了確保重新開機之後自動重新掛接磁碟機，必須將磁碟機新增至 /etc/fstab 檔案。此外，強烈建議在 /et/fstab 中使用全域唯一識別碼 (Universally Unique IDentifier, UUID) 來參考磁碟機，而不只是裝置名稱 (例如，/dev/sdc1)。若要尋找新磁碟機的 UUID，您可以使用 **blkid** 公用程式：
+	為了確保重新開機之後自動重新掛接磁碟機，必須將磁碟機新增至 /etc/fstab 檔案。此外，強烈建議在 /et/fstab 中使用全域唯一識別碼 (Universally Unique IDentifier, UUID) 來參考磁碟機，而不只是裝置名稱 (例如，/dev/sdc1)。如果作業系統在開機期間偵測到磁碟錯誤，這可避免將不正確的磁碟掛接到指定的位置，則任何其餘的資料磁碟會被指派這些裝置識別碼。若要尋找新磁碟機的 UUID，您可以使用 **blkid** 公用程式：
 
 		# sudo -i blkid
 
@@ -173,4 +173,4 @@
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-classic-log-on.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

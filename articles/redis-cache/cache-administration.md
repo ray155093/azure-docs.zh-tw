@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="07/05/2016"
+	ms.date="07/13/2016"
 	ms.author="sdanie" />
 
 # 如何管理 Azure Redis 快取
@@ -80,7 +80,7 @@ Azure Redis 快取**管理**設定可讓您針對進階快取執行下列管理�
 
 ### 我可以使用 PowerShell、CLI 或其他管理工具重新啟動我的快取嗎？
 
-目前無法使用，但即將推出此功能。
+是，如需 PowerShell 指示，請參閱[重新啟動 Redis 快取](cache-howto-manage-redis-cache-powershell.md#to-reboot-a-redis-cache)。
 
 ### 哪些定價層可以使用重新啟動功能？
 
@@ -116,4 +116,4 @@ Azure Redis 快取**管理**設定可讓您針對進階快取執行下列管理�
 
 -	瀏覽 [Azure Redis 快取進階層](cache-premium-tier-intro.md)功能。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

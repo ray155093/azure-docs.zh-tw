@@ -42,7 +42,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Ambari | 443 | HTTPS | Ambari Web UI。請參閱[使用 Ambari Web UI 管理 HDInsight](hdinsight-hadoop-manage-ambari.md) |
 | Ambari | 443 | HTTPS | Ambari REST API。請參閱[使用 Ambari REST API 管理 HDInsight](hdinsight-hadoop-manage-ambari-rest-api.md) |
 | WebHCat | 443 | HTTPS | HCatalog REST API。請參閱[搭配使用 Hive 與 Curl](hdinsight-hadoop-use-Pig-curl.md)、[搭配使用 Pig 與 Curl](hdinsight-hadoop-use-Pig-curl.md)、[搭配使用 MapReduce 與 Curl](hdinsight-hadoop-use-mapreduce-curl.md) |
-| HiveServer2 | 443 | ODBC | 使用 ODBC 連接至 Hive。請參閱[使用 Microsoft ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver)。 |
+| HiveServer2 | 443 | ODBC | 使用 ODBC 連接至 Hive。請參閱[使用 Microsoft ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver.md)。 |
 | HiveServer2 | 443 | JDBC | 使用 JDBC 連接至 Hive。請參閱[使用 Hive JDBC 驅動程式連接到 HDInsight 上的 Hive](hdinsight-connect-hive-jdbc-driver.md) |
 
 下列各項適用於特定叢集類型︰
@@ -133,4 +133,4 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | 區域伺服器 | 所有背景工作節點 | 16020 | &nbsp; | &nbsp; |
 | &nbsp; | &nbsp; | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

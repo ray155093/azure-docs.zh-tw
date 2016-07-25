@@ -38,10 +38,14 @@ Azure IoT 中心的主要使用案例之一是從裝置收集遙測。因此，�
 
 ## 後續步驟
 
-遵循下列連結以深入了解 Azure IoT 中樞：
+若要深入了解如何規劃 IoT 中樞部署，請參閱[縮放、HA 及 DR][lnk-scaling]。
 
-- [開始使用 Azure IoT 中樞 (教學課程)][lnk-get-started]
-- [何謂 Azure IoT 中心？][]
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 [Azure 事件中樞]: ../event-hubs/event-hubs-what-is-event-hubs.md
 [IoT 中樞開發人員指南的安全性章節]: iot-hub-devguide.md#security
@@ -49,8 +53,12 @@ Azure IoT 中心的主要使用案例之一是從裝置收集遙測。因此，�
 [Event Hub publisher policies]: ../event-hubs/event-hubs-overview.md#common-publisher-tasks
 [Azure 服務匯流排配額]: ../service-bus/service-bus-quotas.md
 [Azure IoT Hub SDKs]: https://github.com/Azure/azure-iot-sdks/blob/master/readme.md
-[lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[何謂 Azure IoT 中心？]: iot-hub-what-is-iot-hub.md
 [lnk-azure-protocol-gateway]: iot-hub-protocol-gateway.md
 
-<!---HONumber=AcomDC_0615_2016-->
+[lnk-scaling]: iot-hub-scaling.md
+[lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

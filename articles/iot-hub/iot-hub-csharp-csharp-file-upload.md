@@ -149,17 +149,18 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 ## 後續步驟
 
-在本教學課程中，您已學到如何運用 IoT 中樞的檔案上傳功能來簡化從裝置上傳檔案。您可以利用下列教學課程繼續探索 IoT 中心功能和案例：
+在本教學課程中，您已學到如何運用 IoT 中樞的檔案上傳功能來簡化從裝置上傳檔案。您可以利用下列文章繼續探索 IoT 中樞功能和案例：
 
-- [處理裝置到雲端訊息]，示範如何可靠地處理來自裝置的遙測和互動式訊息。
+- [以程式設計方式建立 IoT 中樞][lnk-create-hub]
+- [C SDK 簡介][lnk-c-sdk]
+- [IoT 中心 SDK][lnk-sdks]
 
-有關 IoT 中心的其他資訊：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [IoT 中心概觀]
-* [IoT 中心開發人員指南]
-* [IoT 中心指引]
-* [支援的裝置平台和語言][Supported devices]
-* [Azure IoT 開發人員中心]
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 <!-- Images. -->
 
@@ -169,31 +170,29 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 <!-- Links -->
 
-[Send Cloud-to-Device messages with IoT Hub]: iot-hub-csharp-csharp-c2d.md
-
 [Azure 入口網站]: https://portal.azure.com/
 
 [Azure Data Factory]: https://azure.microsoft.com/documentation/services/data-factory/
 [Hadoop]: https://azure.microsoft.com/documentation/services/hdinsight/
 
-[Get started with IoT Hub]: iot-hub-csharp-csharp-getstarted.md
 [使用 IoT 中樞傳送雲端到裝置訊息]: iot-hub-csharp-csharp-c2d.md
 [處理裝置到雲端訊息]: iot-hub-csharp-csharp-process-d2c.md
-[Uploading files from devices]: iot-hub-csharp-csharp-file-upload.md
-
-[IoT 中心概觀]: iot-hub-what-is-iot-hub.md
-[IoT 中心指引]: iot-hub-guidance.md
-[IoT 中心開發人員指南]: iot-hub-devguide.md
-[IoT Hub Supported Devices]: iot-hub-supported-devices.md
 [開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
-[Supported devices]: iot-hub-tested-configurations.md
 [Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
 
-[IoT Hub Developer Guide - C2D]: iot-hub-devguide.md#c2d
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
 [透過 Azure 入口網站管理 IoT 中樞]: iot-hub-manage-through-portal.md#file-upload
 [Azure IoT - 服務 SDK NuGet 封裝]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
-<!---HONumber=AcomDC_0629_2016-->
+[lnk-create-hub]: iot-hub-rm-template-powershell.md
+[lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
+[lnk-sdks]: iot-hub-sdks-summary.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

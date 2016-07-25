@@ -34,6 +34,8 @@ Hive 了解如何處理結構化和半結構化資料 (例如，以特定字元�
 
 Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQL 中實作功能或不易模型化的邏輯。如需搭配 Hive 使用 UDF 的範例，請參閱以下內容：
 
+* [搭配使用 Java 使用者定義函式與 Hive](hdinsight-hadoop-hive-java-udf.md)
+
 * [在 HDInsight 中搭配 Hive 與 Pig 使用 Python](hdinsight-python.md)
 
 * [在 HDInsight 中搭配 Hive 與 Pig 使用 C#](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
@@ -70,7 +72,7 @@ Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQ
 
 因為 Azure Blob 儲存體是 HDInsight 的預設儲存體，所以您也可以從 HiveQL 中的 **/example/data/sample.log** 存取檔案。
 
-> [AZURE.NOTE] 語法 **wasb:///** 是用來存取您 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
+> [AZURE.NOTE] 語法 **wasb:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 ##<a id="job"></a>範例工作：將資料行投影至帶分隔符號的資料上
 
@@ -212,4 +214,4 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 [cindygross-hive-tables]: http://blogs.msdn.com/b/cindygross/archive/2013/02/06/hdinsight-hive-internal-and-external-tables-intro.aspx
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

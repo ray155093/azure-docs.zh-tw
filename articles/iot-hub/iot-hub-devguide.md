@@ -55,15 +55,15 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
     - *傳送雲端到裝置的訊息及接收傳遞通知*。這些端點可讓您的應用程式後端傳送可靠的雲端到裝置訊息，以及接收相對應的傳遞或到期通知。如需詳細資訊，請參閱[雲端到裝置傳訊](#c2d)。
     - *接收檔案通知*。此訊息的端點可讓您接收您的裝置已成功上傳檔案的通知。
 
-[IoT 中樞 API 和 SDK][lnk-apis-sdks] 一文說明您可用來存取這些端點的各種方式。
+[IoT 中樞 API 和 SDK][lnk-sdks] 一文說明您可用來存取這些端點的各種方式。
 
 最後請務必注意，所有的 IoT 中樞端點都使用 [TLS][lnk-tls] 通訊協定，且絕不會在未加密/不安全的通道上公開任何端點。
 
 ### 如何讀取事件中樞相容端點。<a id="eventhubcompatible"></a>
 
-使用[適用於 .NET 的 Azure 服務匯流排 SDK](https://www.nuget.org/packages/WindowsAzure.ServiceBus) 或[事件中樞 - 事件處理器主機][]時，您可以使用任何 IoT 中樞連接字串搭配正確的權限，然後使用訊息/事件做為事件中樞名稱。
+使用[適用於 .NET 的 Azure 服務匯流排 SDK][lnk-servicebus-sdk] 或[事件中樞 - 事件處理器主機][lnk-eventprocessorhost]時，您可以使用任何 IoT 中樞連接字串搭配正確的權限，然後使用訊息/事件做為事件中樞名稱。
 
-當您使用未能察覺 IoT 中樞的 SDK (或產品整合) 時，必須從 [Azure 入口網站][]的 IoT 中樞設定中，擷取事件中樞相容端點和事件中樞名稱︰
+當您使用未能察覺 IoT 中樞的 SDK (或產品整合) 時，必須從 [Azure 入口網站][lnk-management-portal]的 IoT 中樞設定中，擷取事件中樞相容端點和事件中樞名稱︰
 
 1. 在 IoT 中樞刀鋒視窗中，按一下 [設定] > [傳訊]。
 2. 在 [裝置到雲端的設定] 區段中，您會發現下列值：[事件中樞相容端點]、[事件中樞相容名稱] 和 [資料分割]。
@@ -92,7 +92,7 @@ Endpoint={Event Hub-compatible endpoint};SharedAccessKeyName={iot hub policy nam
 
 總括來說，裝置身分識別登錄是支援 REST 的裝置身分識別資源集合。下列各節將詳細說明裝置身分識別資源屬性，以及登錄對身分識別啟用的作業。
 
-> [AZURE.NOTE] 如需您可用來與裝置身分識別登錄互動的 HTTP 通訊協定和 SDK 的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-apis-sdks]。
+> [AZURE.NOTE] 如需您可用來與裝置身分識別登錄互動的 HTTP 通訊協定和 SDK 的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-sdks]。
 
 ### 裝置身分識別屬性 <a id="deviceproperties"></a>
 
@@ -227,7 +227,7 @@ HTTP 會透過在 **Authorization** 要求標頭中包含有效的權杖來實�
 
 密碼 (使用裝置總管產生 SAS)︰`SharedAccessSignature sr=iothubname.azure-devices.net%2fdevices%2fDeviceId&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501`
 
-> [AZURE.NOTE] [Azure IoT 中樞 SDK][lnk-apis-sdks] 會在連接至服務時自動產生權杖。在某些情況下，SDK 不支援所有的通訊協定或所有驗證方法。
+> [AZURE.NOTE] [Azure IoT 中樞 SDK][lnk-sdks] 會在連接至服務時自動產生權杖。在某些情況下，SDK 不支援所有的通訊協定或所有驗證方法。
 
 #### SASL PLAIN 的特殊考量
 
@@ -262,7 +262,7 @@ IoT 中樞訊息包含︰
 * 一組*應用程式屬性*。這是應用程式可以定義的字串屬性字典，而且不需將訊息本文還原序列化即可加以存取。IoT 中樞不會修改這些屬性。
 * 不透明的二進位主體。
 
-如需不同通訊協定中如何將訊息編碼的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-apis-sdks]。
+如需不同通訊協定中如何將訊息編碼的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-sdks]。
 
 這是 IoT 中樞訊息中的系統屬性集合。
 
@@ -327,7 +327,7 @@ IoT 中樞實作裝置到雲端訊息的方式類似於[事件中樞][lnk-event-
 
 請注意，這不表示您在所有情況下都能替代事件中樞的 IoT 中樞。例如，在某些事件處理運算中，有可能需要在分析資料串流之前，根據不同屬性或欄位而重新分割事件。在此案例中，您可以使用事件中樞來減少串流處理管線的兩個部分。如需詳細資訊，請參閱 [Azure 事件中樞概觀][lnk-eventhub-partitions]中的「分割數」。
 
-如需如何使用裝置到雲端傳訊的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-apis-sdks]。
+如需如何使用裝置到雲端傳訊的詳細資訊，請參閱 [IoT 中樞 API 和 SDK][lnk-sdks]。
 
 > [AZURE.NOTE] 使用 HTTP 傳送裝置到雲端訊息時，屬性名稱和值只能包含 ASCII 英數字元和 ``{'!', '#', '$', '%, '&', "'", '*', '*', '+', '-', '.', '^', '_', '`', '|', '~'}``。
 
@@ -397,7 +397,7 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 
 訊息可以在 [已加入佇列] 與 [不可見] 狀態之間轉換的次數，以 IoT 中樞上 [最大傳遞計數] 屬性中指定的次數為限。達到該轉換次數之後，IoT 中樞就會將訊息的狀態設定為 [寄不出]。同樣地，IoT 中樞也會在訊息的到期時間過後 (請參閱[存留時間](#ttl))，將訊息的狀態設定為 [寄不出]。
 
-如需雲端到裝置訊息的教學課程，請參閱[開始使用 Azure IoT 中樞雲端到裝置訊息][lnk-getstarted-c2d-tutorial]。如需有關不同 API 和 SDK 如何公開雲端到裝置功能的參考主題，請參閱 [IoT 中樞 API 和 SDK][lnk-apis-sdks]。
+如需雲端到裝置訊息的教學課程，請參閱[開始使用 Azure IoT 中樞雲端到裝置訊息][lnk-getstarted-c2d-tutorial]。如需有關不同 API 和 SDK 如何公開雲端到裝置功能的參考主題，請參閱 [IoT 中樞 API 和 SDK][lnk-sdks]。
 
 > [AZURE.NOTE] 通常只要遺失訊息不會影響應用程式邏輯，就應該完成雲端到裝置的訊息。例如，訊息內容已經成功保存於本機儲存體，或者作業已經成功執行。訊息可能也會攜帶暫時性資訊，遺失該訊息並不會影響應用程式的功能。有時，對於長時間執行的作業，您可以在將作業描述保存於本機儲存體之後，完成雲端到裝置訊息。接著，您可以在作業進度的各個階段，利用一或多個裝置到雲端訊息來通知應用程式後端。
 
@@ -471,7 +471,7 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 | feedback.ttlAsIso8601 | 保留服務繫結的意見反應訊息。 | ISO\_8601 間隔高達 2D (最小為 1 分鐘)。預設值︰1 小時。 |
 | feedback.maxDeliveryCount | 意見反應佇列的最大傳遞計數。 | 1 到 100。預設值 = 100。 |
 
-如需詳細資訊，請參閱[管理 IoT 中樞][lnk-manage]。
+如需詳細資訊，請參閱[管理 IoT 中樞][lnk-portal]。
 
 ### 檔案上傳 <a id="fileupload"></a>
 
@@ -483,7 +483,7 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 
 若要使用檔案上傳功能，您必須先將 Azure 儲存體帳戶連結至 IoT 中樞。您可以透過 [Azure 入口網站][lnk-management-portal]來完成，或透過 [Azure IoT 中樞 - 資源提供者 API][lnk-resource-provider-apis] 以程式設計方式來完成。一旦您將儲存體帳戶與 IoT 中樞產生關聯，服務會在裝置起始檔案上傳要求時，將 SAS URI 傳回至裝置。
 
-> [AZURE.NOTE] [Azure IoT 中樞 SDK][lnk-apis-sdks] 會自動處理擷取 SAS URI、上傳檔案，並且通知 IoT 中樞已完成上傳。
+> [AZURE.NOTE] [Azure IoT 中樞 SDK][lnk-sdks] 會自動處理擷取 SAS URI、上傳檔案，並且通知 IoT 中樞已完成上傳。
 
 #### 初始化檔案上傳
 
@@ -532,7 +532,7 @@ IoT 中樞有兩個 REST 端點可以支援檔案上傳，一個用來取得儲�
 | **fileNotifications.lockDuration** | 檔案上傳通知佇列的鎖定持續時間。 | 5 到 300 秒 (最小值 5 秒)。預設值：60 秒。 |
 | **fileNotifications.maxDeliveryCount** | 檔案上傳通知佇列的傳遞計數上限。 | 1 到 100。預設值 = 100。 |
 
-如需進一步資訊，請參閱[管理 IoT 中樞][lnk-manage]。
+如需進一步資訊，請參閱[管理 IoT 中樞][lnk-portal]。
 
 ## 配額和節流 <a id="throttling"></a>
 
@@ -571,21 +571,26 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 
 既然您已了解開發 IoT 中樞的概觀，請參閱下列各項以進行深入了解：
 
-- [開始使用 IoT 中樞 (教學課程)][lnk-get-started]
-- [作業系統平台與硬體相容性][lnk-compatibility]
-- [Azure IoT 開發人員中心][lnk-iotdev]
-- [設計您的解決方案][lnk-guidance]
+- [從裝置上傳檔案 (教學課程)][lnk-file upload]
+- [以程式設計方式建立 IoT 中樞][lnk-create-hub]
+- [C SDK 簡介][lnk-c-sdk]
+- [IoT 中心 SDK][lnk-sdks]
 
-[事件中樞 - 事件處理器主機]: http://blogs.msdn.com/b/servicebus/archive/2015/01/16/event-processor-host-best-practices-part-1.aspx
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
-[Azure 入口網站]: https://portal.azure.com
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
+
+
+[lnk-eventprocessorhost]: http://blogs.msdn.com/b/servicebus/archive/2015/01/16/event-processor-host-best-practices-part-1.aspx
 
 [img-endpoints]: ./media/iot-hub-devguide/endpoints.png
 [img-lifecycle]: ./media/iot-hub-devguide/lifecycle.png
 [img-eventhubcompatible]: ./media/iot-hub-devguide/eventhubcompatible.png
 
-[lnk-compatibility]: iot-hub-tested-configurations.md
-[lnk-apis-sdks]: iot-hub-sdks-summary.md
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub
 [lnk-resource-provider-apis]: https://msdn.microsoft.com/library/mt548492.aspx
 
@@ -597,8 +602,6 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-guidance-heartbeat]: iot-hub-guidance.md#heartbeat
 
 [lnk-azure-protocol-gateway]: iot-hub-protocol-gateway.md
-[lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[lnk-guidance]: iot-hub-guidance.md
 [lnk-getstarted-c2d-tutorial]: iot-hub-csharp-csharp-c2d.md
 
 [lnk-amqp]: https://www.amqp.org/
@@ -607,7 +610,6 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-arm]: ../resource-group-overview.md
 [lnk-azure-resource-manager]: https://azure.microsoft.com/documentation/articles/resource-group-overview/
 [lnk-cbs]: https://www.oasis-open.org/committees/download.php/50506/amqp-cbs-v1%200-wd02%202013-08-12.doc
-[lnk-createuse-sas]: ../storage-dotnet-shared-access-signature-part-2/
 [lnk-event-hubs-publisher-policy]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-99ce67ab
 [lnk-event-hubs]: http://azure.microsoft.com/documentation/services/event-hubs/
 [lnk-event-hubs-consuming-events]: ../event-hubs/event-hubs-programming-guide.md#event-consumers
@@ -617,11 +619,20 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-sasl-plain]: http://tools.ietf.org/html/rfc4616
 [lnk-servicebus]: http://azure.microsoft.com/documentation/services/service-bus/
 [lnk-tls]: https://tools.ietf.org/html/rfc5246
-[lnk-iotdev]: https://azure.microsoft.com/develop/iot/
 [lnk-bulk-identity]: iot-hub-bulk-identity-mgmt.md
 [lnk-eventhub-partitions]: ../event-hubs/event-hubs-overview.md#partitions
-[lnk-manage]: iot-hub-manage-through-portal.md
 [lnk-mqtt-support]: iot-hub-mqtt-support.md
 [lnk-throttle-blog]: https://azure.microsoft.com/blog/iot-hub-throttling-and-you/
+[lnk-servicebus-sdk]: https://www.nuget.org/packages/WindowsAzure.ServiceBus
 
-<!---HONumber=AcomDC_0706_2016-->
+[lnk-file upload]: iot-hub-csharp-csharp-file-upload.md
+[lnk-create-hub]: iot-hub-rm-template-powershell.md
+[lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
+[lnk-sdks]: iot-hub-sdks-summary.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

@@ -280,4 +280,20 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 本文深入探討**適用於 C 的 Azure IoT 裝置 SDK** 中發現之 **IoTHubClient** 程式庫的行為。利用這項資訊，您就可以充分了解 **IoTHubClient** 程式庫的功能。[下一篇文章](iot-hub-device-sdk-c-serializer.md)將提供**序列化程式**庫的類似詳細資料。
 
-<!---HONumber=AcomDC_0629_2016-->
+若要深入了解如何開發 IoT 中樞，請參閱 [IoT 中樞 SDK][lnk-sdks]。
+
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+
+[lnk-sdks]: iot-hub-sdks-summary.md
+
+[lnk-design]: iot-hub-guidance.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
+[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-portal]: iot-hub-manage-through-portal.md
+
+<!---HONumber=AcomDC_0713_2016-->

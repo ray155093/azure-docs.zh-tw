@@ -28,22 +28,7 @@ ms.author="adegeo"/>
 
 ## 定義角色啟動前的環境變數
 
-您可以將 [Runtime] 項目加入服務定義檔中的角色定義，藉以定義整個角色的環境變數。
-
-```xml
-<ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
-    <WebRole name="WebRole1">
-        ...
-        <Runtime>
-            <Environment>
-                <Variable name="MyEnvironmentVariable" value="MyVariableValue" />
-            </Environment>
-        </Runtime>
-    </WebRole>
-</ServiceDefinition>
-```
-
-如果您需要針對特定工作定義不與其他工作共用的環境變數，可以使用 [Task] 項目中的 [Environment] 項目。
+如果您需要針對特定工作定義的環境變數，可以使用 [Task] 項目中的 [Environment] 項目。
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -391,7 +376,6 @@ string fileContent = System.IO.File.ReadAllText(System.IO.Path.Combine(localStor
     REM   Exit normally.
     EXIT /B 0
 
-
 ## 工作最佳作法
 為 Web 或背景工作角色設定工作時，應該遵循的最佳作法如下。
 
@@ -503,4 +487,4 @@ Startup2.cmd：
 [LocalResources]: https://msdn.microsoft.com/library/azure/gg557552.aspx#LocalResources
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

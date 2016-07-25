@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="03/31/2016"
+   ms.date="07/12/2016"
    ms.author="maroche"/>
 
 # 如何探索資料來源
@@ -62,4 +62,4 @@
 ## 另請參閱
 - [開始使用 Azure 資料目錄](data-catalog-get-started.md)教學課程，取得如何探索資料來源的逐步詳細資料。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0713_2016-->

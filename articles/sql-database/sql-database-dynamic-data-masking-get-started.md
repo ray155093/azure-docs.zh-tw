@@ -4,7 +4,7 @@
    services="sql-database"
    documentationCenter=""
    authors="ronitr"
-   manager="jeffreyg"
+   manager="jhubbard"
    editor="v-romcal"/>
 
 <tags
@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="12/01/2015"
+   ms.date="07/10/2016"
    ms.author="ronitr; ronmat; v-romcal; sstein"/>
 
 
 # 開始使用 SQL Database 動態資料遮罩 (Azure 入口網站)
 
 > [AZURE.SELECTOR]
-- [Dynamic Data Masking - Azure Classic Portal](sql-database-dynamic-data-masking-get-started-portal.md)
+- [動態資料遮罩 - Azure 傳統入口網站](sql-database-dynamic-data-masking-get-started-portal.md)
 
 ## 概觀
 
@@ -49,7 +49,7 @@ SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用�
 
 | 遮罩函數 | 遮罩邏輯 |
 |----------|---------------|
-| **預設值** |**根據指定欄位的資料類型的完整遮罩**<br/><br/>• 針對字串資料類型 (nchar、ntext、nvarchar)，如果欄位的大小少於 4 個字元，則使用 XXXX 或較少 X。<br/>• 針對數值資料類型 (bigint、bit、decimal、int、money、numeric、smallint、smallmoney、tinyint、float、real) 使用零的值。<br/>• 針對日期/時間資料類型 (date、datetime2、datetime、datetimeoffset、smalldatetime、time) 使用 1900-01-01。<br/>• 針對 SQL 變異，會使用目前類型的預設值。<br/>• 針對 XML，會使用文件 <masked/>。<br/>• 針對特殊資料類型 (timestamp table、hierarchyid、GUID、binary、image、varbinary spatial types) 使用空值。
+| **預設值** |**根據指定欄位的資料類型的完整遮罩**<br/><br/>• 針對字串資料類型 (nchar、ntext、nvarchar)，如果欄位的大小少於 4 個字元，則使用 XXXX 或較少 X。<br/>• 針對數值資料類型 (bigint、bit、decimal、int、money、numeric、smallint、smallmoney、tinyint、float、real) 使用零的值。<br/>• 針對日期/時間資料類型 (date、datetime2、datetime、datetimeoffset、smalldatetime、time) 使用 1900-01-01。<br/>• 針對 SQL 變異，會使用目前類型的預設值。<br/>• 針對 XML，會使用 <masked/>。<br/>• 針對特殊資料類型 (timestamp table、hierarchyid、GUID、binary、image、varbinary spatial types) 使用空值。
 | **信用卡** |**遮罩方法會公開指定欄位的末四碼**，並新增常數字串做為信用卡格式的前置詞。<br/><br/>XXXX-XXXX-XXXX-1234|
 | **社會安全號碼** |**遮罩方法會公開指定欄位的末四碼**，並新增常數字串做為美國社會安全號碼格式的前置詞。<br/><br/>XXX-XX-1234 |
 | **電子郵件** | **遮罩方法會公開第一個字母並以 XXX.com 取代網域**，使用的常數字串前置詞會以電子郵件地址為格式。<br/><br/>aXX@XXXX.com |
@@ -109,4 +109,4 @@ DDM 建議引擎會將您資料庫中的特定欄位標示為潛在敏感性欄�
 
 請參閱 [Azure SQL Database 的作業](https://msdn.microsoft.com/library/dn505719.aspx)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0713_2016-->

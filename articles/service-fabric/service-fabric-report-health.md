@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/25/2016"
+   ms.date="07/11/2016"
    ms.author="oanapl"/>
 
 # 新增自訂 Service Fabric 健康狀態報告
@@ -200,7 +200,7 @@ public static void SendReport(object obj)
 ```
 
 ### PowerShell
-使用者可使用 **Send-ServiceFabric*EntityType*HealthReport** 傳送健康狀態報告。
+使用者可使用 **Send-ServiceFabric*EntityType*HealthReport** 傳送健全狀況報告。
 
 下列範例會示範節點上 CPU 值的定期報告。報告應該每隔 30 秒傳送一次，其存留時間為 2 分鐘。如果過期，則報告程式有問題，因此會在錯誤時評估節點。當 CPU 高於臨界值時，報告的健康狀態為警告。當 CPU 保持高於臨界值超過設定的時間時，則會將其回報為錯誤。否則，報告程式傳送的健康狀態為 [正常]。
 
@@ -291,10 +291,12 @@ HealthEvents          :
 
 [檢視 Service Fabric 健康狀態報告](service-fabric-view-entities-aggregated-health.md)
 
+[如何回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+
 [使用系統健康狀態報告進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 
 [在本機上監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0713_2016-->

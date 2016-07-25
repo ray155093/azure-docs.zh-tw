@@ -1,10 +1,10 @@
 <properties
-	pageTitle="Azure App Service 上的企業級 WordPress"
+	pageTitle="Azure App Service 上的企業級 WordPress | Microsoft Azure"
 	description="了解如何在 Azure App Service 上裝載企業級 WordPress 網站"
 	services="app-service\web"
 	documentationCenter=""
-	authors="rmcmurray"
-	manager="wpickett"
+	authors="sunbuild"
+	manager="yochayk"
 	editor=""/>
 
 <tags
@@ -13,10 +13,10 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="web"
-	ms.date="01/26/2016"
-	ms.author="robmcm"/>
+	ms.date="07/06/2016"
+	ms.author="sumuth"/>
 
-#Azure App Service 上的企業級 WordPress
+# Azure App Service 上的企業級 WordPress
 
 Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提供可擴充、安全又容易使用的環境。Microsoft 本身執行企業級網站，例如 [Office][officeblog] 和 [Bing][bingblog] 部落格。本文件說明如何使用 Azure App Service Web Apps，來建立與維護可應付大量訪客的企業級雲端架構 WordPress 網站。
 
@@ -32,7 +32,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 	> [AZURE.NOTE] 建議您務必在最新版的 PHP 上執行，以確保您擁有最新的安全性問題修正。
 
-###基本部署
+### 基本部署
 
 只需使用基本需求，您便可在 Azure 區域內建立基本的解決方案。
 
@@ -41,7 +41,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 這可讓您透過建立網站的多個 Web 應用程式執行個體來相應放大應用程式，並同時在特定地理區域的資料中心內託管所有項目。此區域以外的訪客可能會在使用此網站時察覺到緩慢的回應時間，而且如果此區域內的資料中心發生故障，您的應用程式也就無法運作。
 
 
-###多重區域部署
+### 多重區域部署
 
 使用 Azure [流量管理員][trafficmanager]，您可以在多個地理區域中調整 WordPress 網站，但只提供一個 URL 給訪客。所有透過流量管理員進入的訪客，會根據負載平衡組態接著被路由傳送至某個區域。
 
@@ -51,7 +51,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 您可以使用 ClearDB 的 [CDBR 高可用性路由器][cleardbscale] (如左側所示) 或 [MySQL 叢集 CGE][cge]，進行複寫和路由傳送至多個 MySQL 資料庫。
 
-###包含媒體儲存體和快取的多重區域部署
+### 包含媒體儲存體和快取的多重區域部署
 
 如果網站接受上傳或主機媒體檔案，請使用 Azure Blob 儲存體。如果您需要快取，請考慮 [Redis cache][rediscache]、[Memcache Cloud](https://azure.microsoft.com/marketplace/partners/garantiadata/memcached/)、[MemCachier](https://azure.microsoft.com/marketplace/partners/memcachier/memcachier/) 或 [Azure 市集](https://azure.microsoft.com/gallery/store/)中的其中一個快取產品。
 
@@ -59,9 +59,9 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 依預設，Blob 儲存體會在不同區域中異地發佈，因此您無需擔心在所有網站中複寫檔案。您也可以為 Blob 儲存體啟用 Azure [內容發佈網路 (Content Distribution Network，CDN)][cdn]，這會將檔案發佈至靠近訪客的端點。
 
-###規劃
+### 規劃
 
-####其他需求
+#### 其他需求
 
 作法... | 目的...
 ------------------------|-----------
@@ -73,14 +73,14 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 **監視與疑難排解** | [針對 Azure App Service 中的 Web 應用程式啟用診斷記錄功能][log]及[監視 Azure App Service 中的 Web 應用程式][monitor]
 **部署您的網站** | [在 Azure App Service 中部署 Web 應用程式][deploy]
 
-####可用性和災難復原
+#### 可用性和災難復原
 
 作法... | 目的...
 ------------------------|-----------
 **負載平衡網站**或**異地發佈網站** | [使用 Azure 流量管理員路由傳送流量][trafficmanager]
 **備份與還原** | [備份 Azure App Service 中的 Web 應用程式][backup]及[還原 Azure App Service 中的 Web 應用程式][restore]
 
-####效能
+#### 效能
 
 雲端中的效能主要會透過快取和相應放大實現；然而也應將記憶體、頻寬和 Web 應用程式主控的其他屬性納入考量。
 
@@ -90,7 +90,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 **快取資源** | [Redis cache][rediscache]、[Memcache Cloud](https://azure.microsoft.com/marketplace/partners/garantiadata/memcached/)、[MemCachier](https://azure.microsoft.com/marketplace/partners/memcachier/memcachier/) 或 [Azure 市集](/gallery/store/)中的其中一個快取產品。
 **調整您的應用程式** | [調整 Azure App Service 中的 Web 應用程式][websitescale]及 [ClearDB 高可用性路由][cleardbscale]。如果您選擇主控與管理自己的 MySQL 安裝，您應考量可相應放大的 [MySQL 叢集 CGE][cge] (英文)。
 
-####移轉
+#### 移轉
 
 將現有的 WordPress 網站移轉成 Azure App Service 的方法有兩種。
 
@@ -120,7 +120,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 使用下列其中一個區段來移轉網站。
 
-####匯出與匯入方法
+#### 匯出與匯入方法
 
 1. 使用 [WordPress 匯出][export]來匯出您的現有網站。
 
@@ -128,7 +128,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 3. 在 Web Apps 上登入 WordPress 網站，然後依序按一下 [外掛程式] -> [新增]。搜尋與安裝 [WordPress Importer] 外掛程式。
 
-4. 在安裝匯入工具外掛程式後，依序按一下 [工具] -> [匯入]，然後選取 \[WordPress] 以使用 WordPress 匯入工具外掛程式。
+4. 在安裝匯入工具外掛程式後，依序按一下 [工具] -> [匯入]，然後選取 [WordPress] 以使用 WordPress 匯入工具外掛程式。
 
 5. 在 [Import WordPress] 頁面上，按一下 [選擇檔案]。瀏覽至從現有 WordPress 網站匯出的 WXR 檔案，然後選擇 [Upload file and import]。
 
@@ -145,7 +145,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 **佈景主題** | 移至 [外觀] -> [佈景主題]，然後視需要更新網站佈景主題
 **功能表** | 如果您的主題支援功能表，前往首頁的連結可能仍然內嵌舊的子目錄。移至 [外觀] -> [功能表]，然後進行更新
 
-####備份與還原方法
+#### 備份與還原方法
 
 1. 使用 [WordPress 備份][wordpressbackup]上的資訊，來備份現有的 WordPress 網站。
 
@@ -161,7 +161,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 4. 在 Azure 入口網站中建立新的 Web 應用程式，並發佈 WordPress 備份。
 
-	1. 在 [Azure 入口網站][mgmtportal]中建立包含資料庫的新 Web 應用程式，方法是使用 [新增] -> [Web + Mobile] -> [Azure Marketplace] -> [Web 應用程式] -> \[Web 應用程式 + SQL] (或 [Web 應用程式 + MySQL]) -> [建立]。設定所有必要的設定，來建立空的 Web 應用程式。
+	1. 在 [Azure 入口網站][mgmtportal]中建立包含資料庫的新 Web 應用程式，方法是使用 [新增] -> [Web + Mobile] -> [Azure Marketplace] -> [Web 應用程式] -> [Web 應用程式 + SQL] (或 [Web 應用程式 + MySQL]) -> [建立]。設定所有必要的設定，來建立空的 Web 應用程式。
 
 	2. 在您的 WordPress 備份中，尋找 **wp-config.php** 檔案，並在編輯器中開啟該檔案。使用新 MySQL 資料庫的資訊來取代下列項目。
 
@@ -177,17 +177,17 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 5. 在部署 WordPress 網站後，您應能夠使用網站的 *.azurewebsite.net URL 來存取新網站 (當做應用程式服務 Web 應用程式)。
 
-###設定網站
+### 設定網站
 
 在建立或移轉 WordPress 網站後，請使用下列資訊以提升效能或啟用其他功能。
 
 作法... | 目的...
 ------------- | -----------
 **設定 App Service 計劃模式、大小，以及啟用調整規模** | [在 Azure App Service 中調整 Web 應用程式規模][websitescale]
-**啟用持續資料庫連線** <p>WordPress 預設為不會使用持續資料庫連線，因為在多個連線後，此選項會造成資料庫連線進入流速控制狀態。</p> | <ol><li><p>編輯 <strong>wp-includes/wp-db.php</strong> 檔案。</p></li><li><p>尋找下列程式碼行。</p><code>$this->dbh = mysql\_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new\_link, $client\_flags );</code></li><li><p>使用下列程式碼來取代先前的程式碼行。</p><code>$this->dbh = mysql\_pconnect( $this->dbhost, $this->dbuser, $this->dbpassword, $client\_flags ); <br/>if ( false !== $error\_reporting ) { /br/>&nbsp;&nbsp;error\_reporting( $error\_reporting ); <br/>} </code></li><li><p>尋找下行。</p><code>$this->dbh = @mysql\_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new\_link, $client\_flags ); </code></li><li><p>使用下列程式碼來取代先前的程式碼行。</p><code>$this->dbh = @mysql\_pconnect( $this->dbhost, $this->dbuser, $this->dbpassword, $client\_flags ); </code></li><li><p>儲存 <strong>wp-includes/wp-db.php</strong> 檔案，然後重新部署網站。</p></li></ol><div class="wa-note"><span class="wa-icon-bulb"></span><p>WordPress 更新時可能會覆寫這些變更。</p><p>WordPress 預設為自動更新，若要停用，請編輯 <strong>wp-config.php</strong> 檔案，並新增 <code>define ( 'WP\_AUTO\_UPDATE\_CORE', false );</code></p><p>另一個處理更新的方法是使用 WebJob 來監視 <strong>wp-db.php</strong> 檔案，然後在每次更新檔案時執行上述修改。如需詳細資訊，請參閱 <a href="http://www.hanselman.com/blog/IntroducingWindowsAzureWebJobs.aspx">WebJobs 簡介</a>。</p></div>
-**提升效能** | <ul><li><p><a href="http://ppe.blogs.msdn.com/b/windowsazure/archive/2013/11/18/disabling-arr-s-instance-affinity-in-windows-azure-web-sites.aspx">停用 ARR Cookie</a> (英文) - 在多個 Web Apps 執行個體上執行 WordPress 時可提升效能</p></li><li><p>啟用快取。<a href="http://msdn.microsoft.com/library/azure/dn690470.aspx">Redis cache</a> (預覽) 可以搭配 <a href="https://wordpress.org/plugins/redis-object-cache/">Redis 物件快取 WordPress 外掛程式</a>，或使用 <a href="/gallery/store/">Azure 市集</a>中的其中一個快取產品。</p></li><li><p><a href="http://ruslany.net/2010/03/make-wordpress-faster-on-iis-with-wincache-1-1/">如何透過 Wincache 使 WordPress 變快</a> (英文) - 預設啟用 Web Apps 的 Wincache </p></li><li><p><a href="../web-sites-scale/">調整 Azure App Service 中的 Web 應用程式</a>，並使用 <a href="http://www.cleardb.com/developers/cdbr/introduction">ClearDB 高可用性路由</a>或 <a href="http://www.mysql.com/products/cluster/">MySQL 叢集 CGE</a></p></li></ul> (英文)
-**使用 Blob 進行儲存** | <ol><li><p><a href="../storage-create-storage-account/">建立 Azure 儲存體帳戶</a></p></li><li><p>深入了解如何<a href="../cdn-how-to-use/">使用內容發佈網路 (CDN)</a> 來異地發佈儲存在 Blob 中的資料。</p></li><li><p>安裝及設定 <a href="https://wordpress.org/plugins/windows-azure-storage/">Azure Storage for WordPress 外掛程式</a>。</p><p>如需外掛程式的詳細安裝和設定資訊，請參閱<a href="http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx">使用者指南</a> (英文)。</p> </li></ol>
-**啟用電子郵件** | <ol><li><p><a href="/gallery/store/sendgrid/sendgrid-azure/">使用 Azure 市集啟用 SendGrid </a></p></li><li><p><a href="http://wordpress.org/plugins/sendgrid-email-delivery-simplified/">安裝適用於 WordPress 的 SendGrid 外掛程式</a></p></li></ol>
+**啟用持續資料庫連線** <p>WordPress 預設為不會使用持續資料庫連線，因為在多個連線後，此選項會造成資料庫連線進入流速控制狀態。</p> | <ol><li><p>編輯 <strong>wp-includes/wp-db.php</strong> 檔案。</p></li><li><p>尋找下列程式碼行。</p><code>$this->dbh = mysql\_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new\_link, $client\_flags );</code></li><li><p>使用下列程式碼來取代先前的程式碼行。</p><code>$this->dbh = mysql\_pconnect( $this->dbhost, $this->dbuser, $this->dbpassword, $client\_flags ); <br/>if ( false !== $error\_reporting ) { /br/>&nbsp;&nbsp;error\_reporting( $error\_reporting ); <br/>} </code></li><li><p>尋找下行。</p><code>$this->dbh = @mysql\_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new\_link, $client\_flags ); </code></li><li><p>使用下列程式碼來取代先前的程式碼行。</p><code>$this->dbh = @mysql\_pconnect( $this->dbhost, $this->dbuser, $this->dbpassword, $client\_flags ); </code></li><li><p>儲存 <strong>wp-includes/wp-db.php</strong> 檔案，然後重新部署網站。</p></li></ol><div class="wa-note"><span class="wa-icon-bulb"></span><p>WordPress 更新時可能會覆寫這些變更。</p><p>WordPress 預設為自動更新，若要停用，請編輯 <strong>wp-config.php</strong> 檔案，並新增 <code>define ( 'WP\_AUTO\_UPDATE\_CORE', false );</code></p><p>另一個處理更新的方法是使用 WebJob 來監視 <strong>wp-db.php</strong> 檔案，然後在每次更新檔案時執行上述修改。如需詳細資訊，請參閱 [WebJobs 簡介](http://www.hanselman.com/blog/IntroducingWindowsAzureWebJobs.aspx)。</p></div>
+**提升效能** | <ul><li><p>[停用 ARR Cookie](http://ppe.blogs.msdn.com/b/windowsazure/archive/2013/11/18/disabling-arr-s-instance-affinity-in-windows-azure-web-sites.aspx) (英文) - 在多個 Web Apps 執行個體上執行 WordPress 時可提升效能</p></li><li><p>啟用快取。[Redis cache](http://msdn.microsoft.com/library/azure/dn690470.aspx) 可以搭配 [Redis 物件快取 WordPress 外掛程式](https://wordpress.org/plugins/redis-object-cache/)，或使用 [Azure 市集](/gallery/store/)中的其中一個快取產品。</p></li><li><p>[如何透過 Wincache 使 WordPress 變快](http://ruslany.net/2010/03/make-wordpress-faster-on-iis-with-wincache-1-1/) (英文) - 預設啟用 Web Apps 的 Wincache </p></li><li><p>[在 Azure App Service 中調整 Web 應用程式規模](../app-service-web/web-sites-scale.md)，並使用 [ClearDB 高可用性路由](http://www.cleardb.com/developers/cdbr/introduction)或 [MySQL 叢集 CGE](http://www.mysql.com/products/cluster/)</p></li></ul> (英文)
+**使用 Blob 進行儲存** | <ol><li><p>[建立 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)</p></li><li><p>深入了解如何[使用內容發佈網路 (CDN)][cdn] 來異地發佈儲存在 Blob 中的資料。</p></li><li><p>安裝及設定 [Azure Storage for WordPress 外掛程式](https://wordpress.org/plugins/windows-azure-storage/)。</p><p>如需外掛程式的詳細安裝和設定資訊，請參閱[使用者指南](http://plugins.svn.wordpress.org/windows-azure-storage/trunk/UserGuide.docx) (英文)。</p> </li></ol>
+**啟用電子郵件** | <ol><li><p>[使用 Azure 市集啟用 SendGrid ](/gallery/store/sendgrid/sendgrid-azure/)</p></li><li><p>[安裝適用於 WordPress 的 SendGrid 外掛程式](http://wordpress.org/plugins/sendgrid-email-delivery-simplified/)</p></li></ol>
 **設定自訂網域名稱** | [在 Azure App Service 中設定自訂網域名稱][customdomain]
 **啟用自訂網域名稱的 HTTPS** | [針對 Azure App Service 中的 Web 應用程式啟用 HTTPS][httpscustomdomain]
 **負載平衡或異地發佈您的網站** | [使用 Azure 流量管理員路由傳送流量][trafficmanager] (英文)。如果您打算使用自訂網域，請參閱[在 Azure App Service 中設定自訂網域名稱][customdomain]，以取得搭配自訂網域名稱使用流量管理員的相關資訊
@@ -237,6 +237,8 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 ## 變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
+<!-- URL List -->
+
 [performance-diagram]: ./media/web-sites-php-enterprise-wordpress/performance-diagram.png
 [basic-diagram]: ./media/web-sites-php-enterprise-wordpress/basic-diagram.png
 [multi-region-diagram]: ./media/web-sites-php-enterprise-wordpress/multi-region-diagram.png
@@ -260,8 +262,8 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 [monitor]: web-sites-monitor.md
 [log]: web-sites-enable-diagnostic-log.md
 [httpscustomdomain]: web-sites-configure-ssl-certificate.md
-[mysqlwindows]: ../virtual-machines-windows-classic-mysql-2008r2.md
-[mysqllinux]: ../virtual-machines-linux-classic-mysql-on-opensuse.md
+[mysqlwindows]: ../virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md
+[mysqllinux]: ../virtual-machines/virtual-machines-linux-classic-mysql-on-opensuse.md
 [cge]: http://www.mysql.com/products/cluster/
 [websitepricing]: /pricing/details/app-service/
 [export]: http://en.support.wordpress.com/export/
@@ -276,10 +278,9 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 [workbench]: http://www.mysql.com/products/workbench/
 [searchandreplace]: http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
 [deploy]: web-sites-deploy.md
-[posh]: ../install-configure-powershell.md
+[posh]: ../powershell-install-configure.md
 [Azure CLI]: ../xplat-cli-install.md
 [storesendgrid]: https://azure.microsoft.com/marketplace/partners/sendgrid/sendgrid-azure/
-[cdn]: ../cdn-how-to-use.md
- 
+[cdn]: ../cdn/cdn-overview.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0713_2016-->

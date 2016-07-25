@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="NA"
     ms.workload="data-services"
-    ms.date="06/20/2016"
+    ms.date="07/08/2016"
     ms.author="anhoh"/>
 
 #使用索引子連接 DocumentDB 與 Azure 搜尋
@@ -134,6 +134,8 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 
 請確定目標索引的結構描述會與來源 JSON 文件的結構描述或自訂查詢投射的輸出相容。
+
+>[AZURE.NOTE] 對於資料分割後的集合，預設文件索引鍵是 DocumentDB 的 `_rid` 屬性，它在 Azure 搜尋服務中重新命名為 `rid`。此外，DocumentDB 的 `_rid` 值包含在 Azure 搜尋服務索引鍵中無效的字元，因此 `_rid` 值採用 Base64 編碼。
 
 ###圖 A：JSON 資料類型與 Azure 搜尋服務資料類型之間的對應
 
@@ -274,4 +276,4 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
  - 若要深入了解 Azure 搜尋服務，請參閱[搜尋服務頁面](https://azure.microsoft.com/services/search/)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

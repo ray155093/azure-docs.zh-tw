@@ -403,7 +403,7 @@ azureTableDefaultPartitionKeyValue | 可供接收器使用的預設資料分割�
 azureTablePartitionKeyName | 使用者指定的資料行名稱，其資料行值會做為資料分割索引鍵。如果未指定，則會使用 AzureTableDefaultPartitionKeyValue 做為資料分割索引鍵。 | 資料行名稱。 | 否 |
 azureTableRowKeyName | 使用者指定的資料行名稱，其資料行值會做為資料列索引鍵。如果未指定，則會針對每個資料列使用 GUID。 | 資料行名稱。 | 否  
 azureTableInsertType | 將資料插入 Azure 資料表的模式。<br/><br/>這個屬性會控制輸出資料表中具有相符分割區和資料列索引鍵的現有資料列，會取代或合併其值。<br/><br/>請參閱[插入或合併實體](https://msdn.microsoft.com/library/azure/hh452241.aspx)和[插入或取代實體](https://msdn.microsoft.com/library/azure/hh452242.aspx)主題來了解這些設定 (合併和取代) 的運作方式。<br/><br> 請注意，這項設定是套用在資料列層級，不是套用在資料表層級，而且兩個選項都不會刪除輸入中沒有的輸出資料表資料列。 | 合併 (預設值)<br/>取代 | 否 
-writeBatchSize | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中。 | Integer | 否 (預設值：10000) 
+writeBatchSize | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中。 | 整數 (資料列數目)| 否 (預設值：10000) 
 writeBatchTimeout | 在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中 | 時間範圍<br/><br/>範例：“00:20:00” (20 分鐘) | 否 (預設為儲存體用戶端預設逾時值 90 秒)
 
 ### azureTablePartitionKeyName
@@ -529,4 +529,4 @@ lastlogindate | Edm.DateTime
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

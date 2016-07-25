@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="07/06/2016"
 	ms.author="billmath"/>
 
 # Azure AD 同盟相容性清單
@@ -21,33 +21,36 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 
 對於已經投資非 Microsoft 同盟方案的組織，此主題包含使用來自下面「Azure Active Directory 同盟相容性清單」中的非 Microsoft 識別提供者，為其 Windows Server Active Directory 使用者在 Microsoft 線上服務設定單一登入的指引。
 
-Microsoft 已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
 
->[AZURE.IMPORTANT] Microsoft 僅測試這些單一登入案例的同盟功能。Microsoft 並未針對這些單一登入案例的同步處理、雙因素驗證等等元件執行任何測試。
+![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) [Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
+
+如需如何取得此處所列的協力廠商識別提供者資訊，請與 Oxford Computer Group 連絡：[idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com)。
+
+>[AZURE.IMPORTANT] Oxford Computer Group 僅測試這些單一登入案例的同盟功能。Oxford Computer Group 並未針對這些單一登入案例的同步處理、雙因素驗證等等元件執行任何測試。
 
 >此計劃中也未測試使用替代識別碼登入 UPN。
 
 
 
 - [Azure Active Directory](#azure-active-directory)
-- [Optimal IDM Virtual Identity Server Federation Services](#optimal-idm-virtual-identity-server-federation-services) 
-- [PingFederate 6.11](#pingfederate-611) 
-- [PingFederate 7.2](#pingfederate-72) 
-- [Centrify](#centrify) 
-- [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622) 
-- [SecureAuth IdP 7.2.0](#secureauth-idp-720) 
-- [CA SiteMinder 12.52](#ca-siteminder-1252) 
-- [RadiantOne CFS 3.0](#radiantone-cfs-30) 
-- [Okta](#okta) 
-- [OneLogin](#onelogin) 
-- [NetIQ Access Manager 4.0.1](#netiq-access-manager-401) 
-- [BIG-IP with Access Policy Manager BIG-IP ver.11.3x – 11.6x](#big-ip-with-access-policy-manager-big-ip-ver-113x-116x) 
-- [VMware Workspace Portal version 2.1](#vmware-workspace-portal-version-21) 
-- [Sign&go 5.3](#signampgo-53) 
-- [IceWall Federation Version 3.0](#icewall-federation-version-30) 
-- [CA Secure Cloud](#ca-secure-cloud) 
-- [Dell One Identity Cloud Access Manager v7.1](#dell-one-identity-cloud-access-manager-v71) 
-- [AuthAnvil Single Sign On 4.5](#authavil-single-sign-on-45) 
+- [Optimal IDM Virtual Identity Server Federation Services](#optimal-idm-virtual-identity-server-federation-services)
+- [PingFederate 6.11](#pingfederate-611)
+- [PingFederate 7.2](#pingfederate-72)
+- [Centrify](#centrify)
+- [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622)
+- [SecureAuth IdP 7.2.0](#secureauth-idp-720)
+- [CA SiteMinder 12.52](#ca-siteminder-1252)
+- [RadiantOne CFS 3.0](#radiantone-cfs-30)
+- [Okta](#okta)
+- [OneLogin](#onelogin)
+- [NetIQ Access Manager 4.0.1](#netiq-access-manager-401)
+- [BIG-IP with Access Policy Manager BIG-IP ver.11.3x – 11.6x](#big-ip-with-access-policy-manager-big-ip-ver-113x-116x)
+- [VMware Workspace Portal version 2.1](#vmware-workspace-portal-version-21)
+- [Sign&go 5.3](#signampgo-53)
+- [IceWall Federation Version 3.0](#icewall-federation-version-30)
+- [CA Secure Cloud](#ca-secure-cloud)
+- [Dell One Identity Cloud Access Manager v7.1](#dell-one-identity-cloud-access-manager-v71)
+- [AuthAnvil Single Sign On 4.5](#authavil-single-sign-on-45)
 
 >[AZURE.IMPORTANT] 由於這些都是協力廠商產品，因此對於與這些識別提供者有關的部署、設定、疑難排解、最佳作法等等問題，Microsoft 並沒有提供支援。對於和這些識別提供者有關的支援與問題，請直接連絡支援的協力廠商。
 
@@ -126,7 +129,7 @@ Centrify 可協助在不需要裝載內部部署同盟伺服器的情況下，�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |None|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |不支援用戶端存取控制 
 
-如需 Centrify 的相關詳細資訊，請參閱[這裡](http://www.centrify.com/cloud/apps/single-sign-on-for-office-365.asp)。|
+如需 Centrify 的相關詳細資訊，請參閱[此處](http://www.centrify.com/cloud/apps/single-sign-on-for-office-365.asp)。|
 
 ## IBM Tivoli Federated Identity Manager 6.2.2 
 IBM Tivoli Federated Identity Manager 6.2.2 與 IBM Security Access Manager for Microsoft Applications 1.4 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準，以提供單一登入和屬性交換架構。
@@ -215,11 +218,11 @@ NetIQ Access Manager 4.0.1 可實作廣泛使用的 WS 同盟/WS-Trust 身分識
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |**支援 Kerberos Contract|
-| 豐富用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
-| 豐富電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |*支援 Kerberos Contract|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
-**NetIQ 透過 Kerberos Contract 的組態支援 Kerberos 驗證。如需此組態相關協助，請連絡 NetIQ 或檢視設定指南。如需 NetIQ Access Manager 的相關詳細資訊，請參閱 [NetIQ Access Manager](https://www.netiq.com/documentation/netiqaccessmanager4/identityserverhelp/data/b12iqp0m.html)。
+*NetIQ 透過 Kerberos Contract 的組態支援 Kerberos 驗證。如需此組態相關協助，請連絡 NetIQ 或檢視設定指南。如需 NetIQ Access Manager 的相關詳細資訊，請參閱 [NetIQ Access Manager](https://www.netiq.com/documentation/netiqaccessmanager4/identityserverhelp/data/b12iqp0m.html)。
 
 ## BIG-IP with Access Policy Manager BIG-IP ver.11.3x – 11.6x 
 BIG-IP with Access Policy Manager, (APM) BIG-IP ver.11.3x – 11.6x 可實作廣泛使用的 SAML 身分識別標準，以提供單一登入體驗和屬性交換架構。
@@ -247,7 +250,7 @@ VMware Workspace Portal version 2.1 可實作廣泛使用的 WS 同盟/WS-Trust 
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
-如需 VMware Workspace Portal version 2.1 的相關詳細資訊，請下載[此處](http://pubs.vmware.com/workspace-portal-21/topic/com.vmware.ICbase/PDF/workspace-portal-21-resource.pdf)的 PDF 檔案。
+如需有關 VMware Workspace Portal 2.1 版的詳細資訊，請下載[此處](http://pubs.vmware.com/workspace-portal-21/topic/com.vmware.ICbase/PDF/workspace-portal-21-resource.pdf)的 PDF 檔案。
 
 ## Sign&go 5.3 
 Sign&go 5.3 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準，以提供單一登入和屬性交換架構。
@@ -275,7 +278,7 @@ IceWall Federation Version 3.0 可實作廣泛使用的 WS 同盟/WS-Trust 身�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
-如需 IceWall Federation 的相關詳細資訊，請參閱[此處](http://h50146.www5.hp.com/products/software/security/icewall/eng/federation/)和[此處](http://h50146.www5.hp.com/products/software/security/icewall/federation/office365.html)。
+如需有關 IceWall Federation 的詳細資訊，請參閱[這裡](http://h50146.www5.hp.com/products/software/security/icewall/eng/federation/)和[這裡](http://h50146.www5.hp.com/products/software/security/icewall/federation/office365.html)。
 
 ## CA Secure Cloud 
 
@@ -320,4 +323,4 @@ AuthAnvil Single Sign On 4.5 可實作廣泛使用的 WS 同盟/WS-Trust 身分�
 
 如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

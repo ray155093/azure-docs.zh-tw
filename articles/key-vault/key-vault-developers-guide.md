@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="05/25/2016"
+   ms.date="07/07/2016"
    ms.author="bruceper" />
 
 # Azure 金鑰保存庫開發人員指南
@@ -64,9 +64,9 @@
 
 以下 SDK 適用於操作金鑰保存庫︰
 
-|[![.NET](./media/key-vault-developers-guide/msft.netlogo_purple.png)](https://msdn.microsoft.com/library/azure/dn903301.aspx)|[![Node.js](./media/key-vault-developers-guide/nodejs.png)](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)
+|[![.NET](./media/key-vault-developers-guide/msft.netlogo_purple.png)](https://msdn.microsoft.com/library/mt430941.aspx)|[![Node.js](./media/key-vault-developers-guide/nodejs.png)](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)
 |:--:|:--:|
-|[.NET SDK 文件](https://msdn.microsoft.com/library/azure/dn903301.aspx)|[Node.js SDK 文件](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)|
+|[.NET SDK 文件](https://msdn.microsoft.com/library/mt430941.aspx)|[Node.js SDK 文件](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)|
 |[.NET SDK 封裝](https://azure.microsoft.com/documentation/api/)|[Node.js SDK 封裝](https://www.npmjs.com/package/azure-keyvault)|
 
 
@@ -84,6 +84,7 @@
 - [如何搭配使用金鑰保存庫與 SQL Server 進行可延伸金鑰管理](https://msdn.microsoft.com/library/dn198405.aspx) - 適用於 Azure 金鑰保存庫的 SQL Server 連接器會啟用 SQL Server 和 SQL-in-a-VM，利用 Azure 金鑰保存庫服務作為可延伸金鑰管理 (EKM) 提供者來保護其針對應用程式連結的加密金鑰；透明資料加密、備份加密和資料行層級加密。
 - [如何將憑證從金鑰保存庫部署至 VM](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/) - 在 Azure 上的 VM 中執行的雲端應用程式需要憑證。現在應如何讓此憑證進入此 VM？
 - [如何將金鑰保存庫與適用於 Windows 和 Linux IaaS VM 的 Azure 磁碟加密整合](../azure-security-disk-encryption.md) - 此磁碟加密解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
+- [如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md) - 引導您逐步完成使用 Azure 金鑰保存庫設定金鑰輪替和稽核的步驟。
 
 如需整合金鑰保存庫和 Azure 及搭配使用的詳細工作特定指引，請參閱 [Ryan Jones 金鑰保存庫 ARM 範本範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
@@ -104,4 +105,4 @@
 - [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 - [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0713_2016-->

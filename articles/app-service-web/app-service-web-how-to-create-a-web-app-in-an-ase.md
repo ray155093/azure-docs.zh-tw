@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="04/04/2016"
+	ms.date="07/12/2016"
 	ms.author="ccompy"/>
 
 # 在 App Service 環境中建立 Web 應用程式
@@ -30,7 +30,7 @@
 
 ## 建立 Web 應用程式
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [新增] > [Web + 行動] > [Web 應用程式]。 
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [新增] > [Web + 行動] > [Web 應用程式]。
 
 	![][1]
 
@@ -44,7 +44,7 @@
 
 4. 選取或建立 App Service 方案。
 
-	「App Service 方案」是受管理的 Web 應用程式集。當您選取價格時，支付的價格會套用到 App Service 方案，而非個別的應用程式。若要相應增加 Web 應用程式的執行個體數目，您可相應增加 App Service 方案的執行個體，這會影響該方案中的所有 Web 應用程式。方案中的某些功能 (例如網站位置或 VNET 整合) 也有數量限制。如需詳細資訊，請參閱 [Azure App Service 方案概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)
+	「App Service 方案」是受管理的 Web 應用程式集。當您選取價格時，支付的價格通常會套用到 App Service 方案，而非個別的應用程式。在 ASE 中，您需對配置給 ASE 的計算執行個體付費，而不需對與您的 ASP 一起列出的項目付費。若要相應增加 Web 應用程式的執行個體數目，您可相應增加 App Service 方案的執行個體，這會影響該方案中的所有 Web 應用程式。方案中的某些功能 (例如網站位置或 VNET 整合) 也有數量限制。如需詳細資訊，請參閱 [Azure App Service 方案概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)
 
 	您可以藉由查看方案名稱下加註的位置，來識別 ASE 中的 App Service 方案。
 
@@ -54,15 +54,9 @@
 
 5. 輸入 Web 應用程式的名稱，然後按一下 [建立]。
 
-	您的 Web 應用程式名稱在 Azure App Service 中必須是唯一的。這表示如果您要建立名為「thisismywebapp」的 Web 應用程式，則目前在 Azure App Service 中就不能有任何其他名為「thisismywebapp」的 Web 應用程式。
-
-	在 ASE 中，Web 應用程式的 URL 是：
-
-	[*站台名稱*].[*App Service 環境的名稱*].p.azurewebsites.net
-
-	而不是
-
-	[*站台名稱*].azurewebsites.net
+	如果 ASE 使用外部 VIP，則 ASE 中應用程式的 URL 為：[網站名稱].[*App Service 環境的名稱*].p.azurewebsites.net，而非 [網站名稱].azurewebsites.net
+	
+	如果 ASE 使用內部 VIP，則該 ASE 中應用程式的 URL 為：[網站名稱].[*在 ASE 建立期間指定的子網域*]。在 ASE 建立期間選取您的 ASP 後，您會在 [名稱] 之下看到子網域更新
 
 ## <a name="createplan"></a> 建立 App Service 方案
 
@@ -118,4 +112,4 @@
 [ResourceGroups]: http://azure.microsoft.com/documentation/articles/resource-group-portal/
 [AzurePowershell]: http://azure.microsoft.com/documentation/articles/powershell-install-configure/
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0713_2016-->

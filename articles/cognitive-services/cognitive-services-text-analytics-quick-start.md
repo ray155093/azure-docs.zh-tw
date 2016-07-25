@@ -36,7 +36,9 @@
 
 - **語言** - 文字以何種語言寫下？
 
-請注意，每提交 1 筆文字記錄，此 API 就會以 1 筆交易計費。
+請注意，每提交 1 份文件，此 API 就會以 1 筆交易計費。例如，如果您在單一呼叫中要求 1000 份文件，則會扣除 1000 個交易。
+
+
 
 <a name="Overview"></a>
 ## 一般概觀 ##
@@ -293,4 +295,6 @@
 
 恭喜！ 您已完成對資料使用文字分析。現在您可以考慮使用一種工具 (例如 [Power BI](//powerbi.microsoft.com))，以視覺化方式呈現資料，以及將您的見解自動化，以提供文字資料的即時檢視。
 
-<!---HONumber=AcomDC_0706_2016-->
+若要查看如何將文字分析功能 (如情感) 當做 Bot 的一部分，請參閱 Bot Framework 網站上的[有情感的 Bot](http://docs.botframework.com/zh-TW/bot-intelligence/language/#example-emotional-bot) 範例。
+
+<!---HONumber=AcomDC_0713_2016-->

@@ -72,13 +72,13 @@
 
 ### 如果您已經有站對站虛擬網路，但其有靜態 (原則式) 路由閘道：
 
-1. 將您的閘道類型變更為動態路由。多網站 VPN 需要動態 (亦稱作路由式) 路由閘道。若要變更閘道類型，您必須先刪除現有的閘道，然後建立新的閘道。如需相關指示，請參閱[變更 VPN 閘道路由類型](vpn-gateway-configure-vpn-gateway-mp.md/#how-to-change-your-vpn-gateway-type)。  
+1. 將您的閘道類型變更為動態路由。多網站 VPN 需要動態 (亦稱作路由式) 路由閘道。若要變更閘道類型，您必須先刪除現有的閘道，然後建立新的閘道。如需指示，請參閱[如何變更閘道的 VPN 路由類型](../vpn-gateway/vpn-gateway-configure-vpn-gateway-mp.md#how-to-change-the-vpn-routing-type-for-your-gateway)。
 
 2. 設定新的閘道，並建立 VPN 通道。如需相關指示，請參閱[在 Azure 傳統入口網站中設定 VPN 閘道](vpn-gateway-configure-vpn-gateway-mp.md)。首先，將您的閘道類型變更為動態路由。
 
 ### 如果您沒有站對站虛擬網路：
 
-1. 使用下列指示建立站台對站台虛擬網路：[在 Azure 傳統入口網站中建立具有站對站 VPN 連線的虛擬網路](vpn-gateway-site-to-site-create.md)。  
+1. 使用下列指示建立站台對站台虛擬網路：[在 Azure 傳統入口網站中建立具有站對站 VPN 連線的虛擬網路](vpn-gateway-site-to-site-create.md)。
 
 2. 使用下列指示設定動態路由閘道：[設定 VPN 閘道](vpn-gateway-configure-vpn-gateway-mp.md)。閘道類型務必選取 [動態路由]。
 
@@ -206,4 +206,4 @@
 
 若要深入了解 VPN 閘道，請參閱[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0713_2016-->

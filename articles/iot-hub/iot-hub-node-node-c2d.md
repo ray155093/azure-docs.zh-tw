@@ -179,18 +179,11 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 後續步驟
 
-在本教學課程中，您已了解如何傳送和接收雲端到裝置的訊息。您可以利用下列教學課程繼續探索 IoT 中樞功能和案例：
+在本教學課程中，您已了解如何傳送和接收雲端到裝置的訊息。
 
-- [處理裝置到雲端訊息]，示範如何可靠地處理來自裝置的遙測和互動式訊息。
-- [從裝置上傳檔案]，說明使用雲端到裝置訊息來幫助從裝置上傳檔案的模式。
+若要查看使用 IoT 中樞的完整端對端解決方案範例，請參閱 [Azure IoT 套件]。
 
-有關 IoT 中心的其他資訊：
-
-* [IoT 中心概觀]
-* [IoT 中心開發人員指南]
-* [IoT 中心指引]
-* [支援的裝置平台和語言]
-* [Azure IoT 開發人員中心]
+若要深入了解如何使用 IoT 中樞開發解決方案，請參閱 [IoT 中樞開發人員指南]。
 
 <!-- Images -->
 [img-simulated-device]: media/iot-hub-node-node-c2d/receivec2d.png
@@ -201,17 +194,17 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [IoT 中心入門]: iot-hub-node-node-getstarted.md
 [開始使用 IoT 中樞]: iot-hub-node-node-getstarted.md
 [IoT Hub Developer Guide - C2D]: iot-hub-devguide.md#c2d
-[處理裝置到雲端訊息]: iot-hub-csharp-csharp-process-d2c.md
-[從裝置上傳檔案]: iot-hub-csharp-csharp-file-upload.md
-[IoT 中心概觀]: iot-hub-what-is-iot-hub.md
-[IoT 中心指引]: iot-hub-guidance.md
-[IoT 中心開發人員指南]: iot-hub-devguide.md
-[支援的裝置平台和語言]: iot-hub-supported-devices.md
-[Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
+[Process Device-to-Cloud messages]: iot-hub-csharp-csharp-process-d2c.md
+[Uploading files from devices]: iot-hub-csharp-csharp-file-upload.md
+[IoT Hub Overview]: iot-hub-what-is-iot-hub.md
+[IoT Hub Guidance]: iot-hub-guidance.md
+[IoT 中樞開發人員指南]: iot-hub-devguide.md
+[Supported device platforms and languages]: iot-hub-supported-devices.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure 入口網站]: https://portal.azure.com
+[Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->

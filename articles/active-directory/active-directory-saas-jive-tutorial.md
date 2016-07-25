@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/09/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Jive 整合
@@ -33,7 +33,7 @@
 
 ###若要啟用 Jive 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-jive-tutorial/IC700993.png "Active Directory")
 
@@ -64,7 +64,7 @@
 
 ###若要設定使用者佈建，請執行下列步驟：
 
-1.  在 Azure 管理入口網站中的 [Jive] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
+1.  在 Azure 傳統入口網站中的 [Jive] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
 
 2.  在 [輸入您的 Jive 認證來啟用自動使用者佈建] 頁面上，提供以下組態設定：
 
@@ -74,7 +74,7 @@
 
     3.  在 [Jive 租用戶 URL] 文字方塊中，輸入 Jive 租用戶 URL。
 
-        >[AZURE.NOTE]Jive 租用戶 URL 是您的組織登入 Jive 所使用的 URL。一般來說，該 URL 的格式如下：**www.<organization>.jive.com**。
+        >[AZURE.NOTE] Jive 租用戶 URL 是您的組織登入 Jive 所使用的 URL。一般來說，該 URL 的格式如下：**www.<organization>.jive.com**。
 
     4.  按一下 [驗證] 來驗證您的組態。
 
@@ -84,4 +84,4 @@
   
 您現在可以建立測試帳戶，等待 10 分鐘，然後確認帳戶已同步至 Jive.com。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0713_2016-->

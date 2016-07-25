@@ -1,7 +1,7 @@
 <properties
-	pageTitle="疑難排解 SSH 連線到 Azure VM | Microsoft Azure"
+	pageTitle="SSH 連線至 Linux VM 被拒、失敗或發生錯誤 |Microsoft Azure"
 	description="針對執行 Linux 的 Azure 虛擬機器進行疑難排解和修正 SSH 錯誤，如 SSH 連線失敗或 SSH 連線被拒。"
-	keywords="ssh 連線被拒, ssh 錯誤, azure ssh, SSH 連線失敗"
+	keywords="ssh 連線被拒, ssh 錯誤, azure ssh, ssh 連線失敗"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="iainfoulds"
@@ -14,13 +14,13 @@
 	ms.workload="infrastructure-services"
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
-	ms.topic="support-article"
-	ms.date="06/14/2016"
+	ms.topic="article"
+	ms.date="07/06/2016"
 	ms.author="iainfou"/>
 
-# 疑難排解 SSH 連線到 Azure VM
+# 針對 SSH 連線至 Azure Linux VM 失敗、發生錯誤或被拒進行疑難排解
 
-當您嘗試連線到以 Linux 為基礎的 Azure 虛擬機器 (VM) 時，有許多原因可能會導致安全殼層 (SSH) 錯誤。本文將協助您找出原因並加以更正。
+當您嘗試連線到以 Linux 為基礎的 Azure 虛擬機器 (VM) 時，有許多原因可能會導致安全殼層 (SSH) 錯誤、SSH 連線失敗或被拒。本文將協助您找出原因並加以更正。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
@@ -124,7 +124,7 @@ azure vm extension set <resource group> <vmname> VMAccessForLinux Microsoft.OSTC
 	- 重設 SSH 組態。
 
 - 檢查 VM 的資源健康狀態是否有任何平台問題。<br> 依序選取 [瀏覽] > [虛擬機器 (傳統)] > 您的 Linux 虛擬機器 > [設定] > [檢查健康情況]。
-	 
+
 
 ## 其他資源
 
@@ -134,4 +134,4 @@ azure vm extension set <resource group> <vmname> VMAccessForLinux Microsoft.OSTC
 
 - 如需針對使用傳統部署模型所建立之虛擬機器進行疑難排解的詳細資訊，請參閱[如何為 Linux 虛擬機器重設密碼或 SSH](virtual-machines-linux-classic-reset-access.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0713_2016-->

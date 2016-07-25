@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/06/2016" 
+	ms.date="07/12/2016" 
 	ms.author="ccompy"/>
 
 # 在 App Service 環境中調整應用程式 #
@@ -21,7 +21,7 @@
 在 Azure App Service 中，您通常有三件事可以調整：
 
 - 定價方案
-- 背景工作角色大小 
+- 背景工作角色大小
 - 執行個體數目。
 
 在 ASE 中不需要選取或變更定價方案。就功能而言，它已經是 Premium 定價功能層級。
@@ -84,4 +84,4 @@ ASP 相應增加的數量無法超過 ASP 所在背景工作集區中可用的�
 [AppScale]: http://azure.microsoft.com/documentation/articles/web-sites-scale/
 [AppWarmup]: http://ruslany.net/2015/09/how-to-warm-up-azure-web-app-during-deployment-slots-swap/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0713_2016-->

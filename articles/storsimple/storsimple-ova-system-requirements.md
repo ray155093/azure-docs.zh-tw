@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/28/2016"
+   ms.date="07/13/2016"
    ms.author="alkohli"/>
 
 # StorSimple Virtual Array 系統需求
@@ -93,6 +93,9 @@
 
 <sup>1</sup> 公用網際網路上沒有必須開啟的輸入連接埠。
 
+> [AZURE.IMPORTANT] 請確定防火牆不會修改或解密 StorSimple 裝置和 Azure 之間的任何 SSL 流量。
+
+
 ### 防火牆規則的 URL 模式 
 
 網路系統管理員通常可以根據 URL 模式設定進階防火牆規則，來篩選輸入和輸出流量。您的虛擬陣列和 StorSimple Manager 服務取決於其他 Microsoft 應用程式，例如 Azure 服務匯流排、Azure Active Directory 存取控制、儲存體帳戶和 Microsoft Update 伺服器。與這些應用程式相關聯的 URL 模式可以用來設定防火牆規則。請務必了解與這些應用程式相關聯的 URL 模式可以變更。接著，您將需要網路系統管理員監控 StorSimple 的防火牆規則，並在需要時更新。
@@ -101,7 +104,7 @@
 
 > [AZURE.NOTE] 
 > 
-> - 裝置 (來源) IP 應該一律設定為所有啟用雲端功能的網路介面。 
+> - 裝置 (來源) IP 應該一律設定為所有啟用雲端功能的網路介面。
 > - 目的地 IP 應該設為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/confirmation.aspx?id=41653)。
 
 
@@ -110,7 +113,7 @@
 | `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排|
 |`http://*.backup.windowsazure.com`|裝置註冊|
 |`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |
-| `https://*.core.windows.net/*` | Azure 儲存體帳戶和監視 |
+| `https://*.core.windows.net/*`<br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure 儲存體帳戶和監視 |
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> |
 | `http://*.deploy.akamaitechnologies.com` |Akamai CDN |
 | `https://*.partners.extranet.microsoft.com/*` | 支援封裝 |
@@ -120,4 +123,4 @@
 
 -   [Prepare the portal to deploy your StorSimple Virtual Array (準備入口網站以部署 StorSimple Virtual Array)](storsimple-ova-deploy1-portal-prep.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0713_2016-->

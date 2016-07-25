@@ -14,12 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/21/2015"
+	ms.date="07/12/2016"
 	ms.author="genli"/>
 
 # 如何驗證 Azure 訂用帳戶的付款方法和進行付款
 
 >[AZURE.NOTE] 如果您在送出信用卡資訊後收到錯誤訊息，請參閱[當我嘗試註冊 Azure 時，我的信用卡不被接受](billing-credit-card-fails-during-azure-sign-up.md)。
+
+[AZURE.INCLUDE [支援免責聲明](../includes/support-disclaimer.md)]
 
 ## 驗證目前的付款方法
 1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
@@ -42,4 +44,4 @@
 
 如果您使用發票付款方法，請將您的付款交付至您發票底部所列的位置。如需其他協助，請聯絡 [Microsoft 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

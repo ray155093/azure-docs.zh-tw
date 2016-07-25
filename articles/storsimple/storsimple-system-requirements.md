@@ -26,7 +26,7 @@
 
 - **儲存體用戶端的軟體需求** - 描述支援的作業系統和那些作業系統的其他需求。
 - **StorSimple 裝置的網路需求** - 提供需要在防火牆中開啟以允許 iSCSI、雲端或管理流量的連接埠相關資訊。
-- **StorSimple 的高可用性需求** - 描述高可用性需求，以及 StorSimple 裝置和主機電腦的最佳作法。 
+- **StorSimple 的高可用性需求** - 描述高可用性需求，以及 StorSimple 裝置和主機電腦的最佳作法。
 
 
 ## 儲存體用戶端的軟體需求
@@ -87,7 +87,7 @@
 | `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排| 啟用雲端功能的網路介面 |
 |`https://*.backup.windowsazure.com`|裝置註冊| 僅限資料 0|
 |`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |啟用雲端功能的網路介面 |
-| `https://*.core.windows.net/*` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
+| `https://*.core.windows.net/*` <br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> | 僅限控制站的固定 IP |
 | `http://*.deploy.akamaitechnologies.com` |Akamai CDN |僅限控制站的固定 IP |
 | `https://*.partners.extranet.microsoft.com/*` | 支援封裝 | 啟用雲端功能的網路介面 |
@@ -120,19 +120,14 @@
 
 Update 2 有幾項網路相關的改進且路由度量已變更。行為可以解釋，如下所示。
 
-- 一組預先決定的值已指派給網路介面。 	
+- 一組預先決定的值已指派給網路介面。
 
 - 當網路介面已啟用雲端或已停用雲端功能，但是已設定閘道器時，請考量以下所示的範例資料表，其中包含指派給各種網路介面的值。請注意，此處指派的值僅為範例值。
 
 
 	| 網路介面 | 已啟用雲端 | 已停用雲端且具有閘道器 |
 	|-----|---------------|---------------------------|
-	| Data 0 | 1 | - |
-	| Data 1 | 2 | 20 |
-	| Data 2 | 3 | 30 |
-	| Data 3 | 4 | 40 |
-	| Data 4 | 5 | 50 |
-	| Data 5 | 6 | 60 |
+	| Data 0 | 1 | - | | Data 1 | 2 | 20 | | Data 2 | 3 | 30 | | Data 3 | 4 | 40 | | Data 4 | 5 | 50 | | Data 5 | 6 | 60 |
 
 
 - 雲端流量透過網路介面路由的順序為：
@@ -280,4 +275,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0713_2016-->

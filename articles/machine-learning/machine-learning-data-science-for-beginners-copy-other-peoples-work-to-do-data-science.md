@@ -1,5 +1,5 @@
 <properties
-   pageTitle="複製其他人的工作進行資料科學 - 適用於初學者的資料科學影片 | Microsoft Azure"
+   pageTitle="複製其他人的工作進行資料科學 - 實驗範例 | Microsoft Azure"
    description="資料科學的商業秘密：讓其他人為您工作。請參閱 Cortana Analytics 資源庫中的範例，例如叢集演算法範例。"
    keywords="資料科學範例, 演算法範例, 實驗範例, 機器學習範例, 叢集演算法"
    services="machine-learning"
@@ -94,4 +94,4 @@ Microsoft 提供雲端服務，稱為 [Azure Machine Learning](https://azure.mic
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0713_2016-->
