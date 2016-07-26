@@ -51,7 +51,7 @@
 | Citrix | CloudBridge MPX 裝置或 VPX 虛擬裝置 | N/A | [整合指示](https://www.citrix.com/welcome.html?resource=%2Fdownloads%2Fcloudbridge%2Fbetas-and-tech-previews%2Fcloudbridge-azure-integration) | 不相容 |
 | Dell SonicWALL | TZ 系列、NSA 系列、SuperMassive 系列、E 級 NSA 系列 | SonicOS 5.8.x、[SonicOS 5.9.x](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=850)、[SonicOS 6.x](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=646) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
 | F5 | BIG-IP 系列 | N/A | [組態指示](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) | 不相容 |
-| Fortinet | FortiGate | FortiOS 5.0.7 | [組態指示](http://docs.fortinet.com/fortigate/admin-guides) | [組態指示](http://docs.fortinet.com/fortigate/admin-guides) |
+| Fortinet | FortiGate | FortiOS 5.0.7 | [組態指示](http://docs.fortinet.com/d/fortigate-configuring-ipsec-vpn-between-a-fortigate-and-microsoft-azure) | [組態指示](http://docs.fortinet.com/d/fortigate-configuring-ipsec-vpn-between-a-fortigate-and-microsoft-azure) |
 | Internet Initiative Japan (IIJ) | SEIL 系列 | SEIL/X 4.60、SEIL/B1 4.60、SEIL/x86 3.20 | [組態指示](http://www.iij.ad.jp/biz/seil/ConfigAzureSEILVPN.pdf) | 不相容 |
 | Juniper | SRX | JunOS 10.2 (原則式)、JunOS 11.4 (路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) |
 | Juniper | J 系列 | JunOS 10.4r9 (原則式)、JunOS 11.4 (路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/JSeries) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/JSeries) |
@@ -97,7 +97,7 @@
 
 ## IPsec 參數
 
->[AZURE.NOTE] 雖然 Azure VPN 閘道支援下面所列的值，但您目前無法指定或選取 Azure VPN 閘道的特定組合。您必須指定內部部署 VPN 裝置的任何條件約束。
+>[AZURE.NOTE] 雖然 Azure VPN 閘道支援下面所列的值，但您目前無法指定或選取 Azure VPN 閘道的特定組合。您必須指定內部部署 VPN 裝置的任何條件約束。此外，您必須將 MSS 固定在 1350。
 
 ### IKE 階段 1 設定
 
@@ -153,4 +153,4 @@
 
 - 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

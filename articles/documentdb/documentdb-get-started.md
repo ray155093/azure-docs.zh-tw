@@ -23,7 +23,7 @@
 - [.NET](documentdb-get-started.md)
 - [Node.js](documentdb-nodejs-get-started.md)
 
-歡迎使用 DocumentDB .NET SDK 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源。
+歡迎使用 Azure DocumentDB .NET SDK 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源。
 
 本文將討論：
 
@@ -98,7 +98,7 @@
 
 在 Azure 入口網站中，瀏覽至步驟 1 的 DocumentDB 帳戶。
 
-按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代您程式中的「<your endpoint URI>」。複製主索引鍵並以所複製的索引鍵取代您程式中的「<your key>」。
+按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代程式中的 *<您的端點 URI>*。複製主索引鍵並以所複製的索引鍵取代程式中的 *<您的金鑰>*。
 
 ![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。顯示 DocumentDB 帳戶，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
 
@@ -187,7 +187,7 @@
 			}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。這會建立名為 FamilyDB 的資料庫。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。這會建立名為 *FamilyDB* 的資料庫。
 
 	private async Task GetStartedDemo()
 	{
@@ -242,7 +242,7 @@
 		}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 FamilyCollection 的文件集合。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 *FamilyCollection* 的文件集合。
 
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
@@ -258,7 +258,7 @@
 ##<a id="CreateDoc"></a>步驟 6：建立 JSON 文件
 您可以使用 **DocumentClient** 類別的 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 方法來建立[文件](documentdb-resources.md#documents)。文件會是使用者定義的 (任意) JSON 內容。現在可插入一或多份文件。如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)。
 
-首先，我們需要建立 **Family** 類別以代表此範例中儲存在 DocumentDB 內的物件。我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。請注意，文件必須將 **Id** 屬性序列化為 JSON 中的**識別碼**。藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
+首先，我們需要建立 **Family** 類別以代表此範例中儲存在 DocumentDB 內的物件。我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。請注意，文件必須將 **Id** 屬性序列化為 JSON 中的 **識別碼**。藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
 
 複製 **Family**、**Parent**、**Child**、**Pet** 和 **Address** 類別並貼到 **WriteToConsoleAndPromptToContinue** 方法之下。
 
@@ -594,7 +594,7 @@ DocumentDB 支援刪除 JSON 文件。
 ##<a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
-- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
+- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。
 -   [DocumentDB 帳戶][documentdb-create-account]。
 -   您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 方案。
 
@@ -603,7 +603,7 @@ DocumentDB 支援刪除 JSON 文件。
 ## 後續步驟
 
 - 需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱[使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
-- 想要執行 DocumentDB 的規模和效能測試？ 請參閱 [Azure DocumentDB 的效能和規模測試](documentdb-performance-testing.md)
+- 想要執行 DocumentDB 的規模和效能測試？ 請參閱 [Azure DocumentDB 的效能和級別測試](documentdb-performance-testing.md)
 -	了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md) (英文)。
 -	在 [Query Playground](https://www.documentdb.com/sql/demo) 中，針對範例資料集執行查詢。
 -	如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
@@ -612,4 +612,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

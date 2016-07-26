@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/02/2016"
+    ms.date="07/19/2016"
     ms.author="magoedte;bwren"/>
 
 # 我的第一個 PowerShell 工作流程 Runbook
@@ -87,13 +87,13 @@
 7.	一旦 Runbook 狀態顯示「已完成」，請按一下 [輸出]。[輸出] 窗格會開啟，而且可以看到我們的「Hello World」。<br> ![工作摘要](media/automation-first-runbook-textual/job-pane-output.png)
 8.	關閉 [輸出] 窗格。
 9.	按一下 [資料流] 以開啟 Runbook 工作的 [資料流] 窗格。我們應該只會在輸出資料流中看到「Hello World」，但可能也會顯示 Runbook 工作的其他資料流，例如 Runbook 寫入時發生的詳細資訊和錯誤。<br> ![工作摘要](media/automation-first-runbook-textual/job-pane-streams.png)
-10.	關閉 [串流] 窗格和 [作業] 窗格，以返回 MyFirstRunbook-Workflow 窗格。
+10.	關閉 [資料流] 窗格和 [工作] 窗格，以返回 MyFirstRunbook 窗格。
 11.	按一下 [作業] 以開啟此 Runbook 的 [工作] 窗格。這樣會列出此 Runbook 所建立的所有工作。由於我們只執行一次工作，因此應該只會看到列出一項工作。<br> ![作業](media/automation-first-runbook-textual/runbook-control-jobs.png)
 12.	您可以按一下此工作以開啟我們啟動 Runbook 時所檢視的相同 [工作] 窗格。這可讓您回到過去的時間並檢視針對特定 Runbook 所建立的任何工作的詳細資料。
 
 ## 步驟 5 - 加入驗證來管理 Azure 資源
 
-我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。我們想要讓它管理 Azure 資源。不過它無法辦到這點，除非我們使用在[必要條件](#prerequisites)中提及的認證對其進行驗證。我們會利用 **Add-AzureRmAccount** Cmdlet 來執行。
+我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。我們想要讓它管理 Azure 資源。不過它無法辦到這點，除非我們使用在[必要條件](#prerequisites)中提及的認證對其進行驗證。我們會利用 **Add-AzureRMAccount** Cmdlet 來執行。
 
 1.	按一下 MyFirstRunbook-Workflow 窗格上的 [編輯] 以開啟文字編輯器。<br> ![編輯 Runbook](media/automation-first-runbook-textual/runbook-toolbar-edit.png)
 2.	我們不再需要 **Write-Output** 行，因此可以放心刪除。
@@ -101,12 +101,13 @@
 4.	輸入或是複製並貼上下列程式碼，此程式碼會處理您的自動化執行身分帳戶的驗證︰
 
     ```
-    $Conn = Get-AutomationConnection -Name AzureRunAsConnection
-    Add-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+    $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
+    Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
+    -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
     ```
 
 5.	按一下 [測試] 窗格，我們便可以測試 Runbook。
-6.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual/runbook-auth-results.png)
+6.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到如同以下顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual/runbook-auth-output.png)
 
 ## 步驟 6 - 加入程式碼以啟動虛擬機器
 
@@ -117,12 +118,11 @@
     ```
     workflow MyFirstRunbook-Workflow
     {
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
-     Add-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
- 
-     Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'ResourceGroupName'
+      $Conn = Get-AutomationConnection -Name AzureRunAsConnection
+      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+      Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'ResourceGroupName'
     }
-    ```
+    ``` 
 
 2.	儲存 Runbook，然後按一下 [測試] 窗格，我們便能加以測試。
 3.	按一下 [開始] 以開始測試。當它完成時，請檢查虛擬機器已啟動。
@@ -141,7 +141,7 @@
         [string]$ResourceGroupName
        )  
      $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
-     Add-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
      Start-AzureRmVM -Name $VMName -ResourceGroupName $ResourceGroupName
     }
     ```
@@ -161,4 +161,4 @@
 -  若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 -  如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

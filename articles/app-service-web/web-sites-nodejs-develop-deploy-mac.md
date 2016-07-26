@@ -66,7 +66,7 @@
 
 6. 選取 [資源群組] 或建立新的資源群組。
 
-	如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../resource-group-portal.md)。
+	如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 7. 選取 [App Service 方案/位置]，或建立新的 App Service 方案/位置。
 
@@ -225,4 +225,4 @@ Node.js 提供您豐富的模組生態系統，可供您的應用程式使用。
 [deployment-credentials]: ./media/web-sites-nodejs-develop-deploy-mac/deployment-credentials.png
 [git-url]: ./media/web-sites-nodejs-develop-deploy-mac/git-url.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

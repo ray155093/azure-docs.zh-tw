@@ -193,7 +193,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 6. 在 [資源群組] 下拉式清單中，按一下 [新增]，然後在 [新增資源群組名稱] 中輸入 "NodejsAPIAppGroup" 或其他您偏好使用的名稱。
 
-	[資源群組](../azure-portal/resource-group-portal.md)是 Azure 資源的集合，例如 API 應用程式、資料庫和 VM。在本教學課程中，最好建立新的資源群組，因為這麼做即可在一個步驟中輕鬆刪除您為本教學課程建立的所有 Azure 資源。
+	[資源群組](../resource-group-overview.md) 是 Azure 資源的集合，例如 API 應用程式、資料庫和 VM。在本教學課程中，最好建立新的資源群組，因為這麼做即可在一個步驟中輕鬆刪除您為本教學課程建立的所有 Azure 資源。
 
 4. 按一下 [App Service 方案/位置]，然後按一下 [新建]。
 
@@ -312,4 +312,4 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 至此，您已成功建立 API 應用程式並在其中部署 Node.js API 程式碼。下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式](app-service-api-cors-consume-javascript.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

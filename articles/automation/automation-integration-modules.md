@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="get-started-article"
-   ms.date="07/08/2016"
+   ms.date="07/14/2016"
    ms.author="magoedte" />
 
 # Azure 自動化整合模組
@@ -201,4 +201,4 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
 - 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 - 若要深入了解如何建立 PowerShell 模組，請參閱[撰寫 Windows PowerShell 模組](https://msdn.microsoft.com/library/dd878310%28v=vs.85%29.aspx)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

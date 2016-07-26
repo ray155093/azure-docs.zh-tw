@@ -79,7 +79,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
 
-8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
+8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 9. 選取儲存體帳戶的地理位置。如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
 
@@ -157,4 +157,4 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/) (英文)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

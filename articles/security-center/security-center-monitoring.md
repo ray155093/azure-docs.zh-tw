@@ -13,33 +13,30 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/29/2016"virtual
+   ms.date="07/19/2016"
    ms.author="yurid"/>
 
 #Azure 資訊安全中心的安全性健康情況監視
 本文件可協助您使用 Azure 資訊安全中心內的監視功能，監視是否符合原則。
 
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。
-
-## 什麼是 Azure 資訊安全中心？
-資訊安全中心利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。它提供您訂用帳戶之間的整合式安全性監視與原則管理，協助您偵測可能忽略掉的威脅，且適用於廣泛的安全性解決方案生態系統。
+> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
 
 ##什麼是安全性健康情況監視？
 我們通常都將監視想像成監看及等候事件發生，以便對該情況作出反應。安全性監視是指擁有一個主動式策略來稽核您的資源，以識別出不符合組織標準或最佳做法的系統。
 
 ##監視安全性健全狀況
-在您為訂用帳戶的資源啟用[安全性原則](security-center-policies.md)之後，資訊安全中心會分析您資源的安全性狀態，以找出潛在的弱點。網路組態的相關資訊立即可用，但虛擬機器組態的相關資訊 (例如安全性更新狀態與作業系統組態) 則可能需要花費一個小時或更久才能提供。您可以在 [資源安全性健康情況] 刀鋒視窗中，檢視資源的安全性狀態及任何問題。您也可以在 [建議] 刀鋒視窗上檢視這些問題的清單。
+在您為訂用帳戶的資源啟用[安全性原則](security-center-policies.md)之後，資訊安全中心會分析您資源的安全性狀態，以找出潛在的弱點。網路組態的相關資訊立即可用，但虛擬機器組態的相關資訊 (例如安全性更新狀態與作業系統組態) 則可能需要花費一個小時或更久才能提供。您可以在 [資源安全性健全狀況] 刀鋒視窗中，檢視資源的安全性狀態及任何問題。您也可以在 [建議] 刀鋒視窗上檢視這些問題的清單。
 
 如需如何套用建議的詳細資訊，請參閱[實作 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)。
 
-您可在 [資源健全狀況] 磚上監視資源的安全性狀態。在以下範例中，您會看到一些需要注意的高度或中度嚴重性問題。已啟用的安全性原則將會影響受監督的控制項類型。
+您可在 [資源健全狀況] 圖格上監視資源的安全性狀態。在以下範例中，您會看到一些需要注意的高度或中度嚴重性問題。已啟用的安全性原則將會影響受監督的控制項類型。
 
 ![資源健康情況](./media/security-center-monitoring/security-center-monitoring-fig1-new3.png)
 
 如果資訊安全中心找出必須處理的弱點 (例如遺漏安全性更新的 VM 或沒有[網路安全性群組](../virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
 ###監視虛擬機器
-按一下 [資源健全狀況] 磚中的 [虛擬機器] 時，將會開啟 [虛擬機器] 刀鋒視窗，內含有關訓練與預防步驟的更多詳細資訊，以及受資訊安全中心監視的所有 VM 清單，如下所示。
+按一下 [資源健全狀況] 圖格中的 [虛擬機器] 時，將會開啟 [虛擬機器] 刀鋒視窗，內含有關訓練與預防步驟的更多詳細資訊，以及受資訊安全中心監視的所有 VM 清單，如下所示。
 
 ![遺漏系統更新 (依 VM)](./media/security-center-monitoring/security-center-monitoring-fig2-2-new.png)
 
@@ -59,6 +56,8 @@
 本節提供一組 Azure 資訊安全中心所監視的每個 VM 的建議。第一個資料行列出建議，第二個資料行列出受到該建議影響的 VM 總數，第三個資料行顯示問題的嚴重性，如下所示。
 
 ![VM 建議](./media/security-center-monitoring/security-center-monitoring-fig4-2-new.png)
+
+> [AZURE.NOTE] 只有至少擁有一個公用端點的 VM 會顯示在 [網路拓撲] 清單的 [網路健全狀況] 刀鋒視窗中。
 
 每個建議會有一組可在您按一下它之後執行的動作。比方說，如果您按一下 [遺失的系統更新]，[遺失的系統更新] 刀鋒視窗會隨即開啟。它會列出遺失修補程式的 VM 和遺失更新的嚴重性，如下所示。
 
@@ -82,7 +81,7 @@
 
 ![每個 VM 遺失的系統更新](./media/security-center-monitoring/security-center-monitoring-fig6-new.png)
 
-> [AZURE.NOTE] 這裡的安全性建議與 [建議] 刀鋒視窗中的建議相同。如需解決建議的詳細資訊，請參閱[實作 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)一文。這不只適用於 VM，也適用於 [資源健康情況] 磚中所有可用的資源。
+> [AZURE.NOTE] 這裡的安全性建議與 [建議] 刀鋒視窗中的建議相同。如需解決建議的詳細資訊，請參閱[實作 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)一文。這不只適用於 VM，也適用於 [資源健康情況] 圖格中所有可用的資源。
 
 ####虛擬機器區段
 虛擬機器區段提供所有 VM 和建議的概觀。每個資料行代表一組建議，如下所示：
@@ -164,7 +163,7 @@
 此刀鋒視窗的下半部有此 VM 的建議 (類似上面所述)。您可以按一下建議以深入了解或套用所需的安全性控制/組態。
 
 ###監視 SQL 資源
-當您按一下 [資源安全性健康情況] 圖格中的 [SQL] 時，將會開啟 [SQL] 刀鋒視窗，內含問題的建議，例如未啟用稽核、透明資料加密。它也具有資料庫的一般健全狀況狀態建議。
+當您按一下 [資源安全性健全狀況] 圖格中的 [SQL] 時，將會開啟 [SQL] 刀鋒視窗，內含問題的建議，例如未啟用稽核、透明資料加密。它也具有資料庫的一般健全狀況狀態建議。
 
 ![SQL 資源健全狀況](./media/security-center-monitoring/security-center-monitoring-fig15-new.png)
 
@@ -199,13 +198,13 @@
 
 ![新增 WAF](./media/security-center-monitoring/security-center-monitoring-fig20-new.png)
 
-## 後續步驟
+## 另請參閱
 在本文件中，您已來了解如何使用「Azure 資訊安全中心」的監視功能。若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何在 Azure 資訊安全中心設定安全性設定
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
-- [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
+- [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -1,5 +1,5 @@
 <properties
-   pageTitle="開始使用 Azure 資訊安全中心 | Microsoft Azure"
+   pageTitle="在 Azure 資訊安全中心設定安全性原則 | Microsoft Azure"
    description="本文件可協助您在「Azure 資訊安全中心」設定安全性原則。"
    services="security-center"
    documentationCenter="na"
@@ -13,21 +13,16 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/05/2016"
+   ms.date="07/21/2016"
    ms.author="yurid"/>
 
 # 在 Azure 資訊安全中心設定安全性原則
-這份文件透過帶領您完成執行這項工作的必要步驟，協助您設定 Azure 資訊安全中心的安全性原則。
-
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。
-
-## 什麼是 Azure 資訊安全中心？
-Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控制權，以預防、偵測並回應威脅。它提供您訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
+這份文件透過帶領您完成執行這項工作的必要步驟，協助您設定資訊安全中心的安全性原則。
 
 ## 什麼是安全性原則？
-安全性原則定義了針對指定之訂用帳戶或資源群組內的資源建議的一組控制項。在「Azure 資訊安全中心」中，您可以根據公司安全性需求，以及每個訂用帳戶中應用程式的類型或資料的敏感性，為您的 Azure 訂用帳戶或資源群組定義原則。
+安全性原則定義了針對指定之訂用帳戶或資源群組內的資源建議的一組控制項。在「資訊安全中心」中，您可以根據公司安全性需求，以及每個訂用帳戶中應用程式的類型或資料的敏感性，為您的 Azure 訂用帳戶或資源群組定義原則。
 
-例如，用於開發或測試的資源與用於實際執行應用程式的資源，兩者的安全性需求可能不同。同樣地，具有 PII (個人識別資訊) 這類規範資料的應用程式可能會需要較高層級的安全性。「Azure 資訊安全中心」中啟用的安全性原則將會決定安全性建議與監視，以協助您識別可能的弱點並減輕威脅。
+例如，用於開發或測試的資源與用於實際執行應用程式的資源，兩者的安全性需求可能不同。同樣地，具有 PII (個人識別資訊) 這類規範資料的應用程式可能會需要較高層級的安全性。「Azure 資訊安全中心」中啟用的安全性原則將會決定安全性建議與監視，以協助您識別可能的弱點並減輕威脅。如需如何決定哪個選項較適合您的詳細資訊，請閱讀 [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)。
 
 ## 設定訂用帳戶的安全性原則
 
@@ -69,10 +64,10 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 | 原則 | 當狀態為開啟時 |
 |----- |-----|
-| 系統更新 | 根據為該虛擬機器設定的服務，每天會從 Windows Update 或 WSUS 抓取可用的安全性和重大更新清單，並建議套用遺漏的更新。它也會檢查 Linux 系統的最新更新，並檢查來自[雲端服務](./cloud-services/cloud-services-how-to-configure.md)虛擬機器的安全性和重大更新。 |
+| 系統更新 | 根據為該虛擬機器設定的服務，每天會從 Windows Update 或 WSUS 抓取可用的安全性和重大更新清單，並建議套用遺漏的更新。它會使用散發套件提供的套件管理系統檢查 Linux 系統的最新更新，以判斷哪些套件有可用更新。它也會檢查來自[雲端服務](./cloud-services/cloud-services-how-to-configure.md)虛擬機器的安全性和重大更新。 |
 | 基準規則 | 每天分析可能造成虛擬機器更容易受到攻擊的作業系統組態，並建議進行組態變更來處理這些弱點。如需受監視之特定設定的詳細資訊，請參閱[建議的基準清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 |
 | 端點保護 | 建議為所有 Windows 虛擬機器佈建端點保護，以協助識別和移除病毒、間諜軟體及其他惡意軟體。 
-| 網路安全性群組 | 建議設定[網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG) 來控制子網路與網路介面的輸入與輸出流量。除非另有指定，否則所有虛擬機器網路介面都會繼承為子網路設定的 NSG。除了檢查是否已設定 NSG 之外，此選項還會評估輸入安全性規則來識別是否有任何允許連入流量的規則。 |
+| 網路安全性群組 | 建議設定[網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG) 來控制使用公用端點輸入與輸出 VM 的流量。除非另有指定，否則所有虛擬機器網路介面都會繼承為子網路設定的 NSG。除了檢查是否已設定 NSG 之外，此選項還會評估輸入安全性規則來識別是否有任何允許連入流量的規則。 |
 | Web 應用程式防火牆 | 建議於下列情況下，在虛擬機器上佈建 Web 應用程式防火牆：使用[執行個體層級公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) (ILPIP) 並設定相關聯的「NSG 輸入安全性規則」來允許存取連接埠 80/443。使用負載平衡 IP (VIP) 並設定相關聯的負載平衡與輸入 NAT 規則，來允許存取連接埠 80/443 (如需詳細資訊，請參閱 [Azure 資源管理員的負載平衡器支援](../load-balancer/load-balancer-arm.md))。 |
 | 新一代防火牆 | 這會擴充超越 Azure 內建網路安全性群組的網路保護。資訊安全中心會探索建議使用新一代防火牆的部署，並可讓您佈建虛擬應用裝置。 |
 | SQL 稽核 | 建議針對法規遵循、進階偵測及調查用途，啟用 Azure SQL 伺服器與資料庫的存取稽核。 |
@@ -93,15 +88,15 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 > [AZURE.NOTE] 如果訂用帳戶層級原則與資源群組層級原則間有衝突，將會優先採用資源層級原則。
 
 
-## 後續步驟
+## 另請參閱
 
 在本文件中，您已了解如何在「Azure 資訊安全中心」設定安全性原則。若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
 
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
 - [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) – 了解如何監視 Azure 資源的健康狀態
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -18,15 +18,7 @@
 
 # 在 Azure 中管理 Office 365 訂用帳戶的目錄。
 
-本文說明如何使用 Azure 傳統入口網站，管理針對 Office 365 訂用帳戶建立的目錄。您必須是服務管理員或 Azure 訂用帳戶的共同管理員，才能登入 Azure 傳統入口網站。如果您還沒有 Azure 訂用帳戶：
-
-1. 您可以使用您用來登入 Office 365 的工作或學校帳戶來註冊。
-
-![電子郵件地址輸入方塊](./media/active-directory-manage-o365-subscription/AAD_O365_01.png)
-
-您將會收到提示，指出找不到對應的 Azure 訂用帳戶。如果您按一下 [註冊 Azure]，Office 365 帳戶的相關資訊便會填入註冊表單。根據預設，會將同一個帳戶指派給服務管理員角色。
-
-![Azure 訂用帳戶的註冊連結](./media/active-directory-manage-o365-subscription/AAD_O365_02.png)
+本文說明如何使用 Azure 傳統入口網站，管理針對 Office 365 訂用帳戶建立的目錄。您必須是服務管理員或 Azure 訂用帳戶的共同管理員，才能登入 Azure 傳統入口網站。如果您尚未擁有 Azure 訂用帳戶，您可以立即註冊 [免費 30 天試用版](https://azure.microsoft.com/trial/get-started-active-directory/)，並使用此連結在 5 分鐘內部署第一個雲端解決方案。請確認使用您用來登入 Office 365 的工作或學校帳戶來註冊。
 
 完成 Azure 訂用帳戶之後，您便可以登入 Azure 傳統入口網站並存取 Azure 服務。按一下 Active Directory 擴充模組，以便管理用來驗證您 Office 365 使用者的相同目錄。
 
@@ -69,4 +61,4 @@
 ## 後續步驟
 如需訂用帳戶與目錄間的關聯性詳細資訊，請參閱[如何將訂用帳戶如何關聯至目錄](active-directory-how-subscriptions-associated-directory.md)。
 
-<!---HONumber=AcomDC_0608_2016--->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/30/2016"
+   ms.date="07/18/2016"
    ms.author="cherylmc"/>
 
 # 使用傳統入口網站設定 VNet 的點對站 VPN 連線
@@ -25,7 +25,7 @@
 
 點對站設定可讓您從用戶端電腦個別地建立與虛擬網路的安全連線。VPN 連線的建立方式是從用戶端電腦啟動連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，點對站是絕佳的解決方案。
 
-點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[關於跨單位連線](vpn-gateway-cross-premises-options.md)。
+點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。如需點對站連接的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[關於跨單位連接](vpn-gateway-cross-premises-options.md)。
 
 本文適用於使用**傳統部署模型** (服務管理) 和傳統入口網站所建立之虛擬網路的點對站 VPN 閘道連線。當我們備妥 Azure 入口網站的步驟時，我們將從此頁面連結至該篇文章。
 
@@ -209,4 +209,4 @@
 
 如需關於虛擬網路的詳細資訊，請參閱[虛擬網路文件](https://azure.microsoft.com/documentation/services/virtual-network/)頁面。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0720_2016-->

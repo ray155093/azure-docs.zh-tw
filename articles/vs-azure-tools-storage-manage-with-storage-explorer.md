@@ -8,12 +8,12 @@
 	editor="" />
 
  <tags
-	ms.service="visual-studio-online"
+	ms.service="storage"
 	ms.devlang="multiple"
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="07/06/2016"
+	ms.date="07/14/2016"
 	ms.author="tarcher" />
 
 # 開始使用儲存體 Explorer (預覽)
@@ -166,7 +166,7 @@ Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓
 
 ## 使用 SAS 附加服務
 
-[使用 SAS 附加帳戶](#attach-account-using-sas)一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
+[使用 SAS 附加儲存體帳戶](#attach-storage-account-using-sas)一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
 
 ### 針對您要共用的服務產生 SAS
 
@@ -226,4 +226,4 @@ Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓
 [23]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-icon.png
 [24]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-next.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

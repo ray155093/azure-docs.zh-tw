@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/08/2016"
+   ms.date="07/19/2016"
    ms.author="yurid"/>
 
 # 使用 Power BI 從 Azure 資訊安全中心的資料取得見解
@@ -107,7 +107,7 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。�
 
 	![原則管理儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new9.png)
 
-## 後續步驟
+## 另請參閱
 在本文件中，您已了解如何在 Azure 資訊安全中心內使用 Power BI。若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
 
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃 Azure 資訊安全中心的採用。
@@ -116,4 +116,4 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。�
 - [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

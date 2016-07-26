@@ -75,7 +75,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 1. 選取 [資源群組]，或建立新的資源群組。
 
-	如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源][ResourceGroups]。
+	如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀][ResourceGroups]。
 
 	![設定 Web 應用程式的資源群組][ConfigResourceGroup]
 
@@ -153,7 +153,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [activate]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [free trial]: https://azure.microsoft.com/pricing/free-trial/
 [試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
-[ResourceGroups]: ../azure-portal/resource-group-portal.md
+[ResourceGroups]: ../resource-group-overview.md
 [AzureAppServicePlans]: ../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md
 [ApplicationInsights]: https://azure.microsoft.com/services/application-insights/
 [Azure 入口網站]: https://portal.azure.com/
@@ -180,4 +180,4 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [WordPressDashboard2]: ./media/app-service-web-create-web-app-from-marketplace/wpdashboard2.png
 [WordPressConfigure]: ./media/app-service-web-create-web-app-from-marketplace/wpconfigure.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->
