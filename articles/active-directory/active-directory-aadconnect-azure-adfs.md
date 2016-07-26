@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/26/2016"
+	ms.date="07/13/2016"
 	ms.author="anandy;billmath"/>
 
-# Azure 中的 AD FS 
+# Azure 中的 AD FS 部署 
 
 AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功能。與 Azure AD 或 O365 同盟可讓使用者使用內部部署認證進行驗證，並存取雲端中的所有資源。如此一來，就一定要有高可用性的 AD FS 基礎結構，以確保能夠存取內部部署和雲端中的資源。在 Azure 中部署 AD FS 有助於達成執行最低限度的工作所需要的高可用性。在 Azure 中部署 AD FS 有幾項優點，以下列出其中幾點︰
 
@@ -259,11 +259,9 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |:----|:----|:------:|
 |AllowHTTPSFromDMZ|	允許與 DMZ 進行 HTTPS 通訊 | 輸入 |
 |DenyAllFromDMZ| 此規則會封鎖所有從 DMZ 到內部子網路的流量。規則 AllowHTTPSFromDMZ 已經會負責確保 HTTPS 通訊能夠完成，其他流量則會被此規則封鎖 | 輸入 |
-|AllowHTTPSToDMZ| 此規則將允許與 DMZ 進行 HTTPS 通訊 | 輸出 |
-|DenyDMZAll| HTTPS 以外的其他所有流向 DMZ 的流量則會被此規則封鎖 | 輸出 |
 |DenyInternetOutbound| 不得存取網際網路 | 輸出 |
 
-![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png) ![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png)
+[註解]：<> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [註解]：<> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
  
 **9.2.保護 DMZ 子網路**
 
@@ -271,13 +269,12 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |:----|:----|:------:|
 |AllowHttpsFromVirtualNetwork| 允許來自虛擬網路的 HTTPS | 輸入 |
 |AllowHTTPSInternet| 允許從網際網路到 DMZ 的 HTTPS | 輸入|
-|DenyingressexceptHTTPS|	封鎖 HTTPS 以外來自網際網路的任何流量 | 輸入 |
-|AllowOutToADFS| 允許流向內部子網路的 HTTPS | 輸出 |
-|AllowHTTPSToInternet| 允許流向網際網路的 HTTPS | 輸出 |
+|DenyingressexceptHTTPS| 封鎖 HTTPS 以外來自網際網路的任何流量 | 輸入 |
 |DenyOutToInternet|	HTTPS 以外流向網際網路的任何流量都會遭到封鎖 | 輸出 |
 
-![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png) ![EXT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png)
+[註解]：<> (![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png)) [註解]：<> (![EXT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png))
 
+>[AZURE.NOTE] 如果需要用戶端使用者憑證驗證 (使用 X509 使用者憑證的 clientTLS 驗證)，則 AD FS 需要啟用 TCP 連接埠 49443 以供輸入存取。
 
 ###10\.測試 AD FS 登入
 
@@ -306,4 +303,4 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

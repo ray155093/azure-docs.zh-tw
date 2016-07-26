@@ -58,4 +58,4 @@
 	
 如需這個 cmdlet 的詳細資訊，請參閱 [PowerShell 參考](https://msdn.microsoft.com/library/azure/mt270366.aspx)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/27/2016"
+	ms.date="07/14/2016"
 	ms.author="andkjell;billmath"/>
 
 # 整合內部部署身分識別與 Azure Active Directory
@@ -138,6 +138,7 @@ ADFS 可以設定為支援[多個網域](active-directory-aadconnect-multiple-do
 
 主題 |  
 --------- | ---------
+AD FS 的所有發行項 | [Azure AD Connect 和同盟](active-directory-aadconnectfed-whatis.md)
 設定 ADFS 與子網域 | [與 Azure AD 同盟的多網域支援](active-directory-aadconnect-multiple-domains.md)
 管理 AD FS 伺服器陣列 | [使用 Azure AD Connect 管理和自訂 AD FS](active-directory-aadconnect-federation-management.md)
 手動更新同盟憑證 | [續約 Office 365 和 Azure AD 的同盟憑證](active-directory-aadconnect-o365-certs.md)
@@ -161,4 +162,4 @@ Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-d
 
 >[AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

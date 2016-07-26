@@ -88,13 +88,17 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 以下為支援的作業系統：
 
-- Windows 7 (僅限 64 位元版本)
+- Windows 7 (32 位元和 64 位元)
 
-- Windows Server 2008 R2
+- Windows Server 2008 R2 (僅限 64 位元)
 
-- Windows 8 (僅限 64 位元版本)
+- Windows 8 (32 位元和 64 位元)
 
-- Windows Server 2012
+- Windows 8.1 (32 位元和 64 位元)
+
+- Windows Server 2012 (僅限 64 位元)
+
+- Windows Server 2012 R2 (僅限 64 位元)
 
 - Windows 10
 
@@ -279,4 +283,4 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

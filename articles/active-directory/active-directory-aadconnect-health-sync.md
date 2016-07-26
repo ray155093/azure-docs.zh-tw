@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/12/2016"
+	ms.date="07/14/2016"
 	ms.author="billmath"/>
 
 # 使用適用於同步處理的 Azure AD Connect Health
-下列文件適用於使用 Azure AD Connect Health 來監視 Azure AD Connect 同步處理。如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。
+下列文件適用於使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理)。如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
 
 ![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/sync.png)
 
@@ -63,8 +63,9 @@
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
-* [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
+* [使用 Azure AD Connect Health 來搭配 AD FS](active-directory-aadconnect-health-adfs.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0518_2016--->
+<!---HONumber=AcomDC_0720_2016-->

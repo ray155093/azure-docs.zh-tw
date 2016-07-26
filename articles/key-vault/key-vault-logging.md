@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/06/2016"
+	ms.date="07/15/2016"
 	ms.author="cabailey"/>
 
 # Azure 金鑰保存庫記錄 #
@@ -33,6 +33,8 @@
 >[AZURE.NOTE]  本教學課程不會指示如何建立金鑰保存庫、金鑰或密碼。如需這方面的資訊，請參閱[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。或者，如需跨平台命令列介面的指示，請參閱[這個對等的教學課程](key-vault-manage-with-cli.md)。
 >
 >目前，您無法在 Azure 入口網站中設定 Azure 金鑰保存庫。請改用這些 Azure PowerShell 指示。
+
+使用 Operations Management Suite 中的 Log Analytics 可以視覺化您收集的記錄檔。如需詳細資訊，請參閱 [Log Analytics 中的 Azure 金鑰保存庫 (預覽) 解決方案](../log-analytics/log-analytics-azure-key-vault.md)。
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱[什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
@@ -64,11 +66,11 @@
 如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 
-## <a id="storage"></a>建立新的儲存體帳戶來儲存記錄 ##
+## <a id="storage"></a> 建立新的儲存體帳戶來儲存記錄 ##
 
 雖然您可以使用現有儲存體帳戶來儲存記錄，但我們將建立新的儲存體帳戶來專用儲存金鑰保存庫記錄。為了方便起見，在稍後遇到必須指定此帳戶時，我們會將詳細資料儲存到名為 **sa** 的變數中。
 
-為了進一步簡化管理，我們也會使用包含我們的金鑰保存庫的同一個資源群組。在[開始使用教學課程](key-vault-get-started.md)中，此資源群組的名稱是 **ContosoResourceGroup**，並且我們會繼續使用「東亞」位置。請視情況將這些值替換成您自己的值：
+為了進一步簡化管理，我們也會使用包含我們的金鑰保存庫的同一個資源群組。在 [開始使用教學課程](key-vault-get-started.md) 中，此資源群組的名稱是 **ContosoResourceGroup**，並且我們會繼續使用「東亞」位置。請視情況將這些值替換成您自己的值：
 
 	$sa = New-AzureRmStorageAccount -ResourceGroupName ContosoResourceGroup -Name ContosoKeyVaultLogs -Type Standard_LRS -Location 'East Asia'
 
@@ -116,7 +118,7 @@
 
 其輸出類似如下範例：
 
-**Container Uri: https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
+**Container Uri：https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
 
 
 **Name**
@@ -232,44 +234,44 @@
 | operationName | REST API 命令 |
 | ------------- |-------------|
 | 驗證 | 透過 Azure Active Directory 端點|
-| VaultGet | [取得金鑰保存庫的相關資訊](https://msdn.microsoft.com/en-us/library/azure/mt620026.aspx)|
-| VaultPut | [建立或更新金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620025.aspx)|
-| VaultDelete | [刪除金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620022.aspx)|
+| VaultGet | [取得金鑰保存庫的相關資訊](https://msdn.microsoft.com/zh-TW/library/azure/mt620026.aspx)|
+| VaultPut | [建立或更新金鑰保存庫](https://msdn.microsoft.com/zh-TW/library/azure/mt620025.aspx)|
+| VaultDelete | [刪除金鑰保存庫](https://msdn.microsoft.com/zh-TW/library/azure/mt620022.aspx)|
 | VaultPatch | [更新金鑰保存庫](https://msdn.microsoft.com/library/azure/mt620025.aspx)|
-| VaultList | [列出資源群組中的所有金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620027.aspx)|
-| KeyCreate | [建立金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903634.aspx)|
-| KeyGet | [取得金鑰的相關資訊](https://msdn.microsoft.com/en-us/library/azure/dn878080.aspx)|
-| KeyImport | [將金鑰匯入保存庫](https://msdn.microsoft.com/en-us/library/azure/dn903626.aspx)|
-| KeyBackup | [備份金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878058.aspx)。|
-| KeyDelete | [刪除金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903611.aspx)|
-| KeyRestore | [還原金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878106.aspx)|
-| KeySign | [使用金鑰簽署](https://msdn.microsoft.com/en-us/library/azure/dn878096.aspx)|
-| KeyVerify | [使用金鑰驗證](https://msdn.microsoft.com/en-us/library/azure/dn878082.aspx)|
-| KeyWrap | [包裝金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878066.aspx)|
-| KeyUnwrap | [解除包裝金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878079.aspx)|
-| KeyEncrypt | [使用金鑰加密](https://msdn.microsoft.com/en-us/library/azure/dn878060.aspx)|
-| KeyDecrypt | [使用金鑰解密](https://msdn.microsoft.com/en-us/library/azure/dn878097.aspx)|
-| KeyUpdate | [更新金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903616.aspx)|
-| KeyList | [列出保存庫中的金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903629.aspx)|
-| KeyListVersions | [列出金鑰的版本](https://msdn.microsoft.com/en-us/library/azure/dn986822.aspx)|
-| SecretSet | [建立密碼](https://msdn.microsoft.com/en-us/library/azure/dn903618.aspx)|
-| SecretGet | [取得密碼](https://msdn.microsoft.com/en-us/library/azure/dn903633.aspx)|
-| SecretUpdate | [更新密碼](https://msdn.microsoft.com/en-us/library/azure/dn986818.aspx)|
-| SecretDelete | [刪除秘密](https://msdn.microsoft.com/en-us/library/azure/dn903613.aspx)|
-| SecretList | [列出保存庫中的密碼](https://msdn.microsoft.com/en-us/library/azure/dn903614.aspx)|
-| SecretListVersions | [列出密碼的版本](https://msdn.microsoft.com/en-us/library/azure/dn986824.aspx)|
+| VaultList | [列出資源群組中的所有金鑰保存庫](https://msdn.microsoft.com/zh-TW/library/azure/mt620027.aspx)|
+| KeyCreate | [建立金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn903634.aspx)|
+| KeyGet | [取得金鑰的相關資訊](https://msdn.microsoft.com/zh-TW/library/azure/dn878080.aspx)|
+| KeyImport | [將金鑰匯入保存庫](https://msdn.microsoft.com/zh-TW/library/azure/dn903626.aspx)|
+| KeyBackup | [備份金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn878058.aspx)。|
+| KeyDelete | [刪除金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn903611.aspx)|
+| KeyRestore | [還原金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn878106.aspx)|
+| KeySign | [使用金鑰簽署](https://msdn.microsoft.com/zh-TW/library/azure/dn878096.aspx)|
+| KeyVerify | [使用金鑰驗證](https://msdn.microsoft.com/zh-TW/library/azure/dn878082.aspx)|
+| KeyWrap | [包裝金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn878066.aspx)|
+| KeyUnwrap | [解除包裝金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn878079.aspx)|
+| KeyEncrypt | [使用金鑰加密](https://msdn.microsoft.com/zh-TW/library/azure/dn878060.aspx)|
+| KeyDecrypt | [使用金鑰解密](https://msdn.microsoft.com/zh-TW/library/azure/dn878097.aspx)|
+| KeyUpdate | [更新金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn903616.aspx)|
+| KeyList | [列出保存庫中的金鑰](https://msdn.microsoft.com/zh-TW/library/azure/dn903629.aspx)|
+| KeyListVersions | [列出金鑰的版本](https://msdn.microsoft.com/zh-TW/library/azure/dn986822.aspx)|
+| SecretSet | [建立密碼](https://msdn.microsoft.com/zh-TW/library/azure/dn903618.aspx)|
+| SecretGet | [取得密碼](https://msdn.microsoft.com/zh-TW/library/azure/dn903633.aspx)|
+| SecretUpdate | [更新密碼](https://msdn.microsoft.com/zh-TW/library/azure/dn986818.aspx)|
+| SecretDelete | [刪除秘密](https://msdn.microsoft.com/zh-TW/library/azure/dn903613.aspx)|
+| SecretList | [列出保存庫中的密碼](https://msdn.microsoft.com/zh-TW/library/azure/dn903614.aspx)|
+| SecretListVersions | [列出密碼的版本](https://msdn.microsoft.com/zh-TW/library/azure/dn986824.aspx)|
 
 
 
 
 ## <a id="next"></a>接續步驟 ##
 
-如需在 Web 應用程式中使用 Azure 金鑰保存庫的教學課程，請參閱[從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
+如需在 Web 應用程式中使用 Azure 金鑰保存庫的教學課程，請參閱 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
 如需 Azure 金鑰保存庫的 Azure PowerShell 1.0 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)。
 
-如需有關 Azure 金鑰保存庫的金鑰輪替和記錄檔稽核的教學課程，請參閱[如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md)。
+如需有關 Azure 金鑰保存庫的金鑰輪替和記錄檔稽核的教學課程，請參閱 [如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

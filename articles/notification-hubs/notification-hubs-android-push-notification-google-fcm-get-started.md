@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="hero-article"
-	ms.date="07/05/2016"
+	ms.date="07/14/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Android
@@ -35,7 +35,7 @@
 
 ##必要條件
 
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
+> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
 
 - 除了上述的作用中 Azure 帳戶，本教學課程需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 - 適用於 Firebase 雲端通訊的 Android 2.3 或更新版本。
@@ -158,7 +158,7 @@
 		public class NotificationSettings {
 		    public static String SenderId = "<Your project number>";
 		    public static String HubName = "<Your HubName>";
-		    public static String HubListenConnectionString = "<Your default listen connection string>";
+		    public static String HubListenConnectionString = "<Enter your DefaultListenSharedAccessSignature connection string>";
 		}
 
 2. 使用上述步驟，加入另一個名為 `MyInstanceIDService` 的新類別。這會是我們的執行個體識別碼接聽程式服務實作。
@@ -230,7 +230,7 @@
 		                regID = hub.register(FCM_token).getRegistrationId();
 		
 		                // If you want to use tags...
-		                // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+		                // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
 		                // regID = hub.register(token, "tag1,tag2").getRegistrationId();
 		
 		                resultString = "New NH Registration Successfully - RegId : " + regID;
@@ -249,7 +249,7 @@
 		                regID = hub.register(FCM_token).getRegistrationId();
 		
 		                // If you want to use tags...
-		                // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+		                // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
 		                // regID = hub.register(token, "tag1,tag2").getRegistrationId();
 		
 		                resultString = "New NH Registration Successfully - RegId : " + regID;
@@ -462,6 +462,8 @@
 
 ## (選擇性) 從應用程式直接傳送推播通知
 
+>[AZURE.IMPORTANT] 此從用戶端應用程式傳送通知的範例僅供學習之用。由於這需要 `DefaultFullSharedAccessSignature` 存在用戶端應用程式上，通知中樞可能的風險為使用者可以取得存取傳送未經授權的通知至您的用戶端。
+
 一般來說，您會使用後端伺服器傳送通知。在某些情況下，您可能希望能夠直接從用戶端應用程式傳送推播通知。本節說明如何使用 [Azure 通知中樞 REST API](https://msdn.microsoft.com/library/azure/dn223264.aspx) 從用戶端傳送通知。
 
 1. 在 Android Studio 的 [專案檢視] 中展開 [應用程式] > [src] > [主要] > [res] > [配置]。開啟 `activity_main.xml` 配置檔案，然後按一下 [文字] 索引標籤以更新檔案的文字內容。以下列程式碼進行更新，這會加入新的 `Button` 和 `EditText` 控制項，以便將推播通知訊息傳送至通知中樞。在底部將此程式碼加在 `</RelativeLayout>` 之前。
@@ -492,9 +494,9 @@
 
 3. 在 `NotificationSetting.java` 檔案中，將下列設定新增至 `NotificationSettings` 類別。
 
-	使用中樞的 **DefaultFullSharedAccessSignature** 連接字串更新 `HubFullAccess`。按一下通知中樞 [設定] 刀鋒視窗上的 [存取原則]，即可從 [Azure 入口網站]複製此連接字串。
+	使用中樞的 **DefaultFullSharedAccessSignature** 連接字串更新 `HubFullAccess`。按一下通知中樞 [設定] 刀鋒視窗上的 [存取原則]，即可從 [Azure 入口網站] 複製此連接字串。
 
-		public static String HubFullAccess = "<Enter Your DefaultFullSharedAccess Connection string>";
+		public static String HubFullAccess = "<Enter Your DefaultFullSharedAccessSignature Connection string>";
 
 4. 在 `MainActivity.java` 檔案中，將下列 `import` 陳述式加在 `MainActivity` 類別之上。
 
@@ -646,7 +648,7 @@
 	
 	                        // Include any tags
 	                        // Example below targets 3 specific tags
-	                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+	                        // Refer to : https://azure.microsoft.com/documentation/articles/notification-hubs-routing-tag-expressions/
 	                        // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
 							//		"tag1 || tag2 || tag3");
 	
@@ -692,7 +694,7 @@
 
 如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。如果您的映像不支援原生 Google API，最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
 
-除此之外，請確定已將您的 Google 帳戶加入至執行中模擬器的 [設定] > [帳戶] 之下。否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
+除此之外，請確定已將 Google 帳戶加入至執行中模擬器的 [設定] > [帳戶] 之下。否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
 
 ####執行應用程式
 
@@ -704,7 +706,7 @@
 
    	![在 Android 上測試 - 傳送訊息](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-set-message.png)
 
-3. 按 [**傳送通知**]。任何執行應用程式的裝置將會顯示含推播通知訊息的 `AlertDialog` 執行個體。未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。從左上角往下撥動，即可檢視通知。
+3. 按 [**傳送通知**]。任何執行應用程式的裝置都會顯示含推播通知訊息的 `AlertDialog` 執行個體。未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。從左上角往下撥動，即可檢視通知。
 
    	![在 Android 上測試 - 通知](./media/notification-hubs-android-push-notification-google-fcm-get-started/notification-hubs-android-studio-received-message.png)
 
@@ -712,9 +714,9 @@
 
 我們建議以[使用通知中樞將通知推播給使用者]教學課程做為下一個步驟。它會示範如何使用標記以特定使用者為目標，從 ASP.NET 後端傳送通知。
 
-如果您想要依興趣群組分隔使用者，請查看[使用通知中樞傳送即時新聞]教學課程。
+如果您想要依興趣群組分隔使用者，請查看 [使用通知中樞傳送即時新聞] 教學課程。
 
-若要深入了解通知中樞的一般資訊，請參閱[通知中樞指引]。
+若要深入了解通知中樞的一般資訊，請參閱 [通知中樞指引]。
 
 <!-- Images. -->
 
@@ -725,9 +727,9 @@
 [Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
 [Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
 [Azure Classic Portal]: https://manage.windowsazure.com/
-[通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
+[通知中樞指引]: notification-hubs-push-notification-overview.md
 [使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-android-notify-users.md
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

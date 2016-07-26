@@ -239,6 +239,6 @@
 
 * 當您不再使用 Web 應用程式及任何相關 Azure 資源時，請刪除包含這些資源的資源群組。
 
-	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Azure 入口網站來部署及管理 Azure 資源](../resource-group-portal.md)。
+	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

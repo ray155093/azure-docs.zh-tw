@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/01/2016"
+   ms.date="07/16/2016"
    ms.author="lodipalm;barbkess;mausher;jrj;sonyama;kevin"/>
 
 
@@ -176,9 +176,9 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
 [CAT 小組部落格]: https://blogs.msdn.microsoft.com/sqlcat/tag/sql-dw/
 [功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse
+[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=AzureSQLDataWarehouse
 [Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

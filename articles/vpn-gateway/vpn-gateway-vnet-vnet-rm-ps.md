@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/02/2016"
+   ms.date="07/15/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure Resource Manager 和 PowerShell 來設定 VNet 對 VNet 連線
@@ -58,27 +58,7 @@
 
 ### VNet 對 VNet 常見問題集
 
-- 虛擬網路可位於相同或不同的 Azure 區域 (位置)。
-
-- 即使雲端服務或負載平衡端點與虛擬網路連線在一起，也「無法」橫跨虛擬網路。
-
-- 除非需要跨部署連線，否則將多個 Azure 虛擬網路連線在一起不需要使用任何內部部署 VPN 閘道。
-
-- VNet 對 VNet 支援連接虛擬網路。但是不支援連線「不」在虛擬網路中的虛擬機器或雲端服務。
-
-- VNet 對 VNet 需要 VPN 類型為 RouteBased (前稱為動態路由) 的 Azure VPN 閘道。
-
-- 虛擬網路連線可以和多網站 VPN 同時使用，最多可以將 10 個 (預設/標準閘道) 或 30 個 (高效能閘道) 虛擬網路 VPN 閘道的 VPN 通道連接至其他虛擬網路，或內部部署網站。
-
-- 虛擬網路與內部部署區域網路網站的位址空間不得重疊。位址空間重疊會導致 VNet 對 VNet 連線建立失敗。
-
-- 不支援成對虛擬網路之間的備援通道。
-
-- 虛擬網路的所有 VPN 通道一起共用 Azure VPN 閘道上可用的頻寬，以及 Azure 中相同的 VPN 閘道運作時間 SLA。
-
-- VNet 對 VNet 流量會透過 Microsoft 網路傳輸，而非透過網際網路。
-
-- 相同區域內的 VNet 對 VNet 流量雙向皆為免費；跨區域 VNet 對 VNet 輸出流量會根據來源區域的輸出 VNet 間資料傳輸費率收費。如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/vpn-gateway/)。
+[AZURE.INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
 
 ## 我應該使用哪個步驟集？
@@ -318,12 +298,12 @@
 
 ### 使用 Azure 入口網站驗證您的連線
 
-您可以在 Azure 入口網站中驗證 VPN 連線，方法是瀏覽至 [虛擬網路閘道] -> 按一下您的閘道名稱 -> [設定] -> [連線]。您可以選取連線名稱，以在 [連線] 刀鋒視窗中檢視詳細資訊。
+您可以在 Azure 入口網站中驗證 VPN 連線，方法是瀏覽至 [虛擬網路閘道] > **按一下您的閘道名稱** > [設定] > [連線]。您可以選取連線名稱，以在 [連線] 刀鋒視窗中檢視詳細資訊。
 
 
 ### 使用 PowerShell 驗證您的連線
 
-您也可以使用 Get-AzureRmVirtualNetworkGatewayConnection –Debug 來驗證您的連接是否成功。您可以使用下列範例，並將值變更為符合您自己的值。出現提示時，請選取 [A] 以執行全部。
+您也可以使用「Get-AzureRmVirtualNetworkGatewayConnection –Debug」來驗證您的連接是否成功。您可以使用下列範例，並將值變更為符合您自己的值。出現提示時，請選取 [A] 以執行全部。
 
 	Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection1 -ResourceGroupName $RG1 -Debug
 
@@ -529,6 +509,6 @@
 ## 後續步驟
 
 - 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
-- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。 
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->
