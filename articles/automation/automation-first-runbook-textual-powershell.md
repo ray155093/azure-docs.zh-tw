@@ -13,12 +13,12 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/02/2016"
+    ms.date="07/19/2016"
     ms.author="magoedte;sngun"/>
 
 # 我的第一個 PowerShell Runbook
 
-> [AZURE.SELECTOR] - [Graphical](automation-first-runbook-graphical.md) - [PowerShell](automation-first-runbook-textual-PowerShell.md) - [PowerShell Workflow](automation-first-runbook-textual.md)
+> [AZURE.SELECTOR] - [Graphical](automation-first-runbook-graphical.md) - [PowerShell](automation-first-runbook-textual-PowerShell.md) - [PowerShell Workflow](automation-first-runbook-textual.md)  
 
 本教學課程將逐步引導您在 Azure 自動化中建立 [PowerShell Runbook](automation-runbook-types.md#powershell-runbooks)。讓我們先從將測試和發佈的簡單 Runbook 開始，同時說明如何追蹤 Runbook 工作的狀態。然後我們要修改 Runbook 以實際上管理 Azure 資源，在此情況下是啟動 Azure 虛擬機器。接著我們要藉由加入 Runbook 參數，讓 Runbook 更穩固。
 
@@ -58,7 +58,7 @@
 1.	按一下 [測試窗格] 來開啟 [測試] 窗格。
 ![測試窗格](media/automation-first-runbook-textual-powershell/automation-testpane.png)  
 2.	按一下 [開始] 以開始測試。這應該是唯一啟用的選項。
-3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並顯示其狀態。工作狀態會從「已排入佇列」開始，表示等候雲端中的 Runbook 背景工作可供使用。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。
+3.	隨即會建立 [Runbook 工作](automation-runbook-execution.md)，並顯示其狀態。工作狀態會從「已排入佇列」開始，表示等候雲端中的 Runbook 背景工作可供使用。然後當背景工作宣告該工作時，狀態將變更為「正在開始」，然後 Runbook 實際開始執行時再變更為「執行中」。  
 4.	Runbook 工作完成時，會顯示其輸出。在我們的情況中，我們應該會看到「Hello World」。
 ![測試窗格輸出](media/automation-first-runbook-textual-powershell/automation-testpane-output.png)  
 5.	關閉 [測試] 窗格以返回畫布。
@@ -93,24 +93,24 @@
 3.	輸入或是複製並貼上下列程式碼，此程式碼會處理您的自動化執行身分帳戶的驗證︰
 
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
      -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
-    ```
+    ``` 
 <br>
 4.	按一下 [測試] 窗格，我們便可以測試 Runbook。
-5.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual-powershell/runbook-auth-results.png)
+5.	按一下 [開始] 以開始測試。測試完成時，您應該會從帳戶收到如同以下顯示基本資訊的輸出。這可確認認證有效。<br> ![驗證](media/automation-first-runbook-textual-powershell/runbook-auth-output.png)
 
 ## 步驟 6 - 加入程式碼以啟動虛擬機器
 
 由於我們的 runbook 正在驗證我們的 Azure 訂用帳戶，所以我們可以管理資源。我們將新增一個命令以啟動虛擬機器。您可以在您的 Azure 訂用帳戶中挑選任何虛擬機器，而現在我們會將該名稱硬式編碼成 Cmdlet。
 
 1.	在「Add-AzureRmAccount」後面輸入「Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'NameofResourceGroup'」，提供要啟動之虛擬機器的名稱和資源群組名稱。
-
+    
     ```
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
-     -ApplicationID `$Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint 
      Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'ResourceGroupName'
      ```
 <br>
@@ -122,15 +122,15 @@
 我們的 Runbook 目前會啟動我們在 runbook 中硬式編碼的虛擬機器，但如果可以在啟動 runbook 時指定虛擬機器，它會更有用。我們現在會將輸入參數加入 Runbook，以提供該功能。
 
 1.	如下列範例所示，將 [VMName] 和 [ResourceGroupName] 的參數加入至 Runbook，並搭配使用這些變數與 **Start-AzureRmVM** Cmdlet。
-
+	
     ```
     Param(
        [string]$VMName,
        [string]$ResourceGroupName
     )
-     $Conn = Get-AutomationConnection -Name AzureRunAsConnection
+     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
      Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
-     -ApplicationID `$Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
+     -ApplicationID $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint 
      Start-AzureRmVM -Name $VMName -ResourceGroupName $ResourceGroupName
      ```
 <br>
@@ -138,8 +138,7 @@
 3.	關閉 [測試] 窗格。
 4.	按一下 [發佈] 來發行新版本的 Runbook。
 5.	停止您在上一個步驟中啟動的虛擬機器。
-6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。  
-	![傳遞參數](media/automation-first-runbook-textual-powershell/automation-pass-params.png)  
+6.	按一下 [開始] 以啟動 Runbook。輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。![傳遞參數](media/automation-first-runbook-textual-powershell/automation-pass-params.png)
 7.	Runbook 完成時，請檢查虛擬機器已啟動。
 
 ## 與 PowerShell 工作流程的差異
@@ -158,4 +157,4 @@ PowerShell Runbook 的生命週期、功能和管理與 PowerShell 工作流程 
 -	若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 -	如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

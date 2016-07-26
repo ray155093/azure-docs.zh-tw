@@ -13,18 +13,16 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/13/2016"
+   ms.date="07/19/2016"
    ms.author="cherylmc" />
 
-# Azure VPN 閘道連線拓撲
+# Azure VPN 閘道連線
 
 本文說明基準 VPN 閘道連線拓撲。您可以使用圖形和描述來協助選取符合您需求的組態拓撲。雖然本文旨在逐步說明主要基準拓撲，但您也可以使用這些圖表做為指導方針來建置更複雜的拓撲。
 
 每個拓撲都有一份資料表，裡面會列出拓撲適用的部署模型、可用來設定每個拓撲的部署工具，並且會直接連結至相關文章 (如果有)。我們會頻繁地在有新文章和部署工具可供您使用時更新這些資料表。
 
-如需 VPN 閘道的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
-
-
+用來建立 VPN 閘道的指示將取決於用來建立虛擬網路的部署模型。例如，如果您使用傳統部署模型建立 VNet，您將使用傳統部署模型的指導方針和指示來建立和設定 VPN 閘道。您無法建立傳統部署模型虛擬網路的 Resource Manager VPN 閘道。如需部署模型的詳細資訊，請參閱[了解 Resource Manager 和傳統部署模型](../resource-manager-deployment-model.md)。
 
 ## 站對站和多站台
 
@@ -104,4 +102,4 @@ ExpressRoute 是從 WAN 直接連往 Microsoft 服務 (包括 Azure) 的專用�
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

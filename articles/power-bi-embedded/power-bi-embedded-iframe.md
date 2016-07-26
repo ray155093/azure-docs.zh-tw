@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="07/05/2016"
+   ms.date="07/19/2016"
    ms.author="owend"/>
 
 # 使用 IFrame 內嵌 Power BI 報告
@@ -28,23 +28,23 @@
 - 步驟 1：[在工作區中取得報告](#GetReport)。在此步驟中，您可以使用應用程式權杖流程取得存取權杖，來呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業。一旦您從 **Get Reports** 清單中取得報告，您使用 **IFrame** 元素將報告內嵌到應用程式。
 - 步驟 2：[將報告內嵌到應用程式](#EmbedReport)。在此步驟中，您使用報告、一些 JavaScript 和 IFrame 的內嵌權杖，將報告整合或內嵌至 Web 應用程式。
 
-如果您想要執行範例，以查看如何整合報告，請下載 GitHub 上的[整合報告與 IFrame](https://github.com/Azure-Samples/power-bi-embedded-iframe) 範例，並且設定三個 Web.Config 設定︰
+如果您想要執行範例，請下載 GitHub 上的[整合報告與 IFrame](https://github.com/Azure-Samples/power-bi-embedded-iframe) 範例，並且設定三個 Web.Config 設定︰
 
-- **AccessKey**：**AccessKey** 是用來產生 JSON Web 權杖 (JWT)，它是用來取得報告與內嵌報告。若要了解如何取得 **AccessKey**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
-- **WorkspaceName**：若要了解如何取得 **WorkspaceName**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
-- **WorkspaceId**：若要了解如何取得 **WorkspaceId**，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
+- **AccessKey**：**AccessKey** 是用來產生 JSON Web 權杖 (JWT)，它是用來取得報告與內嵌報告。
+- **工作區集合名稱**︰識別工作區。
+- **工作區識別碼**︰工作區的唯一識別碼
 
-下一個章節會顯示整合報告所需的程式碼。
+若要了解如何從 Azure 入口網站取得存取金鑰、工作區集合名稱和工作區識別碼，請參閱[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)。
 
 <a name="GetReport"/>
 ## 在工作區中取得報告
 
-若要將報告整合到應用程式，您需要報告**識別碼**和 **embedUrl**。若要取得報告**識別碼**和 **embedUrl**，您呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業，並從 JSON 清單中選擇報告。在[將報告內嵌到應用程式](#EmbedReport) 中，您使用報告**識別碼**和 **embedUrl**，將報告內嵌至您的應用程式。
+若要將報告整合到應用程式，您需要報告**識別碼**和 **embedUrl**。若要取得這兩項，請呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業，並從 JSON 清單中選擇報告。
 
 ### 取得報告 JSON 回應
 ```
 {
-  "@odata.context":"https://api.powerbi.com/beta/collections/{WorkspaceName}/workspaces/{WorkspaceId}/$metadata#reports","value":[
+  "@odata.context":"https://api.powerbi.com/v1.0/collections/{WorkspaceName}/workspaces/{WorkspaceId}/$metadata#reports","value":[
     {
       "id":"804d3664-…-e71882055dba","name":"Import report sample","webUrl":"https://embedded.powerbi.com/reports/804d3664-...-e71882055dba","embedUrl":"https://embedded.powerbi.com/appTokenReportEmbed?reportId=804d3664-...-e71882055dba"
     },{
@@ -55,25 +55,13 @@
 
 ```
 
-若要呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業，請使用應用程式權杖。若要深入了解應用程式權杖流程，請參閱[關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)。下列程式碼說明如何取得報告的 JSON 清單。若要內嵌報告，請參閱[將報告內嵌到應用程式](#EmbedReport)。
+若要呼叫 [Get Reports](https://msdn.microsoft.com/library/mt711510.aspx) REST 作業，請使用應用程式權杖。若要深入了解應用程式權杖流程，請參閱[使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)。下列程式碼說明如何取得報告的 JSON 清單。
 
 ```
 protected void getReportsButton_Click(object sender, EventArgs e)
 {
-    //Get an app token to generate a JSON Web Token (JWT). An app token flow is a claims-based design pattern.
-    //To learn how you can code an app token flow to generate a JWT, see the PowerBIToken class.
-    var appToken = PowerBIToken.CreateDevToken(workspaceName, workspaceId);
-
-    //After you get a PowerBIToken which has Claims including your WorkspaceName and WorkspaceID,
-    //you generate JSON Web Token (JWT) . The Generate() method uses classes from System.IdentityModel.Tokens: SigningCredentials,
-    //JwtSecurityToken, and JwtSecurityTokenHandler.
-    string jwt = appToken.Generate(accessKey);
-
-    //Set app token textbox to JWT string to show that the JWT was generated
-    appTokenTextbox.Text = jwt;
-
     //Construct reports uri resource string
-    var uri = String.Format("https://api.powerbi.com/beta/collections/{0}/workspaces/{1}/reports", workspaceName, workspaceId);
+    var uri = String.Format("https://api.powerbi.com/v1.0/collections/{0}/workspaces/{1}/reports", workspaceName, workspaceId);
 
     //Configure reports request
     System.Net.WebRequest request = System.Net.WebRequest.Create(uri) as System.Net.HttpWebRequest;
@@ -82,7 +70,7 @@ protected void getReportsButton_Click(object sender, EventArgs e)
 
     //Set the WebRequest header to AppToken, and jwt
     //Note the use of AppToken instead of Bearer
-    request.Headers.Add("Authorization", String.Format("AppToken {0}", jwt));
+    request.Headers.Add("Authorization", String.Format("AppKey {0}", accessKey));
 
     //Get reports response from request.GetResponse()
     using (var response = request.GetResponse() as System.Net.HttpWebResponse)
@@ -104,12 +92,13 @@ protected void getReportsButton_Click(object sender, EventArgs e)
         }
     }
 }
+
 ```
 
 <a name="EmbedReport"/>
 ## 將報告內嵌到應用程式
 
-在您可以將報告內嵌到您的應用程式之前，您需要報告的內嵌權杖。此權杖與用來呼叫 **Power BI Embedded** REST 作業的應用程式權杖類似，但是會針對報告資源產生，而不是針對 REST 資源。以下是取得報告的應用程式權杖的程式碼。若要使用報告應用程式權杖，請參閱[將報告內嵌到您的應用程式](#EmbedReportJS)。
+在您可以將報告內嵌到您的應用程式之前，您需要報告的內嵌權杖。此權杖與用來呼叫 Power BI Embedded REST 作業的應用程式權杖類似，但是會針對報告資源產生，而不是針對 REST 資源。以下是取得報告的應用程式權杖的程式碼。
 
 <a name="EmbedReportToken"/>
 ### 取得報告的應用程式權杖
@@ -223,4 +212,4 @@ $filter=Store/Chain%20eq%20'Lindseys'
 - [System.IdentityModel.Tokens.JwtSecurityToken](https://msdn.microsoft.com/library/system.identitymodel.tokens.jwtsecuritytoken.aspx)
 - [System.IdentityModel.Tokens.JwtSecurityTokenHandler](https://msdn.microsoft.com/library/system.identitymodel.tokens.signingcredentials.aspx)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,12 +13,22 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/27/2016"
+   ms.date="07/19/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員概觀
 
 應用程式的基礎結構通常由許多元件所組成 – 或許是虛擬機器、儲存體帳戶和虛擬網路，或者 web 應用程式、資料庫、資料庫伺服器和協力廠商服務。您看不到這些元件做為個別的實體，而是看到它們做為單一實體相關且彼此相依的組件。您會想要將其當成群組來部署、管理和監視。Azure 資源管理員可讓您將方案中的資源做為群組使用。您可以透過單一、協調的作業來部署、更新或刪除方案的所有資源。您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。資源管理員會提供安全性、稽核和標記功能，以協助您在部署後管理您的資源。
+
+## 術語
+
+如果您不熟悉 Azure Resource Manager，則您可能不熟悉一些詞彙。
+
+- **資源** - Azure 方案一部分的項目。部分常見資源有虛擬機器、儲存體帳戶、Web 應用程式、資料庫和虛擬網路，但這只是其中一小部分。
+- **資資源群組** - 源群組是保留應用程式相關資源的容器。資源群組可以包含應用程式的所有資源，或只包含分組在一起的資源。您可以決定如何根據對組織最有利的方式，將資源配置到資源群組。請參閱[資源群組](#resource-groups)。
+- **資源提供者** - 提供可透過 Resource Manager 部署及管理之資源的一項服務。每個資源提供者都會提供作業，以便能運用所部署的資源。部分常見資源提供者有 Microsoft.Compute (提供虛擬機器資源)、Microsoft.Storage (提供儲存體帳戶資源) 和 Microsoft.Web (提供與 Web 應用程式相關的資源)。請參閱[資源提供者](#resource-providers)。
+- **Resource Manager 範本** - 定義一或多個要部署至資源群組之資源的 JavaScript 物件標記法 (JSON) 檔案。它也會定義所部署資源之間的相依性。範本可用來以一致性方式重複部署資源。請參閱[範本部署](#template-deployment)。
+- **宣告式語法** - 可讓您陳述「以下是我想要建立的項目」而不需要撰寫一連串程式設計命令來加以建立的語法。Resource Manager 範本便是宣告式語法的其中一個範例。在該檔案中，您可以定義要部署至 Azure 之基礎結構的屬性。
 
 ## 使用資源管理員的優點
 
@@ -26,7 +36,7 @@
 
 - 您可以以群組形式部署、管理及監視方案的所有資源，而不是個別處理這些資源。
 - 您可以在整個方案週期重複部署方案，並確信您的資源會部署在一致的狀態中。
-- 您可以使用宣告式範本來定義您的部署。
+- 您可以透過宣告式範本而非指令碼來管理基礎結構。
 - 您可以定義之間的相依性，使得以正確的順序部署資源。
 - 因為角色型存取控制 (RBAC) 會原生整合至管理平台，您可以將存取控制套用至資源群組中的所有服務。
 - 您可以將標籤套用至資源，以便以邏輯方式組織訂用帳戶中的所有資源。
@@ -43,9 +53,9 @@
 3. 執行命令式指令來管理您的資源，例如啟動或停止應用程式或機器。
 4. 利用與資源群組中相同的生命週期排列資源。將標記用於資源的所有其他組織方式。
 
-## 資源群組
+如需其他建議，請參閱[建立 Azure Resource Manager 範本的最佳做法](resource-manager-template-best-practices.md)。
 
-資源群組是保留應用程式相關資源的容器。資源群組可以包含應用程式的所有資源，或只保留以邏輯方式分組在一起的資源。您可以決定如何根據對組織最有利的方式，將資源配置到資源群組。
+## 資源群組
 
 定義資源群組時，必須考慮一些重要因素：
 
@@ -55,21 +65,19 @@
 4. 您可以將資源從一個資源群組移動到另一個群組。如需詳細資訊，請參閱[將資源移動到新的資源群組或訂用帳戶](resource-group-move-resources.md)。
 4. 資源群組可以包含位於不同區域中的資源。
 5. 資源群組可以用來設定系統管理動作的存取控制範圍。
-6. 資源可以連結至另一個資源群組中的資源，前提是兩個資源必須與彼此互動，但它們沒有共用相同的生命週期 (例如，多個應用程式連接至一個資料庫)。如需詳細資訊，請參閱[連結 Azure 資源管理員中的資源](resource-group-link-resources.md)。
+6. 資源可與另一個資源群組中的資源互動，前提是兩個資源彼此連結，但未共用相同的生命週期 (例如，連接至某個資料庫的 Web 應用程式)。
 
 ## 資源提供者
 
-資源提供者是一項服務，提供資源讓您可透過資源管理員進行部署及管理。每個資源提供者都會提供 REST API 作業，以便能運用資源。例如，如果想要部署 Azure 金鑰保存庫來儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。此資源提供者提供名為 **vaults** 的資源類型來建立金鑰保存庫，以及名為 **vaults/secrets** 的資源類型來建立金鑰保存庫中的密碼。您可以查看 REST API 作業 (例如[金鑰保存庫 REST API 作業](https://msdn.microsoft.com/library/azure/dn903609.aspx))，藉此了解資源提供者。
+每個資源提供者都會提供一組資源和作業，以便能運用技術區域。例如，如果想要儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。此資源提供者提供名為 **vaults** 的資源類型來建立金鑰保存庫，以及名為 **vaults/secrets** 的資源類型來建立金鑰保存庫中的密碼。它也能透過[金鑰保存庫 REST API 作業](https://msdn.microsoft.com/library/azure/dn903609.aspx)來提供作業。您可以直接呼叫 REST API，或者您可以使用[金鑰保存庫 PowerShell Cmdlet](https://msdn.microsoft.com/library/dn868052.aspx) 和[金鑰保存庫 Azure CLI](./key-vault/key-vault-manage-with-cli.md) 來管理金鑰保存庫。您也可以使用許多程式設計語言來使用大多數資源。如需詳細資訊，請參閱 [SDK 與範例](#sdks-and-samples)。
 
 若要部署和管理基礎結構，您需要了解資源提供者的詳細資料；例如提供的資源類型為何、REST API 作業的版本號碼、支援的作業以及設定要建立的資源類型值時要使用的結構描述。如需了解支援的資源提供者，請參閱[資訊管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
 ## 範本部署
 
-利用資源管理員，您可以建立定義應用程式之部署和設定的簡單範本 (以 JSON 格式)。此範本就是所謂的資源管理員範本，並提供定義部署的宣告方式。藉由使用範本，您可以在整個應用程式週期重複部署應用程式，並確信您的資源會部署在一致的狀態中。
+利用資源管理員，您可以建立定義應用程式之部署和設定的簡單範本 (以 JSON 格式)。藉由使用範本，您可以在整個應用程式週期重複部署應用程式，並確信您的資源會部署在一致的狀態中。Azure Resource Manager 會分析相依性，確保以正確的順序建立資源。如需詳細資訊，請參閱[定義 Azure 資源管理員範本中的相依性](resource-group-define-dependencies.md)。
 
-在此範本中，您會定義應用程式的基礎結構、如何設定基礎結構，以及如何將應用程式程式碼發佈至該基礎結構。您不需要擔心部署的順序，因為 Azure 資源管理員會分析相依性，確保以正確的順序建立資源。如需詳細資訊，請參閱[定義 Azure 資源管理員範本中的相依性](resource-group-define-dependencies.md)。
-
-當您從 Marketplace 建立方案，方案會自動包含部署範本。您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。將資源群組的目前狀態匯出至範本，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。檢視匯出的範本有助於了解範本語法。若要深入了解如何使用匯出的範本，[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
+當您從入口網站建立方案，方案會自動包含部署範本。您不必從頭建立您的範本，因為您可以從方案的範本開始，並自訂範本以符合您的特定需求。將資源群組的目前狀態匯出至範本，或檢視特定部署所用的範本，即可擷取現有資源群組的範本。檢視匯出的範本有助於了解範本語法。若要深入了解如何使用匯出的範本，[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
 您不需要在單一的範本中定義整個基礎結構。通常的合理作法是將您的部署需求分成一組有目標及特定目的的範本。您可以輕鬆地將這些份本重複使用於不同的方案。若要部署特定的方案，您會建立連結所有必要範本的主版範本。如需詳細資訊，請參閱[透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
 
@@ -121,7 +129,7 @@
 
 如需 REST API 的相關資訊，請參閱 [Azure 資源管理員 REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)。若要檢視已部署資源的 REST 作業，請參閱[使用 Azure 資源總管來檢視及修改資源](resource-manager-resource-explorer.md)。
 
-如需使用入口網站的相關資訊，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
+如需使用入口網站的相關資訊，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](resource-group-template-deploy-portal.md)。
 
 Azure 資源管理員支援跨原始資源共用 (CORS)。利用 CORS，您可以從位於不同網域的 Web 應用程式呼叫資源管理員 REST API 或 Azure 服務 REST API。若沒有 CORS 支援，網頁瀏覽器將會阻止某個網域中的應用程式存取另一個網域中的資源。資源管理員會對所有具備有效驗證認證的要求啟用 CORS。
 
@@ -133,7 +141,7 @@ Azure SDK 可供多個語言和平台使用。這些語言實作都是透過其�
 
 **範例**︰以您所選的語言即刻開始使用。
 
-- [.NET](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=dotnet) 敬請期待
+- [.NET](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=dotnet)
 - [Java](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=java) 敬請期待
 - [Node.js](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=nodejs)
 - [Python](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=python)
@@ -156,10 +164,11 @@ Azure SDK 可供多個語言和平台使用。這些語言實作都是透過其�
 - 若要深入了解如何使用匯出的範本，[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 - 如需建立範本的逐步解說，請參閱 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。
 - 若要了解您可以在範本中使用的函式，請參閱[範本函式](resource-group-template-functions.md)
-- 如需有關如何搭配使用 Visual Studio 與 Resource Manager 的詳細資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
+- 如需有關如何搭配使用 Visual Studio 與 Resource Manager 的相關資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
+- 如需有關如何搭配使用 VS Code 與 Resource Manager 的相關資訊，請參閱[在 Visual Studio Code 中使用 Azure Resource Manager 範本](resource-manager-vs-code.md)。
 
 以下是此概觀的示範影片。
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

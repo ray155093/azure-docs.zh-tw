@@ -1,10 +1,10 @@
 <properties
-	pageTitle="使用 Azure 備份保護 Azure 中的 VM |Microsoft Azure"
+	pageTitle="初步了解：使用 Azure 備份保護 Azure 中的 VM | Microsoft Azure"
 	description="使用 Azure 備份服務保護 Azure VM。教學課程會說明如何在 Azure 中建立保存庫、註冊 VM、建立原則和保護 VM。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""/>
 
 <tags
@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="04/22/2016"
+	ms.date="07/18/2016"
 	ms.author="markgal; jimpark"/>
 
 
 # 先睹為快：備份 Azure 虛擬機器
 
 > [AZURE.SELECTOR]
-- [備份 ARM VM](backup-azure-vms-first-look-arm.md)
+- [備份 Resource Manager VM](backup-azure-vms-first-look-arm.md)
 - [備份傳統模式 VM](backup-azure-vms-first-look.md)
 
-本教學課程會帶領您逐步完成將 Azure 虛擬機器 (VM) 備份至 Azure 的步驟。若要成功完成本教學課程，必須先滿足下列先決條件︰
+本教學課程會帶領您逐步完成將 Azure 虛擬機器 (VM) 備份至 Azure 備份保存庫的步驟。這篇文章說明用來備份 VM 的傳統模型或 Service Manager 部署模型。如果您有興趣將 VM 備份至屬於資源群組的復原服務保存庫，請參閱另一索引標籤 - 備份資源管理員 VM。若要成功完成本教學課程，必須先滿足下列先決條件︰
 
 - 您已在 Azure 訂用帳戶中建立 VM。
 - VM 可連線到 Azure 公用 IP 位址。如需其他資訊，請參閱[網路連線](./backup-azure-vms-prepare.md#network-connectivity)。
@@ -76,7 +76,8 @@
 
     ![備份保存庫的清單](./media/backup-azure-vms-first-look/active-vault-demo.png)
 
-9. 在 [快速啟動] 頁面上，按一下 [設定] 以開啟儲存體複寫選項。![備份保存庫的清單](./media/backup-azure-vms-first-look/configure-storage.png)
+9. 在 [快速啟動] 頁面上，按一下 [設定] 以開啟儲存體複寫選項。
+    ![備份保存庫的清單](./media/backup-azure-vms-first-look/configure-storage.png)
 
 10. 在 [儲存體複寫] 選項上，選擇保存庫的複寫選項。
 
@@ -91,7 +92,8 @@
 
 1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)
 
-2. 在 Azure 傳統入口網站中，按一下 [復原服務] 以開啟復原服務保存庫清單。![選取工作負載](./media/backup-azure-vms-first-look/recovery-services-icon.png)
+2. 在 Azure 傳統入口網站中，按一下 [復原服務] 以開啟復原服務保存庫清單。
+    ![選取工作負載](./media/backup-azure-vms-first-look/recovery-services-icon.png)
 
 3. 在保存庫清單中，選取要備份 VM 的保存庫。
 
@@ -106,7 +108,7 @@
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
 6. 按一下頁面底部的 [探索]。
-![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
+    ![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
@@ -117,7 +119,7 @@
     ![探索完成](./media/backup-azure-vms-first-look/discovery-complete.png)
 
 7. 按一下頁面底部的 [註冊]。
-![註冊按鈕](./media/backup-azure-vms-first-look/register-icon.png)
+    ![註冊按鈕](./media/backup-azure-vms-first-look/register-icon.png)
 
 8. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。
 
@@ -216,4 +218,4 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

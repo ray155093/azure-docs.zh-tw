@@ -4,7 +4,7 @@
  services=""
  suite="iot-suite"
  documentationCenter=""
- authors="stevehob"
+ authors="dominicbetts"
  manager="timlt"
  editor=""/>
 
@@ -14,33 +14,38 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="06/23/2016"
- ms.author="stevehob"/>
+ ms.date="07/18/2016"
+ ms.author="dobett"/>
 
 # 遠端監視預先設定解決方案逐步解說
 
 ## 簡介
 
-IoT 套件遠端監視預先設定解決方案是商務案例基本的端對端監視解決方案，可以在遠端位置操作多部機器。解決方案結合主要的 Azure IoT Suite 服務，以提供商務案例的一般實作，同時也是想要規劃實作此類型的 IoT 解決方案以符合各自特定商務需求之客戶的起點。
+IoT 套件遠端監視 [預先設定解決方案][lnk-preconfigured-solutions] 是適用於在遠端位置執行的多部機器之端對端監視解決方案實作。解決方案結合了主要的 Azure 服務以提供一般商務案例的實作，您可以將其做為自己實作的起點。您可以 [自訂][lnk-customize] 解決方案以滿足特定的業務需求。
+
+本文將逐步介紹遠端監視解決方案的一些重要元素，讓您瞭解它的運作方式。瞭解後有助於對解決方案進行疑難排解，規劃如何自訂解決方案以符合特定需求，以及運用 Azure 服務規劃您自己的 IoT 解決方案。
 
 ## 邏輯架構
 
 下圖概述預先設定解決方案的邏輯元件：
 
-![](media/iot-suite-remote-monitoring-sample-walkthrough/remote-monitoring-architecture.png)
+![邏輯架構](media/iot-suite-remote-monitoring-sample-walkthrough/remote-monitoring-architecture.png)
 
 
-### 模擬的裝置
+## 模擬的裝置
 
-在預先設定解決方案中，模擬的裝置會表示冷卻裝置 (例如建築物空調或設備空氣處理單位)。每個模擬的裝置會將下列遙測訊息傳送至 IoT 中樞：
+在預先設定解決方案中，模擬的裝置會表示冷卻裝置 (例如建築物空調或設備空氣處理單位)。當您部署預先設定解決方案時，也會自動佈建四個在 [Azure WebJob][lnk-webjobs] 中執行的模擬裝置。模擬裝置讓您可以輕鬆探索解決方案的行為，而不需要部署任何實體裝置。若要部署真實的實體裝置，請參閱 [將裝置連接至遠端監視預先設定解決方案][lnk-connectyourdevice] 教學課程。
 
+每個模擬裝置可以傳送下列訊息類型至 IoT 中樞︰
 
 | 訊息 | 說明 |
 |----------|-------------|
 | 啟動 | 當裝置啟動時，它會傳送**裝置資訊**訊息，其中包含自身的相關資訊，例如裝置識別碼、裝置中繼資料、裝置支援的命令清單，以及裝置的目前組態。 |
+| 目前狀態 | 裝置會定期傳送 **目前狀態** 訊息以報告該裝置是否可以感應到感應器的目前狀態。 |
+| 遙測 | 裝置會定期傳送 **遙測** 訊息，報告從連接到模擬裝置的模擬感應器收集到的溫度和溼度的模擬值。 |
 
 
-模擬的裝置會傳送下列裝置屬性做為中繼資料：
+模擬裝置會在 **裝置資訊** 訊息中傳送下列裝置屬性：
 
 | 屬性 | 目的 |
 |------------------------|--------- |
@@ -61,7 +66,7 @@ IoT 套件遠端監視預先設定解決方案是商務案例基本的端對端�
 模擬器會以範例值在模擬裝置中植入這些屬性。模擬器每次初始化模擬的裝置時，裝置會將預先定義的中繼資料發佈至 IoT 中樞。請注意，這會覆寫裝置入口網站中所做的任何中繼資料更新。
 
 
-模擬的裝置可以處理從 IoT 中樞傳送的下列命令：
+模擬的裝置可以處理透過 IoT 中樞從解決方案儀表板傳送的下列命令：
 
 | 命令 | 說明 |
 |------------------------|-----------------------------------------------------|
@@ -72,20 +77,25 @@ IoT 套件遠端監視預先設定解決方案是商務案例基本的端對端�
 | DiagnosticTelemetry | 觸發裝置模擬器以傳送其他遙測值 (externalTemp) |
 | ChangeDeviceState | 變更裝置的擴充狀態屬性，並從裝置傳送裝置資訊訊息 |
 
+解決方案後端的裝置命令通知是透過 IoT 中樞提供。
 
-裝置命令通知是透過 IoT 中樞提供。
+## IoT 中樞
 
+[IoT 中樞][lnk-iothub] 內嵌從裝置傳送至雲端的資料，並提供給 Azure 串流分析 (ASA) 作業。IoT 中樞也會代表裝置入口網站傳送命令到您的裝置。每個串流 ASA 作業使用不同的 IoT 中樞取用者群組以從您的裝置讀取訊息串流。
 
-### Azure 串流分析工作
+## Azure 串流分析
 
+在遠端監視解決方案中，[Azure 串流分析][lnk-asa] \(ASA) 會將透過 IoT 中樞從您的裝置所收到的訊息分派至其他後端元件進行處理或儲存。不同的 ASA 作業會根據訊息內容執行特定的功能。
 
-**作業 1：裝置資訊**會篩選來自傳入訊息串流的裝置資訊訊息，並將它們傳送到事件中樞端點。裝置會在啟動時傳送裝置資訊將訊息，並且回應 **SendDeviceInfo** 命令。此作業會使用下列查詢定義：
+**作業 1：裝置資訊** 會篩選來自傳入訊息串流的裝置資訊訊息，並將它們傳送到事件中樞端點。裝置會在啟動時傳送裝置資訊將訊息，並且回應 **SendDeviceInfo** 命令。此作業使用下列查詢定義來識別 **裝置資訊** 訊息︰
 
 ```
 SELECT * FROM DeviceDataStream Partition By PartitionId WHERE  ObjectType = 'DeviceInfo'
 ```
 
-**作業 2：規則**會針對每一裝置臨界值評估傳入氣溫和溼度遙測值。臨界值是在解決方案中所包含的規則編輯器中設定。每個裝置/值組是依據時間戳記儲存在 blob 中，會讀取到串流分析做為**參考資料**。工作會針對裝置的設定臨界值比較任何非空白值。如果超過 '>' 條件，工作將會輸出**警示**事件，表示已超過臨界值，並且提供裝置、值和時間戳記值。此作業會使用下列查詢定義：
+此作業會將其輸出傳送到事件中樞進行進一步的處理。
+
+**作業 2：規則** 會針對每一裝置臨界值評估傳入氣溫和溼度遙測值。臨界值是在解決方案儀表板中提供的規則編輯器中設定。每個裝置/值組是依據時間戳記儲存在 blob 中，串流分析會讀取做為 **參考資料**。工作會針對裝置的設定臨界值比較任何非空白值。如果超過 '>' 條件，作業會輸出 **警示** 事件，表示已超過臨界值，並且提供裝置、值和時間戳記值。此作業會使用下列查詢定義來識別應觸發警示的遙測訊息︰
 
 ```
 WITH AlarmsData AS 
@@ -126,7 +136,9 @@ INTO DeviceRulesHub
 FROM AlarmsData
 ```
 
-** 作業 3：遙測**會以兩種方法來操作傳入裝置遙測串流。第一種方法會將裝置的所有遙測訊息都傳送至持續性 blob 儲存體。第二種方法會透過五分鐘滑動視窗計算平均、最小和最大溼度值。這項資料也會傳送到 blob 儲存體。此作業會使用下列查詢定義：
+作業會將其輸出傳送至事件中樞供進一步處理，並將每項警示的詳細資料儲存至 blob 儲存體，解決方案儀表板可以從該位置讀取警示資訊。
+
+**作業 3：遙測** 會以兩種方法來操作傳入裝置遙測串流。第一種方法會將裝置的所有遙測訊息都傳送至持續性 blob 儲存體以供長期儲存。第二種方法會透過五分鐘滑動視窗計算平均、最小和最大溼度值，並將此資料傳送至 blob 儲存體。解決方案儀表板會從 blob 儲存體讀取遙測資料來填入圖表。此作業會使用下列查詢定義：
 
 ```
 WITH 
@@ -164,73 +176,54 @@ GROUP BY
     SlidingWindow (mi, 5)
 ```
 
-### 事件處理器
+## 事件中樞
 
-**事件處理器**會處理裝置資訊訊息和命令回應。它會使用：
+**裝置資訊** 和 **規則** ASA 作業將資料輸出至事件中樞，可靠地轉送給在 WebJob 中執行的 **事件處理器**。
+
+## Azure 儲存體
+
+此解決方案使用 Azure blob 儲存體來保存解決方案裝置中的所有原始和摘要遙測資料。儀表板會從 blob 儲存體讀取遙測資料來填入圖表。若要顯示警示，儀表板會從 blob 儲存體讀取當遙測值超過設定的臨界值時所記錄的資料。解決方案也使用 blob 儲存體記錄使用者在儀表板中設定的臨界值。
+
+## WebJobs
+
+除了裝載裝置模擬器，在解決方案中的 WebJob 也裝載在 Azure WebJob 中執行的 **事件處理器**，它會處理裝置資訊訊息和命令回應。它會使用：
 
 - 具有目前裝置資訊的裝置資訊訊息以更新裝置登錄 (儲存於 DocumentDB 資料庫)。
 - 命令回應訊息以更新裝置命令歷程記錄 (儲存於 DocumentDB 資料庫)。
 
-## 讓我們開始
+## DocumentDB
 
-本章節將逐步解說解決方案的元件、說明預定的使用情況，並提供範例。
+解決方案會使用 DocumentDB 資料庫來儲存連接到解決方案的裝置資訊，例如裝置的中繼資料以及從儀表板傳送到裝置的命令歷程記錄。
+
+## Web 應用程式
 
 ### 遠端監視儀表板
-Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱 [PowerBI 視覺效果儲存機制](https://www.github.com/Microsoft/PowerBI-visuals)) 以視覺化方式呈現 blob 儲存體中串流分析工作的輸出資料。
+Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱 [PowerBI 視覺效果儲存機制](https://www.github.com/Microsoft/PowerBI-visuals)) 以視覺化方式呈現裝置的遙測資料。解決方案會使用 ASA 遙測作業，將遙測資料寫入至 blob 儲存體。
 
 
 ### 裝置系統管理入口網站
 
 此 Web 應用程式可讓您：
 
-- 佈建新的裝置，這樣會設定唯一裝置識別碼並產生驗證金鑰。
-- 管理裝置屬性，其中包括檢視現有屬性和使用新的屬性更新。
+- 佈建新裝置。這會設定唯一裝置識別碼並產生驗證金鑰。會將裝置相關資訊寫入至 IoT 中樞身分識別登錄以及解決方案特定的 DocumentDB 資料庫。
+- 管理裝置屬性。這包括檢視現有屬性和使用新的屬性更新。
 - 將命令傳送至裝置。
 - 檢視裝置的命令歷程記錄。
-
-### 觀察雲端解決方案的行為
-您可以檢視已佈建的資源，方法是移至 [Azure 入口網站](https://portal.azure.com)並瀏覽至具有您指定之解決方案名稱的資源群組。
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/azureportal_01.png)
-
-當您第一次執行範例時，有四個預先設定、模擬的裝置：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_01.png)
-
-您可以使用「裝置系統管理入口網站」加入新的模擬的裝置：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_02.png)
-
-一開始在裝置系統管理入口網站中新裝置的狀態是 [暫止]：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_03.png)
-
-應用程式已完成部署模擬的裝置時，您會看到裝置的狀態在裝置系統管理入口網站中變更為 [執行中]，如下列螢幕擷取畫面所示。**DeviceInfo** 串流分析工作會將裝置狀態資訊從裝置傳送至裝置系統管理入口網站。
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_04.png)
-
-使用解決方案入口網站可以傳送如 **ChangeSetPointTemp** 的命令給裝置：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_05.png)
-
-當裝置報告它已成功執行命令時，狀態會變更為 [成功]：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_06.png)
-
-您可以使用解決方案入口網站搜尋具有特定特性的裝置，例如型號：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_07.png)
-
-您可以停用裝置，並且在已停用之後移除：
-
-![](media/iot-suite-remote-monitoring-sample-walkthrough/solutionportal_08.png)
-
+- 啟用和停用裝置。
 
 ## 後續步驟
 
-下列 TechNet 部落格文章提供有關遠端監視預先設定之解決方案的其他詳細資料 ︰
+下列 TechNet 部落格文章提供有關遠端監視預先設定之解決方案更多的詳細資料︰
 
 - [IoT 套件 - 幕後 - 遠端監視](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
 - [IoT 套件 - 遠端監視 - 新增即時與模擬裝置](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+[lnk-preconfigured-solutions]: iot-suite-what-are-preconfigured-solutions.md
+[lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
+[lnk-connectyourdevice]: iot-suite-connecting-devices.md
+[lnk-iothub]: https://azure.microsoft.com/documentation/services/iot-hub/
+[lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
+[lnk-webjobs]: https://azure.microsoft.com/documentation/articles/websites-webjobs-resources/
+
+<!---HONumber=AcomDC_0720_2016-->

@@ -201,10 +201,10 @@
     var Message = require('azure-iot-device').Message;
     ```
 
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置金鑰值：
+5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothostname}** 取代為在 *建立 IoT 中樞* 區段建立的 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為在 *建立裝置身分識別* 區段中產生的裝置金鑰值：
 
     ```
-    var connectionString = 'HostName={youriothubname}.azure-devices.net;DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
+    var connectionString = 'HostName={youriothostname};DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
     
     var client = clientFromConnectionString(connectionString);
     ```
@@ -220,7 +220,7 @@
     }
     ```
 
-7. 建立回呼，並使用 **setInterval** 函式每秒將新訊息傳送至 IoT 中樞：
+7. 建立回呼，並使用 **setInterval** 函數每秒將新訊息傳送至 IoT 中樞：
 
     ```
     var connectCallback = function (err) {
@@ -286,7 +286,7 @@
 - [開始使用裝置管理][lnk-device-management]
 - [開始使用閘道 SDK][lnk-gateway-SDK]
 
-若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱[處理裝置對雲端訊息][lnk-process-d2c-tutorial]教學課程。
+若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱 [處理裝置對雲端訊息][lnk-process-d2c-tutorial] 教學課程。
 
 <!-- Images. -->
 [6]: ./media/iot-hub-node-node-getstarted/create-iot-hub6.png
@@ -312,4 +312,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

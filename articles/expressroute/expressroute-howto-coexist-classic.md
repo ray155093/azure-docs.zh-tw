@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/06/2016"
+   ms.date="07/19/2016"
    ms.author="charwen"/>
 
 # 為傳統部署模型設定 ExpressRoute 和站對站並存連線
@@ -35,7 +35,7 @@
 
 - **不支援傳輸路由：**您無法在透過站對站 VPN 連線的區域網路，以及透過 ExpressRoute 連線的區域網路之間，進行路由傳送 (透過 Azure)。
 - **不支援點對站：**您無法對連線到 ExpressRoute 的相同 VNet 啟用點對站 VPN 連線。點對站 VPN 和 ExpressRoute 不能並存在相同的 VNet。
-- **無法啟用站對站 VPN 閘道上的強制通道：**您只能「強迫」所有網際網路繫結的流量透過 ExpressRoute 回到您的內部部署網路。 
+- **無法啟用站對站 VPN 閘道上的強制通道：**您只能「強迫」所有網際網路繫結的流量透過 ExpressRoute 回到您的內部部署網路。
 - **僅限標準或高效能閘道：**ExpressRoute 閘道和站對站 VPN 閘道都必須使用標準或高效能閘道。如需閘道 SKU 的相關資訊，請參閱[閘道 SKU](../vpn-gateway/vpn-gateway-about-vpngateways.md)。
 - **僅限路由式 VPN 閘道︰**您必須使用路由式 VPN 閘道。如需路由式 VPN 閘道的相關資訊，請參閱 [VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)。
 - **靜態路由需求：**如果您的區域網路連線到 ExpressRoute 和站對站 VPN，您必須在區域網路中設定靜態路由，才能將站對站 VPN 連線路由傳送到公用網際網路。
@@ -78,7 +78,7 @@
 
 此程序會引導您建立 VNet，並建立將並存的站對站和 ExpressRoute 連線。
 
-1. 您必須安裝最新版的 Azure PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。 
+1. 您必須安裝最新版的 Azure PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。
 
 2. 建立虛擬網路的結構描述。如需關於組態結構描述的詳細資訊，請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)。
 
@@ -192,7 +192,7 @@
 
 >[AZURE.NOTE] 當您刪除現有閘道器時，您在進行此設定時，本機設備將會與虛擬網路中斷連線。
 
-1. 您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。 
+1. 您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。請務必使用這些指示中指定的 Cmdlet。
 
 2. 刪除現有的 ExpressRoute 或站對站 VPN 閘道。使用下列 Cmdlet，將該值替換為您自己的值。
 
@@ -225,4 +225,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

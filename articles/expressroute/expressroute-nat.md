@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/18/2016"
+   ms.date="07/19/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute NAT 需求
@@ -52,7 +52,7 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 
 #### 從 Microsoft 出發到您的網路的流量
 
-- 在某些情況下，需要由 Microsoft 對您網路中裝載的服務端點起始連線。常見的例子就是從 Office 365 連接到您網路中裝載的 ADFS 伺服器。在這種情況下，必須將您網路中適當的首碼透露給 Microsoft 對等。 
+- 在某些情況下，需要由 Microsoft 對您網路中裝載的服務端點起始連線。常見的例子就是從 Office 365 連接到您網路中裝載的 ADFS 伺服器。在這種情況下，必須將您網路中適當的首碼透露給 Microsoft 對等。
 
 - 您必須以 SNAT 轉譯從 Microsoft 到您網路內的 IP 位址的流量。
 
@@ -66,4 +66,4 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->
