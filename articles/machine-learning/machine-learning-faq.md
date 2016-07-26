@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/13/2016"
+	ms.date="07/14/2016"
 	ms.author="garye"/>
 
 # Azure Machine Learning 常見問題集 (FAQ)：計費、功能、限制及支援
@@ -26,7 +26,6 @@
 **什麼是 Azure Machine Learning 服務？**
 
 Azure Machine Learning 是受到完整管理的服務，可用來建立、測試、操作及管理雲端中的預測分析方案。僅使用瀏覽器，您即可以登入、上傳資料，以及立即開始機器學習實驗。拖放式預測性模型化、大型模組和用以啟動範本的程式庫，讓您得以簡便而快速地執行一般機器學習工作。如需詳細資訊，請參閱 [Azure Machine Learning 服務概觀](https://azure.microsoft.com/services/machine-learning/)。如需涵蓋重要術語和概念的機器學習簡介，請參閱 [Azure Machine Learning 簡介](machine-learning-what-is-machine-learning.md)。
-
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
@@ -42,18 +41,26 @@ Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Stu
 
 如需詳細資訊，請參閱[連線到 Machine Learning Web 服務](machine-learning-connect-to-azure-machine-learning-web-service.md)。
 
+**傳統 Web 服務會在哪裡列出？ 新的 ARM 架構 Web 服務會在哪裡列出？**
 
-## 計費問題
+傳統的 Web 服務會在 [Web 服務] 索引標籤的 [Machine Learning Studio](http://studio.azureml.net) 中列出。新的 ARM 架構 Web 服務則會在 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net/)入口網站中列出。未提供交叉清單。
 
-**機器學習服務如何計費？**
+## Microsoft Azure Machine Learning Web 服務的問題
 
-如需計費和價格資訊，請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)。
+**什麼是 Azure ML Web 服務？**
 
-**機器學習服務是否有免費試用版？**
+使用 Azure Machine Learning Web 服務，外部應用程式會即時與機器學習服務工作流程計分模型通訊。機器學習 Web 服務呼叫會將預測結果傳回外部應用程式。若要進行機器學習服務 Web 服務呼叫，您可以傳遞部署 Web 服務時所建立的 API 金鑰。機器學習服務 Web 服務以 REST 為基礎，這是一種常見的 Web 程式設計專案架構。
 
- Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
- 
- 此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
+Azure Machine Learning 有兩種類型的服務：
+
+* 要求回應服務 (RRS) - 這是一種低延遲、調整性高的服務，針對從機器學習服務 Studio 建立和部署的無狀態模型提供介面。
+* 批次執行服務 (BES) - 這是一種非同步的服務，為一批資料記錄進行計分。
+
+有數種方法可以使用 REST API 和存取 Web 服務。例如，您可以使用當您部署 Web 服務時為您產生的範例程式碼，在 C#、R 或 Python 中寫入應用程式 (可以在 Machine Learning Studio 中 Web 服務儀表板中的 API 說明頁面上取得)。或者您可以使用為您建立的範例 Microsoft Excel 活頁簿 (也可以在 Studio 中的 Web 服務儀表板取得)。
+
+**新的 Azure ML Web 服務有哪些主要更新？**
+
+如需新的 Azure Machine Learning Web 服務的詳細資訊，請參閱[相關文件](machine-learning-whats-new.md)。
 
 ## Machine Learning Studio 問題
 
@@ -62,6 +69,14 @@ Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Stu
 **實驗圖形有版本控制或 Git 整合嗎？**
 
 沒有，不過 Machine Learning Studio 會保留其他使用者無法修改的每個實驗反覆運算。如需詳細資訊，請參閱[在 Machine Learning Studio 中管理實驗反覆運算](machine-learning-manage-experiment-iterations.md)。
+
+
+### 部署實驗
+
+**如果我已將預測性實驗部署為傳統 Web 服務，是否可以將它部署為新的 (ARM 架構) Web 服務？**
+
+否，您無法部署先前已部署為傳統 Web 服務的實驗。您必須改為建立新的預測性實驗並加以部署。
+
 
 ### 匯入和匯出機器學習服務的資料
 
@@ -172,7 +187,7 @@ Machine Learning Studio 提供頂級演算法，例如 Scalable Boosted Decision
 
 **Machine Learning Studio 中可使用什麼 R 套件？**
 
-Machine Learning Studio 目前支援 400 個以上的 CRAN R 封裝，以下是所有內含封裝的[目前清單](http://az754797.vo.msecnd.net/docs/RPackages.xlsx)。此外，若要了解如何自行擷取此清單，請參閱 [透過 R 擴展您的實驗](machine-learning-extend-your-experiment-with-r.md)。如果您要的封裝不在此清單中，請在[使用者意見反映論壇](http://go.microsoft.com/fwlink/?LinkId=404231)中提供封裝名稱。
+Machine Learning Studio 目前支援 400 個以上的 CRAN 套件，以下是所有內含套件的[目前清單](http://az754797.vo.msecnd.net/docs/RPackages.xlsx)。此外，若要了解如何自行擷取此清單，請參閱[透過 R 擴展您的實驗](machine-learning-extend-your-experiment-with-r.md)。如果您要的封裝不在此清單中，請在[使用者意見反映論壇](http://go.microsoft.com/fwlink/?LinkId=404231)中提供封裝名稱。
 
 **是否可以建置自訂的 R 模組？**
 
@@ -322,6 +337,239 @@ Machine Learning Studio 依賴使用者提供的 Azure 儲存體帳戶，才能�
 
 Azure Machine Learning 在 MSDN 上也設有社群論壇，可供您詢問 Azure Machine Learning 的相關問題。此論壇由 Azure Machine Learning 團隊控管。請瀏覽 [Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning)。
 
+## 計費問題
+
+**機器學習服務如何計費？**
+
+Azure Machine Learning 服務有兩個元件。Machine Learning Studio 與 Machine Learning Web 服務。
+
+當您在評估 Machine Learning Studio 時，您可以使用免費計費層。免費層也可讓您部署容量有限的傳統 Web 服務。
+
+一旦您斷定 Azure Machine Learning 符合需求，您可以註冊標準層。若要註冊，您必須擁有 Microsoft Azure 訂用帳戶。
+
+標準層會針對您的 Machine Learning Studio 使用量，每月按照每一個授權的費用向您收費。當您在 Studio 中執行實驗時，您必須針對執行實驗時的計算資源付費。當您部署傳統 Web 服務時，交易和計算時數則是以隨用隨付 (PAYG) 基礎來收費。
+
+新的 Machine Learning Web 服務引進了可提高成本可預測性的計費方案。分級定價適用於需要許多容量的客戶，同時還提供折扣費率。
+
+當您建立方案時，即表示您承諾支付固定費用，以換取方案所包含的 API 計算時數和 API 交易的數量。如果您需要更多的包含數量，您可以在方案中新增其他執行個體。如果您需要非常多的包含數量，您可以選擇較高層級的方案，其可提供非常多的包含數量和更好的折扣費率。
+
+在現有執行個體的包含數量用完後，額外的使用量將需要費用，其收費依據是計費方案層所關聯的超額費率。
+
+注意︰每 30 天會重新配置包含的數量，未使用的包含數量不會展期至下一期。
+
+如需其他計費和價格資訊，請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)。
+
+**機器學習服務是否有免費試用版？**
+
+ Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
+ 
+ 此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
+
+**什麼是交易？**
+
+交易代表 Azure Machine Learning 所回應的 API 呼叫。來自要求回應服務 (RRS) 和批次執行服務 (BES) 呼叫的交易會彙總起來，並根據計費方案來收費。
+
+**方案中包含的交易數量是否可用於 RRS 和 BES 交易？**
+
+是，來自 RRS 和 BES 的交易會彙總起來，並根據計費方案來收費。
+
+**什麼是 API 計算時數？**
+
+API 計算時數是 API 呼叫使用 ML 計算資源來執行所花費時間的計費單位。系統會彙總所有呼叫以便計費。
+
+**典型的生產 API 呼叫需要花費多久時間？**
+
+生產 API 呼叫時間的差別可能很大，通常從數百毫秒到幾秒鐘，視資料處理和機器學習服務模式的複雜度而定，也可能需要數分鐘。估計生產 API 呼叫時間最好的方法是在機器學習服務上建立基準模型。
+
+**什麼是 Studio 計算時數？**
+
+Studio 計算時數是實驗在 Studio 中使用計算資源的彙總時間計費單位。
+
+**在新的 Web 服務中，開發/測試層的用途為何？**
+
+Azure ML 的新 Web 服務提供多個層級供您佈建計費方案。開發/測試層提供有限的包含數量，可讓您以新的 Web 服務的形式測試實驗，而不會產生費用。您將有機會「試車」，以查看其運作情形。
+
+**儲存體需要另外付費嗎？**
+
+機器學習服務免費層不需要或不允許個別儲存體。機器學習服務標準層要求使用者必須有 Azure 儲存體帳戶。Azure 儲存體[是另外收費](https://azure.microsoft.com/pricing/details/storage/)。
+
+**機器學習如何支援高可用性工作？**
+
+生產 API 呼叫時間的差別可能很大，通常從數百毫秒到幾秒鐘，視資料處理和機器學習服務模式的複雜度而定，也可能需要數分鐘。估計生產 API 呼叫時間最好的方法是在機器學習服務上建立基準模型。
+
+**我的生產 API 呼叫將使用哪些特定種類的計算資源來執行？**
+
+機器學習是多租用戶服務，後端實際使用的計算資源有所不同，並依效能和可預測性而最佳化。
+
+### 管理新的 Web 服務 
+
+**如果我刪除方案會發生什麼事？**
+
+方案將會從訂用帳戶中移除，並以按比例計算的使用量向您收費。
+
+注意︰您無法刪除 Web 服務正在使用的方案。若要刪除方案，您必須指派新方案給 Web 服務或刪除 Web 服務。
+
+**什麼是方案執行個體？**
+
+方案執行個體是可在計費方案中新增的包含數量單位。為計費方案選取計費層時，方案便會隨附一個執行個體。如果您需要更多的包含數量，您可以在方案中新增所選計費層的執行個體。
+
+**可以新增多少個方案執行個體？**
+
+在訂用帳戶的開發/測試層可以有一個執行個體。
+
+至於在 S1、S2 和 S3 層，則可以視需要新增任意數量的執行個體。
+
+注意︰根據預期的使用量而定，更符合成本效益的方式可能是升級為較高包含數量的層級，而非對目前的層級新增執行個體。
+
+**變更方案層級 (升級/降級) 時會發生什麼事？**
+
+舊方案會遭到刪除，目前的使用量將按比例計費。系統會針對剩餘期間建立新的方案，其中將會有升級/降級層的完整包含數量。
+
+注意︰包含的數量是針對每個期間來配置，未使用的數量不會展期。
+
+**在方案中新增執行個體時會發生什麼事？**
+
+包含的數量會按比例包含，而且可能需要 24 小時才會生效。
+
+**刪除方案執行個體時會發生什麼事？**
+
+執行個體將會從訂用帳戶中移除，並以按比例計算的使用量向您收費。
+
+
+### 註冊新的 Web 服務方案
+
+**如何註冊方案？**
+
+有兩種方式可供建立計費方案。
+
+當您第一次部署新的 Web 服務時，您可以選擇現有方案，或建立新方案。
+
+以這種方式建立的方案會位於預設區域中，而且 Web 服務將會部署到該區域。
+
+建議您部署服務前定義計費方案；例如，如果您想要將服務部署到預設區域以外的區域。
+
+在此情況下，您可以登入 Azure Machine Learning Web 服務入口網站，然後瀏覽至 [方案] 頁面。您可以在該處新增和刪除方案，以及修改現有方案。
+
+**我應該選擇從哪一個方案來開始？**
+
+建議您從標準 S1 層來開始，並監視服務的使用量。如果您發現包含的數量使用快速，則可以新增執行個體，或改用較高的方案層並獲得更好的折扣費率。在整個計費週期內，您都可以視需要調整計費方案。
+
+**哪些區域有提供新的方案？**
+
+支援新的 Web 服務的三個生產區域中有提供新的計費方案︰
+
+* 美國中南部
+* 西歐
+* 東南亞
+
+**我在多個區域擁有 Web 服務。是否每個區域都需要一個方案？**
+
+是。不同區域有不同的方案價格。當您將 Web 服務部署到其他區域時，您必須對服務指派該區域特定的方案。
+
+### 新的 Web 服務 - 超額
+
+**如何檢查 Web 服務使用量是否超額？**
+
+您可以在 Azure Machine Learning Web 服務入口網站的 [方案] 頁面檢視所有方案的使用量。登入入口網站，然後按一下 [方案] 功能表選項。
+
+在資料表的 [交易] 和 [計算] 資料行，您可以看到方案的包含數量和已使用的百分比。
+
+**開發/測試層的包含數量用完時會發生什麼事？**
+
+獲指派開發/測試層的服務會停止，直到下一個週期來臨，或是您將它們改到某個付費層為止。
+
+**針對傳統的 Web 服務和超額的新 Web 服務，其要求回應 (RRS) 和批次 (BES) 工作負載如何計算價格？**
+
+對於 RRS 工作負載，我們會向您收取每個 API 交易呼叫，以及與這些要求相關之計算時間的費用。因此，RRS 生產 API 交易費用的計算方式為：API 呼叫總數乘以每 1,000 筆交易的定價 (依個別交易的比例計算)。RRS API 生產 API 計算時數費用的計算方式為：每個 API 呼叫所需的執行時間總數乘以 API 交易總數，再乘以每個生產 API 計算時數的定價。例如，對於標準 S1 超額來說，執行時間各為 0.72 秒的 1,000,000 個 API 交易，將會產生 (1,000,000 個 * 0.50 美元/1,000 個 API 交易) 500 美元的生產 API 交易費用和 (1,000,000 個 * 0.72 秒 * 2 美元/小時) 400 美元的生產 API 計算時數，總計 900 美元。
+
+BES 工作負載採用相同的計費方式，不過 API 交易費用代表您提交的批次工作數目，而計算費用則代表與這些批次工作相關的計算時間。因此，BES 生產 API 交易費用的計算方式為：提交的工作總數乘以每 1,000 筆交易的定價 (依個別交易的比例計算)。BES API 生產 API 計算時數費用的計算方式為：作業中每個資料列所需的執行時間乘以作業中的資料列總數、乘以工作總數，再乘以每個生產 API 計算時數的定價。在使用機器學習計算機時，交易度量代表您計劃提交的作業數量，而每筆交易時間欄位則代表每個作業中所有資料列執行所需時間的總數。例如，在標準 S1 超額中，如果您每天提交 100 個作業，每個作業包含 500 個資料列，且執行時間各為 0.72 秒，則每月超額費用將會是 (每天 100 個作業 = 每月 3,100 個作業 * 0.50 美元/1,000 個 API 交易) 1.55 美元的生產 API 交易費用和 (500 個資料列 * 0.72 秒 * 3,100 個作業 * 2 美元/小時) 620 美元的生產 API 計算時數，總計 621.55 美元。
+
+### Azure ML 傳統 Web 服務
+
+**是否還有提供隨用隨付？** 是，Azure Machine Learning 中仍然提供傳統的 Web 服務。
+
+### Azure Machine Learning 的免費層和標準層
+
+**Azure 機器學習服務免費層包含什麼？**
+
+Azure 機器學習服務免費層主要是用來提供 Azure Machine Learning Studio 的深入介紹。您只需要 Microsoft 帳戶即可註冊。免費層可讓每個 [Microsoft 帳戶](https://www.microsoft.com/account/default.aspx)免費存取一個 Azure Machine Learning Studio 工作區。其中包括能夠使用最多 10GB 的儲存體，以及能夠讓模型以預備 API 來運作。免費層工作負載不包含在 SLA 內，且僅供開發與個人使用。免費層工作負載無法藉由連接到內部部署 SQL 伺服器存取資料。上表概要說明了免費層與標準層之間的多項差異，除此之外還可能存在其他差異，而免費層功能隨時可能變更。
+
+**Azure 機器學習服務的標準層和方案包含什麼？**
+
+Azure 機器學習服務標準層是 Azure Machine Learning Studio 的付費正式版本。Azure ML 服務 Studio 月費每月會依據個別授權收費，不足的月份則按比例收費。Azure ML Studio 實驗時數會依據進行中實驗的每個計算時數收費。不足的時數會按比例收費。
+
+Azure ML API 服務會根據它是傳統 Web 服務還是新的 Web 服務來收費。
+
+以下費用會依您訂用帳戶的每個工作區彙總計算。
+
+* ML 授權訂用 - ML 授權訂用是用於存取 ML Studio 工作區的月費，要在 Studio 中執行實驗並使用生產 API 的話，就必須訂用此授權。
+* Studio 實驗時數 - 此度量合計在 ML Studio 中執行實驗和在預備環境中執行生產 API 呼叫而產生的所有計算費用。
+* 連接到模型中的內部部署 SQL 伺服器以存取資料，供訓練和評分使用。
+* 傳統 Web 服務：
+	* 生產 API 計算時數 - 此度量包含生產環境中執行的 Web 服務所產生的計算費用。
+	* 生產 API 交易 (以 1000 個為單位) - 此度量包含每次呼叫生產 Web 服務所產生的費用。
+
+除了上述費用，如果是新的 Web 服務，費用會彙總至選取的方案︰
+
+* 標準 S1/S2/S3 API 方案 (單位) - 此度量會表示針對新的 Web 服務選取的執行個體的類型
+* 標準 S1/S2/S3 超額 API 計算時數 - 此度量包含現有執行個體中包含的數量用完後，新的 Web 服務在生產環境中執行所產生的計算費用。額外的使用量會以與 S1/S2/S3 方案層相關聯的超額費率收費。
+* 標準 S1/S2/S3 超額 API 交易 (在 1,000 秒內) - 此度量包含現有執行個體中包含的數量用完後，對生產環境的新 Web 服務所進行的每個呼叫所產生的費用。額外的使用量會以與 S1/S2/S3 方案層相關聯的超額費率收費。
+* 包含的數量 API 計算時數 - 在新的 Web 服務中，此度量表示 API 計算時數的包含數量
+* 包含的數量 API 交易 (在 1,000 秒內) - 在新的 Web 服務中，此度量表示 API 交易的包含數量
+
+
+**要如何註冊 Azure ML 免費層？**
+
+您只需要 Microsoft 帳戶。前往 [Azure 機器學習服務首頁](https://azure.microsoft.com/services/machine-learning/)，然後按一下 [立即開始] 按鈕。使用 Microsoft 帳戶登入，系統便會為您建立免費層工作區。您可以立即開始探索，並建立機器學習服務實驗。
+
+**要如何註冊 Azure ML 標準層？**
+
+您必須先取得 Azure 訂用帳戶的存取權，才能建立標準 ML 工作區。您可以註冊 30 天的免費試用 Azure 訂用帳戶，之後再升級為付費 Azure 訂用帳戶，或是直接購買付費的 Azure 訂用帳戶。您可以在取得訂用帳戶的存取權後，從 Microsoft Azure 傳統入口網站建立機器學習服務工作區。請檢視[逐步指示](https://azure.microsoft.com/trial/get-started-machine-learning-b/)。
+
+或者，您也可以受到標準 ML 工作區擁有者的邀請，存取擁有者的工作區。
+
+**我可以在免費層中指定使用我自己的 Azure Blob 儲存體帳戶嗎？**
+
+否，標準層相當於推出層次之前可用的機器學習服務版本。
+
+**我可以 API 形式將機器學習服務模型部署在免費層嗎？**
+
+是，在免費層中，您可以將機器學習模型轉變成預備 API 服務來運作。若要讓預備 API 服務進入正式運作並取得操作化服務的生產端點，您必須使用標準層。
+
+**Azure 免費試用版和 Azure 機器學習服務免費層有何差異？**
+
+[Microsoft Azure 免費試用版](https://azure.microsoft.com/free/)提供適用於任何 Azure 服務的一個月點數，而 Azure Machine Learning 免費層特別為非生產工作負載，提供連續存取 Azure Machine Learning 服務。
+
+**要如何將實驗從免費層移至標準層？**
+
+若要將實驗從免費層複製到標準層，請遵循下方所描述的步驟。
+
+1.	登入 Azure Machine Learning Studio，確定您可以在上方導覽列的工作區選取器中看到免費工作區和標準工作區。
+2.	如果您目前位於標準工作區，請切換至免費工作區。
+3.	在實驗清單檢視中，選取想要複製的實驗，然後按一下 [複製] 命令按鈕。
+4.	在快顯對話方塊中選取 [標準工作區]，然後按一下 [複製] 按鈕。
+5.	請注意，將會連同實驗將所有相關聯的資料集、訓練好的模型等項目複製到標準工作區中。
+6.	您必須在標準工作區中重新執行實驗並重新發行 Web 服務。
+
+### Studio 工作區
+
+**何謂機器學習授權訂用帳戶？何時會需要此帳戶？**
+
+每一份機器學習授權就是一個工作區。我們建議在 ML Studio 上執行實驗或是生產 API 服務的使用者，訂用機器學習服務授權以獲得保障。
+
+**不同的工作區會有不同的帳單嗎？**
+
+一份帳單上，工作區費用會依每個適用的度量而個別細分。
+
+**我的實驗作業會在何種特定類型的計算資源上進行？**
+
+機器學習是多租用戶服務，後端實際使用的計算資源有所不同，並依效能和可預測性而最佳化。
+
+### 來賓存取
+
+**何謂 Azure 機器學習 Studio 的來賓存取？**
+
+「來賓存取」是有限制的試用經驗，它能讓您在不經驗證的情況下，於 Azure 機器學習 Studio 中免費建立及執行實驗。來賓工作階段為非持續性工作階段 (無法儲存) 且僅限 8 小時。其他限制包括缺少 R 和 Python 支援、缺少暫存 API，以及有限的資料集大小和儲存體容量。透過比較，選擇以 Microsoft 帳戶登入的使用者將享有前述機器學習 Studio 免費層的完整存取權限，包括持續性工作區和更全面的功能。只要在 [https://studio.azureml.net](https://studio.azureml.net) 中按一下 [開始使用] 按鈕，您便可以選擇免費的機器學習經驗，以及選取來賓存取或以 Microsoft 帳戶登入。
 
 <!-- Module References -->
 [image-reader]: https://msdn.microsoft.com/library/azure/893f8c57-1d36-456d-a47b-d29ae67f5d84/
@@ -334,4 +582,4 @@ Azure Machine Learning 在 MSDN 上也設有社群論壇，可供您詢問 Azure
 [python]: https://msdn.microsoft.com/library/azure/CDB56F95-7F4C-404D-BDE7-5BB972E6F232
 [counts]: https://msdn.microsoft.com/library/azure/dn913056.aspx
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

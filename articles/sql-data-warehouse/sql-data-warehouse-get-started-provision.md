@@ -40,15 +40,15 @@
 
     ![建立資料庫](./media/sql-data-warehouse-get-started-provision/create-database.png)
 
-	- **伺服器**︰我們建議您先選取您的伺服器。您可以選取現有的伺服器，或[建立一個新的伺服器](./sql-data-warehouse-get-started-new-server.md)。 
+	- **伺服器**︰我們建議您先選取您的伺服器。您可以選取現有的伺服器，或[建立一個新的伺服器](./sql-data-warehouse-get-started-new-server.md)。
 
 	- **資料庫名稱**︰將用來參考 SQL 資料倉儲的名稱。對伺服器而言，它必須是唯一的。
 	
-    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-manage-compute-overview.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。
+    - **效能**：我們建議從 400 DWU 開始。您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。若要深入了解 DWU，請參閱[調整](./sql-data-warehouse-manage-compute-overview.md)相關文件或我們的[價格頁面](https://azure.microsoft.com/zh-TW/pricing/details/sql-data-warehouse/)。
 
     - **訂用帳戶**：選取此 SQL 資料倉儲將會計費的訂用帳戶。
 
-    - **資源群組**：主要為了協助您管理 Azure 資源集合。深入了解[資源群組](../azure-portal/resource-group-portal.md)。
+    - **資源群組**：主要為了協助您管理 Azure 資源集合。深入了解[資源群組](../resource-group-overview.md)。
 
     - **選取來源**：按一下 [選取來源] > [範例]。因為此時只有一個可用的範例資料庫，所以當您選取 [範例] 時，Azure 會以 AdventureWorksDW 自動填入 [選取範例] 選項。
 
@@ -68,4 +68,4 @@
 
 如果您嘗試將現有的資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](./sql-data-warehouse-overview-migrate.md)或使用[移轉公用程式](./sql-data-warehouse-migrate-migration-utility.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

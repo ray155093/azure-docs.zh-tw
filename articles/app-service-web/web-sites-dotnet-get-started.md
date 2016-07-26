@@ -199,8 +199,7 @@
 
 	![在 Azure 中執行的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13deployedsite.png)
 
-> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。
-> ![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
+	> [AZURE.TIP] 您可以啟用 [Web 單鍵發佈] 工具列來加快部署速度，方法是依序按一下 [檢視] > [工具列]，然後選取 [Web 單鍵發佈]。您可以使用工具列來選取設定檔、按一下按鈕來發佈，或按一下按鈕來開啟 [發佈 Web] 精靈。![Web 單鍵發行工具列](./media/web-sites-dotnet-get-started/weboneclickpublish.png)
 
 ## 疑難排解
 
@@ -239,6 +238,6 @@
 
 * 當您不再使用 Web 應用程式及任何相關 Azure 資源時，請刪除包含這些資源的資源群組。
 
-	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Azure 入口網站來部署及管理 Azure 資源](../resource-group-portal.md)。
+	如需有關如何在 Azure 入口網站使用資源群組的資訊，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

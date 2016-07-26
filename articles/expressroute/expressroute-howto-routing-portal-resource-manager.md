@@ -13,7 +13,7 @@
    ms.topic="hero-article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/08/2016"
+   ms.date="07/19/2016"
    ms.author="cherylmc"/>
 
 # 建立和修改 ExpressRoute 線路的路由
@@ -113,8 +113,8 @@
 
 2. 設定線路的 Azure 公用對等。繼續執行接下來的步驟之前，請確定您有下列項目：
 
-	- 主要連結的 /30 子網路。 
-	- 次要連結的 /30 子網路。 
+	- 主要連結的 /30 子網路。
+	- 次要連結的 /30 子網路。
 	- 用來設定此對等的所有 IP 位址都必須是有效的公用 IPv4 位址。
 	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
 	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
@@ -237,4 +237,4 @@
 
 -  如需使用虛擬網路的詳細資訊，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

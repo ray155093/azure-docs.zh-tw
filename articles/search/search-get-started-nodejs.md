@@ -13,7 +13,7 @@
 	ms.workload="search"
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/08/2016"
+	ms.date="07/14/2016"
 	ms.author="evboyle"/>
 
 # 開始在 NodeJS 中使用 Azure 搜尋服務
@@ -54,12 +54,11 @@
 
 使用以下其中一種方法下載範例。
 
-1. 移至 [AzureSearchNodeJSIndexerDemo](http://go.microsoft.com/fwlink/p/?LinkId=530198)。
+1. 移至 [AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodeJSIndexerDemo)。
 2. 按一下 [下載 ZIP]，儲存 .zip 檔案，然後解壓縮其中所含的所有檔案。
 
 所有後續的檔案修改及執行陳述式均會用到此資料夾的檔案。
 
-或者如果您在路徑陳述式中有 GIT，可以開啟 PowerShell 視窗並輸入 `git clone https://github.com/EvanBoyle/AzureSearchNodeJSIndexerDemo.git`
 
 ## 使用您的搜尋服務 URL 及 API 金鑰更新 config.js
 
@@ -121,4 +120,4 @@ USGS 資料集包含與羅德島州相關的記錄。如果您在空白的搜尋
 [5]: ./media/search-get-started-nodejs/AzSearch-NodeJS-configjs.png
 [9]: ./media/search-get-started-nodejs/rogerwilliamsschool.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0720_2016-->

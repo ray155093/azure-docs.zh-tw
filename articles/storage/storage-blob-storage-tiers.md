@@ -161,7 +161,7 @@ Blob 儲存體帳戶會對以儲存層基礎的 Blob 儲存體使用新的價格
 
 8. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
 
-9. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
+9. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 10. 選取儲存體帳戶的區域。
 
@@ -340,4 +340,4 @@ AzCopy 為 Windows 命令列公用程式，可以極高效能將資料複製到 
 
 [瀏覽及探索您的儲存體帳戶](http://storageexplorer.com/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

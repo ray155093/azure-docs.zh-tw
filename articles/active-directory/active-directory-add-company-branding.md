@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/16/2016" 
+	ms.date="07/13/2016"
 	ms.author="MarkVi"/>
 
 # 在登入和存取面板頁面加上公司商標
@@ -42,7 +42,7 @@
 
 當您使用租用戶特定 URL (例如 https://outlook.com/**contoso**.com 或 https://mail.**contoso**.com) 造訪服務時，才會出現加上商標的登入頁面。
 
-當您使用非租用戶特定 URL (例如 https://mail.office365.com)) 造訪服務時，則會出現沒有商標的登入頁面。在此情況下，在您輸入使用者識別碼或選取使用者圖格之後，您的商標就會出現。
+當您使用非租用戶特定 URL (例如 https://mail.office365.com) 造訪服務時，則會出現沒有商標的登入頁面。在此情況下，在您輸入使用者識別碼或選取使用者圖格之後，您的商標就會出現。
 
 > [AZURE.NOTE]
 >
@@ -120,8 +120,8 @@
 
 假設有下列組態︰
 
-- 預設的橫幅標誌和英文登入頁面文字 
-- 語言特定的德文登入頁面文字 
+- 預設的橫幅標誌和英文登入頁面文字
+- 語言特定的德文登入頁面文字
 
 如果您的語言喜好設定是德文，您會得到預設的橫幅標誌但為德文文字。
 
@@ -177,8 +177,8 @@
 
 **若要確認商標是否已套用︰**
 
-1. 開啟 InPrivate 或 Incognito 瀏覽器工作階段。 
-2. 瀏覽 https://outlook.com/contoso.com，並將 contoso.com 取代為您自訂的網域。 
+1. 開啟 InPrivate 或 Incognito 瀏覽器工作階段。
+2. 瀏覽 https://outlook.com/contoso.com，並將 contoso.com 取代為您自訂的網域。
 
 這也適用於類似 contoso.onmicrosoft.com 的網域。
 
@@ -219,4 +219,4 @@ Azure AD 中的部分可自訂元素有多個使用案例。您可以在每個�
 [7]: ./media/active-directory-add-company-branding/SignInPage_aftercustomization_croppedtop.png
 [8]: ./media/active-directory-add-company-branding/APBranding.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

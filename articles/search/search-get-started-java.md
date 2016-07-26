@@ -13,7 +13,7 @@
 	ms.workload="search"
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
-	ms.date="03/08/2016"
+	ms.date="07/14/2016"
 	ms.author="evboyle"/>
 
 # 開始在 Java 中使用 Azure 搜尋服務
@@ -69,7 +69,7 @@
 
 ## 下載範例專案
 
-1. 前往 Github 的 [AzureSearchJavaDemo](http://go.microsoft.com/fwlink/p/?LinkId=530197)。
+1. 前往 Github 的 [AzureSearchJavaDemo](https://github.com/AzureSearch/AzureSearchJavaIndexerDemo)。
 
 2. 按一下 [下載 ZIP]，將 .zip 檔案儲存至磁碟，然後解壓縮其中所含的所有檔案。可以考慮將檔案解壓縮到 Java 工作區，以便之後可以輕鬆找到專案。
 
@@ -203,4 +203,4 @@ USGS 資料集包含與羅德島州相關的記錄。如果您在空白的搜尋
 [11]: ./media/search-get-started-java/rogerwilliamsschool1.PNG
 [12]: ./media/search-get-started-java/AzSearch-Java-SelectProject.png
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0720_2016-->

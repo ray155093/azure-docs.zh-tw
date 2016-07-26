@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/08/2016"
+	ms.date="07/18/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 將您的自訂網域名稱新增至 Azure Active Directory
@@ -75,4 +75,4 @@
 -   [在您的使用者登入時顯示公司的商標](active-directory-add-company-branding.md)
 -   [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

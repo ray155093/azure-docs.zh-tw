@@ -10,7 +10,7 @@
 <tags
  ms.service="iot-hub"
  ms.devlang="dotnet"
- ms.topic="hero-article"
+ ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
  ms.date="04/29/2016"
@@ -100,7 +100,7 @@
 
 此指令碼會執行下列動作︰
 
-1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 **azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
+1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 ***azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
 
 2.  建立模擬的裝置專案 **iotdm\_simple\_sample.vcxproj**。
 
@@ -197,4 +197,4 @@
 [lnk-sample-ui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

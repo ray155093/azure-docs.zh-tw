@@ -54,7 +54,7 @@
 <a name="view-access-keys"/>
 ## 檢視 Power BI API 存取金鑰
 
-呼叫 Power BI REST API 所需的其中一項最重要資訊是**存取金鑰**。這些存取金鑰用來產生**應用程式權杖**，而這些權杖用來驗證 API 要求。若要檢視您的**存取金鑰**，請按一下 [設定刀鋒視窗] 上的 [存取金鑰]。如需**應用程式權杖**的詳細資訊，請參閱[應用程式權杖流程的運作方式](power-bi-embedded-app-token-flow.md)。
+呼叫 Power BI REST API 所需的其中一項最重要資訊是**存取金鑰**。這些存取金鑰用來產生**應用程式權杖**，而這些權杖用來驗證 API 要求。若要檢視您的**存取金鑰**，請按一下 [設定刀鋒視窗] 上的 [存取金鑰]。若要深入了解 **應用程式權杖**，請參閱 [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)。
 
    ![](media\power-bi-embedded-get-started\access-keys.png)
 
@@ -70,7 +70,7 @@
 
 ## 建立要內嵌到應用程式中的 Power BI 資料集和報告
 
-您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
+您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/zh-TW/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
 
 透過 **Power BI Desktop**，將資料複本匯入 **Power BI Desktop** 或使用 **DirectQuery** 直接連接到資料來源，即可連接到資料來源。
 
@@ -98,9 +98,7 @@
 
 ## 另請參閱
 - [開始使用範例](power-bi-embedded-get-started-sample.md)
-- [什麼是 Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
-- [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started)
+- [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)
 - [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
-- [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

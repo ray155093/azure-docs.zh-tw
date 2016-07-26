@@ -142,6 +142,7 @@
 |---|---|---|
 |**Alaska Communications**|Equinix|Seattle|
 |**[XO 通訊](http://www.xo.com/)**|Equinix|矽谷|
+|**[1CLOUDSTAR](http://www.1cloudstar.com/service/cloudconnect-azure-expressroute/)**|Equinix|新加坡|
 
 ## ExpressRoute 系統整合者
 
@@ -151,7 +152,7 @@
 |---|---|
 |**[Avanade Inc.](http://www.avanade.com/)**| 亞洲、歐洲、美國 |
 |**[Dotnet 解決方案](http://www.dotnetsolutions.co.uk/)**| 歐洲 |
-|**[Equinix Professional Services](http://www.equinix.com/services/consulting/)**|US||
+|**[Equinix Professional Services](http://www.equinix.com/services/consulting/)**|US|
 |**[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** | 亞洲 |
 |**[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** | US |
 |**[Project Leadership](http://www.projectleadership.net/azure)** | US |
@@ -164,4 +165,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

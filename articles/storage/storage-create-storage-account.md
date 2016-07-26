@@ -37,7 +37,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 每個儲存在 Azure 儲存體中的物件都有一個唯一 URL 位址。儲存體帳戶名稱會構成該位址的子網域。子網域和每個服務的特定網域名稱的組合，會構成儲存體帳戶的*端點*。
 
-例如，如果您的儲存體帳戶名為 *mystorageaccount* ，則儲存體帳戶的預設端點將是：
+例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
 
 - Blob 服務：http://*mystorageaccount*.blob.core.windows.net
 
@@ -49,7 +49,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 > [AZURE.NOTE] Blob 儲存體帳戶只會公開 Blob 服務端點。
 
-用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。例如，Blob 位址的格式可能如下：http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob* 。
+用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。例如，Blob 位址的格式可能如下：http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*。
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。對於傳統儲存體帳戶，如需詳細資訊，請參閱[針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md)。對於 Resource Manager 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com)，但是您可以使用 PowerShell 設定它。如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。
 
@@ -79,7 +79,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
 
-8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
+8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 9. 選取儲存體帳戶的地理位置。如需各區域可用服務的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
 
@@ -157,4 +157,4 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/) (英文)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

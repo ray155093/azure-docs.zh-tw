@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/29/2016"
+	ms.date="07/14/2016"
 	ms.author="vakarand"/>
 
 
@@ -27,8 +27,8 @@
 | 需求 | 說明|
 | ----------- | ---------- |
 |Azure AD Premium| Azure AD Connect Health 是 Azure AD Premium 的一個功能，而且需要 Azure AD Premium。</br></br>如需詳細資訊，請參閱[開始使用 Azure AD Premium](active-directory-get-started-premium.md)。</br>若要啟動 30 天免費試用版，請參閱[開始試用](https://azure.microsoft.com/trial/get-started-active-directory/)。|
-|您必須是 Azure AD 的全域系統管理員，才能開始使用 Azure AD Connect Health|依預設，只有全域系統管理員可以安裝和設定 Health 代理程式，以便開始使用、存取入口網站，以及在 Azure AD Connect Health 內執行任何作業。如需其他資訊，請參閱[管理您的 Azure AD 目錄](active-directory-administer.md)。<br><br>使用角色型存取控制，您可以允許貴組織中的其他使用者存取 Azure AD Connect Health。如需詳細資訊，請參閱 [Azure AD Connect Health 的角色型存取控制。](active-directory-aadconnect-health-operations.md#manage-access-with-role-based-access-control) </br></br>**重要：**您在安裝代理程式時使用的帳戶必須是工作或學校帳戶，且不能是 Microsoft 帳戶。如需詳細資訊，請參閱[以組織身分註冊 Azure](sign-up-organization.md)
-|Azure AD Connect Health 代理程式安裝在每部目標伺服器上| Azure AD Connect Health 要求在目標伺服器上安裝代理程式，以提供在入口網站中檢視的資料。</br></br>例如，若要取得 AD FS 內部部署基礎結構的相關資料，代理程式必須安裝在 AD FS 伺服器、AD FS Proxy 伺服器和 Web 應用程式 Proxy 伺服器上。</br></br>**重要：**您在安裝代理程式時使用的帳戶必須是工作或學校帳戶，且不能是 Microsoft 帳戶。如需詳細資訊，請參閱[以組織身分註冊 Azure](sign-up-organization.md)|
+|您必須是 Azure AD 的全域系統管理員，才能開始使用 Azure AD Connect Health|依預設，只有全域系統管理員可以安裝和設定 Health 代理程式，以便開始使用、存取入口網站，以及在 Azure AD Connect Health 內執行任何作業。如需其他資訊，請參閱[管理您的 Azure AD 目錄](active-directory-administer.md)。<br><br>使用角色型存取控制，您可以允許貴組織中的其他使用者存取 Azure AD Connect Health。如需詳細資訊，請參閱 [適用於 Azure AD Connect Health 的角色型存取控制。](active-directory-aadconnect-health-operations.md#manage-access-with-role-based-access-control) </br></br>**重要：** 您在安裝代理程式時使用的帳戶必須是工作或學校帳戶，且不能是 Microsoft 帳戶。如需詳細資訊，請參閱[以組織身分註冊 Azure](sign-up-organization.md)
+|Azure AD Connect Health 代理程式安裝在每部目標伺服器上| Azure AD Connect Health 要求在目標伺服器上安裝代理程式，以提供在入口網站中檢視的資料。</br></br>例如，若要取得 AD FS 內部部署基礎結構的相關資料，代理程式必須安裝在 AD FS 伺服器、AD FS Proxy 伺服器及 Web 應用程式 Proxy 伺服器上。同樣地，若要取得內部部署 AD DS 基礎結構的相關資料，代理程式必須安裝在網域控制站上。</br></br>**重要：** 您在安裝代理程式時使用的帳戶必須是工作或學校帳戶，且不能是 Microsoft 帳戶。如需詳細資訊，請參閱[以組織身分註冊 Azure](sign-up-organization.md)|
 |Azure 服務端點的輸出連線|在安裝期間和執行階段，代理程式需要連線至以下列出的 Azure AD Connect Health 服務端點。如果您封鎖輸出連線，請確定在允許清單中加入下列內容：</br></br><li>&#42;.blob.core.windows.net </li><li>&#42;.queue.core.windows.net</li><li>adhsprodwus.servicebus.windows.net - 連接埠：5671 </li><li>https://management.azure.com </li><li>https://s1.adhybridhealth.azure.com/</li><li>https://policykeyservice.dc.ad.msft.net/</li><li>https://login.windows.net</li><li>https://login.microsoftonline.com</li><li>https://secure.aadcdn.microsoftonline-p.com</li> |
 |在執行代理程式的伺服器上的防火牆連接埠。| 為了讓代理程式能與 Azure AD Health 服務端點進行通訊，代理程式要求開啟下列防火牆連接埠。</br></br><li>TCP/UDP 連接埠 443</li><li>TCP/UDP 連接埠 5671</li>
 |如果啟用 IE 增強式安全性，則允許下列網站|如果要在即將安裝代理程式的伺服器上啟用 IE 增強式安全性，則必須允許下列網站。</br></br><li>https://login.microsoftonline.com</li><li>https://secure.aadcdn.microsoftonline-p.com</li><li>https://login.windows.net</li><li>Azure Active Directory 所信任的組織同盟伺服器。例如：https://sts.contoso.com</li>
@@ -125,7 +125,7 @@
 [//]: # "Start of Agent Proxy Configuration Section"
 
 ## 安裝適用於同步處理的 Azure AD Connect Health 代理程式
-適用於同步處理的 Azure AD Connect Health 代理程式會自動安裝在 Azure AD Connect 的最新組建中。如果要使用適用於同步處理的 Azure AD Connect，您必須下載最新版的 Azure AD Connect 並安裝它。您可以在[此處](http://www.microsoft.com/download/details.aspx?id=47594)下載最新版本。
+適用於同步處理的 Azure AD Connect Health 代理程式會自動安裝在 Azure AD Connect 的最新組建中。如果要使用適用於同步處理的 Azure AD Connect，您必須下載最新版的 Azure AD Connect 並安裝它。您可以在 [此處](http://www.microsoft.com/download/details.aspx?id=47594) 下載最新版本。
 
 若要確認已安裝代理程式，請開啟服務，並尋找下列項目。如果您已完成設定，這些服務應該正在執行。否則，他們將不會啟動，直到設定完成為止。
 
@@ -134,7 +134,7 @@
 
 ![驗證適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/services.png)
 
-> [AZURE.NOTE] 請記住，使用 Azure AD Connect Health 需要 Azure AD Premium。如果您沒有 Azure AD Premium，將無法完成 Azure 入口網站中的組態。如需詳細資訊，請參閱[此處](active-directory-aadconnect-health-agent-install.md#requirements)的需求。
+> [AZURE.NOTE] 請記住，使用 Azure AD Connect Health 需要 Azure AD Premium。如果您沒有 Azure AD Premium，將無法完成 Azure 入口網站中的組態。如需詳細資訊，請參閱 [此處](active-directory-aadconnect-health-agent-install.md#requirements) 的需求。
 
 
 ## 手動 Azure AD Connect Health for Sync 註冊
@@ -155,7 +155,34 @@
 
 當系統提示您進行驗證時，您應該使用用來設定 Azure AD Connect 的相同全域系統管理員帳戶 (例如 admin@domain.onmicrosoft.com)。
 
+## 安裝適用於 AD DS 的 Azure AD Connect Health 代理程式
+若要啟動代理程式安裝，請按兩下您所下載的 .exe 檔案。在第一個畫面上，按一下 [安裝]。
 
+![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install1.png)
+
+一旦安裝完成之後，按一下 [立即設定]。
+
+![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install2.png)
+
+這將會啟動命令提示字元，然後再啟動將執行 Register-AzureADConnectHealthADDSAgent 的特定 PowerShell。系統將提示您登入 Azure。繼續進行並登入。
+
+![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install3.png)
+
+
+登入後，PowerShell 將會繼續。一旦完成之後，您就可以關閉 PowerShell，且設定已完成。
+
+此時，應該會自動啟動服務，且代理程式現在將會監視並收集資料。以下螢幕擷取畫面是輸出的範例。請注意，如果您還未符合前幾節所述的所有必要條件，您將會在 PowerShell 視窗中看到警告。請務必在安裝代理程式之前，先完成[這裡](active-directory-aadconnect-health-agent-install.md#requirements)的需求。
+
+![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install4.png)
+
+若要確認已安裝代理程式，請開啟服務，並尋找下列項目：
+
+- Azure AD Connect Health AD DS Insights 服務
+- Azure AD Connect Health AD DS 監視服務
+
+這兩項服務將不會啟動，直到設定完成為止。
+
+![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install5.png)
 
 ## 設定 Azure AD Connect Health 代理程式使用 HTTP Proxy
 您可以設定 Azure AD Connect Health 代理程式使用 HTTP Proxy。
@@ -187,7 +214,7 @@
 
 	Set-AzureAdConnectHealthProxySettings -HttpsProxyAddress address:port
 
-範例：Set-AzureAdConnectHealthProxySettings -HttpsProxyAddress myproxyserver:443
+範例：*Set-AzureAdConnectHealthProxySettings -HttpsProxyAddress myproxyserver:443*
 
 - 「位址」可以是可解析的 DNS 伺服器名稱或 IPv4 位址
 - 「連接埠」可以省略。如果省略，則會選擇 443 做為預設連接埠。
@@ -215,12 +242,13 @@
 
 - Adfs
 - Sync
+- ADDS
 
 您可以在命令中使用 -ShowResults 旗標來檢視詳細的記錄。請使用下列範例：
 
     Test-AzureADConnectHealthConnectivity -Role Sync -ShowResult
 
->[AZURE.NOTE]為了使用連線工具，您必須先完成代理程式註冊。如果您無法完成代理程式註冊，請確定您已符合 Azure AD Connect Health 的所有[需求](active-directory-aadconnect-health-agent-install.md#requirements)。這項連線測試預設是在代理程式註冊期間執行。
+>[AZURE.NOTE]為了使用連線工具，您必須先完成代理程式註冊。如果您無法完成代理程式註冊，請確定您已符合 Azure AD Connect Health 的所有 [需求](active-directory-aadconnect-health-agent-install.md#requirements)。這項連線測試預設是在代理程式註冊期間執行。
 
 
 
@@ -230,7 +258,8 @@
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
 * [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0720_2016-->

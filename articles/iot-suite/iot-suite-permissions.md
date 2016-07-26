@@ -11,7 +11,7 @@
 <tags
   ms.service="iot-suite"
   ms.devlang="na"
-  ms.topic="article"
+  ms.topic="get-started-article"
   ms.tgt_pltfrm="na"
   ms.workload="na"
   ms.date="05/16/2016"
@@ -129,6 +129,8 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 
 ![][img-flowchart]
 
+> [AZURE.NOTE] 在驗證您為 AAD 租用戶的全域管理員和訂用帳戶的共同管理員後，如果您還是持續看到錯誤，請帳戶管理員依以下順序移除使用者並重新指派必要的權限︰將使用者新增為全域管理員，然後將使用者新增為 Azure 訂用帳戶的共同管理員。如果問題持續發生，請連絡 [說明與支援][lnk-help-support]。
+
 **當我有 Azure 訂用帳戶時為何會出現此錯誤？** *需要有 Azure 訂用帳戶，才能建立預先設定的方案。只需要幾分鐘的時間，您就可以建立免費試用帳戶。*
 
 如果您確定有 Azure 訂用帳戶，請驗證您的訂用帳戶的租用戶對應，並確保已在下拉式清單中選取正確的租用戶。如果您已驗證所需的租用戶是否正確，請遵循上圖並驗證您的訂用帳戶與此 AAD 租用戶的對應。
@@ -144,5 +146,6 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 [lnk-service-admins]: https://azure.microsoft.com/support/changing-service-admin-and-co-admin/
 [lnk-admin-roles]: https://azure.microsoft.com/documentation/articles/billing-add-change-azure-subscription-administrator/
 [lnk-resource-cs]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/DeviceAdministration/Web/Security/RolePermissions.cs
+[lnk-help-support]: https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

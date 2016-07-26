@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
- 	ms.date="04/18/2016"
+ 	ms.date="07/18/2016"
 	ms.author="juliako"/>
 
 
@@ -50,7 +50,7 @@
 
 需要有下列項目，才能完成教學課程。
 
-- 若要完成此教學課程，您需要 Azure 帳戶。 
+- 若要完成此教學課程，您需要 Azure 帳戶。
 	
 	如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。您將獲得能用來試用 Azure 付費服務的額度。即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
 - 作業系統：Windows 8 或更新版本、Windows 2008 R2、Windows 7。
@@ -253,7 +253,7 @@
 
 若要利用動態封裝，您需要執行下列動作：
 
-- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。  
+- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
 - 為您計畫從該處傳遞內容的串流端點至少取得一個串流單元。
 
 下列程式碼顯示如何提交編碼工作。此工作包含一項作業，指定使用**媒體編碼器標準**，將夾層檔轉碼為一組調適性位元速率 MP4。此程式碼會提交工作，並等到工作完成。
@@ -453,4 +453,4 @@ MPEG DASH
   [Web Platform Installer]: http://go.microsoft.com/fwlink/?linkid=255386
   [Portal]: http://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -65,7 +65,7 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 5. 選取 [資源群組] 或建立新的資源群組。
 
-	如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../resource-group-portal.md)。
+	如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 5. 選取 [App Service 方案/位置]，或建立新的 App Service 方案/位置。
 
@@ -128,4 +128,4 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [7]: ./media/web-sites-php-web-site-gallery/search-web-app.png
 [browse]: ./media/web-sites-php-web-site-gallery/browse-web.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/27/2016"
+	ms.date="07/14/2016"
 	ms.author="andkjell;billmath"/>
 
 # 整合內部部署身分識別與 Azure Active Directory
@@ -22,7 +22,7 @@ Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。�
 
 <!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
 
-> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Microsoft Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
+> [AZURE.IMPORTANT] [Azure AD Connect is the best way to connect your on-premises directory with Azure AD and Office 365. This is a great time to upgrade to Azure AD Connect from Windows Azure Active Directory Sync (DirSync) or Azure AD Sync as these tools are now deprecated and will reach end of support on April 13, 2017.](https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
@@ -138,6 +138,7 @@ ADFS 可以設定為支援[多個網域](active-directory-aadconnect-multiple-do
 
 主題 |  
 --------- | ---------
+AD FS 的所有發行項 | [Azure AD Connect 和同盟](active-directory-aadconnectfed-whatis.md)
 設定 ADFS 與子網域 | [與 Azure AD 同盟的多網域支援](active-directory-aadconnect-multiple-domains.md)
 管理 AD FS 伺服器陣列 | [使用 Azure AD Connect 管理和自訂 AD FS](active-directory-aadconnect-federation-management.md)
 手動更新同盟憑證 | [續約 Office 365 和 Azure AD 的同盟憑證](active-directory-aadconnect-o365-certs.md)
@@ -161,4 +162,4 @@ Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-d
 
 >[AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->
