@@ -155,7 +155,7 @@ Site Recovery 可複寫這些 VM 與實體伺服器上執行的大部分應用�
 
 **一般架構**
 
-![VMM 至 Azure](./media/site-recovery-components/arch-onprem-onprem-azure-vmm.png)
+	![VMM 至 Azure](./media/site-recovery-components/arch-onprem-onprem-azure-vmm.png)
 
 - [深入了解](site-recovery-vmm-to-azure.md#azure-requirements) Azure 入口網站部署的需求。
 - [深入了解](site-recovery-vmm-to-azure-classic.md#before-you-start)傳統入口網站部署的需求。
@@ -205,7 +205,7 @@ Site Recovery 可複寫這些 VM 與實體伺服器上執行的大部分應用�
 
 **一般架構**
 
-![內部部署至內部部署](./media/site-recovery-components/arch-onprem-onprem.png)
+	![內部部署至內部部署](./media/site-recovery-components/arch-onprem-onprem.png)
 
 
 - [深入了解](site-recovery-vmm-to-vmm.md#azure-prerequisites) Azure 入口網站的部署需求。
