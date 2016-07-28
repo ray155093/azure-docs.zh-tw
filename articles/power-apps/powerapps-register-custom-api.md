@@ -100,9 +100,12 @@
 
 	> [AZURE.NOTE] 目前，自訂 API 只能在 PowerApps Web 入口網站中使用。它們不能在 PowerApps 用戶端中使用。
 
-2. 選取 [連線]，然後選取 [加入連線]：![](./media/powerapps-register-custom-api/createnewconnection.png "建立自訂 API")
+2. 選取 [連線]，然後選取 [加入連線]：  
+![](./media/powerapps-register-custom-api/createnewconnection.png "建立自訂 API")  
 
-3. 選取 [加入自訂 API]：![](./media/powerapps-register-custom-api/connecttocustomapi.png "建立自訂 API") 加入 API 的內容 (包括 .json 和圖示檔案)。然後，選取 [下一步]：
+3. 選取 [加入自訂 API]：  
+	![](./media/powerapps-register-custom-api/connecttocustomapi.png "建立自訂 API")  
+	加入 API 的內容 (包括 .json 和圖示檔案)。然後，選取 [下一步]：
 
 	|屬性|說明|
 |---|---|
@@ -140,11 +143,14 @@
 2. 在 [建立邏輯流程] 下，選取 [開始使用]。
 3. 在此視窗中，已建立數個邏輯流程範本來使用一些常見案例。您可以使用所有這些項目，並在其中加入您的自訂 API。或者，您可以選擇 [從空白建立] 從頭開始建立邏輯流程。
 
-	加入您自訂 API 的最快速方式是選取 [從空白建立]。這樣會開啟下列邏輯流程︰![](./media/powerapps-register-custom-api/createfromblank.png "開始邏輯流程")
+	加入您自訂 API 的最快速方式是選取 [從空白建立]。這樣會開啟下列邏輯流程︰  
+	![](./media/powerapps-register-custom-api/createfromblank.png "開始邏輯流程")   
 
-4. 選取 [週期]，並設為 1 分鐘的頻率︰![](./media/powerapps-register-custom-api/logicrecurrence.png "選取 [週期]")
+4. 選取 [週期]，並設為 1 分鐘的頻率︰  
+	![](./media/powerapps-register-custom-api/logicrecurrence.png "選取 [週期]")  	
 
-5. 選取加號 (![](./media/powerapps-register-custom-api/flowplussign.png))，然後選取 [加入動作]。在清單中，會列出您的自訂 API：![](./media/powerapps-register-custom-api/logicflow.png "自訂 API")
+5. 選取加號 (![](./media/powerapps-register-custom-api/flowplussign.png))，然後選取 [加入動作]。在清單中，會列出您的自訂 API：  
+![](./media/powerapps-register-custom-api/logicflow.png "自訂 API")
 
 後續步驟取決於您的 API 可執行的作業。在天氣範例中，您的 API 可能會取得目前的溫度，然後使用 Office 365 傳送電子郵件：
 
@@ -157,10 +163,14 @@
 
 > [AZURE.NOTE] 目前，自訂 API 只能在 PowerApps Web 入口網站中使用。它們不能在 PowerApps 用戶端中使用。
 
-1. 在 PowerApps [Web 入口網站][9]中，選取 [新增 PowerApp]：![](./media/powerapps-register-custom-api/newpowerapp.png "選取 [新增 PowerApp]")
-2. 即會在瀏覽器中開啟新的索引標籤。在這個新的索引標籤中，會自動建立空白 PowerApp。選取 [連線到資料]：![](./media/powerapps-register-custom-api/blankpowerapp.png "選取 [連線到資料]")
-3. 在 [內容] 索引標籤中，選取 [資料來源]：![](./media/powerapps-register-custom-api/datasources.png "選取 [連線到資料]")
-4. 在新的畫面中，於 [我的連線] 下選取您的自訂 API：![](./media/powerapps-register-custom-api/screencustomapi.png "選取您的自訂 API")
+1. 在 PowerApps [Web 入口網站][9]中，選取 [新增 PowerApp]：  
+	![](./media/powerapps-register-custom-api/newpowerapp.png "選取 [新增 PowerApp]")  
+2. 即會在瀏覽器中開啟新的索引標籤。在這個新的索引標籤中，會自動建立空白 PowerApp。選取 [連線到資料]：  
+![](./media/powerapps-register-custom-api/blankpowerapp.png "選取 [連線到資料]")  
+3. 在 [內容] 索引標籤中，選取 [資料來源]：  
+![](./media/powerapps-register-custom-api/datasources.png "選取 [連線到資料]")  
+4. 在新的畫面中，於 [我的連線] 下選取您的自訂 API：  
+![](./media/powerapps-register-custom-api/screencustomapi.png "選取您的自訂 API")  
 5. 選取 [新增資料來源]。
 
 新增之後，您可以在函式列、文字方塊等項目內使用您的自訂 API。例如，在函式列中，您可以開始輸入 **MySampleWebAPI** 以查看可用的函式。[顯示 Office 365 中的資料][12]是使用 Office 365 API 的範例。
@@ -195,4 +205,4 @@
 [11]: https://powerapps.microsoft.com/tutorials/get-started-create-from-data/
 [12]: https://powerapps.microsoft.com/tutorials/show-office-data/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!----HONumber=AcomDC_0713_2016-->
