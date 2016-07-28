@@ -225,4 +225,4 @@
 - 現在您已備份好檔案和資料夾，接下來您可以[管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 - 如果您需要還原備份，請使用本文來[還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!-----HONumber=AcomDC_0713_2016-->

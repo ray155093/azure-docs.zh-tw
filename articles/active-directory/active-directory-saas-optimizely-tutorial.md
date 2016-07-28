@@ -258,8 +258,8 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 
 在本節中，您會在 Optimizely 中建立名為 Britta Simon 的使用者。
 
-1. 在首頁上，選取 [Collaborators] (共同作業者) 索引標籤
-2. 按一下 [New Collaborator] (新增共同作業者)，來將新的共同作業者加入專案。
+1. 在首頁上，選取 [Collaborators]\(共同作業者) 索引標籤
+2. 按一下 [New Collaborator]\(新增共同作業者)，來將新的共同作業者加入專案。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-optimizely-tutorial/create_aaduser_10.png)
 
