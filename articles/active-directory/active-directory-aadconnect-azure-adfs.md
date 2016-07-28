@@ -261,7 +261,8 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |DenyAllFromDMZ| 此規則會封鎖所有從 DMZ 到內部子網路的流量。規則 AllowHTTPSFromDMZ 已經會負責確保 HTTPS 通訊能夠完成，其他流量則會被此規則封鎖 | 輸入 |
 |DenyInternetOutbound| 不得存取網際網路 | 輸出 |
 
-[註解]：<> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [註解]：<> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
+[註解]：<> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png))
+[註解]：<> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
  
 **9.2.保護 DMZ 子網路**
 
@@ -272,7 +273,8 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |DenyingressexceptHTTPS| 封鎖 HTTPS 以外來自網際網路的任何流量 | 輸入 |
 |DenyOutToInternet|	HTTPS 以外流向網際網路的任何流量都會遭到封鎖 | 輸出 |
 
-[註解]：<> (![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png)) [註解]：<> (![EXT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png))
+[註解]：<> (![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png))
+[註解]：<> (![EXT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png))
 
 >[AZURE.NOTE] 如果需要用戶端使用者憑證驗證 (使用 X509 使用者憑證的 clientTLS 驗證)，則 AD FS 需要啟用 TCP 連接埠 49443 以供輸入存取。
 
@@ -303,4 +305,4 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0720_2016-->
