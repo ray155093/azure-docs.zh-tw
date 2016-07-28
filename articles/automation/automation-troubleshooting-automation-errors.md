@@ -121,7 +121,7 @@
 **錯誤的原因：**
 當 PowerShell 引擎找不到您在 Runbook 中使用的 Cmdlet 時，就會發生此錯誤。這可能是因為包含 Cmdlet 的模組不在此帳戶、與 Runbook 名稱有名稱衝突，或 Cmdlet 也存在於另一個模組且自動化無法解析名稱。
 
-**疑難排解秘訣：**
+**疑難排解秘訣：**  
 下列任何一個解決方案都可以修正此問題：  
 
 - 請檢查是否輸入正確的 Cmdlet 名稱。  
@@ -160,7 +160,7 @@
 
 - 您使用 **New-AzureRmAutomationModule** Cmdlet 來上傳模組，但您尚未提供完整的儲存體路徑，或是尚未使用可公開存取的 URL 來載入模組。
 
-**疑難排解秘訣：**
+**疑難排解秘訣：**  
 下列任何一個解決方案都可以修正此問題：
 
 - 確認模組依照下列格式：ModuleName.Zip **->** ModuleName 或版本號碼 **->** (ModuleName.psm1、ModuleName.psd1)
