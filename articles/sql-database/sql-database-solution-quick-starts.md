@@ -22,7 +22,7 @@
 
 ## WingTipTickets 示範和實際操作實驗室
 
-[Azure SQL 資料庫 WingTipTickets](https://github.com/microsoft/wingtiptickets) 示範和實際操作實驗室。這些檔案構成的實際操作實驗室，示範以 Azure SQL Database 和 Azure 搜尋服務為基礎的範例應用程式，用於銷售音樂會門票
+[Azure SQL 資料庫 WingTipTickets](https://github.com/microsoft/wingtiptickets) 示範和線上實習實驗室。這些檔案構成的線上實習實驗室，示範以 Azure SQL Database 和 Azure 搜尋服務為基礎的範例應用程式，用於銷售音樂會門票。
 
 ## 收集和監視多個集區的資源使用狀況資料
 
@@ -52,8 +52,12 @@ GitHub SQL Server 範例儲存機制中[適用於 Saas 的彈性集區自訂儀�
 
 此範例是可讓使用者建立線上問卷的多租用戶 Web 應用程式 (稱為 Surveys)。此範例示範管理多租用戶應用程式中的使用者識別時的一些重要考量，包括註冊、驗證、授權和應用程式角色。若要執行這個範例，請參閱[如何執行 Tailspin Surveys 範例應用程式](https://github.com/Azure-Samples/guidance-identity-management-for-multitenant-apps/blob/master/docs/running-the-app.md)。
 
+## Contoso 診所示範應用程式
+
+此範例會示範 Azure SQL DB (V12) 的安全性功能。若要執行此範例，請參閱 [Contoso 診所示範應用程式](https://github.com/Microsoft/azure-sql-security-sample)。
+
 ## 後續步驟
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

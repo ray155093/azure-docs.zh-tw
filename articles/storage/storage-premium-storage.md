@@ -362,6 +362,9 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 - [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
 - [虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/)
 
+## 備份
+使用進階儲存體的虛擬機器可使用 Azure 備份進行備份。[其他詳細資訊](../backup/backup-azure-vms-first-look-arm.md)。
+
 ## 快速啟動
 
 ## 為虛擬機器資料磁碟建立和使用 Premium 儲存體帳戶
@@ -388,7 +391,7 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 	>  
 	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-4. 指定所要使用的部署模型：[資源管理員] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
+4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
 5. 將儲存體帳戶的效能層指定為 [進階]。
 
@@ -396,21 +399,21 @@ DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送�
 
 7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
 
-8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱[使用 Azure 入口網站管理您的 Azure 資源](../azure-portal/resource-group-portal.md)。
+8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
-9. 選取儲存體帳戶的地理位置。您可以參考[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)，來確認進階儲存體是否可用於選取的位置中。
+9. 選取儲存體帳戶的地理位置。您可以參考[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)，來確認進階儲存體是否可在選取的位置使用。
 
 10. 按一下 [建立] 建立儲存體帳戶。
 
 #### II.透過 Azure 入口網站建立 Azure 虛擬機器
 
-您必須建立 DS、DSv2 或 GS 系列 VM，才能使用進階儲存體。請遵循[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的步驟來建立新的 DS、DSv2 或 GS 虛擬機器。
+您必須建立 DS、DSv2 或 GS 系列 VM，才能使用進階儲存體。請遵循[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的步驟建立新的 DS、DSv2 或 GS 虛擬機器。
 
 #### III.透過 Azure 入口網站連接進階儲存體資料磁碟
 
 1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2 或 GS VM。
 2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下 [連接新項目]。
-3. 輸入資料磁碟的名稱，然後將 [類型] 選取為 [進階]。選取所要的 [大小] 和 [主機快取] 設定。
+3. 輸入資料磁碟的名稱，然後將 [類型] 選取為 [進階]。選取所需的 [大小] 和 [主機快取] 設定。
 
 	![進階磁碟][Image1]
 
@@ -562,4 +565,4 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 
 [Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

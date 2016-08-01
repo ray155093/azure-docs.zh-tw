@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="07/14/2016"
 	ms.author="jeedes"/>
 
 
@@ -23,7 +23,7 @@
 
 StatusPage 與 Azure AD 整合提供下列優點：
 
-- 您可在 Azure AD 中控制可存取 StatusPage 的人員 
+- 您可在 Azure AD 中控制可存取 StatusPage 的人員
 - 您可讓使用者使用他們的 Azure AD 帳戶自動登入 StatusPage (單一登入)
 - 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
@@ -43,7 +43,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
 ## 案例描述
@@ -51,7 +51,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫加入 StatusPage 
+1. 從資源庫加入 StatusPage
 2. 設定並測試 Azure AD 單一登入
 
 
@@ -60,7 +60,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 StatusPage，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
  
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -321,4 +321,4 @@ StatusPage 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-statuspage-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-statuspage-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

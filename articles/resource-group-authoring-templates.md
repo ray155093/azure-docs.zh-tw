@@ -13,29 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/13/2016"
+   ms.date="07/19/2016"
    ms.author="tomfitz"/>
 
 # 編寫 Azure 資源管理員範本
 
-在 Azure Resource Manager 範本中，您會定義要部署給解決方案的資源，以及指定參數和變數，讓您可以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。此主題說明範本的各區段。
+本主題說明 Azure Resource Manager 範本的結構。它會呈現範本的不同區段，以及這些區段中可用的屬性。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
 
-Visual Studio 提供工具來協助您建立範本。如需有關如何以您的範本使用 Visual Studio 的詳細資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。
+如需建立範本的指導方針，請參閱[Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。如需建立範本的建議，請參閱[建立 Azure Resource Manager 範本的最佳做法](resource-manager-template-best-practices.md)。
 
-如需建立範本的指導方針，請參閱[資源管理員範本逐步解說](resource-manager-template-walkthrough.md)。
-
-## 規劃您的範本
-
-開始使用範本之前，您應該花一些時間來找出您想要部署的資源以及使用範本的方式。具體來說，您應該考慮：
-
-1. 您需要部署哪些資源類型
-2. 這些資源所在的位置
-3. 部署資源時您將使用的資源提供者 API 版本
-4. 是否有任何資源必須部署在其他資源之後
-5. 您想要在部署期間傳入的值，以及您想要在範本中直接定義的值
-6. 您是否需要從部署傳回值
-
-若找出哪些資源類型可供部署、各類型支援的區域，以及每個類型可用的 API 版本，請參閱[資源管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
+良好的 JSON 編輯器可簡化範本建立工作。如需如何以您的範本使用 Visual Studio 的相關資訊，請參閱[透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。如需如何使用 VS Code 的相關資訊，請參閱[在 Visual Studio Code 中使用 Azure Resource Manager 範本](resource-manager-vs-code.md)。
 
 您必須將範本大小限制為 1 MB，並將每個參數檔案限制為 64 KB。1 MB 的限制適用於已增加反覆資源定義和變數和參數值之範本的最終狀態。
 
@@ -377,4 +364,4 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 - 若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

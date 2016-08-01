@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/16/2016"
+   ms.date="07/18/2016"
    ms.author="sonyama;barbkess"/>
 
 
@@ -27,12 +27,12 @@
 
 您可以使用下列任一個應用程式通訊協定連線到 SQL 資料倉儲：
 
-- ADO.NET
-- ODBC
-- PHP
-- JDBC 
+- [ADO.NET][]
+- [ODBC][]
+- [PHP][]
+- [JDBC][]
 
-以下是每個通訊協定連接字串的一些範例。您也可以使用 Azure 入口網站來協助您設定連接字串。只要瀏覽至您在 Azure 入口網站上的資料庫。按一下 [程式集] 下的 [顯示資料庫連接字串]。
+以下是每個通訊協定連接字串的一些範例。您也可以使用 Azure 入口網站來協助您設定連接字串。只要瀏覽至您在 Azure 入口網站上的資料庫。按一下 [基本資訊] 下的 [顯示資料庫連接字串]。
 
 ## 範例 ADO.NET 連接字串
 
@@ -60,15 +60,19 @@ jdbc:sqlserver://yourserver.database.windows.net:1433;database=yourdatabase;user
 
 ## 後續步驟
 
-若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱 [透過 Visual Studio 查詢][]。
+若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[使用 Visual Studio 查詢][]。
 
 <!--Image references-->
 
 <!--Azure.com references-->
-
-
+ [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
+ 
 <!--MSDN references-->
+[ADO.NET]: https://msdn.microsoft.com/library/e80y5yhx(v=vs.110).aspx
+[ODBC]: https://msdn.microsoft.com/library/jj730314.aspx
+[PHP]: https://msdn.microsoft.com/library/cc296172.aspx?f=255&MSPPError=-2147217396
+[JDBC]: https://msdn.microsoft.com/library/mt484311(v=sql.110).aspx
 
 <!--Other references-->
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

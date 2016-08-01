@@ -1,6 +1,6 @@
 <properties
-	pageTitle="要求增加 DocumentDB 帳戶限制 | Microsoft Azure"
-	description="了解如何要求調整 DocumentDB 限制，包括允許的集合數目、預存程序和查詢子句。"
+	pageTitle="要求增加 DocumentDB 帳戶配額 | Microsoft Azure"
+	description="了解如何要求調整 DocumentDB 資料庫配額，例如文件儲存和每個集合的輸送量。"
 	services="documentdb"
 	authors="AndrewHoh"
 	manager="jhubbard"
@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="07/14/2016"
 	ms.author="anhoh"/>
 
 # 要求增加 DocumentDB 帳戶限制
 
-[Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 有一組預設限制和配額強制執行。數種配額可以透過聯絡 Azure 支援人員來進行調整。本文說明如何要求提高帳戶限制。
+[Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 有一組預設的配額，可以透過聯絡 Azure 支援人員來調整。本文說明如何要求增加配額。
 
 閱讀本文後，您將能夠回答下列問題：
 
--	哪種 DocumentDB 帳戶配額可以透過聯絡 Azure 支援人員來進行調整？
+-	哪種 DocumentDB 資料庫配額可以透過聯絡 Azure 支援人員來調整？
 -	如何要求 DocumentDB 帳戶配額調整？
 
 ##<a id="Quotas"></a> DocumentDB 帳戶配額
@@ -63,4 +63,4 @@
 ##<a name="NextSteps"></a> 後續步驟
 - 若要深入了解 DocumentDB，請按一下[這裡](http://azure.com/docdb)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

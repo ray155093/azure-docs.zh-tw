@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="07/06/2016"
 	ms.author="garye"/>
 
 
@@ -21,11 +21,11 @@
 
 ***實驗***是 Azure Machine Learning Studio 中的畫布，可讓您在建立預測性分析模型時，以互動方式開發、執行、測試及逐一查看。有各種不同的模組可供您用來將資料帶入實驗、操作資料、使用機器學習演算法定型模型、對模型計分、評估結果和輸出最終值。
 
-一旦滿意實驗，您可以將其部署為 ***Azure Web 服務***，讓使用者可以將新的資料傳送給它並接收的結果。
+一旦滿意實驗，您就可以將其部署為***傳統 Azure Web 服務***或***新的 Azure Web 服務***，讓使用者可以將新的資料傳送給它並接收結果。
 
 在本文中我們將提供機制的概觀，說明 Machine Learning 模型如何從開發實驗進展為實際運作的 Web 服務。
 
->[AZURE.NOTE] 有其他方式可開發和部署機器學習模型，但本文著重在如何使用 Machine Learning Studio。如需如何使用 R 建立預測性 Web 服務的討論，請參閱部落格文章[使用 RStudio 和 Azure ML 建置和部署預測性 Web Apps](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx)。
+>[AZURE.NOTE] 有其他方式可開發和部署機器學習模型，但本文著重在如何使用 Machine Learning Studio。如需如何使用 R 建立傳統預測性 Web 服務的討論，請參閱部落格文章 [Build & Deploy Predictive Web Apps Using RStudio and Azure ML (使用 RStudio 和 Azure ML 建置和部署預測性 Web Apps)](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx)。
 
 雖然 Azure Machine Learning Studio 的設計主要是為了協助您開發及部署*預測性分析模型*，但可以使用 Studio 來開發未包含預測性分析模型的實驗。比方說，實驗可能只是輸入資料、操作資料，然後輸出結果。如同預測性分析實驗，您可以將這個非預測性實驗部署為 Web 服務，但此程序更簡單，因為實驗不會對機器學習模型進行定型或計分。雖然這不是 Studio 的一般使用方式，我們將會在下面的討論包含它，如此我們可以提供 Studio 運作方式的完整說明。
 
@@ -61,16 +61,16 @@
 
 ### Web 服務
 
-一旦認為您的預測性實驗就緒，您會按一下 [部署 Web 服務]，藉由將它部署為 ***Azure Web 服務***讓模型實際運作。使用者現在可以使用 Web 服務 REST API 將資料傳送至您的模型中並收回結果。如需如何進行此動作的詳細資料，請參閱[如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+一旦您認為您的預測性實驗已經就緒，您就可以根據 Azure Resource Manager，將服務部署為傳統 Web 服務或新的 Web 服務。若要將您的模型部署為「傳統 Web 服務」來運作，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。若要部署為「新的 Web 服務」，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [新]]。使用者現在可以使用 Web 服務 REST API 將資料傳送至您的模型中並收回結果。如需如何進行此動作的詳細資料，請參閱[如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 一旦您部署 Web 服務，預測性實驗和 Web 服務會保持連線，而在可以在兩者間往返：
 
-|***從這個頁面...***|***按一下此...***|***以開啟此頁面...***|
+| ***從這個頁面...*** | ***按一下此...*** | ***以開啟此頁面...*** |
 | ------------------- | --------------- | ---------------------- |
 |Studio 中的實驗畫布|**前往 Web 服務**|Studio 中的 Web 服務組態|
 |Studio 中的 Web 服務組態|**檢視最新版本**|Studio 中的實驗畫布|
-|Studio 中的 Web 服務組態|**管理端點...**|Azure 傳統入口網站中的端點管理|
-|Azure 傳統入口網站中的端點管理|**在 Studio 中編輯**|Studio 中的實驗畫布|
+|Studio 中的 Web 服務組態 (僅限傳統 Web 服務)|**管理端點...**|Azure 傳統入口網站中的端點管理|
+|Azure 傳統入口網站中的端點管理 (僅限傳統 Web 服務)|**在 Studio 中編輯**|Studio 中的實驗畫布|
 
 ![](media\machine-learning-model-progression-experiment-to-web-service\connections-between-experiment-and-web-service.png)
 
@@ -86,7 +86,7 @@
 
 2.  按一下 [執行]
 
-3.  按一下 [部署 Web 服務]
+3. 按一下 [部署 Web 服務]，然後根據您要部署的環境選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]]。
 
 現在已部署您的 Web 服務，而且您可以如同預測性 Web 服務一般存取及管理它。
 
@@ -106,8 +106,10 @@
 |訓練實驗|**設定 Web 服務**|提供兩個選項|
 |&nbsp;|- **更新預測性實驗**|以您對訓練實驗所做的變更更新相關聯的預測性實驗|
 |&nbsp;|- **重新定型 Web 服務**|將訓練實驗轉換成重新訓練實驗 (請參閱以下的「更新」一節)|
-|&nbsp;|-*或*- **部署 Web 服務**|如果您已為部署設定訓練實驗，則會將其部署為 Web 服務|
-|預測性實驗|**部署 Web 服務**|將預測實驗部署為 Web 服務|
+|&nbsp;|-*或*- **部署 Web 服務 [傳統]** |如果您已為部署設定重新訓練實驗，則會將其部署為傳統 Web 服務|
+|&nbsp;|-*或*- **部署 Web 服務 [新]** |如果您已為部署設定重新訓練實驗，則會將其部署為新的 Web 服務|
+|預測性實驗|**部署 Web 服務 [傳統]** |將預測性實驗部署為傳統 Web 服務|
+|預測性實驗|**部署 Web 服務 [新]** |將預測性實驗部署為新的 Web 服務|
 
 **實驗並*不*包含預測性模型**
 
@@ -116,7 +118,8 @@
 |**實驗的類型**|**按鈕**|**作用**|
 | -------------------- | -------- | -------------- |
 |實驗開發中|**設定 Web 服務**|準備實驗供部署為 Web 服務|
-|實驗已備妥供部署|**部署 Web 服務**|將實驗部署為 Web 服務，開啟 Web 服務組態頁面|
+|實驗已備妥供部署|***部署 Web 服務 [傳統]**|將實驗部署為 Web 服務，開啟傳統 Web 服務組態頁面|
+|&nbsp;|-*或*- **部署 Web 服務 [新]**| 部署為新的 Web 服務|
 
 ## 使用您的 Web 服務
 
@@ -126,9 +129,9 @@
 
 **您想要變更輸入或輸出，或您想要修改 Web 服務操縱資料的方式**
 
-如果您不變更模型，但只是要變更 Web 服務處理資料的方式，您可以編輯預測性實驗，然後再次按一下 [部署 Web 服務]。Web 服務將會停止、將部署更新的預測性實驗，以及 Web 服務會再次啟動。
+如果您不變更模型，但只是要變更 Web 服務處理資料的方式，您可以編輯預測性實驗，然後按一下 [部署 Web 服務]，再次選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]]。Web 服務將會停止、將部署更新的預測性實驗，以及 Web 服務會再次啟動。
 
-以下是範例：假設預測性實驗會傳回輸入資料的整個資料列與預測結果。您可以決定您想要 Web 服務只傳回結果。因此，您可以在預測性實驗中緊接在輸出連接埠之前，新增「選取資料集中的資料行」模組，來排除資料行而非結果。再次按一下 [部署 Web 服務] 時，即會更新 Web 服務。
+以下是範例：假設預測性實驗會傳回輸入資料的整個資料列與預測結果。您可以決定您想要 Web 服務只傳回結果。因此，您可以在預測性實驗中加入**專案資料行**模組，緊接在輸出連接埠之前，以便排除資料行而非結果。當您按一下 [部署 Web 服務]，然後再次選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 時，Web 服務就會更新。
 
 **您想要使用新資料重新定型模型**
 
@@ -160,4 +163,4 @@
 
 -   [逐步解說：在 Azure Machine Learning 中為信用風險評估開發預測分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

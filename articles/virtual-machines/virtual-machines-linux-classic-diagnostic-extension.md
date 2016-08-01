@@ -41,7 +41,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 ### 擴充功能的目前版本和已被取代的舊版本
 
-擴充功能的最新的版本是 **2.3**，任何舊版 (2.0、2.1、2.2) 都即將被取代及取消發佈。如果您已經安裝停用自動升級次要版本的 Linux 診斷擴充功能，強烈建議您解除安裝該擴充功能，再重新安裝啟用自動升級次要版本的擴充功能。在傳統 (ASM) VM 上，如果是透過 Azure XPLAT CLI 或 Powershell 安裝擴充功能，您可以藉由指定 '2.*' 為版本來達到此目的。在 ARM VM 上，您可以藉由在 VM 部署範本中加入 '"autoUpgradeMinorVersion": true' 來達到此目的。此外，擴充功能的任何新安裝應將自動升級次要版本選項開啟。
+擴充功能的最新版本是 **2.3**，所有舊版本 (2.0、2.1 及 2.2) 都將在今年 (2016 年) 底被取代及取消發行。如果您已經安裝停用自動升級次要版本的 Linux 診斷擴充功能，強烈建議您解除安裝該擴充功能，再重新安裝啟用自動升級次要版本的擴充功能。在傳統 (ASM) VM 上，如果是透過 Azure XPLAT CLI 或 Powershell 安裝擴充功能，您可以藉由指定 '2.*' 為版本來達到此目的。在 ARM VM 上，您可以藉由在 VM 部署範本中加入 '"autoUpgradeMinorVersion": true' 來達到此目的。此外，擴充功能的任何新安裝應將自動升級次要版本選項開啟。
 
 
 ## 啟用延伸模組
@@ -124,7 +124,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 步驟 2.執行 **azure vm extension set vm\_name LinuxDiagnostic Microsoft.OSTCExtensions '2.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json**。
 
-請注意，若使用這項設定，所有寫入 `/var/log/mysql.err` 的記錄可能也會複製到 `/var/log/syslog` (或 `/var/log/messages` 視，取決於 Linux 散發版本)。如果您想要避免此重複的記錄，可以在您的 rsyslog 設定中排除 `local6` 設備記錄檔的記錄功能。這依 Linux 散發版本而定，但在 Ubuntu 14.04 系統上，要修改的檔案是 `/etc/rsyslog.d/50-default.conf`，您可以將 `*.*;auth,authpriv.none -/var/log/syslog` 這一行取代為 `*.*;auth,authpriv,local6.none -/var/log/syslog`。未來，這將由 Linux 診斷擴充功能自動處理。
+請注意，若使用這項設定，在 2.3 版以前的擴充功能版本上，所有寫入 `/var/log/mysql.err` 的記錄可能也會複製到 `/var/log/syslog` (或 `/var/log/messages`，視 Linux 散發版本而定)。如果您想要避免此重複的記錄，可以在您的 rsyslog 設定中排除 `local6` 設備記錄檔的記錄功能。這依 Linux 散發版本而定，但在 Ubuntu 14.04 系統上，要修改的檔案是 `/etc/rsyslog.d/50-default.conf`，您可以將 `*.*;auth,authpriv.none -/var/log/syslog` 這一行取代為 `*.*;auth,authpriv,local6.none -/var/log/syslog`。在最新的 Hotfix 版本 2.3 (2.3.9007) 中已修正此問題，因此如果您有擴充功能版本 2.3，應該就不會發生此問題。如果在重新啟動 VM 之後仍然發生此問題，請與我們連絡，並協助我們針對無法自動安裝最新 Hotfix 版本的原因進行疑難排解。
 
 ###   案例 4.停止擴充收集任何記錄檔
 本節說明如何阻止延伸模組收集記錄檔。請注意，即使使用這項重新設定，監視代理程式處理序仍會啟動並執行。如果您想要完全停止監視代理程式處理序，您可以停用延伸模組來達到此目的。停用擴充功能的命令是 **azure vm extension set --disable <vm\_name> LinuxDiagnostic Microsoft.OSTCExtensions '2.*'**。
@@ -156,4 +156,4 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 ## 已知問題
 - 在 Linux 診斷擴充功能的目前版本 (2.3) 中，只能透過指令碼存取 Rsyslog 資訊和客戶指定記錄檔。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

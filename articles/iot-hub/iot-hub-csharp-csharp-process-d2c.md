@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="04/29/2016"
+     ms.date="07/19/2016"
      ms.author="dobett"/>
 
 # 教學課程：如何處理 IoT 中樞裝置到雲端訊息
@@ -447,4 +447,4 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-c2d]: iot-hub-csharp-csharp-process-d2c.md
 [lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

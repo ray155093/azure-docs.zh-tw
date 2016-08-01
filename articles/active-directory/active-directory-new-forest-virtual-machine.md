@@ -2,10 +2,10 @@
 	pageTitle="在 Azure 虛擬網路上安裝 Active Directory 樹系 | Microsoft Azure"
 	description="說明如何在 Azure 虛擬網路之虛擬機器 (VM) 上建立新 Active Directory 樹系的教學課程。"
 	services="active-directory, virtual-network"
-    keywords="active directory 虛擬機器, 安裝 active directory 樹系, azure active directory 影片"
+    keywords="active directory 虛擬機器, 安裝 active directory 樹系, azure active directory 影片 "
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	tags=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-	ms.date="04/07/2016"
+	ms.date="07/13/2016"
 	ms.author="markusvi"/>
 
 
@@ -136,4 +136,4 @@
 <!--Image references-->
 [1]: ./media/active-directory-new-forest-virtual-machine/AD_Forest.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

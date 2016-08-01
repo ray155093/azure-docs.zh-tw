@@ -4,15 +4,15 @@
 	keywords="彈性資料庫、sql 資料庫"
 	services="sql-database"
 	documentationCenter=""
-	authors="srinia"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/27/2016"
-	ms.author="srinia"
+	ms.date="07/12/2016"
+	ms.author="CarlRabeler"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
@@ -53,6 +53,8 @@
 
 [AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
+如果彈性集區的所有 DTU 均已使用，則集區中的每個資料庫會收到等量的資源以處理查詢。SQL DB 服務藉由確保運算時間的均等配量，提供資料庫之間的資源共用公平性。此資源共用公平性的應用不包括任何資源數量，否則當每個資料庫的最小 DTU 數設為非零的值時，便會對每個資料庫保證資源數量。
+
 ## 彈性資料庫集區屬性
 
 ### 彈性集區的限制
@@ -79,13 +81,13 @@
 
 ## 彈性資料庫工作
 
-使用集區，只要在**[彈性作業](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理作業。彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。若要開始，請參閱[開始使用彈性資料庫作業](sql-database-elastic-jobs-getting-started.md)。
+使用集區，只要在**[彈性工作](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。若要開始，請參閱[開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
 
-如需其他工具的詳細資訊，請參閱[彈性資料庫工具學習圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
+如需其他工具的詳細資訊，請參閱[彈性資料庫工具學習地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
 
 ## 集區中資料庫的業務續航力功能
 
-彈性資料庫通常會支援 V12 伺服器上單一資料庫可用的相同[業務續航力功能](sql-database-business-continuity.md)。
+彈性資料庫通常會支援 V12 伺服器上單一資料庫可用的相同[商務持續性功能](sql-database-business-continuity.md)。
 
 
 ### 還原時間點
@@ -98,10 +100,10 @@
 
 ### 主動式異地複寫
 
-針對需要比異地複寫更積極復原需求的應用程式，請使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 來設定主動式異地複寫。
+針對比異地還原具有更積極復原需求的應用程式，請使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 來設定主動式異地複寫。
 
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

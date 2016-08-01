@@ -1,6 +1,6 @@
 <properties
-	pageTitle="Azure 儲存體總管 | Microsoft Azure"
-	description="可讓您檢視 Azure 儲存體資料並與其互動的儲存體總管清單。"
+	pageTitle="Azure 儲存體用戶端工具 | Microsoft Azure"
+	description="可讓您檢視 Azure 儲存體資料並與其互動的工具清單。"
 	services="storage"
 	documentationCenter=""
 	authors="micurd"
@@ -13,22 +13,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="07/20/2016"
 	ms.author="micurd"/>
 
-# Azure 儲存體總管
+# Azure 儲存體用戶端工具
 
-Azure 儲存體的使用者通常希望能夠在「總管」(顯示儲存體帳戶中資料的一種工具) 中檢視其資料。
+Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工具，檢視他們資料或與其互動。我們在下表中列出幾個可讓您這麼做的工具。如果該工具可以列舉及/或存取資料抽象，我們便在該區塊中放一個 "X"。下表也會顯示該工具是否免費提供。「試用」表示有免費試用版，但不是免費提供完整的產品。「Y/N」表示該版本可供免費使用，而其他版本則需購買使用。
 
-在下表中，我們列出每個 Azure 儲存體總管中，接著，如果該總管可以列舉及/或存取資料抽象，就會在每個區塊中放一個 "X"。下表也會顯示「總管」是否免費提供。「試用」表示有免費試用版，但不是免費提供完整的產品。「Y/N」表示該版本可供免費使用，而其他版本則需購買使用。
+我們只提供可用的 Azure 儲存體用戶端工具的快照。這些工具在功能上可能會繼續發展及成長。如果有修正或更新，請留言讓我們知道。如果您知道有應該在這裡的工具，也請留言讓我們知道，我們很榮幸能將它們加入。
 
-我們只提供可用的 Azure 儲存體總管的快照。這些工具在功能上可能會繼續發展及成長。如果有修正或更新，請留言讓我們知道。如果您知道有應該在這裡的工具，也請留言讓我們知道，我們很榮幸能將它們加入。
-
-**Microsoft Azure 儲存體總管**
+**Microsoft Azure 儲存體用戶端工具**
 
 <table>
   <tr>
-    <th rowspan="2">Azure 儲存體總管</th>
+    <th rowspan="2">Azure 儲存體用戶端工具</th>
     <th rowspan="2">區塊 Blob</th>
     <th rowspan="2">分頁 Blob</th>
     <th rowspan="2">附加 Blob</th>
@@ -65,7 +63,7 @@ Azure 儲存體的使用者通常希望能夠在「總管」(顯示儲存體帳�
     <td>X</td>
     <td>X</td>
     <td>X</td>
-    <td></td>
+    <td>X</td>
     <td>Y</td>
     <td></td>
     <td>X</td>
@@ -88,13 +86,13 @@ Azure 儲存體的使用者通常希望能夠在「總管」(顯示儲存體帳�
   </tr>
 </table>
 
-**協力廠商 Azure 儲存體總管**
+**協力廠商 Azure 儲存體工具**
 
-我們尚未驗證下列協力廠商總管所宣稱的功能或品質，且其清單並不代表 Microsoft 背書。
+我們尚未驗證下列協力廠商工具所宣稱的功能或品質，且其清單並不代表 Microsoft 背書。
 
 <table>
   <tr>
-    <th rowspan="2">Azure 儲存體總管</th>
+    <th rowspan="2">Azure 儲存體用戶端工具</th>
     <th rowspan="2">區塊 Blob</th>
     <th rowspan="2">分頁 Blob</th>
     <th rowspan="2">附加 Blob</th>
@@ -252,4 +250,4 @@ Azure 儲存體的使用者通常希望能夠在「總管」(顯示儲存體帳�
   </tr>
 </table>
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0720_2016-->

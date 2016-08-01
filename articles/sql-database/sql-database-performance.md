@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="04/28/2016"
+   ms.date="07/19/2016"
    ms.author="sstein"/>
 
 # SQL Database 效能深入解析
@@ -68,4 +68,4 @@ Azure SQL Database 藉由提供智慧型的調整動作與建議，提供可協�
 - [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)
 - [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

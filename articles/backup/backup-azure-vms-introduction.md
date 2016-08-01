@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="07/14/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 # 在 Azure 中規劃 VM 備份基礎結構
@@ -79,7 +79,7 @@ Azure 備份會在 Windows VM 上執行 VSS 完整備份 (深入了解 [VSS 完�
 | 初始備份 | 160 Mbps |
 | 增量備份 (DR) | 640 Mbps <br><br> 如果磁碟上有很多分散的變換需要備份，這個輸送量會大幅下降。 |
 
-### VM 備份時間總計
+## VM 備份時間總計
 雖然大部分的備份時間都花費在讀取和複製資料，但備份 VM 所需的全部時間還包含其他作業：
 
 - [安裝或更新備份擴充功能](backup-azure-vms.md#offline-vms)所需要的時間。
@@ -131,4 +131,4 @@ Azure 備份不會在備份過程中加密資料。不過，您可以在 VM 中�
 - [還原虛擬機器](backup-azure-restore-vms.md)
 - [疑難排解 VM 備份問題](backup-azure-vms-troubleshoot.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

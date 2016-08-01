@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/25/2016"
+   ms.date="07/18/2016"
    ms.author="nitinme"/>
 
 # 使用 Power BI 分析 Data Lake Store 中的資料
@@ -125,4 +125,4 @@
 
 * [使用 Data Lake Analytics 分析 Data Lake Store 中的資料](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

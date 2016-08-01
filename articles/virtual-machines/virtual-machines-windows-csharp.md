@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="07/14/2016"
 	ms.author="davidmu"/>
 
 # 使用 C 部署 Azure 資源# 
@@ -75,8 +75,8 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
         {
           var cc = new ClientCredential("{client-id}", "{client-secret}");
           var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
-          var result = context.AcquireTokenAsync("https://management.azure.com/", cc);
-          if (result == null)
+          var token = context.AcquireTokenAsync("https://management.azure.com/", cc);
+          if (token == null)
           {
             throw new InvalidOperationException("Could not get the token");
           }
@@ -514,4 +514,4 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。�
 - 使用[利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器](virtual-machines-windows-csharp-template.md)中的資訊，以利用範本來建立虛擬機器。
 - 請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md)，了解如何管理您剛才建立的虛擬機器。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

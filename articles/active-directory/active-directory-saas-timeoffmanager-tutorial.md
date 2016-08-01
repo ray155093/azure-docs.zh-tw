@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="05/03/2016" 
+    ms.date="07/19/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 TimeOffManager 整合
@@ -53,7 +53,7 @@
 
     ![新增應用程式](./media/active-directory-saas-timeoffmanager-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-timeoffmanager-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -81,7 +81,7 @@
 
     ![設定單一登入](./media/active-directory-saas-timeoffmanager-tutorial/IC795913.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [TimeOffManager 回覆 URL] 文字方塊中輸入您的 TimeOffManager AssertionConsumerService URL (例如："*範例：https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company\_id=IC34216*")，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [TimeOffManager 回覆 URL] 文字方塊中輸入您的 TimeOffManager AssertionConsumerService URL (例如：範例：https://www.timeoffmanager.com/cpanel/sso/consume.aspx?company\_id=IC34216*")，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-timeoffmanager-tutorial/IC795914.png "設定應用程式 URL")
 
@@ -153,7 +153,7 @@
 ##設定使用者佈建
   
 若要讓 Azure AD 使用者可以登入 TimeOffManager，則必須將他們佈建到 TimeOffManager。
-TimeOffManager 支援即時使用者佈建。沒有您適用的動作項目。  
+TimeOffManager 支援即時使用者佈建。沒有您適用的動作項目。
 在第一次登入時使用單一登入，便會自動加入使用者。
 
 >[AZURE.NOTE] 您可以使用任何其他的 TimeOffManager 使用者帳戶建立工具或 TimeOffManager 提供的 API 來佈建 AAD 使用者帳戶。
@@ -176,4 +176,4 @@ TimeOffManager 支援即時使用者佈建。沒有您適用的動作項目。
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -1,6 +1,6 @@
 <properties
    pageTitle="適用於 Windows Server 的 Azure Hybrid Use Benefit | Microsoft Azure"
-   description="了解如何發揮 Windows Server 軟體保證的最大效益，將內部部署授權帶到 Azure"
+   description="了解如何發揮「Windows Server 軟體保證」的最大效益來將內部部署授權帶到 Azure"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
@@ -20,7 +20,7 @@
 
 若您是搭配軟體保證使用 Windows Server 的客戶，可將內部部署 Windows Server 授權帶到 Azure，並以較少的成本在 Azure 中執行 Windows Server VM。Azure Hybrid Use Benefit 可讓您在 Azure 中執行 Windows Server VM，且只需支付基本計算費率。如需詳細資訊，請瀏覽 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/) 授權頁面。本文說明如何在 Azure 中部署 Windows Server VM，以利用此授權的權益。
 
-> [AZURE.NOTE] 如果要採用 Azure Hybrid Use Benefit，您就不能使用 Azure Marketplace 映像來部署 Windows Server VM。您必須使用 PowerShell 或 Resource Manager 範本部署您的 VM，以將 VM 正確註冊為符合基本計算費率折扣的資格。
+> [AZURE.NOTE] 如果要採用 Azure Hybrid Use Benefit，您就不能使用 Azure Marketplace 映像來部署 Windows Server VM。您必須使用 PowerShell 或 Resource Manager 範本來部署您的 VM，才能將 VM 正確註冊為符合基本計算費率折扣的資格。
 
 ## 必要條件
 若要將 Azure Hybrid Use Benefit 運用在 Azure 中的 Windows Server VM，有下列幾項必要條件：
@@ -49,8 +49,7 @@ Add-AzureRmVhd -ResourceGroupName MyResourceGroup -Destination "https://mystorag
 透過 PowerShell 部署 Windows Server VM 時，您會有 `-LicenseType` 的額外參數。將 VHD 上傳至 Azure 之後，請使用 `New-AzureRmVM` 建立新的 VM 並指定授權類型，如下所示：
 
 ```
-New-AzureRmVM -ResourceGroupName MyResourceGroup -Location "West US" -VM $vm
-    -LicenseType Windows_Server
+New-AzureRmVM -ResourceGroupName MyResourceGroup -Location "West US" -VM $vm -LicenseType Windows_Server
 ```
 
 您可於下方進一步了解[透過 PowerShell 在 Azure 中部署 VM 的詳細逐步解說](./virtual-machines-windows-hybrid-use-benefit-licensing.md#deploy-windows-server-vm-via-powershell-detailed-walkthrough)，或閱讀[使用 Resource Manager 和 PowerShell 建立 Windows VM](./virtual-machines-windows-ps-create.md) 中不同步驟的描述說明。
@@ -67,7 +66,7 @@ New-AzureRmVM -ResourceGroupName MyResourceGroup -Location "West US" -VM $vm
 ```
  
 ## 確認您的 VM 可享受授權權益
-透過 PowerShell 或 Resource Manager 部署方法部署 VM 之後，請使用 `Get-AzureRmVM` 驗證授權類型，如下所示：
+透過 PowerShell 或 Resource Manager 部署方法部署 VM 之後，請依下列方式使用 `Get-AzureRmVM` 來驗證授權類型：
  
 ```
 Get-AzureRmVM -ResourceGroup MyResourceGroup -Name MyVM
@@ -151,7 +150,7 @@ $storageAcc = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -A
 $osDiskName = "licensing.vhd"
 $osDiskUri = '{0}vhds/{1}{2}.vhd' -f $storageAcc.PrimaryEndpoints.Blob.ToString(), $vmName.ToLower(), $osDiskName
 $urlOfUploadedImageVhd = "https://testlicensing.blob.core.windows.net/vhd/licensing.vhd"
-$vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption fromImage -SourceImageUri $urlOfUploadedImageVhd -Windows
+$vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption FromImage -SourceImageUri $urlOfUploadedImageVhd -Windows
 ```
 
 最後，建立 VM 並定義授權類型，以採用 Azure Hybrid Use Benefit：
@@ -166,4 +165,4 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 
 深入了解[使用 Resource Manager 範本](../resource-group-overview.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="07/15/2016" 
 	ms.author="stefsch"/>
 
 # App Service 環境文件
@@ -35,7 +35,8 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 * [何謂 App Service 環境？](../app-service-web/app-service-app-service-environment-intro.md)
 * [建立 App Service 環境](../app-service-web/app-service-web-how-to-create-an-app-service-environment.md)
 * [在 App Service 環境中建立應用程式](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md)
-* [設定 App Service 環境](../app-service-web/app-service-web-configure-an-app-service-environment.md) 
+* [使用 App Service 環境建立和使用內部負載平衡器](../app-service-web/app-service-environment-with-internal-load-balancer.md)
+* [設定 App Service 環境](../app-service-web/app-service-web-configure-an-app-service-environment.md)
 * [在 App Service 環境中調整應用程式](../app-service-web/app-service-web-scale-a-web-app-in-an-app-service-environment.md)
 * [網路安全性與架構](../app-service-web/app-service-app-service-environment-network-architecture-overview.md)
 
@@ -59,4 +60,4 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 [SiteToSite]: https://azure.microsoft.com/documentation/articles/vpn-gateway-site-to-site-create/
 [ExpressRoute]: http://azure.microsoft.com/services/expressroute/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

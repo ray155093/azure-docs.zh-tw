@@ -2,7 +2,7 @@
 	pageTitle="CDN - 檔案壓縮疑難排解"
 	description="針對 CDN 檔案壓縮的問題進行疑難排解。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/14/2016"
 	ms.author="casoper"/>
     
 # CDN 檔案壓縮疑難排解
@@ -79,7 +79,7 @@
 使用您瀏覽器的開發人員工具，檢查回應標頭以確保檔案會快取在要求它的區域中。
 
 - 檢查 **Server** 回應標頭。標頭應該具有格式 **平台 (POP/伺服器識別碼)**，如以下範例所示。
-- 檢查 **X-Cache** 回應標頭。標頭應為 **HIT**。  
+- 檢查 **X-Cache** 回應標頭。標頭應為 **HIT**。
 
 ![CDN 回應標頭](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
 
@@ -92,4 +92,11 @@
 - 超過 128 個位元組。
 - 小於 1 MB。
 
-<!---HONumber=AcomDC_0518_2016-->
+### 在原始伺服器中檢查要求的 **Via** 標頭
+
+**Via** HTTP 標頭會向 Web 伺服器指出正在由 Proxy 伺服器傳遞要求。Microsoft IIS Web 伺服器預設不會在要求包含 **Via** 標頭時壓縮回應。若要覆寫這個行為，請執行下列作業︰
+
+- **IIS 6**：[在 IIS Metabase 屬性中設定 HcNoCompressionForProxies="FALSE"](https://msdn.microsoft.com/library/ms525390.aspx)
+- **IIS 7 和更新版本**：[在伺服器組態中將 **noCompressionForHttp10** 和 **noCompressionForProxies** 設定為 False](http://www.iis.net/configreference/system.webserver/httpcompression)
+
+<!---HONumber=AcomDC_0720_2016-->

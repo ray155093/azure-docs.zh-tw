@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016" 
-	ms.author="robmcm"/>
+	ms.date="07/07/2016" 
+	ms.author="robmcm;asirveda"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694271.aspx -->
 
@@ -52,13 +52,15 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 
 * [在 Eclipse 中顯示 Azure Libraries for Java 封裝的 Javadoc 內容]
 * [部署大型部署]
+* [在 Eclipse 中對 Azure 上的 Java Web 應用程式進行偵錯]
 * [在 Eclipse 中偵錯 Azure 應用程式]
+* [使用 Eclipse 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式][HDInsight Tools Plugin for Eclipse]
 
 ## 另請參閱
 
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
-- 適用於 Eclipse 的 Azure 工具組 (本文)
+- *適用於 Eclipse 的 Azure 工具組 (本文)*
   - [安裝 Azure Toolkit for Eclipse]
   - [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
   - [適用於 Eclipse 的 Azure 工具組的新功能]
@@ -88,11 +90,13 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 [Azure 儲存體帳戶清單]: ./azure-toolkit-for-eclipse-azure-storage-account-list.md
 [在 Eclipse 中為 Azure 建立 Hello World 雲端服務]: ./azure-toolkit-for-eclipse-creating-a-hello-world-application.md
 [在 Eclipse 中偵錯 Azure 應用程式]: ./azure-toolkit-for-eclipse-debugging-azure-applications.md
+[在 Eclipse 中對 Azure 上的 Java Web 應用程式進行偵錯]: ./app-service-web/app-service-web-debug-java-web-app-in-eclipse.md
 [部署大型部署]: ./azure-toolkit-for-eclipse-deploying-large-deployments.md
 [在 Eclipse 中顯示 Azure Libraries for Java 封裝的 Javadoc 內容]: ./azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries.md
 [在 Eclipse 中啟用 Azure 部署的遠端存取]: ./azure-toolkit-for-eclipse-enabling-remote-access-for-azure-deployments.md
-[How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: ./active-directory/active-directory-java-authenticate-users-access-control-eclipse.md
 [啟用工作階段同質]: ./azure-toolkit-for-eclipse-enable-session-affinity.md
+[HDInsight Tools Plugin for Eclipse]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+[How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: ./active-directory/active-directory-java-authenticate-users-access-control-eclipse.md
 
 <!-- [How to Maintain Session Data with Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699539 -->
 <!-- [How to Use Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542 -->
@@ -102,4 +106,4 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 <!-- [SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699549 -->
 <!-- [Using the Azure Service Runtime Library in JSP]: http://go.microsoft.com/fwlink/?LinkID=699551 -->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

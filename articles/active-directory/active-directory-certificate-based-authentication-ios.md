@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/13/2016" 
+    ms.date="07/15/2016" 
     ms.author="markvi" />
 
 
@@ -96,7 +96,8 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 ### Exchange ActiveSync 用戶端支援 
 
 
-支援 iOS 9 或更新版本上的某些 Exchange ActiveSync 應用程式。若要判斷電子郵件應用程式是否支援這項功能，請連絡您的應用程式開發人員。以此案例而言，不支援透過用戶端憑證進行同盟驗證。
+支援 iOS 9 或更新版本上的某些 Exchange ActiveSync 應用程式。若要判斷電子郵件應用程式是否支援這項功能，請連絡您的應用程式開發人員。
+
 
 
 ## 開始使用 
@@ -270,4 +271,4 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 您設定的日期必須是未來的日期。如果不是未來的日期，則不會設定 **StsRefreshTokensValidFrom** 屬性。如果是未來的日期，才會將 **StsRefreshTokensValidFrom** 設定為目前的時間 (而非 Set-MsolUser 命令指示的日期)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

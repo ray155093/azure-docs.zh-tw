@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016" 
+	ms.date="07/06/2016" 
 	ms.author="raymondl;garye"/>
 
 #使用 Azure Machine Learning Web 服務參數
 
 藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。在某些情況下，您可能想要在執行 Web 服務時之際，變更模組的行為。*Web 服務參數*可讓您執行這項操作。
 
-常見的範例是設定[匯入資料][import-data]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。或者，設定[匯出資料][export-data]模組，以便能夠指定不同的目的地。部分其他範例包括變更[雜湊功能][feature-hashing]模組的位元數，或變更[以篩選為基礎的功能選擇][filter-based-feature-selection] 模組的所需功能數。
+常見的範例是設定[匯入資料][reader]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。或者，設定[匯出資料][writer]模組，以便能夠指定不同的目的地。部分其他範例包括變更[雜湊功能][feature-hashing]模組的位元數，或變更[以篩選為基礎的功能選擇][filter-based-feature-selection] 模組的所需功能數。
 
 您可以設定 Web 服務參數，並使其與實驗中的一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。然後 Web 服務的使用者就可以在呼叫 Web 服務時，提供這些參數的值。
 
@@ -35,20 +35,22 @@
 
 您可以決定是否要為 Web 服務參數提供預設值。如果您提供預設值，Web 服務的使用者就可以選擇是否使用該參數。如果您沒有提供預設值，使用者就需要在存取 Web 服務時輸入值。
 
-Web 服務的文件 (透過 Machine Learning Studio 中 Web 服務 **DASHBOARD** 裡面的 **API 說明頁面**連結所提供) 將包括 Web 服務使用者如何在存取 Web 服務時，以程式設計方式指定 Web 服務參數的資訊。
+Web 服務的 API 文件將包括 Web 服務使用者在存取 Web 服務時，如何以程式設計方式指定 Web 服務參數的資訊。
+
+>[AZURE.NOTE] 傳統 Web 服務的 API 文件是透過 Machine Learning Studio 中 Web 服務 [儀表板] 的 [API 說明頁面] 連結提供。新的 Web 服務的 API 文件則是透過 [Azure Machine Learning Web Services](https://services.azureml.net/Quickstart) 入口網站中 Web 服務的 [取用] 和 [Swagger API] 頁面提供。
 
 
 ##範例
 
-舉例來說，假設我們有一個[匯出資料][export-data]模組試驗，該模組會傳送資訊給 Azure Blob 儲存體。我們將會定義名為 Blob path 的 Web 服務參數，以在服務被存取時允許 Web 服務使用者將路徑變更至 Blob 儲存體。
+舉例來說，假設我們有一個[匯出資料][writer]模組實驗，該模組會傳送資訊給 Azure Blob 儲存體。我們將會定義名為 Blob path 的 Web 服務參數，以在服務被存取時允許 Web 服務使用者將路徑變更至 Blob 儲存體。
 
-1.	在 Machine Learning Studio 中，按一下 [[匯出資料][export-data]] 模組來選取它。其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
+1.	在 Machine Learning Studio 中，按一下 [[匯出資料][writer]] 模組來選取它。其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
 
 2.	指定儲存體類型：
 
     - 在 **[請指定資料目的地]** 底下，選取 [Azure Blob 儲存體]。
     - 在 **[請指定驗證類型]** 底下，選取 [帳戶]。
-    - 輸入 Azure Blob 儲存體的帳戶資訊。 
+    - 輸入 Azure Blob 儲存體的帳戶資訊。
     <p />
 
 3.	按一下 **[以容器參數為開頭的 Blob 路徑]** 右邊的圖示。它看起來像這樣：
@@ -57,7 +59,7 @@ Web 服務的文件 (透過 Machine Learning Studio 中 Web 服務 **DASHBOARD**
 
     選取 [設為 Web 服務參數]。
 
-    就會在 **[屬性] 窗格底部的 [Web 服務參數]** 底下新增一個名為 [以容器為開頭的 Blob 路徑] 項目。這就是現在與此[匯出資料][export-data]模組參數關聯的「Web 服務參數」。
+    就會在 **[屬性] 窗格底部的 [Web 服務參數]** 底下新增一個名為 [以容器為開頭的 Blob 路徑] 項目。這就是現在與此[匯出資料][writer]模組參數關聯的「Web 服務參數」。
 
 4.	若要重新命名 Web 服務參數，請按一下名稱，輸入 Blob path，然後按 **Enter** 鍵。
  
@@ -67,9 +69,9 @@ Web 服務的文件 (透過 Machine Learning Studio 中 Web 服務 **DASHBOARD**
 
 6.	按一下 **[執行]**。
 
-7.	按一下 **[發佈 Web 服務]** 來發佈 Web 服務。
+7.	按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 可部署 Web 服務。
 
-Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][export-data]模組指定新的目的地。
+Web 服務的使用者現在存取 Web 服務時，可以為[匯出資料][writer]模組指定新的目的地。
 
 ##詳細資訊
 
@@ -87,8 +89,8 @@ Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][ex
 <!-- Module References -->
 [feature-hashing]: https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
-[import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-[export-data]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
+[reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
+[writer]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

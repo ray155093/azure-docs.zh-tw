@@ -14,7 +14,7 @@
 	ms.workload="na" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="04/21/2016" 
+	ms.date="07/19/2016" 
 	ms.author="betorres"
 />
 
@@ -69,9 +69,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $SearchServiceResourceId StorageAccount
 
 ### 記錄檔
 
-記錄檔 Blob 包含您的搜尋服務流量記錄檔。
-
-每個 Blob 會一個名為**記錄**的根物件，其中包含記錄檔物件的陣列
+記錄檔 Blob 包含您的搜尋服務流量記錄檔。每個 blob 會有一個名為**記錄**的根物件，其中包含記錄物件的陣列。每個 blob 均包含同一小時內所有發生作業的記錄。
 
 ####記錄檔結構描述
 
@@ -98,12 +96,15 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 
 ### 度量
 
-度量 Blob 包含您搜尋服務的彙總值。每個檔案會一個名為**記錄**的根物件，其中包含度量物件的陣列
+度量 Blob 包含您搜尋服務的彙總值。每個檔案會有一個名為**記錄**的根物件，其中包含計量物件的陣列。這個根物件包含有可用資料的每分鐘計量。
 
 可用的度量：
 
-- 延遲
-- SearchQueriesPerSecond
+- SearchLatency︰搜尋服務處理搜尋查詢所需的時間 (每分鐘彙總一次)。
+- SearchQueriesPerSecond︰每秒接收的搜尋查詢數 (每分鐘彙總一次)。
+- ThrottledSearchQueriesPercentage︰已節流處理的搜尋查詢百分比 (每分鐘彙總一次)。
+
+> [AZURE.IMPORTANT] 傳送的查詢太多，因而耗盡服務佈建的資源容量時，就會進行節流處理。請考慮新增更多複本到您的服務。
 
 ####度量結構描述
 
@@ -118,6 +119,12 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 |total |int |258 |度量時間間隔中原始範例的總和值 |
 |計數 |int |4 |用來產生度量的原始樣本數 |
 |timegrain |字串 |"PT1M" |採用 ISO 8601 的度量時間粒紋|
+
+每隔一分鐘就會回報所有計量。這表示每個計量將公開每分鐘的最小值、最大值和平均值。
+
+在 SearchQueriesPerSecond 計量的案例中，最小值將是已註冊的搜尋查詢在該分鐘內的每秒最低值，最大值的原則相同。平均值將是一分鐘的彙總。假設案例如下︰在一分鐘內，可能有 1 秒有極高的負載，這將是 SearchQueriesPerSecond 的最大值，後面接著的是 58 秒的中等負載，剩下的 1 秒只有一個查詢，而這將會是最小值。
+
+對於 ThrottledSearchQueriesPercentage，最小值、最大值、平均值和總計將全是相同的值，該值即為已節流處理的搜尋查詢百分比 (根據一分鐘內的搜尋查詢總數)。
 
 ## 分析您的資料
 
@@ -221,4 +228,4 @@ properties |物件 |請參閱下方 |包含作業特定資料的物件
 [6]: ./media/search-traffic-analytics/BlobStorage.png
 [7]: ./media/search-traffic-analytics/QueryEditor.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/26/2016"
+   ms.date="07/14/2016"
    ms.author="alkohli"/>
 
 # 部署 StorSimple Virtual Array：在 Hyper-V 中佈建虛擬陣列
@@ -131,11 +131,11 @@
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image8m.png)
 
-1.  檢閱「摘要」，然後按一下 [結束] 來建立虛擬機器。
+1.  檢閱「摘要」，然後按一下 [結束] 來建立虛擬機器。但還不要跳到下一步，您還需要新增一些 CPU 核心和第二個磁碟機。
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image9.png)
 
-1.  您需要 4 顆核心才能符合最低需求。若要新增 4 個虛擬處理器，請在 [Hyper-V 管理員] 視窗中選取您的主機系統，然後在右窗格中 [虛擬機器] 清單下方，找出您剛建立的虛擬機器。選取虛擬機器的名稱並按一下滑鼠右鍵，然後選取 [設定]。
+1.  您需要 4 顆核心才能符合最低需求。若要新增虛擬處理器，請在 [Hyper-V 管理員] 視窗中選取您的主機系統，然後在右窗格中的 [虛擬機器] 清單下，找出您剛建立的虛擬機器。選取虛擬機器的名稱並按一下滑鼠右鍵，然後選取 [設定]。
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image10.png)
 
@@ -156,7 +156,7 @@
 
 1.  在「新增虛擬硬碟精靈」的「開始之前」頁面上，按 [下一步]。
 
-1.  在「選擇磁碟格式」頁面上，接受 [VHDX] 格式預設選項。按 [下一步]。如果您執行的是 Windows Server 2008 R2，則不會出現此畫面。
+1.  在「選擇磁碟格式」頁面上，接受 [VHDX] 格式預設選項。按 [下一步]。如果您執行的是 Windows Server 2012 R2 或 Windows Server 2008 R2，則不會看到這個畫面。
 
 	![](./media/storsimple-ova-deploy2-provision-hyperv/image15.png)
 
@@ -267,4 +267,4 @@
 
 -   [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-ova-deploy3-iscsi-setup.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

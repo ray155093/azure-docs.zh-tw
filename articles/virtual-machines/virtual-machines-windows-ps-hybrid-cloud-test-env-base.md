@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="07/19/2016" 
 	ms.author="josephd"/>
 
 # 設定用於測試的混合式雲端環境
@@ -41,7 +41,7 @@
 2.	設定 RRAS1。
 3.	建立跨單位 Azure 虛擬網路。
 4.	建立站對站 VPN 連線。
-5.	設定 DC2。 
+5.	設定 DC2。
 
 如果您還沒有 Azure 訂用帳戶，您可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 註冊免費帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
@@ -77,7 +77,7 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 
 接著，設定 RRAS1 的 TCP/IP 內容。您將需要公開的 IP 位址組態，包括位址、子網路遮罩 (或前置長度)，以及網際網路服務提供者 (ISP) 的預設閘道和 DNS 伺服器。在第 3 階段，需要公用 IP 位址。
 
-在 RRAS1 上的系統管理員層級 Windows PowerShell 命令提示字元下使用下列命令。在執行這些命令之前，先填入變數值並移除 < and > 字元。您可以從 **Get-NetAdapter** 命令的顯示，取得目前的網路介面卡名稱。
+在 RRAS1 上的系統管理員層級 Windows PowerShell 命令提示字元下使用下列命令。執行這些命令之前，請先填入變數值並移除 < 和 > 字元。您可以從 **Get-NetAdapter** 命令的顯示，取得目前的網路介面卡名稱。
 
 	$corpnetAdapterName="<Name of the adapter attached to the Corpnet subnet>"
 	$internetAdapterName="<Name of the adapter attached to the Internet>"
@@ -118,7 +118,7 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 
 	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
-設定您的 Azure 訂用帳戶使用您用來建置基本組態的同一個訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+設定您的 Azure 訂用帳戶使用您用來建置基本組態的同一個訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<subscription name>"
 	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
@@ -185,7 +185,7 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 
 	Get-AzureRMPublicIpAddress -Name $vnetGatewayIpConfigName -ResourceGroupName $rgName
 
-請記下顯示之 **IPAddress** 欄位中的 IP 位址。在第 4 階段中，您需要用到此資訊。
+請記下所顯示 [IPAddress] 欄位中的 IP 位址。在第 4 階段中，您需要用到此資訊。
 
 接下來，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊來取得預先共用金鑰。
 
@@ -223,7 +223,7 @@ RRAS1 提供公司網路子網路上的電腦與 TestVNET 虛擬網路之間的�
 
 接著，設定 RRAS1 支援網際網路位置的轉譯流量。在 RRAS1：
 
-1.	從 [開始] 畫面，輸入 **rras**，然後按一下 [路由及遠端存取]。 
+1.	從 [開始] 畫面，輸入 **rras**，然後按一下 [路由及遠端存取]。
 2.	在主控台樹狀結構中，開啟伺服器名稱，然後按一下 [IPv4]。
 3.	以滑鼠右鍵按一下 [一般]，然後按一下 [新增路由通訊協定]。
 4.	按一下 [NAT]，然後按一下 [確定]。
@@ -329,4 +329,4 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.1 的 4 次成功回覆。如�
 
 - 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)或 [Office 365 目錄同步作業 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

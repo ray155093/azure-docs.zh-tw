@@ -25,12 +25,12 @@
 ## 新增次要憑證
 若要新增另一個憑證做為次要憑證，您必須將該憑證上傳到 Azure 金鑰保存庫，然後將它部署到叢集中的 VM。如需其他資訊，請參閱 [Deploy certificates to VMs from a customer-managed Key Vault (將憑證從客戶管理的金鑰保存庫部署到 VM)](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx)。
 
-1. [將 X.509 憑證上傳至金鑰保存庫](service-fabric-cluster-azure-secure-with-certs.md#step-2-upload-the-x509-certificate-to-the-key-vault)
+1. [將 X.509 憑證上傳至金鑰保存庫](service-fabric-secure-azure-cluster-with-certs.md#step-2-upload-the-x509-certificate-to-the-key-vault)
 2. 登入 [Azure 入口網站](https://portal.azure.com/)，然後瀏覽至您想要新增此憑證的叢集資源。
 3. 在 [設定] 底下，按一下憑證設定並輸入次要憑證指紋。
 4. 按一下 [儲存]。隨即會開始部署，在部署順利完成後，您就可以使用主要或次要憑證在叢集上執行管理作業。
 
-![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations_02]
+![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations\_02]
 
 ## 移除憑證
 以下是移除舊憑證的程序，以讓叢集不會使用它：
@@ -47,6 +47,6 @@
 
 
 <!--Image references-->
-[SecurityConfigurations_02]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png
+[SecurityConfigurations_02]:./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

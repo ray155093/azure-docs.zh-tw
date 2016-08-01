@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/01/2016"
+	ms.date="07/19/2016"
 	ms.author="casoper"/>
 
 # 開始使用 Azure CDN 開發
@@ -58,7 +58,7 @@
 
 1. 回到 [Program.cs] 索引標籤，使用下列內容取代頂端的 `using` 指示詞：
 
-	```
+	```csharp
 	using System;
 	using System.Collections.Generic;
 	using Microsoft.Azure.Management.Cdn;
@@ -71,7 +71,7 @@
 
 2. 我們必須定義一些我們的方法將用到的常數。在 `Program` 類別中，但在 `Main` 方法之前，新增下列內容。務必視需要使用您的值來取代預留位置，包括 **&lt;角括號&gt;**。
 
-	```
+	```csharp
 	//Tenant app constants
 	private const string clientID = "<YOUR CLIENT ID>";
 	private const string clientSecret = "<YOUR CLIENT AUTHENTICATION KEY>"; //Only for service principals
@@ -87,14 +87,14 @@
 
 3. 此外，也要在類別層級設定這兩個變數。稍後將使用這些項目來判斷我們的設定檔和端點是否已經存在。
 
-	```
+	```csharp
 	static bool profileAlreadyExists = false;
     static bool endpointAlreadyExists = false;
 	```
 
 4.  取代 `Main` 方法，如下所示：
 
-	```
+	```csharp
 	static void Main(string[] args)
 	{
 		//Get a token
@@ -130,7 +130,7 @@
 
 5. 在我們的其他方法中有一些會透過「是/否」問題來提示使用者。新增下列方法，以使其更加容易：
 
-	```
+	```csharp
 	private static bool PromptUser(string Question)
 	{
 		Console.Write(Question + " (Y/N): ");
@@ -158,7 +158,7 @@
 
 在可以使用 Azure CDN 管理庫之前，需要先驗證服務主體，並取得驗證權杖。這個方法會使用 ADAL 來擷取權杖。
 
-```
+```csharp
 private static AuthenticationResult GetAccessToken()
 {
 	AuthenticationContext authContext = new AuthenticationContext(authority); 
@@ -174,7 +174,7 @@ private static AuthenticationResult GetAccessToken()
 
 >[AZURE.IMPORTANT] 如果您選擇使用個別使用者驗證，而不是服務主體，只需使用這個程式碼範例。
 
-```
+```csharp
 private static AuthenticationResult GetAccessToken()
 {
 	AuthenticationContext authContext = new AuthenticationContext(authority);
@@ -191,7 +191,7 @@ private static AuthenticationResult GetAccessToken()
 
 現在我們已經準備好執行 CDN 作業。方法的首要任務就是列出資源群組中的所有設定檔和端點，而且如果找到與常數中指定的設定檔和端點名稱相符的項目，請記下該項目以供後續使用，如此一來我們就不用嘗試建立重複的項目。
 
-```
+```csharp
 private static void ListProfilesAndEndpoints(CdnManagementClient cdn)
 {
 	// List all the CDN profiles in this resource group
@@ -226,7 +226,7 @@ private static void ListProfilesAndEndpoints(CdnManagementClient cdn)
 
 接下來，我們將建立設定檔。
 
-```
+```csharp
 private static void CreateCdnProfile(CdnManagementClient cdn)
 {
 	if (profileAlreadyExists)
@@ -245,7 +245,7 @@ private static void CreateCdnProfile(CdnManagementClient cdn)
 
 建立設定檔之後，我們將建立端點。
 
-```
+```csharp
 private static void CreateCdnEndpoint(CdnManagementClient cdn)
 {
 	if (endpointAlreadyExists)
@@ -274,7 +274,7 @@ private static void CreateCdnEndpoint(CdnManagementClient cdn)
 
 假設端點已建立，我們可能想要在程式中執行的一個常見工作是清除此端點中的內容。
 
-```
+```csharp
 private static void PromptPurgeCdnEndpoint(CdnManagementClient cdn)
 {
 	if (PromptUser(String.Format("Purge CDN endpoint {0}?", endpointName)))
@@ -293,7 +293,7 @@ private static void PromptPurgeCdnEndpoint(CdnManagementClient cdn)
 
 最後一個方法會刪除我們的端點和設定檔。
 
-```
+```csharp
 private static void PromptDeleteCdnEndpoint(CdnManagementClient cdn)
 {
 	if(PromptUser(String.Format("Delete CDN endpoint {0} on profile {1}?", endpointName, profileName)))
@@ -337,4 +337,4 @@ private static void PromptDeleteCdnProfile(CdnManagementClient cdn)
 
 若要尋找適用於 .NET 的 Azure CDN 管理程式庫的其他相關文件，請檢視 [MSDN 上的參考](https://msdn.microsoft.com/library/mt657769.aspx)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

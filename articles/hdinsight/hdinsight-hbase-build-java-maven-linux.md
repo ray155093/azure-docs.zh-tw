@@ -22,7 +22,7 @@
 
 [Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。在本文中，您將了解如何用它來建立基本的 Java 應用程式，以便在以 Linux 為基礎的 HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
 
-> [AZURE.NOTE] 本文件中的步驟是假設您使用以 Linux 為基礎的 HDInsight 叢集。如需使用以 Windows 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven.md)
+> [AZURE.NOTE] 本文件中的步驟是假設您使用以 Linux 為基礎的 HDInsight 叢集。如需使用以 Windows 為基礎的 HDInsight 叢集資訊，請參閱[使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight 的 Java 應用程式](hdinsight-hbase-build-java-maven.md)
 
 ##需求
 
@@ -390,4 +390,4 @@
 
 	hadoop jar hbaseapp-1.0-SNAPSHOT.jar com.microsoft.examples.DeleteTable
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

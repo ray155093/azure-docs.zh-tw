@@ -26,7 +26,7 @@
 **Let 和 set** [let](#let-clause) | [set](#set-clause)
 
 
-**查詢和運算子** [count](#count-operator) | [extend](#extend-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render 指示詞](#render-directive) | [restrict 子句](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator)
+**查詢和運算子** [count](#count-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator)
 
 **彙總** [any](#any) | [argmax](#argmax) | [argmin](#argmin) | [avg](#avg) | [buildschema](#buildschema) | [count](#count) | [countif](#countif) | [dcount](#dcount) | [dcountif](#dcountif) | [makelist](#makelist) | [makeset](#makeset) | [max](#max) | [min](#min) | [percentile](#percentile) | [percentiles](#percentiles) | [percentilesw](#percentilesw) | [percentilew](#percentilew) | [stdev](#stdev) | [sum](#sum) | [variance](#variance)
 
@@ -38,7 +38,7 @@
 
 **字串** [GUID](#guids) | [模糊字串常值](#obfuscated-string-literals) | [字串常值](#string-literals) | [字串比較](#string-comparisons) | [countof](#countof) | [extract](#extract) | [isempty](#isempty) | [isnotempty](#isnotempty) | [notempty](#notempty) | [replace](#replace) | [split](#split) | [strcat](#strcat) | [strlen](#strlen) | [substring](#substring) | [tolower](#tolower) | [toupper](#toupper)
 
-**陣列、物件及動態** [陣列和物件常值](#array-and-object-literals) | [動態物件函數](#dynamic-object-functions) | [let 子句中的動態物件](#dynamic-objects-in-let-clauses) | [JSON 路徑運算式](#json-path-expressions) | [名稱](#names) | [arraylength](#arraylength) | [extractjson](#extractjson) | [parsejson](#parsejson) | [range](#range) | [todynamic](#todynamic) | [treepath](#treepath)
+**陣列、物件及動態** [陣列和物件常值](#array-and-object-literals) | [動態物件函式](#dynamic-object-functions) | [let 子句中的動態物件](#dynamic-objects-in-let-clauses) | [JSON 路徑運算式](#json-path-expressions) | [名稱](#names) | [arraylength](#arraylength) | [extractjson](#extractjson) | [parsejson](#parsejson) | [range](#range) | [todynamic](#todynamic) | [treepath](#treepath)
 
 
 
@@ -65,7 +65,7 @@
     let us_date = (t:datetime){strcat(getmonth(t),'/',dayofmonth(t),'/',getyear(t)) }; 
     requests | summarize count() by bin(timestamp, 1d) | project count_, day=us_date(timestamp)
 
-let 子句會將[名稱](#names)繫結至表格式結果、純量值或函數。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
+let 子句會將[名稱](#names)繫結至表格式結果、純量值或函式。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
 
 **語法**
 
@@ -129,15 +129,15 @@ Set 子句可設定查詢持續時間的選項。查詢選項可控制查詢如�
 
 ```AIQL
 requests // The request table starts this pipeline.
-| where client_City == "London" and timestamp > ago(3d)
-| count
+| where client_City == "London" // filter the recordsand timestamp > ago(3d)
+| count 
 ```
     
 每個以縱線字元 `|` 做為前置詞的篩選條件即為含有一些參數的「運算子」執行個體。前面管線所得到的結果會以資料表的形式做為運算子的輸入。大部分情況下，任何參數皆是輸入資料行的[純量運算式](#scalars)。但在某些情況下，參數是輸入資料行的名稱或是第二個資料表。查詢的結果永遠是資料表，即使它只有一個資料行和一個資料列。
 
 查詢可能包含單一分行符號，但會使用空白行來結束。它們可能在 `//` 和行尾之間包含註解。
 
-查詢能以一或多個 [let 子句](#let-clause)做為前置詞，以定義可在查詢中使用的純量、資料表或函數。
+查詢能以一或多個 [let 子句](#let-clause)做為前置詞，以定義可在查詢中使用的純量、資料表或函式。
 
 ```AIQL
 
@@ -166,13 +166,234 @@ requests // The request table starts this pipeline.
 
 **傳回**
 
-此函數會傳回含有單一記錄且資料行類型為 `long` 的資料表。唯一資料格的值是 T 中的記錄數目。
+此函式會傳回含有單一記錄且資料行類型為 `long` 的資料表。唯一資料格的值是 T 中的記錄數目。
 
 **範例**
 
 ```AIQL
 requests | count
 ```
+
+### evaluate 運算子
+
+`evaluate` 是擴充機制，可讓專門的演算法附加至查詢。
+
+`evaluate` 必須是在查詢管線中的最後一個運算子 (除了可能的 `render` 以外)。它不得出現在函式主體中。
+
+[evaluate autocluster](#evaluate-autocluster) | [evaluate basket](#evaluate-basket) | [evaluate diffpatterns](#evaluate-diffpatterns) | [evaluate extractcolumns](#evaluate-extractcolumns)
+
+#### evaluate autocluster
+
+     T | evaluate autocluster()
+
+AutoCluster 可尋找資料中離散屬性 (維度) 的常見模式，並將原始查詢的結果 (不論是 100 或 100000 個資料列) 減少至少量模式。AutoCluster 特別開發來協助分析失敗 (如例外狀況、毀損)，但可能作用於任何已篩選的資料集上。
+
+**語法**
+
+    T | evaluate autocluster( arguments )
+
+**傳回**
+
+AutoCluster 會傳回一組 (通常很少) 模式，以擷取有橫跨多個離散屬性之共用常見值的部分資料。每個模式會以結果中的一個資料列表示。
+
+前兩個資料行是原始查詢中由模式所擷取之資料列的計數和百分比。其餘的資料行來自原始查詢，其值是資料行中的特定值或表示變數值的 '*'。
+
+請注意，模式並未分離︰它們可能會重疊，而且通常不會涵蓋所有原始資料列。某些資料列可能不會落在任何模式之下。
+
+**秘訣**
+
+* 在輸入管線中使用 `where` 和 `project`，將資料減少到僅只您感興趣的資料。
+* 當您找到有趣的資料列時，您可藉由將其特定值加入至您的 `where` 篩選器，進一步深入探索。
+
+**引數 (全部選用)**
+
+* `output=all | values | minimal`
+
+    結果的格式。Count 和 Percent 資料行一律會出現在結果中。
+
+ * `all` - 輸入中的所有資料行都是輸出
+ * `values` - 篩選出結果中只有 '*' 的資料行
+ * `minimal` - 也會篩選出對原始查詢中的所有資料列而言相同的資料行。
+
+
+* `min_percent=` *double* (預設值︰1)
+
+    產生的資料列的最小涵蓋百分比。
+
+    範例：`T | evaluate autocluster("min_percent=5.5")`
+
+
+* `num_seeds=` *int* (預設值︰25)
+
+    種子數目可決定演算法的初始本機搜尋點數。在某些情況下，視資料的結構而定，增加種子數目會透過以查詢速度變慢所換取的搜尋空間增加，來增加結果的數目 (或品質)。num\_seeds 引數具有雙向的遞減結果，因此減少至 5 以下將達到顯著的效能改進，而增加至 50 以上很少會產生其他模式。
+
+    範例：`T | evaluate autocluster("num_seeds=50")`
+
+
+* `size_weight=` *0<double<1*+ (預設值：0.5)
+
+    可讓您控制泛型 (高涵蓋範圍) 與資訊豐富 (許多共用值) 之間的平衡。增加 size\_weight 通常可減少模式數目，而每個模式傾向於涵蓋較大的百分比。減少 size\_weight 通常會產生具有更多共用值和較小涵蓋百分比的更特定模式。幕後的公式是正規化泛型分數和資訊豐富分數 (以 size\_weight 和 1-size\_weight 當作權數) 之間的加權幾何平均值。
+
+    範例：`T | evaluate autocluster("size_weight=0.8")`
+
+
+* `weight_column=` *column\_name*
+
+    根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列，權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
+
+    範例：`T | evaluate autocluster("weight_column=sample_Count")`
+
+
+
+#### evaluate basket
+
+     T | evaluate basket()
+
+Basket 可尋找資料中離散屬性 (維度) 的所有常見模式，將會傳回在原始查詢中傳遞頻率臨界值的所有常見模式。Basket 保證可尋找資料中所有的常見模式，但不保證有多項式執行階段。查詢執行階段的資料列數目是線性型態，但是在某些情況下，資料行 (維度) 數目可能是指數型態。Basket 是以最初針對購物籃分析資料採礦而開發的 Apriori 演算法為基礎。
+
+**傳回**
+
+所有出現於事件的多個指定分數 (預設值 0.05) 中的模式。
+
+**引數 (全部選用)**
+
+
+* `threshold=` *0.015<double<1* (預設值：0.05)
+
+    將資料列的最小比率設為認定的頻繁 (不會傳回較小比例的模式)。
+
+    範例：`T | evaluate basket("threshold=0.02")`
+
+
+* `weight_column=` *column\_name*
+
+    根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列，權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
+
+    範例：T | evaluate basket("weight\_column=sample\_Count")
+
+
+* `max_dims=` *1<int* (預設值：5)
+
+    設定每個 Basket 的不相關維度數目上限 (依預設會受到限制以縮減查詢執行階段)。
+
+
+* `output=minimize` | `all`
+
+    結果的格式。Count 和 Percent 資料行一律會出現在結果中。
+
+ * `minimize` - 篩選出結果中只有 '*' 的資料行。
+ * `all` - 輸入中的所有資料行都是輸出。
+
+
+
+
+#### evaluate diffpatterns
+
+     requests | evaluate diffpatterns("split=success")
+
+Diffpatterns 會比較相同結構的兩個資料集，並尋找可描繪兩個資料集之間差異的離散屬性 (維度) 模式。Diffpatterns 特別開發來協助分析失敗 (例如：藉由比較指定時間範圍內的失敗與非失敗），但有可能找到相同結構的任兩個資料集之間的差異。
+
+**語法**
+
+`T | evaluate diffpatterns("split=` *BinaryColumn* `" [, arguments] )`
+
+**傳回**
+
+Diffpatterns 會傳回一組 (通常很少) 模式，以擷取兩個集合中的不同資料部分 (也就是，此模式會擷取第一個資料集中高百分比的資料列和第二個集合中低百分比的資料列)。每個模式會以結果中的一個資料列表示。
+
+前四個資料行是原始查詢中由每個資料集的模式所擷取之資料列的計數和百分比，第五個資料行是兩個資料集之間的差異 (以絕對百分點表示)。其餘的資料行來自原始查詢，其值是資料行中的特定值或表示變數值的 *。
+
+請注意，模式並未不同︰它們可能會重疊，而且通常不會涵蓋所有原始資料列。某些資料列可能不會落在任何模式之下。
+
+**秘訣**
+
+* 在輸入管線中使用 where 和 project，將資料減少到僅只您感興趣的資料。
+
+* 當您找到有趣的資料列時，您可藉由將其特定值加入至您的 where 篩選器，進一步深入探索。
+
+**引數**
+
+* `split=` *column name* (必要)
+
+    此資料行必須恰好有兩個值。如有必要，請建立這類資料行︰
+
+    `requests | extend fault = toint(resultCode) >= 500` <br/> `| evaluate diffpatterns("split=fault")`
+
+* `target=` *string*
+
+    告訴演算法只在目標資料集中尋找具有較高百分比的模式，目標必須是分割資料行的兩個值之一。
+
+    `requests | evaluate diffpatterns("split=success", "target=false")`
+
+* `threshold=` *0.015<double<1* (預設值：0.05)
+
+    設定兩個集合之間的最小模式 (比率) 差異。
+
+    `requests | evaluate diffpatterns("split=success", "threshold=0.04")`
+
+* `output=minimize | all`
+
+    結果的格式。Count 和 Percent 資料行一律會出現在結果中。
+
+ * `minimize` - 篩選出結果中只有 '*' 的資料行
+ * `all` - 輸入中的所有資料行都是輸出
+
+* `weight_column=` *column\_name*
+
+    根據指定的權數 (依預設每個資料都列具有權數 '1') 考慮輸入中的每個資料列。權數資料行的常見用法是考慮已內嵌至各資料列的資料取樣或分組/彙總。
+
+    `requests | evaluate autocluster("weight_column=itemCount")`
+
+
+
+
+
+
+#### evaluate extractcolumns
+
+     exceptions | take 1000 | evaluate extractcolumns("details=json") 
+
+Extractcolumns 用來充實具有多個簡單資料行的資料表，而這些資料行會根據其類型從 (半) 結構化資料行中動態擷取。它目前僅支援 json 資料行 (包含 json 的動態和字串序列化)。
+
+
+* `max_columns=` *int* (預設值︰10)
+
+    新加入的資料行數目是動態的，有可能非常大 (實際上是所有 json 記錄中的相異索引鍵數目)，所以我們必須加以限制。新資料行會根據其頻率以遞減順序排序，直到 max\_columns 加入至資料表為止。
+
+    `T | evaluate extractcolumns("json_column_name=json", "max_columns=30")`
+
+
+* `min_percent=` *double* (預設值︰10.0)
+
+    另一個限制新資料行的方法是忽略頻率低於 min\_percent 的資料行。
+
+    `T | evaluate extractcolumns("json_column_name=json", "min_percent=60")`
+
+
+* `add_prefix=` *bool* (預設值︰true)
+
+    如果為 true，複雜資料行的名稱會加入為所擷取資料行名稱的前置詞。
+
+
+* `prefix_delimiter=` *string* (預設值︰"\_")
+
+    如果 add\_prefix = true，此參數會定義將用來串連新資料行名稱的分隔符號。
+
+    `T | evaluate extractcolumns("json_column_name=json",` <br/> `"add_prefix=true", "prefix_delimiter=@")`
+
+
+* `keep_original=` *bool* (預設值︰false)
+
+    如果為 true，則原始 (json) 資料行會保留在輸出資料表中。
+
+
+* `output=query | table`
+
+    結果的格式。
+
+ * `table` - 輸出是收到的相同資料表，減去指定的輸入資料行，再加上從輸入資料行擷取的新資料行。
+ * `query` - 輸出是一個字串，表示您會為了取得資料表形式的結果而進行的查詢。
+
 
 
 
@@ -190,7 +411,7 @@ requests | count
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要新增的資料行名稱。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* ColumnName：要新增的資料行名稱。[Names](#names) 需區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
 * Expression︰現有資料行的計算。
 
 **傳回**
@@ -222,7 +443,7 @@ traces
 
 **語法**
 
-    Table1 | join [kind=Kind] (Table2) on CommonColumn [, ...]
+    Table1 | join [kind=Kind] \(Table2) on CommonColumn [, ...]
 
 **引數**
 
@@ -309,7 +530,7 @@ traces
 
 從動態類型 (JSON) 的資料格展開清單，讓每個項目各自佔據一個資料列。所展開資料列中的其他所有資料格則會重複。
 
-(請參閱會執行相反函數的 [`summarize makelist`](#summarize-operator))。
+(請參閱會執行相反函式的 [`summarize makelist`](#summarize-operator))。
 
 **範例**
 
@@ -508,7 +729,7 @@ resource | slice | lock | release | previous
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。[Names](#names) 需區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
 * Expression︰參考輸入資料行的選擇性純量運算式。
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
@@ -563,7 +784,7 @@ T
 * Stop︰輸出中產生的最大值 (或者，如果 step 跨越此值，即為最大值界限)。
 * Step︰兩個連續值之間的差異。
 
-引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函數](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator))。
+引數必須是數字、日期或時間範圍值。引數不能參考任何資料表的資料行 (如果您想要根據輸入資料表計算範圍，請使用 [range 函式](#range)，或許再搭配 [mvexpand 運算子](#mvexpand-operator))。
 
 **傳回**
 
@@ -699,8 +920,8 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 **引數**
 
-* Column：結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。「名稱」[](#names)區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
-* Aggregation︰`count()` 或 `avg()` 等彙總函數的呼叫，以資料行名稱做為引數。請參閱[彙總](#aggregations)。
+* Column：結果資料行的選擇性名稱。預設值為衍生自運算式的名稱。[Names](#names) 需區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* Aggregation︰`count()` 或 `avg()` 等彙總函式的呼叫，以資料行名稱做為引數。請參閱[彙總](#aggregations)。
 * GroupExpression：可提供一組相異值的資料行運算式。它通常是已提供一組受限值的資料行名稱，或是以數值或時間資料行做為引數的 `bin()`。
 
 如果您提供數值或時間運算式而不使用 `bin()`，「分析」就會自動為它套用 `1h` 間隔的時間，或 `1.0` 的數字。
@@ -767,7 +988,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
 * N:int - 傳回或傳遞到下一層的資料列數目。在有三個層級的查詢 (其中 N 為 5、3 及 3) 中，資料列總數將會是 45。
 * COLUMN - 可據以群組來進行彙總的資料行。
-* AGGREGATION - 要套用到每個資料列群組的[彙總函數](#aggregations)。這些彙總的結果將決定要顯示的最上層群組。
+* AGGREGATION - 要套用到每個資料列群組的[彙總函式](#aggregations)。這些彙總的結果將決定要顯示的最上層群組。
 
 
 ### union 運算子
@@ -877,7 +1098,7 @@ Traces
 
 ## 彙總
 
-彙總是用來將[彙總作業](#summarize-operator)中建立的群組中的值結合的函數。例如，在此查詢中，dcount() 是彙總函數︰
+彙總是用來將[彙總作業](#summarize-operator)中建立的群組中的值結合的函式。例如，在此查詢中，dcount() 是彙總函數︰
 
     requests | summarize dcount(name) by success
 
@@ -1054,7 +1275,7 @@ traces
 Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
  * `0` = 最不精確但最快速的計算。
- * `1` 預設值，會平衡精確度和計算時間；大約 0.8% 的誤差。
+ * `1` 是預設值，會平衡精確度和計算時間；大約 0.8% 的誤差。
  * `2` = 最精確但最慢的計算；大約 0.4% 的誤差。
 
 **範例**
@@ -1070,7 +1291,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
     dcountif( Expression, Predicate [ ,  Accuracy ])
 
-傳回 Predicate 為 true 的群組中，資料列的 Expr 相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset))。
+傳回 Predicate 為 true 的群組中，資料列的 Expr 相異值數目的估計值。(若要列出相異值，請使用 [`makeset`](#makeset)。)
 
 Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
@@ -1109,7 +1330,7 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 
 ![](./media/app-insights-analytics-reference/makeset.png)
 
-另請參閱相反函數的 [`mvexpand` 運算子](#mvexpand-operator)。
+另請參閱相反函式的 [`mvexpand` 運算子](#mvexpand-operator)。
 
 
 ### max、min
@@ -1341,7 +1562,7 @@ hash(datetime("2015-01-01"))    // 1380966698541616202
 ```
 ### iff
 
-`iff()` 函數會評估第一個引數 (述詞)，並根據述詞是 `true` 或 `false` 傳回第二個或第三個引數的值。第二個引數和第三個引數的類型必須相同。
+`iff()` 函式會評估第一個引數 (述詞)，並根據述詞是 `true` 或 `false` 傳回第二個或第三個引數的值。第二個引數和第三個引數的類型必須相同。
 
 **語法**
 
@@ -1351,12 +1572,12 @@ hash(datetime("2015-01-01"))    // 1380966698541616202
 **引數**
 
 * predicate︰評估為 `boolean` 值的運算式。
-* ifTrue：如果 predicate 評估為 `true`，會接受評估並從函數傳回其值的運算式。
-* ifFalse：如果 predicate 評估為 `false`，會接受評估並從函數傳回其值的運算式。
+* ifTrue：如果 predicate 評估為 `true`，會接受評估並從函式傳回其值的運算式。
+* ifFalse：如果 predicate 評估為 `false`，會接受評估並從函式傳回其值的運算式。
 
 **傳回**
 
-如果 predicate 評估為 `true`，此函數會傳回 ifTrue 的值，否則會傳回 ifFalse 的值。
+如果 predicate 評估為 `true`，此函式會傳回 ifTrue 的值，否則會傳回 ifFalse 的值。
 
 **範例**
 
@@ -1618,8 +1839,8 @@ true 或 false，取決於值是 null 或不是 null。
 **datetime**|
 `datetime("2015-12-31 23:59:59.9")`<br/>`datetime("2015-12-31")`|時間一律是 UTC 格式。省略日期則會提供今天的時間。
 `now()`|目前的時間。
-`now(`-*timespan*`)`|`now()-`*timespan*
-`ago(`*timespan*`)`|`now()-`*timespan*
+`now(`-timespan`)`|`now()-`timespan
+`ago(`timespan`)`|`now()-`timespan
 **timespan**|
 `2d`|2 天
 `1.5h`|1\.5 小時 
@@ -1657,7 +1878,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 ### ago
 
-從目前的 UTC 時鐘時間減去指定的時間範圍。和 `now()` 一樣，此函數可在陳述式中多次使用，而且所參考的 UTC 時鐘時間在所有具現化中皆相同。
+從目前的 UTC 時鐘時間減去指定的時間範圍。和 `now()` 一樣，此函式可在陳述式中多次使用，而且所參考的 UTC 時鐘時間在所有具現化中皆相同。
 
 **語法**
 
@@ -2186,7 +2407,7 @@ substring("ABCD", 0, 2)       // AB
         line = details[0].parsedStack[0].line,
         stackdepth = arraylength(details[0].parsedStack)
 
-* 但會使用 `arraylength` 和其他分析函數 (不是 ".length"！)
+* 但會使用 `arraylength` 和其他分析函式 (不是 ".length"！)
 
 **轉換：**有時您必須將擷取自物件的項目進行轉換，因為其類型可能不同。例如，`summarize...to` 就需要特定類型：
 
@@ -2281,7 +2502,7 @@ T
 | value `!in` array| 如果沒有 array 項目 == value，則為 true
 |[`arraylength(`array`)`](#arraylength)| 如果不是陣列則為 null
 |[`extractjson(`path,object`)`](#extractjson)|使用路徑來瀏覽至物件。
-|[`parsejson(`source`)`](#parsejson)| 將 JSON 字串變成動態物件。
+|[`parsejson(`來源`)`](#parsejson)| 將 JSON 字串變成動態物件。
 |[`range(`from,to,step`)`](#range)| 值的陣列
 |[`mvexpand` listColumn](#mvexpand-operator) | 在指定資料格中複寫清單中每個值的資料列。
 |[`summarize buildschema(`column`)`](#buildschema) |從資料行內容推斷類型結構描述
@@ -2420,7 +2641,7 @@ T
 
 ### range
 
-`range()` 函數 (請勿與 `range` 運算子混淆) 會產生保有一系列等間距值的動態陣列。
+`range()` 函式 (請勿與 `range` 運算子混淆) 會產生保有一系列等間距值的動態陣列。
 
 **語法**
 
@@ -2499,4 +2720,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

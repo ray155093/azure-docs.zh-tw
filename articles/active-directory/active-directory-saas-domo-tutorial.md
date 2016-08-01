@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="07/15/2016"
 	ms.author="jeedes"/>
 
 
@@ -57,7 +57,7 @@
 
 **如要從資源庫新增 Domo，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -100,19 +100,44 @@
 
 本節的目標，是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Domo 應用程式中設定單一登入。
 
+Domo 應用程式需要特定格式的 SAML 判斷提示。請設定此應用程式的下列宣告。您可以從應用程式的 [屬性] 索引標籤來管理這些屬性的值。以下螢幕擷取畫面顯示上述的範例。
 
+![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_domo_06.png)
 
 **如要設定搭配 Domo 的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站的 [Domo] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+
+1. 在 Azure 傳統入口網站中的 **Domo** 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
+
+	![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_general_80.png)
+
+
+1. 在 [SAML Token 屬性] 對話方塊，針對下表中顯示的每一列執行下列步驟：
+
+	| 屬性名稱 | 屬性值 |
+	| --- | --- |    
+	| 名稱 | user.displayname |
+	| 電子郵件 | user.mail |
+
+	a.按一下 [新增使用者屬性] 來開啟 [新增使用者屬性] 對話方塊。
+
+	![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_general_81.png)
+
+	b.在 [屬性名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+
+    c.在 [屬性值] 清單中，選取該資料列所顯示的屬性名稱。
+
+    d.按一下 [完成]。
+
+2. 在 Azure 傳統入口網站的 [Domo] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入][6]
 
-2. 在 [要如何讓使用者登入 Domo] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+3. 在 [要如何讓使用者登入 Domo] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
 
 	![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_domo_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+4. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_domo_04.png)
 
@@ -121,7 +146,7 @@
 
     b.按 [下一步]。
 
-4. 在 [設定在 Domo 單一登入] 頁面上，執行下列步驟：
+5. 在 [設定在 Domo 單一登入] 頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-domo-tutorial/tutorial_domo_05.png)
 
@@ -130,14 +155,14 @@
     b.按 [下一步]。
 
 
-5. 如要為您的應用程式設定 SSO，請透過 [support@domo.com](mailto: support@domo.com) 與 Domo 支援團隊連絡，並在電子郵件中附加您下載的憑證，同時提供 [簽發者 URL]、[SAML SSO URL] 及 [登出 URL]。
+6. 如要為您的應用程式設定 SSO，請透過 [support@domo.com](mailto: support@domo.com) 與 Domo 支援團隊連絡，並在電子郵件中附加您下載的憑證，同時提供 [簽發者 URL]、[SAML SSO URL] 及 [登出 URL]。
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+7. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+8. 在 [單一登入確認] 頁面上，按一下 [完成]。
 
 	![Azure AD 單一登入][11]
 
@@ -161,11 +186,11 @@
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-domo-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-domo-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-domo-tutorial/create_aaduser_05.png)
 
@@ -269,4 +294,4 @@
 [204]: ./media/active-directory-saas-domo-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-domo-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

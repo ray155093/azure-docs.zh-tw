@@ -1,6 +1,6 @@
 <properties
 	pageTitle="擷取 Linux VM 作為範本使用 | Microsoft Azure"
-	description="了解如何擷取以 Azure 資源管理員部署模型建立之以 Linux 為主的 Azure 虛擬機器 (VM) 的映像。"
+	description="了解如何擷取以 Azure Resource Manager 部署模型建立的以 Linux 為基礎之 Azure 虛擬機器 (VM) 的映像，並將它一般化。"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="dlepow"
@@ -14,17 +14,21 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016"
+	ms.date="07/19/2016"
 	ms.author="danlep"/>
 
 
 # 如何擷取 Linux 虛擬機器作為資源管理員範本使用
 
-使用 Azure 命令列介面 (CLI) 擷取執行 Linux 的 Azure 虛擬機器，以便用它作為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
+使用「Azure 命令列介面」(CLI) 來擷取執行 Linux 的 Azure 虛擬機器並將它一般化，以便使用它做為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
+
+>[AZURE.TIP]如果您想要建立自訂 Linux VM 映像並將它上傳到 Azure 以便從該映像建立 VM，請參閱[上傳自訂磁碟映像並從這個映像建立 VM](virtual-machines-linux-upload-vhd.md)。
 
 ## 開始之前
 
 這些步驟假設您已在 Azure 資源管理員部署模型中建立 Azure 虛擬機器，並設定好作業系統，包括連接任何資料磁碟以及進行其他自訂作業 (如安裝應用程式)。有數種方式可以執行這項作業 (包括透過 Azure CLI)。如果您尚未這麼做，請參閱在 Azure 資源管理員模式中使用 Azure CLI 的相關指示：
+
+- [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md)
 
 - [使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)
 
@@ -32,7 +36,7 @@
 
  	azure vm quick-create -g MyResourceGroup -n <your-virtual-machine-name> "centralus" -y Linux -Q canonical:ubuntuserver:14.04.2-LTS:latest -u <your-user-name> -p <your-password>
 
-佈建並執行 VM 之後，您可能想要連接和掛接資料磁碟。請參閱[這裡](virtual-machines-linux-add-disk.md)的指示。
+佈建並執行 VM 之後，您可以[連接和掛接資料磁碟](virtual-machines-linux-add-disk.md)。
 
 
 ## 擷取 VM
@@ -46,13 +50,13 @@
 	此命令會嘗試清除系統，使之適合重新佈建。這項作業會執行下列工作：
 
 	- 移除 SSH 主機金鑰 (如果組態檔中的 Provisioning.RegenerateSshHostKeyPair 是 'y')
-	- 清除 /etc/resolv.conf 中的名稱伺服器設定
+	- 清除 /etc/resolvconf 中的名稱伺服器設定
 	- 移除 /etc/shadow 中的 `root` 使用者密碼 (如果組態檔中的 Provisioning.DeleteRootPassword 是 'y')
 	- 移除快取的 DHCP 用戶端租用
 	- 將主機名稱重設為 localhost.localdomain
 	- 刪除最後佈建的使用者帳戶 (取自於 /var/lib/waagent) 和相關聯的資料。
 
-	>[AZURE.NOTE] 解除佈建會刪除檔案與資料，以將映象「一般化」。只在您想要擷取作為映像的 VM 上執行這個命令。這不能保證映像檔中的所有機密資訊都會清除完畢或適合轉散發給第三方。
+	>[AZURE.NOTE] 解除佈建會刪除檔案與資料來試圖將映像一般化。只在您想要擷取作為映像的 VM 上執行這個命令。這不能保證映像檔中的所有機密資訊都會清除完畢或適合轉散發給第三方。
 
 3. 輸入 **y** 繼續。您可以加入 **-force** 參數，便不用進行此確認步驟。
 
@@ -76,18 +80,18 @@
 
 9. 現在使用下列命令來擷取映像和本機檔案範本：
 
-	`azure vm capture <your-resource-group-name>  <your-virtual-machine-name> <your-vhd-name-prefix> -t <your-template-file-name.json>`
+	`azure vm capture <your-resource-group-name>  <your-virtual-machine-name> <your-vhd-name-prefix> -t <path-to-your-template-file-name.json>`
 
-	此命令會使用您為 VM 磁碟指定的 VHD 名稱前置詞，建立一般化 OS 映像。在原始 VM 使用的相同儲存體帳戶中預設會建立映像 VHD 檔案。**-t** 選項會建立本機 JSON 檔案範本，以便從映像建立新的 VM。
+	此命令會使用您為 VM 磁碟指定的 VHD 名稱前置詞，建立一般化 OS 映像。在原始 VM 使用的相同儲存體帳戶中預設會建立映像 VHD 檔案。(您從映像建立之所有新 VM 的 VHD 都會儲存在相同的帳戶中。) **-t** 選項會建立本機 JSON 檔案範本，以便從映像建立新的 VM。
 
->[AZURE.TIP] 若要尋找映像的位置，請開啟 JSON 檔案範本。在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。例如，OS 磁碟映像的 uri 類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/<your-image-prefix>-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。
+>[AZURE.TIP] 若要尋找映像的位置，請開啟 JSON 檔案範本。在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。例如，OS 磁碟映像的 uri 類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/<your-vhd-name-prefix>-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。
 
 ## 從擷取的映像部署新的 VM
 現在使用具有範本的映像來建立新的 Linux VM。下列步驟示範如何使用您利用 `azure vm capture` 命令建立的 Azure CLI 和 JSON 檔案範本，在新的虛擬網路中建立 VM。
 
 ### 建立網路資源
 
-若要使用範本，您必須先為新的 VM 設定虛擬網路和 NIC。建議您為這些資源建立新的資源群組。執行類似下列的命令，替換您的資源名稱和適當的 Azure 位置 (在這些命令列中為 "centralus")：
+若要使用範本，您必須先為新的 VM 設定虛擬網路和 NIC。建議您在儲存 VM 映像的位置中，為這些資源建立一個新的資源群組。執行類似下列的命令，替換您的資源名稱和適當的 Azure 位置 (在這些命令列中為 "centralus")：
 
 	azure group create <your-new-resource-group-name> -l "centralus"
 
@@ -112,7 +116,7 @@
 ### 建立新的部署
 現在執行下列命令，從擷取的 VM 映像和您儲存的範本 JSON 檔案建立 VM。
 
-	azure group deployment create <your-new-resource-group-name> <your-new-deployment-name> -f <your-template-file-name.json>
+	azure group deployment create <your-new-resource-group-name> <your-new-deployment-name> -f <path-to-your-template-file-name.json>
 
 系統會提示您提供新的 VM 名稱、系統管理員使用者名稱和密碼，以及您先前建立的 NIC 識別碼。
 
@@ -194,4 +198,4 @@
 
 若要使用 CIL 管理 VM，請參閱[使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)中的工作。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

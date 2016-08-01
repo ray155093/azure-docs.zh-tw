@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016" 
-	ms.author="robmcm"/>
+	ms.date="07/07/2016" 
+	ms.author="robmcm;asirveda"/>
 
 # Azure Toolkit for IntelliJ
 
@@ -31,6 +31,13 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 * [適用於 IntelliJ 的 Azure 工具組新增功能]
 * [安裝 Azure Toolkit for IntelliJ]
 * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
+
+## 使用適用於 IntelliJ 的 Azure 工具組
+
+下列文章會示範如何使用 Azure Toolkit for IntelliJ 將 Azure 的功能加入您的 Java 專案：
+
+* [在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式][HDInsight Tools Plugin for IntelliJ]
 
 ## 另請參閱
 
@@ -60,4 +67,7 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 
-<!---HONumber=AcomDC_0706_2016-->
+[在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]: ./app-service-web/app-service-web-debug-java-web-app-in-intellij.md
+[HDInsight Tools Plugin for IntelliJ]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+
+<!---HONumber=AcomDC_0720_2016-->

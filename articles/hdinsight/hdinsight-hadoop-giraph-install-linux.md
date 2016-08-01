@@ -33,6 +33,10 @@
 - 識別網路中兩台電腦之間的最短路線。
 - 計算網頁的頁面排名。
 
+> [AZURE.WARNING] 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
+>
+> 自訂元件 (例如 Giraph) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
+
 ##指令碼會執行哪些作業
 
 此指令碼會執行下列動作：
@@ -127,7 +131,7 @@
 
 	如需這些項目以及與 Giraph 範例搭配使用之其他參數的詳細資訊，請參閱 [Giraph 快速入門](http://giraph.apache.org/quick_start.html)。
 
-5. 一旦工作完成，結果會儲存在 \_\___wasb:///example/out/shotestpaths__ 目錄中。建立的檔案會以 __part-m-__ 開頭，結束的數字表示是第一個、第二個檔案，依此類推。使用下列項目以檢視輸出：
+5. 一旦工作完成，結果會儲存在 __wasb:///example/out/shotestpaths__ 目錄中。建立的檔案會以 __part-m-\_\_ 開頭，結束的數字表示是第一個、第二個檔案，依此類推。使用下列項目以檢視輸出：
 
 		hadoop fs -text /example/output/shortestpaths/*
 
@@ -148,10 +152,10 @@
 
 ## 後續步驟
 
-- [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。色調是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
+- [在 HDInsight 叢集上安裝及使用 Hue](hdinsight-hadoop-hue-linux.md)。Hue 是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
 
 - [在 HDInsight 叢集上安裝 R](hdinsight-hadoop-r-scripts-linux.md)：如何使用叢集自訂，以在 HDInsight Hadoop 叢集上安裝和使用 R 的指示。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
 
 - [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您在儲存的資料上執行功能強大的搜尋作業。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

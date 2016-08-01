@@ -8,15 +8,15 @@
 
 在 Azure 中佈建 VM 牽涉的移動組建比 VM 本身更多。有計算、網路及儲存體元素。
 
-![IaaS：單一 VM](./media/guidance-blueprints/compute-single-vm.png)
+![[0]][0]
 
-- **資源群組。** [_資源群組_][resource-manager-overview]是保存相關資源的容器。建立資源群組以保存此 VM 的資源。
+- **資源群組。** [資源群組][resource-manager-overview]是保存相關資源的容器。建立資源群組以保存此 VM 的資源。
 
 - **VM**。您可以從已發佈的映像清單，或從您上傳至 Azure Blob 儲存體的 VHD 檔案佈建 VM。
 
 - **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD。這表示即使主機電腦關閉，它仍持續存在。作業系統磁碟為 `/dev/sda1`
 
-- **暫存磁碟。** VM 是使用暫存磁碟來建立。此磁碟會儲存在主機電腦的實體磁碟機上。不會儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中消失。僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。暫存磁碟為 `/dev/sdb1` 且掛接於 `/mnt/resource` 或 `/mnt`。
+- **暫存磁碟。** VM 是使用暫存磁碟來建立。此磁碟會儲存在主機電腦的實體磁碟機上。_不會_儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中消失。僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。暫存磁碟為 `/dev/sdb1` 且掛接於 `/mnt/resource` 或 `/mnt`。
 
 - **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
 
@@ -34,7 +34,7 @@
 
 ### VM 建議
 
-- 我們建議使用 DS 和 GS 系列，除非您有高效能運算等特殊工作負載。如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。然後根據 CPU、記憶體和磁碟 IOPS 測量您的實際工作負載效能，並視需要調整大小。此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。  
+- 我們建議使用 DS 和 GS 系列，除非您有高效能運算等特殊工作負載。如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。將現有的工作負載移至 Azure 時，從最符合您內部部署伺服器的 VM 大小開始。然後根據 CPU、記憶體和磁碟 IOPS 測量您的實際工作負載效能，並視需要調整大小。此外，如果您需要多個 NIC，請留意每個大小的 NIC 限制。
 
 - 當您佈建 VM 和其他資源時，您必須指定一個位置。一般而言，選擇最接近您的內部使用者或客戶的位置。不過，並非所有 VM 大小在所有位置都可用。如需詳細資訊，請參閱[依區域提供的服務][services-by-region]。若要列出指定位置可用的 VM 大小，請執行下列 Azure CLI 命令：
 
@@ -46,7 +46,7 @@
 
 ### 磁碟和儲存體建議
 
-- 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。成本是依佈建的磁碟大小而定。IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
+- 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。成本是依佈建的磁碟大小而定。IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。
 
 - 新增一或多個資料磁碟。當您建立新的 VHD 時，它仍未格式化。登入 VM 來格式化磁碟。資料磁碟會顯示為 `/dev/sdc`、`/dev/sdd`，依此類推。您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。若要使用資料磁碟，請建立新的磁碟分割和檔案系統，並掛接該磁碟。例如：
 
@@ -70,7 +70,6 @@
 
 - 為了達到最佳效能，請建立個別的儲存體帳戶來保存診斷記錄。標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
 
-
 ### 網路建議
 
 - 此公用 IP 位址可以是動態或靜態。預設值為動態。
@@ -85,7 +84,7 @@
 
 ## 延展性考量
 
-- 您可以藉由[變更 VM 大小][vm-resize]來相應放大或相應縮小 VM。 
+- 您可以藉由[變更 VM 大小][vm-resize]來相應放大或相應縮小 VM。
 
 - 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
@@ -103,7 +102,7 @@
 
 - **資源群組。** 將關係密切且共用相同生命週期的資源置於同一個[資源群組][resource-manager-overview]。資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組列出帳單成本。您也可以刪除整組資源，這對於測試部署非常有用。為資源提供有意義的名稱。這樣能更容易找到特定資源及了解其角色。請參閱 [Azure 資源的建議命名慣例][naming conventions]。
 
-- **ssh**。在您建立 VM 之前，先產生 2048 位元 RSA 公開-私密金鑰組。建立 VM 的時候使用公開金鑰檔案。如需詳細資訊，請參閱[如何透過 Linux 和 Mac 在 Azure 使用 SSH][ssh-linux]。
+- **ssh**。在您建立 VM 之前，先產生 2048 位元 RSA 公開-私密金鑰組。建立 VM 的時候使用公開金鑰檔案。如需詳細資訊，請參閱[如何在 Azure 上搭配 Linux 與 Mac 使用 SSH][ssh-linux]。
 
 - **VM 診斷。** 啟用監視和診斷，包括基本健康情況度量、診斷基礎結構記錄檔及[開機診斷][boot-diagnostics]。如果您的 VM 進入無法開機的狀態，開機診斷能協助您診斷開機失敗。如需詳細資訊，請參閱[啟用監視和診斷][enable-monitoring]。
 
@@ -121,27 +120,27 @@
     azure vm deallocate <resource-group> <vm-name>
     ```
 
-    Azure 入口網站中的 [停止] 按鈕也會取消配置 VM。不過，如果您在登入時透過作業系統來關閉，VM 會停止但不會取消配置，因此您仍需付費。
+    Azure 入口網站中的 [停止] 按鈕也會取消配置 VM。不過，如果您在登入時透過作業系統來關閉，VM 會停止但_不會_取消配置，因此您仍需付費。
 
 - **刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。這表示您可以放心地刪除 VM，而不會遺失任何資料。不過，您仍需支付儲存體費用。若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]刪除。
 
   若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。
 
-
-
 ## 安全性考量
 
-- 藉由使用 [OSPatching] VM 擴充，來自動化作業系統更新。請在您佈建 VM 的時候安裝此擴充。您可以指定安裝修補程式的頻率，以及安裝後是否要重新開機。
+- 藉由使用 [OSPatching] VM 擴充，來將作業系統更新自動化。請在您佈建 VM 的時候安裝此擴充。您可以指定安裝修補程式的頻率，以及安裝後是否要重新開機。
 
-- 使用[角色型存取控制][rbac] \ (RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] \(RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
-- 使用[稽核記錄檔][audit-logs]中的佈建動作和其他 VM 事件。
+- 使用[稽核記錄檔][audit-logs]來查看佈建動作和其他 VM 事件。
 
 - 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。
 
-## 範例部署指令碼
+## 解決方案元件
+
+<!-- TO BE UPDATED WHEN THE NEW TEMPLATES ARE AVAILABLE -->
 
 下列 Bash 批次指令碼會執行 [Azure CLI][azure-cli] 命令，以部署單一 VM 執行個體和相關的網路和儲存體資源 (如前一個圖表所示)。
 
@@ -356,5 +355,6 @@ azure vm extension set --name OSPatchingForLinux --publisher-name Microsoft.OSTC
 [vm-disk-limits]: ../articles/azure-subscription-service-limits.md#virtual-machine-disk-limits
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
+[0]: ./media/guidance-blueprints/compute-single-vm.png "Azure VM 的一般架構"
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

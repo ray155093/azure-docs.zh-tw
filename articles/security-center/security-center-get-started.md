@@ -10,10 +10,10 @@
 <tags
    ms.service="security-center"
    ms.devlang="na"
-   ms.topic="get-started-article"
+   ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/10/2016"
+   ms.date="07/19/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心快速入門指南
@@ -21,9 +21,6 @@
 本文帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。
 
 > [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
-
-## 什麼是 Azure 資訊安全中心？
-資訊安全中心利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。它可在您的各個訂用帳戶之間提供整合式安全性監視和原則管理、協助偵測可能被忽略的威脅，並且適用於廣泛的安全性解決方案生態系統。
 
 ## 資料收集
 
@@ -47,7 +44,7 @@
 
 ## 使用資訊安全中心
 
-您可以設定 Azure 訂用帳戶和資源群組的安全性原則。一同設定您訂用帳戶的安全性**原則**：
+您可以設定 Azure 訂用帳戶和資源群組的安全性原則。一同設定您訂用帳戶的安全性原則：
 
 1. 選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。![資訊安全中心][3]
 
@@ -61,11 +58,11 @@
 5. 開啟想要查看的 [建議]，當做安全性原則的一部分。範例：
 
  - 開啟 [系統更新] 會掃描所有支援的虛擬機器，尋找遺漏的 OS 更新。
- - 開啟 [基準規則] 會掃描所有支援的虛擬機器，識別任何可能讓虛擬機器更容易受到攻擊的 OS 設定。
+ - 開啟 [OS 弱點] 會掃描所有支援的虛擬機器，識別任何可能讓虛擬機器更容易受到攻擊的 OS 設定。
 
 處理**建議**：
 
-1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [建議] 圖格。資訊安全中心會定期分析 Azure 資源的安全性狀態。發現潛在的安全性弱點時，會在這裡顯示建議。
+1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [建議] 磚。資訊安全中心會定期分析 Azure 資源的安全性狀態。發現潛在的安全性弱點時，會在這裡顯示建議。
 2.	選取每個建議，檢視詳細資訊及/或採取行動以解決問題。![Azure 資訊安全中心的建議][5]
 
 透過 [資源安全性健康狀態] 檢視資源的健康狀態及安全性狀態：
@@ -79,7 +76,7 @@
 
 處理**安全性警示**：
 
-1.	返回 [資訊安全中心] 刀鋒視窗，然後選取 [安全性警示] 圖格。[安全性警示] 刀鋒視窗中會顯示警示清單。資訊安全中心透過對安全性記錄檔和網路活動的分析，產生警示。也包含來自整合式合作夥伴解決方案的警示。![Azure 資訊安全中心的安全性警示][7]
+1.	返回 [資訊安全中心] 刀鋒視窗，然後選取 [安全性警示] 磚。[安全性警示] 刀鋒視窗中會顯示警示清單。資訊安全中心透過對安全性記錄檔和網路活動的分析，產生警示。也包含來自整合式合作夥伴解決方案的警示。![Azure 資訊安全中心的安全性警示][7]
 
 2.	選取警示以檢視其他資訊。![Azure 資訊安全中心的安全性警示詳細資料][8]
 
@@ -90,16 +87,16 @@
 
 3. 選取合作夥伴解決方案。在此範例中，選取 **F5 WAF2** 解決方案。隨即開啟一個刀鋒視窗，其中顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。選取 [解決方案主控台] 以開啟此解決方案的合作夥伴管理體驗。![合作夥伴解決方案詳細資料][10]
 
-## 後續步驟
+## 另請參閱
 本文介紹了資訊安全中心的安全性監視和原則管理元件。若要深入了解，請參閱下列文章：
 
-- [在 Azure 資訊安全中心內設定安全性原則](security-center-policies.md)--了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)--了解建議如何協助您保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)--了解如何管理與回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)--了解如何監視合作夥伴解決方案的健全狀態。
-- [Azure 安全性中心常見問題集](security-center-faq.md)--尋找使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)--取得最新的 Azure 安全性新聞和資訊。
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) - 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
+- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) - 了解如何管理與回應安全性警示
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-get-started/security-tile.png
@@ -113,4 +110,4 @@
 [9]: ./media/security-center-get-started/partner-solutions.png
 [10]: ./media/security-center-get-started/partner-solutions-detail.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

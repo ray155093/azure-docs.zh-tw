@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="msStevenPo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/30/2016"
+	ms.date="07/19/2016"
 	ms.author="markusvi"/>
 
 # Cloud App Discovery 的安全性和隱私權考量
@@ -139,7 +139,7 @@ Cloud App Discovery Endpoint Agent 只會收集上列**代理程式收集的資�
 ### 已知的問題與缺點
 以下是一些 TLS 攔截可能會對使用者經驗產生影響的案例：
 
-- 延伸驗證 (EV) 憑證會將 Web 瀏覽器的網址列呈現為綠色，以做為您正在瀏覽信任網站的視覺提示。TLS 檢查無法複製發行給用戶端之憑證中的 EV，因此使用 EV 憑證的網站雖然會正常運作，但網址列不會顯示綠色。　  
+- 延伸驗證 (EV) 憑證會將 Web 瀏覽器的網址列呈現為綠色，以做為您正在瀏覽信任網站的視覺提示。TLS 檢查無法複製發行給用戶端之憑證中的 EV，因此使用 EV 憑證的網站雖然會正常運作，但網址列不會顯示綠色。　
 
 - 公開金鑰關聯 (又稱為憑證關聯) 的設計是為了協助保護使用者，以免受到攔截式攻擊和惡意憑證授權單位的攻擊。當適用於已釘選網站的根憑證不符合已知良好 CA 的其中一個根憑證時，瀏覽器就會拒絕連線並產生錯誤。事實上，由於 TLS 攔截是一種攔截，因此這些連線將會失敗。
 
@@ -180,4 +180,4 @@ Cloud App Discovery Endpoint Agent 只會收集上列**代理程式收集的資�
 * [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

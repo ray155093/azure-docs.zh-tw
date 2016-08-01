@@ -26,7 +26,7 @@
 
 本文提供的步驟可讓環境做好備份 Resource Manager 部署之虛擬機器 (VM) 的準備。程序中展示的步驟使用 Azure 入口網站。
 
-Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護 **傳統部署或 Resource Manager 部署的 VM**。您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
+Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。備份保存庫能保護以傳統部署模型部署的 VM。復原服務保存庫能保護**傳統部署或 Resource Manager 部署的 VM**。您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
 
 >[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。如需使用傳統部署模型 VM 的詳細資料，請參閱[準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md)。
 
@@ -84,7 +84,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 5. 按一下 [訂用帳戶] 以查看可用的訂用帳戶清單。如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
 
-6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立新的資源群組。如需資源群組的完整資訊，請參閱[使用 Azure 入口網站來部署及管理 Azure 資源](../azure-portal/resource-group-portal.md)。
+6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立新的資源群組。如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)
 
 7. 按一下 [位置] 以選取保存庫的地理區域。保存庫**必須**與您想要保護的虛擬機器位於相同區域。
 
@@ -98,7 +98,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 ## 設定儲存體複寫
 
-儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)儲存體和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
 
 若要編輯儲存體複寫設定︰
 
@@ -129,7 +129,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
     ![開啟 [保存庫] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/vault-settings.png)
 
-2. 在保存庫儀表板功能表中按一下 [備份] 以開啟 [備份] 刀鋒視窗。
+2. 在 [保存庫儀表板] 功能表中按一下 [備份] 以開啟 [備份] 刀鋒視窗。
 
     ![開啟 [備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-button.png)
 
@@ -170,7 +170,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 ## 在虛擬機器中安裝 VM 代理程式
 
-Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於虛擬機器上。此處提供的資訊適用於「未使用」從 Azure 映像庫建立之 VM 的情況 (例如，從內部部署資料中心移轉的 VM)。在這種情況下，您需要安裝 VM 代理程式才能保護虛擬機器。
+Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於虛擬機器上。此處提供的資訊適用於「未使用」從 Azure 資源庫建立之 VM 的情況 (例如，從內部部署資料中心移轉的 VM)。在這種情況下，您需要安裝 VM 代理程式才能保護虛擬機器。
 
 深入了解 [VM 代理程式](https://go.microsoft.com/fwLink/?LinkID=390493&clcid=0x409)和[如何安裝 VM 代理程式](../virtual-machines/virtual-machines-windows-classic-manage-extensions.md)。
 
@@ -181,8 +181,8 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 | **作業** | **Windows** | **Linux** |
 | --- | --- | --- |
 | 安裝 VM 代理程式 | <li>下載並安裝[代理程式 MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。您需要有系統管理員權限，才能完成安裝。<li>[更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 | <li>從 GitHub 安裝最新的 [Linux 代理程式](https://github.com/Azure/WALinuxAgent)。您需要有系統管理員權限，才能完成安裝。<li> [更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 |
-| 更新 VM 代理程式 | 更新 VM 代理程式與重新安裝 [VM 代理程式二進位檔](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)一樣簡單。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 | 請遵循[更新 Linux VM 代理程式](../virtual-machines-linux-update-agent.md)的指示。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 |
-| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的 C:\\WindowsAzure\\Packages 資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
+| 更新 VM 代理程式 | 更新 VM 代理程式與重新安裝 [VM 代理程式二進位檔](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)一樣簡單。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 | 請遵循[更新 Linux VM 代理程式](../virtual-machines-linux-update-agent.md)上的指示。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 |
+| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的「C:\\WindowsAzure\\Packages」資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
 
 
 ### 備份擴充功能
@@ -236,7 +236,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
      ```
      psexec -i -s "c:\Program Files\Internet Explorer\iexplore.exe"
      ```
-    它會開啟 Internet Explorer 視窗。
+     它會開啟 Internet Explorer 視窗。
 3. 移至 [工具]-> [網際網路選項]-> [連線]-> [區域網路設定]。
 4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。
 5. 關閉 Internet Explorer。
@@ -321,4 +321,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

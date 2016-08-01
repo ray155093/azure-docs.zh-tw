@@ -22,4 +22,6 @@ Azure App Service 符合產業對於安全性和可靠性的重要標準，可�
 
 [AZURE.INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+Azure App Service 會使用 Azure 雲端服務和虛擬機器使用的相同反惡意程式碼方案。若要深入了解此方案，請參閱[反惡意程式碼文件](../azure-security-antimalware.md)
+
+<!---HONumber=AcomDC_0720_2016-->

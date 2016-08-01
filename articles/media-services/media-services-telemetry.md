@@ -54,8 +54,8 @@
 - **ResultCode** 能取得的結果碼。
 - **RequestCount** 能取得要求計數。
 - **BytesSent** 能取得傳送位元組。
-- **BytesSent** 能取得伺服器延遲。
-- **BytesSent** 能取得端對端要求時間。
+- **ServerLatency** 能取得伺服器延遲。
+- **EndToEndLatency** 能取得端對端要求時間。
 
 ###串流端點查詢結果範例
 
@@ -235,4 +235,4 @@
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/26/2016"
+   ms.date="07/14/2016"
    ms.author="dobett"/>
 
 
@@ -22,11 +22,11 @@
 
 [AZURE.INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## 在 mbed 上建置並執行範例 C 的解決方案
+## 建置並執行 C 範例方案
 
 下列指示描述將[啟用 mbed 的 Freescale FRDM-K64F][lnk-mbed-home] 裝置連接至遠端監視解決方案的步驟。
 
-### 將裝置連接到網路和桌上型電腦
+### 將 mbed 裝置連接到網路和桌上型電腦
 
 1. 使用乙太網路纜線將 mbed 裝置連接到您的網路。這是必要的步驟，因為範例應用程式需要透過網際網路存取。
 
@@ -36,7 +36,7 @@
 
 ### 建立 mbed 專案並匯入範例程式碼
 
-1. 在您的 Web 瀏覽器中，移至 mbed.org [開發人員網站](https://developer.mbed.org/)。如果您還沒有註冊，您會看到建立新帳戶的選項 (它是免費的)。否則，請使用您的帳戶認證登入。然後按一下頁面右上角的 [編譯器]。如此應該會帶您前往工作區管理介面。
+1. 在您的 Web 瀏覽器中，移至 mbed.org [開發人員網站](https://developer.mbed.org/)。如果您還沒有註冊，您會看到建立新帳戶的選項 (它是免費的)。否則，請使用您的帳戶認證登入。然後按一下頁面右上角的 [編譯器]。這將帶您前往 [工作區] 介面。
 
 2. 請確定您使用的硬體平台出現在視窗的右上角，或按一下右手邊的圖示來選取您的硬體平台。
 
@@ -48,7 +48,7 @@
 
     ![][7]
 
-5. 您可以在匯入這個專案的 mbed 編譯器視窗中看到匯入的各種程式庫。有些是由 Azure IoT 小組提供和維護 ([azureiot\_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub\_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub\_amqp\_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[azure\_uamqp](https://developer.mbed.org/users/AzureIoTClient/code/azure_uamqp/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
+5. 您可以看到匯入此專案的 mbed 編譯器視窗也匯入各種程式庫。有些是由 Azure IoT 小組提供和維護 ([azureiot\_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub\_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub\_amqp\_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[azure\_uamqp](https://developer.mbed.org/users/AzureIoTClient/code/azure_uamqp/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
 
     ![][8]
 
@@ -61,7 +61,7 @@
     static const char* hubSuffix = "[IoTHub Suffix, i.e. azure-devices.net]";
     ```
 
-7. 將 [Device Id] 和 [Device Key] 以您的裝置資料取代，來使範例程式能夠連線到您的 IoT 中樞。使用 IoT 中樞主機名稱來取代 [IoTHub Name] 和 [IoTHub Suffix, i.e. azure-devices.net] 預留位置。例如，若您的 IoT 中樞主機名稱是 Contoso.azure-devices.net，contoso 就是 **hubName**，而它之後的所有項目就是 **hubSuffix**：
+7. 將 [Device Id] 和 [Device Key] 以您的裝置資料取代，來使範例程式能夠連線到您的 IoT 中樞。使用 IoT 中樞主機名稱來取代 [IoTHub Name] 和 [IoTHub Suffix, i.e. azure-devices.net] 預留位置。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，**contoso** 就是 **hubName**，而它之後的所有項目就是 **hubSuffix**：
 
     ```
     static const char* deviceId = "mydevice";
@@ -78,7 +78,7 @@
 
 #### 定義模型
 
-此範例使用[序列化程式][lnk-serializer]程式庫來定義指定裝置可傳送到或接收來自 IoT 中樞之訊息的模型。在此範例中，[Contoso] 命名空間會定義一個「控溫器」模型，此模型能指定 **Temperature**、**ExternalTemperature** 及 **Humidity** 等遙測資料，以及裝置識別碼、裝置屬性及裝置會做出回應的命令等中繼資料：
+此範例使用[序列化程式][lnk-serializer]程式庫來定義指定裝置可傳送到或接收來自 IoT 中樞之訊息的模型。在此範例中，**Contoso** 命名空間會定義一個 **Thermostat** 模型，此模型能指定 **Temperature**、**ExternalTemperature** 及 **Humidity** 等遙測資料，以及裝置識別碼、裝置屬性及裝置會做出回應的命令等中繼資料：
 
 ```
 BEGIN_NAMESPACE(Contoso);
@@ -152,7 +152,7 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 - 使用序列化程式程式庫將有關裝置本身的資訊 (包括其支援的命令) 傳送給您的 IoT 中樞。當中樞接收到此訊息時，它會將儀表板中的裝置狀態從 [待決] 變更為 [執行中]。
 - 啟動一個 **while** 迴圈，並於每秒將溫度、外部溫度及濕度的值傳送到 IoT 中樞。
 
-做為參考，以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息︰
+以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息做為參考：
 
 ```
 {
@@ -171,13 +171,13 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 }
 ```
 
-做為參考，以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息︰
+以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息做為參考：
 
 ```
 {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
 ```
 
-做為參考，以下是從 IoT 中樞收到的範例 **Command**︰
+以下是從 IoT 中樞收到的範例 **Command** 做為參考：
 
 ```
 {
@@ -220,4 +220,4 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 [lnk-mbed-pcconnect]: https://developer.mbed.org/platforms/FRDM-K64F/#pc-configuration
 [lnk-serializer]: https://azure.microsoft.com/documentation/articles/iot-hub-device-sdk-c-intro/#serializer
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

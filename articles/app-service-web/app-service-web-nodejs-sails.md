@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="07/01/2016"
+	ms.date="07/19/2016"
 	ms.author="cephalin"/>
 
 # 將 Sails.js Web 應用程式部署至 Azure App Service
@@ -22,11 +22,11 @@
 
 ## 必要條件
 
-- Node.js。安裝二進位檔可從[這裡](https://nodejs.org/)取得。
-- Sails.js。安裝指示可從[這裡](http://sailsjs.org/get-started)取得。
+- [Node.js](https://nodejs.org/)。
+- [Sails.js](http://sailsjs.org/get-started)。
 - Sails.js 的使用知識。本教學課程的目的不是協助您了解一般執行 Sail.js 的相關問題。
-- Git。安裝二進位檔可從[這裡](http://www.git-scm.com/downloads)取得。
-- Azure CLI。安裝指示可從[這裡](../xplat-cli-install.md)取得。
+- [Git](http://www.git-scm.com/downloads)。
+- [Azure CLI](../xplat-cli-install.md)。
 - Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 >[AZURE.NOTE] 若要在註冊 Azure 帳戶前查看運作中的 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。您可以於該處，在 App Service 中立即建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
@@ -99,36 +99,21 @@
 
     您可以在 [Sails.js 文件](http://sailsjs.org/documentation/reference/configuration/sails-config)中找到這些組態設定的文件。
 
-    接下來，您必須確定 [Grunt](https://www.npmjs.com/package/grunt) 與 Azure 的網路磁碟機相容。撰寫這篇文章時，Grunt 可能會產生[「ENOTSUP：通訊端不支援作業」錯誤](https://github.com/isaacs/node-glob/issues/205)，因為它目前使用過時的 [glob](https://www.npmjs.com/package/glob) 封裝 (v3.1.21)，其不支援網路磁碟機。接下來的步驟將示範如何讓 Grunt 使用 [glob v5.0.14 或更高版本](https://github.com/isaacs/node-glob/commit/bf3381e90e283624fbd652835e1aefa55d45e2c7)。
+    接下來，您必須確定 [Grunt](https://www.npmjs.com/package/grunt) 與 Azure 的網路磁碟機相容。小於 1.0.0 的 Grunt 版本使用過期的 [glob](https://www.npmjs.com/package/glob) 套件 (小於 5.0.14)，其不支援網路磁碟機。
 
-3. 由於當您的應用程式建立時 `npm install` 已在執行，因此，請在專案根目錄中產生 npm-shrinkwrap.json：
+3. 開啟 package.json，將 `grunt` 版本變更為 `1.0.0` 並移除所有的 `grunt-*` 套件。您的 `dependencies` 屬性應如下所示：
 
-        npm shrinkwrap
-
-4. 開啟 npm-shrinkwrap.json、找出適用於 `"grunt":` 的 json，然後新增您想要的 glob 版本相依性。您已完成的 json 看起來應該像這樣 ︰
-
-        "grunt": {
-            "version": "0.4.5",
-            "from": "grunt@0.4.5",
-            "resolved": "https://registry.npmjs.org/grunt/-/grunt-0.4.5.tgz",
-            "dependencies": {
-                "glob": {
-                    "version": "5.0.14",
-                    "from": "glob@5.0.14",
-                    "resolved": "https://registry.npmjs.org/glob/-/glob-5.0.14.tgz"
-                }
-            }
+        "dependencies": {
+            "ejs": "<leave-as-is>",
+            "grunt": "1.0.0",
+            "include-all": "<leave-as-is>",
+            "rc": "<leave-as-is>",
+            "sails": "<leave-as-is>",
+            "sails-disk": "<leave-as-is>",
+            "sails-sqlserver": "<leave-as-is>"
         },
 
-5. 搜尋 `"glob":` 來尋找 glob 的所有參考。如果所有參考都是 v3.1.21 或更低版本，請變更 json：
-
-        "glob": {
-            "version": "5.0.14",
-            "from": "glob@5.0.14",
-            "resolved": "https://registry.npmjs.org/glob/-/glob-5.0.14.tgz"
-        }
-
-6. 儲存變更並測試變更，以確定您的應用程式仍在本機執行︰
+6. 儲存變更並測試變更，以確定您的應用程式仍在本機執行。若要這樣做，請刪除 `node_modules` 資料夾，然後執行︰
 
         npm install
         sails lift
@@ -154,7 +139,7 @@
                 .-..-.
 
     Sails              <|    .-..-.
-    v0.12.1             |\
+    v0.12.3             |\
                         /|.\
                         / || \
                     ,'  |'  \
@@ -167,6 +152,8 @@
     To see your app, visit http://localhost:\\.\pipe\a76e8111-663e-449d-956e-5c5deff2d304
     To shut down Sails, press <CTRL> + C at any time.
 
+您可以在 [config/log.js](http://sailsjs.org/#!/documentation/concepts/Logging) 檔案中控制 stdout 記錄檔的細微度。
+
 ## 連接到 Azure 中的資料庫
 
 若要連接到 Azure 資料庫，您可以在 Azure 中建立所選擇的資料庫，例如 Azure SQL Database、MySQL、MongoDB、Azure (Redis) 快取等，並使用對應的[資料存放區配接器](https://github.com/balderdashy/sails#compatibility)連接到它。本節中的步驟示範如何連接到 Azure SQL Database。
@@ -177,17 +164,7 @@
 
         npm install sails-sqlserver --save
 
-    由於您已變更 package.json，因此必須重新產生 npm-shrinkwrap.json。您接著將執行此動作。
-    
-3. 刪除 node\_modules/ 目錄。
-
-4. 執行 `npm shrinkwrap`。
-
-5. 再次開啟 npm-shrinkwrap.json 並更新 `glob` 封裝版本，就像在上一節中所做的。
-
-    現在，回到主要工作。
-        
-3. 開啟 config/connections.js 並將下列 json 新增到配接器清單︰
+3. 開啟 config/connections.js 並將下列連接物件加入至清單︰
 
         sqlserver: {
             adapter: 'sails-sqlserver',
@@ -207,35 +184,68 @@
         azure site appsetting add sqlserver="<database server name>.database.windows.net"
         azure site appsetting add dbname="<database name>"
         
-4. 開啟 config/env/production.js 來設定您的生產環境，並在 `models` JSON 物件中設定 `connection` 和 `migrate`：
+    將您的設定放在 Azure 應用程式設定中，可讓敏感性資料脫離原始檔控制 (Git)。接下來，您將設定開發環境，以便使用相同的連接資訊。
+
+4. 開啟 config/local.js 並新增下列連接物件︰
+
+        connections: {
+            sqlserver: {
+                user: "<database server administrator>",
+                password: "<database server password>",
+                host: "<database server name>.database.windows.net", 
+                database: "<database name>",
+            },
+        },
+    
+    此組態會覆寫 config/connections.js 檔案中本機環境的設定。您專案中的預設 .gitignore 會排除這個檔案，因此不會儲存在 Git 中。您現在可以從 Azure Web 應用程式和從本機開發環境連接到您的 Azure SQL Database。
+
+4. 開啟 config/env/production.js 來設定您的生產環境，並加入下列 `models` 物件：
+
+        models: {
+            connection: 'sqlserver',
+            migrate: 'safe'
+        },
+
+4. 開啟 config/env/development.js 來設定您的開發環境，並加入下列 `models` 物件︰
 
         models: {
             connection: 'sqlserver',
             migrate: 'alter'
         },
 
-4. 從終端機，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)。例如：
+    `migrate: 'alter'` 可讓您使用資料庫移轉功能，在 Azure SQL Database 中輕鬆地建立和更新資料庫資料表。不過，`migrate: 'safe'` 用於您的 Azure (生產) 環境，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
+
+4. 從終端機，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)，然後執行 `sails lift` 以使用 Sails.js 資料庫移轉建立資料庫。例如：
 
          sails generate api mywidget
-     
-5. 儲存所有變更、將變更推送至 Azure，並瀏覽至您的應用程式以確定它仍能運作。
+         sails lift
+
+    此命令所產生的 `mywidget` 模型是空的，但我們可以用它來顯示我們有資料庫連線能力。當您執行 `sails lift` 時，它會針對您的應用程式使用的模型，建立遺漏資料表。
+
+6. 存取您剛剛在瀏覽器中建立的藍圖 API。例如：
+
+        http://localhost:1337/mywidget/create
+    
+    此 API 應該會在瀏覽器視窗中將建立的項目傳回給您，這表示您的資料庫建立成功。
+
+        {"id":1,"createdAt":"2016-03-28T23:08:01.000Z","updatedAt":"2016-03-28T23:08:01.000Z"}
+
+5. 現在，將變更推送至 Azure，並瀏覽至您的應用程式以確定它仍能運作。
 
         git add .
         git commit -m "<your commit message>"
         git push azure master
         azure site browse
 
-6. 現在，存取您剛剛在瀏覽器中建立的藍圖 API。例如：
+6. 存取 Azure Web 應用程式的藍圖 API。例如：
 
-        http://<appname>.azurewebsites.net/widget/create
-    
-    此 API 應該會在瀏覽器視窗中將建立的項目傳回給您︰
-    
-        {"id":1,"createdAt":"2016-03-28T23:08:01.000Z","updatedAt":"2016-03-28T23:08:01.000Z"}
+        http://<appname>.azurewebsites.net/mywidget/create
+
+    如果此 API 傳回另一個新項目，則您的 Azure Web 應用程式會與您的 Azure SQL Database 通訊。
 
 ## 其他資源
 
 - [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

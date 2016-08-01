@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/18/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure Blob 儲存體和 Visual Studio 已連接服務 (ASP.NET 5)
+
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
 
 ##概觀
 
@@ -24,7 +26,7 @@
 
 Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量非結構化資料的服務，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。單一 Blob 可以是任何大小。Blob 可以是影像、音訊和視訊檔、原始資料及文件檔案。本文描述如何在您使用 ASP.NET 5 專案中 Visual Studio 的 [**加入已連接服務**] 對話方塊，建立 Azure 儲存體帳戶之後開始使用 Blob 儲存體。
 
-就像檔案在資料夾中一樣，儲存體 Blob 位於容器中。在您已建立儲存體之後，您會在儲存體中建立一個或多個容器。例如，在稱為 “Scrapbook” 的儲存體中，您可以在此儲存體中建立稱為 “images” 的容器來儲存圖片，以及建立另一個稱為 “audio” 的容器來儲存音訊檔。建立容器之後，就可以將個別的 Blob 檔案上傳至這些容器。如需以程式設計方式操作 Blob 的詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
+就像檔案在資料夾中一樣，儲存體 Blob 位於容器中。在您已建立儲存體之後，您會在儲存體中建立一個或多個容器。例如，在稱為 “Scrapbook” 的儲存體中，您可以在此儲存體中建立稱為 “images” 的容器來儲存圖片，以及建立另一個稱為 “audio” 的容器來儲存音訊檔。建立容器之後，就可以將個別的 Blob 檔案上傳至這些容器。如需以程式設計方式處理 Blob 的詳細資訊，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
 
 ##在程式碼中存取 blob 容器
 
@@ -155,4 +157,4 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
 
 [AZURE.INCLUDE [vs-storage-dotnet-blobs-next-steps](../../includes/vs-storage-dotnet-blobs-next-steps.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

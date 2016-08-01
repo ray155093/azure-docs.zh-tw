@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/27/2016"
+   ms.date="07/15/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心啟用透明資料加密
@@ -26,14 +26,14 @@
 
 ## 實作建議
 
-1. 在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。![][1]
+1. 在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。![啟用透明資料加密][1]
 
-2. 這會開啟 [在 SQL 資料庫上啟用透明資料加密] 刀鋒視窗。選取要在其上啟用 TDE 的 SQL Database。![][2]
-3. 在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。![][3]
+2. 這會開啟 [在 SQL 資料庫上啟用透明資料加密] 刀鋒視窗。選取要在其上啟用 TDE 的 SQL Database。![選取要在其上啟用 TDE 的 SQL DB][2]
+3. 在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。![開啟 TDE][3]
 
   一旦在所選取的 SQL Database 上啟用 TDE 後，[加密狀態] 就會變成 [已加密]。
 
-  ![][4]
+  ![加密狀態][4]
 
 ## 後續步驟
 
@@ -58,4 +58,4 @@
 [3]: ./media/security-center-enable-tde-on-sql-databases/turn-on-tde.png
 [4]: ./media/security-center-enable-tde-on-sql-databases/encrypted.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

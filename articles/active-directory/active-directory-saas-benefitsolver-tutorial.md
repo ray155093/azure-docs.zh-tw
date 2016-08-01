@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="04/26/2016" 
+    ms.date="07/19/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Benefitsolver 整合
@@ -51,7 +51,7 @@
 
     ![新增應用程式](./media/active-directory-saas-benefitsolver-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-benefitsolver-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -84,6 +84,7 @@
 
     1.  在 [登入 URL] 文字方塊中，輸入 **http://azure.benefitsolver.com**。
     2.  在 [回覆 URL] 文字方塊中，輸入 **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**。
+
 
     3.  按 [下一步]。
 
@@ -145,4 +146,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

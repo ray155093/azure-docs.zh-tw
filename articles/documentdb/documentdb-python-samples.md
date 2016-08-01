@@ -26,9 +26,9 @@
 - [Python 範例](documentdb-python-samples.md)
 - [Azure 程式碼範例庫](https://azure.microsoft.com/documentation/samples/?service=documentdb)
 
-[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 儲存機制中包含可對 DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。本文提供：
+[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 儲存機制中包含可對 Azure DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。本文提供：
 
-- 每個 Python 範例專案檔中各項工作的連結。 
+- 每個 Python 範例專案檔中各項工作的連結。
 - 相關 API 參考內容的連結。
 
 **必要條件**
@@ -36,7 +36,7 @@
 1. 您必須要有 Azure 帳戶才能使用這些 Python 範例：
     - 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
    - 您可以[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
-2. 您也需要 [Python SDK](documentdb-sdk-python.md)。 
+2. 您也需要 [Python SDK](documentdb-sdk-python.md)。
 
     > [AZURE.NOTE] 每個範例都各自獨立，自己設定，並自行清理。據此，這些範例對 [document\_client.CreateCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html) 發出多個呼叫。每當執行此動作時，即會根據所建立之集合的效能層，對您的訂用帳戶計入一小時的使用量費用。
 
@@ -65,4 +65,4 @@
 [變更集合的效能層](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/CollectionManagement/Program.py#L163-L175) | [document\_client.ReplaceOffer](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html#CreateCollection)
 [刪除集合](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/CollectionManagement/Program.py#L212-L225) | [document\_client.DeleteCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html#CreateCollection)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

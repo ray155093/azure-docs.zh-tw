@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="05/03/2016"
+ms.date="07/19/2016"
 ms.author="larryfr"/>
 
 # 在 HDInsight 上使用 Ambari 檢視來為 Tez 作業偵錯
@@ -129,7 +129,7 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 
     > [AZURE.NOTE] 跟前一個功能表一樣，您可以捲動 [工作]、[工作嘗試] 及 [來源與接收] 的資料行顯示，來顯示可前往每個項目詳細資訊的連結。
 
-10. 選取 [工作]，然後選取名為 [00\_000000] 的項目。這會顯示此工作的 [工作詳細資料]。您可以從此畫面檢視 [工作計數器] 和 [工作嘗試]。
+10. 選取 [工作]，然後選取名為 __00_000000_\_ 的項目。這會顯示這項工作的 [工作詳細資料]____。在此畫面中，您可以檢視 [工作計數器]____ 和 __[工作嘗試\_\_]。
 
     ![作業詳細資料](./media/hdinsight-debug-ambari-tez-view/taskdetails.png)
 
@@ -141,4 +141,4 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 
 如需如何搭配 HDInsight 來使用 Ambari 的詳細資訊，請參閱[使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

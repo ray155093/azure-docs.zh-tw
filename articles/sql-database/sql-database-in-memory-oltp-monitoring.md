@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="07/18/2016"
 	ms.author="jodebrui"/>
 
 
@@ -58,4 +58,4 @@
 ## 後續步驟
 有關[使用動態管理檢視監視 Azure SQL Database](sql-database-monitoring-with-dmvs.md)的其他資源
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

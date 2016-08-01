@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="05/03/2016"
+ms.date="07/19/2016"
 ms.author="larryfr"/>
 
 # 在以 Windows 為基礎的 HDInsight 上使用 Tez UI 偵錯 Tez 作業
@@ -137,7 +137,7 @@ Tez UI 只包含正在或曾經使用 Tez 引擎來執行之作業的資料。�
 
     > [AZURE.NOTE] 跟前一個功能表一樣，您可以捲動 [工作]、[工作嘗試] 及 [來源與接收] 的資料行顯示，來顯示可前往每個項目詳細資訊的連結。
 
-10. 選取 [工作]，然後選取名為 __00\_000000__ 的項目。這會顯示這項工作的 [工作詳細資料]。在此畫面中，您可以檢視 [工作計數器] 和 [工作嘗試]。
+10. 選取 [工作]，然後選取名為 __00_000000_\_ 的項目。這會顯示這項工作的 [工作詳細資料]____。在此畫面中，您可以檢視 [工作計數器]____ 和 __[工作嘗試\_\_]。
 
     ![作業詳細資料](./media/hdinsight-debug-tez-ui/taskdetails.png)
 
@@ -147,4 +147,4 @@ Tez UI 只包含正在或曾經使用 Tez 引擎來執行之作業的資料。�
 
 如需 Tez 的詳細技術資訊，請參閱 [Hortonworks 的 Tez 頁面](http://hortonworks.com/hadoop/tez/)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

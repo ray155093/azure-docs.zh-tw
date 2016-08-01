@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="07/14/2016"
 	ms.author="billmath"/>
 
 # Azure AD 同盟相容性清單
@@ -36,6 +36,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 - [Optimal IDM Virtual Identity Server Federation Services](#optimal-idm-virtual-identity-server-federation-services)
 - [PingFederate 6.11](#pingfederate-611)
 - [PingFederate 7.2](#pingfederate-72)
+- [PingFederate 8.x](#pingfederate-8.x)
 - [Centrify](#centrify)
 - [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622)
 - [SecureAuth IdP 7.2.0](#secureauth-idp-720)
@@ -83,8 +84,8 @@ Optimal IDM Virtual Identity Server Federation Services 可以驗證位於客戶
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
 | Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |None|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |Windows 整合式驗證|
-| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |如需用戶端存取原則的相關詳細資訊，請參閱 [Limiting Access to Office 365 Services Based on the Location of the Client (依據用戶端所在位置限制存取 Office 365 服務)](https://technet.microsoft.com/library/hh526961.aspx)。|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |整合式 Windows 驗證|
+| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |如需用戶端存取原則的相關詳細資訊，請參閱[依據用戶端所在位置限制存取 Office 365 服務](https://technet.microsoft.com/library/hh526961.aspx)。|
 
 
 
@@ -116,6 +117,20 @@ PingFederate 7.2 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準�
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 如需有關如何設定此 STS 來為您的 Active Directory 使用者提供單一登入體驗的 PingFederate 指示，請參閱[此處](http://documentation.pingidentity.com/display/PF72/PingFederate+7.2)。
+
+## PingFederate 8.x 
+PingFederate 8.x 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準，以提供單一登入和屬性交換架構。
+
+以下是支援此單一登入體驗之矩陣的案例：
+
+
+| 用戶端 |支援 |例外狀況|
+| --------- | --------- |--------- |
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |None|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |None|
+| 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
+
+如需有關如何設定此 STS 來為您的 Active Directory 使用者提供單一登入體驗的 PingFederate 指示，請參閱[此處](http://documentation.pingidentity.com/display/PFS/SSO+to+Office+365+Introduction)。
 
 ## Centrify 
 Centrify 可協助在不需要裝載內部部署同盟伺服器的情況下，為 Office 365 提供同盟的單一登入體驗。
@@ -219,7 +234,7 @@ NetIQ Access Manager 4.0.1 可實作廣泛使用的 WS 同盟/WS-Trust 身分識
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
 | Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |*支援 Kerberos Contract|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援整合式 Windows 驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 *NetIQ 透過 Kerberos Contract 的組態支援 Kerberos 驗證。如需此組態相關協助，請連絡 NetIQ 或檢視設定指南。如需 NetIQ Access Manager 的相關詳細資訊，請參閱 [NetIQ Access Manager](https://www.netiq.com/documentation/netiqaccessmanager4/identityserverhelp/data/b12iqp0m.html)。
@@ -246,8 +261,8 @@ VMware Workspace Portal version 2.1 可實作廣泛使用的 WS 同盟/WS-Trust 
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援 Windows 整合式驗證|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援整合式 Windows 驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援整合式 Windows 驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 如需有關 VMware Workspace Portal 2.1 版的詳細資訊，請下載[此處](http://pubs.vmware.com/workspace-portal-21/topic/com.vmware.ICbase/PDF/workspace-portal-21-resource.pdf)的 PDF 檔案。
@@ -274,8 +289,8 @@ IceWall Federation Version 3.0 可實作廣泛使用的 WS 同盟/WS-Trust 身�
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援 Windows 整合式驗證|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援整合式 Windows 驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援整合式 Windows 驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 如需有關 IceWall Federation 的詳細資訊，請參閱[這裡](http://h50146.www5.hp.com/products/software/security/icewall/eng/federation/)和[這裡](http://h50146.www5.hp.com/products/software/security/icewall/federation/office365.html)。
@@ -288,8 +303,8 @@ CA Secure Cloud 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準�
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援 Windows 整合式驗證|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援整合式 Windows 驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援整合式 Windows 驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 如需 CA Secure Cloud 的相關詳細資訊，請參閱 [CA Secure Cloud](http://www.ca.com/us/products/security-as-a-service.aspx)。
@@ -316,11 +331,11 @@ AuthAnvil Single Sign On 4.5 可實作廣泛使用的 WS 同盟/WS-Trust 身分�
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援 Windows 整合式驗證|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援 Windows 整合式驗證|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |不支援整合式 Windows 驗證|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |不支援整合式 Windows 驗證|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 
 如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

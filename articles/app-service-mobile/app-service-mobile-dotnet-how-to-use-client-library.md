@@ -317,7 +317,7 @@ Mobile Apps 支援資料表的 **id** 資料行使用唯一自訂字串值。這
 
 兩個或多個用戶端可能會同時對相同項目寫入變更。在沒有偵測到任何衝突的情況下，最後寫入將覆寫任何先前的更新，即使這不是您想要的結果。「開放式並行存取控制項」會假設每筆交易都可以認可，因此不會使用任何資源鎖定。在認可交易之前，開放式並行存取控制項會驗證沒有其他交易已修改此資料。如果資料已修改，則會復原認可的交易。
 
-Mobile Apps 支援開放式並行存取控制項，方法是使用 `version` 系統屬性資料行來追蹤對每個項目的變更，該資料行是針對行動應用程式後端中的每個資料表所定義的。每當更新記錄時，Mobile Apps 會將該筆記錄的 `version` 屬性設定為新值。在每次更新要求期間，要求所提供的該筆記錄 `\version` 屬性會與伺服器上該筆記錄的相同屬性進行比對。如果隨著要求傳遞的版本與後端不符，則用戶端程式庫會引發 `MobileServicePreconditionFailedException<T>` 例外狀況。例外狀況所提供的類型是來自包含該記錄之伺服器版本的後端記錄。接著應用程式可以使用這項資訊，來決定是否要針對後端的正確 `version` 值來執行更新要求以認可變更。
+Mobile Apps 支援開放式並行存取控制項，方法是使用 `version` 系統屬性資料行來追蹤對每個項目的變更，該資料行是針對行動應用程式後端中的每個資料表所定義的。每當更新記錄時，Mobile Apps 會將該筆記錄的 `version` 屬性設定為新值。在每次更新要求期間，要求所提供的該筆記錄 `version` 屬性會與伺服器上該筆記錄的相同屬性進行比對。如果隨著要求傳遞的版本與後端不符，則用戶端程式庫會引發 `MobileServicePreconditionFailedException<T>` 例外狀況。例外狀況所提供的類型是來自包含該記錄之伺服器版本的後端記錄。接著應用程式可以使用這項資訊，來決定是否要針對後端的正確 `version` 值來執行更新要求以認可變更。
 
 在 `version` 系統屬性的資料表類別上定義資料行，以啟用開放式並行存取，例如：
 
@@ -331,9 +331,9 @@ Mobile Apps 支援開放式並行存取控制項，方法是使用 `version` 系
         [JsonProperty(PropertyName = "complete")]
         public bool Complete { get; set; }
 
-		// *** Enable Optimistic Concurrency *** //
+        // *** Enable Optimistic Concurrency *** //
         [JsonProperty(PropertyName = "version")]
-        public byte[] Version { set; get; }
+        public string Version { set; get; }
     }
 
 
@@ -497,7 +497,7 @@ Mobile Apps 支援使用各種外部識別提供者 (Facebook、Google、Microso
 	
 	* 以您從原生用戶端應用程式中複製的用戶端識別碼取代 **INSERT-CLIENT-ID-HERE**。
 	
-	* 使用 HTTPS 配置，以您網站的 _/.auth/login/done_ 端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \__https://contoso.azurewebsites.net/.auth/login/done_ 類似。
+	* 使用 HTTPS 配置，以您網站的 _/.auth/login/done_ 端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。
 	
 	每個平台所需的程式碼如下：
 	
@@ -966,4 +966,4 @@ Xamarin 應用程式需要一些額外的程式碼，才能將執行於 iOS 或 
 [SymbolSource]: http://www.symbolsource.org/
 [SymbolSource 指示]: http://www.symbolsource.org/Public/Wiki/Using
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

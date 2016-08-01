@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="04/25/2016"
+   ms.date="07/18/2016"
    ms.author="juliako"/>
 
  
@@ -26,7 +26,7 @@
 
 ##服務匯流排更新
 
-- 事件中心： 
+- 事件中心：
 
 	- 現在藉由公開事件中心的其他發行者端點，可在傳送事件時提供目標存取控制。
 	- 其他加入至事件中心功能的穩定性和改良。
@@ -36,7 +36,7 @@
 
 - **IntelliSense 的增強功能**：遠端中繼資料建議
 
-	HDInsight Tools for Visual Studio 現在支援在編輯 Hive 指令碼時取得遠端中繼資料。例如，您可以輸入 **SELECT * FROM**，即可顯示所有的資料表名稱。此外，資料行名稱會在指定資料表之後顯示。
+	HDInsight Tools for Visual Studio 現在支援在編輯 Hive 指令碼時取得遠端中繼資料。例如，您可以輸入 *SELECT FROM**，即可顯示所有的資料表名稱。此外，資料行名稱會在指定資料表之後顯示。
 
 - **HDInsight 模擬器支援**
 
@@ -48,9 +48,9 @@
 
 	HDInsight Tools for Visual Studio 現在支援一般的 Hadoop 叢集，因此您可以使用 HDInsight Tools for Visual Studio 來執行下列動作：
 
-	- 連接到您的叢集、 
-	- 使用增強式 IntelliSense/自動完成支援來撰寫 Hive 查詢、 
-	- 使用直覺式 UI 來檢視叢集中的所有工作。 
+	- 連接到您的叢集、
+	- 使用增強式 IntelliSense/自動完成支援來撰寫 Hive 查詢、
+	- 使用直覺式 UI 來檢視叢集中的所有工作。
 
 	如需詳細資訊，請參閱[本手冊](http://go.microsoft.com/fwlink/?LinkID=529540&clcid=0x409)。
 
@@ -72,7 +72,7 @@ Azure SDK 2.6 版中已更新下列項目。
 - API Apps 佈建功能提供使用者 API 應用程式的建立和佈建功能。
 - 將 [伺服器總管] 使用按資源群組分組的 Web、行動及 API 應用程式加以變更，以反映新的 App Service 節點。
 - 加入已新增至大部分 C# 專案的 Azure API Apps 用戶端手勢，將可自動產生啟用 Swagger 功能並可在使用者的 Azure 訂用帳戶中執行的 API Apps。
-- [伺服器總管] 中的 API Apps 工具和 App Service 節點僅可以在 Visual Studio 2013 中使用。 
+- [伺服器總管] 中的 API Apps 工具和 App Service 節點僅可以在 Visual Studio 2013 中使用。
 
 ##Azure 資源管理員工具更新
 
@@ -93,7 +93,7 @@ Azure SDK 2.6 重新提供針對收集 Azure 計算模擬器中的診斷記錄�
  
 ##已知問題
 
-- 收集模擬器中的診斷記錄檔需要 64 位元的作業系統。在 32 位元的作業系統上執行時，將無法收集診斷記錄檔。這並不會影響任何其他模擬器功能。 
+- 收集模擬器中的診斷記錄檔需要 64 位元的作業系統。在 32 位元的作業系統上執行時，將無法收集診斷記錄檔。這並不會影響任何其他模擬器功能。
 
 - 2015 年 4 月 29 日發行的 Azure SDK 2.6 有兩個問題：
 
@@ -108,4 +108,4 @@ Azure SDK 2.6 重新提供針對收集 Azure 計算模擬器中的診斷記錄�
 
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx/)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

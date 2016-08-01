@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="07/06/2016" 
+	ms.date="07/12/2016" 
 	ms.author="raynew"/>
 
 # 針對 Azure Site Recovery 中的虛擬機器和實體伺服器保護規劃容量
@@ -133,4 +133,4 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
 
 	![容量規劃](./media/site-recovery-capacity-planner/capacity-planner.png)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

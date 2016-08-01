@@ -1,7 +1,7 @@
 <properties
 	pageTitle="如何使用適用於行動應用程式的 .NET 後端伺服器 SDK | Azure App Service"
 	description="了解如何使用適用於 Azure App Service 行動應用程式的 .NET 後端伺服器 SDK。"
-	keywords="App Service, Azure App Service, 行動應用程式, 行動服務, 級別, 可調整, 應用程式部署, Azure 應用程式部署"
+	keywords="App Service, Azure App Service, 行動應用程式, 行動服務, 調整, 可調整, 應用程式部署, Azure 應用程式部署"
 	services="app-service\mobile"
 	documentationCenter=""
 	authors="ggailey777"
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="07/18/2016"
 	ms.author="glenga"/>
 
 # 使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK
@@ -97,7 +97,7 @@ SDK 可於 [NuGet.org] 取得。此封裝包含開始使用 SDK 所需的基本�
 	    .MapApiControllers()
 	    .ApplyTo(config);
 
-請注意，`MapApiControllers` 只會對應具有屬性 `[MobileAppController]` 的控制器。
+請注意，`MapApiControllers` 只會對應具有屬性 `[MobileAppController]` 的控制器。若要對應其他控制站，請使用 [MapHttpAttributeRoutes] 方法。
 
 許多功能的擴充方法都可透過其他您可以包含的 NuGet 封裝提供使用，於下節中說明。
 
@@ -134,7 +134,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 - [Microsoft.Azure.Mobile.Server.CrossDomain](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.CrossDomain/) 建立從行動應用程式提供資料給舊版網頁瀏覽器的控制器。透過呼叫 **MapLegacyCrossDomainController** 擴充方法來加入設定中。
 
-- [Microsoft.Azure.Mobile.Server.Login] 透過 AppServiceLoginHandler.CreateToken() 方法提供對自訂驗證的預覽支援。這是靜態方法，不需要在組態中啟用。
+- [Microsoft.Azure.Mobile.Server.Login] 透過 AppServiceLoginHandler.CreateToken() 方法提供對自訂驗證支援。這是靜態方法，不需要在組態中啟用。
 
 ## <a name="publish-server-project"></a>做法：發佈伺服器專案
 
@@ -142,7 +142,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 1. 在 Visual Studio 中，重新建置專案以還原 NuGet 封裝。
 
-2. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，然後按一下 [發行]。第一次發佈時，您必須定義發行設定檔。在已經定義設定檔的情況下，您可以直接選取該設定檔，然後按一下 [發行]。
+2. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，然後按一下 [發佈]。第一次發佈時，您必須定義發行設定檔。在已經定義設定檔的情況下，您可以直接選取該設定檔，然後按一下 [發佈]。
 
 2. 如果系統要求您選取發佈目標，請按一下 [Microsoft Azure App Service] > [下一步]，然後視需要使用您的 Azure 認證來登入。Visual Studio 會直接從 Azure 下載並安全地儲存您的發佈設定。
 
@@ -152,7 +152,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 	![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-2.png)
 
-4. 驗證發行設定檔資訊，然後按一下 [發行]。
+4. 驗證發佈設定檔資訊，然後按一下 [發佈]。
 
 	![](./media/app-service-mobile-dotnet-backend-how-to-use-server-sdk/publish-wizard-3.png)
 
@@ -190,7 +190,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 ## 做法：定義自訂 API 控制器
 
-自訂 API 控制器透過公開端點，提供最基本的功能給您的行動應用程式後端。您可以使用屬性 [MobileAppController] 來註冊行動裝置特定 API 控制器。這個屬性會註冊路由，也會設定 Mobile Apps JSON 序列化程式。
+自訂 API 控制器透過公開端點，提供最基本的功能給您的行動應用程式後端。您可以使用屬性 [MobileAppController] 來註冊行動裝置特定 API 控制器。這個屬性會註冊路由、設定 Mobile Apps JSON 序列化程式，以及開啟[用戶端版本檢查](app-service-mobile-client-and-server-versioning.md)。
 
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 [控制器] 資料夾，然後按一下 [加入] > [控制器]，選取 [Web API 2 控制器&mdash;空白]，然後按一下 [加入]。
 
@@ -251,6 +251,8 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
 
 自訂驗證會公開，方法是建立新的 ApiController 並且公開如下的註冊和登入動作。用戶端可以向使用者收集相關資訊，然後將使用者資訊置於 HTTPS POST 的內容中提交給 API，來嘗試登入。伺服器驗證這項判斷提示之後，便可使用 `AppServiceLoginHandler.CreateToken()` 方法來發行權杖。
 
+請注意，此 ApiController **不得**使用 `[MobileAppController]` 屬性，因為這會導致用戶端登入要求失敗。`[MobileAppController]` 屬性需要要求標頭 [ZUMO-API-VERSION](app-service-mobile-client-and-server-versioning.md)，而此標頭**並非**由用戶端 SDK 針對登入路由而傳送。
+
 可能的範例登入動作為：
 
 		public IHttpActionResult Post([FromBody] JObject assertion)
@@ -307,7 +309,7 @@ SID 衍生自提供者特定的使用者識別碼，且對指定的使用者和�
 
 App Service 也可讓您向登入提供者要求特定宣告。這可讓您向提供者要求更多資訊，例如藉由使用 Facebook 圖形 API。您可以在入口網站的提供者刀鋒視窗中指定宣告。某些宣告需要搭配提供者的額外設定。
 
-下列程式碼會呼叫 **GetAppServiceIdentityAsync** 擴充方法以取得登入認證，其中包含對 Facebook Graph API 提出要求所需的存取權杖：
+下列程式碼會呼叫 **GetAppServiceIdentityAsync** 擴充方法以取得登入認證，其中包含對 Facebook 圖形 API 提出要求所需的存取權杖：
 
     // Get the credentials for the logged-in user.
     var credentials =
@@ -477,5 +479,6 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Authentication]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/
 [Microsoft.Azure.Mobile.Server.Login]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Login/
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
+[MapHttpAttributeRoutes]: https://msdn.microsoft.com/library/dn479134(v=vs.118).aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

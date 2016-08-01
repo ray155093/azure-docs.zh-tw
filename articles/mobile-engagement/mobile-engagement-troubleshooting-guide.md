@@ -26,8 +26,8 @@
 一般而言，請務必確定下列事項：
 
 1. 確定您已經如[使用者入門教學課程](mobile-engagement-windows-store-dotnet-get-started.md)中所述完成整合作業所需的所有步驟
-2. 您使用的是最新版的平台 SDK。 
-3. 同時在實際裝置和模擬器上進行測試，因為有些問題是只有模擬器才有的。 
+2. 您使用的是最新版的平台 SDK。
+3. 同時在實際裝置和模擬器上進行測試，因為有些問題是只有模擬器才有的。
 4. 您並未達到 Mobile Engagement 的任何限制/節流，其相關內容記載在[這裡](../azure-subscription-service-limits.md)。
 5. 如果您無法連接到 Mobile Engagement 服務後端，或發現未能持續載入資料，則請檢查[這裡](https://azure.microsoft.com/status/)，確定目前沒有發生服務事件
 
@@ -38,7 +38,7 @@
 
 如果您沒有在 [監視] 索引標籤上看見您的裝置，表示可能有 SDK 整合問題。您可以採取的某些常見疑難排解步驟如下：
 
-1. 確定您有在行動應用程式中使用正確的連接字串，且其來自 [SDK 金鑰] 區段而非 [API 金鑰] 區段。連接字串會將您的行動應用程式連接到 Mobile Engagement 應用程式的執行個體，您會在其中的 [監視] 索引標籤上看到您的裝置。 
+1. 確定您有在行動應用程式中使用正確的連接字串，且其來自 [SDK 金鑰] 區段而非 [API 金鑰] 區段。連接字串會將您的行動應用程式連接到 Mobile Engagement 應用程式的執行個體，您會在其中的 [監視] 索引標籤上看到您的裝置。
 2. 針對 Windows 平台 - 如果您的頁面會覆寫 `OnNavigatedTo` 方法，請確定會呼叫 `base.OnNavigatedTo(e)`。
 3. 如果您要將 Mobile Engagement 整合到現有的行動應用程式，則您也可以查看[這裡](mobile-engagement-windows-store-integrate-engagement.md)的進階整合步驟，確保您沒有遺漏任何步驟
 4. 視您正在使用的平台而定，透過以 EngagementActivity 覆寫頁面來確定您正在傳送至少一個畫面/活動，詳細內容如[使用者入門教學課程](mobile-engagement-windows-store-dotnet-get-started.md)所述。
@@ -63,34 +63,34 @@
 
 ### 我的推播訊息未傳遞 
 
-1. 請先嘗試將通知傳送至測試裝置，確定所有元件 (行動應用程式、SDK 和服務) 都已正確連接且能夠傳送推播通知。 
-2. 請一律先透過既未排程也未指定任何對象準則的活動來傳送最簡單的「應用程式外通知」。同樣地，這也是為了證明通知連線有正常運作。 
-3. 如果您無法傳送應用程式內通知，則先嘗試傳送應用程式外通知也是不錯的第一步。 
+1. 請先嘗試將通知傳送至測試裝置，確定所有元件 (行動應用程式、SDK 和服務) 都已正確連接且能夠傳送推播通知。
+2. 請一律先透過既未排程也未指定任何對象準則的活動來傳送最簡單的「應用程式外通知」。同樣地，這也是為了證明通知連線有正常運作。
+3. 如果您無法傳送應用程式內通知，則先嘗試傳送應用程式外通知也是不錯的第一步。
 4. 確定您的行動應用程式已正確設定「原生推播」。視平台而定，它會涉及金鑰 (Android、Windows) 或憑證 (iOS)。請參閱[使用者介面設定](mobile-engagement-user-interface-settings.md)
-5. 使用者也可能透過行動作業系統封鎖了應用程式外通知，因此請確定不是這種情況。 
-6. 確定您未在 [送達] 活動的 [活動] 區段中設定 [忽略對象，將透過 API 傳送推播給使用者] 選項，因為這將確保只可以透過 API 傳送推播通知。 
+5. 使用者也可能透過行動作業系統封鎖了應用程式外通知，因此請確定不是這種情況。
+6. 確定您未在 [送達] 活動的 [活動] 區段中設定 [忽略對象，將透過 API 傳送推播給使用者] 選項，因為這將確保只可以透過 API 傳送推播通知。
 7. 確定您在測試推播活動時有同時使用透過 WIFI 與電信商網路連線的裝置，以排除網路連線是問題根源的可能性。
-8. 確定裝置/模擬器上的系統日期/時間是否正確，因為裝置未同步也會干擾推播通知服務傳遞通知的能力。 
+8. 確定裝置/模擬器上的系統日期/時間是否正確，因為裝置未同步也會干擾推播通知服務傳遞通知的能力。
 
 以下有更多平台特有的疑難排解指示：
 
-1. **iOS** 
+1. **iOS**
 
-	- 確定憑證有效且未到期，仍可用於 iOS 推播通知。 
-	- 確定您有在 Mobile Engagement 應用程式中正確設定 [生產] 憑證。 
+	- 確定憑證有效且未到期，仍可用於 iOS 推播通知。
+	- 確定您有在 Mobile Engagement 應用程式中正確設定 [生產] 憑證。
 	- 請確定您要測試的是*真正的實體裝置。* iOS 模擬器無法處理推播訊息。
 	- 確定已在行動應用程式中正確設定 [Bundle Identifier]。請參閱[這裡](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)的指示
 	- 測試時，請使用行動佈建設定檔中的「臨機」發佈。若您的應用程式使用「偵錯」進行編譯，您將無法收到通知
 
 2. **Android**
 
-	- 確定您已在行動應用程式的 AndroidManifest.xml 檔案中指定正確的專案編號，且後面接著 \\n 字元。 
+	- 確定您已在行動應用程式的 AndroidManifest.xml 檔案中指定正確的專案編號，且後面接著 \\n 字元。
 	
 	    	<meta-data android:name="engagement:gcm:sender" android:value="************\n" />
 	    
 	- 請確定您在 Android 資訊清單檔中沒有遺失或錯誤設定任何權限
-	- 請確定您要新增至用戶端應用程式的專案編號是來自於您取得 GCM 伺服器金鑰的相同帳戶。兩者只要有任何不相符，就無法送出您的推播。 
-	- 如果有收到系統通知，但未收到應用程式內通知，請檢閱[指定通知區段的圖示](mobile-engagement-android-get-started.md)，因為您可能未在 Android 資訊清單檔案中指定正確的圖示。 
+	- 請確定您要新增至用戶端應用程式的專案編號是來自於您取得 GCM 伺服器金鑰的相同帳戶。兩者只要有任何不相符，就無法送出您的推播。
+	- 如果有收到系統通知，但未收到應用程式內通知，請檢閱[指定通知區段的圖示](mobile-engagement-android-get-started.md)，因為您可能未在 Android 資訊清單檔案中指定正確的圖示。
 	- 如果您要傳送 BigPicture 通知，則請確定如果您有外部影像伺服器，這些伺服器需要能夠支援 HTTP "GET" 和 "HEAD"。
 
 3. **Windows**
@@ -110,9 +110,9 @@
 
 如果您無法自行解決問題，您可以：
 
-1. 在 StackOverflow 論壇與 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/windows/zh-TW/home?forum=azuremobileengagement)的現有討論對話中，搜尋是否有您的問題，如果沒有，即在論壇中發問。 
+1. 在 StackOverflow 論壇與 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/windows/zh-TW/home?forum=azuremobileengagement)的現有討論對話中，搜尋是否有您的問題，如果沒有，即在論壇中發問。
 2. 如果您發現缺少什麼功能，則請到我們的 [UserVoice 論壇](https://feedback.azure.com/forums/285737-mobile-engagement/)新增申請或進行投票
-3. 如果您有 Microsoft 支援，則請提供下列詳細資料來開立支援事件： 
+3. 如果您有 Microsoft 支援，則請提供下列詳細資料來開立支援事件：
 	- Azure 訂用帳戶識別碼
 	- 平台 (例如 iOS、Android 等)
 	- 應用程式識別碼
@@ -121,4 +121,4 @@
 	- Mobile Engagement SDK 版本 (例如 Android SDK v2.1.0)
 	- 附有確切錯誤訊息與狀況的錯誤詳細資料
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0720_2016-->

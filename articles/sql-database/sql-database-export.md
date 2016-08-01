@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="04/06/2016"
+	ms.date="07/19/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -33,7 +33,7 @@
 - 封存到 Azure Blob 儲存體的 BACPAC 檔案大小上限為 200 GB。請使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令提示字元公用程式，將較大的 BACPAC 檔案封存到本機儲存體。此公用程式隨附於 Visual Studio 和 SQL Server。您也可以[下載](https://msdn.microsoft.com/library/mt204009.aspx)最新版的 SQL Server Data Tools 以取得此公用程式。
 - 不支援使用 BACPAC 檔案封存 Azure 進階儲存體。
 - 如果匯出作業超過 20 個小時，它可能會被取消。若要增加匯出期間的效能，您可以︰
- - 暫時提高您的服務等級 
+ - 暫時提高您的服務等級
  - 在匯出期間停止所有讀取及寫入活動
  - 在所有大型資料表上使用叢集索引。若沒有叢集索引，如果要花超過 6-12 小時，匯出可能會失敗。這是因為匯出服務需要完成資料表掃描，以便嘗試匯出整份資料表
 
@@ -42,7 +42,7 @@
 若要完成本文，您需要下列項目：
 
 - Azure 訂用帳戶。
-- Azure SQL Database。 
+- Azure SQL Database。
 - 用來在標準儲存體中儲存 BACPAC 的 [Azure 標準儲存體帳戶](../storage/storage-create-storage-account.md)與 Blob 容器。
 
 ## 匯出您的資料庫
@@ -104,4 +104,4 @@
 [4]: ./media/sql-database-export/export-history.png
 [5]: ./media/sql-database-export/bacpac-archive.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

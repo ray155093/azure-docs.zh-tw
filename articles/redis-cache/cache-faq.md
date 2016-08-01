@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/28/2016" 
+	ms.date="07/20/2016" 
 	ms.author="sdanie"/>
 
 # Azure Redis 快取常見問題集
@@ -21,8 +21,13 @@
 了解 Azure Redis 快取常見問題、模式和最佳作法的答案。
 
 
+## 如果這裡沒有解答我的問題該怎麼辦？
 
+如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。
 
+-	您可以將問題張貼在此常見問題集尾端的[討論串](#comments)，與 Azure 快取小組和其他社群成員交流此篇文章。
+-	您可以將問題張貼在 [Azure 快取 MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azurecache)，與 Azure 快取小組和社群的其他成員交流。
+-	您可以傳送電子郵件到下列信箱：[Azure 快取外部意見反應](mailto:azurecache@microsoft.com)。
 
 ## 規劃常見問題集
 
@@ -316,6 +321,8 @@ Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數
 
 用來與 Redis 溝通的用戶端發生逾時。在大多數的情況下，Redis 伺服器不會逾時。將命令傳送到 Redis 伺服器時，會將命令排入佇列，而且 Redis 伺服器最後會挑選並執行命令。不過，用戶端可能會在此程序期間逾時，而且，如果是這樣，則會在呼叫端引發例外狀況。如需疑難排解逾時問題的詳細資訊，請參閱[用戶端疑難排解](cache-how-to-troubleshoot.md#client-side-troubleshooting)和 [StackExchange.Redis 逾時例外狀況](用戶端疑難排解](cache-how-to-troubleshoot.md#stackexchangeredis-timeout-exceptions)。
 
+'<-- 翻譯註解：中斷的連結：[StackExchange.Redis timeout exceptions](用戶端疑難排解](cache-how-to-troubleshoot.md#stackexchangeredis-timeout-exceptions)。應移除 "(用戶端疑難排解]"。 -->'
+
 <a name="cache-disconnect"></a>
 ### 我的用戶端為什麼中斷與快取的連線？
 
@@ -369,4 +376,4 @@ Redis 成功的另一個重要層面是建置健全、有活力的開放原始�
 
 ["minIoThreads" 組態設定]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

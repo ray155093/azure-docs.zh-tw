@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="07/11/2016"
+   ms.date="07/19/2016"
    ms.author="nitinme"/>
 
 # 存取 Azure Data Lake Store 的診斷記錄
@@ -50,6 +50,13 @@
 
 ## 檢視 Data Lake Store 帳戶的診斷記錄
 
+檢視 Data Lake Store 帳戶的記錄資料有兩種方式。
+
+* 從 Data Lake Store 帳戶設定檢視
+* 從儲存資料的 Azure 儲存體帳戶
+
+### 使用 Data Lake Store 設定檢視
+
 1. 在 Data Lake Store 帳戶的 [設定] 刀鋒視窗中，按一下 [診斷記錄]。
 
 	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄")
@@ -58,7 +65,24 @@
 	* 要求記錄能擷取所有以 Data Lake Store 帳戶提出的 API 要求。
 	* 稽核記錄與要求記錄相似，不過能針對以 Data Lake Store 帳戶執行之作業提供更詳細的明細。例如，要求記錄中的一個上傳 API 呼叫可能會致使稽核記錄出現多個「附加」作業。
 
-3. 針對每個要下載的記錄的記錄項目按一下 [下載] 連結。
+3. 針對每個記錄項目按一下 [下載] 連結來下載記錄。
+
+### 從包含記錄資料的 Azure 儲存體帳戶
+
+1. 開啟與與用於記錄的 Data Lake Store 關聯的Azure 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。[Blob 服務] 刀鋒視窗會列出兩個容器。
+
+	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "檢視診斷記錄")
+
+	* 容器 **insights-logs-audit** 包含稽核記錄檔。
+	* 容器 **insights-logs-requests** 包含要求記錄檔。
+
+2. 在這些容器中，紀錄會儲存在下列結構底下。
+
+	![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "檢視診斷記錄")
+
+	例如，稽核記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
+
+	同樣的，要求記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
 
 ## 了解記錄資料的結構
 
@@ -66,7 +90,7 @@
 
 ### 要求記錄
 
-以下是採用 JSON 格式之要求記錄中的範例項目。每個 Blob 會一個名為**記錄**的根物件，其中包含記錄物件的陣列。
+以下是採用 JSON 格式之要求記錄中的範例項目。每個 Blob 會有一個名為**記錄**的根物件，其中包含記錄檔物件的陣列。
 
 	{
 	"records": 
@@ -157,9 +181,15 @@
 |------------|--------|------------------------------------------|
 | StreamName | String | 執行作業的所在路徑 |
 
+
+## 處理記錄資料的範例
+
+Azure Data Lake Store 會提供有關如何處理和分析記錄資料的範例。您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample) 找到範例。
+
+
 ## 另請參閱
 
 - [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
 - [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

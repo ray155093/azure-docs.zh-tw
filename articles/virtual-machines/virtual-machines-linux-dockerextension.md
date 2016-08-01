@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="05/04/2016"
+   ms.date="07/20/2016"
    ms.author="iainfou"/>
 
 # 使用 Docker VM 擴充功能來部署您的環境
@@ -22,7 +22,7 @@ Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上
 
 - 若要迅速地建立應用程式原型，或如果您已知道 Docker Machine 並已在使用中，可以[使用 Docker Machine Azure 驅動程式](./virtual-machines-linux-docker-machine.md)來部署 Azure 中的 Docker 主機。
 - 如需依範本部署，可以使用 Azure 虛擬機器適用的 Docker VM 擴充功能。這種做法可以與 Azure Resource Manager 範本部署整合，包含所有相關的優點，例如角色型存取、診斷與後置部署組態。
-- Docker VM 延伸模組也支援 Docker Compose，其使用宣告式 YAML 檔案來取得任何環境的開發人員模型化應用程式並產生一致的部署。  
+- Docker VM 延伸模組也支援 Docker Compose，其使用宣告式 YAML 檔案來取得任何環境的開發人員模型化應用程式並產生一致的部署。
 - 對於實際執行備妥的可調整部署，您也可以[在 Azure 容器服務上部署完整的 Docker Swarm 叢集](../container-service/container-service-deployment.md)，以利用 Swarm 所提供的其他排程和管理工具。
 
 本文著重於使用 Resource Manager 範本，在您定義的自訂實際執行備妥環境中部署 Docker VM 擴充功能。
@@ -74,7 +74,7 @@ info:    group create command OK
 部署完成之後，使用在部署期間提供的 DNS 名稱透過 SSH 連接新 Docker 主機。由於 Docker 工具已安裝完成，所以我們來試著執行 nginx 容器︰
 
 ```
-docker run -d -p 80:80 nginx
+sudo docker run -d -p 80:80 nginx
 ```
 
 您應該會看到如下所示的輸出：
@@ -91,11 +91,11 @@ Status: Downloaded newer image for nginx:latest
 b6ed109fb743a762ff21a4606dd38d3e5d35aff43fa7f12e8d4ed1d920b0cd74
 ```
 
-使用 `docker ps` 檢驗在主機上執行的容器：
+使用 `sudo docker ps` 來檢查在您主機上執行的容器：
 
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                         NAMES
-b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   nostalgic_murdock
+b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   adoring_payne
 ```
 
 開啟網頁瀏覽器並輸入部署期間指定的 DNS 名稱，查看容器實際運作的情況︰
@@ -134,9 +134,9 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 
 閱讀不同部署選項的詳細步驟：
 
-1. [使用 Docker 電腦搭配 Azure 驅動程式](./virtual-machines-linux-docker-machine.md)  
-2. [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](./virtual-machines-linux-classic-cli-use-docker.md)  
+1. [使用 Docker 電腦搭配 Azure 驅動程式](./virtual-machines-linux-docker-machine.md)
+2. [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](./virtual-machines-linux-classic-cli-use-docker.md)
 3. [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md)。
 3. [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

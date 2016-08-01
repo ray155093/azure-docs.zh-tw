@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/05/2016"
+   ms.date="07/18/2016"
    ms.author="rick.byham@microsoft.com"/>
 
 # 使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲
@@ -83,11 +83,11 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 - 建議將連接逾時設定為 30 秒。
 - SQL Server 2016 Management Studio 和 SQL Server Data Tools for Visual Studio 2015 (版本 14.0.60311.1 (2016 年 4 月) 或更新版本) 支援 Azure Active Directory 驗證。(**.NET Framework Data Provider for SqlServer** 支援 Azure Active Directory 驗證，最低版本 .NET Framework 4.6)。因此，這些工具和資料層應用程式 (DAC 和 .bacpac) 的最新版本可以使用 Azure Active Directory 驗證，但 **sqlcmd.exe** 和 **bcp.exe** 無法連線，因為他們使用 ODBC 提供者。
 - SQL Server Data Tools for Visual Studio 2015 至少需要 2016 年 4 月版本的 Data Tools (版本 14.0.60311.1)。Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解決方法是在 [sys.database\_principals](https://msdn.microsoft.com/library/ms187328.aspx) 中檢視使用者。
-- [Microsoft JDBC Driver 6.0 for SQL Server](https://blogs.technet.microsoft.com/dataplatforminsider/2016/04/04/preview-the-microsoft-jdbc-driver-6-0-for-sql-server/) 支援 Azure Active Directory 驗證。
+- [Microsoft JDBC Driver 6.0 for SQL Server](https://www.microsoft.com/zh-TW/download/details.aspx?id=11774) 支援 Azure Active Directory 驗證。此外，請參閱[設定連接屬性](https://msdn.microsoft.com/library/ms378988.aspx)。
 - PolyBase 無法使用 Azure Active Directory 驗證進行驗證。
 - SQL 資料倉儲不支援 SQL Server Management Studio。使用 SQL Server Data Tools。
 - 不支援某些工具，例如 BI 和 Excel。
-- 不支援雙因素驗證或其他形式的互動式驗證。
+- 不支援多因素驗證 (MFA/2FA) 或其他形式的互動式驗證。
 - Azure 入口網站的 [匯入資料庫] 和 [匯出資料庫] 刀鋒視窗支援 SQL Database 的 Azure Active Directory 驗證。PowerShell 命令也支援使用 Azure Active Directory 驗證的匯入和匯出。
 
 
@@ -98,7 +98,7 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 - 建立初始網域 Azure AD 受管理的網域。
 - 將內部部署 Active Directory 網域服務與 Azure Active Directory 建立同盟。
 
-如需詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](../active-directory/active-directory-aadconnect.md)、[將您自己的網域名稱新增至 Azure AD](../active-directory/active-directory-add-domain.md)、[Microsoft Azure 現在支援 Windows Server Active Directory 的同盟](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/)、[管理您的 Azure AD 目錄](https://msdn.microsoft.com/library/azure/hh967611.aspx)和[使用 Windows PowerShell 管理 Azure AD](https://msdn.microsoft.com/library/azure/jj151815.aspx)。
+如需詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](../active-directory/active-directory-aadconnect.md)、[將您自己的網域名稱新增至 Azure AD](../active-directory/active-directory-add-domain.md)、[Microsoft Azure now supports federation with Windows Server Active Directory (Microsoft Azure 現在支援與 Windows Server Active Directory 同盟)](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/)、[管理您的 Azure AD 目錄](https://msdn.microsoft.com/library/azure/hh967611.aspx)和[使用 Windows PowerShell 管理 Azure AD](https://msdn.microsoft.com/library/azure/jj151815.aspx)。
 
 ## 2\.確定您的 SQL Database 是 Azure SQL Database V12
 
@@ -157,6 +157,7 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 5. 在 [Active Directory 管理 (預覽)] 刀鋒視窗中，按一下 [Active Directory 管理]，然後在頂端按一下 [設定管理員]。
 6. 在 [新增系統管理員] 刀鋒視窗中，搜尋使用者，選取使用者或群組成為系統管理員，然後按一下 [選取]。(Active Directory 管理刀鋒視窗會顯示您的 Active Directory 的所有成員與群組。呈現灰色的使用者或群組無法選取，因為他們不受支援成為 Azure AD 系統管理員。(請參閱以上 **Azure AD 功能和限制**中支援的系統管理員清單。) 以角色為基礎的存取控制 (RBAC) 只會套用至入口網站，並且不會傳播至 SQL Server。
 7. 在 [Active Directory 管理] 刀鋒視窗頂端，按一下 [儲存]。
+
 	![選擇系統管理員][10]
 
 	變更系統管理員的程序可能需要幾分鐘的時間。然後新的系統管理員會出現在 [Active Directory 管理] 方塊中。
@@ -252,9 +253,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 如果您已使用您的 Azure Active Directory 認證從同盟網域登入 Windows，請使用這個方法。
 
-1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\ (或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
-
-![選取 AD 整合式驗證][11]
+1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] \(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。![選取 AD 整合式驗證][11]
 
 2. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。
 
@@ -283,8 +282,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 *Azure\_AD\_principal\_name* 可以是 Azure AD 使用者的使用者主體名稱或 Azure AD 群組的顯示名稱。
 
-**範例：**
-建立代表 Azure AD 同盟或受管理網域使用者的自主資料庫使用者：
+**範例：**建立代表 Azure AD 同盟或受管理網域使用者的自主資料庫使用者：
 
 	CREATE USER [bob@contoso.com] FROM EXTERNAL PROVIDER;
 	CREATE USER [alice@fabrikam.onmicrosoft.com] FROM EXTERNAL PROVIDER;
@@ -372,4 +370,4 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 [11]: ./media/sql-database-aad-authentication/11connect-using-int-auth.png
 [12]: ./media/sql-database-aad-authentication/12connect-using-pw-auth.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->
