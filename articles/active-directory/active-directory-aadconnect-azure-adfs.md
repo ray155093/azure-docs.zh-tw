@@ -305,4 +305,4 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
 
-<!----HONumber=AcomDC_0720_2016-->
+<!-----HONumber=AcomDC_0720_2016-->
