@@ -140,7 +140,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 接下來，在 DS1 上安裝及設定 Azure AD Connect 工具。
 
-1.	執行 Internet Explorer，在網址列中輸入 **https://www.microsoft.com/download/details.aspx?id=47594****，然後按 ENTER 鍵。
+1.	執行 Internet Explorer，在網址列中輸入 **https://www.microsoft.com/download/details.aspx?id=47594**，然後按 ENTER 鍵。
 2.	執行 Microsoft Azure AD Connect 安裝程式。
 3.	從桌面上，按兩下 [Azure AD Connect]。
 4.	在 [歡迎] 頁面上，選取 [我同意授權合約及隱私權注意事項]，然後按一下 [繼續]。

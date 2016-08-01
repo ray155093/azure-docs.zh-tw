@@ -60,16 +60,16 @@
 
 1. 開啟[傳統入口網站](http://manage.windowsazure.com)。
 2. 選取左邊功能表中的 [Active Directory]，然後按一下您應用程式將會使用的 Active Directory。
-3. 按一下 [應用程式]，然後按一下 [新增] (位於底部)。
+3. 按一下 [應用程式]，然後按一下 [新增] \(位於底部)。
 4. 輸入您應用程式的名稱 (例如：*myClientApp*)，選取 [WEB 應用程式]，然後按一下箭頭以繼續。
 5. 針對 [登入 URL] 和 [應用程式識別碼 URI]，您只需輸入有效的 URL (例如：*http://myClientApp*) 並繼續。
 6. 按一下 [**設定**]。
-7. 複製您的 [用戶端識別碼] (您之後在程式碼中將需要此值)。
-8. 在 [金鑰] 區段中，將 [選取持續時間] 下拉式清單設定為 [1 年] (我們將會在下方儲存後複製金鑰)。
+7. 複製您的 [用戶端識別碼] \(您之後在程式碼中將需要此值)。
+8. 在 [金鑰] 區段中，將 [選取持續時間] 下拉式清單設定為 [1 年] \(我們將會在下方儲存後複製金鑰)。
 11. 向下捲動並按一下 [新增應用程式]。
 12. 將 [顯示] 保持設定為 [Microsoft 應用程式]，然後尋找並選取 [Microsoft Azure 服務管理]，並按一下核取記號以繼續。
 13. 在 [Microsoft Azure 服務管理員] 列上，按一下 [委派的權限] 下拉式清單，然後選取 [存取 Azure 服務管理]。
-14. 按一下 [儲存] (位於底部)。
+14. 按一下 [儲存] \(位於底部)。
 15. 儲存完成後，請尋找並複製 [金鑰] 區段中的金鑰值 (您之後在程式碼中將需要此值)。
 
 
@@ -160,7 +160,7 @@
 SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料行加密金鑰 (CEK) 與加密資料行，來為您輕鬆設定永遠加密。
 
 1. 展開 [資料庫] > [Clinic] > [資料表]。
-2. 以滑鼠右鍵按一下 [Patients] (病患) 資料表，然後選取 [加密資料行] 以開啟 [永遠加密精靈]：
+2. 以滑鼠右鍵按一下 [Patients] \(病患) 資料表，然後選取 [加密資料行] 以開啟 [永遠加密精靈]：
 
     ![加密資料行](./media/sql-database-always-encrypted-azure-key-vault/encrypt-columns.png)
 
@@ -464,7 +464,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
         {
             int returnValue = 0;
 
-            string sqlCmdText = @"INSERT INTO [dbo].[Patients] ([SSN], [FirstName], [LastName], [BirthDate])
+            string sqlCmdText = @"INSERT INTO [dbo].[Patients] \([SSN], [FirstName], [LastName], [BirthDate])
      VALUES (@SSN, @FirstName, @LastName, @BirthDate);";
 
             SqlCommand sqlCmd = new SqlCommand(sqlCmdText);

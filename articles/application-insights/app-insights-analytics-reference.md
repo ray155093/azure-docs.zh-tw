@@ -129,8 +129,7 @@ Set 子句可設定查詢持續時間的選項。查詢選項可控制查詢如�
 
 ```AIQL
 requests // The request table starts this pipeline.
-| where client_City == "London" // filter the records
-   and timestamp > ago(3d)
+| where client_City == "London" // filter the recordsand timestamp > ago(3d)
 | count 
 ```
     
@@ -444,7 +443,7 @@ traces
 
 **語法**
 
-    Table1 | join [kind=Kind] (Table2) on CommonColumn [, ...]
+    Table1 | join [kind=Kind] \(Table2) on CommonColumn [, ...]
 
 **引數**
 
@@ -1683,7 +1682,17 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
+| - | 減 |
+| * | 乘 |
+| / | 除 |
+| % | 模數 |
+||
+|`<` |小於 
+|`<=`|小於或等於 
+|`>` |大於 
+|`>=`|大於或等於 
+|`<>`|不等於 
+|`!=`|不等於
 
 
 ### abs

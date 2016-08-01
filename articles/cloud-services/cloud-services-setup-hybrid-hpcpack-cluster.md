@@ -141,7 +141,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 	![Configure Network][config_hpc2]
 
-3. 在 [網路設定精靈] 中，選取 [All nodes only on an enterprise network] (拓撲 5)。
+3. 在 [網路設定精靈] 中，選取 [All nodes only on an enterprise network] \(拓撲 5)。
 
 	![Topology 5][config_hpc3]
 
@@ -193,7 +193,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 在本教學課程中，您將需要新增兩個小型節點。
 
-1. 在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [加入節點]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [加入節點]。
 
 	![Add Node][add_node1]
 
@@ -216,7 +216,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 ## 啟動 Azure 節點
 當您想要使用 Azure 中的叢集資源時，請使用 HPC 叢集管理員來啟動 (佈建) Azure 節點並讓節點上線。
 
-1.	在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
+1.	在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
 
 	![Start Nodes][add_node4]
 
@@ -282,7 +282,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 試驗完叢集之後，請停止 Azure 節點，以避免給您的帳戶產生不必要的費用。這樣會停止雲端服務並移除 Azure 角色執行個體。
 
-1. 在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。然後，在 [動作] 窗格中，按一下 [停止]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。然後，在 [動作] 窗格中，按一下 [停止]。
 
 	![Stop Nodes][stop_node1]
 

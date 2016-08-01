@@ -6,7 +6,7 @@
 
 使用以下步驟授權邏輯應用程式連接到 OneDrive 帳戶的權限：
 
-1. 建立邏輯應用程式。在 Logic Apps 設計工具中，選取下拉式清單的 [Show Microsoft managed APIs] (顯示 Microsoft Managed API)，然後在搜尋方塊中輸入「OneDrive」。選取其中一個觸發程序或動作︰![](./media/connectors-create-api-onedrive/onedrive-1.png)
+1. 建立邏輯應用程式。在 Logic Apps 設計工具中，選取下拉式清單的 [Show Microsoft managed APIs] \(顯示 Microsoft Managed API)，然後在搜尋方塊中輸入「OneDrive」。選取其中一個觸發程序或動作︰![](./media/connectors-create-api-onedrive/onedrive-1.png)
 2. 如果您之前尚未對 OneDrive 建立任何連線，系統會提示您使用 OneDrive 認證來登入：![](./media/connectors-create-api-onedrive/onedrive-2.png)
 3. 選取 [登入]，然後輸入您的使用者名稱和密碼。選取 [登入]：![](./media/connectors-create-api-onedrive/onedrive-3.png)
 

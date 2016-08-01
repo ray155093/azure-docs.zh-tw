@@ -45,7 +45,7 @@
 
 	![](./media/connectors-create-api-onedrive/onedrive-1.png)
 
-2. 選取 [當檔案遭到修改時]。如果連線已存在，則選取 [...] (顯示選擇器) 按鈕以選取資料夾。
+2. 選取 [當檔案遭到修改時]。如果連線已存在，則選取 [...] \(顯示選擇器) 按鈕以選取資料夾。
 
 	![](./media/connectors-create-api-onedrive/sample-folder.png)
 

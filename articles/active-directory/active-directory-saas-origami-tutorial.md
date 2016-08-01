@@ -145,9 +145,9 @@ Origami 與 Azure AD 整合提供下列優點：
 
 	a.選取 [啟用單一登入]。
 
-	b.在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL] (識別提供者登入頁面 URL) 文字方塊中。
+	b.在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL] \(識別提供者登入頁面 URL) 文字方塊中。
 
-	c.在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL] (識別提供者登出頁面 URL) 文字方塊中。
+	c.在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL] \(識別提供者登出頁面 URL) 文字方塊中。
 
 	d.按一下 [瀏覽] 上傳您從 Azure 傳統入口網站下載的憑證。
 

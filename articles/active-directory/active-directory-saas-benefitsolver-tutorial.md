@@ -82,7 +82,7 @@
 
     ![設定 App 設定](./media/active-directory-saas-benefitsolver-tutorial/IC804826.png "設定 App 設定")
 
-    1.  在 [登入 URL] 文字方塊中，輸入**http://azure.benefitsolver.com**。
+    1.  在 [登入 URL] 文字方塊中，輸入 **http://azure.benefitsolver.com**。
     2.  在 [回覆 URL] 文字方塊中，輸入 **https://www.benefitsolver.com/benefits/BenefitSolverView?page_name=single_signon_saml**。
 
 

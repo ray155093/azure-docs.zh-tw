@@ -26,7 +26,7 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。部署和管理
 
 如果您在建立新的應用程式或重新撰寫現有的應用程式以使用微服務架構，Service Fabric 是不錯的選擇。在共用機器集區上執行的應用程式可以從小規模著手，然後擴充為包含成千上萬部機器的大規模服務。具狀態服務可輕鬆地以一致且可靠的方式儲存應用程式狀態，而 Service Fabric 會自動為您管理服務資料分割、調整及可用性。Service Fabric 也支援具有 Open Web Interface for .NET (OWIN) 和 ASP.NET Core 的 WebAPI。相較於 App Service，Service Fabric 也能更充分掌控或直接存取基礎結構。您可以從遠端進入您的伺服器，或設定伺服器啟動工作。雲端服務的控制和易用程度類似於 Service Fabric，但是它現在是舊版服務，建議將 Service Fabric 用於新的開發。
 
-如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 [虛擬機器] 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。Azure 虛擬機器是基礎結構即服務 (IaaS)，而 App Service 和 Service Fabric 是平台即服務 (Paas)。
+如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 虛擬機器 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。Azure 虛擬機器是基礎結構即服務 (IaaS)，而 App Service 和 Service Fabric 是平台即服務 (Paas)。
 
 ## <a name="features"></a>功能比較
 
@@ -119,8 +119,8 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 
 對於 Web 開發人員和設計人員，Azure App Service 可輕鬆整合各種架構和工具、提供 Git 和 FTP 的部署支援，並與 Visual Studio 和 SQL Database 等工具和服務密切整合。使用 App Service，您可以：
 
-- 使用命令列工具執行[自動化工作][scripting] (英文)。
-- 使用熱門語言，例如 [.Net][dotnet] (英文)、[PHP][] (英文)、[Node.js][nodejs] (英文) 及 [Python][] (英文)。
+- 使用命令列工具執行[自動化工作][scripting] \(英文)。
+- 使用熱門語言，例如 [.Net][dotnet] \(英文)、[PHP][] \(英文)、[Node.js][nodejs] \(英文) 及 [Python][] \(英文)。
 - 有三種不同的調整層級可選，以向上調整至非常高的容量。
 - 與其他 Azure 服務 (如 [SQL Database][sqldatabase]、[服務匯流排][servicebus]及[儲存體][])，或 [Azure 市集][azurestore]上的合作夥伴供應項目 (如 MySQL 和 MongoDB) 整合。
 - 與 Visual Studio、Git、WebMatrix、WebDeploy、TFS 和 FTP 等工具整合。
@@ -144,7 +144,7 @@ Azure App Service 是此案例的絕佳解決方案，因為您可先免費使�
 
 如果 App Service 上支援您的開放原始碼架構，則會自動設定您的應用程式所需的語言和架構。App Service 可讓您：
 
-- 使用許多熱門的開放原始碼語言，例如 [.NET][dotnet] (英文)、[PHP][] (英文)、[Node.js][nodejs] (英文) 及 [Python][] (英文)。
+- 使用許多熱門的開放原始碼語言，例如 [.NET][dotnet] \(英文)、[PHP][] \(英文)、[Node.js][nodejs] \(英文) 及 [Python][] \(英文)。
 - 設定 WordPress、Drupal、Umbraco、DNN 及其他許多協力廠商 Web 應用程式。
 - 移轉現有的應用程式，或從應用程式庫建立新的應用程式。
 

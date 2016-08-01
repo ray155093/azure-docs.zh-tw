@@ -310,7 +310,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 
 
 ##後續步驟
-您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][] (英文) 主題。
+您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][] \(英文) 主題。
 
 [如何取得媒體處理器]: media-services-get-media-processor.md
  

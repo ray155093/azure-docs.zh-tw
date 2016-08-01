@@ -195,7 +195,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。在您的 Android 手機上執行下列步驟：
 
-1. 移至 [設定] > [About phone] (有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
+1. 移至 [設定] > [About phone] \(有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
 
 2. 回到 [設定] > [開發人員選項] 啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接到開發電腦。
 
@@ -210,7 +210,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
 
-2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages] \(安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 

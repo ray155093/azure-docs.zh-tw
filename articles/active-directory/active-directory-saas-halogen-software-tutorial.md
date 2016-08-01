@@ -216,7 +216,8 @@ Halogen Software 與 Azure AD 整合提供下列優點：
 
 	![何謂 Azure AD Connect][106]
 
-    a.記下 [新密碼] 的值。b.按一下 [完成]。
+    a.記下 [新密碼] 的值。
+    b.按一下 [完成]。
   
  
 ### 建立 Halogen Software 測試使用者

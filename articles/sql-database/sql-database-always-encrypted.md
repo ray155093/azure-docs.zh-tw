@@ -109,7 +109,7 @@
 SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料行加密金鑰 (CEK) 與加密資料行，來為您輕鬆設定永遠加密。
 
 1. 展開 [資料庫] > [Clinic] > [資料表]。
-2. 以滑鼠右鍵按一下 [Patients] (病患) 資料表，然後選取 [加密資料行] 以開啟 [永遠加密精靈]：
+2. 以滑鼠右鍵按一下 [Patients] \(病患) 資料表，然後選取 [加密資料行] 以開啟 [永遠加密精靈]：
 
     ![加密資料行](./media/sql-database-always-encrypted/encrypt-columns.png)
 
@@ -320,7 +320,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
         {
             int returnValue = 0;
 
-            string sqlCmdText = @"INSERT INTO [dbo].[Patients] ([SSN], [FirstName], [LastName], [BirthDate])
+            string sqlCmdText = @"INSERT INTO [dbo].[Patients] \([SSN], [FirstName], [LastName], [BirthDate])
          VALUES (@SSN, @FirstName, @LastName, @BirthDate);";
 
             SqlCommand sqlCmd = new SqlCommand(sqlCmdText);
