@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/21/2016"
+	ms.date="07/18/2016"
 	ms.author="curtand;jeffsta"/>
 
 # Azure Active Directory 中的自訂網域名稱的概念式概觀
@@ -68,4 +68,4 @@ Azure Web 應用程式使用其本身的機制來驗證網域的擁有權。網�
 
 -   [使用 Azure AD 圖形 API 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

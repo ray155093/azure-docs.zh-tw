@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/01/2016"
+   ms.date="07/18/2016"
    ms.author="sonyama;barbkess"/>
 
 # 針對 Azure SQL 資料倉儲問題進行疑難排解
@@ -50,7 +50,8 @@
 
 | 問題 | 解決方案 |
 | :----------------------------------| :---------------------------------------------- |
-| 調查空間使用量 | 請參閱[資料表大小][]，以了解您的系統的空間使用量。|
+| 訊息 40847：無法執行這項作業，因為伺服器可能會超過允許的資料庫輸送量單位配額 45000。 | 減少您正在嘗試建立的資料庫 [DWU][]，或是[要求增加配額][]。|
+| 調查空間使用量 | 請參閱[資料表大小][]，以了解您系統的空間使用量。|
 | 協助管理資料表 | 請參閱[資料表概觀][Overview]一文，以協助管理您的資料表。本文還包含更詳細主題的連結，例如[資料表的資料類型][Data types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]。|
 
 ## Polybase
@@ -67,10 +68,11 @@
 | :----------------------------------| :---------------------------------------------- |
 | 不支援的 SQL Database 功能 | 請參閱[不支援的資料表功能][]。|
 | 不支援的 SQL Database 資料類型 | 請參閱[不支援的資料類型][]。|
-| DELETE 和 UPDATE 限制 | 請參閱 [UPDATE 因應措施][]、[DELETE 因應措施][]和[使用 CTAS 來決解不支援的 UPDATE 和 DELETE 語法][]。 |
+| DELETE 和 UPDATE 限制 | 請參閱 [UPDATE 因應措施][]、[DELETE 因應措施][]和[使用 CTAS 來解決不支援 UPDATE 和 DELETE 語法的問題][]。 |
 | 不支援 MERGE 陳述式 | 請參閱 [MERGE 因應措施][]。|
 | 預存程序限制 | 請參閱[預存程序限制][]，以了解預存程序的一些限制。|
 | UDF 不支援 SELECT 陳述式 | 這是 UDF 目前的限制。關於我們支援的語法，請參閱 [CREATE FUNCTION][]。 |
+'<--LocComment：找不到頁面 "預存程序限制" 已損壞。已嘗試修正文章參考中的連結 -->'
 
 ## 後續步驟
 
@@ -91,6 +93,8 @@
 [安全性概觀]: ./sql-data-warehouse-overview-manage-security.md
 [建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [調整您的 SQL 資料倉儲]: ./sql-data-warehouse-manage-compute-overview.md
+[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[要求增加配額]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [了解如何監視查詢]: ./sql-data-warehouse-manage-monitor.md
 [佈建指示]: ./sql-data-warehouse-get-started-provision.md
 [設定用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
@@ -109,11 +113,11 @@
 [資料行存放區索引品質不佳]: ./sql-data-warehouse-tables-index.md#causes-of-poor-columnstore-index-quality
 [重建索引以提升區段品質]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
-[使用 CTAS 來決解不支援的 UPDATE 和 DELETE 語法]: ./sql-data-warehouse-develop-ctas.md#using-ctas-to-work-around-unsupported-features
+[使用 CTAS 來解決不支援 UPDATE 和 DELETE 語法的問題]: ./sql-data-warehouse-develop-ctas.md#using-ctas-to-work-around-unsupported-features
 [UPDATE 因應措施]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-update-statements
 [DELETE 因應措施]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-delete-statements
 [MERGE 因應措施]: ./sql-data-warehouse-develop-ctas.md#replace-merge-statements
-[預存程序限制]: /sql-data-warehouse-develop-stored-procedures/#limitations
+[預存程序限制]: /sql-data-warehouse-develop-stored-procedures.md#limitations
 [適用於 Azure SQL 資料倉儲的驗證]: ./sql-data-warehouse-authentication.md
 [解決 PolyBase UTF-8 需求]: ./sql-data-warehouse-load-polybase-guide.md#working-around-the-polybase-utf-8-requirement
 
@@ -131,4 +135,4 @@
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

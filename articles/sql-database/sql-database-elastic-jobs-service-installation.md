@@ -85,7 +85,7 @@
 </tr>
 	<tr>
 	<td>ServiceVmSize</td>
-	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價](sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
+	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價] (sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
 </tr>
 
 </tr>
@@ -167,7 +167,7 @@
 
 	![建立使用者名稱和密碼][2]
 
-6. 按一下 [確定] 按鈕。幾分鐘後會在新的[資源群組](../azure-portal/resource-group-portal.md)中為您建立元件。新的資源群組已釘選到「開始面板」，如下所示。建立後，會在群組中建立所有彈性資料庫工作 (雲端服務、SQL Database、服務匯流排和儲存體)。
+6. 按一下 [確定] 按鈕。幾分鐘後會在新的[資源群組](../resource-group-overview.md)中為您建立元件。新的資源群組已釘選到「開始面板」，如下所示。建立後，會在群組中建立所有彈性資料庫工作 (雲端服務、SQL Database、服務匯流排和儲存體)。
 
 	![「開始面板」中的資源群組][3]
 
@@ -187,4 +187,4 @@
 [3]: ./media/sql-database-elastic-jobs-service-installation/start-board.png
 [4]: ./media/sql-database-elastic-jobs-service-installation/not-done.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

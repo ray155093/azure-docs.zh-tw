@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/13/2016"
+   ms.date="07/14/2016"
    ms.author="alkohli"/>
 
 # StorSimple Virtual Array 系統需求
@@ -69,14 +69,22 @@
 | Internet Explorer | 最新版本 | 通過 Internet Explorer 11 測試 |
 | Google Chrome | 最新版本 | 通過 Chrome 46 測試 |
 
-### 支援的 SMB 版本
+### 支援的儲存體用戶端 
 
-| **版本** |
+下列軟體需求適用於存取 StorSimple Virtual Array (已設定為 iSCSI 伺服器) 的 iSCSI 啟動器。
+
+| **受支援的作業系統** | **必要版本** | **其他需求/注意事項** |
+| --------------------------- | ---------------- | ------------- |
+| Windows Server | 2008R2 SP1、2012、2012R2 |StorSimple 可以建立精簡佈建和完整佈建的磁碟區。它無法建立部分佈建的磁碟區。只有針對下列對象才支援 StorSimple iSCSI 磁碟區︰<ul><li>Windows 基本磁碟上的簡單磁碟區。</li><li>用於將磁碟區格式化的 Windows NTFS。</li>|
+
+下列軟體需求適用於存取 StorSimple Virtual Array (已設定為檔案伺服器) 的 SMB 用戶端。
+
+| **SMB 版本** |
 |-------------|
 | SMB 2.x |
 | SMB 3.0 |
 | SMB 3.02 |
-
+ 
 ## 網路需求 
 
 下表列出必須在您的防火牆中開啟的連接埠，以允許 iSCSI、SMB、雲端或管理流量。在這個資料表中，*in* 或 *inbound* 指的是輸入用戶端要求存取裝置的方向。*Out* 或 *outbound* 指的是 StorSimple 裝置於外部傳送資料至部署之上的方向：例如，輸出到網際網路。
@@ -86,7 +94,7 @@
 | TCP 80 (HTTP) | 外 | WAN | 否 | 輸出連接埠用於網際網路存取以擷取更新。<br></br>輸出 Web Proxy 可由使用者設定。 |
 | TCP 443 (HTTPS) | 外 | WAN | 是 | 輸出連接埠用來存取雲端中的資料。<br></br>輸出 Web Proxy 可由使用者設定。 |
 | UDP 53 (DNS) | 外 | WAN | 在某些情況下，請參閱附註。 | 只有當您使用網際網路 DNS 伺服器時，才需要此連接埠。<br></br> **注意**：如果部署的是檔案伺服器，建議使用本機 DNS 伺服器。|
-| UDP 123 (NTP) | 外 | WAN | 在某些情況下，請參閱附註。 | 只有當您使用網際網路 NTP 伺服器時，才需要此連接埠。<br></br> **注意：**如果部署的是檔案伺服器，建議與您的 Active Directory 網域控制站同步時間。 |
+| UDP 123 (NTP) | 外 | WAN | 在某些情況下，請參閱附註。 | 只有當您使用以網際網路為基礎的 NTP 伺服器時，才需要此連接埠。<br></br> **注意：**如果部署的是檔案伺服器，建議將時間與您的 Active Directory 網域控制站同步。 |
 | TCP 80 (HTTP) | 在 | LAN | 是 | 這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。<br></br> **注意**：透過 HTTP 存取本機 UI 會自動重新導向至 HTTPS。|
 | TCP 443 (HTTPS) | 在 | LAN | 是 | 這是 StorSimple 裝置上用於本機管理的本機 UI 的輸入連接埠。|
 | TCP 3260 (iSCSI) | 在 | LAN | 否 | 此連接埠用來透過 iSCSI 存取資料。|
@@ -105,7 +113,7 @@
 > [AZURE.NOTE] 
 > 
 > - 裝置 (來源) IP 應該一律設定為所有啟用雲端功能的網路介面。
-> - 目的地 IP 應該設為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/confirmation.aspx?id=41653)。
+> - 目的地 IP 應該設定為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/confirmation.aspx?id=41653)。
 
 
 | URL 模式 | 元件/功能 |
@@ -123,4 +131,4 @@
 
 -   [Prepare the portal to deploy your StorSimple Virtual Array (準備入口網站以部署 StorSimple Virtual Array)](storsimple-ova-deploy1-portal-prep.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/18/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 資料表儲存體和 Visual Studio 連線的服務
+
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
 
 ## 概觀
 
@@ -24,7 +26,7 @@
 
 Azure 資料表儲存體服務可讓您儲存大量的結構化資料。此服務是一個 NoSQL 資料存放區，接受來自 Azure 雲端內外經過驗證的呼叫。Azure 資料表很適合儲存結構化、非關聯式資料。
 
-[**加入已連接服務**] 作業會安裝適當的 NuGet 封裝，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案組態檔。
+[**新增連接的服務**] 作業會安裝適當的 NuGet 封裝，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案組態檔。
 
 如需其他有關使用 Azure 資料表儲存體的一般資訊，請參閱[以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)。
 
@@ -189,4 +191,4 @@ Azure 資料表儲存體服務可讓您儲存大量的結構化資料。此服�
 
 [AZURE.INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

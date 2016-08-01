@@ -14,7 +14,7 @@
    ms.topic="campaign-page"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="na"
-   ms.date="05/04/2016"
+   ms.date="07/20/2016"
    ms.author="sedusch"/>
 
 # 在 Azure 中的 Windows 虛擬機器上使用 SAP
@@ -35,4 +35,4 @@ Microsoft 透過 Microsoft Azure 虛擬機器，提供完整的基礎結構即�
 
 [立即下載此指南](http://go.microsoft.com/fwlink/?LinkId=613056)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

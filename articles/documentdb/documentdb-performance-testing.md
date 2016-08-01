@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/06/2016" 
+	ms.date="07/18/2016" 
 	ms.author="arramac"/>
 
 # Azure DocumentDB 的效能和規模測試
@@ -30,12 +30,14 @@
 
 若要開始使用程式碼，請從 [DocumentDB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)下載專案。
 
+> [AZURE.NOTE] 此應用程式的目標，在於示範透過少數用戶端電腦發揮 DocumentDB 更好效能的最佳作法。而不是要示範可以無限制調整的服務尖峰容量。
+
 ## 主要用戶端組態選項
 DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。使用 DocumentDB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫層。相應增加和減少就像進行單一 API 呼叫或 SDK 方法呼叫一樣簡單。不過，進行大規模測試時，請務必注意，存取 DocumentDB 是透過網路呼叫來進行。如果您正在撰寫獨立用戶端應用程式以測試 DocumentDB 的效能，您必須適當地設定它以抵消網路延遲對您效能測量的影響。
 
 為了獲得 DocumentDB 的最佳端對端效能，請考量下列用戶端組態選項：
 
-- **增加執行緒/工作的數目**︰由於對 DocumentDB 進行的呼叫是透過網路，因此您可能需要改變要求的平行處理原則程度，以便讓用戶端應用程式在要求之間花費的等待時間很短。例如，如果您使用 .NET 的[工作平行程式庫](https://msdn.microsoft.com//library/dd460717.aspx)，請建立大約數百個讀取或寫入 DocumentDB 的工作。
+- **增加執行緒/工作的數目**︰由於對 DocumentDB 的呼叫是透過網路進行，因此您可能需要改變要求的平行處理原則程度，以便讓用戶端應用程式在不同要求之間只需等待很短的時間。例如，如果您使用 .NET 的[工作平行程式庫](https://msdn.microsoft.com//library/dd460717.aspx)，請建立大約數百個讀取或寫入 DocumentDB 的工作。
 - **在相同的 Azure 區域內進行測試**︰可能的話，請從部署在相同 Azure 區域中的虛擬機器或 App Service 進行測試。以約略的比較來說，在相同區域內對 DocumentDB 進行的呼叫會在 1-2 毫秒內完成，但美國西岸和美國東岸之間的延遲則會大於 50 毫秒。
 - **增加每部主機的 System.Net MaxConnections**：DocumentDB 要求預設是透過 HTTPS/REST 發出，並受制於每個主機名稱或 IP 位址的預設連線限制。您可能必須將此值設定成較高的值 (100-1000)，以便讓用戶端程式庫能夠利用多個連到 DocumentDB 的同時連線。在 .NET 中，這會是 [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx)。
 - **開啟伺服器端 GC**︰在某些情況下，降低廢棄項目收集頻率可能會有幫助。在 .NET 中，請將 [gcServer](https://msdn.microsoft.com/library/ms229357.aspx) 設定為 true。
@@ -112,4 +114,4 @@ DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
 * [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括傳統部署模型。
 
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
@@ -88,8 +88,8 @@
 5. 執行 **`Set-AzureSubnetRouteTable`** Cmdlet，將上述建立的路由表關聯至**後端**子網路。
 
 		Set-AzureSubnetRouteTable -VirtualNetworkName TestVNet `
-			-SubnetName FrontEnd `
-			-RouteTableName UDR-FrontEnd
+			-SubnetName BackEnd `
+			-RouteTableName UDR-BackEnd
 
 ## 啟用 FW1 VM 上的 IP 轉送
 若要在 FW1 VM 中啟用 IP 轉送，請依照下列步驟執行。
@@ -108,4 +108,4 @@
 		Get-AzureVM -Name FW1 -ServiceName TestRGFW `
 			| Set-AzureIPForwarding -Enable
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="02/22/2016" 
+	ms.date="07/12/2016" 
 	ms.author="raynew"/>
 
 # 移除伺服器並停用保護
@@ -44,12 +44,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 1. 取消註冊 Azure 入口網站中的 VMM 伺服器。
 2. 在 VMM 伺服器上，下載清除指令碼。
 3. 使用 [以系統管理員身分執行] 選項開啟 PowerShell，以變更預設 (LocalMachine) 範圍的執行原則。
-4. 依照指令碼中的指示進行。 
+4. 依照指令碼中的指示進行。
 
 在所包含雲端與您要移除的伺服器上的雲端配對的 VMM 伺服器上：
 
 1. 執行清除指令碼，然後依照步驟 2 到 4 進行。
-2. 指定已取消註冊之 VMM 伺服器的 VMM 識別碼。 
+2. 指定已取消註冊之 VMM 伺服器的 VMM 識別碼。
 3. 此指令碼將會移除 VMM 伺服器的註冊資訊以及雲端配對資訊。
 
 
@@ -59,7 +59,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 1. 對 Hyper-V 伺服器上的虛擬機器停用保護。
 2. 在 Azure Site Recovery 入口網站中的 [伺服器] 索引標籤上選取伺服器，然後選取 [刪除]。進行時，伺服器不需要連線到 Azure。
-3. 執行下列指令碼來清除伺服器上的設定，並從保存庫取消註冊。 
+3. 執行下列指令碼來清除伺服器上的設定，並從保存庫取消註冊。
 
 	    pushd .
 	    try
@@ -220,4 +220,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 	
 		![移除選項](./media/site-recovery-manage-registration-and-protection/remove-vm.png)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

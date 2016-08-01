@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="07/19/2016"
 	ms.author="jeedes"/>
 
 
@@ -25,7 +25,7 @@ GaggleAMP 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 GaggleAMP 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 GaggleAMP (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶 
+- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -61,7 +61,7 @@ GaggleAMP 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 GaggleAMP，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -75,7 +75,7 @@ GaggleAMP 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -137,7 +137,7 @@ GaggleAMP 與 Azure AD 整合提供下列優點：
     b.按 [下一步]。
 
 
-5. 在另一個瀏覽器執行個體中，瀏覽至 Gaggle 支援小組為您建立的 SAML SSO 頁面 (例如：**https://accounts.gaggleamp.com/saml_configurations/oXH8sQcP79dOzgFPqrMTyw/edit*)。
+5. 在另一個瀏覽器執行個體中，瀏覽至 Gaggle 支援小組為您建立的 SAML SSO 頁面 (例如：*https://accounts.gaggleamp.com/saml_configurations/oXH8sQcP79dOzgFPqrMTyw/edit*)。
 
 6. 在您的 [SAML SSO] 頁面上，執行下列步驟：
    
@@ -286,4 +286,4 @@ GaggleAMP 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-gaggleamp-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-gaggleamp-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

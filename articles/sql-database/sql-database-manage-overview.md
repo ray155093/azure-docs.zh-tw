@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/04/2016"
+	ms.date="07/19/2016"
 	ms.author="sstein"/>
 
 # 概觀：SQL Database 的管理工具
@@ -46,4 +46,4 @@ Visual Studio 中的 SQL Server Management Studio (SSMS) 和 SQL Server Data Too
 * 使用 [Elastic Scale 用戶端程式庫](sql-database-elastic-database-client-library.md)，管理單一租用戶模型或多租用戶模型中的資料庫。
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

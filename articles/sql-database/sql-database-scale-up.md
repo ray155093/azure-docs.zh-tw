@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="03/29/2016"
+	ms.date="07/19/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -34,9 +34,9 @@
 
 使用[將 SQL Database Web/Business 資料庫升級至新的服務層](sql-database-upgrade-server-portal.md)和 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)中的資訊，來判斷適合您 Azure SQL Database 的服務層和效能等級。
 
-- 若要將資料庫降級，資料庫應該小於目標服務層允許的大小上限。 
+- 若要將資料庫降級，資料庫應該小於目標服務層允許的大小上限。
 - 在啟用[異地複寫](sql-database-geo-replication-overview.md)的情況下升級資料庫時，您必須先將其次要資料庫升級至所需的效能層，然後再升級主要資料庫。
-- 將服務層降級時，您必須先終止所有「異地複寫」關聯性。 
+- 將服務層降級時，您必須先終止所有「異地複寫」關聯性。
 - 還原服務會針對各種服務層提供不同的選項。降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。如需詳細資訊，請參閱 [Azure SQL Database 備份和還原](sql-database-business-continuity.md)。
 - 變更資料庫定價層不會變更資料庫大小上限。若要變更資料庫大小上限，請使用 [Transact-SQL (T-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 或 [PowerShell](https://msdn.microsoft.com/library/mt619433.aspx)。
 - 完成變更之前，不會將新屬性套用至資料庫。
@@ -106,4 +106,4 @@
 [3]: ./media/sql-database-scale-up/scale-notification.png
 [4]: ./media/sql-database-scale-up/new-tier.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

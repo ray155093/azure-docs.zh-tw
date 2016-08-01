@@ -19,7 +19,7 @@
 
 # 使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶
 
-若要使用 MongoChef，連接至具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶，您必須：
+若要使用 MongoChef，連接至具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶，您必須：
 
 - 下載並安裝 [MongoChef](http://3t.io/mongochef)
 - 擁有具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的[連接字串](documentdb-connect-mongodb-account.md)資訊。
@@ -132,4 +132,4 @@
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

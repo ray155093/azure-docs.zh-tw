@@ -34,7 +34,7 @@
 - 暫停計算
 - 繼續計算
 
-若要深入了解，請參閱 [管理計算概觀][]。
+若要深入了解，請參閱[管理計算概觀][]。
 
 
 ## 開始之前
@@ -47,7 +47,7 @@
 
 開始進行之前：
 
-1. 開啟 Azure PowerShell。 
+1. 開啟 Azure PowerShell。
 2. 在 PowerShell 提示中，執行下列命令來登入 Azure Resource Manager，並選取您的訂用帳戶。
 
     ```PowerShell
@@ -125,6 +125,7 @@ $resultDatabase
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [管理概觀]: ./sql-data-warehouse-overview-manage.md
 [如何安裝和設定 Azure PowerShell]: ./powershell-install-configure.md
+[管理計算概觀]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 [Resume-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt619347.aspx
@@ -135,4 +136,4 @@ $resultDatabase
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

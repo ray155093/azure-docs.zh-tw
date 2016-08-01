@@ -18,7 +18,7 @@
 
 # 如何使用 Azure 入口網站，建立具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶
 
-若要建立具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶，您必須：
+若要建立具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶，您必須：
 
 - 具有 Azure 帳戶。您可以取得[免費 Azure 帳戶](https://azure.microsoft.com/free/) (若您尚無此帳戶)。
 
@@ -78,4 +78,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

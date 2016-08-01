@@ -98,11 +98,13 @@ PublicIPAddress 資源是 Azure Resource Manager 資源，它們不存在於 Azu
 ## 常見問題集
 
 ### 可以將流量管理員用於來自多個訂用帳戶的端點嗎？
-是。做法取決於您將服務管理 API 或 Resource Manager API 用於流量管理員。[Azure 入口網站](https://portal.azure.com)使用 Resource Manager、[「傳統」入口網站](https://manage.windowsazure.com)使用服務管理。
+就 Azure Web Apps 而言，無法這麼做。這是因為 Web Apps 要求任何搭配 Web Apps 使用的自訂網域名稱都只能在單一訂用帳戶內使用。無法將來自多個訂用帳戶的 Web Apps 與相同的網域名稱搭配使用，因此無法將它們與「流量管理員」搭配使用。
+
+針對其他端點類型，則可以將「流量管理員」與來自多個訂用帳戶的端點搭配使用。做法取決於您將服務管理 API 或 Resource Manager API 用於流量管理員。[Azure 入口網站](https://portal.azure.com)使用 Resource Manager，[「傳統」入口網站](https://manage.windowsazure.com)則使用「服務管理」。
 
 在 Resource Manager 中，來自任何訂用帳戶的端點都可以新增至流量管理員，只要設定流量管理員設定檔的人員具有端點的讀取權限即可。使用 [Azure Resource Manager 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 可以授與這些權限。
 
-在服務管理中，流量管理員要求任何設為 Azure 端點的雲端服務或 Web 應用程式位於與流量管理員設定檔相同的訂用帳戶中。其他訂用帳戶中的雲端服務端點可以當作「外部」端點新增至流量管理員 (但仍以「內部」端點費率計費)。無法使用來自其他訂用帳戶的 Web Apps。
+在服務管理中，流量管理員要求任何設為 Azure 端點的雲端服務或 Web 應用程式位於與流量管理員設定檔相同的訂用帳戶中。其他訂用帳戶中的雲端服務端點可以當作「外部」端點新增至流量管理員 (但仍以「內部」端點費率計費)。
 
 ### 可以使用流量管理員搭配雲端服務「預備」位置嗎？
 是。雲端服務「預備」位置可在流量管理員中設定為外部端點。
@@ -138,8 +140,8 @@ PublicIPAddress 資源是 Azure Resource Manager 資源，它們不存在於 Azu
 
 - 了解[流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
 
-- 了解流量管理員的[端點監視和自動容錯移轉](traffic-manager-monitoring.md)。
+- 了解「流量管理員」的[端點監視和自動容錯移轉](traffic-manager-monitoring.md)。
 
-- 了解流量管理員的[流量路由方法](traffic-manager-routing-methods.md)。
+- 了解「流量管理員」的[流量路由方法](traffic-manager-routing-methods.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

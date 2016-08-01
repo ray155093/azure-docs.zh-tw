@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="07/18/2016"
 	ms.author="donnam;ricksal"/>
 
 # 啟用 Android 行動應用程式的離線同步處理
@@ -104,7 +104,7 @@
 
 * [Azure 行動應用程式中的離線資料同步處理]
 
-* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 
 
 <!-- URLs. -->
@@ -117,4 +117,4 @@
 [雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

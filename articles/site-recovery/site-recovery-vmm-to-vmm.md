@@ -145,12 +145,12 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 	![新增保存庫](./media/site-recovery-vmm-to-vmm/new-vault3.png)
 
 3. 在 [名稱] 中，指定保存庫的易記識別名稱。如果您有多個訂用帳戶，請選取其中一個。
-4. [建立新的資源群組](../resource-group-portal.md#create-resource-group)，或選取現有的資源群組，並指定 Azure 區域。機器將會複寫到此區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/) (英文) 中的＜各地區上市情況＞。
+4. [建立新的資源群組](../resource-group-template-deploy-portal.md)或選取現有的資源群組，並指定 Azure 區域。機器將會複寫到此區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/) (英文) 中的＜各地區上市情況＞。
 4. 如果您想要從儀表板快速存取保存庫，請按一下 [釘選到儀表板] > [建立保存庫]。
 
 	![新增保存庫](./media/site-recovery-vmm-to-vmm/new-vault-settings.png)
 
-新的保存庫會出現於 [儀表板] > [所有資源]，以及主要 [復原服務保存庫] 刀鋒視窗上。
+新的保存庫會出現在 [儀表板] > [所有資源] 上，以及主要 [復原服務保存庫] 刀鋒視窗上。
 
 
 
@@ -167,7 +167,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 選取您要複寫的項目以及您要複寫到的位置。
 
-1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，並按一下 [設定]。
+1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，然後按一下 [設定]。
 2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [步驟 1︰準備基礎結構] > [保護目標]。
 3. 在 [保護目標] 中，選取 [至復原站台]，然後選取 [是，利用 Hyper-V]。
 4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，然後如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，就按一下 [否]。然後按一下 [確定]。
@@ -214,9 +214,9 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 4. 在 [Proxy 設定] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連接到 Site Recovery 的方式。
 
-	- 如果您要讓提供者直接連線，請選取 [不使用 Proxy 直接連線]。
-	- - 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
-	- 如果現有的 Proxy 需要驗證，或是您要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
+	- 如果您想要讓提供者直接連線，請選取 [不使用 Proxy 直接連線]。
+	- - 如果您想要使用伺服器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
+	- 如果現有的 Proxy 需要驗證，或是您想要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
 	- 如果您使用自訂 proxy，您必須指定位址、連接埠及認證。
 	- 如果您使用 Proxy，您應該已經允許[必要條件](#provider-and-agent-prerequisites)中所述的 URL。
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。在 [設定] 中，展開 [安全性] > [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
@@ -483,4 +483,4 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

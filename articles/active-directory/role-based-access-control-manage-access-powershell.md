@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="07/12/2016"
+	ms.date="07/14/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure PowerShell 管理角色型存取控制
@@ -117,7 +117,9 @@
 ## 建立自訂角色
 若要建立自訂角色，請使用 `New-AzureRmRoleDefinition` 命令。
 
-下列範例會建立名為 *Virtual Machine Operator* 的自訂角色，該角色會授與 *Microsoft.Compute*、*Microsoft.Storage*，和 *Microsoft.Network* 資源提供者對所有讀取作業的存取權限，以及授與啟動、重新啟動，和監視虛擬機器的存取權限。自訂角色可用於兩個訂用帳戶中。
+當您在 PowerShell 中建立自訂角色時，您需要從其中一種[內建角色](role-based-access-built-in-roles.md)來開始進行。編輯屬性並加入任何所需 Actions、notActions 或範圍，然後將變更儲存為新的角色。
+
+下列範例會從「虛擬機器參與者」角色來開始，並使用它來建立稱為「虛擬機器操作者」的自訂角色。新角色會授與「Microsoft.Compute」、「Microsoft.Storage」和「Microsoft.Network」資源提供者對所有讀取作業的存取權限，以及授與啟動、重新啟動和監視虛擬機器的存取權限。自訂角色可用於兩個訂用帳戶中。
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
@@ -154,4 +156,4 @@
 ## 另請參閱
 - [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md) [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

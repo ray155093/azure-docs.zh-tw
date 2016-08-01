@@ -14,10 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="07/06/2016"
 	ms.author="garye;raymondl"/>
 
 # 使用 Azure Machine Learning Web 服務與 Web 應用程式範本
+
+>[AZURE.NOTE] 本主題描述適用於傳統 Web 服務的技巧。
 
 一旦使用 Machine Learning Studio，或使用 R 或 Python 之類的工具開發預測模型並部署為 Azure Web 服務後，即可使用 REST API 存取實際運作模型。
 
@@ -56,7 +58,7 @@ Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web �
 
 	![要求 URI][image4]
 
-3. 移至 [Azure 入口網站](https://portal.azure.com) 的 [登入]，按一下 [新增]，搜尋並選取 [Azure ML 要求回應服務 Web 應用程式]，然後按一下 [建立]。
+3. 移至 [Azure 入口網站](https://portal.azure.com)的 [登入]，按一下 [新增]，搜尋並選取 [Azure ML 要求-回應服務 Web 應用程式]，然後按一下 [建立]。
 
 	- 為您的 Web 應用程式提供唯一名稱。Web 應用程式的 URL 將是此名稱後面加上 `.azurewebsites.net.`。例如，`http://carprediction.azurewebsites.net.`
 
@@ -125,4 +127,4 @@ Web 應用程式將會顯示具有工作狀態的頁面。工作完成時，系�
 [image6]: media\machine-learning-consume-web-service-with-web-app-template\web-service-info.png
 [image7]: media\machine-learning-consume-web-service-with-web-app-template\storage.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="04/25/2016"
+   ms.date="07/18/2016"
    ms.author="juliako"/>
 
 # Azure SDK for .NET 2.9 版本資訊
@@ -33,13 +33,13 @@
 
 此更新包含下列新功能：
 
-- 在 App Service 佈建對話方塊的 [服務] 索引標籤中支援第二個 App Service。 
+- 在 App Service 佈建對話方塊的 [服務] 索引標籤中支援第二個 App Service。
 
 ##Azure Data Lake Tools for Visual Studio 2015 Update 2
  
 此更新包含下列工具：
 
-- **Azure Data Lake Tools** for Visual Studio 現在已合併到 Azure SDK for .NET 版本。當您安裝 Azure SDK 時，便會自動安裝此工具。 
+- **Azure Data Lake Tools** for Visual Studio 現在已合併到 Azure SDK for .NET 版本。當您安裝 Azure SDK 時，便會自動安裝此工具。
 
 	此工具會經常更新，請前往[這裡](http://aka.ms/datalaketool)取得更新。
 
@@ -59,4 +59,4 @@
 
 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

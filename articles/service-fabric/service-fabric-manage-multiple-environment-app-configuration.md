@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/26/2016"
+   ms.date="07/19/2016"
    ms.author="seanmck"/>
 
 # 管理多個環境的應用程式參數
@@ -134,4 +134,4 @@ Service Fabric 應用程式專案可以包含一或多個應用程式參數檔�
 [publishdialog]: ./media/service-fabric-manage-multiple-environment-app-configuration/publish-dialog-choose-app-config.png
 [app-parameters-solution-explorer]: ./media/service-fabric-manage-multiple-environment-app-configuration/app-parameters-in-solution-explorer.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

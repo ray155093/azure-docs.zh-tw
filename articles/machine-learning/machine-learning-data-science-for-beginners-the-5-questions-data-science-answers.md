@@ -19,11 +19,21 @@
 
 # 適用於初學者的資料科學影片 1：資料科學可以回答的 5 個問題
 
-從「適用於初學者的資料科學」的五個簡短影片中取得對於資料科學的快速簡介。如果您對於如何進行資料科學或與進行資訊科學的人合作感興趣，而且您想要開始了解最基本的概念，則這個系列的影片是非常實用的。
+從「適用於初學者的資料科學」的五個簡短影片中快速認識資料科學。如果您對於如何從事資料科學或與資料科學工作者合作感興趣，而且您想要開始了解一些基本的概念，則這個系列的影片非常實用。
 
-若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
+第一段影片是關於資料科學可以回答何種問題。資料科學使用數字或分類預測問題的答案。若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
 > [AZURE.VIDEO data-science-for-beginners-series-the-5-questions-data-science-answers]
+
+## 系列中的其他影片
+
+「適用於初學者的資料科學」是一個資料科學的快速簡介，總共大約 25 分鐘。查看其他四個影片：
+
+  * 影片 1：資料科學可以回答的 5 個問題
+  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) (4 分 56 秒)
+  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
+  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
+  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
 
 ## 文字記錄：資料科學可以回答的 5 個問題
 
@@ -39,7 +49,7 @@
 
   * 這是 A 或 B 嗎？
   * 這很奇怪嗎？
-  * 多少 – 或 – 有多少？
+  * 有多少？
   * 這是如何組織的？
   * 我接下來該怎麼辦？
 
@@ -136,19 +146,9 @@
 
 
 
-## 系列中的其他影片
-
-「適用於初學者的資料科學」是五個簡短影片中對於資料科學的快速簡介。查看其他四個影片：
-
-  * 影片 1：資料科學可以回答的 5 個問題
-  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
-  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
-
 ## 後續步驟
 
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

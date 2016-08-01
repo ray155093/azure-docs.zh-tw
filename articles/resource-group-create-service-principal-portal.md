@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/18/2016"
+   ms.date="07/19/2016"
    ms.author="tomfitz"/>
 
 # 使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
@@ -24,12 +24,9 @@
 - [入口網站](resource-group-create-service-principal-portal.md)
 
 
-如果您擁有需要存取或修改資源的自動化程序或應用程式，您就必須設定一個 Active Directory 應用程式並為其指派必要的權限。本主題說明如何透過入口網站執行這些步驟。目前，您必須使用傳統入口網站來建立新的 Active Directory 應用程式，然後再切換到 Azure 入口網站，才能指派角色給該應用程式。
+如果您擁有需要存取或修改資源的應用程式，您就必須設定一個 Active Directory (AD) 應用程式並為其指派必要的權限。本主題說明如何透過入口網站執行這些步驟。目前，您必須使用傳統入口網站來建立新的 Active Directory 應用程式，然後再切換到 Azure 入口網站，才能指派角色給該應用程式。
 
-您有兩個可用於 Active Directory 應用程式的驗證選項︰
-
-1. 為應用程式建立識別碼和驗證金鑰，然後在應用程式執行時提供這些認證。針對不需要使用者互動的自動化程序，請使用此選項。
-2. 讓使用者能夠透過您的應用程式登入 Azure，然後使用這些認證代表使用者來存取資源。針對由使用者執行的應用程式，請使用此選項。
+> [AZURE.NOTE] 您可能會發現您可以透過 [PowerShell](resource-group-authenticate-service-principal.md) 或 [Azure CLI](resource-group-authenticate-service-principal-cli.md) 輕鬆設定 AD 應用程式和服務主體，尤其是如果您想要使用憑證進行驗證時。本主題不會說明如何使用憑證。
 
 如需 Active Directory 概念的說明，請參閱[應用程式物件和服務主體物件](./active-directory/active-directory-application-objects.md)。如需 Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](./active-directory/active-directory-authentication-scenarios.md)。
 
@@ -119,9 +116,9 @@
 
 如果應用程式代表登入使用者來存取資源，您必須對應用程式授與用來存取其他應用程式的委派權限。您可以在 [設定] 索引標籤的 [其他應用程式的權限] 區段中進行此作業。根據預設，Azure Active Directory 已啟用委派權限。請將這個委派權限保持不變。
 
-1. 選取 [加入應用程式]。
+1. 選取 [新增應用程式]。
 
-2. 從清單中選取 [Azure 服務管理 API]。然後，選取 [完成] 圖示。
+2. 在清單中選取 [Azure 服務管理 API]。然後，選取 [完成] 圖示。
 
       ![選取應用程式](./media/resource-group-create-service-principal-portal/select-app.png)
 
@@ -140,6 +137,8 @@
 ## 將應用程式指派給角色
 
 如果應用程式是在自己的認證下執行，您就必須將應用程式指派給某個角色。您必須決定哪些角色代表應用程式的正確權限。如要深入了解可用的角色，請參閱 [RBAC：內建角色](./active-directory/role-based-access-built-in-roles.md)。
+
+若要指派角色，您必須擁有 `Microsoft.Authorization/*/Write` 存取權，這是透過[擁有者](./active-directory/role-based-access-built-in-roles.md#owner)角色或[使用者存取系統管理員](./active-directory/role-based-access-built-in-roles.md#user-access-administrator)角色來授與。
 
 您可以針對訂用帳戶、資源群組或資源的層級設定範圍。較低的範圍層級會繼承較高層級的權限 (舉例來說，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源)。
 
@@ -171,22 +170,39 @@
 
 如需透過入口網站將使用者和應用程式指派給角色的詳細資訊，請參閱[使用 Azure 管理入口網站管理存取權](role-based-access-control-configure.md#manage-access-using-the-azure-management-portal)。
 
-## 以程式碼取得存取權杖
+## 範例應用程式
 
-您的 Active Directory 應用程式現在已設定好，可以存取資源。在您的應用程式中，您需提供認證，然後接收存取權杖。您將使用此存取權杖來要求存取資源。
+下列範例應用程式會顯示如何登入為服務主體。
 
-您已準備好以程式設計方式登入您的應用程式。
+**.NET**
 
-- 如需 .NET 範例，請參閱 [Azure Resource Manager SDK for .NET](resource-manager-net-sdk.md)。
-- 如需 Java 範例，請參閱 [Azure Resource Manager SDK for Java](resource-manager-java-sdk.md)。
-- 如需 Python 範例，請參閱[適用於 Python 的資源管理驗證](https://azure-sdk-for-python.readthedocs.io/en/latest/resourcemanagementauthentication.html)。
-- 如需 REST 範例，請參閱 [Resource Manager REST API](resource-manager-rest-api.md)。
+- [使用 .NET 以範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
+- [使用 .NET 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
 
-如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱[利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
+**Java**
+
+- [開始使用資源 - 在 Java 中使用 Azure Resource Manager 範本進行部署](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
+- [開始使用資源 - 在 Java 中管理資源群組](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group//)
+
+**Python**
+
+- [使用 Python 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
+- [使用 Python 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
+
+**Node.js**
+
+- [使用 Node.js 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
+- [使用 Node.js 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
+
+**Ruby**
+
+- [使用 Ruby 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
+- [使用 Ruby 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
+
 
 ## 後續步驟
 
 - 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

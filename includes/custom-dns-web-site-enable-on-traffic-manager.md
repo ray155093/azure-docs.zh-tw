@@ -8,22 +8,22 @@
 
 1. 在瀏覽器中，開啟 [Azure 入口網站](https://portal.azure.com)。
 
-2. 在 [**Web Apps**] 索引標籤中，按一下您 Web 應用程式的名稱，並選取 [**設定**]，然後選取 [**自訂網域和 SSL**]。
+1. 在 [**Web Apps**] 索引標籤中，按一下您 Web 應用程式的名稱，並選取 [**設定**]，然後選取 [**自訂網域和 SSL**]。
 
 	![](./media/custom-dns-web-site/dncmntask-cname-6.png)
 
-3. 在 [**自訂網域和 SSL**] 刀鋒視窗中，按一下 [**帶出外部網域**]。
+1. 在 [**自訂網域和 SSL**] 刀鋒視窗中，按一下 [**帶出外部網域**]。
 
 	![](./media/custom-dns-web-site/dncmntask-cname-7.png)
 
-4. 使用 [**網域名稱**] 文字方塊輸入與此 Web 應用程式相關聯的流量管理員網域名稱 (contoso.trafficmanager.net)。
+1. 使用 [**網域名稱**] 文字方塊輸入與此 Web 應用程式相關聯的流量管理員網域名稱。
 
 	![](./media/custom-dns-web-site/dncmntask-cname-8.png)
 
-5. 按一下 [**儲存**] 儲存網域名稱設定。
+1. 按一下 [**儲存**] 儲存網域名稱設定。
 
 	完成設定後，自訂網域名稱將列在 Web 應用程式的 [**網域名稱**] 區段中。
 
-此時，您應該能夠在瀏覽器中輸入流量管理員網域名稱 (contoso.trafficmanager.net)，並且能成功移至您的 Web 應用程式。
+此時，您應該能夠在瀏覽器中輸入流量管理員網域名稱，並且能成功移至您的 Web 應用程式。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0720_2016-->

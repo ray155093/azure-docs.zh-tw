@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/27/2016"
+   ms.date="07/15/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心的 SQL Server 上啟用稽核
@@ -28,10 +28,10 @@
 
 ## 實作建議
 
-1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Server 上啟用稽核]。這會開啟 [在 SQL Server 上啟用稽核] 刀鋒視窗。![][1]
+1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Server 上啟用稽核]。這會開啟 [在 SQL Server 上啟用稽核] 刀鋒視窗。![在 SQL Server 上啟用稽核][1]
 
-2. 選取要在其上啟用稽核的 SQL Server。這會開啟 [稽核設定] 刀鋒視窗。![][2]
-3. 在 [稽核設定] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。![][3]
+2. 選取要在其上啟用稽核的 SQL Server。這會開啟 [稽核設定] 刀鋒視窗。![稽核設定][2]
+3. 在 [稽核設定] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。![開啟稽核設定][3]
 
 4. 遵循[開始使用 SQL Database 稽核](../sql-database/sql-database-auditing-get-started.md)，設定將儲存稽核記錄的儲存體。適用於資料收集的訂用帳戶儲存體帳戶是預設儲存體帳戶。
 
@@ -58,4 +58,4 @@
 [2]: ./media/security-center-enable-auditing-on-sql-server/enable-auditing.png
 [3]: ./media/security-center-enable-auditing-on-sql-server/auditing-settings-blade.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

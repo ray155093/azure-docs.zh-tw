@@ -19,7 +19,7 @@
 
 # 如何管理 DocumentDB 帳戶
 
-了解如何設定全域一致性及管理多個區域，以取得資料的全球可用性。此外，還能了解如何使用金鑰，以及如何在 Azure 入口網站中刪除帳戶。
+了解如何設定全域一致性及管理多個區域，以取得 Azure DocumentDB 中資料的全球可用性。此外，還能了解如何使用金鑰，以及如何在 Azure 入口網站中刪除帳戶。
 
 ## <a id="consistency"></a>管理 DocumentDB 一致性設定
 
@@ -144,7 +144,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
-[azureregions]: https://azure.microsoft.com/zh-TW/regions/#services
-[offers]: https://azure.microsoft.com/zh-TW/pricing/details/documentdb/
+[azureregions]: https://azure.microsoft.com/regions/#services
+[offers]: https://azure.microsoft.com/pricing/details/documentdb/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/13/2016" 
+	ms.date="07/19/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
@@ -34,8 +34,8 @@ App Service 環境必須一律建立於子網路中，因為子網路可提供�
 
 以下是 App Service 環境所使用的連接埠清單：
 
-- 454：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
-- 455：Azure 基礎結構用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
+- 454：Azure 基礎結構透過 SSL 用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
+- 455：Azure 基礎結構透過 SSL 用來管理和維護 App Service 環境的**必要連接埠**。不會封鎖對此連接埠的流量。此連接埠一律繫結至 ASE 的公用 VIP。
 - 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 - 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 - 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
@@ -140,4 +140,4 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

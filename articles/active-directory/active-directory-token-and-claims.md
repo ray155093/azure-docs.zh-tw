@@ -1,7 +1,7 @@
  <properties
-   pageTitle="支援的權杖和宣告類型 | Microsoft Azure"
+   pageTitle="Azure AD 權杖參考 | Microsoft Azure"
    description="可供了解及評估 Azure Active Directory (AAD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告的指南。"
-   documentationCenter="dev-center-name"
+   documentationCenter="na"
    authors="msmbaldwin"
    services="active-directory"
    manager="mbaldwin"
@@ -13,249 +13,116 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="06/23/2016"
+   ms.date="07/19/2016"
    ms.author="mbaldwin"/>
 
-# 支援的權杖和宣告類型
+# Azure AD 權杖參考
 
-本主題旨在幫助您了解和評估 Azure Active Directory (Azure AD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告。
+Azure Active Directory (Azure AD) 會在處理每個驗證流程時發出數種安全性權杖。本文件說明每種權杖的格式、安全性特性和內容。
 
-本主題的開頭是各權杖宣告的說明，並顯示 SAML 權杖和 JWT 權杖中的適當宣告範例。處於預覽狀態的宣告分開列出。結尾是範例權杖，以便您看到內容中的宣告。
+## 權杖的類型
 
-Azure 會隨著時間將宣告新增至權杖，以啟用新的案例。一般而言，我們會介紹預覽狀態的宣告，然後在測試期間後將它們轉換成完整的支援。若要準備宣告變更，接受來自 Azure AD 之權杖的應用程式應該忽略不熟悉的權杖宣告，新的宣告才不會中斷應用程式。使用處於預覽狀態的宣告的應用程式不應該相依於這些宣告，而如果此宣告未出現在權杖中，也不應該引發例外狀況。如果應用程式需要 Azure AD 所簽發的 SAML 或 JWT 權杖中未提供的宣告，請利用此頁面底部的「社群新增」一節，建議及討論新的宣告類型。
+Azure AD 支援 [OAuth 2.0 授權通訊協定](active-directory-protocols-oauth-code.md)，該通訊協定會使用 access\_tokens 和 refresh\_tokens。它也支援透過 [OpenID Connect](active-directory-protocols-openid-connect-code.md) 驗證和登入，其引進了第三種類型的權杖 (id\_token)。每個權杖都是以「持有人權杖」表示。
 
-## 權杖宣告參考
+持有人權杖是輕巧型的安全性權杖，授權「持有者」存取受保護的資源。從這個意義上說，「持有者」是可出示權杖的任何一方。雖然某一方必須先向 Azure AD 驗證以收到持有人權杖，但如果傳輸和儲存時未採取必要的步驟來保護權杖，它可能會被非預期的一方攔截和使用。雖然某些安全性權杖都有內建的機制，可防止未經授權的人士使用權杖，但持有者權杖沒有這項機制，而必須以安全通道來傳輸，例如傳輸層安全性 (HTTPS)。如果持有人權杖以純文字傳輸，惡意人士可能使用攔截式攻擊來取得權杖，然後未經授權存取受保護的資源。儲存或快取持有者權杖供以後使用時，也適用相同的安全性原則。務必確定您的應用程式以安全的方式傳輸和儲存持有人權杖。關於持有者權杖的其他安全性考量，請參閱 [RFC 6750 第 5 節](http://tools.ietf.org/html/rfc6750)。
 
-本節列出及說明 Azure AD 傳回的權杖中的宣告。其中包含宣告的 SAML 版本和 JWT 版本以及宣告說明與其用法。宣告會依字母順序列出。
+許多由 Azure AD 所簽發的權杖都會實作為 JSON Web 權杖或 JWT。JWT 是一種精簡的 URL 安全方法，可在兩方之間傳輸資訊。JWT 中包含的資訊也稱為權杖持有人及主體相關資訊的「宣告」或判斷提示。JWT 中的宣告是為了傳輸而編碼和序列化的 JSON 物件。因為 Azure AD 所簽發的 JWT 已簽署但未加密，所以您可以輕鬆地檢查 JWT 的內容以便偵錯。有數個工具可以進行這項操作，例如 [jwt.calebb.net](http://jwt.calebb.net)。如需 JWT 的詳細資訊，您可以參考 [JWT 規格](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)。
 
-### 應用程式識別碼
+## Id\_tokens
 
-應用程式識別碼宣告，用以識別使用權杖來存取資源的應用程式。應用程式代表本身或使用者行事。應用程式識別碼通常代表應用程式物件，但也可以代表 Azure AD 中的服務主體物件。
+Id\_token 是您的應用程式使用 [OpenID Connect](active-directory-protocols-openid-connect-code.md) 執行驗證時收到的一種登入安全性權杖形式。其以 [JWT](#types-of-tokens) 表示，而且包含可用於讓使用者登入您的應用程式的宣告。您可以適時使用 id\_token 中的宣告 - 通常用來顯示顯示帳戶資訊或在應用程式中進行存取控制決策。
 
-Azure AD 不支援 SAML 權杖中的應用程式識別碼宣告。
+Id\_token 已簽署，但這次不加密。當您的應用程式收到 id\_token 時，它必須[驗證簽章](#validating-tokens)以證明權杖的真實性，以及驗證權杖中的幾個宣告來證明其有效性。應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些[常見的宣告驗證](#validating-tokens)。
 
-在 JWT 權杖中，應用程式識別碼會出現在 appid 宣告中。
+下面提供 id\_token 中宣告的完整詳細資料以及範例 id\_token。請注意，id\_token 中的宣告不依任何特定順序傳回。此外，新的宣告可以隨時引進 id\_token 中 - 您的應用程式不會在引進新的宣告時中斷。以下清單包含您的應用程式在此書寫時能確實地解譯的宣告。如有需要，在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到更多詳細資料。
 
-    "appid":"15CB020F-3984-482A-864D-1D92265E8268"
+#### 範例 id\_token
 
-### 對象
-權杖的對象是權杖的預定接收者。接收權杖的應用程式必須確認對象值正確無誤，並拒絕任何適用於不同對象的權杖。
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0yNzRhNzJhNzMwOWUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83ZmU4MTQ0Ny1kYTU3LTQzODUtYmVjYi02ZGU1N2YyMTQ3N2UvIiwiaWF0IjoxMzg4NDQwODYzLCJuYmYiOjEzODg0NDA4NjMsImV4cCI6MTM4ODQ0NDc2MywidmVyIjoiMS4wIiwidGlkIjoiN2ZlODE0NDctZGE1Ny00Mzg1LWJlY2ItNmRlNTdmMjE0NzdlIiwib2lkIjoiNjgzODlhZTItNjJmYS00YjE4LTkxZmUtNTNkZDEwOWQ3NGY1IiwidXBuIjoiZnJhbmttQGNvbnRvc28uY29tIiwidW5pcXVlX25hbWUiOiJmcmFua21AY29udG9zby5jb20iLCJzdWIiOiJKV3ZZZENXUGhobHBTMVpzZjd5WVV4U2hVd3RVbTV5elBtd18talgzZkhZIiwiZmFtaWx5X25hbWUiOiJNaWxsZXIiLCJnaXZlbl9uYW1lIjoiRnJhbmsifQ.
+```
 
-對象值是一個字串 -- 通常是所存取資源的基底位址，例如 "https://contoso.com"。在 Azure AD 權杖中，對象是要求權杖之應用程式的應用程式識別碼 URI。當應用程式 (也就是對象) 具有一個以上的應用程式識別碼 URI 時，權杖的 Audience 宣告中的應用程式識別碼 URI 會符合權杖要求中的應用程式識別碼 Uri。在 SAML 權杖中，對象宣告定義於 AudienceRestriction 元素的 Audience 元素中。
+> [AZURE.TIP] 練習時，請試著將範例 id\_token 中的宣告貼入 [calebb.net](http://jwt.calebb.net) 中進行檢查。
 
-    <AudienceRestriction>
-    <Audience>https://contoso.com</Audience>
-    </AudienceRestriction>
+#### id\_tokens 中的宣告
 
-在 JWT 權杖中，對象會出現在 aud 宣告中。
+| JWT 宣告 | 名稱 | 說明 |
+|-----------|------|-------------|
+| `appid`| 應用程式識別碼 | 識別使用權杖來存取資源的應用程式。應用程式代表本身或使用者行事。應用程式識別碼通常代表應用程式物件，但也可以代表 Azure AD 中的服務主體物件。<br><br> **範例 JWT 值**：<br> `"appid":"15CB020F-3984-482A-864D-1D92265E8268"` |
+| `aud`| 對象 | 權杖的預定接收者。接收權杖的應用程式必須確認對象值正確無誤，並拒絕任何適用於不同對象的權杖。<br><br> **範例 SAML 值**：<br> `<AudienceRestriction>`<br>`<Audience>`<br>`https://contoso.com`<br>`</Audience>`<br>`</AudienceRestriction>` <br><br> **範例 JWT 值**：<br> `"aud":"https://contoso.com"` |
+| `appidacr`| 應用程式驗證內容類別參考 | 指出如何驗證用戶端。若為公用用戶端，此值為 0。如果使用用戶端識別碼和用戶端密碼，此值為 1。<br><br> **範例 JWT 值**：<br> `"appidacr": "0"`|
+| `acr`| 驗證內容類別參考 | 指出主體的驗證方式 (相對於應用程式驗證內容類別參考宣告中的用戶端)。值為 "0" 表示使用者驗證不符合 ISO/IEC 29115 的需求。<br><br> **範例 JWT 值**：<br> `"acr": "0"`|
+| | 驗證即刻 | 記錄驗證發生的日期和時間。<br><br> **範例 SAML 值**：<br> `<AuthnStatement AuthnInstant="2011-12-29T05:35:22.000Z">` |
+| `amr`| 驗證方法 | 識別如何驗證權杖的主體。<br><br> **範例 SAML 值**：<br> `<AuthnContextClassRef>`<br>`http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password`<br>`</AuthnContextClassRef>` <br><br> **範例 JWT 值**：`“amr”: ["pwd"]` |
+| `given_name`| 名字 | 提供使用者的名字 (如 Azure AD 使用者物件上所設定)。<br><br> **範例 SAML 值**：<br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname”>`<br>`<AttributeValue>Frank<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"given_name": "Frank"` |
+| `groups`| 群組 | 提供代表主體群組成員資格的物件識別碼。這些值都是唯一的 (請參閱「物件識別碼」)，而且可安全地用來管理存取權，例如強制授權以存取資源。群組宣告中包含的群組會透過應用程式資訊清單的 "groupMembershipClaims"屬性，針對每個應用程式進行設定。Null 值將會排除所有群組，"SecurityGroup" 值只會包含 Active Directory 安全性群組成員資格，而 "All" 值將會包含安全性群組和 Office 365 通訊群組清單。<br><br> **範例 SAML 值**：<br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/groups">`<br>`<AttributeValue>07dd8a60-bf6d-4e17-8844-230b77145381</AttributeValue>` <br><br> **範例 JWT 值**：<br> `“groups”: ["0e129f5b-6b0a-4944-982d-f776045632af", … ]` |
+| `idp` | 識別提供者 | 記錄驗證權杖主體的身分識別提供者。除非使用者帳戶位於與簽發者不同的租用戶中，否則這個值與 Issuer 宣告值相同。<br><br> **範例 SAML 值**：<br> `<Attribute Name=” http://schemas.microsoft.com/identity/claims/identityprovider”>`<br>`<AttributeValue>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"idp":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
+| `iat` | IssuedAt | 儲存權杖簽發的時間。這通常用來測量權杖有效時間。<br><br> **範例 SAML 值**：<br> `<Assertion ID="_d5ec7a9b-8d8f-4b44-8c94-9812612142be" IssueInstant="2014-01-06T20:20:23.085Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">` <br><br> **範例 JWT 值**：<br> `"iat": 1390234181` |
+| `iss` | 簽發者 | 識別負責建構並傳回權杖的 Security Token Service (STS)。在 Azure AD 傳回的權杖中，簽發者為 sts.windows.net。簽發者宣告值中的 GUID 是 Azure AD 目錄的租用戶識別碼。租用戶識別碼是目錄的不可變且可靠的識別碼。<br><br> **範例 SAML 值**：<br> `<Issuer>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/</Issuer>` <br><br> **範例 JWT 值**：<br> `"iss":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”` |
+| `family_name` | 姓氏 | 提供使用者的姓氏 (如 Azure AD 使用者物件中所定義)。<br><br> **範例 SAML 值**：<br> `<Attribute Name=” http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname”>`<br>`<AttributeValue>Miller<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"family_name": "Miller"` |
+| `unique_name`| 名稱 | 提供人類看得懂的值，用以識別權杖的主體。此值不保證是租用戶中的唯一值，而且僅限用於顯示目的。<br><br> **範例 SAML 值**：<br> `<Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name”>`<br>`<AttributeValue>frankm@contoso.com<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"unique_name": "frankm@contoso.com"` |
+| `oid` | 物件識別碼 | 包含 Azure AD 中物件的唯一識別碼。這個值不可變，而且無法重新指派或重複使用。使用物件識別碼來識別 Azure AD 查詢中的物件。<br><br> **範例 SAML 值**：<br> `<Attribute Name="http://schemas.microsoft.com/identity/claims/objectidentifier">`<br>`<AttributeValue>528b2ac2-aa9c-45e1-88d4-959b53bc7dd0<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"oid":"528b2ac2-aa9c-45e1-88d4-959b53bc7dd0"` |
+| `roles` | 角色 | 表示透過群組成員資格，直接或間接授與主體的所有應用程式角色，而且可用來強制執行角色型存取控制。應用程式角色是透過應用程式資訊清單的 `appRoles` 屬性，針對每個應用程式進行定義。每個應用程式角色的 `value` 屬性就是出現在角色宣告中的值。<br><br> **範例 SAML 值**：<br> `<Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/role">`<br>`<AttributeValue>Admin</AttributeValue>` <br><br> **範例 JWT 值**：<br> `“roles”: ["Admin", … ]` |
+| `scp` | Scope | 識別授與用戶端應用程式的模擬權限。預設權限為 `user_impersonation`。受保護資源的擁有者可以在 Azure AD 中註冊其他的值。<br><br> **範例 JWT 值**：<br> `"scp": "user_impersonation"`|
+| `sub` |主旨| 識別權杖判斷提示其相關資訊的主體，例如應用程式的使用者。這個值不可變，而且無法重新指派或重複使用，因此可用來安全地執行授權檢查。因為主體一律存在於 Azure AD 簽發的權杖中，所以建議您將此值使用於一般用途授權系統中。<br> `SubjectConfirmation` 不是宣告。它會描述如何驗證權杖的主體。`Bearer` 表示主體已經由持有權杖來確認。<br><br> **範例 SAML 值**：<br> `<Subject>`<br>`<NameID>S40rgb3XjhFTv6EQTETkEzcgVmToHKRkZUIsJlmLdVc</NameID>`<br>`<SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer" />`<br>`</Subject>` <br><br> **範例 JWT 值**：<br> `"sub":"92d0312b-26b9-4887-a338-7b00fb3c5eab"`|
+| `tid` | 租用戶識別碼 | 不可變、無法重複使用的識別碼，用以識別簽發權杖的目錄租用戶。您可以使用此值來存取多租用戶應用程式中的租用戶特定目錄資源。例如，您可以使用此值來識別在圖形 API 呼叫中的租用戶。<br><br> **範例 SAML 值**：<br> `<Attribute Name=”http://schemas.microsoft.com/identity/claims/tenantid”>`<br>`<AttributeValue>cbb1a5ac-f33b-45fa-9bf5-f37db0fed422<AttributeValue>` <br><br> **範例 JWT 值**：<br> `"tid":"cbb1a5ac-f33b-45fa-9bf5-f37db0fed422"`|
+| `nbf`、`exp`|權杖存留期 | 定義權杖有效的時間間隔。驗證權杖的服務應確認目前的日期在權杖存留期內，否則應該拒絕此權杖。此服務最多允許超過權杖存留期範圍五分鐘，以考量 Azure AD 與服務之間的時鐘時間差異 (「時間偏差」)。<br><br> **範例 SAML 值**：<br> `<Conditions`<br>`NotBefore="2013-03-18T21:32:51.261Z"`<br>`NotOnOrAfter="2013-03-18T22:32:51.261Z"`<br>`>` <br><br> **範例 JWT 值**：<br> `"nbf":1363289634, "exp":1363293234` |
+| `upn`| 使用者主體名稱 | 儲存使用者主體的使用者名稱。<br><br> **範例 JWT 值**：<br> `"upn": frankm@contoso.com`|
+| `ver`| 版本 | 儲存權杖的版本號碼。<br><br> **範例 JWT 值**：<br> `"ver": "1.0"`|
 
-    "aud":"https://contoso.com"
+## 存取權杖
 
-### 應用程式驗證內容類別參考
+存取權杖此時僅適用於 Microsoft 服務。在任何目前支援的案例中，您的應用程式應該不需要執行任何的存取權杖驗證或檢查。您可以將存取權杖視為完全不透明 - 這些都是您的應用程式可以在 HTTP 要求中傳遞給 Microsoft 的字串。
 
-應用程式驗證內容類別參考宣告指出用戶端的驗證方式。若為公用用戶端，此值為 0。如果使用用戶端識別碼和用戶端密碼，此值為 1。
+當您要求存取權杖時，Azure AD 也會傳回一些有關存取權杖的中繼資料，以供您的應用程式取用。此資訊包括存取權杖的到期時間以及其有效範圍。這可讓您的應用程式執行存取權杖的智慧型快取，而不需剖析存取權杖本身。
 
-在 JWT 權杖中，驗證內容類別參考值會出現在 appidacr (應用程式專屬的 ACR 值) 宣告中。
+## 重新整理權杖
 
-    "appidacr": "0"
+重新整理權杖是您的應用程式可用來在 OAuth 2.0 流程中取得新存取權杖的安全性權杖。它可讓您的應用程式代表使用者長期存取資源，而不需使用者互動。
 
-### 驗證內容類別參考
-驗證內容類別參考宣告指出主體的驗證方式 (相對於應用程式驗證內容類別參考宣告中的用戶端)。值為 "0" 表示使用者驗證不符合 ISO/IEC 29115 的需求。
+重新整理權杖屬於多資源權杖。也就是說，在一個資源的權杖要求期間收到的重新整理權杖可以兌換完全不同資源的存取權杖。若要這樣做，請在目標資源的要求中設定 `resource` 參數。
 
-- 在 JWT 權杖中，驗證內容類別參考宣告會出現在 acr (使用者專屬的 ACR 值) 宣告中。
+重新整理權杖對您的應用程式完全不透明。它們屬於長效權杖，但不得將您的應用程式撰寫成預期重新整理權杖將持續任何一段時間。重新整理權杖可能會因為各種原因而隨時失效。讓您的應用程式知道重新整理權杖是否有效的唯一方式，就是對 Azure AD 權杖端點提出權杖要求以嘗試兌換。
 
-    "acr": "0"
+當您兌換重新整理權杖做為新的存取權杖時，您會在權杖回應中收到新的重新整理權杖。您應儲存新簽發的重新整理權杖，並取代您使用於要求中的重新整理權杖。這將保證您的重新整理權杖盡可能長期保持有效。
 
-### 驗證即刻
+## 驗證權杖
 
-驗證即刻宣告會記錄發生驗證時的日期和時間。
+此時，您的用戶端應用程式必須執行的唯一權杖驗證就是驗證 id\_token。若要驗證 id\_token，您的應用程式應該驗證 id\_token 簽章和 id\_token 中的宣告。
 
-在 SAML 權杖中，驗證即刻會出現在 AuthnStatement 元素的 AuthnInstant 屬性中。它代表日期和時間 (採用 UTC (Z) 時間)。
+我們提供的程式庫和程式碼範例會示範如何輕鬆地處理權杖驗證 - 想要了解基礎程序的使用者可以參閱以下資訊。另外還有多個協力廠商開放原始碼程式庫可用於 JWT 驗證 - 幾乎每個平台和語言都有至少一個選項。如需有關 Azure AD 驗證程式庫和程式碼範例的詳細資訊，請參閱 [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)。
 
-    <AuthnStatement AuthnInstant="2011-12-29T05:35:22.000Z">
+#### 驗證簽章
 
-在 JWT 權杖中，Azure AD 沒有對等的宣告。
+JWT 包含三個區段 (以 `.` 字元分隔)。第一個區段稱為**標頭**、第二個稱為**主體**，而第三個稱為**簽章**。簽章區段可用來驗證 id\_token 的真實性，您的應用程式才得以信任。
 
-### 驗證方法
+Id\_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進行簽署。Id\_token 標頭包含用來簽署權杖的金鑰和加密方法相關資訊：
 
-驗證方法宣告指出如何驗證權杖的主體。在此範例中，身分識別提供者會使用密碼來驗證使用者。http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password
+```
+{
+  "typ": "JWT",
+  "alg": "RS256",
+  "x5t": "kriMPdmBvx68skT8-mPAB3BseeA"
+}
+```
 
-在 SAML 權杖中，驗證方法值會出現在 AuthnContextClassRef 元素中。
+`alg` 宣告表示用來簽署權杖的演算法，而 `x5t` 宣告則表示用來簽署權杖的特定公開金鑰。
 
-    <AuthnContextClassRef>http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod/password</AuthnContextClassRef>
+在任何指定的時間點，Azure AD 可能會使用一組特定公開-私密金鑰組的其中一個金鑰組來簽署 id\_token。Azure AD 會定期替換一組可能的金鑰，所以應將您的應用程式撰寫成自動處理這些金鑰變更。檢查 Azure AD 所用公開金鑰的更新的合理頻率為每 24 小時。
 
-在 JWT 權杖中，驗證方法值會出現在 amr 宣告中。
+#### 驗證宣告
 
-    “amr”: ["pwd"]
+當您的應用程式在使用者登入時收到 id\_token，還應該對 id\_token 中的宣告執行一些檢查。包含但不限於：
 
-###名字
+  - **對象**宣告 - 確認 id\_token 預定要提供給您的應用程式。
+  - **生效時間**和**到期時間**宣告 - 確認 id\_token 尚未過期。
+  - **簽發者**宣告 - 確認權杖確實是由 Azure AD 簽發給您的應用程式。
+  - **Nonce** - 緩和權杖重新執行攻擊。
+  - 不勝枚舉...
 
-名字宣告會提供使用者的名字 (如 Azure AD 使用者物件上所設定)。
+如需完整清單，以了解應由您的應用程式來執行的宣告驗證，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)。
 
-在 SAML 權杖中，名字會出現在 givenname SAML Attribute 元素的宣告中。
-
-    <Attribute Name=” http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname”>
-    <AttributeValue>Frank<AttributeValue>
-
-在 JWT 權杖中，名字會出現在 given\_name 宣告中。
-
-    "given_name": "Frank"
-
-### 群組
-
-群組宣告會提供代表主體群組成員資格的物件識別碼。這些值都是唯一的 (請參閱「物件識別碼」)，而且可安全地用來管理存取權，例如強制授權以存取資源。群組宣告中包含的群組會透過應用程式資訊清單的 "groupMembershipClaims"屬性，針對每個應用程式進行設定。Null 值將會排除所有群組，"SecurityGroup" 值只會包含 Active Directory 安全性群組成員資格，而 "All" 值將會包含安全性群組和 Office 365 通訊群組清單。在任何組態中，群組宣告都代表主體的可轉移群組成員資格。
-
-在 SAML 權杖中，群組宣告會出現在 groups 屬性中。
-
-    <Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/groups">
-    <AttributeValue>07dd8a60-bf6d-4e17-8844-230b77145381</AttributeValue>
-
-在 JWT 權杖中，群組宣告會出現在 groups 宣告中。
-
-    “groups”: ["0e129f5b-6b0a-4944-982d-f776045632af", … ]
-
-### 識別提供者
-
-識別提供者宣告記錄驗證權杖主體的識別提供者。除非使用者帳戶位於與簽發者不同的租用戶中，否則這個值與 Issuer 宣告值相同。
-
-在 SAML 權杖中，識別提供者會出現在 identityprovider SAML Attribute 元素的宣告中。
-
-    <Attribute Name=” http://schemas.microsoft.com/identity/claims/identityprovider”>
-    <AttributeValue>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/<AttributeValue>
-
-在 JWT 權杖中，識別提供者會出現在 idp 宣告中。
-
-    "idp":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”
-
-### IssuedAt
-
-IssuedAt 宣告會儲存權杖簽發的時間。這通常用來測量權杖有效時間。在 SAML 權杖中，IssuedAt 值會出現在 IssueInstant 判斷提示中。
-
-    <Assertion ID="_d5ec7a9b-8d8f-4b44-8c94-9812612142be" IssueInstant="2014-01-06T20:20:23.085Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
-
-在 JWT 權杖中，IssuedAt 值會出現在 iat 宣告中。此值是以從 1970-01-010:0:0Z 算起的秒數表示 (採用國際標準時間 (UTC))。
-
-    "iat": 1390234181
-
-### Issuer
-
-Issuer 宣告會識別安全性權杖服務 (STS)，而該服務可建構並傳回權杖和 Azure AD 目錄租用戶。在 Azure AD 傳回的權杖中，簽發者為 sts.windows.net。簽發者宣告值中的 GUID 是 Azure AD 目錄的租用戶識別碼。租用戶識別碼是目錄的不可變且可靠的識別碼。
-
-在 SAML 權杖中，Issuer 宣告會出現在 Issuer 元素中。
-
-    <Issuer>https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/</Issuer>
-
-在 JWT 權杖中，Issuer 會出現在 iss 宣告中。
-
-    "iss":”https://sts.windows.net/cbb1a5ac-f33b-45fa-9bf5-f37db0fed422/”
-
-### 姓氏
-
-姓氏宣告會提供使用者的姓氏 (如 Azure AD 使用者物件中所定義)。在 SAML 權杖中，姓氏會出現在 surname SAML Attribute 元素的宣告中。
-
-    <Attribute Name=” http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname”>
-    <AttributeValue>Miller<AttributeValue>
-
-在 JWT 權杖中，姓氏會出現在 family\_name 宣告中。
-
-    "family_name": "Miller"
-
-### 名稱
-
-名稱宣告提供人類看得懂的值，用以識別權杖的主體。此值不保證是租用戶中的唯一值，而且僅限用於顯示目的。在 SAML 權杖中，名稱會出現在 Name 屬性中。
-
-    <Attribute Name=”http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name”>
-    <AttributeValue>frankm@contoso.com<AttributeValue>
-
-在 JWT 宣告中，名稱會出現在 unique\_name 宣告中。
-
-    "unique_name": "frankm@contoso.com"
-
-### 物件識別碼
-
-物件識別碼宣告包含 Azure AD 中物件的唯一識別碼。這個值不可變，而且無法重新指派或重複使用，因此您可以用它來安全地執行授權檢查，例如當權杖用於存取資源時。使用物件識別碼來識別 Azure AD 查詢中的物件。在 SAML 權杖中，物件識別碼會出現在 objectidentifier 屬性中。
-
-    <Attribute Name="http://schemas.microsoft.com/identity/claims/objectidentifier">
-    <AttributeValue>528b2ac2-aa9c-45e1-88d4-959b53bc7dd0<AttributeValue>
-
-在 JWT 權杖中，物件識別碼會出現在 oid 宣告中。
-
-    "oid":"528b2ac2-aa9c-45e1-88d4-959b53bc7dd0"
-
-### 角色
-
-角色宣告會提供好記的字串，代表 Azure AD 中主體的應用程式角色指派，而且可用來強制執行角色型存取控制。應用程式角色是透過應用程式資訊清單的 "appRoles" 屬性，針對每個應用程式進行定義。每個應用程式角色的 [值] 屬性就是出現在角色宣告中的值。角色宣告中包含的角色表示透過群組成員資格，直接或間接授與主體的所有應用程式角色。在 SAML 權杖中，roles 宣告會出現在 roles 屬性中。
-
-    <Attribute Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/role">
-    <AttributeValue>Admin</AttributeValue>
-
-在 JWT 權杖中，roles 宣告會出現在 roles 宣告中。
-
-    “roles”: ["Admin", … ]
-
-### Scope
-
-權杖範圍指出授與用戶端應用程式的模擬權限。預設權限為 user\_impersonation。受保護資源的擁有者可以在 Azure AD 中註冊其他的值。
-
-在 JWT 權杖中，權杖的範圍是在 scp 宣告中指定。
-
-    "scp": "user_impersonation"
-
-### 主旨
-
-權杖的主體是權杖判斷提示其相關資訊的主體，例如應用程式的使用者。這個值不可變，而且無法重新指派或重複使用，因此可用來安全地執行授權檢查，例如當權杖用於存取資源時。因為主體一律存在於 Azure AD 簽發的權杖中，所以建議您將此值使用於一般用途授權系統中。
-
-在 SAML 權杖，權杖的主體是指定於 Subject 元素的 NameID 元素中。NameID 是主體的唯一、不可重複使用的識別碼，而主體可以是使用者、應用程式或服務。
-
-SubjectConfirmation 不是宣告。它會描述如何驗證權杖的主體。"Bearer" 表示主體已經由持有權杖來確認。
-
-    <Subject>
-    <NameID>S40rgb3XjhFTv6EQTETkEzcgVmToHKRkZUIsJlmLdVc</NameID>
-    <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer" />
-    </Subject>
-
-在 JWT 權杖中，主體會出現在 sub 宣告中。
-
-    "sub":"92d0312b-26b9-4887-a338-7b00fb3c5eab"
-
-### 租用戶識別碼
-租用戶識別碼是不可變、無法重複使用的識別碼，用以識別簽發權杖的目錄租用戶。您可以使用此值來存取多租用戶應用程式中的租用戶特定目錄資源。例如，您可以使用此值來識別在圖形 API 呼叫中的租用戶。
-
-在 SAML 權杖中，租用戶識別碼會出現在 tenantid SAML Attribute 元素的宣告中。
-
-    <Attribute Name=”http://schemas.microsoft.com/identity/claims/tenantid”>
-    <AttributeValue>cbb1a5ac-f33b-45fa-9bf5-f37db0fed422<AttributeValue>
-
-在 JWT 權杖中，租用戶識別碼會出現在 tid 宣告中。
-
-    "tid":"cbb1a5ac-f33b-45fa-9bf5-f37db0fed422"
-
-### 權杖存留期
-權杖存留期宣告定義權杖有效的時間間隔。驗證權杖的服務應確認目前的日期在權杖存留期內。否則，應該拒絕此權杖。此服務最多允許超過權杖存留期範圍五分鐘，以考量 Azure AD 與服務之間的時鐘時間差異 (「時間偏差」)。
-
-在 SAML 權杖中，權杖存留期宣告會使用 NotBefore 和 NotOnOrAfter 屬性定義於 Conditions 元素中。
-
-    <Conditions
-    NotBefore="2013-03-18T21:32:51.261Z"
-    NotOnOrAfter="2013-03-18T22:32:51.261Z"
-    >
-
-在 JWT 權杖，權杖存留期是由 nbf (不早於) 和 exp (到期時間) 宣告所定義。這些宣告的值是以從 1970-01-010:0:0Z 算起的秒數表示 (採用國際標準時間 (UTC))。如需詳細資訊，請參閱 RFC 3339。
-
-    "nbf":1363289634,
-    "exp":1363293234
-
-### 使用者主體名稱
-使用者主體名稱宣告會儲存使用者主體的使用者名稱。
-
-在 JWT 權杖中，使用者主體名稱會出現在 upn 宣告中。
-
-    "upn": frankm@contoso.com
-
-### 版本
-Version 宣告儲存權杖的版本號碼。在 JWT 權杖中，使用者主體名稱會出現在 ver 宣告中。
-
-    "ver": "1.0"
+這些宣告的預期值詳細資料包含在上面的 [id\_token 一節](#id_tokens)中。
 
 ## 權杖範例
 
@@ -365,7 +232,7 @@ Version 宣告儲存權杖的版本號碼。在 JWT 權杖中，使用者主體�
 
 ### JWT 權杖 - 使用者模擬
 
-這是在使用者模擬 Web 流程中使用的典型 JSON Web 權杖 (JWT) 範例。除了宣告以外，權杖包含 **ver** 和 **appidacr** 中的版本號碼、驗證內容類別參考 (這表示用戶端的驗證方式)。若為公用用戶端，此值為 0。如果使用用戶端識別碼或用戶端密碼，此值為 1。
+這是在授權碼授與流程中使用的典型 JSON Web 權杖 (JWT) 範例。除了宣告以外，權杖包含 **ver** 和 **appidacr** 中的版本號碼、驗證內容類別參考 (這表示用戶端的驗證方式)。若為公用用戶端，此值為 0。如果使用用戶端識別碼或用戶端密碼，此值為 1。
 
     {
      typ: "JWT",
@@ -408,8 +275,4 @@ Version 宣告儲存權杖的版本號碼。在 JWT 權杖中，使用者主體�
      acr: "1"
     }.
 
-##另請參閱
-
-[Azure Active Directory 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn151124.aspx)
-
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

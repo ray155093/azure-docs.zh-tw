@@ -13,12 +13,29 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="06/21/2016"
+   ms.date="07/19/2016"
    ms.author="yuemlu"/>
 
 # Azure 客體作業系統 
 
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。推出這些更新的特定[系列][family-explain]皆會包含這些更新。
+
+## 7 月客體作業系統 
+
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ---------------- | --------------------- |
+| MS16-084 | [3169991] | Internet Explorer 的累積安全性更新 | 4\.34, 3.41, 2.53 | 2016 年 7 月 12 日 |
+| MS16-087 | [3170005] | Microsoft 列印多工緩衝處理器的安全性更新 | 4\.34, 3.41, 2.53 | 2016 年 7 月 12 日 |
+| MS16-090 | [3171481] | 核心模式驅動程式的安全性更新 | 4\.34, 3.41, 2.53 | 2016 年 7 月 12 日 |
+| MS16-091 | [3170048] | .NET Framework 的安全性更新 | 4\.34, 3.41, 2.53 | 2016 年 7 月 12 日 |
+| MS16-092 | [3171910] | Windows Kernel 的安全性更新 | 4\.34, 3.41 | 2016 年 7 月 12 日 |
+| MS16-094 | [3177404] | 安全開機的安全性更新 | 4\.34, 3.41 | 2016 年 7 月 12 日 |
+| | [3162835] | 2016 年 6 月 Windows 的 DST 和時區更新 | 4\.34, 3.41, 2.53 | 2016 年 7 月 12 日 |
+| | [3156417] | 適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 5 月更新彙總套件 | 2\.53 | 2016 年 7 月 12 日 |
+| | [3161608] | 適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 6 月更新彙總套件 | 2\.53 | 2016 年 7 月 12 日 |
+| | [3161609] | 適用於 Windows Server 2012 的 2016 年 6 月更新彙總套件 | 3\.41 | 2016 年 7 月 12 日 |
+| | [3161606] | 適用於 Windows RT 8.1、Windows 8.1 和 Windows Server 2012 R2 的 2016 年 6 月更新彙總套件 | 4\.34 | 2016 年 7 月 12 日 |
+| | [3139923] | Windows installer (MSI) 修復不適用於 MSI 套件安裝在 Windows 的 HTTP 共用上時 | 4\.34 | 2016 年 7 月 12 日 |
 
 ## Azure 客體 OS 
 
@@ -318,6 +335,21 @@
 | N/A | [2896881][2896881] | 在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 
 
+[3169991]: http://support.microsoft.com/kb/3169991
+[3170005]: http://support.microsoft.com/kb/3170005
+[3170050]: http://support.microsoft.com/kb/3170050
+[3171481]: http://support.microsoft.com/kb/3171481
+[3170048]: http://support.microsoft.com/kb/3170048
+[3171910]: http://support.microsoft.com/kb/3171910
+[3177404]: http://support.microsoft.com/kb/3177404
+[3162835]: http://support.microsoft.com/kb/3162835
+[3156417]: http://support.microsoft.com/kb/3156417
+[3161608]: http://support.microsoft.com/kb/3161608
+[3161609]: http://support.microsoft.com/kb/3161609
+[3161606]: http://support.microsoft.com/kb/3161606
+[3139923]: http://support.microsoft.com/kb/3139923
+
+
 [3141780]: http://support.microsoft.com/kb/3141780
 [3155527]: http://support.microsoft.com/kb/3155527
 [3163649]: http://support.microsoft.com/kb/3163649
@@ -544,4 +576,4 @@
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-and-release-explanation
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

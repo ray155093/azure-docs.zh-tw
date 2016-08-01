@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/27/2016"
+	ms.date="07/19/2016"
 	ms.author="jeedes"/>
 
 
@@ -73,7 +73,7 @@ Origami 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -145,9 +145,9 @@ Origami 與 Azure AD 整合提供下列優點：
 
 	a.選取 [啟用單一登入]。
 
-	b.在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL] (識別提供者登入頁面 URL) 文字方塊中。
+	b.在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL] \(識別提供者登入頁面 URL) 文字方塊中。
 
-	c.在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL] (識別提供者登出頁面 URL) 文字方塊中。
+	c.在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL] \(識別提供者登出頁面 URL) 文字方塊中。
 
 	d.按一下 [瀏覽] 上傳您從 Azure 傳統入口網站下載的憑證。
 
@@ -317,4 +317,4 @@ Origami 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-origami-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-origami-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

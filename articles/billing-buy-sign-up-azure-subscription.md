@@ -6,7 +6,7 @@
 	authors="genlin"
 	manager="msmbaldwin"
 	editor="meerak"
-	tags="top-support-issue"
+	tags="billing,top-support-issue"
 	/>
 
 <tags
@@ -31,7 +31,7 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 | 免費試用 |• [註冊和逐步指南](billing-buy-sign-up-azure-subscription.md#SignupFreeTrial)<br>• [優點](https://azure.microsoft.com/pricing/free-trial/)</br>• [常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)</br>• [將免費試用升級至隨用隨付](billing-buy-sign-up-azure-subscription.md#UpgradeFreeToPYG) |
 | Pay-As-You-Go | • [註冊](https://azure.microsoft.com/pricing/purchase-options/)</br>• [定價](https://azure.microsoft.com/pricing/) |
 | MPN (Microsoft 合作夥伴網路) - 成員每月都會收到免費的 Azure 點數 | • [適用於合作夥伴的 Azure 權益](https://azure.microsoft.com/offers/ms-azr-0025p/)</br>• [註冊為夥伴](http://go.microsoft.com/fwlink/?linkid=309258&clcid=0x409)或[訂閱 Microsoft 行動套件](http://go.microsoft.com/fwlink/?linkid=525768&clcid=0x409)</br>• 使用 Azure 點數 - 存取 [MPN 入口網站](https://partner.microsoft.com)並驗證您的資格狀態，然後遵循軟體金鑰與權益的步驟執行作業。如果您無法驗證自己的資格，請連絡 [MPN 支援](https://partner.microsoft.com/Support/)。 |
-| MSDN 和 Visual Studio 訂閱者 |• [MSDN 開發/測試權益](https://azure.microsoft.com/offers/ms-azr-0023p/)</br>• [Visual Studio 的訂閱者優惠](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)</br>• [啟動 Visual Studio 訂閱者 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)</br>• [三個簡單步驟啟用 MSDN Azure 權益](https://www.youtube.com/watch?v=SN2CA71uOEI&feature=youtu.be)：<br> 登入 [MSDN 帳戶頁面](https://msdn.microsoft.com/subscriptions/manage/default.aspx)並驗證資格，然後按一下 [Activate Azure benefit] (啟用 Azure 權益)。如果您無法驗證自己的資格，請連絡 [MSDN 訂用帳戶客服中心](https://msdn.microsoft.com/subscriptions/contactus.aspx)。|
+| MSDN 和 Visual Studio 訂閱者 |• [MSDN 開發/測試權益](https://azure.microsoft.com/offers/ms-azr-0023p/)</br>• [Visual Studio 的訂閱者優惠](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)</br>• [啟動 Visual Studio 訂閱者 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)</br>• [三個簡單步驟啟用 MSDN Azure 權益](https://www.youtube.com/watch?v=SN2CA71uOEI&feature=youtu.be)：<br> 登入 [MSDN 帳戶頁面](https://msdn.microsoft.com/subscriptions/manage/default.aspx)並驗證資格，然後按一下 [Activate Azure benefit] \(啟用 Azure 權益)。如果您無法驗證自己的資格，請連絡 [MSDN 訂用帳戶客服中心](https://msdn.microsoft.com/subscriptions/contactus.aspx)。|
 | BizSpark | • [權益 BizSpark](https://www.microsoft.com/bizspark/default.aspx#start-two)。如需詳細資訊，請參閱 [Visual Studio Enterprise 的每月 Azure 點數](https://azure.microsoft.com/offers/ms-azr-0064p/)<br>• [加入 BizSpark](https://www.microsoft.com/bizspark/signup/default.aspx)。如果您遇到問題，請連絡 [BizSpark 小組](mailto:bizspark@microsoft.com?subject=BizSpark%20Support&body=Thank%20you%20for%20contacting%20BizSpark.%20Please%20provide%20as%20much%20of%20the%20following%20information%20as%20possible,%20as%20it%20will%20help%20expedite%20our%20response%20to%20you.%0aContact%20name:%0aStartup%20name:%0aMicrosoft%20Account/Live%20ID:%0aSpecific%20description%20of%20issue%20experienced%20or%20question:%0a%0aThank%20you,%0a%0aThe%20BizSpark%20Team)。 |
 | BizSpark Plus |• [了解 BizSpark Plus](https://www.microsoft.com/bizspark/plus/default.aspx)。如需詳細資訊，請參閱 [BizSpark Plus 權益](https://azure.microsoft.com/offers/ms-azr-0149p/)</br>• [加入 BizSpark](https://www.microsoft.com/bizspark/signup/default.aspx)，然後使用您的合作夥伴連絡人升級至 BizSpark Plus。如果您遇到問題，請連絡 [BizSpark 小組](mailto:bizspark@microsoft.com?subject=BizSpark%20Support&body=Thank%20you%20for%20contacting%20BizSpark.%20Please%20provide%20as%20much%20of%20the%20following%20information%20as%20possible,%20as%20it%20will%20help%20expedite%20our%20response%20to%20you.%0aContact%20name:%0aStartup%20name:%0aMicrosoft%20Account/Live%20ID:%0aSpecific%20description%20of%20issue%20experienced%20or%20question:%0a%0aThank%20you,%0a%0aThe%20BizSpark%20Team)。 |
 | 轉售商 (Open Volume 授權方案) |• [啟用線上服務金鑰 - 逐步指南](billing-buy-sign-up-azure-subscription.md#activateKey)</br>• [購買、權益、啟用](https://azure.microsoft.com/offers/ms-azr-0111p/)</br> |
@@ -46,14 +46,16 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 開啟 [Azure 免費試用頁面](https://azure.microsoft.com/pricing/free-trial/)，然後選取 [立即試用]。
 2. 使用您的 Microsoft 帳戶或學校/工作帳戶登入。
-3. 在 [**關於您**] 區段中，輸入您的個人資訊。![個人資訊的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/AboutYou.png)
+3. 在 [**關於您**] 區段中，輸入您的個人資訊。  
+![個人資訊的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/AboutYou.png)
 
  **注意**：您在註冊 Azure 訂用帳戶時提供的電子郵件地址及國家/地區資訊，將會永遠與訂用帳戶相關聯，且之後無法變更。</br>
 4. 在 [以電話驗證] 區段中，您必須提供電話號碼來接收您可以提供的驗證碼，以完成驗證程序。
 
  您可以選擇以簡訊或透過語音電話接收驗證碼。選取 [傳送簡訊] 或 [撥號給我] 來決定方式。在第一個方塊中選取您國家的國際電話區碼，並在第二個方塊中輸入您的電話號碼。收到驗證碼之後，在第三個方塊輸入驗證碼，然後選取 [**驗證碼**] 按鈕。
 
- **請注意**，您無法使用 VOIP 電話號碼進行電話驗證程序。</br> ![有關電話驗證的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/PhoneVerify.png)</br> 如果您沒收到簡訊或來電，請嘗試使用不同的電話號碼，或連絡 [Azure 支援服務](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以尋求協助。</br>
+ **請注意**，您無法使用 VOIP 電話號碼進行電話驗證程序。</br>
+![有關電話驗證的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/PhoneVerify.png)</br> 如果您沒收到簡訊或來電，請嘗試使用不同的電話號碼，或連絡 [Azure 支援服務](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以尋求協助。</br>
 5. 在 [以卡驗證] 區段中，輸入有效之信用卡的詳細資料。這項資訊只收集用來驗證您的身分。
 
  **請注意**，雖然不會向您的信用卡收費，但 Microsoft 仍會預扣最小額度的金額，驗證信用卡是否有效。此預扣的金額將會在 3-5 個工作天內返還 (依您的財務機構原則而定)。
@@ -68,7 +70,8 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
  **很抱歉，我們無法完成作業。請稍後再試一次或重新載入網頁** </br>
 
  在此情況下，請嘗試使用其他瀏覽器完成註冊程序。如果問題沒有解決，請連絡 [Azure 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br>
-7. 當訂用帳戶就緒時，選取 [開始管理我的服務]。</br> ![startservice](./media/billing-buy-sign-up-azure-subscription/startservice.png)
+7. 當訂用帳戶就緒時，選取 [開始管理我的服務]。</br>
+ ![startservice](./media/billing-buy-sign-up-azure-subscription/startservice.png)
 
 <a name="UpgradeFreeToPYG"></a>
 ## 將 Azure 免費試用版升級至隨收隨付
@@ -86,8 +89,8 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 前往 azure.com 的[訂用帳戶摘要頁面](https://account.windowsazure.com/subscriptions)。
 
-2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰][](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
+2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
 
 3. 輸入產品金鑰，然後查看合約選項。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

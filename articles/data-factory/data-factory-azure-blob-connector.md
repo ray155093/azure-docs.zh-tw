@@ -20,6 +20,8 @@
 # 使用 Azure Data Factory 從 Azure Blob 來回移動資料
 本文說明如何使用 Azure Data Factory 中的複製活動，透過從其他資料存放區獲得 Blob 資料在 Azure Blob 中來回移動資料。本文是根據資料移動活動一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
+> [AZURE.NOTE] 此 Azure Blob 連接器目前僅支援在區塊 Blob 來回複製。並同時支援一般用途的 Azure 儲存體和經常性/非經常性 Blob 儲存體。
+
 ## 複製資料精靈
 要建立將資料複製到 Azure Blob 儲存體，或複製 Azure Blob 儲存體資料的管線，最簡單的方法是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
@@ -62,7 +64,7 @@
 	  }
 	}
 
-Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)一節以取得詳細資料。
+Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)章節以取得詳細資料。
 
 **Azure Blob 輸入資料集：**
 
@@ -234,7 +236,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 	  }
 	}
 
-Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)一節以取得詳細資料。
+Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。請參閱[連結服務](#linked-services)章節以取得詳細資料。
 
 
 **Azure SQL 輸入資料集：**
@@ -475,4 +477,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

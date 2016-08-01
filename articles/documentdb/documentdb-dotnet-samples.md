@@ -26,9 +26,9 @@
 - [Python 範例](documentdb-python-samples.md)
 - [Azure 程式碼範例庫](https://azure.microsoft.com/documentation/samples/?service=documentdb)
 
-[azure-documentdb-net](https://github.com/Azure/azure-documentdb-net/tree/master/samples/code-samples) GitHub 儲存機制中包含可對 DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。本文提供：
+[azure-documentdb-net](https://github.com/Azure/azure-documentdb-net/tree/master/samples/code-samples) GitHub 儲存機制中包含可對 Azure DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。本文提供：
 
-- 每個範例 C# 專案檔中各項工作的連結。 
+- 每個範例 C# 專案檔中各項工作的連結。
 - 相關 API 參考內容的連結。
 
 **必要條件**
@@ -36,7 +36,7 @@
 1. 您必須要有 Azure 帳戶才能使用這些 NoSQL 範例：
     - 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
    - 您可以[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
-2. 您也需要 [Microsoft.Azure.DocumentDB NuGet 封裝](http://www.nuget.org/packages/Microsoft.Azure.DocumentDB/)。 
+2. 您也需要 [Microsoft.Azure.DocumentDB NuGet 封裝](http://www.nuget.org/packages/Microsoft.Azure.DocumentDB/)。
 
 > [AZURE.NOTE]
 每個範例都各自獨立，自己設定，並自行清理。據此，這些範例對 CreateDocumentCollectionAsync() 發出多個呼叫。每當執行此動作時，即會根據所建立之集合的效能層，對您的訂用帳戶計入一小時的使用量費用。
@@ -179,4 +179,4 @@ DocumentManagement 專案範例的 [RunDocumentsDemo](https://github.com/Azure/a
 [設定集合或文件的權限](https://github.com/Azure/azure-documentdb-net/blob/d17c0ca5be739a359d105cf4112443f65ca2cb72/samples/code-samples/UserManagement/Program.cs#L85) | [DocumentClient.CreatePermissionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createpermissionasync.aspx)
 [取得使用者權限清單](https://github.com/Azure/azure-documentdb-net/blob/d17c0ca5be739a359d105cf4112443f65ca2cb72/samples/code-samples/UserManagement/Program.cs#L218) | [DocumentClient.ReadUserAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readuserasync.aspx)<br>[DocumentClient.ReadPermissionFeedAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readpermissionfeedasync.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

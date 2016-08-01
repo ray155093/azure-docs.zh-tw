@@ -12,8 +12,8 @@
     ms.devlang="NA"
     ms.topic="article"
     ms.tgt_pltfrm="NA"
-   ms.workload="sqldb-bcdr"
-    ms.date="06/14/2016"
+    ms.workload="sqldb-bcdr"
+    ms.date="07/18/2016"
     ms.author="carlrab"/>
 
 # 使用 Transact-SQL 為 Azure SQL Database 設定異地複寫
@@ -163,6 +163,23 @@
 
 9. 按一下 [執行] 來執行查詢。
 
+## 將不可讀取的次要資料庫升級為可讀取
+
+在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。如果您目前使用的是不可讀取的次要資料庫，而您想要將它們升級為可讀取，您可以針對每個次要資料庫使用下列簡單步驟。
+
+> [AZURE.IMPORTANT] 並沒有自助升級方法能夠將不可讀取的次要資料庫就地升級為可讀取次要資料庫。如果您僅卸除次要資料庫，則主要資料庫將會維持未受保護的狀態，直到新的次要資料庫完全同步為止。如果您的應用程式 SLA 要求主要資料庫永遠受到保護，您應該考慮在其他伺服器中建立平行次要資料庫，然後才套用上述的升級步驟。請注意，每個主要資料庫最多可以有 4 個次要資料庫。
+
+
+1. 首先，連接到「次要」資料庫，然後卸除不可讀取的次要資料庫：
+        
+        DROP DATABASE <MyNonReadableSecondaryDB>;
+
+2. 現在，連線到「主要」伺服器，然後新增新的可讀取次要資料庫
+
+        ALTER DATABASE <MyDB>
+            ADD SECONDARY ON SERVER <MySecondaryServer> WITH (ALLOW_CONNECTIONS = ALL);
+
+
 
 
 ## 後續步驟
@@ -170,4 +187,4 @@
 - 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

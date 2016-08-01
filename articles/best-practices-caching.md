@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/01/2016"
+   ms.date="07/14/2016"
    ms.author="masashin"/>
 
 
@@ -934,4 +934,4 @@ subscriber.PublishAsync("messages:blogPosts", blogPost.Title);
 - StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Transactions.md) 頁面
 - Microsoft 網站上的[資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016"
+ 	ms.date="07/18/2016"
 	ms.author="juliako"/>
 
 
@@ -33,7 +33,7 @@
 
 			// Load the XML (or JSON) from the local file.
 		    string configuration = File.ReadAllText(fileName);  
-- 將單一編碼工作加入工作。 
+- 將單一編碼工作加入工作。
 - 指定要編碼的輸入資產。
 - 建立將包含已編碼資產的輸出資產。
 - 加入事件處理常式來檢查工作進度。
@@ -382,4 +382,4 @@
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

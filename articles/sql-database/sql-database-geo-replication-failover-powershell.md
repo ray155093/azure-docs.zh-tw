@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management" 
-    ms.date="04/27/2016"
+    ms.date="07/19/2016"
     ms.author="sstein"/>
 
 # 使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
@@ -87,4 +87,4 @@
 - [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 - [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

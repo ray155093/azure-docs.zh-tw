@@ -2,7 +2,7 @@
 	pageTitle="開始使用 Azure CDN SDK for Node.js | Microsoft Azure"
 	description="了解如何撰寫 Node.js 應用程式來管理 Azure CDN。"
 	services="cdn"
-	documentationCenter=".net"
+	documentationCenter="nodejs"
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/01/2016"
+	ms.date="07/19/2016"
 	ms.author="casoper"/>
 
 # 開始使用 Azure CDN 開發
@@ -49,7 +49,7 @@
 
 封裝完成安裝後，package.json 檔案看起來應該類似下列內容 (版本號碼可能不同)：
 
-```
+``` json
 {
   "name": "cdn_node",
   "version": "1.0.0",
@@ -75,14 +75,14 @@
 
 1. 使用下列內容在頂端為我們的 NPM 封裝新增「必要項目」︰
 
-	```
+	``` javascript
 	var msRestAzure = require('ms-rest-azure');
 	var cdnManagementClient = require('azure-arm-cdn');
 	```
 
 2. 我們必須定義一些我們的方法將用到的常數。新增下列內容。務必視需要使用您的值來取代預留位置，包括 **&lt;角括號&gt;**。
 
-	```
+	``` javascript
 	//Tenant app constants
 	const clientId = "<YOUR CLIENT ID>";
 	const clientSecret = "<YOUR CLIENT AUTHENTICATION KEY>"; //Only for service principals
@@ -96,7 +96,7 @@
 
 3. 接下來，我們將會具現化 CDN 管理用戶端，並對它提供我們的認證。
 
-	```
+	``` javascript
 	var credentials = new msRestAzure.ApplicationTokenCredentials(clientId, tenantId, clientSecret);
 	var cdnClient = new cdnManagementClient(credentials, subscriptionId);
 	```
@@ -105,7 +105,7 @@
 
 	>[AZURE.IMPORTANT] 如果您選擇使用個別使用者驗證，而不是服務主體，只需使用這個程式碼範例。請務必謹慎地保護您的個別使用者認證，並且不要告訴他人。
 
-	```
+	``` javascript
 	var credentials = new msRestAzure.UserTokenCredentials(clientId, 
 		tenantId, '<username>', '<password>', '<redirect URI>');
 	var cdnClient = new cdnManagementClient(credentials, subscriptionId);
@@ -116,7 +116,7 @@
 
 4.  我們的 Node.js 主控台應用程式將會採用一些命令列參數。讓我們驗證看看是否已至少傳遞一個參數。
 
-	```
+	```javascript
 	//Collect command line parameters
 	var parms = process.argv.slice(2);
 
@@ -131,7 +131,7 @@
 
 5. 此動作會將我們帶到程式的主要部分，根據所傳遞的參數而定，這會讓我們轉往其他函式。
 
-	```
+	```javascript
 	switch(parms[0].toLowerCase())
 	{
 		case "list":
@@ -158,7 +158,7 @@
 
 6.  在程式中有幾個地方，我們必須確定已傳遞正確數目的參數，並在參數不正確時顯示一些說明。讓我們建立函式來執行此工作。
 
-	```
+	```javascript
 	function requireParms(parmCount) {
 		if(parms.length < parmCount) {
 			usageHelp(parms[0].toLowerCase());
@@ -197,7 +197,7 @@
 
 7. 最後，我們將在 CDN 管理用戶端使用的函式為非同步的，因此需要有方法可在函式完成時回呼。讓我們建立一個可顯示 CDN 管理用戶端輸出 (如果有的話)，並以正常程序結束程式的方法。
 
-	```
+	```javascript
 	function callback(err, result, request, response) {
 		if (err) {
 			console.log(err);
@@ -215,7 +215,7 @@
 
 讓我們從列出現有設定檔和端點的程式碼來開始。我會以預期的語法提供程式碼註解，因此我們會知道每個參數的放置位置。
 
-```
+```javascript
 // list profiles
 // list endpoints <profile name>
 function cdnList(){
@@ -244,7 +244,7 @@ function cdnList(){
 
 接下來，我們將撰寫函式來建立設定檔和端點。
 
-```
+```javascript
 function cdnCreate() {
     requireParms(2);
     switch(parms[1].toLowerCase())
@@ -297,7 +297,7 @@ function cdnCreateEndpoint() {
 
 假設端點已建立，我們可能想要在程式中執行的一個常見工作是清除此端點中的內容。
 
-```
+```javascript
 // purge <profile name> <endpoint name> <path>
 function cdnPurge() {
     requireParms(4);
@@ -311,7 +311,7 @@ function cdnPurge() {
 
 我們將會包含的最後一個函式會刪除端點和設定檔。
 
-```
+```javascript
 function cdnDelete() {
     requireParms(2);
     switch(parms[1].toLowerCase())
@@ -367,4 +367,4 @@ function cdnDelete() {
 
 若要尋找其他關於 Azure SDK for Node.js 的文件，請檢視[完整參考資料](http://azure.github.io/azure-sdk-for-node/)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

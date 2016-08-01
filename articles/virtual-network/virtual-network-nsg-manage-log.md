@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/15/2016"
+   ms.date="07/14/2016"
    ms.author="telmos" />
 
 #網路安全性群組 (NSG) 的記錄檔分析
 
-您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解 NSG。透過入口網站可以存取其中一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔並且在不同的工具中進行檢視，例如 Excel 和 PowerBI。您可以從下列清單進一步了解不同類型的記錄檔。
+您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解 NSG。透過入口網站可以存取這些當中的一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔，並且可在不同的工具 (例如 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)、Excel 及 PowerBI) 中檢視這些記錄檔。您可以從下列清單進一步了解不同類型的記錄檔。
 
 - **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../azure-portal/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您的 Azure 訂用帳戶的所有作業及其狀態。預設會啟用稽核記錄檔，並可在 Azure Preview 入口網站中進行檢視。
 - **事件記錄檔︰**您可以使用此記錄檔來檢視哪些 NSG 規則會套用到以 MAC 位址為基礎的 VM 和執行個體角色。每隔 60 秒會收集一次這些規則的狀態。
@@ -41,7 +41,7 @@
 	![Preview 入口網站 - 網路安全性群組設定](./media/virtual-network-nsg-manage-log/portal-enable2.png)
 
 4. 在 [設定] 刀鋒視窗中，按一下 [診斷]，然後在 [診斷] 窗格中，按一下 [狀態] 旁邊的 [開啟]
-5. 在 [設定] 刀鋒視窗中，按一下 [儲存體帳戶]，然後選取現有的儲存體帳戶或建立新的帳戶。  
+5. 在 [設定] 刀鋒視窗中，按一下 [儲存體帳戶]，然後選取現有的儲存體帳戶或建立新的帳戶。
 
 >[AZURE.INFORMATION] 稽核記錄檔不需要個別的儲存體帳戶。將儲存體用於事件和規則記錄將會產生服務費用。
 
@@ -105,13 +105,17 @@
 - **Power BI︰**如果還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)，您可以使用預先設定的儀表板 (可按原樣使用或加以自訂) 來分析資料。
 
 ## 檢視和分析計數器和事件記錄檔
-您需要連接到儲存體帳戶並擷取事件和計數器記錄檔的 JSON 記錄項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
+
+Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 可以從您的 Blob 儲存體帳戶收集計數器和事件記錄檔，並且納入了視覺效果和強大的搜尋功能來分析您的記錄檔。
+
+您也可以連接到儲存體帳戶，然後擷取事件和計數器記錄檔的 JSON 記錄項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
 
 >[AZURE.TIP] 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的[記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
 
 ## 後續步驟
 
+- 利用 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 以視覺化方式呈現計數器和事件記錄檔
 - [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
 - [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

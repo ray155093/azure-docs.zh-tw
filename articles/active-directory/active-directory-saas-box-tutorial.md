@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="07/13/2016" 
     ms.author="jeedes" />
 
 
@@ -45,7 +45,7 @@
 
 ###若要啟用 Box 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-box-tutorial/IC700993.png "Active Directory")
 
@@ -59,7 +59,7 @@
 
     ![新增應用程式](./media/active-directory-saas-box-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-box-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -75,11 +75,11 @@
 
 ##設定單一登入
   
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Box 中進行驗證。<br>在此程序中，您必須將中繼資料上傳至 Box.com。
+本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Box 中進行驗證。在此程序中，您必須將中繼資料上傳至 Box.com。
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure AD 入口網站的 [Box] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Box] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769538.png "設定單一登入")
 
@@ -106,20 +106,30 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1. 在 Azure 管理入口網站中的 [Box] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。<br> <br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769541.png "啟用自動使用者佈建")
+1. 在 Azure 傳統入口網站中的 [Box] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
 
-2. 在 [**啟用使用者佈建到 Box**] 對話方塊頁面上，按一下 [**啟用使用者佈建**]。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769544.png "啟用自動使用者佈建")
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769541.png "啟用自動使用者佈建")
 
-3. 在 [登入以授與 Box 存取權] 頁面上，提供必要的認證，然後按一下 [授權]。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769546.png "啟用自動使用者佈建")
+2. 在 [**啟用使用者佈建到 Box**] 對話方塊頁面上，按一下 [**啟用使用者佈建**]。
+
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769544.png "啟用自動使用者佈建")
+
+3. 在 [登入以授與 Box 存取權] 頁面上，提供必要的認證，然後按一下 [授權]。
+
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769546.png "啟用自動使用者佈建")
 
 
-4. 按一下 [授與 Box 存取權]，以授權進行此作業並返回 Azure 管理入口網站。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769549.png "啟用自動使用者佈建")
+4. 按一下 [授與 Box 存取權]，以授權進行此作業並返回 Azure 傳統入口網站。
+
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769549.png "啟用自動使用者佈建")
 
 
 5. 在 [佈建選項] 頁面上，[要佈建的物件類型] 核取方塊可讓您選取是否在使用者物件之外，也在 Box 佈建群組物件。如需詳細資訊，請參閱以下＜指派使用者和群組＞一節。
 
 
-6. 若要完成設定，請按一下 [完成] 按鈕。<br><br> ![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
+6. 若要完成設定，請按一下 [完成] 按鈕。
+
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
 
 
 
@@ -129,26 +139,30 @@
 
 ###若要指派使用者給 Box，請執行下列步驟：
 
-1. 在 Azure AD 入口網站中建立測試帳戶。
+1. 在 Azure 傳統入口網站中建立測試帳戶。
 
-2. 在 [Box] 應用程式整合頁面上，按一下 [指派使用者]。<br><br> ![指派使用者](./media/active-directory-saas-box-tutorial/IC769552.png "指派使用者")
+2. 在 [Box] 應用程式整合頁面上，按一下 [指派使用者]。
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 確認指派。<br><br> ![是](./media/active-directory-saas-box-tutorial/IC767830.png "是")
+	![指派使用者](./media/active-directory-saas-box-tutorial/IC769552.png "指派使用者")
+
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+
+	![是](./media/active-directory-saas-box-tutorial/IC767830.png "是")
   
 請等候 10 分鐘並確認帳戶已同步至 Box。
 
-在第一個驗證步驟中，您可以在 Azure 管理入口網站的 Box 應用程式整合頁面上，按一下 [儀表板] 來檢查佈建狀態。
+在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 Box 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
 
-<br><br> ![儀表板](./media/active-directory-saas-box-tutorial/IC769553.png "儀表板")
+![儀表板](./media/active-directory-saas-box-tutorial/IC769553.png "儀表板")
 
 成功完成的使用者佈建週期會以相關狀態表示：
 
-<br><br> ![整合狀態](./media/active-directory-saas-box-tutorial/IC769555.png "整合狀態")
+![整合狀態](./media/active-directory-saas-box-tutorial/IC769555.png "整合狀態")
 
 
 在 Box 租用戶中，已同步處理的使用者會列在 [管理主控台] 的 [管理使用者] 之下。
 
-<br><br> ![整合狀態](./media/active-directory-saas-box-tutorial/IC769556.png "整合狀態")
+![整合狀態](./media/active-directory-saas-box-tutorial/IC769556.png "整合狀態")
 
 
 ##指派使用者和群組
@@ -161,7 +175,7 @@ Azure 傳統入口網站的 [Box] > [使用者和群組] 索引標籤可讓您�
 
 * 如已啟用自動佈建，則指派的使用者及/或群組就會加入佈建佇列進行自動佈建。
 
-    * 如果只設定要佈建使用者物件，則所有直接指派的使用者都會放在佈建佇列中，而任何指派群組成員的所有使用者也會放在佈建佇列中。 
+    * 如果只設定要佈建使用者物件，則所有直接指派的使用者都會放在佈建佇列中，而任何指派群組成員的所有使用者也會放在佈建佇列中。
     
     * 如果設定要佈建的是群組物件，則所有指派的群組物件以及這些群組成員的所有使用者都會佈建到 Box。群組和使用者成員資格都會保留寫入 Box。
     
@@ -175,4 +189,4 @@ Azure 傳統入口網站的 [Box] > [使用者和群組] 索引標籤可讓您�
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0720_2016-->

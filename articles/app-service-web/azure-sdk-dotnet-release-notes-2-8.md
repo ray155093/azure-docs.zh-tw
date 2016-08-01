@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="04/25/2016"
+   ms.date="07/18/2016"
    ms.author="juliako"/>
  
 # Azure SDK for .NET 2.8、2.8.1 和 2.8.2
@@ -64,8 +64,8 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 下列版本將解決下列已知問題。
 
-- 非生產環境 (例如 Azure China 或 Azure Stack 客戶) 的 App Service 相關雲端與伺服器總管筆勢無效。對於這些受影響區域中的客戶，從 Azure 入口網站下載發行設定檔就能發行。未來版本將為 Azure China 或 Azure Stack 客戶修復筆勢，例如「連結偵錯工具」和「檢視資料流記錄」。 
-- 客戶在建立 App Service 時，若要部署的目標 App Insights 執行個體位於美國東部以外的區域，他們可能會看到錯誤。在這些情況下，在入口網站建立 App Service 和下載發行設定檔就能發行。 
+- 非生產環境 (例如 Azure China 或 Azure Stack 客戶) 的 App Service 相關雲端與伺服器總管筆勢無效。對於這些受影響區域中的客戶，從 Azure 入口網站下載發行設定檔就能發行。未來版本將為 Azure China 或 Azure Stack 客戶修復筆勢，例如「連結偵錯工具」和「檢視資料流記錄」。
+- 客戶在建立 App Service 時，若要部署的目標 App Insights 執行個體位於美國東部以外的區域，他們可能會看到錯誤。在這些情況下，在入口網站建立 App Service 和下載發行設定檔就能發行。
 
 ###Azure HDInsight 工具
 
@@ -80,9 +80,9 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 ### Visual Studio 2013 和 Visual Studio 2015 的已知問題
  
-1. 以位置為目標的觸發 WebJob 發佈會顯示錯誤，並且不會設定排程，不過它會將 WebJob 推送到 Azure。需要已排程工作的客戶可以使用 Azure 入口網站來設定 WebJob 的排程。 
-2. Python 客戶可能會遭遇到偵錯工具問題。服務小組即將推出此問題的修正，不過如果客戶受到影響，請透過論壇、公告部落格或版本資訊意見區段知會 Microsoft。 
-3. 某些區域 (如印度南部) 的客戶將遭遇 App Service 佈建錯誤。這個情況與入口網站相符，遭遇這個問題的客戶可以使用 Azure 入口網站來要求這些地理區域的發佈權限。一旦使用 Azure 入口網站來要求這些區域的存取權限後，佈建應該能正常運作。 
+1. 以位置為目標的觸發 WebJob 發佈會顯示錯誤，並且不會設定排程，不過它會將 WebJob 推送到 Azure。需要已排程工作的客戶可以使用 Azure 入口網站來設定 WebJob 的排程。
+2. Python 客戶可能會遭遇到偵錯工具問題。服務小組即將推出此問題的修正，不過如果客戶受到影響，請透過論壇、公告部落格或版本資訊意見區段知會 Microsoft。
+3. 某些區域 (如印度南部) 的客戶將遭遇 App Service 佈建錯誤。這個情況與入口網站相符，遭遇這個問題的客戶可以使用 Azure 入口網站來要求這些地理區域的發佈權限。一旦使用 Azure 入口網站來要求這些區域的存取權限後，佈建應該能正常運作。
 
 ##Azure SDK for .NET 2.8.2
 
@@ -103,4 +103,4 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

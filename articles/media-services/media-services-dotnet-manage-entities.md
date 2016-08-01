@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="05/03/2016"
+ 	ms.date="07/18/2016"
 	ms.author="juliako"/>
 
 
@@ -28,16 +28,16 @@
 
 本主題示範如何完成下列的媒體服務管理工作：
 
-- 取得資產參考 
-- 取得工作參考 
-- 列出所有資產 
-- 列出工作和資產 
-- 列出所有存取原則 
+- 取得資產參考
+- 取得工作參考
+- 列出所有資產
+- 列出工作和資產
+- 列出所有存取原則
 - 列出所有定位器
 - 透過實體的大型集合列舉
-- 刪除資產 
-- 刪除工作 
-- 刪除存取原則 
+- 刪除資產
+- 刪除工作
+- 刪除存取原則
 
 ##必要條件 
 
@@ -381,4 +381,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

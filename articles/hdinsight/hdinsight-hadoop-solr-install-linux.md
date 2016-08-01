@@ -29,6 +29,10 @@
 
 [Apache Solr](http://lucene.apache.org/solr/features.html) 是可對資料執行強大全文搜尋作業的企業搜尋平台。Hadoop 可儲存和管理大量資料，而 Apache Solr 則是提供搜尋功能以便快速擷取資料。本主題說明如何自訂 HDInsight 叢集以安裝 Solr。
 
+> [AZURE.WARNING] 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
+>
+> 自訂元件 (例如 Solr) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
+
 ## 指令碼會執行哪些作業
 
 此指令碼可以對 HDInsight 叢集進行下列變更：
@@ -170,7 +174,7 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。Solr 儀�
     
     3. 選取以 __hn0__ 開頭的項目。當頁面開啟時，主機名稱會顯示在頂端。主機名稱的格式為 __hn0-PARTOFCLUSTERNAME.randomcharacters.cx.internal.cloudapp.net__。這是您連接到 Solr 儀表板時必須使用的主機名稱。
     
-1. 在瀏覽器中，連接到 \_\___http://HOSTNAME:8983/solr/#/__，其中 __HOSTNAME__ 是您在先前步驟中決定的名稱。
+1. 在瀏覽器中，連接到 __http://HOSTNAME:8983/solr/#/__，其中 __HOSTNAME\_\_ 是您在先前步驟中決定的名稱。
 
     此要求應該會透過 SSH 通道路由傳送至您的 HDInsight 叢集的前端節點。您應該會看到如下所示的頁面：
 
@@ -294,17 +298,17 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。Solr 儀�
 
 ## 另請參閱
 
-- [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。色調是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
+- [在 HDInsight 叢集上安裝及使用 Hue](hdinsight-hadoop-hue-linux.md)。Hue 是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
 
 - [在 HDInsight 叢集上安裝 R][hdinsight-install-r]。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 R。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
 
 - [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Giraph。Giraph 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。
 
-- [在 HDInsight 叢集上安裝色調](hdinsight-hadoop-hue-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝色調。色調是一組 Web 應用程式，用來與 Hadoop 叢集互動。
+- [在 HDInsight 叢集上安裝 Hue](hdinsight-hadoop-hue-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Hue。Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。
 
 
 
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

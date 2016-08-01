@@ -160,6 +160,28 @@
 
 >[AZURE.NOTE] 後續移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。如果這是常見情況，那麼多數散發套件會提供 `nofail` 和/或 `nobootwait` fstab 選項，即使磁碟在開機時無法掛接，也能讓系統開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
 
+### Azure 中 Linux 的 TRIM/UNMAP 支援
+有些 Linux 核心將會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。這主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。如果您建立大型檔案，然後再將它們刪除，這便可節省成本。
+
+有兩種方式可在 Linux VM 中啟用 TRIM 支援。像往常一樣，請參閱您的散發套件以了解建議的方法︰
+
+- 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
+
+		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
+
+- 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
+
+	**Ubuntu**
+
+		# sudo apt-get install util-linux
+		# sudo fstrim /datadrive
+
+	**RHEL/CentOS**
+
+		# sudo yum install util-linux
+		# sudo fstrim /datadrive
+
+
 ## 後續步驟
 您可以閱讀下列文章來進一步了解如何使用 Linux VM：
 
@@ -167,10 +189,10 @@
 
 - [如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md)
 
-- [搭配傳統部署模型使用 Azuer CLI](../virtual-machines-command-line-tools.md)
+- [搭配傳統部署模型使用 Azure CLI](../virtual-machines-command-line-tools.md)
 
 <!--Link references-->
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-classic-log-on.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

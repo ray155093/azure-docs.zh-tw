@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/11/2016"
+   ms.date="07/14/2016"
    ms.author="amitsriva" />
 
 #應用程式閘道的診斷記錄功能
 
-您可以在 Azure 中使用不同類型的記錄檔來管理和針對應用程式閘道進行疑難排解。透過入口網站可以存取其中一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔並且在不同的工具中進行檢視，例如 Excel 和 PowerBI。您可以從下列清單進一步了解不同類型的記錄檔。
+您可以在 Azure 中使用不同類型的記錄檔來管理和針對應用程式閘道進行疑難排解。透過入口網站可以存取其中一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔並且在不同的工具中進行檢視，例如 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)、Excel 和 PowerBI。您可以從下列清單進一步了解不同類型的記錄檔。
 
 - **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../azure-portal/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您的 Azure 訂用帳戶的所有作業及其狀態。預設會啟用稽核記錄檔，並可在 Azure Preview 入口網站中進行檢視。
 - **存取記錄檔︰**您可以使用此記錄檔來檢視應用程式閘道存取模式及分析重要資訊，包括呼叫端的 IP、要求的 URL、回應延遲、傳回碼、輸入和輸出位元組。每隔 300 秒會收集一次存取記錄檔。此記錄檔包含每個應用程式閘道執行個體的一筆記錄。應用程式閘道執行個體可以由 'instanceId' 屬性識別。
@@ -30,9 +30,9 @@
 ##啟用記錄
 每個資源管理員資源都會隨時自動啟用稽核記錄。您需要啟用存取和效能記錄功能，才能開始收集可透過這些記錄檔取得的資料。若要啟用記錄，請遵循下列步驟。
 
-1. 請記下您的儲存體帳戶的資源識別碼 (記錄檔資料將儲存在其中)。其形式如下：/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Storage/storageAccounts/<storage account name>。您訂用帳戶中的所有儲存體帳戶均可使用。您可以使用 Preview 入口網站來尋找此資訊。![Preview入口網站 - 應用程式閘道診斷](./media/application-gateway-diagnostics/diagnostics1.png)
+1. 請記下您的儲存體帳戶的資源識別碼 (記錄檔資料將儲存在其中)。其形式如下：/subscriptions/<subscriptionId>/resourceGroups/<資源群組名稱>/providers/Microsoft.Storage/storageAccounts/<儲存體帳戶名稱>。您訂用帳戶中的所有儲存體帳戶均可使用。您可以使用 Preview 入口網站來尋找此資訊。![Preview入口網站 - 應用程式閘道診斷](./media/application-gateway-diagnostics/diagnostics1.png)
  
-2. 請記下您的應用程式閘道的資源識別碼 (將為其啟用記錄功能)。其形式如下：/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name>。您可以使用 Preview 入口網站來尋找此資訊。![Preview入口網站 - 應用程式閘道診斷](./media/application-gateway-diagnostics/diagnostics2.png)
+2. 請記下您的應用程式閘道的資源識別碼 (將為其啟用記錄功能)。其形式如下：/subscriptions/<subscriptionId>/resourceGroups/<資源群組名稱>/providers/Microsoft.Network/applicationGateways/<應用程式閘道名稱>。您可以使用 Preview 入口網站來尋找此資訊。![Preview入口網站 - 應用程式閘道診斷](./media/application-gateway-diagnostics/diagnostics2.png)
 
 3. 使用下列 Powershell Cmdlet 啟用診斷記錄功能。
 
@@ -96,14 +96,17 @@
 - **Azure 工具︰**透過 Azure PowerShell、Azure 命令列介面 (CLI)、Azure REST API 或 Azure Preview 入口網站，從稽核記錄擷取資訊。[稽核作業與資源管理員](../resource-group-audit.md)一文會詳述每個方法的逐步指示。
 - **Power BI︰**如果還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-audit-logs/)，您可以使用預先設定的儀表板 (可按原樣使用或加以自訂) 來分析資料。
 
-## 檢視和分析計數器和事件記錄檔 
-您需要連接到儲存體帳戶並擷取事件和計數器記錄檔的 JSON 記錄項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
+## 檢視及分析存取和效能記錄檔 
+Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 可以從 Blob 儲存體帳戶收集計數器和事件記錄檔，並納入視覺效果和強大的搜尋功能來分析您的記錄檔。
+
+您也可以連接到儲存體帳戶並擷取存取和效能記錄檔的 JSON 記錄檔項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
 
 >[AZURE.TIP] 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的[記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
 
 ## 後續步驟
 
+- 利用 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 以視覺化方式呈現計數器和事件記錄檔
 - [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
 - [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="07/19/2016" 
 	ms.author="josephd"/>
 
 # 在混合式雲端中設定 Office 365 Directory 同步處理 (DirSync) 進行測試
@@ -80,7 +80,7 @@
 
 從 Azure 入口網站，視需要啟動 DC2 電腦。
 
-接下來，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 DS1 的 Azure 虛擬機器。在執行這些命令之前，先填入變數值並移除 < and > 字元。
+接下來，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 DS1 的 Azure 虛擬機器。執行這些命令之前，請先填入變數值並移除 < 和 > 字元。
 
 	$rgName="<your resource group name>"
 	$locName="<your Azure location, such as West US>"
@@ -114,7 +114,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
-系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
+當系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
 重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 DS1。
 
@@ -130,13 +130,13 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 4.	出現 [您要啟用 Active Directory 同步處理嗎?] 的提示時，按一下 [啟用]。執行此動作後，步驟 3 將顯示 [Active Directory 同步處理已啟動]。
 5.	在 CLIENT1 上保持開啟 [設定及管理 Active Directory 同步處理] 頁面。
 
-接下來，從 DC1 的 Windows PowerShell 提示字元中，「逐一」執行這些命令，以建立名為 contoso\_users 的新組織單位，以及為 Marci Kaufman 和 Lynda Meyer 新增兩個使用者帳戶。
+接下來，從 DC1 的 Windows PowerShell 提示字元中，「逐一」執行這些命令以建立名為 contoso\_users 的新組織單位，並為 Marci Kaufman 和 Lynda Meyer 新增兩個使用者帳戶。
 
 	New-ADOrganizationalUnit -Name contoso_users -Path "DC=corp,DC=contoso,DC=com"
 	New-ADUser -SamAccountName marcik -AccountPassword (Read-Host "Set user password" -AsSecureString) -name "Marci Kaufman" -enabled $true -PasswordNeverExpires $true -ChangePasswordAtLogon $false -Path "OU=contoso_users,DC=corp,DC=contoso,DC=com"
 	New-ADUser -SamAccountName lyndam -AccountPassword (Read-Host "Set user password" -AsSecureString) -name "Lynda Meyer" -enabled $true -PasswordNeverExpires $true -ChangePasswordAtLogon $false -Path "OU=contoso_users,DC=corp,DC=contoso,DC=com"
 
-您執行各個 **New-ADUser** Windows PowerShell 命令時，系統會提示您輸入新使用者的密碼。記錄這些密碼並儲存於安全之處。稍後您將需要這些資訊。
+當您執行各個 **New-ADUser** Windows PowerShell 命令時，系統會提示您輸入新使用者的密碼。記錄這些密碼並儲存於安全之處。稍後您將需要這些資訊。
 
 接下來，在 DS1 上安裝及設定 Azure AD Connect 工具。
 
@@ -179,4 +179,4 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 - 在[生產環境](http://technet.microsoft.com/library/dn635310.aspx)中部署此工作負載。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

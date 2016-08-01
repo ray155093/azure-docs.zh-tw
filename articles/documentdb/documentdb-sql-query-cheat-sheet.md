@@ -19,7 +19,7 @@
 
 # DocumentDB SQL 功能提要 PDF 檔
 
-**DocumentDB SQL 查詢功能提要**中顯示常用的查詢、關鍵字、內建函式和運算子，可協助您快速撰寫 DocumentDB 資料查詢，且其格式適合列印成 PDF 檔參考表格。
+**DocumentDB SQL 查詢功能提要**中顯示常用的資料庫查詢、關鍵字、內建函式和運算子，可協助您快速撰寫 DocumentDB 資料查詢，且其格式適合列印成 PDF 檔參考表格。
 
 DocumentDB 支援使用 [SQL](documentdb-sql-query.md) 的關聯式、階層式、和空間式的 JSON 文件查詢，不需要指定結構描述或次要索引。除了標準的 ANSI-SQL 關鍵字和運算子，DocumentDB 也支援 JavaScript 使用者定義函數 (UDF)、JavaScript 運算子和許多的內建函數。
 
@@ -39,4 +39,4 @@ DocumentDB 支援使用 [SQL](documentdb-sql-query.md) 的關聯式、階層式�
 - 如需 DocumentDB 中可用查詢選項的逐步說明，請參閱[查詢 DocumentDB](documentdb-sql-query.md)。
 - 如需相關的參考文件，請參閱 [DocumentDB SQL 查詢語言](https://msdn.microsoft.com/library/azure/dn782250.aspx)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

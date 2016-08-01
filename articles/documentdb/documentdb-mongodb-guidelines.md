@@ -18,7 +18,7 @@
 
 # 預覽具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶的開發指導方針
 
-您可以透過任何開放原始碼 MongoDB 用戶端[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)與 DocumentDB 通訊。MongoDB 的通訊協定支援假設 MongoDB 用戶端驅動程式與 MongoDB 2.6 或更新版本的伺服器端點進行通訊。DocumentDB 藉由遵守 MongoDB [連線通訊協定](https://docs.mongodb.org/manual/reference/mongodb-wire-protocol/) 2.6 版來支援這項工作，(請注意，連線通訊協定 3.2 版幾乎完全支援，但是某些用戶端體驗，例如 3.2 版 MongoDB 殼層工作階段可能表示它們會「降級到舊版模式」)。
+您可以透過任何開放原始碼 MongoDB 用戶端[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)與 Azure DocumentDB 通訊。MongoDB 的通訊協定支援假設 MongoDB 用戶端驅動程式與 MongoDB 2.6 或更新版本的伺服器端點進行通訊。DocumentDB 藉由遵守 MongoDB [連線通訊協定](https://docs.mongodb.org/manual/reference/mongodb-wire-protocol/) 2.6 版來支援這項工作，(請注意，連線通訊協定 3.2 版幾乎完全支援，但是某些用戶端體驗，例如 3.2 版 MongoDB 殼層工作階段可能表示它們會「降級到舊版模式」)。
 
 DocumentDB 支援核心 MongoDB API 函式來建立、讀取、更新和刪除 (CRUD) 資料，以及查詢資料庫。實作的功能已根據常見的平台、架構、工具和應用程式模式的需求設定優先順序。
 
@@ -100,4 +100,4 @@ QueryPlan 快取| | |-all-
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

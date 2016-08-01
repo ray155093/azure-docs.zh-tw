@@ -22,17 +22,17 @@
 
 本文件說明一些最常見的 Microsoft Azure 限制。請注意，這目前未涵蓋所有 Azure 服務。這些限制將隨著時間擴展並更新以涵蓋更多平台。
 
-> [AZURE.NOTE] 如果您想要將限制提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) 。您無法將限制提升到高於下表中所示的**上限**值。如果沒有**上限**欄，指定的資源即沒有可調整的限制。
+> [AZURE.NOTE] 如果您想要將限制提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。您無法將限制提升到高於下表中所示的**上限**值。如果沒有**上限**欄，指定的資源即沒有可調整的限制。
 
 ## 限制和 Azure 資源管理員
 
-現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。如需 Azure 資源群組的詳細資訊，請參閱[使用資源群組管理您的 Azure 資源](azure-portal/resource-group-portal.md) 。
+現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)。
 
 在以下的限制中，已加入了新資料表，以反映在使用 Azure 資源管理員時的限制方面的任何差異。例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure 資源管理員**資料表。當某個限制同時適用於這兩個案例時，只會顯示在第一個資料表中。除非另有說明，限制在所有區域中全域適用。
 
 > [AZURE.NOTE] 請務必強調 Azure 資源群組中資源的配額是基於您的訂閱可以存取的每一區域，而不是每一訂閱 (服務管理配額則是)。讓我們以核心配額為例。如果您需要要求增加配額以支援核心，您必須決定您想要在哪些區域中使用多少個核心，然後提出 Azure 資源群組核心配額的特定要求，以取得您想要的數量和區域。因此，如果您需要在西歐使用 30 個核心以在該處執行應用程式，您應該在西歐特別要求 30 個核心。但是您在任何其他區域中的核心配額將不會增加 -- 僅西歐會有 30 個核心配額。
 <!-- -->
-因此，考慮決定每個區域中您的工作負載所需的 Azure 資源群組配額，並在要考慮部署的每個區域中要求該數量可能會有所幫助。請參閱[移難排解部署問題](./resource-manager-common-deployment-errors.md) ，以取得探索您特定區域目前的配額的其他說明。
+因此，考慮決定每個區域中您的工作負載所需的 Azure 資源群組配額，並在要考慮部署的每個區域中要求該數量可能會有所幫助。請參閱[移難排解部署問題](./resource-manager-common-deployment-errors.md)，以取得探索您特定區域目前的配額的其他說明。
 
 
 ## 特定服務的限制
@@ -66,7 +66,7 @@
 - [資源群組](#resource-group-limits)
 - [排程器](#scheduler-limits)
 - [Search](#search-limits)
-- [服務匯流排 (英文) ](#service-bus-limits)
+- [服務匯流排 (英文)](#service-bus-limits)
 - [站台復原](#site-recovery-limits)
 - [SQL Database](#sql-database-limits)
 - [儲存體](#storage-limits)
@@ -125,7 +125,7 @@
 
 ### 儲存體限制
 
-如需儲存體帳戶限制的其他詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md) 。
+如需儲存體帳戶限制的其他詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md)。
 
 #### 儲存體服務限制
 
@@ -135,7 +135,7 @@
 
 [AZURE.INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
-如需其他詳細資訊，請參閱[虛擬機器大小](../articles/virtual-machines/virtual-machines-linux-sizes.md) 。
+如需其他詳細資訊，請參閱[虛擬機器大小](../articles/virtual-machines/virtual-machines-linux-sizes.md)。
 
 **標準儲存體帳戶**
 
@@ -178,7 +178,7 @@
 
 [AZURE.INCLUDE [azure-documentdb-limits](../includes/azure-documentdb-limits.md)]
 
-以星號 (*) 列出的配額[可以透過聯絡 Azure 支援人員來進行調整](./documentdb/documentdb-increase-limits.md) 。
+以星號 (*) 列出的配額[可以透過聯絡 Azure 支援人員來進行調整](./documentdb/documentdb-increase-limits.md)。
 
 ### Mobile Engagement 限制
 
@@ -191,7 +191,7 @@
 
 - 「免費」多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
 - 「基本」可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
-- 「標準 (S1、 S2、 S3、 S3 高密度) 」適用於較大型生產工作負載。標準層內具有多個層級，如此就能讓您針對特定案例選擇資源組態。
+- 「標準 (S1、S2、S3、S3 高密度)」適用於較大型生產工作負載。標準層內具有多個層級，如此就能讓您針對特定案例選擇資源組態。
 
 **每一訂用帳戶的限制**
 
@@ -201,7 +201,7 @@
 
 [AZURE.INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱[Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md) 。
+如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱[Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
 
 ### 媒體服務限制
 
@@ -243,7 +243,7 @@
 | 限制識別碼 | 限制 | 註解 |
 |----------------- | ------------|--------- |
 | 每個區域的每個訂用帳戶串流單位數目上限 | 50 | 如需要求將訂用帳戶的串流單位數目增加至 50 個以上，請連絡 [Microsoft 支援](https://support.microsoft.com/zh-TW)。 |
-| 串流單位的最大輸送量 | 1 MB/秒* | 每個 SU 的最大輸送量取決於視案例。實際的輸送量可能較低，而且取決於查詢複雜性和資料分割。可在[調整 Azure 串流分析工作以增加輸送量](../articles/stream-analytics/stream-analytics-scale-jobs.md) 文章中找到進一步的詳細資料。 |
+| 串流單位的最大輸送量 | 1 MB/秒* | 每個 SU 的最大輸送量取決於視案例。實際的輸送量可能較低，而且取決於查詢複雜性和資料分割。可在[調整 Azure 串流分析工作以增加輸送量](../articles/stream-analytics/stream-analytics-scale-jobs.md)文章中找到進一步的詳細資料。 |
 
 ### Active Directory 限制
 
@@ -291,11 +291,11 @@
 [AZURE.INCLUDE [azure-mfa-service-limits](../includes/azure-mfa-service-limits.md)]
 
 ### 自動化限制
-[AZURE.INCLUDE [automation-limits](../includes/azure-automation-service-limits.md)]
+[AZURE.INCLUDE [自動化限制](../includes/azure-automation-service-limits.md)]
 
 ### SQL Database 限制
 
-如需 SQL Database 的限制，請參閱 [SQL Database 資源限制](sql-database/sql-database-resource-limits.md) 。
+如需 SQL Database 的限制，請參閱 [SQL Database 資源限制](sql-database/sql-database-resource-limits.md)。
 
 ## 另請參閱
 
@@ -305,4 +305,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!----HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

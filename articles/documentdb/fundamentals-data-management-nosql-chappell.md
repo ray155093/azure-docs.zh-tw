@@ -29,10 +29,10 @@
  - 區分操作資料 (由應用程式讀取和寫入) 與分析資料 (用來提供商業智慧 (BI)) 間的不同，以協助您決定符合需求的理想技術。
  - 快速檢閱關聯式技術。
  - 各種 Azure NoSQL 技術的簡介：DocumentDB、資料表儲存體、HBase 和 HDInsight。
- - NoSQL 技術和 Azure SQL Database 的比較。 
- - 何時該使用 DocumentDB、表格儲存體、HBase、HDInsight 和 提供認證 (登入和密碼)。
+ - NoSQL 技術和 Azure SQL Database 的比較。
+ - 何時使用 Azure DocumentDB、表格儲存體、HBase、HDInsight 和 提供認證 (登入和密碼)。
 
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

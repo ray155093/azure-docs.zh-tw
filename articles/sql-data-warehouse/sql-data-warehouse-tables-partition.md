@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/29/2016"
+   ms.date="07/18/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 在 SQL 資料倉儲中分割資料表
@@ -146,6 +146,8 @@ AND     rp.[name]    = 'SloDWPool'
 
 ## 分割切換
 
+SQL 資料倉儲支援資料分割、合併和切換。這些功能是使用 [ALTER TABLE][] 陳述式執行。
+
 若要切換兩個資料表間的分割，您必須確定分割對齊其各自的界限，而且資料表定義相符。檢查條件約束不適用於強制資料表中的值範圍，來源資料表必須包含與目標資料表相同的分割界限。如果情況不是如此，則分割切換將會失敗，因為分割中繼資料不會同步處理。
 
 ### 如何分割包含資料的分割
@@ -187,7 +189,7 @@ CREATE STATISTICS Stat_dbo_FactInternetSales_OrderDateKey ON dbo.FactInternetSal
 
 > [AZURE.NOTE] 藉由建立統計資料物件，我們確定資料表中繼資料更加精確。如果我們省略了建立統計資料，SQL 資料倉儲將會使用預設值。如需統計資料的詳細資訊，請檢閱[統計資料][]。
 
-我們可以接著運用 `sys.partitions` 目錄檢視，查詢資料列計數：
+我們可以接著使用 `sys.partitions` 目錄檢視，查詢資料列計數：
 
 ```sql
 SELECT  QUOTENAME(s.[name])+'.'+QUOTENAME(t.[name]) as Table_name
@@ -372,6 +374,7 @@ DROP TABLE #partitions;
 
 <!-- MSDN Articles -->
 [分割資料表和索引]: https://msdn.microsoft.com/library/ms190787.aspx
+[ALTER TABLE]: https://msdn.microsoft.com/zh-TW/library/ms190273.aspx
 [CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
 [資料分割函式]: https://msdn.microsoft.com/library/ms187802.aspx
 [資料分割配置]: https://msdn.microsoft.com/library/ms179854.aspx
@@ -379,4 +382,4 @@ DROP TABLE #partitions;
 
 <!-- Other web references -->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

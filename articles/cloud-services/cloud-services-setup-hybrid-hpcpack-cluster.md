@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="07/14/2016"
 	ms.author="danlep"/>
 
 
-# 使用 Microsoft HPC Pack 和隨選 Azure 背景工作執行個體設定混合式高效能運算 (HPC) 叢集
+# 使用 Microsoft HPC Pack 和隨選 Azure 計算節點設定混合式高效能計算 (HPC) 叢集
 
 使用 Microsoft HPC Pack 2012 R2 和 Azure 設定小型的混合式高效能運算 (HPC) 叢集。此叢集將包含一個內部部署的前端節點 (一部執行 Windows Server 作業系統和 HPC Pack 的電腦)，和一些您視需要部署在 Azure 雲端服務中作為背景工作角色執行個體的計算節點。然後，您便可以在混合式叢集上執行計算作業。
 
@@ -33,11 +33,9 @@
 
 * **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
 
-* **一部執行 Windows Server 2012 R2 或 Windows Server 2012 的內部部署電腦** - 這部電腦將作為 HPC 叢集的前端節點。如果您目前執行的不是 Windows Server，可以下載並安裝[評估版](http://technet.microsoft.com/evalcenter/dn205286.aspx)。
+* **一部執行 Windows Server 2012 R2 或 Windows Server 2012 的內部部署電腦** - 這部電腦將作為 HPC 叢集的前端節點。如果您目前執行的不是 Windows Server，可以下載並安裝[評估版](https://www.microsoft.com/evalcenter/evaluate-windows-server-2012-r2)。
 
-	* 電腦必須加入 Active Directory 網域。
-
-	* 確定沒有安裝任何其他伺服器角色或角色服務。
+	* 電腦必須加入 Active Directory 網域。若為全新安裝 Windows Server 的測試案例，您可以加入 Active Directory 網域服務伺服器角色，並將前端節點電腦升級為新的網域樹系的網域控制站 (請參閱 Windows Server 的文件)。
 
 	* 為了支援 HPC Pack，作業系統必須以下列其中一種語言安裝：英文、日文或簡體中心。
 
@@ -84,7 +82,7 @@
 	![完成][install_hpc7]
 
 ## 準備 Azure 訂閱
-使用 [Azure 傳統入口網站](https://manage.windowsazure.com)對您的 Azure 訂用帳戶執行下列步驟。您必須執行這些步驟，稍後才能從內部部署前端節點部署 Azure 節點。
+使用 [Azure 傳統入口網站](https://manage.windowsazure.com)對您的 Azure 訂用帳戶執行下列步驟。您必須執行這些步驟，稍後才能從內部部署前端節點部署 Azure 節點。詳細程序位於後續幾節。
 
 - 上傳管理憑證 (前端節點與 Azure 服務之間的安全連線所需)
 
@@ -92,7 +90,7 @@
 
 - 建立 Azure 儲存體帳戶
 
-	>[AZURE.NOTE]請一併記下您的 Azure 訂用帳戶識別碼，稍後將需要用到。這項資訊可在您的 Azure [帳戶資訊](https://account.windowsazure.com/Subscriptions)中找到。
+	>[AZURE.NOTE]請一併記下您的 Azure 訂用帳戶識別碼，稍後將需要用到。按一下 [設定] > [訂用帳戶]，即可在傳統入口網站中找到此項目。
 
 ### 上傳預設管理憑證
 HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Microsoft HPC Azure Management 憑證)，您可以將它上傳作為 Azure 管理憑證。這個憑證是為了方便進行測試及概念證明部署而提供。
@@ -195,13 +193,13 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 在本教學課程中，您將需要新增兩個小型節點。
 
-1. 在 HPC 叢集管理員中，於 [節點管理]\(在某些版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [加入節點]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [加入節點]。
 
 	![Add Node][add_node1]
 
 2. 在 [新增節點精靈] 中，於 [選取部署方法] 頁面上，按一下 [Add Azure nodes]，然後按 [下一步]。
 
-	![Add Azure Node][add_node1_1]
+	![Add Azure Node][add\_node1\_1]
 
 3. 在 [Specify New Nodes] 頁面上，選取您先前建立的 Azure 節點範本 (預設稱為 [Default AzureNode Template])。接著，指定 [2] 個大小為 [小型] 的節點，然後按 **[下一步]**。
 
@@ -218,7 +216,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 ## 啟動 Azure 節點
 當您想要使用 Azure 中的叢集資源時，請使用 HPC 叢集管理員來啟動 (佈建) Azure 節點並讓節點上線。
 
-1.	在 HPC 叢集管理員中，於 [節點管理] \(在某些版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
+1.	在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
 
 	![Start Nodes][add_node4]
 
@@ -232,7 +230,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 3. 幾分鐘之後，Azure 節點就會完成佈建並處於 [離線] 狀態。在此狀態下，角色執行個體已在執行，但還沒準備要接受叢集工作。
 
-4. 若要確認角色執行個體已在執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] > *您雲端服務的名稱* > [執行個體]。
+4. 若要確認角色執行個體已在執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] >「您雲端服務的名稱」> [執行個體]。
 
 	![Running Instances][view_instances1]
 
@@ -260,7 +258,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 ## 執行測試工作
 
-現在提交一個在混合式叢集上執行的測試作業。這個範例是簡單的「參數式掃掠」作業 (一種本質平行計算)。本例會執行使用 **set /a** 命令將整數加入自己本身的子工作。叢集中的所有節點皆參與完成從 1 到 100 之整數的子工作。
+現在提交一個在混合式叢集上執行的測試作業。這個範例是非常簡單的參數式掃掠作業 (一種本質平行計算)。本例會執行使用 **set /a** 命令將整數加入自己本身的子工作。叢集中的所有節點皆參與完成從 1 到 100 之整數的子工作。
 
 1. 在 HPC 叢集管理員中，於 [工作管理] 的 [動作] 窗格中，按一下 [New Parametric Sweep Job]。
 
@@ -284,7 +282,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 試驗完叢集之後，請停止 Azure 節點，以避免給您的帳戶產生不必要的費用。這樣會停止雲端服務並移除 Azure 角色執行個體。
 
-1. 在 HPC 叢集管理員中，於 [節點管理]\(在某些版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。然後，在 [動作] 窗格中，按一下 [停止]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。然後，在 [動作] 窗格中，按一下 [停止]。
 
 	![Stop Nodes][stop_node1]
 
@@ -296,7 +294,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 	![Not Deployed Nodes][stop_node4]
 
-4. 若要確認角色執行個體已不再於 Azure 中執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] > *您雲端服務的名稱* > [執行個體]。將不會有任何執行個體部署於生產環境中。
+4. 若要確認角色執行個體已不再於 Azure 中執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] >「您雲端服務的名稱」> [執行個體]。將不會有任何執行個體部署於生產環境中。
 
 	![No Instances][view_instances2]
 
@@ -308,8 +306,8 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 * 若要設定較大規模的混合式 HPC Pack 叢集部署，請參閱 [Burst to Azure with Microsoft HPC Pack (使用 Microsoft HPC Pack 高載至 Azure 背景工作角色執行個體)](http://go.microsoft.com/fwlink/p/?LinkID=200493)。
 
-* 如需在 Azure 中建立 HPC Pack 叢集的其他方式，包括使用 Azure Resource Manager 範本，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項](../virtual-machines/virtual-machines-linux-hpcpack-cluster-options.md)。
-* 如需 Azure 中大量運算範圍和 HPC 雲端方案的詳細資訊，請參閱 [Azure 中的大量運算：批次和高效能運算 (HPC) 的技術資源](../batch/big-compute-resources.md)。
+* 如需在 Azure 中建立 HPC Pack 叢集的其他方式，包括使用 Azure Resource Manager 範本，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md)。
+* 如需 Azure 中大量計算範圍和 HPC 雲端方案的詳細資訊，請參閱 [Azure 中的大量計算：Batch 和高效能計算 (HPC) 的技術資源](../batch/big-compute-resources.md)。
 
 
 [Overview]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/hybrid_cluster_overview.png
@@ -331,7 +329,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 [config_hpc12]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/config_hpc12.png
 [config_hpc13]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/config_hpc13.png
 [add_node1]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add_node1.png
-[add_node1_1]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add_node1_1.png
+[add\_node11]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add\_node11.png
 [add_node2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add_node2.png
 [add_node3]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add_node3.png
 [add_node4]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/add_node4.png
@@ -349,4 +347,4 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 [stop_node4]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/stop_node4.png
 [view_instances2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/view_instances2.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/01/2016"
+   ms.date="07/13/2016"
    ms.author="masashin"/>
 
 # 重試服務的特定指引
@@ -39,7 +39,7 @@
 | **[DocumentDB](#documentdb-pre-release-retry-guidelines)** | 服務原生 | 不可設定 | 全域 | TraceSource |
 | **[搜尋](#search-retry-guidelines)** | Topaz* (具有自訂偵測策略) | 宣告與程式設計 | 程式碼區塊 | 自訂 |
 | **[Active Directory](#azure-active-directory-retry-guidelines)** | Topaz* (具有自訂偵測策略) | 宣告與程式設計 | 程式碼區塊 | 自訂 |
-**Topaz 是 <a href="http://msdn.microsoft.com/library/dn440719.aspx">Enterprise Library 6.0</a> 中所包含暫時性錯誤處理應用程式區塊的好記名稱。您可以將自訂偵測策略與 Topaz 搭配，用於大多數的服務，如本指引所述。Topaz 的預設策略顯示在本指引結尾的[暫時性錯誤處理應用程式區塊 (Topaz) 策略](#transient-fault-handling-application-block-topaz-strategies)一節中。請注意，區塊現在是開放原始碼的架構，且 Microsoft 不直接支援。
+*Topaz 是 <a href="http://msdn.microsoft.com/library/dn440719.aspx">Enterprise Library 6.0</a> 中所包含暫時性錯誤處理應用程式區塊的好記名稱。您可以將自訂偵測策略與 Topaz 搭配，用於大多數的服務，如本指引所述。Topaz 的預設策略顯示在本指引結尾的[暫時性錯誤處理應用程式區塊 (Topaz) 策略](#transient-fault-handling-application-block-topaz-strategies)一節中。請注意，區塊現在是開放原始碼的架構，且 Microsoft 不直接支援。
 
 > [AZURE.NOTE] 對於大多數的 Azure 內建重試機制而言，目前還無法為重試原則中所包含功能之外的不同類型錯誤或例外狀況套用不同的重試原則。因此在撰寫本文時的最佳指引是，設定一個可提供最佳平均效能和可用性的原則。微調原則的一種方法，就是分析記錄檔來判斷正在發生的暫時性錯誤類型。例如，如果大部分的錯誤與網路連線問題有關，您可能會嘗試立即重試，而非等待一段時間後才第一次重試。
 
@@ -683,7 +683,7 @@ StackExchange.Redis 用戶端會使用透過一組選項設定的連接管理員
 
 ### 原則組態 (Azure Redis 快取)
 
-重試原則是以程式設計的方式設定的，做法是先設定用戶端的選項，再連接至快取。做法是建立 **ConfigurationOptions** 類別的執行個體、填入其屬性，並將它傳遞給 **Connect** 方法。
+重試原則是以程式設計的方式設定的，做法是先設定用戶端的選項，再連接至快取。做法是建立 **ConfigurationOptions** 類別的執行個體、填入其屬性，並將它傳遞給 **Connect ** 方法。
 
 ```csharp
 var options = new ConfigurationOptions { EndPoints = { "localhost" },
@@ -1107,4 +1107,4 @@ var result = await policy.ExecuteAsync(() => authContext.AcquireTokenAsync(resou
 | **線性 (固定間隔)** | retryCount<br />retryInterval<br />fastFirstRetry<br /> | 10<br />1 秒<br />true | 重試次數。<br />重試之間的延遲。<br />是否立即進行第一次重試嘗試。 |
 如需使用暫時性錯誤處理應用程式區塊的範例，請參閱本指引中稍早＜範例＞各節中有關使用 ADO.NET 和 Azure Active Directory 的 Azure SQL Database 說明。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -108,7 +108,7 @@ NXOAuth2Client 程式庫要求設定一些值。完成這項工作之後，您�
 - 讓我們在 `LoginViewController.m` 檔案中加入一些值，以便針對驗證和授權來設定內容。和放在程式碼後面的值有關的詳細資訊。
 
 	```objc
-	NSString *scopes = @"offline_access User.ReadBasic.All";
+	NSString *scopes = @"openid offline_access User.Read";
 	NSString *authURL = @"https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
 	NSString *loginURL = @"https://login.microsoftonline.com/common/login";
 	NSString *bhh = @"urn:ietf:wg:oauth:2.0:oob?code=";
@@ -124,7 +124,7 @@ NXOAuth2Client 程式庫要求設定一些值。完成這項工作之後，您�
 
 讓我們看看程式碼的詳細資料。
 
-第一個字串是用於 `scopes`。`User.ReadBasic.All` 值可讓您讀取目錄中所有使用者的基本設定檔。
+第一個字串是用於 `scopes`。`User.Read` 值可讓您讀取已登入使用者的基本設定檔。
 
 您可以在 [Microsoft Graph 權限範圍](https://graph.microsoft.io/docs/authorization/permission_scopes)，深入了解所有可用範圍。
 
@@ -588,4 +588,4 @@ NSArray *accounts = [store accountsWithAccountType:@"myGraphService"];
 
 我們鼓勵您造訪[安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

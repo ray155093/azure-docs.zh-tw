@@ -56,6 +56,29 @@ v2.0 端點目前不支援此流程，也就是說應用程式只能在互動式
 
 在新的應用程式註冊入口網站中註冊的應用程式，目前僅限一組受限的 redirect\_uri 值。Web 應用程式和服務的 redirect\_uri 必須以配置或 `https` 開頭，而所有其他平台的 redirect\_uri 則必須使用 `urn:ietf:oauth:2.0:oob` 的硬式編碼值。
 
+## 重新導向 URI 的限制
+對於 Web 應用程式，redirect\_uri 值必須全部共用單一 DNS 網域。例如，不可以登錄具有具有 redirect\_uri 的 Web 應用程式︰
+
+`https://login-east.contoso.com` `https://login-west.contoso.com`
+
+註冊系統會比較現有 redirect\_uri 的完整 DNS 名稱與您要新增的 redirect\_uri 的 DNS 名稱。如果新 redirect\_uri 的完整 DNS 名稱與現有 redirect\_uri 的 DNS 名稱不完全相符，或如果新 redirect\_uri 的完整 DNS 名稱不是現有 redirect\_uri 的子網域，則新增要求將會失敗。例如，如果應用程式目前有 redirect\_uri：
+
+`https://login.contoso.com`
+
+然後可以新增︰
+
+`https://login.contoso.com/new`
+
+這完全符合 DNS 名稱，或︰
+
+`https://new.login.contoso.com`
+
+這是 login.contoso.com 的 DNS 子網域。如果您希望應用程式以 login-east.contoso.com 和 login-west.contoso.com 做為 redirect\_uri，您必須依序新增下列 redirect\_uri︰
+
+`https://contoso.com` `https://login-east.contoso.com` `https://login-west.contoso.com`
+
+可以新增後面兩個，因為它們是第一個 redirect\_uri (contoso.com) 的子網域。即將推出的版本將會移除這項限制。
+
 若要了解如何在新的應用程式註冊入口網站中註冊應用程式，請參閱[這篇文章](active-directory-v2-app-registration.md)。
 
 ## 服務和 API 的限制
@@ -78,7 +101,7 @@ v2.0 端點目前支援登入所有在新的應用程式註冊入口網站註冊
 
   - [Java WSO2 身分識別伺服器](https://docs.wso2.com/display/IS500/Introducing+the+Identity+Server)
   - [Java Gluu 同盟](https://github.com/GluuFederation/oxAuth)
-  - [Node.Js passport-openidconnect](https://www.npmjs.com/package/passport-openidconnect)
+  - [Node.Js passport openidconnect](https://www.npmjs.com/package/passport-openidconnect)
   - [PHP OpenID Connect 基本用戶端](https://github.com/jumbojett/OpenID-Connect-PHP)
   - [iOS OAuth2 用戶端](https://github.com/nxtbgthng/OAuth2Client)
   - [Android OAuth2 用戶端](https://github.com/wuman/android-oauth-client)
@@ -98,4 +121,4 @@ Azure Active Directory 服務中有一組開發人員功能 (v2.0 端點尚不�
 - Azure AD 使用者的群組宣告
 - 應用程式角色和角色宣告
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0720_2016-->

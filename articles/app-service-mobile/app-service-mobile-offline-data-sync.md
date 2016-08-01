@@ -38,6 +38,7 @@
 * [iOS：啟用離線同步處理]
 * [Xamarin iOS：啟用離線同步處理]
 * [Xamarin Android：啟用離線同步處理]
+* [Xamarin.Forms：啟用離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)
 * [Windows 8.1：啟用離線同步處理]
 
 ## 什麼是同步處理資料表？
@@ -104,4 +105,4 @@
 [Xamarin Android：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
 [Windows 8.1：啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

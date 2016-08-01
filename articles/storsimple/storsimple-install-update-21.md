@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 StorSimple 裝置上安裝 Update 2.1 | Microsoft Azure"
-   description="說明如何在您的 StorSimple 8000 系列裝置上安裝 StorSimple 8000 系列 Update 2.1。"
+   pageTitle="在 StorSimple 裝置上安裝 Update 2.2 | Microsoft Azure"
+   description="說明如何在您的 StorSimple 8000 系列裝置上安裝 StorSimple 8000 系列 Update 2.2。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -12,29 +12,28 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/25/2016"
+   ms.date="07/18/2016"
    ms.author="alkohli" />
 
-# 在 StorSimple 裝置上安裝 Update 2.1
+# 在 StorSimple 裝置上安裝 Update 2.2
 
 ## 概觀
 
-本教學課程說明如何透過 Azure 傳統入口網站即使用 Hotfix 方法，在執行舊版軟體的 StorSimple 裝置上安裝 Update 2.1。當閘道器是設定於 StorSimple 裝置之 DATA 0 以外的網路介面上，且您正嘗試從 Update 1 以前的軟體版本更新時，就會使用 Hotfix 方法。
+本教學課程說明如何透過 Azure 傳統入口網站及使用 Hotfix 方法，在執行舊版軟體的 StorSimple 裝置上安裝 Update 2.2。當閘道器是設定於 StorSimple 裝置之 DATA 0 以外的網路介面上，且您正嘗試從 Update 1 以前的軟體版本更新時，就會使用 Hotfix 方法。
 
-Update 2.1 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以前的版本更新，您也將需要套用 LSI 驅動程式、Spaceport、Storport 及磁碟韌體更新。裝置軟體、WMI、iSCSI、LSI 驅動程式、Spaceport 及 Storport 修正程式為非干擾性更新，且可透過 Azure 傳統入口網站套用。磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
+Update 2.2 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以前的版本更新，您也將需要套用 LSI 驅動程式、Spaceport、Storport 及磁碟韌體更新。裝置軟體、WMI、iSCSI、LSI 驅動程式、Spaceport 及 Storport 修正程式為非干擾性更新，且可透過 Azure 傳統入口網站套用。磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
 
 > [AZURE.IMPORTANT]
 
-> -  您可能不會立即看到 Update 2.1，因為我們會分階段推出更新。請在數天內再次掃描更新，因為很快就會提供 Update。
 > - 安裝前會執行一組手動和自動預先檢查，以根據硬體狀態和網路連線來判斷裝置健全狀況。這些預先檢查只會在您從 Azure 傳統入口網站套用更新時執行。
 > - 建議您透過 Azure 傳統入口網站安裝軟體和驅動程式更新。如果入口網站中的更新前閘道器檢查失敗，請移至裝置的 Windows PowerShell 介面安裝更新 (勿透過其他方式)。視您從哪一個版本更新而定，可能需要 1.5-2.5 小時來安裝更新。維護模式更新必須透過裝置的 Windows PowerShell 介面安裝。由於維護模式更新是干擾性更新，它們將會導致裝置的停機時間。
-> - 如果執行選擇性的 StorSimple Snapshot Manager，更新裝置之前，請先將您的 Snapshot Manager 版本升級至 Update 2.1
+> - 如果執行的是選擇性的 StorSimple Snapshot Manager，更新裝置之前，請確定您已將 Snapshot Manager 版本升級至 Update 2.2。
 
 [AZURE.INCLUDE [storsimple-preparing-for-update](../../includes/storsimple-preparing-for-updates.md)]
 
-## 透過 Azure 傳統入口網站安裝 Update 2.1
+## 透過 Azure 傳統入口網站安裝 Update 2.2
 
-請執行下列步驟，以將您的裝置更新至 [Update 2.1](storsimple-update21-release-notes.md)。
+請執行下列步驟來將您的裝置更新至 [Update 2.2](storsimple-update21-release-notes.md)。
 
 
 > [AZURE.NOTE]
@@ -42,7 +41,7 @@ Update 2.1 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以
 
 [AZURE.INCLUDE [storsimple-install-update2-via-portal](../../includes/storsimple-install-update2-via-portal.md)]
 
-12. 確認您的裝置是否正在執行 **StorSimple 8000 Series Update 2.1 (6.3.9600.17705)**。[**上次更新日期**] 應該也已修改。 
+12. 確認您裝置執行的是 **StorSimple 8000 系列 2.2 (6.3.9600.17708)**。[**上次更新日期**] 應該也已修改。
 
 	如果您是從 Update 2 之前的版本更新，您也會看到有可用的維護模式更新 (此訊息可能會在您安裝更新之後繼續顯示長達 24 小時)。
 
@@ -50,13 +49,13 @@ Update 2.1 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以
 
 	如果您是從 Update 2 更新，您的裝置現在應該是最新狀態。您可以略過剩餘步驟。
 
-13. 使用[下載 Hotfix](#to-download-hotfixes) 中列出的步驟，下載維護模式更新，以搜尋和下載 KB3121899，它會安裝磁碟韌體更新 (現在其他更新應該已安裝)。
+13. 下載維護模式更新，方法是使用[下載 Hotfix](#to-download-hotfixes) 中列出的步驟來搜尋和下載 KB3121899，它會安裝磁碟韌體更新 (此時應該已經安裝其他更新)。
 
 13. 請遵循[安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes) 中列出的步驟安裝維護模式更新。
 
   
 
-## 以 Hotfix 的方式安裝 Update 2.1
+## 以 Hotfix 的方式安裝 Update 2.2
 
 請在嘗試透過 Azure 傳統入口網站安裝更新，而無法通過閘道器檢查時執行此程序。當您指派閘道器給非 DATA 0 網路介面且您的裝置正在執行早於 Update 1 的軟體版本時，檢查才會失敗。
 
@@ -64,7 +63,7 @@ Update 2.1 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以
 
 - Update 0.1、0.2、0.3
 - Update 1、1.1、1.2
-- Update 2 
+- Update 2、2.1
 
 > [AZURE.IMPORTANT]
 >
@@ -76,18 +75,23 @@ Hotfix 方法涉及下列三個步驟：
 - 安裝及驗證定期模式 Hotfix。
 - 安裝並確認維護模式 Hotfix (僅限於從 Update 2 之前的軟體更新時)。
 
-#### 下載適用於執行 Update 2 軟體的裝置的更新
+#### 下載適用於執行 Update 2.1 軟體之裝置的更新
 
-**如果您的裝置是執行 Update 2**，您必須以指定順序下載並安裝下列 Hotfix：
+**如果您裝置執行的是 Update 2.1**，您必須只下載 KB3179904 裝置軟體更新。請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。
+
+
+#### 下載適用於執行 Update 2 或 2.1 軟體之裝置的更新
+
+**如果您裝置執行的是 Update 2**，您就必須以指定的順序下載並安裝下列 Hotfix：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 1\. | KB3162954 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
+| 1\. | KB3179954 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
 | 2\. | KB3146621 | iSCSI 封裝 | 定期 | ~ 20 分鐘 |
 | 3\. | KB3103616 | WMI 封裝 | 定期 | ~ 12 分鐘 |
 
 
- &#42; *請注意，軟體更新是由兩個二進位檔組成︰`all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe` 和 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。必須先安裝裝置軟體更新 `all-hcsmdssoftwareupdate_d5db7c7a86fc0fffd7fd7e8a1b58584ca4850936.exe`，再安裝 Cis 和 Mds 代理程式 `all-cismdsagentupdatebundle_a3b6e721045c9229f62ffe3374fb5715bf3699e3.exe`。您還必須在套用 Cis 和 MDS 代理程式更新之後，先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制器，然後再套用剩餘的更新。*
+ &#42; *請注意，軟體更新是由兩個二進位檔組成︰開頭為 `all-hcsmdssoftwareupdate` 的裝置軟體更新，以及開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 Mds 代理程式。必須先安裝裝置軟體更新，再安裝 Cis 和 Mds 代理程式。您還必須在套用 Cis 和 MDS 代理程式更新之後，先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制器，然後再套用剩餘的更新。*
 
 #### 下載適用於執行 Update 2 之前版本軟體的裝置的更新
 
@@ -118,7 +122,7 @@ Hotfix 方法涉及下列三個步驟：
 
 > [AZURE.IMPORTANT]
 >
-> - 此程序僅需要執行一次，即可套用 Update 2.1。您可以使用 Azure 傳統入口網站套用後續的更新。
+> - 此程序僅需要執行一次，即可套用 Update 2.2。您可以使用 Azure 傳統入口網站套用後續的更新。
 > - 如果您是從 Update 2 更新，總安裝時間會接近 1.5 小時。
 > - 使用此程序套用更新之前，請確定兩個裝置控制器都在線上，而且所有硬體元件的狀況良好。
 
@@ -132,4 +136,4 @@ Hotfix 方法涉及下列三個步驟：
 
 深入了解 [Update 2.1 版](storsimple-update21-release-notes.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

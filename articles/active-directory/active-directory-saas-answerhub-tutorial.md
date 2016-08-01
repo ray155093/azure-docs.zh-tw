@@ -11,17 +11,17 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/11/2016" 
+    ms.date="07/19/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 AnswerHub 整合
 
-本教學課程的目的是要示範 Azure 與 AnswerHub 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 [AnswerHub](http://www.dzonesoftware.com/products/answerhub-question-answer-software) 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
--   啟用 AnswerHub 單一登入的訂用帳戶
+-   啟用 [AnswerHub](http://www.dzonesoftware.com/products/answerhub-question-answer-software) 單一登入的訂用帳戶
 
-完成本教學課程之後，您指派給 AnswerHub 的 Azure AD 使用者就能夠單一登入您 AnswerHub 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+完成本教學課程之後，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)，您指派給 AnswerHub 的 Azure AD 使用者就能夠單一登入您 AnswerHub 公司網站 (服務提供者起始登入) 的應用程式。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
@@ -31,6 +31,7 @@
 4.  指派使用者
 
 ![案例](./media/active-directory-saas-answerhub-tutorial/IC785165.png "案例")
+
 ##啟用 AnswerHub 的應用程式整合
 
 本節的目的是要說明如何啟用 AnswerHub 的應用程式整合。
@@ -51,7 +52,7 @@
 
     ![新增應用程式](./media/active-directory-saas-answerhub-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-answerhub-tutorial/IC749322.png "從組件庫新增應用程式")
 
@@ -62,6 +63,7 @@
 7.  在結果窗格中，選取 [AnswerHub]，然後按一下 [完成] 以加入應用程式。
 
     ![AnswerHub](./media/active-directory-saas-answerhub-tutorial/IC785167.png "AnswerHub")
+
 ##設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 AnswerHub 。在此程序中，您必須建立 base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
@@ -76,7 +78,7 @@
 
     ![設定單一登入](./media/active-directory-saas-answerhub-tutorial/IC785169.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [AnswerHub 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://company.answerhub.com*"，然後按一下 *[下一步]*。
+3.  在 [設定應用程式 URL] 頁面的 [AnswerHub 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://company.answerhub.com*"，然後按 *[下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-answerhub-tutorial/IC785170.png "設定應用程式 URL")
 
@@ -85,6 +87,14 @@
     ![設定單一登入](./media/active-directory-saas-answerhub-tutorial/IC785171.png "設定單一登入")
 
 5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 AnswerHub 公司網站。
+    >[AZURE.NOTE] 如果您需要設定 AnswerHub 的協助，請連絡 [AnswerHub 的支援小組](mailto:success@answerhub.com.)。
+
+
+
+
+
+
+
 
 6.  移至 [管理]。
 
@@ -119,6 +129,7 @@
 13. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-answerhub-tutorial/IC785174.png "設定單一登入")
+
 ##設定使用者佈建
 
 若要讓 Azure AD 使用者可以登入 AnswerHub，必須將他們佈建到 AnswerHub。AnswerHub 需以手動方式佈建。
@@ -157,4 +168,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

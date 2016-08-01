@@ -18,11 +18,13 @@
 
 # 開始使用 Azure 佇列儲存體和 Visual Studio 連線的服務
 
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
+
 ## 概觀
 
 本文描述如何在您使用 Visual Studio 的 [**加入已連接服務**] 對話方塊，建立或參考 ASP.NET 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 佇列儲存體。
 
-我們將會示範如何在儲存體帳戶中建立及存取 Azure 佇列。我們也將顯示如何執行基本的佇列作業，例如新增、修改、讀取和讀取佇列訊息。這些範例均以 C# 程式碼撰寫，並使用 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。如需 ASP.NET 的詳細資訊，請參閱 [ASP.NET](http://www.asp.net)。
+我們將會示範如何在儲存體帳戶中建立及存取 Azure 佇列。我們也將顯示如何執行基本的佇列作業，例如新增、修改、讀取和讀取佇列訊息。這些範例均以 C# 程式碼撰寫，並使用[Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。如需 ASP.NET 的詳細資訊，請參閱 [ASP.NET](http://www.asp.net)。
 
 Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方都可利用 HTTP 或 HTTPS 並透過驗證的呼叫來存取這些訊息。單一佇列訊息的大小上限為 64 KB，而一個佇列可以包含數百萬個訊息，以儲存體帳戶的總容量為限。
 
@@ -156,4 +158,4 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 [AZURE.INCLUDE [vs-storage-dotnet-queues-next-steps](../../includes/vs-storage-dotnet-queues-next-steps.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

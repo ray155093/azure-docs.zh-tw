@@ -23,6 +23,7 @@
 - [入口網站](azure-portal/resource-group-portal.md)
 - [Azure CLI](xplat-cli-azure-resource-manager.md)
 - [Azure PowerShell](powershell-azure-resource-manager.md)
+- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
 - [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
 - [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
 - [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
@@ -69,11 +70,11 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 ## 建立資源群組
 
-資源群組是網路、儲存體和計算資源等資源的邏輯群組。資源管理員模式中幾乎所有命令都需要資源群組。例如，您可以使用下列命令在美國西部區域建立名為 testRG 的資源群組。
+資源群組是網路、儲存體和計算資源等資源的邏輯群組。資源管理員模式中幾乎所有命令都需要資源群組。例如，您可以使用下列命令在美國西部區域建立名為「testRG」的資源群組。
 
 	azure group create -n "testRG" -l "West US"
 
-當使用範本來啟動 Ubuntu VM 時，您稍後將會部署到此 testRG 資源群組。一旦建立資源群組後，您便可以加入資源，例如虛擬機器和網路或儲存體。
+當使用範本來啟動 Ubuntu VM 時，您稍後將會部署到此「testRG」資源群組。一旦建立資源群組後，您便可以加入資源，例如虛擬機器和網路或儲存體。
 
 
 ## 使用資源群組範本
@@ -82,7 +83,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 使用範本時，您可以[建立自己的範本](resource-group-authoring-templates.md)，或使用其中一個社群貢獻的[快速入門範本](https://azure.microsoft.com/documentation/templates/) (也可以在 [GitHub](https://github.com/Azure/azure-quickstart-templates) 上取得範本)。
 
-建立新範本已超出本文的範圍，所以我們就從使用可在[快速入門範本](https://azure.microsoft.com/documentation/templates/101-vm-simple-linux/)取得的 101-simple-vm-from-image 範本著手。根據預設，這會在具有單一子網路的新虛擬網路中，建立單一 Ubuntu 14.04.2-LTS 虛擬機器。您只需要指定資源群組及下列幾個參數即可使用此範本：
+建立新範本已超出本文的範圍，所以我們就從使用可在[快速入門範本](https://azure.microsoft.com/documentation/templates/101-vm-simple-linux/)取得的「101-simple-vm-from-image」範本著手。根據預設，這會在具有單一子網路的新虛擬網路中，建立單一 Ubuntu 14.04.2-LTS 虛擬機器。您只需要指定資源群組及下列幾個參數即可使用此範本：
 
 * VM 的系統管理員使用者名稱 = `adminUsername`
 * 密碼 = `adminPassword`
@@ -115,7 +116,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 			}
 
 	```
-3.  由於部署參數已經過修改，您將部署 Ubuntu VM 到您稍早建立的 testRG 資源群組。選擇部署的名稱 (在此範例中為 testRGDeploy)，然後使用下列命令來啟動它。
+3.  由於部署參數已經過修改，您將部署 Ubuntu VM 到您稍早建立的「testRG」資源群組。選擇部署的名稱 (在此範例中為「testRGDeploy」)，然後使用下列命令來啟動它。
 
 	```
 	azure group deployment create -f azuredeploy.json -e azuredeploy.parameters.json testRG testRGDeploy
@@ -183,7 +184,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 		azure resource list testRG
 
-2. 若要檢視群組內的個別資源 (例如名為 MyUbuntuVM 的 VM)，請使用如下所示的命令。
+2. 若要檢視群組內的個別資源 (例如名為「MyUbuntuVM」的 VM)，請使用如下所示的命令。
 
 		azure resource show testRG MyUbuntuVM Microsoft.Compute/virtualMachines -o "2015-06-15"
 
@@ -205,7 +206,7 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 
 ## 檢視群組記錄檔
 
-若要檢視群組上執行之作業的記錄資訊，請使用 `azure group log show` 命令。依預設，這會列出在群組上執行的最後一個作業。若要檢視所有作業，請使用選用的 `--all` 參數。針對前次部署，使用 `--last-deployment`。針對特定部署，使用 `--deployment` 並指定部署名稱。下列範例會傳回針對群組 testRG 執行的所有作業記錄。
+若要檢視群組上執行之作業的記錄資訊，請使用 `azure group log show` 命令。依預設，這會列出在群組上執行的最後一個作業。若要檢視所有作業，請使用選用的 `--all` 參數。針對前次部署，使用 `--last-deployment`。針對特定部署，使用 `--deployment` 並指定部署名稱。下列範例會傳回針對群組「testRG」執行的所有作業記錄。
 
 	azure group log show testRG --all
     
@@ -238,4 +239,4 @@ Azure Resource Manager 的優點之一就是您可以用「宣告」的方式建
 * 如需透過 Azure PowerShell 來使用 Azure 資源管理員的相關資訊，請參閱[搭配使用 Azure PowerShell 與 Azure 資源管理員](powershell-azure-resource-manager.md)。
 * 如需從 Azure 入口網站使用 Azure Resource Manager 的相關資訊，請參閱[使用 Azure 入口網站部署及管理 Azure 資源](./azure-portal/resource-group-portal.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

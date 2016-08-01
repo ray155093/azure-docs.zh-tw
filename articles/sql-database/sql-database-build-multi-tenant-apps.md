@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="05/04/2016"
+   ms.date="07/19/2016"
    ms.author="carlrab"/>
 
 # 使用 Azure SQL Database 以隔離和高效率方式建置多租用戶應用程式
@@ -51,18 +51,18 @@
 
 ** 執行跨資料庫的交易。** [彈性資料庫交易](sql-database-elastic-transactions-overview.md)可讓您在 SQL Database 中執行跨多個資料庫的交易以及執行作業 (也就是在處理跨資料庫的財務交易時，或在更新一個資料庫中的庫存及訂單時)。
 
-** 執行多個資料庫相同的作業。** [彈性資料庫作業](sql-database-elastic-jobs-overview.md)會執行系統管理作業，例如重建索引或更新彈性集區中跨越每個資料庫的結構描述。
+** 在幾個資料庫上執行相同作業。** [彈性資料庫作業](sql-database-elastic-jobs-overview.md)會執行系統管理作業，例如重建索引或更新彈性集區中跨越每個資料庫的結構描述。
 
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
 ## 後續步驟
 
-取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)並[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
 
-瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->
