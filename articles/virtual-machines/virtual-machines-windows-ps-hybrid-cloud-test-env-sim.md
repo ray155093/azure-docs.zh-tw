@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/01/2016" 
+	ms.date="07/19/2016" 
 	ms.author="josephd"/>
 
 # 設定用於測試的模擬混合式雲端環境
@@ -40,7 +40,7 @@
 1.	設定 TestLab 虛擬網路。
 2.	建立跨單位虛擬網路。
 3.	建立 VNet 對 VNet VPN 連線。
-4.	設定 DC2。 
+4.	設定 DC2。
 
 如果您仍沒有 Azure 訂用帳戶，可以在[試用 Azure](https://azure.microsoft.com/pricing/free-trial/) 上註冊免費試用版。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
@@ -62,7 +62,7 @@
 
 	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
-設定您的 Azure 訂用帳戶使用您用來建置基本組態的同一個訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+設定您的 Azure 訂用帳戶使用您用來建置基本組態的同一個訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<subscription name>"
 	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
@@ -179,7 +179,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -198,7 +198,7 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 由於 TestVNET 虛擬網路有自己的 DNS 伺服器 (DC2)，因此您必須設定 TestVNET 的虛擬網路使用這個 DNS 伺服器。
 
-1.	在「Azure 入口網站」的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
+1.	在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
 2.	在 [設定] 索引標籤上，按一下 [DNS 伺服器]。
 3.	在 [主要 DNS 伺服器] 中，輸入 **192.168.0.4** 以取代 10.0.0.4。
 4.	按一下 [儲存]。
@@ -213,4 +213,4 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 - 在這個環境中設定 [SharePoint 內部網路伺服器陣列](virtual-machines-windows-ps-hybrid-cloud-test-env-sp.md)、[Web 式 LOB 應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)或 [Office 365 目錄同步作業 (DirSync) 伺服器](virtual-machines-windows-ps-hybrid-cloud-test-env-dirsync.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

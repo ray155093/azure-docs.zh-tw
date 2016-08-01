@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Resource Manager 範本的最佳做法 | Microsoft Azure"
+	pageTitle="Resource Manager 範本的模式 | Microsoft Azure"
 	description="顯示 Azure 資源管理員範本的設計模式"
 	services="azure-resource-manager"
 	documentationCenter=""
@@ -16,7 +16,7 @@
 	ms.date="06/13/2016"
 	ms.author="tomfitz"/>
 
-# 設計 Azure 資源管理員範本的最佳做法
+# 設計 Azure Resource Manager 範本的模式
 
 在與企業、系統整合者 (SI)、雲端服務廠商 (CSV) 和開放原始碼軟體 (OSS) 專案小組合作時，經常需要快速部署環境、工作負載或縮放單位。這些部署需要受到支援、依照經過實證的做法執行，並遵循所識別的原則。根據 Azure 資源管理員範本來使用彈性的方法，您可以快速且一致地部署複雜的拓撲，然後隨著核心供應項目的發展輕鬆調整這些部署，或是適應極端案例或客戶的變化。
 
@@ -321,7 +321,7 @@ Redis 只會使用單一節點類型，因此您將建立名為 node-resources.j
 
 使用範本連結時，主要的範本會向外連結到共用的資源範本，以建立虛擬網路。
 
-邏輯會新增到主要的範本內，讓範本的取用者能夠指定是否應該部署 Jumpbox。*EnableJumpbox* 參數的 *enabled* 值表示客戶想要部署 Jumpbox。提供此值時，範本會串連 *\_enabled* 做為 Jumpbox 功能之基底範本名稱的尾碼。
+邏輯會新增到主要的範本內，讓範本的取用者能夠指定是否應該部署 Jumpbox。*EnableJumpbox* 參數的 *enabled* 值表示客戶想要部署 Jumpbox。提供此值時，範本會串連「\_enabled」做為 Jumpbox 功能之基底範本名稱的尾碼。
 
 主要的範本會套用 *large* 參數值做為 T 恤尺寸之基底範本名稱的尾碼，然後在向外連到 *technology\_on\_os\_large.json* 的範本連結中使用該值。
 
@@ -382,4 +382,4 @@ Redis 只會使用單一節點類型，因此您將建立名為 node-resources.j
 - 如需如何在 Azure 資源管理員中處理安全性的建議，請參閱 [Azure 資源管理員的安全性考量](best-practices-resource-manager-security.md)。
 - 若要了解進出範本的共用狀態，請參閱〈[Azure 資源管理員範本中的共用狀態](best-practices-resource-manager-state.md)〉。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

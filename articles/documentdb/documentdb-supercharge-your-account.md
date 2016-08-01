@@ -18,7 +18,7 @@
 
 # 增加 DocumentDB 帳戶的輸送量
 
-請依照下列步驟來利用 DocumentDB S1 帳戶的增加輸送量。幾乎不需要額外成本，您就可以將現有 S1 帳戶的輸送量從250 [RU/s](documentdb-request-units.md) 增加到 400 RU/s 以上！
+請依照下列步驟來利用 Azure DocumentDB S1 帳戶的增加輸送量。幾乎不需要額外成本，您就可以將現有 S1 帳戶的輸送量從250 [RU/s](documentdb-request-units.md) 增加到 400 RU/s 以上！
 
 > [AZURE.VIDEO changedocumentdbcollectionperformance]
 
@@ -51,4 +51,4 @@
 
 如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。若要建立分割集合，請參閱[建立集合](documentdb-create-collection.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="07/07/2016"
+   ms.date="07/19/2016"
    ms.author="jeffstok"
 />
 
@@ -80,35 +80,35 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 	若要建立和使用公開/私密金鑰組，請選取 [公開金鑰]，然後下文所示的步驟進行。這些指示假設您已安裝 Cygwin 和 ssh-keygen 或具同等效力的命令。
 
-	- 從膝上型電腦上的命令提示字元產生公開/私密金鑰組︰
+	-    從膝上型電腦上的命令提示字元產生公開/私密金鑰組︰
 	  
-			````ssh-keygen -t rsa -b 2048 –f <private-key-filename>````
-
-    - 這會在 <private-key-filename>.pub 名稱 (如 davec and davec.pub) 下方建立私密金鑰檔案和公開金鑰檔案。接著，在指派 HDI 叢集認證時指定公開金鑰檔案 (*.pub)︰
-    
-	![認證刀鋒視窗](./media/hdinsight-getting-started-with-r/publickeyfile.png)
-
-	- 在膝上型電腦上變更私密金鑰檔案的權限
-    
-			````chmod 600 <private-key-filename>````
-
-	- 使用私密金鑰檔案搭配 SSH 以進行遠端登入，例如︰
-	
-			````ssh –i <private-key-filename> remoteuser@<hostname public ip>````
-
-	  或當做用戶端上 R Server 之 Hadoop Spark 計算內容的部分定義 (請參閱線上《RevoScaleR Hadoop Spark 快速入門》指南＜建立計算 Spark 的計算內容＞一節的「將 Microsoft R Server 當做 Hadoop 用戶端」)。
+		    ssh-keygen -t rsa -b 2048 –f <private-key-filename>
+      
+    -    這會在 <private-key-filename>.pub 名稱 (如 davec and davec.pub) 下方建立私密金鑰檔案和公開金鑰檔案。接著，在指派 HDI 叢集認證時指定公開金鑰檔案 (*.pub)︰
+      
+		![認證刀鋒視窗](./media/hdinsight-getting-started-with-r/publickeyfile.png)
+      
+	-    在膝上型電腦上變更私密金鑰檔案的權限
+      
+			chmod 600 <private-key-filename>
+      
+	-    使用私密金鑰檔案搭配 SSH 以進行遠端登入，例如︰
+	  
+			ssh –i <private-key-filename> remoteuser@<hostname public ip>
+      
+	  或當做用戶端上 R Server 的 Hadoop Spark 計算內容的部分定義 (請參閱線上 [RevoScaleR Hadoop Spark 快速入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started) [Creating a Compute Context for Spark (建立計算 Spark 的計算內容)](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark) 一節的＜Using Microsoft R Server as a Hadoop Client (將 Microsoft R Server 當做 Hadoop 用戶端)＞)。
 
 7. 選取 [資料來源] 以選取叢集的資料來源。若要選取現有的儲存體帳戶，您可以選取 [選取儲存體帳戶]，然後選取帳戶，或使用 [選取儲存體帳戶] 區段中的 [新增] 連結，以建立新的帳戶。
 
     如果您選取 [新增]，則必須輸入新儲存體帳戶的名稱。如果系統接受該名稱，就會出現綠色核取記號。
 
-    叢集名稱的預設值為 [預設容器]。請不要更動此值。
+    [預設容器] 的預設值為叢集的名稱。請不要更動此值。
     
     選取 [位置] 以選取要在其中建立儲存體帳戶的區域。
     
     > [AZURE.IMPORTANT] 選取預設資料來源位置的同時，也會設定 HDInsight 叢集位置。叢集和預設資料來源必須位於相同區域中。
 
-    使用 [選取] 以儲存資料來源設定。
+    使用 [選取] 按鈕以儲存資料來源設定。
     
     ![資料來源刀鋒視窗](./media/hdinsight-getting-started-with-r/datastore.png)
 
@@ -117,14 +117,17 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 	> [AZURE.NOTE] 如有需要，您可以在稍後透過入口網站重新調整叢集的大小 ([叢集] -> [設定]-> [調整叢集])，以增加或減少背景工作節點的數目。這有助於讓未使用的叢集閒置下來，或增加容量以滿足大型工作的需求。
 
 	在調整叢集大小、資料節點和邊緣節點時，請將一些因素納入考量，包括︰
-
-	• 當資料很大時，Spark 上分散式 R Server 的分析效能與背景工作節點數目成正比。• R Server 的分析效能與分析中的資料大小呈現線性關係。• 對於少量到適量的資料，在邊緣節點上的本機計算內容進行分析能獲得最佳效能。如需最適合本機和 Spark 計算內容之案例的詳細資訊，請參閱 HDInsight 上的 R Server 計算內容選項。• 如果您登入邊緣節點並在該處執行 R 指令碼，系統會在邊緣節點上**以本機方式**執行所有函式 (ScaleR rx 函式除外)，因此您應該據此調整邊緣節點的記憶體和核心數目。如果您在 HDI 上將 R Server 當做膝上型電腦的遠端計算內容，也適用相同原則。
-
+   
+    - 資料很大時，Spark 上分散式 R 伺服器分析的效能與背景工作節點數目成正比。
+    - R 伺服器分析的效能與分析的資料大小呈線性關係。例如：
+        - 小型到中型的資料在邊緣節點上的本機計算內容中分析時，效能將會最好。如需有關本機和 Spark 計算內容最適合哪種案例的詳細資訊，請參閱在 HDInsight 上 R 伺服器的計算內容選項。<br>
+        - 如果您登入邊緣節點並執行 R 指令碼，則除了 ScaleR rx 函式，其他所有函式都會在邊緣節點的<strong>本機</strong>執行，所以邊緣節點的記憶體和核心數目應據此調整大小。如果您在 HDI 上將 R Server 當做膝上型電腦的遠端計算內容，也適用相同原則。
+    
     ![節點定價層刀鋒視窗](./media/hdinsight-getting-started-with-r/pricingtier.png)
 
     使用 [選取] 按鈕以儲存節點定價設定。
     
-9. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到開始面板]，然後選取 [建立]。這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。該圖示會顯示叢集正在建立中，並會在叢集建立完成時變更為 HDInsight 圖示。
+9. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到「開始面板」]，然後選取 [建立]。這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。該圖示會顯示叢集正在建立中，並會在叢集建立完成時變更為 HDInsight 圖示。
 
     | 建立時 | 建立完成 |
     | ------------------ | --------------------- |
@@ -197,27 +200,31 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 ## 從 Microsoft R Server 或 Microsoft R Client 的遠端執行個體使用 HDI 上的 R Server
 
-根據上一節使用公開/私密金鑰組來存取叢集的相關論述，您可以從在桌上型電腦或膝上型電腦上執行的 Microsoft R Server 或 Microsoft R Client 遠端執行個體，設定 HDI Hadoop Spark 計算內容的存取 (請參閱線上《RevoScaleR Hadoop Spark 快速入門》指南＜建立計算 Spark 的計算內容＞一節的「將 Microsoft R Server 當做 Hadoop 用戶端)。 若要這樣做，在膝上型電腦上定義 RxSpark 計算內容時，您需要指定下列選項︰hdfsShareDir、shareDir、sshUsername、sshHostname、sshSwitches 和 sshProfileScript。例如：
+根據上一節使用公開/私密金鑰組來存取叢集的相關論述，您可以從在桌上型電腦或膝上型電腦上執行的 Microsoft R Server 或 Microsoft R Client 遠端執行個體，設定 HDI Hadoop Spark 計算內容的存取 (請參閱線上 [RevoScaleR Hadoop Spark 快速入門指南](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started)[建立計算 Spark 的計算內容](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark)一節的＜Using Microsoft R Server as a Hadoop Client (將 Microsoft R Server 當做 Hadoop 用戶端)＞)。若要這樣做，在膝上型電腦上定義 RxSpark 計算內容時，您需要指定下列選項︰hdfsShareDir、shareDir、sshUsername、sshHostname、sshSwitches 和 sshProfileScript。例如：
 
     
-        mySshHostname  <- 'rkrrehdi1-ssh.azurehdinsight.net'  # HDI secure shell hostname
-        mySshUsername  <- 'remoteuser'# HDI SSH username
-        mySshSwitches  <- '-i /cygdrive/c/Data/R/davec'   # HDI SSH private key
-    
-        myhdfsShareDir <- paste("/user/RevoShare", mySshUsername, sep="/")
-        myShareDir <- paste("/var/RevoShare" , mySshUsername, sep="/")
-    
-        mySparkCluster <- RxSpark(
-          hdfsShareDir = myhdfsShareDir,
-          shareDir = myShareDir,
-          sshUsername  = mySshUsername,
-          sshHostname  = mySshHostname,
-          sshSwitches  = mySshSwitches,
-          sshProfileScript = '/etc/profile',
-          nameNode = myNameNode,
-          port = myPort,
-          consoleOutput= TRUE
-        )
+    myNameNode <- "default"
+    myPort <- 0 
+ 
+    mySshHostname  <- 'rkrrehdi1-ssh.azurehdinsight.net'  # HDI secure shell hostname
+    mySshUsername  <- 'remoteuser'# HDI SSH username
+    mySshSwitches  <- '-i /cygdrive/c/Data/R/davec'   # HDI SSH private key
+ 
+    myhdfsShareDir <- paste("/user/RevoShare", mySshUsername, sep="/")
+    myShareDir <- paste("/var/RevoShare" , mySshUsername, sep="/")
+ 
+    mySparkCluster <- RxSpark(
+      hdfsShareDir = myhdfsShareDir,
+      shareDir     = myShareDir,
+      sshUsername  = mySshUsername,
+      sshHostname  = mySshHostname,
+      sshSwitches  = mySshSwitches,
+      sshProfileScript = '/etc/profile',
+      nameNode     = myNameNode,
+      port         = myPort,
+      consoleOutput= TRUE
+    )
+
     
  
 ## 使用計算內容
@@ -325,11 +332,11 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
         # Display a summary
         summary(modelSpark)
 
-    > [AZURE.NOTE] 您也可以使用 MapReduce，將計算分散到叢集節點。如需計算內容的詳細資訊，請參閱[適用於 HDInsight 進階層 R Server 的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
+    > [AZURE.NOTE] 您也可以使用 MapReduce，將計算分散到叢集節點。如需計算內容的詳細資訊，請參閱[適用於 HDInsight (預覽) 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)。
 
 ## 將 R 程式碼分散到多個節點
 
-使用 R Server 時，您可以輕鬆採用現有的 R 程式碼並利用 `rxExec` 以跨多個叢集節點加以執行。執行參數掃掠或模擬時，這非常有用。以下是使用 `rxExec` 的範例。
+使用 R 伺服器時，您可以輕鬆採用現有的 R 程式碼並利用 `rxExec` 跨多個叢集節點執行。執行參數掃掠或模擬時，這非常有用。以下是使用 `rxExec` 的範例。
 
     rxExec( function() {Sys.info()["nodename"]}, timesToRun = 4 )
     
@@ -402,6 +409,6 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 這兩種範本皆會建立新的 HDInsight 叢集和已與其建立關聯的儲存體帳戶，您可透過 Azure CLI、Azure PowerShell 或 Azure 入口網站來使用。
 
-如需使用 ARM 範本的一般資訊，請參閱[使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+如需使用 Azure Resource Manager 範本的一般資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

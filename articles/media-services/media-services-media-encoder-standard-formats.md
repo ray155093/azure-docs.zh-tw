@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016"
+	ms.date="07/17/2016"
 	ms.author="juliako;anilmur"/>
 
 #Media Encoder Standard 格式和轉碼器
@@ -88,7 +88,7 @@ MP3 (MPEG-1 音訊層 3)|是
 Windows Media 音訊|是 
 WAV/PCM|是 
 [FLAC](https://en.wikipedia.org/wiki/FLAC)</a>|是 
-[Opus](https://en.wikipedia.org/wiki/Opus_(audio_format) |是 
+[Opus](http://go.microsoft.com/fwlink/?LinkId=822667) |是 
 [Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a>|是 
 AMR (可變多速率)|是
 AES (SMPTE 331M 和 302M，AES3-2003) |否 
@@ -123,4 +123,4 @@ MPEG2-TS |H.264 (高、主要和基準設定檔)|AAC-LC、HE-AAC v1、HE-AAC v2
 
 [如何使用 Media Encoder Standard 進行編碼](media-services-dotnet-encode-with-media-encoder-standard.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

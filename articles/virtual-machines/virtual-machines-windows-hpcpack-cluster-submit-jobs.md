@@ -13,14 +13,14 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-multiple"
  ms.workload="big-compute"
- ms.date="04/14/2016"
+ ms.date="07/15/2016"
  ms.author="danlep"/>
 
 # 將 HPC 工作從內部部署電腦提交至在 Azure 中部署的 HPC Pack 叢集
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-設定執行 Windows 的內部部署用戶端電腦，使其執行 HPC Pack 工作提交工具，透過 HTTPS 與 Azure 中的 HPC Pack 叢集進行通訊。這可讓各種叢集使用者以直接而有彈性的方式將工作提交至雲端架構 HPC Pack 叢集，而無需直接連接到前端節點 VM 或存取 Azure 訂用帳戶執行工作提交工具。
+設定執行 Windows 的內部部署用戶端電腦，使其執行可透過 HTTPS 與 Azure 中 HPC Pack 叢集進行通訊的 HPC Pack 工作提交工具。這可讓各種叢集使用者以直接而有彈性的方式將工作提交至雲端架構 HPC Pack 叢集，而無需直接連接到前端節點 VM 或存取 Azure 訂用帳戶執行工作提交工具。
 
 ![將工作提交至 Azure 中的叢集][jobsubmit]
 
@@ -28,10 +28,9 @@ ms.service="virtual-machines-windows"
 
 * **在 Azure VM 中部署的 HPC Pack 前端節點** - 建議您使用 [Azure quickstart template (Azure 快速入門範本)](https://azure.microsoft.com/documentation/templates/) 或 [Azure PowerShell 指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)等自動化工具來部署前端節點和叢集。您必須要有前端節點的 DNS 名稱和叢集系統管理員的認證，才能完成本文中的步驟。
 
-* **HPC Pack 安裝媒體** - 最新版 HPC Pack (HPC Pack 2012 R2)的免費安裝套件可從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)取得。請確定您下載的是安裝在前端節點 VM 上的相同 HPC Pack 版本。
+* **用戶端電腦** - 您必須要有可執行 HPC Pack 用戶端公用程式的 Windows 或 Windows Server 用戶端電腦 (請參閱[系統需求](https://technet.microsoft.com/library/dn535781.aspx))。如果您只想要使用 HPC Pack Web 入口網站或 REST API 來提交工作，您可以使用自行選擇的任何用戶端電腦。
 
-* **用戶端電腦** - 您必須要有可執行 HPC Pack 用戶端公用程式的 Windows 或 Windows Server 用戶端電腦 (請參閱[系統需求](https://technet.microsoft.com/library/dn535781.aspx))。如果您只想要使用 HPC Pack Web 入口網站或 REST API 來提交工作，您可以使用自行選擇的用戶端電腦。
-
+* **HPC Pack 安裝媒體** - 若要安裝 HPC Pack 用戶端公用程式，可從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)取得最新版 HPC Pack (HPC Pack 2012 R2) 的免費安裝套件。請確定您下載的是安裝在前端節點 VM 上的相同 HPC Pack 版本。
 
 ## 步驟 1：在前端節點上安裝及設定 Web 元件
 
@@ -64,9 +63,9 @@ ms.service="virtual-machines-windows"
     .\Set-HPCWebComponents.ps1 –Service REST –enable
     ```
 
-4. 當系統提示您選取憑證時，請選擇與前端節點的公用 DNS 名稱相對應的憑證。例如，如果您使用 HPC Pack IaaS 部署指令碼來建立叢集，憑證名稱的格式為 CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net。如果您使用 Azure 快速入門範本，憑證名稱的格式為 CN=&lt;*HeadNodeDnsName*&gt;.&lt;*region*&gt;.cloudapp.azure。
+4. 當系統提示您選取憑證時，請選擇與前端節點的公用 DNS 名稱相對應的憑證。例如，如果您使用傳統部署模型來部署前端節點 VM，憑證名稱的格式就會是 CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net。如果您使用 Resource Manager 部署模型，則憑證名稱的格式會是 CN=&lt;*HeadNodeDnsName*&gt;.&lt;*region*&gt;.cloudapp.azure.com。
 
-    >[AZURE.NOTE] 您必須選取此憑證，後續才能工作從內部部署電腦提交至前端節點。請勿選取或設定與 Active Directory 網域中前端節點的電腦名稱相對應的憑證 (例如 CN=*MyHPCHeadNode.HpcAzure.local*)。
+    >[AZURE.NOTE] 您必須選取此憑證，後續才能工作從內部部署電腦提交至前端節點。請勿選取或設定與 Active Directory 網域中前端節點的電腦名稱對應的憑證 (例如 CN=*MyHPCHeadNode.HpcAzure.local*)。
 
 5. 若要設定 Web 入口網站以提交工作，請輸入下列命令：
 
@@ -82,7 +81,7 @@ ms.service="virtual-machines-windows"
 
 ## 步驟 2：在內部部署電腦上安裝 HPC Pack 用戶端公用程式
 
-如果您想要安裝 HPC Pack 用戶端公用程式，請從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)下載 HPC Pack 安裝程式檔案 (完整安裝) 到用戶端電腦。當您開始安裝時，請選擇安裝 HPC Pack 用戶端公用程式。
+如果您想要安裝 HPC Pack 用戶端公用程式，請從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)將 HPC Pack 安裝程式檔案 (完整安裝) 下載到用戶端電腦。當您開始安裝時，請選擇安裝 HPC Pack 用戶端公用程式。
 
 若要使用 HPC Pack 用戶端工具將工作提交至前端節點 VM，您也必須從前端節點匯出憑證，並將它安裝在用戶端電腦上。憑證須採用 .CER 格式。
 
@@ -92,7 +91,7 @@ ms.service="virtual-machines-windows"
 
 2. 在主控台樹狀目錄中，展開 [憑證 - 本機電腦] > [個人]，然後按一下 [憑證]。
 
-3. 找出您在[步驟 1：在前端節點上安裝及設定 Web 元件](#step-1:-install-and-configure-the-web-components-on-the-head-node)中為 HPC Pack Web 元件設定的憑證 (例如，CN=&lt;前端節點 DNS 名稱&gt;.cloudapp.net)。
+3. 找出您在[步驟 1：在前端節點上安裝及設定 Web 元件](#step-1:-install-and-configure-the-web-components-on-the-head-node)中為 HPC Pack Web 元件設定的憑證 (例如 CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net)。
 
 4. 在憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。
 
@@ -108,23 +107,23 @@ ms.service="virtual-machines-windows"
 
 2. 在用戶端電腦上執行 certmgr.msc。
 
-3. 在 [憑證管理員] 中，展開 [憑證 - 目前使用者] > [信任的根憑證授權單位]，以滑鼠右鍵按一下 [憑證]，然後依序按一下 [所有工作] 及 [匯入]。
+3. 在 [憑證管理員] 中，展開 [憑證 - 目前的使用者] > [受信任的根憑證授權單位]，在 [憑證] 上按一下滑鼠右鍵，然後依序按一下 [所有工作] 及 [匯入]。
 
-4. 在 [憑證匯入精靈] 中按一下 [下一步]，然後遵循步驟將您從前端節點匯出的憑證匯入信任的根憑證授權存放區。
+4. 在 [憑證匯入精靈] 中按 [下一步]，然後依照步驟，將您從前端節點匯出的憑證匯入到「受信任的根憑證授權單位」存放區。
 
 
 
->[AZURE.SECURITY] 您可能會看到安全性警告，因為用戶端電腦無法辨識前端節點上的憑證授權單位。基於測試目的，您可以忽略此警告並完成憑證匯入。
+>[AZURE.TIP] 您可能會看到安全性警告，因為用戶端電腦無法辨識前端節點上的憑證授權單位。基於測試目的，您可以忽略此警告並完成憑證匯入。
 
 ## 步驟 3：在叢集上執行測試工作
 
-若要確認您的設定，請使用執行 HPC Pack 用戶端公用程式在內部部署電腦，嘗試在 Azure 中的叢集上執行工作。例如，您可以使用 HPC Pack GUI 工具或命令列命令，將工作提交至叢集。您也可以使用 Web 型入口網站來提交工作。
+若要確認您的設定，請嘗試從內部部署的電腦在 Azure 中的叢集上執行工作。例如，您可以使用 HPC Pack GUI 工具或命令列命令，將工作提交至叢集。您也可以使用 Web 型入口網站來提交工作。
 
 
 **在用戶端電腦上執行工作提交命令**
 
 
-1. 在用戶端電腦上啟動命令提示字元。
+1. 在已安裝 HPC Pack 用戶端公用程式的用戶端電腦上，啟動「命令提示字元」。
 
 2. 輸入範例命令。例如，若要列出叢集上的所有工作，請根據前端節點的完整 DNS 名稱輸入類似下列其中一項的命令：
 
@@ -149,11 +148,11 @@ ms.service="virtual-machines-windows"
 
     b.按一下 [Windows 認證]，然後按一下 [新增一般認證]。
 
-    c.指定網際網路位址 (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net/HpcScheduler 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com/HpcScheduler))，然後提供使用者名稱 (格式為 &lt;網域名稱&gt;\\&lt;使用者名稱&gt;) 和 HPC 叢集系統管理員或您所設定之其他叢集使用者的密碼。
+    c.指定網際網路位址 (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net/HpcScheduler 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com/HpcScheduler)，然後提供使用者名稱 (格式為 &lt;DomainName&gt;\\&lt;UserName&gt;)，以及 HPC 叢集系統管理員或您所設定之其他叢集使用者的密碼。
 
 2. 在用戶端電腦上，啟動 [HPC 工作管理員]。
 
-3. 在 [選取前端節點] 對話方塊中，輸入 Azure 中前端節點的 URL (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com))。
+3. 在 [選取前端節點] 對話方塊中，輸入 Azure 中前端節點的 URL (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com)。
 
     [HPC 工作管理員] 隨即開啟，並顯示前端節點上的工作清單。
 
@@ -188,4 +187,4 @@ ms.service="virtual-machines-windows"
 <!--Image references-->
 [jobsubmit]: ./media/virtual-machines-windows-hpcpack-cluster-submit-jobs/jobsubmit.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

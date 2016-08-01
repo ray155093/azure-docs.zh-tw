@@ -6,7 +6,7 @@
 	authors="genlin"
 	manager="msmbaldwin"
 	editor="meerak"
-	tags="top-support-issue"
+	tags="billing,top-support-issue"
 	/>
 
 <tags
@@ -46,16 +46,14 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 開啟 [Azure 免費試用頁面](https://azure.microsoft.com/pricing/free-trial/)，然後選取 [立即試用]。
 2. 使用您的 Microsoft 帳戶或學校/工作帳戶登入。
-3. 在 [**關於您**] 區段中，輸入您的個人資訊。  
-![個人資訊的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/AboutYou.png)
+3. 在 [**關於您**] 區段中，輸入您的個人資訊。![個人資訊的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/AboutYou.png)
 
  **注意**：您在註冊 Azure 訂用帳戶時提供的電子郵件地址及國家/地區資訊，將會永遠與訂用帳戶相關聯，且之後無法變更。</br>
 4. 在 [以電話驗證] 區段中，您必須提供電話號碼來接收您可以提供的驗證碼，以完成驗證程序。
 
  您可以選擇以簡訊或透過語音電話接收驗證碼。選取 [傳送簡訊] 或 [撥號給我] 來決定方式。在第一個方塊中選取您國家的國際電話區碼，並在第二個方塊中輸入您的電話號碼。收到驗證碼之後，在第三個方塊輸入驗證碼，然後選取 [**驗證碼**] 按鈕。
 
- **請注意**，您無法使用 VOIP 電話號碼進行電話驗證程序。</br>
-![有關電話驗證的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/PhoneVerify.png)</br> 如果您沒收到簡訊或來電，請嘗試使用不同的電話號碼，或連絡 [Azure 支援服務](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以尋求協助。</br>
+ **請注意**，您無法使用 VOIP 電話號碼進行電話驗證程序。</br> ![有關電話驗證的螢幕擷取畫面](./media/billing-buy-sign-up-azure-subscription/PhoneVerify.png)</br> 如果您沒收到簡訊或來電，請嘗試使用不同的電話號碼，或連絡 [Azure 支援服務](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以尋求協助。</br>
 5. 在 [以卡驗證] 區段中，輸入有效之信用卡的詳細資料。這項資訊只收集用來驗證您的身分。
 
  **請注意**，雖然不會向您的信用卡收費，但 Microsoft 仍會預扣最小額度的金額，驗證信用卡是否有效。此預扣的金額將會在 3-5 個工作天內返還 (依您的財務機構原則而定)。
@@ -70,8 +68,7 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
  **很抱歉，我們無法完成作業。請稍後再試一次或重新載入網頁** </br>
 
  在此情況下，請嘗試使用其他瀏覽器完成註冊程序。如果問題沒有解決，請連絡 [Azure 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。</br>
-7. 當訂用帳戶就緒時，選取 [開始管理我的服務]。</br>
- ![startservice](./media/billing-buy-sign-up-azure-subscription/startservice.png)
+7. 當訂用帳戶就緒時，選取 [開始管理我的服務]。</br> ![startservice](./media/billing-buy-sign-up-azure-subscription/startservice.png)
 
 <a name="UpgradeFreeToPYG"></a>
 ## 將 Azure 免費試用版升級至隨收隨付
@@ -89,8 +86,8 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 前往 azure.com 的[訂用帳戶摘要頁面](https://account.windowsazure.com/subscriptions)。
 
-2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
+2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰][](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
 
 3. 輸入產品金鑰，然後查看合約選項。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

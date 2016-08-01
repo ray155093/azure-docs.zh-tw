@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/21/2016"
+	ms.date="07/18/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 管理 Azure Active Directory 中的自訂網域名稱
@@ -80,4 +80,4 @@
 
 -   [管理自訂網域名稱](active-directory-add-manage-domain-names.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

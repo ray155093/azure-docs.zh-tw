@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/12/2016"
+   ms.date="07/18/2016"
    ms.author="magoedte;paulomarquesc" />
 
 # Azure 自動化案例 - 使用 JSON 格式化標籤來建立 Azure VM 啟動和關閉的排程
@@ -29,6 +29,7 @@
 
 此案例基本上會採用具有指定格式的 JSON 字串，並將它加入為「排程」標籤的值。然後 Runbook 會列出所有資源群組和虛擬機器，並根據上面所列的案例識別每個 VM 的排程，然後它會依序顯示這些已附加排程的 VM 並評估應該採取的動作 (可能是停止、關閉或忽略)。
 
+這些 Runbook 會使用 [Azure 執行身分帳戶](../automation/automation-sec-configure-azure-runas-account.md)進行驗證。
 
 ## 取得案例
 
@@ -61,7 +62,7 @@ Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤
 6. 若為排程 [啟動] 排程，請將開始時間設為已四捨五入的小時遞增值。
 7. 選取 [週期] 並針對 [重複出現間隔] 選取 [1 小時]。
 8. 確認 [設定到期] 已設為 [否]，然後按一下 [建立] 以儲存新排程。
-9. 在 [排程 Runbook] 選項刀鋒視窗中，選取 [參數和回合設定] 選項，然後在 Test-ResourceSchedule [參數] 刀鋒視窗的 [SubscriptionName] 欄位中，輸入您的訂用帳戶名稱。這是 Runbook 所需的唯一參數。在完成時按一下 [確定]。
+9. 在 [排程 Runbook] 選項刀鋒視窗中，選取 [參數和執行設定] 選項，然後在 Test-ResourceSchedule [參數] 刀鋒視窗的 [SubscriptionName] 欄位中，輸入您的訂用帳戶名稱。這是 Runbook 所需的唯一參數。在完成時按一下 [確定]。
    
 
 完成時的 Runbook 排程應如下所示︰<br> ![已設定的 Test-ResourceSchedule Runbook](./media/automation-scenario-start-stop-vm-wjson-tags/automation-schedule-config.png)<br>
@@ -90,7 +91,7 @@ Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤
 
 1. 此 JSON 結構的格式已經過最佳化，可解決 Azure 中單一標籤值 256 個字元的限制
 
-2. *TzId* 代表虛擬機器的時區。此識別碼可以在 PowerShell 工作階段中使用 TimeZoneInfo .NET 類別來取得 - **[System.TimeZoneInfo]::GetSystemTimeZones()**。<br>
+2. 「TzId」代表虛擬機器的時區。此識別碼可以在 PowerShell 工作階段中使用 TimeZoneInfo .NET 類別來取得 - **[System.TimeZoneInfo]::GetSystemTimeZones()**。<br>
 
     ![PowerShell 中的 GetSystemTimeZones](./media/automation-scenario-start-stop-vm-wjson-tags/automation-get-timzone-powershell.png)
 
@@ -151,7 +152,7 @@ Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"; `
         "VmName"="VM01";"Schedule"=$schedule}
 
-    如果您要標記資源群組，只需從 $params 雜湊表移除 VMName 參數，如下所示︰
+    如果您要標記資源群組，只需從 $params 雜湊表移除「VMName」參數，如下所示︰
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"; `
         "Schedule"=$schedule}
@@ -180,7 +181,7 @@ Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01" ` 
         ;"VmName"="VM01"}
 
-    如果您要從資源群組移除標籤，只需從 $params 雜湊表移除 VMName 參數，如下所示︰
+    如果您要從資源群組移除標籤，只需從 $params 雜湊表移除「VMName」參數，如下所示︰
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"}
 
@@ -205,5 +206,6 @@ Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤
 -  若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 -  如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
 -  若要深入了解 Runbook 記錄和輸出，請參閱 [Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
+-  若要深入了解 Azure 執行身分帳戶以及如何使用它來驗證 Runbook，請參閱[使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

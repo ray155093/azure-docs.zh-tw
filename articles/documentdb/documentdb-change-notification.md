@@ -19,7 +19,7 @@
 
 # 使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
 
-這篇文章的靈感來自我在某一個 DocumentDB 社群論壇上看到的一個問題。這個問題是 **DocumentDB 是否支援已修改資源的通知？**
+這篇文章的靈感來自我在某一個 Azure DocumentDB 社群論壇上看到的一個問題。這個問題是 **DocumentDB 是否支援已修改資源的通知？**
 
 我已使用 BizTalk Server 許多年，這是使用 [WCF LOB 配接器](https://msdn.microsoft.com/library/bb798128.aspx)時非常常見的案例。因此我決定查看是否可以在新增和/或已修改過文件的 DocumentDB 中複製此功能。
 
@@ -1156,4 +1156,4 @@ EmailTo | 將會收到電子郵件通知的電子郵件地址
 
 若要深入了解 DocumentDB，請瀏覽[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

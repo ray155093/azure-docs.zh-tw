@@ -20,7 +20,7 @@
 # MongoDB 的 DocumentDB 通訊協定支援範例
 若要使用這些範例，您必須︰
 
-- [建立](documentdb-create-mongodb-account.md)具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
+- [建立](documentdb-create-mongodb-account.md)具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶。
 - 擷取具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的[連接字串](documentdb-connect-mongodb-account.md)資訊。
 
 ## 開始使用範例 ASP.NET MVC 工作清單應用程式
@@ -175,4 +175,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

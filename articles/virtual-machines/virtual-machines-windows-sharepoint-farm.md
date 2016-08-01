@@ -1,6 +1,6 @@
 <properties
 	pageTitle="建立 SharePoint 伺服器陣列 | Microsoft Azure"
-	description="透過 Azure 入口網站的 Marketplace，快速建立新的基本或高可用性 SharePoint Server 2013 伺服器陣列。"
+	description="在 Azure 中快速建立新的 SharePoint 2013 或 SharePoint 2016 伺服器陣列。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="JoeDavies-MSFT"
@@ -14,10 +14,14 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="07/19/2016"
 	ms.author="josephd"/>
 
 # 建立 SharePoint 伺服器陣列
+
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統模型。
+
+## SharePoint 2013 伺服器陣列
 
 透過 Microsoft Azure 入口網站的 Marketplace，您可以快速建立預先設定的 SharePoint Server 2013 伺服器陣列。當您在開發和測試環境中需要基本或高可用性 SharePoint 伺服器陣列時，或是您要評估將 SharePoint Server 2013 做為組織的共同作業方案時，這將可為您省下許多時間。
 
@@ -53,16 +57,20 @@
 
 Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬網路中，同時建立這兩種伺服器陣列。沒有任何站對站 VPN 或 ExpressRoute 連線會連回您的組織網路。
 
+## SharePoint 2016 伺服器陣列
+
+如需有關如何建置下列單一伺服器 SharePoint 2016 伺服器陣列的指示，請參閱[這個主題](https://technet.microsoft.com/library/mt723354.aspx)。
+
+![sharepointfarm](./media/virtual-machines-windows-sharepoint-farm/SP2016Farm.png)
+
 ## 管理 SharePoint 伺服器陣列
 
 您可以透過遠端桌面連接管理這些伺服器陣列的伺服器。如需詳細資訊，請參閱[登入虛擬機器](virtual-machines-windows-hero-tutorial.md#log-on-to-the-virtual-machine)。
 
 在「管理中心 SharePoint」網站中，您可以設定「我的網站」、SharePoint 應用程式和其他功能。如需詳細資訊，請參閱[設定 SharePoint 2013](http://technet.microsoft.com/library/ee836142.aspx)。
 
-> [AZURE.NOTE] 使用 [SharePoint Server 2016 試用版映像](https://azure.microsoft.com/blog/test-sharepoint-server-2016/)時，您可以建立執行 SharePoint Server 2016 的虛擬機器。
-
 ## 後續步驟
 
 - 探索 Azure 基礎結構服務中的其他 [SharePoint 2013](https://technet.microsoft.com/library/dn635309.aspx) 組態。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

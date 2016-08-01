@@ -13,10 +13,10 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-multiple"
  ms.workload="big-compute"
- ms.date="04/13/2016"
+ ms.date="07/15/2016"
  ms.author="danlep"/>
 
-# 將做為運算資源的隨選「高載」節點 (背景工作角色執行個體) 新增至 Azure 中的 HPC Pack 叢集
+# 將隨選「高載」節點新增至 Azure 中的 HPC Pack 叢集
 
 
 
@@ -26,15 +26,15 @@ ms.service="virtual-machines-windows"
 
 ![高載節點][burst]
 
->[AZURE.TIP] 如果您使用 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)在 Azure 中建立叢集，則可以在自動化部署中包含 Azure 高載節點。請參閱該文件中的範例。
-
 本文中的步驟可協助您將 Azure 節點快速新增至雲端架構 HPC Pack 前端節點 VM，以測試或證明部署概念。此程序基本上相當於將雲端運算能力新增至內部部署 HPC Pack 叢集的「將量擴大到 Azure」程序。如需教學課程，請參閱[使用 Microsoft HPC Pack 設定混合式計算叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)。如需生產部署的詳細指引和考量，請參閱[使用 Microsoft HPC Pack 將量擴大到 Azure](https://technet.microsoft.com/library/gg481749.aspx)。
 
-如果您要使用 A8 或 A9 計算密集型執行個體大小，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+如需有關針對高載節點使用 A8 或 A9 計算密集型執行個體大小的考量，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
 ## 必要條件
 
-* **在 Azure VM 中部署的 HPC Pack 前端節點** - 請參閱[在 Azure VM 中部署 HPC Pack 前端節點](virtual-machines-windows-hpcpack-cluster-headnode.md)，以了解在傳統部署模型中建立叢集前端節點的步驟。
+* **部署在 Azure VM 中的 HPC Pack 前端節點** -您可以使用獨立的前端節點 VM 或屬於較大叢集的節點。若要建立獨立的前端節點，請參閱[在 Azure VM 中部署 HPC Pack 前端節點](virtual-machines-windows-hpcpack-cluster-headnode.md)。如需自動化的 HPC Pack 叢集部署選項，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows HPC 叢集的選項](virtual-machines-windows-hpcpack-cluster-options.md)。
+
+    >[AZURE.TIP] 如果您使用 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)在 Azure 中建立叢集，則可以在自動化部署中包含 Azure 高載節點。請參閱該文件中的範例。
 
 * **Azure 訂用帳戶** - 若要新增 Azure 節點，您可以選擇用來部署前端節點 VM 的同一個訂用帳戶，或選擇一或多個不同的訂用帳戶。
 
@@ -62,7 +62,7 @@ ms.service="virtual-machines-windows"
 
 若要將 Azure 節點新增運算資源，您在前端節點上必須要有管理憑證，且必須將對應的憑證上傳至用於部署的 Azure 訂用帳戶。
 
-針對這個案例，您可以選擇 HPC Pack 在前端節點上自動安裝及設定的**預設 HPC Azure 管理憑證**。此憑證可用於測試及概念證明部署。若要使用此憑證，請直接將檔案 C:\\Program Files\\Microsoft HPC Pack 2012\\Bin\\hpccert.cer 從前端節點 VM 上傳至訂用帳戶。
+針對這個案例，您可以選擇 HPC Pack 在前端節點上自動安裝及設定的**預設 HPC Azure 管理憑證**。此憑證可用於測試及概念證明部署。若要使用此憑證，請直接將檔案 C:\\Program Files\\Microsoft HPC Pack 2012\\Bin\\hpccert.cer 從前端節點 VM 上傳至訂用帳戶。您可在 [Azure 傳統入口網站](https://manage.windowsazure.com)中執行這項操作。按一下 [設定] > [管理憑證]。
 
 如需設定管理憑證的其他選項，請參閱[為 Azure 高載部署設定 Azure 管理憑證的案例](http://technet.microsoft.com/library/gg481759.aspx)。
 
@@ -84,9 +84,9 @@ ms.service="virtual-machines-windows"
 
 ## 後續步驟
 
-* 如果您想要根據叢集上目前工作的工作負載自動增加或縮減 Azure 計算資源，請參閱[自動在 HPC Pack 叢集中增加和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
+* 如果您想要根據叢集上目前作業與工作的工作負載自動擴增或縮減 Azure 計算資源，請參閱[在 HPC Pack 叢集中自動擴增和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
 <!--Image references-->
 [burst]: ./media/virtual-machines-windows-classic-hpcpack-cluster-node-burst/burst.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

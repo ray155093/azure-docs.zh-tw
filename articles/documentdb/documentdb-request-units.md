@@ -202,7 +202,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 ##後續步驟
 
-若要深入了解透過 Azure DocumentDB 保留輸送量的方式，請探索下列資源：
+若要深入了解透過 Azure DocumentDB 資料庫保留輸送量的方式，請探索下列資源：
  
 - [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)
 - [管理 DocumentDB 容量](documentdb-manage.md)
@@ -220,4 +220,4 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 [4]: ./media/documentdb-request-units/RUEstimatorResults.png
 [5]: ./media/documentdb-request-units/RUCalculator2.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

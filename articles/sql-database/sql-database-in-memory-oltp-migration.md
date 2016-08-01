@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="07/18/2016"
 	ms.author="jodebrui"/>
 
 
@@ -55,7 +55,7 @@ SELECT DatabasePropertyEx(Db_Name(), 'IsXTPSupported');
 
 1. 在 Azure [入口網站](https://portal.azure.com/)中，
  - 導覽至伺服器。
- - 選取 [匯入資料庫](sql-database-import.md) 選項。
+ - 選取 [匯入資料庫][](sql-database-import.md) 選項。
  - 選取進階定價層。
 
 2. 使用 SSMS 匯入 bacpac：
@@ -110,8 +110,8 @@ ALTER DATABASE CURRENT
 2. 在 [物件總管] 中，以滑鼠右鍵按一下資料表，然後按一下 [記憶體最佳化建議程式]。
  - [資料表記憶體最佳化建議程式] 精靈隨即顯示。
 
-3. 在此精靈中按一下 [移轉驗證] \(或 [下一步] 按鈕)，以查看資料表是否有任何在記憶體最佳化資料表中不受支援的功能。如需詳細資訊，請參閱：
- - [記憶體最佳化建議程式](http://msdn.microsoft.com/library/dn284308.aspx)中的 *記憶體最佳化檢查清單* 。
+3. 在此精靈中按一下 [移轉驗證] (或 [下一步] 按鈕)，以查看資料表是否有任何在記憶體最佳化資料表中不受支援的功能。如需詳細資訊，請參閱：
+ - [記憶體最佳化建議程式](http://msdn.microsoft.com/library/dn284308.aspx)中的*記憶體最佳化檢查清單*。
  - [In-Memory OLTP 不支援的 Transact-SQL 建構](http://msdn.microsoft.com/library/dn246937.aspx)。
  - [移轉至 In-Memory OLTP](http://msdn.microsoft.com/library/dn247639.aspx)。
 
@@ -237,4 +237,4 @@ CREATE PROCEDURE schemaname.procedurename
 
 - [記憶體最佳化建議程式](http://msdn.microsoft.com/library/dn284308.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

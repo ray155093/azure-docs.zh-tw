@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/20/2016"
+	ms.date="07/15/2016"
 	ms.author="jroth"/>
 
 # 使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (Resource Manager)
@@ -310,4 +310,4 @@
 ## 後續步驟
 建立虛擬機器之後，您即可準備使用 RDP 和設定連線能力來連接到虛擬機器。如需詳細資訊，請參閱[連線到 Azure 上的 SQL Server 虛擬機器 (資源管理員)](virtual-machines-windows-sql-connect.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="04/29/2016"
+ ms.date="07/19/2016"
  ms.author="dobett"/>
 
 # 設計您的解決方案
@@ -23,6 +23,7 @@
 - 裝置佈建
 - 現場閘道器
 - 裝置驗證
+- 裝置活動訊號
 
 ## 裝置佈建
 
@@ -36,13 +37,13 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 給定的 IoT 解決方案儲存的裝置資料取決於該解決方案的特定需求。但是解決方案至少必須儲存裝置身分識別和驗證金鑰。Azure IoT 中樞包含[身分識別登錄][lnk-devguide-identityregistry]，其可以儲存每個裝置的值，例如識別碼、驗證金鑰和狀態碼。解決方案可以使用其他 Azure 服務 (例如資料表、blob 或 Azure DocumentDB) 來儲存任何其他裝置資料。
 
-裝置佈建是將初始裝置資料加入至解決方案中存放區的程序。若要讓新裝置可連接到您的中樞，必須將新裝置識別碼和金鑰加入至 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]。做為佈建程序的一部分，您可能需要初始化其他解決方案存放區中的裝置特定資料。
+*裝置佈建*是將初始裝置資料加入至解決方案中存放區的程序。若要讓新裝置可連接到您的中樞，必須將新裝置識別碼和金鑰加入至 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]。做為佈建程序的一部分，您可能需要初始化其他解決方案存放區中的裝置特定資料。
 
 [IoT 中樞身分識別登錄 API][lnk-devguide-identityregistry] 可讓您將 IoT 中樞整合到您的佈建程序。
 
 ## 現場閘道器
 
-在 IoT 解決方案中，現場閘道器位於您的裝置和 IoT 中樞之間。它通常位於接近您的裝置的位置。您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。現場閘道器會使用 IoT 中樞所支援的通訊協定來與 IoT 中樞通訊。現場閘道可以是高度特殊化硬體或低功率電腦，其執行完成閘道所想要之端對端案例的軟體。
+在 IoT 解決方案中，*現場閘道器*位於您的裝置和 IoT 中樞之間。它通常位於接近您的裝置的位置。您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。現場閘道器會使用 IoT 中樞所支援的通訊協定來與 IoT 中樞通訊。現場閘道可以是高度特殊化硬體或低功率電腦，其執行完成閘道所想要之端對端案例的軟體。
 
 現場閘道器與簡單的流量路由裝置 (例如網路位址轉譯 (NAT) 裝置或防火牆) 不同，因為它通常會在解決方案內管理存取和資訊流程中扮演主動的角色。例如，現場閘道器可以：
 
@@ -59,7 +60,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ## 自訂裝置驗證
 
-您可以使用 IoT 中樞[裝置身分識別登錄][lnk-devguide-identityregistry]來設定每一裝置的安全性認證和存取控制。如果 IoT 解決方案已經大幅投資自訂裝置身分識別登錄及/或驗證配置，您可以藉由建立*權杖服務*，將這個現有基礎結構與 IoT 中樞整合。如此一來，您可以在解決方案中使用其他 IoT 功能。
+您可以使用 IoT 中樞[裝置身分識別登錄][lnk-devguide-identityregistry]，利用[權杖][lnk-sas-token]來設定每一裝置的安全性認證和存取控制。如果 IoT 解決方案已經大幅投資自訂裝置身分識別登錄及/或驗證配置，您可以藉由建立*權杖服務*，將這個現有基礎結構與 IoT 中樞整合。如此一來，您可以在解決方案中使用其他 IoT 功能。
 
 權杖服務是自訂雲端服務。建立具備 **DeviceConnect** 權限的 IoT 中樞共用存取原則，以建立「裝置範圍」權杖。這些權杖可讓裝置連接到 IoT 中樞。
 
@@ -70,7 +71,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 1. 為您的 IoT 中樞建立具備 **DeviceConnect** 權限的 [IoT 中樞共用存取原則][lnk-devguide-security]。您可以在 [Azure 入口網站][lnk-portal]中或以程式設計方式建立此原則。權杖服務會使用此原則簽署它所建立的權杖。
 2. 當裝置需要存取 IoT 中樞時，它會向您的權杖服務要求已簽署的權杖。裝置可以使用您的自訂裝置身分識別登錄/驗證配置來進行驗證，以判斷權杖服務用來建立權杖的裝置身分識別。
 3. 權杖服務會傳回權杖。使用 `/devices/{deviceId}` 做為 `resourceURI` (其中 `deviceId` 是要驗證的裝置)，並根據 [IoT 中樞開發人員指南的安全性一節][lnk-devguide-security]建立權杖。權杖服務會使用共用存取原則來建構權杖。
-4. 裝置直接透過 IoT 中心使用權杖。
+4. 裝置直接透過 IoT 中樞使用權杖。
 
 > [AZURE.NOTE] 您可以使用 .NET 類別 [SharedAccessSignatureBuilder][lnk-dotnet-sas] 或 Java 類別 [IotHubServiceSasToken][lnk-java-sas] 在權杖服務中建立權杖。
 
@@ -80,7 +81,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 
 ### 和自訂閘道器的比較
 
-權杖服務模式為使用 IoT 中樞實作自訂身分識別登錄/驗證配置的建議方式。這麼建議是因為 IoT 中樞會繼續處理大部份的解決方案流量。不過，在一些情況下，自訂驗證配置和通訊協定過度交織，因此需要可處理所有流量 (*自訂閘道器*) 的服務。[傳輸層安全性 (TLS) 和預先共用金鑰 (PSK)][lnk-tls-psk] 是服務範例之一。如需詳細資訊，請參閱[通訊協定閘道器][lnk-gateway]主題。
+權杖服務模式為使用 IoT 中樞實作自訂身分識別登錄/驗證配置的建議方式。這麼建議是因為 IoT 中樞會繼續處理大部份的解決方案流量。不過，在一些情況下，自訂驗證配置和通訊協定過度交織，因此需要可處理所有流量 (*自訂閘道器*) 的服務。[傳輸層安全性 (TLS) 和預先共用金鑰 (PSK)][lnk-tls-psk] 是服務範例之一。如需詳細資訊，請參閱[通訊協定閘道器][lnk-protocols]主題。
 
 ## 裝置活動訊號 <a id="heartbeat"></a>
 
@@ -114,17 +115,10 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [lnk-devguide-identityregistry]: iot-hub-devguide.md#identityregistry
 [lnk-devguide-opmon]: iot-hub-operations-monitoring.md
 
-[lnk-device-sdks]: iot-hub-sdks-summary.md
 [lnk-devguide-security]: iot-hub-devguide.md#security
 [lnk-tls-psk]: https://tools.ietf.org/html/rfc4279
-[lnk-gateway]: iot-hub-protocol-gateway.md
 
-[lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[lnk-what-is-hub]: iot-hub-what-is-iot-hub.md
 [lnk-portal]: https://portal.azure.com
-[lnk-throttles-quotas]: ../azure-subscription-service-limits.md/#iot-hub-limits
-[lnk-devguide-antispoofing]: iot-hub-devguide.md#antispoofing
-[lnk-devguide-protocol]: iot-hub-devguide.md#amqpvshttp
 [lnk-devguide-messaging]: iot-hub-devguide.md#messaging
 [lnk-dotnet-sas]: https://msdn.microsoft.com/library/microsoft.azure.devices.common.security.sharedaccesssignaturebuilder.aspx
 [lnk-java-sas]: http://azure.github.io/azure-iot-sdks/java/service/api_reference/com/microsoft/azure/iot/service/auth/IotHubServiceSasToken.html
@@ -140,5 +134,6 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal-manage]: iot-hub-manage-through-portal.md
+[lnk-sas-token]: iot-hub-sas-tokens.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

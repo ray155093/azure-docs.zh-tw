@@ -87,8 +87,8 @@
 | 狀況不良臨界值 | 3 | 探查重試計數。連續探查失敗計數到達狀況不良臨界值後，就會將後端伺服器標示為故障。 |
 
 ###方案
-- 確定預設網站已設定且正於 127.0.0.1 上進行接聽。 
-- 如果 BackendHttpSetting 指定了 80 以外的連接埠，則應將預設網站設定為在該連接埠上進行接聽。 
+- 確定預設網站已設定且正於 127.0.0.1 上進行接聽。
+- 如果 BackendHttpSetting 指定了 80 以外的連接埠，則應將預設網站設定為在該連接埠上進行接聽。
 - 對 http://127.0.0.1:port 的呼叫應該會傳回 HTTP 結果碼 200。這應該會在 30 秒逾時期間內傳回。
 - 確定設定的連接埠已開啟，而且沒有任何防火牆或 Azure 網路安全性群組會在所設定的連接埠上封鎖連入或連出流量。
 - 如果Azure 傳統 VM 或雲端服務會與 FQDN 或公用 IP 搭配使用，請確認對應的[端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)已開啟。
@@ -112,10 +112,10 @@
 
 
 ###方案
-根據下列每一個資料表，確認自訂的健全狀況探查已正確設定。除了上述的疑難排解步驟，也請確定下列內容。
+確認已正確設定上述每個資料表的 [自訂健全狀況探查]。除了上述的疑難排解步驟，也請確定下列內容。
 
 - 確定只將 Protocol 設定為 HTTP。目前不支援 HTTPS。
-- 確定已根據[指南](application-gateway-create-probe-ps.md)正確指定探查。 
+- 確定已根據[指南](application-gateway-create-probe-ps.md)正確指定探查。
 - 如果已將應用程式閘道設定為單一站台，根據預設，除非已在自訂探查中加以設定，否則應將主機名稱指定為 '127.0.0.1'。
 - 確定對 http://\<host>:<port><path> 的呼叫會傳回 HTTP 結果碼 200。
 - 確定 Interval、Time-out 和 UnhealtyThreshold 皆在可接受的範圍內。
@@ -134,4 +134,4 @@
 
 如果上述步驟無法解決問題，請開啟[支援票證](https://azure.microsoft.com/support/options/)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

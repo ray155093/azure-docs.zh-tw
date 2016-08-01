@@ -19,7 +19,7 @@
 
 # DocumentDB 伺服器端程式設計：預存程序、資料庫觸發程序和 UDF
 
-了解 DocumentDB 的語言如何整合，JavaScript 的交易式執行可讓開發人員在 JavaScript 中原生撰寫 [預存程序]、[觸發程序] 和 [使用者定義函數 (UDF)]。這一特點可讓您得以撰寫能直接在資料庫儲存體資料分割上傳送和執行的資料庫程式應用程式邏輯。
+了解 Azure DocumentDB 的語言如何整合，JavaScript 的交易式執行如何讓開發人員使用 JavaScript 以原生方式撰寫 [預存程序]、[觸發程序] 和 [使用者定義函數 (UDF)]。這一特點可讓您得以撰寫能直接在資料庫儲存體資料分割上傳送和執行的資料庫程式應用程式邏輯。
 
 我們建議使用者從觀看下列影片開始入門，Andrew Liu 在其中提供了 DocumentDB 的伺服器端資料庫程式設計模型的簡介。
 
@@ -43,12 +43,12 @@
 -	**不可部分完成的交易**：DocumentDB 可確保在單一預存程序或觸發程序內執行的資料庫作業成為不可部分完成的作業。這可讓應用程式合併單一批次中的相關作業，讓所有作業不是一起成功就是一起失敗。
 
 -	**效能**：JSON 本身就對應至 Javascript 語言類型系統並且同時是 DocumentDB 中儲存體基本單位的事實，可提供許多最佳化功能，例如在緩衝集區中對 JSON 文件執行滯後具體化，並讓執行中程式碼可以依需求使用這些文件。除此之外，還有其它與傳送商務邏輯至資料庫相關聯的效能優點：
-	-	批次處理 - 開發人員可以群組多個作業 (例如插入)，大量進行提交。因此，網路流量延遲成本以及建立個別交易的額外儲存負荷得以大幅降低。 
+	-	批次處理 - 開發人員可以群組多個作業 (例如插入)，大量進行提交。因此，網路流量延遲成本以及建立個別交易的額外儲存負荷得以大幅降低。
 	-	預先編譯 - DocumentDB 會預先編譯預存程序、觸發程序和使用者定義函數 (UDF)，以避免每次叫用的 JavaScript 編譯成本。因此，建置程序邏輯位元組程式碼的額外負荷已降到最低。
-	-	排序 - 許多作業都需要副作用 (「觸發程序」)，其可能涉及執行一項或多項次要儲存作業。除了不可部分完成的作業之外，這在移至伺服器時會有更好的效能。 
+	-	排序 - 許多作業都需要副作用 (「觸發程序」)，其可能涉及執行一項或多項次要儲存作業。除了不可部分完成的作業之外，這在移至伺服器時會有更好的效能。
 -	**封裝**：預存程序可以用來將商務邏輯群組在一個位置。這有兩個優點：
-	-	它會在未經處理的資料上方新增抽象層，讓資料架構設計人員發展其應用程式，而不會動到資料。這在資料無結構描述時特別有用，因為暫時的假設是，如果它們需要直接處理資料，則可能需要編譯成應用程式。  
-	-	這個抽象層讓企業得以透過指令碼簡化存取來確保資料安全。  
+	-	它會在未經處理的資料上方新增抽象層，讓資料架構設計人員發展其應用程式，而不會動到資料。這在資料無結構描述時特別有用，因為暫時的假設是，如果它們需要直接處理資料，則可能需要編譯成應用程式。
+	-	這個抽象層讓企業得以透過指令碼簡化存取來確保資料安全。
 
 許多平台都支援透過 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)、[DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases) 和[用戶端 SDK](documentdb-sdk-dotnet.md) (包括 .NET、Node.js 和 JavaScript) 建立和執行資料庫觸發程序、預存程序和自訂查詢運算子。
 
@@ -479,9 +479,7 @@ DocumentDB 提供作業在文件上執行或觸發的觸發程序。例如，您
 ## JavaScript Language Integrated Query API
 除了使用 DocumentDB 的 SQL 文法發出查詢，伺服器端 SDK 可讓您使用流暢的 JavaScript 介面執行最佳化查詢，不需具備任何 SQL 的知識。JavaScript 的查詢 API 使用 ECMAScript5 陣列內建和受歡迎的 JavaScript 程式庫如 lodash 所熟悉的語法，將述詞函式傳遞至可鏈結式函式呼叫，藉此以程式設計方式建立查詢。查詢是由 JavaScript 執行階段使用 DocumentDB 的索引來有效地執行剖析。
 
-> [AZURE.NOTE] `__` (雙底線) 是 `getContext().getCollection()` 的別名。
-> <br/> 
-> 換句話說，您可以使用 `__` 或 `getContext().getCollection()` 存取 JavaScript 查詢 API。
+> [AZURE.NOTE] `__` (雙底線) 是 `getContext().getCollection()` 的別名。<br/> 換句話說，您可以使用 `__` 或 `getContext().getCollection()` 存取 JavaScript 查詢 API。
 
 支援的函式包括︰
 <ul>
@@ -546,7 +544,7 @@ DocumentDB 提供作業在文件上執行或觸發的觸發程序。例如，您
 
 當裡面包含述詞和/或選取器函式時，下列 JavaScript 建構會自動取得最佳化，以便直接在 DocumentDB 索引上執行：
 
-* 簡單的運算子：= + - * / % | ^ &amp; == != === !=== &lt; &gt; &lt;= &gt;= || &amp;&amp; &lt;&lt; &gt;&gt; &gt;&gt;&gt;! ~
+* 簡易運算子：= + - * / %| ^ &amp; == != === !=== &lt; &gt; &lt;= &gt;= || &amp;&amp; &lt;&lt; &gt;&gt; &gt;&gt;&gt;! ~
 * 常值，包括 literal: {} 物件
 * var、return
 
@@ -918,11 +916,11 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
 
 - [Azure DocumentDB SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)
 - [DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases)
-- [JSON](http://www.json.org/) 
+- [JSON](http://www.json.org/)
 - [JavaScript ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
-- [JavaScript – JSON 類型系統](http://www.json.org/js.html) 
-- [安全和可攜式資料庫擴充性](http://dl.acm.org/citation.cfm?id=276339) 
-- [服務導向資料庫架構](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE) 
+- [JavaScript – JSON 類型系統](http://www.json.org/js.html)
+- [安全和可攜式資料庫擴充性](http://dl.acm.org/citation.cfm?id=276339)
+- [服務導向資料庫架構](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE)
 - [在 Microsoft SQL Server 中託管 .NET 執行階段](http://dl.acm.org/citation.cfm?id=1007669)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0720_2016-->

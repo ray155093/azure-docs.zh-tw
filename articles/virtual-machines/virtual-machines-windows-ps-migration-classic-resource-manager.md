@@ -32,7 +32,7 @@
 
 您有下列兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。WebPI 每個月都會更新。PowerShell 資源庫將持續更新。
 
-如需詳細資訊，請參閱 [Azure PowerShell 1.0](https://azure.microsoft.com//blog/azps-1-0/)。
+如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 步驟 3︰設定您的訂用帳戶並註冊以進行移轉
 
@@ -94,16 +94,31 @@
 
 準備好雲端服務中的虛擬機器以進行移轉。有兩個選項可供您選擇。
 
-如果您想要將 VM 移轉至平台建立的虛擬網路，請使用下列命令。
+1. 如果您想要將 VM 移轉到平台建立的虛擬網路
 
-	Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -CreateNewVirtualNetwork
+	第一個步驟是使用下列命令來驗證您是否可以移轉雲端服務︰
 
-如果您想要移轉至 Resource Manager 部署模型中的現有虛擬網路，請使用下列命令。
+		$validate = Move-AzureService -Validate -ServiceName $serviceName -DeploymentName $deploymentName -CreateNewVirtualNetwork
+		$validate.ValidationMessages
 
-	$existingVnetRGName = "<Existing VNET's Resource Group Name>"
-	$vnetName = "<Virtual Network Name>"
-	$subnetName = "<Subnet name>"
-	Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -UseExistingVirtualNetwork -VirtualNetworkResourceGroupName $existingVnetRGName 		-VirtualNetworkName $vnetName -SubnetName $subnetName
+	上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+
+		Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -CreateNewVirtualNetwork
+
+2. 如果您想要移轉到 Resource Manager 部署模型中的現有虛擬網路
+
+		$existingVnetRGName = "<Existing VNET's Resource Group Name>"
+		$vnetName = "<Virtual Network Name>"
+		$subnetName = "<Subnet name>"
+
+	第一個步驟是使用下列命令來驗證您是否可以移轉雲端服務︰
+
+		$validate = Move-AzureService -Validate -ServiceName $serviceName -DeploymentName $deploymentName -UseExistingVirtualNetwork -VirtualNetworkResourceGroupName $existingVnetRGName -VirtualNetworkName $vnetName -SubnetName $subnetName
+		$validate.ValidationMessages
+
+	上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+
+		Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -UseExistingVirtualNetwork -VirtualNetworkResourceGroupName $existingVnetRGName -VirtualNetworkName $vnetName -SubnetName $subnetName
 
 準備作業成功之後，您可以查詢 VM 的移轉狀態並確保 VM 處於 `Prepared` 狀態。
 
@@ -117,15 +132,22 @@
 
 如果備妥的組態看起來沒問題，您就可以繼續進行並使用下列命令來認可資源。
 
-	Move-AzureService -Commit -ServiceName docmigtest1 -DeploymentName docmigtest1
+	Move-AzureService -Commit -ServiceName $serviceName -DeploymentName $deploymentName
 
 ### 移轉虛擬網路中的虛擬機器
 
-選取您想要移轉的虛擬網路。請注意，如果虛擬網路包含 Web/背景工作角色，或有具備不支援之組態的 VM，您將會收到驗證錯誤訊息。
-
-使用下列命令來準備虛擬網路以進行移轉。
+選取您想要移轉的虛擬網路。
 
 	$vnetName = "VNET-Name"
+
+>[AZURE.NOTE] 如果虛擬網路包含 Web/背景工作角色，或有具備不支援之組態的 VM，您將會收到驗證錯誤訊息。
+
+第一個步驟是使用下列命令來驗證您是否可以移轉虛擬網路︰
+
+	Move-AzureVirtualNetwork -Validate -VirtualNetworkName $vnetName
+
+上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+	
 	Move-AzureVirtualNetwork -Prepare -VirtualNetworkName $vnetName
 
 使用 PowerShell 或 Azure 入口網站來檢查已備妥之虛擬機器的組態。如果您尚未準備好進行移轉，而想要回到舊狀態，請使用下列命令。
@@ -159,4 +181,4 @@
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

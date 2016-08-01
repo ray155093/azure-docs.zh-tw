@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/13/2016"
+	ms.date="07/15/2016"
 	ms.author="tomfitz"/>
 
 # 建立 Azure Resource Manager 範本的最佳做法
@@ -34,15 +34,15 @@
 
 您必須為任何有資料存取端點的資源類型，提供唯一的資源名稱。一些需要唯一名稱的常見類型包括︰
 
-- 儲存體
-- Web 應用程式
+- 儲存體帳戶
+- 網站
 - SQL Server
 - 金鑰保存庫
 - Redis 快取
-- 批次
+- 批次帳戶
 - 流量管理員
 - 搜尋服務
-- HDInsight
+- HDInsight 叢集
 
 此外，儲存體帳戶名稱必須是小寫、長度不超過 24 個字元，而且不包含任何連字號。
 
@@ -361,4 +361,4 @@
 2. 如需有關設定儲存體帳戶的詳細資訊，請參閱 [Microsoft Azure 儲存體效能與延展性檢查清單](./storage/storage-performance-checklist.md)。
 3. 如需虛擬網路的說明，請參閱 [Networking infrastructure guidelines (網路基礎結構指導方針)](./virtual-machines/virtual-machines-windows-infrastructure-networking-guidelines.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

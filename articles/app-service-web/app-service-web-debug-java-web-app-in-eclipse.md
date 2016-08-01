@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
+	ms.date="07/07/2016" 
 	ms.author="asirveda;robmcm"/>
 
 # 在 Eclipse 中對 Azure 上的 Java Web 應用程式進行偵錯
@@ -29,7 +29,7 @@
 * Java Developer Kit (JDK) 1.8 版或更新版本。
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
+* Azure 訂用帳戶，可從 <https://azure.microsoft.com/zh-TW/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
 * 適用於 Eclipse 的 Azure 工具組。如需詳細資訊，請參閱[安裝 Azure Toolkit for Eclipse]。
 * 動態 Web 專案已建立並部署到 Azure App Service；例如，請參閱[在 Eclipse 中建立 Azure Hello World Web 應用程式]。
 
@@ -104,4 +104,4 @@
 [05]: ./media/app-service-web-debug-java-web-app-in-eclipse/05-ready-for-remote-debugging.png
 [06]: ./media/app-service-web-debug-java-web-app-in-eclipse/06-windows-command-prompt-connection-successful-to-remote.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

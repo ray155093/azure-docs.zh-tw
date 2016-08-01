@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/06/2016"
+   ms.date="07/14/2016"
    ms.author="tomfitz"/>
 
 # 使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解
@@ -24,17 +24,65 @@
 
 ## 範本或資源無效
 
-如果您收到錯誤指出範本或資源屬性無效，您的範本中可能有遺漏的字元。使用範本運算式時很容易造成此錯誤，因為運算式會包在引號中，所以 JSON 仍會驗證且您的編輯器可能無法偵測到此錯誤。例如，儲存體帳戶的下列名稱指派包含一組方括號、三個函式、三組圓括號、一組單引號和一個屬性︰
+在部署範本時，您可能會收到︰
+
+    Code=InvalidTemplate 
+    Message=Deployment template validation failed
+
+如果您收到錯誤指出範本或資源屬性無效，您的範本中可能有語法錯誤。此錯誤很容易發生，因為範本運算式可能很複雜。例如，儲存體帳戶的下列名稱指派包含一組方括號、三個函式、三組圓括號、一組單引號和一個屬性︰
 
     "name": "[concat('storage', uniqueString(resourceGroup().id))]",
 
 如果您未提供所有相符的語法，範本將會產生與您所要的值截然不同的值。
 
-視遺漏的字元是否位於您的範本中而定，您會收到錯誤指出範本或資源無效。此錯誤也指出部署程序無法處理範本語言運算式。當您收到此類錯誤時，請仔細檢閱運算式語法。
+當您收到此類錯誤時，請仔細檢閱運算式語法。請考慮使用 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 或 [Visual Studio Code](resource-manager-vs-code.md) 等 JSON 編輯器，它們可以警告您有語法錯誤。
 
-## 資源名稱已經存在，或已由另一個資源使用
+## 不正確的區段長度
 
-對於某些資源 (最顯著的儲存體帳戶、資料庫伺服器和網站)，您必須提供在整個 Azure 中是唯一的資源名稱。您可以將您的命名慣例與 [uniqueString](resource-group-template-functions.md#uniquestring) 函數的結果串連，以建立一個唯一名稱。
+資源名稱的格式不正確時，就會發生另一種無效範本錯誤。
+
+    Code=InvalidTemplate
+    Message=Deployment template validation failed: 'The template resource {resource-name}' 
+    for type {resource-type} has incorrect segment lengths.
+
+根層級資源的名稱必須比資源類型少一個區段。每個區段是以斜線區分。在下列範例中，類型具有 2 個區段，而名稱則有 1 個區段，因此是**有效名稱**。
+
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "name": "myHostingPlanName",
+
+但下一個範例則**不是有效名稱**，因為它的區段數目和類型相同。
+
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "name": "appPlan/myHostingPlanName",
+
+對於子資源來說，類型和名稱必須具有相同的區段數目。這個要求很合理，因為子資源的完整名稱和類型包含父資源的名稱和類型，因此完整名稱仍會比完整類型少一個區段。
+
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "contosokeyvault",
+            ...
+            "resources": [
+                {
+                    "type": "secrets",
+                    "name": "appPassword",
+
+對於跨資源提供者套用的 Resource Manager 類型而言，要讓區段保持正確尤為棘手。例如，將資源鎖定套用至網站需要具有 4 個區段的類型。因此，名稱會是 3 個區段︰
+
+    {
+        "type": "Microsoft.Web/sites/providers/locks",
+        "name": "[concat(variables('siteName'),'/Microsoft.Authorization/MySiteLock')]",
+
+## 資源名稱已採用，或已由另一個資源使用
+
+對於某些資源 (最顯著的儲存體帳戶、資料庫伺服器和網站)，您必須提供在整個 Azure 中是唯一的資源名稱。如果您未提供唯一的名稱，您可能會收到下列類似錯誤︰
+
+    Code=StorageAccountAlreadyTaken 
+    Message=The storage account named mystorage is already taken.
+
+您可以將您的命名慣例與 [uniqueString](resource-group-template-functions.md#uniquestring) 函式的結果串連，以建立一個唯一名稱。
 
     "name": "[concat('contosostorage', uniqueString(resourceGroup().id))]",
     "type": "Microsoft.Storage/storageAccounts",
@@ -168,7 +216,7 @@
 
 您可能會在部署期間收到錯誤，因為嘗試部署資源的帳戶或服務主體並有執行這些動作的存取權。Azure Active Directory 可讓您或您的系統管理員最精確地控制哪些身分識別可以存取哪些資源。例如，如果您的帳戶被指派「讀取者」角色，它將無法建立新資源。在此情況下，您應該會看到錯誤訊息，指出授權失敗。
 
-如需有關角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
+如需角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
 除了角色型存取控制之外，您的部署動作也可能受到訂用帳戶的相關原則限制。透過原則，系統管理員可以強制執行訂用帳戶中所有資源部署的慣例。例如，系統管理員可以要求的資源類型提供特定的標記值。如果您未達成原則的需求，便會在部署期間收到錯誤。如需有關原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
@@ -213,4 +261,4 @@ Azure Resource Manager 會部署成功傳回所有提供者時，報告部署成
 - 若要了解稽核動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 - 若要了解部署期間可採取哪些動作來判斷錯誤，請參閱[檢視部署作業](resource-manager-troubleshoot-deployments-portal.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

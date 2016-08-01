@@ -19,7 +19,7 @@
 
 # 開始使用 PowerShell 建立內部負載平衡器
 
-[AZURE.INCLUDE [load-balancer-get-started-ilb-arm-selectors-include.md](../../includes/load-balancer-get-started-ilb-arm-selectors-include.md)]<BR>[AZURE.INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
+[AZURE.INCLUDE [load-balancer-get-started-ilb-arm-selectors-include.md](../../includes/load-balancer-get-started-ilb-arm-selectors-include.md)] <BR> [AZURE.INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](load-balancer-get-started-ilb-classic-ps.md).
 
@@ -38,7 +38,7 @@
 
 必須在建立內部負載平衡器之前先設定下列項目：
 
-- 前端 IP 組態 - 會設定傳入網路流量的私人 IP 位址 
+- 前端 IP 組態 - 會設定傳入網路流量的私人 IP 位址
 
 - 後端位址集區 - 會設定可接收來自前端 IP 集區之負載平衡流量的網路介面
 
@@ -62,7 +62,7 @@
 
 ### 步驟 1
 
-		PS C:\> Login-AzureRmAccount
+		Login-AzureRmAccount
 
 
 
@@ -70,7 +70,7 @@
 
 檢查帳戶的訂用帳戶
 
-		PS C:\> get-AzureRmSubscription 
+		Get-AzureRmSubscription 
 
 系統會提示使用您的認證進行驗證。<BR>
 
@@ -79,7 +79,7 @@
 選擇其中一個要使用的 Azure 訂用帳戶。<BR>
 
 
-		PS C:\> Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+		Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 
 ### 建立負載平衡器的資源群組
 
@@ -87,7 +87,7 @@
 
 建立新的資源群組 (若使用現有的資源群組，請略過此步驟)。
 
-    	PS C:\> New-AzureRmResourceGroup -Name NRP-RG -location "West US"
+    	New-AzureRmResourceGroup -Name NRP-RG -location "West US"
 
 Azure Resource Manager 需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。請確定所有建立負載平衡器的命令都是使用同一個資源群組。
 
@@ -189,7 +189,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 最終結果會顯示如下：
 
 
-	PS C:\> $backendnic1
+	$backendnic1
 
 預期的輸出：
 
@@ -267,13 +267,13 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 
 變更網路介面上的後端組態。
 
-	PS C:\> $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
+	$nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
 
 #### 步驟 5 
 
 儲存網路介面物件。
 
-	PS C:\> Set-AzureRmNetworkInterface -NetworkInterface $nic
+	Set-AzureRmNetworkInterface -NetworkInterface $nic
 
 網路介面在新增至負載平衡器的後端集區後，便會開始根據該負載平衡器資源的負載平衡規則接收網路流量。
 
@@ -316,4 +316,4 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0720_2016-->

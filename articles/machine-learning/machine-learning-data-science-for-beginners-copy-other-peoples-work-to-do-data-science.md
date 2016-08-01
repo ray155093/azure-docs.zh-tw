@@ -14,16 +14,28 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/30/2016"
+   ms.date="07/15/2016"
    ms.author="cgronlun;brohrer;garye"/>
 
-# 適用於初學者的資料科學影片 5：複製其他人的工作進行資料科學
+# 複製其他人的工作進行資料科學
+
+## 影片 5：適用於初學者的資料科學系列
 
 有一個資料科學的商業機密是讓其他人為您工作。找一個適合您自己實驗使用的叢集演算法範例。
 
 若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
 > [AZURE.VIDEO data-science-for-beginners-series-copy-other-peoples-work-to-do-data-science]
+
+## 系列中的其他影片
+
+「適用於初學者的資料科學」是一個資料科學的快速簡介，包含五個簡短影片。
+
+  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
+  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) (4 分 56 秒)
+  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
+  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
+  * 影片 5：複製其他人的工作進行資料科學
 
 ## 文字記錄：複製其他人的工作進行資料科學
 
@@ -35,7 +47,7 @@
 
 ## 在 Cortana Intelligence Gallery 中尋找範例
 
-Microsoft 提供雲端服務，稱為 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/)，歡迎您免費試用。其會提供您工作區，讓您可以試驗不同的機器學習演算法，當您制定您的解決方案時，您可以將其啟動為 Web 服務。
+Microsoft 提供一個稱為 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 的雲端服務，歡迎您免費試用。其會提供您工作區，讓您可以試驗不同的機器學習演算法，當您制定您的解決方案時，您可以將其啟動為 Web 服務。
 
 此服務有一個部分稱為 **[Cortana Intelligence Gallery](http://aka.ms/CortanaIntelligenceGallery)**。其包含各種資源，其中一個是 Azure Machine Learning 實驗或模型 (已由他人為其他用途而建置和貢獻) 的集合。這些實驗是運用思考的好方法，以及是其他人的挑戰，他們會協助您開始您自己的解決方案。
 
@@ -43,11 +55,11 @@ Microsoft 提供雲端服務，稱為 [Azure Machine Learning](https://azure.mic
 
 ![Cortana Intelligence Gallery](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/cortana-intelligence-gallery.png)
 
-如果您按一下頂端的 [實驗]，會看到一些資源庫中最新且受歡迎的實驗。您可以按一下畫面頂端的 [Browse All (全部瀏覽)] ，來搜尋其餘的實驗，而且可以在此輸入搜尋詞彙，並選擇搜尋篩選器。
+如果您按一下頂端的 [實驗]，會看到一些資源庫中最新且受歡迎的實驗。您可以按一下畫面頂端的 [瀏覽全部] ，來搜尋其餘的實驗，而且可以在此輸入搜尋詞彙，並選擇搜尋篩選器。
 
 ## 尋找並使用叢集範例
 
-因此，比方說，假設您想要查看叢集如何運作的範例，因此搜尋**叢集**實驗。
+因此，比方說，假設您想要查看叢集如何運作的範例，可以搜尋 **"clustering"** 實驗。
 
 ![搜尋叢集實驗](./media/machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science/search-for-clustering-experiments.png)
 
@@ -79,19 +91,10 @@ Microsoft 提供雲端服務，稱為 [Azure Machine Learning](https://azure.mic
 
 請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他影片。
 
-## 系列中的其他影片
-
-「適用於初學者的資料科學」是五個簡短影片中對於資料科學的快速簡介。
-
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
-  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
-  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
-  * 影片 5：複製其他人的工作進行資料科學
 
 ## 後續步驟
 
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

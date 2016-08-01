@@ -4,7 +4,7 @@
 	services="mobile-services"
 	documentationCenter=""
 	authors="wesmc7777"
-	manager="dwrede"
+	manager="erikre"
 	editor="mollybos"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/07/2016" 
+	ms.date="07/13/2016" 
 	ms.author="wesmc;ricksal"/>
 
 # 行動服務 .NET 後端的疑難排解
@@ -36,7 +36,7 @@
 
 使用行動服務開發應用程式時，您通常會將行動服務用戶端 SDK 用於您所使用的平台 (Windows 市集、iOS、Android 等)。但有時候，往下了解 HTTP 層級並觀察在網路上執行的原始呼叫，可能會有所幫助。此方法在偵錯連線和序列化問題時特別有用。透過行動服務 .NET 後端，您可以將此方法與 Visual Studio 本機和遠端偵錯搭配使用 (下一節會有詳細說明)，以了解 HTTP 呼叫在教用您的服務程式碼之前所建立的路徑。
 
-您可以使用任何 HTTP 偵錯程式來傳送和檢查 HTTP 流量。[Fiddler](http://www.telerik.com/fiddler) 是開發人員基於此目的而經常使用的工具。為了讓開發人員的工作更輕鬆，行動服務會會搭售 Web 型 HTTP 偵錯程式 (也稱為測試用戶端)，而減少使用外部工具的需求。在本機主控行動服務時，將會在類似於 [http://localhost:59233](http://localhost:59233) 的 URI 上提供行動服務，而在雲端中主控時，URI 則會是 [http://todo-list.azure-mobile.net](http://todo-list.azure-mobile.net) 的格式。無論在何處主控服務，下列步驟的會以相同方式運作：
+您可以使用任何 HTTP 偵錯程式來傳送和檢查 HTTP 流量。[Fiddler](http://www.telerik.com/fiddler) 是開發人員基於此目的而經常使用的工具。為了讓開發人員的工作更輕鬆，行動服務會會搭售 Web 型 HTTP 偵錯程式 (也稱為測試用戶端)，而減少使用外部工具的需求。當您在本機裝載行動服務時，可在類似 `http://localhost:59233` 的 URI 取得該行動服務，而裝載在雲端時，此 URI 的形式為 `http://todo-list.azure-mobile.net`。無論在何處主控服務，下列步驟的會以相同方式運作：
 
 1. 首先，在 **Visual Studio 2013 Update 2** 或更新版本中開啟行動服務伺服器專案。如果您尚無此專案，可以依序選取 [檔案]、[新增]、[專案]，然後依序選取 [雲端] 節點和 [Microsoft Azure 行動服務] 範本，以建立專案。
 2. 點按 **F5**，以建置並執行專案。在開始頁面上，選取 [立即試用]。
@@ -74,7 +74,7 @@
 
     ![Configure symbol loading][SymbolLoading]
 
-3. 選取左側的 [符號] 節點，並使用 URI [http://srv.symbolsource.org/pdb/Public](http://srv.symbolsource.org/pdb/Public) 將參考新增至 [SymbolSource] 伺服器。行動服務 .NET 後端的符號會以最新的版本啟用。
+3. 選取左邊的 **Symbols** 節點，並使用 URI `http://srv.symbolsource.org/pdb/Public` 新增 [SymbolSource] 伺服器的參考。行動服務 .NET 後端的符號會以最新的版本啟用。
 
     ![Configure symbol server][SymbolServer]
 
@@ -162,6 +162,6 @@
 
 
 <!-- Links -->
-[SymbolSource]: http://symbolsource.org
+[SymbolSource]: http://www.symbolsource.org/Public
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0720_2016-->

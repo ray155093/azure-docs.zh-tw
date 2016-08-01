@@ -13,50 +13,14 @@
 	ms.tgt_pltfrm="media" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="07/12/2016"
+	ms.date="07/14/2016"
 	ms.author="juliako"/>
-
 
 # Azure 媒體服務版本資訊
 
 這些版本資訊彙總了舊版的變更和已知問題。
 
 >[AZURE.NOTE] 我們想要收到客戶的意見，並專注於修正會影響您的問題。若要回報問題或提問，請在 [Azure 媒體服務 MSDN 論壇]中貼文。
-
-- [目前的已知問題](#issues)
-- [REST API 版本歷程記錄](#rest_version_history)
-- [2016 年 7 月版本](#july_changes16)
-- [2016 年 4 月版本](#apr_changes16)
-- [2016 年 2 月版本](#feb_changes16)
-- [2016 年 1 月版本](#jan_changes_16)
-- [2015 年 12 月版本](#dec_changes_15)
-- [2015 年 11 月版本](#nov_changes_15)
-- [2015 年 10 月版本](#oct_changes_15)
-- [2015 年 9 月版本](#september_changes_15)
-- [2015 年 8 月版本](#august_changes_15)
-- [2015 年 7 月版本](#july_changes_15)
-- [2015 年 6 月版本](#june_changes_15)
-- [2015 年 5 月版本](#may_changes_15)
-- [2015 年 4 月版本](#april_changes_15)
-- [2015 年 3 月版本](#march_changes_15)
-- [2015 年 2 月版本](#february_changes_15)
-- [2015 年 1 月版本](#january_changes_15)
-- [2014 年 12 月版本](#december_changes_14)
-- [2014 年 11 月版本](#november_changes_14)
-- [2014 年 10 月版本](#october_changes_14)
-- [2014 年 9 月版本](#september_changes_14)
-- [2014 年 8 月版本](#august_changes_14)
-- [2014 年 7 月版本](#july_changes_14)
-- [2014 年 5 月版本](#may_changes_14)
-- [2014 年 4 月版本](#april_changes_14)
-- [2014 年 1/2 月版本](#jan_feb_changes_14)
-- [2013 年 12 月版本](#december_changes_13)
-- [2013 年 11 月版本](#november_changes_13)
-- [2013 年 8 月版本](#august_changes_13)
-- [2013 年 6 月版本](#june_changes_13)
-- [2012 年 12 月版本](#december_changes_12)
-- [2012 年 11 月版本](#november_changes_12)
-- [2012 年 6 月預覽版本](#june_changes_12)
 
 
 ##<a id="issues"></a>目前的已知問題
@@ -69,14 +33,9 @@
 使用包含逸出字元 (例如 %20) 的檔案名稱為資產編碼時，作業會失敗，並出現「MediaProcessor：找不到檔案。」|要新增至資產並編碼的檔案，其名稱只能包含英數字元和空格。此問題將在未來的更新中修正。
 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法無法運作。|媒體服務會根據 [2012-02-12](http://msdn.microsoft.com/library/azure/dn592123.aspx) 版本產生 SAS URL。如果您要使用 Azure Storage SDK 列出 Blob 容器中的 Blob，請使用屬於 Azure Storage SDK 2.x 版的 [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx) 方法。屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法將會失敗。
 媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。|如需詳細資訊，請在 [Azure 媒體服務錯誤碼](http://msdn.microsoft.com/library/azure/dn168949.aspx)主題中參閱 503 HTTP 狀態碼的說明。
-查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] \(.NET) \[最前面] \(REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
-Smooth Streaming 資訊清單版本變更|如需詳細資訊，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
-
-### <a id="dotnet_issues"></a>Media Services SDK for .NET 問題
-
-問題|說明
----|---
-SDK 中的媒體服務物件無法序列化，因此無法與 Azure 快取搭配運作。|如果您嘗試序列化 SDK AssetCollection 物件以將其新增至 Azure 快取，將會擲回例外狀況。
+查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] (.NET)/ [最前面] (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
+某些用戶端在 Smooth Streaming 資訊清單中可能會遇到重複標記問題。|如需詳細資訊，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
+Azure 媒體服務 .NET SDK 物件無法序列化，因此無法與 Azure 快取搭配運作。|如果您嘗試序列化 SDK AssetCollection 物件以將其新增至 Azure 快取，將會擲回例外狀況。
 
 ##<a id="rest_version_history"></a>REST API 版本歷程記錄
 
@@ -98,7 +57,9 @@ SDK 中的媒體服務物件無法序列化，因此無法與 Azure 快取搭配
 
 如需詳細資訊，請參閱[此部落格](https://blogs.msdn.microsoft.com/randomnumber/2016/07/08/encoder-changes-within-azure-media-services-now-create-ismc-file/)。
 
-若要查閱已知問題，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
+### 已知問題
+
+某些用戶端在 Smooth Streaming 資訊清單中可能會遇到重複標記問題。如需詳細資訊，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
 
 ##<a id="apr_changes16"></a>2016 年 4 月版本
 
@@ -685,4 +646,4 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

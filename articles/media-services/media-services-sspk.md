@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="07/19/2016"  
 	ms.author="xpouyat"/>
 
 #Licensing Microsoft® Smooth Streaming Client Porting Kit
@@ -150,6 +150,7 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 - 索尼公司
 - TCL Overseas Marketing (Macao Commercial Offshore) Limited
 - Technicolor Delivery Technologies, SAS
+- Tongfang Global Ltd.
 - Toshiba Lifestyle Products & Services Corporation
 - Universal Media Corporation /Slovakia/ s.r.o.
 - VIZIO, Inc.
@@ -164,4 +165,4 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

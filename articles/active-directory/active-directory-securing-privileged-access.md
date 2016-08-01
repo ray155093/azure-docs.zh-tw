@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor="mwahl"/>
 
 <tags
@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/15/2016"
+	ms.date="07/14/2016"
 	ms.author="kgremban"/>
 
 
 # 保護 Azure AD 中的特殊權限存取
 
-保護特殊權限存取，是有助保護現代組織企業資產很重要的第一個步驟。組織中大部分或所有企業資產的安全性，取決於操控管理 IT 系統之特殊權限帳戶的完整性。網路攻擊者會以這些帳戶為目標來取得組織資料和系統的存取權。
+保護特殊權限存取，是有助保護現代組織企業資產很重要的第一個步驟。特殊權限帳戶是可管理 IT 系統的帳戶。網路攻擊者會以這些帳戶為目標，來取得組織資料和系統的存取權。為了保護特殊權限存取，您應該讓帳戶和系統遠離遭遇惡意使用者的風險。
 
-保護系統管理存取權以對抗堅決的對手，需要將這些系統管理帳戶和系統與風險隔離。更多使用者開始透過雲端服務取得特殊權限存取。這包括 Office365 的全域系統管理員、Azure 訂用帳戶系統管理員和有 VM 或 SaaS 應用程式系統管理存取權限的使用者。
+更多使用者開始透過雲端服務取得特殊權限存取。這包括 Office365 的全域系統管理員、Azure 訂用帳戶系統管理員和有 VM 或 SaaS 應用程式系統管理存取權限的使用者。
 
 Microsoft 建議您遵循 [Securing Privileged Access (保護特殊權限存取)](https://technet.microsoft.com/library/mt631194.aspx) 的這份藍圖。
 
@@ -63,11 +63,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 ![使用 MFA 設定條件式存取規則][4]
 
 
-## 角色模型
-
-若要降低安全性風險，您應該檢閱您的角色和委派模型，來容納雲端服務系統管理角色，並將系統管理員可用性併入為主要宗旨。這個模型應該利用 Just in Time 功能。
-
-## 後續步驟
+## 相關文章
 
 - 啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md)
 - 啟用 [Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md)
@@ -83,4 +79,4 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 [3]: ./media/active-directory-identityprotection/29.png
 [4]: ./media/active-directory-conditional-access/conditionalaccess-saas-apps.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

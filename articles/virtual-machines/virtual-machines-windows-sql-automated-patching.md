@@ -24,8 +24,7 @@
 
 自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。自動更新只能在此維護時間範圍內安裝。對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。自動修補相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
-傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (傳統)](virtual-machines-windows-classic-sql-automated-patching.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (傳統)](virtual-machines-windows-classic-sql-automated-patching.md)。
 
 ## 必要條件
 
@@ -61,8 +60,10 @@
 |**PATCH 類別**|重要事項|要下載並安裝的更新類別。|
 
 ## 入口網站的組態
+您可以在佈建期間或針對現有的 VM，使用「Azure 入口網站」來設定「自動修補」。
 
-在 Resource Manager 部署模型中建立新的 SQL Server 虛擬機器時，您可以使用 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkID=525040&clcid=0x409)設定自動修補。
+### 新的 VM
+在 Resource Manager 部署模型中建立新的 SQL Server 虛擬機器時，請使用「Azure 入口網站」來設定「自動修補」。
 
 在 [SQL Server 設定] 刀鋒視窗中選取 [自動修補]。下列的 Azure 入口網站螢幕擷取畫面顯示 [SQL 自動修補] 刀鋒視窗。
 
@@ -70,15 +71,26 @@
 
 如需相關內容，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)中的完整主題。
 
-針對現有的 SQL Server 虛擬機器，您必須使用 PowerShell 設定自動修補設定。
+### 現有的 VM
+如果是現有的 SQL Server 虛擬機器，請選取您的 SQL Server 虛擬機器。然後選取 [設定] 刀鋒視窗的 [SQL Server 組態] 區段。
 
->[AZURE.NOTE] 當您第一次啟用自動修補時，Azure 會在背景中設定 SQL Server IaaS 代理程式。在此期間，Azure 入口網站可能不會顯示已設定自動修補。請等候幾分鐘的時間來安裝及設定代理程式。之後，Azure 入口網站將會反映新的設定。
+![現有 VM 的 SQL 自動修補](./media/virtual-machines-windows-sql-automated-patching/azure-sql-rm-patching-existing-vms.png)
+
+在 [SQL Server 組態] 刀鋒視窗中，按一下 [自動修補] 區段中的 [編輯] 按鈕。
+
+![設定現有 VM 的 SQL 自動修補](./media/virtual-machines-windows-sql-automated-patching/azure-sql-rm-patching-configuration.png)
+
+完成時，按一下 [SQL Server 組態] 刀鋒視窗底部的 [確定] 按鈕，以儲存您的變更。
+
+如果這是您第一次啟用「自動修補」，Azure 就會在背景中設定 SQL Server IaaS Agent。在此期間，Azure 入口網站可能不會顯示已設定自動修補。請等候幾分鐘的時間來安裝及設定代理程式。之後，Azure 入口網站將會反映新的設定。
+
+>[AZURE.NOTE] 您也可以使用範本來設定「自動修補」。如需詳細資訊，請參閱[適用於自動修補的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-autopatching-update)。
 
 ## 使用 PowerShell 進行設定
 
 佈建 SQL VM 之後，請使用 PowerShell 設定自動修補。
 
-在下列範例中，會使用 PowerShell 在現有的 SQL Server VM 上設定自動修補。**AzureRM.Compute\\New-AzureVMSqlServerAutoPatchingConfig** 命令會設定自動更新的維護時間範圍。
+在下列範例中，會使用 PowerShell 在現有的 SQL Server VM 上設定自動修補。**AzureRM.Compute\\New-AzureVMSqlServerAutoPatchingConfig** 命令會為自動更新設定一個新的維護時間範圍。
 
 	$vmname = "vmname"
 	$resourcegroupname = "resourcegroupname"
@@ -97,12 +109,12 @@
 
 可能需要幾分鐘的時間來安裝及設定 SQL Server IaaS 代理程式。
 
-若要停用自動修補，請執行相同的指令碼，但不要對 **AzureRM.Compute\\New-AzureVMSqlServerAutoPatchingConfig** 使用 **-Enable** 參數。沒有 **-Enable** 參數即通知命令停用此功能。
+若要停用「自動修補」，請執行相同的指令碼，但不要對 **AzureRM.Compute\\New-AzureVMSqlServerAutoPatchingConfig** 使用 **-Enable** 參數。沒有 **-Enable** 參數時即表示通知命令停用此功能。
 
 ## 後續步驟
 
-如需其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)。
+如需其他可用的自動化工作的相關資訊，請參閱 [SQL Server IaaS Agent 擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
 
-如需在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
+如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016--->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,11 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="07/06/2016"
 	ms.author="garye"/>
 
 
 # 管理 Azure Machine Learning 工作區
+
+>[AZURE.NOTE] 本文中的程序都與 Azure Machine Learning 傳統 Web 服務有關。如需管理新 Web 服務的資訊，請參閱[管理新的機器學習 Web 服務](machine-learning-manage-new-webservice.md)。
+
 您可以使用 Azure 傳統入口網站來管理您的機器學習服務工作區，以便：
 
 - 監視工作區的使用方式
@@ -66,7 +69,7 @@
 - 按一下 [拒絕] 來擱置對機器學習服務工作區的存取。使用者將不再能在 Machine Learning Studio 中開啟工作區。若要還原存取，請按一下 [允許]。
 - 藉由指定不同的 Microsoft 帳戶來變更工作區擁有者。
 
-若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studip] \(請參閱上述有關**登入 ML Studio**的附註)。這會在 Machine Learning Studio 中開啟工作區。從這裡按一下 [**設定**] 索引標籤，然後按一下 [**使用者**]。您可以按一下 [**邀請使用者**]，讓使用者存取工作區，或選取使用者，並按一下 [**移除**]。
+若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studip] (請參閱上述有關**登入 ML Studio**的附註)。這會在 Machine Learning Studio 中開啟工作區。從這裡按一下 [**設定**] 索引標籤，然後按一下 [**使用者**]。您可以按一下 [**邀請使用者**]，讓使用者存取工作區，或選取使用者，並按一下 [**移除**]。
 
 
 ## 管理此工作區中的 Web 服務
@@ -94,4 +97,4 @@ Web 服務可能會有一個或多個定義的端點。
 [consume]: machine-learning-consume-web-services.md
 [marketplace]: machine-learning-publish-web-service-to-azure-marketplace.md
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

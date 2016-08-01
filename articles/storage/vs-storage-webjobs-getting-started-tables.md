@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/18/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 儲存體 (Azure WebJob 專案)
+
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
 
 ## 概觀
 
@@ -145,12 +147,12 @@ Azure 資料表儲存體服務可讓您儲存大量的結構化資料。此服�
 
 ## 佇列操作說明文章所涵蓋的相關主題
 
-如需如何處理佇列訊息所觸發的資料表處理的相關資訊，或是非資料表處理特有的 WebJobs SDK 案例，請參閱[開始使用 Azure 佇列儲存體和 Visual Studio 已連接服務 (WebJob 專案)](vs-storage-webjobs-getting-started-queues.md)。
+如需如何處理佇列訊息所觸發的資料表處理相關資訊，或是非資料表處理特有的 WebJobs SDK 案例，請參閱[開始使用 Azure 佇列儲存體和 Visual Studio 已連接服務 (WebJob 專案)](vs-storage-webjobs-getting-started-queues.md)。
 
 
 
 ## 後續步驟
 
-本文提供的程式碼範例示範如何處理使用 Azure 資料表的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
+本文提供的程式碼範例示範如何處理使用 Azure 資料表的常見案例。如需如何使用 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

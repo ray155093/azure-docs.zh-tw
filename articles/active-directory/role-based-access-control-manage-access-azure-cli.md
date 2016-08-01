@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="04/12/2016"
+	ms.date="07/14/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure 命令列介面管理角色型存取控制
@@ -44,7 +44,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ###	列出角色的動作
 若要列出角色的動作，請使用：
 
-    azure role show <role in quotes>
+    azure role show "<role name>"
 
 下列範例顯示*參與者*與*虛擬機器參與者*角色的動作。
 
@@ -61,6 +61,13 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ![RBAC Azure 命令列 - 依群組顯示的 azure 角色指派清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
 ###	列出使用者的角色指派，包括指派給使用者群組的角色
+若要列出特定使用者的角色指派，請使用︰
+
+	azure role assignment list --signInName <user email>
+
+您也可以透過修改命令，來查看繼承自群組的角色指派︰
+
+	azure role assignment list --expandPrincipalGroups --signInName <user email>
 
 下列範例顯示授與使用者 sameert@aaddemo.com 的角色指派。這包括直接指派給使用者的角色，以及繼承自群組的角色。
 
@@ -74,7 +81,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ###	將角色指派給訂用帳戶範圍中的群組
 若要將角色指派給訂用帳戶範圍中的群組，請使用：
 
-	azure role assignment create --objectId  <group's object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
+	azure role assignment create --objectId  <group object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
 下列範例會將*讀者*角色指派給*訂用帳戶*範圍中的 *Christine Koch 小組*。
 
@@ -83,9 +90,9 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ###	將角色指派給訂用帳戶範圍中的應用程式
 若要將角色指派給訂用帳戶範圍中的應用程式，請使用：
 
-    azure role assignment create --objectId  <applications's object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
+    azure role assignment create --objectId  <applications object id> --roleName <name of role> --subscription <subscription> --scope <subscription/subscription id>
 
-下列範例會將*參與者*角色授與所選取之訂用帳戶上的 *Azure AD* 應用程式。
+下列範例會將「參與者」角色授與所選取之訂用帳戶上的「Azure AD」應用程式。
 
  ![RBAC Azure 命令列 - 應用程式所建立的 azure 角色指派](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-2.png)
 
@@ -101,23 +108,25 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ###	將角色指派給資源範圍中的群組
 若要將角色指派給資源範圍中的群組，請使用：
 
-    azure role assignment create --objectId  <group id> --subscription <subscription> --roleName <name of role in quotes> --resource-name <resource group name> --resource-type <resource group type> --parent <resource group parent> --resource-group <resource group>
+    azure role assignment create --objectId <group id> --role "<name of role>" --resource-name <resource group name> --resource-type <resource group type> --parent <resource group parent> --resource-group <resource group>
 
-下列範例會將*虛擬機器參與者*角色授與*子網路*上的 *Azure AD* 群組。
+下列範例會將「虛擬機器參與者」角色授與「子網路」上的「Azure AD」群組。
 
 ![RBAC Azure 命令列 - 群組所建立的 azure 角色指派 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-4.png)
 
 ##	移除存取
 若要移除角色指派，請使用：
 
-    azure role assignment delete --objectId <object id to from which to remove role> --roleName <role name>
+    azure role assignment delete --objectId <object id to from which to remove role> --roleName "<role name>"
 
 下列範例會從「Pharma-Sales-ProjectForcast」資源群組上的 sammert@aaddemo.com 移除「虛擬機器參與者」角色指派。然後，它會從訂用帳戶上的群組移除角色指派。
 
 ![RBAC Azure 命令列 - azure 角色指派刪除 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/3-azure-role-assignment-delete.png)
 
 ## 建立自訂角色
-若要建立自訂角色，請使用 `azure role create` 命令。
+若要建立自訂角色，請使用命令：
+
+	azure role create --inputfile <file path>
 
 下列範例會建立名為 *Virtual Machine Operator* 的自訂角色，該角色會授與 *Microsoft.Compute*、*Microsoft.Storage*，和 *Microsoft.Network* 資源提供者對所有讀取作業的存取權限，以及授與啟動、重新啟動，和監視虛擬機器的存取權限。自訂角色可用於兩個訂用帳戶中。這個範例使用 JSON 檔案做為輸入。
 
@@ -127,7 +136,9 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 ## 修改自訂角色
 
-若要先修改自訂角色，請使用 `azure role show` 命令擷取角色定義。接著，對角色定義進行想要的變更。最後，使用 `azure role set` 儲存已修改的角色定義。
+若要先修改自訂角色，請使用 `azure role show` 命令擷取角色定義。接著，對角色定義檔案進行想要的變更。最後，使用 `azure role set` 儲存已修改的角色定義。
+
+	azure role set --inputfile <file path>
 
 下列範例將「Microsoft.Insights/diagnosticSettings/」作業加入「Actions」，並將「Azure 訂用帳戶」加入 Virtual Machine Operator 自訂角色的「AssignableScopes」。
 
@@ -162,4 +173,4 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ## RBAC 主題
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

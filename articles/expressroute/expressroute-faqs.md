@@ -248,7 +248,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 即使 ExpressRoute 已設定供我的組織使用，我是否可以透過網際網路存取 Office 365？
 是。即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
 
-### 可以透過 ExpressRoute 連線存取 Dynamics AX 嗎？
+### 可以透過 ExpressRoute 連線存取 Dynamics AX Online 嗎？
 不，不支援此做法。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

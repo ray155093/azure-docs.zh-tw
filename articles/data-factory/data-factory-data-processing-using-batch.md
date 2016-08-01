@@ -1,5 +1,5 @@
 <properties
-    pageTitle="使用 Azure Batch 和 Data Factory 的 HPC 和資料協調"
+    pageTitle="使用 Data Factory 和 Batch 處理大型資料集 | Microsoft Azure"
     description="說明如何使用 Azure Batch 的平行處理功能處理 Azure Data Factory 管線中的大量資料。"
     services="data-factory"
     documentationCenter=""
@@ -13,17 +13,45 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/17/2016"
+    ms.date="07/18/2016"
     ms.author="spelluru"/>
-# 使用 Azure Batch 和 Data Factory 的 HPC 和資料協調
 
-這是自動移動及處理大型資料集的範例方案。這是端對端且包含架構和程式碼的方案。它是以兩項 Azure 服務為基礎。Azure Batch 提供 HPC 作為服務來設定您需要的任意數量電腦，以及排程和協調工作。Azure Data Factory 透過簡化資料移動的協調流程來補充 Batch。您可以針對 ETL 指定資料的規則移動、處理資料，然後再將結果移至永久儲存體。
+# 使用 Data Factory 和 Batch 處理大型資料集
+本文說明範例解決方案的架構，此解決方案能以自動且排程的方式移動和處理大型資料集。本文也提供如何使用 Azure Data Factory 和 Azure Batch 實作解決方案的端對端逐步解說。
 
-架構與許多案例相關，例如依金融服務、映像處理和轉譯以及基因分析進行的風險模型建立。
+這篇文章比我們的一般文章還長，因為它包含整個範例解決方案的逐步解說。如果您不熟悉 Batch 和 Data Factory，您可以了解這兩項服務以及它們如何搭配運作。如果您已對這兩項服務有所了解，而且要設計/架構解決方案，則可以將焦點純粹放在文章內的[架構章節](#architecture-of-sample-solution)，如果您正在開發原型或解決方案，或許也會想試試[逐步解說](#implementation-of-sample-solution)中的逐步指示。歡迎您對此內容以及您如何使用它提出看法。
 
-如果您在遵循範例解決方案之前不熟悉這些服務，請參閱 [Azure Batch](../batch/batch-api-basics.md) 和 [Data Factory](data-factory-introduction.md) 文件。
+讓我們先看看 Data Factory 和 Batch 服務如何有助於處理雲端中的大型資料集。
 
-## 架構圖表
+## 為何使用 Azure Batch？
+Azure Batch 可讓您在雲端有效率地執行大規模的平行和高效能運算 (HPC) 應用程式。它是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
+
+在使用 Batch 服務時，您可以定義用來大規模平行執行應用程式的 Azure 計算資源。您可以依需要或依排程的工作來執行，而不需要手動建立、設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或複雜的作業和工作排程基礎結構。
+
+如果您不熟悉 Azure Batch，請參閱下列文章，因為其內容有助於了解本文所述解決方案的架構/實作。
+
+- [Azure Batch 的基本概念](../batch/batch-technical-overview.md)
+- [Batch 功能概觀](../batch/batch-api-basics.md)
+
+(選擇性) 若要深入了解 Azure Batch，請參閱 [Azure Batch 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/batch/)。
+
+## 為何使用 Azure Data Factory？
+Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。透過 Data Factory 服務，您可以建立受管理的資料管線，將資料從內部部署和雲端的資料存放區移動至集中式資料存放區 (例如︰Azure Blob 儲存體)，以及使用服務 (例如 Azure HDInsight 和 Azure Machine Learning) 處理/轉換資料。您也可以利用排程方式 (每小時、每天、每週等) 排定執行資料管線，以及快速地監視和管理資料管線以找出問題並採取行動。
+
+如果您不熟悉 Azure Data Factory，請參閱下列文章，因為其內容有助於了解本文所述解決方案的架構/實作。
+
+- [Azure Data Factory 簡介](data-factory-introduction.md)
+- [建置第一個資料管線](data-factory-build-your-first-pipeline.md)
+
+(選擇性) 若要深入了解 Azure Data Factory，請參閱 [Azure Data Factory 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-factory/)。
+
+## Data Factory 和 Batch 一起使用
+Data Factory 中有內建的活動，例如複製活動，其可將資料從來源資料存放區複製/移動到目的地資料存放區，以及 Hive 活動，其可在 Azure 上使用 Hadoop 叢集 (HDInsight) 處理資料。如需支援的轉換活動清單，請參閱[資料轉換活動](data-factory-data-transformation-activities.md)。
+
+它也可讓您建立自訂的 .NET 活動來使用您自己的邏輯移動或處理資料，以及在 Azure HDInsight 叢集上或 Azure Bach VM 集區上執行這些活動。當您使用 Azure Batch 時，您可以將集區設定為根據您提供的公式自動調整大小 (根據工作負載新增或移除 VM)。
+
+## 範例解決方案架構
+雖然本文所描述的架構是針對簡單的解決方案，但它也和複雜案例相關，例如依金融服務、映像處理和轉譯以及基因分析進行的風險模型建立。
 
 此圖表將說明 1) Data Factory 如何協調資料移動和處理，以及 2) Azure Batch 如何以平行方式處理資料。請下載並列印圖表以便參考 (11 x 17 英吋或 A3 大小)：[使用 Azure Batch 和 Data Factory 的 HPC 和資料協調](http://go.microsoft.com/fwlink/?LinkId=717686)。
 
@@ -45,95 +73,72 @@
 
 7.  取得所有結果之後，Data Factory 會將結果移至第三個位置，以透過應用程式加以散發，或由其他工具做進一步的處理。
 
-## 架構解決方案
+## 範例解決方案的實作
+此範例解決方案是刻意簡化的，旨在為您示範如何搭配使用 Data Factory 和 Batch 來處理資料集。此解決方案純粹計算某個搜尋詞彙 (“Microsoft”) 在以時間序列組織的輸入檔案中出現的次數。它會將此計數輸出至輸出檔案。
 
-解決方案會計算某個搜尋詞彙 (“Microsoft”) 在以時間序列組織的輸入檔案中出現的次數。它會將此計數輸出至輸出檔案。
+**時間**：如果您熟悉 Azure、Data Factory 和 Batch 的基本概念，並且已符合下列先決條件，我們預估此解決方案將需要 1-2 小時來完成。
 
-**時間**：如果您熟悉 Azure、Data Factory 和 Batch，並且已符合先決條件，我們預估此解決方案將需要 1-2 小時來完成。
+### 必要條件
 
-## 先決條件
+#### Azure 訂閱
+如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-1.  **Azure 訂用帳戶**。如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+#### Azure 儲存體帳戶
+在本教學課程中，您將使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。範例解決方案會使用 Blob 儲存體。
 
-2.  **Azure 儲存體帳戶**。在本教學課程中，您將使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。範例解決方案會使用 Blob 儲存體。
+#### Azure Batch 帳戶
+使用 [Azure 入口網站](http://manage.windowsazure.com/)建立 Azure Batch 帳戶。請參閱[建立和管理 Azure Batch 帳戶](../batch/batch-account-create-portal.md)。請記下 Azure Batch 帳戶名稱和帳戶金鑰。您也可以使用 [New-AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) Cmdlet 建立 Azure Batch 帳戶。如需使用此 Cmdlet 的詳細指示，請參閱[開始使用 Azure Batch PowerShell Cmdlet](../batch/batch-powershell-cmdlets-get-started.md)。
 
-3.  使用 [Azure 入口網站](http://manage.windowsazure.com/)建立 **Azure Batch 帳戶**。請參閱[建立和管理 Azure Batch 帳戶](../batch/batch-account-create-portal.md)。請記下 Azure Batch 帳戶名稱和帳戶金鑰。您也可以使用 [New-AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) Cmdlet 建立 Azure Batch 帳戶。如需使用此 Cmdlet 的詳細指示，請參閱[開始使用 Azure Batch PowerShell Cmdlet](../batch/batch-powershell-cmdlets-get-started.md)。
+範例解決方案會使用 Azure Batch (透過 Azure Data Factory 管線間接使用)，以平行方式處理計算節點集區上的資料；該集區是受管理的虛擬機器集合。
 
-    範例解決方案會使用 Azure Batch (透過 Azure Data Factory 管線間接使用)，以平行方式處理計算節點集區上的資料；該集區是受管理的虛擬機器集合。
+#### Azure Batch 虛擬機器 (VM) 集區
+建立至少有 2 個計算節點的 **Azure Batch 集區**。
 
-4.  建立至少有 2 個計算節點的 **Azure Batch 集區**。
-	1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [批次帳戶]。
-	2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶] 刀鋒視窗。
-	3. 按一下 [集區] 圖格。
-	4. 在 [集區] 刀鋒視窗中，按一下工具列上的 [新增] 按鈕以新增集區。
-		1. 輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。
-		2. 指定作業系統系列設定的 **Windows Server 2012 R2**。
-		3. 選取**節點定價層**。
-		3. 輸入 **2** 做為 [目標專用] 設定的值。
-		4. 輸入 **2** 做為 [每個節點的工作上限] 設定的值。
-	5. 按一下 [確定] 以建立集區。
- 	 
-5.  [Azure 儲存體總管 6 (工具)](https://azurestorageexplorer.codeplex.com/) 或 [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (來自 ClumsyLeaf 軟體)。這些 GUI 工具可用來檢查及更改 Azure 儲存體專案中的資料，包括雲端架構應用程式的記錄檔。
+1.  在 [Azure 入口網站](https://portal.azure.com)中，按一下左側功能標中的 [瀏覽]，然後按一下 [Batch 帳戶]。
+2. 選取您的 Azure Batch 帳戶，以開啟 [Batch 帳戶] 刀鋒視窗。
+3. 按一下 [集區] 圖格。
+4. 在 [集區] 刀鋒視窗中，按一下工具列上的 [新增] 按鈕以新增集區。
+	1. 輸入集區的識別碼 (**集區識別碼**)。請注意**集區的識別碼**；您將在建立 Data Factory 解決方案時需要它。
+	2. 指定作業系統系列設定的 **Windows Server 2012 R2**。
+	3. 選取**節點定價層**。
+	4. 輸入 **2** 做為 [目標專用] 設定的值。
+	5. 輸入 **2** 做為 [每個節點的工作上限] 設定的值。
+	6. 按一下 [確定] 以建立集區。
+ 	
+#### Azure 儲存體總管   
+[Azure 儲存體總管 6 (工具)](https://azurestorageexplorer.codeplex.com/) 或 [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (來自 ClumsyLeaf 軟體)。這些 GUI 工具可用來檢查及更改 Azure 儲存體專案中的資料，包括雲端架構應用程式的記錄檔。
 
-    1.  使用私用存取 (沒有匿名存取) 建立名為 **mycontainer** 的容器
+1.  使用私用存取 (沒有匿名存取) 建立名為 **mycontainer** 的容器
 
-    2.  如果您使用 **CloudXplorer**，請建立具有下列結構的資料夾和子資料夾：
+2.  如果您使用 **CloudXplorer**，請建立具有下列結構的資料夾和子資料夾：
 
- 		![](./media/data-factory-data-processing-using-batch/image3.png)
+	![](./media/data-factory-data-processing-using-batch/image3.png)
 
-		 **Inputfolder** 和 **outputfolder** 是 **mycontainer** 中的最上層資料夾，且 **inputfolder** 包含具有日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
+	**Inputfolder** 和 **outputfolder** 是 **mycontainer** 中的最上層資料夾，且 **inputfolder** 包含具有日期時間戳記 (YYYY-MM-DD-HH) 的子資料夾。
 
-		 如果您使用 **Azure 儲存體總管**，在下一個步驟中，您必須上傳具有下列名稱的檔案：inputfolder/2015-11-16-00/file.txt、inputfolder/2015-11-16-01/file.txt、依此類推。這會自動建立資料夾。
+	如果您使用 **Azure 儲存體總管**，在下一個步驟中，您必須上傳具有下列名稱的檔案：inputfolder/2015-11-16-00/file.txt、inputfolder/2015-11-16-01/file.txt、依此類推。這會自動建立資料夾。
 
-	3.  在您的電腦上建立內容中含有關鍵字 **Microsoft** 的文字檔 **file.txt** 。例如：“test custom activity Microsoft test custom activity Microsoft”。
+3.  在您的電腦上建立內容中含有關鍵字 **Microsoft** 的文字檔 **file.txt** 。例如：“test custom activity Microsoft test custom activity Microsoft”。
 
-	4.  將檔案上傳至 Azure Blob 儲存體中的下列輸入資料夾。
+4.  將檔案上傳至 Azure Blob 儲存體中的下列輸入資料夾。
 
-		![](./media/data-factory-data-processing-using-batch/image4.png)
+	![](./media/data-factory-data-processing-using-batch/image4.png)
 
-	 	如果您使用 **Azure 儲存體總管**，請將檔案 **file.txt** 上傳至 **mycontainer**。在工具列上按一下 [複製]，以建立 blob 的複本。在 [複製 Blob] 對話方塊中，將**目的地 Blob 名稱**變更為 **inputfolder/2015-11-16-00/file.txt。** 重複此步驟，以建立 inputfolder/2015-11-16-01/file.txt、inputfolder/2015-11-16-02/file.txt、inputfolder/2015-11-16-03/file.txt、inputfolder/2015-11-16-04/file.txt，依此類推。這會自動建立資料夾。
+	如果您使用 **Azure 儲存體總管**，請將檔案 **file.txt** 上傳至 **mycontainer**。在工具列上按一下 [複製]，以建立 blob 的複本。在 [複製 Blob] 對話方塊中，將**目的地 Blob 名稱**變更為 **inputfolder/2015-11-16-00/file.txt。** 重複此步驟，以建立 inputfolder/2015-11-16-01/file.txt、inputfolder/2015-11-16-02/file.txt、inputfolder/2015-11-16-03/file.txt、inputfolder/2015-11-16-04/file.txt，依此類推。這會自動建立資料夾。
 
-	3.  建立另一個名為 **customactivitycontainer** 的容器。您會將自訂活動 zip 檔案上傳至此容器。
+3.  建立另一個名為 **customactivitycontainer** 的容器。您會將自訂活動 zip 檔案上傳至此容器。
 
-6.  **Microsoft Visual Studio 2012 或更新版本** (用以建立要在 Data Factory 解決方案中使用的自訂 Batch 活動)。
+#### Visual Studio
+安裝 Microsoft Visual Studio 2012 或更新版本，以建立要在 Data Factory 解決方案中使用的自訂 Batch 活動。
 
-## 建立解決方案的高階步驟
+### 建立解決方案的高階步驟
 
-1.  建立要在 Data Factory 解決方案中使用的自訂活動。自訂活動包含資料處理邏輯。
-
-    1.  在 Visual Studio (或選擇的程式碼編輯器) 中，建立 .NET 類別庫專案，加入程式碼以處理輸入的資料，並編譯專案。
-
-    2.  壓縮輸出資料夾中所有的二進位檔和 PDB (選擇性) 檔案。
-
-    3.  將 zip 檔案上傳至 Azure Blob 儲存體。
-
-	在[建立自訂活動](#_Coding_the_custom)一節中有詳細的步驟。
-
+1.  建立包含資料處理邏輯的自訂活動。
 2.  建立使用自訂活動的 Azure Data Factory：
 
-    1.  建立 Azure Data Factory。
+詳細步驟位於下列各節。
 
-    2.  建立連結的服務。
-
-        1.  StorageLinkedService：提供用於存取 blob 的儲存體認證。
-
-        2.  AzureBatchLinkedService：將 Azure Batch 指定為計算。
-
-    3.  建立資料集。
-
-        1.  InputDataset：指定輸入 blob 的儲存體容器和資料夾。
-
-        2.  OuputDataset：指定輸出 blob 的儲存體容器和資料夾。
-
-    4.  建立使用自訂活動的管線。
-
-    5.  執行與測試管線。
-
-    6.  偵錯管線。
-
- 	在[建立 Data Factory](#create-the-data-factory) 一節中有詳細的步驟。
-
-## 建立自訂活動
+### 建立自訂活動
 
 Data Factory 自訂活動是此範例解決方案的核心。範例解決方案會使用 Azure Batch 執行自訂活動。如需開發自訂活動，並在 Azure Data Factory 管線中加以使用的基本資訊，請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
 
@@ -159,7 +164,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 -   此方法會傳回未來可用來將自訂活動鏈結在一起的字典。尚未實作這項功能，因此只會從方法傳回空的字典。
 
-### 程序：建立自訂活動
+#### 程序：建立自訂活動
 
 1.  在 Visual Studio 中建立 .NET 類別庫專案。
 
@@ -382,7 +387,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 13.  將 **MyDotNetActivity.zip** 當做 Blob 上傳至 Blob 容器：Azure Blob 儲存體中的 **customactivitycontainer**，由 **ADFTutorialDataFactory** 中的 **StorageLinkedService** 連結服務使用。如果 Blob 容器 **customactivitycontainer** 不存在，請自行建立。
 
-### 執行方法
+#### 執行方法
 
 本節提供 Execute 方法中與程式碼相關的詳細資料和注意事項。
 
@@ -447,7 +452,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 		outputBlob.UploadText(output);
 
 
-## 建立 Data Factory
+### 建立 Data Factory
 
 在 [建立自訂活動][](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
 
@@ -485,7 +490,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 下列逐步解說將提供其他詳細資料。
 
-### 步驟 1：建立 Data Factory
+#### 步驟 1：建立 Data Factory
 
 1.  登入 [Azure 入口網站](https://portal.azure.com/)之後，請執行下列動作：
 
@@ -509,7 +514,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
  ![](./media/data-factory-data-processing-using-batch/image6.png)
 
-### 步驟 2：建立連結服務
+#### 步驟 2：建立連結服務
 
 連結服務會將資料存放區或計算服務連結至 Azure Data Factory。在此步驟中，您會將您的 **Azure 儲存體**帳戶和 **Azure Batch** 帳戶連結到您的 Data Factory。
 
@@ -543,7 +548,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     4.  針對 **batchUri** JSON 屬性，輸入 Batch URI。
     
-		> [AZURE.IMPORTANT] \[Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
+		> [AZURE.IMPORTANT] [Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：<accountname>.<region>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
 
         ![](./media/data-factory-data-processing-using-batch/image9.png)
 
@@ -555,7 +560,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 3.  按一下命令列的 [部署]，部署連結服務。
 
-### 步驟 3：建立資料集
+#### 步驟 3：建立資料集
 
 在此步驟中，您將建立資料集來代表輸入和輸出資料。
 
@@ -696,13 +701,13 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 3.  按一下工具列上的 [部署]，以建立並部署 **OutputDataset**。
 
-### 步驟 4：建立並執行使用自訂活動的管線
+#### 步驟 4：建立並執行使用自訂活動的管線
 
 在此步驟中，您將建立具有一個活動的管線，也就是您先前建立的自訂活動。
 
 > [AZURE.IMPORTANT] 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
 
-1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...]\(省略符號) 就可看到。
+1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 
 2.  使用下列 JSON 指令碼取代右窗格中的 JSON。
 
@@ -775,7 +780,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 3.  按一下命令列上的 [部署]，部署管線。
 
-### 步驟 5：測試管線
+#### 步驟 5：測試管線
 
 在此步驟中，您會將檔案放置在輸入資料夾中，以測試管線。首先，我們以每一個輸入資料夾含有一個檔案的方式來測試管線。
 
@@ -828,9 +833,9 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 		2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file5.txt.
 
 
-    **注意：**如果您未先刪除輸出檔案 2015-11-16-01.txt 即以 5 個輸入檔案來嘗試，您將會看到先前的配量執行有一行，而目前的配量執行有五行。根據預設，內容會附加至已存在的輸出檔案。
+> [AZURE.NOTE] 如果您未先刪除輸出檔案 2015-11-16-01.txt 即以 5 個輸入檔案來嘗試，您將會看到先前的配量執行有一行，而目前的配量執行有五行。根據預設，內容會附加至已存在的輸出檔案。
 
-### Data Factory 和 Batch 整合
+#### Data Factory 和 Batch 整合
 Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolname:job-xxx**。
 
 ![Azure Data Factory - Batch 作業](media/data-factory-data-processing-using-batch/data-factory-batch-jobs.png)
@@ -843,7 +848,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 
 ![Azure Data Factory - Batch 作業工作](media/data-factory-data-processing-using-batch/data-factory-batch-job-tasks.png)
 
-## 偵錯管線
+### 偵錯管線
 
 偵錯包含一些基本技術：
 
@@ -888,9 +893,9 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
     **注意：** 您會在 Azure Blob 儲存體中看到一個**容器**，名為：**adfjobs**。此容器並不會自動刪除，但您可在完成解決方案的測試後安全地加以刪除。同樣地，Data Factory 解決方案也會建立 Azure Batch **作業**，名為：**adf-<pool ID/name>:job-0000000001**。您可以在完成解決方案的測試之後刪除此作業 (如果您要的話)。
 7. 自訂活動不會使用來自您套件的 **app.config** 檔案，因此如果您的程式碼會從組態檔讀取任何連接字串，在執行階段將沒有作用。最佳做法是使用 Azure Batch 將所有密碼存放 **Azure KeyVault** 中、使用以憑證為基礎的服務主體來保護 keyvault，然後將憑證發佈至 Azure Batch 集區。接著，.NET 自訂活動便可以在執行階段從 KeyVault 存取密碼。這是一般解決方案，而且可以擴展至任何類型的密碼，不僅限於連接字串。
 
-	此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的新 **Azure SQL 連結服務**、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。
+	此外，也有較簡單的因應措施 (但並非最佳做法)︰您可以建立一個帶有連接字串設定的新**Azure SQL 連結服務**、建立一個使用該連結服務的資料集，然後將該資料集以虛擬輸入資料集的形式鏈結至自訂 .NET 活動。接著，您便可以在自訂活動程式碼中存取連結服務的連接字串，並且這在執行階段應該能夠發揮作用。
 
-### 擴充範例
+#### 擴充範例
 
 您可以擴充此範例，以深入了解 Azure Data Factory 和 Azure Batch 的功能。例如，若要處理不同時間範圍的配量，請執行下列動作：
 
@@ -921,7 +926,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
  
 
 
-## 後續步驟：取用資料
+### 後續步驟：取用資料
 
 處理資料之後，您可以使用 **Microsoft Power BI** 之類的線上工具來取用資料。以下連結可協助您了解 Power BI，以及如何在 Azure 中加以使用：
 
@@ -957,4 +962,4 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

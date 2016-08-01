@@ -3,8 +3,8 @@
 	description="了解如何使用 Site Recovery 及 PowerShell 自動化 VMM 雲端中之 HYPER-V 虛擬機器的複寫作業。"
 	services="site-recovery"
 	documentationCenter=""
-	authors="csilauraa"
-	manager="jwhit"
+	authors="bsiva"
+	manager="abhiag"
 	editor="tysonn"/>
 
 <tags
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="12/14/2015"
-	ms.author="lauraa"/>
+	ms.date="07/12/2016"
+	ms.author="bsiva"/>
 
 # 使用 Powershell - Classic 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-vmm-to-azure.md)
-- [PowerShell - ARM](site-recovery-vmm-to-azure-powershell-resource-manager.md)
+- [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md)
 - [傳統入口網站](site-recovery-vmm-to-azure-classic.md)
 - [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
 
@@ -46,7 +46,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 ### Azure 必要條件
 
-- 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](pricing/free-trial/)開始。
+- 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
 - 您需要 Azure 儲存體帳戶來儲存複寫的資料。此帳戶必須啟用異地複寫。它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。[深入了解 Azure 儲存體](../storage/storage-introduction.md)。
 - 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#virtual-machines)。
 
@@ -60,7 +60,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 ### Hyper-V 的必要條件
 
 - 主機 Hyper-V 伺服器至少必須執行附帶 Hyper-V 角色的 Windows Server 2012，並且已安裝最新更新。
-- 如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。您必須手動設定叢集代理。若要執行此作業，請在 [伺服器管理員] > [容錯移轉叢集管理員] 中連接到叢集，再按一下 [設定角色]，然後在 [高可用性精靈] 畫面之 [選取角色] 中選取 [HYPER-V 複本代理人]。 
+- 如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。您必須手動設定叢集代理。若要執行此作業，請在 [伺服器管理員] > [容錯移轉叢集管理員] 中連接到叢集，再按一下 [設定角色]，然後在 [高可用性精靈] 畫面之 [選取角色] 中選取 [HYPER-V 複本代理人]。
 - 您想要管理保護的任何 Hyper-V 主機伺服計或叢集都必須包含在 VMM 雲端中。
 
 ### 網路對應的必要條件
@@ -449,4 +449,4 @@ marsagentinstaller.exe /q /nu
 
 [閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。</a>。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

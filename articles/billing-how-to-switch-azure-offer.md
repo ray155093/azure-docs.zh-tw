@@ -1,5 +1,5 @@
 <properties
-	pageTitle="切換至不同的 Azure 優惠 | Microsoft Azure"
+	pageTitle="將 Azure 訂用帳戶切換到其他優惠 | Microsoft Azure"
 	description="說明 Azure 訂閱者如何切換至不同的 Azure 優惠"
 	services=""
 	documentationCenter=""
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/29/2016"
+	ms.date="07/15/2016"
 	ms.author="genli"/>
 
-# 切換至不同的 Azure 優惠
+# 將 Azure 訂用帳戶切換到其他優惠
 
 您可以將您現有的訂用帳戶切換至更偏好的優惠，而不會有任何服務因此停機。您可能因為下列其中一個原因考慮切換優惠：
 
@@ -75,4 +75,4 @@
 -	[12 個月預付優惠](https://azure.microsoft.com/offers/ms-azr-0026p/)的[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)
 -	任何 [Visual Studio 訂閱者每月 Azure 點數優惠](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)的[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

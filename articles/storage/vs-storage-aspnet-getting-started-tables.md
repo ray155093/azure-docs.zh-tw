@@ -13,13 +13,15 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/18/2016"
 	ms.author="tarcher"/>
 
 # 開始使用資料表儲存體和 Visual Studio 已連接服務 (ASP.NET)
 
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
+
 ## 概觀
-本文描述如何在您使用 Visual Studio 的 [**加入已連接服務**] 對話方塊，建立或參考 ASP.NET 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 資料表儲存體。本文說明如何在 Azure 資料表中執行常見工作，包括建立和刪除資料表，以及如何搭配使用資料表實體。這些範例均以 C# 程式碼撰寫，並使用 [Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。如需其他有關使用 Azure 資料表儲存體的一般資訊，請參閱[以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)。
+本文描述如何在您使用 Visual Studio 的 [**加入已連接服務**] 對話方塊，建立或參考 ASP.NET 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 資料表儲存體。本文說明如何在 Azure 資料表中執行常見工作，包括建立和刪除資料表，以及如何搭配使用資料表實體。這些範例均以 C# 程式碼撰寫，並使用[Microsoft Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。如需其他有關使用 Azure 資料表儲存體的一般資訊，請參閱[以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)。
 
 Azure 資料表儲存體可讓您儲存大量的結構化資料。此服務是一個 NoSQL 資料存放區，接受來自 Azure 雲端內外經過驗證的呼叫。Azure 資料表很適合儲存結構化、非關聯式資料。
 
@@ -182,4 +184,4 @@ Azure 資料表儲存體可讓您儲存大量的結構化資料。此服務是�
 
 [AZURE.INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

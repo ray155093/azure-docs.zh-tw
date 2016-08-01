@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="04/18/2016" 
+ 	ms.date="07/18/2016" 
 	ms.author="juliako"/>
 
 
@@ -28,7 +28,7 @@
 
 建立資產時，您可以指定下列加密選項。
 
-- **None** - 不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
+- **None** - 不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
 - **CommonEncryption** - 如果您上傳的內容已經受到一般加密或 PlayReady DRM (例如，受到 PlayReady DRM 保護的 Smooth Streaming) 的加密保護，請使用此選項。
 - **EnvelopeEncrypted** - 如果您上傳以 AES 加密的 HLS，請使用此選項。請注意，檔案必須已由 Transform Manager 編碼和加密。
 - **StorageEncrypted** - 使用 AES-256 位元加密對您的內容進行本機加密，接著上傳到已靜止加密儲存的 Azure 儲存體。以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
@@ -54,7 +54,7 @@
 - 建立要與資產相關聯的 AssetFile 執行個體。
 - 建立 AccessPolicy 執行個體，以定義存取資產所需的權限和規定期間。
 - 建立可用來存取資產的定位器執行個體。
-- 將單一媒體檔案上傳至媒體服務。 
+- 將單一媒體檔案上傳至媒體服務。
 
 		
 		static public IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
@@ -310,9 +310,9 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 
 
 ##後續步驟
-您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][] \(英文) 主題。
+您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][] (英文) 主題。
 
 [如何取得媒體處理器]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0720_2016-->

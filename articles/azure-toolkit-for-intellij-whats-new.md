@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016" 
-	ms.author="robmcm"/>
+	ms.date="07/07/2016" 
+	ms.author="robmcm;asirveda"/>
 
 # 適用於 IntelliJ 的 Azure 工具組新增功能
 
@@ -32,7 +32,7 @@
 * **支援最新的 Java JDK**。適用於 IntelliJ 的 Azure 工具組現在支援最新版本的 Java JDK。
 * **支援 Azure SDK v2.9.1**。最新版的 Azure SDK 現在是適用於 IntelliJ 的 Azure 工具組的最低必要條件。
 * **整合範例**。適用於 IntelliJ 的 Azure 工具組目前精選了數個範例應用程式，可協助開發人員開始使用。
-* **HDInsight 工具整合**。Azure 的 HDInsight 工具現在隨附於適用於 IntelliJ 的 Azure 工具組。
+* **HDInsight 工具整合**。Azure 的 HDInsight 工具現在隨附於適用於 IntelliJ 的 Azure 工具組。如需詳細資訊，請參閱 [IntelliJ 的 HDInsight Tools 外掛程式]。
 * **Java Web 應用程式的遠端偵錯**。適用於 IntelliJ 的 Azure 工具組現在支援對 Azure App Service 上的 Java Web 應用程式進行遠端偵錯。
 
 ### 2016 年 4 月 12 日
@@ -71,4 +71,6 @@
 
 [Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
 
-<!---HONumber=AcomDC_0706_2016-->
+[IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+
+<!---HONumber=AcomDC_0720_2016-->

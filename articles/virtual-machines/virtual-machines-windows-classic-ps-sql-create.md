@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/20/2016"
+	ms.date="07/15/2016"
 	ms.author="jroth" />
 
 # 使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (傳統)
@@ -22,8 +22,7 @@
 
 這篇文章提供如何使用 PowerShell Cmdlet 在 Azure 中建立 SQL Server 虛擬機器的步驟。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]  
-如果您需要本主題的 Resource Manager 版本，請參閱[使用 Azure PowerShell Resource Manager 佈建 SQL Server 虛擬機器](virtual-machines-windows-ps-sql-create.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 如果您需要本主題的 Resource Manager 版本，請參閱[使用 Azure PowerShell Resource Manager 佈建 SQL Server 虛擬機器](virtual-machines-windows-ps-sql-create.md)。
 
 ## 安裝並設定 PowerShell
 
@@ -173,4 +172,4 @@
 
 除了上述資源，我們也建議您檢閱[在 Azure 虛擬機器中執行 SQL Server 的其他相關主題](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

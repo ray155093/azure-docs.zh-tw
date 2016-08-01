@@ -3,7 +3,7 @@
 	description="使用分析，這是強大的 Application Insights 診斷搜尋工具。" 
 	services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
+	authors="danhadari" 
 	manager="douge"/>
 
 <tags 
@@ -12,10 +12,8 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/30/2016" 
-	ms.author="awills"/>
-
-
+	ms.date="07/15/2016" 
+	ms.author="danha"/>
 
 
 # 使用 Application Insights 中的分析
@@ -34,34 +32,83 @@
 
 [這裡有更廣泛的教學課程](app-insights-analytics-tour.md)。
 
-## 撰寫查詢
+## 查詢您的遙測
 
-撰寫以任何列在左側的資料表名稱開頭的查詢。使用 `|` 建立[運算子](app-insights-analytics-reference.md#queries-and-operators)的管線。
-
+### 撰寫查詢
 
 ![](./media/app-insights-analytics-using/150.png)
 
-* 請勿在查詢中放置空白行。
-* 您可以在查詢中使用單一分行符號。
-* 您可以在視窗中顯示數個查詢 (以空白行分隔)。
-* 若要執行查詢，**將游標放在查詢內部或結尾**，然後按一下 [執行]。
+以任何列在左側的資料表名稱 (或 [range](app-insights-analytics-reference.md#range-operator) 或 [union](app-insights-analytics-reference.md#union-operator) 運算子) 開頭。使用 `|` 建立[運算子](app-insights-analytics-reference.md#queries-and-operators)的直立線符號。IntelliSense 會對您提示運算子和某些您可以使用的運算式元素。
+
+請參閱[分析語言概觀](app-insights-analytics-tour.md)和[語言參考](app-insights-analytics-reference.md)。
+
+### 執行查詢
+
+![執行查詢](./media/app-insights-analytics-using/130.png)
+
+1. 您可以在查詢中使用單一分行符號。
+2. 將游標放在您要執行的查詢內部或結尾。
+3. 按一下 [執行] 來執行查詢。
+4. 請勿在查詢中放置空白行。您可以用空白行來分隔一個查詢索引標籤中的數個查詢，讓它們保持分離狀態。只會執行游標所在的查詢。
+
+### 儲存查詢
+
+![儲存查詢](./media/app-insights-analytics-using/140.png)
+
+1. 儲存目前的查詢檔案。
+2. 開啟已儲存的查詢檔案。
+3. 建立新的查詢檔案。
 
 
-![](./media/app-insights-analytics-using/130.png)
+## 請參閱詳細資料
 
-* 您可以儲存並回收查詢視窗的內容。
+展開結果中的任何資料列，以查看其完整屬性清單。您可以進一步展開任屬於何結構化值的屬性 - 例如，自訂維度或例外狀況中的堆疊清單。
 
-![](./media/app-insights-analytics-using/140.png)
+![展開資料列](./media/app-insights-analytics-using/070.png)
+
+ 
 
 ## 排列結果
 
-您可以挑選您要查看的資料行。展開任何項目以查看所有傳回的資料行值。
+您可以排序、篩選、分頁和分組查詢所傳回的結果。
 
-![](./media/app-insights-analytics-using/030.png)
+> [AZURE.NOTE] 在瀏覽器中排序、分組和篩選不會重新執行查詢。這些作業只會重新排列最後一個查詢所傳回的結果。
+> 
+> 若要在傳回結果之前，在伺服器中執行這些工作，請使用 [sort](app-insights-analytics-reference.md#sort-operator)、[summarize](app-insights-analytics-reference.md#summarize-operator) 和 [where](app-insights-analytics-reference.md#where-operator) 運算子撰寫查詢。
 
-> [AZURE.NOTE] 按一下資料行的標頭，即可快速重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。所以，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用 [top](app-insights-analytics-reference.md#top-operator) 或 [sort](app-insights-analytics-reference.md#sort-operator) 運算子。
+挑選您想要查看的資料行，拖曳資料行標頭進行重新排列，然後拖曳其框線以調整資料行的大小。
 
-但是使用 [take](app-insights-analytics-reference.md#take-operator)、[top](app-insights-analytics-reference.md#top-operator) 或 [summarize](app-insights-analytics-reference.md#summarize-operator) 運算子，避免從伺服器下載大型資料表是相當好的做法。無論如何都自動限制每個查詢 10000 個資料列。
+![排列資料行](./media/app-insights-analytics-using/030.png)
+
+### 排序和篩選項目
+
+按一下資料行的標頭來排序結果。再次按一下以其他方式排序，而第三次按一下即可還原成查詢所傳回的原始順序。
+
+使用篩選圖示縮小搜尋範圍。
+
+![排序和篩選資料行](./media/app-insights-analytics-using/040.png)
+
+
+
+### 將項目分組
+
+若要依照多個資料行排序，請使用群組。請先啟用它，接著將資料行標頭拖曳到資料表上方的空間。
+
+![群組](./media/app-insights-analytics-using/060.png)
+
+
+
+### 遺漏某些結果？
+
+從入口網站所傳回的結果有大約 1 萬個資料列的限制。如果超過此限制，就會顯示警告。如果發生這種情況，排序資料表中的結果不一定會顯示所有實際的第一個或最後一個結果。
+
+最好避免達到限制。使用如下所示的運算子：
+
+* [where timestamp > ago(3d)](app-insights-analytics-reference.md#where-operator)
+* [top 100 by timestamp](app-insights-analytics-reference.md#top-operator)
+* [take 100](app-insights-analytics-reference.md#take-operator)
+* [summarize](app-insights-analytics-reference.md#summarize-operator)
+
 
 
 ## 圖表
@@ -70,9 +117,7 @@
 
 ![](./media/app-insights-analytics-using/230.png)
 
-如果您有數個正確類型的資料行，您可以選擇 x 和 y 軸，以及一個資料行的維度來據以分割結果︰
-
-![](./media/app-insights-analytics-using/100.png)
+如果您有數個正確類型的資料行，您可以選擇 x 和 y 軸，以及一個資料行的維度來據以分割結果。
 
 根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-reference.md#render-directive)以選取圖表。
 
@@ -103,4 +148,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="index-page"
-	ms.date="04/01/2016"
+	ms.date="07/19/2016"
 	ms.author="josephd"/>
 
 # Azure 混合式雲端測試環境
@@ -50,4 +50,4 @@
 
 - 了解[實作指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)，以在 Azure 基礎架構服務中，設計自訂的開發/測試或生產環境部署。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

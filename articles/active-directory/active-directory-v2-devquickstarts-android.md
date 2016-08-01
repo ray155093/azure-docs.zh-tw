@@ -148,12 +148,12 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 	```xml
 	    <string-array name="oidc_scopes">
 	        <item>openid</item>
-	        <item>User.ReadBasic.All</item>
+	        <item>https://graph.microsoft.com/User.Read</item>
 	        <item>offline_access</item>
 	    </string-array>
 	```
 
-`oidc_scopes` 中的 `User.ReadBasic.All` 值可讓您讀取目錄中所有使用者的基本設定檔。您可以在 [Microsoft Graph 權限範圍](https://graph.microsoft.io/docs/authorization/permission_scopes)，深入了解所有可用範圍。
+`oidc_scopes` 中的 `User.Read` 值可讓您讀取已登入使用者的基本設定檔。您可以在 [Microsoft Graph 權限範圍](https://graph.microsoft.io/docs/authorization/permission_scopes)，深入了解所有可用範圍。
 
 如果您想要 OpenID Connect 中有關 `openid` 或 `offline_access` 範圍的說明，請參閱 [2\.0 通訊協定 - OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)。
 
@@ -196,4 +196,4 @@ Azure Active Directory 目前不支援 `userInfoEndpoint` 和 `revocationEndpoin
 
 我們鼓勵您造訪[安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

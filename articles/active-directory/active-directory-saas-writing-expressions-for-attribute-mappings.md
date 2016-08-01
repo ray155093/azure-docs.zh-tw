@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/30/2016"
+	ms.date="07/19/2016"
 	ms.author="markusvi"/>
 
 
@@ -29,10 +29,10 @@
 
 屬性對應的運算式語法是 Visual Basic for Applications (VBA) 函式。
 
-- 整個運算式必須以函式定義，由函式名稱後面接著以括號括住的引數組成：<br>*FunctionName(<<argument 1>>,<<argument N>>)*
+- 整個運算式必須以函式定義，由函式名稱後面接著以括號括住的引數組成：<br> *FunctionName(<<argument 1>>,<<argument N>>)*
 
 
-- 您可以在函式內互相巢狀函式。例如：<br>*FunctionOne(FunctionTwo(<<argument1>>))*
+- 您可以在函式內互相巢狀函式。例如︰<br> *FunctionOne(FunctionTwo(<<argument1>>))*
 
 
 - 您可以將三種不同類型的引數傳入函式：
@@ -41,7 +41,7 @@
 
    2. 字串常數，必須以雙引號括住。例如："United States"
 
-   3. 其他函式。例如：FunctionOne(<<argument1>>, FunctionTwo(<<argument2>>))
+   3. 其他函式。例如︰FunctionOne(<<argument1>>、FunctionTwo(<<argument2>>))
 
 
 - 對於字串常數，如果您在字串中需要反斜線 ( \\ ) 或引號 ( " ) ，則必須使用反斜線 ( \\ ) 符號逸出。例如："公司名稱："Contoso""
@@ -103,7 +103,7 @@
 |名稱| 必要 / 重複 | 型別 | 注意事項 |
 |--- | ---                 | ---  | ---   |
 | **separator** | 必要 | String | 用來分隔串連成一個字串的 source 值的字串。如果不需要分隔符號，可以是 ""。 |
-| **source1 … sourceN ** | 必要、次數可變 | String | 要結合在一起的字串值。 |
+| **source1 … sourceN ** | 必要，變動次數 | String | 要聯結在一起的字串值。 |
 
 
 
@@ -315,4 +315,4 @@
 - [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

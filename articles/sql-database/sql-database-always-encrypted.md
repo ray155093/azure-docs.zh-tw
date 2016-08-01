@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="07/18/2016"
 	ms.author="sstein"/>
 
 # 一律加密 - 透過資料庫加密來保護 SQL Database 中的機密資料，並將您的加密金鑰儲存在 Windows 憑證存放區
@@ -40,10 +40,8 @@
 - 建立資料庫資料表，並將某些資料行加密。
 - 建立可插入、選取及顯示加密資料行資料的應用程式。
 
-> [AZURE.NOTE] Azure SQL Database 的 [永遠加密] 功能目前為預覽狀態。
 
-
-## 先決條件
+## 必要條件
 
 本教學課程中，您將需要：
 
@@ -57,13 +55,13 @@
 ## 建立空白 SQL Database
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [新增] > [資料 + 儲存體] > [SQL Database]。
-3. 在新的或現有伺服器上建立名稱為**實務課程**的**空白**資料庫。如需在 Azure 入口網站中建立資料庫的詳細指示，請參閱[在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。如需在 Azure 入口網站中建立資料庫的詳細指示，請參閱[在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
 
 	![建立空白資料庫](./media/sql-database-always-encrypted/create-database.png)
 
 在本教學課程稍後您將需要連接字串，在資料庫建立之後瀏覽至新的實務課程資料庫，並複製連接字串 (您隨時都可以取得連接字串，但是我們已經在入口網站中，因此現在可以輕鬆地將它複製)。
 
-1. 按一下 [SQL Database] > [實務課程] > [顯示資料庫連接字串]。
+1. 按一下 [SQL Database] > [Clinic] > [顯示資料庫連接字串]。
 2. 複製 **ADO.NET** 的連接字串：
 
 	![複製連接字串](./media/sql-database-always-encrypted/connection-strings.png)
@@ -79,7 +77,7 @@
 
 	![複製連接字串](./media/sql-database-always-encrypted/ssms-connect.png)
 
-3. 如果 [新防火牆規則] 視窗開啟，請登入 Azure，讓 SSMS 為您建立新的防火牆規則。
+3. 如果 [新增防火牆規則] 視窗開啟，請登入 Azure，讓 SSMS 為您建立新的防火牆規則。
 
 
 ## 建立資料表
@@ -87,8 +85,8 @@
 首先，我們將建立資料表來保存病患的資料 (剛開始只是一般資料表 – 下一節中，我們將會設定加密)。
 
 1. 展開 [資料庫]。
-1. 以滑鼠右鍵按一下 [實務課程] 資料庫，然後按一下 [新增查詢]。
-2. 將下列 Transact-SQL (T-SQL) 貼到新的查詢視窗中並加以 [執行]：
+1. 以滑鼠右鍵按一下 [Clinic] 資料庫，然後按一下 [新增查詢]。
+2. 將下列 Transact-SQL (T-SQL) 貼到新的查詢視窗中並 [執行] 它：
 
 
         CREATE TABLE [dbo].[Patients](
@@ -110,26 +108,26 @@
 
 SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料行加密金鑰 (CEK) 與加密資料行，來為您輕鬆設定永遠加密。
 
-1. 展開 [資料庫] > [實務課程] > [資料表]。
-2. 以滑鼠右鍵按一下 [病患] 資料表，然後選取 [加密資料行] 以開啟 Always Encrypted Wizard (永遠加密精靈)：
+1. 展開 [資料庫] > [Clinic] > [資料表]。
+2. 以滑鼠右鍵按一下 [Patients] (病患) 資料表，然後選取 [加密資料行] 以開啟 [永遠加密精靈]：
 
     ![加密資料行](./media/sql-database-always-encrypted/encrypt-columns.png)
 
 3. **資料行選取**
 
-    按一下 [簡介] 頁面上的 [下一步] 開啟 [資料行選取] 頁面，其中您可以選取想要加密的資料行，要使用的[加密類型，以及資料行加密金鑰 (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2)。
+    按一下 [簡介] 頁面上的 [下一步] 開啟 [資料行選取] 頁面，您可以在其中選取想要加密的資料行，要使用的[加密類型，以及資料行加密金鑰 (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2)。
 
     針對每位病患，我們想要加密其 **SSN** 與 **BirthDate** 資訊。SSN 資料行將使用決定性加密，可支援等式查閱、聯結與群組依據。BirthDate 資料行將使用不支援操作的隨機加密。
 
-    選取並將 SSN 資料行的 [加密類型] 設定為 [決定性]，並將 BirthDate 資料行設定為 [隨機]，然後按一下 [下一步]。
+    選取並將 SSN 資料行的 [加密類型] 設定為 [決定性]，並將 BirthDate 資料行設定為 [隨機化]，然後按一下 [下一步]。
 
     ![加密資料行](./media/sql-database-always-encrypted/column-selection.png)
 
 4. **主要金鑰設定** (CMK)
 
-    [主要金鑰設定] 頁面是您設定資料行主要金鑰 (CMK) 並選取儲存 CMK 之金鑰存放區提供者的位置。目前，您可以在 Windows 憑證存放區、Azure 金鑰保存庫或硬體安全性模組 (HSM) 中儲存 CMK。本教學課程說明如何在 Windows 憑證存放區中儲存您的金鑰。
+    [主要金鑰設定] 頁面是您設定資料行主要金鑰 (CMK) 並選取儲存 CMK 的金鑰存放區提供者。目前，您可以在 Windows 憑證存放區、Azure 金鑰保存庫或硬體安全性模組 (HSM) 中儲存 CMK。本教學課程說明如何在 Windows 憑證存放區中儲存您的金鑰。
 
-    確認已選取 **Windows 憑證存放區**，然後按一下 [下一步]。
+    確認已選取 [Windows 憑證存放區]，然後按一下 [下一步]。
 
     ![主要金鑰設定](./media/sql-database-always-encrypted/master-key-configuration.png)
 
@@ -154,7 +152,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - 建立資料行加密金鑰 (CEK)。
 - 設定選取的資料行以進行加密。(我們的 [病患] 資料表目前尚未有任何資料，但現在選取的資料行中的現有資料會加密)。
 
-您可以展開 [實務課程] > [安全性] > [永遠加密金鑰]，確認 SSMS 中是否已建立金鑰。您現在可以看到精靈為您產生的新金鑰。
+您可以展開 [Clinic] > [安全性] > [永遠加密金鑰]，確認 SSMS 中是否已建立金鑰。您現在可以看到精靈為您產生的新金鑰。
 
 
 ## 建立搭配加密資料使用的用戶端應用程式
@@ -174,7 +172,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 
 ## 修改連接字串，以啟用 [永遠加密]
 
-本節只說明如何在您的資料庫連接字串中啟用 [永遠加密]。在下一節的〈**永遠加密範例主控台應用程式**〉中，您將會實際修改您剛剛建立的主控台應用程式。
+本節只說明如何在您的資料庫連接字串中啟用 [永遠加密]。在下一節的＜**永遠加密範例主控台應用程式**＞中，您將會實際修改您剛剛建立的主控台應用程式。
 
 
 若要啟用 [永遠加密]，您必須將 [資料行加密設定] 關鍵字新增至您的連接字串，並將它設定為 [啟用]。
@@ -193,7 +191,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 
 ### 使用 SqlConnectionStringBuilder 啟用永遠加密
 
-下列程式碼示範如何藉由將 [SqlConnectionStringBuilder.ColumnEncryptionSetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) 設定為 [啟用][](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx) 來啟用 [永遠加密]。
+下列程式碼示範如何藉由將 [SqlConnectionStringBuilder.ColumnEncryptionSetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) 設定為 [[啟用](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx)] 來啟用 [永遠加密]。
 
     // Instantiate a SqlConnectionStringBuilder.
     SqlConnectionStringBuilder connStringBuilder = 
@@ -510,9 +508,9 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
    ![新的主控台應用程式](./media/sql-database-always-encrypted/ssms-encrypted.png)
 
 
-若要使用 SSMS 來存取純文字資料，我們可以將 **Column Encryption Setting=enabled** 參數新增至連線。
+若要使用 SSMS 來存取純文字資料，我們可以將 **Column Encryption Setting=enabled** 參數加到連線中。
 
-1. 在 SSMS 中，於 [物件總管] 中以滑鼠右鍵按一下您的伺服器並 [中斷連線]。
+1. 在 SSMS 中，於 [物件總管] 中以滑鼠右鍵按一下您的伺服器，然後按一下 [中斷連線]。
 2. 按一下 [連線] > [資料庫引擎] 開啟 [連線到伺服器] 視窗，並按一下 [選項]。
 3. 按一下 [其他連接參數] 並輸入 **Column Encryption Setting=enabled**。
 
@@ -536,7 +534,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 ## 後續步驟
 建立使用 [永遠加密] 的資料庫之後，您可以執行下列操作：
 
-- 從不同的電腦執行此範例。它無法存取加密金鑰，因此無法存取純文字資料也無法成功執行。 
+- 從不同的電腦執行此範例。它無法存取加密金鑰，因此無法存取純文字資料也無法成功執行。
 - [旋轉和清除金鑰](https://msdn.microsoft.com/library/mt607048.aspx)。
 - [Migrate data that is already encrypted with Always Encrypted (移轉已使用 [永遠加密] 加密的資料)](https://msdn.microsoft.com/library/mt621539.aspx)
 - 將 [永遠加密] 憑證部署至其他用戶端電腦。
@@ -550,4 +548,4 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - [Always Encrypted Wizard (永遠加密精靈)](https://msdn.microsoft.com/library/mt459280.aspx)
 - [Always Encrypted Blog (永遠加密部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

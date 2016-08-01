@@ -34,9 +34,9 @@ Azure 磁碟加密是可讓您加密您的 Windows 和 Linux IaaS 虛擬機器�
 Azure 磁碟加密解決方案支援下列客戶案例：
 
 - 對透過加密的 VHD 和加密金鑰建立的新 IaaS VM 啟用加密
-- 對透過 Azure 資源庫映像建立的新 IaaS VM 啟用加密 
-- 在 Azure 中已執行的現有 IaaS VM 上啟用加密 
-- 在 Windows IaaS VM 上停用加密  
+- 對透過 Azure 資源庫映像建立的新 IaaS VM 啟用加密
+- 在 Azure 中已執行的現有 IaaS VM 上啟用加密
+- 在 Windows IaaS VM 上停用加密
 
 在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列各項：
 
@@ -169,21 +169,21 @@ Azure 磁碟加密管理解決方案可帶來雲端中的下列商務需求：
 
 	- 有效密碼 URL 的範例：
 
-		**https://contosovault.vault.azure.net/secrets/BitLockerEncryptionSecretWithKek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
+		*https://contosovault.vault.azure.net/secrets/BitLockerEncryptionSecretWithKek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
 
 	- 有效 KRK KEK 的範例：
 
-		**https://contosovault.vault.azure.net/keys/diskencryptionkek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
+		*https://contosovault.vault.azure.net/keys/diskencryptionkek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
 
 - Azure 磁碟加密不支援將連接埠號碼指定為金鑰保存庫密碼和 KEK URL 的一部分。請參閱以下範例以取得支援的金鑰保存庫 URL：
 
  	- 不被接受的金鑰保存庫 URL
 
-		**https://contosovault.vault.azure.net:443/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
+		*https://contosovault.vault.azure.net:443/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
 
 	- 可接受的金鑰保存庫 URL
 
-		**https://contosovault.vault.azure.net/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
+		*https://contosovault.vault.azure.net/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*
 
 - 若要啟用 Azure 磁碟加密功能，IaaS VM 必須符合下列網路端點組態需求：
 
@@ -203,7 +203,7 @@ Azure 磁碟加密管理解決方案可帶來雲端中的下列商務需求：
 
 	- 若要安裝 Azure CLI 並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure CLI](../xplat-cli-install.md)
 
-	- 搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure Resource Manager，請參閱[這裡](azure-cli-arm-commands.md)
+	- 搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理員，請參閱[這裡](azure-cli-arm-commands.md)
 
 - Azure 磁碟加密解決方案對 Windows IaaS VM 使用 BitLocker 外部金鑰保護裝置。如果您的 VM 加入網域，請勿推送會強制使用 TPM 保護裝置的任何群組原則。請參閱[這篇文章](https://technet.microsoft.com/library/ee706521)以取得「在不含相容 TPM 的情形下允許使用 BitLocker」群組原則的詳細資訊。
 
@@ -679,13 +679,14 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
     echo "Trying to get the key from disks ..." >&2
     mkdir -p $MountPoint
     modprobe vfat >/dev/null 2>&1
+    modprobe ntfs >/dev/null 2>&1
     sleep 2
     OPENED=0
-    for SFS in /sys/block/sd*; do
-        DEV=`basename $SFS`
-        F=$SFS/${DEV}1/dev
+    cd /sys/block
+    for DEV in sd*; do
         echo "> Trying device: $DEV ..." >&2
-        mount /dev/${DEV}1 $MountPoint -t vfat -r >/dev/null
+        mount -t vfat -r /dev/${DEV}1 $MountPoint >/dev/null||
+        mount -t ntfs -r /dev/${DEV}1 $MountPoint >/dev/null
         if [ -f $MountPoint/$KeyFileName ]; then
                 cat $MountPoint/$KeyFileName
                 umount $MountPoint 2>/dev/null
@@ -709,11 +710,19 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
     Sda5_crypt uuid=xxxxxxxxxxxxxxxxxxxxx none luks,discard,keyscript=/usr/local/sbin/azure_crypt_key.sh
 
-3\. 如果您要在 Windows 中編輯 *azure\_crypt\_key.sh* 並將它複製到 Linux，請記得執行 *dos2unix /usr/local/sbin/azure\_crypt\_key.sh*。4. 執行 *update-initramfs -u -k all* 以更新 initramfs，keyscript 才能生效。
+3\. 如果您要在 Windows 中編輯 *azure\_crypt\_key.sh* 並將它複製到 Linux，請記得執行 *dos2unix /usr/local/sbin/azure\_crypt\_key.sh*。4. 以加上程式碼行的方式編輯 */etc/initramfs-tools/modules*︰
+
+    vfat
+    ntfs
+    nls_cp437
+    nls_utf8
+    nls_iso8859-1
+
+5\. 執行 *update-initramfs -u -k all* 以更新 initramfs，keyscript 才能生效。
 
 ##### openSUSE 13.2.
 
-1\. 編輯 /etc/dracut.conf add\_drivers+="vfat nls\_cp437 nls\_iso8859-1"
+1\. 編輯 /etc/dracut.conf add\_drivers+="vfat ntfs nls\_cp437 nls\_iso8859-1"
 
 2\. 註解化檔案 “/usr/lib/dracut/modules.d/90crypt/module-setup.sh” 結尾的這幾行程式碼：
 
@@ -737,9 +746,11 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
     echo "Trying to get the key from disks ..." >&2
     mkdir -p $MountPoint >&2
     modprobe vfat >/dev/null >&2
+    modprobe ntfs >/dev/null >&2
     for SFS in /dev/sd*; do
        echo "> Trying device:$SFS..." >&2
-       mount ${SFS}1 $MountPoint -t vfat -r >&2
+       mount ${SFS}1 $MountPoint -t vfat -r >&2 ||
+       mount ${SFS}1 $MountPoint -t ntfs -r >&2
        if [ -f $MountPoint/$KeyFileName ]; then
           echo "> keyfile got..." >&2
           luksfile=$MountPoint/$KeyFileName
@@ -750,7 +761,7 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 5\. 執行 “dracut –f -v” 來更新 initrd
 
 ##### CentOS 7
-1\. 編輯 /etc/dracut.conf add\_drivers+=" vfat nls\_cp437 nls\_iso8859-1"
+1\. 編輯 /etc/dracut.conf add\_drivers+=" vfat ntfs nls\_cp437 nls\_iso8859-1"
 
 2\. 註解化檔案 “/usr/lib/dracut/modules.d/90crypt/module-setup.sh” 結尾的這幾行程式碼：
 
@@ -775,9 +786,11 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
     echo "Trying to get the key from disks ..." >&2
     mkdir -p $MountPoint >&2
     modprobe vfat >/dev/null >&2
+    modprobe ntfs >/dev/null >&2
     for SFS in /dev/sd*; do
     echo "> Trying device:$SFS..." >&2
-    mount ${SFS}1 $MountPoint -t vfat -r >&2
+    mount ${SFS}1 $MountPoint -t vfat -r >&2 ||
+    mount ${SFS}1 $MountPoint -t ntfs -r >&2
     if [ -f $MountPoint/$KeyFileName ]; then
         echo "> keyfile got..." >&2
         luksfile=$MountPoint/$KeyFileName
@@ -845,4 +858,4 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

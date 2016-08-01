@@ -18,7 +18,7 @@
    
 # 使用多個區域 DocumentDB 帳戶進行開發
 
-為了充分運用[全球發佈](documentdb-distribute-data-globally.md)，用戶端應用程式可以指定已排序的區域喜好設定清單，以用來執行文件作業。這可透過設定連接原則來完成。根據 DocumentDB 帳戶組態、目前區域可用性和指定的喜好設定清單，SDK 將會選擇最適合的端點來執行寫入和讀取作業。
+為了充分運用[全球發佈](documentdb-distribute-data-globally.md)，用戶端應用程式可以指定已排序的區域喜好設定清單，以用來執行文件作業。這可透過設定連接原則來完成。根據 Azure DocumentDB 帳戶組態、目前區域可用性和指定的喜好設定清單，SDK 將會選擇最適合的端點來執行寫入和讀取作業。
 
 在使用 DocumentDB 用戶端 SDK 初始化連接時，即會指定這份喜好設定清單。SDK 會接受選擇性參數 "PreferredLocations"，也就是已排序的 Azure 區域清單。
 
@@ -143,4 +143,4 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 [regions]: https://azure.microsoft.com/regions/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

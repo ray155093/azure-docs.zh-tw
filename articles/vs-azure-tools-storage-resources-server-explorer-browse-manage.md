@@ -12,11 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="07/18/2016"
    ms.author="tarcher" />
 
 # 使用伺服器總管瀏覽和管理儲存體資源
 
+[AZURE.INCLUDE [storage-try-azure-tools](../includes/storage-try-azure-tools.md)]
+
+## 概觀
 如果您已經安裝 Azure Tools for Microsoft Visual Studio，您可以從 Azure 的儲存體帳戶檢視 blob、佇列和資料表資料。在 [伺服器總管] 中的 Azure 儲存體節點會顯示位於您的本機儲存體模擬器帳戶和其他 Azure 儲存體帳戶中的資料。
 
 若要在 Visual Studio 中檢視 [伺服器總管]，請在功能表列上選擇 [檢視] 和 [伺服器總管]。儲存體節點會顯示存在於您連接之每個 Azure 訂用帳戶/憑證下的儲存體帳戶。如果您的儲存體帳戶未出現，您可以遵循[本主題稍後](#add-storage-accounts-by-using-server-explorer)的指示加以新增。
@@ -92,7 +95,7 @@ Blob 節點會顯示所選之儲存體帳戶的容器清單。Blob 容器包含 
 
     ![加入至 blob 容器的資料夾](./media/vs-azure-tools-storage-resources-server-explorer-browse-manage/IC766038.png)
 
-1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] \(向上箭頭) 按鈕來瀏覽回容器的根。
+1. 按兩下資料夾或按下 ENTER 以查看資料夾的內容。當您位於容器的資料夾中，您可以藉由選擇 [開啟上層目錄] (向上箭頭) 按鈕來瀏覽回容器的根。
 
 ### 刪除容器資料夾
 
@@ -314,4 +317,4 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。此服務是�
 
 若要了解如何使用 Azure 儲存體服務的詳細資訊，請參閱[存取 Azure 儲存體服務](https://msdn.microsoft.com/library/azure/ee405490.aspx)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="07/19/2016"
 	ms.author="josephd"/>
 
 # 基本設定測試環境
 
-本文將逐步解說如何利用在 Resource Manager 中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本設定」測試環境。
+本文將逐步解說如何利用在 Resource Manager 中建立的虛擬機器，在 Microsoft Azure 虛擬網路中建立「基本組態」測試環境。
 
 產生的測試環境可以用於：
 
@@ -66,7 +66,7 @@
 
 	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
-設定您的 Azure 訂用帳戶以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+設定您的 Azure 訂用帳戶以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<subscription name>"
 	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
@@ -75,7 +75,7 @@
 
 	Get-AzureRMResourceGroup | Sort ResourceGroupName | Select ResourceGroupName
 
-使用下列命令建立新的資源群組。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+使用下列命令建立新的資源群組。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$rgName="<resource group name>"
 	$locName="<location name, such as West US>"
@@ -92,7 +92,7 @@
 	$saName="<storage account name>"
 	New-AzureRMStorageAccount -Name $saName -ResourceGroupName $rgName –Type Standard_LRS -Location $locName
 
-接下來，您可以建立 TestLab Azure 虛擬網路，用它來架設公司子網路基本組態，並且使用網路安全性群組進行保護。
+接下來，您會建立將裝載基本組態之公司子網路的 TestLab 虛擬網路，並使用網路安全性群組來保護它。
 
 	$rgName="<name of your new resource group>"
 	$locName="<Azure location name, such as West US>"
@@ -135,19 +135,19 @@ DC1 是 corp.contoso.com Active Directory 網域服務 (AD DS) 網域的網域�
 
 接著，連接到 DC1 虛擬機器。
 
-1.	在 Azure 入口網站中，按一下 [**虛擬機器**]，然後按一下 [**DC1**] 虛擬機器。  
-2.	在 [DC1] 窗格中，按一下 [連接]。
+1.	在 Azure 入口網站中，按一下 [**虛擬機器**]，然後按一下 [**DC1**] 虛擬機器。
+2.	在 [DC1] 窗格中按一下 [連接]。
 3.	出現提示時，開啟下載的 DC1.rdp 檔案。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用下列：
-- 名稱：**DC1**[本機系統管理員帳戶名稱]
+- 名稱：**DC1\**[本機系統管理員帳戶名稱]
 - 密碼：[本機系統管理員帳戶密碼]
 6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
 
 接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -167,11 +167,11 @@ DC1 是 corp.contoso.com Active Directory 網域服務 (AD DS) 網域的網域�
 DC1 重新啟動之後，重新連接到 DC1 的虛擬機器。
 
 1.	在 Azure 入口網站中，按一下 [**虛擬機器**]，然後按一下 [**DC1**] 虛擬機器。
-2.	在 [**DC1**] 窗格中按一下 [**連接**]。
+2.	在 [DC1] 窗格中按一下 [連接]。
 3.	提示開啟 DC1.rdp 時，按一下 [開啟]。
 4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
 5.	出現輸入認證的提示時，使用下列：
-- 名稱：**CORP**[本機系統管理員帳戶名稱]
+- 名稱：**CORP\**[本機系統管理員帳戶名稱]
 - 密碼：[本機系統管理員帳戶密碼]
 6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
 
@@ -248,7 +248,7 @@ APP1 提供網頁和檔案共用服務。
 
 CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或桌上型電腦。
 
-> [AZURE.NOTE] 下列命令集能建立執行 Windows Server 2012 R2 Datacenter 的 CLIENT1。這適用於所有類型的 Azure 訂用帳戶。如果您有以 MSDN 為基礎的 Azure 訂用帳戶，您可以使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來建立執行 Windows 10、Windows 8 或 Windows 7 的 CLIENT1。
+> [AZURE.NOTE] 下列命令集能建立執行 Windows Server 2012 R2 Datacenter 的 CLIENT1。這適用於所有類型的 Azure 訂用帳戶。如果您有以 MSDN 為基礎的 Azure 訂用帳戶，您就可以使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來建立執行 Windows 10、Windows 8 或 Windows 7 的 CLIENT1。
 
 首先，填寫資源群組的名稱、Azure 位置以及儲存體帳戶名稱，然後在本機電腦的 Azure PowerShell 命令提示字元執行下列命令，為 CLIENT1 建立 Azure 虛擬機器。
 
@@ -333,4 +333,4 @@ CLIENT1 充當 Contoso 內部網路上的一般膝上型電腦、平板電腦或
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "APP1"
 	Start-AzureRMVM -ResourceGroupName $rgName -Name "CLIENT1"
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->
