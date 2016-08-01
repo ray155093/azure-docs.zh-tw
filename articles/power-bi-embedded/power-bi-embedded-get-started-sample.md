@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="07/05/2016"
+   ms.date="07/14/2016"
    ms.author="owend"/>
 
 # 開始使用 Power BI Embedded 範例
@@ -158,14 +158,13 @@ Report.cshtml：設定 **Model.AccessToken**，以及 **PowerBIReportFor** 的 L
 
 ### Controller
 
-**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。JSON Web 權杖 (JWT) 是從**簽署金鑰**產生，以取得**認證**。**認證**是用來建立 **PowerBIClient** 的執行個體。如需**應用程式權杖**的詳細資訊，請參閱[應用程式權杖流程的運作方式？](#key-flow)。在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
+**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。JSON Web 權杖 (JWT) 是從**簽署金鑰**產生，以取得**認證**。**認證**是用來建立 **PowerBIClient** 的執行個體。在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
 
 CreatePowerBIClient()
 
-    private IPowerBIClient CreatePowerBIClient(PowerBIToken token)
+    private IPowerBIClient CreatePowerBIClient()
     {
-        var jwt = token.Generate(accessKey);
-        var credentials = new TokenCredentials(jwt, "AppToken");
+        var credentials = new TokenCredentials(accessKey, "AppKey");
         var client = new PowerBIClient(credentials)
         {
             BaseUri = new Uri(apiUrl)
@@ -178,8 +177,7 @@ ActionResult Reports()
 
     public ActionResult Reports()
     {
-        var devToken = PowerBIToken.CreateDevToken(this.workspaceCollection, this.workspaceId);
-        using (var client = this.CreatePowerBIClient(devToken))
+        using (var client = this.CreatePowerBIClient())
         {
             var reportsResponse = client.Reports.GetReports(this.workspaceCollection, this.workspaceId);
 
@@ -197,12 +195,11 @@ Task<ActionResult> Report(string reportId)
 
     public async Task<ActionResult> Report(string reportId)
     {
-        var devToken = PowerBIToken.CreateDevToken(this.workspaceCollection, this.workspaceId);
-        using (var client = this.CreatePowerBIClient(devToken))
+        using (var client = this.CreatePowerBIClient())
         {
             var reportsResponse = await client.Reports.GetReportsAsync(this.workspaceCollection, this.workspaceId);
             var report = reportsResponse.Value.FirstOrDefault(r => r.Id == reportId);
-            var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, Guid.Parse(report.Id));
+            var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, report.Id);
 
             var viewModel = new ReportViewModel
             {
@@ -216,7 +213,7 @@ Task<ActionResult> Report(string reportId)
 
 ### 將報表整合到您的應用程式中
 
-在您擁有**報告**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報告**。以下是來自 **Microsoft Power BI Embedded** 預覽範例中 powerbi.js 的程式碼片段。
+在您擁有**報告**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報告**。以下是來自 **Microsoft Power BI Embedded** 範例中 powerbi.js 的程式碼片段。
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-iframe-code.png)
 
@@ -237,6 +234,6 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ## 另請參閱
 
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
-- [關於 Power BI Embedded 的應用程式權杖流程](power-bi-embedded-app-token-flow.md)
+- [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

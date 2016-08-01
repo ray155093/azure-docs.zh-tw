@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016" 
-	ms.author="robmcm"/>
+	ms.date="07/07/2016" 
+	ms.author="robmcm;asirveda"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694270.aspx -->
 
@@ -34,7 +34,7 @@
 * **支援最新的 Java JDK**。適用於 Eclipse 的 Azure 工具組現在支援最新版本的 Java JDK。
 * **支援 Azure SDK v2.9.1**。最新版的 Azure SDK 現在是 Azure Toolkit for Eclipse 的最低必要條件。
 * **整合範例**。適用於 Eclipse 的 Azure 工具組目前精選了數個範例應用程式，可協助開發人員開始使用。
-* **HDInsight 工具整合**。Azure 的 HDInsight 工具現在隨附於適用於 Eclipse 的 Azure 工具組。
+* **HDInsight 工具整合**。Azure 的 HDInsight 工具現在隨附於適用於 Eclipse 的 Azure 工具組。如需詳細資訊，請參閱 [Eclipse 的 HDInsight Tools 外掛程式]。
 * **Java Web 應用程式的遠端偵錯**。適用於 Eclipse 的 Azure 工具組現在支援對 Azure App Service 上的 Java Web 應用程式進行遠端偵錯。
 * **支援 Eclipse Luna 版本。** 新的基本必要 Eclipse IDE 版本為 Luna。
 
@@ -347,6 +347,7 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 [部署大型部署]: http://go.microsoft.com/fwlink/?LinkID=699536
 [端點屬性]: http://go.microsoft.com/fwlink/?LinkID=699525#endpoints_properties
 [環境變數屬性]: http://go.microsoft.com/fwlink/?LinkID=699525#environment_variables_properties
+[Eclipse 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
 [如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者]: http://go.microsoft.com/fwlink/?LinkID=264703
 [如何使用 SSL 卸載]: http://go.microsoft.com/fwlink/?LinkID=699545
 [安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
@@ -370,4 +371,4 @@ Azure Toolkit for Eclipse - 2016 年 3 月版本包含下列增強功能：
 [ic710882]: ./media/azure-toolkit-for-eclipse-whats-new/ic710882.png
 [ic710883]: ./media/azure-toolkit-for-eclipse-whats-new/ic710883.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

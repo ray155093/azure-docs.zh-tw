@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="05/03/2016"
+ms.date="07/19/2016"
 ms.author="larryfr"/>
 
 #從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集
@@ -22,7 +22,7 @@ ms.author="larryfr"/>
 
 本文件提供 Windows 和 Linux 上 HDInsight 差異的詳細資料，以及如何將現有工作負載移轉至以 Linux 為基礎之叢集的指導方針。
 
-> [AZURE.NOTE] Ubuntu 12.04.05 LTS 是用於以 Linux 為基礎之 HDInsight 叢集的 Linux 發行版本。
+> [AZURE.NOTE] HDInsight 叢集使用 Ubuntu 長期支援 (LTS) 做為叢集中節點的作業系統。HDInsight 3.3 及 3.4 叢集使用 Ubuntu 14.0.4 LTS，舊版的 HDInsight 則使用 Ubuntu 12.04.05 LTS。
 
 ## 移轉工作
 
@@ -254,4 +254,4 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 -   [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

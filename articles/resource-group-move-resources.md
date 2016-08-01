@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/06/2016" 
+	ms.date="07/19/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -44,7 +44,7 @@
 目前支援移動到新資源群組與訂用帳戶的服務有：
 
 - API 管理
-- App Service 應用程式 - 請參閱 [App Service 限制](#app-service-limitations)
+- App Service 應用程式 (Web 應用程式) - 請參閱 [App Service 限制](#app-service-limitations)
 - 自動化
 - 批次
 - CDN
@@ -272,4 +272,4 @@
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

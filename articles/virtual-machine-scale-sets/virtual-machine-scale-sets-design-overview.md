@@ -25,7 +25,7 @@
 
 ## 儲存體
 
-擴展集使用儲存體帳戶儲存集合中的 VM OS 磁碟。建議比例為每個儲存體帳戶 20 部 VM 或更少。也建議您分散儲存體帳戶名稱開頭字元的英文字母。這有助於將負載分散到不同的內部系統。例如，在下列範本中，我們使用 uniqueString ARM 範本函數產生前置詞雜湊，加在儲存體帳戶名稱的前面︰[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat)。
+擴展集使用儲存體帳戶儲存集合中的 VM OS 磁碟。建議比例為每個儲存體帳戶 20 部 VM 或更少。也建議您分散儲存體帳戶名稱開頭字元的英文字母。這有助於將負載分散到不同的內部系統。例如，在下列範本中，我們使用 uniqueString ARM 範本函數來產生前置詞雜湊，這些雜湊會加在儲存體帳戶名稱的前面︰[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat)。
 
 
 ## 過度佈建
@@ -38,10 +38,10 @@
 
 
 ## 限制
-建置在自訂映像 (一個由您所建立) 上的擴展集，必須在一個儲存體帳戶內建立所有的 OS 磁碟 VHD。因此，在以自訂映像為建置基礎的擴展集中建議 VM 數上限為 20。如果關閉過度佈建，數目上限為 40。
+擴展集如果是以自訂映像 (一個由您所建立的映像) 為建置基礎，就必須在一個儲存體帳戶內建立所有的 OS 磁碟 VHD。因此，在以自訂映像為建置基礎的擴展集中建議 VM 數上限為 20。如果關閉過度佈建，數目上限為 40。
 
 以平台映像為建置基礎的擴展集受限於 100 部 VM (這種規模建議 5 個儲存體帳戶)。
 
 如果超出這些限制允許的 VM，您必須部署多個擴展集。[如需如何執行這項操作的範例，請參閱這個範本。](https://github.com/Azure/azure-quickstart-templates/tree/master/301-custom-images-at-scale)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

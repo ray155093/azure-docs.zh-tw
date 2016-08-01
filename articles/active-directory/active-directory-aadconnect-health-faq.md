@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/21/2016"
+	ms.date="07/14/2016"
 	ms.author="vakarand"/>
 
 
@@ -35,7 +35,7 @@
 
 **問：在個別的伺服器上安裝 Azure AD Connect Health 代理程式有什麼影響？**
 
-ADFS 伺服器上安裝 Microsoft Identity Health 代理程式對於 CPU、記憶體耗用量、網路頻寬和儲存體的影響非常少。
+在 ADFS 伺服器或網域控制站上安裝 Microsoft Identity Health 代理程式對於 CPU、記憶體耗用量、網路頻寬和儲存體的影響非常少。
 
 以下的數字是近似值。
 
@@ -70,6 +70,13 @@ ADFS 伺服器上安裝 Microsoft Identity Health 代理程式對於 CPU、記�
 否，目前不支援為基本驗證指定任意使用者名稱/密碼的機制。
 
 
+**問︰適用於 AD DS 的 Azure AD Connect Health 支援哪個版本的 AD DS？**
+
+安裝於下列作業系統版本上時支援 AD DS 的監視︰
+
+- Windows Server 2008 R2
+- Windows Server 2012
+- Windows Server 2012 R2
 
 ## 操作問題
 
@@ -104,6 +111,7 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Conne
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
 * [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

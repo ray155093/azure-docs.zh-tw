@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/09/2016"
+   ms.date="07/14/2016"
    ms.author="dobett"/>
 
 
@@ -24,7 +24,7 @@
 
 ## 在 Windows 上建立 C 範例方案
 
-下列步驟示範如何在 Visual Studio 中使用 C 程式建立簡單的用戶端應用程式，來與遠端監視預先設定的方案進行通訊。
+下列步驟示範如何使用 Visual Studio 建立以 C 撰寫的簡單用戶端應用程式，來與遠端監視預先設定的方案進行通訊。
 
 在 Visual Studio 2015 中建立入門專案，並新增 IoT 中樞的裝置用戶端 NuGet 封裝︰
 
@@ -42,7 +42,13 @@
     - Microsoft.Azure.IoTHub.IoTHubClient
     - Microsoft.Azure.IoTHub.HttpTransport
 
-## 新增程式碼來指定簡單 IoT 中樞裝置的行為
+6. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [屬性] 開啟專案的 [屬性頁] 對話方塊。如需詳細資訊，請參閱[設定 Visual C++ 專案屬性][lnk-c-project-properties]。
+
+7. 按一下 [連結器] 資料夾，然後按一下 [輸入] 屬性頁。
+
+8. 將 **crypt32.lib** 新增至 [其他相依性] 屬性。按一下 [確定]，然後再按一下 [確定] 以儲存專案屬性值。
+
+## 指定 IoT 中樞裝置的行為
 
 IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之訊息，或裝置所回應之 IoT 中樞命令的格式。
 
@@ -54,9 +60,11 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     #include "iothub_client.h"
     #include "serializer.h"
     #include "schemaserializer.h"
+    #include "azure_c_shared_utility/threadapi.h"
+    #include "azure_c_shared_utility/platform.h"
     ```
 
-2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請將 [IoTHub Name] 取代為 contoso：
+2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
 
     ```
     static const char* deviceId = "[Device Id]";
@@ -104,11 +112,11 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     END_NAMESPACE(Contoso);
     ```
 
-## 新增程式碼以實作裝置的行為
+## 實作裝置的行為
 
-您現在必須新增程式碼來實作模型中所定義的行為。您將會新增裝置收到中樞傳來的命令時要執行的函式，以及用來傳送模擬遙測到中樞的程式碼。
+您現在必須新增程式碼來實作模型中所定義的行為。
 
-1. 新增下列會在裝置收到模型中所定義的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式︰
+1. 新增下列當裝置收到來自 IoT 中樞的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式：
 
     ```
     EXECUTE_COMMAND_RESULT SetTemperature(Thermostat* thermostat, int temperature)
@@ -191,7 +199,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     }
     ```
 
-4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會傳送與本身有關的中繼資料 (包括其支援的命令) 到 IoT 中樞；這可讓方案將儀表板上的裝置狀態更新為 [執行中]︰
+4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會將與本身有關的中繼資料 (包括其支援的命令) 傳送到 IoT 中樞 - 這可讓方案將儀表板上的裝置狀態更新為 [執行中]：
 
     ```
     void remote_monitoring_run(void)
@@ -310,7 +318,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     }
     ```
     
-    做為參考，以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息︰
+    以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息做為參考：
 
     ```
     {
@@ -329,13 +337,13 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     }
     ```
     
-    做為參考，以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息︰
+    以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息做為參考：
 
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
     ```
     
-    做為參考，以下是從 IoT 中樞收到的範例 **Command**︰
+    以下是從 IoT 中樞收到的範例 **Command** 做為參考：
     
     ```
     {
@@ -358,10 +366,11 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
 
 6. 依序按一下 [建置] 和 [建置方案] 以建置裝置應用程式。
 
-7. 在 [方案總管] 中，以滑鼠右鍵按一下 **RMDevice** 專案，按一下 [偵錯]，然後按一下 [開始新執行個體] 來建置和執行範例。當應用程式將範例遙測傳送到 IoT 中樞時，主控台會顯示訊息。
+7. 在 [方案總管] 中，以滑鼠右鍵按一下 **RMDevice** 專案，按一下 [偵錯]，然後按一下 [開始新執行個體] 來執行範例。當應用程式將範例遙測傳送到 IoT 中樞並收到命令時，主控台會顯示訊息。
 
 [AZURE.INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 
-[lnk-setup-windows]: https://github.com/azure/azure-iot-sdks/blob/develop/c/doc/devbox_setup.md#windows
 
-<!---HONumber=AcomDC_0622_2016-->
+[lnk-c-project-properties]: https://msdn.microsoft.com/library/669zx6zc.aspx
+
+<!---HONumber=AcomDC_0720_2016-->

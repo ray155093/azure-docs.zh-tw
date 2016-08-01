@@ -37,7 +37,7 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 
 熱門的 Web 開發工具支援一或多個這些部署程序。雖然您選擇的工具會決定可以利用的部署程序，但可供您使用的實際 DevOps 功能取決於部署程序的組合以及且您選擇的特定工具。例如，如果您從 [Visual Studio 搭配 Azure SDK](#vspros) 執行 Web Deploy，即使您未從 Kudu 獲得自動化，仍可在 Visual Studio 中獲得套件還原和 MSBuild 自動化。
 
->[AZURE.NOTE] 這些部署程序並不會實際[佈建 Azure 資源](../azure-portal/resource-group-portal.md)，但這些資源可能是您的應用程式需要的。然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。您也可以在[使用命令列工具自動化部署](#automate)一節中找到佈建 Azure 資源的其他選項。
+>[AZURE.NOTE] 這些部署程序並不會實際[佈建 Azure 資源](../resource-group-template-deploy-portal.md)，但這些資源可能是您的應用程式需要的。然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。您也可以在[使用命令列工具自動化部署](#automate)一節中找到佈建 Azure 資源的其他選項。
      
 ## <a name="ftp"></a>手動將檔案複製到 Azure 以透過 FTP 進行部署
 如果您習慣以手動方式將網站內容複製到 Web 伺服器，則可以使用 [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) 公用程式來複製檔案，例如 Windows 檔案總管或 [FileZilla](https://filezilla-project.org/)。
@@ -234,4 +234,4 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

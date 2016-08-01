@@ -161,7 +161,7 @@ CodePackage 元素指定服務程式碼的位置 (和版本)。
 ```
 SetupEntrypoint 元素用來指定任何應在服務的程式碼啟動前執行的可執行檔或批次檔。這是選擇性元素，所以如果不需要初始化/安裝程式則不需納入該元素。每次重新啟動服務時，就會執行 SetupEntrypoint。
 
-只有一個 SetupEntrypoint，所以如果應用程式的 setup/config 需要多個指令碼，則必須在單一批次檔上搭配 setup/config 指令碼。如同 SetupEntryPoint 元素，SetupEntrypoint 可以執行任何類型的檔案：可執行檔、批次檔和 PowerShell Cmdlet。在上述範例中，SetupEntrypoint 是以位於 Code 目錄的 `scripts` 子目錄中的批次檔 LaunchConfig.cmd 為基礎 (假設 WorkingFolder 元素已設為 Code)。
+只有一個 SetupEntrypoint，所以如果應用程式的 setup/config 需要多個指令碼，則必須在單一批次檔上搭配 setup/config 指令碼。SetupEntrypoint 可以執行任何類型的檔案：可執行檔、批次檔和 PowerShell Cmdlet。在上述範例中，SetupEntrypoint 是以位於 Code 目錄的 `scripts` 子目錄中的批次檔 LaunchConfig.cmd 為基礎 (假設 WorkingFolder 元素已設為 Code)。
 
 ### 進入點
 
@@ -308,4 +308,4 @@ Visual Studio 會提供 Service Fabric 服務範本，協助您將來賓可執�
 - [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 - [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

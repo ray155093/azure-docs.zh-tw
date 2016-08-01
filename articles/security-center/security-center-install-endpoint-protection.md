@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/12/2016"
+   ms.date="07/15/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心安裝端點保護
@@ -30,7 +30,7 @@
 
 3. [選取端點保護] 刀鋒視窗隨即開啟，讓您選取想要使用的反惡意程式碼解決方案。在此範例中，讓我們選取 [Microsoft Antimalware]。![選取端點保護][3]
 
-4. 將會顯示反惡意程式碼解決方案的其他相關資訊。選取 [建立]。![][4]
+4. 將會顯示反惡意程式碼解決方案的其他相關資訊。選取 [建立]。![建立反惡意程式碼解決方案][4]
 
 5. 在 [加入擴充功能] 刀鋒視窗上輸入必要的組態設定，然後選取 [確定]。若要深入了解組態設定，請參閱[預設和自訂的反惡意程式碼組態](../azure-security-antimalware.md#default-and-custom-antimalware-configuration)。
 
@@ -48,7 +48,7 @@
 - [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
 - [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
@@ -58,4 +58,4 @@
 [3]: ./media/security-center-install-endpoint-protection/select-endpoint-protection.png
 [4]: ./media/security-center-install-endpoint-protection/create-antimalware-solution.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

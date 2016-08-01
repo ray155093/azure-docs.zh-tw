@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="04/22/2016"
+	ms.date="07/15/2016"
 	ms.author="jroth" />
 
 # Azure 虛擬機器中的 SQL Server 效能最佳作法
@@ -148,4 +148,4 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果�
 
 請檢閱 [Azure 虛擬機器上 SQL Server 的概觀](virtual-machines-windows-sql-server-iaas-overview.md)中的其他 SQL Server 虛擬機器主題。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/28/2016"
+   ms.date="07/13/2016"
    ms.author="masashin"/>
 
 # 背景作業指引
@@ -320,4 +320,4 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 - [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](./service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 - [如何在雲端服務中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/27/2016"
+   ms.date="07/15/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心的 SQL Database 上啟用稽核
@@ -28,12 +28,11 @@
 
 ## 實作建議
 
-1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Database 上啟用稽核]。這會開啟 [在 SQL Database 上啟用稽核] 刀鋒視窗。![][1]
+1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Database 上啟用稽核]。這會開啟 [在 SQL Database 上啟用稽核] 刀鋒視窗。![在 SQL Database 上啟用稽核][1]
 
-2. 選取要在其上啟用稽核的 SQL Database。這會開啟 [稽核與威脅偵測] 刀鋒視窗。![][2]
-3. 在 [稽核與威脅偵測] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。![][3]
+2. 選取要在其上啟用稽核的 SQL Database。這會開啟 [稽核與威脅偵測] 刀鋒視窗。![稽核與威脅偵測][2]
+3. 在 [稽核與威脅偵測] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。![開啟稽核與脅偵測][3]
 
-4. 遵循[開始使用 SQL Database 稽核](../sql-database/sql-database-auditing-get-started.md)，設定將儲存稽核記錄的儲存體。適用於資料收集的訂用帳戶儲存體帳戶是預設儲存體帳戶。
 
 5. 遵循[開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
@@ -47,15 +46,15 @@
 
 - [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
 - [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 - [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)--取得最新的 Azure 安全性新聞和資訊。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-enable-auditing-on-sql-databases/enable-auditing-on-sql-databases.png
 [2]: ./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection.png
 [3]: ./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection-blade.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

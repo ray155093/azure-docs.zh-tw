@@ -13,14 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="06/03/2016"
+   ms.date="07/19/2016"
    ms.author="v-six" />
 
 # 雲端服務 Web/背景工作角色的預設 TEMP 資料夾太小
 
 雲端服務背景工作角色或 Web 角色的預設暫存目錄大小上限為 100 MB，可能會在某個時間點達到。本文說明如何避免用盡暫存目錄的空間。
-
->[AZURE.NOTE] 這只適用於在 Azure SDK 1.0 到 1.4 中使用 Web 和背景工作角色。
 
 [AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
@@ -79,4 +77,4 @@ namespace WorkerRole1
 
 若要了解如何利用 Azure PaaS 電腦診斷資料，對雲端服務角色的問題進行疑難排解，請檢視 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

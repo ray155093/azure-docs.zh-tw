@@ -7,11 +7,11 @@
    manager="douge"
    editor="" />
 <tags 
-   ms.service="visual-studio-online"
+   ms.service="storage"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="mobile"
+   ms.workload="na"
    ms.date="06/01/2016"
    ms.author="tarcher" />
 
@@ -76,9 +76,9 @@
 
 當您完成對話方塊時，Visual Studio 會加入參考並修改某些組態檔。特定變更視專案類型而定。
 
- - 若為 ASP.NET 專案，請參閱[發生什麼情形 – ASP.NET 專案](http://go.microsoft.com/fwlink/p/?LinkId=513126)。 
- - 若為 ASP.NET 5 專案，請參閱[發生什麼情形 – ASP.NET 5 專案](http://go.microsoft.com/fwlink/p/?LinkId=513124)。 
- - 若為雲端服務專案 (Web 角色和背景工作角色)，請參閱[發生什麼情形 – 雲端服務專案](http://go.microsoft.com/fwlink/p/?LinkId=516965)。 
+ - 若為 ASP.NET 專案，請參閱[發生什麼情形 – ASP.NET 專案](http://go.microsoft.com/fwlink/p/?LinkId=513126)。
+ - 若為 ASP.NET 5 專案，請參閱[發生什麼情形 – ASP.NET 5 專案](http://go.microsoft.com/fwlink/p/?LinkId=513124)。
+ - 若為雲端服務專案 (Web 角色和背景工作角色)，請參閱[發生什麼情形 – 雲端服務專案](http://go.microsoft.com/fwlink/p/?LinkId=516965)。
  - 若為 WebJob 專案，請參閱[發生什麼情形 – WebJob 專案](./storage/vs-storage-webjobs-what-happened.md)。
 
 ## 後續步驟
@@ -94,4 +94,4 @@
 
      - [azure.microsoft.com 上的儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

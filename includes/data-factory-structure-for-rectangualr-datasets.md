@@ -21,30 +21,30 @@
 
 有關何時要包括 “structure” 資訊以及在**結構**區段中要包含哪些資訊，請遵循下列準則。
 
-1.	針對儲存資料結構描述、類型資訊以及資料本身的**結構化的資料來源** (如 SQL Server、Oracle、Azure 資料表等來源)，只有當您想要進行資料行對應將特定來源資料行對應至接收中的特定資料行且其名稱不相同時，才應該指定 “structure” 區段 (詳細資訊請參閱下文資料行對應的部份)。 
+- 針對儲存資料結構描述、類型資訊以及資料本身的**結構化的資料來源** (如 SQL Server、Oracle、Azure 資料表等來源)，只有當您想要進行資料行對應將特定來源資料行對應至接收中的特定資料行且其名稱不相同時，才應該指定 “structure” 區段 (詳細資訊請參閱下文資料行對應的部份)。
 
 	如上所述，“structure” 區段中的類型資訊是選擇性的。針對結構化的來源，類型資訊已可使用做為資料存放區中的資料集定義的一部分，因此當您包含 “structure” 區段時不應包含類型資訊。
-2. 針對**讀取的資料來源 (尤其是 Azure blob) 的結構描述**，您可以選擇儲存資料但不儲存任何結構描述或類型資訊。針對這些類型的資料來源，在以下 2 種案例中應包含 “structure”：
-	1. 您想要進行對應。
-	2. 當資料集是「複製」活動中的來源時，您可以在 “structure” 中提供類型資訊，資料處理站轉換為原生類型以利接收時會使用此類型資訊。如需詳細資訊請參閱[移動資料進出 Azure Blob](../articles/data-factory/data-factory-azure-blob-connector.md)的文章。
+- 針對**讀取的資料來源 (尤其是 Azure blob) 的結構描述**，您可以選擇儲存資料但不儲存任何結構描述或類型資訊。針對這些類型的資料來源，在以下 2 種案例中應包含 “structure”：
+	- 您想要進行對應。
+	- 當資料集是「複製」活動中的來源時，您可以在 “structure” 中提供類型資訊，資料處理站轉換為原生類型以利接收時會使用此類型資訊。如需詳細資訊請參閱[移動資料進出 Azure Blob](../articles/data-factory/data-factory-azure-blob-connector.md)的文章。
 
 ### 支援 .NET 型的類型 
 資料處理站支援下列符合 CLS 標準的 .NET 型類型，以利針對讀取的資料來源 (如 Azure blob) 的結構描述在 “structure” 中提供類型資訊。
 
 - Int16
-- Int32 
+- Int32
 - Int64
 - 單一
 - 兩倍
 - 十進位
 - 位元組
 - Bool
-- String 
+- String
 - Guid
 - Datetime
 - Datetimeoffset
-- Timespan 
+- Timespan
 
 針對 Datetime 和 Datetimeoffset，您可以選擇性地指定 “culture” 和 “format” 字串以幫助剖析您的自訂 Datetime 字串。請參閱下方的類型轉換範例。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0720_2016-->

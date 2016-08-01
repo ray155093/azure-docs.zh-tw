@@ -222,10 +222,10 @@
 
 
 
-## 注意︰使用 CLI 和 Powershell 的標準 A0 - A4 
+## 注意︰使用 CLI 和 PowerShell 的標準 A0 - A4 
 
 
-在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 Powershell 中的稍有不同。
+在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 PowerShell 中的稍有不同：
 
 * Standard\_A0 是「特小型」
 * Standard\_A1 是「小型」
@@ -239,4 +239,4 @@
 - 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
 - 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 密集運算執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

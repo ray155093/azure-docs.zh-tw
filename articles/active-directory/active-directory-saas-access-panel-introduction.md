@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/30/2016"
+	ms.date="07/19/2016"
 	ms.author="markusvi"/>
 
 
@@ -128,7 +128,7 @@
 
 **以不同的使用者帳戶測試：**
 
-1. 按一下 Azure 入口網站或存取面板右上角的使用者功能表，並選取 [**登出**]。這可將您登出 Azure AD。
+1. 按一下 Azure 入口網站或存取面板右上角的使用者功能表，並選取 [登出]。這可將您登出 Azure AD。
 
 2. 前往位於 **http://myapps.microsoft.com** 的存取面板。
 
@@ -146,13 +146,13 @@
 
 ### 以同盟 SSO 設定的 Microsoft 及協力廠商應用程式
 
-這些是系統管理員在單一登入模式設定為 [*Azure AD 單一登入*] 的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。只有在系統管理員明確地為使用者授與應用程式的存取權時，他們才會看到這些應用程式。
+這些是系統管理員在單一登入模式設定為 [Azure AD 單一登入] 的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。只有在系統管理員明確地為使用者授與應用程式的存取權時，他們才會看到這些應用程式。
 
 當使用者按一下這些其中一個應用程式的應用程式磚時，會將他們重新導向至該應用程式，並自動登入。
 
 ### 不含身分識別佈建的密碼 SSO
 
-這些是系統管理員在單一登入模式設定為 [*密碼單一登入*] 的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。<br>目錄中的所有使用者都會看到已在此模式下設定的所有應用程式。
+這些是系統管理員在單一登入模式設定為 [密碼單一登入] 的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。<br>目錄中的所有使用者都會看到已在此模式下設定的所有應用程式。
 
 當使用者第一次按一下這些其中一個應用程式的應用程式磚時，系統會提示他們安裝適用於 Internet Explorer 或 Chrome 的密碼 SSO 外掛程式，安裝後可能需要重新啟動網頁瀏覽器。當使用者返回存取面板並再按一下應用程式磚時，系統將會提示他們輸入應用程式的使用者名稱和密碼。一旦輸入使用者名稱和密碼之後，這些認證將會安全地儲存在 Azure AD 中，並連結至他們在 Azure AD 中的帳戶，且存取面板將會使用這些認證，自動將使用者登入應用程式。
 
@@ -162,7 +162,7 @@
 
 ### 含身分識別佈建的密碼 SSO
 
-這些是系統管理員在單一登入模式設定為 [*密碼單一登入*] 以及身分識別佈建的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。
+這些是系統管理員在單一登入模式設定為 [密碼單一登入] 以及身分識別佈建的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。
 
 當使用者第一次按一下這些其中一個應用程式的應用程式磚時，系統會提示他們安裝適用於 Internet Explorer 或 Chrome 的密碼 SSO 外掛程式，安裝後可能需要重新啟動網頁瀏覽器。當使用者返回存取面板並再按一下應用程式磚時，他們將會自動登入應用程式。
 
@@ -185,4 +185,4 @@
 [3]: ./media/active-directory-saas-access-panel-introduction/ic767168.png
 [4]: ./media/active-directory-saas-access-panel-introduction/ic767169.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0720_2016-->

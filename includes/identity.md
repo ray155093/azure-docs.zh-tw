@@ -102,7 +102,7 @@ Azure AD 目前並未完全取代內部部署 Windows Server AD。如先前所�
 
 此程序會在使用者嘗試透過瀏覽器存取應用程式時開始。應用程式將使用者重新導向至其所選的 IdP (而且也是應用程式所信任的 IdP)。使用者可以向此 IdP 驗明正身，例如輸入使用者名稱和密碼 (步驟 1)，而 IdP 會傳回包含其相關資訊的權杖 (步驟 2)。
 
-如圖所示，存取控制支援各種不同的雲端型 IdP (包括 Google、Yahoo、Facebook、Microsoft (先前稱為 Windows Live ID) 及任何 OpenID 提供者所建立的帳戶)。此外，還支援使用 Azure Active Directory 和 (透過與 AD FS 同盟) Windows Server Active Directory 建立的身分識別。目的在於涵蓋目前最常使用的身分識別 (不論是由雲端或內部部署的 IdP 所簽發)。
+如圖所示，存取控制支援各種不同的雲端型 IdP (包括 Google、Yahoo、Facebook、Microsoft (先前稱為 Windows Live ID) 及任何 OpenID 提供者所建立的帳戶)。此外，還支援使用 Azure Active Directory 和 Windows Server Active Directory (透過與 AD FS 同盟) 建立的身分識別。目的在於涵蓋目前最常使用的身分識別 (不論是由雲端或內部部署的 IdP 所簽發)。
 
 一旦使用者的瀏覽器擁有來自其所選 IdP 的 IdP 權杖，瀏覽器便會將此權杖傳送至存取控制 (步驟 3)。存取控制會驗證此權杖，確定該權杖真的是由此 IdP 所簽發，然後根據對此應用程式定義的規則建立新的權杖。如同 Azure Active Directory，存取控制是一項多租用戶服務，但這些租用戶是應用程式而非客戶組織。每個應用程式都可取得自己的命名空間 (如圖所示)，而且可以定義有關授權等的各種規則。
 
@@ -118,4 +118,4 @@ Azure AD 目前並未完全取代內部部署 Windows Server AD。如先前所�
 
 David Chappell 是 Chappell & Associates [www.davidchappell.com](http://www.davidchappell.com) (位於美國加州舊金山) 的主席。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0720_2016-->

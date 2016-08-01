@@ -4,7 +4,7 @@
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="rothja"
-	manager="jeffreyg"
+	manager="jhubbard"
 	editor=""
 	tags="azure-service-management"/>
 
@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/24/2016"
+	ms.date="07/14/2016"
 	ms.author="jroth"/>
 
 # 在 Azure VM (資源管理員) 上設定 SQL Server 的 Azure 金鑰保存庫整合
@@ -32,15 +32,29 @@
 
 [AZURE.INCLUDE [準備 AKV 整合](../../includes/virtual-machines-sql-server-akv-prepare.md)]
 
-## 啟用 AKV 整合
+## 啟用及設定 AKV 整合
+您可以在佈建期間啟用 AKV 整合，或針對現有的 VM 設定這項整合。
+
+### 新的 VM
 如果您是使用資源管理員佈建新的 SQL Server 虛擬機器，則 Azure 入口網站會提供一個步驟來啟用 Azure 金鑰保存庫整合。
 
-![SQL ARM Azure 金鑰保存庫整合](./media/virtual-machines-windows-ps-sql-keyvault/azure-sql-arm-akv.png)
+![SQL Azure 金鑰保存庫整合](./media/virtual-machines-windows-ps-sql-keyvault/azure-sql-arm-akv.png)
 
 如需佈建的詳細逐步解說，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
 
-如果需要在現有 VM 上啟用 AKV 整合，則您可以使用範本。如需詳細資訊，請參閱 [Azure 金鑰保存庫整合的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-keyvault-update)。
+### 現有的 VM
+如果是現有的 SQL Server 虛擬機器，請選取您的 SQL Server 虛擬機器。然後選取 [設定] 刀鋒視窗的 [SQL Server 組態] 區段。
+
+![現有 VM 的 SQL AKV 整合](./media/virtual-machines-windows-ps-sql-keyvault/azure-sql-rm-akv-existing-vms.png)
+
+在 [SQL Server 組態] 刀鋒視窗中，按一下 [自動金鑰保存庫整合] 區段中的 [編輯] 按鈕。
+
+![設定現有 VM 的 SQL AKV 整合](./media/virtual-machines-windows-ps-sql-keyvault/azure-sql-rm-akv-configuration.png)
+
+完成時，按一下 [SQL Server 組態] 刀鋒視窗底部的 [確定] 按鈕，以儲存您的變更。
+
+>[AZURE.NOTE] 您也可以使用範本來設定 AKV 整合。如需詳細資訊，請參閱[適用於 Azure 金鑰保存庫整合的 Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-keyvault-update)。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/28/2016"
+   ms.date="07/18/2016"
    ms.author="sonyama;barbkess;nicw"/>
 
 # 還原 Azure SQL 資料倉儲 (入口網站)
@@ -28,7 +28,7 @@
 
 ## 開始之前
 
-**請驗證您的 DTU 容量。** 每個 SQL 資料倉儲都是由 SQL Server 邏輯伺服器裝載。此邏輯伺服器的容量上限是以 DTU 測量。請務必先確保裝載您的資料庫的 SQL Server 邏輯伺服器擁有足夠的 DTU 容量可供正在還原的資料庫使用，才可以還原 SQL 資料倉儲。請參閱此部落格文章以深入了解[如何檢視和增加 DTU 配額][]。
+**請驗證您的 DTU 容量。** 每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。若要了解如何計算所需 DTU 或要求更多 DTU，請參閱[要求 DTU 配額變更][]。
 
 
 ## 還原作用中或已暫停的資料庫
@@ -107,13 +107,13 @@
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
 [完成復原的資料庫]: ./sql-database-recovered-finalize.md
+[要求 DTU 配額變更]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 
 <!--MSDN references-->
 
 <!--Blog references-->
-[如何檢視和增加 DTU 配額]: https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/
 
 <!--Other Web references-->
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

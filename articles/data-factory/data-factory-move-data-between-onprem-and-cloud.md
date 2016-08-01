@@ -107,9 +107,9 @@
 
 	您也可以在 [診斷] 索引標籤上執行以下操作：
 	
-		- Use *Test Connection** section to an on-premises data source using the gateway.
-		- Click **View Logs** to see the Data Management Gateway log in a Event Viewer window. 
-		- Click **Send Logs** to upload a zip file with logs of last 7 days to Microsoft to facilitate troubleshooting of your issues. 
+	- 使用**測試連線**一節來對使用閘道器的內部部署資料來源。
+	- 按一下 [檢視記錄檔] 以查看 [事件檢視器] 視窗中的資料管理閘道記錄檔。
+	- 按一下 [傳送記錄檔] 將含有過去 7 天記錄檔的 zip 檔案上傳到 Microsoft，以幫助針對問題進行疑難排解。
 10. 在 Azure 入口網站中，依序在 [設定] 刀鋒視窗和 [新增資料閘道] 刀鋒視窗中，按一下 [確定]。
 6. 左側的樹狀檢視中，[**資料閘道**] 下方應該會顯示 **adftutorialgateway**。如果按一下，應該會看到相關聯的 JSON。
 	
@@ -288,7 +288,7 @@
 1.	在 **DATA FACTORY** 刀鋒視窗中，按一下 [**製作和部署**] 磚來啟動 Data Factory 的 [**編輯器**]。
 
 	![[製作和部署] 磚](./media/data-factory-move-data-between-onprem-and-cloud/author-deploy-tile.png)
-2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] (省略符號) 展開命令列。
+2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] \(省略符號) 展開命令列。
 2.	使用下列文字取代右窗格中的 JSON：
 
 
@@ -419,4 +419,4 @@
 - 如需資料管理閘道的所有詳細資料，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
 - 若要了解如何使用複製活動將資料從來源資料存放區移動到一般接收資料存放區，請參閱[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

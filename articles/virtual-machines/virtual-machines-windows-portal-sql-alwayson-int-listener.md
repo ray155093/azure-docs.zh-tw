@@ -252,7 +252,7 @@ Azure 會建立探查。Azure 會使用探查來測試那一個 SQL Server 具�
 
 1. 使用 **sqlcmd** 公用程式來測試連線。例如，下列指令碼會透過接聽程式搭配 Windows 驗證來建立主要複本的 **sqlcmd** 連線︰
 
-        sqlmd -S <listenerName> -E
+        sqlcmd -S <listenerName> -E
 
 SQLCMD 連線會自動連接到裝載主要複本的 SQL Server 執行個體。
 
@@ -265,4 +265,4 @@ SQLCMD 連線會自動連接到裝載主要複本的 SQL Server 執行個體。
 - 使用內部負載平衡器，您只能從相同的虛擬網路內存取接聽程式。
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0720_2016-->

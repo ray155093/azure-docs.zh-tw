@@ -19,10 +19,10 @@
 
 # DocumentDB 的預設配額
 
-下表說明 DocumentDB 資源的預設配額。
+下表說明 Azure DocumentDB 資料庫資源的預設配額。
 
 [AZURE.INCLUDE [azure-documentdb-limits](../../includes/azure-documentdb-limits.md)]
 
 以星號 (*) 列出的配額[可以透過聯絡 Azure 支援人員來進行調整](documentdb-increase-limits.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0720_2016-->

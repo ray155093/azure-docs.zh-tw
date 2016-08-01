@@ -14,7 +14,7 @@
 
 ## 傳送命令至裝置
 
-遠端監視解決方案中的儀表板，可讓您要求 IoT 中樞傳送命令至裝置。例如，在遠端監視解決方案中，您可以傳送命令來設定裝置的內部溫度。
+遠端監視解決方案中的儀表板，可讓您透過 IoT 中樞傳送命令至裝置。例如，在遠端監視解決方案中，您可以傳送命令來設定裝置的內部溫度。
 
 1. 在遠端監視解決方案的儀表板中，按一下左面板中的 [裝置] 瀏覽至 [裝置清單]。
 
@@ -41,6 +41,5 @@
 [18]: ./media/iot-suite-visualize-connecting/suite10.png
 [img-telemetry]: ./media/iot-suite-visualize-connecting/telemetry.png
 [lnk-customize]: ../articles/iot-suite/iot-suite-guidance-on-customizing-preconfigured-solutions.md
-[lnk-dev-messaging]: ../articles/iot-hub/iot-hub-devguide.md#messaging
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0720_2016-->

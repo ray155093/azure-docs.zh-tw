@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/01/2016"
+   ms.date="07/13/2016"
    ms.author="masashin"/>
 
 # API 設計指引
@@ -355,7 +355,7 @@ Accept: application/json
 ...
 ```
 
-回應訊息的本文包含 `links` 陣列 (程式碼範例中反白顯示的部分)，指定關聯性的本質 (_Customer_)、客戶的 URI (\__http://adventure-works.com/customers/3_)、如何擷取此客戶的詳細資料 (_GET_)，以及 Web 伺服器支援來擷取這些資訊的 MIME 類型 (_text/xml_ 和 _application/json_)。這是用戶端應用程式要能夠擷取客戶詳細資料所需的所有資訊。此外，連結陣列也包含其他可執行之作業的連結，如 PUT (修改客戶，以及 Web 伺服器預期用戶端提供的格式) 和 DELETE。
+回應訊息的本文包含 `links` 陣列 (程式碼範例中反白顯示的部分)，指定關聯性的本質 (「Customer」)、客戶的 URI (\_http://adventure-works.com/customers/3_)、如何擷取此客戶的詳細資料 (「GET」)，以及 Web 伺服器支援來擷取這些資訊的 MIME 類型 (「text/xml」和「application/json」)。這是用戶端應用程式要能夠擷取客戶詳細資料所需的所有資訊。此外，連結陣列也包含其他可執行之作業的連結，如 PUT (修改客戶，以及 Web 伺服器預期用戶端提供的格式) 和 DELETE。
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -391,7 +391,7 @@ Content-Length: ...
 
 這是最簡單的方法，而且也是某些內部 API 可接收的方法。重大變更可能會以新資源或新連結來呈現。將內容加入現有資源可能不會成為重大變更，因為未預期要查看此內容的用戶端應用程式會直接忽略。
 
-例如，傳送給 URI \__http://adventure-works.com/customers/3_ 的要求應該會傳回單一客戶的詳細資料，其中包含用戶端應用程式所預期的 `id`、`name` 和 `address` 欄位：
+例如，傳送給 URI \_http://adventure-works.com/customers/3_ 的要求應該會傳回單一客戶的詳細資料，其中包含用戶端應用程式所預期的 `id`、`name` 和 `address` 欄位：
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -436,7 +436,7 @@ Content-Length: ...
 
 ### 查詢字串版本控制
 
-與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 \__http://adventure-works.com/customers/3?version=2_。如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
+與其提供多個 URI，您可以在附加至 HTTP 要求的查詢字串中，藉由使用參數來指定資源的版本，如 \_http://adventure-works.com/customers/3?version=2_。如果較舊的用戶端應用程式省略版本參數，它應該預設成有意義的值 (如 1)。
 
 這個方法具有語意上的優點，因為您總是從相同的 URI 擷取相同的資源，不過這還是要取決於處理要求以剖析查詢字串，然後回傳適當 HTTP 回應的程式碼。這個方法也需要面臨與實作 HATEOAS 同等複雜的 URI 版本控制機制。
 
@@ -519,4 +519,4 @@ Content-Length: ...
 - [RESTful Cookbook](http://restcookbook.com/) (英文) 含有建置符合 REST 限制之 Web API 的簡介。
 - Web [API 檢查清單](https://mathieu.fenniak.net/the-api-checklist/) (英文) 含有在設計及實作 Web API 時應納入考量的實用項目清單。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->

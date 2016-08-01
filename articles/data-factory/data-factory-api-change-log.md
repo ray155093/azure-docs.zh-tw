@@ -19,6 +19,34 @@
 # Azure Data Factory - .NET API 變更記錄 
 本文章提供 Azure Data Factory SDK 在特定版本中有何變更的相關資訊。您可以在[這裡](https://www.nuget.org/packages/Microsoft.Azure.Management.DataFactories)找到 Azure Data Factory 的最新 Nuget 封裝
 
+## 版本 4.9.1
+發行日期：2016.07.05
+
+### 錯誤修正
+
+- 取代 [WebLinkedService](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.weblinkedservice.authenticationtype.aspx) 的 WebApi 型驗證。
+
+## 版本 4.9.0
+發行日期︰2016.06.10
+
+### 新增功能
+
+- 新增 CopyActivity 的 [EnableStaging](https://msdn.microsoft.com/library/mt767916.aspx) 和 [StagingSettings](https://msdn.microsoft.com/library/mt767918.aspx) 屬性。如需功能的詳細資訊，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
+
+
+### 錯誤修正
+
+- 導入 [ActivityWindowOperationExtensions.List](https://msdn.microsoft.com/library/mt767915.aspx) 方法的多載，它會採用 [ActivityWindowsByActivityListParameters](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.activitywindowsbyactivitylistparameters.aspx) 執行個體。
+- 將 [WriteBatchSize](https://msdn.microsoft.com/library/dn884293.aspx) 和 [WriteBatchTimeout](https://msdn.microsoft.com/library/dn884245.aspx) 標示為 CopySink 中的選擇性項目。
+
+## 版本 4.8.0
+發行日期：2016.05.25
+
+### 新增功能
+- 複製活動類型中已新增下列選擇性屬性，以啟用複製效能的微調︰
+	- [ParallelCopies](https://msdn.microsoft.com/library/mt767910.aspx)
+	- [CloudDataMovementUnits](https://msdn.microsoft.com/library/mt767912.aspx)
+
 ## 4\.7.0 版
 發行日期：2016-05-20
 
@@ -164,4 +192,4 @@ SqlServerDataset | [SqlServerTableDataset](https://msdn.microsoft.com/library/mi
 
 - 我們現在支援對 Azure SQL Database 和 Azure SQL 資料倉儲的來源執行預存程序，做為複製活動的一部分。[SqlSource](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.sqlsource.aspx) 和 [SqlDWSource](https://msdn.microsoft.com/library/azure/microsoft.azure.management.datafactories.models.sqldwsource.aspx) 類別具有下列屬性，以支援此功能：**SqlReaderStoredProcedureName** 和 **StoredProcedureParameters**。如需這些屬性的詳細資料，請參閱 Azure.com 上的 [Azure SQL Database](data-factory-azure-sql-connector.md#sqlsource) 和 [Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#sqldwsource)文章。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

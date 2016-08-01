@@ -42,9 +42,9 @@
 Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源。您可以直接在 Azure 入口網站中部署，或在原始檔控制系統中利用應用程式程式碼下載、修改和儲存多個己存在的數個範本。完成下列步驟以下載現有的範本。
 
 1. 您可以在 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/) GitHub 儲存機制中瀏覽現有的的範本。在清單中，您會看到 "[201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database)" 資料夾。由於許多自訂應用程式包含 web 應用程式和 SQL 資料庫，此範本可做為這篇文章其餘部分的範例，協助您了解如何使用範本。完整說明此範本建立與設定的所有內容已超出本文的範圍，但是如果您打算使用它來建立組織中的實際環境，您會想要藉由閱讀[佈建 Web 應用程式與 SQL Database](app-service-web/app-service-web-arm-with-sql-database-provision.md) 一文來完全了解它。
-2. 按一下 201-web-app-sql-databas 資料夾以檢視其中 [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json) 檔案的內容。這是 Azure 資源管理員範本檔案。 
+2. 按一下 201-web-app-sql-databas 資料夾以檢視其中 [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json) 檔案的內容。這是 Azure 資源管理員範本檔案。
 3. 在檢視模式中，按一下 [原始](https://github.com/Azure/azure-quickstart-templates/raw/master/201-web-app-sql-database/azuredeploy.json) 按鈕。 
-4. 利用您的滑鼠選取此檔案的內容，並將它以 "TestApp1-Template.json" 的檔案名稱儲存到您的電腦。 
+4. 利用您的滑鼠選取此檔案的內容，並將它以 "TestApp1-Template.json" 的檔案名稱儲存到您的電腦。
 5. 檢查範本的內容，並注意下列項目：
  - **資源**區段：此區段會定義由此範本建立的 Azure 資源類型。在其他資源類型中，此範本會建立 [Azure Web 應用程式](app-service-web/app-service-web-overview.md)和 [Azure SQL Database](sql-database/sql-database-technical-overview.md) 資源。如果您偏好在虛擬機器中執行並管理網頁和 SQL 伺服器，可以使用 "[iis-2vm-sql-1vm](https://github.com/Azure/azure-quickstart-templates/tree/master/iis-2vm-sql-1vm)" 或 "[lamp-app](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app)" 範本；但本文中的說明是依 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database) 範本為主。
  - **參數** 區段：此區段定義可用來設定每個資源的參數。在範本中指定的部分參數會有 "defaultValue" 屬性，其他參數則沒有。使用範本部署 Azure 資源時，您必須提供值給範本中所有未指定 defaultValue 屬性的參數。如果您未提供值給具備 defaultValue 屬性的參數，則會使用範本中為 defaultValue 參數指定的值。
@@ -55,14 +55,14 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 雖然您可能會想在每個環境中建立「相同」的 Azure 資源，但您也可能會想要在每個環境中設定「不同」的資源。這是參數檔案的由來。完成以下步驟，在每個環境中建立包含唯一值的參數檔案。
 
-1. 檢視 201-web-app-sql-database 資料夾中的[azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json) 檔案內容。這是您在之前章節中所儲存之範本檔案的參數檔案。 
+1. 檢視 201-web-app-sql-database 資料夾中的[azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.parameters.json) 檔案內容。這是您在之前章節中所儲存之範本檔案的參數檔案。
 2. 在檢視模式中，按一下 [原始](https://github.com/Azure/azure-quickstart-templates/raw/master/201-web-app-sql-database/azuredeploy.parameters.json) 按鈕。 
 3. 用滑鼠選取此檔案的全部內容，並將它以下列名稱分別儲存至電腦上的三個檔案：
  - TestApp1-Parameters-Development.json
  - TestApp1-Parameters-Test.json
  - TestApp1-Parameters-Pre-Production.json
 
-3. 使用任何文字或 JSON 編輯器來編輯您在步驟 3 中建立的開發環境參數檔案，以列在下列參數右側的值來取代列在檔案中參數值右側的值： 
+3. 使用任何文字或 JSON 編輯器來編輯您在步驟 3 中建立的開發環境參數檔案，以列在下列參數右側的值來取代列在檔案中參數值右側的值：
  - **siteName**：TestApp1DevApp
  - **hostingPlanName**：TestApp1DevPlan
  - **siteLocation**：美國中部
@@ -74,7 +74,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 4. 使用任何文字或 JSON 編輯器來編輯您在步驟 3 中建立的測試環境參數檔案，以列在下列參數右側的值來取代列在檔案中參數值右側的值：
  - **siteName**：TestApp1TestApp
- - **hostingPlanName**：*TestApp1TestPla*n
+ - **hostingPlanName**：TestApp1TestPlan
  - **siteLocation**：美國中部
  - **serverName**：testapp1testsrv
  - **serverLocation**：美國中部
@@ -133,7 +133,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 | **requestedServiceObjectiveName** | S0 | S1 |
 
 ## 建立環境
-所有的 Azure 資源必須建立於 [Azure 資源群組](./azure-portal/resource-group-portal.md)內。資源群組可讓您將 Azure 資源分組，讓他們可以共同管理。[權限](./active-directory/role-based-access-built-in-roles.md)可以指派給資源群組，讓組織內的特定人員可以建立、修改、刪除或檢視資源群組及其中的資源。可以在 [Azure 入口網站](https://portal.azure.com)中檢視資源群組中資源的警示和計費資訊。會在 Azure [區域](https://azure.microsoft.com/regions/)中建立資源群組。在本文中，所有資源都會在美國中部區域建立。當您開始建立實際環境時，您會選擇最適合您需求的區域。
+所有的 Azure 資源必須建立於 [Azure 資源群組](resource-group-overview.md)內。資源群組可讓您將 Azure 資源分組，讓他們可以共同管理。[權限](./active-directory/role-based-access-built-in-roles.md)可以指派給資源群組，讓組織內的特定人員可以建立、修改、刪除或檢視資源群組及其中的資源。可以在 [Azure 入口網站](https://portal.azure.com)中檢視資源群組中資源的警示和計費資訊。會在 Azure [區域](https://azure.microsoft.com/regions/)中建立資源群組。在本文中，所有資源都會在美國中部區域建立。當您開始建立實際環境時，您會選擇最適合您需求的區域。
 
 使用下列方法之一，為每個環境建立資源群組。 每一種方法都會達到完全相同的結果。
 
@@ -191,7 +191,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 1. 使用 [Azure AD](./active-directory/active-directory-how-subscriptions-associated-directory.md) (也稱為工作或學校) 帳戶登入 [Azure 入口網站](https://portal.azure.com)。按一下 [新建]--> [管理] --> [資源群組]，並在 [資源群組名稱] 方塊中輸入 "TestApp1-Development"、選取您的訂用帳戶再選取 [資源群組位置] 方塊中的 [美國中部] ，如下圖所示。![入口網站](./media/solution-dev-test-environments/rgcreate.png)
 2. 按一下 [建立] 按鈕以建立資源群組。
-3. 按一下 [瀏覽] 並向下捲動清單到 [資源群組]，接著按一下 [資源群組]，如下所示。![入口網站](./media/solution-dev-test-environments/rgbrowse.png) 
+3. 按一下 [瀏覽] 並向下捲動清單到 [資源群組]，接著按一下 [資源群組]，如下所示。![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
 4. 按一下 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及新的資源群組。![入口網站](./media/solution-dev-test-environments/rgview.png)
 5. 用您之前建立 TestApp1-Development 資源群組相同的方式，建立 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
 
@@ -296,8 +296,8 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 ## 維護環境
 在整個開發過程中，不同環境中的 Azure 資源組態可能會出現有意或無意的不一致變更。這會在應用程式開發週期中造成不必要的疑難排解和問題解決。
 
-1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。 
-2. 以您用來完成上述步驟所使用的相同帳戶登入。 
+1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。
+2. 以您用來完成上述步驟所使用的相同帳戶登入。
 3. 如下圖所示，按一下 [瀏覽] --> [資源群組] \(您可能需要向下捲動才會看到資源群組)。
    ![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
 4. 按一下上圖中的 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及您在上一個步驟中建立的三個資源群組，如上圖所示。按一下 [TestApp1-Development 資源群組] 之後，您會看到刀鋒視窗，列出範本在您於上一個步驟完成的 TestApp1-Development 資源群組部署中所建立的資源。按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 TestApp1DevApp，刪除 TestApp1DevApp Web 應用程式資源，再按一下 [TestApp1DevApp Web 應用程式] 刀鋒視窗中的 [刪除]。
@@ -345,7 +345,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 ### Azure 入口網站
 
-1. 在 Azure 入口網站中，瀏覽到資源群組，如同上一個步驟所述。 
+1. 在 Azure 入口網站中，瀏覽到資源群組，如同上一個步驟所述。
 2. 選取 [TestApp1-Development 資源群組]，再按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 [刪除]。隨即顯示新的刀鋒視窗。輸入資源群組名稱，再按一下 [刪除] 按鈕。![入口網站](./media/solution-dev-test-environments/rgdelete.png)
 3. 用您刪除 TestApp1-Development 資源群組相同的方式，刪除 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
 
@@ -364,6 +364,4 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 - [指派標籤](resource-group-using-tags.md)至每個環境的資源群組及/或個別資源。您可能會將「環境」標籤新增至資源群組並設定其值以對應至您的環境名稱。當您需要組織資源以進行計費或管理時，標記可能特別有用。
 - 在 [Azure 入口網站](https://portal.azure.com)中監視資源群組中資源的警示和計費。
 
-<!---HONumber=AcomDC_0330_2016-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

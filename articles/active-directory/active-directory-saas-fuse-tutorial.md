@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="07/19/2016"
 	ms.author="jeedes"/>
 
 
@@ -60,7 +60,7 @@ Fuse 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 Fuse，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Fuse 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -137,7 +137,7 @@ Fuse 與 Azure AD 整合提供下列優點：
     b.複製 [簽發者 URL]、[單一登入服務 URL] 及 [單一登出服務 URL]。
 
    
-5. 若要為您的應用程式設定 SSO，請透過 ****support@fusion-universal.com** 連絡您的 Fuse 支援小組，並在電子郵件中附加您下載的憑證檔案，以及加入簽發者 URL、單一登入服務 URL 及單一登出服務 URL。
+5. 若要為您的應用程式設定 SSO，請透過 **support@fusion-universal.com** 連絡您的 Fuse 支援小組，並在電子郵件中附加您下載的憑證檔案，以及加入 [簽發者 URL]、[單一登入服務 URL] 及 [單一登出服務 URL]。
 
 
 6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
@@ -170,7 +170,7 @@ Fuse 與 Azure AD 整合提供下列優點：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-fuse-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png)
 
@@ -278,4 +278,4 @@ Fuse 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-fuse-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-fuse-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

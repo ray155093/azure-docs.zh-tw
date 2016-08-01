@@ -3,8 +3,8 @@
 	description="在您讀過混合式身分識別設計考量指南之後的概要與後續步驟"
 	documentationCenter=""
 	services="active-directory"
-	authors="yurid"
-	manager="stevenpo"
+	authors="billmath"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="04/25/2016"
-	ms.author="yurid"/>
+	ms.date="07/18/2016"
+	ms.author="billmath"/>
 
 #Azure Active Directory 混合式身分識別設計考量 - 後續步驟
 現在您已經完成定義需求以及檢查行動裝置管理解決方案的所有選項，您已準備好採取後續步驟，來部署最適合您和您的組織的支援基礎結構。
@@ -45,4 +45,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0720_2016-->

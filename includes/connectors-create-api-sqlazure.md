@@ -1,13 +1,10 @@
 ### 必要條件
 
-- [SQL Azure](https://www.microsoft.com/sql) 帳戶
+- Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
+- 包含此連線資訊 (伺服器名稱、資料庫名稱和使用者名稱/密碼) 的 [Azure SQL Database](../articles/sql-database/sql-database-get-started.md)。此資訊包含在 SQL Database 連接字串中：Server=tcp:*您的 SQL 伺服器名稱*.database.windows.net,1433;Initial Catalog=*您的 SQL 資料庫名稱*;Persist Security Info=False;User ID={您的使用者名稱};Password={您的密碼};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
 
+> [AZURE.NOTE] 當您建立 Azure SQL Database 時，您也可以建立 SQL 包含的範本資料庫。
 
-您必須先授權邏輯應用程式連接到您的 SQL Azure 帳戶，才可以在邏輯應用程式中使用您的 SQL Azure 帳戶。幸運的是，您可以輕鬆地在 Azure 入口網站上從邏輯應用程式內完成。
+深入了解 [Azure SQL Database](https://azure.microsoft.com/services/sql-database)。
 
-若要授與邏輯應用程式連接到 SQL Azure 帳戶的權限，其步驟如下：
-1. 若要建立 SQL Azure 連接，請在邏輯應用程式設計工具中，選取下拉式清單的 [Show Microsoft managed APIs] (顯示 Microsoft Managed API)，然後在搜尋方塊中輸入 *SQL Azure*。選取您要使用的觸發程序或動作：![SQL Azure 連接建立步驟](./media/connectors-create-api-sql/sql-1.png)
-2. 如果您之前尚未建立任何 SQL Azure 連接，系統會提示您提供 SQL Azure 認證。這些認證會用來授與邏輯應用程式連接並存取 SQL Azure 帳戶資料的權限。SQL 連接字串格式如下：**Server=tcp:[serverName].database.windows.net;Database=myDataBase; User ID=[LoginForDb]@[serverName];Password=myPassword;Trusted\_Connection=False; Encrypt=True;** ![SQL Azure 連接建立步驟](./media/connectors-create-api-sql/sql-2.png)
-3. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：![SQL Azure 連接建立步驟](./media/connectors-create-api-sql/sql-3.png)
-
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0720_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="07/07/2016"
 	ms.author="tdykstra"/>
 
 # Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較
@@ -26,9 +26,42 @@ Azure App Service 是大多數 Web 應用程式的最佳選擇。部署和管理
 
 如果您在建立新的應用程式或重新撰寫現有的應用程式以使用微服務架構，Service Fabric 是不錯的選擇。在共用機器集區上執行的應用程式可以從小規模著手，然後擴充為包含成千上萬部機器的大規模服務。具狀態服務可輕鬆地以一致且可靠的方式儲存應用程式狀態，而 Service Fabric 會自動為您管理服務資料分割、調整及可用性。Service Fabric 也支援具有 Open Web Interface for .NET (OWIN) 和 ASP.NET Core 的 WebAPI。相較於 App Service，Service Fabric 也能更充分掌控或直接存取基礎結構。您可以從遠端進入您的伺服器，或設定伺服器啟動工作。雲端服務的控制和易用程度類似於 Service Fabric，但是它現在是舊版服務，建議將 Service Fabric 用於新的開發。
 
-如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 虛擬機器 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。
+如果現有的應用程式需要進行大幅修改才能在 App Service 或 Service Fabric 中執行，您可以選擇 虛擬機器 以簡化移轉至雲端的工作。不過，相較於 Azure App Service 和 Service Fabric，正確設定、保護和維護 VM 需要投入更多時間和 IT 專業知識。如果您考慮採用 Azure 虛擬機器，請確定您已將修補、更新和管理 VM 環境所需的持續性維護工作都納入考量。Azure 虛擬機器是基礎結構即服務 (IaaS)，而 App Service 和 Service Fabric 是平台即服務 (Paas)。
 
-##<a name="scenarios"></a>案例和建議
+## <a name="features"></a>功能比較
+
+下表比較 App Service、雲端服務、虛擬機器及 Service Fabric 的功能，以協助您做出最佳選擇。如需每個選項目前的 SLA 資訊，請參閱＜[Azure 服務等級協定](/support/legal/sla/)＞。
+
+功能|App Service (Web 應用程式)|雲端服務 (Web 角色)|虛擬機器|Service Fabric|注意事項
+---|---|---|---|---|---
+近乎即時的部署|X|||X|將應用程式或應用程式更新部署到雲端服務，或建立 VM，至少需要幾分鐘的時間；將應用程式部署到 Web 應用程式只需要幾秒鐘。
+向上調整至更大的機器而不重新部署|X|||X|
+Web 伺服器執行個體會共用內容和組態，這表示您在調整規模時不需要重新部署或重新設定。|X|||X|
+多個部署環境 (生產環境和預備環境)|X|X||X|Service Fabric 可讓您擁有各種應用程式適用的環境，或並列部署您應用程式的不同版本。
+自動管理 OS 更新|X|X|||已針對未來的 Service Fabric 版本規劃自動 OS 更新。
+順暢切換平台 (輕鬆地切換到 32 位元或 64 位元)|X|X|||
+利用 GIT、FTP 來部署程式碼|X||X||
+利用 Web Deploy 來部署程式碼|X||X||雲端服務支援使用 Web Deploy 將更新部署到個別角色的執行個體。不過，您無法將它用於角色的初始部署，如果使用 Web Deploy 來部署更新，則必須分別地部署到角色的每一個執行個體。需要有多個執行個體，才能符合生產環境的雲端服務 SLA。
+支援 WebMatrix|X||X||
+存取服務匯流排、儲存體、SQL Database 等服務。|X|X|X|X|
+裝載多層式架構的 Web 或 Web 服務層|X|X|X|X|
+裝載多層式架構的中間層|X|X|X|X|App Service Web 應用程式可以輕易裝載 REST API 中間層，而 [WebJobs](http://go.microsoft.com/fwlink/?linkid=390226) 功能可以裝載背景處理工作。您可以在專用網站中執行 WebJobs，以實現此層的獨立擴充性。預覽 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)功能提供了更多裝載 REST 服務的功能。
+整合 MySQL 即服務的支援|X|X|X||雲端服務可透過 ClearDB 的供應項目來整合 MySQL 即服務，而不需要在 Azure 入口網站工作流程中進行。
+支援 ASP.NET、傳統 ASP、Node.js、PHP、Python|X|X|X|X|Service Fabric 支援使用 [ASP.NET 5](../service-fabric/service-fabric-add-a-web-frontend.md) 建立 Web 前端，也可讓您以[來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md)的形式部署任何類型的應用程式 (Node.js、Java 等)。
+向外延展至多個執行個體而不重新部署|X|X|X|X|「虛擬機器」可向外延展至多個執行個體，但這些機器上執行的服務必須設計成應付這個向外延展情況。您必須設定負載平衡器來將要求路由傳送到各機器，並建立同質群組，以避免在維護或硬體故障時所有執行個體同時重新啟動。
+支援 SSL|X|X|X|X|在 App Service Web 應用程式中，只有基本和標準模式才支援自訂網域名稱的 SSL。如需 Web 應用程式使用 SSL 的相關資訊，請參閱＜[設定 Azure 網站的 SSL 憑證](../app-service-web/web-sites-configure-ssl-certificate.md)＞。
+整合 Visual Studio|X|X|X|X|
+遠端偵錯|X|X|X||
+利用 TFS 來部署程式碼|X|X|X|X|
+利用 [Azure 虛擬網路](/services/virtual-network/)進行網路隔離|X|X|X|X|另請參閱＜[Azure 網站虛擬網路整合](/blog/2014/09/15/azure-websites-virtual-network-integration/)＞
+支援 [Azure 流量管理員](/services/traffic-manager/)|X|X|X|X|
+整合式端點監視|X|X|X||
+透過桌面遠端來存取伺服器||X|X|X|
+安裝任何自訂 MSI||X|X|X|Service Fabric 可讓您以[來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md)的形式託管任何可執行檔，也可讓您在 VM 上安裝任何應用程式。
+能夠定義/執行啟動工作||X|X|X|
+可接聽 ETW 事件||X|X|X|
+
+## <a name="scenarios"></a>案例和建議
 
 關於哪個 Azure Web 裝載選項最適合，以下是一些常見的應用程式案例與建議。
 
@@ -130,43 +163,8 @@ HTTP 型 Web 服務可讓您支援各種用戶端，包括行動用戶端。ASP.
 - 以單一執行個體達到可用性 SLA，或向外延展至多部專用機器。
 - 使用已發佈的網站來提供 REST API 給任何 HTTP 用戶端，包括行動用戶端。
 
-##<a name="features"></a>功能比較
-
-下表比較 App Service、雲端服務、虛擬機器及 Service Fabric 的功能，以協助您做出最佳選擇。如需每個選項目前的 SLA 資訊，請參閱＜[Azure 服務等級協定](/support/legal/sla/)＞。
-
-功能|App Service (Web 應用程式)|雲端服務 (Web 角色)|虛擬機器|Service Fabric|注意事項
----|---|---|---|---|---
-近乎即時的部署|X|||X|將應用程式或應用程式更新部署到雲端服務，或建立 VM，至少需要幾分鐘的時間；將應用程式部署到 Web 應用程式只需要幾秒鐘。
-向上調整至更大的機器而不重新部署|X|||X|
-Web 伺服器執行個體會共用內容和組態，這表示您在調整規模時不需要重新部署或重新設定。|X|||X|
-多個部署環境 (生產環境和預備環境)|X|X||X|Service Fabric 可讓您擁有各種應用程式適用的環境，或並列部署您應用程式的不同版本。
-自動管理 OS 更新|X|X|||已針對未來的 Service Fabric 版本規劃自動 OS 更新。
-順暢切換平台 (輕鬆地切換到 32 位元或 64 位元)|X|X|||
-利用 GIT、FTP 來部署程式碼|X||X||
-利用 Web Deploy 來部署程式碼|X||X||雲端服務支援使用 Web Deploy 將更新部署到個別角色的執行個體。不過，您無法將它用於角色的初始部署，如果使用 Web Deploy 來部署更新，則必須分別地部署到角色的每一個執行個體。需要有多個執行個體，才能符合生產環境的雲端服務 SLA。
-支援 WebMatrix|X||X||
-存取服務匯流排、儲存體、SQL Database 等服務。|X|X|X|X|
-裝載多層式架構的 Web 或 Web 服務層|X|X|X|X|
-裝載多層式架構的中間層|X|X|X|X|App Service Web 應用程式可以輕易裝載 REST API 中間層，而 [WebJobs](http://go.microsoft.com/fwlink/?linkid=390226) 功能可以裝載背景處理工作。您可以在專用網站中執行 WebJobs，以實現此層的獨立擴充性。預覽 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)功能提供了更多裝載 REST 服務的功能。
-整合 MySQL 即服務的支援|X|X|X||雲端服務可透過 ClearDB 的供應項目來整合 MySQL 即服務，而不需要在 Azure 入口網站工作流程中進行。
-支援 ASP.NET、傳統 ASP、Node.js、PHP、Python|X|X|X|X|Service Fabric 支援使用 [ASP.NET 5](../service-fabric/service-fabric-add-a-web-frontend.md) 建立 Web 前端，也可讓您以[來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md)的形式部署任何類型的應用程式 (Node.js、Java 等)。
-向外延展至多個執行個體而不重新部署|X|X|X|X|「虛擬機器」可向外延展至多個執行個體，但這些機器上執行的服務必須設計成應付這個向外延展情況。您必須設定負載平衡器來將要求路由傳送到各機器，並建立同質群組，以避免在維護或硬體故障時所有執行個體同時重新啟動。
-支援 SSL|X|X|X|X|在 App Service Web 應用程式中，只有基本和標準模式才支援自訂網域名稱的 SSL。如需 Web 應用程式使用 SSL 的相關資訊，請參閱＜[設定 Azure 網站的 SSL 憑證](../app-service-web/web-sites-configure-ssl-certificate.md)＞。
-整合 Visual Studio|X|X|X|X|
-遠端偵錯|X|X|X||
-利用 TFS 來部署程式碼|X|X|X|X|
-利用 [Azure 虛擬網路](/services/virtual-network/)進行網路隔離|X|X|X|X|另請參閱＜[Azure 網站虛擬網路整合](/blog/2014/09/15/azure-websites-virtual-network-integration/)＞
-支援 [Azure 流量管理員](/services/traffic-manager/)|X|X|X|X|
-整合式端點監視|X|X|X||
-透過桌面遠端來存取伺服器||X|X|X|
-安裝任何自訂 MSI||X|X|X|Service Fabric 可讓您以[來賓可執行檔](../service-fabric/service-fabric-deploy-existing-app.md)的形式託管任何可執行檔，也可讓您在 VM 上安裝任何應用程式。
-能夠定義/執行啟動工作||X|X|X|
-可接聽 ETW 事件||X|X|X|
-
-
 > [AZURE.NOTE]
 如果您要在註冊帳戶前開始使用 Azure App Service，請移至 <a href="https://trywebsites.azurewebsites.net/">https://trywebsites.azurewebsites.net</a>，您可以在 Azure App Service 中立即建立短期的免費簡易版應用程式。不需要信用卡，沒有承諾。
-
 
 ## <a id="nextsteps"></a> 後續步驟
 
@@ -179,22 +177,27 @@ Web 伺服器執行個體會共用內容和組態，這表示您在調整規模�
 * [Azure 虛擬機器](/documentation/services/virtual-machines/)
 * [Service Fabric](/documentation/services/service-fabric)
 
-  [ChoicesDiagram]: ./media/choose-web-site-cloud-service-vm/Websites_CloudServices_VMs_3.png
-  [Azure App Service]: /services/app-service/
-  [雲端服務]: http://go.microsoft.com/fwlink/?LinkId=306052
-  [虛擬機器]: http://go.microsoft.com/fwlink/?LinkID=306053
-  [Service Fabric]: /services/service-fabric
-  [ClearDB]: http://www.cleardb.com/
-  [WebJobs]: http://go.microsoft.com/fwlink/?linkid=390226&clcid=0x409
-  [Configuring an SSL certificate for an Azure Website]: http://www.windowsazure.com/develop/net/common-tasks/enable-ssl-web-site/
-  [azurestore]: http://www.windowsazure.com/gallery/store/
-  [scripting]: http://www.windowsazure.com/documentation/scripts/?services=web-sites
-  [dotnet]: http://www.windowsazure.com/develop/net/
-  [nodejs]: http://www.windowsazure.com/develop/nodejs/
-  [PHP]: http://www.windowsazure.com/develop/php/
-  [Python]: http://www.windowsazure.com/develop/python/
-  [servicebus]: http://www.windowsazure.com/documentation/services/service-bus/
-  [sqldatabase]: http://www.windowsazure.com/documentation/services/sql-database/
-  [儲存體]: http://www.windowsazure.com/documentation/services/storage/
+<!-- URL List -->
 
-<!---HONumber=AcomDC_0608_2016-->
+[Azure App Service]: /services/app-service/
+[雲端服務]: http://go.microsoft.com/fwlink/?LinkId=306052
+[虛擬機器]: http://go.microsoft.com/fwlink/?LinkID=306053
+[Service Fabric]: /services/service-fabric
+[ClearDB]: http://www.cleardb.com/
+[WebJobs]: http://go.microsoft.com/fwlink/?linkid=390226&clcid=0x409
+[Configuring an SSL certificate for an Azure Website]: http://www.windowsazure.com/develop/net/common-tasks/enable-ssl-web-site/
+[azurestore]: http://www.windowsazure.com/gallery/store/
+[scripting]: http://www.windowsazure.com/documentation/scripts/?services=web-sites
+[dotnet]: http://www.windowsazure.com/develop/net/
+[nodejs]: http://www.windowsazure.com/develop/nodejs/
+[PHP]: http://www.windowsazure.com/develop/php/
+[Python]: http://www.windowsazure.com/develop/python/
+[servicebus]: http://www.windowsazure.com/documentation/services/service-bus/
+[sqldatabase]: http://www.windowsazure.com/documentation/services/sql-database/
+[儲存體]: http://www.windowsazure.com/documentation/services/storage/
+
+<!-- IMG List -->
+
+[ChoicesDiagram]: ./media/choose-web-site-cloud-service-vm/Websites_CloudServices_VMs_3.png
+
+<!---HONumber=AcomDC_0720_2016-->

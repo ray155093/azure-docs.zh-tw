@@ -23,6 +23,7 @@
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
+- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
 - [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
 - [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
 - [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
@@ -75,7 +76,7 @@
 
 如果您想要執行部署，但不使用 Marketplace 中的任何範本，您可建立自訂範本以定義您的解決方案的基礎結構。若要了解如何建立範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-1. 若要透過入口網站來部署自訂的範本，請選取 [新增]，並開始搜尋「範本部署」，直到您可以從選項中選取它為止。
+1. 若要透過入口網站來部署自訂的範本，請選取 [新增]，並開始搜尋**範本部署**，直到您可以從選項中選取它為止。
 
     ![搜尋範本部署](./media/resource-group-template-deploy-portal/search-template.png)
 
@@ -123,4 +124,4 @@
 - 若要針對部署錯誤進行疑難排解，請參閱[使用 Azure 入口網站對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 - 若要從部署或資源群組擷取範本，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0720_2016-->

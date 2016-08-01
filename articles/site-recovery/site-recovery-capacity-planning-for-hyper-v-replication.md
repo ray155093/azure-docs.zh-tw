@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="02/15/2016"
+	ms.date="07/12/2016"
 	ms.author="raynew" />
 
 # 執行 Site Recovery 的 Hyper-V 容量規劃工具
@@ -75,7 +75,7 @@
 
 	![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image1.png)
 
-	- 執行 **netsh http show servicestate** 來檢查接聽程式是否針對您指定的通訊協定/連接埠執行：  
+	- 執行 **netsh http show servicestate** 來檢查接聽程式是否針對您指定的通訊協定/連接埠執行：
 4. 設定防火牆：Hyper-V 安裝期間會建立防火牆規則，以允許預設連接埠的流量 (443 上的 HTTPS，80 上的 Kerberos)。啟用這些規則，如下所示：
 
 		- Certificate authentication on cluster (443): **Get-ClusterNode | ForEach-Object {Invoke-command -computername \$\_.name -scriptblock {Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"}}**
@@ -139,10 +139,10 @@
 
 容量規劃完成之後，您就可以開始部署 Site Recovery：
 
-- [設定內部部署 VMM 網站和 Azure 之間的保護](site-recovery-vmm-to-azure.md)
-- [設定內部部署 Hyper-V 網站和 Azure 之間的保護](site-recovery-hyper-v-site-to-azure.md)
-- [設定兩個內部部署 VMM 站台之間的保護](site-recovery-vmm-to-vmm.md)
-- [利用 SAN 設定兩個內部部署 VMM 網站之間的保護](site-recovery-vmm-san.md)
-- [利用單一 VMM 伺服器設定保護](site-recovery-single-vmm.md)
+- [將 VMM 雲端中的 Hyper-V VM 複寫至 Azure](site-recovery-vmm-to-azure.md)
+- [將 Hyper-V VM (不使用 VMM) 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
+- [在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-to-vmm.md)
+- [使用 SAN 在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-san.md)
+- [複寫單一 VMM 伺服器上的 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0720_2016-->

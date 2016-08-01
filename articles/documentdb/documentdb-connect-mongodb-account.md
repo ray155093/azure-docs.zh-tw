@@ -19,7 +19,7 @@
 
 # 如何連接至具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶
 
-了解如何使用標準 MongoDB 連接字串 URI 格式，連接至具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
+了解如何使用標準 MongoDB 連接字串 URI 格式，連接至具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶。
 
 ## 取得帳戶的連接字串資訊
 
@@ -84,4 +84,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0720_2016-->

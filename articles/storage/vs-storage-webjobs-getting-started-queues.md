@@ -13,10 +13,12 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="07/18/2016"
 	ms.author="tarcher"/>
 
 # 開始使用 Azure 佇列儲存體和 Visual Studio 已連接服務 (WebJob 專案)
+
+[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
 
 ## 概觀
 
@@ -213,7 +215,7 @@ SDK 會自動將物件序列化為 JSON。即使物件是空值，也一律會�
 
 ### 建立多個訊息或使用非同步函式
 
-若要建立多個訊息，將 **ICollector<T>** 或 **IAsyncCollector<T>** 設為輸出佇列的參數類型，如下列範例所示。
+若要建立多個訊息，請將 **ICollector<T>** 或 **IAsyncCollector<T>** 設為輸出佇列的參數類型，如下列範例所示。
 
 		public static void CreateQueueMessages(
 		    [QueueTrigger("inputqueue")] string queueMessage,
@@ -541,6 +543,6 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 
 ##後續步驟
 
-本文提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
+本文提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。如需如何使用 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0720_2016-->

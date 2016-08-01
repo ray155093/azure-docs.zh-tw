@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="07/19/2016"
 	ms.author="jeedes"/>
 
 
@@ -60,7 +60,7 @@ Ariba 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫加入 Ariba，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Ariba 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 	
 	![應用程式][4]
 
@@ -122,7 +122,7 @@ Ariba 與 Azure AD 整合提供下列優點：
 	![設定單一登入](./media/active-directory-saas-ariba-tutorial/tutorial_ariba_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Ariba 應用程式的 URL：**“https://<companyname>.sourcing.ariba.com"** or **"https://<CompanyName>.supplier.ariba.com”**。
+    a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Ariba 應用程式的 URL：**“https://<companyname>.sourcing.ariba.com"** 或 **"https://<CompanyName>.supplier.ariba.com”**。
 
     b.按 [下一步]。
 
@@ -169,11 +169,11 @@ Ariba 與 Azure AD 整合提供下列優點：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-ariba-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-ariba-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-ariba-tutorial/create_aaduser_05.png)
 
@@ -183,7 +183,7 @@ Ariba 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-ariba-tutorial/create_aaduser_06.png)
 
@@ -241,7 +241,7 @@ Ariba 與 Azure AD 整合提供下列優點：
 
 1. 在 [使用者] 清單中，選取 [Britta Simon]。
 
-2. 在底部的工具列中，按一下 [指派]。
+2. 在底部工具列中，按一下 [指派]。
 
 	![指派使用者][205]
 
@@ -278,4 +278,4 @@ Ariba 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-ariba-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-ariba-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0720_2016-->

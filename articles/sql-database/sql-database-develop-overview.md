@@ -18,7 +18,7 @@
 	ms.author="annemill"/>
 
 # SQL Database 開發概觀
-本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應考慮的的基本考量事項。
+本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應注意的基本考量事項。
 
 ## 語言和平台
 各種程式設計語言和平台有程式碼範例可用：您可以在下列位置找到程式碼範例的連結：
@@ -59,13 +59,12 @@ Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資�
 ## 使用 Elastic Scale 的資料分區化
 Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 
-[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式]
-* (./sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
 * [資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)
 * [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 
 ## 後續步驟
 
-瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0720_2016-->

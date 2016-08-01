@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/21/2016"
+	ms.date="07/14/2016"
 	ms.author="vakarand"/>
 
 # Azure AD Connect Health 操作
@@ -52,11 +52,20 @@
 
 #### 從 Azure AD Connect Health 服務刪除伺服器
 
+適用於 AD FS 和 Azure AD Connect (Sync) 的 Azure AD Connect Health：
+
 1. 選取要移除的伺服器名稱，以便從 [伺服器清單] 刀鋒視窗開啟 [伺服器] 刀鋒視窗。
 2. 在 [伺服器] 刀鋒視窗上，按一下動作列中的 [刪除] 按鈕。
 3. 在確認方塊中輸入伺服器名稱，以確認刪除伺服器的動作。
 4. 按一下 [刪除] 按鈕。
 
+適用於 AD DS 的 Azure AD Connect Health：
+
+1. 開啟網域控制站儀表板。
+2. 選取要移除的網域控制站。
+3. 按一下動作列中的 [刪除所選的] 按鈕。
+4. 確認刪除伺服器的動作。
+5. 按一下 [刪除] 按鈕。
 
 ### 從 Azure AD Connect Health 服務刪除服務執行個體
 
@@ -131,11 +140,10 @@ Azure AD Connect 支援兩個層級的管理存取：
 2. 在刀鋒視窗上，使用者可以釘選刀鋒視窗或其他組件到儀表板，只要按一下 [釘選到儀表板] 即可<br> 
 ![Azure AD Connect Health RBAC 釘選刀鋒視窗](./media/active-directory-aadconnect-health/RBAC_pin_blade.png)
 
-
 >[AZURE.NOTE] 被指派「讀取者」角色的使用者將無法執行「建立」作業，以從 Azure Marketplace 取得 Azure AD Connect Health 擴充。這位使用者仍可前往上述連結以存取刀鋒視窗。為方便之後使用，使用者可以將刀鋒視窗釘選到儀表板。
 
 ### 移除使用者和/或群組
-您可以移除新增到 Azure AD Connect Health 角色型存取控制組件的使用者或群組，方法是以滑鼠右鍵按一下並選取 [移除]。<br> 
+您可以移除新增到 Azure AD Connect Health 角色型存取控制組件的使用者或群組，方法是以滑鼠右鍵按一下並選取 [移除]。<br>
 ![Azure AD Connect Health RBAC 移除使用者](./media/active-directory-aadconnect-health/RBAC_remove.png)
 
 [//]: # "End of RBAC section"
@@ -146,7 +154,8 @@ Azure AD Connect 支援兩個層級的管理存取：
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
 * [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0720_2016-->
