@@ -45,7 +45,7 @@
 
 2. 在快速入門索引標籤中，按一下 [Choose platform] 下的 [Windows]，並展開 [Create a new Windows Store app]。
 
-3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013][Visual Studio 2013 Express for Windows] (如果您尚未這麼做)。
+3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013][Visual Studio 2013 Express for Windows] \(如果您尚未這麼做)。
 
 4. 按一下 [Create TodoItem table] 以建立儲存應用程式資料的資料表。
 

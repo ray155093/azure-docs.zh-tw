@@ -23,7 +23,7 @@
 
 本主題說明如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式，以顯示於 Google Chrome 瀏覽器的內容中。在本教學課程中，我們將建立可使用 [ Google 雲端通訊 (GCM)](https://developers.google.com/cloud-messaging/) 接收推播通知的 Chrome 應用程式。
 
->[AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
+>[AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
 
 本教學課程將逐步引導您完成下列啟用推播通知的基本步驟：
 
@@ -47,7 +47,7 @@
 
    	![Google 雲端主控台 - 專案編號][2]
 
-3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。您不需要啟用 [Google Cloud Messaging for Chrome]。
+3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。您不需要啟用 Google Cloud Messaging for Chrome。
 
    	![Google 雲端主控台 - 伺服器金鑰][3]
 
@@ -372,7 +372,7 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 
    	![Google Chrome - Chrome 應用程式顯示][18]
 
-4. 輸入您先前從 [Google 雲端主控台] 取得的 [專案編號]，做為寄件者識別碼，然後按一下 [向 GCM 註冊]。您必須看見 **Registration with GCM succeeded.** 訊息。
+4. 輸入您先前從 Google 雲端主控台 取得的 [專案編號]，做為寄件者識別碼，然後按一下 [向 GCM 註冊]。您必須看見 **Registration with GCM succeeded.** 訊息。
 
    	![Google Chrome - Chrome 應用程式自訂][19]
 

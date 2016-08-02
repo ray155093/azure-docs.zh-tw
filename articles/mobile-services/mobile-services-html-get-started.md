@@ -19,13 +19,14 @@
 
 # <a name="getting-started"> </a>開始使用行動服務
 
-[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)] &nbsp;
+[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)]
+&nbsp;
 
 [AZURE.INCLUDE [mobile-services-hero-slug](../../includes/mobile-services-hero-slug.md)]
 
 ##概觀 
 
-本教學課程說明如何使用 Azure行動服務在 HTML 應用程式中新增雲端型後端服務。在本教學課程中，您將建立新的行動服務和簡單的*待辦事項清單*應用程式，後者會在前者儲存應用程式資料。您可以於下方檢視本教學課程的影片版本。
+本教學課程說明如何使用 Azure行動服務在 HTML 應用程式中新增雲端型後端服務。在本教學課程中，您將建立新的行動服務和簡單的 *待辦事項清單* 應用程式，後者會在前者儲存應用程式資料。您可以於下方檢視本教學課程的影片版本。
 
 > [AZURE.VIDEO mobile-get-started-html]
  
@@ -43,12 +44,12 @@
 
 	+  **在 Windows 上**：IIS Express。IIS Express 是由 [Microsoft Web Platform Installer] 所安裝。
 	+  **在 MacOS X 上**：Python (應該已安裝)。
-	+  **在 Linux 上**：Python。您必須安裝[最新版本的 Python] (英文)。
+	+  **在 Linux 上**：Python。您必須安裝[最新版本的 Python] \(英文)。
 
 	您可以使用任何網頁伺服器來裝載應用程式，但是這些網頁伺服器需受所下載的指令碼支援。
 
 + 支援 HTML5 的網頁瀏覽器。
-+ 一個 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started-html%2F"%20target="_blank)。
++ 一個 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started-html%2F"%20target="_blank)。 
 
 
 ## <a name="create-new-service"> </a>建立新的行動服務
@@ -68,7 +69,7 @@
 
    	![][6]
 
-   	This displays the three easy steps to create and host an HTML app connected to your mobile service.
+   	這將顯示三個簡單步驟，可用來建立和主控連接到您行動服務的 HTML 應用程式。
 
   	![][7]
 
@@ -119,9 +120,11 @@
 ## <a name="next-steps"> </a>後續步驟
 請注意，您已完成快速入門，並了解如何執行行動服務中的其他重要工作：
 
-* **[在您的應用程式中新增驗證功能]** 了解如何利用身分識別提供者來驗證您應用程式的使用者。
+* **[在您的應用程式中新增驗證功能]** 
+   了解如何利用身分識別提供者來驗證您應用程式的使用者。
 
-* **[行動服務 HTML/JavaScript 作法概念參考]**深入了解如何搭配使用行動服務與 HTML/JavaScript
+* **[行動服務 HTML/JavaScript 作法概念參考]**
+   深入了解如何搭配使用行動服務與 HTML/JavaScript
 
 
 [AZURE.INCLUDE [app-service-disqus-feedback-slug](../../includes/app-service-disqus-feedback-slug.md)]

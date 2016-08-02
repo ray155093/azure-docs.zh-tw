@@ -23,7 +23,7 @@
 &nbsp;
 
 
-[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)] &nbsp;
+[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)]&nbsp;
 
 [AZURE.INCLUDE [mobile-services-hero-slug](../../includes/mobile-services-hero-slug.md)]
 
@@ -63,7 +63,7 @@
 
     ![Mobile quickstart html](./media/partner-sencha-mobile-services-get-started/mobile-portal-quickstart-html.png)
 
-    This displays the three easy steps to create and host an HTML app connected to your mobile service.
+    這將顯示三個簡單步驟，可用來建立和主控連接到您行動服務的 HTML 應用程式。
 
     ![Mobile quickstart html](./media/partner-sencha-mobile-services-get-started/mobile-quickstart-steps-html.png)
 
@@ -669,9 +669,9 @@ Sencha Touch 存放區可用來儲存資料記錄 (模型) 的集合，這些集
 
   2. 使用 Sencha Cmd 執行以下命令：
 
-    * *sencha app refresh*：這會指示 Sencha Cmd 找出所有的應用程式相依項目，並下載任何需要的封裝 (例如 [Sencha Touch Extensions for Azure](https://market.sencha.com/extensions/sencha-extensions-for-microsoft-azure))。
+    * *sencha app refresh* ：這會指示 Sencha Cmd 找出所有的應用程式相依項目，並下載任何需要的封裝 (例如 [Sencha Touch Extensions for Azure](https://market.sencha.com/extensions/sencha-extensions-for-microsoft-azure))。
 
-    * *sencha web start*：這會啟動本機 Web 伺服器以測試我們的應用程式。
+    * *sencha web start* ：這會啟動本機 Web 伺服器以測試我們的應用程式。
 
     ![sencha web start](./media/partner-sencha-mobile-services-get-started/sencha-web-start.png)
 
