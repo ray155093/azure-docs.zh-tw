@@ -142,7 +142,7 @@ Azure SDK 可供多個語言和平台使用。這些語言實作都是透過其�
 **範例**︰以您所選的語言即刻開始使用。
 
 - [.NET](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=dotnet)
-- [Java](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=java) 敬請期待
+- [Java](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=java)
 - [Node.js](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=nodejs)
 - [Python](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=python)
 - [PHP](https://azure.microsoft.com/documentation/samples/?service=azure-resource-manager&platform=php) 敬請期待
@@ -171,4 +171,4 @@ Azure SDK 可供多個語言和平台使用。這些語言實作都是透過其�
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

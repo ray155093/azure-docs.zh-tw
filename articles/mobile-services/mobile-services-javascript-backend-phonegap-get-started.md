@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-phonegap"
 	ms.devlang="multiple"
 	ms.topic="get-started-article" 
-	ms.date="02/10/2016"
+	ms.date="07/21/2016"
 	ms.author="ggailey777"/>
 
 # 開始使用行動服務
@@ -39,7 +39,7 @@
 + PhoneGap 支援多個平台的開發。除了 PhoneGap 工具本身以外，您還必須為所要使用的各個平台安裝下列工具：
 
 	- Windows Phone：安裝 [Visual Studio 2012 Express for Windows Phone](https://go.microsoft.com/fwLink/p/?LinkID=268374)
-	- iOS：安裝 [Xcode] (必須是 4.4 以上的版本)
+	- iOS：安裝 [Xcode] \(必須是 4.4 以上的版本)
 	- Android：安裝 [Android Developer Tools][Android SDK]<br/> (Mobile Services SDK for Android 支援適用於 Android 2.2 或更新版本的應用程式。若要執行快速入門應用程式，則必須使用 Android 4.2 或更新版本。)
 
 ## 建立新的行動服務
@@ -176,4 +176,4 @@
 [Visual Studio 2012 Express for Windows Phone]: https://go.microsoft.com/fwLink/p/?LinkID=268374
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

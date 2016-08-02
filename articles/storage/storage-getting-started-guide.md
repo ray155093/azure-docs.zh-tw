@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="get-started-article" 
-	ms.date="05/23/2016"
+	ms.date="07/21/2016"
 	ms.author="tamram"/>
 
 # 在五分鐘內開始使用 Azure 儲存體 
@@ -28,7 +28,7 @@
 
 開始之前，您需要下列先決條件：
 
-1. 若要編譯及建置應用程式，您必須先在電腦上安裝 [Visual Studio](https://www.visualstudio.com/) 的版本。 
+1. 若要編譯及建置應用程式，您必須先在電腦上安裝 [Visual Studio](https://www.visualstudio.com/) 的版本。
 
 2. 安裝最新版 [Azure SDK for .NET](https://azure.microsoft.com/downloads/)。此 SDK 包含 Azure 快速入門範例專案、Azure 儲存體模擬器和 [Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。
 
@@ -90,7 +90,7 @@
 接下來，在 Azure 儲存體模擬器中執行範例應用程式：
 
 1.	按 [開始] 按鈕或 Windows 鍵，搜尋 [Microsoft Azure 儲存體模擬器]，然後啟動此應用程式。當啟動模擬器時，您會在 [Windows 工作檢視] 區域中看到圖示和通知。
-2.	在 Visual Studio 中，按一下 [建置] 功能表上的 [建置方案]。 
+2.	在 Visual Studio 中，按一下 [建置] 功能表上的 [建置方案]。
 3.	在 [偵錯] 功能表上，按 **F11** 逐步執行方案，或按 **F5** 從開始到結束執行方案。
 
 ## 後續步驟
@@ -98,6 +98,7 @@
 若要深入了解 Azure 儲存體，請參閱下列資源：
 
 * [Microsoft Azure 儲存體簡介](storage-introduction.md)
+* [開始使用 Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)
 * [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
 * [以 .NET 開始使用 Azure 表格儲存體](storage-dotnet-how-to-use-tables.md)
 * [以 .NET 開始使用 Azure 佇列儲存體](storage-dotnet-how-to-use-queues.md)
@@ -110,4 +111,4 @@
 [Image1]: ./media/storage-getting-started-guide/QuickStart.png
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

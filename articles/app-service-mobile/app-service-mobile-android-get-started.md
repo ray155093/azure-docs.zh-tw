@@ -3,7 +3,7 @@
     description="請遵循此教學課程，以開始使用 Azure 行動應用程式後端進行 Android 開發"
     services="app-service\mobile"
     documentationCenter="android"
-    authors="ysxu"
+    authors="RickSaling"
     manager="erikre"
     editor=""/>
 
@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="mobile-android"
     ms.devlang="java"
     ms.topic="hero-article"
-    ms.date="07/18/2016"
-    ms.author="yuaxu;ricksal"/>
+    ms.date="07/21/2016"
+    ms.author="ricksal"/>
 
 #建立 Android 應用程式
 
@@ -54,4 +54,4 @@
 [Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

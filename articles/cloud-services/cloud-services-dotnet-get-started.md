@@ -229,7 +229,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
         providerName="System.Data.SqlClient" xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
     </connectionStrings>
     ```
-    
+
 	將檔案保持開啟以供編輯。
 
 2. 在 [Azure 傳統入口網站](http://manage.windowsazure.com)中，依序按一下左側窗格中的 [SQL Database]、您在本教學課程中建立的資料庫、[儀表板] 索引標籤，和 [顯示連接字串]。
@@ -314,10 +314,10 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
         <Setting name="StorageConnectionString" value="{yourconnectionstring}" />
         <Setting name="ContosoAdsDbConnectionString" value="{yourconnectionstring}" />
         <!-- other settings not shown -->
-    
+
     </ConfigurationSettings>
     <!-- other settings not shown -->
-    
+
 </Role>
 ```
 
@@ -442,7 +442,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
         <add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" />
     </connectionStrings>
     ```
-    
+
 	如果您使用 Visual Studio 2015，將 "v11.0" 取代為 "MSSQLLocalDB"。
 
 2. 儲存您的變更。
@@ -482,7 +482,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
 3. 在 ContosoAdsCommon 專案中，刪除 *Class1.cs* 檔案，並在其位置加入來自所下載專案的 *Ad.cs* 和 *ContosoAdscontext.cs* 檔案。
 
 3. 在 ContosoAdsWeb 專案中，從所下載的專案加入下列檔案。
-	- *Global.asax.cs*。  
+	- *Global.asax.cs*。
 	- Views\\Shared 資料夾中的 \_Layout.cshtml 檔案。
 	- *Views\\Home* 資料夾中的 *Index.cshtml*。
 	- *Controllers* 資料夾中的 *AdController.cs*。
@@ -599,7 +599,7 @@ imagesQueue.CreateIfNotExists();
 
 ### ContosoAdsWeb - \_Layout.cshtml
 
-*\_Layout.cshtml* 檔案可設定頁首與頁尾中的應用程式名稱，並建立 "Ads" 功能表項目。
+\_Layout.cshtml 檔案可設定頁首與頁尾中的應用程式名稱，並建立 "Ads" 功能表項目。
 
 ### ContosoAdsWeb - Views\\Home\\Index.cshtml
 
@@ -868,5 +868,6 @@ Contoso Ads 應用程式特意保持簡潔，以做為入門的教學課程。�
 * [Azure 雲端服務第 1 部分：簡介](http://justazure.com/microsoft-azure-cloud-services-part-1-introduction/)
 * [如何管理雲端服務](cloud-services-how-to-manage.md)
 * [Azure 儲存體](/documentation/services/storage/)
+* [如何選擇雲端服務提供者](https://azure.microsoft.com/overview/choosing-a-cloud-service-provider/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

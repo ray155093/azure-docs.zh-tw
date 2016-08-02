@@ -13,13 +13,11 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/20/2016"
+   ms.date="07/21/2016"
    ms.author="yurid"/>
 
 # Azure 資訊安全中心疑難排解指南
 本指南適用於組織目前採用 Azure 資訊安全中心，且需要針對資訊安全中心相關問題進行疑難排解的資訊技術 (IT) 專業人員、資訊安全性分析師和雲端系統管理員。
-
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
 
 ## 疑難排解指南
 本指南說明如何針對資訊安全中心相關問題進行疑難排解。大多數在資訊安全中心進行的疑難排解作業會先查看失敗元件的[稽核記錄檔](https://azure.microsoft.com/updates/audit-logs-in-azure-preview-portal/)記錄。透過稽核記錄檔，您可以判斷︰
@@ -76,10 +74,10 @@ Azure 安全性監視擴充功能會掃描各種安全性相關組態，並從�
 在本文件中，您已了解如何在「Azure 資訊安全中心」設定安全性原則。若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
 
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) – 了解如何監視 Azure 資源的健康狀態
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) – 了解如何監視 Azure 資源的健全狀況
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
 - [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
 - [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

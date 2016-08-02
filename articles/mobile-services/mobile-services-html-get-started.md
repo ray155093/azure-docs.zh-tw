@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-html5"
 	ms.devlang="javascript"
 	ms.topic="get-started-article" 
-	ms.date="11/30/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -44,7 +44,7 @@
 
 	+  **在 Windows 上**：IIS Express。IIS Express 是由 [Microsoft Web Platform Installer] 所安裝。
 	+  **在 MacOS X 上**：Python (應該已安裝)。
-	+  **在 Linux 上**：Python。您必須安裝[最新版本的 Python] (英文)。
+	+  **在 Linux 上**：Python。您必須安裝[最新版本的 Python] \(英文)。
 
 	您可以使用任何網頁伺服器來裝載應用程式，但是這些網頁伺服器需受所下載的指令碼支援。
 
@@ -157,4 +157,4 @@
 [Cross-origin resource sharing]: http://msdn.microsoft.com/library/azure/dn155871.aspx
  
 
-<!----HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0727_2016-->

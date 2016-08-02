@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/16/2016"
+   ms.date="07/22/2016"
    ms.author="mausher;barbkess;sonyama"/>
 
 # 查詢 Azure SQL 資料倉儲 (sqlcmd)
@@ -22,7 +22,7 @@
 - [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 - [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
 - [Visual Studio](sql-data-warehouse-query-visual-studio.md)
-- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md) 
+- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
 
 本逐步解說使用 sqlcmd 命令列公用程式來查詢 Azure SQL 資料倉儲。
 
@@ -30,7 +30,7 @@
 
 若要逐步執行本教學課程，您需要：
 
--  [sqlcmd.exe][]。若要下載此檔案，請參閱[適用於 SQL Server 的 Microsoft 命令列公用程式 11][]。
+-  [sqlcmd.exe][]。若要下載，請參閱 [Microsoft Command Line Utilities 11 for SQL Server][]，您可能也需要 [Microsoft ODBC Driver 11 for SQL Server Windows][]。
 
 ## 1\.連線
 
@@ -64,26 +64,27 @@ C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@s
 後續的這些範例會說明如何使用 -Q 選項或以管線將 SQL 傳送到 sqlcmd，來執行批次模式查詢。
 
 ```sql
-C:\>sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I -Q "SELECT name FROM sys.tables;"
+sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I -Q "SELECT name FROM sys.tables;"
 ```
 
 ```sql
-C:\>"SELECT name FROM sys.tables;" | sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I > .\tables.out
+"SELECT name FROM sys.tables;" | sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@ssword -I > .\tables.out
 ```
 
 ## 後續步驟
 
-若要了解所有 sqlcmd 選項，請參閱 [sqlcmd 文件][sqlcmd.exe]。
-
-<!--Articles-->
-[connecting with PowerBI]: sql-data-warehouse-integrate-power-bi.md
-
-
-<!--Other-->
-[sqlcmd.exe]: https://msdn.microsoft.com/library/ms162773.aspx
-[適用於 SQL Server 的 Microsoft 命令列公用程式 11]: http://go.microsoft.com/fwlink/?LinkId=321501
-[Azure portal]: https://portal.azure.com
+如需 sqlcmd 中可用選項的詳細資訊，請參閱 [sqlcmd 文件][sqlcmd.exe]。
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0622_2016-->
+<!--Article references-->
+
+<!--MSDN references--> 
+[sqlcmd.exe]: https://msdn.microsoft.com/library/ms162773.aspx
+[Microsoft ODBC Driver 11 for SQL Server Windows]: https://www.microsoft.com/download/details.aspx?id=36434
+[Microsoft Command Line Utilities 11 for SQL Server]: http://go.microsoft.com/fwlink/?LinkId=321501
+[Azure portal]: https://portal.azure.com
+
+<!--Other Web references-->
+
+<!---HONumber=AcomDC_0727_2016-->

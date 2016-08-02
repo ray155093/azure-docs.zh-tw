@@ -13,15 +13,11 @@
    ms.devlang="na"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/19/2016"
+   ms.date="07/21/2016"
    ms.author="yurid"/>
 
 # Azure 資訊安全中心規劃和操作指南
 本指南適用於組織打算採用 Azure 資訊安全中心的資訊技術 (IT) 專業人員、IT 架構設計人員、資訊安全性分析師和雲端系統管理員。
-
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
-
-如需在設計和規劃階段也很好用的常見問題清單，請閱讀 [Azure 資訊安全中心常見問題集 (FAQ)](security-center-faq.md)。
 
 ## 規劃指南
 本指南涵蓋您可以遵循的一組步驟和工作，以根據您組織的安全性需求和雲端管理模型，將您的資訊安全中心使用最佳化。若要充分利用資訊安全中心，務必了解您組織中的不同人員或小組如何使用此服務，來滿足安全開發和作業、監視、控管和事件回應需要。規劃使用資訊安全中心時所應考量的主要領域如下︰
@@ -33,6 +29,9 @@
 - 事件回應
 
 在下一節中，您將學習如何根據您的需求來規劃每個領域及套用這些建議。
+
+> [AZURE.NOTE] 如需在設計和規劃階段也很好用的常見問題清單，請閱讀 [Azure 資訊安全中心常見問題集 (FAQ)](security-center-faq.md)。
+
 
 ## 安全性角色和存取控制
 根據您組織的大小和結構，多個個人和小組可以使用資訊安全中心來執行不同的安全性相關工作。下面是虛構人物與其各自角色和安全性責任的範例︰
@@ -102,7 +101,7 @@
 
 在訂用帳戶層級啟用的原則將會自動傳播至訂用帳戶中的所有資源群組，如下圖所示︰
 
-![安全性原則](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig2.png)
+![安全性原則](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig2-ga.png)
 
 如上圖所示，資源群組的安全性原則可以繼承自訂用帳戶層級。
 
@@ -191,7 +190,7 @@ Azure 資訊安全中心儀表板分成兩個主要部分︰
 
 當您將新資源 (VM、SQL DB) 加入至 Azure 環境時，資訊安全中心會自動探索這些資源並開始監視其安全性。這也包括 PaaS Web 角色和背景工作角色。如果[安全性原則](security-center-policies.md)中已啟用資料收集，則會自動為您的虛擬機器啟用其他監視功能。
 
-![主要領域](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig3.png)
+![主要領域](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig3-ga.png)
 
 1.	對於虛擬機器，存取 [資源安全性健全狀況] 圖格，按一下 [虛擬機器]。[監視建議] 區段會呈現有關啟用資料收集的問題或相關建議。
 2.	檢視 [建議] 以查看針對新資源所找出的安全性風險。
@@ -226,7 +225,7 @@ Azure 資訊安全中心儀表板分成兩個主要部分︰
 
 下列範例說明正在發生的可疑 RDP 活動︰
 
-![可疑的活動](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig5.png)
+![可疑的活動](./media/security-center-planning-and-operations-guide/security-center-planning-and-operations-guide-fig5-ga.png)
 
 如您所見，此刀鋒視窗會顯示有關攻擊發生時間、來源主機名稱、目標 VM 的詳細資訊，也會提供建議步驟。在某些情況下，攻擊的來源資訊可能是空的。如需有關這類行為的詳細資訊，請閱讀[Azure 資訊安全中心警示中的遺失來源資訊](https://blogs.msdn.microsoft.com/azuresecurity/2016/03/25/missing-source-information-in-azure-security-center-alerts/)。
 
@@ -240,4 +239,4 @@ Azure 資訊安全中心儀表板分成兩個主要部分︰
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

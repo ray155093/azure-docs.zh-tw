@@ -28,13 +28,13 @@ Azure IoT 套件預先設定的解決方案是常見 IoT 解決方案模式的�
 
 除了部署並執行 Azure 中的解決方案之外，您也可以下載完整的原始程式碼，然後自訂和擴充解決方案以符合您的特定 IoT 需求。
 
-> [AZURE.NOTE] 若要部署其中一個預先設定解決方案，請造訪 [Microsoft Azure IoT 套件][lnk-azureiotsuite]。[開始使用 IoT 預先設定的解決方案][lnk-preconf-get-started]一文提供如何部署並執行其中的一個解決方案的相關詳細資訊。
+> [AZURE.NOTE] 若要部署其中一個預先設定解決方案，請造訪 [Microsoft Azure IoT 套件][lnk-azureiotsuite]。[開始使用 IoT 預先設定的解決方案][lnk-getstarted-preconfigured]一文提供如何部署並執行其中的一個解決方案的相關詳細資訊。
 
 下表顯示這些解決方案與特定的 IoT 功能如何對應：
 
 | 方案 | 資料擷取 | 裝置身分識別 | 命令和控制 | 規則和動作 | 預測性分析 |
 |------------------------|-----|-----|-----|-----|-----|
-| [遠端監視][lnk-preconf-get-started] | 是 | 是 | 是 | 是 | - | 
+| [遠端監視][lnk-getstarted-preconfigured] | 是 | 是 | 是 | 是 | - |
 | [預測性維護][lnk-predictive-maintenance] | 是 | 是 | 是 | 是 | 是 |
 
 - *資料擷取*：雲端規模的資料輸入。
@@ -79,7 +79,7 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 預先設定解決方案使用三個 [Azure 串流分析][lnk-asa] \(ASA) 作業來篩選來自裝置的遙測串流：
 
 
-- *DeviceInfo 作業* - 將資料輸出到會路由裝置註冊特定訊息的事件中樞，在裝置第一次連線或回應 [變更裝置狀態] 命令時傳送給解決方案裝置註冊 (DocumentDB 資料庫)。 
+- *DeviceInfo 作業* - 將資料輸出到會路由裝置註冊特定訊息的事件中樞，在裝置第一次連線或回應 [變更裝置狀態] 命令時傳送給解決方案裝置註冊 (DocumentDB 資料庫)。
 - *遙測作業* - 將所有的原始遙測資訊傳送到 Azure Blob 儲存體進行冷儲存，並計算會顯示在解決方案儀表板中的遙測彙總。
 - *規則作業* - 篩選遙測串流中超出任何規則臨界值的值，並將資料輸出到事件中樞。當規則引發時，解決方案入口網站儀表板檢視會將此事件顯示為警示歷程記錄資料表中的新資料列，並根據在解決方案入口網站中的 [規則和動作] 檢視上定義的設定來觸發動作。
 
@@ -117,10 +117,7 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 
 如需 IoT 解決方案架構的詳細資訊，請參閱 [Microsoft Azure IoT 服務 ︰參考架構][lnk-refarch]。
 
-請探索下列資源以深入了解 IoT 預先設定解決方案：
-
-- [IoT 預先設定解決方案入門][lnk-preconf-get-started]
-- [預先設定的預防性維護解決方案概觀][lnk-predictive-maintenance]
+您現已知道預先設定的解決方案是什麼，您可以部署「遠端監視」預先設定的解決方案來開始使用︰[開始使用預先設定的解決方案][lnk-getstarted-preconfigured]。
 
 [img-remote-monitoring-arch]: ./media/iot-suite-what-are-preconfigured-solutions/remote-monitoring-arch1.png
 [img-dashboard]: ./media/iot-suite-what-are-preconfigured-solutions/dashboard.png
@@ -128,12 +125,10 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 [lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-processor]: ../event-hubs/event-hubs-programming-guide.md#event-processor-host
 [lnk-web-job]: ../app-service-web/web-sites-create-web-jobs.md
-[lnk-document-db]: https://azure.microsoft.com/documentation/services/documentdb/
 [lnk-identity-registry]: ../iot-hub/iot-hub-devguide.md#device-identity-registry
-[lnk-suite-overview]: iot-suite-overview.md
-[lnk-preconf-get-started]: iot-suite-getstarted-preconfigured-solutions.md
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
+[lnk-getstarted-preconfigured]: iot-suite-getstarted-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->
