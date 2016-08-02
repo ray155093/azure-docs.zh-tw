@@ -22,7 +22,7 @@
 
 每個拓撲都有一份資料表，裡面會列出拓撲適用的部署模型、可用來設定每個拓撲的部署工具，並且會直接連結至相關文章 (如果有)。我們會頻繁地在有新文章和部署工具可供您使用時更新這些資料表。
 
-用來建立 VPN 閘道的指示將取決於用來建立虛擬網路的部署模型。例如，如果您使用傳統部署模型建立 VNet，您將使用傳統部署模型的指導方針和指示來建立和設定 VPN 閘道。您無法建立傳統部署模型虛擬網路的 Resource Manager VPN 閘道。如需部署模型的詳細資訊，請參閱[了解 Resource Manager 和傳統部署模型](../resource-manager-deployment-model.md)。
+決定您要建立的連線之後，用來建立 VPN 閘道的指示將取決於用來建立虛擬網路的部署模型。例如，如果您使用傳統部署模型建立 VNet，您將使用傳統部署模型的指導方針和指示來建立和設定 VPN 閘道。您無法建立傳統部署模型虛擬網路的 Resource Manager VPN 閘道。如需部署模型的詳細資訊，請參閱[了解 Resource Manager 和傳統部署模型](../resource-manager-deployment-model.md)。
 
 ## 站對站和多站台
 
@@ -62,6 +62,28 @@ Azure 目前有兩種部署模式：Azure 服務管理 (稱為傳統) 和 Azure 
 [AZURE.INCLUDE [vpn-gateway-table-vnet-to-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
 
+## 點對站
+
+點對站設定可讓您從用戶端電腦個別地建立與虛擬網路的安全連線。VPN 連線的建立方式是從用戶端電腦啟動連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，這是很實用的解決方案。
+
+點對站連線是透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。
+
+**P2S 圖表**
+
+![點對站連線](./media/vpn-gateway-topology/point2site.png "點對站")
+
+**可用的部署模型和方法**
+
+[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
+
+
+##ExpressRoute
+
+[AZURE.INCLUDE [expressroute-intro](../../includes/expressroute-intro-include.md)]
+
+如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+
+
 
 ## 站對站及 ExpressRoute 並存連線
 
@@ -78,23 +100,11 @@ ExpressRoute 是從 WAN 直接連往 Microsoft 服務 (包括 Azure) 的專用�
 [AZURE.INCLUDE [vpn-gateway-table-coexist](../../includes/vpn-gateway-table-coexist-include.md)]
 
 
-## 點對站
 
-點對站設定可讓您從用戶端電腦個別地建立與虛擬網路的安全連線。VPN 連線的建立方式是從用戶端電腦啟動連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，這是很實用的解決方案。
-
-點對站連線是透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。
-
-**P2S 圖表**
-
-![點對站連線](./media/vpn-gateway-topology/point2site.png "點對站")
-
-**可用的部署模型和方法**
-
-[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
 
 ## 後續步驟
 
-您會想要先熟悉[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)和 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)文章中的項目以更佳了解 VPN 閘道，再繼續進行連線的規劃和設計。
+您會想要先熟悉[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)和 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)文章中的項目，進一步了解 VPN 閘道。
 
 
 
@@ -102,4 +112,4 @@ ExpressRoute 是從 WAN 直接連往 Microsoft 服務 (包括 Azure) 的專用�
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

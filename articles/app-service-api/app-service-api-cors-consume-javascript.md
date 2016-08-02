@@ -50,7 +50,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
@@ -80,8 +80,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 		angular.module('todoApp')
 		.factory('todoListSvc', ['$http', function ($http) {
-		    var apiEndpoint = "http://localhost:46439";
-		
+
 		    $http.defaults.useXDomain = true;
 		    delete $http.defaults.headers.common['X-Requested-With']; 
 		
@@ -204,7 +203,7 @@ App Service 提供內建的[跨原始來源資源共用 (CORS)](https://en.wikip
 
 13. 按一下 [儲存]。
 
-	![按一下 [Save] \(儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
+	![按一下 [Save] (儲存)。](./media/app-service-api-cors-consume-javascript/corsinportal.png)
 
 	按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。在這個螢幕擷取畫面中，ToDoListAPI0223 API 應用程式會接受來自 ToDoListAngular Web 應用程式的 JavaScript 用戶端呼叫。
 
@@ -285,4 +284,4 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。例如，在程式�
 
 在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。若要深入了解 API 應用程式，請閱讀 [App Service 中的驗證簡介](../app-service/app-service-authentication-overview.md)，然後前往 [API 應用程式的使用者驗證](app-service-api-dotnet-user-principal-auth.md)教學課程。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

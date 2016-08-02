@@ -44,7 +44,7 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 
 下列影片將提供適用於 AD FS 的 Azure AD Connect Health 概觀
 
-> [AZURE.VIDEO azure-ad-connect-health--monitor-you-identity-bridge]
+>[AZURE.VIDEO azure-ad-connect-health--monitor-you-identity-bridge]
 
 ## [適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)
 
@@ -60,6 +60,7 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 >[AZURE.VIDEO azure-active-directory-connect-health-monitoring-the-sync-engine]
 
 ## [適用於 AD DS (預覽) 的 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
+
 適用於 AD DS 的 Azure AD Connect Health 可以監視安裝在 Windows Server 2008 R2、Windows Server 2012 及 Windows Server 2012 R2 上的網域控制站。安裝簡單、低成本的健康狀態代理程式可讓您直接從雲端監視內部部署 AD DS 環境。適用於 AD DS 的 Azure AD Connect Health 提供下列一組主要功能：
 
 - 監視警示可在網域控制站健全狀況不良時進行偵測，並發送重要警示的電子郵件通知。
@@ -122,4 +123,4 @@ Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使�
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!----HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

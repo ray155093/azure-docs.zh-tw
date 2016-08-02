@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
-	ms.date="06/30/2016" 
+	ms.date="07/22/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Redis 快取建立 Web 應用程式
@@ -802,6 +802,8 @@
 ## 後續步驟
 
 -	深入了解 [ASP.NET](http://asp.net/) 網站上的[開始使用 ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started)。
+-	如需在 App Service 中建立 ASP.NET Web 應用程式的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)中的[在 Azure App Service 中建立和部署 ASP.NET Web 應用程式](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service)。
+	-	如需 HealthClinic.biz 示範中的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 -	深入了解本教學課程中使用之 Entity Framework 的 [Code First 至新的資料庫](https://msdn.microsoft.com/data/jj193542)方法。
 -	深入了解 [Azure App Service 中的 Web 應用程式](../app-service-web/app-service-web-overview.md)。
 -	了解如何在 Azure 入口網站中[監視](cache-how-to-monitor.md)您的快取。
@@ -811,6 +813,7 @@
 	-	[如何設定高階 Azure Redis Cache 的叢集](cache-how-to-premium-clustering.md)
 	-	[如何設定高階 Azure Redis Cache 的虛擬網路支援](cache-how-to-premium-vnet.md)
 	-	如需高階快取的大小、輸送量和頻寬等方面的詳細資訊，請參閱 [Azure Redis Cache 常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
+
 
 
 <!-- IMAGES -->
@@ -846,4 +849,4 @@
 [cache-delete-resource-group]: ./media/cache-web-app-howto/cache-delete-resource-group.png
 [cache-delete-confirm]: ./media/cache-web-app-howto/cache-delete-confirm.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

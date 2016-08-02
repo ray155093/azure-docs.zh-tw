@@ -29,15 +29,14 @@ Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的
 
 ## 後續步驟
 
-如需 Azure 上的 IoT 詳細資訊，請探索下列資源：
+請探索下列資源以繼續了解 IoT 套件和預先設定的解決方案：
 
-- [Azure IoT 套件的概觀][lnk-suite-overview]。
-- [開始使用 IoT 預先設定解決方案][lnk-preconfigured-solutions]。
-- [將裝置連接至 IoT Suite 遠端監視解決方案][lnk-connecting]。
-- [Azure IoT 中樞]
+- [什麼是 Azure IoT 套件？][lnk-whatissuite]
+- [什麼是 Azure IoT 套件預先設定的解決方案？][lnk-whatarepreconfigured]
 
-[lnk-suite-overview]: iot-suite-overview.md
-[lnk-connecting]: iot-suite-connecting-devices.md
+[lnk-whatissuite]: iot-suite-overview.md
+[lnk-whatarepreconfigured]: iot-suite-what-are-preconfigured-solutions.md
+
 [lnk-preconfigured-solutions]: iot-suite-getstarted-preconfigured-solutions.md
 [Azure IoT 中樞]: https://azure.microsoft.com/documentation/services/iot-hub/
 [Azure 事件中樞]: https://azure.microsoft.com/documentation/services/event-hubs/
@@ -46,4 +45,4 @@ Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的
 [Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

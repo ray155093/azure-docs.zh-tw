@@ -13,16 +13,11 @@
    ms.devlang="na"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/13/2016"
+   ms.date="07/21/2016"
    ms.author="yurid"/>
 
 # Azure 資訊安全中心的偵測功能
 本文件討論 Azure 資訊安全中心的進階偵測功能，協助您識別以您的 Microsoft Azure 資源為目標的作用中威脅，並提供您快速回應所需的深入見解。
-
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。
-
-## 什麼是 Azure 資訊安全中心？
-資訊安全中心利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。它提供您訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
 
 ## 回應現今的威脅
 威脅態勢在過去 20 年來已有重大變更。在過去，公司通常只需擔心網站遭到大多想要查看「他們能做些什麼」的個別攻擊者竄改。現今的攻擊者更加複雜且有組織性。他們通常會有特定的財務和策略性目標。他們也有更多的資源可供利用，因為它們可能是由民族國家或組織型犯罪所資助。
@@ -41,14 +36,14 @@ Microsoft 資訊安全研究人員會持續監視威脅。他們可以存取從 
 
 資訊安全中心會運用進階安全性分析，其遠勝於以簽章為基礎的方法。巨量資料和[機器學習](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/)技術突破可用來評估整個雲端網狀架構的事件 – 使用手動方式來偵測無法識別的威脅，以及預測攻擊的演化。這些安全性分析包括︰
 
-- **整合性威脅情報**：利用 Microsoft 產品和服務、Microsoft 數位犯罪防治中心 (DCU)、Microsoft Security Response Center (MSRC) 以及外部摘要的全域威脅情報，尋找已知的不良執行者
+- **整合性威脅情報**：利用 Microsoft 產品和服務、Microsoft 數位犯罪防治中心 (DCU)、Microsoft Security Response Center (MSRC) 以及外部摘要的全域威脅情報，尋找已知的不良執行者。
 - **行為分析**：套用已知模式來探索惡意行為。
 - **異常偵測**︰使用統計剖析來建置歷程基準。它會對偏離已確立基準 (符合潛在攻擊向量) 的情況提出警示。
 
 > [AZURE.NOTE] 在 Azure 資訊安全中心的標準層中可取得進階偵測。提供 90 天的免費試用。您可以在[安全性原則](security-center-policies.md)中升級定價層選取項目。若要深入了解價格，請瀏覽[資訊安全中心](https://azure.microsoft.com/pricing/details/security-center/)頁面。
 
 ### 威脅情報
-Microsoft 有許多全域威脅情報。遙測會從多個來源 (例如 Azure、Office 365、Microsoft CRM Online、Microsoft Dynamics AX、outlook.com、MSN.com、Microsoft 數位犯罪防治中心 (DCU) 和 Microsoft 安全性回應中心 (MSRC) 流入。研究人員也會收到主要雲端服務提供者之間共用的威脅情報資訊，並訂閱來自協力廠商的威脅情報摘要。Azure 資訊安全中心可以使用這項資訊來警示您來自已知不良執行者的威脅。部分範例包括：
+Microsoft 有大量全域威脅情報。遙測會從多個來源 (例如 Azure、Office 365、Microsoft CRM Online、Microsoft Dynamics AX、outlook.com、MSN.com、Microsoft 數位犯罪防治中心 (DCU) 和 Microsoft 安全性回應中心 (MSRC) 流入。研究人員也會收到主要雲端服務提供者之間共用的威脅情報資訊，並訂閱來自協力廠商的威脅情報摘要。Azure 資訊安全中心可以使用這項資訊來警示您來自已知不良執行者的威脅。部分範例包括：
 
 - **惡意 IP 位址的輸出通訊**︰對已知 botnet 或 darknet 的輸出流量可能表示您的資源已被盜用，以及攻擊者嘗試對系統或外洩資料執行命令。Azure 資訊安全中心會比較網路流量與 Microsoft 的全域威脅資料庫，並在偵測到惡意 IP 位址的通訊時提出警示。
 
@@ -86,9 +81,9 @@ Azure 資訊安全中心設有資訊安全研究和資料科學小組，負責�
 
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
 - [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

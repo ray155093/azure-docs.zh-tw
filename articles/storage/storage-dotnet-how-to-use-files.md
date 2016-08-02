@@ -1,23 +1,23 @@
 <properties
-			pageTitle="在 Windows 上開始使用 Azure 檔案儲存體 | Microsoft Azure"
-    		description="使用 Azure 檔案儲存體在雲端中儲存檔案資料，並從 Azure 虛擬機器 (VM) 或執行 Windows 的內部部署應用程式掛接雲端檔案共用。"
-            services="storage"
-            documentationCenter=".net"
-            authors="mine-msft"
-            manager="aungoo"
-            editor="tysonn" />
+	pageTitle="在 Windows 上開始使用 Azure 檔案儲存體 | Microsoft Azure"
+	description="使用 Azure 檔案儲存體在雲端中儲存檔案資料，並從 Azure 虛擬機器 (VM) 或執行 Windows 的內部部署應用程式掛接雲端檔案共用。"
+	services="storage"
+	documentationCenter=".net"
+	authors="mine-msft"
+	manager="aungoo"
+	editor="tysonn" />
 
 <tags ms.service="storage"
-      ms.workload="storage"
-      ms.tgt_pltfrm="na"
-      ms.devlang="dotnet"
-      ms.topic="hero-article"
-	ms.date="06/09/2016"
-      ms.author="minet" />
+	ms.workload="storage"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="hero-article"
+	ms.date="07/26/2016"
+	ms.author="minet" />
 
 # 在 Windows 上開始使用 Azure 檔案儲存體
 
-[AZURE.INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
+[AZURE.INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
 
 ## 概觀
 
@@ -65,13 +65,13 @@ Azure 檔案儲存體是使用標準[伺服器訊息區塊 (SMB) 通訊協定](h
 - 上傳檔案至檔案共用和從檔案共用下載檔案
 - 監視每個檔案共用的實際使用狀況
 - 調整共用大小配額
-- 取得用來從檔案共用掛接 Windows 用戶端的 `net use` 命令 
+- 取得用來從檔案共用掛接 Windows 用戶端的 `net use` 命令
 
 ### 建立檔案共用
 
 1. 登入 Azure 入口網站。
 
-2. 在導覽功能表中，按一下 [儲存體帳戶] 或 [儲存體帳戶 (傳統)。
+2. 在導覽功能表中，按一下 [儲存體帳戶] 或 [儲存體帳戶 (傳統)]。
 
 	![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](./media/storage-dotnet-how-to-use-files/files-create-share-0.png)
 
@@ -140,7 +140,7 @@ Azure 檔案儲存體是使用標準[伺服器訊息區塊 (SMB) 通訊協定](h
 
 現在，請建立儲存體帳戶內容。內容包含儲存體帳戶名稱和帳戶金鑰。如需從 [Azure 入口網站](https://portal.azure.com)複製帳戶金鑰的指示，請參閱[檢視和複製儲存體存取金鑰](storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
-使用下列範例中的儲存體帳戶名稱和金鑰來取代`storage-account-name` 和 `storage-account-key`。
+使用下列範例中的儲存體帳戶名稱和金鑰來取代 `storage-account-name` 和 `storage-account-key`。
 
 	# create a context for account and key
 	$ctx=New-AzureStorageContext storage-account-name storage-account-key
@@ -195,7 +195,7 @@ Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清�
 
 - 在相同區域的 Azure 虛擬機器 (SMB 2.1 也支援)
 - 在不同區域的 Azure 虛擬機器 (僅限 SMB 3.0)
-- 內部部署用戶端應用程式 (僅限 SMB 3.0) 
+- 內部部署用戶端應用程式 (僅限 SMB 3.0)
 
 當用戶端存取檔案儲存體，使用的 SMB 版本取決於作業系統所支援的 SMB 版本。下表提供 Windows 用戶端支援的摘要。請參閱此部落格以深入了解 [SMB 版本](http://blogs.technet.com/b/josebda/archive/2013/10/02/windows-server-2012-r2-which-version-of-the-smb-protocol-smb-1-0-smb-2-0-smb-2-1-smb-3-0-or-smb-3-02-you-are-using.aspx)的詳細資訊。
 
@@ -251,8 +251,8 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 若要從內部部署用戶端掛接檔案共用，您必須先進行下列步驟：
 
-- 安裝支援 SMB 3.0 的 Windows 版本。Windows 將利用 SMB 3.0 加密來安全地在內部部署用戶端與雲端中的 Azure 檔案共用之間傳輸資料。 
-- 如 SMB 通訊協定所要求，在區域網路上開啟通訊埠 445 的網際網路存取 (TCP 輸出)。 
+- 安裝支援 SMB 3.0 的 Windows 版本。Windows 將利用 SMB 3.0 加密來安全地在內部部署用戶端與雲端中的 Azure 檔案共用之間傳輸資料。
+- 如 SMB 通訊協定所要求，在區域網路上開啟通訊埠 445 的網際網路存取 (TCP 輸出)。
 
 > [AZURE.NOTE] 有些網際網路服務提供者可能會封鎖連接埠 445，因此您可能需要連絡您的服務提供者。
 
@@ -266,11 +266,11 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 1. 在 Visual Studio 中，依序選擇 [檔案] -> [新增專案]，然後從 Visual C# 範本清單中選擇 [Windows] -> [主控台應用程式]。
 2. 提供主控台應用程式的名稱，然後按一下 [確定]。
-3. 建立專案後，在 [方案總管] 中以滑鼠右鍵按一下該專案，然後選擇 [管理 NuGet 封裝]。在線上搜尋 "WindowsAzure.Storage"，再按一下 [安裝] 以安裝適用於 .NET 封裝與相依性的 Azure 儲存體用戶端程式庫。
+3. 建立專案後，在 [方案總管] 中以滑鼠右鍵按一下該專案，然後選擇 [管理 NuGet 封裝]。在線上搜尋 "WindowsAzure.Storage"，再按一下 [安裝] 以安裝適用於 .NET 套件與相依性的 Azure 儲存體用戶端程式庫。
 
 本文中的程式碼範例也使用 [Microsoft Azure Configuration Manager 程式庫](https://msdn.microsoft.com/library/azure/mt634646.aspx)以從主控台應用程式中的 app.config 檔案擷取儲存體連接字串。透過 Azure Configuration Manager，無論應用程式是在 Microsoft Azure 中執行還是從桌面、行動或 Web 應用程式執行，您都可以在執行階段擷取連接字串。
 
-若要安裝 Azure Configuration Manager 封裝，請以滑鼠右鍵按一下 [方案總管] 中的專案，然後選擇 [管理 NuGet 封裝]。在線上搜尋 "ConfigurationManager"，再按一下 [安裝] 以安裝封裝。
+若要安裝 Azure Configuration Manager 封裝，請以滑鼠右鍵按一下 [方案總管] 中的專案，然後選擇 [管理 NuGet 套件]。在線上搜尋 "ConfigurationManager"，再按一下 [安裝] 以安裝套件。
 
 是否使用 Azure Configuration Manager 可由您選擇。您也可以使用 API，例如 .NET Framework 的 [ConfigurationManager 類別](https://msdn.microsoft.com/library/system.configuration.configurationmanager.aspx)。
 
@@ -582,7 +582,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 
 ## 檔案儲存體常見問題集
 
-1. **檔案儲存體是否支援 Active Directory 式的驗證？** 
+1. **檔案儲存體是否支援 Active Directory 式的驗證？**
 
 	我們目前不支援 AD 式驗證或 ACL，但在我們的功能要求清單中卻有它。目前，Azure 儲存體帳戶金鑰可用來提供檔案共用的驗證。我們的確提供透過 REST API 或用戶端程式庫使用共用存取簽章 (SAS) 的因應措施。使用 SAS 時，您可以產生在一段時間內都是有效的具有特定權限的權杖。例如，您可以產生具有指定檔案的唯讀存取的權杖。擁有此權杖的任何人，在其有效時具有該檔案的唯讀存取。
 
@@ -663,8 +663,8 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 ### 部落格文章
 
 - [Azure 檔案儲存體現已公開推出](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
-- [Azure 檔案儲存體內部](https://azure.microsoft.com/blog/inside-azure-file-storage/) 
+- [Azure 檔案儲存體內部](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->
