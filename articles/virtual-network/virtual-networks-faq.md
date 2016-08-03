@@ -23,4 +23,4 @@
 
 如需虛擬網路 VPN 的最新常見問題集，請參閱《[VPN 閘道常見問題集](../vpn-gateway/vpn-gateway-vpn-faq.md)》。
 
-<!----HONumber=AcomDC_0323_2016-->
+<!-----HONumber=AcomDC_0323_2016-->
