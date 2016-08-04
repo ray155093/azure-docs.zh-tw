@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/16/2016"
+   ms.date="07/23/2016"
    ms.author="lodipalm;barbkess;mausher;jrj;sonyama;kevin"/>
 
 
@@ -146,7 +146,7 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 
 ## 後續步驟
 
-現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][]和[載入範例資料][]。或者，也可以看一下其中一些其他 SQL 資料倉儲資源。
+現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][]和[載入範例資料][]。如果您不熟悉 Azure，您可能會發現 [Azure 詞彙][]在您遇到新術語時很有幫助。或者，也可以看一下其中一些其他 SQL 資料倉儲資源。
 
 - [部落格]
 - [功能要求]
@@ -169,6 +169,7 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [SQL 資料倉儲解決方案合作夥伴]: sql-data-warehouse-partner-business-intelligence.md
 [整合式工具概觀]: sql-data-warehouse-overview-integrate.md
 [備份與還原概觀]: sql-data-warehouse-restore-database-overview.md
+[Azure 詞彙]: ../azure-glossary-cloud-terminology.md
 
 <!--MSDN references-->
 
@@ -181,4 +182,4 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

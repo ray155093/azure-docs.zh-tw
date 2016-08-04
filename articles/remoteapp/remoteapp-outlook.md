@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="hero-article"
-    ms.date="05/18/2016"
+    ms.date="07/20/2016"
     ms.author="elizapo" />
 
 # 在 Azure RemoteApp 中使用 Microsoft Outlook
@@ -27,8 +27,8 @@ Azure RemoteApp 支援 Microsoft Outlook O365。深入了解 [Office 在 Azure R
 閱讀[啟用快取模式的逐步指示](https://technet.microsoft.com/library/c6f4cad9-c918-420e-bab3-8b49e1885034#proc)。
 
 ## 搜尋
-在 Azure RemoteApp 中，使用 Outlook 中的搜尋有限制。Azure RemoteApp 會使用集區的 VM，以配合使用者工作階段。搜尋索引取決於電腦識別碼，不同 VM 的識別碼有差異。每次使用者登入 Azure RemoteApp 時，有可能被導向至新的 VM。這表示，如果我們啟用本機搜尋，每次電腦識別碼變更 (當使用者在不同的 VM 上) 時，將會執行索引子。視 .OST 檔案的大小而定，索引子可能需要很長的時間完成，並且用盡其他應用程式所需的資源。搜尋不只很慢，而且可能不會產生結果。解決此問題的方式是預設啟用線上搜尋。不幸的是，在 Outlook 2013 中無法停用已編製索引/本機搜尋，且預設無法啟用線上搜尋。
+在 Azure RemoteApp 中，使用 Outlook 中的搜尋有限制。Azure RemoteApp 會使用集區的 VM，以配合使用者工作階段。搜尋索引取決於電腦識別碼，不同 VM 的識別碼有差異。每次使用者登入 Azure RemoteApp 時，有可能被導向至新的 VM。這表示，如果我們啟用本機搜尋，每次電腦識別碼變更 (當使用者在不同的 VM 上) 時，將會執行索引子。視 .OST 檔案的大小而定，索引子可能需要很長的時間完成，並且用盡其他應用程式所需的資源。搜尋不只很慢，而且可能不會產生結果。使用「線上模式」帳戶設定檔會解決此問題，但整體效能會因為缺少本機快取而降低 (如需有關快取與線上模式之間差異的詳細資訊，請參閱上方的連結)。不幸的是，在 Outlook 2013 中無法停用已編製索引/本機搜尋，且預設無法啟用線上搜尋。
 
-Outlook 2016 有解決方案可以解決這個問題，方法是為 Exchange 2016 上裝載 (或裝載在 Office 365) 上的信箱提供新的線上搜尋體驗。這會對本機快取 (OST) 使用伺服器搜尋結果。在某些案例中，Outlook 可能會改回使用搜尋索引子，但是大部分的搜尋會使用線上模式。如果郵件搜尋是非常重要的案例，則 Azure RemoteApp 的建議是使用 Outlook 2016。
+Outlook 2016 有解決方案可以用快取模式解決這個問題，方法是為 Exchange 2016 上裝載 (或裝載在 Office 365) 上的信箱提供新的線上搜尋體驗。這會對本機快取 (OST) 使用服務搜尋結果。在某些案例中，Outlook 可能會改回使用本機搜尋索引子，但是大部分的搜尋會使用這項新的服務搜尋功能。如果郵件搜尋是非常重要的案例，則 Azure RemoteApp 的建議是使用 Outlook 2016。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

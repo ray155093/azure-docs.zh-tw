@@ -90,11 +90,11 @@ Azure 會在每個子網路中保留一些 IP 位址。子網路的第一個和�
 
 ### 我可以在 VNet 中偵測我的預設路由器嗎？
 
-編號
+否。
 
 ### 我可以使用 tracert 來診斷連線嗎？
 
-編號
+否。
 
 ### 我可以在建立 VNet 之後新增子網路嗎？
 
@@ -270,4 +270,4 @@ VNet 會與另一個 VNet，以及其他裝載於 Azure 基礎結構中的服務
 
 是。您可以針對各種平台使用 PowerShell 和命令列工具。如需詳細資訊，請參閱[這裡](http://go.microsoft.com/fwlink/?LinkId=317721)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0720_2016-->

@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/23/2016"
+	ms.date="07/26/2016"
 	ms.author="robinsh"/>
 
 
 # 關於 Azure 儲存體帳戶
 
-[AZURE.INCLUDE [storage-selector-portal-create-storage-account](../../includes/storage-selector-portal-create-storage-account.md)]
+[AZURE.INCLUDE [storage-selector-portal-create-storage-account](../../includes/storage-selector-portal-create-storage-account.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
 
 ## 概觀
 
@@ -37,7 +37,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 每個儲存在 Azure 儲存體中的物件都有一個唯一 URL 位址。儲存體帳戶名稱會構成該位址的子網域。子網域和每個服務的特定網域名稱的組合，會構成儲存體帳戶的*端點*。
 
-例如，如果您的儲存體帳戶名為 *mystorageaccount* ，則儲存體帳戶的預設端點將是：
+例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
 
 - Blob 服務：http://*mystorageaccount*.blob.core.windows.net
 
@@ -49,7 +49,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 > [AZURE.NOTE] Blob 儲存體帳戶只會公開 Blob 服務端點。
 
-用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。例如，Blob 位址的格式可能如下：http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob* 。
+用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。例如，Blob 位址的格式可能如下：http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*。
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。對於傳統儲存體帳戶，如需詳細資訊，請參閱[針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md)。對於 Resource Manager 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com)，但是您可以使用 PowerShell 設定它。如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。
 
@@ -65,7 +65,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 	>  
 	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-4. 指定所要使用的部署模型：[資源管理員] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
+4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
 	> [AZURE.NOTE] 僅可使用資源管理員部署模型來建立 Blob 儲存體帳戶。
 
@@ -117,7 +117,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 **應用程式** - 如果您有 Web 應用程式或雲端服務使用儲存體帳戶，除非您變換金鑰，否則會在重新產生金鑰後失去連線。
 
-**儲存體 Explorer** - 如果您使用任何[儲存體總管應用程式](storage-explorers.md)，可能需要更新這些應用程式所使用的儲存體金鑰。
+**儲存體總管** - 如果您使用任何[儲存體總管應用程式](storage-explorers.md)，可能需要更新這些應用程式所使用的儲存體金鑰。
 
 以下是替換儲存體存取金鑰的程序：
 
@@ -157,4 +157,4 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/) (英文)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

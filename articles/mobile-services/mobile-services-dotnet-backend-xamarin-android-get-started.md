@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="01/14/2016"
+	ms.date="07/21/2016"
 	ms.author="donnam"/>
 
 # <a name="getting-started"> </a>開始使用行動服務
 
-[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)]&nbsp;
+[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)] &nbsp;
 
 [AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
 > 如需本主題的對等 Mobile Apps 版本，請參閱[建立 Xamarin.Android 應用程式](../app-service-mobile/app-service-mobile-xamarin-android-get-started.md)。
@@ -45,7 +45,7 @@
 
 在本節中，您將為行動服務下載新的 Xamarin Android 應用程式和服務專案。
 
-1. 若您尚未這麼做，請安裝 Visual Studio with Xamarin。您可以在[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 找到相關指示。您也可以在 Mac OS X 電腦上使用 Xamarin Studio，請參閱[設定、安裝和驗證 Mac 使用者](https://msdn.microsoft.com/library/mt488770.aspx)。  
+1. 若您尚未這麼做，請安裝 Visual Studio with Xamarin。您可以在[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 找到相關指示。您也可以在 Mac OS X 電腦上使用 Xamarin Studio，請參閱[設定、安裝和驗證 Mac 使用者](https://msdn.microsoft.com/library/mt488770.aspx)。
 
 2. 在[傳統入口網站]中，按一下 [行動服務]，然後按一下您剛建立的行動服務。
 
@@ -134,4 +134,4 @@
 [JavaScript 後端版本]: mobile-services-android-get-started.md
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

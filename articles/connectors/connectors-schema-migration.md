@@ -9,7 +9,7 @@
     tags="connectors"/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -20,7 +20,7 @@
 # 如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview
 
 若要將現有的邏輯應用程式移至新的結構描述，請執行下列作業︰
-1. 在 Azure 入口網站中開啟邏輯應用程式  
+1. 在 Azure 入口網站中開啟邏輯應用程式
 2. 按一下 [更新結構描述]︰
 
  ![API 圖示][step1]
@@ -44,4 +44,4 @@
 [step1]: ./media/connectors-schema-migration/migrateschema1.png
 [step2]: ./media/connectors-schema-migration/migrateschema2.png
 
-<!---HONumber=AcomDC_0427_2016--->
+<!---HONumber=AcomDC_0727_2016--->

@@ -14,7 +14,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/13/2016"
+	ms.date="07/22/2016"
 	ms.author="jroth"/>
 
 # 在 Azure 虛擬機器上開始使用 SQL Server
@@ -31,7 +31,7 @@
 
 當您將其他工作負載移至 Azure，例如企業應用程式，也必須將任何相依的 SQL Server 資料庫移至 Azure，以改善效能。不過，在 Azure VM 中裝載 SQL Server 可提供其他優點。例如，您會自動取得多個資料中心的存取權，以便獲得全域支援和災害復原。如需完整的案例和優點清單，請參閱 [Azure VM 產品頁面上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)。
 
-> [AZURE.NOTE] 當您在評估 Azure VM 上的 SQL Server 時，也要檢閱 Azure 上的其他儲存體和 SQL 選項，例如 [SQL Database](../sql-database/sql-database-technical-overview.md)、[SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md) 和 [SQL Server Stretch Database](../sql -server-stretch-database/sql-server-stretch-database-overview.md)。如需詳細的比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/data-management-azure-sql-database-and-sql-server-iaas.md)。
+> [AZURE.NOTE] 當您在評估 Azure VM 上的 SQL Server 時，也要檢閱 Azure 上的其他儲存體和 SQL 選項，例如 [SQL Database](../sql-database/sql-database-technical-overview.md)、[SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md) 和 [SQL Server Stretch Database](../sql -server-stretch-database/sql-server-stretch-database-overview.md)。如需詳細比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md)。
 
 您決定要在 Azure VM 上執行 SQL Server 之後，您的第一個決策之一為是否要使用包含 SQL Server 授權成本的 VM 映像。另一個選擇是自備授權 (BYOL)，而只支付 VM 本身。下面兩節會說明這些選項。
 
@@ -78,7 +78,7 @@
 如需其他高可用性注意事項，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)。
 
 ### 備份您的資料
-Azure VM 可以利用[自動備份](virtual-machines-windows-sql-automated-backup.md)，以定期建立資料庫的備份至 Blob 儲存體。您也可以手動使用此技術。如需詳細資訊，請參閱[使用 Azure 儲存體進行 SQL Server 備份與還原](../sql-database/storage-use-storage-sql-server-backup-restore.md)。如需所有備份與還原選項的概觀，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。
+Azure VM 可以利用[自動備份](virtual-machines-windows-sql-automated-backup.md)，以定期建立資料庫的備份至 Blob 儲存體。您也可以手動使用此技術。如需詳細資訊，請參閱[使用 Azure 儲存體進行 SQL Server 備份與還原](virtual-machines-windows-use-storage-sql-server-backup-restore.md)。如需所有備份與還原選項的概觀，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。
 
 ### 自動更新
 Azure VM 可以使用[自動修補](virtual-machines-windows-sql-automated-patching.md)來排程維護期間，以便自動安裝重要的 Windows 和 SQL Server 更新。
@@ -91,4 +91,4 @@ Azure VM 可以使用[自動修補](virtual-machines-windows-sql-automated-patch
 
 其他問題？ 請先參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。也請將您的問題或意見加入任何 SQL VM 主題的底部來與 Microsoft 和社群互動。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

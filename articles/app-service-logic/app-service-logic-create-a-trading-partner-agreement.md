@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
 	ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
@@ -53,7 +53,7 @@
 
 
 ## BizTalk X12
-- 執行如相關 TPM API 應用程式執行個體中所定義的 X12 協議 
+- 執行如相關 TPM API 應用程式執行個體中所定義的 X12 協議
 - 瀏覽 X12 處理/追蹤資訊以進行疑難排解
 - 提供如相關 TPM API 應用程式執行個體中 X12 協議所定義的批次狀態管理 (「開始」和「停止」)
 
@@ -79,4 +79,4 @@
 [3]: ./media/app-service-logic-create-a-trading-partner-agreement/X12AgreementCreation.png
  
 
-<!---HONumber=AcomDC_0420_2016--->
+<!---HONumber=AcomDC_0727_2016-->

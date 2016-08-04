@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="05/11/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -100,7 +100,7 @@
 * [將行動服務新增至現有的應用程式][Get started with data] 
   <br/>深入了解使用行動服務來儲存與查詢資料。
 
-* [開始使用離線資料同步]
+* [開始使用離線資料同步] 
   <br/>了解如何使用離線資料同步功能來讓應用程式的反應更快，且更健全。
 
 * [在您的行動服務應用程式中新增驗證功能][Get started with authentication] 
@@ -134,4 +134,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

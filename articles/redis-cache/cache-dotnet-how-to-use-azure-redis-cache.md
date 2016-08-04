@@ -193,7 +193,9 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 -	[啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具[下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)它們。
 -	請參閱 [StackExchange.Redis 快取用戶端文件][]。
 	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][]。
-	-	Azure Redis 快取也可以與服務搭配使用 (例如 Redsmin)。如需詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
+-	Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
+	-	如需 Redsmin 的詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
+	-	使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
 -	請參閱 [Redis][] \(英文) 文件，並閱讀有關 [Redis 資料類型][] \(英文) 和 [Redis 資料類型的 15 分鐘簡介][] \(英文)。
 
 
@@ -284,4 +286,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

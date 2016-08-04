@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Powershell 建立 SQL 資料倉儲 | Microsoft Azure"
-   description="使用 Powershell 建立 SQL 資料倉儲"
+   pageTitle="使用 PowerShell 建立 SQL 資料倉儲 | Microsoft Azure"
+   description="使用 PowerShell 建立 SQL 資料倉儲"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="lodipalm"
@@ -13,27 +13,31 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/11/2016"
+   ms.date="07/20/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
-# 使用 Powershell 建立 SQL 資料倉儲
+# 使用 PowerShell 建立 SQL 資料倉儲
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
 - [TSQL](sql-data-warehouse-get-started-create-database-tsql.md)
 - [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
 
-## 必要條件
-開始之前，請確定您已符合下列必要條件。
+本文將說明使用 PowerShell 建立 SQL 資料倉儲的方式。
 
-- **Azure 帳戶**︰請參閱 [Azure 免費試用][]或 [MSDN Azure 點數][]以建立帳戶。
-- **V12 Azure SQL Server**︰請參閱[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器][]或[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器][]。
-- **資源群組名稱**︰使用和 V12 Azure SQL Server 相同的資源群組，或參閱[資源群組][]來建立新的資源群組。
+## 必要條件
+
+若要開始，您需要：
+
+- **Azure 帳戶**︰請瀏覽 [Azure 免費試用][]或 [MSDN Azure 點數][]以建立帳戶。
+- **Azure SQL Server**︰如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器][]或[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器][]。
+- **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱[如何建立資源群組][]。
 - **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
 > [AZURE.NOTE] 建立新的 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
 
 ## 建立 SQL 資料倉儲
+
 1. 開啟 Windows PowerShell。
 2. 執行此 Cmdlet 來登入 Azure 資源管理員。
 
@@ -84,7 +88,7 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [how to create a SQL Data Warehouse from the Azure Portal]: ./sql-data-warehouse-get-started-provision.md
 [使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started.md#create-an-azure-sql-database-logical-server
 [使用 PowerShell 建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started-powershell.md#database-setup-create-a-resource-group-server-and-firewall-rule
-[資源群組]: ../resource-group-template-deploy-portal.md
+[如何建立資源群組]: ../resource-group-template-deploy-portal.md#create-resource-group
 
 <!--MSDN references--> 
 [MSDN]: https://msdn.microsoft.com/library/azure/dn546722.aspx
@@ -97,4 +101,4 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

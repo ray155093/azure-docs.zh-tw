@@ -13,14 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/01/2016"
+   ms.date="07/23/2016"
    ms.author="sonyama;barbkess"/>
 
 # 安裝適用於 SQL 資料倉儲的 Visual Studio 2015 和 SSDT
 
-若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2015 並搭配最新版本的 SQL Server Data Tools (SSDT)。Visual Studio 2013 搭配 SSDT 也支援回溯相容性。
+若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2015 並搭配最新版本的 SQL Server Data Tools (SSDT)。Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。
 
-搭配使用 Visual Studio 和 SSDT 可讓您使用 SQL Server 物件 Explorer，經由視覺化方式瀏覽資料表、檢視、預存程序和 SQL 資料倉儲中的其他許多物件，以及執行查詢。
+搭配使用 Visual Studio 和 SSDT 可讓您使用 SQL Server 物件總管，經由視覺化方式瀏覽資料表、檢視、預存程序和 SQL 資料倉儲中的其他許多物件，以及執行查詢。
 
 > [AZURE.NOTE] SQL 資料倉儲尚未支援 Visual Studio 資料庫專案。此功能將會加入未來的版本中。
 
@@ -56,4 +56,4 @@
 [安裝 Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
 [SSDT 下載]: https://msdn.microsoft.com/library/mt204009.aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->
