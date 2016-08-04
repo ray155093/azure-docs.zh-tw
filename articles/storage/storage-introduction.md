@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/08/2016"
+	ms.date="07/21/2016"
 	ms.author="tamram"/>
 
 # Microsoft Azure 儲存體簡介
@@ -138,7 +138,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
 
-- **本地備援儲存體 (LRS)。** 本地備援儲存體可維護三個資料複本。LRS 會在單一區域的單一設備內複寫三次。LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一設備的故障。  
+- **本地備援儲存體 (LRS)。** 本地備援儲存體可維護三個資料複本。LRS 會在單一區域的單一設備內複寫三次。LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一設備的故障。
   
 	使用 LRS 可享有折扣費率。如需最高的持久性，建議您採用異地備援儲存體，如下所述。
 
@@ -208,7 +208,9 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 
 ### 工具和公用程式
 
-- [Azure SDK 及工具](https://azure.microsoft.com/downloads/)
+- [Azure 儲存體總管](http://go.microsoft.com/fwlink/?LinkID=822673&clcid=0x409)
+- [Azure 儲存體用戶端工具](storage-explorers.md)
+- [Azure SDK 及工具](https://azure.microsoft.com/tools/)
 - [Azure 儲存體模擬器](http://www.microsoft.com/download/details.aspx?id=43709)
 - [Azure PowerShell](../powershell-install-configure.md)
 - [AzCopy 命令列公用程式](http://aka.ms/downloadazcopy)
@@ -265,4 +267,4 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 - [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

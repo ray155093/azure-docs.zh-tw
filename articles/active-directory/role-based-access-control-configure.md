@@ -1,10 +1,10 @@
 <properties
 	pageTitle="在 Azure 入口網站中使用角色型存取控制 | Microsoft Azure"
-	description="在 Azure 入口網站中使用角色型存取控制開始進行存取管理。使用角色指派在您的目錄中指派權限。"
+	description="在 Azure 入口網站中使用角色型存取控制開始進行存取管理。使用角色指派將權限指派給您的資源。"
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,10 +13,10 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="05/03/2016"
+	ms.date="07/21/2016"
 	ms.author="kgremban"/>
 
-# 使用角色指派來管理 Azure Active Directory 資源的存取權
+# 使用角色指派來管理 Azure 訂用帳戶資源的存取權
 
 Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。使用 RBAC，您可以僅授與使用者執行其作業所需的存取權。本文將協助您在 Azure 入口網站中啟動並執行 RBAC。如果您需要有關 RBAC 如何協助您管理存取權的詳細資訊，請參閱[什麼是角色型存取控制](role-based-access-control-what-is.md)。
 
@@ -26,7 +26,7 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 1. 選取左側導覽列中的 [資源群組] 圖示。![資源群組 - 圖示](./media/role-based-access-control-configure/resourcegroups_icon.png)
 2. 從 [資源群組] 刀鋒視窗選取資源群組的名稱。
 3. 選取 [資源群組] 刀鋒視窗右上方的 [使用者]。![使用者 - 圖示](./media/role-based-access-control-configure/users_icon.png)
-4. [使用者] 刀鋒視窗會列出已獲得資源群組存取權的所有使用者、群組和應用程式。  
+4. [使用者] 刀鋒視窗會列出已獲得資源群組存取權的所有使用者、群組和應用程式。
 
 	![使用者刀鋒視窗 - 繼承的存取權和指派的存取權螢幕擷取畫面](./media/role-based-access-control-configure/view-access.png)
 
@@ -38,9 +38,9 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 ## 新增存取權
 您可從角色指派範圍內的資源、資源群組或訂用帳戶授與存取權。
 
-1. 在 [使用者] 刀鋒視窗上選取 [新增]。![新增 - 圖示](./media/role-based-access-control-configure/add_icon.png)  
+1. 在 [使用者] 刀鋒視窗上選取 [新增]。![新增 - 圖示](./media/role-based-access-control-configure/add_icon.png)
 2. 從 [選取角色] 刀鋒視窗選取您要指派的角色。
-3. 選取目錄中您要授與存取權的使用者、群組或應用程式。您可以使用顯示名稱、電子郵件地址和物件識別碼來搜尋目錄。  
+3. 選取目錄中您要授與存取權的使用者、群組或應用程式。您可以使用顯示名稱、電子郵件地址和物件識別碼來搜尋目錄。
 
 	![新增使用者刀鋒視窗 - 搜尋螢幕擷取畫面](./media/role-based-access-control-configure/grant-access2.png)
 
@@ -70,4 +70,4 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 - 請參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 - 為自己定義 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

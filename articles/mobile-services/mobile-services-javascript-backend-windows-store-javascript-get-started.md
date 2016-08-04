@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="javascript"
 	ms.topic="get-started-article"
-	ms.date="03/06/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 開始使用行動服務
@@ -45,7 +45,7 @@
 
 2. 在快速入門索引標籤中，按一下 [Choose platform] 下的 [Windows]，並展開 [Create a new Windows Store app]。
 
-3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013][Visual Studio 2013 Express for Windows] (如果您尚未這麼做)。
+3. 在您的本機電腦或虛擬機器下載並安裝 [Visual Studio 2013][Visual Studio 2013 Express for Windows] \(如果您尚未這麼做)。
 
 4. 按一下 [Create TodoItem table] 以建立儲存應用程式資料的資料表。
 
@@ -91,4 +91,4 @@
 [Mobile Services SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -21,7 +21,7 @@ Application Insights 目前僅供預覽。
 
 [AZURE.INCLUDE [app-insights-selector-get-started](../../includes/app-insights-selector-get-started.md)]
 
-[Application Insights](https://azure.microsoft.com/services/application-insights/) 是一項可延伸的分析服務，可幫助您了解即時應用程式的效能和使用情形。使用它可[偵測及診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，以及 [撰寫程式碼][api]來追蹤使用者對 app 執行的動作。
+[Application Insights](https://azure.microsoft.com/services/application-insights/) 是一項可延伸的分析服務，可幫助您了解即時應用程式的效能和使用情形。使用它可[偵測及診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，以及 [撰寫程式碼][api]來追蹤使用者對應用程式執行的動作。
 
 ![範例資料](./media/app-insights-java-get-started/5-results.png)
 
@@ -162,6 +162,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 * 檢測金鑰會隨著遙測的每個項目傳送，並告知 Application Insights 在您的資源中顯示它。
 * HTTP 要求元件是選用的。它會自動將要求和回應時間的遙測傳送到入口網站。
 * 事件相互關聯是 HTTP 要求元件的補充。它會指派識別碼給伺服器收到的每個要求，並將它加入為遙測的每個項目的屬性，作為 'Operation.Id' 屬性。它可讓您相互關聯與每個要求關聯的遙測，方法是在[診斷搜尋][diagnostic]中設定篩選器。
+* 可以從 Azure 入口網站以動態方式將 Application Insight 金鑰當作系統屬性傳遞 (-DAPPLICATION\_INSIGHTS\_IKEY=your\_ikey)。如果未定義任何屬性，它會檢查 Azure Appsetting 中的環境變數 (APPLICATION\_INSIGHTS\_IKEY)。如果未定義這兩個屬性，則會使用 ApplicationInsights.xml 中的預設 InstrumentationKey。這有助於動態管理不同環境的不同 InstrumentationKey。
 
 ### 設定檢測金鑰的替代方法
 
@@ -412,4 +413,4 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [metrics]: app-insights-metrics-explorer.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

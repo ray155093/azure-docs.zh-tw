@@ -399,9 +399,9 @@
 ##將通知傳送至您的應用程式
 
 
-在 Azure 傳統入口網站中透過通知中樞上的偵錯索引標籤 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中測試通知的接收。
+在 [Azure 入口網站](https://portal.azure.com/)中使用通知中樞上的 [測試傳送] 案例 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中快速測試通知的接收。
 
-![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-debug.png)
+![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
 
 推播通知通常會以後端服務傳送，例如行動服務或使用相容程式庫的 ASP.NET。如果程式庫不適用於您的後端，也可以直接使用 REST API 來傳送通知訊息。
 
@@ -503,4 +503,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [百度入口網站]: http://www.baidu.com/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

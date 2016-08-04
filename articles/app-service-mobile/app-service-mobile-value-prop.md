@@ -18,7 +18,7 @@
 
 # <a name="getting-started"> </a>什麼是行動應用程式？
 
-Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適用於專業開發人員，具有一組豐富的功能可用於 Web、行動和整合案例。*Azure App Service* 中的「行動應用程式」具有高擴充性且可供全球使用，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。
+Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) 產品，適用於專業開發人員，具有一組豐富的功能可用於 Web、行動和整合案例。*Azure App Service* 中的「行動應用程式」具有高擴充性且可供全球使用，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。
 
 ![行動應用程式](./media/app-service-mobile-value-prop/overview.png)
 
@@ -33,16 +33,16 @@ Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適
 ## 行動應用程式功能
 下列功能對於具備雲端功能的行動開發十分重要︰
 
-- 驗證和授權 - 從不斷成長的識別提供者 (包括適用於企業驗證的 Azure Active Directory，以及 Facebook、Google、Twitter 和 Microsoft 帳戶等社交提供者) 清單中選取。Azure Mobile Apps 可為每個提供者提供 OAuth 2.0 服務。您也可以為識別提供者整合 SDK，以取得提供者特定功能。
+- **驗證和授權** - 從不斷成長的識別提供者 (包括適用於企業驗證的 Azure Active Directory，以及 Facebook、Google、Twitter 和 Microsoft 帳戶等社交提供者) 清單中選取。Azure Mobile Apps 可為每個提供者提供 OAuth 2.0 服務。您也可以為識別提供者整合 SDK，以取得提供者特定功能。
 
   深入探索我們的[驗證功能]。
 
-- 資料存取 -Azure Mobile Apps 提供了已連結至 SQL Azure 或內部部署 SQL Server 且適合行動用途的 OData v3 資料來源。這項服務以 Entity Framework 為基礎，可讓您輕鬆地與其他 NoSQL 和 SQL 資料提供者整合，包括 [Azure 資料表儲存體]、MongoDB、[DocumentDB] 和 SaaS API 提供者 (如 Office 365 和 Salesforce.com)。
-- 離線同步處理 - 我們的用戶端 SDK 可讓您輕鬆地建置強大和回應靈敏的行動應用程式，而這類應用程式利用可與後端資料自動同步處理的離線資料集運作 (包括衝突解決支援)。
+- **資料存取** -Azure Mobile Apps 提供了已連結至 SQL Azure 或內部部署 SQL Server 且適合行動用途的 OData v3 資料來源。這項服務以 Entity Framework 為基礎，可讓您輕鬆地與其他 NoSQL 和 SQL 資料提供者整合，包括 [Azure 資料表儲存體]、MongoDB、[DocumentDB] 和 SaaS API 提供者 (如 Office 365 和 Salesforce.com)。
+- **離線同步處理** - 我們的用戶端 SDK 可讓您輕鬆地建置強大和回應靈敏的行動應用程式，而這類應用程式利用可與後端資料自動同步處理的離線資料集運作 (包括衝突解決支援)。
 
   深入探索我們的[資料功能]。
 
-- 推播通知 - 我們的用戶端 SDK 與 Azure 通知中樞的註冊功能緊密整合，可讓您將推播通知同時傳送給數百萬個使用者。
+- **推播通知** - 我們的用戶端 SDK 與 Azure 通知中樞的註冊功能緊密整合，可讓您將推播通知同時傳送給數百萬個使用者。
 
   深入探索我們的[推播通知功能]。
 
@@ -55,19 +55,19 @@ Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適
 
   深入探索[自動調整]。
 
-- 預備環境 - App Service 可以執行多個版本的網站，讓您能夠執行 A / B 測試、在較大型 DevOps 方案中進行生產環境測試，以及就地預備新的後端。
+- **預備環境** - App Service 可以執行多個版本的網站，讓您能夠執行 A / B 測試、在較大型 DevOps 方案中進行生產環境測試，以及就地預備新的後端。
 
   深入探索[預備環境]。
 
-- 連續部署 - App Service 可與常見 SCM 系統整合，可讓您將新版的後端發送至 SCM 系統的分支，以便自動部署。
+- **連續部署** - App Service 可與常見 SCM 系統整合，可讓您將新版的後端發送至 SCM 系統的分支，以便自動部署。
 
   深入探索[部署選項]。
 
-- 虛擬網路 - App Service 可以使用虛擬網路、ExpressRoute 或混合式連線，連接到內部部署資源。
+- **虛擬網路** - App Service 可以使用虛擬網路、ExpressRoute 或混合式連線，連接到內部部署資源。
 
   深入探索[混合式連線]、[虛擬網路]和 [ExpressRoute]。
 
-- 隔離 / 專用的環境 - App Service 可以在一個完全隔離且專用的環境中執行，以高規格的方式安全地執行 Azure App Service 應用程式。這很適合於需要很高規格、隔離或安全網路存取的應用程式工作負載。
+- **隔離 / 專用的環境** - App Service 可以在一個完全隔離且專用的環境中執行，以高規格的方式安全地執行 Azure App Service 應用程式。這很適合於需要很高規格、隔離或安全網路存取的應用程式工作負載。
 
   深入探索 [App Service 環境]。
 
@@ -103,4 +103,4 @@ Azure 應用程式服務是完全受管理的平台即服務 (PaaS) 產品，適
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
 [學習地圖]: https://azure.microsoft.com/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0511_2016---->
+<!---HONumber=AcomDC_0727_2016-->

@@ -34,7 +34,7 @@ IoT 套件遠端監視 [預先設定解決方案][lnk-preconfigured-solutions] �
 
 ## 模擬的裝置
 
-在預先設定解決方案中，模擬的裝置會表示冷卻裝置 (例如建築物空調或設備空氣處理單位)。當您部署預先設定解決方案時，也會自動佈建四個在 [Azure WebJob][lnk-webjobs] 中執行的模擬裝置。模擬裝置讓您可以輕鬆探索解決方案的行為，而不需要部署任何實體裝置。若要部署真實的實體裝置，請參閱 [將裝置連接至遠端監視預先設定解決方案][lnk-connectyourdevice] 教學課程。
+在預先設定解決方案中，模擬的裝置會表示冷卻裝置 (例如建築物空調或設備空氣處理單位)。當您部署預先設定解決方案時，也會自動佈建四個在 [Azure WebJob][lnk-webjobs] 中執行的模擬裝置。模擬裝置讓您可以輕鬆探索解決方案的行為，而不需要部署任何實體裝置。若要部署真實的實體裝置，請參閱 [將裝置連接至遠端監視預先設定解決方案][lnk-connect-rm] 教學課程。
 
 每個模擬裝置可以傳送下列訊息類型至 IoT 中樞︰
 
@@ -218,12 +218,17 @@ Web 應用程式中的此頁面會使用 PowerBI javascript 控制項 (請參閱
 - [IoT 套件 - 幕後 - 遠端監視](http://social.technet.microsoft.com/wiki/contents/articles/32941.iot-suite-under-the-hood-remote-monitoring.aspx)
 - [IoT 套件 - 遠端監視 - 新增即時與模擬裝置](http://social.technet.microsoft.com/wiki/contents/articles/32975.iot-suite-remote-monitoring-adding-live-and-simulated-devices.aspx)
 
+您可以繼續閱讀下列文章，了解如何開始使用 IoT 套件︰
+
+- [將裝置連接至遠端監視預先設定方案][lnk-connect-rm]
+- [azureiotsuite.com 網站的權限][lnk-permissions]
 
 [lnk-preconfigured-solutions]: iot-suite-what-are-preconfigured-solutions.md
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
-[lnk-connectyourdevice]: iot-suite-connecting-devices.md
 [lnk-iothub]: https://azure.microsoft.com/documentation/services/iot-hub/
 [lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-webjobs]: https://azure.microsoft.com/documentation/articles/websites-webjobs-resources/
+[lnk-connect-rm]: iot-suite-connecting-devices.md
+[lnk-permissions]: iot-suite-permissions.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="開始使用適用於 Windows 市集應用程式的 Azure 通知中樞 | Microsoft Azure"
-	description="在本教學課程中，您會了解如何使用 Azure 通知中樞，將推播通知傳送到 Windows 市集或 Windows Phone 8.1 (非 Silverlight) 應用程式。"
+	pageTitle="開始使用適用於 Windows 通用平台應用程式的 Azure 通知中樞 | Microsoft Azure"
+	description="在本教學課程中，您將了解如何使用 Azure 通知中樞，將通知推播至 Windows 通用平台應用程式。"
 	services="notification-hubs"
 	documentationCenter="windows"
 	authors="wesmc7777"
@@ -13,16 +13,18 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="06/29/2016"
+	ms.date="07/21/2016"
 	ms.author="wesmc"/>
 
-# 開始使用適用於 Windows 市集應用程式的通知中樞
+# 開始使用適用於 Windows 通用平台應用程式的通知中樞
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ##概觀
 
-本教學課程將示範如何使用 Azure 通知中樞，以將推播通知傳送到 Windows 市集或 Windows Phone 8.1 (非 Silverlight) 應用程式。如果您的目標是 Windows Phone 8.1 Silverlight，請參閱 [Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md) 版本。在本教學課程中，您將使用 Windows 推播通知服務 (WNS)，建立可接收推播通知的空白 Windows 市集應用程式。完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。
+本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Windows 通用平台 (UWP) 應用程式。
+
+在本教學課程中，您將使用 Windows 推播通知服務 (WNS)，建立可接收推播通知的空白 Windows 市集應用程式。完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。
 
 
 ## 開始之前
@@ -37,19 +39,23 @@
 
 本教學課程需要下列各項：
 
-+ Microsoft Visual Studio Express 2013 for Windows (含 Update 2) 或更新版本 <br/> 若要建立通用應用程式專案，則必須具備這個版本的 Visual Studio。如果您要建立 Windows 市集應用程式，您需要 Visual Studio 2012 Express for Windows 8。
++ [Microsoft Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs) 或更新版本
+
++ [已安裝通用 Windows 應用程式開發工具](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
+
++ 作用中的 Azure 帳戶 <br/> 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F)。
 
 + 有效的 Windows 市集帳戶
 
-+ 作用中的 Azure 帳戶 <br/> 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F)。
 
-完成本教學課程是 Windows 市集應用程式所有其他通知中心教學課程的先決條件。
+
+完成本教學課程是 Windows 通用平台應用程式所有其他通知中樞教學課程的先決條件。
 
 ##向 Windows 市集註冊應用程式
 
-若要傳送推播通知給 Windows 市集應用程式，您必須將您的 App 與 Windows 市集產生關聯。接著您必須設定您的通知中心，以便與 WNS 進行整合。
+若要傳送推播通知給 Windows UWP 應用程式，您必須將您的應用程式與 Windows 市集產生關聯。接著您必須設定您的通知中心，以便與 WNS 進行整合。
 
-1. 如果您尚未註冊您的應用程式，請瀏覽至 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?LinkID=266582)，使用 Microsoft 帳戶登入，然後按一下 [建立新的應用程式]。
+1. 如果您尚未註冊您的應用程式，請瀏覽至 [Windows 開發人員中心](https://dev.windows.com/overview)，使用 Microsoft 帳戶登入，然後按一下 [建立新的應用程式]。
 
 
 2. 輸入您的 App 名稱，然後按一下 [保留應用程式名稱]。
@@ -58,43 +64,46 @@
 
    	This creates a new Windows Store registration for your app.
 
-3. 在 Visual Studio 中，使用 [空白應用程式] 範本來建立新的 Visual C# 市集應用程式專案。
+3. 在 Visual Studio 中，使用 [空白應用程式] 範本來建立新的 Visual C# 市集應用程式專案，然後按一下 [確定]。
 
-   	![][2]
+   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-windows-universal-app.png)
 
-4. 在 [方案總管] 中，以滑鼠右鍵按一下 Windows 市集應用程式專案，然後依序按一下 [市集] 和 [將應用程式與市集建立關聯...]。
+4. 接受目標和最小平台版本的預設值。
 
-   	![][3]
+
+5. 在 [方案總管] 中，以滑鼠右鍵按一下 Windows 市集應用程式專案，然後依序按一下 [市集] 和 [將應用程式與市集建立關聯...]。
+
+   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-associate-win8-app.png)
+
 
    	隨即顯示 [將您的應用程式與 Windows 市集建立關聯] 精靈。
 
-5. 在此精靈中，按一下 [登入]，然後使用您的 Microsoft 帳戶登入。
+6. 在此精靈中，按一下 [登入]，然後使用您的 Microsoft 帳戶登入。
 
-6. 按一下您在步驟 2 中註冊的應用程式，按 [下一步]，然後按一下 [關聯]。
+7. 按一下您在步驟 2 中註冊的應用程式，按 [下一步]，然後按一下 [關聯]。
 
-   	![][4]
+   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-associate-app-name.png)
 
    	這會將所需的 Windows 市集註冊資訊新增至應用程式資訊清單。
 
-7. (選用) 針對 Windows Phone 市集應用程式專案重複步驟 4–6。
+8. 回到新應用程式的 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?LinkID=266582)頁面，依序按一下 [服務]、[推播通知]，然後按一下 [Windows 推播通知服務 (WNS) 和 Microsoft Azure 行動應用程式] 底下的 [線上服務網站]。
 
-8. 回到新應用程式的 [Windows 開發人員中心](http://go.microsoft.com/fwlink/p/?LinkID=266582)頁面，依序按一下 [服務]、[推播通知]，然後按一下「Windows 推播通知服務 (WNS) 和 Microsoft Azure 行動服務」底下的 [線上服務網站]。
+   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hubs-uwp-app-live-services.png)
 
-   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hubs-win8-app-live-services.png)
+9. 在您的應用程式的註冊頁面上，記下位於 [Windows 市集] 平台設定中的 [應用程式密碼] 和 [封裝安全性識別碼 (SID)]。
 
-9. 在 [應用程式設定] 索引標籤上，記下 [用戶端密碼] 和 [封裝安全性識別碼 (SID)] 的值。
+   	![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hubs-uwp-app-push-auth.png)
 
-   	![][6]
 
  	> [AZURE.WARNING]
-	用戶端密碼和封裝 SID 是重要的安全性認證。請勿與任何人共用這些值，或與您的應用程式一起散發密碼。
+	應用程式密碼與封裝 SID 是重要的安全性認證。請勿與任何人共用這些值，或與您的應用程式一起散發密碼。
 
 ##設定您的通知中樞
 
 [AZURE.INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 <ol start="7">
-<li><p>選取頂端的 [設定]<b></b> 索引標籤，輸入您在上一節中從 WNS 取得的 [用戶端密碼]<b></b> 和 [封裝 SID]<b></b> 值，然後按一下 [儲存]<b></b>。</p>
+<li><p>選取 [通知服務]<b></b> 選項和 [Windows (WNS)]<b></b> 選項。然後在 [安全性金鑰]<b></b> 欄位中輸入<b>應用程式密碼</b>。輸入您在上一節中從 WNS 取得的 [封裝 SID]<b></b> 值，然後按一下 [儲存]<b></b>。</p>
 </li>
 </ol>
 
@@ -109,13 +118,13 @@
 
 	此時會顯示 [管理 NuGet 封裝] 對話方塊。
 
-2. 搜尋 `WindowsAzure.Messaging.Managed`按一下 [**安裝**]、選取方案中的所有專案，並接受使用條款。
+2. 搜尋 `WindowsAzure.Messaging.Managed`，然後按一下 [**安裝**] 並接受使用條款。
 
 	![][20]
 
-	此時會在所有專案中使用 <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet 封裝</a>下載、安裝並新增適用於 Windows 的 Azure 訊息程式庫參考。
+	這會使用 <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">WindowsAzure.Messaging.Managed NuGet 封裝</a>來下載、安裝並新增適用於 Windows 的 Azure 傳訊程式庫參考。
 
-3. 開啟 App.xaml.cs 專案檔案，並新增下列 `using` 陳述式。在通用專案中，此檔案位於 `<project_name>.Shared` 資料夾中。
+3. 開啟 App.xaml.cs 專案檔案，並新增下列 `using` 陳述式。
 
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
@@ -129,7 +138,7 @@
         {
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-            var hub = new NotificationHub("<hub name>", "<connection string with listen access>");
+            var hub = new NotificationHub("< your hub name>", "<Your DefaultListenSharedAccessSignature connection string>");
 			var result = await hub.RegisterNativeAsync(channel.Uri);
 
             // Displays the registration ID so you know it was successful
@@ -144,7 +153,7 @@
 
     此程式碼會從 WNS 中擷取應用程式的通道 URI，然後向您的通知中樞註冊該通道 URI。
 
-    >[AZURE.NOTE]請務必使用出現在 [Azure 傳統入口網站] 的 [通知中樞] 索引標籤上的通知中樞名稱，來取代 "hub name" 預留位置 (例如，上一個範例中的 **mynotificationhub2**)。另請使用在上一節中取得的 **DefaultListenSharedAccessSignature** 連線字串，來取代連線字串預留位置。
+    >[AZURE.NOTE] 請務必使用出現在 Azure 入口網站中的通知中樞名稱，取代 "your hub name" 預留位置。此外，使用您在上一節中從通知中樞的 [存取原則] 頁面取得的 **DefaultListenSharedAccessSignature** 連接字串，取代連接字串預留位置。
 
 5. 在 App.xaml.cs 中的 **OnLaunched** 事件處理常式頂端，將下列呼叫新增至新 **InitNotificationsAsync** 方法：
 
@@ -152,19 +161,10 @@
 
     這會保證每次啟動應用程式時，通道 URI 便會在通知中樞中註冊。
 
-6. 在 [方案總管] 中，按兩下 Windows 市集應用程式的 **Package.appxmanifest**，然後將 [通知] 中的 [支援快顯通知] 設為 [是]：
-
-   	![][18]
-
-   	從 [檔案] 功能表中，按一下 [全部儲存]。
-
-7. (選用) 針對 Windows Phone 市集應用程式專案重複上一個步驟。
-
-8. 按 **F5** 鍵以執行應用程式。包含註冊金鑰的快顯對話方塊隨即顯示。
+6. 按 **F5** 鍵以執行應用程式。包含註冊金鑰的快顯對話方塊隨即顯示。
 
    	![][19]
 
-9. (選擇性) 重複上一個步驟來執行 Windows Phone 專案，以在 Windows Phone 裝置上註冊應用程式。
 
 
 
@@ -172,9 +172,9 @@
 
 ##傳送通知 
 
-在 [Azure 傳統入口網站]中透過通知中樞上的偵錯索引標籤 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中測試通知的接收。
+在 [Azure 入口網站](https://portal.azure.com/)中使用通知中樞上的 [測試傳送] 案例 (如下列螢幕畫面所示) 來傳送通知，即可在應用程式中快速測試通知的接收。
 
-![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-debug.png)
+![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
 
 推播通知通常會以後端服務傳送，例如行動服務或使用相容程式庫的 ASP.NET。如果程式庫不適用於您的後端，也可以直接使用 REST API 來傳送通知訊息。
 
@@ -229,7 +229,7 @@
             await hub.SendWindowsNativeNotificationAsync(toast);
         }
 
-   	請務必使用出現在 [Azure 傳統入口網站] 的 [通知中樞] 索引標籤上的通知中樞名稱，來取代 "hub name" 預留位置。此外，請將連接字串預留位置取代為您在＜設定通知中樞＞一節中取得，且名為 **DefaultFullSharedAccessSignature** 的連接字串。
+   	請務必使用出現在 Azure 入口網站中的通知中樞名稱，取代 "hub name" 預留位置。此外，使用您在＜設定通知中樞＞一節中從通知中樞的 [存取原則] 頁面取得的 **DefaultFullSharedAccessSignature** 連接字串，取代連接字串預留位置。
 
 	>[AZURE.NOTE]請確定您使用的連接字串具有 [完整] 存取權，而非 [接聽] 存取權。接聽存取權的字串沒有傳送通知的權限。
 
@@ -244,7 +244,7 @@
 
 	您將會在所有註冊裝置上收到快顯通知。按一下或點選快顯橫幅即會載入應用程式。
 
-您可以在 MSDN 上的[快顯目錄] (英文)、[磚目錄] (英文) 和[徽章概觀]主題中找到所有支援的裝載。
+您可以在 MSDN 上的[快顯目錄] \(英文)、[磚目錄] \(英文) 和[徽章概觀]主題中找到所有支援的裝載。
 
 ##後續步驟
 
@@ -252,7 +252,7 @@
 
 如果您想要按興趣群組分隔使用者，請參閱[使用通知中心傳送即時新聞]。
 
-若要深入了解通知中樞的一般資訊，請參閱[通知中樞指引]。
+若要深入了解通知中樞的一般資訊，請參閱[通知中樞指引](notification-hubs-push-notification-overview.md)。
 
 
 
@@ -260,22 +260,12 @@
 
 
 <!-- Images. -->
-[2]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-windows-universal-app.png
-[3]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-associate-win8-app.png
-[4]: ./media/notification-hubs-windows-store-dotnet-get-started/mobile-services-select-app-name.png
-[6]: ./media/notification-hubs-windows-store-dotnet-get-started/mobile-services-win8-app-push-auth.png
-[11]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-configure-wns.png
 [13]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-console-app.png
 [14]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-windows-toast.png
-[15]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-scheduler1.png
-[16]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-scheduler2.png
-[18]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-win8-app-toast.png
 [19]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-windows-reg.png
 [20]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-windows-universal-app-install-package.png
 
 <!-- URLs. -->
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
-[通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
 
 [使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-windows-dotnet-notify-users.md
 [使用通知中心傳送即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
@@ -284,4 +274,4 @@
 [磚目錄]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
 [徽章概觀]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

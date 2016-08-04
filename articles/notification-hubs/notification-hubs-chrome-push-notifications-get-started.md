@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-chrome"
 	ms.devlang="JavaScript"
 	ms.topic="hero-article"
-	ms.date="06/29/2016"
+	ms.date="07/22/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式
@@ -462,10 +462,10 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 [21]: ./media/notification-hubs-chrome-get-started/FinalFolderView.png
 
 <!-- URLs. -->
-[Chrome 應用程式通知中樞範例]: http://google.com
+[Chrome 應用程式通知中樞範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToChromeApps
 [Google 雲端主控台]: http://cloud.google.com/console
 [Azure Classic Portal]: https://manage.windowsazure.com/
-[通知中樞概觀]: http://msdn.microsoft.com/library/jj927170.aspx
+[通知中樞概觀]: notification-hubs-push-notification-overview.md
 [Chrome 應用程式概觀]: https://developer.chrome.com/apps/about_apps
 [Chrome 應用程式 GCM 範例]: https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
 [Installable Web Apps]: https://developers.google.com/chrome/apps/docs/
@@ -477,4 +477,4 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 [Azure 通知中樞通知使用者]: notification-hubs-aspnet-backend-windows-dotnet-notify-users.md
 [Azure 通知中樞即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

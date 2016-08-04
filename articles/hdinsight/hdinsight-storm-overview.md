@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/06/2016"
+   ms.date="07/27/2016"
    ms.author="larryfr"/>
 
 #Apache Storm on HDInsight 簡介：Hadoop 的即時分析
@@ -206,6 +206,12 @@ Storm 可以提供不同程度的訊息處理保證。例如，基本的 Storm �
 
 如需相關範例，請參閱 [RollingTopWords](https://github.com/nathanmarz/storm-starter/blob/master/src/jvm/storm/starter/RollingTopWords.java) 範例。
 
+##Storm 使用何種類型的記錄？
+
+Storm 使用 Apache Log4j 來記錄資訊。預設會記錄大量的資料，因此難以排序整個資訊。您可以將記錄組態檔納入 Storm 拓撲的一部分，以便控制記錄行為。
+
+如需示範如何設定記錄的拓撲範例，請參閱 Storm on HDInsight 的[以 Java 為基礎的 WordCount](hdinsight-storm-develop-java-topology.md) 範例。
+
 ##後續步驟
 
 深入了解使用 Apache Storm in HDInsight 的即時分析解決方案：
@@ -219,4 +225,4 @@ Storm 可以提供不同程度的訊息處理保證。例如，基本的 Storm �
 [apachetutorial]: https://storm.apache.org/documentation/Tutorial.html
 [gettingstarted]: hdinsight-apache-storm-tutorial-get-started-linux.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

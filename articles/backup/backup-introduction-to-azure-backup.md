@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/10/2016"
+	ms.date="07/21/2016"
 	ms.author="jimpark; trinadhk"/>
 
 # 何謂 Azure 備份？
@@ -46,7 +46,7 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | --- | --- | --- | --- |
 | Azure 備份代理程式 | <p>**是**</p> <p>您可以在 Azure 中執行的任何 Windows Server VM 上部署 Azure 備份代理程式。</p> | <p>**是**</p> <p>您可以在 Windows Server VM 或實體機器上部署備份代理程式。</p> | <p>Azure 備份保存庫</p> |
 | System Center Data Protection Manager (DPM) | <p>**是**</p><p>深入了解[如何使用 System Center DPM 保護 Azure 中的工作負載](http://blogs.technet.com/b/dpm/archive/2014/09/02/azure-iaas-workload-protection-using-data-protection-manager.aspx)。</p> | <p>**是**</p> <p>深入了解[如何保護工作負載和資料中心內的 VM](https://technet.microsoft.com/library/hh758173.aspx)。</p> | <p>本機連接的磁碟、</p> <p>Azure 備份保存庫、</p> <p>磁帶 (僅限內部部署)</p> |
-| Azure 備份伺服器 | <p>**是**</p> <p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>**是**</p> <p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>本機連接的磁碟、</p> <p>Azure 備份保存庫</p> |
+| Azure 備份伺服器 | <p>**是**</p><p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>**是**</p> <p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>本機連接的磁碟、</p> <p>Azure 備份保存庫</p> |
 | Azure 備份 (VM 延伸模組) | <p>**是**</p><p>Azure 網狀架構的一部分</p><p>適用於[備份 Azure 基礎結構即服務 (IaaS) 虛擬機器](backup-azure-vms-introduction.md)。</p> | <p>**否**</p> <p>請使用 System Center DPM 備份資料中心內的虛擬機器。</p> | <p>Azure 備份保存庫</p> |
 
 ### 元件層級的優點與限制
@@ -69,7 +69,7 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | Microsoft SQL Server | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft SharePoint | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft Exchange | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
-| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) | 
+| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
 | Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
 
 ## ARM 和 Linux 支援
@@ -79,7 +79,7 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | Azure 備份 (MARS) 代理程式 | 是 | 否 (僅限 Windows 代理程式) |
 | System Center Data Protection Manager | 是 (客體中的代理程式) | 僅限 Hyper-V (不是 Azure VM)，只能進行檔案一致的備份 |
 | Azure 備份伺服器 (MABS) | 是 (客體中的代理程式) | 僅限 Hyper-V (不是 Azure VM)，只能進行檔案一致的備份 (與 DPM 相同) |
-| Azure IaaS VM 備份 | 公開預覽中 | 公開預覽中 - Resource Manager 部署模型中的 Linux VM <br>(檔案系統層級的一致性)<br><br>是 (若為傳統部署模型中的 Linux VM) |
+| Azure IaaS VM 備份 | 是 | 是 |
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
@@ -98,7 +98,7 @@ Azure 備份服務現在可保護進階儲存體 VM。
 
 ### 還原進階儲存體 VM
 
-將進階儲存體 VM 的復原點還原到進階儲存體是常見的還原程序。不過，將進階儲存體 VM 的復原點還原至標準儲存體比較符合成本效益。如果您需要 VM 檔案的子集，則可以使用此還原類型。
+進階儲存體 VM 可以還原至進階儲存體或一般儲存體。將進階儲存體 VM 的復原點還原到進階儲存體是常見的還原程序。不過，將進階儲存體 VM 的復原點還原至標準儲存體比較符合成本效益。如果您需要 VM 檔案的子集，則可以使用此還原類型。
 
 ## 功能
 以下五個資料表概述備份功能如何處理每個元件。
@@ -228,4 +228,4 @@ Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

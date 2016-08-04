@@ -111,7 +111,12 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 
 [IoT 套件 - 幕後 -預測性維護](http://social.technet.microsoft.com/wiki/contents/articles/33527.iot-suite-under-the-hood-predictive-maintenance.aspx) TechNet 部落格文章提供預先設定之預測性維護解決方案的其他詳細資料。
 
-  
+您也可以瀏覽的一些其他功能和預先設定的 IoT 套件解決方案的功能︰
+
+- [IoT 套件的常見問題集][lnk-faq]
+- [從頭建立 IoT 安全性][lnk-security-groundup]
+
+
 [img-architecture]: media/iot-suite-predictive-walkthrough/architecture.png
 [img-resource-group]: media/iot-suite-predictive-walkthrough/resource-group.png
 [img-machine-learning]: media/iot-suite-predictive-walkthrough/machine-learning.png
@@ -125,5 +130,7 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 [lnk-cortana-analytics]: http://gallery.cortanaintelligence.com/Collection/Predictive-Maintenance-Template-3
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
+[lnk-faq]: iot-suite-faq.md
+[lnk-security-groundup]: securing-iot-ground-up.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

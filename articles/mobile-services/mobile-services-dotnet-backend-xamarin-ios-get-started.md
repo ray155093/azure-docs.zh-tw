@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="03/16/2016"
+	ms.date="07/21/2016"
 	ms.author="donnam"/>
 
 # <a name="getting-started"> </a>開始使用行動服務
 
-[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)]&nbsp;
+[AZURE.INCLUDE [mobile-services-selector-get-started](../../includes/mobile-services-selector-get-started.md)] &nbsp;
 
 [AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
 > 如需本主題的對等 Mobile Apps 版本，請參閱[建立 Xamarin.iOS 應用程式](../app-service-mobile/app-service-mobile-xamarin-ios-get-started.md)。
@@ -132,4 +132,4 @@
 [JavaScript 後端版本]: mobile-services-ios-get-started.md
 [行動服務 .NET 後端疑難排解]: mobile-services-dotnet-backend-how-to-troubleshoot.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

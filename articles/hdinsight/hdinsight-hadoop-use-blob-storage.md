@@ -152,18 +152,14 @@ Blob 儲存體可使用於結構化和非結構化資料。Blob 儲存容器以�
 	wasb[s]://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/<path>
 
 
-> [AZURE.NOTE] 在儲存體模擬器 (在 HDInsight 模擬器上執行) 上定址檔案的語法是 <i>wasb://&lt;ContainerName&gt;@storageemulator</i>。
-
-
-
-URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使用 *wasbs*)。建議盡可能使用 *wasbs*，即使存取 Azure 中相同區域內的資料也一樣。
+URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使用 *wasbs*)。建議盡可能使用 wasbs，即使存取 Azure 中相同區域內的資料也一樣。
 
 &lt;BlobStorageContainerName&gt; 是指 Azure Blob 儲存體中的容器名稱。&lt;StorageAccountName&gt; 是指 Azure 儲存體帳戶名稱。需要使用完整網域名稱 (FQDN)。
 
 如果 &lt;BlobStorageContainerName&gt; 和 &lt;StorageAccountName&gt; 都未指定，則會使用預設檔案系統。對於預設檔案系統上的檔案，您可以使用相對路徑或絕對路徑。例如，可使用下列語法來參考 HDInsight 叢集隨附的 *hadoop-mapreduce-examples.jar* 檔案：
 
-	wasb://mycontainer@myaccount.blob.core.windows.net/example/jars/hadoop-mapreduce-examples.jar
-	wasb:///example/jars/hadoop-mapreduce-examples.jar
+	wasbs://mycontainer@myaccount.blob.core.windows.net/example/jars/hadoop-mapreduce-examples.jar
+	wasbs:///example/jars/hadoop-mapreduce-examples.jar
 	/example/jars/hadoop-mapreduce-examples.jar
 
 > [AZURE.NOTE] 在 HDInsight 2.1 和 1.6 版叢集中的檔案名稱是 <i>hadoop-examples.jar</i>。
@@ -272,7 +268,7 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 	$defines = @{}
 	$defines.Add("fs.azure.account.key.$undefinedStorageAccount.blob.core.windows.net", $undefinedStorageKey)
 
-	Invoke-AzureRmHDInsightHiveJob -Defines $defines -Query "dfs -ls wasb://$undefinedContainer@$undefinedStorageAccount.blob.core.windows.net/;"
+	Invoke-AzureRmHDInsightHiveJob -Defines $defines -Query "dfs -ls wasbs://$undefinedContainer@$undefinedStorageAccount.blob.core.windows.net/;"
 
 ## 後續步驟
 
@@ -301,4 +297,4 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 [img-hdi-quick-create]: ./media/hdinsight-hadoop-use-blob-storage/HDI.QuickCreateCluster.png
 [img-hdi-custom-create-storage-account]: ./media/hdinsight-hadoop-use-blob-storage/HDI.CustomCreateStorageAccount.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -8,7 +8,7 @@
 	editor=""/>
 
 <tags 
-	ms.service="app-service-logic" 
+	ms.service="logic-apps" 
 	ms.workload="integration" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
@@ -50,4 +50,4 @@ Azure 應用程式服務中有不同的服務「層」可用。所有層都包�
 請參閱[連接器和 API 應用程式清單](app-service-logic-connectors-list.md)，以取得各類別內含的完整連接器和 API 應用程式清單，包括標準連接器、BizTalk EAI、高階連接器等。
  
 
-<!---HONumber=AcomDC_0420_2016--->
+<!---HONumber=AcomDC_0727_2016-->
