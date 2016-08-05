@@ -199,7 +199,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 2. 在 [新增節點精靈] 中，於 [選取部署方法] 頁面上，按一下 [Add Azure nodes]，然後按 [下一步]。
 
-	![Add Azure Node][add\_node1\_1]
+	![Add Azure Node][add\_node1_1]
 
 3. 在 [Specify New Nodes] 頁面上，選取您先前建立的 Azure 節點範本 (預設稱為 [Default AzureNode Template])。接著，指定 [2] 個大小為 [小型] 的節點，然後按 **[下一步]**。
 
@@ -347,4 +347,4 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 [stop_node4]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/stop_node4.png
 [view_instances2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/view_instances2.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0720_2016-->

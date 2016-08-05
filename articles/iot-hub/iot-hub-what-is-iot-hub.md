@@ -16,7 +16,7 @@
  ms.date="06/06/2016"
  ms.author="dobett"/>
 
-# 何謂 Azure IoT 中心？
+# 何謂 Azure IoT 中樞?
 
 歡迎使用 Azure IoT 中樞。本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。
 
@@ -123,4 +123,4 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!----HONumber=AcomDC_0713_2016-->
