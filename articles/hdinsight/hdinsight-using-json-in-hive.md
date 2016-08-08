@@ -56,7 +56,7 @@
 	    ]
 	}
 
-檔案位於 wasb://processjson@hditutorialdata.blob.core.windows.net/。如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。如果您想要的話，可以將檔案複製到叢集的預設容器。
+檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。如果您想要的話，可以將檔案複製到叢集的預設容器。
 
 在本教學課程中，您將使用 Hive 主控台。如需開啟 Hive 主控台的指示，請參閱[利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
 
@@ -81,7 +81,7 @@
 
 	SELECT * FROM StudentsOneLine
 
-原始 JSON 檔案位於 **wasb://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw* Hive 資料表指向原始未簡維的 JSON 文件。
+原始 JSON 檔案位於 **wasbs://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw Hive* 資料表指向原始未簡維的 JSON 文件。
 
 *StudentsOneLine* Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 */json/students/* 路徑下。
 
@@ -153,7 +153,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 	安裝完成之後，請加入新的使用者環境變數：
 
 	1. 從 Windows 畫面開啟 [**檢視進階系統設定**]。
-	2. 按一下 [**環境變數**]。  
+	2. 按一下 [**環境變數**]。
 	3. 加入新的 **JAVA\_HOME** 環境變數，其指向 **C:\\Program Files\\Java\\jdk1.7.0\_55** 或任何安裝 JDK 的位置。
 
 	![為 JDK 設定正確的組態值][image-hdi-hivejson-jdk]
@@ -260,4 +260,4 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 [image-hdi-hivejson-serde_query3]: ./media/hdinsight-using-json-in-hive/serde_query3.png
 [image-hdi-hivejson-serde_result]: ./media/hdinsight-using-json-in-hive/serde_result.png
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

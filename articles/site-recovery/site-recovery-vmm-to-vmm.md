@@ -21,10 +21,11 @@
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-vmm-to-vmm.md)
 - [傳統入口網站](site-recovery-vmm-to-vmm-classic.md)
+- [PowerShell - 資源管理員](site-recovery-vmm-to-vmm-powershell-resource-manager.md)
 
 歡迎使用 Azure Site Recovery！ 如果您想要將 System Center Virtual Machine Manager (VMM) 雲端中管理的內部部署 Hyper-V 虛擬機器複寫至次要站台，請使用本文。本文說明如何在 Azure 入口網站中使用 Azure Site Recovery 設定複寫。
 
-> [AZURE.NOTE] Azure 建立和處理資源的[部署模型](../resource-manager-deployment-model.md)有二種：Azure Resource Manager (ARM) 部署模型和傳統部署模型。Azure 也有兩個入口網站 – 支援傳統部署模型的 Azure 傳統入口網站，以及支援兩種部署模型的 Azure 入口網站。
+> [AZURE.NOTE] Azure 建立和處理資源的[部署模型](../resource-manager-deployment-model.md)有二種：Azure Resource Manager 和傳統。Azure 也有兩個入口網站 – 支援傳統部署模型的 Azure 傳統入口網站，以及支援兩種部署模型的 Azure 入口網站。
 
 
 Azure 入口網站中的 Azure Site Recovery 提供許多新功能︰
@@ -56,7 +57,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 案例元件如下：
 
 - **主要站台**︰在主要站台中，有一或多部 Hyper-V 主機伺服器執行您想要複寫的來源 VM。這些主要的主機伺服器都位於 VMM 私人雲端。
-- **次要站台**︰在次要站台中，有一或多部 Hyper-V 主機伺服器執行著數個 VM，即將作為複寫的目的地。這些主機伺服器都位於 VMM 私人雲端。雲端可位於主要伺服器 (如果您只有單一 VMM 伺服器) 或次要 VMM 伺服器上。
+- **次要站台**︰在次要站台中，有一或多部 Hyper-V 主機伺服器執行您要複寫主要 VM 的目標 VM。這些主機伺服器都位於 VMM 私人雲端。雲端可位於主要伺服器 (如果您只有單一 VMM 伺服器) 或次要 VMM 伺服器上。
 - **提供者**：在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider，並在復原服務保存庫中註冊這些服務。在 VMM 上執行的 Provider 會透過 HTTPS 443 與 Site Recovery 通訊，以複寫協調流程。資料複寫會在主要和次要 Hyper-V 主機伺服器之間發生。複寫的資料會保留於內部部署網站和網路中，不會傳送到 Azure。深入了解[隱私權](#privacy-information-for-site-recovery)。
 
 ![E2E 拓樸](./media/site-recovery-vmm-to-vmm/architecture.png)
@@ -80,7 +81,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料** 
 --- | ---
-**Azure**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。 
+**Azure**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。 
 
 
 ## 內部部署必要條件
@@ -89,9 +90,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料** 
 --- | ---
-**VMM** | 我們建議您在主要站台與次要站台中各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-single-vmm.md)。若要這樣做，您至少需要在 VMM 伺服器上設定兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。<br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>在[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和[逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)中深入了解設定 VMM 雲端的方式。<br/><br/> VMM 伺服器需要網際網路存取。 
+**VMM** | 我們建議您在主要站台與次要站台中各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-single-vmm.md)。若要這樣做，您至少需要在 VMM 伺服器上設定兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。<br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>在[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和 [Walkthrough: Creating private clouds with System Center 2012 SP1 VMM (逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端)](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx) 中深入了解設定 VMM 雲端的方式。<br/><br/> VMM 伺服器需要網際網路存取。 
 **Hyper-V** | Hyper-V 伺服器至少必須以 Hyper-V 角色執行 Windows Server 2012，並已安裝最新更新。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/> Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您正在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，則應安裝[更新 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> 如果您正在 Windows Server 2012 上的叢集中執行 Hyper-V，請注意，如果您具有以靜態 IP 位址為基礎的叢集，該叢集代理人不會自動建立。您必須手動設定叢集代理。[閱讀更多資訊](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。
-**提供者** | 在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間發生。<br/><br/> 在 VMM 伺服器上執行的提供者需要存取下列 URL：*.hypervrecoverymanager.windowsazure.com、*.accesscontrol.windows.net、*.backup.windowsazure.com、*.blob.core.windows.net、*.store.core.windows.net。<br/><br/> 此外，還要允許從 VMM 伺服器到 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。
+**提供者** | 在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間進行。<br/><br/> 在 VMM 伺服器上執行的提供者需要存取下列 URL：*.hypervrecoverymanager.windowsazure.com*、.accesscontrol.windows.net、*.backup.windowsazure.com*、.blob.core.windows.net、*.store.core.windows.net。<br/><br/> 此外，還要允許從 VMM 伺服器到 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。
 
 ## 準備部署
 
@@ -121,7 +122,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 ## 準備使用單一 VMM 伺服器進行部署
 
-如果您只有單一 VMM 伺服器，就能在 VMM 雲端中，將 Hyper-V 主機上的 VM 複寫到 [Azure](site-recovery-vmm-to-azure.md) 或次要 VMM 雲端。我們建議使用第一個選項，因為雲端之間的複寫並不是非常順暢，但是，如果您需要執行此動作，就需要執行下列動作：
+如果您只有單一 VMM 伺服器，可以在 VMM 雲端中，將 Hyper-V 主機上的 VM 複寫到 [Azure](site-recovery-vmm-to-azure.md) 或次要 VMM 雲端。我們建議使用第一個選項，因為雲端之間的複寫並不是非常順暢，但是，如果您需要執行此動作，就需要執行下列動作：
 
 1. **在 Hyper-V VM 上設定 VMM**。當我們執行此動作時，建議您將 VMM 使用的 SQL Server 執行個體共置在相同的 VM 上。因為只需建立一個 VM，這樣就能節省時間。如果您想要使用遠端 SQL Server 執行個體卻發生中斷，則必須先復原該執行個體後再復原 VMM。
 2. **確定 VMM 伺服器至少已設定兩個雲端**。其中一個雲端包含您想要複寫的 VM，另一個雲端做為次要位置。包含您要保護之 VM 的雲端必須遵守[必要條件](#on-premises-prerequisites)。
@@ -144,7 +145,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 	![新增保存庫](./media/site-recovery-vmm-to-vmm/new-vault3.png)
 
-3. 在 [名稱] 中，指定保存庫的易記識別名稱。如果您有多個訂用帳戶，請選取其中一個。
+3. 在 [名稱] 中，指定可識別保存庫的易記名稱。如果您有多個訂用帳戶，請選取其中一個。
 4. [建立新的資源群組](../resource-group-template-deploy-portal.md)或選取現有的資源群組，並指定 Azure 區域。機器將會複寫到此區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/) (英文) 中的＜各地區上市情況＞。
 4. 如果您想要從儀表板快速存取保存庫，請按一下 [釘選到儀表板] > [建立保存庫]。
 
@@ -168,9 +169,9 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 選取您要複寫的項目以及您要複寫到的位置。
 
 1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，然後按一下 [設定]。
-2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [步驟 1︰準備基礎結構] > [保護目標]。
-3. 在 [保護目標] 中，選取 [至復原站台]，然後選取 [是，利用 Hyper-V]。
-4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，然後如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，就按一下 [否]。然後按一下 [確定]。
+2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [保護目標]。
+3. 在 [保護目標] 中，選取 [到復原站台]，然後選取 [是，利用 Hyper-V]。
+4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，就按一下 [否]。然後按一下 [確定]。
 
 	![選擇目標](./media/site-recovery-vmm-to-vmm/choose-goals.png)
 
@@ -179,7 +180,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 在 VMM 伺服器上安裝 Azure Site Recovery Provider，並在保存庫中註冊伺服器。
 
-1. 按一下 [步驟 2：準備基礎結構] > [來源]。
+1. 按一下 [步驟 2: 準備基礎結構] > [來源]。
 
 	![設定來源](./media/site-recovery-vmm-to-vmm/goals-source.png)
 
@@ -212,10 +213,10 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![安裝位置](./media/site-recovery-vmm-to-vmm/provider-register.png)
 
-4. 在 [Proxy 設定] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連接到 Site Recovery 的方式。
+4. 在 [Proxy 設定] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連線到 Site Recovery 的方式。
 
-	- 如果您想要讓提供者直接連線，請選取 [不使用 Proxy 直接連線]。
-	- - 如果您想要使用伺服器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
+	- 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連線]。
+	- - 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
 	- 如果現有的 Proxy 需要驗證，或是您想要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
 	- 如果您使用自訂 proxy，您必須指定位址、連接埠及認證。
 	- 如果您使用 Proxy，您應該已經允許[必要條件](#provider-and-agent-prerequisites)中所述的 URL。
@@ -229,7 +230,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 5. 在 [註冊] > [儲存憑證的位置] 中，按 [下一步]。適用於加密的憑證與此案例無關。它只會在您複寫到 Azure 儲存體時使用。
 
-8. 在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。在叢集設定中，指定 VMM 叢集角色名稱。
+8. 在 [伺服器名稱] 中，指定可識別保存庫中 VMM 伺服器的易記名稱。在叢集設定中，指定 VMM 叢集角色名稱。
 9. 如果您想要將 VMM 伺服器上所有雲端的中繼資料與保存庫進行同步，請啟用 [同步處理雲端中繼資料]。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。按 [下一步]，完成此程序。
 
 	![伺服器註冊](./media/site-recovery-vmm-to-vmm/provider-sync.png)
@@ -290,7 +291,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 4. 在 [驗證類型] 和 [驗證連接埠] 中，指定如何驗證主要與復原 Hyper-V 主機伺服器之間的流量。除非您有正常運作的 Kerberos 環境，否則請選取 [憑證]。Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。您不需要手動執行任何動作。根據預設，連接埠 8083 和 8084 (用於憑證) 將在 Hyper-V 主機伺服器上的 Windows 防火牆中開啟。如果您確實已選取 [Kerberos]，Kerberos 票證將會用於主機伺服器的相互驗證。請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
 3. 在 [複製頻率] 中，指定您要在初始複寫後複寫差異資料的頻率 (每隔 30 秒、5 或 15 分鐘)。
 4. 在 [復原點保留] 中，針對每個復原點指定保留週期的長度 (以小時為單位)。受保護的機器可以復原到週期內的任意點。
-6. 在 [應用程式一致的快照頻率] 中，指定建立包含應用程式一致快照的復原點的頻率 (1-12 小時)。Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。確認您設定的值低於您設定的其他復原點數目。
+6. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照的復原點的頻率 (1-12 小時)。Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。確認您設定的值低於您設定的其他復原點數目。
 7. 在 [資料傳輸壓縮] 中，指定是否應該將傳輸的已複寫資料壓縮。
 8. 選取 [刪除複本 VM]，以指定如果您停用對來源 VM 的保護，則應刪除複本虛擬機器。如果啟用此設定，當您停用對來源 VM 的保護時，便會從 Site Recovery 主控台中加以移除、在 VMM 主控台中移除 VMM 的 Site Recovery 設定，並刪除複本。
 3. 在 [初始複寫方法] 中，如果您要透過網路進行複寫，請指定是否要啟動初始複寫，或將它排程。若要節省網路頻寬，您可能要將它排程在離峰時間執行。然後按一下 [確定]。
@@ -352,7 +353,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來源環境、Site Recovery 元件、網路和儲存體配置適當的資源。您可以在快速模式中執行規劃工具，以便根據 VM、磁碟和儲存體的平均數量進行估計，或在詳細模式中執行規劃工具，以輸入工作負載層級的數據。開始之前，您必須︰
 
 - 收集有關複寫環境的資訊，包括 VM、每個 VM 的磁碟和每個磁碟的儲存體。
-- 估計複寫差異資料的每日變更 (流失) 率。您可以使用[適用於 Hyper-V 複本的 Capacity Planner](https://www.microsoft.com/download/details.aspx?id=39057) 來協助您執行這項操作。
+- 估計複寫差異資料的每日變更 (流失) 率。您可以使用 [Capacity Planner for Hyper-V Replica (適用於 Hyper-V 複本的 Capacity Planner)](https://www.microsoft.com/download/details.aspx?id=39057) 來協助您執行這項操作。
 
 1.	按一下 [下載] 來下載此工具並加以執行。閱讀工具隨附的[文章](site-recovery-capacity-planner.md)。
 2.	當您完成時，請在 [是否已執行 Capacity Planner?] 中選取 [是]
@@ -380,11 +381,11 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 立即啟用複寫，如下所示︰
 
-1. 按一下 [步驟 2︰複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+複寫]，以對其他機器啟用複寫。
+1. 按一下 [步驟 2: 複寫應用程式] > [來源]。第一次啟用複寫之後，請按一下保存庫中的 [+複寫]，以對其他機器啟用複寫。
 
 	![啟用複寫](./media/site-recovery-vmm-to-vmm/enable-replication1.png)
 
-2. 在 [來源] 刀鋒視窗中，選取 VMM 伺服器和您要複寫之 Hyper-V 主機所在的雲端。然後按一下 [確定]。
+2. 在 [來源] 刀鋒視窗中，選取 VMM 伺服器和您要複寫的 Hyper-V 主機所在的雲端。然後按一下 [確定]。
 
 	![啟用複寫](./media/site-recovery-vmm-to-vmm/enable-replication2.png)
 
@@ -393,12 +394,12 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 	![啟用虛擬機器保護](./media/site-recovery-vmm-to-vmm/enable-replication5.png)
 
-您可以在 [設定] > [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。執行「完成保護」作業之後，虛擬機器即準備好進行容錯移轉。
+您可以在 [設定] > [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。執行「完成保護」工作之後，虛擬機器即準備好進行容錯移轉。
 
 
 >[AZURE.NOTE] 您也可以在 VMM 主控台中啟用虛擬機器的保護。在虛擬機器屬性 > [Azure Site Recovery] 索引標籤中的工具列上按一下 [啟用保護]。
 
-當您啟用複寫之後，就可以在 [設定] > [複寫項目] > VM 名稱中檢視 VM 的屬性。在 [基本資訊] 儀表板中，您可以看到關於 VM 複寫原則及其狀態的資訊。如需詳細資訊，按一下 [屬性]。
+當您啟用複寫之後，就可以在 [設定] > [複寫的項目] > VM 名稱中檢視 VM 的屬性。在 [基本資訊] 儀表板中，您可以看到關於 VM 的複寫原則及其狀態的資訊。如需詳細資訊，請按一下 [屬性]。
 
 ### 建立現有的虛擬機器
 
@@ -483,4 +484,4 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

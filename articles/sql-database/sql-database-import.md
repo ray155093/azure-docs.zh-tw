@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/09/2016"
+	ms.date="07/09/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -38,7 +38,7 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 
 若要從 .bacpac 匯入 SQL Database，您需要下列項目：
 
-- Azure 訂用帳戶。 
+- Azure 訂用帳戶。
 - Azure SQL Database V12 伺服器。如果沒有 V12 伺服器，請遵循本文中以下的步驟：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 - 您想要匯入 [Azure 儲存體帳戶 (標準)](../storage/storage-create-storage-account.md) Blob 容器之資料庫的 .bacpac 檔案。
 
@@ -65,7 +65,7 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
     ![選取定價層][3]
 
 1.  針對您將從 BACPAC 檔案建立的資料庫，輸入**資料庫名稱**。
-2.  選擇驗證類型，然後提供伺服器的驗證資訊。 
+2.  選擇驗證類型，然後提供伺服器的驗證資訊。
 3.  按一下 [建立]，以從 BACPAC 建立資料庫。
 
     ![建立資料庫][4]
@@ -92,13 +92,7 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 
 ## 後續步驟
 
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
-
-
-
-## 其他資源
-
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
+- 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
 
 <!--Image references-->
@@ -109,4 +103,4 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 [5]: ./media/sql-database-import/import-history.png
 [6]: ./media/sql-database-import/import-status.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

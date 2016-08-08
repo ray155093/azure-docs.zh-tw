@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="05/03/2016"
+	ms.date="07/27/2016"
 	ms.author="jeffstok"/>
 
 
@@ -29,9 +29,9 @@
 有一個新聞媒體網站提供與讀者立即有關的內容，試圖打敗競爭對手。他們透過對 Twitter 資料執行即時情感分析，來針對與讀者相關的主題使用社交媒體分析。具體來說，為了在 Twitter 上即時找出熱門話題，他們需要即時分析熱門話題的推文數量和感受度。因此基本上，他們需要以該社交媒體摘要為基礎的情感分析分析引擎。
 
 ## 必要條件
-1.	Twitter 帳戶和 [OAuth 存取權杖](https://dev.twitter.com/oauth/overview/application-owner-access-tokens) 
+1.	Twitter 帳戶和 [OAuth 存取權杖](https://dev.twitter.com/oauth/overview/application-owner-access-tokens)
 2.	從 Microsoft 下載中心下載 [TwitterClient.zip](http://download.microsoft.com/download/1/7/4/1744EE47-63D0-4B9D-9ECF-E379D15F4586/TwitterClient.zip)。
-3.	選擇性：[Github](https://github.com/Azure/azure-stream-analytics/tree/master/DataGenerators/TwitterClient) 中的 twitter 用戶端的原始程式碼 
+3.	選擇性：[Github](https://github.com/Azure/azure-stream-analytics/tree/master/DataGenerators/TwitterClient) 中的 twitter 用戶端的原始程式碼
 
 ## 建立事件中樞輸入和用戶群組
 
@@ -39,7 +39,7 @@
 
 請按照下列步驟建立事件中樞。
 
-1.	在 Azure 入口網站中，依序按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]，並提供名稱、區域，以及新的或現有的命名空間來建立新的事件中樞。  
+1.	在 Azure 入口網站中，依序按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]，並提供名稱、區域，以及新的或現有的命名空間來建立新的事件中樞。
 2.	每一個 Stream Analytics 工作應該從單一事件中樞用戶群組讀取資料，這是最好的做法。我們會帶您逐步進行下方建立用戶群組的程序，您可以在這裡深入了解。若要建立用戶群組，請瀏覽至剛剛建立的事件中樞，然後依序按一下 [用戶群組] 索引標籤、頁面最下方的 [建立]，然後提供用戶群組的名稱。
 3.	為了授權存取事件中樞，我們需要建立一個共用存取原則。按一下事件中樞的 [設定] 索引標籤。
 4.	在 [共用存取原則] 下方，建立一個擁有**管理**權限的新原則。
@@ -58,11 +58,11 @@
 請遵循下列步驟來設定應用程式：
 
 1.	[下載 TwitterClient 解決方案](http://download.microsoft.com/download/1/7/4/1744EE47-63D0-4B9D-9ECF-E379D15F4586/TwitterClient.zip)
-2.	開啟 TwitterClient.exe.config，然後將 oauth\_consumer\_key、oauth\_consumer\_secret、oauth\_token、oauth\_token\_secret 換成您的 Twitter 權杖。  
+2.	開啟 TwitterClient.exe.config，然後將 oauth\_consumer\_key、oauth\_consumer\_secret、oauth\_token、oauth\_token\_secret 換成您的 Twitter 權杖。
 
 	[產生 OAuth 存取權杖的步驟](https://dev.twitter.com/oauth/overview/application-owner-access-tokens)
 
-	請注意，您必須建立一個空白應用程式，才能產生權杖。  
+	請注意，您必須建立一個空白應用程式，才能產生權杖。
 3.	將 TwitterClient.exe.config 中的 EventHubConnectionString 和 EventHubName 值換成事件中樞連接字串和名稱。您稍早複製的連接字串會提供事件中樞連接字串和名稱，因此請務必加以區隔，並將每個項目放在正確的欄位中。
 4.	*選用：*調整搜尋關鍵字。根據預設，這個應用程式會尋找 Azure、Skype、XBox、Microsoft、Seattle。如有需要，您可以調整 TwitterClient.exe.config 的 twitter\_keywords 值。
 5.	執行 **TwitterClient.exe** 以啟動應用程式。您會看到推文事件連同 CreatedAt、Topic 和 SentimentScore 值，一起傳送到事件中樞：
@@ -82,7 +82,7 @@
 	* **區域**：選取要執行此工作的區域。請考慮將工作和事件中樞放在相同的區域以確保更好的效能，以及在區域之間傳輸資料時無須付費。
 	* **儲存體帳戶**：選擇您為在此區域內執行的所有 Stream Analytics 工作儲存監視資料時所要使用的儲存體帳戶。您可以選擇現有的儲存體帳戶，或建立新帳戶。
 
-3.	按一下左窗格中的 [STREAM ANALYTICS]，以列出 Stream Analytics 工作。  
+3.	按一下左窗格中的 [STREAM ANALYTICS]，以列出 Stream Analytics 工作。
 	![Stream Analytics service icon](./media/stream-analytics-twitter-sentiment-analysis-trends/stream-analytics-service-icon.png)
 
 4.	新工作會以 [已建立] 的狀態列出。請注意，頁面底部的 [啟動] 按鈕會停用。您必須先設定工作輸入、輸出、查詢等項目，才能啟動工作。
@@ -238,4 +238,4 @@
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

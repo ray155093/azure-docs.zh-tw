@@ -31,7 +31,7 @@
 
 1. **SQL VM 和 SQL Database 服務之間的差異為何？**
 
-	從概念上來說，在 Azure 虛擬機器上執行 SQL Server 與在遠端資料中心中執行 SQL Server 並沒什麼不同。對比之下，[SQL Database](../sql-database/sql-database-technical-overview.md) 可提供資料庫即服務的功能。使用 SQL Database 時，您無法存取主控資料庫的機器。如需完整的比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/media/data-management-azure-sql-database-and-sql-server-iaas.md)。
+	從概念上來說，在 Azure 虛擬機器上執行 SQL Server 與在遠端資料中心中執行 SQL Server 並沒什麼不同。對比之下，[SQL Database](../sql-database/sql-database-technical-overview.md) 可提供資料庫即服務的功能。使用 SQL Database 時，您無法存取主控資料庫的機器。如需完整的比較，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md)。
 
 1. **如何將內部部署 SQL Server 資料庫移轉至雲端？**
 
@@ -77,4 +77,4 @@
 - [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md)
 - [Azure 虛擬機器中的 SQL Server 應用程式模式和開發策略](virtual-machines-windows-sql-server-app-patterns-dev-strategies.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

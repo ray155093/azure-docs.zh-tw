@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -135,7 +135,7 @@ SHIPZIP | 99362
 - 形成邏輯應用程式的動作名稱時，連接器會截斷 Informix 資料表名稱。例如，[大量插入 NEWORDERS] 作業會被截斷成 [大量插入 NEW]。
 - Informix 資料庫的資料表和資料行名稱可能會區分大小寫。例如，Bulk Insert 作業陣列資料行名稱可能需要以小寫 ("custid") 而不是大寫 ("CUSTID") 指定。
 - 略過身分識別欄位 (例如 ORDID)、可為 null 的資料行 (例如 SHIPDATE) 和具有預設值的資料行 (例如 ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY)，Informix 資料庫即可產生值。
-- 指定「今天」和「明天」，Informix 連接器即可產生「目前日期」和「目前日期 + 1 天」函式 (例如 REQDATE)。 
+- 指定「今天」和「明天」，Informix 連接器即可產生「目前日期」和「目前日期 + 1 天」函式 (例如 REQDATE)。
 
 
 ## 以 Informix 連接器觸發程序讀取、變更或刪除資料的邏輯應用程式 ##
@@ -188,7 +188,7 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 ## 建立使用 Informix 連接器來移除資料的邏輯應用程式 ##
 您可以從 Azure Marketplace 建立新的邏輯應用程式，然後使用 Informix 連接器動作來移除客戶訂單。例如，您可以使用 Informix 連接器條件式刪除作業來處理 SQL DELETE 陳述式 (DELETE FROM NEWORDERS WHERE ORDID >= 10000)。
 
-1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。 
+1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
 2. 在 [建立邏輯應用程式] 刀鋒視窗中，輸入 [名稱]，例如 **RemoveOrdersInformix**。
 3. 選取或定義其他設定 (例如服務計劃、資源群組) 的值。
 4. 設定應如下所示。按一下 [建立]：  
@@ -285,5 +285,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [13]: ./media/app-service-logic-connector-informix/LogicApp_RemoveOrdersInformix_TriggersActions.png
 [14]: ./media/app-service-logic-connector-informix/LogicApp_RemoveOrdersInformix_Outputs.png
 
-<!---HONumber=AcomDC_0601_2016-->
-
+<!---HONumber=AcomDC_0727_2016-->

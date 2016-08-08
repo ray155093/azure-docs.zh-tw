@@ -13,12 +13,12 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="04/21/2016"
+	ms.date="07/25/2016"
 	ms.author="marsma" />
 
-# 使用並行節點工作最大化 Azure Batch 運算資源使用量
+# 使用並行節點工作最大化 Azure Batch 計算資源使用量
 
-了解如何在您的 Azure Batch 集區中每個計算節點上，同時執行一個以上的工作。在集區的計算節點上啟用並行工作執行，即可在集區中較少數量的節點上最大化資源使用量。對於某些工作負載來說，這會產生縮短作業時間和降低成本的效益。
+藉由在 Azure Batch 集區的每個計算模式同時執行一個以上的工作，您可以用較少的集中區節點將資源使用量最大化。對於某些工作負載來說，這會產生縮短作業時間和降低成本的效益。
 
 雖然某些案例受益於將節點的所有資源配置給單一工作，但是許多案例受益於允許多個工作共用這些資源：
 
@@ -32,21 +32,21 @@
 
 ## 範例案例
 
-以下範例說明平行工作執行的優點。讓我們假設您的工作應用程式有 CPU 和記憶體需求，這樣 [Standard\_D1](../cloud-services/cloud-services-sizes-specs.md#general-purpose-d) 節點大小是合適的。但是為了在要求的時間內執行作業，需要 1000 個這類節點。
+為了舉例說明平行工作執行的優點，讓我們假設您的工作應用程式 CPU 和記憶體需求的 [Standard\_D1](../cloud-services/cloud-services-sizes-specs.md#general-purpose-d) 節點大小是足夠的。但是為了在要求的時間內完成作業，需要 1000 個這類節點。
 
-如果不使用 Standard\_D1 節點 (具有 1 個 CPU 核新)，您可以採用具有 16 個核心的 [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md#memory-intensive-d) 節點，並啟用平行工作執行。在此情況下，不需使用 1000 個節點，而是可以使用「16 倍較少的節點」，僅需 63 個節點。如果每個節點需要大型應用程式檔案或參考資料，這樣可大幅改進作業執行時間和效率。
+如果不使用 Standard\_D1 節點 (具有 1 個 CPU 核心)，您可以採用具有 16 個核心的 [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md#memory-intensive-d) 節點，並啟用平行工作執行。因此，不需使用 1000 個節點，而只需 63 個節點，用量「少了16 倍」。此外，由於資料只需複製到 16 個節點，如果每個節點都需要大型應用程式檔案或參考資料，那麼作業持續時間和效率均能再次獲得改善。
 
 ## 啟用平行工作執行
 
-針對集區層級的平行工作執行，您會在 Batch 解決方案中設定計算節點。使用 Batch .NET 程式庫時，您會在建立集區時設定 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性。如果您使用 Batch REST API，您會在集區建立期間於要求主體中設定 [maxTasksPerNode][rest_addpool] 元素。
+您可以針對集區層級的平行工作執行，設定計算節點。使用 Batch .NET 程式庫時，請在建立集區時設定 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性。如果您使用 Batch REST API，請在集區建立期間於要求本文中設定 [maxTasksPerNode][rest_addpool] 元素。
 
-Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大]\(四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
+Azure Batch 允許您將每個節點的最大工作數目設定為多達節點核心數目的 4 倍 (4x)。例如，如果集區設定的節點大小為 [大] (四個核心)，則 `maxTasksPerNode` 可以設定為 16。如需每個節點大小的核心數目的詳細資料，請參閱[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。如需服務限制的詳細資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
 > [AZURE.TIP] 為您的集區建構[自動調整公式][enable_autoscaling]時，請務必考慮 `maxTasksPerNode` 值。例如，評估 `$RunningTasks` 的公式可能大幅受到每個節點的工作增加的影響。如需詳細資訊，請參閱[自動調整 Azure Batch 集區中的運算節點](batch-automatic-scaling.md)。
 
 ## 工作的分佈
 
-在集區內的運算節點能夠同時執行工作時，務必指定您要如何跨集區內的節點分佈您的工作。
+在集區內的計算節點能夠同時執行工作時，請務必指定您希望在集區內進行跨節點分佈工作的方式。
 
 使用 [CloudPool.TaskSchedulingPolicy][task_schedule] 屬性，您可以指定工作應該跨集區中的所有節點平均指派 (「散佈」)。或者，您可以在工作指派到集區中其他節點之前，盡可能將最多工作指派給每個節點 (「封裝」)。
 
@@ -90,9 +90,9 @@ pool.Commit();
 
 > [AZURE.NOTE] 您只能在建立集區時設定 `maxTasksPerNode` 元素和 [MaxTasksPerComputeNode][maxtasks_net] 屬性。建立集區後無法加以修改。
 
-## 探索範例專案
+## 程式碼範例
 
-請查看 GitHub 上的 [ParallelNodeTasks][parallel_tasks_sample] 專案。這是說明使用 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 的工作程式碼範例。
+GitHub 上的 [ParallelNodeTasks][parallel_tasks_sample] 專案提供使用 [CloudPool.MaxTasksPerComputeNode][maxtasks_net] 屬性的說明。
 
 這個 C# 主控台應用程式使用 [Batch .NET][api_net] 程式庫來建立具有一或多個計算節點的集區。它會在這些節點上執行可設定數目的工作，以模擬可變負載。應用程式的輸出會指定哪些節點執行每個工作。此應用程式也會提供作業參數和持續時間的摘要。兩個不同的範例應用程式執行的輸出摘要部分會在下方顯示。
 
@@ -118,9 +118,11 @@ Duration: 00:08:48.2423500
 
 > [AZURE.NOTE] 在上述摘要中的作業持續時間不包括集區建立時間。上述的每個作業已提交至先前建立的集區，其運算節點在提交時間處於 [閒置] 狀態。
 
-## Batch 總管熱圖
+## 後續步驟
 
-[Azure Batch 總管][batch_explorer]，其中一個 Azure Batch [範例應用程式][github_samples]，包含「熱圖」功能，提供工作執行的視覺化。執行 [ParallelTasks][parallel_tasks_sample] 範例應用程式時，您可以使用熱圖功能來輕易地視覺化每個節點上平行工作的執行。
+### Batch 總管熱圖
+
+[Azure Batch 總管][batch_explorer]包含「熱圖」功能，是 Azure Batch 的其中一個[範例應用程式][github_samples]，提供工作執行的視覺效果。執行 [ParallelTasks][parallel_tasks_sample] 範例應用程式時，您可以使用熱圖功能輕易地視覺化每個節點上的平行工作執行。
 
 ![Batch 總管熱圖][1]
 
@@ -141,4 +143,4 @@ Duration: 00:08:48.2423500
 
 [1]: ./media/batch-parallel-node-tasks\heat_map.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

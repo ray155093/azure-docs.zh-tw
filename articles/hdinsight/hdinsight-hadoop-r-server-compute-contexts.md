@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="07/07/2016"
+   ms.date="07/21/2016"
    ms.author="jeffstok"
 />
 
@@ -28,10 +28,12 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 
 一般而言，在邊緣節點上 R 伺服器中執行的 R 指令碼會在該節點上的 R 解譯器內執行。但呼叫 ScaleR 函式的步驟則屬例外。ScaleR 呼叫會在計算環境中執行，該環境是由您設定 ScaleR 計算內容的方式所決定。當您從邊緣節點執行您的 R 指令碼時，計算內容的可能值為本機循序 (‘local’)、本機平行 (‘localpar’)、Map Reduce 和 Spark，如下所示：
 
+‘local’ 和 ‘localpar’ 選項的差別只在於執行 rxExec 呼叫的方式。它們都會在所有可用的核心之間，以平行方式執行其他的 rx 函式呼叫，除非已指定，否則皆使用 ScaleR numCoresToUse 選項，例如 rxOptions(numCoresToUse=6)。以下摘要說明不同的計算內容選項。
+
 | 計算內容 | 設定方式 | 執行內容 |
 |------------------|---------------------------------|---------------------------------------------------------------------------------------|
-| 本機循序 | rxSetComputeContext(‘local’) | 邊緣節點伺服器上的循序 (非平行) 執行 |
-| 本機平行 | rxSetComputeContext(‘localpar’) | 跨邊緣節點伺服器的核心進行平行處理 |
+| 本機循序 | rxSetComputeContext(‘local’) | 跨邊緣節點伺服器的核心平行執行，只有 rxExec 為循序執行。 |
+| 本機平行 | rxSetComputeContext(‘localpar’) | 跨邊緣節點伺服器的核心平行執行 |
 | Spark | RxSpark() | 跨 HDI 叢集的節點透過 Spark 平行處理分散式執行 |
 | Map Reduce | RxHadoopMR() | 跨 HDI 叢集的節點透過 Map Reduce 平行處理分散式執行 |
 
@@ -50,10 +52,10 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 
 對於這些原則，用來選取計算內容的一般規則是︰
 
-### 本機平行
+### 本機
 
-- 如果要分析的資料量很小，而且不需要重複分析，則直接串流至分析常式並且使用 'localpar'。
-- 如果要分析的資料量很小或是中等大小，並且需要重複分析，請將它複製到本機檔案系統、匯入至 XDF，然後透過 'localpar' 進行分析。
+- 如果要分析的資料量很小，而且不需要重複分析，請直接串流至分析常式並且使用 'local' 或 'localpar'。
+- 如果要分析的資料量很小或是中等大小，並且需要重複分析，請將它複製到本機檔案系統、匯入至 XDF，然後透過 'local' 或 'localpar' 進行分析。
 
 ### Hadoop Spark
 
@@ -69,7 +71,7 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 
     > ?rxSetComputeContext
 
-您也可以參閱《ScaleR 分散式計算指南》，可以從 [R 伺服器 MSDN](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器") 程式庫取得。
+您也可以參閱《ScaleR 分散式計算指南》，可以從 [R 伺服器 MSDN](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器") 文件庫取得。
 
 
 ## 後續步驟
@@ -81,4 +83,4 @@ Premium 叢集的邊緣節點提供便利的地方，以便連接到叢集並執
 - [將 RStudio 伺服器加入 HDInsight Premium 中](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight Premium R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

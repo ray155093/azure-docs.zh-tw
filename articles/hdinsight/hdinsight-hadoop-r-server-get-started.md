@@ -196,7 +196,7 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
     
     您也可以使用 WASB 樣式定址。
     
-        rxHadoopListFiles("wasb:///")
+        rxHadoopListFiles("wasbs:///")
 
 ## 從 Microsoft R Server 或 Microsoft R Client 的遠端執行個體使用 HDI 上的 R Server
 
@@ -411,4 +411,4 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 如需使用 Azure Resource Manager 範本的一般資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

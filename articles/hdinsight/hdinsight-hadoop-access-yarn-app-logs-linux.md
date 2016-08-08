@@ -51,7 +51,7 @@ YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程�
 
 應用程式記錄檔 (和關聯的容器記錄檔) 在對有問題的 Hadoop 應用程式進行偵錯上相當重要。YARN 以[記錄檔彙總][log-aggregation]功能提供一個良好的架構，以收集、彙總及儲存應用程式記錄檔。「記錄檔彙總」功能讓存取應用程式記錄檔更具確定性，因為它會彙總背景工作節點上所有容器的記錄檔，並在應用程式完成之後，將它們以每一背景工作節點一個彙總記錄檔方式儲存在預設檔案系統上。您的應用程式可能使用數百或數千個容器，但在單一工作者節點上執行之所有容器的記錄檔將一律彙總成單一檔案，也就是為您應用程式所使用的每一背景工作節點產生一個記錄檔。「記錄檔彙總」在 HDInsight 叢集 (3.0 版和更新版本) 上預設為啟用，而在您叢集的預設容器中，即可找到彙總的記錄檔，位置如下：
 
-	wasb:///app-logs/<user>/logs/<applicationId>
+	wasbs:///app-logs/<user>/logs/<applicationId>
 
 在該位置中，*user* 是啟動應用程式之使用者的名稱，*applicationId* 是 YARN RM 所指派的應用程式唯一識別碼。
 
@@ -96,4 +96,4 @@ YARN ResourceManager UI 會在叢集前端節點上執行，且您可透過 Amba
 [binary-format]: https://issues.apache.org/jira/browse/HADOOP-3315
 [YARN-concepts]: http://hortonworks.com/blog/apache-hadoop-yarn-concepts-and-applications/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

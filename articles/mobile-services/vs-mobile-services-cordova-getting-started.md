@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="01/05/2016"
+	ms.date="07/21/2016"
 	ms.author="mlearned"/>
 
 # 開始使用行動服務 (Cordova 專案)
@@ -69,7 +69,7 @@
             items = results.slice();
         });
 
-有關更多您可以使用的查詢範例，請參閱 [query](http://msdn.microsoft.com/library/azure/jj613353.aspx) 物件。
+有關更多您可以使用的查詢範例，請參閱 [query](https://msdn.microsoft.com/library/azure/jj613353.aspx) 物件。
 
 ##更新資料表項目
 
@@ -88,6 +88,4 @@
         items.splice(items.indexOf(todoItem), 1);
     });
 
-[深入了解行動服務](https://azure.microsoft.com/documentation/services/mobile-services/)
-
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0727_2016-->

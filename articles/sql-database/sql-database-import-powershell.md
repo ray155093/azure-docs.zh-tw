@@ -116,15 +116,6 @@ Blob 名稱是您想要用來建立資料庫之現有的 .bacpac 檔案名稱。
 
 ## 後續步驟
 
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+- 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
-
-
-
-## 其他資源
-
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
-
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -26,8 +26,8 @@ DevOps 領域中有許多工具可協助處理持續整合管線中的各個點�
 
 這裡要進行的事項很多，幸好，大致上可分成兩個主要程序：
 
-  - 撰寫程式碼並測試，然後針對系統的主要和次要版本，建立並發佈安裝封裝。 
-  - 建立和管理 VM，以安裝和執行封裝中的程式碼。  
+  - 撰寫程式碼並測試，然後針對系統的主要和次要版本，建立並發佈安裝封裝。
+  - 建立和管理 VM，以安裝和執行封裝中的程式碼。
 
 完成這兩個核心程序後，隨著建立和部署新版本，立即就能自動更新任何特定 VM 上執行的封裝。
 
@@ -51,7 +51,7 @@ ARM 範本的一項主要功能是能夠在佈建時將 VM 延伸模組安裝至
 
 圖表左下方有一個 Azure 資源管理員 (ARM) 範本。在這個使用範例中，VM 延伸模組將 VM 註冊到 Azure 自動化 DSC 提取伺服器 (也就是提取伺服器) 成為「節點」。組態儲存在提取伺服器中。實際上儲存兩次：一次儲存為純文字，另一次編譯成 MOF 檔案 (適用於對此有所瞭解的人。) 在入口網站，MOF 是「節點組態」(而非只是「組態」)。它是與「節點」相關聯的構件，節點會知道它的組態。下列詳細資料示範如何將節點組態指派給節點。
 
-想必您已在進行頂端的一些或大部分工作。建立 nuspec、編譯和儲存在 NuGet 伺服器中很簡單。您已經在管理 VM。持續部署的下一步需要設定提取伺服器 (一次)、向它註冊節點 (一次)，然後建立組態並儲存到那裡 (初步)。接著，當封裝升級並部署至儲存機制時，請重新整理提取伺服器中的 [組態] 和 [節點組態] \(視需要重複)。
+想必您已在進行頂端的一些或大部分工作。建立 nuspec、編譯和儲存在 NuGet 伺服器中很簡單。您已經在管理 VM。持續部署的下一步需要設定提取伺服器 (一次)、向它註冊節點 (一次)，然後建立組態並儲存到那裡 (初步)。接著，當封裝升級並部署至儲存機制時，請重新整理提取伺服器中的 [組態] 和 [節點組態] (視需要重複)。
 
 如果不是從 ARM 範本開始，也沒關係。有一些 PowerShell Cmdlet 可協助您向提取伺服器註冊 VM，以及完成其餘所有工作。如需祥氣資訊，請參閱下列文章：[上架由 Azure 自動化 DSC 管理的機器](automation-dsc-onboarding.md)
 
@@ -63,7 +63,7 @@ ARM 範本的一項主要功能是能夠在佈建時將 VM 延伸模組安裝至
     New-AzureRmResourceGroup –Name MY-AUTOMATION-RG –Location MY-RG-LOCATION-IN-QUOTES
     New-AzureRmAutomationAccount –ResourceGroupName MY-AUTOMATION-RG –Location MY-RG-LOCATION-IN-QUOTES –Name MY-AUTOMATION-ACCOUNT 
 
-您可以將自動化帳戶放入下列任何區域 (也就是位置)：日本東部、美國東部 2、西歐、東南亞、美國中南部。
+您可以將自動化帳戶放入下列任何區域 (也就是位置)︰美國東部 2、美國中南部、美國維吉尼亞州政府、西歐、東南亞、日本東部、印度中部和澳大利亞東南部。
 
 ## 步驟 2：VM 延伸模組根據 ARM 範本而調整
 
@@ -79,10 +79,10 @@ PowerShell 資源庫會自動將 DSC 資源安裝到您的 Azure 自動化帳戶
 
 -   將您需要的模組安裝在工作站，如下所示：
     -   安裝 [Windows Management Framework v5](http://aka.ms/wmf5latest) (Windows 10 不需安裝)
-    -   `Install-Module –Name MODULE-NAME` <—從 PowerShell 資源庫抓取模組 
--   從 `c:\Program Files\WindowsPowerShell\Modules\MODULE-NAME` 模組資料夾複製到暫存資料夾 
--   刪除主要資料夾中的範例和文件 
--   壓縮主要資料夾，ZIP 檔案的命名與資料夾完全相同 
+    -   `Install-Module –Name MODULE-NAME` <—從 PowerShell 資源庫抓取模組
+-   從 `c:\Program Files\WindowsPowerShell\Modules\MODULE-NAME` 模組資料夾複製到暫存資料夾
+-   刪除主要資料夾中的範例和文件
+-   壓縮主要資料夾，ZIP 檔案的命名與資料夾完全相同
 -   將 ZIP 檔案放到可存取的 HTTP 位置，例如 Azure 儲存體帳戶中的 Blob 儲存體。
 -   執行此 PowerShell：
 
@@ -185,4 +185,4 @@ New-ConfigurationScript.ps1：
 - [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 - [上架由 Azure 自動化 DSC 管理的機器](automation-dsc-onboarding.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

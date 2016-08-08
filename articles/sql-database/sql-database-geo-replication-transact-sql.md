@@ -12,7 +12,7 @@
     ms.devlang="NA"
     ms.topic="article"
     ms.tgt_pltfrm="NA"
-    ms.workload="sqldb-bcdr"
+    ms.workload="NA"
     ms.date="07/18/2016"
     ms.author="carlrab"/>
 
@@ -24,13 +24,13 @@
 - [PowerShell](sql-database-geo-replication-powershell.md)
 - [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-本文說明如何使用 Transact-SQL，為 Azure SQL Database 設定作用中異地複寫。
+本文說明如何使用 Transact-SQL，為 Azure SQL Database 設定主動式異地複寫。
 
 若要使用 Transact-SQL 起始容錯移轉，請參閱[使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
 
->[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+>[AZURE.NOTE] 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
-若要使用 Transact-SQL 設定作用中異地複寫，您需要下列項目：
+若要使用 Transact-SQL 設定主動式異地複寫，您需要下列項目：
 
 - Azure 訂用帳戶。
 - 邏輯 Azure SQL Database 伺服器 <MyLocalServer> 和 SQL Database <MyDB> - 您想要複寫的主要資料庫。
@@ -184,7 +184,7 @@
 
 ## 後續步驟
 
-- 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要深入了解主動式異地複寫，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,41 +13,41 @@
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="big-compute"
- ms.date="03/24/2016"
+ ms.date="07/22/2016"
  ms.author="danlep"/>
 
 # 在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFoam
 
-本文說明在 Azure 中執行 OpenFoam 的一種方式。您將會在 Azure 上部署 Microsoft HPC Pack 叢集，並在跨 Azure 遠端直接記憶體存取 (RDMA) 網路連接的多個 Linux 計算節點上使用 Intel MPI 執行 [OpenFoam](http://openfoam.com/) 工作。在 Azure 中執行 OpenFoam 的其他選項，還包括 Marketplace 中所提供之設定完整的市售映像。
+本文說明一個在 Azure 虛擬機器中執行 OpenFoam 的方式。您將會在 Azure 上部署 Microsoft HPC Pack 叢集，並在跨 Azure 遠端直接記憶體存取 (RDMA) 網路連接的多個 Linux 計算節點上使用 Intel MPI 執行 [OpenFoam](http://openfoam.com/) 工作。其他在 Azure 中執行 OpenFoam 的選項還包括 Marketplace 中所提供已完整設定的市售映像 (例如 UberCloud 的 [OpenFoam 2.3 on CentOS 6](https://azure.microsoft.com/marketplace/partners/ubercloud/openfoam-v2dot3-centos-v6/))，以及藉由在 [Azure Batch](https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/) 上執行。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 OpenFOAM (表示 Open Field Operation and Manipulation) 是一個免費提供的開放原始碼計算流體力學 (CFD) 軟體套件，廣泛運用在商業和學術組織的工程及科學領域中。其中包含網格處理工具，特別是 snappyHexMesh，這是一種用於複雜 CAD 幾何的前置和後置處理的平行化網格處理器。幾乎所有的程序皆以平行方式執行，讓使用者能夠依其需求充分利用電腦硬體。
 
-Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程式，包括 Microsoft Azure 虛擬機器的叢集上的 MPI 應用程式。HPC Pack 也支援在 HPC Pack 叢集中部署的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。如需搭配 HPC Pack 使用 Linux 計算節點的簡介，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
+Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程式，包括 Microsoft Azure 虛擬機器的叢集上的 MPI 應用程式。HPC Pack 也支援在 HPC Pack 叢集中部署的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。如需搭配 HPC Pack 使用 Linux 計算節點的簡介，請參閱[開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
 
->[AZURE.NOTE] 本文假設您熟悉 Linux 系統管理，以及在 Linux HPC 叢集上執行 MPI 工作負載。
+>[AZURE.NOTE] 本文說明如何使用 HPC Pack 來執行 Linux MPI 工作負載，並假設您對 Linux 系統管理及在 Linux 叢集上執行 MPI 工作負載有某種程度的熟悉。如果您使用的 MPI 和 OpenFOAM 版本與本文中所顯示的版本不同，您可能必須修改一些安裝和組態步驟。
 
 ## 必要條件
 
-*   **具有大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署大小為 A8 或 A9 的 Linux 計算節點之 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由大小為 A8 的 Windows Server 2012 R2 前端節點與 2 個大小為 A8 的 SUSE Linux Enterprise Server 12 計算節點所組成。請將您的訂用帳戶和服務名稱取代為適當的值。 
+*   **具有 A8 或 A9 大小 Linux 計算節點的 HPC Pack 叢集** - 使用 [Azure Resource Manager 範本](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/)或 [Azure PowerShell 指令碼](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)，在 Azure 上部署具有 A8 或 A9 大小 Linux 計算節點的 HPC Pack 叢集。如需了解任一選項的必要條件與步驟，請參閱 [開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。如果選擇 PowerShell 指令碼部署選項，請參閱本文結尾處範例檔案的組態檔範例，來部署 Azure 架構的 HPC Pack 叢集，其由大小為 A8 的 Windows Server 2012 R2 前端節點與 2 個大小為 A8 的 SUSE Linux Enterprise Server 12 計算節點所組成。請將您的訂用帳戶和服務名稱取代為適當的值。
 
     **其他應該知道的事項**
 
-    *   目前，只有從 SUSE Linux Enterprise Server 12 (已針對 Azure Marketplace 中的高效能計算映像進行最佳化) 建立且大為 A8 或 A9 的 VM，才在 Azure 中支援 Linux RDMA 網路。如需了解其他考量事項，請參閱[關於 A8、A9、A10 及 A11 計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+    *   目前，只有在 A8 或 A9 大小且執行從 Azure Marketplace 映像部署的 SUSE Linux Enterprise Server (SLES) 12 for HPC、SLES 12 for HPC (Premium)、CentOS 型 7.1 HPC 或 CentOS 型 6.5 HPC 發行版本的 VM 上，才支援 Azure 中的 Linux RDMA 網路功能。如需了解其他考量，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
     *   如果使用 PowerShell 指令碼部署選項，請將所有 Linux 計算節點部署在一個雲端服務內，以使用 RDMA 網路連線。
 
     *   部署 Linux 節點之後，如果您需要以 SSH 連線以執行任何其他系統管理工作，請在 Azure 入口網站中參考每個 Linux VM 的 SSH 連線詳細資料。
         
-*   **Intel MPI** - 若要在 Azure 中的 Linux 計算節點上執行 OpenFOAM，必須從 [Intel.com 網站](https://software.intel.com/zh-TW/intel-mpi-library/)取得 Intel MPI Library 5 執行階段 (需要註冊)。在後續步驟中，您將在 Linux 計算節點上安裝 Intel MPI。若要為此做準備，註冊 Intel 之後，請遵循確認電子郵件中相關網頁的連結，並針對適當版本的 Intel MPI 複製 .tgz 檔案的下載連結。這篇文章根據 Intel MPI 5.0.3.048 版。
+*   **Intel MPI** - 若要在 Azure 中的 SLES 12 HPC 計算節點上執行 OpenFOAM，您必須從 [Intel.com 網站](https://software.intel.com/zh-TW/intel-mpi-library/)安裝 Intel MPI Library 5 執行階段。(Intel MPI 5 已經預先安裝在 CentOS 型 HPC 映像上)。 在稍後的步驟中，您將視需要在 Linux 計算節點上安裝 Intel MPI。若要為此做準備，註冊 Intel 之後，請遵循確認電子郵件中相關網頁的連結，並針對適當版本的 Intel MPI 複製 .tgz 檔案的下載連結。這篇文章根據 Intel MPI 5.0.3.048 版。
 
-*   **OpenFOAM Source Pack** - 從 [OpenFOAM Foundation 網站](http://www.openfoam.org/download/source.php)下載適用於 Linux 的OpenFOAM Source Pack 軟體。本文是依據 Source Pack 2.3.1 版 (可透過 OpenFOAM-2.3.1.tgz 的形式下載) 而撰寫的。請依照本文稍後的指示，在 Linux 計算節點上解壓縮並編譯 OpenFOAM。
+*   **OpenFOAM Source Pack** - 從 [OpenFOAM Foundation 網站](http://openfoam.org/download/2-3-1-source/)下載適用於 Linux 的OpenFOAM Source Pack 軟體。本文是依據 Source Pack 2.3.1 版 (可透過 OpenFOAM-2.3.1.tgz 的形式下載) 而撰寫的。請依照本文稍後的指示，在 Linux 計算節點上解壓縮並編譯 OpenFOAM。
 
-*   **EnSight** (選用) - 若要檢視 OpenFOAM 模擬的結果，請下載 Windows 版的 [EnSight](https://www.ceisoftware.com/download/) 視覺效果與分析程式，並將其安裝在 HPC Pack 叢集的前端節點上。授權和下載資訊請見 EnSight 網站。
+*   **EnSight** (選擇性) - 若要查看 OpenFOAM 模擬的結果，請下載並安裝 [EnSight](https://www.ceisoftware.com/download/) 視覺效果與分析程式。授權和下載資訊請見 EnSight 網站。
 
 
-## 設定運算節點之間的相互信任
+## 設定計算節點之間的相互信任
 
 在多個 Linux 節點上執行跨節點作業，需要節點相互信任 (藉由 **rsh** 或 **ssh**)。當您使用 Microsoft HPC Pack IaaS 部署指令碼建立 HPC Pack 叢集時，指令碼會自動為您指定的系統管理員帳戶設定永久相互信任。針對您在叢集的網域中建立的非系統管理員使用者，您必須在將工作配置給他們時，設定節點間的暫時相互信任，並且在工作完成之後終結關聯性。若要為每個使用者執行此動作，提供 HPC Pack 用來建立信任關係的 RSA 金鑰組給叢集。
 
@@ -99,7 +99,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 ## 為 Linux 節點設定檔案共用
 
-現在在前端節點上的資料夾設定標準 SMB 共用，並且在所有 Linux 節點上掛接共用資料夾，以允許 Linux 節點存取具有共用路徑的應用程式檔案。如果您想，您可以使用其他檔案共用選項 (例如 Azure 檔案共用，在許多案例中皆建議使用此選項) 或 NFS 共用。請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](virtual-machines-linux-classic-hpcpack-cluster.md)中的檔案共用資訊和詳細步驟。
+現在在前端節點上的資料夾設定標準 SMB 共用，並且在所有 Linux 節點上掛接共用資料夾，以允許 Linux 節點存取具有共用路徑的應用程式檔案。如果您想，您可以使用其他檔案共用選項 (例如 Azure 檔案共用，在許多案例中皆建議使用此選項) 或 NFS 共用。請參閱[開始使用 Azure 中 HPC Pack 叢集內的 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)中的檔案共用資訊和詳細步驟。
 
 1.	在前端節點上建立資料夾，並藉由設定讀取/寫入權限與每個人共用。例如，在前端節點上將 C:\\OpenFOAM 共用為 \\\SUSE12RDMA-HN\\OpenFOAM。在這裡，*SUSE12RDMA-HN* 是前端節點的主機名稱。
 
@@ -108,7 +108,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
     ```
     clusrun /nodegroup:LinuxNodes mkdir -p /openfoam
 
-    clusrun /nodegroup:LinuxNodes mount -t cifs //SUSE12RDMA-HN/OpenFOAM /openfoam -o vers=2.1`,username=<username>`,password='<password>’`,dir_mode=0777`,file_mode=0777
+    clusrun /nodegroup:LinuxNodes mount -t cifs //SUSE12RDMA-HN/OpenFOAM /openfoam -o vers=2.1`,username=<username>`,password='<password>'`,dir_mode=0777`,file_mode=0777
     ```
 
 第一個命令會在 LinuxNodes 群組中的所有節點上建立名為 /openfoam 的資料夾。第二個命令會將共用資料夾 //SUSE12RDMA-HN/OpenFOAM 掛接至 Linux 節點上，且 dir\_mode 和 file\_mode 位元會設為 777。命令中的 *username* 和 *password* 應為前端節點上使用者的認證。
@@ -119,9 +119,9 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 若要在 RDMA 網路上以 MPI 工作的形式執行 OpenFOAM，您必須使用 Intel MPI Library 編譯 OpenFOAM。
 
-您必須先執行數個 **clusrun** 命令，以在所有的 Linux 節點上安裝 Intel MPI Library 和 OpenFOAM 。請使用先前設定的前端節點共用，在 Linux 節點之間共用安裝檔案。
+您將先執行數個 **clusrun** 命令，以在所有 Linux 節點上安裝 Intel MPI 程式庫 (如果尚未安裝) 和 OpenFOAM。請使用先前設定的前端節點共用，在 Linux 節點之間共用安裝檔案。
 
->[AZURE.IMPORTANT]這些安裝與編譯步驟皆為範例，必須具備一些 Linux 系統管理知識才可確保能夠正確安裝相依的編譯器和程式庫。您可能需要修改一些特定的環境變數，或 Intel MPI 與 OpenFOAM 版本的其他設定。如需詳細資訊，請參閱 [Intel MPI Library for Linux 安裝指南](http://scc.ustc.edu.cn/zlsc/tc4600/intel/impi/INSTALL.html)和 [OpenFOAM Source Pack 安裝](http://www.openfoam.org/download/source.php)。
+>[AZURE.IMPORTANT]這些安裝與編譯步驟皆為範例，必須具備一些 Linux 系統管理知識才可確保能夠正確安裝相依的編譯器和程式庫。您可能需要修改一些特定的環境變數，或 Intel MPI 與 OpenFOAM 版本的其他設定。如需詳細資料，請參閱適用於您環境的 [Intel MPI Library for Linux 安裝指南](http://registrationcenter-download.intel.com/akdlm/irc_nas/1718/INSTALL.html?lang=en&fileExt=.html)和 [OpenFOAM Source Pack 安裝](http://openfoam.org/download/2-3-1-source/)。
 
 
 ### 安裝 Intel MPI
@@ -138,7 +138,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
     clusrun /nodegroup:LinuxNodes tar -xzf /opt/intel/l_mpi_p_5.0.3.048.tgz -C /opt/intel/
     ```
 
-2.  若要以無訊息方式安裝 Intel MPI Library，請使用 silent.cfg 檔案。您可以在本文結尾處的範例檔案中找到範例。將此檔案放在共用資料夾 /openfoam 中。如需 silent.cfg 檔案的詳細資訊，請參閱 [Intel MPI Library for Linux 安裝指南 - 無訊息安裝](http://scc.ustc.edu.cn/zlsc/tc4600/intel/impi/INSTALL.html#silentinstall)。
+2.  若要以無訊息方式安裝 Intel MPI Library，請使用 silent.cfg 檔案。您可以在本文結尾處的範例檔案中找到範例。將此檔案放在共用資料夾 /openfoam 中。如需 silent.cfg 檔案的詳細資訊，請參閱 [Intel MPI Library for Linux 安裝指南 - 無訊息安裝](http://registrationcenter-download.intel.com/akdlm/irc_nas/1718/INSTALL.html?lang=en&fileExt=.html#silentinstall)。
 
     >[AZURE.TIP]請確實將您的 silent.cfg 檔案儲存為具有 Linux 行尾結束符號 (只有 LF，不是 CR LF) 的文字檔。這可確保它在 Linux 節點上正常運作。
 
@@ -152,10 +152,10 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 
 若要進行測試，您應在每個 Linux 節點的 /etc/security/limits.conf 中加入以下幾行：
 
-```
-*               hard    memlock         unlimited
-*               soft    memlock         unlimited
-```
+
+    clusrun /nodegroup:LinuxNodes echo "*               hard    memlock         unlimited" `>`> /etc/security/limits.conf
+    clusrun /nodegroup:LinuxNodes echo "*               soft    memlock         unlimited" `>`> /etc/security/limits.conf
+
 
 更新 limits.conf 檔案之後，請重新啟動 Linux 節點。例如，使用下列 **clusrun** 命令。
 
@@ -167,7 +167,7 @@ clusrun /nodegroup:LinuxNodes systemctl reboot
 
 ### 編譯和安裝 OpenFOAM
 
-將下載的 OpenFOAM Source Pack 安裝套件 (在此範例中為 OpenFOAM-2.3.1.tgz) 儲存至前端節點的 C:\\OpenFoam，使 Linux 節點能夠從 /openfoam 存取此檔案。然後，執行 **clusrun**，以在所有的 Linux 節點上編譯 OpenFOAM。
+將下載的 OpenFOAM Source Pack 安裝套件 (在此範例中為 OpenFOAM-2.3.1.tgz) 儲存至前端節點的 C:\\OpenFoam，使 Linux 節點能夠從 /openfoam 存取此檔案。然後，執行 **clusrun** 命令，以在所有 Linux 節點上編譯 OpenFOAM。
 
 
 1.  在每個 Linux 節點上建立資料夾 /opt/OpenFOAM、將來源封裝複製到此資料夾，並在該處加以解壓縮。
@@ -176,7 +176,7 @@ clusrun /nodegroup:LinuxNodes systemctl reboot
     clusrun /nodegroup:LinuxNodes mkdir -p /opt/OpenFOAM
 
     clusrun /nodegroup:LinuxNodes cp /openfoam/OpenFOAM-2.3.1.tgz /opt/OpenFOAM/
-
+    
     clusrun /nodegroup:LinuxNodes tar -xzf /opt/OpenFOAM/OpenFOAM-2.3.1.tgz -C /opt/OpenFOAM/
     ```
 
@@ -190,7 +190,7 @@ clusrun /nodegroup:LinuxNodes systemctl reboot
     clusrun /nodegroup:LinuxNodes zypper -n --gpg-auto-import-keys install --repo opensuse --force-resolution -t pattern devel_C_C++
     ```
     
-    如有需要，ssh 連接到每個 Linux 節點，以執行命令確認它們可正常執行。
+    如有需要，可透過 SSH 連線到每個 Linux 節點來執行命令，以確認它們是否正常執行。
 
 4.  執行下列命令以編譯 OpenFOAM。編譯程序需要一些時間才能完成，且會在標準輸出中產生大量的記錄資訊，因此，請使用 **/interleaved** 選項顯示交錯的輸出。
 
@@ -236,7 +236,7 @@ clusrun /nodegroup:LinuxNodes cp /openfoam/settings.sh /etc/profile.d/
 
     ![修改步階變數][step_variables]
 
-5.  在 system/decomposeParDict 檔案中指定所要的變數值。此範例使用 2 個分別具有 8 個核心的 Linux 節點，因此，請將 numberOfSubdomains 設為 16 和，並將 hierarchicalCoeffs 的 n 設為 (1 1 16)，這表示會與 16 程序平行執行 OpenFOAM。如需詳細資訊，請參閱 [OpenFOAM User Guide: 3.4 Running applications in parallel](http://cfd.direct/openfoam/user-guide/running-applications-parallel/#x12-820003.4)。
+5.  在 system/decomposeParDict 檔案中指定所要的變數值。此範例使用 2 個分別具有 8 個核心的 Linux 節點，因此，請將 numberOfSubdomains 設為 16 和，並將 hierarchicalCoeffs 的 n 設為 (1 1 16)，這表示會與 16 程序平行執行 OpenFOAM。如需詳細資訊，請參閱 [OpenFOAM User Guide: 3.4 Running applications in parallel (OpenFOAM 使用者指南：3.4 平行執行應用程式)](http://cfd.direct/openfoam/user-guide/running-applications-parallel/#x12-820003.4)。
 
     ![分解程序][decompose]
 
@@ -293,11 +293,11 @@ clusrun /nodegroup:LinuxNodes cp /openfoam/settings.sh /etc/profile.d/
 
         其中
 
-        * `<Number of nodes>`：配置給此工作的節點數目。  
+        * `<Number of nodes>` - 配置給此工作的節點數目。
         
-        * `<Name of node_n_...>`：配置給此工作的各節點名稱。
+        * `<Name of node_n_...>` - 配置給此工作的各節點名稱。
         
-        * `<Cores of node_n_...>`：配置給此工作的節點核心數目。
+        * `<Cores of node_n_...>` - 配置給此工作的節點上核心數目。
 
         例如，如果工作需要 2 個核心來執行，則 $CCP\_NODES\_CORES 會類似於：
         
@@ -330,7 +330,7 @@ clusrun /nodegroup:LinuxNodes cp /openfoam/settings.sh /etc/profile.d/
 
     ![工作資源][job_resources]
 
-6. 按一下左側導覽的 [編輯工作]，再按一下 [加入] 將工作加入作業中。使用下列命令列與設定，將 4 個工作加入作業中。
+6. 按一下左導覽窗格中的 [編輯工作]，然後按一下 [加入] 來將工作加入到作業中。使用下列命令列與設定，將 4 個工作加入作業中。
 
     >[AZURE.NOTE]執行 `source /openfoam/settings.sh` 會設定 OpenFOAM 和 MPI 執行階段環境，因此下列每個作業會在 OpenFOAM 命令之前加以呼叫。
 
@@ -558,6 +558,7 @@ ENVIRONMENT_REG_MPI_ENV=no
 # Select yes to update ld.so.conf, valid values are: {yes, no}
 ENVIRONMENT_LD_SO_CONF=no
 
+
 ```
 
 ### 範例 settings.sh 指令碼
@@ -654,4 +655,4 @@ exit ${RTNSTS}
 [isosurface_color]: ./media/virtual-machines-linux-classic-hpcpack-cluster-openfoam/isosurface_color.png
 [linux_processes]: ./media/virtual-machines-linux-classic-hpcpack-cluster-openfoam/linux_processes.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

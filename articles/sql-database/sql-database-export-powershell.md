@@ -109,15 +109,9 @@
 
     Get-AzureRmSqlDatabaseImportExportStatus -OperationStatusLink $exportRequest .OperationStatusLink
 
+
 ## 後續步驟
 
-- [匯入 Azure SQL Database](sql-database-import-powershell.md)
+- 若要了解如何使用 PowerShell 匯入 Azure SQL Database，請參閱[使用 PowerShell 匯入 BACPAC](sql-database-import-powershell.md)
 
-
-## 其他資源
-
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
-
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

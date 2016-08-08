@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -24,6 +24,9 @@
 
 * 必須在 Azure 中使用工作或學校電子郵件地址將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯
     * 如果您使用 Microsoft 帳戶 (例如 @outlook.com、@live.com)，可以[依照這裡的步驟](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)使用您的 Azure 帳戶建立一個工作或學校的電子郵件地址
+
+> [AZURE.WARNING] 目前限制內部部署閘道的安裝只會在使用已向 Power BI 註冊的帳戶時才會完成。在此同時，請向 Power BI Free 註冊任何帳戶以順利完成安裝。
+
 * 必須[在本機電腦上安裝](app-service-logic-gateway-install.md)內部部署資料閘道。
 * 閘道必須未被另一個 Azure 內部部署資料閘道宣告 ([宣告會在下面建立步驟 2 時進行](#2-create-an-azure-on-premises-data-gateway-resource)) - 一個安裝只能與一個閘道資源相關聯。
 
@@ -67,4 +70,4 @@
 [2]: ./media/app-service-logic-gateway-connection/blankconnection.PNG
 [3]: ./media/app-service-logic-gateway-connection/checkbox.PNG
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

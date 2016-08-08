@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="07/27/2016"
 	ms.author="micurd"/>
 
 # 從 Azure 儲存體來回移動資料
@@ -27,6 +27,8 @@
 Azure 儲存體提供 .NET、iOS、Java、Android、通用 Windows 平台 (UWP)、Xamarin、c++、Node.JS、PHP、Ruby 和 Python 等豐富的用戶端程式庫。這些用戶端程式庫提供多種進階功能，例如大重試邏輯、記錄與並行上傳等等。您也可以直接透過 REST API 開發，它可以透過提出 HTTP/HTTPS 要求的任何語言進行呼叫。
 
 若要深入了解，請參閱[開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
+
+此外，我們也提供 [Azure 儲存體資料移動程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement)，這是專為在 Azure 中高效能來回複製資料所設計。若要深入了解，請參閱我們的資料移動程式庫[文件](https://github.com/Azure/azure-storage-net-data-movement)。
 
 ## 快速檢視/和資料互動
 
@@ -48,13 +50,13 @@ AzCopy 為 Windows 命令列公用程式，可以極高效能將資料複製到 
 
 Azure PowerShell 模組提供 Cmdlet 讓您用於管理 Azure 上的服務。此模組為工作型的命令列 Shell 與指令碼語言，專為系統管理所設計。
 
-若要深入了解，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
+若要深入了解，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)。
 
 ### Azure CLI
 
 Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 服務。Azure CLI 可在 Windows、OSX 和 Linux 上使用。
 
-若要深入了解，請閱讀[使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md)。
+若要深入了解，請參閱[使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md)。
 
 ## 以較慢的網路移動大量資料
 
@@ -80,4 +82,4 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 
 若要深入了解，請參閱 [Azure Site Recovery](../site-recovery/site-recovery-overview.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0727_2016-->

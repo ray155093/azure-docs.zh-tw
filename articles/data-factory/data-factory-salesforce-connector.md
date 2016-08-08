@@ -215,9 +215,12 @@ Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的接收�
 | -------- | ----------- | -------------- | -------- |
 | query | 使用自訂查詢來讀取資料。 | SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL) ](https://developer.salesforce.com/docs/atlas.zh-TW.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。例如：select * from MyTable\_\_c。 | 否 (如果已指定 **dataset** 的 **tableName**) |
 
-> [AZURE.IMPORTANT]  任何自訂物件都需要 API 名稱的「\_\_c」部分。<br> 指定在日期時間資料行包含 where 子句的查詢時，請使用 SOQL，例如 $$Text.Format('SELECT Id, Type, Name, BillingCity, BillingCountry FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd)
+> [AZURE.IMPORTANT]  任何自訂物件都需要 API 名稱的「\_\_c」部分。<br><br>指定 datetime 資料行包含 where 子句的查詢時，請使用 SOQL 查詢，例如 $$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd) 或 SQL 查詢，例如 $$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts'{0:yyyy-MM-dd HH:mm:ss}'}} AND LastModifiedDate < {{ts'{1:yyyy-MM-dd HH:mm:ss}'}}', WindowStart, WindowEnd)。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
+
+## 從 Salesforce 報表擷取資料
+您可以藉由指定 {call "<report name>"} 格式的查詢 (例如 "query": "{call "TestReport"}")，以從 Salesforce 報表擷取資料。
 
 ## Salesforce 要求限制
 Salesforce 對於 API 要求總數和並行 API 要求均有限制。如需詳細資訊，請參閱 [Salesforce API 要求限制](http://resources.docs.salesforce.com/200/20/zh-TW/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文章的 **API 要求限制**一節。
@@ -256,4 +259,4 @@ URL | String
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

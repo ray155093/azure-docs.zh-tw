@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="javascript" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="02/23/2016" 
+	ms.date="07/21/2016" 
 	ms.author="ricksal"/>
 
 
@@ -27,7 +27,7 @@
 
 + [指定資料表上的插入、讀取、更新或刪除作業][Table operations]。
 + [排程的工作][Job Scheduler]。
-+ [在自訂 API 中定義的 HTTP 方法][Custom API anchor]。 
++ [在自訂 API 中定義的 HTTP 方法][Custom API anchor]。
 
 伺服器指令碼中主要函數的特徵依指令碼的使用情境而異。您也可以將常用指令碼定義為 nodes.js 模組，由指令碼共用。如需詳細資訊，請參閱[原始檔控制與共用程式碼][Source control, shared code, and helper functions]。
 
@@ -64,10 +64,10 @@
 
 資料表指令碼函數一律有三個引數。
 
-- 第一個引數依資料表作業而異。 
+- 第一個引數依資料表作業而異。
 
 	- 若是插入或更新，則為 **item** 物件，這是受到作業影響之資料列的 JSON 表示法。它可讓您依名稱存取欄的值，例如 *item.Owner*，其中 *Owner* 是 JSON 表示法中的名稱之一。
-	- 若是刪除，則為要刪除之記錄的 ID。 
+	- 若是刪除，則為要刪除之記錄的 ID。
 	- 若是讀取，則為 [query 物件]，此物件指定要傳回的資料列集。
 
 - 第二個引數一律是 [user 物件][User object]，此物件表示提交要求的使用者。
@@ -336,7 +336,7 @@
 
 您可以用下列方式之一，定義註冊到自訂 API 端點中 HTTP 方法的伺服器指令碼：
 
-+ 在 [Azure 傳統入口網站]中。在 [API] 索引標籤中建立及修改自訂 API 指令碼。伺服器指令碼位於指定自訂 API 的 [指令碼] 索引標籤下。以下是 POST 要求對 `CompleteAll` 自訂 API 端點叫用的指令碼。 
++ 在 [Azure 傳統入口網站]中。在 [API] 索引標籤中建立及修改自訂 API 指令碼。伺服器指令碼位於指定自訂 API 的 [指令碼] 索引標籤下。以下是 POST 要求對 `CompleteAll` 自訂 API 端點叫用的指令碼。
 
 	![2][2]
 	
@@ -471,7 +471,7 @@ HTTP GET 要求可以如下叫用上述自訂 API 範例中的兩個路由 (也�
 + [作法：載入 Node.js 模組]
 + [作法：使用協助程式函數]
 + [作法：使用原始檔控制共用程式碼]
-+ [作法：使用應用程式設定] 
++ [作法：使用應用程式設定]
 
 ###<a name="leverage-source-control"></a>運用共用程式碼的概觀
 
@@ -479,15 +479,15 @@ HTTP GET 要求可以如下叫用上述自訂 API 範例中的兩個路由 (也�
 
 以下列出其中一些您的指令碼可透過全域 **require** 函數運用的實用模組：
 
-+ **azure**：公開 Azure SDK for Node.js 的功能。如需詳細資訊，請參閱 [Azure SDK for Node.js]。 
++ **azure**：公開 Azure SDK for Node.js 的功能。如需詳細資訊，請參閱 [Azure SDK for Node.js]。
 + **crypto**：提供 OpenSSL 的加密功能。如需詳細資訊，請參閱 [Node.js 文件][crypto API]。
 + **path**：包含用於處理檔案路徑的公用程式。如需詳細資訊，請參閱 [Node.js 文件][path API]。
 + **querystring**：包含用於處理查詢字串的公用程式。如需詳細資訊，請參閱 [Node.js 文件][querystring API]。
 + **request**：傳送 HTTP 要求給外部 REST 服務，如 Twitter、Facebook。如需詳細資訊，請參閱[傳送 HTTP 要求]。
 + **sendgrid**：在 Azure 中使用 Sendgrid 電子郵件服務傳送電子郵件。如需詳細資訊，請參閱[使用 SendGrid 從行動服務傳送電子郵件]。
 + **url**：包含用於剖析及解析 URL 的公用程式。如需詳細資訊，請參閱 [Node.js 文件][url API]。
-+ **util**：包含各種公用程式，如字串格式化、物件類型檢查。如需詳細資訊，請參閱 [Node.js 文件][util API]。 
-+ **zlib**：公開壓縮功能，如 gzip、deflate。如需詳細資訊，請參閱 [Node.js 文件][zlib API]。 
++ **util**：包含各種公用程式，如字串格式化、物件類型檢查。如需詳細資訊，請參閱 [Node.js 文件][util API]。
++ **zlib**：公開壓縮功能，如 gzip、deflate。如需詳細資訊，請參閱 [Node.js 文件][zlib API]。
 
 ###<a name="modules-helper-functions"></a>作法：運用模組
 
@@ -796,7 +796,7 @@ Stream|不支援
 + [作法：執行動態查詢]
 + [作法：聯結關聯式資料表]
 + [作法：執行查詢並傳回未經處理的結果]
-+ [作法：取得對資料庫連線的存取權]	
++ [作法：取得對資料庫連線的存取權]
 
 ####<a name="static-query"></a>作法：執行靜態查詢
 
@@ -1057,4 +1057,4 @@ Stream|不支援
 [Azure 行動服務對 package.json 的支援]: http://go.microsoft.com/fwlink/p/?LinkId=391036
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="我的 Cordova 專案 (Visual Studio 儲存體連接服務) 發生什麼狀況 | Microsoft Azure" 
-	description="描述使用 Visual Studio 連接服務加入 Azure 行動服務之後，您的 Azure Cordova 專案發生什麼狀況" 
+	description="描述使用 Visual Studio 連接服務加入 Azure 行動服務之後，您的 Azure Cordova 專案發生什麼狀況 " 
 	services="mobile-services" 
 	documentationCenter="na" 
 	authors="mlhoop" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="01/05/2016" 
+	ms.date="07/21/2016" 
 	ms.author="mlearned"/>
 
 # 使用 Visual Studio 連接服務加入 Azure 行動服務之後，我的 Azure Cordova 專案發生什麼狀況？
@@ -35,4 +35,4 @@
 
 [深入了解行動服務](https://azure.microsoft.com/documentation/services/mobile-services/)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0727_2016-->

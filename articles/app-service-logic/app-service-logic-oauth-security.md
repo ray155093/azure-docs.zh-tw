@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -36,8 +36,8 @@
 
 4. 移至 [Twitter](http://apps.twitter.com) 並**建立新的應用程式**。在**回呼 URL** 屬性中，貼上從您的 Twitter 連接器複製的**重新導向 URI** 值：![][4]
 5. 建立您的 Twitter 應用程式時，請選取 [**金鑰和存取權杖**。複製這些值。
-6. 在您的 Twitter 連接器驗證設定中，將這些值貼到**用戶端識別碼**和**用戶端密碼**屬性：![][5]  
-7. 儲存您的連接器設定。  
+6. 在您的 Twitter 連接器驗證設定中，將這些值貼到**用戶端識別碼**和**用戶端密碼**屬性：![][5]
+7. 儲存您的連接器設定。
 
 現在，您應該能夠從 Logic Apps 使用您的連接器。當您從 Logic Apps 使用此連接器時，它會使用您的應用程式，而不是使用預設的應用程式。
 
@@ -51,4 +51,4 @@
 [4]: ./media/app-service-logic-oauth-security/TwitterApp.png
 [5]: ./media/app-service-logic-oauth-security/TwitterKeys.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

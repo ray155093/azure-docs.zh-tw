@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="07/26/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的資料表儲存體
@@ -34,8 +34,8 @@
 
 若要安裝 Azure Storage Client Library for C++，您可以使用下列方法：
 
--	**Linux：**遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)頁面中提供的指示進行。  
--	**Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)中輸入下列命令，然後按下 Enter。  
+-	**Linux：**遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)頁面中提供的指示進行。
+-	**Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)中輸入下列命令，然後按下 Enter。
 
 		Install-Package wastorage
 
@@ -167,10 +167,10 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 
 以下是批次操作的一些注意事項：
 
--	您可以在單一批次中最多執行 100 個插入、刪除、合併、取代、插入或合併，以及插入或取代操作的任意組合。  
--	當擷取操作是批次中的唯一操作時，批次操作可以包含擷取操作。  
--	單一批次操作中的所有實體必須具有相同的資料分割索引鍵。  
--	一個批次操作的資料裝載限制為 4MB。  
+-	您可以在單一批次中最多執行 100 個插入、刪除、合併、取代、插入或合併，以及插入或取代操作的任意組合。
+-	當擷取操作是批次中的唯一操作時，批次操作可以包含擷取操作。
+-	單一批次操作中的所有實體必須具有相同的資料分割索引鍵。
+-	一個批次操作的資料裝載限制為 4MB。
 
 ## 擷取資料分割中的所有實體
 若要向資料表查詢資料分割中的所有實體，請使用 **table\_query** 物件。下列程式碼範例會指定篩選器來篩選出資料分割索引鍵為 'Smith' 的實體。此範例會將查詢結果中每個實體的欄位列印至主控台。
@@ -414,4 +414,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 -	[Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

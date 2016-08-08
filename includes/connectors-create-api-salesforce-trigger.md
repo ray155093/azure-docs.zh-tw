@@ -1,14 +1,12 @@
-In this walk-through, you will learn how to use the **Salesforce - When an object is created** trigger to initiate a logic app workflow when a new lead is created in your Salesforce.
+在此逐步解說中，您將了解如何使用「Salesforce - 當建立物件時」觸發程序，在於 Salesforce 中建立新潛在客戶時，起始邏輯應用程式工作流程。
 
->[AZURE.NOTE]You will get prompted to sign into your Salesforce account if you have not already created a *connection* to Salesforce.  
+>[AZURE.NOTE]如果您尚未建立與 Salesforce 的「連線」，系統將會提示您登入您的 Salesforce 帳戶。
 
-1. Enter *salesforce* in the search box on the logic apps designer then select the **Salesforce - When an object is created**  trigger.  
-![Salesforce trigger image 1](./media/connectors-create-api-salesforce/trigger-1.png)   
-- The **When an object is created** control is displayed.  
-![Salesforce trigger image 2](./media/connectors-create-api-salesforce/trigger-2.png)   
-- Select the **Object Type** then select *Lead* from the list of objects. In this step you are indicating that you are creating a trigger that will notify your logic app whenever a new lead is created in Salesforce.   
-![Salesforce trigger image 3](./media/connectors-create-api-salesforce/trigger-3.png)   
-- That's it. You've created the trigger. However, you need to create at least one action in order to make this a valid logic app.    
-![Salesforce trigger image 4](./media/connectors-create-api-salesforce/trigger-4.png)   
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入 *salesforce*，然後選取 [Salesforce - 當建立物件時] 觸發程序。![Salesforce 觸發程序圖像 1](./media/connectors-create-api-salesforce/trigger-1.png)
+- [當建立物件時] 控制項隨即顯示。![Salesforce 觸發程序圖像 2](./media/connectors-create-api-salesforce/trigger-2.png)
+- 選取 [物件類型]，然後從物件清單中選取 [潛在客戶]。在此步驟中，您會指出您要建立一個觸發程序，此觸發程序將在每次 Salesforce 中有建立新潛在客戶的情況時，通知您的邏輯應用程式。![Salesforce 觸發程序圖像 3](./media/connectors-create-api-salesforce/trigger-3.png)
+- 就這麼簡單。您已建立觸發程序。不過，您必須至少建立一個動作，才能讓此邏輯應用程式變成有效。![Salesforce 觸發程序圖像 4](./media/connectors-create-api-salesforce/trigger-4.png)
 
-At this point, your logic app has been configured with a trigger that will begin a run of the other triggers and actions in the workflow when a new item is created in your Salesforce.  
+此時，邏輯應用程式已設有觸發程序，該觸發程序會在 Salesforce 中有建立新項目的情況時，開始執行工作流程中的其他觸發程序和動作。
+
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="11/09/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -619,4 +619,4 @@ AutoMapper 此時會將物件互相對應。所有具有對應名稱的屬性都
 
 您可在此時建置用來存取服務的用戶端應用程式，以執行下一個步驟。
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0727_2016-->

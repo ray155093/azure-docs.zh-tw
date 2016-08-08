@@ -24,7 +24,7 @@
 [Azure Data Factory](../data-factory/data-factory-introduction.md) 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。在本文中，您將學習如何使用 Azure Data Factory 建立 [Azure HDInsight 隨選連結服務](../data-factory/data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)，並使用叢集來執行 Hive 作業。以下是高階流程︰
 
 1. 建立隨選 HDInsight 叢集。
-2. 執行 Hive 作業，以從來源 Blob 儲存體帳戶讀取原始 Web 記錄資料、轉換資料，並將輸出寫入至目的地 Blob 儲存體帳戶。 
+2. 執行 Hive 作業，以從來源 Blob 儲存體帳戶讀取原始 Web 記錄資料、轉換資料，並將輸出寫入至目的地 Blob 儲存體帳戶。
 3. 根據存留時間設定刪除叢集。
 
 Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指令碼。指令碼會建立一個參照儲存在 Azure Blob 儲存體中的原始 Web 記錄資料的外部資料表，再依年份或月份分割原始資料。
@@ -47,14 +47,14 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
 
 - 不論使用與否，HDInsight 叢集都是按分鐘計費。使用 Data Factory，依照需求建立叢集。而叢集會在作業完成時自動刪除。所以您只需對作業執行時間和短暫閒置時間 (存留時間) 付費。
 - 您可以使用 Data Factory 管線建立工作流程。
-- 您可以排程遞迴作業。  
+- 您可以排程遞迴作業。
 
 ##必要條件：
 
 開始執行本文中的指示之前，您必須擁有以下項目：
 
 - [Azure 訂用帳戶](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- Azure CLI 或 Azure PowerShell。 
+- Azure CLI 或 Azure PowerShell。
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
@@ -181,7 +181,7 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左側面板上的 [資源群組]。
-3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。 
+3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。
 4. 除非您與其他專案共用資源群組，否則 [資源] 圖格應列出一個資源。這就是您先前指定名稱的儲存體帳戶。按一下儲存體帳戶名稱。
 5. 按一下 [Blob] 圖格。
 6. 按一下 [adfgetstarted] 容器。您會看到兩個資料夾︰[輸入資料] 和 [指令碼]。
@@ -293,8 +293,8 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
                     "scriptPath": "adfgetstarted/script/partitionweblogs.hql",
                     "scriptLinkedService": "[variables('storageLinkedServiceName')]",
                     "defines": {
-                        "inputtable": "[concat('wasb://adfgetstarted@', parameters('storageAccountName'), '.blob.core.windows.net/inputdata')]",
-                        "partitionedtable": "[concat('wasb://adfgetstarted@', parameters('storageAccountName'), '.blob.core.windows.net/partitioneddata')]"
+                        "inputtable": "[concat('wasbs://adfgetstarted@', parameters('storageAccountName'), '.blob.core.windows.net/inputdata')]",
+                        "partitionedtable": "[concat('wasbs://adfgetstarted@', parameters('storageAccountName'), '.blob.core.windows.net/partitioneddata')]"
                     }
                 },
                 "inputs": [
@@ -320,7 +320,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
     
 **建立 Data Factory**
 
-1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。 
+1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
@@ -342,12 +342,12 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
 1. 使用最後一個工作階段中的相同程序來檢查 adfgetstarted 容器的內容。除了 adfgetsarted，有兩個新容器：
 
-    - adfhdinsight-hive-on-demand-hdinsightondemandlinked-xxxxxxxxxxxxx︰這是 HDInsight 叢集的預設容器。預設容器名稱的模式如下："adf>yourdatafactoryname>-linkedservicename-datetimestamp"。 
+    - adfhdinsight-hive-on-demand-hdinsightondemandlinked-xxxxxxxxxxxxx︰這是 HDInsight 叢集的預設容器。預設容器名稱的模式如下："adf>yourdatafactoryname>-linkedservicename-datetimestamp"。
     - adfjobs︰這是 ADF 作業記錄檔的容器。
     
-    如同您在 ARM 範本中所設定，Data Factory 輸出會儲存在 afgetstarted 中。 
+    如同您在 ARM 範本中所設定，Data Factory 輸出會儲存在 afgetstarted 中。
 2. 按一下 [adfgetstarted]。
-3. 按兩下 [partitioneddata]。您會看到 year=2014 資料夾，因為所有 Web 記錄檔的日期皆為 2014 年。 
+3. 按兩下 [partitioneddata]。您會看到 year=2014 資料夾，因為所有 Web 記錄檔的日期皆為 2014 年。
 
     ![Azure Data Factory HDInsight 隨選 Hive 活動管線輸出](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-year.png)
 
@@ -438,4 +438,4 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 - [HDInsight 文件](https://azure.microsoft.com/documentation/services/hdinsight/)
 - [Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

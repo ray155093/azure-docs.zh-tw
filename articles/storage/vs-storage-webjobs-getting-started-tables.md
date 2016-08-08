@@ -18,7 +18,7 @@
 
 # 開始使用 Azure 儲存體 (Azure WebJob 專案)
 
-[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
+[AZURE.INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
 ## 概觀
 
@@ -155,4 +155,4 @@ Azure 資料表儲存體服務可讓您儲存大量的結構化資料。此服�
 
 本文提供的程式碼範例示範如何處理使用 Azure 資料表的常見案例。如需如何使用 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱[Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

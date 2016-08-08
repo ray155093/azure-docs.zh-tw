@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="12/15/2015"
+	ms.date="07/21/2016"
 	ms.author="mahender"/>
 
 # 使用 Active Directory Authentication Library 單一登入驗證您的應用程式
@@ -32,7 +32,7 @@
 要能夠驗證使用者，您必須向 Azure Active Directory (AAD) 註冊您的應用程式。此作業有兩個階段。第一，您必須註冊行動服務，並公開其權限。第二，您必須註冊 iOS 應用程式，並為其授與對這些權限的存取權
 
 
->[AZURE.NOTE]本教學課程旨在協助您深入了解如何透過行動服務，為 iOS 應用程式執行單一登入 Azure Active Directory 驗證。如果這是您第一次接觸行動服務，請先完成教學課程[開始使用行動服務]。
+>[AZURE.NOTE] 本教學課程旨在協助您深入了解如何透過行動服務，為 iOS 應用程式執行單一登入 Azure Active Directory 驗證。如果這是您第一次接觸行動服務，請先完成教學課程[開始使用行動服務]。
 
 
 ##必要條件
@@ -126,4 +126,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [Active Directory Authentication Library for iOS]: https://github.com/MSOpenTech/azure-activedirectory-library-for-ios
 
-<!---HONumber=AcomDC_1217_2015-->
+<!---HONumber=AcomDC_0727_2016-->

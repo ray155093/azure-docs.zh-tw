@@ -1,6 +1,6 @@
 <properties
    pageTitle="雲端商務持續性 - 內建備份 - SQL Database | Microsoft Azure"
-   description="深入了解可讓您將 Azure SQL Database 回復到先前時間點，或將資料庫複製到地理區域中新資料庫 (最多 35 天) 的 SQL Database 內建備份。"
+   description="了解可讓您將 Azure SQL Database 回復到先前時間點，或將資料庫複製到地理區域中新資料庫 (最多 35 天) 的 SQL Database 內建備份。"
    services="sql-database"
    documentationCenter=""
    authors="carlrabeler"
@@ -12,7 +12,7 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="sqldb-bcdr"
+   ms.workload="NA"
    ms.date="06/16/2016"
    ms.author="carlrab"/>
 
@@ -32,13 +32,13 @@ Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可
 
 ## 異地備援
 
-備份檔案會儲存在異地備援儲存體帳戶，並具備讀取存取權 (RA-GRS)，以確保災害復原用途的可用性。下圖顯示每週與每日備份的異地複寫，這些備份會儲存在異地備援儲存體帳戶，並具備讀取存取權 (RA-GRS)，以確保災害復原用途的可用性。
+備份檔案會儲存在異地備援儲存體帳戶，並具備讀取存取權 (RA-GRS)，以確保災害復原用途的可用性。這可確保備份的檔案複寫到[配對的資料中心](../best-practices-availability-paired-regions.md)。下圖顯示每週與每日備份的異地複寫，這些備份會儲存在異地備援儲存體帳戶，並具備讀取存取權 (RA-GRS)，以確保災害復原用途的可用性。
 
 ![異地還原](./media/sql-database-geo-restore/geo-restore-1.png)
 
 ## 使用自動備份
 
-您可以在[保留期限](sql-database-service-tiers.md)內[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)至下列資料庫：
+您可以在[保留期限](sql-database-service-tiers.md)內[從自動備份還原資料庫](sql-database-recovery-using-backups.md)至：
 
 - 同一部邏輯伺服器上的新資料庫，復原到保留期限內指定的時間點。
 - 同一部邏輯伺服器上的資料庫，復原到已刪除資料庫的刪除時間。
@@ -58,8 +58,8 @@ Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可
 ## 後續步驟
 
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 - 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

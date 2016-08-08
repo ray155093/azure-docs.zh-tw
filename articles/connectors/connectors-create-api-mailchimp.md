@@ -9,7 +9,7 @@ editor=""
 tags="connectors" />
 
 <tags
-ms.service="app-service-logic"
+ms.service="logic-apps"
 ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
@@ -23,9 +23,9 @@ ms.author="deonhe"/>
 
 您可從下列位置使用 MailChimp 連接器︰
 
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)  
-- [PowerApps](http://powerapps.microsoft.com)  
-- [Flow](http://flows.microsoft.com)  
+- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
+- [PowerApps](http://powerapps.microsoft.com)
+- [Flow](http://flows.microsoft.com)
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -63,7 +63,7 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 | ---|---|---|
 |權杖|是|提供 MailChimp 認證|
 
->[AZURE.INCLUDE [建立至 MailChimp 連線的步驟](../../includes/connectors-create-api-mailchimp.md)]
+>[AZURE.INCLUDE [建立 MailChimp 連線的步驟](../../includes/connectors-create-api-mailchimp.md)]
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
@@ -235,12 +235,12 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |類型|字串|是 |
-|收件者|沒有定義|是 |
-|settings|沒有定義|是 |
-|variate\_settings|沒有定義|否 |
-|tracking|沒有定義|否 |
-|rss\_opts|沒有定義|否 |
-|social\_card|沒有定義|否 |
+|收件者|未定義|是 |
+|settings|未定義|是 |
+|variate\_settings|未定義|否 |
+|tracking|未定義|否 |
+|rss\_opts|未定義|否 |
+|social\_card|未定義|否 |
 
 
 
@@ -250,7 +250,7 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |list\_id|字串|是 |
-|segment\_opts|沒有定義|否 |
+|segment\_opts|未定義|否 |
 
 
 
@@ -302,9 +302,9 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |ecomm360|布林值|否 |
 |google\_analytics|字串|否 |
 |clicktale|字串|否 |
-|salesforce|沒有定義|否 |
-|highrise|沒有定義|否 |
-|capsule|沒有定義|否 |
+|salesforce|未定義|否 |
+|highrise|未定義|否 |
+|capsule|未定義|否 |
 
 
 
@@ -316,7 +316,7 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |feed\_url|字串|否 |
 |frequency|字串|否 |
 |constrain\_rss\_img|字串|否 |
-|schedule|沒有定義|否 |
+|schedule|未定義|否 |
 
 
 
@@ -376,7 +376,7 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |hour|integer|否 |
-|daily\_send|沒有定義|否 |
+|daily\_send|未定義|否 |
 |weekly\_send\_day|字串|否 |
 |monthly\_send\_date|number|否 |
 
@@ -411,15 +411,15 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |send\_time|字串|否 |
 |content\_type|字串|否 |
 |收件者|array|否 |
-|settings|沒有定義|否 |
-|variate\_settings|沒有定義|否 |
-|tracking|沒有定義|否 |
-|rss\_opts|沒有定義|否 |
-|ab\_split\_opts|沒有定義|否 |
-|social\_card|沒有定義|否 |
-|report\_summary|沒有定義|否 |
-|delivery\_status|沒有定義|否 |
-|_\_links|array|No |
+|settings|未定義|否 |
+|variate\_settings|未定義|否 |
+|tracking|未定義|否 |
+|rss\_opts|未定義|否 |
+|ab\_split\_opts|未定義|否 |
+|social\_card|未定義|否 |
+|report\_summary|未定義|否 |
+|delivery\_status|未定義|否 |
+|\_links|array|否 |
 
 
 
@@ -491,10 +491,10 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |名稱|字串|是 |
-|連絡人|沒有定義|是 |
+|連絡人|未定義|是 |
 |permission\_reminder|字串|是 |
 |use\_archive\_bar|布林值|否 |
-|campaign\_defaults|沒有定義|是 |
+|campaign\_defaults|未定義|是 |
 |notify\_on\_subscribe|字串|否 |
 |notify\_on\_unsubscribe|字串|否 |
 |email\_type\_option|布林值|是 |
@@ -537,10 +537,10 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |---|---|---|
 |id|字串|是 |
 |名稱|字串|是 |
-|連絡人|沒有定義|是 |
+|連絡人|未定義|是 |
 |permission\_reminder|字串|是 |
 |use\_archive\_bar|布林值|否 |
-|campaign\_defaults|沒有定義|是 |
+|campaign\_defaults|未定義|是 |
 |notify\_on\_subscribe|字串|否 |
 |notify\_on\_unsubscribe|字串|否 |
 |date\_created|字串|否 |
@@ -551,8 +551,8 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |beamer\_address|字串|否 |
 |可見性|字串|否 |
 |模組|array|否 |
-|stats|沒有定義|否 |
-|_\_links|array|No |
+|stats|未定義|否 |
+|\_links|array|否 |
 
 
 
@@ -597,11 +597,11 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |---|---|---|
 |email\_type|字串|否 |
 |status|字串|是 |
-|merge\_fields|沒有定義|否 |
+|merge\_fields|未定義|否 |
 |interests|字串|否 |
 |語言|字串|否 |
 |vip|布林值|否 |
-|location|沒有定義|否 |
+|location|未定義|否 |
 |email\_address|字串|是 |
 
 
@@ -636,9 +636,9 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |unique\_email\_id|字串|否 |
 |email\_type|字串|否 |
 |status|字串|否 |
-|merge\_fields|沒有定義|否 |
+|merge\_fields|未定義|否 |
 |interests|字串|否 |
-|stats|沒有定義|否 |
+|stats|未定義|否 |
 |ip\_signup|字串|否 |
 |timestamp\_signup|字串|否 |
 |ip\_opt|字串|否 |
@@ -648,10 +648,10 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |語言|字串|否 |
 |vip|布林值|否 |
 |email\_client|字串|否 |
-|location|沒有定義|否 |
-|last\_note|沒有定義|否 |
+|location|未定義|否 |
+|last\_note|未定義|否 |
 |list\_id|字串|否 |
-|_\_links|array|No |
+|\_links|array|否 |
 
 
 
@@ -694,11 +694,11 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |email\_address|字串|否 |
 |email\_type|字串|否 |
 |status|字串|是 |
-|merge\_fields|沒有定義|否 |
+|merge\_fields|未定義|否 |
 |interests|字串|否 |
 |語言|字串|否 |
 |vip|布林值|否 |
-|location|沒有定義|否 |
+|location|未定義|否 |
 
 
 
@@ -723,9 +723,9 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |unique\_email\_id|字串|否 |
 |email\_type|字串|否 |
 |status|字串|否 |
-|merge\_fields|沒有定義|是 |
+|merge\_fields|未定義|是 |
 |interests|字串|否 |
-|stats|沒有定義|否 |
+|stats|未定義|否 |
 |ip\_signup|字串|否 |
 |timestamp\_signup|字串|否 |
 |ip\_opt|字串|否 |
@@ -735,13 +735,13 @@ MailChimp 連接器可當成動作使用，它有觸發程序。所有連接器�
 |語言|字串|否 |
 |vip|布林值|否 |
 |email\_client|字串|否 |
-|location|沒有定義|否 |
-|last\_note|沒有定義|否 |
+|location|未定義|否 |
+|last\_note|未定義|否 |
 |list\_id|字串|否 |
-|_\_links|array|No |
+|\_links|array|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

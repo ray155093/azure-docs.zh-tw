@@ -82,7 +82,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
     
 - **資源群組名稱**
 
-	[Azure Resource Manager (ARM)](resource-group-overview.md) 可讓您將應用程式中的資源作為群組使用，稱為 Azure 資源群組。您可以透過單一、協調的作業來部署、更新、監視或刪除應用程式的所有資源。
+	[Azure Resource Manager (ARM)](../resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用，稱為 Azure 資源群組。您可以透過單一、協調的作業來部署、更新、監視或刪除應用程式的所有資源。
 
 - **認證**
 
@@ -96,7 +96,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
 	原始的 HDFS 會使用叢集上的多個本機磁碟。HDInsight 則會使用 Azure Blob 儲存體來儲存資料。Azure Blob 儲存體是強大的一般用途儲存體解決方案，其完美整合了 HDInsight。透過 Hadoop 分散式檔案系統 (HDFS) 介面，HDInsight 中的完整元件集可直接處理 Blob 儲存體中的結構化或非結構化資料。將資料儲存在 Blob 儲存體中，您便可安全地刪除用於計算的 HDInsight 叢集，而不會遺失使用者資料。
 
-	在設定期間，您必須指定 Azure 儲存體帳戶，並在該 Azure 儲存體帳戶中指定 Azure Blob 儲存體容器。某些建立程序會要求您事先建立 Azure 儲存體帳戶和 Blob 儲存體容器。叢集會以該 Blob 儲存體容器做為預設儲存位置。您也可以選擇指定叢集可存取的其他 Azure 儲存體帳戶 (連結的儲存體)。此外，叢集也可以存取任何設有完整公用讀取權限或僅限對 Blob 之公用讀取權的 Blob 容器。如需限制存取的詳細資訊，請參閱[管理 Azure 儲存體資源的存取](storage-manage-access-to-resources.md)。
+	在設定期間，您必須指定 Azure 儲存體帳戶，並在該 Azure 儲存體帳戶中指定 Azure Blob 儲存體容器。某些建立程序會要求您事先建立 Azure 儲存體帳戶和 Blob 儲存體容器。叢集會以該 Blob 儲存體容器做為預設儲存位置。您也可以選擇指定叢集可存取的其他 Azure 儲存體帳戶 (連結的儲存體)。此外，叢集也可以存取任何設有完整公用讀取權限或僅限對 Blob 之公用讀取權的 Blob 容器。如需限制存取的詳細資訊，請參閱[管理 Azure 儲存體資源的存取](../storage/storage-manage-access-to-resources.md)。
 
 	![HDInsight 儲存體](./media/hdinsight-provision-clusters/HDInsight.storage.png)
 
@@ -110,7 +110,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 
 	如需使用次要 Blob 存放區的詳細資訊，請參閱[搭配使用 Azure Blob 儲存體與 HDInsight](hdinsight-hadoop-use-blob-storage.md)。
 
-    除了 Azure Blob 儲存體，您也可以使用 [Azure Data Lake Store](data-lake-store-overview.md) 當作 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部 4 種 HDInsight 叢集類型的連結儲存體。如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
+    除了 Azure Blob 儲存體，您也可以使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部 4 種 HDInsight 叢集類型的連結儲存體。如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)
     
 - **位置 (區域)**
 
@@ -173,7 +173,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
         |Standard\_D13\_v2 |8|56 GB|8|暫存 (SSD) = 400 GB |16|16x500|
         |Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500|    
  
-    如需規劃使用這些資源時所需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-size-specs.md)。如需各式大小的定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight)
+    如需規劃使用這些資源時需注意的部署考量，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-windows-size.md)。如需各式大小的定價資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight)
     
 	> [AZURE.IMPORTANT] 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB RAM 的前端節點大小。建立叢集後就開始計費，只有在刪除叢集時才會停止計費。如需價格的詳細資訊，請參閱 [HDInsight 價格詳細資料](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
@@ -258,4 +258,4 @@ HBase 叢集類型無法使用中繼存放區組態。
 | [.NET SDK](hdinsight-hadoop-create-windows-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [ARM 範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

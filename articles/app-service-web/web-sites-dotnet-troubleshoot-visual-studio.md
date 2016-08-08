@@ -104,7 +104,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 3. 將下列字行新增至 `system.web` 元素：
 
-	`<customErrors mode="off"></customErrors>`
+	`<customErrors mode="Off"></customErrors>`
 
 	![編輯 Web.config](./media/web-sites-dotnet-troubleshoot-visual-studio/webconfigedit.png)
 
@@ -264,14 +264,10 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 在 Azure Web 應用程式中執行的 ASP.NET 應用程式，可建立下列各種記錄：
 
-* **應用程式追蹤記錄**<br/>
-此應用程式會呼叫 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 類別的方法來建立這些記錄。
-* **Web 伺服器記錄**<br/>
-Web 伺服器會為每個通往 Web 應用程式的 HTTP 要求建立記錄項目。
-* **詳細的錯誤訊息記錄**<br/>
-Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。
-* **失敗要求追蹤記錄**<br/>
-Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML 檔案。Web 伺服器會一併提供 XSL 檔案，在瀏覽器中格式化 XML。
+* **應用程式追蹤記錄**<br/>此應用程式會呼叫 [System.Diagnostics.Trace](http://msdn.microsoft.com/library/system.diagnostics.trace.aspx) 類別的方法來建立這些記錄。
+* **Web 伺服器記錄**<br/>Web 伺服器會為每個通往 Web 應用程式的 HTTP 要求建立記錄項目。
+* **詳細的錯誤訊息記錄**<br/>Web 伺服器會針對失敗的 HTTP 要求 (產生狀態碼 400 或以上的要求) 建立含有一些額外資訊的 HTML 頁面。
+* **失敗要求追蹤記錄**<br/>Web 伺服器會針對失敗的 HTTP 要求建立含有詳細追蹤資訊的 XML 檔案。Web 伺服器會一併提供 XSL 檔案，在瀏覽器中格式化 XML。
   
 記錄功能會影響 Web 應用程式效能，因此 Azure 可讓您視需要啟用或停用每一種記錄類型。對於應用程式記錄，您可以指定只寫入高於特定嚴重性層級的記錄。當您建立新的 Web 應用程式時，預設會停用所有記錄功能。
 
@@ -732,4 +728,4 @@ Microsoft TechNet 網站內的[使用失敗要求追蹤](http://www.iis.net/lear
 [GetStartedWJ]: websites-dotnet-webjobs-sdk.md
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

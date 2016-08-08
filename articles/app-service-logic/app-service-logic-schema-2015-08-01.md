@@ -8,7 +8,7 @@
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -219,6 +219,7 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 如果您先前已部署 API 應用程式，您可以透過 **HTTP** 動作呼叫它。
 
 例如，如果您使用 Dropbox 列出檔案，您的 **2014-12-01-preview** 結構描述版本定義中可能會有類似下面的內容：
+
 ```
 {
     "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2014-12-01-preview/workflowdefinition.json#",
@@ -463,4 +464,4 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 ## 敬請期待：企業整合 API
 目前，我們尚未提供 Managed 版本的企業整合 API (例如 AS2)。這些都已納入[藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)中，敬請期待。在此期間，您可以透過 HTTP 動作來使用現有已部署的 BizTalk API，如以上的「使用您已部署的 API 應用程式」所述。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

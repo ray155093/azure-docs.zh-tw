@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/20/2016"
+	ms.date="07/25/2016"
 	ms.author="larryfr"/>
 
 #在 HDInsight 上將 Sqoop 與 Hadoop 搭配使用 (SSH)
@@ -106,9 +106,9 @@
 
 4. 使用下列命令，將資料從 **hivesampletable** 匯出至 **mobiledata** 資料表：
 
-        sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --export-dir 'wasb:///hive/warehouse/hivesampletable' --fields-terminated-by '\t' -m 1
+        sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --export-dir 'wasbs:///hive/warehouse/hivesampletable' --fields-terminated-by '\t' -m 1
 
-    這會指示 Sqoop 連接至 SQL Database、**sqooptest** 資料庫，然後將資料從 **wasb:///hive/warehouse/hivesampletable** (*hivesampletable* 的實體檔案) 匯出至 **mobiledata** 資料表。
+    這會指示 Sqoop 連接至 SQL Database、**sqooptest** 資料庫，然後將資料從 **wasbs:///hive/warehouse/hivesampletable** (*hivesampletable* 的實體檔案) 匯出至 **mobiledata** 資料表。
 
 5. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
 
@@ -123,15 +123,15 @@
 
 ##Sqoop import
 
-1. 使用下列程式碼將資料從 SQL Database 中的 **mobiledata** 資料表匯入至 HDInsight 上的 **wasb:///tutorials/usesqoop/importeddata** 目錄：
+1. 使用下列程式碼將資料從 SQL Database 中的 **mobiledata** 資料表匯入至 HDInsight 上的 **wasbs:///tutorials/usesqoop/importeddata** 目錄：
 
-        sqoop import --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
+        sqoop import --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasbs:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
 
     匯入的資料會有以定位字元分隔的欄位，以及以換行字元終止的行。
 
 2. 匯入完成後，使用下列命令來列出新目錄中的資料：
 
-        hadoop fs -text wasb:///tutorials/usesqoop/importeddata/part-m-00000
+        hadoop fs -text wasbs:///tutorials/usesqoop/importeddata/part-m-00000
 
 ##使用 SQL Server
 
@@ -170,7 +170,7 @@
 
 * 從 HDInsight 連線到 SQL Server 時，您可能必須使用 SQL Server 的 IP 位址 (除非您已設定網域名稱系統 (DNS)) 來解析 Azure 虛擬網路上的名稱。例如：
 
-        sqoop import --connect 'jdbc:sqlserver://10.0.1.1:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasb:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
+        sqoop import --connect 'jdbc:sqlserver://10.0.1.1:1433;database=sqooptest' --username <adminLogin> --password <adminPassword> --table 'mobiledata' --target-dir 'wasbs:///tutorials/usesqoop/importeddata' --fields-terminated-by '\t' --lines-terminated-by '\n' -m 1
 
 ##限制
 
@@ -206,4 +206,4 @@
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

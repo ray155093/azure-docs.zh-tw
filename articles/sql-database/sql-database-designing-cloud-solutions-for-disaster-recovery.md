@@ -1,5 +1,5 @@
 <properties
-   pageTitle="雲端災害復原方案 - SQL Database 作用中異地複寫 | Microsoft Azure"
+   pageTitle="雲端災害復原方案 - SQL Database 主動式異地複寫 | Microsoft Azure"
    description="了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。"
    keywords="cloud disaster recovery,disaster recovery solutions,app data backup,geo-replication,business continuity planning,雲端災害復原,災害復原方案,應用程式資料備份,異地複寫,商務持續性計劃"
    services="sql-database"
@@ -14,17 +14,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="04/25/2016"
+   ms.date="07/20/2016"
    ms.author="sashan"/>
 
-# 使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式
+# 使用 SQL Database 的主動式異地複寫設計雲端災害復原應用程式
 
 
 > [AZURE.NOTE] [Active Geo-Replication](sql-database-geo-replication-overview.md) 現在可供所有層中的所有資料庫使用。
 
 
 
-了解如何使用 SQL Database 中的[作用中異地複寫](sql-database-geo-replication-overview.md)，來設計能夠從區域失敗和嚴重中斷復原的資料庫應用程式。對於商務持續性規劃，您需要考量應用程式部署拓撲、您要達到的服務等級協定、流量延遲及成本。在本文中，我們將探討常見的應用程式模式，並討論每個選項的優缺點。
+了解如何使用 SQL Database 中的[主動式異地複寫](sql-database-geo-replication-overview.md)，來設計能夠從區域失敗和嚴重中斷復原的資料庫應用程式。對於商務持續性規劃，您需要考量應用程式部署拓撲、您要達到的服務等級協定、流量延遲及成本。在本文中，我們將探討常見的應用程式模式，並討論每個選項的優缺點。
 
 ## 設計模式 1：雲端災害復原的主動-被動部署，使用共置資料庫
 
@@ -84,7 +84,7 @@
 
 如同模式 #1，您應該考慮部署類似的監視應用程式。但有別於模式 #1，此監視應用程式不負責觸發端點容錯移轉。
 
-> [AZURE.NOTE] 雖然此模式使用一個以上的次要資料庫，但其中只有一個次要資料庫用於容錯移轉，原因如稍早所述。由於這個模式需要次要資料庫的唯讀存取權，因此會需要「作用中異地複寫」。
+> [AZURE.NOTE] 雖然此模式使用一個以上的次要資料庫，但其中只有一個次要資料庫用於容錯移轉，原因如稍早所述。由於這個模式需要次要資料庫的唯讀存取權，因此會需要「主動式異地複寫」。
 
 流量管理員應該設定為效能路由，將使用者連接導向最靠近使用者地理位置的應用程式執行個體。下圖說明此組態在運作中斷之前的情形。![無中斷：將效能轉送至最接近的應用程式。異地複寫。](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern2-1.png)
 
@@ -123,7 +123,7 @@
 
 一旦主要區域的運作中斷情況趨緩，流量管理員會偵測主要區域中的連線恢復，然後將使用者流量切換回到主要區域中的應用程式執行個體。該應用程式執行個體會恢復執行，並使用主要資料庫在讀寫模式下運作。
 
-> [AZURE.NOTE] 由於這個模式需要次要資料庫的唯讀存取權，因此會需要「作用中異地複寫」。
+> [AZURE.NOTE] 由於這個模式需要次要資料庫的唯讀存取權，因此會需要「主動式異地複寫」。
 
 如果次要地區發生運作中斷，流量管理員會將主要區域中的應用程式端點標示為降級，而且複寫通道會暫停。不過，在運作中斷期間不會影響應用程式的效能。一旦運作中斷情況趨緩，次要資料庫會立即與主要資料庫同步處理。在同步處理期間，主要資料庫的效能可能稍微受到影響，視需要同步處理的資料量而定。
 
@@ -155,15 +155,15 @@
 
 ## 後續步驟
 
-- 如需針對災害復原使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需針對災害復原使用和設定主動式異地複寫的相關資訊，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 如需針對災害復原使用異地還原的相關資訊，請參閱[異地還原](sql-database-recovery-using-backups.md#geo-restore)
 
 ## 後續步驟
 
 - 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

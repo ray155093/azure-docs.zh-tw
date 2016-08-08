@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="06/06/2016"
+   ms.date="07/25/2016"
    ms.author="dkershaw;bryanla"/>
 
 # 了解 Azure Active Directory 應用程式資訊清單
@@ -52,11 +52,11 @@
 
     ![選取 Azure AD 租用戶][SELECT-AZURE-AD-TENANT]
 
-3. 出現 [目錄] 頁面時，按一下頁面頂端的 [應用程式] \(1) 以查看在租用戶中註冊的應用程式清單。然後找到您要在清單中更新的應用程式並按一下它 (2)。
+3. 出現 [目錄] 頁面時，按一下頁面頂端的 [應用程式] (1) 以查看在租用戶中註冊的應用程式清單。然後找到您要在清單中更新的應用程式並按一下它 (2)。
 
     ![選取 Azure AD 租用戶][SELECT-AZURE-AD-APP]
 
-4. 既然您已選取應用程式的主頁面，請注意頁面底部的「管理資訊清單」功能 (1)。如果您按一下此連結，系統將提示您下載或上傳 JSON 資訊清單檔案。按一下 [下載資訊清單] \(2)，其後會立即出現下載確認對話方塊，提示您按一下 [下載資訊清單] \(3) 加以確認，然後在本機開啟或儲存檔案 (4)。
+4. 既然您已選取應用程式的主頁面，請注意頁面底部的「管理資訊清單」功能 (1)。如果您按一下此連結，系統將提示您下載或上傳 JSON 資訊清單檔案。按一下 [下載資訊清單] (2)，其後會立即出現下載確認對話方塊，提示您按一下 [下載資訊清單] (3) 加以確認，然後在本機開啟或儲存檔案 (4)。
 
     ![管理資訊清單、下載選項][MANAGE-MANIFEST-DOWNLOAD]
 
@@ -93,7 +93,7 @@
 
     項目必須是唯一的，因此您必須為 `"id"` 屬性產生新的全域唯一識別碼 (GUID)。在此情況下，由於我們已指定 `"type": "User"`，此權限可以由資源/API 應用程式註冊所在的 Azure AD 租用戶所驗證的任何帳戶進行同意，授與代表帳戶加以存取的用戶端應用程式權限。在同意期間會使用說明和顯示名稱字串，並且顯示在 Azure 傳統入口網站中。
 
-6. 當您完成更新資訊清單，請返回 Azure 傳統入口網站中的 Azure AD 應用程式頁面，再次按一下 [管理資訊清單] 功能 (1)，但是這次請選取 [上傳資訊清單] 選項 (2)。類似於下載，您將會看見第二個對話方塊，提示您 JSON 檔案的位置。按一下 [瀏覽檔案...] \(3)，然後使用 [選擇要上傳的檔案] 對話方塊來選取 JSON 檔案 (4) 並按下 [開啟]。一旦對話方塊消失，請選取 [確定] 核取記號 (5)，隨即會上傳您的資訊清單。
+6. 當您完成更新資訊清單，請返回 Azure 傳統入口網站中的 Azure AD 應用程式頁面，再次按一下 [管理資訊清單] 功能 (1)，但是這次請選取 [上傳資訊清單] 選項 (2)。類似於下載，您將會看見第二個對話方塊，提示您 JSON 檔案的位置。按一下 [瀏覽檔案...] (3)，然後使用 [選擇要上傳的檔案] 對話方塊來選取 JSON 檔案 (4) 並按下 [開啟]。一旦對話方塊消失，請選取 [確定] 核取記號 (5)，隨即會上傳您的資訊清單。
 
     ![管理資訊清單、上傳選項][MANAGE-MANIFEST-UPLOAD]
 
@@ -104,7 +104,7 @@
 在資訊清單儲存後，現在您可以將已註冊的用戶端應用程式存取權提供到我們先前新增的新權限，但這次您可以使用 Azure 傳統入口網站的 Web UI，而無須編輯用戶端應用程式的資訊清單：
 
 1. 首先，移至要新增新 API 之存取權的用戶端應用程式的 [設定] 頁面，然後按一下 [新增應用程式] 按鈕。
-2. 畫面中會顯示租用戶中已註冊的資源應用程式 (API) 的清單。按一下資源應用程式名稱旁的加號 (+)，加以選取。  
+2. 畫面中會顯示租用戶中已註冊的資源應用程式 (API) 的清單。按一下資源應用程式名稱旁的加號 (+)，加以選取。
 3. 然後，按一下右下角的核取記號。
 4. 當您回到用戶端組態頁面的 [新增應用程式] 區段時，您會在清單中看到新的資源應用程式。如果您將游標移至該資料列右側的 [委派的權限] 區段上方，您會看到顯示的下拉式清單。按一下該清單，然後選取新的權限，以將其新增至用戶端要求的權限清單。注意：這個新的權限會儲存在用戶端應用程式身分識別組態的 "requiredResourceAccess" 集合屬性中。
 
@@ -135,9 +135,9 @@
 <!--article references -->
 [AAD-GROUPS-FOR-AUTHORIZATION]: http://www.dushyantgill.com/blog/2014/12/10/authorization-cloud-applications-using-ad-groups/
 [ADD-UPD-RMV-APP]: active-directory-integrating-applications.md
-[APPLICATION-ENTITY]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#ApplicationEntity
-[APPLICATION-ENTITY-APP-ROLE]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#AppRoleType
-[APPLICATION-ENTITY-OAUTH2-PERMISSION]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionType
+[APPLICATION-ENTITY]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#application-entity
+[APPLICATION-ENTITY-APP-ROLE]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#approle-type
+[APPLICATION-ENTITY-OAUTH2-PERMISSION]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permission-type
 [AZURE-CLASSIC-PORTAL]: https://manage.windowsazure.com
 [DEV-GUIDE-TO-AUTH-WITH-ARM]: http://www.dushyantgill.com/blog/2015/05/23/developers-guide-to-auth-with-azure-resource-manager-api/
 [GRAPH-API]: active-directory-graph-api.md
@@ -147,4 +147,4 @@
 [O365-SERVICE-DAEMON-APPS]: https://msdn.microsoft.com/office/office365/howto/building-service-apps-in-office-365
 [RBAC-CLOUD-APPS-AZUREAD]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

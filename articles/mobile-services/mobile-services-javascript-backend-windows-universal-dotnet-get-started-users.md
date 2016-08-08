@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/05/2016" 
+	ms.date="07/21/2016" 
 	ms.author="glenga"/>
 
 # 將驗證加入 Universal Windows 8.1 應用程式
@@ -61,7 +61,7 @@
 
 ##另請參閱
 
-+ [增強型使用者功能](http://go.microsoft.com/fwlink/p/?LinkId=506605)<br/> 您可藉由呼叫伺服器指令碼中的 **user.getIdentities()** 函數，取得由行動服務中的識別提供者維護的其他使用者資料。 
++ [增強型使用者功能](http://go.microsoft.com/fwlink/p/?LinkId=506605)<br/> 您可藉由呼叫伺服器指令碼中的 **user.getIdentities()** 函數，取得由行動服務中的識別提供者維護的其他使用者資料。
 
 + [行動服務 .NET 作法概念參考資料]<br/>深入了解如何搭配 .NET 用戶端使用行動服務。
 
@@ -89,4 +89,4 @@
 [Register your Windows Store app package for Microsoft authentication]: ../mobile-services-how-to-register-store-app-package-microsoft-authentication.md
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

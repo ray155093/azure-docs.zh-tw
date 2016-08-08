@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/05/2016"
+	ms.date="07/21/2016"
 	ms.author="ricksal"/>
 
 # 註冊應用程式以使用 Azure Active Directory 帳戶登入
@@ -70,4 +70,4 @@
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

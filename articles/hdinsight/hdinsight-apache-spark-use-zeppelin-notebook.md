@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="07/25/2016" 
 	ms.author="nitinme"/>
 
 
@@ -43,7 +43,7 @@
 
 ### 使用 Azure 入口網站
 
-如需有關如何使用 HDInsight .NET SDK 來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-azure-portal)。您必須對該文中的指示進行一些變更。
+如需有關如何使用 Azure 入口網站來執行指令碼動作以安裝 Zeppelin 的指示，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-from-the-azure-portal)。您必須對該文中的指示進行一些變更。
 
 * 您必須使用指令碼來安裝 Zeppelin。用以在 HDInsight 上的 Spark 叢集上安裝 Zeppelin 的自訂指令碼可從下列連結取得：
 	* Spark 1.6.0 叢集 - `https://hdiconfigactions.blob.core.windows.net/linuxincubatorzeppelinv01/install-zeppelin-spark160-v01.sh`
@@ -201,7 +201,7 @@
 
 	* **模式名稱** - **zeppelinnotebook** - 這是易記的模式名稱。
 
-	* **URL 模式** - ***hn0*** - 這會定義符合 Zeppelin Notebook 裝載所在端點之內部完整網域名稱的模式。因為 Zeppelin Notebook 僅適用於叢集的 headnode0，而且端點通常是 `http://hn0-<string>.internal.cloudapp.net`，所以使用模式 **hn0** 可確保要求會重新導向至 Zeppelin 端點。
+	* **URL 模式** - ***hn0*** - 這會定義符合 Zeppelin Notebook 裝載所在端點內部完整網域名稱的模式。因為 Zeppelin Notebook 僅適用於叢集的 headnode0，而且端點通常是 `http://hn0-<string>.internal.cloudapp.net`，所以使用模式 **hn0** 可確保要求會重新導向至 Zeppelin 端點。
 
 		![foxyproxy 模式](./media/hdinsight-apache-spark-use-zeppelin-notebook/foxypattern.png)
 
@@ -211,11 +211,11 @@
 
 	![foxyproxy 選取模式](./media/hdinsight-apache-spark-use-zeppelin-notebook/selectmode.png)
 
-在執行這些步驟後，只有包含 __internal.cloudapp.net__ 字串之 URL 的要求會透過 SSL 通道路由傳送。
+在執行這些步驟後，只有包含 __hn0__ 字串的 URL 要求會透過 SSL 通道路由傳送。
 
 ## 存取 Zeppelin Notebook
 
-設定 SSH 通道之後，您可以遵循下列步驟，在 Spark 叢集上存取 Zeppelin Notebook。
+設定 SSH 通道之後，您可以遵循下列步驟，在 Spark 叢集上存取 Zeppelin Notebook。在本節中，您將了解如何執行 %sql 和 %hive 陳述式。
 
 1. 從網頁瀏覽器開啟下列端點：
 
@@ -235,12 +235,14 @@
 
 	![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.newnote.connected.png "Zeppelin Notebook 狀態")
 
+### 執行 SQL 陳述式
+
 4. 將範例資料載入暫存資料表。當您在 HDInsight 中建立 Spark 叢集時，系統會將範例資料檔案 **hvac.csv** 複製到相關聯的儲存體帳戶中 (位於 **\\HdiSamples\\SensorSampleData\\hvac**)。
 
 	將以下程式碼片段貼入新 Notebook 中預設建立的空白段落。
 
 		// Create an RDD using the default Spark context, sc
-		val hvacText = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+		val hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 		
 		// Define a schema
 		case class Hvac(date: String, time: String, targettemp: Integer, actualtemp: Integer, buildingID: String)
@@ -297,6 +299,41 @@
 
 	![重新啟動 Zeppelin 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
 
+### 執行 hive 陳述式
+
+1. 從 Zeppelin Notebook，按一下 [解譯器] 按鈕。
+
+	![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-1.png "更新 Hive 解譯器")
+
+2. 針對 **hive** 解譯器，按一下 [編輯]。
+
+	![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-2.png "更新 Hive 解譯器")
+
+	更新下列屬性。
+
+	* 將 **default.password** 設為建立 HDInsight Spark 叢集時為系統管理使用者指定的密碼。
+	* 將 **default.url** 設為 `jdbc:hive2://<spark_cluster_name>.azurehdinsight.net:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2`。以您 Spark 叢集的名稱取代 **<spark\_cluster\_name>**。
+	* 將 **default.user** 設為建立叢集時指定的系統管理使用者名稱。例如，*admin*。
+
+3. 按一下 [儲存]，當系統提示您重新啟動 hive 解譯器時，按一下 [確定]。
+
+4. 建立新的 Notebook 並執行以下陳述式，以列出叢集上的所有 hive 資料表。
+
+		%hive
+		SHOW TABLES
+
+	根據預設，HDInsight 叢集有稱為 **hivesampletable** 的範例資料表，所以您應該會看到以下輸出。
+
+	![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-3.png "Hive 輸出")
+
+5. 執行下列陳述式，以列出資料表中的記錄。
+
+		%hive
+		SELECT * FROM hivesampletable LIMIT 5
+
+	您應該會看到如下所示的輸出。
+
+	![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-4.png "Hive 輸出")
 
 ## <a name="seealso"></a>另請參閱
 
@@ -350,4 +387,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

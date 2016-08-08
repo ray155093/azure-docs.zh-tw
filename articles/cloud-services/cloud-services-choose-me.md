@@ -1,18 +1,18 @@
-<properties 
-	pageTitle="Azure 計算選項 - 雲端服務 | Microsoft Azure" 
-	description="了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器" 
+<properties
+	pageTitle="Azure 計算選項 - 雲端服務 | Microsoft Azure"
+	description="了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器"
 	services="cloud-services"
     documentationCenter=""
-	authors="Thraka" 
+	authors="Thraka"
 	manager="timlt"/>
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="multiple" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/05/2016" 
+<tags
+	ms.service="multiple"
+	ms.workload="multiple"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/05/2016"
 	ms.author="adegeo"/>
 
 # 我該選擇雲端服務還是其他服務？
@@ -24,7 +24,7 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 <a name="tellmecs"></a>
 ## 我想了解雲端服務
 
-雲端服務是平台即服務 (PaaS) 的一個範例。這項技術如同 [App Service](../app-service-web/app-service-web-overview.md)，是專為支援可調整、穩定且操作成本低的應用程式而設計。雲端服務也如同 App Service 在 VM 上託管，不過，雲端服務更易於透過 VM 控制。您可以在雲端服務 VM 上安裝您自己的軟體，並且可從遠端加以操控。
+雲端服務是[平台即服務 (PaaS)](https://azure.microsoft.com/overview/what-is-paas/) 的一個範例。這項技術如同 [App Service](../app-service-web/app-service-web-overview.md)，是專為支援可調整、穩定可靠且操作成本低的應用程式而設計。雲端服務也如同 App Service 在 VM 上託管，不過，雲端服務更易於透過 VM 控制。您可以在雲端服務 VM 上安裝您自己的軟體，並且可從遠端加以操控。
 
 ![cs\_diagram](./media/cloud-services-choose-me/diagram.png)
 
@@ -35,7 +35,7 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 雲端服務提供這兩個僅有些許差異的 VM 裝載選項的任意搭配組合：
 
 * **Web 角色**執行 Windows Server，且您的 Web 應用程式會自動部署至 IIS。
-  
+
 * **背景工作角色**執行不含 IIS 的 Windows Server。
 
 例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。(此通訊會使用[服務匯流排](../service-bus/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
@@ -55,6 +55,6 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 雲端服務的 PaaS 性質也有其他意涵。其中一個最重要的意涵是，採用這項技術建立的應用程式應該在任何 Web 角色或背景工作角色執行個體故障時都能正常運作。為了實現這一點，雲端服務應用程式不應該在本身 VM 的檔案系統中保持狀態。和使用 Azure 虛擬機器建立的 VM 不一樣的是，對於雲端服務 VM 進行的寫入並不一致；不會出現類似虛擬機器資料磁碟的元件。雲端服務應用程式反而應該將所有狀態明確寫入 SQL 資料庫、Blob、表格或其他一些外部儲存體。以這種方式建立應用程式使得調整更簡單，而且更能夠因應故障，這是雲端服務的兩個重要目標。
 
 ## 後續步驟
-[在 .NET 中建立雲端服務應用程式](cloud-services-dotnet-get-started.md) [在 Node.js 中建立雲端服務應用程式](cloud-services-nodejs-develop-deploy-app.md) [在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md) [在 Python 中建立雲端服務應用程式](../cloud-services-python-ptvs.md)
+[在 .NET 中建立雲端服務應用程式](cloud-services-dotnet-get-started.md)[在 Node.js 中建立雲端服務應用程式](cloud-services-nodejs-develop-deploy-app.md)[在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md)[在 Python 中建立雲端服務應用程式](cloud-services-python-ptvs.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

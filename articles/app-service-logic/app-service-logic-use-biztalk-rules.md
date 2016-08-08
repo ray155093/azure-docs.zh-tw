@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -96,7 +96,7 @@ _IF_ _條件_ _THEN_ _動作_
 3. 從結果清單中選取 BizTalk 規則[BizTalk 規則] 刀鋒視窗開啟
 4. 選取 [建立] 按鈕  
 ![替代文字][3]
-1. 在開啟的新分頁中，輸入下列資訊：  
+1. 在開啟的新分頁中，輸入下列資訊：
 	1. 名稱 - 提供規則 API 應用程式的名稱
 	1. App Service 方案 - 選取或建立新的 App Service 方案
 	1. 定價層 - 選擇您要讓此應用程式屬於哪個定價層
@@ -109,12 +109,12 @@ _IF_ _條件_ _THEN_ _動作_
 建立 BizTalk 規則 API 應用程式之後，下一個步驟是建立詞彙。預期為開發人員是常見執行此工作的人員。以下是建立方法：
 
 
-1. 請前往 [瀏覽] -> API Apps -> <Your Rules API App>，從入口網站中啟動 BizTalk 規則 API 應用程式。這將讓您進入 [規則 API 應用程式儀表板]，如下方所示：
+1. 請前往 [瀏覽] -> [API Apps] -> <您的規則 API 應用程式>，從入口網站中啟動 BizTalk 規則 API 應用程式。這將讓您進入 [規則 API 應用程式儀表板]，如下方所示：
 
    ![替代文字][4]
 
-2.選取 [詞彙定義]。詞彙撰寫畫面將顯示。  
-3.選取 [新增]，開始加入新的詞彙定義。 
+2\. 選取 [詞彙定義]。詞彙撰寫畫面將顯示。
+3. 選取 [新增]，開始加入新的詞彙定義。
 目前支援兩種類型的詞彙定義 – 常值和 XML。
 
 ##常值定義
@@ -156,39 +156,38 @@ _IF_ _條件_ _THEN_ _動作_
 	4.	選取 [加入] 來加入新規則。這會使您進入新分頁。
 
 ##建立規則
-規則是條件和動作陳述式的集合。如果條件評估為 true，則會執行動作。在 [建立規則] 分頁中，提供唯一的規則名稱 (適用於該原則) 和說明 (選擇性)。
-[條件] \(IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：  
-1. 	And – 條件運算子  
-2. 	Or – 條件運算子  
-3. 	does\_not\_exist  
-4. 	exists  
-5. 	false  
-6. 	is\_equal\_to  
-7. 	is\_greater\_than  
-8. 	is\_greater\_than\_equal\_to  
-9. 	is\_in  
-10. is\_less\_than  
-11. is\_less\_than\_equal\_to  
-12. is\_not\_in  
-13. is\_not\_equal\_to  
-14. mod  
-15. true  
+規則是條件和動作陳述式的集合。如果條件評估為 true，則會執行動作。在 [建立規則] 分頁中，提供唯一的規則名稱 (適用於該原則) 和說明 (選擇性)。[條件] (IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：
+1. 	And – 條件運算子
+2. 	Or – 條件運算子
+3. 	does\_not\_exist
+4. 	exists
+5. 	false
+6. 	is\_equal\_to
+7. 	is\_greater\_than
+8. 	is\_greater\_than\_equal\_to
+9. 	is\_in
+10. is\_less\_than
+11. is\_less\_than\_equal\_to
+12. is\_not\_in
+13. is\_not\_equal\_to
+14. mod
+15. true
 
 Action(Then) 方塊可以包含多個陳述式 (每行一個)，用來建立要執行的動作。以下是支援的關鍵字：
-1.	equals  
-2.	false  
-3.	true  
-4.	halt  
-5.	mod  
-6.	null  
-7.	update  
+1.	equals
+2.	false
+3.	true
+4.	halt
+5.	mod
+6.	null
+7.	update
 
 條件和動作方塊提供 Intellisense 協助您快速撰寫規則。按 ctrl + 空格或直接輸入，即可加以觸發。輸入的字元若符合關鍵字，將會自動進行篩選並顯示。Intellisense 視窗會顯示所有的關鍵字和詞彙定義。
 ![替代文字][9]
 
 ##明確向前鏈結
 BizTalk 規則支援明確向前鏈結，因此，如果使用者想要重新評估規則以回應特定動作，可以使用特定的關鍵字加以觸發。以下是支援的關鍵字：  
-   1.	update <vocabulary definition> - 此關鍵字會重新評估在其條件中使用指定詞彙定義的所有規則。  
+   1.	update <詞彙定義> - 此關鍵字會重新評估在其條件中使用指定詞彙定義的所有規則。
    2.	Halt – 此關鍵字會停止所有規則執行
 
 ##啟用\\停用規則
@@ -255,5 +254,4 @@ BizTalk 規則支援明確向前鏈結，因此，如果使用者想要重新評
 [10]: ./media/app-service-logic-use-biztalk-rules/APIDef.PNG
 [11]: ./media/app-service-logic-use-biztalk-rules/PublicAnon.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
-
+<!---HONumber=AcomDC_0727_2016-->

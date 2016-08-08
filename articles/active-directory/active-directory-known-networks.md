@@ -4,7 +4,7 @@
 	services="active-directory" 
 	documentationCenter="" 
 	authors="markusvi" 
-	manager="stevenpo"  
+	manager="femila"  
 	editor=""/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="07/20/2016" 
 	ms.author="markvi"/>
 
 # 已知的網路
@@ -21,11 +21,11 @@
 
 您可以使用 Azure Active Directory 的存取和使用情況報告來了解貴組織的目錄完整性和安全性。利用此資訊，目錄管理員更能夠判斷可能發生安全性風險的位置，以便適當地規劃來減輕這些風險。
 
-「*從多個地理區域登入*」和「*從具有可疑活動的 IP 位址登入*」可能會不正確地報告貴組織實際擁有的旗標 IP 位址。
+「從多個地理區域登入」和「從具有可疑活動的 IP 位址登入」可能會不正確地報告貴組織實際擁有的旗標 IP 位址。
 
 比方說，這可以發生在下列情形：
 
-- 在波士頓辦公室的使用者已從遠端登入您在舊金山的資料中心，觸發了「從多個地理區域登入」的報告 
+- 在波士頓辦公室的使用者已從遠端登入您在舊金山的資料中心，觸發了「從多個地理區域登入」的報告
 
 - 貴組織的使用者多次嘗試以不正確的密碼登入，觸發了「從具有可疑活動的 IP 位址登入」的報告
 
@@ -56,4 +56,4 @@
 * [從具有可疑活動的 IP 位址登入](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md)
 * [從多個地理區域登入](active-directory-reporting-sign-ins-from-multiple-geographies.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

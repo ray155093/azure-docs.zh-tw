@@ -47,18 +47,19 @@
 >[AZURE.NOTE] 發出命令時，如果主要複本處於線上並且正在認可交易，可能會發生部分資料遺失。
 
 
-## 其他資源   
+## 後續步驟   
+
+- 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱[災害復原演練](sql-database-disaster-recovery.md)
+- 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱[新的異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+- 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱[使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+- 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
 
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-- [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- [使用異地複寫設計業務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
 
 <!--Image references-->
 [1]: ./media/sql-database-geo-replication-failover-portal/failover.png
 [2]: ./media/sql-database-geo-replication-failover-portal/secondaries.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

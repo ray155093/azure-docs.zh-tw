@@ -47,7 +47,7 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
         hdfs dfs -put datafu-1.2.0.jar /example/jars
     
-    > [AZURE.NOTE] 上述範例會將 jar 儲存在 `wasb:///example/jars`，因為叢集儲存體上已經有此目錄。您可以使用 HDInsight 叢集上任何想要的位置。
+    > [AZURE.NOTE] 上述範例會將 jar 儲存在 `wasbs:///example/jars`，因為叢集儲存體上已經有此目錄。您可以使用 HDInsight 叢集上任何想要的位置。
 
 ##搭配使用 DataFu 與 Pig
 
@@ -55,7 +55,7 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
 > [AZURE.IMPORTANT] 在以 Linux 為基礎的 HDInsight 叢集上透過 Pig 使用 DataFu 時，您必須使用以下 Pig Latin 陳述式先註冊 jar 檔案：
 >
-> ```register wasb:///example/jars/datafu-1.2.0.jar```
+> ```register wasbs:///example/jars/datafu-1.2.0.jar```
 >
 > 以 Windows 為基礎的 HDInsight 叢集已預設註冊 DataFu。
 
@@ -107,4 +107,4 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

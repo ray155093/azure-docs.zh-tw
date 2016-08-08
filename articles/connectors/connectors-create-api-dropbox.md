@@ -1,288 +1,436 @@
 <properties
-    pageTitle="在 PowerApps Enterprise 或邏輯應用程式中新增 Dropbox 連接器 | Microsoft Azure"
-    description="搭配 REST API 參數來使用 Dropbox 連接器的概觀"
-    services=""
-    suite=""
-    documentationCenter="" 
-    authors="MandiOhlinger"
-    manager="erikre"
-    editor=""
-    tags="connectors"/>
+pageTitle="Dropbox | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。連線到 Dropbox 來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 Dropbox 中的檔案。"
+services="app-servicelogic"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
+editor=""
+tags="connectors" />
 
 <tags
-   ms.service="multiple"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/20/2016"
-   ms.author="mandia"/>
+ms.service="app-service-logic"
+ms.devlang="multiple"
+ms.topic="article"
+ms.tgt_pltfrm="na"
+ms.workload="integration"
+ms.date="07/15/2016"
+ms.author="deonhe"/>
 
-# 開始使用 Dropbox 連接器 
-連線到 Dropbox 來管理檔案，例如建立檔案、取得檔案等等。您可以從下列應用程式使用 Dropbox 連接器︰
+# 開始使用 Dropbox 連接器
 
-- 邏輯應用程式 
-- PowerApps
+連線到 Dropbox 來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 Dropbox 中的檔案。
 
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-dropbox.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-dropbox.md)
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-&nbsp;
+## 連接至 Dropbox。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線至 Dropbox，您必須先建立 Dropbox「連線」。若要建立連線，您需要提供平常用來存取所要連線之服務的認證。因此，在 Dropbox 範例中，您需要 Dropbox 帳戶的認證，才能建立與 Dropbox 的連線。[深入了解連線]()
+
+### 建立 Dropbox 連線
+
+>[AZURE.INCLUDE [建立 Dropbox 連線的步驟](../../includes/connectors-create-api-dropbox.md)]
+
+## 使用 Dropbox 觸發程序
+
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+在此範例中，我們將使用 [當檔案建立時] 觸發程序。當此觸發程序發生時，我們會呼叫 [使用路徑來取得檔案內容] Dropbox 動作。
+
+1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
+  
+2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] (以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
+
+## 使用 Dropbox 動作
+
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+現在已新增觸發程序，請遵循下列步驟來新增將會取得新檔案內容的動作。
+
+1. 選取 [+ 新的步驟] 來新增您想要在新檔案建立時採取的動作。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action.PNG)
+
+2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-2.PNG)
+
+3. 輸入 dropbox 以搜尋與 Dropbox 相關的動作。
+
+4. 選取 [Dropbox - 使用路徑來取得檔案內容]，做為在選取的 Dropbox 資料夾中建立新檔案時所要採取的動作。動作控制區塊便會開啟。如果您未曾授權邏輯應用程式存取您的 Dropbox 帳戶，系統會提示您這麼做。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-3.PNG)
+
+5. 選取 [...](位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-4.PNG)
+
+6. 儲存您的工作並在 Dropbox 中建立新檔案，以啟動您的工作流程。
+
+## 技術詳細資訊
+
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+
+## Dropbox 觸發程序
+
+Dropbox 觸發程序具有下列動作︰
+
+|觸發程序 | 說明|
+|--- | ---|
+|[當檔案建立時](connectors-create-api-dropbox.md#when-a-file-is-created)|當資料夾中有新檔案建立時，此作業就會觸發流程。|
+|[當檔案遭到修改時](connectors-create-api-dropbox.md#when-a-file-is-modified)|當資料夾中有檔案遭到修改時，此作業就會觸發流程。|
+
+## Dropbox 動作
+
+Dropbox 連接器具有下列動作︰
+
+|動作|說明|
+|--- | ---|
+|[取得檔案中繼資料](connectors-create-api-dropbox.md#get-file-metadata)|這項作業會取得檔案的中繼資料。|
+|[更新檔案](connectors-create-api-dropbox.md#update-file)|這項作業會更新檔案。|
+|[刪除檔案](connectors-create-api-dropbox.md#delete-file)|這項作業會刪除檔案。|
+|[使用路徑來取得檔案中繼資料](connectors-create-api-dropbox.md#get-file-metadata-using-path)|這項作業會使用路徑取得檔案的中繼資料。|
+|[使用路徑來取得檔案內容](connectors-create-api-dropbox.md#get-file-content-using-path)|這項作業會使用路徑取得檔案的內容。|
+|[取得檔案內容](connectors-create-api-dropbox.md#get-file-content)|這項作業會取得檔案的內容。|
+|[建立檔案](connectors-create-api-dropbox.md#create-file)|這項作業會建立檔案。|
+|[複製檔案](connectors-create-api-dropbox.md#copy-file)|這項作業會將檔案複製到 Dropbox。|
+|[列出資料夾中的檔案](connectors-create-api-dropbox.md#list-files-in-folder)|這項作業會取得資料夾中的檔案和子資料夾清單。|
+|[列出根資料夾中的檔案](connectors-create-api-dropbox.md#list-files-in-root-folder)|這項作業會取得根資料夾中的檔案和子資料夾清單。|
+|[將封存檔案解壓縮到資料夾](connectors-create-api-dropbox.md#extract-archive-to-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
+
+### 動作詳細資料
+
+以下是此連接器動作和觸發程序以及其回應的詳細資料︰
 
 
-您可以利用 Dropbox 來：
+### 取得檔案中繼資料
+這項作業會取得檔案的中繼資料。
 
-- 根據您從 Dropbox 所取得的資料，來建置您的商務流程。 
-- 在檔案建立或更新時使用觸發程序。
-- 使用動作來建立檔案、刪除檔案等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Dropbox 中有新檔案建立時，您可以利用 Office 365 來傳送已附加該檔案的電子郵件。
-- 將 Dropbox 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|識別碼*|檔案|選取檔案|
 
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
+* 表示這是必要屬性
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+#### 輸出詳細資料
 
-## 觸發程序及動作
-Dropbox 包含下列觸發程序及動作。
+BlobMetadata
 
-觸發程序 | 動作
---- | ---
-<ul><li>當檔案建立時</li><li>當檔案遭到修改時</li></ul> | <ul><li>建立檔案</li><li>當檔案建立時</li><li>複製檔案</li><li>刪除檔案</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案</li><li>使用識別碼來取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>更新檔案</li><li>當檔案遭到修改時</li></ul>
 
-所有連接器都支援 JSON 和 XML 格式的資料。
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
-## 建立至 Dropbox 的連線
 
-當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Dropbox。
 
->[AZURE.INCLUDE [建立至 Dropbox 連線的步驟](../../includes/connectors-create-api-dropbox.md)]
 
-當您建立連線之後，請輸入 Dropbox 的屬性，例如資料夾路徑或檔案名稱。本主題的 REST API 參考會說明這些屬性。
+### 更新檔案
+這項作業會更新檔案。
 
->[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Dropbox 連線。
 
-## Swagger REST API 參考
-適用的版本：1.0。
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|識別碼*|檔案|選取檔案|
+|body*|檔案內容|檔案的內容|
 
-### 建立檔案    
-將檔案上傳到 Dropbox。```POST: /datasets/default/files```
+* 表示這是必要屬性
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|folderPath|字串|yes|query|無 |用來把檔案上傳到 Dropbox 的資料夾路徑|
-|名稱|字串|yes|query|無 |要在 Dropbox 中建立之檔案的名稱|
-|body|字串 (二進位) |yes|body|無 |要上傳到 Dropbox 之檔案的內容|
+#### 輸出詳細資料
 
-#### Response
-|名稱|說明|
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 刪除檔案
+這項作業會刪除檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|識別碼*|檔案|選取檔案|
+
+* 表示這是必要屬性
+
+
+
+
+### 使用路徑來取得檔案中繼資料
+這項作業會使用路徑取得檔案的中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|path*|檔案路徑|選取檔案|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 使用路徑來取得檔案內容
+這項作業會使用路徑取得檔案的內容。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|path*|檔案路徑|選取檔案|
+
+* 表示這是必要屬性
+
+
+
+
+### 取得檔案內容
+這項作業會取得檔案的內容。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|識別碼*|檔案|選取檔案|
+
+* 表示這是必要屬性
+
+
+
+
+### 建立檔案
+這項作業會建立檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|folderPath*|資料夾路徑|選取資料夾|
+|name*|檔案名稱|檔案名稱|
+|body*|檔案內容|檔案的內容|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 複製檔案
+這項作業會將檔案複製到 Dropbox。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|source*|來源 URL|來源檔案的 URL|
+|destination*|目的地檔案路徑|目的地檔案路徑，包括目標檔案名稱|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 當檔案建立時
+當資料夾中有新檔案建立時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|folderId*|資料夾|選取資料夾|
+
+* 表示這是必要屬性
+
+
+
+
+### 當檔案遭到修改時
+當資料夾中有檔案遭到修改時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|folderId*|資料夾|選取資料夾|
+
+* 表示這是必要屬性
+
+
+
+
+### 列出資料夾中的檔案
+這項作業會取得資料夾中的檔案和子資料夾清單。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|識別碼*|資料夾|選取資料夾|
+
+* 表示這是必要屬性
+
+
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 列出根資料夾中的檔案
+這項作業會取得根資料夾中的檔案和子資料夾清單。
+
+
+這個呼叫沒有參數
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 將封存檔案解壓縮到資料夾
+這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|source*|來源封存檔案路徑|封存檔案的路徑|
+|destination*|目的地資料夾路徑|用來解壓縮封存檔案內容的路徑|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
+
+* 表示這是必要屬性
+
+
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+## HTTP 回應
+
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+
+| 名稱 | 說明 |
 |---|---|
 |200|OK|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
 |預設值|作業失敗。|
 
-
-### 當檔案建立時    
-當某個 Dropbox 資料夾中建立新的檔案時，就會觸發某個流程。```GET: /datasets/default/triggers/onnewfile```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|folderId|字串|yes|query|無 |Dropbox 中資料夾的唯一識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 複製檔案    
-將檔案複製到 Dropbox。```POST: /datasets/default/copyFile```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|來源|字串|yes|query|無 |來源檔案的 URL|
-|目的地|字串|yes|query| 無|Dropbox 中的目的檔案路徑，包括目標檔案名稱|
-|overwrite|布林值|no|query|無 |如果設定為「True」，則會覆寫目的檔案|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 刪除檔案    
-刪除 Dropbox 中的檔案。```DELETE: /datasets/default/files/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|字串|yes|路徑|無|要從 Dropbox 刪除之檔案的唯一識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 將封存檔案解壓縮到資料夾    
-將封存檔案 (例如 .zip) 解壓縮到 Dropbox 中的資料夾。**```POST: /datasets/default/extractFolderV2```**
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|來源|字串|yes|query|無 |封存檔案的路徑|
-|目的地|字串|yes|query|無 |用來把封存檔案內容解壓縮到 Dropbox 中的路徑|
-|overwrite|布林值|no|query|無 |如果設定為「True」，則會覆寫目的檔案|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 使用識別碼來取得檔案內容    
-使用識別碼來擷取 Dropbox 中的檔案內容。```GET: /datasets/default/files/{id}/content```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|字串|yes|路徑|無 |Dropbox 中檔案的唯一識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 使用路徑來取得檔案內容    
-使用路徑來擷取 Dropbox 中的檔案內容。```GET: /datasets/default/GetFileContentByPath```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|路徑|字串|yes|query|無 |Dropbox 中檔案的唯一路徑|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 使用識別碼來取得檔案中繼資料    
-使用檔案識別碼來擷取 Dropbox 中的檔案中繼資料。```GET: /datasets/default/files/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|字串|yes|路徑|無 |Dropbox 中檔案的唯一識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 使用路徑來取得檔案中繼資料    
-使用路徑來擷取 Dropbox 中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|路徑|字串|yes|query|無 |Dropbox 中檔案的唯一路徑|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 更新檔案    
-更新 Dropbox 中的檔案。```PUT: /datasets/default/files/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|id|字串|yes|路徑| 無|Dropbox 中要更新之檔案的唯一識別碼|
-|body|字串 (二進位) |yes|body|無 |Dropbox 中要更新之檔案的內容|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-### 當檔案遭到修改時    
-當某個 Dropbox 資料夾中的檔案遭到修改時，就會觸發某個流程。```GET: /datasets/default/triggers/onupdatedfile```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|folderId|字串|yes|query|無 |Dropbox 中資料夾的唯一識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-## 物件定義
-
-#### DataSetsMetadata
-
-|屬性名稱 | 資料類型 | 必要|
-|---|---|---|
-|表格式|未定義|no|
-|blob|未定義|no|
-
-#### TabularDataSetsMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-|tableDisplayName|字串|no|
-|tablePluralName|字串|no|
-
-#### BlobDataSetsMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-
-#### BlobMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|識別碼|字串|no|
-|名稱|字串|no|
-|DisplayName|字串|no|
-|Path|字串|no|
-|LastModified|字串|no|
-|大小|integer|no|
-|MediaType|字串|no|
-|IsFolder|布林值|no|
-|ETag|字串|no|
-|FileLocator|字串|no|
 
 ## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
-
-返回 [API 清單](apis-list.md)。
-
-
-<!--References-->
-[1]: https://www.dropbox.com/login
-[2]: https://www.dropbox.com/developers/apps/create
-[3]: https://www.dropbox.com/developers/apps
-[8]: ./media/connectors-create-api-dropbox/dropbox-developer-site.png
-[9]: ./media/connectors-create-api-dropbox/dropbox-create-app.png
-[10]: ./media/connectors-create-api-dropbox/dropbox-create-app-page1.png
-[11]: ./media/connectors-create-api-dropbox/dropbox-create-app-page2.png
-
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

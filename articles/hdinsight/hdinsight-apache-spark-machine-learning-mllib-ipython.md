@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="07/25/2016" 
 	ms.author="nitinme"/>
 
 
@@ -55,7 +55,7 @@
 
 ## 開始使用 Spark MLlib 建置機器學習應用程式
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
+1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
 
 2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結] ，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
 
@@ -85,7 +85,7 @@
 
 我們可以使用 `sqlContext` 對結構化資料執行轉換。第一項工作是將範例資料 ((**Food\_Inspections1.csv**)) 載入 Spark SQL *資料框架*中。
 
-1. 由於原始資料採用 CSV 格式，因此我們必須使用 Spark 內容，將檔案的每一行以非結構化文字的形式提取至記憶體中，然後您再使用 Python 的 CSV 程式庫個別剖析每一行。 
+1. 由於原始資料採用 CSV 格式，因此我們必須使用 Spark 內容，將檔案的每一行以非結構化文字的形式提取至記憶體中，然後您再使用 Python 的 CSV 程式庫個別剖析每一行。
 
 
 		def csvParse(s):
@@ -96,7 +96,7 @@
 		    sio.close()
 		    return value
 		
-		inspections = sc.textFile('wasb:///HdiSamples/HdiSamples/FoodInspectionData/Food_Inspections1.csv')\
+		inspections = sc.textFile('wasbs:///HdiSamples/HdiSamples/FoodInspectionData/Food_Inspections1.csv')\
 		                .map(csvParse)
 
 
@@ -222,11 +222,11 @@
 
 4. 您可以看到，一項檢查可以有 5 個不同的結果：
 	
-	* 找不到該業者 
+	* 找不到該業者
 	* 不合格
 	* 通過
 	* 有條件通過，以及
-	* 已結束營業 
+	* 已結束營業
 
 	我們要根據給定的違規標準，開發可以猜測食品檢查結果的模型。由於羅吉斯迴歸是一種二元分類方法，因此將資料分成兩個類別，是很合理的：**不合格**和**通過**。「有條件通過」仍屬於「通過」，因此在訓練模型時，我們會將兩種結果視為相同。具有其他結果 (「找不到業者」、「已結束營業」) 的資料沒有用處，因此我們將其從訓練集中移除。這應該沒有問題，因為這兩種類別在結果中所佔的百分比非常小。
 
@@ -283,7 +283,7 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 1. 下列程式碼片段會建立新的資料框架 **predictionsDf**，其中包含模型所產生的預測。程式碼片段也會依據資料框架，建立暫存資料表 **Predictions**。
 
 
-		testData = sc.textFile('wasb:///HdiSamples/HdiSamples/FoodInspectionData/Food_Inspections2.csv')\
+		testData = sc.textFile('wasbs:///HdiSamples/HdiSamples/FoodInspectionData/Food_Inspections2.csv')\
 	             .map(csvParse) \
 	             .map(lambda l: (int(l[0]), l[1], l[12], l[13]))
 		testDf = sqlContext.createDataFrame(testData, schema).where("results = 'Fail' OR results = 'Pass' OR results = 'Pass w/ Conditions'")
@@ -341,7 +341,7 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 我們現在可以建構最終的視覺效果，以利研判此測試的結果。
 
-1. 我們可以從擷取稍早建立的 **Predictions** 暫存資料表中不同的預測和結果開始。下列查詢會將輸出分隔為 *true\_positive*、*false\_positive*、*true\_negative* 和 *false\_negative*。在下面的查詢中，我們會使用 `-q` 關閉視覺效果，並 (使用 `-o`) 將輸出儲存為可以和 `%%local` magic 搭配使用的資料框架。 
+1. 我們可以從擷取稍早建立的 **Predictions** 暫存資料表中不同的預測和結果開始。下列查詢會將輸出分隔為 *true\_positive*、*false\_positive*、*true\_negative* 和 *false\_negative*。在下面的查詢中，我們會使用 `-q` 關閉視覺效果，並 (使用 `-o`) 將輸出儲存為可以和 `%%local` magic 搭配使用的資料框架。
 
 		%%sql -q -o true_positive
 		SELECT count(*) AS cnt FROM Predictions WHERE prediction = 0 AND results = 'Fail'
@@ -420,4 +420,4 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

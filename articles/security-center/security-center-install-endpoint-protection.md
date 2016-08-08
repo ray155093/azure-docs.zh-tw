@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/15/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心安裝端點保護
 
 如果還未啟用反惡意程式碼，Azure 資訊安全中心將會建議您在 Azure 虛擬機器 (VM) 中佈建反惡意程式碼程式。這項建議僅適用於 Windows VM。
 
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 實作建議
 
@@ -36,7 +36,7 @@
 
 [Microsoft Antimalware](../azure-security-antimalware.md) 現在已在選取的 VM 上使用。
 
-## 後續步驟
+## 另請參閱
 
 本文說明了如何實作資訊安全中心建議的「安裝端點保護」。 若要深入了解如何在 Azure 中啟用反惡意程式碼程式，請參閱下列各項：
 
@@ -58,4 +58,4 @@
 [3]: ./media/security-center-install-endpoint-protection/select-endpoint-protection.png
 [4]: ./media/security-center-install-endpoint-protection/create-antimalware-solution.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

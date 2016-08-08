@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -47,7 +47,7 @@ Microsoft connector for DB2 是一個 API 應用程式，可透過 Azure App Ser
 3. 在 [搜尋所有項目的結果] 窗格中，選取 [DB2 連接器]。
 4. 在 [DB2 連接器描述] 刀鋒視窗中，選取 [建立]。
 5. 在 [DB2 連接器封裝] 刀鋒視窗中，輸入 [名稱] \(例如："Db2ConnectorNewOrders")、[App Service 方案] 和其他屬性。
-6. 選取 [封裝設定]，然後輸入下列封裝設定：  
+6. 選取 [封裝設定]，然後輸入下列封裝設定：
 
 	名稱 | 必要 | 說明
 --- | --- | ---
@@ -75,7 +75,7 @@ PollToAlterData | 否 | 要搭配邏輯應用程式觸發程序使用的 UPDATE 
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
 6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [插入 NEWORDER]。
-7. 展開參數清單以輸入下列值：  
+7. 展開參數清單以輸入下列值：
 
 	名稱 | 值
 --- | --- 
@@ -98,8 +98,8 @@ SHIPZIP | 99362
 
 - 形成邏輯應用程式的動作名稱時，連接器會截斷 DB2 資料表名稱。例如，[插入 NEWORDERS] 作業會被截斷成 [插入 NEWORDER]。
 - 儲存邏輯應用程式的 [觸發程序和動作] 之後，邏輯應用程式會處理此作業。在邏輯應用程式處理此作業前，可能會有數秒的延遲 (例如 3-5 秒)。或者，您可以按一下 [立即執行] 來處理此作業。
-- DB2 連接器會以屬性定義 EntitySet 成員，包括成員是否對應至具有預設值的 DB2 資料行或產生的資料行 (例如身分識別)。邏輯應用程式會在 EntitySet 成員識別碼名稱旁邊顯示一個紅色星號，表示需有值的 DB2 資料行。您不應輸入 ORDID 成員的值，其對應至 DB2 身分識別資料行。您可以輸入其他選擇性成員 (ITEMS、ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY) 的值，其對應至具有預設值的 DB2 資料行。 
-- DB2 連接器會將 Post to EntitySet 回應 (包含身分識別資料行的值) 傳回至邏輯應用程式，而該回應衍生自已備妥 SQL INSERT 陳述式上的 DRDA SQLDARD (SQL 資料區域回覆資料)。DB2 伺服器不會對具有預設值的資料行傳回插入的值。  
+- DB2 連接器會以屬性定義 EntitySet 成員，包括成員是否對應至具有預設值的 DB2 資料行或產生的資料行 (例如身分識別)。邏輯應用程式會在 EntitySet 成員識別碼名稱旁邊顯示一個紅色星號，表示需有值的 DB2 資料行。您不應輸入 ORDID 成員的值，其對應至 DB2 身分識別資料行。您可以輸入其他選擇性成員 (ITEMS、ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY) 的值，其對應至具有預設值的 DB2 資料行。
+- DB2 連接器會將 Post to EntitySet 回應 (包含身分識別資料行的值) 傳回至邏輯應用程式，而該回應衍生自已備妥 SQL INSERT 陳述式上的 DRDA SQLDARD (SQL 資料區域回覆資料)。DB2 伺服器不會對具有預設值的資料行傳回插入的值。
 
 
 ## 以 DB2 連接器動作大量新增資料的邏輯應用程式 ##
@@ -128,7 +128,7 @@ SHIPZIP | 99362
 
 - 形成邏輯應用程式的動作名稱時，連接器會截斷 DB2 資料表名稱。例如，[大量插入 NEWORDERS] 作業會被截斷成 [大量插入 NEW]。
 - 略過身分識別欄位 (例如 ORDID)、可為 null 的資料行 (例如 SHIPDATE) 和具有預設值的資料行 (例如 ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY)，DB2 資料庫即可產生值。
-- 指定「今天」和「明天」，DB2 連接器即可產生「目前日期」和「目前日期 + 1 天」函式 (例如 REQDATE)。 
+- 指定「今天」和「明天」，DB2 連接器即可產生「目前日期」和「目前日期 + 1 天」函式 (例如 REQDATE)。
 
 
 ## 以 DB2 連接器觸發程序讀取、變更或刪除資料的邏輯應用程式 ##
@@ -138,7 +138,7 @@ SHIPZIP | 99362
 --- | --- | ---
 PollToCheckData | SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL
 PollToReadData | SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
-PollToAlterData | <no value specified>
+PollToAlterData | <未指定值>
 
 
 此外，您可定義邏輯應用程式觸發程序，使用 API 輪詢資料複合作業來輪詢、讀取及變更 DB2 資料表中的資料。例如，您可以讀取一或多筆新的客戶訂單記錄、更新資料列值，並將選取 (更新前) 的記錄傳回至邏輯應用程式。DB2 Connection 封裝/應用程式設定應如下所示：
@@ -166,7 +166,7 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 [API Apps] 面板中，選取 [DB2 連接器]，設定頻率和間隔，然後選取**核取記號**。
 6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [從 NEWORDERS 選取]。
-7. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。設定應如下所示：![][10]  
+7. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。設定應如下所示：![][10]
 8. 按一下以關閉 [觸發程序和動作] 刀鋒視窗，然後按一下以關閉 [設定] 刀鋒視窗。
 9. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
 10. 在 [邏輯應用程式執行] 刀鋒視窗中，按一下 [動作] 項目。
@@ -179,10 +179,10 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 ## 建立使用 DB2 連接器來移除資料的邏輯應用程式 ##
 您可以從 Azure Marketplace 建立新的邏輯應用程式，然後使用 DB2 連接器動作來移除客戶訂單。例如，您可以使用 DB2 連接器條件式刪除作業來處理 SQL DELETE 陳述式 (DELETE FROM NEWORDERS WHERE ORDID >= 10000)。
 
-1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。 
+1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
 2. 在 [建立邏輯應用程式] 刀鋒視窗中，輸入 [名稱]，例如 **RemoveOrdersDb2**。
 3. 選取或定義其他設定 (例如服務計劃、資源群組) 的值。
-4. 設定應如下所示。按一下 [建立]：![][12]  
+4. 設定應如下所示。按一下 [建立]：![][12]
 5. 在 [設定] 刀鋒視窗中，按一下 [觸發程序和動作]。
 6. 在 [觸發程序和動作] 刀鋒視窗的 [邏輯應用程式範本] 清單中，按一下 [從頭建立]。
 7. 在 [觸發程序和動作] 刀鋒視窗的 [API Apps] 面板中，按一下資源群組內的 [週期]。
@@ -190,7 +190,7 @@ PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 9. 在 [觸發程序和動作] 刀鋒視窗的 [API Apps] 面板中，按一下資源群組內的 [DB2 連接器]。
 10. 在邏輯應用程式設計介面上，按一下 [DB2 連接器] 動作項目，按一下省略符號 (**...**) 以展開作業清單中，然後按一下 [條件式刪除自 N]。
 11. 在 DB2 連接器動作項目上，針對 [識別項目子集的運算式] 輸入 **ORDID ge 10000**。
-12. 按一下**核取記號**以儲存動作設定，然後按一下 [儲存]。設定應如下所示：![][13]  
+12. 按一下**核取記號**以儲存動作設定，然後按一下 [儲存]。設定應如下所示：![][13]
 13. 按一下以關閉 [觸發程序和動作] 刀鋒視窗，然後按一下以關閉 [設定] 刀鋒視窗。
 14. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
 15. 在 [邏輯應用程式執行] 刀鋒視窗中，按一下 [動作] 項目。
@@ -271,4 +271,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [13]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_TriggersActions.png
 [14]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_Outputs.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

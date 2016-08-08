@@ -79,7 +79,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
     > [AZURE.NOTE] 如果您使用 HTTP/1 而非 AMQP 做為傳輸，**DeviceClient** 執行個體不會經常檢查 IoT 中樞是否傳來訊息 (每隔 25 分鐘以上)。如需有關 AMQP 與 HTTP/1 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
-## 從應用程式後端傳送雲端到裝置訊息
+## 傳送雲端到裝置訊息
 
 在本節中，您會建立 Java 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼，以及您 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
 
@@ -165,7 +165,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![][img-simulated-device]
+    ![執行模擬裝置應用程式][img-simulated-device]
 
 2. 在 send-c2d-messages 資料夾中的命令提示字元，執行下列命令來傳送雲端到裝置訊息並等候意見反應通知︰
 
@@ -173,7 +173,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![][img-send-command]
+    ![執行命令以傳送 c2d 訊息][img-send-command]
 
 ## 後續步驟
 
@@ -192,12 +192,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [IoT 中心入門]: iot-hub-java-java-getstarted.md
 [開始使用 IoT 中樞]: iot-hub-java-java-getstarted.md
 [IoT Hub Developer Guide - C2D]: iot-hub-devguide.md#c2d
-[Process Device-to-Cloud messages]: iot-hub-csharp-csharp-process-d2c.md
-[Uploading files from devices]: iot-hub-csharp-csharp-file-upload.md
-[IoT Hub Overview]: iot-hub-what-is-iot-hub.md
-[IoT Hub Guidance]: iot-hub-guidance.md
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
-[Supported device platforms and languages]: iot-hub-supported-devices.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/java-devbox-setup.md
@@ -205,4 +200,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="07/19/2016"
+ms.date="07/25/2016"
 ms.author="larryfr"/>
 
 #從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集
@@ -79,7 +79,7 @@ ms.author="larryfr"/>
 
 6. 從 SSH 工作階段中，使用下列命令來將檔案從已連結的儲存體帳戶複製到新的預設儲存體帳戶。將 CONTAINER 和 ACCOUNT 取代為步驟 1 中由 PowerShell 指令碼傳回的容器和帳戶資訊。將資料路徑取代為資料檔案路徑。
 
-        hdfs dfs -cp wasb://CONTAINER@ACCOUNT.blob.core.windows.net/path/to/old/data /path/to/new/location
+        hdfs dfs -cp wasbs://CONTAINER@ACCOUNT.blob.core.windows.net/path/to/old/data /path/to/new/location
 
     [AZURE.NOTE] 如果包含資料的目錄結構並不存在於測試環境上，您可以使用下列命令建立它。
 
@@ -240,9 +240,9 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 -   **如果您的指令碼已經位於叢集所使用的儲存體中**，您可以針對以 Linux 為基礎的叢集，透過 SSH 工作階段使用下列命令來修改指令碼。
 
-        hdfs dfs -get wasb:///path/to/script.py oldscript.py
+        hdfs dfs -get wasbs:///path/to/script.py oldscript.py
         tr -d '\r' < oldscript.py > script.py
-        hdfs dfs -put -f script.py wasb:///path/to/script.py
+        hdfs dfs -put -f script.py wasbs:///path/to/script.py
 
 ##後續步驟
 
@@ -254,4 +254,4 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 -   [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

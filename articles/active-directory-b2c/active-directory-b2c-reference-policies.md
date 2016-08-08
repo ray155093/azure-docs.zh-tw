@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：可延伸的原則架構 | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：可延伸的原則架構 | Microsoft Azure"
 	description="關於 Azure Active Directory B2C 的可延伸原則架構及如何建立各種原則類型的主題"
 	services="active-directory-b2c"
 	documentationCenter=""
@@ -13,12 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="07/24/2016"
 	ms.author="swkrish"/>
 
-# Azure Active Directory B2C 預覽：可延伸的原則架構
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
+# Azure Active Directory B2C：可延伸的原則架構
 
 ## 基本概念
 
@@ -68,11 +66,11 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 若要在您的應用程式中啟用註冊功能，您必須建立註冊原則。此原則描述取用者在註冊期間將會經歷的體驗，以及成功註冊時，應用程式將收到的權杖內容。
 
-1. [遵循下列步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [註冊原則]。
 3. 按一下刀鋒視窗頂端的 [+新增]。
 4. [名稱] 決定您的應用程式所使用的註冊原則名稱。例如，輸入 "SiUp"。
-5. 按一下 [識別提供者]，選取 [電子郵件註冊]。(選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。按一下 [確定]。
+5. 按一下 [身分識別提供者]，選取 [電子郵件註冊]。(選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。按一下 [確定]。
 6. 按一下 [註冊屬性]。您可以在這裡選擇註冊期間要向取用者收集的屬性。例如，選取 [國家/區域]、[顯示名稱] 和 [郵遞區號]。按一下 [確定]。
 7. 按一下 [應用程式宣告]。您在這裡選擇成功註冊之後，您要在權杖中傳回給應用程式的宣告。例如，選取 [顯示名稱]、[身分識別提供者]、[郵遞區號]、[使用者是新的] 和 [使用者的物件識別碼]。
 8. 按一下 [建立]。請注意，剛建立的原則會在 [註冊原則] 刀鋒視窗中顯示為 "**B2C\_1\_SiUp**" (自動加上 **B2C\_1\_** 部分)。
@@ -87,7 +85,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 若要在您的應用程式中啟用登入功能，您必須建立登入原則。此原則描述取用者在登入期間將經歷的體驗，以及成功登入時，應用程式將收到的權杖內容。
 
-1. [遵循下列步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [登入原則]。
 3. 按一下刀鋒視窗頂端的 [+新增]。
 4. [名稱] 決定您的應用程式所使用的登入原則名稱。例如，輸入 "SiIn"。
@@ -105,7 +103,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 此原則可使用單一組態處理取用者註冊和登入經驗。視內容而定，取用者會被引導到正確的路徑 (註冊或登入)。此原則也會描述在成功註冊或登入時，應用程式將收到的權杖內容。您可以[在這裡找到](active-directory-b2c-devquickstarts-web-dotnet-susi.md)註冊或登入原則的代碼範例。
 
-1. [遵循這些步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [註冊或登入原則]。
 3. 按一下刀鋒視窗頂端的 [新增]。
 4. [名稱] 決定您的應用程式所使用的註冊原則名稱。例如，輸入 "SiUpIn"。
@@ -124,7 +122,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 若要在您的應用程式中啟用設定檔編輯功能，您必須建立設定檔編輯原則。此原則描述取用者在設定檔編輯期間將會經歷的體驗，以及成功完成時，應用程式將收到的權杖內容。
 
-1. [遵循下列步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [設定檔編輯原則]。
 3. 按一下刀鋒視窗頂端的 [+新增]。
 4. [名稱] 決定您的應用程式所使用的設定檔編輯原則名稱。例如，輸入 "SiPe"。
@@ -143,7 +141,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 若要在您的應用程式上啟用更細緻的密碼重設，您必須建立密碼重設原則。請注意，[這裡](active-directory-b2c-reference-sspr.md)指定的整個租用戶的密碼重設選項仍適用於登入原則。此原則描述取用者在密碼重設期間將經歷的體驗，以及成功完成時，應用程式將收到的權杖內容。
 
-1. [遵循這些步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [密碼重設原則]。
 3. 按一下刀鋒視窗頂端的 [新增]。
 4. [名稱] 決定您的應用程式所使用的密碼重設原則名稱。例如，輸入 "SSPR"。
@@ -161,4 +159,4 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 - [權杖、工作階段及單一登入組態](active-directory-b2c-token-session-sso.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

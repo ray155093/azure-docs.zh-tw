@@ -2,7 +2,9 @@
 
 - 您可以使用以 Azure 虛擬機器建立的虛擬機器，在雲端中執行 Windows Server Active Directory (通常簡稱為 AD)。當您使用 Azure 將內部部署資料中心擴充到雲端時，這是合理的方法。
 
-- 您可以使用 Azure Active Directory，為使用者提供軟體即服務 (SaaS) 應用程式的單一登入。例如，Microsoft Office 365 會使用這項技術，而且在 Azure 或其他雲端平台中執行的應用程式也可以使用此技術。
+
+- 您可以使用 Azure Active Directory，為使用者提供[軟體即服務 (SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 應用程式的單一登入。例如，Microsoft Office 365 會使用這項技術，而且在 Azure 或其他雲端平台中執行的應用程式也可以使用此技術。
+
 
 - 在雲端或內部部署中執行的應用程式可以使用 Azure Active Directory 存取控制，讓使用者使用來自 Facebook、Google、Microsoft 和其他身分識別提供者的身分識別進行登入。
 
@@ -118,4 +120,4 @@ Azure AD 目前並未完全取代內部部署 Windows Server AD。如先前所�
 
 David Chappell 是 Chappell & Associates [www.davidchappell.com](http://www.davidchappell.com) (位於美國加州舊金山) 的主席。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="07/01/2016"
+   ms.date="07/26/2016"
    ms.author="owend"/>
 
 # 使用 Power BI Embedded 驗證和授權
@@ -36,7 +36,7 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 
 | 宣告 | 說明 |
 |--------------|------------|
-| **ver** | 應用程式權杖的版本。目前版本為 1.0.0。 |
+| **ver** | 應用程式權杖的版本。目前版本為 0.2.0。 |
 | **aud** | 權杖的預定接收者。對於 Power BI Embedded，使用：“https://analysis.windows.net/powerbi/api”。 |
 | **iss** | 字串，表示已發出權杖的應用程式。 |
 | **type** | 正在建立的應用程式權杖類型。目前唯一支援的類型為**內嵌**。 |
@@ -93,4 +93,4 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

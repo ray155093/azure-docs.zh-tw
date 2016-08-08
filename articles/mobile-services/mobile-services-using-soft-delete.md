@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/11/2016"
+	ms.date="07/21/2016"
 	ms.author="wesmc"/>
 
 # 使用行動服務中的虛刪除
@@ -165,4 +165,4 @@
 [行動服務的離線資料同步]: mobile-services-windows-store-dotnet-get-started-offline-data.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0727_2016-->

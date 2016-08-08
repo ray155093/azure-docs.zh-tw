@@ -161,7 +161,7 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 因為 HDInsight 的預設檔案系統是位於 Azure Blob 儲存體中，所以 /example/data.txt 實際上是在 Azure Blob 儲存體中。您也可以用下列語法來參考此檔案：
 
-	wasb:///example/data/data.txt
+	wasbs:///example/data/data.txt
 
 或
 
@@ -188,7 +188,7 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。
 
-1. 執行 Azure 儲存體總管。如果這是您第一次執行 [儲存體總管]，將會提示您輸入___儲存體帳戶名稱__和__儲存體帳戶金鑰__。如果您之前曾執行過，請使用 [新增] 按鈕加入新的儲存體帳戶名稱和金鑰。
+1. 執行 Azure 儲存體總管。如果這是您第一次執行 [儲存體總管]，將會提示您輸入 [儲存體帳戶名稱]__\_ 和 [儲存體帳戶金鑰]____。如果您之前曾執行過，請使用 [新增]__\_\_ 按鈕加入新的儲存體帳戶名稱和金鑰。
 
     輸入 HDinsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
 
@@ -282,4 +282,4 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 [image-ase-addaccount]: ./media/hdinsight-upload-data/HDI.ASEAddAccount.png
 [image-ase-blob]: ./media/hdinsight-upload-data/HDI.ASEBlob.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

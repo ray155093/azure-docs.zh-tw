@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/13/2016"
+   ms.date="07/27/2016"
    ms.author="larryfr"/>
 
 #開發適用於 HDInsight 的 Python 串流程式
@@ -163,7 +163,7 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 
 2. 使用下列命令啟動 MapReduce 工作。
 
-		yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout
+		yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasbs:///example/data/gutenberg/davinci.txt -output wasbs:///example/wordcountout
 
 	此命令有下列幾個部分：
 
@@ -212,4 +212,4 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

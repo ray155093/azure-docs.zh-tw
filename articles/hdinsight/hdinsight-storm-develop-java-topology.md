@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/17/2016"
+   ms.date="07/27/2016"
    ms.author="larryfr"/>
 
 #使用 HDInsight 上的 Apache Storm 和 Maven 開發基本字數統計應用程式的 Java 型拓撲
@@ -23,9 +23,9 @@
 
 完成這份文件中的步驟之後，就會有可部署到 Apache Storm on HDInsight 的基本拓撲。
 
-> [AZURE.NOTE]\: [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount) 有提供此拓撲的完整版本。
+> [AZURE.NOTE] [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount) 有提供此拓撲的完整版本。
 
-##先決條件
+##必要條件
 
 * <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html" target="_blank">Java Developer Kit (JDK) 第 7 版</a>
 
@@ -80,7 +80,10 @@
 	<dependency>
 	  <groupId>org.apache.storm</groupId>
 	  <artifactId>storm-core</artifactId>
-	  <version>0.9.2-incubating</version>
+      <!-- Storm 0.10.0 is for HDInsight 3.3 and 3.4.
+           To find the version information for earlier HDInsight cluster
+           versions, see https://azure.microsoft.com/zh-TW/documentation/articles/hdinsight-component-versioning/ -->
+	  <version>0.10.0</version>
 	  <!-- keep storm out of the jar-with-dependencies -->
 	  <scope>provided</scope>
 	</dependency>
@@ -96,9 +99,11 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 	<build>
 	  <plugins>
 	  </plugins>
+      <resources>
+      </resources>
 	</build>
 
-此區段將用來新增外掛程式和其他組建組態選項。
+此區段將用來新增外掛程式、資源，和其他組建組態選項。如需 __pom.xml__ 檔案的完整參考，請參閱 [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html) (英文)。
 
 ###加入外掛程式
 
@@ -137,6 +142,20 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
         <target>1.7</target>
       </configuration>
     </plugin>
+
+###Configure resources
+
+resources 區段可讓您包含非程式碼資源，例如拓撲中元件所需的組態檔。對於此範例，在 **pom.xml** 檔案的 `<resources>` 區段中新增下列內容。
+
+    <resource>
+        <directory>${basedir}/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>log4j2.xml</include>
+        </includes>
+    </resource>
+
+這會將專案根目錄 (`${basedir}`) 中的 resources 目錄新增為包含資源的位置，並且包含稱為 __log4j2.xml__ 的檔案。這個檔案是用來設定拓撲要記錄哪些資訊。
 
 ##建立拓撲
 
@@ -319,8 +338,15 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
     import backtype.storm.tuple.Tuple;
     import backtype.storm.tuple.Values;
 
+    // For logging
+    import org.apache.logging.log4j.Logger;
+    import org.apache.logging.log4j.LogManager;
+
     //There are a variety of bolt types. In this case, we use BaseBasicBolt
     public class WordCount extends BaseBasicBolt {
+      //Create logger for this class
+      private static final Logger logger = LogManager.getLogger(WordCount.class);
+      
       //For holding words and counts
         Map<String, Integer> counts = new HashMap<String, Integer>();
 
@@ -338,6 +364,8 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
           counts.put(word, count);
           //Emit the word and the current count
           collector.emit(new Values(word, count));
+          //Log information
+          logger.info("Emitting a count of " + count + " for word " + word);
         }
 
         //Declare that we will emit a tuple containing two fields; word and count
@@ -349,7 +377,7 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
 
 請用一些時間閱讀程式碼註解，以了解每個 Bolt 的運作方式。
 
-###建立拓撲
+###定義拓撲
 
 拓撲會將 Spout 和 Bolt 一起繫結至圖形，其中定義元件之間的資料流動方式。它也會提供 Storm 在叢集內建立元件的執行個體時所使用的平行處理原則提示。
 
@@ -391,7 +419,9 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
 
         //new configuration
         Config conf = new Config();
-        conf.setDebug(true);
+        //Set to false to disable debug information
+        // when running in production mode.
+        conf.setDebug(false);
 
         //If there are arguments, we are running on a cluster
         if (args != null && args.length > 0) {
@@ -419,6 +449,37 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
 
 請用一些時間閱讀程式碼註解，以了解拓撲的定義方式，然後提交至叢集。
 
+###設定記錄
+
+Storm 使用 Apache Log4j 來記錄資訊。如果未設定記錄，拓撲就會發出許多難以讀取的診斷資訊。若要控制記錄哪些資訊，請在 __resources__ 目錄中建立名為 __log4j2.xml__ 的檔案。使用下列內容做為檔案的內容。
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.microsoft.example" level="trace" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Root level="error">
+            <Appender-Ref ref="STDOUT"/>
+        </Root>
+    </Loggers>
+    </Configuration>
+
+這會設定 __com.microsoft.example__ 類別的新記錄器，而該類別中會包含此範例拓撲的元件。此記錄器的層級是設為 trace，這樣會擷取此拓撲中元件發出的任何記錄資訊。如果您回顧此專案中的程式碼，您會發現只有 WordCount.java 檔案實作記錄，它會記錄每個單字的字數。
+
+`<Root level="error">` 區段會設定記錄的根層級 (不在 __com.microsoft.example__ 中的所有項目)，只記錄錯誤資訊。
+
+> [AZURE.IMPORTANT] 雖然這樣可以大幅減少在開發環境中測試拓撲時所記錄的資訊，但不會移除所有在生產環境叢集執行時產生的偵錯資訊。若要減少這類資訊，您也必須在提交到叢集的組態中，將偵錯設為 false。如需範例，請參閱本文件中的 WordCountTopology.java 程式碼。
+
+如需針對 Log4j 設定記錄的詳細資訊，請參閱 [http://logging.apache.org/log4j/2.x/manual/configuration.html](http://logging.apache.org/log4j/2.x/manual/configuration.html) (英文)。
+
+> [AZURE.NOTE] Storm 0.10.0 版使用 Log4j 2.x。舊版的 Storm 使用 Log4j 1.x，它們使用不同格式的記錄設定。如需舊版組態的詳細資訊，請參閱 [http://wiki.apache.org/logging-log4j/Log4jXmlFormat](http://wiki.apache.org/logging-log4j/Log4jXmlFormat) (英文)。
+
 ##在本機測試拓撲
 
 儲存檔案之後，請使用下列命令在本機測試拓撲。
@@ -427,29 +488,23 @@ Bolt 會處理資料的處理。針對此拓撲，我們有兩個 Bolt：
 
 它執行時，拓撲將顯示啟動資訊。然後在從 Spout 發出句子並由 Bolt 處理時，開始顯示類似如下的內容。
 
-    15398 [Thread-16-split] INFO  backtype.storm.daemon.executor - Processing received message source: spout:10, stream: default, id: {}, [an apple a day keeps thedoctor away]]
-    15398 [Thread-16-split] INFO  backtype.storm.daemon.task - Emitting: split default [an]
-    15399 [Thread-10-count] INFO  backtype.storm.daemon.executor - Processing received message source: split:6, stream: default, id: {}, [an]
-    15399 [Thread-16-split] INFO  backtype.storm.daemon.task - Emitting: split default [apple]
-    15400 [Thread-8-count] INFO  backtype.storm.daemon.executor - Processing received message source: split:6, stream: default, id: {}, [apple]
-    15400 [Thread-16-split] INFO  backtype.storm.daemon.task - Emitting: split default [a]
-    15399 [Thread-10-count] INFO  backtype.storm.daemon.task - Emitting: count default [an, 53]
-    15400 [Thread-12-count] INFO  backtype.storm.daemon.executor - Processing received message source: split:6, stream: default, id: {}, [a]
-    15400 [Thread-16-split] INFO  backtype.storm.daemon.task - Emitting: split default [day]
-    15400 [Thread-8-count] INFO  backtype.storm.daemon.task - Emitting: count default [apple, 53]
-    15401 [Thread-10-count] INFO  backtype.storm.daemon.executor - Processing received message source: split:6, stream: default, id: {}, [day]
-    15401 [Thread-16-split] INFO  backtype.storm.daemon.task - Emitting: split default [keeps]
-    15401 [Thread-12-count] INFO  backtype.storm.daemon.task - Emitting: count default [a, 53]
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word snow
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word white
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 112 for word seven
+    17:33:27 [Thread-16-count] INFO  com.microsoft.example.WordCount - Emitting a count of 195 for word the
+    17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 113 for word and
+    17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word dwarfs
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word snow
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word white
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 113 for word seven
+    17:33:27 [Thread-16-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word i
+    17:33:27 [Thread-16-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word at
+    17:33:27 [Thread-16-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word with
+    17:33:27 [Thread-16-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word nature
+    17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word two
+    17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 51 for word am
 
-您可以從此輸出看到發生下列情況：
-
-1. Spout 發出 "an apple a day keeps the doctor away"。
-
-2. Split Bolt 開始發出句子中的個別單字。
-
-3. Count Bolt 開始發出每個單字和其發出次數。
-
-查看 Count Bolt 所發出的資料，我們可以得知 ’apple’ 已發出 53 次。只要拓撲執行，計數就會持續增加，因為會隨機反覆發出相同的句子，而且永不會重設計數。
+查看 WordCount Bolt 所發出的記錄，我們可以得知 'apple' 已發出 53 次。只要拓撲執行，計數就會持續增加，因為會隨機反覆發出相同的句子，而且永不會重設計數。
 
 ##Trident
 
@@ -471,4 +526,4 @@ Trident 是 Storm 提供的高層級抽象。它支援具狀態的處理。Tride
 
 您可透過瀏覽 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)找到更多範例 Storm 拓撲。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

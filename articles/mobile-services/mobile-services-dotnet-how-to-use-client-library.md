@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/28/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 如何針對 Azure 行動服務使用受管理的用戶端程式庫
@@ -771,4 +771,4 @@ Windows 支援定期通知 (提取通知) 更新動態磚。透過啟用定期�
 [Azure 行動服務用戶端 SDK 中的自訂 API]: http://blogs.msdn.com/b/carlosfigueira/archive/2013/06/19/custom-api-in-azure-mobile-services-client-sdks.aspx
 [InvokeApiAsync]: http://msdn.microsoft.com/library/azure/microsoft.windowsazure.mobileservices.mobileserviceclient.invokeapiasync.aspx
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

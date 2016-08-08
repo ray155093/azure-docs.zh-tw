@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/09/2016" 
+	ms.date="07/25/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory - 函式與系統變數
@@ -37,7 +37,7 @@ SliceEnd | 所產生之目前資料配量的時間間隔結束 | 活動<br/>資�
 
 1.	指定資料選取範圍查詢 (請參閱[資料移動活動](data-factory-data-movement-activities.md)文章中參考的連接器文章)。
 
-	針對資料選取範圍查詢和活動與資料集中的其他屬性，叫用 Data Factory 函式的語法是：**$$<function>**。  
+	針對資料選取範圍查詢和活動與資料集中的其他屬性，叫用 Data Factory 函式的語法是：**$$<function>**。
 2. 使用 Data Factory 函式在活動輸入集合中指定輸入相依性 (請參閱上述範例)。
 
 	指定輸入相依性運算式不需要 $$。
@@ -88,4 +88,4 @@ DateTime | Ticks(X) | X：DateTime | 取得參數 X 的刻度屬性。一個刻�
 > [AZURE.NOTE] 在另一個函式中使用函式時，您不需要針對內部函式使用 **$$** 前置詞。例如：$$Text.Format('PartitionKey eq \\'my\_pkey\_filter\_value\\' and RowKey ge \\'{0:yyyy-MM-dd HH:mm:ss}\\'', Time.AddHours(SliceStart, -6))。在此範例中，請注意 **$$** 前置詞不能用於 **Time.AddHours** 函式。
   
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

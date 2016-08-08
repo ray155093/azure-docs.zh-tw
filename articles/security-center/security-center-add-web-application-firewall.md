@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/15/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心新增 Web 應用程式防火牆
 
 Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web 應用程式防火牆 (WAF)，以保護您 Web 應用程式的安全。本文件逐步解說如何進行這項操作的範例。
 
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 實作建議
 
@@ -48,7 +48,7 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 
 現在已將來自該 WAF 的記錄完全整合。「資訊安全中心」可以開始自動收集並分析記錄，以便對您顯示重要的安全性警示。
 
-## 後續步驟
+## 另請參閱
 
 本文件說明如何實作資訊安全中心建議的「新增 Web 應用程式」。 若要深入了解如何設定 Web 應用程式防火牆，請參閱下列各項：
 
@@ -71,4 +71,4 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 [5]: ./media/security-center-add-web-application-firewall/finalize-waf.png
 [6]: ./media/security-center-add-web-application-firewall/restrict-traffic.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

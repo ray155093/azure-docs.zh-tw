@@ -4,7 +4,7 @@
 	services="mobile-services"
 	documentationCenter="android"
 	authors="RickSaling"
-	manager="dwrede"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="01/20/2016"
+	ms.date="07/21/2016"
 	ms.author="ricksal"/>
 
 # 將驗證加入至行動服務 Android 應用程式 (JavaScript 後端)
@@ -107,4 +107,4 @@
 [開始使用行動服務]: mobile-services-android-get-started.md
 [使用指令碼授權使用者]: mobile-services-javascript-backend-service-side-authorization.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

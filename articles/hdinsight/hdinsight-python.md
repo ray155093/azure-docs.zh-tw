@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="06/27/2016" 
+	ms.date="07/25/2016" 
 	ms.author="larryfr"/>
 
 #在 HDInsight 中搭配 Hive 與 Pig 來使用 Python
@@ -41,7 +41,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 **以 Linux 為基礎的 HDInsight**
 
-	add file wasb:///streaming.py;
+	add file wasbs:///streaming.py;
 
 	SELECT TRANSFORM (clientid, devicemake, devicemodel)
 	  USING 'python streaming.py' AS
@@ -51,7 +51,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 **以 Windows 為基礎的 HDInsight**
 
-	add file wasb:///streaming.py;
+	add file wasbs:///streaming.py;
 
 	SELECT TRANSFORM (clientid, devicemake, devicemodel)
 	  USING 'D:\Python27\python.exe streaming.py' AS
@@ -107,8 +107,8 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 從 Pig 中，透過 **GENERATE** 陳述式，可將 Python 指令碼當做 UDF 使用。例如，下列範例使用儲存在 **jython.py** 檔案中的 Python 指令碼。
 
-	Register 'wasb:///jython.py' using jython as myfuncs;
-    LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
+	Register 'wasbs:///jython.py' using jython as myfuncs;
+    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
     LOG = FILTER LOGS by LINE is not null;
     DETAILS = FOREACH LOG GENERATE myfuncs.create_structure(LINE);
     DUMP DETAILS;
@@ -185,7 +185,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 2. 在出現 `hive>` 提示時輸入下列內容。
 
-		add file wasb:///streaming.py;
+		add file wasbs:///streaming.py;
 		SELECT TRANSFORM (clientid, devicemake, devicemodel)
 		  USING 'python streaming.py' AS
 		  (clientid string, phoneLabel string, phoneHash string)
@@ -206,8 +206,8 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 2. 在出現 `grunt>` 提示時輸入下列陳述式。
 
-		Register wasb:///jython.py using jython as myfuncs;
-	    LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
+		Register wasbs:///jython.py using jython as myfuncs;
+	    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
 	    LOG = FILTER LOGS by LINE is not null;
 	    DETAILS = foreach LOG generate myfuncs.create_structure(LINE);
 	    DUMP DETAILS;
@@ -285,7 +285,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
         -StorageAccountName $storageAccountName `
         -StorageAccountKey $storageAccountKey
             
-	$HiveQuery = "add file wasb:///streaming.py;" +
+	$HiveQuery = "add file wasbs:///streaming.py;" +
 	             "SELECT TRANSFORM (clientid, devicemake, devicemodel) " +
 	               "USING 'D:\Python27\python.exe streaming.py' AS " +
 	               "(clientid string, phoneLabel string, phoneHash string) " +
@@ -352,8 +352,8 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
         -StorageAccountName $storageAccountName `
         -StorageAccountKey $storageAccountKey
             
-	$PigQuery = "Register wasb:///jython.py using jython as myfuncs;" +
-	            "LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);" +
+	$PigQuery = "Register wasbs:///jython.py using jython as myfuncs;" +
+	            "LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);" +
 	            "LOG = FILTER LOGS by LINE is not null;" +
 	            "DETAILS = foreach LOG generate myfuncs.create_structure(LINE);" +
 	            "DUMP DETAILS;"
@@ -444,4 +444,4 @@ Pig|/PigPython/stderr<p>/PigPython/stdout
 
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

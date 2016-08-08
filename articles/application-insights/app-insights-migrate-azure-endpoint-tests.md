@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="從 Azure 端點移轉到 Application Insights 可用性測試" 
-	description="我們已將您的傳統 Azure 端點監視測試移動到新的 Application Insights 可用性測試。我們會在 2016 年 4 月 4 日進行切換。"
+	description="我們會將您的傳統 Azure 端點監視測試移動到 Application Insights 可用性測試。我們預計會在 2016 年 8 月 22 日當週予以切換。"
 	services="application-insights" 
     documentationCenter=""
 	authors="soubhagyadash" 
@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/10/2016" 
+	ms.date="07/25/2016" 
 	ms.author="awills"/>
  
 # 從 Azure 端點監視移動到 Application Insights 可用性測試
 
-您的 Azure Web 應用程式使用[端點監視](https://blogs.msdn.microsoft.com/mast/2013/03/03/windows-azure-portal-update-configure-web-endpoint-status-monitoring-preview/)嗎？ 我們將會在 2016 年 4 月 4 日將它們取代為功能更強大的新[可用性測試](app-insights-monitor-web-app-availability.md)。我們已建立新的測試，不過它們在 4 月 4 日以前將會處於停用狀態。
+您的 Azure 應用程式使用[端點監視](https://blogs.msdn.microsoft.com/mast/2013/03/03/windows-azure-portal-update-configure-web-endpoint-status-monitoring-preview/)嗎？ 我們將會在 2016 年 8 月 22 日當週，將它們取代為功能更強大的新[可用性測試](app-insights-monitor-web-app-availability.md)。我們已建立一些新的測試，不過它們在 2016 年 8 月 22 日以前將會處於停用狀態。
 
 如果您願意的話，可以編輯新測試並自行切換。它們位在 [Azure 入口網站](https://portal.azure.com)中的 Default-ApplicationInsights-CentralUS 資源群組中。
 
@@ -28,10 +28,10 @@
 
 在[傳統的 Azure 入口網站](https://manage.windowsazure.com)中，這些測試稱為端點監視。它們範圍限制比較嚴謹。新的可用性測試是一項重大的改良功能︰
 
-* 每個 Application Insights 資源最多 10 個 Visual Studio Web 測試或 Ping 測試。 
-* 可從全世界最多 16 個位置將測試要求傳送給 Web 應用程式。改善對測試成功準則的控制。 
+* 每個 Application Insights 資源最多 10 個 Visual Studio Web 測試或 Ping 測試。
+* 可從全世界最多 16 個位置將測試要求傳送給 Web 應用程式。改善對測試成功準則的控制。
 * 可測試任何網站或服務，不受限於 Azure Web 應用程式。
-* 測試重試：減少因暫時性網路問題而產生的誤判警示。 
+* 測試重試：減少因暫時性網路問題而產生的誤判警示。
 * Webhook 可接收警示的 HTTP POST 通知。
 
 ![](./media/app-insights-migrate-azure-endpoint-tests/16-1test.png)
@@ -44,7 +44,7 @@
 
 ## 我的端點測試該如何處置？
 
-* 我們已將您的端點監視測試複製到新的 Application Insights 可用性測試。我們是在 2016 年 3 月 4 日複製的，所以我們不會複製您在該日期之後建立的任何端點測試。
+* 我們已將您的端點監視測試複製到新的 Application Insights 可用性測試。
 * 新的可用性測試目前處於停用狀態，而舊有的端點測試仍在運作中。
 * 警示規則並未移轉。我們設定的新測試一開始均採用預設規則︰
  * 當 5 分鐘之內有 1 個以上的位置報告失敗時觸發。
@@ -54,29 +54,29 @@
 
 ## 我需要做什麼事嗎？
 
-* 如果您在 2016 年 3 月 4 日之後建立舊版測試 (或我們在移轉時不知道為什麼遺漏了您的測試)，新的可用性測試很[容易設定](app-insights-monitor-web-app-availability.md)。
+* 如果我們在移轉時不知道為什麼遺漏了您的測試，新的可用性測試很[容易設定](app-insights-monitor-web-app-availability.md)。
 
 ### 選項 A︰什麼事都不做。交給我們處理。
 
-我們將會在 **4 月 4 日**︰
+**在 2016 年 8 月 22 日當週**，我們將︰
 
 * 停用舊的端點測試。
 * 啟用移轉後的可用性測試。
 
 ### 選項 B︰您自行管理和/或啟用新測試。
 
-* 請在新 [Azure 入口網站](https://portal.azure.com)中檢閱及編輯新的可用性測試。 
+* 請在新 [Azure 入口網站](https://portal.azure.com)中檢閱及編輯新的可用性測試。
  * 檢閱觸發準則
  * 檢閱電子郵件收件者
 * 啟用新測試
-* [在傳統入口網站](https://manage.windowsazure.com)中刪除舊的端點測試。我們建議您採用這種做法，以避免警示重複及降低網站上的測試流量負載。如果您未刪除，我們將會在 2016 年 4 月 4 日予以刪除。
+* [在傳統入口網站](https://manage.windowsazure.com)中刪除舊的端點測試。我們建議您採用這種做法，以避免警示重複及降低網站上的測試流量負載。如果您未刪除，我們將會在 2016 年 8 月 22 日予以刪除。
 
 
 ### 選項 C︰選擇推出
 
 如果您不打算使用可用性測試，可以在 [Azure 入口網站](https://portal.azure.com)中刪除它們。通知電子郵件底部也有取消訂閱連結。
 
-我們依然會在 4 月 4 日刪除舊的端點測試。
+我們依然會在 2016 年 8 月 22 日刪除舊的端點測試。
 
 ## 我該如何編輯新測試？
 
@@ -116,12 +116,12 @@
 * 要測試的端點 URL。
 * 送出要求的地理位置。
 * 測試頻率維持 5 分鐘。
-* 測試逾時維持 30 秒。 
+* 測試逾時維持 30 秒。
 
 不移轉的項目︰
 
 * 警示觸發規則。當 1 個位置在 5 分鐘內報告失敗時，我們設定的規則將會觸發。
-* 警示收件者。通知電子郵件將會傳送給訂用帳戶擁有者和共同擁有者。 
+* 警示收件者。通知電子郵件將會傳送給訂用帳戶擁有者和共同擁有者。
 
 ## 我該去哪裡尋找新測試？
 
@@ -137,4 +137,4 @@
 
 歡迎提供意見反應。請[傳送電子郵件給我們](mailto:vsai@microsoft.com)。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0727_2016-->

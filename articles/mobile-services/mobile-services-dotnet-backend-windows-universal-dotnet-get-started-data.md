@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/07/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 將行動服務新增至現有的應用程式
@@ -114,11 +114,11 @@
 [開始使用驗證]: ../mobile-services-dotnet-backend-windows-store-dotnet-get-started-users.md
 [開始使用推播通知]: ../mobile-services-dotnet-backend-windows-store-dotnet-get-started-push.md
 
-[開始使用離線資料同步]: mobile-services-windows-store-dotnet-get-started-offline-data.md
+[Get started with offline data sync]: mobile-services-windows-store-dotnet-get-started-offline-data.md
 
 [Mobile Services SDK]: http://go.microsoft.com/fwlink/p/?LinkId=257545
-[開發人員程式碼範例網站]: http://go.microsoft.com/fwlink/p/?LinkID=510826
+[Developer Code Samples site]: http://go.microsoft.com/fwlink/p/?LinkID=510826
 [Mobile Services .NET How-to Conceptual Reference]: mobile-services-windows-dotnet-how-to-use-client-library.md
 [MobileServiceClient class]: http://go.microsoft.com/fwlink/p/?LinkId=302030
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->
