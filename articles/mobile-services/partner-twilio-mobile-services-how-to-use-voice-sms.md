@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="03/03/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -32,7 +32,7 @@ Twilio 正在形塑商業環境的未來，可讓開發人員將語音、VoIP �
 Twilio 是隨收隨付的服務。不需要設定費，隨時都可結清帳戶。如需詳細資訊，請參閱＜[Twilio 價格][twilio_pricing]＞(英文)。
 
 ## <a id="Concepts"></a>概念
-Twilio API 是一套為應用程式提供語音和簡訊功能的 RESTful API。用戶端程式庫有多種語言版本，相關清單請參閱＜[Twilio API 程式庫][twilio_libraries]＞(英文)。其他教學課程會說明如何使用 Twilio 和以 [.NET][azure_twilio_howto_dotnet]、[node.js][azure_twilio_howto_node]、[Java][azure_twilio_howto_java]、[PHP][azure_twilio_howto_php]、[Python][azure_twilio_howto_python] 或 [Ruby][azure_twilio_howto_ruby] 撰寫的 Azure 應用程式。
+Twilio API 是一套為應用程式提供語音和簡訊功能的 RESTful API。用戶端程式庫有多種語言。
 
 Twilio API 的兩大重點是 Twilio 動詞和 Twilio 標記語言 (TwiML)。
 
@@ -221,12 +221,4 @@ Twilio 所提供的 Node.js 程式庫封裝了 Twilio 的各種組件，讓您�
 [twilio_account]: https://www.twilio.com/user/account
 [verify_phone]: https://www.twilio.com/user/account/phone-numbers/verified#
 
-
-[azure_twilio_howto_dotnet]: /twilio-dotnet-how-to-use-for-voice-sms.md
-[azure_twilio_howto_java]: /partner-twilio-java-how-to-use-voice-sms.md
-[azure_twilio_howto_node]: /partner-twilio-nodejs-how-to-use-voice-sms.md
-[azure_twilio_howto_ruby]: /partner-twilio-ruby-how-to-use-voice-sms.md
-[azure_twilio_howto_python]: /partner-twilio-python-how-to-use-voice-sms.md
-[azure_twilio_howto_php]: /partner-twilio-php-how-to-use-voice-sms.md
-
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

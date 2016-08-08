@@ -21,36 +21,32 @@
 
 ## 連接您已經知道的內容
 
-開發人員最不想做的一件事就是只為了連接資料庫就要學習新事物。Azure SQL Database 可輕鬆使用您用來運作的各種語言和平台。
+您最不想做的一件事就是只為了連接資料庫就要學習新事物。Azure SQL Database 可輕鬆使用您用來運作的各種語言和平台。
 
 ![works-in-your-environment](./media/sql-database-works-in-your-environment/sql-database-works-in-your-environment.png)
 
-## JavaScript、Node.JS 和 Python，舉例而言
+選擇資料庫時，您不必移到新平台或學習新語言。SQL Database 有許多程式碼範例，無論在哪裡，都可幫助您開始使用。
 
-選擇資料庫時，您應該不用學習新語言。SQL Database 有許多程式碼範例，可協助您針對正在使用的平台開始使用 (也就是 Linux、Mac OS 或 Windows)。此外，Azure 管理入口網站、PowerShell 和 REST API 可協助您在開發時獲得額外生產力。
-
-[閱讀文件](sql-database-develop-overview.md)
+[深入了解 SQL Database 開發](sql-database-develop-overview.md)
 
 ## 適用於作業的正確工具
 
-利用 SQL Database，您在開發應用程式時不必學習新工具。您可以利用 [cheetah](https://github.com/wunderlist/cheetah)、[sql-cli](https://www.npmjs.com/package/sql-cli)、[VS Code](https://code.visualstudio.com/) 等開放原始碼工具。此外，Azure SQL Database 使用 [Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx) 和 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) 等 Microsoft 工具。
+您不需要了解一組全新的工具，就能開始使用 SQL Database。您可以利用 [cheetah](https://github.com/wunderlist/cheetah)、[sql-cli](https://www.npmjs.com/package/sql-cli)、[VS Code](https://code.visualstudio.com/) 等開放原始碼工具。此外，Azure SQL Database 使用 [Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx) 和 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) 等 Microsoft 工具。您也可以使用 Azure 管理入口網站、PowerShell 和 REST API 協助您獲得額外生產力。
 
 ## 即刻開始使用
 
-透過保證的資源、建立第一個 SQL Database 的教學課程、疑難排解查詢，以及快速入門程式碼範例，您可以隨時輕鬆取得資料庫問題的正確答案。
+您可以隨時輕鬆取得資料庫問題的正確答案，還有建立第一個 SQL Database 的教學課程、對查詢進行疑難排解，以及快速入門程式碼範例。
 
-[閱讀文件](sql-database-technical-overview.md)
-
-請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
+[深入了解 SQL Database](sql-database-technical-overview.md)
 
 ## 後續步驟
 
-取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)並[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
 
-瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
- 
-檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
+* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+* 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
+* [SQL Database 開發概觀](sql-database-develop-overview.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

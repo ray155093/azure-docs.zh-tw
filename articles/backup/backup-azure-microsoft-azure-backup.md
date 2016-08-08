@@ -14,8 +14,8 @@
   ms.tgt_pltfrm="na"
   ms.devlang="na"
   ms.topic="article"
-  ms.date="05/10/2016"
-  ms.author="jimpark;trinadhk;pullabhk"/>
+  ms.date="07/20/2016"
+  ms.author="jimpark;trinadhk;pullabhk;markgal"/>
 
 # 準備使用 Azure 備份伺服器來備份工作負載
 
@@ -25,24 +25,37 @@
 - [Azure 備份伺服器 (傳統)](backup-azure-microsoft-azure-backup-classic.md)
 - [SCDPM (傳統)](backup-azure-dpm-introduction-classic.md)
 
-本文說明如何準備環境，以使用 Azure 備份伺服器來備份工作負載。
+本文說明如何準備環境，以使用 Azure 備份伺服器來備份工作負載。透過 Azure 備份伺服器，您將可從單一主控台保護 Hyper-V VM、Microsoft SQL Server、SharePoint Server、Microsoft Exchange 和 Windows 用戶端等應用程式工作負載。您也可以保護資訊即伺服器 (IaaS) 工作負載，例如 Azure 中的 VM。
 
 > [AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文提供的資訊和程序可供還原使用 Resource Manager 模型部署的 VM。
 
-透過 Azure 備份伺服器，您將可從單一主控台保護 Hyper-V VM、Microsoft SQL Server、SharePoint Server、Microsoft Exchange 和 Windows 用戶端等應用程式工作負載。
+Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的大部分工作負載備份功能。本文會連結至 DPM 文件，以說明其中的部分共用功能。雖然 Azure 備份伺服器共用許多與 DPM 相同的功能。Azure 備份伺服器並不會備份到磁帶，也無法與 System Center 整合。
 
->[AZURE.WARNING] Azure 備份伺服器承襲了 Data Protection Manager (DPM) 的工作負載備份功能。您將發現其中某些功能指向 DPM 文件的指標。不過，Azure 備份伺服器不會保護磁帶，也不會與 System Center 整合。
+## 1\.選擇安裝平台
 
-## 1\.Windows Server 機器
+要啟動並執行 Azure 備份伺服器，第一個步驟是設定 Windows Server。伺服器可以位於 Azure 或內部部署中。
 
-要啟動並執行 Azure 備份伺服器，第一個步驟是具備 Windows Server 機器。
+### 使用 Azure 中的伺服器
 
-| 位置 | 最低需求 | 其他指示 |
-| -------- | -------------------- | ----------------------- |
-| Azure | Azure IaaS 虛擬機器 <br><br>A2 標準：雙核心、3.5GB 的 RAM | 您可以先從 Windows Server 2012 R2 Datacenter 的簡單資源庫映像開始著手。[使用 Azure 備份伺服器 (DPM) 保護 IaaS 工作負載](https://technet.microsoft.com/library/jj852163.aspx)有許多細節需要注意。部署機器之前，請先確實閱讀相關文章。 |
-| 內部部署 | Hyper-V VM、<br> VMWare VM <br> 或實體主機<br><br>雙核心和 4GB 的 RAM | 您可以使用 Windows Server Deduplication 為 DPM 儲存體刪除重複資料。深入了解在 Hyper-V VM 中部署時，[DPM 和重複資料刪除](https://technet.microsoft.com/library/dn891438.aspx)如何搭配運作。 |
+在選擇用來執行 Azure 備份伺服器的伺服器時，建議您從 Windows Server 2012 R2 Datacenter 的資源庫映像來開始。即使您之前從未使用過 Azure，[在 Azure 入口網站中建立第一個 Windows 虛擬機器](..\virtual-machines\virtual-machines-windows-hero-tutorial.md)一文會提供教學課程讓您在 Azure 中開始使用建議的虛擬機器。伺服器虛擬機器 (VM) 的最低建議需求應該是︰A2 標準，具備 2 個核心及 3.5 GB 的 RAM。
 
-> [AZURE.NOTE] 建議您在具有 Windows Server 2012 R2 Datacenter 的機器上安裝 Azure 備份伺服器。最新版的 Windows 作業系統會自動涵蓋許多必要條件。
+使用 Azure 備份伺服器保護工作負載有許多細節需要注意。[將 DPM 安裝為 Azure 虛擬機器](https://technet.microsoft.com/library/jj852163.aspx)一文可協助說明這些細節。在部署機器之前，請先完整閱讀此文章。
+
+### 使用內部部署伺服器
+
+若不想在 Azure 中執行基本伺服器，您可以在 Hyper-V VM、VMware VM 或實體主機上執行伺服器。伺服器硬體的最低建議需求是 2 個核心與 4 GB 的 RAM。下表列出支援的作業系統。
+
+| 作業系統 | 平台 | SKU |
+| :------------- |-------------| :-----|
+|Windows Server 2012 R2 和最新的 SP|	64 位元|	Standard、Datacenter、Foundation|
+|Windows Server 2012 和最新的 SP|	64 位元|	Datacenter、Foundation、Standard|
+|Windows Storage Server 2012 R2 和最新的 SP |64 位元|	Standard、Workgroup|
+|Windows Storage Server 2012 和最新的 SP |64 位元 |Standard、Workgroup|
+
+
+您可以使用 Windows Server Deduplication 為 DPM 儲存體刪除重複資料。深入了解在 Hyper-V VM 中部署時，[DPM 和重複資料刪除](https://technet.microsoft.com/library/dn891438.aspx)如何搭配運作。
+
+> [AZURE.NOTE]  您無法在執行為網域控制站的機器上安裝 Azure 備份伺服器。
 
 如果您打算在個時間點將此伺服器加入網域中，建議您在安裝 Azure 備份伺服器之前完成網域加入活動。若在部署後將現有的 Azure 備份伺服器機器移至新網域，該動作將「不受支援」。
 
@@ -86,7 +99,7 @@
 
 1. 選取保存庫以開啟保存庫儀表板和 [設定] 刀鋒視窗。如果 [設定] 刀鋒視窗未開啟，請按一下保存庫儀表板中的 [所有設定]。
 
-2. 在 [設定] 刀鋒視窗上按一下 [備份基礎結構] > [備份組態]，開啟 [備份組態] 刀鋒視窗。在 [備份組態] 刀鋒視窗上，選擇保存庫的儲存體複寫選項。
+2. 在 [設定] 刀鋒視窗上按一下 [備份基礎結構] > [備份設定]，開啟 [備份設定] 刀鋒視窗。在 [備份設定] 刀鋒視窗上，選擇保存庫的儲存體複寫選項。
 
     ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
 
@@ -105,7 +118,7 @@
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-microsoft-azure-backup/open-recovery-services-vault.png)
 
     隨即會出現 [復原服務保存庫] 清單。
-    
+
     - 在 [復原服務保存庫] 清單中選取保存庫。
 
     選取的保存庫儀表板隨即開啟。
@@ -133,8 +146,8 @@
     這會讓「開始使用」精靈改為準備保護從內部部署到 Azure 之工作負載的基礎結構。
 
     ![開始使用精靈變更](./media/backup-azure-microsoft-azure-backup/getting-started-prep-infra.png)
-  
-7. 在開啟的 [準備基礎結構] 刀鋒視窗中，按一下 [下載 Azure 備份伺服器]，以及向復原服務保存庫註冊 Azure 備份伺服器期間使用的保存庫認證。這會使您進入可下載軟體封裝的 [下載中心] 頁面。
+
+7. 在開啟的 [準備基礎結構] 刀鋒視窗中，按一下可供安裝 Azure 備份伺服器和下載保存庫認證的 [下載] 連結。在將 Azure 備份伺服器註冊到復原服務保存庫期間，您必須使用保存庫認證。連結會使您進入可下載軟體套件的 [下載中心]。
 
     ![準備用於 Azure 備份伺服器的基礎結構](./media/backup-azure-microsoft-azure-backup/azure-backup-server-prep-infra.png)
 
@@ -154,7 +167,7 @@
 
 ![Microsoft Azure 備份安裝精靈](./media/backup-azure-microsoft-azure-backup/extract/03.png)
 
-解壓縮程序完成之後，請選取可啟動剛解壓縮 *setup.exe* 的方塊，以開始安裝「Microsoft Azure 備份伺服器」，然後按一下 [完成] 按鈕。
+解壓縮程序完成之後，請選取可啟動剛解壓縮「setup.exe」的方塊，以開始安裝「Microsoft Azure 備份伺服器」，然後按一下 [完成] 按鈕。
 
 ### 安裝軟體封裝
 
@@ -264,4 +277,4 @@ Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運�
 - [SharePoint 伺服器備份](backup-azure-backup-sharepoint.md)
 - [替代伺服器備份](backup-azure-alternate-dpm-server.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

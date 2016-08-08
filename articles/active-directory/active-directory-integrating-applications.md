@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="06/06/2016"
+   ms.date="07/25/2016"
    ms.author="mbaldwin;bryanla" />
 
 # 整合應用程式與 Azure Active Directory
@@ -153,10 +153,10 @@ Azure AD 的同意架構可讓您輕鬆地開發需要存取由 Azure AD 租用�
 ![顯示待辦事項清單權限](./media/active-directory-integrating-applications/listpermissions.png)
 
 #### 應用程式資訊清單的詳細資料
-應用程式資訊清單實際上可做為更新應用程式實體的一種機制，其可定義 Azure AD 應用程式身分識別組態的所有屬性，包括我們所討論的 API 存取範圍。如需應用程式實體的詳細資訊，請參閱[圖形 API 應用程式實體文件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#EntityreferenceApplicationEntity)。您會在其中找到用來指定您 API 權限的應用程式實體成員之完整參考資訊：
+應用程式資訊清單實際上可做為更新應用程式實體的一種機制，其可定義 Azure AD 應用程式身分識別組態的所有屬性，包括我們所討論的 API 存取範圍。如需應用程式實體的詳細資訊，請參閱[圖形 API 應用程式實體文件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#application-entity)。您會在其中找到用來指定您 API 權限的應用程式實體成員之完整參考資訊：
 
-- appRoles 成員，其為 [AppRole](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#AppRoleType) 實體集合，可用來定義 Web API 的 [應用程式權限]  
-- oauth2Permissions 成員，其為 [OAuth2Permission](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionType) 實體集合，可用來定義 Web API 的 [委派的權限]
+- appRoles 成員，其為 [AppRole](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#approle-type) 實體集合，可用來定義 Web API 的 [應用程式權限]
+- oauth2Permissions 成員，其為 [OAuth2Permission](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permission-type) 實體集合，可用來定義 Web API 的 [委派的權限]
 
 如需應用程式資訊清單一般概念的詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單](active-directory-application-manifest.md)。
 
@@ -166,7 +166,7 @@ Azure AD 的同意架構可讓您輕鬆地開發需要存取由 Azure AD 租用�
 
 如需以下項目所公開的存取範圍的完整討論：
 
-- Azure AD 圖形 API，請參閱 [Permission scopes | Graph API concepts (權限範圍 | 圖形 API 概念)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes) 一文。
+- Azure AD 圖形 API，請參閱 [權限範圍 | 圖形 API 概念] (https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes) 一文。
 - Office 365 API，請參閱[使用一般同意架構的驗證和授權](https://msdn.microsoft.com/office/office365/howto/application-manifest)一文。如需更多有關如何建置可與 Office 365 API 整合之用戶端應用程式的討論，請參閱[設定 Office 365 開發環境](https://msdn.microsoft.com/office/office365/HowTo/setup-development-environment)。
 
 >[AZURE.NOTE] 由於目前的限制，如果原生用戶端應用程式使用「存取組織的目錄」權限，它們只能呼叫 Azure AD 圖形 API。這項限制不適用於 Web 應用程式。
@@ -194,15 +194,15 @@ Azure AD 的同意架構可讓您輕鬆地開發需要存取由 Azure AD 租用�
 
 1. 在頂端功能表上，按一下 [應用程式]，然後按一下您想要設定的應用程式。[快速啟動] 頁面將會顯示組態選項。
 
-1. 展開 [快速啟動] 的 [設定多租用戶應用程式] 區段，然後按一下 [啟用存取] 區段中的 [立即設定] 連結。應用程式屬性頁面會隨即出現。
+1. 展開 [快速啟動] 的 [設定多租用戶應用程式] 區段，然後按一下 [啟用存取] 區段中的**立即設定**連結。應用程式屬性頁面會隨即出現。
 
-1. 按一下 [應用程式是多租用戶] 旁的 [是] 按鈕，然後按一下命令列上的 [儲存] 按鈕。
+1. 按一下 [應用程式為多租用戶] 旁的 [是] 按鈕，然後按一下命令列上的 [儲存] 按鈕。
 
 一旦您進行上述變更，其他組織中的使用者和系統管理員將可以讓您的應用程式存取他們的目錄和其他資料。
 
 #### 在執行階段觸發 Azure AD 同意架構
 
-若要使用同意架構，多租用戶的用戶端應用程式必須使用 OAuth 2.0 要求授權。[程式碼範例](https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multi-tenant)也可向您示範 Web 應用程式、原生應用程式或伺服器/精靈應用程式如何要求授權碼和存取權杖以呼叫 Web API。
+若要使用同意架構，多租用戶的用戶端應用程式必須使用 OAuth 2.0 要求授權。[程式碼範例](https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multi-tenant)也可向您示範 Web 應用程式、原生應用程式或伺服器/精靈應用程式如何要求授權碼並存取權杖以呼叫 Web API。
 
 Web 應用程式也可提供使用者的註冊體驗。如果您已提供註冊體驗，預期使用者會按一下註冊按鈕，將瀏覽器重新導向至 Azure AD OAuth2.0 授權端點或 OpenID Connect userinfo 端點。這些端點可讓應用程式藉由檢查 id\_token 取得新使用者的相關資訊。在註冊階段後，使用者將會看到類似上面「同意架構的概觀」一節所示的同意提示。
 
@@ -242,7 +242,7 @@ Web 應用程式也可提供使用者的註冊體驗。如果您已提供註冊�
 
 為了讓外部使用者使用其組織帳戶註冊您的應用程式，您必須更新您的應用程式，在 Azure AD 上顯示連結至頁面的按鈕，讓他們可以授與存取權。這個註冊按鈕的商標指導方針將於[整合應用程式的商標指導方針](active-directory-branding-guidelines.md)主題中討論。使用者授與或拒絕存取權之後，Azure AD 授與存取頁面會利用回應將瀏覽器重新導向回您的應用程式。如需應用程式屬性的詳細資訊，請參閱[應用程式物件與服務原則](active-directory-application-objects.md)。
 
-授與存取頁面由 Azure AD 建立，您可以在 Azure 傳統入口網站的應用程式 [組態] 頁面中找到連結。若要移至 [組態] 頁面，請按一下 Azure AD 租用戶頂端功能表中的 [應用程式] 連結、按一下您想要設定的應用程式，然後從 [快速啟動] 頁面的頂端功能表按一下 [設定]。
+授與存取頁面由 Azure AD 建立，您可以在 Azure 傳統入口網站的應用程式 [組態] 頁面中找到連結。若要移至 [設定] 頁面，請按一下 Azure AD 租用戶頂端功能表中的 [應用程式] 連結、按一下您想要設定的應用程式，然後從 [快速啟動] 頁面的頂端功能表按一下 [設定]。
 
 您的應用程式連結看起來像這樣：`http://account.activedirectory.windowsazure.com/Consent.aspx?ClientID=058eb9b2-4f49-4850-9b78-469e3176e247&RequestedPermissions=DirectoryReaders&ConsentReturnURL=https%3A%2F%2Fadatum.com%2FExpenseReport.aspx%3FContextId%3D123456`。下表描述部分的連結：
 
@@ -351,4 +351,4 @@ Web 應用程式也可提供使用者的註冊體驗。如果您已提供註冊�
 
 - 請瀏覽 [Azure Active Directory 開發人員指南](active-directory-developers-guide.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

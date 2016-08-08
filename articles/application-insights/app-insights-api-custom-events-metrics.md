@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="07/11/2016" 
+	ms.date="07/21/2016" 
 	ms.author="awills"/>
 
 # 自訂事件和度量的 Application Insights API 
@@ -240,7 +240,7 @@ TelemetryClient 具備執行緒安全。
     // ... process the request ...
 
     stopwatch.Stop();
-    telemetryClient.TrackRequest(requestName, DateTime.Now,
+    telemetry.TrackRequest(requestName, DateTime.Now,
        stopwatch.Elapsed, 
        "200", true);  // Response code, success
 
@@ -300,7 +300,21 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
     telemetry.TrackTrace(message, SeverityLevel.Warning, properties);
 
-`message` 上的大小限制比屬性上的限制高得多。您可以搜尋訊息內容，但是 (不同於屬性值) 您無法在其中進行篩選。
+
+您可以搜尋訊息內容，但是 (不同於屬性值) 您無法在其中進行篩選。
+
+`message` 上的大小限制比屬性上的限制高得多。TrackTrace 的優點在於您可以將較長的資料放在訊息中。例如，您可以在該處編碼 POST 資料。
+
+
+此外，您可以在訊息中新增嚴重性層級。就像其他遙測一樣，您可以新增屬性值以供協助篩選或搜尋不同的追蹤集。例如：
+
+
+    var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+    telemetry.TrackTrace("Slow database response",
+                   SeverityLevel.Warning,
+                   new Dictionary<string,string> { {"database", db.ID} });
+
+在[搜尋][diagnostic]中，這可讓您輕鬆地篩選出與特定資料庫相關且具有特定嚴重性層級的所有訊息。
 
 ## 追蹤相依性
 
@@ -606,7 +620,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 * 實作 `ITelemetryInitializer` 以[加入屬性](app-insights-api-filtering-sampling.md#add-properties)至遙測；例如，加入版本號碼或從其他屬性計算得出的值。
 * [篩選](app-insights-api-filtering-sampling.md#filtering)可以先修改或捨棄遙測，再藉由實作 `ITelemetryProcesor` 從 SDK 傳送遙測。您可控制要傳送或捨棄的項目，但是您必須考量這對您的度量的影響。視您捨棄項目的方式而定，您可能會喪失在相關項目之間瀏覽的能力。
-* [取樣](app-insights-api-filtering-sampling.md#sampling)是減少從應用程式傳送至入口網站的資料量的封裝方案。但不會影響顯示的計量，而且藉由在相關項目 (如例外狀況、要求和頁面檢視) 之間瀏覽，並不會影響您診斷問題的能力。
+* [取樣](app-insights-api-filtering-sampling.md#sampling)是減少從應用程式傳送至入口網站的資料量的套件方案。但不會影響顯示的計量，而且藉由在相關項目 (如例外狀況、要求和頁面檢視) 之間瀏覽，並不會影響您診斷問題的能力。
 
 [深入了解](app-insights-api-filtering-sampling.md)
 
@@ -690,7 +704,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳送的值數目。它們通常由標準遙測模組設定，但是您也可以自行設定它們。例如：
 
-    telemetryClient.Context.Operation.Name = "MyOperationName";
+    telemetry.Context.Operation.Name = "MyOperationName";
 
 如果您自行設定這些值，請考慮從 [ApplicationInsights.config][config] 的相關程式碼行移除，如此您的值和標準值才不致混淆。
 
@@ -778,4 +792,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

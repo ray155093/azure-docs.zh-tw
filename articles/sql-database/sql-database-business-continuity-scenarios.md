@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="06/16/2016"
+	ms.date="07/16/2016"
 	ms.author="carlrab"
    ms.workload="sqldb-bcdr"
 	ms.topic="article"
@@ -76,4 +76,4 @@
 - 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

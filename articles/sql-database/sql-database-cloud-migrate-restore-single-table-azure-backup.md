@@ -26,7 +26,7 @@
 
 	**注意** 為了避免被阻斷，請確定您要重新命名的資料表上沒有正在執行的活動。如果您遇到問題，則請確定在維護期間執行此程序。
 
-2. 將您的資料庫備份還原至想要的時間點。若要這麼做，請參閱[從使用者錯誤復原 Azure SQL Database](sql-database-user-error-recovery.md)。
+2. 將您的資料庫備份還原至想要的時間點。若要進行，請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)中的步驟。
 
 	**注意**：
 	- 還原之資料庫的名稱會是「資料庫名稱+時間戳記」的格式；例如，**Adventureworks2012\_2016-01-01T22-12Z**。此步驟不會覆寫伺服器上現有的資料庫名稱。這是一項安全措施，其目的是讓使用者在卸除目前的資料庫並重新命名還原的資料庫供生產使用之前，先確認還原的資料庫。
@@ -71,4 +71,4 @@
 
 [SQL Database 自動備份](sql-database-automated-backups.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

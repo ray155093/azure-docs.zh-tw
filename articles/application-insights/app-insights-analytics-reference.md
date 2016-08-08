@@ -19,6 +19,7 @@
 
 [分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
+> [AZURE.NOTE] [Test drive Analytics on our simulated data](https://analytics.applicationinsights.io/demo) 如果您的應用程式尚未傳送資料至 Application Insights。
 
 ## 索引
 
@@ -62,7 +63,7 @@
        (interval:timespan) { requests | where timestamp > ago(interval) };
     Recent(3h) | count
 
-    let us_date = (t:datetime){strcat(getmonth(t),'/',dayofmonth(t),'/',getyear(t)) }; 
+    let us_date = (t:datetime) { strcat(getmonth(t),'/',dayofmonth(t),'/',getyear(t)) }; 
     requests | summarize count() by bin(timestamp, 1d) | project count_, day=us_date(timestamp)
 
 let 子句會將[名稱](#names)繫結至表格式結果、純量值或函式。子句是查詢的前置詞，而繫結的範圍就是該查詢 (let 無法讓您命名稍後才會在工作階段中用到的項目)。
@@ -82,7 +83,7 @@ let 子句會將[名稱](#names)繫結至表格式結果、純量值或函式。
 
 **範例**
 
-    let rows(n:long) = range steps from 1 to n step 1;
+    let rows = (n:long) { range steps from 1 to n step 1 };
     rows(10) | ...
 
 
@@ -129,7 +130,8 @@ Set 子句可設定查詢持續時間的選項。查詢選項可控制查詢如�
 
 ```AIQL
 requests // The request table starts this pipeline.
-| where client_City == "London" // filter the recordsand timestamp > ago(3d)
+| where client_City == "London" // filter the records
+   and timestamp > ago(3d)
 | count 
 ```
     
@@ -443,7 +445,7 @@ traces
 
 **語法**
 
-    Table1 | join [kind=Kind] \(Table2) on CommonColumn [, ...]
+    Table1 | join [kind=Kind] (Table2) on CommonColumn [, ...]
 
 **引數**
 
@@ -729,7 +731,7 @@ resource | slice | lock | release | previous
 **引數**
 
 * T：輸入資料表。
-* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。[Names](#names) 需區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
+* ColumnName：要出現在輸出中的資料行名稱。如果沒有任何 Expression，則該名稱的資料行必須出現在輸入中。Names[](#names) 需區分大小寫，而且可以包含字母、數字或 '\_' 字元。使用 `['...']` 或 `["..."]`，以利用其他字元括住關鍵字或名稱。
 * Expression︰參考輸入資料行的選擇性純量運算式。
 
     所傳回的新計算資料行名稱可以和輸入中的現有資料行同名。
@@ -1682,17 +1684,7 @@ true 或 false，取決於值是 null 或不是 null。
 || |
 |---|-------------|
 | + | 加 |
-| - | 減 |
-| * | 乘 |
-| / | 除 |
-| % | 模數 |
-||
-|`<` |小於 
-|`<=`|小於或等於 
-|`>` |大於 
-|`>=`|大於或等於 
-|`<>`|不等於 
-|`!=`|不等於
+| - | 減 | | * | 乘 | | / | 除 | | % | 模數 | || |`<` |小於 |`<=`|小於或等於 |`>` |大於 |`>=`|大於或等於 |`<>`|不等於 |`!=`|不等於
 
 
 ### abs
@@ -1839,8 +1831,8 @@ true 或 false，取決於值是 null 或不是 null。
 **datetime**|
 `datetime("2015-12-31 23:59:59.9")`<br/>`datetime("2015-12-31")`|時間一律是 UTC 格式。省略日期則會提供今天的時間。
 `now()`|目前的時間。
-`now(`-timespan`)`|`now()-`timespan
-`ago(`timespan`)`|`now()-`timespan
+`now(`-*timespan*`)`|`now()-`*timespan*
+`ago(`*timespan*`)`|`now()-`*timespan*
 **timespan**|
 `2d`|2 天
 `1.5h`|1\.5 小時 
@@ -2502,7 +2494,7 @@ T
 | value `!in` array| 如果沒有 array 項目 == value，則為 true
 |[`arraylength(`array`)`](#arraylength)| 如果不是陣列則為 null
 |[`extractjson(`path,object`)`](#extractjson)|使用路徑來瀏覽至物件。
-|[`parsejson(`來源`)`](#parsejson)| 將 JSON 字串變成動態物件。
+|[`parsejson(`source`)`](#parsejson)| 將 JSON 字串變成動態物件。
 |[`range(`from,to,step`)`](#range)| 值的陣列
 |[`mvexpand` listColumn](#mvexpand-operator) | 在指定資料格中複寫清單中每個值的資料列。
 |[`summarize buildschema(`column`)`](#buildschema) |從資料行內容推斷類型結構描述
@@ -2720,4 +2712,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,6 +1,6 @@
 <properties
- pageTitle="管理 HPC Pack 叢集運算節點 |Microsoft Azure"
- description="了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 叢集運算節點的 PowerShell 指令碼工具"
+ pageTitle="管理 HPC Pack 叢集計算節點 |Microsoft Azure"
+ description="了解可在 Azure 中新增、移除、啟動和停止 HPC Pack 叢集計算節點的 PowerShell 指令碼工具"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -13,12 +13,12 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-multiple"
  ms.workload="big-compute"
- ms.date="04/18/2016"
+ ms.date="07/22/2016"
  ms.author="danlep"/>
 
-# 在 Azure 的 HPC Pack 叢集中管理運算節點的數目和可用性
+# 在 Azure 的 HPC Pack 叢集中管理計算節點的數目和可用性
 
-如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個運算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
+如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個計算節點 VM 的方法。若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
@@ -45,9 +45,9 @@ ms.service="virtual-machines-windows"
     Set-AzureSubscription -SubscriptionName <Sub Name> -SubscriptionId <Sub ID> -Certificate (Get-Item Cert:\CurrentUser\My<Cert Thrumbprint>) -Environment <AzureCloud | AzureChinaCloud>
     ```
 
-## 新增運算節點 VM
+## 新增計算節點 VM
 
-使用 **Add-HpcIaaSNode.ps1** 指令碼新增運算節點。
+使用 **Add-HpcIaaSNode.ps1** 指令碼新增計算節點。
 
 ### 語法
 ```
@@ -58,25 +58,25 @@ Add-HPCIaaSNode.ps1 [-ServiceName] <String> [-ImageName] <String>
 ```
 ### 參數
 
-* **ServiceName** - 將會新增運算節點 VM 之雲端服務的名稱。
+* **ServiceName** - 將會新增計算節點 VM 之雲端服務的名稱。
 
 * **ImageName** - Azure VM 映像名稱，透過 Azure 傳統入口網站或 Azure PowerShell Cmdlet **Get-AzureVMImage** 可以取得此名稱。這些映像必須符合下列需求：
 
     1. 必須安裝 Windows 作業系統。
 
-    2. 必須在運算節點角色中安裝 HPC Pack。
+    2. 必須在計算節點角色中安裝 HPC Pack。
 
     3. 映像必須是使用者類別中的私人映像，而不是公用 Azure VM 映像。
 
-* **Quantity**- 要新增的運算節點 VM 數目。
+* **Quantity**- 要新增的計算節點 VM 數目。
 
-* **InstanceSize** - 運算節點 VM 的大小。
+* **InstanceSize** - 計算節點 VM 的大小。
 
 * **DomainUserName** - 網域使用者名稱，會用來將新的 VM 加入網域中。
 
 * **DomainUserPassword** - 網域使用者的密碼。
 
-* **NodeNameSeries** (選用) - 計算節點的命名模式。格式必須是 &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%。例如，MyCN%10% 表示從 MyCN11 開始的一系列運算節點名稱。如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。
+* **NodeNameSeries** (選用) - 計算節點的命名模式。格式必須是 &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%。例如，MyCN%10% 表示從 MyCN11 開始的一系列計算節點名稱。如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。
 
 ### 範例
 
@@ -89,9 +89,9 @@ Add-HPCIaaSNode.ps1 –ServiceName hpcservice1 –ImageName hpccniamge1
 ```
 
 
-## 移除運算節點 VM
+## 移除計算節點 VM
 
-使用 **Remove-HpcIaaSNode.ps1** 指令碼移除運算節點。
+使用 **Remove-HpcIaaSNode.ps1** 指令碼移除計算節點。
 
 ### 語法
 
@@ -123,9 +123,9 @@ Remove-HPCIaaSNode.ps1 -Node <Object> [-DeleteVHD] [-Force] [-Confirm] [<CommonP
 Remove-HPCIaaSNode.ps1 –Name HPCNodeCN-* –DeleteVHD -Force
 ```
 
-## 啟動運算節點 VM
+## 啟動計算節點 VM
 
-使用 **Start-HpcIaaSNode.ps1** 指令碼啟動運算節點。
+使用 **Start-HpcIaaSNode.ps1** 指令碼啟動計算節點。
 
 ### 語法
 
@@ -148,7 +148,7 @@ Start-HPCIaaSNode.ps1 -Node <Object> [<CommonParameters>]
 Start-HPCIaaSNode.ps1 –Name HPCNodeCN-*
 ```
 
-## 停止運算節點 VM
+## 停止計算節點 VM
 
 使用 **Stop-HpcIaaSNode.ps1** 指令碼停止計算節點。
 
@@ -179,4 +179,4 @@ Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 
 * 如果您需要能根據叢集上目前工作的工作負載自動增加或縮減叢集節點的方法，請參閱[在 Azure 中根據叢集工作負載自動增加和縮減 HPC Pack 叢集資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

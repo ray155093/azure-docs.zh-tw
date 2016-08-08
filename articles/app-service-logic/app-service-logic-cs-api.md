@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -52,7 +52,7 @@ var d = new DateTime.Now; return (d.Minute > 15) && (d.Minute < 30);
 同樣地，您可以提供要執行的動作。
 
 此動作的輸入包括︰
-- **C# 運算式** - 要評估的運算式。您必須包含 `return` 陳述式才能取得任何內容。 
+- **C# 運算式** - 要評估的運算式。您必須包含 `return` 陳述式才能取得任何內容。
 - **內容物件** - 可傳入觸發程序的選擇性內容物件。您可以定義任意數目的屬性，但基底必須是 JObject `{ ... }`，而且可以透過金鑰名稱 (此值會以對應至名稱的 JToken 傳入) 在指令碼中參考物件。
 - **程式庫** - 編譯指令碼時要包含的 .dll 檔案的選擇性陣列。陣列會使用下列結構，而且輸出時將 .dll 放在 Blob 儲存體連接器旁邊的效果最佳：
 
@@ -112,4 +112,4 @@ return YammerAttachments;
 <!--Links -->
 [Creating a Logic App]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

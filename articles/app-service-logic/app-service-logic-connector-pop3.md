@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -65,8 +65,7 @@
 5.	您現在便可以在流程中使用 POP3 連接器。選取 [取得電子郵件] 觸發程序，並設定頻率和時間間隔。您可以在流程的其他動作中使用從 POP3 觸發程序所擷取的電子郵件。
 		 
 
-	![][5]
-	![][6]
+	![][5] ![][6]
 
 ## 進一步運用您的連接器
 現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
@@ -86,4 +85,4 @@
 [5]: ./media/app-service-logic-connector-pop3/img5.PNG
 [6]: ./media/app-service-logic-connector-pop3/img6.PNG
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

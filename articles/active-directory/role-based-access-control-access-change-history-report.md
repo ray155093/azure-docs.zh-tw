@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -55,7 +55,7 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 ## 使用 Azure CLI 建立報告
 若要在 Azure 命令列介面 (CLI) 中建立存取權變更歷程記錄報告，請使用下列命令：
 ```
-azure authorization changelog
+azure role assignment changelog list
 ```
 
 ## 匯出為試算表
@@ -67,4 +67,4 @@ azure authorization changelog
 - 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 - 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

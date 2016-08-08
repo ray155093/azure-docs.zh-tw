@@ -1,93 +1,129 @@
 <properties
-    pageTitle="在您的 Logic Apps 中新增 SMTP 連接器 | Microsoft Azure"
-    description="搭配 REST API 參數來使用 SMTP 連接器的概觀"
-    services=""
-    documentationCenter="" 
-    authors="MandiOhlinger"
-    manager="erikre"
-    editor=""
-    tags="connectors"/>
+pageTitle="SMTP | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。連接到 SMTP 以傳送電子郵件。"
+services="app-servicelogic"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
+editor=""
+tags="connectors" />
 
 <tags
-   ms.service="multiple"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/19/2016"
-   ms.author="mandia"/>
+ms.service="app-service-logic"
+ms.devlang="multiple"
+ms.topic="article"
+ms.tgt_pltfrm="na"
+ms.workload="integration"
+ms.date="07/15/2016"
+ms.author="deonhe"/>
 
 # 開始使用 SMTP 連接器
-連線到 SMTP 伺服器來傳送電子郵件。您可以從下列應用程式使用 SMTP 連接器︰
 
-- 邏輯應用程式 (如本主題所述)
-- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
+連接到 SMTP 以傳送電子郵件。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-您可以利用 SMTP 來：
+## 連接到 SMTP
 
-- 建置您的商務流程，包括使用 SMTP 傳送電子郵件。 
-- 使用動作來傳送電子郵件。這個動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當您的 FTP 伺服器上有新檔案時，您可以取得該檔案，並利用 SMTP 來傳送已附加該檔案的電子郵件。 
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。例如，若要連接到 SMTP，您必須先有 SMTP 連線。若要建立連線，您需要提供平常用來存取所要連線之服務的認證。因此，在 SMTP 範例中，您需要連接名稱、SMTP 伺服器位址，以及使用者登入資訊的認證才能建立 SMTP 連線。[深入了解連線]()
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+### 建立至 SMTP 的連線
 
-## 觸發程序及動作
-SMTP 連接器提供下列動作，但不包含觸發程序。
+>[AZURE.INCLUDE [建立至 SMTP 連線的步驟](../../includes/connectors-create-api-smtp.md)]
 
-|觸發程序 | 動作|
+## 使用 SMTP 觸發程序
+
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+在此範例中，由於 SMTP 沒有觸發程序，因此我們將使用 **Salesforce - 當物件建立時**觸發程序。當 Salesforce 中有新的物件建立時，觸發程序就會啟動。在範例中，我們會設定使其每次在 Salesforce 中建立新的潛在客戶時，系統會透過 SMTP 連接器傳送電子郵件，並附帶已建立新的潛在客戶通知。
+
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入 salesforce，然後選取 **Salesforce - 當建立物件時**觸發程序。![](../../includes/media/connectors-create-api-salesforce/trigger-1.png)
+
+2. **當建立物件時**控制項隨即顯示。![](../../includes/media/connectors-create-api-salesforce/trigger-2.png)
+
+3. 選取 [物件類型] 然後從清單的物件中選取 [潛在客戶]。在此步驟中表示您正在建立觸發程序，而此觸發程序會在每次 Salesforce 中有新的潛在客戶建立時，通知您的邏輯應用程式。![](../../includes/media/connectors-create-api-salesforce/trigger3.png)
+
+4. 觸發程序已建立。![](../../includes/media/connectors-create-api-salesforce/trigger-4.png)
+
+## 使用 SMTP 動作
+
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+現在已新增觸發程序之後，請遵循下列步驟新增 Salesforce 中有新的潛在客戶建立時會發生的 SMTP 動作。
+
+1. 選取 [+ 新的步驟] 來新增您想要在新的潛在客戶建立時採取的動作。![](../../includes/media/connectors-create-api-salesforce/trigger4.png)
+
+2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。![](../../includes/media/connectors-create-api-smtp/using-smtp-action-2.png)
+
+3. 輸入 smtp 以搜尋與 SMTP 相關的動作。
+
+4. 選取 [SMTP-傳送電子郵件]，作為新的潛在客戶建立時要採取的動作。動作控制區塊便會開啟。如果您先前未曾在設計工具區塊中建立 SMTP 連線，您必須這麼做。![](../../includes/media/connectors-create-api-smtp/smtp-2.png)
+
+5. 在 **SMTP - 傳送電子郵件**區塊中輸入您想要的電子郵件資訊。![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)
+
+6. 儲存您的工作以啟動工作流程。
+
+## 技術詳細資訊
+
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+
+## SMTP 觸發程序
+
+SMTP 沒有觸發程序。
+
+## SMTP 動作
+
+SMTP 具有下列動作︰
+
+
+|動作|說明|
 |--- | ---|
-|None | 傳送電子郵件|
+|[傳送電子郵件](connectors-create-api-smtp.md#send-email)|這樣作業會將電子郵件傳送給一或多位收件者。|
 
-所有連接器都支援 JSON 和 XML 格式的資料。
+### 動作詳細資料
 
-## 建立至 SMTP 的連線
+以下是此連接器的動作以及其回應的詳細資料︰
 
->[AZURE.INCLUDE [建立 SMTP 連線的步驟](../../includes/connectors-create-api-smtp.md)]
-
-當您建立連線之後，請輸入 SMTP 的屬性，例如收件者或副本值。本主題的 **REST API 參考**一節會說明這些屬性。
-
->[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 SMTP 連線。
-
-## Swagger REST API 參考
-適用的版本：1.0。
 
 ### 傳送電子郵件
-將電子郵件傳送給一或多位收件者。```POST: /SendEmail```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|emailMessage| 多種|yes|body|無 |Email message|
-
-## 物件定義
-
-#### Email：SMTP 電子郵件
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|收件人|字串|no|
-|CC|字串|no|
-|主旨|字串|no|
-|內文|字串|no|
-|從|字串|no|
-|IsHtml|布林值|no|
-|密件副本|字串|no|
-|重要性|字串|no|
-|附件|array|no|
+這樣作業會將電子郵件傳送給一或多位收件者。
 
 
-#### Attachment：電子郵件的附件
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|收件人|收件人|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
+|CC|副本|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
+|主旨|主旨|電子郵件主旨|
+|內文|內文|電子郵件內文|
+|從|從|寄件者的電子郵件地址，例如 sender@domain.com|
+|IsHtml|是 HTML|以 HTML 格式傳送電子郵件 (true/false)|
+|密件副本|密件副本|指定電子郵件地址，並以分號分隔，例如 recipient1@domain.com;recipient2@domain.com|
+|重要性|重要性|電子郵件的重要性 (高、一般或低)|
+|ContentData|附件內容資料|內容資料 (base64 編碼用於資料流，以及現狀用於字串)|
+|ContentType|附件內容類型|內容類型|
+|ContentTransferEncoding|附件內容轉移編碼|內容轉移編碼 (base64 或無)|
+|FileName|附件檔案名稱|檔案名稱|
+|ContentId|附件內容識別碼|內容識別碼|
 
-| 名稱 | 資料類型 |必要|
-|---|---|---|
-|FileName|字串|no|
-|ContentId|字串|no|
-|ContentData|字串|yes|
-|ContentType|字串|yes|
-|ContentTransferEncoding|字串|yes|
+* 表示這是必要屬性
 
+
+## HTTP 回應
+
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+
+|名稱|說明|
+|---|---|
+|200|OK|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
 
 ## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -3,7 +3,7 @@
     description="將您現有的虛擬機器移轉到 Azure 進階儲存體。「進階儲存體」可針對在「Azure 虛擬機器」上執行且需要大量 I/O 的工作負載，提供高效能、低延遲的磁碟支援。"
     services="storage"
     documentationCenter="na"
-    authors="ms-prkhad"
+    authors="aungoo-msft"
     manager=""
     editor="tysonn"/>
 
@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="03/28/2016"
-    ms.author="prkhad"/>
+    ms.date="07/25/2016"
+    ms.author="aungoo-msft"/>
 
 
 # 移轉到 Azure 進階儲存體
@@ -123,7 +123,7 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 
 		%windir%\system32\sysprep\sysprep.exe
 
-4. 在 [系統準備工具] 中依序選取 [進入系統全新體驗 (OOBE)]、[一般化] 核取方塊、[關機]，然後按一下 [確定] \(如下方圖片所示)。這會將作業系統一般化，並關閉系統。
+4. 在 [系統準備工具] 中依序選取 [進入系統全新體驗 (OOBE)]、[一般化] 核取方塊、[關機]，然後按一下 [確定] (如下方圖片所示)。這會將作業系統一般化，並關閉系統。
 
 	![][1]
 
@@ -171,7 +171,7 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 
 	![][2]
 
-2. 從 S3 貯體下載 VHD 檔案。然後選取 VHD 檔案，再依序按一下 [Actions] \(動作) > [Download] \(下載)。
+2. 從 S3 貯體下載 VHD 檔案。然後選取 VHD 檔案，再依序按一下 [Actions] (動作) > [Download] (下載)。
 
 	![][3]|
 
@@ -415,7 +415,7 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 
     # whether or not to copy the os disk, the default is only copy data disks
     [Parameter(Mandatory = $false)]
-    [String] $DataDiskOnly = $true,
+    [Bool] $DataDiskOnly = $true,
 
     # how frequently to report the copy status in sceconds
     [Parameter(Mandatory = $false)]
@@ -680,4 +680,4 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 [2]: ./media/storage-migration-to-premium-storage/migration-to-premium-storage-1.png
 [3]: ./media/storage-migration-to-premium-storage/migration-to-premium-storage-3.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0727_2016-->

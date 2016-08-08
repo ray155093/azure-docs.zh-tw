@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -87,4 +87,4 @@ X12 連接器可用做觸發程序或動作。
 [10]: ./media/app-service-logic-connector-x12/EncodeConfigured.PNG
 [11]: ./media/app-service-logic-connector-x12/TriggerSettings.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

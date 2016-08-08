@@ -8,12 +8,12 @@
 	services="mobile-services"/>
 
 <tags
-	ms.service="mobile-services" 
+	ms.service="mobile-services"
 	ms.workload="mobile"
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="12/07/2015"
+	ms.date="07/21/2016"
 	ms.author="wesmc"/>
 
 # 使用 JavaScript 和 Azure Active Directory 的行動服務中的角色型存取控制
@@ -32,7 +32,7 @@
 本教學課程將說明角色型存取控制，檢查每個使用者在 Azure Active Directory (AAD) 中定義之「銷售」群組的成員資格。存取檢查將在 .NET 行動服務後端中，使用 Azure Active Directory 的[Graph REST API] 來執行。只有屬於「銷售」群組的使用者能夠查詢資料。
 
 
->[AZURE.NOTE]本教學課程的目的是要擴充驗證知識以加入授權實務作法。您應先使用 Azure Active Directory 驗證提供者完成[將驗證新增至您的應用程式]教學課程。本教學課程接著將更新[將驗證新增至您的應用程式]教學課程中使用的 TodoItem 應用程式。
+>[AZURE.NOTE] 本教學課程的目的是要擴充驗證知識以加入授權實務作法。您應先使用 Azure Active Directory 驗證提供者完成[將驗證新增至您的應用程式]教學課程。本教學課程接著將更新[將驗證新增至您的應用程式]教學課程中使用的 TodoItem 應用程式。
 
 ##必要條件
 
@@ -179,12 +179,12 @@
 
 9. 在 AuthorizeAadRole.cs 中，更新 `AuthorizeAadRole` 類別中的 `GetAADToken` 方法。此方法會使用儲存在行動服務中的應用程式設定，以取得從 ADAL 存取 AAD 的權杖。
 
-    >[AZURE.NOTE]根據預設，適用於 .NET 的 ADAL 包含記憶體內部權杖快取，有助於減輕對您 Active Directory 的額外網路流量。但是，您可以寫入自己的快取實作或完全停用快取。如需詳細資訊，請參閱[適用於 .NET 的 ADAL]。
+    >[AZURE.NOTE] 根據預設，適用於 .NET 的 ADAL 包含記憶體內部權杖快取，有助於減輕對您 Active Directory 的額外網路流量。但是，您可以寫入自己的快取實作或完全停用快取。如需詳細資訊，請參閱[適用於 .NET 的 ADAL]。
 
         // Use ADAL and the authentication app settings from the Mobile Service to get an AAD access token
         private async Task<string> GetAADToken()
         {
-            // Try to get the required AAD authentication app settings from the mobile service.  
+            // Try to get the required AAD authentication app settings from the mobile service.
             if (!(services.Settings.TryGetValue("AAD_CLIENT_ID", out clientid) &
                   services.Settings.TryGetValue("AAD_CLIENT_KEY", out clientkey) &
                   services.Settings.TryGetValue("AAD_TENANT_DOMAIN", out tenantdomain)))
@@ -245,7 +245,7 @@
 
 11. 在 AuthorizeAadRole.cs 中，使用下列程式碼更新 `AuthorizeAadRole` 類別中的 `OnAuthorization` 方法。此程式碼預期呼叫行動服務的使用者已利用 AAD 完成驗證。接著，它會取得使用者的 AAD 物件識別碼，檢查與該角色對應之 Active Directory 群組的成員資格。
 
-    >[AZURE.NOTE]您可以依名稱查詢 Active Directory 群組。但是，在許多情況下，將群組識別碼儲存為行動服務應用程式設定，會是較理想的作法。這是因為群組名稱比較有可能會變更，但識別碼會保持相同。
+    >[AZURE.NOTE] 您可以依名稱查詢 Active Directory 群組。但是，在許多情況下，將群組識別碼儲存為行動服務應用程式設定，會是較理想的作法。這是因為群組名稱比較有可能會變更，但識別碼會保持相同。
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
@@ -393,4 +393,4 @@
 [IsMemberOf]: http://msdn.microsoft.com/library/azure/dn151601.aspx
 [適用於 .NET 的 ADAL]: https://msdn.microsoft.com/library/azure/jj573266.aspx
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0727_2016-->

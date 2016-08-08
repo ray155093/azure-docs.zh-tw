@@ -4,7 +4,7 @@
    services="data-catalog"
    documentationCenter=""
    authors="spelluru"
-   manager=""
+   manager="paulettm"
    editor=""
    tags=""/>
 <tags 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="05/10/2016"
-   ms.author="spelluru"/>
+   ms.date="07/25/2016"
+   ms.author="derrickv"/>
 
 # Azure 資料目錄開發人員概念
 
@@ -117,7 +117,7 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 
 根資產類型所指的類型代表可以註冊在目錄中的各種資料資產。每個根類型都有一個定義的檢視，可描述檢視中包含的資產和註解。使用 REST API 發佈資產時，檢視名稱應用於對應 {view\_name} url 區段。
 
-<table><tr><td><b>資產類型 (檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>允許的註解</b></td><td><b>註解</b></td></tr><tr><td>資料表 ("tables")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>結構描述<p>ColumnDescription<p>ColumnTag<p> 專家<p>預覽<p>AccessInstruction<p>TableDataProfile<p>ColumnDataProfile<p>文件<p></td><td>資料表代表任何表格式資料。這包括 SQL 資料表、SQL 檢視、 Analysis Services 表格式資料表、Analysis Services 多維度的維度、Oracle 資料表等等...   </td></tr><tr><td>量值 ("measures")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 Analysis Services 量值。</td></tr><tr><td></td><td>measure</td><td>資料欄</td><td></td><td>描述量值的中繼資料</td></tr><tr><td></td><td>isCalculated </td><td>Boolean</td><td></td><td>指定是否計算量值。</td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><td>KPI ("kpis")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件</td><td></td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><tr><td></td><td>goalExpression</td><td>String</td><td></td><td>會傳回 KPI 目標值的 MDX 數值運算式或計算。</td></tr><tr><td></td><td>valueExpression</td><td>String</td><td></td><td>會傳回 KPI 實際值的 MDX 數值運算式。</td></tr><tr><td></td><td>statusExpression</td><td>String</td><td></td><td>代表指定時間點之 KPI 狀態的 MDX 運算式。</td></tr><tr><td></td><td>trendExpression</td><td>String</td><td></td><td>評估一段時間的 KPI 值的 MDX 運算式。趨勢可以是特定商務情況下適用的任何時間性準則。</td>
+<table><tr><td><b>資產類型 (檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>允許的註解</b></td><td><b>註解</b></td></tr><tr><td>資料表 ("tables")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>結構描述<p>ColumnDescription<p>ColumnTag<p> 專家<p>預覽<p>AccessInstruction<p>TableDataProfile<p>ColumnDataProfile<p>ColumnDataClassification<p>文件<p></td><td>資料表代表任何表格式資料。這包括 SQL 資料表、SQL 檢視、 Analysis Services 表格式資料表、Analysis Services 多維度的維度、Oracle 資料表等等...   </td></tr><tr><td>量值 ("measures")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 Analysis Services 量值。</td></tr><tr><td></td><td>measure</td><td>資料欄</td><td></td><td>描述量值的中繼資料</td></tr><tr><td></td><td>isCalculated </td><td>Boolean</td><td></td><td>指定是否計算量值。</td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><td>KPI ("kpis")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件</td><td></td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><tr><td></td><td>goalExpression</td><td>String</td><td></td><td>會傳回 KPI 目標值的 MDX 數值運算式或計算。</td></tr><tr><td></td><td>valueExpression</td><td>String</td><td></td><td>會傳回 KPI 實際值的 MDX 數值運算式。</td></tr><tr><td></td><td>statusExpression</td><td>String</td><td></td><td>代表指定時間點之 KPI 狀態的 MDX 運算式。</td></tr><tr><td></td><td>trendExpression</td><td>String</td><td></td><td>評估一段時間的 KPI 值的 MDX 運算式。趨勢可以是特定商務情況下適用的任何時間性準則。</td>
 <tr><td>報表 ("reports")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 SQL Server Reporting Services 報表 </td></tr><tr><td></td><td>assetCreatedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetCreatedBy</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedBy</td><td>String</td><td></td><td></td></tr><tr><td>容器 ("containers")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表其他資產 (例如 SQL database、Azure Blob 容器或 Analysis Services 模型) 的容器 。</td></tr></table>
 
 ### 註解類型
@@ -165,6 +165,10 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 
 <tr><td>ColumnsDataProfile ("columnsDataProfiles")</td><td></td><td></td><td></td></tr>
 <tr><td></td><td>columns</td></td><td>ColumnDataProfile[]</td><td>資料行資料設定檔的陣列。</td></tr>
+
+<tr><td>ColumnDataClassification ("columnDataClassifications")</td><td></td><td></td><td></td></tr>
+<tr><td></td><td>columnName</td><td>String</td><td>此分類所參考的資料行名稱。</td></tr>
+<tr><td></td><td>分類</td><td>String</td><td>此資料行中的資料分類。</td></tr>
 
 <tr><td>文件 ("documentation")</td><td></td><td></td><td>指定的資產只能有一個相關聯的文件。</td></tr>
 <tr><td></td><td>mimeType</td><td>字串</td><td>內容的 mime 類型。</td></tr>
@@ -278,7 +282,7 @@ Azure 資料目錄使用兩種授權機制：
 >
 > **擁有者** 角色僅適用於根項目。
 >
-> 根據預設，在目錄中建立項目時，其 **參與者** 會設定為目前已驗證的使用者。如果每個人都能更新項目，則第一次發佈項目時，應該在 **roles** 屬性中，將 **參與者** 設定為 <Everyone> 特殊安全性主體 (請參閱下面範例)。**參與者** 無法變更，而且在項目存留期間都維持不變 (也就是即使 **系統管理員** 或 **擁有者** 都沒有權限變更 **參與者**)。明確設定 **參與者** 時，唯一支援的值是 <Everyone>：亦即 **參與者** 只能是建立項目的使用者，或是 <Everyone>。
+> 根據預設，在目錄中建立項目時，其 **參與者** 會設定為目前已驗證的使用者。如果每個人都能更新項目，則第一次發佈項目時，應該在 **roles** 屬性中，將**參與者**設定為 <Everyone> 特殊安全性主體 (請參閱下面範例)。**參與者** 無法變更，而且在項目存留期間都維持不變 (也就是即使 **系統管理員** 或 **擁有者** 都沒有權限變更 **參與者**)。明確設定**參與者**時，唯一支援的值是 <Everyone>：亦即**參與者**只能是建立項目的使用者，或是 <Everyone>。
 
 ###範例
 **發佈項目時將參與者設定為 <Everyone>。** 特殊安全性主體 <Everyone> 具有 objectId "00000000-0000-0000-0000-000000000201"。**POST** https://api.azuredatacatalog.com/catalogs/default/views/tables/?api-version=2016-03-30
@@ -300,11 +304,53 @@ Azure 資料目錄使用兩種授權機制：
 		]
 	}
 
-  **指派擁有者並限制現有根項目的可見性** **PUT** https://api.azuredatacatalog.com/catalogs/default/views/tables/042297b0...1be45ecd462a?api-version=2016-03-30 { "roles": [ { "role": "Owner", "members": [ { "objectId": "c4159539-846a-45af-bdfb-58efd3772b43", "upn": "user1@contoso.com" }, { "objectId": "fdabd95b-7c56-47d6-a6ba-a7c5f264533f", "upn": "user2@contoso.com" } ] } ], "permissions": [ { "principal": { "objectId": "27b9a0eb-bb71-4297-9f1f-c462dab7192a", "upn": "user3@contoso.com" }, "rights": [ { "right": "Read" } ] }, { "principal": { "objectId": "4c8bc8ce-225c-4fcf-b09a-047030baab31", "upn": "user4@contoso.com" }, "rights": [ { "right": "Read" } ] } ] }
+  **指派擁有者，並限制現有根項目的可見性** **PUT** https://api.azuredatacatalog.com/catalogs/default/views/tables/042297b0...1be45ecd462a?api-version=2016-03-30
+
+	{
+		"roles": [
+			{
+				"role": "Owner",
+				"members": [
+					{
+						"objectId": "c4159539-846a-45af-bdfb-58efd3772b43",
+						"upn": "user1@contoso.com"
+					},
+					{
+						"objectId": "fdabd95b-7c56-47d6-a6ba-a7c5f264533f",
+						"upn": "user2@contoso.com"
+					}
+				]
+			}
+		],
+		"permissions": [
+			{
+				"principal": {
+					"objectId": "27b9a0eb-bb71-4297-9f1f-c462dab7192a",
+					"upn": "user3@contoso.com"
+				},
+				"rights": [
+					{
+						"right": "Read"
+					}
+				]
+			},
+			{
+				"principal": {
+					"objectId": "4c8bc8ce-225c-4fcf-b09a-047030baab31",
+					"upn": "user4@contoso.com"
+				},
+				"rights": [
+					{
+						"right": "Read"
+					}
+				]
+			}
+		]
+	}
 
 > [AZURE.NOTE] 在 PUT 中，不需要在內文中指定項目裝載：PUT 可以用來直接更新角色和 (或) 權限。
 
 <!--Image references-->
 [1]: ./media/data-catalog-developer-concepts/concept2.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

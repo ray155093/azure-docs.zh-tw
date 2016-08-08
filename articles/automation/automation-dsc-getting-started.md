@@ -19,9 +19,9 @@
 
 # 開始使用 Azure 自動化 DSC
 
-本主題說明如何使用 Azure 自動化期望狀態設定 (DSC) 來執行常見的工作，例如建立、匯入和編譯組態、將要管理的機器上架，以及檢視報告。如需何謂 Azure 自動化 DSC 的概觀，請參閱 [Azure 自動化 DSC 概觀](automation-dsc-overview.md)。如需 DSC 文件，請參閱 [Windows PowerShell 預期狀態設定概觀](Windows PowerShell 預期狀態設定概觀)。
+本主題說明如何使用 Azure 自動化期望狀態設定 (DSC) 來執行常見的工作，例如建立、匯入和編譯組態、將要管理的機器上架，以及檢視報告。如需何謂 Azure 自動化 DSC 的概觀，請參閱 [Azure 自動化 DSC 概觀](automation-dsc-overview.md)。如需 DSC 文件，請參閱 [Windows PowerShell 預期狀態設定概觀](https://msdn.microsoft.com/PowerShell/dsc/overview)。
 
-本主題提供如何使用 Azure 自動化 DSC 的逐步指南。如果您不想遵循本主題中所述的步驟，但想要已經設定好的範例環境，您可以使用 https://github.com/azureautomation/automation-packs/tree/master/102-sample-automation-setup 上的 ARM 範本。此範本會設定完整的 Azure 自動化 DSC 環境，包括由 Azure 自動化 DSC 管理的 Azure VM。
+本主題提供如何使用 Azure 自動化 DSC 的逐步指南。如果您不想遵循本主題中所述的步驟，但想要已經設定好的範例環境，您可以使用[下列 ARM 範本](https://github.com/azureautomation/automation-packs/tree/master/102-sample-automation-setup)。此範本會設定完整的 Azure 自動化 DSC 環境，包括由 Azure 自動化 DSC 管理的 Azure VM。
  
 ## 必要條件
 
@@ -32,7 +32,7 @@
 
 ## 建立 DSC 組態
 
-我們將建立簡單的 [DSC 組態](https://msdn.microsoft.com/powershell/dsc/configurations)，根據您指派節點的方式，確定是否有 **Web 伺服器** Windows 功能 (IIS) 存在。
+我們將建立簡單的 [DSC 設定](https://msdn.microsoft.com/powershell/dsc/configurations)，根據您指派節點的方式，確定是否有 **Web 伺服器** Windows 功能 (IIS) 存在。
 
 1. 啟動 Windows PowerShell ISE (或任何文字編輯器)。
 
@@ -65,7 +65,7 @@
     ```
 3. 將檔案儲存為 `TestConfig.ps1`。
 
-此組態會在每個節點區塊中呼叫一個資源 ([WindowsFeature 資源](https://msdn.microsoft.com/powershell/dsc/windowsfeatureresource))，這可確保 **Web 伺服器** 功能是否存在。
+此設定會在每個節點區塊中呼叫一個資源 ([WindowsFeature 資源](https://msdn.microsoft.com/powershell/dsc/windowsfeatureresource))，這可確保 **Web 伺服器** 功能是否存在。
 
 ## 將組態匯入 Azure 自動化
 
@@ -75,13 +75,13 @@
 
 2. 在 [中樞] 功能表上，依序按一下 [所有資源] 和您的自動化帳戶名稱。
 
-3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
+3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]。
 
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [新增組態]。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [新增設定]。
 
-5. 在 [匯入組態] 刀鋒視窗上，瀏覽至您電腦上的 `TestConfig.ps1` 檔案。
+5. 在 [匯入設定] 刀鋒視窗上，瀏覽至您電腦上的 `TestConfig.ps1` 檔案。
     
-    ![[匯入組態] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/AddConfig.png)
+    ![[匯入設定] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/AddConfig.png)
     
 
 6. 按一下 [確定]。
@@ -94,29 +94,29 @@
 
 2. 在 [中樞] 功能表上，依序按一下 [所有資源] 和您的自動化帳戶名稱。
 
-3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
+3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]
 
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig]\(這是您在上一個程序中匯入的組態名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (這是您在上一個程序中匯入的設定名稱)。
 
-5. 在 [TestConfig 組態] 刀鋒視窗上，按一下 [檢視組態來源]。
+5. 在 [TestConfig 設定] 刀鋒視窗上，按一下 [檢視設定來源]。
 
     ![TestConfig 組態刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/ViewConfigSource.png)
     
-    [TestConfig 組態來源] 刀鋒視窗隨即開啟，顯示此組態的 PowerShell 程式碼。
+    [TestConfig 設定來源] 刀鋒視窗隨即開啟，顯示此設定的 PowerShell 程式碼。
     
 ## 在 Azure 自動化中編譯組態
 
-定義預期狀態的 DSC 組態必須先編譯成一或多個節點組態 (MOF 文件)，並放在自動化 DSC 提取伺服器上，才可以將該預期狀態套用至節點。如需在 Azure 自動化 DSC 中編譯組態的詳細說明，請參閱[在 Azure 自動化 DSC 中編譯組態](automation-dsc-compile.md)。如需編譯組態的詳細資訊，請參閱 [DSC 組態](https://msdn.microsoft.com/PowerShell/DSC/configurations)。
+定義預期狀態的 DSC 組態必須先編譯成一或多個節點組態 (MOF 文件)，並放在自動化 DSC 提取伺服器上，才可以將該預期狀態套用至節點。如需在 Azure 自動化 DSC 中編譯設定的詳細說明，請參閱[在 Azure 自動化 DSC 中編譯設定](automation-dsc-compile.md)。如需編譯設定的詳細資訊，請參閱 [DSC 設定](https://msdn.microsoft.com/PowerShell/DSC/configurations)。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 在 [中樞] 功能表上，依序按一下 [所有資源] 和您的自動化帳戶名稱。
 
-3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
+3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]
 
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig]\(先前匯入的組態名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的設定名稱)。
 
-5. 在 [TestConfig 組態] 刀鋒視窗上，按一下 [編譯]，然後按一下 [是]。這會啟動編譯作業。
+5. 在 [TestConfig 設定] 刀鋒視窗上，按一下 [編譯]，然後按一下 [是]。這會啟動編譯作業。
     
     ![醒目提示編譯按鈕之 TestConfig 組態刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/CompileConfig.png)
     
@@ -124,17 +124,17 @@
 
 ## 檢視編譯作業
 
-啟動編譯之後，您可以在 [組態] 刀鋒視窗的 [編譯作業] 圖格中檢視它。[編譯作業] 圖格會顯示目前執行中、已完成及失敗的工作。當您開啟編譯作業刀鋒視窗時，它會顯示該工作的相關資訊，包括發生的任何錯誤或警告、組態中使用的參數以及編譯記錄檔。
+啟動編譯之後，您可以在 [設定] 刀鋒視窗的 [編譯作業] 圖格中檢視它。[編譯作業] 圖格會顯示目前執行中、已完成及失敗的工作。當您開啟編譯作業刀鋒視窗時，它會顯示該工作的相關資訊，包括發生的任何錯誤或警告、組態中使用的參數以及編譯記錄檔。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 在 [中樞] 功能表上，依序按一下 [所有資源] 和您的自動化帳戶名稱。
 
-3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
+3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]。
 
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig]\(先前匯入的組態名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的設定名稱)。
 
-5. 在 [TestConfig 組態] 刀鋒視窗的 [編譯作業] 圖格上，按一下任何列出的工作。[編譯作業] 刀鋒視窗隨即開啟，並標示編譯作業的啟動日期。
+5. 在 [TestConfig 設定] 刀鋒視窗的 [編譯作業] 圖格上，按一下任何列出的工作。[編譯作業] 刀鋒視窗隨即開啟，並標示編譯作業的啟動日期。
 
     ![[編譯作業] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/CompilationJob.png)
   
@@ -142,13 +142,13 @@
 
 ## 檢視節點組態
 
-成功完成編譯作業會建立一或多個新的節點組態。節點組態是已部署到提取伺服器且準備由一或多個節點提取並套用的 MOF 文件。您可以在 [DSC 節點組態] 刀鋒視窗中檢視您的自動化帳戶的節點組態。節點組態的名稱格式為「ConfigurationName.NodeName」。
+成功完成編譯作業會建立一或多個新的節點組態。節點組態是已部署到提取伺服器且準備由一或多個節點提取並套用的 MOF 文件。您可以在 [DSC 節點設定] 刀鋒視窗中檢視您的自動化帳戶的節點設定。節點設定的名稱格式為「ConfigurationName.NodeName」。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 在 [中樞] 功能表上，依序按一下 [所有資源] 和您的自動化帳戶名稱。
 
-3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 節點組態]。
+3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 節點設定]。
 
     ![[DSC 節點組態] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/NodeConfigs.png)
     
@@ -176,11 +176,11 @@
     
 7. 在 [新增 Azure VM] 刀鋒視窗中，按一下 [設定註冊資料]。
 
-8. 在 [註冊] 刀鋒視窗的 [節點組態名稱] 方塊中，輸入您要套用至 VM 的節點組態名稱。這必須完全符合自動化帳戶中的節點組態名稱。在此時提供名稱是選擇性的。您可以在節點上架後，變更指派的節點組態。勾選 [必要時重新啟動節點]，然後按一下 [確定]。
+8. 在 [註冊] 刀鋒視窗的 [節點設定名稱] 方塊中，輸入您要套用至 VM 的節點設定名稱。這必須完全符合自動化帳戶中的節點組態名稱。在此時提供名稱是選擇性的。您可以在節點上架後，變更指派的節點組態。勾選 [必要時重新啟動節點]，然後按一下 [確定]。
     
     ![[註冊] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/RegisterVM.png)
     
-    您指定的節點組態會依 [組態模式頻率] 所指定的間隔套用到 VM，而 VM 會依 [重新整理頻率] 所指定的間隔檢查節點組態的更新。如需有關如何使用這些值的詳細資訊，請參閱[設定本機組態管理員](https://msdn.microsoft.com/PowerShell/DSC/metaConfig)。
+    您指定的節點設定會依 [設定模式頻率] 所指定的間隔套用到 VM，而 VM 會依 [重新整理頻率] 所指定的間隔檢查節點設定的更新。如需有關如何使用這些值的詳細資訊，請參閱[設定本機設定管理員](https://msdn.microsoft.com/PowerShell/DSC/metaConfig)。
     
 9. 在 [新增 Azure VM] 刀鋒視窗中，按一下 [建立]。
 
@@ -211,12 +211,12 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
     ![[報告] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/NodeReport.png)
 
 在個別報告的刀鋒視窗上，您可以看到相對應一致性檢查的下列狀態資訊︰
-- 報告狀態 -- 節點是否「相容」、設定「失敗」，或節點「不相容」(當節點處於 **applyandmonitor** 模式且機器不在預期狀態時)。
+- 報告狀態 — 節點是否「相容」、設定「失敗」，或節點「不相容」(當節點處於 **applyandmonitor** 模式且機器不在預期狀態時)。
 - 一致性檢查的開始時間。
 - 一致性檢查的總執行時間。
 - 一致性檢查的類型。
 - 任何錯誤，包括錯誤碼和錯誤訊息。
-- 組態中使用的任何 DSC 資源，以及每個資源的狀態 (不論節點是否處於該資源的預期狀態) -- 您可以按一下每個資源，以取得該資源的詳細資訊。
+- 設定中使用的任何 DSC 資源，以及每個資源的狀態 (不論節點是否處於該資源的預期狀態) — 您可以按一下每個資源，以取得該資源的詳細資訊。
 - 節點的名稱、IP 位址和組態模式。
 
 您也可以按一下 [檢視原始報告]，查看節點傳送至伺服器的實際資料。如需有關使用該資料的詳細資訊，請參閱[使用 DSC 報告伺服器](https://msdn.microsoft.com/powershell/dsc/reportserver)。
@@ -239,7 +239,7 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
 
     ![醒目提示 [指派節點] 按鈕之 [節點] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/AssignNode.png)
 
-6. 在 [指派節點組態] 刀鋒視窗上，選取您要指派節點的節點組態，然後按一下 [確定]。
+6. 在 [指派節點設定] 刀鋒視窗上，選取您要指派節點的節點設定，然後按一下 [確定]。
 
     ![[指派節點組態] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/AssignNodeConfig.png)
     
@@ -253,7 +253,7 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
 
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 節點]。
 
-4. 在 [DSC 節點] 刀鋒視窗上，按一下您要重新指派的節點名稱。
+4. 在 [DSC 節點] 刀鋒視窗上，按一下您要取消註冊的節點名稱。
 
 5. 在該節點的刀鋒視窗上，按一下 [取消註冊]。
 
@@ -266,4 +266,4 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
 * [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 * [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

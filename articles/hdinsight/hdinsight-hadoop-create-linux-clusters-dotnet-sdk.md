@@ -216,7 +216,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 
         var coreConfigs = new Dictionary<string, string>
         {
-            {"fs.defaultFS", string.Format("wasb://{0}@{1}", ExistingBlobContainer, ExistingStorageName)},
+            {"fs.defaultFS", string.Format("wasbs://{0}@{1}", ExistingBlobContainer, ExistingStorageName)},
             {
                 string.Format("fs.azure.account.key.{0}", ExistingStorageName),
                 ExistingStorageKey
@@ -394,4 +394,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 - [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
 - [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

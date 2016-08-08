@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/13/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 
@@ -156,4 +156,4 @@ SLA 是根據「支援期間」來定義。「支援期間」是指 Microsoft �
 
 [zookeeper]: http://zookeeper.apache.org/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

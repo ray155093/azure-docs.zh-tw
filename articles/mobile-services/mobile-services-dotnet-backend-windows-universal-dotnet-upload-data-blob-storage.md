@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="12/01/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 使用行動服務將影像上傳到 Azure 儲存體
@@ -75,4 +75,4 @@
 [How To Create a Storage Account]: ../storage/storage-create-storage-account.md
 [Azure Storage Client library for Store apps]: http://go.microsoft.com/fwlink/p/?LinkId=276866
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,545 +1,113 @@
 <properties
-pageTitle="在您的 Logic Apps 或 Power Apps 中使用 SharePoint Online 連接器 | Microsoft Azure"
-description="開始在 Logic Apps 及 PowerApps 中使用 Azure App Service SharePoint Online 連接器。"
-services=""    
-documentationCenter=""     
-authors="msftman"    
-manager="erikre"    
+pageTitle="了解如何在邏輯應用程式中使用 SharePoint Online 連接器 | Microsoft Azure"
+description="使用 SharePoint Online 連接器建立邏輯應用程式來管理 SharePoint 上的清單。"
+services="app-servicelogic"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
 editor=""
-tags="connectors"/>
+tags="connectors" />
 
 <tags
-ms.service="multiple"
-ms.devlang="na"
+ms.service="logic-apps"
+ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
-ms.workload="na"
-ms.date="05/18/2016"
+ms.workload="integration"
+ms.date="07/19/2016"
 ms.author="deonhe"/>
 
-# 開始使用 SharePoint Online 連接器 
+# 開始使用 SharePoint Online 連接器
 
-SharePoint 連接器提供一種方式，讓您能夠使用 SharePoint 上的清單。
+使用 SharePoint Online 連接器來管理 SharePoint 清單。
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-您可以利用SharePoint 來：
+## 連接至 SharePoint Online
 
-* 建置邏輯應用程式
-* 建置 PowerApps  
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
 
-如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+### 建立至 SharePoint Online 的連線
 
-## 我們來談談觸發程序及動作。
+>[AZURE.INCLUDE [建立至 SharePoint 連線的步驟](../../includes/connectors-create-api-sharepointonline.md)]
 
-SharePoint 連接器可當做動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
+## 使用 SharePoint Online 觸發程序
 
-SharePoint 連接器提供下列動作及/或觸發程序：
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-### SharePoint 的動作
-您可以採取下列動作：
+>[AZURE.INCLUDE [建立 SharePoint Online 觸發程序的步驟](../../includes/connectors-create-api-sharepointonline-trigger.md)]
 
-|動作|說明|
-|--- | ---|
-|GetFileMetadata|用來取得文件庫中的檔案中繼資料|
-|UpdateFile|用來更新文件庫中的檔案|
-|DeleteFile|用來刪除文件庫中的檔案|
-|GetFileMetadataByPath|用來取得文件庫中的檔案中繼資料|
-|GetFileContentByPath|用來取得文件庫中的檔案|
-|GetFileContent|用來取得文件庫中的檔案|
-|CreateFile|用來上傳文件庫中的檔案|
-|CopyFile|用來複製文件庫中的檔案|
-|ExtractFolderV2|用來解壓縮文件庫中的資料夾|
-|PostItem|在 SharePoint 清單中建立新項目|
-|GetItem|擷取 SharePoint 清單中的單一項目|
-|DeleteItem|刪除 SharePoint 清單中的項目|
-|PatchItem|更新 SharePoint 清單中的項目|
-### SharePoint 的觸發程序
-您可以接聽下列事件：
+## 使用 SharePoint Online 動作
+
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+>[AZURE.INCLUDE [建立 SharePoint Online 動作的步驟](../../includes/connectors-create-api-sharepointonline-action.md)]
+
+## 技術詳細資料
+
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+
+## SharePoint Online 觸發程序
+
+SharePoint 具有下列觸發程序︰
 
 |觸發程序 | 說明|
 |--- | ---|
-|OnNewFile|當某個 SharePoint 資料夾中有新檔案建立時，就會觸發某個流程。|
-|OnUpdatedFile|當某個 SharePoint 資料夾中有檔案遭到修改時，就會觸發某個流程。|
-|GetOnNewItems|當 SharePoint 清單中有新項目建立時|
-|GetOnUpdatedItems|當 SharePoint 清單中的現有項目遭到修改時|
+|[當檔案建立時](connectors-create-api-sharepointonline.md#when-a-file-is-created)|當 SharePoint 資料夾中有新檔案建立時，此作業就會觸發流程。|
+|[當檔案遭到修改時](connectors-create-api-sharepointonline.md#when-a-file-is-modified)|當 SharePoint 資料夾中有檔案遭到修改時，此作業就會觸發流程。|
+|[當建立新項目時](connectors-create-api-sharepointonline.md#when-a-new-item-is-created)|當 SharePoint 清單中有新項目建立時，此作業就會觸發流程。|
+|[當現有項目遭到修改時](connectors-create-api-sharepointonline.md#when-an-existing-item-is-modified)|當 SharePoint 清單中現有項目遭到修改時，此作業就會觸發流程。|
 
 
-## 建立至 SharePoint 的連線
-如要使用 SharePoint 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
+## SharePoint Online 動作
 
-|屬性| 必要|說明|
+SharePoint 具有下列觸發動作︰
+
+
+|動作|說明|
+|--- | ---|
+|[取得檔案中繼資料](connectors-create-api-sharepointonline.md#get-file-metadata)|這項作業會使用檔案識別碼取得檔案中繼資料。|
+|[更新檔案](connectors-create-api-sharepointonline.md#update-file)|這項作業會更新檔案內容。|
+|[刪除檔案](connectors-create-api-sharepointonline.md#delete-file)|這項作業會刪除檔案。|
+|[使用路徑來取得檔案中繼資料](connectors-create-api-sharepointonline.md#get-file-metadata-using-path)|這項作業會使用檔案路徑取得檔案中繼資料。|
+|[使用路徑來取得檔案內容](connectors-create-api-sharepointonline.md#get-file-content-using-path)|這項作業會使用檔案路徑取得檔案內容。|
+|[取得檔案內容](connectors-create-api-sharepointonline.md#get-file-content)|這項作業會使用檔案識別碼取得檔案內容。|
+|[建立檔案](connectors-create-api-sharepointonline.md#create-file)|這項作業會將檔案上傳至 SharePoint 網站。|
+|[複製檔案](connectors-create-api-sharepointonline.md#copy-file)|這項作業會將檔案複製至 SharePoint 網站。|
+|[列出資料夾](connectors-create-api-sharepointonline.md#list-folder)|這項作業會取得包含在 SharePoint 資料夾中的檔案。|
+|[列出根資料夾](connectors-create-api-sharepointonline.md#list-root-folder)|這項作業會取得根 SharePoint 資料夾中的檔案。|
+|[解壓縮到資料夾](connectors-create-api-sharepointonline.md#extract-folder)|這項作業會將封存檔案解壓縮到 SharePoint 資料夾 (範例︰.zip)。|
+|[取得項目](connectors-create-api-sharepointonline.md#get-items)|這項作業會取得 SharePoint 清單的項目。|
+|[建立項目](connectors-create-api-sharepointonline.md#create-item)|這項作業會在 SharePoint 清單建立新的項目。|
+|[取得項目](connectors-create-api-sharepointonline.md#get-item)|這項作業會從 SharePoint 清單，藉由項目的識別碼取得單一項目。|
+|[刪除項目](connectors-create-api-sharepointonline.md#delete-item)|這項作業會刪除 SharePoint 清單的項目。|
+|[更新項目](connectors-create-api-sharepointonline.md#update-item)|這項作業會更新 SharePoint 清單的項目。|
+|[取得實體的值](connectors-create-api-sharepointonline.md#get-entity-values)|這項作業會取得 SharePoint 實體的可能值。|
+|[取得清單](connectors-create-api-sharepointonline.md#get-lists)|這項作業會取得網站的 SharePoint 清單。|
+### 動作詳細資料
+
+以下是此連接器動作和觸發程序以及其回應的詳細資料︰
+
+
+
+### 取得檔案中繼資料
+這項作業會使用檔案識別碼取得檔案中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|權杖|是|提供 SharePoint 的認證|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|識別碼*|檔案識別碼|選取檔案|
 
-若要連接到 **SharePoint Online**，您需要向 SharePoint online 提供您的身分識別 (使用者名稱和密碼、智慧卡認證等)。通過驗證之後，您就可以在邏輯應用程式中使用 SharePoint Online 連接器。
+* 表示這是必要屬性
 
-在邏輯應用程式的設計工具中，請遵循下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線。
+#### 輸出詳細資料
 
-1. 在搜尋方塊中輸入 SharePoint，並等候搜尋傳回所有名稱中有 SharePoint 的項目：![設定 SharePoint][1]  
-2. 選取 [SharePoint Online - 當檔案建立時]   
-3. 選取 [登入 SharePoint Online]：![設定 SharePoint][2]    
-4. 提供您的 SharePoint 認證來登入，並以 SharePoint ![設定 SharePoint][3] 進行驗證     
-5. 驗證完成後，只要設定 SharePoint 的 [當檔案建立時] 對話方塊，系統會將您重新導向至邏輯應用程式並完成作業。![設定 SharePoint][4]  
-6. 接著，您可以新增所需的其他觸發和動作來完成邏輯應用程式。   
-7. 選取上方功能表列的 [儲存] 來儲存您的工作。  
+BlobMetadata
 
->[AZURE.TIP] 您可以在其他邏輯應用程式、PowerApps 或這兩者中使用這個連接。
 
-## SharePoint REST API 參考
-#### 本文件適用的版本：1.0
-
-
-### 用來取得文件庫中的檔案中繼資料
-**```GET: /datasets/{dataset}/files/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|字串|yes|路徑|無|檔案的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來更新文件庫中的檔案
-**```PUT: /datasets/{dataset}/files/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|字串|yes|路徑|無|檔案的唯一識別碼|
-|body| |yes|body|無|檔案的內容|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來刪除文件庫中的檔案
-**```DELETE: /datasets/{dataset}/files/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|字串|yes|路徑|無|檔案的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來取得文件庫中的檔案中繼資料
-**```GET: /datasets/{dataset}/GetFileByPath```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|路徑|字串|yes|query|無|檔案的路徑|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來取得文件庫中的檔案
-**```GET: /datasets/{dataset}/GetFileContentByPath```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|路徑|字串|yes|query|無|檔案的路徑|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來取得文件庫中的檔案
-**```GET: /datasets/{dataset}/files/{id}/content```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|id|字串|yes|路徑|無|檔案的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來上傳文件庫中的檔案
-**```POST: /datasets/{dataset}/files```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|folderPath|字串|yes|query|無|資料夾的路徑。|
-|名稱|字串|yes|query|無|檔案名稱|
-|body| |yes|body|無|檔案的內容|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來複製文件庫中的檔案
-**```POST: /datasets/{dataset}/copyFile```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|來源|字串|yes|query|無|來源檔案的路徑|
-|目的地|字串|yes|query|無|目的檔案的路徑|
-|overwrite|布林值|no|query|false|是否要覆寫現有的檔案。|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 當某個 SharePoint 資料夾中有新檔案建立時，就會觸發某個流程。
-**```GET: /datasets/{dataset}/triggers/onnewfile```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL|
-|folderId|字串|yes|query|無|SharePoint 中資料夾的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 當某個 SharePoint 資料夾中有檔案遭到修改時，就會觸發某個流程。
-**```GET: /datasets/{dataset}/triggers/onupdatedfile```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL|
-|folderId|字串|yes|query|無|SharePoint 中資料夾的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 用來解壓縮文件庫中的資料夾
-**```POST: /datasets/{dataset}/extractFolderV2```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL。例如 http://contoso.sharepoint.com/sites/mysite|
-|來源|字串|yes|query|無|來源檔案的路徑|
-|目的地|字串|yes|query|無|目的資料夾的路徑|
-|overwrite|布林值|no|query|false|是否要覆寫現有的檔案。|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 當 SharePoint 清單中有新項目建立時
-**```GET: /datasets/{dataset}/tables/{table}/onnewitems```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 當 SharePoint 清單中的現有項目遭到修改時
-**```GET: /datasets/{dataset}/tables/{table}/onupdateditems```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 在 SharePoint 清單中建立新項目
-**```POST: /datasets/{dataset}/tables/{table}/items```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|item| |yes|body|無|要建立的項目|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 擷取 SharePoint 清單中的單一項目
-**```GET: /datasets/{dataset}/tables/{table}/items/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要擷取之項目的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 刪除 SharePoint 清單中的項目
-**```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要刪除之項目的唯一識別碼|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-### 更新 SharePoint 清單中的項目
-**```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```**
-
-
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
-|資料表|字串|yes|路徑|無|SharePoint 清單名稱|
-|id|integer|yes|路徑|無|要更新之項目的唯一識別碼|
-|item| |yes|body|無|屬性已更新的項目|
-
-
-### 下列為可能的回應：
-
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-------
-
-
-
-## 物件定義： 
-
- **DataSetsMetadata**：
-
-DataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
-|---|---|
-|tabular|未定義|
-|blob|未定義|
-
-
-
- **TabularDataSetsMetadata**：
-
-TabularDataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
-|---|---|
-|來源|字串|
-|displayName|字串|
-|urlEncoding|字串|
-|tableDisplayName|字串|
-|tablePluralName|字串|
-
-
-
- **BlobDataSetsMetadata**：
-
-BlobDataSetsMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
-|---|---|
-|來源|字串|
-|displayName|字串|
-|urlEncoding|字串|
-
-
-
- **BlobMetadata**：
-
-BlobMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
-|---|---|
+| 屬性名稱 | 資料類型 |
+|---|---|---|
 |識別碼|字串|
 |名稱|字串|
 |DisplayName|字串|
@@ -553,152 +121,551 @@ BlobMetadata 的必要屬性：
 
 
 
- **物件：**
 
-Object 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 更新檔案
+這項作業會更新檔案內容。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|識別碼*|檔案識別碼|選取檔案|
+|body*|檔案內容|檔案的內容|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
 
 
-| 名稱 | 資料類型 |
-|---|---|
-
-
-
- **TableMetadata**：
-
-TableMetadata 的必要屬性：
-
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
-|---|---|
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
 |名稱|字串|
-|title|字串|
-|x-ms-permission|字串|
-|結構描述|沒有定義|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
- **DataSetsList**：
 
-DataSetsList 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 刪除檔案
+這項作業會刪除檔案。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|識別碼*|檔案識別碼|選取檔案|
+
+* 表示這是必要屬性
 
 
-| 名稱 | 資料類型 |
+
+
+### 使用路徑來取得檔案中繼資料
+這項作業會使用檔案路徑取得檔案中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|path*|檔案路徑|選取檔案|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 使用路徑來取得檔案內容
+這項作業會使用檔案路徑取得檔案內容。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|path*|檔案路徑|選取檔案|
+
+* 表示這是必要屬性
+
+
+
+
+### 取得檔案內容
+這項作業會使用檔案識別碼取得檔案內容。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|識別碼*|檔案識別碼|選取檔案|
+
+* 表示這是必要屬性
+
+
+
+
+### 建立檔案
+這項作業會將檔案上傳至 SharePoint 網站。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|folderPath*|資料夾路徑|選取檔案|
+|name*|檔案名稱|檔案名稱|
+|body*|檔案內容|檔案的內容|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 複製檔案
+這項作業會將檔案複製至 SharePoint 網站。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|source*|來源檔案路徑|來源檔案的路徑|
+|destination*|目的地檔案路徑|目的檔案的路徑|
+|overwrite|覆寫旗標|是否覆寫目的地檔案 (若存在)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 當檔案建立時
+當 SharePoint 資料夾中有新檔案建立時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL|
+|folderId*|資料夾識別碼|選取資料夾|
+
+* 表示這是必要屬性
+
+
+
+
+### 當檔案遭到修改時
+當 SharePoint 資料夾中有檔案遭到修改時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL|
+|folderId*|資料夾識別碼|選取資料夾|
+
+* 表示這是必要屬性
+
+
+
+
+### 列出資料夾
+這項作業會取得包含在 SharePoint 資料夾中的檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|識別碼*|檔案識別碼|資料夾的唯一識別碼|
+
+* 表示這是必要屬性
+
+
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 列出根資料夾
+這項作業會取得根 SharePoint 資料夾中的檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+
+* 表示這是必要屬性
+
+
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 解壓縮到資料夾
+這項作業會將封存檔案解壓縮到 SharePoint 資料夾 (範例︰.zip)。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL，例如 http://contoso.sharepoint.com/sites/mysite|
+|source*|來源檔案路徑|來源檔案的路徑|
+|destination*|目的地資料夾路徑|目的資料夾的路徑|
+|overwrite|覆寫旗標|是否覆寫目的地檔案 (若存在)|
+
+* 表示這是必要屬性
+
+
+
+#### 輸出詳細資料
+
+BlobMetadata
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|---|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
+
+
+
+
+### 當建立新項目時
+當 SharePoint 清單中有新項目建立時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
+
+
+| 屬性名稱 | 資料類型 | 
 |---|---|
 |value|array|
 
 
 
- **DataSet**：
 
-DataSet 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 當現有項目遭到修改時
+當 SharePoint 清單中現有項目遭到修改時，此作業就會觸發流程。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
 
 
-| 名稱 | 資料類型 |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|名稱|字串|
-|DisplayName|字串|
+|value|array|
 
 
 
- **資料表**：
 
-Table 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 取得項目
+這項作業會取得 SharePoint 清單的項目。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
 
 
-| 名稱 | 資料類型 |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|名稱|字串|
-|DisplayName|字串|
+|value|array|
 
 
 
- **項目：**
 
-Item 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 建立項目
+這項作業會在 SharePoint 清單建立新的項目。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|項目 *|項目|要建立的項目|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
 
 
-| 名稱 | 資料類型 |
+| 屬性名稱 | 資料類型 |
 |---|---|
 |ItemInternalId|字串|
 
 
 
- **ItemsList**：
 
-ItemsList 的必要屬性：
-
-
-這些屬性都是不必要的。
+### 取得項目
+這項作業會從 SharePoint 清單，藉由項目的識別碼取得單一項目。
 
 
-**所有屬性**：
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|識別碼*|識別碼|要擷取之項目的唯一識別碼|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
 
 
-| 名稱 | 資料類型 |
+| 屬性名稱 | 資料類型 |
+|---|---|
+|ItemInternalId|字串|
+
+
+
+
+### 刪除項目
+這項作業會刪除 SharePoint 清單的項目。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|識別碼*|識別碼|要刪除之項目的唯一識別碼|
+
+* 表示這是必要屬性
+
+
+
+
+### 更新項目
+這項作業會更新 SharePoint 清單的項目。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+|資料表 *|清單名稱|SharePoint 清單名稱|
+|識別碼*|識別碼|要更新之項目的唯一識別碼|
+|項目 *|項目|屬性已更新的項目|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|ItemInternalId|字串|
+
+
+
+
+### 取得實體的值
+這項作業會取得 SharePoint 實體的可能值。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|SharePoint 網站 URL|SharePoint 網站 URL|
+|資料表 *|資料表名稱|資料表名稱|
+|識別碼*|實體識別碼|實體識別碼|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+
+
+
+
+### 取得清單
+這項作業會取得網站的 SharePoint 清單。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|網站 URL|SharePoint 網站 URL (例如：http://contoso.sharepoint.com/sites/mysite)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+TablesList
+
+
+| 屬性名稱 | 資料類型 |
 |---|---|
 |value|array|
 
 
 
- **TablesList**：
+## HTTP 回應
 
-TablesList 的必要屬性：
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
 
-
-這些屬性都是不必要的。
-
-
-**所有屬性**：
-
-
-| 名稱 | 資料類型 |
+|名稱|說明|
 |---|---|
-|value|array|
+|200|OK|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [建立 Power 應用程式](../power-apps/powerapps-get-started-azure-portal.md)
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-[1]: ./media/connectors-create-api-sharepointonline/connectionconfig1.png
-[2]: ./media/connectors-create-api-sharepointonline/connectionconfig2.png
-[3]: ./media/connectors-create-api-sharepointonline/connectionconfig3.png
-[4]: ./media/connectors-create-api-sharepointonline/connectionconfig4.png
-[5]: ./media/connectors-create-api-sharepointonline/connectionconfig5.png
-
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

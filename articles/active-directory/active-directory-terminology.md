@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="07/20/2016"
 	ms.author="curtand"/>
 
 # Azure AD 術語
@@ -29,9 +29,9 @@ Azure Active Directory 驗證系統 | 雲端中用來驗證和授權公司或學
 Azure Active Directory 圖形 | 用以存取社交企業圖中使用者、群組和角色物件的 Azure Active Directory 功能，可輕鬆揭露使用者資訊和關聯性。
 適用於 Windows PowerShell 的 Azure Active Directory 模組 | 一組用來管理 Azure Active Directory 的 Cmdlet。您可以使用這些 Cmdlet 來管理使用者、群組、網域、雲端服務訂閱、授權、目錄同步作業、單一登入等等。
 Azure Active Directory Connect | Azure Active Directory Connect 精靈是單一工具，其引導式體驗可將您的內部部署目錄與 Azure Active Directory 連線。此精靈會部署及設定讓您的目錄整合啟動並執行所需的所有元件，包括同步服務、密碼同步或 Active Directory Federation Services (AD FS) 和必要元件，例如 Azure AD PowerShell 模組。
-Azure Active Directory 同步作業工具 | 此應用程式可提供從公司的內部部署 Active Directory 服務到 Azure Active Directory 的目錄物件單向同步處理。
+Azure Active Directory Connect | 此應用程式可提供從公司的內部部署 Active Directory 服務到 Azure Active Directory 的目錄物件單向同步處理。
 目錄整合 | 您可以設定的 Azure Active Directory 功能，用以改善與您在內部部署目錄和雲端目錄中維護身分識別相關聯的管理經驗。目錄整合案例包括目錄同步作業，以及採用單一登入的目錄同步作業。
-目錄同步作業 | 用來將內部部署目錄物件 (使用者、群組、連絡人) 同步至雲端，協助降低管理負擔。目錄同步作業在 Azure AD 入口網站和 Azure 管理入口網站中也稱為目錄同步。一旦設定目錄同步作業，系統管理員即可將 Active Directory 中內部部署的目錄物件佈建至 Azure AD 執行個體。
+目錄同步作業 | 用來將內部部署目錄物件 (使用者、群組、連絡人) 同步至雲端，協助降低管理負擔。目錄同步作業在 Azure 入口網站和 Azure 傳統入口網站中也稱為目錄同步。一旦設定目錄同步作業，系統管理員即可將 Active Directory 中內部部署的目錄物件佈建至 Azure AD 執行個體。
 Microsoft Online Services 登入小幫手 | 登入小幫手是安裝在用戶端電腦上的應用程式，可讓使用者在該電腦上登入一次，然後在登入階段期間存取服務無數次。若沒有登入小幫手，使用者必須在每次嘗試存取服務時提供名稱和密碼。登入小幫手不應與單一登入混淆，後者是 Azure Active directory 的目錄整合功能，加以部署即可利用使用者的現有內部部署公司認證來順暢地存取 Microsoft 雲端服務。
 多因素驗證 (也稱為雙因素驗證或 2FA) | 多重要素驗證會為使用者登入和交易加入重要的第二層安全性。當您在 Azure AD 中啟用使用者帳戶的多因素驗證時，該使用者必須接著使用其電話 (除了標準密碼認證以外) 作為每次需要登入及使用任何貴組織訂閱的 Microsoft 雲端服務時的額外安全性驗證方法。
 單一登入 | 用來為已登入公司網路的使用者提供存取 Microsoft 雲端服務時更順暢的驗證體驗。若要設定單一登入，組織必須在內部部署環境中部署安全性權杖服務。一旦設定單一登入，使用者就可以使用其 Active Directory 公司認證 (使用者名稱和密碼) 來存取雲端中的服務與其現有的內部部署資源。
@@ -43,4 +43,4 @@ Microsoft Online Services 登入小幫手 | 登入小幫手是安裝在用戶端
 - [Azure 訂用帳戶如何與 Azure AD 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 - [Azure AD 服務限制](active-directory-service-limits-restrictions.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0727_2016-->

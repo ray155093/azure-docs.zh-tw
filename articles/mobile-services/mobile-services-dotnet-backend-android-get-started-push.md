@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="02/07/2016"
+	ms.date="07/21/2016"
 	ms.author="ricksal"/>
 
 # 將推播通知新增至行動服務應用程式
@@ -116,4 +116,4 @@
 [將廣播通知傳送給訂閱者]: ../notification-hubs-windows-store-dotnet-send-breaking-news.md
 [將範本型通知傳送給訂閱者]: ../notification-hubs-windows-store-dotnet-send-localized-breaking-news.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

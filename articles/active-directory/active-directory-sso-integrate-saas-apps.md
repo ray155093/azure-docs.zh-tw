@@ -5,7 +5,7 @@
 	  keywords="將 Azure AD 與 SaaS 應用程式整合在一起"
     documentationCenter=""
     authors="curtand"
-    manager="stevenpo"
+    manager="femila"
     editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="04/26/2016"
+    ms.date="07/20/2016"
     ms.author="curtand"/>
 
 # 整合 Azure Active Directory 單一登入與 SaaS 應用程式  
@@ -72,4 +72,4 @@ Azure.com 文件庫中還有更多關於這些議題的詳細資訊，請先閱�
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

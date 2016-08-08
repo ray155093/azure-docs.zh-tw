@@ -57,9 +57,9 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 1. 連線到 HDInsight 叢集之後，請使用下列 **Hadoop** 命令來啟動 MapReduce 工作：
 
-		hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
+		hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasbs:///example/data/gutenberg/davinci.txt wasbs:///example/data/WordCountOutput
 
-	這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 **wasb://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 **wasb:///example/data/WordCountOutput**。
+	這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 **wasbs://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 **wasbs:///example/data/WordCountOutput**。
 
 	> [AZURE.NOTE] 如需關於此 MapReduce 工作和範例資料的詳細資訊，請參閱[在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
 
@@ -70,19 +70,19 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 		File Output Format Counters
         Bytes Written=337623
 
-3. 工作完成時，使用下列命令列出儲存在 **wasb://example/data/WordCountOutput** 的輸出檔案：
+3. 工作完成時，使用下列命令列出儲存在 **wasbs://example/data/WordCountOutput** 的輸出檔案：
 
-		hdfs dfs -ls wasb:///example/data/WordCountOutput
+		hdfs dfs -ls wasbs:///example/data/WordCountOutput
 
-	這應該會顯示兩個檔案：**SUCCESS** 和 **part-r-00000**。**part-r-00000** 檔案包含這項工作的輸出。
+	這應該會顯示兩個檔案：**\_SUCCESS** 和 **part-r-00000**。**part-r-00000** 檔案包含這項工作的輸出。
 
 	> [AZURE.NOTE] 某些 MapReduce 工作可能會將結果分成多個 **part-r-#####** 檔案。若是如此，請使用 ##### 尾碼指出檔案的順序。
 
 4. 若要檢視輸出，請使用下列命令：
 
-		hdfs dfs -cat wasb:///example/data/WordCountOutput/part-r-00000
+		hdfs dfs -cat wasbs:///example/data/WordCountOutput/part-r-00000
 
-	這會顯示 **wasb://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
+	這會顯示 **wasbs://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單，以及每個單字的出現次數。以下是要包含在檔案中之資料的範例：
 
 		wreathed        3
 		wreathing       1
@@ -108,4 +108,4 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

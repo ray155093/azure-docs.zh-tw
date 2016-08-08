@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/19/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 使用 Azure 資訊安全中心監視合作夥伴解決方案
 
 本文件逐步引導您在 Azure 資訊安全中心監視合作夥伴解決方案的健康狀態。
 
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 監視合作夥伴解決方案
 
@@ -63,4 +63,4 @@
 [4]: ./media/security-center-partner-solutions/partner-solutions-detail.png
 [5]: ./media/security-center-partner-solutions/link-applications.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

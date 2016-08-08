@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 #在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例
@@ -51,7 +51,7 @@
 
 ## <a name="hdinsight-sample-wordcount"></a>字數統計 - Java 
 
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
+如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasbs:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
 
 原始程式碼可以在[附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java) 中找到。
 
@@ -70,9 +70,9 @@
 		
 		# Define the MapReduce job
 		$mrJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
-									-JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
+									-JarFile "wasbs:///example/jars/hadoop-mapreduce-examples.jar" `
 									-ClassName "wordcount" `
-									-Arguments "wasb:///example/data/gutenberg/davinci.txt", "wasb:///example/data/WordCountOutput1"
+									-Arguments "wasbs:///example/data/gutenberg/davinci.txt", "wasbs:///example/data/WordCountOutput1"
 		
 		# Submit the job and wait for job completion
 		$cred = Get-Credential -Message "Enter the HDInsight cluster HTTP user credential:" 
@@ -160,7 +160,7 @@ Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。單
 - 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下列項目取代工作定義：
 
 		$mrJobJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
-									-JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
+									-JarFile "wasbs:///example/jars/hadoop-mapreduce-examples.jar" `
 									-ClassName "pi" `
 									-Arguments "16", "10000000"
 
@@ -1000,4 +1000,4 @@ wc.cs 檔案中的 reducer 程式碼會使用 [StreamReader][streamreader] 物�
 [console-writeline]: http://msdn.microsoft.com/library/system.console.writeline
 [stdin-stdout-stderr]: https://msdn.microsoft.com/library/3x292kth.aspx
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

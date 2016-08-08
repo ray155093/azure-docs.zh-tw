@@ -47,7 +47,7 @@
    
 ## 使用入口網站安裝 Giraph
 
-1. 使用 [自訂建立] 選項，依[使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。 
+1. 使用 [自訂建立] 選項，依[使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。
 2. 在精靈的 [**指令碼動作**] 頁面上，按一下 [**加入指令碼動作**] 以提供有關指令碼動作的詳細資料，如下所示：
 
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-giraph-install-v1/hdi-script-action-giraph.png "使用指令碼動作以自訂叢集")
@@ -94,14 +94,14 @@
 
 		$clusterName = "clustername"
 		# Giraph examples jar
-		$jarFile = "wasb:///example/jars/giraph-examples.jar"
+		$jarFile = "wasbs:///example/jars/giraph-examples.jar"
 		# Arguments for this job
 		$jobArguments = "org.apache.giraph.examples.SimpleShortestPathsComputation",
 		                "-ca", "mapred.job.tracker=headnodehost:9010",
 		                "-vif", "org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat",
-		                "-vip", "wasb:///example/data/tiny_graph.txt",
+		                "-vip", "wasbs:///example/data/tiny_graph.txt",
 		                "-vof", "org.apache.giraph.io.formats.IdWithValueTextOutputFormat",
-		                "-op",  "wasb:///example/output/shortestpaths",
+		                "-op",  "wasbs:///example/output/shortestpaths",
 		                "-w", "2"
 		# Create the definition
 		$jobDefinition = New-AzureHDInsightMapReduceJobDefinition
@@ -120,7 +120,7 @@
 
 	在上述範例中，利用您已安裝 Giraph 的 HDInsight 叢集名稱取代 **clustername**。
 
-5. 檢視結果。一旦工作完成，結果會儲存在 \_\___wasb:///example/out/shotestpaths__ 資料夾中的兩個輸出檔中。這些檔案稱為 __part-m-00001__ 和 __part-m-00002__。執行下列步驟來下載和檢視輸出：
+5. 檢視結果。一旦工作完成，結果會儲存在 __wasbs:///example/out/shotestpaths__ 資料夾中的兩個輸出檔中。這些檔案稱為 __part-m-00001__ 和 __part-m-00002\_\_。執行下列步驟來下載和檢視輸出：
 
 		$subscriptionName = "<SubscriptionName>"       # Azure subscription name
 		$storageAccountName = "<StorageAccountName>"   # Azure Storage account name
@@ -194,4 +194,4 @@
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

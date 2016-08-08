@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="07/25/2016"
 	ms.author="piyushjo;ricksal" />
 
 #如何在 Android 上使用 Engagement API
@@ -297,4 +297,4 @@ Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體�
 
 			{"expiration":"2016-12-07","status":"premium"}
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

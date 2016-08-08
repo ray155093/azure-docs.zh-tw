@@ -122,7 +122,7 @@ Id\_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進�
 
 如需完整清單，以了解應由您的應用程式來執行的宣告驗證，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)。
 
-這些宣告的預期值詳細資料包含在上面的 [id\_token 一節](#id_tokens)中。
+這些宣告的預期值詳細資料包含在上面的 [id\_token 一節](#id-tokens)中。
 
 ## 權杖範例
 
@@ -275,4 +275,4 @@ Id\_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進�
      acr: "1"
     }.
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

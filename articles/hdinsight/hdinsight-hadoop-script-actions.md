@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 # 開發 HDInsight 的指令碼動作指令碼
@@ -96,7 +96,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 您可以從 Azure 入口網站、Azure PowerShell 或使用 HDInsight .NET SDK 來部署「指令碼動作」。如需詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]。
 
-> [AZURE.NOTE] 範例指令碼只能與 HDInsight 叢集版本 3.1 或更高版本搭配使用。如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](../hdinsight-component-versioning/)。
+> [AZURE.NOTE] 範例指令碼只能與 HDInsight 叢集版本 3.1 或更高版本搭配使用。如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
 
 
 
@@ -157,7 +157,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 - 提供穩定的指令碼資源連結
 
-	使用者應該確定在叢集的整個存留期間，於叢集自訂中使用的所有指令碼及其他成品都保持可用，並且這些檔案的版本在此持續時間內不會變更。如需為叢集中的節點重新製作映像，就必須有這些資源。最佳做法是下載並封存使用者所控制之儲存體帳戶中的所有項目。這可以是預設的儲存體帳戶，或是在部署時為自訂叢集指定的任何其他儲存體帳戶。例如，在文件中所提供的 Spark 和 R 自訂叢集範例中，我們已經在本機複製一份此儲存體帳戶中的資源：https://hdiconfigactions.blob.core.windows.net/。
+	使用者應該確定在叢集的整個存留期間，於叢集自訂中使用的所有指令碼及其他構件都保持可用，並且這些檔案的版本在此持續時間內不會變更。如需為叢集中的節點重新製作映像，就必須有這些資源。最佳做法是下載並封存使用者所控制之儲存體帳戶中的所有項目。這可以是預設的儲存體帳戶，或是在部署時為自訂叢集指定的任何其他儲存體帳戶。例如，在文件中所提供的 Spark 和 R 自訂叢集範例中，我們已經在本機複製一份此儲存體帳戶中的資源：https://hdiconfigactions.blob.core.windows.net/。
 
 
 - 確保叢集自訂指令碼具有等冪性
@@ -174,7 +174,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 	為了獲得高可用性，HDInsight 具備主動/被動架構，在此架構中，有一個處於使用中模式的前端節點 (此節點正在執行 HDInsight 服務)，以及另一個處於待命模式的前端節點 (此節點未執行 HDInsight 服務)。如果 HDInsight 服務中斷，這兩個節點就會切換主動和被動模式。如果為了獲得高可用性，而使用指令碼動作在這兩個前端節點安裝服務，請注意 HDInsight 的容錯移轉機制並無法自動容錯移轉這些由使用者所安裝的服務。因此使用者在 HDInsight 前端節點上所安裝的服務若想要有高可用性，則必須有自己的主動/被動模式時的容錯移轉機制，或是處於主動/被動模式。
 
-	當您指定前端節點角色做為 *ClusterRoleCollection* 參數的值時 (記載於下面的[如何執行指令碼動作](#runScriptAction)一節)，HDInsight 指令碼動作命令會同時在這兩個前端節點上執行。因此，當您設計自訂指令碼時，請確定您的指令碼知道這項設定。您不應該發生在這兩個前端節點上安裝並啟動相同的服務，而最終導致彼此競爭的問題。此外也請注意，重新製作映像時，資料將會遺失，因此透過指令碼動作所安裝的軟體必須要能夠從這類事件復原。應用程式在設計上應該要能夠與分散在眾多節點上的高可用性資料搭配運作。請注意，最多可同時為叢集中 1/5 的節點重新製作映像。
+	已在 *ClusterRoleCollection* 參數中以指定前端節點角色做為值時，HDInsight 指令碼動作命令會同時在這兩個前端節點上執行。因此，當您設計自訂指令碼時，請確定您的指令碼知道這項設定。您不應該發生在這兩個前端節點上安裝並啟動相同的服務，而最終導致彼此競爭的問題。此外也請注意，重新製作映像時，資料將會遺失，因此透過指令碼動作所安裝的軟體必須要能夠從這類事件復原。應用程式在設計上應該要能夠與分散在眾多節點上的高可用性資料搭配運作。請注意，最多可同時為叢集中 1/5 的節點重新製作映像。
 
 
 - 設定自訂元件來使用 Azure Blob 儲存體
@@ -206,7 +206,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 若要將多個參數傳遞至 Add-AzureRmHDInsightScriptAction cmdlet，您必須先格式化字串值以包含指令碼的所有參數。例如：
 
-	"-CertifcateUri wasb:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
+	"-CertifcateUri wasbs:///abc.pfx -CertificatePassword 123456 -InstallFolderName MyFolder"
  
 或
 
@@ -245,39 +245,6 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 4. 使用暫存檔案資料夾 (例如 $env:TEMP) 來存放指令碼所使用的下載檔案，然後在執行完指令碼之後將這些檔案清除。
 5. 安裝自訂軟體，位置只能是 D:\\ 或 C:\\apps。不應該使用 C: 磁碟機上的其他位置，因為它們已預留他用。請注意，如果將檔案安裝在 C: 磁碟機上 C:\\apps 資料夾以外的位置，可能會導致在重新製作節點映像期間設定失敗。
 6. 如果作業系統層級設定或 Hadoop 服務組態檔已變更，您可能會想要重新啟動 HDInsight 服務，讓它們可以載入任何作業系統層級設定，例如指令碼中設定的環境變數。
-
-
-
-## 使用 HDInsight Emulator 測試自訂指令碼
-
-在將自訂指令碼用於 HDInsight 指令碼動作命令前若要先進行測試，最簡單的方式是在 HDInsight Emulator 中執行看看。您可以將 HDInsight Emulator 安裝在本機上、安裝在 Azure 基礎結構即服務 (IaaS) Windows Server 2012 R2 VM 上，或安裝在本機機器上，然後看看指令碼執行起來是否正確。但請注意，Windows Server 2012 R2 VM 是 HDInsight 用於其節點的相同 VM。
-
-本節概述的是在本機使用 HDInsight Emulator 進行測試的程序，但與使用 VM 的程序是類似的。
-
-**安裝 HDInsight Emulator** - 若要在本機執行指令碼動作，您必須安裝 HDInsight Emulator。如需其安裝方式的說明，請參閱[開始使用 HDInsight Emulator](../hdinsight-get-started-emulator/)。
-
-**設定 Azure PowerShell 的執行原則** - 開啟 Azure PowerShell，並以系統管理員身分執行下列命令，將執行原則設定為 [*LocalMachine*] 以及 [*不受限制*]：
-
-	Set-ExecutionPolicy Unrestricted –Scope LocalMachine
-
-指令碼未經過簽署，因此需要讓此原則不受限制。
-
-**下載指令碼動作**以便在本機目的地執行。下列範例指令碼可從下列位置中下載：
-
-* **Spark**：https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv02/spark-installer-v02.ps1
-* **R**：https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1
-* **Solr**：https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1
-* **Giraph**：https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1
-
-**執行指令碼動作** - 以系統管理員模式開啟新的 Azure PowerShell 視窗，並從本機儲存位置執行 Spark 或 R 安裝指令碼。
-
-**使用範例** - 當您使用 Spark 和 R 叢集時，HDInsight Emulator 中可能沒有所需的資料檔案。因此您可能需要將含有資料的相關 .txt 檔案上傳到 HDFS 中的路徑，然後使用該路徑存取資料。例如：
-
-	val file = sc.textFile("/example/data/gutenberg/davinci.txt")
-
-
-請注意，在某些情況下，自訂指令碼可能會實際依存於 HDInsight 元件，例如偵測特定 Hadoop 服務是否已啟動。在此情況下，您將必須把自訂指令碼部署到實際的 HDInsight 叢集，以測試這些自訂指令碼。
-
 
 ## 偵錯自訂指令碼
 
@@ -344,13 +311,13 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 - [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
 - [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
 
-[hdinsight-provision]: ../hdinsight-provision-clusters/
-[hdinsight-cluster-customize]: ../hdinsight-hadoop-customize-cluster
-[hdinsight-install-spark]: ../hdinsight-hadoop-spark-install/
-[hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
-[powershell-install-configure]: ../install-configure-powershell/
+[hdinsight-provision]: hdinsight-provision-clusters.md
+[hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
+[hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
+[hdinsight-r-scripts]: hdinsight-hadoop-r-scripts.md
+[powershell-install-configure]: install-configure-powershell.md
 
 <!--Reference links in article-->
 [1]: https://msdn.microsoft.com/library/96xafkes(v=vs.110).aspx
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

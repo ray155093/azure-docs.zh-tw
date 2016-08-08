@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple" 
 	ms.devlang="javascript" 
 	ms.topic="article" 
-	ms.date="11/30/2015" 
+	ms.date="07/21/2016" 
 	ms.author="glenga"/>
 
 # 在您的行動服務應用程式中新增驗證 
@@ -35,7 +35,7 @@
 
 3. 在應用程式目錄中，從 **server** 子資料夾啟動下列其中一個命令檔。
 
-	+ **launch-windows** (Windows 電腦) 
+	+ **launch-windows** (Windows 電腦)
 	+ **launch-mac.command** (Mac OS X 電腦)
 	+ **launch-linux.sh** (Linux 電腦)
 
@@ -105,7 +105,7 @@
 
 	>[AZURE.IMPORTANT]在 PhoneGap 應用程式中，您必須也將下列外掛程式新增至專案：
 	><ul><li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git</code></li>
-	> <li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git</code></li></ul>
+	><li><code>phonegap plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git</code></li></ul>
 
 9. 返回正在執行應用程式的瀏覽器，重新整理頁面。
 
@@ -137,4 +137,4 @@
 [行動服務 HTML/JavaScript 作法概念性參考]: mobile-services-html-how-to-use-client-library.md
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

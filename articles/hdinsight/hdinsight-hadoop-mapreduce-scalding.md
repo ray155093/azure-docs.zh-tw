@@ -203,13 +203,13 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 3. 連接到前端節點之後，請使用下列命令來執行字數統計作業
 
-        yarn jar scaldingwordcount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount --hdfs --input wasb:///example/data/gutenberg/davinci.txt --output wasb:///example/wordcountout
+        yarn jar scaldingwordcount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount --hdfs --input wasbs:///example/data/gutenberg/davinci.txt --output wasbs:///example/wordcountout
 
     這會執行您稍早實作的 WordCount 類別。`--hdfs` 會指示工作使用 HDFS。`--input` 會指定輸入文字檔，而 `--output` 會指定輸出位置。
 
 4. 工作完成後，請使用下列命令來檢視輸出。
 
-        hdfs dfs -text wasb:///example/wordcountout/part-00000
+        hdfs dfs -text wasbs:///example/wordcountout/part-00000
 
     這時將會顯示類似以下的說明資訊：
 
@@ -279,13 +279,13 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
         #Create a job definition and start the job
         $jobDef=New-AzureRmHDInsightMapReduceJobDefinition `
             -JobName ScaldingWordCount `
-            -JarFile wasb:///example/jars/scaldingwordcount-1.0-SNAPSHOT.jar `
+            -JarFile wasbs:///example/jars/scaldingwordcount-1.0-SNAPSHOT.jar `
             -ClassName com.microsoft.example.WordCount `
             -arguments "--hdfs", `
                        "--input", `
-                       "wasb:///example/data/gutenberg/davinci.txt", `
+                       "wasbs:///example/data/gutenberg/davinci.txt", `
                        "--output", `
-                       "wasb:///example/wordcountout"
+                       "wasbs:///example/wordcountout"
         $job = Start-AzureRmHDInsightJob `
             -clustername $clusterName `
             -jobdefinition $jobDef `
@@ -343,4 +343,4 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

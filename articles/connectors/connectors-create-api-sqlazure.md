@@ -9,17 +9,19 @@
     tags="connectors"/>
 
 <tags
-   ms.service="multiple"
+   ms.service="logic-apps"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="07/18/2016"
+   ms.date="07/25/2016"
    ms.author="mandia"/>
 
 
 # 開始使用 Azure SQL Database 連接器
-使用 Azure SQL Database 連接器，為組織建立工作流程來管理資料表中的資料。另請參閱：
+使用 Azure SQL Database 連接器，為組織建立工作流程來管理資料表中的資料。
+
+利用 SQL Database，您可以：
 
 - 藉由在客戶資料庫中新增新客戶或在訂單資料庫中更新訂單，以建置工作流程。
 - 使用動作來取得一列資料、插入新的資料列，甚至加以刪除。例如，當有記錄在 Dynamics CRM Online 中建立時 (觸發程序)，則在 Azure SQL Database 插入資料列 (動作)。
@@ -28,50 +30,29 @@
 
 >[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
-若要深入了解 Logic Apps，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
-
->[AZURE.INCLUDE [若要開始，您需要：](../../includes/connectors-create-api-sqlazure.md)]
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 連線到 Azure SQL Database
 
-在邏輯應用程式可以存取任何服務之前，您必須先建立與服務的「連線」。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 SQL Database，您必須先建立 SQL Database「連線」。若要建立連線，您需要輸入平常用來存取所連線服務的認證。因此，在 SQL Database 中，請輸入 SQL Database 認證來建立連線。
-
-當您在邏輯應用程式中新增此連接器時，就會建立與 SQL Database 的連線。第一次新增此連接器時，系統會提示您輸入連線資訊︰
-
-![](./media/connectors-create-api-sqlazure/connection-details.png)
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 SQL Database，您必須先建立 SQL Database「連線」。若要建立連線，您需要輸入平常用來存取所連線服務的認證。因此，在 SQL Database 中，請輸入 SQL Database 認證來建立連線。
 
 #### 建立連線
 
-1. 輸入 SQL Database 詳細資料。具有星號的屬性為必要項目。
-
-	| 屬性 | 詳細資料 |
-|---|---|
-| 透過閘道連線 | 讓此屬性保持未核取狀態。連線到內部部署 SQL Server 時會使用此屬性。 |
-| 連線名稱 * | 為連接器輸入任何名稱。 | 
-| SQL Server 名稱 * | 輸入伺服器名稱；也就是「servername.database.windows.net」之類的名稱。伺服器名稱會顯示在 Azure 入口網站的 SQL Database 屬性中，並且也會顯示在連接字串中。 | 
-| SQL Database 名稱 * | 輸入提供給 SQL Database 的名稱。這會列在連接字串的 SQL Database 屬性中︰初始目錄 =「yoursqldbname」。 | 
-| 使用者名稱 * | 輸入 SQL Database 建立時所建立的使用者名稱。這會列在 Azure 入口網站的 SQL Database 屬性中。 | 
-| 密碼 * | 輸入 SQL Database 建立時所建立的密碼。 | 
-
-	這些認證會用來授權邏輯應用程式連線並存取 SQL 資料。完成後，連線詳細資料看起來類似下圖︰
-
-	![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/sample-connection.png)
-
-2. 選取 [**建立**]。
+>[AZURE.INCLUDE [建立至 SQL Azure 的連線](../../includes/connectors-create-api-sqlazure.md)]
 
 ## 使用觸發程序
 
-此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，包括循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
+此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
 
 ## 使用動作
 	
-動作是由邏輯應用程式中定義的工作流程所執行的作業。
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
 
 	![](./media/connectors-create-api-sqlazure/add-action.png)
 
-2. 選取 [新增動作]。
+2. 選擇 [新增動作]。
 
 3. 在文字方塊中，輸入「sql」以取得所有可用動作的清單。
 
@@ -90,7 +71,7 @@
 
 ## 技術詳細資料
 
-## 動作
+## SQL Database 動作
 動作是由邏輯應用程式中定義的工作流程所執行的作業。SQL Database 連接器包含下列動作。
 
 |動作|說明|
@@ -249,4 +230,4 @@ TablesList
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

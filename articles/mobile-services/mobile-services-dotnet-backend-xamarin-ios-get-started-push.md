@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="12/24/2015"
+	ms.date="07/21/2016"
 	ms.author="lindydonna"/>
 
 # 將推播通知新增至行動服務應用程式
@@ -25,4 +25,4 @@
 [AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
 > 如需本主題的對等 Mobile Apps 版本，請參閱[將推播通知新增至 Xamarin.iOS 應用程式](../app-service-mobile/app-service-mobile-xamarin-ios-get-started-push.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0727_2016-->

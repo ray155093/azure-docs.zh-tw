@@ -127,7 +127,7 @@
     node remote_monitoring.js
     ```
 
-6. 觀察顯示在儀表板的圖表上的新 RPM 遙測類型：
+6. 觀察儀表板圖表上所顯示的新 RPM 遙測類型：
 
 ![新增 RPM 到儀表板][image3]
 
@@ -236,10 +236,9 @@
 
 ## 後續步驟
 
-現在您已經建置可運作的預先設定解決方案，您可以繼續進行以下逐步解說：
+既然您已了解如何使用動態的遙測，您可以進一步了解預先設定的解決方案如何使用裝置資訊︰[遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]。
 
--   [自訂預先設定解決方案指南][lnk-customize]
--   [預先設定的預防性維護解決方案概觀][lnk-predictive]
+[lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 
 [image1]: media/iot-suite-dynamic-telemetry/image1.png
 [image2]: media/iot-suite-dynamic-telemetry/image2.png
@@ -248,10 +247,8 @@
 [image5]: media/iot-suite-dynamic-telemetry/image5.png
 
 [lnk_free_trial]: http://azure.microsoft.com/pricing/free-trial/
-[lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
-[lnk-predictive]: iot-suite-predictive-overview.md
 [lnk-node]: http://nodejs.org
 [node-linux]: https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 [lnk-github-repo]: https://github.com/Azure/azure-iot-sdks
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

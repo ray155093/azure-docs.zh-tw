@@ -16,7 +16,7 @@
    ms.date="06/14/2016"
    ms.author="douglaslMS"/>
 
-# 為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)
+# 為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE) (Transact-SQL)
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-server-stretch-database-encryption-tde.md)
 - [TSQL](sql-server-stretch-database-encryption-tde-tsql.md)
@@ -73,4 +73,4 @@ FROM
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

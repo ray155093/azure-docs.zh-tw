@@ -55,23 +55,23 @@ Data Factory 中有內建的活動，例如複製活動，其可將資料從來�
 
 此圖表將說明 1) Data Factory 如何協調資料移動和處理，以及 2) Azure Batch 如何以平行方式處理資料。請下載並列印圖表以便參考 (11 x 17 英吋或 A3 大小)：[使用 Azure Batch 和 Data Factory 的 HPC 和資料協調](http://go.microsoft.com/fwlink/?LinkId=717686)。
 
-![HPC 為服務圖表](./media/data-factory-data-processing-using-batch/image1.png)
+[![大規模資料處理圖表](./media/data-factory-data-processing-using-batch/image1.png)](http://go.microsoft.com/fwlink/?LinkId=717686)
 
 這些是程序中的基本步驟。此解決方案包含用來建置端對端解決方案的程式碼和說明。
 
-1.  以計算節點的集區 (VM) 設定 Azure Batch。您可以指定節點數目和每個節點的大小。
+1.  **以計算節點的集區 (VM) 設定 Azure Batch**。您可以指定節點數目和每個節點的大小。
 
-2.  建立 Azure Data Factory 執行個體，並為其設定代表 Azure Blob 儲存體、Azure Batch 計算服務、輸入/輸出資料和工作流程/管線的實體，並建立具有會移動和轉換資料之活動的工作流程/管線。
+2.  **建立 Azure Data Factory 執行個體**，並為其設定代表 Azure Blob 儲存體、Azure Batch 計算服務、輸入/輸出資料和工作流程/管線的實體，並建立具有會移動和轉換資料之活動的工作流程/管線。
 
-3.  Data Factory 管線具有自訂 .NET 活動，並且已設定為在節點的 Azure Batch 集區上執行。
+3.   **在 Data Factory 管線建立自訂 .NET 活動**。活動是將在 Azure Batch 集區上執行的使用者程式碼。
 
-4.  將大量的輸入資料儲存為 Azure 儲存體中的 blob。資料會分成邏輯配量 (通常依時間來分)。
+4.  **將大量的輸入資料儲存為 Azure 儲存體中的 blob**。資料會分成邏輯配量 (通常依時間來分)。
 
-5.  Data Factory 將要以平行方式處理的資料複製到次要位置。
+5.  **Data Factory 將要以平行方式處理的資料複製到次要位置**。
 
-6.  Data Factory 使用 Batch 所配置的集區執行自訂活動。Data Factory 可以同時執行多個活動。每個活動各處理某個配量的資料。結果會儲存在 Azure 儲存體中。
+6.  **Data Factory 使用 Batch 所配置的集區執行自訂活動**。Data Factory 可以同時執行多個活動。每個活動各處理某個配量的資料。結果會儲存在 Azure 儲存體中。
 
-7.  取得所有結果之後，Data Factory 會將結果移至第三個位置，以透過應用程式加以散發，或由其他工具做進一步的處理。
+7.  **Data Factory 會將最終結果移至第三個位置**，以透過應用程式加以散發，或由其他工具做進一步的處理。
 
 ## 範例解決方案的實作
 此範例解決方案是刻意簡化的，旨在為您示範如何搭配使用 Data Factory 和 Batch 來處理資料集。此解決方案純粹計算某個搜尋詞彙 (“Microsoft”) 在以時間序列組織的輸入檔案中出現的次數。它會將此計數輸出至輸出檔案。
@@ -454,7 +454,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 ### 建立 Data Factory
 
-在 [建立自訂活動](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
+在 [建立自訂活動][](#create-the-custom-activity) 區段中，您建立自訂活動，並將包含二進位檔和 PDB 檔案的 zip 檔案上傳到 Azure blob 容器。在本節中，您將透過使用**自訂活動**的**管線**建立 Azure **Data Factory**。
 
 自訂活動的輸入資料集代表 blob 儲存體中輸入資料夾 (mycontainer\\inputfolder) 的 blob (檔案)。活動的輸出資料集代表 blob 儲存體中輸出資料夾 (mycontainer\\outputfolder) 的輸出 blob。
 
@@ -544,11 +544,11 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     2.  使用 Azure Batch 帳戶的存取金鑰來取代**存取金鑰**。
 
-    3.  針對 **poolName** 屬性輸入**集區識別碼**。 您可以針對此屬性指定集區名稱或集區識別碼。
+    3.  針對 **poolName** 屬性輸入集區識別碼。 您可以針對此屬性指定集區名稱或集區識別碼。
 
     4.  針對 **batchUri** JSON 屬性，輸入 Batch URI。
     
-		> [AZURE.IMPORTANT] \[Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
+		> [AZURE.IMPORTANT] [Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：<accountname>.<region>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
 
         ![](./media/data-factory-data-processing-using-batch/image9.png)
 
@@ -707,7 +707,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
 > [AZURE.IMPORTANT] 如果尚未將 **file.txt** 上傳至 blob 容器中的輸入資料夾，請先執行此動作，再建立管線。在管線 JSON 中，**IsPaused** 屬性會設定為 false，使管線會在**開始**日期到達後立即執行。
 
-1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...]\(省略符號) 就可看到。
+1.  在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 
 2.  使用下列 JSON 指令碼取代右窗格中的 JSON。
 
@@ -962,4 +962,4 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

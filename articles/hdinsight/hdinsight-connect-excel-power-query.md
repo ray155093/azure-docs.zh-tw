@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 
@@ -57,7 +57,7 @@ Power Query add-in for Excel 可協助您將 HDInsight 叢集中的資料匯入�
 
 	**附註：** Power Query 也可讓您從 HDFS 匯入資料，方法是按一下 [從其他來源]。
 
-3. 對於 [**帳戶名稱**]，輸入叢集相關 Azure Blob 儲存體帳戶的名稱，然後按一下 [**確定**]。這可以是[預設儲存體帳戶](hdinsight-administer-use-management-portal.md#find-the-default-storage-account)或連結儲存體帳戶。其格式為 *https://<StorageAccountName>.blob.core.windows.net/*。
+3. 對於 [**帳戶名稱**]，輸入叢集相關 Azure Blob 儲存體帳戶的名稱，然後按一下 [**確定**]。這可以是[預設儲存體帳戶](hdinsight-administer-use-management-portal.md#find-the-default-storage-account)或連結儲存體帳戶。其格式為 *https://<儲存體帳戶名稱>.blob.core.windows.net/*。
 
 4. 對於 [**帳戶金鑰**]，輸入 Blob 儲存體帳戶的金鑰，然後按一下 [**儲存**]。(只有在第一次存取此存放區時需要執行此動作。)
 
@@ -75,7 +75,7 @@ Power Query add-in for Excel 可協助您將 HDInsight 叢集中的資料匯入�
 
 在本文中，您已了解到如何使用 Power Query 將 HDInsight 中的資料擷取至 Excel。同樣地，您也可以將 HDInsight 中的資料擷取至 Azure SQL Database。此外也可以將資料上傳至 HDInsight。若要深入了解，請參閱下列文章：
 
-* [使用 Microsoft Hive ODBC Driver 將 Excel 連接到 HDInsight](../../articles/hdinsight/hdinsight-connect-excel-hive-odbc-driver.md)
+* [使用 Microsoft Hive ODBC Driver 將 Excel 連接到 HDInsight][hdinsight-ODBC]
 * [將資料上傳到 HDInsight][hdinsight-upload-data]
 
 [hdinsight-ODBC]: hdinsight-connect-excel-hive-ODBC-driver.md
@@ -88,4 +88,4 @@ Power Query add-in for Excel 可協助您將 HDInsight 叢集中的資料匯入�
 
 [powerquery-download]: http://go.microsoft.com/fwlink/?LinkID=286689
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

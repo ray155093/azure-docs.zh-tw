@@ -68,21 +68,21 @@ Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQ
 
 範例資料儲存在 Azure Blob 儲存體中，供 HDInsight 做為預設檔案系統使用。HDInsight 可使用 **wasb** 字首存取儲存在 Blob 中的檔案。例如，若要存取 sample.log 檔案，您應使用下列語法：
 
-	wasb:///example/data/sample.log
+	wasbs:///example/data/sample.log
 
 因為 Azure Blob 儲存體是 HDInsight 的預設儲存體，所以您也可以從 HiveQL 中的 **/example/data/sample.log** 存取檔案。
 
-> [AZURE.NOTE] 語法 **wasb:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
+> [AZURE.NOTE] 語法 **wasbs:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 ##<a id="job"></a>範例工作：將資料行投影至帶分隔符號的資料上
 
-下列 HiveQL 陳述式會將資料行投影在 **wasb:///example/data** 目錄中所儲存且帶分隔符號的資料上：
+下列 HiveQL 陳述式會將資料行投影在 **wasbs:///example/data** 目錄中所儲存且帶分隔符號的資料上：
 
     set hive.execution.engine=tez;
 	DROP TABLE log4jLogs;
     CREATE EXTERNAL TABLE log4jLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
     ROW FORMAT DELIMITED FIELDS TERMINATED BY ' '
-    STORED AS TEXTFILE LOCATION 'wasb:///example/data/';
+    STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';
     SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
 在上一個範例中，HiveQL 陳述式會執行下列動作：
@@ -214,4 +214,4 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。請使用下表決定�
 
 [cindygross-hive-tables]: http://blogs.msdn.com/b/cindygross/archive/2013/02/06/hdinsight-hive-internal-and-external-tables-intro.aspx
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

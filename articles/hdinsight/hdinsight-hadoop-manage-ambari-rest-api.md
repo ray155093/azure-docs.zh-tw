@@ -110,7 +110,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 這會傳回值類似下列的值，其中 __CONTAINER__ 為預設容器和 __ACCOUNTNAME__ 是 Azure 儲存體帳戶名稱：
 
-    wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net
+    wasbs://CONTAINER@ACCOUNTNAME.blob.core.windows.net
 
 之後您可以使用這項資訊搭配 [Azure CLI](../xplat-cli-install.md) 來上傳或從容器下載資料。
 
@@ -136,7 +136,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
         
     將 __ACCOUNTNAME__ 取代為儲存體帳戶名稱。將 __ACCOUNTKEY__ 取代為先前擷取的索引鍵。__FILEPATH__ 是您想要上傳的檔案的路徑，而 __BLOBPATH__ 是在容器中的路徑。
 
-    例如，如果您想要檔案出現在 HDInsight 中的 wasb://example/data/filename.txt，則 __BLOBPATH__ 會是 `example/data/filename.txt`。
+    例如，如果您想要檔案出現在 HDInsight 中的 wasbs://example/data/filename.txt，則 __BLOBPATH__ 會是 `example/data/filename.txt`。
 
 ##範例︰更新 Ambari 組態
 
@@ -255,4 +255,4 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 > [AZURE.NOTE] 某些 Ambari 功能已停用，因為這些功能是由 HDInsight 雲端服務所管理；例如，在叢集中新增或移除主機，或新增服務。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,115 +1,115 @@
-# Securing your IoT deployment
+# 保護您的 IoT 部署
 
-This article provides the next level of detail for securing the Azure IoT-based Internet of Things (IoT) infrastructure. It links to implementation level details for configuring and deploying each component. It also provides comparisons and choices between various competing methods.
+本文針對以 Azure IoT 為主的物聯網 (IoT) 基礎結構提供更進一層的詳細資料。它會連結到設定及部署每個元件的實作層級詳細資料。另外也會提供各種競爭方法之間的比較和選擇。
 
-Securing the Azure IoT deployment can be divided into the following three security areas:
+保護 Azure IoT 部署可分為下列三個安全性區域：
 
-- **Device Security**: Securing the IoT device while it is deployed in the wild.
-- **Connection Security**: Ensuring all data transmitted between the IoT device and IoT Hub is confidential and tamper-proof.
-- **Cloud Security**: Providing a means to secure data while it moves through, and is stored in the cloud.
+- **裝置安全性**：在真實世界中部署 IoT 裝置時保護裝置安全。
+- **連線安全性**︰確保在 IoT 裝置與 IoT 中樞之間傳輸的所有資料均有加密並防止竄改。
+- **雲端安全性**：提供方法保護資料在雲端移動和儲存的安全性。
 
-![Three security areas][img-overview]
+![三個安全性區域][img-overview]
 
-## Secure device provisioning and authentication
+## 保護裝置佈建和驗證
 
-The Azure IoT Suite secures IoT devices by the following two methods:
+Azure IoT 套件利用下列兩種方法保護 IoT 裝置：
 
-- By providing a unique identity key (security tokens) for each device, which can be used by the device to communicate with the IoT Hub.
+- 提供每部裝置唯一識別金鑰 (安全性權杖)，裝置可使用這個金鑰與 IoT 中樞通訊。
 
-- By using an on-device [X.509 certificate][lnk-x509] and private key as a means to authenticate the device to the IoT Hub. This authentication method ensures that the private key on the device is not known outside the device at any time, providing a higher level of security.
+- 使用裝置上的 [X.509 憑證][lnk-x509]和私密金鑰做為向 IoT 中樞驗證裝置的方法。這種驗證方法可在任何時候確保無法從裝置外部知道裝置上的私密金鑰，提供較高的安全性等級。
 
-The security token method provides authentication for each call made by the device to IoT Hub by associating the symmetric key to each call. X.509-based authentication allows authentication of an IoT device at the physical layer as part of the TLS connection establishment. The security-token-based method can be used without the X.509 authentication which is a less secure pattern. The choice between the two methods is primarily dictated by how secure the device authentication needs to be, and availability of secure storage on the device (to store the private key securely).
+安全性權杖方法藉由將裝置對 IoT 中樞所進行的每個呼叫與對稱金鑰建立關聯，提供每個呼叫的驗證。X.509 型驗證允許實體層 IoT 裝置的驗證做為 TLS 連線建立作業的一部份。安全性權杖型方法可不搭配 X.509 驗證使用，該驗證是較不安全的模式。這兩種方法的選擇主要取決於裝置驗證所需的安全性有多高，以及裝置上安全存放裝置的可用性 (以安全地儲存私密金鑰)。
 
-## IoT Hub security tokens
+## IoT 中樞安全性權杖
 
-IoT Hub uses security tokens to authenticate devices and services to avoid sending keys on the network. Additionally, security tokens are limited in time validity and scope. Azure IoT Hub SDKs automatically generate tokens without requiring any special configuration. Some scenarios, however, require the user to generate and use security tokens directly. These include the direct use of the AMQP, MQTT, or HTTP surfaces, or the implementation of the token service pattern.
+IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過網路傳送金鑰。此外，安全性權杖有時效性和範圍的限制。Azure IoT 中樞 SDK 能在不需要任何特殊組態的情況下自動產生權杖。不過在某些案例中，使用者必須直接產生及使用安全性權杖。這些案例包括直接使用 AMQP、MQTT 或 HTTP 介面，或實作權杖服務模式。
 
-More details on the structure of the security token and its usage can be found in the following articles:
+如需安全性權杖的結構與其用法的詳細資料，請參閱下列文章：
 
--   [Security token structure][lnk-security-tokens]
--   [Using SAS tokens as a device][lnk-sas-tokens]
+-   [安全性權杖結構][lnk-security-tokens]
+-   [將 SAS 權杖當做裝置][lnk-sas-tokens]
 
-Each IoT Hub has a [Device Identity Registry][lnk-identity-registry] that can be used to create per-device resources in the service, such as a queue that contains in-flight cloud-to-device messages, and to allow access to the device-facing endpoints. The IoT Hub identity registry provides secure storage of device identities and security keys for a solution. Individual or groups of device identities can be added to an allow list, or a block list, enabling complete control over device access. The following articles provide more details on the structure of the Device Identity Registry and supported operations.
+每個 IoT 中樞都有一個[裝置身分識別登錄][lnk-identity-registry]，可用來在服務中建立各裝置的資源 (例如含有傳送中雲端到裝置訊息的佇列)，以及允許存取裝置面向端點。IoT 中樞身分識別登錄會針對方案，為裝置身分識別和安全性金鑰提供安全的儲存體。個別或群組的裝置身分識別可以新增到允許的清單或封鎖清單，以便完整控制裝置存取。下列文章提供裝置身分識別登錄結構和所支援作業的更詳細資訊。
 
-[IoT Hub supports protocols such as AMQP, MQTT, and HTTPS][lnk-protocols]. Each of these protocols use security tokens from the IoT device to IoT Hub differently:
+[IoT 中樞支援 AMQP、MQTT，和 HTTPS 之類的通訊協定][lnk-protocols]。這些通訊協定會各自以不同的方式使用 IoT 裝置到 IoT 中樞的安全性權杖：
 
-- AMQP: SASL PLAIN and AMQP Claims-based security ({policyName}@sas.root.{iothubName} in the case of Hub-level tokens; {deviceId} in case of device-scoped tokens).
+- AMQP：SASL PLAIN 和 AMQP 宣告式安全性 (若為中樞層級權杖時為 {policyName}@sas.root.{iothubName}；若為裝置範圍權杖時為 {deviceId})。
 
-- MQTT: CONNECT packet uses {deviceId} as the {ClientId}, {IoThubhostname}/{deviceId} in the **Username** field and a SAS token in the **Password** field.
+- MQTT: CONNECT 封包使用 {deviceId} 做為 {ClientId}，在 [使用者名稱] 欄位中具有 {IoThubhostname}/{deviceId}，在 [密碼] 欄位中具有 SAS 權杖。
 
-- HTTP: Valid token is in the authorization request header.
+- HTTP︰有效權杖位於驗證要求標頭中。
 
-IoT Hub Device Identity Registry can be used to configure per-device security credentials and access control. However, if an IoT solution already has a significant investment in a [custom device identity registry and/or authentication scheme][lnk-custom-auth], it can be integrated into an existing infrastructure with IoT Hub by creating a token service.
+IoT 中樞裝置身分識別登錄可用來設定每一裝置的安全性認證和存取控制。如果 IoT 解決方案已經大幅投資[自訂裝置身分識別登錄及/或驗證配置][lnk-custom-auth]，則可藉由建立權杖服務，將現有基礎結構與 IoT 中樞整合。
 
-### X.509 certificate-based device authentication
+### X.509 憑證型裝置驗證
 
-The use of a [device-based X.509 certificate][lnk-use-x509] and its associated private and public key pair allows additional authentication at the physical layer. The private key is stored securely in the device and is not discoverable outside the device. The X.509 certificate contains information about the device, such as device ID, and other organizational details. A signature of the certificate is generated by using the private key.
+使用[裝置型 X.509 憑證][lnk-use-x509]與其相關聯的私密和公用金鑰組，就可在實體層提供額外驗證。私密金鑰安全地儲存在裝置中，並且無法從裝置外部探索。X.509 憑證包含裝置的相關資訊，例如裝置識別碼和其他與組織有關的詳細資料。憑證的簽章是使用私密金鑰來產生。
 
-High-level device provisioning flow:
+高層級裝置佈建流程：
 
-- Associate an identifier to a physical device – device identity and/or X.509 certificate associated to the device during device manufacturing or commissioning.
+- 將識別碼與實體裝置建立關聯 – 在裝置的製造或是委任期間，將裝置身分識別和/或 X.509 憑證與裝置建立關聯。
 
-- Create a corresponding identity entry in IoT Hub – device identity and associated device information in the IoT Hub Device Registry.
+- 在 IoT 中樞建立相對應的身分識別項目 – IoT 中樞裝置登錄中的裝置身分識別與相關聯的裝置資訊。
 
-- Securely store X.509 certificate thumbprint in IoT Hub device registry.
+- 在 IoT 中樞裝置登錄中安全地儲存 X.509 憑證指紋。
 
-### Root certificate on device
+### 裝置上的根憑證
 
-While establishing a secure TLS connection with IoT Hub, the IoT device authenticates IoT Hub using a root certificate which is part of the device SDK. For the C client SDK the certificate is located under the folder "\\c\\certs" under the root of the repo. Though these root certificates are long-lived, they still may expire or be revoked. If there is no way of updating the certificate on the device, the device may not be able to subsequently connect to the IoT Hub (or any other cloud service). Having a means to update the root certificate once the IoT device is deployed will effectively mitigate this risk.
+使用 IoT 中樞建立安全的 TLS 連線時， IoT 裝置會使用裝置 SDK 中的根憑證驗證 IoT 中樞。針對 C 用戶端 SDK，憑證位於儲存機制根目錄底下的 "\\c\\certs" 資料夾。雖然這些根憑證是長效的，但它們仍會過期或遭到撤銷。如果沒有方法更新裝置上的憑證，裝置可能就無法再連線到 IoT 中樞 (或任何其他雲端服務)。在 IoT 裝置部署後提供更新根憑證的方法，會有效地降低此風險。
 
-## Securing the connection
+## 保護連線安全
 
-Internet connection between the IoT device and IoT Hub is secured using the Transport Layer Security (TLS) standard. Azure IoT supports [TLS 1.2][lnk-tls12], TLS 1.1 and TLS 1.0, in this order. Support for TLS 1.0 is provided for backward compatibility only. It is recommended to use TLS 1.2 since it provides the most security.
+IoT 裝置與 IoT 中樞之間的網際網路連線，是使用傳輸層安全性 (TLS) 標準進行保護。Azure IoT 支援 [TLS 1.2][lnk-tls12]、TLS 1.1 和 TLS 1.0 (依此順序)。針對 TLS 1.0 的支援僅為提供回溯相容性。建議使用 TLS 1.2，因為它提供最高的安全性。
 
-Azure IoT Suite supports the following Cipher Suites, in this order.
+Azure IoT 套件支援下列加密套件 (依此順序)。
 
-| Cipher Suite | Length |
+| 加密套件 | 長度 |
 |--------------|--------|
-| TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA384 (0xc028) ECDH secp384r1 (eq. 7680 bits RSA) FS | 256    |
-| TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256 (0xc027) ECDH secp256r1 (eq. 3072 bits RSA) FS | 128    |
-| TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA (0xc014) ECDH secp384r1 (eq. 7680 bits RSA) FS           | 256    |
-| TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA (0xc013) ECDH secp256r1 (eq. 3072 bits RSA) FS           | 128    |
-| TLS\_RSA\_WITH\_AES\_256\_GCM\_SHA384 (0x9d) | 256    |
-| TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256 (0x9c) | 128    |
-| TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA256 (0x3d) | 256    |
-| TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256 (0x3c) | 128    |
-| TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA (0x35)    | 256    |
-| TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA (0x2f)    | 128    |
-| TLS\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA (0xa)    | 112    |
+| TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA384 (0xc028) ECDH secp384r1 (相等於7680 位元 RSA) FS | 256 |
+| TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256 (0xc027) ECDH secp256r1 (相等於3072 位元 RSA) FS | 128 |
+| TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA (0xc014) ECDH secp384r1 (相等於7680 位元 RSA) FS | 256 |
+| TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA (0xc013) ECDH secp256r1 (相等於3072 位元 RSA) FS | 128 |
+| TLS\_RSA\_WITH\_AES\_256\_GCM\_SHA384 (0x9d) | 256 |
+| TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256 (0x9c) | 128 |
+| TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA256 (0x3d) | 256 |
+| TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256 (0x3c) | 128 |
+| TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA (0x35) | 256 |
+| TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA (0x2f) | 128 |
+| TLS\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA (0xa) | 112 |
 
-## Securing the cloud
+## 保護雲端
 
-Azure IoT Hub allows definition of [access control policies][lnk-protocols] for each security key. It uses the following set of permissions to grant access to each of IoT Hub's endpoints. Permissions limit the access to an IoT Hub based on functionality.
+Azure IoT 中樞允許針對每個安全性金鑰定義[存取控制原則][lnk-protocols]。它使用下列權限組，授與每個 IoT 中樞端點的存取權。權限可根據功能限制 IoT 中樞的存取權。
 
-- **RegistryRead**. Grants read access to the Device Identity Registry. For more information, see [Device Identity Registry][lnk-identity-registry].
+- **RegistryRead**。授與裝置身分識別登錄的讀取權限。如需詳細資訊，請參閱[裝置身分識別登錄][lnk-identity-registry]。
 
-- **RegistryReadWrite**. Grants read and write access to the Device Identity Registry. For more information, see [Device Identity Registry][lnk-identity-registry].
+- **RegistryReadWrite**。授與裝置身分識別登錄的讀取和寫入權限。如需詳細資訊，請參閱[裝置身分識別登錄][lnk-identity-registry]。
 
-- **ServiceConnect**. Grants access to cloud service-facing communication and monitoring endpoints. For example, it grants permission to back-end cloud services to receive device-to-cloud messages, send cloud-to-device messages, and retrieve the corresponding delivery acknowledgments.
+- **ServiceConnect**。授與雲端服務面向通訊和監視端點的存取權。例如，它授權後端雲端服務接收裝置到雲端的訊息、傳送雲端到裝置的訊息，以及擷取相對應的傳遞通知。
 
-- **DeviceConnect**. Grants access to device-facing communication endpoints. For example, it grants permission to send device-to-cloud messages and receive cloud-to-device messages. This permission is used by devices.
+- **DeviceConnect**。授與裝置面向通訊端點的存取權。例如，它會授與傳送裝置到雲端的訊息和接收雲端到裝置的訊息的權限。裝置會使用此權限。
 
-There are two ways to obtain **DeviceConnect** permissions with IoT Hub with [security tokens][lnk-sas-tokens]: using a device identity key, or a shared access policy key. Moreover, it is important to note that all functionality accessible from devices is exposed by design on endpoints with prefix `/devices/{deviceId}`.
+利用[安全性權杖][lnk-sas-tokens]取得「IoT 中樞」之 **DeviceConnect** 權限的方法有兩種：使用裝置身分識別金鑰，或使用共用存取原則金鑰。此外，請務必注意所有可從裝置存取的功能，在設計上會於前置詞為 `/devices/{deviceId}` 的端點公開。
 
-[Service components can only generate security tokens][lnk-service-tokens] using shared access policies granting the appropriate permissions.
+服務元件只能使用授與適當權限的共用存取原則來[產生安全性權杖][lnk-service-tokens]。
 
-Azure IoT Hub and other services which may be part of the solution allow management of users using the Azure Active Directory.
+Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 Azure Active Directory 管理使用者。
 
-Data ingested by Azure IoT Hub can be consumed by a variety of services such as Azure Stream Analytics, blob storage, etc. These services allow management access. Read more about these services and available options below:
+由 Azure IoT 中樞內嵌的資料可供各種不同服務使用，例如 Azure 串流分析、Blob 儲存體等等。這些服務允許管理存取。在下面深入了解這些服務和可用選項：
 
-- [Azure DocumentDB][lnk-docdb]: A scalable, fully-indexed database service for semi-structured data that manages metadata for the devices you provision, such as attributes, configuration, and security properties. DocumentDB offers high-performance and high-throughput processing, schema-agnostic indexing of data, and a rich SQL query interface.
+- [Azure DocumentDB][lnk-docdb]︰可調整且已完全編製索引的資料庫服務，適用於半結構化資料，可管理您所佈建裝置的中繼資料，例如，屬性、組態及安全性內容。DocumentDB 提供高效能且高輸送量的處理、無從驗證結構描述且編製索引的資料，以及豐富的 SQL 查詢介面。
 
-- [Azure Stream Analytics][lnk-asa]: Real-time stream processing in the cloud that enables you to rapidly develop and deploy a low-cost analytics solution to uncover real-time insights from devices, sensors, infrastructure, and applications. The data from this fully-managed service can scale to any volume while still achieving high throughput, low latency, and resiliency.
+- [Azure 串流分析][lnk-asa]：雲端中處理的即時串流讓您能夠快速開發並部署低成本的分析方案，以在第一時間提供裝置、感應器、基礎結構與應用程式的深入剖析資料。來自這個完全受管理服務的資料可調整為任何數量，但仍可達到高輸送量、低遲性和恢復功能。
 
-- [Azure App Services][lnk-appservices]: A cloud platform to build powerful web and mobile apps that connect to data anywhere; in the cloud or on-premises. Build engaging mobile apps for iOS, Android, and Windows. Integrate with your Software as a Service (SaaS) and enterprise applications with out-of-the-box connectivity to dozens of cloud-based services and enterprise applications. Code in your favorite language and IDE (.NET, NodeJS, PHP, Python, or Java) to build web apps and APIs faster than ever.
+- [Azure App Service][lnk-appservices]：一個雲端平台，可供建置功能強大的 Web 和行動應用程式來連接各地的資料；不論是在雲端還是內部部署環境內。建置吸引客戶參與的 iOS、Android 和 Windows 版行動應用程式。與軟體即服務 (SaaS) 和企業應用程式整合，讓您能夠立即連線到數十種雲端服務和企業應用程式。使用您愛用的語言 (.NET、NodeJS、PHP、Python 或 Java) 和整合式開發環境 (IDE) 撰寫程式碼，以前所未有的速度建置 Web 應用程式和 API。
 
-- [Logic Apps][lnk-logicapps]: The Logic Apps feature of Azure App Service helps integrate your IoT solution to your existing line-of-business systems and automate workflow processes. Logic Apps enables developers to design workflows that start from a trigger and then execute a series of steps—rules and actions that use powerful connectors to integrate with your business processes. Logic Apps offers out-of-the-box connectivity to a vast ecosystem of SaaS, cloud-based, and on-premises applications.
+- [Logic Apps][lnk-logicapps]：Azure App Service 的 Logic Apps 功能可協助您將 IoT 方案整合到現有的企業營運系統並自動化工作流程。Logic Apps 可讓開發人員設計從觸發程序開始，然後執行一系列步驟的工作流程 — 使用功能強大的連接器來與您的商務程序整合的規則和動作。Logic Apps 提供與 SaaS、雲端架構及內部部署應用程式的廣大生態系統的即時連接。
 
-- [Blob storage][lnk-blob]: Reliable, economical cloud storage for the data that your devices send to the cloud.
+- [Blob 儲存體][lnk-blob]︰可靠且符合經濟效益的雲端儲存體，適用於您的裝置要傳送到雲端的資料。
 
-## Conclusion
+## 結論
 
-This article provides overview of implementation level details for designing and deploying an IoT infrastructure using Azure IoT. Configuring each component to be secure is key in securing the overall IoT infrastructure. The design choices available in Azure IoT provide some level of flexibility and choice; however, each choice may have security implications. It is recommended that each of these choices be evaluated through a risk/cost assessment.
+本文提供使用 Azure IoT 設計和部署 IoT 基礎結構的實作層級詳細資料概觀。設定每個元件的安全保護，對於保護整體 IoT 基礎結構非常重要。Azure IoT 中可用的設計選項提供了某種程度的彈性和選擇 ；不過，每個選擇都可能會影響安全性。建議您透過風險/成本評估謹慎評估每個選擇。
 
 [img-overview]: media/iot-secure-your-deployment/overview.png
 
@@ -127,3 +127,5 @@ This article provides overview of implementation level details for designing and
 [lnk-appservices]: https://azure.microsoft.com/services/app-service/
 [lnk-logicapps]: https://azure.microsoft.com/services/app-service/logic/
 [lnk-blob]: https://azure.microsoft.com/services/storage/
+
+<!---HONumber=AcomDC_0727_2016-->

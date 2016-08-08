@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="在使用 Visual Studio 連接服務加入 Azure 行動服務之後，開始使用 Javascript Mobile App | Microsoft Azure" 
+	pageTitle="在使用 Visual Studio 連接服務加入 Azure 行動服務之後，開始使用 Javascript Mobile App | Microsoft Azure " 
 	description="如何在 Visual Studio 中的 JavaScript 專案開始使用行動服務" 
 	services="mobile-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started" 
 	ms.devlang="JavaScript" 
 	ms.topic="article" 
-	ms.date="01/05/2016" 
+	ms.date="07/21/2016" 
 	ms.author="mlearned"/>
 
 # 在使用 Visual Studio 連接服務加入 Azure 行動服務之後，開始使用 Javascript Mobile App
@@ -88,4 +88,4 @@
 
 [深入了解行動服務](https://azure.microsoft.com/documentation/services/mobile-services/)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0727_2016-->

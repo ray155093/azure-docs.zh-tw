@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -76,7 +76,7 @@
 
 1. 從資源庫中新增 [BizTalk 轉換服務]。
 2. 若要設定轉換以轉換內送 XML 訊息，請選取 [轉換] 動作做為呼叫這個 API 時要執行的動作。選取 ```triggers(‘httplistener’).outputs.Content``` 做為 [inputXml] 的值。因為內送資料符合所有已設定的轉換，因此*對應*會是選擇性參數，而且僅適用於符合結構描述的對應。
-3. 最後，只有當驗證成功時才會執行轉換。若要設定此條件，請選取右上方的齒輪圖示，然後選取 [新增要符合的條件]。將條件設為 ```equals(actions('xmlvalidator').status,'Succeeded')```：  
+3. 最後，只有當驗證成功時才會執行轉換。若要設定此條件，請選取右上方的齒輪圖示，然後選取 [新增要符合的條件]。將條件設為 ```equals(actions('xmlvalidator').status,'Succeeded')```：
 
 ![BizTalk 轉換][4]
 
@@ -86,7 +86,7 @@
 
 1. 從組件庫新增 [**服務匯流排連接器**]。將 **Name** 設為 _Servicebus1_、將 **Connection String** 設為服務匯流排執行個體的連接字串、將 **Entity Name** 設為 _Queue_，然後略過 **Subscription name**。
 2. 選取 [傳送訊息] 動作，並將動作的 [內容] 欄位設為 _actions('transformservice').outputs.OutputXml_。
-3. 將 [內容類型] 欄位設為 [應用程式/xml]：  
+3. 將 [內容類型] 欄位設為 [應用程式/xml]：
 
 ![服務匯流排][5]
 
@@ -118,4 +118,4 @@
 [4]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/BizTalkTransforms.PNG
 [5]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/AzureServiceBus.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

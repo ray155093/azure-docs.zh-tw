@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="kgremban"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="04/28/2016"
+	ms.date="07/25/2016"
 	ms.author="kgremban"/>
 
 
@@ -62,7 +62,19 @@
 
 使用 `Get-AzureRmProviderOperation` (在 PowerShell 中) 或 `azure provider operations show` (在 Azure CLI 中) 來列出 Azure 資源提供者的作業。您也可以使用這些命令以確認作業字串有效，以及展開萬用字元作業字串。
 
+```
+Get-AzureRMProviderOperation Microsoft.Computer/virtualMachines/*/action | FT Operation, OperationName
+
+Get-AzureRMProviderOperation Microsoft.Network/*
+```
+
 ![PowerShell 螢幕擷取畫面 - Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT 作業, OperationName](./media/role-based-access-control-configure/1-get-azurermprovideroperation-1.png)
+
+```
+azure provider operations show "Microsoft.Compute/virtualMachines/*/action" --js on | jq '.[] | .operation'
+
+azure provider operations show "Microsoft.Network/*"
+```
 
 ![Azure CLI 螢幕擷取畫面 - azure 提供者作業顯示 "Microsoft.Compute/virtualMachines/*/action"](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
 
@@ -97,6 +109,6 @@
 	- [PowerShell](role-based-access-control-manage-access-powershell.md)
 	- [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 	- [REST API](role-based-access-control-manage-access-rest.md)
-- [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資料。
+- [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資訊。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

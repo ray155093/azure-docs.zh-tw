@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -47,4 +47,4 @@ B2B 通訊牽涉到交易夥伴之間的訊息處理。關聯性定義為兩個�
 [1]: ./media/app-service-logic-track-b2b-messages/AS2Tracking.png
 [2]: ./media/app-service-logic-track-b2b-messages/EDIFACTTracking.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

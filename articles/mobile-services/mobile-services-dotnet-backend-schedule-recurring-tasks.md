@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/07/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 在行動服務中為週期性工作排程
@@ -24,8 +24,8 @@
 
 
 > [AZURE.SELECTOR]
-- [.NET backend](mobile-services-dotnet-backend-schedule-recurring-tasks.md)
-- [Javascript backend](mobile-services-schedule-recurring-tasks.md)
+- [.NET 後端](mobile-services-dotnet-backend-schedule-recurring-tasks.md)
+- [JavaScript 後端](mobile-services-schedule-recurring-tasks.md)
 
 本主題將示範如何在 Azure 傳統入口網站中使用作業排程器功能，以根據您所定義的排程來定義要執行的伺服器指令碼。在此情況下，指令碼會定期向遠端服務 (在此案例中為 Twitter) 查詢，並將結果儲存在新資料表中。可排定的其他一些定期工作包括：
 
@@ -91,7 +91,7 @@
 	        public DateTime Date { get; set; }
     	}
 
-4. 展開 [Models] 資料夾，開啟資料模型內容檔案 (名為 *service\_name*Context.cs)，然後新增下列會傳回類型為 **DbSet** 的屬性：
+4. 展開 Models 資料夾、開啟資料模型內容檔案 (名為 *service\_name*Context.cs)，然後新增下列會傳回型別 **DbSet** 的屬性：
 
 		public DbSet<Updates> Updates { get; set; }
 
@@ -218,7 +218,7 @@
 		    }
 		}
 
-	在上述程式碼中，您必須以您已下載之專案的命名空間和 DbContext 取代字串 _todolistService_ 和 _todolistContext_，分別是 *mobile&#95;service&#95;name*Service 和 *mobile&#95;service&#95;name*Context。
+	在上述程式碼中，您必須將字串 _todolistService_ 和 _todolistContext_ 替換為您已下載之專案的命名空間和 DbContext，分別是 *mobile&#95;service&#95;name*Service 和 *mobile&#95;service&#95;name*Context。
 
 	在上述程式碼中，**ExecuteAsync** 覆寫方法會使用儲存的認證來呼叫 Twitter 查詢 API，以要求包含 # 標籤 `#mobileservices` 的最新推文。在重複的推文和回覆被儲存於資料表之前，系統會先將它們從結果中移除。
 
@@ -266,7 +266,7 @@
 
    	這會執行在排程器中仍處於停用狀態的工作。在此頁面上，您可以隨時啟用工作及變更其排程。
 
-	>[AZURE.NOTE] 仍可使用 POST 要求來啟動排程工作。不過，授權預設會提供給使用者，表示要求必須在標頭中包含應用程式金鑰。
+	>[AZURE.NOTE]仍可使用 POST 要求來啟動排程工作。However, the authorization defaults to user, which means that the request must include the application key in the header.
 
 4. 在 [Azure 傳統入口網站]中，針對與您行動服務的相關聯的資料庫按一下 [管理]。
 
@@ -305,4 +305,4 @@
 [App settings]: http://msdn.microsoft.com/library/windowsazure/b6bb7d2d-35ae-47eb-a03f-6ee393e170f7
 [LINQ to Twitter CodePlex 專案]: http://linqtotwitter.codeplex.com/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -37,7 +37,7 @@
 | 如何讓使用者直接解除鎖定 AD 帳戶而不必重設密碼？ | [設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](#allow-users-to-unlock-accounts-without-resetting-their-password) |
 | 如何為使用者啟用密碼重設通知？ | [設定：在使用者的密碼重設時通知使用者](#notify-users-and-admins-when-their-own-password-has-been-reset) |
 | 如何為系統管理員啟用密碼重設通知？ | [設定：在系統管理員重設其密碼時通知其他系統管理員](#notify-admins-when-other-admins-reset-their-own-passwords) |
-| 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌](#password-managment-look-and-feel) |
+| 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌](#password-management-look-and-feel) |
 
 
 ## 密碼管理外觀與風格
@@ -875,4 +875,4 @@
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

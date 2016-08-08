@@ -87,14 +87,9 @@
 
 ## 後續步驟
 
-- [將 BACPCAC 匯入 Azure SQL Database](sql-database-import.md)
-- [將 BACPCAC 匯入 SQL Server 資料庫](https://msdn.microsoft.com/library/hh710052.aspx)
+- 若要了解如何將 BACPAC 匯入 Azure SQL Database，請參閱[將 BACPAC 匯入 Azure SQL Database](sql-database-import.md)
+- 若要了解如何將 BACPAC 匯入 SQL Server 資料庫，請參閱[將 BACPAC 匯入 SQL Server 資料庫](https://msdn.microsoft.com/library/hh710052.aspx)
 
-## 其他資源
-
-- [業務續航力概觀](sql-database-business-continuity.md)
-- [災害復原詳細資訊](sql-database-disaster-recovery-drills.md)
-- [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
 
 <!--Image references-->
@@ -104,4 +99,4 @@
 [4]: ./media/sql-database-export/export-history.png
 [5]: ./media/sql-database-export/bacpac-archive.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

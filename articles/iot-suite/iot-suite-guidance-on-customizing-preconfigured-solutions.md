@@ -154,7 +154,15 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 ## 後續步驟
 
-如需 IoT 裝置的詳細資訊，請參閱 [Azure IoT 開發人員網站](https://azure.microsoft.com/develop/iot/)來尋找連結和文件。
+若要深入了解自訂預先設定的解決方案的選項，請參閱︰
+
+- [將邏輯應用程式連接至 Azure IoT 套件遠端監視預先設定解決方案][lnk-logicapp]
+- [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic]
+- [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]
+
+[lnk-logicapp]: iot-suite-logic-apps-tutorial.md
+[lnk-dynamic]: iot-suite-dynamic-telemetry.md
+[lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 
 [IoT Device SDK]: https://azure.microsoft.com/documentation/articles/iot-hub-sdks-summary/
 [lnk-permissions]: iot-suite-permissions.md
@@ -164,4 +172,4 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 [lnk-sample-device-factory]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Common/Factory/SampleDeviceFactory.cs#L40
 [lnk-classic-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

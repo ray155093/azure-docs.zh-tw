@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/28/2016"
+   ms.date="07/25/2016"
    ms.author="jgao"/>
 
 #使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 Hadoop
@@ -58,7 +58,7 @@ Microsoft 巨量資料方案會將 Microsoft 商業智慧 (BI) 元件與 Azure H
     屬性|說明
     ---|---
     資料來源名稱|為資料來源指定名稱
-    Host|輸入 <HDInsightClusterName>.azurehdinsight.net。例如，myHDICluster.azurehdinsight.net
+    主機|輸入 <HDInsight 叢集名稱>.azurehdinsight.net。例如，myHDICluster.azurehdinsight.net
     連接埠|使用 <strong>443</strong>。(此連接埠已從 563 變更為 443。)
     資料庫|使用<strong>預設值</strong>
     Hive 伺服器類型|選取 [Hive Server 2]<strong></strong>
@@ -105,7 +105,7 @@ Microsoft 巨量資料方案會將 Microsoft 商業智慧 (BI) 元件與 Azure H
 	![Connection Properties][img-hdi-simbahiveodbc-excel-connectionproperties]
 
 11. 按一下 [確定] 以關閉 [連接屬性] 對話方塊。
-12. 按一下 [確定] 以關閉 [匯入資料] 對話方塊。  
+12. 按一下 [確定] 以關閉 [匯入資料] 對話方塊。
 13. 重新輸入密碼，然後按一下 [確定]。經過數秒後，資料即會匯入至 Excel。
 
 ##後續步驟
@@ -131,4 +131,4 @@ Microsoft 巨量資料方案會將 Microsoft 商業智慧 (BI) 元件與 Azure H
 [img-hdi-simbahiveodbc-excel-connectionproperties]: ./media/hdinsight-connect-excel-hive-ODBC-driver/HDI.SimbaHiveODBC.Excel.ConnectionProperties1.png
 [img-hdi-simbahiveodbc.excel.dataconnection]: ./media/hdinsight-connect-excel-hive-ODBC-driver/HDI.SimbaHiveOdbc.Excel.DataConnection1.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

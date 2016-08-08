@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="12/07/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -118,7 +118,7 @@
 
 	這會使行動服務以未經驗證的模式連接到 MPNS，以傳送推播通知。
 
-	>[AZURE.NOTE]本教學課程使用處於未通過驗證模式的 MPNS。在此模式中，MPNS 會限制可傳送至裝置通道的通知數。若要移除此限制，您必須按一下 [上傳] 並選取憑證，以產生憑證並加以上傳。如需產生憑證的詳細資訊，請參閱[設定已驗證的 Web 服務以傳送 Windows Phone 的推播通知] \ (英文)。
+	>[AZURE.NOTE]本教學課程使用處於未通過驗證模式的 MPNS。在此模式中，MPNS 會限制可傳送至裝置通道的通知數。若要移除此限制，您必須按一下 [上傳] 並選取憑證，以產生憑證並加以上傳。如需產生憑證的詳細資訊，請參閱[設定已驗證的 Web 服務以傳送 Windows Phone 的推播通知] (英文)。
 
 ##<a id="test"></a>在應用程式中測試推播通知
 
@@ -176,4 +176,4 @@
 
 [什麼是通知中心？]: ../notification-hubs/notification-hubs-overview.md
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

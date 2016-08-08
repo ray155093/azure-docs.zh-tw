@@ -104,7 +104,7 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。您可以使用
 
 3. 以滑鼠右鍵按一下檔案或資料夾，以查看可用的作業。使用右邊的 [上傳] 按鈕，將檔案上傳至目前的目錄。使用 [新增] 按鈕建立新的檔案或目錄。
 
-> [AZURE.NOTE] Hue 檔案瀏覽器只會顯示與 HDInsight 叢集相關聯的預設容器的內容。已與叢集相關聯的任何額外儲存體帳戶/容器將無法使用檔案瀏覽器存取。不過，與叢集相關聯的其他容器一律可供 Hive 工作存取。例如，如果您在 Hive 編輯器中輸入 `dfs -ls wasb://newcontainer@mystore.blob.core.windows.net` 命令，則您也可以看到其他容器的內容。在這個命令中，**newcontainer** 不是與叢集相關聯的預設容器。
+> [AZURE.NOTE] Hue 檔案瀏覽器只會顯示與 HDInsight 叢集相關聯的預設容器的內容。已與叢集相關聯的任何額外儲存體帳戶/容器將無法使用檔案瀏覽器存取。不過，與叢集相關聯的其他容器一律可供 Hive 工作存取。例如，如果您在 Hive 編輯器中輸入 `dfs -ls wasbs://newcontainer@mystore.blob.core.windows.net` 命令，則您也可以看到其他容器的內容。在這個命令中，**newcontainer** 不是與叢集相關聯的預設容器。
 
 ## 重要考量︰
 
@@ -122,7 +122,7 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。您可以使用
 
 	這是由已知問題造成的。因應措施是修改 Ambari，讓作用中的資源管理員也在前端節點 0 上執行。
 
-5.	當 HDInsight 叢集使用 Azure 儲存體 (使用 `wasb://`) 時，Hue 能了解 WebHDFS。因此，搭配指令碼動作使用的自訂指令碼會安裝 WebWasb，這是針對與 WASB 通訊的 WebHDFS 相容服務。所以，即使在 Hue 入口網站顯示有 HDFS (例如將滑鼠移至 [檔案瀏覽器] 時)，應將它解讀成 WASB。
+5.	當 HDInsight 叢集使用 Azure 儲存體 (使用 `wasbs://`) 時，色調能了解 WebHDFS。因此，搭配指令碼動作使用的自訂指令碼會安裝 WebWasb，這是針對與 WASB 通訊的 WebHDFS 相容服務。所以，即使在 Hue 入口網站顯示有 HDFS (例如將滑鼠移至 [檔案瀏覽器] 時)，應將它解讀成 WASB。
 
 
 ## 後續步驟
@@ -137,4 +137,4 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。您可以使用
 [hdinsight-provision]: hdinsight-provision-clusters-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

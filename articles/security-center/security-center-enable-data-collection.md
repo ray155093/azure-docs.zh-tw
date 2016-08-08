@@ -1,6 +1,6 @@
 <properties
    pageTitle="在 Azure 資訊安全中心啟用資料收集 | Microsoft Azure"
-   description="了解如何在 Azure 資訊安全中心啟用資料收集。"
+   description=" 了解如何在 Azure 資訊安全中心啟用資料收集。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/14/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心啟用資料收集
 
 為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理 Azure 虛擬機器的相關資料，包含組態資訊、中繼資料、事件記錄檔等等。當您第一次存取資訊安全中心時，訂用帳戶中的所有虛擬機器都會啟用資料收集。建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出 (請參閱[停用資料收集](#disabling-data-collection))。如果您關閉資料收集，資訊安全中心會建議您在該訂用帳戶的安全性原則中開啟資料收集。
 
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 實作建議
 
@@ -60,7 +60,7 @@
 
 5.	選取最上方功能區中的 [刪除代理程式]，以從現有的虛擬機器移除代理程式。
 
-## 後續步驟
+## 另請參閱
 
 本文說明了如何實作資訊安全中心建議的「啟用資料收集」。 如要深入了解資訊安全中心，請參閱下列主題：
 
@@ -80,4 +80,4 @@
 [5]: ./media/security-center-enable-data-collection/policy.png
 [6]: ./media/security-center-enable-data-collection/disable-data-collection.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

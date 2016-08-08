@@ -89,14 +89,14 @@
 
 		$clusterName = "clustername"
 		# Giraph examples jar
-		$jarFile = "wasb:///example/jars/giraph-examples.jar"
+		$jarFile = "wasbs:///example/jars/giraph-examples.jar"
 		# Arguments for this job
 		$jobArguments = "org.apache.giraph.examples.SimpleShortestPathsComputation",
 		                "-ca", "mapred.job.tracker=headnodehost:9010",
 		                "-vif", "org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat",
-		                "-vip", "wasb:///example/data/tiny_graph.txt",
+		                "-vip", "wasbs:///example/data/tiny_graph.txt",
 		                "-vof", "org.apache.giraph.io.formats.IdWithValueTextOutputFormat",
-		                "-op",  "wasb:///example/output/shortestpaths",
+		                "-op",  "wasbs:///example/output/shortestpaths",
 		                "-w", "2"
 		# Create the definition
 		$jobDefinition = New-AzureHDInsightMapReduceJobDefinition
@@ -115,7 +115,7 @@
 
 	在上述範例中，利用您已安裝 Giraph 的 HDInsight 叢集名稱取代 **clustername**。
 
-5. 檢視結果。一旦工作完成，結果會儲存在 \_\___wasb:///example/out/shotestpaths__ 資料夾中的兩個輸出檔中。這些檔案稱為 __part-m-00001__ 和 __part-m-00002__。執行下列步驟來下載和檢視輸出：
+5. 檢視結果。一旦工作完成，結果會儲存在 __wasbs:///example/out/shotestpaths__ 資料夾中的兩個輸出檔中。這些檔案稱為 __part-m-00001__ 和 __part-m-00002\_\_。執行下列步驟來下載和檢視輸出：
 
 		$subscriptionName = "<SubscriptionName>"       # Azure subscription name
 		$storageAccountName = "<StorageAccountName>"   # Azure Storage account name
@@ -183,4 +183,4 @@
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

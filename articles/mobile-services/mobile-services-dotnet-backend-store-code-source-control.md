@@ -10,10 +10,10 @@
 <tags
 	ms.service="mobile-services"
 	ms.workload="mobile"
-	ms.tgt_pltfrm="na" 
+	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="12/07/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 在原始檔控制中儲存行動服務專案程式碼
@@ -24,8 +24,8 @@
 
 
 > [AZURE.SELECTOR]
-- [.NET backend](mobile-services-dotnet-backend-store-code-source-control.md)
-- [Javascript backend](mobile-services-store-scripts-source-control.md)
+- [.NET 後端](mobile-services-dotnet-backend-store-code-source-control.md)
+- [JavaScript 後端](mobile-services-store-scripts-source-control.md)
 
 本主題將示範如何使用 Azure 行動服務所提供的原始檔控制來儲存您的 .NET 後端服務專案。您可直接從本機 Git 儲存機制上傳專案至生產行動服務以發佈專案。
 
@@ -41,7 +41,8 @@
 
 	安裝 Git 所需的步驟會因作業系統而有所不同。如需作業系統特定的發佈和安裝指引，請參閱[安裝 Git]。
 
-	> [AZURE.NOTE]在某些作業系統上，會同時提供例 Git 的命令列和 GUI 兩種版本。本文提供的指示將使用命令列版本。
+	> [AZURE.NOTE]
+	在某些作業系統上，會同時提供例 Git 的命令列和 GUI 兩種版本。本文提供的指示將使用命令列版本。
 
 2. 開啟命令列，例如 **GitBash** (Windows) 或 **Bash** (Unix Shell)。在 OS X 系統上，您可以透過 **[終端機]** 應用程式來存取命令列。
 
@@ -64,7 +65,7 @@
 
 ##<a name="deploy-scripts"></a>使用 Git 發佈專案
 
-1. 在 Visual Studio 2013 中建立新的 .NET 後端行動服務專案，或將現有的專案移到新的本機儲存機制。  
+1. 在 Visual Studio 2013 中建立新的 .NET 後端行動服務專案，或將現有的專案移到新的本機儲存機制。
 
 	如要快速測試，請下載行動服務快速入門專案並儲存到這個資料夾。
 
@@ -101,7 +102,6 @@
 [Source control]: http://msdn.microsoft.com/library/windowsazure/c25aaede-c1f0-4004-8b78-113708761643
 [安裝 Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 [開始使用行動服務]: mobile-services-dotnet-backend-ios-get-started.md
-[Azure 管理入口網站]: https://manage.windowsazure.com/
 [如何對 .NET 後端行動服務進行資料模型變更]: mobile-services-dotnet-backend-how-to-use-code-first-migrations.md
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0727_2016-->

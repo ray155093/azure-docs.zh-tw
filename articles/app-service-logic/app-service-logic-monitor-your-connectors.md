@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -80,7 +80,7 @@ Hybrid Connection Manager 可讓您連線至內部部署系統 (例如 SQL Serve
 您可以：
 
 - 選取 [**要求和錯誤**]，加入包括已知 HTTP 錯誤代碼的不同效能度量 (例如 200、400 或 500 HTTP 狀態碼)。您也可以查看回應時間、對 API 應用程式提出多少要求，以及有多少輸入資料和輸出資料。根據效能度量，如果度量超出您選擇的臨界值，則可以建立電子郵件警示。
-- 在 [使用情況] 中，您可以查看 API 應用程式使用多少 [CPU]、檢閱目前 \[使用量配額] \(MB)，以及查看根據成本層而定的最大資料使用量。[預估的花費] 可協助您判斷執行 API 應用程式的潛在成本。
+- 在 [使用情況] 中，您可以查看 API 應用程式使用多少 [CPU]、檢閱目前 [使用量配額] (MB)，以及查看根據成本層而定的最大資料使用量。[預估的花費] 可協助您判斷執行 API 應用程式的潛在成本。
 - 選取 [**程序**] 開啟程序總管。這會顯示 Web 執行個體和其屬性 (包括執行緒計數和記憶體使用量)。
 
 使用這些工具，您可以根據業務需求來判斷應該調升或調降 App Service 方案的規模。這些都是入口網站的內建功能，並不需要額外工具。
@@ -121,10 +121,7 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 
 ## 閱讀更多資訊
 
-[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> 
-[App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> 
-[Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>
-[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
+[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> [App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> [Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>[在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
 
 
 <!--Image references-->
@@ -137,4 +134,4 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 [hostsettings]: ./media/app-service-logic-monitor-your-connectors/hostsettings.png
 [apiapphost]: ./media/app-service-logic-monitor-your-connectors/apiapphost.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

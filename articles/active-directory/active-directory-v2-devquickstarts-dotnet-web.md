@@ -54,7 +54,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 ```
 
 -	將「OWIN 啟動類別」加入名為 `Startup.cs` 的專案。以滑鼠右鍵按一下專案 --> [**新增**] --> [ **新增項目**] --> 搜尋「OWIN」。OWIN 中介軟體將會在應用程式啟動時叫用 `Configuration(...)` 方法。
--	將類別宣告變更為 `public partial class Startup`，我們已為您在另一個檔案中實作了此類別的一部分。在 `Configuration(...)` 方法中，請呼叫 ConfigureAuth(...)，為您的 Web 應用程式設定驗證。  
+-	將類別宣告變更為 `public partial class Startup`，我們已為您在另一個檔案中實作了此類別的一部分。在 `Configuration(...)` 方法中，請呼叫 ConfigureAuth(...)，為您的 Web 應用程式設定驗證。
 
 ```C#
 [assembly: OwinStartup(typeof(Startup))]
@@ -68,7 +68,8 @@ namespace TodoList_WebApp
 			ConfigureAuth(app);
 		}
 	}
-}```
+}
+```
 
 -	開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法。您在 `OpenIdConnectAuthenticationOptions` 中所提供的參數將會做為您的應用程式與 Azure AD 進行通訊的座標使用。您還必須設定 Cookie 驗證，OpenID Connect 中介軟體會在表面下使用 Cookie。
 
@@ -211,4 +212,4 @@ public ActionResult About()
 
 我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

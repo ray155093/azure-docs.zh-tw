@@ -29,13 +29,13 @@
 2.	根據輸入資料集、輸出資料集和複製活動的組態，執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換
 3.	將資料寫入目的地資料存放區
 
-![從雲端複製到雲端](.\media\data-factory-data-movement-activities\cloud-to-cloud.png)
+![從雲端複製到雲端](./media/data-factory-data-movement-activities/cloud-to-cloud.png)
 
 
 ## 在內部部署資料存放區和雲端資料存放區之間複製資料
 若要安全地在公司防火牆背後的內部部署資料存放區和雲端資料存放區之間移動資料，您必須安裝資料管理閘道，這是一個代理程式，能夠在內部部署的電腦上啟用混合式資料移動及處理。資料管理閘道可以和資料存放區本身安裝於同一部電腦上，或者安裝於具備可觸達該資料存放區之存取權的個別電腦上。在此案例中，序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換都是透過資料管理閘道來執行。資料不流經 Azure Data Factory 服務就是這種情況。資料管理閘道會直接將資料寫入到目的地存放區。
 
-![從內部部署複製到雲端](.\media\data-factory-data-movement-activities\onprem-to-cloud.png)
+![從內部部署複製到雲端](./media/data-factory-data-movement-activities/onprem-to-cloud.png)
 
 如需指示和逐步解說，請參閱[在內部部署與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文；如需資料管理閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
 
@@ -47,10 +47,7 @@
 
 | 來源| 接收 |
 |:------- | :---- |
-| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表 (來自 HTML 的資料表)](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li><li>[Salesforce](data-factory-salesforce-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[內部部署 Cassandra 資料庫/Azure IaaS](data-factory-onprem-cassandra-connector.md)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB (請參閱下面附註)](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[Oracle 資料庫內部部署/Azure IaaS](data-factory-onprem-oracle-connector.md)</li></ul> |
-
-
-> [AZURE.NOTE] 目前不支援將資料從 Azure DocumentDB 複製到內部部署/Azure IaaS 資料存放區，反向複製動作亦不支援。很快就會啟用 Azure DocumentDB 的完整矩陣。
+| <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[OData 來源](data-factory-odata-connector.md)</li><li>[Web 資料表 (來自 HTML 的資料表)](data-factory-web-table-connector.md)</li><li>[內部部署 GE Historian/Azure IaaS](data-factory-odbc-connector.md#ge-historian-store)</li><li>[Salesforce](data-factory-salesforce-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[內部部署 Oracle Database/Azure IaaS](data-factory-onprem-oracle-connector.md)</li><li>[內部部署 MySQL 資料庫/Azure IaaS ](data-factory-onprem-mysql-connector.md)</li><li>[內部部署 DB2 資料庫/Azure IaaS](data-factory-onprem-db2-connector.md)</li><li>[內部部署 Teradata 資料庫/Azure IaaS ](data-factory-onprem-teradata-connector.md)</li><li>[內部部署 Sybase 資料庫/Azure IaaS](data-factory-onprem-sybase-connector.md)</li><li>[內部部署 PostgreSQL 資料庫/Azure IaaS](data-factory-onprem-postgresql-connector.md)</li><li>[內部部署 ODBC 資料來源/Azure IaaS](data-factory-odbc-connector.md)</li><li>[內部部署 Hadoop 分散式檔案系統 (HDFS)/Azure IaaS](data-factory-hdfs-connector.md)</li><li>[內部部署 Cassandra 資料庫/Azure IaaS](data-factory-onprem-cassandra-connector.md)</li></ul> | <ul><li>[Azure Blob](data-factory-azure-blob-connector.md)</li><li>[Azure 資料表](data-factory-azure-table-connector.md)</li><li>[Azure SQL Database](data-factory-azure-sql-connector.md)</li><li>[Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md)</li><li>[Azure DocumentDB](data-factory-azure-documentdb-connector.md)</li><li>[Azure Data Lake Store](data-factory-azure-datalake-connector.md)</li><li>[內部部署 SQL Server/Azure IaaS](data-factory-sqlserver-connector.md)</li><li>[內部部署檔案系統/Azure IaaS](data-factory-onprem-file-system-connector.md)</li><li>[Oracle 資料庫內部部署/Azure IaaS](data-factory-onprem-oracle-connector.md)</li></ul> |
 
 如果您需要將資料移至**複製活動**不支援的資料存放區，或從該資料存放區移動資料，則您可以在 Data Factory 中使用**自訂活動**搭配自己的邏輯來複製/移動資料。如需建立及使用自訂活動的詳細資料，請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)文章。
 
@@ -90,7 +87,7 @@
 您可以在各自的資料存放區連接器文章中的資料存放區找到指定原生類型系統到 .NET 的對應。您可以在建立資料表時使用這些對應來判斷適當的類型，如此就能在複製活動期間執行正確的轉換。
 
 ### 使用不同的檔案格式。
-複製活動支援各種不同的檔案格式，包括二進位、文字、Avro、ORC 及 JSON 格式，以用於檔案式存放區。您可以使用複製活動，將資料從某種格式轉換為另一種。範例：文字 (CSV) 轉 Avro。如果是非結構化的資料，您可以省略 [資料集](data-factory-create-datasets.md) JSON 定義中的 **Structure** 屬性。
+複製活動支援各種不同的檔案格式，包括二進位 (影像、文件及音樂等)、文字、Avro、ORC 及 JSON 格式，以用於檔案式存放區。不過，它只能讀取文字、Avro、ORC 及 JSON 檔案中結構化檔案的內部內容。您可以使用複製活動，將資料從某種格式轉換為另一種。範例：文字 (CSV) 轉 Avro。如果是非結構化的資料，您可以省略 [資料集](data-factory-create-datasets.md) JSON 定義中的 **Structure** 屬性。
 
 ### 複製活動屬性
 名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。
@@ -188,4 +185,4 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 - 若要了解將資料從內部部署資料存放區移動到雲端資料存放區的相關資訊，請參閱[將資料從內部部署資料存放區移動到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

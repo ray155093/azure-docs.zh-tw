@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/15/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心的 SQL Database 上啟用稽核
@@ -24,7 +24,7 @@
 
 此建議僅適用於 Azure SQL 服務；不包含在虛擬機器上執行的 SQL。
 
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 實作建議
 
@@ -36,7 +36,7 @@
 
 5. 遵循[開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
-## 後續步驟
+## 另請參閱
 
 本文說明了如何實作資訊安全中心建議的「在 SQL Database 上啟用稽核」。 若要深入了解如何保護您的 SQL Database，請參閱下列主題：
 
@@ -57,4 +57,4 @@
 [2]: ./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection.png
 [3]: ./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection-blade.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

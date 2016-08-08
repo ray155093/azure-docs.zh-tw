@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags 
-	ms.service="app-service-logic" 
+	ms.service="logic-apps" 
 	ms.workload="integration" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
@@ -73,4 +73,4 @@
 - [使用 B2B 功能建立邏輯應用程式](./app-service-logic-enterprise-integration-b2b.md)
 - [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

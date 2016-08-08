@@ -13,10 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/14/2016"
+   ms.date="07/25/2016"
    ms.author="kipandya"/>
    
 # 使用多個區域 DocumentDB 帳戶進行開發
+
+> [AZURE.NOTE] 對於任何新建的 DocumentDB 帳戶，通常可以使用 DocumentDB 資料庫的全球發佈，而且會自動啟用。我們正致力於啟用所有現有帳戶的全球發佈，但如果您想在這過渡時期啟用您帳戶的全球發佈，請[連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，我們將立即為您啟用。
 
 為了充分運用[全球發佈](documentdb-distribute-data-globally.md)，用戶端應用程式可以指定已排序的區域喜好設定清單，以用來執行文件作業。這可透過設定連接原則來完成。根據 Azure DocumentDB 帳戶組態、目前區域可用性和指定的喜好設定清單，SDK 將會選擇最適合的端點來執行寫入和讀取作業。
 
@@ -143,4 +145,4 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 [regions]: https://azure.microsoft.com/regions/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

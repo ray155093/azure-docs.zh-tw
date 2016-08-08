@@ -95,4 +95,4 @@ Linux 數字是藉由在 Ubuntu 上執行 [CoreMark](http://www.eembc.org/corema
 
 * 若要在 Linux VM 上執行 CoreMark 指令碼，請下載 [CoreMark 指令碼套件](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：Google+ 組態 | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：Google+ 設定 | Microsoft Azure"
 	description="在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Google+ 帳戶的取用者提供註冊和登入。"
 	services="active-directory-b2c"
 	documentationCenter=""
@@ -13,12 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="07/24/2016"
 	ms.author="swkrish"/>
 
-# Azure Active Directory B2C 預覽：針對具有 Google+ 帳戶的取用者提供註冊和登入
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
+# Azure Active Directory B2C：針對具有 Google+ 帳戶的取用者提供註冊和登入
 
 ## 建立 Google+ 應用程式
 
@@ -64,6 +62,6 @@
 4. 針對身分識別提供者組態，提供容易辨識的**名稱**。例如，輸入 "G+"。
 5. 按一下 [識別提供者類型]、選取 [Google]，然後按一下 [確定]。
 6. 按一下 [設定此識別提供者]，然後輸入您先前建立的 Google+ 應用程式用戶端識別碼和用戶端密碼。
-7. 依序按一下 [確定] 和 [建立]，儲存您的 Google+ 組態。
+7. 依序按一下 [確定] 和 [建立]，儲存您的 Google+ 設定。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

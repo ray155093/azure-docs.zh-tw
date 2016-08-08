@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/20/2016" 
+	ms.date="07/21/2016" 
 	ms.author="sdanie"/>
 
 # Azure Redis 快取常見問題集
@@ -26,8 +26,8 @@
 如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。
 
 -	您可以將問題張貼在此常見問題集尾端的[討論串](#comments)，與 Azure 快取小組和其他社群成員交流此篇文章。
--	您可以將問題張貼在 [Azure 快取 MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azurecache)，與 Azure 快取小組和社群的其他成員交流。
--	您可以傳送電子郵件到下列信箱：[Azure 快取外部意見反應](mailto:azurecache@microsoft.com)。
+-	若要觸及更多讀者，您可以將問題張貼在 [Azure Cache MSDN Forum (Azure 快取 MSDN 論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=azurecache)，與 Azure 快取小組和社群的其他成員交流。
+-	您也可以傳送電子郵件到下列信箱：[Azure 快取外部意見反應](mailto:azurecache@microsoft.com)。
 
 ## 規劃常見問題集
 
@@ -376,4 +376,4 @@ Redis 成功的另一個重要層面是建置健全、有活力的開放原始�
 
 ["minIoThreads" 組態設定]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

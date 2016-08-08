@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/25/2016"
+   ms.date="07/26/2016"
    ms.author="manuaery" />
 
 # StorSimple 本機固定磁碟區︰常見問題集 (FAQ)
@@ -121,7 +121,7 @@
 答： 轉換程序包含兩個步驟 ︰
 
   1. 在裝置上為即將轉換的本機固定磁碟區佈建空間。
-  2. 從雲端下載任何階層式資料以確保本機保證。 
+  2. 從雲端下載任何階層式資料以確保本機保證。
 
 這兩個步驟都是長時間執行的作業，相依於要轉換的磁碟區大小、裝置上的資料，以及可用的頻寬。因為現有階層式磁碟區的某些資料可能會在佈建過程中溢出至雲端，您的裝置可能會在這段期間降低效能。此外，在下列情況下，轉換程序會變慢︰
 
@@ -213,4 +213,4 @@
 
 答： 是，您可以這麼做。本機固定磁碟區會容錯移轉為階層式磁碟區。有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#considerations-for-device-failover) 的詳細資訊
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

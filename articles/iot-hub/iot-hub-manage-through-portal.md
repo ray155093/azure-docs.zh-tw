@@ -170,6 +170,7 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
 - [開發人員指南][lnk-devguide]
 - [使用範例 UI 探索裝置管理][lnk-dmui]
 - [使用閘道 SDK 模擬裝置][lnk-gateway]
+- [徹底保護您的 IoT 解決方案][lnk-securing]
 
 
   [4]: ./media/iot-hub-manage-through-portal/create-iothub.png
@@ -193,5 +194,6 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的訂用帳戶清單。�
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

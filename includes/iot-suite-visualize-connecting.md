@@ -36,10 +36,13 @@
 
 《[自訂預先設定的解決方案][lnk-customize]》一文描述可以擴充這個範例的一些方法。可能的延伸模組包括使用真實的感應器和實作其他命令。
 
+您可以深入了解 [azureiotsuite.com 網站的權限][lnk-permissions]。
+
 [13]: ./media/iot-suite-visualize-connecting/suite4.png
 [14]: ./media/iot-suite-visualize-connecting/suite7-1.png
 [18]: ./media/iot-suite-visualize-connecting/suite10.png
 [img-telemetry]: ./media/iot-suite-visualize-connecting/telemetry.png
 [lnk-customize]: ../articles/iot-suite/iot-suite-guidance-on-customizing-preconfigured-solutions.md
+[lnk-permissions]: ../articles/iot-suite/iot-suite-permissions.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

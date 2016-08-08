@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -38,9 +38,9 @@ AS2 連接器可以在邏輯應用程式中做為觸發程序或動作，且支�
 
 需求 | 說明
 --- | ---
-TPM API 應用程式 | 建立 AS2 連接器之前，您必須先建立 [BizTalk 交易夥伴管理連接器][1]。<br/><br/>**注意** 要知道您 TPM API 應用程式的名稱。 
-Azure SQL Database | 儲存 B2B 項目，包括夥伴、結構描述、憑證及協議。每一個 B2B API 應用程式需要專屬 Azure SQL Database。<br/><br/>**注意** 將連接字串複製至這個資料庫。<br/><br/>[建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
-Azure Blob 儲存體容器 | 啟用 AS2 封存功能時，可儲存訊息屬性。如果您不需要 AS2 訊息封存功能，就不需要儲存體容器。<br/><br/>**注意** 如果您正啟用封存，請將連接字串複製到這個 Blob 儲存體。<br/><br/>[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
+TPM API 應用程式 | 在建立 AS2 連接器之前，您必須先建立 [BizTalk 交易夥伴管理連接器][1]。<br/><br/>**注意** 知道您的 TPM API 應用程式的名稱。 
+Azure SQL Database | 儲存 B2B 項目，包括夥伴、結構描述、憑證及協議。每個 B2B API 應用程式都需要自己的 Azure SQL Database。<br/><br/>**注意** 將連接字串複製到此資料庫。<br/><br/>[建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
+Azure Blob 儲存體容器 | 啟用 AS2 封存功能時，可儲存訊息屬性。如果您不需要 AS2 訊息封存功能，就不需要儲存體容器。<br/><br/>**注意** 如果您要啟用封存功能，請將連接字串複製到此 Blob 儲存體。<br/><br/>[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
 ## 建立 AS2 連接器
 
@@ -66,34 +66,26 @@ TPM 執行個體名稱 | 輸入您先前建立的 **BizTalk 交易夥伴管理**
 
 ## 使用連接器做為觸發程序
 
-1. 建立或編輯邏輯應用程式時，請從右窗格中選取您建立的 AS2 連接器：  
-	![觸發程序設定][3]
+1. 建立或編輯邏輯應用程式時，請從右窗格中選取您建立的 AS2 連接器：![觸發程序設定][3]
 
-2. 按一下向右箭號 →：  
-	![觸發程序選項][4]
+2. 按一下向右箭號 →：![觸發程序選項][4]
 
-3. AS2 連接器會公開單一觸發程序。選取 [接收和解碼]：  
-	![接收和解碼輸入][5]
+3. AS2 連接器會公開單一觸發程序。選取 [接收和解碼]：![接收和解碼輸入][5]
 
-4. 這個觸發程序沒有輸入。按一下向右箭號 →：  
-	![接收和解碼已設定][6]
+4. 這個觸發程序沒有輸入。按一下向右箭號 →：![接收和解碼已設定][6]
 
 連接器會傳回 AS2 承載以及 AS2 特定的中繼資料，做為輸出的一部分。
 
-當 AS2 承載發佈至 https://{Host URL}/decode 時會引發觸發程序。您可以在 API 應用程式設定中找到主機 URL。您也可能需要在應用程式設定中變更 API 應用程式的 [存取層級] 為 [公用]\(已驗證或匿名)。
+當 AS2 承載發佈至 https://{Host URL}/decode 時會引發觸發程序。您可以在 API 應用程式設定中找到主機 URL。您也可能需要在應用程式設定中變更 API 應用程式的 [存取層級] 為 [公用] (已驗證或匿名)。
 
 ## 使用連接器做為動作
-1. 在觸發程序 (或選擇 [手動執行此邏輯]) 之後，請從右窗格中加入您建立的 AS2 連接器：  
-	![動作設定][7]
+1. 在觸發程序 (或選擇 [手動執行此邏輯]) 之後，請從右窗格中加入您建立的 AS2 連接器：![動作設定][7]
 
-2. 按一下向右箭號 →：  
-	![動作清單][8]
+2. 按一下向右箭號 →：![動作清單][8]
 
-3. AS2 連接器只支援一個動作。選取 [編碼和傳送]：  
-	![編碼和傳送輸入][9]
+3. AS2 連接器只支援一個動作。選取 [編碼和傳送]：![編碼和傳送輸入][9]
 
-4. 提供動作的輸入，並進行設定：  
-	![編碼和傳送已設定][10]
+4. 提供動作的輸入，並進行設定：![編碼和傳送已設定][10]
 
 	參數包括：
 
@@ -112,7 +104,7 @@ AS2 目標 | 字串 | AS2 訊息接收者的 AS2 識別。這個參數是用來�
 
 如需 Logic Apps 的詳細資訊，請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure 邏輯應用程式，請按一下[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
+>[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請按一下[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -130,4 +122,4 @@ AS2 目標 | 字串 | AS2 訊息接收者的 AS2 識別。這個參數是用來�
 [9]: ./media/app-service-logic-connector-as2/EncodeAndSendInput.PNG
 [10]: ./media/app-service-logic-connector-as2/EncodeAndSendConfigured.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->
