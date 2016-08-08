@@ -136,7 +136,8 @@
 
 現在，您已完成本教學課程，您知道如何在原始檔控制中儲存指令碼。請考慮了解更多有關使用伺服器指令碼和自訂 API 的詳細資料：
 
-+ [在行動服務中使用伺服器指令碼] <br/>說明如何使用伺服器指令碼、工作排程器和自訂 API。
++ [在行動服務中使用伺服器指令碼]
+	<br/>說明如何使用伺服器指令碼、工作排程器和自訂 API。
 
 <!-- Anchors. -->
 [Enable source control in your mobile service]: #enable-source-control

@@ -548,7 +548,7 @@ Data Factory 自訂活動是此範例解決方案的核心。範例解決方案�
 
     4.  針對 **batchUri** JSON 屬性，輸入 Batch URI。
     
-		> [AZURE.IMPORTANT] [Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：<accountname>.<region>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
+		> [AZURE.IMPORTANT] \[Azure Batch 帳戶刀鋒視窗] 中的 **URL** 格式如下：\<accountname\>.\<region\>.batch.azure.com。針對 JSON 中的 **batchUri** 屬性，您必須從該 URL 中**移除 "accountname"**。範例："batchUri": "https://eastus.batch.azure.com"。
 
         ![](./media/data-factory-data-processing-using-batch/image9.png)
 

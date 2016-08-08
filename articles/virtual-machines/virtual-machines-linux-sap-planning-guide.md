@@ -816,7 +816,11 @@ ___
 
 > ![Windows][Logo_Windows] Windows
 >
-> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：) [註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章) [註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>) [註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
+> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。
+[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：) 
+[註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章) 
+[註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>) 
+[註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
 >
 > ![Linux][Logo_Linux] Linux
 >
