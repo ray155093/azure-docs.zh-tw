@@ -61,7 +61,7 @@
 
 		https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
 
-	>[AZURE.NOTE] <REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，https://localhost，使用 `https%3A%2F%2Flocalhost`)
+	>[AZURE.NOTE] \<REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，https://localhost，使用 `https%3A%2F%2Flocalhost`)
 
 	本教學課程的目的是讓您取代以上 URL 中的預留位置值，並將此值貼在網路瀏覽器網址列中。系統會將您重新導向，以使用 Azure 登入資料來進行驗證。一旦成功登入，回應會顯示在瀏覽器網址列中。回應格式如下：
 		
@@ -76,7 +76,7 @@
         -F client_id=<CLIENT-ID> \
         -F code=<AUTHORIZATION-CODE>
 
-	>[AZURE.NOTE] 在此情況下，不需要編碼 <REDIRECT-URI>。
+	>[AZURE.NOTE] 在此情況下，不需要編碼 \<REDIRECT-URI>。
 
 3. 回應為 JSON 物件，包含存取權杖 (例如 `"access_token": "<ACCESS_TOKEN>"`) 重新整理權杖 (例如：`"refresh_token": "<REFRESH_TOKEN>"`)。您的應用程式會在存取 Azure Data Lake Store 時使用存取權杖，並會在存取權杖過期時重新整理以取得另一個存取權杖。
 
