@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="05/03/2016" 
+	ms.date="07/27/2016" 
 	ms.author="jeffstok"/>
 
 # 使用服務和作業記錄檔對串流分析工作進行偵錯
@@ -25,8 +25,8 @@
 
 作業記錄檔可用兩種方式來存取：
 
-- 串流分析工作的儀表板  
-- Azure 傳統入口網站中的管理服務  
+- 串流分析工作的儀表板
+- Azure 傳統入口網站中的管理服務
 
 ## 串流分析工作的儀表板
 
@@ -39,7 +39,7 @@
 若要以手動方式瀏覽至串流分析的作業記錄檔以及 Azure 傳統入口網站中的其他服務：
 
 1.	按一下 [[Azure 傳統入口網站](https://manage.windowsazure.com)] 中的 [**管理服務**]。
-2.	針對 [類型] 選取 [串流分析]，並針對 [服務名稱] 選取作業的名稱。  
+2.	針對 [類型] 選取 [串流分析]，並針對 [服務名稱] 選取作業的名稱。
 
   ![選取串流分析](./media/stream-analytics-operation-logs/02-stream-analytics-operation-logs.png)
 
@@ -96,4 +96,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

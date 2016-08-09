@@ -1,12 +1,11 @@
-In this example, I will show you how to use the **Service Bus - When a message is received in a queue** trigger to initiate a logic app workflow when a new item is to a Service Bus queue.  
+在此範例中，我將說明如何使用「服務匯流排 - 在佇列中收到訊息時」觸發程序，在於「服務匯流排」佇列中收到新項目時，起始邏輯應用程式工作流程。
 
->[AZURE.NOTE]You will get prompted to sign with your Service Bus connection string if you have not already created a *connection* to Service Bus.  
+>[AZURE.NOTE]如果您尚未建立與「服務匯流排」的「連線」，系統將會提示您使用您的「服務匯流排」連接字串進行登入。
 
-1. Enter *service bus* in the search box on the logic apps designer then select the **Service Bus - When a message is received in a queue**  trigger.  
-![Service Bus trigger image 1](./media/connectors-create-api-servicebus/trigger-1.png)   
-- The **When a message is received in a queue** control is displayed.  
-![Service Bus trigger image 2](./media/connectors-create-api-servicebus/trigger-2.png)   
-- Enter the name of the Service Bus queue you would like the trigger to monitor.   
-![Service Bus trigger image 3](./media/connectors-create-api-servicebus/trigger-3.png)   
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入「服務匯流排」，然後選取 [服務匯流排 - 在佇列中收到訊息時] 觸發程序。![服務匯流排觸發程序圖像 1](./media/connectors-create-api-servicebus/trigger-1.png)
+- [在佇列中收到訊息時] 控制項隨即顯示。![服務匯流排觸發程序圖像 2](./media/connectors-create-api-servicebus/trigger-2.png)
+- 輸入您想要讓觸發程序監視的「服務匯流排」佇列名稱。![服務匯流排觸發程序圖像 3](./media/connectors-create-api-servicebus/trigger-3.png)
 
-At this point, your logic app has been configured with a trigger that will begin a run of the other triggers and actions in the workflow when a new item is  received in the queue you selected.    
+此時，邏輯應用程式已設有觸發程序，該觸發程序會在您選取的佇列中收到新項目時，開始執行工作流程中的其他觸發程序和動作。
+
+<!---HONumber=AcomDC_0727_2016-->

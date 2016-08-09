@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="06/28/2016"
+   ms.date="07/25/2016"
    ms.author="jgao"/>
 
 # 在 HDInsight 中設定 HBase 地理複寫
@@ -248,7 +248,7 @@ Azure 傳統入口網站不支援使用自訂組態選項佈建 HDInsight 叢集
 
 範例資料檔案已利用下列 URL 上傳到公用的 Azure Blob 容器：
 
-		wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
+		wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
 
 檔案內容：
 
@@ -273,7 +273,7 @@ Azure 傳統入口網站不支援使用自訂組態選項佈建 HDInsight 叢集
 
 4. 上傳資料：
 
-		hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:HomePhone, Office:Address" -Dimporttsv.bulk.output=/tmpOutput Contacts wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
+		hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:HomePhone, Office:Address" -Dimporttsv.bulk.output=/tmpOutput Contacts wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
 
 		hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /tmpOutput Contacts
 
@@ -314,4 +314,4 @@ Azure 傳統入口網站不支援使用自訂組態選項佈建 HDInsight 叢集
 [hdinsight-hbase-overview]: hdinsight-hbase-overview.md
 [hdinsight-hbase-provision-vnet]: hdinsight-hbase-provision-vnet.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

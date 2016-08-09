@@ -3,7 +3,7 @@
 	description="如何設定 WinRM 存取來搭配使用 Azure Resource Manager 虛擬機器"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="singhkay"
+	authors="rothja"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>

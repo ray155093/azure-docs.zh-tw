@@ -1,5 +1,5 @@
 <properties
-   pageTitle="在 Logic Apps 中使用 BizTalk JSON 編碼器連接器 | Microsoft Azure App Service"
+   pageTitle="在 Logic Apps 中使用 BizTalk JSON 編碼器連接器 | Microsoft Azure App Service "
    description="如何建立並設定 BizTalk JSON 編碼器連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
    services="app-service\logic"
    documentationCenter=".net,nodejs,java"
@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -72,4 +72,4 @@ BizTalk JSON 編碼器解碼器連接器協助您的應用程式在 JSON 和 XML
 <!--Links -->
 [建立邏輯應用程式]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

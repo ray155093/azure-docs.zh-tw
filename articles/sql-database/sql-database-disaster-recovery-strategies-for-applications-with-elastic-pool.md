@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="sqldb-bcdr" 
-   ms.date="06/16/2016"
+   ms.workload="NA" 
+   ms.date="07/16/2016"
    ms.author="sashan"/>
 
 # 使用 SQL Database 彈性集區之應用程式的災害復原策略 
@@ -165,9 +165,9 @@
 ## 後續步驟
 
 - 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

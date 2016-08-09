@@ -79,7 +79,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在生產環境程式碼中，您應該如 MSDN 文章[暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
 
-## 從應用程式後端傳送雲端到裝置訊息
+## 傳送雲端到裝置訊息
 
 在本節中，您會撰寫 Windows 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。
 
@@ -198,4 +198,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

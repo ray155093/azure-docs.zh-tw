@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/29/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # 使用 REST API 開始使用 Azure Data Lake Store
@@ -43,7 +43,7 @@
 	* **針對非互動式驗證** - 在 Azure Active Directory 中，您必須建立 **Web 應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
 		- 取得應用程式的**用戶端識別碼**、**用戶端密碼**和**重新導向 URI**
 		- 設定委派權限
-		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。 
+		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。
 
 	如需有關如何擷取這些值、設定權限和指派角色的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。
 
@@ -276,4 +276,4 @@
 - [與 Azure Data Lake Store 相容的開放原始碼巨量資料應用程式](data-lake-store-compatible-oss-other-applications.md)
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

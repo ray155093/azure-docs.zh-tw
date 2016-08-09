@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/12/2016"
+   ms.date="07/25/2016"
    ms.author="larryfr"/>
 
 #從遠端桌面連線執行 Pig 工作
@@ -49,7 +49,7 @@
 
 3. 輸入下列陳述式：
 
-		LOGS = LOAD 'wasb:///example/data/sample.log';
+		LOGS = LOAD 'wasbs:///example/data/sample.log';
 
 	此命令會將 sample.log 檔案的內容載入至 LOGS 檔案。您可以使用下列命令檢視檔案的內容：
 
@@ -83,7 +83,7 @@
 
 6. 您也可以使用 `STORE` 陳述式儲存轉換結果。例如，下列命令會將 `RESULT` 儲存到叢集之預設儲存體容器中的 **/example/data/pigout** 目錄：
 
-		STORE RESULT into 'wasb:///example/data/pigout'
+		STORE RESULT into 'wasbs:///example/data/pigout'
 
 	> [AZURE.NOTE] 資料會儲存到所指定目錄中名為 **part-nnnnn** 的檔案中。如果目錄已經存在，則會收到錯誤訊息。
 
@@ -99,7 +99,7 @@
 
 4. 在 **pigbatch.pig** 檔案中輸入或貼上下列數行，然後予以儲存：
 
-		LOGS = LOAD 'wasb:///example/data/sample.log';
+		LOGS = LOAD 'wasbs:///example/data/sample.log';
 		LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 		FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
 		GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
@@ -136,4 +136,4 @@
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

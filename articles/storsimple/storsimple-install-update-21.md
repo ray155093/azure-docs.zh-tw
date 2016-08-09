@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="07/18/2016"
+   ms.date="07/21/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 2.2
@@ -80,13 +80,13 @@ Hotfix 方法涉及下列三個步驟：
 **如果您裝置執行的是 Update 2.1**，您必須只下載 KB3179904 裝置軟體更新。請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。
 
 
-#### 下載適用於執行 Update 2 或 2.1 軟體之裝置的更新
+#### 下載適用於執行 Update 2 軟體的裝置的更新
 
 **如果您裝置執行的是 Update 2**，您就必須以指定的順序下載並安裝下列 Hotfix：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 1\. | KB3179954 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
+| 1\. | KB3179904 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
 | 2\. | KB3146621 | iSCSI 封裝 | 定期 | ~ 20 分鐘 |
 | 3\. | KB3103616 | WMI 封裝 | 定期 | ~ 12 分鐘 |
 
@@ -136,4 +136,4 @@ Hotfix 方法涉及下列三個步驟：
 
 深入了解 [Update 2.1 版](storsimple-update21-release-notes.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -14,8 +14,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/28/2016"
-   ms.author="erihur"/>
+   ms.date="07/21/2016"
+   ms.author="erihur;genli"/>
 
 
 # 了解 Microsoft Azure 帳單
@@ -210,14 +210,14 @@ SKU | SKU | 識別每個 Azure 資源的唯一系統識別碼。
 服務 | 已耗用的服務 | 您可以利用這個資料行來追蹤可能無法在名稱資料行中特別識別的個別 Azure 平台服務。此服務資料行會指出與使用有關的特定服務。
 N/A | 資源群組 | _**新增資料行。**_ 部署的資源正在其中執行的資源群組。請參閱 http://azure.microsoft.com/documentation/articles/resource-group-overview/
 元件 | 執行個體識別碼 | 執行中資源的識別碼。識別碼包含在建立時為資源指定的名稱。
-N/A | 標記 | _**新增資料行。**_ Azure 中的新資源類型可讓您標記資源。請參閱 http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/
+N/A | 標籤 | _**新增資料行。**_ Azure 中的新資源類型可讓您標記資源。請參閱 http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/
 其他資訊 | 其他資訊 | 關於服務的其他中繼資料。
 服務資訊 1 | 服務資訊 1 | 此資料行會提供服務在訂用帳戶上所屬的專案名稱。
 服務資訊 2 | 服務資訊 2 | 這是舊版欄位，可擷取選擇性服務的特定中繼資料。
 
 除了一些新欄位和 csv 第 2 版的名稱變更之外，下列欄位中還有標準化的資料格式化：
 
-- **執行個體識別碼**：執行個體識別碼欄位表示使用者已指定佈建服務的識別碼。目前，有兩種格式可呈現執行個體識別碼：就是資源的名稱或完整的資源識別碼。Microsoft Azure 服務正在轉換，以代表標準化完整資源識別碼格式的執行個體識別碼 _**(/subscriptions/<subscription id>/resourcegroups/<resourcegroupname>/providers/<providername>/<resourcename>)**_。當服務轉換成新的格式，您會看到執行個體識別碼資料欄位從只有資源名稱變更為資源識別碼。資源識別碼是 [Azure 資源管理員 API](https://msdn.microsoft.com/library/azure/dn790567.aspx) 用來在訂用帳戶中識別資源的格式。
+- **執行個體識別碼**：執行個體識別碼欄位表示使用者已指定佈建服務的識別碼。目前，有兩種格式可呈現執行個體識別碼：就是資源的名稱或完整的資源識別碼。Microsoft Azure 服務正將執行個體識別碼轉換為以標準化完整資源識別碼格式的方式呈現 _**(/subscriptions/<subscription id>/resourcegroups/<resourcegroupname>/providers/<providername>/<resourcename>)**_。當服務轉換成新的格式，您會看到執行個體識別碼資料欄位從只有資源名稱變更為資源識別碼。資源識別碼是 [Azure 資源管理員 API](https://msdn.microsoft.com/library/azure/dn790567.aspx) 用來在訂用帳戶中識別資源的格式。
 
 ![instanceid](./media/billing-understand-your-bill/instanceid.png)
 
@@ -225,7 +225,7 @@ N/A | 標記 | _**新增資料行。**_ Azure 中的新資源類型可讓您標�
 
 ![additionalinfo\_csv2](./media/billing-understand-your-bill/AdditionaInfo_csv2.png)
 
-- **標記**：此資料行包含使用者指定的資源標記。標記可用來分組計費記錄。例如，您可以使用標記，根據使用服務的部門散發成本。深入了解[使用標記來組織 Azure 資源](./resource-group-using-tags.md)。支援發出標記的服務如下：  
+- **標籤**：此資料行包含使用者指定的資源標籤。標籤可用來分組計費記錄。例如，您可以使用標籤，根據使用服務的部門散發成本。深入了解[使用標籤來組織 Azure 資源](./resource-group-using-tags.md)。支援發出標籤的服務如下：
     - 虛擬機器
     - 儲存體和
     - 使用 [Azure 資源管理員 API](https://msdn.microsoft.com/library/azure/dn790567.aspx) 佈建的網路服務
@@ -253,4 +253,4 @@ OLD MSDN Articles
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

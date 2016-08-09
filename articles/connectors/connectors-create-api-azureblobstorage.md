@@ -9,16 +9,18 @@
     tags="connectors"/>
 
 <tags
-   ms.service="multiple"
+   ms.service="logic-apps"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="07/18/2016"
+   ms.workload="integration" 
+   ms.date="07/25/2016"
    ms.author="mandia"/>
 
 # 開始使用 Azure Blob 儲存體連接器
 Azure Blob 儲存體是用來儲存大量非結構化資料的服務。請在 Azure Blob 儲存體中執行上傳、更新、取得和刪除 Blob 等各種動作。
+
+您可以利用 Azure Blob 儲存體來：
 
 - 上傳新專案或取得最近更新的檔案以建置工作流程。
 - 使用動作來取得檔案中繼資料、刪除檔案、複製檔案和進行其他作業。例如，當 Azure 網站中的工具更新時 (觸發程序)，則更新 Blob 儲存體中的檔案 (動作)。
@@ -27,40 +29,19 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。請在 Az
 
 >[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
-從[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
-
->[AZURE.INCLUDE [若要開始，您需要：](../../includes/connectors-create-api-azureblobstorage.md)]
-
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 連線至 Azure Blob 儲存體
 
-在邏輯應用程式可以存取任何服務之前，您必須先建立與服務的「連線」。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線至 Dropbox，您必須先建立 Dropbox「連線」。若要建立連線，您需要輸入平常用來存取所連線服務的認證。因此，在 Dropbox 範例中，請輸入 Dropbox 認證，以建立與 Dropbox 的連線。
-
-當您在邏輯應用程式中新增此連接器時，就會建立與 Blob 儲存體帳戶的連線。第一次新增此連接器時，系統會提示您輸入連線資訊︰
-
-![](./media/connectors-create-api-azureblobstorage/connection-details.png)
-
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線至儲存體帳戶，您得先建立 Blob 儲存體連線。若要建立連線，請輸入平常用來存取所連線服務的認證。因此，請在 Azure 儲存體中，輸入儲存體帳戶的認證以建立連線。
 
 #### 建立連線
 
-1. 輸入儲存體帳戶詳細資料。具有星號的屬性為必要項目。
-
-	| 屬性 | 詳細資料 |
-|---|---|
-| 連線名稱 * | 為連接器輸入任何名稱。 |
-| Azure 儲存體帳戶名稱 * | 輸入儲存體帳戶名稱。儲存體帳戶名稱會顯示在 Azure 入口網站的儲存體屬性中。 |
-| Azure 儲存體帳戶存取金鑰 * | 輸入儲存體帳戶金鑰。存取金鑰會顯示在 Azure 入口網站的儲存體屬性中。 |
-
-	這些認證會用來授權邏輯應用程式連線並存取資料。完成後，連線詳細資料看起來類似下圖︰
-
-	![Azure Blob 連線建立步驟](./media/connectors-create-api-azureblobstorage/sample-connection.png)
-
-2. 選取 [**建立**]。
-
+>[AZURE.INCLUDE [建立至 Azure Blob 儲存體的連線](../../includes/connectors-create-api-azureblobstorage.md)]
  
 ## 使用觸發程序
 
-此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，包括循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
+此連接器並沒有任何觸發程序。請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)可提供範例。
 
 ## 使用動作
 	
@@ -70,13 +51,13 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。請在 Az
 
 	![](./media/connectors-create-api-azureblobstorage/add-action.png)
 
-2. 選取 [新增動作]。
+2. 選擇 [新增動作]。
 
 3. 在文字方塊中，輸入「blob」以取得所有可用動作的清單。
 
 	![](./media/connectors-create-api-azureblobstorage/actions.png)
 
-4. 在我們的範例中，選擇 [AzureBlob - 使用路徑取得檔案中繼資料]。如果連線已存在，則選取 [...] \(顯示選擇器) 按鈕以選取檔案。
+4. 在我們的範例中，選擇 [AzureBlob - 使用路徑取得檔案中繼資料]。如果連線已存在，請選取 [...] (顯示選擇器) 按鈕來選取檔案。
 
 	![](./media/connectors-create-api-azureblobstorage/sample-file.png)
 
@@ -90,7 +71,7 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。請在 Az
 
 ## 技術詳細資料
 
-## 動作
+## 儲存體 Blob 動作
 
 |動作|說明|
 |--- | ---|
@@ -328,4 +309,4 @@ BlobMetadata
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

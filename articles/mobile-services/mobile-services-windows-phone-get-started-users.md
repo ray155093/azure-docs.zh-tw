@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="01/25/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 在您的行動服務應用程式中新增驗證
@@ -82,4 +82,4 @@ Nick Harris 也在下列這段影片中示範了本教學課程：
 [將行動服務新增至現有的應用程式]: mobile-services-windows-phone-get-started-data.md
 [Authorize users with scripts]: ../mobile-services-windows-phone-authorize-users-in-scripts.md
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

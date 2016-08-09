@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：常見問題集 | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：常見問題集 | Microsoft Azure"
 	description="關於 Azure Active Directory B2C 的常見問題集"
 	services="active-directory-b2c"
 	documentationCenter=""
@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="07/22/2016"
 	ms.author="swkrish"/>
 
-# Azure Active Directory B2C 預覽：常見問題集
+# Azure Active Directory B2C：常見問題集
 
-此頁面會回答有關 Azure Active Directory (Azure AD) B2C 預覽的常見問題。請隨時回來查看最新消息。
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
+此頁面會回答有關 Azure Active Directory (Azure AD) B2C 的常見問題。請隨時回來查看最新消息。
 
 ### 我可以在以員工為主的現有 Azure AD 租用戶中使用 Azure AD B2C 功能嗎？
 
@@ -56,7 +54,7 @@ Azure AD B2C 無法與 Microsoft Office 365 一起使用。一般而言，它不
 
 ### 我有多個 Azure AD B2C 租用戶。如何在 Azure 入口網站上管理它們？
 
-在 Azure 入口網站上，每一個 Azure AD B2C 租用戶都有自己的 B2C 功能刀鋒視窗。請參閱 [Azure Active Directory B2C 預覽：註冊您的應用程式](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)，以了解您如何在 Azure 入口網站上瀏覽至特定租用戶的 B2C 功能刀鋒視窗。在大部分的瀏覽器中，當您在 Azure 入口網站的 Azure AD B2C 目錄之間切換時，B2C 功能刀鋒視窗不會持續開啟。
+在 Azure 入口網站上，每一個 Azure AD B2C 租用戶都有自己的 B2C 功能刀鋒視窗。請參閱 [Azure Active Directory B2C：註冊您的應用程式](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)，以了解您如何在 Azure 入口網站上瀏覽至特定租用戶的 B2C 功能刀鋒視窗。在大部分的瀏覽器中，當您在 Azure 入口網站的 Azure AD B2C 目錄之間切換時，B2C 功能刀鋒視窗不會持續開啟。
 
 ### 我如何自訂 Azure AD B2C 傳送的驗證電子郵件 (內容和 [寄件者:] 欄位)？
 
@@ -68,7 +66,7 @@ Azure AD B2C 無法與 Microsoft Office 365 一起使用。一般而言，它不
 
 ### Azure AD B2C 中用於本機帳戶的密碼原則為何？
 
-Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azure AD B2C 使用「強式」密碼強度，而且不會讓任何密碼到期。如需詳細資訊，請閱讀 [Azure AD 中的密碼原則](https://msdn.microsoft.com/library/azure/jj943764.aspx)。
+Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azure AD B2C 的註冊、註冊或登入和密碼重設原則會使用「強式」密碼強度，而且不會讓任何密碼到期。如需詳細資訊，請閱讀 [Azure AD 中的密碼原則](https://msdn.microsoft.com/library/azure/jj943764.aspx)。
 
 ### 我可以使用 Azure AD Connect，將儲存於內部部署 Active Directory 的取用者身分識別移轉至 Azure AD B2C 嗎？
 
@@ -122,12 +120,8 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 請參閱[提出 Azure Active Directory B2C 的支援要求](active-directory-b2c-support.md)。
 
-### Azure AD B2C 將於何時正式運作？
-
-我們目前無法提供正式運作日期的任何資訊。
-
 ## 詳細資訊
 
-您也可能想要檢閱目前的[預覽限制和條件約束](active-directory-b2c-limitations.md)。
+您也可能想要檢閱目前的[服務限制和條件約束](active-directory-b2c-limitations.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

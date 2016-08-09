@@ -3,7 +3,7 @@
 	description="如何設定要與 Azure Resource Manager 虛擬機器搭配使用的金鑰保存庫。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="singhkay"
+	authors="rothja"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>

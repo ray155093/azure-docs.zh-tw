@@ -98,11 +98,11 @@ HDInsight 則是使用 Azure Blob 儲存體當做預設存放區，這麼做有�
 
 	hadoop fs -ls /example/data
 
-有些命令可能需要您指定您使用的是 Blob 儲存體。對於這些命令，您可以為其加上前置詞 **WASB://**。
+有些命令可能需要您指定您使用的是 Blob 儲存體。對於這些命令，您可以為其加上前置詞 **wasb://** 或 **wasbs://**。
 
-HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要存取非預設 Blob 儲存體帳戶上的資料，您可以使用下列格式：**WASB://&lt;container-name>@&lt;account-name>.blob.core.windows.net/**。例如，以下命令會列出指定容器和 Blob 儲存體帳戶之 **/example/data** 目錄的內容：
+HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要存取非預設 Blob 儲存體帳戶上的資料，您可以使用下列格式：**wasbs://&lt;container-name>@&lt;account-name>.blob.core.windows.net/**。例如，以下命令會列出指定容器和 Blob 儲存體帳戶之 **/example/data** 目錄的內容：
 
-	hadoop fs -ls wasb://mycontainer@mystorage.blob.core.windows.net/example/data
+	hadoop fs -ls wasbs://mycontainer@mystorage.blob.core.windows.net/example/data
 
 ### 叢集所使用的 Blob 儲存體為何？
 
@@ -116,7 +116,7 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要�
 
     這會傳回值類似下列的值，其中 __CONTAINER__ 為預設容器和 __ACCOUNTNAME__ 是 Azure 儲存體帳戶名稱：
 
-        wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net
+        wasbs://CONTAINER@ACCOUNTNAME.blob.core.windows.net
 
 1. 使用 [Azure CLI](../xplat-cli-install.md) 取得儲存體帳戶的資源群組。在下列命令中，將 __ACCOUNTNAME__ 取代為從 Ambari 擷取的儲存體帳戶名稱：
 
@@ -206,7 +206,7 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要�
 
 	* __Storm UI__︰使用下列步驟來重新平衡使用 Storm UI 的拓撲。
 
-		1. 在您的網頁瀏覽器中開啟 \_\___https://CLUSTERNAME.azurehdinsight.net/stormui__，其中 CLUSTERNAME 是您的 Storm 叢集的名稱。出現提示時，輸入建立叢集時所指定的 HDInsight 叢集系統管理員 (管理員) 名稱和密碼。
+		1. 在您的網頁瀏覽器中開啟 \_\_https://CLUSTERNAME.azurehdinsight.net/stormui__，其中 CLUSTERNAME 是 Storm 叢集的名稱。出現提示時，輸入建立叢集時所指定的 HDInsight 叢集系統管理員 (管理員) 名稱和密碼。
 
 		3. 選取您要重新平衡的拓撲，然後選取 [重新平衡] 按鈕。在執行重新平衡作業之前輸入延遲。
 
@@ -257,4 +257,4 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

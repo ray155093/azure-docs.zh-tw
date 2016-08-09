@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：從 Android 應用程式呼叫 Web API | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：從 Android 應用程式呼叫 Web API | Microsoft Azure"
 	description="本文將示範如何建立 Android「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。Android 應用程式與 Web API 會使用 Azure Active Directory B2C，來管理使用者身分識別並驗證使用者。"
 	services="active-directory-b2c"
 	documentationCenter="android"
@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="07/22/2016"
 	ms.author="brandwe"/>
 
-# Azure AD B2C 預覽：從 Android 應用程式呼叫 Web API
+# Azure AD B2C：從 Android 應用程式呼叫 Web API
+
+> [AZURE.WARNING] 本教學課程需要一些重要更新，其具體目的是為了避免使用 ADAL Android for B2C。我們將於下週發佈在 Android 應用程式中使用 Azure AD B2C 的全新指示，建議您在此之前先等一下。但如果您只是想進行某些試驗，則大可放心地繼續閱讀以下文章。
+
+
 
 Azure Active Directory (Azure AD) B2C 可讓您在 Android 應用程式和 Web API 中加入強大的自助式身分識別管理功能，只要幾個簡短步驟即可完成。本文將示範如何建立 Android「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。Android 應用程式與 Web API 將會使用 Azure AD B2C 來管理使用者身分識別與驗證使用者。
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
 
 此快速啟動會要求您必須擁有受 Azure AD (含 B2C) 保護的 Web API，才可完整運作。我們已經為 .NET 與 Node.js 建立一個 Web API 供您使用。本逐步解說假設已設定 Node.js Web API 範例。如需詳細資訊，請參閱 [Azure AD B2C Web API for Node.js 教學課程](active-directory-b2c-devquickstarts-api-node.md)。
 
@@ -34,13 +36,13 @@ Azure Active Directory (Azure AD) B2C 可讓您在 Android 應用程式和 Web A
 
 ## 取得 Azure AD B2C 目錄
 
-您必須先建立目錄或租用戶，才可使用 Azure AD B2C。目錄是適用於所有使用者、app、群組等項目的容器。如果您還沒有此項目，請先[建立 B2C 目錄](active-directory-b2c-get-started.md)，再繼續進行本指南。
+您必須先建立目錄或租用戶，才可使用 Azure AD B2C。目錄是適用於所有使用者、app、群組等項目的容器。如果您還沒有此資源，請先[建立 B2C 目錄](active-directory-b2c-get-started.md)，再繼續進行本指南。
 
 ## 建立應用程式
 
 接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。在此案例中，因為應用程式與 Web API 會組成一個邏輯應用程式，所以將由單一**應用程式識別碼**代表。如果要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
 
-- 在應用程式中加入 **Web 應用程式/Web API**。
+- 在應用程式中加入 **Web 應用程式**/**Web API**。
 - 在 [回覆 URL] 中輸入 `urn:ietf:wg:oauth:2.0:oob`。這是此程式碼範例的預設 URL。
 - 為您的應用程式建立 [應用程式密碼]，然後複製該密碼。稍後您將會用到此資訊。請注意，在您使用這個值之前，必須先讓該值經過 [XML 逸出](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape)。
 - 將指派給您的應用程式的**應用程式識別碼**複製起來。稍後您也會需要此資訊。
@@ -954,9 +956,7 @@ Android 需要您處理某些回呼來操作應用程式。這些回呼是 `crea
 
 為供您參考，我們提供 [.zip 檔案格式](https://github.com/AzureADQuickStarts/B2C-NativeClient-Android/archive/complete.zip)的完整範例。您也可以從 Github 複製它：
 
-```
-git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-Android
-```
+```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-NativeClient-Android```
 
 
 ## 重要資訊
@@ -977,4 +977,4 @@ CookieSyncManager.getInstance().sync();
 ```
 [深入了解 Cookie](http://developer.android.com/reference/android/webkit/CookieSyncManager.html)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

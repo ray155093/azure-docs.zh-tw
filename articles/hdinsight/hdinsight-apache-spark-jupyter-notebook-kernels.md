@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="07/25/2016" 
 	ms.author="nitinme"/>
 
 
@@ -36,7 +36,7 @@
 
 ## 核心要如何使用？ 
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
+1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
 
 2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結] ，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
 
@@ -74,14 +74,14 @@
 
 	下表列出可透過核心提供的不同 magic。
 
-	| magic | 範例 | 說明 |
+	| Magic | 範例 | 說明 |
 	|-----------|---------------------------------|--------------|
-	| 說明 | `%%help` | 產生所有可用 magic 的表格，其中包含範例與說明 |
+	| help | `%%help` | 產生所有可用 magic 的表格，其中包含範例與說明 |
 	| info | `%%info` | 輸出目前 Livy 端點的工作階段資訊 |
-	| 設定 | `%%configure -f`<br>`{"executorMemory": "1000M"`,<br>`"executorCores": 4`} | 設定用來建立工作階段的參數。如果已建立工作階段，而且將會卸除並重新建立該工作階段，則 force 旗標 (-f) 是必要的。如需有效參數的清單，請查看 [Livy 的 POST /sessions 要求本文](https://github.com/cloudera/livy#request-body)。參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。 |
+	| configure | `%%configure -f`<br>`{"executorMemory": "1000M"`,<br>`"executorCores": 4`} | 設定用來建立工作階段的參數。如果已建立工作階段，而且將會卸除並重新建立該工作階段，則 force 旗標 (-f) 是必要的。如需有效參數的清單，請查看 [Livy 的 POST /sessions 要求本文](https://github.com/cloudera/livy#request-body)。參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。 |
 	| sql | `%%sql -o <variable name>`<br> `SHOW TABLES` | 針對 sqlContext 執行 Hive 查詢。如果傳遞 `-o` 參數，則查詢的結果會當做 [Pandas](http://pandas.pydata.org/) 資料框架，保存在 %%local Python 內容中。 |
 	| local | `%%local`<br>`a=1` | 接下來幾行的所有程式碼將會在本機執行。程式碼必須是有效的 Python 程式碼。 |
-	| 記錄檔 | `%%logs` | 輸出目前 Livy 工作階段的記錄檔。 |
+	| logs | `%%logs` | 輸出目前 Livy 工作階段的記錄檔。 |
 	| delete | `%%delete -f -s <session number>` | 刪除目前 Livy 端點的特定工作階段。請注意，您無法刪除針對核心本身起始的工作階段。 |
 	| cleanup | `%%cleanup -f` | 刪除目前 Livy 端點的所有工作階段，包括此 Notebook 的工作階段。force 旗標 -f 是必要的。 |
 
@@ -94,10 +94,10 @@
 | 參數 | 範例 | 說明 |
 |-----------|---------------------------------|--------------|
 | -o | `-o <VARIABLE NAME>` | 使用此參數在 %%local Python 內容中保存查詢的結果，作為 [Pandas](http://pandas.pydata.org/) 資料框架。資料框架變數的名稱是您指定的變數名稱。 |
-| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想要自動視覺化儲存格的內容，而且只想要擷取它作為資料框架，請使用 `-q -o <VARIABLE>`。如果您想要關閉視覺效果，而不擷取結果 (例如，執行有副作用的 SQL 查詢，例如 `CREATE TABLE` 陳述式)，只需使用 `-q` 而不指定 `-o` 引數。 |
-| -m | `-m <METHOD>` | 其中 **METHOD** 是 **take** 或 **sample** (預設值是 **take**)。如果方法是 **take**，核心會從 MAXROWS 所指定之結果資料集頂端挑選項目 (如此表稍後所述)。如果方法是 **sample**，核心會根據 `-r` 參數隨機取樣資料集的項目，如此表稍後所述。 |
-| -r | `-r <FRACTION>` | 在這裡，**FRACTION** 是介於 0.0 到 1.0 之間的浮點數。如果 SQL 查詢的範例方法是 `sample`，則核心會隨機取樣為您指定的結果集項目分數；例如，如果您使用引數 `-m sample -r 0.01` 執行 SQL 查詢，則會隨機取樣結果資料列的 1%。 |
-| -n | `-n <MAXROWS>` | **MAXROWS** 是整數值。核心會將輸出資料列的數目限制為 **MAXROWS**。如果 **MAXROWS** 是負數，例如 **-1**，在結果集中的資料列數目不會受到限制。 |
+| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想要自動視覺化儲存格的內容，而且只想要擷取它作為資料框架，請使用 `-q -o <VARIABLE>`。如果您想要關閉視覺效果，而不擷取結果 (例如，若要執行有副作用的 SQL 查詢，例如 `CREATE TABLE` 陳述式)，請只使用 `-q`，不要指定 `-o` 引數。 |
+| -m | `-m <METHOD>` | 其中 **METHOD** 是 **take** 或 **sample** (預設值是 **take**)。如果方法是 **take**，核心會從 MAXROWS 指定的結果資料集頂端挑選項目 (如此表稍後所述)。如果方法是 **sample**，核心會根據 `-r` 參數隨機取樣資料集的項目，如此表稍後所述。 |
+| -r | `-r <FRACTION>` | 在這裡，**FRACTION** 是介於 0.0 到 1.0 之間的浮點數。如果 SQL 查詢的取樣方法是 `sample`，則核心會隨機取樣為您指定的結果集項目分數；例如，如果您使用引數 `-m sample -r 0.01` 執行 SQL 查詢，則會隨機取樣結果資料列的 1%。 |
+| -n | `-n <MAXROWS>` | **MAXROWS** 是整數值。核心會將輸出資料列的數目限制為 **MAXROWS**。如果 **MAXROWS** 是負數 (例如 **-1**)，結果集中的資料列數目就不會受到限制。 |
 
 **範例：**
 
@@ -108,8 +108,8 @@
 
 * 從 **hivesampletable** 選取所有記錄。
 * 因為我們使用 -q，所以它會關閉自動視覺效果。
-* 由於我們使用 `-m sample -r 0.1 -n 500`，它會隨機取樣 hivesampletable 中資料列的 10%，並將結果集的大小限制為 500 個資料列。
-* 最後，因為我們使用 `-o query2`，它也會將輸出儲存成名為 **query2** 的資料框架。
+* 因為我們使用 `-m sample -r 0.1 -n 500`，所以它會隨機取樣 hivesampletable 中資料列的 10%，並將結果集的大小限制為 500 個資料列。
+* 最後，因為我們使用 `-o query2`，所以它也會將輸出儲存成名為 **query2** 的資料框架。
 	
 
 ## 使用新核心的考量
@@ -128,7 +128,7 @@
 
 ## Notebook 會儲存在哪裡？
 
-Jupyter notebook 會儲存到 **/HdiNotebooks** 資料夾下與叢集相關聯的儲存體帳戶。您從 Jupyter 內部建立的 Notebook、文字檔案和資料夾將可從 WASB 存取。例如，如果您使用 Jupyter 建立資料夾 **myfolder** 和 Notebook **myfolder/mynotebook.ipynb**，您可以在 `wasb:///HdiNotebooks/myfolder/mynotebook.ipynb` 存取該 Notebook。反之亦然，也就是說，如果您直接將 Notebook 上傳至您在 `/HdiNotebooks/mynotebook1.ipynb` 的儲存體帳戶，Notebook 也會從 Jupyter 顯示。即使在刪除叢集之後，Notebook 仍會保留在儲存體帳戶中。
+Jupyter 筆記本會儲存到 **/HdiNotebooks** 資料夾下與叢集相關聯的儲存體帳戶。您從 Jupyter 內部建立的 Notebook、文字檔案和資料夾將可從 WASB 存取。例如，如果您使用 Jupyter 建立資料夾 **myfolder** 和 Notebook **myfolder/mynotebook.ipynb**，您可以在 `wasbs:///HdiNotebooks/myfolder/mynotebook.ipynb` 存取該 Notebook。反之亦然，也就是說，如果您直接將 Notebook 上傳至您在 `/HdiNotebooks/mynotebook1.ipynb` 的儲存體帳戶，Notebook 也會從 Jupyter 顯示。即使在刪除叢集之後，Notebook 仍會保留在儲存體帳戶中。
 
 將 Notebook 儲存到儲存體帳戶的方式與 HDFS 相容。因此，如果對叢集執行 SSH，您可以使用檔案管理命令，如下所示︰
 
@@ -137,7 +137,7 @@ Jupyter notebook 會儲存到 **/HdiNotebooks** 資料夾下與叢集相關聯�
 	hdfs dfs –copyFromLocal example.ipynb /HdiNotebooks   # Upload a notebook example.ipynb to the root folder so it’s visible from Jupyter
 
 
-萬一叢集有存取儲存體帳戶的問題，Notebook 也會儲存在前端節點 `/var/lib/jupyter` 上。
+萬一叢集有儲存體帳戶存取問題，Notebook 也會儲存在前端節點 `/var/lib/jupyter` 上。
 
 ## 支援的瀏覽器
 Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Notebook。
@@ -188,4 +188,4 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

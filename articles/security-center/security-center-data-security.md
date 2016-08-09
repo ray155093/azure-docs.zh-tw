@@ -36,9 +36,9 @@ Azure 資訊安全中心會分析下列來源的資料︰
 ## 資料保護
 **資料隔離**：資料會以邏輯方式分開保存在服務的每個元件上。每個組織加上標記的所有資料。這項標記作業在整個資料生命週期持續發生，它會強制執行服務的每個層級。此外，從您的虛擬機器收集的資料會儲存在您的儲存體帳戶中。
 
-**資料存取**︰為了提供安全性建議及調查潛在的安全性威脅，Microsoft 人員可以存取 Azure 服務所收集或分析的資訊，包括損毀傾印檔案。損毀傾印檔案和程序建立事件可能無意中包含客戶資料或您的虛擬機器中的個人資料。我們會遵守 [Microsoft Online Services Terms](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31) 和[隱私權聲明](https://www.microsoft.com/privacystatement/zh-TW/OnlineServices/Default.aspx)，其中陳述 Microsoft 不會使用客戶資料或從中衍生資訊作為任何廣告或類似的商業用途。我們會視需要只使用客戶資料為您提供 Azure 服務，包括與提供這些服務相容的用途。您可保有客戶資料的所有權限。
+**資料存取**︰為了提供安全性建議及調查潛在的安全性威脅，Microsoft 人員可以存取 Azure 服務所收集或分析的資訊，包括損毀傾印檔案。損毀傾印檔案和程序建立事件可能無意中包含客戶資料或您的虛擬機器中的個人資料。我們會遵守 [Microsoft Online Services Terms](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31) 和[隱私權聲明](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx)，其中陳述 Microsoft 不會使用客戶資料或從中衍生資訊作為任何廣告或類似的商業用途。我們會視需要只使用客戶資料為您提供 Azure 服務，包括與提供這些服務相容的用途。您可保有客戶資料的所有權限。
 
-**資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/zh-TW/OnlineServices/Default.aspx)中所述的隱私權承諾來這麼做。
+**資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx)中所述的隱私權承諾來這麼做。
 
 **資料位置**︰針對執行虛擬機器的每個地區指定儲存體帳戶。這可讓您將資料儲存在與從中收集資料的虛擬機器相同的區域中。此資料 (包括損毀傾印檔案) 將會持續儲存在儲存體帳戶中。服務也會在 Azure 資訊安全中心的儲存體中儲存有關安全性警示 (包括來自整合式合作夥伴解決方案的警示)、建議和安全性健康狀態的資訊 (目前位於美國)。
 
@@ -57,11 +57,11 @@ Azure 監視代理程式也會將損毀傾印檔案複製到儲存體帳戶。Az
 
 在本文件中，您已了解如何在 Azure 資訊安全中心管理和保護資料。若要深入了解 Azure 資訊安全中心，請參閱：
 
-- [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
-- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) – 了解如何監視 Azure 資源的健康狀態
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀態。
-- [Azure 安全性中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
+- [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) — 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

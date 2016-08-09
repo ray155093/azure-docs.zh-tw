@@ -8,7 +8,7 @@
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -70,7 +70,7 @@ forEach 迴圈會指定要用來重複執行某動作的陣列。如果它不是
 
 除了設計工具以外，您也可以直接編輯定義邏輯應用程式的程式碼，如下所示。
 
-1. 按一下命令列中的 [程式碼檢視] 按鈕。 
+1. 按一下命令列中的 [程式碼檢視] 按鈕。
 
 	這會開啟一個完整的編輯器，顯示您剛建立的定義。
 
@@ -112,4 +112,4 @@ Logic Apps 的某些功能只能在程式碼檢視中使用。例如，參數就
 <!-- Shared links -->
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0727_2016-->

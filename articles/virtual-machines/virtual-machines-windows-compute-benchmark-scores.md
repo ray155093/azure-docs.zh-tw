@@ -68,4 +68,4 @@ Windows 數字是藉由在 Windows Server 上執行 [SPECint 2006](https://www.s
 
 * 如需儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

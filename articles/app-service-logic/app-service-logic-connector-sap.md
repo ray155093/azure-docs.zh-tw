@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -54,9 +54,9 @@
 
 ## 設定剛建立的 SAP 連接器 API 應用程式 ##
 
-透過 [瀏覽] -> [API 應用程式] -> [<Name of the API App just created>] 瀏覽到剛建立的 API 應用程式，您將會看到下列行為。因為尚未建立混合式連線，所以安裝未完成：![][2]
+透過 [瀏覽] -> [API Apps] -> <剛建立的 API Apps 名稱> 瀏覽到剛建立的 API 應用程式，您將會看到下列行為。因為尚未建立混合式連線，所以安裝未完成：![][2]
 
-SAP 連接器需要混合式連線才能連接到*任何* SAP 端點。若要建置混合式連線，請執行下列作業：
+SAP 連接器需要混合式連線才能連接到「任何」SAP 端點。若要建置混合式連線，請執行下列作業：
 
 1. 複製主要連接字串
 2. 按一下 [下載及設定] 連結
@@ -84,7 +84,7 @@ SAP 連接器需要混合式連線才能連接到*任何* SAP 端點。若要建
 ## 進一步運用您的連接器
 現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -99,4 +99,4 @@ SAP 連接器需要混合式連線才能連接到*任何* SAP 端點。若要建
 [6]: ./media/app-service-logic-connector-sap/LogicApp2.jpg
 [7]: ./media/app-service-logic-connector-sap/LogicApp3.jpg
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

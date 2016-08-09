@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 <tags
 	ms.service="active-directory"
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="07/20/2016"
 	ms.author="markusvi;andkjell"/>
 
 
@@ -31,14 +31,14 @@
 
 密碼同步處理可透過將使用者需要維護的密碼數目減少到只剩一個，協助您︰
 
-- 提升使用者的生產力 
-- 減少技術服務相關成本  
+- 提升使用者的生產力
+- 減少技術服務相關成本
 
 此外，如果您選擇使用[**與 AD FS 同盟**](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Configuring-AD-FS-for-user-sign-in-with-Azure-AD-Connect)，則可以選擇性地啟用密碼同步處理，做為 AD FS 基礎結構失敗時的備用方式。
 
 密碼同步處理是 Azure AD Connect 同步處理實作的目錄同步作業功能的延伸。若要在環境中使用密碼同步處理，您需要︰
 
-- 安裝 Azure AD Connect。  
+- 安裝 Azure AD Connect。
 
 - 設定您的內部部署 AD 與 Azure Active Directory 之間的目錄同步作業
 
@@ -129,8 +129,8 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 1. 移至 **%programfiles%\\Azure AD Sync\\Bin**。
 2. 開啟 **miiserver.exe.config**。
-2. 移至 **configuration/runtime** 節點 (位於檔案結尾)。 
-3. 新增下列節點︰**<enforceFIPSPolicy enabled="false"/>** 
+2. 移至 **configuration/runtime** 節點 (位於檔案結尾)。
+3. 新增下列節點︰**<enforceFIPSPolicy enabled="false"/>**
 4. 儲存您的變更。
 
 如需安全性和 FIPS 的詳細資訊，請參閱 [AAD 密碼同步、加密和 FIPS 法規遵循](http://blogs.technet.com/b/ad/archive/2014/06/28/aad-password-sync-encryption-and-and-fips-compliance.aspx)
@@ -201,4 +201,4 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/22/2016"
+	ms.date="07/23/2016"
 	ms.author="juliako"/>
 
 
@@ -53,7 +53,9 @@
 
 - 如果使用共用的集區，也就是沒有任何保留單元，則編碼工作將會和 S1 RU 有相同的效能。不過，您的工作在已排入佇列的狀態下可以花費的時間沒有上限，而且在任何時候，最多只會執行一個工作。
 
-- 下列資料中心不提供 **S3** 保留單元類型：巴西南部、印度西部、印度中部、印度南部。
+- 下列資料中心不提供 **S2** 保留單元類型：巴西南部、印度西部、印度中部、印度南部。
+
+- 下列資料中心不提供 **S3** 保留單元類型：巴西南部、印度西部、印度中部。
 
 - 計算成本時會使用 24 小時內指定的最大單元數。
 
@@ -91,4 +93,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

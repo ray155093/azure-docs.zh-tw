@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 
@@ -103,7 +103,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。預
 3.  **log4j 記錄檔的位置**。欄位分隔符號為 ","。預設的行分隔符號為 "\\n"。Hive 外部資料表可讓您在需要執行 Oozie 工作流程多次時，避免資料檔案從原始位置遭到移除。
 3. **INSERT OVERWRITE 陳述式**可從 log4j Hive 資料表中計算每個記錄層級類型的出現次數，並將輸出儲存至 Azure Blob 儲存體的位置。
 
-**注意**：Hive 路徑有已知問題。此問題會在您提交 Oozie 工作時發生。如需修正此問題的指示，請參閱 TechNet Wiki：[HDInsight Hive 錯誤：無法重新命名][technetwiki-hive-error] \(英文)。
+**注意**：Hive 路徑有已知問題。此問題會在您提交 Oozie 工作時發生。如需修正此問題的指示，請參閱 TechNet Wiki：[HDInsight Hive 錯誤：無法重新命名][technetwiki-hive-error] (英文)。
 
 **定義要由工作流程呼叫的 HiveQL 指令碼檔案**
 
@@ -191,7 +191,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。預
 	<table border = "1">
 	<tr><th>工作流程變數</th><th>說明</th></tr>
 	<tr><td>${jobTracker}</td><td>指定 Hadoop 工作追蹤器的 URL。請在 HDInsight 叢集 3.0 和 2.0 版上使用 <strong>jobtrackerhost:9010</strong>。</td></tr>
-	<tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。使用預設檔案系統 wasb:// 位址，例如 <i>wasb://&lt;containerName>@&lt;storageAccountName>.blob.core.windows.net</i>。</td></tr>
+	<tr><td>${nameNode}</td><td>指定 Hadoop 名稱節點的 URL。使用預設檔案系統 wasbs:// 位址，例如 <i>wasbs://&lt;容器名稱>@&lt;儲存體帳戶名稱>.blob.core.windows.net</i>。</td></tr>
 	<tr><td>${queueName}</td><td>指定要將工作提交過去的佇列名稱。請使用 [預設值]<strong></strong>。</td></tr>
 	</table>
 
@@ -211,7 +211,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。預
 	<tr><td>${hiveOutputFolder}</td><td>Hive INSERT OVERWRITE 陳述式的輸出資料夾。這是 Sqoop 匯出 (export-dir) 的相同資料夾。</td></tr>
 	</table>
 
-	如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 叢集 2.1 版)。
+	如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 叢集 2.1 版)。
 
 2. 使用 ANSI (ASCII) 編碼將檔案另存為 **C:\\Tutorials\\UseOozie\\workflow.xml**(如果您的文字編輯器沒有此選項，請使用「記事本」)。
 
@@ -243,15 +243,15 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。預
 
 您將執行 Azure PowerShell 指令碼，以執行下列作業：
 
-- 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure 儲存體 wasb:///tutorials/useoozie/useoozie.hql。
-- 將 workflow.xml 複製到 wasb:///tutorials/useoozie/workflow.xml。
-- 將 coordinator.xml 複製到 wasb:///tutorials/useoozie/coordinator.xml。
-- 將資料檔 (/example/data/sample.log) 複製到 wasb:///tutorials/useoozie/data/sample.log。
+- 將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure 儲存體 wasbs:///tutorials/useoozie/useoozie.hql。
+- 將 workflow.xml 複製到 wasbs:///tutorials/useoozie/workflow.xml。
+- 將 coordinator.xml 複製到 wasbs:///tutorials/useoozie/coordinator.xml。
+- 將資料檔 (/example/data/sample.log) 複製到 wasbs:///tutorials/useoozie/data/sample.log。
 - 建立用於儲存 Sqoop 匯出資料的 Azure SQL Database 資料表。資料表名稱為 *log4jLogCount*。
 
 **了解 HDInsight 儲存體**
 
-HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob 儲存體中 Hadoop 分散式檔案系統 (HDFS) 的 Microsoft 實作。如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
+HDInsight 使用 Azure Blob 儲存體來儲存資料。wasbs:// 是 Azure Blob 儲存體中 Hadoop 分散式檔案系統 (HDFS) 的 Microsoft 實作。如需詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
 
 當您佈建 HDInsight 叢集時，會將一個 Azure Blob 儲存體帳戶及該帳戶下的特定 Blob 容器指定為預設檔案系統，如同在 HDFS 中一般。除了此儲存體帳戶之外，您也可以在佈建過程中，從相同的 Azure 訂用帳戶或不同 Azure 訂用帳戶新增其他儲存體帳戶。如需關於新增其他儲存體帳戶的指示，請參閱[佈建 HDInsight 叢集][hdinsight-provision]。為簡化本教學課程中使用的 PowerShell 指令碼，所有檔案都會儲存在位於 */tutorials/useoozie* 的預設檔案系統容器中。根據預設，此容器的名稱會與 HDInsight 叢集名稱相同。語法為：
 
@@ -263,8 +263,8 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob �
 
 您可以使用下列任一 URI (我使用 workflow.xml 做為範例)，從 HDInsight 存取儲存在預設檔案系統容器中的檔案：
 
-	wasb://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/workflow.xml
-	wasb:///tutorials/useoozie/workflow.xml
+	wasbs://mycontainer@mystorageaccount.blob.core.windows.net/tutorials/useoozie/workflow.xml
+	wasbs:///tutorials/useoozie/workflow.xml
 	/tutorials/useoozie/workflow.xml
 
 如果您要直接從儲存體帳戶存取檔案，檔案的Blob 名稱為：
@@ -281,7 +281,7 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob �
 - CREATE EXTERNAL TABLE 命令不會移動資料檔案。
 - CREATE EXTERNAL TABLE 命令不允許在 LOCATION 子句中指定的資料夾下放置任何子資料夾。因此，此教學課程複製了 sample.log 檔案。
 
-如需詳細資訊，請參閱 [HDInsight：Hive 內部和外部資料表簡介][cindygross-hive-tables] \(英文)。
+如需詳細資訊，請參閱 [HDInsight：Hive 內部和外部資料表簡介][cindygross-hive-tables] (英文)。
 
 **教學課程前置工作**
 
@@ -378,7 +378,7 @@ HDInsight 使用 Azure Blob 儲存體來儲存資料。wasb:// 是 Azure Blob �
 
 ##執行 Oozie 專案
 
-Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。您可以使用 **Invoke-RestMethod** Cmdlet 來叫用 Oozie Web 服務。Oozie Web 服務 API 是 HTTP REST JSON API。如需關於 Oozie Web 服務 API 的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 叢集 2.1 版)。
+Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。您可以使用 **Invoke-RestMethod** Cmdlet 來叫用 Oozie Web 服務。Oozie Web 服務 API 是 HTTP REST JSON API。如需關於 Oozie Web 服務 API 的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 叢集 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 叢集 2.1 版)。
 
 **提交 Oozie 工作**
 
@@ -394,7 +394,7 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。�
 		#Azure Blob storage (WASB) variables
 		$storageAccountName = "<StorageAccountName>"
 		$storageContainerName = "<BlobContainerName>"
-		$storageUri="wasb://$storageContainerName@$storageAccountName.blob.core.windows.net"
+		$storageUri="wasbs://$storageContainerName@$storageAccountName.blob.core.windows.net"
 
 		#Azure SQL database variables
 		$sqlDatabaseServer = "<SQLDatabaseServerName>"
@@ -740,4 +740,4 @@ Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

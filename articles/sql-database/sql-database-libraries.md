@@ -24,10 +24,10 @@
 | 語言 | 平台 | 其他資源 | 下載 |
 | :-- | :-- | :-- | :-- |
 | ADO.NET | Windows、Linux、Mac | [使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md) | [下載](https://msdn.microsoft.com/vstudio/aa496123.aspx) |
-| Java | Windows | [在 Windows 上搭配 JDBC 使用 Java 連接到 SQL Database](sql-database-develop-java-simple-windows.md) | [下載](http://go.microsoft.com/fwlink/?LinkId=245496) |
+| Java | Windows、Linux、Mac | [在 Windows 上搭配 JDBC 使用 Java 連接到 SQL Database](sql-database-develop-java-simple-windows.md) | [下載](http://go.microsoft.com/fwlink/?LinkId=245496) |
 | PHP | Windows | [在 Windows 上使用 PHP 連接到 SQL Database](sql-database-develop-php-simple-windows.md) | [下載](https://www.microsoft.com/download/details.aspx?id=20098) |
 | Node.js | Windows、Linux、Mac | [使用 Node.js 連接到 SQL Database](sql-database-develop-nodejs-simple.md) | [安裝](https://msdn.microsoft.com/library/mt652094.aspx) |
 | Python | Windows、Linux、Mac | [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md) | [安裝](https://msdn.microsoft.com/library/mt694094.aspx) |
 | Ruby | Windows、Linux、Mac | [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md) | [安裝](https://msdn.microsoft.com/library/mt711041.aspx) |
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

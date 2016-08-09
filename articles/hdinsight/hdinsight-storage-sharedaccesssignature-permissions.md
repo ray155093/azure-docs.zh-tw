@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="07/05/2016"
+ms.date="07/25/2016"
 ms.author="larryfr"/>
 
 #使用 Azure 儲存體共用存取簽章來限制使用 HDInsight 對資料的存取
@@ -226,25 +226,25 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。HDInsight 必須具�
 
 1. 在提示字元中輸入下列內容。將 __SASCONTAINER__ 取代為針對 SAS 儲存體帳戶建立的容器名稱。將 __SASACCOUNTNAME__ 取代為用於 SAS 的儲存體帳戶名稱：
 
-        hdfs dfs -ls wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/
+        hdfs dfs -ls wasbs://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/
     
     這會列出容器的內容，其中應包含建立容器和 SAS 時已上傳的檔案。
     
 2. 使用下列命令以確認您可以讀取檔案的內容。如同前一個步驟取代 __SASCONTAINER__ 和 __SASACCOUNTNAME__。將 __FILENAME__ 取代為前一個命令中顯示的名稱：
 
-        hdfs dfs -text wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME
+        hdfs dfs -text wasbs://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME
         
     這樣會列出檔案的內容。
     
 3. 使用以下命令將檔案下載到本機檔案系統：
 
-        hdfs dfs -get wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME testfile.txt
+        hdfs dfs -get wasbs://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/FILENAME testfile.txt
     
     這樣會將檔案下載到本機檔案，名為 __testfile.txt__。
 
 4. 使用以下命令將本機檔案上傳至 SAS 儲存體上的新檔案，名為 __testupload.txt__：
 
-        hdfs dfs -put testfile.txt wasb://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/testupload.txt
+        hdfs dfs -put testfile.txt wasbs://SASCONTAINER@SASACCOUNTNAME.blob.core.windows.net/testupload.txt
     
     您將收到類似以下的訊息：
     
@@ -252,7 +252,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。HDInsight 必須具�
         
     因為儲存體位置僅限讀取+列出，所以會發生此錯誤。使用下列命令將資料放在叢集的預設儲存體，它是可寫入的：
     
-        hdfs dfs -put testfile.txt wasb:///testupload.txt
+        hdfs dfs -put testfile.txt wasbs:///testupload.txt
         
     此時，作業應該已順利完成。
     
@@ -290,4 +290,4 @@ __解決方案__：使用符合下列準則的密碼：
 
 [powershell]: ../powershell-install-configure.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

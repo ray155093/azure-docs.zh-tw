@@ -22,7 +22,7 @@
 
 ## 影片 2：適用於初學者的資料科學系列
 
-了解如何評估您的資料，以確定它符合適用於資料科學的基本準則。
+了解如何評估您的資料，以確定它符合進行資料科學的基本準則。
 
 若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
@@ -71,7 +71,7 @@
 
 下一個要素是連貫的資料。
 
-![連接的資料與中斷連接的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-connected-vs-disconnected-data.png)
+![連接的資料與中斷連接的資料 - 資料準則、備妥資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-connected-vs-disconnected-data.png)
 
 以下是一些關於漢堡品質的相關資料：燒烤溫度、肉餅重量，以及當地食品雜誌的評價。但請注意左邊表格中的空格。
 
@@ -119,4 +119,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

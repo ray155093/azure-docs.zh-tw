@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/20/2016" 
+	ms.date="07/20/2016" 
 	ms.author="awills"/>
 
 
@@ -22,7 +22,11 @@
 
 [分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
- 
+
+* **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
+* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
+
+
 讓我們逐步解說可讓您快速入門的一些基本查詢。
 
 ## 連接到您的 Application Insights 資料
@@ -115,7 +119,7 @@
 * `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
 * `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
-[運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函數。
+[運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函式。
 
     
 
@@ -178,7 +182,7 @@
 
 ## [Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
 
-`Summarize` 會對資料列群組套用指定的「彙總函數」。
+`Summarize` 會對資料列群組套用指定的「彙總函式」。
 
 例如，Web 應用程式回應要求所花的時間會在 `duration` 欄位中報告。我們來看看所有要求的平均回應時間︰
 
@@ -195,7 +199,7 @@
 
 ![](./media/app-insights-analytics-tour/430.png)
 
-請注意我們如何使用 `bin` 函數 (也稱為 `floor`)。如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函數) 是最簡單的作業方式。
+請注意我們如何使用 `bin` 函式 (也稱為 `floor`)。如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函式) 是最簡單的作業方式。
 
 我們可以使用相同的技巧來減少字串的範圍︰
 
@@ -220,7 +224,7 @@
 另外還有 `count()` 彙總 (以及計數運算)，適用於您確實想要計算群組中的資料列數目的情況。
 
 
-目前提供一系列的[彙總函數](app-insights-analytics-reference.md#aggregations)。
+目前提供一系列的[彙總函式](app-insights-analytics-reference.md#aggregations)。
 
 
 ## 製作結果圖表
@@ -470,6 +474,9 @@
 > 秘訣︰在分析用戶端中，不要在這些部分之間放入空白行。務必執行所有一切。
 
 
+* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
+
+
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

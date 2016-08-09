@@ -319,7 +319,7 @@ ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](
 
 ### 取得使用者 Azure AD 中的應用程式服務主體的 ObjectId
 
-現在，使用僅限應用程式存取權杖來查詢 [Azure AD Graph 服務主體](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#ServicePrincipalEntity) API，以判斷目錄中應用程式的服務主體的物件識別碼。
+現在，使用僅限應用程式存取權杖來查詢 [Azure AD Graph 服務主體](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) API，以判斷目錄中應用程式的服務主體的物件識別碼。
 
 ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganiation](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs#L66) 方法會實作這個呼叫。
 
@@ -444,4 +444,4 @@ ASP.net MVC 範例應用程式的 [RevokeRoleFromServicePrincipalOnSubscription 
 
 好了，使用者現在能使用您的應用程式來輕鬆連接及管理其 Azure 訂用帳戶。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

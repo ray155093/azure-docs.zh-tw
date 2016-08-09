@@ -4,7 +4,7 @@
    services="backup"
    documentationCenter=""
    authors="genlin"
-   manager="markgal"
+   manager="jimpark"
    editor=""/>
 
 <tags
@@ -30,6 +30,8 @@
 在開始對問題進行疑難排解之前，建議您下載並安裝[最新版的 Azure 備份代理程式](http://aka.ms/azurebackup_agent)。我們會經常更新備份代理程式，以修正各種問題、新增功能和改善效能。
 
 我們也強烈建議您檢閱 [Azure 備份服務常見問題集](backup-azure-backup-faq.md)，以確定所遇到的問題並非任何常見的組態問題。
+
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 疑難排解步驟
 <a id="cause1"></a>
@@ -93,4 +95,4 @@ a.**UI 會顯示資料傳輸量進度** - 在此情況下，資料仍在傳輸�
 
 b.**UI 未顯示進度** - 在此情況下，請開啟位於 “C:\\Microsoft Azure Recovery Services Agent\\Temp” 的記錄檔，然後檢查記錄檔中的 “FileProvider::EndData” 項目。此項目表示資料傳輸已完成，正在進行目錄作業。請勿取消備份作業，相反地，請再等候一下，以讓目錄作業完成。若問題持續發生，請連絡 [Azure 支援](https://portal.azure.com/#create/Microsoft.Support)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

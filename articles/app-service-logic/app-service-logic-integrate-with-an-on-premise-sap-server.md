@@ -8,7 +8,7 @@
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -49,7 +49,7 @@
 4. 在 [Marketplace] 刀鋒視窗中，選取 [API 應用程式]，並在搜尋列中搜尋 SAP：![SAP 連接器 API 應用程式][2]
 5. 選取 Microsoft 所發佈的 **SAP 連接器**。
 6. 在 [SAP 連接器] 刀鋒視窗中，選取 [**建立**]。
-7. 在開啟的新分頁中，輸入下列內容：  
+7. 在開啟的新分頁中，輸入下列內容：
 	1. **位置** - 選擇您要部署連接器的地理位置
 	2. **訂閱** - 選擇您要建立此連接器的訂閱
 	3. **資源群組** - 選取或建立連接器所在的資源群組
@@ -124,4 +124,4 @@
 [8]: ./media/app-service-logic-integrate-with-an-on-premise-SAP-server/SAPConnector.HybridConnection.Connected.PNG
 [9]: http://www.microsoft.com/download/details.aspx?id=35552
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

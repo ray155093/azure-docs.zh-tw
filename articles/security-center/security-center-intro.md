@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/19/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心簡介
 
 了解 Azure 資訊安全中心、其主要功能及運作方式。
 
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。本文件將使用範例部署來介紹服務。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。
 
 ## 什麼是 Azure 資訊安全中心？
  資訊安全中心利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
@@ -71,7 +71,7 @@
 
 > [AZURE.NOTE] 在訂用帳戶層級設定資料收集，並選擇每個區域的儲存體帳戶。
 
-選取 [防止原則] \(見上文) 以開啟 [防止原則] 刀鋒視窗。顯示建議可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
+選取 [防止原則] (見上文) 以開啟 [防止原則] 刀鋒視窗。顯示建議可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
 
 接下來，選取要加以檢視原則詳細資訊的資源群組。
 
@@ -160,4 +160,4 @@
 [8]: ./media/security-center-intro/security-alert-detail.png
 [9]: ./media/security-center-intro/partner-solutions.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0727_2016-->

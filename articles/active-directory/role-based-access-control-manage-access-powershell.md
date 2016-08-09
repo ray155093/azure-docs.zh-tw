@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="07/14/2016"
+	ms.date="07/22/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure PowerShell 管理角色型存取控制
@@ -35,35 +35,45 @@
 ## 列出角色
 
 ### 列出所有可用的角色
-若要列出可以指派的 RBAC 角色，以及若要檢查它們獲得存取權的作業，請使用：
+若要列出可以指派的 RBAC 角色，以及若要檢查它們獲得存取權的作業，請使用 `Get-AzureRmRoleDefinition`。
 
-		Get-AzureRmRoleDefinition
+```
+Get-AzureRmRoleDefinition | FT Name, Description
+```
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition1.png)
 
 ### 列出角色的動作
-若要列出特定角色的動作，請使用：
+若要列出特定角色的動作，請使用 `Get-AzureRmRoleDefinition <role name>`。
 
-    Get-AzureRmRoleDefinition <role name>
+```
+Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
+
+(Get-AzureRmRoleDefinition "Virtual Machine Contributor").Actions
+```
 
 ![RBAC PowerShell - 特定角色的 Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/1-get-azure-rm-role-definition2.png)
 
 ## 查看誰具有存取權
-若要列出 RBAC 存取權指派，請使用：
-
-    Get-AzureRmRoleAssignment
+若要列出 RBAC 存取權指派，請使用 `Get-AzureRmRoleAssignment`。
 
 ###	列出特定範圍的角色指派
-您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看資源群組的所有使用中指派，請使用︰
+您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看資源群組的所有使用中指派，請使用 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`。
 
-    Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>
+```
+Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL DisplayName, RoleDefinitionName, Scope
+```
 
 ![RBAC PowerShell - 資源群組的 Get-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
 ### 列出指派給使用者的角色
-若要列出指派給指定使用者的所有角色，包括指派給其所屬群組的角色，請使用︰
+若要列出指派給指定使用者的所有角色，包括指派給其所屬群組的角色，請使用 `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`。
 
-    Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups
+```
+Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com | FL DisplayName, RoleDefinitionName, Scope
+
+Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups | FL DisplayName, RoleDefinitionName, Scope
+```
 
 ![RBAC PowerShell - 使用者的 Get-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment2.png)
 
@@ -76,7 +86,7 @@
 ### 搜尋物件識別碼
 若要指派角色，您必須識別物件 (使用者、群組或應用程式) 和範圍。
 
-如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 [訂用帳戶] 刀鋒視窗中找到。或者，您也可以在 MSDN 中了解如何使用 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx) 加以查詢。
+如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 **[訂用帳戶]** 刀鋒視窗中找到。或者，您也可以在 MSDN 中了解如何使用 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx) 加以查詢。
 
 若要取得 Azure AD 群組的物件識別碼，請使用：
 
@@ -89,7 +99,7 @@
 ### 將角色指派給訂用帳戶範圍中的應用程式
 若要將存取權授與訂用帳戶範圍中的應用程式，請使用：
 
-    New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name in quotes> -Scope <subscription id>
+    New-AzureRmRoleAssignment -ObjectId <application id> -RoleDefinitionName <role name> -Scope <subscription id>
 
 ![RBAC PowerShell - New-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azure-rm-role-assignment2.png)
 
@@ -121,6 +131,27 @@
 
 下列範例會從「虛擬機器參與者」角色來開始，並使用它來建立稱為「虛擬機器操作者」的自訂角色。新角色會授與「Microsoft.Compute」、「Microsoft.Storage」和「Microsoft.Network」資源提供者對所有讀取作業的存取權限，以及授與啟動、重新啟動和監視虛擬機器的存取權限。自訂角色可用於兩個訂用帳戶中。
 
+```
+$role = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
+$role.Id = $null
+$role.Name = "Virtual Machine Operator"
+$role.Description = "Can monitor and restart virtual machines."
+$role.Actions.Clear()
+$role.Actions.Add("Microsoft.Storage/*/read")
+$role.Actions.Add("Microsoft.Network/*/read")
+$role.Actions.Add("Microsoft.Compute/*/read")
+$role.Actions.Add("Microsoft.Compute/virtualMachines/start/action")
+$role.Actions.Add("Microsoft.Compute/virtualMachines/restart/action")
+$role.Actions.Add("Microsoft.Authorization/*/read")
+$role.Actions.Add("Microsoft.Resources/subscriptions/resourceGroups/read")
+$role.Actions.Add("Microsoft.Insights/alertRules/*")
+$role.Actions.Add("Microsoft.Support/*")
+$role.AssignableScopes.Clear()
+$role.AssignableScopes.Add("/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e")
+$role.AssignableScopes.Add("/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624")
+New-AzureRmRoleDefinition -Role $role
+```
+
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
 ## 修改自訂角色
@@ -128,9 +159,23 @@
 
 下列範例會將 `Microsoft.Insights/diagnosticSettings/*` 作業加入到 *Virtual Machine Operator* 自訂角色。
 
+```
+$role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
+$role.Actions.Add("Microsoft.Insights/diagnosticSettings/*")
+Set-AzureRmRoleDefinition -Role $role
+```
+
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-1.png)
 
 下列範例會將 Azure 訂用帳戶加入到 Virtual Machine Operator 自訂角色的可指派範圍。
+
+```
+Get-AzureRmSubscription - SubscriptionName Production3
+
+$role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
+$role.AssignableScopes.Add("/subscriptions/34370e90-ac4a-4bf9-821f-85eeedead1a2"
+Set-AzureRmRoleDefinition -Role $role)
+```
 
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
@@ -140,12 +185,22 @@
 
 下列範例會移除 *Virtual Machine Operator* 自訂角色
 
+```
+Get-AzureRmRoleDefinition "Virtual Machine Operator"
+
+Get-AzureRmRoleDefinition "Virtual Machine Operator" | Remove-AzureRmRoleDefinition
+```
+
 ![RBAC PowerShell - Remove-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-remove-azurermroledefinition.png)
 
 ## 列出自訂角色
 若要列出範圍中可供指派的角色，請使用 `Get-AzureRmRoleDefinition` 命令。
 
 下列範例會列出選取的訂用帳戶中所有可供指派的角色。
+
+```
+Get-AzureRmRoleDefinition | FT Name, IsCustom
+```
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition-1.png)
 
@@ -157,4 +212,4 @@
 - [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

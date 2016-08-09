@@ -103,7 +103,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 在保存庫中產生註冊金鑰。下載 Azure Site Recovery 提供者並將其安裝在 VMM 伺服器之後，您將使用此金鑰在保存庫中註冊 VMM 伺服器。
 
-1. 在 [復原服務] 頁面中，按一下保存庫以開啟 [快速啟動] 頁面。您也可以使用圖示隨時開啟 [快速啟動]。
+1. 在 [復原服務] 頁面中，按一下保存庫以開啟 [快速啟動] 頁面。您也可以使用圖示隨時開啟 [快速入門]。
 
 	![快速啟動圖示](./media/site-recovery-vmm-to-azure-classic/qs-icon.png)
 
@@ -134,9 +134,13 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![InstallComplete](./media/site-recovery-vmm-to-azure-classic/install-complete.png)
 
-7. 在 [網際網路連線] 中，指定 VMM 伺服器上執行的提供者連接到網際網路的方式。選取 [Use default system proxy settings]，以使用在伺服器上設定的預設網際網路連線設定。
+9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。按 [下一步]。
 
-	![網際網路設定](./media/site-recovery-vmm-to-azure-classic/proxy.png)
+	![伺服器註冊](./media/site-recovery-vmm-to-azure-classic/vaultcred.PNG)
+
+7. 在 [網際網路連線] 中，指定 VMM 伺服器上執行的提供者連接到網際網路的方式。選取 [使用現有的 Proxy 設定連線]，以使用在伺服器上設定的預設網際網路連線設定。
+
+	![網際網路設定](./media/site-recovery-vmm-to-azure-classic/proxydetails.PNG)
 
 	- 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。當您進行自訂 proxy 設定時，會執行一項測試以檢查 proxy 連線。
 	- 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您必須輸入 proxy 詳細資料，包含 proxy 位址和連接埠。
@@ -146,26 +150,23 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 		- *.backup.windowsazure.com
 		- *.blob.core.windows.net
 		- *.store.core.windows.net
-- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您也應該將打算使用以及美國西部之 Azure 區域的 IP 範圍設為白名單。
-
+	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
 
+
 8. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
-9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。
 
-	![伺服器註冊](./media/site-recovery-vmm-to-azure-classic/credentials.png)
 
-10. 您可以指定一個位置來儲存自動為資料加密產生的 SSL 憑證。如果您在 Site Recovery 部署期間針對 VMM 雲端啟用資料加密，則會使用此憑證。請保護此憑證的安全。當您執行至 Azure 的容錯移轉時，您將選取它來將加密的資料解密。
+10.  只有在您正在將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，才會使用這項加密設定。如果您是在複寫至次要站台，則不會使用它。
 
-	![伺服器註冊](./media/site-recovery-vmm-to-azure-classic/encryption.png)
+11.  在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。在叢集設定中，指定 VMM 叢集角色名稱。
+12.  在 [同步處理雲端中繼資料] 中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
 
-11. 在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。在叢集設定中，指定 VMM 叢集角色名稱。
+13.  按 [下一步]，完成此程序。註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
+ 	
+	![Lastpage](./media/site-recovery-vmm-to-azure-classic/provider13.PNG)
 
-12. 在 [初始雲端中繼資料同步] 中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
-
-	![伺服器註冊](./media/site-recovery-vmm-to-azure-classic/friendly.png)
-
-13. 按 [下一步]，完成此程序。註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
+註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
 
 ### 命令列安裝
 
@@ -189,13 +190,13 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 參數如下所示：
 
- - **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置  
+ - **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置
  - **/FriendlyName**：對於 Hyper-V 主機伺服器名稱的必要參數，該伺服器會出現在 Azure Site Recovery 入口網站中。
  - **/EncryptionEnabled**：選擇性參數，指定您是否要在 Azure 中加密您的虛擬機器 (靜態加密)。檔名應該有 **.pfx** 副檔名。
  - **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
  - **/proxyport**：指定 Proxy 伺服器連接埠的選用參數。
  - **/proxyUsername**：選擇性參數，指定 Proxy 使用者名稱。
- - **/proxyPassword**：選擇性參數，指定 Proxy 密碼。  
+ - **/proxyPassword**：選擇性參數，指定 Proxy 密碼。
 
 
 ## 步驟 4：建立 Azure 儲存體帳戶
@@ -284,7 +285,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![啟用虛擬機器保護](./media/site-recovery-vmm-to-azure-classic/select-vm.png)
 
-	您可以在 [作業] 索引標籤中追蹤 [啟用保護] 動作的進度，包括初始複寫。執行 [完成保護] 作業之後，虛擬機器即準備好進行容錯移轉。啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
+	您可以在 [工作] 索引標籤中追蹤 [啟用保護] 動作的進度，包括初始複寫。執行 [完成保護] 作業之後，虛擬機器即準備好進行容錯移轉。啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
 
 
 	![虛擬機器保護工作](./media/site-recovery-vmm-to-azure-classic/vm-jobs.png)
@@ -304,11 +305,11 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	- 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
 	- 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
-	- 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。 	
+	- 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
 
 - **目標虛擬機器的網路** - 虛擬機器連接的網路取決於來源虛擬機器網路的網路對應。如果來源虛擬機器有一個以上的網路介面卡，且來源網路對應至目標上的不同網路，則您必須選擇其中一個目標網路。
 - **每個網路介面卡的子網路** - 針對每個網路介面卡，您可以選取容錯移轉的虛擬機器會連接的子網路。
-- **目標 IP 位址** - 如果來源虛擬機器的網路介面卡是設定為使用靜態 IP 位址，則您可以提供目標虛擬機器的 IP 位址。使用此功能，在容錯移轉之後保留來源虛擬機器的 IP 位址。如果未提供任何 IP 位址，在容錯移轉時會將任何可用的 IP 位址提供給網路介面卡。如果已指定目標 IP 位址，但是已由在 Azure 中執行的另一個虛擬機器使用，則容錯移轉將會失敗。  
+- **目標 IP 位址** - 如果來源虛擬機器的網路介面卡是設定為使用靜態 IP 位址，則您可以提供目標虛擬機器的 IP 位址。使用此功能，在容錯移轉之後保留來源虛擬機器的 IP 位址。如果未提供任何 IP 位址，在容錯移轉時會將任何可用的 IP 位址提供給網路介面卡。如果已指定目標 IP 位址，但是已由在 Azure 中執行的另一個虛擬機器使用，則容錯移轉將會失敗。
 
 	![修改網路屬性](./media/site-recovery-vmm-to-azure-classic/multi-nic.png)
 
@@ -323,7 +324,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 - 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。
 - 容錯移轉之後，您將透過遠端桌面使用公用 IP 位址連接到 Azure 中的虛擬機器。如果想要這樣做，請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。
 
->[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。Linux 代理程式可在[這裡](https://github.com/Azure/WALinuxAgent)找到，而 Windows 代理程式可在 [這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到。
+>[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。您可以在[這裡](https://github.com/Azure/WALinuxAgent)找到 Linux 代理程式，而 Windows 代理程式則可在[這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到
 
 ### 建立復原計畫
 
@@ -331,7 +332,10 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![建立復原計畫](./media/site-recovery-vmm-to-azure-classic/recovery-plan1.png)
 
-2. 在 [選取虛擬機器] 頁面上，選取要新增到復原方案的虛擬機器。這些虛擬機器將新增到復原計畫的預設群組—群組 1。最多 100 部虛擬機器已在單一復原計畫中經過測試。
+2. 在 [選取虛擬機器] 頁面上，選取要新增到復原方案的虛擬機器。這些虛擬機器將新增到復原計畫的預設群組 — 群組
+3. 
+4. 
+5. 1. 最多 100 部虛擬機器已在單一復原計畫中經過測試。
 
 	- 如果您將虛擬機器屬性加入計畫之前，想要確認這些屬性，請按一下屬性所在之雲端的屬性頁面上的虛擬機器。您也可以在 VMM 主控台中設定虛擬機器屬性。
 	- 顯示的所有虛擬機器已啟用保護。此清單包含啟用保護並已完成初始複寫的虛擬機器，以及利用初始複寫擱置啟用保護的虛擬機器。只有已完成初始複寫的虛擬機器可做為復原計畫的一部分進行容錯移轉。
@@ -377,4 +381,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 深入了解[設定復原方案](site-recovery-create-recovery-plans.md)和[容錯移轉](site-recovery-failover.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

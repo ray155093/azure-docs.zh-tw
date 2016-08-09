@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.workload="mobile"
-	ms.date="03/18/2016"
+	ms.date="07/21/2016"
 	ms.author="wesmc"/>
 
 # 將推播通知新增至 Xamarin.Forms 應用程式
@@ -857,4 +857,4 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [Xamarin.Forms Azure 推播通知入門範例]: https://github.com/Azure/mobile-services-samples/tree/master/TodoListXamarinForms
 [完整的 Xamarin.Forms Azure 推播通知範例]: https://github.com/Azure/mobile-services-samples/tree/master/GettingStartedWithPushXamarinForms
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

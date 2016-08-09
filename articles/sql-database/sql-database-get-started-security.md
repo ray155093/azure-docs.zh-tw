@@ -4,7 +4,7 @@
 	keywords=""
 	services="sql-database"
 	documentationCenter=""
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor=""/>
 
@@ -50,4 +50,4 @@
 ## 後續步驟
 您現在已完成本 SQL Database 教學課程，而且建立使用者帳戶並授予 dbo 權限，即可開始深入了解 [SQL Database 安全性](sql-database-manage-logins.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="11/11/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 
@@ -174,7 +174,7 @@
 * [將推播通知新增至您的應用程式](mobile-services-javascript-backend-windows-phone-get-started-push.md) 
   <br/>了解如何使用行動服務將非常基本的推播通知傳送到應用程式。
 
-* [行動服務 C# 做法概念性參考](mobile-services-windows-dotnet-how-to-use-client-library.md) 
+* [行動服務 C# 做法概念性參考](mobile-services-dotnet-how-to-use-client-library.md) 
   <br/>深入了解如何搭配 .NET使用行動服務。
 
 <!-- Anchors. -->
@@ -199,4 +199,4 @@
 [Developer Code Samples site]: http://go.microsoft.com/fwlink/p/?LinkId=271146
 [開發人員程式碼範例網站]: http://go.microsoft.com/fwlink/p/?LinkId=271146
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

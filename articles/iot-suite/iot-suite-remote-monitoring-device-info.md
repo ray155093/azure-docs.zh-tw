@@ -91,7 +91,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 
 ## 裝置資訊訊息處理
 
-裝置所傳送的裝置資訊訊息與遙測訊息不同，其中包含裝置屬性、裝置可以回應的命令和任何命令歷程記錄等資訊。IoT 中樞本身不知道裝置資訊訊息中內含的中繼資料，它會以處理任何裝置對雲端訊息的相同方式處理訊息。在遠端監視方案中，[Azure 串流分析][lnk-stream-analytics] \(ASA) 作業會讀取來自 IoT 中樞的訊息。**DeviceInfo** 串流分析作業會篩選包含 **"ObjectType":"DeviceInfo"** 的訊息，並將這些訊息轉送至在 Web 作業中執行的 **EventProcessorHost** 主機執行個體。**EventProcessorHost** 執行個體中的邏輯會使用裝置識別碼來尋找特定裝置的 DocumentDB 記錄及更新記錄。裝置登錄記錄現在包含裝置屬性、命令和命令歷程記錄等資訊。
+裝置所傳送的裝置資訊訊息與遙測訊息不同，其中包含裝置屬性、裝置可以回應的命令和任何命令歷程記錄等資訊。IoT 中樞本身不知道裝置資訊訊息中內含的中繼資料，它會以處理任何裝置對雲端訊息的相同方式處理訊息。在遠端監視方案中，[Azure 串流分析][lnk-stream-analytics] (ASA) 作業會讀取來自 IoT 中樞的訊息。**DeviceInfo** 串流分析作業會篩選包含 **"ObjectType":"DeviceInfo"** 的訊息，並將這些訊息轉送至在 Web 作業中執行的 **EventProcessorHost** 主機執行個體。**EventProcessorHost** 執行個體中的邏輯會使用裝置識別碼來尋找特定裝置的 DocumentDB 記錄及更新記錄。裝置登錄記錄現在包含裝置屬性、命令和命令歷程記錄等資訊。
 
 > [AZURE.NOTE] 裝置資訊訊息是標準的裝置對雲端訊息。方案會使用 ASA 查詢，以區分裝置資訊訊息與遙測訊息。
 
@@ -260,9 +260,13 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 
 ## 後續步驟
 
-若要深入了解如何從自訂裝置傳送裝置資訊訊息，請參閱[將裝置連接至遠端監視預先設定方案][lnk-connect-custom]。
+現在您已完成了解如何自訂預先設定的解決方案，您可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
 
-若要深入了解如何自訂預先設定的方案，請參閱[自訂預先設定的方案][lnk-customize]。
+- [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
+- [IoT 套件的常見問題集][lnk-faq]
+- [從頭建立 IoT 安全性][lnk-security-groundup]
+
+
 
 <!-- Images and links -->
 [img-device-list]: media/iot-suite-remote-monitoring-device-info/image1.png
@@ -273,10 +277,12 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 [lnk-identity-registry]: ../iot-hub/iot-hub-devguide.md#device-identity-registry
 [lnk-docdb]: https://azure.microsoft.com/documentation/services/documentdb/
 [lnk-ref-arch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
-[lnk-connect-custom]: iot-suite-connecting-devices.md
-[lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-dm-preview]: ../iot-hub/iot-hub-device-management-overview.md
 [lnk-dynamic-telemetry]: iot-suite-dynamic-telemetry.md
 
-<!---HONumber=AcomDC_0720_2016-->
+[lnk-predictive-overview]: iot-suite-predictive-overview.md
+[lnk-faq]: iot-suite-faq.md
+[lnk-security-groundup]: securing-iot-ground-up.md
+
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="02/07/2016"
+	ms.date="07/21/2016"
 	ms.author="christopheranderson"/>
 
 # 發生災害時回復行動服務
@@ -114,4 +114,4 @@
 [Azure 服務儀表板]: http://www.windowsazure.com/support/service-dashboard/
 [使用 Azure CLI 來自動化行動服務]: http://www.windowsazure.com/develop/mobile/tutorials/command-line-administration/
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0727_2016-->

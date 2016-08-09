@@ -15,7 +15,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="07/27/2016"
 	ms.author="jeffstok"
 />
 
@@ -119,7 +119,7 @@
 2.  執行中串流分析作業容許的延遲 (和 Machine Learning Web 服務要求的批次大小)
 3.  佈建的串流分析 SU 和 Machine Learning Web 服務要求數目 (額外的函式相關成本)
 
-以完全分割的串流分析查詢為例。如果需要更複雜的查詢，[Azure 串流分析論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics)是可向串流分析小組取得其他協助的絕佳資源。
+以完全分割的串流分析查詢為例。如果需要更複雜的查詢，[Azure Stream Analytics forum (Azure 串流分析論壇)](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics) 是可向串流分析小組取得其他協助的絕佳資源。
 
 ## 後續步驟
 
@@ -130,4 +130,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

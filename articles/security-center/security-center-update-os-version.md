@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/11/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心的更新作業系統版本
 
 對於雲端服務中的虛擬機器 (VM)，如果有更新的版本可用，則 Azure 資訊安全中心會建議更新作業系統 (OS)。只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。
 
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
 ## 實作建議
 
@@ -28,7 +28,7 @@
 
 2. [更新作業系統版本] 刀鋒視窗隨即開啟。遵循此刀鋒視窗中的步驟來更新作業系統版本。
 
-## 後續步驟
+## 另請參閱
 
 本文說明了如何實作資訊安全中心建議的「更新作業系統版本」。 若要深入了解雲端服務和更新雲端服務的作業系統版本，請參閱：
 
@@ -49,4 +49,4 @@
 <!--Image references-->
 [1]: ./media/security-center-update-os-version/update-os-version.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

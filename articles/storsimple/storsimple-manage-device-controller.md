@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/25/2016"
+   ms.date="07/26/2016"
    ms.author="alkohli" />
 
 # 管理 StorSimple 裝置控制器
@@ -140,6 +140,8 @@
 
 ## 將裝置重設為出廠預設設定。
 
+> [AZURE.IMPORTANT] 如果您需要將裝置重設為原廠預設設定，請聯絡 Microsoft 支援服務。以下所述的程序，應只用於搭配 Microsoft 支援服務時使用。
+
 此程序描述如何將 Microsoft Azure StorSimple 裝置重設為使用 Windows PowerShell for StorSimple 的出廠預設設定。根據預設，重設裝置會從整個叢集移除所有資料和設定。
 
 執行下列步驟來將 Microsoft Azure StorSimple 裝置重設為出廠預設設定：
@@ -154,7 +156,7 @@
 
 	`Reset-HcsFactoryDefault`
 
-    若要改為重設一個控制器，請使用 [Reset-hcsfactorydefault](http://technet.microsoft.com/library/dn688132.aspx) Cmdlet 搭配 `-scope` 參數。)
+    若要改為重設單一控制站，請使用 [Reset-HcsFactoryDefault](http://technet.microsoft.com/library/dn688132.aspx) Cmdlet 搭配 `-scope` 參數。)
 
     系統會重新啟動多次。重設成功完成時，系統將會通知您。根據系統模型，8100 裝置可能需要 45-60 分鐘來完成此程序，而 8600 需要 60-90 分鐘。
 
@@ -213,4 +215,4 @@
 
 - 若要深入了解使用 StorSimple Manager 的方式，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

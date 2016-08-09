@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/05/2016" 
+	ms.date="07/25/2016" 
 	ms.author="larryfr"/>
 
 #在 HDInsight 上使用 Hadoop 分析航班延誤資料
@@ -236,9 +236,9 @@
 
 3. 使用以下命令，將資料從 hivesampletable 匯出至 mobiledata 資料表：
 
-		sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir 'wasb:///tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
+		sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir 'wasbs:///tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
 
-	這會指示 Sqoop 連接到 SQL Database、連接到包含 delays 資料表的資料庫，並將資料從 wasb:///tutorials/flightdelays/output (我們稍早儲存 Hive 查詢輸出的位置) 匯出到 delays 資料表。
+	這會指示 Sqoop 連接到 SQL Database、連接到包含 delays 資料表的資料庫，並將資料從 wasbs:///tutorials/flightdelays/output (我們稍早儲存 Hive 查詢輸出的位置) 匯出到 delays 資料表。
 
 4. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
 
@@ -291,4 +291,4 @@
 
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

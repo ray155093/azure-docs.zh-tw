@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="search"
-   ms.date="06/01/2016"
+   ms.date="07/25/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務 REST API：版本 2015-02-28-Preview
@@ -978,6 +978,8 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
 	GET https://[service name].search.windows.net/indexes/[index name]/stats?api-version=[api-version]
     api-key: [admin key]
 
+> [AZURE.NOTE] 文件計數和儲存體大小的統計資料會每隔幾分鐘收集，不會即時收集。因此，此 API 所傳回的統計資料可能不會反映最新的索引作業所造成的變更。
+
 **要求**
 
 所有服務要求都需要使用 HTTPS。**取得索引統計資料**要求可以使用 GET 方法來建構。
@@ -1050,7 +1052,7 @@ Azure 搜尋中的建議功能是自動完成或自動完成查詢的功能，�
       "charFilters": (optional) [ "char_filter_name" ]
     }
 
-`analyzer_name`、`tokenizer_name`、`token_filter_name` 及 `char_filter_name` 必須是索引之預先定義或自訂分析器、權杖化工具、權杖篩選及字元篩選的有效名稱。若要深入了解語彙分析的程序，請參閱 [Azure 搜尋服務中的分析](https://aka.ms/azsanalysis)。
+`analyzer_name`、`tokenizer_name`、`token_filter_name` 及 `char_filter_name` 必須是索引已預先定義或自訂分析器、權杖化工具、語彙基元篩選及字元篩選器的有效名稱。若要深入了解語彙分析的程序，請參閱 [Azure 搜尋服務中的分析](https://aka.ms/azsanalysis)。
 
 **回應**
 
@@ -1196,7 +1198,7 @@ ________________________________________
       ]
     }  
 
-至少有一個項目未成功建立索引時會傳回狀態碼 207 (多狀態)。項目如果尚未編製索引，其 `status` 欄位會設定為 false。`errorMessage` 和 `statusCode` 屬性會指出發生編製索引錯誤的原因：
+至少有一個項目未成功建立索引時會傳回狀態碼 207 (多狀態)。尚未編製索引的項目，其 `status` 欄位會設定為 false。`errorMessage` 和 `statusCode` 屬性將指出發生編製索引錯誤的原因：
 
     {
       "value": [
@@ -1402,7 +1404,7 @@ ________________________________________
 `facet=[string]` (零或多個) - 要設定多面向的欄位。字串可以選擇性地包含參數，來自訂要表達為逗號分隔之 `name:value` 對組的多面向。有效參數包括：
 
 - `count` (Facet 字詞的最大數目；預設值為 10)。沒有最大值，但較高的值會導致相對應的效能損失，尤其是在多面向欄位包含大量的唯一字詞時。
-  - 例如：`facet=category,count:5` 會取得多面向結果中的前五個類別。  
+  - 例如：`facet=category,count:5` 會取得多面向結果中的前五個類別。
   - **注意**：如果 `count` 參數小於唯一字詞的數目，結果可能不正確。這是因為多面向查詢的方式會散佈於各個分區中。提高 `count` 通常會增加字詞計數的準確性，但需要付出效能代價。
 - `sort` (下列其中一個：依計數「遞減」排序的 `count`、依計數「遞增」排序的 `-count`、依值「遞增」排序的 `value`，或是依值「遞增」排序的 `-value`)
   - 例如，`facet=category,count:3,sort:count` 會在多面向結果中，依照含有每個城市名稱的文件數目的遞減排序方式，來取得前三個類別。例如，如果前三個類別是 Budget、Motel 及 Luxury，且 Budget 有 5 個點閱數、Motel 有 6 個點閱數，而 Luxury 有 4 個點閱數，則值區依序為 Motel、Budget、Luxury。
@@ -1416,7 +1418,7 @@ ________________________________________
 - `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至 `Edm.DateTimeOffset` 類型的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
   - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限
 - **注意**：`count` 和 `sort` 可以在相同面向規格中組合在一起，但它們無法與 `interval` 或 `values` 結合，而且 `interval` 和 `values` 無法組合在一起。
-- **注意**：如果未指定 `timeoffset`，日期時間上的間隔 Facet 就會根據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。 
+- **注意**：如果未指定 `timeoffset`，日期時間上的間隔 Facet 就會根據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。
 
 > [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `facets` 而不是 `facet`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 facet 運算式。
 
@@ -1436,7 +1438,7 @@ ________________________________________
 
 `scoringProfile=[string]` (選用) - 評分設定檔的名稱，可用來評估比對文件的相符分數以排序結果。
 
-`scoringParameter=[string]` (零個或零個以上) - 使用 `name-value1,value2,...` 格式來指出評分函數 (例如 `referencePointParameter`) 中所定義每個參數的值。
+`scoringParameter=[string]` (零個或零個以上) - 使用 `name-value1,value2,...` 格式來指出評分函數 (例如 `referencePointParameter`) 中每個所定義參數的值。
 
 - 舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函數，則查詢字串選項會是 `&scoringParameter=mylocation--122.2,44.8`。第一個破折號將名稱與值清單隔開，而第二個破折號是第一個值的一部分 (在此範例中的 longitude)。
 - 針對評分參數，例如可包含逗號的標籤提升，您可以使用單引號在清單中逸出任何這類值。如果值本身包含單引號，您可以使用兩個單引號加以逸出。
@@ -1968,4 +1970,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

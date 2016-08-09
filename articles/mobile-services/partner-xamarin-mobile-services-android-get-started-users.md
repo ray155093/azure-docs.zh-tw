@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="02/11/2016" 
+	ms.date="07/21/2016" 
 	ms.author="donnam"/>
 
 # 在您的行動服務應用程式中新增驗證
@@ -142,4 +142,4 @@
 [使用指令碼授權使用者]: mobile-services-javascript-backend-service-side-authorization.md
 [完成的範例專案]: http://go.microsoft.com/fwlink/p/?LinkId=331328
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -2,7 +2,7 @@
 	pageTitle="DocumentDB 中的效能等級 | Microsoft Azure" 
 	description="了解 DocumentDB 中的效能等級如何可讓您依每個集合為基礎保留輸送量。" 
 	services="documentdb" 
-	authors="johnfmacintyre" 
+	authors="mimig1" 
 	manager="jhubbard" 
 	editor="monicar" 
 	documentationCenter=""/>
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
-	ms.author="johnmac"/>
+	ms.date="07/27/2016" 
+	ms.author="mimig"/>
 
 # DocumentDB 中的效能等級
 
@@ -95,9 +95,9 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 
 建議您的應用程式使用少量的集合，除非您具有大量儲存體或輸送量的需求。確定您更加了解建立新集合的應用程式模式。您可以選擇將集合建立保留做為在您的應用程式外部處理的管理動作。同樣地，調整集合的效能等級也將變更對集合收取的小時費率。如果您的應用程式動態調整等級，您應該監控集合的效能等級。
 
-## 使用 Azure 入口網站變更效能層級
+## <a href="changing-performance-levels-using-the-azure-portal"></a>從 S1、S2、S3 變更為使用者定義的效能
 
-Azure 入口網站是您在管理集合的效能層級時的其中一個選項。請遵循下列步驟，在 Azure 入口網站中從使用預先定義的輸送量層級變更為使用使用者定義的輸送量層級。藉由使用使用者定義的輸送量層級，您可以調整輸送量以符合需求。如果您仍在使用 S1 帳戶，只須按幾下滑鼠，就可以將預設輸送量從 250 RU/s 增加至 400 RU/s。
+請遵循下列步驟，在 Azure 入口網站中從使用預先定義的輸送量層級變更為使用使用者定義的輸送量層級。藉由使用使用者定義的輸送量層級，您可以調整輸送量以符合需求。如果您仍在使用 S1 帳戶，只須按幾下滑鼠，就可以將預設輸送量從 250 RU/s 增加至 400 RU/s。
 
 如需與使用者定義的輸送量和預先定義的輸送量相關的價格變化詳細資訊，請參閱部落格文章 [DocumentDB：新價格選項的所有使用須知](https://azure.microsoft.com/blog/documentdb-use-the-new-pricing-options-on-your-existing-collections/)。
 
@@ -114,7 +114,7 @@ Azure 入口網站是您在管理集合的效能層級時的其中一個選項�
 
       ![DocumentDB 設定和 [選擇定價層] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-performance-levels/documentdb-change-performance.png)
 
-6. 回到 [設定] 刀鋒視窗中，[定價層] 已變更為 [標準]，並且 [輸送量 (RU/秒)] 方塊會顯示預設值 400。將輸送量設定為介於 400 到 10000 [要求單位](documentdb-request-units.md)/秒 (RU/秒)。頁面底部的 [價格摘要] 會自動更新以提供每月成本估計。按一下 [確定] 儲存變更。
+6. 回到 [設定] 刀鋒視窗中，[定價層] 已變更為 [標準]，並且 [輸送量 (RU/秒)] 方塊會顯示預設值 400。將輸送量設定為介於 400 到 10,000 [要求單位](documentdb-request-units.md)/秒 (RU/秒)。頁面底部的 [定價摘要] 會自動更新以提供每月成本估計。按一下 [確定] 儲存變更。
     
 	![[設定] 刀鋒視窗的螢幕擷取畫面，其中顯示可供變更輸送量值的位置](./media/documentdb-performance-levels/documentdb-change-performance-set-thoughput.png)
 
@@ -122,7 +122,7 @@ Azure 入口網站是您在管理集合的效能層級時的其中一個選項�
 
 	![[資料庫] 刀鋒視窗與修改後集合的螢幕擷取畫面](./media/documentdb-performance-levels/documentdb-change-performance-confirmation.png)
 
-如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。若要建立資料分割的集合，請參閱[建立集合](documentdb-create-collection.md)。
+如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。若要建立分割集合，請參閱[建立集合](documentdb-create-collection.md)。
 
 >[AZURE.NOTE] 變更集合的效能層級最多需要 2 分鐘。
 
@@ -162,6 +162,20 @@ Azure 入口網站是您在管理集合的效能層級時的其中一個選項�
 - [**ReplaceOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.replaceofferasync.aspx)
 - [**CreateOfferQuery**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.documentqueryable.createofferquery.aspx)
 
+## <a href="change-throughput"></a>變更集合的輸送量
+
+如果您已經在使用使用者定義的效能，您可以透過下列方式變更集合的輸送量。如果您需要從 S1、S2 或 S3 效能層級 (預先定義的效能) 變更為使用者定義的效能，請參閱 [從 S1、S2、S3 變更為使用者定義的效能](#changing-performance-levels-using-the-azure-portal)。
+
+1. 在瀏覽器中導覽至 [**Azure 入口網站**](https://portal.azure.com)。
+2. 按一下 [瀏覽] -> [DocumentDB 帳戶]，然後選取要修改的 DocumentDB 帳戶。
+3. 在 [DocumentDB 帳戶] 刀鋒視窗的 [資料庫] 功能濾鏡中選取要修改的資料庫，然後在 [資料庫] 刀鋒視窗中選取要修改的集合。
+4. 在 [集合] 刀鋒視窗中按一下頂端列上的 [設定]。
+5. 在 [設定] 刀鋒視窗中增加 [輸送量 (RU/秒)] 方塊中的值，然後再按一下 [確定] 儲存變更。刀鋒視窗底部的 [定價摘要] 就會更新，顯示該集合在單一區域新估計的每月成本。
+
+    ![[設定] 刀鋒視窗的螢幕擷取畫面，其中反白顯示 [輸送量] 方塊與 [定價摘要]](./media/documentdb-performance-levels/documentdb-change-throughput.png)
+ 
+如果您不確定要增加多少輸送量，請參閱[估計輸送量需求](documentdb-request-units.md#estimating-throughput-needs)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
+
 ## 後續步驟
 
 若要深入了解 Azure DocumentDB 的價格和管理資料，請探索這些資源：
@@ -179,4 +193,4 @@ Azure 入口網站是您在管理集合的效能層級時的其中一個選項�
 [1]: ./media/documentdb-performance-levels/documentdb-change-collection-performance7-9.png
 [2]: ./media/documentdb-performance-levels/documentdb-change-collection-performance10-11.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/11/2016" 
+	ms.date="07/21/2016" 
 	ms.author="donnam"/>
 
 # 在您的行動服務應用程式中新增驗證
@@ -118,4 +118,4 @@
 [Authorize users with scripts]: mobile-services-dotnet-backend-service-side-authorization.md
 [JavaScript and HTML]: mobile-services-dotnet-backend-windows-store-javascript-get-started-users.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

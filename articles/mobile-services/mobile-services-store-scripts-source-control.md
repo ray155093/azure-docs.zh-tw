@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="12/07/2015"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 在原始檔控制中儲存行動服務專案程式碼
@@ -24,8 +24,8 @@
 
 
 > [AZURE.SELECTOR]
-- [.NET backend](mobile-services-dotnet-backend-store-code-source-control.md)
-- [Javascript backend](mobile-services-store-scripts-source-control.md)
+- [.NET 後端](mobile-services-dotnet-backend-store-code-source-control.md)
+- [JavaScript 後端](mobile-services-store-scripts-source-control.md)
 
 本主題說明如何使用 Azure 行動服務所提供的原始檔控制來儲存您的伺服器指令碼。指令碼和其他 JavaScript 程式碼後端檔案可以從本機 Git 儲存機制升級到生產行動服務。它還說明如何定義多個指令碼所需的共用程式碼，以及如何使用 package.json 檔案將 Node.js 模組新增至您的行動服務。
 
@@ -42,7 +42,7 @@
 	安裝 Git 所需的步驟會因作業系統而有所不同。如需作業系統特定的發佈和安裝指引，請參閱[安裝 Git]。
 
 	> [AZURE.NOTE]
-	> 在某些作業系統上，會同時提供例 Git 的命令列和 GUI 兩種版本。本文提供的指示將使用命令列版本。
+	在某些作業系統上，會同時提供例 Git 的命令列和 GUI 兩種版本。本文提供的指示將使用命令列版本。
 
 2. 開啟命令列，例如 **GitBash** (Windows) 或 **Bash** (Unix Shell)。在 OS X 系統上，您可以透過 **[終端機]** 應用程式來存取命令列。
 
@@ -156,10 +156,8 @@
 [安裝 Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 [開始使用行動服務]: mobile-services-ios-get-started.md
 [在行動服務中使用伺服器指令碼]: mobile-services-how-to-use-server-scripts.md
-[Azure Management Portal]: https://manage.windowsazure.com/
-[Azure 管理入口網站]: https://manage.windowsazure.com/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [模組]: http://nodejs.org/api/modules.html
 [node-uuid]: https://npmjs.org/package/node-uuid
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0727_2016-->

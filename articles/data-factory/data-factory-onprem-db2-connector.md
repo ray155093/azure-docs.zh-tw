@@ -25,13 +25,9 @@
 
 資料處理站目前只支援將資料從 DB2 移至其他資料存放區，而不支援從其他資料存放區移至 DB2
 
-> [AZURE.NOTE] 此 DB2 連接器目前支援 DB2 for LUW (Linux、UNIX、Windows)。若要從 DB2 for z/OS 或 DB2 for AS/400 複製資料，請考慮使用一般的 ODBC 連接器，並在閘道器電腦上安裝對應的 ODBC 驅動程式。例如，若要從 DB2 for AS/400 內嵌資料，您可以使用 iSeries Access ODBC 驅動程式，並參閱[內部部署/Azure IaaS 上的 ODBC 資料來源](data-factory-odbc-connector.md)以設定複製活動。
-
 ## 安裝 
 
-若要讓資料管理閘道器連接至 DB2 資料庫，您必須在與資料管理閘道器相同的系統上安裝 [IBM DB2 Data Server Driver](http://go.microsoft.com/fwlink/p/?LinkID=274911)。
-
-IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知問題，其中需要其他安裝步驟。如需有關 Windows 8 上 IBM DB2 Data Server Driver 的詳細資訊，請參閱 [http://www-01.ibm.com/support/docview.wss?uid=swg21618434](http://www-01.ibm.com/support/docview.wss?uid=swg21618434)。
+為使資料管理閘道器連接到 DB2 資料庫，自閘道器 2.1 版起，Azure Data Factory 提供包含 DB2 支援 (SQLAM 9 / 10 / 11) 的內建驅動程式，包括 DB2 for LUW (Linux、Unix、Windows)、DB2 for z/OS 和 DB2 for i (也稱為 AS/400)，因此，從 DB2 複製資料時，您不再需要手動安裝驅動程式。
 
 > [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
 
@@ -141,7 +137,7 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 	                    "value": {
 	                        "type": "DateTime",
 	                        "date": "SliceStart",
-	                        "format": "%M"
+	                        "format": "MM"
 	                    }
 	                },
 	                {
@@ -149,7 +145,7 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 	                    "value": {
 	                        "type": "DateTime",
 	                        "date": "SliceStart",
-	                        "format": "%d"
+	                        "format": "dd"
 	                    }
 	                },
 	                {
@@ -157,7 +153,7 @@ IBM 回報了在 Windows 8 上安裝 IBM DB2 Data Server Driver 的相關已知�
 	                    "value": {
 	                        "type": "DateTime",
 	                        "date": "SliceStart",
-	                        "format": "%H"
+	                        "format": "HH"
 	                    }
 	                }
 	            ]
@@ -326,4 +322,4 @@ Char | String
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

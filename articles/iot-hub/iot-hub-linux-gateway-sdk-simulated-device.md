@@ -133,6 +133,7 @@
 - [開發人員指南][lnk-devguide]
 - [使用範例 UI 探索裝置管理][lnk-dmui]
 - [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+- [徹底保護您的 IoT 解決方案][lnk-securing]
 
 <!-- Links -->
 [lnk-setupdevbox]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/doc/devbox_setup.md
@@ -148,5 +149,6 @@
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
+[lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

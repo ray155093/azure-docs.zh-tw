@@ -18,7 +18,7 @@
 
 # 開始使用 Azure 資料表儲存體和 Visual Studio 連線的服務
 
-[AZURE.INCLUDE [storage-try-azure-tools](../../includes/storage-try-azure-tools.md)]
+[AZURE.INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
 ## 概觀
 
@@ -191,4 +191,4 @@ Azure 資料表儲存體服務可讓您儲存大量的結構化資料。此服�
 
 [AZURE.INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

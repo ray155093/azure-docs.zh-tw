@@ -77,7 +77,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
     > [AZURE.NOTE] 如果您使用 HTTP/1 而非 AMQP 做為傳輸，**DeviceClient** 執行個體不會經常檢查 IoT 中樞是否傳來訊息 (每隔 25 分鐘以上)。如需有關 AMQP 與 HTTP/1 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
 
-## 從應用程式後端傳送雲端到裝置訊息
+## 傳送雲端到裝置訊息
 
 在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼，以及您 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
 
@@ -165,7 +165,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     node SimulatedDevice.js 
     ```
 
-    ![][img-simulated-device]
+    ![執行模擬裝置應用程式][img-simulated-device]
 
 2. 在 **sendcloudtodevicemessage** 資料夾中的命令提示字元，執行下列命令來傳送雲端到裝置訊息並等候通知的意見反應︰
 
@@ -173,7 +173,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     node SendCloudToDeviceMessage.js 
     ```
 
-    ![][img-send-command]
+    ![執行應用程式以傳送 c2d 命令][img-send-command]
 
     > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在生產環境程式碼中，您應該如 MSDN 文章[暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
 
@@ -194,12 +194,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [IoT 中心入門]: iot-hub-node-node-getstarted.md
 [開始使用 IoT 中樞]: iot-hub-node-node-getstarted.md
 [IoT Hub Developer Guide - C2D]: iot-hub-devguide.md#c2d
-[Process Device-to-Cloud messages]: iot-hub-csharp-csharp-process-d2c.md
-[Uploading files from devices]: iot-hub-csharp-csharp-file-upload.md
-[IoT Hub Overview]: iot-hub-what-is-iot-hub.md
-[IoT Hub Guidance]: iot-hub-guidance.md
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
-[Supported device platforms and languages]: iot-hub-supported-devices.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
@@ -207,4 +202,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

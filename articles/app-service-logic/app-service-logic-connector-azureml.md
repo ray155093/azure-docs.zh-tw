@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -88,4 +88,4 @@ BES 作業的其他變化，例如沒有 Web 服務輸入或輸出的作業，�
 [6]: ./media/app-service-logic-connector-azureml/img6.png
 [7]: ./media/app-service-logic-connector-azureml/img7.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="07/20/2016"
 	ms.author="anhoh"/>
 
 # 如何管理 DocumentDB 帳戶
@@ -31,7 +31,6 @@
 2. 在 [帳戶] 刀鋒視窗中，如果 [設定] 刀鋒視窗尚未開啟，按一下 [所有設定]。![預設一致性工作階段][5]
 
 3. 在 [所有設定] 刀鋒視窗中，按一下 [功能] 下的 [預設一致性] 項目。![預設一致性工作階段][6]
-
 4. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [儲存]。
 5. 透過 Azure 入口網站通知中樞可監視作業的進度。
 
@@ -88,9 +87,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
 2. 在 [基本功能] 列中，從 [DocumentDB 帳戶] 刀鋒視窗按一下 [金鑰]。
-3. 在 [金鑰] 刀鋒視窗中，按一下要複製的金鑰右邊的 [複製] 按鈕。
-
-	![在 Azure 入口網站 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/documentdb-manage-account/copykeys.png)
+3. 在 [金鑰] 刀鋒視窗中，按一下要複製的金鑰右邊的 [複製] 按鈕。![在 Azure 入口網站 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/documentdb-manage-account/copykeys.png)
 
 ### 重新產生存取金鑰
 
@@ -144,7 +141,7 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
-[azureregions]: https://azure.microsoft.com/regions/#services
-[offers]: https://azure.microsoft.com/pricing/details/documentdb/
+[azureregions]: https://azure.microsoft.com/zh-TW/regions/#services
+[offers]: https://azure.microsoft.com/zh-TW/pricing/details/documentdb/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

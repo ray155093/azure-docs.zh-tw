@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/17/2016"
+   ms.date="07/28/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -52,6 +52,10 @@
 
 
 ## 連線提供者位置
+
+> [AZURE.SELECTOR]
+[Locations By Provider](expressroute-locations.md#connectivity-provider-locations)
+[Providers By Location](expressroute-locations-providers.md#connectivity-provider-locations)
 
 ### 生產 Azure
 
@@ -102,7 +106,7 @@
 |-----------------------|--------------------|----------------|---------------|
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** | 支援 | 支援 | 芝加哥、華盛頓特區 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
-| **[Level 3 Communications - IPVPN](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 敬請期待 | 芝加哥、紐約+、華盛頓特區 |
+| **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 敬請期待 | 芝加哥、紐約+、華盛頓特區 |
 | **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
 
 #### 中國
@@ -140,9 +144,11 @@
 
 |**連線提供者**|**Exchange**|**位置**|
 |---|---|---|
-|**Alaska Communications**|Equinix|Seattle|
-|**[XO 通訊](http://www.xo.com/)**|Equinix|矽谷|
 |**[1CLOUDSTAR](http://www.1cloudstar.com/service/cloudconnect-azure-expressroute/)**|Equinix|新加坡|
+|**Alaska Communications**|Equinix|Seattle|
+|**[Lightower](http://www.lightower.com/network-solutions/cloud-connect/#microsoft-azure)**|Equinix|紐約、華盛頓特區|
+|**[XO 通訊](http://www.xo.com/)**|Equinix|矽谷|
+
 
 ## ExpressRoute 系統整合者
 
@@ -165,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

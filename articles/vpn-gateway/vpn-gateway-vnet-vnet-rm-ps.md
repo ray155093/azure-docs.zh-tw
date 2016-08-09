@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/15/2016"
+   ms.date="07/29/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure Resource Manager 和 PowerShell 來設定 VNet 對 VNet 連線
@@ -24,6 +24,8 @@
 - [PowerShell - Azure Resource Manager](vpn-gateway-vnet-vnet-rm-ps.md)
 
 本文將逐步引導您使用 Resource Manager 部署模型及 PowerShell，建立虛擬網路間的連線。虛擬網路可位於來自相同或不同訂用帳戶的相同或不同區域。
+
+[AZURE.INCLUDE [vpn-gateway-peering](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
 
 **關於 Azure 部署模型**
@@ -83,7 +85,7 @@
 
 ### 開始之前
 
-- 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+- 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，可以啟用您的 [MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 	
 - 您必須安裝 Azure Resource Manager PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
@@ -120,7 +122,7 @@
 - TestVNet2：10.41.0.0/16 和 10.42.0.0/16
 - FrontEnd：10.41.0.0/24
 - BackEnd：10.42.0.0/24
-- GatewaySubnet：10.42.255.0.0/27
+- GatewaySubnet：10.42.255.0/27
 - 資源群組：TestRG4
 - 位置：美國西部
 - DNS 伺服器：8.8.8.8
@@ -303,7 +305,7 @@
 
 ### 使用 PowerShell 驗證您的連線
 
-您也可以使用「Get-AzureRmVirtualNetworkGatewayConnection –Debug」來驗證您的連接是否成功。您可以使用下列範例，並將值變更為符合您自己的值。出現提示時，請選取 [A] 以執行全部。
+您也可以使用「Get-AzureRmVirtualNetworkGatewayConnection –Debug」 來驗證連線是否成功。您可以使用下列範例，並將值變更為符合您自己的值。出現提示時，請選取 [A] 以執行全部。
 
 	Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection1 -ResourceGroupName $RG1 -Debug
 
@@ -341,7 +343,7 @@
 
 ![VNet2VNet 不同訂用帳戶](./media/vpn-gateway-vnet-vnet-rm-ps/differentsubscription.png)
 
-下面的指示是從上方所列的前一個步驟繼續執行。您必須完成[步驟 1](#Step1) 和[步驟 2](#Step2)，以建立並設定 TestVNet1 和 TestVNet1 的 VPN 閘道。如果您只打算連接不同訂用帳戶中的 VNet，則無需在意先前練習的步驟 3 和 4，且可以移至下方的步驟 5。
+下面的指示是從上方所列的前一個步驟繼續執行。您必須完成 [步驟 1](#Step1) 和 [步驟 2](#Step2)，以建立並設定 TestVNet1 和 TestVNet1 的 VPN 閘道。如果您只打算連接不同訂用帳戶中的 VNet，則無需在意先前練習的步驟 3 和 4，且可以移至下方的步驟 5。
 
 ### 步驟 5 - 驗證其他 IP 位址範圍
 
@@ -504,11 +506,11 @@
 
 5. 驗證您的連線
 
-	完成這些步驟後，您可以透過使用[如何驗證 VNet 對 VNet 連線](#Verify)中的方法，驗證您的連線。
+	完成這些步驟後，您可以透過使用 [如何驗證 VNet 對 VNet 連線](#Verify) 中的方法，驗證您的連線。
 
 ## 後續步驟
 
 - 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
-- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和 [如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

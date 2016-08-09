@@ -1,4 +1,11 @@
-<properties pageTitle="# 為加入網域的 Windows 7 裝置設定自動註冊裝置 | Microsoft Azure" description="設定加入網域的 Windows 7 裝置自動向 Azure AD 註冊的步驟。使用軟體發佈系統 (例如 System Center Configuration Manager) 將裝置註冊軟體套件部署到加入網域的 Windows 7 裝置的步驟。" services="active-directory" documentationCenter="" authors="femila" manager="swadhwa editor=""/>
+<properties
+	pageTitle="# 為加入網域的 Windows 7 裝置設定自動註冊裝置 | Microsoft Azure"
+	description="設定加入網域的 Windows 7 裝置自動向 Azure AD 註冊的步驟。使用軟體發佈系統 (例如 System Center Configuration Manager) 將裝置註冊軟體套件部署到加入網域的 Windows 7 裝置的步驟。"
+	services="active-directory"
+	documentationCenter=""
+	authors="femila"
+	manager="swadhwa"
+	editor=""/>
 
 <tags
 	ms.service="active-directory"
@@ -53,4 +60,4 @@ Windows 7 電腦上的 Windows 事件記錄檔會顯示與「加入工作場所�
 - [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

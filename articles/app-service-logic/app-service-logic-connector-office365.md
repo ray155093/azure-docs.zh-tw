@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -41,7 +41,7 @@
 
 
 ## 建立邏輯應用程式
-讓我們建立一個會在收到電子郵件 (地址是您的銷售查詢電子郵件識別碼 - 例如 sales@contoso.com)) 時觸發的簡單邏輯應用程式。接著，它會建立事件、使用寄件者的詳細資料新增連絡人、傳送電子郵件到您個人帳戶，最後會傳送包含通知的回覆。
+讓我們建立一個會在收到電子郵件 (地址是您的銷售查詢電子郵件識別碼 - 例如 sales@contoso.com) 時觸發的簡單邏輯應用程式。接著，它會建立事件、使用寄件者的詳細資料新增連絡人、傳送電子郵件到您個人帳戶，最後會傳送包含通知的回覆。
 
 1.	登入 Azure 入口網站，並按一下 [新增] -> [Web + 行動] -> [邏輯應用程式]︰![][1]
 
@@ -131,4 +131,4 @@
 [20]: ./media/app-service-logic-connector-office365/20_Office365_Send_Configured.png
 [21]: ./media/app-service-logic-connector-office365/21-create-new-o365-api-app.png
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0727_2016-->

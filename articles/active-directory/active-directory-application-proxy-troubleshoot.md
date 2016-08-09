@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/22/2016"
+	ms.date="07/19/2016"
 	ms.author="kgremban"/>
 
 
@@ -27,6 +27,13 @@
 - 開啟 [事件檢視器] 並尋找與應用程式 Proxy 連接器相關的事件 (位於 [應用程式及服務記錄檔] > [Microsoft] > [AadApplicationProxy] > [Connector] > [Admin] 之下)。
 - 如有需要，開啟分析和偵錯記錄檔及開啟應用程式 Proxy 連接器工作階段記錄檔，即可取得更詳細的記錄檔。
 
+## 無法正確轉譯頁面
+
+如果您未收到特定錯誤訊息，您可能仍有應用程式未正確轉譯或運作的問題。如果您已發佈文章路徑，但應用程式需要存在於該路徑以外的內容，就可能發生此問題。
+
+例如，如果您發佈路徑 https://yourapp/app，但應用程式呼叫 https://yourapp/media 中的映像，便不會轉譯映像。請確定您是使用包含所有相關內容所需的最高層級路徑來發佈應用程式。在此範例中，它會是 http://yourapp/。
+
+如果您變更路徑以包含參考的內容，但仍需要使用者登入該路徑中更深層的連結，請參閱部落格文章[在 Azure AD 存取面板和 Office 365 應用程式啟動程式中為應用程式 Proxy 應用程式設定正確的連結](https://blogs.technet.microsoft.com/applicationproxyblog/2016/04/06/setting-the-right-link-for-application-proxy-applications-in-the-azure-ad-access-panel-and-office-365-app-launcher/)。
 
 ## 一般錯誤
 
@@ -37,7 +44,7 @@
 
 
 ## 連接器疑難排解
-如果在連接器精靈安裝期間註冊失敗，您可以在 [Windows 記錄] > [應用程式] 之下尋找事件記錄檔，或執行下列 Windows PowerShell 命令，以檢視失敗的原因。
+如果在連接器精靈安裝期間註冊失敗，您可以在 Applications and Services Logs\\Microsoft\\AadApplicationProxy\\Connector\\Admin 之下尋找事件記錄檔，或執行下列 Windows PowerShell 命令，以檢視失敗的原因。
 
     Get-EventLog application –source “Microsoft AAD Application Proxy Connector” –EntryType “Error” –Newest 1
 
@@ -84,4 +91,4 @@
 [1]: ./media/active-directory-application-proxy-troubleshoot/connectorproperties.png
 [2]: ./media/active-directory-application-proxy-troubleshoot/sessionlog.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -14,7 +14,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="05/18/2016"
+ms.date="07/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 SharePoint Online 連接器 
@@ -26,7 +26,7 @@ SharePoint 連接器提供一種方式，讓您能夠使用 SharePoint 上的清
 您可以利用SharePoint 來：
 
 * 建置邏輯應用程式
-* 建置 PowerApps  
+* 建置 PowerApps
 
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -76,13 +76,13 @@ SharePoint 連接器提供下列動作及/或觸發程序：
 
 在邏輯應用程式的設計工具中，請遵循下列步驟來登入 SharePoint，以便建立在邏輯應用程式中使用的 **connection** 連線。
 
-1. 在搜尋方塊中輸入 SharePoint，並等候搜尋傳回所有名稱中有 SharePoint 的項目：![設定 SharePoint][1]  
-2. 選取 [SharePoint Online - 當檔案建立時]   
-3. 選取 [登入 SharePoint Online]：![設定 SharePoint][2]    
-4. 提供您的 SharePoint 認證來登入，並以 SharePoint ![設定 SharePoint][3] 進行驗證     
-5. 驗證完成後，只要設定 SharePoint 的 [當檔案建立時] 對話方塊，系統會將您重新導向至邏輯應用程式並完成作業。![設定 SharePoint][4]  
-6. 接著，您可以新增所需的其他觸發和動作來完成邏輯應用程式。   
-7. 選取上方功能表列的 [儲存] 來儲存您的工作。  
+1. 在搜尋方塊中輸入 SharePoint，並等候搜尋傳回所有名稱中有 SharePoint 的項目：![設定 SharePoint][1]
+2. 選取 [SharePoint Online - 當檔案建立時]
+3. 選取 [登入 SharePoint Online]：![設定 SharePoint][2]
+4. 提供您的 SharePoint 認證來登入，並以 SharePoint ![設定 SharePoint][3] 進行驗證
+5. 驗證完成後，只要設定 SharePoint 的 **[當檔案建立時]** 對話方塊，系統會將您重新導向至邏輯應用程式並完成作業。![設定 SharePoint][4]
+6. 接著，您可以新增所需的其他觸發和動作來完成邏輯應用程式。
+7. 選取上方功能表列的 [儲存] 來儲存您的工作。
 
 >[AZURE.TIP] 您可以在其他邏輯應用程式、PowerApps 或這兩者中使用這個連接。
 
@@ -695,10 +695,10 @@ TablesList 的必要屬性：
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [建立 Power 應用程式](../power-apps/powerapps-get-started-azure-portal.md)
 
-[1]: ./media/connectors-create-api-sharepointonline/connectionconfig1.png
-[2]: ./media/connectors-create-api-sharepointonline/connectionconfig2.png
-[3]: ./media/connectors-create-api-sharepointonline/connectionconfig3.png
-[4]: ./media/connectors-create-api-sharepointonline/connectionconfig4.png
-[5]: ./media/connectors-create-api-sharepointonline/connectionconfig5.png
+[1]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig1.png
+[2]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig2.png
+[3]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig3.png
+[4]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig4.png
+[5]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig5.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

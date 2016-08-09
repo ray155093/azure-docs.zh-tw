@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/16/2016" 
+	ms.date="08/01/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 Visual Studio 建立具有複製活動的管線
@@ -273,4 +273,4 @@
 | [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

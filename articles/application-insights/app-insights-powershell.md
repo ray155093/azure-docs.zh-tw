@@ -123,7 +123,7 @@ find | 取代為
 
 ```json
     {
-      "apiVersion": "2014-04-01",
+      "apiVersion": "2014-06-01",
       "name": "Microsoft.ApplicationInsights.AzureWebSites",
       "type": "siteextensions",
       "dependsOn": [
@@ -321,4 +321,4 @@ Azure 應以嚴格的順序設定資源。為確保一項設定完成後再開�
 * [將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [建立版本附註](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -3,7 +3,7 @@
 	description="使用增量快照，建立備份和復原 Azure 虛擬機器磁碟的自訂解決方案。"
 	services="storage"
 	documentationCenter="na"
-	authors="ms-prkhad"
+	authors="aungoo-msft"
 	manager=""
 	editor="tysonn"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
-	ms.author="tamram;prkhad"/>
+	ms.date="07/25/2016"
+	ms.author="tamram;aungoo-msft"/>
 
 
 # 使用增量快照集備份 Azure 虛擬機器磁碟
@@ -128,4 +128,4 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。一旦建立快照
 - [建立 Blob 的快照集](https://msdn.microsoft.com/library/azure/hh488361.aspx)
 - [規劃 VM 備份基礎結構](../backup/backup-azure-vms-introduction.md)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,268 +1,284 @@
 <properties
-pageTitle="在 PowerApps Enterprise 及 Logic Apps 中新增 Salesforce 連接器 | Microsoft Azure"
-description="搭配 REST API 參數來使用 Salesforce 連接器的概觀"
-services=""    
-documentationCenter=""     
-authors="msftman"    
-manager="erikre"    
+pageTitle="了解在邏輯應用程式中使用 Salesforce 連接器 | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。Salesforce 連接器提供搭配 Salesforce 物件使用的 API。"
+services="app-servicelogic"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
 editor=""
-tags="connectors"/>
+tags="connectors" />
 
 <tags
-ms.service="multiple"
-ms.devlang="na"
+ms.service="logic-apps"
+ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
-ms.workload="na"
-ms.date="05/19/2016"
+ms.workload="integration"
+ms.date="07/22/2016"
 ms.author="deonhe"/>
 
-# 開始使用 Salesforce 連接器 
-連線到 Salesforce 並建立物件、取得物件等等。您可以從下列應用程式使用 Salesforce 連接器：
+# 開始使用 Salesforce 連接器
 
-- 邏輯應用程式 
-- PowerApps
+Salesforce 連接器提供搭配 Salesforce 物件使用的 API。
 
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-salesforce.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-salesforce.md)
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-&nbsp;
+## 連接至 Salesforce 連接器
 
->[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
 
-您可以利用 Salesforce 來：
+### 建立至 Salesforce 連接器的連線
 
-- 根據您從 SalesForce 所取得的資料，來建置您的商務流程。 
-- 在物件建立或更新時使用觸發程序。
-- 使用動作來建立物件、刪除物件等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Salesforce 中有新物件建立時，您可以利用 Office 365 來傳送電子郵件。
-- 將 Salesforce 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
+>[AZURE.INCLUDE [建立至 Salesforce 連接器連線的步驟](../../includes/connectors-create-api-salesforce.md)]
 
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
+## 使用 Salesforce 連接器觸發程序
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-## 觸發程序及動作
-Salesforce API 包含下列觸發程序及動作。
+>[AZURE.INCLUDE [建立 Salesforce 觸發程序的步驟](../../includes/connectors-create-api-salesforce-trigger.md)]
 
-| 觸發程序 | 動作|
-| --- | --- |
-|<ul><li>當建立物件時</li><li>當物件遭到修改時</li></ul> | <ul><li>建立物件</li><li>取得物件</li><li>當建立物件時</li><li>當物件遭到修改時</li><li>刪除物件</li><li>取得物件</li><li>取得物件類型 (SObjects)</li><li>更新物件</li></ul>
+## 新增條件 
+>[AZURE.INCLUDE [建立 Salesforce 條件的步驟](../../includes/connectors-create-api-salesforce-condition.md)]
 
-所有連接器都支援 JSON 和 XML 格式的資料。
+## 使用 Salesforce 連接器動作
 
-## 建立至 Salesforce 的連線 
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-當您將這個連接器新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Salesforce。
+>[AZURE.INCLUDE [建立 Salesforce 動作的步驟](../../includes/connectors-create-api-salesforce-action.md)]
 
->[AZURE.INCLUDE [建立至 Salesforce 連線的步驟](../../includes/connectors-create-api-salesforce.md)]
+## 技術詳細資訊
 
-當您建立連線之後，請輸入 Salesforce 的屬性，例如資料表名稱。本主題的 **REST API 參考**一節會說明這些屬性。
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
 
->[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的連線。
+## Salesforce 連接器觸發程序
 
-## Swaggers REST API 參考
-適用的版本：1.0。
+Salesforce 連接器具有下列觸發程序︰
+
+|觸發程序 | 說明|
+|--- | ---|
+|[當物件建立時](connectors-create-api-salesforceconnector.md#when-an-object-is-created)|當有物件建立時，此作業就會觸發流程。|
+|[當物件遭到修改時](connectors-create-api-salesforceconnector.md#when-an-object-is-modified)|當有物件遭到修改時，此作業就會觸發流程。|
 
 
-### 建立物件
-建立 Salesforce 物件。```POST: /datasets/default/tables/{table}/items```
+## Salesforce 連接器動作
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|item| |yes|body|無|要建立的 Salesforce 物件|
+Salesforce 連接器具有下列動作︰
 
-### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
+
+|動作|說明|
+|--- | ---|
+|[取得物件](connectors-create-api-salesforceconnector.md#get-objects)|這項作業會取得特定物件類型 (如「潛在客戶」) 的物件。|
+|[建立物件](connectors-create-api-salesforceconnector.md#create-object)|這項作業會建立物件。|
+|[取得物件](connectors-create-api-salesforceconnector.md#get-object)|這項作業會取得物件。|
+|[刪除物件](connectors-create-api-salesforceconnector.md#delete-object)|這項作業會刪除物件。|
+|[更新物件](connectors-create-api-salesforceconnector.md#update-object)|這項作業會更新物件。|
+|[取得物件類型](connectors-create-api-salesforceconnector.md#get-object-types)|這項作業會列出可用的物件類型。|
+### 動作詳細資料
+
+以下是此連接器動作和觸發程序以及其回應的詳細資料︰
 
 
 
 ### 取得物件
-擷取 Salesforce 物件。```GET: /datasets/default/tables/{table}/items/{id}```
+這項作業會取得特定物件類型 (如「潛在客戶」) 的物件。
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|id|字串|yes|路徑|無|要擷取之 Salesforce 物件的唯一識別碼|
 
-### Response
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|Salesforce 物件類型 (如「潛在客戶」)|
+|$filter|篩選查詢|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
 
-|名稱|說明|
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
+
+
+| 屬性名稱 | 資料類型 |
 |---|---|
-|200|OK|
-|預設值|作業失敗。|
+|value|array|
+
+
+
+
+### 建立物件
+這項作業會建立物件。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|物件類型 (如「潛在客戶」)|
+|項目 *|Object|要建立的物件|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|ItemInternalId|字串|
+
+
+
+
+### 取得物件
+這項作業會取得物件。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|Salesforce 物件類型 (如「潛在客戶」)|
+|識別碼*|物件識別碼|要取得的物件識別碼|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|ItemInternalId|字串|
+
 
 
 
 ### 刪除物件
-刪除 Salesforce 物件。```DELETE: /datasets/default/tables/{table}/items/{id}```
+這項作業會刪除物件。
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|id|字串|yes|路徑|無|要刪除之 Salesforce 物件的唯一識別碼|
 
-### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|物件類型 (如「潛在客戶」)|
+|識別碼*|物件識別碼|要刪除的物件識別碼|
+
+* 表示這是必要屬性
+
 
 
 
 ### 更新物件
-更新 Salesforce 物件。```PATCH: /datasets/default/tables/{table}/items/{id}```
+這項作業會更新物件。
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|id|字串|yes|路徑|無|要更新之 Salesforce 物件的唯一識別碼|
-|item| |yes|body|無|屬性已更新的 Salesforce 物件|
 
-### Response
-|名稱|說明|
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|物件類型 (如「潛在客戶」)|
+|識別碼*|物件識別碼|要更新的物件識別碼|
+|項目 *|Object|屬性已更新的物件|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+項目
+
+
+| 屬性名稱 | 資料類型 |
 |---|---|
-|200|OK|
-|預設值|作業失敗。|
+|ItemInternalId|字串|
+
 
 
 
 ### 當物件建立時
-當 Salesforce 中有物件建立時，就會觸發某個流程。```GET: /datasets/default/tables/{table}/onnewitems```
+當有物件建立時，此作業就會觸發流程。
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
 
-### Response
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|物件類型 (如「潛在客戶」)|
+|$filter|篩選查詢|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+
+
+### 當物件遭到修改時
+當有物件遭到修改時，此作業就會觸發流程。
+
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料表 *|物件類型|物件類型 (如「潛在客戶」)|
+|$filter|篩選查詢|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要擷取的項目數目上限 (預設值 = 256)|
+
+* 表示這是必要屬性
+
+#### 輸出詳細資料
+
+ItemsList
+
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+
+
+### 取得物件類型
+這項作業會列出可用的物件類型。
+
+
+這個呼叫沒有參數
+
+#### 輸出詳細資料
+
+TablesList
+
+
+| 屬性名稱 | 資料類型 | 
+|---|---|
+|value|array|
+
+
+
+## HTTP 回應
+
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+
 |名稱|說明|
 |---|---|
 |200|OK|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
 |預設值|作業失敗。|
 
 
 
-### 當物件遭到修改時 
-當 Salesforce 中有物件遭到修改時，就會觸發某個流程。```GET: /datasets/default/tables/{table}/onupdateditems```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|Salesforce SObject 類型 (例如：「Lead」)|
-|$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
-|$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
-
-### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-
-## 物件定義 
-
-#### DataSetsMetadata
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|表格式|未定義|no|
-|blob|未定義|no|
-
-
-#### TabularDataSetsMetadata
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-|tableDisplayName|字串|no|
-|tablePluralName|字串|no|
-
-
-#### BlobDataSetsMetadata
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-
-
-#### TableMetadata
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|名稱|字串|no|
-|title|字串|no|
-|x-ms-permission|字串|no|
-|結構描述|未定義|no|
-
-
-#### DataSetsList
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|value|array|no|
-
-
-#### DataSet
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|名稱|字串|
-|DisplayName|字串|no|
-
-
-#### 資料表
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|名稱|字串|no|
-|DisplayName|字串|no|
-
-
-#### 項目
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|ItemInternalId|字串|no|
-
-
-#### ItemsList
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|value|array|no|
-
-
-#### TablesList
-
-| 名稱 | 資料類型 | 必要|
-|---|---|---|
-|value|array|no|
 
 
 ## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
-
-返回 [API 清單](apis-list.md)。
-
-
-[5]: https://developer.salesforce.com
-[6]: ./media/connectors-create-api-salesforce/salesforce-developer-homepage.png
-[7]: ./media/connectors-create-api-salesforce/salesforce-create-app.png
-[8]: ./media/connectors-create-api-salesforce/salesforce-new-app.png
-
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

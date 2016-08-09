@@ -12,12 +12,15 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/22/2016" 
+	ms.date="07/21/2016" 
 	ms.author="awills"/>
  
 # 在 Application Insights 中探索 .NET 追蹤記錄  
 
 如果您使用 NLog、log4Net 或 System.Diagnostics.Trace 在 ASP.NET 應用程式中進行診斷追蹤，您可以將記錄傳送至 [Visual Studio Application Insights][start]，其中您可以探索和搜尋它們。您的記錄檔會與來自應用程式的其他遙測合併，讓您可以識別與服務每個使用者要求相關聯的追蹤，並將它們與其他事件和例外狀況報告相互關聯。
+
+
+
 
 > [AZURE.NOTE] 您需要記錄擷取模組嗎？ 對於第三方記錄器來說，它是一個有用的配接器，但是如果您還沒使用 NLog、log4Net 或 System.Diagnostics.Trace，請考慮直接呼叫 [Application Insights TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace)。
 
@@ -26,7 +29,23 @@
 
 在專案中安裝您選擇的記錄架構。這應該會在 app.config 或 web.config 中產生一個項目。
 
-> 如果您使用 System.Diagnostics.Trace，這應該會在 web.config 中加入一個項目。
+如果您使用 System.Diagnostics.Trace，則必須在 web.config 中加入一個項目：
+
+```XML
+
+    <configuration>
+     <system.diagnostics>
+       <trace autoflush="false" indentsize="4">
+         <listeners>
+           <add name="myListener" 
+             type="System.Diagnostics.TextWriterTraceListener" 
+             initializeData="TextWriterOutput.log" />
+           <remove name="Default" />
+         </listeners>
+       </trace>
+     </system.diagnostics>
+   </configuration>
+```
 
 ## 設定 Application Insights 收集記錄
 
@@ -41,7 +60,7 @@
 
 如果 Application Insights 安裝程式不支援您的專案類型 (例如 Windows 傳統型專案)，請使用這個方法。
 
-1. 如果您打算使用 log4Net 或 NLog，請將它安裝在您的專案。 
+1. 如果您打算使用 log4Net 或 NLog，請將它安裝在您的專案。
 2. 在 [方案總管] 中，以滑鼠右鍵按一下您的專案並選擇 [**管理 NuGet 封裝**]。
 3. 搜尋「Application Insights」
 
@@ -76,6 +95,15 @@ NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
 
 TrackTrace 的優點在於您可以將較長的資料放在訊息中。例如，您可以在該處編碼 POST 資料。
 
+此外，您可以在訊息中新增嚴重性層級。就像其他遙測一樣，您可以新增屬性值以供協助篩選或搜尋不同的追蹤集。例如：
+
+
+    var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+    telemetry.TrackTrace("Slow database response",
+                   SeverityLevel.Warning,
+                   new Dictionary<string,string> { {"database", db.ID} });
+
+在[搜尋][diagnostic]中，這可讓您輕鬆地篩選出與特定資料庫相關且具有特定嚴重性層級的所有訊息。
 
 ## 探索記錄
 
@@ -85,13 +113,13 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。例如，
 
 ![在 Application Insights 中，選擇 [搜尋]](./media/app-insights-asp-net-trace-logs/020-diagnostic-search.png)
 
-![診斷搜尋](./media/app-insights-asp-net-trace-logs/10-diagnostics.png)
+![搜尋](./media/app-insights-asp-net-trace-logs/10-diagnostics.png)
 
 例如，您可以：
 
 * 篩選記錄追蹤，或具有特定屬性的項目
 * 詳細檢查特定項目。
-* 尋找與相同使用者要求相關的其他遙測 (也就是使用相同的 OperationId) 
+* 尋找與相同使用者要求相關的其他遙測 (也就是使用相同的 OperationId)
 * 將此頁面的組態儲存為我的最愛
 
 > [AZURE.NOTE] **取樣** 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。[深入了解取樣。](app-insights-sampling.md)
@@ -100,7 +128,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。例如，
 
 [在 ASP.NET 中診斷失敗和例外狀況][exceptions]
 
-[深入了解診斷搜尋][diagnostic]。
+[深入了解搜尋][diagnostic]。
 
 
 
@@ -153,11 +181,11 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。例如，
 
 [availability]: app-insights-monitor-web-app-availability.md
 [diagnostic]: app-insights-diagnostic-search.md
-[exceptions]: app-insights-web-failures-exceptions.md
-[portal]: http://portal.azure.com/
+[exceptions]: app-insights-asp-net-exceptions.md
+[portal]: https://portal.azure.com/
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0727_2016-->

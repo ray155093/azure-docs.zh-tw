@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/07/2016" 
+	ms.date="07/21/2016" 
 	ms.author="awills"/>
  
 # 從 Application Insights 匯出遙測
@@ -24,7 +24,7 @@
 
 在設定連續匯出之前，您可能要考慮某些替代作法︰
 
-* 度量或搜尋刀鋒視窗頂端的[匯出按鈕](app-insights-metrics-explorer.md#export-to-excel)，可讓您傳送資料表和圖表到 Excel 試算表。 
+* 度量或搜尋刀鋒視窗頂端的[匯出按鈕](app-insights-metrics-explorer.md#export-to-excel)，可讓您傳送資料表和圖表到 Excel 試算表。
 * [分析](app-insights-analytics.md)可提供功能強大的遙測查詢語言，也可以匯出結果。
 * 如果您想要[在 Power BI 中探索資料](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)，不需要用到「連續匯出」也可以這麼做。
 
@@ -111,7 +111,7 @@ Where
 
 ## <a name="format"></a> 資料格式
 
-* 每個 Blob 是包含多個以 '\\n' 分隔的列的文字檔案。
+* 每個 Blob 是包含多個以 '\\n' 分隔的列的文字檔案。它包含大約半分鐘的時間內所處理的遙測。
 * 每個資料列都代表遙測資料點，例如要求或頁面檢視。
 * 每列是未格式化的 JSON 文件。如果您想要靜靜地仔細觀看，請在 Visual Studio 中開啟，並依序選擇 [編輯]、[進階]、[格式檔案]：
 
@@ -178,7 +178,7 @@ Where
 
 ## 問答集
 
-* *但我想要的只是一次性下載圖表。*  
+* *但我想要的只是一次性下載圖表。*
  
     是的，您可以這麼做。在刀鋒視窗頂端，按一下 [[匯出資料](app-insights-metrics-explorer.md#export-to-excel)]。
 
@@ -229,4 +229,4 @@ Where
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

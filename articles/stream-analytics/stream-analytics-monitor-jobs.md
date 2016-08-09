@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="05/03/2016" 
+	ms.date="07/27/2016" 
 	ms.author="jeffstok"/>
 
 
@@ -63,7 +63,7 @@
     ```
     Get-AzureAccount
     ```
-4.	將下列 using 陳述式加入至專案的原始程式檔 (Program.cs) 中。 
+4.	將下列 using 陳述式加入至專案的原始程式檔 (Program.cs) 中。
 
     ```
         using System;
@@ -180,4 +180,4 @@
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -14,7 +14,7 @@ ms.workload="big-data"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="06/29/2016"
+ms.date="07/25/2016"
 ms.author="larryfr"/>
 
 #使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight (Hadoop) 的 Java 應用程式
@@ -436,7 +436,7 @@ ms.author="larryfr"/>
         $storage = GetStorage -clusterName $clusterName
         
         # The JAR
-        $jarFile = "wasb:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
+        $jarFile = "wasbs:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
         
         # The job definition
         $jobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -646,4 +646,4 @@ ms.author="larryfr"/>
 
 請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

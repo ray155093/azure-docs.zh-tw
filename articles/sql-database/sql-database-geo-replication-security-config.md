@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="06/16/2016"
+	ms.date="07/16/2016"
 	ms.author="carlrab" />
 
 # 如何管理災害復原後的 Azure SQL Database 安全性
@@ -23,7 +23,7 @@
 
 ## 災害復原的驗證需求概觀
 
-本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。它也會描述如何在使用[異地還原](sql-database-recovery-using-backups.md#geo-restore)之後啟用復原資料庫的存取權。如需復原選項的詳細資訊，請參閱[從中斷復原 Azure SQL Database](sql-database-disaster-recovery.md)。
+本主題描述設定和控制[主動式異地複寫](sql-database-geo-replication-overview.md)的驗證需求，以及設定次要資料庫之使用者存取所需的步驟。它也會描述如何在使用[異地還原](sql-database-recovery-using-backups.md#geo-restore)之後啟用復原資料庫的存取權。如需復原選項的詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
 
 ## 災害復原與自主使用者
 
@@ -90,9 +90,9 @@
 
 - 如需管理資料庫存取和登入的詳細資訊，請參閱 [SQL Database 安全性︰管理資料庫存取與登入安全性](sql-database-manage-logins.md)。
 - 如需自主資料庫使用者的詳細資訊，請參閱[自主資料庫使用者 - 使資料庫可攜](https://msdn.microsoft.com/library/ff929188.aspx)。
-- 如需使用和設定作用中異地複寫的相關資訊，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 如需使用和設定主動式異地複寫的相關資訊，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 如需使用異地還原的相關資訊，請參閱[異地還原](sql-database-recovery-using-backups.md#geo-restore)
 
 ## 其他資源
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

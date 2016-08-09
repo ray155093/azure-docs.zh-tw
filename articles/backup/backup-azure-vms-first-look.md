@@ -1,6 +1,6 @@
 <properties
-	pageTitle="初步了解：使用 Azure 備份保護 Azure 中的 VM | Microsoft Azure"
-	description="使用 Azure 備份服務保護 Azure VM。教學課程會說明如何在 Azure 中建立保存庫、註冊 VM、建立原則和保護 VM。"
+	pageTitle="初步了解：使用備份保存庫保護 Azure VM | Microsoft Azure"
+	description="使用備份保存庫保護 Azure VM。教學課程會說明如何在 Azure 中建立保存庫、註冊 VM、建立原則和保護 VM。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="07/18/2016"
+	ms.date="07/29/2016"
 	ms.author="markgal; jimpark"/>
 
 
 # 先睹為快：備份 Azure 虛擬機器
 
 > [AZURE.SELECTOR]
-- [備份 Resource Manager VM](backup-azure-vms-first-look-arm.md)
-- [備份傳統模式 VM](backup-azure-vms-first-look.md)
+- [初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)
+- [初步了解：使用備份保存庫保護 Azure VM](backup-azure-vms-first-look.md)
 
-本教學課程會帶領您逐步完成將 Azure 虛擬機器 (VM) 備份至 Azure 備份保存庫的步驟。這篇文章說明用來備份 VM 的傳統模型或 Service Manager 部署模型。如果您有興趣將 VM 備份至屬於資源群組的復原服務保存庫，請參閱另一索引標籤 - 備份資源管理員 VM。若要成功完成本教學課程，必須先滿足下列先決條件︰
+本教學課程會帶領您逐步完成將 Azure 虛擬機器 (VM) 備份至 Azure 備份保存庫的步驟。這篇文章說明用來備份 VM 的傳統模型或 Service Manager 部署模型。如果您有興趣將 VM 備份至屬於資源群組的復原服務保存庫，請參閱[初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)。若要成功完成本教學課程，必須先滿足下列先決條件︰
 
 - 您已在 Azure 訂用帳戶中建立 VM。
 - VM 可連線到 Azure 公用 IP 位址。如需其他資訊，請參閱[網路連線](./backup-azure-vms-prepare.md#network-connectivity)。
@@ -34,7 +34,7 @@
 
 ![VM 備份程序的高階檢視](./media/backup-azure-vms-first-look/backupazurevm-classic.png)
 
->[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本教學課程適用於可以在 Azure 傳統入口網站中建立的 VM。Azure 備份服務支援 Azure Resource Manager (ARM) 型 VM，此 VM 亦稱為 IaaS V2 VM。如需備份 ARM VM 的詳細資訊，請參閱[初步了解：將 ARM VM 備份到復原服務保存庫](backup-azure-vms-first-look-arm.md)。
+>[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本教學課程適用於可以在 Azure 傳統入口網站中建立的 VM。Azure 備份服務支援以 Resource Manager 為基礎的 VM。如需將 VM 備份至復原服務保存庫的詳細資訊，請參閱[初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)。
 
 
 
@@ -56,7 +56,7 @@
 
 4. 在 [名稱] 中，輸入易記名稱來識別保存庫。必須是 Azure 訂用帳戶中唯一的名稱。
 
-5. 在 [區域] 中，選取保存庫的地理區域。保存庫**必須**與其保護的虛擬機器位於相同區域。
+5. 在 [**區域**] 中，選取保存庫的地理區域。保存庫**必須**與其保護的虛擬機器位於相同區域。
 
     如果您不知道 VM 的所在區域，請關閉此精靈，並按一下 Azure 服務清單中的**虛擬機器**。[位置] 欄會提供區域的名稱。如果您在多個區域中有虛擬機器，請在每個區域中建立備份保存庫。
 
@@ -83,7 +83,7 @@
 
     ![備份保存庫的清單](./media/backup-azure-vms-first-look/backup-vault-storage-options-border.png)
 
-    根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請選擇異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解異地備援儲存體和本地備援儲存體選項。
+    根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請選擇異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解異地備援和本地備援儲存體選項。
 
 選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
@@ -107,7 +107,7 @@
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-6. 按一下頁面底部的 [探索]。
+6. 按一下頁面底部的 [**探索**]。
     ![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
@@ -118,8 +118,7 @@
 
     ![探索完成](./media/backup-azure-vms-first-look/discovery-complete.png)
 
-7. 按一下頁面底部的 [註冊]。
-    ![註冊按鈕](./media/backup-azure-vms-first-look/register-icon.png)
+7. 按一下頁面底部的 [註冊]。![註冊按鈕](./media/backup-azure-vms-first-look/register-icon.png)
 
 8. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。
 
@@ -154,7 +153,8 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
     ![在入口網站中選取工作負載](./media/backup-azure-vms/select-workload.png)
 
-3. 按一下頁面底部的 [保護]。![按一下 [保護]](./media/backup-azure-vms-first-look/protect-icon.png)
+3. 按一下頁面底部的 [保護]。
+    ![按一下 [保護]](./media/backup-azure-vms-first-look/protect-icon.png)
 
     [保護項目精靈] 隨即出現，並「只」列出已註冊但未受保護的虛擬機器。
 
@@ -186,7 +186,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 ## 步驟 5 - 初始備份
 
-在虛擬機器受到原則保護後，您可以在 [受保護項目] 索引標籤上檢視該關聯性。在執行初始備份前，[保護狀態] 會顯示為 [受保護 - (待執行初始備份)]。根據預設，第一個排定的備份是「初始備份」。
+在虛擬機器受到原則保護後，您可以在 [受保護項目] 索引標籤上檢視該關聯性。在執行初始備份前，[保護狀態] 會顯示為 [受保護 - (待執行初始備份)]。根據預設，第一個排定的備份是*初始備份*。
 
 ![待備份](./media/backup-azure-vms-first-look/protection-pending-border.png)
 
@@ -218,4 +218,4 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

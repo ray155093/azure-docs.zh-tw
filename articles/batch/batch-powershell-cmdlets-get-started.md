@@ -13,20 +13,20 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="powershell"
    ms.workload="big-compute"
-   ms.date="04/21/2016"
+   ms.date="07/28/2016"
    ms.author="danlep"/>
 
 # 開始使用 Azure Batch PowerShell Cmdlet
-本文會快速介紹可用來管理 Batch 帳戶和使用批次資源 (例如集區、作業和和工作) 的 Azure PowerShell Cmdlet。您可以使用您在 Batch API、Azure 入口網站和 Azure 命令列介面 (CLI) 中執行的 Batch Cmdlet，來執行許多相同的工作。本文是根據 Azure PowerShell 1.3.2 版或更新版本中的 Cmdlet 所撰寫。
+使用 Azure Batch PowerShell Cmdlet，您可以執行與您使用 Batch API、Azure 入口網站和 Azure 命令列介面 (CLI) 執行的許多相同工作並撰寫其指令碼。本文會快速介紹可用來管理 Batch 帳戶和使用批次資源 (例如集區、作業和和工作) 的 Cmdlet。本文是根據 Azure PowerShell 1.6.0 版中的 Cmdlet 所撰寫。
 
 如需批次 Cmdlet 和詳細 Cmdlet 語法的完整清單，請參閱 [Azure 批次 Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/mt125957.aspx)。
 
 
 ## 先決條件
 
-* **Azure PowerShell** - 請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以取得下載和安裝 Azure PowerShell 的指示。 
+* **Azure PowerShell** - 請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以取得下載和安裝 Azure PowerShell 的指示。
    
-    * 因為 Azure 批次 Cmdlet 隨附在 Azure Resource Manager 模組中，您必須執行 **Login-AzureRmAccount** Cmdlet 才能連線到訂用帳戶。 
+    * 因為 Azure 批次 Cmdlet 隨附在 Azure Resource Manager 模組中，您必須執行 **Login-AzureRmAccount** Cmdlet 才能連線到訂用帳戶。
     
     * 建議您經常更新您的 Azure PowerShell 以利用服務更新和增強功能。
     
@@ -45,7 +45,7 @@
     New-AzureRmResourceGroup –Name MyBatchResourceGroup –location "Central US"
 
 
-然後，在資源群組中建立新的 Batch 帳戶，同時為 <account\_name> 指定帳戶名稱和 Batch 服務可用的位置。建立帳戶可能需要幾分鐘才能完成。例如：
+然後，在資源群組中建立新的 Batch 帳戶，為 <account\_name> 中的帳戶指定名稱，以及指定資源群組的位置和名稱。建立 Batch 帳戶可能需要一些時間來完成。例如：
 
 
     New-AzureRmBatchAccount –AccountName <account_name> –Location "Central US" –ResourceGroupName MyBatchResourceGroup
@@ -94,14 +94,20 @@
 ## 建立和修改批次資源
 請使用 **New-AzureBatchPool**、**New-AzureBatchJob** 和 **New-AzureBatchTask** 之類的 Cmdlet 在 Batch 帳戶下建立資源。要更新現有資源的屬性，有對應的 **Get-** 和 **Set-** Cmdlet ，要移除 Batch 帳戶下的資源，則有 **Remove-** Cmdlet。
 
+使用許多這類 Cmdlet 時，除了傳遞 BatchContext 物件，您還需要建立或傳遞包含詳細資源設定的物件，如下列範例所示。如需其他範例，請參閱每個 Cmdlet 的詳細說明。
+
 ### 建立 Batch 集區
 
-例如，下列 Cmdlet 會建立新的批次集區並設定為使用小型虛擬機器，其中這些虛擬機器是以最新的系列 3 (Windows Server 2012) 作業系統版本製作映像，而其計算節點的目標數字則是由自動調整公式來決定。在此案例中，此公式僅僅是 **$TargetDedicated=3**，表示集區中的計算節點數最多為 3 個。**BatchContext** 參數會將先前定義的變數「$context」指定為 BatchAccountContext 物件。
+建立或更新 Batch 集區時，請選取雲端服務組態或計算節點上作業系統的虛擬機器組態 (請參閱 [Batch 功能概觀](batch-api-basics.md#pool))。您的選擇會決定計算節點是否會以其中一個 [Azure 客體 OS 版本](../cloud-services/cloud-services-guestos-update-matrix.md#releases)或以 Azure Marketplace 中其中一個支援的 Linux 或 Windows VM 映像製作映像。
+
+當您執行 **New-AzureBatchPool** 時，請在 PSCloudServiceConfiguration 或 PSVirtualMachineConfiguration 物件中傳遞作業系統設定。例如，下列 Cmdlet 會使用雲端服務組態中的小型計算節點建立新的 Batch 集區，並以最新的系列 3 (Windows Server 2012) 作業系統版本製作映像。在此，**CloudServiceConfiguration** 參數會指定 $configuration 變數做為 PSCloudServiceConfiguration 物件。**BatchContext** 參數會將先前定義的變數 $context 指定為 BatchAccountContext 物件。
 
 
-    New-AzureBatchPool -Id "MyAutoScalePool" -VirtualMachineSize "Small" -OSFamily "3" -TargetOSVersion "*" -AutoScaleFormula '$TargetDedicated=3;' -BatchContext $Context
+    $configuration = New-Object -TypeName "Microsoft.Azure.Commands.Batch.Models.PSCloudServiceConfiguration" -ArgumentList @(3,"*")
+    
+    New-AzureBatchPool -Id "AutoScalePool" -VirtualMachineSize "Small" -CloudServiceConfiguration $configuration -AutoScaleFormula '$TargetDedicated=4;' -BatchContext $context
 
->[AZURE.NOTE]目前的 Batch PowerShell Cmdlet 僅支援對計算節點設定雲端服務。這可讓您選擇其中一個 Azure 客體 OS 版本的 Windows Server 作業系統以在計算節點上執行。如需 Batch 集區的其他計算節點設定選項，請使用 Batch SDK 或 Azure CLI。
+新集區中計算節點的目標數目是由自動調整公式決定。在此案例中，此公式僅僅是 **$TargetDedicated=4**，表示集區中的計算節點數最多為 4 個。
 
 ## 查詢集區、作業、工作及其他詳細資料
 
@@ -110,7 +116,7 @@
 
 ### 查詢資料
 
-例如，使用 **Get-AzureBatchPools** 尋找您的集區。依預設，這將查詢您帳戶下的所有集區，並假設您已經將 BatchAccountContext 物件儲存在「$context」中：
+例如，使用 **Get-AzureBatchPools** 尋找您的集區。依預設，這將查詢您帳戶下的所有集區，並假設您已經將 BatchAccountContext 物件儲存在 *$context* 中：
 
 
     Get-AzureBatchPool -BatchContext $context
@@ -161,4 +167,4 @@ Batch Cmdlet 可以利用 PowerShell 管線在 Cmdlet 之間傳送資料。這�
 
 * 如需減少項目數和針對 Batch 查詢所傳回之資訊類型的詳細資訊，請參閱[有效率地查詢 Batch 服務](batch-efficient-list-queries.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0803_2016-->

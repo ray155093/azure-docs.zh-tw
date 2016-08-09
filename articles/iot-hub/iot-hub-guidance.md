@@ -109,6 +109,7 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 - [使用範例 UI 探索裝置管理][lnk-dmui]
 - [使用閘道 SDK 模擬裝置][lnk-gateway]
 - [使用 Azure 入口網站管理 IoT 中樞][lnk-portal-manage]
+- [徹底保護您的 IoT 解決方案][lnk-securing]
 
 [img-tokenservice]: ./media/iot-hub-guidance/tokenservice.png
 
@@ -135,5 +136,6 @@ IoT 解決方案會儲存個別裝置的相關資料，例如：
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal-manage]: iot-hub-manage-through-portal.md
 [lnk-sas-token]: iot-hub-sas-tokens.md
+[lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -108,7 +108,7 @@ Microsoft 有五個 SQL 供應項目︰
 - [Azure SQL 資料倉儲 (預覽)](https://azure.microsoft.com/services/sql-data-warehouse/)
 - [分析平台系統 (內部部署應用裝置)](https://www.microsoft.com/zh-TW/server-cloud/products/analytics-platform-system/)
 
-如果您對於虛擬機器或 SQL Database 上的 SQL Server 有興趣，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/data-management-azure-sql-database-and-sql-server-iaas.md)，以深入了解兩者之間的差異。
+如果您對於虛擬機器或 SQL Database 上的 SQL Server 有興趣，請參閱[選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md)，以深入了解兩者之間的差異。
 
 如果 SQL 聽起來像是最佳的選項，則移至 [SQL Server](https://www.microsoft.com/server-cloud/products/) 以深入了解我們的 Microsoft SQL 產品和服務的供應項目。
 
@@ -130,4 +130,4 @@ Microsoft 有五個 SQL 供應項目︰
     - [SQL Server](https://www.microsoft.com/server-cloud/products/sql-server-2016/)
     - [Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

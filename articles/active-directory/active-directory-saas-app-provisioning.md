@@ -20,7 +20,7 @@
 
 ##SaaS 應用程式的自動化使用者佈建是什麼？
 
-Azure Active Directory (Azure AD) 可讓您自動化在雲端 (SaaS) 應用程式中建立、維護和移除使用者身分識別，例如 Dropbox、Salesforce、ServiceNow 等等。
+Azure Active Directory (Azure AD) 可讓您自動化在雲端 ([SaaS](https://azure.microsoft.com/overview/what-is-saas/)) 應用程式中建立、維護和移除使用者身分識別，例如 Dropbox、Salesforce、ServiceNow 等等。
 
 **以下是這項功能可讓您執行的一些範例：**
 
@@ -116,4 +116,4 @@ Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，�
 - [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 - [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0727_2016-->

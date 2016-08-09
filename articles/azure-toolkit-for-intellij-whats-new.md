@@ -71,6 +71,6 @@
 
 [Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
 
-[IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+[IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

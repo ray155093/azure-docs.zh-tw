@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="07/25/2016"
 	ms.author="nitinme"/>
 
 
@@ -202,8 +202,8 @@
 		    val sc = new SparkContext(conf)
 		
 		    SparkSample.executeJob(sc,
-		                           "wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv",
-		                           "wasb:///HVACOut")
+		                           "wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv",
+		                           "wasbs:///HVACOut")
 		  }
 		}
 
@@ -238,20 +238,20 @@
 		    val conf = new SparkConf().setAppName("SparkSample")
 		                              .setMaster("yarn-client")
 		                              .set("spark.yarn.am.extraJavaOptions", "-Dhdp.version=2.4")
-		                              .set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")
+		                              .set("spark.yarn.jar", "wasbs:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")
 		                              .setJars(Seq("""C:\WORK\IntelliJApps\MyClusterApp\out\artifacts\MyClusterApp_DefaultArtifact\default_artifact.jar"""))
 		                              .set("spark.hadoop.validateOutputSpecs", "false")
 		    val sc = new SparkContext(conf)
 		
 		    SparkSample.executeJob(sc,
-		      "wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv",
-		      "wasb:///HVACOut")
+		      "wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv",
+		      "wasbs:///HVACOut")
 		  }
 		}
 
 	這裡有幾個重點值得注意：
 	
-	* 對於 `.set("spark.yarn.jar", "wasb:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`，請確定 Spark 組件 JAR 可用於指定路徑的叢集存放區。
+	* 對於 `.set("spark.yarn.jar", "wasbs:///hdp/apps/2.4.2.0-258/spark-assembly-1.6.1.2.4.2.0-258-hadoop2.7.1.2.4.2.0-258.jar")`，請確定 Spark 組件 JAR 可用於位於指定路徑的叢集存放區。
 	* 對於 `setJars`，指定將會建立構件 jar 的位置。通常是 `<Your IntelliJ project directory>\out<project name>_DefaultArtifact\default_artifact.jar`。
 
 
@@ -346,4 +346,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

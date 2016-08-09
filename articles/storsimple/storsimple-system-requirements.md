@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/25/2016"
+   ms.date="07/26/2016"
    ms.author="alkohli"/>
 
 # StorSimple 軟體、高可用性和網路需求
@@ -37,7 +37,7 @@
 | --------------------------- | ---------------- | ------------- |
 | Windows Server | 2008R2 SP1、2012、2012R2 |僅支援在下列 Windows 磁碟類型上使用 StorSimple iSCSI 磁碟區：<ul><li>基本磁碟上的簡單磁碟區</li><li>動態磁碟上的簡單和鏡像磁碟區</li></ul>使用 StorSimple iSCSI 磁碟區時，支援 Windows Server 2012 精簡佈建和 ODX 功能。<br><br>StorSimple 能建立精簡佈建及完整佈建磁碟區。它無法建立部分佈建的磁碟區。<br><br>將精簡佈建的磁碟區重新格式化，可能需要很長的時間。建議刪除磁碟區，然後建立新的磁碟區，而不是重新格式化。但是，如果您仍然偏好重新格式化磁碟區：<ul><li>在重新格式化之前先執行下列命令，以避免空間回收延遲：<br>`fsutil behavior set disabledeletenotify 1`</br></li><li>完成格式化之後，使用下列命令重新啟用空間回收：<br>`fsutil behavior set disabledeletenotify 0`</br></li><li>如 [KB 2878635](https://support.microsoft.com/kb/2870270) 所述，將 Windows Server 2012 Hotfix 套用到 Windows Server 電腦。</li></ul></li></ul></ul> 如果您要設定 StorSimple Snapshot Manager 或 StorSimple Adapter for SharePoint，請移至[選用元件的軟體需求](#software-requirements-for-optional-components)。|
 | VMWare ESX | 5\.5 和 6.0 | 受 VMWare vSphere 支援為 iSCSI 用戶端。StorSimple 裝置上的 VMWare vSphere 支援 VAAI 區塊功能。
-| Linux RHEL/CentOS | 5 和 6 | 支援具備 Open-iSCSI 啟動器第 5 版和第 6 版的 Linux iSCSI 用戶端。 |
+| Linux RHEL/CentOS | 5、6 和 7 | 支援具備 Open-iSCSI 啟動器第 5 版、第 6 版和第 7 版的 Linux iSCSI 用戶端。 |
 | Linux | SUSE Linux 11 | |
  > [AZURE.NOTE] StorSimple 目前不支援 IBM AIX。
 
@@ -127,11 +127,11 @@ Update 2 有幾項網路相關的改進且路由度量已變更。行為可以�
 
 	| 網路介面 | 已啟用雲端 | 已停用雲端且具有閘道器 |
 	|-----|---------------|---------------------------|
-	| Data 0 | 1 | - |
-	| Data 1 | 2 | 20 |
-	| Data 2 | 3 | 30 |
-	| Data 3 | 4 | 40 |
-	| Data 4 | 5 | 50 |
+	| Data 0 | 1 | - | 
+	| Data 1 | 2 | 20 | 
+	| Data 2 | 3 | 30 | 
+	| Data 3 | 4 | 40 | 
+	| Data 4 | 5 | 50 | 
 	| Data 5 | 6 | 60 |
 
 
@@ -280,4 +280,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

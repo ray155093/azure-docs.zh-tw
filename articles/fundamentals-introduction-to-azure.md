@@ -18,7 +18,7 @@
 
 # Microsoft Azure 簡介
 
-Microsoft Azure 是 Microsoft 的公用雲端應用程式平台。即使您對雲端運算一無所知，本文旨在提供了解 Azure 基本概念的通用基礎。
+Microsoft Azure 是 Microsoft 的公用雲端應用程式平台。即使您對[雲端運算](https://azure.microsoft.com/overview/what-is-cloud-computing/)一無所知，本文旨在提供了解 Azure 基本概念的通用基礎。
 
 **如何閱讀這篇文章**
 
@@ -55,7 +55,7 @@ Azure 有個稱為[管理入口網站](http://manage.windowsazure.com)的 Web �
 
 ![Azure 虛擬機器 ROBBCSIART\_TEST](./media/fundamentals-introduction-to-azure/mscsiart_VirtualMachinesIntroNew_12345.png) *圖：Azure 虛擬機器可讓您完全控制雲端中的虛擬機器執行個體。*
 
-不論從標準映像或從您提供的映像，視需要建立虛擬機器的功能都極為實用。這種方法 (通常稱為「基礎結構即服務」(IaaS)) 就是 Azure 虛擬機器所提供的方法。圖 2 顯示虛擬機器 (VM) 如何執行以及如何從 VHD 建立虛擬機器的組合。
+不論從標準映像或從您提供的映像，視需要建立虛擬機器的功能都極為實用。這種方法 (通常稱為「基礎結構即服務」([IaaS](https://azure.microsoft.com/overview/what-is-iaas/))) 就是 Azure 虛擬機器所提供的方法。圖 2 顯示虛擬機器 (VM) 如何執行以及如何從 VHD 建立虛擬機器的組合。
 
 若要建立 VM，請指定要使用的 VHD 及 VM 的大小。然後針對 VM 執行的時間付費即可。即使持續提供 VHD 會有基本儲存體費用，您僅需針對執行期間按分鐘數付費。Azure 提供了許多原廠 VHD (稱為「映像」)，其中包含可以開始使用的可開機作業系統。這些包括 Microsoft 和合作夥伴選項，例如 Windows Server 和 Linux、SQL Server、Oracle 等。您可以隨意建立 VHD 和映像，然後自行將他們上傳。您甚至可以上傳僅包含資料的 VHD，然後從執行中的 VM 存取這些資料。
 
@@ -68,7 +68,7 @@ Azure 有個稱為[管理入口網站](http://manage.windowsazure.com)的 Web �
 **虛擬機器案例**
 
 1.	**開發/測試** - 您可以將它們用於建立經濟實惠的開發和測試平台，並且在使用完畢時予以關閉。您也可以建立和執行採用您喜愛語言和程式庫的應用程式。這些應用程式可以使用 Azure 提供的任何資料管理選項，而您也可以選擇使用 SQL Server 或在一或多部虛擬機器中執行的其他 DBMS。
-2.	**將應用程式移到 Azure (提升與轉移)** - 「提升與轉移」意指移動應用程式就像是使用堆高機來移動大型物件一樣。將 VHD 從本機資料中心提升，然後轉移至 Azure 並在 Azure 中執行。您通常必須執行某些作業，才能將其他系統上的相依性移除。如果有太多的相依性，您可以改用選項 3。  
+2.	**將應用程式移到 Azure (提升與轉移)** - 「提升與轉移」意指移動應用程式就像是使用堆高機來移動大型物件一樣。將 VHD 從本機資料中心提升，然後轉移至 Azure 並在 Azure 中執行。您通常必須執行某些作業，才能將其他系統上的相依性移除。如果有太多的相依性，您可以改用選項 3。
 3.	**擴充您的資料中心** - 使用 Azure VM 作為內部部屬資料中心的擴充功能，用來執行 SharePoint 或其他應用程式。若要支援此功能，可以在 Azure VM 中執行 Active Directory，進而在雲端建立 Windows 網域。您可以使用 Azure 虛擬網路 (稍後會提到) 將本機網路和 Azure 中的網路連結在一起。
 
 
@@ -606,4 +606,4 @@ SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提�
 
 [Azure Media Services Poster]: http://azure.microsoft.com/documentation/infographics/media-services/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

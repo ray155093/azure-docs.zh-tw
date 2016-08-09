@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="infrastructure-services"
-	ms.date="04/20/2016"
+	ms.date="07/22/2016"
 	ms.author="rasquill"/>
 
 # 使用 Docker 電腦搭配 Azure 驅動程式
@@ -130,4 +130,6 @@ d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago  
 
 如果有興趣，您可以試用 Azure [Docker VM 擴充功能](virtual-machines-linux-dockerextension.md)，用 Azure CLI 或 Azure Resource Manager 範本執行相同的作業。
 
-<!---HONumber=AcomDC_0427_2016-->
+如需更多使用 Docker 的範例，請參閱來自 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的 [Working with Docker (使用 Docker)](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure Developer Tools Quickstarts (Azure 開發人員工具快速入門)](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
+
+<!---HONumber=AcomDC_0727_2016-->

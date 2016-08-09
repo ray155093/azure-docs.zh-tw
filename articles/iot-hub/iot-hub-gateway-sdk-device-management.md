@@ -207,22 +207,24 @@
 
 3. 將 **iotdm-edison-sample.bb** 檔案從 **~/azure-iot-sdks/c/iotdm\_client/samples/iotdm\_edison\_sample/bitbake/** 資料夾複製到 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-support/iotdm-edison-sample** 資料夾。
 
-4. 將 **iotdm\_edison\_sample.service** 檔案從 **~/azure-iot-sdks/c/iotdm\_client/samples/iotdm\_edison\_sample/bitbake/** 資料夾複製到 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-support/iotdm-edison-sample/files** 資料夾。
+4. 編輯 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-support/iotdm-edison-sample/iotdm-edison-sample.bb** 檔案，將 `-Duse_http:BOOL=OFF` 取代為 `-Duse_http:BOOL=ON`。
 
-5. 編輯 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-core/images/edison-image.bb** 檔案，為您的新配方新增一個項目。在檔案結尾處加入下列這一行︰
+5. 將 **iotdm\_edison\_sample.service** 檔案從 **~/azure-iot-sdks/c/iotdm\_client/samples/iotdm\_edison\_sample/bitbake/** 資料夾複製到 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-support/iotdm-edison-sample/files** 資料夾。
+
+6. 編輯 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-core/images/edison-image.bb** 檔案，為您的新配方新增一個項目。在檔案結尾處加入下列這一行︰
     
     ```
     IMAGE_INSTALL += "iotdm-edison-sample"
     ```
 
-6. 因為閘道 SDK 和裝置管理用戶端共用某些程式庫，所以您需要編輯 **~/edison-src/out/linux64/poky/meta/classes/sstate.bbclass** 檔案。在此檔案結尾處加入下列這一行。請務必將 `<your user>` 取代為您目前的使用者名稱：
+7. 因為閘道 SDK 和裝置管理用戶端共用某些程式庫，所以您需要編輯 **~/edison-src/out/linux64/poky/meta/classes/sstate.bbclass** 檔案。在此檔案結尾處加入下列這一行。請務必將 `<your user>` 取代為您目前的使用者名稱：
     
     ```
     SSTATE_DUPWHITELIST += "/home/<your user>/edison-src/out/linux64/build/tmp/sysroots/edison/usr/lib/libaziotsharedutil.a"
     SSTATE_DUPWHITELIST += "/home/<your user>/edison-src/out/linux64/build/tmp/sysroots/edison/usr/include/azureiot"
     ```
 
-7. 編輯 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-connectivity/wpa\_supplicant/wpa-supplicant/wpa\_supplicant.conf-sane** 檔案並在檔案結尾處加入下列幾行，將 WiFi 設定成在 Edison 面板上自動啟動。請務必將 `<your wifi ssid>` 和 `<your wifi password>` 取代為您的 WiFi 網路的正確值︰
+8. 編輯 **~/edison-src/meta-intel-edison/meta-intel-edison-distro/recipes-connectivity/wpa\_supplicant/wpa-supplicant/wpa\_supplicant.conf-sane** 檔案並在檔案結尾處加入下列幾行，將 WiFi 設定成在 Edison 面板上自動啟動。請務必將 `<your wifi ssid>` 和 `<your wifi password>` 取代為您的 WiFi 網路的正確值︰
     
     ```
     network={
@@ -235,7 +237,7 @@
     }
     ```
 
-8. 您現在可以建立 Edison 面板的映像，其中包含閘道 SDK 和裝置管理用戶端。**Bitbake** 命令的執行速度會比先前的速度快很多，因為它只需要建立新配方並將其加入至映像︰
+9. 您現在可以建立 Edison 面板的映像，其中包含閘道 SDK 和裝置管理用戶端。**Bitbake** 命令的執行速度會比先前的速度快很多，因為它只需要建立新配方並將其加入至映像︰
     
     ```
     cd ~/edison-src/out/linux64/
@@ -243,7 +245,7 @@
     bitbake edison-image
     ```
 
-9. 執行下列命令來完成建置：
+10. 執行下列命令來完成建置：
   
     ```
     cd ~/edison-src/
@@ -423,4 +425,4 @@ IoT 裝置管理服務所要求的 Edison 韌體更新通常會下載 zip 檔案
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

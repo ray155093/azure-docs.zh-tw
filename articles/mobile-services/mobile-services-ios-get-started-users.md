@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="03/09/2016"
+	ms.date="07/21/2016"
 	ms.author="krisragh"/>
 
 # 將驗證加入至現有的應用程式
@@ -89,4 +89,4 @@
 
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0727_2016-->

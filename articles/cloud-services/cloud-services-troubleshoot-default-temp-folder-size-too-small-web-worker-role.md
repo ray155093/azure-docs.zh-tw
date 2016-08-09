@@ -30,7 +30,7 @@
 
 實作下列其中一個替代方案：
 
-- 設定本機儲存資源並直接加以存取，而不要使用 TEMP 或 TMP。若要從您應用程式內執行的程式碼存取本機儲存資源，請呼叫 [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx) 方法。如需關於設定本機儲存資源的詳細資訊，請參閱[設定本機儲存資源](cloud-services-configure-local-storage-resources.md)。
+- 設定本機儲存資源並直接加以存取，而不要使用 TEMP 或 TMP。若要從您應用程式內執行的程式碼存取本機儲存資源，請呼叫 [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx) 方法。
 
 - 設定本機儲存資源，並將 TEMP 和 TMP 目錄指向本機儲存資源的路徑。此修改應在 [RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) 方法內執行。
 
@@ -73,8 +73,8 @@ namespace WorkerRole1
 
 請參閱說明[如何增加 Azure Web 角色 ASP.NET 暫存資料夾大小](http://blogs.msdn.com/b/kwill/archive/2011/07/18/how-to-increase-the-size-of-the-windows-azure-web-role-asp-net-temporary-folder.aspx)的部落格。
 
-檢視更多雲端服務的[疑難排解文章](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services)。
+檢視更多雲端服務的[疑難排解文章](/?tag=top-support-issue&product=cloud-services)。
 
 若要了解如何利用 Azure PaaS 電腦診斷資料，對雲端服務角色的問題進行疑難排解，請檢視 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

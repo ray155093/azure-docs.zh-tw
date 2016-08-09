@@ -161,12 +161,16 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
 
 ## 後續步驟
 
-既然您已使用邏輯應用程式將預先設定的解決方案連接到商務程序，您可能想要深入了解[自訂預先設定的解決方案][lnk-customize]或[如何將實體裝置加入至解決方案][lnk-connect]。
+既然您已使用邏輯應用程式將預先設定的解決方案連接到商務程序，您可以深入了解自訂預先設定的解決方案的選項。
+
+- [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic]
+- [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]
+
+[lnk-dynamic]: iot-suite-dynamic-telemetry.md
+[lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 
 [lnk-internetofthings]: https://azure.microsoft.com/documentation/suites/iot-suite/
 [lnk-getstarted]: iot-suite-getstarted-preconfigured-solutions.md
-[lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
-[lnk-connect]: iot-suite-connecting-devices.md
 [lnk-azureportal]: https://portal.azure.com
 [lnk-logic-apps-actions]: ../connectors/apis-list.md
 [lnk-rmgithub]: https://github.com/Azure/azure-iot-remote-monitoring
@@ -174,4 +178,4 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
 [lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/local-deployment.md
 [lnk-clouddeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

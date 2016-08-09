@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/12/2016"
+   ms.date="07/25/2016"
    ms.author="larryfr"/>
 
 #使用 Pig 命令 (SSH) 在以 Linux 為基礎的叢集上執行 Pig 工作
@@ -65,7 +65,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 3. 輸入下列陳述式。
 
-		LOGS = LOAD 'wasb:///example/data/sample.log';
+		LOGS = LOAD 'wasbs:///example/data/sample.log';
 
 	此命令會將 sample.log 檔案的內容載入至 LOGS。您可以使用下列方法檢視檔案的內容。
 
@@ -99,7 +99,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 6. 您也可以使用 `STORE` 陳述式儲存轉換結果。例如，下列命令會將 `RESULT` 儲存到叢集之預設儲存體容器上的 **/example/data/pigout** 目錄。
 
-		STORE RESULT into 'wasb:///example/data/pigout';
+		STORE RESULT into 'wasbs:///example/data/pigout';
 
 	> [AZURE.NOTE] 資料會儲存到所指定目錄中名為 **part-nnnnn** 的檔案中。如果目錄已經存在，則會收到錯誤。
 
@@ -117,7 +117,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 4. 輸入或貼上下列數行，然後在完成後使用 Ctrl+D。
 
-		LOGS = LOAD 'wasb:///example/data/sample.log';
+		LOGS = LOAD 'wasbs:///example/data/sample.log';
 		LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 		FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
 		GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
@@ -154,4 +154,4 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

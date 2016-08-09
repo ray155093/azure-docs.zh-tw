@@ -21,12 +21,12 @@
 
 [分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
+* **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
+* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
 
 ## 開啟分析
 
-在 Application Insights 中，從您的應用程式的首頁資源，按一下 [分析]。
-
-![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-using/001.png)
+在 Application Insights 中，從您的應用程式的首頁資源，按一下 [分析]。![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-using/001.png)
 
 內嵌教學課程將提供您一些可執行作業的概念。
 
@@ -121,6 +121,8 @@
 
 根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-reference.md#render-directive)以選取圖表。
 
+您可以將圖表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。(僅適用於付費定價層的應用程式)。
+
 ## 匯出至 Excel
 
 執行查詢之後，您可以下載 .csv 檔案。按一下 [匯出至 Excel]。
@@ -148,4 +150,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

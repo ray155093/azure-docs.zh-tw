@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="04/26/2016"
+   ms.date="07/25/2016"
    ms.author="jgao"/>
 
 # 使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集
@@ -313,4 +313,4 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
     }
     }
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 使用 Azure 行動服務 .NET 後端建立排行榜應用程式
@@ -765,4 +765,4 @@ Model-View-ViewModel (MVVM) 是 Model-View-Controller (MVC) 的變體。MVVM 模
 [新增推播通知]: ../notification-hubs-windows-store-dotnet-get-started.md
 [開始使用驗證]: /develop/mobile/tutorials/get-started-with-users-dotnet
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

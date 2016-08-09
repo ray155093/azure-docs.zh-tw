@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="07/27/2016"
 	ms.author="larryfr"/>
 
 # 在 HDInsight Hadoop 叢集上安裝和使用 Solr
@@ -311,4 +311,4 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。Solr 儀�
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

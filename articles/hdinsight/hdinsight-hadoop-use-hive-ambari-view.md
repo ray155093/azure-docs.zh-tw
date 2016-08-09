@@ -62,7 +62,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 		DROP TABLE log4jLogs;
 		CREATE EXTERNAL TABLE log4jLogs(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
 		ROW FORMAT DELIMITED FIELDS TERMINATED BY ' '
-		STORED AS TEXTFILE LOCATION 'wasb:///example/data/';
+		STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';
 		SELECT t4 AS sev, COUNT(*) AS cnt FROM log4jLogs WHERE t4 = '[ERROR]' GROUP BY t4;
 
 	這些陳述式將執行下列動作：
@@ -169,13 +169,13 @@ Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQ
 例如，如果您使用下列屬性定義 UDF：
 
 * 資源名稱：myudfs
-* 資源路徑：wasb:///myudfs.jar
+* 資源路徑：wasbs:///myudfs.jar
 * UDF 名稱：myawesomeudf
 * UDF 類別名稱：com.myudfs.Awesome
 
 使用 [插入 udf] 按鈕會顯示名為 [myudfs] 的項目，以及針對該資源定義的每個 UDF 的另一個下拉式清單。在此案例中為 __myawesomeudf__。選取此項目會將下列項目新增至查詢的開頭：
 
-    add jar wasb:///myudfs.jar;
+    add jar wasbs:///myudfs.jar;
 
     create temporary function myawesomeudf as 'com.myudfs.Awesome';
 
@@ -199,4 +199,4 @@ Hive 也可透過**使用者定義函數 (UDF)** 延伸。UDF 可讓您在 HiveQ
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

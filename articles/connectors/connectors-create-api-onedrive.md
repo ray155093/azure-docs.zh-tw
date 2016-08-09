@@ -9,17 +9,19 @@
 	tags="connectors"/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="07/19/2016"
+   ms.date="07/26/2016"
    ms.author="mandia"/>
 
 # 開始使用 OneDrive 連接器
 
-連線到 OneDrive 來管理您的檔案，包括上傳檔案、取得、刪除檔案等等。您可以利用 OneDrive 來：
+連線到 OneDrive 來管理您的檔案，包括上傳檔案、取得、刪除檔案等等。
+
+使用 OneDrive，您會︰
 
 - 將檔案儲存在 OneDrive 中或更新 OneDrive 中的現有檔案以建置您的工作流程。
 - 使用觸發程序，在 OneDrive 內有檔案建立或更新時，啟動工作流程。
@@ -29,23 +31,25 @@
 
 >[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+
 ## 連線到 OneDrive
 
-在邏輯應用程式可以存取任何服務之前，您必須先建立與服務的「連線」。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 OneDrive，您必須先有 OneDrive「連線」。若要建立連線，請輸入平常用來存取所要連線之服務的認證。因此，在 OneDrive 中，請在 OneDrive 帳戶輸入認證以建立連線。
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 OneDrive，您必須先有 OneDrive「連線」。若要建立連線，請輸入平常用來存取所要連線之服務的認證。因此，在 OneDrive 中，請在 OneDrive 帳戶輸入認證以建立連線。
 
 ### 建立連線
 
->[AZURE.INCLUDE [建立至 OneDrive 連線的步驟](../../includes/connectors-create-api-onedrive.md)]
+>[AZURE.INCLUDE [建立 OneDrive 連線的步驟](../../includes/connectors-create-api-onedrive.md)]
 
 ## 使用觸發程序
 
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。觸發程序會以您想要的間隔和頻率「輪詢」服務。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 在邏輯應用程式中，輸入「onedrive」以取得觸發程序的清單︰
 
 	![](./media/connectors-create-api-onedrive/onedrive-1.png)
 
-2. 選取 [當檔案遭到修改時]。如果連線已存在，則選取 [...] \(顯示選擇器) 按鈕以選取資料夾。
+2. 選取 [當檔案遭到修改時]。如果連線已存在，則選取 [顯示選擇器] 按鈕以選取資料夾。
 
 	![](./media/connectors-create-api-onedrive/sample-folder.png)
 
@@ -53,7 +57,11 @@
 
 	> [AZURE.NOTE] 在此範例中，當所選資料夾中的檔案更新時，邏輯應用程式便會執行。若要查看此觸發程序的結果，請新增另一個動作，以傳送電子郵件給您。例如，新增 Office 365 Outlook「傳送電子郵件」動作，以在檔案更新時傳送電子郵件給您。
 
-3. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+3. 選取 [編輯] 按鈕，然後設定 [頻率] 和 [間隔] 值。例如，如果您希望觸發程序每隔 15 分鐘輪詢一次，則將 [頻率] 設定為 [分鐘] 並將 [**間隔]** 設定為 [15]。
+
+	![](./media/connectors-create-api-onedrive/trigger-properties.png)
+
+4. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
 
 
 ## 使用動作
@@ -64,7 +72,7 @@
 
 	![](./media/connectors-create-api-onedrive/add-action.png)
 
-2. 選取 [新增動作]。
+2. 選擇 [新增動作]。
 
 3. 在文字方塊中，輸入「onedrive」以取得所有可用動作的清單。
 
@@ -406,4 +414,4 @@ BlobMetadata
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

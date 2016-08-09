@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="06/30/2016"
+	ms.date="07/27/2016"
 	ms.author="jeffstok"/>
 
 #  串流分析及 Power BI：適用於串流資料的即時分析儀表板
@@ -98,11 +98,11 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 *	**資料表名稱** - 提供 Power BI 輸出資料集的資料表名稱。暫時稱之為 "pbidemo"。目前，串流分析工作的 Power BI 輸出中，一個資料集只能有一個資料表。
 *	**工作區** – 在將用來建立資料集的 Power BI 租用戶中選取工作區。
 
->	[AZURE.NOTE] 您不應該在 Power BI 帳戶中明確地建立資料集和資料表，這些資料集和資料表會在您啟動串流分析工作時自動建立，且串流分析工作會將輸出提取至 Power BI。如果您的工作佇列並未傳回任何結果，則不會建立資料集和資料表。
+>	[AZURE.NOTE] You should not explicitly create this dataset and table in your Power BI account. They will be automatically created when you start your Stream Analytics job and the job starts pumping output into Power BI. If your job query doesn’t return any results, the dataset and table will not be created.
 
 *	依序按一下 [確定]、[測試連線]，輸出組態就已經完成。
 
->	[AZURE.WARNING] 也請注意 Power BI 是否已經具有與您在串流分析工作中提供的名稱相同皂資料集和資料表名稱；若是如此，可能會覆寫現有的資料。
+>	[AZURE.WARNING] Also be aware that if Power BI already had a dataset and table with the same name as the one you provided in this Stream Analytics job, the existing data will be overwritten.
 
 
 ## 撰寫查詢
@@ -241,4 +241,4 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 [graphic12]: ./media/stream-analytics-power-bi-dashboard/12-stream-analytics-power-bi-dashboard.png
 [graphic13]: ./media/stream-analytics-power-bi-dashboard/13-stream-analytics-power-bi-dashboard.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

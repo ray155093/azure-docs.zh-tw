@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/23/2016"
+	ms.date="07/27/2016"
 	ms.author="jeffstok"/>
 
 # 將串流分析資料轉換輸出的目標，設為分析工具及資料儲存體選項
@@ -173,7 +173,7 @@
 
 ### 授權 Power BI 帳戶
 
-1.	在 Azure 管理入口網站中選取 Power BI 做為輸出時，您將會收到提示授權現有的 Power BI 使用者或建立新的 Power BI 帳戶。  
+1.	在 Azure 管理入口網站中選取 Power BI 做為輸出時，您將會收到提示授權現有的 Power BI 使用者或建立新的 Power BI 帳戶。
 
     ![授權 Power BI 使用者](./media/stream-analytics-define-outputs/01-stream-analytics-define-outputs.png)
 
@@ -318,4 +318,4 @@
 [stream.analytics.query.language.reference]: http://go.microsoft.com/fwlink/?LinkID=513299
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/16/2016"
+	ms.date="07/21/2016"
 	ms.author="donnam"/>
 
 # 在行動服務中使用離線資料同步
@@ -173,4 +173,4 @@ Azure 行動服務離線同步處理可讓使用者在無法存取網路時，�
 [SQLite store nuget]: http://www.nuget.org/packages/WindowsAzure.MobileServices.SQLiteStore/1.0.0
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

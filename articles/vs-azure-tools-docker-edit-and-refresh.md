@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="06/08/2016"
+   ms.date="07/22/2016"
    ms.author="allclark" />
 
 # 偵錯本機 Docker 容器中的應用程式
@@ -107,6 +107,7 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 - [Docker Tools for Visual Studio Code](http://aka.ms/dockertoolsforvscode) - 用於編輯 Docker 檔案的語言服務，將推出更多其他 e2e 案例
 - [Windows 容器資訊](http://aka.ms/containers) - Windows Server 和 Nano Server 資訊
 - [Azure 容器服務](https://azure.microsoft.com/services/container-service/) - [Azure 容器服務內容](http://aka.ms/AzureContainerService)
+-    如需更多使用 Docker 的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[使用 Docker](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。如需 HealthClinic.biz 示範中的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 
 ## 各種 Docker 工具
 
@@ -124,4 +125,4 @@ Visual Studio Tools for Docker 提供一致的方式，在 Linux Docker 容器�
 
 [2]: ./media/vs-azure-tools-docker-edit-and-refresh/breakpoint.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

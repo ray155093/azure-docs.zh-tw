@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure SQL Database 的主動式異地複寫"
-	description="作用中異地複寫可讓您在任何 Azure 資料中心中設定資料庫的 4 個複本。"
+	description="主動式異地複寫可讓您在任何 Azure 資料中心中設定資料庫的 4 個複本。"
 	services="sql-database"
 	documentationCenter="na"
 	authors="stevestein"
@@ -13,17 +13,17 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-   ms.workload="sqldb-bcdr"
-	ms.date="06/14/2016"
+   ms.workload="NA"
+	ms.date="07/14/2016"
 	ms.author="sstein" />
 
-# 概觀︰SQL Database 作用中異地複寫
+# 概觀︰SQL Database 主動式異地複寫
 
-作用中異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。
+主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。
 
->[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+>[AZURE.NOTE] 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
- 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[TRANSACT-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定作用中異地複寫。
+ 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[TRANSACT-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定主動式異地複寫。
 
 > [AZURE.SELECTOR]
 - [設定：Azure 入口網站](sql-database-geo-replication-portal.md)
@@ -40,9 +40,9 @@
 - [容錯移轉︰PowerShell](sql-database-geo-replication-failover-powershell.md)
 - [容錯移轉︰T-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
-主動式異地複寫功能會實作可在相同 Microsoft Azure 區域或不同區域 (異地備援) 內提供資料庫備援的機制。作用中異地複寫以非同步方式從資料庫將已認可的交易複寫至不同伺服器上最多四個資料庫複本，而且使用讀取認可快照隔離 (RCSI) 進行隔離。當設定作用中異地複寫時，會在指定的伺服器上建立次要資料庫。原始的資料庫會變成主要資料庫。主要資料庫會以非同步方式將已認可的交易複寫到每一個次要資料庫。雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料庫保證一定會和主要資料庫認可的變更保持交易一致性。
+主動式異地複寫功能會實作可在相同 Microsoft Azure 區域或不同區域 (異地備援) 內提供資料庫備援的機制。主動式異地複寫以非同步方式從資料庫將已認可的交易複寫至不同伺服器上最多四個資料庫複本，而且使用讀取認可快照隔離 (RCSI) 進行隔離。當設定主動式異地複寫時，會在指定的伺服器上建立次要資料庫。原始的資料庫會變成主要資料庫。主要資料庫會以非同步方式將已認可的交易複寫到每一個次要資料庫。雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料庫保證一定會和主要資料庫認可的變更保持交易一致性。
 
-作用中異地複寫的主要優點之一，是它提供了具有極短復原時間的資料庫層級災害復原解決方案。當您將次要資料庫放在不同區域中的伺服器上，就能夠為應用程式中加入最大的恢復能力。跨區域備援可讓應用程式從天然災害、災難性人為錯誤或惡意行為所造成的全部或部分資料中心永久遺失復原。下圖顯示在進階資料庫上設定的作用中異地複寫範例，其在美國中北部區域有主要資料庫，在美國中南部區域有次要資料庫。
+主動式異地複寫的主要優點之一，是它提供了具有極短復原時間的資料庫層級災害復原解決方案。當您將次要資料庫放在不同區域中的伺服器上，就能夠為應用程式中加入最大的恢復能力。跨區域備援可讓應用程式從天然災害、災難性人為錯誤或惡意行為所造成的全部或部分資料中心永久遺失復原。下圖顯示在進階資料庫上設定的主動式異地複寫範例，其在美國中北部區域有主要資料庫，在美國中南部區域有次要資料庫。
 
 ![異地複寫關聯性](./media/sql-database-active-geo-replication/geo-replication-relationship.png)
 
@@ -66,7 +66,7 @@
 
 >[AZURE.NOTE] 如果有從主要資料庫接收的結構描述更新，則記錄重播將會延遲，因為它需要次要資料庫上的結構描述鎖定。
 
-- **彈性集區資料庫的作用中異地複寫**：您可以為任何彈性資料庫集區中的任何資料庫設定作用中異地複寫。次要資料庫可以在其他彈性資料庫集區中。對於一般資料庫，只要服務層相同，次要資料庫可以是彈性資料庫集區，反之亦然。
+- **彈性集區資料庫的主動式異地複寫**：您可以為任何彈性資料庫集區中的任何資料庫設定主動式異地複寫。次要資料庫可以在其他彈性資料庫集區中。對於一般資料庫，只要服務層相同，次要資料庫可以是彈性資料庫集區，反之亦然。
 
 - **次要資料庫的可設定效能層級**︰可以使用比主要資料庫低的效能層級建立次要資料庫。主要和次要資料庫必須有相同的服務層。對於具有高資料庫寫入活動的應用程式不建議使用這個選項，因為它可能會導致增加的複寫延遲，進而造成容錯移轉之後高度資料遺失的風險。此外，在容錯移轉之後應用程式的效能將會受到影響，直到新的主要資料庫升級至較高的效能層級。在 Azure 入口網站上的記錄 IO 百分比圖表，提供預估次要資料庫承受複寫負載所需的最少效能層級的好方法。例如，如果您的主要資料庫是 P6 (1000 DTU) 和其記錄 IO 百分比為 50%，則次要資料庫必須至少是 P4 (500 DTU)。您也可以使用 [sys.resource\_stats](https://msdn.microsoft.com/library/dn269979.aspx) 或 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx) 資料庫檢視來擷取記錄 IO 資料。如需 SQL Database 效能層級的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。
 
@@ -79,13 +79,13 @@
 
 >[AZURE.NOTE] **sp\_wait\_for\_database\_copy\_sync** 程序呼叫所造成的延遲可能會相當可觀。延遲會取決於當時交易記錄長度的大小，而且不會傳回，直到複寫整個記錄。請避免呼叫此程序，除非絕對必要。
 
-## 以程式設計方式管理作用中異地複寫
+## 以程式設計方式管理主動式異地複寫
 
-如上所述，除了 Azure 入口網站，還可使用 Azure PowerShell 和 REST API，以程式設計方式管理作用中異地複寫。下表描述可用的命令集。
+如上所述，除了 Azure 入口網站，還可使用 Azure PowerShell 和 REST API，以程式設計方式管理主動式異地複寫。下表描述可用的命令集。
 
-- **Azure Resource Manager API 和角色型安全性**︰作用中異地複寫包含一組可管理的 [Azure Resource Manager (ARM) API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 ARM 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+- **Azure Resource Manager API 和角色型安全性**︰主動式異地複寫包含一組可管理的 [Azure Resource Manager (ARM) API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 ARM 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
->[AZURE.NOTE] 只有在使用以 [Azure Resource Manager (ARM)](../resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援作用中異地複寫的許多新功能。現有 [Azure SQL 服務管理 (傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 ARM 為基礎的 API。
+>[AZURE.NOTE] 只有在使用以 [Azure Resource Manager (ARM)](../resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。現有 [Azure SQL 服務管理 (傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 ARM 為基礎的 API。
 
 
 ### Transact-SQL
@@ -128,10 +128,9 @@
 
 ## 後續步驟
 
-- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 - 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)。
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)。
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

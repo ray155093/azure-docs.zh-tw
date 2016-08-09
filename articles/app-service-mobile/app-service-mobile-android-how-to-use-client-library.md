@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="07/21/2016"
 	ms.author="ricksal"/>
 
 
@@ -47,7 +47,7 @@ Mobile Services SDK for Android 支援 Android 2.2 版或更新版本，但建�
 
 變更以下兩個 build.gradle 檔案：
 
-1. 將此程式碼加入至 buildscript 標記內的專案 層級 build.gradle 檔案：
+1. 將此程式碼加入至 buildscript 標籤內的專案 層級 build.gradle 檔案：
 
 		buildscript {
 		    repositories {
@@ -55,7 +55,7 @@ Mobile Services SDK for Android 支援 Android 2.2 版或更新版本，但建�
 		    }
 		}
 
-2. 將此程式碼加入至 dependencies 標記內的模組應用程式 層級 build.gradle 檔案：
+2. 將此程式碼加入至 dependencies 標籤內的模組應用程式 層級 build.gradle 檔案：
 
 		compile 'com.microsoft.azure:azure-mobile-android:3.1.0'
 
@@ -578,7 +578,7 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。您也可以使用已驗證的使用者 SID 來修改要求。
 
-前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] \(英文)。
+前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] (英文)。
 
 ### <a name="caching"></a>作法：將驗證碼新增至您的應用程式
 
@@ -610,13 +610,13 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 3. 將下列程式碼新增至您的應用程式，進行下列取代：
 
-* 將 **INSERT-AUTHORITY-HERE** 取代為您佈建應用程式的租用戶名稱。格式應該是 https://login.windows.net/contoso.onmicrosoft.com。此值可從 [Azure 傳統入口網站] 複製到 Azure Active Directory 的 [網域] 索引標籤以外。
+* 以您佈建應用程式的租用戶名稱取代 **INSERT-AUTHORITY-HERE**。格式應該是 https://login.windows.net/contoso.onmicrosoft.com。此值可從 [Azure 傳統入口網站] 複製到 Azure Active Directory 的 [網域] 索引標籤以外。
 
-* 將 **INSERT-RESOURCE-ID-HERE** 取代為您的行動應用程式後端的用戶端識別碼。您可以從入口網站中 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得。
+* 以您行動應用程式後端的用戶端識別碼取代 **INSERT-RESOURCE-ID-HERE**。您可以從入口網站中 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得這項資訊。
 
-* 將 **INSERT-CLIENT-ID-HERE** 取代為您從原生用戶端應用程式中複製的用戶端識別碼。
+* 以您從原生用戶端應用程式中複製的用戶端識別碼取代 **INSERT-CLIENT-ID-HERE**。
 
-* 使用 HTTPS 配置，將 **INSERT-REDIRECT-URI-HERE** 取代為您的網站的 _/.auth/login/done_ 端點。此值應與 \__https://contoso.azurewebsites.net/.auth/login/done_ 類似。
+* 使用 HTTPS 配置，以您網站的「/.auth/login/done」端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。
 
 		private AuthenticationContext mContext;
 		private void authenticate() {
@@ -836,4 +836,4 @@ Quickstart 教學課程包含可實作離線同步處理的程式碼。尋找前
 [Azure 入口網站]: https://portal.azure.com
 [開始使用驗證]: app-service-mobile-android-get-started-users.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -139,7 +139,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 6. 在 Hive 查詢中使用下列設定：
 
-		add file wasb:///HiveCSharp.exe;
+		add file wasbs:///HiveCSharp.exe;
 
 		SELECT TRANSFORM (clientid, devicemake, devicemodel)
 		USING 'HiveCSharp.exe' AS
@@ -147,7 +147,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 		FROM hivesampletable
 		ORDER BY clientid LIMIT 50;
 
-    這會從 `hivesampletable` 中選取 `clientid`、`devicemake` 和 `devicemodel` 欄位，然後將這些欄位傳遞給 HiveCSharp.exe 應用程式。此查詢預期應用程式會傳回儲存為 `clientid`、`phoneLabel` 和 `phoneHash` 的三個欄位。此查詢還預期在預設儲存體容器的根目錄中找到 HiveCSharp.exe (`add file wasb:///HiveCSharp.exe`)。
+    這會從 `hivesampletable` 中選取 `clientid`、`devicemake` 和 `devicemodel` 欄位，然後將這些欄位傳遞給 HiveCSharp.exe 應用程式。此查詢預期應用程式會傳回儲存為 `clientid`、`phoneLabel` 和 `phoneHash` 的三個欄位。此查詢還預期在預設儲存體容器的根目錄中找到 HiveCSharp.exe (`add file wasbs:///HiveCSharp.exe`)。
 
 5. 按一下 [**提交**]，將工作提交至 HDInsight 叢集。[**Hive 工作摘要**] 視窗會隨即開啟。
 
@@ -212,7 +212,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 3. 輸入下列命令，透過使用 .NET Framework 應用程式執行簡單的 Pig 工作：
 
 		DEFINE streamer `pigudf.exe` SHIP('pigudf.exe');
-		LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
+		LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
 		LOG = FILTER LOGS by LINE is not null;
 		DETAILS = STREAM LOG through streamer as (col1, col2, col3, col4, col5);
 		DUMP DETAILS;
@@ -241,4 +241,4 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->
