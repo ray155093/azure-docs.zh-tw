@@ -136,7 +136,7 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 2. 一旦到達 `jdbc:hive2://localhost:10001/>` 提示後，請輸入下列命令以將 UDF 新增至 Hive，並將它公開為函式。
 
-        ADD JAR wasb:///example/jar/ExampleUDF-1.0-SNAPSHOT.jar;
+        ADD JAR wasbs:///example/jar/ExampleUDF-1.0-SNAPSHOT.jar;
         CREATE TEMPORARY FUNCTION tolower as 'com.microsoft.examples.ExampleUDF';
 
 3. 使用 UDF 將從資料表擷取的值轉換成小寫字串。
@@ -166,4 +166,4 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 如需 Hive 使用者定義函式的詳細資訊，請造訪 apache.org 並參閱 Hive wiki 的 [Hive 運算子和使用者定義函式](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF)一節。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="07/21/2016"
 	ms.author="yuaxu"/>
 
 # 將推播通知新增至行動服務應用程式
@@ -402,4 +402,4 @@ APNS 使用憑證來驗證您的行動服務。遵循這些指示建立必要的
 [completed example project]: http://go.microsoft.com/fwlink/p/?LinkId=331303
 [Xamarin Studio]: http://xamarin.com/download
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0727_2016-->

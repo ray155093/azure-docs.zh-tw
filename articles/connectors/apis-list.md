@@ -1,7 +1,7 @@
 <properties
 	pageTitle="要用於 Microsoft Azure 邏輯應用程式中的 Microsoft 管理的連接器清單 | Microsoft Azure App Service | Microsoft Azure"
 	description="取得受 Microsoft 管理的連接器完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
-	services="app-service\logic"
+	services="logic-apps"
 	documentationCenter=""
 	authors="MSFTMAN"
 	manager="erikre"
@@ -183,4 +183,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

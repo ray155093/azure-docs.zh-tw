@@ -143,10 +143,13 @@
         public HttpResponseMessage GetDiv([FromUri]int a, [FromUri]int b)
         {
             string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a / b);
-HttpResponseMessage response = Request.CreateResponse(); response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml"); return response; } }
+    	    HttpResponseMessage response = Request.CreateResponse();
+    	    response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
+    	    return response;
+    	}
+    }
 
-
-按下 **F6** 來建置和驗證解決方案。
+按下 **F6** 來建置和驗證方案。
 
 ## 將專案發佈到 Azure
 
@@ -162,11 +165,11 @@ HttpResponseMessage response = Request.CreateResponse(); response.Content = new 
 
 ![應用程式][api-management-aad-backend-app]
 
-按一下要設定必要權限的應用程式名稱。瀏覽到 [設定] 索引標籤，向下捲動到 [其他應用程式的權限] 區段。按一下 [Microsoft Azure Active Directory] 旁邊的 [應用程式權限] 下拉式清單，核取 [讀取目錄資料] 的方塊，然後按一下 [儲存]。
+按一下要設定必要權限的應用程式名稱。瀏覽到 [設定] 索引標籤，向下捲動到 [其他應用程式的權限] 區段。按一下 [Windows Azure Active Directory] 旁邊的 [應用程式權限] 下拉式清單，核取 [讀取目錄資料] 的方塊，然後按一下 [儲存]。
 
 ![新增權限][api-management-aad-add-permissions]
 
->[AZURE.NOTE] 如果 [Microsoft Azure Active Directory] 並未列在 [其他應用程式的權限] 之下，請按一下 [加入應用程式] 從清單將其加入。
+>[AZURE.NOTE] 如果 [Windows Azure Active Directory] 並未列在 [其他應用程式的權限] 之下，請按一下 [加入應用程式] 從清單將其加入。
 
 請記下 [應用程式識別碼 URI] 供後續為 API 管理開發人員入口網站設定 Azure AD 應用程式的步驟時使用。
 
@@ -239,7 +242,7 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 對 [登入 URL] 輸入您 API 管理服務的 URL，並且附加 `/signin`。在此範例中使用 **https://contoso5.portal.azure-api.net/signin**。
 
-對 [應用程式識別碼 URL] 輸入您 API 管理服務的 URL，並且附加一些唯一字元。這些字元可以是任何想要的字元，在此範例中使用 **https://contoso5.portal.azure-api.net/dp**。設定了想要的 [應用程式屬性] 之後，按一下核取記號以建立應用程式。
+對 [應用程式識別碼 URL] 輸入您 API 管理服務的 URL，並且附加一些唯一字元。這些字元可以是任何想要的字元，在此範例中使用 **https://contoso5.portal.azure-api.net/dp**。設定了想要的 [應用程式屬性]** 之後，按一下核取記號以建立應用程式。
 
 ![新增應用程式][api-management-aad-new-application-devportal-2]
 
@@ -413,4 +416,4 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 [建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
 [管理您的第一個 API]: api-management-get-started.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

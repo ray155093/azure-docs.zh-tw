@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/05/2016" 
+	ms.date="07/21/2016" 
 	ms.author="glenga"/>
 
 # 傳送推播通知給已驗證的使用者
@@ -100,4 +100,4 @@
 [將驗證新增至您的應用程式]: ../mobile-services-windows-store-dotnet-get-started-users.md
 [將推播通知新增至您的應用程式]: ../mobile-services-javascript-backend-windows-store-dotnet-get-started-push.md
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

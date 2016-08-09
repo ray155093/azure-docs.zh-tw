@@ -9,7 +9,7 @@
 	tags="connectors"/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -108,11 +108,11 @@ HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。根據預設，任何 < 
 |---|---|
 |HTTP|進行 HTTP 呼叫並傳回回應內容|
 
-### 動作詳細資料
+## HTTP 詳細資料
 
 HTTP 連接器隨附 1 個可能的動作。下面有關於每個動作、其必要和選擇性輸入欄位，以及與其使用方式相關聯的對應輸出詳細資料的資訊。
 
-#### HTTP 要求
+### HTTP 要求
 提出 HTTP 輸出要求。* 代表必要欄位。
 
 |顯示名稱|屬性名稱|說明|
@@ -121,6 +121,7 @@ HTTP 連接器隨附 1 個可能的動作。下面有關於每個動作、其必
 |URI*|uri|HTTP 要求的 URI|
 |標頭|headers|要包含的 HTTP 標頭的 JSON 物件|
 |內文|body|HTTP 要求本文|
+|驗證|驗證|[此處提供詳細資料](#authentication)|
 <br>
 
 **輸出詳細資料**
@@ -133,20 +134,83 @@ HTTP 回應
 |內文|物件|回應物件|
 |狀態碼|int|HTTP 狀態碼|
 
-### HTTP 回應
+## 驗證
 
-呼叫不同動作時，您可能會收到特定回應。以下資料表概述對應的回應及說明。
+邏輯應用程式可讓您針對 HTTP 端點使用不同類型的驗證。此驗證可搭配 HTTP、[HTTP + Swagger](./connectors-native-http-swagger.md) 和 [HTTP Webhook](./connectors-native-webhook.md) 連接器使用。下列是可設定的驗證類型︰
 
-|名稱|說明|
-|---|---|
-|200|OK|
-|202|已接受|
-|400|不正確的要求|
-|401|未經授權|
-|403|禁止|
-|404|找不到|
-|500|內部伺服器錯誤。發生未知錯誤|
-|預設值|作業失敗。|
+* [基本驗證](#basic-authentication)
+* [ClientCertificate 驗證](#client-certificate-authentication)
+* [ActiveDirectoryOAuth 驗證](#azure-active-directory-oauth-authentication)
+
+#### 基本驗證
+
+下列是基本驗證需要的驗證物件︰* 表示必要欄位。
+
+|屬性名稱|資料類型|說明|
+|---|---|---|
+|類型*|類型|驗證類型。若為基本驗證，值需為 `Basic`|
+|使用者名稱*|username|要驗證的使用者名稱|
+|密碼*|password|要驗證的密碼|
+
+>[AZURE.TIP] 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)
+
+因此，您會在驗證欄位建立一個類似以下的物件︰
+
+```javascript
+{
+	"type": "Basic",
+	"username": "user",
+	"password": "test"
+}
+```
+
+#### 用戶端憑證驗證
+
+下列是用戶端憑證驗證需要的驗證物件︰* 表示必要欄位。
+
+|屬性名稱|資料類型|說明|
+|---|---|---|
+|類型*|類型|驗證類型。若為 SSL 用戶端憑證，值需為 `ClientCertificate`|
+|PFX*|pfx|Base64 編碼的 PFX 檔案內容|
+|密碼*|password|存取 PFX 檔案的密碼|
+
+>[AZURE.TIP] 使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)，您就能使用儲存後無法在定義中讀取的參數。
+
+例如：
+
+```javascript
+{
+	"type": "ClientCertificate",
+	"pfx": "aGVsbG8g...d29ybGQ=",
+	"password": "@parameters('myPassword')"
+}
+```
+
+#### Azure Active Directory OAuth 驗證
+
+下列是 Azure Active Directory OAuth 驗證需要的驗證物件︰* 表示必要欄位。
+
+|屬性名稱|資料類型|說明|
+|---|---|---|
+|類型*|類型|驗證類型。若為 ActiveDirectoryOAuth，值必須是 `ActiveDirectoryOAuth`|
+|租用戶*|tenant|Azure AD 租用戶的租用戶識別碼|
+|對象*|audience|此值會設定為 `https://management.core.windows.net/`|
+|用戶端識別碼*|clientId|提供 Azure AD 應用程式的用戶端識別碼|
+|密碼*|secret|要求權杖之用戶端的密碼|
+
+>[AZURE.TIP] 使用 `securestring` 參數和 `@parameters()` [工作流程定義函數](http://aka.ms/logicappdocs)，您就能使用儲存後無法在定義中讀取的參數。
+
+例如：
+
+```javascript
+{
+	"type": "ActiveDirectoryOAuth",
+	"tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+	"audience": "https://management.core.windows.net/",
+	"clientId": "34750e0b-72d1-4e4f-bbbe-664f6d04d411",
+	"secret": "hcqgkYc9ebgNLA5c+GDg7xl9ZJMD88TmTJiJBgZ8dFo="
+}
+```
 
 ---
 
@@ -158,4 +222,4 @@ HTTP 回應
 
 立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

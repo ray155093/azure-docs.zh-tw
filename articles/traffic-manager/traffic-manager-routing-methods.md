@@ -33,7 +33,7 @@
 
 「流量管理員」中提供三種流量路由方法：
 
-- **優先順序：**如果您想要針對所有流量使用某個主要服務端點，請選取 [優先順序]，並請提供備用方案，以防萬一發生主要端點或備份端點無法供使用的情況。如需詳細資訊，請參閱[優先順序流量路由方法](#wriority-traffic-routing-method)。
+- **優先順序：**如果您想要針對所有流量使用某個主要服務端點，請選取 [優先順序]，並請提供備用方案，以防萬一發生主要端點或備份端點無法供使用的情況。如需詳細資訊，請參閱[優先順序流量路由方法](#priority-traffic-routing-method)。
 
 - **加權︰**如果您想要將流量分配給一組端點 (不論是平均分配還是根據您定義的權數)，請選取 [加權]。如需詳細資訊，請參閱[加權流量路由方法](#weighted-traffic-routing-method)。
 
@@ -126,4 +126,4 @@
 [2]: ./media/traffic-manager-routing-methods/weighted.png
 [3]: ./media/traffic-manager-routing-methods/performance.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

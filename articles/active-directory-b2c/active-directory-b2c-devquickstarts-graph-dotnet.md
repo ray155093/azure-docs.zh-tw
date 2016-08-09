@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：使用圖形 API | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：使用圖形 API | Microsoft Azure"
 	description="如何使用應用程式身分識別對 B2C 租用戶呼叫圖形 API，以將程序自動化。"
 	services="active-directory-b2c"
 	documentationCenter=".net"
@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/22/2016"
+	ms.date="07/25/2016"
 	ms.author="dastrock"/>
 
-# Azure AD B2C 預覽：使用圖形 API
+# Azure AD B2C：使用圖形 API
 
 Azure Active Directory (Azure AD) B2C 租用戶通常會很龐大。這表示許多常見的租用戶管理工作需要以程式設計方式執行。使用者管理是主要範例。您可能需要將現有的使用者存放區移轉到 B2C 租用戶。您希望在自己的頁面上裝載使用者註冊，並在幕後的 Azure AD 中建立使用者帳戶。這類工作需要能夠建立、讀取、更新和刪除使用者帳戶。這些工作都可以透過 Azure AD 圖形 API 達成
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
 
 對於 B2C 租用戶，與圖形 API 通訊有兩種主要模式。
 
@@ -38,7 +36,7 @@ Azure Active Directory (Azure AD) B2C 租用戶通常會很龐大。這表示許
 有了 B2C 租用戶以後，您需要使用 Azure AD Powershell Cmdlet 建立服務應用程式。首先，下載並安裝 [Microsoft Online Services 登入小幫手](http://go.microsoft.com/fwlink/?LinkID=286152)。接著下載並安裝[適用於 Windows PowerShell 的 64 位元 Azure Active Directory 模組](http://go.microsoft.com/fwlink/p/?linkid=236297)。
 
 > [AZURE.NOTE]
-若要使用圖形 API 搭配 B2C 租用戶，您必須使用 Powershell 註冊專用的應用程式。請依照本文中的指示執行該項操作。您不能重複使用已經在 Azure 入口網站中註冊的現有 B2C 應用程式。這是 Azure AD B2C 預覽的一項限制，預計在不久的將來移除。我們計劃屆時會更新本文章。
+若要使用圖形 API 搭配 B2C 租用戶，您必須使用 Powershell 註冊專用的應用程式。請依照本文中的指示執行該項操作。您不能重複使用已經在 Azure 入口網站中註冊的現有 B2C 應用程式。
 
 安裝 Powershell 模組之後，請開啟 Powershell 並連線到 B2C 租用戶。執行 `Get-Credential` 之後，系統將提示您輸入使用者名稱和密碼。請輸入 B2C 租用戶系統管理員帳戶的使用者名稱和密碼。
 
@@ -127,7 +125,7 @@ git clone https://github.com/AzureADQuickStarts/B2C-GraphAPI-DotNet.git
 對圖形 API 發出任何要求時，需要有存取權杖進行驗證。`B2CGraphClient` 會使用開放原始碼 Active Directory 驗證程式庫 (ADAL) 來協助取得存取權杖。ADAL 提供簡單的 API 並處理一些重要的細節，例如快取存取權杖，可讓您輕鬆取得權杖。不過，您不必使用 ADAL 來取得權杖。您也可以藉由製作 HTTP 要求來取得權杖。
 
 > [AZURE.NOTE]
-	此程式碼範例使用 ADAL v2 (ADAL 公開上市版本)。不使用 ADAL v4，因為這是用於 Azure AD B2C 的預覽版本。在 Azure AD B2C 預覽中，您必須使用 ADAL v2 才能與圖形 API 進行通訊。未來，我們預計會使用 ADAL v4 提供圖形 API 存取權，您不需要在完整的 Azure AD B2C 方案中使用兩個版本的 ADAL。
+	此程式碼範例會使用 ADAL v2，以便與圖形 API 通訊。您必須使用 ADAL v2 或 v3，才能取得可與 Azure AD 圖形 API 搭配使用的存取權杖。
 
 `B2CGraphClient` 執行時會建立 `B2CGraphClient` 類別的執行個體。這個類別的建構函式會設定 ADAL 驗證架構：
 
@@ -246,7 +244,7 @@ Content-Length: 338
 > B2C Create-User ..\..\..\usertemplate-username.json
 ```
 
-`Create-User` 命令會以 .json 檔案做為輸入參數。這包含使用者物件的 JSON 表示法。範例程式碼中有兩個範例 .json 檔案：`usertemplate-email.json` 和 `usertemplate-username.json`。您可以修改這些檔案以符合您的需求。除了上述必要欄位以外，這些檔案包含一些您可以使用的選擇性欄位。[Azure AD 圖形 API 實體參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#UserEntity)提供選擇性欄位的詳細資訊。
+`Create-User` 命令會以 .json 檔案做為輸入參數。這包含使用者物件的 JSON 表示法。範例程式碼中有兩個範例 .json 檔案：`usertemplate-email.json` 和 `usertemplate-username.json`。您可以修改這些檔案以符合您的需求。除了上述必要欄位以外，這些檔案包含一些您可以使用的選擇性欄位。[Azure AD 圖形 API 實體參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#user-entity)提供選擇性欄位的詳細資訊。
 
 您可以在 `B2CGraphClient.SendGraphPostRequest(...)` 中看到如何建構 POST 要求。
 
@@ -322,7 +320,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsIng1dCI6IjdkRC1nZWNOZ1gxWmY3R0xrT3ZwT0
 
 大部分消費者應用程式都需要儲存某種自訂使用者設定檔資訊。作法之一是在 B2C 租用戶中定義自訂屬性。然後，您可將該屬性視同使用者物件的任何其他屬性一樣處理。該屬性就像登入權杖中的宣告，您可以更新、刪除、查詢、傳送該屬性。
 
-若要在 B2C 租用戶中定義自訂屬性，請參閱 [B2C 預覽自訂屬性參考](active-directory-b2c-reference-custom-attr.md)。
+若要在 B2C 租用戶中定義自訂屬性，請參閱 [B2C 自訂屬性參考](active-directory-b2c-reference-custom-attr.md)。
 
 您可以使用 `B2CGraphClient` 來檢視 B2C 租用戶中定義的自訂屬性：
 
@@ -364,4 +362,4 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsIng1dCI6IjdkRC1nZWNOZ1gxWmY3R0xrT3ZwT0
 
 對於您想要使用圖形 API 在 B2C 租用戶上執行的動作，如有任何問題或要求，請在本文上留言，或在 GitHub 程式碼範例儲存機制中提出問題。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0727_2016-->

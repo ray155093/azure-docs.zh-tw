@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 #在 HDInsight 上使用 Hadoop 分析航班延誤資料
@@ -25,7 +25,7 @@ Hive 可透過一種稱為 *[HiveQL][hadoop-hiveql]* 的 SQL 式指令碼語言�
 Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。HDInsight 會使用 Azure Blob 儲存體來儲存資料。典型的工作包含 3 個部分：
 
 1. **將資料儲存在 Azure Blob 儲存體中。** 這可能是持續的程序。例如，將天氣資料、感應器資料、Web 記錄，以及此案例中的航班延誤資料儲存到 Azure Blob 儲存體中。
-2. **執行工作。** 在該處理資料時，您就要執行 Windows PowerShell 指令碼 (或用戶端應用程式) 來建立 HDInsight 叢集、執行工具，然後刪除叢集。工作會將輸出資料儲存至 Azure Blob 儲存體。即使在刪除叢集之後，輸出資料仍會保留。因此，您只需要對已耗用的部分付費。
+2. **執行工作。** 在處理該資料時，您就要執行 Windows PowerShell 指令碼 (或用戶端應用程式) 來建立 HDInsight 叢集、執行工具，然後刪除叢集。工作會將輸出資料儲存至 Azure Blob 儲存體。即使在刪除叢集之後，輸出資料仍會保留。因此，您只需要對已耗用的部分付費。
 3. **從 Azure Blob 儲存體擷取輸出**，或在此教學課程中將資料匯出至 Azure SQL Database。
 
 下圖說明本教學課程的案例和結構：
@@ -63,8 +63,8 @@ Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。H
 
 <table border="1">
 <tr><th>檔案</th><th>說明</th></tr>
-<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>您將執行的 Hive 工作所用的 HiveQL 指令碼檔案。此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
-<tr><td>wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>您將執行的 Hive 工作所用的 HiveQL 指令碼檔案。此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
 <tr><td>\tutorials\flightdelays\output</td><td>Hive 工作的輸出路徑。預設容器用來儲存輸出資料。</td></tr>
 <tr><td>\tutorials\flightdelays\jobstatus</td><td>預設容器上的 Hive 工作狀態資料夾。</td></tr>
 </table>
@@ -195,7 +195,7 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
 		###########################################
 		# Submit the Sqoop job
 		###########################################
-		$exportDir = "wasb://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net/tutorials/flightdelays/output"
+		$exportDir = "wasbs://$defaultBlobContainerName@$defaultStorageAccountName.blob.core.windows.net/tutorials/flightdelays/output"
 		
 		$sqoopDef = New-AzureRmHDInsightSqoopJobDefinition `
 						-Command "export --connect $sqlDatabaseConnectionString --table $sqlDatabaseTableName --export-dir $exportDir --fields-terminated-by \001 "
@@ -258,7 +258,7 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
 3. 按一下 [下載]。
 4. 將檔案解壓縮至 **C:\\Tutorials\\FlightDelay\\2013Data** 資料夾。每個檔案皆為 CSV 檔案，大小約為 60 GB。
 5.	將檔案重新命名為檔案資料所屬月份的名稱。例如，包含一月份資料的檔案，應命名為 *January.csv*。
-6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。至少要有一個檔案，才能執行此教學課程。  
+6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。至少要有一個檔案，才能執行此教學課程。
 
 **將航班誤點資料上傳至 Azure Blob 儲存體**
 
@@ -346,7 +346,7 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
 
 如果您選擇使用不同的方法來上傳檔案，請確定檔案路徑為 tutorials/flightdelay/data。存取檔案的語法為：
 
-	wasb://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
+	wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
 
 tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資料夾。請確認共有 12 個檔案，每個月份各一個。
 
@@ -362,7 +362,7 @@ tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資�
 HiveQL 指令碼將執行下列作業：
 
 1. **捨棄 delays\_raw 資料表** (若此資料表已存在)。
-2. **建立 delays\_raw 外部 Hive 資料表** (指向含有航班誤點檔案的 Blob 儲存體位置)。此查詢會指定欄位將以 "," 分隔，且每一行都會以 "\\n" 結尾。如此，當欄位值含有逗號時，就會產生問題，因為 Hive 無法區分作為欄位分隔符號的逗號，與屬於欄位值的逗號 (在 ORIGIN\_CITY\_NAME 和 DEST\_CITY\_NAME 的欄位值中，就會出現此狀況)。為解決此問題，查詢會建立 TEMP 資料行來放置不當分割為資料行的資料。  
+2. **建立 delays\_raw 外部 Hive 資料表** (指向含有航班誤點檔案的 Blob 儲存體位置)。此查詢會指定欄位將以 "," 分隔，且每一行都會以 "\\n" 結尾。如此，當欄位值含有逗號時，就會產生問題，因為 Hive 無法區分作為欄位分隔符號的逗號，與屬於欄位值的逗號 (在 ORIGIN\_CITY\_NAME 和 DEST\_CITY\_NAME 的欄位值中，就會出現此狀況)。為解決此問題，查詢會建立 TEMP 資料行來放置不當分割為資料行的資料。
 3. **捨棄 delays 資料表** (若此資料表已存在)。
 4. **建立 delays 資料表**。此資料表有助於您在進一步處理之前先清除資料。此查詢會從 delays\_raw 資料表建立新資料表 *delays*。請注意，TEMP 資料行 (如前所述) 並不會複製，並且會使用 **substring** 函數來移除資料中的引號。
 5. **計算天候誤點平均值，並依城市名稱將結果分組。** 此作業也會將結果輸出至 Blob 儲存體。請注意，查詢將會移除資料中的上標號並將排除 **weather\_delay** 值為 null 的資料列。這是必要動作，因為 Sqoop (稍後使用於本教學課程) 預設不會正常處理這些值。
@@ -495,7 +495,7 @@ HiveQL 指令碼將執行下列作業：
 			"ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' " +
 			"LINES TERMINATED BY '\n' " +
 			"STORED AS TEXTFILE " +
-			"LOCATION 'wasb://flightdelay@hditutorialdata.blob.core.windows.net/2013Data';"
+			"LOCATION 'wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data';"
 		
 		$hqlDropDelays = "DROP TABLE delays;"
 		
@@ -742,4 +742,4 @@ HiveQL 指令碼將執行下列作業：
 [img-hdi-flightdelays-run-hive-job-output]: ./media/hdinsight-analyze-flight-delay-data/HDI.FlightDelays.RunHiveJob.Output.png
 [img-hdi-flightdelays-flow]: ./media/hdinsight-analyze-flight-delay-data/HDI.FlightDelays.Flow.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

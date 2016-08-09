@@ -1,10 +1,10 @@
 <properties
-	pageTitle="SaaS 應用程式的 Azure 條件式存取預覽 | Microsoft Azure"
+	pageTitle="SaaS 應用程式的 Azure 條件式存取 | Microsoft Azure"
 	description="Azure AD 中的條件式存取可讓您設定每個應用程式的多因素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。"
 	services="active-directory"
 	documentationCenter=""
-	authors="femila"
-	manager="swadhwa"
+	authors="markusvi"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/14/2016"
-	ms.author="femila"/>
+	ms.date="07/26/2016"
+	ms.author="markvi"/>
 
 # 開始使用 Azure AD 的條件式存取  
 
-SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條件式存取已可公開預覽。預覽可讓您根據群組、位置和應用程式敏感性來設定條件式存取。
+[SaaS](https://azure.microsoft.com/overview/what-is-saas/) 應用程式與 Azure AD 連線應用程式的 Azure Active Directory 條件式存取可讓您根據群組、位置和應用程式敏感性設定條件式存取。
 
 您可以將多重要素驗證規則套用至所有已指派給應用程式的使用者，或只套用至指定的安全性群組內的使用者。基於應用程式敏感性的條件式存取可讓您設定每個應用程式的多重要素驗證 (MFA) 存取規則，能夠封鎖不在受信任網路上的使用者存取。如果使用者是從組織網路內的 IP 位址存取應用程式，則可從多因素驗證需求中排除這些使用者。
 
@@ -30,9 +30,6 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 * 同盟或受管理的 Azure Active Directory 租用戶
 
 * 同盟租用戶需要啟用多重要素驗證。
-
-## 此預覽版本中已知的問題
-此預覽版本適用於預先整合的同盟 SaaS 應用程式、使用密碼單一登入的應用程式、已註冊開發和商務營運的應用程式，以及 Azure AD 應用程式 Proxy。其他應用程式仍然啟用中。
 
 ## 設定每個應用程式的存取規則
 
@@ -50,7 +47,7 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 
 ##了解存取規則
 
-本節提供 Azure 條件式應用程式存取預覽中支援的存取規則的詳細描述。
+本節提供 Azure 條件式應用程式存取中支援的存取規則的詳細描述。
 
 ### 指定套用存取規則的使用者
 
@@ -58,13 +55,13 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 
 選取 [除了] 選項並指定一個或多個群組，可以明確地從原則中排除安全性群組。屬於 [除了] 清單中的群組的使用者，即使是屬於套用存取規則的群組，也不受限於多因素驗證需求。以下顯示的存取規則會要求「管理員」群組中的所有使用者在存取應用程式時使用多因素驗證。
 
-![使用 MFA 設定條件式存取規則](./media/active-directory-conditional-access/conditionalaccess-saas-apps.png)
+![使用 MFA 設定條件式存取規則](./media/active-directory-conditional-access-azuread-connected-apps/conditionalaccess-saas-apps.png)
 
 ## 條件式存取規則和 MFA
 如果已使用每個使用者的多重要素驗證功能來設定使用者，則使用者的這項設定將與應用程式的多重要素驗證規則相結合。這表示已設定每個使用者多因素驗證的使用者，即使已從應用程式多因素驗證規則中免除，也都必須執行多因素驗證。深入了解多因素驗證和每個使用者設定。
 
 ### 存取規則選項
-目前的預覽版本支援下列選項：
+支援下列選項：
 
 * **需要多重要素驗證**︰使用此選項時，套用存取規則的使用者必須先完成多重要素驗證，才能存取套用規則的應用程式。
 
@@ -94,4 +91,4 @@ SaaS 應用程式和 Azure AD 連線應用程式的 Azure Active Directory 條�
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

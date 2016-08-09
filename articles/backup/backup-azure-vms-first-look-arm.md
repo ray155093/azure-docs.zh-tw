@@ -1,6 +1,6 @@
 <properties
-	pageTitle="使用 Azure 備份保護 Resource Manager 部署的 VM | Microsoft Azure"
-	description="使用 Azure 備份服務保護 Resource Manager 部署的 VM。使用 Resource Manager 部署的 VM 和進階儲存體 VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
+	pageTitle="初步了解：使用復原服務保存庫保護 Azure VM | Microsoft Azure"
+	description="使用復原服務保存庫保護 Azure VM。使用 Resource Manager 部署的 VM、傳統部署的 VM 和進階儲存體 VM 的備份來保護您的資料。建立和註冊復原服務保存庫。在 Azure 中註冊 VM、建立原則和保護 VM。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
@@ -18,11 +18,11 @@
 	ms.author="markgal; jimpark"/>
 
 
-# 初步了解：將 Resource Manager 部署的 VM 備份到復原服務保存庫
+# 初步了解：使用復原服務保存庫保護 Azure VM
 
 > [AZURE.SELECTOR]
-- [備份 Resource Manager 部署的 VM](backup-azure-vms-first-look-arm.md)
-- [備份傳統模式 VM](backup-azure-vms-first-look.md)
+- [初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)
+- [初步了解：使用備份保存庫保護 Azure VM](backup-azure-vms-first-look.md)
 
 本教學課程會帶領您完成步驟以建立復原服務保存庫和備份 Azure 虛擬機器 (VM)。復原服務保存庫可保護︰
 
@@ -58,7 +58,7 @@
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
-    隨即會顯示 [復原服務保存庫] 清單。
+    隨即會顯示復原服務保存庫清單。
 
 3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
 
@@ -78,7 +78,7 @@
 
     >[AZURE.IMPORTANT] 如果您不確定 VM 的所在位置，請關閉保存庫建立對話方塊，並移至入口網站的虛擬機器清單。如果您在多個區域中有虛擬機器，您必須在每個區域中建立復原服務保存庫。請先在第一個位置建立保存庫，再進入下一個位置。儲存備份資料時，不需要指定儲存體帳戶，復原服務保存庫和「Azure 備份」服務會自動處理此作業。
 
-8. 按一下 [建立]。要等復原服務保存庫建立好，可能需要一些時間。請監視入口網站右上方區域中的狀態通知。保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。
+8. 按一下 [建立]。要等復原服務保存庫建立好，可能需要一些時間。請監視入口網站右上方區域中的狀態通知。保存庫一旦建立好，就會出現在復原服務保存庫清單中。
 
     ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/rs-list-of-vaults.png)
 
@@ -109,8 +109,8 @@
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
-    隨即會出現 [復原服務保存庫] 清單。
-  - 在 [復原服務保存庫] 清單中選取保存庫。
+    復原服務保存庫清單隨即出現。
+  - 在復原服務保存庫清單中選取保存庫。
 
     選取的保存庫儀表板隨即開啟。
 
@@ -219,4 +219,4 @@
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

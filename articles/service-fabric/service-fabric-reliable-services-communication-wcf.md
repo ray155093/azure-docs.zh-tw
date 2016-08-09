@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="03/28/2016"
+   ms.date="07/26/2016"
    ms.author="bharatn"/>
 
 # 適用於 Reliable Services 的 WCF 式通訊堆疊
@@ -122,4 +122,4 @@ var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
 
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

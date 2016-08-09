@@ -1,11 +1,11 @@
 
 <properties
-	pageTitle="技術參考：Azure AD 應用程式的條件式存取 | Microsoft Azure"
+	pageTitle="Azure Active Directory 條件式存取的技術參考 | Microsoft Azure"
 	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
     services="active-directory"
 	documentationCenter=""
-	authors="femila"
-	manager="swadhwa"
+	authors="markusvi"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -14,10 +14,10 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="06/23/2016"
-	ms.author="femila"/>
+	ms.date="07/26/2016"
+	ms.author="markvi"/>
 
-# 技術參考：Azure AD 應用程式的條件式存取
+# Azure Active Directory 條件式存取的技術參考
 
 ## 已啟用條件式存取功能的服務
 各種 Azure AD 應用程式類型都支援「條件式存取」規則。此清單包括：
@@ -82,4 +82,4 @@
 - [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

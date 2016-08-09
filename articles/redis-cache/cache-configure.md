@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="07/07/2016"
+	ms.date="07/25/2016"
 	ms.author="sdanie" />
 
 # 如何設定 Azure Redis 快取
@@ -372,10 +372,11 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 您可以使用 [Redis 主控台] \(可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
 
->[AZURE.IMPORTANT] Redis 主控台無法使用 VNET 或叢集。
+>[AZURE.IMPORTANT] Redis 主控台無法使用 VNET、叢集和 0 以外的資料庫。
 >
 >-	[VNET](cache-how-to-premium-vnet.md) - 如果您的快取是 VNET 的一部分，只有在 VNET 中的用戶端可以存取快取。Redis 主控台使用的 redis cli.exe 用戶端裝載於不屬於您 VNET 的 VM 上，因此主控台無法連接到您的快取。
 >-	[叢集](cache-how-to-premium-clustering.md) - Redis 主控台使用目前不支援叢集的 redis-cli.exe 用戶端。在 GitHub 的 Redis 存放庫[不穩定](http://redis.io/download)分支中的 redis-cli 公用程式，於使用 `-c` 參數啟動時，會實作基本支援。如需詳細資訊，請參閱 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)中 [http://redis.io](http://redis.io) 上的[試用叢集](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster)。
+>-	在您每次提交命令時，Redis 主控台會建立與資料庫 0 的新連線。您不能使用 `SELECT` 命令來選取其他資料庫，因為每個命令都會將資料庫重設為 0。如需執行 Redis 命令的資訊，包括變更到不同的資料庫，請參閱[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 
 若要存取 Redis 主控台，請從 [Redis 快取] 刀鋒視窗按一下 [主控台]。
 
@@ -398,4 +399,4 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 ## 後續步驟
 -	如需使用 Redis 命令的詳細資訊，請參閱[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

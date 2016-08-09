@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/18/2016"
+   ms.date="07/25/2016"
    ms.author="larryfr"/>
 
 # 使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
@@ -390,7 +390,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。�
 
 7. 在 [查詢主控台] 上，選取 [Hive 編輯器] 並且將預設 `select * from hivesampletable` 取代為下列項目：
 
-        create external table devicedata (deviceid string, devicevalue int) row format delimited fields terminated by ',' stored as textfile location 'wasb:///devicedata/';
+        create external table devicedata (deviceid string, devicevalue int) row format delimited fields terminated by ',' stored as textfile location 'wasbs:///devicedata/';
         select * from devicedata limit 10;
 
     按一下 [選取] 來執行查詢。這會從 EventHubReader 寫入 Azure 儲存體 (WASB) 的資料傳回 10 個資料列。一旦查詢完成，您應該會看到類似以下的資料：
@@ -453,4 +453,4 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

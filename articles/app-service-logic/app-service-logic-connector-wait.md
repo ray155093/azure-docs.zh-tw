@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -30,7 +30,7 @@ Wait 連接器可用作動作。它並沒有任何觸發程序。
 
 ### 動作
 - 按一下右窗格中的 Wait 連接器：![動作清單][1]
-- Wait 連接器支援兩個動作： 
+- Wait 連接器支援兩個動作：
 	- 延遲
 	- 延遲到
 	 
@@ -56,4 +56,4 @@ Wait 連接器可用作動作。它並沒有任何觸發程序。
 [2]: ./media/app-service-logic-wait/DelayInput.PNG
 [3]: ./media/app-service-logic-wait/ActionConfigured.PNG
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

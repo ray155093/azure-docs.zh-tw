@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/11/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # Azure 資料湖存放區概觀
@@ -65,7 +65,7 @@ Azure 資料湖存放區會使用 Azure Active Directory 進行驗證，並使�
 | 功能 | 說明 |
 |-----------------------------------------|------------------------------------------|
 | 驗證 | Azure 資料湖存放區整合了 Azure Active Directory (AAD)，可對 Azure 資料湖存放區中儲存的所有資料進行身分識別與存取管理。由於整合的結果，Azure 資料湖受惠於所有的 AAD 功能，包括 Multi-Factor Authentication、條件式存取、角色型存取控制、應用程式使用情況監視、安全性監視和警示等。Azure 資料湖存放區支援 OAuth 2.0 通訊協定以便在 REST 介面中進行驗證。 |
-| 存取控制 | Azure 資料湖存放區藉由支援 WebHDFS 通訊協定所公開的 POSIX 樣式權限，以提供存取控制。在目前的版本中，權限可於資料湖層級指定並套用到資料湖中的所有檔案和資料夾。在未來的更新中，我們將允許在個別檔案和資料夾上指定權限，以達到更細緻的存取控制。|
+| 存取控制 | Azure 資料湖存放區藉由支援 WebHDFS 通訊協定所公開的 POSIX 樣式權限，以提供存取控制。在目前版本中，可以在根資料夾、子資料夾，以及個別檔案上啟用 ACL。您套用至根資料夾的 ACL 也適用於所有子資料夾/檔案。|
 
 想要深入了解如何保護 Data Lake Store中的資料。請依照下列連結執行。
 
@@ -80,9 +80,9 @@ Azure Data Lake Store 與 Hadoop 生態系統中的大多數開放原始碼元�
 * 請參閱[與其他 Azure 服務整合](data-lake-store-integrate-with-other-services.md)，以了解 Azure 資料湖存放區如何與其他 Azure 服務一起使用，以促成更廣泛的案例。
 * 請參閱[使用 Data Lake Store 的案例](data-lake-store-data-scenarios.md)，以了解如何在擷取資料、處理資料、下載資料和視覺化資料等案例中使用 Data Lake Store。
 
-## 什麼是 Azure 資料湖存放區檔案系統 (adl://)?
+## 什麼是 Azure Data Lake Store 檔案系統 (adl://)？
 
-在 Hadoop 環境中可透過新的檔案系統 (AzureDataLakeFilesystem (adl://)) 存取資料湖存放區 (透過 HDInsight 叢集提供)。使用 adl:// 的應用程式和服務能夠利用 WebHDFS 中目前無法使用的進一步效能最佳化。因此，資料湖存放區讓您具有彈性：可透過使用 adl:// 的建議選項獲得最佳效能，或繼續直接使用 WebHDFS API 來維護現有的程式碼。Azure HDInsight 充分利用 AzureDataLakeFilesystem 來提供資料湖存放區的最佳效能。
+在 Hadoop 環境中可透過新的檔案系統 (AzureDataLakeFilesystem (adl://) 存取 Data Lake Store (透過 HDInsight 叢集提供)。使用 adl:// 的應用程式和服務能夠利用 WebHDFS 中目前無法使用的進一步效能最佳化。因此，資料湖存放區讓您具有彈性：可透過使用 adl:// 的建議選項獲得最佳效能，或繼續直接使用 WebHDFS API 來維護現有的程式碼。Azure HDInsight 充分利用 AzureDataLakeFilesystem 來提供資料湖存放區的最佳效能。
 
 您可以使用 `adl://<data_lake_store_name>.azuredatalakestore.net`，在資料湖存放區中存取您的資料。如需有關如何在資料湖存放區中存取資料的詳細資訊，請參閱[檢視預存資料的屬性](data-lake-store-get-started-portal.md#properties)
 
@@ -110,4 +110,4 @@ Azure Data Lake Store 與 Hadoop 生態系統中的大多數開放原始碼元�
 * [使用 Azure Data Factory 進行 Azure Data Lake Store 的資料協調](https://mix.office.com/watch/1oa7le7t2u4ka)
 * [保護 Azure Data Lake Store 中的資料](https://mix.office.com/watch/1q2mgzh9nn5lx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

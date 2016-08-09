@@ -131,7 +131,7 @@
 
 	如需這些項目以及與 Giraph 範例搭配使用之其他參數的詳細資訊，請參閱 [Giraph 快速入門](http://giraph.apache.org/quick_start.html)。
 
-5. 一旦工作完成，結果會儲存在 __wasb:///example/out/shotestpaths__ 目錄中。建立的檔案會以 __part-m-\_\_ 開頭，結束的數字表示是第一個、第二個檔案，依此類推。使用下列項目以檢視輸出：
+5. 一旦工作完成，結果會儲存在 __wasbs:///example/out/shotestpaths__ 目錄中。建立的檔案會以 __part-m-\_\_ 開頭，結束的數字表示是第一個、第二個檔案，依此類推。使用下列項目以檢視輸出：
 
 		hadoop fs -text /example/output/shortestpaths/*
 
@@ -158,4 +158,4 @@
 
 - [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您在儲存的資料上執行功能強大的搜尋作業。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

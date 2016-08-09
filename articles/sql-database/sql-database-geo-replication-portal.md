@@ -12,8 +12,8 @@
     ms.devlang="NA"
     ms.topic="article"
     ms.tgt_pltfrm="NA"
-   ms.workload="sqldb-bcdr"
-    ms.date="06/14/2016"
+   ms.workload="NA"
+    ms.date="07/14/2016"
     ms.author="sstein"/>
 
 # 使用 Azure 入口網站為 Azure SQL Database 設定異地複寫
@@ -25,11 +25,11 @@
 - [PowerShell](sql-database-geo-replication-powershell.md)
 - [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「作用中異地複寫」。
+本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「主動式異地複寫」。
 
 若要使用 Azure 入口網站起始容錯移轉，請參閱[使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)。
 
->[AZURE.NOTE] 作用中異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+>[AZURE.NOTE] 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
 若要使用 Azure 入口網站設定異地複寫，您需要下列項目：
 
@@ -98,8 +98,9 @@
 
 ## 後續步驟
 
-- 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
+- 若要深入了解主動式異地複寫，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+
 
 <!--Image references-->
 [1]: ./media/sql-database-geo-replication-portal/configure-geo-replication.png
@@ -113,4 +114,4 @@
 [9]: ./media/sql-database-geo-replication-portal/seeding-complete.png
 [10]: ./media/sql-database-geo-replication-portal/failover.png
 
-<!----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

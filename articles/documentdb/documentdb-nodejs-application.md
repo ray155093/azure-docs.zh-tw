@@ -110,7 +110,7 @@
 
 1. 在專案目錄中，建立一個名為 **models** 的新目錄。
 2. 在 **models** 目錄中，建立名為 **taskDao.js** 的新檔案。此檔案將包含應用程式所建立工作的模型。
-3. 在同一個 **models** 目錄中，建立另一個名為 **docdbUtils.js** 的新檔案。這個檔案會包含一些實用、可重複使用，適用於整個應用程式的程式碼。 
+3. 在同一個 **models** 目錄中，建立另一個名為 **docdbUtils.js** 的新檔案。這個檔案會包含一些實用、可重複使用，適用於整個應用程式的程式碼。
 4. 將下列程式碼複製到 **docdbUtils.js**
 
 		var DocumentDBClient = require('documentdb').DocumentClient;
@@ -305,7 +305,7 @@
 
 ### 建立控制器
 
-1. 在專案的 **routes** 目錄中，建立名為 **tasklist.js** 的新檔案。 
+1. 在專案的 **routes** 目錄中，建立名為 **tasklist.js** 的新檔案。
 2. 在 **tasklist.js** 中加入以下程式碼。這會載入供 **tasklist.js** 使用的 DocumentDBClient 和 async 模組。這也會定義 **TaskList** 函數，系統會傳遞我們稍早定義的 **Task** 物件執行個體給它：
 
 		var DocumentDBClient = require('documentdb').DocumentClient;
@@ -439,7 +439,7 @@
 
 現在，讓我們將注意力轉到建置使用者介面，以便使用者可以實際與我們的應用程式互動。我們建立的 Express 應用程式使用 **Jade** 做為檢視引擎。如需 Jade 的詳細資訊，請參閱 [http://jade-lang.com/](http://jade-lang.com/)。
 
-1. **views** 目錄中的 **layout.jade** 檔是用來作為其他 **.jade** 檔案的全域範本。在此步驟中，您將修改它以使用 [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這個工具組能夠方便設計美觀的網站。 
+1. **views** 目錄中的 **layout.jade** 檔是用來作為其他 **.jade** 檔案的全域範本。在此步驟中，您將修改它以使用 [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這個工具組能夠方便設計美觀的網站。
 2. 開啟在 **views** 資料夾中找到的 **layout.jade** 檔案，並將其中的內容取代為下列內容；
 	
 		doctype html
@@ -545,7 +545,7 @@
 
 ## <a name="_Toc395783182"></a>步驟 7：將應用程式開發專案部署至 Azure 網站
 
-1. 如果您還沒有這麼做，請為您的 Azure 網站提供一個 Git 儲存機制。您可以於[在 Azure App Service 中使用 GIT 連續部署](../app-service-web/web-sites-publish-source-control.md)主題，找到有關如何執行這項操作的指示。
+1. 如果您還沒有這麼做，請為您的 Azure 網站提供一個 Git 儲存機制。您可以在 [Azure App Service 的本機 Git 部署](../app-service-web/app-service-deploy-local-git.md)主題中找到有關如何執行這項操作的指示。
 
 2. 新增您的 Azure 網站做為 Git 遠端。
 
@@ -570,4 +570,4 @@
 [Github]: https://github.com/Azure-Samples/documentdb-node-todo-app
  
 
-<!----HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0803_2016-->

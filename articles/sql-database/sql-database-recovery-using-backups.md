@@ -12,8 +12,8 @@
    ms.devlang="NA"
    ms.topic="article"
    ms.tgt_pltfrm="NA"
-   ms.workload="sqldb-bcdr"
-   ms.date="06/09/2016"
+   ms.workload="NA"
+   ms.date="07/09/2016"
    ms.author="sstein"/>
 
 # 使用自動資料庫備份復原 Azure SQL Database
@@ -40,6 +40,8 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
  沒有可執行大量還原的內建功能。[Azure SQL Database: Full Server Recovery](https://gallery.technet.microsoft.com/Azure-SQL-Database-Full-82941666) 指令碼是其中一種完成這項工作的範例。
 
+> [AZURE.IMPORTANT] 若要使用自動備份復原，您必須是訂用帳戶中 SQL Server 參與者角色的成員或訂用帳戶擁有者。您可以使用 Azure 入口網站、PowerShell 或 REST API 復原。您無法使用 Transact-SQL。
+
 ## 還原時間點
 
 還原時間點可讓您使用 [SQL Database 自動備份](sql-database-automated-backups.md)，將現有資料庫當成新資料庫還原到同一部邏輯伺服器上較早的時間點。您無法覆寫現有的資料庫。您可以使用 [Azure 入口網站](sql-database-point-in-time-restore-portal.md)、[PowerShell](sql-database-point-in-time-restore-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx) 還原到較早的時間點。
@@ -55,7 +57,7 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 - **資料庫取代：**如果要使用還原資料庫做為原始資料庫的替代品，您應該確認效能層級及/或服務層適當，並在必要時調整資料庫大小。您可以重新命名原始資料庫，然後使用 T-SQL 中的 ALTER DATABASE 命令提供原始名稱給還原的資料庫。
 - **資料復原︰**如果您打算從還原的資料庫中擷取資料以便從使用者或應用程式錯誤中復原，您就必須個別撰寫並執行從還原資料庫中擷取資料到原始資料庫所需的資料復原指令碼。雖然還原作業可能要花很長的時間才能完成，但是還原中的資料庫在整個過程中將會顯示於資料庫清單上。如果您在還原期間刪除該資料庫，即會取消作業，而且不會針對未完成還原的資料庫向您收費。
 
-如需使用時間點還原來從使用者與應用程式錯誤中復原的詳細資訊，請參閱[從使用者錯誤復原](sql-database-user-error-recovery.md)
+如需使用還原時間點來從使用者與應用程式錯誤中復原的詳細資訊，請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)
 
 ## 還原已刪除的資料庫
 
@@ -83,7 +85,7 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
 如需使用異地還原來從中斷復原的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)
 
-> [AZURE.IMPORTANT] 異地還原可供所有服務層使用，而且它是 SQL Database 中最基本的災害復原解決方案，具備最長的 RPO 和預估復原時間 (ERT)。對於大小上限為 2 GB 的「基本」資料庫，異地還原提供 ERT 為 12 小時的合理 DR 解決方案。對於較大的「標準」或「高階」資料庫，如果需要大幅縮短復原時間，或為了降低資料遺失的可能性，您應該考慮使用「作用中異地複寫」。「作用中異地複寫」提供明顯較低的 RPO 和 ERT，因為它只需要您起始對連續複寫次要資料庫的容錯移轉。如需詳細資料，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)。
+> [AZURE.IMPORTANT] 異地還原可供所有服務層使用，而且它是 SQL Database 中最基本的災害復原解決方案，具備最長的 RPO 和預估復原時間 (ERT)。對於大小上限為 2 GB 的「基本」資料庫，異地還原提供 ERT 為 12 小時的合理 DR 解決方案。對於較大的「標準」或「高階」資料庫，如果需要大幅縮短復原時間，或為了降低資料遺失的可能性，您應該考慮使用「主動式異地複寫」。「主動式異地複寫」提供明顯較低的 RPO 和 ERT，因為它只需要您起始對連續複寫次要資料庫的容錯移轉。如需詳細資料，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)。
 
 ## 使用自動備份以程式設計方式執行復原
 
@@ -115,10 +117,9 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
 ## 後續步驟
 
-- 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 - 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity-scenarios.md)
-- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

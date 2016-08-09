@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="05/03/2016" 
+	ms.date="07/27/2016" 
 	ms.author="jeffstok"/>
 
 
@@ -24,7 +24,7 @@
 
 ## 執行 Azure PowerShell Cmdlet 進行串流分析的必要條件
 
- - 在您的訂閱中建立 Azure 資源群組。下列是 PowerShell 指令碼範例。如需 Azure PowerShell 資訊，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。  
+ - 在您的訂閱中建立 Azure 資源群組。下列是 PowerShell 指令碼範例。如需 Azure PowerShell 資訊，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
 
 Azure PowerShell 0.9.8：
 
@@ -472,4 +472,4 @@ Azure PowerShell 1.0：
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

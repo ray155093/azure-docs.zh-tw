@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="07/25/2016"
 	ms.author="nitinme"/>
 
 
@@ -100,12 +100,12 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 			    val conf = new SparkConf().setAppName("MyClusterApp")
 			    val sc = new SparkContext(conf)
 
-			    val rdd = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+			    val rdd = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
 			    //find the rows which have only one digit in the 7th column in the CSV
 				val rdd1 =  rdd.filter(s => s.split(",")(6).length() == 1)
 
-			    rdd1.saveAsTextFile("wasb:///HVACOut")
+			    rdd1.saveAsTextFile("wasbs:///HVACOut")
 			  }
 
 			}
@@ -134,7 +134,7 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 		* 按一下 [提交]。
 
-	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] (提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
 
         ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
 
@@ -167,7 +167,7 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 3. 適用於 [錯誤訊息]、[作業輸出]、[Livy 作業記錄] 及 [Spark 驅動程式記錄] 的方塊都會根據您選取的應用程式來填入。
 
-4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] \(應用程式層級)。
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] (應用程式層級)。
 
 ### 存取 Spark 歷程記錄伺服器
 
@@ -316,4 +316,4 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -34,17 +34,17 @@ HDInsight (預覽) 中的 Microsoft R 伺服器具有 Azure Blob 和 [Azure Data
 2. 指定其他儲存體帳戶 **storage2**。
 3. 將 mycsv.csv 檔案複製到 /share 目錄，並對該檔案執行分析。
 
-````
-hadoop fs –mkdir /share
-hadoop fs –copyFromLocal myscsv.scv /share  
-````
+    ````
+    hadoop fs –mkdir /share
+    hadoop fs –copyFromLocal myscsv.scv /share  
+    ````
 
 3.	在 R 程式碼中，將名稱節點設為 **default**，並設定要處理的目錄和檔案。
 
-````
-myNameNode <- "default"
-myPort <- 0
-````
+    ````
+    myNameNode <- "default"
+    myPort <- 0
+    ````
 
   資料的位置：
 
@@ -66,13 +66,13 @@ myPort <- 0
 
     inputFile <-file.path(bigDataDirRoot,"mycsv.csv")
 
-所有目錄和檔案的參考會指向儲存體帳戶 wasb://container1@storage1.blob.core.windows.net。這是與 HDInsight 叢集相關聯的**預設儲存體帳戶**。
+所有目錄和檔案的參考會指向儲存體帳戶 wasbs://container1@storage1.blob.core.windows.net。這是與 HDInsight 叢集相關聯的「預設儲存體帳戶」。
 
-現在，假設您想要處理名稱為 mySpecial.csv 的檔案，其所在位置為 **storage2** 的 **container2** 中的 /private 目錄。
+現在，假設您想要處理名稱為 mySpecial.csv 的檔案，其所在位置為 **storage2** 中 **container2** 的 /private 目錄。
 
 在 R 程式碼中，將名稱節點參考指向 **storage2** 儲存體帳戶。
 
-    myNameNode <- "wasb://container2@storage2.blob.core.windows.net"
+    myNameNode <- "wasbs://container2@storage2.blob.core.windows.net"
     myPort <- 0
 
   資料的位置：
@@ -95,13 +95,13 @@ myPort <- 0
 
     inputFile <-file.path(bigDataDirRoot,"mySpecial.csv")
 
-現在，所有目錄和檔案的參考會指向儲存體帳戶 wasb://container2@storage2.blob.core.windows.net。這是您指定的**名稱節點**。
+現在，所有目錄和檔案的參考會指向儲存體帳戶 wasbs://container2@storage2.blob.core.windows.net。這是您指定的「名稱節點」。
 
 請注意，您必須在 **storage2** 上設定 /user/RevoShare/<SSH 使用者名稱> 目錄，如下所示︰
 
-    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user
-    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user/RevoShare
-    hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user/RevoShare/<RDP username>
+    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user
+    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user/RevoShare
+    hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user/RevoShare/<RDP username>
 
 ## 使用 Azure Data Lake Store
 
@@ -190,4 +190,4 @@ Azure 檔案的主要優點是，只要是擁有受支援作業系統 (例如 Wi
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

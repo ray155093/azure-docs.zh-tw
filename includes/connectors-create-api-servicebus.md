@@ -1,13 +1,18 @@
 ### 必要條件
 
-- [ServiceBus](https://azure.microsoft.com/services/service-bus/) 帳戶  
+- [ServiceBus](https://azure.microsoft.com/services/service-bus/) 帳戶
 
 
-您必須先授權邏輯應用程式連接到您的 ServiceBus 帳戶，才可以在邏輯應用程式中使用您的 ServiceBus 帳戶。幸運的是，您可以輕鬆地在 Azure 入口網站上從邏輯應用程式內完成。
+您必須先授權邏輯應用程式連線到您的服務匯流排帳戶，才能在該邏輯應用程式中使用您的「Azure 服務匯流排」帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
-若要授與邏輯應用程式連接到 ServiceBus 帳戶的權限，其步驟如下：
-1. 若要建立 ServiceBus 連接，請在邏輯應用程式設計工具中，選取下拉式清單的 [Show Microsoft managed APIs] \(顯示 Microsoft Managed API)，然後在搜尋方塊中輸入 *ServiceBus *。選取您要使用的觸發程序或動作：![](./media/connectors-create-api-servicebus/servicebus-1.png)  
-2. 如果您之前尚未建立任何 ServiceBus 連接，系統會提示您提供 ServiceBus 認證。這些認證會用來授與邏輯應用程式連接並存取 ServiceBus 帳戶資料的權限：![](./media/connectors-create-api-servicebus/servicebus-2.png)  
-3. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：![](./media/connectors-create-api-servicebus/servicebus-3.png)   
+若要授權邏輯應用程式連線到您的服務匯流排帳戶，其步驟如下：
 
-<!---HONumber=AcomDC_0525_2016-->
+1. 若要建立與服務匯流排的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入「服務匯流排」。請選取您想要使用的觸發程序或動作：![服務匯流排連線圖像 1](./media/connectors-create-api-servicebus/servicebus-1.png)
+    
+2. 如果您之前尚未建立與服務匯流排的任何連線，系統將會提示您提供您的服務匯流排認證。這些認證將用來授權邏輯應用程式連線及存取您服務匯流排帳戶的資料。服務匯流排連接器需要服務匯流排命名空間的連接字串 - 此外，也需要「管理」權限。一個可辨別您的連接字串是否適用於命名空間或特定實體的理想方式就是，如果它包含 `EntityPath` 參數，它就不是邏輯應用程式的正確連接字串。![服務匯流排連接字串](./media/connectors-create-api-servicebus/connectionstring.png)
+
+1. 在您收到的命名空間的連接字串之後，您可以將它用於 Logic Apps 中的「API 連線」。![服務匯流排連線圖像 2](./media/connectors-create-api-servicebus/servicebus-2.png)
+
+3. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：![服務匯流排連線圖像 3](./media/connectors-create-api-servicebus/servicebus-3.png)
+
+<!---HONumber=AcomDC_0727_2016-->

@@ -19,9 +19,7 @@
 #教學課程：Azure Active Directory 與 Salesforce 沙箱整合
 >[AZURE.TIP]如需意見反應，請按一下[這裡](http://go.microsoft.com/fwlink/?LinkId=521878)。
   
-本教學課程的目的是要示範 Azure 與 Salesforce 沙箱的整合。  
-沙箱讓您能夠針對不同用途 (例如開發、測試和訓練) 在個別環境中建立貴組織的多個複本，而不會危害 Salesforce 生產環境組織中的資料和應用程式。  
-如需詳細資訊，請參閱[沙箱概觀](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
+本教學課程的目的是要示範 Azure 與 Salesforce 沙箱的整合。沙箱讓您能夠針對不同用途 (例如開發、測試和訓練) 在個別環境中建立貴組織的多個複本，而不會危害 Salesforce 生產環境組織中的資料和應用程式。如需詳細資訊，請參閱[沙箱概觀](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
   
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -116,7 +114,7 @@
     
     b.在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後貼到 [簽發者] 文字方塊中。
     
-    c.如果這是您要新增至目錄的第一個 Salesforce 沙箱執行個體，請在 [實體識別碼] 文字方塊中，輸入 * ***https://test.salesforce.com**。如果您已新增 Salesforce 沙箱的執行個體，請對 [實體識別碼] 輸入 **登入 URL**，其格式如下：`http://company.my.salesforce.com`
+    c.如果這是您要新增至目錄的第一個 Salesforce 沙箱執行個體，請在 [實體識別碼] 文字方塊中，輸入 **https://test.salesforce.com**。如果您已新增 Salesforce 沙箱的執行個體，請對 [實體識別碼]** 輸入登入 URL**，其格式如下：`http://company.my.salesforce.com`
     
     d.按一下 [瀏覽] 來上傳已下載的憑證。
     
@@ -126,7 +124,7 @@
     
     g.在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後貼到 [識別提供者登入 URL] 文字方塊中。
     
-    h.在 Azure 傳統入口網站中的 [設定在 Salesforce 沙箱單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後貼到 [識別提供者登出 URL] 文字方塊中。
+    h.SFDC 不支援 SAML 登出。解決方法是在 [識別提供者登出 URL] 文字方塊中貼上 'https://login.windows.net/common/wsfederation?wa=wsignout1.0'。
     
     i.對於 [服務提供者起始的要求繫結]，選取 [HTTP POST]。
     
@@ -173,7 +171,7 @@
 
     ![新的權杖](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698776.png "新的權杖")
 
-5.  檢查您的電子郵件收件匣，尋找來自 Salesforce.com 且主旨為 "**salesforce.com.com 安全性確認 **" 的電子郵件。
+5.  檢查您的電子郵件收件匣，尋找來自 Salesforce.com 且主旨為「**salesforce.com.com 安全性確認**」的電子郵件。
 
 6.  檢閱這封電子郵件並複製安全性權杖值。
 
@@ -216,4 +214,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

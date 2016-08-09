@@ -1,7 +1,7 @@
 <properties
 	pageTitle="如何使用端對端金鑰輪替和稽核設定金鑰保存庫 | Microsoft Azure"
 	description="使用此操作說明可協助您使用金鑰輪替和監視金鑰保存庫記錄檔來進行設定"
-	services="key-vault, automation,app-service\logic"
+	services="key-vault"
 	documentationCenter=""
 	authors="swgriffith"
 	manager=""
@@ -424,4 +424,4 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 
 此時，您已擁有端對端管線，它會每分鐘一次尋找是否有新的金鑰保存庫稽核記錄檔。每當它找到新的記錄檔，就會將其傳送至服務匯流排佇列。一旦有新的訊息進入佇列，就會觸發邏輯應用程式，如果事件內的 appid 不符合呼叫端應用程式的應用程式識別碼，則會傳送電子郵件。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

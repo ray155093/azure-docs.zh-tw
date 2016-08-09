@@ -13,14 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/11/2016"
+   ms.date="07/26/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
 
 這個常見問題集回答「Azure 資訊安全中心」的相關問題，此資訊安全中心是一項針對 Microsoft Azure 資源的安全性提供更深入的洞悉和更佳控制的服務，可協助您預防、偵測及回應威脅。
-
-> [AZURE.NOTE] 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
 
 ## 一般問題
 
@@ -114,7 +112,7 @@ Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的�
 ## 虛擬機器
 
 ### 將會支援哪些類型的虛擬機器？
-對於使用[傳統與 Resource Manager 部署模型](../azure-classic-rm.md)建立的虛擬機器 (VM)，包括 Azure Service Fabric 叢集所含的虛擬機器，提供安全性健康情況監視和建議。
+對於使用[傳統與 Resource Manager 部署模型](../azure-classic-rm.md)建立的虛擬機器 (VM)，提供安全性健康情況監視和建議。
 
 支援的 Windows VM：
 
@@ -132,4 +130,4 @@ Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的�
 
 也支援雲端服務中執行的 VM。只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -30,7 +30,7 @@
 3. 在 [設定] 底下，按一下憑證設定並輸入次要憑證指紋。
 4. 按一下 [儲存]。隨即會開始部署，在部署順利完成後，您就可以使用主要或次要憑證在叢集上執行管理作業。
 
-![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations\_02]
+![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations_02]
 
 ## 移除憑證
 以下是移除舊憑證的程序，以讓叢集不會使用它：
@@ -49,4 +49,4 @@
 <!--Image references-->
 [SecurityConfigurations_02]:./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0720_2016-->

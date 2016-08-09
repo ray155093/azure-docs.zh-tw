@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/20/2016"
+   ms.date="07/21/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心啟用 VM 代理程式
 
-為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在虛擬機器 (VM) 上安裝「VM 代理程式」。Azure 資訊安全中心可讓您查看哪些 VM 需要 VM 代理程式，而且會建議您在那些 VM 上啟用 VM 代理程式。
+VM 代理程式必須安裝在虛擬機器 (VM) 上，才能[啟用資料收集](security-center-enable-data-collection.md)。Azure 資訊安全中心可讓您查看哪些 VM 需要 VM 代理程式，而且會建議您在那些 VM 上啟用 VM 代理程式。
 
 預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/)。
 
@@ -47,4 +47,4 @@
 [1]: ./media/security-center-enable-vm-agent/enable-vm-agent.png
 [2]: ./media/security-center-enable-vm-agent/vm-agent-is-missing.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -92,11 +92,11 @@
 
 ### 還原時間點
 
-還原時間點會自動備份資料庫，以將集區中的資料庫復原到特定的時間點。請參閱[從使用者錯誤復原 Azure SQL Database](sql-database-user-error-recovery.md)
+還原時間點會自動備份資料庫，以將集區中的資料庫復原到特定的時間點。請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)
 
 ### 異地還原
 
-異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。請參閱[從中斷情況復原 Azure SQL Database](sql-database-disaster-recovery.md)
+異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。請參閱[還原 Azure SQL Database 或容錯移轉到次要資料庫](sql-database-disaster-recovery.md)
 
 ### 主動式異地複寫
 
@@ -106,4 +106,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="05/16/2016"
+   	ms.date="07/27/2016"
    	ms.author="larryfr"/>
 
 #在 HDInsight 中使用 cURL 和 Azure REST API 建立以 Linux 為基礎的叢集
@@ -362,7 +362,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
 * 以建立服務主體時所收到的訂用帳戶 ID 取代 __SubscriptionID__。
 * 以上一步收到的存取權杖取代 __AccessToken__。
-* 以您要在其中建立資源群組和資源的資料中心取代 __DataCenterLocation__。例如 'South Central US'。 
+* 以您要在其中建立資源群組和資源的資料中心取代 __DataCenterLocation__。例如 'South Central US'。
 * 以您要用於此群組的名稱取代 __ResourceGroupName__。
 
 ```
@@ -380,7 +380,7 @@ curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 
 使用下列命令將叢集組態 (範本和參數值) 部署到資源群組。
 
-* 以先前使用的值取代 __SubscriptionID__ 和 __AccessToken__。 
+* 以先前使用的值取代 __SubscriptionID__ 和 __AccessToken__。
 * 以您在上一節建立的資源群組名稱取代 __ResourceGroupName__。
 * 以您要用於此部署的名稱取代 __DeploymentName__。
 
@@ -403,7 +403,7 @@ curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 
 若要檢查部署的狀態，請使用下列命令：
 
-* 以先前使用的值取代 __SubscriptionID__ 和 __AccessToken__。 
+* 以先前使用的值取代 __SubscriptionID__ 和 __AccessToken__。
 * 以您在上一節建立的資源群組名稱取代 __ResourceGroupName__。
 
 ```
@@ -435,4 +435,4 @@ curl -X "GET" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -81,4 +81,4 @@
 建議：
 - 如果您以前已啟用過 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮購買「隨用隨付」訂用帳戶。您也可能有資格獲得權益優惠。請在 [Microsoft Azure 優惠詳細資料頁面](https://azure.microsoft.com/support/legal/offer-details/)深入了解，而非 Azure 免費試用方案。請注意，權益方案需要特定的必要條件。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

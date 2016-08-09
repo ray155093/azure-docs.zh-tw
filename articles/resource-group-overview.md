@@ -24,7 +24,7 @@
 
 如果您不熟悉 Azure Resource Manager，則您可能不熟悉一些詞彙。
 
-- **資源** - Azure 方案一部分的項目。部分常見資源有虛擬機器、儲存體帳戶、Web 應用程式、資料庫和虛擬網路，但這只是其中一小部分。
+- **資源** - 透過 Azure 提供的可管理項目。部分常見資源有虛擬機器、儲存體帳戶、Web 應用程式、資料庫和虛擬網路，但這只是其中一小部分。
 - **資資源群組** - 源群組是保留應用程式相關資源的容器。資源群組可以包含應用程式的所有資源，或只包含分組在一起的資源。您可以決定如何根據對組織最有利的方式，將資源配置到資源群組。請參閱[資源群組](#resource-groups)。
 - **資源提供者** - 提供可透過 Resource Manager 部署及管理之資源的一項服務。每個資源提供者都會提供作業，以便能運用所部署的資源。部分常見資源提供者有 Microsoft.Compute (提供虛擬機器資源)、Microsoft.Storage (提供儲存體帳戶資源) 和 Microsoft.Web (提供與 Web 應用程式相關的資源)。請參閱[資源提供者](#resource-providers)。
 - **Resource Manager 範本** - 定義一或多個要部署至資源群組之資源的 JavaScript 物件標記法 (JSON) 檔案。它也會定義所部署資源之間的相依性。範本可用來以一致性方式重複部署資源。請參閱[範本部署](#template-deployment)。
@@ -171,4 +171,4 @@ Azure SDK 可供多個語言和平台使用。這些語言實作都是透過其�
 
 [AZURE.VIDEO azure-resource-manager-overview]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

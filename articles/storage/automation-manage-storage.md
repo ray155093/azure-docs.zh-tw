@@ -50,4 +50,4 @@ Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，�
 請參閱 Azure 自動化教學課程：[在 Azure 自動化中建立或匯入 Runbook](../automation/automation-creating-importing-runbook.md)。
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

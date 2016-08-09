@@ -1,7 +1,7 @@
-本文適用於 App Service (Web Apps、API Apps、Mobile Apps、邏輯應用程式)；對於雲端服務，請參閱<a href="/develop/net/common-tasks/custom-dns/">在 Azure 中設定自訂網域名稱</a>。
+本文適用於 Azure App Service (Web Apps、API Apps、Mobile Apps、Logic Apps)；對於雲端服務，請參閱[設定 Azure 雲端服務的自訂網域名稱](../articles/cloud-services/cloud-services-custom-domain-name.md)。
 
-> [AZURE.NOTE]**如需「使用流量管理員將流量負載平衡到 Web 應用程式」的指示**，請使用本文頂端的選取器來選取流量管理員專屬步驟。
+> [AZURE.NOTE]  如果您的 app 是由 [Auzre 流量管理員](https://azure.microsoft.com/services/traffic-manager/)進行負載平衡，請按一下本文章頂端的選取器以取得特定步驟。
 >
-> **自訂網域名稱無法搭配免費的 Web 應用程式使用**。您必須將 Web 應用程式設定為 [**共用**]、[**基本**] 或 [**標準**] 模式，但這可能會變更您的訂用帳戶費用。如需詳細資訊，請參閱 <a href=/pricing/details/web-sites/">Web Apps 定價詳細資料</a>。
+> **免費層不會啟用自訂網域名稱**。您必須[相應增加到較高的定價層](../articles/app-service-web/web-sites-scale.md)，這可能會變更您的訂用帳戶計費費用。如需詳細資訊，請參閱 [App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="07/14/2016"
+	ms.date="07/22/2016"
 	ms.author="kgremban"/>
 
 # 使用 Azure 命令列介面管理角色型存取控制
@@ -39,6 +39,10 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 下列範例顯示*所有可用角色*的清單。
 
+```
+azure role list --json | jq '.[] | {"roleName":.properties.roleName, "description":.properties.description}'
+```
+
 ![RBAC Azure 命令列 - azure 角色清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/1-azure-role-list.png)
 
 ###	列出角色的動作
@@ -48,6 +52,12 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 下列範例顯示*參與者*與*虛擬機器參與者*角色的動作。
 
+```
+azure role show "contributor" --json | jq '.[] | {"Actions":.properties.permissions[0].actions,"NotActions":properties.permissions[0].notActions}'
+
+azure role show "virtual machine contributor" --json | jq '.[] | .properties.permissions[0].actions'
+```
+
 ![RBAC Azure 命令列 - azure 角色顯示 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/1-azure-role-show.png)
 
 ##	列出存取權
@@ -56,7 +66,11 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
     azure role assignment list --resource-group <resource group name>
 
-下列範例顯示 *pharma-sales-projecforcast* 群組中的角色指派。
+下列範例顯示 pharma-sales-projecforcast 群組中的角色指派。
+
+```
+azure role assignment list --resource-group pharma-sales-projecforcast --json | jq '.[] | {"DisplayName":.properties.aADObject.displayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
+```
 
 ![RBAC Azure 命令列 - 依群組顯示的 azure 角色指派清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-1.png)
 
@@ -70,6 +84,12 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 	azure role assignment list --expandPrincipalGroups --signInName <user email>
 
 下列範例顯示授與使用者 sameert@aaddemo.com 的角色指派。這包括直接指派給使用者的角色，以及繼承自群組的角色。
+
+```
+azure role assignment list --signInName sameert@aaddemo.com --json | jq '.[] | {"DisplayName":.properties.aADObject.DisplayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
+
+azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.com --json | jq '.[] | {"DisplayName":.properties.aADObject.DisplayName,"RoleDefinitionName":.properties.roleName,"Scope":.properties.scope}'
+```
 
 ![RBAC Azure 命令列 - 依使用者顯示的 azure 角色指派清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/4-azure-role-assignment-list-2.png)
 
@@ -85,6 +105,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 下列範例會將*讀者*角色指派給*訂用帳戶*範圍中的 *Christine Koch 小組*。
 
+
 ![RBAC Azure 命令列 - 群組所建立的 azure 角色指派 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-assignment-create-1.png)
 
 ###	將角色指派給訂用帳戶範圍中的應用程式
@@ -99,7 +120,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ###	將角色指派給資源群組範圍中的使用者
 若要將角色指派給資源群組範圍中的使用者，請使用：
 
-	azure role assignment create --signInName  <user's email address> --subscription <subscription> --roleName <name of role in quotes> --resourceGroup <resource group name>
+	azure role assignment create --signInName  <user email address> --roleName "<name of role>" --resourceGroup <resource group name>
 
 下列範例會將「虛擬機器參與者」角色授與「Pharma-Sales-ProjectForcast」資源群組範圍中的使用者 samert@aaddemo.com。
 
@@ -160,9 +181,17 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 下列範例會列出選取的訂用帳戶中所有可供指派的角色。
 
+```
+azure role list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
+```
+
 ![RBAC Azure 命令列 - azure 角色清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list1.png)
 
 在下列範例中，*Virtual Machine Operator* 自訂角色無法在 *Production4* 訂用帳戶中使用，因為該訂用帳戶並沒有在角色的 **AssignableScopes** 中。
+
+```
+azure role list --json | jq '.[] | if .properties.type == "CustomRole" then .properties.roleName else empty end'
+```
 
 ![RBAC Azure 命令列 - 自訂角色的 azure 角色清單 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/5-azure-role-list2.png)
 
@@ -173,4 +202,4 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ## RBAC 主題
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

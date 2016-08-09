@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/28/2016"
+	ms.date="07/25/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure 傳統入口網站管理 HDInsight 中的 Hadoop 叢集
@@ -102,9 +102,7 @@ HDInsight 叢集可以有兩個使用者帳戶。HDInsight 叢集使用者帳戶
 
 > [AZURE.NOTE] 您也可以使用 HDInsight .NET SDK，在叢集上啟用遠端桌面。以下列方式在 HDInsight 用戶端物件上使用 **EnableRdp** 方法：**client.EnableRdp(clustername, location, "rdpuser", "rdppassword", DateTime.Now.AddDays(6))**。同樣地，若要在叢集上停用遠端桌面，您可以使用 **client.DisableRdp(clustername, location)**。如需這些方法的詳細資訊，請參閱 [HDInsight .NET SDK 參考](http://go.microsoft.com/fwlink/?LinkId=529017)。這僅適用於在 Windows 上執行的 HDInsight 叢集。
 
-
-
-> [AZURE.NOTE] 啟用叢集的 RDP 之後，您必須先重新整理頁面，才能連線到叢集。
+> 啟用叢集的 RDP 之後，您必須先重新整理頁面，才能連線到叢集。
 
 **使用 RDP 連線到叢集**
 
@@ -201,4 +199,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal-v1/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 [image-hdiclustercreate-uploadcert]: ./media/hdinsight-administer-use-management-portal-v1/hdi.clustercreate.uploadcert.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

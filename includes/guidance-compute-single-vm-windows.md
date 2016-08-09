@@ -1,6 +1,6 @@
 本文概述一組已經實證的做法，以便在 Azure 上執行 Windows 虛擬機器 (VM)，並注意延展性、可用性、管理性和安全性。
 
-> [AZURE.NOTE] Azure 有兩個不同的部署模型：[資源管理員][resource-manager-overview]和傳統。本文使用 Microsoft 建議用於新部署的資源管理員。
+> [AZURE.NOTE] Azure 有兩個不同的部署模型：[Azure Resource Manager][resource-manager-overview] 和傳統。本文使用 Microsoft 建議用於新部署的資源管理員。
 
 我們不建議將單一 VM 用於生產工作負載，因為 Azure 上的單一 VM 沒有正常運作 SLA。若要取得 SLA，您必須在可用性設定組中部署多個 VM。如需詳細資訊，請參閱[在 Azure 上執行多個 Windows VM][multi-vm]。
 
@@ -10,13 +10,13 @@
 
 ![[0]][0]
 
-- **資源群組。** [資源群組][resource-manager-overview]是保存相關資源的容器。建立資源群組以保存此 VM 的資源。
+- **資源群組。** [_資源群組_][resource-manager-overview]是保存相關資源的容器。建立資源群組以保存此 VM 的資源。
 
 - **VM**。您可以從已發佈的映像清單，或從您上傳至 Azure Blob 儲存體的 VHD 檔案佈建 VM。
 
 - **作業系統磁碟。** 作業系統磁碟是儲存在 [Azure 儲存體][azure-storage]中的 VHD。這表示即使主機電腦關閉，它仍持續存在。
 
-- **暫存磁碟。** VM 是使用暫存磁碟 (Windows 上的 `D:` 磁碟機) 來建立。此磁碟會儲存在主機電腦的實體磁碟機上。_不會_儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中消失。僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。
+- **暫存磁碟。** VM 是使用暫存磁碟 (Windows 上的 `D:` 磁碟機) 來建立。此磁碟會儲存在主機電腦的實體磁碟機上。不會儲存在 Azure 儲存體中，而且可能在重新開機期間和其他 VM 生命週期事件中消失。僅將此磁碟使用於暫存資料，例如分頁檔或交換檔。
 
 - **資料磁碟。** [資料磁碟][data-disk]是用於應用程式資料的持續性 VHD。資料磁碟會儲存在 Azure 儲存體中，例如作業系統磁碟。
 
@@ -62,7 +62,7 @@
 
     - 如果您需要不會變更的固定 IP 位址，請保留[靜態 IP 位址][static-ip] &mdash; 例如，如果您需要在 DNS 中建立 A 記錄，或需要將 IP 位址列入白名單。
 
-    - 您也可以建立 IP 位址的完整網域名稱 (FQDN)。然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 紀錄][cname-record]。如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。
+    - 您也可以建立 IP 位址的完整網域名稱 (FQDN)。然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 記錄][cname-record]。如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。
 
 - 所有 NSG 都包含一組[預設規則][nsg-default-rules]，包括一個封鎖所有網際網路輸入流量的規則。預設的規則不能刪除，但其他規則可以覆寫它們。若要啟用網際網路流量，請建立允許輸入流量輸入特定連接埠的規則 &mdash; 例如，允許連接埠 80 用於 HTTP。
 
@@ -115,13 +115,14 @@
 - 使用 [Azure 資訊安全中心][security-center]，可集中檢閱 Azure 資源的安全性狀態。資訊安全中心會監視潛在的安全性問題，例如系統更新、反惡意程式碼，並提供全面性的部署安全性健康狀態。
 
     - 資訊安全中心是依每個 Azure 訂用帳戶設定。按照[使用資訊安全中心]所述來啟用安全資料收集。
+
     - 一旦啟用資料收集，資訊安全性中心就會自動掃描任何該訂用帳戶建立的 VM。
 
 - **修補程式管理。** 如果啟用，資訊安全性中心會檢查是否遺失安全性或重要更新。使用 VM 上的[群組原則設定][group-policy]來啟用自動系統更新。
 
 - **反惡意程式碼。** 如果啟用，資訊安全性中心會檢查是已安裝反惡意程式碼軟體。您也可以使用資訊安全中心來從 Azure 入口網站內安裝反惡意程式碼軟體。
 
-- 使用[角色型存取控制][rbac] \(RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
@@ -137,141 +138,222 @@
 
 ## 解決方案元件
 
-下列 Windows 批次指令碼會執行 [Azure CLI][azure-cli] 命令，以部署單一 VM 執行個體和相關的網路和儲存體資源 (如前一個圖表所示)。
+範例解決方案指令碼 [Deploy-ReferenceArchitecture.ps1][solution-script] 可讓您用來依照本文中所述的建議實作結構。此指令碼是利用 [資源管理員][ARM-Templates]範本。範本可做為一組基本建置組塊使用，每個組塊都可以執行特定動作，例如建立 VNet 或設定 NSG。指令碼的用途是協調範本部署。
 
-該指令碼會使用 [Azure 資源的建議命名慣例][naming conventions]中所述的命名慣例。
+範例已經參數化，使用個別 JSON 檔案保留參數。您可以在這些檔案中修改參數來設定部署以符合您自己的需求。您不需要修改範本本身。請注意，您不可以在範本檔案中變更物件的結構描述。
 
-```bat
-ECHO OFF
-SETLOCAL
+當您編輯範本時，請依據 [Azure 資源的建議命名慣例][naming conventions]中所述的命名慣例來建立物件。
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Set up variables for deploying resources to Azure.
-:: Change these variables for your own deployment.
+指令碼會參考以下參數檔案來建置 VM 和周圍的基礎結構：
 
-:: The APP_NAME variable must not exceed 4 characters in size.
-:: If it does the 15 character size limitation of the VM name may be exceeded.
+- **[virtualNetwork.parameters.json][vnet-parameters]**。此檔案定義 VNet 設定，例如名稱、位址空間、子網路及任何必要 DNS 伺服器的位址。請注意，子網路位址必須納入 VNet 的位址空間。
 
-SET APP_NAME=app1
-SET LOCATION=eastus2
-SET ENVIRONMENT=dev
-SET USERNAME=testuser
+	```json
+	"parameters": {
+      "virtualNetworkSettings": {
+        "value": {
+          "name": "app1-vnet",
+          "addressPrefixes": [
+            "172.17.0.0/16"
+          ],
+          "subnets": [
+            {
+              "name": "app1-subnet",
+              "addressPrefix": "172.17.0.0/24"
+            }
+          ],
+          "dnsServers": [ ]
+        }
+      }
+	}
+	```
 
+- **[networkSecurityGroup.parameters.json][nsg-parameters]**。此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數會指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數會識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
 
-:: For Windows, use the following command to get the list of URNs:
-:: azure vm image list %LOCATION% MicrosoftWindowsServer WindowsServer 2012-R2-Datacenter
-SET WINDOWS_BASE_IMAGE=MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20160126
+	請注意，範例中顯示的預設安全性規則可讓使用者透過遠端桌面 (RDP) 連線來連線到 VM。您可以在 `securityRules` 陣列中新增其他項目來開啟額外的連接埠 (或拒絕透過特定連接埠存取)。
 
-:: For a list of VM sizes see:
-::   https://azure.microsoft.com/documentation/articles/virtual-machines-size-specs/
-:: To see the VM sizes available in a region:
-:: 	azure vm sizes --location <location>
-SET VM_SIZE=Standard_DS1
+	```json
+	"parameters": {
+      "virtualNetworkSettings": {
+        "value": {
+          "name": "app1-vnet"
+        },
+        "metadata": {
+          "description": "Infrastructure Settings"
+        }
+      },
+      "networkSecurityGroupSettings": {
+        "value": {
+          "name": "app1-nsg",
+          "subnets": [
+            "app1-subnet"
+          ],
+          "securityRules": [
+            {
+              "name": "RDPAllow",
+              "direction": "Inbound",
+              "priority": 100,
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3389",
+              "access": "Allow",
+              "protocol": "Tcp"
+            }
+          ]
+        }
+      }
+	}
+	```
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+- **[virtualMachineParameters.json][vm-parameters]**。此檔案定義 VM 本身的設定，包括 VM 的名稱與大小、系統管理員使用者的安全性認證、要建立的磁碟，以及要保有這些磁碟的儲存體帳戶。
 
-IF "%2"=="" (
-    ECHO Usage: %0 subscription-id admin-password
-    EXIT /B
-    )
+	您也必須在 `imageReference` 區段中指定一個映像。下面顯示的值會建立包含 Windows Server 2012 R2 資料中心最新組建的 VM。您可以使用以下 Azure CLI 命令來取得區域 (此範例使用 westus 區域) 中所有可用 Windows 映像的清單：
 
-:: Explicitly set the subscription to avoid confusion as to which subscription
-:: is active/default
-SET SUBSCRIPTION=%1
-SET PASSWORD=%2
+	```powershell
+	azure vm image list westus MicrosoftWindowsServer WindowsServer
+	```
 
-:: Set up the names of things using recommended conventions
-SET RESOURCE_GROUP=%APP_NAME%-%ENVIRONMENT%-rg
-SET VM_NAME=%APP_NAME%-vm0
+	`nics`區段中的 `subnetName` 參數會指定 VM 的子網路。同樣地，`virtualNetworkSettings` 中的 `name` 參數會識別要使用的 VNet。這些應該是 **virtualNetwork.parameters.json** 檔案中所定義子網路和 VNet 的名稱。
 
-SET IP_NAME=%APP_NAME%-pip
-SET NIC_NAME=%VM_NAME%-0nic
-SET NSG_NAME=%APP_NAME%-nsg
-SET SUBNET_NAME=%APP_NAME%-subnet
-SET VNET_NAME=%APP_NAME%-vnet
-SET VHD_STORAGE=%VM_NAME:-=%st0
-SET DIAGNOSTICS_STORAGE=%VM_NAME:-=%diag
+	您可以透過修改 `buildingBlockSettings` 區段中的設定，建立共用儲存體帳戶或各自擁有儲存體帳戶的多個 VM。如果您建立多個 VM，您也必須指定可用性設定組的名稱，以在 `availabilitySet` 區段中使用及建立。
 
-:: Set up the postfix variables attached to most CLI commands
-SET POSTFIX=--resource-group %RESOURCE_GROUP% --subscription %SUBSCRIPTION%
+	```json
+	"parameters": {
+      "virtualMachinesSettings": {
+        "value": {
+          "namePrefix": "app1",
+          "computerNamePrefix": "",
+          "size": "Standard_DS1",
+          "osType": "windows",
+          "adminUsername": "testuser",
+          "adminPassword": "AweS0me@PW",
+          "osAuthenticationType": "password",
+          "nics": [
+            {
+              "isPublic": "true",
+              "subnetName": "app1-subnet",
+              "privateIPAllocationMethod": "dynamic",
+              "publicIPAllocationMethod": "dynamic",
+              "isPrimary": "true"
+            }
+          ],
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2012-R2-Datacenter",
+            "version": "latest"
+          },
+          "dataDisks": {
+            "count": 2,
+            "properties": {
+              "diskSizeGB": 128,
+              "caching": "None",
+              "createOption": "Empty"
+            }
+          },
+          "osDisk": {
+            "caching": "ReadWrite"
+          },
+          "availabilitySet": {
+            "useExistingAvailabilitySet": "No",
+            "name": ""
+          }
+        },
+        "metadata": {
+          "description": "Settings for Virtual Machines"
+        }
+      },
+      "virtualNetworkSettings": {
+        "value": {
+          "name": "app1-vnet",
+          "resourceGroup": "app1-dev-rg"
+        },
+        "metadata": {
+          "description": "Infrastructure Settings"
+        }
+      },
+      "buildingBlockSettings": {
+        "value": {
+          "storageAccountsCount": 1,
+          "vmCount": 1,
+          "vmStartIndex": 0
+        },
+        "metadata": {
+          "description": "Settings specific to the building block"
+        }
+      }
+	}
+	```
 
-CALL azure config mode arm
+## 部署
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Create resources
+解決方案假設已符合下列必要條件：
 
-:: Create the enclosing resource group
-CALL azure group create --name %RESOURCE_GROUP% --location %LOCATION% ^
-  --subscription %SUBSCRIPTION%
+- 您現在已經擁有可用來建立資源群組的 Azure 訂用帳戶。
 
-:: Create the VNet
-CALL azure network vnet create --address-prefixes 172.17.0.0/16 ^
-  --name %VNET_NAME% --location %LOCATION% %POSTFIX%
+- 您已經下載並安裝最新的 Azure Powershell 組建。如需相關指示，請參閱[這裡][azure-powershell-download]。
 
-:: Create the network security group
-CALL azure network nsg create --name %NSG_NAME% --location %LOCATION% %POSTFIX%
+執行部署解決方案的指令碼：
 
-:: Create the subnet
-CALL azure network vnet subnet create --vnet-name %VNET_NAME% --address-prefix ^
-  172.17.0.0/24 --name %SUBNET_NAME% --network-security-group-name %NSG_NAME% ^
-  %POSTFIX%
+1. 移至您本機電腦上方便存取的資料夾，然後建立下列兩個子資料夾：
 
-:: Create the public IP address (dynamic)
-CALL azure network public-ip create --name %IP_NAME% --location %LOCATION% %POSTFIX%
+	- 指令碼
 
-:: Create the NIC
-CALL azure network nic create --public-ip-name %IP_NAME% --subnet-name ^
-  %SUBNET_NAME% --subnet-vnet-name %VNET_NAME%  --name %NIC_NAME% --location ^
-  %LOCATION% %POSTFIX%
+	- 範本
 
-:: Create the storage account for the OS VHD
-CALL azure storage account create --type PLRS --location %LOCATION% %POSTFIX% ^
-  %VHD_STORAGE%
+2. 在 [範本] 資料夾中，建立另一個名為 [Windows] 的子資料夾。
 
-:: Create the storage account for diagnostics logs
-CALL azure storage account create --type LRS --location %LOCATION% %POSTFIX% ^
-  %DIAGNOSTICS_STORAGE%
+3. 將 [Deploy-ReferenceArchitecture.ps1][solution-script] 檔案下載到 [指令碼] 資料夾
 
-:: Create the VM
-CALL azure vm create --name %VM_NAME% --os-type Windows --image-urn ^
-  %WINDOWS_BASE_IMAGE% --vm-size %VM_SIZE%   --vnet-subnet-name %SUBNET_NAME% ^
-  --vnet-name %VNET_NAME% --nic-name %NIC_NAME% --storage-account-name ^
-  %VHD_STORAGE% --os-disk-vhd "%VM_NAME%-osdisk.vhd" --admin-username ^
-  "%USERNAME%" --admin-password "%PASSWORD%" --boot-diagnostics-storage-uri ^
-  "https://%DIAGNOSTICS_STORAGE%.blob.core.windows.net/" --location %LOCATION% ^
-  %POSTFIX%
+4. 將下列檔案下載到 [範本/Windows] 資料夾：
 
-:: Attach a data disk
-CALL azure vm disk attach-new --vm-name %VM_NAME% --size-in-gb 128 --vhd-name ^
-  data1.vhd --storage-account-name %VHD_STORAGE% %POSTFIX%
+	- [virtualNetwork.parameters.json][vnet-parameters]
 
-:: Allow RDP
-CALL azure network nsg rule create --nsg-name %NSG_NAME% --direction Inbound ^
-  --protocol Tcp --destination-port-range 3389 --source-port-range * ^
-  --priority 100 --access Allow RDPAllow %POSTFIX%
-```
+	- [networkSecurityGroup.parameters.json][nsg-parameters]
 
+	- [virtualMachineParameters.json][vm-parameters]
+
+5. 編輯 [指令碼] 資料夾中的 Deploy-ReferenceArchitecture.ps1 檔案，並變更以下這一行來指定應建立或使用的資源群組，以用來保存指令碼所建立的 VM 和資源：
+
+	```powershell
+	$resourceGroupName = "app1-dev-rg"
+	```
+6. 編輯 [範本/Windows] 資料夾中的每個 json 檔案，以針對虛擬網路、NSG 及 VM 設定參數，如上面的＜解決方案元件＞小節中所述。
+
+	>[AZURE.NOTE] 確定您有將 virtualMachineParameters.json 檔案中 `virtualNetworkSettings` 區段的 `resourceGroup` 參數設定成和您在 Deploy-ReferenceArchitecture.ps1 指令碼檔案中指定的參數相同。
+
+7. 開啟 Azure PowerShell 視窗，移動到 [指令碼] 資料夾，然後執行以下命令：
+
+	```powershell
+	.\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Windows
+	```
+
+	使用您的 Azure 訂用帳戶識別碼取代 `<subscription id>`。
+
+	對於 `<location>`，請指定 Azure 區域，例如`eastus` 或 `westus`。
+
+8. 當指令碼完成時，請使用 Azure 入口網站確認已經成功建立網路、NSG 及 VM。
 
 ## 後續步驟
 
--為了能適用[虛擬機器 SLA][vm-sla]，您必須在「可用性設定組」中部署兩部以上的執行個體。如需詳細資訊，請參閱[在 Azure 上執行多個 Windows VM][multi-vm]。
+為了能適用[虛擬機器 SLA][vm-sla]，您必須在「可用性設定組」中部署兩部以上的執行個體。如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
 <!-- links -->
 
-[arm-templates]: ../articles/virtual-machines/virtual-machines-windows-cli-deploy-templates.md
-[audit-logs]: https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/
+[audit-logs]: https://azure.microsoft.com/zh-TW/blog/analyze-azure-audit-logs-in-powerbi-more/
 [azure-cli]: ../articles/virtual-machines-command-line-tools.md
 [azure-storage]: ../articles/storage/storage-introduction.md
 [blob-snapshot]: ../articles/storage/storage-blob-snapshots.md
 [blob-storage]: ../articles/storage/storage-introduction.md
-[boot-diagnostics]: https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/
+[boot-diagnostics]: https://azure.microsoft.com/zh-TW/blog/boot-diagnostics-for-virtual-machines-v2/
 [cname-record]: https://en.wikipedia.org/wiki/CNAME_record
 [data-disk]: ../articles/virtual-machines/virtual-machines-windows-about-disks-vhds.md
 [disk-encryption]: ../articles/azure-security-disk-encryption.md
 [enable-monitoring]: ../articles/azure-portal/insights-how-to-use-diagnostics.md
 [fqdn]: ../articles/virtual-machines/virtual-machines-windows-portal-create-fqdn.md
 [group-policy]: https://technet.microsoft.com/zh-TW/library/dn595129.aspx
-[log-collector]: https://azure.microsoft.com/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
+[log-collector]: https://azure.microsoft.com/zh-TW/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
 [manage-vm-availability]: ../articles/virtual-machines/virtual-machines-windows-manage-availability.md
 [multi-vm]: ../articles/guidance/guidance-compute-multi-vm.md
 [naming conventions]: ../articles/guidance/guidance-naming-conventions.md
@@ -283,22 +365,28 @@ CALL azure network nsg rule create --nsg-name %NSG_NAME% --direction Inbound ^
 [rbac-roles]: ../articles/active-directory/role-based-access-built-in-roles.md
 [rbac-devtest]: ../articles/active-directory/role-based-access-built-in-roles.md#devtest-lab-user
 [rbac-network]: ../articles/active-directory/role-based-access-built-in-roles.md#network-contributor
-[reboot-logs]: https://azure.microsoft.com/blog/viewing-vm-reboot-logs/
+[reboot-logs]: https://azure.microsoft.com/zh-TW/blog/viewing-vm-reboot-logs/
 [resize-os-disk]: ../articles/virtual-machines/virtual-machines-windows-expand-os-disk.md
 [Resize-VHD]: https://technet.microsoft.com/zh-TW/library/hh848535.aspx
-[Resize virtual machines]: https://azure.microsoft.com/blog/resize-virtual-machines/
+[Resize virtual machines]: https://azure.microsoft.com/zh-TW/blog/resize-virtual-machines/
 [resource-lock]: ../articles/resource-group-lock-resources.md
 [resource-manager-overview]: ../articles/resource-group-overview.md
-[security-center]: https://azure.microsoft.com/services/security-center/
+[security-center]: https://azure.microsoft.com/zh-TW/services/security-center/
 [select-vm-image]: ../articles/virtual-machines/virtual-machines-windows-cli-ps-findimage.md
-[services-by-region]: https://azure.microsoft.com/regions/#services
+[services-by-region]: https://azure.microsoft.com/zh-TW/regions/#services
 [static-ip]: ../articles/virtual-network/virtual-networks-reserved-public-ip.md
 [storage-price]: https://azure.microsoft.com/pricing/details/storage/
 [使用資訊安全中心]: ../articles/security-center/security-center-get-started.md#use-security-center
 [virtual-machine-sizes]: ../articles/virtual-machines/virtual-machines-windows-sizes.md
 [vm-disk-limits]: ../articles/azure-subscription-service-limits.md#virtual-machine-disk-limits
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
-[vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
-[0]: ./media/guidance-blueprints/compute-single-vm.png "Azure VM 的一般架構"
+[vm-sla]: https://azure.microsoft.com/zh-TW/support/legal/sla/virtual-machines/v1_0/
+[ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/
+[solution-script]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Scripts/Deploy-ReferenceArchitecture.ps1
+[vnet-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/virtualNetwork.parameters.json
+[nsg-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/networkSecurityGroup.parameters.json
+[vm-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/virtualMachine.parameters.json
+[azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
+[0]: ./media/guidance-blueprints/compute-single-vm.png "Azure 中的單一 Windows VM 架構"
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,48 +1,74 @@
 <properties 
 	pageTitle="撰寫邏輯應用程式定義 | Microsoft Azure" 
 	description="了解如何撰寫邏輯應用程式的 JSON 定義" 
-	authors="stepsic-microsoft-com" 
+	authors="jeffhollan" 
 	manager="erikre" 
 	editor="" 
 	services="app-service\logic" 
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/16/2016"
-	ms.author="stepsic"/>
+	ms.date="07/25/2016"
+	ms.author="jehollan"/>
 	
 # 撰寫邏輯應用程式定義
-本主題示範如何使用 [App Service Logic Apps](app-service-logic-what-are-logic-apps.md) 定義，這是一種簡單的宣告式 JSON 語言。請先看看[如何建立新的邏輯應用程式](app-service-logic-create-a-logic-app.md) (如果還沒看過)。您也可以閱讀 [MSDN 上關於此定義語言的完整參考資料](https://msdn.microsoft.com/library/azure/mt643789.aspx)。
+本主題示範如何使用 [Azure Logic App](app-service-logic-what-are-logic-apps.md) 定義，這是一種簡單的宣告式 JSON 語言。請先看看[如何建立新的邏輯應用程式](app-service-logic-create-a-logic-app.md) (如果還沒看過)。您也可以閱讀 [MSDN 上關於此定義語言的完整參考資料](http://aka.ms/logicappsdocs)。
 
 ## 清單上重複的幾個步驟
 
-常見的模式是先進行一個步驟以取得項目清單，然後進行您想要針對清單中的每個項目執行之兩個以上的一系列動作：
+您可以利用 [foreach 類型](app-service-logic-loops-and-scopes.md)逐一執行由最多 10,000 個項目所組成的陣列，並針對每個項目執行動作。
 
-![逐一查看清單](./media/app-service-logic-author-definitions/newrepeatoverlists.png)
+## 發生錯誤時的失敗處理步驟
 
-![逐一查看清單](./media/app-service-logic-author-definitions/newrepeatoverlists2.png)
-
-![逐一查看清單](./media/app-service-logic-author-definitions/newrepeatoverlists3.png)
-
-![逐一查看清單](./media/app-service-logic-author-definitions/newrepeatoverlists4.png)
-
- 
-在此範例中，有 3 個動作：
-
-1. 取得文章清單。這會傳回一個包含陣列的物件。
-
-2. 此動作會移至每個文章上的連結屬性，並傳回文章的實際位置。
-
-3. 在第二個動作的所有結果中，逐一查看結果以下載實際文章的動作。
+您通常想要撰寫*補救步驟* — 如果**且唯有當**一或多個呼叫失敗時執行的一些邏輯。在此範例中，我們從各種地方取得資料，但如果呼叫失敗，我想要在某處 POST 訊息，方便稍後追蹤該失敗。：
 
 ```
 {
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+	},
+	"triggers": {
+		"manual": {
+			"type": "manual"
+		}
+	},
+	"actions": {
+		"readData": {
+			"type": "Http",
+			"inputs": {
+				"method": "GET",
+				"uri": "http://myurl"
+			}
+		},
+		"postToErrorMessageQueue": {
+			"type": "ApiConnection",
+			"inputs": "...",
+			"runAfter": {
+				"readData": ["Failed"]
+			}
+		}
+	},
+	"outputs": {}
+}
+```
+
+您可使用 `runAfter` 屬性來指定 `postToErrorMessageQueue` 只應該在 `readData` 是 **Failed** 後執行。這也可以是可能值清單，因此 `runAfter` 可能是 `["Succeeded", "Failed"]`。
+
+最後，因為您現在已經處理錯誤，我們不再將執行結果標示為**失敗**。您在這裡可以看到，即使一個步驟失敗，此執行也**成功**，因為我撰寫步驟來處理這項失敗。
+
+## 平行執行的兩個以上步驟
+
+若要平行執行多個動作，`runAfter` 屬性在執行階段必須相同。
+
+```
+{
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {},
 	"triggers": {
@@ -51,40 +77,110 @@
 		}
 	},
 	"actions": {
-		"getArticles": {
+		"readData": {
 			"type": "Http",
 			"inputs": {
 				"method": "GET",
-				"uri": "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://feeds.wired.com/wired/index"
+				"uri": "http://myurl"
 			}
 		},
-		"readLinks": {
+		"branch1": {
 			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "@item().link"
-			},
-			"forEach": "@body('getArticles').responseData.feed.entries"
+			"inputs": "...",
+			"runAfter": {
+				"readData": ["Succeeded"]
+			}
 		},
-		"downloadLinks": {
+		"branch2": {
 			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "@item().outputs.headers.location"
-			},
-			"conditions": [{
-				"expression": "@not(equals(actions('readLinks').status, 'Skipped'))"
-			}],
-			"forEach": "@actions('readLinks').outputs"
+			"inputs": "...",
+			"runAfter": {
+				"readData": ["Succeeded"]
+			}
 		}
 	},
 	"outputs": {}
 }
 ```
 
-如[使用邏輯應用程式功能](app-service-logic-use-logic-app-features.md)所述，您在第二個動作上使用 `forEach:` 屬性逐一查看第一個清單。不過，在第三個動作中，您需要選取 `@actions('readLinks').outputs` 屬性，因為已對每一個文章執行第二個動作。
+如上述範例所見，`branch1` 和 `branch2` 皆設定為在 `readData` 之後執行。因此，這兩個分支會平行執行：
 
-您在動作中可以使用 [`item()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#item) 函式。在此範例中，我想要取得 `location` 標頭，因此我必須繼續使用 `@item().outputs.headers`，從我們現在反覆執行的第二個動作取得動作執行的輸出內容。
+![平行](./media/app-service-logic-author-definitions/parallel.png)
+
+您可以看到兩個分支的時間戳記完全相同。
+
+## 聯結兩個平行分支
+
+透過類似上述方式在 `runAfter` 屬性新增項目，即可聯結設定為平行執行的兩個動作。
+
+```
+{
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-04-01-preview/workflowdefinition.json#",
+    "actions": {
+        "readData": {
+            "inputs": {
+                "method": "GET",
+                "uri": "http://myurl"
+            },
+            "runAfter": {},
+            "type": "Http"
+        },
+        "branch1": {
+            "inputs": {
+                "method": "GET",
+                "uri": "http://myurl"
+            },
+            "runAfter": {
+                "readData": [
+                    "Succeeded"
+                ]
+            },
+            "type": "Http"
+        },
+        "branch2": {
+            "inputs": {
+                "method": "GET",
+                "uri": "http://myurl"
+            },
+            "runAfter": {
+                "readData": [
+                    "Succeeded"
+                ]
+            },
+            "type": "Http"
+        },
+        "join": {
+            "inputs": {
+                "method": "GET",
+                "uri": "http://myurl"
+            },
+            "runAfter": {
+                "branch1": [
+                    "Succeeded"
+                ],
+                "branch2": [
+                    "Succeeded"
+                ]
+            },
+            "type": "Http"
+        }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "parameters": {},
+    "triggers": {
+        "manual": {
+            "inputs": {
+                "schema": {}
+            },
+            "kind": "Http",
+            "type": "Request"
+        }
+    }
+}
+```
+
+![平行](./media/app-service-logic-author-definitions/join.png)
 
 ## 將清單中的項目對應至一些不同的組態
 
@@ -92,7 +188,7 @@
 
 ```
 {
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"specialCategories": {
@@ -143,344 +239,6 @@
 
 在此要注意兩個項目：[`intersection()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#intersection) 函式用來檢查類別是否符合其中一個已定義的已知類別。其次，一旦得到類別，我們可以使用方括號提取對應的項目：`parameters[...]`。
 
-## 逐一查看清單時鏈結/巢狀 Logic Apps
-
-較嚴謹的 Logic Apps 通常比較容易管理。作法上可以將邏輯分解成多個定義，再從相同的父定義呼叫它們。在此範例中，有一個父邏輯應用程式接收訂單，也有一個子邏輯應用程式對每個訂單執行一些步驟。
-
-在父邏輯應用程式中：
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"orders": {
-			"defaultValue": [{
-				"quantity": 10,
-				"id": "myorder1"
-			}, {
-				"quantity": 200,
-				"id": "specialOrder"
-			}, {
-				"quantity": 5,
-				"id": "myOtherOrder"
-			}],
-			"type": "Array"
-		}
-	},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"iterateOverOrders": {
-			"type": "Workflow",
-			"inputs": {
-				"uri": "https://westus.logic.azure.com/subscriptions/xxxxxx-xxxxx-xxxxxx/resourceGroups/xxxxxx/providers/Microsoft.Logic/workflows/xxxxxxx",
-				"apiVersion": "2015-02-01-preview",
-				"trigger": {
-					"name": "submitOrder",
-					"outputs": {
-						"body": "@item()"
-					}
-				},
-				"authentication": {
-					"type": "Basic",
-					"username": "default",
-					"password": "xxxxxxxxxxxxxx"
-				}
-			},
-			"forEach": "@parameters('orders')"
-		},
-		"sendInvoices": {
-			"type": "Http",
-			"inputs": {
-				"uri": "http://www.example.com/?invoiceID=@{item().outputs.run.outputs.deliverTime.value}",
-				"method": "GET"
-			},
-			"forEach": "@outputs('iterateOverOrders')"
-		}
-	},
-	"outputs": {}
-}
-```
-
-然後，在子邏輯應用程式中，我們使用 [`triggerBody()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#triggerBody) 函式取得已傳遞至子工作流程的值。您將會在輸出中填入想要傳回至父資料流程的資料。
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"calulatePrice": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?action=calcPrice&id=@{triggerBody().id}&qty=@{triggerBody().quantity}"
-			}
-		},
-		"calculateDeliveryTime": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?action=calcTime&id=@{triggerBody().id}&qty=@{triggerBody().quantity}"
-			}
-		}
-	},
-	"outputs": {
-		"deliverTime": {
-			"type": "String",
-			"value": "@outputs('calculateDeliveryTime').headers.etag"
-		}
-	}
-}
-```
-
-您可以閱讀 [MSDN 上的邏輯應用程式類型動作](https://msdn.microsoft.com/library/azure/mt643939.aspx)。
-
->[AZURE.NOTE]邏輯應用程式設計工具不支援邏輯應用程式類型的動作，因此您必須手動編輯定義。
-
-
-## 發生錯誤時的失敗處理步驟
-
-您通常想要撰寫*補救步驟* — 如果**且唯有當**一或多個呼叫失敗時執行的一些邏輯。在此範例中，我們從各種地方取得資料，但如果呼叫失敗，我想要在某處 POST 訊息，方便稍後追蹤該失敗。：
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"dataFeeds": {
-			"defaultValue": ["https://www.microsoft.com/zh-TW/default.aspx", "https://gibberish.gibberish/"],
-			"type": "Array"
-		}
-	},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"readData": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "@item()"
-			},
-			"forEach": "@parameters('dataFeeds')"
-		},
-		"postToErrorMessageQueue": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?noteAnErrorFor=@{item().inputs.uri}"
-			},
-			"conditions": [{
-				"expression": "@equals(actions('readData').status, 'Failed')"
-			}, {
-				"expression": "@equals(item().status, 'Failed')"
-			}],
-			"forEach": "@actions('readData').outputs"
-		}
-	},
-	"outputs": {}
-}
-```
-
-因為我在第一個步驟中逐一查看清單，所以我使用兩個條件。如果您只是有單一動作，您只需要一個條件 (第一個)。另外請注意，您可以在補救步驟中使用已失敗動作的「輸入值」 — 在此我將失敗的 URL 傳給第二個步驟。
-
-![補救](./media/app-service-logic-author-definitions/remediation.png)
-
-最後，因為您現在已經處理錯誤，我們不再將執行結果標示為**失敗**。您在這裡可以看到，即使一個步驟失敗，此執行也**成功**，因為我撰寫步驟來處理這項失敗。
-
-## 平行執行的兩個以上步驟
-
-如果要讓多個動作平行執行，而非循序執行，您必須移除將兩個動作連結在一起的 `dependsOn` 條件。一旦移除相依性，動作將會自動平行執行，除非它們需要彼此的資料。
-
-![分支](./media/app-service-logic-author-definitions/branches.png)
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"dataFeeds": {
-			"defaultValue": ["https://www.microsoft.com/zh-TW/default.aspx", "https://office.live.com/start/default.aspx"],
-			"type": "Array"
-		}
-	},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"readData": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "@item()"
-			},
-			"forEach": "@parameters('dataFeeds')"
-		},
-		"branch1": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?branch1Logic=@{item().inputs.uri}"
-			},
-			"forEach": "@actions('readData').outputs"
-		},
-		"branch2": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?branch2Logic=@{item().inputs.uri}"
-			},
-			"forEach": "@actions('readData').outputs"
-		}
-	},
-	"outputs": {}
-}
-```
-
-如您在上述範例中所見，branch1 和 branch2 只相依於 readData 的內容。因此，這兩個分支會平行執行：
-
-![平行](./media/app-service-logic-author-definitions/parallel.png)
-
-您可以看到兩個分支的時間戳記完全相同。
-
-## 結合邏輯的兩個條件式分支
-
-您可以使用單一動作取得兩個分支的資料，以結合邏輯的兩個條件式流程 (可能已執行，也可能尚未執行)。
-
-這方面的決策取決於您要處理一個項目或一組項目。如果是單一項目，您可以使用 [`coalesce()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#coalesce) 函式：
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"order": {
-			"defaultValue": {
-				"quantity": 10,
-				"id": "myorder1"
-			},
-			"type": "Object"
-		}
-	},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"handleNormalOrders": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://www.example.com/?orderNormally=@{parameters('order').id}"
-			},
-			"conditions": [{
-				"expression": "@lessOrEquals(parameters('order').quantity, 100)"
-			}]
-		},
-		"handleSpecialOrders": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://www.example.com/?orderSpecially=@{parameters('order').id}"
-			},
-			"conditions": [{
-				"expression": "@greater(parameters('order').quantity, 100)"
-			}]
-		},
-		"submitInvoice": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?invoice=@{coalesce(outputs('handleNormalOrders')?.headers?.etag,outputs('handleSpecialOrders')?.headers?.etag )}"
-			},
-			"conditions": [{
-				"expression": "@or(equals(actions('handleNormalOrders').status, 'Succeeded'), equals(actions('handleSpecialOrders').status, 'Succeeded'))"
-			}]
-		}
-	},
-	"outputs": {}
-}
-```
- 
-或者，舉例來說，當您的前兩個分支都在訂單清單上執行時，您可以使用 [`union()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#union) 函式來結合兩個分支的資料。
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"orders": {
-			"defaultValue": [{
-				"quantity": 10,
-				"id": "myorder1"
-			}, {
-				"quantity": 200,
-				"id": "specialOrder"
-			}, {
-				"quantity": 5,
-				"id": "myOtherOrder"
-			}],
-			"type": "Array"
-		}
-	},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"handleNormalOrders": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://www.example.com/?orderNormally=@{item().id}"
-			},
-			"conditions": [{
-				"expression": "@lessOrEquals(item().quantity, 100)"
-			}],
-			"forEach": "@parameters('orders')"
-		},
-		"handleSpecialOrders": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://www.example.com/?orderSpecially=@{item().id}"
-			},
-			"conditions": [{
-				"expression": "@greater(item().quantity, 100)"
-			}],
-			"forEach": "@parameters('orders')"
-		},
-		"submitInvoice": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/?invoice=@{item().outputs.headers.etag}"
-			},
-			"conditions": [{
-				"expression": "@equals(item().status, 'Succeeded')"
-			}],
-			"forEach": "@union(actions('handleNormalOrders').outputs, actions('handleSpecialOrders').outputs)"
-		}
-	},
-	"outputs": {}
-}
-```
 ## 處理字串
 
 我們提供了各種可用來處理字串的函式。我們來看一個範例，假設我們想要將一個字串傳遞到系統，但不確定字元編碼是否會正確處理。一種作法是以 base64 將此字串編碼。不過，為了避免在 URL 中逸出，我們要取代幾個字元。
@@ -489,7 +247,7 @@
 
 ```
 {
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"order": {
@@ -539,7 +297,7 @@
 
 ```
 {
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"order": {
@@ -564,14 +322,15 @@
 			}
 		},
 		"timingWarning": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://www.example.com/?recordLongOrderTime=@{parameters('order').id}&currentTime=@{utcNow('r')}"
-			},
-			"conditions": [{
-				"expression": "@less(actions('order').startTime,addseconds(utcNow(),-1))"
-			}]
+			"actions" {
+				"type": "Http",
+				"inputs": {
+					"method": "GET",
+					"uri": "http://www.example.com/?recordLongOrderTime=@{parameters('order').id}&currentTime=@{utcNow('r')}"
+				},
+				"runAfter": {}
+			}
+			"expression": "@less(actions('order').startTime,addseconds(utcNow(),-1))"
 		}
 	},
 	"outputs": {}
@@ -581,57 +340,6 @@
 在此範例中，我們擷取前一個步驟的 `startTime`。然後，我們取得目前的時間並減去一秒：[`addseconds(..., -1)`](https://msdn.microsoft.com/library/azure/mt643789.aspx#addseconds) (您可以使用其他的時間單位，例如 `minutes` 或 `hours`)。最後，我們可以比較這兩個值。如果第一個值小於第二個值，即表示自從訂單最初提交以來已超過一秒。
 
 也請注意，我們可以使用字串格式子來格式化日期：我在查詢字串中使用 [`utcnow('r')`](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow) 取得 RFC1123。所有日期格式[記載於 MSDN 上](https://msdn.microsoft.com/library/azure/mt643789.aspx#utcnow)。
-
-## 在執行階段傳入值來改變行為
-
-假設您想要根據用來啟動邏輯應用程式的某些值，以執行不同的行為。您可以使用 [`triggerOutputs()`](https://msdn.microsoft.com/library/azure/mt643789.aspx#triggerOutputs) 函式，從您傳入的任何值中取出這些值：
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"readData": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "@triggerOutputs().uriToGet"
-			}
-		},
-		"extraStep": {
-			"type": "Http",
-			"inputs": {
-				"method": "POST",
-				"uri": "http://www.example.com/extraStep"
-			},
-			"conditions": [{
-				"expression": "@triggerOutputs().doMoreLogic"
-			}]
-		}
-	},
-	"outputs": {}
-}
-```
-
-為了實際發揮作用，開始執行時，您需要傳遞您想要的屬性 (在上述範例中是 `uriToGet` 和 `doMoreLogic`)。
-
-搭配下列內容。請注意，您現在已提供值給邏輯應用程式使用：
-
-```
-{
-    "outputs": {
-        "uriToGet" : "http://my.uri.I.want/",
-        "doMoreLogic" : true
-    }
-}
-``` 
-
-此邏輯應用程式執行時會呼叫我傳入的 uri，並執行該額外步驟，因為我傳遞 `true`。如果您只想在部署階段改變參數 (不是*每次執行*)，則應該使用以下顯示的 `parameters`。
 
 ## 對不同的環境使用部署階段參數
 
@@ -643,10 +351,10 @@
 
 ```
 {
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
-		"connection": {
+		"uri": {
 			"type": "string"
 		}
 	},
@@ -660,7 +368,7 @@
 			"type": "Http",
 			"inputs": {
 				"method": "GET",
-				"uri": "@parameters('connection')"
+				"uri": "@parameters('uri')"
 			}
 		}
 	},
@@ -668,17 +376,11 @@
 }
 ```
 
-然後，在邏輯應用程式的實際 `PUT` 要求中，您可以提供參數 `connection`。請注意，由於已不再有預設值，邏輯應用程式內容中需要這個參數：
+然後，在邏輯應用程式的實際 `PUT` 要求中，您可以提供參數 `uri`。請注意，由於已不再有預設值，邏輯應用程式內容中需要這個參數：
 
 ```
 {
-    "properties": {
-        "sku": {
-            "name": "Premium",
-            "plan": {
-                "id": "/subscriptions/xxxxx/resourceGroups/xxxxxx/providers/Microsoft.Web/serverFarms/xxxxxx"
-            }
-        },
+    "properties": {},
         "definition": {
           // Use the definition from above here
         },
@@ -694,41 +396,6 @@
 
 然後，在每個環境中，您就可以提供不同的值給 `connection` 參數。
 
-## 執行步驟直到條件符合
-
-您需要有要呼叫的 API，且您必須等候特定回應才能繼續。想像一下，例如您在處理檔案前，想要等某人將檔案上傳至目錄。您可以使用 *do-until* 陳述式來執行此步驟：
-
-```
-{
-	"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-	"contentVersion": "1.0.0.0",
-	"parameters": {},
-	"triggers": {
-		"manual": {
-			"type": "manual"
-		}
-	},
-	"actions": {
-		"http0": {
-			"type": "Http",
-			"inputs": {
-				"method": "GET",
-				"uri": "http://mydomain/listfiles"
-			},
-			"until": {
-				"limit": {
-					"timeout": "PT10M"
-				},
-				"conditions": [{
-					"expression": "@greater(length(action().outputs.body),0)"
-				}]
-			}
-		}
-	},
-	"outputs": {}
-}
-```
-
 如需有關建立及管理邏輯應用程式的所有可用選項，請參閱 [REST API 文件](https://msdn.microsoft.com/library/azure/mt643787.aspx)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0727_2016-->

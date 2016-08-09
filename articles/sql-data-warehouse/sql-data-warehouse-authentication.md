@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="06/17/2016"
+   ms.date="07/23/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
@@ -44,14 +44,14 @@
 1. 使用伺服器註冊 SSDT 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
 2. 在 SSDT 中建立工作階段之前先反白顯示使用者資料庫。
 
-> [AZURE.NOTE] 如需連線到 SQL 資料倉儲與 SSDT 的指引，請回頭參閱[透過 Visual Studio 查詢][]文章。
+> [AZURE.NOTE] 如需連線到 SQL 資料倉儲與 SSDT 的指引，請回頭參閱[使用 Visual Studio 查詢][]文章。
 
-也請務必注意，變更連線的資料庫時，Transact-SQL 陳述式 **USE <your DB>** 不受支援
+也請務必注意，變更連線的資料庫時，Transact-SQL 陳述式 **USE <您的資料庫>** 不受支援
 
 
 ## Azure Active Directory (AAD) 驗證
 
-Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身分識別連接到 Microsoft Azure SQL 資料倉儲的機制。您可以使用 Azure Active Directory 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。中央識別碼管理提供單一位置以管理 SQL 資料倉儲使用者並簡化權限管理。
+[Azure Active Directory][What is Azure Active Directory] 驗證是在 Azure Active Directory (Azure AD) 中使用身分識別連線到 Microsoft Azure SQL 資料倉儲的機制。您可以使用 Azure Active Directory 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。中央識別碼管理提供單一位置以管理 SQL 資料倉儲使用者並簡化權限管理。
 
 ### 優點
 
@@ -86,10 +86,11 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 
 ## 後續步驟
 
-若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[透過 Visual Studio 查詢][]。
+若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[使用 Visual Studio 查詢][]。
 
 <!-- Article references -->
-[保護 SQL 資料倉儲中的資料庫]: sql-data-warehouse-overview-manage-security.md
-[透過 Visual Studio 查詢]: sql-data-warehouse-query-visual-studio.md
+[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-manage-security.md
+[使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
+[What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

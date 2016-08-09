@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags 
-	ms.service="app-service-logic" 
+	ms.service="logic-apps" 
 	ms.workload="integration" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
@@ -58,4 +58,4 @@
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
 - [深入了解轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合轉換")
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

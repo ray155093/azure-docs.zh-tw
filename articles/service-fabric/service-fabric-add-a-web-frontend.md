@@ -1,5 +1,5 @@
 <properties
-   pageTitle="建立應用程式的 Web 前端 | Microsoft Azure"
+   pageTitle="使用 ASP.NET Core 建立應用程式的 Web 前端 | Microsoft Azure"
    description="使用 ASP.NET Core Web API 專案對 Web 公開 Service Fabric 應用程式，以及透過 ServiceProxy 進行服務間通訊。"
    services="service-fabric"
    documentationCenter=".net"
@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/10/2016"
+   ms.date="07/22/2016"
    ms.author="seanmck"/>
 
 
-# 建置應用程式的 Web 服務前端
+# 使用 ASP.NET Core 建置應用程式的 Web 服務前端
 
 根據預設，Azure Service Fabric 服務不提供 Web 的公用介面。若要對 HTTP 用戶端公開應用程式的功能，您必須建立 Web 專案來做為進入點，然後從該處與個別服務進行通訊。
 
@@ -27,7 +27,7 @@
 
 ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。讓我們將 ASP.NET Web API 專案新增至現有的應用程式。
 
->[AZURE.NOTE] 若要完成本教學課程，您需要[安裝 .NET Core RC2][dotnetcore-install]。
+>[AZURE.NOTE] 若要完成本教學課程，您必須[安裝 .NET Core 1.0][dotnetcore-install]。
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下應用程式專案中的 [服務]，然後選擇 [新增] > [新增 Service Fabric Explorer]。
 
@@ -205,6 +205,9 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
     定期重新整理瀏覽器，以查看計數器值更新。
 
 
+>[AZURE.WARNING] 範本中提供的 ASP.NET Core 網頁伺服器，稱為 Kestrel，[目前不支援處理直接的網際網路流量](https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel)。如果是生產案例，請考慮在 [API Management][api-management-landing-page] 或另一個網際網路閘道後方裝載 ASP.NET Core 端點。請注意，Service Fabric 不支援在 IIS 中的部署。
+
+
 ## 動作項目呢？
 
 本教學課程著重於新增會與具狀態服務通訊的 Web 前端。但是您可以依照非常類似的模型來與動作項目交談。事實上，這比較簡單。
@@ -240,5 +243,6 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 <!-- external links -->
 [dotnetcore-install]: https://www.microsoft.com/net/core#windows
+[api-management-landing-page]: https://azure.microsoft.com/zh-TW/services/api-management/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

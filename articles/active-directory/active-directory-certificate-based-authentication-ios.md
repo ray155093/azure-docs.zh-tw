@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/15/2016" 
+    ms.date="07/22/2016" 
     ms.author="markvi" />
 
 
@@ -44,7 +44,7 @@
 
 - 存取憑證授權單位，以發行用戶端憑證。
 
-- 務必要在 Azure Active Directory 中設定憑證授權單位。您可以在「開始使用」一節中，找到有關如何完成設定的詳細步驟。
+- 務必要在 Azure Active Directory 中設定憑證授權單位。您可以在[開始使用](#getting-started)一節中，找到有關如何完成設定的詳細步驟。
 
 - 務必要在 Azure Active Directory 中設定根憑證授權單位和任何中繼憑證授權單位。
 
@@ -61,9 +61,11 @@
 
 | 應用程式 | 支援 |
 | ---                       | ---          |
-| OneDrive | 是 |
+| Word / Excel / PowerPoint | ![勾選][1] |
+| OneNote | ![勾選][1] |
+| OneDrive | ![勾選][1] |
 | Outlook | 敬請期待 |
-| Word / Excel / PowerPoint | 是 |
+| Yammer | ![勾選][1] |
 | 商務用 Skype | 敬請期待 |
 
 
@@ -71,7 +73,7 @@
 
 裝置作業系統版本必須是 iOS 9 和更新版本
 
-務必要設定同盟伺服器，才能在 Office 行動應用程式上執行 CBA。
+必須設定同盟伺服器。
 
 iOS 上的 Office 應用程式都需要 Azure Authenticator。
 
@@ -105,7 +107,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 您需要在 Azure Active Directory 中設定憑證授權單位才能開始使用。請為每個憑證授權單位上傳下列各項︰
 
-- 憑證的公開部分 (*.cer* 格式)
+- 憑證的公開部分 (「.cer」格式)
 
 - 憑證撤銷清單 (CRl) 所在的網際網路對應 URL
  
@@ -145,7 +147,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 2. 安裝 Azure AD 模組。您必須安裝 [1\.1.143.0](http://www.powershellgallery.com/packages/AzureADPreview/1.1.143.0) 版或更新版本。
 
-        Install-Module -Name AzureAD –RequiredVersion 1.1.143.0 
+        Install-Module -Name AzureADPreview –RequiredVersion 1.1.143.0 
 
 3. 連線到目標租用戶︰
 
@@ -196,7 +198,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 		$c[0].AuthorityType=1 
 
-3. 設定「憑證授權單位」：
+3. 設定**憑證授權單位**：
 
 		Set-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $c[0] 
 
@@ -271,4 +273,9 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 您設定的日期必須是未來的日期。如果不是未來的日期，則不會設定 **StsRefreshTokensValidFrom** 屬性。如果是未來的日期，才會將 **StsRefreshTokensValidFrom** 設定為目前的時間 (而非 Set-MsolUser 命令指示的日期)。
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--Image references-->
+[1]: ./media/active-directory-certificate-based-authentication-ios/ic195031.png
+
+<!---HONumber=AcomDC_0727_2016-->

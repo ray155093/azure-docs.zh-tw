@@ -35,7 +35,7 @@
 
 Azure 入口網站提供一組常用的資料庫動作，您可以從資料庫刀鋒視窗頂端存取這些動作。您可以將資料庫還原至先前的時間點、在 Visual Studio 中開啟資料庫、將資料庫複製到新的伺服器，以及將資料庫匯出至 Azure 儲存體帳戶。
 
-- [還原 SQL 資料庫](sql-database-user-error-recovery.md)
+- [還原 SQL 資料庫](sql-database-recovery-using-backups.md)
 - [在 Visual Studio 中開啟 SQL Database](sql-database-connect-query.md)
 - [匯出 SQL Database](sql-database-export.md)
 
@@ -74,4 +74,4 @@ Azure SQL Database 可以設定為以非同步方式，將已認可的交易複�
 
 - [SQL Database](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

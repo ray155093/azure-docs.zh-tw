@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/08/2016"
+	ms.date="07/26/2016"
 	ms.author="jroth"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
@@ -239,11 +239,7 @@
 [AZURE.INCLUDE [azure-data-lake-analytics-limits](../includes/azure-data-lake-analytics-limits.md)]
 
 ### 串流分析限制
-
-| 限制識別碼 | 限制 | 註解 |
-|----------------- | ------------|--------- |
-| 每個區域的每個訂用帳戶串流單位數目上限 | 50 | 如需要求將訂用帳戶的串流單位數目增加至 50 個以上，請連絡 [Microsoft 支援](https://support.microsoft.com/zh-TW)。 |
-| 串流單位的最大輸送量 | 1 MB/秒* | 每個 SU 的最大輸送量取決於視案例。實際的輸送量可能較低，而且取決於查詢複雜性和資料分割。可在[調整 Azure 串流分析工作以增加輸送量](../articles/stream-analytics/stream-analytics-scale-jobs.md)文章中找到進一步的詳細資料。 |
+[AZURE.INCLUDE [stream-analytics-limits-table](../includes/stream-analytics-limits-table.md)]
 
 ### Active Directory 限制
 
@@ -305,4 +301,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

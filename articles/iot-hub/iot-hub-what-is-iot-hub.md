@@ -16,7 +16,7 @@
  ms.date="06/06/2016"
  ms.author="dobett"/>
 
-# 何謂 Azure IoT 中心？
+# 何謂 Azure IoT 中樞?
 
 歡迎使用 Azure IoT 中樞。本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。
 
@@ -51,7 +51,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
 
 Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
--   **每一裝置的驗證和安全連線能力**。您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。[IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。解決方案後端可將個別裝置加入白名單或黑名單，以達到完全控制裝置存取權。
+-   **每一裝置的驗證和安全連線能力**。您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。[IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。解決方案後端可將個別裝置加入允許清單或封鎖清單，以達到完全控制裝置存取權。
 
 -   **裝置連線作業的監視**。您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。這可讓 IoT 解決方案輕鬆找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
 
@@ -123,4 +123,4 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!----HONumber=AcomDC_0713_2016-->

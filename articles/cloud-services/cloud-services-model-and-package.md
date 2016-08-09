@@ -249,7 +249,6 @@ CSPack.exe (在 Windows 上) 可以透過執行隨 SDK 一起安裝的 **Microso
 
 我打算建立雲端服務封裝，而且我想要...
 
-* [設定本機儲存資源](cloud-services-configure-local-storage-resources.md)
 * [設定雲端服務執行個體的遠端桌面][remotedesktop]
 * [部署雲端服務專案][deploy]
 
@@ -267,4 +266,4 @@ CSPack.exe (在 Windows 上) 可以透過執行隨 SDK 一起安裝的 **Microso
 [vs_reconfigure]: ../vs-azure-tools-configure-roles-for-cloud-service.md
 [vs_create]: ../vs-azure-tools-azure-project-create.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

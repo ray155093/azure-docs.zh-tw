@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/13/2016"
+	ms.date="07/23/2016"
 	ms.author="dariagrigoriu"/>
     
 # 持續部署至 Azure App Service
@@ -52,7 +52,7 @@
 
 將您的 Visual Studio 方案推送至 App Service 的步驟和[上一節](#overview)的一樣，可提供您設定方案和儲存機制的步驟，如下：
 
--	使用 Visual Studio 原始檔控制選項來產生 `.gitignore` 檔案 (如下圖所示)，或使用類似這個 [.gitignore 範例](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)的內容，在您的儲存機制根目錄中手動新增 `.gitignore` 檔案。 
+-	使用 Visual Studio 原始檔控制選項來產生 `.gitignore` 檔案 (如下圖所示)，或使用類似這個 [.gitignore 範例](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)的內容，在您的儲存機制根目錄中手動新增 `.gitignore` 檔案。
 
     ![](./media/app-service-continous-deployment/VS_source_control.png)
  
@@ -72,6 +72,7 @@
 
 ## 其他資源
 
+* [如何調查連續部署的常見問題](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)
 * [如何使用適用於 Azure 的 PowerShell]
 * [如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]
 * [Git 文件]
@@ -79,7 +80,7 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-[Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
+[Azure App Service]: https://azure.microsoft.com/zh-TW/documentation/articles/app-service-changes-existing-services/
 [Azure 入口網站]: https://portal.azure.com
 [VSTS Portal]: https://www.visualstudio.com/zh-TW/products/visual-studio-team-services-vs.aspx
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
@@ -92,4 +93,4 @@
 [開始使用 VSTS]: https://www.visualstudio.com/get-started/overview-of-get-started-tasks-vs
 [Continuous delivery to Azure using Visual Studio Team Services]: ../articles/cloud-services/cloud-services-continuous-delivery-use-vso.md
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

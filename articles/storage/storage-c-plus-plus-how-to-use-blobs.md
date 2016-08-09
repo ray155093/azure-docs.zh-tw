@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/29/2016"
+    ms.date="07/25/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的 Blob 儲存體  
@@ -38,8 +38,8 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 若要安裝 Azure Storage Client Library for C++，您可以使用下列方法：
 
--	**Linux：**遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)頁面中提供的指示進行。  
--	**Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)中輸入下列命令，然後按下 **ENTER**。  
+-	**Linux：**遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)頁面中提供的指示進行。
+-	**Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)中輸入下列命令，然後按下 **ENTER**。
 
 		Install-Package wastorage
 
@@ -241,4 +241,4 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。在大多數情況下，�
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0727_2016-->

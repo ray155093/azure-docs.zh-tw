@@ -61,18 +61,18 @@ Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外�
 
 範例資料會儲存在 Azure Blob 儲存體中，供 HDInsight 做為 Hadoop 叢集的預設檔案系統使用。HDInsight 可使用 **wasb** 字首存取儲存在 Blob 中的檔案。例如，若要存取 sample.log 檔案，您應使用下列語法：
 
-	wasb:///example/data/sample.log
+	wasbs:///example/data/sample.log
 
 由於 WASB 是 HDInsight 的預設儲存體，因此您也可以從 Pig Latin 使用 **/example/data/sample.log** 存取此檔案。
 
-> [AZURE.NOTE] 語法 **wasb:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶上的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料，例如 **wasb://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
+> [AZURE.NOTE] 語法 **wasbs:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶中的檔案，可以指定容器名稱和儲存體帳戶位址來存取資料，例如：**wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 
 ##<a id="job"></a>關於範例工作
 
 以下 Pig Latin 工作會從 HDInsight 叢集的預設儲存體載入 **sample.log** 檔案。然後該工作會執行一系列轉換，進而產生輸入資料中每個記錄層級出現次數的計數。這些結果會傾印至 STDOUT。
 
-	LOGS = LOAD 'wasb:///example/data/sample.log';
+	LOGS = LOAD 'wasbs:///example/data/sample.log';
 	LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 	FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
 	GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
@@ -148,4 +148,4 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決�
 [image-hdi-pig-powershell]: ./media/hdinsight-use-pig/hdi.pig.powershell.png
 [image-hdi-pig-architecture]: ./media/hdinsight-use-pig/HDI.Pig.Architecture.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

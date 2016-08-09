@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/07/2016"
+   ms.date="07/25/2016"
    ms.author="dhanyahk"/>
 
 # Azure Active Directory 稽核報告事件
@@ -48,9 +48,9 @@ Azure Active Directory 稽核報告可協助客戶識別其 Azure Active Directo
 移除服務主體 | 移除目錄中的服務主體
 新增服務主體認證 | 將認證新增至服務主體。
 移除服務主體認證 | 移除服務主體的認證。
-新增委派項目 | 已在目錄中建立 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity)。
-設定委派項目 | 已在目錄中更新 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity)。
-移除委派項目 | 已在目錄中刪除 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity)。
+新增委派項目 | 已在目錄中建立 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity)。
+設定委派項目 | 已在目錄中更新 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity)。
+移除委派項目 | 已在目錄中刪除 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity)。
 **角色事件** |
 將角色成員新增至角色 | 將使用者新增至目錄角色。
 移除角色的角色成員 | 從目錄角色移除使用者。
@@ -122,4 +122,4 @@ TelephoneNumber | 使用者的電話號碼。
 
 稽核記錄是許多標準規定的必要控制項。對於使用 Azure Active Directory 稽核報告以符合其標準規定的客戶，建議客戶提交一份本說明主題的副本 (連同客戶匯出的稽核報告副本)，協助說明報告的詳細資料。如果稽核人員想要了解 Azure 目前符合的法規，請將稽核人員導向至 Microsoft Azure 信任中心的[規範](https://azure.microsoft.com/support/trust-center/compliance/)頁面。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0727_2016-->

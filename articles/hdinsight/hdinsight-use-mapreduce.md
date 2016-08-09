@@ -62,17 +62,17 @@ Hadoop 資料流會透過 STDIN 與 STDOUT 與對應程式和減壓器通訊 (�
 
 範例資料會儲存在 Azure Blob 儲存體中，供 HDInsight 做為 Hadoop 叢集的預設檔案系統使用。HDInsight 可使用 **wasb** 首碼存取儲存在 Blob 儲存體中的檔案。例如，若要存取 sample.log 檔案，您應使用下列語法：
 
-	wasb:///example/data/gutenberg/davinci.txt
+	wasbs:///example/data/gutenberg/davinci.txt
 
 由於 Azure Blob 儲存體是 HDInsight 的預設儲存體，因此您也可以使用 **/example/data/gutenberg/davinci.txt** 存取檔案。
 
-> [AZURE.NOTE] 在上一個語法中，**wasb:///** 是用來存取 HDInsight 叢集的預設儲存體容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取這些帳戶上儲存的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料。例如：**wasb://mycontainer@mystorage.blob.core.windows.net/example/data/gutenberg/davinci.txt**。
+> [AZURE.NOTE] 在上一個語法中，**wasbs:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取這些帳戶上儲存的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料。例如，**wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/gutenberg/davinci.txt**。
 
 ##<a id="job"></a>關於範例 MapReduce
 
-用於此範例中的 MapReduce 工作位在 **wasb://example/jars/hadoop-mapreduce-examples.jar**，隨附於HDInsight 叢集。這包含您依據 **davinci.txt** 執行的字數統計範例。
+用於此範例中的 MapReduce 工作位在 **wasbs://example/jars/hadoop-mapreduce-examples.jar**，隨附於HDInsight 叢集。這包含您依據 **davinci.txt** 執行的字數統計範例。
 
-> [AZURE.NOTE] 在 HDInsight 2.1 版叢集上的檔案位置是 **wasb:///example/jars/hadoop-examples.jar**。
+> [AZURE.NOTE] 在 HDInsight 2.1 版叢集上的檔案位置是 **wasbs:///example/jars/hadoop-examples.jar**。
 
 如需參考，以下是字數統計 MapReduce 工作的 Java 程式碼：
 
@@ -188,4 +188,4 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。請使用下表決定�
 
 [image-hdi-wordcountdiagram]: ./media/hdinsight-use-mapreduce/HDI.WordCountDiagram.gif
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

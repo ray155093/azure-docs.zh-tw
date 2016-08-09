@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -25,6 +25,6 @@
 ## 後續步驟    
 
 - [深入了解這個新連接器](../connectors/connectors-create-api-twitter.md)
-- 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)  
+- 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0727_2016-->

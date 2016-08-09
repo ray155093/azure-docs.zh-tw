@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-android"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/17/2016"
+	ms.date="07/21/2016"
 	ms.author="glenga"/>
 
 # 將推播通知新增至行動服務應用程式
@@ -86,4 +86,4 @@
 [Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
 [Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

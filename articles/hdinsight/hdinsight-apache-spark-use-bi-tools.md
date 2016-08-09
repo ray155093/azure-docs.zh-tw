@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="07/25/2016" 
 	ms.author="nitinme"/>
 
 
@@ -44,7 +44,7 @@
 
 一旦將資料儲存成 Hive 資料表之後，下一節我們將使用 Power BI 和 Tableau 等 BI 工具連接 Hive 資料表。
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
+1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
 
 2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結] ，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
 
@@ -71,7 +71,7 @@
 
 
 		# Create an RDD from sample data
-		hvacText = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+		hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 		
 		# Create a schema for our data
 		Entry = Row('Date', 'Time', 'TargetTemp', 'ActualTemp', 'BuildingID')
@@ -133,7 +133,7 @@
 
 	  ![列出 Hive 資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.display.tables.png "列出 Hive 資料表")
 
-7. 建置視覺效果，顯示每棟建築物之目標溫度和實際溫度間的差異。請選取**區域圖**圖示 (在紅色方框中) 來將資料視覺化。如要定義軸線，請把 [BuildingID] 欄位拖放到 [軸] 的下方，然後把 [ActualTemp]/[**TargetTemp**] 欄位拖放到 [值] 的下方。
+7. 建置視覺效果，顯示每棟建築物之目標溫度和實際溫度間的差異。請選取**區域圖**圖示 (在紅色方框中) 來將資料視覺化。如要定義軸線，請把 [BuildingID] 欄位拖放到 [軸] 的下方，然後把 [ActualTemp]/[TargetTemp] 欄位拖放到 [值] 的下方。
 
 	![建立視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.visual1.png "建立視覺效果")
 
@@ -152,7 +152,7 @@
 
 ##<a name="tableau"></a>使用 Tableau Desktop 來分析 Hive 資料表中的資料
 	
-1. 啟動 Tableau Desktop。在左窗格上可連線的伺服器清單中，按一下 [Spark SQL]。如果左窗格沒有預設列出 Spark SQL，您可以按一下 [更多伺服器] 來尋找它。 
+1. 啟動 Tableau Desktop。在左窗格上可連線的伺服器清單中，按一下 [Spark SQL]。如果左窗格沒有預設列出 Spark SQL，您可以按一下 [更多伺服器] 來尋找它。
 
 2. 在 Spark SQL 連線對話方塊中，提供下圖所示的值，然後按一下 [確定]。
 
@@ -172,7 +172,7 @@
 
 	![將資料表加入 Tableau](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.table.png "將資料表加入 Tableau")
 
-6. 按一下左下方的 [Sheet1] 索引標籤。針對每個日期，製作出顯示所有建築物之平均目標溫度和實際溫度的視覺效果。請把 [日期] 和 [建築物識別碼] 拖放到 [資料行]中，然後把將 [實際溫度]/[**目標溫度**] 拖放到 [資料列] 中。請選取 [標記] 下方的 [區域]，以使用區域對應圖的視覺效果。
+6. 按一下左下方的 [Sheet1] 索引標籤。針對每個日期，製作出顯示所有建築物之平均目標溫度和實際溫度的視覺效果。請把 [日期] 和 [建築物識別碼] 拖放到 [資料行]中，然後將 [實際溫度]/[目標溫度] 拖放到 [資料列] 中。請選取 [標記] 下方的 [區域]，以使用區域對應圖的視覺效果。
 
 	 ![新增視覺效果的欄位](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.fields.png "新增視覺效果的欄位")
 
@@ -241,4 +241,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0727_2016-->

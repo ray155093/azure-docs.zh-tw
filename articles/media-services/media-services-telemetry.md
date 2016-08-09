@@ -1,11 +1,22 @@
 <properties pageTitle="Azure 媒體服務遙測搭配 .NET | Microsoft Azure" 
 	description="本文示範如何使用 Azure 媒體服務遙測。" 
-	services="" 
-	documentationCenter=""
-	authors="juliako" />
+	services="media-services" 
+	documentationCenter="" 
+	authors="juliako" 
+	manager="erikre" 
+	editor=""/>
+
+<tags 
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="dotnet" 
+	ms.topic="article" 
+	ms.date="07/23/2016"   
+	ms.author="juliako"/>
 
 # Azure 媒體服務遙測搭配 .NET
-
+ 
 ## 概觀
 
 媒體服務遙測/監視可讓媒體服務客戶存取其服務的度量資料。目前的版本支援 "Channel" 和 "StreamingEndpoint" 實體的遙測資料。您可以設定元件層級細微度的遙測。詳細資料層級可分為「正常」和「詳細資訊」兩種。目前的版本僅支援「正常」。
@@ -37,55 +48,52 @@
                 new ComponentMonitoringSetting(MonitoringComponent.StreamingEndpoint, MonitoringLevel.Normal)
             });
 
+## 取用遙測資訊
 
-## StreamingEndpoint 記錄檔
+遙測資料會寫入設定媒體服務帳戶的遙測時指定的儲存體帳戶中的 Azure 儲存體資料表。遙測系統會以 00:00 UTC 為基準為每一天建立個別的資料表。以 "TelemetryMetrics20160321" 為例，其中的 "20160321" 即代表資料表的建立日期。每天都會有個別的資料表。
 
-###可用的度量
+您可以查詢下列度量資訊的資料表。
+
+### StreamingEndpoint 記錄檔
 
 您可以查詢下列 StreamingEndPoint 度量。
 
-- **PartitionKey** 能取得記錄的資料分割索引鍵。
-- **RowKey** 能取得記錄的列索引鍵。
-- **AccountId** 能取得媒體服務帳戶識別碼。
-- **AccountId** 能取得媒體服務串流端點識別碼。
-- **ObservedTime** 能取得度量的觀察時間。
-- **HostName** 能取得串流端點主機名稱。
-- **StatusCode** 能取得狀態碼。
-- **ResultCode** 能取得的結果碼。
-- **RequestCount** 能取得要求計數。
-- **BytesSent** 能取得傳送位元組。
-- **ServerLatency** 能取得伺服器延遲。
-- **EndToEndLatency** 能取得端對端要求時間。
-
-###串流端點查詢結果範例
-
-![串流端點頁面](media/media-services-telemetry/media-services-telemetry01.png)
+屬性|說明|範例值
+---|---|---
+**PartitionKey**|能取得記錄的資料分割索引鍵。|60b71b0f6a0e4d869eb0645c16d708e1\_6efed125eef44fb5b61916edc80e6e23
+**RowKey**|能取得記錄的列索引鍵。|00959\_00000
+**AccountId**|能取得媒體服務帳戶識別碼。|6efed125-eef4-4fb5-b619-16edc80e6e23
+**StreamingEndpointId**|能取得媒體服務串流端點識別碼。|d17ec9e4-a5d4-033d-0c36-def70229f06f
+**ObservedTime**|能取得度量的觀察時間。|1/20/16 23:44:01
+**HostName**|能取得串流端點主機名稱。|builddemoserver.origin.mediaservices.windows.net
+**StatusCode**|能取得狀態碼。|200
+**ResultCode**|能取得結果碼。|S\_OK
+**RequestCount**|能取得結果計數。|3
+**BytesSent**|能取得傳送位元組。|2987358
+**ServerLatency**|能取得伺服器延遲 (包括儲存體)。|129
+**EndToEndLatency**|能取得端對端要求時間。|250
 
 
-## 直播頻道活動訊號
-
-###可用的度量
+### 直播頻道活動訊號
 
 您可以查詢下列直播頻道度量。
 
-- **PartitionKey** 能取得記錄的資料分割索引鍵。
-- **RowKey** 能取得記錄的列索引鍵。
-- **AccountId** 能取得媒體服務帳戶識別碼。
-- **ChannelId** 能取得媒體服務頻道識別碼。
-- **ObservedTime** 能取得度量的觀察時間。
-- **CustomAttributes** 能取得自訂屬性。
-- **TrackType** 能取得資料軌類型。
-- **TrackName** 能取得資料軌名稱。
-- **Bitrate** 能取得位元速率。
-- **IncomingBitrate** 能取得連入位元速率。
-- **OverlapCount** 能取得重疊計數。
-- **DiscontinuityCount** 能取得不連續計數。
-- **LastTimestamp** 能取得最後一個時間戳記。
+屬性|說明|範例值
+---|---|---
+**PartitionKey**|能取得記錄的資料分割索引鍵。|60b71b0f6a0e4d869eb0645c16d708e1\_0625cc45918e4f98acfc9a33e8066628
+**RowKey**|能取得記錄的列索引鍵。|13872\_00005
+**AccountId**|能取得媒體服務帳戶識別碼。|6efed125-eef4-4fb5-b619-16edc80e6e23
+**ChannelId**|能取得媒體服務通道識別碼。|
+**ObservedTime**|能取得度量的觀察時間。|1/21/2016 20:08:49
+**CustomAttributes**|能取得自訂屬性。|
+**TrackType**|能取得曲目類型。|video
+**TrackName**|能取得曲目名稱。|video
+**Bitrate**|能取得位元速率。|785000
+**IncomingBitrate**|能取得連入位元速率。|784548
+**OverlapCount**|能取得重疊計數。|0
+**DiscontinuityCount**|能取得不連續計數。|0
+**LastTimestamp**|能取得最後一個時間戳記。|1800488800
  
-###直播頻道查詢結果範例
-
-![串流端點頁面](media/media-services-telemetry/media-services-telemetry01.png)
-
 ## StreamingEndpoint 度量範例
 		
 	using System;
@@ -125,8 +133,7 @@
 	            // Used the cached credentials to create CloudMediaContext.
 	            _context = new CloudMediaContext(_cachedCredentials);
 	
-	            INotificationEndPoint notificationEndPoint = 
-	                          _context.NotificationEndPoints.Create("monitoring", NotificationEndPointType.AzureTable, GetTableEndPoint());
+
 	
 	            var monitoringConfigurations = _context.MonitoringConfigurations;
 	            IMonitoringConfiguration monitoringConfiguration = null;
@@ -138,6 +145,10 @@
 	            }
 	            else
 	            {
+		            INotificationEndPoint notificationEndPoint = 
+		                          _context.NotificationEndPoints.Create("monitoring", 
+								  NotificationEndPointType.AzureTable, GetTableEndPoint());
+
 	                monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
 	                    new List<ComponentMonitoringSetting>()
 	                    {
@@ -235,4 +246,4 @@
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

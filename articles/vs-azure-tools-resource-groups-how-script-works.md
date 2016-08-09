@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="05/08/2016"
+	ms.date="07/26/2016"
 	ms.author="tomfitz" />
 
 # Azure 資源群組專案部署指令碼的概觀
@@ -257,6 +257,8 @@ $(Build.StagingDirectory)/AzureResourceGroup1/Scripts/Deploy-AzureResourceGroup.
 ## 後續步驟
 深入了解 Azure 資源管理員，方法是參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
 
+如需更多使用 Azure 資源群組案的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[部署和管理 Azure 資源](https://github.com/Microsoft/HealthClinic.biz/wiki/Deploy-and-manage-Azure-resources)。如需 HealthClinic.biz 示範中的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
+
 [0]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy1c.png
 [1]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy2bc.png
 [2]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy3bc.png
@@ -264,4 +266,4 @@ $(Build.StagingDirectory)/AzureResourceGroup1/Scripts/Deploy-AzureResourceGroup.
 [4]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy5c.png
 [5]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy6c.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

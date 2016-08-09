@@ -1,8 +1,8 @@
 <properties
-	pageTitle="Azure CDN 概觀"
+	pageTitle="Azure CDN 概觀 |Microsoft Azure"
 	description="了解何謂 Azure 內容傳遞網路 (CDN)，以及如何使用它透過快取 Blob 和靜態內容來傳遞高頻寬內容。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="07/05/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
@@ -82,4 +82,4 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

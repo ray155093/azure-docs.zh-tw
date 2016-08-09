@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="05/02/2016" 
+    ms.date="07/20/2016" 
     ms.author="elizapo" />
 
 
@@ -91,4 +91,4 @@ AD Connect 有兩種案例 - 使用密碼同步化或使用 AD 同盟。請參�
 
 [建立雲端集合](remoteapp-create-cloud-deployment.md)或[建立混合式集合](remoteapp-create-hybrid-deployment.md) -立即建立。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

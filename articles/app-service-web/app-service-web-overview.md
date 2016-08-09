@@ -40,7 +40,7 @@
 
 - **多種語言和架構** - App Service有 ASP.NET、Node.js、Java、PHP 和 Python 的頂級支援。您也可以在 App Service VM 上執行 [PowerShell 和其他指令碼或可執行檔](../app-service-web/web-sites-create-web-jobs.md)。
 
-- **DevOps 最佳化** - 使用 Visual Studio Team Services、GitHub 或 BitBucket 設定[持續整合和部署](../app-service-web/app-service-continous-deployment.md)。透過[測試和預備環境](../app-service-web/web-sites-staged-publishing.md)升級更新。執行 [A/B 測試](../app-service-web/app-service-web-test-in-production-get-start.md)。使用 [Azure PowerShell](../powershell-install-configure.md) 或[跨平台命令列介面 (CLI)](../xplat-cli-install.md)，在 App Service 中管理您的應用程式。
+- **DevOps 最佳化** - 使用 Visual Studio Team Services、GitHub 或 BitBucket 設定[持續整合和部署](../app-service-web/app-service-continuous-deployment.md)。透過[測試和預備環境](../app-service-web/web-sites-staged-publishing.md)升級更新。執行 [A/B 測試](../app-service-web/app-service-web-test-in-production-get-start.md)。使用 [Azure PowerShell](../powershell-install-configure.md) 或[跨平台命令列介面 (CLI)](../xplat-cli-install.md)，在 App Service 中管理您的應用程式。
  
 - **具高可用性的全域調整** - 以手動或自動方式相應[增加](../app-service-web/web-sites-scale.md)或[放大](../azure-portal/insights-how-to-scale.md)。在 Microsoft 的通用資料中心基礎結構中隨處裝載您的應用程式，而 App Service [SLA](https://azure.microsoft.com/support/legal/sla/app-service/) 會承諾高可用性。
 
@@ -62,4 +62,4 @@
 
 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

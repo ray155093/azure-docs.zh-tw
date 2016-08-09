@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="05/03/2016"
+	ms.date="07/27/2016"
 	ms.author="jeffstok"/>
 
 # 從串流分析為適用於 JSON 輸出的 Azure DocumentDB 設定目標
@@ -54,12 +54,12 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來分
 
 ![documentdb 串流分析輸出畫面](media/stream-analytics-documentdb-output/stream-analytics-documentdb-output.png)
 
--   **輸出別名**：在您的 ASA 查詢中參照到此輸出時所用的別名。  
--   **帳戶名稱**：DocumentDB 帳戶的名稱或端點 URI。  
--   **帳戶金鑰**：DocumentDB 帳戶的共用存取金鑰。  
--   **資料庫**：DocumentDB 資料庫名稱。  
--   **集合名稱模式**：要使用之集合的集合名稱模式。您可以使用選用的 {partition} 語彙基元來建構集合名稱的格式，其中的資料分割會從 0 開始。以下為有效輸入範例：1) MyCollection – 必須要有一個名為 “MyCollection” 的集合存在。2) MyCollection{partition} – 這類集合必須存在 – "MyCollection0”、“MyCollection1”、“MyCollection2” 等。  
--   **分割索引鍵**：輸出事件中的欄位名稱，用來指定跨集合資料分割輸出的索引鍵。若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。  
--   **文件識別碼**：可省略。輸出事件中的欄位名稱會用來指定主索引鍵，此為插入或更新作業的依據。  
+-   **輸出別名**：在您的 ASA 查詢中參照到此輸出時所用的別名。
+-   **帳戶名稱**：DocumentDB 帳戶的名稱或端點 URI。
+-   **帳戶金鑰**：DocumentDB 帳戶的共用存取金鑰。
+-   **資料庫**：DocumentDB 資料庫名稱。
+-   **集合名稱模式**：要使用之集合的集合名稱模式。您可以使用選用的 {partition} 語彙基元來建構集合名稱的格式，其中的資料分割會從 0 開始。以下為有效輸入範例：1) MyCollection – 必須要有一個名為 “MyCollection” 的集合存在。2) MyCollection{partition} – 這類集合必須存在 – "MyCollection0”、“MyCollection1”、“MyCollection2” 等。
+-   **分割索引鍵**：輸出事件中的欄位名稱，用來指定跨集合資料分割輸出的索引鍵。若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。
+-   **文件識別碼**：可省略。輸出事件中的欄位名稱會用來指定主索引鍵，此為插入或更新作業的依據。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

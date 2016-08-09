@@ -18,6 +18,8 @@
 
 # 具備 X12 的企業整合 
 
+>[AZURE.NOTE]本頁涵蓋 Logic Apps 的 X12 功能。如需 EDIFACT 的詳細資訊，請按一下[這裡](app-service-logic-enterprise-integration-edifact.md)。
+
 ## 建立 X12 合約 
 在您可以交換 X12 訊息之前，您必須先建立 X12 合約，並將它儲存在您的整合帳戶中。下列步驟將逐步引導您完成建立 X12 合約的程序。
 
@@ -40,7 +42,7 @@
 ![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
 2. 在篩選搜尋方塊中輸入「整合」，然後從結果清單中選取 [整合帳戶]。![](./media/app-service-logic-enterprise-integration-x12/x12-1-3.png)
 3. 在開啟的 [整合帳戶] 刀鋒視窗中，選取您要在其中建立合約的整合帳戶。如果您沒有看到任何整合帳戶清單，請[先建立一個](./app-service-logic-enterprise-integration-accounts.md "所有與整合帳戶相關的資訊")。![](./media/app-service-logic-enterprise-integration-x12/x12-1-4.png)
-4.  選取 [合約] 圖格。如果您沒有看到 [合約] 圖格，請先新增。![](./media/app-service-logic-enterprise-integration-x12/x12-1-5.png)
+4.  選取 [合約] 圖格。如果您沒有看到 [合約] 圖格，請先進行新增。![](./media/app-service-logic-enterprise-integration-x12/x12-1-5.png)
 5. 在開啟的 [合約] 刀鋒視窗中選取 [新增] 按鈕。![](./media/app-service-logic-enterprise-integration-agreements/agreement-2.png)
 6. 在開啟的 [合約] 刀鋒視窗中，輸入合約的**名稱**，然後選取 [合約類型]、[主控夥伴]、[主控身分識別]、[來賓夥伴]、[來賓身分識別]。![](./media/app-service-logic-enterprise-integration-x12/x12-1.png)
 7. 設定接收設定屬性之後，請選取 [確定] 按鈕讓我們繼續︰
@@ -113,7 +115,7 @@
 您的合約已經準備好處理符合您所選取結構描述的內送訊息。
 
 設定如何處理傳送給夥伴的訊息︰
-11. 選取 [傳送設定]，來設定處理透過此合約所傳送訊息的方式。
+11. 選取 [傳送設定]，以設定如何處理透過此合約傳送的訊息。
 
 [傳送設定] 控制項分成下列各區段，包括識別項、通知、結構描述、信封、控制編號、字元集和分隔符號，以及驗證。
 
@@ -182,9 +184,9 @@
 |尾端分隔符號|選取此選項指定，如果 EDI 交換中的資料元素因為有前置 (或尾端) 零或尾端空格而不符合其長度要求，但移除後就符合長度要求，則從合作對象接收的 EDI 交換會通過驗證。</br></br>如果您不想要在交換傳送者接收的交換中允許尾端分隔符號，請選取 [不允許]。如果交換包含尾端分隔符號，會被宣告為無效。</br></br>選取 [選擇性] 接受交換可以有或沒有尾端分隔符號。</br></br>如果收到的交換必須包含尾端分隔符號，請選取 [必要]。|
 
 在開啟的刀鋒視窗上選取 [確定] 之後︰
-13. 在 [整合帳戶] 刀鋒視窗上選取 [合約] 圖格，您將會看到已列出新加入的合約。![](./media/app-service-logic-enterprise-integration-x12/x12-7.png)
+13. 在 [整合帳戶] 刀鋒視窗上選取 [合約] 圖格，而您將會看到已列出新加入的合約。![](./media/app-service-logic-enterprise-integration-x12/x12-7.png)
 
 ## 詳細資訊
 - [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="新結構描述版本 2016-04-01-preview | Microsoft Azure" 
+	pageTitle="新結構描述版本 2016-06-01 | Microsoft Azure" 
 	description="了解如何撰寫最新版邏輯應用程式的 JSON 定義" 
 	authors="jeffhollan" 
 	manager="dwrede" 
@@ -8,15 +8,15 @@
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="integration"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/17/2016"
+	ms.date="07/25/2016"
 	ms.author="jehollan"/>
 	
-# 新結構描述版本 2016-04-01-preview
+# 新結構描述版本 2016-06-01
 
 邏輯應用程式的新結構描述和 API 版本有一些增強功能，可提升邏輯應用程式的可靠性和易用性。其中有 3 個主要的差異：
 
@@ -24,7 +24,7 @@
 1. 條件和迴圈是第一級動作
 1. 透過 `runAfter` 屬性 (取代了 `dependsOn`)，執行順序變得更加詳細
 
-如需從 2015-08-01-preview 結構描述的邏輯應用程式升級為 2016-04-01-preview 結構描述的相關資訊，[請查看下面的升級章節。](#upgrading-to-2016-04-01-preview-schema)
+如需從 2015-08-01-preview 結構描述的邏輯應用程式升級為 2016-06-01 結構描述的相關資訊，[請查看下面的升級章節。](#upgrading-to-2016-06-01-schema)
 
 
 ## 1\.範圍
@@ -94,9 +94,9 @@
 }
 ```
 
-## 升級至 2016-04-01-preview 結構描述
+## 升級為 2016-06-01 結構描述
 
-升級至新的 2016-04-01-preview 結構描述只需要幾個步驟。關於結構描述中變更的詳細資料可以在[本文](app-service-logic-schema-2016-04-01.md)找到。升級程序包含執行升級指令碼、儲存為新的邏輯應用程式，以及可能要視需要覆寫舊的邏輯應用程式。
+升級為新的 2016-06-01 結構描述只需要幾個步驟。關於結構描述中變更的詳細資料可以在[本文](app-service-logic-schema-2016-04-01.md)找到。升級程序包含執行升級指令碼、儲存為新的邏輯應用程式，以及可能要視需要覆寫舊的邏輯應用程式。
 
 1. 開啟您目前的邏輯應用程式。
 1. 按一下工具列中的 [更新結構描述] 按鈕
@@ -122,9 +122,9 @@
   
 每個項目有一個條件的 foreach 迴圈，其先前的模式可以複寫在有篩選動作的新結構描述中。升級時應該會自動進行此作業。條件會在 foreach 迴圈之前變成篩選動作 (以便只傳回符合條件的項目陣列)，而且該陣列會傳遞至 foreach 動作。您可以在[本文](app-service-logic-loops-and-scopes.md)檢視這方面的範例
 
-#### 資源標記
+#### 資源標籤
 
-資源標記會在升級時移除，因此您必須在升級後的工作流程之中再次加以設定。
+資源標籤會在升級時移除，因此您必須在升級後的工作流程之中再次加以設定。
 
 ## 其他變更
 
@@ -169,4 +169,4 @@ foreach 和 until 迴圈僅限用於單一動作。
 <!-- Image references -->
 [1]: ./media/app-service-logic-schema-2016-04-01/upgradeButton.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

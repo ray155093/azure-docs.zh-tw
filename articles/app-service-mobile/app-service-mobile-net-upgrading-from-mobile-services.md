@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="mobile"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="07/25/2016"
 	ms.author="mahender"/>
 
 # 將您現有的 .NET Azure 行動服務升級為 App Service
 
 App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的新方式。若要深入了解，請參閱[何謂 Mobile Apps？]
 
-本主題說明如何將現有的 .NET 後端應用程式從 Azure 行動服務升級為新的 App Service Mobile Apps。執行此升級時，您現有的行動服務應用程式可以繼續運作。
+本主題說明如何將現有的 .NET 後端應用程式從 Azure 行動服務升級為新的 App Service Mobile Apps。執行此升級時，您現有的行動服務應用程式可以繼續運作。如果您需要升級 Node.js 後端應用程式，請參閱[升級 Node.js 行動服務](./app-service-mobile-node-backend-upgrading-from-mobile-services.md)。
 
 當行動後端升級為 Azure App Service 時，就會具備所有 App Service 功能的存取權，而且會根據 [App Service 定價]而不是行動服務定價進行計費。
 
@@ -64,13 +64,13 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 
 接下來，依照 [.NET 後端建立指示](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app)建立第二個應用程式執行個體。當系統提示選取您的 App Service 方案或「主控方案」時，請選擇已移轉之應用程式的方案。
 
-您可能會想要使用與行動服務中相同的資料庫和通知中心。您可以複製這些值，方法是開啟 [Azure 入口網站]、瀏覽至原始的應用程式，然後依序按一下 [設定] > [應用程式設定]。在 [**連接字串**] 下，複製 `MS_NotificationHubConnectionString` 和 `MS_TableConnectionString`。瀏覽至新的升級網站並將它們貼上，覆寫任何現有的值。針對您的應用程式需要的任何其他應用程式設定重複執行此程序。如果不使用移轉的服務，您可以從 [Azure 傳統入口網站]上 [行動服務] 區段的 [設定] 索引標籤，讀取連接字串和應用程式設定。
+您可能會想要使用與行動服務中相同的資料庫和通知中心。您可以複製這些值，方法是開啟 [Azure 入口網站]、瀏覽至原始的應用程式，然後依序按一下 [設定] > [應用程式設定]。在 [**連接字串**] 下，複製 `MS_NotificationHubConnectionString` 和 `MS_TableConnectionString`。瀏覽至新的升級網站並將它們貼上，覆寫任何現有的值。針對您的應用程式需要的任何其他應用程式設定重複執行此程序。如果不使用移轉的服務，您可以從 [Azure 傳統入口網站]上 [行動服務] 區段的 [設定] 索引標籤，讀取連接字串和 app 設定。
 
 針對您的應用程式製作 ASP.NET 專案的複本，然後將它發佈到新的網站。透過利用新 URL 更新的用戶端應用程式複本，驗證一切運作正常。
 
 ## 更新伺服器專案
 
-行動應用程式有新的[行動應用程式伺服器 SDK]，提供許多與行動服務執行階段相同的功能。首先，您應該移除對行動服務封裝的所有參考。在 NuGet 封裝管理員中，搜尋 `WindowsAzure.MobileServices.Backend`。大部分的應用程式將會在此處看見數個封裝，包括 `WindowsAzure.MobileServices.Backend.Tables` 和 `WindowsAzure.MobileServices.Backend.Entity`。在這種情況下，請從相依性樹狀目錄中的最低封裝 (例如 `Entity`) 開始，然後將它移除。出現提示時，請勿移除所有相依的封裝。重複執行此程序，直到您移除了 `WindowsAzure.MobileServices.Backend` 本身為止。
+行動應用程式有新的[行動應用程式伺服器 SDK]，提供許多與行動服務執行階段相同的功能。首先，您應該移除對行動服務封裝的所有參考。在 NuGet 封裝管理員中，搜尋 `WindowsAzure.MobileServices.Backend`。大部分的 app 將會在此處看見數個封裝，包括 `WindowsAzure.MobileServices.Backend.Tables` 和 `WindowsAzure.MobileServices.Backend.Entity`。在這種情況下，請從相依性樹狀目錄中的最低封裝 (例如 `Entity`) 開始，然後將它移除。出現提示時，請勿移除所有相依的封裝。重複執行此程序，直到您移除了 `WindowsAzure.MobileServices.Backend` 本身為止。
 
 此時，您的專案將不再參考行動服務 SDK。
 
@@ -95,7 +95,7 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
             .UseDefaultConfiguration()
         .ApplyTo(config);
 
->[AZURE.NOTE] 如果您想要深入了解新的 .NET 伺服器 SDK 以及如何從您的應用程式新增/移除功能，請參閱[如何使用 .NET 伺服器 SDK] 主題。
+>[AZURE.NOTE] 如果您想要深入了解新的 .NET 伺服器 SDK 以及如何從您的 app 新增/移除功能，請參閱[如何使用 .NET 伺服器 SDK] 主題。
 
 如果您的應用程式會使用驗證功能，您也必須註冊 OWIN 中介軟體。在此情況下，您應該將上述組態程式碼移入新的 OWIN 啟動類別。
 
@@ -199,7 +199,7 @@ Mobile Apps 用戶端 SDK 會使用新的系統屬性名稱，因此不需要對
 是否使用 CORS 的主要考量範疇是必須允許 `eTag` 和 `Location` 標頭，用戶端 SDK 才能正常運作。
 
 ### 推播通知
-對於推播，您可能會發現伺服器 SDK 中遺漏的主要項目是 PushRegistrationHandler 類別。註冊在行動應用程式中處理方式稍有不同，依預設會啟用不具標記的註冊。管理標記可使用自訂 API 來完成。如需詳細資訊，請參閱[註冊標記](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags)的指示。
+對於推播，您可能會發現伺服器 SDK 中遺漏的主要項目是 PushRegistrationHandler 類別。註冊在行動應用程式中處理方式稍有不同，依預設會啟用不具標籤的註冊。管理標籤可使用自訂 API 來完成。如需詳細資訊，請參閱[註冊標籤](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags)的指示。
 
 ### 排程的工作
 Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任何現有工作都必須個別升級。其中一個選項是在行動應用程式程式碼網站上建立排程 [Web 工作]。您也可以設定用來保存工作程式碼的控制器，並設定依預期的排程在端點上執行的 [Azure 排程器]。
@@ -274,7 +274,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 [如何使用 .NET 伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
 [Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[App Service 定價]: https://azure.microsoft.com/pricing/details/app-service/
+[App Service 定價]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
 [.NET 伺服器 SDK 概觀]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

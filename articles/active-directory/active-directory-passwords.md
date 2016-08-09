@@ -106,7 +106,7 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 | 如何讓使用者直接解除鎖定 AD 帳戶而不必重設密碼？ | [設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](active-directory-passwords-customize.md#allow-users-to-unlock-accounts-without-resetting-their-password) |
 | 如何為使用者啟用密碼重設通知？ | [設定：在使用者的密碼重設時通知使用者](active-directory-passwords-customize.md#notify-users-and-admins-when-their-own-password-has-been-reset) |
 | 如何為系統管理員啟用密碼重設通知？ | [設定：在系統管理員重設其密碼時通知其他系統管理員](active-directory-passwords-customize.md#notify-admins-when-other-admins-reset-their-own-passwords) |
-| 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌](active-directory-passwords-customize.md#password-managment-look-and-feel) |
+| 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌](active-directory-passwords-customize.md#password-management-look-and-feel) |
 
 
 ##將您的使用者設定成使用密碼重設
@@ -252,4 +252,4 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

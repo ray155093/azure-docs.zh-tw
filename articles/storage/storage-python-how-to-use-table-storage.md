@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="07/26/2016"
 	ms.author="emgerner"/>
 
 
 # 如何使用 Python 的資料表儲存體
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
+[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
 ## 概觀
 
-本指南說明如何使用 Azure 資料表儲存體服務執行一般案例。這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python]。除了「在資料表中插入及查詢實體」外，所涵蓋的案例還包括「建立和刪除資料表」。
+本指南說明如何使用 Azure 資料表儲存體服務執行一般案例。這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]。除了「在資料表中插入及查詢實體」外，所涵蓋的案例還包括「建立和刪除資料表」。
 
 [AZURE.INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -76,7 +76,7 @@
 
 ## 變更一組實體
 
-有時候批次提交多個操作是有意義的，可以確保伺服器會進行不可部分完成的處理。為了完成此操作，您使用 **TableBatch** 類別。當您真的想提交批次時，請呼叫 **commit\_batch**。請注意，所有實體都必須位於相同的資料分割中，才能以批次方式進行變更。以下範例在一個批次中同時新增兩個實體。
+有時候批次提交多個操作是有意義的，可以確保伺服器會進行不可部分完成的處理。若要完成此操作，您可以使用 **TableBatch** 類別。當您真的想提交批次時，請呼叫 **commit\_batch**。請注意，所有實體都必須位於相同的資料分割中，才能以批次方式進行變更。以下範例在一個批次中同時新增兩個實體。
 
 	from azure.storage.table import TableBatch
 	batch = TableBatch()
@@ -148,5 +148,6 @@ Batch 也可以與內容管理員語法搭配使用：
 
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python
+[Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]: https://github.com/Azure/azure-storage-python
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

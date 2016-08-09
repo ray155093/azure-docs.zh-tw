@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/20/2016"
+   ms.date="07/26/2016"
    ms.author="terrylan"/>
 
 # 管理 Azure 資訊安全中心的安全性建議
@@ -66,13 +66,13 @@
 |建議|說明|
 |-----|-----|
 |[啟用訂用帳戶的資料收集](security-center-enable-data-collection.md)|建議您為每個訂用帳戶和訂用帳戶中的所有虛擬機器 (VM) 開啟安全性原則中的 [資料收集]。|
-|[修復 OS 弱點](security-center-resolve-mismatch-baseline-rules.md)|建議您讓作業系統組態符合建議的設定規則，例如不允許儲存密碼。|
+|[修復 OS 弱點](security-center-remediate-os-vulnerabilities.md)|建議您讓作業系統組態符合建議的設定規則，例如不允許儲存密碼。|
 |[套用系統更新](security-center-apply-system-updates.md)|建議您將遺漏的系統安全性與重大更新部署到 VM。|
 |[在系統更新之後重新開機](security-center-apply-system-updates.md#reboot-after-system-updates)|建議您重新啟動 VM 以完成套用系統更新的程序。|
 |[新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)|建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。|
 |[完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection)|若要完成 WAF 組態，必須將流量重新路由至 WAF 設備。遵循這項建議會完成必要的設定變更。|
 |[新增新一代防火牆](security-center-add-next-generation-firewall.md)|建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。|
-|[僅透過 NGFW 路由傳送流量](security-center-route-traffic-through-ngfw-only.md)|建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 傳送內送流量到 VM。|
+|[僅透過 NGFW 路由傳送流量](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only)|建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 傳送內送流量到 VM。|
 |[安裝端點保護](security-center-install-endpoint-protection.md)|建議您將反惡意程式碼程式佈建到 VM (僅適用於 Windows VM)。|
 |[解決端點保護健全狀況警示](security-center-resolve-endpoint-protection-health-alerts.md)|建議您先解決端點保護失敗。|
 |[啟用子網路/虛擬機器上的網路安全性群組](security-center-enable-network-security-groups.md)|建議您在子網路或 VM 上啟用 NSG。|
@@ -115,4 +115,4 @@
 [2]: ./media/security-center-recommendations/filter-recommendations.png
 [3]: ./media/security-center-recommendations/dismiss-recommendations.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0727_2016-->

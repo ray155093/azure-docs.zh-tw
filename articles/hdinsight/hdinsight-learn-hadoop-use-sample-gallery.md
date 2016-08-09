@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="04/27/2016"
+   ms.date="07/25/2016"
    ms.author="jgao"/>
 
 # 使用 Azure HDInsight Getting Started Gallery 了解 Hadoop
@@ -36,7 +36,7 @@
 
 <center><a href="https://www.youtube.com/embed/7ePbHot1SN4">https://www.youtube.com/embed/7ePbHot1SN4></a></center>
 
-您可以藉由瀏覽至 http://<YourHDInsightClusterName>.azurehdinsight.net/，或是從 Azure 入口網站來存取儀表板。
+您可以藉由瀏覽至 http://<您的 HDInsight 叢集名稱>.azurehdinsight.net/，或是從 Azure 入口網站來存取儀表板。
 
 **從 Getting Started Gallery 執行範例**
 
@@ -64,4 +64,4 @@
 [hdinsight.infographic]: http://go.microsoft.com/fwlink/?linkid=523960
 [azure.portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0727_2016-->

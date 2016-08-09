@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="07/19/2016"
 	ms.author="kgremban"/>
 
 
@@ -97,7 +97,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 3. 在 [屬性] 下方，將 [內部驗證方法] 設定為 [整合式 Windows 驗證]。![進階應用程式組態](./media/active-directory-application-proxy-sso-using-kcd/cwap_auth2.png)
 4. 輸入應用程式伺服器的 [內部應用程式 SPN]。在此範例中，已發佈應用程式的 SPN 為 http/lob.contoso.com。
 
->[AZURE.IMPORTANT] Azure Active Directory 中的 UPN 必須與您內部部署 Active Directory 中的 UPN 相同，才能讓預先驗證正常運作。請確定您已將 Azure Active Directory 與內部部署 Active Directory 進行同步處理。
+>[AZURE.IMPORTANT] 如果您的內部部署 UPN 和 Azure Active Directory 中的 UPN 不相同，您必須設定[委派的登入身分識別](#delegated-login-identity)，才能讓預先驗證運作。
 
 | | |
 | --- | --- |
@@ -110,14 +110,17 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 
 ![非 Windows SSO 的圖表](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_nonwindows_diagram.png)
 
-### 部分委派的身分識別
-非 Windows 應用程式一般會以使用者名稱或 SAM 帳戶名稱 (而不是電子郵件地址) 形式取得使用者身分識別 (username@domain)。這與偏好 UPN 的大部分以 Windows 為基礎的系統不同，UPN 更明確且可確保網域間不會重複。
+### 委派的登入身分識別
+委派的登入身分識別可協助您處理兩種不同的登入案例︰
 
-基於這個原因，應用程式 Proxy 可讓您選取每個應用程式要出現在 Kerberos 票證的身分識別。其中的一些選項適合不接受電子郵件地址格式的系統。
+- 通常會以使用者名稱或 SAM 帳戶名稱形式 (而不是電子郵件地址 username@domain) 取得使用者身分識別的非 Windows 應用程式。
+- 替代登入設定，其中 Azure AD 中的 UPN 和內部部署 Active Directory 中的 UPN 不同。
+
+使用應用程式 Proxy，您就可以選取要用來取得 Kerberos 票證的身分識別。這項設定會因應用程式而異。其中的一些選項適合不接受電子郵件地址格式的系統，另外的選項則設計用於替代登入。
 
 ![[委派的登入身分識別] 參數螢幕擷取畫面](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_upn.png)
 
-如果使用部分的身分識別，並且此身分識別可能在您的組織所有網域或樹系中不是唯一的，您可能要使用兩個不同的「連接器」群組發佈這些應用程式兩次。因為每個應用程式有不同的使用者對象，您可以將其「連接器」加入不同的網域。
+如果使用委派的登入身分識別，則組織中所有網域或樹系的這個值可能不是唯一。您可以藉由使用兩個不同的連接器群組發佈這些應用程式兩次來避免此問題。因為每個應用程式有不同的使用者對象，您可以將其「連接器」加入不同的網域。
 
 
 ## 在內部部署和雲端身分識別不相同時使用 SSO
@@ -140,10 +143,10 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 
 1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。請注意，這些設定也決定使用者如何登入 Office 365、Windows 10 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。![識別使用者螢幕擷取畫面 - [使用者主體名稱] 下拉式清單](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_connect_settings.png)
 2. 在您想要修改之應用程式的應用程式組態設定中，選取要使用的 [委派的登入識別]：
-  - 使用者主體名稱：joe@contoso.com  
-  - 替代的使用者主體名稱：joed@contoso.local  
-  - 使用者主體名稱的使用者名稱部分：joe  
-  - 替代的使用者主體名稱的使用者名稱部分：joed  
+  - 使用者主體名稱：joe@contoso.com
+  - 替代的使用者主體名稱：joed@contoso.local
+  - 使用者主體名稱的使用者名稱部分：joe
+  - 替代的使用者主體名稱的使用者名稱部分：joed
   - 內部部署 SAM 帳戶名稱：視內部網域控制站設定而定
 
   ![[委派的登入身分識別] 下拉式功能表螢幕擷取畫面](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_upn.png)
@@ -166,4 +169,4 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 [1]: ./media/active-directory-application-proxy-sso-using-kcd/AuthDiagram.png
 [2]: ./media/active-directory-application-proxy-sso-using-kcd/Properties.jpg
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

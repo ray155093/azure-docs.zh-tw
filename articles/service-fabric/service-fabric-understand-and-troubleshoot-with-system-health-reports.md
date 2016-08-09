@@ -475,7 +475,7 @@ Visual Studio 2015 診斷事件：RunAsync 在 **fabric:/HelloWorldStatefulAppli
 
 當命名作業花費的時間多於可接受的時間，**System.NamingService** 會報告其主要複本的健全狀況。[CreateServiceAsync](https://msdn.microsoft.com/library/azure/mt124028.aspx)、[DeleteServiceAsync](https://msdn.microsoft.com/library/azure/mt124029.aspx) 都是命名作業的例子。在 FabricClient 下可以找到更多方法，例如[服務管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.servicemanagementclient.aspx) 或[屬性管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.propertymanagementclient.aspx)底下。
 
-> [AZURE.NOTE] 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。它是 Service Fabric 資料分割保存的服務。其中一個資料分割代表「授權限擁有者」，其中包含所有系統網狀架構名稱和服務的中繼資料。Service Fabric 名稱會對應至不同的資料分割 (稱為「名稱擁有者資料分割」)，讓服務可以擴充。深入了解[命名服務](service-fabric-architecture.md)。
+> [AZURE.NOTE] 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。它是 Service Fabric 資料分割保存的服務。其中一個資料分割代表「授權擁有者」，其中包含所有 Service Fabric 名稱和服務的中繼資料。Service Fabric 名稱會對應至不同的資料分割 (稱為「名稱擁有者資料分割」)，讓服務可以擴充。深入了解[命名服務](service-fabric-architecture.md)。
 
 命名作業所花費的時間超出預期，在*負責處理該作業的命名服務資料分割的主要複本*上，該作業會標幟警告報表。如果作業順利完成，就會清除警告。如果作業完成但發生錯誤，健全狀況報告會包含錯誤的詳細資訊。
 
@@ -667,4 +667,4 @@ HealthEvents          :
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->

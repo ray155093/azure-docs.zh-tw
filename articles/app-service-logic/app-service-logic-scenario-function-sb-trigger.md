@@ -8,7 +8,7 @@
    editor=""/>
 
 <tags
-   ms.service="app-service-logic"
+   ms.service="logic-apps"
    ms.devlang="multiple"
    ms.topic="article"
    ms.tgt_pltfrm="na"
@@ -25,7 +25,7 @@
 在此範例中，您會有針對需要觸發的每個邏輯應用程式執行的函數。首先，建立具有 HTTP 要求觸發程序的邏輯應用程式。每當收到佇列訊息時，函數即會呼叫該端點。
 
 1. 建立新的邏輯應用程式；選取 [手動 - 收到 HTTP 要求時] 觸發程序。您可以選擇性地利用 [jsonschema.net](http://jsonschema.net) 之類的工具，來指定要與佇列訊息搭配使用的 JSON 結構描述。在觸發程序中貼上結構描述。這有助於讓設計工具了解資料的形式，而且可以更輕鬆地透過工作流程傳送屬性。
-1. 新增您想要在收到佇列訊息之後發生的任何其他步驟。例如，透過 Office 365 傳送電子郵件。  
+1. 新增您想要在收到佇列訊息之後發生的任何其他步驟。例如，透過 Office 365 傳送電子郵件。
 1. 儲存邏輯應用程式，以產生此邏輯應用程式的觸發程序的回呼 URL。URL 會出現在觸發程序卡上。
 
 ![回呼 URL 會出現在觸發程序卡上][1]
@@ -66,4 +66,4 @@
 [1]: ./media/app-service-logic-scenario-function-sb-trigger/manualTrigger.PNG
 [2]: ./media/app-service-logic-scenario-function-sb-trigger/newQueueTriggerFunction.PNG
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0727_2016-->

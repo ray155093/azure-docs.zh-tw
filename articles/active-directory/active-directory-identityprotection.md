@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/17/2016"
+	ms.date="07/25/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 
@@ -33,9 +33,10 @@ Azure Active Directory Identity Protection 目前僅適用於 [國家或區域]�
 
 搭配同盟網域預覽 Azure Active Directory Identity Protection 時有下列限制︰
 
-- 安全性原則不適用於同盟網域
+- 只有登入風險安全性原則適用於同盟網域。目前，使用者風險安全性原則不適用於同盟網域
 
 - 與 Azure Active Directory 聯盟的應用程式只會偵測到風險事件
+
 
 ##開始使用
 
@@ -51,7 +52,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 偵測風險事件和有風險的帳戶：
 
-- 使用機器學習服務和啟發式規則偵測 6 種風險事件類型 
+- 使用機器學習服務和啟發式規則偵測 6 種風險事件類型
 
 - 計算使用者風險層級
 
@@ -97,7 +98,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 | 從受感染的裝置登入 | 從可能受感染的裝置登入 |
 | 從匿名 IP 位址登入 | 從不明來源登入 |
 | 從具有可疑活動的 IP 位址登入 |	從具有可疑活動的 IP 位址登入 |
-| 從不熟悉的位置登入 | - |
+| 從不熟悉的位置登入 | - | 
 | 鎖定事件 (不在公開預覽中) | - |
 
 下列 Azure AD 異常活動報告不會納入為 Azure AD Identity Protection 中的風險事件，因此不會透過 Identity Protection 提供。這些報告仍可在 Azure 管理入口網站中取得，不過將會在未來某個時候淘汰，因為它們正由 Identity Protection 中的風險事件所取代。
@@ -153,8 +154,8 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 使用下列輸入來計算使用者風險層級：
 
 - 影響使用者的作用中風險事件
-- 這些事件的風險層級 
-- 是否已採取任何補救動作 
+- 這些事件的風險層級
+- 是否已採取任何補救動作
 
 <br> ![使用者風險](./media/active-directory-identityprotection/86.png "使用者風險") <br>
 
@@ -194,7 +195,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 若要補救使用者風險事件，您可以：
 
-- 手動重設安全密碼，以補救使用者風險事件 
+- 手動重設安全密碼，以補救使用者風險事件
 
 - 設定使用者風險安全性原則，以自動緩和或補救使用者風險事件
 
@@ -258,7 +259,7 @@ Azure AD Identity Protection 可讓您執行下列作業，以協助您管理標
 
 如需相關的使用者經驗概觀，請參閱︰
 
-- [遭到入侵的帳戶復原流程](active-directory-identityprotection-flows.md#compromised-account-recovery)。  
+- [遭到入侵的帳戶復原流程](active-directory-identityprotection-flows.md#compromised-account-recovery)。
 
 - [遭到入侵的帳戶封鎖流程](active-directory-identityprotection-flows.md#compromised-account-blocked)。
 
@@ -337,11 +338,11 @@ Azure AD Identity Protection 可讓您執行下列作業，以協助您管理有
 Identity Protection 主控台中的 [風險事件] 頁面會列出所有事件：
 
 - 此原則已套用至
-- 您可以檢閱活動並判斷動作是否適當 
+- 您可以檢閱活動並判斷動作是否適當
 
 如需相關的使用者經驗概觀，請參閱︰
 
-- [有風險的登入復原](active-directory-identityprotection-flows.md#risky-sign-in-recovery) 
+- [有風險的登入復原](active-directory-identityprotection-flows.md#risky-sign-in-recovery)
 
 - [已封鎖有風險的登入](active-directory-identityprotection-flows.md#risky-sign-in-blocked)
 
@@ -383,7 +384,7 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
 
 如需相關的使用者經驗概觀，請參閱︰
 
-- [Multi-Factor Authentication 註冊流程](active-directory-identityprotection-flows.md#multi-factor-authentication-registration)。  
+- [Multi-Factor Authentication 註冊流程](active-directory-identityprotection-flows.md#multi-factor-authentication-registration)。
 
 - [在有風險的登入期間註冊 Multi-Factor Authentication](active-directory-identityprotection-flows.md#multi-factor-authentication-registration-during-a-risky-sign-in)。
 
@@ -411,4 +412,4 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
  - [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
  - [開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0727_2016-->

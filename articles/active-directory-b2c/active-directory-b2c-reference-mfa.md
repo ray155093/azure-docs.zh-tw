@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory B2C 預覽：Multi-Factor Authentication | Microsoft Azure"
+	pageTitle="Azure Active Directory B2C：Multi-Factor Authentication | Microsoft Azure"
 	description="如何在受 Azure Active Directory B2C 保護的取用者導向應用程式中啟用 Multi-Factor Authentication"
 	services="active-directory-b2c"
 	documentationCenter=""
@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="07/24/2016"
 	ms.author="swkrish"/>
 
-# Azure Active Directory B2C 預覽：在取用者導向應用程式中啟用 Multi-Factor Authentication
+# Azure Active Directory B2C：在取用者導向應用程式中啟用 Multi-Factor Authentication
 
 Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)，讓您能夠針對取用者導向應用程式的註冊與登入使用體驗，增添第二層安全性。您連一行程式碼都不用寫，即可達成此目標。目前我們支援撥打電話與簡訊驗證。如果您已經建立註冊和登入原則，您仍然可以啟用 Multi-Factor Authentication。
-
-[AZURE.INCLUDE [active-directory-b2c-preview-note](../../includes/active-directory-b2c-preview-note.md)]
 
 > [AZURE.NOTE]
 Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，而非單靠編輯現有原則來啟用。
@@ -32,7 +30,7 @@ Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，�
 
 ## 修改註冊原則以啟用 Multi-Factor Authentication
 
-1. [遵循下列步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [註冊原則]。
 3. 按一下以開啟註冊原則 (例如 "B2C\_1\_SiUp")。
 4. 按一下 [Multi-Factor Authentication]，並將 [狀態] 設為 [開啟]。按一下 [確定]。
@@ -44,7 +42,7 @@ Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，�
 
 ## 修改登入原則以啟用 Multi-Factor Authentication
 
-1. [遵循下列步驟以瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)。
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
 2. 按一下 [登入原則]。
 3. 按一下以開啟登入原則 (例如 "B2C\_1\_SiIn")。按一下刀鋒視窗頂端的 [編輯]。
 4. 按一下 [Multi-Factor Authentication]，並將 [狀態] 設為 [開啟]。按一下 [確定]。
@@ -58,4 +56,4 @@ Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，�
 
 如同對上面的註冊和登入原則所述，也可以對註冊或登入原則和密碼重設原則啟用 Multi-Factor Authentication。很快即可用於設定檔編輯原則。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0727_2016-->

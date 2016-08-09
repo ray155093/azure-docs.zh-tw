@@ -8,7 +8,7 @@
 	editor="cgronlun"/>
 
 <tags 
-	ms.service="app-service-logic" 
+	ms.service="logic-apps" 
 	ms.workload="integration" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
@@ -46,7 +46,7 @@
 
 ## 安裝混合式連線管理員
 
-1. 在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中，選取您建立的連接器。若要開啟它，您可以選取 [**瀏覽**]，選取 [**API Apps**]，然後選取您的連接器或 API 應用程式。<br/><br/> 在 [**混合式連線**] 中，設定**未完成**：<br/> ![][2] 
+1. 在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中，選取您建立的連接器。若要開啟它，您可以選取 [**瀏覽**]，選取 [**API Apps**]，然後選取您的連接器或 API 應用程式。<br/><br/> 在 [**混合式連線**] 中，設定**未完成**：<br/> ![][2]
 
 2. 選取 [**混合式連線**]。將會列出您先前輸入的服務匯流排連接字串。
 3. 複製 [**主要組態字串**]：<br/> ![][PrimaryConfigString]
@@ -84,19 +84,19 @@ TCP 連接埠 | 理由
 
 1. 在 IIS 伺服器上，確認已安裝 IIS Web 角色，而且所有 IIS 服務都已啟動。
 2. 在 IIS 伺服器上，確認混合式連線管理員已安裝且正在執行：
- - 在 IIS 管理員 (inetmgr) 中，***MicrosoftAzureBizTalkHybridListener*** 網站應該會列出且在執行中。 
+ - 在 IIS 管理員 (inetmgr) 中，***MicrosoftAzureBizTalkHybridListener*** 網站應該會列出且在執行中。
  - 此網站使用以 *NetworkService* 本機內建使用者帳戶執行的 ***HybridListenerAppPool***。此 AppPool 也應該啟動。
-3. 在 IIS 伺服器上，確認該連接器已安裝且在執行中： 
- - 已經為您的 App Service 連接器建立一個網站。例如，如果您已建立 SQL 連接器，則會有 ***MicrosoftSqlConnector\_nnn*** 網站。在 IIS 管理員 (inetmgr) 中，請確認此網站列出且已啟動。 
- - 此網站使用自己的 IIS 應用程式集區，名稱為 ***HybridAppPoolnnn***。此 AppPool 以 *NetworkService* 本機內建使用者帳戶執行。此網站和 AppPool 都應該啟動。 
+3. 在 IIS 伺服器上，確認該連接器已安裝且在執行中：
+ - 已經為您的 App Service 連接器建立一個網站。例如，如果您已建立 SQL 連接器，則會有 ***MicrosoftSqlConnector\_nnn*** 網站。在 IIS 管理員 (inetmgr) 中，請確認此網站列出且已啟動。
+ - 此網站使用自己的 IIS 應用程式集區，名稱為 ***HybridAppPoolnnn***。此 AppPool 以 *NetworkService* 本機內建使用者帳戶執行。此網站和 AppPool 都應該啟動。
  - 瀏覽本機連接器。例如，如果您的連接器網站使用連接埠 6569，請瀏覽至 http://localhost:6569。因為沒有設定預設文件，所以會發生 `HTTP Error 403.14 - Forbidden error`。
 4. 在您的防火牆，請確認本主題列出的 TCP 連接埠已開啟。
 5. 查看來源或目的地系統：
  - 有些內部部署系統需要額外的相依性檔案。例如，如果您要連線至內部部署 SAP，一些額外的 SAP 檔案必須安裝在 IIS 伺服器上。
  - 使用登入帳戶檢查系統的連線。比方說，系統所使用的 TCP 連接埠必須開啟，例如 SQL Server 的連接埠 1433。您在 Azure 入口網站中所輸入的登入帳戶必須有系統的存取權。
-6. 在 IIS 伺服器上，檢查事件記錄檔中是否有任何錯誤。 
-7. 清理並重新安裝混合式連線管理員： 
- - 在 IIS 中，手動刪除連接器網站及其應用程式集區。 
+6. 在 IIS 伺服器上，檢查事件記錄檔中是否有任何錯誤。
+7. 清理並重新安裝混合式連線管理員：
+ - 在 IIS 中，手動刪除連接器網站及其應用程式集區。
  - 重新執行混合式連線管理員，並確認您輸入連接器的正確 [**主要組態字串**]。
 
 
@@ -140,4 +140,4 @@ TCP 連接埠 | 理由
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0727_2016-->

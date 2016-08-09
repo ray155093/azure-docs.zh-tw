@@ -28,6 +28,7 @@
 若要從硬體故障或損毀復原，請從備份還原已啟用延展功能的 SQL Server 資料庫。您可以繼續使用您目前使用的 SQL Server 還原方法。如需詳細資訊，請參閱[還原和復原概觀](https://msdn.microsoft.com/library/ms191253.aspx)。
 
 還原 SQL Server 資料庫之後，您必須執行 **sys.sp\_rda\_reauthorize\_db** 預存程序來重新建立已啟用延展功能之 SQL Server 資料庫與遠端 Azure 資料庫之間的連線。如需詳細資訊，請參閱[還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線](#Restore-the-connection-between-the-SQL-Server-database-and-the-remote-Azure-database)。
+<!-- Fix Comment: The structure and the reference seeem to be incorrect. Could you check if they are okay? -->
 
 ## 還原您的遠端 Azure 資料
 
@@ -58,9 +59,9 @@ Azure 上的 SQL Server Stretch Database 會在卸除資料庫前建立資料庫
 
 ## 還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線
 
-1.  如果您即將連接到已還原但名稱不同或在不同區域中的 Azure 資料庫，請執行 [sys.sp\_rda\_deauthorize\_db](https://msdn.microsoft.com/library/mt703716.aspx) 預存程序以與先前的 Azure 資料庫中斷連線。
+1.  如果您即將連接到已還原但名稱不同或在不同區域中的 Azure 資料庫，請執行 [sys.sp\_rda\_deauthorize\_db](https://msdn.microsoft.com/library/mt703716.aspx) 預存程序與先前的 Azure 資料庫中斷連線。
 
-2.  執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序，以將已啟用延展功能的本機資料庫重新連接到 Azure 資料庫。
+2.  執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序，將已啟用延展功能的本機資料庫重新連接到 Azure 資料庫。
 
 	-   請以 sysname 或 varchar(128) 值提供現有資料庫範圍認證。(請勿使用 varchar(max))。 您可以在 **sys.database\_scoped\_credentials** 檢視中查閱認證名稱。
 
@@ -83,4 +84,4 @@ Azure 上的 SQL Server Stretch Database 會在卸除資料庫前建立資料庫
 
 [備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0727_2016-->

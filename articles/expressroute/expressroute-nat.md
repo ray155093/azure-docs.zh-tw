@@ -23,7 +23,7 @@
 
 ## Azure 公用對等的 NAT 需求
 
-Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的公用 IP 位址。其中包括 [ExpessRoute 常見問題集](expressroute-faqs.md)列出的所有服務，以及由 ISV 裝載於 Microsoft Azure 上的任何服務。連線到公用對等的 Microsoft Azure 服務時，一律是從您的網路出發到 Microsoft 網路。以公用對等的 Microsoft Azure 為目的地的流量，必須由 SNAT 轉譯成有效的公用 IPv4 位址，才能進入 Microsoft 網路。下圖提供如何設定 NAT 以符合上述需求的高階圖片。
+Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的公用 IP 位址。其中包括 [ExpessRoute 常見問題集](expressroute-faqs.md)列出的服務，以及由 ISV 裝載於 Microsoft Azure 上的任何服務。連線到公用對等的 Microsoft Azure 服務時，一律是從您的網路出發到 Microsoft 網路。以公用對等的 Microsoft Azure 為目的地的流量，必須由 SNAT 轉譯成有效的公用 IPv4 位址，才能進入 Microsoft 網路。下圖提供如何設定 NAT 以符合上述需求的高階圖片。
 
 ![](./media/expressroute-nat/expressroute-nat-azure-public.png)
 
@@ -66,4 +66,4 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

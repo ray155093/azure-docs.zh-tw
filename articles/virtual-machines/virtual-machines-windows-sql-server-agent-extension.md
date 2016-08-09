@@ -25,8 +25,7 @@
 
 SQL Server IaaS 代理程式擴充功能 (SQLIaaSExtension) 會在 Azure 虛擬機器上執行，以將管理工作自動化。本主題概述擴充功能支援的服務以及安裝、狀態及移除相關指示。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 
-傳統部署模型。如需檢視這篇文章的精簡版本，請參閱 [SQL Server IaaS 代理程式擴充功能 (傳統)](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需檢視這篇文章的精簡版本，請參閱 [SQL Server IaaS 代理程式擴充功能 (傳統)](virtual-machines-windows-classic-sql-server-agent-extension.md)。
 
 ## 支援的服務
 
@@ -101,4 +100,4 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
 
 如需在 Azure 虛擬機器上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0720_2016--->
+<!----HONumber=AcomDC_0720_2016--->

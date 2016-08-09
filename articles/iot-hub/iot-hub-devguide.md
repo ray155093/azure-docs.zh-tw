@@ -582,6 +582,7 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 - [使用範例 UI 探索裝置管理][lnk-dmui]
 - [使用閘道 SDK 模擬裝置][lnk-gateway]
 - [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+- [徹底保護您的 IoT 解決方案][lnk-securing]
 
 
 
@@ -634,5 +635,6 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
+[lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0727_2016-->
