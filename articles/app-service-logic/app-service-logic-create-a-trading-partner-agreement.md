@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Azure 應用程式服務中建立交易夥伴協議 | Microsoft Azure" 
    description="建立交易夥伴協議" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
    manager="erikre" 
@@ -79,4 +79,4 @@
 [3]: ./media/app-service-logic-create-a-trading-partner-agreement/X12AgreementCreation.png
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

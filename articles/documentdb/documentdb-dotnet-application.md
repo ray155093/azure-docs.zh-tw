@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="05/18/2016" 
+	ms.date="08/01/2016" 
 	ms.author="andrl"/>
 
 #<a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
@@ -24,7 +24,7 @@
 - [.NET](documentdb-dotnet-application.md)
 - [Node.js](documentdb-nodejs-application.md)
 - [Java](documentdb-java-application.md)
-- [Python](documentdb-python-application.md) 
+- [Python](documentdb-python-application.md)
 
 為了特別說明您可以如何有效率地利用 Azure DocumentDB 來儲存和查詢 JSON 文件，本文提供如何使用 Azure DocumentDB 建置待辦事項應用程式的完整逐步解說。在 Azure DocumentDB 中，這些工作將會儲存為 JSON 文件。
 
@@ -39,8 +39,8 @@
 在依照本文中的指示進行之前，您應先確定備妥下列項目：
 
 - 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- [Visual Studio 2013](http://www.visualstudio.com/) Update 4 或更新版本。
-- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] \(英文) 取得。
+- [Visual Studio 2015](http://www.visualstudio.com/) 或 Visual Studio 2013 Update 4 或更新版本。如果使用 Visual Studio 2013，您必須安裝 [Microsoft.Net.Compilers nuget 套件](https://www.nuget.org/packages/Microsoft.Net.Compilers/)以加入 C# 6.0 的支援。
+- Azure SDK for .NET 2.5.1 版或更高版本，可透過 [Microsoft Web Platform Installer][] (英文) 取得。
 
 本文中的所有螢幕擷取畫面都是使用已套用 Update 4 的 Visual Studio 2013 以及 Azure SDK for .NET 2.5.1 版所取得。如果您的系統是設定使用不同的版本，則您的畫面和選項可能不會完全相符，但只要您符合上述必要條件，本方案應該還是有效。
 
@@ -208,7 +208,7 @@
 	- 在 [檢視名稱] 方塊中，輸入「***索引***」。
 	- 在 [範本] 方塊中，選取 [清單]。
 	- 在 [模型類別] 方塊中，選取 [項目 (todo.Models)]。
-	- 將 [資料內容類別] 方塊保留空白。 
+	- 將 [資料內容類別] 方塊保留空白。
 	- 在 [版面配置頁面] 方塊中，輸入 ***~/Views/Shared/\_Layout.cshtml***。
 	
 	![顯示 [新增檢視] 對話方塊的螢幕擷取畫面](./media/documentdb-dotnet-application/image18.png)
@@ -239,7 +239,7 @@
 	- 在 [**檢視名稱**] 方塊中，輸入「***編輯***」。
 	- 在 [範本] 方塊中，選取 [編輯]。
 	- 在 [模型類別] 方塊中，選取 [項目 (todo.Models)]。
-	- 將 [資料內容類別] 方塊保留空白。 
+	- 將 [資料內容類別] 方塊保留空白。
 	- 在 [版面配置頁面] 方塊中，輸入 ***~/Views/Shared/\_Layout.cshtml***。
 	- 按一下 [新增]。
 
@@ -545,7 +545,7 @@
 
 	![本資料庫教學課程所建立的待辦事項清單 Web 應用程式的螢幕擷取畫面](./media/documentdb-dotnet-application/image24.png)
 
-	如果這個時候發生錯誤，您可以將程式碼與 [GitHub][] 上的範例專案進行比對
+	如果您使用 Visual Studio 2013 並收到「不能在 catch 子句的主體中等候。」錯誤，您必須安裝 [Microsoft.Net.Compilers nuget 套件](https://www.nuget.org/packages/Microsoft.Net.Compilers/)。您可以將程式碼與 [GitHub][] 上的範例專案進行比對。
 
 2. 按一下 [新建] 連結，並在 [名稱] 和 [描述] 欄位中新增值。將 [已完成] 核取方塊保持為未選取狀態，否則，**新項目**會以已完成的狀態新增，且不會出現在初始清單中。
 
@@ -563,7 +563,7 @@
 
 4. 完成測試應用程式後，按 Ctrl + F5 停止偵錯應用程式。您現在可以開始進行部署。
 
-##<a name="_Toc395637774"></a>步驟 7：將應用程式部署至 Azure 網站
+## <a name="_Toc395637774"></a>步驟 7：將應用程式部署至 Azure 網站
 
 您已經擁有可在 DocumentDB 正常運作的完整應用程式，我們現在要將此 Web 應用程式部署至 Azure 網站。如果您在建立空白 ASP.NET MVC 專案時選取了 [在雲端託管]，則 Visual Studio 可讓這項作業變得十分簡單，並為您完成大部分的工作。
 
@@ -577,11 +577,11 @@
 
 幾秒後，Visual Studio 便會發佈 Web 應用程式並啟動瀏覽器，您可以在瀏覽器中看到您方便好用的應用程式已在 Azure 中執行！
 
-##<a name="_Toc395637775"></a>後續步驟
+## <a name="_Toc395637775"></a>後續步驟
 
 恭喜！ 您剛剛使用 Azure DocumentDB 建置您的第一個 ASP.NET MVC Web 應用程式，並將它發佈至 Azure 網站。您可以從 [GitHub][] 下載或複製完整應用程式 (包括不包含在本教學課程中的詳細資料和刪除功能) 的原始程式碼。所以如果您想要將程式碼加入您的應用程式，請抓取程式碼，並將它加入這個應用程式。
 
-若要將其他功能加入至您的應用程式，請檢閱[DocumentDB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][] 上的 DocumentDB .NET 程式庫。
+若要將其他功能加入至您的應用程式，請檢閱 [DocumentDB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][] 上的 DocumentDB .NET 程式庫。
 
 
 [*]: https://microsoft.sharepoint.com/teams/DocDB/Shared%20Documents/Documentation/Docs.LatestVersions/PicExportError
@@ -591,4 +591,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

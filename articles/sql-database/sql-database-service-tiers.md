@@ -4,7 +4,7 @@
 	keywords="資料庫選項, 資料庫效能"
 	services="sql-database"
 	documentationCenter=""
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor=""/>
 
@@ -58,14 +58,38 @@
 
 [AZURE.INCLUDE [SQL DB DTU 說明](../../includes/sql-database-understanding-dtus.md)]
 
+## 選擇服務層
+
+若要決定服務層，先判斷資料庫是獨立資料庫或是彈性集區的一部分。
+
+### 選擇獨立資料庫的服務層
+
+若要決定獨立資料庫的服務層，先判斷您需要的資料庫功能以選擇 SQL Database 版本︰
+
+- 資料庫大小 (基本最大 5GB、標準最大 250 GB、進階最大 500 GB 至 1 TB - 視效能層級而定)
+- 資料庫備份的保留期限 (基本 7 天、標準 35 天、進階 35 天)
+
+一旦決定 SQL Database 版本之後，接下來要決定資料庫的效能層級 (DTU 數目)。如同您所猜測，然後根據實際經驗 [動態相應增加或減少](sql-database-scale-up.md)。也可以使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/) 估計所需的 DTU 數目。
+
+### 選擇彈性資料庫集區的服務層。
+
+若要決定彈性資料庫集區的服務層，先判斷您需要的資料庫功能以選擇集區的服務層。
+
+- 資料庫大小 (基本 2 GB、標準 250 GB、進階 500 GB)
+- 資料庫備份的保留期限 (基本 7 天、標準 35 天、進階 35 天)
+- 每個集區的資料庫數目 (基本 400 個、標準 400 個、進階 50 個)
+- 每個集區的最大儲存空間 (基本 117 GB、標準 1200 GB、進階 750 GB)
+
+一旦決定集區的服務層之後，接下來要決定集區的效能層級 (eDTU)。如同您所猜測，然後根據實際經驗 [動態相應增加或相應減少](sql-database-elastic-pool-manage-portal.md#change-performance-settings-of-a-pool)。也可以使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/) 估計集區中個別資料庫所需的 DTU 數目，協助您設定集區的上限。
+
 ## 後續步驟
 - 請在 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)進一步了解這些層的定價。
-- 了解[彈性資料庫集區](sql-database-elastic-pool-guidance.md)和[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
-- 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
-- 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
+- 了解 [彈性資料庫集區](sql-database-elastic-pool-guidance.md) 和 [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+- 了解如何 [監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md) 和 [監視單一資料庫的效能](sql-database-single-database-monitor.md)。
+- 如果您認識了 SQL Database 各個層，可以透過 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 親身體驗，然後了解 [如何建立您的第一個 SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
 
-如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-<!----HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -4,7 +4,7 @@
 	keywords="資料庫監視, 雲端資料庫效能"
 	services="sql-database"
 	documentationCenter=""
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor=""/>
 
@@ -47,4 +47,4 @@
 
 若為彈性資料庫集區，您可以監視其中的個別資料庫，技巧如本節所述。但您也可以監視集區整體。如需詳細資訊，請參閱[監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

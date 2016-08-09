@@ -129,7 +129,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 - [購買並設定自訂網域名稱](custom-dns-web-site-buydomains-web-app.md) - 為您的 Web 應用程式購買引人注意的網域，而非 *.azurewebsites.net 網域。或使用既有網域。
 - [設定預備環境](web-sites-staged-publishing.md) - 先將應用程式部署至預備 URL，再將它放到生產環境。放心地更新執行中的 Web 應用程式。為精心規劃的 DevOps 方案設定多個部署位置。
-- [設定連續部署](web-sites-publish-source-control.md) - 將應用程式部署整合至原始檔控制系統。使用每個認可部署到 Azure。
+- [設定連續部署](app-service-continuous-deployment.md) - 將應用程式部署整合至原始檔控制系統。使用每個認可部署到 Azure。
 - [存取內部部署資源](web-sites-hybrid-connection-get-started.md) - 存取現有的內部部署資料庫或 CRM 系統。
 - [備份您的應用程式](web-sites-backup.md) - 為 Web 應用程式設定備份與還原。為非預期的失敗做好準備，並從中復原。
 - [啟用診斷記錄](web-sites-enable-diagnostic-log.md) - 讀取 Azure 或應用程式追蹤內的 IIS 記錄檔。在串流中讀取記錄檔、下載記錄檔，或將記錄檔移植到 [Application Insights](../application-insights/app-insights-overview.md) 來進行周全分析。
@@ -137,4 +137,4 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 - [執行背景工作](../azure-functions/functions-overview.md) - 執行資料處理、報告等工作。
 - [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

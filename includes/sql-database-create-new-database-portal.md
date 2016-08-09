@@ -30,7 +30,7 @@ articles/sql-database/sql-database-get-started-tutorial.md
  - 資料庫名稱
  - 訂用帳戶 (僅限您有多個訂用帳戶時)
  - 資源群組 (如果剛開始使用，請使用邏輯伺服器的資源群組)
- - 選取來源 (您可以選擇空白資料庫、範例資料或資料庫備份)
+ - 選取來源 (您可以選擇空白資料庫、範例資料或 Azure 資料庫備份 - 以移轉內部部署 SQL Server 資料庫或使用 BCP 載入資料，請參閱本文結尾處的連結)
  - 伺服器 (新的或現有邏輯伺服器)
  - 伺服器系統管理員密碼
  - 密碼
@@ -47,4 +47,4 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
      ![新的資料庫](./media/sql-database-create-new-database-portal/sql-database-create-new-database-portal-6.png)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0803_2016-->

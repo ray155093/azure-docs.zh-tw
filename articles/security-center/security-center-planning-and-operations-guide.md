@@ -221,7 +221,7 @@ Azure 資訊安全中心儀表板分成兩個主要部分︰
 - **評估**︰執行初始評估，以取得可疑活動的詳細資訊。
 - **診斷**︰使用補救步驟來進行解決問題的技術程序。
 
-每個安全性警示都提供可用來進一步了解攻擊本質及建議可能補救措施的資訊。有些警示也會提供更多資訊或 Azure 中其他資訊來源的連結。您可以使用所提供的資訊，通知進一步研究並開始緩和。
+每個安全性警示都提供可用來進一步了解攻擊本質及建議可能補救措施的資訊。有些警示也會提供更多資訊或 Azure 中其他資訊來源的連結。您可以使用所提供的資訊進一步研究並開始補救。
 
 下列範例說明正在發生的可疑 RDP 活動︰
 
@@ -234,9 +234,9 @@ Azure 資訊安全中心儀表板分成兩個主要部分︰
 在本文件中，您已了解如何規劃資訊安全中心的採用。如要深入了解資訊安全中心，請參閱下列主題：
 
 - [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

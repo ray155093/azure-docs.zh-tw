@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/13/2016"
+   ms.date="08/02/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 建立具有站對站 VPN 連線的虛擬網路
@@ -117,7 +117,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 使用 PowerShell 範例時，請注意下列各項：
 	
-- *GatewayIPAddress* 是內部部署 VPN 裝置的 IP 位址。VPN 裝置不能位於 NAT 後方。 
+- *GatewayIPAddress* 是內部部署 VPN 裝置的 IP 位址。VPN 裝置不能位於 NAT 後方。
 - *AddressPrefix* 是您的內部部署位址空間。
 
 若要新增具有單一位址前置詞的區域網路閘道：
@@ -157,10 +157,10 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 輸入下列值：
 
-- 站對站組態的 -GatewayType 是 Vpn。閘道器類型永遠是您實作的組態的特定類型。例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。 
+- 站對站組態的 -GatewayType 是 Vpn。閘道器類型永遠是您實作的組態的特定類型。例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。
 
 - -VpnType 可以是 RouteBased (在某些文件中稱為動態閘道器)，或 PolicyBased (在某些文件中稱為靜態閘道器)。如需 VPN 閘道類型的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md#vpntype)。
-- -GatewaySku 可以是Basic、Standard 或 HighPerformance。 	
+- -GatewaySku 可以是Basic、Standard 或 HighPerformance。
 
 		New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg -Location 'West US' -IpConfigurations $gwipconfig -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard
 
@@ -198,8 +198,8 @@ VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azu
 
 ## 後續步驟
 
-- 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
+- 您可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->
