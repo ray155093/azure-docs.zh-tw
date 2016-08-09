@@ -31,7 +31,8 @@
 ## <a name="Intro"></a>簡介
 檢閱精靈的用途及必要條件。
 
-重要先決條件包含下列各項。
+重要先決條件包含下列各項：
+
 -   您必須是系統管理員才能變更資料庫設定。
 -   您必須有 Microsoft Azure 訂用帳戶。
 -   您的 SQL Server 必須能與遠端 Azure 伺服器通訊。
@@ -190,4 +191,4 @@
 [StretchWizardImage8]: ./media/sql-server-stretch-database-wizard/stretchwiz8.png
 [StretchWizardImage9]: ./media/sql-server-stretch-database-wizard/stretchwiz9.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

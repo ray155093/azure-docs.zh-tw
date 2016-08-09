@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/27/2016"
+    ms.date="08/02/2016"
     ms.author="elizapo" />
 
 # Azure RemoteApp 範本映像中有什麼內容？
@@ -61,7 +61,7 @@ Office 365 是最常要求的應用程式，因此我們建立「 自訂 」映�
 - Excel
 - Lync
 - OneNote
-- OneDrive for Business
+- 商務用 OneDrive (請注意，不支援同步代理程式使用於 Azure RemoteApp)
 - Outlook
 - PowerPoint
 - Word
@@ -94,7 +94,7 @@ Office 365 ProPlus 應用程式的完整功能只適用於擁有 Office 365 ProP
 - Excel
 - Lync
 - OneNote
-- OneDrive for Business
+- 商務用 OneDrive (請注意，不支援同步代理程式使用於 Azure RemoteApp)
 - Outlook
 - PowerPoint
 - 隨附此逐步解說的專案
@@ -104,4 +104,4 @@ Office 365 ProPlus 應用程式的完整功能只適用於擁有 Office 365 ProP
 
 > [AZURE.IMPORTANT]**重要的法律資訊：**此映像不包含 Microsoft Office 授權，且無法用於生產環境。Office 2013 Professional Plus 映像僅作為試用之用。如果您想要在 Azure RemoteApp 中使用 Office 應用程式作為生產之用，您必須使用 Office 365 ProPlus 映像。如需授權 Office 的詳細資訊，請參閱[使用 Office 365 與 Azure RemoteApp 搭配](remoteapp-o365.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

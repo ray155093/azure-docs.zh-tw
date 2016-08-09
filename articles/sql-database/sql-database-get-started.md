@@ -4,7 +4,7 @@
 	keywords="sql database 教學課程, 建立 sql database"
 	services="sql-database"
 	documentationCenter=""
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor=""/>
 
@@ -61,4 +61,4 @@
 
 [什麼是 SQL Database？](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

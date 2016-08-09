@@ -1,7 +1,7 @@
 <properties
 	pageTitle="如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview | Microsoft Azure App Service"
 	description="您可以輕鬆地將邏輯應用程式移轉至最新的結構描述版本。請直接遵循下列步驟。"
-	services="app-service\logic"
+	services="logic-apps"
 	documentationCenter=""
 	authors="MSFTMAN"
 	manager="erikre"
@@ -23,9 +23,7 @@
 1. 在 Azure 入口網站中開啟邏輯應用程式
 2. 按一下 [更新結構描述]︰
 
- ![API 圖示][step1]
-[更新結構描述] 頁面便會出現，並提供會提供新結構描述增強功能詳細資訊之文件的連結︰
- ![API 圖示][step2]
+ ![API 圖示][step1][更新結構描述] 頁面便會出現，並提供會提供新結構描述增強功能詳細資訊之文件的連結︰![API 圖示][step2]
 
 >[AZURE.NOTE] 當您選取 [更新結構描述] 時，我們會自動執行移轉步驟，並為您提供程式碼輸出。您可以使用此輸出更新您的定義，不過，請確定您有遵循良好的程式碼撰寫方式，例如下面的**最佳作法**一節中所說的方式。
 
@@ -44,4 +42,4 @@
 [step1]: ./media/connectors-schema-migration/migrateschema1.png
 [step2]: ./media/connectors-schema-migration/migrateschema2.png
 
-<!---HONumber=AcomDC_0727_2016--->
+<!---HONumber=AcomDC_0803_2016-->

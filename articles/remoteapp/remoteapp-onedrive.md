@@ -13,13 +13,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="06/15/2016"
+   ms.date="08/02/2016"
    ms.author="elizapo"/>
 
 # 商務用 OneDrive 和 Azure RemoteApp
 
-Azure RemoteApp 不支援商務用 OneDrive。
+Azure RemoteApp 不支援商務用 OneDrive 同步代理程式。
 
-本文先前說明搭配使用商務用 OneDrive 與 Azure RemoteApp 的不同實作選項。請留意這些實作選項已不再受到支援。
+您可以將商務用 OneDrive 納入集合中，以便搭配 Office 365 使用。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

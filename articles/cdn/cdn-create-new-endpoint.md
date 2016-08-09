@@ -1,5 +1,5 @@
 <properties
-	 pageTitle="使用 Azure CDN"
+	 pageTitle="使用 Azure CDN | Microsoft Azure"
 	 description="本主題說明如何啟用 Azure 內容傳遞網路 (CDN)。本教學課程會逐步建立新的 CDN 設定檔和端點。"
 	 services="cdn"
 	 documentationCenter=""
@@ -12,7 +12,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="05/24/2016" 
+	 ms.date="07/28/2016" 
 	 ms.author="casoper"/>
 
 # 使用 Azure CDN  
@@ -67,7 +67,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 	
 	> [AZURE.NOTE] [原始連接埠] 只會影響端點用來從原始來源擷取資訊的連接埠。不論 [原始連接埠] 為何，端點本身只會透過預設 HTTP 和 HTTPS 連接埠 (80 和 443) 提供給終端用戶端使用。
 	>
-	> **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 行為詳細資料](cdn-akamai-behavior-details.md)。
+	> **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 允許的原始連接埠](https://msdn.microsoft.com/library/mt757337.aspx)。
 	>
 	> 使用 HTTPS 存取 CDN 內容具有下列限制：
 	> 
@@ -97,4 +97,4 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

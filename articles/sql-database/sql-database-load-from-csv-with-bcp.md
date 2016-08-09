@@ -3,7 +3,7 @@
    description="對於較小的資料大小，請使用 bcp 將資料匯入 Azure SQL Database。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -127,4 +127,4 @@ DateId |CalendarQuarter |FiscalQuarter
 <!--Other Web references-->
 [Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

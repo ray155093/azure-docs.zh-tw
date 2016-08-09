@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/05/2016"
+	ms.date="07/28/2016"
 	ms.author="cynthn"/>
 
 # 如何連接和登入執行 Windows 的 Azure 虛擬機器 
@@ -34,7 +34,7 @@
 
 	![顯示如何連接至 VM 的 Azure 入口網站螢幕擷取畫面。](./media/virtual-machines-windows-connect-logon/connect.png)
 	
- > [AZURE.TIP] 如果入口網站中的 [連線] 按鈕呈現灰色，而且您未透過 [Express Route](../expressroute/expressroute-introduction.md) 或[站對站 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連線連接到 Azure，您必須先建立您的 VM 並對其指派公用 IP 位址，才能使用 RDP。您可以深入了解 [Azure 中的公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
+ > [AZURE.TIP] 如果入口網站中的 [連線] 按鈕呈現灰色，而且您未透過 [Express Route](../expressroute/expressroute-introduction.md) 或 [網站間 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連線來連接到 Azure，您就必須先建立 VM 並為其指派公用 IP 位址，才能使用 RDP。您可以深入了解 [Azure 中的公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
 
 ## 登入虛擬機器
 
@@ -43,6 +43,6 @@
 
 ## 後續步驟
 
-如果嘗試連線時遇到問題，請參閱[針對執行 Windows 之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
+如果嘗試連線時遇到問題，請參閱 [遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0518_2016--->
+<!---HONumber=AcomDC_0803_2016-->

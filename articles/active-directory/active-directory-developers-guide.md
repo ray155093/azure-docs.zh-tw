@@ -103,7 +103,13 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 
 - [在 Azure AD 中簽署金鑰變換](active-directory-signing-key-rollover.md)：了解 Azure AD 的簽署金鑰變換模式，以及如何針對最常見的應用程式案例更新金鑰。
 
+- [OAuth 2.0 通訊協定：使用授權碼授與](active-directory-protocols-oauth-code.md)：您可以使用 OAuth 2.0 通訊協定的授權碼授與，來授權存取您 Azure Active Directory 租用戶中的 Web 應用程式及 Web API。
+
 - [OAuth 2.0 通訊協定︰了解隱含授權](active-directory-dev-understanding-oauth2-implicit-grant.md)︰深入了解隱含授權授與，以及它是否適合您的應用程式。
+
+- [OAuth 2.0 通訊協定：使用認證進行服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md)：OAuth 2.0 用戶端認證授與流程可允許 Web 服務 (機密用戶端) 在呼叫另一個 Web 服務時使用它自己的認證來進行驗證，而不必模擬使用者。在此案例中，用戶端通常是中介層 Web 服務、精靈服務或網站。
+
+- [OpenID Connect 1.0 通訊協定：登入和驗證](active-directory-protocols-openid-connect-code.md)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。用戶端應用程式可以接收 id\_token 以管理登入程序，或增加授權碼流程以接收 id\_token 和授權碼。
 
 - [SAML 2.0 通訊協定參考](active-directory-saml-protocol-reference.md)：SAML 2.0 通訊協定可讓應用程式能為使用者提供單一登入體驗。
 
@@ -139,4 +145,4 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 
 - [Twitter 上的 Azure Active Directory](https://twitter.com/azuread)：140 個字元以內的 Azure Active Directory 公告。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

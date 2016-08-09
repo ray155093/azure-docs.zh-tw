@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="04/29/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # 使用 REST API 開始使用 Azure Data Lake Store
@@ -43,7 +43,7 @@
 	* **針對非互動式驗證** - 在 Azure Active Directory 中，您必須建立 **Web 應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
 		- 取得應用程式的**用戶端識別碼**、**用戶端密碼**和**重新導向 URI**
 		- 設定委派權限
-		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。 
+		- 將 Azure Active Directory 應用程式指派給角色。角色可以在您要授與權限給 Azure Active Directory 應用程式的範圍層級。例如，您可以在訂用帳戶層級或資源群組的層級指派應用程式。如需指示，請參閱[指派應用程式給角色](../resource-group-create-service-principal-portal.md#assign-application-to-role)。
 
 	如需有關如何擷取這些值、設定權限和指派角色的指示，請參閱[使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。
 
@@ -61,7 +61,7 @@
 
 		https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
 
-	>[AZURE.NOTE] \<REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，https://localhost，使用 `https%3A%2F%2Flocalhost`)
+	>[AZURE.NOTE] <REDIRECT-URI> 需要編碼才能在 URL 中使用。因此，https://localhost，使用 `https%3A%2F%2Flocalhost`)
 
 	本教學課程的目的是讓您取代以上 URL 中的預留位置值，並將此值貼在網路瀏覽器網址列中。系統會將您重新導向，以使用 Azure 登入資料來進行驗證。一旦成功登入，回應會顯示在瀏覽器網址列中。回應格式如下：
 		
@@ -76,7 +76,7 @@
         -F client_id=<CLIENT-ID> \
         -F code=<AUTHORIZATION-CODE>
 
-	>[AZURE.NOTE] 在此情況下，不需要編碼 \<REDIRECT-URI>。
+	>[AZURE.NOTE] 在此情況下，不需要編碼 <REDIRECT-URI>。
 
 3. 回應為 JSON 物件，包含存取權杖 (例如 `"access_token": "<ACCESS_TOKEN>"`) 重新整理權杖 (例如：`"refresh_token": "<REFRESH_TOKEN>"`)。您的應用程式會在存取 Azure Data Lake Store 時使用存取權杖，並會在存取權杖過期時重新整理以取得另一個存取權杖。
 
@@ -276,4 +276,4 @@
 - [與 Azure Data Lake Store 相容的開放原始碼巨量資料應用程式](data-lake-store-compatible-oss-other-applications.md)
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

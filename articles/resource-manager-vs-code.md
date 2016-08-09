@@ -134,5 +134,6 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 
 - 若要了解範本，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要了解範本函式，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
+- 如需更多使用 Visual Studio Code 的範例，請參閱來自 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的 [Build cloud apps with Visual Studio Code (使用 Visual Studio Code 建置雲端應用程式)](https://github.com/Microsoft/HealthClinic.biz/wiki/Build-cloud-apps-with-Visual-Studio-Code)。如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure Developer Tools Quickstarts (Azure 開發人員工具快速入門)](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->
