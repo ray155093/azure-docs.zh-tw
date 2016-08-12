@@ -86,7 +86,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | Type=Perf | 所有效能資料 |
 | Type=Perf Computer="MyComputer" | 來自特定電腦的所有效能資料 |
 | Type=Perf CounterName="Current Disk Queue Length" | 來自特定計數器的所有效能資料 |
-| Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=\_Total | measure Avg(Average) as AVGCPU by Computer | 所有電腦的平均 CPU 使用率 |
+| Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=\_Total &#124; measure Avg(Average) as AVGCPU by Computer | 所有電腦的平均 CPU 使用率 |
 | Type=Perf (CounterName="% Processor Time") &#124; measure max(Max) by Computer | 所有電腦的最大 CPU 使用率 |
 | Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName | 指定電腦之所有執行個體的平均目前磁碟佇列長度 |
 | Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer | 所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
