@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="11/25/2015" 
+	ms.date="03/31/2016" 
 	ms.author="awills"/>
  
 # Visual Studio Application Insights
@@ -25,7 +25,7 @@ Application Insights 是一項可延伸分析服務，會監視您的即時應�
 
 Application Insights 是以開發團隊為目標。使用它，您可以：
 
-* [分析使用量模式][knowUsers]以更了解您的使用者，並不斷改善您的應用程式。 
+* [分析使用量模式][knowUsers]以更了解您的使用者，並不斷改善您的應用程式。
  * 頁面檢視計數、新的和返回的使用者、地理位置、平台以及其他核心使用量分析
  * 追蹤使用量路徑來評估每個功能的成功。
 * [偵測、分級及診斷][detect]效能問題，並且在大部分的使用者感知之前加以修正。
@@ -112,7 +112,7 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 * 錯誤：
  * [連線](https://connect.microsoft.com/VisualStudio/Feedback/LoadSubmitFeedbackForm?FormID=6076)
 * 建議：
- * [使用者心聲 (英文)](http://visualstudio.uservoice.com/forums/121579-visual-studio/category/77108-application-insights)
+ * [UserVoice](https://visualstudio.uservoice.com/forums/357324)
 
 
 ## 影片
@@ -144,4 +144,4 @@ SDK 有數個模組收集遙測，例如，計算使用者、工作階段和效�
 
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0810_2016-->

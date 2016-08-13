@@ -66,8 +66,8 @@ Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
 |:--|:--|
 | Type=Event | 所有的 Windows 事件。 |
 | Type=Event EventLevelName=error | 所有 Windows 事件與錯誤的嚴重性。 |
-| Type=Event | Measure count() by Source | 依據來源的 Windows 事件計數。 |
-| Type=Event EventLevelName=error | Measure count() by Source | 依據來源的 Windows 錯誤事件計數。 |
+| Type=Event &#124; Measure count() by Source | 依據來源的 Windows 事件計數。 |
+| Type=Event EventLevelName=error &#124; Measure count() by Source | 依據來源的 Windows 錯誤事件計數。 |
 
 ## 後續步驟
 
