@@ -686,7 +686,8 @@ Azure 中的每個虛擬機器都必須連線到虛擬網路。
 #### 多網站 VPN
 Azure 現在也可讓您為一個 Azure 訂用帳戶建立多網站 VPN 連線能力。之前，單一訂用帳戶僅限於一個站對站 VPN 連線。此限制在單一訂用帳戶可以有多網站 VPN 連線之後已不存在。您可以透過跨單位組態，針對特定訂用帳戶使用多個 Azure 區域。
 
-如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell] [註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
+如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell]
+[註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
 
 #### VNet 對 VNet 連線
 使用多網站 VPN 時，您必須在每個區域中設定不同的 Azure 虛擬網路。不過，您通常必須讓不同區域中的軟體元件能夠彼此通訊。在理想情況下，此通訊應該從一個 Azure 區域路由傳送至內部部署，再由此路由傳送至其他 Azure 區域。簡而言之，Azure 可讓您設定從某個區域中的一個 Azure 虛擬網路到裝載於另一個區域中之另一個 Azure 虛擬網路的連線。此功能稱為 VNet 對 VNet 連線。如需有關此功能的更多詳細資料，請參閱：<https://azure.microsoft.com/documentation/articles/vpn-gateway-vnet-vnet-rm-ps/>。
@@ -782,7 +783,8 @@ Windows PowerShell 是強大且可擴充的架構，客戶已廣泛採用此架�
 
 請參閱下列範例︰<http://blogs.technet.com/b/keithmayer/archive/2015/07/07/18-steps-for-end-to-end-iaas-provisioning-in-the-cloud-with-azure-resource-manager-arm-powershell-and-desired-state-configuration-dsc.aspx>
 
-[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 ) 您只能透過 PowerShell 或 CLI 部署 Azure Monitoring Extension for SAP (請參閱本文件的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
+[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 )
+您只能透過 PowerShell 或 CLI 部署 Azure Monitoring Extension for SAP (請參閱本文件的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
 
 隨著 Azure 提供更多功能，也會新增 PS Cmdlet，而需要更新 Cmdlet。因此，您每個月至少要檢查一次 Azure 下載網站 <https://azure.microsoft.com/downloads/> 是否有新的 Cmdlet 版本。新版本將會直接覆蓋舊版本進行安裝。
 
@@ -841,7 +843,8 @@ ___
 
 準備您自己的 Azure VM 磁碟時的需求如下︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 使用系統管理員權限新增另一個本機帳戶，此帳戶可供 Microsoft 支援服務使用，或指派為服務和應用程式執行所在的內容，直到部署 VM 並可使用更適當的使用者為止。
@@ -866,7 +869,8 @@ ___
 
 準備您自己的 Azure VM 映像時的需求包括︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 由於所有在 VM 中註冊為使用者的網域使用者在僅限雲端案例中都將不存在 (請參閱本文件的[僅限雲端 - 將虛擬機器部署到 Azure，而不需要相依於內部部署客戶網路][planning-guide-2.1]一章)，因此一旦在 Azure 中部署映像，使用這類網域帳戶的服務可能就無法運作。特別是使用帳戶來執行 DBMS 或 SAP 應用程式等的服務時。因此，您必須以 VM 本機帳戶取代這類網域帳戶，並刪除 VM 中的內部部署網域帳戶。在以跨單位方式部署 VM 的情況下 (如本文件的[跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路][planning-guide-2.2]一章所述)，在 VM 映像中保留內部部署網域使用者可能就不構成問題。
