@@ -138,8 +138,8 @@ FROM dbo.DimProduct;
 
 [SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
 [SQL 資料倉儲整合概觀]: ./sql-data-warehouse-overview-integration.md
-[建立實驗教學課程]: https://azure.microsoft.com/zh-TW/documentation/articles/machine-learning-create-experiment/
-[Azure 上的機器學習服務簡介]: https://azure.microsoft.com/zh-TW/documentation/articles/machine-learning-what-is-machine-learning/
+[建立實驗教學課程]: https://azure.microsoft.com/documentation/articles/machine-learning-create-experiment/
+[Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [Azure Machine Learning Studio]: https://studio.azureml.net/Home
 [Azure 入口網站]: https://portal.azure.com/
 

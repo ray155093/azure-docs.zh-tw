@@ -138,13 +138,13 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 
 | 2014-12-01-preview | 2015-08-01-preview |
 |---------------------|--------------------|
-| 按一下 [HTTP 接聽程式] API 應用程式 | 按一下 [手動觸發程序] (不需要 API 應用程式) |
+| 按一下 [HTTP 接聽程式] API 應用程式 | 按一下 [手動觸發程序] \(不需要 API 應用程式) |
 | HTTP 接聽程式設定 [自動傳送回應] | 可能包含**回應**動作或不在工作流程定義中 |
 | 設定基本或 OAuth 驗證 | 透過 API 管理 |
 | 設定 HTTP 方法 | 透過 API 管理 |
 | 設定相對路徑 | 透過 API 管理 |
 | 透過 `@triggerOutputs().body.Content` 參考連入主體 | 透過 `@triggerOutputs().body` 參考 |
-| HTTP 接聽程式上的**傳送 HTTP 回應**動作 | 按一下 [回應 HTTP 要求] (不需要 API 應用程式)
+| HTTP 接聽程式上的**傳送 HTTP 回應**動作 | 按一下 [回應 HTTP 要求] \(不需要 API 應用程式)
 
 
 [1]: ./media/app-service-logic-http-endpoint/manualtriggerurl.png

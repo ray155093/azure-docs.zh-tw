@@ -445,7 +445,7 @@ ___
 > ![Linux][Logo_Linux] Linux
 >
 > 只支援使用 MDADM 和 LVM (邏輯磁碟區管理員) 在 Linux 上建立軟體 RAID。如需詳細資訊，請參閱下列文章：
-> * [在 Linux 上設定軟體 RAID][virtual-machines-linux-configure-raid] (適用於 MDADM)
+> * [在 Linux 上設定軟體 RAID][virtual-machines-linux-configure-raid] \(適用於 MDADM)
 > * [設定 Azure 中 Linux VM 的 LVM][virtual-machines-linux-configure-lvm]
 
 
@@ -537,7 +537,8 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。這表�
 如果想要建立 DBMS 部署的高可用性組態 (而不是個別使用 DBMS HA 功能)，則 DBMS VM 需要︰
 
 * 將 VM 新增至相同的「Azure 虛擬網路」(<https://azure.microsoft.com/documentation/services/virtual-network/>)
-* HA 組態的 VM 也應該位於相同的子網路中。不同子網路之間的名稱解析無法在僅限雲端的部署中運作，只有 IP 解析才能正常運作。針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。名稱解析是根據內部部署 AD 原則和網路基礎結構來完成。[註解]: <> (如果在 ARM 中仍為 true，就是 MSSedusch TODO 測試)
+* HA 組態的 VM 也應該位於相同的子網路中。不同子網路之間的名稱解析無法在僅限雲端的部署中運作，只有 IP 解析才能正常運作。針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。名稱解析是根據內部部署 AD 原則和網路基礎結構來完成。
+[註解]: <> (如果在 ARM 中仍為 true，就是 MSSedusch TODO 測試)
 
 #### IP 位址
 強烈建議使用彈性方式來設定 HA 組態的 VM。除非使用靜態 IP 位址，否則，在 Azure 中依賴 IP 位址來處理 HA 組態內的 HA 夥伴並不可靠。Azure 中有兩種「關閉」概念︰
@@ -615,7 +616,8 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。這表�
 SQL Server 2014 開放將資料庫檔案直接儲存於 Azure Blob 儲存體上的可能性，而不需在其周圍使用 VHD 的「包裝函式」。特別是在使用標準 Azure 儲存體或較小的 VM 類型時，這讓您可以在其中克服 IOPS 的限制，此限制是透過可以掛接到某些較小型 VM 類型的有限 VHD 數目來強制執行。不過，這適用於 SQL Server 的使用者資料庫，而不適用於系統資料庫。這也適用於 SQL server 的資料和記錄檔。如果您想要使用此方式部署 SAP SQL Server 資料庫，而不是將它「包裝」到 VHD，請記住下列資訊︰
 
 * 所使用之儲存體帳戶所在的 Azure 區域必須與用來部署 SQL Server 執行所在之 VM 的相同。
-* 稍早列出關於將 VHD 分散到不同 Azure 儲存體帳戶的考量也適用於這種部署方法。表示 I/O 作業計數會以 Azure 儲存體帳戶的限制為依據。[註解]: <> (MSSedusch TODO，但這將使用網路頻寬而不是儲存體頻寬，不賴吧？)
+* 稍早列出關於將 VHD 分散到不同 Azure 儲存體帳戶的考量也適用於這種部署方法。表示 I/O 作業計數會以 Azure 儲存體帳戶的限制為依據。
+[註解]: <> (MSSedusch TODO，但這將使用網路頻寬而不是儲存體頻寬，不賴吧？)
 
 如需此部署類型的詳細資料，請參閱下列網址︰<https://msdn.microsoft.com/library/dn385720.aspx>
  
@@ -756,14 +758,26 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 
 * 使用可用性群組接聽程式，只能使用 Windows Server 2012 或 Windows Server 2012 R2 做為 VM 的客體作業系統。針對 Windows Server 2012，您必須確定套用這個修補程式︰<https://support.microsoft.com/kb/2854082>
 * 針對 Windows Server 2008 R2，則沒有這個修補程式，必須以和使用「資料庫鏡像」相同的方式使用 AlwaysOn，方法是在連接字串中指定容錯移轉夥伴 (透過 SAP default.pfl 參數 dbs/mss/server 來完成 – 請參閱 SAP 附註 [965908])。
-* 使用可用性群組接聽程式時，資料庫 VM 需要連接到專用的負載平衡器。僅限雲端部署中的名稱解析可能會要求 SAP 系統的所有 VM (應用程式伺服器、DBMS 伺服器及 (A)SCS 伺服器) 位於同一個虛擬網路，或者從 SAP 應用程式層要求維護 etc\\host 檔案，以解析 SQL Server VM 的 VM 名稱。為了避免 Azure 在這兩個 VM 意外關閉的情況下指派新的 IP 位址，您應該在 AlwaysOn 組態中為這些 VM 的網路介面指派靜態 IP 位址 (如需定義靜態 IP 位址的方式，請參閱[這篇][virtual-networks-reserved-private-ip]文章) [註解]: <> (舊的部落格) [註解]: <> (<https://blogs.msdn.com/b/alwaysonpro/archive/2014/08/29/recommendations-and-best-practices-when-deploying-sql-server-alwayson-availability-groups-in-windows-azure-iaas.aspx>，<https://blogs.technet.com/b/rmilne/archive/2015/07/27/how-to-set-static-ip-on-azure-vm.aspx>)
+* 使用可用性群組接聽程式時，資料庫 VM 需要連接到專用的負載平衡器。僅限雲端部署中的名稱解析可能會要求 SAP 系統的所有 VM (應用程式伺服器、DBMS 伺服器及 (A)SCS 伺服器) 位於同一個虛擬網路，或者從 SAP 應用程式層要求維護 etc\\host 檔案，以解析 SQL Server VM 的 VM 名稱。為了避免 Azure 在這兩個 VM 意外關閉的情況下指派新的 IP 位址，您應該在 AlwaysOn 組態中為這些 VM 的網路介面指派靜態 IP 位址 (如需定義靜態 IP 位址的方式，請參閱[這篇][virtual-networks-reserved-private-ip]文章) 
+[註解]: <> (舊的部落格) 
+[註解]: <> (<https://blogs.msdn.com/b/alwaysonpro/archive/2014/08/29/recommendations-and-best-practices-when-deploying-sql-server-alwayson-availability-groups-in-windows-azure-iaas.aspx>，<https://blogs.technet.com/b/rmilne/archive/2015/07/27/how-to-set-static-ip-on-azure-vm.aspx>)
 * 建置叢集需要指派特定 IP 位址的 WSFC 叢集組態時需要特殊的步驟，因為具有其目前功能的 Azure 會為叢集名稱指派與叢集建立所在的節點相同的 IP 位址。這表示必須執行手動步驟，為叢集指派不同的 IP 位址。
 * 可用性群組接聽程式將建立於具備 TCP/IP 端點的 Azure 中，這些端點會指派給執行可用性群組之主要和次要複本的 VM。
 * 可能需要使用 ACL 保護這些端點。
 
-[註解]: <> (TODO 舊的部落格) [註解]: <> (若要獲得在 Azure 上安裝 AlwaysOn 組態之詳細步驟和必要條件的最佳體驗，請逐步執行[此處][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]所提供的教學課程) [註解]: <> (透過 Azure 資源庫設定的預先設定 AlwaysOn <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>) [註解]: <> ([這個][virtual-machines-windows-classic-ps-sql-int-listener]教學課程提供建立「可用性群組接聽程式」的最佳說明) [註解]: <> (這裡提供使用 ACL 來保護網路端點的最佳說明：) [註解]: <> (* <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>) [註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/08/31/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-1-of-2.aspx> ) [註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/01/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-2-of-2.aspx>) [註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx>)
+[註解]: <> (TODO 舊的部落格) 
+[註解]: <> (若要獲得在 Azure 上安裝 AlwaysOn 組態之詳細步驟和必要條件的最佳體驗，請逐步執行[此處][virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]所提供的教學課程) 
+[註解]: <> (透過 Azure 資源庫設定的預先設定 AlwaysOn <https://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx>) 
+[註解]: <> ([這個][virtual-machines-windows-classic-ps-sql-int-listener]教學課程提供建立「可用性群組接聽程式」的最佳說明) 
+[註解]: <> (這裡提供使用 ACL 來保護網路端點的最佳說明：) 
+[註解]: <> (* <https://michaelwasham.com/windows-azure-powershell-reference-guide/network-access-control-list-capability-in-windows-azure-powershell/>) 
+[註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/08/31/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-1-of-2.aspx> ) 
+[註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/01/weekend-scripter-creating-acls-for-windows-azure-endpoints-part-2-of-2.aspx>) 
+[註解]: <> (* <https://blogs.technet.com/b/heyscriptingguy/archive/2013/09/18/creating-acls-for-windows-azure-endpoints.aspx>)
 
-您也可以在不同的 Azure 區域上部署 SQL Server AlwaysOn 可用性群組。此功能將會利用 Azure VNet 對 Vnet 連線能力 ([更多詳細資料][virtual-networks-configure-vnet-to-vnet-connection])。[註解]: <> (TODO 舊的部落格) [註解]: <> (下列網址說明如何在這類案例中設定「SQL Server AlwaysOn 可用性群組」︰<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。)
+您也可以在不同的 Azure 區域上部署 SQL Server AlwaysOn 可用性群組。此功能將會利用 Azure VNet 對 Vnet 連線能力 ([更多詳細資料][virtual-networks-configure-vnet-to-vnet-connection])。
+[註解]: <> (TODO 舊的部落格) 
+[註解]: <> (下列網址說明如何在這類案例中設定「SQL Server AlwaysOn 可用性群組」︰<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。)
 
 #### Azure 中 SQL Server 高可用性的摘要
 由於 Azure 儲存體會保護內容，因此沒有理由堅持要有熱待命映像。這表示您的高可用性案例只需要在下列情況中提供保護：
@@ -1123,7 +1137,8 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 針對備份 / 還原功能，利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援 SAP BR*Tools for Oracle。Oracle 復原管理員 (RMAN) 也支援備份至磁碟，以及從磁碟還原。
 
 #### 高可用性
-[註解]: <> (連結是指 ASM) 基於高可用性和災害復原目的支援 Oracle Data Guard。如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
+[註解]: <> (連結是指 ASM) 
+基於高可用性和災害復原目的支援 Oracle Data Guard。如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
 
 #### 其他
 像是 Azure 可用性設定組或 SAP 監視等所有其他一般主題也適用於使用 Oracle 資料庫來部署 VM，如本文件的前三章中所述。

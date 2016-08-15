@@ -39,7 +39,7 @@ ms.author="deonhe"/>
 
 1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
   
-2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] (以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
+2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] \(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
 
 ## 使用 Dropbox 動作
 

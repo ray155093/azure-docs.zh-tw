@@ -46,7 +46,7 @@
 
 ## 建立專案
 
-1. 移至 [檔案] 功能表，選取 [新增] > [專案] (或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
+1. 移至 [檔案] 功能表，選取 [新增] > [專案] \(或者，移至 [加入]，再選取 [新增專案]，以加入至現有的方案)：![[檔案] 功能表](./media/app-service-logic-deploy-from-vs/filemenu.png)
 
 1. 在對話方塊中，尋找 [雲端]，然後選取 [Azure 資源群組]。輸入 [**名稱**]，然後按一下 [**確定**]。![加入新的專案](./media/app-service-logic-deploy-from-vs/addnewproject.png)
 
@@ -62,7 +62,7 @@
 
 擁有包含邏輯應用程式的 Azure 資源群組專案之後，您可以在 Visual Studio 內開啟設計工具，讓它協助您建立工作流程。設計工具需要網際網路連線，才能查詢連接器以取得可用的屬性和資料 (例如，如果使用 Dynamics CRM Online 連接器，設計工具會查詢 CRM 執行個體以列出可用的自訂和預設屬性)。
 
-1. 以滑鼠右鍵按一下 `<template>.json` 檔案，然後選取 [使用邏輯應用程式設計工具來開啟] (或 `Ctrl+L`)
+1. 以滑鼠右鍵按一下 `<template>.json` 檔案，然後選取 [使用邏輯應用程式設計工具來開啟] \(或 `Ctrl+L`)
 1. 選擇部署範本的訂用帳戶、資源群組和位置
 	- 請務必注意，在設計邏輯應用程式時將會建立 **API 連線**資源，以在設計期間查詢屬性。所選取的資源群組將會是用來在設計期間建立這些連線的資源群組。您可以前往 Azure 入口網站並瀏覽 **API 連線**，以檢視或修改任何 API 連線。![訂用帳戶選擇器](./media/app-service-logic-deploy-from-vs/designer_picker.png)
 1. 設計工具應該會根據 `<template>.json` 檔案中的定義來轉譯。

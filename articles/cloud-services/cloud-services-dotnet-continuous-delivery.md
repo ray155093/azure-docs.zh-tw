@@ -30,7 +30,7 @@
 
 組建伺服器上不需要安裝 Visual Studio。若要使用 Team Foundation Build Service 來管理組建伺服器，請遵循 [Team Foundation Build Service][] 文件。
 
-1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] (其中包含 MSBuild)。
+1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] \(其中包含 MSBuild)。
 2.  安裝最新版的[適用於 .NET 的 Azure 編寫工具](https://azure.microsoft.com/develop/net/)。
 3.	安裝 [Azure Libraries for .NET](http://go.microsoft.com/fwlink/?LinkId=623519)。
 4.  將 Microsoft.WebApplication.targets 檔案從 Visual Studio 安裝複製到組建伺服器上。
@@ -105,7 +105,7 @@
 
 本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
 
-1.  安裝 [Azure PowerShell Cmdlet][] (0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
+1.  安裝 [Azure PowerShell Cmdlet][] \(0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
 
 2.  使用 [開始] 功能表或 [開始] 頁面啟動 Azure PowerShell。如果以此方式啟動，則會載入 Azure PowerShell Cmdlet。
 
